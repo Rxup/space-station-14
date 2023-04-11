@@ -21,3 +21,15 @@
 - type: stationGoal
   id: StationGoalZoo
   text: station-goal-zoo
+  
+- type: stationGoal
+  id: StationGoalPrison
+  text: station-goal-prison
+
+- type: stationGoal
+  id: StationGoalGascanister
+  text: station-goal-gascanister
+
+- type: stationGoal
+  id: StationGoalWeapon
+  text: station-goal-weapon
