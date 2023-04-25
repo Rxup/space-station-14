@@ -19,3 +19,14 @@
       sprite: Backmen/Clothing/Uniforms/jumpsuit/red_fuvala.rsi
     - type: Clothing
       sprite: Backmen/Clothing/Uniforms/jumpsuit/red_fuvala.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformJumpsuitmtfj
+  name: Водолазка сотрудника МОГ
+  description: Светло-серая водолазка без опознавательных знаков, которая носится членами МОГ спецподразделения Браво-716
+  components:
+  - type: Sprite
+    sprite: Backmen/Clothing/Uniforms/jumpsuit/mtf_turtleneck.rsi
+  - type: Clothing
+    sprite: Backmen/Clothing/Uniforms/jumpsuit/mtf_turtleneck.rsi
