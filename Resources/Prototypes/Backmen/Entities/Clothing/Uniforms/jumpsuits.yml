@@ -22,7 +22,7 @@
 
 - type: entity
   parent: ClothingUniformBase
-  id: ClothingUniformJumpsuitMTFjumpsuit
+  id: ClothingUniformJumpsuitMTF
   name: Водолазка сотрудника МОГ
   description: Светло-серая водолазка без опознавательных знаков, которая носится членами МОГ спецподразделения Браво-716
   components:
