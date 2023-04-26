@@ -1,10 +1,11 @@
 using Robust.Shared.Console;
 using Robust.Client.State;
-using Content.Client.Lobby;
+//using Content.Client.Lobby;
 using Content.Client.Gameplay;
 using Robust.Client;
-using System.Threading.Tasks;
+//using System.Threading.Tasks;
 using Timer = Robust.Shared.Timing.Timer;
+using Content.Client.MainMenu;
 
 namespace Content.Client.Backmen.Commands;
 
@@ -23,7 +24,7 @@ public sealed class ReloadUiCommand : IConsoleCommand
             shell.WriteError("Not in game!");
         }
         if(_stateManager.CurrentState is GameplayState){
-            _stateManager.RequestStateChange<LobbyState>();
+            _stateManager.RequestStateChange<MainScreen>();
             Timer.Spawn(TimeSpan.FromSeconds(1), () =>
             {
                 _stateManager.RequestStateChange<GameplayState>();
