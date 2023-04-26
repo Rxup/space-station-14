@@ -1,6 +1,6 @@
 - type: entity
   parent: ClothingHandsBase
-  id: ClothingHandsGlovesordenhands
+  id: ClothingHandsGlovesOrdenHands
   name: Перчатки элитного отряда красного ордена.
   description: Перчатки которые дают важным членам красного ордена. в них инкрустировано золото.
   components:
