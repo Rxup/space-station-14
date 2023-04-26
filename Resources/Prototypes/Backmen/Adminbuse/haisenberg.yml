@@ -62,6 +62,7 @@
   - type: CanHostGuardian
   - type: Inventory
     templateId: InvHaisenberg
+  - type: InventorySlots
   - type: Body
     prototype: BodyHaisenberg
 
@@ -72,10 +73,10 @@
   - name: back
     slotTexture: back
     slotFlags: BACK
-    stripTime: 60
-    uiWindowPos: 0,1
-    slotGroup: MainHotbar
-    strippingWindowPos: 2,5
+    slotGroup: SecondHotbar
+    stripTime: 6
+    uiWindowPos: 3,0
+    strippingWindowPos: 0,5
     displayName: Back
   - name: mask
     slotTexture: mask
