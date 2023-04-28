@@ -154,6 +154,9 @@ namespace Content.Server.GameTicking
 
         public void ToggleReadyAll(bool ready)
         {
+            if(RunLevel != GameRunLevel.PreRoundLobby){
+                return;
+            }
             var status = ready ? PlayerGameStatus.ReadyToPlay : PlayerGameStatus.NotReadyToPlay;
             foreach (var playerUserId in _playerGameStatuses.Keys)
             {
@@ -167,15 +170,15 @@ namespace Content.Server.GameTicking
 
         public void ToggleReady(IPlayerSession player, bool ready)
         {
+            if(RunLevel != GameRunLevel.PreRoundLobby){
+                return;
+            }
+
             if (!_playerGameStatuses.ContainsKey(player.UserId))
                 return;
 
             if (!_userDb.IsLoadComplete(player))
                 return;
-
-            if(_playerGameStatuses[player.UserId] == PlayerGameStatus.JoinedGame){
-                return;
-            }
 
             var status = ready ? PlayerGameStatus.ReadyToPlay : PlayerGameStatus.NotReadyToPlay;
             _playerGameStatuses[player.UserId] = ready ? PlayerGameStatus.ReadyToPlay : PlayerGameStatus.NotReadyToPlay;
