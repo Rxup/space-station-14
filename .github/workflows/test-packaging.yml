@@ -46,13 +46,6 @@ jobs:
           git fetch --depth=1
           git describe --tags --abbrev=0
 
-      - name: Cache build
-        uses: actions/cache@v3
-        with:
-          key: ${{ runner.os }}-bin
-          path: |
-            bin
-
       - name: Install dependencies
         run: dotnet restore
 

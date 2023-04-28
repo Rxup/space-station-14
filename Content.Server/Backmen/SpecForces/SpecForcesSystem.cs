@@ -124,7 +124,7 @@ public sealed class SpecForcesSystem : EntitySystem
             var currentTime = GameTicker.RoundDuration();
 
             if(LastUsedTime+DelayUsesage > currentTime){
-                //return false;
+                return false;
             }
 
             CallendEvents.Add(new SpecForcesHistory{ Event = ev, RoundTime = currentTime, WhoCalled = source });
@@ -260,7 +260,7 @@ public sealed class SpecForcesSystem : EntitySystem
     private void OnRoundEnd(RoundEndTextAppendEvent ev)
     {
         foreach(var CalledEevent in CallendEvents){
-            ev.AddLine(Loc.GetString("spec-forces-system-"+CalledEevent.Event,("time", CalledEevent.RoundTime), ("who",CalledEevent.WhoCalled)));
+            ev.AddLine(Loc.GetString("spec-forces-system-"+CalledEevent.Event,("time", CalledEevent.RoundTime.ToString(@"hh\:mm\:ss")), ("who",CalledEevent.WhoCalled)));
         }
     }
     private void OnCleanup(RoundRestartCleanupEvent ev)
