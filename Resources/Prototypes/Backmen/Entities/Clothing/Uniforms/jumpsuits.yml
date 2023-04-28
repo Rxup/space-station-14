@@ -30,3 +30,14 @@
     sprite: Backmen/Clothing/Uniforms/jumpsuit/mtf_turtleneck.rsi
   - type: Clothing
     sprite: Backmen/Clothing/Uniforms/jumpsuit/mtf_turtleneck.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: GachiSuit
+  name: Гачи Костюм
+  description: Великолепный костюм, мастера по бодибилдингу, на ремне есть марка, CyberSun Corp
+  components:
+  - type: Sprite
+    sprite: Backmen/Clothing/Uniforms/jumpsuit/gachisuit.rsi
+  - type: Clothing
+    sprite: Backmen/Clothing/Uniforms/jumpsuit/gachisuit.rsi
