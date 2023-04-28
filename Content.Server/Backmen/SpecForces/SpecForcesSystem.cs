@@ -126,6 +126,7 @@ public sealed class SpecForcesSystem : EntitySystem
             if(LastUsedTime+DelayUsesage > currentTime){
                 return false;
             }
+            LastUsedTime = currentTime;
 
             CallendEvents.Add(new SpecForcesHistory{ Event = ev, RoundTime = currentTime, WhoCalled = source });
 
@@ -135,6 +136,8 @@ public sealed class SpecForcesSystem : EntitySystem
             }
 
             SpawnGhostRole(ev,shuttle.Value);
+
+            PlaySound(ev);
 
             return true;
         }
@@ -251,6 +254,13 @@ public sealed class SpecForcesSystem : EntitySystem
                     Loc.GetString("spec-forces-system-ertcall-annonce"),
                     Loc.GetString("spec-forces-system-ertcall-title"),
                     true, ERTAnnounce
+                );
+            break;
+            case SpecForcesType.RXBZZ:
+                _chatSystem.DispatchStationAnnouncement(station.Value,
+                    Loc.GetString("spec-forces-system-RXBZZ-annonce"),
+                    Loc.GetString("spec-forces-system-RXBZZ-title"),
+                    true
                 );
             break;
             default:
