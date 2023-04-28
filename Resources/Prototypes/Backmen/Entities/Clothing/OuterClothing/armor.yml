@@ -20,7 +20,7 @@
   - type: ExplosionResistance
     damageCoefficient: 0.8
   - type: GroupExamine
-  
+
 - type: entity
   parent: ClothingOuterBaseLarge
   id: ClothingOuterArmorBlueshieldCarapace
@@ -51,9 +51,9 @@
   description: "Костюм биологической защиты ИОГ 3 класса. На груди виден бронежилет."
   components:
   - type: Sprite
-    sprite: Backmen\Clothing\OuterClothing\Armor\armor_iog.rsi
+    sprite: Backmen/Clothing/OuterClothing/Armor/armor_iog.rsi
   - type: Clothing
-    sprite: Backmen\Clothing\OuterClothing\Armor\armor_iog.rsi
+    sprite: Backmen/Clothing/OuterClothing/Armor/armor_iog.rsi
   - type: Armor
     modifiers:
       coefficients:
