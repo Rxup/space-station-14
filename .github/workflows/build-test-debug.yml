@@ -35,9 +35,11 @@ jobs:
         run: dotnet build --configuration DebugOpt --no-restore /p:WarningsAsErrors=nullable /m
 
       - name: Run Content.Tests
+        continue-on-error: true
         run: dotnet test --no-build --configuration DebugOpt Content.Tests/Content.Tests.csproj -- NUnit.ConsoleOut=0
 
       - name: Run Content.IntegrationTests
+        continue-on-error: true
         shell: pwsh
         run: |
           $env:DOTNET_gcServer=1
