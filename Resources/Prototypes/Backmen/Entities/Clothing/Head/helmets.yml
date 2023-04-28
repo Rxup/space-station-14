@@ -12,8 +12,8 @@
   - type: Armor
     modifiers:
       coefficients:
-        Blunt: 0.7        
-        
+        Blunt: 0.7
+
 - type: entity
   parent: ClothingHeadBase
   id: ClothingHeadIOGHelmet
@@ -21,9 +21,9 @@
   description: Шлем биологической защиты ИОГ. Оснащен прокладками из прочного материала, способного сдержать выстрел мелкокалиберного оружия.
   components:
   - type: Sprite
-    sprite: Backmen\Clothing\Head\Helmets\biohazardIOG.rsi
+    sprite: Backmen/Clothing/Head/Helmets/biohazardIOG.rsi
   - type: Clothing
-    sprite: Backmen\Clothing\Head\Helmets\biohazardIOG.rsi
+    sprite: Backmen/Clothing/Head/Helmets/biohazardIOG.rsi
   - type: Armor
     modifiers:
       coefficients:
