@@ -53,7 +53,7 @@ public sealed partial class AdminVerbSystem
         {
             Text = "Make EvilTwin",
             Category = VerbCategory.Antag,
-            Icon = new SpriteSpecifier.Rsi((new ResourcePath("/Textures/Structures/Wallmounts/posters.rsi")), "poster3_legit"),
+            Icon = new SpriteSpecifier.Rsi((new ResPath("/Textures/Structures/Wallmounts/posters.rsi")), "poster3_legit"),
             Act = () =>
             {
                 if (targetMindComp.Mind == null || targetMindComp.Mind.Session == null || targetMindComp.Mind.CurrentEntity == null)

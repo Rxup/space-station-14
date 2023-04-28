@@ -1,4 +1,4 @@
-
+namespace Content.Server.Backmen.SpecForces;
 
 public enum SpecForcesType {
     ERT = 0,

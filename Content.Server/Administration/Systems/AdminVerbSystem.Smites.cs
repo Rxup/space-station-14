@@ -690,7 +690,7 @@ public sealed partial class AdminVerbSystem
         {
             Text = "Dwarf Species Swap",
             Category = VerbCategory.Smite,
-            Icon = new SpriteSpecifier.Rsi(new ResourcePath("/Textures/Objects/Fun/toys.rsi"), "plushie_lizard"),
+            Icon = new SpriteSpecifier.Rsi(new ResPath("/Textures/Objects/Fun/toys.rsi"), "plushie_lizard"),
             Act = () =>
             {
                 _polymorphSystem.PolymorphEntity(args.Target, "BDwarfMorph");
@@ -704,7 +704,7 @@ public sealed partial class AdminVerbSystem
         {
             Text = "Vox Species Swap",
             Category = VerbCategory.Smite,
-            Icon = new SpriteSpecifier.Rsi(new ResourcePath("/Textures/Objects/Fun/toys.rsi"), "plushie_lizard"),
+            Icon = new SpriteSpecifier.Rsi(new ResPath("/Textures/Objects/Fun/toys.rsi"), "plushie_lizard"),
             Act = () =>
             {
                 _polymorphSystem.PolymorphEntity(args.Target, "BVoxMorph");
@@ -718,7 +718,7 @@ public sealed partial class AdminVerbSystem
         {
             Text = "Skilet Species Swap",
             Category = VerbCategory.Smite,
-            Icon = new SpriteSpecifier.Rsi(new ResourcePath("/Textures/Objects/Fun/toys.rsi"), "plushie_lizard"),
+            Icon = new SpriteSpecifier.Rsi(new ResPath("/Textures/Objects/Fun/toys.rsi"), "plushie_lizard"),
             Act = () =>
             {
                 _polymorphSystem.PolymorphEntity(args.Target, "BSkeletonMorph");

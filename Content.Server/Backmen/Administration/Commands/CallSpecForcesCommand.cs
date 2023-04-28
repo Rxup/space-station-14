@@ -14,7 +14,7 @@ public sealed class CallSpecForcesCommand : IConsoleCommand
     [Dependency] private readonly EntityManager EntityManager = default!;
     public string Command => "callspecforces";
 
-    public string Description => "вызов обр/рзбзз/дед сквад";
+    public string Description => "вызов обр/рзбзз/спецназ";
 
     public string Help => "callspecforces";
 
@@ -28,8 +28,9 @@ public sealed class CallSpecForcesCommand : IConsoleCommand
             shell.WriteLine(Loc.GetString("shell-invalid-entity-id"));
             return;
         }
-        if(!EntityManager.System<SpecForcesSystem>().CallOps(SpecType)){
-            shell.WriteLine("В этом раунде уже был вызван данный тип");
+        var specsys = EntityManager.System<SpecForcesSystem>();
+        if(!EntityManager.System<SpecForcesSystem>().CallOps(SpecType,shell.Player != null ? shell.Player.Name : "An administrator")){
+            shell.WriteLine($"Подождите еще {specsys.DelayTime} перед запуском следующих!");
         }
 
         _adminLogger.Add(LogType.AdminMessage, LogImpact.Extreme, $"Admin {(shell.Player != null ? shell.Player.Name : "An administrator")} SpecForcesSystem call {SpecType}");

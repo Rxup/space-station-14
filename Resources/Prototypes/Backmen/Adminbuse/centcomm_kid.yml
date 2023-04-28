@@ -34,10 +34,6 @@
   name: Гарнитура оператора ЦК
   description: Стандартная гарнитура ЦК.
   components:
-  - type: ContainerFill
-    containers:
-      key_slots:
-      - EncryptionKeyCentCom
   - type: Sprite
     sprite: Clothing/Ears/Headsets/centcom.rsi
   - type: Clothing
@@ -51,10 +47,6 @@
   name: Гарнитура офицера ЦК
   description: Стандартная гарнитура ЦК.
   components:
-  - type: ContainerFill
-    containers:
-      key_slots:
-      - EncryptionKeyCentCom
   - type: Sprite
     sprite: Clothing/Ears/Headsets/centcom.rsi
   - type: Clothing

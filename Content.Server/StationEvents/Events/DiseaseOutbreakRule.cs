@@ -17,23 +17,6 @@ public sealed class DiseaseOutbreakRule : StationEventSystem<DiseaseOutbreakRule
     [Dependency] private readonly DiseaseSystem _diseaseSystem = default!;
     [Dependency] private readonly MobStateSystem _mobStateSystem = default!;
 
-    public override string Prototype => "DiseaseOutbreak";
-
-    /// <summary>
-    /// Disease prototypes I decided were not too deadly for a random event
-    /// </summary>
-    public readonly IReadOnlyList<string> NotTooSeriousDiseases = new[]
-    {
-        "SpaceCold",
-        "VanAusdallsRobovirus",
-        "VentCough",
-        "AMIV",
-        "SpaceFlu",
-        "BirdFlew",
-        "TongueTwister",
-        "FurryVirus"
-    };
-
     /// <summary>
     /// Finds 2-5 random, alive entities that can host diseases
     /// and gives them a randomly selected disease.

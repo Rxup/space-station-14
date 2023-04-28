@@ -49,7 +49,7 @@ jobs:
       - name: Cache build
         uses: actions/cache@v3
         with:
-          key: ${{ runner.os }}-${{ github.sha }}
+          key: ${{ runner.os }}-bin
           path: |
             bin
 
