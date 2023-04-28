@@ -13,6 +13,7 @@ using Content.Server.Doors.Systems;
 using Content.Server.Tools.Systems;
 using Content.Server.Wires;
 using Content.Server.Power.Components;
+using Content.Server.Light.Components;
 
 namespace Content.Server.Backmen.Arrivals;
 
@@ -92,11 +93,14 @@ public sealed class ArrivalsProtectSystem : EntitySystem
                 _tagSystem.TryAddTag(uid,"EmagImmune");
             }
         }else if(HasComp<ApcComponent>(uid)){
+            EnsureComp<ArrivalsProtectComponent>(uid);
             _godmodeSystem.EnableGodmode(uid);
         }else if(TryComp<CableComponent>(uid, out var CableComp)){
             _godmodeSystem.EnableGodmode(uid);
             EnsureComp<ArrivalsProtectComponent>(uid);
-            (CableComp as dynamic).CuttingQuality = "None";
+        }else if(TryComp<PoweredLightComponent>(uid, out var PoweredLightComp)){
+            _godmodeSystem.EnableGodmode(uid);
+            EnsureComp<ArrivalsProtectComponent>(uid);
         }
     }
 
