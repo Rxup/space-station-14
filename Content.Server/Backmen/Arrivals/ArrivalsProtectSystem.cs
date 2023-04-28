@@ -14,6 +14,7 @@ using Content.Server.Tools.Systems;
 using Content.Server.Wires;
 using Content.Server.Power.Components;
 using Content.Server.Light.Components;
+using Content.Server.StationEvents.Components;
 
 namespace Content.Server.Backmen.Arrivals;
 
@@ -101,6 +102,10 @@ public sealed class ArrivalsProtectSystem : EntitySystem
         }else if(TryComp<PoweredLightComponent>(uid, out var PoweredLightComp)){
             _godmodeSystem.EnableGodmode(uid);
             EnsureComp<ArrivalsProtectComponent>(uid);
+        }else if(_tagSystem.HasAnyTag(uid,"GasVent", "GasScrubber")){
+            EnsureComp<ArrivalsProtectComponent>(uid);
+            _godmodeSystem.EnableGodmode(uid);
+            RemCompDeferred<VentCritterSpawnLocationComponent>(uid);
         }
     }
 

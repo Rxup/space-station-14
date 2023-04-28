@@ -1,0 +1,6 @@
+- type: department
+  id: BCentComm
+  description: Центральное командование
+  color: "#9FED58"
+  roles:
+  - ERTMedicalV2.1
