@@ -30,3 +30,14 @@
     sprite: Backmen/Clothing/Uniforms/jumpsuit/mtf_turtleneck.rsi
   - type: Clothing
     sprite: Backmen/Clothing/Uniforms/jumpsuit/mtf_turtleneck.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformJumpsuitGachi
+  name: Мужской костюм
+  description: Костюм, пропитанный крепкими мужскими отношениями и солидарностью!
+  components:
+  - type: Sprite
+    sprite: Backmen/Clothing/Uniforms/jumpsuit/gachi.rsi
+  - type: Clothing
+    sprite: Backmen/Clothing/Uniforms/jumpsuit/gachi.rsi
