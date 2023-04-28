@@ -1,7 +1,7 @@
 - type: entity
   parent: ClothingEyesBase
   id: ClothingEyesGlassesMonocle
-  name: Моноколь аристократа.
+  name: Монокль аристократа.
   description: Монокль является признаком высокого происхождения и интелекта.
   components:
   - type: Sprite
