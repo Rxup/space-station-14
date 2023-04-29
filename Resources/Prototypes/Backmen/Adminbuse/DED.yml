@@ -210,6 +210,13 @@
   description: Жалкая кучка спецназа.
   id: MobHumanSpecialReAgent
   components:
+  - type: SpecForce
+    requirements:
+    - !type:DepartmentTimeRequirement
+      department: Security
+      time: 18000
+    - !type:OverallPlaytimeRequirement
+      time: 36000
   - type: Icon
     sprite: Markers/jobs.rsi
     state: ai
@@ -235,6 +242,16 @@
   description: Жалкая кучка спецназа.
   id: MobHumanSpecialReAgentCOM
   components:
+  - type: SpecForce
+    requirements:
+    - !type:DepartmentTimeRequirement
+      department: Security
+      time: 18000
+    - !type:OverallPlaytimeRequirement
+      time: 36000
+    - !type:DepartmentTimeRequirement
+      department: Command
+      time: 18000
   - type: Icon
     sprite: Markers/jobs.rsi
     state: ai
@@ -262,6 +279,16 @@
   suffix: CentCom
   id: MobHumanSFOfficer
   components:
+  - type: SpecForce
+    requirements:
+    - !type:DepartmentTimeRequirement
+      department: Security
+      time: 18000
+    - !type:OverallPlaytimeRequirement
+      time: 36000
+    - !type:DepartmentTimeRequirement
+      department: Command
+      time: 18000
   - type: Icon
     sprite: Markers/jobs.rsi
     state: centcom
@@ -434,6 +461,13 @@
   suffix: corvax
   id: MobHumanRXBZZ
   components:
+  - type: SpecForce
+    requirements:
+    - !type:DepartmentTimeRequirement
+      department: Security
+      time: 18000
+    - !type:OverallPlaytimeRequirement
+      time: 36000
   - type: GhostRole
     name: Оперативник РХБЗЗ
     description: Особый агент НаноТрейзен по борьбе с радиационно, химическо, биологическоми и зомби опасностями.

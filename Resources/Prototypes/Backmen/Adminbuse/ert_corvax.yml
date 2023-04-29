@@ -320,7 +320,12 @@
     requirements:
     - !type:DepartmentTimeRequirement
       department: Security
-      time: 36000 # Corvax-RoleTime
+      time: 18000
+    - !type:OverallPlaytimeRequirement
+      time: 36000
+    - !type:DepartmentTimeRequirement
+      department: Command
+      time: 18000
   - type: Icon
     sprite: Markers/jobs.rsi
     state: ertleadereva
@@ -351,7 +356,12 @@
     requirements:
     - !type:DepartmentTimeRequirement
       department: Security
-      time: 36000 # Corvax-RoleTime
+      time: 18000
+    - !type:OverallPlaytimeRequirement
+      time: 36000
+    - !type:DepartmentTimeRequirement
+      department: Engineering
+      time: 18000
   - type: Icon
     sprite: Markers/jobs.rsi
     state: ertengineereva
@@ -381,7 +391,9 @@
     requirements:
     - !type:DepartmentTimeRequirement
       department: Security
-      time: 36000 # Corvax-RoleTime
+      time: 36000
+    - !type:OverallPlaytimeRequirement
+      time: 36000
   - type: Icon
     sprite: Markers/jobs.rsi
     state: ertsecurityeva
@@ -411,7 +423,12 @@
     requirements:
     - !type:DepartmentTimeRequirement
       department: Security
-      time: 36000 # Corvax-RoleTime
+      time: 18000
+    - !type:OverallPlaytimeRequirement
+      time: 36000
+    - !type:DepartmentTimeRequirement
+      department: Medical
+      time: 18000
   - type: Icon
     sprite: Markers/jobs.rsi
     state: ertmedicaleva
@@ -441,7 +458,12 @@
     requirements:
     - !type:DepartmentTimeRequirement
       department: Security
-      time: 36000 # Corvax-RoleTime
+      time: 18000
+    - !type:OverallPlaytimeRequirement
+      time: 36000
+    - !type:RoleTimeRequirement
+      role: Janitor
+      time: 3000
   - type: Icon
     sprite: Markers/jobs.rsi
     state: ertjanitoreva
