@@ -93,19 +93,20 @@ public sealed class ArrivalsProtectSystem : EntitySystem
             if(TryComp<AirlockComponent>(uid, out var airlockComponent)){
                 _tagSystem.TryAddTag(uid,"EmagImmune");
             }
-        }else if(HasComp<ApcComponent>(uid)){
-            EnsureComp<ArrivalsProtectComponent>(uid);
-            _godmodeSystem.EnableGodmode(uid);
-        }else if(TryComp<CableComponent>(uid, out var CableComp)){
-            _godmodeSystem.EnableGodmode(uid);
-            EnsureComp<ArrivalsProtectComponent>(uid);
-        }else if(TryComp<PoweredLightComponent>(uid, out var PoweredLightComp)){
-            _godmodeSystem.EnableGodmode(uid);
-            EnsureComp<ArrivalsProtectComponent>(uid);
         }else if(_tagSystem.HasAnyTag(uid,"GasVent", "GasScrubber")){
             EnsureComp<ArrivalsProtectComponent>(uid);
             _godmodeSystem.EnableGodmode(uid);
             RemCompDeferred<VentCritterSpawnLocationComponent>(uid);
+        }else if( // basic elements
+            HasComp<PoweredLightComponent>(uid) ||
+            HasComp<CableComponent>(uid) ||
+            HasComp<PoweredLightComponent>(uid) ||
+            HasComp<ApcComponent>(uid) ||
+            HasComp<PowerSupplierComponent>(uid) ||
+            HasComp<PowerNetworkBatteryComponent>(uid)
+        ){
+            _godmodeSystem.EnableGodmode(uid);
+            EnsureComp<ArrivalsProtectComponent>(uid);
         }
     }
 

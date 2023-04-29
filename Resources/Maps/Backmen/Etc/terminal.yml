@@ -22,37 +22,6 @@ tilemap:
   93: Lattice
   94: Plating
 entities:
-- uid: 0
-  components:
-  - type: MetaData
-  - type: Transform
-  - type: Map
-  - type: PhysicsMap
-  - type: Broadphase
-  - type: OccluderTree
-  - parallax: Sky
-    type: Parallax
-  - gravityShakeSound: !type:SoundPathSpecifier
-      path: /Audio/Effects/alert.ogg
-    type: Gravity
-  - space: False
-    mixture:
-      volume: 2500
-      temperature: 160.15
-      moles:
-      - 11.82478
-      - 52.10312
-      - 0
-      - 0
-      - 0
-      - 0
-      - 0
-      - 0
-      - 0
-      - 0
-      - 0
-      - 0
-    type: MapAtmosphere
 - uid: 1
   type: WallRiveted
   components:
@@ -63,7 +32,7 @@ entities:
   components:
   - name: NT-ES Космопорт CA-543
     type: MetaData
-  - parent: 0
+  - parent: 2169
     type: Transform
   - chunks:
       0,0:
@@ -788,9 +757,11 @@ entities:
         0,5:
           0: 65535
         0,6:
-          0: 65535
+          0: 61439
+          1: 4096
         0,7:
-          0: 65535
+          1: 17
+          0: 65518
         1,4:
           0: 65535
         1,5:
@@ -838,7 +809,8 @@ entities:
         -1,5:
           0: 65535
         -1,6:
-          0: 65535
+          0: 8191
+          1: 57344
         -7,0:
           0: 65535
         -7,1:
@@ -939,10 +911,10 @@ entities:
           0: 12
         0,8:
           0: 61439
-          1: 4096
+          2: 4096
         0,9:
           0: 61423
-          2: 16
+          3: 16
         1,8:
           0: 65535
         1,9:
@@ -1026,7 +998,8 @@ entities:
         -2,7:
           0: 65535
         -1,7:
-          0: 65535
+          0: 65297
+          1: 238
         -4,8:
           0: 3839
         -3,8:
@@ -1035,15 +1008,30 @@ entities:
           0: 61439
         -1,8:
           0: 32767
-          1: 32768
+          2: 32768
         -2,9:
           0: 20206
         -1,9:
           0: 3967
-          2: 128
+          3: 128
       uniqueMixes:
       - volume: 2500
         temperature: 293.15
+        moles:
+        - 21.824879
+        - 82.10312
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+      - volume: 2500
+        temperature: 235
         moles:
         - 21.824879
         - 82.10312
@@ -1310,6 +1298,8 @@ entities:
     pos: -0.5,-3.5
     parent: 2
     type: Transform
+  - bodyType: Static
+    type: Physics
 - uid: 39
   type: WallRiveted
   components:
@@ -3015,6 +3005,8 @@ entities:
     pos: -7.5,0.5
     parent: 2
     type: Transform
+  - enabled: False
+    type: AmbientSound
   - powerLoad: 0
     type: ApcPowerReceiver
 - uid: 318
@@ -3024,6 +3016,8 @@ entities:
     pos: -13.5,6.5
     parent: 2
     type: Transform
+  - enabled: False
+    type: AmbientSound
   - powerLoad: 0
     type: ApcPowerReceiver
 - uid: 319
@@ -3033,6 +3027,8 @@ entities:
     pos: -18.5,-2.5
     parent: 2
     type: Transform
+  - bodyType: Static
+    type: Physics
 - uid: 320
   type: WardrobeBlackFilled
   components:
@@ -3189,6 +3185,8 @@ entities:
     pos: -0.5,-8.5
     parent: 2
     type: Transform
+  - bodyType: Static
+    type: Physics
 - uid: 344
   type: ChairCarp
   components:
@@ -3196,6 +3194,8 @@ entities:
     pos: -0.5,-10.5
     parent: 2
     type: Transform
+  - bodyType: Static
+    type: Physics
 - uid: 345
   type: ComfyChair
   components:
@@ -3203,6 +3203,8 @@ entities:
     pos: -2.5,-9.5
     parent: 2
     type: Transform
+  - bodyType: Static
+    type: Physics
 - uid: 346
   type: CableMV
   components:
@@ -3243,6 +3245,8 @@ entities:
     pos: -2.5,11.5
     parent: 2
     type: Transform
+  - bodyType: Static
+    type: Physics
 - uid: 352
   type: Chair
   components:
@@ -3250,6 +3254,8 @@ entities:
     pos: -2.5,12.5
     parent: 2
     type: Transform
+  - bodyType: Static
+    type: Physics
 - uid: 353
   type: Chair
   components:
@@ -3257,6 +3263,8 @@ entities:
     pos: -2.5,13.5
     parent: 2
     type: Transform
+  - bodyType: Static
+    type: Physics
 - uid: 354
   type: Chair
   components:
@@ -3264,6 +3272,8 @@ entities:
     pos: -2.5,14.5
     parent: 2
     type: Transform
+  - bodyType: Static
+    type: Physics
 - uid: 355
   type: Chair
   components:
@@ -3271,6 +3281,8 @@ entities:
     pos: -2.5,15.5
     parent: 2
     type: Transform
+  - bodyType: Static
+    type: Physics
 - uid: 356
   type: Chair
   components:
@@ -3278,6 +3290,8 @@ entities:
     pos: -2.5,10.5
     parent: 2
     type: Transform
+  - bodyType: Static
+    type: Physics
 - uid: 357
   type: Chair
   components:
@@ -3285,6 +3299,8 @@ entities:
     pos: -2.5,16.5
     parent: 2
     type: Transform
+  - bodyType: Static
+    type: Physics
 - uid: 358
   type: CableApcExtension
   components:
@@ -3595,6 +3611,8 @@ entities:
     pos: -25.5,1.5
     parent: 2
     type: Transform
+  - bodyType: Static
+    type: Physics
 - uid: 393
   type: ComfyChair
   components:
@@ -3602,6 +3620,8 @@ entities:
     pos: -23.5,2.5
     parent: 2
     type: Transform
+  - bodyType: Static
+    type: Physics
 - uid: 394
   type: ComfyChair
   components:
@@ -3609,6 +3629,8 @@ entities:
     pos: -23.5,0.5
     parent: 2
     type: Transform
+  - bodyType: Static
+    type: Physics
 - uid: 395
   type: AirlockCaptainGlassLocked
   components:
@@ -4680,6 +4702,8 @@ entities:
     pos: -0.5,-6.5
     parent: 2
     type: Transform
+  - bodyType: Static
+    type: Physics
 - uid: 563
   type: ExtinguisherCabinetFilled
   components:
@@ -4692,6 +4716,8 @@ entities:
   - pos: -25.5,-8.5
     parent: 2
     type: Transform
+  - enabled: False
+    type: AmbientSound
   - powerLoad: 0
     type: ApcPowerReceiver
 - uid: 565
@@ -4700,6 +4726,8 @@ entities:
   - pos: -25.5,-11.5
     parent: 2
     type: Transform
+  - enabled: False
+    type: AmbientSound
   - powerLoad: 0
     type: ApcPowerReceiver
 - uid: 566
@@ -4708,6 +4736,8 @@ entities:
   - pos: -20.5,-11.5
     parent: 2
     type: Transform
+  - enabled: False
+    type: AmbientSound
   - powerLoad: 0
     type: ApcPowerReceiver
 - uid: 567
@@ -4716,6 +4746,8 @@ entities:
   - pos: -20.5,-8.5
     parent: 2
     type: Transform
+  - enabled: False
+    type: AmbientSound
   - powerLoad: 0
     type: ApcPowerReceiver
 - uid: 568
@@ -4724,6 +4756,8 @@ entities:
   - pos: -15.5,-8.5
     parent: 2
     type: Transform
+  - enabled: False
+    type: AmbientSound
   - powerLoad: 0
     type: ApcPowerReceiver
 - uid: 569
@@ -4732,6 +4766,8 @@ entities:
   - pos: -15.5,-11.5
     parent: 2
     type: Transform
+  - enabled: False
+    type: AmbientSound
   - powerLoad: 0
     type: ApcPowerReceiver
 - uid: 570
@@ -7202,18 +7238,24 @@ entities:
   - pos: -6.5,25.5
     parent: 2
     type: Transform
+  - bodyType: Static
+    type: Physics
 - uid: 957
   type: ToiletDirtyWater
   components:
   - pos: -2.5,25.5
     parent: 2
     type: Transform
+  - bodyType: Static
+    type: Physics
 - uid: 958
   type: ToiletDirtyWater
   components:
   - pos: -4.5,25.5
     parent: 2
     type: Transform
+  - bodyType: Static
+    type: Physics
 - uid: 959
   type: Table
   components:
@@ -7856,6 +7898,8 @@ entities:
     pos: 0.5,25.5
     parent: 2
     type: Transform
+  - bodyType: Static
+    type: Physics
 - uid: 1055
   type: Table
   components:
@@ -9419,6 +9463,8 @@ entities:
     pos: -2.5,4.5
     parent: 2
     type: Transform
+  - bodyType: Static
+    type: Physics
 - uid: 1285
   type: CableMV
   components:
@@ -9434,6 +9480,8 @@ entities:
     pos: -2.5,3.5
     parent: 2
     type: Transform
+  - bodyType: Static
+    type: Physics
 - uid: 1287
   type: Chair
   components:
@@ -9441,6 +9489,8 @@ entities:
     pos: -2.5,2.5
     parent: 2
     type: Transform
+  - bodyType: Static
+    type: Physics
 - uid: 1288
   type: Chair
   components:
@@ -9448,6 +9498,8 @@ entities:
     pos: -2.5,1.5
     parent: 2
     type: Transform
+  - bodyType: Static
+    type: Physics
 - uid: 1289
   type: WallShuttle
   components:
@@ -9571,6 +9623,8 @@ entities:
   - pos: -5.5,4.5
     parent: 2
     type: Transform
+  - enabled: False
+    type: AmbientSound
   - powerLoad: 0
     type: ApcPowerReceiver
 - uid: 1308
@@ -9580,6 +9634,8 @@ entities:
     pos: -44.5,-11.5
     parent: 2
     type: Transform
+  - bodyType: Static
+    type: Physics
 - uid: 1309
   type: WallShuttleDiagonal
   components:
@@ -9715,6 +9771,8 @@ entities:
     pos: -36.5,-11.5
     parent: 2
     type: Transform
+  - bodyType: Static
+    type: Physics
 - uid: 1331
   type: Chair
   components:
@@ -9722,6 +9780,8 @@ entities:
     pos: -44.5,-8.5
     parent: 2
     type: Transform
+  - bodyType: Static
+    type: Physics
 - uid: 1332
   type: Chair
   components:
@@ -9729,12 +9789,16 @@ entities:
     pos: -45.5,-9.5
     parent: 2
     type: Transform
+  - bodyType: Static
+    type: Physics
 - uid: 1333
   type: Chair
   components:
   - pos: -45.5,-10.5
     parent: 2
     type: Transform
+  - bodyType: Static
+    type: Physics
 - uid: 1334
   type: Chair
   components:
@@ -9742,6 +9806,8 @@ entities:
     pos: -42.5,-11.5
     parent: 2
     type: Transform
+  - bodyType: Static
+    type: Physics
 - uid: 1335
   type: Chair
   components:
@@ -9749,6 +9815,8 @@ entities:
     pos: -40.5,-11.5
     parent: 2
     type: Transform
+  - bodyType: Static
+    type: Physics
 - uid: 1336
   type: Chair
   components:
@@ -9756,6 +9824,8 @@ entities:
     pos: -40.5,-8.5
     parent: 2
     type: Transform
+  - bodyType: Static
+    type: Physics
 - uid: 1337
   type: Chair
   components:
@@ -9763,6 +9833,8 @@ entities:
     pos: -42.5,-8.5
     parent: 2
     type: Transform
+  - bodyType: Static
+    type: Physics
 - uid: 1338
   type: Chair
   components:
@@ -9770,6 +9842,8 @@ entities:
     pos: -38.5,-8.5
     parent: 2
     type: Transform
+  - bodyType: Static
+    type: Physics
 - uid: 1339
   type: Chair
   components:
@@ -9777,6 +9851,8 @@ entities:
     pos: -38.5,-11.5
     parent: 2
     type: Transform
+  - bodyType: Static
+    type: Physics
 - uid: 1340
   type: Chair
   components:
@@ -9784,6 +9860,8 @@ entities:
     pos: -34.5,-12.5
     parent: 2
     type: Transform
+  - bodyType: Static
+    type: Physics
 - uid: 1341
   type: Chair
   components:
@@ -9791,6 +9869,8 @@ entities:
     pos: -34.5,-7.5
     parent: 2
     type: Transform
+  - bodyType: Static
+    type: Physics
 - uid: 1342
   type: Table
   components:
@@ -9805,6 +9885,8 @@ entities:
     pos: -36.5,-8.5
     parent: 2
     type: Transform
+  - bodyType: Static
+    type: Physics
 - uid: 1344
   type: Poweredlight
   components:
@@ -9812,6 +9894,8 @@ entities:
     pos: -13.5,3.5
     parent: 2
     type: Transform
+  - enabled: False
+    type: AmbientSound
   - powerLoad: 0
     type: ApcPowerReceiver
 - uid: 1345
@@ -9821,6 +9905,8 @@ entities:
     pos: -32.5,-7.5
     parent: 2
     type: Transform
+  - bodyType: Static
+    type: Physics
 - uid: 1346
   type: Chair
   components:
@@ -9828,6 +9914,8 @@ entities:
     pos: -32.5,-12.5
     parent: 2
     type: Transform
+  - bodyType: Static
+    type: Physics
 - uid: 1347
   type: Chair
   components:
@@ -9835,18 +9923,24 @@ entities:
     pos: -29.5,-14.5
     parent: 2
     type: Transform
+  - bodyType: Static
+    type: Physics
 - uid: 1348
   type: Chair
   components:
   - pos: -29.5,-12.5
     parent: 2
     type: Transform
+  - bodyType: Static
+    type: Physics
 - uid: 1349
   type: Chair
   components:
   - pos: -29.5,-5.5
     parent: 2
     type: Transform
+  - bodyType: Static
+    type: Physics
 - uid: 1350
   type: Chair
   components:
@@ -9854,6 +9948,8 @@ entities:
     pos: -29.5,-7.5
     parent: 2
     type: Transform
+  - bodyType: Static
+    type: Physics
 - uid: 1351
   type: PottedPlantRandomPlastic
   components:
@@ -9866,6 +9962,8 @@ entities:
   - pos: -48.5,-10.5
     parent: 2
     type: Transform
+  - enabled: False
+    type: AmbientSound
   - powerLoad: 0
     type: ApcPowerReceiver
 - uid: 1353
@@ -9874,6 +9972,8 @@ entities:
   - pos: -32.5,-5.5
     parent: 2
     type: Transform
+  - enabled: False
+    type: AmbientSound
   - powerLoad: 0
     type: ApcPowerReceiver
 - uid: 1354
@@ -9883,6 +9983,8 @@ entities:
     pos: -32.5,-14.5
     parent: 2
     type: Transform
+  - enabled: False
+    type: AmbientSound
   - powerLoad: 0
     type: ApcPowerReceiver
 - uid: 1355
@@ -9897,6 +9999,8 @@ entities:
   - pos: -41.5,-7.5
     parent: 2
     type: Transform
+  - enabled: False
+    type: AmbientSound
   - powerLoad: 0
     type: ApcPowerReceiver
 - uid: 1357
@@ -9906,6 +10010,8 @@ entities:
     pos: -41.5,-12.5
     parent: 2
     type: Transform
+  - enabled: False
+    type: AmbientSound
   - powerLoad: 0
     type: ApcPowerReceiver
 - uid: 1358
@@ -9932,6 +10038,8 @@ entities:
   - pos: -30.5,-12.5
     parent: 2
     type: Transform
+  - bodyType: Static
+    type: Physics
 - uid: 1362
   type: Chair
   components:
@@ -9939,6 +10047,8 @@ entities:
     pos: -30.5,-14.5
     parent: 2
     type: Transform
+  - bodyType: Static
+    type: Physics
 - uid: 1363
   type: Chair
   components:
@@ -9946,12 +10056,16 @@ entities:
     pos: -30.5,-7.5
     parent: 2
     type: Transform
+  - bodyType: Static
+    type: Physics
 - uid: 1364
   type: Chair
   components:
   - pos: -30.5,-5.5
     parent: 2
     type: Transform
+  - bodyType: Static
+    type: Physics
 - uid: 1365
   type: Chair
   components:
@@ -9959,6 +10073,8 @@ entities:
     pos: -32.5,-8.5
     parent: 2
     type: Transform
+  - bodyType: Static
+    type: Physics
 - uid: 1366
   type: Chair
   components:
@@ -9966,6 +10082,8 @@ entities:
     pos: -34.5,-8.5
     parent: 2
     type: Transform
+  - bodyType: Static
+    type: Physics
 - uid: 1367
   type: Chair
   components:
@@ -9973,6 +10091,8 @@ entities:
     pos: -34.5,-11.5
     parent: 2
     type: Transform
+  - bodyType: Static
+    type: Physics
 - uid: 1368
   type: Chair
   components:
@@ -9980,6 +10100,8 @@ entities:
     pos: -32.5,-11.5
     parent: 2
     type: Transform
+  - bodyType: Static
+    type: Physics
 - uid: 1369
   type: Table
   components:
@@ -10184,9 +10306,9 @@ entities:
     parent: 2
     type: Transform
 - uid: 1401
-  type: PottedPlantRandomPlastic
+  type: RandomVending
   components:
-  - pos: -14.5,25.5
+  - pos: -4.5,37.5
     parent: 2
     type: Transform
 - uid: 1402
@@ -10801,6 +10923,8 @@ entities:
     pos: 6.5,17.5
     parent: 2
     type: Transform
+  - bodyType: Static
+    type: Physics
 - uid: 1471
   type: ChairPilotSeat
   components:
@@ -10808,6 +10932,8 @@ entities:
     pos: 6.5,16.5
     parent: 2
     type: Transform
+  - bodyType: Static
+    type: Physics
 - uid: 1472
   type: ChairPilotSeat
   components:
@@ -10815,6 +10941,8 @@ entities:
     pos: 6.5,15.5
     parent: 2
     type: Transform
+  - bodyType: Static
+    type: Physics
 - uid: 1473
   type: ChairPilotSeat
   components:
@@ -10822,6 +10950,8 @@ entities:
     pos: 6.5,14.5
     parent: 2
     type: Transform
+  - bodyType: Static
+    type: Physics
 - uid: 1474
   type: ChairPilotSeat
   components:
@@ -10829,6 +10959,8 @@ entities:
     pos: 8.5,17.5
     parent: 2
     type: Transform
+  - bodyType: Static
+    type: Physics
 - uid: 1475
   type: ChairPilotSeat
   components:
@@ -10836,6 +10968,8 @@ entities:
     pos: 8.5,16.5
     parent: 2
     type: Transform
+  - bodyType: Static
+    type: Physics
 - uid: 1476
   type: ChairPilotSeat
   components:
@@ -10843,6 +10977,8 @@ entities:
     pos: 8.5,15.5
     parent: 2
     type: Transform
+  - bodyType: Static
+    type: Physics
 - uid: 1477
   type: ChairPilotSeat
   components:
@@ -10850,6 +10986,8 @@ entities:
     pos: 8.5,14.5
     parent: 2
     type: Transform
+  - bodyType: Static
+    type: Physics
 - uid: 1478
   type: ChairPilotSeat
   components:
@@ -10857,6 +10995,8 @@ entities:
     pos: 8.5,6.5
     parent: 2
     type: Transform
+  - bodyType: Static
+    type: Physics
 - uid: 1479
   type: ChairPilotSeat
   components:
@@ -10864,6 +11004,8 @@ entities:
     pos: 8.5,5.5
     parent: 2
     type: Transform
+  - bodyType: Static
+    type: Physics
 - uid: 1480
   type: ChairPilotSeat
   components:
@@ -10871,6 +11013,8 @@ entities:
     pos: 8.5,4.5
     parent: 2
     type: Transform
+  - bodyType: Static
+    type: Physics
 - uid: 1481
   type: ChairPilotSeat
   components:
@@ -10878,6 +11022,8 @@ entities:
     pos: 8.5,3.5
     parent: 2
     type: Transform
+  - bodyType: Static
+    type: Physics
 - uid: 1482
   type: ChairPilotSeat
   components:
@@ -10885,6 +11031,8 @@ entities:
     pos: 6.5,6.5
     parent: 2
     type: Transform
+  - bodyType: Static
+    type: Physics
 - uid: 1483
   type: ChairPilotSeat
   components:
@@ -10892,6 +11040,8 @@ entities:
     pos: 6.5,5.5
     parent: 2
     type: Transform
+  - bodyType: Static
+    type: Physics
 - uid: 1484
   type: ChairPilotSeat
   components:
@@ -10899,6 +11049,8 @@ entities:
     pos: 6.5,4.5
     parent: 2
     type: Transform
+  - bodyType: Static
+    type: Physics
 - uid: 1485
   type: ChairPilotSeat
   components:
@@ -10906,6 +11058,8 @@ entities:
     pos: 6.5,3.5
     parent: 2
     type: Transform
+  - bodyType: Static
+    type: Physics
 - uid: 1486
   type: ChessBoard
   components:
@@ -10919,6 +11073,8 @@ entities:
     pos: 7.5,25.5
     parent: 2
     type: Transform
+  - bodyType: Static
+    type: Physics
 - uid: 1488
   type: ReinforcedWindow
   components:
@@ -11313,6 +11469,8 @@ entities:
     pos: 5.5,25.5
     parent: 2
     type: Transform
+  - bodyType: Static
+    type: Physics
 - uid: 1545
   type: ChairPilotSeat
   components:
@@ -11320,6 +11478,8 @@ entities:
     pos: 9.5,25.5
     parent: 2
     type: Transform
+  - bodyType: Static
+    type: Physics
 - uid: 1546
   type: ClosetEmergencyFilledRandom
   components:
@@ -11517,6 +11677,8 @@ entities:
     pos: -21.5,8.5
     parent: 2
     type: Transform
+  - bodyType: Static
+    type: Physics
 - uid: 1578
   type: Chair
   components:
@@ -11524,6 +11686,8 @@ entities:
     pos: -19.5,8.5
     parent: 2
     type: Transform
+  - bodyType: Static
+    type: Physics
 - uid: 1579
   type: ComputerRadar
   components:
@@ -12472,6 +12636,62 @@ entities:
   - pos: -13.5,-25.5
     parent: 2
     type: Transform
+  - fixtures:
+    - shape: !type:PolygonShape
+        radius: 0.01
+        vertices:
+        - -0.55,-0.55
+        - 0.55,-0.55
+        - 0.55,0.55
+        - -0.55,0.55
+      mask: []
+      layer:
+      - Impassable
+      - MidImpassable
+      - LowImpassable
+      density: 1
+      hard: False
+      restitution: 0
+      friction: 0.4
+      id: conveyor
+    - shape: !type:PolygonShape
+        radius: 0.01
+        vertices:
+        - -0.15,-0.15
+        - 0.15,-0.15
+        - 0.15,0.15
+        - -0.15,0.15
+      mask: []
+      layer:
+      - MidImpassable
+      - HighImpassable
+      - LowImpassable
+      - BulletImpassable
+      - InteractImpassable
+      - Opaque
+      density: 1
+      hard: False
+      restitution: 0
+      friction: 0.4
+      id: brrt
+    - shape: !type:PolygonShape
+        radius: 0.01
+        vertices:
+        - -0.49,-0.49
+        - 0.49,-0.49
+        - 0.49,0.49
+        - -0.49,0.49
+      mask:
+      - Impassable
+      layer:
+      - BulletImpassable
+      - Opaque
+      density: 1
+      hard: True
+      restitution: 0
+      friction: 0.4
+      id: collision
+    type: Fixtures
   - inputs:
       Reverse:
       - port: Right
@@ -13261,6 +13481,8 @@ entities:
     pos: -14.5,10.5
     parent: 2
     type: Transform
+  - bodyType: Static
+    type: Physics
 - uid: 1840
   type: Chair
   components:
@@ -13268,6 +13490,8 @@ entities:
     pos: -14.5,11.5
     parent: 2
     type: Transform
+  - bodyType: Static
+    type: Physics
 - uid: 1841
   type: Chair
   components:
@@ -13275,6 +13499,8 @@ entities:
     pos: -14.5,12.5
     parent: 2
     type: Transform
+  - bodyType: Static
+    type: Physics
 - uid: 1842
   type: Chair
   components:
@@ -13282,6 +13508,8 @@ entities:
     pos: -14.5,13.5
     parent: 2
     type: Transform
+  - bodyType: Static
+    type: Physics
 - uid: 1843
   type: Chair
   components:
@@ -13289,6 +13517,8 @@ entities:
     pos: -14.5,14.5
     parent: 2
     type: Transform
+  - bodyType: Static
+    type: Physics
 - uid: 1844
   type: Chair
   components:
@@ -13296,6 +13526,8 @@ entities:
     pos: -14.5,18.5
     parent: 2
     type: Transform
+  - bodyType: Static
+    type: Physics
 - uid: 1845
   type: Chair
   components:
@@ -13303,6 +13535,8 @@ entities:
     pos: -14.5,19.5
     parent: 2
     type: Transform
+  - bodyType: Static
+    type: Physics
 - uid: 1846
   type: Chair
   components:
@@ -13310,6 +13544,8 @@ entities:
     pos: -14.5,20.5
     parent: 2
     type: Transform
+  - bodyType: Static
+    type: Physics
 - uid: 1847
   type: Chair
   components:
@@ -13317,6 +13553,8 @@ entities:
     pos: -14.5,21.5
     parent: 2
     type: Transform
+  - bodyType: Static
+    type: Physics
 - uid: 1848
   type: ToySeraph
   components:
@@ -13835,6 +14073,8 @@ entities:
     pos: -7.5,0.5
     parent: 2
     type: Transform
+  - bodyType: Static
+    type: Physics
 - uid: 1929
   type: WallRiveted
   components:
@@ -14139,6 +14379,8 @@ entities:
     pos: -11.5,13.5
     parent: 2
     type: Transform
+  - bodyType: Static
+    type: Physics
 - uid: 1974
   type: Chair
   components:
@@ -14146,6 +14388,8 @@ entities:
     pos: -11.5,12.5
     parent: 2
     type: Transform
+  - bodyType: Static
+    type: Physics
 - uid: 1975
   type: Chair
   components:
@@ -14153,6 +14397,8 @@ entities:
     pos: -11.5,11.5
     parent: 2
     type: Transform
+  - bodyType: Static
+    type: Physics
 - uid: 1976
   type: Chair
   components:
@@ -14160,6 +14406,8 @@ entities:
     pos: -10.5,11.5
     parent: 2
     type: Transform
+  - bodyType: Static
+    type: Physics
 - uid: 1977
   type: Chair
   components:
@@ -14167,6 +14415,8 @@ entities:
     pos: -10.5,12.5
     parent: 2
     type: Transform
+  - bodyType: Static
+    type: Physics
 - uid: 1978
   type: Chair
   components:
@@ -14174,6 +14424,8 @@ entities:
     pos: -10.5,13.5
     parent: 2
     type: Transform
+  - bodyType: Static
+    type: Physics
 - uid: 1979
   type: Chair
   components:
@@ -14181,6 +14433,8 @@ entities:
     pos: -10.5,19.5
     parent: 2
     type: Transform
+  - bodyType: Static
+    type: Physics
 - uid: 1980
   type: Chair
   components:
@@ -14188,6 +14442,8 @@ entities:
     pos: -10.5,20.5
     parent: 2
     type: Transform
+  - bodyType: Static
+    type: Physics
 - uid: 1981
   type: Chair
   components:
@@ -14195,6 +14451,8 @@ entities:
     pos: -10.5,21.5
     parent: 2
     type: Transform
+  - bodyType: Static
+    type: Physics
 - uid: 1982
   type: Chair
   components:
@@ -14202,6 +14460,8 @@ entities:
     pos: -11.5,21.5
     parent: 2
     type: Transform
+  - bodyType: Static
+    type: Physics
 - uid: 1983
   type: Chair
   components:
@@ -14209,6 +14469,8 @@ entities:
     pos: -11.5,20.5
     parent: 2
     type: Transform
+  - bodyType: Static
+    type: Physics
 - uid: 1984
   type: Chair
   components:
@@ -14216,6 +14478,8 @@ entities:
     pos: -11.5,19.5
     parent: 2
     type: Transform
+  - bodyType: Static
+    type: Physics
 - uid: 1985
   type: RandomVending
   components:
@@ -14252,6 +14516,7 @@ entities:
     type: Transform
   - powerLoad: 0
     type: ApcPowerReceiver
+  - type: Timer
 - uid: 1990
   type: PoweredSmallLight
   components:
@@ -14292,6 +14557,8 @@ entities:
     pos: -14.5,24.5
     parent: 2
     type: Transform
+  - enabled: False
+    type: AmbientSound
   - powerLoad: 0
     type: ApcPowerReceiver
 - uid: 1995
@@ -14301,6 +14568,8 @@ entities:
     pos: -14.5,15.5
     parent: 2
     type: Transform
+  - enabled: False
+    type: AmbientSound
   - powerLoad: 0
     type: ApcPowerReceiver
 - uid: 1996
@@ -14309,6 +14578,8 @@ entities:
   - pos: -5.5,20.5
     parent: 2
     type: Transform
+  - enabled: False
+    type: AmbientSound
   - powerLoad: 0
     type: ApcPowerReceiver
 - uid: 1997
@@ -14318,6 +14589,8 @@ entities:
     pos: -5.5,6.5
     parent: 2
     type: Transform
+  - enabled: False
+    type: AmbientSound
   - powerLoad: 0
     type: ApcPowerReceiver
 - uid: 1998
@@ -14326,6 +14599,8 @@ entities:
   - pos: -16.5,8.5
     parent: 2
     type: Transform
+  - enabled: False
+    type: AmbientSound
   - powerLoad: 0
     type: ApcPowerReceiver
 - uid: 1999
@@ -14341,6 +14616,8 @@ entities:
     pos: -21.5,1.5
     parent: 2
     type: Transform
+  - enabled: False
+    type: AmbientSound
   - powerLoad: 0
     type: ApcPowerReceiver
 - uid: 2001
@@ -14350,6 +14627,8 @@ entities:
     pos: -9.5,-4.5
     parent: 2
     type: Transform
+  - enabled: False
+    type: AmbientSound
   - powerLoad: 0
     type: ApcPowerReceiver
 - uid: 2002
@@ -14379,6 +14658,8 @@ entities:
   - pos: -19.5,-1.5
     parent: 2
     type: Transform
+  - bodyType: Static
+    type: Physics
 - uid: 2006
   type: Poweredlight
   components:
@@ -14386,6 +14667,8 @@ entities:
     pos: -9.5,-16.5
     parent: 2
     type: Transform
+  - enabled: False
+    type: AmbientSound
   - powerLoad: 0
     type: ApcPowerReceiver
 - uid: 2007
@@ -14479,6 +14762,8 @@ entities:
     pos: -2.5,10.5
     parent: 2
     type: Transform
+  - enabled: False
+    type: AmbientSound
   - powerLoad: 0
     type: ApcPowerReceiver
 - uid: 2022
@@ -14495,6 +14780,8 @@ entities:
     pos: -0.5,0.5
     parent: 2
     type: Transform
+  - enabled: False
+    type: AmbientSound
   - powerLoad: 0
     type: ApcPowerReceiver
 - uid: 2024
@@ -14809,6 +15096,8 @@ entities:
     pos: 6.5,1.5
     parent: 2
     type: Transform
+  - enabled: False
+    type: AmbientSound
   - powerLoad: 0
     type: ApcPowerReceiver
 - uid: 2075
@@ -14818,6 +15107,8 @@ entities:
     pos: 8.5,1.5
     parent: 2
     type: Transform
+  - enabled: False
+    type: AmbientSound
   - powerLoad: 0
     type: ApcPowerReceiver
 - uid: 2076
@@ -14827,6 +15118,8 @@ entities:
     pos: 6.5,12.5
     parent: 2
     type: Transform
+  - enabled: False
+    type: AmbientSound
   - powerLoad: 0
     type: ApcPowerReceiver
 - uid: 2077
@@ -14836,6 +15129,8 @@ entities:
     pos: 8.5,12.5
     parent: 2
     type: Transform
+  - enabled: False
+    type: AmbientSound
   - powerLoad: 0
     type: ApcPowerReceiver
 - uid: 2078
@@ -14845,6 +15140,8 @@ entities:
     pos: 4.5,24.5
     parent: 2
     type: Transform
+  - enabled: False
+    type: AmbientSound
   - powerLoad: 0
     type: ApcPowerReceiver
 - uid: 2079
@@ -14854,6 +15151,8 @@ entities:
     pos: 10.5,24.5
     parent: 2
     type: Transform
+  - enabled: False
+    type: AmbientSound
   - powerLoad: 0
     type: ApcPowerReceiver
 - uid: 2080
@@ -14862,6 +15161,8 @@ entities:
   - pos: 6.5,19.5
     parent: 2
     type: Transform
+  - enabled: False
+    type: AmbientSound
   - powerLoad: 0
     type: ApcPowerReceiver
 - uid: 2081
@@ -14870,6 +15171,8 @@ entities:
   - pos: 8.5,19.5
     parent: 2
     type: Transform
+  - enabled: False
+    type: AmbientSound
   - powerLoad: 0
     type: ApcPowerReceiver
 - uid: 2082
@@ -14878,6 +15181,8 @@ entities:
   - pos: 6.5,8.5
     parent: 2
     type: Transform
+  - enabled: False
+    type: AmbientSound
   - powerLoad: 0
     type: ApcPowerReceiver
 - uid: 2083
@@ -14886,6 +15191,8 @@ entities:
   - pos: 8.5,8.5
     parent: 2
     type: Transform
+  - enabled: False
+    type: AmbientSound
   - powerLoad: 0
     type: ApcPowerReceiver
 - uid: 2084
@@ -14935,6 +15242,8 @@ entities:
     pos: -6.5,11.5
     parent: 2
     type: Transform
+  - enabled: False
+    type: AmbientSound
   - powerLoad: 0
     type: ApcPowerReceiver
 - uid: 2090
@@ -14944,6 +15253,8 @@ entities:
     pos: -6.5,15.5
     parent: 2
     type: Transform
+  - enabled: False
+    type: AmbientSound
   - powerLoad: 0
     type: ApcPowerReceiver
 - uid: 2091
@@ -15109,6 +15420,8 @@ entities:
     pos: -9.5,-8.5
     parent: 2
     type: Transform
+  - enabled: False
+    type: AmbientSound
   - powerLoad: 0
     type: ApcPowerReceiver
 - uid: 2115
@@ -15118,6 +15431,8 @@ entities:
     pos: -13.5,-2.5
     parent: 2
     type: Transform
+  - enabled: False
+    type: AmbientSound
   - powerLoad: 0
     type: ApcPowerReceiver
 - uid: 2116
@@ -15127,6 +15442,8 @@ entities:
     pos: -19.5,3.5
     parent: 2
     type: Transform
+  - enabled: False
+    type: AmbientSound
   - powerLoad: 0
     type: ApcPowerReceiver
 - uid: 2117
@@ -15136,6 +15453,8 @@ entities:
     pos: -19.5,-1.5
     parent: 2
     type: Transform
+  - enabled: False
+    type: AmbientSound
   - powerLoad: 0
     type: ApcPowerReceiver
 - uid: 2118
@@ -15145,6 +15464,8 @@ entities:
     pos: -8.5,16.5
     parent: 2
     type: Transform
+  - enabled: False
+    type: AmbientSound
   - powerLoad: 0
     type: ApcPowerReceiver
 - uid: 2119
@@ -15154,6 +15475,8 @@ entities:
     pos: -8.5,10.5
     parent: 2
     type: Transform
+  - enabled: False
+    type: AmbientSound
   - powerLoad: 0
     type: ApcPowerReceiver
 - uid: 2120
@@ -15162,6 +15485,8 @@ entities:
   - pos: -24.5,8.5
     parent: 2
     type: Transform
+  - enabled: False
+    type: AmbientSound
   - powerLoad: 0
     type: ApcPowerReceiver
 - uid: 2121
@@ -15171,6 +15496,8 @@ entities:
     pos: -2.5,16.5
     parent: 2
     type: Transform
+  - enabled: False
+    type: AmbientSound
   - powerLoad: 0
     type: ApcPowerReceiver
 - uid: 2122
@@ -15180,6 +15507,8 @@ entities:
     pos: -8.5,0.5
     parent: 2
     type: Transform
+  - bodyType: Static
+    type: Physics
 - uid: 2123
   type: PoweredSmallLight
   components:
@@ -15210,12 +15539,16 @@ entities:
     pos: -6.5,0.5
     parent: 2
     type: Transform
+  - bodyType: Static
+    type: Physics
 - uid: 2127
   type: Poweredlight
   components:
   - pos: -24.5,4.5
     parent: 2
     type: Transform
+  - enabled: False
+    type: AmbientSound
   - powerLoad: 0
     type: ApcPowerReceiver
 - uid: 2128
@@ -15225,6 +15558,8 @@ entities:
     pos: -25.5,-0.5
     parent: 2
     type: Transform
+  - enabled: False
+    type: AmbientSound
   - powerLoad: 0
     type: ApcPowerReceiver
 - uid: 2129
@@ -15240,6 +15575,8 @@ entities:
   - pos: -16.5,16.5
     parent: 2
     type: Transform
+  - enabled: False
+    type: AmbientSound
   - powerLoad: 0
     type: ApcPowerReceiver
 - uid: 2131
@@ -15248,6 +15585,8 @@ entities:
   - pos: -16.5,23.5
     parent: 2
     type: Transform
+  - enabled: False
+    type: AmbientSound
   - powerLoad: 0
     type: ApcPowerReceiver
 - uid: 2132
@@ -15257,6 +15596,8 @@ entities:
     pos: -26.5,-0.5
     parent: 2
     type: Transform
+  - enabled: False
+    type: AmbientSound
   - powerLoad: 0
     type: ApcPowerReceiver
 - uid: 2133
@@ -15283,6 +15624,8 @@ entities:
   - pos: 1.5,4.5
     parent: 2
     type: Transform
+  - enabled: False
+    type: AmbientSound
   - powerLoad: 0
     type: ApcPowerReceiver
 - uid: 2136
@@ -15292,6 +15635,8 @@ entities:
     pos: 1.5,6.5
     parent: 2
     type: Transform
+  - enabled: False
+    type: AmbientSound
   - powerLoad: 0
     type: ApcPowerReceiver
 - uid: 2137
@@ -15300,6 +15645,8 @@ entities:
   - pos: 1.5,20.5
     parent: 2
     type: Transform
+  - enabled: False
+    type: AmbientSound
   - powerLoad: 0
     type: ApcPowerReceiver
 - uid: 2138
@@ -15309,8 +15656,11 @@ entities:
     pos: -8.5,24.5
     parent: 2
     type: Transform
+  - enabled: False
+    type: AmbientSound
   - powerLoad: 0
     type: ApcPowerReceiver
+  - type: Timer
 - uid: 2139
   type: Poweredlight
   components:
@@ -15318,6 +15668,8 @@ entities:
     pos: 0.5,22.5
     parent: 2
     type: Transform
+  - enabled: False
+    type: AmbientSound
   - powerLoad: 0
     type: ApcPowerReceiver
 - uid: 2140
@@ -15351,9 +15703,9 @@ entities:
     parent: 2
     type: Transform
 - uid: 2145
-  type: WallRiveted
+  type: Grille
   components:
-  - pos: -8.5,34.5
+  - pos: -7.5,34.5
     parent: 2
     type: Transform
 - uid: 2146
@@ -15363,9 +15715,9 @@ entities:
     parent: 2
     type: Transform
 - uid: 2147
-  type: WallRiveted
+  type: Grille
   components:
-  - pos: -7.5,34.5
+  - pos: -8.5,34.5
     parent: 2
     type: Transform
 - uid: 2148
@@ -15495,15 +15847,36 @@ entities:
     parent: 2
     type: Transform
 - uid: 2169
-  type: AirlockCommandLocked
   components:
-  - pos: -9.5,26.5
-    parent: 2
-    type: Transform
-  - canCrush: False
-    pryingQuality: None
-    type: Door
-  - type: Godmode
+  - type: MetaData
+  - type: Transform
+  - type: Map
+  - type: PhysicsMap
+  - type: Broadphase
+  - type: OccluderTree
+  - parallax: Sky
+    type: Parallax
+  - gravityShakeSound: !type:SoundPathSpecifier
+      path: /Audio/Effects/alert.ogg
+    type: Gravity
+  - space: False
+    mixture:
+      volume: 2500
+      temperature: 160.15
+      moles:
+      - 11.82478
+      - 52.10312
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+      - 0
+    type: MapAtmosphere
 - uid: 2170
   type: AirlockServiceCaptainLocked
   components:
@@ -15574,9 +15947,9 @@ entities:
   - name: Вокзал - диспетчерская
     type: FaxMachine
 - uid: 2181
-  type: RandomVendingDrinks
+  type: RandomVending
   components:
-  - pos: -2.5,33.5
+  - pos: -5.5,37.5
     parent: 2
     type: Transform
 - uid: 2182
@@ -15716,10 +16089,10 @@ entities:
   - canCollide: False
     type: Physics
 - uid: 2193
-  type: BaseComputer
+  type: ComputerSurveillanceWirelessCameraMonitor
   components:
   - rot: 1.5707963267948966 rad
-    pos: -14.5,28.5
+    pos: -14.5,30.5
     parent: 2
     type: Transform
 - uid: 2194
@@ -15759,15 +16132,16 @@ entities:
     parent: 2
     type: Transform
 - uid: 2199
-  type: Bed
+  type: MedicalBed
   components:
   - pos: 0.5,33.5
     parent: 2
     type: Transform
 - uid: 2200
-  type: BedsheetCentcom
+  type: ClothingNeckCloakSssp
   components:
-  - pos: 0.5,33.5
+  - rot: -1.5707963267948966 rad
+    pos: 0.45756075,33.35977
     parent: 2
     type: Transform
 - uid: 2201
@@ -15795,6 +16169,8 @@ entities:
     pos: 0.5,32.5
     parent: 2
     type: Transform
+  - enabled: False
+    type: AmbientSound
   - powerLoad: 0
     type: ApcPowerReceiver
 - uid: 2205
@@ -15813,6 +16189,8 @@ entities:
     pos: -14.5,29.5
     parent: 2
     type: Transform
+  - enabled: False
+    type: AmbientSound
   - powerLoad: 0
     type: ApcPowerReceiver
 - uid: 2207
@@ -15821,6 +16199,8 @@ entities:
   - pos: -8.5,33.5
     parent: 2
     type: Transform
+  - enabled: False
+    type: AmbientSound
   - powerLoad: 0
     type: ApcPowerReceiver
 - uid: 2208
@@ -15830,6 +16210,8 @@ entities:
     pos: -4.5,30.5
     parent: 2
     type: Transform
+  - enabled: False
+    type: AmbientSound
   - powerLoad: 0
     type: ApcPowerReceiver
 - uid: 2209
@@ -15842,17 +16224,17 @@ entities:
   - canCollide: False
     type: Physics
 - uid: 2210
-  type: BaseComputer
+  type: ComputerSurveillanceWirelessCameraMonitor
   components:
   - rot: 1.5707963267948966 rad
     pos: -14.5,29.5
     parent: 2
     type: Transform
 - uid: 2211
-  type: BaseComputer
+  type: ComputerSurveillanceWirelessCameraMonitor
   components:
   - rot: 1.5707963267948966 rad
-    pos: -14.5,30.5
+    pos: -14.5,28.5
     parent: 2
     type: Transform
 - uid: 2212
@@ -15884,29 +16266,29 @@ entities:
     parent: 2
     type: Transform
 - uid: 2216
-  type: BaseComputer
+  type: ComputerSurveillanceCameraMonitor
   components:
-  - rot: 1.5707963267948966 rad
-    pos: -11.5,28.5
+  - pos: -9.5,30.5
     parent: 2
     type: Transform
 - uid: 2217
-  type: BaseComputer
+  type: ComputerSurveillanceCameraMonitor
+  components:
+  - pos: -10.5,30.5
+    parent: 2
+    type: Transform
+- uid: 2218
+  type: ComputerSurveillanceCameraMonitor
   components:
   - rot: 1.5707963267948966 rad
     pos: -11.5,29.5
     parent: 2
     type: Transform
-- uid: 2218
-  type: BaseComputer
-  components:
-  - pos: -10.5,30.5
-    parent: 2
-    type: Transform
 - uid: 2219
-  type: BaseComputer
+  type: ComputerSurveillanceCameraMonitor
   components:
-  - pos: -9.5,30.5
+  - rot: 1.5707963267948966 rad
+    pos: -11.5,28.5
     parent: 2
     type: Transform
 - uid: 2220
@@ -16509,6 +16891,8 @@ entities:
     pos: -13.5,27.5
     parent: 2
     type: Transform
+  - enabled: False
+    type: AmbientSound
   - powerLoad: 0
     type: ApcPowerReceiver
 - uid: 2314
@@ -16518,8 +16902,11 @@ entities:
     pos: -8.5,27.5
     parent: 2
     type: Transform
+  - enabled: False
+    type: AmbientSound
   - powerLoad: 0
     type: ApcPowerReceiver
+  - type: Timer
 - uid: 2315
   type: Paper
   components:
@@ -16819,6 +17206,8 @@ entities:
     pos: -6.5,30.5
     parent: 2
     type: Transform
+  - bodyType: Static
+    type: Physics
 - uid: 2352
   type: TableReinforced
   components:
@@ -17065,9 +17454,33 @@ entities:
 - uid: 2384
   type: LampGold
   components:
-  - pos: -13.609558,33.048927
+  - pos: -13.520162,32.56686
     parent: 2
     type: Transform
+  - toggleAction:
+      sound: null
+      itemIconStyle: BigItem
+      icon:
+        sprite: Objects/Tools/flashlight.rsi
+        state: flashlight
+      iconOn: Objects/Tools/flashlight.rsi/flashlight-on.png
+      iconColor: '#FFFFFFFF'
+      name: action-name-toggle-light
+      description: action-description-toggle-light
+      keywords: []
+      enabled: True
+      useDelay: null
+      charges: null
+      checkCanInteract: True
+      clientExclusive: False
+      priority: 0
+      autoPopulate: True
+      autoRemove: True
+      temporary: False
+      event: !type:ToggleActionEvent {}
+    type: HandheldLight
+  - canCollide: True
+    type: Physics
 - uid: 2385
   type: GasPipeStraight
   components:
@@ -17099,7 +17512,7 @@ entities:
   - bodyType: Static
     type: Physics
 - uid: 2389
-  type: PottedPlantRandomPlastic
+  type: RandomVendingDrinks
   components:
   - pos: -8.5,33.5
     parent: 2
@@ -17111,8 +17524,8 @@ entities:
     parent: 2
     type: Transform
   - toggleAction:
-      popupToggleSuffix: null
-      checkCanInteract: True
+      sound: null
+      itemIconStyle: BigItem
       icon:
         sprite: Objects/Tools/flashlight.rsi
         state: flashlight
@@ -17124,17 +17537,12 @@ entities:
       enabled: True
       useDelay: null
       charges: null
+      checkCanInteract: True
       clientExclusive: False
-      popup: null
       priority: 0
       autoPopulate: True
       autoRemove: True
       temporary: False
-      itemIconStyle: BigItem
-      speech: null
-      sound: null
-      audioParams: null
-      userPopup: null
       event: !type:ToggleActionEvent {}
     type: HandheldLight
   - canCollide: True
@@ -17142,7 +17550,7 @@ entities:
 - uid: 2391
   type: BoxFolderGrey
   components:
-  - pos: -12.281072,33.773228
+  - pos: -7.751943,30.47579
     parent: 2
     type: Transform
   - containers:
@@ -17582,6 +17990,7 @@ entities:
     parent: 2
     type: Transform
   - canCrush: False
+    occludes: False
     pryingQuality: None
     type: Door
   - inputs:
@@ -17610,10 +18019,9 @@ entities:
     parent: 2
     type: Transform
 - uid: 2446
-  type: SignDirectionalDorms
+  type: ComputerCloningConsole
   components:
-  - rot: 1.5707963267948966 rad
-    pos: -3.5,33.5
+  - pos: -1.5,33.5
     parent: 2
     type: Transform
 - uid: 2447
@@ -18423,6 +18831,7 @@ entities:
     type: Transform
   - inletTwoConcentration: 0.78
     inletOneConcentration: 0.22
+    enabled: True
     type: GasMixer
   - bodyType: Static
     type: Physics
@@ -19174,7 +19583,7 @@ entities:
   - bodyType: Static
     type: Physics
 - uid: 2682
-  type: GasPipeStraight
+  type: GasPassiveGate
   components:
   - rot: 3.141592653589793 rad
     pos: -1.5,29.5
@@ -19201,10 +19610,9 @@ entities:
   - bodyType: Static
     type: Physics
 - uid: 2685
-  type: GasVentPump
+  type: GasPipeStraight
   components:
-  - rot: 3.141592653589793 rad
-    pos: -1.5,28.5
+  - pos: -1.5,28.5
     parent: 2
     type: Transform
   - bodyType: Static
@@ -19512,7 +19920,7 @@ entities:
     parent: 2
     type: Transform
   - devices:
-    - 2685
+    - 2735
     - 2686
     type: DeviceList
 - uid: 2720
@@ -19538,6 +19946,8 @@ entities:
     pos: -5.5,36.5
     parent: 2
     type: Transform
+  - enabled: False
+    type: AmbientSound
   - powerLoad: 0
     type: ApcPowerReceiver
 - uid: 2723
@@ -19546,6 +19956,8 @@ entities:
   - pos: -0.5,29.5
     parent: 2
     type: Transform
+  - enabled: False
+    type: AmbientSound
   - powerLoad: 0
     type: ApcPowerReceiver
 - uid: 2724
@@ -19554,6 +19966,8 @@ entities:
   - pos: 0.5,35.5
     parent: 2
     type: Transform
+  - enabled: False
+    type: AmbientSound
   - powerLoad: 0
     type: ApcPowerReceiver
 - uid: 2725
@@ -19562,6 +19976,8 @@ entities:
   - pos: 0.5,37.5
     parent: 2
     type: Transform
+  - enabled: False
+    type: AmbientSound
   - powerLoad: 0
     type: ApcPowerReceiver
 - uid: 2726
@@ -19599,6 +20015,1090 @@ entities:
   components:
   - rot: 3.141592653589793 rad
     pos: -9.5,32.5
+    parent: 2
+    type: Transform
+- uid: 2732
+  type: HighSecCaptainLocked
+  components:
+  - name: Дверь офиса ЦК
+    type: MetaData
+  - pos: -9.5,26.5
+    parent: 2
+    type: Transform
+  - occludes: False
+    type: Door
+- uid: 2733
+  type: AtmosFixFreezerMarker
+  components:
+  - rot: 3.141592653589793 rad
+    pos: -2.5,29.5
+    parent: 2
+    type: Transform
+- uid: 2734
+  type: GasThermoMachineFreezerEnabled
+  components:
+  - pos: -1.5,28.5
+    parent: 2
+    type: Transform
+  - targetTemperature: 283.15
+    type: GasThermoMachine
+- uid: 2735
+  type: GasVentPump
+  components:
+  - rot: 3.141592653589793 rad
+    pos: -1.5,27.5
+    parent: 2
+    type: Transform
+  - bodyType: Static
+    type: Physics
+- uid: 2736
+  type: AtmosFixFreezerMarker
+  components:
+  - rot: 3.141592653589793 rad
+    pos: -1.5,29.5
+    parent: 2
+    type: Transform
+- uid: 2737
+  type: AtmosFixFreezerMarker
+  components:
+  - rot: 3.141592653589793 rad
+    pos: -0.5,29.5
+    parent: 2
+    type: Transform
+- uid: 2738
+  type: AtmosFixFreezerMarker
+  components:
+  - rot: 3.141592653589793 rad
+    pos: 0.5,29.5
+    parent: 2
+    type: Transform
+- uid: 2739
+  type: AtmosFixFreezerMarker
+  components:
+  - rot: 3.141592653589793 rad
+    pos: 0.5,28.5
+    parent: 2
+    type: Transform
+- uid: 2740
+  type: AtmosFixFreezerMarker
+  components:
+  - rot: 3.141592653589793 rad
+    pos: -0.5,28.5
+    parent: 2
+    type: Transform
+- uid: 2741
+  type: AtmosFixFreezerMarker
+  components:
+  - rot: 3.141592653589793 rad
+    pos: -1.5,28.5
+    parent: 2
+    type: Transform
+- uid: 2742
+  type: AtmosFixFreezerMarker
+  components:
+  - rot: 3.141592653589793 rad
+    pos: -2.5,28.5
+    parent: 2
+    type: Transform
+- uid: 2743
+  type: AtmosFixFreezerMarker
+  components:
+  - rot: 3.141592653589793 rad
+    pos: -2.5,27.5
+    parent: 2
+    type: Transform
+- uid: 2744
+  type: AtmosFixFreezerMarker
+  components:
+  - rot: 3.141592653589793 rad
+    pos: -1.5,27.5
+    parent: 2
+    type: Transform
+- uid: 2745
+  type: AtmosFixFreezerMarker
+  components:
+  - rot: 3.141592653589793 rad
+    pos: -0.5,27.5
+    parent: 2
+    type: Transform
+- uid: 2746
+  type: AtmosFixFreezerMarker
+  components:
+  - rot: 3.141592653589793 rad
+    pos: 0.5,27.5
+    parent: 2
+    type: Transform
+- uid: 2747
+  type: AtmosDeviceFanTiny
+  components:
+  - rot: 3.141592653589793 rad
+    pos: -3.5,29.5
+    parent: 2
+    type: Transform
+- uid: 2748
+  type: SurveillanceCameraRouterSecurity
+  components:
+  - pos: 0.5,27.5
+    parent: 2
+    type: Transform
+- uid: 2749
+  type: SurveillanceCameraSecurity
+  components:
+  - rot: 1.5707963267948966 rad
+    pos: -8.5,25.5
+    parent: 2
+    type: Transform
+  - id: Вокзал-1
+    type: SurveillanceCamera
+- uid: 2750
+  type: SurveillanceCameraSecurity
+  components:
+  - rot: 1.5707963267948966 rad
+    pos: -8.5,17.5
+    parent: 2
+    type: Transform
+  - id: Вокзал-2
+    type: SurveillanceCamera
+- uid: 2751
+  type: SurveillanceCameraSecurity
+  components:
+  - rot: -1.5707963267948966 rad
+    pos: -6.5,14.5
+    parent: 2
+    type: Transform
+  - id: Вокзал-СБ
+    type: SurveillanceCamera
+- uid: 2752
+  type: SurveillanceCameraSecurity
+  components:
+  - rot: -1.5707963267948966 rad
+    pos: -2.5,17.5
+    parent: 2
+    type: Transform
+  - id: Вокзал-пирон-1
+    type: SurveillanceCamera
+- uid: 2753
+  type: SurveillanceCameraSecurity
+  components:
+  - rot: -1.5707963267948966 rad
+    pos: -2.5,9.5
+    parent: 2
+    type: Transform
+  - id: Вокзал-пирон-2
+    type: SurveillanceCamera
+- uid: 2754
+  type: SurveillanceCameraSecurity
+  components:
+  - name: Вокзал-аппартаменты-1
+    type: MetaData
+  - rot: 1.5707963267948966 rad
+    pos: -4.5,-2.5
+    parent: 2
+    type: Transform
+  - id: Вокзал-аппартаменты-1
+    type: SurveillanceCamera
+- uid: 2755
+  type: SurveillanceCameraSecurity
+  components:
+  - name: Вокзал-аппартаменты-2
+    type: MetaData
+  - rot: 1.5707963267948966 rad
+    pos: -4.5,-6.5
+    parent: 2
+    type: Transform
+  - id: Вокзал-аппартаменты-2
+    type: SurveillanceCamera
+- uid: 2756
+  type: SurveillanceCameraSecurity
+  components:
+  - rot: 1.5707963267948966 rad
+    pos: -4.5,-9.5
+    parent: 2
+    type: Transform
+  - id: Вокзал-аппартаменты-3
+    type: SurveillanceCamera
+- uid: 2757
+  type: SurveillanceCameraSecurity
+  components:
+  - rot: 1.5707963267948966 rad
+    pos: -4.5,-14.5
+    parent: 2
+    type: Transform
+  - id: Вокзал-аппартаменты-4
+    type: SurveillanceCamera
+- uid: 2758
+  type: SurveillanceCameraSecurity
+  components:
+  - rot: 1.5707963267948966 rad
+    pos: -4.5,-17.5
+    parent: 2
+    type: Transform
+  - id: Вокзал-аппартаменты-5
+    type: SurveillanceCamera
+- uid: 2759
+  type: SurveillanceCameraSecurity
+  components:
+  - rot: 1.5707963267948966 rad
+    pos: 0.5,-15.5
+    parent: 2
+    type: Transform
+  - id: Вокзал-инж-1
+    type: SurveillanceCamera
+- uid: 2760
+  type: SurveillanceCameraSecurity
+  components:
+  - rot: 1.5707963267948966 rad
+    pos: 0.5,-20.5
+    parent: 2
+    type: Transform
+  - id: Вокзал-инж-2
+    type: SurveillanceCamera
+- uid: 2761
+  type: SurveillanceCameraSecurity
+  components:
+  - rot: 3.141592653589793 rad
+    pos: -8.5,-21.5
+    parent: 2
+    type: Transform
+  - id: Вокзал-утилизатор-1
+    type: SurveillanceCamera
+- uid: 2762
+  type: SurveillanceCameraSecurity
+  components:
+  - rot: -1.5707963267948966 rad
+    pos: -15.5,-23.5
+    parent: 2
+    type: Transform
+  - id: Вокзал-утилизатор-2
+    type: SurveillanceCamera
+- uid: 2763
+  type: SurveillanceCameraSecurity
+  components:
+  - rot: -1.5707963267948966 rad
+    pos: -16.5,-18.5
+    parent: 2
+    type: Transform
+  - id: Вокзал-аппартаменты-6
+    type: SurveillanceCamera
+- uid: 2764
+  type: SurveillanceCameraSecurity
+  components:
+  - pos: -24.5,-0.5
+    parent: 2
+    type: Transform
+  - id: Вокзал-бугалтерия-1
+    type: SurveillanceCamera
+- uid: 2765
+  type: SurveillanceCameraSecurity
+  components:
+  - rot: 3.141592653589793 rad
+    pos: -46.5,-9.5
+    parent: 2
+    type: Transform
+  - id: Вокзал-Обсерватория-1
+    type: SurveillanceCamera
+- uid: 2766
+  type: SurveillanceCameraSecurity
+  components:
+  - rot: 1.5707963267948966 rad
+    pos: -29.5,-8.5
+    parent: 2
+    type: Transform
+  - id: Вокзал-Обсерватория-2
+    type: SurveillanceCamera
+- uid: 2767
+  type: SurveillanceCameraSecurity
+  components:
+  - rot: 1.5707963267948966 rad
+    pos: -13.5,-8.5
+    parent: 2
+    type: Transform
+  - id: Вокзал-Парк-1
+    type: SurveillanceCamera
+- uid: 2768
+  type: SurveillanceCameraSecurity
+  components:
+  - rot: 1.5707963267948966 rad
+    pos: -9.5,-11.5
+    parent: 2
+    type: Transform
+  - id: Вокзал-5
+    type: SurveillanceCamera
+- uid: 2769
+  type: SurveillanceCameraSecurity
+  components:
+  - rot: 1.5707963267948966 rad
+    pos: 9.5,5.5
+    parent: 2
+    type: Transform
+  - id: Вокзал-шаттл-3
+    type: SurveillanceCamera
+- uid: 2770
+  type: SurveillanceCameraSecurity
+  components:
+  - rot: 1.5707963267948966 rad
+    pos: 9.5,16.5
+    parent: 2
+    type: Transform
+  - id: Вокзал-шаттл-2
+    type: SurveillanceCamera
+- uid: 2771
+  type: SurveillanceCameraSecurity
+  components:
+  - pos: 8.5,23.5
+    parent: 2
+    type: Transform
+  - id: Вокзал-шаттл-1
+    type: SurveillanceCamera
+- uid: 2772
+  type: SurveillanceCameraSecurity
+  components:
+  - rot: 3.141592653589793 rad
+    pos: 8.5,-2.5
+    parent: 2
+    type: Transform
+  - id: Вокзал-шаттл-инж
+    type: SurveillanceCamera
+- uid: 2773
+  type: SurveillanceCameraSecurity
+  components:
+  - rot: -1.5707963267948966 rad
+    pos: -2.5,-3.5
+    parent: 2
+    type: Transform
+  - id: Вокзал-игровая
+    type: SurveillanceCamera
+- uid: 2774
+  type: SurveillanceCameraWirelessRouterEntertainment
+  components:
+  - pos: 0.5,28.5
+    parent: 2
+    type: Transform
+- uid: 2775
+  type: SurveillanceCameraSecurity
+  components:
+  - rot: 3.141592653589793 rad
+    pos: -1.5,23.5
+    parent: 2
+    type: Transform
+  - id: Вокзал-туалеты
+    type: SurveillanceCamera
+- uid: 2776
+  type: SurveillanceWirelessCameraAnchoredConstructed
+  components:
+  - pos: 7.5,19.5
+    parent: 2
+    type: Transform
+  - bodyType: Static
+    type: Physics
+- uid: 2777
+  type: SurveillanceWirelessCameraMovableEntertainment
+  components:
+  - pos: -14.5,25.5
+    parent: 2
+    type: Transform
+- uid: 2778
+  type: SurveillanceWirelessCameraAnchoredConstructed
+  components:
+  - rot: 3.141592653589793 rad
+    pos: 7.5,1.5
+    parent: 2
+    type: Transform
+  - bodyType: Static
+    type: Physics
+- uid: 2779
+  type: EncryptionKeyCentCom
+  components:
+  - rot: 3.141592653589793 rad
+    pos: -11.673522,30.550282
+    parent: 2
+    type: Transform
+- uid: 2780
+  type: EncryptionKeyCentCom
+  components:
+  - rot: 3.141592653589793 rad
+    pos: -11.673522,30.550282
+    parent: 2
+    type: Transform
+- uid: 2781
+  type: EncryptionKeyCentCom
+  components:
+  - rot: 3.141592653589793 rad
+    pos: -11.673522,30.550282
+    parent: 2
+    type: Transform
+- uid: 2782
+  type: EncryptionKeyCentCom
+  components:
+  - rot: 3.141592653589793 rad
+    pos: -11.673522,30.550282
+    parent: 2
+    type: Transform
+- uid: 2783
+  type: EncryptionKeyCentCom
+  components:
+  - rot: 3.141592653589793 rad
+    pos: -11.673522,30.550282
+    parent: 2
+    type: Transform
+- uid: 2784
+  type: EncryptionKeyCentCom
+  components:
+  - rot: 3.141592653589793 rad
+    pos: -11.673522,30.550282
+    parent: 2
+    type: Transform
+- uid: 2785
+  type: EncryptionKeyCentCom
+  components:
+  - rot: 3.141592653589793 rad
+    pos: -11.673522,30.550282
+    parent: 2
+    type: Transform
+- uid: 2786
+  type: EncryptionKeyCentCom
+  components:
+  - rot: 3.141592653589793 rad
+    pos: -11.673522,30.550282
+    parent: 2
+    type: Transform
+- uid: 2787
+  type: EncryptionKeyCentCom
+  components:
+  - rot: 3.141592653589793 rad
+    pos: -11.673522,30.550282
+    parent: 2
+    type: Transform
+- uid: 2788
+  type: EncryptionKeyCentCom
+  components:
+  - rot: 3.141592653589793 rad
+    pos: -11.673522,30.550282
+    parent: 2
+    type: Transform
+- uid: 2789
+  type: EncryptionKeyCentCom
+  components:
+  - rot: 3.141592653589793 rad
+    pos: -11.673522,30.550282
+    parent: 2
+    type: Transform
+- uid: 2790
+  type: EncryptionKeyCentCom
+  components:
+  - rot: 3.141592653589793 rad
+    pos: -11.673522,30.550282
+    parent: 2
+    type: Transform
+- uid: 2791
+  type: EncryptionKeyCentCom
+  components:
+  - rot: 3.141592653589793 rad
+    pos: -11.673522,30.550282
+    parent: 2
+    type: Transform
+- uid: 2792
+  type: EncryptionKeyCentCom
+  components:
+  - rot: 3.141592653589793 rad
+    pos: -11.673522,30.550282
+    parent: 2
+    type: Transform
+- uid: 2793
+  type: EncryptionKeyCentCom
+  components:
+  - rot: 3.141592653589793 rad
+    pos: -11.673522,30.550282
+    parent: 2
+    type: Transform
+- uid: 2794
+  type: EncryptionKeyCentCom
+  components:
+  - rot: 3.141592653589793 rad
+    pos: -11.673522,30.550282
+    parent: 2
+    type: Transform
+- uid: 2795
+  type: EncryptionKeyCentCom
+  components:
+  - rot: 3.141592653589793 rad
+    pos: -11.673522,30.550282
+    parent: 2
+    type: Transform
+- uid: 2796
+  type: EncryptionKeyCentCom
+  components:
+  - rot: 3.141592653589793 rad
+    pos: -11.673522,30.550282
+    parent: 2
+    type: Transform
+- uid: 2797
+  type: EncryptionKeyCentCom
+  components:
+  - rot: 3.141592653589793 rad
+    pos: -11.673522,30.550282
+    parent: 2
+    type: Transform
+- uid: 2798
+  type: RandomVendingSnacks
+  components:
+  - pos: -6.5,33.5
+    parent: 2
+    type: Transform
+- uid: 2799
+  type: TelecomServer
+  components:
+  - pos: 0.5,29.5
+    parent: 2
+    type: Transform
+  - containers:
+      key_slots: !type:Container
+        showEnts: False
+        occludes: True
+        ents:
+        - 2800
+      machine_board: !type:Container
+        showEnts: False
+        occludes: True
+        ents: []
+      machine_parts: !type:Container
+        showEnts: False
+        occludes: True
+        ents: []
+    type: ContainerContainer
+- uid: 2800
+  type: EncryptionKeyCentCom
+  components:
+  - flags: InContainer
+    type: MetaData
+  - parent: 2799
+    type: Transform
+  - canCollide: False
+    type: Physics
+- uid: 2801
+  type: SignTelecomms
+  components:
+  - rot: 3.141592653589793 rad
+    pos: -3.5,27.5
+    parent: 2
+    type: Transform
+- uid: 2802
+  type: DrinkMugOne
+  components:
+  - pos: -7.252925,30.081205
+    parent: 2
+    type: Transform
+- uid: 2803
+  type: DrinkKvassGlass
+  components:
+  - pos: -7.732092,31.832422
+    parent: 2
+    type: Transform
+- uid: 2804
+  type: ClothingUniformJumpsuitgalaxy
+  components:
+  - pos: -14.461258,31.676064
+    parent: 2
+    type: Transform
+- uid: 2805
+  type: ClothingUniformJumpsuitgalaxyred
+  components:
+  - pos: -14.190426,32.103443
+    parent: 2
+    type: Transform
+- uid: 2806
+  type: ClothingUniformJumpsuitgalaxy
+  components:
+  - pos: -14.648758,31.446737
+    parent: 2
+    type: Transform
+- uid: 2807
+  type: ClothingUniformJumpsuitgalaxyred
+  components:
+  - pos: -13.971676,32.384888
+    parent: 2
+    type: Transform
+- uid: 2808
+  type: GachiSuit
+  components:
+  - pos: -0.4834386,31.724709
+    parent: 2
+    type: Transform
+- uid: 2809
+  type: WeaponCapacitorRecharger
+  components:
+  - pos: -12.5,33.5
+    parent: 2
+    type: Transform
+- uid: 2810
+  type: WeaponDisabler
+  components:
+  - pos: -13.120617,33.71077
+    parent: 2
+    type: Transform
+- uid: 2811
+  type: WeaponDisabler
+  components:
+  - pos: -13.058117,33.47102
+    parent: 2
+    type: Transform
+- uid: 2812
+  type: Stunbaton
+  components:
+  - pos: -13.589367,33.689922
+    parent: 2
+    type: Transform
+- uid: 2813
+  type: Stunbaton
+  components:
+  - pos: -13.4852,33.450172
+    parent: 2
+    type: Transform
+- uid: 2814
+  type: ReinforcedWindow
+  components:
+  - pos: -8.5,34.5
+    parent: 2
+    type: Transform
+- uid: 2815
+  type: ReinforcedWindow
+  components:
+  - pos: -7.5,34.5
+    parent: 2
+    type: Transform
+- uid: 2816
+  type: CloningPod
+  components:
+  - pos: -2.5,33.5
+    parent: 2
+    type: Transform
+- uid: 2817
+  type: SignCloning
+  components:
+  - pos: -3.5,33.5
+    parent: 2
+    type: Transform
+- uid: 2818
+  type: MedicalScanner
+  components:
+  - pos: -1.5,31.5
+    parent: 2
+    type: Transform
+- uid: 2819
+  type: Multitool
+  components:
+  - pos: 0.07809272,31.663034
+    parent: 2
+    type: Transform
+  - devices:
+      'UID: 22495': 2749
+    type: NetworkConfigurator
+- uid: 2820
+  type: CrowbarRed
+  components:
+  - pos: -0.18652928,31.473787
+    parent: 2
+    type: Transform
+- uid: 2821
+  type: Screwdriver
+  components:
+  - pos: -0.071945906,31.661417
+    parent: 2
+    type: Transform
+- uid: 2822
+  type: BoxSterileMask
+  components:
+  - pos: 0.78261256,32.783916
+    parent: 2
+    type: Transform
+- uid: 2823
+  type: MedkitBruteFilled
+  components:
+  - pos: -0.29047573,27.267982
+    parent: 2
+    type: Transform
+- uid: 2824
+  type: MedkitBruteFilled
+  components:
+  - pos: -0.29047573,27.267982
+    parent: 2
+    type: Transform
+- uid: 2825
+  type: MedkitBruteFilled
+  components:
+  - pos: -0.29047573,27.267982
+    parent: 2
+    type: Transform
+- uid: 2826
+  type: MedkitBruteFilled
+  components:
+  - pos: -0.29047573,27.267982
+    parent: 2
+    type: Transform
+- uid: 2827
+  type: MedkitBruteFilled
+  components:
+  - pos: -0.29047573,27.267982
+    parent: 2
+    type: Transform
+- uid: 2828
+  type: MedkitBruteFilled
+  components:
+  - pos: -0.29047573,27.267982
+    parent: 2
+    type: Transform
+- uid: 2829
+  type: MedkitBruteFilled
+  components:
+  - pos: -0.29047573,27.267982
+    parent: 2
+    type: Transform
+- uid: 2830
+  type: MedkitOxygenFilled
+  components:
+  - pos: -0.9154757,27.247135
+    parent: 2
+    type: Transform
+- uid: 2831
+  type: MedkitOxygenFilled
+  components:
+  - pos: -0.9154757,27.247135
+    parent: 2
+    type: Transform
+- uid: 2832
+  type: MedkitOxygenFilled
+  components:
+  - pos: -0.9154757,27.247135
+    parent: 2
+    type: Transform
+- uid: 2833
+  type: MedkitOxygenFilled
+  components:
+  - pos: -0.9154757,27.247135
+    parent: 2
+    type: Transform
+- uid: 2834
+  type: MedkitOxygenFilled
+  components:
+  - pos: -0.9154757,27.247135
+    parent: 2
+    type: Transform
+- uid: 2835
+  type: MedkitOxygenFilled
+  components:
+  - pos: -0.9154757,27.247135
+    parent: 2
+    type: Transform
+- uid: 2836
+  type: MedkitOxygenFilled
+  components:
+  - pos: -0.9154757,27.247135
+    parent: 2
+    type: Transform
+- uid: 2837
+  type: MedkitOxygenFilled
+  components:
+  - pos: -0.9154757,27.247135
+    parent: 2
+    type: Transform
+- uid: 2838
+  type: MedkitToxinFilled
+  components:
+  - pos: -1.4779757,27.299253
+    parent: 2
+    type: Transform
+- uid: 2839
+  type: MedkitToxinFilled
+  components:
+  - pos: -1.4779757,27.299253
+    parent: 2
+    type: Transform
+- uid: 2840
+  type: MedkitToxinFilled
+  components:
+  - pos: -1.4779757,27.299253
+    parent: 2
+    type: Transform
+- uid: 2841
+  type: MedkitToxinFilled
+  components:
+  - pos: -1.4779757,27.299253
+    parent: 2
+    type: Transform
+- uid: 2842
+  type: MedkitToxinFilled
+  components:
+  - pos: -1.4779757,27.299253
+    parent: 2
+    type: Transform
+- uid: 2843
+  type: MedkitToxinFilled
+  components:
+  - pos: -1.4779757,27.299253
+    parent: 2
+    type: Transform
+- uid: 2844
+  type: MedkitToxinFilled
+  components:
+  - pos: -1.4779757,27.299253
+    parent: 2
+    type: Transform
+- uid: 2845
+  type: MedkitToxinFilled
+  components:
+  - pos: -1.4779757,27.299253
+    parent: 2
+    type: Transform
+- uid: 2846
+  type: MedkitToxinFilled
+  components:
+  - pos: -1.4779757,27.299253
+    parent: 2
+    type: Transform
+- uid: 2847
+  type: MedkitToxinFilled
+  components:
+  - pos: -1.4779757,27.299253
+    parent: 2
+    type: Transform
+- uid: 2848
+  type: MedkitToxinFilled
+  components:
+  - pos: -1.4779757,27.299253
+    parent: 2
+    type: Transform
+- uid: 2849
+  type: MedkitToxinFilled
+  components:
+  - pos: -1.4779757,27.299253
+    parent: 2
+    type: Transform
+- uid: 2850
+  type: MedkitToxinFilled
+  components:
+  - pos: -1.4779757,27.299253
+    parent: 2
+    type: Transform
+- uid: 2851
+  type: MedkitRadiationFilled
+  components:
+  - pos: -0.29047573,27.903841
+    parent: 2
+    type: Transform
+- uid: 2852
+  type: MedkitRadiationFilled
+  components:
+  - pos: -0.29047573,27.903841
+    parent: 2
+    type: Transform
+- uid: 2853
+  type: MedkitRadiationFilled
+  components:
+  - pos: -0.29047573,27.903841
+    parent: 2
+    type: Transform
+- uid: 2854
+  type: MedkitRadiationFilled
+  components:
+  - pos: -0.29047573,27.903841
+    parent: 2
+    type: Transform
+- uid: 2855
+  type: MedkitRadiationFilled
+  components:
+  - pos: -0.29047573,27.903841
+    parent: 2
+    type: Transform
+- uid: 2856
+  type: MedkitRadiationFilled
+  components:
+  - pos: -0.29047573,27.903841
+    parent: 2
+    type: Transform
+- uid: 2857
+  type: MedkitRadiationFilled
+  components:
+  - pos: -0.29047573,27.903841
+    parent: 2
+    type: Transform
+- uid: 2858
+  type: MedkitRadiationFilled
+  components:
+  - pos: -0.29047573,27.903841
+    parent: 2
+    type: Transform
+- uid: 2859
+  type: MedkitRadiationFilled
+  components:
+  - pos: -0.29047573,27.903841
+    parent: 2
+    type: Transform
+- uid: 2860
+  type: MedkitBurnFilled
+  components:
+  - pos: -0.8946424,27.882994
+    parent: 2
+    type: Transform
+- uid: 2861
+  type: MedkitBurnFilled
+  components:
+  - pos: -0.8946424,27.882994
+    parent: 2
+    type: Transform
+- uid: 2862
+  type: MedkitBurnFilled
+  components:
+  - pos: -0.8946424,27.882994
+    parent: 2
+    type: Transform
+- uid: 2863
+  type: MedkitBurnFilled
+  components:
+  - pos: -0.8946424,27.882994
+    parent: 2
+    type: Transform
+- uid: 2864
+  type: MedkitBurnFilled
+  components:
+  - pos: -0.8946424,27.882994
+    parent: 2
+    type: Transform
+- uid: 2865
+  type: MedkitBurnFilled
+  components:
+  - pos: -0.8946424,27.882994
+    parent: 2
+    type: Transform
+- uid: 2866
+  type: MedkitBurnFilled
+  components:
+  - pos: -0.8946424,27.882994
+    parent: 2
+    type: Transform
+- uid: 2867
+  type: MedkitBurnFilled
+  components:
+  - pos: -0.8738091,27.872568
+    parent: 2
+    type: Transform
+- uid: 2868
+  type: MedkitBurnFilled
+  components:
+  - pos: -0.8738091,27.872568
+    parent: 2
+    type: Transform
+- uid: 2869
+  type: MedkitBurnFilled
+  components:
+  - pos: -0.8738091,27.872568
+    parent: 2
+    type: Transform
+- uid: 2870
+  type: MedkitBurnFilled
+  components:
+  - pos: -0.8738091,27.872568
+    parent: 2
+    type: Transform
+- uid: 2871
+  type: MedkitBurnFilled
+  components:
+  - pos: -0.8738091,27.872568
+    parent: 2
+    type: Transform
+- uid: 2872
+  type: Brutepack
+  components:
+  - pos: -7.1896715,31.856762
+    parent: 2
+    type: Transform
+- uid: 2873
+  type: Brutepack
+  components:
+  - pos: -7.1896715,31.856762
+    parent: 2
+    type: Transform
+- uid: 2874
+  type: Brutepack
+  components:
+  - pos: -7.1896715,31.856762
+    parent: 2
+    type: Transform
+- uid: 2875
+  type: Brutepack
+  components:
+  - pos: -7.1896715,31.856762
+    parent: 2
+    type: Transform
+- uid: 2876
+  type: Brutepack
+  components:
+  - pos: -7.1896715,31.856762
+    parent: 2
+    type: Transform
+- uid: 2877
+  type: VendingMachineRestockBooze
+  components:
+  - pos: -0.601987,33.663685
+    parent: 2
+    type: Transform
+- uid: 2878
+  type: VendingMachineRestockBooze
+  components:
+  - pos: -0.601987,33.663685
+    parent: 2
+    type: Transform
+- uid: 2879
+  type: VendingMachineRestockBooze
+  components:
+  - pos: -0.601987,33.663685
+    parent: 2
+    type: Transform
+- uid: 2880
+  type: VendingMachineRestockBooze
+  components:
+  - pos: -0.601987,33.663685
+    parent: 2
+    type: Transform
+- uid: 2881
+  type: VendingMachineRestockBooze
+  components:
+  - pos: -0.601987,33.663685
+    parent: 2
+    type: Transform
+- uid: 2882
+  type: VendingMachineRestockBooze
+  components:
+  - pos: -0.601987,33.663685
+    parent: 2
+    type: Transform
+- uid: 2883
+  type: SurveillanceCameraSecurity
+  components:
+  - rot: -1.5707963267948966 rad
+    pos: -19.5,1.5
+    parent: 2
+    type: Transform
+- uid: 2884
+  type: SurveillanceCameraSecurity
+  components:
+  - pos: -17.5,6.5
+    parent: 2
+    type: Transform
+  - id: Вокзал-3
+    type: SurveillanceCamera
+- uid: 2885
+  type: SurveillanceCameraSecurity
+  components:
+  - rot: -1.5707963267948966 rad
+    pos: -11.5,1.5
+    parent: 2
+    type: Transform
+  - id: Вокзал-4
+    type: SurveillanceCamera
+- uid: 2886
+  type: SurveillanceWirelessCameraMovableConstructed
+  components:
+  - pos: -13.5,25.5
     parent: 2
     type: Transform
 ...
