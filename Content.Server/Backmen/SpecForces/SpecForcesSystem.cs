@@ -63,6 +63,9 @@ public sealed class SpecForcesSystem : EntitySystem
                 if(!uid.IsValid()){
                     return;
                 }
+                mind.Mind.ChangeOwningPlayer(null);
+                mind.Mind.UnVisit();
+                mind.Mind = null;
                 EntityManager.RemoveComponent<MindComponent>(uid);
                 if(EntityManager.TryGetComponent<GhostRoleComponent>(uid, out var ghostComp)){
                     (ghostComp as dynamic).Taken = false;
