@@ -43,11 +43,6 @@
     partType: Head
   - type: Input
     context: "ghost"
-  - type: MovementSpeedModifier
-    baseWalkSpeed: 0
-    baseSprintSpeed: 0
-  - type: InputMover
-  - type: GhostOnMove
 
 - type: entity
   id: LeftArmMoth
@@ -128,7 +123,7 @@
   - type: BodyPart
     partType: Leg
     symmetry: Left
-  - type: MovementSpeedModifier
+  - type: MovementBodyPart
 
 - type: entity
   id: RightLegMoth
@@ -145,7 +140,7 @@
   - type: BodyPart
     partType: Leg
     symmetry: Right
-  - type: MovementSpeedModifier
+  - type: MovementBodyPart
 
 - type: entity
   id: LeftFootMoth

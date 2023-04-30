@@ -2,8 +2,6 @@ using Content.Server.Damage.Systems;
 using Content.Server.Shuttles.Components;
 using Content.Shared.Tools;
 using JetBrains.Annotations;
-using Content.Shared.Tools.Components;
-using Content.Shared.GameTicking;
 using Robust.Shared.Map;
 using Content.Shared.Tag;
 using Content.Shared.Doors.Components;
@@ -15,6 +13,9 @@ using Content.Server.Wires;
 using Content.Server.Power.Components;
 using Content.Server.Light.Components;
 using Content.Server.StationEvents.Components;
+using Content.Shared.SubFloor;
+using Content.Server.SurveillanceCamera;
+using Content.Server.Construction.Components;
 
 namespace Content.Server.Backmen.Arrivals;
 
@@ -85,6 +86,7 @@ public sealed class ArrivalsProtectSystem : EntitySystem
     private void ProcessGodmode(EntityUid uid){
         if(_tagSystem.HasAnyTag(uid,"Wall","Window")){
             _godmodeSystem.EnableGodmode(uid);
+            EnsureComp<ArrivalsProtectComponent>(uid);
         }else if(TryComp<DoorComponent>(uid, out var DoorComp)){
             _godmodeSystem.EnableGodmode(uid);
             DoorComp.PryingQuality = "None";
@@ -103,7 +105,9 @@ public sealed class ArrivalsProtectSystem : EntitySystem
             HasComp<PoweredLightComponent>(uid) ||
             HasComp<ApcComponent>(uid) ||
             HasComp<PowerSupplierComponent>(uid) ||
-            HasComp<PowerNetworkBatteryComponent>(uid)
+            HasComp<PowerNetworkBatteryComponent>(uid) ||
+            HasComp<SurveillanceCameraComponent>(uid) ||
+            HasComp<SubFloorHideComponent>(uid)
         ){
             _godmodeSystem.EnableGodmode(uid);
             EnsureComp<ArrivalsProtectComponent>(uid);
