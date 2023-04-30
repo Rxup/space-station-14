@@ -50,7 +50,8 @@ public sealed class SpecForcesSystem : EntitySystem
     private void OnSpecForceTake(EntityUid uid, SpecForceComponent component, ref TakeGhostRoleEvent args)
     {
         if(!IsAllowed(args.Player,component, out var reason)){
-            args.TookRole = false;
+            args.TookRole = true;
+            _callLock.EnterWriteLock();
             _chatManager.ChatMessageToOne(Shared.Chat.ChatChannel.Server, reason, "ОШИБКА: "+reason, default, false, args.Player.ConnectedClient, Color.Plum);
 
             //EntityManager.RemoveComponent<ActorComponent>(uid);
@@ -60,18 +61,22 @@ public sealed class SpecForcesSystem : EntitySystem
             var sess = args.Player;
 
             Robust.Shared.Timing.Timer.Spawn(0, ()=>{
-                if(!uid.IsValid()){
-                    return;
+                try{
+                    if(!uid.IsValid()){
+                        return;
+                    }
+                    mind.Mind.ChangeOwningPlayer(null);
+                    mind.Mind.UnVisit();
+                    mind.Mind = null;
+                    EntityManager.RemoveComponent<MindComponent>(uid);
+                    if(EntityManager.TryGetComponent<GhostRoleComponent>(uid, out var ghostComp)){
+                        (ghostComp as dynamic).Taken = false;
+                        //_ghostRoleSystem.RegisterGhostRole(ghostComp);
+                    }
+                    _ghostRoleSystem.CloseEui(sess);
+                }finally{
+                    _callLock.ExitWriteLock();
                 }
-                mind.Mind.ChangeOwningPlayer(null);
-                mind.Mind.UnVisit();
-                mind.Mind = null;
-                EntityManager.RemoveComponent<MindComponent>(uid);
-                if(EntityManager.TryGetComponent<GhostRoleComponent>(uid, out var ghostComp)){
-                    (ghostComp as dynamic).Taken = false;
-                    //_ghostRoleSystem.RegisterGhostRole(ghostComp);
-                }
-                _ghostRoleSystem.CloseEui(sess);
             });
         }
     }
@@ -278,8 +283,12 @@ public sealed class SpecForcesSystem : EntitySystem
     }
     private void OnCleanup(RoundRestartCleanupEvent ev)
     {
-        //PlayersInEvent.Clear();
         CallendEvents.Clear();
+        LastUsedTime = TimeSpan.Zero;
+
+        if(_callLock.IsWriteLockHeld){
+            _callLock.ExitWriteLock();
+        }
     }
 
     const string ETRShuttlePath = "Maps/Shuttles/dart.yml";
