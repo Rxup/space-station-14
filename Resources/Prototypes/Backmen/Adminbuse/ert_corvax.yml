@@ -462,7 +462,7 @@
     - !type:OverallPlaytimeRequirement
       time: 36000
     - !type:RoleTimeRequirement
-      role: Janitor
+      role: JobJanitor
       time: 3000
   - type: Icon
     sprite: Markers/jobs.rsi
