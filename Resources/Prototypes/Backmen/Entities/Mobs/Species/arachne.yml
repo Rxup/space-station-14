@@ -137,8 +137,8 @@
         Blunt: 0.05 #per second, scales with pressure and other constants. Reduced Damage. This allows medicine to heal faster than damage.
   - type: MovementAlwaysTouching
   - type: MovementSpeedModifier
-    baseWalkSpeed : 4.0
-    baseSprintSpeed : 6.0
+    baseWalkSpeed : 3.0
+    baseSprintSpeed : 5.0
   - type: Perishable
   - type: FireVisuals
     sprite: Mobs/Effects/onfire.rsi
