@@ -1,5 +1,5 @@
 - type: instantAction
-  id: SpiderWebArachneAction
+  id: SpiderWebArachneClassicAction
   icon: Interface/Actions/web.png
   name: spider-web-action-name
   description: spider-web-action-description
