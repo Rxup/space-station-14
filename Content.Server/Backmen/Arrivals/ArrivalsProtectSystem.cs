@@ -16,10 +16,14 @@ using Content.Server.StationEvents.Components;
 using Content.Shared.SubFloor;
 using Content.Server.SurveillanceCamera;
 using Content.Server.Construction.Components;
+using Content.Server.Damage.Components;
+using Content.Server.Atmos.Components;
+using Content.Shared.Damage;
+using Robust.Server.GameObjects;
 
 namespace Content.Server.Backmen.Arrivals;
 
-[RegisterComponent, Access(typeof(ArrivalsProtectSystem))]
+[RegisterComponent]
 public sealed class ArrivalsProtectComponent : Component
 {
 
@@ -38,11 +42,31 @@ public sealed class ArrivalsProtectSystem : EntitySystem
     {
         base.Initialize();
 
-        SubscribeLocalEvent<ArrivalsSourceComponent,ComponentStartup>(OnArrivalsStartup, after: new[]{ typeof(ArrivalsSystem)});
-        SubscribeLocalEvent<ArrivalsShuttleComponent,ComponentAdd>(OnArrivalsStartup2, after: new[]{ typeof(ArrivalsSystem)});
+        SubscribeLocalEvent<ArrivalsProtectComponent, MapInitEvent>(OnMapInit, after: new[]{ typeof(ArrivalsSystem)});
+        SubscribeLocalEvent<ArrivalsProtectComponent, ComponentStartup>(OnStartup, after: new[]{ typeof(ArrivalsSystem)});
+
+        SubscribeLocalEvent<ArrivalsSourceComponent, ComponentStartup>(OnArrivalsStartup, after: new[]{ typeof(ArrivalsSystem)});
+        SubscribeLocalEvent<ArrivalsShuttleComponent, ComponentAdd>(OnArrivalsStartup2, after: new[]{ typeof(ArrivalsSystem)});
+
+
+
         SubscribeLocalEvent<ArrivalsProtectComponent, InteractUsingEvent>(OnInteractUsing, before: new []{typeof(DoorSystem), typeof(WiresSystem)});
         SubscribeLocalEvent<ArrivalsProtectComponent, WeldableAttemptEvent>(OnWeldAttempt, before: new []{typeof(DoorSystem), typeof(WiresSystem)});
 
+
+
+    }
+
+    private void OnStartup(EntityUid uid, ArrivalsProtectComponent component, ComponentStartup args)
+    {
+        EnsureComp<GodmodeComponent>(uid);
+        RemCompDeferred<DamageableComponent>(uid);
+        RemCompDeferred<MovedByPressureComponent>(uid);
+    }
+
+    private void OnMapInit(EntityUid uid, ArrivalsProtectComponent component, MapInitEvent args)
+    {
+        _godmodeSystem.EnableGodmode(uid);
     }
 
     private void OnWeldAttempt(EntityUid uid, ArrivalsProtectComponent component, WeldableAttemptEvent args)
@@ -84,39 +108,38 @@ public sealed class ArrivalsProtectSystem : EntitySystem
     }
 
     private void ProcessGodmode(EntityUid uid){
-        if(_tagSystem.HasAnyTag(uid,"Wall","Window")){
-            _godmodeSystem.EnableGodmode(uid);
-            EnsureComp<ArrivalsProtectComponent>(uid);
-        }else if(TryComp<DoorComponent>(uid, out var DoorComp)){
-            _godmodeSystem.EnableGodmode(uid);
+        if(TryComp<DoorComponent>(uid, out var DoorComp)){
             DoorComp.PryingQuality = "None";
             EnsureComp<ArrivalsProtectComponent>(uid);
 
-            if(TryComp<AirlockComponent>(uid, out var airlockComponent)){
+            if(HasComp<AirlockComponent>(uid)){
                 _tagSystem.TryAddTag(uid,"EmagImmune");
             }
         }else if(_tagSystem.HasAnyTag(uid,"GasVent", "GasScrubber")){
             EnsureComp<ArrivalsProtectComponent>(uid);
-            _godmodeSystem.EnableGodmode(uid);
             RemCompDeferred<VentCritterSpawnLocationComponent>(uid);
         }else if( // basic elements
+            _tagSystem.HasAnyTag(uid,"Wall","Window") ||
             HasComp<PoweredLightComponent>(uid) ||
             HasComp<CableComponent>(uid) ||
-            HasComp<PoweredLightComponent>(uid) ||
             HasComp<ApcComponent>(uid) ||
             HasComp<PowerSupplierComponent>(uid) ||
             HasComp<PowerNetworkBatteryComponent>(uid) ||
             HasComp<SurveillanceCameraComponent>(uid) ||
             HasComp<SubFloorHideComponent>(uid)
         ){
-            _godmodeSystem.EnableGodmode(uid);
             EnsureComp<ArrivalsProtectComponent>(uid);
         }
     }
 
     private void RecursiveGodmode(EntityQuery<TransformComponent> transformQuery, EntityUid uid){
 
-        ProcessGodmode(uid);
+        try{
+            ProcessGodmode(uid);
+        }catch(KeyNotFoundException){
+            //ignore
+        }
+
 
         var enumerator = transformQuery.GetComponent(uid).ChildEnumerator;
         while (enumerator.MoveNext(out var child))

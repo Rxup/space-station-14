@@ -4,7 +4,6 @@
   description: job-description-lawyer
   playTimeTracker: JobLawyer
   startingGear: LawyerGear
-  setPreference: false
   icon: "Lawyer"
   supervisors: job-supervisors-hop
   access:

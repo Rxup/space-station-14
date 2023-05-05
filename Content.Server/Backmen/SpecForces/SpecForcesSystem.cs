@@ -25,6 +25,12 @@ using Content.Server.Chat.Managers;
 using Content.Server.Ghost.Roles;
 using Content.Server.Ghost.Roles.Components;
 using Content.Server.Mind.Components;
+using Content.Server.RandomMetadata;
+using Robust.Shared.Serialization.Manager;
+using Content.Shared.Stealth.Components;
+using Content.Shared.Inventory;
+using Content.Shared.Radio.Components;
+using Content.Server.Radio.EntitySystems;
 
 namespace Content.Server.Backmen.SpecForces;
 
@@ -42,9 +48,26 @@ public sealed class SpecForcesSystem : EntitySystem
     {
         base.Initialize();
 
+        SubscribeLocalEvent<SpecForceComponent, MapInitEvent>(OnMapInit, after: new []{ typeof(RandomMetadataSystem) });
         SubscribeLocalEvent<RoundEndTextAppendEvent>(OnRoundEnd);
         SubscribeLocalEvent<RoundRestartCleanupEvent>(OnCleanup);
         SubscribeLocalEvent<SpecForceComponent,TakeGhostRoleEvent>(OnSpecForceTake, before: new []{ typeof(GhostRoleSystem) });
+    }
+
+    private void OnMapInit(EntityUid uid, SpecForceComponent component, MapInitEvent args)
+    {
+        if(component.Components !=  null){
+            foreach (var entry in component.Components.Values)
+            {
+                var comp = (Component) _serialization.CreateCopy(entry.Component, notNullableOverride: true);
+                comp.Owner = uid;
+                EntityManager.AddComponent(uid, comp, true);
+            }
+        }
+        if(_inventory.TryGetSlotEntity(uid,"ears",out var ears) && TryComp<HeadsetComponent>(ears, out var earsComp)){
+            earsComp.Enabled = false;
+            //_headset.SetEnabled(ears.Value, false, earsComp);
+        }
     }
 
     private void OnSpecForceTake(EntityUid uid, SpecForceComponent component, ref TakeGhostRoleEvent args)
@@ -78,6 +101,10 @@ public sealed class SpecForcesSystem : EntitySystem
                     _callLock.ExitWriteLock();
                 }
             });
+            return;
+        }
+        if(_inventory.TryGetSlotEntity(uid,"ears",out var ears) && TryComp<HeadsetComponent>(ears, out var earsComp)){
+            _headset.SetEnabled(ears.Value, true, earsComp);
         }
     }
 
@@ -321,5 +348,9 @@ public sealed class SpecForcesSystem : EntitySystem
     [Dependency] private readonly IPrototypeManager _prototypes = default!;
     [Dependency] private readonly IChatManager _chatManager = default!;
     [Dependency] private readonly GhostRoleSystem _ghostRoleSystem = default!;
+    [Dependency] private readonly ISerializationManager _serialization = default!;
+    [Dependency] private readonly InventorySystem _inventory = default!;
+    [Dependency] private readonly HeadsetSystem _headset = default!;
+
 
 }
