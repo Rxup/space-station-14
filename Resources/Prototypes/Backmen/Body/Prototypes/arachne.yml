@@ -1,6 +1,6 @@
 - type: body
-  id: Arachne
-  name: "arachne"
+  id: ArachneClassic
+  name: "ArachneClassic"
   root: torso
   slots:
     head:

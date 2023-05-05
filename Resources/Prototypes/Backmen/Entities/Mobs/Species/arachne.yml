@@ -1,8 +1,8 @@
 - type: entity
   save: false
-  name: Base Arachne
+  name: Base ArachneClassic
   parent: BaseMobHuman
-  id: MobArachneBase
+  id: MobArachneClassicBase
   abstract: true
   components:
   - type: Sprite
@@ -11,14 +11,14 @@
     drawdepth: Mobs
     layers:
     - map: [ "enum.HumanoidVisualLayers.LLeg" ]
-      sprite: Backmen/Mobs/Species/Arachne/arachne.rsi
+      sprite: Backmen/Mobs/Species/ArachneClassic/arachneClassic.rsi
       state: spider_body
     - map: [ "enum.HumanoidVisualLayers.Chest" ]
       color: "#e8b59b"
       sprite: Mobs/Species/Human/parts.rsi
       state: torso_m
     - map: [ "enum.HumanoidVisualLayers.RLeg" ]
-      sprite: Backmen/Mobs/Species/Arachne/arachne.rsi
+      sprite: Backmen/Mobs/Species/ArachneClassic/arachneClassic.rsi
       state: spider_body_front
     - map: [ "enum.HumanoidVisualLayers.Head" ]
       color: "#e8b59b"
@@ -26,7 +26,7 @@
       state: head_m
     - map: [ "enum.HumanoidVisualLayers.Eyes" ]
       color: "#008800"
-      sprite: Backmen/Mobs/Species/Arachne/eyes.rsi
+      sprite: Backmen/Mobs/Species/ArachneClassic/eyes.rsi
       state: eyes
     - map: [ "enum.HumanoidVisualLayers.RArm" ]
       color: "#e8b59b"
@@ -83,7 +83,7 @@
       state: "creampie_human"
       visible: false
   - type: HumanoidAppearance
-    species: Arachne
+    species: ArachneClassic
   - type: Fixtures
     fixtures: # TODO: This needs a second fixture just for mob collisions.
     - shape:
@@ -96,11 +96,11 @@
       layer:
       - MobLayer
   - type: Body
-    prototype: Arachne
+    prototype: ArachneClassic
     requiredLegs: 8
   - type: Damageable
     damageContainer: Biological
-    #damageModifierSet: Arachne TODO!
+    #damageModifierSet: ArachneClassic TODO!
   - type: DiseaseCarrier
     naturalImmunities:
     - BleedersBite
@@ -143,20 +143,20 @@
   - type: FireVisuals
     sprite: Mobs/Effects/onfire.rsi
     normalState: Generic_mob_burning
-    alternateState: arachne_standing
+    alternateState: ArachneClassic_standing
     fireStackAlternateState: 3
   - type: Spider
     webPrototype: SpiderWebArache
-    webActionName: SpiderWebArachneAction
-  - type: IgnoreSpiderWebArachne
+    webActionName: SpiderWebArachneClassicAction
+  - type: IgnoreSpiderWebArachneClassic
 
 - type: entity
   save: false
-  name: Arachne Dummy
+  name: ArachneClassic Dummy
   parent: MobHumanDummy
-  id: MobArachneDummy
+  id: MobArachneClassicDummy
   noSpawn: true
-  description: A dummy arachne meant to be used in character setup.
+  description: A dummy ArachneClassic meant to be used in character setup.
   components:
   - type: Sprite
     netsync: false
@@ -164,14 +164,14 @@
     drawdepth: Mobs
     layers:
     - map: [ "enum.HumanoidVisualLayers.LLeg" ]
-      sprite: Backmen/Mobs/Species/Arachne/arachne.rsi
+      sprite: Backmen/Mobs/Species/ArachneClassic/arachneClassic.rsi
       state: spider_body
     - map: [ "enum.HumanoidVisualLayers.Chest" ]
       color: "#e8b59b"
       sprite: Mobs/Species/Human/parts.rsi
       state: torso_m
     - map: [ "enum.HumanoidVisualLayers.RLeg" ]
-      sprite: Backmen/Mobs/Species/Arachne/arachne.rsi
+      sprite: Backmen/Mobs/Species/ArachneClassic/arachneClassic.rsi
       state: spider_body_front
     - map: [ "enum.HumanoidVisualLayers.Head" ]
       color: "#e8b59b"
@@ -179,7 +179,7 @@
       state: head_m
     - map: [ "enum.HumanoidVisualLayers.Eyes" ]
       color: "#008800"
-      sprite: Backmen/Mobs/Species/Arachne/eyes.rsi
+      sprite: Backmen/Mobs/Species/ArachneClassic/eyes.rsi
       state: eyes
     - map: [ "enum.HumanoidVisualLayers.RArm" ]
       color: "#e8b59b"

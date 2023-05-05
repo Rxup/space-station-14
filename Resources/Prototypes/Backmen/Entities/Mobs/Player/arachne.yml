@@ -1,8 +1,8 @@
 - type: entity
   save: false
-  name: Player arachne
-  parent: MobArachneBase
-  id: MobArachne
+  name: Player ArachneClassic
+  parent: MobArachneClassicBase
+  id: MobArachneClassic
   components:
   - type: CombatMode
     canDisarm: null

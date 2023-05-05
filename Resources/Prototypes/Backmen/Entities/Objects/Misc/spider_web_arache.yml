@@ -1,7 +1,7 @@
 - type: entity
   parent: SpiderWeb
   id: SpiderWebArache
-  name: Паутина арахны
+  name: Паутина Арахны классической
   description: Замедляет всех кроме арахн.
   components:
     - type: Sprite
@@ -16,4 +16,4 @@
       sprintSpeedModifier: 0.5
       ignoreWhitelist:
         components:
-            - IgnoreSpiderWebArachne
+            - IgnoreSpiderWebArachneClassic
