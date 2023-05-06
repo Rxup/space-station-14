@@ -998,6 +998,7 @@ entities:
             1: 238
           -4,8:
             0: 3839
+            4: 256
           -3,8:
             0: 4095
           -2,8:
@@ -1060,6 +1061,21 @@ entities:
           temperature: 293.15
           moles:
           - 6666.982
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+        - volume: 2500
+          temperature: 293.15
+          moles:
+          - 0
           - 0
           - 0
           - 0
@@ -14049,6 +14065,13 @@ entities:
     - pos: -15.5,34.5
       parent: 2
       type: Transform
+- proto: RollerBedSpawnFolded
+  entities:
+  - uid: 2960
+    components:
+    - pos: -2.6222715,32.49045
+      parent: 2
+      type: Transform
 - proto: RubberStampApproved
   entities:
   - uid: 2426
@@ -14071,6 +14094,18 @@ entities:
     components:
     - rot: -1.5707963267948966 rad
       pos: -7.4702253,29.500456
+      parent: 2
+      type: Transform
+- proto: SalvageExpeditionsComputerCircuitboard
+  entities:
+  - uid: 2958
+    components:
+    - pos: -13.226927,33.039875
+      parent: 2
+      type: Transform
+  - uid: 2959
+    components:
+    - pos: -13.101927,32.518677
       parent: 2
       type: Transform
 - proto: Screwdriver
@@ -18763,6 +18798,32 @@ entities:
       type: Transform
     - location: Прибытие - СБ
       type: WarpPoint
+  - uid: 2961
+    components:
+    - name: Operator CentComm
+      type: MetaData
+    - pos: -5.5,30.5
+      parent: 2
+      type: Transform
+    - prototypes:
+      - MobHumanCentComOperatorCorvax
+      gameRules: []
+      type: RandomSpawner
+    missingComponents:
+    - WarpPoint
+  - uid: 2962
+    components:
+    - name: Guard CentCom
+      type: MetaData
+    - pos: -10.5,29.5
+      parent: 2
+      type: Transform
+    - prototypes:
+      - MobHumanCentComOfficerSesurityGavna
+      gameRules: []
+      type: RandomSpawner
+    missingComponents:
+    - WarpPoint
 - proto: WeaponCapacitorRecharger
   entities:
   - uid: 2809
