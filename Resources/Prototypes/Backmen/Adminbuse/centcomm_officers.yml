@@ -104,11 +104,18 @@
   - type: RandomHumanoidAppearance
   - type: SpecForce
     requirements:
-    - !type:OverallPlaytimeRequirement
-      time: 36000
     - !type:RoleTimeRequirement
       role: JobIAA
-      time: 18000
+      time: 420000
+    - !type:RoleTimeRequirement
+      role: JobIAA
+      time: 420000
+    - !type:RoleTimeRequirement
+      role: JobCaptain
+      time: 240000
+    - !type:DepartmentTimeRequirement
+      department: Command
+      time: 720000
 
 #-----------------------------------------
 
@@ -200,9 +207,10 @@
     requirements:
     - !type:DepartmentTimeRequirement
       department: Security
-      time: 18000
-    - !type:OverallPlaytimeRequirement
-      time: 36000
+      time: 240000
+    - !type:DepartmentTimeRequirement
+      department: Command
+      time: 720000
     - !type:RoleTimeRequirement
       role: JobIAA
       time: 3600
