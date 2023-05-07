@@ -316,6 +316,16 @@
   suffix: corvax
   id: MobHumanERTLeaderEVAV2.1
   components:
+  - type: SpecForce
+    requirements:
+    - !type:DepartmentTimeRequirement
+      department: Security
+      time: 18000
+    - !type:OverallPlaytimeRequirement
+      time: 36000
+    - !type:DepartmentTimeRequirement
+      department: Command
+      time: 18000
   - type: Icon
     sprite: Markers/jobs.rsi
     state: ertleadereva
@@ -342,6 +352,16 @@
   parent: MobHuman
   id: MobHumanERTEngineerEVAV2.1
   components:
+  - type: SpecForce
+    requirements:
+    - !type:DepartmentTimeRequirement
+      department: Security
+      time: 18000
+    - !type:OverallPlaytimeRequirement
+      time: 36000
+    - !type:DepartmentTimeRequirement
+      department: Engineering
+      time: 18000
   - type: Icon
     sprite: Markers/jobs.rsi
     state: ertengineereva
@@ -367,6 +387,13 @@
   parent: MobHuman
   id: MobHumanERTSecurityEVAV2.1
   components:
+  - type: SpecForce
+    requirements:
+    - !type:DepartmentTimeRequirement
+      department: Security
+      time: 36000
+    - !type:OverallPlaytimeRequirement
+      time: 36000
   - type: Icon
     sprite: Markers/jobs.rsi
     state: ertsecurityeva
@@ -392,6 +419,16 @@
   suffix: corvax
   id: MobHumanERTMedicalEVAV2.1
   components:
+  - type: SpecForce
+    requirements:
+    - !type:DepartmentTimeRequirement
+      department: Security
+      time: 18000
+    - !type:OverallPlaytimeRequirement
+      time: 36000
+    - !type:DepartmentTimeRequirement
+      department: Medical
+      time: 18000
   - type: Icon
     sprite: Markers/jobs.rsi
     state: ertmedicaleva
@@ -417,6 +454,16 @@
   suffix: corvax
   id: MobHumanERTJunitorEVAV2.1
   components:
+  - type: SpecForce
+    requirements:
+    - !type:DepartmentTimeRequirement
+      department: Security
+      time: 18000
+    - !type:OverallPlaytimeRequirement
+      time: 36000
+    - !type:RoleTimeRequirement
+      role: JobJanitor
+      time: 3000
   - type: Icon
     sprite: Markers/jobs.rsi
     state: ertjanitoreva

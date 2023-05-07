@@ -53,9 +53,3 @@
   revertOnCrit: true
   revertOnDeath: true
   transferName: false
-- type: polymorph
-  id: BKenguru2
-  entity: MobKangarooBoxer
-  revertOnCrit: true
-  revertOnDeath: true
-  transferName: false

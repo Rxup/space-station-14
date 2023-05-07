@@ -42,6 +42,12 @@
   id: WeaponLauncherMultipleRocket9000
   description: Навесная ракетная установка.
   components:
+  - containers:
+      balistic-ammo: !type:Container
+        ents: []
+      ballistic-ammo: !type:Container
+        ents: []
+    type: ContainerContainer
   - type: Sprite
     sprite: Objects/Specific/Mech/mecha_equipment.rsi
     state: mecha_missilerack
@@ -77,6 +83,12 @@
   id: WeaponLauncherRocket9000
   description: Навесная ракетная установка.
   components:
+  - containers:
+      balistic-ammo: !type:Container
+        ents: []
+      ballistic-ammo: !type:Container
+        ents: []
+    type: ContainerContainer
   - type: Sprite
     sprite: Objects/Specific/Mech/mecha_equipment.rsi
     state: mecha_missilerack_six
@@ -249,6 +261,10 @@
   id: WeaponBFG9000
   description: Орудие для боевых мехов, стреляющее энергетическими шарами, по принципу экспериментального тесла-двигателя.
   components:
+  - type: ContainerContainer
+    containers:
+      ballistic-ammo: !type:Container
+        ents: []
   - type: Sprite
     netsync: false
     sprite: Objects/Specific/Mech/mecha_equipment.rsi
@@ -361,6 +377,12 @@
   id: WeaponGrenadeLauncher9000
   description: Навесная пусковая установка светошумовых гранат.
   components:
+  - containers:
+      balistic-ammo: !type:Container
+        ents: []
+      ballistic-ammo: !type:Container
+        ents: []
+    type: ContainerContainer
   - type: Sprite
     sprite: Objects/Specific/Mech/mecha_equipment.rsi
     state: mecha_grenadelnchr
@@ -387,6 +409,10 @@
   parent: BaseItem
   description: Навесной карабин, стреляющий пулями, удивительно.
   components:
+  - type: ContainerContainer
+    containers:
+      ballistic-ammo: !type:Container
+        ents: []
   - type: Sprite
     sprite: Objects/Specific/Mech/mecha_equipment.rsi
     state: mecha_mime
@@ -454,6 +480,12 @@
   id: WeaponGrenadeFragLauncher9000
   description: Навесная пусковая установка осколочный гранат.
   components:
+  - containers:
+      balistic-ammo: !type:Container
+        ents: []
+      ballistic-ammo: !type:Container
+        ents: []
+    type: ContainerContainer
   - type: Sprite
     sprite: Objects/Specific/Mech/mecha_equipment.rsi
     state: mecha_grenadelnchr

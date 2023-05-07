@@ -185,6 +185,7 @@ namespace Content.Shared.Preferences
             // Corvax-TTS-Start
             var voiceId = random.Pick(prototypeManager
                 .EnumeratePrototypes<TTSVoicePrototype>()
+                .Where(x=>x.RoundStart)
                 .Where(o => CanHaveVoice(o, sex)).ToArray()
             ).ID;
             // Corvax-TTS-End
@@ -518,14 +519,14 @@ namespace Content.Shared.Preferences
 
             _traitPreferences.Clear();
             _traitPreferences.AddRange(traits);
-            
+
             // Corvax-TTS-Start
             prototypeManager.TryIndex<TTSVoicePrototype>(Voice, out var voice);
             if (voice is null || !CanHaveVoice(voice, Sex))
                 Voice = SharedHumanoidAppearanceSystem.DefaultSexVoice[sex];
             // Corvax-TTS-End
         }
-        
+
         // Corvax-TTS-Start
         // MUST NOT BE PUBLIC, BUT....
         public static bool CanHaveVoice(TTSVoicePrototype voice, Sex sex)
