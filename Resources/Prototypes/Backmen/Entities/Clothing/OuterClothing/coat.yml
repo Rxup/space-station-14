@@ -1,0 +1,19 @@
+- type: entity
+  parent: ClothingOuterWinterCoat
+  id: Clothinghoscoatbelov
+  name: Пальто ГСБ
+  components:
+  - type: Sprite
+    sprite: Backmen/Clothing/OuterClothing/Coats/coathosbelov.rsi
+  - type: Clothing
+    sprite: Backmen/Clothing/OuterClothing/Coats/coathosbelov.rsi
+
+- type: entity
+  parent: ClothingOuterWinterCoat
+  id: ClothingSovietCoatbelov
+  name: Пальто СССП
+  components:
+  - type: Sprite
+    sprite: Backmen/Clothing/OuterClothing/Coats/ssspcoatbelov.rsi
+  - type: Clothing
+    sprite: Backmen/Clothing/OuterClothing/Coats/ssspcoatbelov.rsi
