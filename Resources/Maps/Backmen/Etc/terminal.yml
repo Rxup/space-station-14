@@ -9645,7 +9645,7 @@ entities:
     - pos: -22.026522,-14.709378
       parent: 2
       type: Transform
-- proto: GachiSuit
+- proto: ClothingUniformJumpsuitGachi
   entities:
   - uid: 2808
     components:

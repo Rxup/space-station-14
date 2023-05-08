@@ -140,3 +140,14 @@
     sprite: Backmen/Clothing/Uniforms/jumpsuit/gachi.rsi
   - type: Clothing
     sprite: Backmen/Clothing/Uniforms/jumpsuit/gachi.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformArbitr_EBLAN228337
+  name: Костюм Арбитра
+  description:  Невероятно дорогой костюм Арбитра неизвестной корпорации.В комплекте идет золотая серьга в виде черепа и 2 золотых кольца
+  components:
+  - type: Sprite
+    sprite: Backmen/Clothing/Uniforms/jumpsuit/arbitr_eblan.rsi
+  - type: Clothing
+    sprite: Backmen/Clothing/Uniforms/jumpsuit/arbitr_eblan.rsi
