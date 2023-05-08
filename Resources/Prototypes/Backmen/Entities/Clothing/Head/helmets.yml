@@ -34,7 +34,7 @@
 
 - type: entity
   parent: ClothingHeadBase
-  id: ClothingHeadHelmetBelovAltin
+  id: ClothingHeadHelmetPoloskiAltin
   name: Тяжёлый шлем Алтын
   description: Тяжелый шлем марки АЛТЫН, способен выдержать выстрел крупнокалиберного оружия.
   components:
@@ -53,7 +53,7 @@
 
 - type: entity
   parent: ClothingHeadBase
-  id: ClothingHeadGermanHelmetBelov
+  id: ClothingHeadGermanHelmetbel
   name: Старый немецкий шлем
   description: Довольно старый шлем, который потрепало временем.
   components:
