@@ -42,3 +42,13 @@
   components:
   - type: Sprite
     sprite: Backmen/Clothing/Neck/Cloaks/chess.rsi
+
+- type: entity
+  parent: ClothingNeckBase
+  id: ClothingNeckCloakarbitr
+  name: Плащ Арбитра
+  description: Плащ арбитра идущий в комплекте с его костюмом. Настолько же ценен.
+  components:
+  - type: Sprite
+    sprite: Backmen/Clothing/Neck/Cloaks/arbitr.rsi
+
