@@ -99,7 +99,7 @@
 
 - type: entity
   parent: ClothingUniformBase
-  id:
+  id: LeutenantUniformtfsbelov
   name: Униформа лейтенанта войск ТСФ
   description: Руководите военными силами ТСФ!
   components:
@@ -110,7 +110,7 @@
 
 - type: entity
   parent: ClothingUniformBase
-  id:
+  id: soldiertsfuniformbelov
   name: Униформа бойца ТСФ
   description: Служите во славу ТСФ!
   components:
