@@ -9,9 +9,7 @@
     sprite: Backmen/Clothing/Head/Masks/mask_orden.rsi
   - type: Clothing
     sprite: Backmen/Clothing/Head/Masks/mask_orden.rsi
-  - type: AddAccentClothing
-    accent: StutteringAccent
   - type: Armor
     modifiers:
       coefficients:
-        Heat: 0.95
+        Heat: 0.35
