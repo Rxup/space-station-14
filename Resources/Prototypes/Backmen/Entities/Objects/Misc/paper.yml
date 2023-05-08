@@ -1,0 +1,11 @@
+- type: entity
+  name: Печать красного ордена.
+  parent: RubberStampMime
+  id: RubberStampredorden
+  components:
+  - type: Stamp
+    stampedName: Красный орден
+    stampState: "paper_stamp-warden"
+  - type: Sprite
+    sprite: Backmen/Objects/Misc/bureaucracy.rsi
+    state: stamp-redorden
