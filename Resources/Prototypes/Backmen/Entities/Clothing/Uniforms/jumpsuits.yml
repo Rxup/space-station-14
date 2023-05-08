@@ -33,11 +33,12 @@
 
 - type: entity
   parent: ClothingUniformBase
-  id: GachiSuit
-  name: Гачи Костюм
-  description: Великолепный костюм, мастера по бодибилдингу, на ремне есть марка, CyberSun Corp
+  id: ClothingUniformJumpsuitGachi
+  name: Мужской костюм
+  description: Костюм, пропитанный крепкими мужскими отношениями и солидарностью!
   components:
   - type: Sprite
-    sprite: Backmen/Clothing/Uniforms/jumpsuit/gachisuit.rsi
+    sprite: Backmen/Clothing/Uniforms/jumpsuit/gachi.rsi
   - type: Clothing
-    sprite: Backmen/Clothing/Uniforms/jumpsuit/gachisuit.rsi
+    sprite: Backmen/Clothing/Uniforms/jumpsuit/gachi.rsi
+

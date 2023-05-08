@@ -12,3 +12,20 @@
   - type: PressureProtection
     highPressureMultiplier: 0.3
     lowPressureMultiplier: 1000
+    
+- type: entity
+  parent: ClothingHeadHardsuitWithLightBase
+  id: ClothingHeadHelmetHardsuitOrden
+  noSpawn: true
+  name: Шлем скафандра красного ордена.
+  description: Незаменимая часть скафандра, на нем имеются маленькие царапины.
+  components:
+  - type: Sprite
+    sprite: Backmen/Clothing/Head/Hardsuits/orderhelm.rsi
+  - type: Clothing
+    sprite: Backmen/Clothing/Head/Hardsuits/orderhelm.rsi
+  - type: PointLight
+    color:  red
+  - type: PressureProtection
+    highPressureMultiplier: 0.3
+    lowPressureMultiplier: 1000
