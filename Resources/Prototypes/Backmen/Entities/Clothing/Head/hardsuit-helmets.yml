@@ -29,3 +29,20 @@
   - type: PressureProtection
     highPressureMultiplier: 0.3
     lowPressureMultiplier: 1000
+
+- type: entity
+  parent: ClothingHeadHardsuitWithLightBase
+  id: ClothingHeadHelmetHardsuitHermit
+  noSpawn: true
+  name: Шлем скафандра отшельника
+  description: Шлем скафандра сделанный для личных нужд, кто бы его не делал, нервы он потратил знатно
+  components:
+  - type: Sprite
+    sprite: Backmen\Clothing\Head\Hardsuits\helm_sec_new.rsi
+  - type: Clothing
+    sprite: Backmen\Clothing\Head\Hardsuits\helm_sec_new.rsi
+  - type: PointLight
+    color:  red
+  - type: PressureProtection
+    highPressureMultiplier: 0.3
+    lowPressureMultiplier: 1000

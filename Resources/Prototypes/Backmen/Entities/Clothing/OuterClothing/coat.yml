@@ -17,3 +17,13 @@
     sprite: Backmen/Clothing/OuterClothing/Coats/ssspcoatbelov.rsi
   - type: Clothing
     sprite: Backmen/Clothing/OuterClothing/Coats/ssspcoatbelov.rsi
+
+- type: entity
+  parent: ClothingOuterWinterCoat
+  id: ClothinCoatMechanicus
+  name: Одеяние проповедника
+  components:
+  - type: Sprite
+    sprite: Backmen\Clothing\OuterClothing\Coats\CoatMechanicus
+  - type: Clothing
+    sprite: Backmen\Clothing\OuterClothing\Coats\CoatMechanicus

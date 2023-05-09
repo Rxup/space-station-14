@@ -61,3 +61,35 @@
     damageCoefficient: 0.1
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetHardsuitOrden
+
+- type: entity
+  parent: ClothingOuterHardsuitBase
+  id: ClothingOuterHardsuitHermit
+  name: Скафандр отшельника
+  description: Скафандр сделанный для личных нужд, кто бы его не делал, нервы он потратил знатно
+  components:
+  - type: Sprite
+    sprite: Backmen\Clothing\OuterClothing\Hardsuits\hardsuit_sec_new.rsi
+  - type: Clothing
+    sprite: Backmen\Clothing\OuterClothing\Hardsuits\hardsuit_sec_new.rsi
+  - type: PressureProtection
+    highPressureMultiplier: 0.02
+    lowPressureMultiplier: 10000
+  - type: ClothingSpeedModifier
+    walkModifier: 0.8
+    sprintModifier: 0.8
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.60
+        Slash: 0.6
+        Piercing: 0.6
+        Heat: 0.4
+        Radiation: 0.25
+        Caustic: 0.75
+  - type: TemperatureProtection
+    coefficient: 0.001
+  - type: ExplosionResistance
+    damageCoefficient: 0.2
+  - type: ToggleableClothing
+    clothingPrototype: ClothingHeadHelmetHardsuitHermit
