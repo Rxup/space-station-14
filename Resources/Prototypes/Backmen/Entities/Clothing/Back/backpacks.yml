@@ -1,0 +1,10 @@
+- type: entity
+  parent: ClothingBackpack
+  id: ClothingOrdenBackpack
+  name: Рюкзак красного ордена.
+  description: Рюкзак эскадрона смерти, забранный как трофей и переделанный под свои нужды орденом!
+  components:
+  - type: Sprite
+    sprite: Backmen/Clothing/Back/Backpacks/orden_backpacks.rsi
+  - type: Storage
+    capacity: 300
