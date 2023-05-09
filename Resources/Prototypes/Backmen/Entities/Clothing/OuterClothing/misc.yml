@@ -1,0 +1,10 @@
+- type: entity
+  parent: ClothingOuterBase
+  id: ClothingWitchHunterbel
+  name: Накидка охотника за ведьмами
+  description: Убей этих ведьм!
+  components:
+  - type: Sprite
+    sprite: Backmen/Clothing/OuterClothing/Misc/witchhunterbelov.rsi
+  - type: Clothing
+    sprite: Backmen/Clothing/OuterClothing/Misc/witchhunterbelov.rsi

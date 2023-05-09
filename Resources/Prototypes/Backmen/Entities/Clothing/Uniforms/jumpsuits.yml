@@ -19,6 +19,105 @@
       sprite: Backmen/Clothing/Uniforms/jumpsuit/red_fuvala.rsi
     - type: Clothing
       sprite: Backmen/Clothing/Uniforms/jumpsuit/red_fuvala.rsi
+      
+- type: entity
+  parent: ClothingUniformBase
+  id: GermanSuitBel
+  name: Форма Немецкого Солдата
+  description: Военная форма немецких войск
+  components:
+  - type: Sprite
+    sprite: Backmen/Clothing/Uniforms/jumpsuit/germansoldierbel.rsi
+  - type: Clothing
+    sprite: Backmen/Clothing/Uniforms/jumpsuit/germansoldierbel.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: GermanOfficerSuitBel
+  name: Форма немецкого офицера
+  description: Форма которую носят немецкие офицеры
+  components:
+  - type: Sprite
+    sprite: Backmen/Clothing/Uniforms/jumpsuit/officergermanbel.rsi
+  - type: Clothing
+    sprite: Backmen/Clothing/Uniforms/jumpsuit/officergermanbel.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: SovietSoldierUniformBel
+  name: Униформа солдата СССП
+  description: Опрятная форма бойца фракции СССП
+  components:
+  - type: Sprite
+    sprite: Backmen/Clothing/Uniforms/jumpsuit/ssspsuitbel.rsi
+  - type: Clothing
+    sprite: Backmen/Clothing/Uniforms/jumpsuit/ssspsuitbel.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: SovietOfficerUniformBel
+  name: Униформа офицера СССП
+  description: Опрятная форма офицера фракции СССП
+  components:
+  - type: Sprite
+    sprite: Backmen/Clothing/Uniforms/jumpsuit/officerssspsuitbel.rsi
+  - type: Clothing
+    sprite: Backmen/Clothing/Uniforms/jumpsuit/officerssspsuitbel.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ElPresidenteNanotrasenBel
+  name: Костюм Президента Nanotrasen
+  description: Великолепно опрятный, элегантный и очень дорогой президента корпорации.
+  components:
+  - type: Sprite
+    sprite: Backmen/Clothing/Uniforms/jumpsuit/elpresidentenanobel.rsi
+  - type: Clothing
+    sprite: Backmen/Clothing/Uniforms/jumpsuit/elpresidentenanobel.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: PredstavitelNanotrasenBelov
+  name: Костюм Представителя корпорации NT
+  description: Великолепный костюм корпорационной шишки
+  components:
+  - type: Sprite
+    sprite: Backmen/Clothing/Uniforms/jumpsuit/nanotrasenpredstavbel.rsi
+  - type: Clothing
+    sprite: Backmen/Clothing/Uniforms/jumpsuit/nanotrasenpredstavbel.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: tsfPredstavbel
+  name: Костюм Представителя ТСФ
+  description: Покажите кто тут главный в транс-солнечной-федерации!
+  components:
+  - type: Sprite
+    sprite: Backmen/Clothing/Uniforms/jumpsuit/solgovpredstavbel.rsi
+  - type: Clothing
+    sprite: Backmen/Clothing/Uniforms/jumpsuit/solgovpredstavbel.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: LeutenantUniformtfsbelov
+  name: Униформа лейтенанта войск ТСФ
+  description: Руководите военными силами ТСФ!
+  components:
+  - type: Sprite
+    sprite: Backmen/Clothing/Uniforms/jumpsuit/solgovleutetantbel.rsi
+  - type: Clothing
+    sprite: Backmen/Clothing/Uniforms/jumpsuit/solgovleutetantbel.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: soldiertsfuniformbelov
+  name: Униформа бойца ТСФ
+  description: Служите во славу ТСФ!
+  components:
+  - type: Sprite
+    sprite: Backmen/Clothing/Uniforms/jumpsuit/solgovsoldierbel.rsi
+  - type: Clothing
+    sprite: Backmen/Clothing/Uniforms/jumpsuit/solgovsoldierbel.rsi
 
 - type: entity
   parent: ClothingUniformBase

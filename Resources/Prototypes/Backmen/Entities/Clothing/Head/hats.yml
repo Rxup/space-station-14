@@ -1,0 +1,45 @@
+- type: entity
+  parent: ClothingHeadBase
+  id: ClothingHeadHatUshankabel
+  name: Ушанка СССП
+  description: "Отлично подходит для Сибири, да?"
+  components:
+  - type: Sprite
+    sprite: Backmen/Clothing/Head/Hats/ushankaSSSP.rsi
+  - type: Clothing
+    sprite: Backmen/Clothing/Head/Hats/ushankaSSSP.rsi
+  - type: AddAccentClothing
+    accent: RussianAccent
+
+- type: entity
+  parent: ClothingHeadBase
+  id: ClothingHeadHatCapGermanbel
+  name: Фуражка немецкого офицера
+  description: Довольно старая фуражка офицера руководящего немецкими войсками
+  components:
+    - type: Sprite
+      sprite: Backmen/Clothing/Head/Hats/germancapofficerbel.rsi
+    - type: Clothing
+      sprite: Backmen/Clothing/Head/Hats/germancapofficerbel.rsi
+
+- type: entity
+  parent: ClothingHeadBase
+  id: ClothingHeadHatCapOfficerSovietbel
+  name: Фуражка Советского Офицера
+  description: Современная версия фуражки офицера руководящего войсками СССП
+  components:
+    - type: Sprite
+      sprite: Backmen/Clothing/Head/Hats/sovietcapbel.rsi
+    - type: Clothing
+      sprite: Backmen/Clothing/Head/Hats/sovietcapbel.rsi
+
+- type: entity
+  parent: ClothingHeadBase
+  id: ClothingWhitsHunterbel
+  name: Шляпа охотника за ведьмами
+  description: Шляпа охотника за мифическими существами, а именно ведьмами в стиле средневековья
+  components:
+    - type: Sprite
+      sprite: Backmen/Clothing/Head/Hats/whitshunterbelov.rsi
+    - type: Clothing
+      sprite: Backmen/Clothing/Head/Hats/whitshunterbelov.rsi
