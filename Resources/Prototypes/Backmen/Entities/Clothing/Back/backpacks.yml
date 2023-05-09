@@ -7,4 +7,4 @@
   - type: Sprite
     sprite: Backmen/Clothing/Back/Backpacks/orden_backpacks.rsi
   - type: Storage
-    capacity: 500
+    capacity: 100
