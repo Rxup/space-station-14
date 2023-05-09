@@ -5,7 +5,7 @@
   components:
   - type: Stamp
     stampedName: Красный орден
-    stampState: "paper_stamp-warden"
+    stampState: "paper_stamp-orden"
   - type: Sprite
     sprite: Backmen/Objects/Misc/bureaucracy.rsi
     state: stamp-redorden
