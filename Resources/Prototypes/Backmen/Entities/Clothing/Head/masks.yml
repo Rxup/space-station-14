@@ -13,3 +13,15 @@
     modifiers:
       coefficients:
         Heat: 0.35
+
+- type: entity
+  parent: ClothingMaskBase
+  id: ClothingMaskblacksilense
+  name: Трофейная маска черной тишины
+  suffix: Clothing
+  description: Маска знаменитого охотника по прозвищу Черная тишина. Источает отчаяние.
+  components:
+  - type: Sprite
+    sprite: Backmen/Clothing/Head/Masks/blacksilense.rsi
+  - type: Clothing
+    sprite: Backmen/Clothing/Head/Masks/blacksilense.rsi
