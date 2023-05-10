@@ -1,12 +1,9 @@
-using Content.Server.Administration.Logs;
 using Content.Server.GameTicking;
 using Content.Shared.GameTicking;
-//using Content.Server.Mind;
 using Robust.Server.GameObjects;
 using Robust.Server.Maps;
 using Robust.Shared.Map;
 using Robust.Shared.Prototypes;
-using System.Linq;
 using Content.Server.Spawners.Components;
 using Robust.Shared.Random;
 using Robust.Server.Player;
@@ -31,6 +28,7 @@ using Content.Shared.Stealth.Components;
 using Content.Shared.Inventory;
 using Content.Shared.Radio.Components;
 using Content.Server.Radio.EntitySystems;
+using Content.Server.Administration.Managers;
 
 namespace Content.Server.Backmen.SpecForces;
 
@@ -72,7 +70,7 @@ public sealed class SpecForcesSystem : EntitySystem
 
     private void OnSpecForceTake(EntityUid uid, SpecForceComponent component, ref TakeGhostRoleEvent args)
     {
-        if(!IsAllowed(args.Player,component, out var reason)){
+        if(!_adminManager.IsAdmin(args.Player) && !IsAllowed(args.Player,component, out var reason)){
             args.TookRole = true;
             _callLock.EnterWriteLock();
             _chatManager.ChatMessageToOne(Shared.Chat.ChatChannel.Server, reason, "ОШИБКА: "+reason, default, false, args.Player.ConnectedClient, Color.Plum);
@@ -351,6 +349,7 @@ public sealed class SpecForcesSystem : EntitySystem
     [Dependency] private readonly ISerializationManager _serialization = default!;
     [Dependency] private readonly InventorySystem _inventory = default!;
     [Dependency] private readonly HeadsetSystem _headset = default!;
+    [Dependency] private readonly IAdminManager _adminManager = default!;
 
 
 }
