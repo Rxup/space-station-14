@@ -101,15 +101,16 @@
     species: Felinid
   - type: Fixtures
     fixtures: # TODO: This needs a second fixture just for mob collisions.
-    - shape:
-        !type:PhysShapeCircle
-        radius: 0.28
-      density: 140
-      restitution: 0.0
-      mask:
-      - MobMask
-      layer:
-      - MobLayer
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.28
+        density: 140
+        restitution: 0.0
+        mask:
+        - MobMask
+        layer:
+        - MobLayer
   - type: Body
     prototype: Felinid
   - type: Damageable
@@ -122,9 +123,9 @@
       types:
         Blunt: 1
         Slash: 5
-  - type: DiseaseCarrier
-    naturalImmunities:
-    - OwOnavirus
+#  - type: DiseaseCarrier
+#    naturalImmunities:
+#    - OwOnavirus
   - type: Thieving
     stealthy: true
     stripTimeReduction: 1

@@ -54,8 +54,8 @@
   - type: StorageFill
     contents:
       - id: BoxSurvival
-      - id: HandheldHealthAnalyzerPlague
-      - id: HandheldHealthAnalyzerBirdFlew
+      #- id: HandheldHealthAnalyzerPlague
+      #- id: HandheldHealthAnalyzerBirdFlew
       - id: SyringeSpaceacillin
         amount: 3
       - id: RitualDagger
@@ -71,8 +71,8 @@
   - type: StorageFill
     contents:
       - id: BoxSurvival
-      - id: HandheldHealthAnalyzerPlague
-      - id: HandheldHealthAnalyzerBirdFlew
+      #- id: HandheldHealthAnalyzerPlague
+      #- id: HandheldHealthAnalyzerBirdFlew
       - id: SyringeSpaceacillin
         amount: 3
       - id: RitualDagger
@@ -88,8 +88,8 @@
   - type: StorageFill
     contents:
       - id: BoxSurvival
-      - id: HandheldHealthAnalyzerPlague
-      - id: HandheldHealthAnalyzerBirdFlew
+#      - id: HandheldHealthAnalyzerPlague
+#      - id: HandheldHealthAnalyzerBirdFlew
       - id: SyringeSpaceacillin
         amount: 3
       - id: RitualDagger
