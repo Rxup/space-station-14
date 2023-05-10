@@ -86,24 +86,25 @@
     species: ArachneClassic
   - type: Fixtures
     fixtures: # TODO: This needs a second fixture just for mob collisions.
-    - shape:
-        !type:PhysShapeCircle
-        radius: 0.40
-      density: 140
-      restitution: 0.0
-      mask:
-      - MobMask
-      layer:
-      - MobLayer
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.40
+        density: 140
+        restitution: 0.0
+        mask:
+        - MobMask
+        layer:
+        - MobLayer
   - type: Body
     prototype: ArachneClassic
     requiredLegs: 8
   - type: Damageable
     damageContainer: Biological
     #damageModifierSet: ArachneClassic TODO!
-  - type: DiseaseCarrier
-    naturalImmunities:
-    - BleedersBite
+#  - type: DiseaseCarrier
+#    naturalImmunities:
+#    - BleedersBite
   - type: Speech
     speechSounds: Alto
   - type: DamageOnHighSpeedImpact

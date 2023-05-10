@@ -425,9 +425,9 @@
     - FullAuto
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/silenced.ogg
-  - type: BallisticAmmoProvider
-    capacity: 100
-    proto: CartridgeAntiMaterial
+#  - type: BallisticAmmoProvider
+#    capacity: 100
+#    proto: CartridgeAntiMaterial
   - type: AmmoCounter
   - type: Appearance
   - type: MechEquipment

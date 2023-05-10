@@ -18,6 +18,7 @@ jobs:
     - name: Pull engine updates
       uses: space-wizards/submodule-dependency@v0.1.5
     - uses: PaulRitter/yaml-schema-validator@v1
+      continue-on-error: false
       with:
         schema: RobustToolbox/Schemas/mapfile.yml
         path_pattern: .*Resources/Maps/.*

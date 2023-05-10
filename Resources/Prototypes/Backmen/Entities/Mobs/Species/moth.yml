@@ -15,8 +15,8 @@
   - type: Body
     prototype: Moth
     requiredLegs: 2
-  - type: DiseaseCarrier
-    diseaseResist: 0.1
+#  - type: DiseaseCarrier
+#    diseaseResist: 0.1
   - type: Flammable
     damage:
       types:
@@ -43,7 +43,8 @@
   - type: MovementAlwaysTouching
   - type: Fixtures
     fixtures:
-      - shape:
+      fix1:
+        shape:
           !type:PhysShapeCircle
           radius: 0.35
         density: 125 #lower density
