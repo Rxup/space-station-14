@@ -12,8 +12,122 @@
   - type: Armor
     modifiers:
       coefficients:
-        Heat: 0.35
+        Heat: 0.95
 
+- type: entity
+  parent: ClothingMaskBase
+  id: ClothingDallasMaskBel
+  name: Маска Далласа
+  description: Традиционная маска грабителя из банды PayDay
+  components:
+  - type: Sprite
+    sprite: Backmen/Clothing/Head/Masks/dallasmaskbel.rsi
+  - type: Clothing
+    sprite: Backmen/Clothing/Head/Masks/dallasmaskbel.rsi
+  - type: BreathMask
+  - type: IdentityBlocker
+
+- type: entity
+  parent: ClothingMaskBase
+  id: ClothingWolfMaskBel
+  name: Маска Вулфа
+  description: Традиционная маска грабителя из банды PayDay
+  components:
+  - type: Sprite
+    sprite: Backmen/Clothing/Head/Masks/wolfmaskbel.rsi
+  - type: Clothing
+    sprite: Backmen/Clothing/Head/Masks/wolfmaskbel.rsi
+  - type: BreathMask
+  - type: IdentityBlocker
+
+- type: entity
+  parent: ClothingMaskBase
+  id: ClothingChainsMaskBel
+  name: Маска Чейнса
+  description: Традиционная маска грабителя из банды PayDay
+  components:
+  - type: Sprite
+    sprite: Backmen/Clothing/Head/Masks/chainsmaskbel.rsi
+  - type: Clothing
+    sprite: Backmen/Clothing/Head/Masks/chainsmaskbel.rsi
+  - type: BreathMask
+  - type: IdentityBlocker
+
+- type: entity
+  parent: ClothingMaskBase
+  id: ClothingHoxtonMaskBel
+  name: Маска Хокстона
+  description: Традиционная маска грабителя из банды PayDay
+  components:
+  - type: Sprite
+    sprite: Backmen/Clothing/Head/Masks/hoxtonmaskbel
+  - type: Clothing
+    sprite: Backmen/Clothing/Head/Masks/hoxtonmaskbel
+  - type: BreathMask
+  - type: IdentityBlocker
+
+- type: entity
+  parent: ClothingMaskBase
+  id: ClothingJokerBel
+  name: Маска Джокера
+  description: Страшная маска джокера, больного психопата которая неизвестно как попала на станцию
+  components:
+  - type: Sprite
+    sprite: Backmen/Clothing/Head/Masks/jokermaskbel.rsi
+  - type: Clothing
+    sprite: Backmen/Clothing/Head/Masks/jokermaskbel.rsi
+  - type: BreathMask
+  - type: IdentityBlocker
+
+- type: entity
+  parent: ClothingMaskGas
+  id: ClothingGermanGasMaskbel
+  name: Немецкий противогаз
+  description: Противогаз немецких войск, потрепано временем но свою работу выполняет.
+  components:
+  - type: Sprite
+    sprite: Backmen/Clothing/Head/Masks/germangasmaskbel.rsi
+  - type: Clothing
+    sprite: Backmen/Clothing/Head/Masks/germangasmaskbel.rsi
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.90
+        Slash: 0.90
+        Piercing: 0.95
+        Heat: 0.95
+
+- type: entity
+  parent: ClothingMaskBase
+  id: ClothingBalaclavaSwatBel
+  name: Балаклава
+  description: Обычная балаклава из тончайшей ткани
+  components:
+  - type: Sprite
+    sprite: Backmen/Clothing/Head/Masks/swatbalaclavabel.rsi
+  - type: Clothing
+    sprite: Backmen/Clothing/Head/Masks/swatbalaclavabel.rsi
+  - type: BreathMask
+  - type: IdentityBlocker
+
+- type: entity
+  parent: ClothingMaskGas
+  id: ClothingihsGasmaskbel
+  name: Противогаз IHS
+  description: Противогаз тактических войск IHS.
+  components:
+  - type: Sprite
+    sprite: Backmen/Clothing/Head/Masks/ihsgasmaskheavybel.rsi
+  - type: Clothing
+    sprite: Backmen/Clothing/Head/Masks/ihsgasmaskheavybel.rsi
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.95
+        Slash: 0.97
+        Piercing: 0.90
+        Heat: 0.95
+        
 - type: entity
   parent: ClothingMaskBase
   id: ClothingMaskblacksilense

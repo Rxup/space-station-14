@@ -1,0 +1,13 @@
+- type: entity
+  parent: ClothingShoesBaseButcherable
+  id: ClothingShoesBootsIHScombatbel
+  name: Боевая обувь IHS
+  description: Удобная обувь наемников IHS, защищает от взрывов
+  components:
+  - type: Sprite
+    sprite: Backmen/Clothing/Shoes/Boots/ihscombatbootsbel.rsi
+  - type: Clothing
+    sprite: Backmen/Clothing/Shoes/Boots/ihscombatbootsbel.rsi
+  - type: FootstepModifier # Corvax-Sounds
+    footstepSoundCollection:
+      collection: FootstepBoots

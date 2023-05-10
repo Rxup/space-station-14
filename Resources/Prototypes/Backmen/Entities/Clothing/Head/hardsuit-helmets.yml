@@ -1,4 +1,19 @@
 - type: entity
+  parent: ClothingHeadHardsuitBase
+  id: ClothingHeadHelmetHardsuitBerserk
+  noSpawn: true
+  name: Шлем берсерка
+  description: Хоть в нем ничего не видно, но лучшему мазиле это и не надо!
+  components:
+  - type: Sprite
+    sprite: Backmen/Clothing/Head/Helmets/hardsuits/berserkhelm.rsi
+  - type: Clothing
+    sprite: Backmen/Clothing/Head/Helmets/hardsuits/berserkhelm.rsi
+  - type: PressureProtection
+    highPressureMultiplier: 0.3
+    lowPressureMultiplier: 1000
+    
+- type: entity
   parent: ClothingHeadHardsuitWithLightBase
   id: ClothingHeadHelmetHardsuitOrden
   noSpawn: true

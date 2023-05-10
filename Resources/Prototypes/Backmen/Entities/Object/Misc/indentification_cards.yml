@@ -4,7 +4,7 @@
   name: Id карта МОГ
   components:
   - type: Sprite
-    layers: 
+    layers:
     - state: black
     - state: idcardmog
   - type: Item
@@ -18,10 +18,24 @@
   name: Id карта ИОГ
   components:
   - type: Sprite
-    layers: 
+    layers:
     - state: black
     - state: idcardiog
   - type: Item
     heldPrefix: black
   - type: IdCard
     jobTitle: Сотрудник Исследовательской Группы
+
+- type: entity
+  parent: CentcomIDCardDeathsquad
+  id: IdCardRO
+  name: Id карта RO
+  components:
+  - type: Sprite
+    layers:
+    - state: black
+    - state: idcardro
+  - type: Item
+    heldPrefix: black
+  - type: IdCard
+    jobTitle: Агент Красного Ордена
