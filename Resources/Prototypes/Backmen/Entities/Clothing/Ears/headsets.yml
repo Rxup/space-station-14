@@ -1,0 +1,15 @@
+- type: entity
+  parent: ClothingHeadset
+  id: ClothingHeadsetOrden
+  name: Гарнитура красного ордена
+  description: Специальная гарнитура использующаяся членами красного ордена
+  components:
+  - type: ContainerFill
+    containers:
+      key_slots:
+      - EncryptionKeyOrden
+      - EncryptionKeyCommon
+  - type: Sprite
+    sprite: Backmen/Clothing/Ears/Headsets/orden.rsi
+  - type: Clothing
+    sprite: Backmen/Clothing/Ears/Headsets/orden.rsi
