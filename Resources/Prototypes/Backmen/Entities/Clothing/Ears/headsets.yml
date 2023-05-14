@@ -8,7 +8,6 @@
     containers:
       key_slots:
       - EncryptionKeyOrden
-      - EncryptionKeyCommon
   - type: Sprite
     sprite: Backmen/Clothing/Ears/Headsets/orden.rsi
   - type: Clothing

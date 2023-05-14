@@ -214,18 +214,3 @@
     layers:
     - state: crypt_red
     - state: synd_label
-
-- type: entity
-  parent: EncryptionKey
-  id: EncryptionKeyOrden
-  name: ключ шифрования красного ордена
-  description: Особый ключ шифрования, нужный для доступа к каналам коммуникации красного ордена
-  components:
-  - type: EncryptionKey
-    channels:
-    - RedOrden
-    defaultChannel: RedOrden
-  - type: Sprite
-    layers:
-    - state: crypt_black
-    - state: ord_label
