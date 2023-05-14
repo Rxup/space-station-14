@@ -34,8 +34,6 @@
     {"name": "sci_label"},
     {"name": "sec_label"},
     {"name": "service_label"},
-    {"name": "synd_label"},
-    {"name": "ord_label"},
-    {"name": "crypt_black"}
+    {"name": "synd_label"}
   ]
 }
