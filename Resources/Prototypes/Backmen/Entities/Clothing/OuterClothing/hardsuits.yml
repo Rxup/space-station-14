@@ -92,4 +92,4 @@
   - type: ExplosionResistance
     damageCoefficient: 0.2
   - type: ToggleableClothing
-    clothingPrototype: ClothingHelmetHardsuitHermit
+    clothingPrototype: ClothingHeadHelmetHardsuitHermit

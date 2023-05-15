@@ -24,6 +24,6 @@
   name: Одеяние проповедника
   components:
   - type: Sprite
-    sprite: Backmen\Clothing\OuterClothing\Coats\CoatMechanicus
+    sprite: Backmen/Clothing/OuterClothing/Coats/CoatMechanicus.rsi
   - type: Clothing
-    sprite: Backmen\Clothing\OuterClothing\Coats\CoatMechanicus
+    sprite: Backmen/Clothing/OuterClothing/Coats/CoatMechanicus.rsi
