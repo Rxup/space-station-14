@@ -69,9 +69,9 @@
   description: Скафандр сделанный для личных нужд, кто бы его не делал, нервы он потратил знатно
   components:
   - type: Sprite
-    sprite: Backmen\Clothing\OuterClothing\Hardsuits\hardsuit_sec_new.rsi
+    sprite: Backmen/Clothing/OuterClothing/Hardsuits/hardsuit_sec_new.rsi
   - type: Clothing
-    sprite: Backmen\Clothing\OuterClothing\Hardsuits\hardsuit_sec_new.rsi
+    sprite: Backmen/Clothing/OuterClothing/Hardsuits/hardsuit_sec_new.rsi
   - type: PressureProtection
     highPressureMultiplier: 0.02
     lowPressureMultiplier: 10000
