@@ -38,9 +38,9 @@
   description: Шлем скафандра сделанный для личных нужд, кто бы его не делал, нервы он потратил знатно
   components:
   - type: Sprite
-    sprite: Backmen\Clothing\Head\Hardsuits\helm_sec_new.rsi
+    sprite: Backmen/Clothing/Head/Hardsuits/helm_sec_new.rsi
   - type: Clothing
-    sprite: Backmen\Clothing\Head\Hardsuits\helm_sec_new.rsi
+    sprite: Backmen/Clothing/Head/Hardsuits/helm_sec_new.rsi
   - type: PointLight
     color:  red
   - type: PressureProtection
