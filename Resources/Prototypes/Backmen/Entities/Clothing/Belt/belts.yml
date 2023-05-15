@@ -1,0 +1,23 @@
+- type: entity
+  parent: ClothingBeltStorageBase
+  id: ClothingBeltOrden
+  name: Ножны красного ордена
+  description: Специальные ножны созданные исключительно для сабель красного ордена.
+  components:
+  - type: Sprite
+    sprite: Backmen/Clothing/Belt/orden_sheath.rsi
+    state: sheath
+  - type: Clothing
+    sprite: Backmen/Clothing/Belt/orden_sheath.rsi
+  - type: Storage
+    capacity: 15
+    whitelist:
+      tags:
+        - CaptainSabre
+  - type: ItemMapper
+    mapLayers:
+      sheath-sabre:
+        whitelist:
+          tags:
+          - CaptainSabre
+  - type: Appearance
