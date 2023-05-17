@@ -1,0 +1,22 @@
+- type: entity
+  name: Сабля предводителя красного ордена
+  parent: BaseItem
+  id: OrdenSabre
+  description: Необычный вариант сабли. Вместо лезвия в этом оружии используются зубья космодракона, которые как режут там и цепляют плоть жертвы, раздирая раны. Кошмарное оружие.
+  components:
+  - type: Sharp
+  - type: Sprite
+    sprite: Backmen/Objects/Weapons/Melee/orden_sabre.rsi
+    state: icon
+  - type: MeleeWeapon
+    attackRate: 2
+    damage:
+      types:
+        Slash: 17
+  - type: Item
+    size: 15
+    sprite:
+  - type: Tag
+    tags:
+    - CaptainSabre
+  - type: DisarmMalus

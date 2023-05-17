@@ -1,0 +1,7 @@
+- type: radioChannel
+  id: RedOrden
+  name: Красный орден
+  keycode: 'ф'
+  frequency: 1229
+  color: "#8B0000"
+  longRange: true

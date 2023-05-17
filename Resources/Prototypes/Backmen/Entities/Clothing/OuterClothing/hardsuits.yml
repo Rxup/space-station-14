@@ -29,7 +29,7 @@
     damageCoefficient: 0.2
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetHardsuitBerserk
-    
+
 - type: entity
   parent: ClothingOuterHardsuitBase
   id: ClothingOuterHardsuitOrdersuit
@@ -54,7 +54,7 @@
         Piercing: 0.20
         Heat: 0.30
         Radiation: 0.1
-        Caustic: 0.85
+        Caustic: 0.15
   - type: TemperatureProtection
     coefficient: 0.01
   - type: ExplosionResistance
