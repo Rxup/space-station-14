@@ -6,8 +6,8 @@
   components:
   - type: EncryptionKey
     channels:
-    - RedOrden
-    defaultChannel: RedOrden
+    - Redorden
+    defaultChannel: Redorden
   - type: Sprite
     layers:
     - state: crypt_black
