@@ -199,12 +199,14 @@ public sealed class SpecForcesSystem : EntitySystem
             spawns.Add(xform.Coordinates);
             break;
         }
-        if(spawns.Count == 0){
+        if (spawns.Count == 0)
+        {
             spawns.Add(EntityManager.GetComponent<TransformComponent>(shuttle).Coordinates);
         }
 
         // TODO: Cvar
-        var CountExtra = _playerManager.PlayerCount switch {
+        var countExtra = _playerManager.PlayerCount switch
+        {
             int x when x >= 40 => 4,
             int x when x >= 30 => 3,
             int x when x >= 20 => 2,
@@ -212,42 +214,52 @@ public sealed class SpecForcesSystem : EntitySystem
             _ => 0
         };
 
-        switch(ev){
+        switch(ev)
+        {
             case SpecForcesType.ERT:
                 SpawnEntity(ERTLeader, _random.Pick(spawns));
-                while(CountExtra > 0){
-                    if(CountExtra-- > 0){
+                while (countExtra > 0)
+                {
+                    if (countExtra-- > 0)
+                    {
                         SpawnEntity(ERTSecurity, _random.Pick(spawns));
                     }
-                    if(CountExtra-- > 0){
+                    if (countExtra-- > 0)
+                    {
                         SpawnEntity(ERTEngineer, _random.Pick(spawns));
                     }
-                    if(CountExtra-- > 0){
+                    if (countExtra-- > 0)
+                    {
                         SpawnEntity(ERTMedical, _random.Pick(spawns));
                     }
-                    if(CountExtra-- > 0){
+                    if (countExtra-- > 0)
+                    {
                         SpawnEntity(ERTJunitor, _random.Pick(spawns));
                     }
                 }
-            break;
+                break;
             case SpecForcesType.RXBZZ:
-                SpawnEntity( CountExtra == 0 ? RXBZZ : RXBZZLeader, _random.Pick(spawns));
-                while(CountExtra > 0){
-                    if(CountExtra-- > 0){
+                SpawnEntity(countExtra == 0 ? RXBZZ : RXBZZLeader, _random.Pick(spawns));
+                while (countExtra > 0)
+                {
+                    if (countExtra-- > 0)
+                    {
                         SpawnEntity(RXBZZ, _random.Pick(spawns));
                     }
                 }
-            break;
+                break;
             case SpecForcesType.DeathSquad:
-                SpawnEntity( CountExtra == 0 ? Spestnaz : SpestnazOfficer, _random.Pick(spawns));
-                while(CountExtra > 0){
-                    if(CountExtra-- > 0){
+                SpawnEntity(countExtra == 0 ? Spestnaz : SpestnazOfficer, _random.Pick(spawns));
+                while(countExtra > 0)
+                {
+                    if(countExtra-- > 0)
+                    {
                         SpawnEntity(Spestnaz, _random.Pick(spawns));
                     }
                 }
-            break;
+                break;
             default:
-            return;
+                return;
         }
 
     }
@@ -258,46 +270,50 @@ public sealed class SpecForcesSystem : EntitySystem
             LoadMap = true,
         };
 
-        if(!_map.TryLoad(shuttleMap,
+        if (!_map.TryLoad(shuttleMap,
             ev switch { // todo: cvar
                 SpecForcesType.ERT => ETRShuttlePath,
                 _ => ETRShuttlePath
             },
             out var grids,
-            options)){
+            options))
+        {
             return null;
         }
 
-        var MapGrid = grids.FirstOrNull();
+        var mapGrid = grids.FirstOrNull();
 
-        if(MapGrid == null){
+        if (mapGrid == null)
+        {
             return null;
         }
-        return MapGrid;
+        return mapGrid;
     }
     private void PlaySound(SpecForcesType ev){
         var station = _stationSystem.Stations.FirstOrNull();
-        if(station == null){
+        if (station == null)
+        {
             return;
         }
 
-        switch(ev){
+        switch (ev)
+        {
             case SpecForcesType.ERT:
                 _chatSystem.DispatchStationAnnouncement(station.Value,
                     Loc.GetString("spec-forces-system-ertcall-annonce"),
                     Loc.GetString("spec-forces-system-ertcall-title"),
                     true, ERTAnnounce
                 );
-            break;
+                break;
             case SpecForcesType.RXBZZ:
                 _chatSystem.DispatchStationAnnouncement(station.Value,
                     Loc.GetString("spec-forces-system-RXBZZ-annonce"),
                     Loc.GetString("spec-forces-system-RXBZZ-title"),
                     true
                 );
-            break;
+                break;
             default:
-            return;
+                return;
         }
     }
     private void OnRoundEnd(RoundEndTextAppendEvent ev)
