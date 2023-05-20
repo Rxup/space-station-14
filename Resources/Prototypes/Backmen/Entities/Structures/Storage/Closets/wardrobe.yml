@@ -1,0 +1,20 @@
+- type: entity
+  id: WardrobeCargoPostal # писать это в качестве parent чтобы текстура не выдавала ошибку
+  parent: WardrobeBase
+  name: Postal wardrobe
+  description: "A simple postman's gear locker."
+  components:
+  - type: Sprite
+    noRot: true
+    netsync: false
+    sprite: Backmen/Structures/Storage/closet.rsi
+    layers:
+    - state: generic
+    - state: generic_door
+      map: ["enum.StorageVisualLayers.Door"]
+  - type: Appearance
+    visuals:
+    - type: StorageVisualizer
+      state: generic
+      state_open: generic_open
+      state_closed: turquoise_door

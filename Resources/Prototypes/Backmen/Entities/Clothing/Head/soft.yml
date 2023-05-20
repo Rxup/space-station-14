@@ -1,0 +1,22 @@
+- type: entity
+  parent: ClothingHeadBase
+  id: ClothingHeadHatCargoPostalsoft
+  name: Кепка почтальона
+  description: Это бейсбольная кепка, окрашенная в почтовые цвета Снабжения. # "It's a baseball hat painted in postal of Cargo colours."
+  components:
+  - type: Sprite
+    sprite: Backmen/Clothing/Head/Soft/postalcargosoft.rsi
+  - type: Clothing
+    sprite: Backmen/Clothing/Head/Soft/postalcargosoft.rsi
+
+- type: entity
+  parent: ClothingHeadBase
+  id: ClothingHeadHatCargoPostalsoftFlipped
+  name: Кепка почтальона # postal cap flipped
+  description: Это повёрнутая в обратную сторону бейсбольная кепка, окрашенная в почтовые цвета Снабжения. # "It's a baseball hat painted in postal of Cargo colours. Flipped."
+  suffix: Повёрнутая # Flipped
+  components:
+  - type: Sprite
+    sprite: Backmen/Clothing/Head/Soft/postalcargosoft_flipped.rsi
+  - type: Clothing
+    sprite: Backmen/Clothing/Head/Soft/postalcargosoft_flipped.rsi

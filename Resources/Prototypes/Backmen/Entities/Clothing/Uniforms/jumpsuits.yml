@@ -151,3 +151,14 @@
     sprite: Backmen/Clothing/Uniforms/jumpsuit/arbitr_eblan.rsi
   - type: Clothing
     sprite: Backmen/Clothing/Uniforms/jumpsuit/arbitr_eblan.rsi
+    
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformJumpsuitCargoPostal
+  name: Postal jumpsuit
+  description: A sturdy jumpskirt, issued to members of the Cargo department for postal work.
+  components:
+  - type: Sprite
+    sprite: Backmen/Clothing/Uniforms/jumpsuit/cargopostal.rsi
+  - type: Clothing
+    sprite: Backmen/Clothing/Uniforms/jumpsuit/cargopostal.rsi
