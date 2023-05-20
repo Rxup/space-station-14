@@ -13,8 +13,8 @@
   parent: ClothingHeadBase
   id: ClothingHeadHatCargoPostalsoftFlipped
   name: Кепка почтальона
-  description: Это повёрнутая в обратную сторону бейсбольная кепка, окрашенная в почтовые цвета Снабжения. # "It's a baseball hat painted in postal of Cargo colours. Flipped."
-  suffix: Повёрнутая # Flipped
+  description: Это повёрнутая в обратную сторону бейсбольная кепка, окрашенная в почтовые цвета Снабжения.
+  suffix: Повёрнутая
   components:
   - type: Sprite
     sprite: Backmen/Clothing/Head/Soft/postalcargosoft_flipped.rsi
