@@ -12,8 +12,9 @@ public sealed class SpecForceComponent : Component
     public HashSet<JobRequirement>? Requirements;
 
     /// <summary>
-    ///     Extra components to add to this entity.
+    /// A dictionary mapping the component type list to the YAML mapping containing their settings.
     /// </summary>
     [DataField("components")]
-    public EntityPrototype.ComponentRegistry? Components { get; }
+    [AlwaysPushInheritance]
+    public ComponentRegistry Components { get; } = new();
 }

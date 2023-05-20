@@ -54,7 +54,8 @@ public sealed class SpecForcesSystem : EntitySystem
 
     private void OnMapInit(EntityUid uid, SpecForceComponent component, MapInitEvent args)
     {
-        if(component.Components !=  null){
+        if(component.Components !=  null)
+        {
             foreach (var entry in component.Components.Values)
             {
                 var comp = (Component) _serialization.CreateCopy(entry.Component, notNullableOverride: true);
@@ -62,7 +63,8 @@ public sealed class SpecForcesSystem : EntitySystem
                 EntityManager.AddComponent(uid, comp, true);
             }
         }
-        if(_inventory.TryGetSlotEntity(uid,"ears",out var ears) && TryComp<HeadsetComponent>(ears, out var earsComp)){
+        if(_inventory.TryGetSlotEntity(uid,"ears",out var ears) && TryComp<HeadsetComponent>(ears, out var earsComp))
+        {
             earsComp.Enabled = false;
             //_headset.SetEnabled(ears.Value, false, earsComp);
         }
@@ -70,7 +72,8 @@ public sealed class SpecForcesSystem : EntitySystem
 
     private void OnSpecForceTake(EntityUid uid, SpecForceComponent component, ref TakeGhostRoleEvent args)
     {
-        if(!_adminManager.IsAdmin(args.Player) && !IsAllowed(args.Player,component, out var reason)){
+        if(!_adminManager.IsAdmin(args.Player) && !IsAllowed(args.Player,component, out var reason))
+        {
             args.TookRole = true;
             _callLock.EnterWriteLock();
             _chatManager.ChatMessageToOne(Shared.Chat.ChatChannel.Server, reason, "ОШИБКА: "+reason, default, false, args.Player.ConnectedClient, Color.Plum);
@@ -82,8 +85,10 @@ public sealed class SpecForcesSystem : EntitySystem
             var sess = args.Player;
 
             Robust.Shared.Timing.Timer.Spawn(0, ()=>{
-                try{
-                    if(!uid.IsValid()){
+                try
+                {
+                    if(!uid.IsValid())
+                    {
                         return;
                     }
                     mind.Mind.ChangeOwningPlayer(null);
@@ -95,7 +100,9 @@ public sealed class SpecForcesSystem : EntitySystem
                         //_ghostRoleSystem.RegisterGhostRole(ghostComp);
                     }
                     _ghostRoleSystem.CloseEui(sess);
-                }finally{
+                }
+                finally
+                {
                     _callLock.ExitWriteLock();
                 }
             });
@@ -106,22 +113,25 @@ public sealed class SpecForcesSystem : EntitySystem
         }
     }
 
-    public TimeSpan DelayTime {
-        get{
+    public TimeSpan DelayTime
+    {
+        get
+        {
             var ct = GameTicker.RoundDuration();
             var DelayTime =  LastUsedTime+DelayUsesage;
             return ct > DelayTime ? TimeSpan.Zero : DelayTime - ct;
         }
     }
 
-    public bool IsAllowed(IPlayerSession player, SpecForceComponent job, [NotNullWhen(false)] out string? reason)
+    public bool IsAllowed(IPlayerSession? player, SpecForceComponent job, [NotNullWhen(false)] out string? reason)
     {
         reason = null;
 
         if (job?.Requirements == null)
             return true;
 
-        if (player == null) return true;
+        if (player == null)
+            return true;
 
         if (!_cfg.GetCVar(CCVars.GameRoleTimers))
             return true;
@@ -147,16 +157,20 @@ public sealed class SpecForcesSystem : EntitySystem
         return reason == null;
     }
 
-    public bool CallOps(SpecForcesType ev, string source = ""){
+    public bool CallOps(SpecForcesType ev, string source = "")
+    {
         _callLock.EnterWriteLock();
-        try{
-            if(_gameTicker.RunLevel != GameRunLevel.InRound){
+        try
+        {
+            if(_gameTicker.RunLevel != GameRunLevel.InRound)
+            {
                 return false;
             }
 
             var currentTime = GameTicker.RoundDuration();
 
-            if(LastUsedTime+DelayUsesage > currentTime){
+            if(LastUsedTime+DelayUsesage > currentTime)
+            {
                 return false;
             }
             LastUsedTime = currentTime;
@@ -179,12 +193,14 @@ public sealed class SpecForcesSystem : EntitySystem
             _callLock.ExitWriteLock();
         }
     }
-    private EntityUid SpawnEntity(string? protoName, EntityCoordinates coordinates){
+    private EntityUid SpawnEntity(string? protoName, EntityCoordinates coordinates)
+    {
         var uid = EntityManager.SpawnEntity(protoName, coordinates);
         EnsureComp<SpecForceComponent>(uid);
         return uid;
     }
-    private void SpawnGhostRole(SpecForcesType ev, EntityUid shuttle){
+    private void SpawnGhostRole(SpecForcesType ev, EntityUid shuttle)
+    {
         var spawns = new List<EntityCoordinates>();
 
         foreach (var (_, meta, xform) in EntityManager.EntityQuery<SpawnPointComponent, MetaDataComponent, TransformComponent>(true))
@@ -207,10 +223,10 @@ public sealed class SpecForcesSystem : EntitySystem
         // TODO: Cvar
         var countExtra = _playerManager.PlayerCount switch
         {
-            int x when x >= 40 => 4,
-            int x when x >= 30 => 3,
-            int x when x >= 20 => 2,
-            int x when x >= 10 => 1,
+            >= 40 => 4,
+            >= 30 => 3,
+            >= 20 => 2,
+            >= 10 => 1,
             _ => 0
         };
 
@@ -271,7 +287,9 @@ public sealed class SpecForcesSystem : EntitySystem
         };
 
         if (!_map.TryLoad(shuttleMap,
-            ev switch { // todo: cvar
+            ev switch
+            {
+                // todo: cvar
                 SpecForcesType.ERT => ETRShuttlePath,
                 _ => ETRShuttlePath
             },
@@ -283,15 +301,12 @@ public sealed class SpecForcesSystem : EntitySystem
 
         var mapGrid = grids.FirstOrNull();
 
-        if (mapGrid == null)
-        {
-            return null;
-        }
-        return mapGrid;
+        return mapGrid ?? null;
     }
-    private void PlaySound(SpecForcesType ev){
-        var station = _stationSystem.Stations.FirstOrNull();
-        if (station == null)
+    private void PlaySound(SpecForcesType ev)
+    {
+        var stations = _stationSystem.GetStations();
+        if (stations.Count == 0)
         {
             return;
         }
@@ -299,18 +314,25 @@ public sealed class SpecForcesSystem : EntitySystem
         switch (ev)
         {
             case SpecForcesType.ERT:
-                _chatSystem.DispatchStationAnnouncement(station.Value,
-                    Loc.GetString("spec-forces-system-ertcall-annonce"),
-                    Loc.GetString("spec-forces-system-ertcall-title"),
-                    true, ERTAnnounce
-                );
+                foreach (var station in stations)
+                {
+                    _chatSystem.DispatchStationAnnouncement(station,
+                        Loc.GetString("spec-forces-system-ertcall-annonce"),
+                        Loc.GetString("spec-forces-system-ertcall-title"),
+                        true, ERTAnnounce
+                    );
+                }
                 break;
             case SpecForcesType.RXBZZ:
-                _chatSystem.DispatchStationAnnouncement(station.Value,
-                    Loc.GetString("spec-forces-system-RXBZZ-annonce"),
-                    Loc.GetString("spec-forces-system-RXBZZ-title"),
-                    true
-                );
+                foreach (var station in stations)
+                {
+                    _chatSystem.DispatchStationAnnouncement(station,
+                        Loc.GetString("spec-forces-system-RXBZZ-annonce"),
+                        Loc.GetString("spec-forces-system-RXBZZ-title"),
+                        true
+                    );
+                }
+
                 break;
             default:
                 return;
@@ -318,8 +340,8 @@ public sealed class SpecForcesSystem : EntitySystem
     }
     private void OnRoundEnd(RoundEndTextAppendEvent ev)
     {
-        foreach(var CalledEevent in CallendEvents){
-            ev.AddLine(Loc.GetString("spec-forces-system-"+CalledEevent.Event,("time", CalledEevent.RoundTime.ToString(@"hh\:mm\:ss")), ("who",CalledEevent.WhoCalled)));
+        foreach(var calledEvent in CallendEvents){
+            ev.AddLine(Loc.GetString("spec-forces-system-"+calledEvent.Event,("time", calledEvent.RoundTime.ToString(@"hh\:mm\:ss")), ("who",calledEvent.WhoCalled)));
         }
     }
     private void OnCleanup(RoundRestartCleanupEvent ev)
