@@ -40,8 +40,6 @@
   suffix: backmen
   id: MobHaisenberg
   components:
-  - type: Icon
-    sprite: Markers/jobs.rsi
   - type: GhostRole
     makeSentient: true
     allowSpeech: true
