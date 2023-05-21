@@ -1450,6 +1450,39 @@ entities:
     - pos: -1.5,1.5
       parent: 1
       type: Transform
+- proto: Poweredlight
+  entities:
+  - uid: 244
+    components:
+    - rot: 1.5707963267948966 rad
+      pos: -1.5,-0.5
+      parent: 1
+      type: Transform
+    - enabled: False
+      type: AmbientSound
+  - uid: 245
+    components:
+    - rot: -1.5707963267948966 rad
+      pos: 3.5,-0.5
+      parent: 1
+      type: Transform
+    - enabled: False
+      type: AmbientSound
+  - uid: 246
+    components:
+    - pos: 1.5,4.5
+      parent: 1
+      type: Transform
+    - enabled: False
+      type: AmbientSound
+  - uid: 247
+    components:
+    - rot: 3.141592653589793 rad
+      pos: 0.5,-5.5
+      parent: 1
+      type: Transform
+    - enabled: False
+      type: AmbientSound
 - proto: RandomPosterAny
   entities:
   - uid: 174
