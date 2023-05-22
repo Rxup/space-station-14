@@ -388,12 +388,16 @@
   flavor: bitter
   color: "#7668a1"
   metabolisms:
-    Poison:
+    Poison:  
       effects:
-        - !type:HealthChange
-          damage:
-            types:
-              Cellular: 1
+      - !type:GenericStatusEffect
+        key: Corpium
+        time: 1.0
+        type: Add
+      - !type:HealthChange
+        damage:
+          types:
+            Cellular: 1
 
 - type: reagent
   id: UncookedAnimalProteins

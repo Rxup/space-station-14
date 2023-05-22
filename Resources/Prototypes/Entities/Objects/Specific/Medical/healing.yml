@@ -332,3 +332,4 @@
         reagents:
         - ReagentId: Corpium
           Quantity: 10
+  - type: CorpiumComponent
