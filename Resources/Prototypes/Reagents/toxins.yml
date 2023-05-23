@@ -391,13 +391,17 @@
     Poison:  
       effects:
       - !type:GenericStatusEffect
-        key: Corpium
-        time: 1.0
+        key: Pacified
+        component: ZombifyOnDeath
+        refresh: false
         type: Add
       - !type:HealthChange
         damage:
           types:
             Cellular: 1
+      - !type:AdjustReagent
+        reagent: Corpium
+        amount: 0.35
 
 - type: reagent
   id: UncookedAnimalProteins
