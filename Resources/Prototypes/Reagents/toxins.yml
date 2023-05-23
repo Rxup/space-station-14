@@ -389,6 +389,7 @@
   color: "#7668a1"
   metabolisms:
     Poison:  
+      metabolismRate: 0.05
       effects:
       - !type:GenericStatusEffect
         key: Pacified
@@ -401,7 +402,7 @@
             Cellular: 1
       - !type:AdjustReagent
         reagent: Corpium
-        amount: 0.35
+        amount: 0.2
 
 - type: reagent
   id: UncookedAnimalProteins
