@@ -388,12 +388,21 @@
   flavor: bitter
   color: "#7668a1"
   metabolisms:
-    Poison:
+    Poison:  
+      metabolismRate: 0.05
       effects:
-        - !type:HealthChange
-          damage:
-            types:
-              Cellular: 1
+      - !type:GenericStatusEffect
+        key: ZombieDisease
+        component: ZombifyOnDeath
+        refresh: false
+        type: Add
+      - !type:HealthChange
+        damage:
+          types:
+            Cellular: 1
+      - !type:AdjustReagent
+        reagent: Corpium
+        amount: 0.2
 
 - type: reagent
   id: UncookedAnimalProteins
