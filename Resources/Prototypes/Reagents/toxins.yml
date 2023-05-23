@@ -392,7 +392,7 @@
       metabolismRate: 0.05
       effects:
       - !type:GenericStatusEffect
-        key: Pacified
+        key: ZombieDisease
         component: ZombifyOnDeath
         refresh: false
         type: Add

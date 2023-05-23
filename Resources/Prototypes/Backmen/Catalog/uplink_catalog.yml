@@ -1,11 +1,15 @@
 - type: listing
   id: UplinkCorpiumSyringe
-  name: Шприц корпиума
-  description: Коктейль из различных ядов. Цель не сможет вылечить себя без посторонней помощи. Превращает в зомби через несколько минут после введения.
+  name: uplink-corpium-name
+  description: uplink-corpium-desc
   productEntity: SyringeCorpium
   cost:
-    Telecrystal: 13
+    Telecrystal: 20
   categories:
   - UplinkUtility
-
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - NukeOpsUplink
 
