@@ -13,7 +13,7 @@ tilemap:
 entities:
 - proto: ""
   entities:
-  - uid: 1
+  - uid: 0
     components:
     - name: NT-CC-Specnaz-013
       type: MetaData
