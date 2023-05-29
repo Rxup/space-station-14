@@ -1,0 +1,10 @@
+- type: entity
+  parent: ClothingUniformSkirtBase
+  id: ClothingUniformJumpskirtCargoPostal
+  name: Postal's jumpskirt
+  description: A sturdy jumpskirt, issued to members of the Cargo department for postal work.
+  components:
+  - type: Sprite
+    sprite: Backmen/Clothing/Uniforms/Jumpskirt/cargopostal.rsi
+  - type: Clothing
+    sprite: Backmen/Clothing/Uniforms/Jumpskirt/cargopostal.rsi
