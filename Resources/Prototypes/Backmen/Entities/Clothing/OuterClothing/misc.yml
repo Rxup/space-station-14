@@ -8,3 +8,14 @@
     sprite: Backmen/Clothing/OuterClothing/Misc/witchhunterbelov.rsi
   - type: Clothing
     sprite: Backmen/Clothing/OuterClothing/Misc/witchhunterbelov.rsi
+
+- type: entity
+  parent: ClothingOuterBase
+  id: ClothingMagistraterobabel
+  name: Накидка магистрата
+  description: Пора уволить срочников.
+  components:
+  - type: Sprite
+    sprite: Backmen/Clothing/OuterClothing/Misc/magistratenaki.rsi
+  - type: Clothing
+    sprite: Backmen/Clothing/OuterClothing/Misc/magistratenaki.rsi
