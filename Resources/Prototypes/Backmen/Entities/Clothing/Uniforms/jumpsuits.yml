@@ -143,7 +143,7 @@
 
 - type: entity
   parent: ClothingUniformBase
-  id: ClothingUniformArbitr_EBLAN228337
+  id: ClothingUniformArbitr
   name: Костюм Арбитра
   description:  Невероятно дорогой костюм Арбитра неизвестной корпорации.В комплекте идет золотая серьга в виде черепа и 2 золотых кольца
   components:
@@ -162,3 +162,69 @@
     sprite: Backmen/Clothing/Uniforms/jumpsuit/cargopostal.rsi
   - type: Clothing
     sprite: Backmen/Clothing/Uniforms/jumpsuit/cargopostal.rsi
+    
+- type: entity
+  parent: ClothingUniformBase
+  id: AgentUniformOnebel
+  name: Полосатый деловой костюм
+  description: Дорогой костюм распространенный в дорогих местах.
+  components:
+  - type: Sprite
+    sprite: Backmen/Clothing/Uniforms/jumpsuit/avdpoloska.rsi
+  - type: Clothing
+    sprite: Backmen/Clothing/Uniforms/jumpsuit/avdpoloska.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: AgentUniformTwobel
+  name: Деловая жилетка
+  description: Дорогой костюм распространенный в дорогих местах.
+  components:
+  - type: Sprite
+    sprite: Backmen/Clothing/Uniforms/jumpsuit/avdvictoriavest.rsi
+  - type: Clothing
+    sprite: Backmen/Clothing/Uniforms/jumpsuit/avdvictoriavest.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: JokerSuitbel
+  name: Костюм Джокера
+  description: Тот самый костюм который носил преступник под псевдонимом Джокер
+  components:
+  - type: Sprite
+    sprite: Backmen/Clothing/Uniforms/jumpsuit/jokersuitbel.rsi
+  - type: Clothing
+    sprite: Backmen/Clothing/Uniforms/jumpsuit/jokersuitbel.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: Agentfoursevenbel
+  name: Деловой костюм агента
+  description: Костюм сделанный по специальному заказу, ранее пренадлежал агенту 47
+  components:
+  - type: Sprite
+    sprite: Backmen/Clothing/Uniforms/jumpsuit/syndicatetactic.rsi
+  - type: Clothing
+    sprite: Backmen/Clothing/Uniforms/jumpsuit/syndicatetactic.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: MagistratUniformbel
+  name: Костюм магистрата
+  description: Увольте пару срочников!
+  components:
+  - type: Sprite
+    sprite: Backmen/Clothing/Uniforms/jumpsuit/magistratebel.rsi
+  - type: Clothing
+    sprite: Backmen/Clothing/Uniforms/jumpsuit/magistratebel.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: BlueshieldUniformbel
+  name: Костюм Блюшилд
+  description: Носитель данного костюма обязан защищать глав.
+  components:
+  - type: Sprite
+    sprite: Backmen/Clothing/Uniforms/jumpsuit/blueshieldformal.rsi
+  - type: Clothing
+    sprite: Backmen/Clothing/Uniforms/jumpsuit/blueshieldformal.rsi
