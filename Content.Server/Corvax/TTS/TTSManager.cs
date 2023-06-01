@@ -22,7 +22,7 @@ public sealed class TTSManager
             LabelNames = new[] {"type"},
             Buckets = Histogram.ExponentialBuckets(.1, 1.5, 10),
         });
-    
+
     private static readonly Counter WantedCount = Metrics.CreateCounter(
         "tts_wanted_count",
         "Amount of wanted TTS audio.");
@@ -30,15 +30,18 @@ public sealed class TTSManager
     private static readonly Counter ReusedCount = Metrics.CreateCounter(
         "tts_reused_count",
         "Amount of reused TTS audio from cache.");
-    
+
     [Dependency] private readonly IConfigurationManager _cfg = default!;
-    
+
     private readonly HttpClient _httpClient = new();
 
     private ISawmill _sawmill = default!;
-    private readonly Dictionary<string, byte[]> _cache = new();
-    private readonly List<string> _cacheKeysSeq = new();
-    private int _maxCachedCount = 200;
+    // ReSharper disable once InconsistentNaming
+    public readonly Dictionary<string, byte[]> _cache = new();
+    // ReSharper disable once InconsistentNaming
+    public readonly List<string> _cacheKeysSeq = new();
+    // ReSharper disable once InconsistentNaming
+    public int _maxCachedCount = 200;
 
     public void Initialize()
     {
@@ -64,7 +67,7 @@ public sealed class TTSManager
         {
             throw new Exception("TTS Api url not specified");
         }
-        
+
         var token = _cfg.GetCVar(CCCVars.TTSApiToken);
         if (string.IsNullOrWhiteSpace(token))
         {
@@ -99,7 +102,7 @@ public sealed class TTSManager
 
             var json = await response.Content.ReadFromJsonAsync<GenerateVoiceResponse>();
             var soundData = Convert.FromBase64String(json.Results.First().Audio);
-            
+
             _cache.Add(cacheKey, soundData);
             _cacheKeysSeq.Add(cacheKey);
             if (_cache.Count > _maxCachedCount)
@@ -185,7 +188,7 @@ public sealed class TTSManager
         [JsonPropertyName("original_sha1")]
         public string Hash { get; set; }
     }
-    
+
     private struct VoiceResult
     {
         [JsonPropertyName("audio")]
