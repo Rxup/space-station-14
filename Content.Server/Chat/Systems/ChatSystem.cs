@@ -290,7 +290,7 @@ public sealed partial class ChatSystem : SharedChatSystem
 
         _chatManager.ChatMessageToManyFiltered(filter, ChatChannel.Radio, message, wrappedMessage, source, false, true, colorOverride);
 
-        if (announcementSound == null || playDefaultSound) // Corvax-TTS
+        if (announcementSound != null || playDefaultSound) // Corvax-TTS
         {
             announcementSound ??= new SoundPathSpecifier(DefaultAnnouncementSound);
             var announcementEv = new AnnouncementSpokeEvent(filter, announcementSound.GetSound(), announcementSound.Params, message);
