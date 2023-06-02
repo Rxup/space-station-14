@@ -99,18 +99,21 @@
   name: tts-voice-name-b-Alfa
   sex: Unsexed
   speaker: u-1
+  roundStart: false
 
 - type: ttsVoice
-  id: Beta
+  id: Announcer
   name: tts-voice-name-b-Beta
   sex: Unsexed
   speaker: u-3
+  roundStart: false
 
 - type: ttsVoice
   id: Vega
   name: tts-voice-name-b-Vega
   sex: Unsexed
   speaker: u-2
+  roundStart: false
 
 - type: ttsVoice
   id: lina
