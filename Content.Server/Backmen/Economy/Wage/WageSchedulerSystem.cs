@@ -4,51 +4,53 @@ using Content.Server.GameTicking.Rules.Components;
 
 namespace Content.Server.Backmen.Economy.Wage;
 
-/// <summary>
-///     Simple GameRule that will do a free-for-all death match.
-///     Kill everybody else to win.
-/// </summary>
 [RegisterComponent, Access(typeof(WageSchedulerSystem))]
 public sealed class WageSchedulerRuleComponent : Component
 {
+    [ViewVariables(VVAccess.ReadWrite)] public float TimeUntilNextWage;
 
+    [ViewVariables(VVAccess.ReadWrite)] public float MinimumTimeUntilFirstWage { get; set; } = 900;
+    [ViewVariables(VVAccess.ReadWrite)] public float WageInterval { get; set; }= 1800;
+
+    public WageSchedulerRuleComponent()
+    {
+        TimeUntilNextWage = MinimumTimeUntilFirstWage;
+    }
 }
 
 
 public sealed class WageSchedulerSystem : GameRuleSystem<WageSchedulerRuleComponent>
 {
-    [Dependency] private readonly IChatManager _chatManager = default!;
+    //[Dependency] private readonly IChatManager _chatManager = default!;
     //public override string Prototype => "WageScheduler";
-    //[Dependency] private readonly WageManagerSystem _wageManagerSystem = default!;
-    private const float MinimumTimeUntilFirstWage = 900;
-    private const float WageInterval = 1800;
-    [ViewVariables(VVAccess.ReadWrite)]
-    private float _timeUntilNextWage = MinimumTimeUntilFirstWage;
+    [Dependency] private readonly WageManagerSystem _wageManagerSystem = default!;
+
+
 
     protected override void Started(EntityUid uid, WageSchedulerRuleComponent component, GameRuleComponent gameRule,
         GameRuleStartedEvent args)
     {
-        _chatManager.DispatchServerAnnouncement(Loc.GetString("rule-wage-announcement"));
+        //_chatManager.DispatchServerAnnouncement(Loc.GetString("rule-wage-announcement"));
     }
     protected override void Ended(EntityUid uid, WageSchedulerRuleComponent component, GameRuleComponent gameRule, GameRuleEndedEvent args)
     {
         base.Ended(uid, component, gameRule, args);
-        _timeUntilNextWage = MinimumTimeUntilFirstWage;
+        component.TimeUntilNextWage = component.MinimumTimeUntilFirstWage;
     }
 
     protected override void ActiveTick(EntityUid uid, WageSchedulerRuleComponent component, GameRuleComponent gameRule, float frameTime)
     {
         base.ActiveTick(uid, component, gameRule, frameTime);
-/*
+
         if (!_wageManagerSystem.WagesEnabled)
             return;
-        if (_timeUntilNextWage > 0)
+        if (component.TimeUntilNextWage > 0)
         {
-            _timeUntilNextWage -= frameTime;
+            component.TimeUntilNextWage -= frameTime;
             return;
         }
         _wageManagerSystem.Payday();
-        _timeUntilNextWage = WageInterval;
-        */
+        component.TimeUntilNextWage = component.WageInterval;
+
     }
 }
