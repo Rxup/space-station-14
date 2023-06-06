@@ -2,6 +2,7 @@
 using Content.Server.Administration.Logs;
 using Content.Shared.Database;
 using Content.Shared.FixedPoint;
+using Content.Shared.GameTicking;
 using Content.Shared.Roles;
 using Robust.Shared.Random;
 
@@ -17,7 +18,14 @@ namespace Content.Server.Backmen.Economy;
         public override void Initialize()
         {
             base.Initialize();
+            SubscribeLocalEvent<RoundRestartCleanupEvent>(OnCleanup);
         }
+
+        private void OnCleanup(RoundRestartCleanupEvent ev)
+        {
+            Clear();
+        }
+
         public bool TryGetBankAccount(string? bankAccountNumber, [MaybeNullWhen(false)] out BankAccountComponent bankAccount)
         {
             bankAccount = GetBankAccount(bankAccountNumber);
