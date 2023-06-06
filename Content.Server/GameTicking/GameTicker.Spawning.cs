@@ -195,8 +195,6 @@ namespace Content.Server.GameTicking
 
             newMind.TransferTo(mob);
 
-            CreateBankAccountAndStoreInMob(mob, newMind, jobPrototype); // backmen: currency
-
             if (lateJoin)
             {
                 _chatSystem.DispatchStationAnnouncement(station,

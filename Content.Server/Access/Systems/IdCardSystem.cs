@@ -177,24 +177,5 @@ namespace Content.Server.Access.Systems
                     ("jobSuffix", jobSuffix));
             EntityManager.GetComponent<MetaDataComponent>(id.Owner).EntityName = val;
         }
-
-
-        // start-backmen: currency
-        [Dependency] private readonly BankManagerSystem _bankManager = default!;
-        public bool TryStoreNewBankAccount(EntityUid uid, IdCardComponent? id, out BankAccountComponent? bankAccount)
-        {
-            bankAccount = null;
-            if (!Resolve(uid, ref id))
-                return false;
-            bankAccount = _bankManager.CreateNewBankAccount();
-            if (bankAccount == null)
-                return false;
-            id.StoredBankAccountNumber = bankAccount.AccountNumber;
-            id.StoredBankAccountPin = bankAccount.AccountPin;
-            bankAccount.AccountName = id.FullName;
-            Dirty(id);
-            return true;
-        }
-        // end-backmen: currency
     }
 }

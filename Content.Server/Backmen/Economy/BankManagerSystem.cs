@@ -37,7 +37,7 @@ namespace Content.Server.Backmen.Economy;
                 return false;
             return true;
         }
-        private BankAccountComponent? GetBankAccount(string? bankAccountNumber)
+        public BankAccountComponent? GetBankAccount(string? bankAccountNumber)
         {
             if (bankAccountNumber == null)
                 return null;

@@ -14,14 +14,6 @@
                     <Label Name="SubText" VerticalAlignment="Top" StyleClasses="LabelSubText" Access="Public"/>
                 </BoxContainer>
             </BoxContainer>
-
-            <!-- start-backmen: currency -->
-            <Label Text="{Loc 'character-info-memories-label'}" HorizontalAlignment="Center"/>
-            <BoxContainer Orientation="Vertical" Name="Memories" Access="Public"/>
-            <cc:Placeholder PlaceholderText="{Loc 'character-info-memories-placeholder-text'}"/>
-            <!-- end-backmen: currency -->
-
-
             <Label Text="{Loc 'character-info-objectives-label'}" HorizontalAlignment="Center"/>
             <BoxContainer Orientation="Vertical" Name="Objectives" Access="Public"/>
             <cc:Placeholder PlaceholderText="{Loc 'character-info-roles-antagonist-text'}"/>

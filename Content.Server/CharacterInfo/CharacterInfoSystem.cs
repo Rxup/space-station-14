@@ -58,16 +58,8 @@ public sealed class CharacterInfoSystem : EntitySystem
 
             // Get briefing
             briefing = mind.Briefing;
-
-            // start-backmen: currency
-            // Get memories
-            foreach (var memory in mind.AllMemories)
-            {
-                memories[memory.Name] = memory.Value;
-            }
-            // end-backmen: currency
         }
 
-        RaiseNetworkEvent(new CharacterInfoEvent(entity, jobTitle, conditions, briefing, memories), args.SenderSession);
+        RaiseNetworkEvent(new CharacterInfoEvent(entity, jobTitle, conditions, briefing), args.SenderSession);
     }
 }

@@ -43,7 +43,7 @@ public sealed class CharacterInfoSystem : EntitySystem
     private void OnCharacterInfoEvent(CharacterInfoEvent msg, EntitySessionEventArgs args)
     {
         var sprite = CompOrNull<SpriteComponent>(msg.EntityUid);
-        var data = new CharacterData(msg.JobTitle, msg.Objectives, msg.Briefing, sprite, Name(msg.EntityUid), msg.Memory); // backmen: currency
+        var data = new CharacterData(msg.JobTitle, msg.Objectives, msg.Briefing, sprite, Name(msg.EntityUid));
 
         OnCharacterUpdate?.Invoke(data);
     }
@@ -54,9 +54,5 @@ public sealed class CharacterInfoSystem : EntitySystem
         string Briefing,
         SpriteComponent? Sprite,
         string EntityName
-
-        // start-backmen: currency
-        ,  Dictionary<string, string> Memory
-        // end-backmen: currency
     );
 }

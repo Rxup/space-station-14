@@ -473,20 +473,5 @@ namespace Content.Server.Mind
             return (session = Session) != null;
         }
 
-        // start-backmen: currency
-        [ViewVariables]
-        public IEnumerable<Content.Server.Backmen.Mind.BMemory> AllMemories => _memories;
-
-        private readonly List<Content.Server.Backmen.Mind.BMemory> _memories = new();
-        public Content.Server.Backmen.Mind.BMemory AddMemory(Content.Server.Backmen.Mind.BMemory memory)
-        {
-            if (_memories.Contains(memory))
-            {
-                throw new ArgumentException($"We already have this memory: {memory}");
-            }
-            _memories.Add(memory);
-            return memory;
-        }
-        // end-backmen: currency
     }
 }

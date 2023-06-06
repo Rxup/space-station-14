@@ -22,10 +22,6 @@ public sealed class CharacterInfoEvent : EntityEventArgs
     public readonly Dictionary<string, List<ConditionInfo>> Objectives;
     public readonly string Briefing;
 
-    // start-backmen: currency
-    public readonly Dictionary<string, string> Memory = new();
-    // end-backmen: currency
-
     public CharacterInfoEvent(EntityUid entityUid, string jobTitle, Dictionary<string, List<ConditionInfo>> objectives, string briefing)
     {
         EntityUid = entityUid;
@@ -33,15 +29,4 @@ public sealed class CharacterInfoEvent : EntityEventArgs
         Objectives = objectives;
         Briefing = briefing;
     }
-
-    // start-backmen: currency
-    public CharacterInfoEvent(EntityUid entityUid, string jobTitle, Dictionary<string, List<ConditionInfo>> objectives, string briefing, Dictionary<string, string> memory)
-    {
-        EntityUid = entityUid;
-        JobTitle = jobTitle;
-        Objectives = objectives;
-        Briefing = briefing;
-        Memory = memory;
-    }
-    // end-backmen: currency
 }
