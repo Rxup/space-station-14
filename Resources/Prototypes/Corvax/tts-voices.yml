@@ -39,7 +39,7 @@
   id: TrainingRobot
   name: tts-voice-name-trainingrobot
   sex: Unsexed
-  speaker: u-2
+  speaker: u-1
   roundStart: false
 
 - type: ttsVoice
