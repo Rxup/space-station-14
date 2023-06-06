@@ -13,6 +13,12 @@
   - !type:AddComponentSpecial
     components:
     - type: BibleUser #Lets them heal with bibles
+  #start-backmen: currency
+  minBankBalance: 300
+  maxBankBalance: 500
+  wageDepartment: Civilian
+  wage: 100
+  #end-backmen: currency
 
 - type: startingGear
   id: ChaplainGear

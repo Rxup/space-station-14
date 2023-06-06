@@ -17,6 +17,12 @@
   - Maintenance
   - Service
   - Detective
+  #start-backmen: currency
+  minBankBalance: 300
+  maxBankBalance: 500
+  wageDepartment: Security
+  wage: 100
+  #end-backmen: currency
 
 - type: startingGear
   id: DetectiveGear

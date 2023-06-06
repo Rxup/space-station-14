@@ -75,7 +75,7 @@ namespace Content.Server.Backmen.Administration.Commands
             var mind = playerCData.Mind;
 
             if(mind == null){
-                mind = new Mind.Mind(session.UserId)
+                mind = new Content.Server.Mind.Mind(session.UserId)
                 {
                     CharacterName = _entityManager.GetComponent<MetaDataComponent>(eUid).EntityName
                 };

@@ -15,6 +15,12 @@
   - Salvage
   - Maintenance
   - External
+  #start-backmen: currency
+  minBankBalance: 300
+  maxBankBalance: 500
+  wageDepartment: Cargo
+  wage: 100
+  #end-backmen: currency
 
 - type: startingGear
   id: SalvageSpecialistGear

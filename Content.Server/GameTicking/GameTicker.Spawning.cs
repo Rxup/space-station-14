@@ -195,6 +195,8 @@ namespace Content.Server.GameTicking
 
             newMind.TransferTo(mob);
 
+            //CreateBankAccountAndStoreInMob(mob, newMind, jobPrototype);
+
             if (lateJoin)
             {
                 _chatSystem.DispatchStationAnnouncement(station,

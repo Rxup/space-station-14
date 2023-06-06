@@ -1,0 +1,12 @@
+﻿<cartridges:BankUiFragment xmlns:cartridges="clr-namespace:Content.Client.Backmen.CartridgeLoader.Cartridges"
+                           xmlns="https://spacestation14.io">
+    <PanelContainer StyleClasses="BackgroundDark"></PanelContainer>
+    <BoxContainer Orientation="Vertical" HorizontalExpand="True" VerticalExpand="True" Margin="8">
+        <BoxContainer Name="LinkedAccount" Orientation="Vertical" Visible="False">
+            <RichTextLabel Name="LinkedAccountNumberLabel"/>
+            <RichTextLabel Name="LinkedAccountNameLabel"/>
+            <RichTextLabel Name="LinkedAccountBalanceLabel"/>
+        </BoxContainer>
+        <Label Name="NoLinkedAccount" Text="{Loc 'bank-program-no-account'}" Visible="False"/>
+    </BoxContainer>
+</cartridges:BankUiFragment>

@@ -8,6 +8,10 @@
   supervisors: job-supervisors-everyone
 #  access: # Corvax
 #  - Maintenance
+  #start-backmen: currency
+  minBankBalance: 100
+  maxBankBalance: 800
+  #end-backmen: currency
 
 - type: startingGear
   id: PassengerGear
