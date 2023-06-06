@@ -195,7 +195,7 @@ namespace Content.Server.GameTicking
 
             newMind.TransferTo(mob);
 
-            //CreateBankAccountAndStoreInMob(mob, newMind, jobPrototype);
+            CreateBankAccountAndStoreInMob(mob, newMind, jobPrototype); // backmen: currency
 
             if (lateJoin)
             {

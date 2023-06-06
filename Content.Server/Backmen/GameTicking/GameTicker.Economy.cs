@@ -14,7 +14,7 @@ namespace Content.Server.GameTicking;
 public sealed partial class GameTicker
 {
         [Dependency] private readonly BankManagerSystem _bankManagerSystem = default!;
-        [Dependency] private readonly WageManagerSystem _wageManagerSystem = default!;
+        //[Dependency] private readonly WageManagerSystem _wageManagerSystem = default!;
         [Dependency] private readonly BankCartridgeSystem _bankCartridgeSystem = default!;
         [Dependency] private readonly InventorySystem _inventorySystem = default!;
         [Dependency] private readonly IdCardSystem _cardSystem = default!;
@@ -43,7 +43,7 @@ public sealed partial class GameTicker
                 }
 
                 _bankManagerSystem.TryGenerateStartingBalance(bankAccount, jobPrototype);
-                _wageManagerSystem.TryAddAccountToWagePayoutList(bankAccount, jobPrototype);
+                //_wageManagerSystem.TryAddAccountToWagePayoutList(bankAccount, jobPrototype);
                 if (!_inventorySystem.TryGetSlotEntity(entity, "id", out var idUid))
                     return;
 

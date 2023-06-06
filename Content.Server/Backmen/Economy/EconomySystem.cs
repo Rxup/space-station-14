@@ -1,4 +1,6 @@
-﻿using Content.Server.Backmen.Economy.ATM;
+﻿//using Content.Server.Backmen.Economy.ATM;
+
+using Content.Server.Backmen.Economy.ATM;
 using Content.Server.Store.Components;
 using Content.Server.Store.Systems;
 using Content.Shared.Interaction;
@@ -14,9 +16,9 @@ public sealed class EconomySystem : EntitySystem
     public override void Initialize()
     {
         base.Initialize();
-        // SubscribeLocalEvent<CurrencyComponent, AfterInteractEvent>(OnAfterInteract);
+        //SubscribeLocalEvent<CurrencyComponent, AfterInteractEvent>(OnAfterInteract);
     }
-    /*
+/*
     private void OnAfterInteract(EntityUid uid, CurrencyComponent component, AfterInteractEvent args)
     {
         if (args.Handled || !args.CanReach)
@@ -47,5 +49,5 @@ public sealed class EconomySystem : EntitySystem
             QueueDel(args.Used);
         }
     }
-    */
+*/
 }

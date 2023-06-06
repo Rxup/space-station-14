@@ -2,10 +2,14 @@
 using Content.Server.Power.Components;
 using Content.Server.Power.EntitySystems;
 using Content.Server.Stack;
+using Content.Server.Store.Components;
+using Content.Server.Store.Systems;
 using Content.Shared.Access.Components;
 using Content.Shared.Backmen.Economy.ATM;
 using Content.Shared.FixedPoint;
 using Content.Shared.Hands.EntitySystems;
+using Content.Shared.Interaction;
+using Content.Shared.Popups;
 using Content.Shared.Store;
 using Robust.Server.GameObjects;
 using Robust.Shared.Audio;
@@ -24,6 +28,9 @@ namespace Content.Server.Backmen.Economy.ATM;
         [Dependency] private readonly StackSystem _stack = default!;
         [Dependency] private readonly SharedHandsSystem _hands = default!;
         [Dependency] private readonly AudioSystem _audioSystem = default!;
+        [Dependency] private readonly StoreSystem _storeSystem = default!;
+        [Dependency] private readonly SharedPopupSystem _popup = default!;
+
         public override void Initialize()
         {
             base.Initialize();
@@ -32,7 +39,29 @@ namespace Content.Server.Backmen.Economy.ATM;
             SubscribeLocalEvent<ATMComponent, EntInsertedIntoContainerMessage>((_, comp, _) => UpdateComponentUserInterface(comp));
             SubscribeLocalEvent<ATMComponent, EntRemovedFromContainerMessage>((_, comp, _) => UpdateComponentUserInterface(comp));
             SubscribeLocalEvent<ATMComponent, ATMRequestWithdrawMessage>(OnRequestWithdraw);
+            SubscribeLocalEvent<Currency2Component,AfterInteractEvent>(OnAfterInteract, before: new[]{typeof(StoreSystem)});
         }
+
+        private void OnAfterInteract(EntityUid uid, Currency2Component _, AfterInteractEvent args)
+        {
+            if (args.Handled || !args.CanReach)
+                return;
+
+            if (args.Target == null || !TryComp<CurrencyComponent>(args.Used, out var component) || !TryComp<ATMComponent>(args.Target, out var store))
+                return;
+
+            var user = args.User;
+
+            args.Handled = TryAddCurrency(_storeSystem.GetCurrencyValue(uid, component), store);
+
+            if (args.Handled)
+            {
+                var msg = Loc.GetString("store-currency-inserted", ("used", args.Used), ("target", args.Target));
+                _popup.PopupEntity(msg, args.Target.Value);
+                QueueDel(args.Used);
+            }
+        }
+
         private void OnPowerChanged(EntityUid uid, ATMComponent component, ref PowerChangedEvent args)
         {
             TryUpdateVisualState(uid, component);

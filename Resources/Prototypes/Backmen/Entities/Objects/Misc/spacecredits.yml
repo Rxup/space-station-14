@@ -1,0 +1,100 @@
+﻿- type: entity
+  parent: BaseItem
+  id: SpaceCredit
+  name: credits
+  description: Money is everything.
+  components:
+    - type: Material
+    - type: PhysicalComposition
+      materialComposition:
+        Cred: 1
+    - type: StaticPrice
+      price: 1
+    - type: Stack
+      stackType: Cred
+      count: 1
+    - type: Sprite
+      sprite: backmen/Objects/Economy/credits.rsi
+      netsync: false
+      state: credit
+    - type: Physics
+      bodyType: Dynamic
+    - type: Fixtures
+      fixtures:
+        slips:
+          density: 30
+          shape:
+            !type:PhysShapeAabb
+            bounds: "-0.35,-0.2,0.25,0.1" # TODO: do proper collision for this item!
+          mask:
+            - ItemMask
+    - type: Currency2
+    - type: Currency
+      price:
+        SpaceCredits: 1
+    - type: Tag
+      tags:
+        - SpaceCredits
+    - type: Item
+      size: 1
+
+- type: material
+  id: Cred
+  name: spacecred
+  stackEntity: SpaceCredit
+  icon: { sprite: /Textures/backmen/Objects/Economy/credits.rsi, state: credit }
+  price: 1
+
+- type: stack
+  id: Cred
+  name: spacecred
+  icon: { sprite: /Textures/backmen/Objects/Economy/credits.rsi, state: credit }
+  spawn: SpaceCredit
+
+- type: entity
+  parent: SpaceCredit
+  id: SpaceCredit10
+  suffix: 10
+  components:
+    - type: Stack
+      count: 10
+
+- type: entity
+  parent: SpaceCredit
+  id: SpaceCredit50
+  suffix: 50
+  components:
+    - type: Stack
+      count: 50
+
+- type: entity
+  parent: SpaceCredit
+  id: SpaceCredit100
+  suffix: 100
+  components:
+    - type: Stack
+      count: 100
+
+- type: entity
+  parent: SpaceCredit
+  id: SpaceCredit500
+  suffix: 500
+  components:
+    - type: Stack
+      count: 500
+
+- type: entity
+  parent: SpaceCredit
+  id: SpaceCredit1000
+  suffix: 1000
+  components:
+    - type: Stack
+      count: 1000
+
+- type: entity
+  parent: SpaceCredit
+  id: SpaceCredit5000
+  suffix: 5000
+  components:
+    - type: Stack
+      count: 5000
