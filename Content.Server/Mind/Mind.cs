@@ -472,5 +472,6 @@ namespace Content.Server.Mind
         {
             return (session = Session) != null;
         }
+
     }
 }
