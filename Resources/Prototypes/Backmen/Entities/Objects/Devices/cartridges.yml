@@ -16,6 +16,6 @@
     - type: Cartridge
       programName: bank-program-name
       icon:
-        sprite: backmen/Structures/Wallmounts/atm.rsi
+        sprite: Backmen/Structures/Wallmounts/atm.rsi
         state: off
     - type: BankCartridge

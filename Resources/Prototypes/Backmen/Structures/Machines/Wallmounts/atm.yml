@@ -15,7 +15,7 @@
     - type: InteractionOutline
     - type: Store
     - type: Sprite
-      sprite: backmen/Structures/Wallmounts/atm.rsi
+      sprite: Backmen/Structures/Wallmounts/atm.rsi
       netsync: false
       snapCardinals: true
       state:
