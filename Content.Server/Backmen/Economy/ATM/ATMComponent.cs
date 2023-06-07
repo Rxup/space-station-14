@@ -17,16 +17,16 @@ public sealed class ATMComponent : SharedATMComponent
 
     [DataField("soundInsertCurrency")]
     // Taken from: https://github.com/Baystation12/Baystation12 at commit 662c08272acd7be79531550919f56f846726eabb
-    public SoundSpecifier SoundInsertCurrency = new SoundPathSpecifier("/Audio/_Imperial/Machines/polaroid2.ogg");
+    public SoundSpecifier SoundInsertCurrency = new SoundPathSpecifier("/Audio/Backmen/Machines/polaroid2.ogg");
     [DataField("soundWithdrawCurrency")]
     // Taken from: https://github.com/Baystation12/Baystation12 at commit 662c08272acd7be79531550919f56f846726eabb
-    public SoundSpecifier SoundWithdrawCurrency = new SoundPathSpecifier("/Audio/_Imperial/Machines/polaroid1.ogg");
+    public SoundSpecifier SoundWithdrawCurrency = new SoundPathSpecifier("/Audio/Backmen/Machines/polaroid1.ogg");
     [DataField("soundApply")]
     // Taken from: https://github.com/Baystation12/Baystation12 at commit 662c08272acd7be79531550919f56f846726eabb
-    public SoundSpecifier SoundApply = new SoundPathSpecifier("/Audio/_Imperial/Machines/chime.ogg");
+    public SoundSpecifier SoundApply = new SoundPathSpecifier("/Audio/Backmen/Machines/chime.ogg");
     [DataField("soundDeny")]
     // Taken from: https://github.com/Baystation12/Baystation12 at commit 662c08272acd7be79531550919f56f846726eabb
-    public SoundSpecifier SoundDeny = new SoundPathSpecifier("/Audio/_Imperial/Machines/buzz-sigh.ogg");
+    public SoundSpecifier SoundDeny = new SoundPathSpecifier("/Audio/Backmen/Machines/buzz-sigh.ogg");
     protected override void Initialize()
     {
         base.Initialize();
