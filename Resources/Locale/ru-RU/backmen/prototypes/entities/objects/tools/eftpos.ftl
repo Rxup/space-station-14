@@ -29,3 +29,7 @@ ent-EftposSecurity = { ent-Eftpos }
 ent-EftposScience = { ent-Eftpos }
     .desc = { ent-Eftpos.desc }
     .suffix = { "Science" }
+
+ent-EftposSpecific = { ent-Eftpos }
+    .desc = { ent-Eftpos.desc }
+    .suffix = { "Specific" }
