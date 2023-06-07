@@ -13,6 +13,14 @@
     - type: Stack
       stackType: Cred
       count: 1
+      baseLayer: base
+      layerStates:
+        - cash
+        - cash_10
+        - cash_100
+        - cash_500
+        - cash_1000
+        - cash_1000000
     - type: Sprite
       sprite: Backmen/Objects/Economy/credits.rsi
       netsync: false
@@ -66,6 +74,9 @@
   id: SpaceCredit50
   suffix: 50
   components:
+    - type: Icon
+      sprite: Objects/Economy/cash.rsi
+      state: cash_10
     - type: Stack
       count: 50
     - type: StackPrice
@@ -76,6 +87,9 @@
   id: SpaceCredit100
   suffix: 100
   components:
+    - type: Icon
+      sprite: Objects/Economy/cash.rsi
+      state: cash_100
     - type: Stack
       count: 100
     - type: StackPrice
@@ -88,6 +102,9 @@
   components:
     - type: Stack
       count: 500
+    - type: Icon
+      sprite: Objects/Economy/cash.rsi
+      state: cash_500
     - type: StackPrice
       price: 500
 
@@ -98,6 +115,9 @@
   components:
     - type: Stack
       count: 1000
+    - type: Icon
+      sprite: Objects/Economy/cash.rsi
+      state: cash_1000
     - type: StackPrice
       price: 1000
 
@@ -108,5 +128,8 @@
   components:
     - type: Stack
       count: 5000
+    - type: Icon
+      sprite: Objects/Economy/cash.rsi
+      state: cash_1000000
     - type: StackPrice
       price: 5000
