@@ -8,7 +8,7 @@
     - type: PhysicalComposition
       materialComposition:
         Cred: 1
-    - type: StaticPrice
+    - type: StackPrice
       price: 1
     - type: Stack
       stackType: Cred
@@ -58,6 +58,8 @@
   components:
     - type: Stack
       count: 10
+    - type: StackPrice
+      price: 10
 
 - type: entity
   parent: SpaceCredit
@@ -66,6 +68,8 @@
   components:
     - type: Stack
       count: 50
+    - type: StackPrice
+      price: 50
 
 - type: entity
   parent: SpaceCredit
@@ -74,6 +78,8 @@
   components:
     - type: Stack
       count: 100
+    - type: StackPrice
+      price: 100
 
 - type: entity
   parent: SpaceCredit
@@ -82,6 +88,8 @@
   components:
     - type: Stack
       count: 500
+    - type: StackPrice
+      price: 500
 
 - type: entity
   parent: SpaceCredit
@@ -90,6 +98,8 @@
   components:
     - type: Stack
       count: 1000
+    - type: StackPrice
+      price: 1000
 
 - type: entity
   parent: SpaceCredit
@@ -98,3 +108,5 @@
   components:
     - type: Stack
       count: 5000
+    - type: StackPrice
+      price: 5000

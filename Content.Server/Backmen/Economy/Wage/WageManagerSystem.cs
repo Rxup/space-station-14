@@ -1,5 +1,6 @@
 ﻿using Content.Shared.CCVar;
 using Content.Shared.FixedPoint;
+using Content.Shared.GameTicking;
 using Content.Shared.Roles;
 using Robust.Shared.Configuration;
 using Robust.Shared.Prototypes;
@@ -22,7 +23,14 @@ namespace Content.Server.Backmen.Economy.Wage;
         {
             base.Initialize();
             _configurationManager.OnValueChanged(Shared.Backmen.CCVar.CCVars.EconomyWagesEnabled, SetEnabled, true);
+            SubscribeLocalEvent<RoundRestartCleanupEvent>(OnCleanup);
         }
+
+        private void OnCleanup(RoundRestartCleanupEvent ev)
+        {
+            PayoutsList.Clear();
+        }
+
         public override void Shutdown()
         {
             base.Shutdown();

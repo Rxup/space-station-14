@@ -13,7 +13,6 @@
       anchored: true
     - type: Clickable
     - type: InteractionOutline
-    - type: Store
     - type: Sprite
       sprite: Backmen/Structures/Wallmounts/atm.rsi
       netsync: false
@@ -41,9 +40,9 @@
           components:
             - IdCard
     - type: ItemSlots
-    - type: ContainerContainer
-      containers:
+    - containers:
         IdCardSlot: !type:ContainerSlot
+      type: ContainerContainer
     - type: Appearance
     - type: AmbientOnPowered
     - type: AmbientSound

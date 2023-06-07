@@ -12,7 +12,6 @@ namespace Content.Server.Backmen.Economy.ATM;
 [Access(typeof(ATMSystem))]
 public sealed class ATMComponent : SharedATMComponent
 {
-    [ViewVariables] private BoundUserInterface? UserInterface => Owner.GetUIOrNull(ATMUiKey.Key);
     [ViewVariables(VVAccess.ReadOnly), DataField("currencyWhitelist", customTypeSerializer: typeof(PrototypeIdHashSetSerializer<CurrencyPrototype>))]
     public HashSet<string> CurrencyWhitelist = new();
 
@@ -31,12 +30,6 @@ public sealed class ATMComponent : SharedATMComponent
     protected override void Initialize()
     {
         base.Initialize();
-        Owner.EnsureComponentWarn<ServerUserInterfaceComponent>();
-    }
-    public void UpdateUserInterface(ATMBoundUserInterfaceState state)
-    {
-        if (!Initialized || UserInterface == null)
-            return;
-        UserInterface.SetState(state);
+            //Owner.EnsureComponentWarn<ServerUserInterfaceComponent>();
     }
 }

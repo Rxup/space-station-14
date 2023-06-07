@@ -4,6 +4,7 @@ using Content.Server.Power.EntitySystems;
 using Content.Server.Stack;
 using Content.Server.Store.Components;
 using Content.Server.Store.Systems;
+using Content.Server.UserInterface;
 using Content.Shared.Access.Components;
 using Content.Shared.Backmen.Economy.ATM;
 using Content.Shared.FixedPoint;
@@ -11,6 +12,7 @@ using Content.Shared.Hands.EntitySystems;
 using Content.Shared.Interaction;
 using Content.Shared.Popups;
 using Content.Shared.Store;
+using Content.Shared.Wires;
 using Robust.Server.GameObjects;
 using Robust.Shared.Audio;
 using Robust.Shared.Containers;
@@ -30,6 +32,8 @@ namespace Content.Server.Backmen.Economy.ATM;
         [Dependency] private readonly AudioSystem _audioSystem = default!;
         [Dependency] private readonly StoreSystem _storeSystem = default!;
         [Dependency] private readonly SharedPopupSystem _popup = default!;
+        [Dependency] private readonly UserInterfaceSystem _uiSystem = default!;
+        [Dependency] private readonly SharedInteractionSystem _interactionSystem = default!;
 
         public override void Initialize()
         {
@@ -40,6 +44,15 @@ namespace Content.Server.Backmen.Economy.ATM;
             SubscribeLocalEvent<ATMComponent, EntRemovedFromContainerMessage>((_, comp, _) => UpdateComponentUserInterface(comp));
             SubscribeLocalEvent<ATMComponent, ATMRequestWithdrawMessage>(OnRequestWithdraw);
             SubscribeLocalEvent<Currency2Component,AfterInteractEvent>(OnAfterInteract, before: new[]{typeof(StoreSystem)});
+            SubscribeLocalEvent<ATMComponent, AfterActivatableUIOpenEvent>(OnInteract);
+        }
+
+        private void OnInteract(EntityUid uid, ATMComponent component, AfterActivatableUIOpenEvent args)
+        {
+            if (!this.IsPowered(uid, EntityManager))
+                return;
+
+            UpdateComponentUserInterface(component);
         }
 
         private void OnAfterInteract(EntityUid uid, Currency2Component _, AfterInteractEvent args)
@@ -117,7 +130,11 @@ namespace Content.Server.Backmen.Economy.ATM;
                 bankAccountBalance,
                 currencySymbol
                 );
-            component.UpdateUserInterface(newState);
+
+            var ui = _uiSystem.GetUiOrNull(component.Owner, ATMUiKey.Key);
+            if (ui == null)
+                return;
+            _uiSystem.SetUiState(ui,newState);
         }
         private void OnRequestWithdraw(EntityUid uid, ATMComponent component, ATMRequestWithdrawMessage msg)
         {

@@ -8,7 +8,7 @@ namespace Content.Shared.Backmen.Economy.ATM;
 [NetworkedComponent()]
 public abstract class SharedATMComponent : Component
 {
-    public static string IdCardSlotId = "ATM-IdCard";
+    public static string IdCardSlotId = "IdCardSlot";
 
     [DataField("idCardSlot")]
     public ItemSlot IdCardSlot = new();
