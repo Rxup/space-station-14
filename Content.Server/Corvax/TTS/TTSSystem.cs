@@ -1,5 +1,6 @@
 ﻿using System.Threading.Tasks;
 using Content.Server.Chat.Systems;
+using Content.Server.SS220.Chat.Systems;
 using Content.Shared.Corvax.CCCVars;
 using Content.Shared.Corvax.TTS;
 using Content.Shared.GameTicking;
@@ -23,18 +24,21 @@ public sealed partial class TTSSystem : EntitySystem
 
     private const int MaxMessageChars = 100 * 2; // same as SingleBubbleCharLimit * 2
     private bool _isEnabled = false;
-    
+
     public override void Initialize()
     {
         _cfg.OnValueChanged(CCCVars.TTSEnabled, v => _isEnabled = v, true);
-        
+        _cfg.OnValueChanged(CCCVars.TTSAnnounceVoiceId, v => _voiceId = v, true); // TTS-Announce SS220
+
         SubscribeLocalEvent<TransformSpeechEvent>(OnTransformSpeech);
         SubscribeLocalEvent<TTSComponent, EntitySpokeEvent>(OnEntitySpoke);
         SubscribeLocalEvent<RoundRestartCleanupEvent>(OnRoundRestartCleanup);
 
+        SubscribeLocalEvent<AnnouncementSpokeEvent>(OnAnnouncementSpoke); // TTS-Announce SS220
+
         _netMgr.RegisterNetMessage<MsgRequestTTS>(OnRequestTTS);
     }
-    
+
     private void OnRoundRestartCleanup(RoundRestartCleanupEvent ev)
     {
         _ttsManager.ResetCache();
@@ -50,7 +54,7 @@ public sealed partial class TTSSystem : EntitySystem
 
         var soundData = await GenerateTTS(ev.Text, protoVoice.Speaker);
         if (soundData is null) return;
-        
+
         RaiseNetworkEvent(new PlayTTSEvent(ev.Uid, soundData), Filter.SinglePlayer(session));
     }
 
@@ -64,7 +68,7 @@ public sealed partial class TTSSystem : EntitySystem
         var voiceEv = new TransformSpeakerVoiceEvent(uid, voiceId);
         RaiseLocalEvent(uid, voiceEv);
         voiceId = voiceEv.VoiceId;
-        
+
         if (!_prototypeManager.TryIndex<TTSVoicePrototype>(voiceId, out var protoVoice))
             return;
 
@@ -91,10 +95,10 @@ public sealed partial class TTSSystem : EntitySystem
 
         var obfSoundData = await GenerateTTS(obfMessage, speaker, true);
         if (obfSoundData is null) return;
-        
+
         var fullTtsEvent = new PlayTTSEvent(uid, fullSoundData, true);
         var obfTtsEvent = new PlayTTSEvent(uid, obfSoundData, true);
-        
+
         // TODO: Check obstacles
         var xformQuery = GetEntityQuery<TransformComponent>();
         var sourcePos = _xforms.GetWorldPosition(xformQuery.GetComponent(uid), xformQuery);

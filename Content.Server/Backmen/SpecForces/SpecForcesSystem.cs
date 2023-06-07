@@ -80,7 +80,7 @@ public sealed class SpecForcesSystem : EntitySystem
 
             //EntityManager.RemoveComponent<ActorComponent>(uid);
             var mind = EntityManager.EnsureComponent<MindComponent>(uid);
-            mind.Mind = new Mind.Mind(args.Player.UserId);
+            mind.Mind = new Content.Server.Mind.Mind(args.Player.UserId);
 
             var sess = args.Player;
 

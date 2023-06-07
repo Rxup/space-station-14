@@ -7,6 +7,7 @@
   description: survival-description
   rules:
     - RampingStationEventScheduler
+    - WageScheduler #backmen: currency
 
 - type: gamePreset
   id: Extended
@@ -18,6 +19,7 @@
   description: extended-description
   rules:
   - BasicStationEventScheduler
+  - WageScheduler #backmen: currency
 
 - type: gamePreset
   id: Secret
@@ -51,6 +53,7 @@
   rules:
     - Traitor
     - BasicStationEventScheduler
+    - WageScheduler #backmen: currency
 
 - type: gamePreset
   id: Deathmatch
@@ -72,21 +75,23 @@
   rules:
     - Nukeops
     - BasicStationEventScheduler
+    - WageScheduler #backmen: currency
 
-#- type: gamePreset
-#  id: Zombie
-#  alias:
-#    - zombie
-#    - zombies
-##    - Zombies
-#    - zz14
-#    - zomber
-#  name: zombie-title
-#  description: zombie-description
-#  showInVote: false
-#  rules:
-#    - Zombie
-#    - BasicStationEventScheduler
+- type: gamePreset
+  id: Zombie
+  alias:
+  - zombie
+  - zombies
+  - Zombies
+  - zz14
+  - zomber
+  name: zombie-title
+  description: zombie-description
+  showInVote: false
+  rules:
+  - Zombie
+  - BasicStationEventScheduler
+  - WageScheduler #backmen: currency
 
 - type: gamePreset
   id: Pirates
@@ -98,3 +103,4 @@
   rules:
     - Pirates
     - BasicStationEventScheduler
+    - WageScheduler #backmen: currency

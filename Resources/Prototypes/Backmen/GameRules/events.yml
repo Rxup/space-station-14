@@ -9,3 +9,10 @@
     earliestStart: 15
     minimumPlayers: 5
   - type: EvilTwinRule
+
+- type: entity
+  id: WageScheduler
+  parent: BaseGameRule
+  noSpawn: true
+  components:
+    - type: WageSchedulerRule

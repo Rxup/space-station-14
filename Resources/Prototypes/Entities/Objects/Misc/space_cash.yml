@@ -1,5 +1,5 @@
 - type: entity
-  parent: BaseItem
+  parent: SpaceCredit # backmen: currency
   id: SpaceCash
   name: spacebucks
   description: You gotta have money.

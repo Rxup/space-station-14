@@ -74,6 +74,7 @@
     uiKey: enum.PDAUiKey.Key
     preinstalled:
       - NotekeeperCartridge
+      - BankCartridge
     cartridgeSlot:
       priority: -1
       name: Cartridge
@@ -90,6 +91,10 @@
     interfaces:
     - key: enum.PDAUiKey.Key
       type: PDABoundUserInterface
+      #start-backmen: currency
+    - key: enum.StoreUiKey.Key
+      type: StoreBoundUserInterface
+      #end-backmen: currency
     - key: enum.StoreUiKey.Key
       type: StoreBoundUserInterface
     - key: enum.RingerUiKey.Key
@@ -474,7 +479,7 @@
     scanDelay: 1.2
     scanningEndSound:
       path: "/Audio/Items/Medical/healthscanner.ogg"
-      
+
 - type: entity
   parent: BasePDA
   id: ParamedicPDA
@@ -493,7 +498,7 @@
     scanDelay: 0.5
     scanningEndSound:
       path: "/Audio/Items/Medical/healthscanner.ogg"
-      
+
 - type: entity
   parent: BasePDA
   id: ChemistryPDA
