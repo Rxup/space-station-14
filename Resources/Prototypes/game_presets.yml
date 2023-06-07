@@ -31,7 +31,6 @@
   description: secret-description
   rules:
     - Secret
-    - WageScheduler #backmen: currency
 
 - type: gamePreset
   id: Sandbox
