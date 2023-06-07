@@ -1,0 +1,19 @@
+﻿- type: entity
+  parent: BasePDA
+  id: BrigmedPDA
+  name: brigmed PDA
+  description: I wonder whose pulse is on the screen? I hope he doesnt stop... PDA has a built-in health analyzer.
+  components:
+    - type: PDA
+      id: SecurityCadetIDCard
+      state: pda-interncadet
+    - type: Icon
+      state: pda-interncadet
+    - type: PDABorderColor
+      borderColor: "#A32D26"
+      accentHColor: "#447987"
+      accentVColor: "#447987"
+    - type: HealthAnalyzer
+      scanDelay: 1
+      scanningEndSound:
+        path: "/Audio/Items/Medical/healthscanner.ogg"
