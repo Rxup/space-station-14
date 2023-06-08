@@ -1,9 +1,11 @@
 ﻿//using Content.Server.Backmen.Economy.ATM;
 
+using System.Linq;
 using Content.Server.Access.Systems;
 using Content.Server.Backmen.CartridgeLoader.Cartridges;
 using Content.Server.Backmen.Economy.ATM;
 using Content.Server.Backmen.Economy.Wage;
+using Content.Server.Backmen.Mind;
 using Content.Server.GameTicking;
 using Content.Server.GameTicking.Events;
 using Content.Server.Mind.Components;
@@ -18,6 +20,7 @@ using Content.Shared.Inventory;
 using Content.Shared.Popups;
 using Content.Shared.Roles;
 using Robust.Shared.Prototypes;
+using Robust.Shared.Timing;
 
 namespace Content.Server.Backmen.Economy;
 
@@ -63,33 +66,84 @@ public sealed class EconomySystem : EntitySystem
         return true;
     }
 
-    private void OnPlayerSpawned(PlayerSpawnCompleteEvent ev)
+    public BankAccountComponent? AddPlayerBank(EntityUid Player, BankAccountComponent? bankAccount = null, bool AttachWage = true)
     {
-        if (!_cardSystem.TryFindIdCard(ev.Mob, out var idCardComponent))
-            return;
+        if (!_cardSystem.TryFindIdCard(Player, out var idCardComponent))
+            return null;
 
-        if (!TryStoreNewBankAccount(idCardComponent.Owner, idCardComponent, out var bankAccount) ||
-            bankAccount == null || !TryComp<MindComponent>(ev.Mob, out var mindComponent) || mindComponent.Mind == null || mindComponent.Mind.CurrentJob == null)
+        if (!TryComp<MindComponent>(Player, out var mindComponent) || mindComponent.Mind == null)
         {
-            return;
+            return null;
         }
+
         var mind = mindComponent.Mind!;
-        var jobPrototype = mind.CurrentJob!.Prototype;
-        _bankManagerSystem.TryGenerateStartingBalance(bankAccount, jobPrototype);
-        _wageManagerSystem.TryAddAccountToWagePayoutList(bankAccount, jobPrototype);
-        if (!_inventorySystem.TryGetSlotEntity(ev.Mob, "id", out var idUid))
-            return;
+
+        if (bankAccount == null)
+        {
+            if (!TryStoreNewBankAccount(idCardComponent.Owner, idCardComponent, out bankAccount) || bankAccount == null)
+            {
+                return null;
+            }
+
+            if (AttachWage && mindComponent.Mind.CurrentJob == null)
+            {
+                AttachWage = false;
+            }
+
+            if (mind.CurrentJob != null)
+            {
+                var jobPrototype = mind.CurrentJob!.Prototype;
+                _bankManagerSystem.TryGenerateStartingBalance(bankAccount, jobPrototype);
+
+                if (AttachWage)
+                {
+                    _wageManagerSystem.TryAddAccountToWagePayoutList(bankAccount, jobPrototype);
+                }
+            }
+        }
+
+
+        if (!_inventorySystem.TryGetSlotEntity(Player, "id", out var idUid))
+            return bankAccount;
 
         if (!EntityManager.TryGetComponent(idUid, out CartridgeLoaderComponent? cartrdigeLoaderComponent))
-            return;
+            return bankAccount;
 
         foreach (var uid in cartrdigeLoaderComponent.InstalledPrograms)
         {
             if (!EntityManager.TryGetComponent(uid, out BankCartridgeComponent? bankCartrdigeComponent))
                 continue;
 
-            _bankCartridgeSystem.LinkBankAccountToCartridge(bankCartrdigeComponent, bankAccount);
+            if (bankCartrdigeComponent.LinkedBankAccount == null)
+            {
+                _bankCartridgeSystem.LinkBankAccountToCartridge(bankCartrdigeComponent, bankAccount);
+            }
+            else if(bankCartrdigeComponent.LinkedBankAccount.AccountNumber != bankAccount.AccountNumber)
+            {
+                _bankCartridgeSystem.UnlinkBankAccountFromCartridge(bankCartrdigeComponent, bankCartrdigeComponent.LinkedBankAccount);
+                _bankCartridgeSystem.LinkBankAccountToCartridge(bankCartrdigeComponent, bankAccount);
+            }
+            // else: do nothing
         }
+
+        var objectives = mind.AllObjectives.ToList();
+        foreach (var condition in objectives.Where(t => t.Prototype.ID == "BankNote").SelectMany(t => t.Conditions))
+        {
+            if (condition is not MindNoteCondition md)
+            {
+                continue;
+            }
+
+            md.Owner = bankAccount;
+        }
+
         mind.TryAddObjective(_prototype.Index<ObjectivePrototype>("BankNote"));
+
+        return bankAccount;
+    }
+
+    private void OnPlayerSpawned(PlayerSpawnCompleteEvent ev)
+    {
+        AddPlayerBank(ev.Mob);
     }
 }
