@@ -53,4 +53,4 @@
             SecurityCadet: [ 1, 1 ]
             SalvageSpecialist: [ 2, 2 ]
             Quartermaster: [ 1, 1 ]
-            Brigmedic: [ 1, 1 ] # backmen-Brigmedic
+            Brigmedic: [ 0, 1 ] # backmen-Brigmedic
