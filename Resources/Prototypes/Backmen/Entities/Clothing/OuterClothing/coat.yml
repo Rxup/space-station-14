@@ -1,6 +1,6 @@
 - type: entity
   parent: ClothingOuterWinterCoat
-  id: Clothinghoscoatbel
+  id: Clothinghoscoat
   name: Пальто ГСБ
   components:
   - type: Sprite
@@ -10,7 +10,7 @@
 
 - type: entity
   parent: ClothingOuterWinterCoat
-  id: ClothingSovietCoatbel
+  id: ClothingSovietCoat
   name: Пальто СССП
   components:
   - type: Sprite
