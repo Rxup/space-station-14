@@ -1,7 +1,7 @@
 - type: entity
   name: Пистолет Макарова
   parent: BaseWeaponPistol
-  id: WeaponPistolMakarovbel
+  id: WeaponPistolMakarovsssp
   description: Пистолет Макарова, популярен среди офицерского состава СССП, использует .35 калибр
   components:
   - type: Sprite
