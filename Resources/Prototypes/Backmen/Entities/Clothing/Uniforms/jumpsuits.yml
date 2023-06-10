@@ -44,7 +44,7 @@
 
 - type: entity
   parent: ClothingUniformBase
-  id: SovietSoldierUniform
+  id: SovietSoldierUniformSuit
   name: Униформа солдата СССП
   description: Опрятная форма бойца фракции СССП
   components:
@@ -55,7 +55,7 @@
 
 - type: entity
   parent: ClothingUniformBase
-  id: SovietOfficerUniform
+  id: SovietOfficerUniformSuit
   name: Униформа офицера СССП
   description: Опрятная форма офицера фракции СССП
   components:
@@ -66,7 +66,7 @@
 
 - type: entity
   parent: ClothingUniformBase
-  id: ElPresidenteNanotrasen
+  id: ElPresidenteNanotrasenSuit
   name: Костюм Президента Nanotrasen
   description: Великолепно опрятный, элегантный и очень дорогой президента корпорации.
   components:
@@ -77,7 +77,7 @@
 
 - type: entity
   parent: ClothingUniformBase
-  id: PredstavitelNanotrasen
+  id: PredstavitelNanotrasenSuit
   name: Костюм Представителя корпорации NT
   description: Великолепный костюм корпорационной шишки
   components:
@@ -88,7 +88,7 @@
 
 - type: entity
   parent: ClothingUniformBase
-  id: tsfPredstav
+  id: tsfPredstavSuit
   name: Костюм Представителя ТСФ
   description: Покажите кто тут главный в транс-солнечной-федерации!
   components:
@@ -99,7 +99,7 @@
 
 - type: entity
   parent: ClothingUniformBase
-  id: LeutenantUniformtfs
+  id: LeutenantUniformtfsSuit
   name: Униформа лейтенанта войск ТСФ
   description: Руководите военными силами ТСФ!
   components:
@@ -110,7 +110,7 @@
 
 - type: entity
   parent: ClothingUniformBase
-  id: soldiertsfuniform
+  id: soldiertsfuniformSuit
   name: Униформа бойца ТСФ
   description: Служите во славу ТСФ!
   components:
@@ -165,7 +165,7 @@
     
 - type: entity
   parent: ClothingUniformBase
-  id: AgentUniformOne
+  id: AgentUniformOneSuit
   name: Полосатый деловой костюм
   description: Дорогой костюм распространенный в дорогих местах.
   components:
@@ -176,7 +176,7 @@
 
 - type: entity
   parent: ClothingUniformBase
-  id: AgentUniformTwo
+  id: AgentUniformTwoSuit
   name: Деловая жилетка
   description: Дорогой костюм распространенный в дорогих местах.
   components:
@@ -198,7 +198,7 @@
 
 - type: entity
   parent: ClothingUniformBase
-  id: Agentfourseven
+  id: AgentfoursevenSuit
   name: Деловой костюм агента синдиката
   description: Костюм сделанный по специальному заказу, ранее пренадлежал агенту 47
   components:
@@ -209,7 +209,7 @@
 
 - type: entity
   parent: ClothingUniformBase
-  id: MagistratUniform
+  id: MagistratUniformSuit
   name: Костюм магистрата
   description: Увольте пару срочников!
   components:
@@ -220,7 +220,7 @@
 
 - type: entity
   parent: ClothingUniformBase
-  id: BlueshieldUniform
+  id: BlueshieldUniformSuit
   name: Костюм Блюшилд
   description: Носитель данного костюма обязан защищать глав.
   components:
