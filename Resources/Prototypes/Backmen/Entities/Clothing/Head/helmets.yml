@@ -53,7 +53,7 @@
 
 - type: entity
   parent: ClothingHeadBase
-  id: ClothingHeadGermanHelmetbel
+  id: ClothingHeadGermanHelmet
   name: Старый немецкий шлем
   description: Довольно старый шлем, который потрепало временем.
   components:
@@ -70,7 +70,7 @@
 
 - type: entity
   parent: ClothingHeadBase
-  id: ClothingHeadHelmetSSSPBel
+  id: ClothingHeadHelmetSSSP
   name: Легкий советский шлем
   description: Легкий шлем советских войск
   components:
@@ -89,7 +89,7 @@
 
 - type: entity
   parent: ClothingHeadBase
-  id: ClothingHeadHelmetIhsCombathelmetbel
+  id: ClothingHeadHelmetIhsCombathelmet
   name: Тяжелый тактический шлем IHS
   description: Тяжелый шлем неизвестной корпорации, никто не знает кому принадлежат бойцы которые носят данный шлем.
   components:
