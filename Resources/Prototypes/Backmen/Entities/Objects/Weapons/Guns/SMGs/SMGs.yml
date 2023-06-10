@@ -1,7 +1,7 @@
 - type: entity
   name: ПП Витязь
   parent: BaseWeaponRifle
-  id: WeaponSmgVityazbel
+  id: WeaponSmgVityazsssp
   description: Пистолет пулемет витязь, стоит на вооружении у военных сил СССП. использует .20 калибр
   components:
   - type: Sprite
