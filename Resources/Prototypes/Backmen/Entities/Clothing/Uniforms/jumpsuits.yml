@@ -199,7 +199,7 @@
 - type: entity
   parent: ClothingUniformBase
   id: Agentfourseven
-  name: Деловой костюм агента
+  name: Деловой костюм агента синдиката
   description: Костюм сделанный по специальному заказу, ранее пренадлежал агенту 47
   components:
   - type: Sprite
