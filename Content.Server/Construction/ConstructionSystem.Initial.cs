@@ -323,6 +323,13 @@ namespace Content.Server.Construction
             if (!HasComp<HandsComponent>(user))
                 return false;
 
+            // start-backmen: protection system
+            if (!CanBuild(user, constructionPrototype))
+            {
+                return false;
+            }
+            // end-backmen: protection system
+
             foreach (var condition in constructionPrototype.Conditions)
             {
                 if (!condition.Condition(user, user.ToCoordinates(0, 0), Direction.South))
@@ -392,6 +399,14 @@ namespace Content.Server.Construction
                 _popup.PopupEntity(Loc.GetString("construction-system-inside-container"), user, user);
                 return;
             }
+
+            // start-backmen: protection system
+            if (!CanBuild(user, constructionPrototype))
+            {
+                _popup.PopupEntity(Loc.GetString("construction-system-protected"), user, user);
+                return;
+            }
+            // end-backmen: protection system
 
             var startNode = constructionGraph.Nodes[constructionPrototype.StartNode];
             var targetNode = constructionGraph.Nodes[constructionPrototype.TargetNode];

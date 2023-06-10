@@ -10,15 +10,12 @@ namespace Content.Server.Backmen.Mind;
 
 public sealed class MindNoteCondition : IObjectiveCondition
 {
+
     private IEntityManager _entityManager => IoCManager.Resolve<IEntityManager>();
     private BankManagerSystem _BankManagerSystem => _entityManager.System<BankManagerSystem>();
-    /*
-    private WageManagerSystem _wageManagerSystem => _entityManager.System<WageManagerSystem>();
-
-    private InventorySystem _inventorySystem => _entityManager.System<InventorySystem>();*/
     private IdCardSystem _cardSystem => _entityManager.System<IdCardSystem>();
 
-    private BankAccountComponent? Owner { get; set; }
+    public BankAccountComponent? Owner { get; set; }
 
     public bool Equals(IObjectiveCondition? other)
     {
@@ -39,11 +36,8 @@ public sealed class MindNoteCondition : IObjectiveCondition
         return Owner?.GetHashCode() ?? 0;
     }
 
-    private MindNoteCondition NewEmpty => new MindNoteCondition
-    {
-        Title = Loc.GetString("character-info-memories-placeholder-text"),
-        Description = ""
-    };
+    private MindNoteCondition NewEmpty => new MindNoteCondition { Title = Loc.GetString("character-info-memories-placeholder-text")};
+
     public IObjectiveCondition GetAssigned(Server.Mind.Mind mind)
     {
         var entity = mind.OwnedEntity;
@@ -59,23 +53,24 @@ public sealed class MindNoteCondition : IObjectiveCondition
             return NewEmpty;
         }
 
-        var bankAccount = _BankManagerSystem.GetBankAccount(idCardComponent.StoredBankAccountNumber);
+        var bank = _BankManagerSystem.GetBankAccount(idCardComponent.StoredBankAccountNumber);
 
-        if (bankAccount == null)
+        if (bank == null)
         {
             return NewEmpty;
         }
-
         return new MindNoteCondition()
         {
-            Title = Loc.GetString("character-info-memories-placeholder-text"),
-            Owner = bankAccount,
-            Description = Loc.GetString("memory-account-number",("value",bankAccount.AccountNumber))+"\n"+Loc.GetString("memory-account-pin",("value",bankAccount.AccountPin))
+            Title =  Loc.GetString("character-info-memories-placeholder-text"),
+            Owner = bank,
         };
     }
 
     public string Title { get; set; } = "";
-    public string Description { get; set; } = "";
+    public string Description => Owner != null
+        ? Loc.GetString("memory-account-number", ("value", Owner!.AccountNumber)) + "\n" +
+          Loc.GetString("memory-account-pin", ("value", Owner!.AccountPin))
+        : "";
     public SpriteSpecifier Icon { get; } = SpriteSpecifier.Invalid;
     public float Progress { get; } = 0;
     public float Difficulty { get; } = 0;

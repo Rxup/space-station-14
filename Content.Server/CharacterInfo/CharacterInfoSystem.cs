@@ -27,10 +27,6 @@ public sealed class CharacterInfoSystem : EntitySystem
         var jobTitle = "No Profession";
         var briefing = "!!ERROR: No Briefing!!"; //should never show on the UI unless there's a bug
 
-        // start-backmen: currency
-        var memories = new Dictionary<string, string>();
-        // end-backmen: currency
-
         if (EntityManager.TryGetComponent(entity, out MindComponent? mindComponent) && mindComponent.Mind != null)
         {
             var mind = mindComponent.Mind;
