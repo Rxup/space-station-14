@@ -22,7 +22,7 @@
       
 - type: entity
   parent: ClothingUniformBase
-  id: GermanSuitBel
+  id: GermanSuit
   name: Форма Немецкого Солдата
   description: Военная форма немецких войск
   components:
@@ -33,7 +33,7 @@
 
 - type: entity
   parent: ClothingUniformBase
-  id: GermanOfficerSuitBel
+  id: GermanOfficerSuit
   name: Форма немецкого офицера
   description: Форма которую носят немецкие офицеры
   components:
@@ -44,7 +44,7 @@
 
 - type: entity
   parent: ClothingUniformBase
-  id: SovietSoldierUniformBel
+  id: SovietSoldierUniform
   name: Униформа солдата СССП
   description: Опрятная форма бойца фракции СССП
   components:
@@ -55,7 +55,7 @@
 
 - type: entity
   parent: ClothingUniformBase
-  id: SovietOfficerUniformBel
+  id: SovietOfficerUniform
   name: Униформа офицера СССП
   description: Опрятная форма офицера фракции СССП
   components:
@@ -66,7 +66,7 @@
 
 - type: entity
   parent: ClothingUniformBase
-  id: ElPresidenteNanotrasenBel
+  id: ElPresidenteNanotrasen
   name: Костюм Президента Nanotrasen
   description: Великолепно опрятный, элегантный и очень дорогой президента корпорации.
   components:
@@ -77,7 +77,7 @@
 
 - type: entity
   parent: ClothingUniformBase
-  id: PredstavitelNanotrasenBelov
+  id: PredstavitelNanotrasen
   name: Костюм Представителя корпорации NT
   description: Великолепный костюм корпорационной шишки
   components:
@@ -88,7 +88,7 @@
 
 - type: entity
   parent: ClothingUniformBase
-  id: tsfPredstavbel
+  id: tsfPredstav
   name: Костюм Представителя ТСФ
   description: Покажите кто тут главный в транс-солнечной-федерации!
   components:
@@ -99,7 +99,7 @@
 
 - type: entity
   parent: ClothingUniformBase
-  id: LeutenantUniformtfsbelov
+  id: LeutenantUniformtfs
   name: Униформа лейтенанта войск ТСФ
   description: Руководите военными силами ТСФ!
   components:
@@ -110,7 +110,7 @@
 
 - type: entity
   parent: ClothingUniformBase
-  id: soldiertsfuniformbelov
+  id: soldiertsfuniform
   name: Униформа бойца ТСФ
   description: Служите во славу ТСФ!
   components:
@@ -165,7 +165,7 @@
     
 - type: entity
   parent: ClothingUniformBase
-  id: AgentUniformOnebel
+  id: AgentUniformOne
   name: Полосатый деловой костюм
   description: Дорогой костюм распространенный в дорогих местах.
   components:
@@ -176,7 +176,7 @@
 
 - type: entity
   parent: ClothingUniformBase
-  id: AgentUniformTwobel
+  id: AgentUniformTwo
   name: Деловая жилетка
   description: Дорогой костюм распространенный в дорогих местах.
   components:
@@ -187,7 +187,7 @@
 
 - type: entity
   parent: ClothingUniformBase
-  id: JokerSuitbel
+  id: JokerSuit
   name: Костюм Джокера
   description: Тот самый костюм который носил преступник под псевдонимом Джокер
   components:
@@ -198,7 +198,7 @@
 
 - type: entity
   parent: ClothingUniformBase
-  id: Agentfoursevenbel
+  id: Agentfourseven
   name: Деловой костюм агента
   description: Костюм сделанный по специальному заказу, ранее пренадлежал агенту 47
   components:
@@ -209,7 +209,7 @@
 
 - type: entity
   parent: ClothingUniformBase
-  id: MagistratUniformbel
+  id: MagistratUniform
   name: Костюм магистрата
   description: Увольте пару срочников!
   components:
@@ -220,7 +220,7 @@
 
 - type: entity
   parent: ClothingUniformBase
-  id: BlueshieldUniformbel
+  id: BlueshieldUniform
   name: Костюм Блюшилд
   description: Носитель данного костюма обязан защищать глав.
   components:
