@@ -1,6 +1,6 @@
 - type: entity
   parent: ClothingOuterBase
-  id: ClothingWitchHunterbel
+  id: ClothingWitchHunter
   name: Накидка охотника за ведьмами
   description: Убей этих ведьм!
   components:
@@ -11,7 +11,7 @@
 
 - type: entity
   parent: ClothingOuterBase
-  id: ClothingMagistraterobabel
+  id: ClothingMagistrateroba
   name: Накидка магистрата
   description: Пора уволить срочников.
   components:
