@@ -1,6 +1,6 @@
 - type: entity
   parent: ClothingHeadBase
-  id: ClothingHeadHatUshanka
+  id: ClothingHeadHatUshankaSSSP
   name: Ушанка СССП
   description: "Отлично подходит для Сибири, да?"
   components:
