@@ -1,4 +1,4 @@
-ent-ClothingHeadHatUshanka = Ушанка СССП
+ent-ClothingHeadHatUshankaSSSP = Ушанка СССП
     .desc = Отлично подходит для Сибири, да?
     .suffix = { "" } 
 
