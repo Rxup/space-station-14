@@ -68,7 +68,7 @@
 
 - type: entity
   parent: ClothingMaskBase
-  id: ClothingJoker
+  id: ClothingJokermask
   name: Маска Джокера
   description: Страшная маска джокера, больного психопата которая неизвестно как попала на станцию
   components:
