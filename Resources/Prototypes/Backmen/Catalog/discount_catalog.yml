@@ -1,0 +1,54 @@
+﻿- type: listing
+  id: VendingDiscountFoodSnackCheesie
+  productEntity: FoodSnackCheesie
+  cost:
+    SpaceCredits: 20
+  categories:
+    - VendingDiscount
+  conditions:
+    - !type:ListingLimitedStockCondition
+      stock: 3
+
+- type: listing
+  id: VendingDiscountFoodSnackChips
+  productEntity: FoodSnackChips
+  cost:
+    SpaceCredits: 20
+  categories:
+    - VendingDiscount
+  conditions:
+    - !type:ListingLimitedStockCondition
+      stock: 3
+
+- type: listing
+  id: VendingDiscountFoodSnackBoritos
+  productEntity: FoodSnackBoritos
+  cost:
+    SpaceCredits: 20
+  categories:
+    - VendingDiscount
+  conditions:
+    - !type:ListingLimitedStockCondition
+      stock: 2
+
+- type: listing
+  id: VendingDiscountFoodSnackPopcorn
+  productEntity: FoodSnackPopcorn
+  cost:
+    SpaceCredits: 20
+  categories:
+    - VendingDiscount
+  conditions:
+    - !type:ListingLimitedStockCondition
+      stock: 1
+
+- type: listing
+  id: VendingDiscountFoodSnackEnergy
+  productEntity: FoodSnackEnergy
+  cost:
+    SpaceCredits: 20
+  categories:
+    - VendingDiscount
+  conditions:
+    - !type:ListingLimitedStockCondition
+      stock: 2

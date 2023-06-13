@@ -13,12 +13,15 @@ using Content.Server.Objectives;
 using Content.Server.Store.Components;
 using Content.Server.Store.Systems;
 using Content.Shared.Access.Components;
+using Content.Shared.Backmen.Store;
 using Content.Shared.CartridgeLoader;
 using Content.Shared.GameTicking;
 using Content.Shared.Interaction;
 using Content.Shared.Inventory;
 using Content.Shared.Popups;
 using Content.Shared.Roles;
+using Content.Shared.Store;
+using JetBrains.Annotations;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
 
@@ -39,7 +42,12 @@ public sealed class EconomySystem : EntitySystem
         SubscribeLocalEvent<PlayerSpawnCompleteEvent>(OnPlayerSpawned, after: new []{ typeof(Corvax.Loadout.LoadoutSystem) });
         SubscribeLocalEvent<RoundStartingEvent>(OnRoundStartingEvent);
     }
+    #region EventHandle
 
+    private void OnPlayerSpawned(PlayerSpawnCompleteEvent ev)
+    {
+        AddPlayerBank(ev.Mob);
+    }
     private void OnRoundStartingEvent(RoundStartingEvent ev)
     {
         foreach (var department in _prototype.EnumeratePrototypes<DepartmentPrototype>())
@@ -51,6 +59,10 @@ public sealed class EconomySystem : EntitySystem
         }
     }
 
+    #endregion
+
+    #region PublicApi
+    [PublicAPI]
     public bool TryStoreNewBankAccount(EntityUid uid, IdCardComponent? id, out BankAccountComponent? bankAccount)
     {
         bankAccount = null;
@@ -65,7 +77,7 @@ public sealed class EconomySystem : EntitySystem
         Dirty(id);
         return true;
     }
-
+    [PublicAPI]
     public BankAccountComponent? AddPlayerBank(EntityUid Player, BankAccountComponent? bankAccount = null, bool AttachWage = true)
     {
         if (!_cardSystem.TryFindIdCard(Player, out var idCardComponent))
@@ -141,9 +153,5 @@ public sealed class EconomySystem : EntitySystem
 
         return bankAccount;
     }
-
-    private void OnPlayerSpawned(PlayerSpawnCompleteEvent ev)
-    {
-        AddPlayerBank(ev.Mob);
-    }
+    #endregion
 }
