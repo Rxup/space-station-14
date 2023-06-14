@@ -29,3 +29,7 @@ ent-ClothingBalaclavaSwat = Балаклава
 ent-ClothingihsGasmask = Противогаз IHS
     .desc = Противогаз тактических войск IHS.
     .suffix = { "" }
+
+ent-ClothingMaskblacksilense = Трофейная маска черной тишины
+    .desc = Маска знаменитого охотника по прозвищу Черная тишина. Источает отчаяние.
+    .suffix = { "" }
