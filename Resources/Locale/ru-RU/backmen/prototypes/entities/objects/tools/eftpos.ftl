@@ -1,35 +1,41 @@
-﻿ent-Eftpos = EFTPOS
+﻿ent-ATM = Банкомат
+    .desc = Снятие и внесение наличных!
+
+ent-ATMFrame = Каркас банкомата
+    .desc = Строительство банкомата
+
+ent-Eftpos = Терминал безналичной оплаты
     .desc = Проведите вашей ID картой чтобы оплатить покупку безналичными.
     .suffix = { "" }
 
 ent-EftposCargo = { ent-Eftpos }
     .desc = { ent-Eftpos.desc }
-    .suffix = { "Cargo" }
+    .suffix = { "Карго" }
 
 ent-EftposCivilian = { ent-Eftpos }
     .desc = { ent-Eftpos.desc }
-    .suffix = { "Civilian" }
+    .suffix = { "Гражданский" }
 
 ent-EftposCommand = { ent-Eftpos }
     .desc = { ent-Eftpos.desc }
-    .suffix = { "Command" }
+    .suffix = { "Коммандный" }
 
 ent-EftposEngineering = { ent-Eftpos }
     .desc = { ent-Eftpos.desc }
-    .suffix = { "Engineering" }
+    .suffix = { "Инженерный" }
 
 ent-EftposMedical = { ent-Eftpos }
     .desc = { ent-Eftpos.desc }
-    .suffix = { "Medical" }
+    .suffix = { "Медицинский" }
 
 ent-EftposSecurity = { ent-Eftpos }
     .desc = { ent-Eftpos.desc }
-    .suffix = { "Security" }
+    .suffix = { "СБ" }
 
 ent-EftposScience = { ent-Eftpos }
     .desc = { ent-Eftpos.desc }
-    .suffix = { "Science" }
+    .suffix = { "РНД" }
 
 ent-EftposSpecific = { ent-Eftpos }
     .desc = { ent-Eftpos.desc }
-    .suffix = { "Specific" }
+    .suffix = { "Редкие отделы" }
