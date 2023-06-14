@@ -136,6 +136,6 @@
   description: Маска знаменитого охотника по прозвищу Черная тишина. Источает отчаяние.
   components:
   - type: Sprite
-   sprite: Backmen/Clothing/Head/Masks/blacksilense.rsi
+    sprite: Backmen/Clothing/Head/Masks/blacksilense.rsi
   - type: Clothing
     sprite: Backmen/Clothing/Head/Masks/blacksilense.rsi
