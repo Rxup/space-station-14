@@ -1852,6 +1852,35 @@ entities:
       type: AmbientSound
     - fixtures: {}
       type: Fixtures
+- proto: CentcomIDCard
+  entities:
+  - uid: 276
+    components:
+    - name: карта ПОПГС
+      type: MetaData
+    - pos: -3.4879584,3.537763
+      parent: 1
+      type: Transform
+    - nextSound: 4454.9002131
+      type: EmitSoundOnCollide
+  - uid: 277
+    components:
+    - name: карта ПОПГС
+      type: MetaData
+    - pos: 4.510474,3.635613
+      parent: 1
+      type: Transform
+    - nextSound: 4456.1844936
+      type: EmitSoundOnCollide
+  - uid: 278
+    components:
+    - name: карта ОПГС
+      type: MetaData
+    - pos: 1.607069,6.490888
+      parent: 1
+      type: Transform
+    - nextSound: 4489.5751671
+      type: EmitSoundOnCollide
 - proto: Chair
   entities:
   - uid: 279
@@ -1934,6 +1963,9 @@ entities:
       pos: 3.5,-0.5
       parent: 1
       type: Transform
+    - following:
+      - invalid
+      type: Followed
   - uid: 291
     components:
     - rot: -1.5707963267948966 rad
@@ -2034,39 +2066,15 @@ entities:
     - canCollide: False
       type: Physics
     - type: InsideEntityStorage
+- proto: ClothingBalaclavaSwatBel
+  entities:
   - uid: 298
     components:
-    - flags: InContainer
-      type: MetaData
-    - parent: 423
+    - pos: -3.6172218,-13.367662
+      parent: 1
       type: Transform
-    - nextSound: 158.30286
+    - nextSound: 8006.5573956
       type: EmitSoundOnCollide
-    - canCollide: False
-      type: Physics
-    - type: InsideEntityStorage
-  - uid: 438
-    components:
-    - flags: InContainer
-      type: MetaData
-    - parent: 432
-      type: Transform
-    - nextSound: 159.191682
-      type: EmitSoundOnCollide
-    - canCollide: False
-      type: Physics
-    - type: InsideEntityStorage
-  - uid: 446
-    components:
-    - flags: InContainer
-      type: MetaData
-    - parent: 442
-      type: Transform
-    - nextSound: 159.8628495
-      type: EmitSoundOnCollide
-    - canCollide: False
-      type: Physics
-    - type: InsideEntityStorage
 - proto: ClothingBeltChiefEngineerFilled
   entities:
   - uid: 299
@@ -2357,30 +2365,6 @@ entities:
     - canCollide: False
       type: Physics
     - type: InsideEntityStorage
-- proto: ClothingHeadHatCapUSSPBlack
-  entities:
-  - uid: 431
-    components:
-    - flags: InContainer
-      type: MetaData
-    - parent: 432
-      type: Transform
-    - nextSound: 258.8920975
-      type: EmitSoundOnCollide
-    - canCollide: False
-      type: Physics
-    - type: InsideEntityStorage
-  - uid: 443
-    components:
-    - flags: InContainer
-      type: MetaData
-    - parent: 442
-      type: Transform
-    - nextSound: 257.7256952
-      type: EmitSoundOnCollide
-    - canCollide: False
-      type: Physics
-    - type: InsideEntityStorage
 - proto: ClothingHeadsetAltSyndicate
   entities:
   - uid: 55
@@ -2471,43 +2455,6 @@ entities:
     - canCollide: False
       type: Physics
     - type: InsideEntityStorage
-- proto: ClothingMaskGasAtmosian
-  entities:
-  - uid: 277
-    components:
-    - flags: InContainer
-      type: MetaData
-    - parent: 423
-      type: Transform
-    - nextSound: 356.990897
-      type: EmitSoundOnCollide
-    - canCollide: False
-      type: Physics
-    - type: InsideEntityStorage
-- proto: ClothingMaskGasExplorer
-  entities:
-  - uid: 436
-    components:
-    - flags: InContainer
-      type: MetaData
-    - parent: 432
-      type: Transform
-    - nextSound: 212.2755109
-      type: EmitSoundOnCollide
-    - canCollide: False
-      type: Physics
-    - type: InsideEntityStorage
-  - uid: 748
-    components:
-    - flags: InContainer
-      type: MetaData
-    - parent: 442
-      type: Transform
-    - nextSound: 213.4497044
-      type: EmitSoundOnCollide
-    - canCollide: False
-      type: Physics
-    - type: InsideEntityStorage
 - proto: ClothingMaskGasSwat
   entities:
   - uid: 62
@@ -2561,30 +2508,6 @@ entities:
     - parent: 102
       type: Transform
     - nextSound: 6617.1260341
-      type: EmitSoundOnCollide
-    - canCollide: False
-      type: Physics
-    - type: InsideEntityStorage
-- proto: ClothingOuterCoatUSSPOvercoatBlack
-  entities:
-  - uid: 437
-    components:
-    - flags: InContainer
-      type: MetaData
-    - parent: 432
-      type: Transform
-    - nextSound: 243.6619052
-      type: EmitSoundOnCollide
-    - canCollide: False
-      type: Physics
-    - type: InsideEntityStorage
-  - uid: 541
-    components:
-    - flags: InContainer
-      type: MetaData
-    - parent: 442
-      type: Transform
-    - nextSound: 242.7723188
       type: EmitSoundOnCollide
     - canCollide: False
       type: Physics
@@ -2736,6 +2659,30 @@ entities:
     - canCollide: False
       type: Physics
     - type: InsideEntityStorage
+- proto: ClothingShoesUSSPBlack
+  entities:
+  - uid: 433
+    components:
+    - flags: InContainer
+      type: MetaData
+    - parent: 432
+      type: Transform
+    - nextSound: 6915.8416889
+      type: EmitSoundOnCollide
+    - canCollide: False
+      type: Physics
+    - type: InsideEntityStorage
+  - uid: 451
+    components:
+    - flags: InContainer
+      type: MetaData
+    - parent: 442
+      type: Transform
+    - nextSound: 6916.6127674
+      type: EmitSoundOnCollide
+    - canCollide: False
+      type: Physics
+    - type: InsideEntityStorage
 - proto: ClothingSovietCoatbel
   entities:
   - uid: 428
@@ -2745,21 +2692,6 @@ entities:
     - parent: 423
       type: Transform
     - nextSound: 6956.3590324
-      type: EmitSoundOnCollide
-    - canCollide: False
-      type: Physics
-    - type: InsideEntityStorage
-- proto: ClothingUniformJumpsuitUSSPBlack
-  entities:
-  - uid: 278
-    components:
-    - flags: InContainer
-      type: MetaData
-    - parent: 423
-      type: Transform
-    - nextUpdate: 275.3338866
-      type: SuitSensor
-    - nextSound: 275.5338866
       type: EmitSoundOnCollide
     - canCollide: False
       type: Physics
@@ -2848,6 +2780,9 @@ entities:
     - pos: 0.5,3.5
       parent: 1
       type: Transform
+    - following:
+      - invalid
+      type: Followed
 - proto: ComputerCloningConsole
   entities:
   - uid: 306
@@ -2907,47 +2842,6 @@ entities:
       type: MeleeWeapon
     - nextSound: 4176.3380137
       type: EmitSoundOnCollide
-- proto: DoubleEmergencyOxygenTankFilled
-  entities:
-  - uid: 424
-    components:
-    - flags: InContainer
-      type: MetaData
-    - parent: 423
-      type: Transform
-    - nextAttack: 199.2200401
-      type: MeleeWeapon
-    - nextSound: 199.4200401
-      type: EmitSoundOnCollide
-    - canCollide: False
-      type: Physics
-    - type: InsideEntityStorage
-  - uid: 425
-    components:
-    - flags: InContainer
-      type: MetaData
-    - parent: 432
-      type: Transform
-    - nextAttack: 197.5024269
-      type: MeleeWeapon
-    - nextSound: 197.7024269
-      type: EmitSoundOnCollide
-    - canCollide: False
-      type: Physics
-    - type: InsideEntityStorage
-  - uid: 451
-    components:
-    - flags: InContainer
-      type: MetaData
-    - parent: 442
-      type: Transform
-    - nextAttack: 198.3572579
-      type: MeleeWeapon
-    - nextSound: 198.5572579
-      type: EmitSoundOnCollide
-    - canCollide: False
-      type: Physics
-    - type: InsideEntityStorage
 - proto: DrinkVodkaBottleFull
   entities:
   - uid: 313
@@ -3072,7 +2966,7 @@ entities:
       type: EmitSoundOnCollide
   - uid: 319
     components:
-    - pos: -5.4787445,-16.214085
+    - pos: -5.331108,-16.376549
       parent: 1
       type: Transform
     - nextSound: 9907.8833646
@@ -3103,6 +2997,7 @@ entities:
     - inletTwoConcentration: 0.78
       inletOneConcentration: 0.22
       targetPressure: 100
+      enabled: True
       type: GasMixer
     - nextSound: 5430.0672236
       type: EmitSoundOnCollide
@@ -3820,17 +3715,6 @@ entities:
       type: Thruster
 - proto: IdCardRO
   entities:
-  - uid: 276
-    components:
-    - flags: InContainer
-      type: MetaData
-    - parent: 423
-      type: Transform
-    - nextSound: 179.6379205
-      type: EmitSoundOnCollide
-    - canCollide: False
-      type: Physics
-    - type: InsideEntityStorage
   - uid: 416
     components:
     - name: Карта Офицера СССП
@@ -3881,28 +3765,6 @@ entities:
       type: Transform
     - nextSound: 4436.2376338
       type: EmitSoundOnCollide
-  - uid: 433
-    components:
-    - flags: InContainer
-      type: MetaData
-    - parent: 432
-      type: Transform
-    - nextSound: 172.8446731
-      type: EmitSoundOnCollide
-    - canCollide: False
-      type: Physics
-    - type: InsideEntityStorage
-  - uid: 450
-    components:
-    - flags: InContainer
-      type: MetaData
-    - parent: 442
-      type: Transform
-    - nextSound: 173.5465136
-      type: EmitSoundOnCollide
-    - canCollide: False
-      type: Physics
-    - type: InsideEntityStorage
 - proto: LampGold
   entities:
   - uid: 421
@@ -3978,8 +3840,6 @@ entities:
     - pos: 2.5,6.5
       parent: 1
       type: Transform
-    - locked: False
-      type: Lock
     - air:
         volume: 200
         immutable: False
@@ -4003,16 +3863,14 @@ entities:
           showEnts: False
           occludes: True
           ents:
-          - 430
-          - 429
-          - 276
-          - 428
-          - 427
-          - 426
-          - 277
-          - 278
-          - 298
           - 424
+          - 425
+          - 426
+          - 427
+          - 428
+          - 429
+          - 430
+          - 431
         paper_label: !type:ContainerSlot
           showEnts: False
           occludes: True
@@ -4027,8 +3885,6 @@ entities:
     - pos: -3.5,2.5
       parent: 1
       type: Transform
-    - locked: False
-      type: Lock
     - air:
         volume: 200
         immutable: False
@@ -4052,17 +3908,15 @@ entities:
           showEnts: False
           occludes: True
           ents:
-          - 431
           - 433
-          - 425
+          - 434
+          - 435
+          - 436
           - 437
           - 438
-          - 436
+          - 439
           - 440
           - 441
-          - 439
-          - 435
-          - 434
         paper_label: !type:ContainerSlot
           showEnts: False
           occludes: True
@@ -4075,8 +3929,6 @@ entities:
     - pos: 4.5,2.5
       parent: 1
       type: Transform
-    - locked: False
-      type: Lock
     - air:
         volume: 200
         immutable: False
@@ -4100,17 +3952,15 @@ entities:
           showEnts: False
           occludes: True
           ents:
-          - 451
-          - 748
-          - 446
           - 443
-          - 450
-          - 541
-          - 449
-          - 448
-          - 447
-          - 445
           - 444
+          - 445
+          - 446
+          - 447
+          - 448
+          - 449
+          - 450
+          - 451
         paper_label: !type:ContainerSlot
           showEnts: False
           occludes: True
@@ -4148,18 +3998,18 @@ entities:
           showEnts: False
           occludes: True
           ents:
-          - 61
-          - 56
-          - 62
-          - 51
-          - 53
-          - 58
-          - 57
-          - 54
-          - 60
-          - 52
-          - 55
           - 59
+          - 55
+          - 52
+          - 60
+          - 54
+          - 57
+          - 58
+          - 53
+          - 51
+          - 62
+          - 56
+          - 61
         paper_label: !type:ContainerSlot
           showEnts: False
           occludes: True
@@ -4259,6 +4109,9 @@ entities:
           occludes: True
           ent: null
       type: ContainerContainer
+    - following:
+      - invalid
+      type: Followed
   - uid: 89
     components:
     - pos: -3.5,-11.5
@@ -4306,6 +4159,9 @@ entities:
           occludes: True
           ent: null
       type: ContainerContainer
+    - following:
+      - invalid
+      type: Followed
   - uid: 102
     components:
     - pos: -2.5000076,-10.500052
@@ -4353,6 +4209,9 @@ entities:
           occludes: True
           ent: null
       type: ContainerContainer
+    - following:
+      - invalid
+      type: Followed
 - proto: LockerWallMedicalFilled
   entities:
   - uid: 452
@@ -4367,6 +4226,74 @@ entities:
       pos: 4.5,-15.5
       parent: 1
       type: Transform
+- proto: MagazinePistolHighCapacityHighVelocity
+  entities:
+  - uid: 425
+    components:
+    - flags: InContainer
+      type: MetaData
+    - parent: 423
+      type: Transform
+    - nextSound: 8176.5534963
+      type: EmitSoundOnCollide
+    - canCollide: False
+      type: Physics
+    - type: InsideEntityStorage
+  - uid: 431
+    components:
+    - flags: InContainer
+      type: MetaData
+    - parent: 423
+      type: Transform
+    - nextSound: 8176.9976008
+      type: EmitSoundOnCollide
+    - canCollide: False
+      type: Physics
+    - type: InsideEntityStorage
+  - uid: 436
+    components:
+    - flags: InContainer
+      type: MetaData
+    - parent: 432
+      type: Transform
+    - nextSound: 8173.2477532
+      type: EmitSoundOnCollide
+    - canCollide: False
+      type: Physics
+    - type: InsideEntityStorage
+  - uid: 438
+    components:
+    - flags: InContainer
+      type: MetaData
+    - parent: 432
+      type: Transform
+    - nextSound: 8173.7248291
+      type: EmitSoundOnCollide
+    - canCollide: False
+      type: Physics
+    - type: InsideEntityStorage
+  - uid: 446
+    components:
+    - flags: InContainer
+      type: MetaData
+    - parent: 442
+      type: Transform
+    - nextSound: 8175.2852125
+      type: EmitSoundOnCollide
+    - canCollide: False
+      type: Physics
+    - type: InsideEntityStorage
+  - uid: 450
+    components:
+    - flags: InContainer
+      type: MetaData
+    - parent: 442
+      type: Transform
+    - nextSound: 8174.7584922
+      type: EmitSoundOnCollide
+    - canCollide: False
+      type: Physics
+    - type: InsideEntityStorage
 - proto: MaterialBiomass
   entities:
   - uid: 455
@@ -4409,6 +4336,9 @@ entities:
       type: Transform
     - nextSound: 8342.9935164
       type: EmitSoundOnCollide
+    - following:
+      - invalid
+      type: Followed
 - proto: Multitool
   entities:
   - uid: 460
@@ -4421,6 +4351,9 @@ entities:
       type: NetworkConfigurator
     - nextSound: 5954.8898282
       type: EmitSoundOnCollide
+    - following:
+      - invalid
+      type: Followed
 - proto: OxygenCanister
   entities:
   - uid: 461
@@ -4614,6 +4547,9 @@ entities:
     - pos: 2.5,-5.5
       parent: 1
       type: Transform
+    - following:
+      - invalid
+      type: Followed
 - proto: PosterLegit12Gauge
   entities:
   - uid: 490
@@ -4677,6 +4613,9 @@ entities:
     - pos: -0.5,0.5
       parent: 1
       type: Transform
+    - following:
+      - invalid
+      type: Followed
   - uid: 501
     components:
     - pos: 0.5,-0.5
@@ -4789,6 +4728,9 @@ entities:
       pos: 4.5,-0.5
       parent: 1
       type: Transform
+    - following:
+      - invalid
+      type: Followed
   - uid: 520
     components:
     - rot: 1.5707963267948966 rad
@@ -5027,6 +4969,13 @@ entities:
     - canCollide: False
       type: Physics
     - type: InsideEntityStorage
+- proto: SpawnMobCleanBot
+  entities:
+  - uid: 541
+    components:
+    - pos: 0.5,-1.5
+      parent: 1
+      type: Transform
 - proto: StoolBar
   entities:
   - uid: 542
@@ -5406,6 +5355,9 @@ entities:
     - pos: -2.5,5.5
       parent: 1
       type: Transform
+    - following:
+      - invalid
+      type: Followed
   - uid: 597
     components:
     - pos: 3.5,5.5
@@ -5539,6 +5491,9 @@ entities:
     - pos: 6.5,2.5
       parent: 1
       type: Transform
+    - following:
+      - invalid
+      type: Followed
   - uid: 623
     components:
     - pos: -3.5,-5.5
@@ -5574,6 +5529,9 @@ entities:
     - pos: -2.5,-9.5
       parent: 1
       type: Transform
+    - following:
+      - invalid
+      type: Followed
   - uid: 630
     components:
     - pos: 3.5,-5.5
@@ -6180,6 +6138,49 @@ entities:
     - pos: 2.5,-9.5
       parent: 1
       type: Transform
+- proto: WeaponPistolCobra
+  entities:
+  - uid: 424
+    components:
+    - flags: InContainer
+      type: MetaData
+    - parent: 423
+      type: Transform
+    - nextFire: 8167.35143
+      type: Gun
+    - nextSound: 8167.55143
+      type: EmitSoundOnCollide
+    - canCollide: False
+      type: Physics
+    - type: InsideEntityStorage
+- proto: WeaponPistolMk58
+  entities:
+  - uid: 437
+    components:
+    - flags: InContainer
+      type: MetaData
+    - parent: 432
+      type: Transform
+    - nextFire: 8162.0172266
+      type: Gun
+    - nextSound: 8162.2172266
+      type: EmitSoundOnCollide
+    - canCollide: False
+      type: Physics
+    - type: InsideEntityStorage
+  - uid: 443
+    components:
+    - flags: InContainer
+      type: MetaData
+    - parent: 442
+      type: Transform
+    - nextFire: 8163.5706152
+      type: Gun
+    - nextSound: 8163.7706152
+      type: EmitSoundOnCollide
+    - canCollide: False
+      type: Physics
+    - type: InsideEntityStorage
 - proto: WindowReinforcedDirectional
   entities:
   - uid: 741
