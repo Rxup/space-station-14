@@ -71,7 +71,7 @@ public sealed class MindNoteCondition : IObjectiveCondition
         ? Loc.GetString("memory-account-number", ("value", Owner!.AccountNumber)) + "\n" +
           Loc.GetString("memory-account-pin", ("value", Owner!.AccountPin))
         : "";
-    public SpriteSpecifier Icon { get; } = SpriteSpecifier.Invalid;
+    public SpriteSpecifier Icon { get; } = new SpriteSpecifier.Rsi(new ResPath("Backmen/Objects/Tools/rimbank.rsi"), "icon");
     public float Progress { get; } = 0;
     public float Difficulty { get; } = 0;
 }
