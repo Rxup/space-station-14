@@ -1,4 +1,52 @@
-﻿- type: entity
+﻿# Construction Frame
+
+- type: entity
+  noSpawn: true
+  id: ATMFrame
+  name: atm frame
+  description: A construction frame for a atm.
+  placement:
+    mode: SnapgridCenter
+  components:
+    - type: Clickable
+    - type: InteractionOutline
+    - type: Transform
+      anchored: true
+    - type: Sprite
+      drawdepth: WallMountedItems
+      netsync: false
+      sprite: Backmen/Structures/Wallmounts/atm.rsi
+      state: frame
+    - type: Construction
+      graph: ATM
+      node: parts
+    - type: WallMount
+      arc: 360
+
+- type: entity
+  noSpawn: true
+  id: ATMFrameWired
+  name: atm frame
+  description: A construction frame for a atm.
+  placement:
+    mode: SnapgridCenter
+  components:
+    - type: Clickable
+    - type: InteractionOutline
+    - type: Transform
+      anchored: true
+    - type: Sprite
+      drawdepth: WallMountedItems
+      netsync: false
+      sprite: Backmen/Structures/Wallmounts/atm.rsi
+      state: framewired
+    - type: Construction
+      graph: ATM
+      node: wired
+    - type: WallMount
+      arc: 360
+
+- type: entity
   id: ATM
   name: ATM
   description: For all your monetary needs!
@@ -24,8 +72,6 @@
         - state: "off"
           map: ["enum.ATMVisualLayers.BaseUnshaded"]
           shader: unshaded
-
-
     - type: ATM
       offState: off
       normalState: normal-unshaded
