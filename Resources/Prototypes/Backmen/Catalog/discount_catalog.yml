@@ -1,54 +1,54 @@
 ﻿- type: listing
-  id: VendingDiscountFoodSnackCheesie
+  id: DiscountDansInventoryFoodSnackCheesie
   productEntity: FoodSnackCheesie
   cost:
     SpaceCredits: 20
   categories:
-    - VendingDiscount
+    - DiscountDansInventory
   conditions:
     - !type:ListingLimitedStockCondition
       stock: 3
 
 - type: listing
-  id: VendingDiscountFoodSnackChips
+  id: DiscountDansInventoryFoodSnackChips
   productEntity: FoodSnackChips
   cost:
     SpaceCredits: 20
   categories:
-    - VendingDiscount
+    - DiscountDansInventory
   conditions:
     - !type:ListingLimitedStockCondition
       stock: 3
 
 - type: listing
-  id: VendingDiscountFoodSnackBoritos
+  id: DiscountDansInventoryFoodSnackBoritos
   productEntity: FoodSnackBoritos
   cost:
     SpaceCredits: 20
   categories:
-    - VendingDiscount
+    - DiscountDansInventory
   conditions:
     - !type:ListingLimitedStockCondition
       stock: 2
 
 - type: listing
-  id: VendingDiscountFoodSnackPopcorn
+  id: DiscountDansInventoryFoodSnackPopcorn
   productEntity: FoodSnackPopcorn
   cost:
     SpaceCredits: 20
   categories:
-    - VendingDiscount
+    - DiscountDansInventory
   conditions:
     - !type:ListingLimitedStockCondition
       stock: 1
 
 - type: listing
-  id: VendingDiscountFoodSnackEnergy
+  id: DiscountDansInventoryFoodSnackEnergy
   productEntity: FoodSnackEnergy
   cost:
     SpaceCredits: 20
   categories:
-    - VendingDiscount
+    - DiscountDansInventory
   conditions:
     - !type:ListingLimitedStockCondition
       stock: 2
