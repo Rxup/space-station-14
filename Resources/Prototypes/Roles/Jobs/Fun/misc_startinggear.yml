@@ -178,7 +178,7 @@
 #Brigmedic
 
 - type: startingGear
-  id: BrigmedicGear
+  id: BrigmedicGearOld
   equipment:
     jumpsuit: ClothingUniformJumpsuitBrigmedic
     outerClothing: ClothingOuterCoatAMG
