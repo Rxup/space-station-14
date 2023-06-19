@@ -8,6 +8,7 @@ using Content.Server.Backmen.Economy.Wage;
 using Content.Server.Backmen.Mind;
 using Content.Server.GameTicking;
 using Content.Server.GameTicking.Events;
+using Content.Server.Mind;
 using Content.Server.Mind.Components;
 using Content.Server.Objectives;
 using Content.Server.Store.Components;
@@ -33,6 +34,8 @@ public sealed class EconomySystem : EntitySystem
     [Dependency] private readonly IdCardSystem _cardSystem = default!;
     [Dependency] private readonly IPrototypeManager _prototype = default!;
     [Dependency] private readonly BankManagerSystem _bankManager = default!;
+    [Dependency] private readonly MindSystem _mindSystem = default!;
+
     public override void Initialize()
     {
         base.Initialize();
@@ -71,7 +74,7 @@ public sealed class EconomySystem : EntitySystem
         if (!_cardSystem.TryFindIdCard(Player, out var idCardComponent))
             return null;
 
-        if (!TryComp<MindComponent>(Player, out var mindComponent) || mindComponent.Mind == null)
+        if (!TryComp<MindContainerComponent>(Player, out var mindComponent) || mindComponent.Mind == null)
         {
             return null;
         }
@@ -137,7 +140,7 @@ public sealed class EconomySystem : EntitySystem
             md.Owner = bankAccount;
         }
 
-        mind.TryAddObjective(_prototype.Index<ObjectivePrototype>("BankNote"));
+        _mindSystem.TryAddObjective(mind, _prototype.Index<ObjectivePrototype>("BankNote"));
 
         return bankAccount;
     }
