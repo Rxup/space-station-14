@@ -74,6 +74,10 @@ public sealed class EconomySystem : EntitySystem
         id.StoredBankAccountNumber = bankAccount.AccountNumber;
         id.StoredBankAccountPin = bankAccount.AccountPin;
         bankAccount.AccountName = id.FullName;
+        if (string.IsNullOrEmpty(bankAccount.AccountName))
+        {
+            bankAccount.AccountName = MetaData(uid).EntityName;
+        }
         Dirty(id);
         return true;
     }
@@ -92,7 +96,7 @@ public sealed class EconomySystem : EntitySystem
 
         if (bankAccount == null)
         {
-            if (!TryStoreNewBankAccount(idCardComponent.Owner, idCardComponent, out bankAccount) || bankAccount == null)
+            if (!TryStoreNewBankAccount(Player, idCardComponent, out bankAccount) || bankAccount == null)
             {
                 return null;
             }
