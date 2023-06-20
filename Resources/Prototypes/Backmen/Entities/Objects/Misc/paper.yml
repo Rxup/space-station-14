@@ -1,5 +1,5 @@
 - type: entity
-  name: Печать красного ордена.
+  name: Seal of the Red Order.
   parent: RubberStampMime
   id: RubberStampredorden
   components:

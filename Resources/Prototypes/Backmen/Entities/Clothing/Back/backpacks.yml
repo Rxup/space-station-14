@@ -1,8 +1,8 @@
 - type: entity
   parent: ClothingBackpack
   id: ClothingOrdenBackpack
-  name: Рюкзак красного ордена.
-  description: Рюкзак эскадрона смерти, забранный как трофей и переделанный под свои нужды орденом!
+  name: Backpack of the Red Order.
+  description: A backpack of the death squad, taken as a trophy and remade to fit their needs by the order!
   components:
   - type: Sprite
     sprite: Backmen/Clothing/Back/Backpacks/orden_backpacks.rsi

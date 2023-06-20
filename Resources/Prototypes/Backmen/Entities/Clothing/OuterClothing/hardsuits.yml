@@ -33,8 +33,8 @@
 - type: entity
   parent: ClothingOuterHardsuitBase
   id: ClothingOuterHardsuitOrdersuit
-  name: Скафандр элитного спец отряда красного ордена.
-  description: Крайне ценен и желанен для любой корпорации. на плече выгравированно нечитаемое имя.
+  name: Suit of the elite special squad of the red order
+  description: Extremely valuable and desirable for any corporation. an unreadable name engraved on the shoulder
   components:
   - type: Sprite
     sprite: Backmen/Clothing/OuterClothing/Hardsuits/order_suit.rsi
@@ -65,8 +65,8 @@
 - type: entity
   parent: ClothingOuterHardsuitBase
   id: ClothingOuterHardsuitOrdinaryOrdersuit
-  name: Скафандр спец отряда красного ордена.
-  description: Крайне ценен и желанен для любой корпорации. на плече выгравированно нечитаемое имя.
+  name: Suit of the special detachment of the red order
+  description: Extremely valuable and desirable for any corporation. an unreadable name engraved on the shoulder
   components:
   - type: Sprite
     sprite: Backmen/Clothing/OuterClothing/Hardsuits/ordinary_orden_suit.rsi

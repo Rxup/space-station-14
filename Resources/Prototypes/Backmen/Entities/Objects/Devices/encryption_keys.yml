@@ -1,8 +1,8 @@
 - type: entity
   parent: EncryptionKey
   id: EncryptionKeyOrden
-  name: ключ шифрования красного ордена
-  description: Особый ключ шифрования, нужный для доступа к каналам коммуникации красного ордена
+  name: Red order encryption key
+  description: Special encryption key needed to access Red Order communication channels
   components:
   - type: EncryptionKey
     channels:
