@@ -17,9 +17,9 @@ public sealed class AddBankAcсountCommand : IConsoleCommand
     [Dependency] private readonly IEntityManager _entityManager = default!;
 
 
-    public string Command { get; } = "AddBankAcсount";
+    public string Command { get; } = "addbankacсount";
     public string Description { get; } = "Привязать к игроку банк или сделать новый";
-    public string Help { get; } = "AddBankAcсount <uid> <account#>";
+    public string Help { get; } = "addbankacсount <uid> <account#>";
 
     public void Execute(IConsoleShell shell, string argStr, string[] args)
     {

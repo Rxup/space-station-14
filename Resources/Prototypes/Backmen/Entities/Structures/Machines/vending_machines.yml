@@ -1,0 +1,23 @@
+﻿
+
+- type: entity
+  parent: VendingMachineDiscount
+  id: BackmenVendingMachineDiscount
+  suffix: backmen
+  components:
+    - type: Store
+      categories:
+        - DiscountDansInventory
+      currencyWhitelist:
+        - SpaceCredits
+      balance:
+        SpaceCredits: 0
+    - type: BuyStoreBank
+    - type: ActivatableUI
+      key: enum.StoreUiKey.Key
+      singleUser: true
+    - type: ActivatableUIRequiresPower
+    - type: UserInterface
+      interfaces:
+      - key: enum.StoreUiKey.Key
+        type: StoreBoundUserInterface

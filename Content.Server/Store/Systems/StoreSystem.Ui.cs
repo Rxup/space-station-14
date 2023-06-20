@@ -140,19 +140,24 @@ public sealed partial class StoreSystem
                 return;
         }
 
-        //check that we have enough money
-        foreach (var currency in listing.Cost)
+        if (!HandleBankTransaction(uid, component, msg, listing)) // backmen: currency
         {
-            if (!component.Balance.TryGetValue(currency.Key, out var balance) || balance < currency.Value)
+            //check that we have enough money
+            foreach (var currency in listing.Cost)
             {
-                return;
+                if (!component.Balance.TryGetValue(currency.Key, out var balance) || balance < currency.Value)
+                {
+                    return;
+                }
             }
-        }
-        //subtract the cash
-        foreach (var currency in listing.Cost)
-        {
-            component.Balance[currency.Key] -= currency.Value;
-        }
+
+            //subtract the cash
+            foreach (var currency in listing.Cost)
+            {
+                component.Balance[currency.Key] -= currency.Value;
+            }
+
+        } // backmen: currency
 
         //spawn entity
         if (listing.ProductEntity != null)
@@ -180,6 +185,8 @@ public sealed partial class StoreSystem
 
         listing.PurchaseAmount++; //track how many times something has been purchased
         _audio.PlayEntity(component.BuySuccessSound, msg.Session, uid); //cha-ching!
+
+        _PlayEject(uid); // backmen: currency
 
         UpdateUserInterface(buyer, uid, component);
     }
