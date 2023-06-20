@@ -42,6 +42,7 @@
   name: spooky lightning
   id: LightningRevenant
   parent: BaseLightning
+  noSpawn: true
   components:
     - type: Sprite
       sprite: /Textures/Effects/lightning.rsi
