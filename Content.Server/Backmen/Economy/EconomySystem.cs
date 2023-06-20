@@ -66,7 +66,7 @@ public sealed class EconomySystem : EntitySystem
 
     #region PublicApi
     [PublicAPI]
-    public bool TryStoreNewBankAccount(EntityUid uid, IdCardComponent? id, out BankAccountComponent? bankAccount)
+    public bool TryStoreNewBankAccount(EntityUid player, EntityUid uid, IdCardComponent? id, out BankAccountComponent? bankAccount)
     {
         bankAccount = null;
         if (!Resolve(uid, ref id))
@@ -79,7 +79,7 @@ public sealed class EconomySystem : EntitySystem
         bankAccount.AccountName = id.FullName;
         if (string.IsNullOrEmpty(bankAccount.AccountName))
         {
-            bankAccount.AccountName = MetaData(uid).EntityName;
+            bankAccount.AccountName = MetaData(player).EntityName;
         }
         Dirty(id);
         return true;
@@ -99,7 +99,7 @@ public sealed class EconomySystem : EntitySystem
 
         if (bankAccount == null)
         {
-            if (!TryStoreNewBankAccount(Player, idCardComponent, out bankAccount) || bankAccount == null)
+            if (!TryStoreNewBankAccount(Player,idCardComponent.Owner, idCardComponent, out bankAccount) || bankAccount == null)
             {
                 return null;
             }

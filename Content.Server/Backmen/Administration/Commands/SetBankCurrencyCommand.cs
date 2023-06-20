@@ -59,7 +59,7 @@ public sealed class SetBankCurrencyCommand : IConsoleCommand
             case < 0:
             {
                 if (!bankManagerSystem.TryWithdrawFromBankAccount(account.AccountNumber, account.AccountPin,
-                        new KeyValuePair<string, FixedPoint2>(account.CurrencyType, FixedPoint2.New(balance))))
+                        new KeyValuePair<string, FixedPoint2>(account.CurrencyType, FixedPoint2.New(Math.Abs(balance)))))
                 {
                     shell.WriteError($"Списать со счета не удалось! Баланс аккаунта: {account.Balance}");
                     return;
@@ -68,6 +68,7 @@ public sealed class SetBankCurrencyCommand : IConsoleCommand
                 break;
             }
             default:
+                account.SetBalance(0);
                 return;
         }
 
