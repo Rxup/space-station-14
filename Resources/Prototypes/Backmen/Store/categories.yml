@@ -19,7 +19,7 @@
   name: store-category-vendingcola
 
 - type: storeCategory
-  id: VendingDiscount
+  id: DiscountDansInventory
   name: store-category-vendingdiscount
 
 - type: storeCategory

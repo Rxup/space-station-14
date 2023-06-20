@@ -32,7 +32,9 @@ using Robust.Shared.Map;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Content.Server.Ghost.Roles.Events;
+using Content.Server.Mind;
 using Content.Server.PDA;
+using Content.Server.Roles;
 using Content.Server.Station.Components;
 using Content.Shared.CartridgeLoader;
 using Content.Shared.Inventory;
@@ -62,7 +64,7 @@ public sealed class EvilTwinSystem : EntitySystem
     }
 
     private void OnHandleComponentState(EntityUid uid, EvilTwinComponent component, MobStateChangedEvent args){
-        if (args.NewMobState==MobState.Dead && TryComp<MindComponent>(uid, out var mind) && mind.Mind!=null)
+        if (args.NewMobState==MobState.Dead && TryComp<MindContainerComponent>(uid, out var mind) && mind.Mind!=null)
         {
             mind.Mind.PreventGhosting = false;
         }
@@ -113,9 +115,9 @@ public sealed class EvilTwinSystem : EntitySystem
                 if (playerData != null)
                 {
                     var mind = playerData.Mind;
-                    mind?.TransferTo(twinMob);
+                    _mindSystem.TransferTo(mind!,twinMob);
                     var station = _stationSystem.GetOwningStation(targetUid.Value) ?? EntityQuery<BecomesStationComponent>().FirstOrDefault()?.Owner;
-                    if (pref != null && station!= null && TryComp<MindComponent>(targetUid, out var targetMind) && mind!=null)
+                    if (pref != null && station!= null && TryComp<MindContainerComponent>(targetUid, out var targetMind) && mind!=null)
                     {
                         RaiseLocalEvent(new PlayerSpawnCompleteEvent(twinMob.Value, targetMind.Mind!.Session!, targetMind.Mind.CurrentJob?.Prototype.ID, false,
                             0, station.Value, pref));
@@ -157,15 +159,16 @@ public sealed class EvilTwinSystem : EntitySystem
 
     private void OnMindAdded(EntityUid uid, EvilTwinComponent component, MindAddedMessage args)
     {
-        if (!TryComp<MindComponent>(uid, out var mindComponent) || mindComponent.Mind == null)
+        if (!TryComp<MindContainerComponent>(uid, out var mindComponent) || mindComponent.Mind == null)
         {
             return;
         }
 
         var mind = mindComponent.Mind;
-        mind.AddRole(new TraitorRole(mind, _prototype.Index<AntagPrototype>(EvilTwinRole)));
-        mind.TryAddObjective(_prototype.Index<ObjectivePrototype>(KillObjective));
-        mind.TryAddObjective(_prototype.Index<ObjectivePrototype>(EscapeObjective));
+        _mindSystem.AddRole(mind,new TraitorRole(mind, _prototype.Index<AntagPrototype>(EvilTwinRole)));
+
+        _mindSystem.TryAddObjective(mind, _prototype.Index<ObjectivePrototype>(KillObjective));
+        _mindSystem.TryAddObjective(mind, _prototype.Index<ObjectivePrototype>(EscapeObjective));
 
         mind.PreventGhosting = true;
 
@@ -182,7 +185,7 @@ public sealed class EvilTwinSystem : EntitySystem
 
     private void OnRoundEnd(RoundEndTextAppendEvent ev)
     {
-        var twins = EntityQuery<EvilTwinComponent, MindComponent>().ToArray();
+        var twins = EntityQuery<EvilTwinComponent, MindContainerComponent>().ToArray();
         if (twins.Length < 1)
         {
             return;
@@ -195,7 +198,7 @@ public sealed class EvilTwinSystem : EntitySystem
             if (mind.Mind == null)
                 continue;
             var name = mind.Mind.CharacterName;
-            var username = mind.Mind.TryGetSession(out var session) ? session?.Name : null;
+            var username = mind.Mind.Session?.Name;
             var objectives = mind.Mind.AllObjectives.ToArray();
             if (objectives.Length == 0)
             {
@@ -261,7 +264,7 @@ public sealed class EvilTwinSystem : EntitySystem
     }
     private bool TryGetEligibleHumanoid([NotNullWhen(true)] out EntityUid? uid)
     {
-        var targets = EntityQuery<ActorComponent, MindComponent, HumanoidAppearanceComponent>().ToList();
+        var targets = EntityQuery<ActorComponent, MindContainerComponent, HumanoidAppearanceComponent>().ToList();
         _random.Shuffle(targets);
         foreach ((_,var target,_) in targets)
         {
@@ -291,7 +294,7 @@ public sealed class EvilTwinSystem : EntitySystem
 
     private (EntityUid?, HumanoidCharacterProfile? pref) SpawnEvilTwin(EntityUid target, EntityCoordinates coords)
     {
-        if (!TryComp<MindComponent>(target, out var mind) ||
+        if (!TryComp<MindContainerComponent>(target, out var mind) ||
             !TryComp<HumanoidAppearanceComponent>(target, out var humanoid) ||
             !TryComp<ActorComponent>(target, out var actor) ||
             !_prototype.TryIndex<SpeciesPrototype>(humanoid.Species, out var species))
@@ -351,6 +354,8 @@ public sealed class EvilTwinSystem : EntitySystem
     [Dependency] private readonly IEntityManager _entityManager = default!;
 
     [Dependency] private readonly TagSystem _tagSystem = default!;
+
+    [Dependency] private readonly MindSystem _mindSystem = default!;
 
     private const string EvilTwinRole = "EvilTwin";
 

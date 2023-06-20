@@ -1,8 +1,10 @@
 ﻿using Content.Server.Access.Systems;
+using Content.Server.Popups;
 using Content.Shared.Access.Components;
 using Content.Shared.Backmen.Economy.Eftpos;
 using Content.Shared.FixedPoint;
 using Content.Shared.Interaction;
+using Content.Shared.Popups;
 using Content.Shared.Store;
 using Robust.Server.GameObjects;
 using Robust.Shared.Audio;
@@ -16,6 +18,7 @@ namespace Content.Server.Backmen.Economy.Eftpos;
         [Dependency] private readonly BankManagerSystem _bankManagerSystem = default!;
         [Dependency] private readonly IdCardSystem _idCardSystem = default!;
         [Dependency] private readonly AudioSystem _audioSystem = default!;
+        [Dependency] private readonly PopupSystem _popupSystem = default!;
         public override void Initialize()
         {
             base.Initialize();
@@ -119,9 +122,11 @@ namespace Content.Server.Backmen.Economy.Eftpos;
                 component.LinkedAccountNumber,
                 (FixedPoint2) component.Value))
             {
+                _popupSystem.PopupEntity(Loc.GetString("eftpos-ui-popup-deny-nomoney"),component.Owner, PopupType.LargeCaution);
                 Deny(component);
                 return;
             }
+            _popupSystem.PopupEntity(Loc.GetString("eftpos-ui-popup-apply-done"),component.Owner, PopupType.Large);
             Apply(component);
             UpdateComponentUserInterface(component);
         }
@@ -132,20 +137,25 @@ namespace Content.Server.Backmen.Economy.Eftpos;
                 return;
             if (component.LockedBy != null)
             {
+                _popupSystem.PopupEntity(Loc.GetString("eftpos-ui-popup-deny-lock-already"),component.Owner, PopupType.SmallCaution);
                 Deny(component);
                 return;
             }
             if (component.LinkedAccountNumber == null || component.Value == null)
             {
+                _popupSystem.PopupEntity(Loc.GetString("eftpos-ui-popup-deny-lock-invalid"), component.Owner,
+                    PopupType.SmallCaution);
                 Deny(component);
                 return;
             }
             if (!_idCardSystem.TryFindIdCard(buyer, out var idCardComponent))
             {
+                _popupSystem.PopupEntity(Loc.GetString("eftpos-ui-popup-deny-lock-noidcard"),component.Owner, PopupType.SmallCaution);
                 Deny(component);
                 return;
             }
             component.LockedBy = idCardComponent.Owner;
+            _popupSystem.PopupEntity(Loc.GetString("eftpos-ui-popup-lock"),component.Owner, PopupType.Small);
             Apply(component);
             UpdateComponentUserInterface(component);
         }

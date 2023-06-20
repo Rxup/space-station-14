@@ -8,17 +8,21 @@ using Content.Server.Backmen.Economy.Wage;
 using Content.Server.Backmen.Mind;
 using Content.Server.GameTicking;
 using Content.Server.GameTicking.Events;
+using Content.Server.Mind;
 using Content.Server.Mind.Components;
 using Content.Server.Objectives;
 using Content.Server.Store.Components;
 using Content.Server.Store.Systems;
 using Content.Shared.Access.Components;
+using Content.Shared.Backmen.Store;
 using Content.Shared.CartridgeLoader;
 using Content.Shared.GameTicking;
 using Content.Shared.Interaction;
 using Content.Shared.Inventory;
 using Content.Shared.Popups;
 using Content.Shared.Roles;
+using Content.Shared.Store;
+using JetBrains.Annotations;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
 
@@ -33,13 +37,20 @@ public sealed class EconomySystem : EntitySystem
     [Dependency] private readonly IdCardSystem _cardSystem = default!;
     [Dependency] private readonly IPrototypeManager _prototype = default!;
     [Dependency] private readonly BankManagerSystem _bankManager = default!;
+    [Dependency] private readonly MindSystem _mindSystem = default!;
+
     public override void Initialize()
     {
         base.Initialize();
         SubscribeLocalEvent<PlayerSpawnCompleteEvent>(OnPlayerSpawned, after: new []{ typeof(Corvax.Loadout.LoadoutSystem) });
         SubscribeLocalEvent<RoundStartingEvent>(OnRoundStartingEvent);
     }
+    #region EventHandle
 
+    private void OnPlayerSpawned(PlayerSpawnCompleteEvent ev)
+    {
+        AddPlayerBank(ev.Mob);
+    }
     private void OnRoundStartingEvent(RoundStartingEvent ev)
     {
         foreach (var department in _prototype.EnumeratePrototypes<DepartmentPrototype>())
@@ -51,7 +62,11 @@ public sealed class EconomySystem : EntitySystem
         }
     }
 
-    public bool TryStoreNewBankAccount(EntityUid uid, IdCardComponent? id, out BankAccountComponent? bankAccount)
+    #endregion
+
+    #region PublicApi
+    [PublicAPI]
+    public bool TryStoreNewBankAccount(EntityUid player, EntityUid uid, IdCardComponent? id, out BankAccountComponent? bankAccount)
     {
         bankAccount = null;
         if (!Resolve(uid, ref id))
@@ -62,16 +77,20 @@ public sealed class EconomySystem : EntitySystem
         id.StoredBankAccountNumber = bankAccount.AccountNumber;
         id.StoredBankAccountPin = bankAccount.AccountPin;
         bankAccount.AccountName = id.FullName;
+        if (string.IsNullOrEmpty(bankAccount.AccountName))
+        {
+            bankAccount.AccountName = MetaData(player).EntityName;
+        }
         Dirty(id);
         return true;
     }
-
+    [PublicAPI]
     public BankAccountComponent? AddPlayerBank(EntityUid Player, BankAccountComponent? bankAccount = null, bool AttachWage = true)
     {
         if (!_cardSystem.TryFindIdCard(Player, out var idCardComponent))
             return null;
 
-        if (!TryComp<MindComponent>(Player, out var mindComponent) || mindComponent.Mind == null)
+        if (!TryComp<MindContainerComponent>(Player, out var mindComponent) || mindComponent.Mind == null)
         {
             return null;
         }
@@ -80,7 +99,7 @@ public sealed class EconomySystem : EntitySystem
 
         if (bankAccount == null)
         {
-            if (!TryStoreNewBankAccount(idCardComponent.Owner, idCardComponent, out bankAccount) || bankAccount == null)
+            if (!TryStoreNewBankAccount(Player,idCardComponent.Owner, idCardComponent, out bankAccount) || bankAccount == null)
             {
                 return null;
             }
@@ -137,13 +156,9 @@ public sealed class EconomySystem : EntitySystem
             md.Owner = bankAccount;
         }
 
-        mind.TryAddObjective(_prototype.Index<ObjectivePrototype>("BankNote"));
+        _mindSystem.TryAddObjective(mind, _prototype.Index<ObjectivePrototype>("BankNote"));
 
         return bankAccount;
     }
-
-    private void OnPlayerSpawned(PlayerSpawnCompleteEvent ev)
-    {
-        AddPlayerBank(ev.Mob);
-    }
+    #endregion
 }

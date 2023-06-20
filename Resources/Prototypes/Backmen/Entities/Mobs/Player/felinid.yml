@@ -6,7 +6,7 @@
   components:
   - type: CombatMode
     canDisarm: true
-  - type: Mind
+  - type: MindContainer
     showExamineInfo: true
   - type: Input
     context: "human"
