@@ -29,32 +29,33 @@ using Content.Shared.Inventory;
 using Content.Shared.Radio.Components;
 using Content.Server.Radio.EntitySystems;
 using Content.Server.Administration.Managers;
+using Content.Server.Mind;
 
 namespace Content.Server.Backmen.SpecForces;
 
 public sealed class SpecForcesSystem : EntitySystem
 {
     //public List<Mind.Mind> PlayersInEvent {get; private set;} = new List<Mind.Mind>();
-    [ViewVariables]
-    public List<SpecForcesHistory> CallendEvents {get; private set;} = new List<SpecForcesHistory>();
-    [ViewVariables]
-    public TimeSpan LastUsedTime { get; private set; } = TimeSpan.Zero;
+    [ViewVariables] public List<SpecForcesHistory> CallendEvents { get; private set; } = new List<SpecForcesHistory>();
+    [ViewVariables] public TimeSpan LastUsedTime { get; private set; } = TimeSpan.Zero;
 
     private readonly TimeSpan DelayUsesage = TimeSpan.FromMinutes(15);
     private readonly ReaderWriterLockSlim _callLock = new();
+
     public override void Initialize()
     {
         base.Initialize();
 
-        SubscribeLocalEvent<SpecForceComponent, MapInitEvent>(OnMapInit, after: new []{ typeof(RandomMetadataSystem) });
+        SubscribeLocalEvent<SpecForceComponent, MapInitEvent>(OnMapInit, after: new[] { typeof(RandomMetadataSystem) });
         SubscribeLocalEvent<RoundEndTextAppendEvent>(OnRoundEnd);
         SubscribeLocalEvent<RoundRestartCleanupEvent>(OnCleanup);
-        SubscribeLocalEvent<SpecForceComponent,TakeGhostRoleEvent>(OnSpecForceTake, before: new []{ typeof(GhostRoleSystem) });
+        SubscribeLocalEvent<SpecForceComponent, TakeGhostRoleEvent>(OnSpecForceTake,
+            before: new[] { typeof(GhostRoleSystem) });
     }
 
     private void OnMapInit(EntityUid uid, SpecForceComponent component, MapInitEvent args)
     {
-        if(component.Components !=  null)
+        if (component.Components != null)
         {
             foreach (var entry in component.Components.Values)
             {
@@ -63,7 +64,8 @@ public sealed class SpecForcesSystem : EntitySystem
                 EntityManager.AddComponent(uid, comp, true);
             }
         }
-        if(_inventory.TryGetSlotEntity(uid,"ears",out var ears) && TryComp<HeadsetComponent>(ears, out var earsComp))
+
+        if (_inventory.TryGetSlotEntity(uid, "ears", out var ears) && TryComp<HeadsetComponent>(ears, out var earsComp))
         {
             earsComp.Enabled = false;
             //_headset.SetEnabled(ears.Value, false, earsComp);
@@ -72,33 +74,38 @@ public sealed class SpecForcesSystem : EntitySystem
 
     private void OnSpecForceTake(EntityUid uid, SpecForceComponent component, ref TakeGhostRoleEvent args)
     {
-        if(!_adminManager.IsAdmin(args.Player) && !IsAllowed(args.Player,component, out var reason))
+        if (!_adminManager.IsAdmin(args.Player) && !IsAllowed(args.Player, component, out var reason))
         {
             args.TookRole = true;
             _callLock.EnterWriteLock();
-            _chatManager.ChatMessageToOne(Shared.Chat.ChatChannel.Server, reason, "ОШИБКА: "+reason, default, false, args.Player.ConnectedClient, Color.Plum);
+            _chatManager.ChatMessageToOne(Shared.Chat.ChatChannel.Server, reason, "ОШИБКА: " + reason, default, false,
+                args.Player.ConnectedClient, Color.Plum);
 
             //EntityManager.RemoveComponent<ActorComponent>(uid);
-            var mind = EntityManager.EnsureComponent<MindComponent>(uid);
+            var mind = EntityManager.EnsureComponent<MindContainerComponent>(uid);
             mind.Mind = new Content.Server.Mind.Mind(args.Player.UserId);
 
             var sess = args.Player;
 
-            Robust.Shared.Timing.Timer.Spawn(0, ()=>{
+            Robust.Shared.Timing.Timer.Spawn(0, () =>
+            {
                 try
                 {
-                    if(!uid.IsValid())
+                    if (!uid.IsValid())
                     {
                         return;
                     }
-                    mind.Mind.ChangeOwningPlayer(null);
-                    mind.Mind.UnVisit();
+
+                    _mindSystem.ChangeOwningPlayer(mind.Mind,null);
+                    _mindSystem.UnVisit(mind.Mind);
                     mind.Mind = null;
-                    EntityManager.RemoveComponent<MindComponent>(uid);
-                    if(EntityManager.TryGetComponent<GhostRoleComponent>(uid, out var ghostComp)){
+                    EntityManager.RemoveComponent<MindContainerComponent>(uid);
+                    if (EntityManager.TryGetComponent<GhostRoleComponent>(uid, out var ghostComp))
+                    {
                         (ghostComp as dynamic).Taken = false;
                         //_ghostRoleSystem.RegisterGhostRole(ghostComp);
                     }
+
                     _ghostRoleSystem.CloseEui(sess);
                 }
                 finally
@@ -108,7 +115,9 @@ public sealed class SpecForcesSystem : EntitySystem
             });
             return;
         }
-        if(_inventory.TryGetSlotEntity(uid,"ears",out var ears) && TryComp<HeadsetComponent>(ears, out var earsComp)){
+
+        if (_inventory.TryGetSlotEntity(uid, "ears", out var ears) && TryComp<HeadsetComponent>(ears, out var earsComp))
+        {
             _headset.SetEnabled(ears.Value, true, earsComp);
         }
     }
@@ -118,7 +127,7 @@ public sealed class SpecForcesSystem : EntitySystem
         get
         {
             var ct = GameTicker.RoundDuration();
-            var DelayTime =  LastUsedTime+DelayUsesage;
+            var DelayTime = LastUsedTime + DelayUsesage;
             return ct > DelayTime ? TimeSpan.Zero : DelayTime - ct;
         }
     }
@@ -162,27 +171,29 @@ public sealed class SpecForcesSystem : EntitySystem
         _callLock.EnterWriteLock();
         try
         {
-            if(_gameTicker.RunLevel != GameRunLevel.InRound)
+            if (_gameTicker.RunLevel != GameRunLevel.InRound)
             {
                 return false;
             }
 
             var currentTime = GameTicker.RoundDuration();
 
-            if(LastUsedTime+DelayUsesage > currentTime)
+            if (LastUsedTime + DelayUsesage > currentTime)
             {
                 return false;
             }
+
             LastUsedTime = currentTime;
 
-            CallendEvents.Add(new SpecForcesHistory{ Event = ev, RoundTime = currentTime, WhoCalled = source });
+            CallendEvents.Add(new SpecForcesHistory { Event = ev, RoundTime = currentTime, WhoCalled = source });
 
             var shuttle = SpawnShuttle(ev);
-            if(shuttle == null){
+            if (shuttle == null)
+            {
                 return false;
             }
 
-            SpawnGhostRole(ev,shuttle.Value);
+            SpawnGhostRole(ev, shuttle.Value);
 
             PlaySound(ev);
 
@@ -193,17 +204,20 @@ public sealed class SpecForcesSystem : EntitySystem
             _callLock.ExitWriteLock();
         }
     }
+
     private EntityUid SpawnEntity(string? protoName, EntityCoordinates coordinates)
     {
         var uid = EntityManager.SpawnEntity(protoName, coordinates);
         EnsureComp<SpecForceComponent>(uid);
         return uid;
     }
+
     private void SpawnGhostRole(SpecForcesType ev, EntityUid shuttle)
     {
         var spawns = new List<EntityCoordinates>();
 
-        foreach (var (_, meta, xform) in EntityManager.EntityQuery<SpawnPointComponent, MetaDataComponent, TransformComponent>(true))
+        foreach (var (_, meta, xform) in EntityManager
+                     .EntityQuery<SpawnPointComponent, MetaDataComponent, TransformComponent>(true))
         {
             // TODO: marker
             //if (meta.EntityPrototype?.ID != "ERTMarker")
@@ -215,6 +229,7 @@ public sealed class SpecForcesSystem : EntitySystem
             spawns.Add(xform.Coordinates);
             break;
         }
+
         if (spawns.Count == 0)
         {
             spawns.Add(EntityManager.GetComponent<TransformComponent>(shuttle).Coordinates);
@@ -230,7 +245,7 @@ public sealed class SpecForcesSystem : EntitySystem
             _ => 0
         };
 
-        switch(ev)
+        switch (ev)
         {
             case SpecForcesType.ERT:
                 SpawnEntity(ERTLeader, _random.Pick(spawns));
@@ -240,19 +255,23 @@ public sealed class SpecForcesSystem : EntitySystem
                     {
                         SpawnEntity(ERTSecurity, _random.Pick(spawns));
                     }
+
                     if (countExtra-- > 0)
                     {
                         SpawnEntity(ERTEngineer, _random.Pick(spawns));
                     }
+
                     if (countExtra-- > 0)
                     {
                         SpawnEntity(ERTMedical, _random.Pick(spawns));
                     }
+
                     if (countExtra-- > 0)
                     {
                         SpawnEntity(ERTJunitor, _random.Pick(spawns));
                     }
                 }
+
                 break;
             case SpecForcesType.RXBZZ:
                 SpawnEntity(countExtra == 0 ? RXBZZ : RXBZZLeader, _random.Pick(spawns));
@@ -263,23 +282,26 @@ public sealed class SpecForcesSystem : EntitySystem
                         SpawnEntity(RXBZZ, _random.Pick(spawns));
                     }
                 }
+
                 break;
             case SpecForcesType.DeathSquad:
                 SpawnEntity(countExtra == 0 ? Spestnaz : SpestnazOfficer, _random.Pick(spawns));
-                while(countExtra > 0)
+                while (countExtra > 0)
                 {
-                    if(countExtra-- > 0)
+                    if (countExtra-- > 0)
                     {
                         SpawnEntity(Spestnaz, _random.Pick(spawns));
                     }
                 }
+
                 break;
             default:
                 return;
         }
-
     }
-    private EntityUid? SpawnShuttle(SpecForcesType ev){
+
+    private EntityUid? SpawnShuttle(SpecForcesType ev)
+    {
         var shuttleMap = _mapManager.CreateMap();
         var options = new MapLoadOptions()
         {
@@ -287,14 +309,14 @@ public sealed class SpecForcesSystem : EntitySystem
         };
 
         if (!_map.TryLoad(shuttleMap,
-            ev switch
-            {
-                // todo: cvar
-                SpecForcesType.ERT => ETRShuttlePath,
-                _ => ETRShuttlePath
-            },
-            out var grids,
-            options))
+                ev switch
+                {
+                    // todo: cvar
+                    SpecForcesType.ERT => ETRShuttlePath,
+                    _ => ETRShuttlePath
+                },
+                out var grids,
+                options))
         {
             return null;
         }
@@ -303,6 +325,7 @@ public sealed class SpecForcesSystem : EntitySystem
 
         return mapGrid ?? null;
     }
+
     private void PlaySound(SpecForcesType ev)
     {
         var stations = _stationSystem.GetStations();
@@ -322,6 +345,7 @@ public sealed class SpecForcesSystem : EntitySystem
                         true, ERTAnnounce
                     );
                 }
+
                 break;
             case SpecForcesType.RXBZZ:
                 foreach (var station in stations)
@@ -338,18 +362,23 @@ public sealed class SpecForcesSystem : EntitySystem
                 return;
         }
     }
+
     private void OnRoundEnd(RoundEndTextAppendEvent ev)
     {
-        foreach(var calledEvent in CallendEvents){
-            ev.AddLine(Loc.GetString("spec-forces-system-"+calledEvent.Event,("time", calledEvent.RoundTime.ToString(@"hh\:mm\:ss")), ("who",calledEvent.WhoCalled)));
+        foreach (var calledEvent in CallendEvents)
+        {
+            ev.AddLine(Loc.GetString("spec-forces-system-" + calledEvent.Event,
+                ("time", calledEvent.RoundTime.ToString(@"hh\:mm\:ss")), ("who", calledEvent.WhoCalled)));
         }
     }
+
     private void OnCleanup(RoundRestartCleanupEvent ev)
     {
         CallendEvents.Clear();
         LastUsedTime = TimeSpan.Zero;
 
-        if(_callLock.IsWriteLockHeld){
+        if (_callLock.IsWriteLockHeld)
+        {
             _callLock.ExitWriteLock();
         }
     }
@@ -371,6 +400,7 @@ public sealed class SpecForcesSystem : EntitySystem
     public SoundSpecifier ERTAnnounce = new SoundPathSpecifier("/Audio/Corvax/Adminbuse/Yesert.ogg");
 
     [Dependency] private readonly IMapManager _mapManager = default!;
+
     //[Dependency] private readonly IPrototypeManager _prototypeManager = default!;
     [Dependency] private readonly MapLoaderSystem _map = default!;
     [Dependency] private readonly GameTicker _gameTicker = default!;
@@ -388,6 +418,5 @@ public sealed class SpecForcesSystem : EntitySystem
     [Dependency] private readonly InventorySystem _inventory = default!;
     [Dependency] private readonly HeadsetSystem _headset = default!;
     [Dependency] private readonly IAdminManager _adminManager = default!;
-
-
+    [Dependency] private readonly MindSystem _mindSystem = default!;
 }

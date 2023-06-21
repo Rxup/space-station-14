@@ -106,8 +106,53 @@ public sealed class CharacterUIController : UIController, IOnStateEntered<Gamepl
         _window.SubText.Text = job;
         _window.Objectives.RemoveAllChildren();
 
+        // start backmen: currency
+        {
+            _window.Memory.RemoveAllChildren();
+            foreach (var (groupId, conditions) in objectives)
+            {
+                if (groupId != "Космический банк")
+                {
+                    continue;
+                }
+                var objectiveControl = new CharacterObjectiveControl
+                {
+                    Orientation = BoxContainer.LayoutOrientation.Vertical,
+                    Modulate = Color.Gray
+                };
+
+                objectiveControl.AddChild(new Label
+                {
+                    Text = groupId,
+                    Modulate = Color.LightSkyBlue
+                });
+
+                foreach (var condition in conditions)
+                {
+                    var conditionControl = new ObjectiveConditionsControl();
+                    conditionControl.ProgressTexture.Texture = condition.SpriteSpecifier.Frame0();
+                    conditionControl.ProgressTexture.Progress = condition.Progress;
+
+                    conditionControl.Title.Text = condition.Title;
+                    conditionControl.Description.Text = condition.Description;
+
+                    objectiveControl.AddChild(conditionControl);
+                }
+
+                _window.Memory.AddChild(objectiveControl);
+            }
+        }
+        // end backmen: currency
+
         foreach (var (groupId, conditions) in objectives)
         {
+            // start backmen: currency
+            if (groupId == "Космический банк")
+            {
+                continue;
+            }
+            // end backmen: currency
+
             var objectiveControl = new CharacterObjectiveControl
             {
                 Orientation = BoxContainer.LayoutOrientation.Vertical,

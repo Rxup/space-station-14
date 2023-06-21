@@ -6,4 +6,7 @@ nukeops.ogg was taken from: https://github.com/tgstation/tgstation/commit/827967
 
 greenalert.ogg, redalert.ogg, bluealert.ogg, delta.ogg was taken from https://github.com/TauCetiStation/TauCetiClassic/pull/10207
 
-sigma.ogg was taken from https://zvukipro.com/situacii/2416-zvuki-sireny-vozdushnoj-trevogi.html 
+sigma.ogg was taken from https://zvukipro.com/situacii/2416-zvuki-sireny-vozdushnoj-trevogi.html
+redalert.ogg was taken from: https://github.com/Skyrat-SS13/Skyrat13/commit/2d4f2d1b489590b559e4073f41b126cef56f4c50
+
+bluealert.ogg was taken from: https://github.com/Skyrat-SS13/Skyrat13/commit/2d4f2d1b489590b559e4073f41b126cef56f4c50

@@ -4,12 +4,12 @@
   name: brigmed PDA
   description: I wonder whose pulse is on the screen? I hope he doesnt stop... PDA has a built-in health analyzer.
   components:
-    - type: PDA
+    - type: Pda
       id: SecurityCadetIDCard
       state: pda-interncadet
     - type: Icon
       state: pda-interncadet
-    - type: PDABorderColor
+    - type: PdaBorderColor
       borderColor: "#A32D26"
       accentHColor: "#447987"
       accentVColor: "#447987"
