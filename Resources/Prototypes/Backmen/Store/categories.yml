@@ -41,3 +41,7 @@
 - type: storeCategory
   id: VendingYouTool
   name: store-category-vendingyoutool
+
+- type: storeCategory
+  id: VendingLootboxInventory
+  name: store-category-lootbox
