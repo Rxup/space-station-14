@@ -19,7 +19,7 @@
   - type: TypingIndicator
     proto: robot
   - type: TTS
-    voice: Meepo
+    voice: Npc2
   - type: Actions
   - type: MobState
     allowedStates:
@@ -44,4 +44,4 @@
     layers:
     - state: icon
   - type: TTS
-    voice: Zibb
+    voice: Npc1

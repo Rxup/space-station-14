@@ -117,7 +117,7 @@
     name: ghost-role-information-slimes-name
     description: ghost-role-information-slimes-description
   - type: TTS
-    voice: Chen
+    voice: Npc3
 
 - type: entity
   name: blue slime
