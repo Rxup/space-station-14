@@ -83,7 +83,7 @@ public sealed class SpecForcesSystem : EntitySystem
 
             //EntityManager.RemoveComponent<ActorComponent>(uid);
             var mind = EntityManager.EnsureComponent<MindContainerComponent>(uid);
-            mind.Mind = new Content.Server.Mind.Mind(args.Player.UserId);
+            mind.Mind = _mindSystem.CreateMind(args.Player.UserId);
 
             var sess = args.Player;
 
@@ -96,7 +96,7 @@ public sealed class SpecForcesSystem : EntitySystem
                         return;
                     }
 
-                    _mindSystem.ChangeOwningPlayer(mind.Mind,null);
+                    _mindSystem.TransferTo(mind.Mind,null);
                     _mindSystem.UnVisit(mind.Mind);
                     mind.Mind = null;
                     EntityManager.RemoveComponent<MindContainerComponent>(uid);
