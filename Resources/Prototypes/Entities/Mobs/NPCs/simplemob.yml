@@ -107,6 +107,7 @@
   - type: HeatResistance
   - type: CombatMode
   - type: Internals
+  - type: StatusIcon
   - type: StatusEffects
     allowed:
     - SlowedDown
@@ -224,7 +225,6 @@
     bloodMaxVolume: 150
   - type: MobPrice
     price: 150
-  - type: Appearance
   - type: FloatingVisuals
   - type: Puller
     needsHands: false

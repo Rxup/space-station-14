@@ -72,16 +72,9 @@ namespace Content.Server.Backmen.Administration.Commands
                 return;
             }
 
-            var mind = playerCData.Mind;
+            // ReSharper disable once InconsistentNaming
             var _mindSystem = _entityManager.System<MindSystem>();
-
-            if(mind == null){
-                mind = new Content.Server.Mind.Mind(session.UserId)
-                {
-                    CharacterName = _entityManager.GetComponent<MetaDataComponent>(eUid).EntityName
-                };
-                _mindSystem.ChangeOwningPlayer(mind, session.UserId);
-            }
+            var mind = playerCData.Mind ?? _mindSystem.CreateMind(session.UserId, _entityManager.GetComponent<MetaDataComponent>(eUid).EntityName);
 
             //mind.TransferTo(null);
             Timer.Spawn(1_000, ()=>{
