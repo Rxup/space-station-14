@@ -4,15 +4,15 @@
   name: PDA of the Red Order
   description: An unusual variation of the PDA that draws energy from redspace crystals inside.
   components:
-  - type: PDA
-    id: IdCardRO
-    state: pda-orden
-    penSlot:
-      startingItem: EnergyDagger
-      priority: -1
-      whitelist:
-        tags:
-        - Write
+    - type: PDA
+      id: IdCardRO
+      state: pda-orden
+      penSlot:
+        startingItem: EnergyDagger
+        priority: -1
+        whitelist:
+          tags:
+          - Write
   - type: PDABorderColor
     borderColor: "#8b0000"
   - type: Icon
