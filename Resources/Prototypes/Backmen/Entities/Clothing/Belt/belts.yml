@@ -1,8 +1,8 @@
 - type: entity
   parent: ClothingBeltStorageBase
   id: ClothingBeltOrden
-  name: Ножны красного ордена
-  description: Специальные ножны созданные исключительно для сабель красного ордена.
+  name: Scabbard of the red order
+  description: A special scabbard created exclusively for the sabers of the Red Order.
   components:
   - type: Sprite
     sprite: Backmen/Clothing/Belt/orden_sheath.rsi

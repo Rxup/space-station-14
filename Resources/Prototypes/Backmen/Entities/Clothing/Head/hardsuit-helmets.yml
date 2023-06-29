@@ -17,8 +17,8 @@
   parent: ClothingHeadHardsuitWithLightBase
   id: ClothingHeadHelmetHardsuitOrden
   noSpawn: true
-  name: Шлем скафандра красного ордена.
-  description: Незаменимая часть скафандра, на нем имеются маленькие царапины.
+  name: Helmet of the space suit of the elite special squad of the Red Order.
+  description: An indispensable part of the suit, it has small scratches.
   components:
   - type: Sprite
     sprite: Backmen/Clothing/Head/Hardsuits/orderhelm.rsi
@@ -39,3 +39,30 @@
         Shock: 0.1
         Cold: 0.2
         Radiation: 0.2
+
+- type: entity
+  parent: ClothingHeadHardsuitWithLightBase
+  id: ClothingHeadHelmetHardsuitOrdinaryOrden
+  noSpawn: true
+  name: Helmet of the space suit of the Red Order.
+  description: An indispensable part of the suit, it has small scratches.
+  components:
+  - type: Sprite
+    sprite: Backmen/Clothing/Head/Hardsuits/ordinary_ordenhelm.rsi
+  - type: Clothing
+    sprite: Backmen/Clothing/Head/Hardsuits/ordinary_ordenhelm.rsi
+  - type: PointLight
+    color:  White
+  - type: PressureProtection
+    highPressureMultiplier: 0.3
+    lowPressureMultiplier: 1000
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.90
+        Slash: 0.90
+        Piercing: 0.95
+        Heat: 0.2
+        Radiation: 0.5
+  - type: TemperatureProtection
+    coefficient: 0.005
