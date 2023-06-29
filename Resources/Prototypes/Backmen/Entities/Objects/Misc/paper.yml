@@ -5,7 +5,7 @@
   components:
   - type: Stamp
     stampedName: stamp-component-stamped-name-RO
-    stampState: "paper_stamp-rd"
+    stampState: "paper_stamp-warden"
   - type: Sprite
     sprite: Backmen/Objects/Misc/bureaucracyRO.rsi
     state: stamp-redorden
