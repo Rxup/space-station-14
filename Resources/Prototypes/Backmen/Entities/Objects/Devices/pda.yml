@@ -13,8 +13,8 @@
         whitelist:
           tags:
           - Write
-  - type: PDABorderColor
-    borderColor: "#8b0000"
-  - type: Icon
-    state: pda-orden
+    - type: PDABorderColor
+      borderColor: "#8b0000"
+    - type: Icon
+      state: pda-orden
 
