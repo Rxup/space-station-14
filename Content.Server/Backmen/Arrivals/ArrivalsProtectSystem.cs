@@ -18,7 +18,10 @@ using Content.Server.SurveillanceCamera;
 using Content.Server.Construction.Components;
 using Content.Server.Damage.Components;
 using Content.Server.Atmos.Components;
+using Content.Server.Construction;
+using Content.Shared.Coordinates;
 using Content.Shared.Damage;
+using Content.Shared.Tiles;
 using Robust.Server.GameObjects;
 
 namespace Content.Server.Backmen.Arrivals;
@@ -54,7 +57,21 @@ public sealed class ArrivalsProtectSystem : EntitySystem
         SubscribeLocalEvent<ArrivalsProtectComponent, WeldableAttemptEvent>(OnWeldAttempt, before: new []{typeof(DoorSystem), typeof(WiresSystem)});
 
 
+        SubscribeLocalEvent<BuildAttemptEvent>(OnBuildAttemptEvent);
+    }
 
+    private void OnBuildAttemptEvent(BuildAttemptEvent ev)
+    {
+        var grid = Transform(ev.Uid).GridUid;
+        if (grid == null)
+        {
+            return;
+        }
+
+        if (HasComp<ProtectedGridComponent>(grid.Value))
+        {
+            ev.Cancel();
+        }
     }
 
     private void OnStartup(EntityUid uid, ArrivalsProtectComponent component, ComponentStartup args)
@@ -81,44 +98,57 @@ public sealed class ArrivalsProtectSystem : EntitySystem
 
     private void OnArrivalsStartup2(EntityUid uid, ArrivalsShuttleComponent component, ComponentAdd args)
     {
-        ProcceGrid(uid);
+        ProcessGrid(uid);
     }
 
     private void OnArrivalsStartup(EntityUid uid, ArrivalsSourceComponent component, ComponentStartup args)
     {
-        ProcceGrid(uid);
+        ProcessGrid(uid);
     }
 
-    private void ProcceGrid(EntityUid uid){
-        EntityUid Grid;
-        if(_mapManager.IsGrid(uid)){
-            Grid = uid;
-        }else if(_mapManager.IsMap(uid)){
-            return;
-        }else{
-            Grid = Transform(uid).GridUid ?? EntityUid.Invalid;
+    private void ProcessGrid(EntityUid uid)
+    {
+        EntityUid grid;
+        if(_mapManager.IsGrid(uid))
+        {
+            grid = uid;
         }
-        if(!Grid.IsValid()){
+        else if(_mapManager.IsMap(uid))
+        {
+            return;
+        }
+        else
+        {
+            grid = Transform(uid).GridUid ?? EntityUid.Invalid;
+        }
+        if(!grid.IsValid())
+        {
             return;
         }
 
         var transformQuery = GetEntityQuery<TransformComponent>();
 
-        RecursiveGodmode(transformQuery, Grid);
+        RecursiveGodmode(transformQuery, grid);
     }
 
-    private void ProcessGodmode(EntityUid uid){
-        if(TryComp<DoorComponent>(uid, out var DoorComp)){
-            DoorComp.PryingQuality = "None";
+    private void ProcessGodmode(EntityUid uid)
+    {
+        if(TryComp<DoorComponent>(uid, out var doorComp))
+        {
+            doorComp.PryingQuality = "None";
             EnsureComp<ArrivalsProtectComponent>(uid);
 
-            if(HasComp<AirlockComponent>(uid)){
+            if(HasComp<AirlockComponent>(uid))
+            {
                 _tagSystem.TryAddTag(uid,"EmagImmune");
             }
-        }else if(_tagSystem.HasAnyTag(uid,"GasVent", "GasScrubber")){
+        }
+        else if(_tagSystem.HasAnyTag(uid,"GasVent", "GasScrubber"))
+        {
             EnsureComp<ArrivalsProtectComponent>(uid);
             RemCompDeferred<VentCritterSpawnLocationComponent>(uid);
-        }else if( // basic elements
+        }
+        else if( // basic elements
             _tagSystem.HasAnyTag(uid,"Wall","Window") ||
             HasComp<PoweredLightComponent>(uid) ||
             HasComp<CableComponent>(uid) ||
@@ -132,11 +162,15 @@ public sealed class ArrivalsProtectSystem : EntitySystem
         }
     }
 
-    private void RecursiveGodmode(EntityQuery<TransformComponent> transformQuery, EntityUid uid){
+    private void RecursiveGodmode(EntityQuery<TransformComponent> transformQuery, EntityUid uid)
+    {
 
-        try{
+        try
+        {
             ProcessGodmode(uid);
-        }catch(KeyNotFoundException){
+        }
+        catch(KeyNotFoundException)
+        {
             //ignore
         }
 
@@ -150,6 +184,6 @@ public sealed class ArrivalsProtectSystem : EntitySystem
 
     private void OnArrivalsStartup1(EntityUid uid, ArrivalsSourceComponent component, ComponentStartup args)
     {
-        ProcceGrid(uid);
+        ProcessGrid(uid);
     }
 }

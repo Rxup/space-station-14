@@ -18,6 +18,12 @@
   - External
   extendedAccess:
   - Chemistry
+  #start-backmen: currency
+  minBankBalance: 300
+  maxBankBalance: 500
+  wageDepartment: Medical
+  wage: 75
+  #end-backmen: currency
 
 - type: startingGear
   id: ParamedicGear

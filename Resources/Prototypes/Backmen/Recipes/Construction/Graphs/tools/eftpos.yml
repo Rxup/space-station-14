@@ -1,0 +1,19 @@
+﻿- type: constructionGraph
+  id: eftpos
+  start: start
+  graph:
+    - node: start
+      edges:
+        - to: eftpos
+          steps:
+            - material: Plastic
+              amount: 5
+              doAfter: 2
+            - material: Glass
+              amount: 2
+              doAfter: 1
+            - material: Cable
+              amount: 5
+              doAfter: 2
+    - node: eftpos
+      entity: Eftpos

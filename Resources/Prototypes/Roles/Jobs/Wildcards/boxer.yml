@@ -9,6 +9,10 @@
   access:
   - Service
   - Maintenance
+  #start-backmen: currency
+  minBankBalance: 300
+  maxBankBalance: 500
+  #end-backmen: currency
 
 - type: startingGear
   id: BoxerGear

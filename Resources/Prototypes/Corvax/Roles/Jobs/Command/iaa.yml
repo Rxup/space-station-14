@@ -19,6 +19,12 @@
     - Maintenance
     - Command
     - External
+  #start-backmen: currency
+  minBankBalance: 800
+  maxBankBalance: 1200
+  wageDepartment: Specific
+  wage: 200
+  #end-backmen: currency
 
 - type: startingGear
   id: IAAGear

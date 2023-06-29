@@ -240,3 +240,24 @@
   name: tts-voice-name-b-wane
   sex: Male
   speaker: m-28
+
+- type: ttsVoice
+  id: Npc1
+  name: tts-voice-name-b-npc-1
+  sex: Unsexed
+  speaker: npc-1
+  roundStart: false
+
+- type: ttsVoice
+  id: Npc2
+  name: tts-voice-name-b-npc-2
+  sex: Unsexed
+  speaker: npc-2
+  roundStart: false
+
+- type: ttsVoice
+  id: Npc3
+  name: tts-voice-name-b-npc-3
+  sex: Unsexed
+  speaker: npc-3
+  roundStart: false

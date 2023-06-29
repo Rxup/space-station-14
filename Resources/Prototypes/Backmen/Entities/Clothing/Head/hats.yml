@@ -1,6 +1,6 @@
 - type: entity
   parent: ClothingHeadBase
-  id: ClothingHeadHatUshankabel
+  id: ClothingHeadHatUshankaSSSP
   name: Ушанка СССП
   description: "Отлично подходит для Сибири, да?"
   components:
@@ -13,7 +13,7 @@
 
 - type: entity
   parent: ClothingHeadBase
-  id: ClothingHeadHatCapGermanbel
+  id: ClothingHeadHatCapGerman
   name: Фуражка немецкого офицера
   description: Довольно старая фуражка офицера руководящего немецкими войсками
   components:
@@ -24,7 +24,7 @@
 
 - type: entity
   parent: ClothingHeadBase
-  id: ClothingHeadHatCapOfficerSovietbel
+  id: ClothingHeadHatCapOfficerSoviet
   name: Фуражка Советского Офицера
   description: Современная версия фуражки офицера руководящего войсками СССП
   components:
@@ -35,7 +35,7 @@
 
 - type: entity
   parent: ClothingHeadBase
-  id: ClothingWhitsHunterbel
+  id: ClothingWhitsHunter
   name: Шляпа охотника за ведьмами
   description: Шляпа охотника за мифическими существами, а именно ведьмами в стиле средневековья
   components:

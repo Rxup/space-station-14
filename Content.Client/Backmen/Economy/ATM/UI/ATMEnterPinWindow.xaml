@@ -1,0 +1,14 @@
+﻿<DefaultWindow
+    xmlns="https://spacestation14.io"
+    Title="{Loc 'atm-ui-enter-pin-title'}"
+    SetSize="200 105"
+    MinSize="200 105">
+    <BoxContainer Orientation="Vertical" VerticalExpand="True">
+        <Label Text="{Loc 'atm-ui-enter-pin-text'}" />
+        <LineEdit
+            Name="PinLineEdit"
+            Access="Public"
+            HorizontalExpand="True"
+            Margin="0 4 0 0" />
+    </BoxContainer>
+</DefaultWindow>

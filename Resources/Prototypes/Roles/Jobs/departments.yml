@@ -6,6 +6,7 @@
   - CargoTechnician
   - Quartermaster
   - SalvageSpecialist
+  accountNumber: 1315 #backmen: currency
 
 - type: department
   id: Civilian
@@ -32,6 +33,7 @@
   - ServiceWorker
   - TechnicalAssistant
   - ResearchAssistant
+  accountNumber: 1316 #backmen: currency
 
 - type: department
   id: Command
@@ -47,6 +49,7 @@
   - HeadOfSecurity
   - ResearchDirector
   - Quartermaster
+  accountNumber: 1317 #backmen: currency
 
 - type: department
   id: Engineering
@@ -57,6 +60,7 @@
   - ChiefEngineer
   - StationEngineer
   - TechnicalAssistant
+  accountNumber: 1318 #backmen: currency
 
 - type: department
   id: Medical
@@ -69,6 +73,7 @@
   - MedicalIntern
   - Psychologist
   - Paramedic
+  accountNumber: 1319 #backmen: currency
 
 - type: department
   id: Security
@@ -80,15 +85,18 @@
   - SecurityOfficer
   - Detective
   - Warden
+  - Brigmedic #backmen
+  accountNumber: 1320  #backmen: currency
 
 - type: department
   id: Science
-  description: department-Command-description
+  description: department-Science-description
   color: "#D381C9"
   roles:
   - ResearchDirector
   - Scientist
   - ResearchAssistant
+  accountNumber: 1321  #backmen: currency
 
 - type: department
   id: Specific
@@ -99,3 +107,4 @@
   - Reporter
   - Zookeeper
   - Psychologist
+  accountNumber: 1322  #backmen: currency

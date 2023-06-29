@@ -1,5 +1,5 @@
 - type: entity
-  parent: BaseItem
+  parent: SpaceCredit # backmen: currency
   id: SpaceCash
   name: spacebucks
   description: You gotta have money.
@@ -23,7 +23,6 @@
     - cash_1000000
   - type: Sprite
     sprite: Objects/Economy/cash.rsi
-    netsync: false
     state: cash
     layers:
     - state: cash

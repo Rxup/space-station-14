@@ -16,7 +16,7 @@
 
 - type: entity
   parent: ClothingMaskBase
-  id: ClothingDallasMaskBel
+  id: ClothingDallasMask
   name: Маска Далласа
   description: Традиционная маска грабителя из банды PayDay
   components:
@@ -29,7 +29,7 @@
 
 - type: entity
   parent: ClothingMaskBase
-  id: ClothingWolfMaskBel
+  id: ClothingWolfMask
   name: Маска Вулфа
   description: Традиционная маска грабителя из банды PayDay
   components:
@@ -42,7 +42,7 @@
 
 - type: entity
   parent: ClothingMaskBase
-  id: ClothingChainsMaskBel
+  id: ClothingChainsMask
   name: Маска Чейнса
   description: Традиционная маска грабителя из банды PayDay
   components:
@@ -55,7 +55,7 @@
 
 - type: entity
   parent: ClothingMaskBase
-  id: ClothingHoxtonMaskBel
+  id: ClothingHoxtonMask
   name: Маска Хокстона
   description: Традиционная маска грабителя из банды PayDay
   components:
@@ -68,7 +68,7 @@
 
 - type: entity
   parent: ClothingMaskBase
-  id: ClothingJokerBel
+  id: ClothingJokermask
   name: Маска Джокера
   description: Страшная маска джокера, больного психопата которая неизвестно как попала на станцию
   components:
@@ -81,7 +81,7 @@
 
 - type: entity
   parent: ClothingMaskGas
-  id: ClothingGermanGasMaskbel
+  id: ClothingGermanGasMask
   name: Немецкий противогаз
   description: Противогаз немецких войск, потрепано временем но свою работу выполняет.
   components:
@@ -99,7 +99,7 @@
 
 - type: entity
   parent: ClothingMaskBase
-  id: ClothingBalaclavaSwatBel
+  id: ClothingBalaclavaSwat
   name: Балаклава
   description: Обычная балаклава из тончайшей ткани
   components:
@@ -112,7 +112,7 @@
 
 - type: entity
   parent: ClothingMaskGas
-  id: ClothingihsGasmaskbel
+  id: ClothingihsGasmask
   name: Противогаз IHS
   description: Противогаз тактических войск IHS.
   components:
@@ -127,3 +127,15 @@
         Slash: 0.97
         Piercing: 0.90
         Heat: 0.95
+
+- type: entity
+  parent: ClothingMaskBase
+  id: ClothingMaskblacksilense
+  name: Трофейная маска черной тишины
+  suffix: Clothing
+  description: Маска знаменитого охотника по прозвищу Черная тишина. Источает отчаяние.
+  components:
+  - type: Sprite
+    sprite: Backmen/Clothing/Head/Masks/blacksilense.rsi
+  - type: Clothing
+    sprite: Backmen/Clothing/Head/Masks/blacksilense.rsi

@@ -9,12 +9,18 @@
       time: 10800 # Corvax-RoleTime
   icon: "ShaftMiner"
   startingGear: SalvageSpecialistGear
-  supervisors: job-supervisors-hop-qm
+  supervisors: job-supervisors-qm
   access:
   - Cargo
   - Salvage
   - Maintenance
   - External
+  #start-backmen: currency
+  minBankBalance: 300
+  maxBankBalance: 500
+  wageDepartment: Cargo
+  wage: 100
+  #end-backmen: currency
 
 - type: startingGear
   id: SalvageSpecialistGear

@@ -3,6 +3,9 @@
   name: job-name-clown
   description: job-description-clown
   playTimeTracker: JobClown
+  requirements:
+  - !type:OverallPlaytimeRequirement
+      time: 90000 # Corvax-RoleTime
   startingGear: ClownGear
   icon: "Clown"
   supervisors: job-supervisors-hop
@@ -21,6 +24,12 @@
           Burn: 3
   - !type:AddImplantSpecial
     implants: [ SadTromboneImplant ]
+  #start-backmen: currency
+  minBankBalance: 300
+  maxBankBalance: 500
+  wageDepartment: Civilian
+  wage: 100
+  #end-backmen: currency
 
 - type: startingGear
   id: ClownGear

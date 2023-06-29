@@ -7,8 +7,6 @@
     - !type:DepartmentTimeRequirement
       department: Science
       time: 54000 # Corvax-RoleTime
-#    - !type:OverallPlaytimeRequirement
-#      time: 108000
   weight: 10
   startingGear: ResearchDirectorGear
   icon: "ResearchDirector"
@@ -20,6 +18,12 @@
   - Command
   - Maintenance
   - ResearchDirector
+  #start-backmen: currency
+  minBankBalance: 800
+  maxBankBalance: 1200
+  wageDepartment: Command
+  wage: 200
+  #end-backmen: currency
 
 - type: startingGear
   id: ResearchDirectorGear

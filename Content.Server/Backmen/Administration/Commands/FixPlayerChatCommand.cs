@@ -21,7 +21,7 @@ namespace Content.Server.Backmen.Administration.Commands
 
         public string Command => "fixplayerchat";
 
-        public string Description => Loc.GetString("set-fix-player-chat-description", ("requiredComponent", nameof(MindComponent)));
+        public string Description => Loc.GetString("set-fix-player-chat-description", ("requiredComponent", nameof(MindContainerComponent)));
 
         public string Help => Loc.GetString("set-fix-player-chat-help-text", ("command", Command));
 
@@ -55,14 +55,14 @@ namespace Content.Server.Backmen.Administration.Commands
                 return;
             }
 
-            if (!_entityManager.HasComponent<MindComponent>(eUid) || !_entityManager.HasComponent<ActorComponent>(eUid))
+            if (!_entityManager.HasComponent<MindContainerComponent>(eUid) || !_entityManager.HasComponent<ActorComponent>(eUid))
             {
                 shell.WriteLine(Loc.GetString("set-mind-command-target-has-no-mind-message"));
                 return;
             }
 
             _entityManager.RemoveComponent<ActorComponent>(eUid);
-            _entityManager.RemoveComponent<MindComponent>(eUid);
+            _entityManager.RemoveComponent<MindContainerComponent>(eUid);
 
             // hm, does player have a mind? if not we may need to give them one
             var playerCData = session.ContentData();
@@ -72,20 +72,14 @@ namespace Content.Server.Backmen.Administration.Commands
                 return;
             }
 
-            var mind = playerCData.Mind;
-
-            if(mind == null){
-                mind = new Mind.Mind(session.UserId)
-                {
-                    CharacterName = _entityManager.GetComponent<MetaDataComponent>(eUid).EntityName
-                };
-                mind.ChangeOwningPlayer(session.UserId);
-            }
+            // ReSharper disable once InconsistentNaming
+            var _mindSystem = _entityManager.System<MindSystem>();
+            var mind = playerCData.Mind ?? _mindSystem.CreateMind(session.UserId, _entityManager.GetComponent<MetaDataComponent>(eUid).EntityName);
 
             //mind.TransferTo(null);
             Timer.Spawn(1_000, ()=>{
                 if(eUid.IsValid() && _entityManager.HasComponent<MetaDataComponent>(eUid)){
-                    mind.TransferTo(eUid);
+                    _mindSystem.TransferTo(mind, eUid);
                 }
             });
             _adminLogger.Add(LogType.Mind, LogImpact.High, $"{(shell.Player != null ? shell.Player.Name : "An administrator")} fixplayerchat {_entityManager.ToPrettyString(eUid)}");

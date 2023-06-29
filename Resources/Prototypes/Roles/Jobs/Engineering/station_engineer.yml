@@ -16,6 +16,12 @@
   - External
   extendedAccess:
   - Atmospherics
+  #start-backmen: currency
+  minBankBalance: 300
+  maxBankBalance: 500
+  wageDepartment: Engineering
+  wage: 100
+  #end-backmen: currency
 
 - type: startingGear
   id: StationEngineerGear
@@ -27,7 +33,7 @@
     outerClothing: ClothingOuterVestHazard
     id: EngineerPDA
     eyes: ClothingEyesGlassesMeson
-    belt: ClothingBeltUtilityFilled
+    belt: ClothingBeltUtilityEngineering
     ears: ClothingHeadsetEngineering
   innerclothingskirt: ClothingUniformJumpskirtEngineering
   satchel: ClothingBackpackSatchelEngineeringFilled

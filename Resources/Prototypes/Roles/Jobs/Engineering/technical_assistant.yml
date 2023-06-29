@@ -16,6 +16,12 @@
   - Maintenance
   - Engineering
   - External
+  #start-backmen: currency
+  minBankBalance: 300
+  maxBankBalance: 500
+  wageDepartment: Engineering
+  wage: 50
+  #end-backmen: currency
 
 - type: startingGear
   id: TechnicalAssistantGear
@@ -25,7 +31,7 @@
     back: ClothingBackpackEngineeringFilled
     shoes: ClothingShoesBootsWork
     id: TechnicalAssistantPDA
-    belt: ClothingBeltUtilityFilled
+    belt: ClothingBeltUtilityEngineering
     ears: ClothingHeadsetEngineering
   innerclothingskirt: ClothingUniformJumpskirtColorYellow
   satchel: ClothingBackpackSatchelEngineeringFilled

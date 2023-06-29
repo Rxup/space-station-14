@@ -36,4 +36,10 @@ public sealed class CurrencyPrototype : IPrototype
     /// </summary>
     [DataField("canWithdraw")]
     public bool CanWithdraw { get; } = true;
+
+
+    // start-backmen: currency
+    [DataField("currencySymbol")]
+    public string CurrencySymbol { get; } = string.Empty;
+    // end-backmen: currency
 }

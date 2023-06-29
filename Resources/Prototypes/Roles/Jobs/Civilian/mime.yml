@@ -3,6 +3,9 @@
   name: job-name-mime
   description: job-description-mime
   playTimeTracker: JobMime
+  requirements:
+  - !type:OverallPlaytimeRequirement
+      time: 90000 # Corvax-RoleTime
   startingGear: MimeGear
   icon: "Mime"
   supervisors: job-supervisors-hop
@@ -13,6 +16,12 @@
   - !type:AddComponentSpecial
     components:
     - type: MimePowers
+  #start-backmen: currency
+  minBankBalance: 300
+  maxBankBalance: 500
+  wageDepartment: Civilian
+  wage: 100
+  #end-backmen: currency
 
 - type: startingGear
   id: MimeGear

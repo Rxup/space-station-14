@@ -13,12 +13,18 @@
     {
       "name": "idcardiog"
 	},
+      {
+          "name": "default"
+      },
 	{
       "name": "black"
 	},
 	{
       "name": "idcardro"
 	},
+      {
+          "name": "idbrigmedic"
+      },
     {
       "name": "black-inhand-left",
       "directions": 4
@@ -26,6 +32,14 @@
     {
       "name": "black-inhand-right",
       "directions": 4
-    }
+    },
+      {
+          "name": "default-inhand-left",
+          "directions": 4
+      },
+      {
+          "name": "default-inhand-right",
+          "directions": 4
+      }
   ]
 }

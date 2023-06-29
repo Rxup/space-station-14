@@ -18,6 +18,12 @@
   - Security
   - Brig
   - Maintenance
+  #start-backmen: currency
+  minBankBalance: 300
+  maxBankBalance: 500
+  wageDepartment: Security
+  wage: 50
+  #end-backmen: currency
 
 - type: startingGear
   id: SecurityCadetGear

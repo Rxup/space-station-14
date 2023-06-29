@@ -22,7 +22,7 @@
 
 - type: entity
   parent: ClothingUniformBase
-  id: GermanSuitBel
+  id: GermanSuit
   name: Форма Немецкого Солдата
   description: Военная форма немецких войск
   components:
@@ -33,7 +33,7 @@
 
 - type: entity
   parent: ClothingUniformBase
-  id: GermanOfficerSuitBel
+  id: GermanOfficerSuit
   name: Форма немецкого офицера
   description: Форма которую носят немецкие офицеры
   components:
@@ -44,7 +44,7 @@
 
 - type: entity
   parent: ClothingUniformBase
-  id: SovietSoldierUniformBel
+  id: SovietSoldierUniformSuit
   name: Униформа солдата СССП
   description: Опрятная форма бойца фракции СССП
   components:
@@ -55,7 +55,7 @@
 
 - type: entity
   parent: ClothingUniformBase
-  id: SovietOfficerUniformBel
+  id: SovietOfficerUniformSuit
   name: Униформа офицера СССП
   description: Опрятная форма офицера фракции СССП
   components:
@@ -66,7 +66,7 @@
 
 - type: entity
   parent: ClothingUniformBase
-  id: ElPresidenteNanotrasenBel
+  id: ElPresidenteNanotrasenSuit
   name: Костюм Президента Nanotrasen
   description: Великолепно опрятный, элегантный и очень дорогой президента корпорации.
   components:
@@ -77,7 +77,7 @@
 
 - type: entity
   parent: ClothingUniformBase
-  id: PredstavitelNanotrasenBelov
+  id: PredstavitelNanotrasenSuit
   name: Костюм Представителя корпорации NT
   description: Великолепный костюм корпорационной шишки
   components:
@@ -88,7 +88,7 @@
 
 - type: entity
   parent: ClothingUniformBase
-  id: tsfPredstavbel
+  id: tsfPredstavSuit
   name: Костюм Представителя ТСФ
   description: Покажите кто тут главный в транс-солнечной-федерации!
   components:
@@ -99,7 +99,7 @@
 
 - type: entity
   parent: ClothingUniformBase
-  id: LeutenantUniformtfsbelov
+  id: LeutenantUniformtfsSuit
   name: Униформа лейтенанта войск ТСФ
   description: Руководите военными силами ТСФ!
   components:
@@ -110,7 +110,7 @@
 
 - type: entity
   parent: ClothingUniformBase
-  id: soldiertsfuniformbelov
+  id: soldiertsfuniformSuit
   name: Униформа бойца ТСФ
   description: Служите во славу ТСФ!
   components:
@@ -143,7 +143,7 @@
 
 - type: entity
   parent: ClothingUniformBase
-  id: ClothingUniformArbitr_EBLAN228337
+  id: ClothingUniformArbitr
   name: Костюм Арбитра
   description:  Невероятно дорогой костюм Арбитра неизвестной корпорации.В комплекте идет золотая серьга в виде черепа и 2 золотых кольца
   components:
@@ -162,3 +162,69 @@
     sprite: Backmen/Clothing/Uniforms/jumpsuit/cargopostal.rsi
   - type: Clothing
     sprite: Backmen/Clothing/Uniforms/jumpsuit/cargopostal.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: AgentUniformOneSuit
+  name: Полосатый деловой костюм
+  description: Дорогой костюм распространенный в дорогих местах.
+  components:
+  - type: Sprite
+    sprite: Backmen/Clothing/Uniforms/jumpsuit/avdpoloska.rsi
+  - type: Clothing
+    sprite: Backmen/Clothing/Uniforms/jumpsuit/avdpoloska.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: AgentUniformTwoSuit
+  name: Деловая жилетка
+  description: Дорогой костюм распространенный в дорогих местах.
+  components:
+  - type: Sprite
+    sprite: Backmen/Clothing/Uniforms/jumpsuit/avdvictoriavest.rsi
+  - type: Clothing
+    sprite: Backmen/Clothing/Uniforms/jumpsuit/avdvictoriavest.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: JokerSuit
+  name: Костюм Джокера
+  description: Тот самый костюм который носил преступник под псевдонимом Джокер
+  components:
+  - type: Sprite
+    sprite: Backmen/Clothing/Uniforms/jumpsuit/jokersuitbel.rsi
+  - type: Clothing
+    sprite: Backmen/Clothing/Uniforms/jumpsuit/jokersuitbel.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: AgentfoursevenSuit
+  name: Деловой костюм агента синдиката
+  description: Костюм сделанный по специальному заказу, ранее пренадлежал агенту 47
+  components:
+  - type: Sprite
+    sprite: Backmen/Clothing/Uniforms/jumpsuit/syndicatetactic.rsi
+  - type: Clothing
+    sprite: Backmen/Clothing/Uniforms/jumpsuit/syndicatetactic.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: MagistratUniformSuit
+  name: Костюм магистрата
+  description: Увольте пару срочников!
+  components:
+  - type: Sprite
+    sprite: Backmen/Clothing/Uniforms/jumpsuit/magistratebel.rsi
+  - type: Clothing
+    sprite: Backmen/Clothing/Uniforms/jumpsuit/magistratebel.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: BlueshieldUniformSuit
+  name: Костюм Блюшилд
+  description: Носитель данного костюма обязан защищать глав.
+  components:
+  - type: Sprite
+    sprite: Backmen/Clothing/Uniforms/jumpsuit/blueshieldformal.rsi
+  - type: Clothing
+    sprite: Backmen/Clothing/Uniforms/jumpsuit/blueshieldformal.rsi

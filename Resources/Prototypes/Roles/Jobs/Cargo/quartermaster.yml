@@ -4,18 +4,19 @@
   description: job-description-qm
   playTimeTracker: JobQuartermaster
   requirements:
+#    - !type:RoleTimeRequirement
+#      role: JobCargoTechnician
+#      time: 21600 #6 hrs
     - !type:RoleTimeRequirement
       role: JobSalvageSpecialist
       time: 36000 # Corvax-RoleTime
     - !type:DepartmentTimeRequirement
       department: Cargo
       time: 54000 # Corvax-RoleTime
-#    - !type:OverallPlaytimeRequirement
-#      time: 108000
   weight: 10
   startingGear: QuartermasterGear
   icon: "QuarterMaster"
-  supervisors: job-supervisors-hop
+  supervisors: job-supervisors-captain
   canBeAntag: false
   access:
   - Cargo
@@ -24,6 +25,12 @@
   - Maintenance
   - External
   - Command
+  #start-backmen: currency
+  minBankBalance: 300
+  maxBankBalance: 500
+  wageDepartment: Cargo
+  wage: 100
+  #end-backmen: currency
 
 - type: startingGear
   id: QuartermasterGear
