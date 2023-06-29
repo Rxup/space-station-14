@@ -9,7 +9,7 @@
     - Redorden
     defaultChannel: Redorden
   - type: Sprite
-    sprite: Backmen/Objects/Devices/encryption_keysRD.rsi
+    sprite: Backmen/Objects/Devices/encryption_keysRO.rsi
     layers:
     - state: crypt_black
     - state: ord_label
@@ -17,8 +17,7 @@
 - type: entity
   parent: EncryptionKey
   id: EncryptionKeyCSH
-  name: Ключ шифрования CSH
-  description: Особый ключ шифрования, нужный для доступа к каналам коммуникации CSH
+  name: Encryption Key CSH
   components:
   - type: EncryptionKey
     channels:
