@@ -21,8 +21,6 @@
     softness: 1
     autoRot: true
     castShadows: false
-  - type: Beam
-    sound: /Audio/Effects/Lightning/lightningshock.ogg
   - type: TimedDespawn
     lifetime: 3
   - type: Tag
