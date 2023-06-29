@@ -1,11 +1,24 @@
 - type: entity
-  name: Печать красного ордена.
+  name: Stamp Red Orden
   parent: RubberStampMime
   id: RubberStampredorden
   components:
   - type: Stamp
-    stampedName: Красный орден
+    stampedName: stamp-component-stamped-name-RO
     stampState: "paper_stamp-warden"
   - type: Sprite
-    sprite: Backmen/Objects/Misc/bureaucracy.rsi
+    sprite: Backmen/Objects/Misc/bureaucracyRO.rsi
     state: stamp-redorden
+
+
+- type: entity
+  name: Stamp CSH
+  parent: RubberStampRd
+  id: RubberStampCSH
+  components:
+  - type: Stamp
+    stampedName: stamp-component-stamped-name-CSH
+    stampState: "paper_stamp-rd"
+  - type: Sprite
+    sprite: Backmen/Objects/Misc/bureaucracyCSH.rsi
+    state: stamp-CSH
