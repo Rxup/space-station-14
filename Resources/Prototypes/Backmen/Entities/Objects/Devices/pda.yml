@@ -4,7 +4,7 @@
   name: PDA of the Red Order
   description: An unusual variation of the PDA that draws energy from redspace crystals inside.
   components:
-    - type: PDA
+    - type: Pda
       id: IdCardRO
       state: pda-orden
       penSlot:
