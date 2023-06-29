@@ -5,11 +5,3 @@
   frequency: 1229
   color: "#8B0000"
   longRange: true
-
-- type: radioChannel
-  id: CSH
-  name: CSH
-  keycode: 'в'
-  frequency: 8000
-  color: "#8f09b0"
-  longRange: true
