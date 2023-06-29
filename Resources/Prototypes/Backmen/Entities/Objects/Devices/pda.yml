@@ -1,19 +1,20 @@
-﻿- type: entity
+- type: entity
   parent: BasePDA
-  id: BrigmedPDA
-  name: brigmed PDA
-  description: I wonder whose pulse is on the screen? I hope he doesnt stop... PDA has a built-in health analyzer.
+  id: OrdenPDA
+  name: PDA of the Red Order
+  description: An unusual variation of the PDA that draws energy from redspace crystals inside.
   components:
     - type: Pda
-      id: SecurityCadetIDCard
-      state: pda-interncadet
-    - type: Icon
-      state: pda-interncadet
+      id: IdCardRO
+      state: pda-orden
+      penSlot:
+        startingItem: EnergyDagger
+        priority: -1
+        whitelist:
+          tags:
+          - Write
     - type: PdaBorderColor
-      borderColor: "#A32D26"
-      accentHColor: "#447987"
-      accentVColor: "#447987"
-    - type: HealthAnalyzer
-      scanDelay: 1
-      scanningEndSound:
-        path: "/Audio/Items/Medical/healthscanner.ogg"
+      borderColor: "#8b0000"
+    - type: Icon
+      state: pda-orden
+

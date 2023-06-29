@@ -1,5 +1,5 @@
 - type: radioChannel
-  id: RedOrden
+  id: Redorden
   name: Красный орден
   keycode: 'ф'
   frequency: 1229

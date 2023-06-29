@@ -1,8 +1,8 @@
 - type: entity
   parent: ClothingUniformBase
   id: ClothingUniformJumpsuitgalaxy
-  name: galaxy blue suit
-  description: Galactic overalls. Created by the ancient dwarf Myphistopheles
+  name: galaxy blue suit red order
+  description: The galactic suit contains pieces of redspace. Created by the ancient dwarf Myphistopheles for the purposes of the Red Order.
   components:
     - type: Sprite
       sprite: Backmen/Clothing/Uniforms/jumpsuit/blue_fuvala.rsi
@@ -12,14 +12,14 @@
 - type: entity
   parent: ClothingUniformBase
   id: ClothingUniformJumpsuitgalaxyred
-  name: galaxy red suit
-  description: Galactic overalls. Created by the ancient dwarf Myphistopheles
+  name: galaxy red suit red order
+  description: The galactic suit contains pieces of redspace. Created by the ancient dwarf Myphistopheles for the purposes of the Red Order.
   components:
     - type: Sprite
       sprite: Backmen/Clothing/Uniforms/jumpsuit/red_fuvala.rsi
     - type: Clothing
       sprite: Backmen/Clothing/Uniforms/jumpsuit/red_fuvala.rsi
-      
+
 - type: entity
   parent: ClothingUniformBase
   id: GermanSuit
@@ -133,8 +133,8 @@
 - type: entity
   parent: ClothingUniformBase
   id: ClothingUniformJumpsuitGachi
-  name: Мужской костюм
-  description: Костюм, пропитанный крепкими мужскими отношениями и солидарностью!
+  name: Men's suit
+  description: A suit imbued with strong male relationships and solidarity!
   components:
   - type: Sprite
     sprite: Backmen/Clothing/Uniforms/jumpsuit/gachi.rsi
@@ -162,7 +162,7 @@
     sprite: Backmen/Clothing/Uniforms/jumpsuit/cargopostal.rsi
   - type: Clothing
     sprite: Backmen/Clothing/Uniforms/jumpsuit/cargopostal.rsi
-    
+
 - type: entity
   parent: ClothingUniformBase
   id: AgentUniformOneSuit

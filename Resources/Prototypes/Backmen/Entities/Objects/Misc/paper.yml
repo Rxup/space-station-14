@@ -10,7 +10,6 @@
     sprite: Backmen/Objects/Misc/bureaucracyRO.rsi
     state: stamp-redorden
 
-
 - type: entity
   name: Stamp CSH
   parent: RubberStampRd
