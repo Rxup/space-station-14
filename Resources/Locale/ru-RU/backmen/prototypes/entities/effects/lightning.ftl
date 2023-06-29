@@ -1,0 +1,12 @@
+ent-BaseLightning = Молния [Backmen]
+    .desc = { "" }
+ent-Lightning = lightning
+    .desc = { ent-BaseLightning.desc }
+ent-LightningRevenant = Молния Ревенанта [Backmen]
+    .desc = { ent-BaseLightning.desc }
+ent-ChargedLightning = Заряженная Молния [Backmen]
+    .desc = { ent-BaseLightning.desc }
+ent-SuperchargedLightning = Суперзаряженная Молния [Backmen]
+    .desc = { ent-ChargedLightning.desc }
+ent-HyperchargedLightning = Гиперзаряженная Молния [Backmen]
+    .desc = { ent-ChargedLightning.desc }
