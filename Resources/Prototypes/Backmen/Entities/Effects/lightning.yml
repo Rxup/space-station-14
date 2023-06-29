@@ -1,6 +1,6 @@
 ﻿- type: entity
   name: lightning
-  id: BaseLightning
+  id: BaseLightning_Backmen
   abstract: true
   components:
   - type: Sprite
@@ -30,19 +30,19 @@
       - HideContextMenu
 
 - type: entity
-  name: lightning
-  id: Lightning
-  parent: BaseLightning
-  noSpawn: true
+  name: Молния [Backmen]
+  id: Lightning_Backmen
+  parent: BaseLightning_Backmen
+  noSpawn: false
   components:
     - type: Lightning
       canArc: true
 
 - type: entity
-  name: spooky lightning
-  id: LightningRevenant
-  parent: BaseLightning
-  noSpawn: true
+  name: Молния Ревенанта [Backmen]
+  id: LightningRevenant_Backmen
+  parent: BaseLightning_Backmen
+  noSpawn: false
   components:
     - type: Sprite
       sprite: /Textures/Effects/lightning.rsi
@@ -63,10 +63,10 @@
       shockDamage: 30
 
 - type: entity
-  name: charged lightning
-  id: ChargedLightning
-  parent: BaseLightning
-  noSpawn: true
+  name: Заряженная Молния [Backmen]
+  id: ChargedLightning_Backmen
+  parent: BaseLightning_Backmen
+  noSpawn: false
   components:
     - type: Sprite
       sprite: /Textures/Effects/lightning.rsi
@@ -82,10 +82,10 @@
       lightningPrototype: ChargedLightning
 
 - type: entity
-  name: supercharged lightning
-  id: SuperchargedLightning
-  parent: ChargedLightning
-  noSpawn: true
+  name: Суперзаряженная Молния [Backmen]
+  id: SuperchargedLightning_Backmen
+  parent: ChargedLightning_Backmen
+  noSpawn: false
   components:
     - type: Sprite
       sprite: /Textures/Effects/lightning.rsi
@@ -108,10 +108,10 @@
       castShadows: false
 
 - type: entity
-  name: hypercharged lightning
-  id: HyperchargedLightning
-  parent: ChargedLightning
-  noSpawn: true
+  name: Гиперзаряженная Молния [Backmen]
+  id: HyperchargedLightning_Backmen
+  parent: ChargedLightning_Backmen
+  noSpawn: false
   components:
     - type: Sprite
       sprite: /Textures/Effects/lightning.rsi
