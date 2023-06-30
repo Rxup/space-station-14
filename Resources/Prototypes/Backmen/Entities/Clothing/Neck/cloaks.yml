@@ -11,8 +11,8 @@
 - type: entity
   parent: ClothingNeckBase
   id: ClothingNeckCloakOrden
-  name: Плащ красного ордена
-  description: Плащ ордена красного дракона! Этот плащ был создан древним культом и посей день не кто не знает как он попадает на станцию.
+  name: Cloak of the Red Order
+  description: Cloak of the Order of the Red Dragon! This cloak was created by an ancient cult, and to this day no one knows how it got to the station.
   components:
   - type: Sprite
     sprite: Backmen/Clothing/Neck/Cloaks/orden.rsi
@@ -20,8 +20,8 @@
 - type: entity
   parent: ClothingNeckBase
   id: ClothingNeckCloakSssp
-  name: Плащ сотрудника СССП
-  description: Выдаётся за заслугу перед СССП. Вы лучший. Можете это не скрывать.
+  name: SSSP Officer's Cloak
+  description: Awarded for merit to the SSSP. You are the best. You can't hide it.
   components:
   - type: Sprite
     sprite: Backmen/Clothing/Neck/Cloaks/SSSP.rsi
@@ -52,7 +52,7 @@
   components:
   - type: Sprite
     sprite: Backmen/Clothing/Neck/Cloaks/whitebelov.rsi
-    
+
 - type: entity
   parent: ClothingNeckBase
   id: ClothingNeckCloakarbitr

@@ -1,8 +1,8 @@
 - type: entity
   parent: ClothingHeadset
   id: ClothingHeadsetOrden
-  name: Гарнитура красного ордена
-  description: Специальная гарнитура использующаяся членами красного ордена
+  name: Headset of the Red Order
+  description: Special typeface used by members of the Red Order
   components:
   - type: ContainerFill
     containers:
