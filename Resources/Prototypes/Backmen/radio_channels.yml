@@ -16,7 +16,7 @@
 
 - type: radioChannel
   id: GROUPS_1
-  name: 1
+  name: Группа 1
   keycode: '1'
   frequency: 8101
   color: "#10cae3"
@@ -24,7 +24,7 @@
 
 - type: radioChannel
   id: GROUPS_2
-  name: 2
+  name: Группа 2
   keycode: '2'
   frequency: 8102
   color: "#10cae3"
@@ -32,7 +32,7 @@
 
 - type: radioChannel
   id: GROUPS_3
-  name: 3
+  name: Группа 3
   keycode: '3'
   frequency: 8103
   color: "#10cae3"
@@ -40,7 +40,7 @@
 
 - type: radioChannel
   id: GROUPS_4
-  name: 4
+  name: Группа 4
   keycode: '4'
   frequency: 8104
   color: "#10cae3"
@@ -48,7 +48,7 @@
 
 - type: radioChannel
   id: GROUPS_5
-  name: 5
+  name: Группа 5
   keycode: '5'
   frequency: 8105
   color: "#10cae3"
@@ -56,7 +56,7 @@
 
 - type: radioChannel
   id: GROUPS_6
-  name: 6
+  name: Группа 6
   keycode: '6'
   frequency: 8106
   color: "#10cae3"
@@ -64,7 +64,7 @@
 
 - type: radioChannel
   id: GROUPS_7
-  name: 7
+  name: Группа 7
   keycode: '7'
   frequency: 8107
   color: "#10cae3"
@@ -72,7 +72,7 @@
 
 - type: radioChannel
   id: GROUPS_8
-  name: 8
+  name: Группа 8
   keycode: '8'
   frequency: 8108
   color: "#10cae3"
@@ -80,7 +80,7 @@
 
 - type: radioChannel
   id: GROUPS_9
-  name: 9
+  name: Группа 9
   keycode: '9'
   frequency: 8109
   color: "#10cae3"
@@ -88,7 +88,7 @@
 
 - type: radioChannel
   id: GROUPS_0
-  name: 0
+  name: Группа 0
   keycode: '0'
   frequency: 8100
   color: "#10cae3"
