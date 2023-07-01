@@ -86,8 +86,8 @@
       type: StrippableBoundUserInterface
   - type: GhostRole
     makeSentient: true
-    allowSpeech: true
-    allowMovement: true
+    allowSpeech: true # backmen
+    allowMovement: true # backmen
     name: ghost-role-information-drone-name # backmen
     description: ghost-role-information-drone-description # backmen
     rules: | # backmen
