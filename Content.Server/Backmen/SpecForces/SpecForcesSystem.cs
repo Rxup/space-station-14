@@ -64,12 +64,13 @@ public sealed class SpecForcesSystem : EntitySystem
                 EntityManager.AddComponent(uid, comp, true);
             }
         }
-
+        /*
         if (_inventory.TryGetSlotEntity(uid, "ears", out var ears) && TryComp<HeadsetComponent>(ears, out var earsComp))
         {
             earsComp.Enabled = false;
             //_headset.SetEnabled(ears.Value, false, earsComp);
         }
+        */
     }
 
     private void OnSpecForceTake(EntityUid uid, SpecForceComponent component, ref TakeGhostRoleEvent args)
@@ -115,11 +116,12 @@ public sealed class SpecForcesSystem : EntitySystem
             });
             return;
         }
-
+/*
         if (_inventory.TryGetSlotEntity(uid, "ears", out var ears) && TryComp<HeadsetComponent>(ears, out var earsComp))
         {
             _headset.SetEnabled(ears.Value, true, earsComp);
         }
+        */
     }
 
     public TimeSpan DelayTime
