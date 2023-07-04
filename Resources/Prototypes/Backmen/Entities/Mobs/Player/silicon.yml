@@ -2,6 +2,7 @@
   noSpawn: true
   parent: ClothingBackpackSatchel
   id: BSSClothingBackpackSatchelDrone
+  name: Сумка БСС Дрона
   components:
   - type: Storage
     capacity: 9999
@@ -9,12 +10,20 @@
     tags:
     - InnateDontDelete
 
+- type: nameIdentifierGroup
+  id: BSSDrone
+  prefix: БПЛА
+  fullName: true
+  minValue: 10000
+  maxValue: 99999
+
 - type: entity
   name: Blue Space Drone
   id: BackmenDrone
   parent: PlayerSiliconBase
   components:
   - type: BSSDrone
+  - type: CombatMode
   - type: InnateTool
     tools:
       - id: BSSClothingBackpackSatchelDrone
@@ -22,7 +31,7 @@
       - id: Omnitool
       - id: WelderExperimental
   - type: NameIdentifier
-    group: Drone
+    group: BSSDrone
   - type: Inventory
     templateId: drone
   - type: InventorySlots
@@ -76,8 +85,8 @@
     drawdepth: SmallMobs
     layers:
     - state: shell
-      #sprite: Backmen/Mobs/Silicon/drone.rsi
-      sprite: Mobs/Silicon/drone.rsi
+      sprite: Backmen/Mobs/Silicon/drone.rsi
+      #sprite: Mobs/Silicon/drone.rsi
       map: ["base"]
   - type: MovementIgnoreGravity
   - type: Fixtures
