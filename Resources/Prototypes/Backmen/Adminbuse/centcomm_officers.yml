@@ -108,9 +108,6 @@
       role: JobIAA
       time: 420000
     - !type:RoleTimeRequirement
-      role: JobIAA
-      time: 420000
-    - !type:RoleTimeRequirement
       role: JobCaptain
       time: 240000
     - !type:DepartmentTimeRequirement
