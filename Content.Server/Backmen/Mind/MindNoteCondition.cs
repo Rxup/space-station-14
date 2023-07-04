@@ -11,9 +11,12 @@ namespace Content.Server.Backmen.Mind;
 public sealed class MindNoteCondition : IObjectiveCondition
 {
 
-    private IEntityManager _entityManager => IoCManager.Resolve<IEntityManager>();
-    private BankManagerSystem _BankManagerSystem => _entityManager.System<BankManagerSystem>();
-    private IdCardSystem _cardSystem => _entityManager.System<IdCardSystem>();
+    // ReSharper disable once InconsistentNaming
+    private static IEntityManager _entityManager => IoCManager.Resolve<IEntityManager>();
+    // ReSharper disable once InconsistentNaming
+    private static BankManagerSystem _BankManagerSystem => _entityManager.System<BankManagerSystem>();
+    // ReSharper disable once InconsistentNaming
+    private static IdCardSystem _cardSystem => _entityManager.System<IdCardSystem>();
 
     public BankAccountComponent? Owner { get; set; }
 

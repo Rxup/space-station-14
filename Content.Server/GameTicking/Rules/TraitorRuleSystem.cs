@@ -410,6 +410,12 @@ public sealed class TraitorRuleSystem : GameRuleSystem<TraitorRuleComponent>
                     {
                         foreach (var condition in objective.Conditions)
                         {
+                            // start-backmen: currency
+                            if (condition is Backmen.Mind.MindNoteCondition)
+                            {
+                                continue;
+                            }
+                            // end-backmen: currency
                             var progress = condition.Progress;
                             if (progress > 0.99f)
                             {

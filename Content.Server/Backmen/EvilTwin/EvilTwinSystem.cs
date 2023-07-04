@@ -39,6 +39,7 @@ using Content.Server.Station.Components;
 using Content.Shared.CartridgeLoader;
 using Content.Shared.Inventory;
 using Content.Shared.PDA;
+using Robust.Shared.Utility;
 
 namespace Content.Server.Backmen.EvilTwin;
 
@@ -58,33 +59,38 @@ public sealed class EvilTwinSystem : EntitySystem
     private void OnGhostRoleSpawnerUsed(EntityUid uid, EvilTwinSpawnerComponent component, GhostRoleSpawnerUsedEvent args)
     {
         //forward
-        if(TryComp<EvilTwinSpawnerComponent>(args.Spawner, out var comp)){
+        if(TryComp<EvilTwinSpawnerComponent>(args.Spawner, out var comp))
+        {
             component.TargetForce = comp.TargetForce;
         }
     }
 
-    private void OnHandleComponentState(EntityUid uid, EvilTwinComponent component, MobStateChangedEvent args){
+    private void OnHandleComponentState(EntityUid uid, EvilTwinComponent component, MobStateChangedEvent args)
+    {
         if (args.NewMobState==MobState.Dead && TryComp<MindContainerComponent>(uid, out var mind) && mind.Mind!=null)
         {
             mind.Mind.PreventGhosting = false;
         }
     }
 
-    public bool MakeTwin([NotNullWhen(true)] out EntityUid? TwinSpawn,EntityUid? uid = null){
+    public bool MakeTwin([NotNullWhen(true)] out EntityUid? TwinSpawn, EntityUid? uid = null)
+    {
         TwinSpawn = null;
 
         var latejoin = (from s in EntityQuery<SpawnPointComponent, TransformComponent>()
         where s.Item1.SpawnType == SpawnPointType.LateJoin
         select s.Item2.Coordinates).ToList();
 
-        if(latejoin.Count == 0){
+        if(latejoin.Count == 0)
+        {
             return false;
         }
 
         var coords = _random.Pick(latejoin);
         TwinSpawn = Spawn(SpawnPointPrototype, coords);
 
-        if(uid.HasValue && TwinSpawn.HasValue){
+        if(uid.HasValue && TwinSpawn.HasValue)
+        {
             EnsureComp<EvilTwinSpawnerComponent>(TwinSpawn.Value).TargetForce = uid.Value;
         }
 
@@ -116,7 +122,8 @@ public sealed class EvilTwinSystem : EntitySystem
                 {
                     var mind = playerData.Mind;
                     _mindSystem.TransferTo(mind!,twinMob);
-                    var station = _stationSystem.GetOwningStation(targetUid.Value) ?? EntityQuery<BecomesStationComponent>().FirstOrDefault()?.Owner;
+
+                    var station = _stationSystem.GetOwningStation(targetUid.Value) ?? _stationSystem.GetStations().FirstOrNull();
                     if (pref != null && station!= null && TryComp<MindContainerComponent>(targetUid, out var targetMind) && mind!=null)
                     {
                         RaiseLocalEvent(new PlayerSpawnCompleteEvent(twinMob.Value, targetMind.Mind!.Session!, targetMind.Mind.CurrentJob?.Prototype.ID, false,
@@ -238,6 +245,10 @@ public sealed class EvilTwinSystem : EntitySystem
 
             foreach (var condition in objectives.GroupBy(x=>x.Prototype.Issuer).SelectMany(x=>x.SelectMany(z=>z.Conditions)))
             {
+                if (condition is Mind.MindNoteCondition)
+                {
+                    continue;
+                }
                 var progress = condition.Progress;
                 if (progress > 0.99f)
                 {
@@ -253,22 +264,22 @@ public sealed class EvilTwinSystem : EntitySystem
         ev.AddLine(result.ToString());
     }
 #endregion
-    private bool IsEligibleHumanoid(EntityUid? uid){
-        if(!uid.HasValue || !uid.Value.IsValid() || uid.Value.IsClientSide()){
+    private bool IsEligibleHumanoid(EntityUid? uid)
+    {
+        if(!uid.HasValue || !uid.Value.IsValid() || uid.Value.IsClientSide())
+        {
             return false;
         }
-        if(HasComp<EvilTwinComponent>(uid) || HasComp<NukeOperativeComponent>(uid)){
-            return false;
-        }
-        return true;
+        return !HasComp<EvilTwinComponent>(uid) && !HasComp<NukeOperativeComponent>(uid);
     }
     private bool TryGetEligibleHumanoid([NotNullWhen(true)] out EntityUid? uid)
     {
         var targets = EntityQuery<ActorComponent, MindContainerComponent, HumanoidAppearanceComponent>().ToList();
         _random.Shuffle(targets);
-        foreach ((_,var target,_) in targets)
+        foreach (var (_, target, _) in targets)
         {
-            if(target?.Mind == null){
+            if(target?.Mind == null)
+            {
                 continue;
             }
             var mind = target.Mind!;
@@ -276,15 +287,14 @@ public sealed class EvilTwinSystem : EntitySystem
             {
                 continue;
             }
-            if (mind is { CurrentEntity: { } })
-            {
-                var targetUid = mind.CurrentEntity;
-                if (IsEligibleHumanoid(targetUid))
-                {
-                    uid = targetUid;
-                    return true;
-                }
-            }
+
+            if (mind is not { CurrentEntity: not null })
+                continue;
+            var targetUid = mind.CurrentEntity;
+            if (!IsEligibleHumanoid(targetUid))
+                continue;
+            uid = targetUid;
+            return true;
 
         }
 
@@ -305,22 +315,22 @@ public sealed class EvilTwinSystem : EntitySystem
         var pref = (HumanoidCharacterProfile) _prefs.GetPreferences(actor.PlayerSession.UserId).SelectedCharacter;
         var twinUid = Spawn(species.Prototype, coords);
         _humanoid.LoadProfile(twinUid, pref);
-        MetaData(twinUid).EntityName = MetaData(target).EntityName;
+        _metaDataSystem.SetEntityName(target,MetaData(target).EntityName);
         if (TryComp<DetailExaminableComponent>(target, out var detail))
         {
             EnsureComp<DetailExaminableComponent>(twinUid).Content = detail.Content;
         }
 
-        var twinTartetMindJob = mind.Mind?.CurrentJob;
-        if (twinTartetMindJob?.StartingGear != null)
+        var twinTargetMindJob = mind.Mind?.CurrentJob;
+        if (twinTargetMindJob?.StartingGear != null)
         {
-            if (_prototype.TryIndex<StartingGearPrototype>(twinTartetMindJob?.StartingGear!, out var gear))
+            if (_prototype.TryIndex<StartingGearPrototype>(twinTargetMindJob?.StartingGear!, out var gear))
             {
                 _stationSpawning.EquipStartingGear(twinUid, gear, pref);
-                _stationSpawning.EquipIdCard(twinUid, pref.Name, twinTartetMindJob!.Prototype, _stationSystem.GetOwningStation(target));
+                _stationSpawning.EquipIdCard(twinUid, pref.Name, twinTargetMindJob!.Prototype, _stationSystem.GetOwningStation(target));
             }
 
-            foreach (var special in twinTartetMindJob!.Prototype.Special)
+            foreach (var special in twinTargetMindJob!.Prototype.Special)
             {
                 if (special is AddComponentSpecial)
                 {
@@ -331,7 +341,7 @@ public sealed class EvilTwinSystem : EntitySystem
 
         EnsureComp<EvilTwinComponent>(twinUid).TwinMind = mind?.Mind;
 
-        return (new EntityUid?(twinUid),pref);
+        return (twinUid,pref);
     }
     [Dependency] private readonly InventorySystem _inventory = default!;
 
@@ -356,6 +366,8 @@ public sealed class EvilTwinSystem : EntitySystem
     [Dependency] private readonly TagSystem _tagSystem = default!;
 
     [Dependency] private readonly MindSystem _mindSystem = default!;
+
+    [Dependency] private readonly MetaDataSystem _metaDataSystem = default!;
 
     private const string EvilTwinRole = "EvilTwin";
 
