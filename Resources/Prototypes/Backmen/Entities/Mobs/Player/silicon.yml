@@ -14,7 +14,7 @@
   id: BackmenDrone
   parent: PlayerSiliconBase
   components:
-  - type: Drone
+  - type: BSSDrone
   - type: InnateTool
     tools:
       - id: BSSClothingBackpackSatchelDrone
