@@ -25,6 +25,11 @@
   components:
   - type: BSSDrone
   - type: CombatMode
+  - type: IntrinsicRadioReceiver
+  - type: ActiveRadio
+    channels:
+      - Common
+      - Engineering
   - type: InnateTool
     tools:
       - id: BSSClothingBackpackSatchelDrone
