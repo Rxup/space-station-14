@@ -37,7 +37,7 @@
     eyes: ClothingEyesHudMedical
     head: ClothingHeadHatBeretSecurityMedic # Corvax-Resprite
     outerClothing: ClothingOuterVestArmorMedSec # Corvax-Resprite
-    id: BrigmedPDA
+    id: BrigmedicPDA
     ears: ClothingHeadsetSecurity
     mask: ClothingMaskSterile
     belt: ClothingBeltMedicalFilled
