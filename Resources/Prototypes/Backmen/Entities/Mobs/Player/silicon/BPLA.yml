@@ -23,6 +23,9 @@
   description: Разработан в НИИ Космических технологий с использованием Блюспейс технологий.
   parent: PlayerSiliconBase
   components:
+  - type: NameIdentifier
+    group: BSSDrone
+  - type: MetaData
   - type: BSSDrone
   - type: CombatMode
   - type: IntrinsicRadioReceiver
@@ -36,8 +39,6 @@
       - id: trayScanner
       - id: Omnitool
       - id: WelderExperimental
-  - type: NameIdentifier
-    group: BSSDrone
   - type: Inventory
     templateId: drone
   - type: InventorySlots
@@ -60,8 +61,8 @@
      3. Вред станции недопустим.
   - type: GhostTakeoverAvailable
   - type: MovementSpeedModifier
-    baseWalkSpeed : 7
-    baseSprintSpeed : 7
+    baseWalkSpeed : 4
+    baseSprintSpeed : 4
   - type: MobState
     allowedStates:
       - Alive
