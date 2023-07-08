@@ -120,13 +120,13 @@
   - type: Construction
     graph: DisposalMachine
     node: mailing_unit
-  - type: DisposalUnit
-    autoEngageEnabled: false
-    mobsCanEnter: false
-    flushSound:
-      path: /Audio/Machines/disposalflush.ogg
-    flushTime: 2
-  - type: MailingUnit
+  #- type: DisposalUnit
+    #autoEngageEnabled: false
+    #mobsCanEnter: false
+    #flushSound:
+      #path: /Audio/Machines/disposalflush.ogg
+    #flushTime: 2
+  #- type: MailingUnit
   - type: DeviceNetwork
     deviceNetId: Wired
     receiveFrequencyId: MailingUnit
