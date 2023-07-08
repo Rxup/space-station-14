@@ -1,5 +1,5 @@
 ﻿- type: entity
-  id: IntercomAll
+  id: IntercomAllBackmen
   parent: Intercom
   suffix: Backmen
   components:
@@ -20,6 +20,7 @@
       - Syndicate
       - Redorden
       - CSH
+      - GROUPS_0
       - GROUPS_1
       - GROUPS_2
       - GROUPS_3
@@ -29,4 +30,4 @@
       - GROUPS_7
       - GROUPS_8
       - GROUPS_9
-      - GROUPS_0
+
