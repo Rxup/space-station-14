@@ -13,7 +13,7 @@
         - BackmenDrone
 
 - type: entity
-  name: BPLA Spawner
+  name: BPLA Spawner MED
   id: SpawnMobBPLAMED
   parent: MarkerBase
   components:
