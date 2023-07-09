@@ -27,7 +27,6 @@
     group: BSSDrone
   - type: MetaData
   - type: BSSDrone
-  - type: CombatMode
   - type: IntrinsicRadioReceiver
   - type: ActiveRadio
     channels:
