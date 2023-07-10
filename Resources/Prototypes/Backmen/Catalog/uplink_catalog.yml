@@ -1,15 +1,15 @@
-- type: listing
-  id: UplinkCorpiumSyringe
-  name: uplink-corpium-name
-  description: uplink-corpium-desc
-  productEntity: SyringeCorpium
-  cost:
-    Telecrystal: 20
-  categories:
-  - UplinkUtility
-  conditions:
-    - !type:StoreWhitelistCondition
-      whitelist:
-        tags:
-          - NukeOpsUplink
+#- type: listing
+#  id: UplinkCorpiumSyringe
+#  name: uplink-corpium-name
+#  description: uplink-corpium-desc
+#  productEntity: SyringeCorpium
+#  cost:
+#    Telecrystal: 20
+#  categories:
+#  - UplinkUtility
+#  conditions:
+#    - !type:StoreWhitelistCondition
+#      whitelist:
+#        tags:
+#          - NukeOpsUplink
 
