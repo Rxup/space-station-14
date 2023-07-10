@@ -30,4 +30,5 @@
       - BackmenVendingMachineSoda
       - VendingMachineStarkist
       - VendingMachineSpaceUp
+      - BackmenVendingLootBox
     chance: 1
