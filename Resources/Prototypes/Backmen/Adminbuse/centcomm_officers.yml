@@ -175,7 +175,7 @@
     neck: CombatKnifeSpetsnaz
     eyes: ClothingEyesGlassesSecurity
     gloves: ClothingHandsGlovesCombat
-    outerClothing: ClothingOuterVestKevlar
+    outerClothing: ClothingOuterArmorBasic
     suitstorage: WeaponPistolMk58
     head: ClothingHeadHatBeretHoS
     id: IDCardCentComGavnaOfficerSesurity
