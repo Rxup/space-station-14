@@ -14,6 +14,7 @@
       - BackmenVendingMachineCigs
       - BackmenVendingMachineCoffee
       - BackmenVendingMachineCola
+      - VendingMachineColaRed
       - BackmenVendingMachineColaBlack
       - BackmenVendingMachineDiscount
       - BackmenVendingMachineSnack
@@ -24,6 +25,9 @@
       - BackmenVendingMachineSovietSoda
       - BackmenVendingMachineChang
       - BackmenVendingMachineDonut
+      - VendingMachineShamblersJuice
+      - VendingMachinePwrGame
       - BackmenVendingMachineSoda
-      - BackmenVendingLootBox
+      - VendingMachineStarkist
+      - VendingMachineSpaceUp
     chance: 1

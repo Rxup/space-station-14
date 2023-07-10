@@ -11,19 +11,12 @@
         state: snack
   - type: RandomSpawner
     prototypes:
-      - BackmenVendingMachineCigs
-      - BackmenVendingMachineCoffee
-      - BackmenVendingMachineCola
-      - BackmenVendingMachineColaBlack
       - BackmenVendingMachineDiscount
       - BackmenVendingMachineSnack
       - BackmenVendingMachineSnackBlue
       - BackmenVendingMachineSnackGreen
       - BackmenVendingMachineSnackOrange
       - BackmenVendingMachineSnackTeal
-      - BackmenVendingMachineSovietSoda
       - BackmenVendingMachineChang
       - BackmenVendingMachineDonut
-      - BackmenVendingMachineSoda
-      - BackmenVendingLootBox
     chance: 1
