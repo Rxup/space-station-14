@@ -30,6 +30,8 @@ using Content.Shared.Radio.Components;
 using Content.Server.Radio.EntitySystems;
 using Content.Server.Administration.Managers;
 using Content.Server.Mind;
+using Content.Shared.Actions;
+using Content.Shared.Actions.ActionTypes;
 
 namespace Content.Server.Backmen.SpecForces;
 
@@ -49,8 +51,20 @@ public sealed class SpecForcesSystem : EntitySystem
         SubscribeLocalEvent<SpecForceComponent, MapInitEvent>(OnMapInit, after: new[] { typeof(RandomMetadataSystem) });
         SubscribeLocalEvent<RoundEndTextAppendEvent>(OnRoundEnd);
         SubscribeLocalEvent<RoundRestartCleanupEvent>(OnCleanup);
+        SubscribeLocalEvent<SpecForceComponent, ComponentStartup>(OnStartup);
         SubscribeLocalEvent<SpecForceComponent, TakeGhostRoleEvent>(OnSpecForceTake,
             before: new[] { typeof(GhostRoleSystem) });
+    }
+
+    private void OnStartup(EntityUid uid, SpecForceComponent component, ComponentStartup args)
+    {
+        if (component.ActionName==null || !_prototypes.TryIndex<InstantActionPrototype>(component.ActionName, out var action))
+        {
+            return;
+        }
+
+        var netAction = new InstantAction(action);
+        _action.AddAction(uid, netAction, null);
     }
 
     private void OnMapInit(EntityUid uid, SpecForceComponent component, MapInitEvent args)
@@ -418,4 +432,5 @@ public sealed class SpecForcesSystem : EntitySystem
     [Dependency] private readonly HeadsetSystem _headset = default!;
     [Dependency] private readonly IAdminManager _adminManager = default!;
     [Dependency] private readonly MindSystem _mindSystem = default!;
+    [Dependency] private readonly SharedActionsSystem _action = default!;
 }
