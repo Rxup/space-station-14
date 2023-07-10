@@ -134,7 +134,7 @@ namespace Content.Server.Backmen.Economy.ATM;
             var ui = _uiSystem.GetUiOrNull(component.Owner, ATMUiKey.Key);
             if (ui == null)
                 return;
-            _uiSystem.SetUiState(ui,newState);
+            UserInterfaceSystem.SetUiState(ui,newState);
         }
         private void OnRequestWithdraw(EntityUid uid, ATMComponent component, ATMRequestWithdrawMessage msg)
         {

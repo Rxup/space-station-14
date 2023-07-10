@@ -12,13 +12,13 @@ public sealed class ATMBoundUserInterface : BoundUserInterface
     [ViewVariables]
     private ATMMenu? _menu;
 
-    public ATMBoundUserInterface(ClientUserInterfaceComponent owner, Enum uiKey) : base(owner, uiKey)
+    public ATMBoundUserInterface(EntityUid owner, Enum uiKey) : base(owner, uiKey)
     {
     }
     protected override void Open()
     {
         base.Open();
-        _menu = new ATMMenu { Title = IoCManager.Resolve<IEntityManager>().GetComponent<MetaDataComponent>(Owner.Owner).EntityName };
+        _menu = new ATMMenu { Title = IoCManager.Resolve<IEntityManager>().GetComponent<MetaDataComponent>(Owner).EntityName };
 
         _menu.IdCardButton.OnPressed += _ => SendMessage(new ItemSlotButtonPressedEvent(SharedATMComponent.IdCardSlotId));
         _menu.OnWithdrawAttempt += OnWithdrawAttempt;

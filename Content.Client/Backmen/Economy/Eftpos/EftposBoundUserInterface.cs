@@ -9,13 +9,13 @@ public sealed class EftposBoundUserInterface : BoundUserInterface
     [ViewVariables]
     private EftposMenu? _menu;
 
-    public EftposBoundUserInterface(ClientUserInterfaceComponent owner, Enum uiKey) : base(owner, uiKey)
+    public EftposBoundUserInterface(EntityUid owner, Enum uiKey) : base(owner, uiKey)
     {
     }
     protected override void Open()
     {
         base.Open();
-        _menu = new EftposMenu { Title = IoCManager.Resolve<IEntityManager>().GetComponent<MetaDataComponent>(Owner.Owner).EntityName };
+        _menu = new EftposMenu { Title = IoCManager.Resolve<IEntityManager>().GetComponent<MetaDataComponent>(Owner).EntityName };
 
         _menu.OnChangeValue += (_, value) => SendMessage(new EftposChangeValueMessage(value));
         _menu.OnResetValue += (_) => SendMessage(new EftposChangeValueMessage(null));
