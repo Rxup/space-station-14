@@ -107,7 +107,7 @@ public sealed partial class TTSSystem : EntitySystem
         {
             if (!session.AttachedEntity.HasValue) continue;
             var xform = xformQuery.GetComponent(session.AttachedEntity.Value);
-            var distance = (sourcePos - _xforms.GetWorldPosition(xform, xformQuery)).LengthSquared;
+            var distance = (sourcePos - _xforms.GetWorldPosition(xform, xformQuery)).Length();
             if (distance > ChatSystem.VoiceRange * ChatSystem.VoiceRange)
                 continue;
 
