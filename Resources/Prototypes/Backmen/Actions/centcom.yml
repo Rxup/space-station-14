@@ -1,0 +1,7 @@
+- type: instantAction
+  id: CentcomFtlAction
+  icon: Backmen/Actions/CCAuth.png
+  name: centcom-ftl-action-name
+  description: centcom-ftl-action-description
+  serverEvent: !type:CentcomFtlAction
+  useDelay: 180
