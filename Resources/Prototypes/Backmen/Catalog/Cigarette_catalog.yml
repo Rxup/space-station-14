@@ -1,0 +1,121 @@
+﻿- type: listing
+  id: CigaretteMachineInventory1
+  productEntity: CigPackGreen
+  cost:
+    SpaceCredits: 25
+  categories:
+    - CigaretteMachineInventory
+  conditions:
+    - !type:ListingLimitedStockCondition
+      stock: 2
+
+- type: listing
+  id: CigaretteMachineInventory2
+  productEntity: CigPackRed
+  cost:
+    SpaceCredits: 25
+  categories:
+    - CigaretteMachineInventory
+  conditions:
+    - !type:ListingLimitedStockCondition
+      stock: 2
+
+- type: listing
+  id: CigaretteMachineInventory3
+  productEntity: CigPackBlue
+  cost:
+    SpaceCredits: 25
+  categories:
+    - CigaretteMachineInventory
+  conditions:
+    - !type:ListingLimitedStockCondition
+      stock: 2
+
+- type: listing
+  id: CigaretteMachineInventory4
+  productEntity: CigPackBlack
+  cost:
+    SpaceCredits: 25
+  categories:
+    - CigaretteMachineInventory
+  conditions:
+    - !type:ListingLimitedStockCondition
+      stock: 2
+
+- type: listing
+  id: CigaretteMachineInventory5
+  productEntity: CigarCase
+  cost:
+    SpaceCredits: 40
+  categories:
+    - CigaretteMachineInventory
+  conditions:
+    - !type:ListingLimitedStockCondition
+      stock: 1
+
+- type: listing
+  id: CigaretteMachineInventory6
+  productEntity: SmokingPipeFilledTobacco
+  cost:
+    SpaceCredits: 5
+  categories:
+    - CigaretteMachineInventory
+  conditions:
+    - !type:ListingLimitedStockCondition
+      stock: 1
+
+- type: listing
+  id: CigaretteMachineInventory7
+  productEntity: Vape
+  cost:
+    SpaceCredits: 50
+  categories:
+    - CigaretteMachineInventory
+  conditions:
+    - !type:ListingLimitedStockCondition
+      stock: 1
+
+- type: listing
+  id: CigaretteMachineInventory8
+  productEntity: Matchbox
+  cost:
+    SpaceCredits: 10
+  categories:
+    - CigaretteMachineInventory
+  conditions:
+    - !type:ListingLimitedStockCondition
+      stock: 5
+
+- type: listing
+  id: CigaretteMachineInventory9
+  productEntity: PackPaperRollingFilters
+  cost:
+    SpaceCredits: 20
+  categories:
+    - CigaretteMachineInventory
+  conditions:
+    - !type:ListingLimitedStockCondition
+      stock: 3
+
+- type: listing
+  id: CigaretteMachineInventory10
+  productEntity: CheapLighter
+  cost:
+    SpaceCredits: 5
+  categories:
+    - CigaretteMachineInventory
+  conditions:
+    - !type:ListingLimitedStockCondition
+      stock: 4
+
+- type: listing
+  id: CigaretteMachineInventory11
+  productEntity: Lighter
+  cost:
+    SpaceCredits: 10
+  categories:
+    - CigaretteMachineInventory
+  conditions:
+    - !type:ListingLimitedStockCondition
+      stock: 1
+
