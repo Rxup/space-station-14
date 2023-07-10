@@ -1,0 +1,77 @@
+﻿- type: listing
+  id: RobustSoftdrinksInventory1
+  productEntity: DrinkColaCan
+  cost:
+    SpaceCredits: 10
+  categories:
+    - RobustSoftdrinksInventory
+  conditions:
+    - !type:ListingLimitedStockCondition
+      stock: 15
+
+- type: listing
+  id: RobustSoftdrinksInventory2
+  productEntity: DrinkGrapeCan
+  cost:
+    SpaceCredits: 10
+  categories:
+    - RobustSoftdrinksInventory
+  conditions:
+    - !type:ListingLimitedStockCondition
+      stock: 5
+
+- type: listing
+  id: RobustSoftdrinksInventory3
+  productEntity: DrinkRootBeerCan
+  cost:
+    SpaceCredits: 10
+  categories:
+    - RobustSoftdrinksInventory
+  conditions:
+    - !type:ListingLimitedStockCondition
+      stock: 5
+
+- type: listing
+  id: RobustSoftdrinksInventory4
+  productEntity: DrinkIcedTeaCan
+  cost:
+    SpaceCredits: 10
+  categories:
+    - RobustSoftdrinksInventory
+  conditions:
+    - !type:ListingLimitedStockCondition
+      stock: 5
+
+- type: listing
+  id: RobustSoftdrinksInventory5
+  productEntity: DrinkLemonLimeCan
+  cost:
+    SpaceCredits: 10
+  categories:
+    - RobustSoftdrinksInventory
+  conditions:
+    - !type:ListingLimitedStockCondition
+      stock: 5
+
+- type: listing
+  id: RobustSoftdrinksInventory6
+  productEntity: DrinkDrGibbCan
+  cost:
+    SpaceCredits: 10
+  categories:
+    - RobustSoftdrinksInventory
+  conditions:
+    - !type:ListingLimitedStockCondition
+      stock: 5
+
+- type: listing
+  id: RobustSoftdrinksInventory7
+  productEntity: DrinkFourteenLokoCan
+  cost:
+    SpaceCredits: 10
+  categories:
+    - RobustSoftdrinksInventory
+  conditions:
+    - !type:ListingLimitedStockCondition
+      stock: 5
+
