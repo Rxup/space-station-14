@@ -48,7 +48,7 @@ namespace Content.Server.Backmen.Economy.Eftpos;
             if (!Initialized || UserInterface == null)
                 return;
 
-            IoCManager.Resolve<EntityManager>().System<UserInterfaceSystem>().TrySetUiState(UserInterface.Owner, UserInterface.UiKey, state);
+            UserInterfaceSystem.SetUiState(UserInterface, state);
         }
 
     }
