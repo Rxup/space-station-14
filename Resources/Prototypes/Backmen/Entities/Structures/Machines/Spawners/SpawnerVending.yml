@@ -14,7 +14,6 @@
         - BackmenVendingMachineCigs
         - BackmenVendingMachineCoffee
         - BackmenVendingMachineCola
-        - BackmenVendingMachineColaRed
         - BackmenVendingMachineColaBlack
         - BackmenVendingMachineDiscount
         - BackmenVendingMachineSnack
@@ -26,4 +25,5 @@
         - BackmenVendingMachineChang
         - BackmenVendingMachineDonut
         - BackmenVendingMachineSoda
+        - BackmenVendingLootBox
       chance: 1
