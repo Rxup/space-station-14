@@ -133,8 +133,14 @@ public sealed class CharacterUIController : UIController, IOnStateEntered<Gamepl
                     conditionControl.ProgressTexture.Texture = condition.SpriteSpecifier.Frame0();
                     conditionControl.ProgressTexture.Progress = condition.Progress;
 
-                    conditionControl.Title.Text = condition.Title;
-                    conditionControl.Description.Text = condition.Description;
+                    var titleMessage = new FormattedMessage();
+                    var descriptionMessage = new FormattedMessage();
+
+                    titleMessage.AddText(condition.Title);
+                    descriptionMessage.AddText(condition.Description);
+
+                    conditionControl.Title.SetMessage(titleMessage);
+                    conditionControl.Description.SetMessage(descriptionMessage);
 
                     objectiveControl.AddChild(conditionControl);
                 }
