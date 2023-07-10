@@ -109,7 +109,7 @@
     drawdepth: SmallMobs
     layers:
     - state: shell
-      sprite: Backmen/Mobs/Silicon/droneMED.rsi
+      sprite: Backmen/Mobs/Silicon/BPLAMED.rsi
       #sprite: Mobs/Silicon/drone.rsi
       map: ["base"]
   - type: MovementIgnoreGravity

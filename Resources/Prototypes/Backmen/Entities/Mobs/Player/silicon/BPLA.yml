@@ -27,7 +27,6 @@
     group: BSSDrone
   - type: MetaData
   - type: BSSDrone
-  - type: CombatMode
   - type: IntrinsicRadioReceiver
   - type: ActiveRadio
     channels:
@@ -92,7 +91,7 @@
     drawdepth: SmallMobs
     layers:
     - state: shell
-      sprite: Backmen/Mobs/Silicon/drone.rsi
+      sprite: Backmen/Mobs/Silicon/BPLA.rsi
       #sprite: Mobs/Silicon/drone.rsi
       map: ["base"]
   - type: MovementIgnoreGravity
@@ -146,3 +145,5 @@
     - !type:RoleTimeRequirement
       role: JobChiefEngineer
       time: 24000
+
+
