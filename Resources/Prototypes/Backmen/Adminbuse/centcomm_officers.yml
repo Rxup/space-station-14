@@ -103,6 +103,7 @@
   - type: RandomMetadata
   - type: RandomHumanoidAppearance
   - type: SpecForce
+    actionName: CentcomFtlAction
     requirements:
     - !type:RoleTimeRequirement
       role: JobIAA
@@ -201,6 +202,7 @@
   - type: RandomMetadata
   - type: RandomHumanoidAppearance
   - type: SpecForce
+    actionName: CentcomFtlAction
     requirements:
     - !type:DepartmentTimeRequirement
       department: Security
