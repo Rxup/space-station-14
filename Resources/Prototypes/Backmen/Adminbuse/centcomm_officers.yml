@@ -130,7 +130,6 @@
     jobTitle: Офицер Специальной Службы Безопастности
 
 - type: entity
-  noSpawn: true
   name: дубинка-шокер спецсил
   parent: Stunbaton
   id: StunbatonSuper
@@ -140,7 +139,6 @@
     energyPerUse: 10
 
 - type: entity
-  noSpawn: true
   name: станнер спецсил
   parent: WeaponDisabler
   id: WeaponDisablerSuper
