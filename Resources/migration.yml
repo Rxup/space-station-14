@@ -102,3 +102,20 @@ ClothingHeadHelmetHelmetOld: ClothingHeadHelmetBasic
 # 2023-07-04
 # Bulletproof armor is almost statistically identical to kevlar, however, before this kevlar armor was the closest thing there was to "basic" armor. It makes the most sense to replace it with this.
 ClothingOuterVestKevlar: ClothingOuterArmorBasic
+
+# 2023-07-12
+# New Vendings
+VendingMachineCigs: BackmenVendingMachineCigs
+VendingMachineCoffee: BackmenVendingMachineCoffee
+VendingMachineCola: BackmenVendingMachineCola
+VendingMachineColaBlack: BackmenVendingMachineColaBlack
+VendingMachineDiscount: BackmenVendingMachineDiscount
+VendingMachineSnack: BackmenVendingMachineSnack
+VendingMachineSnackBlue: BackmenVendingMachineSnackBlue
+VendingMachineSnackGreen: BackmenVendingMachineSnackGreen
+VendingMachineSnackOrange: BackmenVendingMachineSnackOrange
+VendingMachineSnackTeal: BackmenVendingMachineSnackTeal
+VendingMachineSovietSoda: BackmenVendingMachineSovietSoda
+VendingMachineChang: BackmenVendingMachineChang
+VendingMachineDonut: BackmenVendingMachineDonut
+VendingMachineSoda: BackmenVendingMachineSoda
