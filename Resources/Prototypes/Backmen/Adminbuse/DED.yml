@@ -211,6 +211,7 @@
   id: MobHumanSpecialReAgent
   components:
   - type: SpecForce
+    actionName: CentcomFtlAction
     requirements:
     - !type:DepartmentTimeRequirement
       department: Security
@@ -243,6 +244,7 @@
   id: MobHumanSpecialReAgentCOM
   components:
   - type: SpecForce
+    actionName: CentcomFtlAction
     requirements:
     - !type:DepartmentTimeRequirement
       department: Security
@@ -280,6 +282,7 @@
   id: MobHumanSFOfficer
   components:
   - type: SpecForce
+    actionName: CentcomFtlAction
     requirements:
     - !type:DepartmentTimeRequirement
       department: Security
@@ -462,6 +465,7 @@
   id: MobHumanRXBZZ
   components:
   - type: SpecForce
+    actionName: CentcomFtlAction
     requirements:
     - !type:DepartmentTimeRequirement
       department: Security
