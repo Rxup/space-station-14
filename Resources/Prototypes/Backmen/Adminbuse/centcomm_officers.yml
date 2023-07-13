@@ -11,7 +11,60 @@
   - type: Item
     heldPrefix: silver
   - type: IdCard
-    jobTitle: Представитель Центрального Командования
+    jobTitle: Представитель ЦК
+
+- type: entity
+  parent: CentcomIDCardDeathsquad
+  id: IDCardCentComCargoBackmen
+  name: Id карта ЦК Грузчика
+  components:
+    - type: Sprite
+      layers:
+        - state: silver
+        - state: idiaa
+        - state: idcentcom
+    - type: Item
+      heldPrefix: silver
+    - type: IdCard
+      jobTitle: Грузчик ЦК
+
+- type: entity
+  parent: BasePDA
+  id: CentcomPDABackmen
+  name: CentCom PDA
+  description: Light green sign of walking bureaucracy.
+  components:
+    - type: Pda
+      id: IDCardCentComCargoBackmen
+      state: pda-centcom
+      penSlot:
+        startingItem: PenCentcom
+        whitelist:
+          tags:
+            - Write
+    - type: PdaBorderColor
+      borderColor: "#00842e"
+    - type: Icon
+      state: pda-centcom
+
+- type: entity
+  parent: CentcomPDABackmen
+  id: CCCargoPDA
+  name: Centcom Cargo PDA
+  description: Light green sign of walking bureaucracy.
+  components:
+    - type: Pda
+      id: IDCardCentComCargoBackmen
+      state: pda-centcom
+      penSlot:
+        startingItem: PenCentcom
+        whitelist:
+          tags:
+            - Write
+    - type: PdaBorderColor
+      borderColor: "#00842e"
+    - type: Icon
+      state: pda-centcom
 
 - type: startingGear
   id: CentComCorvax
@@ -24,7 +77,7 @@
     head: ClothingHeadHatCentcom
     outerClothing: ClothingOuterArmorCentcomCarapace
     suitstorage: OxygenTankFilled
-    id: IDCardCentComOfficialCorvax
+    id: CentcomPDABackmen
     ears: ClothingHeadsetAltCentCom
     pocket1: CyberPen
     pocket2: BoxFolderSecretBlack
@@ -74,14 +127,33 @@
   name: Id карта оператора ЦК
   components:
   - type: IdCard
-    jobTitle: Оператор Центрального Командования
+    jobTitle: Оператор ЦК
+
+- type: entity
+  parent: CentcomPDABackmen
+  id: CCOperatorPDA
+  name: Centcom Cargo PDA
+  description: Light green sign of walking bureaucracy.
+  components:
+    - type: Pda
+      id: IDCardCentComGavnaOperator
+      state: pda-centcom
+      penSlot:
+        startingItem: PenCentcom
+        whitelist:
+          tags:
+            - Write
+    - type: PdaBorderColor
+      borderColor: "#00842e"
+    - type: Icon
+      state: pda-centcom
 
 - type: startingGear
   id: OperatorGavna
   equipment:
     jumpsuit: ClothingUniformJumpsuitCentcomOfficer
     shoes: ClothingShoesBootsLaceup
-    id: IDCardCentComGavnaOperator
+    id: CCOperatorPDA
     ears: ClothingHeadsetCentCom
     pocket1: ClothingMaskGasCentcom
 
@@ -127,7 +199,7 @@
     - state: centcom
     - state: idsecurityofficer
   - type: IdCard
-    jobTitle: Офицер Специальной Службы Безопастности
+    jobTitle: Офицер Специальной СБ
 
 - type: entity
   name: дубинка-шокер спецсил
@@ -211,3 +283,17 @@
     - !type:RoleTimeRequirement
       role: JobIAA
       time: 3600
+
+- type: startingGear
+  id: CCCargo
+  equipment:
+    head: ClothingHeadHatCargosoft
+    jumpsuit: ClothingUniformJumpsuitCargo
+    back: ClothingBackpackFilled
+    shoes: ClothingShoesColorBlack
+    id: CCCargoPDA
+    ears: ClothingHeadsetCargo
+    pocket1: AppraisalTool
+  innerclothingskirt: ClothingUniformJumpskirtCargo
+  satchel: ClothingBackpackSatchelFilled
+  duffelbag: ClothingBackpackDuffelFilled

@@ -12,3 +12,9 @@
           nameGenerator:
             !type:NanotrasenNameGenerator
             prefixCreator: 'TG'
+        - type: StationJobs
+          availableJobs:
+            BKCCOfficial: [ 1, 1]
+            BKCCOperator: [ 1, 1]
+            BKCCSecGavna: [ 2, 4]
+            BKCCCargo: [ 3, 3]
