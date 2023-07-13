@@ -42,7 +42,6 @@
   roles:
   - Captain
   - IAA # Corvax-IAA
-  - CentralCommandOfficial
   - ChiefEngineer
   - ChiefMedicalOfficer
   - HeadOfPersonnel

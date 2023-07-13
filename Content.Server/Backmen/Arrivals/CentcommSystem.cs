@@ -1,4 +1,6 @@
-﻿using Content.Server.Popups;
+﻿using Content.Server.Mind.Components;
+using Content.Server.Popups;
+using Content.Server.Shuttle.Components;
 using Content.Server.Shuttles.Components;
 using Content.Server.Shuttles.Systems;
 using Content.Server.Station.Systems;
@@ -27,17 +29,28 @@ public sealed class CentcommSystem : EntitySystem
             return;
         }
 
-        if (!TryComp<ShuttleComponent>(grid.GridUid, out var comp))
-        {
-            return;
-        }
-
-        if (!TryComp<PilotComponent>(args.Performer, out var pilotComponent))
+        if (!TryComp<PilotComponent>(args.Performer, out var pilotComponent) || pilotComponent.Console == null)
         {
             _popup.PopupEntity(Loc.GetString("centcom-ftl-action-no-pilot"), args.Performer, args.Performer);
             return;
         }
 
+        TransformComponent shuttle;
+
+        if (TryComp<DroneConsoleComponent>(pilotComponent.Console, out var droneConsoleComponent) && droneConsoleComponent.Entity != null)
+        {
+            shuttle = Transform(droneConsoleComponent.Entity.Value);
+        }
+        else
+        {
+            shuttle = grid;
+        }
+
+
+        if (!TryComp<ShuttleComponent>(shuttle.GridUid, out var comp) || HasComp<FTLComponent>(shuttle.GridUid))
+        {
+            return;
+        }
 
         var stationUid = _stationSystem.GetStations().FirstOrNull();
 
@@ -48,18 +61,18 @@ public sealed class CentcommSystem : EntitySystem
             return;
         }
 
-        if (grid.MapID == centcomm.MapId)
+        if (shuttle.MapID == centcomm.MapId)
         {
             _popup.PopupEntity(Loc.GetString("centcom-ftl-action-at-centcomm"), args.Performer, args.Performer);
             return;
         }
 
-        if (!_shuttleSystem.CanFTL(grid.GridUid, out var reason))
+        if (!_shuttleSystem.CanFTL(shuttle.GridUid, out var reason))
         {
             _popup.PopupEntity(reason, args.Performer, args.Performer);
             return;
         }
 
-        _shuttleSystem.FTLTravel(grid.GridUid.Value, comp, centcomm.Entity);
+        _shuttleSystem.FTLTravel(shuttle.GridUid.Value, comp, centcomm.Entity);
     }
 }

@@ -24,8 +24,10 @@ using Robust.Shared.Configuration;
 using Robust.Shared.Map;
 using Robust.Shared.Map.Components;
 using Robust.Shared.Player;
+using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Timing;
+using Robust.Shared.Utility;
 
 namespace Content.Server.Shuttles.Systems;
 
@@ -287,6 +289,7 @@ public sealed partial class EmergencyShuttleSystem : EntitySystem
         }
     }
 
+
     private void AddCentcomm(StationCentcommComponent component)
     {
         // Check for existing centcomms and just point to that
@@ -307,7 +310,11 @@ public sealed partial class EmergencyShuttleSystem : EntitySystem
 
         if (!string.IsNullOrEmpty(component.Map.ToString()))
         {
-            var ent = _map.LoadGrid(mapId, component.Map.ToString());
+            var ent = EntityManager.System<Content.Server.GameTicking.GameTicker>().LoadGameMap(
+                IoCManager.Resolve<IPrototypeManager>().Index<Maps.GameMapPrototype>("CentComm"), mapId, new MapLoadOptions()
+                {
+                    LoadMap = false
+                }, null).FirstOrNull(HasComp<BecomesStationComponent>);
 
             if (ent != null)
             {
