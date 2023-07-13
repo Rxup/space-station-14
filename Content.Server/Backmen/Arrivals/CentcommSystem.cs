@@ -3,6 +3,7 @@ using Content.Server.Popups;
 using Content.Server.Shuttle.Components;
 using Content.Server.Shuttles.Components;
 using Content.Server.Shuttles.Systems;
+using Content.Server.Station.Components;
 using Content.Server.Station.Systems;
 using Content.Shared.Shuttles.Components;
 using Robust.Server.GameObjects;
@@ -47,7 +48,7 @@ public sealed class CentcommSystem : EntitySystem
         }
 
 
-        if (!TryComp<ShuttleComponent>(shuttle.GridUid, out var comp) || HasComp<FTLComponent>(shuttle.GridUid))
+        if (!TryComp<ShuttleComponent>(shuttle.GridUid, out var comp) || HasComp<FTLComponent>(shuttle.GridUid) || HasComp<BecomesStationComponent>(shuttle.GridUid))
         {
             return;
         }
