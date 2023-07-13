@@ -322,7 +322,7 @@
       description: ghost-role-information-centcom-official-description
     - type: GhostTakeoverAvailable
     - type: Loadout
-      prototypes: [ CentcomGear ]
+      prototypes: [ CentcomGearCorvax ]
 
 ## Syndicate
 

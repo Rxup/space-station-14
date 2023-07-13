@@ -79,7 +79,7 @@
   - type: Loadout
     prototypes:
     - HoPGear
-    - CentcomGear
+    - CentcomGearCorvax
     - CaptainGear
     - HoSGear
     - ResearchDirectorGear
