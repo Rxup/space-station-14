@@ -129,12 +129,31 @@
   - type: IdCard
     jobTitle: Оператор ЦК
 
+- type: entity
+  parent: CentcomPDABackmen
+  id: CCOperatorPDA
+  name: Centcom Cargo PDA
+  description: Light green sign of walking bureaucracy.
+  components:
+    - type: Pda
+      id: IDCardCentComGavnaOperator
+      state: pda-centcom
+      penSlot:
+        startingItem: PenCentcom
+        whitelist:
+          tags:
+            - Write
+    - type: PdaBorderColor
+      borderColor: "#00842e"
+    - type: Icon
+      state: pda-centcom
+
 - type: startingGear
   id: OperatorGavna
   equipment:
     jumpsuit: ClothingUniformJumpsuitCentcomOfficer
     shoes: ClothingShoesBootsLaceup
-    id: IDCardCentComGavnaOperator
+    id: CCOperatorPDA
     ears: ClothingHeadsetCentCom
     pocket1: ClothingMaskGasCentcom
 
