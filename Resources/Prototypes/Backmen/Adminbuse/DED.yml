@@ -29,14 +29,11 @@
       - id: PinpointerNuclear
       - id: WeaponPulseRifle
       - id: SpeedLoaderMagnum
-      - id: SpeedLoaderMagnum
+        amount: 2
       - id: C4
-      - id: C4
-      - id: C4
-      - id: C4
+        amount: 4
       - id: SpetsnazMedipen
-      - id: SpetsnazMedipen
-      - id: SpetsnazMedipen
+        amount: 3
 
 - type: entity
   noSpawn: true
@@ -381,16 +378,17 @@
     - type: StorageFill
       contents:
         - id: BoxFlare
-        - id: BoxFlare
+          amount: 2
         - id: MedkitAdvancedRXBZZ
         - id: WeaponDisabler
         - id: WeaponRifleLecterFire
         - id: MagazineRifleFire
-        - id: MagazineRifleFire
-        - id: MagazineRifleFire
-        - id: MagazineRifleFire
-        - id: MagazineRifleFire
+          amount: 5
         - id: WeaponShotgunEnforcerRXBZZ
+        - id: PillAmbuzolPlus
+          amount: 2
+        - id: PillAmbuzol
+          amount: 8
 
 
 - type: entity
@@ -405,12 +403,9 @@
     - type: StorageFill
       contents:
         - id: BattleMedipenAntiVirus
-        - id: BattleMedipenAntiVirus
-        - id: BattleMedipenAntiVirus
+          amount: 3
         - id: BattleMedipen
-        - id: BattleMedipen
-        - id: BattleMedipen
-        - id: BattleMedipen
+          amount: 4
 
 
 - type: entity
@@ -423,39 +418,7 @@
     - type: StorageFill
       contents:
         - id: ShellShotgunIncendiary
-        - id: ShellShotgunIncendiary
-        - id: ShellShotgunIncendiary
-        - id: ShellShotgunIncendiary
-        - id: ShellShotgunIncendiary
-        - id: ShellShotgunIncendiary
-        - id: ShellShotgunIncendiary
-        - id: ShellShotgunIncendiary
-        - id: ShellShotgunIncendiary
-        - id: ShellShotgunIncendiary
-        - id: ShellShotgunIncendiary
-        - id: ShellShotgunIncendiary
-        - id: ShellShotgunIncendiary
-        - id: ShellShotgunIncendiary
-        - id: ShellShotgunIncendiary
-        - id: ShellShotgunIncendiary
-        - id: ShellShotgunIncendiary
-        - id: ShellShotgunIncendiary
-        - id: ShellShotgunIncendiary
-        - id: ShellShotgunIncendiary
-        - id: ShellShotgunIncendiary
-        - id: ShellShotgunIncendiary
-        - id: ShellShotgunIncendiary
-        - id: ShellShotgunIncendiary
-        - id: ShellShotgunIncendiary
-        - id: ShellShotgunIncendiary
-        - id: ShellShotgunIncendiary
-        - id: ShellShotgunIncendiary
-        - id: ShellShotgunIncendiary
-        - id: ShellShotgunIncendiary
-        - id: ShellShotgunIncendiary
-        - id: ShellShotgunIncendiary
-        - id: ShellShotgunIncendiary
-        - id: ShellShotgunIncendiary
+          amount: 35
 
 
 - type: entity
