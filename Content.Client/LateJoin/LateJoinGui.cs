@@ -1,3 +1,4 @@
+using System.Linq; //backmen: centcom
 using System.Numerics;
 using Content.Client.CrewManifest;
 using Content.Client.GameTicking.Managers;
@@ -25,6 +26,7 @@ namespace Content.Client.LateJoin
         [Dependency] private readonly IEntitySystemManager _entitySystem = default!;
         [Dependency] private readonly JobRequirementsManager _jobRequirements = default!;
 
+        [Dependency] private readonly IEntityManager _entityManager = default!; //backmen: centcom
         public event Action<(EntityUid, string)> SelectedId;
 
         private readonly ClientGameTicker _gameTicker;
@@ -79,7 +81,9 @@ namespace Content.Client.LateJoin
             if (!_gameTicker.DisallowedLateJoin && _gameTicker.StationNames.Count == 0)
                 Logger.Warning("No stations exist, nothing to display in late-join GUI");
 
-            foreach (var (id, name) in _gameTicker.StationNames)
+            foreach (var (id, name) in _gameTicker.StationNames
+                         .OrderBy(x=> x.Value.Contains("Central Command") ? 1 : -1) //backmen: centcom
+                     )
             {
                 var jobList = new BoxContainer
                 {
