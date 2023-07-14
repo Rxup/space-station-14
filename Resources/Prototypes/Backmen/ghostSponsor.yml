@@ -10,5 +10,4 @@
       color: "#fff8"
       layers:
         - state: animated-blue
-          shader: unshaded
 
