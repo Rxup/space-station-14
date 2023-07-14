@@ -1,5 +1,7 @@
 ﻿using Content.Server.Corvax.Sponsors;
 using Content.Server.Ghost.Components;
+using Content.Shared.Backmen.GhostTheme;
+using Content.Shared.Corvax.Sponsors;
 using Robust.Server.GameObjects;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization.Manager;
@@ -27,11 +29,14 @@ public sealed class GhostThemeSystem : EntitySystem
         {
             return;
         }
-        foreach (var entry in ghostThemePrototype.Components.Values)
+        foreach (var entry in ghostThemePrototype!.Components.Values)
         {
             var comp = (Component) _serialization.CreateCopy(entry.Component, notNullableOverride: true);
             comp.Owner = uid;
             EntityManager.AddComponent(uid, comp, true);
         }
+
+        EnsureComp<GhostThemeComponent>(uid).GhostTheme = sponsorInfo.GhostTheme;
+
     }
 }

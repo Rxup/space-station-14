@@ -1,6 +1,6 @@
 ﻿using Robust.Shared.Prototypes;
 
-namespace Content.Server.Backmen.GhostTheme;
+namespace Content.Shared.Backmen.GhostTheme;
 
 [Prototype("ghostTheme")]
 public sealed class GhostThemePrototype : IPrototype
