@@ -25,8 +25,7 @@ namespace Content.Client.LateJoin
         [Dependency] private readonly IConfigurationManager _configManager = default!;
         [Dependency] private readonly IEntitySystemManager _entitySystem = default!;
         [Dependency] private readonly JobRequirementsManager _jobRequirements = default!;
-
-        [Dependency] private readonly IEntityManager _entityManager = default!; //backmen: centcom
+        
         public event Action<(EntityUid, string)> SelectedId;
 
         private readonly ClientGameTicker _gameTicker;
