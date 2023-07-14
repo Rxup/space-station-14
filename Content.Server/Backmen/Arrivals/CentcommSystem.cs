@@ -53,7 +53,7 @@ public sealed class CentcommSystem : EntitySystem
             return;
         }
 
-        var stationUid = _stationSystem.GetStations().FirstOrNull();
+        var stationUid = _stationSystem.GetStations().FirstOrNull(HasComp<StationCentcommComponent>);
 
         if (!TryComp<StationCentcommComponent>(stationUid, out var centcomm) ||
             Deleted(centcomm.Entity))
