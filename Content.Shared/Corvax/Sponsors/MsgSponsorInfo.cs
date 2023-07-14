@@ -19,12 +19,15 @@ public sealed class SponsorInfo
 
     [JsonPropertyName("priorityJoin")]
     public bool HavePriorityJoin { get; set; } = false;
-    
+
     [JsonPropertyName("extraSlots")]
     public int ExtraSlots { get; set; }
 
     [JsonPropertyName("allowedMarkings")] // TODO: Rename API field in separate PR as breaking change!
     public string[] AllowedMarkings { get; set; } = Array.Empty<string>();
+
+    [JsonPropertyName("ghostTheme")]
+    public string? GhostTheme { get; set; }
 }
 
 
@@ -36,7 +39,7 @@ public sealed class MsgSponsorInfo : NetMessage
     public override MsgGroups MsgGroup => MsgGroups.Command;
 
     public SponsorInfo? Info;
-    
+
     public override void ReadFromBuffer(NetIncomingMessage buffer, IRobustSerializer serializer)
     {
         var isSponsor = buffer.ReadBoolean();
