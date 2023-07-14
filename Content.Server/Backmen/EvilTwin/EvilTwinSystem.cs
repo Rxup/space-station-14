@@ -77,8 +77,20 @@ public sealed class EvilTwinSystem : EntitySystem
     {
         TwinSpawn = null;
 
+        var station = _stationSystem.GetStations().FirstOrNull(HasComp<StationEventEligibleComponent>);
+        if (station == null || !TryComp<StationDataComponent>(station, out var stationDataComponent))
+        {
+            return false;
+        }
+
+        var spawnGrid = stationDataComponent.Grids.FirstOrNull(HasComp<BecomesStationComponent>);
+        if (spawnGrid == null)
+        {
+            return false;
+        }
+
         var latejoin = (from s in EntityQuery<SpawnPointComponent, TransformComponent>()
-        where s.Item1.SpawnType == SpawnPointType.LateJoin
+        where s.Item1.SpawnType == SpawnPointType.LateJoin && s.Item2.GridUid == spawnGrid
         select s.Item2.Coordinates).ToList();
 
         if(latejoin.Count == 0)
