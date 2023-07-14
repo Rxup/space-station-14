@@ -56,7 +56,12 @@ namespace Content.Client.Access.UI
                 {
                     continue;
                 }
-
+                // start-backmen: CentCom
+                if (job.SetHideFromConsole)
+                {
+                    continue;
+                }
+                // end-backmen: Centcom
                 _jobPrototypeIds.Add(job.ID);
                 JobPresetOptionButton.AddItem(Loc.GetString(job.Name), _jobPrototypeIds.Count - 1);
             }
