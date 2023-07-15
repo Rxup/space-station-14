@@ -373,7 +373,7 @@
   icon: { sprite: /Textures/Clothing/Back/Backpacks/backpack.rsi, state: icon }
   productEntity: StorageImplanter
   cost:
-    Telecrystal: 12
+    Telecrystal: 10
   categories:
     - UplinkImplants
   conditions:
@@ -389,7 +389,7 @@
   icon: { sprite: /Textures/Actions/Implants/implants.rsi, state: freedom }
   productEntity: FreedomImplanter
   cost:
-    Telecrystal: 10
+    Telecrystal: 8
   categories:
     - UplinkImplants
   conditions:
