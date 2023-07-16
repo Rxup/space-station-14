@@ -135,7 +135,7 @@ public sealed class EvilTwinSystem : EntitySystem
                     var mind = playerData.Mind;
                     _mindSystem.TransferTo(mind!,twinMob);
 
-                    var station = _stationSystem.GetOwningStation(targetUid.Value) ?? _stationSystem.GetStations().FirstOrNull();
+                    var station = _stationSystem.GetOwningStation(targetUid.Value) ?? _stationSystem.GetStations().FirstOrNull(HasComp<StationEventEligibleComponent>);
                     if (pref != null && station!= null && TryComp<MindContainerComponent>(targetUid, out var targetMind) && mind!=null)
                     {
                         RaiseLocalEvent(new PlayerSpawnCompleteEvent(twinMob.Value, targetMind.Mind!.Session!, targetMind.Mind.CurrentJob?.Prototype.ID, false,

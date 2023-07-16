@@ -120,3 +120,6 @@ VendingMachineChang: BackmenVendingMachineChang
 VendingMachineDonut: BackmenVendingMachineDonut
 VendingMachineSoda: BackmenVendingMachineSoda
 VendingMachineStarkist: BackmenVendingMachineSoda
+
+# 2023-07-10
+Intercom: IntercomCommon
