@@ -327,7 +327,7 @@ public sealed class EvilTwinSystem : EntitySystem
         var pref = (HumanoidCharacterProfile) _prefs.GetPreferences(actor.PlayerSession.UserId).SelectedCharacter;
         var twinUid = Spawn(species.Prototype, coords);
         _humanoid.LoadProfile(twinUid, pref);
-        _metaDataSystem.SetEntityName(target,MetaData(target).EntityName);
+        _metaDataSystem.SetEntityName(twinUid,MetaData(target).EntityName);
         if (TryComp<DetailExaminableComponent>(target, out var detail))
         {
             EnsureComp<DetailExaminableComponent>(twinUid).Content = detail.Content;
