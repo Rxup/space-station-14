@@ -122,6 +122,8 @@ uplink-chimp-ammo-name = Коробка с 10 патронами Омега.
 uplink-chimp-ammo-desc = Коробка с десятью патронами для М.А.Р.Т.Ы.Х, несущими в себе омега-частицы. Омега-частицы причиняют сильные ожоги и способствуют переходу аномалий в сверхкритическое состояние.
 uplink-proximity-mine-name = Неконтактная мина
 uplink-proximity-mine-desc = Мина, замаскированная под знак мокрого пола.
+uplink-disposable-turret-name = Disposable Ballistic Turret
+uplink-disposable-turret-desc = Looks and functions like a normal electrical toolbox. Upon hitting the toolbox it will transform into a ballistic turret, theoretically shooting at anyone except members of the syndicate.
 # Armor
 uplink-chameleon-name = Набор "Хамелеон"
 uplink-chameleon-desc = Рюкзак, полный вещей, оснащенных технологией хамелеона, позволяющих вам маскироваться под кого угодно на станции, и даже больше!
@@ -159,6 +161,8 @@ uplink-stimkit-name = Набор стимпаков
 uplink-stimkit-desc = Аптечка, содержащая 6 микро-стимпаков, каждый из которых содержит дозу стимулятора на 15 секунд.
 uplink-syndicate-segway-crate-name = { ent-VehicleSyndicateSegway }
 uplink-syndicate-segway-crate-desc = { ent-VehicleSyndicateSegway.desc }
+uplink-syndicate-sponge-box-name = Syndicate Sponge Box
+uplink-syndicate-sponge-box-desc = A box containing 6 syndicate sponges disguised as monkey cubes, these cubes turn into a variety of angry wildlife after coming into contact with water.
 # Pointless
 uplink-revolver-cap-gun-name = { ent-RevolverCapGun }
 uplink-revolver-cap-gun-desc = { ent-RevolverCapGun.desc }

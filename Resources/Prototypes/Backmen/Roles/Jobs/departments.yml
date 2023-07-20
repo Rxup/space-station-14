@@ -1,0 +1,10 @@
+﻿- type: department
+  id: CentCom
+  description: department-CentCom-description
+  color: "#13db0f"
+  roles:
+    - BKCCSecGavna
+    - BKCCOperator
+    - BKCCOfficial
+    - BKCCCargo
+  accountNumber: 1400  #backmen: currency

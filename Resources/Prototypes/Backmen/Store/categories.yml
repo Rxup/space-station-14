@@ -1,9 +1,9 @@
 ﻿- type: storeCategory
-  id: VendingChang
+  id: ChangInventory
   name: store-category-vendingchang
 
 - type: storeCategory
-  id: VendingCigs
+  id: CigaretteMachineInventory
   name: store-category-vendingcigs
 
 - type: storeCategory
@@ -11,11 +11,11 @@
   name: store-category-vendingclothing
 
 - type: storeCategory
-  id: VendingCoffee
+  id: HotDrinksMachineInventory
   name: store-category-vendingcoffee
 
 - type: storeCategory
-  id: VendingCola
+  id: RobustSoftdrinksInventory
   name: store-category-vendingcola
 
 - type: storeCategory
@@ -23,7 +23,7 @@
   name: store-category-vendingdiscount
 
 - type: storeCategory
-  id: VendingDonut
+  id: DonutInventory
   name: store-category-vendingdonut
 
 - type: storeCategory
@@ -31,11 +31,11 @@
   name: store-category-vendinggames
 
 - type: storeCategory
-  id: VendingSnack
+  id: GetmoreChocolateCorpInventory
   name: store-category-vendingsnack
 
 - type: storeCategory
-  id: VendingSovietSoda
+  id: BodaInventory
   name: store-category-vendingsovietsoda
 
 - type: storeCategory

@@ -1,3 +1,5 @@
+using System.Linq; //backmen: centcom
+using System.Numerics;
 using Content.Client.CrewManifest;
 using Content.Client.GameTicking.Managers;
 using Content.Client.UserInterface.Controls;
@@ -23,7 +25,7 @@ namespace Content.Client.LateJoin
         [Dependency] private readonly IConfigurationManager _configManager = default!;
         [Dependency] private readonly IEntitySystemManager _entitySystem = default!;
         [Dependency] private readonly JobRequirementsManager _jobRequirements = default!;
-
+        
         public event Action<(EntityUid, string)> SelectedId;
 
         private readonly ClientGameTicker _gameTicker;
@@ -38,7 +40,7 @@ namespace Content.Client.LateJoin
 
         public LateJoinGui()
         {
-            MinSize = SetSize = (450, 560);
+            MinSize = SetSize = new Vector2(450, 560);
             IoCManager.InjectDependencies(this);
             _sprites = _entitySystem.GetEntitySystem<SpriteSystem>();
             _crewManifest = _entitySystem.GetEntitySystem<CrewManifestSystem>();
@@ -78,7 +80,9 @@ namespace Content.Client.LateJoin
             if (!_gameTicker.DisallowedLateJoin && _gameTicker.StationNames.Count == 0)
                 Logger.Warning("No stations exist, nothing to display in late-join GUI");
 
-            foreach (var (id, name) in _gameTicker.StationNames)
+            foreach (var (id, name) in _gameTicker.StationNames
+                         .OrderBy(x=> x.Value.Contains("Central Command") ? 1 : -1) //backmen: centcom
+                     )
             {
                 var jobList = new BoxContainer
                 {
@@ -228,7 +232,7 @@ namespace Content.Client.LateJoin
 
                         var icon = new TextureRect
                         {
-                            TextureScale = (2, 2),
+                            TextureScale = new Vector2(2, 2),
                             Stretch = TextureRect.StretchMode.KeepCentered
                         };
 
@@ -261,7 +265,7 @@ namespace Content.Client.LateJoin
 
                             jobSelector.AddChild(new TextureRect
                             {
-                                TextureScale = (0.4f, 0.4f),
+                                TextureScale = new Vector2(0.4f, 0.4f),
                                 Stretch = TextureRect.StretchMode.KeepCentered,
                                 Texture = _sprites.Frame0(new SpriteSpecifier.Texture(new ("/Textures/Interface/Nano/lock.svg.192dpi.png"))),
                                 HorizontalExpand = true,

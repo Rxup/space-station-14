@@ -19,6 +19,9 @@ using Content.Server.Construction.Components;
 using Content.Server.Damage.Components;
 using Content.Server.Atmos.Components;
 using Content.Server.Construction;
+using Content.Server.Emp;
+using Content.Server.Gravity;
+using Content.Server.Power.EntitySystems;
 using Content.Shared.Coordinates;
 using Content.Shared.Damage;
 using Content.Shared.Tiles;
@@ -40,6 +43,7 @@ public sealed class ArrivalsProtectSystem : EntitySystem
     [Dependency] private readonly SharedToolSystem _toolSystem = default!;
     [Dependency] private readonly TagSystem _tagSystem = default!;
     [Dependency] private readonly IMapManager _mapManager = default!;
+    [Dependency] private readonly ApcSystem _apcSystem = default!;
 
     public override void Initialize()
     {
@@ -53,11 +57,26 @@ public sealed class ArrivalsProtectSystem : EntitySystem
 
 
 
-        SubscribeLocalEvent<ArrivalsProtectComponent, InteractUsingEvent>(OnInteractUsing, before: new []{typeof(DoorSystem), typeof(WiresSystem)});
+        SubscribeLocalEvent<ArrivalsProtectComponent, InteractUsingEvent>(OnInteractUsing, before: new []{typeof(DoorSystem), typeof(WiresSystem), typeof(CableSystem)});
         SubscribeLocalEvent<ArrivalsProtectComponent, WeldableAttemptEvent>(OnWeldAttempt, before: new []{typeof(DoorSystem), typeof(WiresSystem)});
-
+        SubscribeLocalEvent<ArrivalsProtectComponent, ApcToggleMainBreakerAttemptEvent>(OnToggleApc, before: new[]{ typeof(EmpSystem)});
 
         SubscribeLocalEvent<BuildAttemptEvent>(OnBuildAttemptEvent);
+    }
+
+    private void OnToggleApc(EntityUid uid, ArrivalsProtectComponent component, ref ApcToggleMainBreakerAttemptEvent args)
+    {
+        args.Cancelled = true;
+        if (!TryComp<ApcComponent>(uid, out var apcComponent))
+        {
+            return;
+        }
+
+        if (!apcComponent.MainBreakerEnabled)
+        {
+            _apcSystem.ApcToggleBreaker(uid,apcComponent);
+        }
+        apcComponent.HasAccess = false;
     }
 
     private void OnBuildAttemptEvent(BuildAttemptEvent ev)
@@ -149,15 +168,17 @@ public sealed class ArrivalsProtectSystem : EntitySystem
             RemCompDeferred<VentCritterSpawnLocationComponent>(uid);
         }
         else if( // basic elements
-            _tagSystem.HasAnyTag(uid,"Wall","Window") ||
-            HasComp<PoweredLightComponent>(uid) ||
-            HasComp<CableComponent>(uid) ||
-            HasComp<ApcComponent>(uid) ||
-            HasComp<PowerSupplierComponent>(uid) ||
-            HasComp<PowerNetworkBatteryComponent>(uid) ||
-            HasComp<SurveillanceCameraComponent>(uid) ||
-            HasComp<SubFloorHideComponent>(uid)
-        ){
+                _tagSystem.HasAnyTag(uid,"Wall","Window") ||
+                HasComp<PoweredLightComponent>(uid) ||
+                HasComp<ApcComponent>(uid) ||
+                HasComp<PowerSupplierComponent>(uid) ||
+                HasComp<PowerNetworkBatteryComponent>(uid) ||
+                HasComp<SurveillanceCameraComponent>(uid) ||
+                HasComp<SubFloorHideComponent>(uid) ||
+                HasComp<CableComponent>(uid) ||
+                HasComp<GravityGeneratorComponent>(uid)
+               )
+        {
             EnsureComp<ArrivalsProtectComponent>(uid);
         }
     }

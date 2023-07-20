@@ -1,0 +1,29 @@
+﻿- type: entity
+  id: BackmenRandomVending
+  name: random vending machine spawner
+  suffix: Any, Backmen
+  parent: MarkerBase
+  components:
+    - type: Sprite
+      layers:
+        - state: red
+        - sprite: Structures/Machines/VendingMachines/random.rsi
+          state: any
+    - type: RandomSpawner
+      prototypes:
+        - BackmenVendingMachineCigs
+        - BackmenVendingMachineCoffee
+        - BackmenVendingMachineCola
+        - BackmenVendingMachineColaBlack
+        - BackmenVendingMachineDiscount
+        - BackmenVendingMachineSnack
+        - BackmenVendingMachineSnackBlue
+        - BackmenVendingMachineSnackGreen
+        - BackmenVendingMachineSnackOrange
+        - BackmenVendingMachineSnackTeal
+        - BackmenVendingMachineSovietSoda
+        - BackmenVendingMachineChang
+        - BackmenVendingMachineDonut
+        - BackmenVendingMachineSoda
+        - BackmenVendingLootBox
+      chance: 1
