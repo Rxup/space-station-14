@@ -1,0 +1,4 @@
+- type: flavor
+  id: redorden
+  flavorType: Complex
+  description: flavor-complex-redorden

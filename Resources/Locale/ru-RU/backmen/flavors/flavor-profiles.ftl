@@ -1,1 +1,1 @@
-flavor-complex-red = триумф красного ордена
+flavor-complex-redorden = триумф красного ордена
