@@ -25,4 +25,4 @@
         damage:
           groups:
             Brute: -0.4
-            Bloodloss: -0.6
+            Airloss: -0.6
