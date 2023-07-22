@@ -115,7 +115,7 @@
       - id: SpaceMedipen
       - id: EmergencyMedipen
       - id: Flare
-      - id: FoodTinMRE
+      - id: FoodTinClownSoupcan # backmen
   - type: Tag
     tags:
       - BoxHug
