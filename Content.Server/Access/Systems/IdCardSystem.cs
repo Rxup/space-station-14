@@ -19,6 +19,7 @@ namespace Content.Server.Access.Systems
         [Dependency] private readonly IRobustRandom _random = default!;
         [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
         [Dependency] private readonly IAdminLogManager _adminLogger = default!;
+        [Dependency] private readonly MetaDataSystem _metaSystem = default!;
 
         public override void Initialize()
         {
@@ -113,7 +114,7 @@ namespace Content.Server.Access.Systems
             if (player != null)
             {
                 _adminLogger.Add(LogType.Identity, LogImpact.Low,
-                    $"{ToPrettyString(player.Value):player} has changed the job title of {ToPrettyString(id.Owner):entity} to {jobTitle} ");
+                    $"{ToPrettyString(player.Value):player} has changed the job title of {ToPrettyString(uid):entity} to {jobTitle} ");
             }
             return true;
         }
@@ -150,7 +151,7 @@ namespace Content.Server.Access.Systems
             if (player != null)
             {
                 _adminLogger.Add(LogType.Identity, LogImpact.Low,
-                    $"{ToPrettyString(player.Value):player} has changed the name of {ToPrettyString(id.Owner):entity} to {fullName} ");
+                    $"{ToPrettyString(player.Value):player} has changed the name of {ToPrettyString(uid):entity} to {fullName} ");
             }
             return true;
         }
@@ -175,7 +176,7 @@ namespace Content.Server.Access.Systems
                 : Loc.GetString("access-id-card-component-owner-full-name-job-title-text",
                     ("fullName", id.FullName),
                     ("jobSuffix", jobSuffix));
-            EntityManager.GetComponent<MetaDataComponent>(id.Owner).EntityName = val;
+            _metaSystem.SetEntityName(uid, val);
         }
     }
 }
