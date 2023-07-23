@@ -4,9 +4,9 @@
     - Diona
     - ArachneClassic
 
-    
+
 ## Canned Clown
-      
+
 - type: entity
   parent: MobHuman
   id: HumanCannedClown
@@ -34,14 +34,14 @@
           Piercing: 4
         groups:
           Burn: 3
-    - type: TriggerOnMobstateChange
-      mobState: Dead
+ #   - type: TriggerOnMobstateChange
+ #     mobState: Dead
     - type: EmitSoundOnTrigger
       sound:
         collection: SadTrombone
         params:
           variation: 0.125
-    - type: Faction
+    - type: NpcFactionMember
       factions:
       - NanoTrasen
       - Clown
