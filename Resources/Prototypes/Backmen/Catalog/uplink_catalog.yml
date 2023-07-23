@@ -13,3 +13,16 @@
 #        tags:
 #          - NukeOpsUplink
 
+- type: listing
+  id: UplinkCannedClown
+  name: uplink-cannedclown-name
+  description: uplink-cannedclown-desc
+  productEntity: CannedClownSoupcan
+  cost:
+    Telecrystal: 3
+  categories:
+  - UplinkJob
+  conditions:
+  - !type:BuyerJobCondition
+    whitelist:
+    - Clown
