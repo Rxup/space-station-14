@@ -4,7 +4,7 @@
   parent: BaseDrink
   desc: reagent-desc-RedOrdenDrink
   physicalDesc: reagent-physical-desc-strong-smelling
-  flavor: redorden
+  flavor: RedOrdenDrinkFlavour
   color: "#8B0000"
   metamorphicSprite:
     sprite: Backmen/Objects/Consumable/Drinks/RedOrdenDrink.rsi

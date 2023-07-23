@@ -1,1 +1,1 @@
-flavor-complex-redorden = триумф красного ордена
+flavor-complex-RedOrdenDrinkFlavour = триумф красного ордена
