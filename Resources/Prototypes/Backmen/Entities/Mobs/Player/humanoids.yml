@@ -34,8 +34,13 @@
           Piercing: 4
         groups:
           Burn: 3
-    - type: Implanted
-      ImplantContainer: SadTromboneImplant
+    - type: TriggerOnMobstateChange
+      mobState: Dead
+    - type: EmitSoundOnTrigger
+      sound:
+        collection: SadTrombone
+        params:
+          variation: 0.125
     - type: Faction
       factions:
       - NanoTrasen
