@@ -3,3 +3,45 @@
   speciesBlacklist:
     - Diona
     - ArachneClassic
+
+    
+## Canned Clown
+      
+- type: entity
+  parent: MobHuman
+  id: HumanCannedClown
+  name: Canned clown
+  components:
+    - type: RandomHumanoidAppearance
+      randomizeName: false
+    - type: Icon
+      sprite: Markers/jobs.rsi
+      state: clown
+    - type: GhostRole
+      name: ghost-role-information-canned-clown-name
+      description: ghost-role-information-canned-clown-description
+      rules: Помогайте Хонк браткам во исполнении ВЕСЁЛЫХ планов!
+    - type: GhostTakeoverAvailable
+    - type: Loadout
+      prototype: CannedClownGear
+      prototypes: [CannedClownGear]
+    - type: RandomMetadata
+      nameSegments: [clown_basefun]
+    - type: Clumsy
+      clumsyDamage:
+        types:
+          Blunt: 5
+          Piercing: 4
+        groups:
+          Burn: 3
+    - type: TriggerOnMobstateChange
+      mobState: Dead
+    - type: EmitSoundOnTrigger
+      sound:
+        collection: SadTrombone
+        params:
+          variation: 0.125
+    - type: Faction
+      factions:
+      - NanoTrasen
+      - Clown
