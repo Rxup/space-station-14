@@ -250,7 +250,7 @@
     name: мародёр НаноТрейзен
     description: Боевой мех на службе НаноТрейзен.
     rules: Выполняйте различные приказы, ваша задача будет варьироваться от задач центрального командования.
-  - type: Faction
+  - type: NpcFactionMember
     factions:
     - NanoTrasen
   - type: Destructible
@@ -384,7 +384,7 @@
     name: командный мех-серафим НаноТрейзен
     description: Командующий мех на службе НаноТрейзен.
     rules: Выполняйте различные приказы, ваша задача будет варьироваться от задач центрального командования.
-  - type: Faction
+  - type: NpcFactionMember
     factions:
     - NanoTrasen
   - type: MobState
@@ -465,7 +465,7 @@
     name: древний дюранд
     description: Боевой мех правительства земли, интересно, что он тут забыл?
     rules: Вы древний мех, древнего правительства которого уже нет. Задачи нету.
-  - type: Faction
+  - type: NpcFactionMember
     factions:
     - NanoTrasen
   - type: Destructible
@@ -527,7 +527,7 @@
     name: гайгэкс НаноТрейзен
     description: Боевой мех на службе НаноТрейзен.
     rules: Выполняйте различные приказы, ваша задача будет варьироваться от задач центрального командования.
-  - type: Faction
+  - type: NpcFactionMember
     factions:
     - NanoTrasen
   - type: Destructible
