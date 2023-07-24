@@ -34,8 +34,9 @@
           Piercing: 4
         groups:
           Burn: 3
- #   - type: TriggerOnMobstateChange
- #     mobState: Dead
+    - type: TriggerOnMobstateChange
+      mobState:
+      - Dead
     - type: EmitSoundOnTrigger
       sound:
         collection: SadTrombone

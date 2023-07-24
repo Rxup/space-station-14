@@ -1,13 +1,13 @@
-﻿job-name-centcomoffBK = Представитель Центрального Командования
+﻿job-name-centcomoffBK = Представитель ЦК
 job-description-centcomoffBK = Здесь будет написан текст викиводами...
 
-job-name-centcomoper = Оператор Центрального Командования
+job-name-centcomoper = Оператор ЦК
 job-description-centcomoper = Здесь будет написан текст викиводами...
 
-job-name-centcomSecGavna = Офицер Специальной Службы Безопасности
+job-name-centcomSecGavna = Офицер Специальной СБ
 job-description-centcomSecGavna = Здесь будет написан текст викиводами...
 
-job-name-centcomCargo = Грузчик Центрального Командования
+job-name-centcomCargo = Грузчик ЦК
 job-description-centcomCargo = Центрального Командования
 
 department-CentCom = Центральное Командование

@@ -3,15 +3,31 @@
   id: IDCardCentComOfficialCorvax
   name: Id карта ПЦК
   components:
-  - type: Sprite
-    layers:
-    - state: silver
-    - state: idiaa
-    - state: idcentcom
-  - type: Item
-    heldPrefix: silver
-  - type: IdCard
-    jobTitle: Представитель ЦК
+    - type: Sprite
+      layers:
+      - state: silver
+      - state: idiaa
+      - state: idcentcom
+    - type: Item
+      heldPrefix: silver
+    - type: IdCard
+      jobTitle: Представитель ЦК
+    - type: Access
+      groups:
+        - AllAccess
+        - CentCom
+
+- type: entity
+  parent: CentcomIDCardDeathsquad
+  id: IDCardCentComGavnaOperator
+  name: Id карта оператора ЦК
+  components:
+    - type: IdCard
+      jobTitle: Оператор ЦК
+    - type: Access
+      groups:
+        - AllAccess
+        - CentCom
 
 - type: entity
   parent: CentcomIDCardDeathsquad
@@ -27,6 +43,12 @@
       heldPrefix: silver
     - type: IdCard
       jobTitle: Грузчик ЦК
+    - type: Access
+      tags:
+        - CCCargo
+        - CCGeneral
+      groups:
+        - AllAccess
 
 - type: entity
   parent: BasePDA
@@ -35,7 +57,7 @@
   description: Light green sign of walking bureaucracy.
   components:
     - type: Pda
-      id: IDCardCentComCargoBackmen
+      id: IDCardCentComOfficialCorvax
       state: pda-centcom
       penSlot:
         startingItem: PenCentcom
@@ -95,39 +117,31 @@
         - id: Paper
 
 - type: entity
-  name:  Представитель Центрального Командования
+  name:  Представитель ЦК
   parent: MobHuman
   suffix: CentCom
   id: MobHumanCentComCorvax
   components:
-  - type: Icon
-    sprite: Markers/jobs.rsi
-    state: centcom
-  - type: GhostRole
-    name: Представитель Центрального Командования
-    description: Летит на станцию, дабы удостовериться, насколько экипаж станции убог.
-  - type: Loadout
-    prototypes: [CentComCorvax]
-  - type: GhostTakeoverAvailable
-  - type: RandomMetadata
-  - type: RandomHumanoidAppearance
-  - type: SpecForce
-    actionName: CentcomFtlAction
-    requirements:
-    - !type:OverallPlaytimeRequirement
-      time: 36000
-    - !type:RoleTimeRequirement
-      role: JobIAA
-      time: 18000
+    - type: Icon
+      sprite: Markers/jobs.rsi
+      state: centcom
+    - type: GhostRole
+      name: Представитель ЦК
+      description: Летит на станцию, дабы удостовериться, насколько экипаж станции убог.
+    - type: Loadout
+      prototypes: [CentComCorvax]
+    - type: GhostTakeoverAvailable
+    - type: RandomMetadata
+    - type: RandomHumanoidAppearance
+    - type: SpecForce
+      actionName: CentcomFtlAction
+      requirements:
+      - !type:OverallPlaytimeRequirement
+        time: 36000
+      - !type:RoleTimeRequirement
+        role: JobIAA
+        time: 18000
 #-----------------------------------------
-
-- type: entity
-  parent: CentcomIDCardDeathsquad
-  id: IDCardCentComGavnaOperator
-  name: Id карта оператора ЦК
-  components:
-  - type: IdCard
-    jobTitle: Оператор ЦК
 
 - type: entity
   parent: CentcomPDABackmen
@@ -158,34 +172,34 @@
     pocket1: ClothingMaskGasCentcom
 
 - type: entity
-  name:  Оператор Центрального Командования
+  name:  Оператор ЦК
   parent: MobHuman
   suffix: CentCom
   id: MobHumanCentComOperatorCorvax
   components:
-  - type: Icon
-    sprite: Markers/jobs.rsi
-    state: centcom
-  - type: GhostRole
-    name: Оператор Центрального Командования
-    description: Оператор центрального командования, выполняет приказы офицера цк и координирует действия станции.
-  - type: Loadout
-    prototypes: [OperatorGavna]
-  - type: GhostTakeoverAvailable
-  - type: RandomMetadata
-  - type: RandomHumanoidAppearance
-  - type: SpecForce
-    actionName: CentcomFtlAction
-    requirements:
-    - !type:RoleTimeRequirement
-      role: JobIAA
-      time: 420000
-    - !type:RoleTimeRequirement
-      role: JobCaptain
-      time: 240000
-    - !type:DepartmentTimeRequirement
-      department: Command
-      time: 720000
+    - type: Icon
+      sprite: Markers/jobs.rsi
+      state: centcom
+    - type: GhostRole
+      name: Оператор ЦК
+      description: Оператор центрального командования, выполняет приказы офицера цк и координирует действия станции.
+    - type: Loadout
+      prototypes: [OperatorGavna]
+    - type: GhostTakeoverAvailable
+    - type: RandomMetadata
+    - type: RandomHumanoidAppearance
+    - type: SpecForce
+      actionName: CentcomFtlAction
+      requirements:
+      - !type:RoleTimeRequirement
+        role: JobIAA
+        time: 420000
+      - !type:RoleTimeRequirement
+        role: JobCaptain
+        time: 240000
+      - !type:DepartmentTimeRequirement
+        department: Command
+        time: 720000
 
 #-----------------------------------------
 
@@ -194,12 +208,18 @@
   id: IDCardCentComGavnaOfficerSesurity
   name: Id карта охраны ЦК
   components:
-  - type: Sprite
-    layers:
-    - state: centcom
-    - state: idsecurityofficer
-  - type: IdCard
-    jobTitle: Офицер Специальной СБ
+    - type: Sprite
+      layers:
+      - state: centcom
+      - state: idsecurityofficer
+    - type: IdCard
+      jobTitle: Офицер Специальной СБ
+    - type: Access
+      tags:
+        - CCSecurity
+        - CCGeneral
+      groups:
+        - AllAccess
 
 - type: entity
   name: дубинка-шокер спецсил
@@ -207,8 +227,8 @@
   id: StunbatonSuper
   description: Электрошоковая дубинка для обездвиживания людей. Слишком усердное причинение вреда с помощью этого предмета считается дурным тоном.
   components:
-  - type: Stunbaton
-    energyPerUse: 10
+    - type: Stunbaton
+      energyPerUse: 10
 
 - type: entity
   name: станнер спецсил
@@ -260,29 +280,29 @@
   suffix: CentCom
   id: MobHumanCentComOfficerSesurityGavna
   components:
-  - type: Icon
-    sprite: Markers/jobs.rsi
-    state: security_officer
-  - type: GhostRole
-    name: Охрана ЦК
-    description: Охрана ЦК, охраняет членов ЦК и саму ЦК.
-  - type: Loadout
-    prototypes: [OfficerSesurity]
-  - type: GhostTakeoverAvailable
-  - type: RandomMetadata
-  - type: RandomHumanoidAppearance
-  - type: SpecForce
-    actionName: CentcomFtlAction
-    requirements:
-    - !type:DepartmentTimeRequirement
-      department: Security
-      time: 240000
-    - !type:DepartmentTimeRequirement
-      department: Command
-      time: 720000
-    - !type:RoleTimeRequirement
-      role: JobIAA
-      time: 3600
+    - type: Icon
+      sprite: Markers/jobs.rsi
+      state: security_officer
+    - type: GhostRole
+      name: Охрана ЦК
+      description: Охрана ЦК, охраняет членов ЦК и саму ЦК.
+    - type: Loadout
+      prototypes: [OfficerSesurity]
+    - type: GhostTakeoverAvailable
+    - type: RandomMetadata
+    - type: RandomHumanoidAppearance
+    - type: SpecForce
+      actionName: CentcomFtlAction
+      requirements:
+      - !type:DepartmentTimeRequirement
+        department: Security
+        time: 240000
+      - !type:DepartmentTimeRequirement
+        department: Command
+        time: 720000
+      - !type:RoleTimeRequirement
+        role: JobIAA
+        time: 3600
 
 - type: startingGear
   id: CCCargo
