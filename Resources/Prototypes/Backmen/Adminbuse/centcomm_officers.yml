@@ -207,6 +207,25 @@
     jobTitle: Офицер Специальной СБ
 
 - type: entity
+  parent: CentcomPDABackmen
+  id: CCOfficerPDA
+  name: Centcom Officer PDA
+  description: Light green sign of walking bureaucracy.
+  components:
+    - type: Pda
+      id: IDCardCentComGavnaOfficerSesurity
+      state: pda-centcom
+      penSlot:
+        startingItem: PenCentcom
+        whitelist:
+          tags:
+            - Write
+    - type: PdaBorderColor
+      borderColor: "#00842e"
+    - type: Icon
+      state: pda-centcom
+
+- type: entity
   name: дубинка-шокер спецсил
   parent: Stunbaton
   id: StunbatonSuper
@@ -255,7 +274,7 @@
     outerClothing: ClothingOuterArmorBasic
     suitstorage: WeaponPistolMk58
     head: ClothingHeadHatBeretHoS
-    id: IDCardCentComGavnaOfficerSesurity
+    id: CCOfficerPDA
     ears: ClothingHeadsetCentComCC
     belt: ClothingBeltSecuritySuper
     pocket2: MagazinePistol
