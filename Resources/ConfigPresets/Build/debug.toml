@@ -4,6 +4,3 @@ enabled = false
 
 [shuttle]
 auto_call_time = 0
-
-[sponsor]
-api_url = "https://backmen.ru/ss14"
