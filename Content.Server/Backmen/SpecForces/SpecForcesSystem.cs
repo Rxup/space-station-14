@@ -92,10 +92,10 @@ public sealed class SpecForcesSystem : EntitySystem
         if (!_adminManager.IsAdmin(args.Player) && !IsAllowed(args.Player, component, out var reason))
         {
             args.TookRole = true;
-            _callLock.EnterWriteLock();
+            //_callLock.EnterWriteLock();
             _chatManager.ChatMessageToOne(Shared.Chat.ChatChannel.Server, reason, "ОШИБКА: " + reason, default, false,
                 args.Player.ConnectedClient, Color.Plum);
-
+/*
             //EntityManager.RemoveComponent<ActorComponent>(uid);
             var mind = EntityManager.EnsureComponent<MindContainerComponent>(uid);
             mind.Mind = new Content.Server.Mind.Mind(); // dummy
@@ -126,6 +126,7 @@ public sealed class SpecForcesSystem : EntitySystem
                 }
             });
             return;
+            */
         }
 /*
         if (_inventory.TryGetSlotEntity(uid, "ears", out var ears) && TryComp<HeadsetComponent>(ears, out var earsComp))
@@ -190,12 +191,12 @@ public sealed class SpecForcesSystem : EntitySystem
             }
 
             var currentTime = GameTicker.RoundDuration();
-
+/*
             if (LastUsedTime + DelayUsesage > currentTime)
             {
                 return false;
             }
-
+*/
             LastUsedTime = currentTime;
 
             CallendEvents.Add(new SpecForcesHistory { Event = ev, RoundTime = currentTime, WhoCalled = source });
@@ -220,8 +221,33 @@ public sealed class SpecForcesSystem : EntitySystem
 
     private EntityUid SpawnEntity(string? protoName, EntityCoordinates coordinates)
     {
+        if (protoName == null)
+        {
+            return EntityUid.Invalid;
+        }
+
         var uid = EntityManager.SpawnEntity(protoName, coordinates);
+
+        if (!TryComp<GhostRoleMobSpawnerComponent>(uid, out var mobSpawnerComponent) || mobSpawnerComponent.Prototype == null ||
+            !_prototypes.TryIndex<EntityPrototype>(mobSpawnerComponent.Prototype, out var spawnObj))
+        {
+            return uid;
+        }
+
+        if (spawnObj.TryGetComponent<SpecForceComponent>(out var tplSpecForceComponent))
+        {
+            var comp = (Component) _serialization.CreateCopy(tplSpecForceComponent, notNullableOverride: true);
+            comp.Owner = uid;
+            EntityManager.AddComponent(uid, comp, true);
+        }
         EnsureComp<SpecForceComponent>(uid);
+        if (spawnObj.TryGetComponent<GhostRoleComponent>(out var tplGhostRoleComponent))
+        {
+            var comp = (Component) _serialization.CreateCopy(tplGhostRoleComponent, notNullableOverride: true);
+            comp.Owner = uid;
+            EntityManager.AddComponent(uid, comp, true);
+        }
+
         return uid;
     }
 
@@ -232,9 +258,8 @@ public sealed class SpecForcesSystem : EntitySystem
         foreach (var (_, meta, xform) in EntityManager
                      .EntityQuery<SpawnPointComponent, MetaDataComponent, TransformComponent>(true))
         {
-            // TODO: marker
-            //if (meta.EntityPrototype?.ID != "ERTMarker")
-            //    continue;
+            if (meta.EntityPrototype?.ID != "SpawnSpecforce")
+                continue;
 
             if (xform.ParentUid != shuttle)
                 continue;
@@ -261,38 +286,38 @@ public sealed class SpecForcesSystem : EntitySystem
         switch (ev)
         {
             case SpecForcesType.ERT:
-                SpawnEntity(ERTLeader, _random.Pick(spawns));
+                SpawnEntity(ErtLeader, _random.Pick(spawns));
                 while (countExtra > 0)
                 {
                     if (countExtra-- > 0)
                     {
-                        SpawnEntity(ERTSecurity, _random.Pick(spawns));
+                        SpawnEntity(ErtSecurity, _random.Pick(spawns));
                     }
 
                     if (countExtra-- > 0)
                     {
-                        SpawnEntity(ERTEngineer, _random.Pick(spawns));
+                        SpawnEntity(ErtEngineer, _random.Pick(spawns));
                     }
 
                     if (countExtra-- > 0)
                     {
-                        SpawnEntity(ERTMedical, _random.Pick(spawns));
+                        SpawnEntity(ErtMedical, _random.Pick(spawns));
                     }
 
                     if (countExtra-- > 0)
                     {
-                        SpawnEntity(ERTJunitor, _random.Pick(spawns));
+                        SpawnEntity(ErtJunitor, _random.Pick(spawns));
                     }
                 }
 
                 break;
             case SpecForcesType.RXBZZ:
-                SpawnEntity(countExtra == 0 ? RXBZZ : RXBZZLeader, _random.Pick(spawns));
+                SpawnEntity(countExtra == 0 ? Rxbzz : RxbzzLeader, _random.Pick(spawns));
                 while (countExtra > 0)
                 {
                     if (countExtra-- > 0)
                     {
-                        SpawnEntity(RXBZZ, _random.Pick(spawns));
+                        SpawnEntity(Rxbzz, _random.Pick(spawns));
                     }
                 }
 
@@ -318,15 +343,17 @@ public sealed class SpecForcesSystem : EntitySystem
         var shuttleMap = _mapManager.CreateMap();
         var options = new MapLoadOptions()
         {
-            LoadMap = true,
+            LoadMap = true
         };
 
         if (!_map.TryLoad(shuttleMap,
                 ev switch
                 {
                     // todo: cvar
-                    SpecForcesType.ERT => ETRShuttlePath,
-                    _ => ETRShuttlePath
+                    SpecForcesType.ERT => EtrShuttlePath,
+                    SpecForcesType.RXBZZ => RxbzzShuttlePath,
+                    SpecForcesType.DeathSquad => SpestnazShuttlePath,
+                    _ => EtrShuttlePath
                 },
                 out var grids,
                 options))
@@ -396,19 +423,20 @@ public sealed class SpecForcesSystem : EntitySystem
         }
     }
 
-    const string ETRShuttlePath = "Maps/Shuttles/dart.yml";
-    const string ERTLeader = "MobHumanERTLeaderEVAV2.1";
-    const string ERTSecurity = "MobHumanERTSecurityEVAV2.1";
-    const string ERTEngineer = "MobHumanERTEngineerEVAV2.1";
-    const string ERTJunitor = "MobHumanERTJunitorEVAV2.1";
-    const string ERTMedical = "MobHumanERTMedicalEVAV2.1";
+    private const string EtrShuttlePath = "Maps/Shuttles/dart.yml";
+    private const string ErtLeader = "SpawnMobHumanERTLeaderEVAV2.1";
+    private const string ErtSecurity = "SpawnMobHumanERTSecurityEVAV2.1";
+    private const string ErtEngineer = "SpawnMobHumanERTEngineerEVAV2.1";
+    private const string ErtJunitor = "SpawnMobHumanERTJunitorEVAV2.1";
+    private const string ErtMedical = "SpawnMobHumanERTMedicalEVAV2.1";
 
-    const string RXBZZLeader = "MobHumanSFOfficer";
-    const string RXBZZ = "MobHumanRXBZZ";
+    private const string RxbzzShuttlePath = "Maps/Backmen/Grids/NT-CC-SRV-013.yml";
+    private const string RxbzzLeader = "SpawnMobHumanSFOfficer";
+    private const string Rxbzz = "SpawnMobHumanRXBZZ";
 
-
-    const string SpestnazOfficer = "MobHumanSpecialReAgentCOM";
-    const string Spestnaz = "MobHumanSpecialReAgent";
+    private const string SpestnazShuttlePath = "Maps/Backmen/Grids/NT-CC-Specnaz-013.yml";
+    private const string SpestnazOfficer = "SpawnMobHumanSpecialReAgentCOM";
+    private const string Spestnaz = "SpawnMobHumanSpecialReAgent";
 
     public SoundSpecifier ERTAnnounce = new SoundPathSpecifier("/Audio/Corvax/Adminbuse/Yesert.ogg");
 

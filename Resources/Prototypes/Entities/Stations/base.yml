@@ -39,7 +39,7 @@
     - type: GridSpawn
       paths:
         - /Maps/Shuttles/cargo.yml
-        - /Maps/Shuttles/mining.yml
+        - /Maps/Backmen/Grids/pts.yml # backmen-salvage-shuttle
 
 - type: entity
   id: BaseStationCentcomm

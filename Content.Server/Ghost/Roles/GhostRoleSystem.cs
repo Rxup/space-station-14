@@ -329,6 +329,13 @@ namespace Content.Server.Ghost.Roles
                 return;
             }
 
+            // start-backmen: ghost timers
+            if (args.TookRole)
+            {
+                return;
+            }
+            // end-backmen: ghost timers
+
             if (string.IsNullOrEmpty(component.Prototype))
                 throw new NullReferenceException("Prototype string cannot be null or empty!");
 
@@ -374,6 +381,13 @@ namespace Content.Server.Ghost.Roles
                 args.TookRole = false;
                 return;
             }
+
+            // start-backmen: ghost timers
+            if (args.TookRole)
+            {
+                return;
+            }
+            // end-backmen: ghost timers
 
             ghostRole.Taken = true;
 
