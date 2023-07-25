@@ -1,0 +1,16 @@
+- type: entity
+  parent: DrinkGlassBase
+  id: RedOrdenDrinkGlass
+  name: Кроваво-красная слеза
+  description: фирменный коктейль красного ордена. Брутальный напиток с кровью павших врагов - борьба всё, борьба всегда.
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      drink:
+        maxVol: 30
+        reagents:
+        - ReagentId: RedOrdenDrink
+          Quantity: 30
+  - type: Drink
+  - type: Sprite
+    sprite: Backmen/Objects/Consumable/Drinks/RedOrdenDrink.rsi
