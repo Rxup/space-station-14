@@ -103,6 +103,7 @@
     ears: ClothingHeadsetAltCentCom
     pocket1: CyberPen
     pocket2: BoxFolderSecretBlack
+  innerclothingskirt: ClothingUniformJumpskirtCentcomOfficer
 
 - type: entity
   noSpawn: true
@@ -146,7 +147,7 @@
 - type: entity
   parent: CentcomPDABackmen
   id: CCOperatorPDA
-  name: Centcom Cargo PDA
+  name: Centcom Operator PDA
   description: Light green sign of walking bureaucracy.
   components:
     - type: Pda
@@ -166,10 +167,14 @@
   id: OperatorGavna
   equipment:
     jumpsuit: ClothingUniformJumpsuitCentcomOfficer
+    back: ClothingBackpackFilled
     shoes: ClothingShoesBootsLaceup
     id: CCOperatorPDA
     ears: ClothingHeadsetCentCom
     pocket1: ClothingMaskGasCentcom
+  innerclothingskirt: ClothingUniformJumpskirtCentcomOfficer
+  satchel: ClothingBackpackSatchelFilled
+  duffelbag: ClothingBackpackDuffelFilled
 
 - type: entity
   name:  Оператор ЦК
@@ -222,6 +227,25 @@
         - AllAccess
 
 - type: entity
+  parent: CentcomPDABackmen
+  id: CCOfficerPDA
+  name: Centcom Officer PDA
+  description: Light green sign of walking bureaucracy.
+  components:
+    - type: Pda
+      id: IDCardCentComGavnaOfficerSesurity
+      state: pda-centcom
+      penSlot:
+        startingItem: PenCentcom
+        whitelist:
+          tags:
+            - Write
+    - type: PdaBorderColor
+      borderColor: "#00842e"
+    - type: Icon
+      state: pda-centcom
+
+- type: entity
   name: дубинка-шокер спецсил
   parent: Stunbaton
   id: StunbatonSuper
@@ -261,6 +285,7 @@
   id: OfficerSesurity
   equipment:
     jumpsuit: ClothingUniformJumpsuitHoSAlt
+    back: ClothingBackpackSecurityFilled
     shoes: ClothingShoesBootsNedoSpetsnaz
     mask: ClothingMaskGasSecurity
     neck: CombatKnifeSpetsnaz
@@ -269,10 +294,13 @@
     outerClothing: ClothingOuterArmorBasic
     suitstorage: WeaponPistolMk58
     head: ClothingHeadHatBeretHoS
-    id: IDCardCentComGavnaOfficerSesurity
+    id: CCOfficerPDA
     ears: ClothingHeadsetCentComCC
     belt: ClothingBeltSecuritySuper
     pocket2: MagazinePistol
+  innerclothingskirt: ClothingUniformJumpskirtHoSAlt
+  satchel: ClothingBackpackSatchelSecurityFilled
+  duffelbag: ClothingBackpackDuffelSecurityFilled
 
 - type: entity
   name:  Охрана ЦК
