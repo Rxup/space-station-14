@@ -1,0 +1,117 @@
+﻿- type: entity
+  id: MarkerSpecforce
+  name: маркер спавнера спецсил
+  suffix: Specforce
+  parent: MarkerBase
+  components:
+    - type: Sprite
+      sprite: Markers/jobs.rsi
+      layers:
+        - state: green
+        - sprite: Mobs/Animals/regalrat.rsi
+          state: icon
+
+- type: entity
+  id: SpawnSpecforce
+  noSpawn: true
+  abstract: true
+  name: спавнер спецсил
+  suffix: Specforce
+  parent: MarkerBase
+  components:
+    - type: Sprite
+      sprite: Markers/jobs.rsi
+      layers:
+        - state: green
+        - sprite: Mobs/Animals/regalrat.rsi
+          state: icon
+
+- type: entity
+  id: SpawnMobHumanERTLeaderEVAV2.1
+  parent: SpawnSpecforce
+  noSpawn: true
+  name: ОБР Лидер
+  suffix: спавнер спецсил
+  components:
+    - type: GhostRoleMobSpawner
+      prototype: MobHumanERTLeaderEVAV2.1
+
+- type: entity
+  id: SpawnMobHumanERTSecurityEVAV2.1
+  parent: SpawnSpecforce
+  noSpawn: true
+  name: ОБР Охрана
+  suffix: спавнер спецсил
+  components:
+    - type: GhostRoleMobSpawner
+      prototype: MobHumanERTSecurityEVAV2.1
+
+- type: entity
+  id: SpawnMobHumanERTEngineerEVAV2.1
+  parent: SpawnSpecforce
+  noSpawn: true
+  name: ОБР Инж
+  suffix: спавнер спецсил
+  components:
+    - type: GhostRoleMobSpawner
+      prototype: MobHumanERTEngineerEVAV2.1
+
+- type: entity
+  id: SpawnMobHumanERTJunitorEVAV2.1
+  parent: SpawnSpecforce
+  noSpawn: true
+  name: ОБР Уборщик
+  suffix: спавнер спецсил
+  components:
+    - type: GhostRoleMobSpawner
+      prototype: MobHumanERTJunitorEVAV2.1
+
+- type: entity
+  id: SpawnMobHumanERTMedicalEVAV2.1
+  parent: SpawnSpecforce
+  noSpawn: true
+  name: ОБР Медик
+  suffix: спавнер спецсил
+  components:
+    - type: GhostRoleMobSpawner
+      prototype: MobHumanERTMedicalEVAV2.1
+
+- type: entity
+  id: SpawnMobHumanSFOfficer
+  parent: SpawnSpecforce
+  noSpawn: true
+  name: РХБЗЗ ОСО
+  suffix: спавнер спецсил
+  components:
+    - type: GhostRoleMobSpawner
+      prototype: MobHumanSFOfficer
+
+- type: entity
+  id: SpawnMobHumanRXBZZ
+  parent: SpawnSpecforce
+  noSpawn: true
+  name: РХБЗЗ Опер
+  suffix: спавнер спецсил
+  components:
+    - type: GhostRoleMobSpawner
+      prototype: MobHumanRXBZZ
+
+- type: entity
+  id: SpawnMobHumanSpecialReAgentCOM
+  parent: SpawnSpecforce
+  noSpawn: true
+  name: Спецназ лидер
+  suffix: спавнер спецсил
+  components:
+    - type: GhostRoleMobSpawner
+      prototype: MobHumanSpecialReAgentCOM
+
+- type: entity
+  id: SpawnMobHumanSpecialReAgent
+  parent: SpawnSpecforce
+  noSpawn: true
+  name: Спецназ опер
+  suffix: спавнер спецсил
+  components:
+    - type: GhostRoleMobSpawner
+      prototype: MobHumanSpecialReAgent
