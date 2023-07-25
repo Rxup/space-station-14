@@ -1,4 +1,6 @@
-﻿using Content.Server.Mind.Components;
+﻿using System.Numerics;
+using Content.Server.GameTicking;
+using Content.Server.Mind.Components;
 using Content.Server.Popups;
 using Content.Server.Shuttle.Components;
 using Content.Server.Shuttles.Components;
@@ -20,6 +22,17 @@ public sealed class CentcommSystem : EntitySystem
     {
         base.Initialize();
         SubscribeLocalEvent<ActorComponent, CentcomFtlAction>(OnFtlActionUsed);
+        SubscribeLocalEvent<PreGameMapLoad>(OnPreGameMapLoad, after: new[]{typeof(StationSystem)});
+    }
+
+    private void OnPreGameMapLoad(PreGameMapLoad ev)
+    {
+        if (ev.GameMap.ID != "CentComm")
+        {
+            return;
+        }
+
+        ev.Options.Offset = new Vector2(0, 0);
     }
 
     private void OnFtlActionUsed(EntityUid uid, ActorComponent component, CentcomFtlAction args)
