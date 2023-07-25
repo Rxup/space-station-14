@@ -11,11 +11,10 @@
   weight: 1
   requireAdminNotify: true
   joinNotifyCrew: true
-  setHideFromConsole: true
   requirements:
     - !type:RoleTimeRequirement
       role: JobIAA
-      time: 420000
+      time: 210000
     - !type:RoleTimeRequirement
       role: JobCaptain
       time: 240000
@@ -23,7 +22,8 @@
       department: Command
       time: 720000
   accessGroups:
-  - AllAccess
+    - AllAccess
+    - CentCom
   special:
     - !type:AddComponentSpecial
       components:
@@ -47,7 +47,6 @@
   weight: 1
   requireAdminNotify: true
   joinNotifyCrew: true
-  setHideFromConsole: true
   requirements:
     - !type:RoleTimeRequirement
       role: JobIAA
@@ -60,6 +59,7 @@
       time: 720000
   accessGroups:
     - AllAccess
+    - CentCom
   special:
     - !type:AddComponentSpecial
       components:
@@ -83,7 +83,6 @@
   weight: 1
   requireAdminNotify: true
   joinNotifyCrew: true
-  setHideFromConsole: true
   requirements:
     - !type:DepartmentTimeRequirement
       department: Security
@@ -94,6 +93,9 @@
     - !type:RoleTimeRequirement
       role: JobIAA
       time: 3600
+  access:
+    - CCGeneral
+    - CCSecurity
   accessGroups:
     - AllAccess
   special:
@@ -119,11 +121,13 @@
   weight: 1
   requireAdminNotify: true
   joinNotifyCrew: true
-  setHideFromConsole: true
   requirements:
     - !type:DepartmentTimeRequirement
       department: Cargo
       time: 360000
+  access:
+    - CCGeneral
+    - CCCargo
   accessGroups:
     - AllAccess
   special:

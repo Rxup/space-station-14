@@ -3,3 +3,7 @@ ent-ClothingNeckCloakOrden = Плащ красного ордена
 
 ent-ClothingNeckCloakSssp = Плащ сотрудника СССП
     .desc = Выдаётся за заслугу перед СССП. Вы лучший. Можете это не скрывать.
+
+ent-ClothingNeckBelovOPG = Накидка ОПГ
+    .desc = Плащ главы знаменитой ОПГ, Александра Белова.
+    .suffix = { "" }

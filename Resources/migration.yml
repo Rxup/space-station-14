@@ -8,29 +8,11 @@
 # Table: null
 #
 chem_dispenser: ChemDispenser
-KvassTankFull: null
-DrinkKvassGlass: null
-KvassTank: null
+
 
 # 2023-05-03
-SpawnPointBrigmedic: null
-ClothingHeadsetBrigmedic: null
-ClothingHeadHatBeretBrigmedic: null
-ClothingHeadHelmetHardsuitBrigmedic: null
-ClothingOuterHardsuitBrigmedic: null
-ClothingOuterCoatAMG: null
-ClothingBackpackBrigmedic: null
 ClothingBackpackBrigmedicFilled: null
-ClothingBackpackSatchelBrigmedic: null
-ClothingBackpackSatchelBrigmedicFilled: null
-ClothingBackpackDuffelBrigmedic: null
-ClothingBackpackDuffelBrigmedicFilled: null
-BrigmedicIDCard: null
-BrigmedicPDA: null
-BoxSurvivalBrigmedic: null
-LockerBrigmedic: null
-LockerBrigmedicFilled: null
-BedsheetBrigmedic: null
+
 
 # 2023-05-04
 BoxMagazineMagnumSubMachineGun: BoxMagazinePistolSubMachineGun
@@ -123,3 +105,9 @@ VendingMachineStarkist: BackmenVendingMachineSoda
 
 # 2023-07-10
 Intercom: IntercomCommon
+
+# 2023-07-12
+ToyAssistant: ToyFigurinePassenger
+
+# 2023-07-20
+ForensicGloves: ClothingHandsGlovesForensic
