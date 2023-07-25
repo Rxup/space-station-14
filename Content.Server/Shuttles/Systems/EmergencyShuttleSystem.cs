@@ -313,7 +313,8 @@ public sealed partial class EmergencyShuttleSystem : EntitySystem
             var ent = EntityManager.System<Content.Server.GameTicking.GameTicker>().LoadGameMap(
                 IoCManager.Resolve<IPrototypeManager>().Index<Maps.GameMapPrototype>("CentComm"), mapId, new MapLoadOptions()
                 {
-                    LoadMap = false
+                    LoadMap = false,
+                    Offset = new Vector2(0,0)
                 }, null).FirstOrNull(HasComp<BecomesStationComponent>);
 
             if (ent != null)
