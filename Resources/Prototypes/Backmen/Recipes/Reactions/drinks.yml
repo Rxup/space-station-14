@@ -1,0 +1,11 @@
+- type: reaction
+  id: RedOrdenDrink
+  reactants:
+    RedMead:
+      amount: 1
+    Cognac:
+      amount: 1
+    Blood:
+      amount: 1
+  products:
+    RedOrdenDrink: 3
