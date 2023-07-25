@@ -1,13 +1,26 @@
 ﻿- type: ghostTheme
-  id: test1
+  id: tier1
   components:
     - type: Sprite
       overrideContainerOcclusion: true # Ghosts always show up regardless of where they're contained.
       noRot: true
       drawdepth: Ghosts
-      sprite: Backmen/Mobs/Ghost/ghost_humanBackmen.rsi #sprite: Mobs/Ghosts/ghost_human.rsi
-      state: animated-blue
+      sprite: Backmen/Mobs/Ghost/ghost_red.rsi
+      state: animated-red
       color: "#fff8"
       layers:
-        - state: animated-blue
+        - state: animated-red
+
+- type: ghostTheme
+  id: tier2
+  components:
+    - type: Sprite
+      overrideContainerOcclusion: true # Ghosts always show up regardless of where they're contained.
+      noRot: true
+      drawdepth: Ghosts
+      sprite: Backmen/Mobs/Ghost/ghost_lava.rsi
+      state: animated-lava
+      color: "#fff8"
+      layers:
+        - state: animated-lava
 
