@@ -24,6 +24,10 @@
           "directions": 4
       },
       {
+          "name": "animated_superwhite",
+          "directions": 4
+      },
+      {
           "name": "icon"
       }
   ]

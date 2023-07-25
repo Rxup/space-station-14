@@ -76,3 +76,15 @@
       layers:
         - state: animated_ice
 
+- type: ghostTheme
+  id: tier05
+  components:
+    - type: Sprite
+      overrideContainerOcclusion: true # Ghosts always show up regardless of where they're contained.
+      noRot: true
+      drawdepth: Ghosts
+      sprite: Backmen/Mobs/Ghost/ghost_vip.rsi
+      state: animated_superwhite
+      color: "#fff8"
+      layers:
+        - state: animated_superwhite
