@@ -1,7 +1,7 @@
 {
   "version": 1,
   "license": "CC-BY-SA-3.0",
-  "copyright": "https://penzilla.itch.io/hooded-protagonist modified by freeze2222",
+  "copyright": "resprited by Kayzel (discord) && Freeze2222 (discord), original from https://penzilla.itch.io/hooded-protagonist",
   "size": {
     "x": 32,
     "y": 32
@@ -9,10 +9,63 @@
   "states": [
     {
       "name": "animated",
-      "directions": 4
+      "directions": 4,
+        "delays": [
+            [
+                0.3,
+				0.3,
+				0.3,
+				0.3,
+				0.3,
+				0.3,
+				0.3,
+				0.3
+            ],
+            [
+                0.3,
+				0.3,
+				0.3,
+				0.3,
+				0.3,
+				0.3,
+				0.3,
+				0.3
+            ],
+            [
+                0.3,
+				0.3,
+				0.3,
+				0.3,
+				0.3,
+				0.3,
+				0.3,
+				0.3
+            ],
+            [
+                0.3,
+				0.3,
+				0.3,
+				0.3,
+				0.3,
+				0.3,
+				0.3,
+				0.3
+            ]
+        ]
     },
     {
-      "name": "icon"
+      "name": "icon",
+        "delays": [
+            [
+                0.3,
+				0.3,
+				0.3,
+				0.3,
+				0.3,
+				0.3,
+				0.3,
+				0.3
+            ]]
     }
   ]
 }

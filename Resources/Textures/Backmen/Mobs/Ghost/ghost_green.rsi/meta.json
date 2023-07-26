@@ -1,14 +1,14 @@
 {
   "version": 1,
   "license": "CC-BY-SA-3.0",
-  "copyright": "resprited by Kayzel (discord), original from https://penzilla.itch.io/hooded-protagonist",
+  "copyright": "resprited by Kayzel (discord) && Freeze2222 (discord), original from https://penzilla.itch.io/hooded-protagonist",
   "size": {
     "x": 32,
     "y": 32
   },
   "states": [
     {
-      "name": "animated-red",
+      "name": "animated-green",
       "directions": 4,
         "delays": [
             [
@@ -54,7 +54,7 @@
         ]
     },
     {
-      "name": "icon-red",
+      "name": "icon-green",
         "delays": [
             [
                 0.3,

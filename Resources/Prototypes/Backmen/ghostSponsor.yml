@@ -5,11 +5,11 @@
       overrideContainerOcclusion: true # Ghosts always show up regardless of where they're contained.
       noRot: true
       drawdepth: Ghosts
-      sprite: Backmen/Mobs/Ghost/ghost_red.rsi
-      state: animated-red
+      sprite: Backmen/Mobs/Ghost/ghost_green.rsi
+      state: animated-green
       color: "#fff8"
       layers:
-        - state: animated-red
+        - state: animated-green
 
 - type: ghostTheme
   id: tier2
