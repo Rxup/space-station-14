@@ -35,6 +35,7 @@
     - BaseStationJobsSpawning #Backmen
     - BaseStationRecords #Backmen
     - BaseStationShuttles #Backmen
+    - BaseStationExpeditions #Backmen
   noSpawn: true
   components:
     - type: Transform
