@@ -62,10 +62,10 @@
     noRot: true
     drawdepth: Ghosts
     sprite: Mobs/Ghosts/ghost_human.rsi
-    state: animated
+    state: animated-base-min-animation
     color: "#fff8"
     layers:
-      - state: animated
+      - state: animated-base-min-animation
         shader: unshaded
   - type: MovementSpeedModifier
     baseSprintSpeed: 8
