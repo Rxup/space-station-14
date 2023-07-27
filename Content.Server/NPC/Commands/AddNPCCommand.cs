@@ -40,6 +40,8 @@ namespace Content.Server.NPC.Commands
 
             var comp = _entities.AddComponent<HTNComponent>(entId);
             comp.RootTask = args[1];
+
+            _entities.System<Systems.NPCSystem>().SetBlackboard(entId,"Owner",entId); // backmen
             shell.WriteLine("AI component added.");
         }
     }

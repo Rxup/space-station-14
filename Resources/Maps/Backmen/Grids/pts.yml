@@ -43,6 +43,7 @@ entities:
     - fixtures: {}
       type: Fixtures
     - type: OccluderTree
+    - type: SalvageShuttle
     - type: Shuttle
     - nextUpdate: 796.7893431
       type: GridPathfinding

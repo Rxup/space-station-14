@@ -3,15 +3,90 @@
   id: IDCardCentComOfficialCorvax
   name: Id карта ПЦК
   components:
-  - type: Sprite
-    layers:
-    - state: silver
-    - state: idiaa
-    - state: idcentcom
-  - type: Item
-    heldPrefix: silver
-  - type: IdCard
-    jobTitle: Представитель Центрального Командования
+    - type: Sprite
+      layers:
+      - state: silver
+      - state: idiaa
+      - state: idcentcom
+    - type: Item
+      heldPrefix: silver
+    - type: IdCard
+      jobTitle: Представитель ЦК
+    - type: Access
+      groups:
+        - AllAccess
+        - CentCom
+
+- type: entity
+  parent: CentcomIDCardDeathsquad
+  id: IDCardCentComGavnaOperator
+  name: Id карта оператора ЦК
+  components:
+    - type: IdCard
+      jobTitle: Оператор ЦК
+    - type: Access
+      groups:
+        - AllAccess
+        - CentCom
+
+- type: entity
+  parent: CentcomIDCardDeathsquad
+  id: IDCardCentComCargoBackmen
+  name: Id карта ЦК Грузчика
+  components:
+    - type: Sprite
+      layers:
+        - state: silver
+        - state: idiaa
+        - state: idcentcom
+    - type: Item
+      heldPrefix: silver
+    - type: IdCard
+      jobTitle: Грузчик ЦК
+    - type: Access
+      tags:
+        - CCCargo
+        - CCGeneral
+      groups:
+        - AllAccess
+
+- type: entity
+  parent: BasePDA
+  id: CentcomPDABackmen
+  name: CentCom PDA
+  description: Light green sign of walking bureaucracy.
+  components:
+    - type: Pda
+      id: IDCardCentComOfficialCorvax
+      state: pda-centcom
+      penSlot:
+        startingItem: PenCentcom
+        whitelist:
+          tags:
+            - Write
+    - type: PdaBorderColor
+      borderColor: "#00842e"
+    - type: Icon
+      state: pda-centcom
+
+- type: entity
+  parent: CentcomPDABackmen
+  id: CCCargoPDA
+  name: Centcom Cargo PDA
+  description: Light green sign of walking bureaucracy.
+  components:
+    - type: Pda
+      id: IDCardCentComCargoBackmen
+      state: pda-centcom
+      penSlot:
+        startingItem: PenCentcom
+        whitelist:
+          tags:
+            - Write
+    - type: PdaBorderColor
+      borderColor: "#00842e"
+    - type: Icon
+      state: pda-centcom
 
 - type: startingGear
   id: CentComCorvax
@@ -24,10 +99,11 @@
     head: ClothingHeadHatCentcom
     outerClothing: ClothingOuterArmorCentcomCarapace
     suitstorage: OxygenTankFilled
-    id: IDCardCentComOfficialCorvax
+    id: CentcomPDABackmen
     ears: ClothingHeadsetAltCentCom
     pocket1: CyberPen
     pocket2: BoxFolderSecretBlack
+  innerclothingskirt: ClothingUniformJumpskirtCentcomOfficer
 
 - type: entity
   noSpawn: true
@@ -42,77 +118,93 @@
         - id: Paper
 
 - type: entity
-  name:  Представитель Центрального Командования
+  name:  Представитель ЦК
   parent: MobHuman
   suffix: CentCom
   id: MobHumanCentComCorvax
   components:
-  - type: Icon
-    sprite: Markers/jobs.rsi
-    state: centcom
-  - type: GhostRole
-    name: Представитель Центрального Командования
-    description: Летит на станцию, дабы удостовериться, насколько экипаж станции убог.
-  - type: Loadout
-    prototypes: [CentComCorvax]
-  - type: GhostTakeoverAvailable
-  - type: RandomMetadata
-  - type: RandomHumanoidAppearance
-  - type: SpecForce
-    requirements:
-    - !type:OverallPlaytimeRequirement
-      time: 36000
-    - !type:RoleTimeRequirement
-      role: JobIAA
-      time: 18000
-
+    - type: Icon
+      sprite: Markers/jobs.rsi
+      state: centcom
+    - type: GhostRole
+      name: Представитель ЦК
+      description: Летит на станцию, дабы удостовериться, насколько экипаж станции убог.
+    - type: Loadout
+      prototypes: [CentComCorvax]
+    - type: GhostTakeoverAvailable
+    - type: RandomMetadata
+    - type: RandomHumanoidAppearance
+    - type: SpecForce
+      actionName: CentcomFtlAction
+      requirements:
+      - !type:OverallPlaytimeRequirement
+        time: 36000
+      - !type:RoleTimeRequirement
+        role: JobIAA
+        time: 18000
 #-----------------------------------------
 
 - type: entity
-  parent: CentcomIDCardDeathsquad
-  id: IDCardCentComGavnaOperator
-  name: Id карта оператора ЦК
+  parent: CentcomPDABackmen
+  id: CCOperatorPDA
+  name: Centcom Operator PDA
+  description: Light green sign of walking bureaucracy.
   components:
-  - type: IdCard
-    jobTitle: Оператор Центрального Командования
+    - type: Pda
+      id: IDCardCentComGavnaOperator
+      state: pda-centcom
+      penSlot:
+        startingItem: PenCentcom
+        whitelist:
+          tags:
+            - Write
+    - type: PdaBorderColor
+      borderColor: "#00842e"
+    - type: Icon
+      state: pda-centcom
 
 - type: startingGear
   id: OperatorGavna
   equipment:
     jumpsuit: ClothingUniformJumpsuitCentcomOfficer
+    back: ClothingBackpackFilled
     shoes: ClothingShoesBootsLaceup
-    id: IDCardCentComGavnaOperator
+    id: CCOperatorPDA
     ears: ClothingHeadsetCentCom
     pocket1: ClothingMaskGasCentcom
+  innerclothingskirt: ClothingUniformJumpskirtCentcomOfficer
+  satchel: ClothingBackpackSatchelFilled
+  duffelbag: ClothingBackpackDuffelFilled
 
 - type: entity
-  name:  Оператор Центрального Командования
+  name:  Оператор ЦК
   parent: MobHuman
   suffix: CentCom
   id: MobHumanCentComOperatorCorvax
   components:
-  - type: Icon
-    sprite: Markers/jobs.rsi
-    state: centcom
-  - type: GhostRole
-    name: Оператор Центрального Командования
-    description: Оператор центрального командования, выполняет приказы офицера цк и координирует действия станции.
-  - type: Loadout
-    prototypes: [OperatorGavna]
-  - type: GhostTakeoverAvailable
-  - type: RandomMetadata
-  - type: RandomHumanoidAppearance
-  - type: SpecForce
-    requirements:
-    - !type:RoleTimeRequirement
-      role: JobIAA
-      time: 420000
-    - !type:RoleTimeRequirement
-      role: JobCaptain
-      time: 240000
-    - !type:DepartmentTimeRequirement
-      department: Command
-      time: 720000
+    - type: Icon
+      sprite: Markers/jobs.rsi
+      state: centcom
+    - type: GhostRole
+      name: Оператор ЦК
+      description: Оператор центрального командования, выполняет приказы офицера цк и координирует действия станции.
+    - type: Loadout
+      prototypes: [OperatorGavna]
+    - type: GhostTakeoverAvailable
+    - type: RandomMetadata
+    - type: RandomHumanoidAppearance
+    - type: SpecForce
+      actionName: CentcomFtlAction
+      requirements:
+      - !type:RoleTimeRequirement
+        role: JobIAA
+        time: 420000
+      - !type:RoleTimeRequirement
+        role: JobCaptain
+        time: 240000
+      - !type:DepartmentTimeRequirement
+        department: Command
+        time: 720000
 
 #-----------------------------------------
 
@@ -121,25 +213,48 @@
   id: IDCardCentComGavnaOfficerSesurity
   name: Id карта охраны ЦК
   components:
-  - type: Sprite
-    layers:
-    - state: centcom
-    - state: idsecurityofficer
-  - type: IdCard
-    jobTitle: Офицер Специальной Службы Безопастности
+    - type: Sprite
+      layers:
+      - state: centcom
+      - state: idsecurityofficer
+    - type: IdCard
+      jobTitle: Офицер Специальной СБ
+    - type: Access
+      tags:
+        - CCSecurity
+        - CCGeneral
+      groups:
+        - AllAccess
 
 - type: entity
-  noSpawn: true
+  parent: CentcomPDABackmen
+  id: CCOfficerPDA
+  name: Centcom Officer PDA
+  description: Light green sign of walking bureaucracy.
+  components:
+    - type: Pda
+      id: IDCardCentComGavnaOfficerSesurity
+      state: pda-centcom
+      penSlot:
+        startingItem: PenCentcom
+        whitelist:
+          tags:
+            - Write
+    - type: PdaBorderColor
+      borderColor: "#00842e"
+    - type: Icon
+      state: pda-centcom
+
+- type: entity
   name: дубинка-шокер спецсил
   parent: Stunbaton
   id: StunbatonSuper
   description: Электрошоковая дубинка для обездвиживания людей. Слишком усердное причинение вреда с помощью этого предмета считается дурным тоном.
   components:
-  - type: Stunbaton
-    energyPerUse: 10
+    - type: Stunbaton
+      energyPerUse: 10
 
 - type: entity
-  noSpawn: true
   name: станнер спецсил
   parent: WeaponDisabler
   id: WeaponDisablerSuper
@@ -170,18 +285,22 @@
   id: OfficerSesurity
   equipment:
     jumpsuit: ClothingUniformJumpsuitHoSAlt
+    back: ClothingBackpackSecurityFilled
     shoes: ClothingShoesBootsNedoSpetsnaz
     mask: ClothingMaskGasSecurity
     neck: CombatKnifeSpetsnaz
     eyes: ClothingEyesGlassesSecurity
     gloves: ClothingHandsGlovesCombat
-    outerClothing: ClothingOuterVestKevlar
+    outerClothing: ClothingOuterArmorBasic
     suitstorage: WeaponPistolMk58
     head: ClothingHeadHatBeretHoS
-    id: IDCardCentComGavnaOfficerSesurity
+    id: CCOfficerPDA
     ears: ClothingHeadsetCentComCC
     belt: ClothingBeltSecuritySuper
     pocket2: MagazinePistol
+  innerclothingskirt: ClothingUniformJumpskirtHoSAlt
+  satchel: ClothingBackpackSatchelSecurityFilled
+  duffelbag: ClothingBackpackDuffelSecurityFilled
 
 - type: entity
   name:  Охрана ЦК
@@ -189,25 +308,40 @@
   suffix: CentCom
   id: MobHumanCentComOfficerSesurityGavna
   components:
-  - type: Icon
-    sprite: Markers/jobs.rsi
-    state: security_officer
-  - type: GhostRole
-    name: Охрана ЦК
-    description: Охрана ЦК, охраняет членов ЦК и саму ЦК.
-  - type: Loadout
-    prototypes: [OfficerSesurity]
-  - type: GhostTakeoverAvailable
-  - type: RandomMetadata
-  - type: RandomHumanoidAppearance
-  - type: SpecForce
-    requirements:
-    - !type:DepartmentTimeRequirement
-      department: Security
-      time: 240000
-    - !type:DepartmentTimeRequirement
-      department: Command
-      time: 720000
-    - !type:RoleTimeRequirement
-      role: JobIAA
-      time: 3600
+    - type: Icon
+      sprite: Markers/jobs.rsi
+      state: security_officer
+    - type: GhostRole
+      name: Охрана ЦК
+      description: Охрана ЦК, охраняет членов ЦК и саму ЦК.
+    - type: Loadout
+      prototypes: [OfficerSesurity]
+    - type: GhostTakeoverAvailable
+    - type: RandomMetadata
+    - type: RandomHumanoidAppearance
+    - type: SpecForce
+      actionName: CentcomFtlAction
+      requirements:
+      - !type:DepartmentTimeRequirement
+        department: Security
+        time: 240000
+      - !type:DepartmentTimeRequirement
+        department: Command
+        time: 720000
+      - !type:RoleTimeRequirement
+        role: JobIAA
+        time: 3600
+
+- type: startingGear
+  id: CCCargo
+  equipment:
+    head: ClothingHeadHatCargosoft
+    jumpsuit: ClothingUniformJumpsuitCargo
+    back: ClothingBackpackFilled
+    shoes: ClothingShoesColorBlack
+    id: CCCargoPDA
+    ears: ClothingHeadsetCargo
+    pocket1: AppraisalTool
+  innerclothingskirt: ClothingUniformJumpskirtCargo
+  satchel: ClothingBackpackSatchelFilled
+  duffelbag: ClothingBackpackDuffelFilled

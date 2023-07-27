@@ -1,0 +1,141 @@
+- type: job
+  id: BKCCOfficial
+  name: job-name-centcomoffBK
+  description: job-description-centcomoffBK
+  playTimeTracker: JobCentralCommandOfficial
+  setPreference: true
+  startingGear: CentComCorvax
+  icon: "Nanotrasen"
+  supervisors: job-supervisors-centcom2 # Corvax-JobSupervisors
+  canBeAntag: false
+  weight: 1
+  requireAdminNotify: true
+  joinNotifyCrew: true
+  requirements:
+    - !type:RoleTimeRequirement
+      role: JobIAA
+      time: 210000
+    - !type:RoleTimeRequirement
+      role: JobCaptain
+      time: 240000
+    - !type:DepartmentTimeRequirement
+      department: Command
+      time: 720000
+  accessGroups:
+    - AllAccess
+    - CentCom
+  special:
+    - !type:AddComponentSpecial
+      components:
+        - type: SpecForce
+          actionName: CentcomFtlAction
+  minBankBalance: 800
+  maxBankBalance: 1200
+  wageDepartment: CentCom
+  wage: 200
+
+- type: job
+  id: BKCCOperator
+  name: job-name-centcomoper
+  description: job-description-centcomoper
+  playTimeTracker: JobCentralCommandOperator
+  setPreference: true
+  startingGear: OperatorGavna
+  icon: "Nanotrasen"
+  supervisors: job-supervisors-centcom2 # Corvax-JobSupervisors
+  canBeAntag: false
+  weight: 1
+  requireAdminNotify: true
+  joinNotifyCrew: true
+  requirements:
+    - !type:RoleTimeRequirement
+      role: JobIAA
+      time: 420000
+    - !type:RoleTimeRequirement
+      role: JobCaptain
+      time: 240000
+    - !type:DepartmentTimeRequirement
+      department: Command
+      time: 720000
+  accessGroups:
+    - AllAccess
+    - CentCom
+  special:
+    - !type:AddComponentSpecial
+      components:
+        - type: SpecForce
+          actionName: CentcomFtlAction
+  minBankBalance: 800
+  maxBankBalance: 1200
+  wageDepartment: CentCom
+  wage: 200
+
+- type: job
+  id: BKCCSecGavna
+  name: job-name-centcomSecGavna
+  description: job-description-centcomSecGavna
+  playTimeTracker: JobCentralCommandSecGavna
+  setPreference: true
+  startingGear: OfficerSesurity
+  icon: "Nanotrasen"
+  supervisors: job-supervisors-centcom2 # Corvax-JobSupervisors
+  canBeAntag: false
+  weight: 1
+  requireAdminNotify: true
+  joinNotifyCrew: true
+  requirements:
+    - !type:DepartmentTimeRequirement
+      department: Security
+      time: 240000
+    - !type:DepartmentTimeRequirement
+      department: Command
+      time: 720000
+    - !type:RoleTimeRequirement
+      role: JobIAA
+      time: 3600
+  access:
+    - CCGeneral
+    - CCSecurity
+  accessGroups:
+    - AllAccess
+  special:
+    - !type:AddComponentSpecial
+      components:
+        - type: SpecForce
+          actionName: CentcomFtlAction
+  minBankBalance: 800
+  maxBankBalance: 1200
+  wageDepartment: CentCom
+  wage: 200
+
+- type: job
+  id: BKCCCargo
+  name: job-name-centcomCargo
+  description: job-description-centcomCargo
+  playTimeTracker: JobCentralCommandCargo
+  setPreference: true
+  startingGear: CCCargo
+  icon: "Nanotrasen"
+  supervisors: job-supervisors-centcom2 # Corvax-JobSupervisors
+  canBeAntag: false
+  weight: 1
+  requireAdminNotify: true
+  joinNotifyCrew: true
+  requirements:
+    - !type:DepartmentTimeRequirement
+      department: Cargo
+      time: 360000
+  access:
+    - CCGeneral
+    - CCCargo
+  accessGroups:
+    - AllAccess
+  special:
+    - !type:AddComponentSpecial
+      components:
+        - type: SpecForce
+          actionName: CentcomFtlAction
+  minBankBalance: 400
+  maxBankBalance: 600
+  wageDepartment: CentCom
+  wage: 100

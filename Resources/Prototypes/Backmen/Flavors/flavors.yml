@@ -1,0 +1,4 @@
+- type: flavor
+  id: RedOrdenDrinkFlavour
+  flavorType: Complex
+  description: flavor-complex-RedOrdenDrinkFlavour

@@ -8,29 +8,11 @@
 # Table: null
 #
 chem_dispenser: ChemDispenser
-KvassTankFull: null
-DrinkKvassGlass: null
-KvassTank: null
+
 
 # 2023-05-03
-SpawnPointBrigmedic: null
-ClothingHeadsetBrigmedic: null
-ClothingHeadHatBeretBrigmedic: null
-ClothingHeadHelmetHardsuitBrigmedic: null
-ClothingOuterHardsuitBrigmedic: null
-ClothingOuterCoatAMG: null
-ClothingBackpackBrigmedic: null
 ClothingBackpackBrigmedicFilled: null
-ClothingBackpackSatchelBrigmedic: null
-ClothingBackpackSatchelBrigmedicFilled: null
-ClothingBackpackDuffelBrigmedic: null
-ClothingBackpackDuffelBrigmedicFilled: null
-BrigmedicIDCard: null
-BrigmedicPDA: null
-BoxSurvivalBrigmedic: null
-LockerBrigmedic: null
-LockerBrigmedicFilled: null
-BedsheetBrigmedic: null
+
 
 # 2023-05-04
 BoxMagazineMagnumSubMachineGun: BoxMagazinePistolSubMachineGun
@@ -98,3 +80,34 @@ WindoorParamedicLocked: WindoorSecureParamedicLocked
 # 2023-07-03
 ClothingHeadHelmetHelmet: ClothingHeadHelmetBasic
 ClothingHeadHelmetHelmetOld: ClothingHeadHelmetBasic
+
+# 2023-07-04
+# Bulletproof armor is almost statistically identical to kevlar, however, before this kevlar armor was the closest thing there was to "basic" armor. It makes the most sense to replace it with this.
+ClothingOuterVestKevlar: ClothingOuterArmorBasic
+
+# 2023-07-12
+# New Vendings
+VendingMachineCigs: BackmenVendingMachineCigs
+VendingMachineCoffee: BackmenVendingMachineCoffee
+VendingMachineCola: BackmenVendingMachineCola
+VendingMachineColaBlack: BackmenVendingMachineColaBlack
+VendingMachineDiscount: BackmenVendingMachineDiscount
+VendingMachineSnack: BackmenVendingMachineSnack
+VendingMachineSnackBlue: BackmenVendingMachineSnackBlue
+VendingMachineSnackGreen: BackmenVendingMachineSnackGreen
+VendingMachineSnackOrange: BackmenVendingMachineSnackOrange
+VendingMachineSnackTeal: BackmenVendingMachineSnackTeal
+VendingMachineSovietSoda: BackmenVendingMachineSovietSoda
+VendingMachineChang: BackmenVendingMachineChang
+VendingMachineDonut: BackmenVendingMachineDonut
+VendingMachineSoda: BackmenVendingMachineSoda
+VendingMachineStarkist: BackmenVendingMachineSoda
+
+# 2023-07-10
+Intercom: IntercomCommon
+
+# 2023-07-12
+ToyAssistant: ToyFigurinePassenger
+
+# 2023-07-20
+ForensicGloves: ClothingHandsGlovesForensic

@@ -384,29 +384,20 @@
               Poison: 2
 
 - type: reagent
-  id: Corpium
-  name: reagent-name-corpium
+  id: Romerol
+  name: reagent-name-romerol
   group: Toxins
-  desc: reagent-desc-corpium
+  desc: reagent-desc-romerol
   physicalDesc: reagent-physical-desc-necrotic
   flavor: bitter
-  color: "#7668a1"
+  color: "#7e916e"
   metabolisms:
-    Poison:  
-      metabolismRate: 0.05
+    Medicine:
       effects:
-      - !type:GenericStatusEffect
-        key: ZombieDisease
-        component: ZombifyOnDeath
-        refresh: false
-        type: Add
-      - !type:HealthChange
-        damage:
-          types:
-            Cellular: 1
-      - !type:AdjustReagent
-        reagent: Corpium
-        amount: 0.2
+        - !type:CauseZombieInfection
+          conditions:
+            - !type:ReagentThreshold
+              min: 5
 
 - type: reagent
   id: UncookedAnimalProteins
@@ -507,4 +498,4 @@
       - !type:HealthChange
         damage:
           types:
-            Poison: 0.6 # Makes it 20 damage per unit. 
+            Poison: 0.6 # Makes it 20 damage per unit.

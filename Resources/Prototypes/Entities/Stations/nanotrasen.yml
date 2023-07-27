@@ -2,7 +2,7 @@
   abstract: true
   id: BaseStationNanotrasen
   components:
-    - type: Faction
+    - type: NpcFactionMember
       factions:
         - NanoTrasen
 
@@ -31,6 +31,11 @@
     - BaseStation
     - BaseStationAlertLevels
     - BaseStationNanotrasen
+    - BaseStationCargo #Backmen
+    - BaseStationJobsSpawning #Backmen
+    - BaseStationRecords #Backmen
+    - BaseStationShuttles #Backmen
+    - BaseStationExpeditions #Backmen
   noSpawn: true
   components:
     - type: Transform

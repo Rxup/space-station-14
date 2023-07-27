@@ -1,15 +1,28 @@
-- type: listing
-  id: UplinkCorpiumSyringe
-  name: uplink-corpium-name
-  description: uplink-corpium-desc
-  productEntity: SyringeCorpium
-  cost:
-    Telecrystal: 20
-  categories:
-  - UplinkUtility
-  conditions:
-    - !type:StoreWhitelistCondition
-      whitelist:
-        tags:
-          - NukeOpsUplink
+#- type: listing
+#  id: UplinkCorpiumSyringe
+#  name: uplink-corpium-name
+#  description: uplink-corpium-desc
+#  productEntity: SyringeCorpium
+#  cost:
+#    Telecrystal: 20
+#  categories:
+#  - UplinkUtility
+#  conditions:
+#    - !type:StoreWhitelistCondition
+#      whitelist:
+#        tags:
+#          - NukeOpsUplink
 
+- type: listing
+  id: UplinkCannedClown
+  name: uplink-cannedclown-name
+  description: uplink-cannedclown-desc
+  productEntity: CannedClownSoupcan
+  cost:
+    Telecrystal: 3
+  categories:
+  - UplinkJob
+  conditions:
+  - !type:BuyerJobCondition
+    whitelist:
+    - Clown

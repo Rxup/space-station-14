@@ -1,0 +1,27 @@
+﻿- type: entity
+  name: BPLA Spawner
+  id: SpawnMobBPLA
+  parent: MarkerBase
+  components:
+    - type: Sprite
+      layers:
+        - state: green
+        - sprite: Backmen/Mobs/Silicon/BPLA.rsi
+          state: shell
+    - type: ConditionalSpawner
+      prototypes:
+        - BackmenDrone
+
+- type: entity
+  name: BPLA Spawner MED
+  id: SpawnMobBPLAMED
+  parent: MarkerBase
+  components:
+    - type: Sprite
+      layers:
+        - state: green
+        - sprite: Backmen/Mobs/Silicon/BPLAMED.rsi
+          state: shell
+    - type: ConditionalSpawner
+      prototypes:
+        - BackmenDroneMED

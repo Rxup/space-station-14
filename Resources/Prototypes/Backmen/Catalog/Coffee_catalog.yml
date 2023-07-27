@@ -1,0 +1,44 @@
+﻿- type: listing
+  id: HotDrinksMachineInventory1
+  productEntity: DrinkHotCoffee
+  cost:
+    SpaceCredits: 15
+  categories:
+    - HotDrinksMachineInventory
+  conditions:
+    - !type:ListingLimitedStockCondition
+      stock: 30
+
+- type: listing
+  id: HotDrinksMachineInventory2
+  productEntity: DrinkCafeLatte
+  cost:
+    SpaceCredits: 15
+  categories:
+    - HotDrinksMachineInventory
+  conditions:
+    - !type:ListingLimitedStockCondition
+      stock: 30
+
+- type: listing
+  id: HotDrinksMachineInventory3
+  productEntity: DrinkTeacup
+  cost:
+    SpaceCredits: 15
+  categories:
+    - HotDrinksMachineInventory
+  conditions:
+    - !type:ListingLimitedStockCondition
+      stock: 30
+
+- type: listing
+  id: HotDrinksMachineInventory4
+  productEntity: DrinkGreenTea
+  cost:
+    SpaceCredits: 15
+  categories:
+    - HotDrinksMachineInventory
+  conditions:
+    - !type:ListingLimitedStockCondition
+      stock: 30
+
