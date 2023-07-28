@@ -13680,6 +13680,61 @@ entities:
     - pos: 34.5,-29.5
       parent: 1668
       type: Transform
+  - uid: 7466
+    components:
+    - pos: 19.5,-30.5
+      parent: 1668
+      type: Transform
+    - enabled: True
+      type: AmbientSound
+  - uid: 7467
+    components:
+    - pos: 20.5,-30.5
+      parent: 1668
+      type: Transform
+  - uid: 7468
+    components:
+    - pos: 21.5,-30.5
+      parent: 1668
+      type: Transform
+  - uid: 7469
+    components:
+    - pos: 22.5,-30.5
+      parent: 1668
+      type: Transform
+    - enabled: True
+      type: AmbientSound
+  - uid: 7470
+    components:
+    - pos: 23.5,-30.5
+      parent: 1668
+      type: Transform
+  - uid: 7471
+    components:
+    - pos: 24.5,-30.5
+      parent: 1668
+      type: Transform
+  - uid: 7472
+    components:
+    - pos: 25.5,-30.5
+      parent: 1668
+      type: Transform
+    - enabled: True
+      type: AmbientSound
+  - uid: 7474
+    components:
+    - pos: 22.5,-31.5
+      parent: 1668
+      type: Transform
+    - enabled: True
+      type: AmbientSound
+  - uid: 7475
+    components:
+    - pos: 22.5,-29.5
+      parent: 1668
+      type: Transform
+    - enabled: True
+      type: AmbientSound
 - proto: CableHV
   entities:
   - uid: 1475
@@ -42257,6 +42312,14 @@ entities:
       type: Transform
     - powerLoad: 0
       type: ApcPowerReceiver
+  - uid: 7473
+    components:
+    - rot: 3.141592653589793 rad
+      pos: 22.5,-32.5
+      parent: 1668
+      type: Transform
+    - enabled: False
+      type: AmbientSound
 - proto: PoweredlightSodium
   entities:
   - uid: 3245
@@ -42290,6 +42353,22 @@ entities:
       type: Transform
     - powerLoad: 0
       type: ApcPowerReceiver
+  - uid: 6633
+    components:
+    - rot: 1.5707963267948966 rad
+      pos: 28.5,-29.5
+      parent: 1668
+      type: Transform
+    - enabled: False
+      type: AmbientSound
+  - uid: 7465
+    components:
+    - rot: -1.5707963267948966 rad
+      pos: 34.5,-29.5
+      parent: 1668
+      type: Transform
+    - enabled: False
+      type: AmbientSound
 - proto: PoweredSmallLight
   entities:
   - uid: 2050
@@ -46821,6 +46900,8 @@ entities:
       pos: -10.5,-6.5
       parent: 1668
       type: Transform
+    - id: Склад
+      type: SurveillanceCamera
     - type: ArrivalsProtect
     - type: Godmode
     missingComponents:
@@ -46866,7 +46947,7 @@ entities:
       pos: -18.5,-25.5
       parent: 1668
       type: Transform
-    - id: Стык Слева от сервиса
+    - id: Стык слева от сервиса
       type: SurveillanceCamera
     - type: ArrivalsProtect
     - type: Godmode
@@ -47095,7 +47176,7 @@ entities:
       pos: 28.5,-9.5
       parent: 1668
       type: Transform
-    - id: Серверная
+    - id: Комната у эвака
       type: SurveillanceCamera
     - type: ArrivalsProtect
     - type: Godmode
