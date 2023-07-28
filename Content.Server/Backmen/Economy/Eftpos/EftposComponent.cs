@@ -8,7 +8,7 @@ namespace Content.Server.Backmen.Economy.Eftpos;
 
     [RegisterComponent]
     [ComponentReference(typeof(SharedEftposComponent))]
-    [Access(typeof(EftposSystem))]
+    [Access(typeof(EftposSystem), typeof(EconomySystem))]
     public sealed class EftposComponent : SharedEftposComponent
     {
         [ViewVariables] private BoundUserInterface? UserInterface => Owner.GetUIOrNull(EftposUiKey.Key);
@@ -30,13 +30,7 @@ namespace Content.Server.Backmen.Economy.Eftpos;
         // Taken from: https://github.com/Baystation12/Baystation12 at commit 662c08272acd7be79531550919f56f846726eabb
         public SoundSpecifier SoundDeny = new SoundPathSpecifier("/Audio/Backmen/Machines/buzz-sigh.ogg");
 
-        protected override void Initialize()
-        {
-            base.Initialize();
-            Owner.EnsureComponentWarn<ServerUserInterfaceComponent>();
-            InitPresetValues();
-        }
-        private void InitPresetValues()
+        public void InitPresetValues()
         {
             if (_PresetAccountNumber != null)
                 LinkedAccountNumber = _PresetAccountNumber;

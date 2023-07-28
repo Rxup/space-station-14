@@ -27,9 +27,4 @@ public sealed class ATMComponent : SharedATMComponent
     [DataField("soundDeny")]
     // Taken from: https://github.com/Baystation12/Baystation12 at commit 662c08272acd7be79531550919f56f846726eabb
     public SoundSpecifier SoundDeny = new SoundPathSpecifier("/Audio/Backmen/Machines/buzz-sigh.ogg");
-    protected override void Initialize()
-    {
-        base.Initialize();
-            //Owner.EnsureComponentWarn<ServerUserInterfaceComponent>();
-    }
 }
