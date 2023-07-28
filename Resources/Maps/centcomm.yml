@@ -21188,6 +21188,13 @@ entities:
     - pos: -25.5,-5.5
       parent: 1668
       type: Transform
+- proto: ComputerMassMedia
+  entities:
+  - uid: 7463
+    components:
+    - pos: 0.5,1.5
+      parent: 1668
+      type: Transform
 - proto: ComputerPalletConsole
   entities:
   - uid: 2340
@@ -48375,18 +48382,6 @@ entities:
       pos: -1.5,0.5
       parent: 1668
       type: Transform
-  - uid: 7463
-    components:
-    - rot: 1.5707963267948966 rad
-      pos: 0.5,1.5
-      parent: 1668
-      type: Transform
-  - uid: 7464
-    components:
-    - rot: 1.5707963267948966 rad
-      pos: 0.5,0.5
-      parent: 1668
-      type: Transform
 - proto: TableWood
   entities:
   - uid: 2352
@@ -58823,7 +58818,7 @@ entities:
       type: Transform
   - uid: 7247
     components:
-    - pos: 0.6394895,1.7116163
+    - pos: -1.5851748,1.7382889
       parent: 1668
       type: Transform
 - proto: WeaponXrayCannon
