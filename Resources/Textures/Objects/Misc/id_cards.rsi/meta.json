@@ -14,9 +14,6 @@
       "name": "centcom"
     },
     {
-      "name": "black"
-    },
-    {
       "name": "ert_chaplain"
     },
     {
@@ -209,6 +206,18 @@
       "name": "idcluwne"
     },
     {
+      "name": "idseniorengineer"
+    },
+    {
+      "name": "idseniorresearcher"
+    },
+    {
+      "name": "idseniorphysician"
+    },
+    {
+      "name": "idseniorofficer"
+    },
+    {
       "name": "gold-inhand-left",
       "directions": 4
     },
@@ -246,14 +255,6 @@
     },
     {
       "name": "blue-inhand-right",
-      "directions": 4
-    },
-        {
-      "name": "black-inhand-left",
-      "directions": 4
-    },
-        {
-      "name": "black-inhand-right",
       "directions": 4
     }
   ]
