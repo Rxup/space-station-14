@@ -53,6 +53,7 @@
     back: WeaponSniperMosin
     shoes: ClothingShoesColorBlack
     eyes: ClothingEyesGlassesSunglasses
+    neck: CombatKnifeSpetsnaz
     id: CentcomInternPDABackmen
     ears: ClothingHeadsetCentCom
     gloves: ClothingHandsGlovesFingerless
