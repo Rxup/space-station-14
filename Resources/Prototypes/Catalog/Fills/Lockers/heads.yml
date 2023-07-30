@@ -93,9 +93,9 @@
       - id: WeaponAntiqueLaser
       - id: JetpackCaptainFilled
       - id: MedalCase
+      - id: ClothingHeadHatCapcap
       # Corvax-Resprite-Start
       - id: ClothingHeadCaptainHat
-      - id: ClothingHeadCaptainCap
       - id: ClothingOuterCoatCaptain
       # Corvax-Resprite-End
 

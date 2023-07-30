@@ -1,7 +1,7 @@
 {
   "version": 1,
   "license": "CC-BY-SA-3.0",
-  "copyright": "https://penzilla.itch.io/hooded-protagonist modified by freeze2222",
+  "copyright": "https://penzilla.itch.io/hooded-protagonist modified by Kayzel",
   "size": {
     "x": 32,
     "y": 32
@@ -9,7 +9,33 @@
   "states": [
     {
       "name": "animated",
-      "directions": 4
+      "directions": 4,
+        "delays": [
+            [
+                1,
+				0.2,
+				0.2,
+				2
+            ],
+            [
+                2,
+				0.2,
+				0.2,
+				1
+            ],
+            [
+                0.2,
+				0.2,
+				0.2,
+				3
+            ],
+            [
+                0.2,
+				0.2,
+				0.2,
+				3
+            ]
+        ]
     },
     {
       "name": "icon"

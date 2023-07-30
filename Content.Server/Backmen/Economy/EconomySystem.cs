@@ -4,6 +4,7 @@ using System.Linq;
 using Content.Server.Access.Systems;
 using Content.Server.Backmen.CartridgeLoader.Cartridges;
 using Content.Server.Backmen.Economy.ATM;
+using Content.Server.Backmen.Economy.Eftpos;
 using Content.Server.Backmen.Economy.Wage;
 using Content.Server.Backmen.Mind;
 using Content.Server.GameTicking;
@@ -23,6 +24,7 @@ using Content.Shared.Popups;
 using Content.Shared.Roles;
 using Content.Shared.Store;
 using JetBrains.Annotations;
+using Robust.Server.GameObjects;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
 
@@ -44,7 +46,16 @@ public sealed class EconomySystem : EntitySystem
         base.Initialize();
         SubscribeLocalEvent<PlayerSpawnCompleteEvent>(OnPlayerSpawned, after: new []{ typeof(Corvax.Loadout.LoadoutSystem) });
         SubscribeLocalEvent<RoundStartingEvent>(OnRoundStartingEvent);
+        SubscribeLocalEvent<EftposComponent, ComponentInit>(OnFtposInit);
+
     }
+
+    private void OnFtposInit(EntityUid uid, EftposComponent component, ComponentInit args)
+    {
+        uid.EnsureComponentWarn<ServerUserInterfaceComponent>();
+        component.InitPresetValues();
+    }
+
     #region EventHandle
 
     private void OnPlayerSpawned(PlayerSpawnCompleteEvent ev)

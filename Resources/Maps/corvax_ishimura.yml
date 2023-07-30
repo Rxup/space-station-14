@@ -9658,49 +9658,21 @@ entities:
     - pos: 23.5,14.5
       parent: 89
       type: Transform
-    - inputs:
-        Open: []
-        Close: []
-        Toggle:
-        - port: Pressed
-          uid: 17017
-      type: SignalReceiver
   - uid: 11218
     components:
     - pos: 17.5,14.5
       parent: 89
       type: Transform
-    - inputs:
-        Open: []
-        Close: []
-        Toggle:
-        - port: Pressed
-          uid: 14903
-      type: SignalReceiver
   - uid: 14932
     components:
     - pos: 17.5,15.5
       parent: 89
       type: Transform
-    - inputs:
-        Open: []
-        Close: []
-        Toggle:
-        - port: Pressed
-          uid: 14903
-      type: SignalReceiver
   - uid: 14961
     components:
     - pos: 23.5,15.5
       parent: 89
       type: Transform
-    - inputs:
-        Open: []
-        Close: []
-        Toggle:
-        - port: Pressed
-          uid: 17017
-      type: SignalReceiver
   - uid: 16075
     components:
     - rot: 1.5707963267948966 rad
@@ -9736,29 +9708,11 @@ entities:
     - pos: 20.5,27.5
       parent: 89
       type: Transform
-    - inputs:
-        Open:
-        - port: On
-          uid: 15269
-        Close:
-        - port: Off
-          uid: 15269
-        Toggle: []
-      type: SignalReceiver
   - uid: 15206
     components:
     - pos: 28.5,27.5
       parent: 89
       type: Transform
-    - inputs:
-        Open:
-        - port: On
-          uid: 15271
-        Close:
-        - port: Off
-          uid: 15271
-        Toggle: []
-      type: SignalReceiver
 - proto: AirlockMedicalLocked
   entities:
   - uid: 1657
@@ -9767,26 +9721,12 @@ entities:
       pos: -8.5,7.5
       parent: 89
       type: Transform
-    - inputs:
-        Open: []
-        Close: []
-        Toggle:
-        - port: Pressed
-          uid: 14728
-      type: SignalReceiver
   - uid: 1658
     components:
     - rot: 1.5707963267948966 rad
       pos: -8.5,8.5
       parent: 89
       type: Transform
-    - inputs:
-        Open: []
-        Close: []
-        Toggle:
-        - port: Pressed
-          uid: 14728
-      type: SignalReceiver
   - uid: 1839
     components:
     - rot: 3.141592653589793 rad
@@ -10732,21 +10672,6 @@ entities:
       pos: -53.5,-11.5
       parent: 89
       type: Transform
-  - uid: 7379
-    components:
-    - pos: -3.5,-29.5
-      parent: 89
-      type: Transform
-  - uid: 7382
-    components:
-    - pos: 0.5,-35.5
-      parent: 89
-      type: Transform
-  - uid: 7383
-    components:
-    - pos: -5.5,-37.5
-      parent: 89
-      type: Transform
   - uid: 8217
     components:
     - rot: 3.141592653589793 rad
@@ -10979,213 +10904,6 @@ entities:
     components:
     - rot: -1.5707963267948966 rad
       pos: 41.5,4.5
-      parent: 89
-      type: Transform
-- proto: ATM
-  entities:
-  - uid: 7115
-    components:
-    - pos: 42.5,3.5
-      parent: 89
-      type: Transform
-  - uid: 7116
-    components:
-    - pos: 36.5,0.5
-      parent: 89
-      type: Transform
-  - uid: 7117
-    components:
-    - pos: 31.5,4.5
-      parent: 89
-      type: Transform
-  - uid: 7118
-    components:
-    - pos: 26.5,0.5
-      parent: 89
-      type: Transform
-  - uid: 7119
-    components:
-    - pos: 16.5,4.5
-      parent: 89
-      type: Transform
-  - uid: 7120
-    components:
-    - pos: 10.5,0.5
-      parent: 89
-      type: Transform
-  - uid: 7121
-    components:
-    - pos: 5.5,4.5
-      parent: 89
-      type: Transform
-  - uid: 7122
-    components:
-    - pos: -5.5,0.5
-      parent: 89
-      type: Transform
-  - uid: 7123
-    components:
-    - pos: -16.5,4.5
-      parent: 89
-      type: Transform
-  - uid: 7124
-    components:
-    - pos: -27.5,0.5
-      parent: 89
-      type: Transform
-  - uid: 7125
-    components:
-    - pos: -33.5,6.5
-      parent: 89
-      type: Transform
-  - uid: 7126
-    components:
-    - pos: -37.5,1.5
-      parent: 89
-      type: Transform
-  - uid: 7127
-    components:
-    - pos: -48.5,6.5
-      parent: 89
-      type: Transform
-  - uid: 7128
-    components:
-    - pos: -53.5,1.5
-      parent: 89
-      type: Transform
-  - uid: 7129
-    components:
-    - pos: -59.5,6.5
-      parent: 89
-      type: Transform
-  - uid: 7130
-    components:
-    - pos: -67.5,2.5
-      parent: 89
-      type: Transform
-  - uid: 7131
-    components:
-    - pos: -70.5,12.5
-      parent: 89
-      type: Transform
-  - uid: 7132
-    components:
-    - pos: -61.5,15.5
-      parent: 89
-      type: Transform
-  - uid: 7133
-    components:
-    - pos: -53.5,19.5
-      parent: 89
-      type: Transform
-  - uid: 7134
-    components:
-    - pos: -48.5,12.5
-      parent: 89
-      type: Transform
-  - uid: 7135
-    components:
-    - pos: -38.5,19.5
-      parent: 89
-      type: Transform
-  - uid: 7136
-    components:
-    - pos: -28.5,15.5
-      parent: 89
-      type: Transform
-  - uid: 7137
-    components:
-    - pos: -58.5,23.5
-      parent: 89
-      type: Transform
-  - uid: 7138
-    components:
-    - pos: -28.5,10.5
-      parent: 89
-      type: Transform
-  - uid: 7139
-    components:
-    - pos: -63.5,27.5
-      parent: 89
-      type: Transform
-  - uid: 7140
-    components:
-    - pos: -63.5,36.5
-      parent: 89
-      type: Transform
-  - uid: 7141
-    components:
-    - pos: -72.5,19.5
-      parent: 89
-      type: Transform
-  - uid: 7142
-    components:
-    - pos: -77.5,6.5
-      parent: 89
-      type: Transform
-  - uid: 7143
-    components:
-    - pos: -79.5,11.5
-      parent: 89
-      type: Transform
-  - uid: 7144
-    components:
-    - pos: -84.5,5.5
-      parent: 89
-      type: Transform
-  - uid: 7145
-    components:
-    - pos: -90.5,2.5
-      parent: 89
-      type: Transform
-  - uid: 7146
-    components:
-    - pos: -97.5,-4.5
-      parent: 89
-      type: Transform
-  - uid: 7147
-    components:
-    - pos: -96.5,6.5
-      parent: 89
-      type: Transform
-  - uid: 7148
-    components:
-    - pos: -57.5,1.5
-      parent: 89
-      type: Transform
-  - uid: 7149
-    components:
-    - pos: -35.5,-10.5
-      parent: 89
-      type: Transform
-  - uid: 7150
-    components:
-    - pos: -29.5,-14.5
-      parent: 89
-      type: Transform
-  - uid: 7151
-    components:
-    - pos: -17.5,-9.5
-      parent: 89
-      type: Transform
-  - uid: 7152
-    components:
-    - pos: -7.5,-14.5
-      parent: 89
-      type: Transform
-  - uid: 7153
-    components:
-    - pos: 1.5,-9.5
-      parent: 89
-      type: Transform
-  - uid: 7154
-    components:
-    - pos: -4.5,-3.5
-      parent: 89
-      type: Transform
-  - uid: 7155
-    components:
-    - pos: 0.5,4.5
       parent: 89
       type: Transform
 - proto: AtmosDeviceFanTiny
@@ -11499,130 +11217,6 @@ entities:
   - uid: 7076
     components:
     - pos: -90.5,14.5
-      parent: 89
-      type: Transform
-- proto: BackmenVendingLootBox
-  entities:
-  - uid: 7375
-    components:
-    - flags: SessionSpecific
-      type: MetaData
-    - pos: -64.5,-13.5
-      parent: 89
-      type: Transform
-  - uid: 7377
-    components:
-    - flags: SessionSpecific
-      type: MetaData
-    - pos: -66.5,-11.5
-      parent: 89
-      type: Transform
-- proto: BackmenVendingMachineChang
-  entities:
-  - uid: 8159
-    components:
-    - flags: SessionSpecific
-      type: MetaData
-    - pos: -2.5,37.5
-      parent: 89
-      type: Transform
-  - uid: 10152
-    components:
-    - flags: SessionSpecific
-      type: MetaData
-    - pos: -28.5,21.5
-      parent: 89
-      type: Transform
-- proto: BackmenVendingMachineCigs
-  entities:
-  - uid: 3006
-    components:
-    - flags: SessionSpecific
-      type: MetaData
-    - pos: 36.5,3.5
-      parent: 89
-      type: Transform
-  - uid: 4042
-    components:
-    - flags: SessionSpecific
-      type: MetaData
-    - pos: 1.5,-22.5
-      parent: 89
-      type: Transform
-  - uid: 4228
-    components:
-    - flags: SessionSpecific
-      type: MetaData
-    - pos: 15.5,-5.5
-      parent: 89
-      type: Transform
-  - uid: 5598
-    components:
-    - flags: SessionSpecific
-      type: MetaData
-    - pos: -23.5,-8.5
-      parent: 89
-      type: Transform
-  - uid: 6098
-    components:
-    - flags: SessionSpecific
-      type: MetaData
-    - pos: -67.5,1.5
-      parent: 89
-      type: Transform
-  - uid: 8084
-    components:
-    - flags: SessionSpecific
-      type: MetaData
-    - pos: -8.5,33.5
-      parent: 89
-      type: Transform
-- proto: BackmenVendingMachineCoffee
-  entities:
-  - uid: 188
-    components:
-    - flags: SessionSpecific
-      type: MetaData
-    - pos: 1.5,-21.5
-      parent: 89
-      type: Transform
-  - uid: 2169
-    components:
-    - flags: SessionSpecific
-      type: MetaData
-    - pos: 31.5,16.5
-      parent: 89
-      type: Transform
-  - uid: 6108
-    components:
-    - flags: SessionSpecific
-      type: MetaData
-    - pos: -51.5,11.5
-      parent: 89
-      type: Transform
-- proto: BackmenVendingMachineCola
-  entities:
-  - uid: 3018
-    components:
-    - flags: SessionSpecific
-      type: MetaData
-    - pos: 37.5,6.5
-      parent: 89
-      type: Transform
-- proto: BackmenVendingMachineDiscount
-  entities:
-  - uid: 3019
-    components:
-    - flags: SessionSpecific
-      type: MetaData
-    - pos: 37.5,5.5
-      parent: 89
-      type: Transform
-  - uid: 6101
-    components:
-    - flags: SessionSpecific
-      type: MetaData
-    - pos: -58.5,1.5
       parent: 89
       type: Transform
 - proto: BalloonCorgi
@@ -12464,265 +12058,121 @@ entities:
       pos: 1.5,-42.5
       parent: 89
       type: Transform
-    - inputs:
-        Open: []
-        Close: []
-        Toggle:
-        - port: Pressed
-          uid: 5413
-      type: SignalReceiver
   - uid: 254
     components:
     - pos: -6.5,-46.5
       parent: 89
       type: Transform
-    - inputs:
-        Open: []
-        Close: []
-        Toggle:
-        - port: Pressed
-          uid: 259
-        - port: Pressed
-          uid: 1284
-      type: SignalReceiver
   - uid: 260
     components:
     - pos: 1.5,-46.5
       parent: 89
       type: Transform
-    - inputs:
-        Open: []
-        Close: []
-        Toggle:
-        - port: Pressed
-          uid: 1283
-      type: SignalReceiver
   - uid: 2200
     components:
     - pos: 30.5,4.5
       parent: 89
       type: Transform
-    - inputs:
-        Open: []
-        Close: []
-        Toggle:
-        - port: Pressed
-          uid: 2238
-      type: SignalReceiver
   - uid: 2295
     components:
     - rot: -1.5707963267948966 rad
       pos: -82.5,-24.5
       parent: 89
       type: Transform
-    - inputs:
-        Open: []
-        Close: []
-        Toggle:
-        - port: Pressed
-          uid: 2627
-        - port: Pressed
-          uid: 2626
-      type: SignalReceiver
   - uid: 4720
     components:
     - pos: -63.5,-21.5
       parent: 89
       type: Transform
-    - SecondsUntilStateChange: -156466.56
+    - SecondsUntilStateChange: -155482.06
       state: Opening
       type: Door
-    - inputs:
-        Open: []
-        Close: []
-        Toggle:
-        - port: Pressed
-          uid: 4798
-      type: SignalReceiver
   - uid: 4735
     components:
     - pos: -56.5,-18.5
       parent: 89
       type: Transform
-    - inputs:
-        Open: []
-        Close: []
-        Toggle:
-        - port: Pressed
-          uid: 6145
-      type: SignalReceiver
   - uid: 4736
     components:
     - pos: -55.5,-18.5
       parent: 89
       type: Transform
-    - inputs:
-        Open: []
-        Close: []
-        Toggle:
-        - port: Pressed
-          uid: 6145
-      type: SignalReceiver
   - uid: 4794
     components:
     - pos: -63.5,-18.5
       parent: 89
       type: Transform
-    - SecondsUntilStateChange: -156466.56
+    - SecondsUntilStateChange: -155482.06
       state: Opening
       type: Door
-    - inputs:
-        Open: []
-        Close: []
-        Toggle:
-        - port: Pressed
-          uid: 4798
-      type: SignalReceiver
   - uid: 4795
     components:
     - pos: -59.5,-18.5
       parent: 89
       type: Transform
-    - SecondsUntilStateChange: -156454.98
+    - SecondsUntilStateChange: -155470.48
       state: Opening
       type: Door
-    - inputs:
-        Open: []
-        Close: []
-        Toggle:
-        - port: Pressed
-          uid: 4799
-      type: SignalReceiver
   - uid: 4797
     components:
     - pos: -59.5,-21.5
       parent: 89
       type: Transform
-    - SecondsUntilStateChange: -156454.98
+    - SecondsUntilStateChange: -155470.48
       state: Opening
       type: Door
-    - inputs:
-        Open: []
-        Close: []
-        Toggle:
-        - port: Pressed
-          uid: 4799
-      type: SignalReceiver
   - uid: 4856
     components:
     - pos: -54.5,-18.5
       parent: 89
       type: Transform
-    - inputs:
-        Open: []
-        Close: []
-        Toggle:
-        - port: Pressed
-          uid: 6145
-      type: SignalReceiver
   - uid: 5430
     components:
     - rot: 3.141592653589793 rad
       pos: -6.5,-42.5
       parent: 89
       type: Transform
-    - inputs:
-        Open: []
-        Close: []
-        Toggle:
-        - port: Pressed
-          uid: 16804
-      type: SignalReceiver
   - uid: 6306
     components:
     - pos: 25.5,4.5
       parent: 89
       type: Transform
-    - inputs:
-        Open: []
-        Close: []
-        Toggle:
-        - port: Pressed
-          uid: 2238
-      type: SignalReceiver
   - uid: 7670
     components:
     - pos: -101.5,29.5
       parent: 89
       type: Transform
-    - SecondsUntilStateChange: -143199.77
+    - SecondsUntilStateChange: -142215.27
       state: Opening
       type: Door
-    - inputs:
-        Open: []
-        Close: []
-        Toggle:
-        - port: Pressed
-          uid: 7694
-      type: SignalReceiver
   - uid: 7679
     components:
     - pos: -99.5,29.5
       parent: 89
       type: Transform
-    - SecondsUntilStateChange: -143198.36
+    - SecondsUntilStateChange: -142213.86
       state: Opening
       type: Door
-    - inputs:
-        Open: []
-        Close: []
-        Toggle:
-        - port: Pressed
-          uid: 7695
-      type: SignalReceiver
   - uid: 8821
     components:
     - pos: -120.5,-8.5
       parent: 89
       type: Transform
-    - inputs:
-        Open: []
-        Close: []
-        Toggle:
-        - port: Pressed
-          uid: 8816
-      type: SignalReceiver
   - uid: 8822
     components:
     - pos: -120.5,-7.5
       parent: 89
       type: Transform
-    - inputs:
-        Open: []
-        Close: []
-        Toggle:
-        - port: Pressed
-          uid: 8816
-      type: SignalReceiver
   - uid: 8823
     components:
     - pos: -120.5,-6.5
       parent: 89
       type: Transform
-    - inputs:
-        Open: []
-        Close: []
-        Toggle:
-        - port: Pressed
-          uid: 8816
-      type: SignalReceiver
   - uid: 8825
     components:
     - pos: -120.5,-5.5
       parent: 89
       type: Transform
-    - inputs:
-        Open: []
-        Close: []
-        Toggle:
-        - port: Pressed
-          uid: 8816
-      type: SignalReceiver
 - proto: BlastDoorOpen
   entities:
   - uid: 8506
@@ -14257,6 +13707,11 @@ entities:
     - pos: -1.5,-31.5
       parent: 89
       type: Transform
+  - uid: 1701
+    components:
+    - pos: -1.5,-30.5
+      parent: 89
+      type: Transform
   - uid: 1702
     components:
     - pos: -1.5,-35.5
@@ -14652,6 +14107,11 @@ entities:
   - uid: 1850
     components:
     - pos: -1.5,-19.5
+      parent: 89
+      type: Transform
+  - uid: 1874
+    components:
+    - pos: -1.5,-41.5
       parent: 89
       type: Transform
   - uid: 1878
@@ -15979,35 +15439,6 @@ entities:
   - uid: 6957
     components:
     - pos: -130.5,-4.5
-      parent: 89
-      type: Transform
-    - enabled: True
-      type: AmbientSound
-  - uid: 7380
-    components:
-    - pos: -3.5,-29.5
-      parent: 89
-      type: Transform
-    - enabled: True
-      type: AmbientSound
-  - uid: 7415
-    components:
-    - pos: -5.5,-40.5
-      parent: 89
-      type: Transform
-  - uid: 7416
-    components:
-    - pos: -5.5,-38.5
-      parent: 89
-      type: Transform
-  - uid: 7417
-    components:
-    - pos: -5.5,-39.5
-      parent: 89
-      type: Transform
-  - uid: 7418
-    components:
-    - pos: -5.5,-37.5
       parent: 89
       type: Transform
     - enabled: True
@@ -32219,16 +31650,6 @@ entities:
       type: Transform
 - proto: CableMV
   entities:
-  - uid: 90
-    components:
-    - pos: -2.5,-29.5
-      parent: 89
-      type: Transform
-  - uid: 161
-    components:
-    - pos: -0.5,-35.5
-      parent: 89
-      type: Transform
   - uid: 278
     components:
     - pos: -10.5,-18.5
@@ -33915,52 +33336,6 @@ entities:
   - uid: 6559
     components:
     - pos: -128.5,-10.5
-      parent: 89
-      type: Transform
-    - enabled: True
-      type: AmbientSound
-  - uid: 7378
-    components:
-    - pos: -3.5,-29.5
-      parent: 89
-      type: Transform
-    - enabled: True
-      type: AmbientSound
-  - uid: 7381
-    components:
-    - pos: 0.5,-35.5
-      parent: 89
-      type: Transform
-    - enabled: True
-      type: AmbientSound
-  - uid: 7384
-    components:
-    - pos: -2.5,-39.5
-      parent: 89
-      type: Transform
-  - uid: 7390
-    components:
-    - pos: -3.5,-39.5
-      parent: 89
-      type: Transform
-  - uid: 7398
-    components:
-    - pos: -4.5,-39.5
-      parent: 89
-      type: Transform
-  - uid: 7399
-    components:
-    - pos: -5.5,-39.5
-      parent: 89
-      type: Transform
-  - uid: 7413
-    components:
-    - pos: -5.5,-38.5
-      parent: 89
-      type: Transform
-  - uid: 7414
-    components:
-    - pos: -5.5,-37.5
       parent: 89
       type: Transform
     - enabled: True
@@ -38795,6 +38170,48 @@ entities:
     - pos: 47.43045,10.357418
       parent: 89
       type: Transform
+  - uid: 15325
+    components:
+    - flags: InContainer
+      name: ID карта  (капитан)
+      type: MetaData
+    - parent: 15319
+      type: Transform
+    - tags:
+      - EmergencyShuttleRepealAll
+      - Captain
+      - HeadOfPersonnel
+      - ChiefEngineer
+      - ChiefMedicalOfficer
+      - HeadOfSecurity
+      - ResearchDirector
+      - Command
+      - Security
+      - Armory
+      - Brig
+      - Engineering
+      - Medical
+      - Quartermaster
+      - Salvage
+      - Cargo
+      - Research
+      - Service
+      - Maintenance
+      - External
+      - Janitor
+      - Theatre
+      - Bar
+      - Chemistry
+      - Kitchen
+      - Chapel
+      - Hydroponics
+      - Atmospherics
+      type: Access
+    - jobTitle: капитан
+      type: IdCard
+    - canCollide: False
+      type: Physics
+    - type: InsideEntityStorage
 - proto: CarbonDioxideCanister
   entities:
   - uid: 995
@@ -46409,11 +45826,6 @@ entities:
     - pos: 4.5,-18.5
       parent: 89
       type: Transform
-    - placedEntities:
-      - 16935
-      type: SolutionHeater
-    - isPlaceable: False
-      type: PlaceableSurface
   - uid: 16886
     components:
     - pos: 15.5,-0.5
@@ -46714,6 +46126,17 @@ entities:
     - pos: -98.620224,17.58848
       parent: 89
       type: Transform
+- proto: CigarGoldCase
+  entities:
+  - uid: 12826
+    components:
+    - flags: InContainer
+      type: MetaData
+    - parent: 15319
+      type: Transform
+    - canCollide: False
+      type: Physics
+    - type: InsideEntityStorage
 - proto: CigCartonRed
   entities:
   - uid: 14625
@@ -49995,6 +49418,18 @@ entities:
     - canCollide: False
       type: Physics
     - type: InsideEntityStorage
+- proto: ClothingBeltSheathFilled
+  entities:
+  - uid: 15320
+    components:
+    - flags: InContainer
+      type: MetaData
+    - parent: 15319
+      type: Transform
+    - canCollide: False
+      type: Physics
+    - type: ActiveUserInterface
+    - type: InsideEntityStorage
 - proto: ClothingBeltUtility
   entities:
   - uid: 224
@@ -50113,6 +49548,17 @@ entities:
     - pos: -5.452837,46.534424
       parent: 89
       type: Transform
+- proto: ClothingHandsGlovesCaptain
+  entities:
+  - uid: 15323
+    components:
+    - flags: InContainer
+      type: MetaData
+    - parent: 15319
+      type: Transform
+    - canCollide: False
+      type: Physics
+    - type: InsideEntityStorage
 - proto: ClothingHandsGlovesColorBlue
   entities:
   - uid: 14979
@@ -50181,6 +49627,17 @@ entities:
     - pos: 13.368769,5.764955
       parent: 89
       type: Transform
+- proto: ClothingHeadHatCaptain
+  entities:
+  - uid: 15324
+    components:
+    - flags: InContainer
+      type: MetaData
+    - parent: 15319
+      type: Transform
+    - canCollide: False
+      type: Physics
+    - type: InsideEntityStorage
 - proto: ClothingHeadHatCargosoftFlipped
   entities:
   - uid: 5465
@@ -50304,6 +49761,16 @@ entities:
     - pos: 33.674458,-16.44978
       parent: 89
       type: Transform
+- proto: ClothingHeadHelmetHardsuitCap
+  entities:
+  - uid: 15327
+    components:
+    - flags: InContainer
+      type: MetaData
+    - parent: 15326
+      type: Transform
+    - AttachedUid: 15326
+      type: AttachedClothing
 - proto: ClothingHeadHelmetRiot
   entities:
   - uid: 19543
@@ -50318,12 +49785,12 @@ entities:
       type: Transform
   - uid: 19545
     components:
-    - pos: 39.109055,-2.4005427
+    - pos: 40.393433,-2.2235265
       parent: 89
       type: Transform
   - uid: 19546
     components:
-    - pos: 39.200294,-2.4918208
+    - pos: 40.659058,-2.4110265
       parent: 89
       type: Transform
 - proto: ClothingHeadHelmetVoidParamed
@@ -50340,6 +49807,17 @@ entities:
     - pos: -5.2798023,-9.619751
       parent: 89
       type: Transform
+- proto: ClothingHeadsetAltCommand
+  entities:
+  - uid: 15348
+    components:
+    - flags: InContainer
+      type: MetaData
+    - parent: 15319
+      type: Transform
+    - canCollide: False
+      type: Physics
+    - type: InsideEntityStorage
 - proto: ClothingHeadsetMedical
   entities:
   - uid: 12827
@@ -50428,6 +49906,17 @@ entities:
     - pos: 0.5000324,27.651428
       parent: 89
       type: Transform
+- proto: ClothingMaskGasCaptain
+  entities:
+  - uid: 15351
+    components:
+    - flags: InContainer
+      type: MetaData
+    - parent: 15319
+      type: Transform
+    - canCollide: False
+      type: Physics
+    - type: InsideEntityStorage
 - proto: ClothingMaskGasCentcom
   entities:
   - uid: 7555
@@ -50435,6 +49924,39 @@ entities:
     - pos: -27.48241,31.688484
       parent: 89
       type: Transform
+- proto: ClothingNeckBronzeheart
+  entities:
+  - uid: 15334
+    components:
+    - flags: InContainer
+      type: MetaData
+    - parent: 15319
+      type: Transform
+    - canCollide: False
+      type: Physics
+    - type: InsideEntityStorage
+- proto: ClothingNeckCloakCap
+  entities:
+  - uid: 15329
+    components:
+    - flags: InContainer
+      type: MetaData
+    - parent: 15319
+      type: Transform
+    - canCollide: False
+      type: Physics
+    - type: InsideEntityStorage
+- proto: ClothingNeckCloakCapFormal
+  entities:
+  - uid: 15337
+    components:
+    - flags: InContainer
+      type: MetaData
+    - parent: 15319
+      type: Transform
+    - canCollide: False
+      type: Physics
+    - type: InsideEntityStorage
 - proto: ClothingNeckCloakGoliathCloak
   entities:
   - uid: 19822
@@ -50442,6 +49964,17 @@ entities:
     - pos: -68.51435,-19.383087
       parent: 89
       type: Transform
+- proto: ClothingNeckGoldmedal
+  entities:
+  - uid: 15333
+    components:
+    - flags: InContainer
+      type: MetaData
+    - parent: 15319
+      type: Transform
+    - canCollide: False
+      type: Physics
+    - type: InsideEntityStorage
 - proto: ClothingNeckHeadphones
   entities:
   - uid: 5646
@@ -50508,6 +50041,17 @@ entities:
     - pos: -19.437286,28.49617
       parent: 89
       type: Transform
+- proto: ClothingOuterArmorCaptainCarapace
+  entities:
+  - uid: 15352
+    components:
+    - flags: InContainer
+      type: MetaData
+    - parent: 15319
+      type: Transform
+    - canCollide: False
+      type: Physics
+    - type: InsideEntityStorage
 - proto: ClothingOuterArmorRiot
   entities:
   - uid: 1048
@@ -50522,12 +50066,12 @@ entities:
       type: Transform
   - uid: 19541
     components:
-    - pos: 39.42839,-2.2940524
+    - pos: 40.377808,-2.3954015
       parent: 89
       type: Transform
   - uid: 19542
     components:
-    - pos: 39.23071,-2.4918208
+    - pos: 40.565308,-2.5985265
       parent: 89
       type: Transform
 - proto: ClothingOuterCoatLab
@@ -50559,6 +50103,25 @@ entities:
     - pos: -39.54277,32.313835
       parent: 89
       type: Transform
+- proto: ClothingOuterHardsuitCap
+  entities:
+  - uid: 15326
+    components:
+    - flags: InContainer
+      type: MetaData
+    - parent: 15319
+      type: Transform
+    - clothingUid: 15327
+      type: ToggleableClothing
+    - containers:
+        toggleable-clothing: !type:ContainerSlot
+          showEnts: False
+          occludes: True
+          ent: 15327
+      type: ContainerContainer
+    - canCollide: False
+      type: Physics
+    - type: InsideEntityStorage
 - proto: ClothingOuterHardsuitEVA
   entities:
   - uid: 2249
@@ -50611,46 +50174,6 @@ entities:
     - canCollide: False
       type: Physics
     - type: InsideEntityStorage
-  - uid: 7276
-    components:
-    - pos: 40.249535,-2.3092654
-      parent: 89
-      type: Transform
-  - uid: 7278
-    components:
-    - pos: 40.47763,-2.3092654
-      parent: 89
-      type: Transform
-  - uid: 7279
-    components:
-    - pos: 40.660107,-2.3092654
-      parent: 89
-      type: Transform
-  - uid: 7280
-    components:
-    - pos: 40.751343,-2.4005427
-      parent: 89
-      type: Transform
-  - uid: 7281
-    components:
-    - pos: 40.751343,-2.5374599
-      parent: 89
-      type: Transform
-  - uid: 7282
-    components:
-    - pos: 40.492836,-2.5526729
-      parent: 89
-      type: Transform
-  - uid: 7283
-    components:
-    - pos: 40.31036,-2.5374599
-      parent: 89
-      type: Transform
-  - uid: 7284
-    components:
-    - pos: 40.23433,-2.5222468
-      parent: 89
-      type: Transform
   - uid: 19533
     components:
     - flags: InContainer
@@ -50724,6 +50247,17 @@ entities:
     - pos: 27.505753,28.740032
       parent: 89
       type: Transform
+- proto: ClothingOuterWinterCap
+  entities:
+  - uid: 15328
+    components:
+    - flags: InContainer
+      type: MetaData
+    - parent: 15319
+      type: Transform
+    - canCollide: False
+      type: Physics
+    - type: InsideEntityStorage
 - proto: ClothingOuterWizard
   entities:
   - uid: 10240
@@ -50842,6 +50376,22 @@ entities:
     - pos: -34.48078,23.52258
       parent: 89
       type: Transform
+- proto: ClothingUniformJumpskirtCapFormalDress
+  entities:
+  - uid: 15335
+    components:
+    - flags: InContainer
+      type: MetaData
+    - parent: 15319
+      type: Transform
+    - mode: SensorVitals
+      type: SuitSensor
+    - address: 755310ce
+      transmitFrequency: 1262
+      type: DeviceNetwork
+    - canCollide: False
+      type: Physics
+    - type: InsideEntityStorage
 - proto: ClothingUniformJumpskirtChemistry
   entities:
   - uid: 724
@@ -50909,6 +50459,22 @@ entities:
     - pos: -19.499786,29.230545
       parent: 89
       type: Transform
+- proto: ClothingUniformJumpsuitCapFormal
+  entities:
+  - uid: 15336
+    components:
+    - flags: InContainer
+      type: MetaData
+    - parent: 15319
+      type: Transform
+    - mode: SensorVitals
+      type: SuitSensor
+    - address: 4c15fc68
+      transmitFrequency: 1262
+      type: DeviceNetwork
+    - canCollide: False
+      type: Physics
+    - type: InsideEntityStorage
 - proto: ClothingUniformJumpsuitChemistry
   entities:
   - uid: 722
@@ -51163,6 +50729,15 @@ entities:
     - pos: 54.446102,2.4674153
       parent: 89
       type: Transform
+  - uid: 15349
+    components:
+    - flags: InContainer
+      type: MetaData
+    - parent: 15319
+      type: Transform
+    - canCollide: False
+      type: Physics
+    - type: InsideEntityStorage
 - proto: ComplexXenoArtifact
   entities:
   - uid: 6846
@@ -51212,11 +50787,6 @@ entities:
       pos: -4.5,-41.5
       parent: 89
       type: Transform
-    - outputs:
-        ArtifactAnalyzerSender:
-        - port: ArtifactAnalyzerReceiver
-          uid: 3262
-      type: SignalTransmitter
   - uid: 1909
     components:
     - rot: 3.141592653589793 rad
@@ -51699,177 +51269,56 @@ entities:
       pos: -95.5,29.5
       parent: 89
       type: Transform
-    - inputs:
-        Reverse:
-        - port: Right
-          uid: 7667
-        Forward:
-        - port: Left
-          uid: 7667
-        Off:
-        - port: Middle
-          uid: 7667
-      type: SignalReceiver
   - uid: 4822
     components:
     - pos: -63.5,-17.5
       parent: 89
       type: Transform
-    - inputs:
-        Reverse:
-        - port: Right
-          uid: 4841
-        Forward:
-        - port: Left
-          uid: 4841
-        Off:
-        - port: Middle
-          uid: 4841
-      type: SignalReceiver
   - uid: 4823
     components:
     - pos: -63.5,-18.5
       parent: 89
       type: Transform
-    - inputs:
-        Reverse:
-        - port: Right
-          uid: 4841
-        Forward:
-        - port: Left
-          uid: 4841
-        Off:
-        - port: Middle
-          uid: 4841
-      type: SignalReceiver
   - uid: 4824
     components:
     - pos: -63.5,-19.5
       parent: 89
       type: Transform
-    - inputs:
-        Reverse:
-        - port: Right
-          uid: 4841
-        Forward:
-        - port: Left
-          uid: 4841
-        Off:
-        - port: Middle
-          uid: 4841
-      type: SignalReceiver
   - uid: 4825
     components:
     - pos: -63.5,-20.5
       parent: 89
       type: Transform
-    - inputs:
-        Reverse:
-        - port: Right
-          uid: 4841
-        Forward:
-        - port: Left
-          uid: 4841
-        Off:
-        - port: Middle
-          uid: 4841
-      type: SignalReceiver
   - uid: 4826
     components:
     - pos: -63.5,-21.5
       parent: 89
       type: Transform
-    - inputs:
-        Reverse:
-        - port: Right
-          uid: 4841
-        Forward:
-        - port: Left
-          uid: 4841
-        Off:
-        - port: Middle
-          uid: 4841
-      type: SignalReceiver
   - uid: 4827
     components:
     - pos: -59.5,-17.5
       parent: 89
       type: Transform
-    - inputs:
-        Reverse:
-        - port: Right
-          uid: 4841
-        Forward:
-        - port: Left
-          uid: 4841
-        Off:
-        - port: Middle
-          uid: 4841
-      type: SignalReceiver
   - uid: 4828
     components:
     - pos: -59.5,-18.5
       parent: 89
       type: Transform
-    - inputs:
-        Reverse:
-        - port: Right
-          uid: 4841
-        Forward:
-        - port: Left
-          uid: 4841
-        Off:
-        - port: Middle
-          uid: 4841
-      type: SignalReceiver
   - uid: 4829
     components:
     - pos: -59.5,-19.5
       parent: 89
       type: Transform
-    - inputs:
-        Reverse:
-        - port: Right
-          uid: 4841
-        Forward:
-        - port: Left
-          uid: 4841
-        Off:
-        - port: Middle
-          uid: 4841
-      type: SignalReceiver
   - uid: 4830
     components:
     - pos: -59.5,-20.5
       parent: 89
       type: Transform
-    - inputs:
-        Reverse:
-        - port: Right
-          uid: 4841
-        Forward:
-        - port: Left
-          uid: 4841
-        Off:
-        - port: Middle
-          uid: 4841
-      type: SignalReceiver
   - uid: 4831
     components:
     - pos: -59.5,-21.5
       parent: 89
       type: Transform
-    - inputs:
-        Reverse:
-        - port: Right
-          uid: 4841
-        Forward:
-        - port: Left
-          uid: 4841
-        Off:
-        - port: Middle
-          uid: 4841
-      type: SignalReceiver
   - uid: 5103
     components:
     - pos: -66.5,-4.5
@@ -51911,187 +51360,66 @@ entities:
       pos: -95.5,27.5
       parent: 89
       type: Transform
-    - inputs:
-        Reverse:
-        - port: Right
-          uid: 7667
-        Forward:
-        - port: Left
-          uid: 7667
-        Off:
-        - port: Middle
-          uid: 7667
-      type: SignalReceiver
   - uid: 7662
     components:
     - rot: -1.5707963267948966 rad
       pos: -98.5,29.5
       parent: 89
       type: Transform
-    - inputs:
-        Reverse:
-        - port: Right
-          uid: 7667
-        Forward:
-        - port: Left
-          uid: 7667
-        Off:
-        - port: Middle
-          uid: 7667
-      type: SignalReceiver
   - uid: 7663
     components:
     - rot: -1.5707963267948966 rad
       pos: -99.5,29.5
       parent: 89
       type: Transform
-    - inputs:
-        Reverse:
-        - port: Right
-          uid: 7667
-        Forward:
-        - port: Left
-          uid: 7667
-        Off:
-        - port: Middle
-          uid: 7667
-      type: SignalReceiver
   - uid: 7664
     components:
     - rot: -1.5707963267948966 rad
       pos: -97.5,29.5
       parent: 89
       type: Transform
-    - inputs:
-        Reverse:
-        - port: Right
-          uid: 7667
-        Forward:
-        - port: Left
-          uid: 7667
-        Off:
-        - port: Middle
-          uid: 7667
-      type: SignalReceiver
   - uid: 7665
     components:
     - rot: -1.5707963267948966 rad
       pos: -96.5,29.5
       parent: 89
       type: Transform
-    - inputs:
-        Reverse:
-        - port: Right
-          uid: 7667
-        Forward:
-        - port: Left
-          uid: 7667
-        Off:
-        - port: Middle
-          uid: 7667
-      type: SignalReceiver
   - uid: 7666
     components:
     - rot: 3.141592653589793 rad
       pos: -95.5,28.5
       parent: 89
       type: Transform
-    - inputs:
-        Reverse:
-        - port: Right
-          uid: 7667
-        Forward:
-        - port: Left
-          uid: 7667
-        Off:
-        - port: Middle
-          uid: 7667
-      type: SignalReceiver
   - uid: 7671
     components:
     - rot: -1.5707963267948966 rad
       pos: -102.5,29.5
       parent: 89
       type: Transform
-    - inputs:
-        Reverse:
-        - port: Right
-          uid: 7667
-        Forward:
-        - port: Left
-          uid: 7667
-        Off:
-        - port: Middle
-          uid: 7667
-      type: SignalReceiver
   - uid: 7672
     components:
     - rot: -1.5707963267948966 rad
       pos: -101.5,29.5
       parent: 89
       type: Transform
-    - inputs:
-        Reverse:
-        - port: Right
-          uid: 7667
-        Forward:
-        - port: Left
-          uid: 7667
-        Off:
-        - port: Middle
-          uid: 7667
-      type: SignalReceiver
   - uid: 7673
     components:
     - rot: -1.5707963267948966 rad
       pos: -100.5,29.5
       parent: 89
       type: Transform
-    - inputs:
-        Reverse:
-        - port: Right
-          uid: 7667
-        Forward:
-        - port: Left
-          uid: 7667
-        Off:
-        - port: Middle
-          uid: 7667
-      type: SignalReceiver
   - uid: 7675
     components:
     - rot: 1.5707963267948966 rad
       pos: -96.5,27.5
       parent: 89
       type: Transform
-    - inputs:
-        Reverse:
-        - port: Right
-          uid: 7667
-        Forward:
-        - port: Left
-          uid: 7667
-        Off:
-        - port: Middle
-          uid: 7667
-      type: SignalReceiver
   - uid: 7676
     components:
     - rot: 1.5707963267948966 rad
       pos: -97.5,27.5
       parent: 89
       type: Transform
-    - inputs:
-        Reverse:
-        - port: Right
-          uid: 7667
-        Forward:
-        - port: Left
-          uid: 7667
-        Off:
-        - port: Middle
-          uid: 7667
-      type: SignalReceiver
 - proto: CornSeeds
   entities:
   - uid: 17192
@@ -52478,30 +51806,6 @@ entities:
         - 0
         - 0
       type: EntityStorage
-- proto: CrateMaterialPlastic
-  entities:
-  - uid: 7373
-    components:
-    - pos: -65.5,-9.5
-      parent: 89
-      type: Transform
-  - uid: 7374
-    components:
-    - pos: -66.5,-13.5
-      parent: 89
-      type: Transform
-- proto: CrateMaterialSteel
-  entities:
-  - uid: 7051
-    components:
-    - pos: -66.5,-12.5
-      parent: 89
-      type: Transform
-  - uid: 7371
-    components:
-    - pos: -60.5,-13.5
-      parent: 89
-      type: Transform
 - proto: CrateMedicalSupplies
   entities:
   - uid: 19809
@@ -59026,6 +58330,22 @@ entities:
     - pos: 8.483128,-12.300071
       parent: 89
       type: Transform
+- proto: DoorRemoteCommand
+  entities:
+  - uid: 15338
+    components:
+    - flags: InContainer
+      type: MetaData
+    - parent: 15319
+      type: Transform
+    - tags:
+      - Command
+      - Captain
+      - HeadOfPersonnel
+      type: Access
+    - canCollide: False
+      type: Physics
+    - type: InsideEntityStorage
 - proto: Dresser
   entities:
   - uid: 1928
@@ -59392,8 +58712,6 @@ entities:
     - pos: 4.47943,-18.812798
       parent: 89
       type: Transform
-    - sleepingAllowed: False
-      type: Physics
 - proto: DrinkRumBottleFull
   entities:
   - uid: 1471
@@ -59574,245 +58892,6 @@ entities:
   - uid: 14655
     components:
     - pos: -123.1743,21.519472
-      parent: 89
-      type: Transform
-- proto: EftposCargo
-  entities:
-  - uid: 7363
-    components:
-    - pos: -61.377235,-5.4186554
-      parent: 89
-      type: Transform
-  - uid: 7364
-    components:
-    - pos: -61.696568,-5.3273773
-      parent: 89
-      type: Transform
-  - uid: 7368
-    components:
-    - pos: -72.05655,-17.538937
-      parent: 89
-      type: Transform
-  - uid: 7369
-    components:
-    - pos: -72.17821,-17.538937
-      parent: 89
-      type: Transform
-  - uid: 7370
-    components:
-    - pos: -72.375885,-17.538937
-      parent: 89
-      type: Transform
-- proto: EftposCivilian
-  entities:
-  - uid: 7305
-    components:
-    - pos: 44.768196,4.4867334
-      parent: 89
-      type: Transform
-  - uid: 7306
-    components:
-    - pos: 44.61613,4.4563074
-      parent: 89
-      type: Transform
-  - uid: 7307
-    components:
-    - pos: 44.40324,4.4258814
-      parent: 89
-      type: Transform
-  - uid: 7308
-    components:
-    - pos: 44.266384,4.4258814
-      parent: 89
-      type: Transform
-  - uid: 7323
-    components:
-    - pos: -10.238387,-2.389704
-      parent: 89
-      type: Transform
-  - uid: 7324
-    components:
-    - pos: -10.329625,-3.5458903
-      parent: 89
-      type: Transform
-  - uid: 7325
-    components:
-    - pos: -10.4360695,-4.2304745
-      parent: 89
-      type: Transform
-  - uid: 7327
-    components:
-    - pos: -10.512102,-3.0742884
-      parent: 89
-      type: Transform
-  - uid: 7328
-    components:
-    - pos: -29.826214,0.5768275
-      parent: 89
-      type: Transform
-  - uid: 7329
-    components:
-    - pos: -30.00869,0.5616145
-      parent: 89
-      type: Transform
-  - uid: 7330
-    components:
-    - pos: -30.251991,0.5159755
-      parent: 89
-      type: Transform
-  - uid: 7331
-    components:
-    - pos: -33.762386,-3.4613543
-      parent: 89
-      type: Transform
-- proto: EftposCommand
-  entities:
-  - uid: 7309
-    components:
-    - pos: 48.027554,10.663099
-      parent: 89
-      type: Transform
-  - uid: 7310
-    components:
-    - pos: 48.027554,10.754377
-      parent: 89
-      type: Transform
-  - uid: 7311
-    components:
-    - pos: 47.92111,10.754377
-      parent: 89
-      type: Transform
-  - uid: 7312
-    components:
-    - pos: 47.799458,10.8912945
-      parent: 89
-      type: Transform
-- proto: EftposMedical
-  entities:
-  - uid: 7313
-    components:
-    - pos: 8.261226,9.6577215
-      parent: 89
-      type: Transform
-  - uid: 7314
-    components:
-    - pos: -1.6039368,5.8429613
-      parent: 89
-      type: Transform
-  - uid: 7315
-    components:
-    - pos: -12.385944,13.745636
-      parent: 89
-      type: Transform
-  - uid: 7316
-    components:
-    - pos: 6.6710668,16.79278
-      parent: 89
-      type: Transform
-  - uid: 7317
-    components:
-    - pos: 6.473384,16.427668
-      parent: 89
-      type: Transform
-  - uid: 7318
-    components:
-    - pos: 15.891018,11.765276
-      parent: 89
-      type: Transform
-  - uid: 7319
-    components:
-    - pos: 24.444202,12.632416
-      parent: 89
-      type: Transform
-  - uid: 7320
-    components:
-    - pos: 25.189196,36.56321
-      parent: 89
-      type: Transform
-  - uid: 7321
-    components:
-    - pos: 25.326054,36.56321
-      parent: 89
-      type: Transform
-  - uid: 7322
-    components:
-    - pos: 25.50853,36.56321
-      parent: 89
-      type: Transform
-- proto: EftposScience
-  entities:
-  - uid: 7333
-    components:
-    - pos: -15.98908,-15.289619
-      parent: 89
-      type: Transform
-  - uid: 7334
-    components:
-    - pos: -6.895959,-18.180086
-      parent: 89
-      type: Transform
-  - uid: 7335
-    components:
-    - pos: 1.2094884,-29.48704
-      parent: 89
-      type: Transform
-  - uid: 7336
-    components:
-    - pos: 1.1942818,-29.715235
-      parent: 89
-      type: Transform
-  - uid: 7337
-    components:
-    - pos: 1.2094884,-30.09556
-      parent: 89
-      type: Transform
-- proto: EftposSecurity
-  entities:
-  - uid: 7298
-    components:
-    - pos: 34.729652,-3.0079842
-      parent: 89
-      type: Transform
-  - uid: 7299
-    components:
-    - pos: 34.51676,-2.9775581
-      parent: 89
-      type: Transform
-  - uid: 7300
-    components:
-    - pos: 34.48635,-3.0384102
-      parent: 89
-      type: Transform
-  - uid: 7301
-    components:
-    - pos: 34.258255,-7.0267763
-      parent: 89
-      type: Transform
-  - uid: 7302
-    components:
-    - pos: 33.132847,-6.6616645
-      parent: 89
-      type: Transform
-  - uid: 7303
-    components:
-    - pos: 7.2546325,-12.545005
-      parent: 89
-      type: Transform
-  - uid: 7304
-    components:
-    - pos: 20.210964,6.3242884
-      parent: 89
-      type: Transform
-- proto: EftposSpecific
-  entities:
-  - uid: 7338
-    components:
-    - pos: -76.17862,-5.59544
-      parent: 89
-      type: Transform
-  - uid: 7348
-    components:
-    - pos: -76.17862,-5.199902
       parent: 89
       type: Transform
 - proto: ElectricGuitarInstrument
@@ -64433,398 +63512,6 @@ entities:
   - uid: 6152
     components:
     - pos: 6.5,17.5
-      parent: 89
-      type: Transform
-    - fixtures: {}
-      type: Fixtures
-  - uid: 7157
-    components:
-    - pos: 3.5,-1.5
-      parent: 89
-      type: Transform
-    - fixtures: {}
-      type: Fixtures
-  - uid: 7158
-    components:
-    - pos: 7.5,-1.5
-      parent: 89
-      type: Transform
-    - fixtures: {}
-      type: Fixtures
-  - uid: 7159
-    components:
-    - pos: 6.5,-7.5
-      parent: 89
-      type: Transform
-    - fixtures: {}
-      type: Fixtures
-  - uid: 7160
-    components:
-    - pos: 2.5,-9.5
-      parent: 89
-      type: Transform
-    - fixtures: {}
-      type: Fixtures
-  - uid: 7161
-    components:
-    - pos: 10.5,-11.5
-      parent: 89
-      type: Transform
-    - fixtures: {}
-      type: Fixtures
-  - uid: 7162
-    components:
-    - pos: 12.5,-1.5
-      parent: 89
-      type: Transform
-    - fixtures: {}
-      type: Fixtures
-  - uid: 7163
-    components:
-    - pos: 16.5,-7.5
-      parent: 89
-      type: Transform
-    - fixtures: {}
-      type: Fixtures
-  - uid: 7166
-    components:
-    - pos: 18.5,-11.5
-      parent: 89
-      type: Transform
-    - fixtures: {}
-      type: Fixtures
-  - uid: 7167
-    components:
-    - pos: 21.5,-11.5
-      parent: 89
-      type: Transform
-    - fixtures: {}
-      type: Fixtures
-  - uid: 7168
-    components:
-    - pos: 24.5,-11.5
-      parent: 89
-      type: Transform
-    - fixtures: {}
-      type: Fixtures
-  - uid: 7169
-    components:
-    - pos: 27.5,-11.5
-      parent: 89
-      type: Transform
-    - fixtures: {}
-      type: Fixtures
-  - uid: 7170
-    components:
-    - pos: 30.5,-11.5
-      parent: 89
-      type: Transform
-    - fixtures: {}
-      type: Fixtures
-  - uid: 7171
-    components:
-    - pos: 33.5,-11.5
-      parent: 89
-      type: Transform
-    - fixtures: {}
-      type: Fixtures
-  - uid: 7172
-    components:
-    - pos: 29.5,-7.5
-      parent: 89
-      type: Transform
-    - fixtures: {}
-      type: Fixtures
-  - uid: 7173
-    components:
-    - pos: 35.5,-4.5
-      parent: 89
-      type: Transform
-    - fixtures: {}
-      type: Fixtures
-  - uid: 7174
-    components:
-    - pos: 41.5,-1.5
-      parent: 89
-      type: Transform
-    - fixtures: {}
-      type: Fixtures
-  - uid: 7175
-    components:
-    - pos: 40.5,-13.5
-      parent: 89
-      type: Transform
-    - fixtures: {}
-      type: Fixtures
-  - uid: 7180
-    components:
-    - pos: 43.5,-17.5
-      parent: 89
-      type: Transform
-    - fixtures: {}
-      type: Fixtures
-  - uid: 7181
-    components:
-    - pos: 12.5,6.5
-      parent: 89
-      type: Transform
-    - fixtures: {}
-      type: Fixtures
-  - uid: 7182
-    components:
-    - pos: 4.5,8.5
-      parent: 89
-      type: Transform
-    - fixtures: {}
-      type: Fixtures
-  - uid: 7183
-    components:
-    - pos: -4.5,10.5
-      parent: 89
-      type: Transform
-    - fixtures: {}
-      type: Fixtures
-  - uid: 7184
-    components:
-    - pos: -8.5,10.5
-      parent: 89
-      type: Transform
-    - fixtures: {}
-      type: Fixtures
-  - uid: 7185
-    components:
-    - pos: -13.5,10.5
-      parent: 89
-      type: Transform
-    - fixtures: {}
-      type: Fixtures
-  - uid: 7186
-    components:
-    - pos: -15.5,4.5
-      parent: 89
-      type: Transform
-    - fixtures: {}
-      type: Fixtures
-  - uid: 7187
-    components:
-    - pos: -22.5,-3.5
-      parent: 89
-      type: Transform
-    - fixtures: {}
-      type: Fixtures
-  - uid: 7188
-    components:
-    - pos: -25.5,-3.5
-      parent: 89
-      type: Transform
-    - fixtures: {}
-      type: Fixtures
-  - uid: 7191
-    components:
-    - pos: -25.5,-0.5
-      parent: 89
-      type: Transform
-    - fixtures: {}
-      type: Fixtures
-  - uid: 7192
-    components:
-    - pos: -22.5,-6.5
-      parent: 89
-      type: Transform
-    - fixtures: {}
-      type: Fixtures
-  - uid: 7194
-    components:
-    - pos: -19.5,-5.5
-      parent: 89
-      type: Transform
-    - fixtures: {}
-      type: Fixtures
-  - uid: 7195
-    components:
-    - pos: -19.5,-2.5
-      parent: 89
-      type: Transform
-    - fixtures: {}
-      type: Fixtures
-  - uid: 7200
-    components:
-    - pos: -26.5,-8.5
-      parent: 89
-      type: Transform
-    - fixtures: {}
-      type: Fixtures
-  - uid: 7205
-    components:
-    - pos: -13.5,-3.5
-      parent: 89
-      type: Transform
-    - fixtures: {}
-      type: Fixtures
-  - uid: 7224
-    components:
-    - pos: -16.5,-3.5
-      parent: 89
-      type: Transform
-    - fixtures: {}
-      type: Fixtures
-  - uid: 7225
-    components:
-    - pos: -10.5,-3.5
-      parent: 89
-      type: Transform
-    - fixtures: {}
-      type: Fixtures
-  - uid: 7226
-    components:
-    - pos: -4.5,-3.5
-      parent: 89
-      type: Transform
-    - fixtures: {}
-      type: Fixtures
-  - uid: 7227
-    components:
-    - pos: -7.5,-2.5
-      parent: 89
-      type: Transform
-    - fixtures: {}
-      type: Fixtures
-  - uid: 7229
-    components:
-    - pos: -7.5,-5.5
-      parent: 89
-      type: Transform
-    - fixtures: {}
-      type: Fixtures
-  - uid: 7231
-    components:
-    - pos: -4.5,0.5
-      parent: 89
-      type: Transform
-    - fixtures: {}
-      type: Fixtures
-  - uid: 7235
-    components:
-    - pos: -17.5,-14.5
-      parent: 89
-      type: Transform
-    - fixtures: {}
-      type: Fixtures
-  - uid: 7236
-    components:
-    - pos: -17.5,-20.5
-      parent: 89
-      type: Transform
-    - fixtures: {}
-      type: Fixtures
-  - uid: 7237
-    components:
-    - pos: -20.5,-21.5
-      parent: 89
-      type: Transform
-    - fixtures: {}
-      type: Fixtures
-  - uid: 7238
-    components:
-    - pos: -7.5,-28.5
-      parent: 89
-      type: Transform
-    - fixtures: {}
-      type: Fixtures
-  - uid: 7239
-    components:
-    - pos: -6.5,-32.5
-      parent: 89
-      type: Transform
-    - fixtures: {}
-      type: Fixtures
-  - uid: 7240
-    components:
-    - pos: -3.5,-28.5
-      parent: 89
-      type: Transform
-    - fixtures: {}
-      type: Fixtures
-  - uid: 7241
-    components:
-    - pos: 5.5,-26.5
-      parent: 89
-      type: Transform
-    - fixtures: {}
-      type: Fixtures
-  - uid: 7253
-    components:
-    - pos: 0.5,-19.5
-      parent: 89
-      type: Transform
-    - fixtures: {}
-      type: Fixtures
-  - uid: 7288
-    components:
-    - pos: 34.5,-3.5
-      parent: 89
-      type: Transform
-    - fixtures: {}
-      type: Fixtures
-  - uid: 7289
-    components:
-    - pos: 32.5,-7.5
-      parent: 89
-      type: Transform
-    - fixtures: {}
-      type: Fixtures
-  - uid: 7290
-    components:
-    - pos: 34.5,-6.5
-      parent: 89
-      type: Transform
-    - fixtures: {}
-      type: Fixtures
-  - uid: 7291
-    components:
-    - pos: 35.5,-11.5
-      parent: 89
-      type: Transform
-    - fixtures: {}
-      type: Fixtures
-  - uid: 7292
-    components:
-    - pos: 37.5,-15.5
-      parent: 89
-      type: Transform
-    - fixtures: {}
-      type: Fixtures
-  - uid: 7293
-    components:
-    - pos: 42.5,-14.5
-      parent: 89
-      type: Transform
-    - fixtures: {}
-      type: Fixtures
-  - uid: 7294
-    components:
-    - pos: 48.5,-14.5
-      parent: 89
-      type: Transform
-    - fixtures: {}
-      type: Fixtures
-  - uid: 7295
-    components:
-    - pos: 43.5,-20.5
-      parent: 89
-      type: Transform
-    - fixtures: {}
-      type: Fixtures
-  - uid: 7296
-    components:
-    - pos: 46.5,-16.5
-      parent: 89
-      type: Transform
-    - fixtures: {}
-      type: Fixtures
-  - uid: 7297
-    components:
-    - pos: 24.5,-7.5
       parent: 89
       type: Transform
     - fixtures: {}
@@ -95025,7 +93712,7 @@ entities:
     - pos: -36.5,33.5
       parent: 89
       type: Transform
-    - SecondsUntilStateChange: -47353.312
+    - SecondsUntilStateChange: -46368.816
       state: Opening
       type: Door
   - uid: 10351
@@ -95040,7 +93727,7 @@ entities:
     - pos: -27.5,-4.5
       parent: 89
       type: Transform
-    - SecondsUntilStateChange: -49051.543
+    - SecondsUntilStateChange: -48067.047
       state: Closing
       type: Door
   - uid: 40
@@ -95048,7 +93735,7 @@ entities:
     - pos: -27.5,-5.5
       parent: 89
       type: Transform
-    - SecondsUntilStateChange: -49052.277
+    - SecondsUntilStateChange: -48067.78
       state: Closing
       type: Door
   - uid: 718
@@ -95076,7 +93763,7 @@ entities:
     - pos: -27.5,-6.5
       parent: 89
       type: Transform
-    - SecondsUntilStateChange: -49052.945
+    - SecondsUntilStateChange: -48068.45
       state: Closing
       type: Door
   - uid: 4519
@@ -95085,7 +93772,7 @@ entities:
       pos: -27.5,-7.5
       parent: 89
       type: Transform
-    - SecondsUntilStateChange: -11891.789
+    - SecondsUntilStateChange: -10907.291
       state: Closing
       type: Door
   - uid: 5826
@@ -95158,7 +93845,7 @@ entities:
     - pos: -27.5,-8.5
       parent: 89
       type: Transform
-    - SecondsUntilStateChange: -49053.977
+    - SecondsUntilStateChange: -48069.48
       state: Closing
       type: Door
   - uid: 17725
@@ -95600,6 +94287,17 @@ entities:
     - pos: 51.490074,-8.3677225
       parent: 89
       type: Transform
+- proto: JetpackCaptainFilled
+  entities:
+  - uid: 15331
+    components:
+    - flags: InContainer
+      type: MetaData
+    - parent: 15319
+      type: Transform
+    - canCollide: False
+      type: Physics
+    - type: InsideEntityStorage
 - proto: JetpackMini
   entities:
   - uid: 9311
@@ -95909,23 +94607,77 @@ entities:
     - pos: -95.46373,16.583893
       parent: 89
       type: Transform
-- proto: LockerAtmosphericsFilledHardsuit
+- proto: LockerAtmosphericsFilled
   entities:
-  - uid: 1874
-    components:
-    - pos: -104.5,-15.5
-      parent: 89
-      type: Transform
-  - uid: 3022
-    components:
-    - pos: -104.5,-16.5
-      parent: 89
-      type: Transform
-  - uid: 3088
+  - uid: 6953
     components:
     - pos: -104.5,-17.5
       parent: 89
       type: Transform
+    - air:
+        volume: 200
+        immutable: False
+        temperature: 293.1495
+        moles:
+        - 3.0981817
+        - 11.655066
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+      type: EntityStorage
+  - uid: 6954
+    components:
+    - pos: -104.5,-16.5
+      parent: 89
+      type: Transform
+    - air:
+        volume: 200
+        immutable: False
+        temperature: 293.1495
+        moles:
+        - 3.0981817
+        - 11.655066
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+      type: EntityStorage
+  - uid: 6955
+    components:
+    - pos: -104.5,-15.5
+      parent: 89
+      type: Transform
+    - air:
+        volume: 200
+        immutable: False
+        temperature: 293.1495
+        moles:
+        - 3.0981817
+        - 11.655066
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+      type: EntityStorage
 - proto: LockerBoozeFilled
   entities:
   - uid: 4216
@@ -96022,20 +94774,65 @@ entities:
         - 0
         - 0
       type: EntityStorage
-- proto: LockerBrigmedicFilled
+- proto: LockerCaptain
   entities:
-  - uid: 7156
-    components:
-    - pos: 11.5,-0.5
-      parent: 89
-      type: Transform
-- proto: LockerCaptainFilledHardsuit
-  entities:
-  - uid: 1701
+  - uid: 15319
     components:
     - pos: 46.5,14.5
       parent: 89
       type: Transform
+    - air:
+        volume: 200
+        immutable: False
+        temperature: 293.1495
+        moles:
+        - 3.0981817
+        - 11.655066
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+      type: EntityStorage
+    - containers:
+        entity_storage: !type:Container
+          showEnts: False
+          occludes: True
+          ents:
+          - 15320
+          - 15322
+          - 15323
+          - 15324
+          - 15325
+          - 15326
+          - 15328
+          - 15329
+          - 15330
+          - 15331
+          - 15332
+          - 15333
+          - 15334
+          - 15335
+          - 15336
+          - 15337
+          - 15338
+          - 15348
+          - 15349
+          - 15350
+          - 15351
+          - 15352
+          - 12826
+          - 15353
+        paper_label: !type:ContainerSlot
+          showEnts: False
+          occludes: True
+          ent: null
+      type: ContainerContainer
 - proto: LockerChemistryFilled
   entities:
   - uid: 126
@@ -96084,20 +94881,56 @@ entities:
         - 0
         - 0
       type: EntityStorage
-- proto: LockerChiefEngineerFilledHardsuit
+- proto: LockerChiefEngineerFilled
   entities:
-  - uid: 3089
+  - uid: 6892
     components:
     - pos: -102.5,11.5
       parent: 89
       type: Transform
-- proto: LockerChiefMedicalOfficerFilledHardsuit
+    - air:
+        volume: 200
+        immutable: False
+        temperature: 293.1495
+        moles:
+        - 3.0981817
+        - 11.655066
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+      type: EntityStorage
+- proto: LockerChiefMedicalOfficerFilled
   entities:
-  - uid: 3090
+  - uid: 19712
     components:
     - pos: 23.5,43.5
       parent: 89
       type: Transform
+    - air:
+        volume: 200
+        immutable: False
+        temperature: 293.1498
+        moles:
+        - 1.7459903
+        - 6.568249
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+      type: EntityStorage
 - proto: LockerDetective
   entities:
   - uid: 4858
@@ -96210,38 +95043,146 @@ entities:
         - 0
         - 0
       type: EntityStorage
-- proto: LockerEngineerFilledHardsuit
+- proto: LockerEngineerFilled
   entities:
-  - uid: 3091
-    components:
-    - pos: -105.5,-1.5
-      parent: 89
-      type: Transform
-  - uid: 3545
-    components:
-    - pos: -105.5,-0.5
-      parent: 89
-      type: Transform
-  - uid: 4005
-    components:
-    - pos: -103.5,0.5
-      parent: 89
-      type: Transform
-  - uid: 5280
+  - uid: 6940
     components:
     - pos: -100.5,0.5
       parent: 89
       type: Transform
-  - uid: 5281
+    - air:
+        volume: 200
+        immutable: False
+        temperature: 293.1495
+        moles:
+        - 3.0981817
+        - 11.655066
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+      type: EntityStorage
+  - uid: 6941
     components:
     - pos: -101.5,0.5
       parent: 89
       type: Transform
-  - uid: 5286
+    - air:
+        volume: 200
+        immutable: False
+        temperature: 293.1495
+        moles:
+        - 3.0981817
+        - 11.655066
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+      type: EntityStorage
+  - uid: 6942
     components:
     - pos: -102.5,0.5
       parent: 89
       type: Transform
+    - air:
+        volume: 200
+        immutable: False
+        temperature: 293.1495
+        moles:
+        - 3.0981817
+        - 11.655066
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+      type: EntityStorage
+  - uid: 6951
+    components:
+    - pos: -105.5,-1.5
+      parent: 89
+      type: Transform
+    - air:
+        volume: 200
+        immutable: False
+        temperature: 293.1495
+        moles:
+        - 3.0981817
+        - 11.655066
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+      type: EntityStorage
+  - uid: 6952
+    components:
+    - pos: -105.5,-0.5
+      parent: 89
+      type: Transform
+    - air:
+        volume: 200
+        immutable: False
+        temperature: 293.1495
+        moles:
+        - 3.0981817
+        - 11.655066
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+      type: EntityStorage
+  - uid: 6971
+    components:
+    - pos: -103.5,0.5
+      parent: 89
+      type: Transform
+    - air:
+        volume: 200
+        immutable: False
+        temperature: 293.1495
+        moles:
+        - 3.0981817
+        - 11.655066
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+      type: EntityStorage
 - proto: LockerEvidence
   entities:
   - uid: 2771
@@ -96639,13 +95580,31 @@ entities:
         - 0
         - 0
       type: EntityStorage
-- proto: LockerHeadOfSecurityFilledHardsuit
+- proto: LockerHeadOfSecurityFilled
   entities:
-  - uid: 6525
+  - uid: 3545
     components:
-    - pos: 30.26737,-2.5550008
+    - pos: 30.5,-2.5
       parent: 89
       type: Transform
+    - air:
+        volume: 200
+        immutable: False
+        temperature: 293.14948
+        moles:
+        - 3.0971212
+        - 11.651077
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+      type: EntityStorage
 - proto: LockerMedical
   entities:
   - uid: 14796
@@ -96835,13 +95794,6 @@ entities:
         - 0
         - 0
       type: EntityStorage
-- proto: LockerParamedicFilled
-  entities:
-  - uid: 7287
-    components:
-    - pos: 27.5,11.5
-      parent: 89
-      type: Transform
 - proto: LockerQuarterMasterFilled
   entities:
   - uid: 4512
@@ -96867,30 +95819,102 @@ entities:
         - 0
         - 0
       type: EntityStorage
-- proto: LockerResearchDirectorFilledHardsuit
+- proto: LockerResearchDirectorFilled
   entities:
-  - uid: 6892
+  - uid: 161
     components:
     - pos: 1.5,-31.5
       parent: 89
       type: Transform
-- proto: LockerSalvageSpecialistFilledHardsuit
+    - air:
+        volume: 200
+        immutable: False
+        temperature: 293.1495
+        moles:
+        - 3.0981817
+        - 11.655066
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+      type: EntityStorage
+- proto: LockerSalvageSpecialistFilled
   entities:
-  - uid: 6940
-    components:
-    - pos: -47.5,-9.5
-      parent: 89
-      type: Transform
-  - uid: 6941
-    components:
-    - pos: -48.5,-9.5
-      parent: 89
-      type: Transform
-  - uid: 6942
+  - uid: 5280
     components:
     - pos: -49.5,-9.5
       parent: 89
       type: Transform
+    - air:
+        volume: 200
+        immutable: False
+        temperature: 293.1495
+        moles:
+        - 3.0981817
+        - 11.655066
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+      type: EntityStorage
+  - uid: 5281
+    components:
+    - pos: -48.5,-9.5
+      parent: 89
+      type: Transform
+    - air:
+        volume: 200
+        immutable: False
+        temperature: 293.1495
+        moles:
+        - 3.0981817
+        - 11.655066
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+      type: EntityStorage
+  - uid: 5286
+    components:
+    - pos: -47.5,-9.5
+      parent: 89
+      type: Transform
+    - air:
+        volume: 200
+        immutable: False
+        temperature: 293.1495
+        moles:
+        - 3.0981817
+        - 11.655066
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+      type: EntityStorage
 - proto: LockerScienceFilled
   entities:
   - uid: 2112
@@ -96941,31 +95965,121 @@ entities:
       type: EntityStorage
 - proto: LockerSecurityFilled
   entities:
-  - uid: 6951
+  - uid: 3022
     components:
     - pos: 21.5,-5.5
       parent: 89
       type: Transform
-  - uid: 6952
+    - air:
+        volume: 200
+        immutable: False
+        temperature: 293.1495
+        moles:
+        - 3.0981817
+        - 11.655066
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+      type: EntityStorage
+  - uid: 3088
     components:
     - pos: 21.5,-4.5
       parent: 89
       type: Transform
-  - uid: 6953
+    - air:
+        volume: 200
+        immutable: False
+        temperature: 293.1495
+        moles:
+        - 3.0981817
+        - 11.655066
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+      type: EntityStorage
+  - uid: 3089
     components:
     - pos: 21.5,-3.5
       parent: 89
       type: Transform
-  - uid: 6954
+    - air:
+        volume: 200
+        immutable: False
+        temperature: 293.1495
+        moles:
+        - 3.0981817
+        - 11.655066
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+      type: EntityStorage
+  - uid: 3090
     components:
     - pos: 21.5,-2.5
       parent: 89
       type: Transform
-  - uid: 6955
+    - air:
+        volume: 200
+        immutable: False
+        temperature: 293.1495
+        moles:
+        - 3.0981817
+        - 11.655066
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+      type: EntityStorage
+  - uid: 3091
     components:
     - pos: 21.5,-1.5
       parent: 89
       type: Transform
+    - air:
+        volume: 200
+        immutable: False
+        temperature: 293.1495
+        moles:
+        - 3.0981817
+        - 11.655066
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+      type: EntityStorage
   - uid: 8085
     components:
     - pos: -88.5,12.5
@@ -97295,11 +96409,6 @@ entities:
       pos: -5.5,-44.5
       parent: 89
       type: Transform
-    - inputs:
-        ArtifactAnalyzerReceiver:
-        - port: ArtifactAnalyzerSender
-          uid: 245
-      type: SignalReceiver
 - proto: MagazineLightRifle
   entities:
   - uid: 17722
@@ -98459,6 +97568,20 @@ entities:
     - pos: 48.5,-5.5
       parent: 89
       type: Transform
+- proto: NukeDisk
+  entities:
+  - uid: 15330
+    components:
+    - flags: InContainer
+      type: MetaData
+    - parent: 15319
+      type: Transform
+    - stationMap:
+        6561: 89
+      type: SpecialRespawn
+    - canCollide: False
+      type: Physics
+    - type: InsideEntityStorage
 - proto: Omnitool
   entities:
   - uid: 3367
@@ -99721,6 +98844,15 @@ entities:
     - pos: 48.41028,10.601509
       parent: 89
       type: Transform
+  - uid: 15322
+    components:
+    - flags: InContainer
+      type: MetaData
+    - parent: 15319
+      type: Transform
+    - canCollide: False
+      type: Physics
+    - type: InsideEntityStorage
 - proto: PlasmaCanister
   entities:
   - uid: 1142
@@ -103769,13 +102901,6 @@ entities:
       type: Transform
     - powerLoad: 0
       type: ApcPowerReceiver
-    - inputs:
-        On: []
-        Off: []
-        Toggle:
-        - port: Pressed
-          uid: 10507
-      type: SignalReceiver
   - uid: 6005
     components:
     - pos: -73.5,-12.5
@@ -105601,23 +104726,6 @@ entities:
     - pos: -0.5,-7.5
       parent: 89
       type: Transform
-- proto: RandomAnomalySpawner
-  entities:
-  - uid: 6971
-    components:
-    - pos: -64.5,-12.5
-      parent: 89
-      type: Transform
-  - uid: 7049
-    components:
-    - pos: -66.5,-10.5
-      parent: 89
-      type: Transform
-  - uid: 7050
-    components:
-    - pos: -60.5,-11.5
-      parent: 89
-      type: Transform
 - proto: RandomDrinkBottle
   entities:
   - uid: 15649
@@ -106446,17 +105554,6 @@ entities:
       pos: -96.5,27.5
       parent: 89
       type: Transform
-    - inputs:
-        Reverse:
-        - port: Right
-          uid: 7667
-        Forward:
-        - port: Left
-          uid: 7667
-        Off:
-        - port: Middle
-          uid: 7667
-      type: SignalReceiver
 - proto: ReinforcedPlasmaWindow
   entities:
   - uid: 970
@@ -108548,6 +107645,17 @@ entities:
     - pos: -61.259422,-4.204013
       parent: 89
       type: Transform
+- proto: RubberStampCaptain
+  entities:
+  - uid: 15332
+    components:
+    - flags: InContainer
+      type: MetaData
+    - parent: 15319
+      type: Transform
+    - canCollide: False
+      type: Physics
+    - type: InsideEntityStorage
 - proto: RubberStampDenied
   entities:
   - uid: 2012
@@ -109082,6 +108190,34 @@ entities:
     - pos: -126.426926,-8.5456085
       parent: 89
       type: Transform
+- proto: ShippingContainerConarex
+  entities:
+  - uid: 19846
+    components:
+    - pos: -65.5,-9.5
+      parent: 89
+      type: Transform
+- proto: ShippingContainerInterdyne
+  entities:
+  - uid: 6525
+    components:
+    - pos: -60.5,-9.5
+      parent: 89
+      type: Transform
+- proto: ShippingContainerNakamura
+  entities:
+  - uid: 19836
+    components:
+    - pos: -65.5,-10.5
+      parent: 89
+      type: Transform
+- proto: ShippingContainerNanotrasen
+  entities:
+  - uid: 14887
+    components:
+    - pos: -65.5,-12.5
+      parent: 89
+      type: Transform
 - proto: ShuttersNormal
   entities:
   - uid: 7385
@@ -109090,84 +108226,42 @@ entities:
       pos: 41.5,8.5
       parent: 89
       type: Transform
-    - SecondsUntilStateChange: -144373.72
+    - SecondsUntilStateChange: -143389.22
       state: Opening
       type: Door
-    - inputs:
-        Open: []
-        Close: []
-        Toggle:
-        - port: Pressed
-          uid: 7394
-      type: SignalReceiver
   - uid: 7386
     components:
     - rot: -1.5707963267948966 rad
       pos: 41.5,6.5
       parent: 89
       type: Transform
-    - SecondsUntilStateChange: -144373.72
+    - SecondsUntilStateChange: -143389.22
       state: Opening
       type: Door
-    - inputs:
-        Open: []
-        Close: []
-        Toggle:
-        - port: Pressed
-          uid: 7394
-      type: SignalReceiver
   - uid: 7387
     components:
     - rot: -1.5707963267948966 rad
       pos: 41.5,9.5
       parent: 89
       type: Transform
-    - SecondsUntilStateChange: -144373.72
+    - SecondsUntilStateChange: -143389.22
       state: Opening
       type: Door
-    - inputs:
-        Open: []
-        Close: []
-        Toggle:
-        - port: Pressed
-          uid: 7394
-      type: SignalReceiver
   - uid: 10763
     components:
     - pos: -20.5,-14.5
       parent: 89
       type: Transform
-    - inputs:
-        Open: []
-        Close: []
-        Toggle:
-        - port: Pressed
-          uid: 295
-      type: SignalReceiver
   - uid: 10764
     components:
     - pos: -19.5,-14.5
       parent: 89
       type: Transform
-    - inputs:
-        Open: []
-        Close: []
-        Toggle:
-        - port: Pressed
-          uid: 295
-      type: SignalReceiver
   - uid: 10765
     components:
     - pos: -18.5,-14.5
       parent: 89
       type: Transform
-    - inputs:
-        Open: []
-        Close: []
-        Toggle:
-        - port: Pressed
-          uid: 295
-      type: SignalReceiver
 - proto: ShuttersNormalOpen
   entities:
   - uid: 2
@@ -109175,813 +108269,338 @@ entities:
     - pos: -56.5,19.5
       parent: 89
       type: Transform
-    - inputs:
-        Open: []
-        Close: []
-        Toggle:
-        - port: Pressed
-          uid: 8358
-      type: SignalReceiver
   - uid: 5
     components:
     - pos: -57.5,19.5
       parent: 89
       type: Transform
-    - inputs:
-        Open: []
-        Close: []
-        Toggle:
-        - port: Pressed
-          uid: 8358
-      type: SignalReceiver
   - uid: 275
     components:
     - pos: -56.5,23.5
       parent: 89
       type: Transform
-    - inputs:
-        Open: []
-        Close: []
-        Toggle:
-        - port: Pressed
-          uid: 1175
-      type: SignalReceiver
   - uid: 282
     components:
     - pos: -57.5,23.5
       parent: 89
       type: Transform
-    - inputs:
-        Open: []
-        Close: []
-        Toggle:
-        - port: Pressed
-          uid: 1175
-      type: SignalReceiver
   - uid: 1574
     components:
     - pos: -55.5,19.5
       parent: 89
       type: Transform
-    - inputs:
-        Open: []
-        Close: []
-        Toggle:
-        - port: Pressed
-          uid: 8358
-      type: SignalReceiver
   - uid: 4449
     components:
     - rot: -1.5707963267948966 rad
       pos: -16.5,-4.5
       parent: 89
       type: Transform
-    - inputs:
-        Open: []
-        Close: []
-        Toggle:
-        - port: Pressed
-          uid: 4451
-      type: SignalReceiver
   - uid: 4450
     components:
     - rot: -1.5707963267948966 rad
       pos: -16.5,-2.5
       parent: 89
       type: Transform
-    - inputs:
-        Open: []
-        Close: []
-        Toggle:
-        - port: Pressed
-          uid: 4451
-      type: SignalReceiver
   - uid: 6078
     components:
     - pos: -46.5,6.5
       parent: 89
       type: Transform
-    - inputs:
-        Open: []
-        Close: []
-        Toggle:
-        - port: Pressed
-          uid: 6096
-      type: SignalReceiver
   - uid: 6079
     components:
     - pos: -45.5,6.5
       parent: 89
       type: Transform
-    - inputs:
-        Open: []
-        Close: []
-        Toggle:
-        - port: Pressed
-          uid: 6096
-      type: SignalReceiver
   - uid: 6080
     components:
     - pos: -44.5,6.5
       parent: 89
       type: Transform
-    - inputs:
-        Open: []
-        Close: []
-        Toggle:
-        - port: Pressed
-          uid: 6096
-      type: SignalReceiver
   - uid: 6081
     components:
     - pos: -43.5,6.5
       parent: 89
       type: Transform
-    - inputs:
-        Open: []
-        Close: []
-        Toggle:
-        - port: Pressed
-          uid: 6096
-      type: SignalReceiver
   - uid: 8357
     components:
     - pos: -55.5,23.5
       parent: 89
       type: Transform
-    - inputs:
-        Open: []
-        Close: []
-        Toggle:
-        - port: Pressed
-          uid: 1175
-      type: SignalReceiver
   - uid: 9372
     components:
     - pos: -105.5,6.5
       parent: 89
       type: Transform
-    - inputs:
-        Open: []
-        Close: []
-        Toggle:
-        - port: Pressed
-          uid: 9369
-      type: SignalReceiver
   - uid: 9373
     components:
     - pos: -104.5,6.5
       parent: 89
       type: Transform
-    - inputs:
-        Open: []
-        Close: []
-        Toggle:
-        - port: Pressed
-          uid: 9369
-      type: SignalReceiver
   - uid: 9374
     components:
     - pos: -103.5,6.5
       parent: 89
       type: Transform
-    - inputs:
-        Open: []
-        Close: []
-        Toggle:
-        - port: Pressed
-          uid: 9369
-      type: SignalReceiver
   - uid: 9376
     components:
     - pos: -106.5,7.5
       parent: 89
       type: Transform
-    - inputs:
-        Open: []
-        Close: []
-        Toggle:
-        - port: Pressed
-          uid: 9369
-      type: SignalReceiver
   - uid: 9377
     components:
     - pos: -106.5,8.5
       parent: 89
       type: Transform
-    - inputs:
-        Open: []
-        Close: []
-        Toggle:
-        - port: Pressed
-          uid: 9369
-      type: SignalReceiver
   - uid: 9378
     components:
     - pos: -106.5,9.5
       parent: 89
       type: Transform
-    - inputs:
-        Open: []
-        Close: []
-        Toggle:
-        - port: Pressed
-          uid: 9369
-      type: SignalReceiver
   - uid: 9380
     components:
     - pos: -88.5,5.5
       parent: 89
       type: Transform
-    - inputs:
-        Open: []
-        Close: []
-        Toggle:
-        - port: Pressed
-          uid: 6554
-      type: SignalReceiver
   - uid: 9381
     components:
     - pos: -87.5,5.5
       parent: 89
       type: Transform
-    - inputs:
-        Open: []
-        Close: []
-        Toggle:
-        - port: Pressed
-          uid: 6554
-      type: SignalReceiver
   - uid: 9382
     components:
     - pos: -86.5,5.5
       parent: 89
       type: Transform
-    - inputs:
-        Open: []
-        Close: []
-        Toggle:
-        - port: Pressed
-          uid: 6554
-      type: SignalReceiver
   - uid: 9383
     components:
     - pos: -85.5,5.5
       parent: 89
       type: Transform
-    - inputs:
-        Open: []
-        Close: []
-        Toggle:
-        - port: Pressed
-          uid: 6554
-      type: SignalReceiver
   - uid: 9384
     components:
     - pos: -83.5,7.5
       parent: 89
       type: Transform
-    - inputs:
-        Open: []
-        Close: []
-        Toggle:
-        - port: Pressed
-          uid: 6554
-      type: SignalReceiver
   - uid: 9385
     components:
     - pos: -83.5,8.5
       parent: 89
       type: Transform
-    - inputs:
-        Open: []
-        Close: []
-        Toggle:
-        - port: Pressed
-          uid: 6554
-      type: SignalReceiver
   - uid: 9386
     components:
     - pos: -83.5,9.5
       parent: 89
       type: Transform
-    - inputs:
-        Open: []
-        Close: []
-        Toggle:
-        - port: Pressed
-          uid: 6554
-      type: SignalReceiver
   - uid: 9387
     components:
     - pos: -83.5,10.5
       parent: 89
       type: Transform
-    - inputs:
-        Open: []
-        Close: []
-        Toggle:
-        - port: Pressed
-          uid: 6554
-      type: SignalReceiver
   - uid: 9388
     components:
     - pos: -70.5,10.5
       parent: 89
       type: Transform
-    - inputs:
-        Open: []
-        Close: []
-        Toggle:
-        - port: Pressed
-          uid: 9413
-      type: SignalReceiver
   - uid: 9389
     components:
     - pos: -70.5,9.5
       parent: 89
       type: Transform
-    - inputs:
-        Open: []
-        Close: []
-        Toggle:
-        - port: Pressed
-          uid: 9413
-      type: SignalReceiver
   - uid: 9390
     components:
     - pos: -66.5,6.5
       parent: 89
       type: Transform
-    - inputs:
-        Open: []
-        Close: []
-        Toggle:
-        - port: Pressed
-          uid: 9413
-      type: SignalReceiver
   - uid: 9391
     components:
     - pos: -65.5,6.5
       parent: 89
       type: Transform
-    - inputs:
-        Open: []
-        Close: []
-        Toggle:
-        - port: Pressed
-          uid: 9413
-      type: SignalReceiver
   - uid: 9396
     components:
     - pos: -47.5,3.5
       parent: 89
       type: Transform
-    - inputs:
-        Open: []
-        Close: []
-        Toggle:
-        - port: Pressed
-          uid: 9401
-      type: SignalReceiver
   - uid: 9397
     components:
     - pos: -47.5,4.5
       parent: 89
       type: Transform
-    - inputs:
-        Open: []
-        Close: []
-        Toggle:
-        - port: Pressed
-          uid: 9401
-      type: SignalReceiver
   - uid: 9398
     components:
     - pos: -47.5,5.5
       parent: 89
       type: Transform
-    - inputs:
-        Open: []
-        Close: []
-        Toggle:
-        - port: Pressed
-          uid: 9401
-      type: SignalReceiver
   - uid: 9399
     components:
     - pos: -65.5,14.5
       parent: 89
       type: Transform
-    - inputs:
-        Open: []
-        Close: []
-        Toggle:
-        - port: Pressed
-          uid: 9413
-      type: SignalReceiver
   - uid: 9400
     components:
     - pos: -65.5,13.5
       parent: 89
       type: Transform
-    - inputs:
-        Open: []
-        Close: []
-        Toggle:
-        - port: Pressed
-          uid: 9413
-      type: SignalReceiver
   - uid: 9416
     components:
     - pos: -42.5,5.5
       parent: 89
       type: Transform
-    - inputs:
-        Open: []
-        Close: []
-        Toggle:
-        - port: Pressed
-          uid: 9401
-      type: SignalReceiver
   - uid: 9417
     components:
     - pos: -42.5,4.5
       parent: 89
       type: Transform
-    - inputs:
-        Open: []
-        Close: []
-        Toggle:
-        - port: Pressed
-          uid: 9401
-      type: SignalReceiver
   - uid: 9418
     components:
     - pos: -42.5,3.5
       parent: 89
       type: Transform
-    - inputs:
-        Open: []
-        Close: []
-        Toggle:
-        - port: Pressed
-          uid: 9401
-      type: SignalReceiver
   - uid: 9422
     components:
     - pos: -21.5,3.5
       parent: 89
       type: Transform
-    - inputs:
-        Open: []
-        Close: []
-        Toggle:
-        - port: Pressed
-          uid: 9420
-      type: SignalReceiver
   - uid: 9423
     components:
     - pos: -21.5,2.5
       parent: 89
       type: Transform
-    - inputs:
-        Open: []
-        Close: []
-        Toggle:
-        - port: Pressed
-          uid: 9420
-      type: SignalReceiver
   - uid: 9424
     components:
     - pos: -21.5,1.5
       parent: 89
       type: Transform
-    - inputs:
-        Open: []
-        Close: []
-        Toggle:
-        - port: Pressed
-          uid: 9420
-      type: SignalReceiver
   - uid: 9425
     components:
     - pos: -12.5,5.5
       parent: 89
       type: Transform
-    - inputs:
-        Open: []
-        Close: []
-        Toggle:
-        - port: Pressed
-          uid: 9421
-      type: SignalReceiver
   - uid: 9426
     components:
     - pos: -11.5,5.5
       parent: 89
       type: Transform
-    - inputs:
-        Open: []
-        Close: []
-        Toggle:
-        - port: Pressed
-          uid: 9421
-      type: SignalReceiver
   - uid: 9427
     components:
     - pos: -14.5,13.5
       parent: 89
       type: Transform
-    - inputs:
-        Open: []
-        Close: []
-        Toggle:
-        - port: Pressed
-          uid: 9421
-      type: SignalReceiver
   - uid: 10554
     components:
     - pos: -82.5,18.5
       parent: 89
       type: Transform
-    - inputs:
-        Open: []
-        Close: []
-        Toggle:
-        - port: Pressed
-          uid: 10560
-      type: SignalReceiver
   - uid: 10555
     components:
     - pos: -81.5,18.5
       parent: 89
       type: Transform
-    - inputs:
-        Open: []
-        Close: []
-        Toggle:
-        - port: Pressed
-          uid: 10560
-      type: SignalReceiver
   - uid: 10556
     components:
     - pos: -80.5,18.5
       parent: 89
       type: Transform
-    - inputs:
-        Open: []
-        Close: []
-        Toggle:
-        - port: Pressed
-          uid: 10560
-      type: SignalReceiver
   - uid: 10557
     components:
     - pos: -80.5,14.5
       parent: 89
       type: Transform
-    - inputs:
-        Open: []
-        Close: []
-        Toggle:
-        - port: Pressed
-          uid: 10564
-      type: SignalReceiver
   - uid: 10558
     components:
     - pos: -82.5,14.5
       parent: 89
       type: Transform
-    - inputs:
-        Open: []
-        Close: []
-        Toggle:
-        - port: Pressed
-          uid: 10564
-      type: SignalReceiver
   - uid: 10767
     components:
     - pos: 4.5,-32.5
       parent: 89
       type: Transform
-    - inputs:
-        Open: []
-        Close: []
-        Toggle:
-        - port: Pressed
-          uid: 11036
-      type: SignalReceiver
   - uid: 10770
     components:
     - pos: 1.5,10.5
       parent: 89
       type: Transform
-    - inputs:
-        Open:
-        - port: On
-          uid: 11669
-        Close:
-        - port: Off
-          uid: 11669
-        Toggle: []
-      type: SignalReceiver
   - uid: 10778
     components:
     - pos: 3.5,10.5
       parent: 89
       type: Transform
-    - inputs:
-        Open:
-        - port: On
-          uid: 11669
-        Close:
-        - port: Off
-          uid: 11669
-        Toggle: []
-      type: SignalReceiver
   - uid: 10905
     components:
     - pos: -10.5,-15.5
       parent: 89
       type: Transform
-    - inputs:
-        Open: []
-        Close: []
-        Toggle:
-        - port: Pressed
-          uid: 10934
-      type: SignalReceiver
   - uid: 10906
     components:
     - pos: -11.5,-15.5
       parent: 89
       type: Transform
-    - inputs:
-        Open: []
-        Close: []
-        Toggle:
-        - port: Pressed
-          uid: 10934
-      type: SignalReceiver
   - uid: 10907
     components:
     - pos: -9.5,-15.5
       parent: 89
       type: Transform
-    - inputs:
-        Open: []
-        Close: []
-        Toggle:
-        - port: Pressed
-          uid: 10934
-      type: SignalReceiver
   - uid: 10909
     components:
     - pos: -8.5,-15.5
       parent: 89
       type: Transform
-    - inputs:
-        Open: []
-        Close: []
-        Toggle:
-        - port: Pressed
-          uid: 10934
-      type: SignalReceiver
   - uid: 11070
     components:
     - pos: 1.5,-32.5
       parent: 89
       type: Transform
-    - inputs:
-        Open: []
-        Close: []
-        Toggle:
-        - port: Pressed
-          uid: 11036
-      type: SignalReceiver
   - uid: 11330
     components:
     - pos: 2.5,10.5
       parent: 89
       type: Transform
-    - inputs:
-        Open:
-        - port: On
-          uid: 11669
-        Close:
-        - port: Off
-          uid: 11669
-        Toggle: []
-      type: SignalReceiver
   - uid: 12630
     components:
     - pos: 11.5,15.5
       parent: 89
       type: Transform
-    - inputs:
-        Open: []
-        Close: []
-        Toggle:
-        - port: Pressed
-          uid: 1723
-      type: SignalReceiver
   - uid: 12633
     components:
     - pos: 6.5,15.5
       parent: 89
       type: Transform
-    - inputs:
-        Open: []
-        Close: []
-        Toggle:
-        - port: Pressed
-          uid: 1723
-      type: SignalReceiver
   - uid: 12635
     components:
     - pos: 10.5,15.5
       parent: 89
       type: Transform
-    - inputs:
-        Open: []
-        Close: []
-        Toggle:
-        - port: Pressed
-          uid: 1723
-      type: SignalReceiver
   - uid: 12637
     components:
     - pos: 5.5,15.5
       parent: 89
       type: Transform
-    - inputs:
-        Open: []
-        Close: []
-        Toggle:
-        - port: Pressed
-          uid: 1723
-      type: SignalReceiver
   - uid: 14789
     components:
     - pos: 3.5,-32.5
       parent: 89
       type: Transform
-    - inputs:
-        Open: []
-        Close: []
-        Toggle:
-        - port: Pressed
-          uid: 11036
-      type: SignalReceiver
   - uid: 15196
     components:
     - pos: 18.5,4.5
       parent: 89
       type: Transform
-    - inputs:
-        Open: []
-        Close: []
-        Toggle:
-        - port: Pressed
-          uid: 14809
-      type: SignalReceiver
   - uid: 15754
     components:
     - pos: 2.5,-32.5
       parent: 89
       type: Transform
-    - inputs:
-        Open: []
-        Close: []
-        Toggle:
-        - port: Pressed
-          uid: 11036
-      type: SignalReceiver
   - uid: 16769
     components:
     - pos: 20.5,4.5
       parent: 89
       type: Transform
-    - inputs:
-        Open: []
-        Close: []
-        Toggle:
-        - port: Pressed
-          uid: 14809
-      type: SignalReceiver
   - uid: 17011
     components:
     - pos: 17.5,4.5
       parent: 89
       type: Transform
-    - inputs:
-        Open: []
-        Close: []
-        Toggle:
-        - port: Pressed
-          uid: 14809
-      type: SignalReceiver
 - proto: ShuttersRadiationOpen
   entities:
   - uid: 20095
@@ -109989,61 +108608,26 @@ entities:
     - pos: -136.5,-5.5
       parent: 89
       type: Transform
-    - inputs:
-        Open: []
-        Close: []
-        Toggle:
-        - port: Pressed
-          uid: 20104
-      type: SignalReceiver
   - uid: 20096
     components:
     - pos: -136.5,-6.5
       parent: 89
       type: Transform
-    - inputs:
-        Open: []
-        Close: []
-        Toggle:
-        - port: Pressed
-          uid: 20104
-      type: SignalReceiver
   - uid: 20097
     components:
     - pos: -136.5,-7.5
       parent: 89
       type: Transform
-    - inputs:
-        Open: []
-        Close: []
-        Toggle:
-        - port: Pressed
-          uid: 20104
-      type: SignalReceiver
   - uid: 20098
     components:
     - pos: -136.5,-8.5
       parent: 89
       type: Transform
-    - inputs:
-        Open: []
-        Close: []
-        Toggle:
-        - port: Pressed
-          uid: 20104
-      type: SignalReceiver
   - uid: 20099
     components:
     - pos: -136.5,-9.5
       parent: 89
       type: Transform
-    - inputs:
-        Open: []
-        Close: []
-        Toggle:
-        - port: Pressed
-          uid: 20104
-      type: SignalReceiver
 - proto: ShuttersWindow
   entities:
   - uid: 15207
@@ -110052,73 +108636,28 @@ entities:
       pos: 22.5,27.5
       parent: 89
       type: Transform
-    - inputs:
-        Open:
-        - port: On
-          uid: 14971
-        Close:
-        - port: Off
-          uid: 14971
-        Toggle: []
-      type: SignalReceiver
   - uid: 15208
     components:
     - rot: -1.5707963267948966 rad
       pos: 26.5,27.5
       parent: 89
       type: Transform
-    - inputs:
-        Open:
-        - port: On
-          uid: 15270
-        Close:
-        - port: Off
-          uid: 15270
-        Toggle: []
-      type: SignalReceiver
   - uid: 15365
     components:
     - rot: 1.5707963267948966 rad
       pos: 12.5,24.5
       parent: 89
       type: Transform
-    - inputs:
-        Open:
-        - port: On
-          uid: 15476
-        Close:
-        - port: Off
-          uid: 15476
-        Toggle: []
-      type: SignalReceiver
   - uid: 15441
     components:
     - pos: 10.5,33.5
       parent: 89
       type: Transform
-    - inputs:
-        Open:
-        - port: On
-          uid: 11210
-        Close:
-        - port: Off
-          uid: 11210
-        Toggle: []
-      type: SignalReceiver
   - uid: 16504
     components:
     - pos: 9.5,33.5
       parent: 89
       type: Transform
-    - inputs:
-        Open:
-        - port: On
-          uid: 11210
-        Close:
-        - port: Off
-          uid: 11210
-        Toggle: []
-      type: SignalReceiver
 - proto: ShuttersWindowOpen
   entities:
   - uid: 4446
@@ -110127,51 +108666,23 @@ entities:
       pos: -16.5,-1.5
       parent: 89
       type: Transform
-    - inputs:
-        Open: []
-        Close: []
-        Toggle:
-        - port: Pressed
-          uid: 4451
-      type: SignalReceiver
   - uid: 4447
     components:
     - rot: -1.5707963267948966 rad
       pos: -16.5,-3.5
       parent: 89
       type: Transform
-    - inputs:
-        Open: []
-        Close: []
-        Toggle:
-        - port: Pressed
-          uid: 4451
-      type: SignalReceiver
   - uid: 4448
     components:
     - rot: -1.5707963267948966 rad
       pos: -16.5,-5.5
       parent: 89
       type: Transform
-    - inputs:
-        Open: []
-        Close: []
-        Toggle:
-        - port: Pressed
-          uid: 4451
-      type: SignalReceiver
   - uid: 10559
     components:
     - pos: -81.5,14.5
       parent: 89
       type: Transform
-    - inputs:
-        Open: []
-        Close: []
-        Toggle:
-        - port: Pressed
-          uid: 10564
-      type: SignalReceiver
 - proto: SignAi
   entities:
   - uid: 945
@@ -110186,39 +108697,16 @@ entities:
     - pos: -8.5,-42.5
       parent: 89
       type: Transform
-    - outputs:
-        Pressed:
-        - port: Toggle
-          uid: 254
-      type: SignalTransmitter
   - uid: 295
     components:
     - pos: -21.492493,-14.729652
       parent: 89
       type: Transform
-    - outputs:
-        Pressed:
-        - port: Toggle
-          uid: 10763
-        - port: Toggle
-          uid: 10764
-        - port: Toggle
-          uid: 10765
-      type: SignalTransmitter
   - uid: 1175
     components:
     - pos: -60.283222,21.970642
       parent: 89
       type: Transform
-    - outputs:
-        Pressed:
-        - port: Toggle
-          uid: 282
-        - port: Toggle
-          uid: 275
-        - port: Toggle
-          uid: 8357
-      type: SignalTransmitter
   - uid: 1283
     components:
     - desc: Эта кнопка активирует внешний гермозатвор.
@@ -110228,11 +108716,6 @@ entities:
       pos: -0.696833,-42.499794
       parent: 89
       type: Transform
-    - outputs:
-        Pressed:
-        - port: Toggle
-          uid: 260
-      type: SignalTransmitter
   - uid: 1284
     components:
     - desc: Эта кнопка активирует внешний гермозатвор.
@@ -110242,92 +108725,39 @@ entities:
       pos: -4.298002,-42.499794
       parent: 89
       type: Transform
-    - outputs:
-        Pressed:
-        - port: Toggle
-          uid: 254
-      type: SignalTransmitter
   - uid: 1723
     components:
     - pos: 7.4637437,19.26007
       parent: 89
       type: Transform
-    - outputs:
-        Pressed:
-        - port: Toggle
-          uid: 12633
-        - port: Toggle
-          uid: 12637
-        - port: Toggle
-          uid: 12635
-        - port: Toggle
-          uid: 12630
-      type: SignalTransmitter
   - uid: 2238
     components:
     - pos: 29.5,7.5
       parent: 89
       type: Transform
-    - outputs:
-        Pressed:
-        - port: Toggle
-          uid: 2200
-        - port: Toggle
-          uid: 6306
-      type: SignalTransmitter
   - uid: 2626
     components:
     - rot: 3.141592653589793 rad
       pos: -83.5,-20.5
       parent: 89
       type: Transform
-    - outputs:
-        Pressed:
-        - port: Toggle
-          uid: 2295
-      type: SignalTransmitter
   - uid: 2627
     components:
     - rot: -1.5707963267948966 rad
       pos: -82.5,-23.5
       parent: 89
       type: Transform
-    - outputs:
-        Pressed:
-        - port: Toggle
-          uid: 2295
-      type: SignalTransmitter
   - uid: 4451
     components:
     - rot: 3.141592653589793 rad
       pos: -14.5,-6.5
       parent: 89
       type: Transform
-    - outputs:
-        Pressed:
-        - port: Toggle
-          uid: 4448
-        - port: Toggle
-          uid: 4449
-        - port: Toggle
-          uid: 4447
-        - port: Toggle
-          uid: 4450
-        - port: Toggle
-          uid: 4446
-      type: SignalTransmitter
   - uid: 4798
     components:
     - pos: -64.5,-18.5
       parent: 89
       type: Transform
-    - outputs:
-        Pressed:
-        - port: Toggle
-          uid: 4794
-        - port: Toggle
-          uid: 4720
-      type: SignalTransmitter
     - type: ItemCooldown
   - uid: 4799
     components:
@@ -110336,13 +108766,6 @@ entities:
       type: Transform
     - state: True
       type: SignalSwitch
-    - outputs:
-        Pressed:
-        - port: Toggle
-          uid: 4795
-        - port: Toggle
-          uid: 4797
-      type: SignalTransmitter
     - type: ItemCooldown
   - uid: 5413
     components:
@@ -110353,65 +108776,21 @@ entities:
       pos: -0.5,-42.5
       parent: 89
       type: Transform
-    - outputs:
-        Pressed:
-        - port: Toggle
-          uid: 246
-      type: SignalTransmitter
   - uid: 6096
     components:
     - pos: -43.5,10.5
       parent: 89
       type: Transform
-    - outputs:
-        Pressed:
-        - port: Toggle
-          uid: 6081
-        - port: Toggle
-          uid: 6080
-        - port: Toggle
-          uid: 6079
-        - port: Toggle
-          uid: 6078
-      type: SignalTransmitter
   - uid: 6145
     components:
     - pos: -53.797592,-12.679656
       parent: 89
       type: Transform
-    - outputs:
-        Pressed:
-        - port: Toggle
-          uid: 4856
-        - port: Toggle
-          uid: 4736
-        - port: Toggle
-          uid: 4735
-      type: SignalTransmitter
   - uid: 6554
     components:
     - pos: -86.19522,13.859062
       parent: 89
       type: Transform
-    - outputs:
-        Pressed:
-        - port: Toggle
-          uid: 9387
-        - port: Toggle
-          uid: 9386
-        - port: Toggle
-          uid: 9385
-        - port: Toggle
-          uid: 9384
-        - port: Toggle
-          uid: 9383
-        - port: Toggle
-          uid: 9381
-        - port: Toggle
-          uid: 9382
-        - port: Toggle
-          uid: 9380
-      type: SignalTransmitter
   - uid: 7394
     components:
     - pos: 46.5,9.5
@@ -110419,109 +108798,40 @@ entities:
       type: Transform
     - state: True
       type: SignalSwitch
-    - outputs:
-        Pressed:
-        - port: Toggle
-          uid: 7387
-        - port: Toggle
-          uid: 7385
-        - port: Toggle
-          uid: 7386
-      type: SignalTransmitter
     - type: ItemCooldown
   - uid: 7694
     components:
     - pos: -99.74609,28.376194
       parent: 89
       type: Transform
-    - outputs:
-        Pressed:
-        - port: Toggle
-          uid: 7670
-      type: SignalTransmitter
     - type: ItemCooldown
   - uid: 7695
     components:
     - pos: -99.43359,28.376194
       parent: 89
       type: Transform
-    - outputs:
-        Pressed:
-        - port: Toggle
-          uid: 7679
-      type: SignalTransmitter
     - type: ItemCooldown
   - uid: 8358
     components:
     - pos: -60.533222,21.970642
       parent: 89
       type: Transform
-    - outputs:
-        Pressed:
-        - port: Toggle
-          uid: 5
-        - port: Toggle
-          uid: 2
-        - port: Toggle
-          uid: 1574
-      type: SignalTransmitter
   - uid: 8816
     components:
     - rot: -1.5707963267948966 rad
       pos: -120.5,-4.5
       parent: 89
       type: Transform
-    - outputs:
-        Pressed:
-        - port: Toggle
-          uid: 8825
-        - port: Toggle
-          uid: 8823
-        - port: Toggle
-          uid: 8822
-        - port: Toggle
-          uid: 8821
-      type: SignalTransmitter
   - uid: 9369
     components:
     - pos: -101.5,11.5
       parent: 89
       type: Transform
-    - outputs:
-        Pressed:
-        - port: Toggle
-          uid: 9374
-        - port: Toggle
-          uid: 9373
-        - port: Toggle
-          uid: 9372
-        - port: Toggle
-          uid: 9376
-        - port: Toggle
-          uid: 9377
-        - port: Toggle
-          uid: 9378
-      type: SignalTransmitter
   - uid: 9401
     components:
     - pos: -44.991,1.7379127
       parent: 89
       type: Transform
-    - outputs:
-        Pressed:
-        - port: Toggle
-          uid: 9418
-        - port: Toggle
-          uid: 9417
-        - port: Toggle
-          uid: 9416
-        - port: Toggle
-          uid: 9396
-        - port: Toggle
-          uid: 9397
-        - port: Toggle
-          uid: 9398
-      type: SignalTransmitter
   - uid: 9413
     components:
     - name: локдаун
@@ -110529,73 +108839,26 @@ entities:
     - pos: -59.027164,8.84472
       parent: 89
       type: Transform
-    - outputs:
-        Pressed:
-        - port: Toggle
-          uid: 9391
-        - port: Toggle
-          uid: 9390
-        - port: Toggle
-          uid: 9389
-        - port: Toggle
-          uid: 9388
-        - port: Toggle
-          uid: 9400
-        - port: Toggle
-          uid: 9399
-      type: SignalTransmitter
   - uid: 9420
     components:
     - pos: -19.140633,6.0269427
       parent: 89
       type: Transform
-    - outputs:
-        Pressed:
-        - port: Toggle
-          uid: 9422
-        - port: Toggle
-          uid: 9423
-        - port: Toggle
-          uid: 9424
-      type: SignalTransmitter
   - uid: 9421
     components:
     - pos: -16.984383,8.214443
       parent: 89
       type: Transform
-    - outputs:
-        Pressed:
-        - port: Toggle
-          uid: 9426
-        - port: Toggle
-          uid: 9427
-        - port: Toggle
-          uid: 9425
-      type: SignalTransmitter
   - uid: 10507
     components:
     - pos: 6.246395,-3.1596317
       parent: 89
       type: Transform
-    - outputs:
-        Pressed:
-        - port: Toggle
-          uid: 5119
-      type: SignalTransmitter
   - uid: 10560
     components:
     - pos: -84.20563,16.929585
       parent: 89
       type: Transform
-    - outputs:
-        Pressed:
-        - port: Toggle
-          uid: 10554
-        - port: Toggle
-          uid: 10555
-        - port: Toggle
-          uid: 10556
-      type: SignalTransmitter
   - uid: 10564
     components:
     - pos: -84.42946,16.934818
@@ -110603,88 +108866,34 @@ entities:
       type: Transform
     - state: True
       type: SignalSwitch
-    - outputs:
-        Pressed:
-        - port: Toggle
-          uid: 10558
-        - port: Toggle
-          uid: 10559
-        - port: Toggle
-          uid: 10557
-      type: SignalTransmitter
     - type: ItemCooldown
   - uid: 10934
     components:
     - pos: -7.57625,-15.701462
       parent: 89
       type: Transform
-    - outputs:
-        Pressed:
-        - port: Toggle
-          uid: 10909
-        - port: Toggle
-          uid: 10907
-        - port: Toggle
-          uid: 10905
-        - port: Toggle
-          uid: 10906
-      type: SignalTransmitter
     - type: ItemCooldown
   - uid: 11036
     components:
     - pos: 0.7500007,-28.502241
       parent: 89
       type: Transform
-    - outputs:
-        Pressed:
-        - port: Toggle
-          uid: 11070
-        - port: Toggle
-          uid: 15754
-        - port: Toggle
-          uid: 14789
-        - port: Toggle
-          uid: 10767
-      type: SignalTransmitter
   - uid: 14728
     components:
     - rot: 1.5707963267948966 rad
       pos: -12.5,13.5
       parent: 89
       type: Transform
-    - outputs:
-        Pressed:
-        - port: Toggle
-          uid: 1657
-        - port: Toggle
-          uid: 1658
-      type: SignalTransmitter
   - uid: 14809
     components:
     - pos: 22.036852,7.3139024
       parent: 89
       type: Transform
-    - outputs:
-        Pressed:
-        - port: Toggle
-          uid: 16769
-        - port: Toggle
-          uid: 15196
-        - port: Toggle
-          uid: 17011
-      type: SignalTransmitter
   - uid: 14903
     components:
     - pos: 17.5,12.5
       parent: 89
       type: Transform
-    - outputs:
-        Pressed:
-        - port: Toggle
-          uid: 11218
-        - port: Toggle
-          uid: 14932
-      type: SignalTransmitter
   - uid: 16804
     components:
     - desc: Эта кнопка активирует внутренний гермозатвор.
@@ -110694,41 +108903,16 @@ entities:
       pos: -4.5,-42.5
       parent: 89
       type: Transform
-    - outputs:
-        Pressed:
-        - port: Toggle
-          uid: 5430
-      type: SignalTransmitter
   - uid: 17017
     components:
     - pos: 25.5,10.5
       parent: 89
       type: Transform
-    - outputs:
-        Pressed:
-        - port: Toggle
-          uid: 14961
-        - port: Toggle
-          uid: 11217
-      type: SignalTransmitter
   - uid: 20104
     components:
     - pos: -134.5,-4.5
       parent: 89
       type: Transform
-    - outputs:
-        Pressed:
-        - port: Toggle
-          uid: 20095
-        - port: Toggle
-          uid: 20096
-        - port: Toggle
-          uid: 20097
-        - port: Toggle
-          uid: 20098
-        - port: Toggle
-          uid: 20099
-      type: SignalTransmitter
 - proto: SignalSwitch
   entities:
   - uid: 11210
@@ -110737,40 +108921,12 @@ entities:
       pos: 8.5,30.5
       parent: 89
       type: Transform
-    - outputs:
-        On:
-        - port: Open
-          uid: 15441
-        - port: Open
-          uid: 16504
-        Off:
-        - port: Close
-          uid: 15441
-        - port: Close
-          uid: 16504
-      type: SignalTransmitter
   - uid: 11669
     components:
     - rot: -1.5707963267948966 rad
       pos: 4.5,7.5
       parent: 89
       type: Transform
-    - outputs:
-        On:
-        - port: Open
-          uid: 10778
-        - port: Open
-          uid: 11330
-        - port: Open
-          uid: 10770
-        Off:
-        - port: Close
-          uid: 10778
-        - port: Close
-          uid: 11330
-        - port: Close
-          uid: 10770
-      type: SignalTransmitter
   - uid: 14971
     components:
     - name: переключатель задвижки
@@ -110779,14 +108935,6 @@ entities:
       pos: 22.5,25.5
       parent: 89
       type: Transform
-    - outputs:
-        On:
-        - port: Open
-          uid: 15207
-        Off:
-        - port: Close
-          uid: 15207
-      type: SignalTransmitter
   - uid: 15269
     components:
     - name: переключатель шлюза
@@ -110795,14 +108943,6 @@ entities:
       pos: 22.5,25.5
       parent: 89
       type: Transform
-    - outputs:
-        On:
-        - port: Open
-          uid: 15205
-        Off:
-        - port: Close
-          uid: 15205
-      type: SignalTransmitter
   - uid: 15270
     components:
     - name: переключатель задвижки
@@ -110811,14 +108951,6 @@ entities:
       pos: 26.5,25.5
       parent: 89
       type: Transform
-    - outputs:
-        On:
-        - port: Open
-          uid: 15208
-        Off:
-        - port: Close
-          uid: 15208
-      type: SignalTransmitter
   - uid: 15271
     components:
     - name: переключатель шлюза
@@ -110827,28 +108959,12 @@ entities:
       pos: 26.5,25.5
       parent: 89
       type: Transform
-    - outputs:
-        On:
-        - port: Open
-          uid: 15206
-        Off:
-        - port: Close
-          uid: 15206
-      type: SignalTransmitter
   - uid: 15476
     components:
     - rot: 1.5707963267948966 rad
       pos: 12.5,25.5
       parent: 89
       type: Transform
-    - outputs:
-        On:
-        - port: Open
-          uid: 15365
-        Off:
-        - port: Close
-          uid: 15365
-      type: SignalTransmitter
 - proto: SignAnomaly
   entities:
   - uid: 8409
@@ -111968,6 +110084,17 @@ entities:
     - pos: -36.419117,-0.2933004
       parent: 89
       type: Transform
+- proto: SpaceCash1000
+  entities:
+  - uid: 15353
+    components:
+    - flags: InContainer
+      type: MetaData
+    - parent: 15319
+      type: Transform
+    - canCollide: False
+      type: Physics
+    - type: InsideEntityStorage
 - proto: SpaceVillainArcade
   entities:
   - uid: 14908
@@ -112471,6 +110598,11 @@ entities:
     - pos: 15.5,12.5
       parent: 89
       type: Transform
+  - uid: 19811
+    components:
+    - pos: 25.5,12.5
+      parent: 89
+      type: Transform
 - proto: SpawnPointMime
   entities:
   - uid: 4277
@@ -112490,13 +110622,6 @@ entities:
   - uid: 10785
     components:
     - pos: -1.5,2.5
-      parent: 89
-      type: Transform
-- proto: SpawnPointParamedic
-  entities:
-  - uid: 7114
-    components:
-    - pos: 25.5,12.5
       parent: 89
       type: Transform
 - proto: SpawnPointPsychologist
@@ -117496,71 +115621,6 @@ entities:
     - pos: -61.5,-17.5
       parent: 89
       type: Transform
-    - outputs:
-        Left:
-        - port: Forward
-          uid: 4822
-        - port: Forward
-          uid: 4823
-        - port: Forward
-          uid: 4824
-        - port: Forward
-          uid: 4825
-        - port: Forward
-          uid: 4826
-        - port: Forward
-          uid: 4831
-        - port: Forward
-          uid: 4830
-        - port: Forward
-          uid: 4829
-        - port: Forward
-          uid: 4828
-        - port: Forward
-          uid: 4827
-        Right:
-        - port: Reverse
-          uid: 4822
-        - port: Reverse
-          uid: 4823
-        - port: Reverse
-          uid: 4824
-        - port: Reverse
-          uid: 4825
-        - port: Reverse
-          uid: 4826
-        - port: Reverse
-          uid: 4831
-        - port: Reverse
-          uid: 4830
-        - port: Reverse
-          uid: 4829
-        - port: Reverse
-          uid: 4828
-        - port: Reverse
-          uid: 4827
-        Middle:
-        - port: Off
-          uid: 4822
-        - port: Off
-          uid: 4823
-        - port: Off
-          uid: 4824
-        - port: Off
-          uid: 4825
-        - port: Off
-          uid: 4826
-        - port: Off
-          uid: 4831
-        - port: Off
-          uid: 4830
-        - port: Off
-          uid: 4829
-        - port: Off
-          uid: 4828
-        - port: Off
-          uid: 4827
-      type: SignalTransmitter
     - type: ItemCooldown
   - uid: 5122
     components:
@@ -117577,89 +115637,6 @@ entities:
     - pos: -96.5,26.5
       parent: 89
       type: Transform
-    - outputs:
-        Left:
-        - port: Forward
-          uid: 7676
-        - port: Forward
-          uid: 7675
-        - port: Forward
-          uid: 7661
-        - port: Forward
-          uid: 7666
-        - port: Forward
-          uid: 3618
-        - port: Forward
-          uid: 7665
-        - port: Forward
-          uid: 7674
-        - port: Forward
-          uid: 7664
-        - port: Forward
-          uid: 7673
-        - port: Forward
-          uid: 7663
-        - port: Forward
-          uid: 7672
-        - port: Forward
-          uid: 7671
-        - port: Forward
-          uid: 7662
-        Right:
-        - port: Reverse
-          uid: 7676
-        - port: Reverse
-          uid: 7675
-        - port: Reverse
-          uid: 7661
-        - port: Reverse
-          uid: 7666
-        - port: Reverse
-          uid: 3618
-        - port: Reverse
-          uid: 7665
-        - port: Reverse
-          uid: 7674
-        - port: Reverse
-          uid: 7664
-        - port: Reverse
-          uid: 7673
-        - port: Reverse
-          uid: 7663
-        - port: Reverse
-          uid: 7672
-        - port: Reverse
-          uid: 7671
-        - port: Reverse
-          uid: 7662
-        Middle:
-        - port: Off
-          uid: 7676
-        - port: Off
-          uid: 7675
-        - port: Off
-          uid: 7661
-        - port: Off
-          uid: 7666
-        - port: Off
-          uid: 3618
-        - port: Off
-          uid: 7665
-        - port: Off
-          uid: 7674
-        - port: Off
-          uid: 7664
-        - port: Off
-          uid: 7673
-        - port: Off
-          uid: 7663
-        - port: Off
-          uid: 7672
-        - port: Off
-          uid: 7671
-        - port: Off
-          uid: 7662
-      type: SignalTransmitter
     - type: ItemCooldown
 - proto: UniformPrinter
   entities:
@@ -117817,6 +115794,22 @@ entities:
     - pos: 44.5,10.5
       parent: 89
       type: Transform
+- proto: VendingMachineChang
+  entities:
+  - uid: 8159
+    components:
+    - flags: SessionSpecific
+      type: MetaData
+    - pos: -2.5,37.5
+      parent: 89
+      type: Transform
+  - uid: 10152
+    components:
+    - flags: SessionSpecific
+      type: MetaData
+    - pos: -28.5,21.5
+      parent: 89
+      type: Transform
 - proto: VendingMachineChapel
   entities:
   - uid: 5246
@@ -117844,6 +115837,50 @@ entities:
     - pos: -12.5,-5.5
       parent: 89
       type: Transform
+- proto: VendingMachineCigs
+  entities:
+  - uid: 3006
+    components:
+    - flags: SessionSpecific
+      type: MetaData
+    - pos: 36.5,3.5
+      parent: 89
+      type: Transform
+  - uid: 4042
+    components:
+    - flags: SessionSpecific
+      type: MetaData
+    - pos: 1.5,-22.5
+      parent: 89
+      type: Transform
+  - uid: 4228
+    components:
+    - flags: SessionSpecific
+      type: MetaData
+    - pos: 15.5,-5.5
+      parent: 89
+      type: Transform
+  - uid: 5598
+    components:
+    - flags: SessionSpecific
+      type: MetaData
+    - pos: -23.5,-8.5
+      parent: 89
+      type: Transform
+  - uid: 6098
+    components:
+    - flags: SessionSpecific
+      type: MetaData
+    - pos: -67.5,1.5
+      parent: 89
+      type: Transform
+  - uid: 8084
+    components:
+    - flags: SessionSpecific
+      type: MetaData
+    - pos: -8.5,33.5
+      parent: 89
+      type: Transform
 - proto: VendingMachineClothing
   entities:
   - uid: 7079
@@ -117858,6 +115895,38 @@ entities:
     - flags: SessionSpecific
       type: MetaData
     - pos: -33.5,21.5
+      parent: 89
+      type: Transform
+- proto: VendingMachineCoffee
+  entities:
+  - uid: 188
+    components:
+    - flags: SessionSpecific
+      type: MetaData
+    - pos: 1.5,-21.5
+      parent: 89
+      type: Transform
+  - uid: 2169
+    components:
+    - flags: SessionSpecific
+      type: MetaData
+    - pos: 31.5,16.5
+      parent: 89
+      type: Transform
+  - uid: 6108
+    components:
+    - flags: SessionSpecific
+      type: MetaData
+    - pos: -51.5,11.5
+      parent: 89
+      type: Transform
+- proto: VendingMachineCola
+  entities:
+  - uid: 3018
+    components:
+    - flags: SessionSpecific
+      type: MetaData
+    - pos: 37.5,6.5
       parent: 89
       type: Transform
 - proto: VendingMachineDetDrobe
@@ -117876,6 +115945,22 @@ entities:
     - flags: SessionSpecific
       type: MetaData
     - pos: -11.5,-5.5
+      parent: 89
+      type: Transform
+- proto: VendingMachineDiscount
+  entities:
+  - uid: 3019
+    components:
+    - flags: SessionSpecific
+      type: MetaData
+    - pos: 37.5,5.5
+      parent: 89
+      type: Transform
+  - uid: 6101
+    components:
+    - flags: SessionSpecific
+      type: MetaData
+    - pos: -58.5,1.5
       parent: 89
       type: Transform
 - proto: VendingMachineEngiDrobe
@@ -118094,13 +116179,6 @@ entities:
     - flags: SessionSpecific
       type: MetaData
     - pos: -96.5,0.5
-      parent: 89
-      type: Transform
-  - uid: 7285
-    components:
-    - flags: SessionSpecific
-      type: MetaData
-    - pos: 39.5,-3.5
       parent: 89
       type: Transform
   - uid: 20090
@@ -123044,11 +121122,6 @@ entities:
   - uid: 7219
     components:
     - pos: -89.5,14.5
-      parent: 89
-      type: Transform
-  - uid: 7339
-    components:
-    - pos: -61.5,19.5
       parent: 89
       type: Transform
   - uid: 7341
@@ -134269,6 +132342,15 @@ entities:
     - pos: -85.53375,17.593575
       parent: 89
       type: Transform
+  - uid: 15350
+    components:
+    - flags: InContainer
+      type: MetaData
+    - parent: 15319
+      type: Transform
+    - canCollide: False
+      type: Physics
+    - type: InsideEntityStorage
 - proto: WeaponDisablerPractice
   entities:
   - uid: 4496
@@ -136799,7 +134881,7 @@ entities:
     - pos: -21.5,31.5
       parent: 89
       type: Transform
-    - SecondsUntilStateChange: -47998.11
+    - SecondsUntilStateChange: -47013.613
       state: Opening
       type: Door
   - uid: 10349
