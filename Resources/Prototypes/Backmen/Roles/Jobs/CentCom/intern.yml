@@ -57,6 +57,7 @@
     ears: ClothingHeadsetCentCom
     gloves: ClothingHandsGlovesFingerless
     head: ClothingHeadHatCorpsoft
+    pocket1: MedicatedSuture
     pocket2: MagazineBoxLightRifle
     outerClothing: ClothingOuterArmorBasic
 

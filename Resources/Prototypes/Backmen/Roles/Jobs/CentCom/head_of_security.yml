@@ -23,7 +23,7 @@
       time: 54000
     - !type:RoleTimeRequirement
       role: JobCentralCommandSecOfficer
-      time: 21600
+      time: 36000
     - !type:RoleTimeRequirement
       role: JobIAA
       time: 18000
