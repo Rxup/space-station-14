@@ -14,7 +14,7 @@
   requirements:
     - !type:RoleTimeRequirement
       role: JobIAA
-      time: 72000
+      time: 90000
     - !type:RoleTimeRequirement
       role: JobCentralCommandAssistant
       time: 43200
