@@ -1,0 +1,79 @@
+- type: job
+  id: BKCCOperator
+  name: job-name-centcomoper
+  description: job-description-centcomoper
+  playTimeTracker: JobCentralCommandOperator
+  setPreference: true
+  startingGear: OperatorGavna
+  icon: "Nanotrasen"
+  supervisors: job-supervisors-hoh
+  canBeAntag: false
+  weight: 1
+  requireAdminNotify: true
+  joinNotifyCrew: true
+  requirements:
+    - !type:RoleTimeRequirement
+      role: JobIAA
+      time: 72000
+    - !type:RoleTimeRequirement
+      role: JobCentralCommandAssistant
+      time: 43200
+    - !type:DepartmentTimeRequirement
+      department: Command
+      time: 126000
+  accessGroups:
+    - AllAccess
+    - CentCom
+  special:
+    - !type:AddComponentSpecial
+      components:
+        - type: SpecForce
+          actionName: CentcomFtlAction
+  minBankBalance: 800
+  maxBankBalance: 1200
+  wageDepartment: CentCom
+  wage: 200
+
+- type: startingGear
+  id: OperatorGavna
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitCentcomVeryOfficial
+    back: ClothingBackpackFilled
+    shoes: ClothingShoesBootsLaceup
+    id: CCOperatorPDA
+    ears: ClothingHeadsetCentCom
+    pocket1: ClothingMaskGasCentcom
+  innerclothingskirt: ClothingUniformJumpskirttCentcomVeryOfficial
+  satchel: ClothingBackpackSatchelFilled
+  duffelbag: ClothingBackpackDuffelFilled
+
+- type: entity
+  parent: CentcomPDABackmen
+  id: CCOperatorPDA
+  name: Centcom Operator PDA
+  description: Light green sign of walking bureaucracy.
+  components:
+    - type: Pda
+      id: IDCardCentComGavnaOperator
+      state: pda-centcom
+      penSlot:
+        startingItem: PenCentcom
+        whitelist:
+          tags:
+            - Write
+    - type: PdaBorderColor
+      borderColor: "#00842e"
+    - type: Icon
+      state: pda-centcom
+
+- type: entity
+  parent: CentcomIDCardDeathsquad
+  id: IDCardCentComGavnaOperator
+  name: Id карта оператора ЦК
+  components:
+    - type: PresetIdCard
+      job: BKCCOperator
+    - type: Access
+      groups:
+        - AllAccess
+        - CentCom

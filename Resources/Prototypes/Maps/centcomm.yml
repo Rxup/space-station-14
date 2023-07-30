@@ -10,12 +10,14 @@
         - type: StationNameSetup
           mapNameTemplate: '{0} Central Command {1}'
           nameGenerator:
-            !type:NanotrasenNameGenerator
+            !type:NanotrasenCentComNameGenerator
             prefixCreator: 'TG'
         - type: StationJobs
           overflowJobs: []
           availableJobs:
             BKCCOfficial: [ 1, 1]
             BKCCOperator: [ 1, 1]
-            BKCCSecGavna: [ 2, 4]
-            BKCCCargo: [ 3, 3]
+            BKCCSecGavna: [ 1, 1]
+            BKCCCargo: [ 1, 1]
+            BKCCSecOfficer: [ 2, 3]
+            BKCCAssistant: [ 2, 2]

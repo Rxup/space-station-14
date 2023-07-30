@@ -8,10 +8,14 @@
     ClothingUniformJumpsuitCentcomOfficer: 3
     ClothingUniformJumpsuitCentcomOfficial: 3
     ClothingUniformJumpsuitCentcomFormal: 3
+    ClothingUniformJumpsuitCentcomVeryOfficial: 3 # backmen 
+    ClothingUniformJumpsuitCentcomIntern: 3 # backmen
+    ClothingUniformJumpskirttCentcomVeryOfficial: 3 # backmen
     ClothingUniformJumpskirtCentcomFormalDress: 3
     ClothingHeadHatCentcom: 3
     ClothingMaskGasCentcom: 3
     ClothingHeadsetCentCom: 3
     ClothingOuterWinterCentcom: 3
     ClothingNeckScarfStripedCentcom: 3
+    ClothingNeckTieCentCom: 3 # backmen
     

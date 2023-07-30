@@ -21,6 +21,9 @@
     },
 	{
       "name": "turquoise_door"
+    },
+	{
+      "name": "centcom_door"
     }
   ]
 }
