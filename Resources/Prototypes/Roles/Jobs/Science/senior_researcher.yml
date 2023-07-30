@@ -13,6 +13,12 @@
   access:
   - Research
   - Maintenance
+  #start-backmen: currency
+  minBankBalance: 300
+  maxBankBalance: 600
+  wageDepartment: Science
+  wage: 140
+  #end-backmen: currency
 
 - type: startingGear
   id: SeniorResearcherGear
