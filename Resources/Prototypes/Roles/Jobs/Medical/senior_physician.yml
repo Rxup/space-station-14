@@ -20,6 +20,12 @@
   - Medical
   - Maintenance
   - Chemistry
+  #start-backmen: currency
+  minBankBalance: 300
+  maxBankBalance: 600
+  wageDepartment: Medical
+  wage: 135
+  #end-backmen: currency
 
 - type: startingGear
   id: SeniorPhysicianGear
