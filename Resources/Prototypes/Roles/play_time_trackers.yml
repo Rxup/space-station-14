@@ -148,7 +148,3 @@
 - type: playTimeTracker
   id: JobZookeeper
 
-#start-backmen: brigmed
-- type: playTimeTracker
-  id: JobBrigmedic
-#end-backmen: brigmed

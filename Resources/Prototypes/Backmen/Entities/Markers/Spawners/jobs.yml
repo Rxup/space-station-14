@@ -1,6 +1,6 @@
-﻿- type: entity
+- type: entity
   id: SpawnPointBKCCOfficial
-  parent: SpawnPointJobBase
+  parent: SpawnPointBKCCAssistant
   name: ЦК Представитель
   components:
     - type: SpawnPoint
@@ -8,11 +8,11 @@
     - type: Sprite
       layers:
         - state: green
-        - state: captain
+        - state: centcom_official
 
 - type: entity
   id: SpawnPointBKCCOperator
-  parent: SpawnPointJobBase
+  parent: SpawnPointBKCCAssistant
   name: ЦК Оператор
   components:
     - type: SpawnPoint
@@ -20,19 +20,19 @@
     - type: Sprite
       layers:
         - state: green
-        - state: captain
+        - state: centcom_operator
 
 - type: entity
   id: SpawnPointBKCCSecGavna
-  parent: SpawnPointJobBase
-  name: ЦК Охрана
+  parent: SpawnPointBKCCAssistant
+  name: ЦК Начальник Безопасности
   components:
     - type: SpawnPoint
       job_id: BKCCSecGavna
     - type: Sprite
       layers:
         - state: green
-        - state: captain
+        - state: centcom_head_of_securiry
 
 - type: entity
   id: SpawnPointBKCCCargo
@@ -44,5 +44,29 @@
     - type: Sprite
       layers:
         - state: green
-        - state: captain
+        - state: qm
 
+- type: entity
+  id: SpawnPointBKCCAssistant
+  parent: SpawnPointJobBase
+  name: ЦК Ассистент
+  components:
+    - type: SpawnPoint
+      job_id: BKCCAssistant
+    - type: Sprite
+      sprite: Backmen/Markers/jobs.rsi
+      layers:
+        - state: green
+        - state: centcom_intern
+
+- type: entity
+  id: SpawnPointBKCCSecOfficer
+  parent: SpawnPointJobBase
+  name: ЦК Приватный Офицер СБ 
+  components:
+    - type: SpawnPoint
+      job_id: BKCCSecOfficer
+    - type: Sprite
+      layers:
+        - state: green
+        - state: security_officer

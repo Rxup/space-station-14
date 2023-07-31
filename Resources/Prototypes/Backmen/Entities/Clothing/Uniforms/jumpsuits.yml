@@ -228,3 +228,43 @@
     sprite: Backmen/Clothing/Uniforms/jumpsuit/blueshieldformal.rsi
   - type: Clothing
     sprite: Backmen/Clothing/Uniforms/jumpsuit/blueshieldformal.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformJumpsuitCentcomVeryOfficial
+  name: Официальная рубашка сотрудника ЦК
+  description: Вот прелесть карпоративной жизни, стильные костюмы в тему!
+  components:
+  - type: Sprite
+    sprite: Backmen/Clothing/Uniforms/jumpsuit/centcom-official.rsi
+  - type: Clothing
+    sprite: Backmen/Clothing/Uniforms/jumpsuit/centcom-official.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformJumpsuitCentcomIntern
+  name: Форма ассистента ЦК
+  description: Носитель данного костюма обязан принести чащечку кофе.
+  components:
+  - type: Sprite
+    sprite: Backmen/Clothing/Uniforms/jumpsuit/centcom-intern.rsi
+  - type: Clothing
+    sprite: Backmen/Clothing/Uniforms/jumpsuit/centcom-intern.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformJumpsuitCentcomMilitary
+  name: Военная униформа Начальника Безопасности ЦК
+  description: Свободная и крепкая униформа спец сил ЦК.
+  components:
+  - type: Sprite
+    sprite: Backmen/Clothing/Uniforms/jumpsuit/centcom-military.rsi
+  - type: Clothing
+    sprite: Backmen/Clothing/Uniforms/jumpsuit/centcom-military.rsi
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.8
+        Slash: 0.9
+        Piercing: 0.9
+        Heat: 0.9

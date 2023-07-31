@@ -6,7 +6,7 @@
   setPreference: true
   startingGear: CentComCorvax
   icon: "Nanotrasen"
-  supervisors: job-supervisors-centcom2 # Corvax-JobSupervisors
+  supervisors: job-supervisors-hoh
   canBeAntag: false
   weight: 1
   requireAdminNotify: true
@@ -14,13 +14,16 @@
   requirements:
     - !type:RoleTimeRequirement
       role: JobIAA
-      time: 210000
+      time: 108000
     - !type:RoleTimeRequirement
       role: JobCaptain
-      time: 240000
+      time: 126000
     - !type:DepartmentTimeRequirement
       department: Command
-      time: 720000
+      time: 216000
+    - !type:RoleTimeRequirement
+      role: JobCentralCommandAssistant
+      time: 43200
   accessGroups:
     - AllAccess
     - CentCom
@@ -34,108 +37,73 @@
   wageDepartment: CentCom
   wage: 200
 
-- type: job
-  id: BKCCOperator
-  name: job-name-centcomoper
-  description: job-description-centcomoper
-  playTimeTracker: JobCentralCommandOperator
-  setPreference: true
-  startingGear: OperatorGavna
-  icon: "Nanotrasen"
-  supervisors: job-supervisors-centcom2 # Corvax-JobSupervisors
-  canBeAntag: false
-  weight: 1
-  requireAdminNotify: true
-  joinNotifyCrew: true
-  requirements:
-    - !type:RoleTimeRequirement
-      role: JobIAA
-      time: 420000
-    - !type:RoleTimeRequirement
-      role: JobCaptain
-      time: 240000
-    - !type:DepartmentTimeRequirement
-      department: Command
-      time: 720000
-  accessGroups:
-    - AllAccess
-    - CentCom
-  special:
-    - !type:AddComponentSpecial
-      components:
-        - type: SpecForce
-          actionName: CentcomFtlAction
-  minBankBalance: 800
-  maxBankBalance: 1200
-  wageDepartment: CentCom
-  wage: 200
+- type: startingGear
+  id: CentComCorvax
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitCentcomOfficer
+    shoes: ClothingShoesBootsLaceup
+    mask: ClothingMaskGasCentcom
+    eyes: ClothingEyesGlassesSunglasses
+    gloves: ClothingHandsGlovesCentcomNaval
+    head: ClothingHeadHatCentcom
+    outerClothing: ClothingOuterArmorCentcomCarapace
+    suitstorage: OxygenTankFilled
+    id: CentcomPDABackmen
+    ears: ClothingHeadsetAltCentCom
+    pocket1: CyberPen
+    pocket2: BoxFolderSecretBlack
+  innerclothingskirt: ClothingUniformJumpskirtCentcomOfficer
 
-- type: job
-  id: BKCCSecGavna
-  name: job-name-centcomSecGavna
-  description: job-description-centcomSecGavna
-  playTimeTracker: JobCentralCommandSecGavna
-  setPreference: true
-  startingGear: OfficerSesurity
-  icon: "Nanotrasen"
-  supervisors: job-supervisors-centcom2 # Corvax-JobSupervisors
-  canBeAntag: false
-  weight: 1
-  requireAdminNotify: true
-  joinNotifyCrew: true
-  requirements:
-    - !type:DepartmentTimeRequirement
-      department: Security
-      time: 240000
-    - !type:DepartmentTimeRequirement
-      department: Command
-      time: 720000
-    - !type:RoleTimeRequirement
-      role: JobIAA
-      time: 3600
-  access:
-    - CCGeneral
-    - CCSecurity
-  accessGroups:
-    - AllAccess
-  special:
-    - !type:AddComponentSpecial
-      components:
-        - type: SpecForce
-          actionName: CentcomFtlAction
-  minBankBalance: 800
-  maxBankBalance: 1200
-  wageDepartment: CentCom
-  wage: 200
+- type: startingGear
+  id: CentComOfficialEVAGear
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitCentcomOfficer
+    shoes: ClothingShoesBootsLaceup
+    mask: ClothingMaskGasCentcom
+    eyes: ClothingEyesGlassesSunglasses
+    gloves: ClothingHandsGlovesCentcomNaval
+    outerClothing: ClothingOuterHardsuitCentcomCarporate
+    suitstorage: OxygenTankFilled
+    id: CentcomPDABackmen
+    ears: ClothingHeadsetAltCentCom
+    pocket1: CyberPen
+    pocket2: BoxFolderSecretBlack
+  innerclothingskirt: ClothingUniformJumpskirtCentcomOfficer
 
-- type: job
-  id: BKCCCargo
-  name: job-name-centcomCargo
-  description: job-description-centcomCargo
-  playTimeTracker: JobCentralCommandCargo
-  setPreference: true
-  startingGear: CCCargo
-  icon: "Nanotrasen"
-  supervisors: job-supervisors-centcom2 # Corvax-JobSupervisors
-  canBeAntag: false
-  weight: 1
-  requireAdminNotify: true
-  joinNotifyCrew: true
-  requirements:
-    - !type:DepartmentTimeRequirement
-      department: Cargo
-      time: 360000
-  access:
-    - CCGeneral
-    - CCCargo
-  accessGroups:
-    - AllAccess
-  special:
-    - !type:AddComponentSpecial
-      components:
-        - type: SpecForce
-          actionName: CentcomFtlAction
-  minBankBalance: 400
-  maxBankBalance: 600
-  wageDepartment: CentCom
-  wage: 100
+- type: entity
+  parent: BasePDA
+  id: CentcomPDABackmen
+  name: CentCom PDA
+  description: Light green sign of walking bureaucracy.
+  components:
+    - type: Pda
+      id: IDCardCentComOfficialCorvax
+      state: pda-centcom
+      penSlot:
+        startingItem: PenCentcom
+        whitelist:
+          tags:
+            - Write
+    - type: PdaBorderColor
+      borderColor: "#00842e"
+    - type: Icon
+      state: pda-centcom
+
+- type: entity
+  parent: CentcomIDCardDeathsquad
+  id: IDCardCentComOfficialCorvax
+  name: Id карта ПЦК
+  components:
+    - type: Sprite
+      layers:
+      - state: silver
+      - state: idiaa
+      - state: idcentcom
+    - type: Item
+      heldPrefix: silver
+    - type: PresetIdCard
+      job: BKCCOfficial
+    - type: Access
+      groups:
+        - AllAccess
+        - CentCom

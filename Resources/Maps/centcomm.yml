@@ -2052,7 +2052,8 @@ entities:
           -3,0:
             0: 65535
           -3,1:
-            0: 65535
+            0: 65533
+            1: 2
           -3,2:
             0: 65535
           -3,3:
@@ -2472,13 +2473,13 @@ entities:
           4,-7:
             0: 65535
           5,-8:
-            1: 819
+            2: 819
             0: 62532
-            2: 2184
+            3: 2184
           5,-7:
             0: 65535
           6,-8:
-            2: 273
+            3: 273
             0: 65262
           6,-7:
             0: 65535
@@ -2550,6 +2551,21 @@ entities:
           moles:
           - 21.824879
           - 82.10312
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+        - volume: 2500
+          temperature: 293.14996
+          moles:
+          - 20.078888
+          - 75.53487
           - 0
           - 0
           - 0
@@ -20167,6 +20183,14 @@ entities:
     - pos: -11.518181,4.5291095
       parent: 1668
       type: Transform
+    - containers:
+        storagebase: !type:Container
+          showEnts: False
+          occludes: True
+          ents:
+          - 3775
+      type: ContainerContainer
+    - type: ItemCooldown
 - proto: ClothingBackpackSatchelHolding
   entities:
   - uid: 3737
@@ -20690,7 +20714,15 @@ entities:
   entities:
   - uid: 3775
     components:
-    - pos: -10.574664,4.498021
+    - flags: InContainer
+      type: MetaData
+    - parent: 3774
+      type: Transform
+    - canCollide: False
+      type: Physics
+  - uid: 7482
+    components:
+    - pos: -12.217991,4.3535457
       parent: 1668
       type: Transform
 - proto: ClothingUniformJumpskirtCentcomFormalDress
@@ -21500,6 +21532,13 @@ entities:
   - uid: 7300
     components:
     - pos: -7.5,28.5
+      parent: 1668
+      type: Transform
+- proto: CrewMonitoringServer
+  entities:
+  - uid: 7481
+    components:
+    - pos: 30.5,-28.5
       parent: 1668
       type: Transform
 - proto: CrowbarRed
@@ -46616,6 +46655,33 @@ entities:
       pos: 16.153316,30.26544
       parent: 1668
       type: Transform
+- proto: SpawnPointBKCCAssistant
+  entities:
+  - uid: 7464
+    components:
+    - pos: -4.5,-28.5
+      parent: 1668
+      type: Transform
+  - uid: 7476
+    components:
+    - pos: 2.5,-26.5
+      parent: 1668
+      type: Transform
+  - uid: 7477
+    components:
+    - pos: -9.5,-26.5
+      parent: 1668
+      type: Transform
+  - uid: 7478
+    components:
+    - pos: 8.5,-27.5
+      parent: 1668
+      type: Transform
+  - uid: 7479
+    components:
+    - pos: -3.5,13.5
+      parent: 1668
+      type: Transform
 - proto: SpawnPointBKCCCargo
   entities:
   - uid: 7368
@@ -46649,6 +46715,13 @@ entities:
       type: Transform
 - proto: SpawnPointBKCCSecGavna
   entities:
+  - uid: 7366
+    components:
+    - pos: 9.5,18.5
+      parent: 1668
+      type: Transform
+- proto: SpawnPointBKCCSecOfficer
+  entities:
   - uid: 7362
     components:
     - pos: 26.5,-9.5
@@ -46659,14 +46732,14 @@ entities:
     - pos: 13.5,4.5
       parent: 1668
       type: Transform
-  - uid: 7366
-    components:
-    - pos: 9.5,18.5
-      parent: 1668
-      type: Transform
   - uid: 7371
     components:
     - pos: -4.5,-11.5
+      parent: 1668
+      type: Transform
+  - uid: 7480
+    components:
+    - pos: 11.5,24.5
       parent: 1668
       type: Transform
 - proto: SpawnPointLatejoin
@@ -46797,6 +46870,31 @@ entities:
     - pos: 28.5,-28.5
       parent: 1668
       type: Transform
+- proto: SuitStorageCentcomCarporatHardsuit
+  entities:
+  - uid: 3634
+    components:
+    - pos: -10.5,4.5
+      parent: 1668
+      type: Transform
+    - air:
+        volume: 200
+        immutable: False
+        temperature: 293.1496
+        moles:
+        - 1.7459903
+        - 6.568249
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+      type: EntityStorage
 - proto: SuitStorageEVAEmergency
   entities:
   - uid: 7345
@@ -48026,11 +48124,6 @@ entities:
   - uid: 3633
     components:
     - pos: -11.5,4.5
-      parent: 1668
-      type: Transform
-  - uid: 3634
-    components:
-    - pos: -10.5,4.5
       parent: 1668
       type: Transform
   - uid: 3635
