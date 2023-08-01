@@ -24,3 +24,5 @@ department-CentCom-description = Центральное Командование
 
 job-supervisors-hoh = Главе Штаба Центрального Командывания
 job-supervisors-centcommembers = Выше стоящим сотрудникам Центарльного Командывания
+
+job-supervisors-human = Старшему персоналу своего отдела

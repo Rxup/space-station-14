@@ -16,4 +16,9 @@
 - type: playTimeTracker
   id: JobBrigmedic
 
+- type: playTimeTracker
+  id: BPLATech
+
+- type: playTimeTracker
+  id: BPLAMED
 

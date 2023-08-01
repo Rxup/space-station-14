@@ -56,3 +56,6 @@
             Paramedic: [ 1, 2 ]
             Boxer: [ 2, 2 ]
             Reporter: [ 1, 2 ]
+            Brigmedic: [ 0, 1 ] # backmen-Brigmedic
+            BKBPLATech: [0, 3] # backmen-BPLA-Silicons
+            BKBPLAMED: [0, 3] # backmen-BPLAMED-Silicons

@@ -47,6 +47,7 @@
     - key: enum.StrippingUiKey.Key
       type: StrippableBoundUserInterface
   - type: GhostRole
+    whitelistRequired: true
     makeSentient: true
     allowSpeech: true # backmen
     allowMovement: true # backmen
@@ -60,8 +61,8 @@
      3. Вред станции недопустим.
   - type: GhostTakeoverAvailable
   - type: MovementSpeedModifier
-    baseWalkSpeed : 4
-    baseSprintSpeed : 4
+    baseWalkSpeed : 5
+    baseSprintSpeed : 5
   - type: MobState
     allowedStates:
       - Alive
@@ -139,6 +140,7 @@
       - ShoesRequiredStepTriggerImmune
       - CannotSuicide
   - type: SpecForce
+    whitelistRequired: true
     requirements:
     - !type:OverallPlaytimeRequirement
       time: 36000

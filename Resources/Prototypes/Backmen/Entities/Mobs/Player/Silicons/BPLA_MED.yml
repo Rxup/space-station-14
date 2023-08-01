@@ -1,33 +1,60 @@
 - type: entity
   noSpawn: true
-  parent: ClothingBeltParamedicFilled
+  parent: BSSClothingBackpackSatchelDrone
   id: BSSClothingBackpackSatchelDroneMED
   name: Сумка БСС Дрона Медицинского Направления
   components:
   - type: Storage
-    capacity: 600
+    capacity: 1200
   - type: Sprite
     sprite: Corvax/Sponsor/NEKISH/Clothing/Back/Satchels/hos.rsi
   - type: Tag
     tags:
     - InnateDontDelete
+  - type: StorageFill
+    contents:
+      - id: Brutepack
+        amount: 4
+      - id: Ointment
+        amount: 4
+      - id: Bloodpack
+        amount: 3
+      - id: Gauze
+      - id: EmergencyMedipen #You never know what people are going to latejoin into
+        amount: 6
+      - id: BoxPillCanister
+        amount: 2
+
 
 - type: entity
-  noSpawn: true
   parent: HandheldHealthAnalyzer
   id: HandheldHealthAnalyzerINF
+  name: health analyzer
+  description: A hand-held body scanner capable of distinguishing vital signs of the subject.
+  suffix: Backmen, INF
   components:
     - type: PowerCellDraw
       useRate: 0
 
 - type: entity
-  noSpawn: true
   parent: Defibrillator
   id: DefibrillatorINF
+  name: defibrillator
+  description: CLEAR! Zzzzat!
+  suffix: Backmen, INF
   components:
     - type: PowerCellDraw
       useRate: 0
 
+- type: entity
+  parent: HandheldCrewMonitor
+  id: HandheldCrewMonitorINF
+  name: handheld crew monitor
+  description: A hand-held crew monitor displaying the status of suit sensors.
+  suffix: Backmen, INF
+  components:
+    - type: PowerCellDraw
+      useRate: 0
 
 - type: nameIdentifierGroup
   id: BSSDroneMED
@@ -43,6 +70,7 @@
   parent: PlayerSiliconBase
   components:
   - type: BSSDrone
+    droneType: MED
   - type: NameIdentifier
     group: BSSDroneMED
   - type: MetaData
@@ -56,6 +84,7 @@
       - id: BSSClothingBackpackSatchelDroneMED
       - id: HandheldHealthAnalyzerINF
       - id: DefibrillatorINF
+      - id: HandheldCrewMonitorINF
   - type: Inventory
     templateId: drone
   - type: InventorySlots
@@ -65,6 +94,7 @@
     - key: enum.StrippingUiKey.Key
       type: StrippableBoundUserInterface
   - type: GhostRole
+    whitelistRequired: true
     makeSentient: true
     allowSpeech: true # backmen
     allowMovement: true # backmen
@@ -78,8 +108,8 @@
      3. Подчиняетесь ИИ.
   - type: GhostTakeoverAvailable
   - type: MovementSpeedModifier
-    baseWalkSpeed : 4
-    baseSprintSpeed : 4
+    baseWalkSpeed : 5.5
+    baseSprintSpeed : 5.5
   - type: MobState
     allowedStates:
       - Alive
@@ -157,6 +187,7 @@
       - ShoesRequiredStepTriggerImmune
       - CannotSuicide
   - type: SpecForce
+    whitelistRequired: true
     requirements:
     - !type:OverallPlaytimeRequirement
       time: 36000
