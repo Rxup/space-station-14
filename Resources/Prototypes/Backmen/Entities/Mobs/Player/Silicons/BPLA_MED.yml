@@ -19,7 +19,7 @@
         amount: 4
       - id: Bloodpack
         amount: 3
-      - id: GauzeBSS
+      - id: Gauze
       - id: EmergencyMedipen #You never know what people are going to latejoin into
         amount: 6
       - id: BoxPillCanister
@@ -70,6 +70,7 @@
   parent: PlayerSiliconBase
   components:
   - type: BSSDrone
+    droneType: MED
   - type: NameIdentifier
     group: BSSDroneMED
   - type: MetaData
