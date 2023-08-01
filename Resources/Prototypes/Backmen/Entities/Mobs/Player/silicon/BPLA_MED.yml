@@ -13,17 +13,21 @@
     - InnateDontDelete
 
 - type: entity
-  noSpawn: true
   parent: HandheldHealthAnalyzer
   id: HandheldHealthAnalyzerINF
+  name: health analyzer
+  description: A hand-held body scanner capable of distinguishing vital signs of the subject.
+  suffix: Backmen, INF
   components:
     - type: PowerCellDraw
       useRate: 0
 
 - type: entity
-  noSpawn: true
   parent: Defibrillator
   id: DefibrillatorINF
+  name: defibrillator
+  description: CLEAR! Zzzzat!
+  suffix: Backmen, INF
   components:
     - type: PowerCellDraw
       useRate: 0
