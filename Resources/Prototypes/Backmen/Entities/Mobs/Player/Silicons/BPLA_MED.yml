@@ -39,15 +39,6 @@
       price: 10
 
 - type: entity
-  parent: BoxPillCanister
-  id: BoxPillCanisterBSS
-  components:
-    - type: StorageFill
-      contents:
-        - id: PillCanister
-          amount: 12
-
-- type: entity
   noSpawn: true
   parent: BSSClothingBackpackSatchelDrone
   id: BSSClothingBackpackSatchelDroneMED
@@ -71,7 +62,8 @@
       - id: GauzeBSS
       - id: EmergencyMedipen #You never know what people are going to latejoin into
         amount: 6
-      - id: BoxPillCanisterBSS
+      - id: BoxPillCanister
+        amount: 2
 
 
 - type: entity
