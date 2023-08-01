@@ -3,6 +3,7 @@
   name: job-name-silicon-BPLATech
   description: job-description-silicon-BPLATech
   playTimeTracker: BPLATech
+  joinNotifyCrew: false
   whitelistRequired: true
   requirements:
     - !type:OverallPlaytimeRequirement

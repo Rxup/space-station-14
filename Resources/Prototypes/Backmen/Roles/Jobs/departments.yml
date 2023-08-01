@@ -12,8 +12,8 @@
   accountNumber: 1350  #backmen: currency
 
 - type: department
-  id: Silicon
-  description: department-Silicon-description
+  id: Silicons
+  description: department-Silicons-description
   color: "#191e9e"
   roles:
     - BKBPLATech
