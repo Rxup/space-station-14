@@ -65,14 +65,35 @@ namespace Content.Client.UserInterface.Systems.Ghost.Controls.Roles
             _window.ClearEntries();
 
             var groupedRoles = ghostState.GhostRoles.GroupBy(
-                role => (role.Name, role.Description));
+                role => (role.Name, role.Description, role.WhitelistRequired)); //backmen: whitelist
+
+            //start-backmen: whitelist
+            var cfg = IoCManager.Resolve<Robust.Shared.Configuration.IConfigurationManager>();
+            var playTime =  IoCManager.Resolve<Players.PlayTimeTracking.JobRequirementsManager>();
+            var denied = 0;
+            //end-backmen: whitelist
+
             foreach (var group in groupedRoles)
             {
+                //start-backmen: whitelist
+                if (
+                    group.Key.WhitelistRequired &&
+                    cfg.GetCVar(Shared.Backmen.CCVar.CCVars.WhitelistRolesEnabled) &&
+                    !playTime.IsWhitelisted()
+                    )
+                {
+                    denied = denied + 1;
+                    continue;
+                }
+                //end-backmen: whitelist
+
                 var name = group.Key.Name;
                 var description = group.Key.Description;
 
                 _window.AddEntry(name, description, group);
             }
+
+            _window.AddDenied(denied); // backmen: whitelist
 
             var closeRulesWindow = ghostState.GhostRoles.All(role => role.Identifier != _windowRulesId);
             if (closeRulesWindow)

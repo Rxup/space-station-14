@@ -29,12 +29,17 @@
     - type: RandomHumanoidAppearance
     - type: SpecForce
       actionName: CentcomFtlAction
+      whitelistRequired: true
       requirements:
-      - !type:OverallPlaytimeRequirement
-        time: 36000
-      - !type:RoleTimeRequirement
-        role: JobIAA
-        time: 18000
+        - !type:DepartmentTimeRequirement
+          department: Command
+          time: 216000
+        - !type:RoleTimeRequirement
+          role: JobCentralCommandAssistant
+          time: 21600
+        - !type:DepartmentTimeRequirement
+          department: CentCom
+          time: 43200
 #-----------------------------------------
 
 - type: entity
@@ -56,16 +61,17 @@
     - type: RandomHumanoidAppearance
     - type: SpecForce
       actionName: CentcomFtlAction
+      whitelistRequired: true
       requirements:
-      - !type:RoleTimeRequirement
-        role: JobIAA
-        time: 420000
-      - !type:RoleTimeRequirement
-        role: JobCaptain
-        time: 240000
-      - !type:DepartmentTimeRequirement
-        department: Command
-        time: 720000
+        - !type:DepartmentTimeRequirement
+          department: Command
+          time: 216000
+        - !type:RoleTimeRequirement
+          role: JobCentralCommandAssistant
+          time: 21600
+        - !type:DepartmentTimeRequirement
+          department: CentCom
+          time: 43200
 
 #-----------------------------------------
 

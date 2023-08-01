@@ -110,10 +110,9 @@ namespace Content.Shared.Roles
         [DataField("wage")]
         public FixedPoint2 Wage { get; } = 0;
 // end-backmen: currency
-// start-backmen: CentCom
-        [DataField("setHideFromConsole")]
-        public bool SetHideFromConsole { get; } = false;
-
-// end-backmen: Centcom
+// start-backmen: Whitelist
+        [DataField("whitelistRequired")]
+        public bool WhitelistRequired { get; set; } = false;
+// end-backmen: Whitelist
     }
 }

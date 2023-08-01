@@ -83,5 +83,12 @@ namespace Content.Server.Ghost.Roles.Components
         [ViewVariables(VVAccess.ReadWrite)]
         [DataField("reregister")]
         public bool ReregisterOnGhost { get; set; } = true;
+
+        // start-backmen: whitelist
+        [ViewVariables(VVAccess.ReadWrite)]
+        [Access(typeof(GhostRoleSystem), Other = AccessPermissions.ReadWriteExecute)] // FIXME Friends
+        [DataField("whitelistRequired")]
+        public bool WhitelistRequired = false;
+        // end-backmen: whitelist
     }
 }

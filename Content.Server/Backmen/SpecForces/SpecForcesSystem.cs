@@ -30,6 +30,7 @@ using Content.Shared.Radio.Components;
 using Content.Server.Radio.EntitySystems;
 using Content.Server.Administration.Managers;
 using Content.Server.Mind;
+using Content.Server.Players;
 using Content.Shared.Actions;
 using Content.Shared.Actions.ActionTypes;
 
@@ -174,6 +175,17 @@ public sealed class SpecForcesSystem : EntitySystem
             first = false;
 
             reasonBuilder.AppendLine(reason);
+        }
+
+        if (_cfg.GetCVar(Shared.Backmen.CCVar.CCVars.WhitelistRolesEnabled) &&
+            job.WhitelistRequired &&
+            !player.ContentData()!.Whitelisted)
+        {
+            if (!first)
+                reasonBuilder.Append('\n');
+            first = false;
+
+            reasonBuilder.AppendLine(Loc.GetString("playtime-deny-reason-not-whitelisted"));
         }
 
         reason = reasonBuilder.Length == 0 ? null : reasonBuilder.ToString();
