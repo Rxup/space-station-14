@@ -1,16 +1,78 @@
 - type: entity
+  parent: Brutepack
+  id: BrutepackBSS
+  components:
+    - type: Stack
+      stackType: Brutepack
+      count: 100
+    - type: StackPrice
+      price: 100
+
+- type: entity
+  parent: Ointment
+  id: OintmentBSS
+  components:
+    - type: Stack
+      stackType: Brutepack
+      count: 100
+    - type: StackPrice
+      price: 100
+
+- type: entity
+  parent: Bloodpack
+  id: BloodpackBSS
+  components:
+    - type: Stack
+      stackType: Bloodpack
+      count: 100
+    - type: StackPrice
+      price: 10
+
+- type: entity
+  parent: Gauze
+  id: GauzeBSS
+  components:
+    - type: Stack
+      stackType: Bloodpack
+      count: 100
+    - type: StackPrice
+      price: 10
+
+- type: entity
+  parent: BoxPillCanister
+  id: BoxPillCanisterBSS
+  components:
+    - type: StorageFill
+      contents:
+        - id: PillCanister
+          amount: 12
+
+- type: entity
   noSpawn: true
-  parent: ClothingBeltParamedicFilled
+  parent: BSSClothingBackpackSatchelDrone
   id: BSSClothingBackpackSatchelDroneMED
   name: Сумка БСС Дрона Медицинского Направления
   components:
   - type: Storage
-    capacity: 600
+    capacity: 1200
   - type: Sprite
     sprite: Corvax/Sponsor/NEKISH/Clothing/Back/Satchels/hos.rsi
   - type: Tag
     tags:
     - InnateDontDelete
+  - type: StorageFill
+    contents:
+      - id: BrutepackBSS
+        amount: 2
+      - id: OintmentBSS
+        amount: 2
+      - id: BloodpackBSS
+        amount: 2
+      - id: GauzeBSS
+      - id: EmergencyMedipen #You never know what people are going to latejoin into
+        amount: 6
+      - id: BoxPillCanisterBSS
+
 
 - type: entity
   parent: HandheldHealthAnalyzer
@@ -93,8 +155,8 @@
      3. Подчиняетесь ИИ.
   - type: GhostTakeoverAvailable
   - type: MovementSpeedModifier
-    baseWalkSpeed : 4
-    baseSprintSpeed : 4
+    baseWalkSpeed : 5.5
+    baseSprintSpeed : 5.5
   - type: MobState
     allowedStates:
       - Alive

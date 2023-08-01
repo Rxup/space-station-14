@@ -40,21 +40,12 @@ namespace Content.Server.Backmen.Drone
         public override void Initialize()
         {
             base.Initialize();
-            SubscribeLocalEvent<BSSDroneComponent, UserOpenActivatableUIAttemptEvent>(OnActivateUIAttempt);
             SubscribeLocalEvent<BSSDroneComponent, MobStateChangedEvent>(OnMobStateChanged);
             SubscribeLocalEvent<BSSDroneComponent, ExaminedEvent>(OnExamined);
             SubscribeLocalEvent<BSSDroneComponent, MindAddedMessage>(OnMindAdded);
             SubscribeLocalEvent<BSSDroneComponent, MindRemovedMessage>(OnMindRemoved);
             SubscribeLocalEvent<BSSDroneComponent, EmoteAttemptEvent>(OnEmoteAttempt);
             SubscribeLocalEvent<BSSDroneComponent, ThrowAttemptEvent>(OnThrowAttempt);
-        }
-
-        private void OnActivateUIAttempt(EntityUid uid, BSSDroneComponent component, UserOpenActivatableUIAttemptEvent args)
-        {
-            if (!_tagSystem.HasTag(args.Target, "DroneUsable"))
-            {
-                args.Cancel();
-            }
         }
 
         private void OnExamined(EntityUid uid, BSSDroneComponent component, ExaminedEvent args)

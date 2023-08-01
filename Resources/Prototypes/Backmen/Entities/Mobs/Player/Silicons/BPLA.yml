@@ -61,8 +61,8 @@
      3. Вред станции недопустим.
   - type: GhostTakeoverAvailable
   - type: MovementSpeedModifier
-    baseWalkSpeed : 4
-    baseSprintSpeed : 4
+    baseWalkSpeed : 5
+    baseSprintSpeed : 5
   - type: MobState
     allowedStates:
       - Alive
