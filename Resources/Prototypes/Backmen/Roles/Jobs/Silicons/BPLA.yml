@@ -1,0 +1,20 @@
+﻿- type: job
+  id: BKBPLATech
+  name: job-name-silicon-BPLATech
+  description: job-description-silicon-BPLATech
+  playTimeTracker: BPLATech
+  whitelistRequired: true
+  requirements:
+    - !type:OverallPlaytimeRequirement
+      time: 24000
+  icon: "Unknown"
+  supervisors: job-supervisors-human
+  canBeAntag: false
+  jobEntity: BackmenDrone
+  startingGear: RobotGear # for char preview only
+
+- type: startingGear
+  id: RobotGear
+  equipment:
+    head: ClothingHeadHatCardborg
+    outerClothing: ClothingOuterCardborg

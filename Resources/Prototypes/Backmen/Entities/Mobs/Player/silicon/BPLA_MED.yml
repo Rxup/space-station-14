@@ -69,6 +69,7 @@
     - key: enum.StrippingUiKey.Key
       type: StrippableBoundUserInterface
   - type: GhostRole
+    whitelistRequired: true
     makeSentient: true
     allowSpeech: true # backmen
     allowMovement: true # backmen
@@ -161,6 +162,7 @@
       - ShoesRequiredStepTriggerImmune
       - CannotSuicide
   - type: SpecForce
+    whitelistRequired: true
     requirements:
     - !type:OverallPlaytimeRequirement
       time: 36000
