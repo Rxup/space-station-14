@@ -37,6 +37,8 @@ namespace Content.Server.Players
         /// </summary>
         public bool ExplicitlyDeadminned { get; set; }
 
+        public bool Whitelisted { get; set; } = false; //backmen: whitelist
+
         public PlayerData(NetUserId userId, string name)
         {
             UserId = userId;

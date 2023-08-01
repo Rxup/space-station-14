@@ -162,6 +162,15 @@ public sealed class PlayTimeTrackingSystem : EntitySystem
             !_cfg.GetCVar(CCVars.GameRoleTimers))
             return true;
 
+        // start-backmen: whitelist
+        if (_cfg.GetCVar(Shared.Backmen.CCVar.CCVars.WhitelistRolesEnabled) &&
+            job.WhitelistRequired &&
+            !player.ContentData()!.Whitelisted)
+        {
+            return false;
+        }
+        // end-bakcmen: whitelist
+
         var playTimes = _tracking.GetTrackerTimes(player);
 
         return JobRequirements.TryRequirementsMet(job, playTimes, out _, _prototypes);

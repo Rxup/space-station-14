@@ -18,6 +18,9 @@
     - !type:RoleTimeRequirement
       role: JobHeadOfSecurity
       time: 3600
+    - !type:RoleTimeRequirement
+      role: JobCentralCommandAssistant
+      time: 3600
   access:
     - CCGeneral
     - CCSecurity
