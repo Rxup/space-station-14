@@ -1,44 +1,4 @@
 - type: entity
-  parent: Brutepack
-  id: BrutepackBSS
-  components:
-    - type: Stack
-      stackType: Brutepack
-      count: 100
-    - type: StackPrice
-      price: 100
-
-- type: entity
-  parent: Ointment
-  id: OintmentBSS
-  components:
-    - type: Stack
-      stackType: Brutepack
-      count: 100
-    - type: StackPrice
-      price: 100
-
-- type: entity
-  parent: Bloodpack
-  id: BloodpackBSS
-  components:
-    - type: Stack
-      stackType: Bloodpack
-      count: 100
-    - type: StackPrice
-      price: 10
-
-- type: entity
-  parent: Gauze
-  id: GauzeBSS
-  components:
-    - type: Stack
-      stackType: Bloodpack
-      count: 100
-    - type: StackPrice
-      price: 10
-
-- type: entity
   noSpawn: true
   parent: BSSClothingBackpackSatchelDrone
   id: BSSClothingBackpackSatchelDroneMED
@@ -53,12 +13,12 @@
     - InnateDontDelete
   - type: StorageFill
     contents:
-      - id: BrutepackBSS
-        amount: 2
-      - id: OintmentBSS
-        amount: 2
-      - id: BloodpackBSS
-        amount: 2
+      - id: Brutepack
+        amount: 4
+      - id: Ointment
+        amount: 4
+      - id: Bloodpack
+        amount: 3
       - id: GauzeBSS
       - id: EmergencyMedipen #You never know what people are going to latejoin into
         amount: 6
