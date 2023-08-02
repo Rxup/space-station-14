@@ -29,6 +29,7 @@ using Content.Shared.Inventory;
 using Content.Shared.Radio.Components;
 using Content.Server.Radio.EntitySystems;
 using Content.Server.Administration.Managers;
+using Content.Server.Backmen.RoleWhitelist;
 using Content.Server.Mind;
 using Content.Server.Players;
 using Content.Shared.Actions;
@@ -179,7 +180,7 @@ public sealed class SpecForcesSystem : EntitySystem
 
         if (_cfg.GetCVar(Shared.Backmen.CCVar.CCVars.WhitelistRolesEnabled) &&
             job.WhitelistRequired &&
-            !player.ContentData()!.Whitelisted)
+            !_whitelistSystem.IsInWhitelist(player))
         {
             if (!first)
                 reasonBuilder.Append('\n');
@@ -394,7 +395,7 @@ public sealed class SpecForcesSystem : EntitySystem
                     _chatSystem.DispatchStationAnnouncement(station,
                         Loc.GetString("spec-forces-system-ertcall-annonce"),
                         Loc.GetString("spec-forces-system-ertcall-title"),
-                        true, ERTAnnounce
+                        true, _ertAnnounce
                     );
                 }
 
@@ -450,7 +451,7 @@ public sealed class SpecForcesSystem : EntitySystem
     private const string SpestnazOfficer = "SpawnMobHumanSpecialReAgentCOM";
     private const string Spestnaz = "SpawnMobHumanSpecialReAgent";
 
-    public SoundSpecifier ERTAnnounce = new SoundPathSpecifier("/Audio/Corvax/Adminbuse/Yesert.ogg");
+    private readonly SoundSpecifier _ertAnnounce = new SoundPathSpecifier("/Audio/Corvax/Adminbuse/Yesert.ogg");
 
     [Dependency] private readonly IMapManager _mapManager = default!;
 
@@ -466,11 +467,8 @@ public sealed class SpecForcesSystem : EntitySystem
     [Dependency] private readonly PlayTimeTrackingManager _tracking = default!;
     [Dependency] private readonly IPrototypeManager _prototypes = default!;
     [Dependency] private readonly IChatManager _chatManager = default!;
-    [Dependency] private readonly GhostRoleSystem _ghostRoleSystem = default!;
     [Dependency] private readonly ISerializationManager _serialization = default!;
-    [Dependency] private readonly InventorySystem _inventory = default!;
-    [Dependency] private readonly HeadsetSystem _headset = default!;
     [Dependency] private readonly IAdminManager _adminManager = default!;
-    [Dependency] private readonly MindSystem _mindSystem = default!;
     [Dependency] private readonly SharedActionsSystem _action = default!;
+    [Dependency] private readonly WhitelistSystem _whitelistSystem = default!;
 }

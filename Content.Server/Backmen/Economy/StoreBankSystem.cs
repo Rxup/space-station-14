@@ -14,9 +14,9 @@ namespace Content.Server.Backmen.Economy;
 
 public sealed class StoreBankSystem : EntitySystem
 {
-    [Dependency] protected readonly SharedAudioSystem Audio = default!;
+    [Dependency] private readonly SharedAudioSystem _audio = default!;
     [Dependency] private readonly SharedDoAfterSystem _doAfter = default!;
-    [Dependency] protected readonly SharedPopupSystem Popup = default!;
+    [Dependency] private readonly SharedPopupSystem _popup = default!;
 
     private ISawmill _sawmill = default!;
     public override void Initialize()
@@ -28,12 +28,12 @@ public sealed class StoreBankSystem : EntitySystem
         SubscribeLocalEvent<BuyStoreBankComponent, RestockDoAfterEvent>(OnDoAfter, before: new[]{typeof(VendingMachineSystem)});
     }
 
-    public void TryRestockInventory(EntityUid uid, IEnumerable<string>? category = null, BuyStoreBankComponent? vendComponent = null, StoreComponent? storeComponent = null)
+    private void TryRestockInventory(EntityUid uid, IEnumerable<string>? category = null, BuyStoreBankComponent? vendComponent = null, StoreComponent? storeComponent = null)
     {
         if (!Resolve(uid, ref vendComponent) || !Resolve(uid, ref storeComponent))
             return;
 
-        var _category = category?.ToArray() ?? Array.Empty<string>();
+        //var _category = category?.ToArray() ?? Array.Empty<string>();
         foreach (var storeComponentListing in storeComponent.Listings.Where(x=>storeComponent.Categories.Any(x.Categories.Contains)))
         {
             var limit = storeComponentListing?.Conditions?.OfType<ListingLimitedStockCondition>().FirstOrDefault();
@@ -66,9 +66,9 @@ public sealed class StoreBankSystem : EntitySystem
 
         TryRestockInventory(uid, restockComponent.CanRestock, component);
 
-        Popup.PopupEntity(Loc.GetString("vending-machine-restock-done", ("this", args.Args.Used), ("user", args.Args.User), ("target", uid)), args.Args.User, PopupType.Medium);
+        _popup.PopupEntity(Loc.GetString("vending-machine-restock-done", ("this", args.Args.Used), ("user", args.Args.User), ("target", uid)), args.Args.User, PopupType.Medium);
 
-        Audio.PlayPvs(restockComponent.SoundRestockDone, uid, AudioParams.Default.WithVolume(-2f).WithVariation(0.2f));
+        _audio.PlayPvs(restockComponent.SoundRestockDone, uid, AudioParams.Default.WithVolume(-2f).WithVariation(0.2f));
 
         Del(args.Args.Used.Value);
 
@@ -83,7 +83,7 @@ public sealed class StoreBankSystem : EntitySystem
     {
         if (!TryComp<WiresPanelComponent>(target, out var panel) || !panel.Open)
         {
-            Popup.PopupCursor(Loc.GetString("vending-machine-restock-needs-panel-open",
+            _popup.PopupCursor(Loc.GetString("vending-machine-restock-needs-panel-open",
                     ("this", uid),
                     ("user", user),
                     ("target", target)),
@@ -95,7 +95,7 @@ public sealed class StoreBankSystem : EntitySystem
         return true;
     }
 
-    public bool TryMatchPackageToMachine(EntityUid uid,
+    private bool TryMatchPackageToMachine(EntityUid uid,
         BuyStoreBankComponent component,
         StoreComponent machineComponent,
         EntityUid user,
@@ -103,7 +103,7 @@ public sealed class StoreBankSystem : EntitySystem
     {
         if (!component.CanRestock.Any(machineComponent.Categories.Contains))
         {
-            Popup.PopupCursor(Loc.GetString("vending-machine-restock-invalid-inventory", ("this", uid), ("user", user),
+            _popup.PopupCursor(Loc.GetString("vending-machine-restock-invalid-inventory", ("this", uid), ("user", user),
                 ("target", target)), user);
 
             return false;
@@ -141,11 +141,11 @@ public sealed class StoreBankSystem : EntitySystem
         if (!_doAfter.TryStartDoAfter(doAfterArgs))
             return;
 
-        Popup.PopupEntity(Loc.GetString("vending-machine-restock-start", ("this", uid), ("user", args.User),
+        _popup.PopupEntity(Loc.GetString("vending-machine-restock-start", ("this", uid), ("user", args.User),
                 ("target", target)),
             args.User,
             PopupType.Medium);
 
-        Audio.PlayPvs(component.SoundRestockStart, uid, AudioParams.Default.WithVolume(-8f));
+        _audio.PlayPvs(component.SoundRestockStart, uid, AudioParams.Default.WithVolume(-8f));
     }
 }

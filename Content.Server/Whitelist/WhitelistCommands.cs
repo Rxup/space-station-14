@@ -27,6 +27,7 @@ public sealed class AddWhitelistCommand : IConsoleCommand
 
         var name = args[0];
         var data = await loc.LookupIdByNameAsync(name);
+        var wlSystem = IoCManager.Resolve<EntityManager>().System<Backmen.RoleWhitelist.WhitelistSystem>(); // backmen: whitelist
 
         if (data != null)
         {
@@ -40,18 +41,7 @@ public sealed class AddWhitelistCommand : IConsoleCommand
 
             await db.AddToWhitelistAsync(guid);
 
-            // start-backmen: whitelist
-            var player = IoCManager.Resolve<IPlayerManager>();
-            var playtime = IoCManager.Resolve<EntityManager>().System<Backmen.RoleWhitelist.RoleWhitelistSystem>();
-
-            if (player.TryGetPlayerDataByUsername(name, out var playerData) &&
-                player.TryGetSessionByUsername(name, out var session))
-            {
-                playerData.ContentData()!.Whitelisted = true;
-                playtime.SendWhitelistCached(session);
-            }
-            // end-backmen: whitelist
-
+            wlSystem.RemoveWhitelist(guid); // backmen: whitelist
 
             shell.WriteLine(Loc.GetString("command-whitelistadd-added", ("username", data.Username)));
             return;
@@ -75,8 +65,10 @@ public sealed class RemoveWhitelistCommand : IConsoleCommand
         var db = IoCManager.Resolve<IServerDbManager>();
         var loc = IoCManager.Resolve<IPlayerLocator>();
 
+
         var name = args[0];
         var data = await loc.LookupIdByNameAsync(name);
+        var wlSystem = IoCManager.Resolve<EntityManager>().System<Backmen.RoleWhitelist.WhitelistSystem>(); // backmen: whitelist
 
         if (data != null)
         {
@@ -90,17 +82,7 @@ public sealed class RemoveWhitelistCommand : IConsoleCommand
 
             await db.RemoveFromWhitelistAsync(guid);
 
-            // start-backmen: whitelist
-            var player = IoCManager.Resolve<IPlayerManager>();
-            var playtime = IoCManager.Resolve<EntityManager>().System<Backmen.RoleWhitelist.RoleWhitelistSystem>();
-
-            if (player.TryGetPlayerDataByUsername(name, out var playerData) &&
-                player.TryGetSessionByUsername(name, out var session))
-            {
-                playerData.ContentData()!.Whitelisted = false;
-                playtime.SendWhitelistCached(session);
-            }
-            // end-backmen: whitelist
+            wlSystem.AddWhitelist(guid); // backmen: whitelist
 
             shell.WriteLine(Loc.GetString("command-whitelistremove-removed", ("username", data.Username)));
             return;
@@ -130,12 +112,14 @@ public sealed class KickNonWhitelistedCommand : IConsoleCommand
         var db = IoCManager.Resolve<IServerDbManager>();
         var net = IoCManager.Resolve<IServerNetManager>();
 
+        var wlSystem = IoCManager.Resolve<EntityManager>().System<Backmen.RoleWhitelist.WhitelistSystem>(); // backmen: whitelist
+
         foreach (var session in player.NetworkedSessions)
         {
             if (await db.GetAdminDataForAsync(session.UserId) is not null)
                 continue;
 
-            if (!await db.GetWhitelistStatusAsync(session.UserId))
+            if (!wlSystem.IsInWhitelist(session.UserId))
             {
                 net.DisconnectChannel(session.ConnectedClient, Loc.GetString("whitelist-not-whitelisted"));
             }
