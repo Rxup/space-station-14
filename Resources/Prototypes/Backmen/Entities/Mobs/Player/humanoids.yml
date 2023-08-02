@@ -45,4 +45,4 @@
     - type: NpcFactionMember
       factions:
       - NanoTrasen
-      - Clown
+#      - Clown

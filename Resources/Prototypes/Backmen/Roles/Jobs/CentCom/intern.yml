@@ -5,7 +5,7 @@
   playTimeTracker: JobCentralCommandAssistant
   setPreference: true
   startingGear: CentComInternGear
-  icon: "ServiceWorker"
+  icon: JobIconServiceWorker
   supervisors: job-supervisors-centcommembers
   canBeAntag: false
   weight: 1

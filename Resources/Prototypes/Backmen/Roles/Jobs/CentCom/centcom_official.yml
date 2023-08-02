@@ -5,7 +5,7 @@
   playTimeTracker: JobCentralCommandOfficial
   setPreference: true
   startingGear: CentComCorvax
-  icon: "Nanotrasen"
+  icon: "JobIconNanotrasen"
   supervisors: job-supervisors-hoh
   canBeAntag: false
   weight: 1

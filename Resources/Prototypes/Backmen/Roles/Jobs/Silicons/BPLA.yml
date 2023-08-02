@@ -8,7 +8,7 @@
   requirements:
     - !type:OverallPlaytimeRequirement
       time: 24000
-  icon: "Unknown"
+  icon: JobIconUnknown
   supervisors: job-supervisors-human
   canBeAntag: false
   jobEntity: BackmenDrone

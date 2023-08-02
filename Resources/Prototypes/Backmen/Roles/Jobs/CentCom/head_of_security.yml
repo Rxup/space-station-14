@@ -5,7 +5,7 @@
   playTimeTracker: JobCentralCommandSecGavna
   setPreference: true
   startingGear: HeadOfSecurityCentComGear
-  icon: "Nanotrasen"
+  icon: JobIconNanotrasen
   supervisors: job-supervisors-hoh
   canBeAntag: false
   weight: 1

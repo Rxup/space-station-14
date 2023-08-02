@@ -5,7 +5,7 @@
   playTimeTracker: JobCentralCommandOperator
   setPreference: true
   startingGear: OperatorGavna
-  icon: "Nanotrasen"
+  icon: JobIconNanotrasen
   supervisors: job-supervisors-hoh
   canBeAntag: false
   weight: 1
