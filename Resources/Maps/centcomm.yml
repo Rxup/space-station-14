@@ -37500,6 +37500,58 @@ entities:
     missingComponents:
     - Damageable
     - MovedByPressure
+- proto: GeneratorBasic15kW
+  entities:
+  - uid: 2497
+    components:
+    - pos: 32.5,-21.5
+      parent: 1668
+      type: Transform
+  - uid: 2498
+    components:
+    - pos: 32.5,-25.5
+      parent: 1668
+      type: Transform
+  - uid: 2499
+    components:
+    - pos: 33.5,-25.5
+      parent: 1668
+      type: Transform
+  - uid: 2500
+    components:
+    - pos: 31.5,-21.5
+      parent: 1668
+      type: Transform
+  - uid: 2522
+    components:
+    - pos: 30.5,-23.5
+      parent: 1668
+      type: Transform
+  - uid: 2555
+    components:
+    - pos: 31.5,-25.5
+      parent: 1668
+      type: Transform
+  - uid: 2785
+    components:
+    - pos: 33.5,-23.5
+      parent: 1668
+      type: Transform
+  - uid: 2825
+    components:
+    - pos: 33.5,-21.5
+      parent: 1668
+      type: Transform
+  - uid: 3427
+    components:
+    - pos: 34.5,-23.5
+      parent: 1668
+      type: Transform
+  - uid: 3428
+    components:
+    - pos: 31.5,-23.5
+      parent: 1668
+      type: Transform
 - proto: GeneratorRTG
   entities:
   - uid: 2344
@@ -37525,58 +37577,6 @@ entities:
   - uid: 2784
     components:
     - pos: 32.5,-23.5
-      parent: 1668
-      type: Transform
-- proto: GeneratorUranium
-  entities:
-  - uid: 2497
-    components:
-    - pos: 34.5,-23.5
-      parent: 1668
-      type: Transform
-  - uid: 2498
-    components:
-    - pos: 31.5,-23.5
-      parent: 1668
-      type: Transform
-  - uid: 2499
-    components:
-    - pos: 31.5,-21.5
-      parent: 1668
-      type: Transform
-  - uid: 2500
-    components:
-    - pos: 33.5,-25.5
-      parent: 1668
-      type: Transform
-  - uid: 2522
-    components:
-    - pos: 31.5,-25.5
-      parent: 1668
-      type: Transform
-  - uid: 2555
-    components:
-    - pos: 30.5,-23.5
-      parent: 1668
-      type: Transform
-  - uid: 2785
-    components:
-    - pos: 33.5,-21.5
-      parent: 1668
-      type: Transform
-  - uid: 2825
-    components:
-    - pos: 33.5,-23.5
-      parent: 1668
-      type: Transform
-  - uid: 3427
-    components:
-    - pos: 32.5,-21.5
-      parent: 1668
-      type: Transform
-  - uid: 3428
-    components:
-    - pos: 32.5,-25.5
       parent: 1668
       type: Transform
 - proto: GravityGenerator
@@ -45553,6 +45553,21 @@ entities:
     - type: Godmode
     missingComponents:
     - Damageable
+  - uid: 4721
+    components:
+    - pos: 17.5,-32.5
+      parent: 1668
+      type: Transform
+  - uid: 4722
+    components:
+    - pos: 16.5,-32.5
+      parent: 1668
+      type: Transform
+  - uid: 4723
+    components:
+    - pos: 15.5,-32.5
+      parent: 1668
+      type: Transform
   - uid: 4752
     components:
     - pos: 17.5,-22.5
@@ -57001,33 +57016,6 @@ entities:
   - uid: 4720
     components:
     - pos: 18.5,-32.5
-      parent: 1668
-      type: Transform
-    - type: ArrivalsProtect
-    - type: Godmode
-    missingComponents:
-    - Damageable
-  - uid: 4721
-    components:
-    - pos: 17.5,-32.5
-      parent: 1668
-      type: Transform
-    - type: ArrivalsProtect
-    - type: Godmode
-    missingComponents:
-    - Damageable
-  - uid: 4722
-    components:
-    - pos: 16.5,-32.5
-      parent: 1668
-      type: Transform
-    - type: ArrivalsProtect
-    - type: Godmode
-    missingComponents:
-    - Damageable
-  - uid: 4723
-    components:
-    - pos: 15.5,-32.5
       parent: 1668
       type: Transform
     - type: ArrivalsProtect
