@@ -48,10 +48,7 @@ namespace Content.Server.GameTicking
                     {
                         var data = new PlayerData(session.UserId, args.Session.Name);
                         data.Mind = mind;
-                        data.Whitelisted = await _db.GetWhitelistStatusAsync(session.UserId); // backmen: whitelist
                         session.Data.ContentDataUncast = data;
-
-                        EntityManager.System<Backmen.RoleWhitelist.RoleWhitelistSystem>().SendWhitelistCached(session);
                     }
 
                     // Make the player actually join the game.

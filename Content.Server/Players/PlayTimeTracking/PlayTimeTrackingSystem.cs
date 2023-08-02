@@ -28,6 +28,7 @@ public sealed class PlayTimeTrackingSystem : EntitySystem
     [Dependency] private readonly IPrototypeManager _prototypes = default!;
     [Dependency] private readonly IConfigurationManager _cfg = default!;
     [Dependency] private readonly PlayTimeTrackingManager _tracking = default!;
+    [Dependency] private readonly Backmen.RoleWhitelist.WhitelistSystem _roleWhitelist = default!; // backmen: whitelist
 
     public override void Initialize()
     {
@@ -165,7 +166,7 @@ public sealed class PlayTimeTrackingSystem : EntitySystem
         // start-backmen: whitelist
         if (_cfg.GetCVar(Shared.Backmen.CCVar.CCVars.WhitelistRolesEnabled) &&
             job.WhitelistRequired &&
-            !player.ContentData()!.Whitelisted)
+            !_roleWhitelist.IsInWhitelist(player))
         {
             return false;
         }
