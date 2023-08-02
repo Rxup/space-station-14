@@ -5,7 +5,7 @@
   playTimeTracker: JobCentralCommandCargo
   setPreference: true
   startingGear: CCCargo
-  icon: "Nanotrasen"
+  icon: JobIconNanotrasen
   supervisors: job-supervisors-hoh
   canBeAntag: false
   weight: 1
