@@ -7,7 +7,8 @@
     - !type:OverallPlaytimeRequirement
       time: 36000 # 10 hrs
   startingGear: LawyerGear
-  icon: "Lawyer"
+  setPreference: false # Corvax-IAA
+  icon: "JobIconLawyer"
   supervisors: job-supervisors-hop
   access:
   - Service

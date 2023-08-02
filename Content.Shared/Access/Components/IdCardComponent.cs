@@ -1,6 +1,8 @@
 using Content.Shared.Access.Systems;
 using Content.Shared.PDA;
+using Content.Shared.StatusIcon;
 using Robust.Shared.GameStates;
+using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype;
 
 namespace Content.Shared.Access.Components
 {
@@ -20,9 +22,19 @@ namespace Content.Shared.Access.Components
         public string? JobTitle;
 
         // start-backmen: currency
-        [DataField("storedBankAccountNumber")] public string? StoredBankAccountNumber;
+        [DataField("storedBankAccountNumber")]
+        [AutoNetworkedField]
+        public string? StoredBankAccountNumber;
 
-        [DataField("storedBankAccountPin")] public string? StoredBankAccountPin;
+        [DataField("storedBankAccountPin")]
+        public string? StoredBankAccountPin;
         // end-backmen: currency
+        /// <summary>
+        /// The state of the job icon rsi.
+        /// </summary>
+        [DataField("jobIcon", customTypeSerializer: typeof(PrototypeIdSerializer<StatusIconPrototype>))]
+        [AutoNetworkedField]
+        public string JobIcon = "JobIconUnknown";
+
     }
 }
