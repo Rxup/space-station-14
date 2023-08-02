@@ -11,7 +11,7 @@ using Content.Server.Players; // backmen: whitelist
 
 namespace Content.Server.Whitelist;
 
-[AdminCommand(AdminFlags.Ban)]
+[AdminCommand(AdminFlags.Permissions)]
 public sealed class AddWhitelistCommand : IConsoleCommand
 {
     public string Command => "whitelistadd";
@@ -61,7 +61,7 @@ public sealed class AddWhitelistCommand : IConsoleCommand
     }
 }
 
-[AdminCommand(AdminFlags.Ban)]
+[AdminCommand(AdminFlags.Permissions)]
 public sealed class RemoveWhitelistCommand : IConsoleCommand
 {
     public string Command => "whitelistremove";
@@ -110,7 +110,7 @@ public sealed class RemoveWhitelistCommand : IConsoleCommand
     }
 }
 
-[AdminCommand(AdminFlags.Ban)]
+[AdminCommand(AdminFlags.Permissions)]
 public sealed class KickNonWhitelistedCommand : IConsoleCommand
 {
     public string Command => "kicknonwhitelisted";
