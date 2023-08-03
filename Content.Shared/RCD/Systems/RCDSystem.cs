@@ -95,6 +95,13 @@ public sealed class RCDSystem : EntitySystem
                 return;
         }
 
+        // start-backmen: protect system
+        if (HasComp<Shared.Tiles.ProtectedGridComponent>(gridId))
+        {
+            return;
+        }
+        // end-backmen: protect system
+
         var doAfterArgs = new DoAfterArgs(user, comp.Delay, new RCDDoAfterEvent(location, comp.Mode), uid, target: args.Target, used: uid)
         {
             BreakOnDamage = true,

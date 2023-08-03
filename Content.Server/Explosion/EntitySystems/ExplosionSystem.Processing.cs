@@ -224,6 +224,13 @@ public sealed partial class ExplosionSystem : EntitySystem
             ProcessEntity(xform.Owner, epicenter, damage, throwForce, id, xform, damageQuery, physicsQuery, xformQuery, tagQuery, projectileQuery);
         }
 
+        // start-backmen: protect system
+        if (HasComp<Shared.Tiles.ProtectedGridComponent>(grid.Owner))
+        {
+            return false;
+        }
+        // end-backmen: protect system
+
         // process anchored entities
         var tileBlocked = false;
         var anchoredList = grid.GetAnchoredEntities(tile).ToList();

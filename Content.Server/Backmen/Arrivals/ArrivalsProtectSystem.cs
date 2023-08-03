@@ -24,6 +24,8 @@ using Content.Server.Gravity;
 using Content.Server.Power.EntitySystems;
 using Content.Shared.Coordinates;
 using Content.Shared.Damage;
+using Content.Shared.DeviceLinking.Events;
+using Content.Shared.RCD.Systems;
 using Content.Shared.Tiles;
 using Robust.Server.GameObjects;
 
@@ -62,6 +64,15 @@ public sealed class ArrivalsProtectSystem : EntitySystem
         SubscribeLocalEvent<ArrivalsProtectComponent, ApcToggleMainBreakerAttemptEvent>(OnToggleApc, before: new[]{ typeof(EmpSystem)});
 
         SubscribeLocalEvent<BuildAttemptEvent>(OnBuildAttemptEvent);
+
+        SubscribeLocalEvent<ArrivalsProtectComponent, LinkAttemptEvent>(OnLinkAttempt);
+    }
+    
+    private void OnLinkAttempt(EntityUid uid, ArrivalsProtectComponent component, LinkAttemptEvent args)
+    {
+        if (args.User == null) // AutoLink (and presumably future external linkers) have no user.
+            return;
+        args.Cancel();
     }
 
     private void OnToggleApc(EntityUid uid, ArrivalsProtectComponent component, ref ApcToggleMainBreakerAttemptEvent args)
