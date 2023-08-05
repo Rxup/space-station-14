@@ -24,6 +24,7 @@ using Content.Server.Emp;
 using Content.Server.Gravity;
 using Content.Server.Power.EntitySystems;
 using Content.Shared.Damage;
+using Content.Shared.Damage.Components;
 using Content.Shared.DeviceLinking.Events;
 using Content.Shared.Tiles;
 
