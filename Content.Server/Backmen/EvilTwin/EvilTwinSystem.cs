@@ -191,7 +191,6 @@ public sealed class EvilTwinSystem : EntitySystem
 
         mind.PreventGhosting = true;
 
-        RemComp<PacifistComponent>(uid);
         RemComp<PacifiedComponent>(uid);
 
         EnsureComp<PendingClockInComponent>(uid);
