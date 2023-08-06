@@ -59,28 +59,28 @@ public sealed class WhitelistSystem  : EntitySystem
 
     public void AddWhitelist(IPlayerSession p)
     {
-        if (_whitelisted.Remove(p.UserId))
+        if (_whitelisted.Add(p.UserId))
         {
             SendWhitelistCached(p);
         }
     }
     public void AddWhitelist(NetUserId p)
     {
-        if (_whitelisted.Remove(p))
+        if (_whitelisted.Add(p))
         {
             SendWhitelistCached(p);
         }
     }
     public void RemoveWhitelist(IPlayerSession p)
     {
-        if (_whitelisted.Add(p.UserId))
+        if (_whitelisted.Remove(p.UserId))
         {
             SendWhitelistCached(p);
         }
     }
     public void RemoveWhitelist(NetUserId p)
     {
-        if (_whitelisted.Add(p))
+        if (_whitelisted.Remove(p))
         {
             SendWhitelistCached(p);
         }

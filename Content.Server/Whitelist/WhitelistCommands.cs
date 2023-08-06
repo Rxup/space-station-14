@@ -41,7 +41,7 @@ public sealed class AddWhitelistCommand : IConsoleCommand
 
             await db.AddToWhitelistAsync(guid);
 
-            wlSystem.RemoveWhitelist(guid); // backmen: whitelist
+            wlSystem.AddWhitelist(guid); // backmen: whitelist
 
             shell.WriteLine(Loc.GetString("command-whitelistadd-added", ("username", data.Username)));
             return;
@@ -82,7 +82,7 @@ public sealed class RemoveWhitelistCommand : IConsoleCommand
 
             await db.RemoveFromWhitelistAsync(guid);
 
-            wlSystem.AddWhitelist(guid); // backmen: whitelist
+            wlSystem.RemoveWhitelist(guid); // backmen: whitelist
 
             shell.WriteLine(Loc.GetString("command-whitelistremove-removed", ("username", data.Username)));
             return;
