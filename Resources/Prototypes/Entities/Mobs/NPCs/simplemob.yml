@@ -195,7 +195,7 @@
       - ForcedSleep
       - TemporaryBlindness
       - Pacified
-      - ZombieDisease
+      - StaminaModifier
   - type: ThermalRegulator
     metabolismHeat: 800
     radiatedHeat: 100
