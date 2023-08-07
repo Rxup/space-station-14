@@ -72,8 +72,8 @@
   parent: ClothingHeadHardsuitWithLightBase
   id: ClothingHeadHelmetHardsuitCentcomCarporate
   noSpawn: true
-  name: Шлем скафандра ЦК (Карпорат)
-  description: Специальный космический шлем Корпарат сделаный для различных ситуация с хорошим фанариком лоялиста НаноТрайзен.
+  name: Шлем скафандра ЦК (Корпорат)
+  description: Специальный космический шлем Корпорат сделаный для различных ситуация с хорошим фанариком лоялиста НаноТрайзен.
   components:
   - type: Sprite
     sprite: Backmen/Clothing/Head/Hardsuits/centcom_corparat.rsi
