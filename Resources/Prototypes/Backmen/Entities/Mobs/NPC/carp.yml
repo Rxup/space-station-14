@@ -1,0 +1,16 @@
+- type: entity
+  name: carp
+  suffix: syndicate
+  parent: MobCarp
+  id: MobCarpFactionSyndicate
+  description: Looks like some kind of fish. Might be magical.
+  components:
+    - type: RandomMetadata
+      nameSegments: [ sweet_carp ]
+    - type: InteractionPopup
+      successChance: 0.9
+      interactSuccessString: petting-success-carp
+      interactFailureString: petting-failure-carp
+    - type: NpcFactionMember
+      factions:
+        - Syndicate
