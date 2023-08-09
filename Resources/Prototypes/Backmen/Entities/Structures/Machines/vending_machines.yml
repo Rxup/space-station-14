@@ -25,8 +25,12 @@
   id: BackmenVendingLootBox
   name: ЛутБоксы
   suffix: backmen
+  description: 123
   components:
     - type: VendingMachine
+      pack: VendingLootboxInventory
+      dispenseOnHitChance: 0.01
+      dispenseOnHitThreshold: 50
       offState: off
       brokenState: broken
       normalState: normal-unshaded
@@ -43,6 +47,10 @@
           shader: unshaded
         - state: panel
           map: ["enum.WiresVisualLayers.MaintenancePanel"]
+    - type: PointLight
+      radius: 1.5
+      energy: 1.6
+      color: "#6148c7"
     - type: Store
       categories:
         - VendingLootboxInventory

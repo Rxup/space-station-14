@@ -4,10 +4,13 @@ using Content.Server.Backmen.Economy;
 using Content.Server.Backmen.Economy.Wage;
 using Content.Server.Objectives.Interfaces;
 using Content.Shared.Inventory;
+using JetBrains.Annotations;
 using Robust.Shared.Utility;
 
 namespace Content.Server.Backmen.Mind;
 
+[UsedImplicitly]
+[DataDefinition]
 public sealed class MindNoteCondition : IObjectiveCondition
 {
 

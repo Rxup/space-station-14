@@ -6,6 +6,7 @@ using Content.Client.UserInterface.Controls;
 using Content.Client.Players.PlayTimeTracking;
 using Content.Shared.CCVar;
 using Content.Shared.Roles;
+using Content.Shared.StatusIcon;
 using Robust.Client.Console;
 using Robust.Client.GameObjects;
 using Robust.Client.UserInterface;
@@ -236,8 +237,8 @@ namespace Content.Client.LateJoin
                             Stretch = TextureRect.StretchMode.KeepCentered
                         };
 
-                        var specifier = new SpriteSpecifier.Rsi(new ("/Textures/Interface/Misc/job_icons.rsi"), prototype.Icon);
-                        icon.Texture = _sprites.Frame0(specifier);
+                        var jobIcon = _prototypeManager.Index<StatusIconPrototype>(prototype.Icon);
+                        icon.Texture = _sprites.Frame0(jobIcon.Icon);
                         jobSelector.AddChild(icon);
 
                         var jobLabel = new Label

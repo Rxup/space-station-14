@@ -15,17 +15,18 @@ using Content.Server.Light.Components;
 using Content.Server.StationEvents.Components;
 using Content.Shared.SubFloor;
 using Content.Server.SurveillanceCamera;
-using Content.Server.Construction.Components;
 using Content.Server.Damage.Components;
 using Content.Server.Atmos.Components;
+using Content.Server.Atmos.Piping.Binary.Components;
+using Content.Server.Atmos.Piping.Trinary.Components;
 using Content.Server.Construction;
 using Content.Server.Emp;
 using Content.Server.Gravity;
 using Content.Server.Power.EntitySystems;
-using Content.Shared.Coordinates;
 using Content.Shared.Damage;
+using Content.Shared.Damage.Components;
+using Content.Shared.DeviceLinking.Events;
 using Content.Shared.Tiles;
-using Robust.Server.GameObjects;
 
 namespace Content.Server.Backmen.Arrivals;
 
@@ -62,6 +63,15 @@ public sealed class ArrivalsProtectSystem : EntitySystem
         SubscribeLocalEvent<ArrivalsProtectComponent, ApcToggleMainBreakerAttemptEvent>(OnToggleApc, before: new[]{ typeof(EmpSystem)});
 
         SubscribeLocalEvent<BuildAttemptEvent>(OnBuildAttemptEvent);
+
+        SubscribeLocalEvent<ArrivalsProtectComponent, LinkAttemptEvent>(OnLinkAttempt);
+    }
+
+    private void OnLinkAttempt(EntityUid uid, ArrivalsProtectComponent component, LinkAttemptEvent args)
+    {
+        if (args.User == null) // AutoLink (and presumably future external linkers) have no user.
+            return;
+        args.Cancel();
     }
 
     private void OnToggleApc(EntityUid uid, ArrivalsProtectComponent component, ref ApcToggleMainBreakerAttemptEvent args)
@@ -98,6 +108,7 @@ public sealed class ArrivalsProtectSystem : EntitySystem
         EnsureComp<GodmodeComponent>(uid);
         RemCompDeferred<DamageableComponent>(uid);
         RemCompDeferred<MovedByPressureComponent>(uid);
+        ProcessGodmode(uid);
     }
 
     private void OnMapInit(EntityUid uid, ArrivalsProtectComponent component, MapInitEvent args)
@@ -152,6 +163,17 @@ public sealed class ArrivalsProtectSystem : EntitySystem
 
     private void ProcessGodmode(EntityUid uid)
     {
+        if (TryComp<GasMixerComponent>(uid, out var gasMinerComponent))
+        {
+            (gasMinerComponent as dynamic).Enabled = true;
+            Dirty(gasMinerComponent);
+        }
+        if (TryComp<GasPressurePumpComponent>(uid, out var gasPressurePumpComponent))
+        {
+            gasPressurePumpComponent.Enabled = true;
+            Dirty(gasPressurePumpComponent);
+        }
+
         if(TryComp<DoorComponent>(uid, out var doorComp))
         {
             doorComp.PryingQuality = "None";

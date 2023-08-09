@@ -47,6 +47,7 @@
         # Corvax-Pins-End
         - CluwneHorn
         - ClothingMaskRat
+        - MysteryFigureBox
       rareChance: 0.01
       prototypes:
         - Lighter
@@ -87,7 +88,7 @@
           state: high
     - type: RandomSpawner
       rarePrototypes:
-        - lanternextrabright
+        - LanternFlash
         - PowerCellHigh
         - NetProbeCartridge
       rareChance: 0.08
@@ -139,5 +140,22 @@
         - Spear
         - LidSalami
         - ClothingEyesBlindfold
+      chance: 0.6
+      offset: 0.0
+
+- type: entity
+  name: Maint Loot Spawner
+  suffix: Plants
+  id: MaintenancePlantSpawner
+  parent: MarkerBase
+  components:
+    - type: Sprite
+      layers:
+        - state: red
+        - sprite: Objects/Misc/spaceshroom.rsi
+          state: structure
+    - type: RandomSpawner
+      prototypes:
+        - Spaceshroom
       chance: 0.6
       offset: 0.0

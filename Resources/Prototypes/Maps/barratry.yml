@@ -47,10 +47,12 @@
             SalvageSpecialist: [ 3, 3 ]
             Musician: [ 1, 1 ]
             AtmosphericTechnician: [ 2, 3 ]
-            TechnicalAssistant: [ 1, 2 ]
-            MedicalIntern: [ 1, 2 ]
+            TechnicalAssistant: [ 2, 4 ]
+            MedicalIntern: [ 2, 4 ]
             ServiceWorker: [ 1, 2 ]
-            SecurityCadet: [ 1, 2 ]
+            SecurityCadet: [ 2, 4 ]
             Detective: [ 1, 1 ]
-            ResearchAssistant: [1, 2]
             Brigmedic: [ 0, 1 ] # backmen-Brigmedic
+            ResearchAssistant: [1, 2]
+            BKBPLATech: [0, 3] # backmen-BPLA-Silicons
+            BKBPLAMED: [0, 3] # backmen-BPLAMED-Silicons

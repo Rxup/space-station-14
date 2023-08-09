@@ -15,6 +15,8 @@ namespace Content.Client.Access.UI
     public sealed partial class IdCardConsoleWindow : DefaultWindow
     {
         [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
+        [Dependency] private readonly ILogManager _logManager = default!;
+        private readonly ISawmill _logMill = default!;
 
         private readonly IdCardConsoleBoundUserInterface _owner;
 
@@ -30,6 +32,7 @@ namespace Content.Client.Access.UI
         {
             RobustXamlLoader.Load(this);
             IoCManager.InjectDependencies(this);
+            _logMill = _logManager.GetSawmill(SharedIdCardConsoleSystem.Sawmill);
 
             _owner = owner;
 
@@ -56,12 +59,7 @@ namespace Content.Client.Access.UI
                 {
                     continue;
                 }
-                // start-backmen: CentCom
-                if (job.SetHideFromConsole)
-                {
-                    continue;
-                }
-                // end-backmen: Centcom
+
                 _jobPrototypeIds.Add(job.ID);
                 JobPresetOptionButton.AddItem(Loc.GetString(job.Name), _jobPrototypeIds.Count - 1);
             }
@@ -72,7 +70,7 @@ namespace Content.Client.Access.UI
             {
                 if (!prototypeManager.TryIndex<AccessLevelPrototype>(access, out var accessLevel))
                 {
-                    Logger.ErrorS(SharedIdCardConsoleSystem.Sawmill, $"Unable to find accesslevel for {access}");
+                    _logMill.Error($"Unable to find accesslevel for {access}");
                     continue;
                 }
 

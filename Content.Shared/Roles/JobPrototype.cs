@@ -1,6 +1,7 @@
 using Content.Shared.Access;
 using Content.Shared.FixedPoint;
 using Content.Shared.Players.PlayTimeTracking;
+using Content.Shared.StatusIcon;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype;
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype.List;
@@ -81,9 +82,10 @@ namespace Content.Shared.Roles
         [DataField("jobEntity", customTypeSerializer: typeof(PrototypeIdSerializer<EntityPrototype>))]
         public string? JobEntity = null;
 
-        [DataField("icon")] public string Icon { get; } = string.Empty;
+        [DataField("icon", customTypeSerializer: typeof(PrototypeIdSerializer<StatusIconPrototype>))]
+        public string Icon { get; } = "JobIconUnknown";
 
-        [DataField("special", serverOnly:true)]
+        [DataField("special", serverOnly: true)]
         public JobSpecial[] Special { get; private set; } = Array.Empty<JobSpecial>();
 
         [DataField("access", customTypeSerializer: typeof(PrototypeIdListSerializer<AccessLevelPrototype>))]
@@ -110,10 +112,9 @@ namespace Content.Shared.Roles
         [DataField("wage")]
         public FixedPoint2 Wage { get; } = 0;
 // end-backmen: currency
-// start-backmen: CentCom
-        [DataField("setHideFromConsole")]
-        public bool SetHideFromConsole { get; } = false;
-
-// end-backmen: Centcom
+// start-backmen: Whitelist
+        [DataField("whitelistRequired")]
+        public bool WhitelistRequired { get; set; } = false;
+// end-backmen: Whitelist
     }
 }

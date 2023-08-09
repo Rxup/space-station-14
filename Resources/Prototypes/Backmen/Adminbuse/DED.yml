@@ -280,6 +280,7 @@
   components:
   - type: SpecForce
     actionName: CentcomFtlAction
+    whitelistRequired: true
     requirements:
     - !type:DepartmentTimeRequirement
       department: Security
@@ -295,6 +296,7 @@
   - type: GhostRole
     name: Офицер Специальных Операций
     description: Офицер Специальных Операций, руководитель департамента специальных операций в секторе.
+    whitelistRequired: true
   - type: GhostTakeoverAvailable
   - type: Loadout
     prototypes: [SFOForma]

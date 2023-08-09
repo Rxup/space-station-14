@@ -4,6 +4,18 @@
   name: PDA of the Red Order
   description: An unusual variation of the PDA that draws energy from redspace crystals inside.
   components:
+    - type: Sprite
+      sprite: Backmen/Objects/Devices/pda.rsi
+      layers:
+      - map: [ "enum.PdaVisualLayers.Base" ]
+      - state: "light_overlay"
+        map: [ "enum.PdaVisualLayers.Flashlight" ]
+        shader: "unshaded"
+        visible: false
+      - state: "id_overlay"
+        map: [ "enum.PdaVisualLayers.IdLight" ]
+        shader: "unshaded"
+        visible: false
     - type: Pda
       id: IdCardRO
       state: pda-orden
@@ -16,5 +28,6 @@
     - type: PdaBorderColor
       borderColor: "#8b0000"
     - type: Icon
+      sprite: Backmen/Objects/Devices/pda.rsi
       state: pda-orden
 

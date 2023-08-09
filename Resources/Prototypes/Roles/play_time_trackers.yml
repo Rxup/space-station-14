@@ -119,6 +119,18 @@
   id: JobSecurityOfficer
 
 - type: playTimeTracker
+  id: JobSeniorEngineer
+
+- type: playTimeTracker
+  id: JobSeniorOfficer
+
+- type: playTimeTracker
+  id: JobSeniorPhysician
+
+- type: playTimeTracker
+  id: JobSeniorResearcher
+
+- type: playTimeTracker
   id: JobServiceWorker
 
 - type: playTimeTracker
@@ -136,7 +148,3 @@
 - type: playTimeTracker
   id: JobZookeeper
 
-#start-backmen: brigmed
-- type: playTimeTracker
-  id: JobBrigmedic
-#end-backmen: brigmed

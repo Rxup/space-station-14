@@ -31,3 +31,10 @@
   conditions:
     - !type:ListingLimitedStockCondition
       stock: 2
+
+- type: vendingMachineInventory
+  id: VendingLootboxInventory
+  startingInventory:
+    PresentRandom: 100
+    PresentRandomUnsafe: 10
+    PresentRandomInsane: 2

@@ -55,7 +55,7 @@ namespace Content.Server.Ghost.Roles.Components
         [Access(typeof(GhostRoleSystem), Other = AccessPermissions.ReadWriteExecute)] // FIXME Friends
         public string RoleRules
         {
-            get => _roleRules;
+            get => Loc.GetString(_roleRules);
             set
             {
                 _roleRules = value;
@@ -83,5 +83,12 @@ namespace Content.Server.Ghost.Roles.Components
         [ViewVariables(VVAccess.ReadWrite)]
         [DataField("reregister")]
         public bool ReregisterOnGhost { get; set; } = true;
+
+        // start-backmen: whitelist
+        [ViewVariables(VVAccess.ReadWrite)]
+        [Access(typeof(GhostRoleSystem), Other = AccessPermissions.ReadWriteExecute)] // FIXME Friends
+        [DataField("whitelistRequired")]
+        public bool WhitelistRequired = false;
+        // end-backmen: whitelist
     }
 }
