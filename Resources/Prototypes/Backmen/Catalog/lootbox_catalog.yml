@@ -3,7 +3,7 @@
   id: LootboxT1
   productEntity: PresentRandom
   cost:
-    SpaceCredits: 300
+    SpaceCash: 300
   categories:
     - VendingLootboxInventory
   conditions:
@@ -14,7 +14,7 @@
   id: LootboxT2
   productEntity: PresentRandomUnsafe
   cost:
-    SpaceCredits: 1000
+    SpaceCash: 1000
   categories:
     - VendingLootboxInventory
   conditions:
@@ -25,7 +25,7 @@
   id: LootboxT3
   productEntity: PresentRandomInsane
   cost:
-    SpaceCredits: 10000
+    SpaceCash: 10000
   categories:
     - VendingLootboxInventory
   conditions:

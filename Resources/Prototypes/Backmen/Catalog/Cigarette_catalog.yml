@@ -2,7 +2,7 @@
   id: CigaretteMachineInventory1
   productEntity: CigPackGreen
   cost:
-    SpaceCredits: 25
+    SpaceCash: 25
   categories:
     - CigaretteMachineInventory
   conditions:
@@ -13,7 +13,7 @@
   id: CigaretteMachineInventory2
   productEntity: CigPackRed
   cost:
-    SpaceCredits: 25
+    SpaceCash: 25
   categories:
     - CigaretteMachineInventory
   conditions:
@@ -24,7 +24,7 @@
   id: CigaretteMachineInventory3
   productEntity: CigPackBlue
   cost:
-    SpaceCredits: 25
+    SpaceCash: 25
   categories:
     - CigaretteMachineInventory
   conditions:
@@ -35,7 +35,7 @@
   id: CigaretteMachineInventory4
   productEntity: CigPackBlack
   cost:
-    SpaceCredits: 25
+    SpaceCash: 25
   categories:
     - CigaretteMachineInventory
   conditions:
@@ -46,7 +46,7 @@
   id: CigaretteMachineInventory5
   productEntity: CigarCase
   cost:
-    SpaceCredits: 40
+    SpaceCash: 40
   categories:
     - CigaretteMachineInventory
   conditions:
@@ -57,7 +57,7 @@
   id: CigaretteMachineInventory6
   productEntity: SmokingPipeFilledTobacco
   cost:
-    SpaceCredits: 5
+    SpaceCash: 5
   categories:
     - CigaretteMachineInventory
   conditions:
@@ -68,7 +68,7 @@
   id: CigaretteMachineInventory7
   productEntity: Vape
   cost:
-    SpaceCredits: 50
+    SpaceCash: 50
   categories:
     - CigaretteMachineInventory
   conditions:
@@ -79,7 +79,7 @@
   id: CigaretteMachineInventory8
   productEntity: Matchbox
   cost:
-    SpaceCredits: 10
+    SpaceCash: 10
   categories:
     - CigaretteMachineInventory
   conditions:
@@ -90,7 +90,7 @@
   id: CigaretteMachineInventory9
   productEntity: PackPaperRollingFilters
   cost:
-    SpaceCredits: 20
+    SpaceCash: 20
   categories:
     - CigaretteMachineInventory
   conditions:
@@ -101,7 +101,7 @@
   id: CigaretteMachineInventory10
   productEntity: CheapLighter
   cost:
-    SpaceCredits: 5
+    SpaceCash: 5
   categories:
     - CigaretteMachineInventory
   conditions:
@@ -112,7 +112,7 @@
   id: CigaretteMachineInventory11
   productEntity: Lighter
   cost:
-    SpaceCredits: 10
+    SpaceCash: 10
   categories:
     - CigaretteMachineInventory
   conditions:

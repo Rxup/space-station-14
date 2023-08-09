@@ -88,7 +88,7 @@
   - type: Speech
     speechSounds: Сombine
   - type: Stamina
-    excess: 250
+    critThreshold: 250
   - type: MobState
   - type: MobThresholds
     thresholds:

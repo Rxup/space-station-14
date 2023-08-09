@@ -51,7 +51,7 @@ namespace Content.Server.Backmen.Economy.Wage;
         {
             if (jobPrototype.WageDepartment == null || !_prototypeManager.TryIndex(jobPrototype.WageDepartment, out DepartmentPrototype? department))
                 return false;
-            if (department == null || !_bankManagerSystem.TryGetBankAccount(department.AccountNumber.ToString(), out var departmentBankAccount))
+            if (!_bankManagerSystem.TryGetBankAccount(department.AccountNumber.ToString(), out var departmentBankAccount))
                 return false;
             var newPayout = new Payout(
                 departmentBankAccount.AccountNumber,

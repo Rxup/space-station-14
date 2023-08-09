@@ -10,7 +10,9 @@ using Content.Shared.Backmen.Economy.ATM;
 using Content.Shared.FixedPoint;
 using Content.Shared.Hands.EntitySystems;
 using Content.Shared.Interaction;
+using Content.Shared.Materials;
 using Content.Shared.Popups;
+using Content.Shared.Stacks;
 using Content.Shared.Store;
 using Content.Shared.Wires;
 using Robust.Server.GameObjects;
@@ -43,7 +45,7 @@ namespace Content.Server.Backmen.Economy.ATM;
             SubscribeLocalEvent<ATMComponent, EntInsertedIntoContainerMessage>((_, comp, _) => UpdateComponentUserInterface(comp));
             SubscribeLocalEvent<ATMComponent, EntRemovedFromContainerMessage>((_, comp, _) => UpdateComponentUserInterface(comp));
             SubscribeLocalEvent<ATMComponent, ATMRequestWithdrawMessage>(OnRequestWithdraw);
-            SubscribeLocalEvent<Currency2Component,AfterInteractEvent>(OnAfterInteract, before: new[]{typeof(StoreSystem)});
+            SubscribeLocalEvent<AtmCurrencyComponent,AfterInteractEvent>(OnAfterInteract, before: new[]{typeof(StoreSystem)});
             SubscribeLocalEvent<ATMComponent, AfterActivatableUIOpenEvent>(OnInteract);
         }
 
@@ -55,17 +57,28 @@ namespace Content.Server.Backmen.Economy.ATM;
             UpdateComponentUserInterface(component);
         }
 
-        private void OnAfterInteract(EntityUid uid, Currency2Component _, AfterInteractEvent args)
+        public Dictionary<string, FixedPoint2> GetCurrencyValue(EntityUid uid, PhysicalCompositionComponent component)
+        {
+            var amount = EntityManager.GetComponentOrNull<StackComponent>(uid)?.Count ?? 1;
+            var rt = new Dictionary<string, FixedPoint2>();
+            if (component.MaterialComposition.TryGetValue("Credit", out var value))
+            {
+                rt.Add("SpaceCash", value * (FixedPoint2)amount);
+            }
+            return rt;
+        }
+
+        private void OnAfterInteract(EntityUid uid, AtmCurrencyComponent _, AfterInteractEvent args)
         {
             if (args.Handled || !args.CanReach)
                 return;
 
-            if (args.Target == null || !TryComp<CurrencyComponent>(args.Used, out var component) || !TryComp<ATMComponent>(args.Target, out var store))
+            if (args.Target == null || !TryComp<PhysicalCompositionComponent>(args.Used, out var component) || !TryComp<ATMComponent>(args.Target, out var store))
                 return;
 
             var user = args.User;
 
-            args.Handled = TryAddCurrency(_storeSystem.GetCurrencyValue(uid, component), store);
+            args.Handled = TryAddCurrency(GetCurrencyValue(uid, component), store);
 
             if (args.Handled)
             {

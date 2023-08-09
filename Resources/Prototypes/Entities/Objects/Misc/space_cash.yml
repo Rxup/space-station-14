@@ -1,5 +1,5 @@
 - type: entity
-  parent: SpaceCredit # backmen: currency
+  parent: BaseItem
   id: SpaceCash
   name: spesos
   description: You gotta have money.
@@ -8,6 +8,7 @@
   - type: PhysicalComposition
     materialComposition:
       Credit: 1
+  - type: AtmCurrency # backmen: currency
   - type: StaticPrice
     price: 0
   - type: Stack
