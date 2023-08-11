@@ -1,24 +1,33 @@
-﻿using Content.Server.Administration;
+﻿using System.Linq;
+using System.Numerics;
+using Content.Server.Administration;
 using Content.Server.Administration.Logs;
 using Content.Server.Atmos;
 using Content.Server.Atmos.Components;
 using Content.Server.Atmos.EntitySystems;
+using Content.Server.Decals;
 using Content.Server.Parallax;
 using Content.Shared.Administration;
 using Content.Shared.Atmos;
 using Content.Shared.Gravity;
 using Content.Shared.Parallax.Biomes;
+using Robust.Server.GameObjects;
+using Robust.Server.Maps;
 using Robust.Shared.Console;
 using Robust.Shared.Map;
 using Robust.Shared.Map.Components;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
+using Robust.Shared.Utility;
 
 namespace Content.Server.Backmen.Administration.Commands;
 
 [AdminCommand(AdminFlags.Mapping)]
 public sealed class MakeRimWorld : IConsoleCommand
 {
+    [Dependency] private readonly IEntitySystemManager _system = default!;
+    [Dependency] private readonly IEntityManager _entityManager = default!;
+    [Dependency] private readonly IMapManager _mapManager = default!;
     public string Command => "makerimworld";
 
     public string Description => "помещает отпечатки и ДНК жертвы на указанном объекте (волокна перчаток не берутся)";
@@ -28,8 +37,6 @@ public sealed class MakeRimWorld : IConsoleCommand
     public void Execute(IConsoleShell shell, string argStr, string[] args)
     {
         var _prototypeManager = IoCManager.Resolve<IPrototypeManager>();
-        var _entManager = IoCManager.Resolve<IEntityManager>();
-        var _mapManager = IoCManager.Resolve<IMapManager>();
         var _random = IoCManager.Resolve<IRobustRandom>();
         if (!_prototypeManager.TryIndex<BiomeTemplatePrototype>("Grasslands", out var biomeTemplate))
         {
@@ -40,11 +47,12 @@ public sealed class MakeRimWorld : IConsoleCommand
         _mapManager.CreateMap(mapId);
 
         var mapUid = _mapManager.GetMapEntityId(mapId);
+        var grid = _entityManager.EnsureComponent<MapGridComponent>(mapUid);
         MetaDataComponent? metadata = null;
 
-        var biome = _entManager.EnsureComponent<BiomeComponent>(mapUid);
+        var biome = _entityManager.EnsureComponent<BiomeComponent>(mapUid);
 
-        var biomeSystem = _entManager.System<BiomeSystem>();
+        var biomeSystem = _entityManager.System<BiomeSystem>();
         biomeSystem.SetSeed(biome, _random.Next());
         biomeSystem.SetTemplate(biome, biomeTemplate);
         biomeSystem.AddMarkerLayer(biome, "Carps");
@@ -54,17 +62,17 @@ public sealed class MakeRimWorld : IConsoleCommand
         biomeSystem.AddMarkerLayer(biome, "OrePlasma");
         biomeSystem.AddMarkerLayer(biome, "OreUranium");
         biomeSystem.AddTemplate(biome, "Loot", _prototypeManager.Index<BiomeTemplatePrototype>("Caves"), 1);
-        _entManager.Dirty(biome);
+        _entityManager.Dirty(biome);
 
-        var gravity = _entManager.EnsureComponent<GravityComponent>(mapUid);
+        var gravity = _entityManager.EnsureComponent<GravityComponent>(mapUid);
         gravity.Enabled = true;
-        _entManager.Dirty(gravity, metadata);
+        _entityManager.Dirty(gravity, metadata);
 
-        var light = _entManager.EnsureComponent<MapLightComponent>(mapUid);
+        var light = _entityManager.EnsureComponent<MapLightComponent>(mapUid);
         light.AmbientLightColor = Color.FromHex("#2b3143");
-        _entManager.Dirty(light, metadata);
+        _entityManager.Dirty(light, metadata);
 
-        var atmos = _entManager.EnsureComponent<MapAtmosphereComponent>(mapUid);
+        var atmos = _entityManager.EnsureComponent<MapAtmosphereComponent>(mapUid);
 
         var moles = new float[Atmospherics.AdjustedNumberOfGases];
         moles[(int) Gas.Oxygen] = 21.824779f;
@@ -76,7 +84,49 @@ public sealed class MakeRimWorld : IConsoleCommand
             Moles = moles,
         };
 
-        _entManager.System<AtmosphereSystem>().SetMapAtmosphere(mapUid, false, mixture, atmos);
-        _entManager.EnsureComponent<MapGridComponent>(mapUid);
+        _entityManager.System<AtmosphereSystem>().SetMapAtmosphere(mapUid, false, mixture, atmos);
+        _entityManager.EnsureComponent<MapGridComponent>(mapUid);
+        var preloadArea = new Vector2(32f, 32f);
+        var mapPos = new MapCoordinates(new Vector2(0f, 0f), mapId);
+        var targetArea = new Box2(mapPos.Position - preloadArea, mapPos.Position + preloadArea);
+        biomeSystem.Preload(mapUid, biome, targetArea);
+        if (_system.GetEntitySystem<MapLoaderSystem>()
+            .TryLoad(mapId, "Maps/Backmen/Grids/RimWorldSpawn.yml", out var gridUid))
+        {
+            AttachedGrid( mapUid, gridUid.First());
+        }
     }
+
+    private void AttachedGrid(EntityUid mapUid, EntityUid loadUid)
+    {
+        if (!_entityManager.TryGetComponent<BiomeComponent>(mapUid, out var biome) ||
+            !_entityManager.TryGetComponent<MapGridComponent>(mapUid, out var biomeGrid) ||
+            !_entityManager.TryGetComponent<MapGridComponent>(loadUid, out var loadGrid))
+        {
+            return;
+        }
+
+        var tiles = new List<(Vector2i Index, Tile Tile)>();
+        var aabb = new Box2(-32, -32, 32, 32);
+        var biomeSystem = _entityManager.System<BiomeSystem>();
+        for (var x = Math.Floor(aabb.Left); x <= Math.Ceiling(aabb.Right); x++)
+        {
+            for (var y = Math.Floor(aabb.Bottom); y <= Math.Ceiling(aabb.Top); y++)
+            {
+                var index = new Vector2i((int) x, (int) y);
+                var chunk = SharedMapSystem.GetChunkIndices(index, ChunkSize);
+
+                var mod = biome.ModifiedTiles.GetOrNew(chunk * ChunkSize);
+
+                if (!mod.Add(index) || !biomeSystem.TryGetBiomeTile(index, biome.Layers, biome.Noise, biomeGrid, out var tile))
+                    continue;
+
+                // If we flag it as modified then the tile is never set so need to do it ourselves.
+                tiles.Add((index, tile.Value));
+            }
+        }
+        biomeGrid.SetTiles(tiles);
+    }
+
+    protected const byte ChunkSize = 8;
 }

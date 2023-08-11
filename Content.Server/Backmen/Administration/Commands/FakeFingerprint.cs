@@ -6,7 +6,7 @@ using Robust.Shared.Console;
 
 namespace Content.Server.Backmen.Administration.Commands;
 
-[AdminCommand(AdminFlags.Admin)]
+[AdminCommand(AdminFlags.Fun)]
 public sealed class FakeFingerprint : IConsoleCommand
 {
     [Dependency] private readonly IAdminLogManager _adminLogger = default!;
