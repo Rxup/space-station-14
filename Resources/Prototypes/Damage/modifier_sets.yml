@@ -146,7 +146,7 @@
     Slash: 0.25
     Piercing: 0.25
     Heat: 2.00
-    
+
 - type: damageModifierSet
   id: ElectromagneticWebBlob # Explosive Lattice
   coefficients:
@@ -155,7 +155,7 @@
     Piercing: 0.50
     Heat: 2.50
     Shock: 0.50
-    
+
 - type: damageModifierSet
   id: ExplosiveLatticeBlob # Explosive Lattice
   coefficients:
@@ -248,14 +248,6 @@
     Cellular: 0.0
     Radiation: 0.2
     Caustic: 0.0
-
-- type: damageModifierSet
-  id: BaseBlob # ReactiveSpines
-  coefficients:
-    Blunt: 0.25
-    Slash: 0.25
-    Piercing: 0.25
-    Heat: 2.00
 
 - type: damageModifierSet
   id: ElectromagneticWebBlob # Explosive Lattice
