@@ -213,7 +213,7 @@
       damageCoefficient: 0.3
     - type: Damageable
       damageContainer: Blob
-      damageModifierSet: Blob
+      damageModifierSet: BaseBlob
     - type: Appearance
     - type: Physics
     - type: Clickable

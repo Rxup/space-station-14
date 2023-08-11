@@ -58,7 +58,7 @@
   name: blob-teleport-to-core-action-name
   description: blob-teleport-to-core-action-desc
   serverEvent: !type:BlobToCoreActionEvent
-  checkCanAccess: false
+  #checkCanAccess: false
 
 - type: instantAction
   id: TeleportBlobToNode
@@ -66,7 +66,7 @@
   name: blob-teleport-to-node-action-name
   description: blob-teleport-to-node-action-desc
   serverEvent: !type:BlobToNodeActionEvent
-  checkCanAccess: false
+  #checkCanAccess: false
 
 - type: instantAction
   id: HelpBlob
@@ -74,7 +74,7 @@
   name: blob-help-action-name
   description: blob-help-action-desc
   serverEvent: !type:BlobHelpActionEvent
-  checkCanAccess: false
+  #checkCanAccess: false
 
 - type: instantAction
   id: SwapBlobChem
@@ -82,7 +82,7 @@
   name: blob-swap-chem-action-name
   description: blob-swap-chem-action-desc
   serverEvent: !type:BlobSwapChemActionEvent
-  checkCanAccess: false
+  #checkCanAccess: false
 
 - type: instantAction
   id: TransformToBlob
@@ -90,4 +90,4 @@
   name: blob-carrier-transform-to-blob-action-name
   description: blob-carrier-transform-to-blob-action-desc
   serverEvent: !type:TransformToBlobActionEvent
-  checkCanAccess: false
+  #checkCanAccess: false
