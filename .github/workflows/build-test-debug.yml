@@ -10,7 +10,7 @@ on:
 
 jobs:
   build:
-    if: github.actor != 'IanComradeBot' && github.event.pull_request.draft == false
+    if: github.actor != 'PJBot' && github.event.pull_request.draft == false
     strategy:
       matrix:
         os: [ubuntu-latest, windows-latest]
@@ -18,53 +18,40 @@ jobs:
     runs-on: ${{ matrix.os }}
 
     steps:
-      - uses: actions/checkout@v3
-        with:
-          submodules: recursive
-      - name: Update submodules
-        run: |
-          git submodule update --init --recursive
-      - name: Get Engine Tag
-        run: |
-          cd RobustToolbox
-          git fetch --depth=1
-          git describe --tags --abbrev=0
-      - name: Install dependencies
-        run: dotnet restore
-      - name: Build Project
-        run: dotnet build --configuration DebugOpt --no-restore /p:WarningsAsErrors=nullable /m
+    - name: Checkout Master
+      uses: actions/checkout@v2
 
-      - name: Run Content.Tests
-        continue-on-error: false
-        run: dotnet test --no-build --configuration DebugOpt Content.Tests/Content.Tests.csproj -- NUnit.ConsoleOut=0
+    - name: Setup Submodule
+      run: |
+        git submodule update --init --recursive
 
-      - name: Pull engine updates
-        uses: space-wizards/submodule-dependency@v0.1.5
+    - name: Pull engine updates
+      uses: space-wizards/submodule-dependency@v0.1.5
 
-      - name: Update Engine Submodules
-        run: |
-          cd RobustToolbox/
-          git submodule update --init --recursive
+    - name: Update Engine Submodules
+      run: |
+        cd RobustToolbox/
+        git submodule update --init --recursive
 
-      - name: Setup .NET Core
-        uses: actions/setup-dotnet@v3
-        with:
-          dotnet-version: 6.0.x
+    - name: Setup .NET Core
+      uses: actions/setup-dotnet@v3
+      with:
+        dotnet-version: 6.0.x
 
-      - name: Install dependencies
-        run: dotnet restore
+    - name: Install dependencies
+      run: dotnet restore
 
-      - name: Build Project
-        run: dotnet build --configuration DebugOpt --no-restore /p:WarningsAsErrors=nullable /m
+    - name: Build Project
+      run: dotnet build --configuration DebugOpt --no-restore /p:WarningsAsErrors=nullable /m
 
-      - name: Run Content.Tests
-        run: dotnet test --no-build --configuration DebugOpt Content.Tests/Content.Tests.csproj -- NUnit.ConsoleOut=0
+    - name: Run Content.Tests
+      run: dotnet test --no-build --configuration DebugOpt Content.Tests/Content.Tests.csproj -- NUnit.ConsoleOut=0
 
-      - name: Run Content.IntegrationTests
-        shell: pwsh
-        run: |
-          $env:DOTNET_gcServer=1
-          dotnet test --no-build --configuration DebugOpt Content.IntegrationTests/Content.IntegrationTests.csproj -- NUnit.ConsoleOut=0 NUnit.MapWarningTo=Failed
+    - name: Run Content.IntegrationTests
+      shell: pwsh
+      run: |
+        $env:DOTNET_gcServer=1
+        dotnet test --no-build --configuration DebugOpt Content.IntegrationTests/Content.IntegrationTests.csproj -- NUnit.ConsoleOut=0 NUnit.MapWarningTo=Failed
   ci-success:
     name: Build & Test Debug
     needs:
