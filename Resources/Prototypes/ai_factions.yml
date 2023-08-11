@@ -13,17 +13,17 @@
   hostile:
     - NanoTrasen
     - Syndicate
-    - RatPassive
-    - RatHostile
     - Xeno
-    - MalfunctioningRobot
     - PetsNT
-    - Flesh
     - Zombie
-    - Pet
-    - FleshHuman
     - Dragon
-
+    #- RatPassive
+    #- RatHostile
+    #- Pet
+    #- FleshHuman
+    #- Flesh
+    #- MalfunctioningRobot
+    
 - type: npcFaction
   id: NanoTrasen
   hostile:
