@@ -1,7 +1,5 @@
 ﻿- type: gameMapPool
   id: CorvaxMapPool
   maps:
-    - CorvaxDelta
-    - CorvaxAvrite
-    - CorvaxIshimura
+    - CorvaxIshimura #stable
     - Box
