@@ -154,12 +154,11 @@ public sealed class BlobObserverSystem : SharedBlobObserverSystem
         }
 
         if (Deleted(observerComponent.Core.Value) ||
-            TryComp<TransformComponent>(observerComponent.Core.Value, out var xform))
+            !TryComp<TransformComponent>(observerComponent.Core.Value, out var xform))
         {
             return;
         }
-
-        var xform = Transform(observerComponent.Core.Value);
+        
         var corePos = xform.Coordinates;
 
         var (nearestEntityUid, nearestDistance) = CalculateNearestBlobTileDistance(args.NewPosition);
