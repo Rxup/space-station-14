@@ -342,6 +342,8 @@ public sealed class ClientClothingSystem : ClothingSystem
                 break;
         }
 
+        Logger.Debug($"sprite: {sprite.BaseRSI?.Path} SetGenderedMask: {prefix}, {IoCManager.Resolve<IEntityManager>().GetComponent<MetaDataComponent>(sprite.Owner).EntityPrototype?.ID}");
+
         sprite.LayerSetState(layer, mask switch
         {
             ClothingMask.NoMask => $"{prefix}none",
