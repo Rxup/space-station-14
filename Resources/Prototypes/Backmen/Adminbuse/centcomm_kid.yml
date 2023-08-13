@@ -324,10 +324,8 @@
           Quantity: 15
         - ReagentId: THC
           Quantity: 10
-        - ReagentId: Romerol
+        - ReagentId: Ambuzol
           Quantity: 20
-        - ReagentId: Spaceacillin
-          Quantity: 10
   - type: Hypospray
     solutionName: pen
     transferAmount: 75
