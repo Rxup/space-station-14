@@ -84,6 +84,8 @@
     interfaces:
     - key: enum.StrippingUiKey.Key
       type: StrippableBoundUserInterface
+    - key: enum.SiliconLawsUiKey.Key
+      type: SiliconLawBoundUserInterface
   - type: GhostRole
     makeSentient: true
     allowSpeech: true # backmen
@@ -96,6 +98,12 @@
      2. Вы не можете навредить никому, независимо от намерения или обстоятельств.
      3. Ваши цели состоят в том, чтобы строить, поддерживать, ремонтировать, улучшать и увеличивать мощность в меру своих возможностей. Вы никогда не должны активно работать против этих целей.
   - type: GhostTakeoverAvailable
+  - type: SiliconLawBound
+  - type: SiliconLawProvider
+    laws:
+    - Drone1
+    - Drone2
+    - Drone3
   - type: MovementSpeedModifier
     baseWalkSpeed : 5
     baseSprintSpeed : 5
@@ -244,3 +252,17 @@
       department: Engineering
       time: 10000
 
+- type: entity
+  id: PlayerBorgGeneric
+  parent: BorgChassisGeneric
+  noSpawn: true
+  components:
+  - type: BorgChassis
+    startingBrain: MMIFilled
+    startingModules:
+    - BorgModuleTool
+  - type: ItemSlots
+    slots:
+      cell_slot:
+        name: power-cell-slot-component-slot-name-default
+        startingItem: PowerCellMedium
