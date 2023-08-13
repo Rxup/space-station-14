@@ -91,17 +91,16 @@ public sealed class MakeRimWorld : IConsoleCommand
         var targetArea = new Box2(mapPos.Position - preloadArea, mapPos.Position + preloadArea);
         biomeSystem.Preload(mapUid, biome, targetArea);
         if (_system.GetEntitySystem<MapLoaderSystem>()
-            .TryLoad(mapId, "Maps/Backmen/Grids/RimWorldSpawn.yml", out var gridUid))
+            .TryLoad(mapId, "Maps/Backmen/Grids/RimWorldSpawn.yml", out _))
         {
-            AttachedGrid( mapUid, gridUid.First());
+            AttachedGrid( mapUid);
         }
     }
 
-    private void AttachedGrid(EntityUid mapUid, EntityUid loadUid)
+    private void AttachedGrid(EntityUid mapUid)
     {
         if (!_entityManager.TryGetComponent<BiomeComponent>(mapUid, out var biome) ||
-            !_entityManager.TryGetComponent<MapGridComponent>(mapUid, out var biomeGrid) ||
-            !_entityManager.TryGetComponent<MapGridComponent>(loadUid, out var loadGrid))
+            !_entityManager.TryGetComponent<MapGridComponent>(mapUid, out var biomeGrid))
         {
             return;
         }
