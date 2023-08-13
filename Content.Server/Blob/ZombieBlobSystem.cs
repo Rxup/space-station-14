@@ -110,7 +110,7 @@ namespace Content.Server.Blob
 
         private void OnShutdown(EntityUid uid, ZombieBlobComponent component, ComponentShutdown args)
         {
-            if (Deleted(uid))
+            if (TerminatingOrDeleted(uid))
             {
                 return;
             }
