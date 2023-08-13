@@ -36,6 +36,8 @@ namespace Content.Shared.Alert
         Internals,
         Toxins,
         Muted,
+        BlobResource,
+        BlobHealth,
         VowOfSilence,
         VowBroken,
         Essence,
