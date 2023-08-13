@@ -93,6 +93,8 @@
     interfaces:
     - key: enum.StrippingUiKey.Key
       type: StrippableBoundUserInterface
+    - key: enum.SiliconLawsUiKey.Key
+      type: SiliconLawBoundUserInterface
   - type: GhostRole
     whitelistRequired: true
     makeSentient: true
@@ -107,6 +109,12 @@
      2. Помогаете раненным.
      3. Подчиняетесь ИИ.
   - type: GhostTakeoverAvailable
+  - type: SiliconLawBound
+  - type: SiliconLawProvider
+    laws:
+    - Drone1
+    - Drone2
+    - Drone3
   - type: MovementSpeedModifier
     baseWalkSpeed : 5.5
     baseSprintSpeed : 5.5

@@ -46,6 +46,8 @@
     interfaces:
     - key: enum.StrippingUiKey.Key
       type: StrippableBoundUserInterface
+    - key: enum.SiliconLawsUiKey.Key
+      type: SiliconLawBoundUserInterface
   - type: GhostRole
     whitelistRequired: true
     makeSentient: true
@@ -60,6 +62,12 @@
      2. Выживание и целостность станции превыше всего(даже экипажа).
      3. Вред станции недопустим.
   - type: GhostTakeoverAvailable
+  - type: SiliconLawBound
+  - type: SiliconLawProvider
+    laws:
+    - Drone1
+    - Drone2
+    - Drone3
   - type: MovementSpeedModifier
     baseWalkSpeed : 5
     baseSprintSpeed : 5
