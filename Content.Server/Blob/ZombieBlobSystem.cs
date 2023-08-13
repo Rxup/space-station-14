@@ -173,7 +173,7 @@ namespace Content.Server.Blob
 
         private void OnMobStateChanged(EntityUid uid, ZombieBlobComponent component, MobStateChangedEvent args)
         {
-            if (args.NewMobState == MobState.Dead && !Deleted(uid))
+            if (args.NewMobState == MobState.Dead)
             {
                 RemComp<ZombieBlobComponent>(uid);
             }
