@@ -296,6 +296,7 @@
   parent: BaseBlob
   id: CoreBlobTile
   name: Core Blob
+  save: false
   components:
   - type: Temperature
     heatDamage:
