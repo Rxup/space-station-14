@@ -153,6 +153,12 @@ public sealed class BlobObserverSystem : SharedBlobObserverSystem
             return;
         }
 
+        if (Deleted(observerComponent.Core.Value) ||
+            TryComp<TransformComponent>(observerComponent.Core.Value, out var xform))
+        {
+            return;
+        }
+
         var xform = Transform(observerComponent.Core.Value);
         var corePos = xform.Coordinates;
 
