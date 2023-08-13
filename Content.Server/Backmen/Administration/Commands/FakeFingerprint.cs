@@ -2,6 +2,7 @@
 using Content.Server.Administration.Logs;
 using Content.Server.Forensics;
 using Content.Shared.Administration;
+using Content.Shared.Inventory;
 using Robust.Shared.Console;
 
 namespace Content.Server.Backmen.Administration.Commands;
@@ -24,11 +25,11 @@ public sealed class FakeFingerprint : IConsoleCommand
             shell.WriteLine(Loc.GetString("shell-wrong-arguments-number"));
             return;
         }
-        if(!Enum.TryParse<EntityUid>(args[0], true, out var playerUid)){
+        if(!EntityUid.TryParse(args[0], out var playerUid)){
             shell.WriteLine(Loc.GetString("shell-invalid-entity-id"));
             return;
         }
-        if(!Enum.TryParse<EntityUid>(args[1], true, out var item)){
+        if(!EntityUid.TryParse(args[1], out var item)){
             shell.WriteLine(Loc.GetString("shell-invalid-entity-id"));
             return;
         }
@@ -36,6 +37,13 @@ public sealed class FakeFingerprint : IConsoleCommand
         if (_entityManager.TryGetComponent<DnaComponent>(playerUid, out var dna))
         {
             f.DNAs.Add(dna.DNA);
+        }
+
+        var inventory = _entityManager.System<InventorySystem>();
+        if (inventory.TryGetSlotEntity(playerUid, "gloves", out var gloves))
+        {
+            if (_entityManager.TryGetComponent<FiberComponent>(gloves, out var fiber) && !string.IsNullOrEmpty(fiber.FiberMaterial))
+                f.Fibers.Add(string.IsNullOrEmpty(fiber.FiberColor) ? Loc.GetString("forensic-fibers", ("material", fiber.FiberMaterial)) : Loc.GetString("forensic-fibers-colored", ("color", fiber.FiberColor), ("material", fiber.FiberMaterial)));
         }
         if (_entityManager.TryGetComponent<FingerprintComponent>(playerUid, out var fingerprint))
         {
