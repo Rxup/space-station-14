@@ -47,7 +47,7 @@
   - type: Pullable
   - type: Occluder
   - type: Storage
-    capacity: 200
+    capacity: 5000
     whitelist:
       tags:
         - Document
