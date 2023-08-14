@@ -68,7 +68,7 @@
       - id: BookJourney
         prob: 0.1
       - id: BookInspiration
-        prob: 0.1
+        prob: 0.1   #start-backmen-books
       - id: BookDetectiveP1
         prob: 0.1
       - id: BookDetectiveP2
@@ -92,4 +92,4 @@
       - id: BookBloodMoney
         prob: 0.1
       - id: BookIanAndHamlet
-        prob: 0.1
+        prob: 0.1   #end-backmen-books
