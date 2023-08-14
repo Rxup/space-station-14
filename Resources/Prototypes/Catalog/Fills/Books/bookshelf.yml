@@ -8,7 +8,7 @@
       - id: BookRandom
         prob: 0.4
         amount: 1
-        maxAmount: 4
+        maxAmount: 2
       - id: BookNarsieLegend
         prob: 0.1
       - id: BookTruth
@@ -92,4 +92,12 @@
       - id: BookBloodMoney
         prob: 0.1
       - id: BookIanAndHamlet
-        prob: 0.1   #end-backmen-books
+        prob: 0.1
+      - id: SpawnSpellbook  #spell
+        prob: 0.02
+      - id: ForceWallSpellbook  #spell
+        prob: 0.05
+      - id: KnockSpellbook  #spell
+        prob: 0.03
+      - id: BlinkBook #spell
+        prob: 0.05  #end-backmen-books (with spell books add)
