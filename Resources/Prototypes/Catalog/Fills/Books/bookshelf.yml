@@ -69,3 +69,27 @@
         prob: 0.1
       - id: BookInspiration
         prob: 0.1
+      - id: BookDetectiveP1
+        prob: 0.1
+      - id: BookDetectiveP2
+        prob: 0.1
+      - id: BookDetectiveP3
+        prob: 0.1
+      - id: BookPassionsP1
+        prob: 0.1
+      - id: BookPaperworkP1
+        prob: 0.1
+      - id: BookPaperworkP2
+        prob: 0.1
+      - id: BookToolboxes
+        prob: 0.1
+      - id: BookSelf
+        prob: 0.1
+      - id: BookKPCS
+        prob: 0.1
+      - id: BookMimBobo
+        prob: 0.1
+      - id: BookBloodMoney
+        prob: 0.1
+      - id: BookIanAndHamlet
+        prob: 0.1
