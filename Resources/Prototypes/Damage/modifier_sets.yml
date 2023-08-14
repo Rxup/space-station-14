@@ -141,7 +141,7 @@
 - type: damageModifierSet
   id: Arachnid # Exo-skeleton, should have simillarities to skeleton resistances.
   coefficients:
-    Blunt: 1.15
+    Blunt: 1.1
     Piercing: 1.15
     Slash: 0.85
     Heat: 1.25
@@ -187,7 +187,6 @@
     Blunt: 0.9
     Slash: 0.9
     Piercing: 0.9
-    Blunt: 1.1
     Heat: 1.5
 
 - type: damageModifierSet
