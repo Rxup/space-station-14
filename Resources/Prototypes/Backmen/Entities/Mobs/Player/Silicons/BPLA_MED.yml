@@ -75,10 +75,14 @@
     group: BSSDroneMED
   - type: MetaData
   - type: IntrinsicRadioReceiver
+  - type: IntrinsicRadioTransmitter
+    channels:
+      - Binary
   - type: ActiveRadio
     channels:
       - Common
       - Medical
+      - Binary
   - type: InnateTool
     tools:
       - id: BSSClothingBackpackSatchelDroneMED
@@ -103,18 +107,14 @@
     name: Блюспейс Дрон Меда #ghost-role-information-drone-name # backmen
     description: ghost-role-information-drone-description # backmen
     rules: | # backmen
-     Вы являетесь ВЫСШИМ интеллектом на станции.
-     Вы связаны этими законами как в игре, так и вне персонажа:
-     1. Не вредите живым.
-     2. Помогаете раненным.
-     3. Подчиняетесь ИИ.
+     Вы обязаны подчиняться законам, которые будут доступны вам после вселения, если вам не скажут иное в Ahelp.
   - type: GhostTakeoverAvailable
   - type: SiliconLawBound
   - type: SiliconLawProvider
     laws:
-    - Drone1
-    - Drone2
-    - Drone3
+    - Crewsimov1
+    - Crewsimov2
+    - Crewsimov3
   - type: MovementSpeedModifier
     baseWalkSpeed : 5.5
     baseSprintSpeed : 5.5
@@ -172,7 +172,8 @@
   - type: ReplacementAccent
     accent: silicon
   - type: TTS
-    voice: Npc3
+    voice: TrainingRobot
+  - type: ZombieImmune
   - type: Repairable
     fuelcost: 15
     doAfterDelay: 8

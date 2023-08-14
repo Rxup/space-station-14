@@ -170,5 +170,6 @@
     tags:
     - ShoesRequiredStepTriggerImmune
     - DoorBumpOpener
-  - type: TTS # Corvax-TTS
+  - type: TTS
     voice: TrainingRobot
+  - type: MovementIgnoreGravity
