@@ -380,7 +380,6 @@
       - names_first
       - names_last
 
-
 - type: randomHumanoidSettings
   id: Cluwne
   parent: BackmenSpecies
