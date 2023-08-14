@@ -5,7 +5,7 @@
   description: Детективный роман о жизни и предательстве (часть 1)
   components:
     - type: Sprite
-      sprite: Backmen/Entities/Objects/Misc/books.rsi
+      sprite: Backmen/Objects/Misc/books.rsi
       layers:
         - state: detective_roman_1
     - type: Paper
@@ -18,7 +18,7 @@
   description: Детективный роман о жизни и предательстве (часть 2)
   components:
     - type: Sprite
-      sprite: Backmen/Entities/Objects/Misc/books.rsi
+      sprite: Backmen/Objects/Misc/books.rsi
       layers:
         - state: detective_roman_2
     - type: Paper
@@ -31,7 +31,7 @@
   description: Детективный роман о жизни и предательстве (часть 3)
   components:
     - type: Sprite
-      sprite: Backmen/Entities/Objects/Misc/books.rsi
+      sprite: Backmen/Objects/Misc/books.rsi
       layers:
         - state: detective_roman_3
     - type: Paper
@@ -44,7 +44,7 @@
   description: Рассказ о страстях в СБ (строго 18+)
   components:
     - type: Sprite
-      sprite: Backmen/Entities/Objects/Misc/books.rsi
+      sprite: Backmen/Objects/Misc/books.rsi
       layers:
         - state: Passions_in_the_SB
     - type: Paper
@@ -57,7 +57,7 @@
   description: Еще одна книга из кучи про бюрократов (часть 1)
   components:
     - type: Sprite
-      sprite: Backmen/Entities/Objects/Misc/books.rsi
+      sprite: Backmen/Objects/Misc/books.rsi
       layers:
         - state: paperwork_1
     - type: Paper
@@ -70,7 +70,7 @@
   description: Еще одна книга из кучи про бюрократов (часть 2)
   components:
     - type: Sprite
-      sprite: Backmen/Entities/Objects/Misc/books.rsi
+      sprite: Backmen/Objects/Misc/books.rsi
       layers:
         - state: paperwork_2
     - type: Paper
@@ -83,7 +83,7 @@
   description: Откуда это?
   components:
     - type: Sprite
-      sprite: Backmen/Entities/Objects/Misc/books.rsi
+      sprite: Backmen/Objects/Misc/books.rsi
       layers:
         - state: The_art_of_combat_on_toolboxes
     - type: Paper
@@ -96,7 +96,7 @@
   description: Пыльная...
   components:
     - type: Sprite
-      sprite: Backmen/Entities/Objects/Misc/books.rsi
+      sprite: Backmen/Objects/Misc/books.rsi
       layers:
         - state: Self-help_guide
     - type: Paper
@@ -109,7 +109,7 @@
   description: Опять эти коммунисты...
   components:
     - type: Sprite
-      sprite: Backmen/Entities/Objects/Misc/books.rsi
+      sprite: Backmen/Objects/Misc/books.rsi
       layers:
         - state: KPCS
     - type: Paper
@@ -122,7 +122,7 @@
   description: Немой расскай
   components:
     - type: Sprite
-      sprite: Backmen/Entities/Objects/Misc/books.rsi
+      sprite: Backmen/Objects/Misc/books.rsi
       layers:
         - state: Mim_Bobo
     - type: Paper
@@ -135,7 +135,7 @@
   description: История самой влиятельной преступной организации
   components:
     - type: Sprite
-      sprite: Backmen/Entities/Objects/Misc/books.rsi
+      sprite: Backmen/Objects/Misc/books.rsi
       layers:
         - state: Blood_Money
     - type: Paper
@@ -148,7 +148,7 @@
   description: Путешествие хомяка Гамлета и Иана на космической станции
   components:
     - type: Sprite
-      sprite: Backmen/Entities/Objects/Misc/books.rsi
+      sprite: Backmen/Objects/Misc/books.rsi
       layers:
         - state: The_Adventures_of_Ian_and_Hamlet
     - type: Paper
