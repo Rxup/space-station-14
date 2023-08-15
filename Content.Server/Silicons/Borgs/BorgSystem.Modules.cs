@@ -1,4 +1,5 @@
 ﻿using System.Linq;
+using Content.Shared.CombatMode.Pacification;
 using Content.Shared.Hands.Components;
 using Content.Shared.Interaction.Components;
 using Content.Shared.Silicons.Borgs.Components;
@@ -196,13 +197,15 @@ public sealed partial class BorgSystem
             EnsureComp<UnremoveableComponent>(item);
             component.ProvidedItems.Add(handId, item);
 
-            for (int i = 0; i < component.Hands; i++)
-            {
-                var handId2 = $"{uid}-FH{i}";
-                _hands.AddHand(chassis, handId2, HandLocation.Middle, hands);
-            }
         }
 
+        for (int i = 0; i < component.Hands; i++)
+        {
+            var handId2 = $"{uid}-FH{i}";
+            _hands.AddHand(chassis, handId2, HandLocation.Middle, hands);
+        }
+
+        EnsureComp<PacifiedComponent>(uid);
         component.ItemsCreated = true;
     }
 
@@ -230,6 +233,7 @@ public sealed partial class BorgSystem
             _hands.RemoveHand(chassis, handId, hands);
         }
 
+        RemCompDeferred<PacifiedComponent>(uid);
         component.ProvidedItems.Clear();
     }
 

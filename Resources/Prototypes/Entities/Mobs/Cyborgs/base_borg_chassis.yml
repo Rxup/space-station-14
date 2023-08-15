@@ -177,7 +177,6 @@
   - type: TTS
     voice: TrainingRobot
   - type: MovementIgnoreGravity
-  - type: Pacified #backmen fix rdm
 
 - type: entity
   id: BaseBorgChassisNT

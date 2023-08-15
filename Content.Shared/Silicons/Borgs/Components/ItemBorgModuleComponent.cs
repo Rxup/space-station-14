@@ -1,5 +1,4 @@
-﻿using Content.Shared.Body.Prototypes;
-using Robust.Shared.Containers;
+﻿using Robust.Shared.Containers;
 using Robust.Shared.GameStates;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype.List;
@@ -50,6 +49,6 @@ public sealed class ItemBorgModuleComponent : Component
     public string ProvidedContainerId = "provided_container";
 
 
-    [DataField("hands")] public int Hands = 0;
+    [DataField("hands")] public int Hands = 0; // backmen: borg hands
 }
 
