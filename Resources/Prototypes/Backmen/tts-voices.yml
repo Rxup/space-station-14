@@ -326,3 +326,12 @@
   sex: Unsexed
   speaker: myron
   roundStart: false
+
+- type: ttsVoice
+  id: Borgs
+  name: tts-voice-name-borgs
+  sex: Unsexed
+  speaker: Borgs
+  roundStart: false
+
+

@@ -1,4 +1,6 @@
 ﻿using System.Linq;
+using Content.Server.AlertLevel;
+using Content.Server.Backmen.SpecForces;
 using Content.Server.Chat.Systems;
 using Content.Server.GameTicking.Rules.Components;
 using Content.Server.Mind;
@@ -6,6 +8,7 @@ using Content.Server.Nuke;
 using Content.Server.RoundEnd;
 using Content.Server.Station.Systems;
 using Content.Shared.Blob;
+using Robust.Shared.Audio;
 
 namespace Content.Server.GameTicking.Rules;
 
@@ -18,6 +21,7 @@ public sealed class BlobRuleSystem : GameRuleSystem<BlobRuleComponent>
     [Dependency] private readonly StationSystem _stationSystem = default!;
 
     private ISawmill _sawmill = default!;
+    private static readonly SoundPathSpecifier BlobDetectAudio = new SoundPathSpecifier("/Audio/Corvax/Adminbuse/Outbreak5.ogg");
 
     public override void Initialize()
     {
@@ -51,41 +55,46 @@ public sealed class BlobRuleSystem : GameRuleSystem<BlobRuleComponent>
                     }
                 }
 
+                var stationUid = _stationSystem.GetOwningStation(ent);
                 switch (blobRuleComp.Stage)
                 {
-                    case BlobStage.Default when comp.BlobTiles.Count < 50:
+                    case BlobStage.Default when comp.BlobTiles.Count < 30:
                         continue;
                     case BlobStage.Default:
                         _chatSystem.DispatchGlobalAnnouncement(Loc.GetString("blob-alert-detect"),
-                            Loc.GetString("Station"),
-                            true,
-                            blobRuleComp.AlertAudio,
-                            Color.Red);
+                            Loc.GetString("Station"), true, BlobDetectAudio, Color.Red);
+                        EntitySystem.Get<AlertLevelSystem>()
+                            .SetLevel(stationUid!.Value, "sigma", true, true, true, false);
                         blobRuleComp.Stage = BlobStage.Begin;
                         break;
                     case BlobStage.Begin:
                     {
-                        if (comp.BlobTiles.Count >= 300)
+                        if (comp.BlobTiles.Count >= 500)
                         {
                             _chatSystem.DispatchGlobalAnnouncement(Loc.GetString("blob-alert-critical"),
                                 Loc.GetString("Station"),
                                 true,
                                 blobRuleComp.AlertAudio,
                                 Color.Red);
-                            var stationUid = _stationSystem.GetOwningStation(ent);
                             if (stationUid != null)
                                 _nukeCode.SendNukeCodes(stationUid.Value);
                             blobRuleComp.Stage = BlobStage.Critical;
+                            EntitySystem.Get<AlertLevelSystem>()
+                                .SetLevel(stationUid!.Value, "gamma", true, true, true, false);
+
+                            EntityManager.System<SpecForcesSystem>().CallOps(SpecForcesType.RXBZZ, "ДСО");
                         }
+
                         break;
                     }
                     case BlobStage.Critical:
                     {
-                        if (comp.BlobTiles.Count >= 400)
+                        if (comp.BlobTiles.Count >= 900)
                         {
                             comp.Points = 99999;
                             _roundEndSystem.EndRound();
                         }
+
                         break;
                     }
                 }

@@ -174,8 +174,8 @@
     tags:
     - ShoesRequiredStepTriggerImmune
     - DoorBumpOpener
-  - type: TTS # Corvax-TTS
-    voice: TrainingRobot
+  - type: TTS
+    voice: Borgs
 
 - type: entity
   id: BaseBorgChassisNT

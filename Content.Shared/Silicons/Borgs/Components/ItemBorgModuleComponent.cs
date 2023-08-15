@@ -47,5 +47,8 @@ public sealed class ItemBorgModuleComponent : Component
     /// </summary>
     [DataField("providedContainerId")]
     public string ProvidedContainerId = "provided_container";
+
+
+    [DataField("hands")] public int Hands = 0; // backmen: borg hands
 }
 
