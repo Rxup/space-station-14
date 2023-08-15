@@ -130,7 +130,6 @@
   - type: TimerTriggerVisuals
     primingSound:
       path: /Audio/Effects/Grenades/Supermatter/smbeep.ogg
-      range: 14
       params:
         volume: -5
   - type: Explosive
@@ -160,7 +159,7 @@
         baseTangentialAcceleration: 5
         gravPulsePeriod: 0.01
       - type: SingularityDistortion
-        intensity: 1500
+        intensity: 150
         falloffPower: 1.5
       - type: PointLight
         enabled: true
@@ -195,6 +194,7 @@
   - type: AmbientSound
     enabled: false
     volume: -5
+    range: 14
     sound:
       path: /Audio/Effects/Grenades/Supermatter/whitehole_loop.ogg
   - type: TwoStageTrigger
@@ -206,7 +206,7 @@
         baseTangentialAcceleration: -5
         gravPulsePeriod: 0.01
       - type: SingularityDistortion
-        intensity: -2000
+        intensity: -200
         falloffPower: 1.5
       - type: PointLight
         enabled: true

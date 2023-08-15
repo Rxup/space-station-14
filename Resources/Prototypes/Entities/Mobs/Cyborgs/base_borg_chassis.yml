@@ -20,7 +20,7 @@
   - type: Clickable
   - type: CombatMode
   - type: StaticPrice
-    price: 5250
+    price: 1250
   - type: InteractionOutline
   - type: Physics
     bodyType: KinematicController
@@ -30,7 +30,7 @@
         shape:
           !type:PhysShapeCircle
           radius: 0.35
-        density: 150
+        density: 100
         mask:
         - MobMask
         layer:
@@ -176,7 +176,6 @@
     - DoorBumpOpener
   - type: TTS
     voice: TrainingRobot
-  - type: MovementIgnoreGravity
 
 - type: entity
   id: BaseBorgChassisNT
