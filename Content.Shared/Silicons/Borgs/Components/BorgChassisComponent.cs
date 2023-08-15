@@ -65,7 +65,7 @@ public sealed partial class BorgChassisComponent : Component
     /// How many modules can be installed in this borg
     /// </summary>
     [DataField("maxModules"), ViewVariables(VVAccess.ReadWrite)]
-    public int MaxModules = 3;
+    public int MaxModules = 4; // +1 due to storage module
 
     /// <summary>
     /// The ID for the module container

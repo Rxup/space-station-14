@@ -7,6 +7,7 @@ using Content.Shared.Actions;
 using Content.Shared.Actions.ActionTypes;
 using Content.Shared.Administration;
 using Content.Shared.Chat;
+using Content.Shared.CombatMode.Pacification;
 using Content.Shared.Emag.Components;
 using Content.Shared.Emag.Systems;
 using Content.Shared.Examine;
@@ -123,6 +124,7 @@ public sealed class SiliconLawSystem : SharedSiliconLawSystem
     protected override void OnGotEmagged(EntityUid uid, EmagSiliconLawComponent component, ref GotEmaggedEvent args)
     {
         base.OnGotEmagged(uid, component, ref args);
+        RemCompDeferred<PacifiedComponent>(uid);
         NotifyLawsChanged(uid);
     }
 

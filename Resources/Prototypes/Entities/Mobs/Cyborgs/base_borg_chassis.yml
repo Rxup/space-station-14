@@ -20,7 +20,7 @@
   - type: Clickable
   - type: CombatMode
   - type: StaticPrice
-    price: 1250
+    price: 5250
   - type: InteractionOutline
   - type: Fixtures
     fixtures:
@@ -116,7 +116,7 @@
     thresholds:
     - trigger:
         !type:DamageTrigger
-        damage: 100
+        damage: 200
       behaviors:
       - !type:PlaySoundBehavior
         sound: /Audio/Effects/metalbreak.ogg
@@ -173,3 +173,4 @@
   - type: TTS
     voice: TrainingRobot
   - type: MovementIgnoreGravity
+  - type: Pacified #backmen fix rdm

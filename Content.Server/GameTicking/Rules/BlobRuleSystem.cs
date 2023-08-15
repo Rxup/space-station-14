@@ -57,7 +57,7 @@ public sealed class BlobRuleSystem : GameRuleSystem<BlobRuleComponent>
                 var stationUid = _stationSystem.GetOwningStation(ent);
                 switch (blobRuleComp.Stage)
                 {
-                    case BlobStage.Default when comp.BlobTiles.Count < 60:
+                    case BlobStage.Default when comp.BlobTiles.Count < 30:
                         continue;
                     case BlobStage.Default:
                         _chatSystem.DispatchGlobalAnnouncement(Loc.GetString("blob-alert-detect"),
@@ -81,8 +81,7 @@ public sealed class BlobRuleSystem : GameRuleSystem<BlobRuleComponent>
                             EntitySystem.Get<AlertLevelSystem>()
                                 .SetLevel(stationUid!.Value, "gamma", true, true, true, false);
 
-                            Enum.TryParse<SpecForcesType>("RXBZZ", true, out var SpecType);
-                            EntityManager.System<SpecForcesSystem>().CallOps(SpecType, "ДСО");
+                            EntityManager.System<SpecForcesSystem>().CallOps(SpecForcesType.RXBZZ, "ДСО");
                         }
 
                         break;

@@ -1,0 +1,8 @@
+﻿- type: latheRecipe
+  id: BorgModuleStorage
+  result: BorgModuleStorage
+  completetime: 3
+  materials:
+    Steel: 500
+    Plasma: 100
+

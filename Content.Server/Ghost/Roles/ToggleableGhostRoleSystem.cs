@@ -55,6 +55,7 @@ public sealed class ToggleableGhostRoleSystem : EntitySystem
         EnsureComp<GhostTakeoverAvailableComponent>(uid);
         ghostRole.RoleName = Loc.GetString(component.RoleName);
         ghostRole.RoleDescription = Loc.GetString(component.RoleDescription);
+        ghostRole.WhitelistRequired = component.WhitelistRequired; // backmen: whitelist
     }
 
     private void OnExamined(EntityUid uid, ToggleableGhostRoleComponent component, ExaminedEvent args)
