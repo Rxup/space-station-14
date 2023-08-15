@@ -175,7 +175,7 @@
     - ShoesRequiredStepTriggerImmune
     - DoorBumpOpener
   - type: TTS
-    voice: TrainingRobot
+    voice: Borgs
 
 - type: entity
   id: BaseBorgChassisNT
