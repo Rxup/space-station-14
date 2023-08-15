@@ -8,6 +8,7 @@ using Content.Server.Nuke;
 using Content.Server.RoundEnd;
 using Content.Server.Station.Systems;
 using Content.Shared.Blob;
+using Robust.Shared.Audio;
 using Robust.Shared.Console;
 
 namespace Content.Server.GameTicking.Rules;
@@ -21,6 +22,7 @@ public sealed class BlobRuleSystem : GameRuleSystem<BlobRuleComponent>
     [Dependency] private readonly StationSystem _stationSystem = default!;
 
     private ISawmill _sawmill = default!;
+    private static readonly SoundPathSpecifier BlobDetectAudio = new SoundPathSpecifier("/Audio/Corvax/Adminbuse/Outbreak5.ogg");
 
     public override void Initialize()
     {
@@ -61,7 +63,7 @@ public sealed class BlobRuleSystem : GameRuleSystem<BlobRuleComponent>
                         continue;
                     case BlobStage.Default:
                         _chatSystem.DispatchGlobalAnnouncement(Loc.GetString("blob-alert-detect"),
-                            Loc.GetString("Station"), true, blobRuleComp.AlertAudio, Color.Red);
+                            Loc.GetString("Station"), true, BlobDetectAudio, Color.Red);
                         EntitySystem.Get<AlertLevelSystem>()
                             .SetLevel(stationUid!.Value, "sigma", true, true, true, false);
                         blobRuleComp.Stage = BlobStage.Begin;
