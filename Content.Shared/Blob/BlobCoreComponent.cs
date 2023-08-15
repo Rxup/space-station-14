@@ -106,22 +106,22 @@ public sealed class BlobCoreComponent : Component
     public float FactoryRadiusLimit = 6f;
 
     [ViewVariables(VVAccess.ReadWrite), DataField("resourceRadiusLimit")]
-    public float ResourceRadiusLimit = 3f;
+    public float ResourceRadiusLimit = 4f;
 
     [ViewVariables(VVAccess.ReadWrite), DataField("nodeRadiusLimit")]
     public float NodeRadiusLimit = 4f;
 
     [ViewVariables(VVAccess.ReadWrite), DataField("attackCost")]
-    public FixedPoint2 AttackCost = 2;
+    public FixedPoint2 AttackCost = 4;
 
     [ViewVariables(VVAccess.ReadWrite), DataField("factoryBlobCost")]
-    public FixedPoint2 FactoryBlobCost = 60;
+    public FixedPoint2 FactoryBlobCost = 80;
 
     [ViewVariables(VVAccess.ReadWrite), DataField("normalBlobCost")]
-    public FixedPoint2 NormalBlobCost = 4;
+    public FixedPoint2 NormalBlobCost = 6;
 
     [ViewVariables(VVAccess.ReadWrite), DataField("resourceBlobCost")]
-    public FixedPoint2 ResourceBlobCost = 40;
+    public FixedPoint2 ResourceBlobCost = 60;
 
     [ViewVariables(VVAccess.ReadWrite), DataField("nodeBlobCost")]
     public FixedPoint2 NodeBlobCost = 50;
@@ -133,13 +133,13 @@ public sealed class BlobCoreComponent : Component
     public FixedPoint2 StrongBlobCost = 15;
 
     [ViewVariables(VVAccess.ReadWrite), DataField("reflectiveBlobCost")]
-    public FixedPoint2 ReflectiveBlobCost = 15;
+    public FixedPoint2 ReflectiveBlobCost = 20;
 
     [ViewVariables(VVAccess.ReadWrite), DataField("splitCoreCost")]
-    public FixedPoint2 SplitCoreCost = 100;
+    public FixedPoint2 SplitCoreCost = 200;
 
     [ViewVariables(VVAccess.ReadWrite), DataField("swapCoreCost")]
-    public FixedPoint2 SwapCoreCost = 80;
+    public FixedPoint2 SwapCoreCost = 10;
 
     [ViewVariables(VVAccess.ReadWrite), DataField("swapChemCost")]
     public FixedPoint2 SwapChemCost = 40;
