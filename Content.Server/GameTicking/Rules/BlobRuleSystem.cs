@@ -9,7 +9,6 @@ using Content.Server.RoundEnd;
 using Content.Server.Station.Systems;
 using Content.Shared.Blob;
 using Robust.Shared.Audio;
-using Robust.Shared.Console;
 
 namespace Content.Server.GameTicking.Rules;
 
