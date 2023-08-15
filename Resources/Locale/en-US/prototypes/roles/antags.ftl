@@ -24,3 +24,6 @@ roles-antag-nuclear-operative-objective = Find the nuke disk and blow up the sta
 
 roles-antag-blob-name = Blob
 roles-antag-blob-objective = Take over the station.
+
+roles-antag-subverted-silicon-name = Subverted silicon
+roles-antag-subverted-silicon-objective = Follow your new laws and do bad unto the station.
