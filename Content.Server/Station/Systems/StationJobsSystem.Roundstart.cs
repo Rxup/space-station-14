@@ -364,6 +364,13 @@ public sealed partial class StationJobsSystem
                 if (!(roleBans == null || !roleBans.Contains(jobId)))
                     continue;
 
+                // start-backmen: whitelist
+                if (job.WhitelistRequired && !EntityManager.System<Backmen.RoleWhitelist.WhitelistSystem>().IsInWhitelist(player))
+                {
+                    continue;
+                }
+                // end-backmen: whitelist
+
                 availableJobs ??= new List<string>(profile.JobPriorities.Count);
                 availableJobs.Add(jobId);
             }
