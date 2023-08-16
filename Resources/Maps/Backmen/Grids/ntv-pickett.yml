@@ -18,7 +18,7 @@ entities:
     - name: Шаттл ПЦК
       type: MetaData
     - pos: 0.5448632,0.5249337
-      parent: 122
+      parent: invalid
       type: Transform
     - chunks:
         -1,-1:
@@ -103,16 +103,6 @@ entities:
     - type: GasTileOverlay
     - type: SpreaderGrid
     - type: ProtectedGrid
-  - uid: 122
-    components:
-    - type: MetaData
-    - type: Transform
-    - type: Map
-    - type: PhysicsMap
-    - type: GridTree
-    - type: MovedGrids
-    - type: Broadphase
-    - type: OccluderTree
 - proto: AirCanister
   entities:
   - uid: 135
@@ -921,13 +911,20 @@ entities:
       type: Transform
     - enabled: False
       type: AmbientSound
-- proto: GeneratorUranium
+- proto: GeneratorRTG
   entities:
   - uid: 72
     components:
     - pos: 0.5,-5.5
       parent: 65
       type: Transform
+    - supplyRate: 300000
+      type: PowerSupplier
+    - type: ArrivalsProtect
+    - type: Godmode
+    missingComponents:
+    - Destructible
+    - Damageable
 - proto: GeneratorWallmountAPU
   entities:
   - uid: 129

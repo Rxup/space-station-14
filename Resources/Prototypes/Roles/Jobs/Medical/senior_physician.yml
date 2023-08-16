@@ -14,12 +14,18 @@
       department: Medical
       time: 216000 # 60 hrs
   startingGear: SeniorPhysicianGear
-  icon: "SeniorPhysician"
+  icon: "JobIconSeniorPhysician"
   supervisors: job-supervisors-cmo
   access:
   - Medical
   - Maintenance
   - Chemistry
+  #start-backmen: currency
+  minBankBalance: 300
+  maxBankBalance: 600
+  wageDepartment: Medical
+  wage: 135
+  #end-backmen: currency
 
 - type: startingGear
   id: SeniorPhysicianGear

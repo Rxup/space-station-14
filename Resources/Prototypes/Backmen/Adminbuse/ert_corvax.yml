@@ -219,7 +219,7 @@
   playTimeTracker: JobERTMedical
   setPreference: false
   startingGear: ERTMedicalGearEVAV2.1
-  icon: "Nanotrasen"
+  icon: JobIconNanotrasen
   supervisors: job-supervisors-centcom
   canBeAntag: false
   accessGroups:

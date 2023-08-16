@@ -14,13 +14,19 @@
       department: Engineering
       time: 216000 # 60 hrs
   startingGear: SeniorEngineerGear
-  icon: "SeniorEngineer"
+  icon: "JobIconSeniorEngineer"
   supervisors: job-supervisors-ce
   access:
   - Maintenance
   - Engineering
   - External
   - Atmospherics
+  #start-backmen: currency
+  minBankBalance: 300
+  maxBankBalance: 600
+  wageDepartment: Engineering
+  wage: 135
+  #end-backmen: currency
 
 - type: startingGear
   id: SeniorEngineerGear

@@ -7,6 +7,15 @@
   components:
     - type: AccessReader
       access: [["CCGeneral"]]
+    - type: PaintableAirlock
+      group: Glass
+    - type: Door
+      occludes: false
+    - type: Occluder
+      enabled: false
+    - type: Sprite
+      sprite: Structures/Doors/Airlocks/Glass/glass.rsi
+    - type: AnimationPlayer
 
 - type: entity
   parent: HighSecDoor
@@ -16,6 +25,15 @@
   components:
     - type: AccessReader
       access: [["CCSecurity"]]
+    - type: PaintableAirlock
+      group: Glass
+    - type: Door
+      occludes: false
+    - type: Occluder
+      enabled: false
+    - type: Sprite
+      sprite: Structures/Doors/Airlocks/Glass/glass.rsi
+    - type: AnimationPlayer
 
 - type: entity
   parent: HighSecDoor
@@ -25,6 +43,15 @@
   components:
     - type: AccessReader
       access: [["CCOfficer"]]
+    - type: PaintableAirlock
+      group: Glass
+    - type: Door
+      occludes: false
+    - type: Occluder
+      enabled: false
+    - type: Sprite
+      sprite: Structures/Doors/Airlocks/Glass/glass.rsi
+    - type: AnimationPlayer
 
 #Airlocks CC
 - type: entity

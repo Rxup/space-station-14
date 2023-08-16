@@ -93,14 +93,15 @@ public sealed class TTSManager
         var reqTime = DateTime.UtcNow;
         try
         {
-            var cts = new CancellationTokenSource(TimeSpan.FromSeconds(2));
+            var timeout = _cfg.GetCVar(CCCVars.TTSApiTimeout);
+            var cts = new CancellationTokenSource(TimeSpan.FromSeconds(timeout));
             var response = await _httpClient.PostAsJsonAsync(url, body, cts.Token);
             if (!response.IsSuccessStatusCode)
             {
                 throw new Exception($"TTS request returned bad status code: {response.StatusCode}");
             }
 
-            var json = await response.Content.ReadFromJsonAsync<GenerateVoiceResponse>();
+            var json = await response.Content.ReadFromJsonAsync<GenerateVoiceResponse>(cancellationToken: cts.Token);
             var soundData = Convert.FromBase64String(json.Results.First().Audio);
 
             _cache.Add(cacheKey, soundData);

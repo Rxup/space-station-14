@@ -67,3 +67,5 @@
             Musician: [ 1, 1 ]
             Reporter: [ 2, 2 ]
             Brigmedic: [ 0, 1 ] # backmen-Brigmedic
+            BKBPLATech: [0, 3] # backmen-BPLA-Silicons
+            BKBPLAMED: [0, 3] # backmen-BPLAMED-Silicons

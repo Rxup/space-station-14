@@ -55,9 +55,9 @@ entities:
             color: '#FFFFFFFF'
             id: Arrows
           decals:
-            29: -3,-3
-            30: -4,-2
-            31: -4,0
+            28: -3,-3
+            29: -4,-2
+            30: -4,0
         - node:
             color: '#FFFFFFFF'
             id: Bot
@@ -536,6 +536,13 @@ entities:
     - pos: 1.5,1.5000001
       parent: 182
       type: Transform
+- proto: ComputerSalvageExpedition
+  entities:
+  - uid: 15
+    components:
+    - pos: -0.5,3.5
+      parent: 182
+      type: Transform
 - proto: ComputerShuttle
   entities:
   - uid: 125
@@ -553,6 +560,15 @@ entities:
       type: Transform
 - proto: ConveyorBelt
   entities:
+  - uid: 16
+    components:
+    - rot: 1.5707963267948966 rad
+      pos: 0.5,-2.5
+      parent: 182
+      type: Transform
+    - links:
+      - 169
+      type: DeviceLinkSink
   - uid: 17
     components:
     - rot: 1.5707963267948966 rad
@@ -571,12 +587,30 @@ entities:
       pos: -6.5,-2.5
       parent: 182
       type: Transform
+  - uid: 83
+    components:
+    - rot: 1.5707963267948966 rad
+      pos: -0.5,-2.5
+      parent: 182
+      type: Transform
+    - links:
+      - 169
+      type: DeviceLinkSink
   - uid: 144
     components:
     - rot: 1.5707963267948966 rad
       pos: -3.5,-2.5
       parent: 182
       type: Transform
+  - uid: 187
+    components:
+    - rot: 1.5707963267948966 rad
+      pos: 1.5,-2.5
+      parent: 182
+      type: Transform
+    - links:
+      - 169
+      type: DeviceLinkSink
 - proto: DrinkFlaskOld
   entities:
   - uid: 160
@@ -615,13 +649,19 @@ entities:
     - pos: -2.5,-3.5
       parent: 182
       type: Transform
-- proto: GeneratorUranium
+- proto: GeneratorRTG
   entities:
-  - uid: 83
+  - uid: 14
     components:
     - pos: 0.5,-6.5
       parent: 182
       type: Transform
+    - supplyRate: 300000
+      type: PowerSupplier
+    - type: ArrivalsProtect
+    - type: Godmode
+    missingComponents:
+    - Damageable
 - proto: GravityGeneratorMini
   entities:
   - uid: 174
@@ -888,6 +928,14 @@ entities:
       type: Transform
     - powerLoad: 0
       type: ApcPowerReceiver
+  - uid: 188
+    components:
+    - rot: -1.5707963267948966 rad
+      pos: -5.5,-0.5
+      parent: 182
+      type: Transform
+    - enabled: False
+      type: AmbientSound
 - proto: Rack
   entities:
   - uid: 136
@@ -1129,6 +1177,20 @@ entities:
     - pos: 2.5,-0.5
       parent: 182
       type: Transform
+    - linkedPorts:
+        83:
+        - Left: Forward
+        - Right: Reverse
+        - Middle: Off
+        16:
+        - Left: Forward
+        - Right: Reverse
+        - Middle: Off
+        187:
+        - Left: Forward
+        - Right: Reverse
+        - Middle: Off
+      type: DeviceLinkSource
 - proto: WallReinforced
   entities:
   - uid: 1

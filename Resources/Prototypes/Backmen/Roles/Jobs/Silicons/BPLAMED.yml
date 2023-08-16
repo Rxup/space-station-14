@@ -1,0 +1,15 @@
+﻿- type: job
+  id: BKBPLAMED
+  name: job-name-silicon-BPLAMED
+  description: job-description-silicon-BPLAMED
+  playTimeTracker: BPLAMED
+  joinNotifyCrew: false
+  whitelistRequired: true
+  requirements:
+    - !type:OverallPlaytimeRequirement
+      time: 24000
+  icon: JobIconUnknown
+  supervisors: job-supervisors-human
+  canBeAntag: false
+  jobEntity: BackmenDroneMED
+  startingGear: RobotGear # for char preview only

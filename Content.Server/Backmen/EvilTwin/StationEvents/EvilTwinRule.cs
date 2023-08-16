@@ -11,8 +11,10 @@ public sealed class EvilTwinRule : StationEventSystem<EvilTwinRuleComponent>
 
         if(_evilTwinSystem.MakeTwin(out var _cloneSpawnPoint)){
             cloneSpawnPoint = _cloneSpawnPoint;
-        }else{
-            Sawmill.Error("Map not have latejoin spawnpoints for creating evil twin spawner");
+        }
+        else
+        {
+            Sawmill.Warning("Map not have latejoin spawnpoints for creating evil twin spawner");
         }
     }
 

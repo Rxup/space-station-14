@@ -17,7 +17,7 @@
       department: Security
       time: 216000 # 60 hrs
   startingGear: SeniorOfficerGear
-  icon: "SeniorOfficer"
+  icon: "JobIconSeniorOfficer"
   supervisors: job-supervisors-hos
   canBeAntag: false
   access:
@@ -26,6 +26,12 @@
   - Maintenance
   - Service
   - External
+  #start-backmen: currency
+  minBankBalance: 300
+  maxBankBalance: 600
+  wageDepartment: Security
+  wage: 130
+  #end-backmen: currency
 
 - type: startingGear
   id: SeniorOfficerGear

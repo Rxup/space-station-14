@@ -1,13 +1,14 @@
 - type: entity
-  parent: SpaceCredit # backmen: currency
+  parent: BaseItem
   id: SpaceCash
-  name: spacebucks
+  name: spesos
   description: You gotta have money.
   components:
   - type: Material
   - type: PhysicalComposition
     materialComposition:
       Credit: 1
+  - type: AtmCurrency # backmen: currency
   - type: StaticPrice
     price: 0
   - type: Stack
@@ -42,14 +43,14 @@
 
 - type: material
   id: Credit
-  name: spacebuck
+  name: speso
   stackEntity: SpaceCash
   icon: { sprite: /Textures/Objects/Economy/cash.rsi, state: cash }
   price: 1
 
 - type: stack
   id: Credit
-  name: spacebuck
+  name: speso
   icon: { sprite: /Textures/Objects/Economy/cash.rsi, state: cash }
   spawn: SpaceCash
 

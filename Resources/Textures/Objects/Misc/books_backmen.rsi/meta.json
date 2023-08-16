@@ -1,0 +1,47 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "Made by the backmen development team",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+      {
+          "name": "detective_roman_1"
+      },
+      {
+          "name": "detective_roman_2"
+      },
+      {
+          "name": "detective_roman_3"
+      },
+      {
+          "name": "Passions_in_the_SB"
+      },
+      {
+          "name": "The_art_of_combat_on_toolboxes"
+      },
+      {
+          "name": "The_Adventures_of_Ian_and_Hamlet"
+      },
+      {
+          "name": "Blood_Money"
+      },
+      {
+          "name": "Mim_Bobo"
+      },
+      {
+          "name": "Self-help_guide"
+      },
+      {
+          "name": "paperwork_1"
+      },
+      {
+          "name": "paperwork_2"
+      },
+      {
+          "name": "KPCS"
+      }
+  ]
+}

@@ -2,7 +2,7 @@
   id: GetmoreChocolateCorpInventory1
   productEntity: FoodSnackRaisins
   cost:
-    SpaceCredits: 7
+    SpaceCash: 7
   categories:
     - GetmoreChocolateCorpInventory
   conditions:
@@ -13,7 +13,7 @@
   id: GetmoreChocolateCorpInventory2
   productEntity: FoodSnackChocolate
   cost:
-    SpaceCredits: 8
+    SpaceCash: 8
   categories:
     - GetmoreChocolateCorpInventory
   conditions:
@@ -24,7 +24,7 @@
   id: GetmoreChocolateCorpInventory3
   productEntity: FoodSnackPopcorn
   cost:
-    SpaceCredits: 6
+    SpaceCash: 6
   categories:
     - GetmoreChocolateCorpInventory
   conditions:
@@ -35,7 +35,7 @@
   id: GetmoreChocolateCorpInventory4
   productEntity: FoodSnackSyndi
   cost:
-    SpaceCredits: 16
+    SpaceCash: 16
   categories:
     - GetmoreChocolateCorpInventory
   conditions:
@@ -46,7 +46,7 @@
   id: GetmoreChocolateCorpInventory5
   productEntity: DrinkRamen
   cost:
-    SpaceCredits: 20
+    SpaceCash: 20
   categories:
     - GetmoreChocolateCorpInventory
   conditions:
@@ -57,7 +57,7 @@
   id: GetmoreChocolateCorpInventory6
   productEntity: DrinkHellRamen
   cost:
-    SpaceCredits: 30
+    SpaceCash: 30
   categories:
     - GetmoreChocolateCorpInventory
   conditions:

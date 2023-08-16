@@ -18,6 +18,7 @@ using Content.Shared.Mobs;
 using JetBrains.Annotations;
 using Robust.Server.GameObjects;
 using Robust.Server.Player;
+using Robust.Shared.Configuration;
 using Robust.Shared.Console;
 using Robust.Shared.Enums;
 using Robust.Shared.Random;
@@ -28,6 +29,7 @@ namespace Content.Server.Ghost.Roles
     [UsedImplicitly]
     public sealed class GhostRoleSystem : EntitySystem
     {
+        [Dependency] private readonly IConfigurationManager _cfg = default!; // backmen: whitelist
         [Dependency] private readonly EuiManager _euiManager = default!;
         [Dependency] private readonly IPlayerManager _playerManager = default!;
         [Dependency] private readonly IAdminLogManager _adminLogger = default!;
@@ -35,6 +37,7 @@ namespace Content.Server.Ghost.Roles
         [Dependency] private readonly FollowerSystem _followerSystem = default!;
         [Dependency] private readonly TransformSystem _transform = default!;
         [Dependency] private readonly MindSystem _mindSystem = default!;
+        [Dependency] private readonly Backmen.RoleWhitelist.WhitelistSystem _roleWhitelist = default!; // backmen: whitelist
 
         private uint _nextRoleIdentifier;
         private bool _needsUpdateGhostRoleCount = true;
@@ -193,6 +196,11 @@ namespace Content.Server.Ghost.Roles
         {
             if (!_ghostRoles.TryGetValue(identifier, out var role)) return;
 
+            // start-backmen: whitelist
+            if (role.WhitelistRequired && _cfg.GetCVar(Shared.Backmen.CCVar.CCVars.WhitelistRolesEnabled) && !_roleWhitelist.IsInWhitelist(player))
+                return;
+            // end-backmen: whitelist
+
             var ev = new TakeGhostRoleEvent(player);
             RaiseLocalEvent(role.Owner, ref ev);
 
@@ -238,7 +246,7 @@ namespace Content.Server.Ghost.Roles
                 if (metaQuery.GetComponent(uid).EntityPaused)
                     continue;
 
-                roles.Add(new GhostRoleInfo {Identifier = id, Name = role.RoleName, Description = role.RoleDescription, Rules = role.RoleRules});
+                roles.Add(new GhostRoleInfo {Identifier = id, Name = role.RoleName, Description = role.RoleDescription, Rules = role.RoleRules, WhitelistRequired = role.WhitelistRequired}); // backmen: whitelist
             }
 
             return roles.ToArray();

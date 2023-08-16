@@ -76,7 +76,7 @@
       offState: off
       normalState: normal-unshaded
       currencyWhitelist:
-        - SpaceCredits
+        - SpaceCash
       idCardSlot:
         ejectSound: /Audio/Machines/id_swipe.ogg
         insertSound: /Audio/Weapons/Guns/MagIn/batrifle_magin.ogg

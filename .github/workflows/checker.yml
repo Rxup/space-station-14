@@ -29,5 +29,5 @@ jobs:
       - name: Build
         run: dotnet build --configuration Release --no-restore /p:WarningsAsErrors= /m
       - name: Run Linter
-        continue-on-error: true
+#        continue-on-error: true
         run: dotnet run --project Content.YAMLLinter/Content.YAMLLinter.csproj --no-build

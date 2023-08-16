@@ -7,13 +7,10 @@
         - to: eftpos
           steps:
             - material: Plastic
-              amount: 5
+              amount: 1
               doAfter: 2
-            - material: Glass
-              amount: 2
-              doAfter: 1
             - material: Cable
-              amount: 5
+              amount: 1
               doAfter: 2
     - node: eftpos
       entity: Eftpos

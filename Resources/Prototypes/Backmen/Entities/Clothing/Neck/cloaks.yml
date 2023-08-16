@@ -61,3 +61,13 @@
   components:
   - type: Sprite
     sprite: Backmen/Clothing/Neck/Cloaks/arbitr.rsi
+
+- type: entity
+  parent: ClothingNeckBase
+  id: ClothingNeckLeatherCoat
+  name: Кожаный плащ
+  description: Как у дедушки...
+  components:
+  - type: Sprite
+    sprite: Backmen/Clothing/Neck/Cloaks/leather_coat.rsi
+

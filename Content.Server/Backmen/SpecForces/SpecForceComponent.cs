@@ -22,4 +22,7 @@ public sealed class SpecForceComponent : Component
     [DataField("components")]
     [AlwaysPushInheritance]
     public ComponentRegistry Components { get; } = new();
+
+    [DataField("whitelistRequired")]
+    public bool WhitelistRequired { get; set; } = false;
 }

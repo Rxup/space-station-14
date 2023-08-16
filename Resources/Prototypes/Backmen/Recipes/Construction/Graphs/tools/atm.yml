@@ -7,7 +7,7 @@
         - to: parts
           steps:
             - material: Steel
-              amount: 5
+              amount: 1
               doAfter: 2
 
     - node: parts
@@ -16,18 +16,18 @@
         - to: wired
           steps:
             - material: Plastic
-              amount: 5
+              amount: 1
               doAfter: 2
             - tool: Screwing
               doAfter: 5
             - material: Cable
-              amount: 3
+              amount: 1
               doAfter: 2
         - to: start
           completed:
             - !type:GivePrototype
               prototype: SheetSteel1
-              amount: 3
+              amount: 1
             - !type:DeleteEntity {}
           steps:
             - tool: Screwing
@@ -39,7 +39,7 @@
         - to: ATM
           steps:
             - material: Plastic
-              amount: 2
+              amount: 1
               doAfter: 2
             - tool: Screwing
               doAfter: 2

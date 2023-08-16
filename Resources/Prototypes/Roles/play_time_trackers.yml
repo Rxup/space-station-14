@@ -10,6 +10,9 @@
 - type: playTimeTracker
   id: JobBartender
 
+- type: playTimeTracker # Used as a tracker for all borgs and midround borging.
+  id: JobBorg
+
 - type: playTimeTracker
   id: JobBotanist
 
@@ -148,7 +151,3 @@
 - type: playTimeTracker
   id: JobZookeeper
 
-#start-backmen: brigmed
-- type: playTimeTracker
-  id: JobBrigmedic
-#end-backmen: brigmed

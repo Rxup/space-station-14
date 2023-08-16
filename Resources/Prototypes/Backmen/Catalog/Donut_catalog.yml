@@ -2,7 +2,7 @@
   id: DonutInventory1
   productEntity: FoodDonutChocolate
   cost:
-    SpaceCredits: 10
+    SpaceCash: 10
   categories:
     - DonutInventory
   conditions:
@@ -13,7 +13,7 @@
   id: DonutInventory2
   productEntity: FoodDonutApple
   cost:
-    SpaceCredits: 10
+    SpaceCash: 10
   categories:
     - DonutInventory
   conditions:
@@ -24,7 +24,7 @@
   id: DonutInventory3
   productEntity: FoodDonutPink
   cost:
-    SpaceCredits: 10
+    SpaceCash: 10
   categories:
     - DonutInventory
   conditions:
@@ -35,7 +35,7 @@
   id: DonutInventory4
   productEntity: FoodDonutBungo
   cost:
-    SpaceCredits: 10
+    SpaceCash: 10
   categories:
     - DonutInventory
   conditions:

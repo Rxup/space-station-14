@@ -6,7 +6,7 @@
   description: Это может быть использовано для различных важных функций. Все еще находится на стадии разработки.
   components:
   - type: AccessReader
-    access: [[ "Command" ]]
+    access: [[ "CCOfficer" ]]
   - type: CommunicationsConsole
     title: comms-console-announcement-title-centcom
     sound: /Audio/Misc/notice1.ogg
@@ -324,10 +324,8 @@
           Quantity: 15
         - ReagentId: THC
           Quantity: 10
-        - ReagentId: Romerol
+        - ReagentId: Ambuzol
           Quantity: 20
-        - ReagentId: Spaceacillin
-          Quantity: 10
   - type: Hypospray
     solutionName: pen
     transferAmount: 75
@@ -348,7 +346,6 @@
   description: Дробовик марки Frozen Star нового поколения. Использует патроны калибра .50 ружейный.
   components:
   - type: BallisticAmmoProvider
-    autoCycle: true
     whitelist:
       tags:
       - ShellShotgun
