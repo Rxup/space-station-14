@@ -9,6 +9,7 @@
         - id: OxygenTankFilled
         - id: ClothingOuterHardsuitCentcomCarporate
         - id: ClothingMaskBreath
+
 - type: entity
   id: SuitStorageCargoEVAHardsuit
   parent: SuitStorageBase
