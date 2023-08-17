@@ -11,3 +11,6 @@
     sprite: Backmen/Clothing/OuterClothing/Hardsuits/eva_cargo.rsi
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetCargoEVA
+  - type: ContainerContainer
+    containers:
+      toggleable-clothing: !type:ContainerSlot {}
