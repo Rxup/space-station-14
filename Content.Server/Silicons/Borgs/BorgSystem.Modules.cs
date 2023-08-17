@@ -1,4 +1,6 @@
 ﻿using System.Linq;
+using Content.Shared.CombatMode.Pacification;
+using Content.Shared.Emag.Components;
 using Content.Shared.Hands.Components;
 using Content.Shared.Interaction.Components;
 using Content.Shared.Silicons.Borgs.Components;
@@ -41,9 +43,6 @@ public sealed partial class BorgSystem
     private void OnModuleGotRemoved(EntityUid uid, BorgModuleComponent component, EntGotRemovedFromContainerMessage args)
     {
         var chassis = args.Container.Owner;
-
-        if (Terminating(chassis))
-            return;
 
         if (!TryComp<BorgChassisComponent>(chassis, out var chassisComp) ||
             args.Container != chassisComp.ModuleContainer)
@@ -198,6 +197,18 @@ public sealed partial class BorgSystem
             _hands.DoPickup(chassis, hands.Hands[handId], item, hands);
             EnsureComp<UnremoveableComponent>(item);
             component.ProvidedItems.Add(handId, item);
+
+        }
+
+        for (int i = 0; i < component.Hands; i++)
+        {
+            var handId2 = $"{uid}-FH{i}";
+            _hands.AddHand(chassis, handId2, HandLocation.Middle, hands);
+        }
+
+        if (!HasComp<EmaggedComponent>(uid))
+        {
+            EnsureComp<PacifiedComponent>(uid);
         }
 
         component.ItemsCreated = true;
@@ -220,6 +231,18 @@ public sealed partial class BorgSystem
             }
             _hands.RemoveHand(chassis, handId, hands);
         }
+
+        for (int i = 0; i < component.Hands; i++)
+        {
+            var handId = $"{uid}-FH{i}";
+            _hands.RemoveHand(chassis, handId, hands);
+        }
+
+        if (!HasComp<EmaggedComponent>(uid))
+        {
+            RemCompDeferred<PacifiedComponent>(uid);
+        }
+
         component.ProvidedItems.Clear();
     }
 
@@ -232,7 +255,11 @@ public sealed partial class BorgSystem
             return false;
 
         if (component.ModuleContainer.ContainedEntities.Count >= component.MaxModules)
+        {
+            if (user != null)
+                Popup.PopupEntity(Loc.GetString("borg-module-too-many"), uid, user.Value);
             return false;
+        }
 
         if (component.ModuleWhitelist?.IsValid(module, EntityManager) == false)
         {

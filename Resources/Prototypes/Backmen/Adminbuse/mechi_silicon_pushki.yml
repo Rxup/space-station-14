@@ -170,7 +170,6 @@
     sprite: Objects/Specific/Mech/mecha_equipment.rsi
     state: mecha_scatter
   - type: BallisticAmmoProvider
-    autoCycle: true
     whitelist:
       tags:
       - ShellShotgun
@@ -394,7 +393,6 @@
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/grenade_launcher.ogg
   - type: BallisticAmmoProvider
-    autoCycle: true
     whitelist:
       tags:
         - Grenade
@@ -497,7 +495,6 @@
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/grenade_launcher.ogg
   - type: BallisticAmmoProvider
-    autoCycle: true
     whitelist:
       tags:
         - Grenade

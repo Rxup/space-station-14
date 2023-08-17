@@ -1,4 +1,5 @@
 ﻿using Content.Server.Ghost.Roles.Components;
+using Content.Server.Mind;
 using Content.Server.Mind.Components;
 using Content.Server.PAI;
 using Content.Shared.Examine;
@@ -16,6 +17,7 @@ public sealed class ToggleableGhostRoleSystem : EntitySystem
 {
     [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
     [Dependency] private readonly SharedPopupSystem _popup = default!;
+    [Dependency] private readonly MindSystem _mind = default!;
     //todo this really shouldn't be in here but this system was converted from PAIs
     [Dependency] private readonly PAISystem _pai = default!;
 
@@ -55,6 +57,7 @@ public sealed class ToggleableGhostRoleSystem : EntitySystem
         EnsureComp<GhostTakeoverAvailableComponent>(uid);
         ghostRole.RoleName = Loc.GetString(component.RoleName);
         ghostRole.RoleDescription = Loc.GetString(component.RoleDescription);
+        ghostRole.WhitelistRequired = component.WhitelistRequired; // backmen: whitelist
     }
 
     private void OnExamined(EntityUid uid, ToggleableGhostRoleComponent component, ExaminedEvent args)
@@ -79,7 +82,7 @@ public sealed class ToggleableGhostRoleSystem : EntitySystem
     private void OnMindAdded(EntityUid uid, ToggleableGhostRoleComponent pai, MindAddedMessage args)
     {
         // Mind was added, shutdown the ghost role stuff so it won't get in the way
-        RemComp<GhostTakeoverAvailableComponent>(uid);
+        RemCompDeferred<GhostTakeoverAvailableComponent>(uid);
         UpdateAppearance(uid, ToggleableGhostRoleStatus.On);
     }
 
@@ -105,12 +108,12 @@ public sealed class ToggleableGhostRoleSystem : EntitySystem
                 Text = Loc.GetString(component.WipeVerbText),
                 Act = () =>
                 {
-                    if (component.Deleted || !HasComp<MindContainerComponent>(uid))
+                    if (!TryComp<MindContainerComponent>(uid, out var mindComp) || mindComp.Mind == null)
                         return;
                     // Wiping device :(
                     // The shutdown of the Mind should cause automatic reset of the pAI during OnMindRemoved
                     // EDIT: But it doesn't!!!! Wtf? Do stuff manually
-                    RemComp<MindContainerComponent>(uid);
+                    _mind.TransferTo(mindComp.Mind, null);
                     _popup.PopupEntity(Loc.GetString(component.WipeVerbPopup), uid, args.User, PopupType.Large);
                     UpdateAppearance(uid, ToggleableGhostRoleStatus.Off);
                     _pai.PAITurningOff(uid);
@@ -127,8 +130,8 @@ public sealed class ToggleableGhostRoleSystem : EntitySystem
                 {
                     if (component.Deleted || !HasComp<GhostTakeoverAvailableComponent>(uid))
                         return;
-                    RemComp<GhostTakeoverAvailableComponent>(uid);
-                    RemComp<GhostRoleComponent>(uid);
+                    RemCompDeferred<GhostTakeoverAvailableComponent>(uid);
+                    RemCompDeferred<GhostRoleComponent>(uid);
                     _popup.PopupEntity(Loc.GetString(component.StopSearchVerbPopup), uid, args.User);
                     UpdateAppearance(uid, ToggleableGhostRoleStatus.Off);
                     _pai.PAITurningOff(uid);

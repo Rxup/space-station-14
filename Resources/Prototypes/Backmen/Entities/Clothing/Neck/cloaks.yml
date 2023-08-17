@@ -68,5 +68,5 @@
   name: Кожаный плащ
   description: Как у дедушки...
   components:
-    - type: Sprite
-      sprite: Backmen/Clothing/Neck/Cloaks/leather_coat.rsi
+  - type: Sprite
+    sprite: Backmen/Clothing/Neck/Cloaks/leather_coat.rsi

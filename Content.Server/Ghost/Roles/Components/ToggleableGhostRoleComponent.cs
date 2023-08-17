@@ -3,7 +3,7 @@
 /// <summary>
 /// This is used for a ghost role which can be toggled on and off at will, like a PAI.
 /// </summary>
-[RegisterComponent]
+[RegisterComponent, Access(typeof(ToggleableGhostRoleSystem))]
 public sealed class ToggleableGhostRoleComponent : Component
 {
     [DataField("examineTextMindPresent")]
@@ -35,4 +35,9 @@ public sealed class ToggleableGhostRoleComponent : Component
 
     [DataField("stopSearchVerbPopup")]
     public string StopSearchVerbPopup = string.Empty;
+
+    // start-backmen: whitelist
+    [DataField("whitelistRequired")]
+    public bool WhitelistRequired = false;
+    // end-backmen: whitelist
 }
