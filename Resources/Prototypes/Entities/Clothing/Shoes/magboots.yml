@@ -106,3 +106,30 @@
     - type: Tag
       tags:
         - WhitelistChameleon
+
+- type: entity
+  parent: ClothingShoesBase
+  id: ClothingShoesBootsMagWizard
+  name: Магнитные сапоги волшебника
+  description: Сапоги созданные великим магом
+  components:
+    - type: Sprite
+      sprite: Backmen/Clothing/Shoes/Mag_boods_wizard.rsi
+      state: icon
+    - type: Clothing
+      sprite: Backmen/Clothing/Shoes/Mag_boods_wizard.rsi
+    - type: Magboots
+      toggleAction:
+        icon: { sprite: Backmen/Clothing/Shoes/Mag_boods_wizard.rsi, state: icon }
+        iconOn: Backmen/Clothing/Shoes/Mag_boods_wizard.rsi/icon-on.png
+        name: action-name-magboot-toggle
+        description: action-decription-magboot-toggle
+        itemIconStyle: NoItem
+        event: !type:ToggleActionEvent
+    - type: ClothingSpeedModifier
+      walkModifier: 1.0
+      sprintModifier: 1.2
+      enabled: false
+    - type: Tag
+      tags:
+        - WhitelistChameleon
