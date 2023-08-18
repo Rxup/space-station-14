@@ -8,3 +8,14 @@
     sprite: Backmen/Clothing/Back/Backpacks/orden_backpacks.rsi
   - type: Storage
     capacity: 300
+     
+- type: entity
+  parent: ClothingBackpack
+  id: ClothingWizard
+  name: Парящий мешочек волшебника
+  description: Летающий мешочек который вмещает больше чем должен
+  components:
+  - type: Sprite
+    sprite: Backmen/Clothing/Back/Backpacks/wizard-backpack.rsi
+  - type: Storage
+    capacity: 300    
