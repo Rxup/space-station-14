@@ -139,3 +139,20 @@
     sprite: Backmen/Clothing/Head/Masks/blacksilense.rsi
   - type: Clothing
     sprite: Backmen/Clothing/Head/Masks/blacksilense.rsi
+    
+- type: entity
+  parent: ClothingMaskGas
+  id: ClothingMaskWizard
+  name: Маска волшебника
+  description: Зачарованная маска, спасает от порчи и сглаза
+  components:
+  - type: Sprite
+    sprite: Backmen/Clothing/Head/Masks/gas-wizard.rsi
+  - type: Clothing
+    sprite: Backmen/Clothing/Head/Masks/gas-wizard.rsi
+  - type: FlashImmunity
+  - type: EyeProtection
+  - type: Armor
+    modifiers:
+      coefficients:
+        Heat: 0.80  
