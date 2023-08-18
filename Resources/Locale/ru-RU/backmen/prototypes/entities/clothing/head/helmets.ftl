@@ -21,3 +21,7 @@ ent-ClothingHeadHelmetIhsCombathelmet = Тяжелый тактический ш
 ent-ClothingHeadIOGHelmet = Шлем биологической защиты ИОГ.
     .desc = Шлем биологической защиты ИОГ. Оснащен прокладками из прочного материала, способного сдержать выстрел мелкокалиберного оружия.
     .suffix = { "" }
+
+ent-ClothingHeadHelmetCargoEVA = Шлем EVA снабжения 
+    .desc = Встроенный шлем скафандра EVA отдела снабжения. Есть фонарик.
+    .suffix = { "" }
