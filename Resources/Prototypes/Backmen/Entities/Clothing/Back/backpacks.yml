@@ -11,7 +11,7 @@
      
 - type: entity
   parent: ClothingBackpack
-  id: ClothingWizard
+  id: ClothingWizardBackpack
   name: Парящий мешочек волшебника
   description: Летающий мешочек который вмещает больше чем должен
   components:
