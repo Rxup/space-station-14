@@ -15,3 +15,21 @@
     fiberMaterial: fibers-durathread
     fiberColor: fibers-regal-blue
   - type: FingerprintMask
+
+- type: entity
+  parent: ClothingHandsBase
+  id: ClothingHandsGlovesWizard
+  name: Перчатки волшебника
+  description: Магические перчатки которые изолируют от порчи
+  components:
+    - type: Sprite
+      sprite: Backmen/Clothing/Hands/Gloves/wizard-gloves.rsi
+    - type: Clothing
+      sprite: Backmen/Clothing/Hands/Gloves/wizard-gloves.rsi
+    - type: GloveHeatResistance
+      heatResistance: 1500
+    - type: Insulated
+    - type: Fiber
+      fiberMaterial: fibers-durathread
+      fiberColor: fibers-regal-blue
+    - type: FingerprintMask
