@@ -268,3 +268,14 @@
         Slash: 0.9
         Piercing: 0.9
         Heat: 0.9
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformWizard
+  name: Костюм волшебника
+  description: Соткан великим волшебником
+  components:
+    - type: Sprite
+      sprite: Backmen/Clothing/Uniforms/jumpsuit/wizard_uniforms.rsi
+    - type: Clothing
+      sprite: Backmen/Clothing/Uniforms/jumpsuit/wizard_uniforms.rsi

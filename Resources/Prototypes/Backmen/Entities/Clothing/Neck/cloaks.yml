@@ -71,3 +71,12 @@
   - type: Sprite
     sprite: Backmen/Clothing/Neck/Cloaks/leather_coat.rsi
 
+- type: entity
+  parent: ClothingNeckBase
+  id: ClothingNeckWizard
+  name: Плащ волшебника
+  description: Плащ великого волшебника
+  components:
+    - type: Sprite
+      sprite: Backmen/Clothing/Neck/Cloaks/wizard-coat.rsi
+
