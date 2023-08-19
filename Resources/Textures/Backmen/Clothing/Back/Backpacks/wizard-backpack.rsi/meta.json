@@ -8,19 +8,29 @@
   },
   "states": [
     {
-      "name": "icon"
+      "name": "icon",
+	  "delays": [
+            [ 0.6, 0.3, 0.5, 0.3 ]
+		]
     },
     {
       "name": "equipped-BACKPACK",
-      "directions": 4
+      "directions": 4,
+      "delays": [
+            [ 0.6, 0.3, 0.5, 0.3 ],
+            [ 0.6, 0.3, 0.5, 0.3 ],
+            [ 0.6, 0.3, 0.5, 0.3 ],
+            [ 0.6, 0.3, 0.5, 0.3 ]
+        ]
     },
+
     {
       "name": "inhand-left",
       "directions": 4
     },
     {
       "name": "inhand-right",
-      "directions": 4
+	  "directions": 4
     }
   ]
 }
