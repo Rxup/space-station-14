@@ -18,4 +18,5 @@
   - type: Sprite
     sprite: Backmen/Clothing/Back/Backpacks/wizard-backpack.rsi
   - type: Storage
-    capacity: 300    
+    capacity: 200
+    
