@@ -310,3 +310,4 @@ Resources/MapImages
 # Direnv stuff
 .direnv/
 RobustToolbox
+Resources/Prototypes/Backmen/Entities/Mobs/Spawners/spawner_wizard.yml
