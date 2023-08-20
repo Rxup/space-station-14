@@ -1,11 +1,14 @@
 using Content.Server.Backmen.Drone.Actions;
 using Content.Server.Body.Systems;
+using Content.Server.Chat.Systems;
 using Content.Server.Drone.Components;
 using Content.Server.Ghost.Components;
 using Content.Server.Ghost.Roles.Components;
 using Content.Server.Hands.Systems;
 using Content.Server.Mind.Components;
 using Content.Server.Popups;
+using Content.Server.Radio.Components;
+using Content.Server.Radio.EntitySystems;
 using Content.Server.Tools.Innate;
 using Content.Server.UserInterface;
 using Content.Shared.Actions;
@@ -22,6 +25,7 @@ using Content.Shared.Mobs;
 using Content.Shared.Mobs.Components;
 using Content.Shared.Mobs.Systems;
 using Content.Shared.Popups;
+using Content.Shared.Radio;
 using Content.Shared.Tag;
 using Content.Shared.Throwing;
 using Robust.Server.GameObjects;
@@ -44,6 +48,12 @@ public sealed class BSSDroneSystem : SharedDroneSystem
     [Dependency] private readonly SharedActionsSystem _action = default!;
     [Dependency] private readonly IPrototypeManager _prototypes = default!;
     [Dependency] private readonly HandsSystem _handsSystem = default!;
+    [Dependency] private readonly RadioSystem _radioSystem = default!;
+
+
+    [ValidatePrototypeId<RadioChannelPrototype>]
+    public const string BinaryChannel = "Binary";
+
     public override void Initialize()
     {
         base.Initialize();
@@ -58,6 +68,23 @@ public sealed class BSSDroneSystem : SharedDroneSystem
         SubscribeLocalEvent<BSSDroneComponent, bloodpackCraftActionEvent>(OnCraftBloodpack);
         SubscribeLocalEvent<BSSDroneComponent, ointmentCraftActionEvent>(OnCraftOintment);
         SubscribeLocalEvent<BSSDroneComponent, brutepackCraftActionEvent>(OnCraftBrutepack);
+
+        SubscribeLocalEvent<DroneComponent, EntitySpokeEvent>((uid, _, args) => OnDroneSpeak(uid, args), before: new []{ typeof(RadioSystem) });
+        SubscribeLocalEvent<BSSDroneComponent, EntitySpokeEvent>((uid, _, args) => OnDroneSpeak(uid, args), before: new []{ typeof(RadioSystem) });
+    }
+
+    private void OnDroneSpeak(EntityUid uid, EntitySpokeEvent args, IntrinsicRadioTransmitterComponent? component = null)
+    {
+        if (args.Channel == null ||
+            !Resolve(uid, ref component, false) ||
+            !component.Channels.Contains(args.Channel.ID) ||
+            args.Channel.ID != BinaryChannel)
+        {
+            return;
+        }
+
+        _radioSystem.SendRadioMessage(uid, args.OriginalMessage, args.Channel, uid);
+        args.Channel = null; // prevent duplicate messages from other listeners.
     }
 
     #region Base Drone
