@@ -74,6 +74,7 @@
   - type: GroupExamine
   - type: Tag
     tags:
+    - FullBodyOuter
     - Hardsuit
     - WhitelistChameleon
 
@@ -93,3 +94,6 @@
     sprintModifier: 0.8
   - type: Item
     size: 80
+  - type: Tag
+    tags:
+      - FullBodyOuter

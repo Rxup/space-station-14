@@ -77,3 +77,7 @@ chat-speech-verb-monkey = chimpers
 chat-speech-verb-cluwne-1 = giggles
 chat-speech-verb-cluwne-2 = guffaws
 chat-speech-verb-cluwne-3 = laughs
+
+chat-manager-send-collective-mind-chat-wrap-message = {$channel} collective mind: {$message}
+chat-manager-send-collective-mind-chat-wrap-message-admin = {$source} ({$channel} collective mind): {$message}
+chat-manager-collective-mind-channel-name = collective mind

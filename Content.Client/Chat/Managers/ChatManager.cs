@@ -14,6 +14,7 @@ namespace Content.Client.Chat.Managers
         [Dependency] private readonly IEntitySystemManager _systems = default!;
 
         private ISawmill _sawmill = default!;
+        public event Action? PermissionsUpdated;
 
         public void Initialize()
         {
@@ -67,9 +68,18 @@ namespace Content.Client.Chat.Managers
                     _consoleHost.ExecuteCommand($"whisper \"{CommandParsing.Escape(str)}\"");
                     break;
 
+                case ChatSelectChannel.CollectiveMind:
+                    _consoleHost.ExecuteCommand($"cmsay \"{CommandParsing.Escape(str)}\"");
+                    break;
+
                 default:
                     throw new ArgumentOutOfRangeException(nameof(channel), channel, null);
             }
+        }
+
+        public void UpdatePermissions()
+        {
+            PermissionsUpdated?.Invoke();
         }
     }
 }

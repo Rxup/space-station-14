@@ -25,6 +25,26 @@
   components:
     - type: NukeOperative
 
+#Flesh Cultist
+- type: entity
+  parent: MobHuman
+  id: MobHumanFleshCultist
+  name: Flesh Cultist
+  components:
+    - type: FleshCultist
+      startingEvolutionPoint: 300
+    - type: Faction
+      factions:
+        - Flesh
+    - type: Store
+      categories:
+        - FleshCultistAbilities
+      currencyWhitelist:
+        - StolenMutationPoint
+    - type: CollectiveMind
+      channel: Flesh
+      channelColor: "#bd0966"
+
 # Nuclear Operative
 - type: entity
   noSpawn: true

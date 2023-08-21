@@ -2,10 +2,13 @@ using System.Linq;
 using Content.Server.Administration.Logs;
 using Content.Server.Body.Systems;
 using Content.Server.Chemistry.Components.SolutionManager;
+using Content.Server.Chemistry.EntitySystems;
 using Content.Server.Explosion.Components;
 using Content.Server.Flash;
 using Content.Server.Flash.Components;
 using Content.Server.Radio.EntitySystems;
+using Content.Server.Fluids.EntitySystems;
+using Content.Shared.Chemistry.Components;
 using Content.Shared.Database;
 using Content.Shared.Implants.Components;
 using Content.Shared.Interaction;
@@ -61,6 +64,8 @@ namespace Content.Server.Explosion.EntitySystems
         [Dependency] private readonly SharedTransformSystem _transformSystem = default!;
         [Dependency] private readonly RadioSystem _radioSystem = default!;
         [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
+        [Dependency] private readonly PuddleSystem _puddleSystem = default!;
+        [Dependency] private readonly SolutionContainerSystem _solutionSystem = default!;
 
         public override void Initialize()
         {
@@ -89,6 +94,7 @@ namespace Content.Server.Explosion.EntitySystems
             SubscribeLocalEvent<AnchorOnTriggerComponent, TriggerEvent>(OnAnchorTrigger);
             SubscribeLocalEvent<SoundOnTriggerComponent, TriggerEvent>(OnSoundTrigger);
             SubscribeLocalEvent<RattleComponent, TriggerEvent>(HandleRattleTrigger);
+            SubscribeLocalEvent<SplashOnTriggerComponent, TriggerEvent>(OnSplashTrigger);
         }
 
         private void OnSoundTrigger(EntityUid uid, SoundOnTriggerComponent component, TriggerEvent args)
@@ -109,6 +115,28 @@ namespace Content.Server.Explosion.EntitySystems
 
             if(component.RemoveOnTrigger)
                 RemCompDeferred<AnchorOnTriggerComponent>(uid);
+        }
+
+        private void OnSplashTrigger(EntityUid uid, SplashOnTriggerComponent component, TriggerEvent args)
+        {
+            var xform = Transform(uid);
+
+            var coords = xform.Coordinates;
+
+            if (!coords.IsValid(EntityManager))
+                return;
+
+            var transferSolution = new Solution();
+            foreach (var reagent in component.SplashReagents.ToArray())
+            {
+                transferSolution.AddReagent(reagent.ReagentId, reagent.Quantity);
+            }
+            if (_solutionSystem.TryGetInjectableSolution(uid, out var injectableSolution))
+            {
+                _solutionSystem.TryAddSolution(uid, injectableSolution, transferSolution);
+            }
+
+            _puddleSystem.TrySplashSpillAt(uid, coords, transferSolution, out var puddleUid);
         }
 
         private void OnSpawnTrigger(EntityUid uid, SpawnOnTriggerComponent component, TriggerEvent args)

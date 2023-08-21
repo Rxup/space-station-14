@@ -285,6 +285,8 @@
         type: HumanoidMarkingModifierBoundUserInterface
       - key: enum.StrippingUiKey.Key
         type: StrippableBoundUserInterface
+      - key: enum.StoreUiKey.Key
+        type: StoreBoundUserInterface
   - type: Puller
   - type: Butcherable
     butcheringType: Spike # TODO human.
@@ -349,12 +351,17 @@
           sprite: Mobs/Customization/masking_helpers.rsi
           state: unisex_full
           visible: false
-        - map: ["jumpsuit"]
-        - map: ["enum.HumanoidVisualLayers.LFoot"]
-        - map: ["enum.HumanoidVisualLayers.RFoot"]
-        - map: ["enum.HumanoidVisualLayers.LHand"]
-        - map: ["enum.HumanoidVisualLayers.RHand"]
-        - map: ["enum.HumanoidVisualLayers.Handcuffs"]
+        - shader: StencilJumpsuitMask
+          map: [ "enum.HumanoidVisualLayers.LegsMask" ]
+          sprite: Mobs/Customization/masking_helpers.rsi
+          state: jumpsuit_bottom
+          visible: false
+        - map: [ "jumpsuit" ]
+        - map: [ "enum.HumanoidVisualLayers.LHand" ]
+        - map: [ "enum.HumanoidVisualLayers.RHand" ]
+        - map: [ "enum.HumanoidVisualLayers.LFoot" ]
+        - map: [ "enum.HumanoidVisualLayers.RFoot" ]
+        - map: [ "enum.HumanoidVisualLayers.Handcuffs" ]
           color: "#ffffff"
           sprite: Objects/Misc/handcuffs.rsi
           state: body-overlay-2

@@ -20,6 +20,7 @@
   - type: GroupExamine
   - type: Tag
     tags:
+    - FullBodyOuter
     - Hardsuit
     - WhitelistChameleon
 
@@ -47,6 +48,9 @@
     walkModifier: 0.8
     sprintModifier: 0.7
   - type: GroupExamine
+  - type: Tag
+    tags:
+      - FullBodyOuter
 
 - type: entity
   parent: ClothingOuterBaseLarge
@@ -90,6 +94,9 @@
   - type: Clothing
     sprite: Clothing/OuterClothing/Suits/rad.rsi
   - type: GroupExamine
+  - type: Tag
+    tags:
+      - FullBodyOuter
 
 - type: entity
   parent: ClothingOuterBase
@@ -108,6 +115,9 @@
         Slash: 0.6
         Piercing: 0.6
         Heat: 0.6
+  - type: Tag
+    tags:
+      - FullBodyOuter
 
 - type: entity
   parent: ClothingOuterBase
@@ -119,6 +129,9 @@
     sprite: Clothing/OuterClothing/Suits/chicken.rsi
   - type: Clothing
     sprite: Clothing/OuterClothing/Suits/chicken.rsi
+  - type: Tag
+    tags:
+      - FullBodyOuter
 
 - type: entity
   parent: ClothingOuterBase
@@ -130,6 +143,9 @@
     sprite: Clothing/OuterClothing/Suits/shrine-maiden.rsi
   - type: Clothing
     sprite: Clothing/OuterClothing/Suits/shrine-maiden.rsi
+  - type: Tag
+    tags:
+      - FullBodyOuter
 
 - type: entity
   parent: ClothingOuterBase
@@ -141,3 +157,34 @@
     sprite: Clothing/OuterClothing/Suits/monkey.rsi
   - type: Clothing
     sprite: Clothing/OuterClothing/Suits/monkey.rsi
+  - type: Tag
+    tags:
+      - FullBodyOuter
+
+- type: entity
+  parent: ClothingOuterBaseLarge
+  id: ClothingOuterSuitAtmosFire
+  name: atmos fire suit
+  description: An expensive firesuit that protects against even the most deadly of station fires. Designed to protect even if the wearer is set aflame.
+  components:
+  - type: Sprite
+    sprite: Clothing/OuterClothing/Suits/atmos_firesuit.rsi
+  - type: PressureProtection
+    highPressureMultiplier: 0.45
+    lowPressureMultiplier: 1000
+  - type: TemperatureProtection
+    coefficient: 0.01
+  - type: Clothing
+    sprite: Clothing/OuterClothing/Suits/atmos_firesuit.rsi
+  - type: Armor
+    modifiers:
+      coefficients:
+        Slash: 0.9
+        Heat: 0.35
+  - type: ClothingSpeedModifier
+    walkModifier: 0.7
+    sprintModifier: 0.75
+  - type: GroupExamine
+  - type: Tag
+    tags:
+      - FullBodyOuter
