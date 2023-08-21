@@ -53,3 +53,7 @@ chat-speech-verb-monkey = говорит
 chat-speech-verb-cluwne-1 = хихикает
 chat-speech-verb-cluwne-2 = хехекает
 chat-speech-verb-cluwne-3 = смеётся
+
+chat-manager-send-collective-mind-chat-wrap-message = {$channel} коллективный разум: {$message}
+chat-manager-send-collective-mind-chat-wrap-message-admin = {$source} ({$channel} коллективный разум): {$message}
+chat-manager-collective-mind-channel-name = коллективный разум
