@@ -8,7 +8,7 @@
       - id: BookRandom
         prob: 0.4
         amount: 1
-        maxAmount: 4
+        maxAmount: 2
       - id: BookNarsieLegend
         prob: 0.1
       - id: BookTruth
@@ -68,4 +68,36 @@
       - id: BookJourney
         prob: 0.1
       - id: BookInspiration
+        prob: 0.1   #start-backmen-books
+      - id: BookDetectiveP1
         prob: 0.1
+      - id: BookDetectiveP2
+        prob: 0.1
+      - id: BookDetectiveP3
+        prob: 0.1
+      - id: BookPassionsP1
+        prob: 0.1
+      - id: BookPaperworkP1
+        prob: 0.1
+      - id: BookPaperworkP2
+        prob: 0.1
+      - id: BookToolboxes
+        prob: 0.1
+      - id: BookSelf
+        prob: 0.1
+      - id: BookKPCS
+        prob: 0.1
+      - id: BookMimBobo
+        prob: 0.1
+      - id: BookBloodMoney
+        prob: 0.1
+      - id: BookIanAndHamlet
+        prob: 0.1
+      - id: SpawnSpellbook  #spell
+        prob: 0.02
+      - id: ForceWallSpellbook  #spell
+        prob: 0.05
+      - id: KnockSpellbook  #spell
+        prob: 0.03
+      - id: BlinkBook #spell
+        prob: 0.05  #end-backmen-books (with spell books add)

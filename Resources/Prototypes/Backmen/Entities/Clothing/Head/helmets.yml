@@ -105,3 +105,23 @@
         Slash: 0.8
         Piercing: 0.9
         Heat: 0.80
+
+#Cargo EVA Helmet
+- type: entity
+  parent: ClothingHeadHardsuitWithLightBase
+  id: ClothingHeadHelmetCargoEVA
+  noSpawn: true
+  name: EVA cargo helmet
+  description: Встроенный шлем скафандра EVA отдела снабжения. Есть фонарик.
+  components:
+  - type: Sprite
+    sprite: Backmen/Clothing/Head/Helmets/eva_cargo.rsi
+  - type: Clothing
+    sprite: Backmen/Clothing/Head/Helmets/eva_cargo.rsi 
+  - type: PointLight
+    color: "#ffdbad"
+  - type: Armor
+    modifiers:
+      coefficients:
+        Slash: 0.9
+        Heat: 0.95

@@ -2,7 +2,7 @@
   id: DiscountDansInventoryFoodSnackCheesie
   productEntity: FoodSnackCheesie
   cost:
-    SpaceCredits: 20
+    SpaceCash: 20
   categories:
     - DiscountDansInventory
   conditions:
@@ -13,7 +13,7 @@
   id: DiscountDansInventoryFoodSnackChips
   productEntity: FoodSnackChips
   cost:
-    SpaceCredits: 20
+    SpaceCash: 20
   categories:
     - DiscountDansInventory
   conditions:
@@ -24,7 +24,7 @@
   id: DiscountDansInventoryFoodSnackBoritos
   productEntity: FoodSnackBoritos
   cost:
-    SpaceCredits: 20
+    SpaceCash: 20
   categories:
     - DiscountDansInventory
   conditions:
@@ -35,7 +35,7 @@
   id: DiscountDansInventoryFoodSnackPopcorn
   productEntity: FoodSnackPopcorn
   cost:
-    SpaceCredits: 20
+    SpaceCash: 20
   categories:
     - DiscountDansInventory
   conditions:
@@ -46,7 +46,7 @@
   id: DiscountDansInventoryFoodSnackEnergy
   productEntity: FoodSnackEnergy
   cost:
-    SpaceCredits: 20
+    SpaceCash: 20
   categories:
     - DiscountDansInventory
   conditions:

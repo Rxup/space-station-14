@@ -18,7 +18,6 @@
     - getclipboard
     - net_graph
     - net_watchent
-    - net_draw_interp
     - devwindow
     - fill
     - dumpentities
@@ -59,6 +58,7 @@
     - toggledecals
     - nodevis
     - nodevisfilter
+    - net_draw_interp
     - showmeleespread
     - showgunspread
     - showambient

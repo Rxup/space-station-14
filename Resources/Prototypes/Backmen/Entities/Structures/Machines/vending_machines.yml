@@ -7,9 +7,9 @@
       categories:
         - DiscountDansInventory
       currencyWhitelist:
-        - SpaceCredits
+        - SpaceCash
       balance:
-        SpaceCredits: 0
+        SpaceCash: 0
     - type: BuyStoreBank
     - type: ActivatableUI
       key: enum.StoreUiKey.Key
@@ -55,9 +55,9 @@
       categories:
         - VendingLootboxInventory
       currencyWhitelist:
-        - SpaceCredits
+        - SpaceCash
       balance:
-        SpaceCredits: 0
+        SpaceCash: 0
     - type: BuyStoreBank
     - type: ActivatableUI
       key: enum.StoreUiKey.Key
@@ -77,9 +77,9 @@
       categories:
         - CigaretteMachineInventory
       currencyWhitelist:
-        - SpaceCredits
+        - SpaceCash
       balance:
-        SpaceCredits: 0
+        SpaceCash: 0
     - type: BuyStoreBank
     - type: ActivatableUI
       key: enum.StoreUiKey.Key
@@ -99,9 +99,9 @@
       categories:
         - RobustSoftdrinksInventory
       currencyWhitelist:
-        - SpaceCredits
+        - SpaceCash
       balance:
-        SpaceCredits: 0
+        SpaceCash: 0
     - type: BuyStoreBank
     - type: ActivatableUI
       key: enum.StoreUiKey.Key
@@ -121,9 +121,9 @@
       categories:
         - RobustSoftdrinksInventory
       currencyWhitelist:
-        - SpaceCredits
+        - SpaceCash
       balance:
-        SpaceCredits: 0
+        SpaceCash: 0
     - type: BuyStoreBank
     - type: ActivatableUI
       key: enum.StoreUiKey.Key
@@ -143,9 +143,9 @@
       categories:
         - RobustSoftdrinksInventory
       currencyWhitelist:
-        - SpaceCredits
+        - SpaceCash
       balance:
-        SpaceCredits: 0
+        SpaceCash: 0
     - type: BuyStoreBank
     - type: ActivatableUI
       key: enum.StoreUiKey.Key
@@ -165,9 +165,9 @@
       categories:
         - DonutInventory
       currencyWhitelist:
-        - SpaceCredits
+        - SpaceCash
       balance:
-        SpaceCredits: 0
+        SpaceCash: 0
     - type: BuyStoreBank
     - type: ActivatableUI
       key: enum.StoreUiKey.Key
@@ -187,9 +187,9 @@
       categories:
         - ChangInventory
       currencyWhitelist:
-        - SpaceCredits
+        - SpaceCash
       balance:
-        SpaceCredits: 0
+        SpaceCash: 0
     - type: BuyStoreBank
     - type: ActivatableUI
       key: enum.StoreUiKey.Key
@@ -209,9 +209,9 @@
       categories:
         - HotDrinksMachineInventory
       currencyWhitelist:
-        - SpaceCredits
+        - SpaceCash
       balance:
-        SpaceCredits: 0
+        SpaceCash: 0
     - type: BuyStoreBank
     - type: ActivatableUI
       key: enum.StoreUiKey.Key
@@ -231,9 +231,9 @@
       categories:
         - BodaInventory
       currencyWhitelist:
-        - SpaceCredits
+        - SpaceCash
       balance:
-        SpaceCredits: 0
+        SpaceCash: 0
     - type: BuyStoreBank
     - type: ActivatableUI
       key: enum.StoreUiKey.Key
@@ -253,9 +253,9 @@
       categories:
         - GetmoreChocolateCorpInventory
       currencyWhitelist:
-        - SpaceCredits
+        - SpaceCash
       balance:
-        SpaceCredits: 0
+        SpaceCash: 0
     - type: BuyStoreBank
     - type: ActivatableUI
       key: enum.StoreUiKey.Key
@@ -275,9 +275,9 @@
       categories:
         - GetmoreChocolateCorpInventory
       currencyWhitelist:
-        - SpaceCredits
+        - SpaceCash
       balance:
-        SpaceCredits: 0
+        SpaceCash: 0
     - type: BuyStoreBank
     - type: ActivatableUI
       key: enum.StoreUiKey.Key
@@ -297,9 +297,9 @@
       categories:
         - GetmoreChocolateCorpInventory
       currencyWhitelist:
-        - SpaceCredits
+        - SpaceCash
       balance:
-        SpaceCredits: 0
+        SpaceCash: 0
     - type: BuyStoreBank
     - type: ActivatableUI
       key: enum.StoreUiKey.Key
@@ -319,9 +319,9 @@
       categories:
         - GetmoreChocolateCorpInventory
       currencyWhitelist:
-        - SpaceCredits
+        - SpaceCash
       balance:
-        SpaceCredits: 0
+        SpaceCash: 0
     - type: BuyStoreBank
     - type: ActivatableUI
       key: enum.StoreUiKey.Key
@@ -341,9 +341,9 @@
       categories:
         - GetmoreChocolateCorpInventory
       currencyWhitelist:
-        - SpaceCredits
+        - SpaceCash
       balance:
-        SpaceCredits: 0
+        SpaceCash: 0
     - type: BuyStoreBank
     - type: ActivatableUI
       key: enum.StoreUiKey.Key

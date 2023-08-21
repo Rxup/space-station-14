@@ -19,7 +19,7 @@ public sealed class BankAccountComponent : Component
     public FixedPoint2 Balance { get; set; }
 
     [ViewVariables(VVAccess.ReadOnly)]
-    public string CurrencyType { get; } = "SpaceCredits";
+    public string CurrencyType { get; } = "SpaceCash";
     [ViewVariables(VVAccess.ReadOnly)]
     public bool IsInfinite { get; }
 
@@ -27,7 +27,7 @@ public sealed class BankAccountComponent : Component
     {
 
     }
-    public BankAccountComponent(string accountNumber, string accountPin, string currencyType = "SpaceCredits", string? accountName = null, bool isInfinite = false)
+    public BankAccountComponent(string accountNumber, string accountPin, string currencyType = "SpaceCash", string? accountName = null, bool isInfinite = false)
     {
         AccountNumber = accountNumber;
         AccountPin = accountPin;
