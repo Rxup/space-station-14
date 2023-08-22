@@ -1,4 +1,5 @@
-﻿using Content.Server.Flesh;
+﻿using System.Linq;
+using Content.Server.Flesh;
 using Content.Server.Objectives.Interfaces;
 using JetBrains.Annotations;
 
@@ -10,7 +11,7 @@ namespace Content.Server.Objectives.Requirements
     {
         public bool CanBeAssigned(Mind.Mind mind)
         {
-            return mind.HasRole<FleshCultistRole>();
+            return mind.Roles.Any(role => role.GetType() == typeof(FleshCultistRole));
         }
     }
 }

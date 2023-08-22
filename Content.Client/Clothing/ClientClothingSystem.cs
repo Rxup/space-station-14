@@ -33,7 +33,7 @@ public sealed class ClientClothingSystem : ClothingSystem
         {"ears", "EARS"},
         {"mask", "MASK"},
         {"outerClothing", "OUTERCLOTHING"},
-        {Jumpsuit, "INNERCLOTHING"},
+        {"jumpsuit", "INNERCLOTHING"},
         {"neck", "NECK"},
         {"back", "BACKPACK"},
         {"belt", "BELT"},
@@ -62,6 +62,9 @@ public sealed class ClientClothingSystem : ClothingSystem
 
     private void OnAppearanceUpdate(EntityUid uid, InventoryComponent component, ref AppearanceChangeEvent args)
     {
+        if (!TryComp(uid, out SpriteComponent? sprite) || !sprite.LayerMapTryGet(HumanoidVisualLayers.StencilMask, out var layer))
+            return;
+
         // May need to update jumpsuit stencils if the sex changed. Also required to properly set the stencil on init
         if (args.Sprite == null)
             return;
@@ -72,23 +75,23 @@ public sealed class ClientClothingSystem : ClothingSystem
             return;
         if (!TryComp(suit, out ClothingComponent? clothing))
             return;
-        if (humanoid.Sex == Sex.Female)
+        if (humanoid.Sex == Sex.Unsexed)
         {
-            args.sprite.LayerSetState(layer, clothing.FemaleMask switch
+            args.Sprite.LayerSetState(layer, clothing.UnisexMask switch
             {
-                FemaleClothingMask.NoMask => "female_none",
-                FemaleClothingMask.UniformTop => "female_top",
-                _ => "female_full",
+                ClothingMask.NoMask => "unisex_none",
+                ClothingMask.UniformTop => "unisex_top",
+                _ => "unisex_full",
             });
-            args.sprite.LayerSetVisible(layer, true);
+            args.Sprite.LayerSetVisible(layer, true);
         }
         else
         {
-            args.sprite.LayerSetVisible(layer, false);
+            args.Sprite.LayerSetVisible(layer, false);
         }
-        if (args.sprite.LayerMapTryGet(HumanoidVisualLayers.LegsMask, out var jumpsuitLayer))
+        if (args.Sprite.LayerMapTryGet(HumanoidVisualLayers.LegsMask, out var jumpsuitLayer))
         {
-            args.sprite.LayerSetVisible(jumpsuitLayer, clothing.HidePants);
+            args.Sprite.LayerSetVisible(jumpsuitLayer, clothing.HidePants);
         }
     }
 
@@ -247,13 +250,13 @@ public sealed class ClientClothingSystem : ClothingSystem
         {
             if (sprite.LayerMapTryGet(HumanoidVisualLayers.StencilMask, out var suitLayer))
             {
-                if (TryComp(equipee, out HumanoidAppearanceComponent? humanoid) && humanoid.Sex == Sex.Female)
+                if (TryComp(equipee, out HumanoidAppearanceComponent? humanoid) && humanoid.Sex == Sex.Unsexed)
                 {
-                    sprite.LayerSetState(suitLayer, clothingComponent.FemaleMask switch
+                    sprite.LayerSetState(suitLayer, clothingComponent.UnisexMask switch
                     {
-                        FemaleClothingMask.NoMask => "female_none",
-                        FemaleClothingMask.UniformTop => "female_top",
-                        _ => "female_full",
+                        ClothingMask.NoMask => "unisex_none",
+                        ClothingMask.UniformTop => "unisex_top",
+                        _ => "unisex_full",
                     });
                     sprite.LayerSetVisible(suitLayer, true);
                 }

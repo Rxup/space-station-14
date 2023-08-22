@@ -1,4 +1,5 @@
 using Content.Server.Chat.Managers;
+using Content.Server.Mind;
 using Content.Server.Roles;
 using Content.Shared.Roles;
 
@@ -6,6 +7,7 @@ namespace Content.Server.Flesh
 {
     public sealed class FleshCultistRole : Role
     {
+        [Dependency] private readonly IEntityManager _entityManager = default!;
         public AntagPrototype Prototype { get; }
 
         public FleshCultistRole(Mind.Mind mind, AntagPrototype antagPrototype) : base(mind)
@@ -20,7 +22,7 @@ namespace Content.Server.Flesh
 
         public void GreetCultist(List<string> cultistsNames)
         {
-            if (Mind.TryGetSession(out var session))
+            if (_entityManager.System<MindSystem>().TryGetSession(Mind, out var session))
             {
                 var chatMgr = IoCManager.Resolve<IChatManager>();
                 chatMgr.DispatchServerMessage(session, Loc.GetString("flesh-cult-role-greeting"));
@@ -30,7 +32,7 @@ namespace Content.Server.Flesh
 
         public void GreetCultistLeader(List<string> cultistsNames)
         {
-            if (Mind.TryGetSession(out var session))
+            if (_entityManager.System<MindSystem>().TryGetSession(Mind, out var session))
             {
                 var chatMgr = IoCManager.Resolve<IChatManager>();
                 chatMgr.DispatchServerMessage(session, Loc.GetString("flesh-cult-role-greeting-leader"));

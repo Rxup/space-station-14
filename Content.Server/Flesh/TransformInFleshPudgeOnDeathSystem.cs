@@ -2,6 +2,7 @@
 using Content.Server.Body.Components;
 using Content.Server.Fluids.EntitySystems;
 using Content.Server.Forensics;
+using Content.Server.Mind;
 using Content.Server.Mind.Components;
 using Content.Server.Popups;
 using Content.Shared.Body.Part;
@@ -44,8 +45,9 @@ namespace Content.Server.Flesh
             if (TryComp<HumanoidAppearanceComponent>(uid, out var huApComp))
             {
                 var golem = Spawn(component.FleshPudgeId, Transform(uid).Coordinates);
-                if (TryComp<MindComponent>(uid, out var mindComp))
-                    mindComp.Mind?.TransferTo(golem, ghostCheckOverride: true);
+                if (TryComp<MindContainerComponent>(uid, out var mindComp))
+                    EntityManager.System<MindSystem>().TransferTo(mindComp.Mind!, golem, false);
+                    //mindComp.Mind?.TransferTo(golem, ghostCheckOverride: true);
 
                 _popup.PopupEntity(Loc.GetString("flesh-pudge-transform-user", ("EntityTransform", golem)),
                     golem, golem, PopupType.LargeCaution);

@@ -89,7 +89,7 @@ namespace Content.Server.Flesh
 
             EntityManager.RemoveComponent<CombatModeComponent>(uid);
             _stunSystem.TryParalyze(args.Target, TimeSpan.FromSeconds(component.ParalyzeTime), true);
-            _damageableSystem.TryChangeDamage(args.Target, component.Damage, origin: args.User);
+            _damageableSystem.TryChangeDamage(args.Target, component.Damage);
         }
 
         private void OnGotEquipped(EntityUid uid, FleshWormComponent component, GotEquippedEvent args)

@@ -1,3 +1,4 @@
+using Content.Server.Mind;
 using Content.Server.Objectives.Interfaces;
 using JetBrains.Annotations;
 using Robust.Shared.Utility;
@@ -8,6 +9,8 @@ namespace Content.Server.Objectives.Conditions
     [DataDefinition]
     public sealed class FleshCultistSurvivalCondition : IObjectiveCondition
     {
+        [Dependency] private readonly IEntityManager _entityManager = default!;
+
         private Mind.Mind? _mind;
 
         public IObjectiveCondition GetAssigned(Mind.Mind mind)
@@ -22,7 +25,7 @@ namespace Content.Server.Objectives.Conditions
         public SpriteSpecifier Icon => new SpriteSpecifier.Texture(
             new ResPath("Interface/Actions/fleshCultistSurvivalObjective.png"));
 
-        public float Progress => (_mind?.CharacterDeadIC != true) ? 1f : 0f;
+        public float Progress => (_entityManager.System<MindSystem>().IsCharacterDeadIc(_mind!) != true) ? 1f : 0f;
 
         public float Difficulty => 0.5f;
 

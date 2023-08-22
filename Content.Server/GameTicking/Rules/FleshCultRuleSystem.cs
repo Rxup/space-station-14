@@ -2,6 +2,7 @@ using System.Linq;
 using Content.Server.Chat.Managers;
 using Content.Server.Flesh;
 using Content.Server.GameTicking.Rules.Components;
+using Content.Server.Mind;
 using Content.Server.NPC.Components;
 using Content.Server.Players;
 using Content.Server.Roles;
@@ -36,7 +37,7 @@ public sealed class FleshCultRuleSystem : GameRuleSystem<FleshCultRuleComponent>
     [Dependency] private readonly IRobustRandom _random = default!;
     [Dependency] private readonly IConfigurationManager _cfg = default!;
     [Dependency] private readonly IChatManager _chatManager = default!;
-    [Dependency] private readonly FactionSystem _faction = default!;
+    [Dependency] private readonly NpcFactionSystem _faction = default!;
     [Dependency] private readonly SharedAudioSystem _audioSystem = default!;
     [Dependency] private readonly RoundEndSystem _roundEndSystem = default!;
     [Dependency] private readonly StationSystem _stationSystem = default!;
@@ -346,7 +347,7 @@ public sealed class FleshCultRuleSystem : GameRuleSystem<FleshCultRuleComponent>
 
         var antagPrototype = _prototypeManager.Index<AntagPrototype>(fleshCultRule.FleshCultistPrototypeId);
         var cultistRole = new FleshCultistRole(mind, antagPrototype);
-        mind.AddRole(cultistRole);
+        EntityManager.System<MindSystem>().AddRole(cultistRole.Mind,cultistRole);
         fleshCultRule.Cultists.Add(cultistRole);
         cultistRole.GreetCultist(fleshCultRule.CultistsNames);
 
@@ -369,11 +370,11 @@ public sealed class FleshCultRuleSystem : GameRuleSystem<FleshCultRuleComponent>
 
         if (_prototypeManager.TryIndex<ObjectivePrototype>("CreateFleshHeartObjective", out var fleshHeartObjective))
         {
-            cultistRole.Mind.TryAddObjective(fleshHeartObjective);
+            EntityManager.System<MindSystem>().TryAddObjective(cultistRole.Mind, fleshHeartObjective);
         }
         if (_prototypeManager.TryIndex<ObjectivePrototype>("FleshCultistSurvivalObjective", out var fleshCultistObjective))
         {
-            cultistRole.Mind.TryAddObjective(fleshCultistObjective);
+            EntityManager.System<MindSystem>().TryAddObjective(cultistRole.Mind, fleshCultistObjective);
         }
 
         cultistRole.Mind.Briefing = Loc.GetString("flesh-cult-role-cult-members",
@@ -410,7 +411,7 @@ public sealed class FleshCultRuleSystem : GameRuleSystem<FleshCultRuleComponent>
 
         var antagPrototype = _prototypeManager.Index<AntagPrototype>(fleshCultRule.FleshCultistLeaderPrototypeId);
         var cultistRole = new FleshCultistRole(mind, antagPrototype);
-        mind.AddRole(cultistRole);
+        EntityManager.System<MindSystem>().AddRole(cultistRole.Mind,cultistRole);
         fleshCultRule.Cultists.Add(cultistRole);
         cultistRole.GreetCultistLeader(fleshCultRule.CultistsNames);
 
@@ -436,11 +437,11 @@ public sealed class FleshCultRuleSystem : GameRuleSystem<FleshCultRuleComponent>
 
         if (_prototypeManager.TryIndex<ObjectivePrototype>("CreateFleshHeartObjective", out var fleshHeartObjective))
         {
-            cultistRole.Mind.TryAddObjective(fleshHeartObjective);
+            EntityManager.System<MindSystem>().TryAddObjective(cultistRole.Mind, fleshHeartObjective);
         }
         if (_prototypeManager.TryIndex<ObjectivePrototype>("FleshCultistSurvivalObjective", out var fleshCultistObjective))
         {
-            cultistRole.Mind.TryAddObjective(fleshCultistObjective);
+            EntityManager.System<MindSystem>().TryAddObjective(cultistRole.Mind, fleshCultistObjective);
         }
 
         cultistRole.Mind.Briefing = Loc.GetString("flesh-cult-role-cult-members",
@@ -530,7 +531,8 @@ public sealed class FleshCultRuleSystem : GameRuleSystem<FleshCultRuleComponent>
             foreach (var cultist in fleshCult.Cultists)
             {
                 var name = cultist.Mind.CharacterName;
-                cultist.Mind.TryGetSession(out var session);
+                EntityManager.System<MindSystem>().TryGetSession(cultist.Mind!, out var session);
+                //cultist.Mind.Session(cultist.Mind,out var session);
                 var username = session?.Name;
 
                 var objectives = cultist.Mind.AllObjectives.ToArray();

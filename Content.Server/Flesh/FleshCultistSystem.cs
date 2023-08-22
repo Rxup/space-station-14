@@ -8,6 +8,7 @@ using Content.Server.Flash.Components;
 using Content.Server.Fluids.EntitySystems;
 using Content.Server.Forensics;
 using Content.Server.Humanoid;
+using Content.Server.Mind;
 using Content.Server.Mind.Components;
 using Content.Server.Popups;
 using Content.Server.Store.Components;
@@ -513,8 +514,9 @@ public sealed partial class FleshCultistSystem : EntitySystem
         var coordinates = xform.Coordinates;
 
         var abommob = Spawn(component.FleshMutationMobId, coordinates);
-        if (TryComp<MindComponent>(uid, out var mindComp))
-            mindComp.Mind?.TransferTo(abommob, ghostCheckOverride: true);
+        if (TryComp<MindContainerComponent>(uid, out var mindComp))
+            EntityManager.System<MindSystem>().TransferTo(mindComp.Mind!, abommob, true);
+            //mindComp.Mind?.TransferTo(abommob, ghostCheckOverride: true);
 
         _popup.PopupEntity(Loc.GetString("flesh-pudge-transform-user", ("EntityTransform", uid)),
             uid, uid, PopupType.LargeCaution);

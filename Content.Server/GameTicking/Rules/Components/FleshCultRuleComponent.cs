@@ -25,7 +25,7 @@ public sealed class FleshCultRuleComponent : Component
     [DataField("fleshCultistLeaderPrototypeID", customTypeSerializer: typeof(PrototypeIdSerializer<AntagPrototype>))]
     public string FleshCultistLeaderPrototypeId = "FleshCultistLeader";
 
-    [DataField("faction", customTypeSerializer: typeof(PrototypeIdSerializer<FactionPrototype>), required: true)]
+    [DataField("faction", customTypeSerializer: typeof(PrototypeIdSerializer<NpcFactionPrototype>), required: true)]
     public string Faction = default!;
 
     public int TotalCultists => Cultists.Count;

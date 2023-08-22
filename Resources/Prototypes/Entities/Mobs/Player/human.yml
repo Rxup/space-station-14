@@ -33,7 +33,7 @@
   components:
     - type: FleshCultist
       startingEvolutionPoint: 300
-    - type: Faction
+    - type: NpcFactionMember
       factions:
         - Flesh
     - type: Store

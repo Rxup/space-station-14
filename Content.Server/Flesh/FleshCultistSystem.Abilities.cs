@@ -1,4 +1,5 @@
 ﻿using System.Linq;
+using System.Numerics;
 using Content.Server.Chemistry.EntitySystems;
 using Content.Server.Construction.Components;
 using Content.Server.Coordinates.Helpers;
@@ -562,10 +563,10 @@ public sealed partial class FleshCultistSystem
             return;
         }
 
-        var offsetValue = xform.LocalRotation.ToWorldVec().Normalized;
+        var offsetValue = xform.LocalRotation.ToWorldVec();
         var targetCord = xform.Coordinates.Offset(offsetValue).SnapToGrid(EntityManager);
         var tilerefs = grid.GetLocalTilesIntersecting(
-            new Box2(targetCord.Position + (-radius, -radius), targetCord.Position + (radius, radius))).ToArray();
+            new Box2(targetCord.Position + new Vector2(-radius, -radius), targetCord.Position + new Vector2(radius, radius))).ToArray();
         foreach (var tileref in tilerefs)
         {
             foreach (var entity in tileref.GetEntitiesInTile())

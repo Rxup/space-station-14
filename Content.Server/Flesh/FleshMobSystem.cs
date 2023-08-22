@@ -1,4 +1,5 @@
-﻿using Content.Server.Popups;
+﻿using System.Numerics;
+using Content.Server.Popups;
 using Content.Shared.Flesh;
 using Content.Shared.Interaction.Events;
 using Content.Shared.Mobs;

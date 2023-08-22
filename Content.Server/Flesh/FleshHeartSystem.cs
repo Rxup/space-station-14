@@ -1,4 +1,5 @@
 ﻿using System.Linq;
+using System.Numerics;
 using Content.Server.AlertLevel;
 using Content.Server.Body.Systems;
 using Content.Server.Chat.Systems;
@@ -318,7 +319,7 @@ namespace Content.Server.Flesh
             if (!(component.SpeciesWhitelist.Contains(humanoidAppearance.Species)))
                 return false;
 
-            return !TryComp<MindComponent>(dragged, out var mindComp) || true;
+            return !TryComp<MindContainerComponent>(dragged, out var mindComp) || true;
         }
 
         private void SpawnObjectsOnOpenTiles(FleshHeartComponent component, TransformComponent xform, int amount, float radius)
@@ -328,7 +329,7 @@ namespace Content.Server.Flesh
 
             var localpos = xform.Coordinates.Position;
             var tilerefs = grid.GetLocalTilesIntersecting(
-                new Box2(localpos + (-radius, -radius), localpos + (radius, radius))).ToArray();
+                new Box2(localpos + new Vector2(-radius, -radius), localpos + new Vector2(radius, radius))).ToArray();
             foreach (var tileref in tilerefs)
             {
                 var canSpawnBlocker = true;
@@ -357,7 +358,7 @@ namespace Content.Server.Flesh
 
             var localpos = xform.Coordinates.Position;
             var tilerefs = grid.GetLocalTilesIntersecting(
-                new Box2(localpos + (-radius, -radius), localpos + (radius, radius))).ToArray();
+                new Box2(localpos + new Vector2(-radius, -radius), localpos + new Vector2(radius, radius))).ToArray();
             foreach (var tileref in tilerefs)
             {
                 var canSpawnFloor = true;
@@ -381,7 +382,7 @@ namespace Content.Server.Flesh
 
             var localpos = xform.Coordinates.Position;
             var tilerefs = grid.GetLocalTilesIntersecting(
-                new Box2(localpos + (-radius, -radius), localpos + (radius, radius))).ToArray();
+                new Box2(localpos + new Vector2(-radius, -radius), localpos + new Vector2(radius, radius))).ToArray();
             _random.Shuffle(tilerefs);
             var physQuery = GetEntityQuery<PhysicsComponent>();
             var amountCounter = 0;

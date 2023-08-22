@@ -349,7 +349,7 @@ public sealed class DamageVisualsSystem : VisualizerSystem<DamageVisualsComponen
                 args.Component))
         {
             damageVisComp.Thresholds = new List<FixedPoint2>() { 0 };
-            HandleDamage(args.Component, damageVisComp);
+            HandleDamage(uid, args.Component, damageVisComp);
             damageVisComp.Disabled = disabledStatus;
         }
 

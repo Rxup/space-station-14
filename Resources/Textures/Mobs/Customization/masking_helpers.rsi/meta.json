@@ -1,11 +1,11 @@
 {
     "version": 1,
+    "license": "CC-BY-SA-3.0",
+    "copyright": "Discord PJB#3005",
     "size": {
         "x": 32,
         "y": 32
     },
-    "license": "CC-BY-SA-3.0",
-    "copyright": "Discord PJB#3005",
     "states": [
         {
             "name": "female_full",
@@ -46,10 +46,6 @@
         {
             "name": "full",
             "directions": 4
-        },
-        {
-            "name": "none",
-            "directions": 1
         },
         {
             "name": "top",

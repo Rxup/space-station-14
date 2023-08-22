@@ -21,7 +21,7 @@
     #- RatPassive
     #- RatHostile
     #- Pet
-    - FleshHuman
+    #- FleshHuman
     - Flesh
     #- MalfunctioningRobot
 
@@ -101,7 +101,7 @@
   - Blob
   - Flesh
 
-- type: faction
+- type: npcFaction
   id: Flesh
   hostile:
     - NanoTrasen

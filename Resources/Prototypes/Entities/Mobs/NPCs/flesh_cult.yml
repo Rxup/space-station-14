@@ -7,7 +7,7 @@
   components:
     - type: HTN
       rootTask: SimpleHostileCompound
-    - type: Faction
+    - type: NpcFactionMember
       factions:
         - Flesh
     - type: Tag
@@ -469,7 +469,7 @@
       makeSentient: true
       name: mob-flesh-bat-ghost-role-name
       description: mob-flesh-bat-ghost-role-name
-      rules: Не атакуйте культистов плоти, не ломайте ДАМы, сервера, консоли и прочее. Не делайте разгерметизацию.
+      rules: Не атакуйте культистов плоти, не ломайте ДАМ, сервера, консоли и прочее. Не делайте разгерметизацию.
     - type: GhostTakeoverAvailable
     - type: MeleeWeapon
       hidden: true
