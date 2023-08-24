@@ -26,4 +26,5 @@
         - BackmenVendingMachineDonut
         - BackmenVendingMachineSoda
         - BackmenVendingLootBox
+        - BackmenVendingMachineSpaceUp
       chance: 1

@@ -20,5 +20,5 @@
       - BackmenVendingMachineSoda
       - VendingMachineDrGibb
       - VendingMachineStarkist
-      - VendingMachineSpaceUp
+      - BackmenVendingMachineSpaceUp
     chance: 1

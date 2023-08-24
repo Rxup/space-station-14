@@ -31,6 +31,6 @@
       - VendingMachineDrGibb
       - VendingMachineSoda
       - VendingMachineStarkist
-      - VendingMachineSpaceUp
+      - BackmenVendingMachineSpaceUp
       - BackmenVendingLootBox
     chance: 1

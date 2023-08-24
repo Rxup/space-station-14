@@ -45,3 +45,7 @@
 - type: storeCategory
   id: VendingLootboxInventory
   name: store-category-lootbox
+  
+- type: storeCategory
+  id: SpaceUpInventory
+  name: store-category-vendingspaceup
