@@ -4,7 +4,7 @@ using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototy
 namespace Content.Server.Blob
 {
     [RegisterComponent]
-    public sealed class BlobSpawnerComponent : Component
+    public sealed partial class BlobSpawnerComponent : Component
     {
         [ViewVariables(VVAccess.ReadWrite),
          DataField("corePrototype", customTypeSerializer: typeof(PrototypeIdSerializer<EntityPrototype>))]

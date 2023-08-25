@@ -6,7 +6,7 @@ namespace Content.Server.Backmen.EvilTwin;
 
 [UsedImplicitly]
 [DataDefinition]
-public sealed class EvilTwinKillCondition : KillPersonCondition
+public sealed partial class EvilTwinKillCondition : KillPersonCondition
 {
     public override IObjectiveCondition GetAssigned(Content.Server.Mind.Mind mind)
     {

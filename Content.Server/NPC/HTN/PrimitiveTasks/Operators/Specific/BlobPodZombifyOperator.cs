@@ -2,7 +2,7 @@ using Content.Server.Blob.NPC.BlobPod;
 
 namespace Content.Server.NPC.HTN.PrimitiveTasks.Operators.Specific;
 
-public sealed class BlobPodZombifyOperator : HTNOperator
+public sealed partial class BlobPodZombifyOperator : HTNOperator
 {
     [Dependency] private readonly IEntityManager _entManager = default!;
     private BlobPodSystem _blobPodSystem = default!;

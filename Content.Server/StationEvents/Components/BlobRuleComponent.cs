@@ -5,7 +5,7 @@ using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototy
 namespace Content.Server.StationEvents.Components;
 
 [RegisterComponent, Access(typeof(BlobSpawnRule))]
-public sealed class BlobSpawnRuleComponent : Component
+public sealed partial class BlobSpawnRuleComponent : Component
 {
     [DataField("carrierBlobProtos", required: true, customTypeSerializer: typeof(PrototypeIdListSerializer<EntityPrototype>)), ViewVariables(VVAccess.ReadWrite)]
     public List<string> CarrierBlobProtos = new()
