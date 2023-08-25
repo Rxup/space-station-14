@@ -8,6 +8,7 @@ using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototy
 namespace Content.Server.Backmen.Economy.ATM;
 
 [RegisterComponent]
+[ComponentReference(typeof(SharedATMComponent))]
 [Access(typeof(ATMSystem))]
 public sealed partial class ATMComponent : SharedATMComponent
 {
