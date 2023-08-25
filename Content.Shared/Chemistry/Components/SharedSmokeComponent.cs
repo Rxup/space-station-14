@@ -3,7 +3,7 @@
 namespace Content.Shared.Chemistry.Components;
 
 [NetworkedComponent]
-public abstract class SharedSmokeComponent : Component
+public abstract partial class SharedSmokeComponent : Component
 {
     [DataField("color")]
     public Color Color = Color.White;

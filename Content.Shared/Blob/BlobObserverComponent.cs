@@ -7,7 +7,7 @@ using Robust.Shared.Serialization;
 namespace Content.Shared.Blob;
 
 [RegisterComponent, NetworkedComponent]
-public sealed class BlobObserverComponent : Component
+public sealed partial class BlobObserverComponent : Component
 {
     [ViewVariables(VVAccess.ReadOnly)]
     public bool IsProcessingMoveEvent;
@@ -59,52 +59,52 @@ public enum BlobChemSwapUiKey : byte
 }
 
 
-public sealed class BlobCreateFactoryActionEvent : WorldTargetActionEvent
+public sealed partial class BlobCreateFactoryActionEvent : WorldTargetActionEvent
 {
 
 }
 
-public sealed class BlobCreateResourceActionEvent : WorldTargetActionEvent
+public sealed partial class BlobCreateResourceActionEvent : WorldTargetActionEvent
 {
 
 }
 
-public sealed class BlobCreateNodeActionEvent : WorldTargetActionEvent
+public sealed partial class BlobCreateNodeActionEvent : WorldTargetActionEvent
 {
 
 }
 
-public sealed class BlobCreateBlobbernautActionEvent : WorldTargetActionEvent
+public sealed partial class BlobCreateBlobbernautActionEvent : WorldTargetActionEvent
 {
 
 }
 
-public sealed class BlobSplitCoreActionEvent : WorldTargetActionEvent
+public sealed partial class BlobSplitCoreActionEvent : WorldTargetActionEvent
 {
 
 }
 
-public sealed class BlobSwapCoreActionEvent : WorldTargetActionEvent
+public sealed partial class BlobSwapCoreActionEvent : WorldTargetActionEvent
 {
 
 }
 
-public sealed class BlobToCoreActionEvent : InstantActionEvent
+public sealed partial class BlobToCoreActionEvent : InstantActionEvent
 {
 
 }
 
-public sealed class BlobToNodeActionEvent : InstantActionEvent
+public sealed partial class BlobToNodeActionEvent : InstantActionEvent
 {
 
 }
 
-public sealed class BlobHelpActionEvent : InstantActionEvent
+public sealed partial class BlobHelpActionEvent : InstantActionEvent
 {
 
 }
 
-public sealed class BlobSwapChemActionEvent : InstantActionEvent
+public sealed partial class BlobSwapChemActionEvent : InstantActionEvent
 {
 
 }

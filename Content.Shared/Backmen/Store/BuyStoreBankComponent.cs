@@ -6,7 +6,7 @@ using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototy
 namespace Content.Shared.Backmen.Store;
 
 [RegisterComponent, NetworkedComponent]
-public sealed class BuyStoreBankComponent : Component
+public sealed partial class BuyStoreBankComponent : Component
 {
     /// <summary>
     /// The time (in seconds) that it takes to restock a machine.

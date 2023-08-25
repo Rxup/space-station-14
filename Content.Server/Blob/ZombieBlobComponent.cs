@@ -3,7 +3,7 @@
 namespace Content.Server.Blob;
 
 [RegisterComponent]
-public sealed class ZombieBlobComponent : Component
+public sealed partial class ZombieBlobComponent : Component
 {
     public List<string> OldFactions = new();
 

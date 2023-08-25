@@ -11,7 +11,7 @@ namespace Content.Server.Backmen.Mind;
 
 [UsedImplicitly]
 [DataDefinition]
-public sealed class MindNoteCondition : IObjectiveCondition
+public sealed partial class MindNoteCondition : IObjectiveCondition
 {
 
     // ReSharper disable once InconsistentNaming

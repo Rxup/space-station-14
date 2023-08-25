@@ -143,7 +143,7 @@ public sealed class MindSystem : EntitySystem
     private void OnMindContainerTerminating(EntityUid uid, MindContainerComponent component, ref EntityTerminatingEvent args)
     {
         // Let's not create ghosts if not in the middle of the round.
-        if (_gameTicker.RunLevel != GameRunLevel.InRound)
+        if (_gameTicker.RunLevel == GameRunLevel.PreRoundLobby)
             return;
 
         if (component.Mind is not { } mind)
@@ -173,7 +173,7 @@ public sealed class MindSystem : EntitySystem
             Timer.Spawn(0, () =>
             {
                 // Make extra sure the round didn't end between spawning the timer and it being executed.
-                if (_gameTicker.RunLevel != GameRunLevel.InRound)
+                if (_gameTicker.RunLevel == GameRunLevel.PreRoundLobby)
                     return;
 
                 // Async this so that we don't throw if the grid we're on is being deleted.
@@ -212,7 +212,9 @@ public sealed class MindSystem : EntitySystem
         var dead = _mobStateSystem.IsDead(uid);
         var hasSession = mindContainer.Mind?.Session;
 
-        if (dead && hasSession == null)
+        if (dead && !mindContainer.HasMind)
+            args.PushMarkup($"[color=mediumpurple]{Loc.GetString("comp-mind-examined-dead-and-irrecoverable", ("ent", uid))}[/color]");
+        else if (dead && hasSession == null)
             args.PushMarkup($"[color=yellow]{Loc.GetString("comp-mind-examined-dead-and-ssd", ("ent", uid))}[/color]");
         else if (dead)
             args.PushMarkup($"[color=red]{Loc.GetString("comp-mind-examined-dead", ("ent", uid))}[/color]");

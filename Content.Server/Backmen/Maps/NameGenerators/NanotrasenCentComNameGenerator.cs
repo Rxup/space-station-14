@@ -4,7 +4,7 @@ using Robust.Shared.Random;
 namespace Content.Server.Maps.NameGenerators;
 
 [UsedImplicitly]
-public sealed class NanotrasenCentComNameGenerator : StationNameGenerator
+public sealed partial class NanotrasenCentComNameGenerator : StationNameGenerator
 {
 
     [DataField("prefixCreator")] public string PrefixCreator = default!;

@@ -1,7 +1,7 @@
 namespace Content.Server.Blob
 {
     [RegisterComponent]
-    public sealed class BlobBorderComponent : Component
+    public sealed partial class BlobBorderComponent : Component
     {
 
     }

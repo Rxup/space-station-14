@@ -3,7 +3,7 @@
 namespace Content.Client.Blob;
 
 [RegisterComponent]
-public sealed class BlobbernautComponent : SharedBlobbernautComponent
+public sealed partial class BlobbernautComponent : SharedBlobbernautComponent
 {
 
 }
