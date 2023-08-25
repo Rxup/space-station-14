@@ -1,10 +1,6 @@
 - type: entity
-  id: HumanSpawnerWizard
+  id: RandomHumanoidSpawnerWizard
   name: Волшебник
-  special:
-  -  !type:AddComponentSpecial
-    components:
-    - type: BibleUser
   components:
     - type: Sprite
       sprite: Mobs/Species/Human/parts.rsi
