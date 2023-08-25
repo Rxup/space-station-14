@@ -3,7 +3,7 @@ using Content.Server.StationEvents.Events;
 using Robust.Shared.Random;
 
 namespace Content.Server.Backmen.EvilTwin.StationEvents;
-public sealed class EvilTwinRule : StationEventSystem<EvilTwinRuleComponent>
+public sealed partial class EvilTwinRule : StationEventSystem<EvilTwinRuleComponent>
 {
     protected override void Started(EntityUid uid, EvilTwinRuleComponent component, GameRuleComponent gameRule, GameRuleStartedEvent args)
     {

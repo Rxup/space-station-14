@@ -17,7 +17,14 @@ namespace Content.Client.Backmen.Economy.ATM.UI;
             RobustXamlLoader.Load(this);
             WithdrawButton.OnButtonDown += _ => OnWithdrawButtonDown();
         }
-        public void UpdateState(SharedATMComponent.ATMBoundUserInterfaceState state)
+
+        public void UpdateBalanceState(AtmBoundUserInterfaceBalanceState state)
+        {
+            AccountBalance.Text = state.BankAccountBalance != null
+                ? Loc.GetString("atm-ui-account-balance", ("balance", state.BankAccountBalance), ("currencySymbol", state.CurrencySymbol ?? ""))
+                : Loc.GetString("atm-ui-account-balance", ("balance", "%ERR!"), ("currencySymbol", state.CurrencySymbol ?? ""));
+        }
+        public void UpdateState(AtmBoundUserInterfaceState state)
         {
             WelcomeLabel.Text = state.IdCardFullName != null
                 ? Loc.GetString("atm-ui-welcome-label-w-name", ("name", state.IdCardFullName))

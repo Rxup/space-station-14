@@ -1,5 +1,6 @@
 ﻿using Content.Shared.Construction.Prototypes;
 
+// ReSharper disable once CheckNamespace
 namespace Content.Server.Construction;
 
 public sealed partial class ConstructionSystem

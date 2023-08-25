@@ -9,7 +9,7 @@ using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototy
 namespace Content.Shared.Blob;
 
 [RegisterComponent]
-public sealed class BlobCoreComponent : Component
+public sealed partial class BlobCoreComponent : Component
 {
     [DataField("antagBlobPrototypeId", customTypeSerializer: typeof(PrototypeIdSerializer<AntagPrototype>))]
     public string AntagBlobPrototypeId = "Blob";
