@@ -5,8 +5,8 @@ using Robust.Shared.Serialization;
 
 namespace Content.Shared.Backmen.Economy.ATM;
 
-[NetworkedComponent()]
-public abstract class SharedATMComponent : Component
+[NetworkedComponent]
+public abstract partial class SharedATMComponent : Component
 {
     public static string IdCardSlotId = "IdCardSlot";
 

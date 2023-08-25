@@ -5,7 +5,7 @@ using Content.Server.Roles;
 namespace Content.Server.Objectives.Requirements;
 
 [DataDefinition]
-public sealed class BlobRequirement : IObjectiveRequirement
+public sealed partial class BlobRequirement : IObjectiveRequirement
 {
     public bool CanBeAssigned(Mind.Mind mind)
     {

@@ -8,9 +8,8 @@ using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototy
 namespace Content.Server.Backmen.Economy.ATM;
 
 [RegisterComponent]
-[ComponentReference(typeof(SharedATMComponent))]
 [Access(typeof(ATMSystem))]
-public sealed class ATMComponent : SharedATMComponent
+public sealed partial class ATMComponent : SharedATMComponent
 {
     [ViewVariables(VVAccess.ReadOnly), DataField("currencyWhitelist", customTypeSerializer: typeof(PrototypeIdHashSetSerializer<CurrencyPrototype>))]
     public HashSet<string> CurrencyWhitelist = new();

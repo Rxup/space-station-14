@@ -3,7 +3,7 @@
 namespace Content.Server.Backmen.Economy;
 
 [RegisterComponent]
-public sealed class BankAccountComponent : Component
+public sealed partial class BankAccountComponent : Component
 {
     public event Action<FixedPoint2>? OnChangeValue;
 

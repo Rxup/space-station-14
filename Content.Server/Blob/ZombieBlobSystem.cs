@@ -53,8 +53,8 @@ namespace Content.Server.Blob
                     || (fixture.CollisionMask & ClimbingCollisionGroup) == 0)
                     continue;
 
-                climbingComp.DisabledFixtureMasks.Add(fixture.ID, fixture.CollisionMask & ClimbingCollisionGroup);
-                _physics.SetCollisionMask(uid, fixture, fixture.CollisionMask & ~ClimbingCollisionGroup, fixturesComp);
+                climbingComp.DisabledFixtureMasks.Add(name, fixture.CollisionMask & ClimbingCollisionGroup);
+                _physics.SetCollisionMask(uid, name, fixture, fixture.CollisionMask & ~ClimbingCollisionGroup, fixturesComp);
             }
         }
 
@@ -165,7 +165,7 @@ namespace Content.Server.Blob
                         continue;
                     }
 
-                    _physics.SetCollisionMask(uid, fixture, fixture.CollisionMask | fixtureMask, fixtures);
+                    _physics.SetCollisionMask(uid, name, fixture, fixture.CollisionMask | fixtureMask, fixtures);
                 }
                 component.DisabledFixtureMasks.Clear();
             }
