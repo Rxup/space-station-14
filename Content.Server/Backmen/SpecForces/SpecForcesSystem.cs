@@ -204,12 +204,14 @@ public sealed class SpecForcesSystem : EntitySystem
             }
 
             var currentTime = GameTicker.RoundDuration();
-/*
+
+#if !DEBUG
             if (LastUsedTime + DelayUsesage > currentTime)
             {
                 return false;
             }
-*/
+#endif
+
             LastUsedTime = currentTime;
 
             CallendEvents.Add(new SpecForcesHistory { Event = ev, RoundTime = currentTime, WhoCalled = source });
