@@ -4,8 +4,8 @@ namespace Content.Client.Backmen.Economy.ATM;
 
 [RegisterComponent]
 [Access(typeof(ATMSystem))]
-[ComponentReference(typeof(SharedATMComponent))]
-public sealed partial class ATMComponent : SharedATMComponent
+[ComponentReference(typeof(SharedAtmComponent))]
+public sealed partial class ATMComponent : SharedAtmComponent
 {
     [DataField("offState")]
     public string? OffState;

@@ -5,6 +5,7 @@ using Content.Server.Popups;
 using Content.Shared.Backmen.CartridgeLoader.Cartridges;
 using Content.Shared.CartridgeLoader;
 using Content.Shared.Store;
+using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 
 namespace Content.Server.Backmen.CartridgeLoader.Cartridges;
@@ -37,15 +38,16 @@ public sealed class BankCartridgeSystem : EntitySystem
     public void LinkBankAccountToCartridge(BankCartridgeComponent bankCartrdigeComponent, BankAccountComponent bankAccount)
     {
         bankCartrdigeComponent.LinkedBankAccount = bankAccount;
-        bankAccount.OnChangeValue += bankCartrdigeComponent.OnChangeBankAccountBalance;
+        bankAccount.BankCartridge = bankCartrdigeComponent.Owner;
     }
     public void UnlinkBankAccountFromCartridge(BankCartridgeComponent bankCartrdigeComponent, BankAccountComponent? bankAccount = null)
     {
         if (bankAccount == null)
             bankAccount = bankCartrdigeComponent.LinkedBankAccount;
         bankCartrdigeComponent.LinkedBankAccount = null;
+
         if (bankAccount != null)
-            bankAccount.OnChangeValue -= bankCartrdigeComponent.OnChangeBankAccountBalance;
+            bankAccount.BankCartridge = null;
     }
 
     private void OnChangeBankBalance(EntityUid uid, BankCartridgeComponent component, ChangeBankAccountBalanceEvent args)
@@ -59,7 +61,9 @@ public sealed class BankCartridgeSystem : EntitySystem
         if (HasComp<RingerComponent>(parent))
             EnsureComp<ActiveRingerComponent>(parent);
             //_ringerSystem.RingerPlayRingtonePublic(parent);
-        //_popupSystem.PopupEntity(Loc.GetString("bank-program-change-balance-notification"), parent, Filter.Pvs(uid));
+        //_popupSystem.PopupEntity(Loc.GetString("bank-program-change-balance-notification"), parent);
+
+        UpdateUiState(uid, parent, component);
     }
 
     private void OnUiReady(EntityUid uid, BankCartridgeComponent component, CartridgeUiReadyEvent args)
