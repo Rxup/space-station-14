@@ -1,9 +1,13 @@
 ﻿using System.Diagnostics.CodeAnalysis;
 using Content.Server.Administration.Logs;
+using Content.Server.Backmen.CartridgeLoader.Cartridges;
+using Content.Server.Backmen.Economy.ATM;
+using Content.Shared.Backmen.Economy;
 using Content.Shared.Database;
 using Content.Shared.FixedPoint;
 using Content.Shared.GameTicking;
 using Content.Shared.Roles;
+using Robust.Shared.GameStates;
 using Robust.Shared.Random;
 
 namespace Content.Server.Backmen.Economy;
@@ -12,13 +16,97 @@ namespace Content.Server.Backmen.Economy;
     {
         [Dependency] private readonly IRobustRandom _robustRandom = default!;
         [Dependency] private readonly IAdminLogManager _adminLogger = default!;
+        [Dependency] private readonly ATMSystem _atmSystem = default!;
 
         [ViewVariables]
         public Dictionary<string, BankAccountComponent> ActiveBankAccounts = new();
+
         public override void Initialize()
         {
             base.Initialize();
             SubscribeLocalEvent<RoundRestartCleanupEvent>(OnCleanup);
+            SubscribeLocalEvent<BankAccountComponent, BankChangeBalanceEvent>(OnBalanceChange);
+            SubscribeLocalEvent<BankAccountComponent, ComponentGetState>(OnBalanceGetState);
+        }
+
+        private void OnBalanceGetState(EntityUid uid, BankAccountComponent component, ref ComponentGetState args)
+        {
+            args.State = new BankAccountStateComponent()
+            {
+                Balance = component.Balance
+            };
+        }
+
+        private void OnBalanceChange(EntityUid uid, BankAccountComponent component, BankChangeBalanceEvent args)
+        {
+            if (args.Handled)
+            {
+                return;
+            }
+            args.Handled = true;
+
+            if (component.IsInfinite)
+            {
+                return;
+            }
+
+            component.SetBalance(args.Balance);
+            Dirty(component);
+
+            if (component.BankCartridge.HasValue)
+            {
+                var ev = new ChangeBankAccountBalanceEvent(args.OldBalance - args.Balance, args.Balance);
+                RaiseLocalEvent(component.BankCartridge.Value, ev);
+            }
+
+            var parent = Transform(uid).ParentUid;
+            if (parent.IsValid() && HasComp<ATMComponent>(parent))
+            {
+                _atmSystem.UpdateUi(parent, component);
+            }
+        }
+
+        public bool TryChangeBalanceBy(EntityUid uid, FixedPoint2 amount, BankAccountComponent? component = null)
+        {
+            if (!Resolve(uid, ref component))
+            {
+                return false;
+            }
+
+            if (component.Balance + amount < 0)
+                return false;
+            var oldBalance = component.Balance;
+
+            var newBalance = component.Balance + amount;
+
+            var ev = new BankChangeBalanceEvent()
+            {
+                OldBalance = oldBalance,
+                Balance = newBalance
+            };
+            RaiseLocalEvent(uid, ev, true);
+
+            return ev.Handled;
+        }
+        public bool TrySetBalance(EntityUid uid, FixedPoint2 amount, BankAccountComponent? component = null)
+        {
+            if (!Resolve(uid, ref component))
+            {
+                return false;
+            }
+
+            if (component.Balance + amount < 0)
+                return false;
+            var oldBalance = component.Balance;
+
+            var ev = new BankChangeBalanceEvent()
+            {
+                OldBalance = oldBalance,
+                Balance = amount
+            };
+            RaiseLocalEvent(uid, ev, true);
+
+            return ev.Handled;
         }
 
         private void OnCleanup(RoundRestartCleanupEvent ev)
@@ -58,7 +146,7 @@ namespace Content.Server.Backmen.Economy;
                 return false;
             return ActiveBankAccounts.ContainsKey(bankAccountNumber);
         }
-        public BankAccountComponent? CreateNewBankAccount(int? bankAccountNumber = null, bool _isInfinite = false)
+        public BankAccountComponent? CreateNewBankAccount(EntityUid store, int? bankAccountNumber = null, bool _isInfinite = false)
         {
             int number;
             if(bankAccountNumber == null)
@@ -74,7 +162,10 @@ namespace Content.Server.Backmen.Economy;
             }
             var bankAccountPin = GenerateBankAccountPin();
             var bankAccountNumberStr = number.ToString();
-            var bankAccount = new BankAccountComponent(bankAccountNumberStr, bankAccountPin, isInfinite: _isInfinite);
+            var bankAccount = EnsureComp<BankAccountComponent>(store);
+            bankAccount.AccountNumber = bankAccountNumberStr;
+            bankAccount.AccountPin = bankAccountPin;
+            bankAccount.IsInfinite = _isInfinite;
             return ActiveBankAccounts.TryAdd(bankAccountNumberStr, bankAccount)
                 ? bankAccount
                 : null;
@@ -96,7 +187,7 @@ namespace Content.Server.Backmen.Economy;
                 return false;
 
             var oldBalance = bankAccount.Balance;
-            var result = bankAccount.TryChangeBalanceBy(-currency.Value);
+            var result = TryChangeBalanceBy(bankAccount.Owner, -currency.Value, bankAccount);
             if (result)
                 _adminLogger.Add(
                     LogType.Transactions,
@@ -112,7 +203,7 @@ namespace Content.Server.Backmen.Economy;
                 return false;
 
             var oldBalance = bankAccount.Balance;
-            var result = bankAccount.TryChangeBalanceBy(currency.Value);
+            var result = TryChangeBalanceBy(bankAccount.Owner,currency.Value, bankAccount);
             if (result)
                 _adminLogger.Add(
                     LogType.Transactions,
@@ -130,14 +221,21 @@ namespace Content.Server.Backmen.Economy;
                 return false;
             if (bankAccountFrom.CurrencyType != bankAccountTo.CurrencyType)
                 return false;
-            if (bankAccountFrom.TryChangeBalanceBy(-amount))
+            if (TryChangeBalanceBy(bankAccountFrom.Owner, -amount, bankAccountFrom))
             {
-                var result = bankAccountTo.TryChangeBalanceBy(amount);
+                var result = TryChangeBalanceBy(bankAccountTo.Owner,amount,bankAccountTo);
                 if (result)
+                {
                     _adminLogger.Add(
                         LogType.Transactions,
                         LogImpact.Low,
                         $"Account {bankAccountFrom.AccountNumber} ({bankAccountFrom.AccountName ?? "??"})  transfered {amount} to account {bankAccountTo.AccountNumber} ({bankAccountTo.AccountName ?? "??"})");
+                }
+                else
+                {
+                    TryChangeBalanceBy(bankAccountFrom.Owner, amount, bankAccountFrom); // rollback
+                }
+
                 return result;
             }
             return false;

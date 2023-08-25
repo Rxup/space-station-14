@@ -1,7 +1,7 @@
 ﻿namespace Content.Shared.Backmen.Shuttles.Components;
 
 [RegisterComponent]
-public sealed class CentcommShuttleComponent : Component
+public sealed partial class CentcommShuttleComponent : Component
 {
 
 }

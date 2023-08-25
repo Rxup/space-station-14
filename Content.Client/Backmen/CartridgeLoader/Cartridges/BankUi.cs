@@ -5,7 +5,7 @@ using Robust.Client.UserInterface;
 
 namespace Content.Client.Backmen.CartridgeLoader.Cartridges;
 
-public sealed class BankUi : UIFragment
+public sealed partial class BankUi : UIFragment
 {
     private BankUiFragment? _fragment;
 
