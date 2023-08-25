@@ -42,6 +42,11 @@ public sealed class BlobRuleSystem : GameRuleSystem<BlobRuleComponent>
             var blobCoreQuery = EntityQueryEnumerator<BlobCoreComponent>();
             while (blobCoreQuery.MoveNext(out var ent, out var comp))
             {
+                if (TerminatingOrDeleted(ent))
+                {
+                    continue;
+                }
+                
                 if (comp.BlobTiles.Count >= 50)
                 {
                     if (_roundEndSystem.ExpectedCountdownEnd != null)
