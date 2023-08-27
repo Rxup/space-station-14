@@ -162,7 +162,7 @@ public sealed class SpecForcesSystem : EntitySystem
             var currentTime = _gameTicker.RoundDuration();
 
 #if !DEBUG
-            if (LastUsedTime + DelayUsesage > currentTime)
+            if (LastUsedTime + _delayUsage > currentTime)
             {
                 return false;
             }
