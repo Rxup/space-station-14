@@ -30887,10 +30887,10 @@ entities:
       type: Transform
 - proto: ComputerCargoBounty
   entities:
-  - uid: 6568
+  - uid: 7640
     components:
     - rot: 3.141592653589793 rad
-      pos: -13.5,14.5
+      pos: -12.5,14.5
       parent: 1668
       type: Transform
 - proto: ComputerCargoOrders
@@ -31108,6 +31108,14 @@ entities:
     components:
     - rot: 1.5707963267948966 rad
       pos: -15.5,15.5
+      parent: 1668
+      type: Transform
+- proto: ComputerShipyard
+  entities:
+  - uid: 6568
+    components:
+    - rot: 3.141592653589793 rad
+      pos: -13.5,14.5
       parent: 1668
       type: Transform
 - proto: ComputerShuttleCargo

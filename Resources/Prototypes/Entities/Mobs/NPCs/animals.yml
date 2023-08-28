@@ -1559,6 +1559,12 @@
       state: tarantula
       sprite: Mobs/Animals/spider.rsi
   - type: Physics
+  - type: Arachne
+  - type: Puller
+    needsHands: false
+  - type: BloodSucker
+    unitsToSucc: 15
+    webRequired: true
   - type: Fixtures
     fixtures:
       fix1:
