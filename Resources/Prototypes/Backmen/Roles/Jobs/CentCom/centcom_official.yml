@@ -22,9 +22,13 @@
     - !type:DepartmentTimeRequirement
       department: CentCom
       time: 43200
+  access:
+    - CCCargo
+    - CCSecurity
+    - CCGeneral
+    - CCOfficer
   accessGroups:
     - AllAccess
-    - CentCom
   special:
     - !type:AddComponentSpecial
       components:
@@ -102,6 +106,10 @@
     - type: PresetIdCard
       job: BKCCOfficial
     - type: Access
+      tags:
+        - CCCargo
+        - CCSecurity
+        - CCGeneral
+        - CCOfficer
       groups:
         - AllAccess
-        - CentCom

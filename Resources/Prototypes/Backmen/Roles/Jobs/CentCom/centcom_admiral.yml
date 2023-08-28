@@ -1,10 +1,10 @@
-- type: job
-  id: BKCCOperator
-  name: job-name-centcomoper
-  description: job-description-centcomoper
-  playTimeTracker: JobCentralCommandOperator
+﻿- type: job
+  id: BKCCAdmiral
+  name: job-name-centcomadmiral
+  description: job-description-centcomadmiral
+  playTimeTracker: JobCentralCommandAdmiral
   setPreference: true
-  startingGear: OperatorGavna
+  startingGear: CentcomAdmiralGear
   icon: JobIconNanotrasen
   supervisors: job-supervisors-hoh
   canBeAntag: false
@@ -13,22 +13,18 @@
   joinNotifyCrew: true
   whitelistRequired: true
   requirements:
-    - !type:DepartmentTimeRequirement
-      department: Command
-      time: 216000
     - !type:RoleTimeRequirement
-      role: JobCentralCommandAssistant
+      role: JobCentralCommandOperator
+      time: 21600
+    - !type:RoleTimeRequirement
+      role: JobCentralCommandOfficial
       time: 21600
     - !type:DepartmentTimeRequirement
       department: CentCom
-      time: 43200
-  access:
-    - CCCargo
-    - CCSecurity
-    - CCGeneral
-    - CCOfficer
+      time: 31600
   accessGroups:
     - AllAccess
+    - CentCom
   special:
     - !type:AddComponentSpecial
       components:
@@ -39,27 +35,14 @@
   wageDepartment: CentCom
   wage: 200
 
-- type: startingGear
-  id: OperatorGavna
-  equipment:
-    jumpsuit: ClothingUniformJumpsuitCentcomVeryOfficial
-    back: ClothingBackpackFilled
-    shoes: ClothingShoesBootsLaceup
-    id: CCOperatorPDA
-    ears: ClothingHeadsetCentCom
-    pocket1: ClothingMaskGasCentcom
-  innerclothingskirt: ClothingUniformJumpskirttCentcomVeryOfficial
-  satchel: ClothingBackpackSatchelFilled
-  duffelbag: ClothingBackpackDuffelFilled
-
 - type: entity
   parent: CentcomPDABackmen
-  id: CCOperatorPDA
-  name: Centcom Operator PDA
+  id: CCAdmiralPDA
+  name: Centcom Admiral PDA
   description: Light green sign of walking bureaucracy.
   components:
     - type: Pda
-      id: IDCardCentComGavnaOperator
+      id: IDCardCentComAdmiral
       state: pda-centcom
       penSlot:
         startingItem: PenCentcom
@@ -73,16 +56,12 @@
 
 - type: entity
   parent: CentcomIDCardDeathsquad
-  id: IDCardCentComGavnaOperator
-  name: Id карта оператора ЦК
+  id: IDCardCentComAdmiral
+  name: Id карта Адмирала ЦК
   components:
     - type: PresetIdCard
       job: BKCCOperator
     - type: Access
-      tags:
-        - CCCargo
-        - CCSecurity
-        - CCGeneral
-        - CCOfficer
       groups:
         - AllAccess
+        - CentCom
