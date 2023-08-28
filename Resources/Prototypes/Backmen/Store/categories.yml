@@ -61,3 +61,7 @@
 - type: storeCategory
   id: PwrGameInventory
   name: store-category-vendingmachinepwrgame 
+  
+- type: storeCategory
+  id: DrGibbInventory
+  name: store-category-vendingmachinedrgibb 
