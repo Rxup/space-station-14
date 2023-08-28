@@ -396,5 +396,27 @@
     - type: UserInterface
       interfaces:
         - key: enum.StoreUiKey.Key
-          type: StoreBoundUserInterface            
+          type: StoreBoundUserInterface
+
+- type: entity
+  parent: VendingMachineShamblersJuice
+  id: BackmenVendingMachineShamblersJuice
+  suffix: backmen
+  components:
+    - type: Store
+      categories:
+        - ShamblersJuiceInventory
+      currencyWhitelist:
+        - SpaceCash
+      balance:
+        SpaceCash: 0
+    - type: BuyStoreBank
+    - type: ActivatableUI
+      key: enum.StoreUiKey.Key
+      singleUser: true
+    - type: ActivatableUIRequiresPower
+    - type: UserInterface
+      interfaces:
+        - key: enum.StoreUiKey.Key
+          type: StoreBoundUserInterface          
 

@@ -53,3 +53,7 @@
 - type: storeCategory
   id: ColaRedInventory
   name: store-category-vendingcolared
+  
+- type: storeCategory
+  id: ShamblersJuiceInventory
+  name: store-category-vendingshamblersjuice
