@@ -57,3 +57,7 @@
 - type: storeCategory
   id: ShamblersJuiceInventory
   name: store-category-vendingshamblersjuice
+  
+- type: storeCategory
+  id: PwrGameInventory
+  name: store-category-vendingmachinepwrgame 
