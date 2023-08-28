@@ -361,6 +361,7 @@
       - SodaDispenserMachineCircuitboard
       - TelecomServerCircuitboard
       - MassMediaCircuitboard
+      - ShipyardCircuitboard #backmen
   - type: MaterialStorage
     whitelist:
       tags:

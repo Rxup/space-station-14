@@ -12,4 +12,10 @@ public sealed class CCVars
 
     public static readonly CVarDef<bool>
         WhitelistRolesEnabled = CVarDef.Create("game.whitelist_role_enabled", true, CVar.SERVER | CVar.REPLICATED);
+
+    /// <summary>
+    /// Whether the Shipyard is enabled.
+    /// </summary>
+    public static readonly CVarDef<bool> Shipyard =
+        CVarDef.Create("shuttle.shipyard", true, CVar.SERVERONLY);
 }
