@@ -27,4 +27,5 @@
         - BackmenVendingMachineSoda
         - BackmenVendingLootBox
         - BackmenVendingMachineSpaceUp
+        - BackmenVendingMachineColaRed
       chance: 1

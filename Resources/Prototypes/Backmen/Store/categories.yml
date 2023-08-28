@@ -49,3 +49,7 @@
 - type: storeCategory
   id: SpaceUpInventory
   name: store-category-vendingspaceup
+  
+- type: storeCategory
+  id: ColaRedInventory
+  name: store-category-vendingcolared
