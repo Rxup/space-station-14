@@ -1,76 +1,65 @@
 - type: listing
-  id: PwrGameInventory1
-  productEntity: DrinkPwrGameCan
+  id: StarkistInventory1
+  productEntity: DrinkStarkistCan
   cost:
-    SpaceCash: 39
+    SpaceCash: 30
   categories:
-    - PwrGameInventory
+    - StarkistInventory
   conditions:
     - !type:ListingLimitedStockCondition
       stock: 30
 
 - type: listing
-  id: PwrGameInventory2
-  productEntity: DrinkEnergyDrinkCan
+  id: StarkistInventory2
+  productEntity: DrinkGrapeCan
   cost:
     SpaceCash: 10
   categories:
-    - PwrGameInventory
+    - StarkistInventory
   conditions:
     - !type:ListingLimitedStockCondition
       stock: 15
 
 - type: listing
-  id: PwrGameInventory3
-  productEntity: DrinkGrapeCan
+  id: StarkistInventory3
+  productEntity: DrinkRootBeerCan
   cost:
     SpaceCash: 20
   categories:
-    - PwrGameInventory
+    - StarkistInventory
   conditions:
     - !type:ListingLimitedStockCondition
       stock: 15
 
 - type: listing
-  id: PwrGameInventory4
-  productEntity: DrinkRootBeerCan
+  id: StarkistInventory4
+  productEntity: DrinkIcedTeaCan
   cost:
     SpaceCash: 30
   categories:
-    - PwrGameInventory
+    - StarkistInventory
   conditions:
     - !type:ListingLimitedStockCondition
       stock: 15
 
 - type: listing
-  id: PwrGameInventory5
-  productEntity: DrinkIcedTeaCan
-  cost:
-    SpaceCash: 20
-  categories:
-    - PwrGameInventory
-  conditions:
-    - !type:ListingLimitedStockCondition
-      stock: 15
-
-- type: listing
-  id: PwrGameInventory6
+  id: StarkistInventory5
   productEntity: DrinkLemonLimeCan
   cost:
     SpaceCash: 20
   categories:
-    - PwrGameInventory
+    - StarkistInventory
   conditions:
     - !type:ListingLimitedStockCondition
       stock: 15
-      
+
 - type: listing
-  id: PwrGameInventory7
+  id: StarkistInventory6
   productEntity: DrinkFourteenLokoCan
   cost:
     SpaceCash: 20
   categories:
-    - PwrGameInventory
+    - StarkistInventory
   conditions:
     - !type:ListingLimitedStockCondition
-      stock: 15      
+      stock: 15

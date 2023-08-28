@@ -19,6 +19,6 @@
       - BackmenVendingMachinePwrGame
       - BackmenVendingMachineSoda
       - BackmenVendingMachineDrGibb
-      - VendingMachineStarkist
+      - BackmenVendingMachineStarkist
       - BackmenVendingMachineSpaceUp
     chance: 1

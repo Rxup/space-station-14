@@ -462,5 +462,27 @@
     - type: UserInterface
       interfaces:
         - key: enum.StoreUiKey.Key
-          type: StoreBoundUserInterface                    
+          type: StoreBoundUserInterface     
+
+- type: entity
+  parent: VendingMachineStarkist
+  id: BackmenVendingMachineStarkist
+  suffix: backmen
+  components:
+    - type: Store
+      categories:
+        - StarkistInventory
+      currencyWhitelist:
+        - SpaceCash
+      balance:
+        SpaceCash: 0
+    - type: BuyStoreBank
+    - type: ActivatableUI
+      key: enum.StoreUiKey.Key
+      singleUser: true
+    - type: ActivatableUIRequiresPower
+    - type: UserInterface
+      interfaces:
+        - key: enum.StoreUiKey.Key
+          type: StoreBoundUserInterface           
 

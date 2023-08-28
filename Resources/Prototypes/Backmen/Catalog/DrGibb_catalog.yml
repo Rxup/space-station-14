@@ -2,7 +2,7 @@
   id: DrGibbInventory1
   productEntity: DrinkDrGibbCan
   cost:
-    SpaceCash: 10
+    SpaceCash: 30
   categories:
     - DrGibbInventory
   conditions:

@@ -65,3 +65,7 @@
 - type: storeCategory
   id: DrGibbInventory
   name: store-category-vendingmachinedrgibb 
+  
+- type: storeCategory
+  id: StarkistInventory
+  name: store-category-vendingmachinestarkist
