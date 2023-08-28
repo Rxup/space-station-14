@@ -26,4 +26,10 @@
         - BackmenVendingMachineDonut
         - BackmenVendingMachineSoda
         - BackmenVendingLootBox
+        - BackmenVendingMachineSpaceUp
+        - BackmenVendingMachineColaRed
+        - BackmenVendingMachineShamblersJuice
+        - BackmenVendingMachinePwrGame
+        - BackmenVendingMachineDrGibb
+        - BackmenVendingMachineStarkist
       chance: 1
