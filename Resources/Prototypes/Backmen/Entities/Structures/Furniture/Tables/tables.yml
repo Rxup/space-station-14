@@ -32,9 +32,6 @@
             max: 2
       - !type:DoActsBehavior
         acts: [ "Destruction" ]
-  - type: Construction
-    graph: Table
-    node: TableWoodReinforced
   - type: Tag
     tags:
     - Wooden
