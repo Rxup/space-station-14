@@ -9,3 +9,7 @@
       groups:
         - id: Food
         - id: Drink
+
+- type: metabolizerType
+  id: Vampiric
+  name: vampiric
