@@ -23,26 +23,28 @@ jobs:
             echo "Directory /opt/builds/${{ github.sha }} exists."
             throw "Error: Directory /opt/builds/${{ github.sha }} exists."
         fi
-    - name: Update submodules
-      run: |
-        git submodule update --init --recursive
+    - name: Setup .NET Core
+      uses: actions/setup-dotnet@v3.2.0
+      with:
+        dotnet-version: 7.0.x
+
     - name: Get Engine Tag
       run: |
         cd RobustToolbox
         git fetch --depth=1
-        git describe --tags --abbrev=0
-    - name: Cache build
-      uses: actions/cache@v3
-      with:
-        key: ${{ runner.os }}-${{ github.sha }}
-        path: |
-          bin
+
     - name: Package all
       run: |
-        Tools/package_server_build.py -p win-x64 linux-x64 osx-x64 linux-arm64
+        Tools/package_server_build.py -p win-x64 linux-x64
         Tools/package_client_build.py
+
     - name: Update Build Info
       run: Tools/gen_build_info.py
+
+    - name: Shuffle files around
+      run: |
+        mkdir "release/${{ github.sha }}"
+        mv release/*.zip "release/${{ github.sha }}"
     - name: Shuffle files around
       run: |
         mkdir "/opt/builds/${{ github.sha }}"
