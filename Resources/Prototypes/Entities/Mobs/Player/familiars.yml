@@ -14,6 +14,8 @@
     description: ghost-role-information-remilia-description
     rules: ghost-role-information-remilia-rules
   - type: GhostTakeoverAvailable
+  - type: Body
+    prototype: VampiricAnimal
   - type: Grammar
     attributes:
       gender: female

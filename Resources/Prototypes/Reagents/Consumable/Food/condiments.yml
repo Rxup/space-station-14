@@ -120,10 +120,14 @@
   metabolisms:
     Food:
       effects:
-      - !type:SatiateHunger
-        factor: 0.5
-      - !type:SatiateThirst
-        factor: -0.5 # high salt content
+        - !type:SatiateHunger
+          factor: 0.5
+          conditions:
+            - !type:OrganType
+              type: Vampiric
+              shouldHave: false
+        - !type:SatiateThirst
+          factor: -0.5 # high salt content
 
 - type: reagent
   id: TableSalt
@@ -137,21 +141,21 @@
   boilingPoint: 1465.0
   meltingPoint: 800.7
   plantMetabolism:
-  - !type:PlantAdjustWater
-    amount: -3
-  - !type:PlantAdjustNutrition
-    amount: -0.3
-  - !type:PlantAdjustToxins
-    amount: 8
-  - !type:PlantAdjustWeeds
-    amount: -2
-  - !type:PlantAdjustPests
-    amount: -1
-  - !type:PlantAdjustHealth
-    amount: -2
+    - !type:PlantAdjustWater
+      amount: -3
+    - !type:PlantAdjustNutrition
+      amount: -0.3
+    - !type:PlantAdjustToxins
+      amount: 8
+    - !type:PlantAdjustWeeds
+      amount: -2
+    - !type:PlantAdjustPests
+      amount: -1
+    - !type:PlantAdjustHealth
+      amount: -2
   metabolisms:
     Food:
       effects:
-      # eating salt on its own kinda sucks, kids
-      - !type:SatiateThirst
-        factor: -0.5
+        # eating salt on its own kinda sucks, kids
+        - !type:SatiateThirst
+          factor: -0.5

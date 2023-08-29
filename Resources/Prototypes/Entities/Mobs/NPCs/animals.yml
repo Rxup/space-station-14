@@ -896,6 +896,7 @@
   id: MobMouse
   description: Squeak!
   components:
+  - type: FelinidFood
   - type: GhostRole
     makeSentient: true
     allowSpeech: true
