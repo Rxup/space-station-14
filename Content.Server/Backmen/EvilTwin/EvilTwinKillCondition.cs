@@ -1,4 +1,5 @@
-﻿using Content.Server.Objectives.Conditions;
+﻿using Content.Server.Mind;
+using Content.Server.Objectives.Conditions;
 using Content.Server.Objectives.Interfaces;
 using JetBrains.Annotations;
 
@@ -8,7 +9,7 @@ namespace Content.Server.Backmen.EvilTwin;
 [DataDefinition]
 public sealed partial class EvilTwinKillCondition : KillPersonCondition
 {
-    public override IObjectiveCondition GetAssigned(Content.Server.Mind.Mind mind)
+    public override IObjectiveCondition GetAssigned(EntityUid mindId, MindComponent mind)
     {
         if (!IoCManager.Resolve<IEntityManager>().TryGetComponent<EvilTwinComponent>(mind.OwnedEntity, out var twin))
         {
@@ -20,7 +21,7 @@ public sealed partial class EvilTwinKillCondition : KillPersonCondition
         }
         return new EvilTwinKillCondition
         {
-            Target = twin.TwinMind
+            TargetMindId = twin.TwinEntity
         };
     }
 }

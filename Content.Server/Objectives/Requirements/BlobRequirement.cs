@@ -7,10 +7,10 @@ namespace Content.Server.Objectives.Requirements;
 [DataDefinition]
 public sealed partial class BlobRequirement : IObjectiveRequirement
 {
-    public bool CanBeAssigned(Mind.Mind mind)
+    public bool CanBeAssigned(EntityUid mindId, MindComponent mind)
     {
         var entityManager = IoCManager.Resolve<IEntityManager>();
-        var mindSystem = entityManager.System<MindSystem>();
-        return mindSystem.HasRole<BlobRole>(mind);
+        var roleSystem = entityManager.System<RoleSystem>();
+        return roleSystem.MindHasRole<BlobRoleComponent>(mindId);
     }
 }

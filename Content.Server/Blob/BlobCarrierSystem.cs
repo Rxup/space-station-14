@@ -85,7 +85,7 @@ namespace Content.Server.Blob
             if (!_mapManager.TryGetGrid(xform.GridUid, out var map))
                 return;
 
-            if (_mind.TryGetMind(uid, out var mind) && mind.UserId != null)
+            if (_mind.TryGetMind(uid, out var mindId, out var mind) && mind.UserId != null)
             {
                 var core = Spawn(carrier.CoreBlobPrototype, xform.Coordinates);
 

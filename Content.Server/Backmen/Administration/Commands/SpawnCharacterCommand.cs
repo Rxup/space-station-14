@@ -37,7 +37,7 @@ public sealed class SpawnCharacterCommand : IConsoleCommand
 
             var mind = player.ContentData()?.Mind;
 
-            if (mind == null || mind.UserId == null)
+            if (mind == null || !mindSystem.TryGetSession(mind, out var mindData))
             {
                 shell.WriteError(Loc.GetString("shell-entity-is-not-mob"));
                 return;
@@ -52,24 +52,24 @@ public sealed class SpawnCharacterCommand : IConsoleCommand
                 var name = string.Join(" ", args.ToArray());
                 shell.WriteLine(Loc.GetString("loadcharacter-command-fetching", ("name", name)));
 
-                var charIndex = _prefs.GetPreferences(mind.UserId.Value).Characters.FirstOrNull(p => p.Value.Name == name)?.Key ?? -1;
+                var charIndex = _prefs.GetPreferences(mindData.UserId).Characters.FirstOrNull(p => p.Value.Name == name)?.Key ?? -1;
                 if (charIndex < 0)
                 {
                     shell.WriteError(Loc.GetString("loadcharacter-command-fetching-failed"));
                     return;
                 }
 
-                character = (HumanoidCharacterProfile) _prefs.GetPreferences(mind.UserId.Value).GetProfile(charIndex);
+                character = (HumanoidCharacterProfile) _prefs.GetPreferences(mindData.UserId).GetProfile(charIndex);
             }
             else
-                character = (HumanoidCharacterProfile) _prefs.GetPreferences(mind.UserId.Value).SelectedCharacter;
+                character = (HumanoidCharacterProfile) _prefs.GetPreferences(mindData.UserId).SelectedCharacter;
 
 
             var coordinates = player.AttachedEntity != null
                 ? _entityManager.GetComponent<TransformComponent>(player.AttachedEntity.Value).Coordinates
                 : _entitySys.GetEntitySystem<GameTicker>().GetObserverSpawnPoint();
 
-            mindSystem.TransferTo(mind, _entityManager.System<StationSpawningSystem>()
+            mindSystem.TransferTo(mind.Value, _entityManager.System<StationSpawningSystem>()
                 .SpawnPlayerMob(coordinates: coordinates, profile: character, entity: null, job: null, station: null));
 
             shell.WriteLine(Loc.GetString("spawncharacter-command-complete"));
@@ -82,11 +82,11 @@ public sealed class SpawnCharacterCommand : IConsoleCommand
                 var player = shell.Player as IPlayerSession;
                 if (player == null)
                     return CompletionResult.Empty;
-                var mind = player.ContentData()?.Mind;
-                if (mind == null || mind.UserId == null)
+                var mind = player.ContentData();
+                if (mind == null)
                     return CompletionResult.Empty;
 
-                return CompletionResult.FromHintOptions(_prefs.GetPreferences(mind.UserId.Value).Characters.Select(x=>x.Value.Name), Loc.GetString("loadcharacter-command-hint-select"));
+                return CompletionResult.FromHintOptions(_prefs.GetPreferences(mind.UserId).Characters.Select(x=>x.Value.Name), Loc.GetString("loadcharacter-command-hint-select"));
             }
 
             return CompletionResult.Empty;

@@ -93,7 +93,7 @@ namespace Content.Server.Blob
             }
 
             var mindComp = EnsureComp<MindContainerComponent>(uid);
-            if (_mind.TryGetMind(uid, out var mind, mindComp) && _mind.TryGetSession(mind, out var session))
+            if (_mind.TryGetSession(mindComp.Mind, out var session))
             {
                 _chatMan.DispatchServerMessage(session, Loc.GetString("blob-zombie-greeting"));
 

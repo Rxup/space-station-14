@@ -57,10 +57,10 @@ public sealed partial class AdminVerbSystem
             Icon = new SpriteSpecifier.Rsi((new ResPath("/Textures/Structures/Wallmounts/posters.rsi")), "poster3_legit"),
             Act = () =>
             {
-                if (targetMindComp.Mind == null || targetMindComp.Mind.Session == null || targetMindComp.Mind.CurrentEntity == null)
+                if (!_minds.TryGetSession(targetMindComp.Mind, out var session))
                     return;
 
-                EntityManager.System<Content.Server.Backmen.EvilTwin.EvilTwinSystem>().MakeTwin(out _,targetMindComp.Mind.CurrentEntity);
+                EntityManager.System<Content.Server.Backmen.EvilTwin.EvilTwinSystem>().MakeTwin(out _,session.AttachedEntity);
             },
             Impact = LogImpact.High,
             Message = Loc.GetString("admin-verb-make-eviltwin"),
