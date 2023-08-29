@@ -16,16 +16,6 @@
       collection: MaleCry
     Whistle:
       collection: Whistles
-    Hiss:
-      collection: FelinidHisses
-    Meow:
-      collection: FelinidMeows
-    Mew:
-      collection: FelinidMews
-    Growl:
-      collection: FelinidGrowls
-    Purr:
-      collection: FelinidPurrs
 
 - type: emoteSounds
   id: FemaleFelinid
@@ -44,14 +34,3 @@
       collection: FemaleCry
     Whistle:
       collection: Whistles
-    Hiss:
-      collection: FelinidHisses
-    Meow:
-      collection: FelinidMeows
-    Mew:
-      collection: FelinidMews
-    Growl:
-      collection: FelinidGrowls
-    Purr:
-      collection: FelinidPurrs
-

@@ -13,3 +13,14 @@
 - type: metabolizerType
   id: Vampiric
   name: vampiric
+
+- type: entity
+  id: OrganVampiricStomach
+  parent: OrganAnimalStomach
+  components:
+    - type: Metabolizer
+      maxReagents: 3
+      metabolizerTypes: [Vampiric]
+      groups:
+        - id: Food
+        - id: Drink
