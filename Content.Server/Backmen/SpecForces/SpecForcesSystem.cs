@@ -231,7 +231,7 @@ public sealed class SpecForcesSystem : EntitySystem
         foreach (var (_, meta, xform) in EntityManager
                      .EntityQuery<SpawnPointComponent, MetaDataComponent, TransformComponent>(true))
         {
-            if (meta.EntityPrototype?.ID != Spawner)
+            if (meta.EntityPrototype?.ID != SpawnMarker)
                 continue;
 
             if (xform.ParentUid != shuttle)
@@ -396,7 +396,7 @@ public sealed class SpecForcesSystem : EntitySystem
         }
     }
 
-    [ValidatePrototypeId<EntityPrototype>] private const string Spawner = "SpawnSpecforce";
+    [ValidatePrototypeId<EntityPrototype>] private const string SpawnMarker = "MarkerSpecforce";
 
     private const string EtrShuttlePath = "Maps/Shuttles/dart.yml";
     [ValidatePrototypeId<EntityPrototype>] private const string ErtLeader = "SpawnMobHumanERTLeaderEVAV2.1";
