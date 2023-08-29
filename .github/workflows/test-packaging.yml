@@ -29,22 +29,43 @@ on:
 jobs:
   build:
     name: Test Packaging
-    if: github.actor != 'PJBot' && github.event.pull_request.draft == false
+    if: github.actor != 'IanComradeBot' && github.event.pull_request.draft == false
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v3
-        with:
-          submodules: recursive
-      - name: Update submodules
+      - name: Checkout Master
+        uses: actions/checkout@v3.6.0
+
+      - name: Setup Submodule
         run: |
           git submodule update --init --recursive
 
-      - name: Get Engine Tag
+      - name: Pull engine updates
+        uses: space-wizards/submodule-dependency@v0.1.5
+
+      - name: Update Engine Submodules
         run: |
-          cd RobustToolbox
-          git fetch --depth=1
-          git describe --tags --abbrev=0
+          cd RobustToolbox/
+          git submodule update --init --recursive
+          
+      # Corvax-Secrets-Start
+      - name: Setup secrets
+        env:
+          SSH_KEY: ${{ secrets.SECRETS_PRIVATE_KEY }}
+        if: ${{ env.SSH_KEY != '' }}
+        run: |
+          mkdir ~/.ssh
+          echo "${{ secrets.SECRETS_PRIVATE_KEY }}" > ~/.ssh/id_rsa
+          chmod 600 ~/.ssh/id_rsa
+          echo "HOST *" > ~/.ssh/config
+          echo "StrictHostKeyChecking no" >> ~/.ssh/config
+          git -c submodule.Secrets.update=checkout submodule update --init
+      # Corvax-Secrets-End
+
+      - name: Setup .NET Core
+        uses: actions/setup-dotnet@v3.2.0
+        with:
+          dotnet-version: 7.0.x
 
       - name: Install dependencies
         run: dotnet restore
