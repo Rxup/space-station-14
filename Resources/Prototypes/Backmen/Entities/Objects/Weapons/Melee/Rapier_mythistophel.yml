@@ -1,9 +1,11 @@
 - type: entity
-  name: Рапира
+  name: Рапира Мифистофеля
   parent: BaseItem
-  id: Rapier
-  description: Рапира выкована стариком Мифистофелем.
+  id: MythistophelRapier
+  description: Рапира выкована стариком Мифистофелем. Чувствуется запах напалма 
   components:
+  - type: IgniteOnMeleeHit
+    fireStacks: 1
   - type: Sharp
   - type: Sprite
     sprite: Backmen/Objects/Weapons/Melee/Rapier_cvasoc.rsi
@@ -12,14 +14,14 @@
     attackRate: 1.6
     damage:
       types:
-        Slash: 10 
-        Piercing: 5
-        Structural: 15
+        Slash: 13 #cmon, is an ELITE rapier
+        Piercing: 7
+        Structural: 20
     soundHit:
         path: /Audio/Weapons/Rapier.ogg
   - type: Reflect
     enabled: true
-    reflectProb: .6
+    reflectProb: .7
     spread: 90        
   - type: Item
     size: 15
@@ -27,4 +29,4 @@
   - type: Tag
     tags:
     - CaptainSabre
-  - type: DisarmMalus  
+  - type: DisarmMalus 
