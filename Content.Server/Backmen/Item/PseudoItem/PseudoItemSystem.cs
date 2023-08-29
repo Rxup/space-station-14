@@ -9,6 +9,7 @@ using Content.Server.Storage.EntitySystems;
 using Content.Server.DoAfter;
 using Content.Server.Item;
 using Content.Server.Resist;
+using Content.Shared.Backmen.Item;
 using Robust.Shared.Containers;
 
 namespace Content.Server.Backmen.Item.PseudoItem

@@ -3,6 +3,7 @@
   name: killer tomato
   displayName: killer tomatoes
   plantRsi: Backmen/Mobs/Mutants/killer_tomato.rsi
+  packetPrototype: KillerTomatoSeeds
   productPrototypes:
     - MobTomatoKiller
   lifespan: 25
