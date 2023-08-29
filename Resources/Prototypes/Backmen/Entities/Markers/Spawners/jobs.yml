@@ -1,4 +1,16 @@
 - type: entity
+  id: SpawnPointBKCCAdmiral
+  parent: SpawnPointBKCCAssistant
+  name: ЦК Адмирал
+  components:
+    - type: SpawnPoint
+      job_id: BKCCAdmiral
+    - type: Sprite
+      layers:
+        - state: green
+        - state: centcom_operator
+
+- type: entity
   id: SpawnPointBKCCOfficial
   parent: SpawnPointBKCCAssistant
   name: ЦК Представитель
@@ -62,7 +74,7 @@
 - type: entity
   id: SpawnPointBKCCSecOfficer
   parent: SpawnPointJobBase
-  name: ЦК Приватный Офицер СБ 
+  name: ЦК Приватный Офицер СБ
   components:
     - type: SpawnPoint
       job_id: BKCCSecOfficer

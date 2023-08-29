@@ -5,7 +5,7 @@ using Content.Shared.FixedPoint;
 namespace Content.Server.Blob;
 
 [RegisterComponent]
-public sealed class BlobbernautComponent : SharedBlobbernautComponent
+public sealed partial class BlobbernautComponent : SharedBlobbernautComponent
 {
     [ViewVariables(VVAccess.ReadWrite), DataField("damageFrequency")]
     public float DamageFrequency = 5;

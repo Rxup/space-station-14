@@ -101,7 +101,12 @@ VendingMachineSovietSoda: BackmenVendingMachineSovietSoda
 VendingMachineChang: BackmenVendingMachineChang
 VendingMachineDonut: BackmenVendingMachineDonut
 VendingMachineSoda: BackmenVendingMachineSoda
-VendingMachineStarkist: BackmenVendingMachineSoda
+VendingMachineStarkist: BackmenVendingMachineStarkist
+VendingMachineDrGibb: BackmenVendingMachineDrGibb
+VendingMachinePwrGame: BackmenVendingMachinePwrGame
+VendingMachineShamblersJuice: BackmenVendingMachineShamblersJuice
+VendingMachineColaRed: BackmenVendingMachineColaRed
+VendingMachineSpaceUp: BackmenVendingMachineSpaceUp
 # 2023-07-11 - Corvax
 # New cargo pet
 SpawnMobRaccoonMorticia: SpawnMobGorillaLargo

@@ -4,4 +4,4 @@
     [few] кредита
     *[other] кредитов
         }
-store-currency-spacecash-currency-symbol = ¢
+store-currency-spacecredits-currency-symbol = ¢

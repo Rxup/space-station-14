@@ -5,41 +5,55 @@ using Robust.Shared.Serialization;
 
 namespace Content.Shared.Backmen.Economy.ATM;
 
-[NetworkedComponent()]
-public abstract class SharedATMComponent : Component
+[NetworkedComponent]
+public abstract partial class SharedAtmComponent : Component
 {
     public static string IdCardSlotId = "IdCardSlot";
 
     [DataField("idCardSlot")]
     public ItemSlot IdCardSlot = new();
+}
 
-    [Serializable, NetSerializable]
-    public sealed class ATMBoundUserInterfaceState : BoundUserInterfaceState
+[Serializable, NetSerializable]
+public sealed class AtmBoundUserInterfaceBalanceState : BoundUserInterfaceState
+{
+    public readonly FixedPoint2? BankAccountBalance;
+    public readonly string? CurrencySymbol;
+    public AtmBoundUserInterfaceBalanceState(
+        FixedPoint2? bankAccountBalance,
+        string? currencySymbol)
     {
-        public readonly bool IsCardPresent;
-        public readonly string? IdCardFullName;
-        public readonly string? IdCardEntityName;
-        public readonly string? IdCardStoredBankAccountNumber;
-        public readonly bool HaveAccessToBankAccount;
-        public readonly FixedPoint2? BankAccountBalance;
-        public readonly string? CurrencySymbol;
-        public ATMBoundUserInterfaceState(
-            bool isCardPresent,
-            string? idCardFullName,
-            string? idCardEntityName,
-            string? idCardStoredBankAccountNumber,
-            bool haveAccessToBankAccount,
-            FixedPoint2? bankAccountBalance,
-            string? currencySymbol)
-        {
-            IsCardPresent = isCardPresent;
-            IdCardFullName = idCardFullName;
-            IdCardEntityName = idCardEntityName;
-            IdCardStoredBankAccountNumber = idCardStoredBankAccountNumber;
-            HaveAccessToBankAccount = haveAccessToBankAccount;
-            BankAccountBalance = bankAccountBalance;
-            CurrencySymbol = currencySymbol;
-        }
+        BankAccountBalance = bankAccountBalance;
+        CurrencySymbol = currencySymbol;
+    }
+}
+
+[Serializable, NetSerializable]
+public sealed class AtmBoundUserInterfaceState : BoundUserInterfaceState
+{
+    public readonly bool IsCardPresent;
+    public readonly string? IdCardFullName;
+    public readonly string? IdCardEntityName;
+    public readonly string? IdCardStoredBankAccountNumber;
+    public readonly bool HaveAccessToBankAccount;
+    public readonly FixedPoint2? BankAccountBalance;
+    public readonly string? CurrencySymbol;
+    public AtmBoundUserInterfaceState(
+        bool isCardPresent,
+        string? idCardFullName,
+        string? idCardEntityName,
+        string? idCardStoredBankAccountNumber,
+        bool haveAccessToBankAccount,
+        FixedPoint2? bankAccountBalance,
+        string? currencySymbol)
+    {
+        IsCardPresent = isCardPresent;
+        IdCardFullName = idCardFullName;
+        IdCardEntityName = idCardEntityName;
+        IdCardStoredBankAccountNumber = idCardStoredBankAccountNumber;
+        HaveAccessToBankAccount = haveAccessToBankAccount;
+        BankAccountBalance = bankAccountBalance;
+        CurrencySymbol = currencySymbol;
     }
 }
 

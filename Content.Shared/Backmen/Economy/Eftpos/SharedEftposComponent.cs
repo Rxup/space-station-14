@@ -4,12 +4,9 @@ using Robust.Shared.Serialization;
 
 namespace Content.Shared.Backmen.Economy.Eftpos;
 
-[NetworkedComponent()]
-public abstract class SharedEftposComponent : Component
+[NetworkedComponent]
+public abstract partial class SharedEftposComponent : Component
 {
-
-
-
     [Serializable, NetSerializable]
     public sealed class EftposBoundUserInterfaceState : BoundUserInterfaceState
     {

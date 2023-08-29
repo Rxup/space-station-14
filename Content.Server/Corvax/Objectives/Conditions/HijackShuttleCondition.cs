@@ -8,10 +8,10 @@ using Robust.Server.GameObjects;
 using Robust.Shared.Map.Components;
 using Robust.Shared.Utility;
 
-namespace Content.Server.Objectives.Conditions
+namespace Content.Server.Corvax.Objectives.Conditions
 {
     [DataDefinition]
-    public sealed class HijackShuttleCondition : IObjectiveCondition
+    public sealed partial class HijackShuttleCondition : IObjectiveCondition
     {
         private Mind.Mind? _mind;
 
@@ -54,14 +54,18 @@ namespace Content.Server.Objectives.Conditions
                     continue;
 
                 var isPersonTraitor = mindSystem.HasRole<TraitorRole>(mind.Mind);
-                if (!isPersonTraitor)
-                {
-                    var isPersonCuffed =
-                        entMan.TryGetComponent<CuffableComponent>(mind.Mind.OwnedEntity, out var cuffed)
-                        && cuffed.CuffedHandCount == 0;
-                    if (isPersonCuffed)
-                        return false; // Fail if some crew not cuffed
-                }
+                if (isPersonTraitor)
+                    continue;
+
+                var isPersonDead = mindSystem.IsCharacterDeadIc(mind.Mind);
+                if (!isPersonDead)
+                    return false; // Fail if some crew alive
+
+                var isPersonCuffed =
+                    entMan.TryGetComponent<CuffableComponent>(mind.Mind.OwnedEntity, out var cuffed)
+                    && cuffed.CuffedHandCount == 0;
+                if (!isPersonCuffed)
+                    return false; // Fail if some crew not cuffed
             }
             // TODO: Allow pets?
 
@@ -79,7 +83,7 @@ namespace Content.Server.Objectives.Conditions
                     return 0f;
 
                 var shuttleHijacked = false;
-                var agentIsAlive = mindSystem.IsCharacterDeadIc(_mind);
+                var agentIsAlive = !mindSystem.IsCharacterDeadIc(_mind);
                 var agentIsFree = !(entMan.TryGetComponent<CuffableComponent>(_mind.OwnedEntity, out var cuffed)
                                      && cuffed.CuffedHandCount > 0); // You're not escaping if you're restrained!
 

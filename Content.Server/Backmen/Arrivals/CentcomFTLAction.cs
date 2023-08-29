@@ -2,7 +2,7 @@
 
 namespace Content.Server.Backmen.Arrivals;
 
-public sealed class CentcomFtlAction : InstantActionEvent
+public sealed partial class CentcomFtlAction : InstantActionEvent
 {
 
 }

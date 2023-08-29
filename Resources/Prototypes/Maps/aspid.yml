@@ -49,6 +49,7 @@
             Musician: [ 1, 1 ]
             AtmosphericTechnician: [ 2, 2 ]
             TechnicalAssistant: [ 4, 4 ]
+            SeniorEngineer: [ 1, 1 ]
             MedicalIntern: [ 4, 4 ]
             ServiceWorker: [ 1, 1 ]
             SecurityCadet: [ 4, 4 ]
@@ -57,3 +58,7 @@
             Brigmedic: [ 0, 1 ] # backmen-Brigmedic
             BKBPLATech: [0, 3] # backmen-BPLA-Silicons
             BKBPLAMED: [0, 3] # backmen-BPLAMED-Silicons
+            SeniorOfficer: [ 1, 1 ]
+            SeniorPhysician: [ 1, 1 ]
+            SeniorResearcher: [ 1, 1 ]
+            Borg: [ 2, 2 ]
