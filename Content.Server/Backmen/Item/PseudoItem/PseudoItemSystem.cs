@@ -67,10 +67,17 @@ namespace Content.Server.Backmen.Item.PseudoItem
             if (!Resolve(uid, ref component))
                 return;
 
+            var parent = _transformSystem.GetParentUid(uid);
+            if (HasComp<ServerStorageComponent>(parent))
+            {
+                return;
+            }
+
             component.Active = false;
             RemComp<ItemComponent>(uid);
             RemComp<CanEscapeInventoryComponent>(uid);
             _transformSystem.AttachToGridOrMap(uid);
+
         }
 
         private void AddInsertAltVerb(EntityUid uid, PseudoItemComponent component, GetVerbsEvent<AlternativeVerb> args)
