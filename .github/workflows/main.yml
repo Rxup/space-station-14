@@ -11,18 +11,15 @@ on:
 jobs:
   build:
     name: deploy to staging
-    runs-on: self-hosted
+    runs-on: ubuntu-latest
+
     steps:
-    - uses: actions/checkout@v3
+    - name: Install dependencies
+      run: sudo apt-get install -y python3-paramiko
+
+    - uses: actions/checkout@v3.6.0
       with:
-       submodules: recursive
-    - name: Check is not released
-      run: |
-        if [ -d "/opt/builds/${{ github.sha }}" ]
-        then
-            echo "Directory /opt/builds/${{ github.sha }} exists."
-            throw "Error: Directory /opt/builds/${{ github.sha }} exists."
-        fi
+        submodules: 'recursive'
     - name: Setup .NET Core
       uses: actions/setup-dotnet@v3.2.0
       with:
@@ -45,11 +42,29 @@ jobs:
       run: |
         mkdir "release/${{ github.sha }}"
         mv release/*.zip "release/${{ github.sha }}"
-    - name: Shuffle files around
-      run: |
-        mkdir "/opt/builds/${{ github.sha }}"
-        mv release/* "/opt/builds/${{ github.sha }}"
-    - name: push_to_cdn
-      run: "curl -X POST -d \"\" -H 'Authorization: Bearer ${{ secrets.CDN_TOKEN }}' http://localhost:5001/control/update"
-    - name: update minifest.json
-      run: "python3 /opt/push.py"
+        
+    - name: Upload files to backmen
+      uses: appleboy/scp-action@master
+      with:
+        host: cdn.backmen.ru
+        username: root
+        key: ${{ secrets.BACKMEN_BUILDS_PUSH_KEY }}
+        source: "release/${{ github.sha }}"
+        target: "/opt/builds/"
+        strip_components: 1
+        
+    - name: Update cdn
+      uses: appleboy/ssh-action@master
+      with:
+        host: cdn.backmen.ru
+        username: root
+        key: ${{ secrets.BACKMEN_BUILDS_PUSH_KEY }}
+        script: "curl -X POST -d \"\" -H 'Authorization: Bearer ${{ secrets.CDN_TOKEN }}' http://localhost:5001/control/update"
+        
+    - name: Update manifest JSON
+      uses: appleboy/ssh-action@master
+      with:
+        host: cdn.backmen.ru
+        username: root
+        key: ${{ secrets.BACKMEN_BUILDS_PUSH_KEY }}
+        script: "python3 /opt/push.py"
