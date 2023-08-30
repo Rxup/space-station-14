@@ -1,5 +1,6 @@
 using System.Linq;
 using Content.Server.Cargo.Components;
+using Content.Server.GameTicking; // backmen: cargo fix
 using Content.Server.Shuttles.Components;
 using Content.Server.Shuttles.Events;
 using Content.Shared.Stacks;
@@ -41,6 +42,7 @@ public sealed partial class CargoSystem
         SubscribeLocalEvent<CargoPalletConsoleComponent, BoundUIOpenedEvent>(OnPalletUIOpen);
 
         SubscribeLocalEvent<RoundRestartCleanupEvent>(OnRoundRestart);
+        SubscribeLocalEvent<LoadingMapsEvent>(OnLoadingMapsEvent); // backmen: cargo fix
         _cfgManager.OnValueChanged(CCVars.GridFill, SetGridFill);
     }
 
@@ -366,6 +368,14 @@ public sealed partial class CargoSystem
     }
 
     #endregion
+
+    // start-backmen: cargo fix
+    private void OnLoadingMapsEvent(LoadingMapsEvent ev)
+    {
+        if (_cfgManager.GetCVar(CCVars.GridFill))
+            SetupCargoShuttle();
+    }
+    // end-backmen: cargo fix
 
     private void OnRoundRestart(RoundRestartCleanupEvent ev)
     {
