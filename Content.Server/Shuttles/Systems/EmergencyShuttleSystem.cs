@@ -56,6 +56,7 @@ public sealed partial class EmergencyShuttleSystem : EntitySystem
     [Dependency] private readonly ShuttleSystem _shuttle = default!;
     [Dependency] private readonly StationSystem _station = default!;
     [Dependency] private readonly UserInterfaceSystem _uiSystem = default!;
+    [Dependency] private readonly SharedTransformSystem _transform = default!;
 
     private ISawmill _sawmill = default!;
 
@@ -422,6 +423,6 @@ public sealed partial class EmergencyShuttleSystem : EntitySystem
         if (!Resolve(shuttle, ref grid, ref shuttleXform))
             return false;
 
-        return shuttleXform.WorldMatrix.TransformBox(grid.LocalAABB).Contains(xform.WorldPosition);
+        return _transform.GetWorldMatrix(shuttleXform).TransformBox(grid.LocalAABB).Contains(_transform.GetWorldPosition(xform));
     }
 }
