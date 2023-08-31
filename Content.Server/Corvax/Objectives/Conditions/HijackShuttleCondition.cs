@@ -35,7 +35,7 @@ namespace Content.Server.Corvax.Objectives.Conditions
         private bool IsShuttleHijacked(EntityUid shuttleGridId)
         {
             var entMan = IoCManager.Resolve<IEntityManager>();
-            var mindSystem = entMan.System<MindSystem>();
+            var mindSystem = entMan.System<SharedMindSystem>();
             var roleSystem = entMan.System<RoleSystem>();
             var mobStateSystem = entMan.System<MobStateSystem>();
 

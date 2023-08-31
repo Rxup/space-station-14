@@ -2,9 +2,9 @@
 using Content.Server.Body.Systems;
 using Content.Server.Ghost.Roles.Components;
 using Content.Server.Mind;
-using Content.Server.Mind.Components;
 using Content.Shared.Actions.ActionTypes;
 using Content.Shared.Blob;
+using Content.Shared.Mind.Components;
 using Content.Shared.Mobs;
 using Content.Shared.Popups;
 using Robust.Shared.Map;

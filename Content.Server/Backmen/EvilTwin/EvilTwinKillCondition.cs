@@ -1,6 +1,6 @@
-﻿using Content.Server.Mind;
-using Content.Server.Objectives.Conditions;
-using Content.Server.Objectives.Interfaces;
+﻿using Content.Server.Objectives.Conditions;
+using Content.Shared.Mind;
+using Content.Shared.Objectives.Interfaces;
 using JetBrains.Annotations;
 
 namespace Content.Server.Backmen.EvilTwin;
