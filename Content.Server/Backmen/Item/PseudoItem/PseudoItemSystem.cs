@@ -10,6 +10,9 @@ using Content.Server.DoAfter;
 using Content.Server.Item;
 using Content.Server.Resist;
 using Content.Shared.Backmen.Item;
+using Content.Shared.Inventory;
+using Content.Shared.Resist;
+using Content.Shared.Storage;
 using Robust.Server.GameObjects;
 using Robust.Shared.Containers;
 
@@ -31,6 +34,7 @@ namespace Content.Server.Backmen.Item.PseudoItem
             SubscribeLocalEvent<PseudoItemComponent, GettingPickedUpAttemptEvent>(OnGettingPickedUpAttempt);
             SubscribeLocalEvent<PseudoItemComponent, DropAttemptEvent>(OnDropAttempt);
             SubscribeLocalEvent<PseudoItemComponent, PseudoItemInsertDoAfterEvent>(OnDoAfter);
+            SubscribeLocalEvent<PseudoItemComponent, EscapeInventoryEvent>(OnEscape, before: new[]{ typeof(EscapeInventorySystem) });
         }
 
         private void AddInsertVerb(EntityUid uid, PseudoItemComponent component, GetVerbsEvent<InnateVerb> args)
@@ -67,17 +71,10 @@ namespace Content.Server.Backmen.Item.PseudoItem
             if (!Resolve(uid, ref component))
                 return;
 
-            var parent = _transformSystem.GetParentUid(uid);
-            if (HasComp<ServerStorageComponent>(parent))
-            {
-                return;
-            }
-
             component.Active = false;
             RemComp<ItemComponent>(uid);
             RemComp<CanEscapeInventoryComponent>(uid);
             _transformSystem.AttachToGridOrMap(uid);
-
         }
 
         private void AddInsertAltVerb(EntityUid uid, PseudoItemComponent component, GetVerbsEvent<AlternativeVerb> args)
@@ -91,7 +88,7 @@ namespace Content.Server.Backmen.Item.PseudoItem
             if (args.Hands == null)
                 return;
 
-            if (!TryComp<ServerStorageComponent>(args.Hands.ActiveHandEntity, out var targetStorage))
+            if (!HasComp<ServerStorageComponent>(args.Hands.ActiveHandEntity))
                 return;
 
             AlternativeVerb verb = new()
@@ -106,12 +103,55 @@ namespace Content.Server.Backmen.Item.PseudoItem
             args.Verbs.Add(verb);
         }
 
+
+        private void OnEscape(EntityUid uid, PseudoItemComponent pseudoItem, EscapeInventoryEvent args)
+        {
+            if (!TryComp<CanEscapeInventoryComponent>(uid, out var component))
+            {
+                return;
+            }
+
+            component.DoAfter = null;
+            Dirty(component);
+
+            if (args.Handled || args.Cancelled)
+                return;
+
+            if (!pseudoItem.Active)
+            {
+                return;
+            }
+
+            args.Handled = true;
+
+            var parent = _transformSystem.GetParentUid(uid);
+            if (!parent.IsValid())
+            {
+                ClearState(uid, pseudoItem);
+                return;
+            }
+
+            if (TryComp<ServerStorageComponent>(parent, out var storage))
+            {
+                if (pseudoItem.Size > storage.StorageCapacityMax - storage.StorageUsed)
+                {
+                    ClearState(uid, pseudoItem);
+                    return;
+                }
+                TryInsert(parent, uid, pseudoItem, storage);
+                return;
+            }
+
+            ClearState(uid, pseudoItem);
+            //_containerSystem.AttachParentToContainerOrGrid(Transform(uid));
+        }
+
         private void OnEntRemoved(EntityUid uid, PseudoItemComponent component, EntGotRemovedFromContainerMessage args)
         {
             if (!component.Active)
                 return;
 
-            ClearState(uid, component);
+            ClearState(uid, component: component);
         }
 
         private void OnGettingPickedUpAttempt(EntityUid uid, PseudoItemComponent component, GettingPickedUpAttemptEvent args)
@@ -136,6 +176,7 @@ namespace Content.Server.Backmen.Item.PseudoItem
             args.Handled = TryInsert(args.Args.Used.Value, uid, component);
         }
 
+        // ReSharper disable once MemberCanBePrivate.Global
         public bool TryInsert(EntityUid storageUid, EntityUid toInsert, PseudoItemComponent component, ServerStorageComponent? storage = null)
         {
             if (!Resolve(storageUid, ref storage))
@@ -143,18 +184,6 @@ namespace Content.Server.Backmen.Item.PseudoItem
 
             if (component.Size > storage.StorageCapacityMax - storage.StorageUsed)
                 return false;
-
-            if (storage.StoredEntities != null)
-            {
-                foreach (var ent in storage.StoredEntities)
-                {
-                    if (TryComp<PseudoItemComponent>(ent, out var entPseudoItem) && !HasComp<ItemComponent>(ent))
-                    {
-                        ClearState(ent, entPseudoItem);
-                    }
-                }
-            }
-
 
             var item = EnsureComp<ItemComponent>(toInsert);
             _itemSystem.SetSize(toInsert, component.Size, item);
@@ -165,12 +194,10 @@ namespace Content.Server.Backmen.Item.PseudoItem
                 ClearState(toInsert, component);
                 return false;
             }
-            else
-            {
-                component.Active = true;
-                _transformSystem.AttachToGridOrMap(storageUid);
-                return true;
-            }
+
+            component.Active = true;
+            _transformSystem.AttachToGridOrMap(storageUid);
+            return true;
         }
         private void StartInsertDoAfter(EntityUid inserter, EntityUid toInsert, EntityUid storageEntity, PseudoItemComponent? pseudoItem = null)
         {
