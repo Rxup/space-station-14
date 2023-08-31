@@ -1,10 +1,7 @@
 ﻿using Content.Server.Access.Systems;
-using Content.Server.Backmen.CartridgeLoader.Cartridges;
 using Content.Server.Backmen.Economy;
-using Content.Server.Backmen.Economy.Wage;
-using Content.Server.Mind;
-using Content.Server.Objectives.Interfaces;
-using Content.Shared.Inventory;
+using Content.Shared.Mind;
+using Content.Shared.Objectives.Interfaces;
 using JetBrains.Annotations;
 using Robust.Shared.Utility;
 

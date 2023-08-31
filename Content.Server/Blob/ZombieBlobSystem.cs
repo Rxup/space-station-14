@@ -2,18 +2,17 @@
 using Content.Server.Body.Components;
 using Content.Server.Chat.Managers;
 using Content.Server.Mind;
-using Content.Server.Mind.Components;
 using Content.Server.NPC;
 using Content.Server.NPC.Components;
 using Content.Server.NPC.HTN;
 using Content.Server.NPC.Systems;
 using Content.Server.Speech.Components;
 using Content.Server.Temperature.Components;
+using Content.Shared.Mind.Components;
 using Content.Shared.Mobs;
 using Content.Shared.Physics;
 using Content.Shared.Tag;
 using Robust.Shared.Physics;
-using Robust.Shared.Physics.Collision.Shapes;
 using Robust.Shared.Physics.Systems;
 
 namespace Content.Server.Blob

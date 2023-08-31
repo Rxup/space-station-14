@@ -3,24 +3,25 @@ using Content.Server.EUI;
 using Content.Server.Ghost.Roles.Components;
 using Content.Server.Ghost.Roles.Events;
 using Content.Server.Ghost.Roles.UI;
-using Content.Server.Mind;
 using Content.Server.Mind.Commands;
-using Content.Server.Mind.Components;
 using Content.Server.Players;
-using Content.Server.Roles;
 using Content.Shared.Administration;
 using Content.Shared.Database;
 using Content.Shared.Follower;
 using Content.Shared.GameTicking;
 using Content.Shared.Ghost;
 using Content.Shared.Ghost.Roles;
+using Content.Shared.Mind;
+using Content.Shared.Mind.Components;
 using Content.Shared.Mobs;
+using Content.Shared.Roles;
 using JetBrains.Annotations;
 using Robust.Server.GameObjects;
 using Robust.Server.Player;
 using Robust.Shared.Configuration;
 using Robust.Shared.Console;
 using Robust.Shared.Enums;
+using Robust.Shared.Players;
 using Robust.Shared.Random;
 using Robust.Shared.Utility;
 
@@ -36,15 +37,15 @@ namespace Content.Server.Ghost.Roles
         [Dependency] private readonly IRobustRandom _random = default!;
         [Dependency] private readonly FollowerSystem _followerSystem = default!;
         [Dependency] private readonly TransformSystem _transform = default!;
-        [Dependency] private readonly MindSystem _mindSystem = default!;
+        [Dependency] private readonly SharedMindSystem _mindSystem = default!;
         [Dependency] private readonly Backmen.RoleWhitelist.WhitelistSystem _roleWhitelist = default!; // backmen: whitelist
-        [Dependency] private readonly RoleSystem _roleSystem = default!;
+        [Dependency] private readonly SharedRoleSystem _roleSystem = default!;
 
         private uint _nextRoleIdentifier;
         private bool _needsUpdateGhostRoleCount = true;
         private readonly Dictionary<uint, GhostRoleComponent> _ghostRoles = new();
-        private readonly Dictionary<IPlayerSession, GhostRolesEui> _openUis = new();
-        private readonly Dictionary<IPlayerSession, MakeGhostRoleEui> _openMakeGhostRoleUis = new();
+        private readonly Dictionary<ICommonSession, GhostRolesEui> _openUis = new();
+        private readonly Dictionary<ICommonSession, MakeGhostRoleEui> _openMakeGhostRoleUis = new();
 
         [ViewVariables]
         public IReadOnlyCollection<GhostRoleComponent> GhostRoles => _ghostRoles.Values;
@@ -126,7 +127,7 @@ namespace Content.Server.Ghost.Roles
             eui.StateDirty();
         }
 
-        public void CloseEui(IPlayerSession session)
+        public void CloseEui(ICommonSession session)
         {
             if (!_openUis.ContainsKey(session)) return;
 
@@ -135,7 +136,7 @@ namespace Content.Server.Ghost.Roles
             eui?.Close();
         }
 
-        public void CloseMakeGhostRoleEui(IPlayerSession session)
+        public void CloseMakeGhostRoleEui(ICommonSession session)
         {
             if (_openMakeGhostRoleUis.Remove(session, out var eui))
             {
@@ -193,12 +194,12 @@ namespace Content.Server.Ghost.Roles
             UpdateAllEui();
         }
 
-        public void Takeover(IPlayerSession player, uint identifier)
+        public void Takeover(ICommonSession player, uint identifier)
         {
             if (!_ghostRoles.TryGetValue(identifier, out var role)) return;
 
             // start-backmen: whitelist
-            if (role.WhitelistRequired && _cfg.GetCVar(Shared.Backmen.CCVar.CCVars.WhitelistRolesEnabled) && !_roleWhitelist.IsInWhitelist(player))
+            if (role.WhitelistRequired && _cfg.GetCVar(Shared.Backmen.CCVar.CCVars.WhitelistRolesEnabled) && !_roleWhitelist.IsInWhitelist((IPlayerSession) player))
                 return;
             // end-backmen: whitelist
 
@@ -213,7 +214,7 @@ namespace Content.Server.Ghost.Roles
             CloseEui(player);
         }
 
-        public void Follow(IPlayerSession player, uint identifier)
+        public void Follow(ICommonSession player, uint identifier)
         {
             if (!_ghostRoles.TryGetValue(identifier, out var role)) return;
             if (player.AttachedEntity == null) return;
@@ -221,7 +222,7 @@ namespace Content.Server.Ghost.Roles
             _followerSystem.StartFollowingEntity(player.AttachedEntity.Value, role.Owner);
         }
 
-        public void GhostRoleInternalCreateMindAndTransfer(IPlayerSession player, EntityUid roleUid, EntityUid mob, GhostRoleComponent? role = null)
+        public void GhostRoleInternalCreateMindAndTransfer(ICommonSession player, EntityUid roleUid, EntityUid mob, GhostRoleComponent? role = null)
         {
             if (!Resolve(roleUid, ref role)) return;
 

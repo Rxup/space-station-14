@@ -1,6 +1,5 @@
 ﻿using Content.Server.Blob;
-using Content.Server.Mind;
-using Content.Server.Roles;
+using Content.Shared.Mind;
 using Robust.Shared.Audio;
 
 namespace Content.Server.GameTicking.Rules.Components;

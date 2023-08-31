@@ -1,7 +1,6 @@
-using Content.Server.Blob;
-using Content.Server.Mind;
-using Content.Server.Objectives.Interfaces;
 using Content.Shared.Blob;
+using Content.Shared.Mind;
+using Content.Shared.Objectives.Interfaces;
 using JetBrains.Annotations;
 using Robust.Shared.Utility;
 

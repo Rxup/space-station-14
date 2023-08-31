@@ -8,22 +8,17 @@ using Content.Server.GameTicking;
 using Content.Server.GameTicking.Rules.Components;
 using Content.Server.Humanoid;
 using Content.Server.Jobs;
-using Content.Server.Mind.Components;
-using Content.Server.Objectives;
 using Content.Server.Players;
 using Content.Server.Prayer;
 using Content.Server.Preferences.Managers;
 using Content.Server.Shuttles.Components;
 using Content.Server.Spawners.Components;
 using Content.Server.Station.Systems;
-using Content.Server.Traitor;
-using Content.Server.Traits.Assorted;
 using Content.Shared.CombatMode.Pacification;
 using Content.Shared.Database;
 using Content.Shared.Humanoid;
 using Content.Shared.Humanoid.Prototypes;
 using Content.Shared.Mobs;
-using Content.Shared.Mobs.Systems;
 using Content.Shared.Preferences;
 using Content.Shared.Roles;
 using Content.Shared.Tag;
@@ -33,13 +28,15 @@ using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Content.Server.Ghost.Roles.Events;
 using Content.Server.Mind;
-using Content.Server.PDA;
 using Content.Server.Roles;
-using Content.Server.Roles.Jobs;
 using Content.Server.Station.Components;
 using Content.Shared.CartridgeLoader;
 using Content.Shared.Inventory;
-using Content.Shared.PDA;
+using Content.Shared.Mind;
+using Content.Shared.Mind.Components;
+using Content.Shared.Objectives;
+using Content.Shared.Roles.Jobs;
+using Robust.Server.Player;
 using Robust.Shared.Utility;
 
 namespace Content.Server.Backmen.EvilTwin;
@@ -156,7 +153,7 @@ public sealed class EvilTwinSystem : EntitySystem
                         && _roles.MindHasRole<JobComponent>(targetMindId))
                     {
                         var currentJob = Comp<JobComponent>(targetMindId);
-                        RaiseLocalEvent(new PlayerSpawnCompleteEvent(twinMob.Value, targetMind!.Session!,
+                        RaiseLocalEvent(new PlayerSpawnCompleteEvent(twinMob.Value, (IPlayerSession) targetMind!.Session!,
                             currentJob?.PrototypeId, false,
                             0, station.Value, pref));
                         if (_inventory.TryGetSlotEntity(targetUid.Value, "id", out var targetPda) &&
