@@ -402,7 +402,7 @@ public sealed class SpecForcesSystem : EntitySystem
     [ValidatePrototypeId<EntityPrototype>] private const string RxbzzLeader = "SpawnMobHumanSFOfficer";
     [ValidatePrototypeId<EntityPrototype>] private const string Rxbzz = "SpawnMobHumanRXBZZ";
 
-    private const string SpestnazShuttlePath = "Maps/Backmen/Grids/NT-CC-Specnaz-013.yml";
+    private const string SpestnazShuttlePath = "Maps/Backmen/Grids/Invincible.yml";
     [ValidatePrototypeId<EntityPrototype>] private const string SpestnazOfficer = "SpawnMobHumanSpecialReAgentCOM";
     [ValidatePrototypeId<EntityPrototype>] private const string Spestnaz = "SpawnMobHumanSpecialReAgent";
 
