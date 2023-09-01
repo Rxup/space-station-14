@@ -3,31 +3,23 @@
 using System.Linq;
 using Content.Server.Access.Systems;
 using Content.Server.Backmen.CartridgeLoader.Cartridges;
-using Content.Server.Backmen.Economy.ATM;
 using Content.Server.Backmen.Economy.Eftpos;
 using Content.Server.Backmen.Economy.Wage;
 using Content.Server.Backmen.Mind;
 using Content.Server.GameTicking;
 using Content.Server.GameTicking.Events;
 using Content.Server.Mind;
-using Content.Server.Mind.Components;
-using Content.Server.Objectives;
-using Content.Server.Store.Components;
-using Content.Server.Store.Systems;
+using Content.Server.Roles;
 using Content.Shared.Access.Components;
-using Content.Shared.Backmen.Store;
 using Content.Shared.CartridgeLoader;
-using Content.Shared.GameTicking;
-using Content.Shared.Interaction;
 using Content.Shared.Inventory;
-using Content.Shared.Popups;
+using Content.Shared.Objectives;
 using Content.Shared.Roles;
-using Content.Shared.Store;
+using Content.Shared.Roles.Jobs;
 using JetBrains.Annotations;
 using Robust.Server.GameObjects;
 using Robust.Shared.Map;
 using Robust.Shared.Prototypes;
-using Robust.Shared.Timing;
 
 namespace Content.Server.Backmen.Economy;
 
@@ -41,6 +33,7 @@ public sealed class EconomySystem : EntitySystem
     [Dependency] private readonly IPrototypeManager _prototype = default!;
     [Dependency] private readonly BankManagerSystem _bankManager = default!;
     [Dependency] private readonly MindSystem _mindSystem = default!;
+    [Dependency] private readonly RoleSystem _roleSystem = default!;
     [Dependency] private readonly MetaDataSystem _metaDataSystem = default!;
 
     public override void Initialize()
@@ -106,12 +99,10 @@ public sealed class EconomySystem : EntitySystem
         if (!_cardSystem.TryFindIdCard(Player, out var idCardComponent))
             return null;
 
-        if (!TryComp<MindContainerComponent>(Player, out var mindComponent) || mindComponent.Mind == null)
+        if (!_mindSystem.TryGetMind(Player, out var mindId, out var mind))
         {
             return null;
         }
-
-        var mind = mindComponent.Mind!;
 
         if (bankAccount == null)
         {
@@ -120,14 +111,13 @@ public sealed class EconomySystem : EntitySystem
                 return null;
             }
 
-            if (AttachWage && mindComponent.Mind.CurrentJob == null)
+            if (AttachWage && !_roleSystem.MindHasRole<JobComponent>(mindId))
             {
                 AttachWage = false;
             }
 
-            if (mind.CurrentJob != null)
+            if (TryComp<JobComponent>(mindId, out var jobComponent) && jobComponent.PrototypeId != null && _prototype.TryIndex<JobPrototype>(jobComponent.PrototypeId, out var jobPrototype))
             {
-                var jobPrototype = mind.CurrentJob!.Prototype;
                 _bankManagerSystem.TryGenerateStartingBalance(bankAccount, jobPrototype);
 
                 if (AttachWage)
@@ -172,7 +162,7 @@ public sealed class EconomySystem : EntitySystem
             md.Owner = bankAccount;
         }
 
-        _mindSystem.TryAddObjective(mind, _prototype.Index<ObjectivePrototype>("BankNote"));
+        _mindSystem.TryAddObjective(mindId, mind, _prototype.Index<ObjectivePrototype>("BankNote"));
 
         return bankAccount;
     }

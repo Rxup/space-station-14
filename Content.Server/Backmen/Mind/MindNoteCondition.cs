@@ -1,9 +1,7 @@
 ﻿using Content.Server.Access.Systems;
-using Content.Server.Backmen.CartridgeLoader.Cartridges;
 using Content.Server.Backmen.Economy;
-using Content.Server.Backmen.Economy.Wage;
-using Content.Server.Objectives.Interfaces;
-using Content.Shared.Inventory;
+using Content.Shared.Mind;
+using Content.Shared.Objectives.Interfaces;
 using JetBrains.Annotations;
 using Robust.Shared.Utility;
 
@@ -44,7 +42,7 @@ public sealed partial class MindNoteCondition : IObjectiveCondition
 
     private MindNoteCondition NewEmpty => new MindNoteCondition { Title = Loc.GetString("character-info-memories-placeholder-text")};
 
-    public IObjectiveCondition GetAssigned(Server.Mind.Mind mind)
+    public IObjectiveCondition GetAssigned(EntityUid mindId, MindComponent mind)
     {
         var entity = mind.OwnedEntity;
         if (!entity.HasValue)

@@ -1,6 +1,6 @@
-using Content.Server.Blob;
-using Content.Server.Objectives.Interfaces;
 using Content.Shared.Blob;
+using Content.Shared.Mind;
+using Content.Shared.Objectives.Interfaces;
 using JetBrains.Annotations;
 using Robust.Shared.Utility;
 
@@ -10,10 +10,10 @@ namespace Content.Server.Objectives.Conditions;
 [DataDefinition]
 public sealed partial class BlobCaptureCondition : IObjectiveCondition
 {
-    private Mind.Mind? _mind;
+    private MindComponent? _mind;
     private int _target;
 
-    public IObjectiveCondition GetAssigned(Mind.Mind mind)
+    public IObjectiveCondition GetAssigned(EntityUid mindId, MindComponent mind)
     {
         return new BlobCaptureCondition
         {

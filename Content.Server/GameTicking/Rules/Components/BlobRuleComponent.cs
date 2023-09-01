@@ -1,5 +1,5 @@
 ﻿using Content.Server.Blob;
-using Content.Server.Roles;
+using Content.Shared.Mind;
 using Robust.Shared.Audio;
 
 namespace Content.Server.GameTicking.Rules.Components;
@@ -7,7 +7,7 @@ namespace Content.Server.GameTicking.Rules.Components;
 [RegisterComponent, Access(typeof(BlobRuleSystem), typeof(BlobCoreSystem))]
 public sealed partial class BlobRuleComponent : Component
 {
-    public List<BlobRole> Blobs = new();
+    public List<(EntityUid mindId, MindComponent mind)> Blobs = new(); //BlobRoleComponent
 
     public BlobStage Stage = BlobStage.Default;
 

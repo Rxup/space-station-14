@@ -46,7 +46,7 @@ public sealed class BlobRuleSystem : GameRuleSystem<BlobRuleComponent>
                 {
                     continue;
                 }
-                
+
                 if (comp.BlobTiles.Count >= 50)
                 {
                     if (_roundEndSystem.ExpectedCountdownEnd != null)
@@ -121,13 +121,13 @@ public sealed class BlobRuleSystem : GameRuleSystem<BlobRuleComponent>
             var result = Loc.GetString("blob-round-end-result", ("blobCount", blob.Blobs.Count));
 
             // yeah this is duplicated from traitor rules lol, there needs to be a generic rewrite where it just goes through all minds with objectives
-            foreach (var t in blob.Blobs)
+            foreach (var (mindId, mind) in blob.Blobs)
             {
-                var name = t.Mind.CharacterName;
-                _mindSystem.TryGetSession(t.Mind, out var session);
+                var name = mind.CharacterName;
+                _mindSystem.TryGetSession(mindId, out var session);
                 var username = session?.Name;
 
-                var objectives = t.Mind.AllObjectives.ToArray();
+                var objectives = mind.AllObjectives.ToArray();
                 if (objectives.Length == 0)
                 {
                     if (username != null)
