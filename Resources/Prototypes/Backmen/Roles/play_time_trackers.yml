@@ -24,5 +24,8 @@
 
 - type: playTimeTracker
   id: JobCentralCommandAdmiral
+  
+- type: playTimeTracker
+  id: JobDeliveryman
 
 

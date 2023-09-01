@@ -25,6 +25,9 @@
       {
           "name": "idbrigmedic"
       },
+	  {
+          "name": "iddelivery"
+	  },
     {
       "name": "black-inhand-left",
       "directions": 4

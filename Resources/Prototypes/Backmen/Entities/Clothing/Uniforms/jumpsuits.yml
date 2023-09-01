@@ -268,3 +268,14 @@
         Slash: 0.9
         Piercing: 0.9
         Heat: 0.9
+        
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformJumpsuitDeliveryman
+  name: Костюм доставщика
+  description: Пахнет пиццей
+  components:
+  - type: Sprite
+    sprite: Backmen/Clothing/Uniforms/jumpsuit/space_club.rsi
+  - type: Clothing
+    sprite: Backmen/Clothing/Uniforms/jumpsuit/space_club.rsi        

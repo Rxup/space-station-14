@@ -82,3 +82,15 @@
       layers:
         - state: green
         - state: security_officer
+        
+- type: entity
+  id: SpawnPointDelivery
+  parent: SpawnPointJobBase
+  name: Deliveryman
+  components:
+    - type: SpawnPoint
+      job_id: Deliveryman
+    - type: Sprite
+      layers:
+        - state: green
+        - state: Delivery       
