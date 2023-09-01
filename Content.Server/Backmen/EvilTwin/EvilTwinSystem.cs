@@ -4,6 +4,7 @@ using System.Text;
 using Content.Server.Administration.Logs;
 using Content.Server.CartridgeLoader.Cartridges;
 using Content.Server.DetailExaminable;
+using Content.Server.Forensics;
 using Content.Server.GameTicking;
 using Content.Server.GameTicking.Rules.Components;
 using Content.Server.Humanoid;
@@ -31,12 +32,14 @@ using Content.Server.Mind;
 using Content.Server.Roles;
 using Content.Server.Station.Components;
 using Content.Shared.CartridgeLoader;
+using Content.Shared.CCVar;
 using Content.Shared.Inventory;
 using Content.Shared.Mind;
 using Content.Shared.Mind.Components;
 using Content.Shared.Objectives;
 using Content.Shared.Roles.Jobs;
 using Robust.Server.Player;
+using Robust.Shared.Configuration;
 using Robust.Shared.Utility;
 
 namespace Content.Server.Backmen.EvilTwin;
@@ -57,17 +60,21 @@ public sealed class EvilTwinSystem : EntitySystem
     private void OnGhostRoleSpawnerUsed(EntityUid uid, EvilTwinSpawnerComponent component,
         GhostRoleSpawnerUsedEvent args)
     {
+        if (TerminatingOrDeleted(args.Spawner) || EntityManager.IsQueuedForDeletion(args.Spawner))
+        {
+            return;
+        }
         //forward
         if (TryComp<EvilTwinSpawnerComponent>(args.Spawner, out var comp))
         {
             component.TargetForce = comp.TargetForce;
         }
+        QueueDel(args.Spawner);
     }
 
     private void OnHandleComponentState(EntityUid uid, EvilTwinComponent component, MobStateChangedEvent args)
     {
-        if (args.NewMobState == MobState.Dead && TryComp<MindContainerComponent>(uid, out var mind) &&
-            mind.Mind != null && _mindSystem.TryGetMind(mind.Mind.Value, out _, out var mindData))
+        if (args.NewMobState == MobState.Dead && _mindSystem.TryGetMind(uid, out _, out var mindData))
         {
             mindData.PreventGhosting = false;
         }
@@ -350,19 +357,42 @@ public sealed class EvilTwinSystem : EntitySystem
     {
         if (!_mindSystem.TryGetMind(target, out var mindId, out var mind) ||
             !TryComp<HumanoidAppearanceComponent>(target, out var humanoid) ||
-            !TryComp<ActorComponent>(target, out var actor) ||
             !_prototype.TryIndex<SpeciesPrototype>(humanoid.Species, out var species))
         {
             return (null, null);
         }
 
-        var pref = (HumanoidCharacterProfile) _prefs.GetPreferences(actor.PlayerSession.UserId).SelectedCharacter;
+        var targetSession = mind.UserId ?? mind.OriginalOwnerUserId;
+
+        if (targetSession == null)
+        {
+            return (null, null);
+        }
+
+        var pref = (HumanoidCharacterProfile) _prefs.GetPreferences(targetSession.Value).SelectedCharacter;
         var twinUid = Spawn(species.Prototype, coords);
         _humanoid.LoadProfile(twinUid, pref);
-        _metaDataSystem.SetEntityName(twinUid, MetaData(target).EntityName);
+        _metaSystem.SetEntityName(twinUid, MetaData(target).EntityName);
         if (TryComp<DetailExaminableComponent>(target, out var detail))
         {
             EnsureComp<DetailExaminableComponent>(twinUid).Content = detail.Content;
+        }
+
+        _humanoidSystem.LoadProfile(twinUid, pref);
+
+        if (pref.FlavorText != "" && _configurationManager.GetCVar(CCVars.FlavorText))
+        {
+            EnsureComp<DetailExaminableComponent>(twinUid).Content = pref.FlavorText;
+        }
+
+        if (TryComp<FingerprintComponent>(target, out var fingerprintComponent))
+        {
+            EnsureComp<FingerprintComponent>(twinUid).Fingerprint = fingerprintComponent.Fingerprint;
+        }
+
+        if (TryComp<DnaComponent>(target, out var dnaComponent))
+        {
+            EnsureComp<DnaComponent>(twinUid).DNA = dnaComponent.DNA;
         }
 
         if (TryComp<JobComponent>(mindId, out var jobComponent) && jobComponent.PrototypeId != null && _prototype.TryIndex<JobPrototype>(jobComponent.PrototypeId,out var twinTargetMindJob))
@@ -376,10 +406,7 @@ public sealed class EvilTwinSystem : EntitySystem
 
             foreach (var special in twinTargetMindJob.Special)
             {
-                if (special is AddComponentSpecial)
-                {
-                    special.AfterEquip(twinUid);
-                }
+                special.AfterEquip(twinUid);
             }
         }
 
@@ -414,8 +441,10 @@ public sealed class EvilTwinSystem : EntitySystem
 
     [Dependency] private readonly MindSystem _mindSystem = default!;
 
-    [Dependency] private readonly MetaDataSystem _metaDataSystem = default!;
+    [Dependency] private readonly MetaDataSystem _metaSystem = default!;
     [Dependency] private readonly RoleSystem _roles = default!;
+    [Dependency] private readonly IConfigurationManager _configurationManager = default!;
+    [Dependency] private readonly HumanoidAppearanceSystem _humanoidSystem = default!;
 
     private const string EvilTwinRole = "EvilTwin";
 
