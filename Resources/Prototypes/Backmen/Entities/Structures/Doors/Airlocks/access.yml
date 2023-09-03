@@ -53,6 +53,24 @@
       sprite: Structures/Doors/Airlocks/Glass/glass.rsi
     - type: AnimationPlayer
 
+- type: entity
+  parent: HighSecDoor
+  id: HighSecCCAdmiralLocked
+  name: Бронированная дверь каюты Адмирала ЦК
+  suffix: CentCom, Admiral, Locked
+  components:
+    - type: AccessReader
+      access: [["CCAdmiral"]]
+    - type: PaintableAirlock
+      group: Glass
+    - type: Door
+      occludes: false
+    - type: Occluder
+      enabled: false
+    - type: Sprite
+      sprite: Structures/Doors/Airlocks/Glass/glass.rsi
+    - type: AnimationPlayer
+
 #Airlocks CC
 - type: entity
   parent: AirlockCargo

@@ -45,3 +45,27 @@
 - type: storeCategory
   id: VendingLootboxInventory
   name: store-category-lootbox
+  
+- type: storeCategory
+  id: SpaceUpInventory
+  name: store-category-vendingspaceup
+  
+- type: storeCategory
+  id: ColaRedInventory
+  name: store-category-vendingcolared
+  
+- type: storeCategory
+  id: ShamblersJuiceInventory
+  name: store-category-vendingshamblersjuice
+  
+- type: storeCategory
+  id: PwrGameInventory
+  name: store-category-vendingmachinepwrgame 
+  
+- type: storeCategory
+  id: DrGibbInventory
+  name: store-category-vendingmachinedrgibb 
+  
+- type: storeCategory
+  id: StarkistInventory
+  name: store-category-vendingmachinestarkist

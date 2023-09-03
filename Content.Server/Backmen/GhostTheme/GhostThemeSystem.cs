@@ -1,7 +1,6 @@
 ﻿using Content.Server.Corvax.Sponsors;
-using Content.Server.Ghost.Components;
 using Content.Shared.Backmen.GhostTheme;
-using Content.Shared.Corvax.Sponsors;
+using Content.Shared.Ghost;
 using Robust.Server.GameObjects;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization.Manager;
