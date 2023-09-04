@@ -26,3 +26,21 @@
   - !type:BuyerJobCondition
     whitelist:
     - Clown
+
+- type: listing
+  id: InjectorBloodsuckerNocturine
+  name: uplink-nocturine-gland-injector-name
+  description: uplink-nocturine-gland-injector-desc
+  productEntity: InjectorBloodsuckerNocturine
+  cost:
+    Telecrystal: 8
+  categories:
+    - UplinkMisc
+  conditions:
+    - !type:BuyerSpeciesCondition
+      whitelist:
+        - ArachneClassic
+    - !type:BuyerWhitelistCondition
+      blacklist:
+        components:
+          - SurplusBundle

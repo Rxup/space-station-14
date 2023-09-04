@@ -2,9 +2,9 @@
 using Content.Server.Body.Systems;
 using Content.Server.Ghost.Roles.Components;
 using Content.Server.Mind;
-using Content.Server.Mind.Components;
 using Content.Shared.Actions.ActionTypes;
 using Content.Shared.Blob;
+using Content.Shared.Mind.Components;
 using Content.Shared.Mobs;
 using Content.Shared.Popups;
 using Robust.Shared.Map;
@@ -85,7 +85,7 @@ namespace Content.Server.Blob
             if (!_mapManager.TryGetGrid(xform.GridUid, out var map))
                 return;
 
-            if (_mind.TryGetMind(uid, out var mind) && mind.UserId != null)
+            if (_mind.TryGetMind(uid, out var mindId, out var mind) && mind.UserId != null)
             {
                 var core = Spawn(carrier.CoreBlobPrototype, xform.Coordinates);
 
