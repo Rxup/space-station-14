@@ -14,7 +14,7 @@
       types:
         Slash: 10 
         Piercing: 5
-        Structural: 15
+        Structural: 10
     soundHit:
         path: /Audio/Weapons/Rapier.ogg
   - type: Reflect
