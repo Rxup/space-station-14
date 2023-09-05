@@ -5,7 +5,6 @@
   components:
   - type: StationEvent
     weight: 10
-    duration: 1200
     earliestStart: 15
     minimumPlayers: 5
   - type: EvilTwinRule

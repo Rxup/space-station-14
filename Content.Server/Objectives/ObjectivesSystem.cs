@@ -87,6 +87,12 @@ public sealed class ObjectivesSystem : EntitySystem
 
                 foreach (var objectiveGroup in objectives.GroupBy(o => o.Prototype.Issuer))
                 {
+                    // start-backmen: currency
+                    if (objectiveGroup.Key == "Космический банк")
+                    {
+                        continue;
+                    }
+                    // end-backmen: currency
                     result += "\n" + Loc.GetString($"objective-issuer-{objectiveGroup.Key}");
 
                     foreach (var objective in objectiveGroup)
