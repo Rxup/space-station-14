@@ -40,7 +40,14 @@ namespace Content.Server.Backmen.Item.PseudoItem
 
         private void OnRemovedAttempt(EntityUid uid, PseudoItemComponent component, ContainerGettingRemovedAttemptEvent args)
         {
-            args.Cancel();
+            if (
+                HasComp<ServerStorageComponent>(args.Container.Owner) &&
+                !TerminatingOrDeleted(args.Container.Owner) &&
+                !EntityManager.IsQueuedForDeletion(args.Container.Owner)
+                )
+            {
+                args.Cancel();
+            }
         }
 
         private void AddInsertVerb(EntityUid uid, PseudoItemComponent component, GetVerbsEvent<InnateVerb> args)
