@@ -24,7 +24,7 @@
     reflectProb: .8
     spread: 90        
   - type: Item
-    size: 15
+    size: 10
     sprite: Backmen/Objects/Weapons/Melee/Rapier_cvasoc.rsi
   - type: Tag
     tags:
