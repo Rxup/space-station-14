@@ -14,9 +14,9 @@
     attackRate: 1.6
     damage:
       types:
-        Slash: 13 #cmon, is an ELITE rapier
-        Piercing: 7
-        Structural: 20
+        Slash: 12 #cmon, is an ELITE rapier
+        Piercing: 5
+        Structural: 15
     soundHit:
         path: /Audio/Weapons/Rapier.ogg
   - type: Reflect
