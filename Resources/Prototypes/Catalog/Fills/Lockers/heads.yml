@@ -6,7 +6,7 @@
   - type: StorageFill
     contents:
       - id: Eftpos # backmen
-        amount: 3 # backmen
+        amount: 2 # backmen
       - id: ClothingNeckCloakQm
       - id: ClothingHeadsetCargo
       - id: ClothingUniformJumpsuitQMTurtleneck
