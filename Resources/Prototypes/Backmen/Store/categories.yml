@@ -69,3 +69,7 @@
 - type: storeCategory
   id: StarkistInventory
   name: store-category-vendingmachinestarkist
+  
+- type: storeCategory
+  id: HappyHonkInventory
+  name: store-category-vendingmachineHappyHonk
