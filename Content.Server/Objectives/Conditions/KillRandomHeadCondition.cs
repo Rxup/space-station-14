@@ -1,4 +1,6 @@
 using System.Linq;
+using Content.Server.Station.Components;
+using Content.Server.Station.Systems;
 using Content.Shared.Mind;
 using Content.Shared.Mind.Components;
 using Content.Shared.Mobs.Components;
@@ -14,6 +16,7 @@ public sealed partial class KillRandomHeadCondition : KillPersonCondition
     public override IObjectiveCondition GetAssigned(EntityUid mindId, MindComponent mind)
     {
         RequireDead = true;
+        var _stationSystem = EntityManager.System<StationSystem>();
 
         var allHumans = EntityManager.EntityQuery<MindContainerComponent>(true).Where(mc =>
         {
@@ -21,6 +24,16 @@ public sealed partial class KillRandomHeadCondition : KillPersonCondition
 
             if (entity == default)
                 return false;
+
+            var station = _stationSystem.GetOwningStation(entity!.Value);
+            if (station == null)
+            {
+                return false;
+            }
+            if (!EntityManager.HasComponent<StationEventEligibleComponent>(station))
+            {
+                return false;
+            }
 
             return EntityManager.TryGetComponent(entity, out MobStateComponent? mobState) &&
                    MobStateSystem.IsAlive(entity.Value, mobState) &&

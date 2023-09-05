@@ -34,7 +34,20 @@ namespace Content.Server.Backmen.Item.PseudoItem
             SubscribeLocalEvent<PseudoItemComponent, GettingPickedUpAttemptEvent>(OnGettingPickedUpAttempt);
             SubscribeLocalEvent<PseudoItemComponent, DropAttemptEvent>(OnDropAttempt);
             SubscribeLocalEvent<PseudoItemComponent, PseudoItemInsertDoAfterEvent>(OnDoAfter);
+            SubscribeLocalEvent<PseudoItemComponent, ContainerGettingRemovedAttemptEvent>(OnRemovedAttempt);
             SubscribeLocalEvent<PseudoItemComponent, EscapeInventoryEvent>(OnEscape, before: new[]{ typeof(EscapeInventorySystem) });
+        }
+
+        private void OnRemovedAttempt(EntityUid uid, PseudoItemComponent component, ContainerGettingRemovedAttemptEvent args)
+        {
+            if (
+                HasComp<ServerStorageComponent>(args.Container.Owner) &&
+                !TerminatingOrDeleted(args.Container.Owner) &&
+                !EntityManager.IsQueuedForDeletion(args.Container.Owner)
+                )
+            {
+                args.Cancel();
+            }
         }
 
         private void AddInsertVerb(EntityUid uid, PseudoItemComponent component, GetVerbsEvent<InnateVerb> args)
