@@ -60,7 +60,7 @@ public sealed class ShipyardConsoleSystem : SharedShipyardSystem
             return;
         }
 
-        if (TryComp<AccessReaderComponent>(uid, out var accessReaderComponent) && !_access.IsAllowed(player, accessReaderComponent))
+        if (!_access.IsAllowed(player, uid))
         {
             ConsolePopup(args.Session, Loc.GetString("comms-console-permission-denied"));
             PlayDenySound(uid, component);
