@@ -29,10 +29,12 @@ using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Content.Server.Ghost.Roles.Events;
 using Content.Server.Mind;
+using Content.Server.Objectives;
 using Content.Server.Roles;
 using Content.Server.Station.Components;
 using Content.Shared.CartridgeLoader;
 using Content.Shared.CCVar;
+using Content.Shared.GameTicking;
 using Content.Shared.Inventory;
 using Content.Shared.Mind;
 using Content.Shared.Mind.Components;
@@ -53,8 +55,16 @@ public sealed class EvilTwinSystem : EntitySystem
         SubscribeLocalEvent<EvilTwinSpawnerComponent, PlayerAttachedEvent>(OnPlayerAttached);
         SubscribeLocalEvent<EvilTwinComponent, MindAddedMessage>(OnMindAdded);
         SubscribeLocalEvent<RoundEndTextAppendEvent>(OnRoundEnd);
+        SubscribeLocalEvent<RoundRestartCleanupEvent>(OnCleanup);
         SubscribeLocalEvent<EvilTwinSpawnerComponent, GhostRoleSpawnerUsedEvent>(OnGhostRoleSpawnerUsed);
         SubscribeLocalEvent<EvilTwinComponent, MobStateChangedEvent>(OnHandleComponentState);
+    }
+
+    private List<(EntityUid Id, MindComponent Mind)> _allEvilTwins = new();
+
+    private void OnCleanup(RoundRestartCleanupEvent ev)
+    {
+        _allEvilTwins.Clear();
     }
 
     private void OnGhostRoleSpawnerUsed(EntityUid uid, EvilTwinSpawnerComponent component,
@@ -185,6 +195,7 @@ public sealed class EvilTwinSystem : EntitySystem
                         }
                     }
 
+                    _allEvilTwins.Add((twinMob.Value,mind));
                     _adminLogger.Add(LogType.Action, LogImpact.Extreme,
                         $"{_entityManager.ToPrettyString(twinMob.Value)} take EvilTwin with target {_entityManager.ToPrettyString(targetUid.Value)}");
                 }
@@ -227,18 +238,15 @@ public sealed class EvilTwinSystem : EntitySystem
 
     private void OnRoundEnd(RoundEndTextAppendEvent ev)
     {
-        var twins = EntityQuery<EvilTwinComponent, MindContainerComponent>().ToArray();
-        if (twins.Length < 1)
+        if (_allEvilTwins.Count < 1)
         {
             return;
         }
 
         var result = new StringBuilder();
-        result.Append(Loc.GetString("evil-twin-round-end-result", ("evil-twin-count", twins.Length)));
-        foreach (var (twin, mindContainer) in twins)
+        result.Append(Loc.GetString("evil-twin-round-end-result", ("evil-twin-count", _allEvilTwins.Count)));
+        foreach (var (twin, mind) in _allEvilTwins)
         {
-            if (!TryComp<MindComponent>(mindContainer.Mind, out var mind))
-                continue;
             var name = mind.CharacterName;
             var username = mind.Session?.Name;
             var objectives = mind.AllObjectives.ToArray();
@@ -293,13 +301,20 @@ public sealed class EvilTwinSystem : EntitySystem
                 var progress = condition.Progress;
                 if (progress > 0.99f)
                 {
-                    result.Append("\n- " + Loc.GetString("traitor-objective-condition-success",
-                        ("condition", condition.Title), ("markupColor", "green")));
+                    result.Append("\n- " + Loc.GetString(
+                        "objectives-condition-success",
+                        ("condition", condition.Title),
+                        ("markupColor", "green")
+                    ));
                 }
                 else
                 {
-                    result.Append("\n- " + Loc.GetString("traitor-objective-condition-fail",
-                        ("condition", condition.Title), ("progress", (int) (progress * 100f)), ("markupColor", "red")));
+                    result.Append("\n- " + Loc.GetString(
+                        "objectives-condition-fail",
+                        ("condition", condition.Title),
+                        ("progress", (int) (progress * 100)),
+                        ("markupColor", "red")
+                    ));
                 }
             }
         }
@@ -321,36 +336,38 @@ public sealed class EvilTwinSystem : EntitySystem
 
     private bool TryGetEligibleHumanoid([NotNullWhen(true)] out EntityUid? uid)
     {
-        var targets = EntityQuery<ActorComponent, MindContainerComponent, HumanoidAppearanceComponent>().ToList();
-        _random.Shuffle(targets);
-        foreach (var (_, target, _) in targets)
+        var targets = new List<EntityUid>();
         {
-            if (target?.Mind == null)
+            var query = AllEntityQuery<ActorComponent, MindContainerComponent, HumanoidAppearanceComponent>();
+            while (query.MoveNext(out var entityUid, out var actor, out var mindContainer, out _))
             {
-                continue;
+                if (!IsEligibleHumanoid(entityUid))
+                    continue;
+
+                if (!mindContainer.HasMind || mindContainer.Mind == null || TerminatingOrDeleted(mindContainer.Mind.Value))
+                {
+                    continue;
+                }
+
+                if (!_roles.MindHasRole<JobComponent>(mindContainer.Mind.Value))
+                {
+                    continue;
+                }
+
+                targets.Add(entityUid);
             }
-
-            var mind = target.Mind!;
-            if (_roles.MindHasRole<JobComponent>(mind.Value))
-            {
-                continue;
-            }
-
-            if (!_mindSystem.TryGetSession(mind,out var session))
-                continue;
-            var targetUid = session.AttachedEntity;
-            if (!IsEligibleHumanoid(targetUid))
-                continue;
-
-            if (!targetUid.HasValue)
-                continue;
-
-            uid = targetUid;
-            return true;
         }
 
         uid = null;
-        return false;
+
+        if (targets.Count == 0)
+        {
+            return false;
+        }
+
+        uid = _random.Pick(targets);
+
+        return true;
     }
 
     private (EntityUid?, HumanoidCharacterProfile? pref) SpawnEvilTwin(EntityUid target, EntityCoordinates coords)
