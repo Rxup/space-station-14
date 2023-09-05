@@ -58,6 +58,8 @@
   components:
   - type: StorageFill
     contents:
+      - id: Eftpos # backmen
+        prob: 0.05
       - id: FlashlightSeclite
         prob: 0.8
       - id: ClothingUniformJumpsuitSecGrey
