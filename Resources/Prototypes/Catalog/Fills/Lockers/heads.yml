@@ -6,6 +6,7 @@
   - type: StorageFill
     contents:
       - id: Eftpos # backmen
+        amount: 3 # backmen
       - id: ClothingNeckCloakQm
       - id: ClothingHeadsetCargo
       - id: ClothingUniformJumpsuitQMTurtleneck
@@ -319,8 +320,6 @@
   components:
   - type: StorageFill
     contents:
-      - id: Eftpos # backmen
-        amount: 3 # backmen
       - id: ClothingEyesHudSecurity
       - id: WeaponDisabler
       - id: ClothingHeadHatBeretHoS
