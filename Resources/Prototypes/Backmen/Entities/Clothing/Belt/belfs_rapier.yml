@@ -10,7 +10,7 @@
   - type: Clothing
     sprite: Backmen/Clothing/Belt/rapier.rsi
   - type: Storage
-    capacity: 15
+    capacity: 10
     whitelist:
       tags:
         - CaptainSabre
