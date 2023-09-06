@@ -2,6 +2,9 @@
   id: PirateAccent
   name: trait-pirate-accent-name
   description: trait-pirate-accent-desc
+  blacklist:
+    components:
+      - BSSDrone #backmen: bssdrone
   components:
     - type: PirateAccent
 
@@ -9,6 +12,9 @@
   id: ArchaicAccent
   name: trait-archaic-accent-name
   description: trait-archaic-accent-desc
+  blacklist:
+    components:
+      - BSSDrone #backmen: bssdrone
   components:
     - type: ArchaicAccent
 
@@ -16,6 +22,9 @@
   id: Accentless
   name: trait-accentless-name
   description: trait-accentless-desc
+  blacklist:
+    components:
+      - BSSDrone #backmen: bssdrone
   components:
   - type: Accentless
     removes:

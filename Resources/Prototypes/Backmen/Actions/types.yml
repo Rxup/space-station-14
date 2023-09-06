@@ -1,0 +1,14 @@
+﻿- type: instantAction
+  id: EatMouse
+  name: action-name-eat-mouse
+  description: action-description-eat-mouse
+  icon: Backmen/Icons/verbiconfangs.png
+  serverEvent: !type:EatMouseActionEvent
+
+- type: instantAction
+  id: HairballAction
+  name: hairball-action
+  description: hairball-action-desc
+  charges: 1
+  useDelay: 30
+  serverEvent: !type:HairballActionEvent

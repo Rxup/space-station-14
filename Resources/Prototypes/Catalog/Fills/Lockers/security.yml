@@ -58,6 +58,7 @@
   components:
   - type: StorageFill
     contents:
+      - id: Eftpos # backmen
       - id: FlashlightSeclite
         prob: 0.8
       - id: ClothingUniformJumpsuitSecGrey
@@ -133,10 +134,9 @@
       - id: FlashlightSeclite
       - id: ForensicScanner
       - id: BoxForensicPad
-      - id: WeaponRevolverInspector
       - id: DrinkDetFlask
-      - id: SpeedLoaderMagnum
       - id: ClothingHandsGlovesForensic
+      - id: BookBusido # Corvax-Books
 
 - type: entity
   id: ClosetBombFilled

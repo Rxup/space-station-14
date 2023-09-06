@@ -4,6 +4,7 @@
   suffix: Specforce
   parent: MarkerBase
   components:
+    - type: SpawnPoint
     - type: Sprite
       sprite: Markers/jobs.rsi
       layers:

@@ -5,6 +5,8 @@
   components:
   - type: StorageFill
     contents:
+      - id: Eftpos # backmen
+        amount: 3 # backmen
       - id: ClothingNeckCloakQm
       - id: ClothingHeadsetCargo
       - id: ClothingUniformJumpsuitQMTurtleneck
@@ -63,6 +65,8 @@
   components:
   - type: StorageFill
     contents:
+      - id: Eftpos # backmen
+        amount: 3 # backmen
       - id: ClothingOuterArmorCaptainCarapace
       - id: NukeDisk
       - id: PinpointerNuclear
@@ -100,6 +104,8 @@
   components:
   - type: StorageFill
     contents:
+      - id: Eftpos # backmen
+        amount: 5 # backmen
       - id: ClothingNeckCloakHop
       - id: ClothingHeadHatHopcap
       - id: HoPIDCard
@@ -133,6 +139,8 @@
     contents:
       - id: ClothingOuterHardsuitEngineeringWhite
       - id: ClothingMaskBreath
+      - id: ClothingUniformJumpsuitChiefEngineerTurtle
+      - id: ClothingUniformJumpskirtChiefEngineerTurtle
       - id: OxygenTankFilled
       - id: NitrogenTankFilled
       - id: ClothingNeckCloakCe
@@ -157,11 +165,15 @@
   components:
   - type: StorageFill
     contents:
+      - id: Eftpos # backmen
+        amount: 3 # backmen
       - id: ClothingNeckCloakCe
       - id: ClothingEyesGlassesMeson
       - id: ClothingBeltChiefEngineerFilled
       - id: ClothingHeadHatBeretEngineering
       - id: ClothingHandsGlovesColorYellow
+      - id: ClothingUniformJumpsuitChiefEngineerTurtle
+      - id: ClothingUniformJumpskirtChiefEngineerTurtle
       - id: CigarCase
         prob: 0.15
       - id: DoorRemoteEngineering
@@ -201,6 +213,8 @@
   components:
   - type: StorageFill
     contents:
+      - id: Eftpos # backmen
+        amount: 3 # backmen 
       - id: MedkitFilled
       - id: ClothingHandsGlovesNitrile
       #- name: ClothingEyesHudMedical #Removed until working properly
@@ -246,6 +260,8 @@
   components:
   - type: StorageFill
     contents:
+      - id: Eftpos # backmen
+        amount: 3 # backmen
       - id: ResearchComputerCircuitboard
       - id: ProtolatheMachineCircuitboard
       - id: CircuitImprinterMachineCircuitboard
@@ -299,6 +315,7 @@
       - id: BoxEncryptionKeySecurity
       - id: HoloprojectorSecurity
       - id: BookSecretDocuments
+      - id: BookBusido # Corvax-Books
 
 - type: entity
   id: LockerHeadOfSecurityFilled

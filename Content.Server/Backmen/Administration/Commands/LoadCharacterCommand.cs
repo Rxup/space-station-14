@@ -36,9 +36,9 @@ public sealed class LoadCharacterCommand : IConsoleCommand
                 return;
             }
 
-            var mind = player.ContentData()?.Mind;
+            var mind = player.ContentData();
 
-            if (mind == null || mind.UserId == null)
+            if (mind == null)
             {
                 shell.WriteError(Loc.GetString("shell-entity-is-not-mob")); // No mind specific errors? :(
                 return;
@@ -87,17 +87,17 @@ public sealed class LoadCharacterCommand : IConsoleCommand
                 var name = String.Join(" ", args.Skip(1).ToArray());
                 shell.WriteLine(Loc.GetString("loadcharacter-command-fetching", ("name", name)));
 
-                var charIndex = _prefs.GetPreferences(mind.UserId.Value).Characters.FirstOrNull(p => p.Value.Name == name)?.Key ?? -1;
+                var charIndex = _prefs.GetPreferences(mind.UserId).Characters.FirstOrNull(p => p.Value.Name == name)?.Key ?? -1;
                 if (charIndex < 0)
                 {
                     shell.WriteError(Loc.GetString("loadcharacter-command-fetching-failed"));
                     return;
                 }
 
-                character = (HumanoidCharacterProfile) _prefs.GetPreferences(mind.UserId.Value).GetProfile(charIndex);
+                character = (HumanoidCharacterProfile) _prefs.GetPreferences(mind.UserId).GetProfile(charIndex);
             }
             else
-                character = (HumanoidCharacterProfile) _prefs.GetPreferences(mind.UserId.Value).SelectedCharacter;
+                character = (HumanoidCharacterProfile) _prefs.GetPreferences(mind.UserId).SelectedCharacter;
 
             // This shouldn't ever fail considering the previous checks
             if (!_prototypeManager.TryIndex<SpeciesPrototype>(humanoidAppearance.Species, out var speciesPrototype) || !_prototypeManager.TryIndex<SpeciesPrototype>(character.Species, out var entPrototype))
@@ -127,11 +127,11 @@ public sealed class LoadCharacterCommand : IConsoleCommand
                 var player = shell.Player as IPlayerSession;
                 if (player == null)
                     return CompletionResult.Empty;
-                var mind = player.ContentData()?.Mind;
-                if (mind == null || mind.UserId == null)
+                var mind = player.ContentData();
+                if (mind == null)
                     return CompletionResult.Empty;
 
-                return CompletionResult.FromHintOptions(_prefs.GetPreferences(mind.UserId.Value).Characters.Select(x=>x.Value.Name), Loc.GetString("loadcharacter-command-hint-select"));
+                return CompletionResult.FromHintOptions(_prefs.GetPreferences(mind.UserId).Characters.Select(x=>x.Value.Name), Loc.GetString("loadcharacter-command-hint-select"));
             }
 
             return CompletionResult.Empty;

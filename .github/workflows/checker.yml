@@ -10,24 +10,26 @@ on:
 jobs:
   build:
     name: YAML Linter
-    if: github.actor != 'PJBot' && github.event.pull_request.draft == false
+    if: github.actor != 'IanComradeBot' && github.event.pull_request.draft == false
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
-        with:
-          submodules: recursive
-      - name: Update submodules
+      - uses: actions/checkout@v3.6.0
+      - name: Setup submodule
         run: |
           git submodule update --init --recursive
-      - name: Get Engine Tag
+      - name: Pull engine updates
+        uses: space-wizards/submodule-dependency@v0.1.5
+      - name: Update Engine Submodules
         run: |
-          cd RobustToolbox
-          git fetch --depth=1
-          git describe --tags --abbrev=0
+          cd RobustToolbox/
+          git submodule update --init --recursive
+      - name: Setup .NET Core
+        uses: actions/setup-dotnet@v3.2.0
+        with:
+          dotnet-version: 7.0.x
       - name: Install dependencies
         run: dotnet restore
       - name: Build
         run: dotnet build --configuration Release --no-restore /p:WarningsAsErrors= /m
       - name: Run Linter
-#        continue-on-error: true
         run: dotnet run --project Content.YAMLLinter/Content.YAMLLinter.csproj --no-build

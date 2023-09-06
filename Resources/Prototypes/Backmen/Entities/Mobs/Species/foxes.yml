@@ -1,20 +1,19 @@
 - type: entity
   save: false
   name: Urist McFox
-  parent: BaseMobOrganic
+  parent: BaseMobHuman
   id: BaseMobHumanoidFox
   abstract: true
   components:
   - type: HumanoidAppearance
     species: HumanoidFoxes
-  - type: Hunger
-  - type: Thirst
   - type: Icon
     sprite: Backmen/Mobs/Species/HumanoidFox/parts.rsi
     state: full
   - type: Body
     prototype: HumanoidFox
     requiredLegs: 2
+
 
 - type: entity
   save: false

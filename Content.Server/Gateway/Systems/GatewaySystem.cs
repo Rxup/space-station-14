@@ -103,8 +103,8 @@ public sealed class GatewaySystem : EntitySystem
     private void OpenPortal(EntityUid uid, GatewayComponent comp, EntityUid dest, GatewayDestinationComponent destComp)
     {
         _linkedEntity.TryLink(uid, dest);
-        EnsureComp<PortalComponent>(uid).CanTeleportToOtherMaps = true; // backmen: fix gates
-        EnsureComp<PortalComponent>(dest).CanTeleportToOtherMaps = true; // backmen: fix gates
+        EnsureComp<PortalComponent>(uid).CanTeleportToOtherMaps = true;
+        EnsureComp<PortalComponent>(dest).CanTeleportToOtherMaps = true;
 
         // for ui
         comp.LastOpen = _timing.CurTime;

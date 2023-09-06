@@ -21,17 +21,10 @@ using Content.Shared.CCVar;
 using Content.Server.Chat.Managers;
 using Content.Server.Ghost.Roles;
 using Content.Server.Ghost.Roles.Components;
-using Content.Server.Mind.Components;
 using Content.Server.RandomMetadata;
 using Robust.Shared.Serialization.Manager;
-using Content.Shared.Stealth.Components;
-using Content.Shared.Inventory;
-using Content.Shared.Radio.Components;
-using Content.Server.Radio.EntitySystems;
 using Content.Server.Administration.Managers;
 using Content.Server.Backmen.RoleWhitelist;
-using Content.Server.Mind;
-using Content.Server.Players;
 using Content.Shared.Actions;
 using Content.Shared.Actions.ActionTypes;
 
@@ -86,7 +79,7 @@ public sealed class SpecForcesSystem : EntitySystem
 
     private void OnSpecForceTake(EntityUid uid, SpecForceComponent component, ref TakeGhostRoleEvent args)
     {
-        if (!_adminManager.IsAdmin(args.Player) && !IsAllowed(args.Player, component, out var reason))
+        if (!_adminManager.IsAdmin(args.Player) && !IsAllowed((IPlayerSession?) args.Player, component, out var reason))
         {
             args.TookRole = true;
             _chatManager.ChatMessageToOne(Shared.Chat.ChatChannel.Server, reason, "ОШИБКА: " + reason, default, false,
@@ -409,7 +402,7 @@ public sealed class SpecForcesSystem : EntitySystem
     [ValidatePrototypeId<EntityPrototype>] private const string RxbzzLeader = "SpawnMobHumanSFOfficer";
     [ValidatePrototypeId<EntityPrototype>] private const string Rxbzz = "SpawnMobHumanRXBZZ";
 
-    private const string SpestnazShuttlePath = "Maps/Backmen/Grids/NT-CC-Specnaz-013.yml";
+    private const string SpestnazShuttlePath = "Maps/Backmen/Grids/Invincible.yml";
     [ValidatePrototypeId<EntityPrototype>] private const string SpestnazOfficer = "SpawnMobHumanSpecialReAgentCOM";
     [ValidatePrototypeId<EntityPrototype>] private const string Spestnaz = "SpawnMobHumanSpecialReAgent";
 

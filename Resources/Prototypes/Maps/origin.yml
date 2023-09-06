@@ -63,4 +63,5 @@
             SeniorResearcher: [ 1, 1]
             BKBPLATech: [0, 3] # backmen-BPLA-Silicons
             BKBPLAMED: [0, 3] # backmen-BPLAMED-Silicons
-            Deliveryman: [ 0, 1 ]
+            Borg: [ 2, 2 ]
+            Deliveryman: [ 0, 1 ] # backmen-delivery

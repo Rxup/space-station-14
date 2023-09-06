@@ -1,5 +1,6 @@
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
+using Content.Server.Backmen.EvilTwin;
 using Content.Server.GameTicking;
 using Content.Server.Station.Systems;
 using Content.Shared.Access.Components;
@@ -51,6 +52,13 @@ public sealed class StationRecordsSystem : EntitySystem
     {
         if (!HasComp<StationRecordsComponent>(args.Station))
             return;
+
+        // start-backmen: evil tween
+        if (HasComp<EvilTwinComponent>(args.Mob))
+        {
+            return;
+        }
+        // end-backmen: evil tween
 
         CreateGeneralRecord(args.Station, args.Mob, args.Profile, args.JobId);
     }
