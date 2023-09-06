@@ -6,6 +6,9 @@
   whitelist:
     components:
       - Blindable
+  blacklist:
+    components:
+      - BSSDrone #backmen: bssdrone
   components:
     - type: PermanentBlindness
 
@@ -13,6 +16,9 @@
   id: Narcolepsy
   name: trait-narcolepsy-name
   description: trait-narcolepsy-decs
+  blacklist:
+    components:
+      - BSSDrone #backmen: bssdrone
   components:
     - type: Narcolepsy
       timeBetweenIncidents: 300, 600
@@ -21,6 +27,9 @@
 - type: trait
   id: Pacifist
   name: trait-pacifist-name
+  blacklist:
+    components:
+      - BSSDrone #backmen: bssdrone
   components:
     - type: Pacified
 
@@ -28,6 +37,9 @@
   id: Paracusia
   name: trait-paracusia-name
   description: trait-paracusia-desc
+  blacklist:
+    components:
+      - BSSDrone #backmen: bssdrone
   components:
     - type: Paracusia
       minTimeBetweenIncidents: 0.1
@@ -40,6 +52,9 @@
   id: Muted
   name: trait-muted-name
   description: trait-muted-desc
+  blacklist:
+    components:
+      - BSSDrone #backmen: bssdrone
   components:
     - type: Muted
 
@@ -47,6 +62,9 @@
   id: Uncloneable
   name: trait-uncloneable-name
   description: trait-uncloneable-desc
+  blacklist:
+    components:
+      - BSSDrone
   components:
     - type: Uncloneable
 
@@ -54,6 +72,9 @@
   id: WheelchairBound
   name: trait-wheelchair-bound-name
   description: trait-wheelchair-bound-desc
+  blacklist:
+    components:
+      - BSSDrone #backmen: bssdrone
   components:
     - type: WheelchairBound
     - type: LegsParalyzed
