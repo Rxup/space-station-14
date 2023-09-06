@@ -14,6 +14,7 @@ using Content.Server.Popups;
 using Content.Server.HealthExaminable;
 using Content.Server.DoAfter;
 using Content.Server.Nutrition.EntitySystems;
+using Content.Shared.Chemistry;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Player;
 using Robust.Shared.Audio;
@@ -33,6 +34,7 @@ public sealed class BloodSuckerSystem : EntitySystem
     [Dependency] private readonly InventorySystem _inventorySystem = default!;
     [Dependency] private readonly ISharedAdminLogManager _adminLogger = default!;
     [Dependency] private readonly SharedInteractionSystem _interactionSystem = default!;
+    [Dependency] private readonly ReactiveSystem _reactiveSystem = default!;
     public override void Initialize()
     {
         base.Initialize();
@@ -198,7 +200,7 @@ public sealed class BloodSuckerSystem : EntitySystem
 
         // Make everything actually ingest.
         var temp = _solutionSystem.SplitSolution(victim, bloodstream.BloodSolution, unitsToDrain);
-        temp.DoEntityReaction(bloodsucker, Shared.Chemistry.Reagent.ReactionMethod.Ingestion);
+        _reactiveSystem.DoEntityReaction(bloodsucker, temp, Shared.Chemistry.Reagent.ReactionMethod.Ingestion);
         _stomachSystem.TryTransferSolution(stomachList[0].Comp.Owner, temp, stomachList[0].Comp);
 
         // Add a little pierce
@@ -215,5 +217,7 @@ public sealed class BloodSuckerSystem : EntitySystem
     }
 
     private record struct BloodSuckData()
-    {}
+    {
+
+    }
 }
