@@ -13,3 +13,10 @@
   supportedGroups:
     - Burn
     - Immaterial
+
+- type: damageContainer
+  id: CorporealSpirit
+  supportedGroups:
+    - Burn
+    - Brute
+    - Immaterial
