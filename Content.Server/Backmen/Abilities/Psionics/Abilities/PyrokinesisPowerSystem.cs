@@ -1,14 +1,13 @@
 using Content.Shared.Actions;
 using Content.Shared.Actions.ActionTypes;
-using Content.Shared.Abilities.Psionics;
 using Content.Server.Atmos.Components;
 using Content.Server.Atmos.EntitySystems;
 using Content.Server.Popups;
+using Content.Shared.Backmen.Abilities.Psionics;
 using Robust.Shared.Prototypes;
-using Robust.Shared.Player;
 using Robust.Shared.Timing;
 
-namespace Content.Server.Abilities.Psionics
+namespace Content.Server.Backmen.Abilities.Psionics
 {
     public sealed class PyrokinesisPowerSystem : EntitySystem
     {
@@ -53,7 +52,7 @@ namespace Content.Server.Abilities.Psionics
                 return;
 
             flammableComponent.FireStacks += 5;
-            _flammableSystem.Ignite(args.Target, flammableComponent);
+            _flammableSystem.Ignite(args.Target, args.Performer, flammableComponent);
             _popupSystem.PopupEntity(Loc.GetString("pyrokinesis-power-used", ("target", args.Target)), args.Target, Shared.Popups.PopupType.LargeCaution);
 
             _psionics.LogPowerUsed(args.Performer, "pyrokinesis");
@@ -61,5 +60,5 @@ namespace Content.Server.Abilities.Psionics
         }
     }
 
-    public sealed class PyrokinesisPowerActionEvent : EntityTargetActionEvent {}
+    public sealed partial class PyrokinesisPowerActionEvent : EntityTargetActionEvent {}
 }

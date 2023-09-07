@@ -1,14 +1,13 @@
-namespace Content.Server.Psionics
-{
-    [RegisterComponent]
-    public sealed class PotentialPsionicComponent : Component
-    {
-        [DataField("chance")]
-        public float Chance = 0.04f;
+namespace Content.Server.Backmen.Psionics;
 
-        /// <summary>
-        /// YORO (you only reroll once)
-        /// </summary>
-        public bool Rerolled = false;
-    }
+[RegisterComponent]
+public sealed partial class PotentialPsionicComponent : Component
+{
+    [DataField("chance"), ViewVariables(VVAccess.ReadWrite)]
+    public float Chance = 0.04f;
+
+    /// <summary>
+    /// YORO (you only reroll once)
+    /// </summary>
+    public bool Rerolled = false;
 }

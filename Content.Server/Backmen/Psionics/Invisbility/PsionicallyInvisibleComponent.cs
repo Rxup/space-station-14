@@ -1,6 +1,5 @@
-namespace Content.Server.Psionics
-{
-    [RegisterComponent]
-    public sealed class PsionicallyInvisibleComponent : Component
-    {}
-}
+namespace Content.Server.Backmen.Psionics;
+
+[RegisterComponent]
+public sealed partial class PsionicallyInvisibleComponent : Component
+{}

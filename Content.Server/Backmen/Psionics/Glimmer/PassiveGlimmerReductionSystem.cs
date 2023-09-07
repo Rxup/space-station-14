@@ -1,12 +1,12 @@
+using Content.Server.Backmen.CartridgeLoader.Cartridges;
+using Content.Shared.Backmen.Psionics.Glimmer;
 using Robust.Shared.Random;
 using Robust.Shared.Timing;
 using Robust.Shared.Configuration;
-using Content.Shared.CCVar;
-using Content.Shared.Psionics.Glimmer;
+using Content.Shared.Backmen.CCVar;
 using Content.Shared.GameTicking;
-using Content.Server.CartridgeLoader.Cartridges;
 
-namespace Content.Server.Psionics.Glimmer
+namespace Content.Server.Backmen.Psionics.Glimmer
 {
     /// <summary>
     /// Handles the passive reduction of glimmer.

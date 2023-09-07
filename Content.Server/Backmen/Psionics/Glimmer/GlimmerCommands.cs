@@ -1,9 +1,9 @@
 using Content.Server.Administration;
-using Content.Shared.Psionics.Glimmer;
 using Content.Shared.Administration;
+using Content.Shared.Backmen.Psionics.Glimmer;
 using Robust.Shared.Console;
 
-namespace Content.Server.Psionics.Glimmer;
+namespace Content.Server.Backmen.Psionics.Glimmer;
 
 [AdminCommand(AdminFlags.Logs)]
 public sealed class GlimmerShowCommand : IConsoleCommand

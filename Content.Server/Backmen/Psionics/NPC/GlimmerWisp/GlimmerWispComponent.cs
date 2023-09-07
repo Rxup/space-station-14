@@ -1,9 +1,10 @@
+/*
 using Robust.Shared.Audio;
 
 namespace Content.Server.Backmen.Psionics.NPC.GlimmerWisp
 {
     [RegisterComponent]
-    public sealed class GlimmerWispComponent : Component
+    public sealed partial class GlimmerWispComponent : Component
     {
         public bool IsDraining = false;
         /// <summary>
@@ -22,3 +23,4 @@ namespace Content.Server.Backmen.Psionics.NPC.GlimmerWisp
         public EntityUid? DrainTarget;
     }
 }
+*/

@@ -5,7 +5,7 @@ public sealed partial class PsionicBonusChanceComponent : Component
 {
     [DataField("multiplier"), ViewVariables(VVAccess.ReadWrite)]
     public float Multiplier = 1f;
-    [DataField("flatBonus")]
+    [DataField("flatBonus"), ViewVariables(VVAccess.ReadWrite)]
     public float FlatBonus = 0;
 
     /// <summary>

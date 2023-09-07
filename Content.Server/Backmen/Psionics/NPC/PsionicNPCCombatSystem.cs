@@ -1,12 +1,10 @@
-using Content.Shared.Abilities.Psionics;
 using Content.Shared.Actions;
-using Content.Shared.Actions.ActionTypes;
 using Content.Server.NPC.Events;
 using Content.Server.NPC.Components;
-using Content.Server.Abilities.Psionics;
+using Content.Shared.Backmen.Abilities.Psionics;
 using Robust.Shared.Timing;
 
-namespace Content.Server.Psionics.NPC
+namespace Content.Server.Backmen.Psionics.NPC
 {
     public sealed class PsionicNPCCombatSystem : EntitySystem
     {

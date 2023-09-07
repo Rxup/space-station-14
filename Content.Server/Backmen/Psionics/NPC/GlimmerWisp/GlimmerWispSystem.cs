@@ -1,3 +1,4 @@
+/*
 using Content.Server.DoAfter;
 using Content.Server.NPC.Systems;
 using Content.Shared.DoAfter;
@@ -130,3 +131,4 @@ namespace Content.Server.Backmen.Psionics.NPC.GlimmerWisp
         }
     }
 }
+*/

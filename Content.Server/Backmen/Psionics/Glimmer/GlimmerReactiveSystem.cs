@@ -1,14 +1,13 @@
-using Content.Server.Audio;
+using Content.Server.Backmen.Audio;
 using Content.Server.Power.Components;
 using Content.Server.Electrocution;
 using Content.Server.Lightning;
 using Content.Server.Explosion.EntitySystems;
-using Content.Server.Construction;
 using Content.Server.Ghost;
 using Content.Server.Revenant.EntitySystems;
 using Content.Shared.Audio;
+using Content.Shared.Backmen.Psionics.Glimmer;
 using Content.Shared.Construction.EntitySystems;
-using Content.Shared.Coordinates.Helpers;
 using Content.Shared.GameTicking;
 using Content.Shared.Psionics.Glimmer;
 using Content.Shared.Verbs;
@@ -22,7 +21,7 @@ using Robust.Shared.Random;
 using Robust.Shared.Physics.Components;
 using Robust.Shared.Utility;
 
-namespace Content.Server.Psionics.Glimmer
+namespace Content.Server.Backmen.Psionics.Glimmer
 {
     public sealed class GlimmerReactiveSystem : EntitySystem
     {

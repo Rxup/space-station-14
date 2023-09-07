@@ -9,11 +9,11 @@ using Content.Shared.Database;
 using Content.Shared.Drugs;
 using Content.Shared.Mobs;
 using Content.Shared.Mobs.Components;
-using Content.Shared.Psionics.Glimmer;
 using Robust.Shared.Network;
 using Robust.Shared.Player;
 using Robust.Shared.Random;
 using System.Linq;
+using Content.Shared.Backmen.Psionics.Glimmer;
 
 namespace Content.Server.Backmen.Chat;
 

@@ -1,4 +1,3 @@
-using Content.Shared.Abilities.Psionics;
 using Content.Shared.Inventory.Events;
 using Content.Shared.Clothing.Components;
 using Content.Shared.StatusEffect;

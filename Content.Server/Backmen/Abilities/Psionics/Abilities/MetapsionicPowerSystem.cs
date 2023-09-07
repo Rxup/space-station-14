@@ -1,13 +1,12 @@
 using Content.Shared.Actions;
 using Content.Shared.Actions.ActionTypes;
-using Content.Shared.Abilities.Psionics;
+using Content.Shared.Backmen.Abilities.Psionics;
 using Content.Shared.StatusEffect;
 using Content.Shared.Popups;
 using Robust.Shared.Prototypes;
-using Robust.Shared.Player;
 using Robust.Shared.Timing;
 
-namespace Content.Server.Abilities.Psionics
+namespace Content.Server.Backmen.Abilities.Psionics
 {
     public sealed class MetapsionicPowerSystem : EntitySystem
     {
@@ -67,5 +66,5 @@ namespace Content.Server.Abilities.Psionics
         }
     }
 
-    public sealed class MetapsionicPowerActionEvent : InstantActionEvent {}
+    public sealed partial class MetapsionicPowerActionEvent : InstantActionEvent {}
 }

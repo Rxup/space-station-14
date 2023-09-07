@@ -1,4 +1,3 @@
-using Content.Server.Abilities.Psionics;
 using Content.Shared.Actions;
 using Content.Shared.Actions.ActionTypes;
 using Content.Shared.Backmen.Abilities.Psionics;

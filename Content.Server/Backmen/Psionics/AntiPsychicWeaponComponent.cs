@@ -1,9 +1,9 @@
 using Content.Shared.Damage;
 
-namespace Content.Server.Psionics
+namespace Content.Server.Backmen.Psionics
 {
     [RegisterComponent]
-    public sealed class AntiPsionicWeaponComponent : Component
+    public sealed partial class AntiPsionicWeaponComponent : Component
     {
 
         [DataField("modifiers", required: true)]
