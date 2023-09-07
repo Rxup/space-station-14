@@ -2,14 +2,14 @@
   id: EatMouse
   name: action-name-eat-mouse
   description: action-description-eat-mouse
-  icon: Nyanotrasen/Icons/verbiconfangs.png
+  icon: Backmen/Icons/verbiconfangs.png
   serverEvent: !type:EatMouseActionEvent
 
 - type: instantAction
   id: MetapsionicPulse
   name: action-name-metapsionic
   description: action-description-metapsionic
-  icon: Nyanotrasen/Interface/VerbIcons/metapsionic.png
+  icon: Backmen/Interface/VerbIcons/metapsionic.png
   useDelay: 45
   serverEvent: !type:MetapsionicPowerActionEvent
 
@@ -17,7 +17,7 @@
   id: Dispel
   name: action-name-dispel
   description: action-description-dispel
-  icon: Nyanotrasen/Interface/VerbIcons/dispel.png
+  icon: Backmen/Interface/VerbIcons/dispel.png
   useDelay: 45
   checkCanAccess: false
   range: 6
@@ -28,7 +28,7 @@
   id: MassSleep
   name: action-name-mass-sleep
   description: action-description-mass-sleep
-  icon: Nyanotrasen/Interface/VerbIcons/mass_sleep.png
+  icon: Backmen/Interface/VerbIcons/mass_sleep.png
   useDelay: 60
   checkCanAccess: false
   range: 8
@@ -38,7 +38,7 @@
   id: PsionicInvisibility
   name: action-name-psionic-invisibility
   description: action-description-psionic-invisibility
-  icon: Nyanotrasen/Interface/VerbIcons/psionic_invisibility.png
+  icon: Backmen/Interface/VerbIcons/psionic_invisibility.png
   useDelay: 120
   serverEvent: !type:PsionicInvisibilityPowerActionEvent
 
@@ -46,30 +46,14 @@
   id: PsionicInvisibilityOff
   name: action-name-psionic-invisibility-off
   description: action-description-psionic-invisibility-off
-  icon: Nyanotrasen/Interface/VerbIcons/psionic_invisibility_off.png
+  icon: Backmen/Interface/VerbIcons/psionic_invisibility_off.png
   serverEvent: !type:PsionicInvisibilityPowerOffActionEvent
-
-- type: instantAction
-  id: FabricateLollipop
-  name: fabricate-lollipop-action
-  description: fabricate-lollipop-desc
-  icon: { sprite: Objects/Consumable/Food/candy.rsi, state: lollipop }
-  useDelay: 120
-  serverEvent: !type:FabricateLollipopActionEvent
-
-- type: instantAction
-  id: FabricateGumball
-  name: fabricate-gumball-action
-  description: fabricate-gumball-desc
-  icon: { sprite: Objects/Consumable/Food/candy.rsi, state: gumball }
-  useDelay: 40
-  serverEvent: !type:FabricateGumballActionEvent
 
 - type: entityTargetAction
   id: MindSwap
   name: action-name-mind-swap
   description: action-description-mind-swap
-  icon: Nyanotrasen/Interface/VerbIcons/mind_swap.png
+  icon: Backmen/Interface/VerbIcons/mind_swap.png
   useDelay: 240
   checkCanAccess: false
   range: 8
@@ -79,7 +63,7 @@
   id: MindSwapReturn
   name: action-name-mind-swap-return
   description: action-description-mind-swap-return
-  icon: Nyanotrasen/Interface/VerbIcons/mind_swap_return.png
+  icon: Backmen/Interface/VerbIcons/mind_swap_return.png
   checkCanInteract: false
   useDelay: 20
   serverEvent: !type:MindSwapPowerReturnActionEvent
@@ -88,7 +72,7 @@
   id: Telegnosis
   name: action-name-telegnosis
   description: action-description-telegnosis
-  icon: Nyanotrasen/Interface/VerbIcons/telegnosis.png
+  icon: Backmen/Interface/VerbIcons/telegnosis.png
   useDelay: 150
   serverEvent: !type:TelegnosisPowerActionEvent
 
@@ -96,7 +80,7 @@
   id: PsionicRegeneration
   name: action-name-psionic-regeneration
   description: action-description-psionic-regeneration
-  icon: Nyanotrasen/Interface/VerbIcons/psionic_regeneration.png
+  icon: Backmen/Interface/VerbIcons/psionic_regeneration.png
   useDelay: 120
   serverEvent: !type:PsionicRegenerationPowerActionEvent
 
@@ -104,7 +88,7 @@
   id: NoosphericZap
   name: action-name-noospheric-zap
   description: action-description-noospheric-zap
-  icon: Nyanotrasen/Interface/VerbIcons/noospheric_zap.png
+  icon: Backmen/Interface/VerbIcons/noospheric_zap.png
   useDelay: 100
   range: 5
   serverEvent: !type:NoosphericZapPowerActionEvent
@@ -113,7 +97,7 @@
   id: Pyrokinesis
   name: action-name-pyrokinesis
   description: action-description-pyrokinesis
-  icon: Nyanotrasen/Interface/VerbIcons/pyrokinesis.png
+  icon: Backmen/Interface/VerbIcons/pyrokinesis.png
   useDelay: 50
   checkCanAccess: false
   range: 6
@@ -134,7 +118,7 @@
   id: SpinWeb
   name: action-name-spin-web
   description: action-desc-spin-web
-  icon: { sprite: Nyanotrasen/Structures/web.rsi, state: web1 }
+  icon: { sprite: Backmen/Structures/web.rsi, state: web1 }
   range: 1.5
   serverEvent: !type:SpinWebActionEvent
 
