@@ -49,6 +49,11 @@
   - Cargo
   - Atmospherics
   - Medical
+  special:
+    - !type:AddComponentSpecial
+      components:
+        - type: PsionicBonusChance
+          flatBonus: 0.025
   #start-backmen: currency
   minBankBalance: 800
   maxBankBalance: 1200
