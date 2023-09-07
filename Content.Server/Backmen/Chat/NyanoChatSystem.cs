@@ -70,8 +70,8 @@ public sealed class NyanoChatSystem : EntitySystem
         if (!IsEligibleForTelepathy(source))
             return;
 
-        var clients = GetPsionicChatClients();
-        var admins = GetAdminClients();
+        var clients = GetPsionicChatClients().ToArray();
+        var admins = GetAdminClients().ToArray();
         string messageWrap;
         string adminMessageWrap;
 
@@ -83,8 +83,7 @@ public sealed class NyanoChatSystem : EntitySystem
 
         _adminLogger.Add(LogType.Chat, LogImpact.Low, $"Telepathic chat from {ToPrettyString(source):Player}: {message}");
 
-        _chatManager.ChatMessageToMany(ChatChannel.Telepathic, message, messageWrap, source, hideChat, true, clients.ToList(), Color.PaleVioletRed);
-
+        _chatManager.ChatMessageToMany(ChatChannel.Telepathic, message, messageWrap, source, hideChat, true, clients.Where(x=>admins.All(z=>z.UserId != x.UserId)).ToList(), Color.PaleVioletRed);
         _chatManager.ChatMessageToMany(ChatChannel.Telepathic, message, adminMessageWrap, source, hideChat, true, admins, Color.PaleVioletRed);
 
         if (_random.Prob(0.1f))
