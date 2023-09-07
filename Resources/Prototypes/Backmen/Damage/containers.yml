@@ -7,3 +7,9 @@
     - Immaterial
   supportedTypes:
     - Poison
+
+- type: damageContainer
+  id: Spirit
+  supportedGroups:
+    - Burn
+    - Immaterial
