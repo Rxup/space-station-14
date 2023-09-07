@@ -15,6 +15,8 @@ namespace Content.Client.Chat.Managers
 
         private ISawmill _sawmill = default!;
 
+        public event Action? PermissionsUpdated;
+
         public void Initialize()
         {
             _sawmill = Logger.GetSawmill("chat");
@@ -70,6 +72,10 @@ namespace Content.Client.Chat.Managers
                 default:
                     throw new ArgumentOutOfRangeException(nameof(channel), channel, null);
             }
+        }
+        public void UpdatePermissions()
+        {
+            PermissionsUpdated?.Invoke();
         }
     }
 }

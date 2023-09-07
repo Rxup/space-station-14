@@ -162,6 +162,7 @@ public sealed class ChatUIController : UIController
         _sawmill = Logger.GetSawmill("chat");
         _sawmill.Level = LogLevel.Info;
         _admin.AdminStatusUpdated += UpdateChannelPermissions;
+        _manager.PermissionsUpdated += UpdateChannelPermissions; //Backmen:Psionics
         _player.LocalPlayerChanged += OnLocalPlayerChanged;
         _state.OnStateChanged += StateChanged;
         _net.RegisterNetMessage<MsgChatMessage>(OnChatMessage);
