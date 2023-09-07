@@ -161,8 +161,8 @@ public sealed class PsionicsSystem : EntitySystem
         var warn = true;
         if (TryComp<PsionicBonusChanceComponent>(uid, out var bonus))
         {
-            chance *= bonus.Multiplier;
             chance += bonus.FlatBonus;
+            chance *= bonus.Multiplier;
             warn = bonus.Warn;
         }
 
