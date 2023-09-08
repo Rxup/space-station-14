@@ -68,6 +68,7 @@
         prob: 0.05
         orGroup: Surgshrubs
       - id: ClothingMaskSterile
+      - id: AntiPsychicKnife
 
 - type: entity
   parent: LockerWallMedical

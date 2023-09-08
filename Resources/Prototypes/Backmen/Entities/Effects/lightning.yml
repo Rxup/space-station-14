@@ -130,3 +130,14 @@
       softness: 1
       autoRot: true
       castShadows: false
+
+- type: entity
+  parent: BaseLightning
+  id: LightningNoospheric
+  name: noospheric lightning
+  noSpawn: true
+  components:
+    - type: Electrified
+      enabled: false
+    - type: Lightning
+      canArc: false

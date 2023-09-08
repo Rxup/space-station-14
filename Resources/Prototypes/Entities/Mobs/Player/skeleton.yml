@@ -23,6 +23,7 @@
     - type: NpcFactionMember
       factions:
         - NanoTrasen
+    - type: PotentialPsionic
 
 - type: entity
   name: Skeleton Pirate

@@ -6,6 +6,123 @@
   serverEvent: !type:EatMouseActionEvent
 
 - type: instantAction
+  id: MetapsionicPulse
+  name: action-name-metapsionic
+  description: action-description-metapsionic
+  icon: Backmen/Interface/VerbIcons/metapsionic.png
+  useDelay: 45
+  serverEvent: !type:MetapsionicPowerActionEvent
+
+- type: entityTargetAction
+  id: Dispel
+  name: action-name-dispel
+  description: action-description-dispel
+  icon: Backmen/Interface/VerbIcons/dispel.png
+  useDelay: 45
+  checkCanAccess: false
+  range: 6
+  canTargetSelf: false
+  serverEvent: !type:DispelPowerActionEvent
+
+- type: worldTargetAction
+  id: MassSleep
+  name: action-name-mass-sleep
+  description: action-description-mass-sleep
+  icon: Backmen/Interface/VerbIcons/mass_sleep.png
+  useDelay: 60
+  checkCanAccess: false
+  range: 8
+  event: !type:MassSleepPowerActionEvent
+
+- type: instantAction
+  id: PsionicInvisibility
+  name: action-name-psionic-invisibility
+  description: action-description-psionic-invisibility
+  icon: Backmen/Interface/VerbIcons/psionic_invisibility.png
+  useDelay: 120
+  serverEvent: !type:PsionicInvisibilityPowerActionEvent
+
+- type: instantAction
+  id: PsionicInvisibilityOff
+  name: action-name-psionic-invisibility-off
+  description: action-description-psionic-invisibility-off
+  icon: Backmen/Interface/VerbIcons/psionic_invisibility_off.png
+  serverEvent: !type:PsionicInvisibilityPowerOffActionEvent
+
+- type: entityTargetAction
+  id: MindSwap
+  name: action-name-mind-swap
+  description: action-description-mind-swap
+  icon: Backmen/Interface/VerbIcons/mind_swap.png
+  useDelay: 240
+  checkCanAccess: false
+  range: 8
+  serverEvent: !type:MindSwapPowerActionEvent
+
+- type: instantAction
+  id: MindSwapReturn
+  name: action-name-mind-swap-return
+  description: action-description-mind-swap-return
+  icon: Backmen/Interface/VerbIcons/mind_swap_return.png
+  checkCanInteract: false
+  useDelay: 20
+  serverEvent: !type:MindSwapPowerReturnActionEvent
+
+- type: instantAction
+  id: Telegnosis
+  name: action-name-telegnosis
+  description: action-description-telegnosis
+  icon: Backmen/Interface/VerbIcons/telegnosis.png
+  useDelay: 150
+  serverEvent: !type:TelegnosisPowerActionEvent
+
+- type: instantAction
+  id: PsionicRegeneration
+  name: action-name-psionic-regeneration
+  description: action-description-psionic-regeneration
+  icon: Backmen/Interface/VerbIcons/psionic_regeneration.png
+  useDelay: 120
+  serverEvent: !type:PsionicRegenerationPowerActionEvent
+
+- type: entityTargetAction
+  id: NoosphericZap
+  name: action-name-noospheric-zap
+  description: action-description-noospheric-zap
+  icon: Backmen/Interface/VerbIcons/noospheric_zap.png
+  useDelay: 100
+  range: 5
+  serverEvent: !type:NoosphericZapPowerActionEvent
+
+- type: entityTargetAction
+  id: Pyrokinesis
+  name: action-name-pyrokinesis
+  description: action-description-pyrokinesis
+  icon: Backmen/Interface/VerbIcons/pyrokinesis.png
+  useDelay: 50
+  checkCanAccess: false
+  range: 6
+  serverEvent: !type:PyrokinesisPowerActionEvent
+
+- type: worldTargetAction
+  id: Psychokinesis
+  name: action-name-psychokinesis
+  description: action-description-psychokinesis
+  icon: { sprite: Objects/Misc/guardian_info.rsi, state: icon}
+  useDelay: 20
+  itemIconStyle: BigAction
+  checkCanAccess: false
+  range: 30
+  serverEvent: !type:PsychokinesisPowerActionEvent
+
+- type: worldTargetAction
+  id: SpinWeb
+  name: action-name-spin-web
+  description: action-desc-spin-web
+  icon: { sprite: Backmen/Structures/web.rsi, state: web1 }
+  range: 1.5
+  serverEvent: !type:SpinWebActionEvent
+
+- type: instantAction
   id: HairballAction
   name: hairball-action
   description: hairball-action-desc
