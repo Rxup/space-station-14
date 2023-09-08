@@ -52,7 +52,7 @@ jobs:
         source: "release/${{ github.sha }}"
         target: "/opt/builds/"
         strip_components: 1
-        tar_exec: "tar --no-same-owner"
+        tar_exec: "mytar.sh"
         tar_tmp_path: "/tmp/"
         debug: true
         
