@@ -13,7 +13,7 @@
       - state: oracle-0
       - map: ["enum.SolutionContainerLayers.Fill"]
         state: oracle-0
-  - type: Oracle
+  #- type: Oracle
   - type: Speech
     speechSounds: Tenor
   - type: Psionic

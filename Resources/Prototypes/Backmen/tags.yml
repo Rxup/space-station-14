@@ -9,3 +9,9 @@
 
 - type: Tag
   id: ForensicBeltEquip
+
+- type: Tag
+  id: CoreSilver
+
+- type: Tag
+  id: NormalityCrystal

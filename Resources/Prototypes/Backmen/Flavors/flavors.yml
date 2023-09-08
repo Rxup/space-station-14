@@ -2,3 +2,8 @@
   id: RedOrdenDrinkFlavour
   flavorType: Complex
   description: flavor-complex-RedOrdenDrinkFlavour
+
+- type: flavor
+  id: sublime
+  flavorType: Complex
+  description: flavor-complex-sublime

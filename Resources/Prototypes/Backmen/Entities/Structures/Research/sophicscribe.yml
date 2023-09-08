@@ -12,7 +12,7 @@
     layers:
       - state: sophia
       - map: ["enum.SolutionContainerLayers.Fill"]
-  - type: SophicScribe
+  #- type: SophicScribe
   - type: Speech
     speechSounds: Snake
   - type: IntrinsicRadioReceiver
@@ -29,8 +29,8 @@
     - Science
   - type: ActiveListener
   - type: TypingIndicator
-  - type: NPCConversation
-    tree: SophiaTree
+  #- type: NPCConversation
+  #  tree: SophiaTree
   - type: PotentialPsionic #this makes her easier to access for glimmer events, dw about it
   - type: Psionic
   - type: Grammar

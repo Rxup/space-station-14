@@ -36,3 +36,20 @@
               Caustic: -3
               Poison: -3
               Bloodloss: -3
+
+- type: reagent
+  id: Ectoplasm
+  name: reagent-name-ectoplasm
+  group: Toxins
+  desc: reagent-desc-ectoplasm
+  flavor: sublime
+  color: "#61a79d"
+  physicalDesc: reagent-physical-desc-ethereal
+  metabolisms:
+    Poison:
+      effects:
+        - !type:HealthChange
+          probability: 0.4
+          damage:
+            groups:
+              Toxin: 2
