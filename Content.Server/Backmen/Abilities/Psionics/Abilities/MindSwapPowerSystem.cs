@@ -14,6 +14,7 @@ using Content.Shared.Backmen.Abilities.Psionics;
 using Content.Shared.Mind;
 using Content.Shared.Mind.Components;
 using Robust.Server.GameObjects;
+using Robust.Server.Player;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
 
@@ -127,7 +128,11 @@ public sealed class MindSwapPowerSystem : EntitySystem
     private void OnMobStateChanged(EntityUid uid, MindSwappedComponent component, MobStateChangedEvent args)
     {
         if (args.NewMobState == MobState.Dead)
+        {
             RemComp<MindSwappedComponent>(uid);
+            RemComp<MindSwappedComponent>(component.OriginalEntity);
+        }
+
     }
 
     private void OnGhostAttempt(GhostAttemptHandleEvent args)
@@ -138,10 +143,8 @@ public sealed class MindSwapPowerSystem : EntitySystem
         if (!HasComp<MindSwappedComponent>(args.Mind.CurrentEntity))
             return;
 
-        /*
         if (!args.ViaCommand)
             return;
-        */
 
         args.Result = false;
         args.Handled = true;
@@ -157,37 +160,51 @@ public sealed class MindSwapPowerSystem : EntitySystem
         }
     }
 
-    public void Swap(EntityUid performer, EntityUid target, bool end = false)
+    public bool Swap(EntityUid performer, EntityUid target, bool end = false)
     {
+        if (performer == target)
+        {
+            return false;
+        }
         if (end && (!HasComp<MindSwappedComponent>(performer) || !HasComp<MindSwappedComponent>(target)))
         {
-            return;
+            return false;
         }
-        else if (!end && (HasComp<MindSwappedComponent>(performer) || HasComp<MindSwappedComponent>(target)))
+        if (!end)
         {
-            return; // Повторный свап!? TODO: chain swap, in current mode broken chained in no return (has no mind error)
+            if (HasComp<MindSwappedComponent>(performer))
+            {
+                _popupSystem.PopupCursor("Ошибка! Вы уже в другом теле!", performer);
+                return false; // Повторный свап!? TODO: chain swap, in current mode broken chained in no return (has no mind error)
+            }
+
+            if (HasComp<MindSwappedComponent>(target))
+            {
+                _popupSystem.PopupCursor("Ошибка! Ваша цель уже в другом теле!", performer);
+                return false; // Повторный свап!? TODO: chain swap, in current mode broken chained in no return (has no mind error)
+            }
         }
         // This is here to prevent missing MindContainerComponent Resolve errors.
-
+        var a = _mindSystem.TryGetMind(performer, out var performerMindId, out var performerMind);
+        var b = _mindSystem.TryGetMind(target, out var targetMindId, out var targetMind);
         // Do the transfer.
-        if (_mindSystem.TryGetMind(performer, out var performerMindId, out var performerMind))
+
+        if (a)
         {
-            _actorSystem.Detach(target);
-            _mindSystem.TransferTo(performerMindId, target, true, false, performerMind);
-            if (_mindSystem.TryGetSession(performerMind!, out var playerSession))
-            {
-                _actorSystem.Attach(target, playerSession, true, out _);
-            }
+            RemComp<ActorComponent>(target);
+            RemComp<MindContainerComponent>(target);
+            _mindSystem.SetUserId(performerMindId, performerMind!.UserId, performerMind);
+            _actorSystem.Attach(target, (IPlayerSession) performerMind.Session!, true);
+            _mindSystem.TransferTo(performerMindId, target, true, false);
         }
 
-        if (_mindSystem.TryGetMind(target, out var targetMindId, out var targetMind))
+        if (b)
         {
-            _actorSystem.Detach(performer);
-            if (_mindSystem.TryGetSession(targetMindId!, out var playerSession))
-            {
-                _actorSystem.Attach(performer, playerSession, true, out _);
-            }
-            _mindSystem.TransferTo(targetMindId, performer, true, false, targetMind);
+            RemComp<ActorComponent>(performer);
+            RemComp<MindContainerComponent>(performer);
+            _mindSystem.SetUserId(targetMindId, targetMind!.UserId, targetMind);
+            _actorSystem.Attach(target, (IPlayerSession) targetMind.Session!, true);
+            _mindSystem.TransferTo(targetMindId, performer, true, false);
         }
 
         if (end)
@@ -200,7 +217,7 @@ public sealed class MindSwapPowerSystem : EntitySystem
 
             RemComp<MindSwappedComponent>(performer);
             RemComp<MindSwappedComponent>(target);
-            return;
+            return true;
         }
 
         var perfComp = EnsureComp<MindSwappedComponent>(performer);
@@ -210,6 +227,8 @@ public sealed class MindSwapPowerSystem : EntitySystem
         perfComp.OriginalMindId = targetMindId;
         targetComp.OriginalEntity = performer;
         targetComp.OriginalMindId = performerMindId;
+
+        return true;
     }
 
     public void GetTrapped(EntityUid uid)
