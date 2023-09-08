@@ -17,10 +17,10 @@ Note that unlike atmospheres, areas of noopsheric pressure do not operate by phy
 <GuideEntityEmbed Entity="SophicScribe" />
 The [color=#a4885c]sophic scribe[/color] tracks glimmer.
 
-<Box>
-<GuideEntityEmbed Entity="GlimmerProber"/>
-<GuideEntityEmbed Entity="GlimmerDrain"/>
-</Box>
+<!-- <Box> -->
+<!-- <GuideEntityEmbed Entity="GlimmerProber"/> -->
+<!-- <GuideEntityEmbed Entity="GlimmerDrain"/> -->
+<!-- </Box> -->
 
 Epistemics can build devices to interact with glimmer. These are usually the main determiners of where glimmer is going.
 [color=#a4885c]Glimmer probers[/color] will increase glimmer, but directly generate research points without further input. [color=#a4885c]Glimmer drains[/color] simply drain glimmer at the cost of electricity.
