@@ -17,20 +17,6 @@ Note that unlike atmospheres, areas of noopsheric pressure do not operate by phy
 <GuideEntityEmbed Entity="SophicScribe" />
 The [color=#a4885c]sophic scribe[/color] tracks glimmer.
 
-<!-- <Box> -->
-<!-- <GuideEntityEmbed Entity="GlimmerProber"/> -->
-<!-- <GuideEntityEmbed Entity="GlimmerDrain"/> -->
-<!-- </Box> -->
-
-Epistemics can build devices to interact with glimmer. These are usually the main determiners of where glimmer is going.
-[color=#a4885c]Glimmer probers[/color] will increase glimmer, but directly generate research points without further input. [color=#a4885c]Glimmer drains[/color] simply drain glimmer at the cost of electricity.
-
-Use of psionics will increase glimmer, as will [color=#a4885c]noöspheric storms[/color].
-
-## Discharges
-Glimmer will occasionally discharge if it's above 100 mΨ, causing a wide range of effects based on just how high it is. The most common is giving all entities with psionic potential a small seizure,
-which is something most people working on stations with an Epistemics department have grown used to.
-
 ## Acquiring Psionics
 <GuideEntityEmbed Entity="Oracle" />
 

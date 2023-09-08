@@ -11,12 +11,6 @@ Once sacrificed, the psionic humanoid's soul is trapped inside a [color=#a4885c]
 <GuideEntityEmbed Entity="PonderingOrbTelepathic" />
 10% of the time, the altar will spawn a powerful psionic item along with the soul crystal. This chance increases to 50% if the sacrifice was performed by someone with clerical training, such as the [color=#a4885c]chaplain[/color] or [color=#a4885c]mystagogue[/color].
 
-## Golemancy
-<Box>
-<GuideEntityEmbed Entity="MobGolemCult"/>
-<GuideEntityEmbed Entity="MobGolemWood"/>
-</Box>
-Soul crystals can be installed into [color=#a4885c]golems[/color] to give the soul a new body. Golems are bound to serve their master. As constructs, they do not need to eat, drink, or breathe.
-Note that for wood golems, if plants are planted on top of their head, the plants will still need those things.
+
 
 </Document>
