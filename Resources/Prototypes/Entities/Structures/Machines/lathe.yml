@@ -132,6 +132,7 @@
       - CellRechargerCircuitboard
       - BorgChargerCircuitboard
       - WeaponCapacitorRechargerCircuitboard
+      - AntiPsychicKnifeRecipe
   - type: EmagLatheRecipes
     emagStaticRecipes:
        - CartridgePistol

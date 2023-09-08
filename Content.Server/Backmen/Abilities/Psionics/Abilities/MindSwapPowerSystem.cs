@@ -12,6 +12,7 @@ using Content.Server.Popups;
 using Content.Server.GameTicking;
 using Content.Shared.Backmen.Abilities.Psionics;
 using Content.Shared.Mind;
+using Robust.Server.GameObjects;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
 
@@ -169,10 +170,15 @@ public sealed class MindSwapPowerSystem : EntitySystem
 
         // Do the transfer.
         if (performerMind != null)
+        {
             _mindSystem.TransferTo(performerMindId, target, ghostCheckOverride: true);
+        }
+
 
         if (targetMind != null)
+        {
             _mindSystem.TransferTo(targetMindId, performer, ghostCheckOverride: true);
+        }
 
         if (end)
         {
