@@ -73,7 +73,7 @@
 
 - type: entity
   id: MassMindSwap
-  parent: BaseGlimmerEvent
+  parent: BaseGameRule
   noSpawn: true
   components:
     - type: GlimmerEvent

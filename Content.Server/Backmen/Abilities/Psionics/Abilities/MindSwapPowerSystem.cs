@@ -12,6 +12,7 @@ using Content.Server.Popups;
 using Content.Server.GameTicking;
 using Content.Shared.Backmen.Abilities.Psionics;
 using Content.Shared.Mind;
+using Content.Shared.Mind.Components;
 using Robust.Server.GameObjects;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
@@ -27,6 +28,8 @@ public sealed class MindSwapPowerSystem : EntitySystem
     [Dependency] private readonly SharedPsionicAbilitiesSystem _psionics = default!;
     [Dependency] private readonly PopupSystem _popupSystem = default!;
     [Dependency] private readonly MindSystem _mindSystem = default!;
+    [Dependency] private readonly ActorSystem _actorSystem = default!;
+    [Dependency] private readonly MetaDataSystem _metaDataSystem = default!;
 
     public override void Initialize()
     {
@@ -157,27 +160,34 @@ public sealed class MindSwapPowerSystem : EntitySystem
     public void Swap(EntityUid performer, EntityUid target, bool end = false)
     {
         if (end && (!HasComp<MindSwappedComponent>(performer) || !HasComp<MindSwappedComponent>(target)))
+        {
             return;
-
-        // Get the minds first. On transfer, they'll be gone.
-        MindComponent? performerMind = null;
-        MindComponent? targetMind = null;
-
+        }
+        else if (!end && (HasComp<MindSwappedComponent>(performer) || HasComp<MindSwappedComponent>(target)))
+        {
+            return; // Повторный свап!? TODO: chain swap, in current mode broken chained in no return (has no mind error)
+        }
         // This is here to prevent missing MindContainerComponent Resolve errors.
-        _mindSystem.TryGetMind(performer, out var performerMindId, out performerMind);
-
-        _mindSystem.TryGetMind(target, out var targetMindId, out targetMind);
 
         // Do the transfer.
-        if (performerMind != null)
+        if (_mindSystem.TryGetMind(performer, out var performerMindId, out var performerMind))
         {
-            _mindSystem.TransferTo(performerMindId, target, ghostCheckOverride: true);
+            _actorSystem.Detach(target);
+            _mindSystem.TransferTo(performerMindId, target, true, false, performerMind);
+            if (_mindSystem.TryGetSession(performerMind!, out var playerSession))
+            {
+                _actorSystem.Attach(target, playerSession, true, out _);
+            }
         }
 
-
-        if (targetMind != null)
+        if (_mindSystem.TryGetMind(target, out var targetMindId, out var targetMind))
         {
-            _mindSystem.TransferTo(targetMindId, performer, ghostCheckOverride: true);
+            _actorSystem.Detach(performer);
+            if (_mindSystem.TryGetSession(targetMindId!, out var playerSession))
+            {
+                _actorSystem.Attach(performer, playerSession, true, out _);
+            }
+            _mindSystem.TransferTo(targetMindId, performer, true, false, targetMind);
         }
 
         if (end)
@@ -197,7 +207,9 @@ public sealed class MindSwapPowerSystem : EntitySystem
         var targetComp = EnsureComp<MindSwappedComponent>(target);
 
         perfComp.OriginalEntity = target;
+        perfComp.OriginalMindId = targetMindId;
         targetComp.OriginalEntity = performer;
+        targetComp.OriginalMindId = performerMindId;
     }
 
     public void GetTrapped(EntityUid uid)
@@ -214,11 +226,18 @@ public sealed class MindSwapPowerSystem : EntitySystem
             RemComp<StealthComponent>(uid);
             EnsureComp<SpeechComponent>(uid);
             EnsureComp<DispellableComponent>(uid);
-            MetaData(uid).EntityName = Loc.GetString("telegnostic-trapped-entity-name");
-            MetaData(uid).EntityDescription = Loc.GetString("telegnostic-trapped-entity-desc");
+            _metaDataSystem.SetEntityName(uid,Loc.GetString("telegnostic-trapped-entity-name"));
+            _metaDataSystem.SetEntityDescription(uid, Loc.GetString("telegnostic-trapped-entity-desc"));
         }
     }
 }
 
-public sealed partial class MindSwapPowerActionEvent : EntityTargetActionEvent {}
-public sealed partial class MindSwapPowerReturnActionEvent : InstantActionEvent {}
+public sealed partial class MindSwapPowerActionEvent : EntityTargetActionEvent
+{
+
+}
+
+public sealed partial class MindSwapPowerReturnActionEvent : InstantActionEvent
+{
+
+}
