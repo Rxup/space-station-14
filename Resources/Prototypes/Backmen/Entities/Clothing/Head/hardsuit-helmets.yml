@@ -94,3 +94,20 @@
         Piercing: 0.9
         Heat: 0.9
         Radiation: 0.9
+
+- type: entity
+  parent: ClothingHeadHelmetHardsuitRd
+  id: ClothingHeadHelmetHardsuitMystagogue
+  noSpawn: true
+  name: шлем защитного костюма мистагогов
+  description: Легкий шлем скафандра, оснащенный первой в галактике системой псионического прохождения.
+  components:
+    - type: Psionic
+    - type: TinfoilHat
+      passthrough: true
+      destroyOnFry: false
+    - type: ClothingGrantPsionicPower
+      power: MetapsionicPower
+    - type: GuideHelp
+      guides:
+        - Psionics
