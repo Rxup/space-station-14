@@ -97,7 +97,7 @@
     graph: GlimmerDevices
     node: glimmerDrain
   - type: Sprite
-    sprite: Nyanotrasen/Structures/Machines/glimmer_machines.rsi
+    sprite: Backmen/Structures/Machines/glimmer_machines.rsi
     noRot: true
     layers:
     - state: base
@@ -164,7 +164,7 @@
         - !type:DoActsBehavior
           acts: ["Destruction"]
     - type: Sprite
-      sprite: Nyanotrasen/Structures/Machines/glimmer_machines.rsi
+      sprite: Backmen/Structures/Machines/glimmer_machines.rsi
       noRot: true
       layers:
       - state: base
