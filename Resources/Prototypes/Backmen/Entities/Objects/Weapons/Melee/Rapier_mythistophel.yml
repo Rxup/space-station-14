@@ -2,7 +2,7 @@
   name: Рапира Мифистофеля
   parent: BaseItem
   id: MythistophelRapier
-  description: Рапира выкована стариком Мифистофелем. Чувствуется запах напалма 
+  description: Рапира выкована стариком Мифистофелем, чувствуется запах напалма 
   components:
   - type: IgniteOnMeleeHit
     fireStacks: 1
@@ -21,7 +21,7 @@
         path: /Audio/Weapons/Rapier.ogg
   - type: Reflect
     enabled: true
-    reflectProb: .8
+    reflectProb: .7
     spread: 90        
   - type: Item
     size: 10
