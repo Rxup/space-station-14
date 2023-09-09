@@ -79,6 +79,18 @@
 
 - type: entity
   parent: ClothingHeadTinfoil
+  id: ClothingHeadCage
+  name: изолирующая головная клетка
+  description: Псионически изолирует голову того, кто находится внутри нее. Требуется время, чтобы устоять.
+  components:
+    - type: Sprite
+      sprite: Backmen/Clothing/Head/Hats/cage.rsi
+    - type: Clothing
+      sprite: Backmen/Clothing/Head/Hats/cage.rsi
+    - type: HeadCage
+
+- type: entity
+  parent: ClothingHeadTinfoil
   id: ClothingHeadHelmetInsulated
   name: insulative skullcap
   description: Psionically insulates whoevers head is inside it. It has some protection from physical damage.
