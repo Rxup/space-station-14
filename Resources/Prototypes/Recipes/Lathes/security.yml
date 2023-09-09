@@ -89,7 +89,7 @@
   materials:
     Steel: 300
     Glass: 200
-    
+
 - type: latheRecipe
   id: ClothingEyesHudSecurity
   result: ClothingEyesHudSecurity
@@ -353,3 +353,16 @@
   completetime: 5
   materials:
     Plastic: 950
+
+- type: latheRecipe
+  id: ShellSoulbreaker
+  icon:
+    sprite: Objects/Weapons/Guns/Ammunition/Casings/shotgun_shell.rsi
+    state: practice
+  result: ShellSoulbreaker
+  completetime: 4
+  materials:
+    Plastic: 15
+    Steel: 10
+    Bluespace: 10
+    Glass: 5

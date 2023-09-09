@@ -34,3 +34,14 @@
   id: CancerMouse
   coefficients:
     Radiation: -0.25
+
+- type: damageModifierSet
+  id: ShockAbsorber
+  coefficients:
+    Blunt: 0.7
+    Slash: 0.5
+    Piercing: 0.7
+    Shock: 0
+  flatReductions:
+    Blunt: 5
+    Heat: 5
