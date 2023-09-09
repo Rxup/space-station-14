@@ -5,11 +5,3 @@
   description: spider-web-action-description
   serverEvent: !type:SpiderWebActionEvent
   useDelay: 180
-
-- type: worldTargetAction
-  id: SpinWeb
-  name: action-name-spin-web
-  description: action-desc-spin-web
-  icon: { sprite: Backmen/Structures/web.rsi, state: web1 }
-  range: 1.5
-  serverEvent: !type:SpinWebActionEvent

@@ -276,12 +276,12 @@ public sealed class SmokeSystem : EntitySystem
         var smoke = EnsureComp<SmokeComponent>(smokeEnt);
         smoke.Color = comp.SmokeColor;
         smoke.SmokeColor = comp.SmokeColor;
-        Dirty(smoke);
+        Dirty(smokeEnt,smoke);
         smoke.SpreadAmount = comp.SpreadAmount;
         var solution = new Solution();
         foreach (var reagent in comp.SmokeReagents)
         {
-            solution.AddReagent(reagent.ReagentId, reagent.Quantity);
+            solution.AddReagent(reagent.Reagent, reagent.Quantity);
         }
         Start(smokeEnt, smoke, solution, comp.Time);
         _audioSystem.PlayPvs(comp.Sound, xform.Coordinates, AudioParams.Default.WithVariation(0.125f));

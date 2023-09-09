@@ -100,11 +100,8 @@
     prototype: ArachneClassic
     requiredLegs: 8
   - type: Damageable
-    damageContainer: Biological
-    #damageModifierSet: ArachneClassic TODO!
-#  - type: DiseaseCarrier
-#    naturalImmunities:
-#    - BleedersBite
+    damageContainer: HalfSpirit
+    damageModifierSet: HalfSpirit
   - type: Speech
     speechSounds: Alto
   - type: DamageOnHighSpeedImpact
@@ -138,7 +135,7 @@
   - type: Barotrauma
     damage:
       types:
-        Blunt: 0.05 #per second, scales with pressure and other constants. Reduced Damage. This allows medicine to heal faster than damage.
+        Blunt: 0.03 #per second, scales with pressure and other constants. Reduced Damage. This allows medicine to heal faster than damage.
   - type: MovementAlwaysTouching
   - type: MovementSpeedModifier
     baseWalkSpeed : 3.0

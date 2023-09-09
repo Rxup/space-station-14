@@ -34,6 +34,8 @@
       components:
         - type: SpecForce
           actionName: CentcomFtlAction
+        - type: Psionic
+        - type: DispelPower
   minBankBalance: 800
   maxBankBalance: 1200
   wageDepartment: CentCom

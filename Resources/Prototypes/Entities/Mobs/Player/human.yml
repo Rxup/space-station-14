@@ -3,6 +3,8 @@
   name: Urist McHands
   parent: [BaseMobHuman, BaseMob]
   id: MobHuman
+  components:
+    - type: PotentialPsionic
 
 #Syndie
 - type: entity
