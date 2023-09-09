@@ -105,3 +105,25 @@
     magState: mag
     steps: 12
     zeroVisible: false
+
+- type: entity
+  id: BulletCaselessRifleHighVelocity
+  name: bullet (.25 caseless high-velocity)
+  parent: BaseBulletHighVelocity
+  noSpawn: true
+  components:
+    - type: Projectile
+      damage:
+        types:
+          Piercing: 22
+
+- type: entity
+  id: BaseBulletHighVelocity
+  name: base bullet high-velocity
+  parent: BaseBullet
+  noSpawn: true
+  components:
+    - type: Projectile
+      damage:
+        types:
+          Piercing: 17
