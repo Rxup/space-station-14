@@ -1,0 +1,7 @@
+﻿- type: latheRecipe
+  id: ClothingHeadHelmetInsulated
+  result: ClothingHeadHelmetInsulated
+  completetime: 4
+  materials:
+    Steel: 400
+    Bluespace: 20

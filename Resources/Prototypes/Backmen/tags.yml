@@ -15,3 +15,9 @@
 
 - type: Tag
   id: NormalityCrystal
+
+- type: Tag
+  id: MothroachHide
+
+- type: Tag
+  id: BluespaceCrystal
