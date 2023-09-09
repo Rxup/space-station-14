@@ -194,7 +194,10 @@ public sealed class MindSwapPowerSystem : EntitySystem
             RemComp<ActorComponent>(target);
             RemComp<MindContainerComponent>(target);
             _mindSystem.SetUserId(performerMindId, performerMind!.UserId, performerMind);
-            _actorSystem.Attach(target, (IPlayerSession) performerMind.Session!, true);
+            if (performerMind.Session != null)
+            {
+                _actorSystem.Attach(target, (IPlayerSession) performerMind.Session!, true);
+            }
             _mindSystem.TransferTo(performerMindId, target, true, false);
         }
 
@@ -203,7 +206,10 @@ public sealed class MindSwapPowerSystem : EntitySystem
             RemComp<ActorComponent>(performer);
             RemComp<MindContainerComponent>(performer);
             _mindSystem.SetUserId(targetMindId, targetMind!.UserId, targetMind);
-            _actorSystem.Attach(target, (IPlayerSession) targetMind.Session!, true);
+            if (targetMind.Session != null)
+            {
+                _actorSystem.Attach(target, (IPlayerSession) targetMind.Session!, true);
+            }
             _mindSystem.TransferTo(targetMindId, performer, true, false);
         }
 
