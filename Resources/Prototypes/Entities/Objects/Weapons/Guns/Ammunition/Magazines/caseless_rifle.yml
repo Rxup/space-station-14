@@ -238,27 +238,3 @@
       map: ["enum.GunVisualLayers.Base"]
     - state: mag-1
       map: ["enum.GunVisualLayers.Mag"]
-
-- type: entity
-  id: ShellSoulbreaker
-  name: патрон (.50 душераздерающий)
-  parent: BaseShellShotgun
-  components:
-    - type: Sprite
-      layers:
-        - state: practice
-          map: [ "enum.AmmoVisualLayers.Base" ]
-    - type: CartridgeAmmo
-      proto: PelletShotgunSoulbreaker
-      count: 1
-    - type: ChemicalAmmo
-    - type: SolutionContainerManager
-      solutions:
-        ammo:
-          reagents:
-            - ReagentId: SoulbreakerToxin
-              Quantity: 15
-    - type: SolutionTransfer
-      maxTransferAmount: 15
-    - type: SpentAmmoVisuals
-      state: "practice"
