@@ -37,7 +37,7 @@
     Steel: 25
 
 - type: latheRecipe
-  id: BluespaceBeaker
+  id: BluespaceBeaker1
   result: BluespaceBeaker
   completetime: 2
   materials:

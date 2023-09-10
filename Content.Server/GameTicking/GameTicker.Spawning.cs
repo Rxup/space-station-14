@@ -193,6 +193,11 @@ namespace Content.Server.GameTicking
 
             _playTimeTrackings.PlayerRolesChanged(player);
 
+// start-backmen
+            if (jobPrototype.AlwaysUseSpawner)
+                lateJoin = false;
+// end-backmen
+
             var mobMaybe = _stationSpawning.SpawnPlayerCharacterOnStation(station, job, character);
             DebugTools.AssertNotNull(mobMaybe);
             var mob = mobMaybe!.Value;
