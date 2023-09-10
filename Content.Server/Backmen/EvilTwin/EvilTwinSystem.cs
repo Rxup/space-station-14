@@ -469,5 +469,5 @@ public sealed class EvilTwinSystem : EntitySystem
 
     private const string EscapeObjective = "EscapeShuttleObjectiveEvilTwin";
 
-    private const string SpawnPointPrototype = "SpawnPointEvilTwin";
+    [ValidatePrototypeId<EntityPrototype>] private const string SpawnPointPrototype = "SpawnPointEvilTwin";
 }

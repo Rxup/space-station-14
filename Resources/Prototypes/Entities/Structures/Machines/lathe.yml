@@ -265,6 +265,10 @@
       - WelderExperimental
       - JawsOfLife
       - ClothingEyesGlassesChemical
+      - CoreSilver
+      #- QSI
+      - InsulativeHeadcage
+      - HandTeleporter1
   - type: EmagLatheRecipes
     emagDynamicRecipes:
       - ExplosivePayload
@@ -565,6 +569,9 @@
       - WeaponLaserCannon
       - WeaponXrayCannon
       - WeaponTaser
+      - InsulativeHeadcage
+      - ClothingHeadHelmetInsulated
+      - ShellSoulbreaker
   - type: MaterialStorage
     whitelist:
       tags:
@@ -671,6 +678,7 @@
       - Saw
       - Hemostat
       - BluespaceBeaker
+#      - BluespaceBeaker1
       - SyringeBluespace
   - type: Machine
     board: MedicalTechFabCircuitboard
@@ -831,6 +839,7 @@
       runningState: building
       canEjectStoredMaterials: false
       staticRecipes:
+        - BluespaceCrystal # backmen
         - SheetSteel30
         - SheetGlass30
         - SheetRGlass30
