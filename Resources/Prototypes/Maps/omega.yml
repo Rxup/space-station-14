@@ -69,3 +69,4 @@
             BKBPLATech: [0, 3] # backmen-BPLA-Silicons
             BKBPLAMED: [0, 3] # backmen-BPLAMED-Silicons
             Borg: [ 2, 2 ]
+            Prisoner: [ 2, 3]
