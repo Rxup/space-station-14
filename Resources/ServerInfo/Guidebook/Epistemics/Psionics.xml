@@ -1,59 +1,59 @@
 <Document>
-# Psionics
-[color=#a4885c]Psionics[/color] are mental abilities that interface with the [color=#a4885c]noösphere[/color]. Humans have limited access to the noösphere's full potential, allowing some to find ways to command it.
-The abilities originate from distorting a noöspheric imprint into a specific shape, a bit like a lock and key. This means that humans can only have a single ability at a time.
-An imprint shaped for metapsionics will not work for invisibility, and vice versa.
+# Псионика
+[color=#a4885c]Псионика[/color] - это ментальные способности, которые взаимодействуют с [color=#a4885c]ноосферой[/color]. Люди имеют ограниченный доступ ко всему потенциалу ноосферы, что позволяет некоторым находить способы управлять ею.
+Способности возникают из-за искажения ноосферного отпечатка в определенную форму, немного похожую на замок и ключ. Это означает, что люди могут обладать только одной способностью одновременно.
+Отпечаток, созданный для метапсихологии, не будет работать для невидимости, и наоборот.
 
 <GuideEntityEmbed Entity="MobIfritFamiliar" />
-Many other creatures are much more in tune with it than humans, allowing them to access more powerful psionics like [color=#a4885c]kineses[/color].
+Многие другие существа гораздо лучше настроены на это, чем люди, что позволяет им получать доступ к более мощной псионике, такой как [color=#a4885c] кинезы[/color].
 
-## Telepathy
-All psionic entities have a shared telepathic communication channel. It's anonymized, so you never know who you are talking to. Statistically, it probably is not human.
+## Телепатия
+Все псионические сущности имеют общий канал телепатической связи. Это анонимно, так что вы никогда не знаете, с кем разговариваете. По статистике, это, вероятно, не человек.
 
-## Glimmer
-[color=#a4885c]Glimmer[/color] is a more colloquial term for [color=#a4885c]noöspheric pressure[/color], measured in [color=#a4885c]milli-Psi (mΨ)[/color]. The noösphere can be considered analogous to an atmosphere. In a localized area, everything will equalize towards a certain pressure that's based off of the total energy in the system.
-Note that unlike atmospheres, areas of noopsheric pressure do not operate by physical contigiousness, but mental. This means that areas with intertwined destinies will experience the same latent glimmer regardless of physical separation.
+## Мерцание
+[color=#a4885c]Мерцание[/color] - более разговорный термин для обозначения [color=#a4885c] атмосферного давления[/color], измеряемого в [color=#a4885c] миллиграммах на квадратный дюйм (mΨ)[/color]. Ноосферу можно считать аналогом атмосферы. В локализованной области все выровняется до определенного давления, которое зависит от общей энергии в системе.
+Обратите внимание, что, в отличие от атмосфер, области ноосферного давления действуют не за счет физической близости, а за счет ментальной. Это означает, что области с переплетенными судьбами будут испытывать одно и то же скрытое мерцание независимо от физического разделения.
 
 <GuideEntityEmbed Entity="SophicScribe" />
-The [color=#a4885c]sophic scribe[/color] tracks glimmer.
+Следы [color=#a4885c]sophic scribe[/color] мерцают.
 
-## Acquiring Psionics
+## Овладение псионикой
 <GuideEntityEmbed Entity="Oracle" />
 
-Psionics can be acquired in a number of ways. The oracle will sometimes dispense a strange liquid called [color=#a4885c]lotophagoi oil[/color], which at high glimmer levels is guaranteed to give psionics.
+Псионику можно приобрести несколькими способами. Оракул иногда выдает странную жидкость под названием [color=#a4885c] масло лотофагов [/color], которое при высоком уровне мерцания гарантированно дает псионические эффекты.
 
-Random discharges may give you psionics as the seizure knocks your noöspheric imprint into just the right shape.
+Случайные разряды могут наделить вас псионическими способностями, поскольку припадок придает вашему ноосферному отпечатку нужную форму.
 
-[color=#a4885c]Space drugs[/color] are an easier to acquire but much weaker alternative to lotophagoi oil.
+[color=#a4885c]Космические препараты[/color] - более простая в приобретении, но гораздо более слабая альтернатива маслу лотофаги.
 
-## Psionic Insulation
+## Псионическая изоляция
 <Box>
 <GuideEntityEmbed Entity="ClothingHeadTinfoil"/>
 <GuideEntityEmbed Entity="ClothingHeadHelmetInsulated"/>
 <GuideEntityEmbed Entity="PillCryptobiolin" />
 </Box>
-[color=#a4885c]Insulative clothing[/color] and [color=#a4885c]cryptobiolin[/color] will render you immune to psionics, but prevent you from using any you have.
+[color=#a4885c] Изолирующая одежда[/color] и [color=#a4885c] криптобиолин[/color] сделают вас невосприимчивым к псионике, но не позволят использовать все, что у вас есть.
 
 <GuideEntityEmbed Entity="ClothingHeadCage" />
-Security has a more forcible option for insulative clothing.
+У службы безопасности есть более надежный вариант утепляющей одежды.
 
-## Handling Glimmer Emergencies
+## Управление чрезвычайными ситуациями с проблесками
 <GuideEntityEmbed Entity="GlimmerProber"/>
-Probers should be turned off before glimmer exceeds 500 mΨ.
+Датчики следует выключать до того, как мерцание превысит 500 мΨ.
 
 <GuideEntityEmbed Entity="GlimmerDrain"/>
-Glimmer drains are quite effective at draining glimmer, taking it out as fast as a prober can put it in.
+Дренажные системы Glimmer довольно эффективны при осушении glimmer, извлекая его так быстро, как только может поместить испытатель.
 
 <GuideEntityEmbed Entity="AltarNanotrasen" />
-Sacrificing psychics will reduce glimmer instantly by a decent amount.
+Принесение в жертву экстрасенсов мгновенно уменьшит мерцание на приличную величину.
 
 <GuideEntityEmbed Entity="PillMindbreakerToxin" />
-Metabolizing 20u or more of [color=#a4885c]mindbreaker[/color] will remove psionics from a person, meaning they will not generate any more glimmer.
+Усвоение 20u или более [color=#a4885c] разрушителя разума[/color] удалит псионику из человека, что означает, что они больше не будут генерировать мерцание.
 
 <GuideEntityEmbed Entity="ShellSoulbreaker" />
-[color=#a4885c]Soulbreaker[/color] shells will remove psionics from psychics they hit.
+[color=#a4885c]Снаряды Soulbreaker[/color] удаляют псионику у экстрасенсов, в которых они попадают.
 
 <GuideEntityEmbed Entity="Ectoplasm" />
-[color=#a4885c]Ectoplasm[/color], combined in a beaker with equal parts water, ash, blood, and plasma, will produce a normality crystal when heated enough. [color=#fcdf03]Use a hot plate for this.[/color]
+[color=#a4885c] Эктоплазма[/color], смешанная в мензурке с равными частями воды, золы, крови и плазмы, при достаточном нагревании даст нормальный кристалл. [color=#fcdf03]Используйте для этого горячую плиту.[/color]
 
 </Document>
