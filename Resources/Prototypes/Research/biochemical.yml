@@ -126,7 +126,7 @@
   tier: 3
   cost: 10000
   recipeUnlocks:
-  - BluespaceBeaker1
+  - BluespaceBeaker
   - SyringeBluespace
 
 # look into revisiting this later once medical isn't a hellhole
