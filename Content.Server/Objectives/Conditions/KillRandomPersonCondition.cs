@@ -1,3 +1,5 @@
+using Content.Server.Station.Components;
+using Content.Server.Station.Systems;
 using Content.Shared.Humanoid;
 using Content.Shared.Mind;
 using Content.Shared.Mind.Components;
@@ -13,12 +15,23 @@ public sealed partial class KillRandomPersonCondition : KillPersonCondition
     public override IObjectiveCondition GetAssigned(EntityUid mindId, MindComponent mind)
     {
         var allHumans = new List<EntityUid>();
+        var _stationSystem = EntityManager.System<StationSystem>();
         var query = EntityManager.EntityQuery<MindContainerComponent, HumanoidAppearanceComponent>(true);
         foreach (var (mc, _) in query)
         {
             var entity = EntityManager.GetComponentOrNull<MindComponent>(mc.Mind)?.OwnedEntity;
             if (entity == default)
                 continue;
+
+            var station = _stationSystem.GetOwningStation(entity!.Value);
+            if (station == null)
+            {
+                continue;
+            }
+            if (!EntityManager.HasComponent<StationEventEligibleComponent>(station))
+            {
+                continue;
+            }
 
             if (EntityManager.TryGetComponent(entity, out MobStateComponent? mobState) &&
                 MobStateSystem.IsAlive(entity.Value, mobState) &&

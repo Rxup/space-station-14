@@ -2,6 +2,7 @@ using System.Globalization;
 using System.Linq;
 using System.Numerics;
 using Content.Client.Administration.Managers;
+using Content.Client.Backmen.Chat; // backmen: psionic
 using Content.Client.Chat;
 using Content.Client.Chat.Managers;
 using Content.Client.Chat.TypingIndicator;
@@ -19,7 +20,6 @@ using Content.Shared.Chat;
 using Content.Shared.Examine;
 using Content.Shared.Input;
 using Content.Shared.Radio;
-using Robust.Client.GameObjects;
 using Robust.Client.Graphics;
 using Robust.Client.Input;
 using Robust.Client.Player;
@@ -56,7 +56,7 @@ public sealed class ChatUIController : UIController
     [UISystemDependency] private readonly GhostSystem? _ghost = default;
     [UISystemDependency] private readonly TypingIndicatorSystem? _typingIndicator = default;
     [UISystemDependency] private readonly ChatSystem? _chatSys = default;
-    [UISystemDependency] private readonly TransformSystem _transform = default!;
+    [UISystemDependency] private readonly PsionicChatUpdateSystem? _psionic = default!; // backmen: psionic
 
     private ISawmill _sawmill = default!;
 
@@ -71,7 +71,8 @@ public sealed class ChatUIController : UIController
         {SharedChatSystem.EmotesAltPrefix, ChatSelectChannel.Emotes},
         {SharedChatSystem.AdminPrefix, ChatSelectChannel.Admin},
         {SharedChatSystem.RadioCommonPrefix, ChatSelectChannel.Radio},
-        {SharedChatSystem.DeadPrefix, ChatSelectChannel.Dead}
+        {SharedChatSystem.DeadPrefix, ChatSelectChannel.Dead},
+        {SharedChatSystem.TelepathicPrefix, ChatSelectChannel.Telepathic} // backmen: Psionic
     };
 
     public static readonly Dictionary<ChatSelectChannel, char> ChannelPrefixes = new()
@@ -84,7 +85,8 @@ public sealed class ChatUIController : UIController
         {ChatSelectChannel.Emotes, SharedChatSystem.EmotesPrefix},
         {ChatSelectChannel.Admin, SharedChatSystem.AdminPrefix},
         {ChatSelectChannel.Radio, SharedChatSystem.RadioCommonPrefix},
-        {ChatSelectChannel.Dead, SharedChatSystem.DeadPrefix}
+        {ChatSelectChannel.Dead, SharedChatSystem.DeadPrefix},
+        {ChatSelectChannel.Telepathic, SharedChatSystem.TelepathicPrefix} // backmen: Psionic
     };
 
     /// <summary>
@@ -164,6 +166,7 @@ public sealed class ChatUIController : UIController
         _sawmill = Logger.GetSawmill("chat");
         _sawmill.Level = LogLevel.Info;
         _admin.AdminStatusUpdated += UpdateChannelPermissions;
+        _manager.PermissionsUpdated += UpdateChannelPermissions; //Backmen:Psionics
         _player.LocalPlayerChanged += OnLocalPlayerChanged;
         _state.OnStateChanged += StateChanged;
         _net.RegisterNetMessage<MsgChatMessage>(OnChatMessage);
@@ -410,7 +413,7 @@ public sealed class ChatUIController : UIController
     private void CreateSpeechBubble(EntityUid entity, SpeechBubbleData speechData)
     {
         var bubble =
-            SpeechBubble.CreateSpeechBubble(speechData.Type, speechData.Message, entity, _eye, _manager, _entities, _transform);
+            SpeechBubble.CreateSpeechBubble(speechData.Type, speechData.Message, entity, _eye, _manager, _entities);
 
         bubble.OnDied += SpeechBubbleDied;
 
@@ -522,6 +525,14 @@ public sealed class ChatUIController : UIController
             FilterableChannels |= ChatChannel.AdminAlert;
             FilterableChannels |= ChatChannel.AdminChat;
             CanSendChannels |= ChatSelectChannel.Admin;
+            FilterableChannels |= ChatChannel.Telepathic;
+        }
+
+        // psionics
+        if (_psionic != null && _psionic.IsPsionic)
+        {
+            FilterableChannels |= ChatChannel.Telepathic;
+            CanSendChannels |= ChatSelectChannel.Telepathic;
         }
 
         SelectableChannels = CanSendChannels;

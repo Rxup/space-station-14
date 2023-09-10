@@ -110,6 +110,8 @@
       event: !type:RatKingDomainActionEvent
     hungerPerDomainUse: 50
   - type: MobsterAccent
+  - type: Speech
+    speechVerb: SmallMob
   - type: Butcherable
     spawned:
     - id: ClothingHeadHatFancyCrown #how did that get there?
@@ -123,6 +125,7 @@
   - type: GuideHelp
     guides:
     - MinorAntagonists
+  - type: PotentialPsionic
 
 - type: entity
   id: MobRatKingBuff
@@ -282,6 +285,8 @@
     price: 500 # rat wealth
   - type: MobsterAccent
     isBoss: false
+  - type: Speech
+    speechVerb: SmallMob
   - type: GuideHelp
     guides:
     - MinorAntagonists

@@ -71,11 +71,20 @@
   - type: NoSlip
 
 - type: entity
-  name: oneirophage
+  name: Чёрная вдова
   parent: SimpleMobBase
   id: MobGiantSpiderVampire
   description: The 'dream-eater' spider, rumored to be one of the potential genetic sources for arachne.
   components:
+  - type: PotentialPsionic
+  - type: Psionic
+    removable: false
+  - type: MetapsionicPower
+  - type: AntiPsionicWeapon
+    punish: false
+    modifiers:
+      coefficients:
+        Piercing: 2.25
   - type: Sprite
     drawdepth: Mobs
     layers:
@@ -168,10 +177,16 @@
       - ForcedSleep
       - TemporaryBlindness
       - Pacified
+      - PsionicsDisabled
+      - PsionicallyInsulated
   - type: Tag
     tags:
       - Oneirophage
   - type: MovementAlwaysTouching
+  - type: PsionicInvisibleContacts
+    whitelist:
+      tags:
+        - ArachneWeb
 
 - type: entity
   name: oneirophage
@@ -340,3 +355,4 @@
   - type: ActiveRadio
     channels:
     - Common
+

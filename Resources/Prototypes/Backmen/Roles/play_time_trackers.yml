@@ -25,4 +25,5 @@
 - type: playTimeTracker
   id: JobCentralCommandAdmiral
 
-
+- type: playTimeTracker
+  id: JobPrisoner

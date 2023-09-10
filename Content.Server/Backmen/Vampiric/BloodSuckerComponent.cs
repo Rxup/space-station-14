@@ -20,24 +20,24 @@ public sealed partial class BloodSuckerComponent : Component
     /// <summary>
     /// Whether to inject chems into a chemstream when we suck something.
     /// </summary>
-    [DataField("injectWhenSucc")]
+    [DataField("injectWhenSucc"), ViewVariables(VVAccess.ReadWrite)]
     public bool InjectWhenSucc = false;
 
     /// <summary>
     /// How many units of our injected chem to inject.
     /// </summary>
-    [DataField("unitsToInject")]
+    [DataField("unitsToInject"), ViewVariables(VVAccess.ReadWrite)]
     public float UnitsToInject = 5;
 
     /// <summary>
     /// Which reagent to inject.
     /// </summary>
-    [DataField("injectReagent")]
+    [DataField("injectReagent"), ViewVariables(VVAccess.ReadWrite)]
     public string InjectReagent = "";
 
     /// <summary>
     /// Whether we need to web the thing up first...
     /// </summary>
-    [DataField("webRequired")]
+    [DataField("webRequired"), ViewVariables(VVAccess.ReadWrite)]
     public bool WebRequired = false;
 }

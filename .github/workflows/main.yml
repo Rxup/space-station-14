@@ -52,6 +52,7 @@ jobs:
         source: "release/${{ github.sha }}"
         target: "/opt/builds/"
         strip_components: 1
+        tar_tmp_path: "/tmp/"
         
     - name: Update cdn
       uses: appleboy/ssh-action@master

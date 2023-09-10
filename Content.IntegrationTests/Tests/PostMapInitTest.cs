@@ -257,6 +257,7 @@ namespace Content.IntegrationTests.Tests
                     // This is done inside gamemap test because loading the map takes ages and we already have it.
                     var jobList = entManager.GetComponent<StationJobsComponent>(station).RoundStartJobList
                         .Where(x => x.Value != 0)
+                        .Where(x=>x.Key != "Prisoner") // backmen: Fugitive
                         .Select(x => x.Key);
                     var spawnPoints = entManager.EntityQuery<SpawnPointComponent>()
                         .Where(spawnpoint => spawnpoint.SpawnType == SpawnPointType.Job)

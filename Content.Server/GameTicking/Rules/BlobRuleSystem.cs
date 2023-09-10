@@ -172,7 +172,7 @@ public sealed class BlobRuleSystem : GameRuleSystem<BlobRuleComponent>
                             if (progress > 0.99f)
                             {
                                 result += "\n- " + Loc.GetString(
-                                    "traitor-objective-condition-success",
+                                    "objectives-condition-success",
                                     ("condition", condition.Title),
                                     ("markupColor", "green")
                                 );
@@ -180,7 +180,7 @@ public sealed class BlobRuleSystem : GameRuleSystem<BlobRuleComponent>
                             else
                             {
                                 result += "\n- " + Loc.GetString(
-                                    "traitor-objective-condition-fail",
+                                    "objectives-condition-fail",
                                     ("condition", condition.Title),
                                     ("progress", (int) (progress * 100)),
                                     ("markupColor", "red")

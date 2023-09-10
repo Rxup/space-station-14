@@ -193,6 +193,11 @@ namespace Content.Server.GameTicking
 
             _playTimeTrackings.PlayerRolesChanged(player);
 
+// start-backmen
+            if (jobPrototype.AlwaysUseSpawner)
+                lateJoin = false;
+// end-backmen
+
             var mobMaybe = _stationSpawning.SpawnPlayerCharacterOnStation(station, job, character);
             DebugTools.AssertNotNull(mobMaybe);
             var mob = mobMaybe!.Value;
@@ -376,7 +381,7 @@ namespace Content.Server.GameTicking
                     var gridXform = Transform(gridUid);
 
                     return new EntityCoordinates(gridUid,
-                        _transform.GetInvWorldMatrix(gridXform).Transform(toMap.Position));
+                        gridXform.InvWorldMatrix.Transform(toMap.Position));
                 }
 
                 return spawn;
