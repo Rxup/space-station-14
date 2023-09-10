@@ -36,17 +36,17 @@
     Gold: 200
     Bananium: 500
 
-- type: latheRecipe
-  id: BluespaceBeaker1
-  icon:
-    sprite: Objects/Specific/Chemistry/beaker_bluespace.rsi
-    state: beakerbluespace
-  result: BluespaceBeaker
-  completetime: 5
-  materials:
-    Bluespace: 100
-    Glass: 500
-    Plastic: 500
+#- type: latheRecipe
+#  id: BluespaceBeaker1
+#  icon:
+#    sprite: Objects/Specific/Chemistry/beaker_bluespace.rsi
+#    state: beakerbluespace
+#  result: BluespaceBeaker
+#  completetime: 5
+#  materials:
+#    Bluespace: 100
+#    Glass: 500
+#    Plastic: 500
 
 - type: latheRecipe
   id: TrashBagHolding

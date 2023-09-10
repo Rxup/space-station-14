@@ -678,7 +678,7 @@
       - Saw
       - Hemostat
       - BluespaceBeaker
-      - BluespaceBeaker1
+#      - BluespaceBeaker1
       - SyringeBluespace
   - type: Machine
     board: MedicalTechFabCircuitboard
