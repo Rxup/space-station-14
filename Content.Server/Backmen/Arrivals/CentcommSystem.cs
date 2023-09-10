@@ -1,6 +1,5 @@
 ﻿using System.Numerics;
 using Content.Server.GameTicking;
-using Content.Server.Mind.Components;
 using Content.Server.Popups;
 using Content.Server.Salvage.Expeditions;
 using Content.Server.Shuttle.Components;

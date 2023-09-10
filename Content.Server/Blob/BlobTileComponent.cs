@@ -5,7 +5,7 @@ using Content.Shared.FixedPoint;
 namespace Content.Server.Blob;
 
 [RegisterComponent]
-public sealed class BlobTileComponent : SharedBlobTileComponent
+public sealed partial class BlobTileComponent : SharedBlobTileComponent
 {
     [ViewVariables(VVAccess.ReadOnly)]
     public EntityUid? Core = default!;

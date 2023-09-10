@@ -1,5 +1,6 @@
 using System.Linq;
 using System.Numerics;
+using Content.Server.AlertLevel;
 using Content.Server.Chat.Managers;
 using Content.Server.Explosion.Components;
 using Content.Server.Explosion.EntitySystems;
@@ -7,15 +8,16 @@ using Content.Server.Fluids.EntitySystems;
 using Content.Server.GameTicking;
 using Content.Server.GameTicking.Rules.Components;
 using Content.Server.Mind;
-using Content.Server.Objectives;
 using Content.Server.Roles;
+using Content.Server.RoundEnd;
+using Content.Server.Station.Systems;
 using Content.Shared.Alert;
 using Content.Shared.Blob;
 using Content.Shared.Damage;
 using Content.Shared.Destructible;
 using Content.Shared.FixedPoint;
+using Content.Shared.Objectives;
 using Content.Shared.Popups;
-using Content.Shared.Roles;
 using Content.Shared.Weapons.Melee;
 using Robust.Server.GameObjects;
 using Robust.Shared.Map;
@@ -30,6 +32,7 @@ public sealed class BlobCoreSystem : EntitySystem
     [Dependency] private readonly AlertsSystem _alerts = default!;
     [Dependency] private readonly SharedPopupSystem _popup = default!;
     [Dependency] private readonly MindSystem _mindSystem = default!;
+    [Dependency] private readonly RoleSystem _roleSystem = default!;
     [Dependency] private readonly IChatManager _chatManager = default!;
     [Dependency] private readonly AudioSystem _audioSystem = default!;
     [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
@@ -38,6 +41,9 @@ public sealed class BlobCoreSystem : EntitySystem
     [Dependency] private readonly BlobObserverSystem _blobObserver = default!;
     [Dependency] private readonly ExplosionSystem _explosionSystem = default!;
     [Dependency] private readonly DamageableSystem _damageable = default!;
+    [Dependency] private readonly StationSystem _stationSystem = default!;
+    [Dependency] private readonly AlertLevelSystem _alertLevelSystem = default!;
+    [Dependency] private readonly RoundEndSystem _roundEndSystem = default!;
 
     public override void Initialize()
     {
@@ -82,29 +88,27 @@ public sealed class BlobCoreSystem : EntitySystem
 
         blobObserverComponent.Core = blobCoreUid;
 
-        _mindSystem.TryGetMind(userId, out var mind);
-        if (mind == null)
+        if (!_mindSystem.TryGetMind(userId, out var mindId, out var mind))
             return false;
 
-        _mindSystem.TransferTo(mind, observer, ghostCheckOverride: false);
+        _mindSystem.TransferTo(mindId.Value, observer, ghostCheckOverride: false);
 
         _alerts.ShowAlert(observer, AlertType.BlobHealth, (short) Math.Clamp(Math.Round(core.CoreBlobTotalHealth.Float() / 10f), 0, 20));
 
-        var antagPrototype = _prototypeManager.Index<AntagPrototype>(core.AntagBlobPrototypeId);
-        var blobRole = new BlobRole(mind, antagPrototype);
+        var blobRole = new BlobRoleComponent{ PrototypeId = core.AntagBlobPrototypeId};
 
-        _mindSystem.AddRole(mind, blobRole);
-        SendBlobBriefing(mind);
+        _roleSystem.MindAddRole(mindId.Value, blobRole, mind);
+        SendBlobBriefing(mindId.Value);
 
-        blobRule.Blobs.Add(blobRole);
+        blobRule.Blobs.Add((mindId.Value,mind));
 
         if (_prototypeManager.TryIndex<ObjectivePrototype>("BlobCaptureObjective", out var objective)
-            && objective.CanBeAssigned(mind))
+            && objective.CanBeAssigned(mindId.Value, mind))
         {
-            _mindSystem.TryAddObjective(blobRole.Mind, objective);
+            _mindSystem.TryAddObjective(mindId.Value, mind, objective);
         }
 
-        if (_mindSystem.TryGetSession(mind, out var session))
+        if (_mindSystem.TryGetSession(mindId.Value, out var session))
         {
             _audioSystem.PlayGlobal(core.GreetSoundNotification, session);
         }
@@ -114,7 +118,7 @@ public sealed class BlobCoreSystem : EntitySystem
         return true;
     }
 
-    private void SendBlobBriefing(Mind.Mind mind)
+    private void SendBlobBriefing(EntityUid mind)
     {
         if (_mindSystem.TryGetSession(mind, out var session))
         {
@@ -214,6 +218,33 @@ public sealed class BlobCoreSystem : EntitySystem
             blobTileComponent.Color = Color.White;
             Dirty(blobTileComponent);
         }
+
+        var stationUid = _stationSystem.GetOwningStation(uid);
+        var blobCoreQuery = EntityQueryEnumerator<BlobCoreComponent>();
+        var isAllDie = 0;
+        while (blobCoreQuery.MoveNext(out var ent, out var comp))
+        {
+            if (TerminatingOrDeleted(ent))
+            {
+                continue;
+            }
+            isAllDie++;
+        }
+
+        if (isAllDie <= 1)
+        {
+            var blobFactoryQuery = EntityQueryEnumerator<BlobRuleComponent>();
+            while (blobFactoryQuery.MoveNext(out var blobRuleUid, out var blobRuleComp))
+            {
+                if (blobRuleComp.Stage == BlobStage.Critical ||
+                    blobRuleComp.Stage == BlobStage.Begin)
+                {
+                    _alertLevelSystem.SetLevel(stationUid!.Value, "green", true, true, true, false);
+                    _roundEndSystem.CancelRoundEndCountdown(null, false);
+                }
+            }
+        }
+        QueueDel(uid);
     }
 
     private void ChangeBlobEntChem(EntityUid uid, BlobChemType oldChem, BlobChemType newChem)

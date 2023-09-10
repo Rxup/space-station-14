@@ -4,7 +4,7 @@ using Content.Shared.FixedPoint;
 namespace Content.Server.Backmen.CartridgeLoader.Cartridges;
 
 [RegisterComponent]
-public sealed class BankCartridgeComponent : Component
+public sealed partial class BankCartridgeComponent : Component
 {
     [Dependency] private readonly IEntityManager _entityManager = default!;
 

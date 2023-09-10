@@ -93,3 +93,5 @@
         prob: 0.1
       - id: BookIanAndHamlet
         prob: 0.1
+      - id: BookBusido # Corvax-Books
+        prob: 0.1

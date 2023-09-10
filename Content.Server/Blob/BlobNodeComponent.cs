@@ -3,7 +3,7 @@ using Content.Shared.FixedPoint;
 namespace Content.Server.Blob;
 
 [RegisterComponent]
-public sealed class BlobNodeComponent : Component
+public sealed partial class BlobNodeComponent : Component
 {
     [ViewVariables(VVAccess.ReadWrite), DataField("pulseFrequency")]
     public float PulseFrequency = 4;

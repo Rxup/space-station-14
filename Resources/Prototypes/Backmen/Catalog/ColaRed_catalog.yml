@@ -1,0 +1,66 @@
+- type: listing
+  id: ColaRedInventory1
+  productEntity: DrinkColaCan
+  cost:
+    SpaceCash: 10
+  categories:
+    - ColaRedInventory
+  conditions:
+    - !type:ListingLimitedStockCondition
+      stock: 30
+
+- type: listing
+  id: ColaRedInventory2
+  productEntity: DrinkGrapeCan
+  cost:
+    SpaceCash: 10
+  categories:
+    - ColaRedInventory
+  conditions:
+    - !type:ListingLimitedStockCondition
+      stock: 15
+
+- type: listing
+  id: ColaRedInventory3
+  productEntity: DrinkRootBeerCan
+  cost:
+    SpaceCash: 20
+  categories:
+    - ColaRedInventory
+  conditions:
+    - !type:ListingLimitedStockCondition
+      stock: 15
+
+- type: listing
+  id: ColaRedInventory4
+  productEntity: DrinkIcedTeaCan
+  cost:
+    SpaceCash: 30
+  categories:
+    - ColaRedInventory
+  conditions:
+    - !type:ListingLimitedStockCondition
+      stock: 15
+
+- type: listing
+  id: ColaRedInventory5
+  productEntity:  DrinkLemonLimeCan
+  cost:
+    SpaceCash: 20
+  categories:
+    - ColaRedInventory
+  conditions:
+    - !type:ListingLimitedStockCondition
+      stock: 15
+
+- type: listing
+  id: ColaRedInventory6
+  productEntity: DrinkFourteenLokoCan
+  cost:
+    SpaceCash: 20
+  categories:
+    - ColaRedInventory
+  conditions:
+    - !type:ListingLimitedStockCondition
+      stock: 15
+      

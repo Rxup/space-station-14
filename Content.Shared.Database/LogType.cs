@@ -90,5 +90,6 @@ public enum LogType
     DeviceLinking = 85,
     Tile = 86,
     //backmen
-    Transactions = 120
+    Transactions = 120,
+    Psionics = 121
 }

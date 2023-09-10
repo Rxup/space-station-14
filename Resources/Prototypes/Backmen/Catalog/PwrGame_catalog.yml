@@ -1,0 +1,76 @@
+- type: listing
+  id: PwrGameInventory1
+  productEntity: DrinkPwrGameCan
+  cost:
+    SpaceCash: 39
+  categories:
+    - PwrGameInventory
+  conditions:
+    - !type:ListingLimitedStockCondition
+      stock: 30
+
+- type: listing
+  id: PwrGameInventory2
+  productEntity: DrinkEnergyDrinkCan
+  cost:
+    SpaceCash: 10
+  categories:
+    - PwrGameInventory
+  conditions:
+    - !type:ListingLimitedStockCondition
+      stock: 15
+
+- type: listing
+  id: PwrGameInventory3
+  productEntity: DrinkGrapeCan
+  cost:
+    SpaceCash: 20
+  categories:
+    - PwrGameInventory
+  conditions:
+    - !type:ListingLimitedStockCondition
+      stock: 15
+
+- type: listing
+  id: PwrGameInventory4
+  productEntity: DrinkRootBeerCan
+  cost:
+    SpaceCash: 30
+  categories:
+    - PwrGameInventory
+  conditions:
+    - !type:ListingLimitedStockCondition
+      stock: 15
+
+- type: listing
+  id: PwrGameInventory5
+  productEntity: DrinkIcedTeaCan
+  cost:
+    SpaceCash: 20
+  categories:
+    - PwrGameInventory
+  conditions:
+    - !type:ListingLimitedStockCondition
+      stock: 15
+
+- type: listing
+  id: PwrGameInventory6
+  productEntity: DrinkLemonLimeCan
+  cost:
+    SpaceCash: 20
+  categories:
+    - PwrGameInventory
+  conditions:
+    - !type:ListingLimitedStockCondition
+      stock: 15
+      
+- type: listing
+  id: PwrGameInventory7
+  productEntity: DrinkFourteenLokoCan
+  cost:
+    SpaceCash: 20
+  categories:
+    - PwrGameInventory
+  conditions:
+    - !type:ListingLimitedStockCondition
+      stock: 15      

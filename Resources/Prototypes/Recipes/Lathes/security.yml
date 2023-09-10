@@ -89,7 +89,7 @@
   materials:
     Steel: 300
     Glass: 200
-    
+
 - type: latheRecipe
   id: ClothingEyesHudSecurity
   result: ClothingEyesHudSecurity
@@ -353,3 +353,4 @@
   completetime: 5
   materials:
     Plastic: 950
+

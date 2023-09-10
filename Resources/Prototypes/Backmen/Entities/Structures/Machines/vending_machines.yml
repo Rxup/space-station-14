@@ -353,4 +353,136 @@
       interfaces:
         - key: enum.StoreUiKey.Key
           type: StoreBoundUserInterface
+          
+- type: entity
+  parent: VendingMachineSpaceUp
+  id: BackmenVendingMachineSpaceUp
+  suffix: backmen
+  components:
+    - type: Store
+      categories:
+        - SpaceUpInventory
+      currencyWhitelist:
+        - SpaceCash
+      balance:
+        SpaceCash: 0
+    - type: BuyStoreBank
+    - type: ActivatableUI
+      key: enum.StoreUiKey.Key
+      singleUser: true
+    - type: ActivatableUIRequiresPower
+    - type: UserInterface
+      interfaces:
+        - key: enum.StoreUiKey.Key
+          type: StoreBoundUserInterface     
+
+- type: entity
+  parent: VendingMachineColaRed
+  id: BackmenVendingMachineColaRed
+  suffix: backmen
+  components:
+    - type: Store
+      categories:
+        - ColaRedInventory
+      currencyWhitelist:
+        - SpaceCash
+      balance:
+        SpaceCash: 0
+    - type: BuyStoreBank
+    - type: ActivatableUI
+      key: enum.StoreUiKey.Key
+      singleUser: true
+    - type: ActivatableUIRequiresPower
+    - type: UserInterface
+      interfaces:
+        - key: enum.StoreUiKey.Key
+          type: StoreBoundUserInterface
+
+- type: entity
+  parent: VendingMachineShamblersJuice
+  id: BackmenVendingMachineShamblersJuice
+  suffix: backmen
+  components:
+    - type: Store
+      categories:
+        - ShamblersJuiceInventory
+      currencyWhitelist:
+        - SpaceCash
+      balance:
+        SpaceCash: 0
+    - type: BuyStoreBank
+    - type: ActivatableUI
+      key: enum.StoreUiKey.Key
+      singleUser: true
+    - type: ActivatableUIRequiresPower
+    - type: UserInterface
+      interfaces:
+        - key: enum.StoreUiKey.Key
+          type: StoreBoundUserInterface  
+
+- type: entity
+  parent: VendingMachinePwrGame
+  id: BackmenVendingMachinePwrGame
+  suffix: backmen
+  components:
+    - type: Store
+      categories:
+        - PwrGameInventory
+      currencyWhitelist:
+        - SpaceCash
+      balance:
+        SpaceCash: 0
+    - type: BuyStoreBank
+    - type: ActivatableUI
+      key: enum.StoreUiKey.Key
+      singleUser: true
+    - type: ActivatableUIRequiresPower
+    - type: UserInterface
+      interfaces:
+        - key: enum.StoreUiKey.Key
+          type: StoreBoundUserInterface  
+
+- type: entity
+  parent: VendingMachineDrGibb
+  id: BackmenVendingMachineDrGibb
+  suffix: backmen
+  components:
+    - type: Store
+      categories:
+        - DrGibbInventory
+      currencyWhitelist:
+        - SpaceCash
+      balance:
+        SpaceCash: 0
+    - type: BuyStoreBank
+    - type: ActivatableUI
+      key: enum.StoreUiKey.Key
+      singleUser: true
+    - type: ActivatableUIRequiresPower
+    - type: UserInterface
+      interfaces:
+        - key: enum.StoreUiKey.Key
+          type: StoreBoundUserInterface     
+
+- type: entity
+  parent: VendingMachineStarkist
+  id: BackmenVendingMachineStarkist
+  suffix: backmen
+  components:
+    - type: Store
+      categories:
+        - StarkistInventory
+      currencyWhitelist:
+        - SpaceCash
+      balance:
+        SpaceCash: 0
+    - type: BuyStoreBank
+    - type: ActivatableUI
+      key: enum.StoreUiKey.Key
+      singleUser: true
+    - type: ActivatableUIRequiresPower
+    - type: UserInterface
+      interfaces:
+        - key: enum.StoreUiKey.Key
+          type: StoreBoundUserInterface           
 

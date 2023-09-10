@@ -1,2 +1,27 @@
 ﻿- type: Tag
   id: SpaceCash
+
+- type: Tag
+  id: ArachneWeb
+
+- type: Tag
+  id: Oneirophage
+
+- type: Tag
+  id: ForensicBeltEquip
+
+- type: Tag
+  id: CoreSilver
+
+- type: Tag
+  id: NormalityCrystal
+
+- type: Tag
+  id: MothroachHide
+
+- type: Tag
+  id: BluespaceCrystal
+
+
+- type: Tag
+  id: MagazineUniversalCaselessRifle

@@ -5,6 +5,7 @@
   components:
   - type: StorageFill
     contents:
+      - id: Eftpos # backmen
       - id: ClothingOuterArmorBasicSlim
       - id: WeaponShotgunDoubleBarreledRubber
       - id: DrinkShaker
@@ -32,6 +33,7 @@
   components:
   - type: StorageFill
     contents:
+      - id: Eftpos # backmen
       - id: CrowbarRed
       - id: MonkeyCubeBox
       - id: BoxMousetrap
@@ -48,6 +50,7 @@
       - id: ReagentContainerMilk
         amount: 2
       - id: ReagentContainerMilkSoy
+      - id: AntiPsychicKnife
 
 - type: entity
   id: ClosetJanitorFilled
@@ -73,6 +76,7 @@
         amount: 2
       - id: Plunger
         amount: 2
+      - id: AntiPsychicKnife
 
 - type: entity
   id: ClosetLegalFilled
@@ -107,6 +111,7 @@
       - id: ClothingUniformOveralls
       - id: ClothingHeadHatTrucker
         prob: 0.1
+      - id: AntiPsychicKnife
 
 - type: entity
   id: LockerBotanistLoot

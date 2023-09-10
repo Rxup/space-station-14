@@ -5,7 +5,7 @@ using Content.Server.GameTicking.Rules.Components;
 namespace Content.Server.Backmen.Economy.Wage;
 
 [RegisterComponent, Access(typeof(WageSchedulerSystem))]
-public sealed class WageSchedulerRuleComponent : Component
+public sealed partial class WageSchedulerRuleComponent : Component
 {
     [ViewVariables(VVAccess.ReadWrite)] public float TimeUntilNextWage;
 

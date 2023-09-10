@@ -23,6 +23,8 @@
       - id: ClothingOuterHardsuitWarden
       - id: HoloprojectorSecurity
       - id: ClothingEyesHudSecurity
+      - id: AntiPsychicKnife
+        amount: 3
 
 - type: entity
   id: LockerWardenFilled
@@ -50,6 +52,8 @@
       - id: DoorRemoteArmory
       - id: HoloprojectorSecurity
       - id: ClothingEyesHudSecurity
+      - id: AntiPsychicKnife
+        amount: 3
 
 - type: entity
   id: LockerSecurityFilled
@@ -58,6 +62,7 @@
   components:
   - type: StorageFill
     contents:
+      - id: Eftpos # backmen
       - id: FlashlightSeclite
         prob: 0.8
       - id: ClothingUniformJumpsuitSecGrey
@@ -76,6 +81,8 @@
       - id: ClothingOuterCoatSecurityOvercoat # Corvax-SecFashion
         prob: 0.2
       - id: ClothingEyesHudSecurity
+      - id: AntiPsychicKnife
+        amount: 3
 
 - type: entity
   id: LockerBrigmedicFilled
@@ -116,6 +123,8 @@
         prob: 0.5
       - id: ClothingOuterCoatLabSecurityMedic # Corvax-Resprite
         prob: 0.5
+      - id: AntiPsychicKnife
+        amount: 3
 
 - type: entity
   id: LockerDetectiveFilled
@@ -133,10 +142,11 @@
       - id: FlashlightSeclite
       - id: ForensicScanner
       - id: BoxForensicPad
-      - id: WeaponRevolverInspector
       - id: DrinkDetFlask
-      - id: SpeedLoaderMagnum
       - id: ClothingHandsGlovesForensic
+      - id: BookBusido # Corvax-Books
+      - id: AntiPsychicKnife
+        amount: 3
 
 - type: entity
   id: ClosetBombFilled
@@ -158,6 +168,8 @@
     contents:
     - id: WeaponDisabler
       amount: 5
+    - id: AntiPsychicKnife
+      amount: 3
 
 - type: entity
   parent: GunSafe

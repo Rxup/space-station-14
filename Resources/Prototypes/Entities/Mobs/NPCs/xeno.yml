@@ -111,6 +111,12 @@
   - type: NoSlip
   - type: Perishable #Ummmm the acid kills a lot of the bacteria or something
     molsPerSecondPerUnitMass: 0.0005
+  - type: Speech
+    speechVerb: LargeMob
+  - type: PotentialPsionic
+    chance: -2
+  - type: Psionic
+    removable: false
 
 - type: entity
   name: Praetorian

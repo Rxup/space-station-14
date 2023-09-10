@@ -1,0 +1,17 @@
+- type: guideEntry
+  id: Epistemics
+  name: guide-entry-epistemics
+  text: "/ServerInfo/Guidebook/Epistemics/Epistemics.xml"
+  children:
+  - Psionics
+  - AltarsGolemancy
+
+- type: guideEntry
+  id: Psionics
+  name: guide-entry-psionics
+  text: "/ServerInfo/Guidebook/Epistemics/Psionics.xml"
+
+- type: guideEntry
+  id: AltarsGolemancy
+  name: guide-entry-altars-golemancy
+  text: "/ServerInfo/Guidebook/Epistemics/Altar.xml"
