@@ -33,7 +33,7 @@
     - !type:AddComponentSpecial
       components:
         - type: SpecForce
-          actionName: CentcomFtlAction
+          actionBssActionName: ActionCentcomFtl
         - type: Psionic
         - type: DispelPower
   minBankBalance: 800

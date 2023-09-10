@@ -317,7 +317,7 @@
   id: MobHumanERTLeaderEVAV2.1
   components:
   - type: SpecForce
-    actionName: CentcomFtlAction
+    actionBssActionName: ActionCentcomFtl
     requirements:
     - !type:DepartmentTimeRequirement
       department: Security
@@ -354,7 +354,7 @@
   id: MobHumanERTEngineerEVAV2.1
   components:
   - type: SpecForce
-    actionName: CentcomFtlAction
+    actionBssActionName: ActionCentcomFtl
     requirements:
     - !type:DepartmentTimeRequirement
       department: Security
@@ -390,7 +390,7 @@
   id: MobHumanERTSecurityEVAV2.1
   components:
   - type: SpecForce
-    actionName: CentcomFtlAction
+    actionBssActionName: ActionCentcomFtl
     requirements:
     - !type:DepartmentTimeRequirement
       department: Security
@@ -423,7 +423,7 @@
   id: MobHumanERTMedicalEVAV2.1
   components:
   - type: SpecForce
-    actionName: CentcomFtlAction
+    actionBssActionName: ActionCentcomFtl
     requirements:
     - !type:DepartmentTimeRequirement
       department: Security
@@ -459,7 +459,7 @@
   id: MobHumanERTJunitorEVAV2.1
   components:
   - type: SpecForce
-    actionName: CentcomFtlAction
+    actionBssActionName: ActionCentcomFtl
     requirements:
     - !type:DepartmentTimeRequirement
       department: Security
