@@ -1,6 +1,5 @@
 using Robust.Shared.Audio;
 using Content.Shared.DoAfter;
-using Content.Shared.Actions.ActionTypes;
 
 namespace Content.Shared.Backmen.Abilities.Psionics;
 
@@ -19,5 +18,5 @@ public sealed partial class PsionicRegenerationPowerComponent : Component
     [DataField("soundUse")]
     public SoundSpecifier SoundUse = new SoundPathSpecifier("/Audio/Backmen/heartbeat_fast.ogg");
 
-    public InstantAction? PsionicRegenerationPowerAction = null;
+    public EntityUid? PsionicRegenerationPowerAction = null;
 }

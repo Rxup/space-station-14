@@ -1,6 +1,5 @@
 using Content.Shared.Backmen.Arachne;
 using Content.Shared.Actions;
-using Content.Shared.Actions.ActionTypes;
 using Content.Shared.Coordinates.Helpers;
 using Content.Shared.IdentityManagement;
 using Content.Shared.Verbs;
@@ -65,6 +64,7 @@ public sealed class ArachneSystem : EntitySystem
     {
         base.Initialize();
         SubscribeLocalEvent<ArachneComponent, ComponentInit>(OnInit);
+        SubscribeLocalEvent<ArachneComponent, ComponentShutdown>(OnShutdown);
         SubscribeLocalEvent<ArachneComponent, GetVerbsEvent<InnateVerb>>(AddCocoonVerb);
 
         SubscribeLocalEvent<CocoonComponent, EntInsertedIntoContainerMessage>(OnCocEntInserted);
@@ -78,10 +78,17 @@ public sealed class ArachneSystem : EntitySystem
         SubscribeLocalEvent<ArachneComponent, ArachneCocoonDoAfterEvent>(OnCocoonDoAfter);
     }
 
+    private void OnShutdown(EntityUid uid, ArachneComponent component, ComponentShutdown args)
+    {
+        _actions.RemoveAction(uid, ActionSpinWeb);
+    }
+
+
+    [ValidatePrototypeId<EntityPrototype>] private const string ActionSpinWeb = "ActionSpinWeb";
+
     private void OnInit(EntityUid uid, ArachneComponent component, ComponentInit args)
     {
-        if (_prototypeManager.TryIndex<WorldTargetActionPrototype>("SpinWeb", out var spinWeb))
-            _actions.AddAction(uid, new WorldTargetAction(spinWeb), null);
+        _actions.AddAction(uid, ref component.SpinWeb ,ActionSpinWeb);
     }
 
     private void AddCocoonVerb(EntityUid uid, ArachneComponent component, GetVerbsEvent<InnateVerb> args)

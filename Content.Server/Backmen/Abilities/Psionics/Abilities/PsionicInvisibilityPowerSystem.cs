@@ -1,6 +1,5 @@
 using Content.Server.Backmen.Psionics;
 using Content.Shared.Actions;
-using Content.Shared.Actions.ActionTypes;
 using Content.Shared.CombatMode.Pacification;
 using Content.Shared.Damage;
 using Content.Shared.Stunnable;
@@ -35,15 +34,18 @@ public sealed class PsionicInvisibilityPowerSystem : EntitySystem
         SubscribeLocalEvent<PsionicInvisibilityUsedComponent, DamageChangedEvent>(OnDamageChanged);
     }
 
+    [ValidatePrototypeId<EntityPrototype>] private const string ActionPsionicInvisibility = "ActionPsionicInvisibility";
+    [ValidatePrototypeId<EntityPrototype>] private const string ActionPsionicInvisibilityOff = "ActionPsionicInvisibilityOff";
+
     private void OnInit(EntityUid uid, PsionicInvisibilityPowerComponent component, ComponentInit args)
     {
-        if (!_prototypeManager.TryIndex<InstantActionPrototype>("PsionicInvisibility", out var invis))
-            return;
+        _actions.AddAction(uid, ref component.PsionicInvisibilityPowerAction, ActionPsionicInvisibility);
 
-        component.PsionicInvisibilityPowerAction = new InstantAction(invis);
-        if (invis.UseDelay != null)
-            component.PsionicInvisibilityPowerAction.Cooldown = (_gameTiming.CurTime, _gameTiming.CurTime + (TimeSpan) invis.UseDelay);
-        _actions.AddAction(uid, component.PsionicInvisibilityPowerAction, null);
+        var action = _actions.GetActionData(component.PsionicInvisibilityPowerAction);
+
+        if (action?.UseDelay != null)
+            _actions.SetCooldown(component.PsionicInvisibilityPowerAction, _gameTiming.CurTime,
+                _gameTiming.CurTime + (TimeSpan)  action?.UseDelay!);
 
         if (TryComp<PsionicComponent>(uid, out var psionic) && psionic.PsionicAbility == null)
             psionic.PsionicAbility = component.PsionicInvisibilityPowerAction;
@@ -51,8 +53,7 @@ public sealed class PsionicInvisibilityPowerSystem : EntitySystem
 
     private void OnShutdown(EntityUid uid, PsionicInvisibilityPowerComponent component, ComponentShutdown args)
     {
-        if (_prototypeManager.TryIndex<InstantActionPrototype>("PsionicInvisibility", out var invis))
-            _actions.RemoveAction(uid, new InstantAction(invis), null);
+        _actions.RemoveAction(uid, ActionPsionicInvisibility);
     }
 
     private void OnPowerUsed(EntityUid uid, PsionicInvisibilityPowerComponent component, PsionicInvisibilityPowerActionEvent args)
@@ -62,8 +63,7 @@ public sealed class PsionicInvisibilityPowerSystem : EntitySystem
 
         ToggleInvisibility(args.Performer);
 
-        if (_prototypeManager.TryIndex<InstantActionPrototype>("PsionicInvisibilityOff", out var invis))
-            _actions.AddAction(args.Performer, new InstantAction(invis), null);
+        _actions.AddAction(uid, ref component.PsionicInvisibilityPowerAction, ActionPsionicInvisibilityOff);
 
         _psionics.LogPowerUsed(uid, "psionic invisibility");
         args.Handled = true;
@@ -98,8 +98,7 @@ public sealed class PsionicInvisibilityPowerSystem : EntitySystem
         RemComp<StealthComponent>(uid);
         SoundSystem.Play("/Audio/Effects/toss.ogg", Filter.Pvs(uid), uid);
 
-        if (_prototypeManager.TryIndex<InstantActionPrototype>("PsionicInvisibilityOff", out var invis))
-            _actions.RemoveAction(uid, new InstantAction(invis), null);
+        _actions.RemoveAction(uid, ActionPsionicInvisibilityOff);
 
         _stunSystem.TryParalyze(uid, TimeSpan.FromSeconds(8), false);
         DirtyEntity(uid);

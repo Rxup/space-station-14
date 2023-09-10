@@ -1,5 +1,4 @@
 using Content.Shared.Actions;
-using Content.Shared.Actions.ActionTypes;
 using Content.Shared.Backmen.Abilities.Psionics;
 using Content.Shared.StatusEffect;
 using Content.Shared.Popups;
@@ -27,15 +26,17 @@ namespace Content.Server.Backmen.Abilities.Psionics
             SubscribeLocalEvent<MetapsionicPowerComponent, MetapsionicPowerActionEvent>(OnPowerUsed);
         }
 
+        [ValidatePrototypeId<EntityPrototype>] private const string ActionMetapsionicPulse = "ActionMetapsionicPulse";
+
         private void OnInit(EntityUid uid, MetapsionicPowerComponent component, ComponentInit args)
         {
-            if (!_prototypeManager.TryIndex<InstantActionPrototype>("MetapsionicPulse", out var metapsionicPulse))
-                return;
+            _actions.AddAction(uid, ref component.MetapsionicPowerAction, ActionMetapsionicPulse);
 
-            component.MetapsionicPowerAction = new InstantAction(metapsionicPulse);
-            if (metapsionicPulse.UseDelay != null)
-                component.MetapsionicPowerAction.Cooldown = (_gameTiming.CurTime, _gameTiming.CurTime + (TimeSpan) metapsionicPulse.UseDelay);
-            _actions.AddAction(uid, component.MetapsionicPowerAction, null);
+            var action = _actions.GetActionData(component.MetapsionicPowerAction);
+
+            if (action?.UseDelay != null)
+                _actions.SetCooldown(component.MetapsionicPowerAction, _gameTiming.CurTime,
+                    _gameTiming.CurTime + (TimeSpan)  action?.UseDelay!);
 
             if (TryComp<PsionicComponent>(uid, out var psionic) && psionic.PsionicAbility == null)
                 psionic.PsionicAbility = component.MetapsionicPowerAction;
@@ -43,8 +44,7 @@ namespace Content.Server.Backmen.Abilities.Psionics
 
         private void OnShutdown(EntityUid uid, MetapsionicPowerComponent component, ComponentShutdown args)
         {
-            if (_prototypeManager.TryIndex<InstantActionPrototype>("MetapsionicPulse", out var metapsionicPulse))
-                _actions.RemoveAction(uid, new InstantAction(metapsionicPulse), null);
+            _actions.RemoveAction(uid, ActionMetapsionicPulse);
         }
 
         private void OnPowerUsed(EntityUid uid, MetapsionicPowerComponent component, MetapsionicPowerActionEvent args)

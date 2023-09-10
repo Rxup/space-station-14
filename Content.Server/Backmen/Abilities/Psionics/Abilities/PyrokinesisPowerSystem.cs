@@ -1,5 +1,4 @@
 using Content.Shared.Actions;
-using Content.Shared.Actions.ActionTypes;
 using Content.Server.Atmos.Components;
 using Content.Server.Atmos.EntitySystems;
 using Content.Server.Popups;
@@ -26,15 +25,17 @@ namespace Content.Server.Backmen.Abilities.Psionics
             SubscribeLocalEvent<PyrokinesisPowerActionEvent>(OnPowerUsed);
         }
 
+        [ValidatePrototypeId<EntityPrototype>] private const string ActionPyrokinesis = "ActionPyrokinesis";
+
         private void OnInit(EntityUid uid, PyrokinesisPowerComponent component, ComponentInit args)
         {
-            if (!_prototypeManager.TryIndex<EntityTargetActionPrototype>("Pyrokinesis", out var pyrokinesis))
-                return;
+            _actions.AddAction(uid, ref component.PyrokinesisPowerAction, ActionPyrokinesis);
 
-            component.PyrokinesisPowerAction = new EntityTargetAction(pyrokinesis);
-            if (pyrokinesis.UseDelay != null)
-                component.PyrokinesisPowerAction.Cooldown = (_gameTiming.CurTime, _gameTiming.CurTime + (TimeSpan) pyrokinesis.UseDelay);
-            _actions.AddAction(uid, component.PyrokinesisPowerAction, null);
+            var action = _actions.GetActionData(component.PyrokinesisPowerAction);
+
+            if (action?.UseDelay != null)
+                _actions.SetCooldown(component.PyrokinesisPowerAction, _gameTiming.CurTime,
+                    _gameTiming.CurTime + (TimeSpan)  action?.UseDelay!);
 
             if (TryComp<PsionicComponent>(uid, out var psionic) && psionic.PsionicAbility == null)
                 psionic.PsionicAbility = component.PyrokinesisPowerAction;
@@ -42,8 +43,7 @@ namespace Content.Server.Backmen.Abilities.Psionics
 
         private void OnShutdown(EntityUid uid, PyrokinesisPowerComponent component, ComponentShutdown args)
         {
-            if (_prototypeManager.TryIndex<EntityTargetActionPrototype>("Pyrokinesis", out var pyrokinesis))
-                _actions.RemoveAction(uid, new EntityTargetAction(pyrokinesis), null);
+            _actions.RemoveAction(uid, ActionPyrokinesis);
         }
 
         private void OnPowerUsed(PyrokinesisPowerActionEvent args)

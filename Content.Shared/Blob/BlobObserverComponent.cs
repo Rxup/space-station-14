@@ -20,6 +20,17 @@ public sealed partial class BlobObserverComponent : Component
 
     [ViewVariables(VVAccess.ReadOnly)]
     public BlobChemType SelectedChemId = BlobChemType.ReactiveSpines;
+
+    public EntityUid? ActionHelpBlob = null;
+    public EntityUid? ActionSwapBlobChem = null;
+    public EntityUid? ActionTeleportBlobToCore = null;
+    public EntityUid? ActionTeleportBlobToNode = null;
+    public EntityUid? ActionCreateBlobFactory = null;
+    public EntityUid? ActionCreateBlobResource = null;
+    public EntityUid? ActionCreateBlobNode = null;
+    public EntityUid? ActionCreateBlobbernaut = null;
+    public EntityUid? ActionSplitBlobCore = null;
+    public EntityUid? ActionSwapBlobCore = null;
 }
 
 [Serializable, NetSerializable]

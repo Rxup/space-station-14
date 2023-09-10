@@ -167,7 +167,7 @@
       range: 1.5
 
 - type: entity
-  id: ActionHairballAction
+  id: ActionHairball
   name: hairball-action
   description: hairball-action-desc
   noSpawn: true

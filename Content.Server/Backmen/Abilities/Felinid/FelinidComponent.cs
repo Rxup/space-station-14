@@ -1,7 +1,5 @@
 ﻿using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype;
 using Robust.Shared.Prototypes;
-using Content.Shared.Actions.ActionTypes;
-using Robust.Shared.Utility;
 
 namespace Content.Server.Backmen.Abilities.Felinid;
 
@@ -14,8 +12,9 @@ public sealed partial class FelinidComponent : Component
     [DataField("hairballPrototype", customTypeSerializer: typeof(PrototypeIdSerializer<EntityPrototype>))]
     public string HairballPrototype = "Hairball";
 
-    [DataField("hairballAction")]
-    public InstantAction? HairballAction;
+    public EntityUid? HairballAction = null;
+
+    public EntityUid? EatMouse = null;
 
     public EntityUid? PotentialTarget = null;
 }
