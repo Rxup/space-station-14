@@ -1,0 +1,6 @@
+﻿- type: objective
+  id: EscapeShuttleObjectiveFugitive
+  issuer: self
+  conditions:
+    - !type:EscapeShuttleCondition {}
+  canBeDuplicate: false

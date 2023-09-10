@@ -34,6 +34,7 @@
     Steel: 200
     Plastic: 200
     Gold: 200
+    Bananium: 500
 
 - type: latheRecipe
   id: BluespaceBeaker
@@ -64,8 +65,8 @@
   icon:
     sprite: Backmen/Objects/Materials/materials.rsi
     state: bluespace
-  result: MaterialBluespace1
+  result: CrystalSubspaceStockPart
   applyMaterialDiscount: false
   completetime: 4
   materials:
-    Bluespace: 100
+    Bluespace: 300
