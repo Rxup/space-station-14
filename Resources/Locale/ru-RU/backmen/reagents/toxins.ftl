@@ -1,4 +1,4 @@
-reagent-name-soulbreaker-toxin = токсин разрушителя душ
+reagent-name-soulbreaker-toxin = токсин майндбрейкер
 reagent-desc-soulbreaker-toxin = Антипсионическое средство, примерно в 4 раза более мощное, чем токсин, разрушающий разум.
 
 reagent-name-lotophagoi-oil = масло лотофагов

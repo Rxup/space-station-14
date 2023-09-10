@@ -10,6 +10,17 @@
   - type: EvilTwinRule
 
 - type: entity
+  id: FugitiveSpawn
+  parent: BaseGameRule
+  noSpawn: true
+  components:
+    - type: StationEvent
+      weight: 10
+      earliestStart: 30
+      minimumPlayers: 20
+    - type: FugitiveRule
+
+- type: entity
   id: WageScheduler
   parent: BaseGameRule
   noSpawn: true

@@ -116,5 +116,12 @@ namespace Content.Shared.Roles
         [DataField("whitelistRequired")]
         public bool WhitelistRequired { get; private set; } = false;
 // end-backmen: Whitelist
+// start-backmen
+        /// <summary>
+        /// For e.g. prisoners, they'll never use their latejoin spawner.
+        /// </summary>
+        [DataField("alwaysUseSpawner")]
+        public bool AlwaysUseSpawner { get; private set; } = false;
+// end-backmen
     }
 }
