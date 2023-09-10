@@ -37,7 +37,7 @@
     Bananium: 500
 
 - type: latheRecipe
-  id: BluespaceBeaker
+  id: BluespaceBeaker1
   icon:
     sprite: Objects/Specific/Chemistry/beaker_bluespace.rsi
     state: beakerbluespace
