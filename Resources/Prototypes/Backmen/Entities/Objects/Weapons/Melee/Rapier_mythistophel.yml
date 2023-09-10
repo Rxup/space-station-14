@@ -16,7 +16,7 @@
       types:
         Slash: 12 #cmon, is an ELITE rapier
         Piercing: 5
-        Structural: 15
+        Holy: 10
     soundHit:
         path: /Audio/Weapons/Rapier.ogg
   - type: Reflect
