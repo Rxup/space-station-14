@@ -1,5 +1,5 @@
+using Content.Server.Actions;
 using Content.Shared.Actions;
-using Content.Shared.Actions.ActionTypes;
 using Content.Shared.StatusEffect;
 using Content.Shared.Damage;
 using Content.Shared.Revenant.Components;
@@ -16,9 +16,8 @@ namespace Content.Server.Backmen.Abilities.Psionics;
 
 public sealed class DispelPowerSystem : EntitySystem
 {
-    [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
     [Dependency] private readonly StatusEffectsSystem _statusEffects = default!;
-    [Dependency] private readonly SharedActionsSystem _actions = default!;
+    [Dependency] private readonly ActionsSystem _actions = default!;
     [Dependency] private readonly DamageableSystem _damageableSystem = default!;
     [Dependency] private readonly GuardianSystem _guardianSystem = default!;
     [Dependency] private readonly IRobustRandom _random = default!;
@@ -43,15 +42,16 @@ public sealed class DispelPowerSystem : EntitySystem
         SubscribeLocalEvent<RevenantComponent, DispelledEvent>(OnRevenantDispelled);
     }
 
+    [ValidatePrototypeId<EntityPrototype>] private const string ActionDispel = "ActionDispel";
+
     private void OnInit(EntityUid uid, DispelPowerComponent component, ComponentInit args)
     {
-        if (!_prototypeManager.TryIndex<EntityTargetActionPrototype>("Dispel", out var action))
-            return;
+        _actions.AddAction(uid, ref component.DispelPowerAction, ActionDispel);
 
-        component.DispelPowerAction = new EntityTargetAction(action);
-        if (action.UseDelay != null)
-            component.DispelPowerAction.Cooldown = (_gameTiming.CurTime, _gameTiming.CurTime + (TimeSpan) action.UseDelay);
-        _actions.AddAction(uid, component.DispelPowerAction, null);
+        var action = _actions.GetActionData(component.DispelPowerAction);
+
+        if (action?.UseDelay != null)
+            _actions.SetCooldown(component.DispelPowerAction, _gameTiming.CurTime, _gameTiming.CurTime + (TimeSpan)  action?.UseDelay!);
 
         if (TryComp<PsionicComponent>(uid, out var psionic) && psionic.PsionicAbility == null)
             psionic.PsionicAbility = component.DispelPowerAction;
@@ -59,8 +59,7 @@ public sealed class DispelPowerSystem : EntitySystem
 
     private void OnShutdown(EntityUid uid, DispelPowerComponent component, ComponentShutdown args)
     {
-        if (_prototypeManager.TryIndex<EntityTargetActionPrototype>("Dispel", out var action))
-            _actions.RemoveAction(uid, new EntityTargetAction(action), null);
+        _actions.RemoveAction(uid, ActionDispel);
     }
 
     private void OnPowerUsed(DispelPowerActionEvent args)
