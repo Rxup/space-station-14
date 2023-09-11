@@ -64,7 +64,7 @@ public sealed class PsionicRegenerationPowerSystem : EntitySystem
     private void OnPowerUsed(EntityUid uid, PsionicRegenerationPowerComponent component, PsionicRegenerationPowerActionEvent args)
     {
         var ev = new PsionicRegenerationDoAfterEvent(_gameTiming.CurTime);
-        var doAfterArgs = new DoAfterArgs(uid, component.UseDelay, ev, uid);
+        var doAfterArgs = new DoAfterArgs(EntityManager, uid, component.UseDelay, ev, uid);
 
         _doAfterSystem.TryStartDoAfter(doAfterArgs, out var doAfterId);
 

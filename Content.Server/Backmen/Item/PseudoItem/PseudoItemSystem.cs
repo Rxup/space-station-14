@@ -218,7 +218,7 @@ namespace Content.Server.Backmen.Item.PseudoItem
                 return;
 
             var ev = new PseudoItemInsertDoAfterEvent();
-            var args = new DoAfterArgs(inserter, 5f, ev, toInsert, target: toInsert, used: storageEntity)
+            var args = new DoAfterArgs(EntityManager, inserter, 5f, ev, toInsert, target: toInsert, used: storageEntity)
             {
                 BreakOnTargetMove = true,
                 BreakOnUserMove = true,

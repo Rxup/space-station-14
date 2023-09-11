@@ -142,7 +142,7 @@ namespace Content.Server.Blob.NPC.BlobPod
             component.IsZombifying = true;
 
             var ev = new BlobPodZombifyDoAfterEvent();
-            var args = new DoAfterArgs(uid, component.ZombifyDelay, ev, uid, target: target)
+            var args = new DoAfterArgs(EntityManager, uid, component.ZombifyDelay, ev, uid, target: target)
             {
                 BreakOnTargetMove = true,
                 BreakOnUserMove = false,

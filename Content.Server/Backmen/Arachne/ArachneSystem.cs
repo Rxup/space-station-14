@@ -258,7 +258,7 @@ public sealed class ArachneSystem : EntitySystem
         _popupSystem.PopupEntity(Loc.GetString("spin-web-start-second-person"), args.Performer, args.Performer, Shared.Popups.PopupType.Medium);
 
         var ev = new ArachneWebDoAfterEvent(coords);
-        var doAfterArgs = new DoAfterArgs(args.Performer, arachne.WebDelay, ev, args.Performer)
+        var doAfterArgs = new DoAfterArgs(EntityManager, args.Performer, arachne.WebDelay, ev, args.Performer)
         {
             BreakOnUserMove = true,
         };
@@ -285,7 +285,7 @@ public sealed class ArachneSystem : EntitySystem
         // Who knows, there's no docs!
         var ev = new ArachneCocoonDoAfterEvent();
 
-        var args = new DoAfterArgs(uid, delay, ev, uid, target: target)
+        var args = new DoAfterArgs(EntityManager, uid, delay, ev, uid, target: target)
         {
             BreakOnUserMove = true,
             BreakOnTargetMove = true,

@@ -117,14 +117,14 @@ public sealed class SpecForcesSystem : EntitySystem
         var first = true;
         foreach (var requirement in job.Requirements)
         {
-            if (JobRequirements.TryRequirementMet(requirement, playTimes, out reason, _prototypes))
+            if (JobRequirements.TryRequirementMet(requirement, playTimes, out var jobReason, EntityManager, _prototypes))
                 continue;
 
             if (!first)
                 reasonBuilder.Append('\n');
             first = false;
 
-            reasonBuilder.AppendLine(reason);
+            reasonBuilder.AppendLine(jobReason.ToMarkup());
         }
 
         if (_cfg.GetCVar(Shared.Backmen.CCVar.CCVars.WhitelistRolesEnabled) &&
