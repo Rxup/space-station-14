@@ -10,6 +10,7 @@ using Content.Shared.Mobs.Systems;
 using Content.Server.Popups;
 using Content.Server.GameTicking;
 using Content.Shared.Backmen.Abilities.Psionics;
+using Content.Shared.Backmen.Psionics.Events;
 using Content.Shared.Mind;
 using Content.Shared.Mind.Components;
 using Robust.Server.GameObjects;
@@ -132,7 +133,11 @@ public sealed class MindSwapPowerSystem : EntitySystem
         if (args.NewMobState == MobState.Dead)
         {
             RemComp<MindSwappedComponent>(uid);
-            RemComp<MindSwappedComponent>(component.OriginalEntity);
+            if (!TerminatingOrDeleted(component.OriginalEntity) && HasComp<MindSwappedComponent>(component.OriginalEntity))
+            {
+                RemCompDeferred<MindSwappedComponent>(component.OriginalEntity);
+                GetTrapped(component.OriginalEntity);
+            }
         }
 
     }
@@ -250,14 +255,4 @@ public sealed class MindSwapPowerSystem : EntitySystem
             _metaDataSystem.SetEntityDescription(uid, Loc.GetString("telegnostic-trapped-entity-desc"));
         }
     }
-}
-
-public sealed partial class MindSwapPowerActionEvent : EntityTargetActionEvent
-{
-
-}
-
-public sealed partial class MindSwapPowerReturnActionEvent : InstantActionEvent
-{
-
 }

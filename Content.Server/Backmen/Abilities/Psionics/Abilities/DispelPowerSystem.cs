@@ -7,6 +7,7 @@ using Content.Server.Guardian;
 using Content.Server.Bible.Components;
 using Content.Server.Popups;
 using Content.Shared.Backmen.Abilities.Psionics;
+using Content.Shared.Backmen.Psionics.Events;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Player;
 using Robust.Shared.Random;
@@ -136,7 +137,3 @@ public sealed class DispelPowerSystem : EntitySystem
         _damageableSystem.TryChangeDamage(uid, damage, true, true);
     }
 }
-
-public sealed partial class DispelPowerActionEvent : EntityTargetActionEvent {}
-
-public sealed partial class DispelledEvent : HandledEntityEventArgs {}

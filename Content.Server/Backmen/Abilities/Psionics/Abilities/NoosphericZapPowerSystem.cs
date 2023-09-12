@@ -4,6 +4,7 @@ using Content.Shared.StatusEffect;
 using Content.Server.Stunnable;
 using Content.Server.Beam;
 using Content.Shared.Backmen.Abilities.Psionics;
+using Content.Shared.Backmen.Psionics.Events;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
 
@@ -66,4 +67,4 @@ public sealed class NoosphericZapPowerSystem : EntitySystem
     }
 }
 
-public sealed partial class NoosphericZapPowerActionEvent : EntityTargetActionEvent {}
+

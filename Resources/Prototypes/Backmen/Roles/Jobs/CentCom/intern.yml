@@ -29,7 +29,7 @@
     - !type:AddComponentSpecial
       components:
         - type: SpecForce
-          actionBssActionName: ActionCentcomFtl
+          actionBssActionName: ActionCentcomFtlAction
         - type: PsionicBonusChance
           multiplier: 3
   minBankBalance: 200

@@ -150,7 +150,7 @@
     dna: "ABRAXAS"
   - type: Spider
     webPrototype: SpiderWebArache
-    webActionName: SpiderWebArachneClassicAction
+    webAction: SpiderWebArachneClassicAction
   - type: IgnoreSpiderWebArachneClassic
 
 - type: entity

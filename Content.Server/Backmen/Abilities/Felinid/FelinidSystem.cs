@@ -14,6 +14,7 @@ using Content.Server.Medical;
 using Content.Server.Nutrition.EntitySystems;
 using Content.Server.Chemistry.EntitySystems;
 using Content.Server.Popups;
+using Content.Shared.Backmen.Psionics.Events;
 using Robust.Shared.Audio;
 using Robust.Shared.Player;
 using Robust.Shared.Random;
@@ -187,6 +188,3 @@ public sealed class FelinidSystem : EntitySystem
         }
     }
 }
-
-public sealed partial class HairballActionEvent : InstantActionEvent {}
-public sealed partial class EatMouseActionEvent : InstantActionEvent {}

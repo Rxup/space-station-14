@@ -4,7 +4,7 @@ hairball-mask = Снемите свою {$mask} для начала.
 hairball-cough = {CAPITALIZE(THE($name))} начинает кашлять комком шерсти!
 
 ent-Hairball = комок шерсти
-	.desc = Фелиниды, чувак...
+    .desc = Фелиниды, чувак...
 
 action-name-eat-mouse = Сожрать мышку
 action-description-eat-mouse = Съешьте мышь, которую держите в руке, и получите питательные вещества и заряд шерсти.

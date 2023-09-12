@@ -47,7 +47,6 @@ public sealed class EconomySystem : EntitySystem
 
     private void OnFtposInit(EntityUid uid, EftposComponent component, ComponentInit args)
     {
-        uid.EnsureComponentWarn<ServerUserInterfaceComponent>();
         component.InitPresetValues();
     }
 

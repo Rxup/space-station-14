@@ -27,6 +27,7 @@ using Content.Server.DoAfter;
 using Content.Server.Body.Components;
 using Content.Server.Backmen.Vampiric;
 using Content.Server.Speech.Components;
+using Content.Shared.Backmen.Abilities;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Player;
 using Robust.Shared.Physics.Components;
@@ -257,7 +258,7 @@ public sealed class ArachneSystem : EntitySystem
             Shared.Popups.PopupType.MediumCaution);
         _popupSystem.PopupEntity(Loc.GetString("spin-web-start-second-person"), args.Performer, args.Performer, Shared.Popups.PopupType.Medium);
 
-        var ev = new ArachneWebDoAfterEvent(coords);
+        var ev = new ArachneWebDoAfterEvent(GetNetCoordinates(coords));
         var doAfterArgs = new DoAfterArgs(EntityManager, args.Performer, arachne.WebDelay, ev, args.Performer)
         {
             BreakOnUserMove = true,
@@ -294,6 +295,7 @@ public sealed class ArachneSystem : EntitySystem
         _doAfter.TryStartDoAfter(args);
     }
 
+    [ValidatePrototypeId<EntityPrototype>] private const string ArachneWeb = "ArachneWeb";
     private void OnWebDoAfter(EntityUid uid, ArachneComponent component, ArachneWebDoAfterEvent args)
     {
         if (args.Handled || args.Cancelled)
@@ -303,7 +305,7 @@ public sealed class ArachneSystem : EntitySystem
         if (TryComp<ThirstComponent>(uid, out var thirst))
             _thirstSystem.UpdateThirst(thirst, -20);
 
-        Spawn("ArachneWeb", args.Coords.SnapToGrid());
+        Spawn(ArachneWeb, GetCoordinates(args.Coords).SnapToGrid());
         _popupSystem.PopupEntity(Loc.GetString("spun-web-third-person", ("spider", Identity.Entity(uid, EntityManager))), uid,
             Filter.PvsExcept(uid).RemoveWhereAttachedEntity(entity => !ExamineSystemShared.InRangeUnOccluded(uid, entity, ExamineRange, null)),
             true,
@@ -348,5 +350,3 @@ public sealed class ArachneSystem : EntitySystem
         args.Handled = true;
     }
 }
-
-public sealed partial class SpinWebActionEvent : WorldTargetActionEvent {}

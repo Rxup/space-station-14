@@ -5,7 +5,7 @@
   noSpawn: true
   components:
     - type: WorldTargetAction
-      icon: { sprite: Interface/Actions/blobFactory.png, state: icon}
+      icon: { sprite: Backmen/Interface/Actions/blob.rsi, state: blobFactory}
       event: !type:BlobCreateFactoryActionEvent
       itemIconStyle: BigAction
       checkCanAccess: false
@@ -18,7 +18,7 @@
   noSpawn: true
   components:
     - type: WorldTargetAction
-      icon: { sprite: Interface/Actions/blobResource.png, state: icon}
+      icon: { sprite: Backmen/Interface/Actions/blob.rsi, state: blobResource}
       event: !type:BlobCreateResourceActionEvent
       itemIconStyle: BigAction
       checkCanAccess: false
@@ -31,7 +31,7 @@
   noSpawn: true
   components:
     - type: WorldTargetAction
-      icon: { sprite: Interface/Actions/blobNode.png, state: icon}
+      icon: { sprite: Backmen/Interface/Actions/blob.rsi, state: blobNode}
       event: !type:BlobCreateNodeActionEvent
       itemIconStyle: BigAction
       checkCanAccess: false
@@ -44,7 +44,7 @@
   noSpawn: true
   components:
     - type: WorldTargetAction
-      icon: { sprite: Interface/Actions/blobBlobbernaut.png, state: icon}
+      icon: { sprite: Backmen/Interface/Actions/blob.rsi, state: blobBlobbernaut}
       event: !type:BlobCreateBlobbernautActionEvent
       itemIconStyle: BigAction
       checkCanAccess: false
@@ -57,7 +57,7 @@
   noSpawn: true
   components:
     - type: WorldTargetAction
-      icon: { sprite: Interface/Actions/blobSplit.png, state: icon}
+      icon: { sprite: Backmen/Interface/Actions/blob.rsi, state: blobSplit}
       event: !type:BlobSplitCoreActionEvent
       itemIconStyle: BigAction
       checkCanAccess: false
@@ -70,7 +70,7 @@
   noSpawn: true
   components:
     - type: WorldTargetAction
-      icon: { sprite: Interface/Actions/blobSwap.png, state: icon}
+      icon: { sprite: Backmen/Interface/Actions/blob.rsi, state: blobSwap}
       event: !type:BlobSwapCoreActionEvent
       itemIconStyle: BigAction
       checkCanAccess: false
@@ -83,7 +83,7 @@
   noSpawn: true
   components:
     - type: InstantAction
-      icon: Interface/Actions/blobToCore.png
+      icon: { sprite: Backmen/Interface/Actions/blob.rsi, state: blobToCore}
       event: !type:BlobToCoreActionEvent
 
 - type: entity
@@ -93,7 +93,7 @@
   noSpawn: true
   components:
     - type: InstantAction
-      icon: Interface/Actions/blobToNode.png
+      icon: { sprite: Backmen/Interface/Actions/blob.rsi, state: blobToNode}
       event: !type:BlobToNodeActionEvent
 
 - type: entity
@@ -103,7 +103,7 @@
   noSpawn: true
   components:
     - type: InstantAction
-      icon: Interface/Actions/blobHelp.png
+      icon: { sprite: Backmen/Interface/Actions/blob.rsi, state: blobHelp}
       event: !type:BlobHelpActionEvent
 
 - type: entity
@@ -113,7 +113,7 @@
   noSpawn: true
   components:
     - type: InstantAction
-      icon: Interface/Actions/blobChemSwap.png
+      icon: { sprite: Backmen/Interface/Actions/blob.rsi, state: blobChemSwap}
       event: !type:BlobSwapChemActionEvent
 
 - type: entity
@@ -123,5 +123,5 @@
   noSpawn: true
   components:
     - type: InstantAction
-      icon: Interface/Actions/blobToCore.png
+      icon: { sprite: Backmen/Interface/Actions/blob.rsi, state: blobToCore}
       event: !type:TransformToBlobActionEvent

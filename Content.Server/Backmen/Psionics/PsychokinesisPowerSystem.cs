@@ -1,5 +1,6 @@
 using Content.Shared.Actions;
 using Content.Shared.Backmen.Abilities.Psionics;
+using Content.Shared.Backmen.Psionics.Events;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
 using Robust.Shared.Audio;
@@ -61,4 +62,3 @@ public sealed class PsychokinesisPowerSystem : EntitySystem
     }
 }
 
-public sealed partial class PsychokinesisPowerActionEvent : WorldTargetActionEvent {}

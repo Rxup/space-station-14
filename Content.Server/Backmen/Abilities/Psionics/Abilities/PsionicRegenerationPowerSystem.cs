@@ -117,4 +117,4 @@ public sealed class PsionicRegenerationPowerSystem : EntitySystem
     }
 }
 
-public sealed partial class PsionicRegenerationPowerActionEvent : InstantActionEvent {}
+

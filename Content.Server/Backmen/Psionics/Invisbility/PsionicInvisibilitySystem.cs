@@ -22,7 +22,7 @@ public sealed class PsionicInvisibilitySystem : EntitySystem
         SubscribeLocalEvent<PotentialPsionicComponent, ComponentInit>(OnInit);
         SubscribeLocalEvent<PsionicInsulationComponent, ComponentInit>(OnInsulInit);
         SubscribeLocalEvent<PsionicInsulationComponent, ComponentShutdown>(OnInsulShutdown);
-        SubscribeLocalEvent<EyeComponent, ComponentInit>(OnEyeInit);
+        SubscribeLocalEvent<EyeComponent, MapInitEvent>(OnEyeInit);
 
         /// Layer
         SubscribeLocalEvent<PsionicallyInvisibleComponent, ComponentInit>(OnInvisInit);
@@ -105,7 +105,7 @@ public sealed class PsionicInvisibilitySystem : EntitySystem
             SetCanSeePsionicInvisiblity(uid, false);
     }
 
-    private void OnEyeInit(EntityUid uid, EyeComponent component, ComponentInit args)
+    private void OnEyeInit(EntityUid uid, EyeComponent component, MapInitEvent args)
     {
         if (HasComp<PotentialPsionicComponent>(uid) || HasComp<VehicleComponent>(uid))
             return;

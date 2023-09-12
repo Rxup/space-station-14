@@ -1,5 +1,6 @@
 using Content.Shared.Actions;
 using Content.Shared.Backmen.Abilities.Psionics;
+using Content.Shared.Backmen.Psionics.Events;
 using Content.Shared.Mind.Components;
 using Content.Shared.StatusEffect;
 using Robust.Shared.Prototypes;
@@ -61,4 +62,4 @@ public sealed class TelegnosisPowerSystem : EntitySystem
     }
 }
 
-public sealed partial class TelegnosisPowerActionEvent : InstantActionEvent {}
+

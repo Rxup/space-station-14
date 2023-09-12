@@ -6,6 +6,7 @@ using Content.Shared.Stunnable;
 using Content.Shared.Stealth;
 using Content.Shared.Stealth.Components;
 using Content.Shared.Backmen.Abilities.Psionics;
+using Content.Shared.Backmen.Psionics.Events;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Player;
 using Robust.Shared.Audio;
@@ -123,6 +124,3 @@ public sealed class PsionicInvisibilityPowerSystem : EntitySystem
         }
     }
 }
-
-public sealed partial class PsionicInvisibilityPowerActionEvent : InstantActionEvent {}
-public sealed partial class PsionicInvisibilityPowerOffActionEvent : InstantActionEvent {}

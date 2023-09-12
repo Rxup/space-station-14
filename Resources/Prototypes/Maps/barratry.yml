@@ -60,14 +60,7 @@
             Clown: [ 1, 1 ]
             Mime: [ 1, 1 ]
             Musician: [ 1, 1 ]
-            AtmosphericTechnician: [ 3, 3 ]
-            TechnicalAssistant: [ 2, 4 ]
-            MedicalIntern: [ 2, 4 ]
-            ServiceWorker: [ 1, 2 ]
-            SecurityCadet: [ 2, 4 ]
-            Detective: [ 1, 1 ]
             Brigmedic: [ 0, 1 ] # backmen-Brigmedic
-            ResearchAssistant: [1, 2]
             BKBPLATech: [0, 3] # backmen-BPLA-Silicons
             BKBPLAMED: [0, 3] # backmen-BPLAMED-Silicons
             Prisoner: [ 2, 3]

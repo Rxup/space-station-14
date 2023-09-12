@@ -26,7 +26,7 @@
   description: action-description-dispel
   noSpawn: true
   components:
-    - type: InstantAction
+    - type: EntityTargetAction
       icon: Backmen/Interface/VerbIcons/dispel.png
       event: !type:DispelPowerActionEvent
       useDelay: 45
@@ -172,7 +172,7 @@
   description: hairball-action-desc
   noSpawn: true
   components:
-    - type: WorldTargetAction
+    - type: InstantAction
       icon: { sprite: Backmen/Structures/web.rsi, state: web1 }
       event: !type:HairballActionEvent
       charges: 1
