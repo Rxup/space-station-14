@@ -5,11 +5,13 @@
   noSpawn: true
   components:
     - type: WorldTargetAction
-      icon: { sprite: Backmen/Interface/Actions/blob.rsi, state: blobFactory}
+      icon:
+        sprite: Backmen/Interface/Actions/blob.rsi
+        state: blobFactory
       event: !type:BlobCreateFactoryActionEvent
       itemIconStyle: BigAction
-      checkCanAccess: false
       range: 200
+      useDelay: 0.5
 
 - type: entity
   id: ActionCreateBlobResource
@@ -18,11 +20,13 @@
   noSpawn: true
   components:
     - type: WorldTargetAction
-      icon: { sprite: Backmen/Interface/Actions/blob.rsi, state: blobResource}
+      icon:
+        sprite: Backmen/Interface/Actions/blob.rsi
+        state: blobResource
       event: !type:BlobCreateResourceActionEvent
       itemIconStyle: BigAction
-      checkCanAccess: false
       range: 200
+      useDelay: 0.5
 
 - type: entity
   id: ActionCreateBlobNode
@@ -31,11 +35,13 @@
   noSpawn: true
   components:
     - type: WorldTargetAction
-      icon: { sprite: Backmen/Interface/Actions/blob.rsi, state: blobNode}
+      icon:
+        sprite: Backmen/Interface/Actions/blob.rsi
+        state: blobNode
       event: !type:BlobCreateNodeActionEvent
       itemIconStyle: BigAction
-      checkCanAccess: false
       range: 200
+      useDelay: 0.5
 
 - type: entity
   id: ActionCreateBlobbernaut
@@ -44,11 +50,13 @@
   noSpawn: true
   components:
     - type: WorldTargetAction
-      icon: { sprite: Backmen/Interface/Actions/blob.rsi, state: blobBlobbernaut}
+      icon:
+        sprite: Backmen/Interface/Actions/blob.rsi
+        state: blobBlobbernaut
       event: !type:BlobCreateBlobbernautActionEvent
       itemIconStyle: BigAction
-      checkCanAccess: false
       range: 200
+      useDelay: 0.5
 
 - type: entity
   id: ActionSplitBlobCore
@@ -57,11 +65,13 @@
   noSpawn: true
   components:
     - type: WorldTargetAction
-      icon: { sprite: Backmen/Interface/Actions/blob.rsi, state: blobSplit}
+      icon:
+        sprite: Backmen/Interface/Actions/blob.rsi
+        state: blobSplit
       event: !type:BlobSplitCoreActionEvent
       itemIconStyle: BigAction
-      checkCanAccess: false
       range: 200
+      useDelay: 0.5
 
 - type: entity
   id: ActionSwapBlobCore
@@ -70,11 +80,13 @@
   noSpawn: true
   components:
     - type: WorldTargetAction
-      icon: { sprite: Backmen/Interface/Actions/blob.rsi, state: blobSwap}
+      icon:
+        sprite: Backmen/Interface/Actions/blob.rsi
+        state: blobSwap
       event: !type:BlobSwapCoreActionEvent
       itemIconStyle: BigAction
-      checkCanAccess: false
       range: 200
+      useDelay: 0.5
 
 - type: entity
   id: ActionTeleportBlobToCore
@@ -83,8 +95,13 @@
   noSpawn: true
   components:
     - type: InstantAction
-      icon: { sprite: Backmen/Interface/Actions/blob.rsi, state: blobToCore}
+      icon:
+        sprite: Backmen/Interface/Actions/blob.rsi
+        state: blobToCore
       event: !type:BlobToCoreActionEvent
+      itemIconStyle: BigAction
+      range: 200
+      useDelay: 0.5
 
 - type: entity
   id: ActionTeleportBlobToNode
@@ -93,8 +110,11 @@
   noSpawn: true
   components:
     - type: InstantAction
-      icon: { sprite: Backmen/Interface/Actions/blob.rsi, state: blobToNode}
+      icon:
+        sprite: Backmen/Interface/Actions/blob.rsi
+        state: blobToNode
       event: !type:BlobToNodeActionEvent
+      useDelay: 0.5
 
 - type: entity
   id: ActionHelpBlob
@@ -103,8 +123,11 @@
   noSpawn: true
   components:
     - type: InstantAction
-      icon: { sprite: Backmen/Interface/Actions/blob.rsi, state: blobHelp}
+      icon:
+        sprite: Backmen/Interface/Actions/blob.rsi
+        state: blobHelp
       event: !type:BlobHelpActionEvent
+      useDelay: 0.5
 
 - type: entity
   id: ActionSwapBlobChem
@@ -113,7 +136,9 @@
   noSpawn: true
   components:
     - type: InstantAction
-      icon: { sprite: Backmen/Interface/Actions/blob.rsi, state: blobChemSwap}
+      icon:
+        sprite: Backmen/Interface/Actions/blob.rsi
+        state: blobChemSwap
       event: !type:BlobSwapChemActionEvent
 
 - type: entity
@@ -123,5 +148,7 @@
   noSpawn: true
   components:
     - type: InstantAction
-      icon: { sprite: Backmen/Interface/Actions/blob.rsi, state: blobToCore}
+      icon:
+        sprite: Backmen/Interface/Actions/blob.rsi
+        state: blobToCore
       event: !type:TransformToBlobActionEvent
