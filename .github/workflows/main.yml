@@ -15,7 +15,7 @@ jobs:
 
     steps:
 
-    - name: Update cdn
+    - name: check if need to update
       uses: appleboy/ssh-action@master
       with:
         host: cdn.backmen.ru
@@ -27,7 +27,7 @@ jobs:
               echo "Directory /opt/builds/${{ github.sha }} exists."
               throw "Error: Directory /opt/builds/${{ github.sha }} exists."
           fi
-        
+
     - name: Install dependencies
       run: sudo apt-get install -y python3-paramiko
 
@@ -56,7 +56,7 @@ jobs:
       run: |
         mkdir "release/${{ github.sha }}"
         mv release/*.zip "release/${{ github.sha }}"
-        
+
     - name: Upload files to backmen
       uses: appleboy/scp-action@master
       with:
@@ -67,7 +67,7 @@ jobs:
         target: "/opt/builds/"
         strip_components: 1
         tar_tmp_path: "/tmp/"
-        
+
     - name: Update cdn
       uses: appleboy/ssh-action@master
       with:
@@ -75,7 +75,7 @@ jobs:
         username: root
         key: ${{ secrets.BACKMEN_BUILDS_PUSH_KEY }}
         script: "curl -X POST -d \"\" -H 'Authorization: Bearer ${{ secrets.CDN_TOKEN }}' http://localhost:5001/control/update"
-        
+
     - name: Update manifest JSON
       uses: appleboy/ssh-action@master
       with:
