@@ -7,6 +7,7 @@
   icon: "JobIconServiceWorker"
   supervisors: job-supervisors-service
   canBeAntag: false
+  setPreference: true
   access:
   - Service
   - Maintenance
