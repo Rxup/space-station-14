@@ -23,6 +23,8 @@
       - id: RubberStampQm
       - id: ClothingHeadsetAltCargo
       - id: BoxEncryptionKeyCargo
+      - id: AntiPsychicKnife # backmen
+      - id: ClothingHeadCage # backmen
 
 - type: entity
   id: LockerCaptainFilledHardsuit
@@ -57,6 +59,8 @@
       - id: WeaponAntiqueLaser
       - id: JetpackCaptainFilled
       - id: MedalCase
+      - id: AntiPsychicKnife  # backmen
+      - id: ClothingHeadCage # backmen
 
 - type: entity
   id: LockerCaptainFilled
@@ -96,6 +100,8 @@
       - id: ClothingHeadCaptainHat
       - id: ClothingOuterCoatCaptain
       # Corvax-Resprite-End
+      - id: AntiPsychicKnife  # backmen
+      - id: ClothingHeadCage # backmen
 
 - type: entity
   id: LockerHeadOfPersonnelFilled
@@ -129,6 +135,8 @@
         prob: 0.5
       - id: ClothingOuterCoatHOP # Corvax-Resprite
       - id: AccessConfigurator
+      - id: AntiPsychicKnife  # backmen
+      - id: ClothingHeadCage # backmen
 
 - type: entity
   id: LockerChiefEngineerFilledHardsuit
@@ -157,6 +165,8 @@
       - id: ClothingHeadsetAltEngineering
       - id: BoxEncryptionKeyEngineering
       - id: AccessConfigurator
+      - id: AntiPsychicKnife  # backmen
+      - id: ClothingHeadCage # backmen
 
 - type: entity
   id: LockerChiefEngineerFilled
@@ -181,6 +191,8 @@
       - id: ClothingHeadsetAltEngineering
       - id: BoxEncryptionKeyEngineering
       - id: AccessConfigurator
+      - id: AntiPsychicKnife  # backmen
+      - id: ClothingHeadCage # backmen
 
 - type: entity
   id: LockerChiefMedicalOfficerFilledHardsuit
@@ -205,6 +217,8 @@
       - id: RubberStampCMO
       - id: MedicalTechFabCircuitboard
       - id: BoxEncryptionKeyMedical
+      - id: AntiPsychicKnife # backmen
+      - id: ClothingHeadCage # backmen
 
 - type: entity
   id: LockerChiefMedicalOfficerFilled
@@ -214,7 +228,7 @@
   - type: StorageFill
     contents:
       - id: Eftpos # backmen
-        amount: 3 # backmen 
+        amount: 3 # backmen
       - id: MedkitFilled
       - id: ClothingHandsGlovesNitrile
       #- name: ClothingEyesHudMedical #Removed until working properly
@@ -230,6 +244,8 @@
       - id: RubberStampCMO
       - id: MedicalTechFabCircuitboard
       - id: BoxEncryptionKeyMedical
+      - id: AntiPsychicKnife # backmen
+      - id: ClothingHeadCage # backmen
 
 - type: entity
   id: LockerResearchDirectorFilledHardsuit
@@ -252,6 +268,8 @@
       - id: RubberStampRd
       - id: ClothingHeadsetAltScience
       - id: BoxEncryptionKeyScience
+      - id: AntiPsychicKnife # backmen
+      - id: ClothingHeadCage # backmen
 
 - type: entity
   id: LockerResearchDirectorFilled
@@ -275,6 +293,8 @@
       - id: RubberStampRd
       - id: ClothingHeadsetAltScience
       - id: BoxEncryptionKeyScience
+      - id: AntiPsychicKnife # backmen
+      - id: ClothingHeadCage # backmen
 
 - type: entity
   id: LockerHeadOfSecurityFilledHardsuit
@@ -316,6 +336,8 @@
       - id: HoloprojectorSecurity
       - id: BookSecretDocuments
       - id: BookBusido # Corvax-Books
+      - id: AntiPsychicKnife # backmen
+      - id: ClothingHeadCage # backmen
 
 - type: entity
   id: LockerHeadOfSecurityFilled
@@ -361,3 +383,5 @@
       - id: BoxEncryptionKeySecurity
       - id: HoloprojectorSecurity
       - id: BookSecretDocuments
+      - id: AntiPsychicKnife # backmen
+      - id: ClothingHeadCage # backmen

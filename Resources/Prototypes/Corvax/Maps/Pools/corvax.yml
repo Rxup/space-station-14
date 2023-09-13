@@ -2,4 +2,7 @@
   id: CorvaxMapPool
   maps:
     - CorvaxIshimura #stable
+    - CorvaxDelta
+    - CorvaxAvrite
+    - CorvaxSpectrum
     - Box

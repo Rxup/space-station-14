@@ -29,11 +29,14 @@
     - !type:AddComponentSpecial
       components:
         - type: SpecForce
-          actionName: CentcomFtlAction
+          actionBssActionName: ActionCentcomFtlAction
+        - type: Psionic
+        - type: DispelPower
   minBankBalance: 800
   maxBankBalance: 1200
   wageDepartment: CentCom
   wage: 200
+
 
 - type: entity
   parent: CentcomPDABackmen

@@ -108,7 +108,7 @@ public sealed class TTSSystem : EntitySystem
         if (!TryCreateAudioSource(ev.Data, volume, out var source))
             return;
 
-        var stream = new AudioStream(ev.Uid, source);
+        var stream = new AudioStream(GetEntity(ev.Uid), source);
         AddEntityStreamToQueue(stream);
     }
 

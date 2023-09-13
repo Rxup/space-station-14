@@ -2,7 +2,6 @@
 using Content.Server.Body.Systems;
 using Content.Server.Ghost.Roles.Components;
 using Content.Server.Mind;
-using Content.Shared.Actions.ActionTypes;
 using Content.Shared.Blob;
 using Content.Shared.Mind.Components;
 using Content.Shared.Mobs;
@@ -39,6 +38,9 @@ namespace Content.Server.Blob
             SubscribeLocalEvent<BlobCarrierComponent, MindRemovedMessage>(OnMindRemove);
         }
 
+
+        [ValidatePrototypeId<EntityPrototype>] private const string ActionTransformToBlob = "ActionTransformToBlob";
+
         private void OnMindAdded(EntityUid uid, BlobCarrierComponent component, MindAddedMessage args)
         {
             component.HasMind = true;
@@ -56,9 +58,8 @@ namespace Content.Server.Blob
 
         private void OnStartup(EntityUid uid, BlobCarrierComponent component, ComponentStartup args)
         {
-            var transformToBlob = new InstantAction(
-                _proto.Index<InstantActionPrototype>("TransformToBlob"));
-            _action.AddAction(uid, transformToBlob, null);
+            _action.AddAction(uid, ref component.TransformToBlob ,ActionTransformToBlob);
+
             var ghostRole = EnsureComp<GhostRoleComponent>(uid);
             EnsureComp<GhostTakeoverAvailableComponent>(uid);
             ghostRole.RoleName = Loc.GetString("blob-carrier-role-name");

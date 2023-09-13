@@ -3,3 +3,5 @@
   name: Urist McHands The Fox
   parent: [BaseMobHumanoidFox, BaseMob]
   id: MobHumanoidFox
+  components:
+    - type: PotentialPsionic

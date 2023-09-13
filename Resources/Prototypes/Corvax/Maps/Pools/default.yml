@@ -2,6 +2,9 @@
   id: CorvaxDefaultMapPool
   maps:
   - CorvaxIshimura #stable
+  - CorvaxDelta
+  - CorvaxAvrite
+  - CorvaxSpectrum
   - Aspid
   - Bagel
   - Barratry

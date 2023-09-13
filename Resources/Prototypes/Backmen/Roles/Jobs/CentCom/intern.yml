@@ -29,7 +29,9 @@
     - !type:AddComponentSpecial
       components:
         - type: SpecForce
-          actionName: CentcomFtlAction
+          actionBssActionName: ActionCentcomFtlAction
+        - type: PsionicBonusChance
+          multiplier: 3
   minBankBalance: 200
   maxBankBalance: 500
   wageDepartment: CentCom

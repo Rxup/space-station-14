@@ -204,6 +204,7 @@ namespace Content.Server.GameTicking
                 _adminLogger.Add(LogType.Mind, $"{EntityManager.ToPrettyString(playerEntity.Value):player} is attempting to ghost via command");
 
             var handleEv = new GhostAttemptHandleEvent(mind, canReturnGlobal);
+            handleEv.ViaCommand = viaCommand;
             RaiseLocalEvent(handleEv);
 
             // Something else has handled the ghost attempt for us! We return its result.
@@ -315,6 +316,7 @@ namespace Content.Server.GameTicking
         public MindComponent Mind { get; }
         public bool CanReturnGlobal { get; }
         public bool Result { get; set; }
+        public bool ViaCommand { get; set; } = false; // backmen: psionic
 
         public GhostAttemptHandleEvent(MindComponent mind, bool canReturnGlobal)
         {

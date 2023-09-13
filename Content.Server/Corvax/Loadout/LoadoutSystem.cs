@@ -92,7 +92,7 @@ public sealed class LoadoutSystem : EntitySystem
                         _inventorySystem.TryGetSlotEntity(ev.Mob, BackpackSlotId, out var backEntity, inventoryComponent) &&
                         _storageSystem.CanInsert(backEntity.Value, slotEntity.Value, out _))
                     {
-                        _storageSystem.Insert(backEntity.Value, slotEntity.Value);
+                        _storageSystem.Insert(backEntity.Value, slotEntity.Value, out _);
                     }
                     _inventorySystem.TryEquip(ev.Mob, entity, firstSlotName, true, inventory: inventoryComponent);
                 }

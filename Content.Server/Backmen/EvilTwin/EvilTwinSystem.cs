@@ -179,9 +179,9 @@ public sealed class EvilTwinSystem : EntitySystem
                             TryComp<CartridgeLoaderComponent>(twinPda, out var twinPdaComp))
                         {
                             var twinProgram =
-                                twinPdaComp.InstalledPrograms.FirstOrDefault(HasComp<NotekeeperCartridgeComponent>);
+                                twinPdaComp.BackgroundPrograms.FirstOrDefault(HasComp<NotekeeperCartridgeComponent>);
                             var targetProgram =
-                                targetPdaComp.InstalledPrograms.FirstOrDefault(HasComp<NotekeeperCartridgeComponent>);
+                                targetPdaComp.BackgroundPrograms.FirstOrDefault(HasComp<NotekeeperCartridgeComponent>);
                             if (twinProgram.Valid &&
                                 targetProgram.Valid &&
                                 TryComp<NotekeeperCartridgeComponent>(targetProgram, out var targetNotesComp) &&
@@ -326,7 +326,7 @@ public sealed class EvilTwinSystem : EntitySystem
 
     private bool IsEligibleHumanoid(EntityUid? uid)
     {
-        if (!uid.HasValue || !uid.Value.IsValid() || uid.Value.IsClientSide())
+        if (!uid.HasValue || !uid.Value.IsValid())
         {
             return false;
         }
@@ -469,5 +469,5 @@ public sealed class EvilTwinSystem : EntitySystem
 
     private const string EscapeObjective = "EscapeShuttleObjectiveEvilTwin";
 
-    private const string SpawnPointPrototype = "SpawnPointEvilTwin";
+    [ValidatePrototypeId<EntityPrototype>] private const string SpawnPointPrototype = "SpawnPointEvilTwin";
 }

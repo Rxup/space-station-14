@@ -1,15 +1,10 @@
-- type: instantAction
+- type: entity
   id: SpiderWebArachneClassicAction
-  icon: Interface/Actions/web.png
   name: spider-web-action-name
   description: spider-web-action-description
-  serverEvent: !type:SpiderWebActionEvent
-  useDelay: 180
-
-- type: worldTargetAction
-  id: SpinWeb
-  name: action-name-spin-web
-  description: action-desc-spin-web
-  icon: { sprite: Backmen/Structures/web.rsi, state: web1 }
-  range: 1.5
-  serverEvent: !type:SpinWebActionEvent
+  noSpawn: true
+  components:
+    - type: InstantAction
+      useDelay: 180
+      icon: Interface/Actions/web.png
+      event: !type:SpiderWebActionEvent

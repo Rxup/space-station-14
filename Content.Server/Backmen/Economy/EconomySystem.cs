@@ -47,7 +47,6 @@ public sealed class EconomySystem : EntitySystem
 
     private void OnFtposInit(EntityUid uid, EftposComponent component, ComponentInit args)
     {
-        uid.EnsureComponentWarn<ServerUserInterfaceComponent>();
         component.InitPresetValues();
     }
 
@@ -134,9 +133,9 @@ public sealed class EconomySystem : EntitySystem
         if (!EntityManager.TryGetComponent(idUid, out CartridgeLoaderComponent? cartrdigeLoaderComponent))
             return bankAccount;
 
-        foreach (var uid in cartrdigeLoaderComponent.InstalledPrograms)
+        foreach (var uid in cartrdigeLoaderComponent.BackgroundPrograms)
         {
-            if (!EntityManager.TryGetComponent(uid, out BankCartridgeComponent? bankCartrdigeComponent))
+            if (!TryComp<BankCartridgeComponent>(uid, out var bankCartrdigeComponent))
                 continue;
 
             if (bankCartrdigeComponent.LinkedBankAccount == null)

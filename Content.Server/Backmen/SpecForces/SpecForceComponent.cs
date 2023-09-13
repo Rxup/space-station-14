@@ -7,8 +7,8 @@ namespace Content.Server.Backmen.SpecForces;
 public sealed partial class SpecForceComponent : Component
 {
     [ViewVariables(VVAccess.ReadWrite)]
-    [DataField("actionName")]
-    public string? ActionName { get; private set; }
+    [DataField("actionBssActionName")]
+    public string? ActionBssActionName { get; private set; }
 
     [DataField("requirements")]
     public HashSet<JobRequirement>? Requirements { get; private set; }
@@ -23,4 +23,6 @@ public sealed partial class SpecForceComponent : Component
 
     [DataField("whitelistRequired")]
     public bool WhitelistRequired { get; set; } = false;
+
+    public EntityUid? BssKey = null;
 }

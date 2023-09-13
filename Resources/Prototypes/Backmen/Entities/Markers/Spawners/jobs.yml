@@ -82,7 +82,7 @@
       layers:
         - state: green
         - state: security_officer
-        
+
 - type: entity
   id: SpawnPointDelivery
   parent: SpawnPointJobBase
@@ -93,4 +93,17 @@
     - type: Sprite
       layers:
         - state: green
-        - state: Delivery       
+        - state: Delivery
+
+- type: entity
+  id: SpawnPointPrisoner
+  parent: SpawnPointJobBase
+  name: prisoner
+  components:
+    - type: SpawnPoint
+      job_id: Prisoner
+    - type: Sprite
+      sprite: Backmen/Interface/Misc/job_icons.rsi
+      layers:
+        - state: green
+        - state: prisoner
