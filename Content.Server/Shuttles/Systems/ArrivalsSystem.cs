@@ -228,6 +228,11 @@ public sealed class ArrivalsSystem : EntitySystem
 
     private void OnPlayerSpawn(PlayerSpawningEvent ev)
     {
+        // start-backmen: Prisoner
+        if (ev.SpawnResult != null)
+            return;
+        // end-backmen: Prisoner
+
         // Only works on latejoin even if enabled.
         if (!Enabled || _ticker.RunLevel != GameRunLevel.InRound)
             return;
