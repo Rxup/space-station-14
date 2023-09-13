@@ -3,7 +3,7 @@ using Robust.Shared.Audio;
 namespace Content.Server.Blob.NPC.BlobPod
 {
     [RegisterComponent]
-    public sealed class BlobPodComponent : Component
+    public sealed partial class BlobPodComponent : Component
     {
         [ViewVariables(VVAccess.ReadOnly)]
         public bool IsZombifying = false;

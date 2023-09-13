@@ -32,15 +32,11 @@ namespace Content.Server.Fluids.EntitySystems;
 public sealed class SmokeSystem : EntitySystem
 {
     // If I could do it all again this could probably use a lot more of puddles.
-    [Dependency] private readonly IAdminLogManager _logger = default!;
     [Dependency] private readonly IGameTiming _timing = default!;
     [Dependency] private readonly IMapManager _mapManager = default!;
     [Dependency] private readonly IPrototypeManager _prototype = default!;
     [Dependency] private readonly AppearanceSystem _appearance = default!;
-    [Dependency] private readonly BloodstreamSystem _blood = default!;
     [Dependency] private readonly EntityLookupSystem _lookup = default!;
-    [Dependency] private readonly InternalsSystem _internals = default!;
-    [Dependency] private readonly ReactiveSystem _reactive = default!;
     [Dependency] private readonly SolutionContainerSystem _solutionSystem = default!;
     [Dependency] private readonly AudioSystem _audioSystem = default!;
 
@@ -280,12 +276,12 @@ public sealed class SmokeSystem : EntitySystem
         var smoke = EnsureComp<SmokeComponent>(smokeEnt);
         smoke.Color = comp.SmokeColor;
         smoke.SmokeColor = comp.SmokeColor;
-        Dirty(smoke);
+        Dirty(smokeEnt,smoke);
         smoke.SpreadAmount = comp.SpreadAmount;
         var solution = new Solution();
         foreach (var reagent in comp.SmokeReagents)
         {
-            solution.AddReagent(reagent.ReagentId, reagent.Quantity);
+            solution.AddReagent(reagent.Reagent, reagent.Quantity);
         }
         Start(smokeEnt, smoke, solution, comp.Time);
         _audioSystem.PlayPvs(comp.Sound, xform.Coordinates, AudioParams.Default.WithVariation(0.125f));

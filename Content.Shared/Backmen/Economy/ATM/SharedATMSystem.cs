@@ -8,15 +8,15 @@ public abstract class SharedATMSystem : EntitySystem
     public override void Initialize()
     {
         base.Initialize();
-        SubscribeLocalEvent<SharedATMComponent, ComponentInit>(OnComponentInit);
-        SubscribeLocalEvent<SharedATMComponent, ComponentRemove>(OnComponentRemove);
+        SubscribeLocalEvent<SharedAtmComponent, ComponentInit>(OnComponentInit);
+        SubscribeLocalEvent<SharedAtmComponent, ComponentRemove>(OnComponentRemove);
     }
-    private void OnComponentInit(EntityUid uid, SharedATMComponent component, ComponentInit args)
+    private void OnComponentInit(EntityUid uid, SharedAtmComponent component, ComponentInit args)
     {
-        _itemSlotsSystem.AddItemSlot(uid, SharedATMComponent.IdCardSlotId, component.IdCardSlot);
+        _itemSlotsSystem.AddItemSlot(uid, SharedAtmComponent.IdCardSlotId, component.IdCardSlot);
     }
 
-    private void OnComponentRemove(EntityUid uid, SharedATMComponent component, ComponentRemove args)
+    private void OnComponentRemove(EntityUid uid, SharedAtmComponent component, ComponentRemove args)
     {
         _itemSlotsSystem.RemoveItemSlot(uid, component.IdCardSlot);
     }

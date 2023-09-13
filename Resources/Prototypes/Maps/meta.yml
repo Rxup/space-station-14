@@ -46,7 +46,8 @@
             ResearchDirector: [ 1, 1 ]
             SeniorResearcher: [ 1, 1 ]
             Scientist: [ 4, 6 ]
-            ResearchAssistant: [ 8, 8 ]
+            ResearchAssistant: [ 3, 6 ]
+            Borg: [ 2, 2 ]
             #security
             HeadOfSecurity: [ 1, 1 ]
             Warden: [ 1, 1 ]
@@ -67,3 +68,4 @@
             Mime: [ 1, 1 ]
             BKBPLATech: [0, 3] # backmen-BPLA-Silicons
             BKBPLAMED: [0, 3] # backmen-BPLAMED-Silicons
+            Prisoner: [ 2, 3]

@@ -7,19 +7,19 @@ using Content.Server.Destructible;
 using Content.Server.Emp;
 using Content.Server.Explosion.EntitySystems;
 using Content.Shared.ActionBlocker;
-using Content.Shared.Actions.ActionTypes;
+using Content.Shared.Actions;
+using Content.Shared.Backmen.Blob;
 using Content.Shared.Blob;
 using Content.Shared.Coordinates.Helpers;
 using Content.Shared.Damage;
 using Content.Shared.Interaction;
 using Content.Shared.Item;
-using Content.Shared.Maps;
 using Content.Shared.Mobs.Components;
 using Content.Shared.Popups;
-using Content.Shared.Random.Helpers;
 using Content.Shared.SubFloor;
 using Robust.Server.GameObjects;
 using Robust.Shared.Audio;
+using Robust.Shared.Containers;
 using Robust.Shared.GameStates;
 using Robust.Shared.Map;
 using Robust.Shared.Map.Components;
@@ -31,7 +31,6 @@ namespace Content.Server.Blob;
 
 public sealed class BlobObserverSystem : SharedBlobObserverSystem
 {
-    [Dependency] private readonly IPrototypeManager _proto = default!;
     [Dependency] private readonly ActionsSystem _action = default!;
     [Dependency] private readonly IMapManager _map = default!;
     [Dependency] private readonly DamageableSystem _damageableSystem = default!;
@@ -53,7 +52,7 @@ public sealed class BlobObserverSystem : SharedBlobObserverSystem
     {
         base.Initialize();
 
-        SubscribeLocalEvent<BlobObserverComponent, ComponentStartup>(OnStartup);
+        SubscribeLocalEvent<BlobObserverComponent, MapInitEvent>(OnMapInitEvent);
         SubscribeLocalEvent<BlobObserverComponent, BlobCreateFactoryActionEvent>(OnCreateFactory);
         SubscribeLocalEvent<BlobObserverComponent, BlobCreateResourceActionEvent>(OnCreateResource);
         SubscribeLocalEvent<BlobObserverComponent, BlobCreateNodeActionEvent>(OnCreateNode);
@@ -68,6 +67,31 @@ public sealed class BlobObserverSystem : SharedBlobObserverSystem
         SubscribeLocalEvent<BlobObserverComponent, MoveEvent>(OnMoveEvent);
         SubscribeLocalEvent<BlobObserverComponent, ComponentGetState>(GetState);
         SubscribeLocalEvent<BlobObserverComponent, BlobChemSwapPrototypeSelectedMessage>(OnChemSelected);
+    }
+
+    [ValidatePrototypeId<EntityPrototype>] private const string ActionHelpBlob = "ActionHelpBlob";
+    [ValidatePrototypeId<EntityPrototype>] private const string ActionSwapBlobChem = "ActionSwapBlobChem";
+    [ValidatePrototypeId<EntityPrototype>] private const string ActionTeleportBlobToCore = "ActionTeleportBlobToCore";
+    [ValidatePrototypeId<EntityPrototype>] private const string ActionTeleportBlobToNode = "ActionTeleportBlobToNode";
+    [ValidatePrototypeId<EntityPrototype>] private const string ActionCreateBlobFactory = "ActionCreateBlobFactory";
+    [ValidatePrototypeId<EntityPrototype>] private const string ActionCreateBlobResource = "ActionCreateBlobResource";
+    [ValidatePrototypeId<EntityPrototype>] private const string ActionCreateBlobNode = "ActionCreateBlobNode";
+    [ValidatePrototypeId<EntityPrototype>] private const string ActionCreateBlobbernaut = "ActionCreateBlobbernaut";
+    [ValidatePrototypeId<EntityPrototype>] private const string ActionSplitBlobCore = "ActionSplitBlobCore";
+    [ValidatePrototypeId<EntityPrototype>] private const string ActionSwapBlobCore = "ActionSwapBlobCore";
+
+    private void OnMapInitEvent(EntityUid uid, BlobObserverComponent component, MapInitEvent args)
+    {
+        _action.AddAction(uid, ref component.ActionHelpBlob, ActionHelpBlob);
+        _action.AddAction(uid, ref component.ActionSwapBlobChem, ActionSwapBlobChem);
+        _action.AddAction(uid, ref component.ActionTeleportBlobToCore, ActionTeleportBlobToCore);
+        _action.AddAction(uid, ref component.ActionTeleportBlobToNode, ActionTeleportBlobToNode);
+        _action.AddAction(uid, ref component.ActionCreateBlobFactory, ActionCreateBlobFactory);
+        _action.AddAction(uid, ref component.ActionCreateBlobResource, ActionCreateBlobResource);
+        _action.AddAction(uid, ref component.ActionCreateBlobNode, ActionCreateBlobNode);
+        _action.AddAction(uid, ref component.ActionCreateBlobbernaut, ActionCreateBlobbernaut);
+        _action.AddAction(uid, ref component.ActionSplitBlobCore, ActionSplitBlobCore);
+        _action.AddAction(uid, ref component.ActionSwapBlobCore, ActionSwapBlobCore);
     }
 
     private void OnBlobSwapChem(EntityUid uid, BlobObserverComponent observerComponent,
@@ -158,7 +182,7 @@ public sealed class BlobObserverSystem : SharedBlobObserverSystem
         {
             return;
         }
-        
+
         var corePos = xform.Coordinates;
 
         var (nearestEntityUid, nearestDistance) = CalculateNearestBlobTileDistance(args.NewPosition);
@@ -748,41 +772,6 @@ public sealed class BlobObserverSystem : SharedBlobObserverSystem
             blobCoreComponent,
             transformCost: cost);
     }
-
-    private void OnStartup(EntityUid uid, BlobObserverComponent component, ComponentStartup args)
-    {
-        var helpBlob = new InstantAction(
-            _proto.Index<InstantActionPrototype>("HelpBlob"));
-        _action.AddAction(uid, helpBlob, null);
-        var swapBlobChem = new InstantAction(
-            _proto.Index<InstantActionPrototype>("SwapBlobChem"));
-        _action.AddAction(uid, swapBlobChem, null);
-        var teleportBlobToCore = new InstantAction(
-            _proto.Index<InstantActionPrototype>("TeleportBlobToCore"));
-        _action.AddAction(uid, teleportBlobToCore, null);
-        var teleportBlobToNode = new InstantAction(
-            _proto.Index<InstantActionPrototype>("TeleportBlobToNode"));
-        _action.AddAction(uid, teleportBlobToNode, null);
-        var createBlobFactory = new WorldTargetAction(
-            _proto.Index<WorldTargetActionPrototype>("CreateBlobFactory"));
-        _action.AddAction(uid, createBlobFactory, null);
-        var createBlobResource = new WorldTargetAction(
-            _proto.Index<WorldTargetActionPrototype>("CreateBlobResource"));
-        _action.AddAction(uid, createBlobResource, null);
-        var createBlobNode = new WorldTargetAction(
-            _proto.Index<WorldTargetActionPrototype>("CreateBlobNode"));
-        _action.AddAction(uid, createBlobNode, null);
-        var createBlobbernaut = new WorldTargetAction(
-            _proto.Index<WorldTargetActionPrototype>("CreateBlobbernaut"));
-        _action.AddAction(uid, createBlobbernaut, null);
-        var splitBlobCore = new WorldTargetAction(
-            _proto.Index<WorldTargetActionPrototype>("SplitBlobCore"));
-        _action.AddAction(uid, splitBlobCore, null);
-        var swapBlobCore = new WorldTargetAction(
-            _proto.Index<WorldTargetActionPrototype>("SwapBlobCore"));
-        _action.AddAction(uid, swapBlobCore, null);
-    }
-
     private void OnCreateFactory(EntityUid uid, BlobObserverComponent observerComponent, BlobCreateFactoryActionEvent args)
     {
         if (args.Handled)

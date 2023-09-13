@@ -2,18 +2,17 @@
 using Content.Server.Body.Components;
 using Content.Server.Chat.Managers;
 using Content.Server.Mind;
-using Content.Server.Mind.Components;
 using Content.Server.NPC;
 using Content.Server.NPC.Components;
 using Content.Server.NPC.HTN;
 using Content.Server.NPC.Systems;
 using Content.Server.Speech.Components;
 using Content.Server.Temperature.Components;
+using Content.Shared.Mind.Components;
 using Content.Shared.Mobs;
 using Content.Shared.Physics;
 using Content.Shared.Tag;
 using Robust.Shared.Physics;
-using Robust.Shared.Physics.Collision.Shapes;
 using Robust.Shared.Physics.Systems;
 
 namespace Content.Server.Blob
@@ -53,8 +52,8 @@ namespace Content.Server.Blob
                     || (fixture.CollisionMask & ClimbingCollisionGroup) == 0)
                     continue;
 
-                climbingComp.DisabledFixtureMasks.Add(fixture.ID, fixture.CollisionMask & ClimbingCollisionGroup);
-                _physics.SetCollisionMask(uid, fixture, fixture.CollisionMask & ~ClimbingCollisionGroup, fixturesComp);
+                climbingComp.DisabledFixtureMasks.Add(name, fixture.CollisionMask & ClimbingCollisionGroup);
+                _physics.SetCollisionMask(uid, name, fixture, fixture.CollisionMask & ~ClimbingCollisionGroup, fixturesComp);
             }
         }
 
@@ -93,7 +92,7 @@ namespace Content.Server.Blob
             }
 
             var mindComp = EnsureComp<MindContainerComponent>(uid);
-            if (_mind.TryGetMind(uid, out var mind, mindComp) && _mind.TryGetSession(mind, out var session))
+            if (_mind.TryGetSession(mindComp.Mind, out var session))
             {
                 _chatMan.DispatchServerMessage(session, Loc.GetString("blob-zombie-greeting"));
 
@@ -165,7 +164,7 @@ namespace Content.Server.Blob
                         continue;
                     }
 
-                    _physics.SetCollisionMask(uid, fixture, fixture.CollisionMask | fixtureMask, fixtures);
+                    _physics.SetCollisionMask(uid, name, fixture, fixture.CollisionMask | fixtureMask, fixtures);
                 }
                 component.DisabledFixtureMasks.Clear();
             }

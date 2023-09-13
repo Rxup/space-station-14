@@ -93,6 +93,8 @@
   components:
     - type: StorageFill
       contents:
+        - id: Eftpos # backmen
+          prob: 0.2
         - id: Lantern
           prob: 0.50
         - id: Wirecutter
@@ -117,6 +119,8 @@
           prob: 0.2
         - id: ClothingHandsGlovesColorYellow
           prob: 0.05
+        - id: ClothingHandsGlovesFingerlessInsulated
+          prob: 0.07
         - id: ClothingBeltUtility
           prob: 0.10
         - id: ClothingHeadHatCone
@@ -178,6 +182,8 @@
   components:
   - type: StorageFill
     contents:
+        - id: Eftpos # backmen
+          prob: 0.2
         - id: Lantern
           prob: 0.50
         - id: Wirecutter

@@ -2,7 +2,9 @@ using Content.Shared.Roles;
 
 namespace Content.Server.Roles;
 
-public sealed class BlobRole : AntagonistRole
+
+[RegisterComponent]
+public sealed partial class BlobRoleComponent : AntagonistRoleComponent
 {
-    public BlobRole(Mind.Mind mind, AntagPrototype antagPrototype) : base(mind, antagPrototype) { }
+
 }

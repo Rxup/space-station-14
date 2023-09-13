@@ -45,6 +45,9 @@
     voice: Kelthuzad
   - type: Eye
     drawFov: false
+    visMask:
+      - Normal
+      - Ghost
   - type: ContentEye
     maxZoom: 1.2, 1.2
   - type: DoAfter
@@ -80,3 +83,5 @@
 #    - of
     - RevenantAdjective
     - RevenantTheme
+  - type: Speech
+    speechVerb: Ghost

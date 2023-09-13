@@ -22,7 +22,6 @@ public sealed class HandTeleporterSystem : EntitySystem
     public override void Initialize()
     {
         SubscribeLocalEvent<HandTeleporterComponent, UseInHandEvent>(OnUseInHand);
-
         SubscribeLocalEvent<HandTeleporterComponent, TeleporterDoAfterEvent>(OnDoAfter);
     }
 
@@ -62,7 +61,7 @@ public sealed class HandTeleporterSystem : EntitySystem
             }
             // end-backmen: protected grid
 
-            var doafterArgs = new DoAfterArgs(args.User, component.PortalCreationDelay, new TeleporterDoAfterEvent(), uid, used: uid)
+            var doafterArgs = new DoAfterArgs(EntityManager, args.User, component.PortalCreationDelay, new TeleporterDoAfterEvent(), uid, used: uid)
             {
                 BreakOnDamage = true,
                 BreakOnUserMove = true,

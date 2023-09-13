@@ -1,10 +1,10 @@
 using Content.Server.Administration;
 using Content.Server.Administration.Logs;
-using Content.Server.Mind;
-using Content.Server.Mind.Components;
+using Content.Shared.Mind;
 using Content.Server.Players;
 using Content.Shared.Administration;
 using Content.Shared.Database;
+using Content.Shared.Mind.Components;
 using Robust.Server.GameObjects;
 using Robust.Server.Player;
 using Robust.Shared.Console;
@@ -73,13 +73,23 @@ namespace Content.Server.Backmen.Administration.Commands
             }
 
             // ReSharper disable once InconsistentNaming
-            var _mindSystem = _entityManager.System<MindSystem>();
+            var _mindSystem = _entityManager.System<SharedMindSystem>();
+            // ReSharper disable once InconsistentNaming
+            var _actorSystem = _entityManager.System<ActorSystem>();
             var mind = playerCData.Mind ?? _mindSystem.CreateMind(session.UserId, _entityManager.GetComponent<MetaDataComponent>(eUid).EntityName);
 
             //mind.TransferTo(null);
             Timer.Spawn(1_000, ()=>{
                 if(eUid.IsValid() && _entityManager.HasComponent<MetaDataComponent>(eUid)){
-                    _mindSystem.TransferTo(mind, eUid);
+                    _mindSystem.TransferTo(mind, null, true, true);
+                    Timer.Spawn(1_000, () =>
+                    {
+                        if (eUid.IsValid() && _entityManager.HasComponent<MetaDataComponent>(eUid))
+                        {
+                            _mindSystem.TransferTo(mind, eUid);
+                            _actorSystem.Attach(eUid, session, true);
+                        }
+                    });
                 }
             });
             _adminLogger.Add(LogType.Mind, LogImpact.High, $"{(shell.Player != null ? shell.Player.Name : "An administrator")} fixplayerchat {_entityManager.ToPrettyString(eUid)}");

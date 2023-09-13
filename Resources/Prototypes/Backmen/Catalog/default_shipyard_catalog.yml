@@ -1,0 +1,62 @@
+- type: vessel
+  id: PTS
+  name: Private Transport Shuttle
+  description: A private transport vessel for up to 6 passengers.
+  price: 23000
+  category: Small
+  group: Civilian
+  shuttlePath: /Maps/Backmen/ForSale/pts.yml
+
+- type: vessel
+  id: Barge
+  name: The Barge
+  description: A large shipping vessel repurposed into a salvage bar.
+  price: 45000
+  category: Medium
+  group: Civilian
+  shuttlePath: /Maps/Backmen/ForSale/barge.yml
+
+- type: vessel
+  id: Helix
+  name: NTMC Helix
+  description: A large mobile health clinic for servicing distant outposts.
+  price: 38500
+  category: Medium
+  group: Civilian
+  shuttlePath: /Maps/Backmen/ForSale/helix.yml
+
+- type: vessel
+  id: Prospecter
+  name: NT-7 Prospecter
+  description: A small mining vessel designed to assist salvage operations.
+  price: 19000
+  category: Small
+  group: Civilian
+  shuttlePath: /Maps/Backmen/ForSale/prospecter.yml
+
+- type: vessel
+  id: Nomad
+  name: NTCV Nomad
+  description: A small shuttle for transporting up to 3 passengers with relative comfort.
+  price: 21000
+  category: Small
+  group: Civilian
+  shuttlePath: /Maps/Backmen/ForSale/ntcv-nomad.yml
+
+- type: vessel
+  id: Tote
+  name: NTSV Tote
+  description: A small shipping vessel, adapted from the Nomad line of shuttles with room for 2 passengers.
+  price: 20000
+  category: Small
+  group: Civilian
+  shuttlePath: /Maps/Backmen/ForSale/ntsv-tote.yml
+
+- type: vessel
+  id: Pulse
+  name: NTV Pulse
+  description: A moderately sized shuttle intended for all-purpose use. It can comfortably accomodate a crew of up to ten people.
+  price: 50000
+  category: Medium
+  group: Civilian
+  shuttlePath: /Maps/Backmen/ForSale/ntv-pulse.yml

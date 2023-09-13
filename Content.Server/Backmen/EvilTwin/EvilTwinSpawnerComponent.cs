@@ -1,7 +1,7 @@
 ﻿namespace Content.Server.Backmen.EvilTwin;
 
 [RegisterComponent]
-public sealed class EvilTwinSpawnerComponent : Component
+public sealed partial class EvilTwinSpawnerComponent : Component
 {
         [ViewVariables(VVAccess.ReadWrite)]
         [DataField("target")]

@@ -4,6 +4,8 @@
   id: MobBatRemilia
   description: The chaplain's familiar. Likes fruit.
   components:
+  - type: BloodSucker
+    unitsToSucc: 5
   - type: GhostRole
     makeSentient: true
     allowMovement: true
@@ -12,6 +14,8 @@
     description: ghost-role-information-remilia-description
     rules: ghost-role-information-remilia-rules
   - type: GhostTakeoverAvailable
+  - type: Body
+    prototype: VampiricAnimal
   - type: Grammar
     attributes:
       gender: female
@@ -66,7 +70,7 @@
   - type: MobThresholds
     thresholds:
       0: Alive
-      160: Dead
+      120: Dead
   - type: Grammar
     attributes:
       gender: male

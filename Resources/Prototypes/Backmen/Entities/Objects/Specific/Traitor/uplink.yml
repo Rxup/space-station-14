@@ -1,0 +1,13 @@
+﻿- type: entity
+  parent: BaseItem
+  id: InjectorBloodsuckerNocturine
+  name: nocturine gland injector
+  description: Gives a bloodsucker a gland that injects nocturine when they suck blood.
+  components:
+    - type: Item
+      size: 3
+    - type: Sprite
+      sprite: Objects/Specific/Medical/medipen.rsi
+      state: salpen
+    - type: BloodSuckerGlandInjector
+      injectReagent: Nocturine

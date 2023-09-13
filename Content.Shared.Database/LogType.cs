@@ -88,7 +88,8 @@ public enum LogType
     Vote = 83,
     ItemConfigure = 84,
     DeviceLinking = 85,
-
+    Tile = 86,
     //backmen
-    Transactions = 120
+    Transactions = 120,
+    Psionics = 121
 }

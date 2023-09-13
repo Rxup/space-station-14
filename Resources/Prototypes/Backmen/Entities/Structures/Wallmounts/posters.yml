@@ -1,0 +1,9 @@
+- type: entity
+  parent: PosterBase
+  id: PosterLegitBarDrinks
+  name: "Bar Poster"
+  description: "The Bartender is always there to hear your woes and get you plastered all at the same time. Go have a visit!"
+  components:
+  - type: Sprite
+    sprite: Backmen/Structures/Wallmounts/Posters/Huvy.rsi
+    state: BAR
