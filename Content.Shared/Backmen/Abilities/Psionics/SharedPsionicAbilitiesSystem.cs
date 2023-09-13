@@ -105,8 +105,8 @@ public sealed class PsionicPowerUsedEvent : HandledEntityEventArgs
 [NetSerializable]
 public sealed class PsionicsChangedEvent : EntityEventArgs
 {
-    public readonly EntityUid Euid;
-    public PsionicsChangedEvent(EntityUid euid)
+    public readonly NetEntity Euid;
+    public PsionicsChangedEvent(NetEntity euid)
     {
         Euid = euid;
     }

@@ -1,7 +1,10 @@
-- type: instantAction
-  id: CentcomFtlAction
-  icon: Backmen/Actions/CCAuth.png
+- type: entity
+  id: ActionCentcomFtlAction
   name: centcom-ftl-action-name
   description: centcom-ftl-action-description
-  serverEvent: !type:CentcomFtlAction
-  useDelay: 180
+  noSpawn: true
+  components:
+    - type: InstantAction
+      useDelay: 180
+      icon: Backmen/Actions/CCAuth.png
+      event: !type:CentcomFtlAction

@@ -36,7 +36,7 @@
     - !type:AddComponentSpecial
       components:
         - type: SpecForce
-          actionName: CentcomFtlAction
+          actionBssActionName: ActionCentcomFtlAction
         - type: Psionic
         - type: PyrokinesisPower
   minBankBalance: 800

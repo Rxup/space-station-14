@@ -29,8 +29,6 @@ namespace Content.Server.Sandbox
         [Dependency] private readonly GameTicker _ticker = default!;
         [Dependency] private readonly SharedHandsSystem _handsSystem = default!;
 
-        public event EventHandler<MsgPlacement> OnAdminPlacement = (o,e) => { };
-
         private bool _isSandboxEnabled;
 
         [ViewVariables(VVAccess.ReadWrite)]
@@ -68,7 +66,6 @@ namespace Content.Server.Sandbox
 
                 if (_conGroupController.CanAdminPlace(player))
                 {
-                    OnAdminPlacement.Invoke(this,placement);
                     return true;
                 }
 

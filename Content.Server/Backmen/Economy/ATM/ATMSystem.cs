@@ -116,7 +116,7 @@ namespace Content.Server.Backmen.Economy.ATM;
             if(_prototypeManager.TryIndex(bankAccount.CurrencyType, out CurrencyPrototype? p))
                 currencySymbol = Loc.GetString(p.CurrencySymbol);
 
-            UserInterfaceSystem.SetUiState(ui,new AtmBoundUserInterfaceBalanceState(
+            _uiSystem.SetUiState(ui,new AtmBoundUserInterfaceBalanceState(
                 bankAccount.Balance,
                 currencySymbol
             ));
@@ -156,7 +156,7 @@ namespace Content.Server.Backmen.Economy.ATM;
             if (ui == null)
                 return;
 
-            UserInterfaceSystem.SetUiState(ui,new AtmBoundUserInterfaceState(
+            _uiSystem.SetUiState(ui,new AtmBoundUserInterfaceState(
                 component.IdCardSlot.HasItem,
                 idCardFullName,
                 idCardEntityName,

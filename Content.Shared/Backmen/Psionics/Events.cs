@@ -1,3 +1,4 @@
+using Content.Shared.Actions;
 using Robust.Shared.Serialization;
 using Content.Shared.DoAfter;
 
@@ -25,3 +26,26 @@ public sealed partial class PsionicRegenerationDoAfterEvent : DoAfterEvent
 public sealed partial class GlimmerWispDrainDoAfterEvent : SimpleDoAfterEvent
 {
 }
+
+public sealed partial class PsionicInvisibilityPowerActionEvent : InstantActionEvent {}
+public sealed partial class PsionicInvisibilityPowerOffActionEvent : InstantActionEvent {}
+public sealed partial class HairballActionEvent : InstantActionEvent {}
+public sealed partial class EatMouseActionEvent : InstantActionEvent {}
+public sealed partial class MetapsionicPowerActionEvent : InstantActionEvent {}
+public sealed partial class TelegnosisPowerActionEvent : InstantActionEvent {}
+public sealed partial class PsionicRegenerationPowerActionEvent : InstantActionEvent {}
+public sealed partial class NoosphericZapPowerActionEvent : EntityTargetActionEvent {}
+public sealed partial class DispelPowerActionEvent : EntityTargetActionEvent {}
+
+public sealed partial class DispelledEvent : HandledEntityEventArgs {}
+public sealed partial class MindSwapPowerActionEvent : EntityTargetActionEvent
+{
+
+}
+
+public sealed partial class MindSwapPowerReturnActionEvent : InstantActionEvent
+{
+
+}
+public sealed partial class PyrokinesisPowerActionEvent : EntityTargetActionEvent {}
+public sealed partial class PsychokinesisPowerActionEvent : WorldTargetActionEvent {}

@@ -145,7 +145,7 @@ public sealed class BloodSuckerSystem : EntitySystem
         _popups.PopupEntity(Loc.GetString("bloodsucker-doafter-start", ("target", victim)), victim, bloodsucker, Shared.Popups.PopupType.Medium);
 
         var ev = new BloodSuckDoAfterEvent();
-        var args = new DoAfterArgs(bloodsucker, bloodSuckerComponent.SuccDelay, ev, bloodsucker, target: victim)
+        var args = new DoAfterArgs(EntityManager, bloodsucker, bloodSuckerComponent.SuccDelay, ev, bloodsucker, target: victim)
         {
             BreakOnTargetMove = true,
             BreakOnUserMove = false,

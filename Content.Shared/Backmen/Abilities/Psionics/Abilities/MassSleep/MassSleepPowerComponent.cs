@@ -1,11 +1,11 @@
-using Content.Shared.Actions.ActionTypes;
+using Content.Shared.Actions.Events;
 
 namespace Content.Shared.Backmen.Abilities.Psionics;
 
 [RegisterComponent]
 public sealed partial class MassSleepPowerComponent : Component
 {
-    public WorldTargetAction? MassSleepPowerAction = null;
+    public EntityUid? MassSleepPowerAction = null;
 
     public float Radius = 1.25f;
 }

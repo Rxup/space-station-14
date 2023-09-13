@@ -1,4 +1,3 @@
-using Content.Shared.Actions.ActionTypes;
 using Robust.Shared.Audio;
 
 namespace Content.Shared.Backmen.Abilities.Psionics;
@@ -6,7 +5,7 @@ namespace Content.Shared.Backmen.Abilities.Psionics;
 [RegisterComponent]
 public sealed partial class PsychokinesisPowerComponent : Component
 {
-    public WorldTargetAction? PsychokinesisPowerAction = null;
+    public EntityUid? PsychokinesisPowerAction = null;
 
     [DataField("waveSound")]
     public SoundSpecifier WaveSound = new SoundPathSpecifier("/Audio/Nyanotrasen/Mobs/SilverGolem/wave.ogg");

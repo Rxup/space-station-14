@@ -27,3 +27,6 @@
 
 - type: playTimeTracker
   id: JobPrisoner
+
+- type: playTimeTracker
+  id: JobFugitive

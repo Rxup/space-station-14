@@ -10,8 +10,6 @@ namespace Content.Server.Backmen.Economy.Eftpos;
 [Access(typeof(EftposSystem), typeof(EconomySystem))]
 public sealed partial class EftposComponent : SharedEftposComponent
 {
-    [ViewVariables] private BoundUserInterface? UserInterface => Owner.GetUIOrNull(EftposUiKey.Key);
-
     [ViewVariables] public FixedPoint2? Value { get; set; } = null;
     [ViewVariables] public string? LinkedAccountNumber { get; set; } = null;
     [ViewVariables(VVAccess.ReadOnly)] public string? LinkedAccountName { get; set; } = null;
@@ -36,12 +34,4 @@ public sealed partial class EftposComponent : SharedEftposComponent
         if (_PresetAccountName != null)
             LinkedAccountName = _PresetAccountName;
     }
-    public void UpdateUserInterface(EftposBoundUserInterfaceState state)
-    {
-        if (!Initialized || UserInterface == null)
-            return;
-
-        UserInterfaceSystem.SetUiState(UserInterface, state);
-    }
-
 }

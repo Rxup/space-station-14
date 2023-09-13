@@ -41,7 +41,7 @@ namespace Content.Server.Backmen.Item.PseudoItem
         private void OnRemovedAttempt(EntityUid uid, PseudoItemComponent component, ContainerGettingRemovedAttemptEvent args)
         {
             if (
-                HasComp<ServerStorageComponent>(args.Container.Owner) &&
+                HasComp<StorageComponent>(args.Container.Owner) &&
                 !TerminatingOrDeleted(args.Container.Owner) &&
                 !EntityManager.IsQueuedForDeletion(args.Container.Owner)
                 )
@@ -58,7 +58,7 @@ namespace Content.Server.Backmen.Item.PseudoItem
             if (component.Active)
                 return;
 
-            if (!TryComp<ServerStorageComponent>(args.Target, out var targetStorage))
+            if (!TryComp<StorageComponent>(args.Target, out var targetStorage))
                 return;
 
             if (component.Size > targetStorage.StorageCapacityMax - targetStorage.StorageUsed)
@@ -71,7 +71,7 @@ namespace Content.Server.Backmen.Item.PseudoItem
             {
                 Act = () =>
                 {
-                    TryInsert(args.Target, uid, component, targetStorage);
+                    TryInsert(args.Target, uid, uid, component, targetStorage);
                 },
                 Text = Loc.GetString("action-name-insert-self"),
                 Priority = 2
@@ -101,7 +101,7 @@ namespace Content.Server.Backmen.Item.PseudoItem
             if (args.Hands == null)
                 return;
 
-            if (!HasComp<ServerStorageComponent>(args.Hands.ActiveHandEntity))
+            if (!HasComp<StorageComponent>(args.Hands.ActiveHandEntity))
                 return;
 
             AlternativeVerb verb = new()
@@ -144,14 +144,14 @@ namespace Content.Server.Backmen.Item.PseudoItem
                 return;
             }
 
-            if (TryComp<ServerStorageComponent>(parent, out var storage))
+            if (TryComp<StorageComponent>(parent, out var storage))
             {
                 if (pseudoItem.Size > storage.StorageCapacityMax - storage.StorageUsed)
                 {
                     ClearState(uid, pseudoItem);
                     return;
                 }
-                TryInsert(parent, uid, pseudoItem, storage);
+                TryInsert(parent, uid, uid, pseudoItem, storage);
                 return;
             }
 
@@ -186,11 +186,11 @@ namespace Content.Server.Backmen.Item.PseudoItem
             if (args.Handled || args.Cancelled || args.Args.Used == null)
                 return;
 
-            args.Handled = TryInsert(args.Args.Used.Value, uid, component);
+            args.Handled = TryInsert(args.Args.Used.Value, uid, args.User, component);
         }
 
         // ReSharper disable once MemberCanBePrivate.Global
-        public bool TryInsert(EntityUid storageUid, EntityUid toInsert, PseudoItemComponent component, ServerStorageComponent? storage = null)
+        public bool TryInsert(EntityUid storageUid, EntityUid toInsert, EntityUid? user, PseudoItemComponent component, StorageComponent? storage = null)
         {
             if (!Resolve(storageUid, ref storage))
                 return false;
@@ -202,7 +202,7 @@ namespace Content.Server.Backmen.Item.PseudoItem
             _itemSystem.SetSize(toInsert, component.Size, item);
             EnsureComp<CanEscapeInventoryComponent>(toInsert);
 
-            if (!_storageSystem.Insert(storageUid, toInsert, storage))
+            if (!_storageSystem.Insert(storageUid, toInsert, out _, user, storage))
             {
                 ClearState(toInsert, component);
                 return false;
@@ -218,7 +218,7 @@ namespace Content.Server.Backmen.Item.PseudoItem
                 return;
 
             var ev = new PseudoItemInsertDoAfterEvent();
-            var args = new DoAfterArgs(inserter, 5f, ev, toInsert, target: toInsert, used: storageEntity)
+            var args = new DoAfterArgs(EntityManager, inserter, 5f, ev, toInsert, target: toInsert, used: storageEntity)
             {
                 BreakOnTargetMove = true,
                 BreakOnUserMove = true,

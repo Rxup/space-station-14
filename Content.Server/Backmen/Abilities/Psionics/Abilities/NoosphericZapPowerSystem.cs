@@ -1,10 +1,10 @@
 using Content.Server.Backmen.Psionics;
 using Content.Shared.Actions;
-using Content.Shared.Actions.ActionTypes;
 using Content.Shared.StatusEffect;
 using Content.Server.Stunnable;
 using Content.Server.Beam;
 using Content.Shared.Backmen.Abilities.Psionics;
+using Content.Shared.Backmen.Psionics.Events;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
 
@@ -20,7 +20,6 @@ public sealed class NoosphericZapPowerSystem : EntitySystem
     [Dependency] private readonly IGameTiming _gameTiming = default!;
     [Dependency] private readonly BeamSystem _beam = default!;
 
-
     public override void Initialize()
     {
         base.Initialize();
@@ -29,15 +28,17 @@ public sealed class NoosphericZapPowerSystem : EntitySystem
         SubscribeLocalEvent<NoosphericZapPowerActionEvent>(OnPowerUsed);
     }
 
+    [ValidatePrototypeId<EntityPrototype>] private const string ActionNoosphericZap = "ActionNoosphericZap";
+
     private void OnInit(EntityUid uid, NoosphericZapPowerComponent component, ComponentInit args)
     {
-        if (!_prototypeManager.TryIndex<EntityTargetActionPrototype>("NoosphericZap", out var noosphericZap))
-            return;
+        _actions.AddAction(uid, ref component.NoosphericZapPowerAction, ActionNoosphericZap);
 
-        component.NoosphericZapPowerAction = new EntityTargetAction(noosphericZap);
-        if (noosphericZap.UseDelay != null)
-            component.NoosphericZapPowerAction.Cooldown = (_gameTiming.CurTime, _gameTiming.CurTime + (TimeSpan) noosphericZap.UseDelay);
-        _actions.AddAction(uid, component.NoosphericZapPowerAction, null);
+        var action = _actions.GetActionData(component.NoosphericZapPowerAction);
+
+        if (action?.UseDelay != null)
+            _actions.SetCooldown(component.NoosphericZapPowerAction, _gameTiming.CurTime,
+                _gameTiming.CurTime + (TimeSpan)  action?.UseDelay!);
 
         if (TryComp<PsionicComponent>(uid, out var psionic) && psionic.PsionicAbility == null)
             psionic.PsionicAbility = component.NoosphericZapPowerAction;
@@ -45,8 +46,7 @@ public sealed class NoosphericZapPowerSystem : EntitySystem
 
     private void OnShutdown(EntityUid uid, NoosphericZapPowerComponent component, ComponentShutdown args)
     {
-        if (_prototypeManager.TryIndex<EntityTargetActionPrototype>("NoosphericZap", out var noosphericZap))
-            _actions.RemoveAction(uid, new EntityTargetAction(noosphericZap), null);
+        _actions.RemoveAction(uid, ActionNoosphericZap);
     }
 
     private void OnPowerUsed(NoosphericZapPowerActionEvent args)
@@ -67,4 +67,4 @@ public sealed class NoosphericZapPowerSystem : EntitySystem
     }
 }
 
-public sealed partial class NoosphericZapPowerActionEvent : EntityTargetActionEvent {}
+

@@ -1,9 +1,9 @@
 using Content.Server.Backmen.Abilities.Psionics;
 using Content.Shared.Vehicle.Components;
-using Content.Server.Visible;
 using Content.Server.NPC.Systems;
 using Content.Server.Psionics;
 using Content.Shared.Backmen.Abilities.Psionics;
+using Content.Shared.Eye;
 using Robust.Shared.Containers;
 using Robust.Server.GameObjects;
 
@@ -14,6 +14,7 @@ public sealed class PsionicInvisibilitySystem : EntitySystem
     [Dependency] private readonly VisibilitySystem _visibilitySystem = default!;
     [Dependency] private readonly PsionicInvisibilityPowerSystem _invisSystem = default!;
     [Dependency] private readonly NpcFactionSystem _npcFactonSystem = default!;
+    [Dependency] private readonly SharedEyeSystem _sharedEyeSystem = default!;
     public override void Initialize()
     {
         base.Initialize();
@@ -21,7 +22,7 @@ public sealed class PsionicInvisibilitySystem : EntitySystem
         SubscribeLocalEvent<PotentialPsionicComponent, ComponentInit>(OnInit);
         SubscribeLocalEvent<PsionicInsulationComponent, ComponentInit>(OnInsulInit);
         SubscribeLocalEvent<PsionicInsulationComponent, ComponentShutdown>(OnInsulShutdown);
-        SubscribeLocalEvent<EyeComponent, ComponentInit>(OnEyeInit);
+        SubscribeLocalEvent<EyeComponent, MapInitEvent>(OnEyeInit);
 
         /// Layer
         SubscribeLocalEvent<PsionicallyInvisibleComponent, ComponentInit>(OnInvisInit);
@@ -84,9 +85,9 @@ public sealed class PsionicInvisibilitySystem : EntitySystem
     {
         var visibility = EntityManager.EnsureComponent<VisibilityComponent>(uid);
 
-        _visibilitySystem.AddLayer(visibility, (int) VisibilityFlags.PsionicInvisibility, false);
-        _visibilitySystem.RemoveLayer(visibility, (int) VisibilityFlags.Normal, false);
-        _visibilitySystem.RefreshVisibility(visibility);
+        _visibilitySystem.AddLayer(uid, visibility, (int) VisibilityFlags.PsionicInvisibility, false);
+        _visibilitySystem.RemoveLayer(uid, visibility, (int) VisibilityFlags.Normal, false);
+        _visibilitySystem.RefreshVisibility(uid, visibilityComponent: visibility);
 
         SetCanSeePsionicInvisiblity(uid, true);
     }
@@ -96,15 +97,15 @@ public sealed class PsionicInvisibilitySystem : EntitySystem
     {
         if (TryComp<VisibilityComponent>(uid, out var visibility))
         {
-            _visibilitySystem.RemoveLayer(visibility, (int) VisibilityFlags.PsionicInvisibility, false);
-            _visibilitySystem.AddLayer(visibility, (int) VisibilityFlags.Normal, false);
-            _visibilitySystem.RefreshVisibility(visibility);
+            _visibilitySystem.RemoveLayer(uid, visibility, (int) VisibilityFlags.PsionicInvisibility, false);
+            _visibilitySystem.AddLayer(uid, visibility, (int) VisibilityFlags.Normal, false);
+            _visibilitySystem.RefreshVisibility(uid, visibilityComponent: visibility);
         }
         if (HasComp<PotentialPsionicComponent>(uid) && !HasComp<PsionicInsulationComponent>(uid))
             SetCanSeePsionicInvisiblity(uid, false);
     }
 
-    private void OnEyeInit(EntityUid uid, EyeComponent component, ComponentInit args)
+    private void OnEyeInit(EntityUid uid, EyeComponent component, MapInitEvent args)
     {
         if (HasComp<PotentialPsionicComponent>(uid) || HasComp<VehicleComponent>(uid))
             return;
@@ -123,18 +124,16 @@ public sealed class PsionicInvisibilitySystem : EntitySystem
 
     public void SetCanSeePsionicInvisiblity(EntityUid uid, bool set)
     {
-        if (set == true)
+        if (!TryComp<EyeComponent>(uid, out var eye))
+            return;
+
+        if (set)
         {
-            if (EntityManager.TryGetComponent(uid, out EyeComponent? eye))
-            {
-                eye.VisibilityMask |= (uint) VisibilityFlags.PsionicInvisibility;
-            }
-        } else
+            _sharedEyeSystem.SetVisibilityMask(uid,  eye.VisibilityMask | (int) VisibilityFlags.PsionicInvisibility, eye);
+        }
+        else
         {
-            if (EntityManager.TryGetComponent(uid, out EyeComponent? eye))
-            {
-                eye.VisibilityMask &= ~(uint) VisibilityFlags.PsionicInvisibility;
-            }
+            _sharedEyeSystem.SetVisibilityMask(uid,  eye.VisibilityMask &~ (int) VisibilityFlags.PsionicInvisibility, eye);
         }
     }
 }

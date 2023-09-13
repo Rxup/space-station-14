@@ -1,6 +1,6 @@
 using Content.Shared.Actions;
-using Content.Shared.Actions.ActionTypes;
 using Content.Shared.Backmen.Abilities.Psionics;
+using Content.Shared.Backmen.Psionics.Events;
 using Content.Shared.Mind.Components;
 using Content.Shared.StatusEffect;
 using Robust.Shared.Prototypes;
@@ -26,15 +26,17 @@ public sealed class TelegnosisPowerSystem : EntitySystem
         SubscribeLocalEvent<TelegnosticProjectionComponent, MindRemovedMessage>(OnMindRemoved);
     }
 
+    [ValidatePrototypeId<EntityPrototype>] private const string ActionTelegnosis = "ActionTelegnosis";
+
     private void OnInit(EntityUid uid, TelegnosisPowerComponent component, ComponentInit args)
     {
-        if (!_prototypeManager.TryIndex<InstantActionPrototype>("Telegnosis", out var telegnosis))
-            return;
+        _actions.AddAction(uid, ref component.TelegnosisPowerAction, ActionTelegnosis);
 
-        component.TelegnosisPowerAction = new InstantAction(telegnosis);
-        if (telegnosis.UseDelay != null)
-            component.TelegnosisPowerAction.Cooldown = (_gameTiming.CurTime, _gameTiming.CurTime + (TimeSpan) telegnosis.UseDelay);
-        _actions.AddAction(uid, component.TelegnosisPowerAction, null);
+        var action = _actions.GetActionData(component.TelegnosisPowerAction);
+
+        if (action?.UseDelay != null)
+            _actions.SetCooldown(component.TelegnosisPowerAction, _gameTiming.CurTime,
+                _gameTiming.CurTime + (TimeSpan)  action?.UseDelay!);
 
         if (TryComp<PsionicComponent>(uid, out var psionic) && psionic.PsionicAbility == null)
             psionic.PsionicAbility = component.TelegnosisPowerAction;
@@ -42,8 +44,7 @@ public sealed class TelegnosisPowerSystem : EntitySystem
 
     private void OnShutdown(EntityUid uid, TelegnosisPowerComponent component, ComponentShutdown args)
     {
-        if (_prototypeManager.TryIndex<InstantActionPrototype>("Telegnosis", out var metapsionic))
-            _actions.RemoveAction(uid, new InstantAction(metapsionic), null);
+        _actions.RemoveAction(uid, ActionTelegnosis);
     }
 
     private void OnPowerUsed(EntityUid uid, TelegnosisPowerComponent component, TelegnosisPowerActionEvent args)
@@ -61,4 +62,4 @@ public sealed class TelegnosisPowerSystem : EntitySystem
     }
 }
 
-public sealed partial class TelegnosisPowerActionEvent : InstantActionEvent {}
+

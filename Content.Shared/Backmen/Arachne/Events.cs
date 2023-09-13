@@ -8,13 +8,13 @@ namespace Content.Shared.Backmen.Arachne;
 public sealed partial class ArachneWebDoAfterEvent : DoAfterEvent
 {
     [DataField("coords", required: true)]
-    public EntityCoordinates Coords = default!;
+    public NetCoordinates Coords = default!;
 
     private ArachneWebDoAfterEvent()
     {
     }
 
-    public ArachneWebDoAfterEvent(EntityCoordinates coords)
+    public ArachneWebDoAfterEvent(NetCoordinates coords)
     {
         Coords = coords;
     }

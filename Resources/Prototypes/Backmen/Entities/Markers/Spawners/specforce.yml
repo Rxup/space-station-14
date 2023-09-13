@@ -28,54 +28,54 @@
           state: icon
 
 - type: entity
-  id: SpawnMobHumanERTLeaderEVAV2.1
+  id: SpawnMobHumanERTLeaderEVAV2_1
   parent: SpawnSpecforce
   noSpawn: true
   name: ОБР Лидер
   suffix: спавнер спецсил
   components:
     - type: GhostRoleMobSpawner
-      prototype: MobHumanERTLeaderEVAV2.1
+      prototype: MobHumanERTLeaderEVAV2_1
 
 - type: entity
-  id: SpawnMobHumanERTSecurityEVAV2.1
+  id: SpawnMobHumanERTSecurityEVAV2_1
   parent: SpawnSpecforce
   noSpawn: true
   name: ОБР Охрана
   suffix: спавнер спецсил
   components:
     - type: GhostRoleMobSpawner
-      prototype: MobHumanERTSecurityEVAV2.1
+      prototype: MobHumanERTSecurityEVAV2_1
 
 - type: entity
-  id: SpawnMobHumanERTEngineerEVAV2.1
+  id: SpawnMobHumanERTEngineerEVAV2_1
   parent: SpawnSpecforce
   noSpawn: true
   name: ОБР Инж
   suffix: спавнер спецсил
   components:
     - type: GhostRoleMobSpawner
-      prototype: MobHumanERTEngineerEVAV2.1
+      prototype: MobHumanERTEngineerEVAV2_1
 
 - type: entity
-  id: SpawnMobHumanERTJunitorEVAV2.1
+  id: SpawnMobHumanERTJunitorEVAV2_1
   parent: SpawnSpecforce
   noSpawn: true
   name: ОБР Уборщик
   suffix: спавнер спецсил
   components:
     - type: GhostRoleMobSpawner
-      prototype: MobHumanERTJunitorEVAV2.1
+      prototype: MobHumanERTJunitorEVAV2_1
 
 - type: entity
-  id: SpawnMobHumanERTMedicalEVAV2.1
+  id: SpawnMobHumanERTMedicalEVAV2_1
   parent: SpawnSpecforce
   noSpawn: true
   name: ОБР Медик
   suffix: спавнер спецсил
   components:
     - type: GhostRoleMobSpawner
-      prototype: MobHumanERTMedicalEVAV2.1
+      prototype: MobHumanERTMedicalEVAV2_1
 
 - type: entity
   id: SpawnMobHumanSFOfficer
