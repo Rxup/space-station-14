@@ -54,7 +54,7 @@ public sealed class PsionicInvisibilityPowerSystem : EntitySystem
 
     private void OnShutdown(EntityUid uid, PsionicInvisibilityPowerComponent component, ComponentShutdown args)
     {
-        _actions.RemoveAction(uid, ActionPsionicInvisibility);
+        _actions.RemoveAction(uid, component.PsionicInvisibilityPowerAction);
     }
 
     private void OnPowerUsed(EntityUid uid, PsionicInvisibilityPowerComponent component, PsionicInvisibilityPowerActionEvent args)
@@ -64,7 +64,7 @@ public sealed class PsionicInvisibilityPowerSystem : EntitySystem
 
         ToggleInvisibility(args.Performer);
 
-        _actions.AddAction(uid, ref component.PsionicInvisibilityPowerAction, ActionPsionicInvisibilityOff);
+        _actions.AddAction(uid, ref component.PsionicInvisibilityPowerActionOff, ActionPsionicInvisibilityOff);
 
         _psionics.LogPowerUsed(uid, "psionic invisibility");
         args.Handled = true;
@@ -99,7 +99,10 @@ public sealed class PsionicInvisibilityPowerSystem : EntitySystem
         RemComp<StealthComponent>(uid);
         SoundSystem.Play("/Audio/Effects/toss.ogg", Filter.Pvs(uid), uid);
 
-        _actions.RemoveAction(uid, ActionPsionicInvisibilityOff);
+        if (TryComp<PsionicInvisibilityPowerComponent>(uid, out var invisibilityPowerComponent))
+        {
+            _actions.RemoveAction(uid, invisibilityPowerComponent.PsionicInvisibilityPowerActionOff);
+        }
 
         _stunSystem.TryParalyze(uid, TimeSpan.FromSeconds(8), false);
         DirtyEntity(uid);

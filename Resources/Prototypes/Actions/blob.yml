@@ -100,7 +100,6 @@
         state: blobToCore
       event: !type:BlobToCoreActionEvent
       itemIconStyle: BigAction
-      range: 200
       useDelay: 0.5
 
 - type: entity

@@ -202,7 +202,7 @@ namespace Content.Server.Backmen.Item.PseudoItem
             _itemSystem.SetSize(toInsert, component.Size, item);
             EnsureComp<CanEscapeInventoryComponent>(toInsert);
 
-            if (!_storageSystem.Insert(storageUid, toInsert, user, storage))
+            if (!_storageSystem.Insert(storageUid, toInsert, out _, user, storage))
             {
                 ClearState(toInsert, component);
                 return false;
