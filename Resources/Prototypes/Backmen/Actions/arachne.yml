@@ -1,7 +1,10 @@
-- type: instantAction
+- type: entity
   id: SpiderWebArachneClassicAction
-  icon: Interface/Actions/web.png
   name: spider-web-action-name
   description: spider-web-action-description
-  serverEvent: !type:SpiderWebActionEvent
-  useDelay: 180
+  noSpawn: true
+  components:
+    - type: InstantAction
+      useDelay: 180
+      icon: Interface/Actions/web.png
+      event: !type:SpiderWebActionEvent

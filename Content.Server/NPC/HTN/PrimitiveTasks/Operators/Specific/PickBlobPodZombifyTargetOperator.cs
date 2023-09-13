@@ -7,7 +7,7 @@ using Content.Shared.Mobs.Systems;
 
 namespace Content.Server.NPC.HTN.PrimitiveTasks.Operators.Specific;
 
-public sealed class PickBlobPodZombifyTargetOperator : HTNOperator
+public sealed partial class PickBlobPodZombifyTargetOperator : HTNOperator
 {
     [Dependency] private readonly IEntityManager _entManager = default!;
     private NpcFactionSystem _factions = default!;

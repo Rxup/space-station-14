@@ -1,0 +1,14 @@
+﻿- type: entity
+  parent: Bible
+  id: BibleMystagogue
+  name: book of mysteries
+  description: The mystagogue's holy book.
+  components:
+    - type: Summonable
+      specialItem: SpawnPointGhostIfrit
+    - type: Sprite
+      sprite: Backmen/Objects/Specific/Chapel/holylight.rsi
+      state: icon
+    - type: Item
+      size: 15
+      sprite: Backmen/Objects/Specific/Chapel/holylight.rsi

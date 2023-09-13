@@ -128,7 +128,7 @@ public sealed class StoreBankSystem : EntitySystem
 
         args.Handled = true;
 
-        var doAfterArgs = new DoAfterArgs(args.User, (float) component.RestockDelay.TotalSeconds,
+        var doAfterArgs = new DoAfterArgs(EntityManager, args.User, (float) component.RestockDelay.TotalSeconds,
             new RestockDoAfterEvent(), target,
             target: target, used: uid)
         {

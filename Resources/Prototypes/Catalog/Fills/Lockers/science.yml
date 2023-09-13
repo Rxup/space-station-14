@@ -13,3 +13,7 @@
       - id: NodeScanner
       - id: NetworkConfigurator
         prob: 0.5
+      - id: AntiPsychicKnife # backmen
+        amount: 2
+      - id: ClothingHeadCage # backmen
+        amount: 2

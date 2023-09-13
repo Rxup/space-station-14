@@ -43,6 +43,14 @@ public sealed class NpcFactionSystem : EntitySystem
         RefreshFactions();
     }
 
+    public bool ContainsFaction(EntityUid uid, string faction, NpcFactionMemberComponent? component = null) //Backmen:return good func
+    {
+        if (!Resolve(uid, ref component, false))
+            return false;
+
+        return component.Factions.Contains(faction);
+    }
+
     private void OnFactionStartup(EntityUid uid, NpcFactionMemberComponent memberComponent, ComponentStartup args)
     {
         RefreshFactions(memberComponent);

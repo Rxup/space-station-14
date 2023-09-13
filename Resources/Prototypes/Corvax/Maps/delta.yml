@@ -61,3 +61,4 @@
             SeniorResearcher: [ 1, 1 ]
             SeniorPhysician: [ 1, 1 ]
             SeniorEngineer: [ 1, 1 ]
+            Prisoner: [ 2, 3]

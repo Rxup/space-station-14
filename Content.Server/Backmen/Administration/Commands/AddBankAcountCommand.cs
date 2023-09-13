@@ -72,7 +72,7 @@ public sealed class AddBankAcсountCommand : IConsoleCommand
     {
         return args.Length switch
         {
-            1 => CompletionResult.FromHintOptions(CompletionHelper.EntityUids(args[0], _entityManager),
+            1 => CompletionResult.FromHintOptions(CompletionHelper.NetEntities(args[0], _entityManager),
                 "Персонаж с кпк"),
             2 => CompletionResult.FromHintOptions(
                 _entityManager.System<BankManagerSystem>().ActiveBankAccounts

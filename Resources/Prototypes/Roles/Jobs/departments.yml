@@ -87,6 +87,7 @@
   - Detective
   - Warden
   - Brigmedic #backmen
+  - Prisoner #backmen
   accountNumber: 1320  #backmen: currency
 
 - type: department

@@ -1,10 +1,10 @@
-using Content.Shared.Chemistry.Components;
+using Content.Shared.Chemistry.Reagent;
 using Robust.Shared.Audio;
 
 namespace Content.Server.Fluids.EntitySystems;
 
 [RegisterComponent]
-public sealed class SmokeOnTriggerComponent : Component
+public sealed partial class SmokeOnTriggerComponent : Component
 {
     [DataField("spreadAmount"), ViewVariables(VVAccess.ReadWrite)]
     public int SpreadAmount = 20;
@@ -15,7 +15,8 @@ public sealed class SmokeOnTriggerComponent : Component
     [DataField("smokeColor")]
     public Color SmokeColor = Color.Black;
 
-    [DataField("smokeReagents")] public List<Solution.ReagentQuantity> SmokeReagents = new();
+    [DataField("smokeReagents")]
+    public List<ReagentQuantity> SmokeReagents = new();
 
     [DataField("sound")]
     public SoundSpecifier Sound = new SoundPathSpecifier("/Audio/Effects/smoke.ogg");

@@ -1,0 +1,16 @@
+- type: soundCollection
+  id: WelderIfritHandOn
+  files:
+    - /Audio/Nyanotrasen/fireball1.ogg
+
+- type: soundCollection
+  id: WelderIfritHandOff
+  files:
+    - /Audio/Nyanotrasen/blowout1.ogg
+
+- type: soundCollection
+  id: WelderIfritHand
+  files:
+    - /Audio/Nyanotrasen/flamethrower1.ogg
+    - /Audio/Nyanotrasen/flamethrower2.ogg
+    - /Audio/Nyanotrasen/flamethrower3.ogg

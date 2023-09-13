@@ -23,7 +23,7 @@
     #- FleshHuman
     #- Flesh
     #- MalfunctioningRobot
-    
+
 - type: npcFaction
   id: NanoTrasen
   hostile:
@@ -93,3 +93,13 @@
   - Passive
   - PetsNT
   - Blob
+
+- type: npcFaction
+  id: GlimmerMonster # Crew hostile psionic
+  hostile:
+    - PsionicInterloper
+
+- type: npcFaction
+  id: PsionicInterloper # Crew aligned psionic
+  hostile:
+    - GlimmerMonster

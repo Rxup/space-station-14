@@ -15,35 +15,28 @@ using System.Threading;
 using Content.Shared.Roles;
 using System.Diagnostics.CodeAnalysis;
 using System.Text;
+using Content.Server.Actions;
 using Robust.Shared.Configuration;
 using Content.Server.Players.PlayTimeTracking;
 using Content.Shared.CCVar;
 using Content.Server.Chat.Managers;
 using Content.Server.Ghost.Roles;
 using Content.Server.Ghost.Roles.Components;
-using Content.Server.Mind.Components;
 using Content.Server.RandomMetadata;
 using Robust.Shared.Serialization.Manager;
-using Content.Shared.Stealth.Components;
-using Content.Shared.Inventory;
-using Content.Shared.Radio.Components;
-using Content.Server.Radio.EntitySystems;
 using Content.Server.Administration.Managers;
 using Content.Server.Backmen.RoleWhitelist;
-using Content.Server.Mind;
-using Content.Server.Players;
-using Content.Shared.Actions;
-using Content.Shared.Actions.ActionTypes;
 
 namespace Content.Server.Backmen.SpecForces;
 
 public sealed class SpecForcesSystem : EntitySystem
 {
-    //public List<Mind.Mind> PlayersInEvent {get; private set;} = new List<Mind.Mind>();
-    [ViewVariables] public List<SpecForcesHistory> CallendEvents { get; private set; } = new List<SpecForcesHistory>();
+    // ReSharper disable once MemberCanBePrivate.Global
+    [ViewVariables] public List<SpecForcesHistory> CalledEvents { get; private set; } = new List<SpecForcesHistory>();
+    // ReSharper disable once MemberCanBePrivate.Global
     [ViewVariables] public TimeSpan LastUsedTime { get; private set; } = TimeSpan.Zero;
 
-    private readonly TimeSpan DelayUsesage = TimeSpan.FromMinutes(15);
+    private readonly TimeSpan _delayUsage = TimeSpan.FromMinutes(15);
     private readonly ReaderWriterLockSlim _callLock = new();
 
     public override void Initialize()
@@ -54,19 +47,21 @@ public sealed class SpecForcesSystem : EntitySystem
         SubscribeLocalEvent<RoundEndTextAppendEvent>(OnRoundEnd);
         SubscribeLocalEvent<RoundRestartCleanupEvent>(OnCleanup);
         SubscribeLocalEvent<SpecForceComponent, ComponentStartup>(OnStartup);
+        SubscribeLocalEvent<SpecForceComponent, ComponentShutdown>(OnShutdown);
         SubscribeLocalEvent<SpecForceComponent, TakeGhostRoleEvent>(OnSpecForceTake,
             before: new[] { typeof(GhostRoleSystem) });
     }
 
+    private void OnShutdown(EntityUid uid, SpecForceComponent component, ComponentShutdown args)
+    {
+        if (component.ActionBssActionName != null)
+            _actions.RemoveAction(uid, component.ActionBssActionName);
+    }
+
     private void OnStartup(EntityUid uid, SpecForceComponent component, ComponentStartup args)
     {
-        if (component.ActionName==null || !_prototypes.TryIndex<InstantActionPrototype>(component.ActionName, out var action))
-        {
-            return;
-        }
-
-        var netAction = new InstantAction(action);
-        _action.AddAction(uid, netAction, null);
+        if (component.ActionBssActionName != null)
+            _actions.AddAction(uid, ref component.BssKey, component.ActionBssActionName);
     }
 
     private void OnMapInit(EntityUid uid, SpecForceComponent component, MapInitEvent args)
@@ -80,71 +75,25 @@ public sealed class SpecForcesSystem : EntitySystem
                 EntityManager.AddComponent(uid, comp, true);
             }
         }
-        /*
-        if (_inventory.TryGetSlotEntity(uid, "ears", out var ears) && TryComp<HeadsetComponent>(ears, out var earsComp))
-        {
-            earsComp.Enabled = false;
-            //_headset.SetEnabled(ears.Value, false, earsComp);
-        }
-        */
     }
 
     private void OnSpecForceTake(EntityUid uid, SpecForceComponent component, ref TakeGhostRoleEvent args)
     {
-        if (!_adminManager.IsAdmin(args.Player) && !IsAllowed(args.Player, component, out var reason))
+        if (!_adminManager.IsAdmin(args.Player) && !IsAllowed((IPlayerSession?) args.Player, component, out var reason))
         {
             args.TookRole = true;
-            //_callLock.EnterWriteLock();
             _chatManager.ChatMessageToOne(Shared.Chat.ChatChannel.Server, reason, "ОШИБКА: " + reason, default, false,
                 args.Player.ConnectedClient, Color.Plum);
-/*
-            //EntityManager.RemoveComponent<ActorComponent>(uid);
-            var mind = EntityManager.EnsureComponent<MindContainerComponent>(uid);
-            mind.Mind = new Content.Server.Mind.Mind(); // dummy
-
-            var sess = args.Player;
-
-            Robust.Shared.Timing.Timer.Spawn(0, () =>
-            {
-                try
-                {
-                    if (!uid.IsValid())
-                    {
-                        return;
-                    }
-
-                    mind.Mind = null;
-                    if (EntityManager.TryGetComponent<GhostRoleComponent>(uid, out var ghostComp))
-                    {
-                        (ghostComp as dynamic).Taken = false;
-                        //_ghostRoleSystem.RegisterGhostRole(ghostComp);
-                    }
-
-                    _ghostRoleSystem.CloseEui(sess);
-                }
-                finally
-                {
-                    _callLock.ExitWriteLock();
-                }
-            });
-            return;
-            */
         }
-/*
-        if (_inventory.TryGetSlotEntity(uid, "ears", out var ears) && TryComp<HeadsetComponent>(ears, out var earsComp))
-        {
-            _headset.SetEnabled(ears.Value, true, earsComp);
-        }
-        */
     }
 
     public TimeSpan DelayTime
     {
         get
         {
-            var ct = GameTicker.RoundDuration();
-            var DelayTime = LastUsedTime + DelayUsesage;
-            return ct > DelayTime ? TimeSpan.Zero : DelayTime - ct;
+            var ct = _gameTicker.RoundDuration();
+            var lastUsedTime = LastUsedTime + _delayUsage;
+            return ct > lastUsedTime ? TimeSpan.Zero : lastUsedTime - ct;
         }
     }
 
@@ -168,14 +117,14 @@ public sealed class SpecForcesSystem : EntitySystem
         var first = true;
         foreach (var requirement in job.Requirements)
         {
-            if (JobRequirements.TryRequirementMet(requirement, playTimes, out reason, _prototypes))
+            if (JobRequirements.TryRequirementMet(requirement, playTimes, out var jobReason, EntityManager, _prototypes))
                 continue;
 
             if (!first)
                 reasonBuilder.Append('\n');
             first = false;
 
-            reasonBuilder.AppendLine(reason);
+            reasonBuilder.AppendLine(jobReason.ToMarkup());
         }
 
         if (_cfg.GetCVar(Shared.Backmen.CCVar.CCVars.WhitelistRolesEnabled) &&
@@ -203,16 +152,18 @@ public sealed class SpecForcesSystem : EntitySystem
                 return false;
             }
 
-            var currentTime = GameTicker.RoundDuration();
-/*
-            if (LastUsedTime + DelayUsesage > currentTime)
+            var currentTime = _gameTicker.RoundDuration();
+
+#if !DEBUG
+            if (LastUsedTime + _delayUsage > currentTime)
             {
                 return false;
             }
-*/
+#endif
+
             LastUsedTime = currentTime;
 
-            CallendEvents.Add(new SpecForcesHistory { Event = ev, RoundTime = currentTime, WhoCalled = source });
+            CalledEvents.Add(new SpecForcesHistory { Event = ev, RoundTime = currentTime, WhoCalled = source });
 
             var shuttle = SpawnShuttle(ev);
             if (shuttle == null)
@@ -241,7 +192,8 @@ public sealed class SpecForcesSystem : EntitySystem
 
         var uid = EntityManager.SpawnEntity(protoName, coordinates);
 
-        if (!TryComp<GhostRoleMobSpawnerComponent>(uid, out var mobSpawnerComponent) || mobSpawnerComponent.Prototype == null ||
+        if (!TryComp<GhostRoleMobSpawnerComponent>(uid, out var mobSpawnerComponent) ||
+            mobSpawnerComponent.Prototype == null ||
             !_prototypes.TryIndex<EntityPrototype>(mobSpawnerComponent.Prototype, out var spawnObj))
         {
             return uid;
@@ -253,6 +205,7 @@ public sealed class SpecForcesSystem : EntitySystem
             comp.Owner = uid;
             EntityManager.AddComponent(uid, comp, true);
         }
+
         EnsureComp<SpecForceComponent>(uid);
         if (spawnObj.TryGetComponent<GhostRoleComponent>(out var tplGhostRoleComponent))
         {
@@ -271,7 +224,7 @@ public sealed class SpecForcesSystem : EntitySystem
         foreach (var (_, meta, xform) in EntityManager
                      .EntityQuery<SpawnPointComponent, MetaDataComponent, TransformComponent>(true))
         {
-            if (meta.EntityPrototype?.ID != "SpawnSpecforce")
+            if (meta.EntityPrototype?.ID != SpawnMarker)
                 continue;
 
             if (xform.ParentUid != shuttle)
@@ -418,7 +371,7 @@ public sealed class SpecForcesSystem : EntitySystem
 
     private void OnRoundEnd(RoundEndTextAppendEvent ev)
     {
-        foreach (var calledEvent in CallendEvents)
+        foreach (var calledEvent in CalledEvents)
         {
             ev.AddLine(Loc.GetString("spec-forces-system-" + calledEvent.Event,
                 ("time", calledEvent.RoundTime.ToString(@"hh\:mm\:ss")), ("who", calledEvent.WhoCalled)));
@@ -427,7 +380,7 @@ public sealed class SpecForcesSystem : EntitySystem
 
     private void OnCleanup(RoundRestartCleanupEvent ev)
     {
-        CallendEvents.Clear();
+        CalledEvents.Clear();
         LastUsedTime = TimeSpan.Zero;
 
         if (_callLock.IsWriteLockHeld)
@@ -436,20 +389,22 @@ public sealed class SpecForcesSystem : EntitySystem
         }
     }
 
+    [ValidatePrototypeId<EntityPrototype>] private const string SpawnMarker = "MarkerSpecforce";
+
     private const string EtrShuttlePath = "Maps/Shuttles/dart.yml";
-    private const string ErtLeader = "SpawnMobHumanERTLeaderEVAV2.1";
-    private const string ErtSecurity = "SpawnMobHumanERTSecurityEVAV2.1";
-    private const string ErtEngineer = "SpawnMobHumanERTEngineerEVAV2.1";
-    private const string ErtJunitor = "SpawnMobHumanERTJunitorEVAV2.1";
-    private const string ErtMedical = "SpawnMobHumanERTMedicalEVAV2.1";
+    [ValidatePrototypeId<EntityPrototype>] private const string ErtLeader = "SpawnMobHumanERTLeaderEVAV2_1";
+    [ValidatePrototypeId<EntityPrototype>] private const string ErtSecurity = "SpawnMobHumanERTSecurityEVAV2_1";
+    [ValidatePrototypeId<EntityPrototype>] private const string ErtEngineer = "SpawnMobHumanERTEngineerEVAV2_1";
+    [ValidatePrototypeId<EntityPrototype>] private const string ErtJunitor = "SpawnMobHumanERTJunitorEVAV2_1";
+    [ValidatePrototypeId<EntityPrototype>] private const string ErtMedical = "SpawnMobHumanERTMedicalEVAV2_1";
 
     private const string RxbzzShuttlePath = "Maps/Backmen/Grids/NT-CC-SRV-013.yml";
-    private const string RxbzzLeader = "SpawnMobHumanSFOfficer";
-    private const string Rxbzz = "SpawnMobHumanRXBZZ";
+    [ValidatePrototypeId<EntityPrototype>] private const string RxbzzLeader = "SpawnMobHumanSFOfficer";
+    [ValidatePrototypeId<EntityPrototype>] private const string Rxbzz = "SpawnMobHumanRXBZZ";
 
-    private const string SpestnazShuttlePath = "Maps/Backmen/Grids/NT-CC-Specnaz-013.yml";
-    private const string SpestnazOfficer = "SpawnMobHumanSpecialReAgentCOM";
-    private const string Spestnaz = "SpawnMobHumanSpecialReAgent";
+    private const string SpestnazShuttlePath = "Maps/Backmen/Grids/Invincible.yml";
+    [ValidatePrototypeId<EntityPrototype>] private const string SpestnazOfficer = "SpawnMobHumanSpecialReAgentCOM";
+    [ValidatePrototypeId<EntityPrototype>] private const string Spestnaz = "SpawnMobHumanSpecialReAgent";
 
     private readonly SoundSpecifier _ertAnnounce = new SoundPathSpecifier("/Audio/Corvax/Adminbuse/Yesert.ogg");
 
@@ -462,13 +417,12 @@ public sealed class SpecForcesSystem : EntitySystem
     [Dependency] private readonly IPlayerManager _playerManager = default!;
     [Dependency] private readonly ChatSystem _chatSystem = default!;
     [Dependency] private readonly StationSystem _stationSystem = default!;
-    [Dependency] public readonly GameTicker GameTicker = default!;
     [Dependency] private readonly IConfigurationManager _cfg = default!;
     [Dependency] private readonly PlayTimeTrackingManager _tracking = default!;
     [Dependency] private readonly IPrototypeManager _prototypes = default!;
     [Dependency] private readonly IChatManager _chatManager = default!;
     [Dependency] private readonly ISerializationManager _serialization = default!;
     [Dependency] private readonly IAdminManager _adminManager = default!;
-    [Dependency] private readonly SharedActionsSystem _action = default!;
+    [Dependency] private readonly ActionsSystem _actions = default!;
     [Dependency] private readonly WhitelistSystem _whitelistSystem = default!;
 }

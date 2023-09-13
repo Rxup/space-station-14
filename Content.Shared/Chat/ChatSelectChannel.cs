@@ -42,6 +42,11 @@
         Emotes = ChatChannel.Emotes,
 
         /// <summary>
+        ///     Telepathic
+        /// </summary>
+        Telepathic = ChatChannel.Telepathic,
+
+        /// <summary>
         ///     Deadchat
         /// </summary>
         Dead = ChatChannel.Dead,

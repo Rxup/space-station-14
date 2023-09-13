@@ -581,6 +581,7 @@
   id: MobObserverBlob
   name: Blob observer
   noSpawn: true
+  save: false
   components:
     - type: UserInterface
       interfaces:

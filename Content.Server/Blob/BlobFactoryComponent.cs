@@ -1,7 +1,7 @@
 namespace Content.Server.Blob;
 
 [RegisterComponent]
-public sealed class BlobFactoryComponent : Component
+public sealed partial class BlobFactoryComponent : Component
 {
     [ViewVariables(VVAccess.ReadOnly)]
     public float SpawnedCount = 0;
