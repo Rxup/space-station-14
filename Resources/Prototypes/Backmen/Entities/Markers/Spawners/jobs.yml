@@ -91,6 +91,7 @@
     - type: SpawnPoint
       job_id: Deliveryman
     - type: Sprite
+      sprite: Backmen/Markers/jobs.rsi
       layers:
         - state: green
         - state: Delivery
