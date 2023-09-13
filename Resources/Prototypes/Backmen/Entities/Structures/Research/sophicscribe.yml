@@ -1,7 +1,7 @@
 - type: entity
   parent: BaseStructure
   id: SophicScribe
-  name: Sophia
+  name: София
   description: Latest reports on the Noösphere!
   components:
   - type: Sprite
@@ -41,6 +41,8 @@
   - type: GuideHelp
     guides:
     - Psionics
+  - type: TTS
+    voice: Npc1
   - type: Tag
     tags: []
 

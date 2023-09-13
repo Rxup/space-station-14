@@ -84,6 +84,19 @@
         - state: security_officer
 
 - type: entity
+  id: SpawnPointDelivery
+  parent: SpawnPointJobBase
+  name: Deliveryman
+  components:
+    - type: SpawnPoint
+      job_id: Deliveryman
+    - type: Sprite
+      sprite: Backmen/Markers/jobs.rsi
+      layers:
+        - state: green
+        - state: Delivery
+
+- type: entity
   id: SpawnPointPrisoner
   parent: SpawnPointJobBase
   name: prisoner
