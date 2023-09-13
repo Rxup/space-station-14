@@ -54,9 +54,9 @@ public sealed class FakeFingerprint : IConsoleCommand
     {
         return args.Length switch
         {
-            1 => CompletionResult.FromHintOptions(CompletionHelper.EntityUids(args[0], _entityManager),
+            1 => CompletionResult.FromHintOptions(CompletionHelper.NetEntities(args[0], _entityManager),
                 "Персонаж"),
-            2 => CompletionResult.FromHintOptions(CompletionHelper.EntityUids(args[1], _entityManager),
+            2 => CompletionResult.FromHintOptions(CompletionHelper.NetEntities(args[1], _entityManager),
                 "Целевой предмет"),
             _ => CompletionResult.Empty
         };

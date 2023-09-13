@@ -2,7 +2,7 @@
   id: Fugitive
   name: job-name-fugitive
   description: job-description-fugitive
-  playTimeTracker: JobPassenger # ¯\_(ツ)_/¯
+  playTimeTracker: JobFugitive # ¯\_(ツ)_/¯
   startingGear: FugitiveStartingGear
   setPreference: false
   icon: JobIconPrisoner

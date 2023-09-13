@@ -72,7 +72,7 @@ public sealed class BankCartridgeSystem : EntitySystem
     }
     private void OnUiMessage(EntityUid uid, BankCartridgeComponent component, CartridgeMessageEvent args)
     {
-        UpdateUiState(uid, args.LoaderUid, component);
+        UpdateUiState(uid, GetEntity(args.LoaderUid), component);
     }
     private void UpdateUiState(EntityUid uid, EntityUid loaderUid, BankCartridgeComponent? component)
     {

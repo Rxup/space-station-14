@@ -15,6 +15,7 @@ using System.Threading;
 using Content.Shared.Roles;
 using System.Diagnostics.CodeAnalysis;
 using System.Text;
+using Content.Server.Actions;
 using Robust.Shared.Configuration;
 using Content.Server.Players.PlayTimeTracking;
 using Content.Shared.CCVar;
@@ -25,8 +26,6 @@ using Content.Server.RandomMetadata;
 using Robust.Shared.Serialization.Manager;
 using Content.Server.Administration.Managers;
 using Content.Server.Backmen.RoleWhitelist;
-using Content.Shared.Actions;
-using Content.Shared.Actions.ActionTypes;
 
 namespace Content.Server.Backmen.SpecForces;
 
@@ -48,20 +47,21 @@ public sealed class SpecForcesSystem : EntitySystem
         SubscribeLocalEvent<RoundEndTextAppendEvent>(OnRoundEnd);
         SubscribeLocalEvent<RoundRestartCleanupEvent>(OnCleanup);
         SubscribeLocalEvent<SpecForceComponent, ComponentStartup>(OnStartup);
+        SubscribeLocalEvent<SpecForceComponent, ComponentShutdown>(OnShutdown);
         SubscribeLocalEvent<SpecForceComponent, TakeGhostRoleEvent>(OnSpecForceTake,
             before: new[] { typeof(GhostRoleSystem) });
     }
 
+    private void OnShutdown(EntityUid uid, SpecForceComponent component, ComponentShutdown args)
+    {
+        if (component.ActionBssActionName != null)
+            _actions.RemoveAction(uid, component.ActionBssActionName);
+    }
+
     private void OnStartup(EntityUid uid, SpecForceComponent component, ComponentStartup args)
     {
-        if (component.ActionName == null ||
-            !_prototypes.TryIndex<InstantActionPrototype>(component.ActionName, out var action))
-        {
-            return;
-        }
-
-        var netAction = new InstantAction(action);
-        _action.AddAction(uid, netAction, null);
+        if (component.ActionBssActionName != null)
+            _actions.AddAction(uid, ref component.BssKey, component.ActionBssActionName);
     }
 
     private void OnMapInit(EntityUid uid, SpecForceComponent component, MapInitEvent args)
@@ -117,14 +117,14 @@ public sealed class SpecForcesSystem : EntitySystem
         var first = true;
         foreach (var requirement in job.Requirements)
         {
-            if (JobRequirements.TryRequirementMet(requirement, playTimes, out reason, _prototypes))
+            if (JobRequirements.TryRequirementMet(requirement, playTimes, out var jobReason, EntityManager, _prototypes))
                 continue;
 
             if (!first)
                 reasonBuilder.Append('\n');
             first = false;
 
-            reasonBuilder.AppendLine(reason);
+            reasonBuilder.AppendLine(jobReason.ToMarkup());
         }
 
         if (_cfg.GetCVar(Shared.Backmen.CCVar.CCVars.WhitelistRolesEnabled) &&
@@ -392,11 +392,11 @@ public sealed class SpecForcesSystem : EntitySystem
     [ValidatePrototypeId<EntityPrototype>] private const string SpawnMarker = "MarkerSpecforce";
 
     private const string EtrShuttlePath = "Maps/Shuttles/dart.yml";
-    [ValidatePrototypeId<EntityPrototype>] private const string ErtLeader = "SpawnMobHumanERTLeaderEVAV2.1";
-    [ValidatePrototypeId<EntityPrototype>] private const string ErtSecurity = "SpawnMobHumanERTSecurityEVAV2.1";
-    [ValidatePrototypeId<EntityPrototype>] private const string ErtEngineer = "SpawnMobHumanERTEngineerEVAV2.1";
-    [ValidatePrototypeId<EntityPrototype>] private const string ErtJunitor = "SpawnMobHumanERTJunitorEVAV2.1";
-    [ValidatePrototypeId<EntityPrototype>] private const string ErtMedical = "SpawnMobHumanERTMedicalEVAV2.1";
+    [ValidatePrototypeId<EntityPrototype>] private const string ErtLeader = "SpawnMobHumanERTLeaderEVAV2_1";
+    [ValidatePrototypeId<EntityPrototype>] private const string ErtSecurity = "SpawnMobHumanERTSecurityEVAV2_1";
+    [ValidatePrototypeId<EntityPrototype>] private const string ErtEngineer = "SpawnMobHumanERTEngineerEVAV2_1";
+    [ValidatePrototypeId<EntityPrototype>] private const string ErtJunitor = "SpawnMobHumanERTJunitorEVAV2_1";
+    [ValidatePrototypeId<EntityPrototype>] private const string ErtMedical = "SpawnMobHumanERTMedicalEVAV2_1";
 
     private const string RxbzzShuttlePath = "Maps/Backmen/Grids/NT-CC-SRV-013.yml";
     [ValidatePrototypeId<EntityPrototype>] private const string RxbzzLeader = "SpawnMobHumanSFOfficer";
@@ -423,6 +423,6 @@ public sealed class SpecForcesSystem : EntitySystem
     [Dependency] private readonly IChatManager _chatManager = default!;
     [Dependency] private readonly ISerializationManager _serialization = default!;
     [Dependency] private readonly IAdminManager _adminManager = default!;
-    [Dependency] private readonly SharedActionsSystem _action = default!;
+    [Dependency] private readonly ActionsSystem _actions = default!;
     [Dependency] private readonly WhitelistSystem _whitelistSystem = default!;
 }

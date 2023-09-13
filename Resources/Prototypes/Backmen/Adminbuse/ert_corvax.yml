@@ -80,7 +80,7 @@
 
 # Leader
 - type: startingGear
-  id: ERTLeaderGearEVAV2.1
+  id: ERTLeaderGearEVAV2_1
   equipment:
     jumpsuit: ClothingUniformJumpsuitColorDarkBlue
     back: ClothingBackpackERTLeaderFilledV2.1
@@ -120,7 +120,7 @@
 
 # Engineer
 - type: startingGear
-  id: ERTEngineerGearEVAV2.1
+  id: ERTEngineerGearEVAV2_1
   equipment:
     jumpsuit: ClothingUniformJumpsuitColorLightBrown
     back: ClothingBackpackERTEngineerFilledV2.1
@@ -174,7 +174,7 @@
 
 # Security
 - type: startingGear
-  id: ERTSecurityGearEVAV2.1
+  id: ERTSecurityGearEVAV2_1
   equipment:
     jumpsuit: ClothingUniformJumpsuitColorRed
     back: ClothingBackpackERTSecurityFilledV2.1
@@ -213,21 +213,21 @@
 
 
 # Medical
-- type: job
-  id: ERTMedicalV2.1
-  name: job-name-ertmedic
-  playTimeTracker: JobERTMedical
-  setPreference: false
-  startingGear: ERTMedicalGearEVAV2.1
-  icon: JobIconNanotrasen
-  supervisors: job-supervisors-centcom
-  canBeAntag: false
-  accessGroups:
-  - AllAccess
+#- type: job
+#  id: ERTMedicalV2.1
+#  name: job-name-ertmedic
+#  playTimeTracker: JobERTMedical
+#  setPreference: false
+#  startingGear: ERTMedicalGearEVAV2_1
+#  icon: JobIconNanotrasen
+#  supervisors: job-supervisors-centcom
+#  canBeAntag: false
+#  accessGroups:
+#  - AllAccess
 
 
 - type: startingGear
-  id: ERTMedicalGearEVAV2.1
+  id: ERTMedicalGearEVAV2_1
   equipment:
     jumpsuit: ClothingUniformJumpsuitColorWhite
     back: ClothingBackpackERTMedicalFilledV2.1
@@ -273,7 +273,7 @@
 
 #Janitor
 - type: startingGear
-  id: ERTJanitorGearEVAV2.1
+  id: ERTJanitorGearEVAV2_1
   equipment:
     jumpsuit: ClothingUniformJumpsuitColorPurple
     back: ClothingBackpackERTJanitorFilledV2.1
@@ -314,10 +314,10 @@
   name:  лидер ОБР
   parent: MobHuman
   suffix: corvax
-  id: MobHumanERTLeaderEVAV2.1
+  id: MobHumanERTLeaderEVAV2_1
   components:
   - type: SpecForce
-    actionName: CentcomFtlAction
+    actionBssActionName: ActionCentcomFtlAction
     requirements:
     - !type:DepartmentTimeRequirement
       department: Security
@@ -337,7 +337,7 @@
     rules: Выполняйте различные приказы, ваша задача будет варьироваться от задач центрального командования.
   - type: GhostTakeoverAvailable
   - type: Loadout
-    prototypes: [ERTLeaderGearEVAV2.1]
+    prototypes: [ERTLeaderGearEVAV2_1]
   - type: RandomMetadata
     nameSegments:
     - NamesSGTs
@@ -351,10 +351,10 @@
   name: инженер ОБР
   suffix: corvax
   parent: MobHuman
-  id: MobHumanERTEngineerEVAV2.1
+  id: MobHumanERTEngineerEVAV2_1
   components:
   - type: SpecForce
-    actionName: CentcomFtlAction
+    actionBssActionName: ActionCentcomFtlAction
     requirements:
     - !type:DepartmentTimeRequirement
       department: Security
@@ -374,7 +374,7 @@
     rules: Выполняйте различные приказы, ваша задача будет варьироваться от задач центрального командования.
   - type: GhostTakeoverAvailable
   - type: Loadout
-    prototypes: [ERTEngineerGearEVAV2.1]
+    prototypes: [ERTEngineerGearEVAV2_1]
   - type: RandomMetadata
     nameSegments:
     - NamesCPLs
@@ -387,10 +387,10 @@
   name: офицер безопасности ОБР
   suffix: corvax
   parent: MobHuman
-  id: MobHumanERTSecurityEVAV2.1
+  id: MobHumanERTSecurityEVAV2_1
   components:
   - type: SpecForce
-    actionName: CentcomFtlAction
+    actionBssActionName: ActionCentcomFtlAction
     requirements:
     - !type:DepartmentTimeRequirement
       department: Security
@@ -407,7 +407,7 @@
     rules: Выполняйте различные приказы, ваша задача будет варьироваться от задач центрального командования.
   - type: GhostTakeoverAvailable
   - type: Loadout
-    prototypes: [ERTSecurityGearEVAV2.1]
+    prototypes: [ERTSecurityGearEVAV2_1]
   - type: RandomMetadata
     nameSegments:
     - NamesPVTs
@@ -420,10 +420,10 @@
   name: медик ОБР
   parent: MobHuman
   suffix: corvax
-  id: MobHumanERTMedicalEVAV2.1
+  id: MobHumanERTMedicalEVAV2_1
   components:
   - type: SpecForce
-    actionName: CentcomFtlAction
+    actionBssActionName: ActionCentcomFtlAction
     requirements:
     - !type:DepartmentTimeRequirement
       department: Security
@@ -443,7 +443,7 @@
     rules: Выполняйте различные приказы, ваша задача будет варьироваться от задач центрального командования.
   - type: GhostTakeoverAvailable
   - type: Loadout
-    prototypes: [ERTMedicalGearEVAV2.1]
+    prototypes: [ERTMedicalGearEVAV2_1]
   - type: RandomMetadata
     nameSegments:
     - NamesCPLs
@@ -456,10 +456,10 @@
   name: уборщик ОБР
   parent: MobHuman
   suffix: corvax
-  id: MobHumanERTJunitorEVAV2.1
+  id: MobHumanERTJunitorEVAV2_1
   components:
   - type: SpecForce
-    actionName: CentcomFtlAction
+    actionBssActionName: ActionCentcomFtlAction
     requirements:
     - !type:DepartmentTimeRequirement
       department: Security
@@ -479,7 +479,7 @@
     rules: Выполняйте различные приказы, ваша задача будет варьироваться от задач центрального командования.
   - type: GhostTakeoverAvailable
   - type: Loadout
-    prototypes: [ERTJanitorGearEVAV2.1]
+    prototypes: [ERTJanitorGearEVAV2_1]
   - type: RandomMetadata
     nameSegments:
     - NamesPVTs

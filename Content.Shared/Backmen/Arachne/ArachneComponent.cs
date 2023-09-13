@@ -18,4 +18,6 @@ public sealed partial class ArachneComponent : Component
 
     [DataField("webBloodReagent")]
     public string WebBloodReagent = "Blood";
+
+    public EntityUid? SpinWeb = null;
 }

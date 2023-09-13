@@ -28,7 +28,7 @@
     - type: RandomMetadata
     - type: RandomHumanoidAppearance
     - type: SpecForce
-      actionName: CentcomFtlAction
+      actionBssActionName: ActionCentcomFtlAction
       whitelistRequired: true
       requirements:
         - !type:DepartmentTimeRequirement
@@ -60,7 +60,7 @@
     - type: RandomMetadata
     - type: RandomHumanoidAppearance
     - type: SpecForce
-      actionName: CentcomFtlAction
+      actionBssActionName: ActionCentcomFtlAction
       whitelistRequired: true
       requirements:
         - !type:DepartmentTimeRequirement
@@ -129,7 +129,7 @@
     - type: RandomMetadata
     - type: RandomHumanoidAppearance
     - type: SpecForce
-      actionName: CentcomFtlAction
+      actionBssActionName: ActionCentcomFtlAction
       requirements:
       - !type:DepartmentTimeRequirement
         department: Security
