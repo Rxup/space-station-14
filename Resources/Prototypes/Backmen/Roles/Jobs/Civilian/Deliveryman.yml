@@ -19,15 +19,3 @@
   maxBankBalance: 500
   wageDepartment: Civilian
   wage: 100
-
-  equipment:
-    jumpsuit: ClothingUniformJumpsuitDeliveryman
-    back: ClothingBackpackFilled
-    shoes: ClothingShoesColorBlack
-    id: DeliveryPDA
-    ears: ClothingHeadsetService
-    pocket1: Eftpos
-    pocket2: FoodBoxPizzaFilled
-  innerclothingskirt: ClothingUniformJumpsuitDeliverygirl
-  satchel: ClothingBackpackSatchelFilled
-  duffelbag: ClothingBackpackDuffelFilled
