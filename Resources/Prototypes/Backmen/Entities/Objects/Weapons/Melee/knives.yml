@@ -3,7 +3,7 @@
   id: AntiPsychicKnife
   name: Анти-психический нож
   suffix: Псионика
-  description: Специальный нож, предназначенный для убийства экстрасенсов.
+  description: Специальный нож, предназначенный для убийства псиоников(НЕТ,ОН НЕ НАНОСИТ БОЛЬШЕ УРОНА ПСИОНИКАМ).
   components:
     - type: MeleeWeapon
       attackRate: 1.5
