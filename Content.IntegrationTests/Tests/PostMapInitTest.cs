@@ -50,7 +50,7 @@ namespace Content.IntegrationTests.Tests
             "CorvaxIshimura",
 			"CorvaxSpectrum",
 //            "CorvaxGate",
-            "/Maps/centcomm.yml",
+            "CentComm",
             // Corvax-End
             "Dev",
             "TestTeg",
