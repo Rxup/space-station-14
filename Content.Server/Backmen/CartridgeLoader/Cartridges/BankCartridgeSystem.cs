@@ -80,16 +80,12 @@ public sealed class BankCartridgeSystem : EntitySystem
     public void UnlinkBankAccountFromCartridge(EntityUid uid, BankAccountComponent? bankAccount = null,
         BankCartridgeComponent? bankCartrdigeComponent = null)
     {
-        if (!Resolve(uid, ref bankCartrdigeComponent))
+        if (!Resolve(uid, ref bankCartrdigeComponent, false))
         {
             return;
         }
-
-        bankAccount ??= bankCartrdigeComponent.LinkedBankAccount;
+        
         bankCartrdigeComponent.LinkedBankAccount = null;
-
-        //if (bankAccount != null)
-        //    bankAccount.BankCartridge = null;
     }
 
     private void OnChangeBankBalance(EntityUid uid, BankAccountComponent component, ChangeBankAccountBalanceEvent args)
