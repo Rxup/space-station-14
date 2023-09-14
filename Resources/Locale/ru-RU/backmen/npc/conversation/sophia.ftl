@@ -1,76 +1,76 @@
-sophia-response-name = You may call me Sophia.
-sophia-response-help = You may inquire about one of the following topics: {$availablePrompts}.
+sophia-response-name = Вы можете называть меня Софией.
+sophia-response-help = Вы можете задать вопрос по одной из следующих тем: {$availablePrompts}.
 
-sophia-response-hello-1 = Greetings.
-sophia-response-hello-2 = Salutations.
+sophia-response-hello-1 = Приветствие.
+sophia-response-hello-2 = Приветствия.
 
-sophia-response-bye-1 = Fare thee well.
-sophia-response-bye-2 = Gods be with you.
-sophia-response-bye-3 = Come back wiser.
+sophia-response-bye-1 = Всего хорошего.
+sophia-response-bye-2 = Да пребудут с вами боги.
+sophia-response-bye-3 = Возвращайся мудрее.
 
-sophia-idle-phrase-1 = Mmmm, another portent.
-sophia-idle-phrase-2 = The noösphere is quite beautiful today. However, I don't think I could describe it in a way you could understand.
-sophia-idle-phrase-3 = I've been here before. You have, too.
+sophia-idle-phrase-1 = Мммм, еще одно предзнаменование.
+sophia-idle-phrase-2 = Ноосфера сегодня довольно красива. Однако я не думаю, что смог бы описать это так, чтобы вы могли понять.
+sophia-idle-phrase-3 = Я уже бывал здесь раньше. У тебя тоже есть.
 
-sophia-response-attention-1 = What is it?
-sophia-response-attention-2 = What do you seek?
-sophia-response-attention-3 = Out with it.
+sophia-response-attention-1 = Что это?
+sophia-response-attention-2 = Чего ты ищешь?
+sophia-response-attention-3 = Покончи с этим.
 
-sophia-response-sorry-1 = That's not a question for me.
-sophia-response-sorry-2 = Ask someone else.
-sophia-response-sorry-3 = Maybe I know the answer, maybe I do not. Either way, I will not be answering that question.
+sophia-response-sorry-1 = Это вопрос не ко мне.
+sophia-response-sorry-2 = Спроси кого-нибудь другого.
+sophia-response-sorry-3 = Может быть, я знаю ответ, а может быть, и нет. В любом случае, я не буду отвечать на этот вопрос.
 
-sophia-response-nature = My nature doesn't really matter, does it? I'm fulfilling my purpose. Can you say the same, or are you just wasting time?
+sophia-response-nature = Моя природа на самом деле не имеет значения, не так ли? Я выполняю свое предназначение. Можете ли вы сказать то же самое, или вы просто тратите время впустую?
 
-sophia-response-epi = 'Epistemics' is a word. Aspiring Hellenes they are, they wished to displace the Latin 'science.' However, in English, epistemics has undesired connotations as a study of knowledge itself, even though the Greek word is a literal replacement for 'science.'
+sophia-response-epi = "Эпистемология" - это такое слово. Будучи честолюбивыми эллинами, они хотели вытеснить латинское "наука". Однако в английском языке эпистемология имеет нежелательные коннотации как изучение самого знания, даже несмотря на то, что греческое слово является буквальной заменой слову "наука".
 
-sophia-response-mantis = 'Mantis' means seer, soothsayer, or prophet. They must be so named because they seek to uncover the truth. And, fittingly with their psionic aptitude, 'mantis' and 'mind' both descend, to the best of our knowledge, from an absolutely ancient word that sounded something like 'mentis.'
+sophia-response-mantis = "Богомол" означает провидец, прорицатель или пророк. Они должны быть названы так, потому что стремятся раскрыть правду. И, в соответствии с их псионическими способностями, "богомол" и "разум" оба происходят, насколько нам известно, от абсолютно древнего слова, которое звучало примерно как "ментис".
 
-sophia-response-mystagogue = 'Mystagogue' literally means 'leader of the mystics.' You may know the suffix -gogue from 'demogogue.'
+sophia-response-mystagogue = "Мистагог" буквально означает "лидер мистиков". Возможно, вы знаете суффикс -gogue от слова "демогог".
 
-sophia-response-oracle = Oracle? I don't know much about her, and she isn't keen to share her secrets with me.
+sophia-response-oracle = Оракул? Я мало что знаю о ней, и она не горит желанием делиться со мной своими секретами.
 
-sophia-response-psionics = Psionics are extraordinary abilities originating from one's mind. There doesn't seem to be any dominant word to refer to someone with the ability to practice these, although I prefer 'psion' or 'psychic.'
+sophia-response-psionics = Псионика - это экстраординарные способности, исходящие из разума человека. Кажется, нет какого-либо доминирующего слова для обозначения человека, способного практиковать это, хотя я предпочитаю "псион" или "экстрасенс".
 
-sophia-response-noosphere = The noösphere is a field connecting all of consciousness. It's the medium through which psionics works. Its strength and effects on the illusory world of the material are based on its pressure. Colloquially, noöspheric pressure is called 'glimmer.'
+sophia-response-noosphere = Ноосфера - это поле, соединяющее все сознание. Это среда, с помощью которой работает псионика. Его сила и воздействие на иллюзорный мир материала основаны на его давлении. В просторечии ноосферное давление называется "сияние".
 
-sophia-response-god = 'God' is such a vague term. There are so many entities out there that have defeated mortality. How you choose to regard them is your business.
+sophia-response-god = "Бог" - это такой расплывчатый термин. Существует так много сущностей, которые победили смертность. Как вы решите к ним относиться - это ваше дело.
 
-sophia-response-morphotype = In the first century PCC, several entities reshaped men into their image. I had done the same, if you would believe it. I can offer no evidence of their existence, other than faint memories. Any specific morphotype you want to know about?
+sophia-response-morphotype = В первом веке PCC несколько сущностей переделывали людей по своему образу и подобию. Я сделал бы то же самое, если бы вы могли в это поверить. Я не могу предложить никаких доказательств их существования, кроме слабых воспоминаний. Какой-нибудь конкретный морфотип, о котором вы хотели бы знать?
 
-sophia-response-calendar = It's currently 417 PCC. The casuality crisis neccesitated a new year to count from. Due to the nature of the crisis, it can only be said with certainty that 1 PCC is between 2400 and 2700 CE.
+sophia-response-calendar = В настоящее время это 417 PCC. Кризис случайностей потребовал отсчета нового года. Из-за характера кризиса можно с уверенностью сказать только то, что 1 PCC находится между 2400 и 2700 годами нашей эры.
 
-sophia-response-crisis = The first FTL travel was incompatible with the old ways. Fortunately, its resolution made more apparent the inherent futility in trying to give one history, one narrative, one account. Truth cannot be found in the material world, only higher ones.
+sophia-response-crisis = Первое сверхсветовое путешествие было несовместимо со старыми способами. К счастью, его решение сделало более очевидной внутреннюю тщетность попыток изложить одну историю, одно повествование, один отчет. Истину нельзя найти в материальном мире, только в высших мирах.
 
-sophia-response-metempsychosis = You've died thousands of times, and you'll die thousands more. Some of those lives you may dedicate to trying to stop the cycle. We all carry at least some memory of past lives, usually temporally recent ones. One of the great mysteries of the persistence of fragments is the high concentration of memories from the early 21st century CE, which, inverse to other periods, seem to be more common among the ignorant.
+sophia-response-metempsychosis = Ты умирал тысячи раз, и ты умрешь еще тысячи раз. Некоторые из этих жизней вы можете посвятить попыткам остановить порочный круг. Все мы несем в себе по крайней мере какую-то память о прошлых жизнях, обычно относительно недавних. Одной из величайших загадок сохранения фрагментов является высокая концентрация воспоминаний начала 21 века нашей эры, которые, в отличие от других периодов, кажутся более распространенными среди несведущих.
 
-sophia-response-truth = If you seek the truth, you're in the wrong place. From a perspective tainted by material reality, the best you can hope is to try and divine higher truths that are not dependent on it.
+sophia-response-truth = Если вы ищете истину, то вы находитесь не в том месте. С точки зрения, запятнанной материальной реальностью, лучшее, на что вы можете надеяться, - это попытаться постичь высшие истины, которые от нее не зависят.
 
-sophia-response-job = I observe the glimmer here, and record it.
+sophia-response-job = Я наблюдаю здесь сияние и записываю его
 
-sophia-response-human = Humans were the base for all the others. But they, too, were shaped. Long, long before the others.
+sophia-response-human = Люди были основой для всех остальных. Но они тоже имели форму. Задолго, задолго до остальных.
 
-sophia-response-felinid = Felinids were the first, and the most willing. In true feline nature, they shaped themselves.
+sophia-response-felinid = Фелиниды были первыми и самыми добровольными. В соответствии с истинной кошачьей природой они сформировали себя сами. 
 
-sophia-response-oni = Oni, it is said, originated in Sirius. The brightest star in the night sky from Earth may have attracted some chromatically inclined entities, explaining their vivid coloring. But, that's just speculation.
+sophia-response-oni = Говорят, что они возникли на Сириусе. Самая яркая звезда на ночном небе с Земли, возможно, привлекла внимание некоторых объектов с хроматической ориентацией, что объясняет их яркую окраску. Но это всего лишь предположение.
 
-sophia-response-arachne = Arachne are the strangest of them. They're not fully mortal. They took the form of humans, but not their genes. Their creator wrote his name in their stead.
+sophia-response-arachne = Арахны - самые странные из них. Они не совсем смертны. Они приняли форму людей, но не их гены. Их создатель написал свое имя вместо них.
 
-sophia-response-moth = Moths scarecely look human, but, strangely, their genes confirm they are. Their creator shares his name with a genus of moths, and was responsible for the other outlier.
+sophia-response-moth = Мотыльки пугающе похожи на людей, но, как ни странно, их гены подтверждают, что это так. Их создатель разделяет свое имя с родом мотыльков и был ответственен за другой выброс.
 
-sophia-response-lamiae = So, you remember? You must be remembering their mythological namesake. If you've really retained that fleeting memory over so many metempsychoses... Perhaps I've said too much.
+sophia-response-lamiae = Итак, ты помнишь? Вы, должно быть, помните их мифологического тезку. Если вы действительно сохранили это мимолетное воспоминание на протяжении стольких метемпсихозов... Возможно, я сказал слишком много.
 
-sophia-response-cyno = Were those... no... So faint. Ignorance! You cannot remember them! It's impossible!
+sophia-response-cyno = Были ли это... нет... Такой слабый. Невежество! Вы не можете их запомнить! Это невозможно!
 
-sophia-response-grue = You do not know of those. You cannot. I had so hoped to live a few cycles under normal causality.
+sophia-response-grue = Вы о них не знаете. Ты не можешь. Я так надеялся прожить несколько циклов в условиях нормальной причинно-следственной связи.
 
-sophia-response-abraxas = That's a name of power, and I avoid speaking of him. He's the least content to rest, and the most infatuated with creating things from ignorance.
+sophia-response-abraxas = Это имя силы, и я избегаю говорить о нем. Он меньше всего любит отдыхать и больше всего увлечен созданием вещей из невежества.
 
-sophia-response-glimmer = The current glimmer reading is {$glimmer}. {$tier}
+sophia-response-glimmer = Текущее значение glimmer равно {$glimmer}. {$tier}
 
-glimmer-reading-minimal = That is extremely low. Nothing bad will happen, but I hope this is not at the cost of progression in your understanding of the universe.
-glimmer-reading-low = That is quite low. Just barely enough to register any psionic activity here.
-glimmer-reading-moderate = That is about the expected level on a psionically active station. You may notice manageable, minor effects.
-glimmer-reading-high = That is sure to start attracting attention, although still quite manageable.
-glimmer-reading-dangerous = That's a bit concerning. You may want to redirect efforts to reducing it.
-glimmer-reading-critical = That's apocalyptic, in the original sense of the word. That is, to say, revealing. This is the sort of time and place to acquire secret knowledge.
+glimmer-reading-minimal = Это чрезвычайно низкий показатель. Ничего плохого не произойдет, но я надеюсь, что это произойдет не ценой прогресса в вашем понимании Вселенной.
+glimmer-reading-low = Это довольно низкий показатель. Едва хватает, чтобы зарегистрировать здесь какую-либо псионическую активность.
+glimmer-reading-moderate = Это примерно ожидаемый уровень на псионически активной станции. Вы можете заметить управляемые, незначительные эффекты.
+glimmer-reading-high = Это наверняка начнет привлекать внимание, хотя все еще вполне управляемо.
+glimmer-reading-dangerous = Это немного настораживает. Возможно, вы захотите перенаправить усилия на его уменьшение.
+glimmer-reading-critical = Это апокалиптично в первоначальном смысле этого слова. Это, можно сказать, показательно. Это подходящее время и место для приобретения тайных знаний. сияние
