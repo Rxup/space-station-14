@@ -30,6 +30,40 @@
     - type: Icon
       sprite: Backmen/Objects/Devices/pda.rsi
       state: pda-orden
+      
+- type: entity
+  parent: BasePDA
+  id: DeliveryPDA
+  name: КПК доставщика
+  description: Пахнет пиццой
+  components:
+    - type: Sprite
+      sprite: Backmen/Objects/Devices/pda.rsi
+      layers:
+      - map: [ "enum.PdaVisualLayers.Base" ]
+      - state: "light_overlay"
+        map: [ "enum.PdaVisualLayers.Flashlight" ]
+        shader: "unshaded"
+        visible: false
+      - state: "id_overlay"
+        map: [ "enum.PdaVisualLayers.IdLight" ]
+        shader: "unshaded"
+        visible: false
+    - type: Pda
+      id: DeliveryIDCard
+      state: pda-Delivery
+      penSlot:
+        startingItem: EnergyDagger
+        priority: -1
+        whitelist:
+          tags:
+          - Write
+    - type: PdaBorderColor
+      borderColor: "#00a000"
+    - type: Icon
+      sprite: Backmen/Objects/Devices/pda.rsi
+      state: pda-Delivery
+      
 
 - type: entity
   parent: BasePDA

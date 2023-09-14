@@ -353,7 +353,7 @@
       interfaces:
         - key: enum.StoreUiKey.Key
           type: StoreBoundUserInterface
-          
+
 - type: entity
   parent: VendingMachineSpaceUp
   id: BackmenVendingMachineSpaceUp
@@ -374,7 +374,7 @@
     - type: UserInterface
       interfaces:
         - key: enum.StoreUiKey.Key
-          type: StoreBoundUserInterface     
+          type: StoreBoundUserInterface
 
 - type: entity
   parent: VendingMachineColaRed
@@ -418,7 +418,7 @@
     - type: UserInterface
       interfaces:
         - key: enum.StoreUiKey.Key
-          type: StoreBoundUserInterface  
+          type: StoreBoundUserInterface
 
 - type: entity
   parent: VendingMachinePwrGame
@@ -440,7 +440,7 @@
     - type: UserInterface
       interfaces:
         - key: enum.StoreUiKey.Key
-          type: StoreBoundUserInterface  
+          type: StoreBoundUserInterface
 
 - type: entity
   parent: VendingMachineDrGibb
@@ -462,7 +462,7 @@
     - type: UserInterface
       interfaces:
         - key: enum.StoreUiKey.Key
-          type: StoreBoundUserInterface     
+          type: StoreBoundUserInterface
 
 - type: entity
   parent: VendingMachineStarkist
@@ -484,5 +484,27 @@
     - type: UserInterface
       interfaces:
         - key: enum.StoreUiKey.Key
-          type: StoreBoundUserInterface           
+          type: StoreBoundUserInterface
+
+- type: entity
+  parent: VendingMachineHappyHonk
+  id: BackmenVendingMachineHappyHonk
+  suffix: backmen
+  components:
+    - type: Store
+      categories:
+        - HappyHonkInventory
+      currencyWhitelist:
+        - SpaceCash
+      balance:
+        SpaceCash: 0
+    - type: BuyStoreBank
+    - type: ActivatableUI
+      key: enum.StoreUiKey.Key
+      singleUser: true
+    - type: ActivatableUIRequiresPower
+    - type: UserInterface
+      interfaces:
+        - key: enum.StoreUiKey.Key
+          type: StoreBoundUserInterface
 

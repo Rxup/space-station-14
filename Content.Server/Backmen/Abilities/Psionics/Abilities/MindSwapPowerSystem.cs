@@ -13,6 +13,7 @@ using Content.Shared.Backmen.Abilities.Psionics;
 using Content.Shared.Backmen.Psionics.Events;
 using Content.Shared.Mind;
 using Content.Shared.Mind.Components;
+using Content.Shared.SSDIndicator;
 using Robust.Server.GameObjects;
 using Robust.Server.Player;
 using Robust.Shared.Prototypes;
@@ -192,8 +193,8 @@ public sealed class MindSwapPowerSystem : EntitySystem
         // This is here to prevent missing MindContainerComponent Resolve errors.
         var a = _mindSystem.TryGetMind(performer, out var performerMindId, out var performerMind);
         var b = _mindSystem.TryGetMind(target, out var targetMindId, out var targetMind);
-        // Do the transfer.
 
+        // Do the transfer.
         if (a)
         {
             RemComp<ActorComponent>(target);
@@ -204,6 +205,10 @@ public sealed class MindSwapPowerSystem : EntitySystem
                 _actorSystem.Attach(target, (IPlayerSession) performerMind.Session!, true);
             }
             _mindSystem.TransferTo(performerMindId, target, true, false);
+            if (TryComp<SSDIndicatorComponent>(target, out var ssd))
+            {
+                ssd.IsSSD = HasComp<ActorComponent>(target);
+            }
         }
 
         if (b)
@@ -216,6 +221,10 @@ public sealed class MindSwapPowerSystem : EntitySystem
                 _actorSystem.Attach(target, (IPlayerSession) targetMind.Session!, true);
             }
             _mindSystem.TransferTo(targetMindId, performer, true, false);
+            if (TryComp<SSDIndicatorComponent>(performer, out var ssd))
+            {
+                ssd.IsSSD = !HasComp<ActorComponent>(performer);
+            }
         }
 
         if (end)
