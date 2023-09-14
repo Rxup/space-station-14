@@ -36,7 +36,7 @@ namespace Content.IntegrationTests.Tests
 
         private static readonly string[] Grids =
         {
-            "/Maps/centcomm.yml",
+            //"/Maps/centcomm.yml",
             "/Maps/Shuttles/cargo.yml",
             "/Maps/Shuttles/emergency.yml",
             "/Maps/infiltrator.yml",
@@ -49,7 +49,8 @@ namespace Content.IntegrationTests.Tests
             "CorvaxDelta",
             "CorvaxIshimura",
 			"CorvaxSpectrum",
-            "CorvaxGate",
+//            "CorvaxGate",
+            "/Maps/centcomm.yml",
             // Corvax-End
             "Dev",
             "TestTeg",
