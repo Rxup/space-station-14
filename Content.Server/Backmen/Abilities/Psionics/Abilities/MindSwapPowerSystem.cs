@@ -223,7 +223,7 @@ public sealed class MindSwapPowerSystem : EntitySystem
             _mindSystem.TransferTo(targetMindId, performer, true, false);
             if (TryComp<SSDIndicatorComponent>(performer, out var ssd))
             {
-                ssd.IsSSD = HasComp<ActorComponent>(performer);
+                ssd.IsSSD = !HasComp<ActorComponent>(performer);
             }
         }
 
