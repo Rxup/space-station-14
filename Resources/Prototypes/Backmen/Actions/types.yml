@@ -173,7 +173,7 @@
   noSpawn: true
   components:
     - type: InstantAction
-      icon: { sprite: Backmen/Structures/web.rsi, state: web1 }
+#      icon: { sprite: Backmen/Structures/web.rsi, state: web1 }
       event: !type:HairballActionEvent
       charges: 1
       useDelay: 30

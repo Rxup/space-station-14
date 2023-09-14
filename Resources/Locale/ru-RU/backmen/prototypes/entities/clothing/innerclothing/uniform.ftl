@@ -14,7 +14,7 @@ ent-ClothingUniformJumpsuitgalaxyred = Галактический красный
 
 ent-ClothingUniformJumpsuitGachi = Мужской костюм
     .desc = Костюм, пропитанный крепкими мужскими отношениями и солидарностью!
-	
+
 ent-GermanSuit = Форма немецкого солдата.
     .desc =  Военная форма немецких войск.
     .suffix = { "" }

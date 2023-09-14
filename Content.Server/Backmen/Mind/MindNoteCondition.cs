@@ -1,5 +1,6 @@
 ﻿using Content.Server.Access.Systems;
 using Content.Server.Backmen.Economy;
+using Content.Shared.Backmen.Economy;
 using Content.Shared.Mind;
 using Content.Shared.Objectives.Interfaces;
 using JetBrains.Annotations;
@@ -66,7 +67,7 @@ public sealed partial class MindNoteCondition : IObjectiveCondition
         return new MindNoteCondition()
         {
             Title =  Loc.GetString("character-info-memories-placeholder-text"),
-            Owner = bank,
+            Owner = bank.Value.account,
         };
     }
 

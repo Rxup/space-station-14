@@ -11,13 +11,13 @@ using Content.Server.GameTicking.Events;
 using Content.Server.Mind;
 using Content.Server.Roles;
 using Content.Shared.Access.Components;
+using Content.Shared.Backmen.Economy;
 using Content.Shared.CartridgeLoader;
 using Content.Shared.Inventory;
 using Content.Shared.Objectives;
 using Content.Shared.Roles;
 using Content.Shared.Roles.Jobs;
 using JetBrains.Annotations;
-using Robust.Server.GameObjects;
 using Robust.Shared.Map;
 using Robust.Shared.Prototypes;
 
@@ -74,12 +74,12 @@ public sealed class EconomySystem : EntitySystem
 
     #region PublicApi
     [PublicAPI]
-    public bool TryStoreNewBankAccount(EntityUid player, EntityUid uid, IdCardComponent? id, out BankAccountComponent? bankAccount)
+    public bool TryStoreNewBankAccount(EntityUid player, EntityUid idCardId, IdCardComponent? id, out BankAccountComponent? bankAccount)
     {
         bankAccount = null;
-        if (!Resolve(uid, ref id))
+        if (!Resolve(idCardId, ref id))
             return false;
-        bankAccount = _bankManager.CreateNewBankAccount(uid);
+        bankAccount = _bankManager.CreateNewBankAccount(idCardId);
         if (bankAccount == null)
             return false;
         id.StoredBankAccountNumber = bankAccount.AccountNumber;
@@ -89,23 +89,23 @@ public sealed class EconomySystem : EntitySystem
         {
             bankAccount.AccountName = MetaData(player).EntityName;
         }
-        Dirty(id);
+        Dirty(idCardId, bankAccount);
         return true;
     }
     [PublicAPI]
-    public BankAccountComponent? AddPlayerBank(EntityUid Player, BankAccountComponent? bankAccount = null, bool AttachWage = true)
+    public (EntityUid owner,BankAccountComponent account)? AddPlayerBank(EntityUid player, BankAccountComponent? bankAccount = null, bool AttachWage = true)
     {
-        if (!_cardSystem.TryFindIdCard(Player, out var idCardComponent))
+        if (!_cardSystem.TryFindIdCard(player, out var idCardComponent))
             return null;
 
-        if (!_mindSystem.TryGetMind(Player, out var mindId, out var mind))
+        if (!_mindSystem.TryGetMind(player, out var mindId, out var mind))
         {
             return null;
         }
 
         if (bankAccount == null)
         {
-            if (!TryStoreNewBankAccount(Player,idCardComponent.Owner, idCardComponent, out bankAccount) || bankAccount == null)
+            if (!TryStoreNewBankAccount(player, idCardComponent.Owner, idCardComponent, out bankAccount) || bankAccount == null)
             {
                 return null;
             }
@@ -127,11 +127,11 @@ public sealed class EconomySystem : EntitySystem
         }
 
 
-        if (!_inventorySystem.TryGetSlotEntity(Player, "id", out var idUid))
-            return bankAccount;
+        if (!_inventorySystem.TryGetSlotEntity(player, "id", out var idUid))
+            return (idCardComponent.Owner, bankAccount);
 
         if (!EntityManager.TryGetComponent(idUid, out CartridgeLoaderComponent? cartrdigeLoaderComponent))
-            return bankAccount;
+            return (idCardComponent.Owner, bankAccount);
 
         foreach (var uid in cartrdigeLoaderComponent.BackgroundPrograms)
         {
@@ -140,12 +140,12 @@ public sealed class EconomySystem : EntitySystem
 
             if (bankCartrdigeComponent.LinkedBankAccount == null)
             {
-                _bankCartridgeSystem.LinkBankAccountToCartridge(bankCartrdigeComponent, bankAccount);
+                _bankCartridgeSystem.LinkBankAccountToCartridge(uid, bankAccount, bankCartrdigeComponent);
             }
             else if(bankCartrdigeComponent.LinkedBankAccount.AccountNumber != bankAccount.AccountNumber)
             {
-                _bankCartridgeSystem.UnlinkBankAccountFromCartridge(bankCartrdigeComponent, bankCartrdigeComponent.LinkedBankAccount);
-                _bankCartridgeSystem.LinkBankAccountToCartridge(bankCartrdigeComponent, bankAccount);
+                _bankCartridgeSystem.UnlinkBankAccountFromCartridge(uid, bankCartrdigeComponent.LinkedBankAccount, bankCartrdigeComponent);
+                _bankCartridgeSystem.LinkBankAccountToCartridge(uid, bankAccount, bankCartrdigeComponent);
             }
             // else: do nothing
         }
@@ -163,7 +163,7 @@ public sealed class EconomySystem : EntitySystem
 
         _mindSystem.TryAddObjective(mindId, mind, _prototype.Index<ObjectivePrototype>("BankNote"));
 
-        return bankAccount;
+        return (idCardComponent.Owner, bankAccount);
     }
     #endregion
 }
