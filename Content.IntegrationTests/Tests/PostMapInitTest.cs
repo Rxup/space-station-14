@@ -30,7 +30,6 @@ namespace Content.IntegrationTests.Tests
 
         private static readonly string[] NoSpawnMaps =
         {
-            "CentComm",
             "Dart",
         };
 
@@ -49,7 +48,7 @@ namespace Content.IntegrationTests.Tests
             "CorvaxDelta",
             "CorvaxIshimura",
 			"CorvaxSpectrum",
-//            "CorvaxGate",
+            "CorvaxGate",
             "CentComm",
             // Corvax-End
             "Dev",
