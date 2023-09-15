@@ -286,6 +286,10 @@
     damageRecovery:
       types:
         Asphyxiation: -1.0
+  - type: Tag
+    tags:
+      - CanPilot
+      - DoorBumpOpener
 
 - type: entity
   save: false
@@ -358,7 +362,3 @@
     interfaces:
       - key: enum.HumanoidMarkingModifierKey.Key # sure, this can go here too
         type: HumanoidMarkingModifierBoundUserInterface
-  - type: Tag
-    tags:
-      - CanPilot
-      - DoorBumpOpener
