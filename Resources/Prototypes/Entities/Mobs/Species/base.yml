@@ -290,6 +290,7 @@
     tags:
       - CanPilot
       - DoorBumpOpener
+      - FoostepSound
 
 - type: entity
   save: false
