@@ -89,7 +89,8 @@ namespace Content.Client.GameTicking.Managers
 
         private void UpdateJobsAvailable(TickerJobsAvailableEvent message)
         {
-            _jobsAvailable.Clear(); // backmen: centcom fix
+            _jobsAvailable.Clear();
+
             foreach (var (job, data) in message.JobsAvailableByStation)
             {
                 _jobsAvailable[job] = data;
