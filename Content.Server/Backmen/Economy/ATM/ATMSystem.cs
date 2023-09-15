@@ -6,6 +6,7 @@ using Content.Server.Store.Components;
 using Content.Server.Store.Systems;
 using Content.Server.UserInterface;
 using Content.Shared.Access.Components;
+using Content.Shared.Backmen.Economy;
 using Content.Shared.Backmen.Economy.ATM;
 using Content.Shared.FixedPoint;
 using Content.Shared.Hands.EntitySystems;
@@ -137,16 +138,12 @@ namespace Content.Server.Backmen.Economy.ATM;
                 if (_entities.TryGetComponent<IdCardComponent>(idCardEntityUid, out var idCardComponent))
                 {
                     idCardFullName = idCardComponent.FullName;
-                    if (_bankManagerSystem.TryGetBankAccountWithPin(idCardComponent.StoredBankAccountNumber, idCardComponent.StoredBankAccountPin, out var bankAccount))
+                    if (_bankManagerSystem.TryGetBankAccount(idCardEntityUid, out var bankAccount))
                     {
-                        idCardStoredBankAccountNumber = idCardComponent.StoredBankAccountNumber;
-                        if (bankAccount.AccountPin.Equals(idCardComponent.StoredBankAccountPin))
-                        {
-                            haveAccessToBankAccount = true;
-                            bankAccountBalance = bankAccount.Balance;
-                            if(_prototypeManager.TryIndex(bankAccount.CurrencyType, out CurrencyPrototype? p))
-                                currencySymbol = Loc.GetString(p.CurrencySymbol);
-                        }
+                        haveAccessToBankAccount = true;
+                        bankAccountBalance = bankAccount.Balance;
+                        if(_prototypeManager.TryIndex(bankAccount.CurrencyType, out CurrencyPrototype? p))
+                            currencySymbol = Loc.GetString(p.CurrencySymbol);
                     }
                 }
                 idCardEntityName = MetaData(idCardEntityUid).EntityName;

@@ -13,8 +13,7 @@ jobs:
     if: github.actor != 'PJBot' && github.event.pull_request.draft == false
     strategy:
       matrix:
-#        os: [ubuntu-latest, windows-latest]
-        os: [ubuntu-latest]
+        os: [ubuntu-latest, windows-latest]
 
     runs-on: ${{ matrix.os }}
 
@@ -38,11 +37,6 @@ jobs:
       uses: actions/setup-dotnet@v3.2.0
       with:
         dotnet-version: 7.0.x
-
-    - name: skip locale check
-      run: |
-        sed -i 's/_logSawmill.Error($"{path}:/_logSawmill.Warning($"{path}:/' RobustToolbox/Robust.Shared/Localization/LocalizationManager.cs
-        sed -i 's/_logSawmill.Error("Error extracting/_logSawmill.Warning("Error extracting/' RobustToolbox/Robust.Shared/Localization/LocalizationManager.cs
 
     - name: Install dependencies
       run: dotnet restore
