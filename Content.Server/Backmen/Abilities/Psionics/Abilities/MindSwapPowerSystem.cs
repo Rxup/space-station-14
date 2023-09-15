@@ -208,6 +208,7 @@ public sealed class MindSwapPowerSystem : EntitySystem
             if (TryComp<SSDIndicatorComponent>(target, out var ssd))
             {
                 ssd.IsSSD = !HasComp<ActorComponent>(target);
+                Dirty(target,ssd);
             }
         }
 
@@ -224,6 +225,7 @@ public sealed class MindSwapPowerSystem : EntitySystem
             if (TryComp<SSDIndicatorComponent>(performer, out var ssd))
             {
                 ssd.IsSSD = !HasComp<ActorComponent>(performer);
+                Dirty(performer,ssd);
             }
         }
 
