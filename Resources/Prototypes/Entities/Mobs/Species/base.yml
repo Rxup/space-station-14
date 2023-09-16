@@ -286,6 +286,11 @@
     damageRecovery:
       types:
         Asphyxiation: -1.0
+  - type: Tag
+    tags:
+      - CanPilot
+      - DoorBumpOpener
+      - FoostepSound
 
 - type: entity
   save: false
