@@ -217,6 +217,11 @@
   - type: TTS # Corvax-TTS
   - type: ContentEye
   - type: PotentialPsionic
+  - type: Tag
+    tags:
+    - CanPilot
+    - FootstepSound
+    - DoorBumpOpener
 
 - type: entity
   save: false

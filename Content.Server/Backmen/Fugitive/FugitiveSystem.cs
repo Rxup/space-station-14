@@ -31,6 +31,8 @@ using Content.Shared.Examine;
 using Content.Shared.Ghost;
 using Content.Shared.Mind.Components;
 using Content.Shared.Objectives;
+using Content.Shared.Objectives.Components;
+using Content.Shared.Paper;
 using Content.Shared.Roles.Jobs;
 using Content.Shared.Wall;
 using Robust.Shared.Prototypes;
@@ -48,7 +50,9 @@ namespace Content.Server.Backmen.Fugitive;
 
 public sealed class FugitiveSystem : EntitySystem
 {
-    private const string FugitiveRole = "Fugitive";
+    [ValidatePrototypeId<AntagPrototype>] private const string FugitiveAntagRole = "Fugitive";
+    [ValidatePrototypeId<JobPrototype>] private const string FugitiveRole = "Fugitive";
+    [ValidatePrototypeId<EntityPrototype>]
     private const string EscapeObjective = "EscapeShuttleObjectiveFugitive";
 
     [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
@@ -66,6 +70,7 @@ public sealed class FugitiveSystem : EntitySystem
     [Dependency] private readonly IRobustRandom _random = default!;
     [Dependency] private readonly StationSpawningSystem _stationSpawning = default!;
     [Dependency] private readonly FugitiveSystem _fugitiveSystem = default!;
+    [Dependency] private readonly ObjectivesSystem _objectivesSystem = default!;
 
     public override void Initialize()
     {
@@ -210,6 +215,11 @@ public sealed class FugitiveSystem : EntitySystem
                 var report = GenerateFugiReport(owner);
 
                 _paperSystem.SetContent(paperEnt, report.ToMarkup(), paper);
+                _paperSystem.TryStamp(paperEnt, new StampDisplayInfo()
+                {
+                    StampedColor = Color.Red,
+                    StampedName = Loc.GetString("fugitive-announcement-GALPOL")
+                },"paper_stamp-generic");
             }
 
             RemCompDeferred<FugitiveCountdownComponent>(owner);
@@ -253,14 +263,14 @@ public sealed class FugitiveSystem : EntitySystem
 
         component.FirstMindAdded = true;
 
-        _roleSystem.MindAddRole(mindId, new TraitorRoleComponent
+        _roleSystem.MindAddRole(mindId, new FugitiveRoleComponent
         {
-            PrototypeId = FugitiveRole
+            PrototypeId = FugitiveAntagRole
         }, mind, true);
 
-        _mindSystem.TryAddObjective(mindId, mind, _prototypeManager.Index<ObjectivePrototype>(EscapeObjective));
+        _mindSystem.TryAddObjective(mindId, mind, EscapeObjective);
 
-        if (_prototypeManager.TryIndex<JobPrototype>("Fugitive", out _))
+        if (_prototypeManager.TryIndex<JobPrototype>(FugitiveRole, out _))
         {
             if (_roleSystem.MindHasRole<JobComponent>(mindId))
             {
@@ -268,7 +278,7 @@ public sealed class FugitiveSystem : EntitySystem
             }
             _roleSystem.MindAddRole(mindId, new JobComponent
             {
-                PrototypeId = "Fugitive"
+                PrototypeId = FugitiveRole
             }, mind, true);
         }
 
@@ -336,30 +346,38 @@ public sealed class FugitiveSystem : EntitySystem
             else if (name != null)
                 result.AppendLine(Loc.GetString("fugitive-was-a-fugitive-with-objectives-named", ("name", name)));
 
-            foreach (var objectiveGroup in objectives.GroupBy(o => o.Prototype.Issuer))
+            foreach (var objectiveGroup in objectives.GroupBy(o => Comp<ObjectiveComponent>(o).Issuer))
             {
+                if (objectiveGroup.Key == "Космический банк")
+                {
+                    continue;
+                }
+
                 foreach (var objective in objectiveGroup)
                 {
-                    foreach (var condition in objective.Conditions)
+                    var info = _objectivesSystem.GetInfo(objective, mindId, mind);
+                    if (info == null)
+                        continue;
+
+                    var objectiveTitle = info.Value.Title;
+                    var progress = info.Value.Progress;
+
+                    if (progress > 0.99f)
                     {
-                        var progress = condition.Progress;
-                        if (progress > 0.99f)
-                        {
-                            result.AppendLine("- " + Loc.GetString(
-                                "traitor-objective-condition-success",
-                                ("condition", condition.Title),
-                                ("markupColor", "green")
-                            ));
-                        }
-                        else
-                        {
-                            result.AppendLine("- " + Loc.GetString(
-                                "traitor-objective-condition-fail",
-                                ("condition", condition.Title),
-                                ("progress", (int) (progress * 100)),
-                                ("markupColor", "red")
-                            ));
-                        }
+                        result.AppendLine("- " + Loc.GetString(
+                            "traitor-objective-condition-success",
+                            ("condition", objectiveTitle),
+                            ("markupColor", "green")
+                        ));
+                    }
+                    else
+                    {
+                        result.AppendLine("- " + Loc.GetString(
+                            "traitor-objective-condition-fail",
+                            ("condition", objectiveTitle),
+                            ("progress", (int) (progress * 100)),
+                            ("markupColor", "red")
+                        ));
                     }
                 }
             }
