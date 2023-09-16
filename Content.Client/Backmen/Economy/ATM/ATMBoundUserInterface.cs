@@ -20,7 +20,7 @@ public sealed class ATMBoundUserInterface : BoundUserInterface
         base.Open();
         _menu = new ATMMenu { Title = IoCManager.Resolve<IEntityManager>().GetComponent<MetaDataComponent>(Owner).EntityName };
 
-        _menu.IdCardButton.OnPressed += _ => SendMessage(new ItemSlotButtonPressedEvent(SharedAtmComponent.IdCardSlotId));
+        _menu.IdCardButton.OnPressed += _ => SendMessage(new ItemSlotButtonPressedEvent(AtmComponent.IdCardSlotId));
         _menu.OnWithdrawAttempt += OnWithdrawAttempt;
 
         _menu.OnClose += Close;

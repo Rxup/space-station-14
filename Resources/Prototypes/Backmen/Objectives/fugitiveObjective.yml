@@ -1,6 +1,30 @@
-﻿- type: objective
+﻿- type: entity
+  abstract: true
+  parent: BaseObjective
+  id: BaseFugitiveObjective
+  components:
+    - type: Objective
+      issuer: self
+      unique: true
+      difficulty: 1
+      icon:
+        sprite: Structures/Furniture/chairs.rsi
+        state: shuttle
+    - type: RoleRequirement
+      roles:
+        components:
+          - FugitiveRole
+
+- type: entity
+  noSpawn: true
+  parent: BaseFugitiveObjective
   id: EscapeShuttleObjectiveFugitive
-  issuer: self
-  conditions:
-    - !type:EscapeShuttleCondition {}
-  canBeDuplicate: false
+  name: Сбегите в Центком живым и свободным.
+  description: Вы в розыске в текущем секторе! Ваша задача дождатся конца смены и сбежать на Центком, живым и свободным!
+  components:
+    - type: Objective
+      difficulty: 1.3
+      icon:
+        sprite: Structures/Furniture/chairs.rsi
+        state: shuttle
+    - type: EscapeShuttleCondition

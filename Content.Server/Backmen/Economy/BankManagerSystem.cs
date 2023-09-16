@@ -3,6 +3,7 @@ using Content.Server.Administration.Logs;
 using Content.Server.Backmen.CartridgeLoader.Cartridges;
 using Content.Server.Backmen.Economy.ATM;
 using Content.Shared.Backmen.Economy;
+using Content.Shared.Backmen.Economy.ATM;
 using Content.Shared.Database;
 using Content.Shared.FixedPoint;
 using Content.Shared.GameTicking;
@@ -18,8 +19,7 @@ namespace Content.Server.Backmen.Economy;
         [Dependency] private readonly IAdminLogManager _adminLogger = default!;
         [Dependency] private readonly ATMSystem _atmSystem = default!;
 
-        [ViewVariables]
-        public readonly Dictionary<string, (EntityUid owner, BankAccountComponent account)> ActiveBankAccounts = new();
+        [ViewVariables] public readonly Dictionary<string, (EntityUid owner, BankAccountComponent account)> ActiveBankAccounts = new();
 
         public override void Initialize()
         {
@@ -54,7 +54,7 @@ namespace Content.Server.Backmen.Economy;
             RaiseLocalEvent(uid, ev);
 
             var parent = Transform(uid).ParentUid;
-            if (parent.IsValid() && HasComp<ATMComponent>(parent))
+            if (parent.IsValid() && HasComp<AtmComponent>(parent))
             {
                 _atmSystem.UpdateUi(parent, component);
             }

@@ -5,14 +5,14 @@ namespace Content.Client.Backmen.Economy.ATM;
 
 public sealed class ATMSystem : SharedATMSystem
 {
-    [Dependency] private readonly SharedAppearanceSystem _appearanceSystem = default!;
+    //[Dependency] private readonly SharedAppearanceSystem _appearanceSystem = default!;
     public override void Initialize()
     {
         base.Initialize();
-        SubscribeLocalEvent<ATMComponent, AppearanceChangeEvent>(OnAppearanceChange);
+        SubscribeLocalEvent<AtmComponent, AppearanceChangeEvent>(OnAppearanceChange);
     }
 
-    private void OnAppearanceChange(EntityUid uid, ATMComponent component, ref AppearanceChangeEvent args)
+    private void OnAppearanceChange(EntityUid uid, AtmComponent component, ref AppearanceChangeEvent args)
     {
         if (args.Sprite == null)
             return;
@@ -26,7 +26,7 @@ public sealed class ATMSystem : SharedATMSystem
         UpdateAppearance(uid, visualState, component, args.Sprite);
     }
 
-    private void UpdateAppearance(EntityUid uid, ATMVisualState visualState, ATMComponent component, SpriteComponent sprite)
+    private void UpdateAppearance(EntityUid uid, ATMVisualState visualState, AtmComponent component, SpriteComponent sprite)
     {
         SetLayerState(ATMVisualLayers.Base, component.OffState, sprite);
 
