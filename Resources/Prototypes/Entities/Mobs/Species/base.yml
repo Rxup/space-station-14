@@ -217,6 +217,11 @@
   - type: TTS # Corvax-TTS
   - type: ContentEye
   - type: PotentialPsionic
+  - type: Tag
+    tags:
+    - CanPilot
+    - FootstepSound
+    - DoorBumpOpener
 
 - type: entity
   save: false
@@ -286,11 +291,6 @@
     damageRecovery:
       types:
         Asphyxiation: -1.0
-  - type: Tag
-    tags:
-      - CanPilot
-      - DoorBumpOpener
-      - FoostepSound
 
 - type: entity
   save: false
