@@ -30,7 +30,7 @@
               amount: 1
             - !type:DeleteEntity {}
           steps:
-            - tool: Prying
+            - tool: Screwing
               doAfter: 2
 
     - node: wired
@@ -45,7 +45,7 @@
               doAfter: 2
         - to: parts
           steps:
-            - tool: Screwing
+            - tool: Prying
               doAfter: 2
 
     - node: ATM
