@@ -194,20 +194,24 @@ public sealed class MindSwapPowerSystem : EntitySystem
         var a = _mindSystem.TryGetMind(performer, out var performerMindId, out var performerMind);
         var b = _mindSystem.TryGetMind(target, out var targetMindId, out var targetMind);
 
+
+
         // Do the transfer.
         if (a)
         {
             RemComp<ActorComponent>(target);
             RemComp<MindContainerComponent>(target);
             _mindSystem.SetUserId(performerMindId, performerMind!.UserId, performerMind);
+            var isSsd = true;
             if (performerMind.Session != null)
             {
                 _actorSystem.Attach(target, (IPlayerSession) performerMind.Session!, true);
+                isSsd = false;
             }
             _mindSystem.TransferTo(performerMindId, target, true, false);
             if (TryComp<SSDIndicatorComponent>(target, out var ssd))
             {
-                ssd.IsSSD = !HasComp<ActorComponent>(target);
+                ssd.IsSSD = isSsd;
                 Dirty(target,ssd);
             }
         }
@@ -217,14 +221,16 @@ public sealed class MindSwapPowerSystem : EntitySystem
             RemComp<ActorComponent>(performer);
             RemComp<MindContainerComponent>(performer);
             _mindSystem.SetUserId(targetMindId, targetMind!.UserId, targetMind);
+            var isSsd = true;
             if (targetMind.Session != null)
             {
                 _actorSystem.Attach(target, (IPlayerSession) targetMind.Session!, true);
+                isSsd = false;
             }
             _mindSystem.TransferTo(targetMindId, performer, true, false);
             if (TryComp<SSDIndicatorComponent>(performer, out var ssd))
             {
-                ssd.IsSSD = !HasComp<ActorComponent>(performer);
+                ssd.IsSSD = isSsd;
                 Dirty(performer,ssd);
             }
         }

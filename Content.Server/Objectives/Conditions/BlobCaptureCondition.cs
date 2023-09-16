@@ -1,15 +1,15 @@
 using Content.Shared.Blob;
 using Content.Shared.Mind;
-using Content.Shared.Objectives.Interfaces;
 using JetBrains.Annotations;
 using Robust.Shared.Utility;
 
 namespace Content.Server.Objectives.Conditions;
 
-[UsedImplicitly]
-[DataDefinition]
-public sealed partial class BlobCaptureCondition : IObjectiveCondition
+[RegisterComponent]
+public sealed partial class BlobCaptureConditionComponent : Component
 {
+    [DataField("target")] public int Target { get; private set; } = 400;
+    /*
     private MindComponent? _mind;
     private int _target;
 
@@ -68,4 +68,5 @@ public sealed partial class BlobCaptureCondition : IObjectiveCondition
     {
         return HashCode.Combine(_mind?.GetHashCode() ?? 0, _target);
     }
+    */
 }

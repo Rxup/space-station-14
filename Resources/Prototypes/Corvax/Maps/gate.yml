@@ -64,3 +64,7 @@
             Clown: [ 1, 1 ]
             Mime: [ 1, 1 ]
             Musician: [ 1, 1 ]
+            Brigmedic: [ 0, 1 ] # backmen-Brigmedic
+            BKBPLATech: [0, 3] # backmen-BPLA-Silicons
+            BKBPLAMED: [0, 3] # backmen-BPLAMED-Silicons
+            Prisoner: [ 2, 3]

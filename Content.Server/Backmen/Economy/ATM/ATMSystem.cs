@@ -41,16 +41,16 @@ namespace Content.Server.Backmen.Economy.ATM;
         public override void Initialize()
         {
             base.Initialize();
-            SubscribeLocalEvent<ATMComponent, PowerChangedEvent>(OnPowerChanged);
-            SubscribeLocalEvent<ATMComponent, ComponentStartup>((uid, comp, _) => UpdateComponentUserInterface(uid,comp));
-            SubscribeLocalEvent<ATMComponent, EntInsertedIntoContainerMessage>((uid, comp, _) => UpdateComponentUserInterface(uid,comp));
-            SubscribeLocalEvent<ATMComponent, EntRemovedFromContainerMessage>((uid, comp, _) => UpdateComponentUserInterface(uid,comp));
-            SubscribeLocalEvent<ATMComponent, ATMRequestWithdrawMessage>(OnRequestWithdraw);
+            SubscribeLocalEvent<AtmComponent, PowerChangedEvent>(OnPowerChanged);
+            SubscribeLocalEvent<AtmComponent, ComponentStartup>((uid, comp, _) => UpdateComponentUserInterface(uid,comp));
+            SubscribeLocalEvent<AtmComponent, EntInsertedIntoContainerMessage>((uid, comp, _) => UpdateComponentUserInterface(uid,comp));
+            SubscribeLocalEvent<AtmComponent, EntRemovedFromContainerMessage>((uid, comp, _) => UpdateComponentUserInterface(uid,comp));
+            SubscribeLocalEvent<AtmComponent, ATMRequestWithdrawMessage>(OnRequestWithdraw);
             SubscribeLocalEvent<AtmCurrencyComponent,AfterInteractEvent>(OnAfterInteract, before: new[]{typeof(StoreSystem)});
-            SubscribeLocalEvent<ATMComponent, AfterActivatableUIOpenEvent>(OnInteract);
+            SubscribeLocalEvent<AtmComponent, AfterActivatableUIOpenEvent>(OnInteract);
         }
 
-        private void OnInteract(EntityUid uid, ATMComponent component, AfterActivatableUIOpenEvent args)
+        private void OnInteract(EntityUid uid, AtmComponent component, AfterActivatableUIOpenEvent args)
         {
             if (!this.IsPowered(uid, EntityManager))
                 return;
@@ -74,7 +74,7 @@ namespace Content.Server.Backmen.Economy.ATM;
             if (args.Handled || !args.CanReach)
                 return;
 
-            if (args.Target == null || !TryComp<PhysicalCompositionComponent>(args.Used, out var component) || !TryComp<ATMComponent>(args.Target, out var store))
+            if (args.Target == null || !TryComp<PhysicalCompositionComponent>(args.Used, out var component) || !TryComp<AtmComponent>(args.Target, out var store))
                 return;
 
             var user = args.User;
@@ -89,11 +89,11 @@ namespace Content.Server.Backmen.Economy.ATM;
             }
         }
 
-        private void OnPowerChanged(EntityUid uid, ATMComponent component, ref PowerChangedEvent args)
+        private void OnPowerChanged(EntityUid uid, AtmComponent component, ref PowerChangedEvent args)
         {
             TryUpdateVisualState(uid, component);
         }
-        public void TryUpdateVisualState(EntityUid uid, ATMComponent? component = null)
+        public void TryUpdateVisualState(EntityUid uid, AtmComponent? component = null)
         {
             if (!Resolve(uid, ref component))
                 return;
@@ -122,7 +122,7 @@ namespace Content.Server.Backmen.Economy.ATM;
                 currencySymbol
             ));
         }
-        private void UpdateComponentUserInterface(EntityUid uid, ATMComponent? component = null)
+        private void UpdateComponentUserInterface(EntityUid uid, AtmComponent? component = null)
         {
             if (!Resolve(uid, ref component))
                 return;
@@ -163,7 +163,7 @@ namespace Content.Server.Backmen.Economy.ATM;
                 currencySymbol
             ));
         }
-        private void OnRequestWithdraw(EntityUid uid, ATMComponent component, ATMRequestWithdrawMessage msg)
+        private void OnRequestWithdraw(EntityUid uid, AtmComponent component, ATMRequestWithdrawMessage msg)
         {
             if (msg.Session.AttachedEntity is not { Valid: true } buyer)
                 return;
@@ -218,7 +218,7 @@ namespace Content.Server.Backmen.Economy.ATM;
             _audioSystem.PlayPvs(component.SoundWithdrawCurrency, uid, AudioParams.Default.WithVolume(-2f));
             UpdateComponentUserInterface(uid, component);
         }
-        public bool TryAddCurrency(Dictionary<string, FixedPoint2> currency, EntityUid atm, ATMComponent? component = null)
+        public bool TryAddCurrency(Dictionary<string, FixedPoint2> currency, EntityUid atm, AtmComponent? component = null)
         {
             if (!Resolve(atm,ref component))
             {
@@ -241,7 +241,7 @@ namespace Content.Server.Backmen.Economy.ATM;
             UpdateComponentUserInterface(atm, component);
             return true;
         }
-        private bool TryGetBankAccountNumberFromStoredIdCard(ATMComponent component, out string storedBankAccountNumber)
+        private bool TryGetBankAccountNumberFromStoredIdCard(AtmComponent component, out string storedBankAccountNumber)
         {
             storedBankAccountNumber = string.Empty;
             if (component.IdCardSlot.Item is not { Valid: true } idCardEntityUid)
@@ -253,7 +253,7 @@ namespace Content.Server.Backmen.Economy.ATM;
             storedBankAccountNumber = idCardComponent.StoredBankAccountNumber;
             return true;
         }
-        private void Deny(EntityUid atm, ATMComponent? component = null)
+        private void Deny(EntityUid atm, AtmComponent? component = null)
         {
             if (!Resolve(atm,ref component))
             {
@@ -261,7 +261,7 @@ namespace Content.Server.Backmen.Economy.ATM;
             }
             _audioSystem.PlayPvs(component.SoundDeny, atm, AudioParams.Default.WithVolume(-2f));
         }
-        private void Apply(EntityUid atm, ATMComponent? component = null)
+        private void Apply(EntityUid atm, AtmComponent? component = null)
         {
             if (!Resolve(atm,ref component))
             {

@@ -48,7 +48,7 @@ public sealed class StoreBankSystem : EntitySystem
                 storeComponentListing.PurchaseAmount -= limit.Stock;
             }
         }
-        Dirty(storeComponent);
+        Dirty(uid, storeComponent);
         //UpdateVendingMachineInterfaceState(uid, vendComponent);
         //TryUpdateVisualState(uid, vendComponent);
     }

@@ -4,18 +4,16 @@ using Content.Server.Station.Components;
 using Content.Server.Cargo.Systems;
 using Content.Server.Station.Systems;
 using Content.Shared.Backmen.Shipyard;
-using Content.Server.Backmen.Shipyard.Components;
 using Content.Shared.GameTicking;
 using Robust.Server.GameObjects;
 using Robust.Server.Maps;
 using Robust.Shared.Map;
-using Robust.Shared.Map.Components;
 using Content.Shared.Backmen.CCVar;
 using Robust.Shared.Configuration;
 using Robust.Shared.Random;
-using Content.Server.Cargo.Components;
 using System.Diagnostics.CodeAnalysis;
 using System.Numerics;
+using Content.Shared.Backmen.Shipyard.Components;
 using Content.Shared.Backmen.Shipyard.Prototypes;
 
 namespace Content.Server.Backmen.Shipyard.Systems;
@@ -133,7 +131,7 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
         {
             _sawmill.Error($"Unable to spawn shuttle {shuttlePath}");
             return false;
-        };
+        }
 
         _shuttleIndex += _mapManager.GetGrid(gridList[0]).LocalAABB.Width + ShuttleSpawnBuffer;
 
@@ -143,7 +141,7 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
             if (gridList.Count < 1)
             {
                 _sawmill.Error($"Unable to spawn shuttle {shuttlePath}, no grid found in file");
-            };
+            }
 
             if (gridList.Count > 1)
             {
@@ -152,11 +150,11 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
                 foreach (var grid in gridList)
                 {
                     _mapManager.DeleteGrid(grid);
-                };
-            };
+                }
+            }
 
             return false;
-        };
+        }
 
         shuttleGrid = gridList[0];
         return true;
@@ -168,7 +166,7 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
         {
             ShipyardMap = null;
             return;
-        };
+        }
 
         _mapManager.DeleteMap(ShipyardMap.Value);
     }
