@@ -93,6 +93,28 @@
       glimmerBurnUpper: 110
     - type: MassMindSwapRule
 
+- type: entity
+  id: GlimmerWispSpawn
+  parent: BaseGlimmerEvent
+  noSpawn: true
+  components:
+    - type: GlimmerEvent
+      minimumGlimmer: 300
+      maximumGlimmer: 1000
+      report: glimmer-event-report-signatures
+    - type: GlimmerWispRule
+
+- type: entity
+  id: FreeProber
+  parent: BaseGlimmerEvent
+  noSpawn: true
+  components:
+    - type: GlimmerEvent
+      minimumGlimmer: 300
+      maximumGlimmer: 1000
+      report: glimmer-event-report-signatures
+    - type: FreeProberRule
+
 ## converted upstream events
 - type: entity
   id: GlimmerRandomSentience
