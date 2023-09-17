@@ -134,22 +134,22 @@
   conditions:
     - !type:TileNotBlocked
 
-- type: construction
-  name: maint altar
-  id: AltarConvertMaint
-  graph: Altar
-  startNode: start
-  targetNode: maint
-  category: construction-category-furniture
-  description: Altar of the Gods. Those with some divine potential can sacrifice psionics on top of it.
-  icon:
-    sprite: Structures/Furniture/Altars/Gods/convertaltar.rsi
-    state: maint
-  objectType: Structure
-  placementMode: SnapgridCenter
-  canBuildInImpassable: false
-  conditions:
-    - !type:TileNotBlocked
+#- type: construction
+#  name: maint altar
+#  id: AltarConvertMaint
+#  graph: Altar
+#  startNode: start
+#  targetNode: maint
+#  category: construction-category-furniture
+#  description: Altar of the Gods. Those with some divine potential can sacrifice psionics on top of it.
+#  icon:
+#    sprite: Structures/Furniture/Altars/Gods/convertaltar.rsi
+#    state: maint
+#  objectType: Structure
+#  placementMode: SnapgridCenter
+#  canBuildInImpassable: false
+#  conditions:
+#    - !type:TileNotBlocked
 
 - type: construction
   name: blue altar
@@ -304,22 +304,22 @@
   conditions:
     - !type:TileNotBlocked
 
-- type: construction
-  name: reinforced wood table
-  id: TableWoodReinforced
-  graph: Table
-  startNode: start
-  targetNode: TableWoodReinforced
-  category: construction-category-furniture
-  description: A square piece of wood standing on four metal legs. Extra robust.
-  icon:
-    sprite: Backmen/Structures/Furniture/Tables/rwood.rsi
-    state: full
-  objectType: Structure
-  placementMode: SnapgridCenter
-  canBuildInImpassable: false
-  conditions:
-    - !type:TileNotBlocked
+#- type: construction
+#  name: reinforced wood table
+#  id: TableWoodReinforced
+#  graph: Table
+#  startNode: start
+#  targetNode: TableWoodReinforced
+#  category: construction-category-furniture
+#  description: A square piece of wood standing on four metal legs. Extra robust.
+#  icon:
+#    sprite: Backmen/Structures/Furniture/Tables/rwood.rsi
+#    state: full
+#  objectType: Structure
+#  placementMode: SnapgridCenter
+#  canBuildInImpassable: false
+#  conditions:
+#    - !type:TileNotBlocked
 
 - type: construction
   name: tatami square
