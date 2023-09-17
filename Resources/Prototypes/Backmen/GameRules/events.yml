@@ -84,7 +84,7 @@
 
 - type: entity
   id: MassMindSwap
-  parent: BaseGameRule
+  parent: BaseGlimmerEvent
   noSpawn: true
   components:
     - type: GlimmerEvent
@@ -137,3 +137,18 @@
       maximumGlimmer: 900
       report: glimmer-event-report-signatures
     - type: GlimmerRevenantRule
+
+- type: entity
+  id: SpiderSpiderVampireSpawn
+  parent: BaseGameRule
+  noSpawn: true
+  components:
+    - type: StationEvent
+      earliestStart: 20
+      minimumPlayers: 15
+      weight: 1
+      duration: 60
+    - type: VentCrittersRule
+      entries:
+        - id: MobGiantSpiderVampireAngry
+          prob: 0.05

@@ -1,7 +1,8 @@
 - type: entity
   id: MobGlimmerWisp
-  name: glimmer wisp
-  description: A strange orb that moves with intent.
+  name: Сияющий огонёк
+  description: Странный шар, который движется с намерением.
+  suffix: Инквизиция
   save: false
   components:
   - type: Sprite
