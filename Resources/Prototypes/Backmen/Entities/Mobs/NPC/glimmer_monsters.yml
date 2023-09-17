@@ -108,7 +108,7 @@
     autoRechargeRate: 100
   - type: HTN
     rootTask:
-      task: WispRangedCombatCompound
+      task: WispCombatCompound
   - type: NpcFactionMember
     factions:
       - GlimmerMonster
