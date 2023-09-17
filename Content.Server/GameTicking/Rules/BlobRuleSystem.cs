@@ -5,9 +5,11 @@ using Content.Server.Chat.Systems;
 using Content.Server.GameTicking.Rules.Components;
 using Content.Server.Mind;
 using Content.Server.Nuke;
+using Content.Server.Objectives;
 using Content.Server.RoundEnd;
 using Content.Server.Station.Systems;
 using Content.Shared.Blob;
+using Content.Shared.Objectives.Components;
 using Robust.Shared.Audio;
 
 namespace Content.Server.GameTicking.Rules;
@@ -19,6 +21,7 @@ public sealed class BlobRuleSystem : GameRuleSystem<BlobRuleComponent>
     [Dependency] private readonly ChatSystem _chatSystem = default!;
     [Dependency] private readonly NukeCodePaperSystem _nukeCode = default!;
     [Dependency] private readonly StationSystem _stationSystem = default!;
+    [Dependency] private readonly ObjectivesSystem _objectivesSystem = default!;
 
     private ISawmill _sawmill = default!;
     private static readonly SoundPathSpecifier BlobDetectAudio = new SoundPathSpecifier("/Audio/Corvax/Adminbuse/Outbreak5.ogg");
@@ -162,30 +165,33 @@ public sealed class BlobRuleSystem : GameRuleSystem<BlobRuleComponent>
                 else if (name != null)
                     result += "\n" + Loc.GetString("blob-was-a-blob-with-objectives-named", ("name", name));
 
-                foreach (var objectiveGroup in objectives.GroupBy(o => o.Prototype.Issuer))
+                foreach (var objectiveGroup in objectives.GroupBy(o => Comp<ObjectiveComponent>(o).Issuer))
                 {
                     foreach (var objective in objectiveGroup)
                     {
-                        foreach (var condition in objective.Conditions)
+                        var info = _objectivesSystem.GetInfo(objective, mindId, mind);
+                        if (info == null)
+                            continue;
+
+                        var objectiveTitle = info.Value.Title;
+                        var progress = info.Value.Progress;
+
+                        if (progress > 0.99f)
                         {
-                            var progress = condition.Progress;
-                            if (progress > 0.99f)
-                            {
-                                result += "\n- " + Loc.GetString(
-                                    "objectives-condition-success",
-                                    ("condition", condition.Title),
-                                    ("markupColor", "green")
-                                );
-                            }
-                            else
-                            {
-                                result += "\n- " + Loc.GetString(
-                                    "objectives-condition-fail",
-                                    ("condition", condition.Title),
-                                    ("progress", (int) (progress * 100)),
-                                    ("markupColor", "red")
-                                );
-                            }
+                            result += "\n- " + Loc.GetString(
+                                "objectives-condition-success",
+                                ("condition", objectiveTitle),
+                                ("markupColor", "green")
+                            );
+                        }
+                        else
+                        {
+                            result += "\n- " + Loc.GetString(
+                                "objectives-condition-fail",
+                                ("condition", objectiveTitle),
+                                ("progress", (int) (progress * 100)),
+                                ("markupColor", "red")
+                            );
                         }
                     }
                 }

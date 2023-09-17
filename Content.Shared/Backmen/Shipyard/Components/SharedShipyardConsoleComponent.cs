@@ -3,8 +3,8 @@ using Robust.Shared.GameStates;
 
 namespace Content.Shared.Backmen.Shipyard.Components;
 
-[NetworkedComponent]
-public abstract partial class SharedShipyardConsoleComponent : Component
+[NetworkedComponent, RegisterComponent]
+public partial class ShipyardConsoleComponent : Component
 {
     [DataField("soundError")]
     public SoundSpecifier ErrorSound =
