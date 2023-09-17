@@ -11,7 +11,7 @@
     containers:
       bodypart: !type:Container
         ents: []
-  - type: DynamicPrice
+  - type: StaticPrice
     price: 100
 
 - type: entity
