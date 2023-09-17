@@ -15,3 +15,21 @@
     fiberMaterial: fibers-durathread
     fiberColor: fibers-regal-blue
   - type: FingerprintMask
+  
+- type: entity
+  parent: ClothingHandsBase
+  id: ClothingHandsGlovesPirateCap
+  name: Перчатки капитана пиратов
+  description: Перчатки капитана команды мрачные приключения
+  components:
+  - type: Sprite
+    sprite: Backmen/Clothing/Hands/Gloves/pirathands.rsi
+  - type: Clothing
+    sprite: Backmen/Clothing/Hands/Gloves/pirathands.rsi
+  - type: GloveHeatResistance
+    heatResistance: 1400
+  - type: Insulated
+  - type: Fiber
+    fiberMaterial: fibers-insulative
+    fiberColor: fibers-black
+  - type: FingerprintMask  

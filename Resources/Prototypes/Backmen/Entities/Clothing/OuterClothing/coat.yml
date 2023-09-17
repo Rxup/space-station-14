@@ -19,3 +19,14 @@
     sprite: Backmen/Clothing/OuterClothing/Coats/ssspcoatbelov.rsi
   - type: Clothing
     sprite: Backmen/Clothing/OuterClothing/Coats/ssspcoatbelov.rsi
+    
+- type: entity
+  parent: ClothingOuterStorageBase
+  id: ClothingOuterCoatPirateCap
+  name: Камзол капитана пиратов
+  description: Камзол капитана команды мрачные приключения
+  components:
+  - type: Sprite
+    sprite: Backmen/Clothing/OuterClothing/Coats/piratecamisole.rsi
+  - type: Clothing
+    sprite: Backmen/Clothing/OuterClothing/Coats/piratecamisole.rsi

@@ -278,4 +278,15 @@
   - type: Sprite
     sprite: Backmen/Clothing/Uniforms/jumpsuit/space_club.rsi
   - type: Clothing
-    sprite: Backmen/Clothing/Uniforms/jumpsuit/space_club.rsi        
+    sprite: Backmen/Clothing/Uniforms/jumpsuit/space_club.rsi       
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformJumpsuitPirateCap
+  name: Костюм капитана пиратов
+  description: костюм капитана команды мрачные приключения
+  components:
+  - type: Sprite
+    sprite: Backmen/Clothing/Uniforms/jumpsuit/pirate.rsi
+  - type: Clothing
+    sprite: Backmen/Clothing/Uniforms/jumpsuit/pirate.rsi 

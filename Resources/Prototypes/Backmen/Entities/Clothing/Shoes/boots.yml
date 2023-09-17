@@ -11,3 +11,21 @@
   - type: FootstepModifier # Corvax-Sounds
     footstepSoundCollection:
       collection: FootstepBoots
+      
+- type: entity
+  parent: ClothingShoesStorageBase
+  id: ClothingShoesBootsPiratesCap
+  name: Сапоги капитана пиратов
+  description: Сапоги капитана команды мрачные приключения
+  components:
+  - type: Sprite
+    sprite: Backmen/Clothing/Shoes/Boots/pirateboots.rsi
+  - type: Clothing
+    sprite: Backmen/Clothing/Shoes/Boots/pirateboots.rsi
+  - type: FootstepModifier # Corvax-Sounds
+    footstepSoundCollection:
+      collection: FootstepBoots
+  - type: Storage
+    whitelist:
+      tags:
+        - Knife      

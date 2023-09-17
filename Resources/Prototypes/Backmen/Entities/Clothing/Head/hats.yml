@@ -106,3 +106,16 @@
           Slash: 0.85
           Piercing: 0.95
           Radiation: 0.95
+          
+- type: entity
+  parent: ClothingHeadBase
+  id: ClothingHeadPirateCap
+  name: Мрачная шляпа капитана пиратов
+  description: Шляпа капитана команды мрачные приключения
+  components:
+  - type: Sprite
+    sprite: Backmen/Clothing/Head/Hats/pirathats.rsi
+  - type: Clothing
+    sprite: Backmen/Clothing/Head/Hats/pirathats.rsi       
+          
+       
