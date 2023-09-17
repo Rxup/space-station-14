@@ -36,7 +36,8 @@
         - GhostImpassable
   - type: MovementIgnoreGravity
   - type: Damageable
-    damageContainer: Biological
+    damageContainer: CorporealSpirit
+    damageModifierSet: CorporealSpirit
   - type: Examiner
   - type: NoSlip
   - type: Actions

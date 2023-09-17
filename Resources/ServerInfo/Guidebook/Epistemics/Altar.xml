@@ -1,16 +1,22 @@
 <Document>
-# Altars and Golemancy
-## Altars
+# Алтари и Големоведение
+## Алтари
 <GuideEntityEmbed Entity="AltarNanotrasen" />
-The chapel has a [color=#a4885c]sacrificial altar[/color]. To use it, a psionic humanoid must be placed on it, and someone with either psionics or clerical training must initiate the sacrifice.
-It appears in the context menu on the altar, which can be opened with the right mouse button by default.
+В часовне есть [color=#a4885c]жертвенный алтарь[/color]. Чтобы использовать его, на него должен быть помещен псионический гуманоид, и кто-то, имеющий либо псионическую, либо духовную подготовку, должен инициировать жертвоприношение.
+Он появляется в контекстном меню на алтаре, которое по умолчанию можно открыть правой кнопкой мыши.
 
 <GuideEntityEmbed Entity="CrystalSoul" />
-Once sacrificed, the psionic humanoid's soul is trapped inside a [color=#a4885c]soul crystal[/color]. This is not the end for them; they can still talk both vocally and telepathically, and this form is much harder to destroy.
+После принесения в жертву душа псионического гуманоида оказывается заключенной в [color=#a4885c] кристалл души[/color]. Для них это еще не конец; они все еще могут разговаривать как голосом, так и телепатически, и эту форму гораздо труднее уничтожить.
 
 <GuideEntityEmbed Entity="PonderingOrbTelepathic" />
-10% of the time, the altar will spawn a powerful psionic item along with the soul crystal. This chance increases to 50% if the sacrifice was performed by someone with clerical training, such as the [color=#a4885c]chaplain[/color] or [color=#a4885c]mystagogue[/color].
+В 10% случаев алтарь будет создавать мощный псионический предмет вместе с кристаллом души. Этот шанс увеличивается до 50%, если жертвоприношение было совершено кем-то с духовным образованием, таким как [color=#a4885c]капеллан[/color] или [color=#a4885c] мистагог[/color].
 
-
+## Golemancy
+<Box>
+  <GuideEntityEmbed Entity="MobGolemCult"/>
+  <GuideEntityEmbed Entity="MobGolemWood"/>
+</Box>
+Кристаллы души могут быть установлены в [color=#a4885c]големов[/color], чтобы дать душе новое тело. Големы обязаны служить своему хозяину. Будучи конструкциями, они не нуждаются в еде, питье или дыхании.
+Обратите внимание, что для деревянных големов, если растения посажены у них на макушке, растения все равно будут нуждаться в этих вещах.
 
 </Document>

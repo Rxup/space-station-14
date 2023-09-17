@@ -1,0 +1,50 @@
+- type: entity
+  parent: BaseMobSpeciesOrganic
+  name: Урист МакОни
+  id: MobOniBase
+  abstract: true
+  components:
+  - type: Speech
+    speechSounds: Baritone
+  - type: HumanoidAppearance
+    species: Oni
+  - type: Sprite
+    scale: 1.2, 1.2
+  - type: Oni
+    modifiers:
+      coefficients:
+        Blunt: 1.35
+        Slash: 1.2
+        Piercing: 1.2
+        Asphyxiation: 1.35
+  - type: Damageable
+    damageModifierSet: Oni
+  - type: Body
+    prototype: Human
+  - type: Fixtures
+    fixtures: # TODO: This needs a second fixture just for mob collisions.
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.42
+        density: 220
+        restitution: 0.0
+        mask:
+        - MobMask
+        layer:
+        - MobLayer
+  - type: Stamina
+    critThreshold: 115
+  - type: InteractionPopup
+    successChance: 1
+    interactSuccessString: hugging-success-generic
+    interactSuccessSound: /Audio/Effects/thudswoosh.ogg
+    messagePerceivedByOthers: hugging-success-generic-others
+
+- type: entity
+  save: false
+  name: Урист МакОни
+  parent: MobHumanDummy
+  id: MobOniDummy
+  noSpawn: true
+  description: Фиктивный Они, предназначенный для использования при настройке персонажа.
