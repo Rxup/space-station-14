@@ -16,6 +16,9 @@
   - type: GhostTakeoverAvailable
   - type: Body
     prototype: VampiricAnimal
+  - type: Dispellable
+  - type: Psionic
+    removable: false
   - type: Grammar
     attributes:
       gender: female
@@ -85,6 +88,9 @@
   - type: MindContainer
     showExamineInfo: true
   - type: Familiar
+  - type: Dispellable
+  - type: Psionic
+    removable: false
   - type: Vocal
     sounds:
       Male: Cerberus

@@ -680,6 +680,24 @@
   - type: Bloodstream
     bloodMaxVolume: 300
   - type: Puller
+  - type: Oni
+    modifiers:
+      coefficients:
+        Blunt: 2
+        Slash: 1.7
+        Piercing: 1.7
+        Asphyxiation: 2
+    stamDamageBonus: 1.7
+  - type: MeleeWeapon
+    hidden: true
+    angle: 0
+    animation: WeaponArcFist
+    damage:
+      types:
+        Blunt: 7 # See oni component
+  - type: Damageable
+    damageContainer: Biological
+    damageModifierSet: Oni
 
 - type: entity
   name: kangaroo
