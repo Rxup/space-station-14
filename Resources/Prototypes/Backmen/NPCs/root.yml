@@ -1,34 +1,8 @@
-﻿- type: htnCompound
-  id: WispGunCombatCompound
-  branches:
-    # Pick target, then move into range and shoot them.
-    - tasks:
-        - !type:HTNPrimitiveTask
-          operator: !type:JukeOperator
-            jukeType: AdjacentTile
+﻿
 
-        - !type:HTNPrimitiveTask
-          preconditions:
-            - !type:KeyExistsPrecondition
-              key: Target
-          operator: !type:GunOperator
-            targetKey: Target
-          services:
-            - !type:UtilityService
-              id: RangedService
-              proto: NearbyGunTargets
-              key: Target
 
 - type: htnCompound
   id: WispRangedCombatCompound
-  branches:
-    # Move to target and shoot them if ammo
-    - tasks:
-        - !type:HTNCompoundTask
-          task: WispGunCombatCompound
-
-- type: htnCompound
-  id: WispRangedHostileCompound
   branches:
     - tasks:
         - !type:HTNCompoundTask
@@ -36,3 +10,11 @@
     - tasks:
         - !type:HTNCompoundTask
           task: IdleCompound
+
+- type: htnCompound
+  id: WispRangedCombatCompound
+  branches:
+    # Move to target and shoot them if ammo
+    - tasks:
+        - !type:HTNCompoundTask
+          task: GunCombatCompound
