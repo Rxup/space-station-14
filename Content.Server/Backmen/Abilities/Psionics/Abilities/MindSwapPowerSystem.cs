@@ -13,6 +13,7 @@ using Content.Shared.Backmen.Abilities.Psionics;
 using Content.Shared.Backmen.Psionics.Events;
 using Content.Shared.Mind;
 using Content.Shared.Mind.Components;
+using Content.Shared.NPC;
 using Content.Shared.SSDIndicator;
 using Robust.Server.GameObjects;
 using Robust.Server.Player;
@@ -189,6 +190,12 @@ public sealed class MindSwapPowerSystem : EntitySystem
                 _popupSystem.PopupCursor("Ошибка! Ваша цель уже в другом теле!", performer);
                 return false; // Повторный свап!? TODO: chain swap, in current mode broken chained in no return (has no mind error)
             }
+
+            if (HasComp<ActiveNPCComponent>(performer) || HasComp<ActiveNPCComponent>(target))
+            {
+                _popupSystem.PopupCursor("Ошибка! Ваша цель в ссд!", performer);
+                return false;
+            }
         }
         // This is here to prevent missing MindContainerComponent Resolve errors.
         var a = _mindSystem.TryGetMind(performer, out var performerMindId, out var performerMind);
@@ -209,11 +216,14 @@ public sealed class MindSwapPowerSystem : EntitySystem
                 isSsd = false;
             }
             _mindSystem.TransferTo(performerMindId, target, true, false);
-            if (TryComp<SSDIndicatorComponent>(target, out var ssd))
+            Timer.Spawn(1_000, () =>
             {
+                if (!target.IsValid() || !TryComp<SSDIndicatorComponent>(target, out var ssd))
+                    return;
                 ssd.IsSSD = isSsd;
                 Dirty(target,ssd);
-            }
+            });
+
         }
 
         if (b)
@@ -228,11 +238,14 @@ public sealed class MindSwapPowerSystem : EntitySystem
                 isSsd = false;
             }
             _mindSystem.TransferTo(targetMindId, performer, true, false);
-            if (TryComp<SSDIndicatorComponent>(performer, out var ssd))
+
+            Timer.Spawn(1_000, () =>
             {
+                if (!performer.IsValid() || !TryComp<SSDIndicatorComponent>(performer, out var ssd))
+                    return;
                 ssd.IsSSD = isSsd;
                 Dirty(performer,ssd);
-            }
+            });
         }
 
         if (end)
