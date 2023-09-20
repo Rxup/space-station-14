@@ -18,8 +18,8 @@ namespace Content.Client.Preferences
     public sealed class ClientPreferencesManager : IClientPreferencesManager
     {
         [Dependency] private readonly IClientNetManager _netManager = default!;
-        [Dependency] private readonly SponsorsManager _sponsorsManager = default!; // Corvax-Sponsors
         [Dependency] private readonly IBaseClient _baseClient = default!;
+        [Dependency] private readonly SponsorsManager _sponsorsManager = default!; // Corvax-Sponsors
 
         public event Action? OnServerDataLoaded;
 
