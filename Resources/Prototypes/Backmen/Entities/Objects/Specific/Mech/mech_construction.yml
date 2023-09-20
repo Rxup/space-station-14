@@ -55,19 +55,19 @@
   - type: Appearance
   - type: ItemMapper
     mapLayers:
-      ripley_l_arm+o:
+      gygax_l_arm+o:
         whitelist:
           tags:
           - GygaxLArm
-      ripley_r_arm+o:
+      gygax_r_arm+o:
         whitelist:
           tags:
           - GygaxRArm
-      ripley_l_leg+o:
+      gygax_l_leg+o:
         whitelist:
           tags:
           - GygaxLLeg
-      ripley_r_leg+o:
+      gygax_r_leg+o:
         whitelist:
           tags:
           - RipleyRLeg

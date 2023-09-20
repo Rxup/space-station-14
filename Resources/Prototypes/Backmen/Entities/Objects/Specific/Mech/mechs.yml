@@ -83,7 +83,6 @@
     guides:
     - Robotics
 
-- type: entity
   parent: BaseMech
   id: MechGygax
   components:
