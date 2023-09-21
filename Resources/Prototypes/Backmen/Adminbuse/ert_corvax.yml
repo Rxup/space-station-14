@@ -318,15 +318,6 @@
   components:
   - type: SpecForce
     actionBssActionName: ActionCentcomFtlAction
-    requirements:
-    - !type:DepartmentTimeRequirement
-      department: Security
-      time: 18000
-    - !type:OverallPlaytimeRequirement
-      time: 36000
-    - !type:DepartmentTimeRequirement
-      department: Command
-      time: 18000
   - type: Icon
     sprite: Markers/jobs.rsi
     state: ertleadereva
@@ -335,6 +326,15 @@
     description: Командир отряда Theta - 9, великий воин, герой НТ, знаменитый полководец, мог бы им быть.
     allowMovement: true
     rules: Выполняйте различные приказы, ваша задача будет варьироваться от задач центрального командования.
+    requirements:
+      - !type:DepartmentTimeRequirement
+        department: Security
+        time: 18000
+      - !type:OverallPlaytimeRequirement
+        time: 36000
+      - !type:DepartmentTimeRequirement
+        department: Command
+        time: 18000
   - type: GhostTakeoverAvailable
   - type: Loadout
     prototypes: [ERTLeaderGearEVAV2_1]
@@ -355,15 +355,6 @@
   components:
   - type: SpecForce
     actionBssActionName: ActionCentcomFtlAction
-    requirements:
-    - !type:DepartmentTimeRequirement
-      department: Security
-      time: 18000
-    - !type:OverallPlaytimeRequirement
-      time: 36000
-    - !type:DepartmentTimeRequirement
-      department: Engineering
-      time: 18000
   - type: Icon
     sprite: Markers/jobs.rsi
     state: ertengineereva
@@ -372,6 +363,15 @@
     name: ОБР инженер
     description: Инженер отряда Theta - 9, может и не очень хороший инженер, но дело свое знает, наверное.
     rules: Выполняйте различные приказы, ваша задача будет варьироваться от задач центрального командования.
+    requirements:
+      - !type:DepartmentTimeRequirement
+        department: Security
+        time: 18000
+      - !type:OverallPlaytimeRequirement
+        time: 36000
+      - !type:DepartmentTimeRequirement
+        department: Engineering
+        time: 18000
   - type: GhostTakeoverAvailable
   - type: Loadout
     prototypes: [ERTEngineerGearEVAV2_1]
@@ -391,12 +391,6 @@
   components:
   - type: SpecForce
     actionBssActionName: ActionCentcomFtlAction
-    requirements:
-    - !type:DepartmentTimeRequirement
-      department: Security
-      time: 36000
-    - !type:OverallPlaytimeRequirement
-      time: 36000
   - type: Icon
     sprite: Markers/jobs.rsi
     state: ertsecurityeva
@@ -405,6 +399,12 @@
     name: ОБР офицер безопасности
     description: Солдат или же охранник Theta - 9, прошедший небольшую подготовку и готовый стрелять во все что движеться.
     rules: Выполняйте различные приказы, ваша задача будет варьироваться от задач центрального командования.
+    requirements:
+      - !type:DepartmentTimeRequirement
+        department: Security
+        time: 36000
+      - !type:OverallPlaytimeRequirement
+        time: 36000
   - type: GhostTakeoverAvailable
   - type: Loadout
     prototypes: [ERTSecurityGearEVAV2_1]
@@ -424,15 +424,6 @@
   components:
   - type: SpecForce
     actionBssActionName: ActionCentcomFtlAction
-    requirements:
-    - !type:DepartmentTimeRequirement
-      department: Security
-      time: 18000
-    - !type:OverallPlaytimeRequirement
-      time: 36000
-    - !type:DepartmentTimeRequirement
-      department: Medical
-      time: 18000
   - type: Icon
     sprite: Markers/jobs.rsi
     state: ertmedicaleva
@@ -441,6 +432,15 @@
     name: ОБР медик
     description: Медик отделения Theta - 9, был в медицинском институте, поэтому и взяли в качестве медика, но никого не волнует что он там был всего неделю.
     rules: Выполняйте различные приказы, ваша задача будет варьироваться от задач центрального командования.
+    requirements:
+      - !type:DepartmentTimeRequirement
+        department: Security
+        time: 18000
+      - !type:OverallPlaytimeRequirement
+        time: 36000
+      - !type:DepartmentTimeRequirement
+        department: Medical
+        time: 18000
   - type: GhostTakeoverAvailable
   - type: Loadout
     prototypes: [ERTMedicalGearEVAV2_1]
@@ -460,15 +460,6 @@
   components:
   - type: SpecForce
     actionBssActionName: ActionCentcomFtlAction
-    requirements:
-    - !type:DepartmentTimeRequirement
-      department: Security
-      time: 18000
-    - !type:OverallPlaytimeRequirement
-      time: 36000
-    - !type:RoleTimeRequirement
-      role: JobJanitor
-      time: 3000
   - type: Icon
     sprite: Markers/jobs.rsi
     state: ertjanitoreva
@@ -477,6 +468,15 @@
     name: ОБР уборщик
     description: Уборщик отделения Theta - 9, эй! кто дал ему пистолет?!
     rules: Выполняйте различные приказы, ваша задача будет варьироваться от задач центрального командования.
+    requirements:
+      - !type:DepartmentTimeRequirement
+        department: Security
+        time: 18000
+      - !type:OverallPlaytimeRequirement
+        time: 36000
+      - !type:RoleTimeRequirement
+        role: JobJanitor
+        time: 3000
   - type: GhostTakeoverAvailable
   - type: Loadout
     prototypes: [ERTJanitorGearEVAV2_1]

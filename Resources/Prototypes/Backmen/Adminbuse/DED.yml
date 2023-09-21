@@ -209,12 +209,6 @@
   components:
   - type: SpecForce
     actionBssActionName: ActionCentcomFtlAction
-    requirements:
-    - !type:DepartmentTimeRequirement
-      department: Security
-      time: 18000
-    - !type:OverallPlaytimeRequirement
-      time: 36000
   - type: Icon
     sprite: Markers/jobs.rsi
     state: ai
@@ -222,6 +216,12 @@
     name: Оперативник спец войск
     description: Элитный солдат отряда Omega - 0, напичканые импланты и курсы космического спецназа сделали из него бесчувственную машину.
     rules: Выполняйте различные приказы, ваша задача будет варьироваться от задач центрального командования.
+    requirements:
+      - !type:DepartmentTimeRequirement
+        department: Security
+        time: 18000
+      - !type:OverallPlaytimeRequirement
+        time: 36000
   - type: GhostTakeoverAvailable
   - type: Loadout
     prototypes: [SpecialForceGearFull]
@@ -242,15 +242,6 @@
   components:
   - type: SpecForce
     actionBssActionName: ActionCentcomFtlAction
-    requirements:
-    - !type:DepartmentTimeRequirement
-      department: Security
-      time: 18000
-    - !type:OverallPlaytimeRequirement
-      time: 36000
-    - !type:DepartmentTimeRequirement
-      department: Command
-      time: 18000
   - type: Icon
     sprite: Markers/jobs.rsi
     state: ai
@@ -258,6 +249,15 @@
     name: коммандер спец войск
     description: Элитный коммандер отряда Omega - 0, напичканые импланты и курсы космического спецназа сделали из него бесчувственную машину с тактическим интеллектом.
     rules: Выполняйте различные приказы, ваша задача будет варьироваться от задач центрального командования.
+    requirements:
+      - !type:DepartmentTimeRequirement
+        department: Security
+        time: 18000
+      - !type:OverallPlaytimeRequirement
+        time: 36000
+      - !type:DepartmentTimeRequirement
+        department: Command
+        time: 18000
   - type: GhostTakeoverAvailable
   - type: Loadout
     prototypes: [SpecialForceGearCommanderFull]
@@ -280,16 +280,6 @@
   components:
   - type: SpecForce
     actionBssActionName: ActionCentcomFtlAction
-    whitelistRequired: true
-    requirements:
-    - !type:DepartmentTimeRequirement
-      department: Security
-      time: 18000
-    - !type:OverallPlaytimeRequirement
-      time: 36000
-    - !type:DepartmentTimeRequirement
-      department: Command
-      time: 18000
   - type: Icon
     sprite: Markers/jobs.rsi
     state: centcom
@@ -297,6 +287,15 @@
     name: Офицер Специальных Операций
     description: Офицер Специальных Операций, руководитель департамента специальных операций в секторе.
     whitelistRequired: true
+    requirements:
+      - !type:DepartmentTimeRequirement
+        department: Security
+        time: 18000
+      - !type:OverallPlaytimeRequirement
+        time: 36000
+      - !type:DepartmentTimeRequirement
+        department: Command
+        time: 18000
   - type: GhostTakeoverAvailable
   - type: Loadout
     prototypes: [SFOForma]
@@ -431,15 +430,15 @@
   components:
   - type: SpecForce
     actionBssActionName: ActionCentcomFtlAction
-    requirements:
-    - !type:DepartmentTimeRequirement
-      department: Security
-      time: 18000
-    - !type:OverallPlaytimeRequirement
-      time: 36000
   - type: GhostRole
     name: Оперативник РХБЗЗ
     description: Особый агент НаноТрейзен по борьбе с радиационно, химическо, биологическоми и зомби опасностями.
+    requirements:
+      - !type:DepartmentTimeRequirement
+        department: Security
+        time: 18000
+      - !type:OverallPlaytimeRequirement
+        time: 36000
   - type: GhostTakeoverAvailable
   - type: Loadout
     prototypes: [RXBZZ]

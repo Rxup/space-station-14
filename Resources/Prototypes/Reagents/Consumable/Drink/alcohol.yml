@@ -643,11 +643,11 @@
   metabolisms:
     Drink:
       effects:
-        - !type:SatiateThirst
-          factor: 2
-        - !type:AdjustReagent
-          reagent: Ethanol
-          amount: 0.15
+      - !type:SatiateThirst
+        factor: 2
+      - !type:AdjustReagent
+        reagent: Ethanol
+        amount: 0.07
 
 - type: reagent
   id: DemonsBlood
@@ -774,11 +774,11 @@
   metabolisms:
     Drink:
       effects:
-        - !type:SatiateThirst
-          factor: 2
-        - !type:AdjustReagent
-          reagent: Ethanol
-          amount: 0.15
+      - !type:SatiateThirst
+        factor: 2
+      - !type:AdjustReagent
+        reagent: Ethanol
+        amount: 0.07
 
 - type: reagent
   id: GinTonic
@@ -794,11 +794,11 @@
   metabolisms:
     Drink:
       effects:
-        - !type:SatiateThirst
-          factor: 2
-        - !type:AdjustReagent
-          reagent: Ethanol
-          amount: 0.15
+      - !type:SatiateThirst
+        factor: 2
+      - !type:AdjustReagent
+        reagent: Ethanol
+        amount: 0.07
 
 - type: reagent
   id: Goldschlager
@@ -1141,11 +1141,11 @@
   metabolisms:
     Drink:
       effects:
-        - !type:SatiateThirst
-          factor: 2
-        - !type:AdjustReagent
-          reagent: Ethanol
-          amount: 0.15
+      - !type:SatiateThirst
+        factor: 2
+      - !type:AdjustReagent
+        reagent: Ethanol
+        amount: 0.07
 
 - type: reagent
   id: CogChamp
@@ -1327,11 +1327,11 @@
   metabolisms:
     Drink:
       effects:
-        - !type:SatiateThirst
-          factor: 2
-        - !type:AdjustReagent
-          reagent: Ethanol
-          amount: 0.15
+      - !type:SatiateThirst
+        factor: 2
+      - !type:AdjustReagent
+        reagent: Ethanol
+        amount: 0.07
 
 - type: reagent
   id: WhiskeyCola
@@ -1347,11 +1347,11 @@
   metabolisms:
     Drink:
       effects:
-        - !type:SatiateThirst
-          factor: 2
-        - !type:AdjustReagent
-          reagent: Ethanol
-          amount: 0.15
+      - !type:SatiateThirst
+        factor: 2
+      - !type:AdjustReagent
+        reagent: Ethanol
+        amount: 0.07
 
 - type: reagent
   id: WhiskeySoda
@@ -1367,11 +1367,11 @@
   metabolisms:
     Drink:
       effects:
-        - !type:SatiateThirst
-          factor: 2
-        - !type:AdjustReagent
-          reagent: Ethanol
-          amount: 0.15
+      - !type:SatiateThirst
+        factor: 2
+      - !type:AdjustReagent
+        reagent: Ethanol
+        amount: 0.07
 
 - type: reagent
   id: WhiteRussian

@@ -1,61 +1,62 @@
 using Robust.Shared.Serialization;
 
-namespace Content.Shared.Soul
+namespace Content.Shared.Backmen.Soul;
+
+/// <summary>
+/// Key representing which <see cref="BoundUserInterface"/> is currently open.
+/// Useful when there are multiple UI for an object. Here it's future-proofing only.
+/// </summary>
+[Serializable, NetSerializable]
+public enum GolemUiKey : byte
 {
-    /// <summary>
-    /// Key representing which <see cref="BoundUserInterface"/> is currently open.
-    /// Useful when there are multiple UI for an object. Here it's future-proofing only.
-    /// </summary>
-    [Serializable, NetSerializable]
-    public enum GolemUiKey : byte
+    Key,
+}
+
+/// <summary>
+/// Represents an <see cref="GolemComponent"/> state that can be sent to the client
+/// </summary>
+[Serializable, NetSerializable]
+public sealed class GolemBoundUserInterfaceState : BoundUserInterfaceState
+{
+    public string Name { get; }
+    public string MasterName { get; }
+
+    public GolemBoundUserInterfaceState(string name, string currentMasterName)
     {
-        Key,
+        Name = name;
+        MasterName = currentMasterName;
     }
+}
 
-    /// <summary>
-    /// Represents an <see cref="GolemComponent"/> state that can be sent to the client
-    /// </summary>
-    [Serializable, NetSerializable]
-    public sealed class GolemBoundUserInterfaceState : BoundUserInterfaceState
+[Serializable, NetSerializable]
+public sealed class GolemNameChangedMessage : BoundUserInterfaceMessage
+{
+    public string Name { get; }
+
+    public GolemNameChangedMessage(string name)
     {
-        public string Name { get; }
-        public string MasterName { get; }
-
-        public GolemBoundUserInterfaceState(string name, string currentMasterName)
-        {
-            Name = name;
-            MasterName = currentMasterName;
-        }
+        Name = name;
     }
+}
 
-    [Serializable, NetSerializable]
-    public sealed class GolemNameChangedMessage : BoundUserInterfaceMessage
+[Serializable, NetSerializable]
+public sealed class GolemMasterNameChangedMessage : BoundUserInterfaceMessage
+{
+    public string MasterName { get; }
+    public GolemMasterNameChangedMessage(string masterName)
     {
-        public string Name { get; }
-
-        public GolemNameChangedMessage(string name)
-        {
-            Name = name;
-        }
+        MasterName = masterName;
     }
+}
 
-    [Serializable, NetSerializable]
-    public sealed class GolemMasterNameChangedMessage : BoundUserInterfaceMessage
+/// <summary>
+///     Install this golem!!!!
+/// </summary>
+[Serializable, NetSerializable]
+public sealed class GolemInstallRequestMessage : BoundUserInterfaceMessage
+{
+    public GolemInstallRequestMessage()
     {
-        public string MasterName { get; }
-        public GolemMasterNameChangedMessage(string masterName)
-        {
-            MasterName = masterName;
-        }
-    }
 
-    /// <summary>
-    ///     Install this golem!!!!
-    /// </summary>
-    [Serializable, NetSerializable]
-    public sealed class GolemInstallRequestMessage : BoundUserInterfaceMessage
-    {
-        public GolemInstallRequestMessage()
-        {}
     }
 }
