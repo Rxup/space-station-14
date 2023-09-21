@@ -1,5 +1,6 @@
 ﻿using System.Numerics;
 using Content.Server.GameTicking;
+using Content.Server.GameTicking.Events;
 using Content.Server.Popups;
 using Content.Server.Salvage.Expeditions;
 using Content.Server.Shuttle.Components;
@@ -9,8 +10,12 @@ using Content.Server.Station.Components;
 using Content.Server.Station.Systems;
 using Content.Shared.Backmen.Abilities;
 using Content.Shared.Cargo.Components;
+using Content.Shared.GameTicking;
 using Content.Shared.Shuttles.Components;
 using Robust.Server.GameObjects;
+using Robust.Server.Maps;
+using Robust.Shared.Map;
+using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
 
 namespace Content.Server.Backmen.Arrivals;
@@ -20,11 +25,74 @@ public sealed class CentcommSystem : EntitySystem
     [Dependency] private readonly PopupSystem _popup = default!;
     [Dependency] private readonly ShuttleSystem _shuttleSystem = default!;
     [Dependency] private readonly StationSystem _stationSystem = default!;
+    [Dependency] private readonly IMapManager _mapManager = default!;
+    [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
+    [Dependency] private readonly GameTicker _gameTicker = default!;
+    [Dependency] private readonly ShuttleSystem _shuttle = default!;
+    private ISawmill _sawmill = default!;
+
+
+    public EntityUid CentComGrid { get; private set; } = EntityUid.Invalid;
+    public MapId CentComMap { get; private set; } = MapId.Nullspace;
+    public float ShuttleIndex { get; set; } = 0;
+
     public override void Initialize()
     {
         base.Initialize();
+        _sawmill = Logger.GetSawmill("centcom");
         SubscribeLocalEvent<ActorComponent, CentcomFtlAction>(OnFtlActionUsed);
         SubscribeLocalEvent<PreGameMapLoad>(OnPreGameMapLoad, after: new[]{typeof(StationSystem)});
+        SubscribeLocalEvent<RoundStartingEvent>(OnCentComInit, before: new []{ typeof(EmergencyShuttleSystem) });
+        SubscribeLocalEvent<RoundRestartCleanupEvent>(OnCleanup);
+    }
+
+    private void OnCleanup(RoundRestartCleanupEvent ev)
+    {
+        _sawmill.Info("OnCleanup");
+        QueueDel(CentComGrid);
+        CentComGrid = EntityUid.Invalid;
+
+        if (_mapManager.MapExists(CentComMap))
+            _mapManager.DeleteMap(CentComMap);
+
+        CentComMap = MapId.Nullspace;
+        ShuttleIndex = 0;
+    }
+
+    public void EnsureCentcom()
+    {
+        _sawmill.Info("EnsureCentcom");
+        if (CentComGrid.IsValid())
+        {
+            return;
+        }
+        _sawmill.Info("Start load centcom");
+
+        if (CentComMap == MapId.Nullspace)
+        {
+            CentComMap = _mapManager.CreateMap();
+        }
+
+        var ent = _gameTicker.LoadGameMap(
+            _prototypeManager.Index<Maps.GameMapPrototype>("CentComm"), CentComMap, new MapLoadOptions()
+            {
+                LoadMap = false
+            }, null).FirstOrNull(HasComp<BecomesStationComponent>);
+
+        if (ent != null)
+        {
+            CentComGrid = ent.Value;
+            _shuttle.AddFTLDestination(ent.Value, false);
+        }
+        else
+        {
+            _sawmill.Warning("No CentComm map found, skipping setup.");
+        }
+    }
+
+    private void OnCentComInit(RoundStartingEvent ev)
+    {
+        EnsureCentcom();
     }
 
     private void OnPreGameMapLoad(PreGameMapLoad ev)
