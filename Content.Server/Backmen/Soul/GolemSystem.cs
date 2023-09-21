@@ -3,7 +3,7 @@ using Content.Shared.Interaction;
 using Content.Shared.Containers.ItemSlots;
 using Content.Shared.Throwing;
 using Content.Shared.Toggleable;
-using Content.Shared.Soul;
+using Content.Shared.Backmen.Soul;
 using Content.Shared.Dataset;
 using Content.Shared.Mobs;
 using Content.Shared.Administration.Logs;
@@ -31,10 +31,10 @@ public sealed class GolemSystem : SharedGolemSystem
     [Dependency] private readonly UserInterfaceSystem _uiSystem = default!;
     [Dependency] private readonly IPrototypeManager _prototypes = default!;
     [Dependency] private readonly ISharedAdminLogManager _adminLogger = default!;
-    [Dependency] private readonly SiliconLawSystem _laws = default!;
     [Dependency] private readonly AudioSystem _audioSystem = default!;
     [Dependency] private readonly MindSystem _mindSystem = default!;
     [Dependency] private readonly UserInterfaceSystem _userInterfaceSystem = default!;
+    [Dependency] private readonly MetaDataSystem _metaDataSystem = default!;
 
     private const string CrystalSlot = "crystal_slot";
 
@@ -97,14 +97,17 @@ public sealed class GolemSystem : SharedGolemSystem
         if (!HasComp<HumanoidAppearanceComponent>(args.User))
             return;
 
-        if (!_uiSystem.TryGetUi(args.Target.Value, GolemUiKey.Key, out var ui))
+        if (!_uiSystem.TryOpen(args.Target.Value, GolemUiKey.Key, userActor!.PlayerSession))
             return;
 
         golem.PotentialCrystal = uid;
 
-        _uiSystem.TryOpen(args.Target.Value, GolemUiKey.Key, userActor!.PlayerSession);
+        if (!_uiSystem.TryGetUi(args.Target.Value, GolemUiKey.Key, out var ui))
+        {
+            return;
+        }
 
-        string golemName = "golem";
+        var golemName = "golem";
         if (_prototypes.TryIndex<DatasetPrototype>("names_golem", out var names))
             golemName = _robustRandom.Pick(names.Values);
 
@@ -132,8 +135,8 @@ public sealed class GolemSystem : SharedGolemSystem
         if (!_mindSystem.TryGetMind(uid, out var mindId, out var mind))
             return;
 
-        MetaData(uid).EntityName = Loc.GetString("golem-base-name");
-        MetaData(uid).EntityDescription = Loc.GetString("golem-base-desc");
+        _metaDataSystem.SetEntityName(uid, Loc.GetString("golem-base-name"));
+        _metaDataSystem.SetEntityDescription(uid, Loc.GetString("golem-base-desc"));
         _mindSystem.TransferTo(mindId, item);
         DirtyEntity(uid);
     }
@@ -184,18 +187,21 @@ public sealed class GolemSystem : SharedGolemSystem
 
         _uiSystem.TryCloseAll(uid);
 
-        if (component.GolemName != null && component.GolemName != "")
+        if (!string.IsNullOrEmpty(component.GolemName))
         {
-            MetaData(uid).EntityName = component.GolemName;
-        } else
+            _metaDataSystem.SetEntityName(uid, component.GolemName);
+        }
+        else
         {
             if (_prototypes.TryIndex<DatasetPrototype>("names_golem", out var names))
-                MetaData(uid).EntityName = _robustRandom.Pick(names.Values);
+            {
+                _metaDataSystem.SetEntityName(uid, _robustRandom.Pick(names.Values));
+            }
         }
-        MetaData(uid).EntityDescription = Loc.GetString("golem-installed-desc");
+        _metaDataSystem.SetEntityDescription(uid, Loc.GetString("golem-installed-desc"));
 
 
-        if (!(component.Master != null && component.Master != "" ))
+        if (string.IsNullOrEmpty(component.Master))
         {
             component.Master = MetaData(args.Session.AttachedEntity.Value).EntityName;
         }
