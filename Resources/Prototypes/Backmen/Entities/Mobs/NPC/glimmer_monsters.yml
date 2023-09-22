@@ -15,7 +15,6 @@
         shader: unshaded
   - type: GlimmerWisp
   - type: DoAfter
-  - type: PotentialPsionic
   - type: Psionic
     removable: false
   - type: NoosphericZapPower

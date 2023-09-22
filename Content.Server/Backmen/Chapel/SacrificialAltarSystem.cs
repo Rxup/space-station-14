@@ -39,6 +39,7 @@ public sealed class SacrificialAltarSystem : EntitySystem
     [Dependency] private readonly IGameTiming _timing = default!;
     [Dependency] private readonly BodySystem _bodySystem = default!;
     [Dependency] private readonly MindSystem _mindSystem = default!;
+    [Dependency] private readonly MetaDataSystem _metaDataSystem = default!;
 
     public override void Initialize()
     {
@@ -131,14 +132,15 @@ public sealed class SacrificialAltarSystem : EntitySystem
             if (TryComp<SoulCrystalComponent>(trap, out var crystalComponent))
                 crystalComponent.TrueName = MetaData(args.Args.Target.Value).EntityName;
 
-            MetaData(trap).EntityName = Loc.GetString("soul-entity-name", ("trapped", args.Args.Target));
-            MetaData(trap).EntityDescription = Loc.GetString("soul-entity-desc", ("trapped", args.Args.Target));
+            _metaDataSystem.SetEntityName(trap, Loc.GetString("soul-entity-name", ("trapped", args.Args.Target)));
+            _metaDataSystem.SetEntityDescription(trap, Loc.GetString("soul-entity-name", ("trapped", args.Args.Target)));
         }
 
         if (TryComp<BodyComponent>(args.Args.Target, out var body))
         {
-            _bodySystem.GibBody(args.Args.Target, true, body, false);
-        } else
+            _bodySystem.GibBody(args.Args.Target.Value, true, body, false);
+        }
+        else
         {
             QueueDel(args.Args.Target.Value);
         }

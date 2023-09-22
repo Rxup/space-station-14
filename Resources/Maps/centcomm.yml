@@ -33071,6 +33071,7 @@ entities:
       parent: 1668
       type: Transform
     - name: Центральное Командование
+      receiveStationGoal: true
       type: FaxMachine
 - proto: filingCabinet
   entities:
