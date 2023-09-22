@@ -121,11 +121,11 @@ public sealed class JobRequirementsManager
             isOk = false;
             if (reason == null)
             {
-                FormattedMessage.FromMarkup(Loc.GetString("playtime-deny-reason-not-whitelisted"));
+                reason = FormattedMessage.FromMarkup(Loc.GetString("playtime-deny-reason-not-whitelisted"));
             }
             else
             {
-                reason.AddText("\n"+Loc.GetString("playtime-deny-reason-not-whitelisted"));
+                reason.AddMarkup("\n"+Loc.GetString("playtime-deny-reason-not-whitelisted"));
             }
         }
         return isOk;
