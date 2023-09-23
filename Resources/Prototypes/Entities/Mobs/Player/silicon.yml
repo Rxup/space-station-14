@@ -206,6 +206,12 @@
     name: ghost-role-information-onestar-mecha-name
     description: ghost-role-information-onestar-mecha-description
     rules: ghost-role-information-onestar-mecha-rules
+    requirements:
+      - !type:OverallPlaytimeRequirement
+        time: 18000
+      - !type:DepartmentTimeRequirement
+        department: Engineering
+        time: 10000
   - type: GhostTakeoverAvailable
   - type: MovementSpeedModifier
     baseWalkSpeed : 3
@@ -246,13 +252,6 @@
   - type: Tag
     tags:
       - FootstepSound
-  - type: SpecForce
-    requirements:
-    - !type:OverallPlaytimeRequirement
-      time: 18000
-    - !type:DepartmentTimeRequirement
-      department: Engineering
-      time: 10000
 
 - type: entity
   id: PlayerBorgGeneric

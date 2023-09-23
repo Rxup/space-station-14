@@ -50,6 +50,12 @@
     allowMovement: true # backmen
     name: Блюспейс Дрон #ghost-role-information-drone-name # backmen
     description: ghost-role-information-drone-description # backmen
+    requirements:
+      - !type:OverallPlaytimeRequirement
+        time: 36000
+      - !type:RoleTimeRequirement
+        role: JobChiefEngineer
+        time: 24000
     rules: | # backmen
       Вы обязаны подчиняться законам, которые будут доступны вам после вселения, если вам не скажут иное в Ahelp.
   - type: GhostTakeoverAvailable
@@ -143,12 +149,5 @@
       - ShoesRequiredStepTriggerImmune
       - CannotSuicide
   - type: SpecForce
-    whitelistRequired: true
-    requirements:
-    - !type:OverallPlaytimeRequirement
-      time: 36000
-    - !type:RoleTimeRequirement
-      role: JobChiefEngineer
-      time: 24000
 
 

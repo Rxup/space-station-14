@@ -1,0 +1,13 @@
+﻿<DefaultWindow xmlns="https://spacestation14.io"
+               xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+               Title="{Loc golem-menu-title}">
+    <BoxContainer Orientation="Vertical" SeparationOverride="4" MinWidth="150">
+        <Label Name="Name" Text="{Loc 'golem-name'}" />
+        <LineEdit Name="NameLineEdit" />
+        <Label Name="MasterName" Text="{Loc 'golem-master'}" />
+        <LineEdit Name="MasterLineEdit" />
+        <Button Name="InstallButton"
+                Access="Public"
+                Text="{Loc 'golem-install-button'}" />
+    </BoxContainer>
+</DefaultWindow>
