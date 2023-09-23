@@ -10,10 +10,12 @@ using Content.Server.Station.Components;
 using Content.Server.Station.Systems;
 using Content.Shared.Backmen.Abilities;
 using Content.Shared.Cargo.Components;
+using Content.Shared.CCVar;
 using Content.Shared.GameTicking;
 using Content.Shared.Shuttles.Components;
 using Robust.Server.GameObjects;
 using Robust.Server.Maps;
+using Robust.Shared.Configuration;
 using Robust.Shared.Map;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
@@ -29,6 +31,7 @@ public sealed class CentcommSystem : EntitySystem
     [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
     [Dependency] private readonly GameTicker _gameTicker = default!;
     [Dependency] private readonly ShuttleSystem _shuttle = default!;
+    [Dependency] private readonly IConfigurationManager _cfg = default!;
     private ISawmill _sawmill = default!;
 
 
@@ -44,6 +47,15 @@ public sealed class CentcommSystem : EntitySystem
         SubscribeLocalEvent<PreGameMapLoad>(OnPreGameMapLoad, after: new[]{typeof(StationSystem)});
         SubscribeLocalEvent<RoundStartingEvent>(OnCentComInit, before: new []{ typeof(EmergencyShuttleSystem) });
         SubscribeLocalEvent<RoundRestartCleanupEvent>(OnCleanup);
+        _cfg.OnValueChanged(CCVars.GridFill, OnGridFillChange);
+    }
+
+    private void OnGridFillChange(bool obj)
+    {
+        if (obj)
+        {
+            EnsureCentcom(true);
+        }
     }
 
     private void OnCleanup(RoundRestartCleanupEvent ev)
@@ -59,8 +71,12 @@ public sealed class CentcommSystem : EntitySystem
         ShuttleIndex = 0;
     }
 
-    public void EnsureCentcom()
+    public void EnsureCentcom(bool force = false)
     {
+        if (!_cfg.GetCVar(CCVars.GridFill) && !force)
+        {
+            return;
+        }
         _sawmill.Info("EnsureCentcom");
         if (CentComGrid.IsValid())
         {
