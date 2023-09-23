@@ -8,6 +8,7 @@ using Content.Shared.Materials;
 using Content.Shared.Radio;
 using Robust.Shared.Audio;
 using Content.Shared.Physics;
+using Content.Shared.Tiles;
 using Robust.Shared.Map.Components;
 using Robust.Shared.Physics;
 using Robust.Shared.Physics.Components;
@@ -89,6 +90,8 @@ public sealed partial class AnomalySystem
     public void SpawnOnRandomGridLocation(EntityUid grid, string toSpawn)
     {
         if (!TryComp<MapGridComponent>(grid, out var gridComp))
+            return;
+        if (HasComp<ProtectedGridComponent>(grid)) // backmen: centcom
             return;
 
         var xform = Transform(grid);
