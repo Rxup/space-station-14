@@ -5,6 +5,7 @@ using Content.Shared.Corvax.CCCVars;
 using Content.Shared.Corvax.TTS;
 using Content.Shared.Physics;
 using Robust.Client.Graphics;
+using Robust.Client.State; // backmen: tts
 using Robust.Shared.Configuration;
 using Robust.Shared.Map;
 using Robust.Shared.Physics;
@@ -24,6 +25,7 @@ public sealed class TTSSystem : EntitySystem
     [Dependency] private readonly IConfigurationManager _cfg = default!;
     [Dependency] private readonly SharedPhysicsSystem _broadPhase = default!;
     [Dependency] private readonly SharedTransformSystem _transform = default!;
+    [Dependency] private readonly IStateManager _stateManager = default!;
 
     private ISawmill _sawmill = default!;
     private float _volume = 0.0f;
@@ -153,7 +155,7 @@ public sealed class TTSSystem : EntitySystem
     private void ProcessEntityQueue(EntityUid uid)
     {
         if (TryTakeEntityStreamFromQueue(uid, out var stream))
-            PlayEntity(stream);
+            PlayEntity(stream, IsClientSide(uid));
     }
 
     private bool TryTakeEntityStreamFromQueue(EntityUid uid, [NotNullWhen(true)] out AudioStream? stream)
@@ -170,11 +172,21 @@ public sealed class TTSSystem : EntitySystem
         return false;
     }
 
-    private void PlayEntity(AudioStream stream)
+    private void PlayEntity(AudioStream stream, bool isLobbyOnly = false) // backmen: tts
     {
-        if (!_entity.TryGetComponent<TransformComponent>(GetEntity(stream.Uid), out var xform) ||
-            !stream.Source.SetPosition(_transform.GetWorldPosition(xform)))
+        if (!_entity.TryGetComponent<TransformComponent>(GetEntity(stream.Uid), out var xform))
             return;
+
+        // start-backmen: tts
+        if (_stateManager.CurrentState is Content.Client.Lobby.LobbyState && isLobbyOnly)
+        {
+            stream.Source.SetGlobal();
+        }
+        else if (!stream.Source.SetPosition(_transform.GetWorldPosition(xform)))
+        {
+            return;
+        }
+        // end-backmen: tts
 
         stream.Source.StartPlaying();
         _currentStreams.Add(stream);
