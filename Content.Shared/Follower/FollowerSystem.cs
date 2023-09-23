@@ -37,6 +37,7 @@ public sealed class FollowerSystem : EntitySystem
         SubscribeLocalEvent<FollowerComponent, PullStartedMessage>(OnPullStarted);
         SubscribeLocalEvent<FollowerComponent, GotEquippedHandEvent>(OnGotEquippedHand);
         SubscribeLocalEvent<FollowedComponent, EntityTerminatingEvent>(OnFollowedTerminating);
+        SubscribeLocalEvent<FollowerComponent, EntityTerminatingEvent>(OnFollowerTerminating);
         SubscribeLocalEvent<BeforeSaveEvent>(OnBeforeSave);
 
         SubscribeLocalEvent<FollowedComponent, ComponentGetState>(OnFollowedGetState);
@@ -128,6 +129,12 @@ public sealed class FollowerSystem : EntitySystem
         StopFollowingEntity(uid, component.Following, deparent:false);
     }
 
+    private void OnFollowerTerminating(EntityUid uid, FollowerComponent component, ref EntityTerminatingEvent args)
+    {
+        StopFollowingEntity(uid, component.Following);
+    }
+
+
     // Since we parent our observer to the followed entity, we need to detach
     // before they get deleted so that we don't get recursively deleted too.
     private void OnFollowedTerminating(EntityUid uid, FollowedComponent component, ref EntityTerminatingEvent args)
@@ -212,6 +219,9 @@ public sealed class FollowerSystem : EntitySystem
         RaiseLocalEvent(target, targetEv);
 
         if (!deparent || !TryComp(uid, out TransformComponent? xform))
+            return;
+
+        if (TerminatingOrDeleted(uid))
             return;
 
         _transform.AttachToGridOrMap(uid, xform);
