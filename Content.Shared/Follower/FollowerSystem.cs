@@ -1,3 +1,4 @@
+using System.Linq;
 using System.Numerics;
 using Content.Shared.Database;
 using Content.Shared.Follower.Components;
@@ -46,6 +47,7 @@ public sealed class FollowerSystem : EntitySystem
 
     private void OnFollowedGetState(EntityUid uid, FollowedComponent component, ref ComponentGetState args)
     {
+        component.Following.RemoveWhere(x => TerminatingOrDeleted(x));
         args.State = new FollowedComponentState()
         {
             Following = GetNetEntitySet(component.Following),
