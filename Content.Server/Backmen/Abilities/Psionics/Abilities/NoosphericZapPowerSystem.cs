@@ -34,9 +34,7 @@ public sealed class NoosphericZapPowerSystem : EntitySystem
     {
         _actions.AddAction(uid, ref component.NoosphericZapPowerAction, ActionNoosphericZap);
 
-        var action = _actions.GetActionData(component.NoosphericZapPowerAction);
-
-        if (action?.UseDelay != null)
+        if (_actions.TryGetActionData(component.NoosphericZapPowerAction, out var action) && action?.UseDelay != null)
             _actions.SetCooldown(component.NoosphericZapPowerAction, _gameTiming.CurTime,
                 _gameTiming.CurTime + (TimeSpan)  action?.UseDelay!);
 
@@ -46,7 +44,7 @@ public sealed class NoosphericZapPowerSystem : EntitySystem
 
     private void OnShutdown(EntityUid uid, NoosphericZapPowerComponent component, ComponentShutdown args)
     {
-        _actions.RemoveAction(uid, ActionNoosphericZap);
+        _actions.RemoveAction(uid, component.NoosphericZapPowerAction);
     }
 
     private void OnPowerUsed(NoosphericZapPowerActionEvent args)

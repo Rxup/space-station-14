@@ -81,7 +81,7 @@ public sealed class ArachneSystem : EntitySystem
 
     private void OnShutdown(EntityUid uid, ArachneComponent component, ComponentShutdown args)
     {
-        _actions.RemoveAction(uid, ActionSpinWeb);
+        _actions.RemoveAction(uid, component.SpinWeb);
     }
 
 

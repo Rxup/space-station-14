@@ -32,9 +32,7 @@ public sealed class PyrokinesisPowerSystem : EntitySystem
     {
         _actions.AddAction(uid, ref component.PyrokinesisPowerAction, ActionPyrokinesis);
 
-        var action = _actions.GetActionData(component.PyrokinesisPowerAction);
-
-        if (action?.UseDelay != null)
+        if (_actions.TryGetActionData(component.PyrokinesisPowerAction, out var action) && action?.UseDelay != null)
             _actions.SetCooldown(component.PyrokinesisPowerAction, _gameTiming.CurTime,
                 _gameTiming.CurTime + (TimeSpan) action?.UseDelay!);
 
@@ -44,7 +42,7 @@ public sealed class PyrokinesisPowerSystem : EntitySystem
 
     private void OnShutdown(EntityUid uid, PyrokinesisPowerComponent component, ComponentShutdown args)
     {
-        _actions.RemoveAction(uid, ActionPyrokinesis);
+        _actions.RemoveAction(uid, component.PyrokinesisPowerAction);
     }
 
     private void OnPowerUsed(PyrokinesisPowerActionEvent args)

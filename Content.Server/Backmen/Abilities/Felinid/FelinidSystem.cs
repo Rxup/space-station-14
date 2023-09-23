@@ -72,8 +72,7 @@ public sealed class FelinidSystem : EntitySystem
     {
         _actions.AddAction(uid, ref component.HairballAction, ActionHairball);
 
-        var action = _actions.GetActionData(component.HairballAction);
-        if (action?.UseDelay != null)
+        if (_actions.TryGetActionData(component.HairballAction, out var action) && action?.UseDelay != null)
             _actions.SetCooldown(component.HairballAction,
                 _gameTiming.CurTime, _gameTiming.CurTime + (TimeSpan)  action?.UseDelay!);
     }
@@ -94,7 +93,7 @@ public sealed class FelinidSystem : EntitySystem
         {
             component.PotentialTarget = null;
 
-            _actions.RemoveAction(uid, ActionEatMouse);
+            _actions.RemoveAction(uid, component.EatMouse);
         }
     }
 
@@ -137,9 +136,8 @@ public sealed class FelinidSystem : EntitySystem
             return;
         }
 
-        if (component.HairballAction != null)
+        if (component.HairballAction != null && _actions.TryGetActionData(component.HairballAction, out var skill))
         {
-            var skill = _actions.GetActionData(component.HairballAction);
             _actionsSystem.SetCharges(component.HairballAction, skill?.Charges + 1);
             _actionsSystem.SetEnabled(component.HairballAction, true);
         }
@@ -150,7 +148,7 @@ public sealed class FelinidSystem : EntitySystem
 
         _hungerSystem.ModifyHunger(uid, 70f, hunger);
 
-        _actions.RemoveAction(uid, ActionEatMouse);
+        _actions.RemoveAction(uid, component.EatMouse);
     }
 
     private void SpawnHairball(EntityUid uid, FelinidComponent component)

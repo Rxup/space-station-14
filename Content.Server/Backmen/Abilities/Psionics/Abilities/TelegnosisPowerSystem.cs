@@ -32,9 +32,7 @@ public sealed class TelegnosisPowerSystem : EntitySystem
     {
         _actions.AddAction(uid, ref component.TelegnosisPowerAction, ActionTelegnosis);
 
-        var action = _actions.GetActionData(component.TelegnosisPowerAction);
-
-        if (action?.UseDelay != null)
+        if (_actions.TryGetActionData(component.TelegnosisPowerAction, out var action) && action?.UseDelay != null)
             _actions.SetCooldown(component.TelegnosisPowerAction, _gameTiming.CurTime,
                 _gameTiming.CurTime + (TimeSpan)  action?.UseDelay!);
 
@@ -44,7 +42,7 @@ public sealed class TelegnosisPowerSystem : EntitySystem
 
     private void OnShutdown(EntityUid uid, TelegnosisPowerComponent component, ComponentShutdown args)
     {
-        _actions.RemoveAction(uid, ActionTelegnosis);
+        _actions.RemoveAction(uid, component.TelegnosisPowerAction);
     }
 
     private void OnPowerUsed(EntityUid uid, TelegnosisPowerComponent component, TelegnosisPowerActionEvent args)

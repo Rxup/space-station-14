@@ -52,8 +52,7 @@ public sealed class SpecForcesSystem : EntitySystem
 
     private void OnShutdown(EntityUid uid, SpecForceComponent component, ComponentShutdown args)
     {
-        if (component.ActionBssActionName != null)
-            _actions.RemoveAction(uid, component.ActionBssActionName);
+            _actions.RemoveAction(uid, component.BssKey);
     }
 
     private void OnStartup(EntityUid uid, SpecForceComponent component, ComponentStartup args)
