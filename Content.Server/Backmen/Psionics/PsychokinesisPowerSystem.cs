@@ -31,9 +31,7 @@ public sealed class PsychokinesisPowerSystem : EntitySystem
     {
         _actions.AddAction(uid, ref component.PsychokinesisPowerAction, ActionPsychokinesis);
 
-        var action = _actions.GetActionData(component.PsychokinesisPowerAction);
-
-        if (action?.UseDelay != null)
+        if (_actions.TryGetActionData(component.PsychokinesisPowerAction, out var action) && action?.UseDelay != null)
             _actions.SetCooldown(component.PsychokinesisPowerAction, _gameTiming.CurTime,
                 _gameTiming.CurTime + (TimeSpan)  action?.UseDelay!);
 
@@ -43,7 +41,7 @@ public sealed class PsychokinesisPowerSystem : EntitySystem
 
     private void OnShutdown(EntityUid uid, PsychokinesisPowerComponent component, ComponentShutdown args)
     {
-        _actions.RemoveAction(uid, ActionPsychokinesis);
+        _actions.RemoveAction(uid, component.PsychokinesisPowerAction);
     }
 
     private void OnPowerUsed(EntityUid uid ,PsychokinesisPowerComponent comp, PsychokinesisPowerActionEvent args)

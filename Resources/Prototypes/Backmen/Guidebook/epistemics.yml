@@ -5,6 +5,7 @@
   children:
   - Psionics
   - AltarsGolemancy
+  - PsyChemistry
 
 - type: guideEntry
   id: Psionics
@@ -15,3 +16,9 @@
   id: AltarsGolemancy
   name: guide-entry-altars-golemancy
   text: "/ServerInfo/Guidebook/Epistemics/Altar.xml"
+
+- type: guideEntry
+  id: PsyChemistry
+  name: guide-entry-psy-chemistry
+  text: "/ServerInfo/Guidebook/Epistemics/PsyChemistry.xml"
+
