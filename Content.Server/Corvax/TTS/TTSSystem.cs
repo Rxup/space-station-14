@@ -44,20 +44,6 @@ public sealed partial class TTSSystem : EntitySystem
         _ttsManager.ResetCache();
     }
 
-    private async void OnRequestTTS(MsgRequestTTS ev)
-    {
-        if (!_isEnabled ||
-            ev.Text.Length > MaxMessageChars ||
-            !_playerManager.TryGetSessionByChannel(ev.MsgChannel, out var session) ||
-            !_prototypeManager.TryIndex<TTSVoicePrototype>(ev.VoiceId, out var protoVoice))
-            return;
-
-        var soundData = await GenerateTTS(ev.Text, protoVoice.Speaker);
-        if (soundData is null) return;
-
-        RaiseNetworkEvent(new PlayTTSEvent(GetNetEntity(ev.Uid), soundData), Filter.SinglePlayer(session));
-    }
-
     private async void OnEntitySpoke(EntityUid uid, TTSComponent component, EntitySpokeEvent args)
     {
         var voiceId = component.VoicePrototypeId;

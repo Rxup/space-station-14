@@ -7,14 +7,14 @@ namespace Content.Client.Corvax.TTS;
 public sealed class TTSManager
 {
     [Dependency] private readonly IClientNetManager _netMgr = default!;
-    
+
     public void Initialize()
     {
         _netMgr.RegisterNetMessage<MsgRequestTTS>();
     }
 
     // ReSharper disable once InconsistentNaming
-    public void RequestTTS(EntityUid uid, string text, string voiceId)
+    public void RequestTTS(NetEntity uid, VoiceRequestType text, string voiceId)
     {
         var msg = new MsgRequestTTS() { Text = text, Uid = uid, VoiceId = voiceId };
         _netMgr.ClientSendMessage(msg);
