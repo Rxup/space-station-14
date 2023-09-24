@@ -48,14 +48,11 @@ public sealed class SpecForcesSystem : EntitySystem
         SubscribeLocalEvent<RoundRestartCleanupEvent>(OnCleanup);
         SubscribeLocalEvent<SpecForceComponent, ComponentStartup>(OnStartup);
         SubscribeLocalEvent<SpecForceComponent, ComponentShutdown>(OnShutdown);
-        SubscribeLocalEvent<SpecForceComponent, TakeGhostRoleEvent>(OnSpecForceTake,
-            before: new[] { typeof(GhostRoleSystem) });
     }
 
     private void OnShutdown(EntityUid uid, SpecForceComponent component, ComponentShutdown args)
     {
-        if (component.ActionBssActionName != null)
-            _actions.RemoveAction(uid, component.ActionBssActionName);
+            _actions.RemoveAction(uid, component.BssKey);
     }
 
     private void OnStartup(EntityUid uid, SpecForceComponent component, ComponentStartup args)
@@ -77,16 +74,6 @@ public sealed class SpecForcesSystem : EntitySystem
         }
     }
 
-    private void OnSpecForceTake(EntityUid uid, SpecForceComponent component, ref TakeGhostRoleEvent args)
-    {
-        if (!_adminManager.IsAdmin(args.Player) && !IsAllowed((IPlayerSession?) args.Player, component, out var reason))
-        {
-            args.TookRole = true;
-            _chatManager.ChatMessageToOne(Shared.Chat.ChatChannel.Server, reason, "ОШИБКА: " + reason, default, false,
-                args.Player.ConnectedClient, Color.Plum);
-        }
-    }
-
     public TimeSpan DelayTime
     {
         get
@@ -95,51 +82,6 @@ public sealed class SpecForcesSystem : EntitySystem
             var lastUsedTime = LastUsedTime + _delayUsage;
             return ct > lastUsedTime ? TimeSpan.Zero : lastUsedTime - ct;
         }
-    }
-
-    public bool IsAllowed(IPlayerSession? player, SpecForceComponent job, [NotNullWhen(false)] out string? reason)
-    {
-        reason = null;
-
-        if (job?.Requirements == null)
-            return true;
-
-        if (player == null)
-            return true;
-
-        if (!_cfg.GetCVar(CCVars.GameRoleTimers))
-            return true;
-
-        var playTimes = _tracking.GetTrackerTimes(player);
-
-        var reasonBuilder = new StringBuilder();
-
-        var first = true;
-        foreach (var requirement in job.Requirements)
-        {
-            if (JobRequirements.TryRequirementMet(requirement, playTimes, out var jobReason, EntityManager, _prototypes))
-                continue;
-
-            if (!first)
-                reasonBuilder.Append('\n');
-            first = false;
-
-            reasonBuilder.AppendLine(jobReason.ToMarkup());
-        }
-
-        if (_cfg.GetCVar(Shared.Backmen.CCVar.CCVars.WhitelistRolesEnabled) &&
-            job.WhitelistRequired &&
-            !_whitelistSystem.IsInWhitelist(player))
-        {
-            if (!first)
-                reasonBuilder.Append('\n');
-            first = false;
-
-            reasonBuilder.AppendLine(Loc.GetString("playtime-deny-reason-not-whitelisted"));
-        }
-
-        reason = reasonBuilder.Length == 0 ? null : reasonBuilder.ToString();
-        return reason == null;
     }
 
     public bool CallOps(SpecForcesType ev, string source = "")

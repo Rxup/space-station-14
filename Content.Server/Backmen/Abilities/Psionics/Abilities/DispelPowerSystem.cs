@@ -49,9 +49,7 @@ public sealed class DispelPowerSystem : EntitySystem
     {
         _actions.AddAction(uid, ref component.DispelPowerAction, ActionDispel);
 
-        var action = _actions.GetActionData(component.DispelPowerAction);
-
-        if (action?.UseDelay != null)
+        if (_actions.TryGetActionData(component.DispelPowerAction, out var action) && action?.UseDelay != null)
             _actions.SetCooldown(component.DispelPowerAction, _gameTiming.CurTime, _gameTiming.CurTime + (TimeSpan)  action?.UseDelay!);
 
         if (TryComp<PsionicComponent>(uid, out var psionic) && psionic.PsionicAbility == null)
@@ -60,7 +58,7 @@ public sealed class DispelPowerSystem : EntitySystem
 
     private void OnShutdown(EntityUid uid, DispelPowerComponent component, ComponentShutdown args)
     {
-        _actions.RemoveAction(uid, ActionDispel);
+        _actions.RemoveAction(uid, component.DispelPowerAction);
     }
 
     private void OnPowerUsed(DispelPowerActionEvent args)

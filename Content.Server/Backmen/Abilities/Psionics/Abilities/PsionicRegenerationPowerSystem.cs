@@ -51,9 +51,7 @@ public sealed class PsionicRegenerationPowerSystem : EntitySystem
     {
         _actions.AddAction(uid, ref component.PsionicRegenerationPowerAction, ActionPsionicRegeneration);
 
-        var action = _actions.GetActionData(component.PsionicRegenerationPowerAction);
-
-        if (action?.UseDelay != null)
+        if (_actions.TryGetActionData(component.PsionicRegenerationPowerAction, out var action) && action?.UseDelay != null)
             _actions.SetCooldown(component.PsionicRegenerationPowerAction, _gameTiming.CurTime,
                 _gameTiming.CurTime + (TimeSpan)  action?.UseDelay!);
 
@@ -84,7 +82,7 @@ public sealed class PsionicRegenerationPowerSystem : EntitySystem
 
     private void OnShutdown(EntityUid uid, PsionicRegenerationPowerComponent component, ComponentShutdown args)
     {
-        _actions.RemoveAction(uid, ActionPsionicRegeneration);
+        _actions.RemoveAction(uid, component.PsionicRegenerationPowerAction);
     }
 
     private void OnDispelled(EntityUid uid, PsionicRegenerationPowerComponent component, DispelledEvent args)

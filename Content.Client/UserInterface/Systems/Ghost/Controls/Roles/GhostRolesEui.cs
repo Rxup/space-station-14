@@ -1,8 +1,11 @@
 using System.Linq;
 using Content.Client.Eui;
+using Content.Client.Players.PlayTimeTracking;
 using Content.Shared.Eui;
 using Content.Shared.Ghost.Roles;
 using JetBrains.Annotations;
+using Robust.Client.GameObjects;
+using Robust.Shared.Utility;
 
 namespace Content.Client.UserInterface.Systems.Ghost.Controls.Roles
 {
@@ -64,36 +67,43 @@ namespace Content.Client.UserInterface.Systems.Ghost.Controls.Roles
             if (state is not GhostRolesEuiState ghostState) return;
             _window.ClearEntries();
 
+            var entityManager = IoCManager.Resolve<IEntityManager>();
+            var sysManager = entityManager.EntitySysManager;
+            var spriteSystem = sysManager.GetEntitySystem<SpriteSystem>();
+            var requirementsManager = IoCManager.Resolve<JobRequirementsManager>();
+
             var groupedRoles = ghostState.GhostRoles.GroupBy(
-                role => (role.Name, role.Description, role.WhitelistRequired)); //backmen: whitelist
+                role => (role.Name, role.Description, role.Requirements, role.WhitelistRequired)); //backmen: whitelist
 
             //start-backmen: whitelist
             var cfg = IoCManager.Resolve<Robust.Shared.Configuration.IConfigurationManager>();
-            var playTime =  IoCManager.Resolve<Players.PlayTimeTracking.JobRequirementsManager>();
-            var denied = 0;
             //end-backmen: whitelist
 
             foreach (var group in groupedRoles)
             {
+                var name = group.Key.Name;
+                var description = group.Key.Description;
+                bool hasAccess = true;
+                FormattedMessage? reason;
+
                 //start-backmen: whitelist
                 if (
                     group.Key.WhitelistRequired &&
                     cfg.GetCVar(Shared.Backmen.CCVar.CCVars.WhitelistRolesEnabled) &&
-                    !playTime.IsWhitelisted()
+                    !requirementsManager.IsWhitelisted()
                     )
                 {
-                    denied = denied + 1;
-                    continue;
-                }
+                    hasAccess = false;
+                    reason = FormattedMessage.FromMarkup(Loc.GetString("playtime-deny-reason-not-whitelisted"));
+                } else
                 //end-backmen: whitelist
+                if (!requirementsManager.CheckRoleTime(group.Key.Requirements, out reason))
+                {
+                    hasAccess = false;
+                }
 
-                var name = group.Key.Name;
-                var description = group.Key.Description;
-
-                _window.AddEntry(name, description, group);
+                _window.AddEntry(name, description, hasAccess, reason, group, spriteSystem);
             }
-
-            _window.AddDenied(denied); // backmen: whitelist
 
             var closeRulesWindow = ghostState.GhostRoles.All(role => role.Identifier != _windowRulesId);
             if (closeRulesWindow)

@@ -3,6 +3,7 @@ using Content.Server.Backmen.Abilities.Psionics;
 using Content.Server.Backmen.Psionics;
 using Content.Server.Backmen.StationEvents.Components;
 using Content.Server.GameTicking.Rules.Components;
+using Content.Server.NPC.HTN;
 using Content.Server.Station.Components;
 using Content.Server.StationEvents.Events;
 using Content.Shared.Backmen.Abilities.Psionics;
@@ -30,8 +31,8 @@ internal sealed class MassMindSwapRule : StationEventSystem<MassMindSwapRuleComp
 
         var stationEvents = StationSystem.GetStations().Where(HasComp<StationEventEligibleComponent>).ToArray();
 
-        var query = EntityQueryEnumerator<PotentialPsionicComponent, MobStateComponent>();
-        while (query.MoveNext(out var psion, out _, out _))
+        var query = EntityQueryEnumerator<PotentialPsionicComponent, ActorComponent, MobStateComponent>();
+        while (query.MoveNext(out var psion, out _, out _,out _))
         {
             if (!_mobStateSystem.IsAlive(psion))
                 continue;
@@ -63,10 +64,6 @@ internal sealed class MassMindSwapRule : StationEventSystem<MassMindSwapRuleComp
             var q2 = new Queue<EntityUid>(psionicPool.ToList());
             while (q2.TryDequeue(out var other))
             {
-                if (!HasComp<ActorComponent>(other)) // не менять места с ссд
-                {
-                    continue;
-                }
                 if (!_mindSwap.Swap(actor, other))
                 {
                     continue;

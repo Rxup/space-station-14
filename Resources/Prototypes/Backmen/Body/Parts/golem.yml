@@ -1,0 +1,140 @@
+- type: entity
+  id: PartGolem
+  parent: BaseItem
+  name: "golem body part"
+  abstract: true
+  components:
+  - type: Damageable
+    damageContainer: Inorganic
+  - type: BodyPart
+  - type: ContainerContainer
+    containers:
+      bodypart: !type:Container
+        ents: []
+  - type: StaticPrice
+    price: 100
+
+- type: entity
+  id: TorsoGolemCult
+  name: "golem torso"
+  parent: PartGolem
+  components:
+  - type: Sprite
+    sprite: Backmen/Mobs/Species/Golem/cult.rsi
+    state: "cultgolem_chest"
+  - type: Icon
+    sprite: Backmen/Mobs/Species/Golem/cult.rsi
+    state: "cultgolem_chest"
+  - type: BodyPart
+    partType: Torso
+
+- type: entity
+  id: HeadGolemCult
+  name: "golem head"
+  parent: PartGolem
+  components:
+  - type: Sprite
+    sprite: Backmen/Mobs/Species/Golem/cult.rsi
+    state: "cultgolem_head"
+  - type: Icon
+    sprite: Backmen/Mobs/Species/Golem/cult.rsi
+    state: "cultgolem_head"
+  - type: BodyPart
+    partType: Head
+    vital: true
+  - type: Input
+    context: "ghost"
+  - type: Tag
+    tags:
+      - Head
+
+
+- type: entity
+  id: LeftArmGolemCult
+  name: "left golem arm"
+  parent: PartGolem
+  components:
+  - type: Sprite
+    sprite: Backmen/Mobs/Species/Golem/cult.rsi
+    state: "cultgolem_l_arm"
+  - type: Icon
+    sprite: Backmen/Mobs/Species/Golem/cult.rsi
+    state: "cultgolem_l_arm"
+  - type: BodyPart
+    partType: Arm
+    symmetry: Left
+
+- type: entity
+  id: RightArmGolemCult
+  name: "right golem arm"
+  parent: PartGolem
+  components:
+  - type: Sprite
+    sprite: Backmen/Mobs/Species/Golem/cult.rsi
+    state: "cultgolem_r_arm"
+  - type: Icon
+    sprite: Backmen/Mobs/Species/Golem/cult.rsi
+    state: "cultgolem_r_arm"
+  - type: BodyPart
+    partType: Arm
+    symmetry: Right
+
+- type: entity
+  id: LeftHandGolemCult
+  name: "left golem hand"
+  parent: PartGolem
+  components:
+  - type: Sprite
+    sprite: Backmen/Mobs/Species/Golem/cult.rsi
+    state: "cultgolem_l_hand"
+  - type: Icon
+    sprite: Backmen/Mobs/Species/Golem/cult.rsi
+    state: "cultgolem_l_hand"
+  - type: BodyPart
+    partType: Hand
+    symmetry: Left
+
+- type: entity
+  id: RightHandGolemCult
+  name: "right golem hand"
+  parent: PartGolem
+  components:
+  - type: Sprite
+    sprite: Backmen/Mobs/Species/Golem/cult.rsi
+    state: "cultgolem_r_hand"
+  - type: Icon
+    sprite: Backmen/Mobs/Species/Golem/cult.rsi
+    state: "cultgolem_r_hand"
+  - type: BodyPart
+    partType: Hand
+    symmetry: Right
+
+- type: entity
+  id: LeftLegGolemCult
+  name: "left golem leg"
+  parent: PartGolem
+  components:
+  - type: Sprite
+    sprite: Backmen/Mobs/Species/Golem/cult.rsi
+    state: "cultgolem_l_leg"
+  - type: Icon
+    sprite: Backmen/Mobs/Species/Golem/cult.rsi
+    state: "cultgolem_l_leg"
+  - type: BodyPart
+    partType: Leg
+    symmetry: Left
+
+- type: entity
+  id: RightLegGolemCult
+  name: "right golem leg"
+  parent: PartGolem
+  components:
+  - type: Sprite
+    sprite: Backmen/Mobs/Species/Golem/cult.rsi
+    state: "cultgolem_r_leg"
+  - type: Icon
+    sprite: Backmen/Mobs/Species/Golem/cult.rsi
+    state: "cultgolem_r_leg"
+  - type: BodyPart
+    partType: Leg
+    symmetry: Right

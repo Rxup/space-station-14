@@ -84,7 +84,7 @@
 
 - type: entity
   id: MassMindSwap
-  parent: BaseGameRule
+  parent: BaseGlimmerEvent
   noSpawn: true
   components:
     - type: GlimmerEvent
@@ -93,4 +93,62 @@
       glimmerBurnUpper: 110
     - type: MassMindSwapRule
 
+- type: entity
+  id: GlimmerWispSpawn
+  parent: BaseGlimmerEvent
+  noSpawn: true
+  components:
+    - type: GlimmerEvent
+      minimumGlimmer: 300
+      maximumGlimmer: 1000
+      report: glimmer-event-report-signatures
+    - type: GlimmerWispRule
 
+- type: entity
+  id: FreeProber
+  parent: BaseGlimmerEvent
+  noSpawn: true
+  components:
+    - type: GlimmerEvent
+      minimumGlimmer: 300
+      maximumGlimmer: 1000
+      report: glimmer-event-report-signatures
+    - type: FreeProberRule
+
+## converted upstream events
+- type: entity
+  id: GlimmerRandomSentience
+  parent: BaseGlimmerEvent
+  noSpawn: true
+  components:
+    - type: GlimmerEvent
+      minimumGlimmer: 300
+      maximumGlimmer: 600
+      report: glimmer-event-report-signatures
+    - type: GlimmerRandomSentienceRule
+
+- type: entity
+  id: GlimmerRevenantSpawn
+  parent: BaseGlimmerEvent
+  noSpawn: true
+  components:
+    - type: GlimmerEvent
+      minimumGlimmer: 500
+      maximumGlimmer: 900
+      report: glimmer-event-report-signatures
+    - type: GlimmerRevenantRule
+
+- type: entity
+  id: SpiderSpiderVampireSpawn
+  parent: BaseGameRule
+  noSpawn: true
+  components:
+    - type: StationEvent
+      earliestStart: 20
+      minimumPlayers: 15
+      weight: 1
+      duration: 60
+    - type: VentCrittersRule
+      entries:
+        - id: MobGiantSpiderVampireAngry
+          prob: 0.05

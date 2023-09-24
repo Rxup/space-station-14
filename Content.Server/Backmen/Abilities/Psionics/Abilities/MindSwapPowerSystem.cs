@@ -13,6 +13,7 @@ using Content.Shared.Backmen.Abilities.Psionics;
 using Content.Shared.Backmen.Psionics.Events;
 using Content.Shared.Mind;
 using Content.Shared.Mind.Components;
+using Content.Shared.NPC;
 using Content.Shared.SSDIndicator;
 using Robust.Server.GameObjects;
 using Robust.Server.Player;
@@ -55,9 +56,7 @@ public sealed class MindSwapPowerSystem : EntitySystem
 
         _actions.AddAction(uid, ref component.MindSwapPowerAction, ActionMindSwap);
 
-        var action = _actions.GetActionData(component.MindSwapPowerAction);
-
-        if (action?.UseDelay != null)
+        if (_actions.TryGetActionData(component.MindSwapPowerAction, out var action) && action?.UseDelay != null)
             _actions.SetCooldown(component.MindSwapPowerAction, _gameTiming.CurTime,
                 _gameTiming.CurTime + (TimeSpan)  action?.UseDelay!);
 
@@ -67,7 +66,7 @@ public sealed class MindSwapPowerSystem : EntitySystem
 
     private void OnShutdown(EntityUid uid, MindSwapPowerComponent component, ComponentShutdown args)
     {
-        _actions.RemoveAction(uid, ActionMindSwap);
+        _actions.RemoveAction(uid, component.MindSwapPowerAction);
     }
 
     private void OnPowerUsed(MindSwapPowerActionEvent args)
@@ -161,9 +160,11 @@ public sealed class MindSwapPowerSystem : EntitySystem
     private void OnSwapInit(EntityUid uid, MindSwappedComponent component, ComponentInit args)
     {
         _actions.AddAction(uid, ref component.MindSwapReturn, ActionMindSwapReturn);
-        var action = _actions.GetActionData(component.MindSwapReturn);
-        _actions.SetCooldown(component.MindSwapReturn, _gameTiming.CurTime,
-            _gameTiming.CurTime + (TimeSpan)  action?.UseDelay!);
+        if (_actions.TryGetActionData(component.MindSwapReturn, out var action))
+        {
+            _actions.SetCooldown(component.MindSwapReturn, _gameTiming.CurTime,
+                _gameTiming.CurTime + (TimeSpan)  action?.UseDelay!);
+        }
     }
 
     public bool Swap(EntityUid performer, EntityUid target, bool end = false)
@@ -189,6 +190,12 @@ public sealed class MindSwapPowerSystem : EntitySystem
                 _popupSystem.PopupCursor("Ошибка! Ваша цель уже в другом теле!", performer);
                 return false; // Повторный свап!? TODO: chain swap, in current mode broken chained in no return (has no mind error)
             }
+
+            if (HasComp<ActiveNPCComponent>(performer) || HasComp<ActiveNPCComponent>(target))
+            {
+                _popupSystem.PopupCursor("Ошибка! Ваша цель в ссд!", performer);
+                return false;
+            }
         }
         // This is here to prevent missing MindContainerComponent Resolve errors.
         var a = _mindSystem.TryGetMind(performer, out var performerMindId, out var performerMind);
@@ -209,11 +216,14 @@ public sealed class MindSwapPowerSystem : EntitySystem
                 isSsd = false;
             }
             _mindSystem.TransferTo(performerMindId, target, true, false);
-            if (TryComp<SSDIndicatorComponent>(target, out var ssd))
+            Timer.Spawn(1_000, () =>
             {
+                if (!target.IsValid() || !TryComp<SSDIndicatorComponent>(target, out var ssd))
+                    return;
                 ssd.IsSSD = isSsd;
                 Dirty(target,ssd);
-            }
+            });
+
         }
 
         if (b)
@@ -228,17 +238,26 @@ public sealed class MindSwapPowerSystem : EntitySystem
                 isSsd = false;
             }
             _mindSystem.TransferTo(targetMindId, performer, true, false);
-            if (TryComp<SSDIndicatorComponent>(performer, out var ssd))
+
+            Timer.Spawn(1_000, () =>
             {
+                if (!performer.IsValid() || !TryComp<SSDIndicatorComponent>(performer, out var ssd))
+                    return;
                 ssd.IsSSD = isSsd;
                 Dirty(performer,ssd);
-            }
+            });
         }
 
         if (end)
         {
-            _actions.RemoveAction(performer, ActionMindSwapReturn);
-            _actions.RemoveAction(target, ActionMindSwapReturn);
+            if (TryComp<MindSwappedComponent>(performer, out var mindSwapCompP))
+            {
+                _actions.RemoveAction(performer,  mindSwapCompP.MindSwapReturn);
+            }
+            if (TryComp<MindSwappedComponent>(target, out var mindSwapCompT))
+            {
+                _actions.RemoveAction(target, mindSwapCompT.MindSwapReturn);
+            }
 
             RemComp<MindSwappedComponent>(performer);
             RemComp<MindSwappedComponent>(target);
@@ -260,7 +279,10 @@ public sealed class MindSwapPowerSystem : EntitySystem
     public void GetTrapped(EntityUid uid)
     {
         _popupSystem.PopupEntity(Loc.GetString("mindswap-trapped"), uid, uid, Shared.Popups.PopupType.LargeCaution);
-        _actions.RemoveAction(uid, ActionMindSwapReturn);
+        if (TryComp<MindSwappedComponent>(uid, out var mindSwappedComp))
+        {
+            _actions.RemoveAction(uid, mindSwappedComp.MindSwapReturn);
+        }
 
         if (HasComp<TelegnosticProjectionComponent>(uid))
         {

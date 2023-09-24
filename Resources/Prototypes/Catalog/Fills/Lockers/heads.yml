@@ -61,6 +61,7 @@
       - id: MedalCase
       - id: AntiPsychicKnife  # backmen
       - id: ClothingHeadCage # backmen
+      - id: ClothingHeadHatCapcap
 
 - type: entity
   id: LockerCaptainFilled
