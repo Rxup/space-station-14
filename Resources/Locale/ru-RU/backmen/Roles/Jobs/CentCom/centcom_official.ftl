@@ -25,4 +25,7 @@ department-CentCom-description = Центральное Командование
 job-supervisors-hoh = Главе Штаба Центрального Командывания
 job-supervisors-centcommembers = Выше стоящим сотрудникам Центарльного Командывания
 
+job-name-centcomadmiral = Адмирал НТ
+job-description-centcomadmiral = Адмирал НТ, у которого не всегда есть время на ЦК, не то что станции.
+
 job-supervisors-human = Старшему персоналу своего отдела

@@ -44,7 +44,7 @@
         /// <summary>
         ///     Telepathic
         /// </summary>
-        CollectiveMind = ChatChannel.CollectiveMind,
+        Telepathic = ChatChannel.Telepathic,
 
         /// <summary>
         ///     Deadchat

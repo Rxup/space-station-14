@@ -16,7 +16,7 @@ public sealed partial class ChannelFilterPopup : Popup
         ChatChannel.Whisper,
         ChatChannel.Emotes,
         ChatChannel.Radio,
-        ChatChannel.CollectiveMind,
+        ChatChannel.Telepathic, // backmen: Psionic
         ChatChannel.LOOC,
         ChatChannel.OOC,
         ChatChannel.Dead,

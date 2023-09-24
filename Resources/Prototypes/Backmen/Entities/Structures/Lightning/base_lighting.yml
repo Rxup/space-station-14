@@ -1,0 +1,87 @@
+- type: entity
+  parent: BaseLightbulb
+  name: blue light tube
+  description: A medium power high energy bulb that reminds you of space. May contain mercury.
+  id: BlueLightTube
+  components:
+  - type: LightBulb
+    bulb: Tube
+    color: "#B4FCF0"
+    lightEnergy: 3
+    lightRadius: 12
+    lightSoftness: 0.5
+    BurningTemperature: 350
+    PowerUse: 75
+  - type: Sprite
+    sprite:  Objects/Power/light_tube.rsi
+    state: normal 
+
+- type: entity
+  parent: PoweredlightExterior
+  id: PoweredLightBlueInterior
+  suffix: Blue Interior
+  description: "A light fixture. Draws power and produces light when equipped with a light tube."
+  components:
+  - type: PoweredLight
+    hasLampOnSpawn: BlueLightTube
+    damage:
+      types:
+        Heat: 0.2
+
+- type: entity
+  parent: BaseLightbulb
+  name: black light tube
+  description: A colorful light tube. These emit "black light".
+  id: ColoredLightTubeBlackLight
+  components:
+  - type: LightBulb
+    bulb: Tube
+    color: "#5D0CED"
+    lightEnergy: 1.1
+    lightRadius: 10
+    lightSoftness: 1
+    PowerUse: 25
+  - type: Sprite
+    sprite:  Objects/Power/light_tube.rsi
+    state: normal
+
+- type: entity
+  id: PoweredLightColoredBlack
+  description: "A light fixture. Draws power and produces light when equipped with a light tube."
+  suffix: Black
+  parent: Poweredlight
+  components:
+  - type: PoweredLight
+    hasLampOnSpawn: ColoredLightTubeBlackLight
+    damage:
+      types:
+        Heat: 0.2
+
+- type: entity
+  parent: BaseLightbulb
+  name: blue light tube
+  description: A colorful light tube. These emit a frosty blue hue.
+  id: ColoredLightTubeFrostyBlue
+  components:
+  - type: LightBulb
+    bulb: Tube
+    color: "#00FFFF"
+    lightEnergy: 0.8
+    lightRadius: 10
+    lightSoftness: 1
+    PowerUse: 25
+  - type: Sprite
+    sprite:  Objects/Power/light_tube.rsi
+    state: normal 
+        
+- type: entity
+  id: PoweredLightColoredFrostyBlue
+  description: "A light fixture. Draws power and produces light when equipped with a light tube."
+  suffix: Frosty
+  parent: Poweredlight
+  components:
+  - type: PoweredLight
+    hasLampOnSpawn: ColoredLightTubeFrostyBlue
+    damage:
+      types:
+        Heat: 0.2

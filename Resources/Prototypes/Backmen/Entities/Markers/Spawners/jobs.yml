@@ -1,4 +1,16 @@
 - type: entity
+  id: SpawnPointBKCCAdmiral
+  parent: SpawnPointBKCCAssistant
+  name: ЦК Адмирал
+  components:
+    - type: SpawnPoint
+      job_id: BKCCAdmiral
+    - type: Sprite
+      layers:
+        - state: green
+        - state: centcom_operator
+
+- type: entity
   id: SpawnPointBKCCOfficial
   parent: SpawnPointBKCCAssistant
   name: ЦК Представитель
@@ -62,7 +74,7 @@
 - type: entity
   id: SpawnPointBKCCSecOfficer
   parent: SpawnPointJobBase
-  name: ЦК Приватный Офицер СБ 
+  name: ЦК Приватный Офицер СБ
   components:
     - type: SpawnPoint
       job_id: BKCCSecOfficer
@@ -70,3 +82,29 @@
       layers:
         - state: green
         - state: security_officer
+
+- type: entity
+  id: SpawnPointDelivery
+  parent: SpawnPointJobBase
+  name: Deliveryman
+  components:
+    - type: SpawnPoint
+      job_id: Deliveryman
+    - type: Sprite
+      sprite: Backmen/Markers/jobs.rsi
+      layers:
+        - state: green
+        - state: Delivery
+
+- type: entity
+  id: SpawnPointPrisoner
+  parent: SpawnPointJobBase
+  name: prisoner
+  components:
+    - type: SpawnPoint
+      job_id: Prisoner
+    - type: Sprite
+      sprite: Backmen/Interface/Misc/job_icons.rsi
+      layers:
+        - state: green
+        - state: prisoner

@@ -79,15 +79,16 @@ namespace Content.Shared.Chat
         /// </summary>
         Unspecified = 1 << 13,
 
+
         /// <summary>
-        ///     Collective mind channel for entities who have comp.
+        ///     Telepathic.
         /// </summary>
-        CollectiveMind = 1 << 14,
+        Telepathic = 1 << 14,
 
         /// <summary>
         ///     Channels considered to be IC.
         /// </summary>
-        IC = Local | Whisper | Radio | Dead | Emotes | Damage | Visual | CollectiveMind,
+        IC = Local | Whisper | Radio | Telepathic | Dead | Emotes | Damage | Visual,
 
         AdminRelated = Admin | AdminAlert | AdminChat,
     }

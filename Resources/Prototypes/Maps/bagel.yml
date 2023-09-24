@@ -48,6 +48,7 @@
             SeniorResearcher: [ 1, 1 ]
             Scientist: [ 4, 4 ]
             ResearchAssistant: [ 4, 4 ]
+            Borg: [ 2, 2 ]
             #security
             HeadOfSecurity: [ 1, 1 ]
             Warden: [ 1, 1 ]
@@ -69,3 +70,5 @@
             Brigmedic: [ 0, 1 ] # backmen-Brigmedic
             BKBPLATech: [0, 3] # backmen-BPLA-Silicons
             BKBPLAMED: [0, 3] # backmen-BPLAMED-Silicons
+            Deliveryman: [ 0, 1 ]
+            Prisoner: [ 2, 3]

@@ -30,6 +30,8 @@ public sealed partial class BlobCarrierComponent : Component
     [ViewVariables(VVAccess.ReadWrite),
      DataField("coreBlobGhostRolePrototype", customTypeSerializer: typeof(PrototypeIdSerializer<EntityPrototype>))]
     public string CoreBlobGhostRolePrototype = "CoreBlobTileGhostRole";
+
+    public EntityUid? TransformToBlob = null;
 }
 
 public sealed partial class TransformToBlobActionEvent : InstantActionEvent

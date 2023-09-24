@@ -33,3 +33,6 @@ roles-antag-flesh-cultist-objective = Stay in the shadows, preparing the demise 
 
 roles-antag-flesh-cultist-leader-name = Flesh Cult Leader
 roles-antag-flesh-cultist-leader-objective = Manifest the cult's goals in reality. Ensure the survival of all cult members.
+
+roles-antag-space-ninja-name = Space Ninja
+roles-antag-space-ninja-objective = Use your stealth to sabotage the station, nom on electrical wires.

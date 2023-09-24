@@ -3,31 +3,24 @@
 using System.Linq;
 using Content.Server.Access.Systems;
 using Content.Server.Backmen.CartridgeLoader.Cartridges;
-using Content.Server.Backmen.Economy.ATM;
 using Content.Server.Backmen.Economy.Eftpos;
 using Content.Server.Backmen.Economy.Wage;
 using Content.Server.Backmen.Mind;
 using Content.Server.GameTicking;
 using Content.Server.GameTicking.Events;
 using Content.Server.Mind;
-using Content.Server.Mind.Components;
-using Content.Server.Objectives;
-using Content.Server.Store.Components;
-using Content.Server.Store.Systems;
+using Content.Server.Roles;
 using Content.Shared.Access.Components;
-using Content.Shared.Backmen.Store;
+using Content.Shared.Backmen.Economy;
 using Content.Shared.CartridgeLoader;
-using Content.Shared.GameTicking;
-using Content.Shared.Interaction;
 using Content.Shared.Inventory;
-using Content.Shared.Popups;
+using Content.Shared.Objectives;
+using Content.Shared.Objectives.Components;
 using Content.Shared.Roles;
-using Content.Shared.Store;
+using Content.Shared.Roles.Jobs;
 using JetBrains.Annotations;
-using Robust.Server.GameObjects;
 using Robust.Shared.Map;
 using Robust.Shared.Prototypes;
-using Robust.Shared.Timing;
 
 namespace Content.Server.Backmen.Economy;
 
@@ -41,6 +34,7 @@ public sealed class EconomySystem : EntitySystem
     [Dependency] private readonly IPrototypeManager _prototype = default!;
     [Dependency] private readonly BankManagerSystem _bankManager = default!;
     [Dependency] private readonly MindSystem _mindSystem = default!;
+    [Dependency] private readonly RoleSystem _roleSystem = default!;
     [Dependency] private readonly MetaDataSystem _metaDataSystem = default!;
 
     public override void Initialize()
@@ -49,12 +43,44 @@ public sealed class EconomySystem : EntitySystem
         SubscribeLocalEvent<PlayerSpawnCompleteEvent>(OnPlayerSpawned, after: new []{ typeof(Corvax.Loadout.LoadoutSystem) });
         SubscribeLocalEvent<RoundStartingEvent>(OnRoundStartingEvent);
         SubscribeLocalEvent<EftposComponent, ComponentInit>(OnFtposInit);
+        SubscribeLocalEvent<MindNoteConditionComponent, ObjectiveGetProgressEvent>(OnGetBankProgress);
+        SubscribeLocalEvent<MindNoteConditionComponent, ObjectiveAfterAssignEvent>(OnAfterBankAssign);
+    }
 
+    private void OnGetBankProgress(EntityUid _, MindNoteConditionComponent component, ref ObjectiveGetProgressEvent args)
+    {
+        args.Progress = 1;
+    }
+
+    private void OnAfterBankAssign(EntityUid uid, MindNoteConditionComponent component, ref ObjectiveAfterAssignEvent args)
+    {
+        if (!TryComp<BankMemoryComponent>(args.MindId, out var bankMemory))
+        {
+            UpdateNote(uid);
+            return;
+        }
+
+        if (!TryComp<BankAccountComponent>(bankMemory.BankAccount, out var bankAccount))
+        {
+            UpdateNote(uid);
+            return;
+        }
+
+        UpdateNote(uid, bankAccount);
+    }
+
+    private void UpdateNote(EntityUid uid, BankAccountComponent? bank = null)
+    {
+        _metaDataSystem.SetEntityName(uid, Loc.GetString("character-info-memories-placeholder-text"));
+        _metaDataSystem.SetEntityDescription(uid, bank != null
+            ? Loc.GetString("memory-account-number", ("value", bank!.AccountNumber)) + "\n" +
+              Loc.GetString("memory-account-pin", ("value", bank!.AccountPin))
+            : "");
+        DirtyEntity(uid);
     }
 
     private void OnFtposInit(EntityUid uid, EftposComponent component, ComponentInit args)
     {
-        uid.EnsureComponentWarn<ServerUserInterfaceComponent>();
         component.InitPresetValues();
     }
 
@@ -68,13 +94,13 @@ public sealed class EconomySystem : EntitySystem
     {
         foreach (var department in _prototype.EnumeratePrototypes<DepartmentPrototype>())
         {
-            var dummy = Spawn("CaptainIDCard",MapCoordinates.Nullspace);
+            var dummy = Spawn("CaptainIDCard");
             _metaDataSystem.SetEntityName(dummy,"Bank: "+department.AccountNumber);
             var bankAccount = _bankManagerSystem.CreateNewBankAccount(dummy, department.AccountNumber, true);
             if (bankAccount == null)
                 continue;
             bankAccount.AccountName = department.ID;
-            bankAccount.Balance = 100000;
+            bankAccount.Balance = 100_000;
         }
     }
 
@@ -82,12 +108,12 @@ public sealed class EconomySystem : EntitySystem
 
     #region PublicApi
     [PublicAPI]
-    public bool TryStoreNewBankAccount(EntityUid player, EntityUid uid, IdCardComponent? id, out BankAccountComponent? bankAccount)
+    public bool TryStoreNewBankAccount(EntityUid player, EntityUid idCardId, IdCardComponent? id, out BankAccountComponent? bankAccount)
     {
         bankAccount = null;
-        if (!Resolve(uid, ref id))
+        if (!Resolve(idCardId, ref id))
             return false;
-        bankAccount = _bankManager.CreateNewBankAccount(uid);
+        bankAccount = _bankManager.CreateNewBankAccount(idCardId);
         if (bankAccount == null)
             return false;
         id.StoredBankAccountNumber = bankAccount.AccountNumber;
@@ -97,37 +123,63 @@ public sealed class EconomySystem : EntitySystem
         {
             bankAccount.AccountName = MetaData(player).EntityName;
         }
-        Dirty(id);
+        Dirty(idCardId, bankAccount);
         return true;
     }
-    [PublicAPI]
-    public BankAccountComponent? AddPlayerBank(EntityUid Player, BankAccountComponent? bankAccount = null, bool AttachWage = true)
+
+    private void AttachPdaBank(EntityUid player, BankAccountComponent bankAccount)
     {
-        if (!_cardSystem.TryFindIdCard(Player, out var idCardComponent))
+        if (!_inventorySystem.TryGetSlotEntity(player, "id", out var idUid))
+            return;
+
+        if (!EntityManager.TryGetComponent(idUid, out CartridgeLoaderComponent? cartrdigeLoaderComponent))
+            return;
+
+        foreach (var uid in cartrdigeLoaderComponent.BackgroundPrograms)
+        {
+            if (!TryComp<BankCartridgeComponent>(uid, out var bankCartrdigeComponent))
+                continue;
+
+            if (bankCartrdigeComponent.LinkedBankAccount == null)
+            {
+                _bankCartridgeSystem.LinkBankAccountToCartridge(uid, bankAccount, bankCartrdigeComponent);
+            }
+            else if(bankCartrdigeComponent.LinkedBankAccount.AccountNumber != bankAccount.AccountNumber)
+            {
+                _bankCartridgeSystem.UnlinkBankAccountFromCartridge(uid, bankCartrdigeComponent.LinkedBankAccount, bankCartrdigeComponent);
+                _bankCartridgeSystem.LinkBankAccountToCartridge(uid, bankAccount, bankCartrdigeComponent);
+            }
+            // else: do nothing
+        }
+    }
+
+    [PublicAPI]
+    public (EntityUid owner,BankAccountComponent account)? AddPlayerBank(EntityUid player, BankAccountComponent? bankAccount = null, bool AttachWage = true)
+    {
+        if (!_cardSystem.TryFindIdCard(player, out var idCardComponent))
             return null;
 
-        if (!TryComp<MindContainerComponent>(Player, out var mindComponent) || mindComponent.Mind == null)
+        if (!_mindSystem.TryGetMind(player, out var mindId, out var mind))
         {
             return null;
         }
 
-        var mind = mindComponent.Mind!;
+        var idCardUid = idCardComponent.Owner;
 
         if (bankAccount == null)
         {
-            if (!TryStoreNewBankAccount(Player,idCardComponent.Owner, idCardComponent, out bankAccount) || bankAccount == null)
+            if (!TryStoreNewBankAccount(player, idCardUid, idCardComponent, out bankAccount) || bankAccount == null)
             {
                 return null;
             }
 
-            if (AttachWage && mindComponent.Mind.CurrentJob == null)
+            if (AttachWage && !_roleSystem.MindHasRole<JobComponent>(mindId))
             {
                 AttachWage = false;
             }
 
-            if (mind.CurrentJob != null)
+            if (TryComp<JobComponent>(mindId, out var jobComponent) && jobComponent.PrototypeId != null && _prototype.TryIndex<JobPrototype>(jobComponent.PrototypeId, out var jobPrototype))
             {
-                var jobPrototype = mind.CurrentJob!.Prototype;
                 _bankManagerSystem.TryGenerateStartingBalance(bankAccount, jobPrototype);
 
                 if (AttachWage)
@@ -137,44 +189,34 @@ public sealed class EconomySystem : EntitySystem
             }
         }
 
-
-        if (!_inventorySystem.TryGetSlotEntity(Player, "id", out var idUid))
-            return bankAccount;
-
-        if (!EntityManager.TryGetComponent(idUid, out CartridgeLoaderComponent? cartrdigeLoaderComponent))
-            return bankAccount;
-
-        foreach (var uid in cartrdigeLoaderComponent.InstalledPrograms)
+        if (_roleSystem.MindHasRole<BankMemoryComponent>(mindId))
         {
-            if (!EntityManager.TryGetComponent(uid, out BankCartridgeComponent? bankCartrdigeComponent))
-                continue;
-
-            if (bankCartrdigeComponent.LinkedBankAccount == null)
-            {
-                _bankCartridgeSystem.LinkBankAccountToCartridge(bankCartrdigeComponent, bankAccount);
-            }
-            else if(bankCartrdigeComponent.LinkedBankAccount.AccountNumber != bankAccount.AccountNumber)
-            {
-                _bankCartridgeSystem.UnlinkBankAccountFromCartridge(bankCartrdigeComponent, bankCartrdigeComponent.LinkedBankAccount);
-                _bankCartridgeSystem.LinkBankAccountToCartridge(bankCartrdigeComponent, bankAccount);
-            }
-            // else: do nothing
+            _roleSystem.MindRemoveRole<BankMemoryComponent>(mindId);
         }
 
-        var objectives = mind.AllObjectives.ToList();
-        foreach (var condition in objectives.Where(t => t.Prototype.ID == "BankNote").SelectMany(t => t.Conditions))
+        _roleSystem.MindAddRole(mindId, new BankMemoryComponent
         {
-            if (condition is not MindNoteCondition md)
-            {
-                continue;
-            }
+            BankAccount = idCardUid,
+            AccountNumber = bankAccount.AccountNumber,
+            AccountPin = bankAccount.AccountPin
+        });
 
-            md.Owner = bankAccount;
+        var needAdd = true;
+        foreach (var condition in mind.AllObjectives.Where(HasComp<MindNoteConditionComponent>))
+        {
+            var md = Comp<MindNoteConditionComponent>(condition);
+            Dirty(condition,md);
+            needAdd = false;
         }
 
-        _mindSystem.TryAddObjective(mind, _prototype.Index<ObjectivePrototype>("BankNote"));
+        if (needAdd)
+        {
+            _mindSystem.TryAddObjective(mindId, mind, BankNoteCondition);
+        }
 
-        return bankAccount;
+        return (idCardUid, bankAccount);
     }
     #endregion
+
+    [ValidatePrototypeId<EntityPrototype>] private const string BankNoteCondition = "BankNote";
 }

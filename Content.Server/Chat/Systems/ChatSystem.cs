@@ -1,12 +1,11 @@
-using System.Collections.Immutable;
 using System.Globalization;
 using System.Linq;
 using System.Text;
 using Content.Server.Administration.Logs;
 using Content.Server.Administration.Managers;
+using Content.Server.Backmen.Chat;
 using Content.Server.Chat.Managers;
 using Content.Server.GameTicking;
-using Content.Server.Ghost.Components;
 using Content.Server.Players;
 using Content.Server.Popups;
 using Content.Server.SS220.Chat.Systems;
@@ -15,8 +14,8 @@ using Content.Server.Station.Systems;
 using Content.Shared.ActionBlocker;
 using Content.Shared.CCVar;
 using Content.Shared.Chat;
-using Content.Shared.CollectiveMind;
 using Content.Shared.Database;
+using Content.Shared.Ghost;
 using Content.Shared.Humanoid;
 using Content.Shared.IdentityManagement;
 using Content.Shared.Interaction;
@@ -58,6 +57,7 @@ public sealed partial class ChatSystem : SharedChatSystem
     [Dependency] private readonly MobStateSystem _mobStateSystem = default!;
     [Dependency] private readonly SharedAudioSystem _audio = default!;
     [Dependency] private readonly SharedInteractionSystem _interactionSystem = default!;
+    [Dependency] private readonly NyanoChatSystem _nyanoChatSystem = default!;
 
     public const int VoiceRange = 10; // how far voice goes in world units
     public const int WhisperClearRange = 2; // how far whisper goes while still being understandable, in world units
@@ -244,8 +244,8 @@ public sealed partial class ChatSystem : SharedChatSystem
             case InGameICChatType.Emote:
                 SendEntityEmote(source, message, range, nameOverride, hideLog: hideLog, ignoreActionBlocker: ignoreActionBlocker);
                 break;
-            case InGameICChatType.CollectiveMind:
-                SendCollectiveMindChat(source, message, false);
+            case InGameICChatType.Telepathic:
+                _nyanoChatSystem.SendTelepathicChat(source, message, range == ChatTransmitRange.HideChat);
                 break;
         }
     }
@@ -365,55 +365,6 @@ public sealed partial class ChatSystem : SharedChatSystem
 
     #region Private API
 
-    public void SendCollectiveMindChat(EntityUid source, string message, bool hideChat)
-    {
-        if (!TryComp<CollectiveMindComponent>(source, out var sourseCollectiveMindComp))
-            return;
-
-        var clients = Filter.Empty();
-        var mindQuery = EntityQueryEnumerator<CollectiveMindComponent, ActorComponent>();
-        while (mindQuery.MoveNext(out var uid, out var collectMindComp, out var actorComp))
-        {
-            if (collectMindComp.Channel == sourseCollectiveMindComp.Channel)
-            {
-                clients.AddPlayer(actorComp.PlayerSession);
-            }
-        }
-
-        var admins = _adminManager.ActiveAdmins
-            .Select(p => p.ConnectedClient);
-        string messageWrap;
-        string adminMessageWrap;
-
-        messageWrap = Loc.GetString("chat-manager-send-collective-mind-chat-wrap-message",
-            ("message", message),
-            ("channel", sourseCollectiveMindComp.Channel));
-
-        adminMessageWrap = Loc.GetString("chat-manager-send-collective-mind-chat-wrap-message-admin",
-            ("source", source),
-            ("message", message),
-            ("channel", sourseCollectiveMindComp.Channel));
-
-        _adminLogger.Add(LogType.Chat, LogImpact.Low, $"CollectiveMind chat from {ToPrettyString(source):Player}: {message}");
-
-        _chatManager.ChatMessageToManyFiltered(clients,
-            ChatChannel.CollectiveMind,
-            message,
-            messageWrap,
-            source,
-            hideChat,
-            true,
-            sourseCollectiveMindComp.ChannelColor);
-
-        _chatManager.ChatMessageToMany(ChatChannel.CollectiveMind,
-            message,
-            adminMessageWrap,
-            source,
-            hideChat,
-            true,
-            admins,
-            sourseCollectiveMindComp.ChannelColor);
-    }
     private void SendEntitySpeak(
         EntityUid source,
         string originalMessage,
@@ -555,7 +506,7 @@ public sealed partial class ChatSystem : SharedChatSystem
                 _chatManager.ChatMessageToOne(ChatChannel.Whisper, obfuscatedMessage, wrappedUnknownMessage, source, false, session.ConnectedClient);
         }
 
-        _replay.RecordServerMessage(new ChatMessage(ChatChannel.Whisper, message, wrappedMessage, source, MessageRangeHideChatForReplay(range)));
+        _replay.RecordServerMessage(new ChatMessage(ChatChannel.Whisper, message, wrappedMessage, GetNetEntity(source), MessageRangeHideChatForReplay(range)));
 
         var ev = new EntitySpokeEvent(source, message, originalMessage, channel, obfuscatedMessage);
         RaiseLocalEvent(source, ev, true);
@@ -656,7 +607,7 @@ public sealed partial class ChatSystem : SharedChatSystem
             _adminLogger.Add(LogType.Chat, LogImpact.Low, $"Dead chat from {player:Player}: {message}");
         }
 
-        _chatManager.ChatMessageToMany(ChatChannel.Dead, message, wrappedMessage, source, hideChat, false, clients.ToList());
+        _chatManager.ChatMessageToMany(ChatChannel.Dead, message, wrappedMessage, source, hideChat, true, clients.ToList());
 
     }
     #endregion
@@ -722,7 +673,7 @@ public sealed partial class ChatSystem : SharedChatSystem
             _chatManager.ChatMessageToOne(channel, message, wrappedMessage, source, entHideChat, session.ConnectedClient);
         }
 
-        _replay.RecordServerMessage(new ChatMessage(channel, message, wrappedMessage, source, MessageRangeHideChatForReplay(range)));
+        _replay.RecordServerMessage(new ChatMessage(channel, message, wrappedMessage, GetNetEntity(source), MessageRangeHideChatForReplay(range)));
     }
 
     /// <summary>
@@ -849,7 +800,7 @@ public sealed partial class ChatSystem : SharedChatSystem
     {
     }
 
-    private string ObfuscateMessageReadability(string message, float chance)
+    public string ObfuscateMessageReadability(string message, float chance)
     {
         var modifiedMessage = new StringBuilder(message);
 
@@ -942,7 +893,7 @@ public enum InGameICChatType : byte
     Speak,
     Emote,
     Whisper,
-    CollectiveMind
+    Telepathic
 }
 
 /// <summary>

@@ -31,7 +31,7 @@
         acts: ["Destruction"]
   - type: WiresPanel
   - type: Wires
-    BoardName: "Autolathe"
+    BoardName: wires-board-name-autolathe
     LayoutId: Autolathe
   - type: ActivatableUI
     key: enum.LatheUiKey.Key
@@ -97,6 +97,8 @@
       - TRayScanner
       - GasAnalyzer
       - UtilityBelt
+      - Fulton
+      - FultonBeacon
       - Pickaxe
       - ModularReceiver
       - AppraisalTool
@@ -130,6 +132,7 @@
       - CellRechargerCircuitboard
       - BorgChargerCircuitboard
       - WeaponCapacitorRechargerCircuitboard
+      - AntiPsychicKnifeRecipe
   - type: EmagLatheRecipes
     emagStaticRecipes:
        - CartridgePistol
@@ -185,7 +188,7 @@
   - type: Machine
     board: ProtolatheMachineCircuitboard
   - type: Wires
-    BoardName: "Protolathe"
+    BoardName: wires-board-name-protolathe
     LayoutId: Protolathe
   - type: MaterialStorage
     whitelist:
@@ -262,6 +265,10 @@
       - WelderExperimental
       - JawsOfLife
       - ClothingEyesGlassesChemical
+      - CoreSilver
+      #- QSI
+      - InsulativeHeadcage
+      - HandTeleporter1
   - type: EmagLatheRecipes
     emagDynamicRecipes:
       - ExplosivePayload
@@ -279,6 +286,7 @@
   components:
   - type: Sprite
     sprite: Structures/Machines/circuit_imprinter.rsi
+    snapCardinals: true
     layers:
     - state: icon
       map: ["enum.LatheVisualLayers.IsRunning"]
@@ -340,8 +348,9 @@
       - HonkerTargetingElectronics
       - HamtrCentralElectronics
       - HamtrPeripheralsElectronics
-      - GeneratorPlasmaMachineCircuitboard
-      - GeneratorUraniumMachineCircuitboard
+      - PortableGeneratorPacmanMachineCircuitboard
+      - PortableGeneratorSuperPacmanMachineCircuitboard
+      - PortableGeneratorJrPacmanMachineCircuitboard
       - WallmountGeneratorElectronics
       - WallmountGeneratorAPUElectronics
       - WallmountSubstationElectronics
@@ -361,6 +370,7 @@
       - SodaDispenserMachineCircuitboard
       - TelecomServerCircuitboard
       - MassMediaCircuitboard
+      - ShipyardCircuitboard #backmen
   - type: MaterialStorage
     whitelist:
       tags:
@@ -515,17 +525,19 @@
       - ForensicPad
       - ClothingEyesGlassesSecurity
       - RiotShield
-      - CartridgePistol
-      - CartridgeMagnum
       - ShellShotgun
       - ShellShotgunFlare
       - ShellTranquilizer
-      - CartridgeLightRifle
-      - CartridgeRifle
+      - MagazinePistol
+      - MagazinePistolSubMachineGun
+      - MagazinePistolSubMachineGunTopMounted
+      - MagazineRifle
+      - MagazineLightRifle
       - MagazineBoxPistol
       - MagazineBoxMagnum
       - MagazineBoxRifle
       - MagazineBoxLightRifle
+      - SpeedLoaderMagnum
       - TargetHuman
       - TargetSyndicate
       - TargetClown
@@ -553,6 +565,8 @@
       - VoiceTrigger
       - TimerTrigger
       - Truncheon
+      - TelescopicShield
+      - HoloprojectorSecurity
       - FlashPayload
       - ExplosivePayload
       - WeaponLaserCarbine
@@ -560,6 +574,9 @@
       - WeaponLaserCannon
       - WeaponXrayCannon
       - WeaponTaser
+      - InsulativeHeadcage
+      - ClothingHeadHelmetInsulated
+      - ShellSoulbreaker
   - type: MaterialStorage
     whitelist:
       tags:
@@ -666,6 +683,7 @@
       - Saw
       - Hemostat
       - BluespaceBeaker
+#      - BluespaceBeaker1
       - SyringeBluespace
   - type: Machine
     board: MedicalTechFabCircuitboard
@@ -702,6 +720,8 @@
       - ClothingUniformJumpsuitSalvageSpecialist
       - ClothingUniformJumpsuitChiefEngineer
       - ClothingUniformJumpskirtChiefEngineer
+      - ClothingUniformJumpsuitChiefEngineerTurtle
+      - ClothingUniformJumpskirtChiefEngineerTurtle
       - ClothingUniformJumpsuitChaplain
       - ClothingUniformJumpskirtChaplain
       - ClothingUniformJumpsuitChef
@@ -824,16 +844,17 @@
       runningState: building
       canEjectStoredMaterials: false
       staticRecipes:
+        - BluespaceCrystal # backmen
         - SheetSteel30
         - SheetGlass30
         - SheetRGlass30
         - SheetPlasma30
         - SheetPGlass30
         - SheetRPGlass30
-        - SheetUranium1
-        - IngotGold1
-        - IngotSilver1
-        - MaterialBananium1
+        - SheetUranium30
+        - IngotGold30
+        - IngotSilver30
+        - MaterialBananium10
 
 - type: entity
   parent: BaseLathe

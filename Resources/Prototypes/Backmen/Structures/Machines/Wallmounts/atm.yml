@@ -72,7 +72,10 @@
         - state: "off"
           map: ["enum.ATMVisualLayers.BaseUnshaded"]
           shader: unshaded
-    - type: ATM
+    - type: Construction
+      graph: ATM
+      node: ATM
+    - type: Atm
       offState: off
       normalState: normal-unshaded
       currencyWhitelist:

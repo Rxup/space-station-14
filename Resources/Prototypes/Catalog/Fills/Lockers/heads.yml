@@ -5,6 +5,8 @@
   components:
   - type: StorageFill
     contents:
+      - id: Eftpos # backmen
+        amount: 3 # backmen
       - id: ClothingNeckCloakQm
       - id: ClothingHeadsetCargo
       - id: ClothingUniformJumpsuitQMTurtleneck
@@ -21,6 +23,8 @@
       - id: RubberStampQm
       - id: ClothingHeadsetAltCargo
       - id: BoxEncryptionKeyCargo
+      - id: AntiPsychicKnife # backmen
+      - id: ClothingHeadCage # backmen
 
 - type: entity
   id: LockerCaptainFilledHardsuit
@@ -55,6 +59,9 @@
       - id: WeaponAntiqueLaser
       - id: JetpackCaptainFilled
       - id: MedalCase
+      - id: AntiPsychicKnife  # backmen
+      - id: ClothingHeadCage # backmen
+      - id: ClothingHeadHatCapcap
 
 - type: entity
   id: LockerCaptainFilled
@@ -63,6 +70,8 @@
   components:
   - type: StorageFill
     contents:
+      - id: Eftpos # backmen
+        amount: 3 # backmen
       - id: ClothingOuterArmorCaptainCarapace
       - id: NukeDisk
       - id: PinpointerNuclear
@@ -92,6 +101,8 @@
       - id: ClothingHeadCaptainHat
       - id: ClothingOuterCoatCaptain
       # Corvax-Resprite-End
+      - id: AntiPsychicKnife  # backmen
+      - id: ClothingHeadCage # backmen
 
 - type: entity
   id: LockerHeadOfPersonnelFilled
@@ -100,6 +111,8 @@
   components:
   - type: StorageFill
     contents:
+      - id: Eftpos # backmen
+        amount: 5 # backmen
       - id: ClothingNeckCloakHop
       - id: ClothingHeadHatHopcap
       - id: HoPIDCard
@@ -123,6 +136,8 @@
         prob: 0.5
       - id: ClothingOuterCoatHOP # Corvax-Resprite
       - id: AccessConfigurator
+      - id: AntiPsychicKnife  # backmen
+      - id: ClothingHeadCage # backmen
 
 - type: entity
   id: LockerChiefEngineerFilledHardsuit
@@ -133,6 +148,8 @@
     contents:
       - id: ClothingOuterHardsuitEngineeringWhite
       - id: ClothingMaskBreath
+      - id: ClothingUniformJumpsuitChiefEngineerTurtle
+      - id: ClothingUniformJumpskirtChiefEngineerTurtle
       - id: OxygenTankFilled
       - id: NitrogenTankFilled
       - id: ClothingNeckCloakCe
@@ -149,6 +166,8 @@
       - id: ClothingHeadsetAltEngineering
       - id: BoxEncryptionKeyEngineering
       - id: AccessConfigurator
+      - id: AntiPsychicKnife  # backmen
+      - id: ClothingHeadCage # backmen
 
 - type: entity
   id: LockerChiefEngineerFilled
@@ -157,11 +176,15 @@
   components:
   - type: StorageFill
     contents:
+      - id: Eftpos # backmen
+        amount: 3 # backmen
       - id: ClothingNeckCloakCe
       - id: ClothingEyesGlassesMeson
       - id: ClothingBeltChiefEngineerFilled
       - id: ClothingHeadHatBeretEngineering
       - id: ClothingHandsGlovesColorYellow
+      - id: ClothingUniformJumpsuitChiefEngineerTurtle
+      - id: ClothingUniformJumpskirtChiefEngineerTurtle
       - id: CigarCase
         prob: 0.15
       - id: DoorRemoteEngineering
@@ -169,6 +192,8 @@
       - id: ClothingHeadsetAltEngineering
       - id: BoxEncryptionKeyEngineering
       - id: AccessConfigurator
+      - id: AntiPsychicKnife  # backmen
+      - id: ClothingHeadCage # backmen
 
 - type: entity
   id: LockerChiefMedicalOfficerFilledHardsuit
@@ -193,6 +218,8 @@
       - id: RubberStampCMO
       - id: MedicalTechFabCircuitboard
       - id: BoxEncryptionKeyMedical
+      - id: AntiPsychicKnife # backmen
+      - id: ClothingHeadCage # backmen
 
 - type: entity
   id: LockerChiefMedicalOfficerFilled
@@ -201,6 +228,8 @@
   components:
   - type: StorageFill
     contents:
+      - id: Eftpos # backmen
+        amount: 3 # backmen
       - id: MedkitFilled
       - id: ClothingHandsGlovesNitrile
       #- name: ClothingEyesHudMedical #Removed until working properly
@@ -216,6 +245,8 @@
       - id: RubberStampCMO
       - id: MedicalTechFabCircuitboard
       - id: BoxEncryptionKeyMedical
+      - id: AntiPsychicKnife # backmen
+      - id: ClothingHeadCage # backmen
 
 - type: entity
   id: LockerResearchDirectorFilledHardsuit
@@ -238,6 +269,8 @@
       - id: RubberStampRd
       - id: ClothingHeadsetAltScience
       - id: BoxEncryptionKeyScience
+      - id: AntiPsychicKnife # backmen
+      - id: ClothingHeadCage # backmen
 
 - type: entity
   id: LockerResearchDirectorFilled
@@ -246,6 +279,8 @@
   components:
   - type: StorageFill
     contents:
+      - id: Eftpos # backmen
+        amount: 3 # backmen
       - id: ResearchComputerCircuitboard
       - id: ProtolatheMachineCircuitboard
       - id: CircuitImprinterMachineCircuitboard
@@ -259,6 +294,8 @@
       - id: RubberStampRd
       - id: ClothingHeadsetAltScience
       - id: BoxEncryptionKeyScience
+      - id: AntiPsychicKnife # backmen
+      - id: ClothingHeadCage # backmen
 
 - type: entity
   id: LockerHeadOfSecurityFilledHardsuit
@@ -299,6 +336,9 @@
       - id: BoxEncryptionKeySecurity
       - id: HoloprojectorSecurity
       - id: BookSecretDocuments
+      - id: BookBusido # Corvax-Books
+      - id: AntiPsychicKnife # backmen
+      - id: ClothingHeadCage # backmen
 
 - type: entity
   id: LockerHeadOfSecurityFilled
@@ -344,3 +384,5 @@
       - id: BoxEncryptionKeySecurity
       - id: HoloprojectorSecurity
       - id: BookSecretDocuments
+      - id: AntiPsychicKnife # backmen
+      - id: ClothingHeadCage # backmen

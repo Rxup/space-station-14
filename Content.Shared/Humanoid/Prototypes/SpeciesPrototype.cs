@@ -131,5 +131,6 @@ public enum SpeciesNaming : byte
 {
     FirstLast,
     FirstDashFirst,
+    XnoY, //backmen: oni
     TheFirstofLast,
 }

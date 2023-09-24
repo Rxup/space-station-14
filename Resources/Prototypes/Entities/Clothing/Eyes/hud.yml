@@ -15,6 +15,12 @@
   name: medical hud
   description: A heads-up display that scans the humanoids in view and provides accurate data about their health status.
   components:
+  - type: ClothingGrant
+    component:
+    - type: ShowHealthBars
+      damageContainers:
+        - Biological
+        - HalfSpirit
   - type: Sprite
     sprite: Clothing/Eyes/Hud/med.rsi
   - type: Clothing
@@ -42,6 +48,7 @@
     sprite: Clothing/Eyes/Hud/beergoggles.rsi
   - type: Clothing
     sprite: Clothing/Eyes/Hud/beergoggles.rsi
+  - type: ShowThirstIcons
 
 - type: entity
   parent: ClothingEyesBase
@@ -53,6 +60,19 @@
     sprite: Clothing/Eyes/Hud/friedonion.rsi
   - type: Clothing
     sprite: Clothing/Eyes/Hud/friedonion.rsi
+  - type: ShowHungerIcons
+  - type: Food
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 3
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 3
+  - type: FlavorProfile
+    flavors:
+      - onion
+      - greasey
 
 - type: entity
   parent: ClothingEyesBase
@@ -64,6 +84,8 @@
     sprite: Clothing/Eyes/Hud/onionbeer.rsi
   - type: Clothing
     sprite: Clothing/Eyes/Hud/onionbeer.rsi
+  - type: ShowHungerIcons
+  - type: ShowThirstIcons
 
 - type: entity
   parent: ClothingEyesBase
@@ -75,6 +97,7 @@
     sprite: Clothing/Eyes/Hud/medonion.rsi
   - type: Clothing
     sprite: Clothing/Eyes/Hud/medonion.rsi
+  - type: ShowHungerIcons
 
 - type: entity
   parent: ClothingEyesBase
@@ -86,6 +109,8 @@
     sprite: Clothing/Eyes/Hud/medonionbeer.rsi
   - type: Clothing
     sprite: Clothing/Eyes/Hud/medonionbeer.rsi
+  - type: ShowHungerIcons
+  - type: ShowThirstIcons
 
 - type: entity
   parent: ClothingEyesBase
@@ -122,3 +147,5 @@
   - type: Clothing
     sprite: Clothing/Eyes/Hud/omni.rsi
   - type: ShowSecurityIcons
+  - type: ShowHungerIcons
+  - type: ShowThirstIcons

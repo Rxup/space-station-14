@@ -80,3 +80,27 @@
         conditions:
         - !type:ReagentThreshold
           min: 5
+
+- type: reaction
+  id: SyntheticBlood
+  reactants:
+    InactiveBlood:
+      amount: 1
+    Oxygen:
+      amount: 1
+  products:
+    SyntheticBlood: 1
+
+- type: reaction
+  id: InactiveBlood
+  reactants:
+    Hydrogen:
+      amount: 1
+    Carbon:
+      amount: 1
+    Iron:
+      amount: 1
+    Plasma:
+      amount: 0.1
+  products:
+    InactiveBlood: 2.5

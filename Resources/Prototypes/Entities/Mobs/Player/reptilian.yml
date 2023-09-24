@@ -1,7 +1,8 @@
 - type: entity
   save: false
   name: Urisst' Mzhand
-  parent: [BaseMobReptilian, BaseMob]
+  parent: BaseMobReptilian
   id: MobReptilian
-
+  components:
+    - type: PotentialPsionic
 #Weh

@@ -26,3 +26,39 @@
   - !type:BuyerJobCondition
     whitelist:
     - Clown
+
+- type: listing
+  id: UplinkBibleMystagogue
+  name: uplink-biblemystagogue-name
+  description: uplink-biblemystagogue-desc
+  productEntity: BibleMystagogue
+  cost:
+    Telecrystal: 2
+  categories:
+    - UplinkJob
+  conditions:
+    - !type:BuyerJobCondition
+      whitelist:
+        - Chaplain
+    - !type:BuyerWhitelistCondition
+      blacklist:
+        components:
+          - SurplusBundle
+
+- type: listing
+  id: InjectorBloodsuckerNocturine
+  name: uplink-nocturine-gland-injector-name
+  description: uplink-nocturine-gland-injector-desc
+  productEntity: InjectorBloodsuckerNocturine
+  cost:
+    Telecrystal: 8
+  categories:
+    - UplinkMisc
+  conditions:
+    - !type:BuyerSpeciesCondition
+      whitelist:
+        - ArachneClassic
+    - !type:BuyerWhitelistCondition
+      blacklist:
+        components:
+          - SurplusBundle

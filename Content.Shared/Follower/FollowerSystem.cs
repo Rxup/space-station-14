@@ -1,3 +1,4 @@
+using System.Linq;
 using System.Numerics;
 using Content.Shared.Database;
 using Content.Shared.Follower.Components;
@@ -8,12 +9,14 @@ using Content.Shared.Physics.Pull;
 using Content.Shared.Tag;
 using Content.Shared.Verbs;
 using Robust.Shared.Containers;
+using Robust.Shared.GameStates;
 using Robust.Shared.Map;
 using Robust.Shared.Map.Events;
 using Robust.Shared.Network;
 using Robust.Shared.Utility;
 using Robust.Shared.Physics;
 using Robust.Shared.Physics.Systems;
+using Robust.Shared.Serialization;
 
 namespace Content.Shared.Follower;
 
@@ -35,7 +38,28 @@ public sealed class FollowerSystem : EntitySystem
         SubscribeLocalEvent<FollowerComponent, PullStartedMessage>(OnPullStarted);
         SubscribeLocalEvent<FollowerComponent, GotEquippedHandEvent>(OnGotEquippedHand);
         SubscribeLocalEvent<FollowedComponent, EntityTerminatingEvent>(OnFollowedTerminating);
+        SubscribeLocalEvent<FollowerComponent, EntityTerminatingEvent>(OnFollowerTerminating);
         SubscribeLocalEvent<BeforeSaveEvent>(OnBeforeSave);
+
+        SubscribeLocalEvent<FollowedComponent, ComponentGetState>(OnFollowedGetState);
+        SubscribeLocalEvent<FollowedComponent, ComponentHandleState>(OnFollowedHandleState);
+    }
+
+    private void OnFollowedGetState(EntityUid uid, FollowedComponent component, ref ComponentGetState args)
+    {
+        component.Following.RemoveWhere(x => TerminatingOrDeleted(x));
+        args.State = new FollowedComponentState()
+        {
+            Following = GetNetEntitySet(component.Following),
+        };
+    }
+
+    private void OnFollowedHandleState(EntityUid uid, FollowedComponent component, ref ComponentHandleState args)
+    {
+        if (args.Current is not FollowedComponentState state)
+            return;
+
+        component.Following = EnsureEntitySet<FollowedComponent>(state.Following, uid);
     }
 
     private void OnBeforeSave(BeforeSaveEvent ev)
@@ -58,10 +82,10 @@ public sealed class FollowerSystem : EntitySystem
 
     private void OnGetAlternativeVerbs(GetVerbsEvent<AlternativeVerb> ev)
     {
-        if (ev.User == ev.Target || ev.Target.IsClientSide())
+        if (ev.User == ev.Target || IsClientSide(ev.Target))
             return;
 
-        if (HasComp<SharedGhostComponent>(ev.User))
+        if (HasComp<GhostComponent>(ev.User))
         {
             var verb = new AlternativeVerb()
             {
@@ -106,6 +130,12 @@ public sealed class FollowerSystem : EntitySystem
     {
         StopFollowingEntity(uid, component.Following, deparent:false);
     }
+
+    private void OnFollowerTerminating(EntityUid uid, FollowerComponent component, ref EntityTerminatingEvent args)
+    {
+        StopFollowingEntity(uid, component.Following);
+    }
+
 
     // Since we parent our observer to the followed entity, we need to detach
     // before they get deleted so that we don't get recursively deleted too.
@@ -193,6 +223,9 @@ public sealed class FollowerSystem : EntitySystem
         if (!deparent || !TryComp(uid, out TransformComponent? xform))
             return;
 
+        if (TerminatingOrDeleted(uid))
+            return;
+
         _transform.AttachToGridOrMap(uid, xform);
         if (xform.MapUid != null)
             return;
@@ -220,6 +253,12 @@ public sealed class FollowerSystem : EntitySystem
         {
             StopFollowingEntity(player, uid, followed);
         }
+    }
+
+    [Serializable, NetSerializable]
+    private sealed class FollowedComponentState : ComponentState
+    {
+        public HashSet<NetEntity> Following = new();
     }
 }
 
