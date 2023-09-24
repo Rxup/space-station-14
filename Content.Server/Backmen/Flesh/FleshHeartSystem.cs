@@ -68,7 +68,7 @@ namespace Content.Server.Backmen.Flesh
         {
             base.Initialize();
 
-            SubscribeLocalEvent<FleshHeartComponent, ComponentStartup>(OnStartup);
+            SubscribeLocalEvent<FleshHeartComponent, MapInitEvent>(OnStartup);
             SubscribeLocalEvent<FleshHeartComponent, ComponentShutdown>(OnShutdown);
             SubscribeLocalEvent<FleshHeartComponent, DestructionEventArgs>(OnDestruction);
             SubscribeLocalEvent<FleshHeartComponent, ClimbedOnEvent>(OnClimbedOn);
@@ -210,7 +210,7 @@ namespace Content.Server.Backmen.Flesh
             }
         }
 
-        private void OnStartup(EntityUid uid, FleshHeartComponent component, ComponentStartup args)
+        private void OnStartup(EntityUid uid, FleshHeartComponent component, MapInitEvent args)
         {
             component.BodyContainer = _containerSystem.EnsureContainer<Container>(uid, "bodyContainer");
         }
