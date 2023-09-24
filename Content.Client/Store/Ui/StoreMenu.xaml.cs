@@ -23,7 +23,6 @@ public sealed partial class StoreMenu : DefaultWindow
     [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
     [Dependency] private readonly IGameTiming _gameTiming = default!;
     [Dependency] private readonly IEntitySystemManager _entitySystem = default!;
-    [Dependency] private readonly ActionsSystem _actionsSystem = default!;
     private readonly ClientGameTicker _gameTicker;
 
     private StoreWithdrawWindow? _withdrawWindow;
@@ -155,8 +154,12 @@ public sealed partial class StoreMenu : DefaultWindow
         }
         else if (listing.ProductAction != null)
         {
-            if (_prototypeManager.TryIndex<EntityPrototype>(listing.ProductAction, out var action))
-                texture = spriteSys.Frame0(action);
+            var actionId = _entityManager.Spawn(listing.ProductAction);
+            if (_entityManager.System<ActionsSystem>().TryGetActionData(actionId, out var action) &&
+                action.Icon != null)
+            {
+                texture = spriteSys.Frame0(action.Icon);
+            }
         }
         var listingInStock = ListingInStock(listing);
         if (listingInStock != GetListingPriceString(listing))
@@ -181,7 +184,7 @@ public sealed partial class StoreMenu : DefaultWindow
     {
         var stationTime = _gameTiming.CurTime.Subtract(_gameTicker.RoundStartTimeSpan);
 
-        var restockTimeSpan = TimeSpan.FromMinutes(listing.RestockTime);
+        TimeSpan restockTimeSpan = TimeSpan.FromMinutes(listing.RestockTime);
         if (restockTimeSpan > stationTime)
         {
             var timeLeftToBuy = stationTime - restockTimeSpan;

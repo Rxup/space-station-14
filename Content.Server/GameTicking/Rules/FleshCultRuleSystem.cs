@@ -16,7 +16,7 @@ using Content.Server.Station.Components;
 using Content.Server.Station.Systems;
 using Content.Server.Store.Components;
 using Content.Server.Store.Systems;
-using Content.Shared.CCVar;
+using Content.Shared.Backmen.CCVar;
 using Content.Shared.FixedPoint;
 using Content.Shared.Backmen.Flesh;
 using Content.Shared.Humanoid;

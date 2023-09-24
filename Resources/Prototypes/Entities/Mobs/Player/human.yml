@@ -43,7 +43,7 @@
         - FleshCultistAbilities
       currencyWhitelist:
         - StolenMutationPoint
-    - type: CollectiveMind
+    - type: Psionic
       channel: Flesh
       channelColor: "#bd0966"
 

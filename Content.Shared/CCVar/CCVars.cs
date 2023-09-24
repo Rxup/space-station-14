@@ -417,18 +417,6 @@ namespace Content.Shared.CCVar
         public static readonly CVarDef<int> ZombieMinPlayers =
             CVarDef.Create("zombie.min_players", 20);
 
-        /*
-         * FleshCult
-         */
-
-        public static readonly CVarDef<int> FleshCultMinPlayers =
-            CVarDef.Create("fleshcult.min_players", 25);
-
-        public static readonly CVarDef<int> FleshCultMaxCultist =
-            CVarDef.Create("fleshcult.max_cultist", 6);
-
-        public static readonly CVarDef<int> FleshCultPlayersPerCultist =
-            CVarDef.Create("fleshcult.players_per_cultist", 7);
 
         /*
          * Pirates

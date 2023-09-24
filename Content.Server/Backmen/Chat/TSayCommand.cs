@@ -36,6 +36,7 @@ internal sealed class TSayCommand : IConsoleCommand
         var message = string.Join(" ", args).Trim();
         if (string.IsNullOrEmpty(message))
             return;
+
         IoCManager.Resolve<EntityManager>().System<ChatSystem>().TrySendInGameICMessage(playerEntity, message, InGameICChatType.Telepathic,
             ChatTransmitRange.Normal, false, shell, player);
     }

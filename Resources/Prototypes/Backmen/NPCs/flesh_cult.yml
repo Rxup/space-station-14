@@ -67,7 +67,8 @@
       damage:
         types:
           Blunt: 0.03
-    - type: CollectiveMind
+    - type: PotentialPsionic
+    - type: Psionic
       channel: Flesh
       channelColor: "#bd0966"
 
