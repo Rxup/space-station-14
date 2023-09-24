@@ -83,8 +83,11 @@
     guides:
     - Robotics
 
+- type: entity
+  id: MechGygax1
   parent: BaseMech
-  id: MechGygax
+  name: Gygax
+  description: Gygax
   components:
   - type: Sprite
     drawdepth: Mobs
@@ -92,31 +95,30 @@
     sprite: Objects/Specific/Mech/mecha.rsi
     layers:
     - map: [ "enum.MechVisualLayers.Base" ]
-      state: gygax
+      state: ripley
+  - type: FootstepModifier
+    footstepSoundCollection:
+      path: /Audio/Mecha/sound_mecha_powerloader_step.ogg
   - type: Mech
     baseState: gygax
     openState: gygax-open
     brokenState: gygax-broken
-    airtight: true
-    maxIntegrity: 500
-    mechToPilotDamageMultiplier: 0.35
-  - type: Reflect 
+    mechToPilotDamageMultiplier: 0.75
+    pilotWhitelist:
+      components:
+        - HumanoidAppearance
   - type: MeleeWeapon
     hidden: true
-    attackRate: 0.70 
+    attackRate: 1
     damage:
       types:
-        Blunt: 50 
-        Structural: 55
-  - type: Damageable
-    damageContainer: Inorganic
-    damageModifierSet: FireResStrongMetallic 
+        Blunt: 14 
   - type: MovementSpeedModifier
-    baseWalkSpeed: 1.0
-    baseSprintSpeed: 1.0
+    baseWalkSpeed: 2.0
+    baseSprintSpeed: 3.0
 
 - type: entity
-  parent: MechGygax
+  parent: MechGygax1
   id: MechGygaxBattery
   suffix: Battery
   components:
@@ -124,4 +126,3 @@
     containers:
       mech-battery-slot:
       - PowerCellHigh
-
