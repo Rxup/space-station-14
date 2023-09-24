@@ -85,7 +85,7 @@ public sealed class NyanoChatSystem : EntitySystem
         var isPsionicChat = false;
         var channelname = "Telepathic";
 
-        if (!string.IsNullOrEmpty(psionicComponent.Channel))
+        if (string.IsNullOrEmpty(psionicComponent.Channel))
         {
             messageWrap = Loc.GetString("chat-manager-send-telepathic-chat-wrap-message",
                 ("telepathicChannelName", Loc.GetString("chat-manager-telepathic-channel-name")), ("message", message));

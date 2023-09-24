@@ -70,7 +70,7 @@
     - type: PotentialPsionic
     - type: Psionic
       channel: Flesh
-      channelColor: "#bd0966"
+      channelColor: "#cf1b48"
 
 - type: entity
   parent: BaseMobFleshCult
