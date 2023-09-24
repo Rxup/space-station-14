@@ -73,7 +73,7 @@ public sealed partial class FleshCultistSystem : EntitySystem
     {
         base.Initialize();
 
-        SubscribeLocalEvent<FleshCultistComponent, ComponentStartup>(OnStartup);
+        SubscribeLocalEvent<FleshCultistComponent, MapInitEvent>(OnStartup);
         SubscribeLocalEvent<FleshCultistComponent, FleshCultistShopActionEvent>(OnShop);
         SubscribeLocalEvent<FleshCultistComponent, FleshCultistInsulatedImmunityMutationEvent>(OnInsulatedImmunityMutation);
         SubscribeLocalEvent<FleshCultistComponent, FleshCultistPressureImmunityMutationEvent>(OnPressureImmunityMutation);
@@ -185,10 +185,12 @@ public sealed partial class FleshCultistSystem : EntitySystem
     [ValidatePrototypeId<EntityPrototype>] private const string FleshCultistDevour = "FleshCultistDevour";
     [ValidatePrototypeId<EntityPrototype>] private const string FleshCultistAbsorbBloodPool = "FleshCultistAbsorbBloodPool";
 
-    private void OnStartup(EntityUid uid, FleshCultistComponent component, ComponentStartup args)
+    private void OnStartup(EntityUid uid, FleshCultistComponent component, MapInitEvent args)
     {
         //update the icon
         ChangeParasiteHunger(uid, 0, component);
+
+
 
         _store.TryAddCurrency(new Dictionary<string, FixedPoint2>
             { {component.StolenCurrencyPrototype, component.StartingEvolutionPoint} }, uid);
