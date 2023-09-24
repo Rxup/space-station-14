@@ -1,7 +1,7 @@
-﻿using Content.Shared.Flesh;
+﻿using Content.Shared.Backmen.Flesh;
 using Robust.Client.GameObjects;
 
-namespace Content.Client.Flesh;
+namespace Content.Client.Backmen.Flesh;
 
 public sealed class FleshHeartSystem : VisualizerSystem<FleshHeartComponent>
 {

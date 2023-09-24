@@ -3,7 +3,7 @@ using Content.Server.Mind;
 using Content.Server.Roles;
 using Content.Shared.Roles;
 
-namespace Content.Server.Flesh
+namespace Content.Server.Backmen.Flesh
 {
     public sealed class FleshCultistRole : Role
     {

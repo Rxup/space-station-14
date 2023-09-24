@@ -6,7 +6,7 @@ using Content.Server.Coordinates.Helpers;
 using Content.Server.Cuffs;
 using Content.Shared.Chemistry.Components;
 using Content.Shared.Cuffs.Components;
-using Content.Shared.Flesh;
+using Content.Shared.Backmen.Flesh;
 using Content.Shared.Hands.Components;
 using Content.Shared.Hands.EntitySystems;
 using Content.Shared.Inventory;
@@ -19,7 +19,7 @@ using Robust.Shared.Map;
 using Robust.Shared.Physics.Components;
 using Robust.Shared.Player;
 
-namespace Content.Server.Flesh;
+namespace Content.Server.Backmen.Flesh;
 
 public sealed partial class FleshCultistSystem
 {

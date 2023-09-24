@@ -1,6 +1,6 @@
 ﻿using Robust.Shared.Serialization;
 
-namespace Content.Shared.Flesh;
+namespace Content.Shared.Backmen.Flesh;
 
 [Serializable, NetSerializable]
 public enum FleshHeartVisuals : byte

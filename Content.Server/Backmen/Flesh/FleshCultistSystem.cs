@@ -9,13 +9,11 @@ using Content.Server.Fluids.EntitySystems;
 using Content.Server.Forensics;
 using Content.Server.Humanoid;
 using Content.Server.Mind;
-using Content.Server.Mind.Components;
 using Content.Server.Popups;
 using Content.Server.Store.Components;
 using Content.Server.Store.Systems;
 using Content.Server.Temperature.Components;
 using Content.Server.Weapons.Ranged.Systems;
-using Content.Shared.Actions.ActionTypes;
 using Content.Shared.Alert;
 using Content.Shared.Body.Components;
 using Content.Shared.Body.Part;
@@ -25,7 +23,7 @@ using Content.Shared.Damage;
 using Content.Shared.DoAfter;
 using Content.Shared.Electrocution;
 using Content.Shared.FixedPoint;
-using Content.Shared.Flesh;
+using Content.Shared.Backmen.Flesh;
 using Content.Shared.Fluids.Components;
 using Content.Shared.Hands.Components;
 using Content.Shared.Humanoid;
@@ -45,7 +43,7 @@ using Robust.Shared.Physics.Systems;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 
-namespace Content.Server.Flesh;
+namespace Content.Server.Backmen.Flesh;
 
 public sealed partial class FleshCultistSystem : EntitySystem
 {

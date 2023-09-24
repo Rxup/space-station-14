@@ -1,4 +1,4 @@
-namespace Content.Server.Flesh.FleshGrowth;
+namespace Content.Server.Backmen.Flesh.FleshGrowth;
 
 /// <summary>
 /// Component for rapidly spreading objects, like Kudzu.

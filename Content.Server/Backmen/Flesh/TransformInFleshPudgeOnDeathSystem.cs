@@ -3,11 +3,11 @@ using Content.Server.Body.Components;
 using Content.Server.Fluids.EntitySystems;
 using Content.Server.Forensics;
 using Content.Server.Mind;
-using Content.Server.Mind.Components;
 using Content.Server.Popups;
 using Content.Shared.Body.Part;
 using Content.Shared.Chemistry.Components;
 using Content.Shared.Humanoid;
+using Content.Shared.Mind.Components;
 using Content.Shared.Mobs;
 using Content.Shared.Popups;
 using Content.Shared.Random.Helpers;
@@ -17,7 +17,7 @@ using Robust.Shared.Containers;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 
-namespace Content.Server.Flesh
+namespace Content.Server.Backmen.Flesh
 {
     public sealed class TransformInFleshPudgeOnDeathSystem : EntitySystem
     {
@@ -46,7 +46,7 @@ namespace Content.Server.Flesh
             {
                 var golem = Spawn(component.FleshPudgeId, Transform(uid).Coordinates);
                 if (TryComp<MindContainerComponent>(uid, out var mindComp))
-                    EntityManager.System<MindSystem>().TransferTo(mindComp.Mind!, golem, false);
+                    EntityManager.System<MindSystem>().TransferTo(mindComp.Mind!.Value, golem, false);
                     //mindComp.Mind?.TransferTo(golem, ghostCheckOverride: true);
 
                 _popup.PopupEntity(Loc.GetString("flesh-pudge-transform-user", ("EntityTransform", golem)),

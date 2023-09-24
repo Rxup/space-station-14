@@ -4,9 +4,8 @@ using Content.Server.AlertLevel;
 using Content.Server.Body.Systems;
 using Content.Server.Chat.Systems;
 using Content.Server.Climbing;
-using Content.Server.Flesh.FleshGrowth;
+using Content.Server.Backmen.Flesh.FleshGrowth;
 using Content.Server.Humanoid;
-using Content.Server.Mind.Components;
 using Content.Server.Popups;
 using Content.Server.RoundEnd;
 using Content.Server.Station.Systems;
@@ -14,7 +13,7 @@ using Content.Shared.Body.Components;
 using Content.Shared.Body.Part;
 using Content.Shared.Damage;
 using Content.Shared.Destructible;
-using Content.Shared.Flesh;
+using Content.Shared.Backmen.Flesh;
 using Content.Shared.Humanoid;
 using Content.Shared.Humanoid.Prototypes;
 using Content.Shared.Mobs;
@@ -34,7 +33,7 @@ using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 
-namespace Content.Server.Flesh
+namespace Content.Server.Backmen.Flesh
 {
     public sealed class FleshHeartSystem : EntitySystem
     {

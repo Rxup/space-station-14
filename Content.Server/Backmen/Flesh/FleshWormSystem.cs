@@ -6,7 +6,7 @@ using Content.Server.Popups;
 using Content.Shared.Actions;
 using Content.Shared.CombatMode;
 using Content.Shared.Damage;
-using Content.Shared.Flesh;
+using Content.Shared.Backmen.Flesh;
 using Content.Shared.Hands;
 using Content.Shared.Hands.EntitySystems;
 using Content.Shared.Humanoid;
@@ -20,7 +20,7 @@ using Content.Shared.Throwing;
 using Content.Shared.Weapons.Melee.Events;
 using Robust.Shared.Player;
 
-namespace Content.Server.Flesh
+namespace Content.Server.Backmen.Flesh
 {
     public sealed class FleshWormSystem : EntitySystem
     {

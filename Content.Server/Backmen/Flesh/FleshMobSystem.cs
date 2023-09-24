@@ -1,12 +1,12 @@
 ﻿using System.Numerics;
 using Content.Server.Popups;
-using Content.Shared.Flesh;
+using Content.Shared.Backmen.Flesh;
 using Content.Shared.Interaction.Events;
 using Content.Shared.Mobs;
 using Content.Shared.Popups;
 using Robust.Shared.Map;
 
-namespace Content.Server.Flesh
+namespace Content.Server.Backmen.Flesh
 {
     public sealed class FleshMobSystem : EntitySystem
     {

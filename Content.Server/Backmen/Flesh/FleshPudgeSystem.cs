@@ -11,7 +11,7 @@ using Content.Shared.Throwing;
 using Robust.Server.GameObjects;
 using Robust.Shared.Collections;
 
-namespace Content.Server.Flesh
+namespace Content.Server.Backmen.Flesh
 {
     public sealed class FleshPudgeSystem : EntitySystem
     {

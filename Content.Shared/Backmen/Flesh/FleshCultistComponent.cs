@@ -1,4 +1,5 @@
 ﻿using Content.Shared.Chemistry.Components;
+using Content.Shared.Chemistry.Reagent;
 using Content.Shared.FixedPoint;
 using Content.Shared.Maps;
 using Content.Shared.Store;
@@ -7,10 +8,10 @@ using Robust.Shared.GameStates;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype;
 
-namespace Content.Shared.Flesh;
+namespace Content.Shared.Backmen.Flesh;
 
 [RegisterComponent, NetworkedComponent]
-public sealed class FleshCultistComponent : Component
+public sealed partial class FleshCultistComponent : Component
 {
     [ViewVariables(VVAccess.ReadWrite)] public FixedPoint2 Hunger = 140;
 
@@ -35,23 +36,23 @@ public sealed class FleshCultistComponent : Component
         "Dwarf",
     };
 
-    [DataField("adrenalinReagents")] public List<Solution.ReagentQuantity> AdrenalinReagents = new()
+    [DataField("adrenalinReagents")] public List<ReagentQuantity> AdrenalinReagents = new()
     {
-        new Solution.ReagentQuantity("Ephedrine", 10),
+        new ReagentQuantity("Ephedrine", 10, null),
     };
 
-    [DataField("healDevourReagents")] public List<Solution.ReagentQuantity> HealDevourReagents = new()
+    [DataField("healDevourReagents")] public List<ReagentQuantity> HealDevourReagents = new()
     {
-        new Solution.ReagentQuantity("Omnizine", 15),
-        new Solution.ReagentQuantity("DexalinPlus", 5),
-        new Solution.ReagentQuantity("Iron", 5)
+        new ReagentQuantity("Omnizine", 15, null),
+        new ReagentQuantity("DexalinPlus", 5, null),
+        new ReagentQuantity("Iron", 5, null)
     };
 
-    [DataField("healBloodAbsorbReagents")] public List<Solution.ReagentQuantity> HealBloodAbsorbReagents = new()
+    [DataField("healBloodAbsorbReagents")] public List<ReagentQuantity> HealBloodAbsorbReagents = new()
     {
-        new Solution.ReagentQuantity("Omnizine", 1),
-        new Solution.ReagentQuantity("DexalinPlus", 0.50),
-        new Solution.ReagentQuantity("Iron", 0.50)
+        new ReagentQuantity("Omnizine", 1, null),
+        new ReagentQuantity("DexalinPlus", 0.50, null),
+        new ReagentQuantity("Iron", 0.50, null)
     };
 
     [DataField("bloodAbsorbSound")]

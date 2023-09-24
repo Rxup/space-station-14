@@ -1,4 +1,5 @@
 using System.Linq;
+using Content.Shared.Actions;
 using Content.Shared.FixedPoint;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization;
@@ -76,7 +77,7 @@ public partial class ListingData : IEquatable<ListingData>, ICloneable
     /// <summary>
     /// The action that is given when the listing is purchased.
     /// </summary>
-    [DataField("productWorldTargetAction", customTypeSerializer: typeof(PrototypeIdSerializer<WorldTargetActionPrototype>))]
+    [DataField("productWorldTargetAction", customTypeSerializer: typeof(PrototypeIdSerializer<EntityPrototype>))]
     public string? ProductWorldTargetAction;
 
     /// <summary>

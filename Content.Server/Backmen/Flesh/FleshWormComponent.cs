@@ -1,15 +1,17 @@
-﻿using Content.Shared.Actions.ActionTypes;
-using Content.Shared.Damage;
+﻿using Content.Shared.Damage;
 using Robust.Shared.Audio;
 
-namespace Content.Server.Flesh
+namespace Content.Server.Backmen.Flesh
 {
     [Access(typeof(FleshWormSystem))]
     [RegisterComponent]
     public sealed class FleshWormComponent : Component
     {
+        /// <summary>
+        /// WorldTargetAction
+        /// </summary>
         [DataField("actionWormJump", required: true)]
-        public WorldTargetAction ActionWormJump = new();
+        public EntityUid ActionWormJump = EntityUid.Invalid;
 
         [DataField("paralyzeTime"), ViewVariables(VVAccess.ReadWrite)]
         public float ParalyzeTime = 3f;

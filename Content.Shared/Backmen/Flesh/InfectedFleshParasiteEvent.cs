@@ -1,6 +1,6 @@
 ﻿using Content.Shared.Actions;
 
-namespace Content.Shared.Flesh;
+namespace Content.Shared.Backmen.Flesh;
 
 public readonly struct EntityInfectedFleshParasiteEvent
 {
@@ -12,4 +12,4 @@ public readonly struct EntityInfectedFleshParasiteEvent
     }
 };
 
-public sealed class ZombifySelfActionEvent : InstantActionEvent { };
+public sealed partial class ZombifySelfActionEvent : InstantActionEvent { };

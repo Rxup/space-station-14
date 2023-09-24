@@ -1,4 +1,4 @@
-﻿using Content.Server.Flesh;
+﻿using Content.Server.Backmen.Flesh;
 using Content.Server.NPC.Components;
 using Content.Shared.Preferences;
 using Content.Shared.Roles;
@@ -9,7 +9,7 @@ using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototy
 namespace Content.Server.GameTicking.Rules.Components;
 
 [RegisterComponent, Access(typeof(FleshCultRuleSystem))]
-public sealed class FleshCultRuleComponent : Component
+public sealed partial class FleshCultRuleComponent : Component
 {
     public SoundSpecifier AddedSound = new SoundPathSpecifier(
         "/Audio/Animals/Flesh/flesh_culstis_greeting.ogg");

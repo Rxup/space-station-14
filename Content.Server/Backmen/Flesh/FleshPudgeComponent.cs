@@ -1,22 +1,31 @@
-﻿using Content.Shared.Actions.ActionTypes;
-using Content.Shared.Chemistry.Components;
+﻿using Content.Shared.Chemistry.Components;
+using Content.Shared.Chemistry.Reagent;
 using Robust.Shared.Audio;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype;
 
-namespace Content.Server.Flesh
+namespace Content.Server.Backmen.Flesh
 {
     [RegisterComponent]
-    public sealed class FleshPudgeComponent : Component
+    public sealed partial class FleshPudgeComponent : Component
     {
+        /// <summary>
+        /// WorldTargetAction
+        /// </summary>
         [DataField("actionThrowWorm", required: true)]
-        public WorldTargetAction ActionThrowWorm = new();
+        public EntityUid ActionThrowWorm = EntityUid.Invalid;
 
+        /// <summary>
+        /// WorldTargetAction
+        /// </summary>
         [DataField("actionAcidSpit", required: true)]
-        public WorldTargetAction ActionAcidSpit = new();
+        public EntityUid ActionAcidSpit = EntityUid.Invalid;
 
+        /// <summary>
+        /// InstantAction
+        /// </summary>
         [DataField("actionAbsorbBloodPool", required: true)]
-        public InstantAction ActionAbsorbBloodPool = new();
+        public EntityUid ActionAbsorbBloodPool = EntityUid.Invalid;
 
         [ViewVariables(VVAccess.ReadWrite), DataField("soundThrowWorm")]
         public SoundSpecifier? SoundThrowWorm = new SoundPathSpecifier("/Audio/Animals/Flesh/throw_worm.ogg");
@@ -29,11 +38,11 @@ namespace Content.Server.Flesh
          DataField("bulletAcidSpawnId", customTypeSerializer: typeof(PrototypeIdSerializer<EntityPrototype>))]
         public string BulletAcidSpawnId = "BulletSplashAcid";
 
-        [DataField("healBloodAbsorbReagents")] public List<Solution.ReagentQuantity> HealBloodAbsorbReagents = new()
+        [DataField("healBloodAbsorbReagents")] public List<ReagentQuantity> HealBloodAbsorbReagents = new()
         {
-            new Solution.ReagentQuantity("Omnizine", 1),
-            new Solution.ReagentQuantity("DexalinPlus", 0.50),
-            new Solution.ReagentQuantity("Iron", 0.50)
+            new ReagentQuantity("Omnizine", 1, null),
+            new ReagentQuantity("DexalinPlus", 0.50, null),
+            new ReagentQuantity("Iron", 0.50, null)
         };
 
         [DataField("bloodAbsorbSound")]

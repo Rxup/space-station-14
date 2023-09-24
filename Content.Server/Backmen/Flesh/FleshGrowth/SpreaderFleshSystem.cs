@@ -10,7 +10,7 @@ using Content.Server.Destructible.Thresholds;
 using Content.Server.Destructible.Thresholds.Behaviors;
 using Content.Server.Destructible.Thresholds.Triggers;
 
-namespace Content.Server.Flesh.FleshGrowth;
+namespace Content.Server.Backmen.Flesh.FleshGrowth;
 
 // Future work includes making the growths per interval thing not global, but instead per "group"
 public sealed class SpreaderFleshSystem : EntitySystem
