@@ -6,7 +6,8 @@
   abstract: true
   components:
     - type: HTN
-      rootTask: SimpleHostileCompound
+      rootTask:
+        task: SimpleHostileCompound
     - type: NpcFactionMember
       factions:
         - Flesh
@@ -31,7 +32,7 @@
         0: Alive
         75: Dead
     - type: Stamina
-      excess: 50
+      critThreshold: 50
     - type: Appearance
     - type: Butcherable
       spawned:
@@ -144,28 +145,9 @@
       showInHands: false
     - type: FleshPudge
       wormMobSpawnId: "MobFleshWorm"
-      actionThrowWorm:
-        icon: Interface/Actions/fleshPudgeThrowWorm.png
-        name: flesh-pudge-throw-worm-name
-        description: flesh-pudge-throw-worm-desc
-        itemIconStyle: NoItem
-        range: 200
-        event: !type:FleshPudgeThrowWormActionEvent
-        useDelay: 120
-      actionAcidSpit:
-        icon: Interface/Actions/fleshAcidSpit.png
-        name: flesh-cultist-acid-spit-name
-        description: flesh-cultist-acid-spit-desc
-        itemIconStyle: NoItem
-        range: 200
-        event: !type:FleshPudgeAcidSpitActionEvent
-        useDelay: 20
-      actionAbsorbBloodPool:
-        icon: Interface/Actions/fleshCultistAbsorbBloodPool.png
-        name: flesh-cultist-absorb-blood-pool-name
-        description: flesh-cultist-absorb-blood-pool-desc
-        event: !type:FleshPudgeAbsorbBloodPoolActionEvent
-        useDelay: 15
+      actionThrowWorm: ActionThrowWorm
+      actionAcidSpit: ActionAcidSpit
+      actionAbsorbBloodPool: ActionAbsorbBloodPool
     - type: Vocal
       sounds:
         Unsexed: FleshPudgeEmote
@@ -208,7 +190,7 @@
         - Critical
         - Dead
     - type: Stamina
-      excess: 300
+      critThreshold: 300
     - type: MeleeWeapon
       hidden: true
       soundHit:
@@ -259,28 +241,9 @@
       showInHands: false
     - type: FleshPudge
       wormMobSpawnId: "MobFleshWorm"
-      actionThrowWorm:
-        icon: Interface/Actions/fleshPudgeThrowWorm.png
-        name: flesh-pudge-throw-worm-name
-        description: flesh-pudge-throw-worm-desc
-        itemIconStyle: NoItem
-        range: 200
-        event: !type:FleshPudgeThrowWormActionEvent
-        useDelay: 120
-      actionAcidSpit:
-        icon: Interface/Actions/fleshAcidSpit.png
-        name: flesh-cultist-acid-spit-name
-        description: flesh-cultist-acid-spit-desc
-        itemIconStyle: NoItem
-        range: 200
-        event: !type:FleshPudgeAcidSpitActionEvent
-        useDelay: 20
-      actionAbsorbBloodPool:
-        icon: Interface/Actions/fleshCultistAbsorbBloodPool.png
-        name: flesh-cultist-absorb-blood-pool-name
-        description: flesh-cultist-absorb-blood-pool-desc
-        event: !type:FleshPudgeAbsorbBloodPoolActionEvent
-        useDelay: 15
+      actionThrowWorm: ActionThrowWorm
+      actionAcidSpit: ActionAcidSpit
+      actionAbsorbBloodPool: ActionAbsorbBloodPool
     - type: Vocal
       sounds:
         Unsexed: FleshAbomEmote
@@ -323,7 +286,7 @@
         300: Critical
         350: Dead
     - type: Stamina
-      excess: 300
+      critThreshold: 300
     - type: MeleeWeapon
       hidden: true
       range: 2
@@ -414,7 +377,8 @@
       baseWalkSpeed: 1.5
       baseSprintSpeed: 2
     - type: TriggerOnMobstateChange #Chains with OnUseTimerTrigger
-      mobState: Dead
+      mobState:
+        - Dead
     - type: TriggerImplantAction
     - type: ExplodeOnTrigger
     - type: Explosive
@@ -506,14 +470,7 @@
       damage:
         types:
           Piercing: 2
-      actionWormJump:
-        useDelay: 10
-        icon: Interface/Actions/fleshPudgeThrowWorm.png
-        name: flesh-worm-jump-name
-        description: flesh-worm-jump-description
-        itemIconStyle: NoItem
-        range: 160
-        event: !type:FleshWormJumpActionEvent
+      actionWormJump: ActionWormJump
     - type: Sprite
       drawdepth: SmallMobs
       noRot: true

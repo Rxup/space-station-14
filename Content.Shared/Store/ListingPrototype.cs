@@ -75,12 +75,6 @@ public partial class ListingData : IEquatable<ListingData>, ICloneable
     public string? ProductAction;
 
     /// <summary>
-    /// The action that is given when the listing is purchased.
-    /// </summary>
-    [DataField("productWorldTargetAction", customTypeSerializer: typeof(PrototypeIdSerializer<EntityPrototype>))]
-    public string? ProductWorldTargetAction;
-
-    /// <summary>
     /// The event that is broadcast when the listing is purchased.
     /// </summary>
     [DataField("productEvent")]
@@ -108,7 +102,6 @@ public partial class ListingData : IEquatable<ListingData>, ICloneable
             Description != listing.Description ||
             ProductEntity != listing.ProductEntity ||
             ProductAction != listing.ProductAction ||
-            ProductWorldTargetAction != listing.ProductWorldTargetAction ||
             ProductEvent?.ToString() != listing.ProductEvent?.ToString())
             return false;
 
@@ -148,7 +141,6 @@ public partial class ListingData : IEquatable<ListingData>, ICloneable
             Priority = Priority,
             ProductEntity = ProductEntity,
             ProductAction = ProductAction,
-            ProductWorldTargetAction = ProductWorldTargetAction,
             ProductEvent = ProductEvent,
             PurchaseAmount = PurchaseAmount,
             RestockTime = RestockTime,

@@ -1,39 +1,42 @@
 ﻿using Content.Shared.Damage;
 using Robust.Shared.Audio;
+using Robust.Shared.Prototypes;
+using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype;
 
-namespace Content.Server.Backmen.Flesh
+namespace Content.Server.Backmen.Flesh;
+
+[Access(typeof(FleshWormSystem))]
+[RegisterComponent]
+public sealed partial class FleshWormComponent : Component
 {
-    [Access(typeof(FleshWormSystem))]
-    [RegisterComponent]
-    public sealed class FleshWormComponent : Component
-    {
-        /// <summary>
-        /// WorldTargetAction
-        /// </summary>
-        [DataField("actionWormJump", required: true)]
-        public EntityUid ActionWormJump = EntityUid.Invalid;
+    /// <summary>
+    /// WorldTargetAction
+    /// </summary>
+    [DataField("actionWormJump", required: true, customTypeSerializer: typeof(PrototypeIdSerializer<EntityPrototype>))]
+    public string ActionWormJump = "ActionWormJump";
 
-        [DataField("paralyzeTime"), ViewVariables(VVAccess.ReadWrite)]
-        public float ParalyzeTime = 3f;
+    public EntityUid? WormJumpAction;
 
-        [DataField("chansePounce"), ViewVariables(VVAccess.ReadWrite)]
-        public static int ChansePounce = 33;
+    [DataField("paralyzeTime"), ViewVariables(VVAccess.ReadWrite)]
+    public float ParalyzeTime = 3f;
 
-        [DataField("damage", required: true)]
-        [ViewVariables(VVAccess.ReadWrite)]
-        public DamageSpecifier Damage = default!;
+    [DataField("chansePounce"), ViewVariables(VVAccess.ReadWrite)]
+    public int ChansePounce = 33;
 
-        public bool IsDeath = false;
+    [DataField("damage", required: true)]
+    [ViewVariables(VVAccess.ReadWrite)]
+    public DamageSpecifier Damage = default!;
 
-        public EntityUid EquipedOn;
+    public bool IsDeath = false;
 
-        [ViewVariables] public float Accumulator = 0;
+    public EntityUid EquipedOn;
 
-        [DataField("damageFrequency"), ViewVariables(VVAccess.ReadWrite)]
-        public float DamageFrequency = 5;
+    [ViewVariables] public float Accumulator = 0;
 
-        [ViewVariables(VVAccess.ReadWrite), DataField("soundWormJump")]
-        public SoundSpecifier? SoundWormJump = new SoundPathSpecifier("/Audio/Animals/Flesh/flesh_worm_scream.ogg");
+    [DataField("damageFrequency"), ViewVariables(VVAccess.ReadWrite)]
+    public float DamageFrequency = 5;
 
-    }
+    [ViewVariables(VVAccess.ReadWrite), DataField("soundWormJump")]
+    public SoundSpecifier? SoundWormJump = new SoundPathSpecifier("/Audio/Animals/Flesh/flesh_worm_scream.ogg");
+
 }

@@ -97,7 +97,7 @@ public sealed partial class FleshCultistComponent : Component
     [ViewVariables(VVAccess.ReadWrite), DataField("soundMutation")]
     public SoundSpecifier SoundMutation = new SoundPathSpecifier("/Audio/Animals/Flesh/flesh_cultist_mutation.ogg");
 
-    [DataField("fleshHeartId", customTypeSerializer: typeof(PrototypeIdSerializer<ContentTileDefinition>)),
+    [DataField("fleshHeartId", customTypeSerializer: typeof(PrototypeIdSerializer<EntityPrototype>)),
      ViewVariables(VVAccess.ReadWrite)]
     public string FleshHeartId = "FleshHeart";
 
@@ -112,4 +112,8 @@ public sealed partial class FleshCultistComponent : Component
 
     [ViewVariables] public float AccumulatorStarveNotify = 0;
 
+
+    public EntityUid? FleshCultistShop;
+    public EntityUid? FleshCultistDevour;
+    public EntityUid? FleshCultistAbsorbBloodPool;
 }

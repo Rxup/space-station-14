@@ -188,7 +188,7 @@
   id: FleshCultistAcidSpit
   name: flesh-cultist-acid-spit-evolution-name
   description: flesh-cultist-acid-spit-evolution-desc
-  productWorldTargetAction: FleshCultistAcidSpit
+  productAction: FleshCultistAcidSpit
   cost:
     StolenMutationPoint: 10
   categories:

@@ -16,6 +16,7 @@ using Content.Shared.Destructible;
 using Content.Shared.Backmen.Flesh;
 using Content.Shared.Humanoid;
 using Content.Shared.Humanoid.Prototypes;
+using Content.Shared.Mind.Components;
 using Content.Shared.Mobs;
 using Content.Shared.Mobs.Components;
 using Content.Shared.Physics;
@@ -87,6 +88,7 @@ namespace Content.Server.Backmen.Flesh
                 _alertLevel.SetLevel(stationUid.Value, component.AlertLevelOnDeactivate, true,
                     true, true);
             }
+
             var xform = Transform(uid);
             var coordinates = xform.Coordinates;
             foreach (var ent in component.BodyContainer.ContainedEntities.ToArray())
@@ -95,11 +97,13 @@ namespace Content.Server.Backmen.Flesh
                 Transform(ent).Coordinates = coordinates;
                 ent.RandomOffset(1f);
             }
+
             var fleshTilesQuery = EntityQueryEnumerator<SpreaderFleshComponent>();
             while (fleshTilesQuery.MoveNext(out var ent, out var comp))
             {
                 QueueDel(ent);
             }
+
             var fleshWalls = new List<EntityUid>();
             var fleshWallsQuery = EntityQueryEnumerator<TagComponent>();
             while (fleshWallsQuery.MoveNext(out var ent, out var comp))
@@ -110,10 +114,12 @@ namespace Content.Server.Backmen.Flesh
                     fleshWalls.Add(ent);
                 }
             }
-            foreach(var ent in fleshWalls.ToArray())
+
+            foreach (var ent in fleshWalls.ToArray())
             {
                 _damageableSystem.TryChangeDamage(ent, component.DamageMobsIfHeartDestruct);
             }
+
             foreach (var mob in component.EdgeMobs.ToArray())
             {
                 _damageableSystem.TryChangeDamage(mob, component.DamageMobsIfHeartDestruct);
@@ -150,6 +156,7 @@ namespace Content.Server.Backmen.Flesh
                                 _alertLevel.SetLevel(stationUid.Value, comp.AlertLevelOnActivate, false,
                                     false, true, true);
                             }
+
                             _audioSystem.PlayGlobal(
                                 "/Audio/Announcements/flesh_heart_activate.ogg", Filter.Broadcast(), true,
                                 AudioParams.Default);
@@ -161,6 +168,7 @@ namespace Content.Server.Backmen.Flesh
                                 AudioParams.Default.WithLoop(true).WithVolume(-3f));
                             _appearance.SetData(ent, FleshHeartVisuals.State, FleshHeartStatus.Active);
                         }
+
                         break;
                     }
                     case HeartStates.Active:
@@ -189,6 +197,7 @@ namespace Content.Server.Backmen.Flesh
                                 OwningStation = xform.GridUid,
                             });
                         }
+
                         break;
                     }
                     case HeartStates.Disable:
@@ -243,6 +252,7 @@ namespace Content.Server.Backmen.Flesh
                             {
                                 continue;
                             }
+
                             cont.Remove(ent, EntityManager, force: true);
                             Transform(ent).Coordinates = xform.Coordinates;
                             ent.RandomOffset(0.25f);
@@ -266,12 +276,12 @@ namespace Content.Server.Backmen.Flesh
                         {
                             foreach (var organ in _body.GetPartOrgans(part.Id, part.Component))
                             {
-                                _body.DeleteOrgan(organ.Id);
+                                _body.RemoveOrgan(organ.Id, organ.Component);
                             }
                         }
                         else
                         {
-                            _body.DeletePart(part.Id);
+                            QueueDel(part.Id);
                         }
                     }
                 }
@@ -287,7 +297,7 @@ namespace Content.Server.Backmen.Flesh
                     }
                 }
 
-                _physics.SetDensity(args.Climber, fixturesComponent.Fixtures["fix1"], 50);
+                _physics.SetDensity(args.Climber, "fix1", fixturesComponent.Fixtures["fix1"], 50);
 
                 if (TryComp<AppearanceComponent>(args.Climber, out var appComponent))
                 {
@@ -318,10 +328,11 @@ namespace Content.Server.Backmen.Flesh
             if (!(component.SpeciesWhitelist.Contains(humanoidAppearance.Species)))
                 return false;
 
-            return !TryComp<MindContainerComponent>(dragged, out var mindComp) || true;
+            return !HasComp<MindContainerComponent>(dragged) || true; // TODO: wtf?
         }
 
-        private void SpawnObjectsOnOpenTiles(FleshHeartComponent component, TransformComponent xform, int amount, float radius)
+        private void SpawnObjectsOnOpenTiles(FleshHeartComponent component, TransformComponent xform, int amount,
+            float radius)
         {
             if (!_map.TryGetGrid(xform.GridUid, out var grid))
                 return;
@@ -339,6 +350,7 @@ namespace Content.Server.Backmen.Flesh
                         canSpawnBlocker = false;
                     }
                 }
+
                 if (canSpawnBlocker)
                 {
                     if (_random.Prob(0.01f))
@@ -366,6 +378,7 @@ namespace Content.Server.Backmen.Flesh
                     if (_tagSystem.HasAnyTag(ent, "Wall", "Window", "Flesh"))
                         canSpawnFloor = false;
                 }
+
                 if (canSpawnFloor)
                 {
                     EntityManager.SpawnEntity(component.FleshTileId,
@@ -374,7 +387,8 @@ namespace Content.Server.Backmen.Flesh
             }
         }
 
-        private void SpawnMonstersOnOpenTiles(FleshHeartComponent component, TransformComponent xform, int amount, float radius)
+        private void SpawnMonstersOnOpenTiles(FleshHeartComponent component, TransformComponent xform, int amount,
+            float radius)
         {
             if (!_map.TryGetGrid(xform.GridUid, out var grid))
                 return;
@@ -399,6 +413,7 @@ namespace Content.Server.Backmen.Flesh
                     valid = false;
                     break;
                 }
+
                 if (!valid)
                     continue;
                 amountCounter++;

@@ -30,6 +30,7 @@ using Content.Shared.Humanoid;
 using Content.Shared.Humanoid.Prototypes;
 using Content.Shared.Interaction.Components;
 using Content.Shared.Inventory.Events;
+using Content.Shared.Mind.Components;
 using Content.Shared.Mobs;
 using Content.Shared.Mobs.Components;
 using Content.Shared.Popups;
@@ -180,6 +181,10 @@ public sealed partial class FleshCultistSystem : EntitySystem
         args.Cancel();
     }
 
+    [ValidatePrototypeId<EntityPrototype>] private const string FleshCultistShop = "FleshCultistShop";
+    [ValidatePrototypeId<EntityPrototype>] private const string FleshCultistDevour = "FleshCultistDevour";
+    [ValidatePrototypeId<EntityPrototype>] private const string FleshCultistAbsorbBloodPool = "FleshCultistAbsorbBloodPool";
+
     private void OnStartup(EntityUid uid, FleshCultistComponent component, ComponentStartup args)
     {
         //update the icon
@@ -188,15 +193,10 @@ public sealed partial class FleshCultistSystem : EntitySystem
         _store.TryAddCurrency(new Dictionary<string, FixedPoint2>
             { {component.StolenCurrencyPrototype, component.StartingEvolutionPoint} }, uid);
 
-        var shopAction = new InstantAction(_proto.Index<InstantActionPrototype>("FleshCultistShop"));
-        _action.AddAction(uid, shopAction, null);
 
-        var devourAction = new EntityTargetAction(_proto.Index<EntityTargetActionPrototype>("FleshCultistDevour"));
-        _action.AddAction(uid, devourAction, null);
-
-        var absorbBloodPoolAction = new InstantAction(
-            _proto.Index<InstantActionPrototype>("FleshCultistAbsorbBloodPool"));
-        _action.AddAction(uid, absorbBloodPoolAction, null);
+        _action.AddAction(uid, ref component.FleshCultistShop, FleshCultistShop);
+        _action.AddAction(uid, ref component.FleshCultistDevour, FleshCultistDevour);
+        _action.AddAction(uid, ref component.FleshCultistAbsorbBloodPool, FleshCultistAbsorbBloodPool);
     }
 
     private void OnInsulatedImmunityMutation(EntityUid uid, FleshCultistComponent component,
@@ -313,7 +313,7 @@ public sealed partial class FleshCultistSystem : EntitySystem
                             uid, uid);
                         return;
                     }
-                    _doAfterSystem.TryStartDoAfter(new DoAfterArgs(uid, component.DevourTime,
+                    _doAfterSystem.TryStartDoAfter(new DoAfterArgs(EntityManager, uid, component.DevourTime,
                         new FleshCultistDevourDoAfterEvent(), uid, target: target, used: uid)
                     {
                         BreakOnTargetMove = true,
@@ -387,12 +387,12 @@ public sealed partial class FleshCultistSystem : EntitySystem
                     {
                         foreach (var organ in _body.GetPartOrgans(part.Id, part.Component))
                         {
-                            _body.DeleteOrgan(organ.Id);
+                            _body.RemoveOrgan(organ.Id, organ.Component);
                         }
                     }
                     else
                     {
-                        _body.DeletePart(part.Id);
+                        QueueDel(part.Id);
                     }
                 }
             }
@@ -410,7 +410,7 @@ public sealed partial class FleshCultistSystem : EntitySystem
 
             if (TryComp<FixturesComponent>(args.Args.Target, out var fixturesComponent))
             {
-                _physics.SetDensity(args.Args.Target.Value, fixturesComponent.Fixtures["fix1"], 50);
+                _physics.SetDensity(args.Args.Target.Value, "fix1", fixturesComponent.Fixtures["fix1"], 50);
             }
 
             if (TryComp<AppearanceComponent>(args.Args.Target, out var appComponent))
@@ -448,7 +448,7 @@ public sealed partial class FleshCultistSystem : EntitySystem
             var transferSolution = new Solution();
             foreach (var reagent in component.HealDevourReagents)
             {
-                transferSolution.AddReagent(reagent.ReagentId, reagent.Quantity * healPoint);
+                transferSolution.AddReagent(reagent.Reagent, reagent.Quantity * healPoint);
             }
             _solutionSystem.TryAddSolution(uid, injectableSolution, transferSolution);
         }
@@ -512,8 +512,8 @@ public sealed partial class FleshCultistSystem : EntitySystem
         var coordinates = xform.Coordinates;
 
         var abommob = Spawn(component.FleshMutationMobId, coordinates);
-        if (TryComp<MindContainerComponent>(uid, out var mindComp))
-            EntityManager.System<MindSystem>().TransferTo(mindComp.Mind!, abommob, true);
+        if (TryComp<MindContainerComponent>(uid, out var mindComp) && mindComp.HasMind)
+            EntityManager.System<MindSystem>().TransferTo(mindComp.Mind!.Value, abommob, true);
             //mindComp.Mind?.TransferTo(abommob, ghostCheckOverride: true);
 
         _popup.PopupEntity(Loc.GetString("flesh-pudge-transform-user", ("EntityTransform", uid)),
@@ -633,7 +633,7 @@ public sealed partial class FleshCultistSystem : EntitySystem
             var pudleBloodQuantity = new FixedPoint2();
             foreach (var puddleSolutionContent in puddleSolution.Contents.ToArray())
             {
-                if (puddleSolutionContent.ReagentId != "Blood")
+                if (puddleSolutionContent.Reagent.Prototype != "Blood")
                 {
                     hasImpurities = true;
                 }
@@ -662,7 +662,7 @@ public sealed partial class FleshCultistSystem : EntitySystem
         var transferSolution = new Solution();
         foreach (var reagent in component.HealBloodAbsorbReagents.ToArray())
         {
-            transferSolution.AddReagent(reagent.ReagentId, reagent.Quantity * (totalBloodQuantity / 10));
+            transferSolution.AddReagent(reagent.Reagent, reagent.Quantity * (totalBloodQuantity / 10));
         }
         if (_solutionSystem.TryGetInjectableSolution(uid, out var injectableSolution))
         {

@@ -164,11 +164,6 @@ public sealed partial class StoreMenu : DefaultWindow
             listingName += " (Out of stock)";
             canBuy = false;
         }
-        else if (listing.ProductWorldTargetAction != null)
-        {
-            if (_prototypeManager.TryIndex<EntityPrototype>(listing.ProductWorldTargetAction, out var action))
-                texture = spriteSys.Frame0(action);
-        }
 
         var newListing = new StoreListingControl(listingName, listingDesc, listingInStock, canBuy, texture);
         newListing.StoreItemBuyButton.OnButtonDown += args

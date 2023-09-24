@@ -546,7 +546,7 @@ public sealed partial class FleshCultistSystem
         var transferSolution = new Solution();
         foreach (var reagent in component.AdrenalinReagents)
         {
-            transferSolution.AddReagent(reagent.ReagentId, reagent.Quantity);
+            transferSolution.AddReagent(reagent.Reagent, reagent.Quantity);
         }
         _solutionContainerSystem.TryAddSolution(uid, injectableSolution, transferSolution);
         args.Handled = true;

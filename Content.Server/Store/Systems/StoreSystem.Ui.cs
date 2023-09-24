@@ -174,13 +174,6 @@ public sealed partial class StoreSystem
             _actions.AddAction(buyer, listing.ProductAction);
         }
 
-        //give world target action
-        if (listing.ProductWorldTargetAction != null)
-        {
-            var action = new WorldTargetAction(_proto.Index<WorldTargetActionPrototype>(listing.ProductWorldTargetAction));
-            _actions.AddAction(buyer, action, null);
-        }
-
         //broadcast event
         if (listing.ProductEvent != null)
         {

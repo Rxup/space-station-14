@@ -129,7 +129,7 @@ namespace Content.Server.Explosion.EntitySystems
             var transferSolution = new Solution();
             foreach (var reagent in component.SplashReagents.ToArray())
             {
-                transferSolution.AddReagent(reagent.ReagentId, reagent.Quantity);
+                transferSolution.AddReagent(reagent.Reagent, reagent.Quantity);
             }
             if (_solutionSystem.TryGetInjectableSolution(uid, out var injectableSolution))
             {

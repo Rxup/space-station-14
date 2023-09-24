@@ -1,5 +1,6 @@
 ﻿using Content.Server.Backmen.Flesh;
 using Content.Server.NPC.Components;
+using Content.Shared.Mind;
 using Content.Shared.Preferences;
 using Content.Shared.Roles;
 using Robust.Server.Player;
@@ -17,7 +18,7 @@ public sealed partial class FleshCultRuleComponent : Component
     public SoundSpecifier BuySuccesSound = new SoundPathSpecifier(
         "/Audio/Animals/Flesh/flesh_cultist_buy_succes.ogg");
 
-    public List<FleshCultistRole> Cultists = new();
+    public List<(EntityUid mindId, MindComponent mind)> Cultists = new();
 
     [DataField("fleshCultistPrototypeId", customTypeSerializer: typeof(PrototypeIdSerializer<AntagPrototype>))]
     public string FleshCultistPrototypeId = "FleshCultist";

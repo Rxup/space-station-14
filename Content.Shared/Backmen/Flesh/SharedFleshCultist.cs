@@ -4,6 +4,26 @@ using Robust.Shared.Serialization;
 
 namespace Content.Shared.Backmen.Flesh;
 
+public sealed partial class FleshPudgeThrowWormActionEvent : WorldTargetActionEvent
+{
+
+}
+
+public sealed partial class FleshPudgeAcidSpitActionEvent : WorldTargetActionEvent
+{
+
+}
+
+public sealed partial class FleshPudgeAbsorbBloodPoolActionEvent : InstantActionEvent
+{
+
+}
+
+public sealed partial class FleshWormJumpActionEvent : WorldTargetActionEvent
+{
+
+}
+
 [Serializable, NetSerializable]
 public sealed partial class FleshCultistDevourDoAfterEvent : SimpleDoAfterEvent
 {

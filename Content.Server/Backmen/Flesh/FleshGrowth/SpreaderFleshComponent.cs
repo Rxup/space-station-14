@@ -6,7 +6,7 @@ namespace Content.Server.Backmen.Flesh.FleshGrowth;
 /// Currently does not support growing in space.
 /// </summary>
 [RegisterComponent, Access(typeof(SpreaderFleshSystem))]
-public sealed class SpreaderFleshComponent : Component
+public sealed partial class SpreaderFleshComponent : Component
 {
     /// <summary>
     /// Chance for it to grow on any given tick, after the normal growth rate-limit (if it doesn't grow, SpreaderSystem will pick another one.).
