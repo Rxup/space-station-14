@@ -47,7 +47,6 @@ public sealed class ChemistryJsonGenerator
                 new UniversalJsonConverter<DamageSpecifier>(),
                 new FixedPointJsonConverter()
             },
-            NumberHandling = JsonNumberHandling.AllowNamedFloatingPointLiterals
         };
 
         file.Write(JsonSerializer.Serialize(prototypes, serializeOptions));
