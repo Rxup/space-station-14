@@ -93,3 +93,11 @@
   frequency: 8100
   color: "#10cae3"
   longRange: true
+
+- type: radioChannel
+  id: UEG
+  name: UEG
+  keycode: 'з'
+  frequency: 1267
+  color: "#228B22"
+  longRange: true

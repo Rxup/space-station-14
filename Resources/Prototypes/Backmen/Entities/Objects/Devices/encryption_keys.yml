@@ -29,3 +29,18 @@
     - state: crypt_CSH
     - state: CSH_label
 
+- type: entity
+  parent: EncryptionKey
+  id: EncryptionKeyUEG
+  name: Encryption Key UEG
+  components:
+  - type: EncryptionKey
+    channels:
+    - UEG
+    defaultChannel: UEG
+  - type: Sprite
+    sprite: Backmen/Objects/Devices/encryption_keysUEG.rsi
+    layers:
+    - state: crypt_green
+    - state: ueg_label
+
