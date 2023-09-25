@@ -268,7 +268,7 @@
         Slash: 0.9
         Piercing: 0.9
         Heat: 0.9
-        
+
 - type: entity
   parent: ClothingUniformBase
   id: ClothingUniformJumpsuitDeliveryman
@@ -278,4 +278,26 @@
   - type: Sprite
     sprite: Backmen/Clothing/Uniforms/jumpsuit/space_club.rsi
   - type: Clothing
-    sprite: Backmen/Clothing/Uniforms/jumpsuit/space_club.rsi        
+    sprite: Backmen/Clothing/Uniforms/jumpsuit/space_club.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformJumpsuitUEG
+  name: UEG representative sweater
+  description: Lightweight and comfortable sweater
+  components:
+  - type: Sprite
+    sprite: Backmen/Clothing/Uniforms/jumpsuit/eug-jumpsuit.rsi
+  - type: Clothing
+    sprite: Backmen/Clothing/Uniforms/jumpsuit/eug-jumpsuit.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformJumpsuitUEGofficer
+  name: UEG security uniform
+  description: A uniform with useless camouflage. Its better not to mess with the person wearing it
+  components:
+  - type: Sprite
+    sprite: Backmen/Clothing/Uniforms/jumpsuit/eug-officer-jumpsuit.rsi
+  - type: Clothing
+    sprite: Backmen/Clothing/Uniforms/jumpsuit/eug-officer-jumpsuit.rsi
