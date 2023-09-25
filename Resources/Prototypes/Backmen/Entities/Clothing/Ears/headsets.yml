@@ -23,6 +23,7 @@
     containers:
       key_slots:
       - EncryptionKeyUEG
+      - EncryptionKeyCommand
   - type: Sprite
     sprite: Clothing/Ears/Headsets/centcom.rsi
   - type: Clothing
