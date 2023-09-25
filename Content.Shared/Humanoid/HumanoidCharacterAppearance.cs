@@ -241,8 +241,8 @@ namespace Content.Shared.Humanoid
                 }
 
                 markingSet.EnsureSpecies(species, skinColor, markingManager);
-                markingSet.FilterSponsor(sponsorMarkings, markingManager); // Corvax-Sponsors
                 markingSet.EnsureSexes(sex, markingManager);
+                markingSet.FilterSponsor(sponsorMarkings, markingManager); // Corvax-Sponsors
             }
 
             return new HumanoidCharacterAppearance(
