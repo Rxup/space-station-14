@@ -8,10 +8,10 @@
   },
   "states": [
     {
-		"name": "ord_label"
+		"name": "ueg_label"
 	},
     {
-		"name": "crypt_black"
+		"name": "crypt_green"
 	}
   ]
 }
