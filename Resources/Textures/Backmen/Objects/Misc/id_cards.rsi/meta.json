@@ -43,6 +43,9 @@
       {
           "name": "default-inhand-right",
           "directions": 4
-      }
+      },
+    {
+        "name": "idueg"
+    }
   ]
 }
