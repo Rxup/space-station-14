@@ -71,3 +71,11 @@
   - type: Sprite
     sprite: Backmen/Clothing/Neck/Cloaks/leather_coat.rsi
 
+- type: entity
+  parent: ClothingNeckBase
+  id: ClothingNeckCloakUEG
+  name: UEG cloak
+  description: Issued for special services to UEG
+  components:
+  - type: Sprite
+    sprite: Backmen/Clothing/Neck/Cloaks/eug-cloak.rsi
