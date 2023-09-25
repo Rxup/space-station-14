@@ -21,3 +21,16 @@
   - type: Sprite
     sprite: Backmen/Objects/Misc/bureaucracyCSH.rsi
     state: stamp-CSH
+
+- type: entity
+  name: Stamp UEG
+  parent: RubberStampBase
+  id: RubberStampUEG
+  components:
+  - type: Stamp
+    stampedName: stamp-component-stamped-name-ueg
+    stampedColor: "#4682B4"
+    stampState: "paper_stamp-cap"
+  - type: Sprite
+    sprite: Objects/Misc/bureaucracy.rsi
+    state: stamp-cap
