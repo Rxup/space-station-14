@@ -72,7 +72,7 @@
 - type: entity
   parent: IDCardStandard
   id: UEGrepIDCard
-  name: UEG representative ID card
+  name: ID карта представителя ОПЗ
   components:
     - type: Sprite
       sprite: Backmen/Objects/Misc/id_cards.rsi
@@ -89,13 +89,13 @@
 - type: entity
   parent: IDCardStandard
   id: UEGoffIDCard
-  name: UEG officer ID card
+  name: ID карта офицера ОПЗ
   components:
     - type: Sprite
       sprite: Backmen/Objects/Misc/id_cards.rsi
       layers:
         - state: default
-        - state: idueg
+        - state: iduegofficer
     - type: Access
       groups:
         - AllAccess
