@@ -49,69 +49,69 @@
 - type: npcConversationTree
   id: SophiaTree
   dialogue:
-  - prompts: [glimmer, reading]
+  - prompts: [glimmer, reading, сияние, чиатает, чиатать]
     responses:
       - is: !type:NPCConversationGetGlimmerEvent
           text: sophia-response-glimmer
 
-  - prompts: [purpose, job, occupation, profession]
+  - prompts: [purpose, job, occupation, profession, предназначение, профессия, проф, занят, работа]
     weight: 0.5
     responses:
       - text: sophia-response-job
 
-  - prompts: [help, topics]
+  - prompts: [help, topics, помощь, помоги, спаси, раскажи]
     weight: 0.5
     hidden: true
     responses:
       - is: !type:NPCConversationHelpEvent
           text: sophia-response-help
 
-  - prompts: [nature, statue, snake, being]
+  - prompts: [nature, statue, snake, being, природа, статуя, змея, начало, боги]
     weight: 0.3
     responses:
       - text: sophia-response-nature
 
-  - prompts: [epistemics, epi]
+  - prompts: [epistemics, epi, волх, боги]
     weight: 0.2
     responses:
       - text: sophia-response-epi
 
-  - prompts: [mantis]
+  - prompts: [mantis, научный]
     weight: 0.2
     responses:
       - text: sophia-response-mantis
 
-  - prompts: [mystagogue, mysta]
+  - prompts: [mystagogue, mysta, иследователь, рнд, научрук, нр]
     weight: 0.2
     responses:
       - text: sophia-response-mystagogue
 
-  - prompts: [psionics, psychic]
+  - prompts: [psionics, psychic, псионик, пси]
     weight: 0.2
     responses:
       - text: sophia-response-psionics
 
-  - prompts: [noösphere, noosphere]
+  - prompts: [noösphere, noosphere, сфера, ноосф, носф]
     weight: 0.2
     responses:
       - text: sophia-response-noosphere
 
-  - prompts: [metempsychosis, metempsychoses, reincarnation, death, dying, afterlife]
+  - prompts: [metempsychosis, metempsychoses, reincarnation, death, dying, afterlife, мета, реинк, смер, умер, перерож, жизни, реинкорнация]
     weight: 0.2
     responses:
       - text: sophia-response-metempsychosis
 
-  - prompts: [calendar]
+  - prompts: [calendar, кален]
     weight: 0.2
     responses:
       - text: sophia-response-calendar
 
-  - prompts: [morphotypes, morphotype, species]
+  - prompts: [morphotypes, morphotype, species, морф, рас]
     weight: 0.2
     responses:
       - text: sophia-response-morphotype
 
-  - prompts: [gods, god]
+  - prompts: [gods, god, бог, боги]
     weight: 0.1
     hidden: true
     responses:

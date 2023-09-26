@@ -1,0 +1,56 @@
+﻿- type: shipwreckDestination
+  id: FrozenWastes
+  biome: Snow
+  lightColor: "#010103"
+  structures:
+    RuinedDwellings: 2
+    RuinedHospital: 1
+    RuinedShop: 5
+  factions:
+    - ZombieOutbreak
+    - FleshMonsterInvasion
+    - MalfunctioningRobots
+  atmosphere:
+    volume: 2450
+    temperature: 251
+    moles:
+      - 20.61979
+      - 77.56971
+
+- type: shipwreckDestination
+  id: DesertWastes
+  biome: LowDesert
+  lightColor: "#030101"
+  structures:
+    RuinedDwellings: 2
+    RuinedHospital: 1
+    RuinedShop: 5
+  factions:
+    - ZombieOutbreak
+    - FleshMonsterInvasion
+    - MalfunctioningRobots
+  atmosphere:
+    volume: 2300
+    temperature: 307
+    moles:
+      - 21.94724
+      - 77.05276
+
+- type: shipwreckDestination
+  id: Jungle
+  biome: Grasslands
+  lightColor: "#010301"
+  structures:
+    RuinedDwellings: 2
+    RuinedHospital: 1
+    RuinedShop: 5
+  factions:
+    - ZombieOutbreak
+    - FleshMonsterInvasion
+    - MalfunctioningRobots
+  atmosphere:
+    volume: 2400
+    temperature: 296
+    moles:
+      - 21.94724
+      - 77.05276
