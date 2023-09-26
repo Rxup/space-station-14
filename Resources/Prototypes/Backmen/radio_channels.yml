@@ -96,7 +96,7 @@
 
 - type: radioChannel
   id: UEG
-  name: UEG
+  name: ОПЗ
   keycode: 'з'
   frequency: 1267
   color: "#228B22"

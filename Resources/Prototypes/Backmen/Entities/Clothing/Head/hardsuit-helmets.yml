@@ -116,8 +116,8 @@
   parent: ClothingHeadHardsuitWithLightBase
   id: ClothingHeadHelmetHardsuitUEG
   noSpawn: true
-  name: Helmet of the hardsuit of the UEG
-  description: The helmet that is brazenly copied from the helmet of the ERT Leader NanoTrasen
+  name: Шлем скафандра охраны ОПЗ
+  description: Этот шлем был нагло скопирован с шлема лидера ОБР NanoTrasen
   components:
   - type: Sprite
     sprite: Clothing/Head/Hardsuits/ERThelmets/ertleader.rsi
@@ -127,8 +127,8 @@
     highPressureMultiplier: 0.525
     lowPressureMultiplier: 1000
   - type: PointLight
-    color: blue
-    radius: 7
+    color: green
+    radius: 5
     energy: 3
   - type: Armor
     modifiers:

@@ -129,8 +129,8 @@
 - type: entity
   parent: ClothingOuterHardsuitBase
   id: ClothingOuterHardsuitUEG
-  name: UEG hardsuit
-  description: Hardsuit created by UEG for its representatives
+  name: Скафандр С.О.Н
+  description: Обычный скафандр С.О.Н который выдаётся оперативникам С.О.Н и некоторым офицерам ОПЗ
   components:
   - type: Sprite
     sprite: Backmen/Clothing/OuterClothing/Hardsuits/ueg-hardsuit.rsi
@@ -145,8 +145,8 @@
     modifiers:
       coefficients:
         Blunt: 0.4
-        Slash: 0.5
-        Piercing: 0.5
+        Slash: 0.4
+        Piercing: 0.4
         Radiation: 0.6
         Caustic: 0.6
         Heat: 0.4

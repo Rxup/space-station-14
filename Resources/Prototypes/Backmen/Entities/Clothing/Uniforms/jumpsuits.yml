@@ -283,8 +283,8 @@
 - type: entity
   parent: ClothingUniformBase
   id: ClothingUniformJumpsuitUEG
-  name: UEG representative sweater
-  description: Lightweight and comfortable sweater
+  name: Водолазка представителя ОПЗ
+  description: Лёгкая и комфортная водолазка
   components:
   - type: Sprite
     sprite: Backmen/Clothing/Uniforms/jumpsuit/eug-jumpsuit.rsi
@@ -294,8 +294,8 @@
 - type: entity
   parent: ClothingUniformBase
   id: ClothingUniformJumpsuitUEGofficer
-  name: UEG security uniform
-  description: A uniform with useless camouflage. Its better not to mess with the person wearing it
+  name: Униформа офицера ОПЗ
+  description: Униформа с безполезным камуфляжем. Лучше не связыватся с её обладателями
   components:
   - type: Sprite
     sprite: Backmen/Clothing/Uniforms/jumpsuit/eug-officer-jumpsuit.rsi
