@@ -43,9 +43,9 @@
   suffix: Interior
   components:
     - type: Sprite
-      sprite: Structures/Walls/shuttleinterior.rsi
+      sprite: Structures/Walls/shuttle.rsi
     - type: Icon
-      sprite: Structures/Walls/shuttleinterior.rsi
+      sprite: Structures/Walls/shuttle.rsi
     - type: IconSmooth
       key: walls
       base: state

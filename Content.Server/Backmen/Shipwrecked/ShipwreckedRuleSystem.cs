@@ -717,7 +717,7 @@ public sealed class ShipwreckedRuleSystem : GameRuleSystem<ShipwreckedRuleCompon
             {
                 // Just need a temporary spawn point away from everything.
                 var somewhere = new EntityCoordinates(component.PlanetMap.Value, 200f + i, 200f + i);
-                var uid = Spawn("GeneratorUranium", somewhere);
+                var uid = Spawn("PortableGeneratorSuperPacman", somewhere);
 
                 TryGetRandomStructureSpot(component, out var spot, out var structure);
                 _sawmill.Info($"Heaven generator! {ToPrettyString(uid)} will go to {spot}");

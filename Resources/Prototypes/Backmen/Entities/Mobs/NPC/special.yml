@@ -126,7 +126,7 @@
         - text: shipwrecked-hecate-response-food
           audio: !type:SoundPathSpecifier
             path: /Audio/Nyanotrasen/Dialogue/Hecate/shipwrecked_hecate_response_food.ogg
-    - prompts: [supplies, supply]
+    - prompts: [supplies, supply, припасы, снаряжение, лут, инвентарь]
       responses:
         - text: shipwrecked-hecate-response-supplies
           audio: !type:SoundPathSpecifier
@@ -134,7 +134,7 @@
 
     # Post-crash
 
-    - prompts: [generator, generators, power, engine, генератор, генераторы, энергия, двигатель]
+    - prompts: [generator, generators, power, engine, генератор, генераторы, энергия, двигатель, движки, ускаритель, ускарители]
       locked: true
       responses:
         - text: shipwrecked-hecate-response-generator
@@ -145,19 +145,19 @@
               text: shipwrecked-hecate-response-generator-access
               audio: !type:SoundPathSpecifier
                 path: /Audio/Nyanotrasen/Dialogue/Hecate/shipwrecked_hecate_response_generator_access.ogg
-    - prompts: [rescue, спас]
+    - prompts: [rescue, спас, спаси]
       locked: true
       responses:
         - text: shipwrecked-hecate-response-rescue
           audio: !type:SoundPathSpecifier
             path: /Audio/Nyanotrasen/Dialogue/Hecate/shipwrecked_hecate_response_rescue.ogg
-    - prompts: [scans, scan, скан, радар]
+    - prompts: [scans, scan, скан, радар, найти, сканируй]
       locked: true
       responses:
         - text: shipwrecked-hecate-response-scans
           audio: !type:SoundPathSpecifier
             path: /Audio/Nyanotrasen/Dialogue/Hecate/shipwrecked_hecate_response_scans.ogg
-    - prompts: [status, stats, prelaunch, статус, инф, пред]
+    - prompts: [status, stats, prelaunch, статус, инф, информация, цель, задачи]
       locked: true
       responses:
         - is: !type:ShipwreckedHecateAskStatusEvent
