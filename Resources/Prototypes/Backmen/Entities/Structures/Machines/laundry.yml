@@ -6,7 +6,7 @@
   components:
     - type: Sprite
       noRot: true
-      sprite: Nyanotrasen/Structures/Machines/washer.rsi
+      sprite: Backmen/Structures/Machines/washer.rsi
       layers:
         # GenericVisualizer doesn't have a way to deal with multiple conditions at
         # once. So have all the layers ready to go, but don't show them unless
@@ -188,11 +188,11 @@
       contents:
         - id: Soap
           prob: 0.3
-        - id: ClothingOuterWinterCoatPlaid
+        - id: ClothingNeckBelovOPG
           prob: 0.5
-        - id: ClothingUniformMNKTracksuitBlack
+        - id: ClothingNeckCloakarbitr
           prob: 0.3
-        - id: ClothingCostumeNaota
+        - id: ClothingNeckLeatherCoat
           prob: 0.2
         - id: ClothingHeadBandSkull
           prob: 0.2

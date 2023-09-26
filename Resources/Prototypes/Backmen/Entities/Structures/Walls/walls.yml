@@ -35,3 +35,19 @@
       tags:
         - Wall
         - RCDDeconstructWhitelist
+
+- type: entity
+  parent: WallSolid
+  id: WallShuttleInterior
+  name: shuttle wall
+  suffix: Interior
+  components:
+    - type: Sprite
+      sprite: Structures/Walls/shuttleinterior.rsi
+    - type: Icon
+      sprite: Structures/Walls/shuttleinterior.rsi
+    - type: IconSmooth
+      key: walls
+      base: state
+    - type: Reflect
+      reflectProb: 1
