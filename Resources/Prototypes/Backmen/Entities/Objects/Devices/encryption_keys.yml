@@ -41,6 +41,6 @@
   - type: Sprite
     sprite: Backmen/Objects/Devices/encryption_keysUEG.rsi
     layers:
-    - state: crypt_green
+    - state: crypt_ueg
     - state: ueg_label
 
