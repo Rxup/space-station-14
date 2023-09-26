@@ -15,6 +15,14 @@
   longRange: true
 
 - type: radioChannel
+  id: Fleet
+  name: Флот
+  keycode: 'х'
+  frequency: 9000
+  color: "#006400"
+  longRange: true
+
+- type: radioChannel
   id: GROUPS_1
   name: Группа 1
   keycode: '1'
