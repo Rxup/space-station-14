@@ -1,0 +1,64 @@
+# Just average people.
+# No IDs, no bags, no headsets.
+
+- type: startingGear
+  id: UnaffiliatedChaplainGear
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitChaplain
+    belt: Bible
+    shoes: ClothingShoesColorBlack
+  innerclothingskirt: ClothingUniformJumpskirtChaplain
+
+- type: startingGear
+  id: UnaffiliatedChefGear
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitChef
+    head: ClothingHeadHatChef
+    shoes: ClothingShoesColorBlack
+    outerClothing: ClothingOuterApronChef
+  innerclothingskirt: ClothingUniformJumpskirtChef
+
+- type: startingGear
+  id: UnaffiliatedDoctorGear
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitMedicalDoctor
+    shoes: ClothingShoesColorWhite
+    outerClothing: ClothingOuterCoatLab
+    neck: ClothingNeckStethoscope
+    belt: ClothingBeltMedicalFilled
+  innerclothingskirt: ClothingUniformJumpskirtMedicalDoctor
+
+- type: startingGear
+  id: UnaffiliatedJanitorGear
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitJanitor
+    shoes: ClothingShoesGaloshes
+    head: ClothingHeadHatPurplesoft
+    belt: ClothingBeltJanitorFilled
+  innerclothingskirt: ClothingUniformJumpskirtJanitor
+
+- type: startingGear
+  id: UnaffiliatedLawyerGear
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitLawyerBlack
+    shoes: ClothingShoesBootsLaceup
+  inhand:
+    right hand: BriefcaseBrownFilled
+  innerclothingskirt: ClothingUniformJumpskirtLawyerBlack
+
+- type: startingGear
+  id: UnaffiliatedMailCarrierGear
+  equipment:
+    head: ClothingHeadMailCarrier
+    jumpsuit: ClothingUniformMailCarrier
+    shoes: ClothingShoesColorBlack
+    belt: MailBag
+  innerclothingskirt: ClothingUniformSkirtMailCarrier
+
+- type: startingGear
+  id: UnaffiliatedPsychologistGear
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitPsychologist
+    shoes: ClothingShoesLeather
+  innerclothingskirt: ClothingUniformJumpsuitPsychologist
+

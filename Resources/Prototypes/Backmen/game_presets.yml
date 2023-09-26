@@ -1,0 +1,11 @@
+﻿- type: gamePreset
+  id: Shipwrecked
+  alias:
+    - schiffbruch
+  name: shipwrecked-title
+  description: shipwrecked-description
+  maxPlayers: 15
+  showInVote: true
+  supportedMaps: ShipwreckedPool
+  rules:
+    - Shipwrecked

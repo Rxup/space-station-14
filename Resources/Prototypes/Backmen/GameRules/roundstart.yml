@@ -1,0 +1,38 @@
+﻿- type: entity
+  id: Shipwrecked
+  parent: BaseGameRule
+  noSpawn: true
+  components:
+    - type: ShipwreckedRule
+      shuttlePath: /Maps/Backmen/Shuttles/adventurer.yml
+      spawnPointTraveller: SpawnPointShipwreckTraveller
+      availableJobs:
+        - Explorer
+        - Freelancer
+        - Student
+      destinations:
+        - DesertWastes
+        - FrozenWastes
+        - Jungle
+      spawnPointHecate: SpawnPointShipwreckHecate
+      hecatePrototype: MobQuestHecateShipwrecked
+      eventSchedule:
+        - 13: AnnounceTransit
+        - 9: ShowHecate
+        - 1: IntroduceHecate
+        - 160: EncounterTurbulence
+        - 10: ShiftParallax
+        - 60: MidFlightDamage
+        - 1: Alert
+        - 8: DecoupleEngine
+        - 14: SendDistressSignal
+        - 8: InterstellarBody
+        - 8: EnteringAtmosphere
+        - 6: Crash
+        - 6: AfterCrash
+        - 12: Sitrep
+
+- type: gameMapPool
+  id: ShipwreckedPool
+  maps:
+    - Empty

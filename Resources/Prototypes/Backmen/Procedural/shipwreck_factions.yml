@@ -1,0 +1,59 @@
+﻿- type: shipwreckFaction
+  id: ZombieOutbreak
+  objectiveDefender: RandomHumanoidSpawnerZombieBrute
+  active:
+    - id: RandomHumanoidSpawnerZombie
+      prob: 0.3
+      orGroup: zombie
+    - id: RandomHumanoidSpawnerZombieSurprise
+      prob: 0.4
+      maxAmount: 2
+      orGroup: zombie
+  inactive:
+    - id: RandomHumanoidSpawnerUnaffiliatedDead
+      prob: 0.5
+      maxAmount: 3
+
+- type: shipwreckFaction
+  id: FleshMonsterInvasion
+  objectiveDefender: AnomalyFleshStatic
+  active:
+    - id: MobFleshJared
+      prob: 0.2
+      orGroup: flesh
+    - id: MobFleshGolem
+      prob: 0.4
+      orGroup: flesh
+    - id: MobFleshClamp
+      prob: 0.6
+      orGroup: flesh
+    - id: MobFleshLover
+      prob: 0.7
+      orGroup: flesh
+  inactive:
+    - id: RandomHumanoidSpawnerUnaffiliatedDead
+      prob: 0.2
+      maxAmount: 2
+
+- type: shipwreckFaction
+  id: MalfunctioningRobots
+  objectiveDefender: MobMalfunctioningRobotTank
+  active:
+    - id: MobMalfunctioningRobotCutter
+      prob: 0.3
+    - id: MobMalfunctioningRobotPoisoner
+      prob: 0.15
+  inactive:
+    - id: RandomHumanoidSpawnerUnaffiliatedDead
+      prob: 0.4
+      maxAmount: 2
+
+- type: entity
+  id: AnomalyFleshStatic
+  parent: AnomalyFlesh
+  noSpawn: true
+  components:
+    - type: Anomaly
+      severityGrowthCoefficient: 0
+      minPulseLength: 1200
+      maxPulseLength: 1800

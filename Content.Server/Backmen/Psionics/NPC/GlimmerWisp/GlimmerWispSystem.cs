@@ -110,7 +110,7 @@ namespace Content.Server.Backmen.Psionics.NPC.GlimmerWisp
             if (!Resolve(uid, ref component))
                 return;
 
-           component.DrainTarget = target;
+            component.DrainTarget = target;
             _popups.PopupEntity(Loc.GetString("life-drain-second-start", ("wisp", uid)), target, target, Shared.Popups.PopupType.LargeCaution);
             _popups.PopupEntity(Loc.GetString("life-drain-third-start", ("wisp", uid), ("target", target)), target, Filter.PvsExcept(target), true, Shared.Popups.PopupType.LargeCaution);
 

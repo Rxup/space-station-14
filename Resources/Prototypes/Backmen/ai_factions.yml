@@ -1,0 +1,11 @@
+﻿- type: npcFaction
+  id: MalfunctioningRobot
+  hostile:
+    - NanoTrasen
+    - SimpleNeutral
+    - SimpleHostile
+    - Syndicate
+    - Passive
+    - PetsNT
+    - Blob
+    - Zombie
