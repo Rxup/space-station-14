@@ -64,6 +64,7 @@
     - GROUPS_9
     - GROUPS_0
     - Binary
+    - Flesh
     globalReceive: true
   - type: Physics
     bodyType: KinematicController

@@ -9,6 +9,11 @@
   description: flavor-complex-enthralling
 
 - type: flavor
+  id: acidic
+  flavorType: Complex
+  description: flavor-complex-acidic
+
+- type: flavor
   id: sublime
   flavorType: Complex
   description: flavor-complex-sublime

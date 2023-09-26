@@ -426,6 +426,29 @@
     lifetime: 0.4
 
 - type: entity
+  id: BulletSpike
+  name: spike
+  parent: BaseBulletHighVelocity
+  noSpawn: true
+  description:
+  components:
+    - type: Sprite
+      netsync: false
+      noRot: false
+      sprite: Objects/Weapons/Guns/Projectiles/spike.rsi
+      layers:
+        - state: spike
+          shader: unshaded
+    - type: Projectile
+      impactEffect: BulletImpactEffectKinetic
+      damage:
+        types:
+          Piercing: 19
+    # Short lifespan
+    - type: TimedDespawn
+      lifetime: 1
+
+- type: entity
   parent: BaseBullet
   id: AnomalousParticleDelta
   name: delta particles
@@ -734,6 +757,25 @@
   - type: VaporVisuals
 
 - type: entity
+  id: BulletSplashAcid
+  name: flesh acid spit
+  parent: BaseBulletTrigger
+  noSpawn: true
+  components:
+    - type: Sprite
+      sprite: Objects/Weapons/Guns/Projectiles/flesh_toxic.rsi
+      layers:
+        - state: flesh_toxic
+    - type: Projectile
+      damage:
+        types:
+          Caustic: 5
+    - type: SplashOnTrigger
+      splashReagents:
+        - ReagentId: FleshAcid
+          Quantity: 30
+
+- type: entity
   id: BulletCannonBall
   name: cannonball
   parent: BaseBulletTrigger
@@ -789,3 +831,16 @@
             - Impassable
             - HighImpassable
     - type: GrapplingProjectile
+
+#BackmenCultOfFlash-start
+- type: entity
+  id: BaseBulletHighVelocity
+  name: base bullet high-velocity
+  parent: BaseBullet
+  noSpawn: true
+  components:
+    - type: Projectile
+      damage:
+        types:
+          Piercing: 17
+#BackmenCultOfFlash-end
