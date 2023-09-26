@@ -16,6 +16,7 @@ using Content.Server.Station.Components;
 using Content.Server.Station.Systems;
 using Content.Server.Store.Components;
 using Content.Server.Store.Systems;
+using Content.Shared.Backmen.Abilities.Psionics;
 using Content.Shared.Backmen.CCVar;
 using Content.Shared.FixedPoint;
 using Content.Shared.Backmen.Flesh;
@@ -334,8 +335,9 @@ public sealed class FleshCultRuleSystem : GameRuleSystem<FleshCultRuleComponent>
 
     public List<IPlayerSession> PickCultists(int cultistCount, List<IPlayerSession> prefList)
     {
+        cultistCount = Math.Max(0, cultistCount);
         var results = new List<IPlayerSession>(cultistCount);
-        if (prefList.Count == 0)
+        if (prefList.Count == 0 || cultistCount == 0)
         {
             _sawmill.Info("Insufficient ready players to fill up with traitors, stopping the selection.");
             return results;
@@ -343,6 +345,10 @@ public sealed class FleshCultRuleSystem : GameRuleSystem<FleshCultRuleComponent>
 
         for (var i = 0; i < cultistCount; i++)
         {
+            if (prefList.Count == 0)
+            {
+                break;
+            }
             results.Add(_random.PickAndTake(prefList));
             _sawmill.Info("Selected a preferred traitor.");
         }
@@ -390,6 +396,14 @@ public sealed class FleshCultRuleSystem : GameRuleSystem<FleshCultRuleComponent>
         storeComp.BuySuccessSound = fleshCultRule.BuySuccesSound;
 
         EnsureComp<FleshCultistComponent>(mind.OwnedEntity.Value);
+
+        if (_prototypeManager.TryIndex<RadioChannelPrototype>(FleshChannel, out var fleshChannel))
+        {
+            var hiveMind = EnsureComp<PsionicComponent>(mind.OwnedEntity.Value);
+            hiveMind.Channel = FleshChannel;
+            hiveMind.Removable = false;
+            hiveMind.ChannelColor = fleshChannel.Color;
+        }
 
         _mindSystem.TryAddObjective(mindId, mind, CreateFleshHeartObjective);
         _mindSystem.TryAddObjective(mindId, mind, FleshCultistSurvivalObjective);

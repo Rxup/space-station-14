@@ -7,6 +7,7 @@ using Content.Shared.Actions;
 using Content.Shared.CombatMode;
 using Content.Shared.Damage;
 using Content.Shared.Backmen.Flesh;
+using Content.Shared.CombatMode.Pacification;
 using Content.Shared.Hands;
 using Content.Shared.Hands.EntitySystems;
 using Content.Shared.Humanoid;
@@ -89,7 +90,8 @@ public sealed partial class FleshWormSystem : EntitySystem
         _popup.PopupEntity(Loc.GetString("flesh-pudge-throw-worm-eat-face-others",
             ("entity", args.Target)), args.Target, Filter.PvsExcept(uid), true, PopupType.Large);
 
-        EntityManager.RemoveComponent<CombatModeComponent>(uid);
+        //EntityManager.RemoveComponent<CombatModeComponent>(uid);
+        EnsureComp<PacifiedComponent>(uid);
         _stunSystem.TryParalyze(args.Target, TimeSpan.FromSeconds(component.ParalyzeTime), true);
         _damageableSystem.TryChangeDamage(args.Target, component.Damage);
     }
@@ -99,7 +101,7 @@ public sealed partial class FleshWormSystem : EntitySystem
         if (args.Slot != "mask")
             return;
         component.EquipedOn = args.Equipee;
-        EntityManager.RemoveComponent<CombatModeComponent>(uid);
+        EnsureComp<PacifiedComponent>(uid);
     }
 
     private void OnUnequipAttempt(EntityUid uid, FleshWormComponent component, BeingUnequippedAttemptEvent args)
@@ -134,9 +136,10 @@ public sealed partial class FleshWormSystem : EntitySystem
         if (args.Slot != "mask")
             return;
         component.EquipedOn = new EntityUid();
-        var combatMode = EntityManager.AddComponent<CombatModeComponent>(uid);
+        RemCompDeferred<PacifiedComponent>(uid);
+        var combatMode = EnsureComp<CombatModeComponent>(uid);
         _combat.SetInCombatMode(uid, true, combatMode);
-        EntityManager.AddComponent<NPCMeleeCombatComponent>(uid);
+        EnsureComp<NPCMeleeCombatComponent>(uid);
     }
 
     private void OnMeleeHit(EntityUid uid, FleshWormComponent component, MeleeHitEvent args)
@@ -180,7 +183,8 @@ public sealed partial class FleshWormSystem : EntitySystem
 
             _popup.PopupEntity(Loc.GetString("flesh-pudge-throw-worm-eat-face-others",
                 ("entity", entity)), entity, Filter.PvsExcept(entity), true, PopupType.Large);
-            EntityManager.RemoveComponent<CombatModeComponent>(uid);
+
+            EnsureComp<PacifiedComponent>(uid);
             _stunSystem.TryParalyze(entity, TimeSpan.FromSeconds(component.ParalyzeTime), true);
             _damageableSystem.TryChangeDamage(entity, component.Damage, origin: entity);
             break;
