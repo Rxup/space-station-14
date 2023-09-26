@@ -19,17 +19,18 @@ namespace Content.Server.Backmen.Economy.Eftpos;
         [Dependency] private readonly IdCardSystem _idCardSystem = default!;
         [Dependency] private readonly AudioSystem _audioSystem = default!;
         [Dependency] private readonly PopupSystem _popupSystem = default!;
+        [Dependency] private readonly UserInterfaceSystem _uiSystem = default!;
         public override void Initialize()
         {
             base.Initialize();
             SubscribeLocalEvent<IdCardComponent, AfterInteractEvent>(OnAfterInteract);
-            SubscribeLocalEvent<EftposComponent, ComponentStartup>((_, comp, _) => UpdateComponentUserInterface(comp));
+            SubscribeLocalEvent<EftposComponent, ComponentStartup>((uid, comp, _) => UpdateComponentUserInterface(uid,comp));
             SubscribeLocalEvent<EftposComponent, EftposChangeValueMessage>(OnChangeValue);
             SubscribeLocalEvent<EftposComponent, EftposChangeLinkedAccountNumberMessage>(OnChangeLinkedAccountNumber);
             SubscribeLocalEvent<EftposComponent, EftposSwipeCardMessage>(OnSwipeCard);
             SubscribeLocalEvent<EftposComponent, EftposLockMessage>(OnLock);
         }
-        private void UpdateComponentUserInterface(EftposComponent component)
+        private void UpdateComponentUserInterface(EntityUid uid, EftposComponent component)
         {
             string? currSymbol = null;
             if (component.CurrencyType != null && _prototypeManager.TryIndex(component.CurrencyType, out CurrencyPrototype? p))
@@ -40,7 +41,12 @@ namespace Content.Server.Backmen.Economy.Eftpos;
                 component.LinkedAccountName,
                 component.LockedBy != null,
                 currSymbol);
-            component.UpdateUserInterface(newState);
+
+            if (!_uiSystem.TryGetUi(uid, EftposUiKey.Key, out var bui))
+            {
+                return;
+            }
+            _uiSystem.SetUiState(bui, newState);
         }
         private void OnChangeValue(EntityUid uid, EftposComponent component, EftposChangeValueMessage msg)
         {
@@ -55,7 +61,7 @@ namespace Content.Server.Backmen.Economy.Eftpos;
                 msg.Value != null
                 ? FixedPoint2.Clamp((FixedPoint2) msg.Value, 0, FixedPoint2.MaxValue)
                 : null;
-            UpdateComponentUserInterface(component);
+            UpdateComponentUserInterface(uid,component);
         }
         private void OnChangeLinkedAccountNumber(EntityUid uid, EftposComponent component, EftposChangeLinkedAccountNumberMessage msg)
         {
@@ -71,7 +77,7 @@ namespace Content.Server.Backmen.Economy.Eftpos;
                 component.CurrencyType = null;
                 component.LinkedAccountNumber = null;
                 component.LinkedAccountName = null;
-                UpdateComponentUserInterface(component);
+                UpdateComponentUserInterface(uid,component);
                 Apply(component);
                 return;
             }
@@ -85,7 +91,7 @@ namespace Content.Server.Backmen.Economy.Eftpos;
             component.LinkedAccountName = _bankManagerSystem.GetBankAccountName(msg.LinkedAccountNumber);
 
             Apply(component);
-            UpdateComponentUserInterface(component);
+            UpdateComponentUserInterface(uid,component);
         }
         private void OnSwipeCard(EntityUid uid, EftposComponent component, EftposSwipeCardMessage msg)
         {
@@ -96,20 +102,20 @@ namespace Content.Server.Backmen.Economy.Eftpos;
                 Deny(component);
                 return;
             }
-            TryCompleteTransaction(component, idCardComponent);
+            TryCompleteTransaction(uid, component, idCardComponent);
         }
         private void OnAfterInteract(EntityUid uid, IdCardComponent component, AfterInteractEvent args)
         {
             if (!TryComp<EftposComponent>(args.Target, out var eftpos))
                 return;
-            TryCompleteTransaction(eftpos, component);
+            TryCompleteTransaction(args.Target.Value, eftpos, component);
         }
-        private void TryCompleteTransaction(EftposComponent component, IdCardComponent idCardComponent)
+        private void TryCompleteTransaction(EntityUid terminal, EftposComponent component, IdCardComponent idCardComponent)
         {
             if (idCardComponent.Owner == component.LockedBy)
             {
                 component.LockedBy = null;
-                UpdateComponentUserInterface(component);
+                UpdateComponentUserInterface(terminal, component);
                 Apply(component);
                 return;
             }
@@ -128,7 +134,7 @@ namespace Content.Server.Backmen.Economy.Eftpos;
             }
             _popupSystem.PopupEntity(Loc.GetString("eftpos-ui-popup-apply-done"),component.Owner, PopupType.Large);
             Apply(component);
-            UpdateComponentUserInterface(component);
+            UpdateComponentUserInterface(terminal, component);
         }
 
         private void OnLock(EntityUid uid, EftposComponent component, EftposLockMessage msg)
@@ -157,7 +163,7 @@ namespace Content.Server.Backmen.Economy.Eftpos;
             component.LockedBy = idCardComponent.Owner;
             _popupSystem.PopupEntity(Loc.GetString("eftpos-ui-popup-lock"),component.Owner, PopupType.Small);
             Apply(component);
-            UpdateComponentUserInterface(component);
+            UpdateComponentUserInterface(uid, component);
         }
 
         private void Deny(EftposComponent component)

@@ -1,6 +1,5 @@
 using Content.Shared.Backmen.Arachne;
 using Content.Shared.Actions;
-using Content.Shared.Actions.ActionTypes;
 using Content.Shared.Coordinates.Helpers;
 using Content.Shared.IdentityManagement;
 using Content.Shared.Verbs;
@@ -28,6 +27,7 @@ using Content.Server.DoAfter;
 using Content.Server.Body.Components;
 using Content.Server.Backmen.Vampiric;
 using Content.Server.Speech.Components;
+using Content.Shared.Backmen.Abilities;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Player;
 using Robust.Shared.Physics.Components;
@@ -65,6 +65,7 @@ public sealed class ArachneSystem : EntitySystem
     {
         base.Initialize();
         SubscribeLocalEvent<ArachneComponent, ComponentInit>(OnInit);
+        SubscribeLocalEvent<ArachneComponent, ComponentShutdown>(OnShutdown);
         SubscribeLocalEvent<ArachneComponent, GetVerbsEvent<InnateVerb>>(AddCocoonVerb);
 
         SubscribeLocalEvent<CocoonComponent, EntInsertedIntoContainerMessage>(OnCocEntInserted);
@@ -78,10 +79,17 @@ public sealed class ArachneSystem : EntitySystem
         SubscribeLocalEvent<ArachneComponent, ArachneCocoonDoAfterEvent>(OnCocoonDoAfter);
     }
 
+    private void OnShutdown(EntityUid uid, ArachneComponent component, ComponentShutdown args)
+    {
+        _actions.RemoveAction(uid, component.SpinWeb);
+    }
+
+
+    [ValidatePrototypeId<EntityPrototype>] private const string ActionSpinWeb = "ActionSpinWeb";
+
     private void OnInit(EntityUid uid, ArachneComponent component, ComponentInit args)
     {
-        if (_prototypeManager.TryIndex<WorldTargetActionPrototype>("SpinWeb", out var spinWeb))
-            _actions.AddAction(uid, new WorldTargetAction(spinWeb), null);
+        _actions.AddAction(uid, ref component.SpinWeb ,ActionSpinWeb);
     }
 
     private void AddCocoonVerb(EntityUid uid, ArachneComponent component, GetVerbsEvent<InnateVerb> args)
@@ -250,8 +258,8 @@ public sealed class ArachneSystem : EntitySystem
             Shared.Popups.PopupType.MediumCaution);
         _popupSystem.PopupEntity(Loc.GetString("spin-web-start-second-person"), args.Performer, args.Performer, Shared.Popups.PopupType.Medium);
 
-        var ev = new ArachneWebDoAfterEvent(coords);
-        var doAfterArgs = new DoAfterArgs(args.Performer, arachne.WebDelay, ev, args.Performer)
+        var ev = new ArachneWebDoAfterEvent(GetNetCoordinates(coords));
+        var doAfterArgs = new DoAfterArgs(EntityManager, args.Performer, arachne.WebDelay, ev, args.Performer)
         {
             BreakOnUserMove = true,
         };
@@ -278,7 +286,7 @@ public sealed class ArachneSystem : EntitySystem
         // Who knows, there's no docs!
         var ev = new ArachneCocoonDoAfterEvent();
 
-        var args = new DoAfterArgs(uid, delay, ev, uid, target: target)
+        var args = new DoAfterArgs(EntityManager, uid, delay, ev, uid, target: target)
         {
             BreakOnUserMove = true,
             BreakOnTargetMove = true,
@@ -287,6 +295,7 @@ public sealed class ArachneSystem : EntitySystem
         _doAfter.TryStartDoAfter(args);
     }
 
+    [ValidatePrototypeId<EntityPrototype>] private const string ArachneWeb = "ArachneWeb";
     private void OnWebDoAfter(EntityUid uid, ArachneComponent component, ArachneWebDoAfterEvent args)
     {
         if (args.Handled || args.Cancelled)
@@ -294,9 +303,9 @@ public sealed class ArachneSystem : EntitySystem
 
         _hungerSystem.ModifyHunger(uid, -8);
         if (TryComp<ThirstComponent>(uid, out var thirst))
-            _thirstSystem.UpdateThirst(thirst, -20);
+            _thirstSystem.ModifyThirst(uid, thirst, -20);
 
-        Spawn("ArachneWeb", args.Coords.SnapToGrid());
+        Spawn(ArachneWeb, GetCoordinates(args.Coords).SnapToGrid());
         _popupSystem.PopupEntity(Loc.GetString("spun-web-third-person", ("spider", Identity.Entity(uid, EntityManager))), uid,
             Filter.PvsExcept(uid).RemoveWhereAttachedEntity(entity => !ExamineSystemShared.InRangeUnOccluded(uid, entity, ExamineRange, null)),
             true,
@@ -341,5 +350,3 @@ public sealed class ArachneSystem : EntitySystem
         args.Handled = true;
     }
 }
-
-public sealed partial class SpinWebActionEvent : WorldTargetActionEvent {}

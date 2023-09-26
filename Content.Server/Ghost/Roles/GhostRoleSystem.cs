@@ -122,7 +122,7 @@ namespace Content.Server.Ghost.Roles
             if (_openMakeGhostRoleUis.ContainsKey(session))
                 CloseEui(session);
 
-            var eui = _openMakeGhostRoleUis[session] = new MakeGhostRoleEui(uid);
+            var eui = _openMakeGhostRoleUis[session] = new MakeGhostRoleEui(EntityManager, GetNetEntity(uid));
             _euiManager.OpenEui(eui, session);
             eui.StateDirty();
         }
@@ -248,7 +248,7 @@ namespace Content.Server.Ghost.Roles
                 if (metaQuery.GetComponent(uid).EntityPaused)
                     continue;
 
-                roles.Add(new GhostRoleInfo {Identifier = id, Name = role.RoleName, Description = role.RoleDescription, Rules = role.RoleRules, WhitelistRequired = role.WhitelistRequired}); // backmen: whitelist
+                roles.Add(new GhostRoleInfo {Identifier = id, Name = role.RoleName, Description = role.RoleDescription, Rules = role.RoleRules, Requirements = role.Requirements, WhitelistRequired = role.WhitelistRequired}); // backmen: whitelist
             }
 
             return roles.ToArray();

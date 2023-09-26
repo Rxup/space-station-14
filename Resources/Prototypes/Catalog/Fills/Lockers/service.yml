@@ -19,7 +19,7 @@
       - id: BoxBeanbag
         amount: 2
       - id: RagItem
-        amound: 2
+        amount: 2
 
 #- type: entity
 #  id: LockerFormalFilled
@@ -50,7 +50,8 @@
       - id: ReagentContainerMilk
         amount: 2
       - id: ReagentContainerMilkSoy
-      - id: AntiPsychicKnife
+      - id: AntiPsychicKnife # backmen
+      - id: ClothingHeadCage # backmen
 
 - type: entity
   id: ClosetJanitorFilled
@@ -76,7 +77,8 @@
         amount: 2
       - id: Plunger
         amount: 2
-      - id: AntiPsychicKnife
+      - id: AntiPsychicKnife # backmen
+      - id: ClothingHeadCage # backmen
 
 - type: entity
   id: ClosetLegalFilled
@@ -111,7 +113,8 @@
       - id: ClothingUniformOveralls
       - id: ClothingHeadHatTrucker
         prob: 0.1
-      - id: AntiPsychicKnife
+      - id: AntiPsychicKnife # backmen
+      - id: ClothingHeadCage # backmen
 
 - type: entity
   id: LockerBotanistLoot

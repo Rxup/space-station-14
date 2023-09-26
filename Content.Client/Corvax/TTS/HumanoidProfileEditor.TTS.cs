@@ -12,13 +12,6 @@ public sealed partial class HumanoidProfileEditor
     private TTSManager _ttsMgr = default!;
     private TTSSystem _ttsSys = default!;
     private List<TTSVoicePrototype> _voiceList = default!;
-    private readonly List<string> _sampleText = new()
-    {
-        "Съешь же ещё этих мягких французских булок, да выпей чаю.",
-        "Клоун, прекрати разбрасывать банановые кожурки офицерам под ноги!",
-        "Капитан, вы уверены что хотите назначить клоуна на должность главы персонала?",
-        "Эс Бэ! Тут человек в сером костюме, с тулбоксом и в маске! Помогите!!"
-    };
 
     private void InitializeVoice()
     {
@@ -81,6 +74,6 @@ public sealed partial class HumanoidProfileEditor
             return;
 
         _ttsSys.StopAllStreams();
-        _ttsMgr.RequestTTS(_previewDummy.Value, IoCManager.Resolve<IRobustRandom>().Pick(_sampleText), Profile.Voice);
+        _ttsMgr.RequestTTS(IoCManager.Resolve<IEntityManager>().GetNetEntity(_previewDummy.Value), VoiceRequestType.Preview, Profile.Voice);
     }
 }

@@ -6,7 +6,6 @@ using Content.Server.Body.Components;
 using Content.Server.Body.Systems;
 using Content.Server.Chemistry.EntitySystems;
 using Content.Server.DoAfter;
-using Content.Shared.Actions.ActionTypes;
 using Content.Shared.Actions;
 using Content.Shared.Backmen.Abilities.Psionics;
 using Content.Shared.Chemistry.Components;
@@ -46,15 +45,15 @@ public sealed class PsionicRegenerationPowerSystem : EntitySystem
         SubscribeLocalEvent<PsionicRegenerationPowerComponent, PsionicRegenerationDoAfterEvent>(OnDoAfter);
     }
 
+    [ValidatePrototypeId<EntityPrototype>] private const string ActionPsionicRegeneration = "ActionPsionicRegeneration";
+
     private void OnInit(EntityUid uid, PsionicRegenerationPowerComponent component, ComponentInit args)
     {
-        if (!_prototypeManager.TryIndex<InstantActionPrototype>("PsionicRegeneration", out var metapsionic))
-            return;
+        _actions.AddAction(uid, ref component.PsionicRegenerationPowerAction, ActionPsionicRegeneration);
 
-        component.PsionicRegenerationPowerAction = new InstantAction(metapsionic);
-        if (metapsionic.UseDelay != null)
-            component.PsionicRegenerationPowerAction.Cooldown = (_gameTiming.CurTime, _gameTiming.CurTime + (TimeSpan) metapsionic.UseDelay);
-        _actions.AddAction(uid, component.PsionicRegenerationPowerAction, null);
+        if (_actions.TryGetActionData(component.PsionicRegenerationPowerAction, out var action) && action?.UseDelay != null)
+            _actions.SetCooldown(component.PsionicRegenerationPowerAction, _gameTiming.CurTime,
+                _gameTiming.CurTime + (TimeSpan)  action?.UseDelay!);
 
         if (TryComp<PsionicComponent>(uid, out var psionic) && psionic.PsionicAbility == null)
             psionic.PsionicAbility = component.PsionicRegenerationPowerAction;
@@ -63,7 +62,7 @@ public sealed class PsionicRegenerationPowerSystem : EntitySystem
     private void OnPowerUsed(EntityUid uid, PsionicRegenerationPowerComponent component, PsionicRegenerationPowerActionEvent args)
     {
         var ev = new PsionicRegenerationDoAfterEvent(_gameTiming.CurTime);
-        var doAfterArgs = new DoAfterArgs(uid, component.UseDelay, ev, uid);
+        var doAfterArgs = new DoAfterArgs(EntityManager, uid, component.UseDelay, ev, uid);
 
         _doAfterSystem.TryStartDoAfter(doAfterArgs, out var doAfterId);
 
@@ -83,8 +82,7 @@ public sealed class PsionicRegenerationPowerSystem : EntitySystem
 
     private void OnShutdown(EntityUid uid, PsionicRegenerationPowerComponent component, ComponentShutdown args)
     {
-        if (_prototypeManager.TryIndex<InstantActionPrototype>("PsionicRegeneration", out var metapsionic))
-            _actions.RemoveAction(uid, new InstantAction(metapsionic), null);
+        _actions.RemoveAction(uid, component.PsionicRegenerationPowerAction);
     }
 
     private void OnDispelled(EntityUid uid, PsionicRegenerationPowerComponent component, DispelledEvent args)
@@ -117,4 +115,4 @@ public sealed class PsionicRegenerationPowerSystem : EntitySystem
     }
 }
 
-public sealed partial class PsionicRegenerationPowerActionEvent : InstantActionEvent {}
+

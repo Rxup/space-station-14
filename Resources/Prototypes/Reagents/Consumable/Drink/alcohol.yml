@@ -119,51 +119,49 @@
   boilingPoint: 78.2
   meltingPoint: -114.1
   metabolisms:
-    Poison:
-      effects:
-        - !type:HealthChange
-          conditions:
-            - !type:ReagentThreshold
-              min: 5
-            - !type:OrganType
-              type: Dwarf
-              shouldHave: false
-          damage:
-            types:
-              Poison: 1
-        # dwarves take less toxin damage and heal a marginal amount of brute
-        - !type:HealthChange
-          conditions:
-            - !type:ReagentThreshold
-              min: 5
-            - !type:OrganType
-              type: Dwarf
-          damage:
-            types:
-              Poison: 0.2
-        - !type:HealthChange
-          conditions:
-            - !type:ReagentThreshold
-              min: 5
-            - !type:OrganType
-              type: Dwarf
-          damage:
-            groups:
-              Brute: -1
-        - !type:ChemVomit
-          probability: 0.04
-          conditions:
-            - !type:ReagentThreshold
-              reagent: Ethanol
-              min: 3
-            # dwarves immune to vomiting from alcohol
-            - !type:OrganType
-              type: Dwarf
-              shouldHave: false
     Alcohol:
       effects:
-        - !type:Drunk
-          boozePower: 20
+      - !type:HealthChange
+        conditions:
+        - !type:ReagentThreshold
+          min: 15
+        - !type:OrganType
+          type: Dwarf
+          shouldHave: false
+        damage:
+          types:
+            Poison: 1
+      # dwarves take less toxin damage and heal a marginal amount of brute
+      - !type:HealthChange
+        conditions:
+        - !type:ReagentThreshold
+          min: 15
+        - !type:OrganType
+          type: Dwarf
+        damage:
+          types:
+            Poison: 0.2
+      - !type:HealthChange
+        conditions:
+        - !type:ReagentThreshold
+          min: 15
+        - !type:OrganType
+          type: Dwarf
+        damage:
+          groups:
+            Brute: -1
+      - !type:ChemVomit
+        probability: 0.04
+        conditions:
+        - !type:ReagentThreshold
+          reagent: Ethanol
+          min: 12
+        # dwarves immune to vomiting from alcohol
+        - !type:OrganType
+          type: Dwarf
+          shouldHave: false
+      - !type:Drunk
+        boozePower: 2
 
 - type: reagent
   id: Gin
@@ -643,11 +641,11 @@
   metabolisms:
     Drink:
       effects:
-        - !type:SatiateThirst
-          factor: 2
-        - !type:AdjustReagent
-          reagent: Ethanol
-          amount: 0.15
+      - !type:SatiateThirst
+        factor: 2
+      - !type:AdjustReagent
+        reagent: Ethanol
+        amount: 0.07
 
 - type: reagent
   id: DemonsBlood
@@ -774,11 +772,11 @@
   metabolisms:
     Drink:
       effects:
-        - !type:SatiateThirst
-          factor: 2
-        - !type:AdjustReagent
-          reagent: Ethanol
-          amount: 0.15
+      - !type:SatiateThirst
+        factor: 2
+      - !type:AdjustReagent
+        reagent: Ethanol
+        amount: 0.07
 
 - type: reagent
   id: GinTonic
@@ -794,11 +792,11 @@
   metabolisms:
     Drink:
       effects:
-        - !type:SatiateThirst
-          factor: 2
-        - !type:AdjustReagent
-          reagent: Ethanol
-          amount: 0.15
+      - !type:SatiateThirst
+        factor: 2
+      - !type:AdjustReagent
+        reagent: Ethanol
+        amount: 0.07
 
 - type: reagent
   id: Goldschlager
@@ -1141,11 +1139,11 @@
   metabolisms:
     Drink:
       effects:
-        - !type:SatiateThirst
-          factor: 2
-        - !type:AdjustReagent
-          reagent: Ethanol
-          amount: 0.15
+      - !type:SatiateThirst
+        factor: 2
+      - !type:AdjustReagent
+        reagent: Ethanol
+        amount: 0.07
 
 - type: reagent
   id: CogChamp
@@ -1327,11 +1325,11 @@
   metabolisms:
     Drink:
       effects:
-        - !type:SatiateThirst
-          factor: 2
-        - !type:AdjustReagent
-          reagent: Ethanol
-          amount: 0.15
+      - !type:SatiateThirst
+        factor: 2
+      - !type:AdjustReagent
+        reagent: Ethanol
+        amount: 0.07
 
 - type: reagent
   id: WhiskeyCola
@@ -1347,11 +1345,11 @@
   metabolisms:
     Drink:
       effects:
-        - !type:SatiateThirst
-          factor: 2
-        - !type:AdjustReagent
-          reagent: Ethanol
-          amount: 0.15
+      - !type:SatiateThirst
+        factor: 2
+      - !type:AdjustReagent
+        reagent: Ethanol
+        amount: 0.07
 
 - type: reagent
   id: WhiskeySoda
@@ -1367,11 +1365,11 @@
   metabolisms:
     Drink:
       effects:
-        - !type:SatiateThirst
-          factor: 2
-        - !type:AdjustReagent
-          reagent: Ethanol
-          amount: 0.15
+      - !type:SatiateThirst
+        factor: 2
+      - !type:AdjustReagent
+        reagent: Ethanol
+        amount: 0.07
 
 - type: reagent
   id: WhiteRussian

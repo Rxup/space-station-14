@@ -1,24 +1,33 @@
-﻿- type: instantAction
-  id: BPLAMEDActionBrutepack
-  icon: Objects/Specific/Medical/medical.rsi/brutepack.png
+﻿- type: entity
+  id: ActionBPLAMEDActionBrutepack
   name: Brutepack-action-name
   description: Brutepack-action-description
-  serverEvent: !type:brutepackCraftActionEvent
-  useDelay: 300
+  noSpawn: true
+  components:
+    - type: InstantAction
+      useDelay: 300
+      icon: Objects/Specific/Medical/medical.rsi/brutepack.png
+      event: !type:brutepackCraftActionEvent
 
-- type: instantAction
-  id: BPLAMEDActionOintment
-  icon: Objects/Specific/Medical/medical.rsi/ointment.png
+- type: entity
+  id: ActionBPLAMEDActionOintment
   name: Ointment-action-name
   description: Ointment-action-description
-  serverEvent: !type:ointmentCraftActionEvent
-  useDelay: 300
+  noSpawn: true
+  components:
+    - type: InstantAction
+      useDelay: 300
+      icon: Objects/Specific/Medical/medical.rsi/ointment.png
+      event: !type:ointmentCraftActionEvent
 
-- type: instantAction
-  id: BPLAMEDActionBloodpack
-  icon: Objects/Specific/Medical/medical.rsi/bloodpack.png
+- type: entity
+  id: ActionBPLAMEDActionBloodpack
   name: Bloodpack-action-name
   description: Bloodpack-action-description
-  serverEvent: !type:bloodpackCraftActionEvent
-  useDelay: 300
+  noSpawn: true
+  components:
+    - type: InstantAction
+      useDelay: 300
+      icon: Objects/Specific/Medical/medical.rsi/bloodpack.png
+      event: !type:bloodpackCraftActionEvent
 

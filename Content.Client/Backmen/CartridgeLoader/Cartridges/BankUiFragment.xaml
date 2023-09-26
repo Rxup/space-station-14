@@ -7,6 +7,6 @@
             <RichTextLabel Name="LinkedAccountNameLabel"/>
             <RichTextLabel Name="LinkedAccountBalanceLabel"/>
         </BoxContainer>
-        <Label Name="NoLinkedAccount" Text="{Loc 'bank-program-no-account'}" Visible="False"/>
+        <RichTextLabel Name="NoLinkedAccount" Visible="False"/>
     </BoxContainer>
 </cartridges:BankUiFragment>

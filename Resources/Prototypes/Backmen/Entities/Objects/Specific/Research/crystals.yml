@@ -24,7 +24,7 @@
     color: purple
   - type: Speech
   - type: Psionic
-  #- type: SoulCrystal
+  - type: SoulCrystal
   - type: SolutionContainerManager
     solutions:
       ectoplasm:

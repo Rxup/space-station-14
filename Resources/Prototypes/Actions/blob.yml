@@ -1,93 +1,153 @@
-﻿- type: worldTargetAction
-  id: CreateBlobFactory
-  icon: Interface/Actions/blobFactory.png
+﻿- type: entity
+  id: ActionCreateBlobFactory
   name: blob-create-factory-action-name
   description: blob-create-factory-action-desc
-  serverEvent: !type:BlobCreateFactoryActionEvent
-  range: 200
-  checkCanAccess: false
+  noSpawn: true
+  components:
+    - type: WorldTargetAction
+      icon:
+        sprite: Backmen/Interface/Actions/blob.rsi
+        state: blobFactory
+      event: !type:BlobCreateFactoryActionEvent
+      itemIconStyle: BigAction
+      range: 200
+      useDelay: 0.5
 
-- type: worldTargetAction
-  id: CreateBlobResource
-  icon: Interface/Actions/blobResource.png
+- type: entity
+  id: ActionCreateBlobResource
   name: blob-create-resource-action-name
   description: blob-create-resource-action-desc
-  serverEvent: !type:BlobCreateResourceActionEvent
-  range: 200
-  checkCanAccess: false
+  noSpawn: true
+  components:
+    - type: WorldTargetAction
+      icon:
+        sprite: Backmen/Interface/Actions/blob.rsi
+        state: blobResource
+      event: !type:BlobCreateResourceActionEvent
+      itemIconStyle: BigAction
+      range: 200
+      useDelay: 0.5
 
-- type: worldTargetAction
-  id: CreateBlobNode
-  icon: Interface/Actions/blobNode.png
+- type: entity
+  id: ActionCreateBlobNode
   name: blob-create-node-action-name
   description: blob-create-node-action-desc
-  serverEvent: !type:BlobCreateNodeActionEvent
-  range: 200
-  checkCanAccess: false
+  noSpawn: true
+  components:
+    - type: WorldTargetAction
+      icon:
+        sprite: Backmen/Interface/Actions/blob.rsi
+        state: blobNode
+      event: !type:BlobCreateNodeActionEvent
+      itemIconStyle: BigAction
+      range: 200
+      useDelay: 0.5
 
-- type: worldTargetAction
-  id: CreateBlobbernaut
-  icon: Interface/Actions/blobBlobbernaut.png
+- type: entity
+  id: ActionCreateBlobbernaut
   name: blob-produce-blobbernaut-action-name
   description: blob-produce-blobbernaut-action-desc
-  serverEvent: !type:BlobCreateBlobbernautActionEvent
-  range: 200
-  checkCanAccess: false
+  noSpawn: true
+  components:
+    - type: WorldTargetAction
+      icon:
+        sprite: Backmen/Interface/Actions/blob.rsi
+        state: blobBlobbernaut
+      event: !type:BlobCreateBlobbernautActionEvent
+      itemIconStyle: BigAction
+      range: 200
+      useDelay: 0.5
 
-- type: worldTargetAction
-  id: SplitBlobCore
-  icon: Interface/Actions/blobSplit.png
+- type: entity
+  id: ActionSplitBlobCore
   name: blob-split-core-action-name
   description: blob-split-core-action-desc
-  serverEvent: !type:BlobSplitCoreActionEvent
-  range: 200
-  checkCanAccess: false
+  noSpawn: true
+  components:
+    - type: WorldTargetAction
+      icon:
+        sprite: Backmen/Interface/Actions/blob.rsi
+        state: blobSplit
+      event: !type:BlobSplitCoreActionEvent
+      itemIconStyle: BigAction
+      range: 200
+      useDelay: 0.5
 
-- type: worldTargetAction
-  id: SwapBlobCore
-  icon: Interface/Actions/blobSwap.png
+- type: entity
+  id: ActionSwapBlobCore
   name: blob-swap-core-action-name
   description: blob-swap-core-action-desc
-  serverEvent: !type:BlobSwapCoreActionEvent
-  range: 200
-  checkCanAccess: false
+  noSpawn: true
+  components:
+    - type: WorldTargetAction
+      icon:
+        sprite: Backmen/Interface/Actions/blob.rsi
+        state: blobSwap
+      event: !type:BlobSwapCoreActionEvent
+      itemIconStyle: BigAction
+      range: 200
+      useDelay: 0.5
 
-- type: instantAction
-  id: TeleportBlobToCore
-  icon: Interface/Actions/blobToCore.png
+- type: entity
+  id: ActionTeleportBlobToCore
   name: blob-teleport-to-core-action-name
   description: blob-teleport-to-core-action-desc
-  serverEvent: !type:BlobToCoreActionEvent
-  #checkCanAccess: false
+  noSpawn: true
+  components:
+    - type: InstantAction
+      icon:
+        sprite: Backmen/Interface/Actions/blob.rsi
+        state: blobToCore
+      event: !type:BlobToCoreActionEvent
+      itemIconStyle: BigAction
+      useDelay: 0.5
 
-- type: instantAction
-  id: TeleportBlobToNode
-  icon: Interface/Actions/blobToNode.png
+- type: entity
+  id: ActionTeleportBlobToNode
   name: blob-teleport-to-node-action-name
   description: blob-teleport-to-node-action-desc
-  serverEvent: !type:BlobToNodeActionEvent
-  #checkCanAccess: false
+  noSpawn: true
+  components:
+    - type: InstantAction
+      icon:
+        sprite: Backmen/Interface/Actions/blob.rsi
+        state: blobToNode
+      event: !type:BlobToNodeActionEvent
+      useDelay: 0.5
 
-- type: instantAction
-  id: HelpBlob
-  icon: Interface/Actions/blobHelp.png
+- type: entity
+  id: ActionHelpBlob
   name: blob-help-action-name
   description: blob-help-action-desc
-  serverEvent: !type:BlobHelpActionEvent
-  #checkCanAccess: false
+  noSpawn: true
+  components:
+    - type: InstantAction
+      icon:
+        sprite: Backmen/Interface/Actions/blob.rsi
+        state: blobHelp
+      event: !type:BlobHelpActionEvent
+      useDelay: 0.5
 
-- type: instantAction
-  id: SwapBlobChem
-  icon: Interface/Actions/blobChemSwap.png
+- type: entity
+  id: ActionSwapBlobChem
   name: blob-swap-chem-action-name
   description: blob-swap-chem-action-desc
-  serverEvent: !type:BlobSwapChemActionEvent
-  #checkCanAccess: false
+  noSpawn: true
+  components:
+    - type: InstantAction
+      icon:
+        sprite: Backmen/Interface/Actions/blob.rsi
+        state: blobChemSwap
+      event: !type:BlobSwapChemActionEvent
 
-- type: instantAction
-  id: TransformToBlob
-  icon: Interface/Actions/blobToCore.png
+- type: entity
+  id: ActionTransformToBlob
   name: blob-carrier-transform-to-blob-action-name
   description: blob-carrier-transform-to-blob-action-desc
-  serverEvent: !type:TransformToBlobActionEvent
-  #checkCanAccess: false
+  noSpawn: true
+  components:
+    - type: InstantAction
+      icon:
+        sprite: Backmen/Interface/Actions/blob.rsi
+        state: blobToCore
+      event: !type:TransformToBlobActionEvent

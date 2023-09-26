@@ -265,6 +265,10 @@
       - WelderExperimental
       - JawsOfLife
       - ClothingEyesGlassesChemical
+      - CoreSilver
+      #- QSI
+      - InsulativeHeadcage
+      - HandTeleporter1
   - type: EmagLatheRecipes
     emagDynamicRecipes:
       - ExplosivePayload
@@ -282,6 +286,7 @@
   components:
   - type: Sprite
     sprite: Structures/Machines/circuit_imprinter.rsi
+    snapCardinals: true
     layers:
     - state: icon
       map: ["enum.LatheVisualLayers.IsRunning"]
@@ -520,17 +525,19 @@
       - ForensicPad
       - ClothingEyesGlassesSecurity
       - RiotShield
-      - CartridgePistol
-      - CartridgeMagnum
       - ShellShotgun
       - ShellShotgunFlare
       - ShellTranquilizer
-      - CartridgeLightRifle
-      - CartridgeRifle
+      - MagazinePistol
+      - MagazinePistolSubMachineGun
+      - MagazinePistolSubMachineGunTopMounted
+      - MagazineRifle
+      - MagazineLightRifle
       - MagazineBoxPistol
       - MagazineBoxMagnum
       - MagazineBoxRifle
       - MagazineBoxLightRifle
+      - SpeedLoaderMagnum
       - TargetHuman
       - TargetSyndicate
       - TargetClown
@@ -558,6 +565,8 @@
       - VoiceTrigger
       - TimerTrigger
       - Truncheon
+      - TelescopicShield
+      - HoloprojectorSecurity
       - FlashPayload
       - ExplosivePayload
       - WeaponLaserCarbine
@@ -565,6 +574,9 @@
       - WeaponLaserCannon
       - WeaponXrayCannon
       - WeaponTaser
+      - InsulativeHeadcage
+      - ClothingHeadHelmetInsulated
+      - ShellSoulbreaker
   - type: MaterialStorage
     whitelist:
       tags:
@@ -671,6 +683,7 @@
       - Saw
       - Hemostat
       - BluespaceBeaker
+#      - BluespaceBeaker1
       - SyringeBluespace
   - type: Machine
     board: MedicalTechFabCircuitboard
@@ -831,6 +844,7 @@
       runningState: building
       canEjectStoredMaterials: false
       staticRecipes:
+        - BluespaceCrystal # backmen
         - SheetSteel30
         - SheetGlass30
         - SheetRGlass30

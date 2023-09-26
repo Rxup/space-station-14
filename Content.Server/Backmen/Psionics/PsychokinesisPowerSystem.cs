@@ -1,6 +1,6 @@
 using Content.Shared.Actions;
-using Content.Shared.Actions.ActionTypes;
 using Content.Shared.Backmen.Abilities.Psionics;
+using Content.Shared.Backmen.Psionics.Events;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
 using Robust.Shared.Audio;
@@ -25,15 +25,15 @@ public sealed class PsychokinesisPowerSystem : EntitySystem
         SubscribeLocalEvent<PsychokinesisPowerComponent, PsychokinesisPowerActionEvent>(OnPowerUsed);
     }
 
+    [ValidatePrototypeId<EntityPrototype>] private const string ActionPsychokinesis = "ActionPsychokinesis";
+
     private void OnInit(EntityUid uid, PsychokinesisPowerComponent component, ComponentInit args)
     {
-        if (!_prototypeManager.TryIndex<WorldTargetActionPrototype>("Psychokinesis", out var psychokinesis))
-            return;
+        _actions.AddAction(uid, ref component.PsychokinesisPowerAction, ActionPsychokinesis);
 
-        component.PsychokinesisPowerAction = new WorldTargetAction(psychokinesis);
-        if (psychokinesis.UseDelay != null)
-            component.PsychokinesisPowerAction.Cooldown = (_gameTiming.CurTime, _gameTiming.CurTime + (TimeSpan) psychokinesis.UseDelay);
-        _actions.AddAction(uid, component.PsychokinesisPowerAction, null);
+        if (_actions.TryGetActionData(component.PsychokinesisPowerAction, out var action) && action?.UseDelay != null)
+            _actions.SetCooldown(component.PsychokinesisPowerAction, _gameTiming.CurTime,
+                _gameTiming.CurTime + (TimeSpan)  action?.UseDelay!);
 
         if (TryComp<PsionicComponent>(uid, out var psionic) && psionic.PsionicAbility == null)
             psionic.PsionicAbility = component.PsychokinesisPowerAction;
@@ -41,8 +41,7 @@ public sealed class PsychokinesisPowerSystem : EntitySystem
 
     private void OnShutdown(EntityUid uid, PsychokinesisPowerComponent component, ComponentShutdown args)
     {
-        if (_prototypeManager.TryIndex<EntityTargetActionPrototype>("Psychokinesis", out var psychokinesis))
-            _actions.RemoveAction(uid, new EntityTargetAction(psychokinesis), null);
+        _actions.RemoveAction(uid, component.PsychokinesisPowerAction);
     }
 
     private void OnPowerUsed(EntityUid uid ,PsychokinesisPowerComponent comp, PsychokinesisPowerActionEvent args)
@@ -61,4 +60,3 @@ public sealed class PsychokinesisPowerSystem : EntitySystem
     }
 }
 
-public sealed partial class PsychokinesisPowerActionEvent : WorldTargetActionEvent {}

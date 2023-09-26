@@ -80,7 +80,7 @@
 
 # Leader
 - type: startingGear
-  id: ERTLeaderGearEVAV2.1
+  id: ERTLeaderGearEVAV2_1
   equipment:
     jumpsuit: ClothingUniformJumpsuitColorDarkBlue
     back: ClothingBackpackERTLeaderFilledV2.1
@@ -120,7 +120,7 @@
 
 # Engineer
 - type: startingGear
-  id: ERTEngineerGearEVAV2.1
+  id: ERTEngineerGearEVAV2_1
   equipment:
     jumpsuit: ClothingUniformJumpsuitColorLightBrown
     back: ClothingBackpackERTEngineerFilledV2.1
@@ -174,7 +174,7 @@
 
 # Security
 - type: startingGear
-  id: ERTSecurityGearEVAV2.1
+  id: ERTSecurityGearEVAV2_1
   equipment:
     jumpsuit: ClothingUniformJumpsuitColorRed
     back: ClothingBackpackERTSecurityFilledV2.1
@@ -213,21 +213,21 @@
 
 
 # Medical
-- type: job
-  id: ERTMedicalV2.1
-  name: job-name-ertmedic
-  playTimeTracker: JobERTMedical
-  setPreference: false
-  startingGear: ERTMedicalGearEVAV2.1
-  icon: JobIconNanotrasen
-  supervisors: job-supervisors-centcom
-  canBeAntag: false
-  accessGroups:
-  - AllAccess
+#- type: job
+#  id: ERTMedicalV2.1
+#  name: job-name-ertmedic
+#  playTimeTracker: JobERTMedical
+#  setPreference: false
+#  startingGear: ERTMedicalGearEVAV2_1
+#  icon: JobIconNanotrasen
+#  supervisors: job-supervisors-centcom
+#  canBeAntag: false
+#  accessGroups:
+#  - AllAccess
 
 
 - type: startingGear
-  id: ERTMedicalGearEVAV2.1
+  id: ERTMedicalGearEVAV2_1
   equipment:
     jumpsuit: ClothingUniformJumpsuitColorWhite
     back: ClothingBackpackERTMedicalFilledV2.1
@@ -273,7 +273,7 @@
 
 #Janitor
 - type: startingGear
-  id: ERTJanitorGearEVAV2.1
+  id: ERTJanitorGearEVAV2_1
   equipment:
     jumpsuit: ClothingUniformJumpsuitColorPurple
     back: ClothingBackpackERTJanitorFilledV2.1
@@ -314,19 +314,10 @@
   name:  лидер ОБР
   parent: MobHuman
   suffix: corvax
-  id: MobHumanERTLeaderEVAV2.1
+  id: MobHumanERTLeaderEVAV2_1
   components:
   - type: SpecForce
-    actionName: CentcomFtlAction
-    requirements:
-    - !type:DepartmentTimeRequirement
-      department: Security
-      time: 18000
-    - !type:OverallPlaytimeRequirement
-      time: 36000
-    - !type:DepartmentTimeRequirement
-      department: Command
-      time: 18000
+    actionBssActionName: ActionCentcomFtlAction
   - type: Icon
     sprite: Markers/jobs.rsi
     state: ertleadereva
@@ -335,9 +326,18 @@
     description: Командир отряда Theta - 9, великий воин, герой НТ, знаменитый полководец, мог бы им быть.
     allowMovement: true
     rules: Выполняйте различные приказы, ваша задача будет варьироваться от задач центрального командования.
+    requirements:
+      - !type:DepartmentTimeRequirement
+        department: Security
+        time: 18000
+      - !type:OverallPlaytimeRequirement
+        time: 36000
+      - !type:DepartmentTimeRequirement
+        department: Command
+        time: 18000
   - type: GhostTakeoverAvailable
   - type: Loadout
-    prototypes: [ERTLeaderGearEVAV2.1]
+    prototypes: [ERTLeaderGearEVAV2_1]
   - type: RandomMetadata
     nameSegments:
     - NamesSGTs
@@ -351,19 +351,10 @@
   name: инженер ОБР
   suffix: corvax
   parent: MobHuman
-  id: MobHumanERTEngineerEVAV2.1
+  id: MobHumanERTEngineerEVAV2_1
   components:
   - type: SpecForce
-    actionName: CentcomFtlAction
-    requirements:
-    - !type:DepartmentTimeRequirement
-      department: Security
-      time: 18000
-    - !type:OverallPlaytimeRequirement
-      time: 36000
-    - !type:DepartmentTimeRequirement
-      department: Engineering
-      time: 18000
+    actionBssActionName: ActionCentcomFtlAction
   - type: Icon
     sprite: Markers/jobs.rsi
     state: ertengineereva
@@ -372,9 +363,18 @@
     name: ОБР инженер
     description: Инженер отряда Theta - 9, может и не очень хороший инженер, но дело свое знает, наверное.
     rules: Выполняйте различные приказы, ваша задача будет варьироваться от задач центрального командования.
+    requirements:
+      - !type:DepartmentTimeRequirement
+        department: Security
+        time: 18000
+      - !type:OverallPlaytimeRequirement
+        time: 36000
+      - !type:DepartmentTimeRequirement
+        department: Engineering
+        time: 18000
   - type: GhostTakeoverAvailable
   - type: Loadout
-    prototypes: [ERTEngineerGearEVAV2.1]
+    prototypes: [ERTEngineerGearEVAV2_1]
   - type: RandomMetadata
     nameSegments:
     - NamesCPLs
@@ -387,16 +387,10 @@
   name: офицер безопасности ОБР
   suffix: corvax
   parent: MobHuman
-  id: MobHumanERTSecurityEVAV2.1
+  id: MobHumanERTSecurityEVAV2_1
   components:
   - type: SpecForce
-    actionName: CentcomFtlAction
-    requirements:
-    - !type:DepartmentTimeRequirement
-      department: Security
-      time: 36000
-    - !type:OverallPlaytimeRequirement
-      time: 36000
+    actionBssActionName: ActionCentcomFtlAction
   - type: Icon
     sprite: Markers/jobs.rsi
     state: ertsecurityeva
@@ -405,9 +399,15 @@
     name: ОБР офицер безопасности
     description: Солдат или же охранник Theta - 9, прошедший небольшую подготовку и готовый стрелять во все что движеться.
     rules: Выполняйте различные приказы, ваша задача будет варьироваться от задач центрального командования.
+    requirements:
+      - !type:DepartmentTimeRequirement
+        department: Security
+        time: 36000
+      - !type:OverallPlaytimeRequirement
+        time: 36000
   - type: GhostTakeoverAvailable
   - type: Loadout
-    prototypes: [ERTSecurityGearEVAV2.1]
+    prototypes: [ERTSecurityGearEVAV2_1]
   - type: RandomMetadata
     nameSegments:
     - NamesPVTs
@@ -420,19 +420,10 @@
   name: медик ОБР
   parent: MobHuman
   suffix: corvax
-  id: MobHumanERTMedicalEVAV2.1
+  id: MobHumanERTMedicalEVAV2_1
   components:
   - type: SpecForce
-    actionName: CentcomFtlAction
-    requirements:
-    - !type:DepartmentTimeRequirement
-      department: Security
-      time: 18000
-    - !type:OverallPlaytimeRequirement
-      time: 36000
-    - !type:DepartmentTimeRequirement
-      department: Medical
-      time: 18000
+    actionBssActionName: ActionCentcomFtlAction
   - type: Icon
     sprite: Markers/jobs.rsi
     state: ertmedicaleva
@@ -441,9 +432,18 @@
     name: ОБР медик
     description: Медик отделения Theta - 9, был в медицинском институте, поэтому и взяли в качестве медика, но никого не волнует что он там был всего неделю.
     rules: Выполняйте различные приказы, ваша задача будет варьироваться от задач центрального командования.
+    requirements:
+      - !type:DepartmentTimeRequirement
+        department: Security
+        time: 18000
+      - !type:OverallPlaytimeRequirement
+        time: 36000
+      - !type:DepartmentTimeRequirement
+        department: Medical
+        time: 18000
   - type: GhostTakeoverAvailable
   - type: Loadout
-    prototypes: [ERTMedicalGearEVAV2.1]
+    prototypes: [ERTMedicalGearEVAV2_1]
   - type: RandomMetadata
     nameSegments:
     - NamesCPLs
@@ -456,19 +456,10 @@
   name: уборщик ОБР
   parent: MobHuman
   suffix: corvax
-  id: MobHumanERTJunitorEVAV2.1
+  id: MobHumanERTJunitorEVAV2_1
   components:
   - type: SpecForce
-    actionName: CentcomFtlAction
-    requirements:
-    - !type:DepartmentTimeRequirement
-      department: Security
-      time: 18000
-    - !type:OverallPlaytimeRequirement
-      time: 36000
-    - !type:RoleTimeRequirement
-      role: JobJanitor
-      time: 3000
+    actionBssActionName: ActionCentcomFtlAction
   - type: Icon
     sprite: Markers/jobs.rsi
     state: ertjanitoreva
@@ -477,9 +468,18 @@
     name: ОБР уборщик
     description: Уборщик отделения Theta - 9, эй! кто дал ему пистолет?!
     rules: Выполняйте различные приказы, ваша задача будет варьироваться от задач центрального командования.
+    requirements:
+      - !type:DepartmentTimeRequirement
+        department: Security
+        time: 18000
+      - !type:OverallPlaytimeRequirement
+        time: 36000
+      - !type:RoleTimeRequirement
+        role: JobJanitor
+        time: 3000
   - type: GhostTakeoverAvailable
   - type: Loadout
-    prototypes: [ERTJanitorGearEVAV2.1]
+    prototypes: [ERTJanitorGearEVAV2_1]
   - type: RandomMetadata
     nameSegments:
     - NamesPVTs

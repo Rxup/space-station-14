@@ -2,21 +2,16 @@ using Content.Server.Popups;
 using Content.Server.Cargo.Systems;
 using Content.Server.Cargo.Components;
 using Content.Server.Radio.EntitySystems;
-using Content.Server.Backmen.Shipyard.Components;
 using Content.Server.Shuttles.Components;
-using Content.Server.Shuttles.Systems;
 using Content.Server.Station.Systems;
 using Content.Shared.GameTicking;
 using Content.Shared.Backmen.Shipyard.Events;
 using Content.Shared.Backmen.Shipyard.BUI;
 using Content.Shared.Backmen.Shipyard.Prototypes;
 using Content.Shared.Access.Systems;
-using Content.Shared.Access.Components;
 using Content.Shared.Backmen.Shipyard.Components;
 using Content.Shared.Backmen.Shipyard;
 using Robust.Server.GameObjects;
-using Robust.Shared.Audio;
-using Robust.Shared.Player;
 using Robust.Shared.Players;
 using Robust.Shared.Prototypes;
 using Content.Shared.Radio;
@@ -43,7 +38,7 @@ public sealed class ShipyardConsoleSystem : SharedShipyardSystem
         SubscribeLocalEvent<RoundRestartCleanupEvent>(Reset);
     }
 
-    private void OnInit(EntityUid uid, SharedShipyardConsoleComponent orderConsole, ComponentInit args)
+    private void OnInit(EntityUid uid, ShipyardConsoleComponent orderConsole, ComponentInit args)
     {
         //_shipyard.SetupShipyard(); ///if we have to start up the shipyard from here later
     }
@@ -53,7 +48,7 @@ public sealed class ShipyardConsoleSystem : SharedShipyardSystem
         //_shipyard.Shutdown(); //round cleanup event in case of needing OnInit;
     }
 
-    private void OnPurchaseMessage(EntityUid uid, SharedShipyardConsoleComponent component, ShipyardConsolePurchaseMessage args)
+    private void OnPurchaseMessage(EntityUid uid, ShipyardConsoleComponent component, ShipyardConsolePurchaseMessage args)
     {
         if (args.Session.AttachedEntity is not { Valid : true } player)
         {
@@ -92,7 +87,7 @@ public sealed class ShipyardConsoleSystem : SharedShipyardSystem
             return;
         }
 
-        if (!TryPurchaseVessel(bank, vessel, out var shuttle) || shuttle == null)
+        if (!TryPurchaseVessel(station!.Value, bank, vessel, out var shuttle) || shuttle == null)
         {
             PlayDenySound(uid, component);
             return;
@@ -110,7 +105,7 @@ public sealed class ShipyardConsoleSystem : SharedShipyardSystem
         _ui.TrySetUiState(uid, ShipyardConsoleUiKey.Shipyard, newState);
     }
 
-    private void OnConsoleUIOpened(EntityUid uid, SharedShipyardConsoleComponent component, BoundUIOpenedEvent args)
+    private void OnConsoleUIOpened(EntityUid uid, ShipyardConsoleComponent component, BoundUIOpenedEvent args)
     {
         if (!args.Session.AttachedEntity.HasValue)
             return;
@@ -134,32 +129,32 @@ public sealed class ShipyardConsoleSystem : SharedShipyardSystem
             _popup.PopupEntity(text, player);
     }
 
-    private void PlayDenySound(EntityUid uid, SharedShipyardConsoleComponent component)
+    private void PlayDenySound(EntityUid uid, ShipyardConsoleComponent component)
     {
         _audio.PlayPvs(_audio.GetSound(component.ErrorSound), uid);
     }
 
-    private void PlayConfirmSound(EntityUid uid, SharedShipyardConsoleComponent component)
+    private void PlayConfirmSound(EntityUid uid, ShipyardConsoleComponent component)
     {
         _audio.PlayPvs(_audio.GetSound(component.ConfirmSound), uid);
     }
 
-    private bool TryPurchaseVessel(StationBankAccountComponent component, VesselPrototype vessel, out ShuttleComponent? deed)
+    private bool TryPurchaseVessel(EntityUid stationStoreUid, StationBankAccountComponent component, VesselPrototype vessel, out ShuttleComponent? deed)
     {
-        var stationUid = _station.GetOwningStation(component.Owner);
+        var stationUid = _station.GetOwningStation(stationStoreUid);
 
-        if (component == null || vessel == null || vessel.ShuttlePath == null || stationUid == null)
+        if (stationUid == null)
         {
             deed = null;
             return false;
-        };
+        }
 
         _shipyard.TryPurchaseShuttle((EntityUid) stationUid, vessel, out deed);
 
         if (deed == null)
         {
             return false;
-        };
+        }
 
         return true;
     }

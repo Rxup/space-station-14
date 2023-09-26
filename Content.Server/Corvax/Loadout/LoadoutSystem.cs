@@ -48,11 +48,6 @@ public sealed class LoadoutSystem : EntitySystem
                     if (isSponsorOnly || isWhitelisted || isBlacklisted || isSpeciesRestricted)
                         continue;
 
-                    if (!TryComp<InventoryComponent>(ev.Mob, out var inventoryComponent))
-                    {
-                        continue;
-                    }
-
                     var entity = Spawn(loadout.EntityId, Transform(ev.Mob).Coordinates);
 
                     // Take in hand if not clothes
@@ -64,37 +59,42 @@ public sealed class LoadoutSystem : EntitySystem
 
                     // Automatically search empty slot for clothes to equip
                     string? firstSlotName = null;
-                    bool isEquiped = false;
-                    foreach (var slot in _inventorySystem.GetSlots(ev.Mob, inventoryComponent))
+                    var isEquiped = false;
+
+                    if (_inventorySystem.TryGetSlots(ev.Mob, out var slots))
                     {
-                        if (!clothing.Slots.HasFlag(slot.SlotFlags))
-                            continue;
-
-                        if (firstSlotName == null)
-                            firstSlotName = slot.Name;
-
-                        if (_inventorySystem.TryGetSlotEntity(ev.Mob, slot.Name, out var _, inventoryComponent))
-                            continue;
-
-                        if (_inventorySystem.TryEquip(ev.Mob, entity, slot.Name, true, inventory: inventoryComponent))
+                        foreach (var slot in slots)
                         {
-                            isEquiped = true;
-                            break;
+                            if (!clothing.Slots.HasFlag(slot.SlotFlags))
+                                continue;
+
+                            if (firstSlotName == null)
+                                firstSlotName = slot.Name;
+
+                            if (_inventorySystem.TryGetSlotEntity(ev.Mob, slot.Name, out var _))
+                                continue;
+
+                            if (_inventorySystem.TryEquip(ev.Mob, entity, slot.Name, true))
+                            {
+                                isEquiped = true;
+                                break;
+                            }
                         }
                     }
+
 
                     if (isEquiped || firstSlotName == null)
                         continue;
 
                     // Force equip to first valid clothes slot
                     // Get occupied entity -> Insert to backpack -> Equip loadout entity
-                    if (_inventorySystem.TryGetSlotEntity(ev.Mob, firstSlotName, out var slotEntity, inventoryComponent) &&
-                        _inventorySystem.TryGetSlotEntity(ev.Mob, BackpackSlotId, out var backEntity, inventoryComponent) &&
+                    if (_inventorySystem.TryGetSlotEntity(ev.Mob, firstSlotName, out var slotEntity) &&
+                        _inventorySystem.TryGetSlotEntity(ev.Mob, BackpackSlotId, out var backEntity) &&
                         _storageSystem.CanInsert(backEntity.Value, slotEntity.Value, out _))
                     {
-                        _storageSystem.Insert(backEntity.Value, slotEntity.Value);
+                        _storageSystem.Insert(backEntity.Value, slotEntity.Value, out _, playSound: false);
                     }
-                    _inventorySystem.TryEquip(ev.Mob, entity, firstSlotName, true, inventory: inventoryComponent);
+                    _inventorySystem.TryEquip(ev.Mob, entity, firstSlotName, true);
                 }
             }
         }

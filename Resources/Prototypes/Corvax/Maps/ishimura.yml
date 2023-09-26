@@ -31,7 +31,7 @@
             StationEngineer: [ 4, 4 ]
             ChiefMedicalOfficer: [ 1, 1 ]
             MedicalDoctor: [ 3, 3 ]
-            Chemist: [ 2, 2 ]
+            Chemist: [ 0, 2 ]
             ResearchDirector: [ 1, 1 ]
             Scientist: [ 4, 4 ]
             HeadOfSecurity: [ 1, 1 ]
@@ -57,3 +57,4 @@
             Brigmedic: [ 0, 1 ] # backmen-Brigmedic
             BKBPLATech: [0, 3] # backmen-BPLA-Silicons
             BKBPLAMED: [0, 3] # backmen-BPLAMED-Silicons
+            Prisoner: [ 2, 3]

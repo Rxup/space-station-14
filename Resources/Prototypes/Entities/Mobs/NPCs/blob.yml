@@ -23,6 +23,7 @@
   name: Blob pod
   parent: SimpleSpaceMobBase
   components:
+    - type: ZombieImmune
     - type: TriggerOnMobstateChange
       mobState:
         - Dead
@@ -119,6 +120,7 @@
   name: Blobbernaut
   parent: SimpleSpaceMobBase
   components:
+    - type: ZombieImmune
     - type: Damageable
       damageContainer: Blob
       damageModifierSet: BlobMob
@@ -204,6 +206,7 @@
     snap:
       - Wall
   components:
+    - type: ZombieImmune
     - type: Flashable
     - type: Reactive
       groups:
@@ -581,6 +584,7 @@
   id: MobObserverBlob
   name: Blob observer
   noSpawn: true
+  save: false
   components:
     - type: UserInterface
       interfaces:

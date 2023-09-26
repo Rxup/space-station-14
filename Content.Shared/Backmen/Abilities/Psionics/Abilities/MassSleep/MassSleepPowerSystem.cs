@@ -1,6 +1,5 @@
 using Content.Shared.Actions;
 using Content.Shared.Bed.Sleep;
-using Content.Shared.Actions.ActionTypes;
 using Content.Shared.Damage;
 using Content.Shared.Mobs.Components;
 using Robust.Shared.Prototypes;
@@ -24,15 +23,15 @@ public sealed class MassSleepPowerSystem : EntitySystem
         SubscribeLocalEvent<MassSleepPowerComponent, MassSleepPowerActionEvent>(OnPowerUsed);
     }
 
+    [ValidatePrototypeId<EntityPrototype>] private const string ActionMassSleep = "ActionMassSleep";
+
     private void OnInit(EntityUid uid, MassSleepPowerComponent component, ComponentInit args)
     {
-        if (!_prototypeManager.TryIndex<WorldTargetActionPrototype>("MassSleep", out var massSleep))
-            return;
+        _actions.AddAction(uid, ref component.MassSleepPowerAction, ActionMassSleep);
 
-        component.MassSleepPowerAction = new WorldTargetAction(massSleep);
-        if (massSleep.UseDelay != null)
-            component.MassSleepPowerAction.Cooldown = (_gameTiming.CurTime, _gameTiming.CurTime + (TimeSpan) massSleep.UseDelay);
-        _actions.AddAction(uid, component.MassSleepPowerAction, null);
+        if (_actions.TryGetActionData(component.MassSleepPowerAction, out var action) && action?.UseDelay != null)
+            _actions.SetCooldown(component.MassSleepPowerAction, _gameTiming.CurTime,
+                _gameTiming.CurTime + (TimeSpan) action?.UseDelay!);
 
         if (TryComp<PsionicComponent>(uid, out var psionic) && psionic.PsionicAbility == null)
             psionic.PsionicAbility = component.MassSleepPowerAction;
@@ -40,8 +39,7 @@ public sealed class MassSleepPowerSystem : EntitySystem
 
     private void OnShutdown(EntityUid uid, MassSleepPowerComponent component, ComponentShutdown args)
     {
-        if (_prototypeManager.TryIndex<WorldTargetActionPrototype>("MassSleep", out var massSleep))
-            _actions.RemoveAction(uid, new WorldTargetAction(massSleep), null);
+        _actions.RemoveAction(uid, component.MassSleepPowerAction);
     }
 
     private void OnPowerUsed(EntityUid uid, MassSleepPowerComponent component, MassSleepPowerActionEvent args)

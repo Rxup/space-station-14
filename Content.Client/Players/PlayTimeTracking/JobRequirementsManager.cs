@@ -10,6 +10,7 @@ using Robust.Client.Player;
 using Robust.Shared.Configuration;
 using Robust.Shared.Network;
 using Robust.Shared.Prototypes;
+using Robust.Shared.Utility;
 
 namespace Content.Client.Players.PlayTimeTracking;
 
@@ -18,6 +19,7 @@ public sealed class JobRequirementsManager
     [Dependency] private readonly IBaseClient _client = default!;
     [Dependency] private readonly IClientNetManager _net = default!;
     [Dependency] private readonly IConfigurationManager _cfg = default!;
+    [Dependency] private readonly IEntityManager _entManager = default!;
     [Dependency] private readonly IPlayerManager _playerManager = default!;
     [Dependency] private readonly IPrototypeManager _prototypes = default!;
 
@@ -91,13 +93,13 @@ public sealed class JobRequirementsManager
         Updated?.Invoke();
     }
 
-    public bool IsAllowed(JobPrototype job, [NotNullWhen(false)] out string? reason)
+    public bool IsAllowed(JobPrototype job, [NotNullWhen(false)] out FormattedMessage? reason)
     {
         reason = null;
 
         if (_roleBans.Contains($"Job:{job.ID}"))
         {
-            reason = Loc.GetString("role-ban");
+            reason = FormattedMessage.FromUnformatted(Loc.GetString("role-ban"));
             return false;
         }
 
@@ -108,36 +110,45 @@ public sealed class JobRequirementsManager
         }
 
         var player = _playerManager.LocalPlayer?.Session;
-
         if (player == null)
             return true;
 
-        var reasonBuilder = new StringBuilder();
-
-        var first = true;
-        foreach (var requirement in job.Requirements)
-        {
-            if (JobRequirements.TryRequirementMet(requirement, _roles, out reason, _prototypes))
-                continue;
-
-            if (!first)
-                reasonBuilder.Append('\n');
-            first = false;
-
-            reasonBuilder.AppendLine(reason);
-        }
-
         //start-backmen: whitelist
+        var isOk = CheckRoleTime(job.Requirements, out reason);
+
         if (job.WhitelistRequired && _cfg.GetCVar(Shared.Backmen.CCVar.CCVars.WhitelistRolesEnabled) && !_whitelisted)
         {
-            if (reasonBuilder.Length > 0)
-                reasonBuilder.Append('\n');
-
-            reasonBuilder.AppendLine(Loc.GetString("playtime-deny-reason-not-whitelisted"));
+            isOk = false;
+            if (reason == null)
+            {
+                reason = FormattedMessage.FromMarkup(Loc.GetString("playtime-deny-reason-not-whitelisted"));
+            }
+            else
+            {
+                reason.AddMarkup("\n"+Loc.GetString("playtime-deny-reason-not-whitelisted"));
+            }
         }
+        return isOk;
         //end-backmen: whitelist
+    }
 
-        reason = reasonBuilder.Length == 0 ? null : reasonBuilder.ToString();
+    public bool CheckRoleTime(HashSet<JobRequirement>? requirements, [NotNullWhen(false)] out FormattedMessage? reason)
+    {
+        reason = null;
+
+        if (requirements == null)
+            return true;
+
+        var reasons = new List<string>();
+        foreach (var requirement in requirements)
+        {
+            if (JobRequirements.TryRequirementMet(requirement, _roles, out var jobReason, _entManager, _prototypes))
+                continue;
+
+            reasons.Add(jobReason.ToMarkup());
+        }
+
+        reason = reasons.Count == 0 ? null : FormattedMessage.FromMarkup(string.Join('\n', reasons));
         return reason == null;
     }
 }

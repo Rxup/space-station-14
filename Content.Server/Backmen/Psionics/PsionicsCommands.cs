@@ -1,9 +1,11 @@
+using Content.Server.Actions;
 using Content.Server.Administration;
 using Content.Shared.Administration;
 using Content.Shared.Backmen.Abilities.Psionics;
 using Content.Shared.Mobs.Components;
 using Robust.Shared.Console;
 using Robust.Server.GameObjects;
+using SQLitePCL;
 
 namespace Content.Server.Backmen.Psionics;
 
@@ -16,11 +18,13 @@ public sealed class ListPsionicsCommand : IConsoleCommand
     public async void Execute(IConsoleShell shell, string argStr, string[] args)
     {
         var entMan = IoCManager.Resolve<IEntityManager>();
+        var action = entMan.System<ActionsSystem>();
         foreach (var (actor, mob, psionic, meta) in entMan.EntityQuery<ActorComponent, MobStateComponent, PsionicComponent, MetaDataComponent>())
         {
+            entMan.TryGetComponent<MetaDataComponent>(psionic.PsionicAbility, out var skill);
             // filter out xenos, etc, with innate telepathy
-            if (psionic.PsionicAbility?.DisplayName != null)
-                shell.WriteLine(meta.EntityName + " (" + meta.Owner + ") - " + actor.PlayerSession.Name + " - " + Loc.GetString(psionic.PsionicAbility.DisplayName));
+            if (skill != null)
+                shell.WriteLine(meta.EntityName + " (" + meta.Owner + ") - " + actor.PlayerSession.Name + " - " + Loc.GetString(skill.EntityName));
         }
     }
 }

@@ -15,6 +15,7 @@ using System.Threading;
 using Content.Shared.Roles;
 using System.Diagnostics.CodeAnalysis;
 using System.Text;
+using Content.Server.Actions;
 using Robust.Shared.Configuration;
 using Content.Server.Players.PlayTimeTracking;
 using Content.Shared.CCVar;
@@ -25,8 +26,6 @@ using Content.Server.RandomMetadata;
 using Robust.Shared.Serialization.Manager;
 using Content.Server.Administration.Managers;
 using Content.Server.Backmen.RoleWhitelist;
-using Content.Shared.Actions;
-using Content.Shared.Actions.ActionTypes;
 
 namespace Content.Server.Backmen.SpecForces;
 
@@ -48,20 +47,18 @@ public sealed class SpecForcesSystem : EntitySystem
         SubscribeLocalEvent<RoundEndTextAppendEvent>(OnRoundEnd);
         SubscribeLocalEvent<RoundRestartCleanupEvent>(OnCleanup);
         SubscribeLocalEvent<SpecForceComponent, ComponentStartup>(OnStartup);
-        SubscribeLocalEvent<SpecForceComponent, TakeGhostRoleEvent>(OnSpecForceTake,
-            before: new[] { typeof(GhostRoleSystem) });
+        SubscribeLocalEvent<SpecForceComponent, ComponentShutdown>(OnShutdown);
+    }
+
+    private void OnShutdown(EntityUid uid, SpecForceComponent component, ComponentShutdown args)
+    {
+            _actions.RemoveAction(uid, component.BssKey);
     }
 
     private void OnStartup(EntityUid uid, SpecForceComponent component, ComponentStartup args)
     {
-        if (component.ActionName == null ||
-            !_prototypes.TryIndex<InstantActionPrototype>(component.ActionName, out var action))
-        {
-            return;
-        }
-
-        var netAction = new InstantAction(action);
-        _action.AddAction(uid, netAction, null);
+        if (component.ActionBssActionName != null)
+            _actions.AddAction(uid, ref component.BssKey, component.ActionBssActionName);
     }
 
     private void OnMapInit(EntityUid uid, SpecForceComponent component, MapInitEvent args)
@@ -77,16 +74,6 @@ public sealed class SpecForcesSystem : EntitySystem
         }
     }
 
-    private void OnSpecForceTake(EntityUid uid, SpecForceComponent component, ref TakeGhostRoleEvent args)
-    {
-        if (!_adminManager.IsAdmin(args.Player) && !IsAllowed((IPlayerSession?) args.Player, component, out var reason))
-        {
-            args.TookRole = true;
-            _chatManager.ChatMessageToOne(Shared.Chat.ChatChannel.Server, reason, "ОШИБКА: " + reason, default, false,
-                args.Player.ConnectedClient, Color.Plum);
-        }
-    }
-
     public TimeSpan DelayTime
     {
         get
@@ -95,51 +82,6 @@ public sealed class SpecForcesSystem : EntitySystem
             var lastUsedTime = LastUsedTime + _delayUsage;
             return ct > lastUsedTime ? TimeSpan.Zero : lastUsedTime - ct;
         }
-    }
-
-    public bool IsAllowed(IPlayerSession? player, SpecForceComponent job, [NotNullWhen(false)] out string? reason)
-    {
-        reason = null;
-
-        if (job?.Requirements == null)
-            return true;
-
-        if (player == null)
-            return true;
-
-        if (!_cfg.GetCVar(CCVars.GameRoleTimers))
-            return true;
-
-        var playTimes = _tracking.GetTrackerTimes(player);
-
-        var reasonBuilder = new StringBuilder();
-
-        var first = true;
-        foreach (var requirement in job.Requirements)
-        {
-            if (JobRequirements.TryRequirementMet(requirement, playTimes, out reason, _prototypes))
-                continue;
-
-            if (!first)
-                reasonBuilder.Append('\n');
-            first = false;
-
-            reasonBuilder.AppendLine(reason);
-        }
-
-        if (_cfg.GetCVar(Shared.Backmen.CCVar.CCVars.WhitelistRolesEnabled) &&
-            job.WhitelistRequired &&
-            !_whitelistSystem.IsInWhitelist(player))
-        {
-            if (!first)
-                reasonBuilder.Append('\n');
-            first = false;
-
-            reasonBuilder.AppendLine(Loc.GetString("playtime-deny-reason-not-whitelisted"));
-        }
-
-        reason = reasonBuilder.Length == 0 ? null : reasonBuilder.ToString();
-        return reason == null;
     }
 
     public bool CallOps(SpecForcesType ev, string source = "")
@@ -392,11 +334,11 @@ public sealed class SpecForcesSystem : EntitySystem
     [ValidatePrototypeId<EntityPrototype>] private const string SpawnMarker = "MarkerSpecforce";
 
     private const string EtrShuttlePath = "Maps/Shuttles/dart.yml";
-    [ValidatePrototypeId<EntityPrototype>] private const string ErtLeader = "SpawnMobHumanERTLeaderEVAV2.1";
-    [ValidatePrototypeId<EntityPrototype>] private const string ErtSecurity = "SpawnMobHumanERTSecurityEVAV2.1";
-    [ValidatePrototypeId<EntityPrototype>] private const string ErtEngineer = "SpawnMobHumanERTEngineerEVAV2.1";
-    [ValidatePrototypeId<EntityPrototype>] private const string ErtJunitor = "SpawnMobHumanERTJunitorEVAV2.1";
-    [ValidatePrototypeId<EntityPrototype>] private const string ErtMedical = "SpawnMobHumanERTMedicalEVAV2.1";
+    [ValidatePrototypeId<EntityPrototype>] private const string ErtLeader = "SpawnMobHumanERTLeaderEVAV2_1";
+    [ValidatePrototypeId<EntityPrototype>] private const string ErtSecurity = "SpawnMobHumanERTSecurityEVAV2_1";
+    [ValidatePrototypeId<EntityPrototype>] private const string ErtEngineer = "SpawnMobHumanERTEngineerEVAV2_1";
+    [ValidatePrototypeId<EntityPrototype>] private const string ErtJunitor = "SpawnMobHumanERTJunitorEVAV2_1";
+    [ValidatePrototypeId<EntityPrototype>] private const string ErtMedical = "SpawnMobHumanERTMedicalEVAV2_1";
 
     private const string RxbzzShuttlePath = "Maps/Backmen/Grids/NT-CC-SRV-013.yml";
     [ValidatePrototypeId<EntityPrototype>] private const string RxbzzLeader = "SpawnMobHumanSFOfficer";
@@ -423,6 +365,6 @@ public sealed class SpecForcesSystem : EntitySystem
     [Dependency] private readonly IChatManager _chatManager = default!;
     [Dependency] private readonly ISerializationManager _serialization = default!;
     [Dependency] private readonly IAdminManager _adminManager = default!;
-    [Dependency] private readonly SharedActionsSystem _action = default!;
+    [Dependency] private readonly ActionsSystem _actions = default!;
     [Dependency] private readonly WhitelistSystem _whitelistSystem = default!;
 }

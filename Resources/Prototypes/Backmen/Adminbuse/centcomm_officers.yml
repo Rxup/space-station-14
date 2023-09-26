@@ -22,13 +22,6 @@
     - type: GhostRole
       name: Представитель ЦК
       description: Летит на станцию, дабы удостовериться, насколько экипаж станции убог.
-    - type: Loadout
-      prototypes: [CentComCorvax]
-    - type: GhostTakeoverAvailable
-    - type: RandomMetadata
-    - type: RandomHumanoidAppearance
-    - type: SpecForce
-      actionName: CentcomFtlAction
       whitelistRequired: true
       requirements:
         - !type:DepartmentTimeRequirement
@@ -40,6 +33,13 @@
         - !type:DepartmentTimeRequirement
           department: CentCom
           time: 43200
+    - type: Loadout
+      prototypes: [CentComCorvax]
+    - type: GhostTakeoverAvailable
+    - type: RandomMetadata
+    - type: RandomHumanoidAppearance
+    - type: SpecForce
+      actionBssActionName: ActionCentcomFtlAction
 #-----------------------------------------
 
 - type: entity
@@ -54,13 +54,6 @@
     - type: GhostRole
       name: Оператор ЦК
       description: Оператор центрального командования, выполняет приказы офицера цк и координирует действия станции.
-    - type: Loadout
-      prototypes: [OperatorGavna]
-    - type: GhostTakeoverAvailable
-    - type: RandomMetadata
-    - type: RandomHumanoidAppearance
-    - type: SpecForce
-      actionName: CentcomFtlAction
       whitelistRequired: true
       requirements:
         - !type:DepartmentTimeRequirement
@@ -72,6 +65,13 @@
         - !type:DepartmentTimeRequirement
           department: CentCom
           time: 43200
+    - type: Loadout
+      prototypes: [OperatorGavna]
+    - type: GhostTakeoverAvailable
+    - type: RandomMetadata
+    - type: RandomHumanoidAppearance
+    - type: SpecForce
+      actionBssActionName: ActionCentcomFtlAction
 
 #-----------------------------------------
 
@@ -123,20 +123,20 @@
     - type: GhostRole
       name: Начальник Безопасности ЦК
       description: Охрана ЦК, охраняет членов ЦК и саму ЦК.
+      requirements:
+        - !type:DepartmentTimeRequirement
+          department: Security
+          time: 240000
+        - !type:DepartmentTimeRequirement
+          department: Command
+          time: 720000
+        - !type:RoleTimeRequirement
+          role: JobIAA
+          time: 3600
     - type: Loadout
       prototypes: [HeadOfSecurityCentComGear]
     - type: GhostTakeoverAvailable
     - type: RandomMetadata
     - type: RandomHumanoidAppearance
     - type: SpecForce
-      actionName: CentcomFtlAction
-      requirements:
-      - !type:DepartmentTimeRequirement
-        department: Security
-        time: 240000
-      - !type:DepartmentTimeRequirement
-        department: Command
-        time: 720000
-      - !type:RoleTimeRequirement
-        role: JobIAA
-        time: 3600
+      actionBssActionName: ActionCentcomFtlAction

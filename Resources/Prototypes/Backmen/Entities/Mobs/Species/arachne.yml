@@ -150,8 +150,20 @@
     dna: "ABRAXAS"
   - type: Spider
     webPrototype: SpiderWebArache
-    webActionName: SpiderWebArachneClassicAction
+    webAction: SpiderWebArachneClassicAction
   - type: IgnoreSpiderWebArachneClassic
+  - type: InteractionPopup
+    successChance: 1
+    interactSuccessString: hugging-success-generic
+    interactSuccessSound: /Audio/Effects/thudswoosh.ogg
+    messagePerceivedByOthers: hugging-success-generic-others
+  - type: Respirator
+    damage:
+      types:
+        Asphyxiation: 1.0
+    damageRecovery:
+      types:
+        Asphyxiation: -1.0
 
 - type: entity
   save: false

@@ -8,24 +8,33 @@ using Content.Server.Fluids.EntitySystems;
 using Content.Server.GameTicking;
 using Content.Server.GameTicking.Rules.Components;
 using Content.Server.Mind;
+using Content.Server.Objectives.Conditions;
 using Content.Server.Roles;
 using Content.Server.RoundEnd;
 using Content.Server.Station.Systems;
 using Content.Shared.Alert;
+using Content.Shared.Backmen.Blob;
 using Content.Shared.Blob;
 using Content.Shared.Damage;
 using Content.Shared.Destructible;
 using Content.Shared.FixedPoint;
+using Content.Shared.Mind;
 using Content.Shared.Objectives;
+using Content.Shared.Objectives.Components;
 using Content.Shared.Popups;
+using Content.Shared.Roles.Jobs;
 using Content.Shared.Weapons.Melee;
 using Robust.Server.GameObjects;
+using Robust.Server.Player;
 using Robust.Shared.Map;
 using Robust.Shared.Map.Components;
 using Robust.Shared.Network;
 using Robust.Shared.Prototypes;
+using Robust.Shared.Timing;
 
 namespace Content.Server.Blob;
+
+
 
 public sealed class BlobCoreSystem : EntitySystem
 {
@@ -35,7 +44,6 @@ public sealed class BlobCoreSystem : EntitySystem
     [Dependency] private readonly RoleSystem _roleSystem = default!;
     [Dependency] private readonly IChatManager _chatManager = default!;
     [Dependency] private readonly AudioSystem _audioSystem = default!;
-    [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
     [Dependency] private readonly IMapManager _mapManager = default!;
     [Dependency] private readonly GameTicker _gameTicker = default!;
     [Dependency] private readonly BlobObserverSystem _blobObserver = default!;
@@ -44,6 +52,10 @@ public sealed class BlobCoreSystem : EntitySystem
     [Dependency] private readonly StationSystem _stationSystem = default!;
     [Dependency] private readonly AlertLevelSystem _alertLevelSystem = default!;
     [Dependency] private readonly RoundEndSystem _roundEndSystem = default!;
+    [Dependency] private readonly ActorSystem _actorSystem = default!;
+    [Dependency] private readonly IPlayerManager _playerManager = default!;
+    [Dependency] private readonly MetaDataSystem _metaDataSystem = default!;
+
 
     public override void Initialize()
     {
@@ -53,6 +65,119 @@ public sealed class BlobCoreSystem : EntitySystem
         SubscribeLocalEvent<BlobCoreComponent, DestructionEventArgs>(OnDestruction);
         SubscribeLocalEvent<BlobCoreComponent, DamageChangedEvent>(OnDamaged);
         SubscribeLocalEvent<BlobCoreComponent, PlayerAttachedEvent>(OnPlayerAttached);
+        SubscribeLocalEvent<BlobCoreComponent, CreateBlobObserverEvent>(OnCreateBlobObserver);
+
+        SubscribeLocalEvent<BlobCaptureConditionComponent, ObjectiveGetProgressEvent>(OnBlobCaptureProgress);
+        SubscribeLocalEvent<BlobCaptureConditionComponent, ObjectiveAfterAssignEvent>(OnBlobCaptureInfo);
+    }
+
+    private void OnBlobCaptureInfo(EntityUid uid, BlobCaptureConditionComponent component, ref ObjectiveAfterAssignEvent args)
+    {
+        _metaDataSystem.SetEntityName(uid,Loc.GetString("objective-condition-blob-capture-title"));
+        _metaDataSystem.SetEntityDescription(uid,Loc.GetString("objective-condition-blob-capture-description", ("count", component.Target)));
+    }
+
+    private void OnBlobCaptureProgress(EntityUid uid, BlobCaptureConditionComponent component, ref ObjectiveGetProgressEvent args)
+    {
+        // prevent divide-by-zero
+        if (component.Target == 0)
+        {
+            args.Progress = 1;
+            return;
+        }
+
+        if (args.Mind?.OwnedEntity == null)
+        {
+            args.Progress = 0;
+            return;
+        }
+
+        if (!TryComp<BlobObserverComponent>(args.Mind.OwnedEntity, out var blobObserverComponent)
+            || !TryComp<BlobCoreComponent>(blobObserverComponent.Core, out var blobCoreComponent))
+        {
+            args.Progress = 0;
+            return;
+        }
+        args.Progress = (float) blobCoreComponent.BlobTiles.Count / (float) component.Target;
+    }
+
+    private void OnCreateBlobObserver(EntityUid blobCoreUid, BlobCoreComponent core, CreateBlobObserverEvent args)
+    {
+        var observer = Spawn(core.ObserverBlobPrototype, Transform(blobCoreUid).Coordinates);
+
+        core.Observer = observer;
+
+        if (!TryComp<BlobObserverComponent>(observer, out var blobObserverComponent))
+        {
+            args.Cancel();
+            return;
+        }
+
+        blobObserverComponent.Core = blobCoreUid;
+
+
+        var isNewMind = false;
+        if (!_mindSystem.TryGetMind(blobCoreUid, out var mindId, out var mind))
+        {
+            if (
+                !_playerManager.TryGetSessionById(args.UserId, out var playerSession) ||
+                playerSession.AttachedEntity == null ||
+                !_mindSystem.TryGetMind(playerSession.AttachedEntity.Value, out mindId, out mind))
+            {
+                mindId = _mindSystem.CreateMind(args.UserId, "Blob Player");
+                mind = Comp<MindComponent>(mindId);
+                isNewMind = true;
+            }
+        }
+
+        //_mindSystem.SetUserId(mindId, args.UserId);
+        if (!isNewMind)
+        {
+            /*var obj = mind.AllObjectives.ToArray();
+            for (var i = 0; i < obj.Length; i++)
+            {
+                _mindSystem.TryRemoveObjective(mindId, mind, i);
+            }
+            _metaDataSystem.SetEntityName(observer,"Blob player");
+            if (_roleSystem.MindHasRole<JobComponent>(mindId))
+            {
+
+            }*/
+            var name = mind.Session?.Name ?? "???";
+            _mindSystem.WipeMind(mindId, mind);
+            mindId = _mindSystem.CreateMind(args.UserId, $"Blob Player ({name})");
+            mind = Comp<MindComponent>(mindId);
+            isNewMind = true;
+        }
+
+        _roleSystem.MindAddRole(mindId, new BlobRoleComponent{ PrototypeId = core.AntagBlobPrototypeId });
+        SendBlobBriefing(mindId);
+
+        _alerts.ShowAlert(observer, AlertType.BlobHealth, (short) Math.Clamp(Math.Round(core.CoreBlobTotalHealth.Float() / 10f), 0, 20));
+
+        var blobRule = EntityQuery<BlobRuleComponent>().FirstOrDefault();
+        blobRule?.Blobs.Add((mindId,mind));
+
+        _mindSystem.TryAddObjective(mindId, mind, "BlobCaptureObjective");
+
+        if (isNewMind)
+        {
+            _mindSystem.TransferTo(mindId, observer, true, mind: mind);
+        }
+        Timer.Spawn(1_000, () =>
+        {
+            _mindSystem.TransferTo(mindId, null, true, mind: mind);
+
+            Timer.Spawn(1_000, () =>
+            {
+                _mindSystem.TransferTo(mindId, observer, true, mind: mind);
+                if (_actorSystem.TryGetActorFromUserId(args.UserId, out var session, out _))
+                {
+                    _actorSystem.Attach(observer, session, true);
+                }
+                _blobObserver.UpdateUi(observer, blobObserverComponent);
+            });
+        });
     }
 
     private void OnPlayerAttached(EntityUid uid, BlobCoreComponent component, PlayerAttachedEvent args)
@@ -75,47 +200,12 @@ public sealed class BlobCoreSystem : EntitySystem
 
         if (blobRule == null)
         {
-            _gameTicker.StartGameRule("Blob", out var ruleEntity);
-            blobRule = Comp<BlobRuleComponent>(ruleEntity);
+            _gameTicker.StartGameRule("Blob", out _);
         }
+        var ev = new CreateBlobObserverEvent(userId);
+        RaiseLocalEvent(blobCoreUid, ev, true);
 
-        var observer = Spawn(core.ObserverBlobPrototype, xform.Coordinates);
-
-        core.Observer = observer;
-
-        if (!TryComp<BlobObserverComponent>(observer, out var blobObserverComponent))
-            return false;
-
-        blobObserverComponent.Core = blobCoreUid;
-
-        if (!_mindSystem.TryGetMind(userId, out var mindId, out var mind))
-            return false;
-
-        _mindSystem.TransferTo(mindId.Value, observer, ghostCheckOverride: false);
-
-        _alerts.ShowAlert(observer, AlertType.BlobHealth, (short) Math.Clamp(Math.Round(core.CoreBlobTotalHealth.Float() / 10f), 0, 20));
-
-        var blobRole = new BlobRoleComponent{ PrototypeId = core.AntagBlobPrototypeId};
-
-        _roleSystem.MindAddRole(mindId.Value, blobRole, mind);
-        SendBlobBriefing(mindId.Value);
-
-        blobRule.Blobs.Add((mindId.Value,mind));
-
-        if (_prototypeManager.TryIndex<ObjectivePrototype>("BlobCaptureObjective", out var objective)
-            && objective.CanBeAssigned(mindId.Value, mind))
-        {
-            _mindSystem.TryAddObjective(mindId.Value, mind, objective);
-        }
-
-        if (_mindSystem.TryGetSession(mindId.Value, out var session))
-        {
-            _audioSystem.PlayGlobal(core.GreetSoundNotification, session);
-        }
-
-        _blobObserver.UpdateUi(observer, blobObserverComponent);
-
-        return true;
+        return !ev.Cancelled;
     }
 
     private void SendBlobBriefing(EntityUid mind)

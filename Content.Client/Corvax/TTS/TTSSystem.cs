@@ -5,6 +5,7 @@ using Content.Shared.Corvax.CCCVars;
 using Content.Shared.Corvax.TTS;
 using Content.Shared.Physics;
 using Robust.Client.Graphics;
+using Robust.Client.State; // backmen: tts
 using Robust.Shared.Configuration;
 using Robust.Shared.Map;
 using Robust.Shared.Physics;
@@ -23,6 +24,8 @@ public sealed class TTSSystem : EntitySystem
     [Dependency] private readonly IEyeManager _eye = default!;
     [Dependency] private readonly IConfigurationManager _cfg = default!;
     [Dependency] private readonly SharedPhysicsSystem _broadPhase = default!;
+    [Dependency] private readonly SharedTransformSystem _transform = default!;
+    [Dependency] private readonly IStateManager _stateManager = default!;
 
     private ISawmill _sawmill = default!;
     private float _volume = 0.0f;
@@ -52,10 +55,11 @@ public sealed class TTSSystem : EntitySystem
         var ourPos = _eye.CurrentEye.Position.Position;
         foreach (var stream in _currentStreams)
         {
+            var streamUid = GetEntity(stream.Uid);
             if (!stream.Source.IsPlaying ||
-                !_entity.TryGetComponent<MetaDataComponent>(stream.Uid, out var meta) ||
-                Deleted(stream.Uid, meta) ||
-                !_entity.TryGetComponent<TransformComponent>(stream.Uid, out var xform))
+                !_entity.TryGetComponent<MetaDataComponent>(streamUid, out var meta) ||
+                Deleted(streamUid, meta) ||
+                !_entity.TryGetComponent<TransformComponent>(streamUid, out var xform))
             {
                 stream.Source.Dispose();
                 streamToRemove.Add(stream);
@@ -81,7 +85,7 @@ public sealed class TTSSystem : EntitySystem
                 {
                     occlusion = _broadPhase.IntersectRayPenetration(mapPos.MapId,
                         new CollisionRay(mapPos.Position, sourceRelative.Normalized(), collisionMask),
-                        sourceRelative.Length(), stream.Uid);
+                        sourceRelative.Length(), streamUid);
                 }
                 stream.Source.SetOcclusion(occlusion);
             }
@@ -90,7 +94,7 @@ public sealed class TTSSystem : EntitySystem
         foreach (var audioStream in streamToRemove)
         {
             _currentStreams.Remove(audioStream);
-            ProcessEntityQueue(audioStream.Uid);
+            ProcessEntityQueue(GetEntity(audioStream.Uid));
         }
     }
 
@@ -129,20 +133,21 @@ public sealed class TTSSystem : EntitySystem
 
     private void AddEntityStreamToQueue(AudioStream stream)
     {
-        if (_entityQueues.TryGetValue(stream.Uid, out var queue))
+        var uid = GetEntity(stream.Uid);
+        if (_entityQueues.TryGetValue(uid, out var queue))
         {
             queue.Enqueue(stream);
         }
         else
         {
-            _entityQueues.Add(stream.Uid, new Queue<AudioStream>(new[] { stream }));
+            _entityQueues.Add(uid, new Queue<AudioStream>(new[] { stream }));
 
             if (!IsEntityCurrentlyPlayStream(stream.Uid))
-                ProcessEntityQueue(stream.Uid);
+                ProcessEntityQueue(uid);
         }
     }
 
-    private bool IsEntityCurrentlyPlayStream(EntityUid uid)
+    private bool IsEntityCurrentlyPlayStream(NetEntity uid)
     {
         return _currentStreams.Any(s => s.Uid == uid);
     }
@@ -150,7 +155,7 @@ public sealed class TTSSystem : EntitySystem
     private void ProcessEntityQueue(EntityUid uid)
     {
         if (TryTakeEntityStreamFromQueue(uid, out var stream))
-            PlayEntity(stream);
+            PlayEntity(stream, IsClientSide(uid));
     }
 
     private bool TryTakeEntityStreamFromQueue(EntityUid uid, [NotNullWhen(true)] out AudioStream? stream)
@@ -167,11 +172,21 @@ public sealed class TTSSystem : EntitySystem
         return false;
     }
 
-    private void PlayEntity(AudioStream stream)
+    private void PlayEntity(AudioStream stream, bool isLobbyOnly = false) // backmen: tts
     {
-        if (!_entity.TryGetComponent<TransformComponent>(stream.Uid, out var xform) ||
-            !stream.Source.SetPosition(xform.WorldPosition))
+        if (!_entity.TryGetComponent<TransformComponent>(GetEntity(stream.Uid), out var xform))
             return;
+
+        // start-backmen: tts
+        if (_stateManager.CurrentState is Content.Client.Lobby.LobbyState && isLobbyOnly)
+        {
+            stream.Source.SetGlobal();
+        }
+        else if (!stream.Source.SetPosition(_transform.GetWorldPosition(xform)))
+        {
+            return;
+        }
+        // end-backmen: tts
 
         stream.Source.StartPlaying();
         _currentStreams.Add(stream);
@@ -192,10 +207,10 @@ public sealed class TTSSystem : EntitySystem
     // ReSharper disable once InconsistentNaming
     private sealed class AudioStream
     {
-        public EntityUid Uid { get; }
+        public NetEntity Uid { get; }
         public IClydeAudioSource Source { get; }
 
-        public AudioStream(EntityUid uid, IClydeAudioSource source)
+        public AudioStream(NetEntity uid, IClydeAudioSource source)
         {
             Uid = uid;
             Source = source;

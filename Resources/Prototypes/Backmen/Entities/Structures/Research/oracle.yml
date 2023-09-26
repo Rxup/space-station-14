@@ -1,7 +1,7 @@
 - type: entity
   parent: BaseStructure
   id: Oracle
-  name: Oracle
+  name: Оракул
   description: It asks for items in exchange for knowledge. No one knows how it works.
   components:
   - type: Sprite
@@ -40,5 +40,7 @@
       proper: true
   - type: Prayable
   - type: SpriteFade
+  - type: TTS
+    voice: Npc1
   - type: Tag
     tags: []

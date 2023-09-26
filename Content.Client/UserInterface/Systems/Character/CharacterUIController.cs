@@ -135,7 +135,7 @@ public sealed class CharacterUIController : UIController, IOnStateEntered<Gamepl
                 foreach (var condition in conditions)
                 {
                     var conditionControl = new ObjectiveConditionsControl();
-                    conditionControl.ProgressTexture.Texture = _sprite.Frame0(condition.SpriteSpecifier);
+                    conditionControl.ProgressTexture.Texture = _sprite.Frame0(condition.Icon);
                     conditionControl.ProgressTexture.Progress = condition.Progress;
 
                     var titleMessage = new FormattedMessage();
@@ -179,7 +179,7 @@ public sealed class CharacterUIController : UIController, IOnStateEntered<Gamepl
             foreach (var condition in conditions)
             {
                 var conditionControl = new ObjectiveConditionsControl();
-                conditionControl.ProgressTexture.Texture = _sprite.Frame0(condition.SpriteSpecifier);
+                conditionControl.ProgressTexture.Texture = _sprite.Frame0(condition.Icon);
                 conditionControl.ProgressTexture.Progress = condition.Progress;
                 var titleMessage = new FormattedMessage();
                 var descriptionMessage = new FormattedMessage();

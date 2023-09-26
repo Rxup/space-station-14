@@ -39,6 +39,7 @@
     - type: Appearance
     - type: Eye
       drawFov: false
+      visMask: PsionicInvisibility
     - type: Input
       context: "ghost"
     - type: Examiner

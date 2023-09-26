@@ -34,10 +34,10 @@
         density: 80
         mask:
         - GhostImpassable
-  - type: HeatResistance
   - type: MovementIgnoreGravity
   - type: Damageable
-    damageContainer: Biological
+    damageContainer: CorporealSpirit
+    damageModifierSet: CorporealSpirit
   - type: Examiner
   - type: NoSlip
   - type: Actions
@@ -45,6 +45,9 @@
     voice: Kelthuzad
   - type: Eye
     drawFov: false
+    visMask:
+      - Normal
+      - Ghost
   - type: ContentEye
     maxZoom: 1.2, 1.2
   - type: DoAfter

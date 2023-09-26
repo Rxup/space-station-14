@@ -8,4 +8,6 @@ public sealed partial class MindSwappedComponent : Component
 
     [ViewVariables]
     public EntityUid OriginalMindId = default!;
+
+    public EntityUid? MindSwapReturn = null;
 }

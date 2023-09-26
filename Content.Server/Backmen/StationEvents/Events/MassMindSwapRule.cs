@@ -3,6 +3,8 @@ using Content.Server.Backmen.Abilities.Psionics;
 using Content.Server.Backmen.Psionics;
 using Content.Server.Backmen.StationEvents.Components;
 using Content.Server.GameTicking.Rules.Components;
+using Content.Server.NPC.HTN;
+using Content.Server.Station.Components;
 using Content.Server.StationEvents.Events;
 using Content.Shared.Backmen.Abilities.Psionics;
 using Content.Shared.Mobs.Components;
@@ -26,21 +28,24 @@ internal sealed class MassMindSwapRule : StationEventSystem<MassMindSwapRuleComp
         base.Started(uid, component, gameRule, args);
 
         List<EntityUid> psionicPool = new();
-        List<EntityUid> psionicActors = new();
 
-        var query = EntityQueryEnumerator<PotentialPsionicComponent, MobStateComponent>();
-        while (query.MoveNext(out var psion, out _, out _))
+        var stationEvents = StationSystem.GetStations().Where(HasComp<StationEventEligibleComponent>).ToArray();
+
+        var query = EntityQueryEnumerator<PotentialPsionicComponent, ActorComponent, MobStateComponent>();
+        while (query.MoveNext(out var psion, out _, out _,out _))
         {
-            if (_mobStateSystem.IsAlive(psion) && !HasComp<PsionicInsulationComponent>(psion))
-            {
-                psionicPool.Add(psion);
+            if (!_mobStateSystem.IsAlive(psion))
+                continue;
+            if(HasComp<PsionicInsulationComponent>(psion))
+                continue;
 
-                if (HasComp<ActorComponent>(psion))
-                {
-                    // This is so we don't bother mindswapping NPCs with NPCs.
-                    psionicActors.Add(psion);
-                }
+            var station = StationSystem.GetOwningStation(psion);
+            if (!station.HasValue || !stationEvents.Contains(station.Value))
+            {
+                continue;
             }
+
+            psionicPool.Add(psion);
         }
 
         // Shuffle the list of candidates.
@@ -55,6 +60,7 @@ internal sealed class MassMindSwapRule : StationEventSystem<MassMindSwapRuleComp
                 psionicPool.Remove(actor);
                 continue;
             }
+
             var q2 = new Queue<EntityUid>(psionicPool.ToList());
             while (q2.TryDequeue(out var other))
             {

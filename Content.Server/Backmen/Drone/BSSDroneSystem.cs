@@ -1,4 +1,4 @@
-using Content.Server.Backmen.Drone.Actions;
+using Content.Shared.Backmen.Drone.Actions;
 using Content.Server.Body.Systems;
 using Content.Server.Chat.Systems;
 using Content.Server.Drone.Components;
@@ -9,7 +9,6 @@ using Content.Server.Radio.Components;
 using Content.Server.Radio.EntitySystems;
 using Content.Server.Tools.Innate;
 using Content.Shared.Actions;
-using Content.Shared.Actions.ActionTypes;
 using Content.Shared.Body.Components;
 using Content.Shared.Drone;
 using Content.Shared.Emoting;
@@ -55,6 +54,7 @@ public sealed class BSSDroneSystem : SharedDroneSystem
         SubscribeLocalEvent<BSSDroneComponent, EmoteAttemptEvent>(OnEmoteAttempt);
         SubscribeLocalEvent<BSSDroneComponent, ThrowAttemptEvent>(OnThrowAttempt);
         SubscribeLocalEvent<BSSDroneComponent, ComponentStartup>(OnComponentStartup);
+        SubscribeLocalEvent<BSSDroneComponent, ComponentShutdown>(OnComponentShutdown);
 
         SubscribeLocalEvent<BSSDroneComponent, bloodpackCraftActionEvent>(OnCraftBloodpack);
         SubscribeLocalEvent<BSSDroneComponent, ointmentCraftActionEvent>(OnCraftOintment);
@@ -139,6 +139,10 @@ public sealed class BSSDroneSystem : SharedDroneSystem
 
     #region Med Drone Actions
 
+    [ValidatePrototypeId<EntityPrototype>] private const string ActionBPLAMEDActionBrutepack = "ActionBPLAMEDActionBrutepack";
+    [ValidatePrototypeId<EntityPrototype>] private const string ActionBPLAMEDActionOintment = "ActionBPLAMEDActionOintment";
+    [ValidatePrototypeId<EntityPrototype>] private const string ActionBPLAMEDActionBloodpack = "ActionBPLAMEDActionBloodpack";
+
     private void OnComponentStartup(EntityUid uid, BSSDroneComponent component, ComponentStartup args)
     {
         if (component.DroneType != "MED")
@@ -146,24 +150,21 @@ public sealed class BSSDroneSystem : SharedDroneSystem
             return;
         }
 
-        if (_prototypes.TryIndex<InstantActionPrototype>("BPLAMEDActionBrutepack", out var action1))
-        {
-            var netAction = new InstantAction(action1);
-            _action.AddAction(uid, netAction, null);
+        _action.AddAction(uid, ref component.ActionBPLAMEDActionBrutepack, ActionBPLAMEDActionBrutepack);
+        _action.AddAction(uid, ref component.ActionBPLAMEDActionOintment, ActionBPLAMEDActionOintment);
+        _action.AddAction(uid, ref component.ActionBPLAMEDActionBloodpack, ActionBPLAMEDActionBloodpack);
+    }
 
-        }
-        if (_prototypes.TryIndex<InstantActionPrototype>("BPLAMEDActionOintment", out var action2))
+    private void OnComponentShutdown(EntityUid uid, BSSDroneComponent component, ComponentShutdown args)
+    {
+        if (component.DroneType != "MED")
         {
-            var netAction = new InstantAction(action2);
-            _action.AddAction(uid, netAction, null);
-
+            return;
         }
-        if (_prototypes.TryIndex<InstantActionPrototype>("BPLAMEDActionBloodpack", out var action3))
-        {
-            var netAction = new InstantAction(action3);
-            _action.AddAction(uid, netAction, null);
 
-        }
+        _action.RemoveAction(uid, component.ActionBPLAMEDActionBrutepack);
+        _action.RemoveAction(uid, component.ActionBPLAMEDActionOintment);
+        _action.RemoveAction(uid, component.ActionBPLAMEDActionBloodpack);
     }
 
     private void OnCraftBrutepack(EntityUid uid, BSSDroneComponent component, brutepackCraftActionEvent args)
