@@ -93,3 +93,11 @@
   frequency: 8100
   color: "#10cae3"
   longRange: true
+
+- type: radioChannel
+  id: Flesh
+  name: Культ Плоти
+  keycode: 'ы'
+  frequency: 8120
+  color: "#cf1b48"
+  longRange: true

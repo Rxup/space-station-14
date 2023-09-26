@@ -54,4 +54,16 @@ public sealed class CCVars
     /// </summary>
     public static readonly CVarDef<float> DamageVariance =
         CVarDef.Create("damage.variance", 0.15f, CVar.SERVER | CVar.REPLICATED);
+    /*
+ * FleshCult
+ */
+
+    public static readonly CVarDef<int> FleshCultMinPlayers =
+        CVarDef.Create("fleshcult.min_players", 25);
+
+    public static readonly CVarDef<int> FleshCultMaxCultist =
+        CVarDef.Create("fleshcult.max_cultist", 6);
+
+    public static readonly CVarDef<int> FleshCultPlayersPerCultist =
+        CVarDef.Create("fleshcult.players_per_cultist", 7);
 }
