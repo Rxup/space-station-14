@@ -41,6 +41,9 @@ public sealed partial class FleshCultRuleComponent : Component
         "Human",
         "Reptilian",
         "Dwarf",
+        "Oni",
+        "Vox",
+        "HumanoidFoxes",
     };
 
     public enum WinTypes

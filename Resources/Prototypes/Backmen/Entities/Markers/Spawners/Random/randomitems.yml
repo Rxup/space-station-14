@@ -113,6 +113,12 @@
       - ClothingShoesTourist
       - ClothingUnderSocksBee
       - ClothingUnderSocksCoder
+      - SheetUranium1
+      - SheetUranium1
+      - SheetUranium1
+      - SheetUranium1
+      - SheetUranium1
+      - SheetUranium1
     chance: 0.75
     rarePrototypes:
       - CigCartonGreen
@@ -191,4 +197,5 @@
       - ClothingHandsGlovesNitrile
       - ClothingOuterStraightjacket
       - ClothingShoesGaloshes
+      - SheetUranium
     rareChance: 0.05
