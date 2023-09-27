@@ -109,6 +109,7 @@
   frequency: 1267
   color: "#228B22"
 
+- type: radioChannel
   id: Flesh
   name: Культ Плоти
   keycode: 'ы'
