@@ -1,0 +1,23 @@
+{
+  "version": 1,
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "license": "CC-BY-SA-3.0",
+  "copyright": "Taken from https://github.com/tgstation/tgstation/commit/faf6db214927874c19b8fa8585d26b5d40de1acc",
+  "states": [
+    {
+      "name": "robot",
+      "directions": 4
+    },
+    {
+      "name": "robot-dead",
+      "directions": 4
+    },
+    {
+      "name": "robot-flashlight",
+      "directions": 4
+    }
+  ]
+}

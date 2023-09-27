@@ -4,6 +4,76 @@
   name: "Bar Poster"
   description: "The Bartender is always there to hear your woes and get you plastered all at the same time. Go have a visit!"
   components:
-  - type: Sprite
-    sprite: Backmen/Structures/Wallmounts/Posters/Huvy.rsi
-    state: BAR
+    - type: Sprite
+      sprite: Backmen/Structures/Wallmounts/Posters/Huvy.rsi
+      state: BAR
+
+- type: entity
+  parent: PosterBase
+  id: PosterLegitBotanyFood
+  name: "Fruit Basket"
+  description: "Botany is always hard at work! Stop by and enjoy the best they can offer!"
+  components:
+    - type: Sprite
+      sprite: Backmen/Structures/Wallmounts/Posters/Huvy.rsi
+      state: BotanyFood
+
+- type: entity
+  parent: PosterBase
+  id: PosterContrabandBreadLies
+  name: "Bread Lies"
+  description: "You have been lied to. There is no \"Big Bread.\" It is not real. Please stop looking for it."
+  components:
+    - type: Sprite
+      sprite: Backmen/Structures/Wallmounts/Posters/Huvy.rsi
+      state: BreadLies
+
+- type: entity
+  parent: PosterBase
+  id: PosterLegitHotDonkExplosion
+  name: "Donk!"
+  description: "Bite into a blast of flavour with any of our #1 rated fattening and unhealthy products for your enjoyment! DONK!"
+  components:
+    - type: Sprite
+      sprite: Backmen/Structures/Wallmounts/Posters/Huvy.rsi
+      state: DONK
+
+- type: entity
+  parent: PosterBase
+  id: PosterLegitEatMeat
+  name: "Eat Meat!"
+  description: "Who needs fruit or veggies? EAT MEAT! Build those muscles and go fight in the arena to show them gains!"
+  components:
+    - type: Sprite
+      sprite: Backmen/Structures/Wallmounts/Posters/Huvy.rsi
+      state: EATMEAT
+
+- type: entity
+  parent: PosterBase
+  id: PosterLegitMoreBread
+  name: "More Bread!"
+  description: "There is not enough bread! MAKE MORE!"
+  components:
+    - type: Sprite
+      sprite: Backmen/Structures/Wallmounts/Posters/Huvy.rsi
+      state: MoreBread
+
+- type: entity
+  parent: PosterBase
+  id: PosterLegitPieSlice
+  name: "Pie Poster"
+  description: "Pies are healthy and delicious! Beg your chef to start making some."
+  components:
+    - type: Sprite
+      sprite: Backmen/Structures/Wallmounts/Posters/Huvy.rsi
+      state: PIE
+
+- type: entity
+  parent: PosterBase
+  id: PosterLegitPizzaHope
+  name: "Pizza Hope"
+  description: "In the darkest of times there is only one hope, PIZZA! Harass your local Quartermaster to order an emergency crate of pizza now!"
+  components:
+    - type: Sprite
+      sprite: Backmen/Structures/Wallmounts/Posters/Huvy.rsi
+      state: PIZZA

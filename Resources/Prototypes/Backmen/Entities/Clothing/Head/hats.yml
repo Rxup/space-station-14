@@ -106,3 +106,14 @@
           Slash: 0.85
           Piercing: 0.95
           Radiation: 0.95
+
+- type: entity
+  parent: ClothingHeadBase
+  id: ClothingHeadMailCarrier
+  name: mail carrier's hat
+  description: Smells like a good pension.
+  components:
+    - type: Sprite
+      sprite: Backmen/Clothing/Head/Hats/mailman.rsi
+    - type: Clothing
+      sprite: Backmen/Clothing/Head/Hats/mailman.rsi

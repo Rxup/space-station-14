@@ -68,6 +68,8 @@ sophia-response-abraxas = That's a name of power, and I avoid speaking of him. H
 
 sophia-response-glimmer = The current glimmer reading is {$glimmer}. {$tier}
 
+sophia-or = {" or "}
+
 glimmer-reading-minimal = That is extremely low. Nothing bad will happen, but I hope this is not at the cost of progression in your understanding of the universe.
 glimmer-reading-low = That is quite low. Just barely enough to register any psionic activity here.
 glimmer-reading-moderate = That is about the expected level on a psionically active station. You may notice manageable, minor effects.

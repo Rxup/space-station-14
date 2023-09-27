@@ -227,7 +227,7 @@ namespace Content.Server.Light.EntitySystems
             if (!Resolve(uid, ref light))
                 return null;
 
-            return light.LightBulbContainer.ContainedEntity;
+            return light.LightBulbContainer?.ContainedEntity;
         }
 
         /// <summary>
