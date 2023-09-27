@@ -1,15 +1,15 @@
 using System.Linq;
-using Content.Server.Actions;
-using Content.Server.Chat.Managers;
 using Content.Server.Backmen.Flesh;
+using Content.Server.Backmen.GameTicking.Rules.Components;
+using Content.Server.Chat.Managers;
+using Content.Server.GameTicking;
+using Content.Server.GameTicking.Rules;
 using Content.Server.GameTicking.Rules.Components;
 using Content.Server.Mind;
-using Content.Server.NPC.Components;
-using Content.Server.Players;
-using Content.Server.Roles;
 using Content.Server.NPC.Systems;
 using Content.Server.Objectives;
 using Content.Server.Radio.Components;
+using Content.Server.Roles;
 using Content.Server.RoundEnd;
 using Content.Server.Shuttles.Components;
 using Content.Server.Station.Components;
@@ -18,7 +18,6 @@ using Content.Server.Store.Components;
 using Content.Server.Store.Systems;
 using Content.Shared.Backmen.Abilities.Psionics;
 using Content.Shared.Backmen.CCVar;
-using Content.Shared.FixedPoint;
 using Content.Shared.Backmen.Flesh;
 using Content.Shared.Humanoid;
 using Content.Shared.Mind;
@@ -37,7 +36,7 @@ using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Utility;
 
-namespace Content.Server.GameTicking.Rules;
+namespace Content.Server.Backmen.GameTicking.Rules;
 
 public sealed class FleshCultRuleSystem : GameRuleSystem<FleshCultRuleComponent>
 {

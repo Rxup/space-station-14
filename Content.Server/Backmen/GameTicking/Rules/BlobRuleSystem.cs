@@ -1,7 +1,10 @@
 ﻿using System.Linq;
 using Content.Server.AlertLevel;
+using Content.Server.Backmen.GameTicking.Rules.Components;
 using Content.Server.Backmen.SpecForces;
 using Content.Server.Chat.Systems;
+using Content.Server.GameTicking;
+using Content.Server.GameTicking.Rules;
 using Content.Server.GameTicking.Rules.Components;
 using Content.Server.Mind;
 using Content.Server.Nuke;
@@ -12,7 +15,7 @@ using Content.Shared.Blob;
 using Content.Shared.Objectives.Components;
 using Robust.Shared.Audio;
 
-namespace Content.Server.GameTicking.Rules;
+namespace Content.Server.Backmen.GameTicking.Rules;
 
 public sealed class BlobRuleSystem : GameRuleSystem<BlobRuleComponent>
 {

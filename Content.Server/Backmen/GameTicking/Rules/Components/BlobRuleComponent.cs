@@ -2,7 +2,7 @@
 using Content.Shared.Mind;
 using Robust.Shared.Audio;
 
-namespace Content.Server.GameTicking.Rules.Components;
+namespace Content.Server.Backmen.GameTicking.Rules.Components;
 
 [RegisterComponent, Access(typeof(BlobRuleSystem), typeof(BlobCoreSystem))]
 public sealed partial class BlobRuleComponent : Component
