@@ -1,5 +1,4 @@
-﻿using Content.Server.Backmen.Flesh;
-using Content.Server.NPC.Components;
+﻿using Content.Server.NPC.Components;
 using Content.Shared.Mind;
 using Content.Shared.Preferences;
 using Content.Shared.Roles;
@@ -7,7 +6,7 @@ using Robust.Server.Player;
 using Robust.Shared.Audio;
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype;
 
-namespace Content.Server.GameTicking.Rules.Components;
+namespace Content.Server.Backmen.GameTicking.Rules.Components;
 
 [RegisterComponent, Access(typeof(FleshCultRuleSystem))]
 public sealed partial class FleshCultRuleComponent : Component
