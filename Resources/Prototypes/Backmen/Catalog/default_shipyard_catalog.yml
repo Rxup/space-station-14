@@ -6,15 +6,15 @@
   category: Small
   group: Civilian
   shuttlePath: /Maps/Backmen/ForSale/pts.yml
-  
+
 - type: vessel
-  id: Fleet
-  name: Fleet
-  description: naval shuttle
+  id: FleetMain
+  name: NT Cruiser FAR-003
+  description: Главный корабль флота
   price: 3500000
-  category: Medium
-  group: Civilian
-  shuttlePath: /Maps/Backmen/ForSale/Fleet_1.yml
+  category: Cruiser
+  group: Fleet
+  shuttlePath: /Maps/Backmen/ForSale/fleet/main.yml
 
 - type: vessel
   id: Barge
