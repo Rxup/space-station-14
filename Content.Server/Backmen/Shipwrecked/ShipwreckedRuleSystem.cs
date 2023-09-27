@@ -1,4 +1,5 @@
-﻿using System.Diagnostics.CodeAnalysis;
+﻿using System.ComponentModel.Design;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Numerics;
 using System.Text;
@@ -17,6 +18,7 @@ using Content.Server.Chat.Systems;
 using Content.Server.Chemistry.Components;
 using Content.Server.Construction.Components;
 using Content.Server.Destructible;
+using Content.Server.Doors.Systems;
 using Content.Server.Explosion.EntitySystems;
 using Content.Server.Fluids.EntitySystems;
 using Content.Server.GameTicking;
@@ -127,6 +129,8 @@ public sealed class ShipwreckedRuleSystem : GameRuleSystem<ShipwreckedRuleCompon
     [Dependency] private readonly TileSystem _tileSystem = default!;
     [Dependency] private readonly TransformSystem _transformSystem = default!;
     [Dependency] private readonly RoleSystem _roleSystem = default!;
+    [Dependency] private readonly AirlockSystem _airlockSystem = default!;
+
 
     private ISawmill _sawmill = default!;
 
@@ -1406,6 +1410,9 @@ public sealed class ShipwreckedRuleSystem : GameRuleSystem<ShipwreckedRuleCompon
 
     private void OnInitHecate(EntityUid uid, ShipwreckedNPCHecateComponent component, MapInitEvent args)
     {
+        component.GunSafe.Clear();
+        component.EngineBayDoor.Clear();
+
         var doorQuery = GetEntityQuery<DoorComponent>();
         var storageQuery = GetEntityQuery<EntityStorageComponent>();
 
@@ -1420,14 +1427,14 @@ public sealed class ShipwreckedRuleSystem : GameRuleSystem<ShipwreckedRuleCompon
                 if (accessList.Contains("Armory") && storageQuery.HasComponent(entity))
                 {
                     // This is probably the gun safe.
-                    component.GunSafe = entity;
+                    component.GunSafe.Add(entity);
                     break;
                 }
 
                 if (accessList.Contains("Engineering") && doorQuery.HasComponent(entity))
                 {
                     // This is probably the engine bay door.
-                    component.EngineBayDoor = entity;
+                    component.EngineBayDoor.Add(entity);
                     break;
                 }
 
@@ -1437,12 +1444,22 @@ public sealed class ShipwreckedRuleSystem : GameRuleSystem<ShipwreckedRuleCompon
 
     private void OnAskGeneratorUnlock(EntityUid uid, ShipwreckedNPCHecateComponent component, ShipwreckedHecateAskGeneratorUnlockEvent args)
     {
-        if (component.UnlockedEngineBay || component.EngineBayDoor == null)
+        if (component.UnlockedEngineBay || !component.EngineBayDoor.Any())
             return;
 
         component.UnlockedEngineBay = true;
 
-        Comp<AccessReaderComponent>(component.EngineBayDoor.Value).AccessLists.Clear();
+        foreach (var row in component.EngineBayDoor)
+        {
+            if (TerminatingOrDeleted(row))
+                continue;
+            if (TryComp<AirlockComponent>(row, out var airlock) && !airlock.EmergencyAccess)
+            {
+                _airlockSystem.ToggleEmergencyAccess(row, airlock);
+                continue;
+            }
+            Comp<AccessReaderComponent>(row).AccessLists.Clear();
+        }
 
         _npcConversationSystem.QueueResponse(uid, args.AccessGranted);
     }
@@ -1459,13 +1476,25 @@ public sealed class ShipwreckedRuleSystem : GameRuleSystem<ShipwreckedRuleCompon
 
     private void OnAskWeaponsUnlock(EntityUid uid, ShipwreckedNPCHecateComponent component, ShipwreckedHecateAskWeaponsUnlockEvent args)
     {
-        if (component.GunSafe == null || Deleted(component.GunSafe))
+
+        if (!component.GunSafe.Any())
         {
             _sawmill.Warning($"Hecate tried to unlock the gun safe, but it's missing.");
+            return;
         }
-        else
+
+        foreach (var row in component.GunSafe)
         {
-            _lockSystem.Unlock(component.GunSafe.Value, uid);
+            if (TerminatingOrDeleted(row) )
+            {
+                continue;
+            }
+            if (TryComp<AirlockComponent>(row, out var airlock) && !airlock.EmergencyAccess)
+            {
+                _airlockSystem.ToggleEmergencyAccess(row, airlock);
+                continue;
+            }
+            _lockSystem.Unlock(row, uid);
         }
     }
 

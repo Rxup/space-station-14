@@ -9,14 +9,12 @@ public sealed partial class ShipwreckedNPCHecateComponent : Component
     [ViewVariables(VVAccess.ReadWrite)]
     public ShipwreckedRuleComponent? Rule;
 
-    [ViewVariables(VVAccess.ReadWrite)]
-    public EntityUid? GunSafe;
+    [ViewVariables(VVAccess.ReadWrite)] public HashSet<EntityUid> GunSafe = new ();
 
     [ViewVariables(VVAccess.ReadWrite)]
     public bool UnlockedSafe;
 
-    [ViewVariables(VVAccess.ReadWrite)]
-    public EntityUid? EngineBayDoor;
+    [ViewVariables(VVAccess.ReadWrite)] public HashSet<EntityUid> EngineBayDoor = new();
 
     [ViewVariables(VVAccess.ReadWrite)]
     public bool UnlockedEngineBay;

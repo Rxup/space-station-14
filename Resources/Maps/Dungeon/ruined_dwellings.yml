@@ -264,13 +264,15 @@ entities:
       data:
         tiles:
           0,0:
-            0: 65535
+            0: 49151
+            1: 16384
           0,1:
             0: 65535
           0,2:
             0: 65535
           1,0:
-            0: 65535
+            0: 64511
+            1: 1024
           1,1:
             0: 65535
           1,2:
@@ -314,7 +316,8 @@ entities:
           1,4:
             0: 65535
           1,5:
-            0: 65535
+            0: 65407
+            1: 128
           1,6:
             0: 65535
           1,7:
@@ -356,6 +359,21 @@ entities:
         uniqueMixes:
         - volume: 2500
           temperature: 293.15
+          moles:
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+        - volume: 2500
+          temperature: 147.92499
           moles:
           - 0
           - 0
@@ -1717,6 +1735,35 @@ entities:
     - pos: 7.5,21.5
       parent: 1
       type: Transform
+    - air:
+        volume: 200
+        immutable: False
+        temperature: 75.31249
+        moles:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+      type: EntityStorage
+    - containers:
+        entity_storage: !type:Container
+          showEnts: False
+          occludes: True
+          ents:
+          - 148
+        paper_label: !type:ContainerSlot
+          showEnts: False
+          occludes: True
+          ent: null
+      type: ContainerContainer
 - proto: ComfyChair
   entities:
   - uid: 106
@@ -1775,6 +1822,26 @@ entities:
     - pos: 3.5,7.5
       parent: 1
       type: Transform
+- proto: DrinkRamen
+  entities:
+  - uid: 202
+    components:
+    - flags: InContainer
+      type: MetaData
+    - parent: 16
+      type: Transform
+    - canCollide: False
+      type: Physics
+    - type: InsideEntityStorage
+  - uid: 203
+    components:
+    - flags: InContainer
+      type: MetaData
+    - parent: 16
+      type: Transform
+    - canCollide: False
+      type: Physics
+    - type: InsideEntityStorage
 - proto: FloorTileItemWood
   entities:
   - uid: 136
@@ -1797,6 +1864,26 @@ entities:
     - pos: 12.991026,22.376022
       parent: 1
       type: Transform
+- proto: FoodBurgerBig
+  entities:
+  - uid: 357
+    components:
+    - flags: InContainer
+      type: MetaData
+    - parent: 21
+      type: Transform
+    - canCollide: False
+      type: Physics
+    - type: InsideEntityStorage
+  - uid: 358
+    components:
+    - flags: InContainer
+      type: MetaData
+    - parent: 21
+      type: Transform
+    - canCollide: False
+      type: Physics
+    - type: InsideEntityStorage
 - proto: GeneratorBasic
   entities:
   - uid: 149
@@ -1811,11 +1898,72 @@ entities:
     - pos: 6.5,2.5
       parent: 1
       type: Transform
+    - air:
+        volume: 200
+        immutable: False
+        temperature: 75.31249
+        moles:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+      type: EntityStorage
+    - containers:
+        entity_storage: !type:Container
+          showEnts: False
+          occludes: True
+          ents:
+          - 202
+          - 203
+          - 204
+        paper_label: !type:ContainerSlot
+          showEnts: False
+          occludes: True
+          ent: null
+      type: ContainerContainer
   - uid: 21
     components:
     - pos: 2.5,3.5
       parent: 1
       type: Transform
+    - air:
+        volume: 200
+        immutable: False
+        temperature: 75.31249
+        moles:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+      type: EntityStorage
+    - containers:
+        entity_storage: !type:Container
+          showEnts: False
+          occludes: True
+          ents:
+          - 357
+          - 358
+        paper_label: !type:ContainerSlot
+          showEnts: False
+          occludes: True
+          ent: null
+      type: ContainerContainer
   - uid: 105
     components:
     - pos: 8.5,10.5
@@ -2125,6 +2273,34 @@ entities:
     - pos: 15.050178,22.03991
       parent: 1
       type: Transform
+- proto: SheetUranium1
+  entities:
+  - uid: 148
+    components:
+    - flags: InContainer
+      type: MetaData
+    - parent: 201
+      type: Transform
+    - count: 5
+      type: Stack
+    - size: 5
+      type: Item
+    - canCollide: False
+      type: Physics
+    - type: InsideEntityStorage
+  - uid: 204
+    components:
+    - flags: InContainer
+      type: MetaData
+    - parent: 16
+      type: Transform
+    - count: 5
+      type: Stack
+    - size: 5
+      type: Item
+    - canCollide: False
+      type: Physics
+    - type: InsideEntityStorage
 - proto: SinkEmpty
   entities:
   - uid: 271
@@ -2261,4 +2437,5 @@ entities:
     - pos: 15.5,4.5
       parent: 1
       type: Transform
+    - type: ItemCooldown
 ...

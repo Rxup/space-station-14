@@ -716,7 +716,8 @@ entities:
           12,1:
             0: 65535
           12,2:
-            0: 4095
+            0: 3967
+            1: 128
           13,0:
             0: 65535
           13,1:
@@ -750,6 +751,21 @@ entities:
         uniqueMixes:
         - volume: 2500
           temperature: 293.15
+          moles:
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+        - volume: 2500
+          temperature: 147.92499
           moles:
           - 0
           - 0
@@ -1326,6 +1342,35 @@ entities:
     - pos: 51.5,9.5
       parent: 1
       type: Transform
+    - air:
+        volume: 200
+        immutable: False
+        temperature: 75.31249
+        moles:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+      type: EntityStorage
+    - containers:
+        entity_storage: !type:Container
+          showEnts: False
+          occludes: True
+          ents:
+          - 334
+        paper_label: !type:ContainerSlot
+          showEnts: False
+          occludes: True
+          ent: null
+      type: ContainerContainer
 - proto: ClothingHandsGlovesLeather
   entities:
   - uid: 299
@@ -1962,6 +2007,32 @@ entities:
     - pos: 13.856414,5.598757
       parent: 1
       type: Transform
+- proto: SheetUranium
+  entities:
+  - uid: 335
+    components:
+    - pos: 13.212751,7.786123
+      parent: 1
+      type: Transform
+    - count: 5
+      type: Stack
+    - size: 5
+      type: Item
+- proto: SheetUranium1
+  entities:
+  - uid: 334
+    components:
+    - flags: InContainer
+      type: MetaData
+    - parent: 231
+      type: Transform
+    - count: 5
+      type: Stack
+    - size: 5
+      type: Item
+    - canCollide: False
+      type: Physics
+    - type: InsideEntityStorage
 - proto: ShellShotgun
   entities:
   - uid: 53
