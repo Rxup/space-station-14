@@ -6,6 +6,15 @@
   category: Small
   group: Civilian
   shuttlePath: /Maps/Backmen/ForSale/pts.yml
+  
+- type: vessel
+  id: Fleet
+  name: Fleet
+  description: naval shuttle
+  price: 3500000
+  category: Medium
+  group: Civilian
+  shuttlePath: /Maps/Backmen/ForSale/Fleet_1.yml
 
 - type: vessel
   id: Barge
