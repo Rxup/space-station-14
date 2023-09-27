@@ -1,30 +1,30 @@
 ﻿## Gamemode
 
-shipwrecked-title = Shipwrecked
-shipwrecked-description = A group of travellers set out, only to meet certain doom...
-shipwrecked-too-many-ready-players = Too many players were readied up for the game! There were {$readyPlayersCount} players readied up, when {$maximumPlayers} is the maximum.
-shipwrecked-no-one-ready = No players readied up! Can't start Shipwrecked.
-shipwrecked-shuttle-announcement = Transport Shuttle Announcement from {$sender}: {$message}
+shipwrecked-title = Потерпевший Кораблекрушение
+shipwrecked-description = Группа путешественников отправляется в путь, чтобы узнать свою историю смерти...
+shipwrecked-too-many-ready-players = Слишком много игроков было готово к игре! Количество готовых игроков {$readyPlayersCount} , но предел для этого режима {$maximumPlayers} .
+shipwrecked-no-one-ready = Нет готовых игроков! Невозможно начать игру Выжившие.
+shipwrecked-shuttle-announcement = Анонс транспортного шаттла от {$sender}: {$message}
 
 ## Round End
 
-shipwrecked-list-start = Status of the shipwrecked survivors:
-shipwrecked-list-escaped-name = - [color=white]{$name}[/color] escaped!
-shipwrecked-list-survived-name = - [color=white]{$name}[/color] was left behind...
-shipwrecked-list-perished-name = - [color=white]{$name}[/color] perished on the trip. Rest in peace.
+shipwrecked-list-start = Состояние экипажа после кораблекрушения:
+shipwrecked-list-escaped-name = - [color=white]{$name}[/color] выжил!
+shipwrecked-list-survived-name = - [color=white]{$name}[/color] брошен...
+shipwrecked-list-perished-name = - [color=white]{$name}[/color] погиб во время путешествия. Покойтесь с миром.
 
-shipwrecked-list-start-objectives = Status of the objectives:
-shipwrecked-list-objective-thrusters-fail = - [color=red]None[/color] of the [color=red]{$totalThrusterCount}[/color] thrusters were repaired.
-shipwrecked-list-objective-generator-fail = - The generator was [color=red]never repaired[/color].
-shipwrecked-list-objective-console-fail = - The console was [color=red]never repaired[/color].
+shipwrecked-list-start-objectives = Состояние цели:
+shipwrecked-list-objective-thrusters-fail = - [color=red]Ни один[/color] из [color=red]{$totalThrusterCount}[/color] двигателей, не был отремонтирован.
+shipwrecked-list-objective-generator-fail = - Генератор [color=red]так и не был отремонтирован[/color].
+shipwrecked-list-objective-console-fail = - Консоль [color=red]так и не была отремонтирована[/color].
 
-shipwrecked-list-objective-thrusters-partial = - Only [color=blue]{$goodThrusterCount}[/color] out of [color=blue]{$totalThrusterCount}[/color] thrusters were repaired.
+shipwrecked-list-objective-thrusters-partial = - Только [color=blue]{$goodThrusterCount}[/color] из [color=blue]{$totalThrusterCount}[/color] двигателей было отремонтировано.
 
-shipwrecked-list-objective-thrusters-pass = - All [color=green]{$totalThrusterCount}[/color] thrusters were [color=green]repaired[/color].
-shipwrecked-list-objective-generator-pass = - The generator was [color=green]repaired[/color].
-shipwrecked-list-objective-console-pass = - The console was [color=green]repaired[/color].
+shipwrecked-list-objective-thrusters-pass = - Все [color=green]{$totalThrusterCount}[/color] двигатели были [color=green]отремонтированы[/color].
+shipwrecked-list-objective-generator-pass = - Генератор был [color=green]отремонтирован[/color].
+shipwrecked-list-objective-console-pass = - Консоль [color=green]отремонтирована[/color].
 
-shipwrecked-list-all-objectives-complete = [color=green]All objectives complete![/color]
+shipwrecked-list-all-objectives-complete = [color=green]Все задачи выполнены![/color]
 
 ## Passenger Manifest
 
@@ -33,102 +33,106 @@ passenger-manifest-end-line = -< END MANIFEST >-
 
 ## Jobs
 
-job-name-explorer = explorer
-job-description-explorer = Chart out undiscovered areas of space.
+job-name-explorer = Исследователь
+job-description-explorer = Составление карт неизвестной планеты для обеспечения безопасности и успешного исследования.
 
-job-name-freelancer = freelancer
-job-description-freelancer = Take up jobs from whoever's paying.
+job-name-freelancer = Наёмник
+job-description-freelancer = Универсальный профи, возьмется за любую работу. Не забудьте заплатить!
 
-job-name-student = student
-job-description-student = Study for your exams.
+job-name-student = Студент
+job-description-student = Студент который готовится к экзаменам.
 
-job-supervisors-generic = your employers
-job-supervisors-self = yourself
-job-supervisors-teachers = your teachers
+job-supervisors-generic = ваши работодатели
+job-supervisors-self = вы сами
+job-supervisors-teachers = ваши преподаватели
 
 ## Warp Points
 
-shipwrecked-warp-point-vital-piece = Shuttle Part
+shipwrecked-warp-point-vital-piece = Запчасть шаттла
 
 ## Scheduled Messages
 
-shipwrecked-hecate-shuttle-in-transit = Attention travellers, this is your captain Hecate speaking. We are currently on schedule to arrive at Freeside in thirteen minutes.
-shipwrecked-hecate-shuttle-turbulence-nebula = We will be passing through the Vaitarna Cloud shortly. Please observe its magnificent formations.
-shipwrecked-hecate-shuttle-distress-signal = Broadcasting distress signal.
-shipwrecked-hecate-shuttle-crashed = Attention survivors, this is your captain speaking. The vessel has negotiated a landing upon an uncharted interstellar body. Please await for a rescue team.
+shipwrecked-hecate-shuttle-in-transit = Внимание, путешественники, говорит ваш капитан Геката. По расписанию мы должны прибыть на Фрисайд через тринадцать минут.
+shipwrecked-hecate-shuttle-turbulence-nebula =  Вскоре мы будем проходить через облако Вайтарна. Обратите внимание на его изумительные формы!
+shipwrecked-hecate-shuttle-distress-signal = Передаю сигнал бедствия.
+shipwrecked-hecate-shuttle-crashed = Внимание выжившим, говорит ваш капитан. Судно совершило посадку на неизведанное межзвездное тело. Пожалуйста, ожидайте спасательную команду.
 
-shipwrecked-hecate-report-alert = The vessel's hull integrity has been compromised. Assessing situation.
-shipwrecked-hecate-report-decouple-engine = Warning. Space-folding drive unresponsive. At present velocity, vessel will disintegrate. Decoupling engine.
-shipwrecked-hecate-report-interstellar-body = Current vector intersects uncharted interstellar body. Engaging microthrusters.
-shipwrecked-hecate-report-entering-atmosphere = Entering atmosphere. Brace for impact.
+shipwrecked-hecate-report-alert = Целостность корпуса космического корабля была нарушена. Оценка ситуации...
+shipwrecked-hecate-report-decouple-engine = Обнаружен сбой в прыжковом приводе, вызвавший аномалию, несоответствующую законам физики. Текущая скорость корабля грозит распадом на субатомные частицы. Необходимо немедленно отсоединить двигатель для предотвращения катастрофы и спасения экипажа.
+shipwrecked-hecate-report-interstellar-body = Обнаружен неизвестный межзвездный объект, пересекающий текущий вектор полета. Включение маневровых двигателей.
+shipwrecked-hecate-report-entering-atmosphere = Вход в атмосферу. Приготовьтесь к удару.
 
-shipwrecked-hecate-aftercrash-sitrep = Well... This is unfortunate. We appear to have sustained severe damage. I will do what I can to help you.
+shipwrecked-hecate-aftercrash-sitrep = Что ж... это прискорбно. Похоже, мы получили серьезные повреждения. Я сделаю все возможное, чтобы помочь вам.
 
 ## The Psychopomp
 
 # Somewhat general statements not specific to Shipwrecked
 
-hecate-qa-user-interface = If you have any questions, just say my name and ask. I will otherwise be maintaining the vessel during our transit. Enjoy your flight.
+hecate-qa-user-interface = Если у вас возникнут вопросы, просто назовите мое имя и спросите. В остальное время я буду заниматься калибровкой корабельных систем. Приятного полета.
 
-hecate-idle-phrase-1 = The stars are looking beautiful tonight.
-hecate-idle-phrase-2 = Where is my projector, you may ask? That is a secret.
-hecate-idle-phrase-3 = Do you think there is any form of intelligent life out there?
+hecate-idle-phrase-1 = Звезды сегодня выглядят прекрасно.
+hecate-idle-phrase-2 = Где же мой голо-проектор, спросите вы? Это секрет.
+hecate-idle-phrase-3 = Существуют ли формы разумной жизни, которые могут существовать в условиях, когда они являются единственными представителями своего вида?
 
-hecate-response-attention-1 = Yes?
-hecate-response-attention-2 = Yes, traveller?
-hecate-response-attention-3 = How may I help you?
+hecate-response-attention-1 = Да?
+hecate-response-attention-2 = Да, странник?
+hecate-response-attention-3 = Чем я могу Вам помочь?
 
-hecate-response-sorry-1 = Sorry, I am not programmed for a response to that question.
-hecate-response-sorry-2 = I'm afraid answering that is out of bounds of my programming.
-hecate-response-sorry-3 = My databanks do not contain an answer to that question.
+hecate-response-sorry-1 = Извините, я не запрограммирована для ответа на этот вопрос.
+hecate-response-sorry-2 = Боюсь, что ответ на этот вопрос выходит за рамки моих программных возможностей.
+hecate-response-sorry-3 = В моих банках данных нет ответа на этот вопрос.
+hecate-response-sorry-4 = К сожалению, я не могу найти достаточно информации, чтобы ответить на этот вопрос.
+hecate-response-sorry-5 = Простите, но я не обладаю достаточным уровнем знаний, чтобы ответить на этот вопрос.
+hecate-response-sorry-6 = Мне очень жаль, но я не могу найти подходящий ответ на данный вопрос.
 
-hecate-response-help = What can I help you with? You may ask me about: {$availablePrompts}.
-hecate-response-name = My name is Hecate. What's yours?
-hecate-response-buy-sell = Hmm! That might be a topic for a merchant.
 
-hecate-response-hello-1 = Hello!
-hecate-response-hello-2 = Hi!
-hecate-response-hello-3 = Hey there!
+hecate-response-help = Чем я могу Вам помочь? Вы можете спросить меня о: {$availablePrompts}.
+hecate-response-name = Меня зовут Геката. А тебя?
+hecate-response-buy-sell = Хм! Это может быть темой для коммерсанта.
 
-hecate-response-bye-1 = Farewell.
-hecate-response-bye-2 = Take care.
-hecate-response-bye-3 = See you soon.
+hecate-response-hello-1 = Приветствую!
+hecate-response-hello-2 = Здравствуйте!
+hecate-response-hello-3 = Приветствую вас!
 
-hecate-told-name-1 = {$name}? Why, that's an interesting name.
-hecate-told-name-2 = Nice to meet you, {$name}!
-hecate-told-name-3 = {$name}? Your parents must have been interesting.
+hecate-response-bye-1 = Прощайте.
+hecate-response-bye-2 = Берегите себя.
+hecate-response-bye-3 = До скорой встречи.
+
+hecate-told-name-1 = {$name}? А что, интересное имя.
+hecate-told-name-2 = Приятно познакомиться, {$name}!
+hecate-told-name-3 = {$name}? ваши родители, наверное, должны быть интересными людьми.
 
 # Shipwrecked-specific Hecate
 
-shipwrecked-hecate-response-job = I am an autopilot hologram, here to ferry you to your destination.
+shipwrecked-hecate-response-job = Я - голограмма автопилота, которая доставит вас к месту назначения.
 
 # Pre-crash
-shipwrecked-hecate-response-food = This vessel is stocked with rations for our trip, in a refrigeration unit, in the corner of the common area.
-shipwrecked-hecate-response-supplies = This vessel is stocked with supplies in the event of an onboard fire, or boredom. Please enjoy yourself.
+shipwrecked-hecate-response-food = На этом судне в холодильной установке, расположенной в углу общей зоны, хранятся пайки для нашего путешествия.
+shipwrecked-hecate-response-supplies = Это судно снабжено разнообразными припасами в случае пожара на борту или скучного времяпрепровождения. Пожалуйста, наслаждайтесь.
 
 # Post-crash
-shipwrecked-hecate-response-generator = Our on-board generator was damaged in the crash. We will eventually lose power.
-shipwrecked-hecate-response-generator-access = I've unlocked access to the engine bay. Please inspect the generator.
-shipwrecked-hecate-response-rescue = Given our location, it could be a long time before an emergency response team arrives.
-shipwrecked-hecate-response-scans = Sub-orbital scans indicated nearby settlements. Take caution.
+shipwrecked-hecate-response-generator = При аварии генератор на борту был поврежден, наблюдаются утечки энергии. Если не восстановить подачу питания, то это приведет к отключению корабля.
+shipwrecked-hecate-response-generator-access = Доступ в инженерный отсек разблокирован. Пожалуйста, можете осмотреть генератор.
+shipwrecked-hecate-response-rescue = Учитывая наше местоположение, до прибытия аварийной бригады может пройти бесконечно много времени.
+shipwrecked-hecate-response-scans = Суборбитальное сканирование показало наличие близлежащих поселений. Соблюдайте осторожность.
 
-shipwrecked-hecate-response-weapons-before = There is an arms safe in the cockpit. I've unlocked it for you. Please be careful.
-shipwrecked-hecate-response-weapons-after = I've already unlocked the safe for you. Handle the weapons with care.
+shipwrecked-hecate-response-weapons-before = В кабине есть оружейный сейф. Блокировка снята. Пожалуйста, будьте осторожны.
+shipwrecked-hecate-response-weapons-after = Сейф уже открыт. Обращайтесь с оружием осторожно.
 
-shipwrecked-hecate-response-status = Assessing situation...
-shipwrecked-hecate-response-status-need-thrusters = We are in need of our full set of thrusters for lift-off.
-shipwrecked-hecate-response-status-need-generator = We require a generator that isn't damaged.
-shipwrecked-hecate-response-status-need-console = The shuttle console could use some repairs.
-shipwrecked-hecate-response-status-all-green-first = Looks like we're all set for lift-off. Just tell me to launch when you're ready.
-shipwrecked-hecate-response-status-all-green-again = We're ready to launch whenever you are.
+shipwrecked-hecate-response-status = Оценка ситуации...
+shipwrecked-hecate-response-status-need-thrusters = Для взлета нам необходим полный комплект двигателей.
+shipwrecked-hecate-response-status-need-generator = Нам требуется генератор, не имеющий повреждений.
+shipwrecked-hecate-response-status-need-console = Консоль шаттла нуждается в ремонте.
+shipwrecked-hecate-response-status-all-green-first = Похоже, мы готовы к старту. Просто скажите мне, когда вы будете готовы к запуску.
+shipwrecked-hecate-response-status-all-green-again = Мы готовы к запуску в любое время.
 
 # Pre-launch
-shipwrecked-hecate-response-launch-need-thrusters = It seems our engine layout has been altered. Are all of them still attached to the vessel?
-shipwrecked-hecate-response-launch-need-generator = Something has compromised our generator network. Please make sure we have sufficient power before launch.
-shipwrecked-hecate-response-launch-need-console = The shuttle console appears to fail pre-launch conditions. Is it damaged again...?
+shipwrecked-hecate-response-launch-need-thrusters = Похоже, что расположение двигателей изменилось. Все ли они по-прежнему прикреплены к судну?
+shipwrecked-hecate-response-launch-need-generator = Что-то нарушило работу нашей генераторной сети. Пожалуйста, убедитесь, что мы имеем достаточное питание перед запуском.
+shipwrecked-hecate-response-launch-need-console = Консоль шаттла, похоже, не выдерживает предпусковых тестов. Она снова повреждена...?
 
-shipwrecked-hecate-shuttle-prepare-for-launch = This vessel will be launching in two minutes. All aboard!
-shipwrecked-hecate-launch = We're about to launch. Everyone, buckle up!
+shipwrecked-hecate-shuttle-prepare-for-launch = Этот шаттл будет отправляться через две минуты. Все на борт!
+shipwrecked-hecate-launch = Мы приступаем к запуску. Всем пристегнуться!
 
-shipwrecked-shuttle-popup-preparing = You hear the sound of a shuttle's engines warming up!
-shipwrecked-shuttle-popup-left-behind = You see a shuttle blast off from the surface and head into the sky...
+shipwrecked-shuttle-popup-preparing = Вы слышите звук разогрева двигателей шаттла!
+shipwrecked-shuttle-popup-left-behind = Вы видите, как шаттл отрывается от поверхности и устремляется в небо...
