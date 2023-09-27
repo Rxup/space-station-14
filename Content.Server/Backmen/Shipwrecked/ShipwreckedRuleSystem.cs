@@ -1283,23 +1283,28 @@ public sealed class ShipwreckedRuleSystem : GameRuleSystem<ShipwreckedRuleCompon
 
             foreach (var (survivor, session) in shipwrecked.Survivors)
             {
+                var name = Loc.GetString("generic-unknown");
+                if (!TerminatingOrDeleted(survivor))
+                {
+                    name = MetaData(survivor).EntityName;
+                }
                 if (IsDead(survivor))
                 {
                     ev.AddLine(Loc.GetString("shipwrecked-list-perished-name",
-                        ("name", MetaData(survivor).EntityName),
+                        ("name", name),
                         ("user", session.Name)));
                 }
                 else if (shipwrecked.AllObjectivesComplete &&
                     Transform(survivor).GridUid == shipwrecked.Shuttle)
                 {
                     ev.AddLine(Loc.GetString("shipwrecked-list-escaped-name",
-                        ("name", MetaData(survivor).EntityName),
+                        ("name", name),
                         ("user", session.Name)));
                 }
                 else
                 {
                     ev.AddLine(Loc.GetString("shipwrecked-list-survived-name",
-                        ("name", MetaData(survivor).EntityName),
+                        ("name", name),
                         ("user", session.Name)));
                 }
             }

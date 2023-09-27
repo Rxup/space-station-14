@@ -1,4 +1,9 @@
-﻿using Content.Shared.Roles;
+﻿//start-backmen: antag
+using Content.Server.Backmen.EvilTwin;
+using Content.Server.Backmen.Flesh;
+using Content.Server.Backmen.Fugitive;
+//end-backmen: antag
+using Content.Shared.Roles;
 
 namespace Content.Server.Roles;
 
@@ -15,6 +20,13 @@ public sealed class RoleSystem : SharedRoleSystem
         SubscribeAntagEvents<SubvertedSiliconRoleComponent>();
         SubscribeAntagEvents<TraitorRoleComponent>();
         SubscribeAntagEvents<ZombieRoleComponent>();
+
+        //start-backmen: antag
+        SubscribeAntagEvents<BlobRoleComponent>();
+        SubscribeAntagEvents<EvilTwinRoleComponent>();
+        SubscribeAntagEvents<FugitiveRoleComponent>();
+        SubscribeAntagEvents<FleshCultistRoleComponent>();
+        //end-backmen: antag
     }
 
     public string? MindGetBriefing(EntityUid? mindId)

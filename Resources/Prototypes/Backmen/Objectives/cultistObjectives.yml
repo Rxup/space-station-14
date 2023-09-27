@@ -12,7 +12,7 @@
     - type: RoleRequirement
       roles:
         components:
-          - FleshCultist
+          - FleshCultistRole
     - type: CreateFleshHeartCondition
 
 - type: entity
@@ -29,5 +29,5 @@
     - type: RoleRequirement
       roles:
         components:
-          - FleshCultist
+          - FleshCultistRole
     - type: FleshCultistSurvivalCondition

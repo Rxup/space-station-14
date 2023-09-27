@@ -1,6 +1,7 @@
 using System.Linq;
 using System.Numerics;
 using Content.Server.AlertLevel;
+using Content.Server.Backmen.GameTicking.Rules.Components;
 using Content.Server.Chat.Managers;
 using Content.Server.Explosion.Components;
 using Content.Server.Explosion.EntitySystems;
@@ -56,7 +57,7 @@ public sealed class BlobCoreSystem : EntitySystem
     [Dependency] private readonly IPlayerManager _playerManager = default!;
     [Dependency] private readonly MetaDataSystem _metaDataSystem = default!;
 
-
+    [ValidatePrototypeId<EntityPrototype>] private const string BlobCaptureObjective = "BlobCaptureObjective";
     public override void Initialize()
     {
         base.Initialize();
@@ -65,7 +66,7 @@ public sealed class BlobCoreSystem : EntitySystem
         SubscribeLocalEvent<BlobCoreComponent, DestructionEventArgs>(OnDestruction);
         SubscribeLocalEvent<BlobCoreComponent, DamageChangedEvent>(OnDamaged);
         SubscribeLocalEvent<BlobCoreComponent, PlayerAttachedEvent>(OnPlayerAttached);
-        SubscribeLocalEvent<BlobCoreComponent, CreateBlobObserverEvent>(OnCreateBlobObserver);
+
 
         SubscribeLocalEvent<BlobCaptureConditionComponent, ObjectiveGetProgressEvent>(OnBlobCaptureProgress);
         SubscribeLocalEvent<BlobCaptureConditionComponent, ObjectiveAfterAssignEvent>(OnBlobCaptureInfo);
@@ -101,92 +102,13 @@ public sealed class BlobCoreSystem : EntitySystem
         args.Progress = (float) blobCoreComponent.BlobTiles.Count / (float) component.Target;
     }
 
-    private void OnCreateBlobObserver(EntityUid blobCoreUid, BlobCoreComponent core, CreateBlobObserverEvent args)
-    {
-        var observer = Spawn(core.ObserverBlobPrototype, Transform(blobCoreUid).Coordinates);
-
-        core.Observer = observer;
-
-        if (!TryComp<BlobObserverComponent>(observer, out var blobObserverComponent))
-        {
-            args.Cancel();
-            return;
-        }
-
-        blobObserverComponent.Core = blobCoreUid;
-
-
-        var isNewMind = false;
-        if (!_mindSystem.TryGetMind(blobCoreUid, out var mindId, out var mind))
-        {
-            if (
-                !_playerManager.TryGetSessionById(args.UserId, out var playerSession) ||
-                playerSession.AttachedEntity == null ||
-                !_mindSystem.TryGetMind(playerSession.AttachedEntity.Value, out mindId, out mind))
-            {
-                mindId = _mindSystem.CreateMind(args.UserId, "Blob Player");
-                mind = Comp<MindComponent>(mindId);
-                isNewMind = true;
-            }
-        }
-
-        //_mindSystem.SetUserId(mindId, args.UserId);
-        if (!isNewMind)
-        {
-            /*var obj = mind.AllObjectives.ToArray();
-            for (var i = 0; i < obj.Length; i++)
-            {
-                _mindSystem.TryRemoveObjective(mindId, mind, i);
-            }
-            _metaDataSystem.SetEntityName(observer,"Blob player");
-            if (_roleSystem.MindHasRole<JobComponent>(mindId))
-            {
-
-            }*/
-            var name = mind.Session?.Name ?? "???";
-            _mindSystem.WipeMind(mindId, mind);
-            mindId = _mindSystem.CreateMind(args.UserId, $"Blob Player ({name})");
-            mind = Comp<MindComponent>(mindId);
-            isNewMind = true;
-        }
-
-        _roleSystem.MindAddRole(mindId, new BlobRoleComponent{ PrototypeId = core.AntagBlobPrototypeId });
-        SendBlobBriefing(mindId);
-
-        _alerts.ShowAlert(observer, AlertType.BlobHealth, (short) Math.Clamp(Math.Round(core.CoreBlobTotalHealth.Float() / 10f), 0, 20));
-
-        var blobRule = EntityQuery<BlobRuleComponent>().FirstOrDefault();
-        blobRule?.Blobs.Add((mindId,mind));
-
-        _mindSystem.TryAddObjective(mindId, mind, "BlobCaptureObjective");
-
-        if (isNewMind)
-        {
-            _mindSystem.TransferTo(mindId, observer, true, mind: mind);
-        }
-        Timer.Spawn(1_000, () =>
-        {
-            _mindSystem.TransferTo(mindId, null, true, mind: mind);
-
-            Timer.Spawn(1_000, () =>
-            {
-                _mindSystem.TransferTo(mindId, observer, true, mind: mind);
-                if (_actorSystem.TryGetActorFromUserId(args.UserId, out var session, out _))
-                {
-                    _actorSystem.Attach(observer, session, true);
-                }
-                _blobObserver.UpdateUi(observer, blobObserverComponent);
-            });
-        });
-    }
-
     private void OnPlayerAttached(EntityUid uid, BlobCoreComponent component, PlayerAttachedEvent args)
     {
         var xform = Transform(uid);
         if (!_mapManager.TryGetGrid(xform.GridUid, out var map))
             return;
 
-        CreateBlobObserver(uid, args.Player.UserId, component);
+        Timer.Spawn(100,()=>CreateBlobObserver(uid, args.Player.UserId, component));
     }
 
     public bool CreateBlobObserver(EntityUid blobCoreUid, NetUserId userId, BlobCoreComponent? core = null)
@@ -233,7 +155,7 @@ public sealed class BlobCoreSystem : EntitySystem
         {
             blobTileComponent.Core = uid;
             blobTileComponent.Color = component.ChemСolors[component.CurrentChem];
-            Dirty(blobTileComponent);
+            Dirty(uid, blobTileComponent);
         }
 
         component.BlobTiles.Add(uid);
@@ -257,14 +179,14 @@ public sealed class BlobCoreSystem : EntitySystem
                 continue;
 
             blobTileComponent.Color = component.ChemСolors[newChem];
-            Dirty(blobTileComponent);
+            Dirty(blobTile, blobTileComponent);
 
             if (TryComp<BlobFactoryComponent>(blobTile, out var blobFactoryComponent))
             {
                 if (TryComp<BlobbernautComponent>(blobFactoryComponent.Blobbernaut, out var blobbernautComponent))
                 {
                     blobbernautComponent.Color = component.ChemСolors[newChem];
-                    Dirty(blobbernautComponent);
+                    Dirty(blobTile, blobbernautComponent);
 
                     if (TryComp<MeleeWeaponComponent>(blobFactoryComponent.Blobbernaut, out var meleeWeaponComponent))
                     {
@@ -306,7 +228,7 @@ public sealed class BlobCoreSystem : EntitySystem
             blobTileComponent.Core = null;
 
             blobTileComponent.Color = Color.White;
-            Dirty(blobTileComponent);
+            Dirty(blobTile, blobTileComponent);
         }
 
         var stationUid = _stationSystem.GetOwningStation(uid);
@@ -380,7 +302,7 @@ public sealed class BlobCoreSystem : EntitySystem
             blobTileComponent.ReturnCost = returnCost;
             blobTileComponent.Core = coreTileUid;
             blobTileComponent.Color = blobCore.ChemСolors[blobCore.CurrentChem];
-            Dirty(blobTileComponent);
+            Dirty(tileBlob, blobTileComponent);
 
             var explosionResistance = EnsureComp<ExplosionResistanceComponent>(tileBlob);
 
