@@ -10,6 +10,7 @@ using Content.Shared.Inventory.Events;
 using Robust.Shared.Containers;
 using Robust.Shared.GameStates;
 using Robust.Shared.Map;
+using Robust.Shared.Network;
 using Robust.Shared.Timing;
 using Robust.Shared.Utility;
 
@@ -26,6 +27,7 @@ public abstract class SharedActionsSystem : EntitySystem
     [Dependency] private readonly SharedAudioSystem _audio = default!;
     [Dependency] private readonly SharedTransformSystem _transformSystem = default!;
     [Dependency] private readonly ActionContainerSystem _actionContainer = default!;
+    [Dependency] private   readonly INetManager _netMan = default!;
 
     public override void Initialize()
     {
@@ -210,7 +212,11 @@ public abstract class SharedActionsSystem : EntitySystem
         if (!TryGetActionData(actionEnt, out var action))
             return;
 
-        DebugTools.Assert(action.AttachedEntity == user);
+        if ((_netMan.IsClient && action.AttachedEntity != null) || _netMan.IsServer)
+        {
+            DebugTools.Assert(action.AttachedEntity == user);
+        }
+
 
         if (!action.Enabled)
             return;

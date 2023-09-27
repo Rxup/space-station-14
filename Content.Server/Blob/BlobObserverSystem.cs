@@ -3,21 +3,28 @@ using System.Numerics;
 using Content.Server.Actions;
 using Content.Server.Atmos.Components;
 using Content.Server.Atmos.EntitySystems;
+using Content.Server.Backmen.GameTicking.Rules.Components;
+using Content.Server.Chat.Managers;
 using Content.Server.Destructible;
 using Content.Server.Emp;
 using Content.Server.Explosion.EntitySystems;
+using Content.Server.Mind;
+using Content.Server.Roles;
 using Content.Shared.ActionBlocker;
 using Content.Shared.Actions;
+using Content.Shared.Alert;
 using Content.Shared.Backmen.Blob;
 using Content.Shared.Blob;
 using Content.Shared.Coordinates.Helpers;
 using Content.Shared.Damage;
 using Content.Shared.Interaction;
 using Content.Shared.Item;
+using Content.Shared.Mind;
 using Content.Shared.Mobs.Components;
 using Content.Shared.Popups;
 using Content.Shared.SubFloor;
 using Robust.Server.GameObjects;
+using Robust.Server.Player;
 using Robust.Shared.Audio;
 using Robust.Shared.Containers;
 using Robust.Shared.GameStates;
@@ -26,6 +33,7 @@ using Robust.Shared.Map.Components;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Timing;
+using Robust.Shared.Utility;
 
 namespace Content.Server.Blob;
 
@@ -47,27 +55,12 @@ public sealed class BlobObserverSystem : SharedBlobObserverSystem
     [Dependency] private readonly ExplosionSystem _explosionSystem = default!;
     [Dependency] private readonly FlammableSystem _flammable = default!;
     [Dependency] private readonly EmpSystem _empSystem = default!;
-
-    public override void Initialize()
-    {
-        base.Initialize();
-
-        SubscribeLocalEvent<BlobObserverComponent, MapInitEvent>(OnMapInitEvent);
-        SubscribeLocalEvent<BlobObserverComponent, BlobCreateFactoryActionEvent>(OnCreateFactory);
-        SubscribeLocalEvent<BlobObserverComponent, BlobCreateResourceActionEvent>(OnCreateResource);
-        SubscribeLocalEvent<BlobObserverComponent, BlobCreateNodeActionEvent>(OnCreateNode);
-        SubscribeLocalEvent<BlobObserverComponent, BlobCreateBlobbernautActionEvent>(OnCreateBlobbernaut);
-        SubscribeLocalEvent<BlobObserverComponent, BlobToCoreActionEvent>(OnBlobToCore);
-        SubscribeLocalEvent<BlobObserverComponent, BlobToNodeActionEvent>(OnBlobToNode);
-        SubscribeLocalEvent<BlobObserverComponent, BlobHelpActionEvent>(OnBlobHelp);
-        SubscribeLocalEvent<BlobObserverComponent, BlobSwapChemActionEvent>(OnBlobSwapChem);
-        SubscribeLocalEvent<BlobObserverComponent, InteractNoHandEvent>(OnInteract);
-        SubscribeLocalEvent<BlobObserverComponent, BlobSwapCoreActionEvent>(OnSwapCore);
-        SubscribeLocalEvent<BlobObserverComponent, BlobSplitCoreActionEvent>(OnSplitCore);
-        SubscribeLocalEvent<BlobObserverComponent, MoveEvent>(OnMoveEvent);
-        SubscribeLocalEvent<BlobObserverComponent, ComponentGetState>(GetState);
-        SubscribeLocalEvent<BlobObserverComponent, BlobChemSwapPrototypeSelectedMessage>(OnChemSelected);
-    }
+    [Dependency] private readonly MindSystem _mindSystem = default!;
+    [Dependency] private readonly IPlayerManager _playerManager = default!;
+    [Dependency] private readonly RoleSystem _roleSystem = default!;
+    [Dependency] private readonly AlertsSystem _alerts = default!;
+    [Dependency] private readonly IChatManager _chatManager = default!;
+    [Dependency] private readonly ActorSystem _actorSystem = default!;
 
     [ValidatePrototypeId<EntityPrototype>] private const string ActionHelpBlob = "ActionHelpBlob";
     [ValidatePrototypeId<EntityPrototype>] private const string ActionSwapBlobChem = "ActionSwapBlobChem";
@@ -80,8 +73,150 @@ public sealed class BlobObserverSystem : SharedBlobObserverSystem
     [ValidatePrototypeId<EntityPrototype>] private const string ActionSplitBlobCore = "ActionSplitBlobCore";
     [ValidatePrototypeId<EntityPrototype>] private const string ActionSwapBlobCore = "ActionSwapBlobCore";
 
-    private void OnMapInitEvent(EntityUid uid, BlobObserverComponent component, MapInitEvent args)
+    public override void Initialize()
     {
+        base.Initialize();
+
+        SubscribeLocalEvent<BlobCoreComponent, CreateBlobObserverEvent>(OnCreateBlobObserver);
+
+        SubscribeLocalEvent<BlobObserverComponent, ComponentStartup>(OnMapInitEvent);
+        SubscribeLocalEvent<BlobObserverComponent, PlayerAttachedEvent>(OnPlayerAttached, before: new []{ typeof(ActionsSystem) });
+
+        SubscribeLocalEvent<BlobObserverComponent, BlobCreateFactoryActionEvent>(OnCreateFactory);
+        SubscribeLocalEvent<BlobObserverComponent, BlobCreateResourceActionEvent>(OnCreateResource);
+        SubscribeLocalEvent<BlobObserverComponent, BlobCreateNodeActionEvent>(OnCreateNode);
+        SubscribeLocalEvent<BlobObserverComponent, BlobCreateBlobbernautActionEvent>(OnCreateBlobbernaut);
+        SubscribeLocalEvent<BlobObserverComponent, BlobToCoreActionEvent>(OnBlobToCore);
+        SubscribeLocalEvent<BlobObserverComponent, BlobToNodeActionEvent>(OnBlobToNode);
+        SubscribeLocalEvent<BlobObserverComponent, BlobHelpActionEvent>(OnBlobHelp);
+        SubscribeLocalEvent<BlobObserverComponent, BlobSwapChemActionEvent>(OnBlobSwapChem);
+        SubscribeLocalEvent<BlobObserverComponent, InteractNoHandEvent>(OnInteract);
+        SubscribeLocalEvent<BlobObserverComponent, BlobSwapCoreActionEvent>(OnSwapCore);
+        SubscribeLocalEvent<BlobObserverComponent, BlobSplitCoreActionEvent>(OnSplitCore);
+        SubscribeLocalEvent<BlobObserverComponent, MoveEvent>(OnMoveEvent);
+        SubscribeLocalEvent<BlobObserverComponent, BlobChemSwapPrototypeSelectedMessage>(OnChemSelected);
+    }
+
+    private void SendBlobBriefing(EntityUid mind)
+    {
+        if (_mindSystem.TryGetSession(mind, out var session))
+        {
+            _chatManager.DispatchServerMessage(session, Loc.GetString("blob-role-greeting"));
+        }
+    }
+
+    private void OnCreateBlobObserver(EntityUid blobCoreUid, BlobCoreComponent core, CreateBlobObserverEvent args)
+    {
+        var observer = Spawn(core.ObserverBlobPrototype, Transform(blobCoreUid).Coordinates);
+
+        core.Observer = observer;
+
+        if (!TryComp<BlobObserverComponent>(observer, out var blobObserverComponent))
+        {
+            args.Cancel();
+            return;
+        }
+
+        blobObserverComponent.Core = blobCoreUid;
+
+
+        var isNewMind = false;
+        if (!_mindSystem.TryGetMind(blobCoreUid, out var mindId, out var mind))
+        {
+            if (
+                !_playerManager.TryGetSessionById(args.UserId, out var playerSession) ||
+                playerSession.AttachedEntity == null ||
+                !_mindSystem.TryGetMind(playerSession.AttachedEntity.Value, out mindId, out mind))
+            {
+                mindId = _mindSystem.CreateMind(args.UserId, "Blob Player");
+                mind = Comp<MindComponent>(mindId);
+                isNewMind = true;
+            }
+        }
+
+        //_mindSystem.SetUserId(mindId, args.UserId);
+        if (!isNewMind)
+        {
+            /*var obj = mind.AllObjectives.ToArray();
+            for (var i = 0; i < obj.Length; i++)
+            {
+                _mindSystem.TryRemoveObjective(mindId, mind, i);
+            }
+            _metaDataSystem.SetEntityName(observer,"Blob player");
+            if (_roleSystem.MindHasRole<JobComponent>(mindId))
+            {
+
+            }*/
+            var name = mind.Session?.Name ?? "???";
+            _mindSystem.WipeMind(mindId, mind);
+            mindId = _mindSystem.CreateMind(args.UserId, $"Blob Player ({name})");
+            mind = Comp<MindComponent>(mindId);
+            isNewMind = true;
+        }
+
+        _roleSystem.MindAddRole(mindId, new BlobRoleComponent{ PrototypeId = core.AntagBlobPrototypeId });
+        SendBlobBriefing(mindId);
+
+        _alerts.ShowAlert(observer, AlertType.BlobHealth, (short) Math.Clamp(Math.Round(core.CoreBlobTotalHealth.Float() / 10f), 0, 20));
+
+        var blobRule = EntityQuery<BlobRuleComponent>().FirstOrDefault();
+        blobRule?.Blobs.Add((mindId,mind));
+
+        _mindSystem.TryAddObjective(mindId, mind, "BlobCaptureObjective");
+
+        _mindSystem.TransferTo(mindId, observer, true, mind: mind);
+        if (_actorSystem.TryGetActorFromUserId(args.UserId, out var session, out _))
+        {
+            _actorSystem.Attach(observer, session, true);
+        }
+
+        //RemComp<ActionsComponent>(observer);
+        if (isNewMind)
+        {
+            _mindSystem.TransferTo(mindId, observer, true, mind: mind);
+        }
+        Timer.Spawn(1_000, () =>
+        {
+            _mindSystem.TransferTo(mindId, null, true, mind: mind);
+
+            Timer.Spawn(1_000, () =>
+            {
+                _mindSystem.TransferTo(mindId, observer, true, mind: mind);
+                if (_actorSystem.TryGetActorFromUserId(args.UserId, out var session, out _))
+                {
+                    _actorSystem.Attach(observer, session, true);
+                }
+                UpdateUi(observer, blobObserverComponent);
+            });
+        });
+    }
+
+    private void UpdateActions(EntityUid uid, BlobObserverComponent? component = null)
+    {
+        if (!Resolve(uid, ref component))
+        {
+            return;
+        }
+
+        DebugTools.Assert(_action.AddActionDirect(uid, component.ActionHelpBlob!.Value));
+        DebugTools.Assert(_action.AddActionDirect(uid, component.ActionSwapBlobChem!.Value));
+        DebugTools.Assert(_action.AddActionDirect(uid, component.ActionTeleportBlobToCore!.Value));
+        DebugTools.Assert(_action.AddActionDirect(uid, component.ActionTeleportBlobToNode!.Value));
+        DebugTools.Assert(_action.AddActionDirect(uid, component.ActionCreateBlobFactory!.Value));
+        DebugTools.Assert(_action.AddActionDirect(uid, component.ActionCreateBlobResource!.Value));
+        DebugTools.Assert(_action.AddActionDirect(uid, component.ActionCreateBlobNode!.Value));
+        DebugTools.Assert(_action.AddActionDirect(uid, component.ActionCreateBlobbernaut!.Value));
+        DebugTools.Assert(_action.AddActionDirect(uid, component.ActionSplitBlobCore!.Value));
+        DebugTools.Assert(_action.AddActionDirect(uid, component.ActionSwapBlobCore!.Value));
+    }
+
+    private void AddActions(EntityUid uid, BlobObserverComponent? component = null)
+    {
+        if (!Resolve(uid, ref component))
+        {
+            return;
+        }
+
         _action.AddAction(uid, ref component.ActionHelpBlob, ActionHelpBlob);
         _action.AddAction(uid, ref component.ActionSwapBlobChem, ActionSwapBlobChem);
         _action.AddAction(uid, ref component.ActionTeleportBlobToCore, ActionTeleportBlobToCore);
@@ -92,6 +227,16 @@ public sealed class BlobObserverSystem : SharedBlobObserverSystem
         _action.AddAction(uid, ref component.ActionCreateBlobbernaut, ActionCreateBlobbernaut);
         _action.AddAction(uid, ref component.ActionSplitBlobCore, ActionSplitBlobCore);
         _action.AddAction(uid, ref component.ActionSwapBlobCore, ActionSwapBlobCore);
+    }
+
+    private void OnPlayerAttached(EntityUid uid, BlobObserverComponent component, PlayerAttachedEvent args)
+    {
+        UpdateActions(uid, component);
+    }
+
+    private void OnMapInitEvent(EntityUid uid, BlobObserverComponent component, ComponentStartup args)
+    {
+        AddActions(uid, component);
     }
 
     private void OnBlobSwapChem(EntityUid uid, BlobObserverComponent observerComponent,
@@ -129,14 +274,6 @@ public sealed class BlobObserverSystem : SharedBlobObserverSystem
             PopupType.LargeCaution);
 
         UpdateUi(uid, component);
-    }
-
-    private void GetState(EntityUid uid, BlobObserverComponent component, ref ComponentGetState args)
-    {
-        args.State = new BlobChemSwapComponentState
-        {
-            SelectedChem = component.SelectedChemId
-        };
     }
 
     private void TryOpenUi(EntityUid uid, EntityUid user, BlobObserverComponent? component = null)
