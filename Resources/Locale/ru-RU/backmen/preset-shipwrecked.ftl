@@ -1,9 +1,9 @@
 ﻿## Gamemode
 
-shipwrecked-title = Потерпевший Кораблекрушение
+shipwrecked-title = Кораблекрушение(выживание)
 shipwrecked-description = Группа путешественников отправляется в путь, чтобы узнать свою историю смерти...
 shipwrecked-too-many-ready-players = Слишком много игроков было готово к игре! Количество готовых игроков {$readyPlayersCount} , но предел для этого режима {$maximumPlayers} .
-shipwrecked-no-one-ready = Нет готовых игроков! Невозможно начать игру Выжившие.
+shipwrecked-no-one-ready = Нет готовых игроков! Невозможно начать игру с режимом Кораблекрушение.
 shipwrecked-shuttle-announcement = Анонс транспортного шаттла от {$sender}: {$message}
 
 ## Round End
@@ -29,7 +29,7 @@ shipwrecked-list-all-objectives-complete = [color=green]Все задачи вы
 ## Passenger Manifest
 
 passenger-manifest-passenger-line = - {$name}, {$details}
-passenger-manifest-end-line = -< END MANIFEST >-
+passenger-manifest-end-line = -< КОНЕЦ МАНИФЕСТА >-
 
 ## Jobs
 
@@ -87,7 +87,7 @@ hecate-response-sorry-6 = Мне очень жаль, но я не могу на
 
 
 hecate-response-help = Чем я могу Вам помочь? Вы можете спросить меня о: {$availablePrompts}.
-hecate-response-name = Меня зовут Геката. А тебя?
+hecate-response-name = Меня зовут Катя. А тебя?
 hecate-response-buy-sell = Хм! Это может быть темой для коммерсанта.
 
 hecate-response-hello-1 = Приветствую!
