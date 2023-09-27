@@ -48,3 +48,16 @@
       contentImageNumLines: 2
       contentMargin: 16.0, 16.0, 16.0, 0.0
       maxWritableArea: 400.0, 400.0
+
+- type: entity
+  name: Печать ОПЗ
+  parent: RubberStampBase
+  id: RubberStampUEG
+  components:
+  - type: Stamp
+    stampedName: Объеденённое Правительство Земли
+    stampedColor: "#4682B4"
+    stampState: "paper_stamp-cap"
+  - type: Sprite
+    sprite: Objects/Misc/bureaucracy.rsi
+    state: stamp-cap
