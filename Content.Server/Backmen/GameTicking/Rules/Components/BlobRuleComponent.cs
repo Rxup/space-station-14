@@ -4,7 +4,7 @@ using Robust.Shared.Audio;
 
 namespace Content.Server.Backmen.GameTicking.Rules.Components;
 
-[RegisterComponent, Access(typeof(BlobRuleSystem), typeof(BlobCoreSystem))]
+[RegisterComponent, Access(typeof(BlobRuleSystem), typeof(BlobCoreSystem), typeof(BlobObserverSystem))]
 public sealed partial class BlobRuleComponent : Component
 {
     public List<(EntityUid mindId, MindComponent mind)> Blobs = new(); //BlobRoleComponent

@@ -1,4 +1,6 @@
 using Content.Server.GameTicking.Rules;
+using Content.Server.GenericAntag;
+using Content.Server.Ninja.Systems;
 using Content.Server.Zombies;
 using Content.Shared.Administration;
 using Content.Shared.Database;
@@ -38,7 +40,8 @@ public sealed partial class AdminVerbSystem
         {
             Text = Loc.GetString("admin-verb-text-make-traitor"),
             Category = VerbCategory.Antag,
-            Icon = new SpriteSpecifier.Rsi(new ResPath("/Textures/Structures/Wallmounts/posters.rsi"), "poster5_contraband"),
+            Icon = new SpriteSpecifier.Rsi(new ResPath("/Textures/Structures/Wallmounts/posters.rsi"),
+                "poster5_contraband"),
             Act = () =>
             {
                 if (!_minds.TryGetSession(targetMindComp.Mind, out var session))
@@ -53,6 +56,20 @@ public sealed partial class AdminVerbSystem
         };
         args.Verbs.Add(traitor);
 
+        Verb blobAntag = new()
+        {
+            Text = Loc.GetString("admin-verb-text-make-blob"),
+            Category = VerbCategory.Antag,
+            Icon = new SpriteSpecifier.Rsi(new("/Textures/Backmen/Interface/Actions/blob.rsi"), "blobFactory"),
+            Act = () =>
+            {
+                EnsureComp<Shared.Blob.BlobCarrierComponent>(args.Target);
+            },
+            Impact = LogImpact.High,
+            Message = Loc.GetString("admin-verb-text-make-blob"),
+        };
+        args.Verbs.Add(blobAntag);
+
         Verb fleshLeaderCultist = new()
         {
             Text = Loc.GetString("admin-verb-text-make-flesh-leader-cultist"),
@@ -63,7 +80,8 @@ public sealed partial class AdminVerbSystem
                 if (!_minds.TryGetSession(targetMindComp.Mind, out var session))
                     return;
 
-                EntityManager.System<Content.Server.Backmen.GameTicking.Rules.FleshCultRuleSystem>().MakeCultist((IPlayerSession)session);
+                EntityManager.System<Content.Server.Backmen.GameTicking.Rules.FleshCultRuleSystem>()
+                    .MakeCultist((IPlayerSession) session);
             },
             Impact = LogImpact.High,
             Message = Loc.GetString("admin-verb-text-make-flesh-leader-cultist"),
@@ -80,7 +98,8 @@ public sealed partial class AdminVerbSystem
                 if (!_minds.TryGetSession(targetMindComp.Mind, out var session))
                     return;
 
-                EntityManager.System<Content.Server.Backmen.GameTicking.Rules.FleshCultRuleSystem>().MakeCultist((IPlayerSession)session);
+                EntityManager.System<Content.Server.Backmen.GameTicking.Rules.FleshCultRuleSystem>()
+                    .MakeCultist((IPlayerSession) session);
             },
             Impact = LogImpact.High,
             Message = Loc.GetString("admin-verb-text-make-flesh-cultist"),
@@ -91,13 +110,15 @@ public sealed partial class AdminVerbSystem
         {
             Text = "Make EvilTwin",
             Category = VerbCategory.Antag,
-            Icon = new SpriteSpecifier.Rsi((new ResPath("/Textures/Structures/Wallmounts/posters.rsi")), "poster3_legit"),
+            Icon = new SpriteSpecifier.Rsi((new ResPath("/Textures/Structures/Wallmounts/posters.rsi")),
+                "poster3_legit"),
             Act = () =>
             {
                 if (!_minds.TryGetSession(targetMindComp.Mind, out var session))
                     return;
 
-                EntityManager.System<Content.Server.Backmen.EvilTwin.EvilTwinSystem>().MakeTwin(out _,session.AttachedEntity);
+                EntityManager.System<Content.Server.Backmen.EvilTwin.EvilTwinSystem>()
+                    .MakeTwin(out _, session.AttachedEntity);
             },
             Impact = LogImpact.High,
             Message = Loc.GetString("admin-verb-make-eviltwin"),

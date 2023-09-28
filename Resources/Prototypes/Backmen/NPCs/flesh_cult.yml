@@ -1,7 +1,7 @@
 ﻿- type: entity
   parent: SimpleMobBase
   id: BaseMobFleshCult
-  name: aberrant flesh
+  name: извращенная плоть
   description: A shambling mass of flesh, animated through anomalous energy.
   abstract: true
   components:
@@ -74,7 +74,7 @@
 
 - type: entity
   parent: BaseMobFleshCult
-  name: flesh spider
+  name: паук из плоти
   id: MobFleshSpider
   components:
     - type: Butcherable
@@ -135,7 +135,7 @@
 
 - type: entity
   parent: BaseMobFleshCult
-  name: flesh pudge
+  name: мясной толстяк
   id: MobFleshPudge
   components:
     - type: Butcherable
@@ -231,7 +231,7 @@
 
 - type: entity
   parent: BaseMobFleshCult
-  name: flesh abom
+  name: мерзкая плоть
   id: MobFleshAbom
   components:
     - type: Butcherable
@@ -323,7 +323,7 @@
 
 - type: entity
   parent: BaseMobFleshCult
-  name: flesh ball
+  name: мясной шарик
   id: MobFleshBall
   components:
     - type: FleshMob
@@ -392,7 +392,7 @@
 
 - type: entity
   parent: BaseMobFleshCult
-  name: flesh bat
+  name: мясная мышка
   id: MobFleshBat
   components:
     - type: FleshMob
@@ -458,7 +458,7 @@
 
 - type: entity
   parent: BaseMobFleshCult
-  name: flesh worm
+  name: мясной червь
   id: MobFleshWorm
   components:
     - type: FleshMob

@@ -18,6 +18,9 @@ public sealed partial class FleshHeartComponent : Component
         "Human",
         "Reptilian",
         "Dwarf",
+        "Oni",
+        "Vox",
+        "HumanoidFoxes",
     };
 
     [DataField("alertLevelOnActivate")] public string AlertLevelOnActivate = "red";
