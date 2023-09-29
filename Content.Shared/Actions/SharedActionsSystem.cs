@@ -27,7 +27,6 @@ public abstract class SharedActionsSystem : EntitySystem
     [Dependency] private readonly SharedAudioSystem _audio = default!;
     [Dependency] private readonly SharedTransformSystem _transformSystem = default!;
     [Dependency] private readonly ActionContainerSystem _actionContainer = default!;
-    [Dependency] private   readonly INetManager _netMan = default!;
 
     public override void Initialize()
     {
@@ -212,10 +211,7 @@ public abstract class SharedActionsSystem : EntitySystem
         if (!TryGetActionData(actionEnt, out var action))
             return;
 
-        if ((_netMan.IsClient && action.AttachedEntity != null) || _netMan.IsServer)
-        {
-            DebugTools.Assert(action.AttachedEntity == user);
-        }
+        DebugTools.Assert(action.AttachedEntity == user);
 
 
         if (!action.Enabled)
