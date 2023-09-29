@@ -15,8 +15,6 @@ namespace Content.Client.Blob;
 public sealed class BlobObserverSystem : SharedBlobObserverSystem
 {
     [Dependency] private readonly ILightManager _lightManager = default!;
-    [Dependency] private readonly ActionsSystem _actionsSystem = default!;
-    [Dependency] private readonly IPlayerManager _playerManager = default!;
 
     public override void Initialize()
     {

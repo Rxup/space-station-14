@@ -1,5 +1,6 @@
 using System.Linq;
 using System.Numerics;
+using Content.Server.Actions;
 using Content.Server.AlertLevel;
 using Content.Server.Backmen.GameTicking.Rules.Components;
 using Content.Server.Chat.Managers;
@@ -56,6 +57,7 @@ public sealed class BlobCoreSystem : EntitySystem
     [Dependency] private readonly ActorSystem _actorSystem = default!;
     [Dependency] private readonly IPlayerManager _playerManager = default!;
     [Dependency] private readonly MetaDataSystem _metaDataSystem = default!;
+    [Dependency] private readonly ActionsSystem _action = default!;
 
     [ValidatePrototypeId<EntityPrototype>] private const string BlobCaptureObjective = "BlobCaptureObjective";
     public override void Initialize()
@@ -108,7 +110,7 @@ public sealed class BlobCoreSystem : EntitySystem
         if (!_mapManager.TryGetGrid(xform.GridUid, out var map))
             return;
 
-        Timer.Spawn(100,()=>CreateBlobObserver(uid, args.Player.UserId, component));
+        CreateBlobObserver(uid, args.Player.UserId, component);
     }
 
     public bool CreateBlobObserver(EntityUid blobCoreUid, NetUserId userId, BlobCoreComponent? core = null)
@@ -147,6 +149,17 @@ public sealed class BlobCoreSystem : EntitySystem
             _alerts.ShowAlert(component.Observer.Value, AlertType.BlobHealth, (short) Math.Clamp(Math.Round(currentHealth.Float() / 10f), 0, 20));
     }
 
+    [ValidatePrototypeId<EntityPrototype>] private const string ActionHelpBlob = "ActionHelpBlob";
+    [ValidatePrototypeId<EntityPrototype>] private const string ActionSwapBlobChem = "ActionSwapBlobChem";
+    [ValidatePrototypeId<EntityPrototype>] private const string ActionTeleportBlobToCore = "ActionTeleportBlobToCore";
+    [ValidatePrototypeId<EntityPrototype>] private const string ActionTeleportBlobToNode = "ActionTeleportBlobToNode";
+    [ValidatePrototypeId<EntityPrototype>] private const string ActionCreateBlobFactory = "ActionCreateBlobFactory";
+    [ValidatePrototypeId<EntityPrototype>] private const string ActionCreateBlobResource = "ActionCreateBlobResource";
+    [ValidatePrototypeId<EntityPrototype>] private const string ActionCreateBlobNode = "ActionCreateBlobNode";
+    [ValidatePrototypeId<EntityPrototype>] private const string ActionCreateBlobbernaut = "ActionCreateBlobbernaut";
+    [ValidatePrototypeId<EntityPrototype>] private const string ActionSplitBlobCore = "ActionSplitBlobCore";
+    [ValidatePrototypeId<EntityPrototype>] private const string ActionSwapBlobCore = "ActionSwapBlobCore";
+
     private void OnStartup(EntityUid uid, BlobCoreComponent component, ComponentStartup args)
     {
         ChangeBlobPoint(uid, 0, component);
@@ -161,6 +174,17 @@ public sealed class BlobCoreSystem : EntitySystem
         component.BlobTiles.Add(uid);
 
         ChangeChem(uid, component.DefaultChem, component);
+
+        _action.AddAction(uid, ref component.ActionHelpBlob, ActionHelpBlob);
+        _action.AddAction(uid, ref component.ActionSwapBlobChem, ActionSwapBlobChem);
+        _action.AddAction(uid, ref component.ActionTeleportBlobToCore, ActionTeleportBlobToCore);
+        _action.AddAction(uid, ref component.ActionTeleportBlobToNode, ActionTeleportBlobToNode);
+        _action.AddAction(uid, ref component.ActionCreateBlobFactory, ActionCreateBlobFactory);
+        _action.AddAction(uid, ref component.ActionCreateBlobResource, ActionCreateBlobResource);
+        _action.AddAction(uid, ref component.ActionCreateBlobNode, ActionCreateBlobNode);
+        _action.AddAction(uid, ref component.ActionCreateBlobbernaut, ActionCreateBlobbernaut);
+        _action.AddAction(uid, ref component.ActionSplitBlobCore, ActionSplitBlobCore);
+        _action.AddAction(uid, ref component.ActionSwapBlobCore, ActionSwapBlobCore);
     }
 
     public void ChangeChem(EntityUid uid, BlobChemType newChem, BlobCoreComponent? component = null)

@@ -1,5 +1,4 @@
-﻿using System.ComponentModel.Design;
-using System.Diagnostics.CodeAnalysis;
+﻿using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Numerics;
 using System.Text;
@@ -271,6 +270,12 @@ public sealed class ShipwreckedRuleSystem : GameRuleSystem<ShipwreckedRuleCompon
         var biome = AddComp<BiomeComponent>(planetMapUid);
         _biomeSystem.SetSeed(biome, _random.Next());
         _biomeSystem.SetTemplate(biome, _prototypeManager.Index<BiomeTemplatePrototype>(destination.BiomePrototype));
+        _biomeSystem.AddMarkerLayer(biome, "OreTin");
+        _biomeSystem.AddMarkerLayer(biome, "OreGold");
+        _biomeSystem.AddMarkerLayer(biome, "OreSilver");
+        _biomeSystem.AddMarkerLayer(biome, "OrePlasma");
+        _biomeSystem.AddMarkerLayer(biome, "OreUranium");
+        _biomeSystem.AddTemplate(biome, "Loot", _prototypeManager.Index<BiomeTemplatePrototype>("Caves"), 1);
         Dirty(planetMapUid, biome);
 
         // Gravity
