@@ -1,0 +1,39 @@
+- type: job
+  id: Botanist
+  name: job-name-botanist
+  description: job-description-botanist
+  playTimeTracker: JobBotanist
+  requirements:
+    - !type:RoleTimeRequirement
+      role: JobServiceWorker
+      time: 7200
+  startingGear: BotanistGear
+  icon: "JobIconBotanist"
+  supervisors: job-supervisors-hop
+  access:
+  - Service
+  - Maintenance
+  - Hydroponics
+  extendedAccess:
+  - Kitchen
+  - Bar
+  #start _Ck
+  minBankBalance: 300
+  maxBankBalance: 500
+  wageDepartment: Cafe
+  wage: 100
+  #end _Ck
+
+- type: startingGear
+  id: BotanistGear
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitHydroponics
+    back: ClothingBackpackHydroponicsFilled
+    shoes: ClothingShoesColorBrown
+    id: BotanistPDA
+    ears: ClothingHeadsetService
+    outerClothing: ClothingOuterApronBotanist
+    belt: ClothingBeltPlantFilled
+  innerclothingskirt: ClothingUniformJumpskirtHydroponics
+  satchel: ClothingBackpackSatchelHydroponicsFilled
+  duffelbag: ClothingBackpackDuffelHydroponicsFilled

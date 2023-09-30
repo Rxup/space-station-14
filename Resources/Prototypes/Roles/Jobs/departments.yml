@@ -47,6 +47,7 @@
   - HeadOfSecurity
   - ResearchDirector
   - Quartermaster
+  - Chef
   accountNumber: 1317 #backmen: currency
 
 - type: department
