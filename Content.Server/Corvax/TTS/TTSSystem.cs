@@ -4,9 +4,7 @@ using Content.Server.SS220.Chat.Systems;
 using Content.Shared.Corvax.CCCVars;
 using Content.Shared.Corvax.TTS;
 using Content.Shared.GameTicking;
-using Robust.Server.Player;
 using Robust.Shared.Configuration;
-using Robust.Shared.Network;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 
@@ -17,8 +15,6 @@ public sealed partial class TTSSystem : EntitySystem
 {
     [Dependency] private readonly IConfigurationManager _cfg = default!;
     [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
-    [Dependency] private readonly IServerNetManager _netMgr = default!;
-    [Dependency] private readonly IPlayerManager _playerManager = default!;
     [Dependency] private readonly TTSManager _ttsManager = default!;
     [Dependency] private readonly SharedTransformSystem _xforms = default!;
 
@@ -35,8 +31,7 @@ public sealed partial class TTSSystem : EntitySystem
         SubscribeLocalEvent<RoundRestartCleanupEvent>(OnRoundRestartCleanup);
 
         SubscribeLocalEvent<AnnouncementSpokeEvent>(OnAnnouncementSpoke); // TTS-Announce SS220
-
-        _netMgr.RegisterNetMessage<MsgRequestTTS>(OnRequestTTS);
+        SubscribeNetworkEvent<RequestGlobalTTSEvent>(OnRequestGlobalTTS);
     }
 
     private void OnRoundRestartCleanup(RoundRestartCleanupEvent ev)
@@ -72,7 +67,7 @@ public sealed partial class TTSSystem : EntitySystem
     {
         var soundData = await GenerateTTS(message, speaker);
         if (soundData is null) return;
-        RaiseNetworkEvent(new PlayTTSEvent(GetNetEntity(uid), soundData), Filter.Pvs(uid));
+        RaiseNetworkEvent(new PlayTTSEvent(soundData, GetNetEntity(uid)), Filter.Pvs(uid));
     }
 
     private async void HandleWhisper(EntityUid uid, string message, string obfMessage, string speaker)
@@ -84,8 +79,8 @@ public sealed partial class TTSSystem : EntitySystem
         var obfSoundData = await GenerateTTS(obfMessage, speaker, true);
         if (obfSoundData is null) return;
 
-        var fullTtsEvent = new PlayTTSEvent(netEntity, fullSoundData, true);
-        var obfTtsEvent = new PlayTTSEvent(netEntity, obfSoundData, true);
+        var fullTtsEvent = new PlayTTSEvent(fullSoundData, netEntity, true);
+        var obfTtsEvent = new PlayTTSEvent(obfSoundData, netEntity, true);
 
         // TODO: Check obstacles
         var xformQuery = GetEntityQuery<TransformComponent>();
