@@ -1,5 +1,5 @@
 - type: entity
-  id: BaseMech
+  id: BaseMech+0
   save: false
   abstract: true
   components:
@@ -85,7 +85,7 @@
 
 - type: entity
   id: MechGygax1
-  parent: BaseMech
+  parent: BaseMech+0
   name: Gygax
   description: Gygax
   components:
@@ -95,7 +95,7 @@
     sprite: Objects/Specific/Mech/mecha.rsi
     layers:
     - map: [ "enum.MechVisualLayers.Base" ]
-      state: ripley
+      state: gygax
   - type: FootstepModifier
     footstepSoundCollection:
       path: /Audio/Mecha/sound_mecha_powerloader_step.ogg
@@ -112,9 +112,9 @@
     attackRate: 1
     damage:
       types:
-        Blunt: 14 
+        Blunt: 18
   - type: MovementSpeedModifier
-    baseWalkSpeed: 2.0
+    baseWalkSpeed: 3.0
     baseSprintSpeed: 3.0
 
 - type: entity
