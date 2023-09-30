@@ -204,7 +204,7 @@ namespace Content.Shared.Preferences
         public string Name { get; private set; }
         public string FlavorText { get; private set; }
         public string Species { get; private set; }
-        public string Voice { get; private set; } // Corvax-TTS
+        public ProtoId<TTSVoicePrototype> Voice { get; private set; } // Corvax-TTS
 
         [DataField("age")]
         public int Age { get; private set; }

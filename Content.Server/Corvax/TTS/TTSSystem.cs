@@ -51,7 +51,7 @@ public sealed partial class TTSSystem : EntitySystem
         RaiseLocalEvent(uid, voiceEv);
         voiceId = voiceEv.VoiceId;
 
-        if (!_prototypeManager.TryIndex<TTSVoicePrototype>(voiceId, out var protoVoice))
+        if (voiceId == null || !_prototypeManager.TryIndex(voiceId.Value, out var protoVoice))
             return;
 
         if (args.ObfuscatedMessage != null)

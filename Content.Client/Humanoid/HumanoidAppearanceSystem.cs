@@ -194,7 +194,7 @@ public sealed class HumanoidAppearanceSystem : SharedHumanoidAppearanceSystem
         humanoid.Species = profile.Species;
         humanoid.SkinColor = profile.Appearance.SkinColor;
         humanoid.EyeColor = profile.Appearance.EyeColor;
-        humanoid.SpeakerColor = state.SpeakerColor; // Corvax-SpeakerColor
+        //humanoid.SpeakerColor = humanoid.SpeakerColor; // Corvax-SpeakerColor
 
         UpdateSprite(humanoid, Comp<SpriteComponent>(uid));
     }
