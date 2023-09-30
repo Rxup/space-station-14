@@ -1,0 +1,11 @@
+- type: department
+  id: Cafe
+  description: department-Cafe-description
+  color: "#F1A51B"
+  roles:
+  - Bartender
+  - Botanist
+  - Chefck
+  - Chef
+  - ServiceWorker
+  accountNumber: 1111 #Cafe account
