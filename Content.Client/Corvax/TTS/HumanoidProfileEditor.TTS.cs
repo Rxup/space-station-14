@@ -73,6 +73,6 @@ public sealed partial class HumanoidProfileEditor
         if (_previewDummy is null || Profile is null)
             return;
 
-        _ttsSys.RequestGlobalTTS(_random.Pick(_sampleText), Profile.Voice);
+        _ttsSys.RequestGlobalTTS(Content.Shared.Backmen.TTS.VoiceRequestType.Preview, Profile.Voice);
     }
 }

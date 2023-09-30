@@ -3,6 +3,7 @@ using System.IO;
 using System.Linq;
 using Content.Shared.Corvax.CCCVars;
 using Content.Shared.Corvax.TTS;
+using Content.Shared.GameTicking;
 using Content.Shared.Physics;
 using Robust.Client.GameObjects;
 using Robust.Client.Graphics;
@@ -41,6 +42,13 @@ public sealed class TTSSystem : EntitySystem
         _resourceCache.AddRoot(Prefix, _contentRoot);
         _cfg.OnValueChanged(CCCVars.TTSVolume, OnTtsVolumeChanged, true);
         SubscribeNetworkEvent<PlayTTSEvent>(OnPlayTTS);
+        SubscribeLocalEvent<RoundRestartCleanupEvent>(OnRoundRestart);
+    }
+
+    private void OnRoundRestart(RoundRestartCleanupEvent ev)
+    {
+        _contentRoot.Clear();
+        _fileIdx = 0;
     }
 
     public override void Shutdown()
@@ -50,7 +58,7 @@ public sealed class TTSSystem : EntitySystem
         _contentRoot.Dispose();
     }
 
-    public void RequestGlobalTTS(string text, string voiceId)
+    public void RequestGlobalTTS(Content.Shared.Backmen.TTS.VoiceRequestType text, string voiceId)
     {
         RaiseNetworkEvent(new RequestGlobalTTSEvent(text, voiceId));
     }
@@ -62,7 +70,7 @@ public sealed class TTSSystem : EntitySystem
 
     private void OnPlayTTS(PlayTTSEvent ev)
     {
-        _sawmill.Debug($"Play TTS audio {ev.Data.Length} bytes from {ev.SourceUid} entity");
+        //_sawmill.Debug($"Play TTS audio {ev.Data.Length} bytes from {ev.SourceUid} entity");
 
         var volume = _volume;
         if (ev.IsWhisper)
@@ -76,7 +84,7 @@ public sealed class TTSSystem : EntitySystem
         if (ev.SourceUid != null)
         {
             var sourceUid = GetEntity(ev.SourceUid.Value);
-            _audio.PlayEntity(soundPath, new EntityUid(), sourceUid); // recipient arg ignored on client
+            _audio.PlayEntity(soundPath, EntityUid.Invalid, sourceUid); // recipient arg ignored on client
         }
         else
         {
