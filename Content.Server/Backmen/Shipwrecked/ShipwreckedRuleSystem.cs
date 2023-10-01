@@ -1487,20 +1487,16 @@ public sealed class ShipwreckedRuleSystem : GameRuleSystem<ShipwreckedRuleCompon
 
             foreach (var accessList in access.AccessLists)
             {
-                if (accessList.Contains("Armory") && storageQuery.HasComponent(entity))
+                if (accessList.Contains("Armory") && (storageQuery.HasComponent(entity) || doorQuery.HasComponent(entity)))
                 {
                     // This is probably the gun safe.
                     component.GunSafe.Add(entity);
-                    break;
                 }
-
-                if (accessList.Contains("Engineering") && doorQuery.HasComponent(entity))
+                if (accessList.Contains("Engineering") && (storageQuery.HasComponent(entity) || doorQuery.HasComponent(entity)))
                 {
                     // This is probably the engine bay door.
                     component.EngineBayDoor.Add(entity);
-                    break;
                 }
-
             }
         }
     }
@@ -1521,7 +1517,7 @@ public sealed class ShipwreckedRuleSystem : GameRuleSystem<ShipwreckedRuleCompon
                 _airlockSystem.ToggleEmergencyAccess(row, airlock);
                 continue;
             }
-            Comp<AccessReaderComponent>(row).AccessLists.Clear();
+            _lockSystem.Unlock(row, uid);
         }
 
         _npcConversationSystem.QueueResponse(uid, args.AccessGranted);
