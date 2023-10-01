@@ -62,39 +62,34 @@ public sealed class BlobObserverSystem : SharedBlobObserverSystem
     [Dependency] private readonly IChatManager _chatManager = default!;
     [Dependency] private readonly ActorSystem _actorSystem = default!;
 
-    [ValidatePrototypeId<EntityPrototype>] private const string ActionHelpBlob = "ActionHelpBlob";
-    [ValidatePrototypeId<EntityPrototype>] private const string ActionSwapBlobChem = "ActionSwapBlobChem";
-    [ValidatePrototypeId<EntityPrototype>] private const string ActionTeleportBlobToCore = "ActionTeleportBlobToCore";
-    [ValidatePrototypeId<EntityPrototype>] private const string ActionTeleportBlobToNode = "ActionTeleportBlobToNode";
-    [ValidatePrototypeId<EntityPrototype>] private const string ActionCreateBlobFactory = "ActionCreateBlobFactory";
-    [ValidatePrototypeId<EntityPrototype>] private const string ActionCreateBlobResource = "ActionCreateBlobResource";
-    [ValidatePrototypeId<EntityPrototype>] private const string ActionCreateBlobNode = "ActionCreateBlobNode";
-    [ValidatePrototypeId<EntityPrototype>] private const string ActionCreateBlobbernaut = "ActionCreateBlobbernaut";
-    [ValidatePrototypeId<EntityPrototype>] private const string ActionSplitBlobCore = "ActionSplitBlobCore";
-    [ValidatePrototypeId<EntityPrototype>] private const string ActionSwapBlobCore = "ActionSwapBlobCore";
 
+    [Dependency] private ILogManager _logMan = default!;
+    private ISawmill _logger = default!;
     public override void Initialize()
     {
         base.Initialize();
 
         SubscribeLocalEvent<BlobCoreComponent, CreateBlobObserverEvent>(OnCreateBlobObserver);
 
-        SubscribeLocalEvent<BlobObserverComponent, ComponentStartup>(OnMapInitEvent);
         SubscribeLocalEvent<BlobObserverComponent, PlayerAttachedEvent>(OnPlayerAttached, before: new []{ typeof(ActionsSystem) });
 
-        SubscribeLocalEvent<BlobObserverComponent, BlobCreateFactoryActionEvent>(OnCreateFactory);
-        SubscribeLocalEvent<BlobObserverComponent, BlobCreateResourceActionEvent>(OnCreateResource);
-        SubscribeLocalEvent<BlobObserverComponent, BlobCreateNodeActionEvent>(OnCreateNode);
-        SubscribeLocalEvent<BlobObserverComponent, BlobCreateBlobbernautActionEvent>(OnCreateBlobbernaut);
-        SubscribeLocalEvent<BlobObserverComponent, BlobToCoreActionEvent>(OnBlobToCore);
-        SubscribeLocalEvent<BlobObserverComponent, BlobToNodeActionEvent>(OnBlobToNode);
-        SubscribeLocalEvent<BlobObserverComponent, BlobHelpActionEvent>(OnBlobHelp);
-        SubscribeLocalEvent<BlobObserverComponent, BlobSwapChemActionEvent>(OnBlobSwapChem);
+        SubscribeLocalEvent<BlobCoreComponent, BlobCreateFactoryActionEvent>(OnCreateFactory);
+        SubscribeLocalEvent<BlobCoreComponent, BlobCreateResourceActionEvent>(OnCreateResource);
+        SubscribeLocalEvent<BlobCoreComponent, BlobCreateNodeActionEvent>(OnCreateNode);
+        SubscribeLocalEvent<BlobCoreComponent, BlobCreateBlobbernautActionEvent>(OnCreateBlobbernaut);
+        SubscribeLocalEvent<BlobCoreComponent, BlobToCoreActionEvent>(OnBlobToCore);
+        SubscribeLocalEvent<BlobCoreComponent, BlobToNodeActionEvent>(OnBlobToNode);
+        SubscribeLocalEvent<BlobCoreComponent, BlobHelpActionEvent>(OnBlobHelp);
+        SubscribeLocalEvent<BlobCoreComponent, BlobSwapChemActionEvent>(OnBlobSwapChem);
         SubscribeLocalEvent<BlobObserverComponent, InteractNoHandEvent>(OnInteract);
-        SubscribeLocalEvent<BlobObserverComponent, BlobSwapCoreActionEvent>(OnSwapCore);
-        SubscribeLocalEvent<BlobObserverComponent, BlobSplitCoreActionEvent>(OnSplitCore);
+        SubscribeLocalEvent<BlobCoreComponent, BlobSwapCoreActionEvent>(OnSwapCore);
+        SubscribeLocalEvent<BlobCoreComponent, BlobSplitCoreActionEvent>(OnSplitCore);
+
         SubscribeLocalEvent<BlobObserverComponent, MoveEvent>(OnMoveEvent);
         SubscribeLocalEvent<BlobObserverComponent, BlobChemSwapPrototypeSelectedMessage>(OnChemSelected);
+
+
+        _logger = _logMan.GetSawmill("blob.core");
     }
 
     private void SendBlobBriefing(EntityUid mind)
@@ -170,7 +165,10 @@ public sealed class BlobObserverSystem : SharedBlobObserverSystem
             _actorSystem.Attach(observer, session, true);
         }
 
+        UpdateUi(observer, core);
+
         //RemComp<ActionsComponent>(observer);
+        /*
         if (isNewMind)
         {
             _mindSystem.TransferTo(mindId, observer, true, mind: mind);
@@ -189,6 +187,7 @@ public sealed class BlobObserverSystem : SharedBlobObserverSystem
                 UpdateUi(observer, blobObserverComponent);
             });
         });
+        */
     }
 
     private void UpdateActions(EntityUid uid, BlobObserverComponent? component = null)
@@ -198,35 +197,25 @@ public sealed class BlobObserverSystem : SharedBlobObserverSystem
             return;
         }
 
-        DebugTools.Assert(_action.AddActionDirect(uid, component.ActionHelpBlob!.Value));
-        DebugTools.Assert(_action.AddActionDirect(uid, component.ActionSwapBlobChem!.Value));
-        DebugTools.Assert(_action.AddActionDirect(uid, component.ActionTeleportBlobToCore!.Value));
-        DebugTools.Assert(_action.AddActionDirect(uid, component.ActionTeleportBlobToNode!.Value));
-        DebugTools.Assert(_action.AddActionDirect(uid, component.ActionCreateBlobFactory!.Value));
-        DebugTools.Assert(_action.AddActionDirect(uid, component.ActionCreateBlobResource!.Value));
-        DebugTools.Assert(_action.AddActionDirect(uid, component.ActionCreateBlobNode!.Value));
-        DebugTools.Assert(_action.AddActionDirect(uid, component.ActionCreateBlobbernaut!.Value));
-        DebugTools.Assert(_action.AddActionDirect(uid, component.ActionSplitBlobCore!.Value));
-        DebugTools.Assert(_action.AddActionDirect(uid, component.ActionSwapBlobCore!.Value));
-    }
-
-    private void AddActions(EntityUid uid, BlobObserverComponent? component = null)
-    {
-        if (!Resolve(uid, ref component))
+        if (component.Core == null || TerminatingOrDeleted(component.Core.Value) || !TryComp<BlobCoreComponent>(component.Core.Value, out var coreComponent))
         {
+            _logger.Error("Не возможно найти ядро для обсервера!");
             return;
         }
 
-        _action.AddAction(uid, ref component.ActionHelpBlob, ActionHelpBlob);
-        _action.AddAction(uid, ref component.ActionSwapBlobChem, ActionSwapBlobChem);
-        _action.AddAction(uid, ref component.ActionTeleportBlobToCore, ActionTeleportBlobToCore);
-        _action.AddAction(uid, ref component.ActionTeleportBlobToNode, ActionTeleportBlobToNode);
-        _action.AddAction(uid, ref component.ActionCreateBlobFactory, ActionCreateBlobFactory);
-        _action.AddAction(uid, ref component.ActionCreateBlobResource, ActionCreateBlobResource);
-        _action.AddAction(uid, ref component.ActionCreateBlobNode, ActionCreateBlobNode);
-        _action.AddAction(uid, ref component.ActionCreateBlobbernaut, ActionCreateBlobbernaut);
-        _action.AddAction(uid, ref component.ActionSplitBlobCore, ActionSplitBlobCore);
-        _action.AddAction(uid, ref component.ActionSwapBlobCore, ActionSwapBlobCore);
+        _action.GrantActions(uid, new []
+        {
+            coreComponent.ActionHelpBlob!.Value,
+            coreComponent.ActionSwapBlobChem!.Value,
+            coreComponent.ActionTeleportBlobToCore!.Value,
+            coreComponent.ActionTeleportBlobToNode!.Value,
+            coreComponent.ActionCreateBlobFactory!.Value,
+            coreComponent.ActionCreateBlobResource!.Value,
+            coreComponent.ActionCreateBlobNode!.Value,
+            coreComponent.ActionCreateBlobbernaut!.Value,
+            coreComponent.ActionSplitBlobCore!.Value,
+            coreComponent.ActionSwapBlobCore!.Value
+        }, component.Core.Value);
     }
 
     private void OnPlayerAttached(EntityUid uid, BlobObserverComponent component, PlayerAttachedEvent args)
@@ -234,15 +223,13 @@ public sealed class BlobObserverSystem : SharedBlobObserverSystem
         UpdateActions(uid, component);
     }
 
-    private void OnMapInitEvent(EntityUid uid, BlobObserverComponent component, ComponentStartup args)
-    {
-        AddActions(uid, component);
-    }
-
-    private void OnBlobSwapChem(EntityUid uid, BlobObserverComponent observerComponent,
+    private void OnBlobSwapChem(EntityUid uid, BlobCoreComponent blobCoreComponent,
         BlobSwapChemActionEvent args)
     {
-        TryOpenUi(uid, args.Performer, observerComponent);
+        if (!TryComp<BlobObserverComponent>(args.Performer, out var observerComponent))
+            return;
+
+        TryOpenUi(args.Performer, args.Performer, observerComponent);
         args.Handled = true;
     }
 
@@ -273,7 +260,7 @@ public sealed class BlobObserverSystem : SharedBlobObserverSystem
             uid,
             PopupType.LargeCaution);
 
-        UpdateUi(uid, component);
+        UpdateUi(uid, blobCoreComponent);
     }
 
     private void TryOpenUi(EntityUid uid, EntityUid user, BlobObserverComponent? component = null)
@@ -287,15 +274,13 @@ public sealed class BlobObserverSystem : SharedBlobObserverSystem
         _uiSystem.TryToggleUi(uid, BlobChemSwapUiKey.Key, actor.PlayerSession);
     }
 
-    public void UpdateUi(EntityUid uid, BlobObserverComponent? component = null)
+    public void UpdateUi(EntityUid uid, BlobCoreComponent blobCoreComponent)
     {
-        if (!Resolve(uid, ref component))
+        if (!TryComp<BlobObserverComponent>(uid, out var observerComponent))
+        {
             return;
-
-        if (component.Core == null || !TryComp<BlobCoreComponent>(component.Core.Value, out var blobCoreComponent))
-            return;
-
-        var state = new BlobChemSwapBoundUserInterfaceState(blobCoreComponent.ChemСolors, component.SelectedChemId);
+        }
+        var state = new BlobChemSwapBoundUserInterfaceState(blobCoreComponent.ChemСolors, observerComponent.SelectedChemId);
 
         _uiSystem.TrySetUiState(uid, BlobChemSwapUiKey.Key, state);
     }
@@ -369,25 +354,22 @@ public sealed class BlobObserverSystem : SharedBlobObserverSystem
         return (nearestEntityUid, nearestDistance);
     }
 
-    private void OnBlobHelp(EntityUid uid, BlobObserverComponent observerComponent,
+    private void OnBlobHelp(EntityUid uid, BlobCoreComponent blobCoreComponent,
         BlobHelpActionEvent args)
     {
-        _popup.PopupEntity(Loc.GetString("blob-help"), uid, uid, PopupType.Large);
+        _popup.PopupEntity(Loc.GetString("blob-help"), args.Performer, args.Performer, PopupType.Large);
         args.Handled = true;
     }
 
-    private void OnSplitCore(EntityUid uid, BlobObserverComponent observerComponent,
+    private void OnSplitCore(EntityUid uid, BlobCoreComponent blobCoreComponent,
         BlobSplitCoreActionEvent args)
     {
         if (args.Handled)
             return;
 
-        if (observerComponent.Core == null || !TryComp<BlobCoreComponent>(observerComponent.Core.Value, out var blobCoreComponent))
-            return;
-
         if (!blobCoreComponent.CanSplit)
         {
-            _popup.PopupEntity(Loc.GetString("blob-cant-split"), uid, uid, PopupType.Large);
+            _popup.PopupEntity(Loc.GetString("blob-cant-split"), args.Performer, args.Performer, PopupType.Large);
             return;
         }
 
@@ -416,12 +398,12 @@ public sealed class BlobObserverSystem : SharedBlobObserverSystem
 
         if (blobTile == null || !TryComp<BlobNodeComponent>(blobTile, out var blobNodeComponent))
         {
-            _popup.PopupEntity(Loc.GetString("blob-target-node-blob-invalid"), uid, uid, PopupType.Large);
+            _popup.PopupEntity(Loc.GetString("blob-target-node-blob-invalid"), args.Performer, args.Performer, PopupType.Large);
             args.Handled = true;
             return;
         }
 
-        if (!_blobCoreSystem.TryUseAbility(uid, observerComponent.Core.Value, blobCoreComponent,
+        if (!_blobCoreSystem.TryUseAbility(args.Performer, uid, blobCoreComponent,
                 blobCoreComponent.SplitCoreCost))
         {
             args.Handled = true;
@@ -438,13 +420,10 @@ public sealed class BlobObserverSystem : SharedBlobObserverSystem
     }
 
 
-    private void OnSwapCore(EntityUid uid, BlobObserverComponent observerComponent,
+    private void OnSwapCore(EntityUid uid, BlobCoreComponent blobCoreComponent,
         BlobSwapCoreActionEvent args)
     {
         if (args.Handled)
-            return;
-
-        if (observerComponent.Core == null || !TryComp<BlobCoreComponent>(observerComponent.Core.Value, out var blobCoreComponent))
             return;
 
         var gridUid = args.Target.GetGridUid(EntityManager);
@@ -472,12 +451,12 @@ public sealed class BlobObserverSystem : SharedBlobObserverSystem
 
         if (blobTile == null || !TryComp<BlobNodeComponent>(blobTile, out var blobNodeComponent))
         {
-            _popup.PopupEntity(Loc.GetString("blob-target-node-blob-invalid"), uid, uid, PopupType.Large);
+            _popup.PopupEntity(Loc.GetString("blob-target-node-blob-invalid"), args.Performer, args.Performer, PopupType.Large);
             args.Handled = true;
             return;
         }
 
-        if (!_blobCoreSystem.TryUseAbility(uid, observerComponent.Core.Value, blobCoreComponent,
+        if (!_blobCoreSystem.TryUseAbility(args.Performer, uid, blobCoreComponent,
                 blobCoreComponent.SwapCoreCost))
         {
             args.Handled = true;
@@ -485,13 +464,13 @@ public sealed class BlobObserverSystem : SharedBlobObserverSystem
         }
 
         var nodePos = Transform(blobTile.Value).Coordinates;
-        var corePos = Transform(observerComponent.Core.Value).Coordinates;
-        _transform.SetCoordinates(observerComponent.Core.Value, nodePos.SnapToGrid());
+        var corePos = Transform(uid).Coordinates;
+        _transform.SetCoordinates(uid, nodePos.SnapToGrid());
         _transform.SetCoordinates(blobTile.Value, corePos.SnapToGrid());
-        var xformCore = Transform(observerComponent.Core.Value);
+        var xformCore = Transform(uid);
         if (!xformCore.Anchored)
         {
-            _transform.AnchorEntity(observerComponent.Core.Value, xformCore);
+            _transform.AnchorEntity(uid, xformCore);
         }
         var xformNode = Transform(blobTile.Value);
         if (!xformNode.Anchored)
@@ -501,13 +480,10 @@ public sealed class BlobObserverSystem : SharedBlobObserverSystem
         args.Handled = true;
     }
 
-    private void OnBlobToNode(EntityUid uid, BlobObserverComponent observerComponent,
+    private void OnBlobToNode(EntityUid uid, BlobCoreComponent blobCoreComponent,
         BlobToNodeActionEvent args)
     {
         if (args.Handled)
-            return;
-
-        if (observerComponent.Core == null || !TryComp<BlobCoreComponent>(observerComponent.Core.Value, out var blobCoreComponent))
             return;
 
         var blobNodes = new List<EntityUid>();
@@ -515,29 +491,25 @@ public sealed class BlobObserverSystem : SharedBlobObserverSystem
         var blobNodeQuery = EntityQueryEnumerator<BlobNodeComponent, BlobTileComponent>();
         while (blobNodeQuery.MoveNext(out var ent, out var node, out var tile))
         {
-            if (tile.Core == observerComponent.Core.Value && !HasComp<BlobCoreComponent>(ent))
+            if (tile.Core == uid && !HasComp<BlobCoreComponent>(ent))
                 blobNodes.Add(ent);
         }
 
         if (blobNodes.Count == 0)
         {
-            _popup.PopupEntity(Loc.GetString("blob-not-have-nodes"), uid, uid, PopupType.Large);
+            _popup.PopupEntity(Loc.GetString("blob-not-have-nodes"), args.Performer, args.Performer, PopupType.Large);
             args.Handled = true;
             return;
         }
 
-        _transform.SetCoordinates(uid, Transform(_random.Pick(blobNodes)).Coordinates);
+        _transform.SetCoordinates(args.Performer, Transform(_random.Pick(blobNodes)).Coordinates);
         args.Handled = true;
     }
 
-    private void OnCreateBlobbernaut(EntityUid uid, BlobObserverComponent observerComponent,
+    private void OnCreateBlobbernaut(EntityUid uid, BlobCoreComponent blobCoreComponent,
         BlobCreateBlobbernautActionEvent args)
     {
         if (args.Handled)
-            return;
-
-        if (observerComponent.Core == null ||
-            !TryComp<BlobCoreComponent>(observerComponent.Core.Value, out var blobCoreComponent))
             return;
 
         var gridUid = args.Target.GetGridUid(EntityManager);
@@ -565,17 +537,17 @@ public sealed class BlobObserverSystem : SharedBlobObserverSystem
 
         if (blobTile == null || !TryComp<BlobFactoryComponent>(blobTile, out var blobFactoryComponent))
         {
-            _popup.PopupEntity(Loc.GetString("blob-target-factory-blob-invalid"), uid, uid, PopupType.LargeCaution);
+            _popup.PopupEntity(Loc.GetString("blob-target-factory-blob-invalid"), args.Performer, args.Performer, PopupType.LargeCaution);
             return;
         }
 
         if (blobFactoryComponent.Blobbernaut != null)
         {
-            _popup.PopupEntity(Loc.GetString("blob-target-already-produce-blobbernaut"), uid, uid, PopupType.LargeCaution);
+            _popup.PopupEntity(Loc.GetString("blob-target-already-produce-blobbernaut"), args.Performer, args.Performer, PopupType.LargeCaution);
             return;
         }
 
-        if (!_blobCoreSystem.TryUseAbility(uid, observerComponent.Core.Value, blobCoreComponent, blobCoreComponent.BlobbernautCost))
+        if (!_blobCoreSystem.TryUseAbility(args.Performer, uid, blobCoreComponent, blobCoreComponent.BlobbernautCost))
             return;
 
         var ev = new ProduceBlobbernautEvent();
@@ -589,27 +561,19 @@ public sealed class BlobObserverSystem : SharedBlobObserverSystem
         args.Handled = true;
     }
 
-    private void OnBlobToCore(EntityUid uid, BlobObserverComponent observerComponent,
+    private void OnBlobToCore(EntityUid uid, BlobCoreComponent blobCoreComponent,
         BlobToCoreActionEvent args)
     {
         if (args.Handled)
             return;
 
-        if (observerComponent.Core == null ||
-            !TryComp<BlobCoreComponent>(observerComponent.Core.Value, out var blobCoreComponent))
-            return;
-
-        _transform.SetCoordinates(uid, Transform(observerComponent.Core.Value).Coordinates);
+        _transform.SetCoordinates(args.Performer, Transform(uid).Coordinates);
     }
 
-    private void OnCreateNode(EntityUid uid, BlobObserverComponent observerComponent,
+    private void OnCreateNode(EntityUid uid, BlobCoreComponent blobCoreComponent,
         BlobCreateNodeActionEvent args)
     {
         if (args.Handled)
-            return;
-
-        if (observerComponent.Core == null ||
-            !TryComp<BlobCoreComponent>(observerComponent.Core.Value, out var blobCoreComponent))
             return;
 
         var gridUid = args.Target.GetGridUid(EntityManager);
@@ -664,11 +628,11 @@ public sealed class BlobObserverSystem : SharedBlobObserverSystem
             }
         }
 
-        if (!_blobCoreSystem.TryUseAbility(uid, observerComponent.Core.Value, blobCoreComponent, blobCoreComponent.NodeBlobCost))
+        if (!_blobCoreSystem.TryUseAbility(args.Performer, uid, blobCoreComponent, blobCoreComponent.NodeBlobCost))
             return;
 
         if (!_blobCoreSystem.TransformBlobTile(blobTile.Value,
-                observerComponent.Core.Value,
+                uid,
                 blobCoreComponent.NodeBlobTile,
                 args.Target,
                 blobCoreComponent,
@@ -678,14 +642,10 @@ public sealed class BlobObserverSystem : SharedBlobObserverSystem
         args.Handled = true;
     }
 
-    private void OnCreateResource(EntityUid uid, BlobObserverComponent observerComponent,
+    private void OnCreateResource(EntityUid uid, BlobCoreComponent blobCoreComponent,
         BlobCreateResourceActionEvent args)
     {
         if (args.Handled)
-            return;
-
-        if (observerComponent.Core == null ||
-            !TryComp<BlobCoreComponent>(observerComponent.Core.Value, out var blobCoreComponent))
             return;
 
         var gridUid = args.Target.GetGridUid(EntityManager);
@@ -740,17 +700,17 @@ public sealed class BlobObserverSystem : SharedBlobObserverSystem
             }
         }
 
-        if (!_blobCoreSystem.CheckNearNode(uid, xform.Coordinates, grid, blobCoreComponent))
+        if (!_blobCoreSystem.CheckNearNode(args.Performer, xform.Coordinates, grid, blobCoreComponent))
             return;
 
-        if (!_blobCoreSystem.TryUseAbility(uid,
-                observerComponent.Core.Value,
+        if (!_blobCoreSystem.TryUseAbility(args.Performer,
+                uid,
                 blobCoreComponent,
                 blobCoreComponent.ResourceBlobCost))
             return;
 
         if (!_blobCoreSystem.TransformBlobTile(blobTile.Value,
-                observerComponent.Core.Value,
+                uid,
                 blobCoreComponent.ResourceBlobTile,
                 args.Target,
                 blobCoreComponent,
@@ -909,13 +869,9 @@ public sealed class BlobObserverSystem : SharedBlobObserverSystem
             blobCoreComponent,
             transformCost: cost);
     }
-    private void OnCreateFactory(EntityUid uid, BlobObserverComponent observerComponent, BlobCreateFactoryActionEvent args)
+    private void OnCreateFactory(EntityUid uid, BlobCoreComponent blobCoreComponent, BlobCreateFactoryActionEvent args)
     {
         if (args.Handled)
-            return;
-
-        if (observerComponent.Core == null ||
-            !TryComp<BlobCoreComponent>(observerComponent.Core.Value, out var blobCoreComponent))
             return;
 
         var gridUid = args.Target.GetGridUid(EntityManager);
@@ -965,15 +921,15 @@ public sealed class BlobObserverSystem : SharedBlobObserverSystem
             {
                 if (!HasComp<BlobFactoryComponent>(ent))
                     continue;
-                _popup.PopupEntity(Loc.GetString("Слишком близко к другой фабрике"), uid, uid, PopupType.Large);
+                _popup.PopupEntity(Loc.GetString("Слишком близко к другой фабрике"), args.Performer, args.Performer, PopupType.Large);
                 return;
             }
         }
 
-        if (!_blobCoreSystem.CheckNearNode(uid, xform.Coordinates, grid, blobCoreComponent))
+        if (!_blobCoreSystem.CheckNearNode(args.Performer, xform.Coordinates, grid, blobCoreComponent))
             return;
 
-        if (!_blobCoreSystem.TryUseAbility(uid, observerComponent.Core.Value, blobCoreComponent,
+        if (!_blobCoreSystem.TryUseAbility(args.Performer, uid, blobCoreComponent,
                 blobCoreComponent.FactoryBlobCost))
         {
             args.Handled = true;
@@ -981,7 +937,7 @@ public sealed class BlobObserverSystem : SharedBlobObserverSystem
         }
 
         if (!_blobCoreSystem.TransformBlobTile(null,
-                observerComponent.Core.Value,
+                uid,
                 blobCoreComponent.FactoryBlobTile,
                 args.Target,
                 blobCoreComponent,

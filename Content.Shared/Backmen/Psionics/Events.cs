@@ -32,6 +32,7 @@ public sealed partial class PsionicInvisibilityPowerOffActionEvent : InstantActi
 public sealed partial class HairballActionEvent : InstantActionEvent {}
 public sealed partial class EatMouseActionEvent : InstantActionEvent {}
 public sealed partial class MetapsionicPowerActionEvent : InstantActionEvent {}
+public sealed partial class TelegnosisPowerReturnActionEvent : InstantActionEvent {}
 public sealed partial class TelegnosisPowerActionEvent : InstantActionEvent {}
 public sealed partial class PsionicRegenerationPowerActionEvent : InstantActionEvent {}
 public sealed partial class NoosphericZapPowerActionEvent : EntityTargetActionEvent {}

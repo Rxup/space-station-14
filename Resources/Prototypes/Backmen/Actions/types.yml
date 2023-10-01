@@ -105,6 +105,18 @@
       event: !type:TelegnosisPowerActionEvent
 
 - type: entity
+  id: ActionTelegnosisReturn
+  name: action-name-telegnosis
+  description: action-description-telegnosis
+  noSpawn: true
+  components:
+    - type: InstantAction
+      icon: Backmen/Interface/VerbIcons/psionic_invisibility_off.png
+      event: !type:TelegnosisPowerReturnActionEvent
+      checkCanInteract: false
+      useDelay: 20
+
+- type: entity
   id: ActionPsionicRegeneration
   name: action-name-psionic-regeneration
   description: action-description-psionic-regeneration

@@ -113,6 +113,9 @@
     guides:
     - MinorAntagonists
   - type: PotentialPsionic
+  - type: Grammar
+    attributes:
+      gender: male
 
 - type: entity
   id: MobRatKingBuff

@@ -1,4 +1,5 @@
-﻿using Content.Shared.Corvax.TTS;
+﻿using Content.Shared.Backmen.TTS;
+using Content.Shared.Corvax.TTS;
 using Robust.Shared.Player;
 using Robust.Shared.Random;
 
@@ -22,10 +23,9 @@ public sealed partial class TTSSystem
     /// Вообще не понимаю на какой хрен позволять пользователяем ддосить сервер ттса да и еще своим любым текстом -_-
     /// </summary>
     /// <param name="ev"></param>
-    private async void OnRequestTTS(MsgRequestTTS ev)
+    private async void OnRequestGlobalTTS(RequestGlobalTTSEvent ev, EntitySessionEventArgs args)
     {
         if (!_isEnabled ||
-            !_playerManager.TryGetSessionByChannel(ev.MsgChannel, out var session) ||
             !_prototypeManager.TryIndex<TTSVoicePrototype>(ev.VoiceId, out var protoVoice))
             return;
 
@@ -40,7 +40,7 @@ public sealed partial class TTSSystem
         var cached = await GetFromCache(cacheId);
         if (cached != null)
         {
-            RaiseNetworkEvent(new PlayTTSEvent(ev.Uid, cached), Filter.SinglePlayer(session));
+            RaiseNetworkEvent(new PlayTTSEvent(cached), Filter.SinglePlayer(args.SenderSession));
             return;
         }
 
@@ -48,7 +48,7 @@ public sealed partial class TTSSystem
         if (soundData is null)
             return;
 
-        RaiseNetworkEvent(new PlayTTSEvent(ev.Uid, soundData), Filter.SinglePlayer(session));
+        RaiseNetworkEvent(new PlayTTSEvent(soundData), Filter.SinglePlayer(args.SenderSession));
 
         await SaveVoiceCache(cacheId, soundData);
     }

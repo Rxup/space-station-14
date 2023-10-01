@@ -21,27 +21,6 @@ public sealed partial class BlobObserverComponent : Component
     [ViewVariables(VVAccess.ReadOnly), AutoNetworkedField]
     public BlobChemType SelectedChemId = BlobChemType.ReactiveSpines;
 
-    [DataField("actionHelpBlob")]
-    public EntityUid? ActionHelpBlob = null;
-    [DataField("actionSwapBlobChem")]
-    public EntityUid? ActionSwapBlobChem = null;
-    [DataField("actionTeleportBlobToCore")]
-    public EntityUid? ActionTeleportBlobToCore = null;
-    [DataField("actionTeleportBlobToNode")]
-    public EntityUid? ActionTeleportBlobToNode = null;
-    [DataField("actionCreateBlobFactory")]
-    public EntityUid? ActionCreateBlobFactory = null;
-    [DataField("actionCreateBlobResource")]
-    public EntityUid? ActionCreateBlobResource = null;
-    [DataField("actionCreateBlobNode")]
-    public EntityUid? ActionCreateBlobNode = null;
-    [DataField("actionCreateBlobbernaut")]
-    public EntityUid? ActionCreateBlobbernaut = null;
-    [DataField("actionSplitBlobCore")]
-    public EntityUid? ActionSplitBlobCore = null;
-    [DataField("actionSwapBlobCore")]
-    public EntityUid? ActionSwapBlobCore = null;
-
     public override bool SendOnlyToOwner => true;
 }
 
