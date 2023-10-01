@@ -1,0 +1,20 @@
+name: Testing
+on: [pull_request]
+
+jobs:
+  testing:
+    name: Testing
+    runs-on: ubuntu-18.04
+    steps:
+      - name: Send start notification to Discord
+        uses: appleboy/discord-action@master
+        with:
+          webhook_id: ${{ 1158111488595210362 }}
+          webhook_token: ${{ -SteDVxfd0ZiRhDAHHG6MqCC9ojiBIO5mxfJSuyer84j71ZRXU0vFrR3SYuWSKeLTp_C }}
+          color: "#8b9b9c"
+          username: "GitHub Bot"
+          message: |
+            Tests started by 👤 ${{ github.actor }}
+            From `${{ github.head_ref }}` to `${{ github.base_ref }}`
+            Event `${{ github.event_name }}`
+            PR ${{ github.event.number }}: ${{ github.event.pull_request.url }}
