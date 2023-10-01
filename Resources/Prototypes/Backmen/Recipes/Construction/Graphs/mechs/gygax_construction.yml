@@ -33,8 +33,8 @@
           key: "enum.MechAssemblyVisuals.State"
           data: 4
 
-      - tag: RipleyCentralControlModule
-        name: ripley central control module
+      - tag: GygaxCentralControlModule
+        name: Gygax central control module
         icon:
           sprite: "Objects/Misc/module.rsi"
           state: "mainboard"
@@ -50,8 +50,8 @@
           key: "enum.MechAssemblyVisuals.State"
           data: 6
 
-      - tag: RipleyPeripheralsControlModule
-        name: ripley peripherals control module
+      - tag: GygaxPeripheralsControlModule
+        name: Gygax peripherals control module
         icon:
           sprite: "Objects/Misc/module.rsi"
           state: id_mod
@@ -112,6 +112,38 @@
         - !type:VisualizerDataInt
           key: "enum.MechAssemblyVisuals.State"
           data: 18
+       
+      - material: Cable 
+        amount: 10
+        completed:
+        - !type:VisualizerDataInt
+          key: "enum.MechAssemblyVisuals.State"
+          data: 19
+          
+      - material: Steel
+        amount: 10
+        completed:
+        - !type:VisualizerDataInt
+          key: "enum.MechAssemblyVisuals.State"
+          data: 20
+          
+      - tag: GygaxArmorControlModule
+        name: Gygax Armor control module
+        icon:
+          sprite: "Backmen/Objects/Specific/Mech/gygax.rsi"
+          state: "gygax_armor"
+        completed:
+        - !type:VisualizerDataInt
+          key: "enum.MechAssemblyVisuals.State"
+          data: 21          
+
+      - material: Glass
+        amount: 10
+        completed:
+        - !type:VisualizerDataInt
+          key: "enum.MechAssemblyVisuals.State"
+          data: 22          
+          
 
       - tool: Welding
         doAfter: 1

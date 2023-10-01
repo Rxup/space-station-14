@@ -29,7 +29,7 @@
   id: Balloon
 
 - type: Tag
-  id: BaseballBat 
+  id: BaseballBat
 
 - type: Tag
   id: BBQsauce
@@ -309,7 +309,7 @@
   id: CluwneHorn
 
 - type: Tag #Ohioans die happy
-  id: Corn 
+  id: Corn
 
 - type: Tag
   id: Coldsauce
@@ -860,6 +860,30 @@
   id: RipleyRArm
 
 - type: Tag
+  id: GygaxArmorModule
+
+- type: Tag
+  id: GygaxCentralElectronics
+
+- type: Tag
+  id: GygaxPeripheralsElectronics
+
+- type: Tag
+  id: GygaxHead
+
+- type: Tag
+  id: GygaxLArm
+
+- type: Tag
+  id: GygaxLLeg
+
+- type: Tag
+  id: GygaxRLeg
+
+- type: Tag
+  id: GygaxRArm
+
+- type: Tag
   id: RodMetal1
 
 - type: Tag
@@ -1017,7 +1041,7 @@
 
 - type: Tag
   id: WallmountSubstationElectronics
-  
+
 - type: Tag
   id: WeaponPistolCHIMPUpgradeKit
 

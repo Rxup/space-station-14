@@ -1,3 +1,4 @@
+# Gygax #backmen
 - type: entity
   id: BaseMech+0
   save: false
@@ -84,7 +85,7 @@
     - Robotics
 
 - type: entity
-  id: MechGygax1
+  id: MechGygax
   parent: BaseMech+0
   name: Gygax
   description: Gygax
@@ -92,7 +93,7 @@
   - type: Sprite
     drawdepth: Mobs
     noRot: true
-    sprite: Objects/Specific/Mech/mecha.rsi
+    sprite: Backmen/Objects/Specific/Mech/gygax.rsi
     layers:
     - map: [ "enum.MechVisualLayers.Base" ]
       state: gygax
@@ -118,7 +119,7 @@
     baseSprintSpeed: 3.0
 
 - type: entity
-  parent: MechGygax1
+  parent: MechGygax
   id: MechGygaxBattery
   suffix: Battery
   components:
