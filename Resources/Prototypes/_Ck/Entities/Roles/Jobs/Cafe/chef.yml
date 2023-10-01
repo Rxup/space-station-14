@@ -3,6 +3,7 @@
   name: job-name-Chef
   description: job-description-Chef
   playTimeTracker: JobChef
+  whitelistRequired: false
   requirements:
     - !type:RoleTimeRequirement
       role: JobBotanist

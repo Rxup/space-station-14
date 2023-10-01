@@ -1,0 +1,35 @@
+- type: job
+  id: Ratatui
+  name: job-name-ratatui
+  description: job-description-ratatui
+  playTimeTracker: JobRatatui
+  joinNotifyCrew: false
+  whitelistRequired: true
+  requirements:
+    - !type:RoleTimeRequirement
+      role: JobChefck
+      time: 10800 #3 hrs
+    - !type:DepartmentTimeRequirement
+      department: Cafe
+      time: 25200 #7 hrs
+  icon: JobIconZookeeper
+  supervisors: job-supervisors-human
+  canBeAntag: false
+  access:
+  - Service
+  - Maintenance
+  - Hydroponics
+  - Bar
+  - Kitchen
+  jobEntity: MobRatatui
+  special:
+    - !type:AddComponentSpecial
+      components:
+        - type: PsionicBonusChance
+          flatBonus: 0.01
+  #start _Ck
+  minBankBalance: 500
+  maxBankBalance: 1000
+  wageDepartment: Cafe
+  wage: 150
+  

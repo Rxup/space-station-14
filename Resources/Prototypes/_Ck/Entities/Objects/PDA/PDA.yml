@@ -1,7 +1,7 @@
 - type: entity
   parent: BasePDA
   id: SSSPPDAsol
-  name: КПК СССП
+  name: КПК солдата СССП
   description: один на всех!
   components:
     - type: Sprite
@@ -18,7 +18,7 @@
 - type: entity
   parent: BasePDA
   id: SSSPPDAsturm
-  name: КПК СССП
+  name: КПК штурмовика СССП
   description: один на всех!
   components:
     - type: Sprite
@@ -35,7 +35,7 @@
 - type: entity
   parent: BasePDA
   id: SSSPPDAcom
-  name: КПК СССП
+  name: КПК офицера СССП
   description: один на всех!
   components:
     - type: Sprite
