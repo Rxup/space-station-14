@@ -35,4 +35,4 @@
 - type: gameMapPool
   id: ShipwreckedPool
   maps:
-    - Empty
+    - ShwrAdventurer

@@ -17,7 +17,7 @@ entities:
   - uid: 2
     components:
     - type: MetaData
-    - parent: invalid
+    - parent: 196
       type: Transform
     - chunks:
         0,0:
@@ -48,6 +48,8 @@ entities:
       type: Fixtures
     - type: OccluderTree
     - type: SpreaderGrid
+    - type: BecomesStation
+      id: ShwrAdventurer
     - type: Shuttle
     - type: GridPathfinding
     - gravityShakeSound: !type:SoundPathSpecifier
@@ -269,20 +271,21 @@ entities:
           -1,1:
             0: 52428
           -1,2:
-            0: 36044
+            0: 36036
+            1: 8
           -1,-2:
             0: 52352
-            1: 64
+            2: 64
           -1,-1:
             0: 52428
           0,-2:
             0: 65296
-            1: 224
+            2: 224
           0,-1:
             0: 65535
           1,-2:
             0: 30512
-            1: 64
+            2: 64
           1,-1:
             0: 30583
         uniqueMixes:
@@ -291,6 +294,21 @@ entities:
           moles:
           - 21.824879
           - 82.10312
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+        - volume: 2500
+          temperature: 293.14996
+          moles:
+          - 20.078888
+          - 75.53487
           - 0
           - 0
           - 0
@@ -322,6 +340,17 @@ entities:
     - type: RadiationGridResistance
     - shakeTimes: 10
       type: GravityShake
+  - uid: 196
+    components:
+    - name: map 1000
+      type: MetaData
+    - type: Transform
+    - type: Map
+    - type: PhysicsMap
+    - type: GridTree
+    - type: MovedGrids
+    - type: Broadphase
+    - type: OccluderTree
 - proto: AirAlarm
   entities:
   - uid: 35
@@ -676,11 +705,6 @@ entities:
     - pos: 2.5,-5.5
       parent: 2
       type: Transform
-  - uid: 196
-    components:
-    - pos: 2.5,-4.5
-      parent: 2
-      type: Transform
   - uid: 273
     components:
     - pos: 1.5,-4.5
@@ -689,6 +713,51 @@ entities:
   - uid: 296
     components:
     - pos: 4.5,-5.5
+      parent: 2
+      type: Transform
+  - uid: 318
+    components:
+    - pos: 1.5,-5.5
+      parent: 2
+      type: Transform
+  - uid: 324
+    components:
+    - pos: 0.5,-3.5
+      parent: 2
+      type: Transform
+  - uid: 328
+    components:
+    - pos: 3.5,-3.5
+      parent: 2
+      type: Transform
+  - uid: 329
+    components:
+    - pos: 1.5,-2.5
+      parent: 2
+      type: Transform
+  - uid: 330
+    components:
+    - pos: 0.5,-2.5
+      parent: 2
+      type: Transform
+  - uid: 331
+    components:
+    - pos: 1.5,-4.5
+      parent: 2
+      type: Transform
+  - uid: 332
+    components:
+    - pos: 2.5,-3.5
+      parent: 2
+      type: Transform
+  - uid: 333
+    components:
+    - pos: -0.5,-3.5
+      parent: 2
+      type: Transform
+  - uid: 334
+    components:
+    - pos: 2.5,-2.5
       parent: 2
       type: Transform
 - proto: CableMV
@@ -1369,16 +1438,45 @@ entities:
       type: Transform
     - bodyType: Static
       type: Physics
+    - air:
+        volume: 200
+        immutable: False
+        temperature: 293.1496
+        moles:
+        - 1.7459903
+        - 6.568249
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+      type: EntityStorage
     - containers:
         entity_storage: !type:Container
           showEnts: False
           occludes: True
           ents:
+          - 311
+          - 297
+          - 299
+          - 270
+          - 310
+          - 312
           - 175
-          - 240
-          - 154
-          - 155
+          - 313
+          - 314
+          - 315
+          - 316
           - 156
+          - 317
+          - 155
+          - 154
+          - 240
         paper_label: !type:ContainerSlot
           showEnts: False
           occludes: True
@@ -1484,18 +1582,35 @@ entities:
     - pos: 4.5,-3.5
       parent: 2
       type: Transform
+- proto: MedkitAdvancedFilled
+  entities:
+  - uid: 325
+    components:
+    - pos: 4.475382,6.312016
+      parent: 2
+      type: Transform
+  - uid: 326
+    components:
+    - pos: 4.4649653,6.0826902
+      parent: 2
+      type: Transform
+  - uid: 327
+    components:
+    - pos: 4.485799,5.7595487
+      parent: 2
+      type: Transform
 - proto: MedkitFilled
   entities:
   - uid: 262
     components:
-    - pos: 4.5219135,6.4568057
+    - pos: 4.485955,6.95871
       parent: 2
       type: Transform
 - proto: MedkitToxinFilled
   entities:
   - uid: 271
     components:
-    - pos: 4.525053,6.0507994
+    - pos: 4.454549,6.6247334
       parent: 2
       type: Transform
 - proto: Mirror
@@ -1523,13 +1638,124 @@ entities:
       pos: 3.9224584,-3.9486477
       parent: 2
       type: Transform
+- proto: PillAmbuzolPlus
+  entities:
+  - uid: 270
+    components:
+    - flags: InContainer
+      type: MetaData
+    - parent: 153
+      type: Transform
+    - canCollide: False
+      type: Physics
+    - type: InsideEntityStorage
+  - uid: 297
+    components:
+    - flags: InContainer
+      type: MetaData
+    - parent: 153
+      type: Transform
+    - canCollide: False
+      type: Physics
+    - type: InsideEntityStorage
+  - uid: 299
+    components:
+    - flags: InContainer
+      type: MetaData
+    - parent: 153
+      type: Transform
+    - canCollide: False
+      type: Physics
+    - type: InsideEntityStorage
+  - uid: 310
+    components:
+    - flags: InContainer
+      type: MetaData
+    - parent: 153
+      type: Transform
+    - canCollide: False
+      type: Physics
+    - type: InsideEntityStorage
+  - uid: 311
+    components:
+    - flags: InContainer
+      type: MetaData
+    - parent: 153
+      type: Transform
+    - canCollide: False
+      type: Physics
+    - type: InsideEntityStorage
+  - uid: 312
+    components:
+    - flags: InContainer
+      type: MetaData
+    - parent: 153
+      type: Transform
+    - canCollide: False
+      type: Physics
+    - type: InsideEntityStorage
+  - uid: 313
+    components:
+    - flags: InContainer
+      type: MetaData
+    - parent: 153
+      type: Transform
+    - canCollide: False
+      type: Physics
+    - type: InsideEntityStorage
+  - uid: 314
+    components:
+    - flags: InContainer
+      type: MetaData
+    - parent: 153
+      type: Transform
+    - canCollide: False
+      type: Physics
+    - type: InsideEntityStorage
+  - uid: 315
+    components:
+    - flags: InContainer
+      type: MetaData
+    - parent: 153
+      type: Transform
+    - canCollide: False
+      type: Physics
+    - type: InsideEntityStorage
+  - uid: 316
+    components:
+    - flags: InContainer
+      type: MetaData
+    - parent: 153
+      type: Transform
+    - canCollide: False
+      type: Physics
+    - type: InsideEntityStorage
+  - uid: 317
+    components:
+    - flags: InContainer
+      type: MetaData
+    - parent: 153
+      type: Transform
+    - canCollide: False
+      type: Physics
+    - type: InsideEntityStorage
 - proto: PortableGeneratorSuperPacman
   entities:
   - uid: 178
     components:
-    - pos: 5.5,-3.5
+    - anchored: True
+      pos: 5.5,-3.5
       parent: 2
       type: Transform
+    - on: True
+      type: FuelGenerator
+    - storage:
+        Uranium: 200
+      type: MaterialStorage
+    - bodyType: Static
+      type: Physics
+    - endTime: 0
+      type: InsertingMaterialStorage
 - proto: PosterLegitHotDonkExplosion
   entities:
   - uid: 198
@@ -1652,11 +1878,30 @@ entities:
     - pos: 3.5,4.5
       parent: 2
       type: Transform
+- proto: RandomPosterAny
+  entities:
+  - uid: 321
+    components:
+    - pos: 0.5,8.5
+      parent: 2
+      type: Transform
+  - uid: 322
+    components:
+    - pos: 4.5,8.5
+      parent: 2
+      type: Transform
 - proto: RandomPosterLegit
   entities:
   - uid: 138
     components:
     - pos: 2.5,-2.5
+      parent: 2
+      type: Transform
+- proto: RandomSecurityCorpseSpawner
+  entities:
+  - uid: 323
+    components:
+    - pos: 6.5,6.5
       parent: 2
       type: Transform
 - proto: RandomSoap
@@ -1855,6 +2100,20 @@ entities:
   - uid: 266
     components:
     - pos: -0.29530072,0.3100974
+      parent: 2
+      type: Transform
+- proto: SpawnPointLatejoin
+  entities:
+  - uid: 320
+    components:
+    - pos: 0.5,-5.5
+      parent: 2
+      type: Transform
+- proto: SpawnPointObserver
+  entities:
+  - uid: 319
+    components:
+    - pos: -0.5,-0.5
       parent: 2
       type: Transform
 - proto: SpawnPointShipwreckHecate
