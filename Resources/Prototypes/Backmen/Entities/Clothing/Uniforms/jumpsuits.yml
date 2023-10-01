@@ -338,3 +338,25 @@
       sprite: Backmen/Clothing/Uniforms/Jumpskirt/mailman.rsi
 #    - type: ClothingAddFaction
 #      faction: Mailman
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformJumpsuitUEG
+  name: Водолазка представителя ОПЗ
+  description: Лёгкая и комфортная водолазка
+  components:
+  - type: Sprite
+    sprite: Backmen/Clothing/Uniforms/jumpsuit/eug-jumpsuit.rsi
+  - type: Clothing
+    sprite: Backmen/Clothing/Uniforms/jumpsuit/eug-jumpsuit.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformJumpsuitUEGofficer
+  name: Униформа офицера ОПЗ
+  description: Униформа с безполезным камуфляжем. Лучше не связыватся с её обладателями
+  components:
+  - type: Sprite
+    sprite: Backmen/Clothing/Uniforms/jumpsuit/eug-officer-jumpsuit.rsi
+  - type: Clothing
+    sprite: Backmen/Clothing/Uniforms/jumpsuit/eug-officer-jumpsuit.rsi
