@@ -34,6 +34,8 @@ public sealed class FollowerSystem : EntitySystem
         SubscribeLocalEvent<GetVerbsEvent<AlternativeVerb>>(OnGetAlternativeVerbs);
         SubscribeLocalEvent<FollowerComponent, MoveInputEvent>(OnFollowerMove);
         SubscribeLocalEvent<FollowerComponent, PullStartedMessage>(OnPullStarted);
+        SubscribeLocalEvent<FollowerComponent, EntityTerminatingEvent>(OnFollowerTerminating);
+
         SubscribeLocalEvent<FollowerComponent, GotEquippedHandEvent>(OnGotEquippedHand);
         SubscribeLocalEvent<FollowedComponent, EntityTerminatingEvent>(OnFollowedTerminating);
         SubscribeLocalEvent<FollowerComponent, EntityTerminatingEvent>(OnFollowerTerminating);
@@ -111,9 +113,8 @@ public sealed class FollowerSystem : EntitySystem
 
     private void OnFollowerTerminating(EntityUid uid, FollowerComponent component, ref EntityTerminatingEvent args)
     {
-        StopFollowingEntity(uid, component.Following);
+        StopFollowingEntity(uid, component.Following, deparent: false);
     }
-
 
     // Since we parent our observer to the followed entity, we need to detach
     // before they get deleted so that we don't get recursively deleted too.
@@ -194,7 +195,7 @@ public sealed class FollowerSystem : EntitySystem
 
         RaiseLocalEvent(uid, uidEv, true);
         RaiseLocalEvent(target, targetEv, false);
-        Dirty(followed);
+        Dirty(target, followed);
         RaiseLocalEvent(uid, uidEv);
         RaiseLocalEvent(target, targetEv);
 
