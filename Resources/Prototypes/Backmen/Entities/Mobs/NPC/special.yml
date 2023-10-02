@@ -18,7 +18,7 @@
     - type: ActiveListener
     - type: TypingIndicator
     - type: WarpPoint
-      location: Hecate
+      location: Катя
       follow: true
     - type: TTS
       voice: Npc1
@@ -71,7 +71,7 @@
           #audio: !type:SoundPathSpecifier
           #  path: /Audio/Nyanotrasen/Dialogue/Hecate/hecate_response_name.ogg
           listenEvent: !type:NPCConversationToldNameEvent
-    - prompts: [job, occupation, profession, занят, работа]
+    - prompts: [job, occupation, profession, занят, работа, зачем]
       responses:
         - text: shipwrecked-hecate-response-job
           #audio: !type:SoundPathSpecifier
@@ -185,7 +185,7 @@
               text: shipwrecked-hecate-response-status-all-green-again
               #audio: !type:SoundPathSpecifier
               #  path: /Audio/Nyanotrasen/Dialogue/Hecate/shipwrecked_hecate_response_status_all_green_again.ogg
-    - prompts: [weapons, firearms, arms, guns, safe, оружие, пожар, оружие, нож, пушки, стоводы, безопас]
+    - prompts: [weapons, firearms, arms, guns, safe, оружие, пожар, оружие, нож, пушки, стоволы, безопас]
       locked: true
       responses:
         - is: !type:ShipwreckedHecateAskWeaponsEvent
@@ -200,7 +200,7 @@
               #  path: /Audio/Nyanotrasen/Dialogue/Hecate/shipwrecked_hecate_response_weapons_after.ogg
 
     # All objectives complete!
-    - prompts: [launch, takeoff, liftoff, blastoff, ready, go, leave, escape, запуск, готов, вперед, го, покидаем, бежим]
+    - prompts: [launch, takeoff, liftoff, blastoff, ready, go, leave, escape, запуск, готов, вперед, го, покидаем, бежим, запускай]
       locked: true
       responses:
         - is: !type:ShipwreckedHecateAskLaunchEvent

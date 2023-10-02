@@ -1,0 +1,9 @@
+﻿- type: department
+  id: Shipwrecked
+  description: department-Shipwrecked-description
+  color: "#191e9e"
+  roles:
+    - Freelancer
+    - Explorer
+    - Student
+  accountNumber: 1359  #backmen: currency

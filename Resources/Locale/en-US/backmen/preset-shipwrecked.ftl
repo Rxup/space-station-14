@@ -5,6 +5,7 @@ shipwrecked-description = A group of travellers set out, only to meet certain do
 shipwrecked-too-many-ready-players = Too many players were readied up for the game! There were {$readyPlayersCount} players readied up, when {$maximumPlayers} is the maximum.
 shipwrecked-no-one-ready = No players readied up! Can't start Shipwrecked.
 shipwrecked-shuttle-announcement = Transport Shuttle Announcement from {$sender}: {$message}
+department-Shipwrecked-description = Shipwrecked
 
 ## Round End
 

@@ -18,48 +18,40 @@ public sealed partial class ShipwreckedRuleComponent : Component
 {
 
 #region Config
-
-    /// <summary>
-    /// The shuttle that the game will start on.
-    /// </summary>
-    [ViewVariables]
-    [DataField("shuttlePath", required: true, customTypeSerializer: typeof(ResPathSerializer))]
-    public ResPath ShuttlePath = default!;
-
     /// <summary>
     /// The prototype that will be used to place travellers.
     /// </summary>
     [ViewVariables]
-    [DataField("spawnPointTraveller", required: true, customTypeSerializer: typeof(PrototypeIdSerializer<EntityPrototype>))]
-    public string SpawnPointTraveller = default!;
+    [DataField("spawnPointTraveller", required: true)]
+    public EntProtoId SpawnPointTraveller = default!;
 
     /// <summary>
     /// The jobs that the travellers will be randomly assigned.
     /// </summary>
     [ViewVariables]
-    [DataField("availableJobs", required: true, customTypeSerializer: typeof(PrototypeIdListSerializer<JobPrototype>))]
-    public List<string> AvailableJobPrototypes = default!;
+    [DataField("availableJobs", required: true)]
+    public List<ProtoId<JobPrototype>> AvailableJobPrototypes = default!;
 
     /// <summary>
     /// The destinations for the shipwreck.
     /// </summary>
     [ViewVariables]
-    [DataField("destinations", required: true, customTypeSerializer: typeof(PrototypeIdListSerializer<ShipwreckDestinationPrototype>))]
-    public List<string> ShipwreckDestinationPrototypes = default!;
+    [DataField("destinations", required: true)]
+    public List<ProtoId<ShipwreckDestinationPrototype>> ShipwreckDestinationPrototypes = default!;
 
     /// <summary>
     /// Hecate's spawn point.
     /// </summary>
     [ViewVariables]
-    [DataField("spawnPointHecate", required: true, customTypeSerializer: typeof(PrototypeIdSerializer<EntityPrototype>))]
-    public string SpawnPointHecate = default!;
+    [DataField("spawnPointHecate", required: true)]
+    public EntProtoId SpawnPointHecate = default!;
 
     /// <summary>
     /// Hecate's mob prototype.
     /// </summary>
     [ViewVariables]
-    [DataField("hecatePrototype", required: true, customTypeSerializer: typeof(PrototypeIdSerializer<EntityPrototype>))]
-    public string HecatePrototype = default!;
+    [DataField("hecatePrototype", required: true)]
+    public EntProtoId HecatePrototype = default!;
 
     /// <summary>
     /// The schedule of events to occur.
@@ -89,6 +81,12 @@ public sealed partial class ShipwreckedRuleComponent : Component
     /// </summary>
     [ViewVariables]
     public EntityUid? Shuttle;
+
+    /// <summary>
+    /// The shuttle's grid entity.
+    /// </summary>
+    [ViewVariables]
+    public EntityUid? ShuttleStation;
 
     /// <summary>
     /// The chosen destination for the shipwreck.
