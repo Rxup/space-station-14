@@ -81,7 +81,7 @@ public sealed class ArachneSystem : EntitySystem
 
     private void OnShutdown(EntityUid uid, ArachneComponent component, ComponentShutdown args)
     {
-        _actions.RemoveAction(uid, ActionSpinWeb);
+        _actions.RemoveAction(uid, component.SpinWeb);
     }
 
 
@@ -303,7 +303,7 @@ public sealed class ArachneSystem : EntitySystem
 
         _hungerSystem.ModifyHunger(uid, -8);
         if (TryComp<ThirstComponent>(uid, out var thirst))
-            _thirstSystem.UpdateThirst(thirst, -20);
+            _thirstSystem.ModifyThirst(uid, thirst, -20);
 
         Spawn(ArachneWeb, GetCoordinates(args.Coords).SnapToGrid());
         _popupSystem.PopupEntity(Loc.GetString("spun-web-third-person", ("spider", Identity.Entity(uid, EntityManager))), uid,

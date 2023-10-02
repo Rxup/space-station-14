@@ -33,9 +33,7 @@ public sealed class MetapsionicPowerSystem : EntitySystem
     {
         _actions.AddAction(uid, ref component.MetapsionicPowerAction, ActionMetapsionicPulse);
 
-        var action = _actions.GetActionData(component.MetapsionicPowerAction);
-
-        if (action?.UseDelay != null)
+        if (_actions.TryGetActionData(component.MetapsionicPowerAction, out var action) && action?.UseDelay != null)
             _actions.SetCooldown(component.MetapsionicPowerAction, _gameTiming.CurTime,
                 _gameTiming.CurTime + (TimeSpan)  action?.UseDelay!);
 
@@ -45,7 +43,7 @@ public sealed class MetapsionicPowerSystem : EntitySystem
 
     private void OnShutdown(EntityUid uid, MetapsionicPowerComponent component, ComponentShutdown args)
     {
-        _actions.RemoveAction(uid, ActionMetapsionicPulse);
+        _actions.RemoveAction(uid, component.MetapsionicPowerAction);
     }
 
     private void OnPowerUsed(EntityUid uid, MetapsionicPowerComponent component, MetapsionicPowerActionEvent args)

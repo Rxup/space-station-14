@@ -298,7 +298,7 @@ public sealed partial class EmergencyShuttleSystem : EntitySystem
     {
         var centcom = EntityManager.System<Content.Server.Backmen.Arrivals.CentcommSystem>();
 
-        centcom.EnsureCentcom();
+        centcom.EnsureCentcom(true);
 
         component.MapId = centcom.CentComMap;
         component.Entity = centcom.CentComGrid;

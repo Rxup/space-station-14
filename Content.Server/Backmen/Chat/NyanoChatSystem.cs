@@ -75,16 +75,47 @@ public sealed class NyanoChatSystem : EntitySystem
         string messageWrap;
         string adminMessageWrap;
 
-        messageWrap = Loc.GetString("chat-manager-send-telepathic-chat-wrap-message",
-            ("telepathicChannelName", Loc.GetString("chat-manager-telepathic-channel-name")), ("message", message));
 
-        adminMessageWrap = Loc.GetString("chat-manager-send-telepathic-chat-wrap-message-admin",
-            ("source", source), ("message", message));
 
-        _adminLogger.Add(LogType.Chat, LogImpact.Low, $"Telepathic chat from {ToPrettyString(source):Player}: {message}");
+        if (!TryComp<PsionicComponent>(source, out var psionicComponent))
+        {
+            return;
+        }
 
-        _chatManager.ChatMessageToMany(ChatChannel.Telepathic, message, messageWrap, source, hideChat, true, clients.Where(x=>admins.All(z=>z.UserId != x.UserId)).ToList(), Color.PaleVioletRed);
-        _chatManager.ChatMessageToMany(ChatChannel.Telepathic, message, adminMessageWrap, source, hideChat, true, admins, Color.PaleVioletRed);
+        var isPsionicChat = false;
+        var channelname = "Telepathic";
+
+        if (string.IsNullOrEmpty(psionicComponent.Channel))
+        {
+            messageWrap = Loc.GetString("chat-manager-send-telepathic-chat-wrap-message",
+                ("telepathicChannelName", Loc.GetString("chat-manager-telepathic-channel-name")), ("message", message));
+
+            adminMessageWrap = Loc.GetString("chat-manager-send-telepathic-chat-wrap-message-admin",
+                ("source", source), ("message", message));
+
+            isPsionicChat = true;
+        }
+        else
+        {
+            messageWrap = Loc.GetString($"chat-manager-send-{psionicComponent.Channel}-chat-wrap-message",
+                ("telepathicChannelName", Loc.GetString($"chat-manager-{psionicComponent.Channel}-channel-name")), ("message", message));
+
+            adminMessageWrap = Loc.GetString($"chat-manager-send-{psionicComponent.Channel}-chat-wrap-message-admin",
+                ("source", source), ("message", message));
+
+            isPsionicChat = false;
+            channelname = psionicComponent.Channel;
+        }
+
+        _adminLogger.Add(LogType.Chat, LogImpact.Low, $"{channelname} chat from {ToPrettyString(source):Player}: {message}");
+
+        _chatManager.ChatMessageToMany(ChatChannel.Telepathic, message, messageWrap, source, hideChat, true, clients.Where(x=>admins.All(z=>z.UserId != x.UserId)).ToList(), psionicComponent.ChannelColor);
+        _chatManager.ChatMessageToMany(ChatChannel.Telepathic, message, adminMessageWrap, source, hideChat, true, admins, psionicComponent.ChannelColor);
+
+        if (!isPsionicChat)
+        {
+            return;
+        }
 
         if (_random.Prob(0.1f))
             _glimmerSystem.Glimmer++;

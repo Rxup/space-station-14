@@ -39,8 +39,8 @@ public sealed class NPCConversationSystem : EntitySystem
     // TODO: nameless prompting (pointing is good)
     // TODO: aliases
 
-    public static readonly string[] QuestionWords = { "who", "what", "when", "why", "where", "how" };
-    public static readonly string[] Copulae = { "is", "are" };
+    public static readonly string[] QuestionWords = { "who", "what", "when", "why", "where", "how", "кто", "это", "тогда", "почему", "где", "как" };
+    public static readonly string[] Copulae = { "is", "are", "является", "есть", "что" };
 
     public override void Initialize()
     {
@@ -413,12 +413,12 @@ public sealed class NPCConversationSystem : EntitySystem
         if (availablePrompts.Count() <= 2)
         {
             availablePromptsText = Loc.GetString(args.Text,
-                ("availablePrompts", string.Join(" or ", availablePrompts))
+                ("availablePrompts", string.Join(Loc.GetString("sophia-or"), availablePrompts.Select(x=>Loc.GetString("sophia-topic-"+x))))
             );
         }
         else
         {
-            availablePrompts[^1] = $"or {availablePrompts[^1]}";
+            availablePrompts[^1] = $"{Loc.GetString("sophia-or")} {availablePrompts[^1]}";
             availablePromptsText = Loc.GetString(args.Text,
                 ("availablePrompts", string.Join(", ", availablePrompts))
             );

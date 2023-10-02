@@ -29,9 +29,7 @@ public sealed class MassSleepPowerSystem : EntitySystem
     {
         _actions.AddAction(uid, ref component.MassSleepPowerAction, ActionMassSleep);
 
-        var action = _actions.GetActionData(component.MassSleepPowerAction);
-
-        if (action?.UseDelay != null)
+        if (_actions.TryGetActionData(component.MassSleepPowerAction, out var action) && action?.UseDelay != null)
             _actions.SetCooldown(component.MassSleepPowerAction, _gameTiming.CurTime,
                 _gameTiming.CurTime + (TimeSpan) action?.UseDelay!);
 
@@ -41,7 +39,7 @@ public sealed class MassSleepPowerSystem : EntitySystem
 
     private void OnShutdown(EntityUid uid, MassSleepPowerComponent component, ComponentShutdown args)
     {
-        _actions.RemoveAction(uid, ActionMassSleep);
+        _actions.RemoveAction(uid, component.MassSleepPowerAction);
     }
 
     private void OnPowerUsed(EntityUid uid, MassSleepPowerComponent component, MassSleepPowerActionEvent args)

@@ -1,8 +1,14 @@
-﻿using Content.Shared.Blob;
+﻿using System.Linq;
+using Content.Client.Actions;
+using Content.Shared.Actions;
+using Content.Shared.Backmen.Blob;
+using Content.Shared.Blob;
 using Content.Shared.GameTicking;
 using Robust.Client.GameObjects;
 using Robust.Client.Graphics;
+using Robust.Client.Player;
 using Robust.Shared.GameStates;
+using Robust.Shared.Timing;
 
 namespace Content.Client.Blob;
 
@@ -14,17 +20,9 @@ public sealed class BlobObserverSystem : SharedBlobObserverSystem
     {
         base.Initialize();
 
-        SubscribeLocalEvent<BlobObserverComponent, ComponentHandleState>(HandleState);
         SubscribeLocalEvent<BlobObserverComponent, PlayerAttachedEvent>(OnPlayerAttached);
         SubscribeLocalEvent<BlobObserverComponent, PlayerDetachedEvent>(OnPlayerDetached);
         SubscribeNetworkEvent<RoundRestartCleanupEvent>(RoundRestartCleanup);
-    }
-
-    private void HandleState(EntityUid uid, BlobObserverComponent component, ref ComponentHandleState args)
-    {
-        if (args.Current is not BlobChemSwapComponentState state)
-            return;
-        component.SelectedChemId = state.SelectedChem;
     }
 
     private void OnPlayerAttached(EntityUid uid, BlobObserverComponent component, PlayerAttachedEvent args)

@@ -18,7 +18,9 @@ namespace Content.Server.Backmen.Psionics.NPC
 
         private void ZapCombat(EntityUid uid, NoosphericZapPowerComponent component, ref NPCSteeringEvent args)
         {
-            var skill = (EntityTargetActionComponent?) _actions.GetActionData(component.NoosphericZapPowerAction);
+            if (_actions.TryGetActionData(component.NoosphericZapPowerAction, out var action))
+                return;
+            var skill = (EntityTargetActionComponent?) action;
             if (skill?.Event == null)
                 return;
 

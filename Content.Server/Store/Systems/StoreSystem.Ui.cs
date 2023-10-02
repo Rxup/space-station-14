@@ -162,19 +162,22 @@ public sealed partial class StoreSystem
         if (listing.ProductEntity != null)
         {
             var product = Spawn(listing.ProductEntity, Transform(buyer).Coordinates);
+            var ev = new ItemPurchasedEvent(buyer);
+            RaiseLocalEvent(product, ref ev);
             _hands.PickupOrDrop(buyer, product);
         }
 
         //give action
         if (!string.IsNullOrWhiteSpace(listing.ProductAction))
         {
-            _actions.AddAction(buyer, Spawn(listing.ProductAction), null);
+            // I guess we just allow duplicate actions?
+            _actions.AddAction(buyer, listing.ProductAction);
         }
 
         //broadcast event
         if (listing.ProductEvent != null)
         {
-            RaiseLocalEvent(listing.ProductEvent);
+            RaiseLocalEvent(uid, listing.ProductEvent, true);
         }
 
         //log dat shit.

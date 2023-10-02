@@ -2,6 +2,7 @@ guide-entry-reverse-engineering = Обратное проектирование
 guide-entry-epistemics = Волхвы
 guide-entry-psionics = Псионика
 guide-entry-altars-golemancy = Алтари и големоведение
+guide-entry-psy-chemistry = Химия псиоников
 guide-entry-space-law = Космические законы
 guide-entry-jurisdiction = Юрисдикция
 guide-entry-trial-prodedure = Судебная процедура

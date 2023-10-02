@@ -1,4 +1,5 @@
 using Content.Server.GameTicking.Rules;
+using Content.Server.GenericAntag;
 using Content.Server.Ninja.Systems;
 using Content.Server.Zombies;
 using Content.Shared.Administration;
@@ -8,6 +9,7 @@ using Content.Shared.Mind;
 using Content.Shared.Mind.Components;
 using Content.Shared.Verbs;
 using Robust.Server.GameObjects;
+using Robust.Server.Player;
 using Robust.Shared.Utility;
 
 namespace Content.Server.Administration.Systems;
@@ -16,7 +18,6 @@ public sealed partial class AdminVerbSystem
 {
     [Dependency] private readonly ZombieSystem _zombie = default!;
     [Dependency] private readonly TraitorRuleSystem _traitorRule = default!;
-    [Dependency] private readonly SpaceNinjaSystem _ninja = default!;
     [Dependency] private readonly NukeopsRuleSystem _nukeopsRule = default!;
     [Dependency] private readonly PiratesRuleSystem _piratesRule = default!;
     [Dependency] private readonly SharedMindSystem _minds = default!;
@@ -39,7 +40,8 @@ public sealed partial class AdminVerbSystem
         {
             Text = Loc.GetString("admin-verb-text-make-traitor"),
             Category = VerbCategory.Antag,
-            Icon = new SpriteSpecifier.Rsi(new ResPath("/Textures/Structures/Wallmounts/posters.rsi"), "poster5_contraband"),
+            Icon = new SpriteSpecifier.Rsi(new ResPath("/Textures/Structures/Wallmounts/posters.rsi"),
+                "poster5_contraband"),
             Act = () =>
             {
                 if (!_minds.TryGetSession(targetMindComp.Mind, out var session))
@@ -54,17 +56,69 @@ public sealed partial class AdminVerbSystem
         };
         args.Verbs.Add(traitor);
 
-        Verb EvilTwin = new()
+        Verb blobAntag = new()
         {
-            Text = "Make EvilTwin",
+            Text = Loc.GetString("admin-verb-text-make-blob"),
             Category = VerbCategory.Antag,
-            Icon = new SpriteSpecifier.Rsi((new ResPath("/Textures/Structures/Wallmounts/posters.rsi")), "poster3_legit"),
+            Icon = new SpriteSpecifier.Rsi(new("/Textures/Backmen/Interface/Actions/blob.rsi"), "blobFactory"),
+            Act = () =>
+            {
+                EnsureComp<Shared.Blob.BlobCarrierComponent>(args.Target);
+            },
+            Impact = LogImpact.High,
+            Message = Loc.GetString("admin-verb-text-make-blob"),
+        };
+        args.Verbs.Add(blobAntag);
+
+        Verb fleshLeaderCultist = new()
+        {
+            Text = Loc.GetString("admin-verb-text-make-flesh-leader-cultist"),
+            Category = VerbCategory.Antag,
+            Icon = new SpriteSpecifier.Rsi(new("/Textures/Structures/flesh_heart.rsi"), "base_heart"),
             Act = () =>
             {
                 if (!_minds.TryGetSession(targetMindComp.Mind, out var session))
                     return;
 
-                EntityManager.System<Content.Server.Backmen.EvilTwin.EvilTwinSystem>().MakeTwin(out _,session.AttachedEntity);
+                EntityManager.System<Content.Server.Backmen.GameTicking.Rules.FleshCultRuleSystem>()
+                    .MakeCultist((IPlayerSession) session);
+            },
+            Impact = LogImpact.High,
+            Message = Loc.GetString("admin-verb-text-make-flesh-leader-cultist"),
+        };
+        args.Verbs.Add(fleshLeaderCultist);
+
+        Verb fleshCultist = new()
+        {
+            Text = Loc.GetString("admin-verb-text-make-flesh-cultist"),
+            Category = VerbCategory.Antag,
+            Icon = new SpriteSpecifier.Rsi(new("/Textures/Mobs/Aliens/FleshCult/flesh_cult_mobs.rsi"), "worm"),
+            Act = () =>
+            {
+                if (!_minds.TryGetSession(targetMindComp.Mind, out var session))
+                    return;
+
+                EntityManager.System<Content.Server.Backmen.GameTicking.Rules.FleshCultRuleSystem>()
+                    .MakeCultist((IPlayerSession) session);
+            },
+            Impact = LogImpact.High,
+            Message = Loc.GetString("admin-verb-text-make-flesh-cultist"),
+        };
+        args.Verbs.Add(fleshCultist);
+
+        Verb EvilTwin = new()
+        {
+            Text = "Make EvilTwin",
+            Category = VerbCategory.Antag,
+            Icon = new SpriteSpecifier.Rsi((new ResPath("/Textures/Structures/Wallmounts/posters.rsi")),
+                "poster3_legit"),
+            Act = () =>
+            {
+                if (!_minds.TryGetSession(targetMindComp.Mind, out var session))
+                    return;
+
+                EntityManager.System<Content.Server.Backmen.EvilTwin.EvilTwinSystem>()
+                    .MakeTwin(out _, session.AttachedEntity);
             },
             Impact = LogImpact.High,
             Message = Loc.GetString("admin-verb-make-eviltwin"),
@@ -119,22 +173,5 @@ public sealed partial class AdminVerbSystem
             Message = Loc.GetString("admin-verb-make-pirate"),
         };
         args.Verbs.Add(pirate);
-
-        Verb spaceNinja = new()
-        {
-            Text = Loc.GetString("admin-verb-text-make-space-ninja"),
-            Category = VerbCategory.Antag,
-            Icon = new SpriteSpecifier.Rsi(new ResPath("/Textures/Objects/Weapons/Melee/energykatana.rsi"), "icon"),
-            Act = () =>
-            {
-                if (!_minds.TryGetMind(args.Target, out var mindId, out var mind))
-                    return;
-
-                _ninja.MakeNinja(mindId, mind);
-            },
-            Impact = LogImpact.High,
-            Message = Loc.GetString("admin-verb-make-space-ninja"),
-        };
-        args.Verbs.Add(spaceNinja);
     }
 }

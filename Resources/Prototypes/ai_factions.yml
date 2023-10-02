@@ -7,6 +7,7 @@
     - PetsNT
     - Zombie
     - Blob
+    - Flesh
 
 - type: npcFaction
   id: Blob
@@ -21,7 +22,7 @@
     #- RatHostile
     #- Pet
     #- FleshHuman
-    #- Flesh
+    - Flesh
     #- MalfunctioningRobot
 
 - type: npcFaction
@@ -32,6 +33,7 @@
   - Xeno
   - Zombie
   - Blob
+  - Flesh
 
 - type: npcFaction
   id: Mouse
@@ -49,6 +51,7 @@
   - Zombie
   - Xeno
   - Blob
+  - Flesh
 
 - type: npcFaction
   id: SimpleHostile
@@ -59,6 +62,7 @@
   - PetsNT
   - Zombie
   - Blob
+  - Flesh
 
 - type: npcFaction
   id: SimpleNeutral
@@ -72,6 +76,7 @@
   - PetsNT
   - Zombie
   - Blob
+  - Flesh
 
 - type: npcFaction
   id: Xeno
@@ -82,6 +87,7 @@
   - PetsNT
   - Zombie
   - Blob
+  - Flesh
 
 - type: npcFaction
   id: Zombie
@@ -93,6 +99,18 @@
   - Passive
   - PetsNT
   - Blob
+  - Flesh
+
+- type: npcFaction
+  id: Flesh
+  hostile:
+    - NanoTrasen
+    - Syndicate
+    - Xeno
+    - Dragon
+    - SimpleHostile
+    - SimpleNeutral
+    - Blob
 
 - type: npcFaction
   id: GlimmerMonster # Crew hostile psionic

@@ -162,9 +162,9 @@ public sealed class BSSDroneSystem : SharedDroneSystem
             return;
         }
 
-        _action.RemoveAction(uid, ActionBPLAMEDActionBrutepack);
-        _action.RemoveAction(uid, ActionBPLAMEDActionOintment);
-        _action.RemoveAction(uid, ActionBPLAMEDActionBloodpack);
+        _action.RemoveAction(uid, component.ActionBPLAMEDActionBrutepack);
+        _action.RemoveAction(uid, component.ActionBPLAMEDActionOintment);
+        _action.RemoveAction(uid, component.ActionBPLAMEDActionBloodpack);
     }
 
     private void OnCraftBrutepack(EntityUid uid, BSSDroneComponent component, brutepackCraftActionEvent args)
