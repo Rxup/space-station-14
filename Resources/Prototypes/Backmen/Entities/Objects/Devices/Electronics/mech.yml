@@ -1,0 +1,50 @@
+# Gygax #backmen
+
+- type: entity
+  id: GygaxCentralElectronics
+  parent: BaseElectronics
+  name: Gygax central control module
+  description: The electrical control center for the Gygax mech.
+  components:
+    - type: Sprite
+      sprite: Objects/Misc/module.rsi
+      state: mainboard
+    - type: Tag
+      tags:
+      - GygaxCentralElectronics
+    - type: GuideHelp
+      guides:
+      - Robotics
+
+- type: entity
+  id: GygaxPeripheralsElectronics
+  parent: BaseElectronics
+  name: Gygax peripherals control module
+  description: The electrical peripherals control for the Gygax mech.
+  components:
+    - type: Sprite
+      sprite: Objects/Misc/module.rsi
+      state: id_mod
+    - type: Tag
+      tags:
+      - GygaxPeripheralsElectronics
+    - type: GuideHelp
+      guides:
+      - Robotics
+      
+- type: entity
+  id: GygaxArmorModule
+  parent: BaseElectronics
+  name: Gygax Armor Module
+  description: The armor module gygax
+  components:
+    - type: Sprite
+      sprite:  Backmen/Objects/Specific/Mech/gygax.rsi
+      state: gygax_armor
+    - type: Tag
+      tags:
+      - GygaxArmorModule
+    - type: GuideHelp
+      guides:
+      - Robotics
+      

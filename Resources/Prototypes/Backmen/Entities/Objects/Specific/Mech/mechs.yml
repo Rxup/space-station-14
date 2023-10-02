@@ -1,0 +1,129 @@
+# Gygax #backmen
+- type: entity
+  id: BaseMech+0
+  save: false
+  abstract: true
+  components:
+  - type: MobMover
+  - type: Mech
+  - type: MechAir
+  - type: MechAirFilter
+    # everything except oxygen and nitrogen
+    gases:
+    - 2
+    - 3
+    - 4
+    - 5
+    - 6
+    - 7
+    - 8
+    #- 9 TODO: fusion
+  - type: MechAirIntake
+  # for intake and filter to work
+  - type: AtmosDevice
+    requireAnchored: false
+    joinSystem: true
+  - type: DoAfter
+  - type: Repairable
+    fuelCost: 25
+    doAfterDelay: 10
+  - type: UserInterface
+    interfaces:
+    - key: enum.MechUiKey.Key
+      type: MechBoundUserInterface
+  - type: MeleeWeapon
+    hidden: true
+    attackRate: 0.75
+    damage:
+      types:
+        Blunt: 25 #thwack
+        Structural: 20
+  - type: Puller
+    needsHands: false
+  - type: InputMover
+  - type: InteractionOutline
+  - type: MovementSpeedModifier
+    baseWalkSpeed: 1
+    baseSprintSpeed: 2
+  - type: Tag
+    tags:
+    - DoorBumpOpener
+    - FootstepSound
+  - type: Pullable
+  - type: Physics
+    bodyType: KinematicController
+  - type: Clickable
+  - type: WiresPanel
+  - type: Wires #we just want the panel
+    BoardName: wires-board-name-mech
+    LayoutId: Mech
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.45
+        density: 1000
+        mask:
+        - MobMask
+        layer:
+        - MobLayer
+  - type: Appearance
+  - type: ContainerContainer
+    containers:
+      mech-pilot-slot: !type:ContainerSlot
+      mech-equipment-container: !type:Container
+      mech-battery-slot: !type:ContainerSlot
+  - type: Damageable
+    damageContainer: Inorganic
+    damageModifierSet: Metallic
+  - type: FootstepModifier
+    footstepSoundCollection:
+      path: /Audio/Mecha/mechmove03.ogg
+  - type: GuideHelp
+    guides:
+    - Robotics
+
+- type: entity
+  id: MechGygax
+  parent: BaseMech+0
+  name: Gygax
+  description: Gygax
+  components:
+  - type: Sprite
+    drawdepth: Mobs
+    noRot: true
+    sprite: Backmen/Objects/Specific/Mech/gygax.rsi
+    layers:
+    - map: [ "enum.MechVisualLayers.Base" ]
+      state: gygax
+  - type: FootstepModifier
+    footstepSoundCollection:
+      path: /Audio/Mecha/sound_mecha_powerloader_step.ogg
+  - type: Mech
+    baseState: gygax
+    openState: gygax-open
+    brokenState: gygax-broken
+    mechToPilotDamageMultiplier: 0.75
+    pilotWhitelist:
+      components:
+        - HumanoidAppearance
+  - type: MeleeWeapon
+    hidden: true
+    attackRate: 1
+    damage:
+      types:
+        Blunt: 18
+  - type: MovementSpeedModifier
+    baseWalkSpeed: 3.0
+    baseSprintSpeed: 3.0
+
+- type: entity
+  parent: MechGygax
+  id: MechGygaxBattery
+  suffix: Battery
+  components:
+  - type: ContainerFill
+    containers:
+      mech-battery-slot:
+      - PowerCellHigh

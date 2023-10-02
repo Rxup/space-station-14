@@ -483,6 +483,15 @@
     - HamtrLLeg
     - HamtrRLeg
     - VimHarness
+    - GygaxHarness #backmen
+    - GygaxHead #backmen
+    - GygaxLArm #backmen
+    - GygaxRArm #backmen
+    - GygaxRLeg #backmen
+    - GygaxLLeg #backmen
+    - GygaxCentralElectronics #backmen
+    - GygaxPeripheralsElectronics #backmen
+    - GygaxArmorModule #backmen
   - type: MaterialStorage
     whitelist:
       tags:

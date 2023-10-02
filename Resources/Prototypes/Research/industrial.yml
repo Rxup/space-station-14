@@ -150,6 +150,26 @@
   - RipleyCentralElectronics
   - RipleyPeripheralsElectronics
   - MechEquipmentGrabber
+  
+- type: technology
+  id: GygaxTechnology
+  name: Gygax technology
+  icon:
+    sprite: Objects/Specific/Mech/mecha.rsi
+    state: gygax
+  discipline: Industrial
+  tier: 2
+  cost: 7500
+  recipeUnlocks:
+  - GygaxHarness
+  - GygaxHead
+  - GygaxLArm
+  - GygaxRArm
+  - GygaxLLeg
+  - GygaxRLeg
+  - GygaxCentralElectronics
+  - GygaxPeripheralsElectronics
+  - GygaxArmorModule
 
 - type: technology
   id: AdvancedAtmospherics
