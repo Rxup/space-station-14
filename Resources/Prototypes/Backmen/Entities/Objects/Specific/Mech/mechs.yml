@@ -1,6 +1,6 @@
 # Gygax #backmen
 - type: entity
-  id: BaseMech+0
+  id: BaseBattleMech
   save: false
   abstract: true
   components:
@@ -86,7 +86,7 @@
 
 - type: entity
   id: MechGygax
-  parent: BaseMech+0
+  parent: BaseBattleMech
   name: Gygax
   description: Gygax
   components:
@@ -113,7 +113,7 @@
     attackRate: 1
     damage:
       types:
-        Blunt: 18
+        Blunt: 25
   - type: MovementSpeedModifier
     baseWalkSpeed: 3.0
     baseSprintSpeed: 3.0
