@@ -7,6 +7,40 @@ namespace Content.Shared.Backmen.CCVar;
 [CVarDefs]
 public sealed class CCVars
 {
+
+    /*
+     * Discord Auth
+     */
+
+    /// <summary>
+    ///     Enabled Discord linking, show linking button and modal window
+    /// </summary>
+    public static readonly CVarDef<bool> DiscordAuthEnabled =
+        CVarDef.Create("discord_auth.enabled", false, CVar.SERVERONLY);
+
+    /// <summary>
+    ///     URL of the Discord auth server API
+    /// </summary>
+    public static readonly CVarDef<string> DiscordAuthApiUrl =
+        CVarDef.Create("discord_auth.api_url", "", CVar.SERVERONLY);
+
+    /// <summary>
+    ///     Secret key of the Discord auth server API
+    /// </summary>
+    public static readonly CVarDef<string> DiscordAuthApiKey =
+        CVarDef.Create("discord_auth.api_key", "", CVar.SERVERONLY | CVar.CONFIDENTIAL);
+
+    /**
+     * Sponsors
+     */
+
+    /// <summary>
+    ///     URL of the sponsors server API.
+    /// </summary>
+    public static readonly CVarDef<string> SponsorsApiUrl =
+        CVarDef.Create("sponsor.api_url", "", CVar.SERVERONLY);
+
+
     public static readonly CVarDef<bool>
         EconomyWagesEnabled = CVarDef.Create("economy.wages_enabled", true, CVar.SERVERONLY);
 
