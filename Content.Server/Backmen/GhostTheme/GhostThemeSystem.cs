@@ -1,4 +1,4 @@
-﻿using Content.Server.Corvax.Sponsors;
+﻿using Content.Corvax.Interfaces.Server;
 using Content.Shared.Backmen.GhostTheme;
 using Content.Shared.Ghost;
 using Robust.Server.GameObjects;
@@ -9,21 +9,25 @@ namespace Content.Server.Backmen.GhostTheme;
 
 public sealed class GhostThemeSystem : EntitySystem
 {
-    [Dependency] private SponsorsManager _sponsorsManager = default!;
+    private IServerSponsorsManager? _sponsorsMgr; // Corvax-Sponsors
     [Dependency] private IPrototypeManager _prototypeManager = default!;
     [Dependency] private readonly ISerializationManager _serialization = default!;
 
     public override void Initialize()
     {
+        IoCManager.Instance!.TryResolveType(out _sponsorsMgr); // Corvax-Sponsors
         base.Initialize();
         SubscribeLocalEvent<GhostComponent, PlayerAttachedEvent>(OnPlayerAttached);
     }
 
     private void OnPlayerAttached(EntityUid uid, GhostComponent component, PlayerAttachedEvent args)
     {
-        if (!_sponsorsManager.TryGetInfo(args.Player.UserId, out var sponsorInfo) ||
-            sponsorInfo.GhostTheme == null ||
-            !_prototypeManager.TryIndex<GhostThemePrototype>(sponsorInfo.GhostTheme, out var ghostThemePrototype)
+        if (_sponsorsMgr == null)
+        {
+            return;
+        }
+        if (!_sponsorsMgr.TryGetGhostTheme(args.Player.UserId, out var ghostTheme) ||
+            !_prototypeManager.TryIndex<GhostThemePrototype>(ghostTheme, out var ghostThemePrototype)
            )
         {
             return;
@@ -35,7 +39,7 @@ public sealed class GhostThemeSystem : EntitySystem
             EntityManager.AddComponent(uid, comp, true);
         }
 
-        EnsureComp<GhostThemeComponent>(uid).GhostTheme = sponsorInfo.GhostTheme;
+        EnsureComp<GhostThemeComponent>(uid).GhostTheme = ghostTheme;
 
     }
 }

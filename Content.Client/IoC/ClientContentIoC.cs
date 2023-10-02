@@ -30,6 +30,10 @@ namespace Content.Client.IoC
     {
         public static void Register()
         {
+            IoCManager.Register<Content.Corvax.Interfaces.Client.IClientSponsorsManager,Backmen.Sponsors.SponsorsManager>(); // Corvax-Sponsors
+            IoCManager.Register<Content.Corvax.Interfaces.Client.IClientJoinQueueManager,Backmen.JoinQueue.JoinQueueManager>(); // Corvax-Queue
+            IoCManager.Register<Content.Corvax.Interfaces.Client.IClientDiscordAuthManager,Backmen.DiscordAuth.DiscordAuthManager>(); // Corvax-DiscordAuth
+
             IoCManager.Register<IParallaxManager, ParallaxManager>();
             IoCManager.Register<IChatManager, ChatManager>();
             IoCManager.Register<IClientPreferencesManager, ClientPreferencesManager>();

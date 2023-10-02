@@ -24,6 +24,10 @@ namespace Content.Server.GameTicking
         /// </summary>
         [Dependency] private readonly IConfigurationManager _cfg = default!;
 
+        // Corvax-Queue-Start
+        [Dependency] private readonly IServerJoinQueueManager _joinQueueManager = default!;
+        // Corvax-Queue-End
+
         private void InitializeStatusShell()
         {
             IoCManager.Resolve<IStatusHost>().OnStatusRequest += GetStatusResponse;
@@ -35,8 +39,8 @@ namespace Content.Server.GameTicking
             lock (_statusShellLock)
             {
                 // Corvax-Queue-Start
-                var players = IoCManager.Instance!.TryResolveType<IServerJoinQueueManager>(out var joinQueueManager)
-                    ? joinQueueManager.ActualPlayersCount
+                var players = _joinQueueManager.Enabled
+                    ? _joinQueueManager.ActualPlayersCount
                     : _playerManager.PlayerCount;
                 // Corvax-Queue-End
 

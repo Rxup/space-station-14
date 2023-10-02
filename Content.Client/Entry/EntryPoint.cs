@@ -73,6 +73,13 @@ namespace Content.Client.Entry
         [Dependency] private readonly IReplayLoadManager _replayLoad = default!;
         [Dependency] private readonly ILogManager _logManager = default!;
 
+
+        // start-backmen: ioc
+        //[Dependency] private readonly Content.Corvax.Interfaces.Client.IClientSponsorsManager _sponsorsManager = default!; // Corvax-Sponsors
+        //[Dependency] private readonly Content.Corvax.Interfaces.Client.IClientJoinQueueManager _queueManager = default!; // Corvax-Queue
+        //[Dependency] private readonly Content.Corvax.Interfaces.Client.IClientDiscordAuthManager _discordAuthManager = default!; // Corvax-DiscordAuth
+        // end-backmen: ioc
+
         public override void Init()
         {
             ClientContentIoC.Register();
@@ -173,6 +180,12 @@ namespace Content.Client.Entry
             _userInterfaceManager.SetDefaultTheme("SS14DefaultTheme");
             _userInterfaceManager.SetActiveTheme(_configManager.GetCVar(CVars.InterfaceTheme));
             _documentParsingManager.Initialize();
+
+            // start-backmen: ioc
+            IoCManager.Resolve<Content.Corvax.Interfaces.Client.IClientSponsorsManager>().Initialize();
+            IoCManager.Resolve<Content.Corvax.Interfaces.Client.IClientJoinQueueManager>().Initialize();
+            IoCManager.Resolve<Content.Corvax.Interfaces.Client.IClientDiscordAuthManager>().Initialize();
+            // end-backmen: ioc
 
             _baseClient.RunLevelChanged += (_, args) =>
             {

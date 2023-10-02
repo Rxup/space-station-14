@@ -1,4 +1,3 @@
-using System.Linq;
 using System.Numerics;
 using Content.Shared.Database;
 using Content.Shared.Follower.Components;
@@ -38,7 +37,6 @@ public sealed class FollowerSystem : EntitySystem
 
         SubscribeLocalEvent<FollowerComponent, GotEquippedHandEvent>(OnGotEquippedHand);
         SubscribeLocalEvent<FollowedComponent, EntityTerminatingEvent>(OnFollowedTerminating);
-        SubscribeLocalEvent<FollowerComponent, EntityTerminatingEvent>(OnFollowerTerminating);
         SubscribeLocalEvent<BeforeSaveEvent>(OnBeforeSave);
     }
 
@@ -200,9 +198,6 @@ public sealed class FollowerSystem : EntitySystem
         RaiseLocalEvent(target, targetEv);
 
         if (!deparent || !TryComp(uid, out TransformComponent? xform))
-            return;
-
-        if (TerminatingOrDeleted(uid))
             return;
 
         _transform.AttachToGridOrMap(uid, xform);
