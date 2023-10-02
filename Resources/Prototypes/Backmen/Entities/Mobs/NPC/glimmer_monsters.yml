@@ -39,7 +39,7 @@
     baseWalkSpeed: 5
   - type: MovementIgnoreGravity
   - type: Stealth
-    lastVisibility: 0.66
+    lastVisibility: 0.33
   - type: Reactive
     groups:
       Acidic: [Touch] #Holy water

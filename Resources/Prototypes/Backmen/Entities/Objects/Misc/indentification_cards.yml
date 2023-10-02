@@ -55,7 +55,7 @@
         - state: idbrigmedic
     - type: PresetIdCard
       job: Brigmedic
-      
+
 - type: entity
   parent: IDCardStandard
   id: DeliveryIDCard
@@ -67,5 +67,39 @@
         - state: default
         - state: iddelivery
     - type: PresetIdCard
-      job: Deliveryman    
+      job: Deliveryman
+
+- type: entity
+  parent: IDCardStandard
+  id: UEGrepIDCard
+  name: ID карта представителя ОПЗ
+  components:
+    - type: Sprite
+      sprite: Backmen/Objects/Misc/id_cards.rsi
+      layers:
+        - state: default
+        - state: idueg
+    - type: Access
+      groups:
+        - AllAccess
+        - CentCom
+    - type: IdCard
+      jobTitle: Представитель ОПЗ
+
+- type: entity
+  parent: IDCardStandard
+  id: UEGoffIDCard
+  name: ID карта офицера ОПЗ
+  components:
+    - type: Sprite
+      sprite: Backmen/Objects/Misc/id_cards.rsi
+      layers:
+        - state: default
+        - state: iduegofficer
+    - type: Access
+      groups:
+        - AllAccess
+        - CentCom
+    - type: IdCard
+      jobTitle: Офицер ОПЗ
 

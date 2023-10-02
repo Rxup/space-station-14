@@ -8,6 +8,15 @@
   shuttlePath: /Maps/Backmen/ForSale/pts.yml
 
 - type: vessel
+  id: FleetMain
+  name: NT Cruiser FAR-003
+  description: Главный корабль флота
+  price: 3500000
+  category: Cruiser
+  group: Fleet
+  shuttlePath: /Maps/Backmen/ForSale/fleet/main.yml
+
+- type: vessel
   id: Barge
   name: The Barge
   description: A large shipping vessel repurposed into a salvage bar.

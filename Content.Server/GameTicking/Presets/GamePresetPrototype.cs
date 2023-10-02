@@ -33,6 +33,9 @@ namespace Content.Server.GameTicking.Presets
         [DataField("maxPlayers")]
         public int? MaxPlayers;
 
+        [DataField("isMiniGame")]
+        public bool IsMiniGame = false; // backmen
+
         [DataField("rules", customTypeSerializer: typeof(PrototypeIdListSerializer<EntityPrototype>))]
         public IReadOnlyList<string> Rules { get; private set; } = Array.Empty<string>();
 

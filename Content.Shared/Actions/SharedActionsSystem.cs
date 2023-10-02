@@ -10,6 +10,7 @@ using Content.Shared.Inventory.Events;
 using Robust.Shared.Containers;
 using Robust.Shared.GameStates;
 using Robust.Shared.Map;
+using Robust.Shared.Network;
 using Robust.Shared.Timing;
 using Robust.Shared.Utility;
 
@@ -211,6 +212,7 @@ public abstract class SharedActionsSystem : EntitySystem
             return;
 
         DebugTools.Assert(action.AttachedEntity == user);
+
 
         if (!action.Enabled)
             return;

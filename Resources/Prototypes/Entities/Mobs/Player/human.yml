@@ -27,6 +27,37 @@
   components:
     - type: NukeOperative
 
+#Flesh Cultist
+- type: entity
+  parent: MobHuman
+  id: MobHumanFleshCultist
+  name: Flesh Cultist
+  components:
+    - type: FleshCultist
+      startingEvolutionPoint: 300
+    - type: NpcFactionMember
+      factions:
+        - Flesh
+    - type: UserInterface
+      interfaces:
+        - key: enum.StoreUiKey.Key
+          type: StoreBoundUserInterface
+    - type: Store
+      categories:
+        - FleshCultistAbilities
+      currencyWhitelist:
+        - StolenMutationPoint
+    - type: IntrinsicRadioReceiver
+    - type: IntrinsicRadioTransmitter
+      channels:
+        - Flesh
+    - type: ActiveRadio
+      channels:
+        - Flesh
+    - type: Psionic
+      channel: Flesh
+      channelColor: "#cf1b48"
+
 # Nuclear Operative
 - type: entity
   noSpawn: true

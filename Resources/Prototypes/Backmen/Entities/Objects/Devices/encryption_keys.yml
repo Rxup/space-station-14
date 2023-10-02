@@ -29,3 +29,32 @@
     - state: crypt_CSH
     - state: CSH_label
 
+- type: entity
+  parent: EncryptionKey
+  id: EncryptionKeyFleet
+  name: Encryption Key Fleet
+  components:
+  - type: EncryptionKey
+    channels:
+    - Fleet
+    defaultChannel: Fleet
+  - type: Sprite
+    sprite: Backmen/Objects/Devices/encryption_keysFleet.rsi
+    layers:
+    - state: crypt_green
+    - state: nano_label
+
+- type: entity
+  parent: EncryptionKey
+  id: EncryptionKeyUEG
+  name: Ключ шифрования ОПЗ
+  components:
+  - type: EncryptionKey
+    channels:
+    - UEG
+    defaultChannel: UEG
+  - type: Sprite
+    sprite: Backmen/Objects/Devices/encryption_keysUEG.rsi
+    layers:
+    - state: crypt_ueg
+    - state: ueg_label

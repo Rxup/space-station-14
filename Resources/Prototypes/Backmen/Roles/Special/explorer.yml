@@ -1,0 +1,20 @@
+- type: job
+  id: Explorer
+  name: job-name-explorer
+  description: job-description-explorer
+  playTimeTracker: JobExplorer
+  startingGear: ExplorerGear
+  setPreference: false
+  canBeAntag: false
+  icon: "JobIconUnknown" # TODO
+  supervisors: job-supervisors-generic
+
+- type: startingGear
+  id: ExplorerGear
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitExplorer
+    id: ExplorerIDCard
+    shoes: ClothingShoesColorBlack
+    pocket1: HandheldGPSBasic
+    pocket2: RadioHandheld
+    outerClothing: ClothingOuterExplorerCoat

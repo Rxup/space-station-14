@@ -3,6 +3,7 @@
   name: Телегностическая проекция
   description: Зловещий. Спрайт-заполнитель.
   noSpawn: true
+  save: false
   components:
     - type: Sprite
       overrideContainerOcclusion: true # Ghosts always show up regardless of where they're contained.
@@ -14,6 +15,7 @@
       layers:
         - state: eyeball
           shader: unshaded
+    - type: Dispellable
     - type: Psionic
     - type: MindContainer
     - type: Clickable
@@ -39,13 +41,15 @@
     - type: Appearance
     - type: Eye
       drawFov: false
-      visMask: PsionicInvisibility
+      visMask:
+        - Normal
+        - PsionicInvisibility
     - type: Input
       context: "ghost"
     - type: Examiner
     - type: TelegnosticProjection
     - type: Stealth
-      lastVisibility: 0.66
+      lastVisibility: 0.33
     - type: Visibility
       layer: 4
     - type: NoNormalInteraction

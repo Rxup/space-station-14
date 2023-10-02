@@ -77,9 +77,11 @@ public sealed class MindSwapPowerSystem : EntitySystem
         if (HasComp<PsionicInsulationComponent>(args.Target))
             return;
 
-        Swap(args.Performer, args.Target);
-
         _psionics.LogPowerUsed(args.Performer, "mind swap");
+        if (Swap(args.Performer, args.Target))
+        {
+            GetTrapped(args.Performer);
+        }
         args.Handled = true;
     }
 
@@ -160,11 +162,6 @@ public sealed class MindSwapPowerSystem : EntitySystem
     private void OnSwapInit(EntityUid uid, MindSwappedComponent component, ComponentInit args)
     {
         _actions.AddAction(uid, ref component.MindSwapReturn, ActionMindSwapReturn);
-        if (_actions.TryGetActionData(component.MindSwapReturn, out var action))
-        {
-            _actions.SetCooldown(component.MindSwapReturn, _gameTiming.CurTime,
-                _gameTiming.CurTime + (TimeSpan)  action?.UseDelay!);
-        }
     }
 
     public bool Swap(EntityUid performer, EntityUid target, bool end = false)

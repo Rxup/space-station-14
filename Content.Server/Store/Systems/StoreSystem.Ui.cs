@@ -162,6 +162,8 @@ public sealed partial class StoreSystem
         if (listing.ProductEntity != null)
         {
             var product = Spawn(listing.ProductEntity, Transform(buyer).Coordinates);
+            var ev = new ItemPurchasedEvent(buyer);
+            RaiseLocalEvent(product, ref ev);
             _hands.PickupOrDrop(buyer, product);
         }
 
@@ -175,7 +177,7 @@ public sealed partial class StoreSystem
         //broadcast event
         if (listing.ProductEvent != null)
         {
-            RaiseLocalEvent(listing.ProductEvent);
+            RaiseLocalEvent(uid, listing.ProductEvent, true);
         }
 
         //log dat shit.

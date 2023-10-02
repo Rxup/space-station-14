@@ -1,0 +1,18 @@
+- type: job
+  id: Freelancer
+  name: job-name-freelancer
+  description: job-description-freelancer
+  playTimeTracker: JobFreelancerGear
+  startingGear: FreelancerGear
+  setPreference: true
+  canBeAntag: false
+  icon: "JobIconUnknown" # TODO
+  supervisors: job-supervisors-self
+
+- type: startingGear
+  id: FreelancerGear
+  equipment:
+    jumpsuit: ClothingUniformTShirtKhakiPants
+    id: FreelancerIDCard
+    shoes: ClothingShoesBootsWork
+    outerClothing: ClothingOuterWinterCoat

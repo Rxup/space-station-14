@@ -41,6 +41,7 @@ namespace Content.Shared.Alert
         VowOfSilence,
         VowBroken,
         Essence,
+        MutationPoint,
         Corporeal,
         Bleed,
         Pacified,

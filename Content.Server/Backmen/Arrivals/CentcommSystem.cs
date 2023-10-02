@@ -108,6 +108,10 @@ public sealed class CentcommSystem : EntitySystem
 
     private void OnCentComInit(RoundStartingEvent ev)
     {
+        if (_gameTicker.CurrentPreset?.IsMiniGame ?? false) // no centcom in minigame
+        {
+            return;
+        }
         EnsureCentcom();
     }
 
