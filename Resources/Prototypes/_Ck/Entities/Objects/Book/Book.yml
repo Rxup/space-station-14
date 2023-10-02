@@ -1,0 +1,12 @@
+- type: entity
+  parent: BookBase
+  id: BookRecipies1234
+  name: "Книга рецептов"
+  description: Книга рецептов
+  components:
+    - type: Sprite
+      sprite: Objects/Misc/books.rsi
+      layers:
+        - state: book5
+    - type: Paper
+      content: book-text-recipes
