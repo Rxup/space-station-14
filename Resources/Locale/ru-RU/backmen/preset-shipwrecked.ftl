@@ -5,6 +5,7 @@ shipwrecked-description = Группа путешественников отпр
 shipwrecked-too-many-ready-players = Слишком много игроков было готово к игре! Количество готовых игроков {$readyPlayersCount} , но предел для этого режима {$maximumPlayers} .
 shipwrecked-no-one-ready = Нет готовых игроков! Невозможно начать игру с режимом Кораблекрушение.
 shipwrecked-shuttle-announcement = Анонс транспортного шаттла от {$sender}: {$message}
+department-Shipwrecked-description = Экипаж после кораблекрушения
 
 ## Round End
 
@@ -52,7 +53,7 @@ shipwrecked-warp-point-vital-piece = Запчасть шаттла
 
 ## Scheduled Messages
 
-shipwrecked-hecate-shuttle-in-transit = Внимание, путешественники, говорит ваш капитан Геката. По расписанию мы должны прибыть на Фрисайд через тринадцать минут.
+shipwrecked-hecate-shuttle-in-transit = Внимание, путешественники, говорит ваш капитан Катя. По расписанию мы должны прибыть на Фрисайд через тринадцать минут.
 shipwrecked-hecate-shuttle-turbulence-nebula =  Вскоре мы будем проходить через облако Вайтарна. Обратите внимание на его изумительные формы!
 shipwrecked-hecate-shuttle-distress-signal = Передаю сигнал бедствия.
 shipwrecked-hecate-shuttle-crashed = Внимание выжившим, говорит ваш капитан. Судно совершило посадку на неизведанное межзвездное тело. Пожалуйста, ожидайте спасательную команду.

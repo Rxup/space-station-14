@@ -43,6 +43,7 @@
   rules:
     - FleshCult
     - BasicStationEventScheduler
+    - WageScheduler #backmen: currency
 
 - type: gamePreset
   id: FleshCultAndTraitor
@@ -56,6 +57,7 @@
     - FleshCult
     - Traitor
     - BasicStationEventScheduler
+    - WageScheduler #backmen: currency
 
 - type: gamePreset
   id: Sandbox

@@ -40,7 +40,7 @@ public sealed class PsionicInvisibleContactsSystem : EntitySystem
 
         EnsureComp<PsionicallyInvisibleComponent>(ourEntity);
         var stealth = EnsureComp<StealthComponent>(ourEntity);
-        _stealth.SetVisibility(ourEntity, 0.66f, stealth);
+        _stealth.SetVisibility(ourEntity, 0.33f, stealth);
     }
 
     private void OnEntityExit(EntityUid uid, PsionicInvisibleContactsComponent component, ref EndCollideEvent args)

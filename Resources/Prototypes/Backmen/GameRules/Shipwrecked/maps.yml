@@ -1,0 +1,17 @@
+﻿- type: gameMap
+  id: ShwrAdventurer
+  mapName: Adventurer
+  mapPath: /Maps/Backmen/Shuttles/adventurer.yml
+  minPlayers: 1
+  maxPlayers: 15
+  stations:
+    ShwrAdventurer:
+      stationProto: StandardStationArena
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: "Transport"
+        - type: StationJobs
+          overflowJobs:
+            - Freelancer
+          availableJobs:
+            Freelancer: [-1,-1]
