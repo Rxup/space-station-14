@@ -24,7 +24,7 @@
             <BoxContainer Orientation="Horizontal" VerticalAlignment="Bottom" Margin="10 0 0 0">
                 <Label Text="{Loc 'discord-auth-link'}" Align="Center" />
                 <Label Text=" " />
-                <LineEdit Name="UrlEdit" HorizontalExpand="True" Editable="False"></LineEdit>
+                <TextEdit Name="UrlEdit" HorizontalExpand="True" Editable="False" VerticalExpand="True" MinSize="220 100" Margin="10"></TextEdit>
             </BoxContainer>
             <Button Name="OpenUrlButton" Text="{Loc 'discord-auth-browser-btn'}" HorizontalExpand="True" StyleClasses="OpenRight" />
         </BoxContainer>

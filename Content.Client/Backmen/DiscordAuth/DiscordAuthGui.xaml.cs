@@ -4,6 +4,7 @@ using Robust.Client.GameObjects;
 using Robust.Client.UserInterface;
 using Robust.Client.UserInterface.Controls;
 using Robust.Client.UserInterface.XAML;
+using Robust.Shared.Utility;
 
 namespace Content.Client.Backmen.DiscordAuth;
 
@@ -24,12 +25,12 @@ public sealed partial class DiscordAuthGui : Control
             _consoleHost.ExecuteCommand("quit");
         };
 
-        UrlEdit.Text = _discordAuthManager.AuthUrl;
+        UrlEdit.TextRope = new Rope.Leaf(_discordAuthManager.AuthUrl);
         if (_discordAuthManager.Qrcode != null)
         {
             QrCode.Texture = _discordAuthManager.Qrcode;
         }
-
+        
         OpenUrlButton.OnPressed += (_) =>
         {
             if (_discordAuthManager.AuthUrl != string.Empty)
