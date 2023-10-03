@@ -17,6 +17,10 @@
                 <Label Text="{Loc 'discord-auth-info'}" Align="Center" />
                 <Label Text="{Loc 'discord-auth-warn'}" Margin="0 5 0 0" Align="Center" StyleClasses="LabelSubText" />
             </BoxContainer>
+            <BoxContainer Orientation="Vertical" VerticalAlignment="Bottom" Margin="10 0 0 0">
+                <Label Text="{Loc 'discord-auth-qrcode'}" Align="Center" />
+                <TextureRect Name="QrCode" MaxHeight="400" HorizontalAlignment="Center" Margin="10 0 0 0"></TextureRect>
+            </BoxContainer>
             <BoxContainer Orientation="Horizontal" VerticalAlignment="Bottom" Margin="10 0 0 0">
                 <Label Text="{Loc 'discord-auth-link'}" Align="Center" />
                 <Label Text=" " />

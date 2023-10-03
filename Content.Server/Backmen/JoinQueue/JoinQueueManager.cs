@@ -43,9 +43,9 @@ public sealed class JoinQueueManager : Content.Corvax.Interfaces.Server.IServerJ
     /// </summary>
     private readonly List<IPlayerSession> _queue = new(); // Real Queue class can't delete disconnected users
 
-    private bool _isEnabled = false;
+    private bool _isIsEnabled = false;
 
-    public bool Enabled => _isEnabled;
+    public bool IsEnabled => _isIsEnabled;
     public int PlayerInQueueCount => _queue.Count;
     public int ActualPlayersCount => _playerManager.PlayerCount - PlayerInQueueCount; // Now it's only real value with actual players count that in game
 
@@ -53,14 +53,19 @@ public sealed class JoinQueueManager : Content.Corvax.Interfaces.Server.IServerJ
     {
         _netManager.RegisterNetMessage<MsgQueueUpdate>();
 
-        _cfg.OnValueChanged(CCCVars.QueueEnabled, OnQueueCVarChanged, true);
+        _cfg.OnValueChanged(Shared.Backmen.CCVar.CCVars.QueueEnabled, OnQueueCVarChanged, true);
         _playerManager.PlayerStatusChanged += OnPlayerStatusChanged;
         _discordAuthManager.PlayerVerified += OnPlayerVerified;
     }
 
+    public void PostInitialize()
+    {
+        
+    }
+
     private void OnQueueCVarChanged(bool value)
     {
-        _isEnabled = value;
+        _isIsEnabled = value;
 
         if (!value)
         {
@@ -73,7 +78,7 @@ public sealed class JoinQueueManager : Content.Corvax.Interfaces.Server.IServerJ
 
     private async void OnPlayerVerified(object? sender, IPlayerSession session)
     {
-        if (!_isEnabled)
+        if (!_isIsEnabled)
         {
             SendToGame(session);
             return;
