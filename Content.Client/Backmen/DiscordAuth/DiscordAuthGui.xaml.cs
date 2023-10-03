@@ -9,7 +9,7 @@ namespace Content.Client.Backmen.DiscordAuth;
 [GenerateTypedNameReferences]
 public sealed partial class DiscordAuthGui : Control
 {
-    [Dependency] private readonly DiscordAuthManager _discordAuthManager = default!;
+    [Dependency] private readonly Content.Corvax.Interfaces.Client.IClientDiscordAuthManager _discordAuthManager = default!;
     [Dependency] private readonly IClientConsoleHost _consoleHost = default!;
 
     public DiscordAuthGui()
