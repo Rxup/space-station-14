@@ -203,6 +203,8 @@
   - type: Speech
     speechSounds: Baritone
   - type: Vocal
+    maleScream: /Audio/Corvax/Effects/off.ogg
+    femaleScream: /Audio/Corvax/Effects/off.ogg
   - type: Emoting
   - type: Grammar
     attributes:
