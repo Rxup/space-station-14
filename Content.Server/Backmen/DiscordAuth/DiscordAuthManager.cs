@@ -76,12 +76,12 @@ public sealed class DiscordAuthManager : Content.Corvax.Interfaces.Server.IServe
             }
 
             var authUrl = await GenerateAuthLink(e.Session.UserId);
-            var msg = new MsgDiscordAuthRequired() { AuthUrl = authUrl };
+            var msg = new MsgDiscordAuthRequired() { AuthUrl = authUrl.Url, QrCode = authUrl.Qrcode };
             e.Session.ConnectedClient.SendMessage(msg);
         }
     }
 
-    public async Task<string> GenerateAuthLink(NetUserId userId, CancellationToken cancel = default)
+    public async Task<DiscordGenerateLinkResponse> GenerateAuthLink(NetUserId userId, CancellationToken cancel = default)
     {
         _sawmill.Info($"Player {userId} requested generation Discord verification link");
 
@@ -94,7 +94,7 @@ public sealed class DiscordAuthManager : Content.Corvax.Interfaces.Server.IServe
         }
 
         var data = await response.Content.ReadFromJsonAsync<DiscordGenerateLinkResponse>(cancellationToken: cancel);
-        return data!.Url;
+        return data!;
     }
 
     public async Task<bool> IsVerified(NetUserId userId, CancellationToken cancel = default)
@@ -114,7 +114,7 @@ public sealed class DiscordAuthManager : Content.Corvax.Interfaces.Server.IServe
     }
 
     [UsedImplicitly]
-    private sealed record DiscordGenerateLinkResponse(string Url);
+    public sealed record DiscordGenerateLinkResponse(string Url, byte[] Qrcode);
     [UsedImplicitly]
     private sealed record DiscordAuthInfoResponse(bool IsLinked);
 }
