@@ -39,6 +39,12 @@
   wage: 200
   #end-backmen: currency
 
+  special:
+  - !type:AddImplantSpecial
+    implants: [ MindShieldImplant ]
+  - !type:AddComponentSpecial
+    components:
+      - type: CommandStaff
 
 - type: startingGear
   id: HoSGear

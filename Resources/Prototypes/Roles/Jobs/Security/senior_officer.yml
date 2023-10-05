@@ -32,6 +32,9 @@
   wageDepartment: Security
   wage: 130
   #end-backmen: currency
+  special:
+  - !type:AddImplantSpecial
+    implants: [ MindShieldImplant ]
 
 - type: startingGear
   id: SeniorOfficerGear

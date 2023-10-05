@@ -25,6 +25,9 @@
   wageDepartment: Security
   wage: 100
   #end-backmen: currency
+  special:
+  - !type:AddImplantSpecial
+    implants: [ MindShieldImplant ]
 
 - type: startingGear
   id: WardenGear

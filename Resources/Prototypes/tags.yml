@@ -1072,3 +1072,5 @@
 - type: Tag
   id: ModularReceiver
 
+- type: Tag
+  id: MindShield
