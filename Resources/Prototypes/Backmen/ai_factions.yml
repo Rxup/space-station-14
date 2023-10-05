@@ -22,7 +22,7 @@
     #- RatPassive
     #- RatHostile
     #- Pet
-    - FleshHuman
+    #- FleshHuman
     - Flesh
     - MalfunctioningRobot
     - Revolutionary
