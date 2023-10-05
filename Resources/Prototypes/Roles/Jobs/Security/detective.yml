@@ -23,6 +23,13 @@
   wageDepartment: Security
   wage: 100
   #end-backmen: currency
+  special:
+  - !type:AddComponentSpecial
+    components:
+      - type: PsionicBonusChance
+        flatBonus: 0.025
+  - !type:AddImplantSpecial
+    implants: [ MindShieldImplant ]
 
 - type: startingGear
   id: DetectiveGear

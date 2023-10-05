@@ -41,6 +41,7 @@ using Content.Server.Shuttles.Components;
 using Content.Server.Shuttles.Events;
 using Content.Server.Shuttles.Systems;
 using Content.Server.Spawners.Components;
+using Content.Server.SS220.Chat.Systems;
 using Content.Server.Station.Components;
 using Content.Server.Station.Systems;
 using Content.Server.Storage.Components;
@@ -52,6 +53,7 @@ using Content.Shared.Buckle.Components;
 using Content.Shared.Chat;
 using Content.Shared.Chemistry.Components;
 using Content.Shared.CombatMode.Pacification;
+using Content.Shared.Corvax.TTS;
 using Content.Shared.Damage;
 using Content.Shared.Doors.Components;
 using Content.Shared.FixedPoint;
@@ -415,6 +417,7 @@ public sealed class ShipwreckedRuleSystem : GameRuleSystem<ShipwreckedRuleCompon
                 continue;
 
             component.Hecate = Spawn(component.HecatePrototype, xform.Coordinates);
+            EnsureComp<TTSComponent>(component.Hecate.Value).VoicePrototypeId = component.Tts;
 
             if (TryComp<ShipwreckedNPCHecateComponent>(component.Hecate, out var hecateComponent))
                 hecateComponent.Rule = component;
@@ -947,7 +950,7 @@ public sealed class ShipwreckedRuleSystem : GameRuleSystem<ShipwreckedRuleCompon
         _audioSystem.PlayPvs(crashSound, component.Shuttle.Value);
     }
 
-    private void DispatchShuttleAnnouncement(string message, SoundSpecifier audio, ShipwreckedRuleComponent component)
+    private void DispatchShuttleAnnouncement(string message, ShipwreckedRuleComponent component)
     {
         var wrappedMessage = Loc.GetString("shipwrecked-shuttle-announcement",
             ("sender", "Hecate"),
@@ -986,8 +989,11 @@ public sealed class ShipwreckedRuleSystem : GameRuleSystem<ShipwreckedRuleCompon
             true,
             Color.SeaGreen);
 
-        var audioPath = _audioSystem.GetSound(audio);
-        _audioSystem.PlayGlobal(audioPath, filter, true, AudioParams.Default.WithVolume(1f));
+        var announcementSound = new SoundPathSpecifier(ChatSystem.DefaultAnnouncementSound);
+        var announcementEv = new AnnouncementSpokeEvent(filter, _audioSystem.GetSound(announcementSound), AudioParams.Default.WithVolume(1f), message);
+        RaiseLocalEvent(announcementEv);
+        //var audioPath = _audioSystem.GetSound(audio);
+        //_audioSystem.PlayGlobal(audioPath, filter, true, AudioParams.Default.WithVolume(1f));
     }
 
     private void HecateSay(string message, SoundSpecifier audio, ShipwreckedRuleComponent component)
@@ -1027,7 +1033,6 @@ public sealed class ShipwreckedRuleSystem : GameRuleSystem<ShipwreckedRuleCompon
                     SpawnPlanetaryStructures(uid, component);
 
                     DispatchShuttleAnnouncement(Loc.GetString("shipwrecked-hecate-shuttle-in-transit"),
-                        new SoundPathSpecifier("/Audio/Nyanotrasen/Dialogue/Hecate/shipwrecked_hecate_shuttle_in_transit.ogg"),
                         component);
                     break;
                 }
@@ -1046,7 +1051,6 @@ public sealed class ShipwreckedRuleSystem : GameRuleSystem<ShipwreckedRuleCompon
                 case ShipwreckedEventId.EncounterTurbulence:
                 {
                     DispatchShuttleAnnouncement(Loc.GetString("shipwrecked-hecate-shuttle-turbulence-nebula"),
-                        new SoundPathSpecifier("/Audio/Nyanotrasen/Dialogue/Hecate/shipwrecked_hecate_shuttle_turbulence_nebula.ogg"),
                         component);
                     break;
                 }
@@ -1094,7 +1098,6 @@ public sealed class ShipwreckedRuleSystem : GameRuleSystem<ShipwreckedRuleCompon
                 {
                     SpawnFactions(component);
                     DispatchShuttleAnnouncement(Loc.GetString("shipwrecked-hecate-shuttle-distress-signal"),
-                        new SoundPathSpecifier("/Audio/Nyanotrasen/Dialogue/Hecate/shipwrecked_hecate_shuttle_distress_signal.ogg"),
                         component);
                     break;
                 }
@@ -1120,7 +1123,6 @@ public sealed class ShipwreckedRuleSystem : GameRuleSystem<ShipwreckedRuleCompon
                 case ShipwreckedEventId.AfterCrash:
                 {
                     DispatchShuttleAnnouncement(Loc.GetString("shipwrecked-hecate-shuttle-crashed"),
-                        new SoundPathSpecifier("/Audio/Nyanotrasen/Dialogue/Hecate/shipwrecked_hecate_shuttle_crashed.ogg"),
                         component);
                     break;
                 }
@@ -1680,7 +1682,6 @@ public sealed class ShipwreckedRuleSystem : GameRuleSystem<ShipwreckedRuleCompon
         rule.AllObjectivesComplete = true;
 
         DispatchShuttleAnnouncement(Loc.GetString("shipwrecked-hecate-shuttle-prepare-for-launch"),
-            new SoundPathSpecifier("/Audio/Nyanotrasen/Dialogue/Hecate/shipwrecked_hecate_shuttle_prepare_for_launch.ogg"),
             rule);
 
         rule.NextEventTick = _gameTiming.CurTime + TimeSpan.FromMinutes(2);

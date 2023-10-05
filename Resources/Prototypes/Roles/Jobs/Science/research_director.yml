@@ -26,6 +26,16 @@
   wageDepartment: Command
   wage: 200
   #end-backmen: currency
+  special:
+  - !type:AddComponentSpecial
+    components:
+      - type: PsionicBonusChance
+        multiplier: 3
+  - !type:AddImplantSpecial
+    implants: [ MindShieldImplant ]
+  - !type:AddComponentSpecial
+    components:
+      - type: CommandStaff
 
 - type: startingGear
   id: ResearchDirectorGear

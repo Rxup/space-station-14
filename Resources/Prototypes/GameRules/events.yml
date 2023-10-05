@@ -22,10 +22,6 @@
     weight: 5
     startDelay: 30
     duration: 35
-    startAudio: # Corvax-Announcements
-      path: /Audio/Corvax/Announcements/blusp_anomalies.ogg
-      params:
-        volume: -4
   - type: BluespaceArtifactRule
 
 - type: entity
@@ -424,8 +420,8 @@
   components:
   - type: StationEvent
     startAnnouncement: station-event-immovable-rod-start-announcement
-    startAudio:
-      path: /Audio/Announcements/attention.ogg
+    #startAudio: # USE TTS
+    #  path: /Audio/Announcements/attention.ogg
     weight: 5
     duration: 1
     earliestStart: 45

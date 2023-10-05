@@ -1,4 +1,4 @@
-﻿- type: job
+- type: job
   id: SecurityCadet
   name: job-name-cadet
   description: job-description-cadet
@@ -24,6 +24,9 @@
   wageDepartment: Security
   wage: 50
   #end-backmen: currency
+  special:
+  - !type:AddImplantSpecial
+    implants: [ MindShieldImplant ]
 
 - type: startingGear
   id: SecurityCadetGear

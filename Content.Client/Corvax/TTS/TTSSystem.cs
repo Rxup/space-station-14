@@ -28,13 +28,14 @@ public sealed class TTSSystem : EntitySystem
     [Dependency] private readonly IConfigurationManager _cfg = default!;
     [Dependency] private readonly IResourceCache _resourceCache = default!;
     [Dependency] private readonly SharedAudioSystem _audio = default!;
+    [Dependency] private readonly IClydeAudio _clyde = default!;
 
     private ISawmill _sawmill = default!;
     private readonly MemoryContentRoot _contentRoot = new();
     private static readonly ResPath Prefix = ResPath.Root / "TTS";
 
     private float _volume = 0.0f;
-    private int _fileIdx = 0;
+    private ulong _fileIdx = 0;
 
     public override void Initialize()
     {
@@ -43,12 +44,12 @@ public sealed class TTSSystem : EntitySystem
         _cfg.OnValueChanged(CCCVars.TTSVolume, OnTtsVolumeChanged, true);
         SubscribeNetworkEvent<PlayTTSEvent>(OnPlayTTS);
         SubscribeLocalEvent<RoundRestartCleanupEvent>(OnRoundRestart);
+
     }
 
     private void OnRoundRestart(RoundRestartCleanupEvent ev)
     {
         _contentRoot.Clear();
-        _fileIdx = 0;
     }
 
     public override void Shutdown()
@@ -84,7 +85,8 @@ public sealed class TTSSystem : EntitySystem
         if (ev.SourceUid != null)
         {
             var sourceUid = GetEntity(ev.SourceUid.Value);
-            _audio.PlayEntity(soundPath, EntityUid.Invalid, sourceUid); // recipient arg ignored on client
+            if(sourceUid.Valid)
+                _audio.PlayEntity(soundPath, EntityUid.Invalid, sourceUid); // recipient arg ignored on client
         }
         else
         {
