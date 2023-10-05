@@ -33,7 +33,7 @@
           key: "enum.MechAssemblyVisuals.State"
           data: 4
 
-      - tag: GygaxCentralControlModule
+      - tag: GygaxCentralElectronics
         name: Gygax central control module
         icon:
           sprite: "Objects/Misc/module.rsi"
@@ -50,7 +50,7 @@
           key: "enum.MechAssemblyVisuals.State"
           data: 6
 
-      - tag: GygaxPeripheralsControlModule
+      - tag: GygaxPeripheralsElectronics
         name: Gygax peripherals control module
         icon:
           sprite: "Objects/Misc/module.rsi"
@@ -127,10 +127,10 @@
           key: "enum.MechAssemblyVisuals.State"
           data: 20
           
-      - tag: GygaxArmorControlModule
+      - tag: GygaxArmorModule
         name: Gygax Armor control module
         icon:
-          sprite: "Backmen/Objects/Specific/Mech/gygax.rsi"
+          sprite: "Backmen/Objects/Specific/Mech/gygax.rsi" 
           state: "gygax_armor"
         completed:
         - !type:VisualizerDataInt

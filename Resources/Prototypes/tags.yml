@@ -512,7 +512,6 @@
 - type: Tag
   id: GuideEmbeded
 
-
 - type: Tag
   id: Hamster
 
@@ -745,7 +744,6 @@
 
 - type: Tag
   id: Multitool
-
 
 - type: Tag
   id: NoBlockAnchoring
