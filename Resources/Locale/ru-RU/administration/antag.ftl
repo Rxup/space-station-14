@@ -12,3 +12,5 @@ admin-verb-text-make-traitor = Сделать предателем
 admin-verb-text-make-zombie = Сделать зомби
 admin-verb-text-make-nuclear-operative = Сделать ядерным оперативником
 admin-verb-text-make-pirate = Сделать пиратом
+admin-verb-make-head-rev = Превратите цель в Лидера Революции.
+admin-verb-text-make-head-rev = Превратить в Лидера Революции
