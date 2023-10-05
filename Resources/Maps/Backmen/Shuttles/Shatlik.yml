@@ -1909,13 +1909,6 @@ entities:
       pos: 11.5,-6.5
       parent: 3
       type: Transform
-- proto: ClosetBluespace
-  entities:
-  - uid: 659
-    components:
-    - pos: 12.5,-0.5
-      parent: 3
-      type: Transform
 - proto: ClosetWallEmergencyFilledRandom
   entities:
   - uid: 353
