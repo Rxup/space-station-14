@@ -12,6 +12,9 @@
   requirements:
     - !type:OverallPlaytimeRequirement
       time: 3600
+  special:
+    - !type:AddImplantSpecial
+      implants: [ TrackingImplant ]
 
 - type: startingGear
   id: PrisonerGear
