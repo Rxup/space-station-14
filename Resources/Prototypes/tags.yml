@@ -872,30 +872,6 @@
   id: RipleyRArm
 
 - type: Tag
-  id: GygaxArmorModule
-
-- type: Tag
-  id: GygaxCentralElectronics
-
-- type: Tag
-  id: GygaxPeripheralsElectronics
-
-- type: Tag
-  id: GygaxHead
-
-- type: Tag
-  id: GygaxLArm
-
-- type: Tag
-  id: GygaxLLeg
-
-- type: Tag
-  id: GygaxRLeg
-
-- type: Tag
-  id: GygaxRArm
-
-- type: Tag
   id: RodMetal1
 
 - type: Tag

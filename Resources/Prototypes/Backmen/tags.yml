@@ -22,7 +22,6 @@
 - type: Tag
   id: BluespaceCrystal
 
-
 - type: Tag
   id: MagazineUniversalCaselessRifle
 
@@ -34,3 +33,27 @@
 
 - type: Tag
   id: RuinedShop
+  
+- type: Tag
+  id: GygaxArmorModule
+
+- type: Tag
+  id: GygaxCentralElectronics
+
+- type: Tag
+  id: GygaxPeripheralsElectronics
+
+- type: Tag
+  id: GygaxHead
+
+- type: Tag
+  id: GygaxLArm
+
+- type: Tag
+  id: GygaxLLeg
+
+- type: Tag
+  id: GygaxRLeg
+
+- type: Tag
+  id: GygaxRArm  
