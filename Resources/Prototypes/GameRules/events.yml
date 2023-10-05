@@ -7,10 +7,10 @@
     weight: 10
     startDelay: 30
     duration: 35
-    startAudio: # Corvax-Announcements
-      path: /Audio/Corvax/Announcements/flux.ogg
-      params:
-        volume: -4
+#    startAudio: # Corvax-Announcements
+#      path: /Audio/Corvax/Announcements/flux.ogg
+#      params:
+#        volume: -4
   - type: AnomalySpawnRule
 
 - type: entity
