@@ -46,6 +46,7 @@ using Content.Server.Station.Components;
 using Content.Server.Station.Systems;
 using Content.Server.Storage.Components;
 using Content.Server.Warps;
+using Content.Server.Zombies;
 using Content.Shared.Access.Components;
 using Content.Shared.Atmos;
 using Content.Shared.Backmen.CCVar;
@@ -498,6 +499,8 @@ public sealed class ShipwreckedRuleSystem : GameRuleSystem<ShipwreckedRuleCompon
             _cardSystem.TryChangeFullName(idUid.Value, mobName, idCardComponent);
             _cardSystem.TryChangeJobTitle(idUid.Value, jobPrototype.LocalizedName, idCardComponent);
         }
+
+        EnsureComp<ZombieImmuneComponent>(mob);
 
         if (TryComp<BuckleComponent>(mob, out var buckle))
         {
@@ -996,7 +999,7 @@ public sealed class ShipwreckedRuleSystem : GameRuleSystem<ShipwreckedRuleCompon
         //_audioSystem.PlayGlobal(audioPath, filter, true, AudioParams.Default.WithVolume(1f));
     }
 
-    private void HecateSay(string message, SoundSpecifier audio, ShipwreckedRuleComponent component)
+    private void HecateSay(string message, ShipwreckedRuleComponent component)
     {
         if (component.Hecate is not {} hecate)
         {
@@ -1004,7 +1007,7 @@ public sealed class ShipwreckedRuleSystem : GameRuleSystem<ShipwreckedRuleCompon
             return;
         }
 
-        _npcConversationSystem.QueueResponse(hecate, new NPCResponse(message, audio));
+        _npcConversationSystem.QueueResponse(hecate, new NPCResponse(message));
     }
 
     protected override void ActiveTick(EntityUid uid, ShipwreckedRuleComponent component, GameRuleComponent gameRule, float frameTime)
@@ -1044,7 +1047,6 @@ public sealed class ShipwreckedRuleSystem : GameRuleSystem<ShipwreckedRuleCompon
                 case ShipwreckedEventId.IntroduceHecate:
                 {
                     HecateSay(Loc.GetString("hecate-qa-user-interface"),
-                        new SoundPathSpecifier("/Audio/Nyanotrasen/Dialogue/Hecate/hecate_qa_user_interface.ogg"),
                         component);
                     break;
                 }
@@ -1056,10 +1058,9 @@ public sealed class ShipwreckedRuleSystem : GameRuleSystem<ShipwreckedRuleCompon
                 }
                 case ShipwreckedEventId.ShiftParallax:
                 {
-                    if (component.SpaceMapId == null)
-                        break;
+                    var spaceMapId = Transform(component.Shuttle!.Value).MapID;
 
-                    var spaceMap = _mapManager.GetMapEntityId(component.SpaceMapId.Value);
+                    var spaceMap = _mapManager.GetMapEntityId(spaceMapId);
                     var parallax = EnsureComp<ParallaxComponent>(spaceMap);
                     parallax.Parallax = "ShipwreckedTurbulence1";
                     Dirty(spaceMap, parallax);
@@ -1082,7 +1083,6 @@ public sealed class ShipwreckedRuleSystem : GameRuleSystem<ShipwreckedRuleCompon
                 {
                     PrepareVitalShuttlePieces(component);
                     HecateSay(Loc.GetString("shipwrecked-hecate-report-alert"),
-                        new SoundPathSpecifier("/Audio/Nyanotrasen/Dialogue/Hecate/shipwrecked_hecate_report_alert.ogg"),
                         component);
                     break;
                 }
@@ -1090,7 +1090,6 @@ public sealed class ShipwreckedRuleSystem : GameRuleSystem<ShipwreckedRuleCompon
                 {
                     DecoupleShuttleEngine(component);
                     HecateSay(Loc.GetString("shipwrecked-hecate-report-decouple-engine"),
-                        new SoundPathSpecifier("/Audio/Nyanotrasen/Dialogue/Hecate/shipwrecked_hecate_report_decouple_engine.ogg"),
                         component);
                     break;
                 }
@@ -1104,14 +1103,12 @@ public sealed class ShipwreckedRuleSystem : GameRuleSystem<ShipwreckedRuleCompon
                 case ShipwreckedEventId.InterstellarBody:
                 {
                     HecateSay(Loc.GetString("shipwrecked-hecate-report-interstellar-body"),
-                        new SoundPathSpecifier("/Audio/Nyanotrasen/Dialogue/Hecate/shipwrecked_hecate_report_interstellar_body.ogg"),
                         component);
                     break;
                 }
                 case ShipwreckedEventId.EnteringAtmosphere:
                 {
                     HecateSay(Loc.GetString("shipwrecked-hecate-report-entering-atmosphere"),
-                        new SoundPathSpecifier("/Audio/Nyanotrasen/Dialogue/Hecate/shipwrecked_hecate_report_entering_atmosphere.ogg"),
                         component);
                     break;
                 }
@@ -1129,7 +1126,6 @@ public sealed class ShipwreckedRuleSystem : GameRuleSystem<ShipwreckedRuleCompon
                 case ShipwreckedEventId.Sitrep:
                 {
                     HecateSay(Loc.GetString("shipwrecked-hecate-aftercrash-sitrep"),
-                        new SoundPathSpecifier("/Audio/Nyanotrasen/Dialogue/Hecate/shipwrecked_hecate_aftercrash_sitrep.ogg"),
                         component);
 
                     if (component.Hecate == null)
@@ -1137,7 +1133,8 @@ public sealed class ShipwreckedRuleSystem : GameRuleSystem<ShipwreckedRuleCompon
 
                     _npcConversationSystem.EnableConversation(component.Hecate.Value);
                     _npcConversationSystem.UnlockDialogue(component.Hecate.Value,
-                        new HashSet<string>() {
+                        new HashSet<string>()
+                        {
                             "generator",
                             "rescue",
                             "scans",
@@ -1166,7 +1163,6 @@ public sealed class ShipwreckedRuleSystem : GameRuleSystem<ShipwreckedRuleCompon
                     }
 
                     HecateSay(Loc.GetString("shipwrecked-hecate-launch"),
-                        new SoundPathSpecifier("/Audio/Nyanotrasen/Dialogue/Hecate/shipwrecked_hecate_launch.ogg"),
                         component);
 
                     _shuttleSystem.FTLTravel(shuttle,
