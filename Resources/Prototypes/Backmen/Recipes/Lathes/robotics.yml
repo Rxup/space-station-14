@@ -5,4 +5,77 @@
   materials:
     Steel: 500
     Plasma: 100
+    
+# Gygax #backmen
+- type: latheRecipe
+  id: GygaxHead
+  result: GygaxHead
+  completetime: 10
+  materials:
+    Steel: 1000
+    Glass: 750
+
+- type: latheRecipe
+  id: GygaxHarness
+  result: GygaxHarness
+  completetime: 10
+  materials:
+    Steel: 1800
+    Glass: 1500
+
+- type: latheRecipe
+  id: GygaxLArm
+  result: GygaxLArm
+  completetime: 10
+  materials:
+    Steel: 1000
+    Glass: 750
+
+- type: latheRecipe
+  id: GygaxLLeg
+  result: GygaxLLeg
+  completetime: 10
+  materials:
+    Steel: 1000
+    Glass: 750
+
+- type: latheRecipe
+  id: GygaxRLeg
+  result: GygaxRLeg
+  completetime: 10
+  materials:
+    Steel: 1000
+    Glass: 750
+
+- type: latheRecipe
+  id: GygaxRArm
+  result: GygaxRArm
+  completetime: 10
+  materials:
+    Steel: 1000
+    Glass: 750
+
+- type: latheRecipe
+  id: GygaxCentralElectronics
+  result: GygaxCentralElectronics
+  completetime: 10
+  materials:
+    Steel: 500
+    Plastic: 500
+    
+- type: latheRecipe
+  id: GygaxPeripheralsElectronics 
+  result: GygaxPeripheralsElectronics
+  completetime: 10
+  materials:
+    Steel: 500
+    Plastic: 200
+
+- type: latheRecipe
+  id: GygaxArmorModule
+  result: GygaxArmorModule
+  completetime: 10
+  materials:
+    Steel: 2000
+    Plastic: 2000      
 
