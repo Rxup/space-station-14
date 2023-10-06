@@ -32,10 +32,10 @@
   - External
   - Detective
   #start-backmen: currency
-  minBankBalance: 800
-  maxBankBalance: 1200
+  minBankBalance: 400
+  maxBankBalance: 600
   wageDepartment: Command
-  wage: 200
+  wage: 100
   #end-backmen: currency
 
   special:

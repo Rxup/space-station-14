@@ -9,8 +9,8 @@
 #  access: # Corvax-MRP
 #  - Maintenance
   #start-backmen: currency
-  minBankBalance: 100
-  maxBankBalance: 800
+  minBankBalance: 50
+  maxBankBalance: 400
   #end-backmen: currency
 
 - type: startingGear

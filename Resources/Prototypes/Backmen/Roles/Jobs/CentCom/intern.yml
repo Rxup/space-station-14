@@ -34,10 +34,10 @@
           actionBssActionName: ActionCentcomFtlAction
         - type: PsionicBonusChance
           multiplier: 3
-  minBankBalance: 200
-  maxBankBalance: 500
+  minBankBalance: 100
+  maxBankBalance: 250
   wageDepartment: CentCom
-  wage: 200
+  wage: 75
 
 - type: startingGear
   id: CentComInternGear
