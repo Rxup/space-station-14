@@ -4,8 +4,10 @@ using Content.Server.NPC;
 using Content.Server.NPC.HTN;
 using Content.Server.NPC.Systems;
 using Content.Server.Zombies;
+using Content.Shared.Damage;
 using Content.Shared.Humanoid;
 using Content.Shared.Tools.Components;
+using Content.Shared.Weapons.Melee;
 using Content.Shared.Zombies;
 using Robust.Server.GameObjects;
 using Robust.Server.Physics;
@@ -16,10 +18,6 @@ namespace Content.Server.Backmen.Shipwrecked;
 
 public sealed class NPCZombieSystem : EntitySystem
 {
-    [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
-    [Dependency] private readonly NpcFactionSystem _npcFactonSystem = default!;
-    [Dependency] private readonly JointSystem _jointSystem = default!;
-    [Dependency] private readonly NPCSystem _npcSystem = default!;
     [Dependency] private readonly ZombieSystem _zombieSystem = default!;
 
     public override void Initialize()
@@ -31,10 +29,72 @@ public sealed class NPCZombieSystem : EntitySystem
         SubscribeLocalEvent<ZombieWakeupOnTriggerComponent, TriggerEvent>(OnZombieWakeupTrigger);
     }
 
+    private void ZombifyEntity(EntityUid uid, bool isBoss)
+    {
+
+
+        _zombieSystem.ZombifyEntity(uid);
+
+
+        var z = EnsureComp<ZombieComponent>(uid);
+        z.MaxZombieInfectionChance = 0.0001f;
+        z.MinZombieInfectionChance = 0.00001f;
+
+        var melee = EnsureComp<MeleeWeaponComponent>(uid); // npc (lower damage, like a flesh)
+        melee.Angle = 0;
+        melee.AttackRate = 1;
+        melee.BluntStaminaDamageFactor = 0.5;
+        melee.ClickDamageModifier = 1;
+        melee.Range = 1.5f;
+
+
+
+        if (!isBoss)
+        {
+            z.HealingOnBite = new();
+
+            DamageSpecifier dspec = new()
+            {
+                DamageDict = new()
+                {
+                    { "Slash", 8 }
+                }
+            };
+            melee.Damage = dspec;
+            z.HealingOnBite = new();
+            z.ZombieMovementSpeedDebuff = 0.60f;
+            Dirty(uid,melee);
+        }
+        else
+        {
+            DamageSpecifier dspec = new()
+            {
+                DamageDict = new()
+                {
+                    { "Slash", 14 },
+                    { "Piercing", 6 }
+                }
+            };
+            melee.Damage = dspec;
+            Dirty(uid,melee);
+            DamageSpecifier hspec = new()
+            {
+                DamageDict = new()
+                {
+                    { "Blunt", -1 },
+                    { "Slash", -1 },
+                    { "Piercing", -1 }
+                }
+            };
+            z.HealingOnBite = hspec;
+        }
+        Dirty(uid,z);
+    }
+
     private void OnSpawnZombifiedStartup(EntityUid uid, ZombifiedOnSpawnComponent component, ComponentStartup args)
     {
         RemCompDeferred<ZombifiedOnSpawnComponent>(uid);
-        _zombieSystem.ZombifyEntity(uid);
+        ZombifyEntity(uid, component.IsBoss);
     }
 
     [ValidatePrototypeId<EntityPrototype>] private const string ZombieSurpriseDetector = "ZombieSurpriseDetector";
@@ -53,6 +113,6 @@ public sealed class NPCZombieSystem : EntitySystem
         if (toZombify == null || Deleted(toZombify))
             return;
 
-        _zombieSystem.ZombifyEntity(toZombify.Value);
+        ZombifyEntity(toZombify.Value, false);
     }
 }

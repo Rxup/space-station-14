@@ -17,7 +17,8 @@ public abstract class SharedStationSpawningSystem : EntitySystem
     /// <param name="entity">Entity to load out.</param>
     /// <param name="startingGear">Starting gear to use.</param>
     /// <param name="profile">Character profile to use, if any.</param>
-    public void EquipStartingGear(EntityUid entity, StartingGearPrototype startingGear, HumanoidCharacterProfile? profile)
+    /// <param name="force">force for corpses</param>
+    public void EquipStartingGear(EntityUid entity, StartingGearPrototype startingGear, HumanoidCharacterProfile? profile, bool force = false)
     {
         if (InventorySystem.TryGetSlots(entity, out var slotDefinitions))
         {
@@ -27,7 +28,7 @@ public abstract class SharedStationSpawningSystem : EntitySystem
                 if (!string.IsNullOrEmpty(equipmentStr))
                 {
                     var equipmentEntity = EntityManager.SpawnEntity(equipmentStr, EntityManager.GetComponent<TransformComponent>(entity).Coordinates);
-                    InventorySystem.TryEquip(entity, equipmentEntity, slot.Name, true);
+                    InventorySystem.TryEquip(entity, equipmentEntity, slot.Name, true, force);
                 }
             }
         }
