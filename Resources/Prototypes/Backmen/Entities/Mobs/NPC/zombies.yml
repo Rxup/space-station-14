@@ -53,6 +53,7 @@
         path: /Audio/Items/jaws_pry.ogg
     # BASE
     - type: Loadout
+      force: true
       prototypes:
         - UnaffiliatedChaplainGear
         - UnaffiliatedChefGear
@@ -85,6 +86,7 @@
         path: /Audio/Items/jaws_pry.ogg
     # BASE
     - type: Loadout
+      force: true
       prototypes:
         - UnaffiliatedChaplainGear
         - UnaffiliatedChefGear
@@ -111,6 +113,7 @@
     - Moth
   components:
     - type: ZombifiedOnSpawn
+      isBoss: true
     - type: MovementSpeedModifier
       baseWalkSpeed : 1.5
       baseSprintSpeed : 3.0
@@ -122,6 +125,7 @@
         path: /Audio/Items/jaws_pry.ogg
     # BASE
     - type: Loadout
+      force: true
       prototypes:
         - ZombieBruteGear
     - type: Damageable
