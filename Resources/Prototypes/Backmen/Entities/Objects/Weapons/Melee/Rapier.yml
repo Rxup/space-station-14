@@ -20,7 +20,22 @@
   - type: Reflect
     enabled: true
     reflectProb: .6
-    spread: 90        
+    spread: 90
+  - type: SolutionContainerManager
+    solutions:
+      melee:
+        maxVol: 5
+  - type: MeleeChemicalInjector
+    solution: melee
+  - type: RefillableSolution
+    solution: melee
+  - type: InjectableSolution
+    solution: melee
+  - type: SolutionInjectOnCollide
+    transferAmount: 5
+    blockSlots: NONE
+  - type: SolutionTransfer
+    maxTransferAmount: 5    
   - type: Item
     size: 10
     sprite: Backmen/Objects/Weapons/Melee/Rapier_cvasoc.rsi
