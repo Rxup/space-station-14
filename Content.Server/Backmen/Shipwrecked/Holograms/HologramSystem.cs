@@ -9,6 +9,12 @@ public sealed class HologramSystem : EntitySystem
         base.Initialize();
 
         SubscribeLocalEvent<HologramComponent, StoreMobInItemContainerAttemptEvent>(OnStoreInContainerAttempt);
+        SubscribeLocalEvent<HologramComponent, InsertIntoEntityStorageAttemptEvent>(OnInsertInStorage);
+    }
+
+    private void OnInsertInStorage(EntityUid uid, HologramComponent component, ref InsertIntoEntityStorageAttemptEvent args)
+    {
+        args.Cancelled = true;
     }
 
     private void OnStoreInContainerAttempt(EntityUid uid, HologramComponent component, ref StoreMobInItemContainerAttemptEvent args)

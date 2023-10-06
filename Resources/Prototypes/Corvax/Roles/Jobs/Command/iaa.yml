@@ -25,6 +25,9 @@
   wageDepartment: Specific
   wage: 200
   #end-backmen: currency
+  special:
+  - !type:AddImplantSpecial
+    implants: [ MindShieldImplant ]
 
 - type: startingGear
   id: IAAGear

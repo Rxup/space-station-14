@@ -18,6 +18,9 @@
   - type: Body
     prototype: Reptilian
     requiredLegs: 2
+  - type: Perishable
+  - type: Inventory
+    speciesId: digi
   - type: Butcherable
     butcheringType: Spike
     spawned:
@@ -58,7 +61,6 @@
   - type: MovementSpeedModifier
     baseWalkSpeed : 2.7
     baseSprintSpeed : 4.5
-  - type: Perishable
 
 - type: entity
   parent: BaseSpeciesDummy
@@ -68,5 +70,7 @@
   components:
   - type: HumanoidAppearance
     species: Reptilian
+  - type: Inventory
+    speciesId: digi
 
 #Weh
