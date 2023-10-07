@@ -1,13 +1,17 @@
 ﻿﻿using System.Diagnostics.CodeAnalysis;
 using System.IO;
 using Content.Shared.Corvax.CCCVars;
-using Content.Shared.SS220.AnnounceTTS;
+ using Content.Shared.GameTicking;
+ using Content.Shared.SS220.AnnounceTTS;
 using Robust.Client.Graphics;
 using Robust.Client.ResourceManagement;
-using Robust.Shared.Configuration;
-using Robust.Shared.Utility;
+ using Robust.Shared.Audio;
+ using Robust.Shared.Configuration;
+ using Robust.Shared.ContentPack;
+ using Robust.Shared.Utility;
 
 namespace Content.Client.SS220.AnnounceTTS;
+
 
 // ReSharper disable once InconsistentNaming
 public sealed class AnnounceTTSSystem : EntitySystem
@@ -50,6 +54,7 @@ public sealed class AnnounceTTSSystem : EntitySystem
     private void OnAnnounceTTSPlay(AnnounceTTSEvent ev)
     {
         var volume = _volume;
+
         if (!_resourceCache.TryGetResource<AudioResource>(new ResPath(ev.AnnouncementSound), out var audio))
         {
             _sawmill.Error($"Server tried to play audio file {ev.AnnouncementSound} which does not exist.");
@@ -75,13 +80,14 @@ public sealed class AnnounceTTSSystem : EntitySystem
 
     private bool TryCreateAudioSource(byte[] data, float volume, [NotNullWhen(true)] out IClydeAudioSource? source)
     {
-        var dataStream = new MemoryStream(data) { Position = 0 };
+        using var dataStream = new MemoryStream(data);
         var audioStream = _clyde.LoadAudioOggVorbis(dataStream);
         source = _clyde.CreateAudioSource(audioStream);
         source?.SetMaxDistance(float.MaxValue);
         source?.SetReferenceDistance(1f);
         source?.SetRolloffFactor(1f);
         source?.SetVolume(volume);
+
         return source != null;
     }
 

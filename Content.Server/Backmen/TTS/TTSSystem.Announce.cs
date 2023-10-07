@@ -35,7 +35,7 @@ public sealed partial class TTSSystem
 
         var textSsml = ToSsmlText(textSanitized, SoundTraits.RateFast);
 
-        var position = textSsml.LastIndexOf("\nОтправитель", StringComparison.InvariantCulture);
+        var position = textSsml.LastIndexOf("Отправитель", StringComparison.InvariantCulture);
         if (position != -1)
         {
             textSsml = textSsml[..position] + "<break time='33ms'/>" + textSsml[position..];

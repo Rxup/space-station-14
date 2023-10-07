@@ -5,9 +5,6 @@ using Content.Server.Administration.Managers;
 using Content.Server.Afk;
 using Content.Server.Chat.Managers;
 using Content.Server.Connection;
-using Content.Server.Corvax.DiscordAuth;
-using Content.Server.Corvax.JoinQueue;
-using Content.Server.Corvax.Sponsors;
 using Content.Server.Corvax.TTS;
 using Content.Server.Database;
 using Content.Server.EUI;
@@ -108,11 +105,14 @@ namespace Content.Server.Entry
                 IoCManager.Resolve<INodeGroupFactory>().Initialize();
                 IoCManager.Resolve<ContentNetworkResourceManager>().Initialize();
                 IoCManager.Resolve<GhostKickManager>().Initialize();
-                IoCManager.Resolve<DiscordAuthManager>().Initialize(); // Corvax-DiscordAuth
-                IoCManager.Resolve<SponsorsManager>().Initialize(); // Corvax-Sponsors
-                IoCManager.Resolve<JoinQueueManager>().Initialize(); // Corvax-Queue
                 IoCManager.Resolve<TTSManager>().Initialize(); // Corvax-TTS
                 IoCManager.Resolve<ServerInfoManager>().Initialize();
+
+                // start-backmen: IoC
+                IoCManager.Resolve<Content.Corvax.Interfaces.Server.IServerSponsorsManager>().Initialize();
+                IoCManager.Resolve<Content.Corvax.Interfaces.Server.IServerDiscordAuthManager>().Initialize();
+                IoCManager.Resolve<Content.Corvax.Interfaces.Server.IServerJoinQueueManager>().Initialize();
+                // end-backmen: IoC
 
                 _voteManager.Initialize();
                 _updateManager.Initialize();
@@ -156,6 +156,9 @@ namespace Content.Server.Entry
                 IoCManager.Resolve<IGameMapManager>().Initialize();
                 IoCManager.Resolve<IEntitySystemManager>().GetEntitySystem<GameTicker>().PostInitialize();
                 IoCManager.Resolve<IBanManager>().Initialize();
+                // start-backmen: IoC
+                IoCManager.Resolve<Content.Corvax.Interfaces.Server.IServerJoinQueueManager>().PostInitialize();
+                // end-backmen: IoC
             }
         }
 

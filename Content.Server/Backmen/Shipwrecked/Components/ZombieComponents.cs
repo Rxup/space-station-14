@@ -18,5 +18,6 @@ public sealed partial class ZombieSurpriseComponent : Component
 [Access(typeof(NPCZombieSystem))]
 public sealed partial class ZombifiedOnSpawnComponent : Component
 {
-
+    [DataField("isBoss")]
+    public bool IsBoss = false;
 }

@@ -27,11 +27,14 @@
   - Service
   - External
   #start-backmen: currency
-  minBankBalance: 300
-  maxBankBalance: 600
+  minBankBalance: 150
+  maxBankBalance: 250
   wageDepartment: Security
-  wage: 130
+  wage: 65
   #end-backmen: currency
+  special:
+  - !type:AddImplantSpecial
+    implants: [ MindShieldImplant ]
 
 - type: startingGear
   id: SeniorOfficerGear

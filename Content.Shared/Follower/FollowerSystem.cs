@@ -1,4 +1,3 @@
-using System.Linq;
 using System.Numerics;
 using Content.Shared.Database;
 using Content.Shared.Follower.Components;
@@ -9,11 +8,13 @@ using Content.Shared.Physics.Pull;
 using Content.Shared.Tag;
 using Content.Shared.Verbs;
 using Robust.Shared.Containers;
+using Robust.Shared.GameStates;
 using Robust.Shared.Map;
 using Robust.Shared.Map.Events;
 using Robust.Shared.Network;
 using Robust.Shared.Physics;
 using Robust.Shared.Physics.Systems;
+using Robust.Shared.Serialization;
 using Robust.Shared.Utility;
 
 namespace Content.Shared.Follower;
@@ -34,10 +35,37 @@ public sealed class FollowerSystem : EntitySystem
         SubscribeLocalEvent<GetVerbsEvent<AlternativeVerb>>(OnGetAlternativeVerbs);
         SubscribeLocalEvent<FollowerComponent, MoveInputEvent>(OnFollowerMove);
         SubscribeLocalEvent<FollowerComponent, PullStartedMessage>(OnPullStarted);
+        SubscribeLocalEvent<FollowerComponent, EntityTerminatingEvent>(OnFollowerTerminating);
+
         SubscribeLocalEvent<FollowerComponent, GotEquippedHandEvent>(OnGotEquippedHand);
         SubscribeLocalEvent<FollowedComponent, EntityTerminatingEvent>(OnFollowedTerminating);
-        SubscribeLocalEvent<FollowerComponent, EntityTerminatingEvent>(OnFollowerTerminating);
         SubscribeLocalEvent<BeforeSaveEvent>(OnBeforeSave);
+
+        SubscribeLocalEvent<FollowedComponent, ComponentGetState>(OnFollowedGetState);
+        SubscribeLocalEvent<FollowedComponent, ComponentHandleState>(OnFollowedHandleState);
+    }
+
+    [Serializable, NetSerializable]
+    private sealed class FollowedComponentState : ComponentState
+    {
+        public HashSet<NetEntity> Following = new();
+    }
+
+    private void OnFollowedGetState(EntityUid uid, FollowedComponent component, ref ComponentGetState args)
+    {
+        component.Following.RemoveWhere(x => TerminatingOrDeleted(x));
+        args.State = new FollowedComponentState()
+        {
+            Following = GetNetEntitySet(component.Following),
+        };
+    }
+
+    private void OnFollowedHandleState(EntityUid uid, FollowedComponent component, ref ComponentHandleState args)
+    {
+        if (args.Current is not FollowedComponentState state)
+            return;
+
+        component.Following = EnsureEntitySet<FollowedComponent>(state.Following, uid);
     }
 
     private void OnBeforeSave(BeforeSaveEvent ev)
@@ -111,9 +139,8 @@ public sealed class FollowerSystem : EntitySystem
 
     private void OnFollowerTerminating(EntityUid uid, FollowerComponent component, ref EntityTerminatingEvent args)
     {
-        StopFollowingEntity(uid, component.Following);
+        StopFollowingEntity(uid, component.Following, deparent: false);
     }
-
 
     // Since we parent our observer to the followed entity, we need to detach
     // before they get deleted so that we don't get recursively deleted too.
@@ -194,14 +221,11 @@ public sealed class FollowerSystem : EntitySystem
 
         RaiseLocalEvent(uid, uidEv, true);
         RaiseLocalEvent(target, targetEv, false);
-        Dirty(followed);
+        Dirty(target, followed);
         RaiseLocalEvent(uid, uidEv);
         RaiseLocalEvent(target, targetEv);
 
         if (!deparent || !TryComp(uid, out TransformComponent? xform))
-            return;
-
-        if (TerminatingOrDeleted(uid))
             return;
 
         _transform.AttachToGridOrMap(uid, xform);
