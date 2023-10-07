@@ -122,7 +122,7 @@ public sealed class GptAhelpSystem : EntitySystem
             return;
         }
 
-        var payload = new GptApiPacket(_apiModel, _history[userId].Select(x=>new GptApiMessage(x.role.ToString(), x.message)).ToArray(),0);
+        var payload = new GptApiPacket(_apiModel, _history[userId].Select(x=>new GptApiMessage(x.role.ToString(), x.message)).ToArray(),0.8f);
         var request = await _httpClient.PostAsync($"{_apiUrl}chat/completions",
             new StringContent(JsonSerializer.Serialize(payload), Encoding.UTF8, "application/json"));
 
