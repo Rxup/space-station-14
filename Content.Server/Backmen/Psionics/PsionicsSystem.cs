@@ -86,8 +86,9 @@ public sealed class PsionicsSystem : EntitySystem
         {
             Verb verb = new();
             verb.Text = Loc.GetString("prayer-verbs-remove-psi");
+            verb.Message = "Снять псионика";
             verb.Category = VerbCategory.Smite;
-            verb.Icon = new SpriteSpecifier.Texture(new("/Textures/Interface/gavel.svg.192dpi.png"));
+            verb.Icon = new SpriteSpecifier.Texture(new("/Textures/Backmen/Interface/VerbIcons/psionic_regeneration.png"));
             verb.Act = () =>
             {
                 _psionicAbilitiesSystem.RemovePsionics(args.Target, true);
@@ -103,8 +104,9 @@ public sealed class PsionicsSystem : EntitySystem
         {
             Verb verb = new();
             verb.Text = Loc.GetString("prayer-verbs-psi");
+            verb.Message = "Сделать псионика";
             verb.Category = VerbCategory.Tricks;
-            verb.Icon = new SpriteSpecifier.Texture(new("/Textures/Interface/gavel.svg.192dpi.png"));
+            verb.Icon = new SpriteSpecifier.Texture(new("/Textures/Backmen/Interface/VerbIcons/psionic_regeneration.png"));
             verb.Act = () =>
             {
                 _psionicAbilitiesSystem.AddPsionics(args.Target, false);
