@@ -1,0 +1,10 @@
+ent-PrisonerIDCard = prisoner ID card
+    .desc = { ent-IDCardStandard.desc }
+ent-UnaffiliatedIDCard = unaffiliated ID card
+    .desc = A card displaying a name and other identifying details.
+ent-ExplorerIDCard = explorer ID card
+    .desc = { ent-UnaffiliatedIDCard.desc }
+ent-StudentIDCard = student ID card
+    .desc = { ent-UnaffiliatedIDCard.desc }
+ent-FreelancerIDCard = freelancer ID card
+    .desc = { ent-UnaffiliatedIDCard.desc }

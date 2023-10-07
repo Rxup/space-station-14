@@ -1,0 +1,11 @@
+ent-SpawnPointEvilTwin = ghost role spawn point
+    .suffix = evil twin
+    .desc = { ent-MarkerBase.desc }
+ent-SpawnPointGhostFugitive = ghost role spawn point
+    .desc = { ent-MarkerBase.desc }
+ent-SpawnPointGhostIfrit = ghost role spawn point
+    .suffix = Ifrit
+    .desc = { ent-MarkerBase.desc }
+ent-SpawnPointGhostVampSpider = ghost role spawn point
+    .suffix = Vampire spider
+    .desc = { ent-MarkerBase.desc }

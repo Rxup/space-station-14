@@ -1,0 +1,10 @@
+ent-ClothingHeadsetOrden = Headset of the Red Order
+    .desc = Special typeface used by members of the Red Order
+ent-ClothingHeadsetFleetAdmiral = Fleet headset
+    .desc = A headset used by the upper echelons of Nanotrasen.
+ent-ClothingHeadsetFleet = Fleet headset
+    .desc = A headset used by the upper echelons of Nanotrasen.
+ent-ClothingHeadsetUEG = Гарнитура ОПЗ
+    .desc = Гарнитура используемая представителями ОПЗ
+ent-ClothingHeadsetUEGofficer = Гарнитура охраны ОПЗ
+    .desc = Гарнитура используемая офицерами ОПЗ

@@ -1,0 +1,16 @@
+ent-PosterLegitBarDrinks = Bar Poster
+    .desc = The Bartender is always there to hear your woes and get you plastered all at the same time. Go have a visit!
+ent-PosterLegitBotanyFood = Fruit Basket
+    .desc = Botany is always hard at work! Stop by and enjoy the best they can offer!
+ent-PosterContrabandBreadLies = Bread Lies
+    .desc = You have been lied to. There is no "Big Bread." It is not real. Please stop looking for it.
+ent-PosterLegitHotDonkExplosion = Donk!
+    .desc = Bite into a blast of flavour with any of our #1 rated fattening and unhealthy products for your enjoyment! DONK!
+ent-PosterLegitEatMeat = Eat Meat!
+    .desc = Who needs fruit or veggies? EAT MEAT! Build those muscles and go fight in the arena to show them gains!
+ent-PosterLegitMoreBread = More Bread!
+    .desc = There is not enough bread! MAKE MORE!
+ent-PosterLegitPieSlice = Pie Poster
+    .desc = Pies are healthy and delicious! Beg your chef to start making some.
+ent-PosterLegitPizzaHope = Pizza Hope
+    .desc = In the darkest of times there is only one hope, PIZZA! Harass your local Quartermaster to order an emergency crate of pizza now!

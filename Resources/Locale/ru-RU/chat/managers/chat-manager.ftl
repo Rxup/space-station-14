@@ -17,8 +17,9 @@ chat-manager-no-radio-key = Не задан ключ канала!
 chat-manager-no-such-channel = Нет канала с ключём '{ $key }'!
 chat-manager-whisper-headset-on-message = Вы не можете шептать в радио!
 chat-manager-server-wrap-message = [bold]{ $message }[/bold]
-chat-manager-sender-announcement-wrap-message = [font size=14][bold]Объявление { $sender }:[/font][font size=12]
-                                                { $message }[/bold][/font]
+chat-manager-sender-announcement-wrap-message =
+    [font size=14][bold]Объявление { $sender }:[/font][font size=12]
+    { $message }[/bold][/font]
 chat-manager-entity-say-wrap-message = [bold]{ $entityName }[/bold] { $verb }, [font={ $fontType } size={ $fontSize }]"{ $message }"[/font]
 chat-manager-entity-say-bold-wrap-message = [bold]{ $entityName }[/bold] { $verb }, [font={ $fontType } size={ $fontSize }][bold]"{ $message }"[/bold][/font]
 chat-manager-entity-whisper-wrap-message = [font size=11][italic]{ $entityName } шепчет, "{ $message }"[/italic][/font]
@@ -81,7 +82,6 @@ chat-speech-verb-ghost-4 = бормочет
 chat-speech-verb-cluwne-1 = хихикает
 chat-speech-verb-cluwne-2 = хехекает
 chat-speech-verb-cluwne-3 = смеётся
-
-chat-manager-send-collective-mind-chat-wrap-message = {$channel} коллективный разум: {$message}
-chat-manager-send-collective-mind-chat-wrap-message-admin = {$source} ({$channel} коллективный разум): {$message}
+chat-manager-send-collective-mind-chat-wrap-message = { $channel } коллективный разум: { $message }
+chat-manager-send-collective-mind-chat-wrap-message-admin = { $source } ({ $channel } коллективный разум): { $message }
 chat-manager-collective-mind-channel-name = коллективный разум
