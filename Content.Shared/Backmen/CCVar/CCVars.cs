@@ -8,6 +8,21 @@ namespace Content.Shared.Backmen.CCVar;
 public sealed class CCVars
 {
     /*
+     * GPT
+     */
+    public static readonly CVarDef<bool>
+        GptEnabled = CVarDef.Create("gpt.enabled", false, CVar.SERVERONLY);
+
+    public static readonly CVarDef<string>
+        GptModel = CVarDef.Create("gpt.model", "gpt-3.5-turbo", CVar.SERVERONLY);
+
+    public static readonly CVarDef<string>
+        GptApiUrl = CVarDef.Create("gpt.api", "https://api.openai.com/v1/", CVar.SERVERONLY | CVar.CONFIDENTIAL);
+
+    public static readonly CVarDef<string>
+        GptApiToken = CVarDef.Create("gpt.token", "", CVar.SERVERONLY | CVar.CONFIDENTIAL);
+
+    /*
      * Queue
      */
 

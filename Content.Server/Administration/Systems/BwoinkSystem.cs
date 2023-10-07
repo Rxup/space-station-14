@@ -436,6 +436,8 @@ namespace Content.Server.Administration.Systems
                 _messageQueues[msg.UserId].Enqueue(GenerateAHelpMessage(senderSession.Name, str, !personalChannel, admins.Count == 0));
             }
 
+            EntityManager.SystemOrNull<Backmen.GptAhelpSystem>()?.AddUserMessage(message.UserId, personalChannel, escapedText); // backmen: gpt
+
             if (admins.Count != 0 || sendsWebhook)
                 return;
 
