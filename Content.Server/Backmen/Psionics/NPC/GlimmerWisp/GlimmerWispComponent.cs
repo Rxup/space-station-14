@@ -18,6 +18,9 @@ public sealed partial class GlimmerWispComponent : Component
     [DataField("drainFinishSound")]
     public SoundSpecifier DrainFinishSoundPath = new SoundPathSpecifier("/Audio/Effects/guardian_inject.ogg");
 
+    [DataField("drainCancelSound")]
+    public SoundSpecifier DrainCancelSoundPath = new SoundPathSpecifier("/Audio/Voice/Human/malescream_guardian.ogg");
+
     public IPlayingAudioStream? DrainStingStream;
     public EntityUid? DrainTarget;
 }

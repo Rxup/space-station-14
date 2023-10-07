@@ -10,9 +10,11 @@ using Content.Shared.Rejuvenate;
 using Content.Shared.ActionBlocker;
 using Content.Shared.Pulling.Components;
 using Content.Server.Popups;
+using Content.Shared.Audio;
 using Robust.Shared.Player;
 using Robust.Shared.Utility;
 using Robust.Server.GameObjects;
+using Robust.Shared.Audio;
 
 namespace Content.Server.Backmen.Psionics.NPC.GlimmerWisp
 {
@@ -24,7 +26,7 @@ namespace Content.Server.Backmen.Psionics.NPC.GlimmerWisp
         [Dependency] private readonly ActionBlockerSystem _actionBlocker = default!;
         [Dependency] private readonly PopupSystem _popups = default!;
         [Dependency] private readonly AudioSystem _audioSystem = default!;
-        [Dependency] private readonly NPCSystem _combatTargetSystem = default!;
+        [Dependency] private readonly NpcFactionSystem _npcFaction = default!;
         public override void Initialize()
         {
             base.Initialize();
@@ -67,12 +69,17 @@ namespace Content.Server.Backmen.Psionics.NPC.GlimmerWisp
 
             if (args.Cancelled)
             {
-                if (TryComp<SharedPullableComponent>(args.Args.Target.Value, out var pullable) && pullable.Puller != null)
-                    _combatTargetSystem.SetBlackboard(uid,"Target",pullable.Puller.Value); // backmen
+                component.DrainStingStream?.Stop();
+                if (TryComp<SharedPullableComponent>(args.Args.Target.Value, out var pullable) &&
+                    pullable.Puller != null)
+                {
+                    _npcFaction.AggroEntity(uid, pullable.Puller.Value);
+                }
 
                 //if (TryComp<BeingCarriedComponent>(args.Args.Target.Value, out var carried))
                 //    _combatTargetSystem.StartHostility(uid, carried.Carrier);
 
+                _audioSystem.PlayPvs(component.DrainCancelSoundPath, uid, AudioParams.Default.WithVariation(0.20f));
                 return;
             }
 
@@ -122,6 +129,7 @@ namespace Content.Server.Backmen.Psionics.NPC.GlimmerWisp
             {
                 BreakOnTargetMove = true,
                 BreakOnUserMove = false,
+                BreakOnDamage = true,
                 DistanceThreshold = 2f,
                 NeedHand = false
             };
