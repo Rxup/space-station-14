@@ -273,6 +273,7 @@
       - id: ClothingHeadCage # backmen
       - id: PresentOracle # backmen
       - id: PresentSophie # backmen
+      - id: PonderingOrbTelepathic # backmen
 
 - type: entity
   id: LockerResearchDirectorFilled
@@ -300,6 +301,7 @@
       - id: ClothingHeadCage # backmen
       - id: PresentOracle # backmen
       - id: PresentSophie # backmen
+      - id: PonderingOrbTelepathic # backmen
 
 - type: entity
   id: LockerHeadOfSecurityFilledHardsuit

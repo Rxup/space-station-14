@@ -2,7 +2,7 @@
   id: HappyHonkInventory1
   productEntity: HappyHonk
   cost:
-    SpaceCash: 50
+    SpaceCash: 55
   categories:
     - HappyHonkInventory
   conditions:
@@ -13,7 +13,7 @@
   id: HappyHonkInventory2
   productEntity: HappyHonkMime
   cost:
-    SpaceCash: 50
+    SpaceCash: 55
   categories:
     - HappyHonkInventory
   conditions:

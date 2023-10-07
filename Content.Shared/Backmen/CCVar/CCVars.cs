@@ -17,6 +17,9 @@ public sealed class CCVars
     public static readonly CVarDef<bool>
         QueueEnabled = CVarDef.Create("queue.enabled", false, CVar.SERVERONLY);
 
+    public static readonly CVarDef<bool>
+        QueueAltEnabled = CVarDef.Create("queue.alt_servers", false, CVar.SERVERONLY);
+
     /*
      * Discord Auth
      */
