@@ -100,5 +100,3 @@ ent-SpawnMobGorilla = Gorilla Spawner
     .desc = { ent-MarkerBase.desc }
 ent-SpawnMobPenguin = Penguin Spawner
     .desc = { ent-MarkerBase.desc }
-ent-SpawnMobOreCrab = ore crab spawner
-    .desc = { ent-MarkerBase.desc }

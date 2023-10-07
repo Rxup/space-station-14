@@ -8,21 +8,6 @@ ent-OBRJunitorIDCard = Id карта уборщика ОБР
     .desc = { ent-OBRIDCard.desc }
 ent-OBRLeaderIDCard = Id карта командира ОБР
     .desc = { ent-CentcomIDCard.desc }
-ent-ClothingBackpackERTLeaderFilledV2.1 = { ent-ClothingBackpackERTLeader }
-
-  .desc = { ent-ClothingBackpackERTLeader.desc }
-ent-ClothingBackpackERTEngineerFilledV2.1 = { ent-ClothingBackpackERTEngineer }
-
-  .desc = { ent-ClothingBackpackERTEngineer.desc }
-ent-ClothingBackpackERTSecurityFilledV2.1 = { ent-ClothingBackpackERTSecurity }
-
-  .desc = { ent-ClothingBackpackERTSecurity.desc }
-ent-ClothingBackpackERTMedicalFilledV2.1 = { ent-ClothingBackpackERTMedical }
-
-  .desc = { ent-ClothingBackpackERTMedical.desc }
-ent-ClothingBackpackERTJanitorFilledV2.1 = { ent-ClothingBackpackERTJanitor }
-
-  .desc = { ent-ClothingBackpackERTJanitor.desc }
 ent-MobHumanERTLeaderEVAV2_1 = лидер ОБР
     .suffix = corvax
     .desc = { ent-MobHuman.desc }

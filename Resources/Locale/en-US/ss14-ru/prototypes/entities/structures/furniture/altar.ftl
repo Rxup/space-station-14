@@ -1,5 +1,5 @@
 ent-AltarBase = altar
-    .desc = Altar of the Gods. Those with some divine potential can sacrifice psionics on top of it.
+    .desc = Altar of the Gods.
 ent-AltarNanotrasen = nanotrasen altar
     .desc = { ent-AltarBase.desc }
 ent-AltarChaos = chaos altar
