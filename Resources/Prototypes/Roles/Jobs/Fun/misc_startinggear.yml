@@ -352,7 +352,7 @@
     shoes: ClothingShoesCult
 
 - type: startingGear
-  id: UEGrepresentative
+  id: UEGrepresentativeGear
   equipment:
     jumpsuit: ClothingUniformJumpsuitUEG
     back: ClothingBackpackERTLeader
@@ -366,7 +366,7 @@
     neck: ClothingNeckCloakUEG
 
 - type: startingGear
-  id: UEGofficer
+  id: UEGofficerGear
   equipment:
     jumpsuit: ClothingUniformJumpsuitUEGofficer
     outerClothing: ClothingOuterHardsuitUEG
