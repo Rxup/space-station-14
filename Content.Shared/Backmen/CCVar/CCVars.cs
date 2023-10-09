@@ -14,7 +14,7 @@ public sealed class CCVars
         GptEnabled = CVarDef.Create("gpt.enabled", false, CVar.SERVERONLY);
 
     public static readonly CVarDef<string>
-        GptModel = CVarDef.Create("gpt.model", "gpt-3.5-turbo", CVar.SERVERONLY);
+        GptModel = CVarDef.Create("gpt.model", "gpt-3.5-turbo-0613", CVar.SERVERONLY);
 
     public static readonly CVarDef<string>
         GptApiUrl = CVarDef.Create("gpt.api", "https://api.openai.com/v1/", CVar.SERVERONLY | CVar.CONFIDENTIAL);
