@@ -30,16 +30,18 @@
   accessGroups:
     - AllAccess
   special:
+    - !type:AddImplantSpecial
+      implants: [ MindShieldImplant ]
     - !type:AddComponentSpecial
       components:
         - type: SpecForce
           actionBssActionName: ActionCentcomFtlAction
         - type: Psionic
         - type: DispelPower
-  minBankBalance: 800
-  maxBankBalance: 1200
+  minBankBalance: 400
+  maxBankBalance: 600
   wageDepartment: CentCom
-  wage: 200
+  wage: 75
 
 - type: startingGear
   id: OperatorGavna

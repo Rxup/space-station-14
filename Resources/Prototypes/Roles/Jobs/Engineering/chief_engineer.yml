@@ -29,11 +29,21 @@
   - ChiefEngineer
   - Atmospherics
   #start-backmen: currency
-  minBankBalance: 800
-  maxBankBalance: 1200
+  minBankBalance: 400
+  maxBankBalance: 600
   wageDepartment: Command
-  wage: 200
+  wage: 100
   #end-backmen: currency
+  special:
+  - !type:AddComponentSpecial
+    components:
+      - type: PsionicBonusChance
+        flatBonus: 0.025
+  - !type:AddImplantSpecial
+    implants: [ MindShieldImplant ]
+  - !type:AddComponentSpecial
+    components:
+      - type: CommandStaff
 
 - type: startingGear
   id: ChiefEngineerGear

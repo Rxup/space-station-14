@@ -10,8 +10,8 @@
   - Service
   - Maintenance
   #start-backmen: currency
-  minBankBalance: 300
-  maxBankBalance: 500
+  minBankBalance: 150
+  maxBankBalance: 250
   #end-backmen: currency
 
 - type: startingGear

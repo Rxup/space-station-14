@@ -27,16 +27,18 @@
   accessGroups:
     - AllAccess
   special:
+    - !type:AddImplantSpecial
+      implants: [ MindShieldImplant ]
     - !type:AddComponentSpecial
       components:
         - type: SpecForce
           actionBssActionName: ActionCentcomFtlAction
         - type: PsionicBonusChance
           multiplier: 3
-  minBankBalance: 400
-  maxBankBalance: 600
+  minBankBalance: 200
+  maxBankBalance: 300
   wageDepartment: CentCom
-  wage: 100
+  wage: 50
 
 - type: startingGear
   id: CCCargo
