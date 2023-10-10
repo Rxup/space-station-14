@@ -1,4 +1,4 @@
-﻿ent-SpaceCredit = кредиты
+ent-SpaceCredit = кредиты
     .desc = Деньги это все.
     .suffix = { "" }
 ent-SpaceCredit10 = { ent-SpaceCredit }

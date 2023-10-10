@@ -1,0 +1,9 @@
+ent-SalvagePartsSpawnerLow = спавнер утилизационных частей
+    .suffix = Слабый
+    .desc = { ent-MarkerBase.desc }
+ent-SalvagePartsSpawnerMid = { ent-SalvagePartsSpawnerLow }
+    .suffix = Сильный
+    .desc = { ent-MarkerBase.desc }
+ent-SalvagePartsSpawnerSubSpace = { ent-SalvagePartsSpawnerLow }
+    .suffix = Блюспейс
+    .desc = { ent-MarkerBase.desc }

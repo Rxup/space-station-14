@@ -99,7 +99,7 @@ public sealed class PsionicAbilitiesSystem : EntitySystem
         _glimmerSystem.Glimmer += _random.Next(1, 5);
     }
 
-    public void RemovePsionics(EntityUid uid)
+    public void RemovePsionics(EntityUid uid, bool noEffect = false)
     {
         if (!TryComp<PsionicComponent>(uid, out var psionic))
             return;
@@ -123,7 +123,8 @@ public sealed class PsionicAbilitiesSystem : EntitySystem
         if (psionic.PsionicAbility != null)
             _actionsSystem.RemoveAction(uid, psionic.PsionicAbility);
 
-        _statusEffectsSystem.TryAddStatusEffect(uid, "Stutter", TimeSpan.FromMinutes(5), false, "StutteringAccent");
+        if(!noEffect)
+            _statusEffectsSystem.TryAddStatusEffect(uid, "Stutter", TimeSpan.FromMinutes(5), false, "StutteringAccent");
 
         RemComp<PsionicComponent>(uid);
     }

@@ -9,7 +9,8 @@
                 <BoxContainer Orientation="Horizontal" HorizontalExpand="True">
                     <Button Visible="True" Name="PopOut" Access="Public" Text="{Loc 'admin-logs-pop-out'}" StyleClasses="OpenBoth" HorizontalAlignment="Left" />
                     <Control HorizontalExpand="True" />
-                    <Button Visible="False" Name="Bans" Text="{Loc 'admin-player-actions-bans'}" StyleClasses="OpenRight" />
+                    <Button Visible="False" Name="GptChat" Text="{Loc 'admin-player-actions-gpt'}" StyleClasses="OpenRight" /> <!-- backmen: gpt -->
+                    <Button Visible="False" Name="Bans" Text="{Loc 'admin-player-actions-bans'}" StyleClasses="OpenBoth" />
                     <Button Visible="False" Name="Notes" Text="{Loc 'admin-player-actions-notes'}" StyleClasses="OpenBoth" />
                     <Button Visible="False" Name="Kick" Text="{Loc 'admin-player-actions-kick'}" StyleClasses="OpenBoth" />
                     <Button Visible="False" Name="Ban" Text="{Loc 'admin-player-actions-ban'}" StyleClasses="OpenBoth" />
