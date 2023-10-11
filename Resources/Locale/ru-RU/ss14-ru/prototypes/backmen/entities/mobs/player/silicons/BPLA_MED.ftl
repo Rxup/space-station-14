@@ -1,0 +1,13 @@
+ent-BSSClothingBackpackSatchelDroneMED = Сумка БСС Дрона Медицинского Направления
+    .desc = { ent-BSSClothingBackpackSatchelDrone.desc }
+ent-HandheldHealthAnalyzerINF = { ent-HandheldHealthAnalyzer }
+    .suffix = Backmen, INF
+    .desc = { ent-HandheldHealthAnalyzer.desc }
+ent-DefibrillatorINF = defibrillator
+    .desc = CLEAR! Zzzzat!
+    .suffix = Backmen, INF
+ent-HandheldCrewMonitorINF = handheld crew monitor
+    .desc = A hand-held crew monitor displaying the status of suit sensors.
+    .suffix = Backmen, INF
+ent-BackmenDroneMED = Blue Space Drone MED
+    .desc = Разработан в НИИ Космических технологий с использованием Блюспейс технологий.

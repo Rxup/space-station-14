@@ -3,7 +3,6 @@ using System.Numerics;
 using Content.Server.AlertLevel;
 using Content.Server.Body.Systems;
 using Content.Server.Chat.Systems;
-using Content.Server.Climbing;
 using Content.Server.Backmen.Flesh.FleshGrowth;
 using Content.Server.Humanoid;
 using Content.Server.Popups;
@@ -14,6 +13,7 @@ using Content.Shared.Body.Part;
 using Content.Shared.Damage;
 using Content.Shared.Destructible;
 using Content.Shared.Backmen.Flesh;
+using Content.Shared.Climbing.Events;
 using Content.Shared.Humanoid;
 using Content.Shared.Humanoid.Prototypes;
 using Content.Shared.Mind.Components;
@@ -215,7 +215,7 @@ namespace Content.Server.Backmen.Flesh
             component.BodyContainer = _containerSystem.EnsureContainer<Container>(uid, "bodyContainer");
         }
 
-        private void OnClimbedOn(EntityUid uid, FleshHeartComponent component, ClimbedOnEvent args)
+        private void OnClimbedOn(EntityUid uid, FleshHeartComponent component, ref ClimbedOnEvent args)
         {
             if (!CanAbsorb(uid, args.Climber, component))
             {

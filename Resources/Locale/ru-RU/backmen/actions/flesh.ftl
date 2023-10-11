@@ -12,13 +12,11 @@ flesh-pudge-transform-user = Вы превращаетесь в { CAPITALIZE($En
 flesh-pudge-transform-others = { CAPITALIZE($Entity) } превращается в { CAPITALIZE($EntityTransform) }.
 flesh-pudge-transform-begin-user = Вы начинаете преображаться.
 flesh-pudge-transform-begin-others = { CAPITALIZE($Entity) } начинает трансформироваться.
-
 flesh-mob-cant-atack-flesh-heart = Вы не можете атаковать плотское сердце.
 flesh-mob-cant-atack-flesh-mob = Вы не можете атаковать мобов из плоти.
 flesh-mob-cant-atack-flesh-cultist = Вы не можете нападать на культистов плоти.
 flesh-worm-jump-name = Прыгать
 flesh-worm-jump-desc = Позволяет вам совершить прыжок в выбранном направлении. Если вы ударите гуманоида без маски, вы вцепитесь ему в лицо.
-
 mob-flesh-ghost-role-rules = Не нападайте на культистов плоти, не разрушайте плотины, серверы, консоли и так далее. Не приводите к нарушениям.
 mob-flesh-abom-ghost-role-name = Мерзость плоти
 mob-flesh-abom-ghost-role-decs = Ты - разумная плоть. Сотрудничайте с другими существами из плоти, чтобы взять станцию под контроль.
@@ -32,4 +30,3 @@ mob-flesh-bat-ghost-role-name = Летучая мышь из плоти
 mob-flesh-bat-ghost-role-decs = Ты - разумная плоть. Сотрудничайте с другими существами из плоти, чтобы взять станцию под контроль.
 mob-flesh-worm-ghost-role-name = Мясной червь
 mob-flesh-worm-ghost-role-decs = Ты - разумная плоть. Сотрудничайте с другими существами из плоти, чтобы взять станцию под контроль.
-

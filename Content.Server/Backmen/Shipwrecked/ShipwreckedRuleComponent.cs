@@ -1,4 +1,5 @@
 ﻿using Content.Server.Backmen.Shipwrecked.Prototypes;
+using Content.Shared.Corvax.TTS;
 using Content.Shared.Procedural;
 using Content.Shared.Roles;
 using Robust.Server.Player;
@@ -31,6 +32,10 @@ public sealed partial class ShipwreckedRuleComponent : Component
     [ViewVariables]
     [DataField("availableJobs", required: true)]
     public List<ProtoId<JobPrototype>> AvailableJobPrototypes = default!;
+
+    [ViewVariables]
+    [DataField("tts")]
+    public ProtoId<TTSVoicePrototype> Tts = "Baya";
 
     /// <summary>
     /// The destinations for the shipwreck.

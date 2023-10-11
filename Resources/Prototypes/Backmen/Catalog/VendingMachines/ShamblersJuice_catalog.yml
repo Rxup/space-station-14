@@ -2,7 +2,7 @@
   id: ShamblersJuiceInventory1
   productEntity: DrinkShamblersJuiceCan
   cost:
-    SpaceCash: 10
+    SpaceCash: 15
   categories:
     - ShamblersJuiceInventory
   conditions:
@@ -13,7 +13,7 @@
   id: ShamblersJuiceInventory2
   productEntity: DrinkGrapeCan
   cost:
-    SpaceCash: 10
+    SpaceCash: 15
   categories:
     - ShamblersJuiceInventory
   conditions:
@@ -24,7 +24,7 @@
   id: ShamblersJuiceInventory3
   productEntity: DrinkRootBeerCan
   cost:
-    SpaceCash: 20
+    SpaceCash: 25
   categories:
     - ShamblersJuiceInventory
   conditions:
@@ -35,7 +35,7 @@
   id: ShamblersJuiceInventory4
   productEntity: DrinkIcedTeaCan
   cost:
-    SpaceCash: 30
+    SpaceCash: 35
   categories:
     - ShamblersJuiceInventory
   conditions:
@@ -46,7 +46,7 @@
   id: ShamblersJuiceInventory5
   productEntity: DrinkLemonLimeCan
   cost:
-    SpaceCash: 20
+    SpaceCash: 25
   categories:
     - ShamblersJuiceInventory
   conditions:
@@ -57,10 +57,9 @@
   id: ShamblersJuiceInventory6
   productEntity: DrinkFourteenLokoCan
   cost:
-    SpaceCash: 20
+    SpaceCash: 25
   categories:
     - ShamblersJuiceInventory
   conditions:
     - !type:ListingLimitedStockCondition
       stock: 15
-         

@@ -8,16 +8,16 @@
   },
   "states": [
     {
-      "name": "classic-open"
+      "name": "icon-open"
     },
     {
-      "name": "classic"
+      "name": "icon"
     },
     {
-      "name": "classic-clown"
+      "name": "clown"
     },
     {
-      "name": "classic-empty"
+      "name": "trash"
     }
   ]
 }

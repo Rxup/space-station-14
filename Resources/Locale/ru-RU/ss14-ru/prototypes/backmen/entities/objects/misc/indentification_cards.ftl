@@ -1,0 +1,14 @@
+ent-IDCardMOG = Id карта МОГ
+    .desc = { ent-CentcomIDCardDeathsquad.desc }
+ent-IdCardIOG = Id карта ИОГ
+    .desc = { ent-CentcomIDCardDeathsquad.desc }
+ent-IdCardRO = Id карта Красного Ордена
+    .desc = { ent-CentcomIDCardDeathsquad.desc }
+ent-BrigmedIDCard = ID карта бригмедика
+    .desc = { ent-IDCardStandard.desc }
+ent-DeliveryIDCard = ID карта доставщика
+    .desc = { ent-IDCardStandard.desc }
+ent-UEGrepIDCard = ID карта представителя ОПЗ
+    .desc = { ent-IDCardStandard.desc }
+ent-UEGoffIDCard = ID карта офицера ОПЗ
+    .desc = { ent-IDCardStandard.desc }

@@ -15,7 +15,7 @@
   - Kitchen
   extendedAccess:
   - Hydroponics
-  minBankBalance: 300
-  maxBankBalance: 500
+  minBankBalance: 150
+  maxBankBalance: 250
   wageDepartment: Civilian
-  wage: 100
+  wage: 50

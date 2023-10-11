@@ -1,4 +1,13 @@
 ﻿- type: entity
+  id: FleshCult
+  parent: BaseGameRule
+  noSpawn: true
+  components:
+    - type: FleshCultRule
+      faction: Flesh
+
+
+- type: entity
   id: Shipwrecked
   parent: BaseGameRule
   noSpawn: true
@@ -14,6 +23,9 @@
         - DesertWastes
         - FrozenWastes
         - Jungle
+        - Continental
+        - Lava
+        #- RuinedMegacity
       spawnPointHecate: SpawnPointShipwreckHecate
       hecatePrototype: MobQuestHecateShipwrecked
       eventSchedule:
@@ -36,3 +48,4 @@
   id: ShipwreckedPool
   maps:
     - ShwrAdventurer
+    - ShwrBig

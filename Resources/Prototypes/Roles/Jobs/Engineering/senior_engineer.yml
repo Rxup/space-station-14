@@ -22,10 +22,10 @@
   - External
   - Atmospherics
   #start-backmen: currency
-  minBankBalance: 300
-  maxBankBalance: 600
+  minBankBalance: 150
+  maxBankBalance: 300
   wageDepartment: Engineering
-  wage: 135
+  wage: 75
   #end-backmen: currency
 
 - type: startingGear
