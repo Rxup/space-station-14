@@ -539,7 +539,7 @@
 
 - type: entity
   parent: ClothingUniformSkirtBase
-  id: ClothingUniformJumpskirtLibrarian
+  id: ClothingUniformJumpskirtLibrarianOLD
   name: librarian jumpskirt
   description: A cosy green jumper fit for a curator of books.
   components:

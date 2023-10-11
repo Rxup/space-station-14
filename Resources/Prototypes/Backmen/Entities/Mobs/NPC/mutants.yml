@@ -182,7 +182,7 @@
   - type: Tag
     tags:
       - Oneirophage
-      - FootstepSounds
+      - FootstepSound
   - type: MovementAlwaysTouching
   - type: PsionicInvisibleContacts
     whitelist:
