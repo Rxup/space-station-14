@@ -16,11 +16,3 @@
       contents:
         - id: Rapier
 
-- type: entity
-  id: ClothingBeltSheathFilledMythistophelRapier
-  parent: ClothingBeltMythistophelRapier
-  suffix: Filled
-  components:
-    - type: StorageFill
-      contents:
-        - id: MythistophelRapier
