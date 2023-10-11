@@ -49,17 +49,22 @@
   - Cargo
   - Atmospherics
   - Medical
+  #start-backmen: currency
+  minBankBalance: 400
+  maxBankBalance: 600
+  wageDepartment: Command
+  wage: 100
+  #end-backmen: currency
   special:
     - !type:AddComponentSpecial
       components:
         - type: PsionicBonusChance
           flatBonus: 0.025
-  #start-backmen: currency
-  minBankBalance: 800
-  maxBankBalance: 1200
-  wageDepartment: Command
-  wage: 200
-  #end-backmen: currency
+    - !type:AddImplantSpecial
+      implants: [ MindShieldImplant ]
+    - !type:AddComponentSpecial
+      components:
+        - type: CommandStaff
 
 - type: startingGear
   id: HoPGear
@@ -70,6 +75,7 @@
     head: ClothingHeadHatHopcap
     id: HoPPDA
     ears: ClothingHeadsetAltCommand
+    belt: BoxFolderClipboard
   innerclothingskirt: ClothingUniformJumpskirtHoP
   satchel: ClothingBackpackSatchelHOPFilled
   duffelbag: ClothingBackpackDuffelHOPFilled

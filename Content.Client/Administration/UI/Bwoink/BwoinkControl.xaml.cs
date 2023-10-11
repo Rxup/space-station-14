@@ -119,6 +119,14 @@ namespace Content.Client.Administration.UI.Bwoink
                     _console.ExecuteCommand($"banpanel \"{_currentPlayer.SessionId}\"");
             };
 
+            // start-backmen: gpt
+            GptChat.OnPressed += _ =>
+            {
+                if (_currentPlayer is not null)
+                    _console.ExecuteCommand($"ahelp_gpt \"{_currentPlayer.Username}\"");
+            };
+            // end-backmen: gpt
+
             Kick.OnPressed += _ =>
             {
                 if (!AdminUIHelpers.TryConfirm(Kick, _confirmations))
@@ -181,6 +189,11 @@ namespace Content.Client.Administration.UI.Bwoink
         public void UpdateButtons()
         {
             var disabled = _currentPlayer == null;
+
+            // start-backmen: gpt
+            GptChat.Visible = _adminManager.CanCommand("ahelp_gpt");
+            GptChat.Disabled = !GptChat.Visible || disabled;
+            // end-backmen: gpt
 
             Bans.Visible = _adminManager.HasFlag(AdminFlags.Ban);
             Bans.Disabled = !Bans.Visible || disabled;

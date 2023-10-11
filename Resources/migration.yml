@@ -183,3 +183,7 @@ GeneratorPlasma: PortableGeneratorPacman
 GeneratorUranium: PortableGeneratorSuperPacman
 GeneratorPlasmaMachineCircuitboard: PortableGeneratorPacmanMachineCircuitboard
 GeneratorUraniumMachineCircuitboard: PortableGeneratorSuperPacmanMachineCircuitboard
+
+
+FoodTinBeansOpen: FoodTinBeans
+FoodTinMREOpen: FoodTinMRE

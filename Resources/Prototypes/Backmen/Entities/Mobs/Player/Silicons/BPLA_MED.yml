@@ -29,8 +29,6 @@
 - type: entity
   parent: HandheldHealthAnalyzer
   id: HandheldHealthAnalyzerINF
-  name: health analyzer
-  description: A hand-held body scanner capable of distinguishing vital signs of the subject.
   suffix: Backmen, INF
   components:
     - type: PowerCellDraw

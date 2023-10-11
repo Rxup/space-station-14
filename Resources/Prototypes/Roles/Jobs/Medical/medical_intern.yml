@@ -16,10 +16,10 @@
   - Medical
   - Maintenance
   #start-backmen: currency
-  minBankBalance: 300
-  maxBankBalance: 500
+  minBankBalance: 150
+  maxBankBalance: 250
   wageDepartment: Medical
-  wage: 50
+  wage: 25
   #end-backmen: currency
 
 - type: startingGear

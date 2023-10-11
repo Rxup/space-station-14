@@ -2,7 +2,7 @@
   id: HotDrinksMachineInventory1
   productEntity: DrinkHotCoffee
   cost:
-    SpaceCash: 15
+    SpaceCash: 20
   categories:
     - HotDrinksMachineInventory
   conditions:
@@ -13,7 +13,7 @@
   id: HotDrinksMachineInventory2
   productEntity: DrinkCafeLatte
   cost:
-    SpaceCash: 15
+    SpaceCash: 20
   categories:
     - HotDrinksMachineInventory
   conditions:
@@ -24,7 +24,7 @@
   id: HotDrinksMachineInventory3
   productEntity: DrinkTeacup
   cost:
-    SpaceCash: 15
+    SpaceCash: 20
   categories:
     - HotDrinksMachineInventory
   conditions:
@@ -35,7 +35,7 @@
   id: HotDrinksMachineInventory4
   productEntity: DrinkGreenTea
   cost:
-    SpaceCash: 15
+    SpaceCash: 20
   categories:
     - HotDrinksMachineInventory
   conditions:

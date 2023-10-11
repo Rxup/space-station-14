@@ -1,4 +1,4 @@
-﻿- type: job
+- type: job
   id: SecurityCadet
   name: job-name-cadet
   description: job-description-cadet
@@ -19,11 +19,14 @@
   - Brig
   - Maintenance
   #start-backmen: currency
-  minBankBalance: 300
-  maxBankBalance: 500
+  minBankBalance: 150
+  maxBankBalance: 250
   wageDepartment: Security
-  wage: 50
+  wage: 25
   #end-backmen: currency
+  special:
+  - !type:AddImplantSpecial
+    implants: [ MindShieldImplant ]
 
 - type: startingGear
   id: SecurityCadetGear

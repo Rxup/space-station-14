@@ -105,6 +105,8 @@
   - type: BatterySelfRecharger
     autoRecharge: true
     autoRechargeRate: 100
+  - type: NPCRetaliation
+  - type: FactionException
   - type: HTN
     rootTask:
       task: WispCombatCompound

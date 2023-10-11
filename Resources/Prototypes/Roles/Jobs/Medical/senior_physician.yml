@@ -21,10 +21,10 @@
   - Maintenance
   - Chemistry
   #start-backmen: currency
-  minBankBalance: 300
-  maxBankBalance: 600
+  minBankBalance: 150
+  maxBankBalance: 250
   wageDepartment: Medical
-  wage: 135
+  wage: 78
   #end-backmen: currency
 
 - type: startingGear

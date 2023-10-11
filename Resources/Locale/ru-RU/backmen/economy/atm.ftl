@@ -1,4 +1,4 @@
-﻿atm-ui-default-welcome-label = Добро пожаловать!
+atm-ui-default-welcome-label = Добро пожаловать!
 atm-ui-welcome-label-w-name = Добро пожаловать, { $name }!
 atm-ui-no-card-label = Вставьте карту
 atm-ui-default-error-text = Упс, кажется произошла ошибка!

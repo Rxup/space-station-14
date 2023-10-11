@@ -1,7 +1,7 @@
 ﻿- type: entity
   id: FleshCultistShop
-  name: flesh-cultist-shop-name
-  description: flesh-cultist-shop-desc
+  name: Evolution Shop
+  description: Here you can purchase active skills and passive enhancements.
   noSpawn: true
   components:
     - type: InstantAction
@@ -10,8 +10,8 @@
 
 - type: entity
   id: FleshCultistBlade
-  name: flesh-cultist-blade-name
-  description: flesh-cultist-blade-desc
+  name: Flesh Blade
+  description: Transforms the active hand into a deadly blade made of flesh and bones.
   noSpawn: true
   components:
     - type: InstantAction
@@ -21,8 +21,8 @@
 
 - type: entity
   id: FleshCultistBreakCuffs
-  name: flesh-cultist-break-cuffs-name
-  description: flesh-cultist-break-cuffs-desc
+  name: Break Cuffs
+  description: You can break free from any handcuffs or straightjacket.
   noSpawn: true
   components:
     - type: InstantAction
@@ -32,8 +32,8 @@
 
 - type: entity
   id: FleshCultistAdrenalin
-  name: flesh-cultist-adrenalin-name
-  description: flesh-cultist-adrenalin-desc
+  name: Adrenaline Synthesis
+  description: The parasite synthesizes and injects a dose of adrenaline into you, increasing your speed and stun resistance.
   noSpawn: true
   components:
     - type: InstantAction
@@ -43,8 +43,8 @@
 
 - type: entity
   id: FleshCultistCreateFleshHeart
-  name: flesh-cultist-create-flesh-heart-name
-  description: flesh-cultist-create-flesh-heart-desc
+  name: Create Flesh Heart
+  description: Creates a flesh heart in front of you. It is your key objective on the station. To activate it, you need to use 3 bodies of evolved flesh creatures. After activation, be prepared to defend it against security personnel.
   noSpawn: true
   components:
     - type: InstantAction
@@ -54,8 +54,8 @@
 
 - type: entity
   id: FleshCultistThrowWorm
-  name: flesh-cultist-throw-worm-name
-  description: flesh-cultist-throw-worm-desc
+  name: Worm Vomit
+  description: Vomits a flesh worm to throw at enemy faces.
   noSpawn: true
   components:
     - type: InstantAction
@@ -65,8 +65,8 @@
 
 - type: entity
   id: FleshCultistAcidSpit
-  name: flesh-cultist-acid-spit-name
-  description: flesh-cultist-acid-spit-desc
+  name: Acid Spit
+  description: Spit acid at your enemies.
   noSpawn: true
   components:
     - type: WorldTargetAction
@@ -77,8 +77,8 @@
 
 - type: entity
   id: FleshCultistClaw
-  name: flesh-cultist-claw-name
-  description: flesh-cultist-claw-desc
+  name: Flesh Claw
+  description: Transforms the active hand into a functional claw made of flesh and bones.
   noSpawn: true
   components:
     - type: InstantAction
@@ -88,8 +88,8 @@
 
 - type: entity
   id: FleshCultistFist
-  name: flesh-cultist-fist-name
-  description: flesh-cultist-fist-desc
+  name: Flesh Fist
+  description: Transforms the active hand into a massive flesh fist that can easily break through any structures.
   noSpawn: true
   components:
     - type: InstantAction
@@ -99,8 +99,8 @@
 
 - type: entity
   id: FleshCultistSpikeGun
-  name: flesh-cultist-spike-gun-name
-  description: flesh-cultist-spike-gun-desc
+  name: Spike Gun Hand
+  description: Transforms the active hand into a deadly spike gun made of flesh.
   noSpawn: true
   components:
     - type: InstantAction
@@ -110,8 +110,8 @@
 
 - type: entity
   id: FleshCultistArmor
-  name: flesh-cultist-armor-name
-  description: flesh-cultist-armor-desc
+  name: Flesh Armor
+  description: Covers you in armor made of flesh and bones.
   noSpawn: true
   components:
     - type: InstantAction
@@ -121,8 +121,8 @@
 
 - type: entity
   id: FleshCultistSpiderlegs
-  name: flesh-cultist-spider-legs-name
-  description: flesh-cultist-spider-legs-desc
+  name: Spider Form
+  description: Transforms a part of your body into a spider-like form, providing moderate protection and a significant increase in speed.
   noSpawn: true
   components:
     - type: InstantAction
@@ -132,8 +132,8 @@
 
 - type: entity
   id: FleshCultistAbsorbBloodPool
-  name: flesh-cultist-absorb-blood-pool-name
-  description: flesh-cultist-absorb-blood-pool-desc
+  name: Blood Pool Absorption
+  description: Allows you to absorb clean blood puddles for healing.
   noSpawn: true
   components:
     - type: InstantAction
@@ -143,8 +143,8 @@
 
 - type: entity
   id: FleshCultistDevour
-  name: flesh-cultist-devour-name
-  description: flesh-cultist-devour-desc
+  name: Corpse Devour
+  description: You can devour any flesh creature to gain evolution points and heal wounds.
   noSpawn: true
   components:
     - type: EntityTargetAction
@@ -157,8 +157,8 @@
 
 - type: entity
   id: ActionWormJump
-  name: flesh-worm-jump-description
-  description: action-description-noospheric-zap
+  name: Worm Jump
+  description: Jump into mouse target
   noSpawn: true
   components:
     - type: WorldTargetAction
@@ -170,8 +170,8 @@
 
 - type: entity
   id: ActionThrowWorm
-  name: flesh-pudge-throw-worm-name
-  description: flesh-pudge-throw-worm-desc
+  name: Worm Jump
+  description: Jump into mouse target
   noSpawn: true
   components:
     - type: WorldTargetAction
@@ -183,8 +183,8 @@
 
 - type: entity
   id: ActionAcidSpit
-  name: flesh-cultist-acid-spit-name
-  description: flesh-cultist-acid-spit-desc
+  name: Acid Spit
+  description: Spit acid at your enemies.
   noSpawn: true
   components:
     - type: WorldTargetAction
@@ -196,8 +196,8 @@
 
 - type: entity
   id: ActionAbsorbBloodPool
-  name: flesh-cultist-absorb-blood-pool-name
-  description: flesh-cultist-absorb-blood-pool-desc
+  name: Blood Pool Absorption
+  description: Allows you to absorb clean blood puddles for healing.
   noSpawn: true
   components:
     - type: InstantAction

@@ -27,7 +27,7 @@ public sealed partial class BloodSuckerComponent : Component
     /// How many units of our injected chem to inject.
     /// </summary>
     [DataField("unitsToInject"), ViewVariables(VVAccess.ReadWrite)]
-    public float UnitsToInject = 5;
+    public float UnitsToInject = 10;
 
     /// <summary>
     /// Which reagent to inject.
