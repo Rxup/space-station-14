@@ -54,3 +54,60 @@
     moles:
       - 21.94724
       - 77.05276
+
+- type: shipwreckDestination
+  id: Continental
+  biome: Continental
+  lightColor: "#D8B059" #DayLight
+  structures:
+    RuinedDwellings: 2
+    RuinedHospital: 3
+    RuinedShop: 5
+  factions:
+    - ZombieOutbreak
+    - FleshMonsterInvasion
+    - MalfunctioningRobots
+  atmosphere:
+    volume: 2400
+    temperature: 280
+    moles:
+      - 21.94724
+      - 77.05276
+
+- type: shipwreckDestination
+  id: Lava
+  biome: Lava
+  lightColor: "#A34931" #LavaLight
+  structures:
+    RuinedDwellings: 2
+    RuinedHospital: 4
+    RuinedShop: 3
+  factions:
+    - ZombieOutbreak
+    - FleshMonsterInvasion
+    - MalfunctioningRobots
+  atmosphere:
+    volume: 2300
+    temperature: 320
+    moles:
+      - 21.94724
+      - 77.05276
+
+- type: shipwreckDestination
+  id: RuinedMegacity
+  biome: RuinedMegacity
+  lightColor: "#2b3143" #Evening
+  structures:
+    RuinedDwellings: 2
+    RuinedHospital: 4
+    RuinedShop: 5
+  factions:
+    - ZombieOutbreak
+    - FleshMonsterInvasion
+    - MalfunctioningRobots
+  atmosphere:
+    volume: 2400
+    temperature: 280
+    moles:
+      - 21.94724
+      - 77.05276

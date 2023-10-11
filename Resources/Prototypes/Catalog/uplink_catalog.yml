@@ -500,6 +500,16 @@
     Telecrystal: 4
   categories:
   - UplinkUtility
+  
+- type: listing
+  id: UplinkFFS
+  name: Плата консоли системы опознавания синдиката
+  description: Позволяет управлять параметрами скрытности и системы опознавания судна.
+  productEntity: ComputerIFFSyndicateCircuitboard
+  cost:
+    Telecrystal: 5
+  categories:
+  - UplinkUtility
 
 # Implants
 
