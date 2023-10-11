@@ -10,7 +10,7 @@
       damage:
         types:
           Slash: 10
-          Holy: 5
+          Holy: 3
     - type: StaminaDamageOnHit
       damage: 0
     - type: AntiPsionicWeapon
