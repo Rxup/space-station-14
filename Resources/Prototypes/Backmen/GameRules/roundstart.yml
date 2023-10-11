@@ -23,6 +23,9 @@
         - DesertWastes
         - FrozenWastes
         - Jungle
+        - Continental
+        - Lava
+        #- RuinedMegacity
       spawnPointHecate: SpawnPointShipwreckHecate
       hecatePrototype: MobQuestHecateShipwrecked
       eventSchedule:

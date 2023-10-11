@@ -38,7 +38,7 @@ public sealed class MakeRimWorld : IConsoleCommand
     {
         var _prototypeManager = IoCManager.Resolve<IPrototypeManager>();
         var _random = IoCManager.Resolve<IRobustRandom>();
-        if (!_prototypeManager.TryIndex<BiomeTemplatePrototype>("Grasslands", out var biomeTemplate))
+        if (!_prototypeManager.TryIndex<BiomeTemplatePrototype>("Continental", out var biomeTemplate))
         {
             return;
         }
