@@ -84,7 +84,10 @@
 - type: emote
   id: Honk
   category: Vocal
-  chatMessages: [honks]
+  chatMessages: [хонкает]
+  chatTriggers:
+    - хонкает
+    - honks
 
 - type: emote
   id: Sigh
