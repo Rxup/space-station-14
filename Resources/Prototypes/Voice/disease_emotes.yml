@@ -51,6 +51,10 @@
   id: Snore
   category: Vocal
   chatMessages: [храпит] # Corvax-Localization
+  chatTriggers:
+   - snores
+   - храпит
+
 
 - type: emote
   id: Honk
