@@ -6,9 +6,9 @@
     mode: SnapgridCenter
   components:
     - type: AtmosDevice
-    - type: Tag
-      tags:
-        - Unstackable
+#    - type: Tag
+#      tags:
+#        - Unstackable
     - type: SubFloorHide
       blockInteractions: false
       blockAmbience: false
@@ -56,7 +56,7 @@
     - type: Tag
       tags:
         - GasVent
-        - Unstackable
+#        - Unstackable
     - type: Sprite
       drawdepth: FloorObjects
       sprite: Structures/Piping/Atmospherics/vent.rsi
@@ -147,7 +147,7 @@
     - type: Tag
       tags:
         - GasScrubber
-        - Unstackable
+#        - Unstackable
     - type: Sprite
       drawdepth: FloorObjects
       sprite: Structures/Piping/Atmospherics/scrubber.rsi
