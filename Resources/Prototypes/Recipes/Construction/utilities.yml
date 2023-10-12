@@ -445,8 +445,7 @@
     state: vent_off
   conditions:
     - !type:TileNotBlocked {}
-    - !type:NoUnstackableInTile
-    
+
 - type: construction
   name: passive vent
   description: Unpowered vent that equalises gases on both sides.
@@ -467,8 +466,7 @@
     state: vent_off
   conditions:
     - !type:TileNotBlocked {}
-    - !type:NoUnstackableInTile
-    
+
 - type: construction
   name: air scrubber
   description: Sucks gas into connected pipes.
@@ -489,8 +487,7 @@
     state: scrub_off
   conditions:
     - !type:TileNotBlocked {}
-    - !type:NoUnstackableInTile
-    
+
 - type: construction
   name: air injector
   description: Injects air into the atmosphere.
@@ -511,8 +508,7 @@
     state: injector
   conditions:
     - !type:TileNotBlocked {}
-    - !type:NoUnstackableInTile
-    
+
 # ATMOS BINARY
 - type: construction
   name: gas pump
@@ -534,7 +530,6 @@
     state: pumpPressure
   conditions:
     - !type:TileNotBlocked {}
-    - !type:NoUnstackableInTile
 
 - type: construction
   name: volumetric gas pump
@@ -556,7 +551,6 @@
     state: pumpVolume
   conditions:
     - !type:TileNotBlocked {}
-    - !type:NoUnstackableInTile
 
 - type: construction
   id: GasPassiveGate
@@ -578,7 +572,6 @@
     state: pumpPassiveGate
   conditions:
     - !type:TileNotBlocked {}
-    - !type:NoUnstackableInTile
 
 - type: construction
   id: GasValve
@@ -600,7 +593,6 @@
     state: pumpManualValve
   conditions:
     - !type:TileNotBlocked {}
-    - !type:NoUnstackableInTile
 
 - type: construction
   id: SignalControlledValve
@@ -622,7 +614,6 @@
     state: pumpSignalValve
   conditions:
   - !type:TileNotBlocked {}
-  - !type:NoUnstackableInTile
 
 - type: construction
   id: GasPort
@@ -644,7 +635,6 @@
     state: gasCanisterPort
   conditions:
     - !type:TileNotBlocked {}
-    - !type:NoUnstackableInTile
 
 - type: construction
   id: GasDualPortVentPump
@@ -700,7 +690,6 @@
   mirror: GasFilterFlipped
   conditions:
     - !type:TileNotBlocked {}
-    - !type:NoUnstackableInTile
 
 - type: construction
   id: GasFilterFlipped
@@ -719,7 +708,6 @@
   mirror: GasFilter
   conditions:
     - !type:TileNotBlocked {}
-    - !type:NoUnstackableInTile
 
 - type: construction
   id: GasMixer
@@ -737,7 +725,6 @@
   mirror: GasMixerFlipped
   conditions:
     - !type:TileNotBlocked {}
-    - !type:NoUnstackableInTile
 
 - type: construction
   id: GasMixerFlipped
@@ -756,7 +743,6 @@
   mirror: GasMixer
   conditions:
     - !type:TileNotBlocked
-    - !type:NoUnstackableInTile
 
 - type: construction
   id: PressureControlledValve
@@ -773,7 +759,6 @@
     state: off
   conditions:
     - !type:TileNotBlocked
-    - !type:NoUnstackableInTile
 
 # INTERCOM
 - type: construction
