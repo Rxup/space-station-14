@@ -28,23 +28,24 @@ public sealed class TTSSystem : EntitySystem
     [Dependency] private readonly IConfigurationManager _cfg = default!;
     [Dependency] private readonly IResourceCache _resourceCache = default!;
     [Dependency] private readonly SharedAudioSystem _audio = default!;
-    [Dependency] private readonly IClydeAudio _clyde = default!;
+    //[Dependency] private readonly SharedGameTicker _gameTicker = default!;
 
     private ISawmill _sawmill = default!;
     private readonly MemoryContentRoot _contentRoot = new();
-    private static readonly ResPath Prefix = ResPath.Root / "TTS";
+    private ResPath _prefix;
 
     private float _volume = 0.0f;
     private ulong _fileIdx = 0;
+    private static ulong _shareIdx = 0;
 
     public override void Initialize()
     {
+        _prefix = ResPath.Root / $"TTS{_shareIdx++}";
         _sawmill = Logger.GetSawmill("tts");
-        _resourceCache.AddRoot(Prefix, _contentRoot);
+        _resourceCache.AddRoot(_prefix, _contentRoot);
         _cfg.OnValueChanged(CCCVars.TTSVolume, OnTtsVolumeChanged, true);
         SubscribeNetworkEvent<PlayTTSEvent>(OnPlayTTS);
         SubscribeLocalEvent<RoundRestartCleanupEvent>(OnRoundRestart);
-
     }
 
     private void OnRoundRestart(RoundRestartCleanupEvent ev)
@@ -81,7 +82,7 @@ public sealed class TTSSystem : EntitySystem
         _contentRoot.AddOrUpdateFile(filePath, ev.Data);
 
         var audioParams = AudioParams.Default.WithVolume(volume);
-        var soundPath = new SoundPathSpecifier(Prefix / filePath, audioParams);
+        var soundPath = new SoundPathSpecifier(_prefix / filePath, audioParams);
         if (ev.SourceUid != null)
         {
             var sourceUid = GetEntity(ev.SourceUid.Value);
