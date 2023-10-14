@@ -72,7 +72,7 @@ namespace Content.IntegrationTests.Tests
             "MeteorArena",
             //backmen
             "ShwrAdventurer",
-            "ShwrBig"
+            "ShwrBig",
             "shwrTitanic"
         };
 
