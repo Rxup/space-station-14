@@ -73,6 +73,7 @@ namespace Content.IntegrationTests.Tests
             //backmen
             "ShwrAdventurer",
             "ShwrBig"
+            "shwrTitanic"
         };
 
         /// <summary>

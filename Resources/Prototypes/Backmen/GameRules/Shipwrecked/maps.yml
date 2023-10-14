@@ -37,10 +37,10 @@
 - type: gameMap
   id: shwrTitanic
   mapName: Титаник
-  mapPath: /Maps/Backmen/Shuttles/NTTG-Titanic.yml
+  mapPath: /Maps/Backmen/Shuttles/shwrtitanic.yml
   minPlayers: 30
   stations:
-    ShwrAdventurerBig:
+    shwrTitanic:
       stationProto: StandardStationArena
       components:
         - type: StationNameSetup
