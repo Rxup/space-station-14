@@ -7,6 +7,7 @@ using Content.Server.Cuffs;
 using Content.Shared.Chemistry.Components;
 using Content.Shared.Cuffs.Components;
 using Content.Shared.Backmen.Flesh;
+using Content.Shared.Chemistry.EntitySystems;
 using Content.Shared.Hands.Components;
 using Content.Shared.Hands.EntitySystems;
 using Content.Shared.Inventory;
