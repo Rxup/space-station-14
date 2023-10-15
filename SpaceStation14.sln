@@ -134,6 +134,7 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Content.Corvax.Interfaces.Server", "Corvax\Content.Corvax.Interfaces.Server\Content.Corvax.Interfaces.Server.csproj", "{21D609DE-FD15-4A7E-8541-B003DB6FFC62}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Content.Corvax.Interfaces.Client", "Corvax\Content.Corvax.Interfaces.Client\Content.Corvax.Interfaces.Client.csproj", "{B63ADCCD-FA56-4114-9E14-E0793802557E}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Content.PatreonParser", "Content.PatreonParser\Content.PatreonParser.csproj", "{D97D8258-D915-4D1D-B1E3-1A8D00CF9EB5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -462,6 +463,14 @@ Global
 		{B63ADCCD-FA56-4114-9E14-E0793802557E}.DebugOpt|Any CPU.Build.0 = Debug|Any CPU
 		{B63ADCCD-FA56-4114-9E14-E0793802557E}.Tools|Any CPU.ActiveCfg = Debug|Any CPU
 		{B63ADCCD-FA56-4114-9E14-E0793802557E}.Tools|Any CPU.Build.0 = Debug|Any CPU
+		{D97D8258-D915-4D1D-B1E3-1A8D00CF9EB5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D97D8258-D915-4D1D-B1E3-1A8D00CF9EB5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D97D8258-D915-4D1D-B1E3-1A8D00CF9EB5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D97D8258-D915-4D1D-B1E3-1A8D00CF9EB5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D97D8258-D915-4D1D-B1E3-1A8D00CF9EB5}.DebugOpt|Any CPU.ActiveCfg = Debug|Any CPU
+		{D97D8258-D915-4D1D-B1E3-1A8D00CF9EB5}.DebugOpt|Any CPU.Build.0 = Debug|Any CPU
+		{D97D8258-D915-4D1D-B1E3-1A8D00CF9EB5}.Tools|Any CPU.ActiveCfg = Debug|Any CPU
+		{D97D8258-D915-4D1D-B1E3-1A8D00CF9EB5}.Tools|Any CPU.Build.0 = Debug|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
