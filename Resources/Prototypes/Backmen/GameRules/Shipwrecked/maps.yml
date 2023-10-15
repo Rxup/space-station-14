@@ -36,7 +36,7 @@
 
 - type: gameMap
   id: shwrDust
-  mapName: NT-Dust 469
+  mapName: KL-Dust 469
   mapPath: /Maps/Backmen/Shuttles/shwr-dust.yml
   minPlayers: 30
   stations:
@@ -44,7 +44,7 @@
       stationProto: StandardStationArena
       components:
         - type: StationNameSetup
-          mapNameTemplate: "NT-Dust 469"
+          mapNameTemplate: "KL-Dust 469"
         - type: StationJobs
           overflowJobs:
             - Freelancer
