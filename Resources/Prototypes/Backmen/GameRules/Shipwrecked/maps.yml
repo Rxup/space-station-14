@@ -35,16 +35,16 @@
             Freelancer: [-1,-1]
 
 - type: gameMap
-  id: shwrTitanic
-  mapName: Титаник
-  mapPath: /Maps/Backmen/Shuttles/shwrtitanic.yml
+  id: shwrDust
+  mapName: NT-Dust 469
+  mapPath: /Maps/Backmen/Shuttles/shwr-dust.yml
   minPlayers: 30
   stations:
-    shwrTitanic:
+    shwrDust:
       stationProto: StandardStationArena
       components:
         - type: StationNameSetup
-          mapNameTemplate: "Титаник"
+          mapNameTemplate: "NT-Dust 469"
         - type: StationJobs
           overflowJobs:
             - Freelancer
