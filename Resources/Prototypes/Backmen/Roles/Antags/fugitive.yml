@@ -21,6 +21,6 @@
     gloves: ClothingHandsGlovesColorYellow
     back: ClothingBackpack
     shoes: ClothingShoesColorBlack
-  innerclothingskirt: ClothingUniformJumpsuitPrisoner
+  innerClothingSkirt: ClothingUniformJumpsuitPrisoner
   inhand:
-    right hand: ToolboxElectricalFilled
+    - ToolboxElectricalFilled

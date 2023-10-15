@@ -60,6 +60,6 @@
     belt: ClothingBeltSecurityFilled
     pocket1: WeaponPistolMk58Nonlethal
     pocket2: Eftpos
-  innerclothingskirt: ClothingUniformJumpskirtHoS
+  innerClothingSkirt: ClothingUniformJumpskirtHoS
   satchel: ClothingBackpackSatchelHOSFilled
   duffelbag: ClothingBackpackDuffelHOSFilled
