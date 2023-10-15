@@ -13,6 +13,7 @@ using Content.Shared.DoAfter;
 using Content.Shared.FixedPoint;
 using Content.Shared.Popups;
 using Content.Shared.Backmen.Psionics.Events;
+using Content.Shared.Chemistry.EntitySystems;
 using Content.Shared.Tag;
 using Content.Shared.Examine;
 using static Content.Shared.Examine.ExamineSystemShared;
@@ -24,7 +25,6 @@ public sealed class PsionicRegenerationPowerSystem : EntitySystem
 {
     [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
     [Dependency] private readonly SharedActionsSystem _actions = default!;
-    [Dependency] private readonly SolutionContainerSystem _solutionSystem = default!;
     [Dependency] private readonly BloodstreamSystem _bloodstreamSystem = default!;
     [Dependency] private readonly AudioSystem _audioSystem = default!;
     [Dependency] private readonly TagSystem _tagSystem = default!;
