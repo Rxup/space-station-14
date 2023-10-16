@@ -19,7 +19,7 @@ public sealed class RandomEntityStorageSpawnRule : StationEventSystem<RandomEnti
         if (!TryGetRandomStation(out var station))
             return;
 
-        var validLockers = new List<(EntityUid, EntityStorageComponent)>();
+        var spawn = Spawn(comp.Prototype, MapCoordinates.Nullspace);
         var validLockers = new List<(EntityUid, EntityStorageComponent, TransformComponent)>();
 
         var query = EntityQueryEnumerator<EntityStorageComponent, TransformComponent>();
