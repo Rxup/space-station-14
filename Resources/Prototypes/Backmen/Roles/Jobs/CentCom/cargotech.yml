@@ -50,7 +50,7 @@
     id: CCCargoPDA
     ears: ClothingHeadsetCentCom
     pocket1: AppraisalTool
-  innerclothingskirt: ClothingUniformJumpskirtCargo
+  innerClothingSkirt: ClothingUniformJumpskirtCargo
   satchel: ClothingBackpackSatchelFilled
   duffelbag: ClothingBackpackDuffelFilled
 

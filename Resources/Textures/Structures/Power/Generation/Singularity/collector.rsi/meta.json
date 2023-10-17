@@ -8,6 +8,21 @@
   },
   "states": [
     {
+        "name": "ca-tank"
+    },
+    {
+        "name": "ca-o0"
+    },
+    {
+        "name": "ca-o1"
+    },
+    {
+        "name": "ca-o2"
+    },
+    {
+        "name": "ca-o3"
+    },
+    {
       "name": "ca_off"
     },
     {

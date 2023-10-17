@@ -7,7 +7,7 @@
     jumpsuit: ClothingUniformJumpsuitChaplain
     belt: Bible
     shoes: ClothingShoesColorBlack
-  innerclothingskirt: ClothingUniformJumpskirtChaplain
+  innerClothingSkirt: ClothingUniformJumpskirtChaplain
 
 - type: startingGear
   id: UnaffiliatedChefGear
@@ -16,7 +16,7 @@
     head: ClothingHeadHatChef
     shoes: ClothingShoesColorBlack
     outerClothing: ClothingOuterApronChef
-  innerclothingskirt: ClothingUniformJumpskirtChef
+  innerClothingSkirt: ClothingUniformJumpskirtChef
 
 - type: startingGear
   id: UnaffiliatedDoctorGear
@@ -26,7 +26,7 @@
     outerClothing: ClothingOuterCoatLab
     neck: ClothingNeckStethoscope
     belt: ClothingBeltMedicalFilled
-  innerclothingskirt: ClothingUniformJumpskirtMedicalDoctor
+  innerClothingSkirt: ClothingUniformJumpskirtMedicalDoctor
 
 - type: startingGear
   id: UnaffiliatedJanitorGear
@@ -35,7 +35,7 @@
     shoes: ClothingShoesGaloshes
     head: ClothingHeadHatPurplesoft
     belt: ClothingBeltJanitorFilled
-  innerclothingskirt: ClothingUniformJumpskirtJanitor
+  innerClothingSkirt: ClothingUniformJumpskirtJanitor
 
 - type: startingGear
   id: UnaffiliatedLawyerGear
@@ -43,8 +43,8 @@
     jumpsuit: ClothingUniformJumpsuitLawyerBlack
     shoes: ClothingShoesBootsLaceup
   inhand:
-    right hand: BriefcaseBrownFilled
-  innerclothingskirt: ClothingUniformJumpskirtLawyerBlack
+    - BriefcaseBrownFilled
+  innerClothingSkirt: ClothingUniformJumpskirtLawyerBlack
 
 - type: startingGear
   id: UnaffiliatedMailCarrierGear
@@ -53,12 +53,12 @@
     jumpsuit: ClothingUniformMailCarrier
     shoes: ClothingShoesColorBlack
     belt: MailBag
-  innerclothingskirt: ClothingUniformSkirtMailCarrier
+  innerClothingSkirt: ClothingUniformSkirtMailCarrier
 
 - type: startingGear
   id: UnaffiliatedPsychologistGear
   equipment:
     jumpsuit: ClothingUniformJumpsuitPsychologist
     shoes: ClothingShoesLeather
-  innerclothingskirt: ClothingUniformJumpsuitPsychologist
+  innerClothingSkirt: ClothingUniformJumpsuitPsychologist
 

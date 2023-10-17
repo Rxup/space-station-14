@@ -24,6 +24,7 @@ using Content.Shared.DoAfter;
 using Content.Shared.Electrocution;
 using Content.Shared.FixedPoint;
 using Content.Shared.Backmen.Flesh;
+using Content.Shared.Chemistry.EntitySystems;
 using Content.Shared.Fluids.Components;
 using Content.Shared.Hands.Components;
 using Content.Shared.Humanoid;
