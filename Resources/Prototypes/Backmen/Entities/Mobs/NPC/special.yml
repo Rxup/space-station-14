@@ -56,7 +56,7 @@
     hat: ClothingHeadHatHairflower
     jumpsuit: ClothingCostumeArcDress
     shoes: ClothingShoesColorBlack
-  innerclothingskirt: ClothingCostumeArcDress
+  innerClothingSkirt: ClothingCostumeArcDress
 
 - type: npcConversationTree
   id: ShipwreckedPsychopompHecate

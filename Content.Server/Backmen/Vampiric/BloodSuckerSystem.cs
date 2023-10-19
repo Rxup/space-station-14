@@ -15,6 +15,7 @@ using Content.Server.HealthExaminable;
 using Content.Server.DoAfter;
 using Content.Server.Nutrition.EntitySystems;
 using Content.Shared.Chemistry;
+using Content.Shared.Chemistry.EntitySystems;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Player;
 using Robust.Shared.Audio;

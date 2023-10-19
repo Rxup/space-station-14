@@ -10,6 +10,7 @@ namespace Content.Server.StationEvents.Events;
 public sealed class RandomEntityStorageSpawnRule : StationEventSystem<RandomEntityStorageSpawnRuleComponent>
 {
     [Dependency] private readonly EntityStorageSystem _entityStorage = default!;
+    [Dependency] private readonly SharedTransformSystem _transform = default!;
 
     protected override void Started(EntityUid uid, RandomEntityStorageSpawnRuleComponent comp, GameRuleComponent gameRule, GameRuleStartedEvent args)
     {
@@ -18,8 +19,8 @@ public sealed class RandomEntityStorageSpawnRule : StationEventSystem<RandomEnti
         if (!TryGetRandomStation(out var station))
             return;
 
-        var validLockers = new List<(EntityUid, EntityStorageComponent)>();
         var spawn = Spawn(comp.Prototype, MapCoordinates.Nullspace);
+        var validLockers = new List<(EntityUid, EntityStorageComponent, TransformComponent)>();
 
         var query = EntityQueryEnumerator<EntityStorageComponent, TransformComponent>();
         while (query.MoveNext(out var ent, out var storage, out var xform))
@@ -30,7 +31,7 @@ public sealed class RandomEntityStorageSpawnRule : StationEventSystem<RandomEnti
             if (!_entityStorage.CanInsert(spawn, ent, storage))
                 continue;
 
-            validLockers.Add((ent, storage));
+            validLockers.Add((ent, storage, xform));
         }
 
         if (validLockers.Count == 0)
@@ -39,7 +40,8 @@ public sealed class RandomEntityStorageSpawnRule : StationEventSystem<RandomEnti
             return;
         }
 
-        var (locker, storageComp) = RobustRandom.Pick(validLockers);
+        var (locker, storageComp, lockerPos) = RobustRandom.Pick(validLockers);
+        _transform.SetCoordinates(spawn, lockerPos.Coordinates);
         if (!_entityStorage.Insert(spawn, locker, storageComp))
         {
             Del(spawn);

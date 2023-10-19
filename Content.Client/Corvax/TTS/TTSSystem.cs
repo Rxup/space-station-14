@@ -91,7 +91,7 @@ public sealed class TTSSystem : EntitySystem
         }
         else
         {
-            _audio.PlayGlobal(soundPath, Filter.Local(), false);
+            _audio.PlayGlobal(soundPath, Filter.Local(), false);// recordReplay arg ignored on client
         }
 
         _contentRoot.RemoveFile(filePath);
