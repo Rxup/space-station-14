@@ -224,6 +224,11 @@ namespace Content.IntegrationTests.Tests
                 "StationEvent",
                 "TimedDespawn",
 
+                //Backmen
+                "FugitiveCountdown", // Fugitive.
+                "ShipyardConsole", // Shipyard Console
+
+
                 // Spawner entities
                 "DragonRift",
                 "RandomHumanoidSpawner",

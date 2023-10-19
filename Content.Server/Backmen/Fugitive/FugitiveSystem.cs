@@ -33,6 +33,7 @@ using Content.Shared.Mind.Components;
 using Content.Shared.Objectives;
 using Content.Shared.Objectives.Components;
 using Content.Shared.Paper;
+using Content.Shared.Random;
 using Content.Shared.Roles.Jobs;
 using Content.Shared.Wall;
 using Robust.Shared.Prototypes;
@@ -71,6 +72,7 @@ public sealed class FugitiveSystem : EntitySystem
     [Dependency] private readonly StationSpawningSystem _stationSpawning = default!;
     [Dependency] private readonly FugitiveSystem _fugitiveSystem = default!;
     [Dependency] private readonly ObjectivesSystem _objectivesSystem = default!;
+    [Dependency] private readonly RandomHelperSystem _randomHelper = default!;
 
     public override void Initialize()
     {
@@ -245,7 +247,7 @@ public sealed class FugitiveSystem : EntitySystem
         _audioSystem.PlayPvs(component.SpawnSoundPath, uid, AudioParams.Default.WithVolume(-6f));
 
         var tile = Spawn("FloorTileItemSteel", Transform(uid).Coordinates);
-        tile.RandomOffset(0.3f);
+        _randomHelper.RandomOffset(uid, 0.3f);
     }
 
     private void OnSpawned(EntityUid uid, FugitiveComponent component, GhostRoleSpawnerUsedEvent _)
