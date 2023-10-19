@@ -266,7 +266,7 @@
     - type: ExplosionResistance
       damageCoefficient: 0.8
     - type: BallisticAmmoProvider
-      proto: BulletCannonBall
+      proto: BulletRobotBall
       capacity: 16
     - type: Gun
       fireRate: 0.25
