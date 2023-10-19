@@ -3,7 +3,6 @@ using System.Numerics;
 using Content.Server.AlertLevel;
 using Content.Server.Body.Systems;
 using Content.Server.Chat.Systems;
-using Content.Server.Climbing;
 using Content.Server.Backmen.Flesh.FleshGrowth;
 using Content.Server.Humanoid;
 using Content.Server.Popups;
@@ -14,6 +13,7 @@ using Content.Shared.Body.Part;
 using Content.Shared.Damage;
 using Content.Shared.Destructible;
 using Content.Shared.Backmen.Flesh;
+using Content.Shared.Climbing.Events;
 using Content.Shared.Humanoid;
 using Content.Shared.Humanoid.Prototypes;
 using Content.Shared.Mind.Components;
@@ -21,6 +21,7 @@ using Content.Shared.Mobs;
 using Content.Shared.Mobs.Components;
 using Content.Shared.Physics;
 using Content.Shared.Popups;
+using Content.Shared.Random;
 using Content.Shared.Random.Helpers;
 using Content.Shared.Tag;
 using Robust.Server.Containers;
@@ -56,6 +57,7 @@ namespace Content.Server.Backmen.Flesh
         [Dependency] private readonly StationSystem _stationSystem = default!;
         [Dependency] private readonly AlertLevelSystem _alertLevel = default!;
         [Dependency] private readonly RoundEndSystem _roundEndSystem = default!;
+        [Dependency] private readonly RandomHelperSystem _randomHelper = default!;
 
         public enum HeartStates
         {
@@ -95,7 +97,7 @@ namespace Content.Server.Backmen.Flesh
             {
                 component.BodyContainer.Remove(ent, EntityManager, force: true);
                 Transform(ent).Coordinates = coordinates;
-                ent.RandomOffset(1f);
+                _randomHelper.RandomOffset(ent, 1f);
             }
 
             var fleshTilesQuery = EntityQueryEnumerator<SpreaderFleshComponent>();
@@ -215,7 +217,7 @@ namespace Content.Server.Backmen.Flesh
             component.BodyContainer = _containerSystem.EnsureContainer<Container>(uid, "bodyContainer");
         }
 
-        private void OnClimbedOn(EntityUid uid, FleshHeartComponent component, ClimbedOnEvent args)
+        private void OnClimbedOn(EntityUid uid, FleshHeartComponent component, ref ClimbedOnEvent args)
         {
             if (!CanAbsorb(uid, args.Climber, component))
             {
@@ -255,7 +257,7 @@ namespace Content.Server.Backmen.Flesh
 
                             cont.Remove(ent, EntityManager, force: true);
                             Transform(ent).Coordinates = xform.Coordinates;
-                            ent.RandomOffset(0.25f);
+                            _randomHelper.RandomOffset(ent, 0.25f);
                         }
                     }
                 }

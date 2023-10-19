@@ -6,7 +6,7 @@
   components:
   - type: Sprite
     sprite: Backmen/Objects/Consumable/Food/Tins/c-soupcan.rsi
-    state: classic
+    state: icon
   - type: Item
     sprite: Backmen/Objects/Consumable/Food/Tins/c-soupcan.rsi
     heldPrefix: packet
@@ -38,7 +38,7 @@
   components:
   - type: Sprite
     sprite: Backmen/Objects/Consumable/Food/Tins/c-soupcan.rsi
-    state: classic-open
+    state: icon-open
   - type: SolutionContainerManager
     solutions:
       food:
@@ -62,4 +62,4 @@
   components:
   - type: Sprite
     sprite: Backmen/Objects/Consumable/Food/Tins/c-soupcan.rsi
-    state: classic-empty
+    state: trash

@@ -25,7 +25,10 @@ public sealed class GptAhelpSystem : EntitySystem
     [Dependency] private readonly IConsoleHost _console = default!;
     [Dependency] private readonly IPlayerManager _playerManager = default!;
     [Dependency] private readonly IAdminManager _adminManager = default!;
-    private readonly HttpClient _httpClient = new();
+    private readonly HttpClient _httpClient = new()
+    {
+        Timeout = TimeSpan.FromMinutes(3)
+    };
 
     private Dictionary<NetUserId, GptUserInfo> _history = new();
 

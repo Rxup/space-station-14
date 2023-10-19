@@ -24,6 +24,7 @@ using Content.Shared.DoAfter;
 using Content.Shared.Electrocution;
 using Content.Shared.FixedPoint;
 using Content.Shared.Backmen.Flesh;
+using Content.Shared.Chemistry.EntitySystems;
 using Content.Shared.Fluids.Components;
 using Content.Shared.Hands.Components;
 using Content.Shared.Humanoid;
@@ -34,6 +35,7 @@ using Content.Shared.Mind.Components;
 using Content.Shared.Mobs;
 using Content.Shared.Mobs.Components;
 using Content.Shared.Popups;
+using Content.Shared.Random;
 using Content.Shared.Random.Helpers;
 using Content.Shared.Tag;
 using Robust.Shared.Audio;
@@ -67,6 +69,7 @@ public sealed partial class FleshCultistSystem : EntitySystem
     [Dependency] private readonly BloodstreamSystem _bloodstreamSystem = default!;
     [Dependency] private readonly GunSystem _gunSystem = default!;
     [Dependency] private readonly TagSystem _tagSystem = default!;
+    [Dependency] private readonly RandomHelperSystem _randomHelper = default!;
 
 
     public override void Initialize()
@@ -372,7 +375,7 @@ public sealed partial class FleshCultistSystem : EntitySystem
                         }
                         cont.Remove(ent, EntityManager, force: true);
                         Transform(ent).Coordinates = coordinates;
-                        ent.RandomOffset(0.25f);
+                        _randomHelper.RandomOffset(ent, 0.25f);
                     }
                 }
             }
@@ -542,7 +545,7 @@ public sealed partial class FleshCultistSystem : EntitySystem
                             continue;
                         cont.Remove(ent, EntityManager, force: true);
                         Transform(ent).Coordinates = coordinates;
-                        ent.RandomOffset(0.25f);
+                        _randomHelper.RandomOffset(ent, 0.25f);
                     }
                 }
             }

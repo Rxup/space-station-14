@@ -8,6 +8,6 @@
     ears: ClothingHeadsetService
     pocket1: Eftpos
     pocket2: FoodBoxPizzaFilled
-  innerclothingskirt: ClothingUniformJumpsuitDeliverygirl
+  innerClothingSkirt: ClothingUniformJumpsuitDeliverygirl
   satchel: ClothingBackpackSatchelFilled
   duffelbag: ClothingBackpackDuffelFilled
