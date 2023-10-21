@@ -61,6 +61,7 @@ public sealed class BlobObserverSystem : SharedBlobObserverSystem
     [Dependency] private readonly AlertsSystem _alerts = default!;
     [Dependency] private readonly IChatManager _chatManager = default!;
     [Dependency] private readonly ActorSystem _actorSystem = default!;
+    [Dependency] private readonly ViewSubscriberSystem _viewSubscriberSystem = default!;
 
 
     [Dependency] private ILogManager _logMan = default!;
@@ -72,6 +73,7 @@ public sealed class BlobObserverSystem : SharedBlobObserverSystem
         SubscribeLocalEvent<BlobCoreComponent, CreateBlobObserverEvent>(OnCreateBlobObserver);
 
         SubscribeLocalEvent<BlobObserverComponent, PlayerAttachedEvent>(OnPlayerAttached, before: new []{ typeof(ActionsSystem) });
+        SubscribeLocalEvent<BlobObserverComponent, PlayerDetachedEvent>(OnPlayerDetached, before: new []{ typeof(ActionsSystem) });
 
         SubscribeLocalEvent<BlobCoreComponent, BlobCreateFactoryActionEvent>(OnCreateFactory);
         SubscribeLocalEvent<BlobCoreComponent, BlobCreateResourceActionEvent>(OnCreateResource);
@@ -190,7 +192,7 @@ public sealed class BlobObserverSystem : SharedBlobObserverSystem
         */
     }
 
-    private void UpdateActions(EntityUid uid, BlobObserverComponent? component = null)
+    private void UpdateActions(IPlayerSession playerSession, EntityUid uid, BlobObserverComponent? component = null)
     {
         if (!Resolve(uid, ref component))
         {
@@ -216,11 +218,20 @@ public sealed class BlobObserverSystem : SharedBlobObserverSystem
             coreComponent.ActionSplitBlobCore!.Value,
             coreComponent.ActionSwapBlobCore!.Value
         }, component.Core.Value);
+
+        _viewSubscriberSystem.AddViewSubscriber(component.Core.Value, playerSession); // GrantActions require keep in pvs
     }
 
     private void OnPlayerAttached(EntityUid uid, BlobObserverComponent component, PlayerAttachedEvent args)
     {
-        UpdateActions(uid, component);
+        UpdateActions(args.Player, uid, component);
+    }
+    private void OnPlayerDetached(EntityUid uid, BlobObserverComponent component, PlayerDetachedEvent args)
+    {
+        if (component.Core.HasValue && !TerminatingOrDeleted(component.Core.Value))
+        {
+            _viewSubscriberSystem.RemoveViewSubscriber(component.Core.Value, args.Player);
+        }
     }
 
     private void OnBlobSwapChem(EntityUid uid, BlobCoreComponent blobCoreComponent,
