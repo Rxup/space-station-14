@@ -51,6 +51,7 @@
       path: /Audio/Backmen/Items/Toys/khryu.ogg
   - type: MeleeWeapon
     soundHit:
+<<<<<<< HEAD
       path: /Audio/Backmen/Items/Toys/khryu.ogg
   - type: Slippery
     paralyzeTime: 0
@@ -83,3 +84,6 @@
         density: 30
         mask:
         - ItemMask 
+=======
+      path: /Audio/Backmen/Items/Toys/khryu.ogg
+>>>>>>> parent of ad2df3082e (добавил ПИГ в рандом спавнер и добавил новый компонент)
