@@ -39,7 +39,10 @@ public sealed class NPCZombieSystem : EntitySystem
 
     private void OnZombifyEntity(NpcZombieMakeEvent ev)
     {
-
+        if (TerminatingOrDeleted(ev.Target))
+        {
+            return;
+        }
         _zombieSystem.ZombifyEntity(ev.Target);
 
 

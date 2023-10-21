@@ -393,7 +393,7 @@ namespace Content.IntegrationTests.Tests
                     }
                 });
             });
-
+            await server.WaitRunTicks(5);
             await pair.CleanReturnAsync();
         }
     }
