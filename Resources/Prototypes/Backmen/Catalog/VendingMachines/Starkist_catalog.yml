@@ -2,18 +2,18 @@
   id: StarkistInventory1
   productEntity: DrinkStarkistCan
   cost:
-    SpaceCash: 35
+    SpaceCash: 80
   categories:
     - StarkistInventory
   conditions:
     - !type:ListingLimitedStockCondition
-      stock: 30
+      stock: 15
 
 - type: listing
   id: StarkistInventory2
   productEntity: DrinkGrapeCan
   cost:
-    SpaceCash: 15
+    SpaceCash: 80
   categories:
     - StarkistInventory
   conditions:
@@ -24,7 +24,7 @@
   id: StarkistInventory3
   productEntity: DrinkRootBeerCan
   cost:
-    SpaceCash: 25
+    SpaceCash: 80
   categories:
     - StarkistInventory
   conditions:
@@ -35,7 +35,7 @@
   id: StarkistInventory4
   productEntity: DrinkIcedTeaCan
   cost:
-    SpaceCash: 35
+    SpaceCash: 80
   categories:
     - StarkistInventory
   conditions:
@@ -46,7 +46,7 @@
   id: StarkistInventory5
   productEntity: DrinkLemonLimeCan
   cost:
-    SpaceCash: 25
+    SpaceCash: 80
   categories:
     - StarkistInventory
   conditions:
@@ -57,7 +57,7 @@
   id: StarkistInventory6
   productEntity: DrinkFourteenLokoCan
   cost:
-    SpaceCash: 25
+    SpaceCash: 80
   categories:
     - StarkistInventory
   conditions:

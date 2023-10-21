@@ -2,7 +2,7 @@
   id: BodaInventory
   productEntity: DrinkSodaWaterCan
   cost:
-    SpaceCash: 10
+    SpaceCash: 70
   categories:
     - BodaInventory
   conditions:
