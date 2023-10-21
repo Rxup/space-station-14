@@ -39,7 +39,6 @@
   description: Диментий гони свиней 
   components:
   - type: Sprite
-    sprite: Backmen/Objects/Fun/toys.rsi
     state: pig
   - type: EmitSoundOnUse
     sound:
@@ -53,34 +52,3 @@
   - type: MeleeWeapon
     soundHit:
       path: /Audio/Backmen/Items/Toys/khryu.ogg
-  - type: Slippery
-    paralyzeTime: 0
-    slipSound:
-      path: /Audio/Backmen/Items/Toys/khryu.ogg
-      params:
-        variation: 0.125
-  - type: StepTrigger
-    intersectRatio: 0.2
-    requiredTriggeredSpeed: 1
-  - type: TriggerOnStepTrigger 
-  - type: Appearance
-  - type: CollisionWake
-    enabled: false  
-  - type: Physics
-    bodyType: Dynamic   
-  - type: Fixtures
-    fixtures:
-      slips:
-        shape:
-          !type:PhysShapeAabb
-          bounds: "-0.2,-0.2,0.2,0.2"
-        hard: false
-        layer:
-        - SlipLayer
-      fix1:
-        shape:
-          !type:PhysShapeAabb
-          bounds: "-0.2,-0.2,0.2,0.2"
-        density: 30
-        mask:
-        - ItemMask    

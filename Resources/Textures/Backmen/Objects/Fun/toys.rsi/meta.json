@@ -8,15 +8,10 @@
   },
   "states": [
     {
-      "name": "pig"
+        "name": "pig"
     },
     {
-      "name": "pig_lefthand",
-      "directions": 4		
-    },
-	{
-      "name": "pig_right",
-	  "directions": 4
+        "name": "pig_lefthand"
     }
   ]
 }
