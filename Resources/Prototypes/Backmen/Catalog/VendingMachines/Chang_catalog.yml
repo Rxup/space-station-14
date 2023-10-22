@@ -2,7 +2,7 @@
   id: ChangInventory1
   productEntity: FoodCondimentPacketSoy
   cost:
-    SpaceCash: 15
+    SpaceCash: 90
   categories:
     - ChangInventory
   conditions:
@@ -13,7 +13,7 @@
   id: ChangInventory2
   productEntity: FoodSnackCookieFortune
   cost:
-    SpaceCash: 5
+    SpaceCash: 90
   categories:
     - ChangInventory
   conditions:
@@ -24,7 +24,7 @@
   id: ChangInventory3
   productEntity: DrinkRamen
   cost:
-    SpaceCash: 25
+    SpaceCash: 100
   categories:
     - ChangInventory
   conditions:
@@ -35,7 +35,7 @@
   id: ChangInventory4
   productEntity: DrinkHellRamen
   cost:
-    SpaceCash: 35
+    SpaceCash: 100
   categories:
     - ChangInventory
   conditions:
@@ -46,7 +46,7 @@
   id: ChangInventory5
   productEntity: FoodSnackChowMein
   cost:
-    SpaceCash: 25
+    SpaceCash: 100
   categories:
     - ChangInventory
   conditions:
@@ -57,7 +57,7 @@
   id: ChangInventory6
   productEntity: FoodSnackDanDanNoodles
   cost:
-    SpaceCash: 25
+    SpaceCash: 100
   categories:
     - ChangInventory
   conditions:
