@@ -26,8 +26,8 @@
   noSpawn: true
   components:
     - type: InstantAction
-      icon: Interface/Actions/fleshCultistBlade.png
-      event: !type:FleshCultistBladeActionEvent
+      icon: Interface/Actions/fleshCultistBreakCuffs.png
+      event: !type:UseFreedomImplantEvent
       useDelay: 10
 
 - type: entity
