@@ -1,45 +1,45 @@
-flesh-cult = Flesh Cult
+flesh-cult = Культ плоти
 flesh-cult-round-end-result =
     { $cultistsCount ->
-    [one] There was one Flesh Cultist.
-    *[other] There were { $cultistsCount } Flesh Cultists.
+    [one] Был один культист плоти.
+    *[other] There were { $cultistsCount } Культисты плоти.
     }
-flesh-cult-round-end-cultist-live-amount-none = [color=green]All cultists have been eliminated![/color]
-flesh-cult-round-end-cultist-live-amount-low = [color=green]Almost all cultists have been eliminated.[/color]
-flesh-cult-round-end-flesh-heart-succes = [color=green]The station has been transformed into a realm of flesh![/color]
-flesh-cult-round-end-flesh-heart-fail = [color=red]The Flesh Cult failed to accomplish its goal![/color]
-flesh-cult-user-was-a-cultist = [color=gray]{ $user }[/color] was a Flesh Cultist.
-flesh-cult-user-was-a-traitor-named = [color=White]{ $name }[/color] ([color=gray]{ $user }[/color]) was a Flesh Cultist.
-flesh-cult-was-a-traitor-named = [color=White]{ $name }[/color] was a Flesh Cultist.
+flesh-cult-round-end-cultist-live-amount-none = [color=green]Все культисты уничтожены![/color]
+flesh-cult-round-end-cultist-live-amount-low = [color=green]Почти все культисты уничтожены.[/color]
+flesh-cult-round-end-flesh-heart-succes = [color=green]Станция превратилась в царство плоти![/color]
+flesh-cult-round-end-flesh-heart-fail = [color=red]Культ Плоти не смог достичь своей цели![/color]
+flesh-cult-user-was-a-cultist = [color=gray]{ $user }[/color] был культистом плоти.
+flesh-cult-user-was-a-traitor-named = [color=White]{ $name }[/color] ([color=gray]{ $user }[/color]) был культистом плоти.
+flesh-cult-was-a-traitor-named = [color=White]{ $name }[/color] был культистом плоти.
 
-flesh-cult-user-was-a-cultist-leader = [color=gray]{ $user }[/color] was the leader of the Flesh Cult.
-flesh-cult-user-was-a-cultist-leader-named = [color=White]{ $name }[/color] ([color=gray]{ $user }[/color]) was the leader of the Flesh Cult.
-flesh-cult-was-a-cultist-leader-named = [color=White]{ $name }[/color] was the leader of the Flesh Cult.
+flesh-cult-user-was-a-cultist-leader = [color=gray]{ $user }[/color] был лидером Культа Плоти.
+flesh-cult-user-was-a-cultist-leader-named = [color=White]{ $name }[/color] ([color=gray]{ $user }[/color]) был лидером Культа Плоти.
+flesh-cult-was-a-cultist-leader-named = [color=White]{ $name }[/color] был лидером Культа Плоти.
 
-flesh-cult-user-was-a-cultist-with-objectives = [color=gray]{ $user }[/color] was a Flesh Cultist with the following objectives:
-flesh-cult-user-was-a-cultist-with-objectives-named = [color=White]{ $name }[/color] ([color=gray]{ $user }[/color]) was a Flesh Cultist with the following objectives:
-flesh-cult-was-a-cultist-with-objectives-named = [color=White]{ $name }[/color] was a Flesh Cultist with the following objectives:
+flesh-cult-user-was-a-cultist-with-objectives = [color=gray]{ $user }[/color] был культистом со следующими целями:
+flesh-cult-user-was-a-cultist-with-objectives-named = [color=White]{ $name }[/color] ([color=gray]{ $user }[/color]) был культистом со следующими целями:
+flesh-cult-was-a-cultist-with-objectives-named = [color=White]{ $name }[/color] был культистом со следующими целями:
 
-flesh-cult-user-was-a-cultist-leader-with-objectives = [color=gray]{ $user }[/color] was the leader of the Flesh Cult with the following objectives:
-flesh-cult-user-was-a-cultist-leader-with-objectives-named = [color=White]{ $name }[/color] ([color=gray]{ $user }[/color]) was the leader of the Flesh Cult with the following objectives:
-flesh-cult-was-a-cultist-leader-with-objectives-named = [color=White]{ $name }[/color] was the leader of the Flesh Cult with the following objectives:
+flesh-cult-user-was-a-cultist-leader-with-objectives = [color=gray]{ $user }[/color] был лидером Культа Плоти со следующими целями:
+flesh-cult-user-was-a-cultist-leader-with-objectives-named = [color=White]{ $name }[/color] ([color=gray]{ $user }[/color]) был лидером Культа Плоти со следующими целями:
+flesh-cult-was-a-cultist-leader-with-objectives-named = [color=White]{ $name }[/color] был лидером Культа Плоти со следующими целями:
 
 preset-flesh-cult-objective-issuer-flesh-cult = [color=#e0106a]Flesh Cult[/color]
-flesh-cult-objective-condition-success = { $condition } | [color={ $markupColor }]Success![/color]
-flesh-cult-objective-condition-fail = { $condition } | [color={ $markupColor }]Failure![/color] ({ $progress }%)
-flesh-cult-title = Flesh Cult
-flesh-cult-description = A cult has emerged on the station, seeking to take control.
-flesh-cult-not-enough-ready-players = Not enough players are ready to play! Out of the required { $minimumPlayers } players, only { $readyPlayersCount } are ready.
-flesh-cult-no-one-ready = No players are ready! Failed to start the Flesh Cult game mode.
+flesh-cult-objective-condition-success = { $condition } | [color={ $markupColor }]Успех![/color]
+flesh-cult-objective-condition-fail = { $condition } | [color={ $markupColor }]Провал![/color] ({ $progress }%)
+flesh-cult-title = Культ плоти
+flesh-cult-description = На станции возник культ, стремящийся взять под свой контроль все живое.
+flesh-cult-not-enough-ready-players = Недостаточно игроков готовы играть! Из необходимых игроков { $minimumPlayers }готов, только { $readyPlayersCount } готовы.
+flesh-cult-no-one-ready = Не удалось запустить игровой режим Культ Плоти.
 
-flesh-cult-role-greeting = You are a member of the Flesh Cult.
-    Your objectives and fellow cultists are specified in the character menu.
-    Consume flesh beings to gain new abilities, stay in the shadows, and prepare for the arrival of the Flesh on the station.
-flesh-cult-role-cult-members = Your fellow cultists:
+flesh-cult-role-greeting = Вы являетесь членом Культа Плоти.
+    Ваши цели и коллеги-культисты указаны в меню персонажа.
+    Пожирайте существ из плоти, чтобы получать новые способности, Оставайтесь в тени и готовьтесь к прибытию плоти на станцию.
+flesh-cult-role-cult-members = Ваши коллеги-культисты:
     { $cultMembers }
-    Do not let them die in vain.
+    Не позвольте им умереть напрасно.
 
-flesh-cult-role-greeting-leader = You are the leader of the Flesh Cult.
-    Your objectives and fellow cultists are specified in the character menu.
-    Consume flesh beings to gain new abilities, stay in the shadows, and prepare for the arrival of the Flesh on the station.
-    Make sure none of the members of your cult perish in vain.
+flesh-cult-role-greeting-leader = Вы лидер Культа Плоти.
+    Ваши цели и коллеги-культисты указаны в меню персонажа.
+    Пожирайте существ из плоти, чтобы получать новые способности, Оставайтесь в тени и готовьтесь к прибытию плоти на станцию.
+    Следите за тем что бы ни один из членов культа не погиб напрасно.
