@@ -91,14 +91,18 @@ namespace Content.Server.Cloning
             var materialRating = args.PartRatings[component.MachinePartMaterialUse];
             var speedRating = args.PartRatings[component.MachinePartCloningSpeed];
 
-            component.BiomassRequirementMultiplier = MathF.Pow(component.PartRatingMaterialMultiplier, materialRating - 1);
-            component.CloningTime = component.BaseCloningTime * MathF.Pow(component.PartRatingSpeedMultiplier, speedRating - 1);
+            component.BiomassRequirementMultiplier =
+                MathF.Pow(component.PartRatingMaterialMultiplier, materialRating - 1);
+            component.CloningTime = component.BaseCloningTime *
+                                    MathF.Pow(component.PartRatingSpeedMultiplier, speedRating - 1);
         }
 
         private void OnUpgradeExamine(EntityUid uid, CloningPodComponent component, UpgradeExamineEvent args)
         {
-            args.AddPercentageUpgrade("cloning-pod-component-upgrade-speed", component.BaseCloningTime / component.CloningTime);
-            args.AddPercentageUpgrade("cloning-pod-component-upgrade-biomass-requirement", component.BiomassRequirementMultiplier);
+            args.AddPercentageUpgrade("cloning-pod-component-upgrade-speed",
+                component.BaseCloningTime / component.CloningTime);
+            args.AddPercentageUpgrade("cloning-pod-component-upgrade-biomass-requirement",
+                component.BiomassRequirementMultiplier);
         }
 
         internal void TransferMindToClone(EntityUid mindId, MindComponent mind)
@@ -124,6 +128,7 @@ namespace Content.Server.Cloning
                 EntityManager.RemoveComponent<BeingClonedComponent>(uid);
                 return;
             }
+
             UpdateStatus(clonedComponent.Parent, CloningPodStatus.Cloning, cloningPodComponent);
         }
 
@@ -134,14 +139,17 @@ namespace Content.Server.Cloning
 
         private void OnAnchor(EntityUid uid, CloningPodComponent component, ref AnchorStateChangedEvent args)
         {
-            if (component.ConnectedConsole == null || !TryComp<CloningConsoleComponent>(component.ConnectedConsole, out var console))
+            if (component.ConnectedConsole == null ||
+                !TryComp<CloningConsoleComponent>(component.ConnectedConsole, out var console))
                 return;
 
             if (args.Anchored)
             {
-                _cloningConsoleSystem.RecheckConnections(component.ConnectedConsole.Value, uid, console.GeneticScanner, console);
+                _cloningConsoleSystem.RecheckConnections(component.ConnectedConsole.Value, uid, console.GeneticScanner,
+                    console);
                 return;
             }
+
             _cloningConsoleSystem.UpdateUserInterface(component.ConnectedConsole.Value, console);
         }
 
@@ -150,10 +158,12 @@ namespace Content.Server.Cloning
             if (!args.IsInDetailsRange || !_powerReceiverSystem.IsPowered(uid))
                 return;
 
-            args.PushMarkup(Loc.GetString("cloning-pod-biomass", ("number", _material.GetMaterialAmount(uid, component.RequiredMaterial))));
+            args.PushMarkup(Loc.GetString("cloning-pod-biomass",
+                ("number", _material.GetMaterialAmount(uid, component.RequiredMaterial))));
         }
 
-        public bool TryCloning(EntityUid uid, EntityUid bodyToClone, Entity<MindComponent> mindEnt, CloningPodComponent? clonePod, float failChanceModifier = 1)
+        public bool TryCloning(EntityUid uid, EntityUid bodyToClone, Entity<MindComponent> mindEnt,
+            CloningPodComponent? clonePod, float failChanceModifier = 1)
         {
             if (!Resolve(uid, ref clonePod))
                 return false;
@@ -213,7 +223,9 @@ namespace Content.Server.Cloning
             if (biomassAmount < cloningCost)
             {
                 if (clonePod.ConnectedConsole != null)
-                    _chatSystem.TrySendInGameICMessage(clonePod.ConnectedConsole.Value, Loc.GetString("cloning-console-chat-error", ("units", cloningCost)), InGameICChatType.Speak, false);
+                    _chatSystem.TrySendInGameICMessage(clonePod.ConnectedConsole.Value,
+                        Loc.GetString("cloning-console-chat-error", ("units", cloningCost)), InGameICChatType.Speak,
+                        false);
                 return false;
             }
 
@@ -229,7 +241,9 @@ namespace Content.Server.Cloning
                 chance *= failChanceModifier;
 
                 if (cellularDmg > 0 && clonePod.ConnectedConsole != null)
-                    _chatSystem.TrySendInGameICMessage(clonePod.ConnectedConsole.Value, Loc.GetString("cloning-console-cellular-warning", ("percent", Math.Round(100 - chance * 100))), InGameICChatType.Speak, false);
+                    _chatSystem.TrySendInGameICMessage(clonePod.ConnectedConsole.Value,
+                        Loc.GetString("cloning-console-cellular-warning", ("percent", Math.Round(100 - chance * 100))),
+                        InGameICChatType.Speak, false);
 
                 if (_robustRandom.Prob(chance))
                 {
@@ -243,17 +257,6 @@ namespace Content.Server.Cloning
 
             var mob = Spawn(speciesPrototype.Prototype, Transform(uid).MapPosition);
             _humanoidSystem.CloneAppearance(bodyToClone, mob);
-
-            // If the cultist ate the body we need to visually reset it after cloning
-            if (TryComp<HumanoidAppearanceComponent>(mob, out var HuAppComponent))
-            {
-                var speciesProto = _prototype.Index<SpeciesPrototype>(HuAppComponent.Species);
-                var skeletonSprites = _prototype.Index<HumanoidSpeciesBaseSpritesPrototype>(speciesProto.SpriteSet);
-                foreach (var (key, id) in skeletonSprites.Sprites)
-                {
-                    _humanoidSystem.SetBaseLayerId(mob, key, id, humanoid: HuAppComponent);
-                }
-            }
 
             var ev = new CloningEvent(bodyToClone, mob);
             RaiseLocalEvent(bodyToClone, ref ev);
@@ -331,7 +334,8 @@ namespace Content.Server.Cloning
             if (!Resolve(uid, ref clonePod))
                 return;
 
-            if (clonePod.BodyContainer.ContainedEntity is not { Valid: true } entity || clonePod.CloningProgress < clonePod.CloningTime)
+            if (clonePod.BodyContainer.ContainedEntity is not { Valid: true } entity ||
+                clonePod.CloningProgress < clonePod.CloningTime)
                 return;
 
             EntityManager.RemoveComponent<BeingClonedComponent>(entity);
@@ -368,11 +372,13 @@ namespace Content.Server.Cloning
                 if (_robustRandom.Prob(0.2f))
                     i++;
             }
+
             _puddleSystem.TrySpillAt(uid, bloodSolution, out _);
 
             if (!HasComp<EmaggedComponent>(uid))
             {
-                _material.SpawnMultipleFromMaterial(_robustRandom.Next(1, (int) (clonePod.UsedBiomass / 2.5)), clonePod.RequiredMaterial, Transform(uid).Coordinates);
+                _material.SpawnMultipleFromMaterial(_robustRandom.Next(1, (int) (clonePod.UsedBiomass / 2.5)),
+                    clonePod.RequiredMaterial, Transform(uid).Coordinates);
             }
 
             clonePod.UsedBiomass = 0;

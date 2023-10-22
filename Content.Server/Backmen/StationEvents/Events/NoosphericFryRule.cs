@@ -14,7 +14,8 @@ using Content.Shared.Damage;
 using Content.Shared.Inventory;
 using Content.Shared.Mobs.Components;
 using Content.Shared.Mobs.Systems;
-using Robust.Shared.Map;
+using Robust.Server.GameObjects;
+using Robust.Shared.Map.Components;
 using Robust.Shared.Physics.Components;
 using Robust.Shared.Player;
 
@@ -25,7 +26,6 @@ namespace Content.Server.Backmen.StationEvents.Events;
 /// </summary>
 internal sealed class NoosphericFryRule : StationEventSystem<NoosphericFryRuleComponent>
 {
-    [Dependency] private readonly IMapManager _mapManager = default!;
     [Dependency] private readonly MobStateSystem _mobStateSystem = default!;
     [Dependency] private readonly InventorySystem _inventorySystem = default!;
     [Dependency] private readonly SharedAudioSystem _audioSystem = default!;
@@ -37,12 +37,13 @@ internal sealed class NoosphericFryRule : StationEventSystem<NoosphericFryRuleCo
     [Dependency] private readonly AnchorableSystem _anchorableSystem = default!;
     [Dependency] private readonly PowerReceiverSystem _powerReceiverSystem = default!;
     [Dependency] private readonly SharedTransformSystem _transformSystem = default!;
+    [Dependency] private readonly MapSystem _mapSystem = default!;
 
         protected override void Started(EntityUid uid, NoosphericFryRuleComponent component, GameRuleComponent gameRule, GameRuleStartedEvent args)
     {
         base.Started(uid, component, gameRule, args);
 
-        List<(EntityUid wearer, TinfoilHatComponent worn)> psionicList = new();
+        List<(EntityUid wearer, Entity<TinfoilHatComponent> worn)> psionicList = new();
 
         var query = EntityQueryEnumerator<PsionicInsulationComponent, MobStateComponent>();
         while (query.MoveNext(out var psion, out _, out _))
@@ -56,21 +57,22 @@ internal sealed class NoosphericFryRule : StationEventSystem<NoosphericFryRuleCo
             if (!TryComp<TinfoilHatComponent>(headItem, out var tinfoil))
                 continue;
 
-            psionicList.Add((psion, tinfoil));
+            psionicList.Add((psion, (headItem.Value, tinfoil)));
         }
 
-        foreach (var pair in psionicList)
+        foreach (var (wearer,(wornOwner,worn)) in psionicList)
         {
-            if (pair.worn.DestroyOnFry)
+            if (worn.DestroyOnFry)
             {
-                QueueDel(pair.worn.Owner);
-                Spawn("Ash", Transform(pair.wearer).Coordinates);
-                _popupSystem.PopupEntity(Loc.GetString("psionic-burns-up", ("item", pair.worn.Owner)), pair.wearer, Filter.Pvs(pair.worn.Owner), true, Shared.Popups.PopupType.MediumCaution);
-                _audioSystem.Play("/Audio/Effects/lightburn.ogg", Filter.Pvs(pair.worn.Owner), pair.worn.Owner, true);
-            } else
+                QueueDel(wornOwner);
+                Spawn("Ash", Transform(wearer).Coordinates);
+                _popupSystem.PopupEntity(Loc.GetString("psionic-burns-up", ("item", wornOwner)), wearer, Filter.Pvs(wornOwner), true, Shared.Popups.PopupType.MediumCaution);
+                _audioSystem.Play("/Audio/Effects/lightburn.ogg", Filter.Pvs(wornOwner), wornOwner, true);
+            }
+            else
             {
-                _popupSystem.PopupEntity(Loc.GetString("psionic-burn-resist", ("item", pair.worn.Owner)), pair.wearer, Filter.Pvs(pair.worn.Owner), true, Shared.Popups.PopupType.SmallCaution);
-                _audioSystem.Play("/Audio/Effects/lightburn.ogg", Filter.Pvs(pair.worn.Owner), pair.worn.Owner, true);
+                _popupSystem.PopupEntity(Loc.GetString("psionic-burn-resist", ("item", wornOwner)), wearer, Filter.Pvs(wornOwner), true, Shared.Popups.PopupType.SmallCaution);
+                _audioSystem.Play("/Audio/Effects/lightburn.ogg", Filter.Pvs(wornOwner), wornOwner, true);
             }
 
             DamageSpecifier damage = new();
@@ -80,22 +82,23 @@ internal sealed class NoosphericFryRule : StationEventSystem<NoosphericFryRuleCo
             if (_glimmerSystem.Glimmer > 500 && _glimmerSystem.Glimmer < 750)
             {
                 damage *= 2;
-                if (TryComp<FlammableComponent>(pair.wearer, out var flammableComponent))
+                if (TryComp<FlammableComponent>(wearer, out var flammableComponent))
                 {
                     flammableComponent.FireStacks += 1;
-                    _flammableSystem.Ignite(pair.wearer,uid, flammableComponent);
+                    _flammableSystem.Ignite(wearer,uid, flammableComponent);
                 }
-            } else if (_glimmerSystem.Glimmer > 750)
+            }
+            else if (_glimmerSystem.Glimmer > 750)
             {
                 damage *= 3;
-                if (TryComp<FlammableComponent>(pair.wearer, out var flammableComponent))
+                if (TryComp<FlammableComponent>(wearer, out var flammableComponent))
                 {
                     flammableComponent.FireStacks += 2;
-                    _flammableSystem.Ignite(pair.wearer, uid,flammableComponent);
+                    _flammableSystem.Ignite(wearer, uid,flammableComponent);
                 }
             }
 
-            _damageableSystem.TryChangeDamage(pair.wearer, damage, true, true);
+            _damageableSystem.TryChangeDamage(wearer, damage, true, true);
         }
 
         // for probers:
@@ -110,10 +113,10 @@ internal sealed class NoosphericFryRule : StationEventSystem<NoosphericFryRuleCo
             {
                 var coordinates = xform.Coordinates;
                 var gridUid = xform.GridUid;
-                if (!_mapManager.TryGetGrid(gridUid, out var grid))
+                if (!TryComp<MapGridComponent>(gridUid, out var grid))
                     continue;
 
-                var tileIndices = grid.TileIndicesFor(coordinates);
+                var tileIndices = _mapSystem.TileIndicesFor(gridUid.Value, grid, coordinates);
 
                 if (_anchorableSystem.TileFree(grid, tileIndices, physics.CollisionLayer, physics.CollisionMask))
                     _transformSystem.AnchorEntity(reactive, xform);

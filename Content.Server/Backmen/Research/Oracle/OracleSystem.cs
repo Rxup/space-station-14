@@ -113,15 +113,16 @@ public sealed class OracleSystem : EntitySystem
     public override void Update(float frameTime)
     {
         base.Update(frameTime);
-        foreach (var oracle in EntityQuery<OracleComponent>())
+        var q = EntityQueryEnumerator<OracleComponent>();
+        while (q.MoveNext(out var owner, out var oracle))
         {
             oracle.Accumulator += frameTime;
             oracle.BarkAccumulator += frameTime;
             if (oracle.BarkAccumulator >= oracle.BarkTime.TotalSeconds)
             {
                 oracle.BarkAccumulator = 0;
-                string message = Loc.GetString(_random.Pick(DemandMessages), ("item", oracle.DesiredPrototype.Name)).ToUpper();
-                _chat.TrySendInGameICMessage(oracle.Owner, message, InGameICChatType.Speak, false);
+                var message = Loc.GetString(_random.Pick(DemandMessages), ("item", oracle.DesiredPrototype.Name)).ToUpper();
+                _chat.TrySendInGameICMessage(owner, message, InGameICChatType.Speak, false);
             }
 
             if (oracle.Accumulator >= oracle.ResetTime.TotalSeconds)
@@ -236,16 +237,17 @@ public sealed class OracleSystem : EntitySystem
             .Where(x => !x.Abstract)
             .Select(x => x.ID).ToList();
 
-        var amount = 20 + _random.Next(1, 30) + ((float) _glimmerSystem.Glimmer / 10f);
+        var amount = 20 + _random.Next(1, 30) + (_glimmerSystem.Glimmer / 10f);
         amount = (float) Math.Round(amount);
 
         var sol = new Solution();
-        var reagent = "";
+        string reagent;
 
         if (_random.Prob(0.2f))
         {
             reagent = _random.Pick(allReagents);
-        } else
+        }
+        else
         {
             reagent = _random.Pick(RewardReagents);
         }
@@ -292,7 +294,9 @@ public sealed class OracleSystem : EntitySystem
         var allPlants = _prototypeManager.EnumeratePrototypes<SeedPrototype>().Select(x => x.ProductPrototypes[0]).ToList();
         var allProtos = allRecipes.Concat(allPlants).ToList();
         foreach (var proto in BlacklistedProtos)
+        {
             allProtos.Remove(proto);
+        }
 
         return allProtos;
     }

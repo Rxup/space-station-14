@@ -27,6 +27,6 @@ public sealed class DepartmentPrototype : IPrototype
 
 // start-backmen: currency
     [DataField("accountNumber")]
-    public int? AccountNumber { get; }
+    public string? AccountNumber { get; private set; }
 // end-backmen: currency
 }
