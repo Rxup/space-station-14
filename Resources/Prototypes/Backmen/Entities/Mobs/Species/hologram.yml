@@ -1,0 +1,105 @@
+﻿- type: entity
+  name: hologram
+  id: BaseMobHologram
+  save: false
+  abstract: true
+  description: A projection of light imitating a humanoid in appearance and mannerism.
+  components:
+    - type: Icon
+      sprite: Mobs/Species/Human/parts.rsi
+      state: full
+    - type: Sprite
+      noRot: true
+      drawdepth: Mobs
+      layers:
+        - map: [ "enum.HumanoidVisualLayers.Chest" ]
+        - map: [ "enum.HumanoidVisualLayers.Head" ]
+        - map: [ "enum.HumanoidVisualLayers.Snout" ]
+        - map: [ "enum.HumanoidVisualLayers.Eyes" ]
+        - map: [ "enum.HumanoidVisualLayers.RArm" ]
+        - map: [ "enum.HumanoidVisualLayers.LArm" ]
+        - map: [ "enum.HumanoidVisualLayers.RLeg" ]
+        - map: [ "enum.HumanoidVisualLayers.LLeg" ]
+        - shader: StencilClear
+          sprite: Mobs/Species/Human/parts.rsi
+          state: l_leg
+        - shader: StencilMask
+          map: [ "enum.HumanoidVisualLayers.StencilMask" ]
+          sprite: Mobs/Customization/masking_helpers.rsi
+          state: female_full
+          visible: false
+        - map: [ "jumpsuit" ]
+        - map: [ "enum.HumanoidVisualLayers.LHand" ]
+        - map: [ "enum.HumanoidVisualLayers.RHand" ]
+        - map: [ "enum.HumanoidVisualLayers.LFoot" ]
+        - map: [ "enum.HumanoidVisualLayers.RFoot" ]
+        - map: [ "id" ]
+        - map: [ "gloves" ]
+        - map: [ "shoes" ]
+        - map: [ "ears" ]
+        - map: [ "outerClothing" ]
+        - map: [ "eyes" ]
+        - map: [ "belt" ]
+        - map: [ "neck" ]
+        - map: [ "back" ]
+        - map: [ "enum.HumanoidVisualLayers.FacialHair" ]
+        - map: [ "enum.HumanoidVisualLayers.Hair" ]
+        - map: [ "enum.HumanoidVisualLayers.HeadSide" ]
+        - map: [ "enum.HumanoidVisualLayers.HeadTop" ]
+        - map: [ "enum.HumanoidVisualLayers.Tail" ]
+        - map: [ "mask" ]
+        - map: [ "head" ]
+        - map: [ "pocket1" ]
+        - map: [ "pocket2" ]
+    - type: Hands
+    - type: Identity
+    - type: IdExaminable
+    - type: Inventory
+    - type: InventorySlots
+    - type: Clickable
+    - type: Physics
+      bodyType: KinematicController
+    - type: Body
+      prototype: Human
+    - type: HumanoidAppearance
+      species: Human
+    - type: Appearance
+    - type: RotationVisuals
+    - type: Hologram
+    - type: HologramVisuals
+    - type: PointLight
+      color: "#2088cc"
+      radius: 2
+      energy: 4
+    - type: AnimationPlayer
+    - type: DoAfter
+    - type: Speech
+      speechSounds: Alto
+    - type: Vocal
+      sounds:
+        Male: MaleHuman
+        Female: FemaleHuman
+        Unsexed: MaleHuman
+    - type: Emoting
+    - type: BodyEmotes
+      soundsId: GeneralBodyEmotes
+    - type: Grammar
+      attributes:
+        proper: true
+    - type: StandingState
+    - type: NoNormalInteraction
+
+- type: entity
+  id: MobHologramHuman
+  parent: BaseMobHologram
+  suffix: Human
+  save: false
+  components:
+    - type: MindContainer
+    - type: Input
+      context: "human"
+    - type: InputMover
+    - type: MobMover
+    - type: Actions
+    - type: Eye
+    - type: Examiner

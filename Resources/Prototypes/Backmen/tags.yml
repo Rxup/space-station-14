@@ -22,6 +22,14 @@
 - type: Tag
   id: BluespaceCrystal
 
-
 - type: Tag
   id: MagazineUniversalCaselessRifle
+
+- type: Tag
+  id: RuinedDwelling
+
+- type: Tag
+  id: RuinedHospital
+
+- type: Tag
+  id: RuinedShop

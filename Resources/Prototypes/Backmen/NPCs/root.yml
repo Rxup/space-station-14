@@ -9,6 +9,9 @@
           task: WispRangedCombatCompound
     - tasks:
         - !type:HTNCompoundTask
+          task: DrainPsionicCompound
+    - tasks:
+        - !type:HTNCompoundTask
           task: WispIdleCompound
 
 - type: htnCompound
@@ -48,3 +51,23 @@
           preconditions:
             - !type:KeyExistsPrecondition
               key: IdleTime
+
+- type: htnCompound
+  id: DrainPsionicCompound
+  branches:
+    - tasks:
+        - !type:HTNPrimitiveTask
+          operator: !type:PickDrainTargetOperator
+            pathfindInPlanning: true
+            targetKey: MovementTarget
+            drainKey: DrainTarget
+            rangeKey: IdleRange
+
+        - !type:HTNPrimitiveTask
+          operator: !type:MoveToOperator
+            pathfindInPlanning: false
+            targetKey: MovementTarget
+
+        - !type:HTNPrimitiveTask
+          operator: !type:DrainOperator
+            drainKey: DrainTarget

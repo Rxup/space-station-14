@@ -7,6 +7,67 @@ namespace Content.Shared.Backmen.CCVar;
 [CVarDefs]
 public sealed class CCVars
 {
+    /*
+     * GPT
+     */
+    public static readonly CVarDef<bool>
+        GptEnabled = CVarDef.Create("gpt.enabled", false, CVar.SERVERONLY);
+
+    public static readonly CVarDef<string>
+        GptModel = CVarDef.Create("gpt.model", "gpt-3.5-turbo-0613", CVar.SERVERONLY);
+
+    public static readonly CVarDef<string>
+        GptApiUrl = CVarDef.Create("gpt.api", "https://api.openai.com/v1/", CVar.SERVERONLY | CVar.CONFIDENTIAL);
+
+    public static readonly CVarDef<string>
+        GptApiToken = CVarDef.Create("gpt.token", "", CVar.SERVERONLY | CVar.CONFIDENTIAL);
+
+    /*
+     * Queue
+     */
+
+    /// <summary>
+    ///     Controls if the connections queue is enabled. If enabled stop kicking new players after `SoftMaxPlayers` cap and instead add them to queue.
+    /// </summary>
+    public static readonly CVarDef<bool>
+        QueueEnabled = CVarDef.Create("queue.enabled", false, CVar.SERVERONLY);
+
+    public static readonly CVarDef<bool>
+        QueueAltEnabled = CVarDef.Create("queue.alt_servers", false, CVar.SERVERONLY);
+
+    /*
+     * Discord Auth
+     */
+
+    /// <summary>
+    ///     Enabled Discord linking, show linking button and modal window
+    /// </summary>
+    public static readonly CVarDef<bool> DiscordAuthEnabled =
+        CVarDef.Create("discord_auth.enabled", false, CVar.SERVERONLY);
+
+    /// <summary>
+    ///     URL of the Discord auth server API
+    /// </summary>
+    public static readonly CVarDef<string> DiscordAuthApiUrl =
+        CVarDef.Create("discord_auth.api_url", "", CVar.SERVERONLY);
+
+    /// <summary>
+    ///     Secret key of the Discord auth server API
+    /// </summary>
+    public static readonly CVarDef<string> DiscordAuthApiKey =
+        CVarDef.Create("discord_auth.api_key", "", CVar.SERVERONLY | CVar.CONFIDENTIAL);
+
+    /**
+     * Sponsors
+     */
+
+    /// <summary>
+    ///     URL of the sponsors server API.
+    /// </summary>
+    public static readonly CVarDef<string> SponsorsApiUrl =
+        CVarDef.Create("sponsor.api_url", "", CVar.SERVERONLY);
+
+
     public static readonly CVarDef<bool>
         EconomyWagesEnabled = CVarDef.Create("economy.wages_enabled", true, CVar.SERVERONLY);
 
@@ -42,4 +103,28 @@ public sealed class CCVars
     /// </summary>
     public static readonly CVarDef<bool> PsionicRollsEnabled =
         CVarDef.Create("psionics.rolls_enabled", true, CVar.SERVERONLY);
+
+    /// <summary>
+    /// Shipwrecked
+    /// </summary>
+    public static readonly CVarDef<int> ShipwreckedMaxPlayers =
+        CVarDef.Create("shipwrecked.max_players", 15);
+
+    /// <summary>
+    /// Damage
+    /// </summary>
+    public static readonly CVarDef<float> DamageVariance =
+        CVarDef.Create("damage.variance", 0.15f, CVar.SERVER | CVar.REPLICATED);
+    /*
+ * FleshCult
+ */
+
+    public static readonly CVarDef<int> FleshCultMinPlayers =
+        CVarDef.Create("fleshcult.min_players", 25);
+
+    public static readonly CVarDef<int> FleshCultMaxCultist =
+        CVarDef.Create("fleshcult.max_cultist", 6);
+
+    public static readonly CVarDef<int> FleshCultPlayersPerCultist =
+        CVarDef.Create("fleshcult.players_per_cultist", 7);
 }

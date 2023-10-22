@@ -5,12 +5,14 @@ using Content.Server.NPC.Components;
 using Content.Server.Backmen.Psionics.Glimmer;
 using Content.Server.Backmen.StationEvents.Components;
 using Content.Server.Station.Components;
+using Content.Server.Station.Systems;
 using Content.Server.StationEvents.Components;
 using Content.Server.StationEvents.Events;
 using Content.Shared.Backmen.Psionics.Glimmer;
 using Content.Shared.Backmen.Abilities.Psionics;
 using Content.Shared.Storage;
 using Robust.Shared.Map;
+using Robust.Shared.Prototypes;
 
 namespace Content.Server.Backmen.StationEvents.Events;
 
@@ -18,41 +20,53 @@ internal sealed class GlimmerWispRule : StationEventSystem<GlimmerWispRuleCompon
 {
     [Dependency] private readonly IRobustRandom _robustRandom = default!;
     [Dependency] private readonly GlimmerSystem _glimmerSystem = default!;
+    [Dependency] private readonly StationSystem _stationSystem = default!;
 
-    private static readonly string WispPrototype = "MobGlimmerWisp";
+    [ValidatePrototypeId<EntityPrototype>] private static readonly string WispPrototype = "MobGlimmerWisp";
 
     protected override void Started(EntityUid uid, GlimmerWispRuleComponent component, GameRuleComponent gameRule, GameRuleStartedEvent args)
     {
         base.Started(uid, component, gameRule, args);
-
-        var glimmerSources = EntityManager.EntityQuery<GlimmerSourceComponent, TransformComponent>().ToList();
 
         if (!TryGetRandomStation(out var station))
         {
             return;
         }
 
-        var locations = EntityQueryEnumerator<VentCritterSpawnLocationComponent, TransformComponent>();
-        var hiddenSpawnLocations = new List<EntityCoordinates>();
-        while (locations.MoveNext(out _, out _, out var transform))
+        var glimmerSources = new List<EntityCoordinates>();
         {
-            if (CompOrNull<StationMemberComponent>(transform.GridUid)?.Station == station)
+            var locations = EntityQueryEnumerator<GlimmerSourceComponent, TransformComponent>();
+            while (locations.MoveNext(out var sUid, out _, out var transform))
             {
-                hiddenSpawnLocations.Add(transform.Coordinates);
+                if (_stationSystem.GetOwningStation(sUid, transform) == station)
+                {
+                    glimmerSources.Add(transform.Coordinates);
+                }
+            }
+        }
+
+        var hiddenSpawnLocations = new List<EntityCoordinates>();
+        {
+            var locations = EntityQueryEnumerator<VentCritterSpawnLocationComponent, TransformComponent>();
+            while (locations.MoveNext(out var sUid, out _, out var transform))
+            {
+                if (_stationSystem.GetOwningStation(sUid, transform) == station)
+                {
+                    hiddenSpawnLocations.Add(transform.Coordinates);
+                }
             }
         }
 
         var baseCount = Math.Max(1, EntityManager.EntityQuery<PsionicComponent, NpcFactionMemberComponent>().Count() / 10);
-        int multiplier = Math.Max(1, (int) _glimmerSystem.GetGlimmerTier() - 2);
+        var multiplier = Math.Max(1, (int) _glimmerSystem.GetGlimmerTier() - 2);
 
         var total = baseCount * multiplier;
 
-        int i = 0;
-        while (i < total)
+        for (var i = 0; i < total; i++)
         {
             if (glimmerSources.Count != 0 && _robustRandom.Prob(0.4f))
             {
-                Spawn(WispPrototype, _robustRandom.Pick(glimmerSources).Item2.Coordinates);
+                Spawn(WispPrototype, _robustRandom.Pick(glimmerSources));
                 i++;
                 continue;
             }

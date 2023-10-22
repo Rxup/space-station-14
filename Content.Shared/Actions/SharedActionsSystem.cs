@@ -10,6 +10,7 @@ using Content.Shared.Inventory.Events;
 using Robust.Shared.Containers;
 using Robust.Shared.GameStates;
 using Robust.Shared.Map;
+using Robust.Shared.Network;
 using Robust.Shared.Timing;
 using Robust.Shared.Utility;
 
@@ -211,6 +212,7 @@ public abstract class SharedActionsSystem : EntitySystem
             return;
 
         DebugTools.Assert(action.AttachedEntity == user);
+
 
         if (!action.Enabled)
             return;
@@ -586,9 +588,16 @@ public abstract class SharedActionsSystem : EntitySystem
         if (!ResolveActionData(actionId, ref action))
             return;
 
+        if (action.AttachedEntity != performer)
+        {
+            Log.Error($"Attempted to remove an action {ToPrettyString(actionId)} from an entity that it was never attached to: {ToPrettyString(performer)}");
+            return;
+        }
+
         if (!Resolve(performer, ref comp, false))
         {
-            DebugTools.AssertNull(action.AttachedEntity);
+            DebugTools.Assert(action.AttachedEntity == null || TerminatingOrDeleted(action.AttachedEntity.Value));
+            action.AttachedEntity = null;
             return;
         }
 
@@ -599,7 +608,6 @@ public abstract class SharedActionsSystem : EntitySystem
             return;
         }
 
-        DebugTools.Assert(action.AttachedEntity == performer);
         comp.Actions.Remove(actionId.Value);
         action.AttachedEntity = null;
         Dirty(actionId.Value, action);

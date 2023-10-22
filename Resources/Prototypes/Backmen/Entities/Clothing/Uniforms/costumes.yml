@@ -85,3 +85,52 @@
     sprite: Backmen/Clothing/Uniforms/Costume/Schoolgirl/purple.rsi
   - type: Clothing
     sprite: Backmen/Clothing/Uniforms/Costume/Schoolgirl/purple.rsi
+
+## new school uniforms
+
+- type: entity
+  parent: ClothingUniformSchoolgirlBase
+  id: UniformSchoolgirlDusk
+  name: dusk schoolgirl uniform
+  description: Ready for school in modern style.
+  components:
+    - type: Sprite
+      sprite: Backmen/Clothing/Uniforms/Costume/SchoolgirlModern/dusk.rsi
+    - type: Clothing
+      sprite: Backmen/Clothing/Uniforms/Costume/SchoolgirlModern/dusk.rsi
+
+- type: entity
+  parent: ClothingUniformSchoolgirlBase
+  id: UniformSchoolgirlBlazerTan
+  name: tan blazer schoolgirl uniform
+  description: Ready for school in modern style. This set comes with a tan blazer.
+  components:
+    - type: Sprite
+      sprite: Backmen/Clothing/Uniforms/Costume/SchoolgirlModern/blazer-tan.rsi
+    - type: Clothing
+      sprite: Backmen/Clothing/Uniforms/Costume/SchoolgirlModern/blazer-tan.rsi
+
+# gakuran
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformSchoolGakuranBlack
+  name: gakuran uniform
+  description: A sleek school uniform.
+  components:
+    - type: Sprite
+      sprite: Backmen/Clothing/Uniforms/Costume/gakuran.rsi
+    - type: Clothing
+      sprite: Backmen/Clothing/Uniforms/Costume/gakuran.rsi
+      femaleMask: NoMask
+
+- type: entity
+  parent: ClothingUniformSkirtBase
+  id: ClothingCostumeArcDress
+  name: white shirt and purple skirt
+  description: You feel a supernatural urge to put these on. It must be fate.
+  components:
+    - type: Sprite
+      sprite: Backmen/Clothing/Uniforms/Costume/arc.rsi
+    - type: Clothing
+      sprite: Backmen/Clothing/Uniforms/Costume/arc.rsi

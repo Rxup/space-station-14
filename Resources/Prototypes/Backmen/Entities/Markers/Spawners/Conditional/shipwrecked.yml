@@ -1,0 +1,26 @@
+# For the Shipwrecked game mode
+- type: entity
+  id: SpawnPointShipwreckTraveller
+  parent: MarkerBase
+  name: traveller
+  suffix: shipwrecked gamemode
+  components:
+  - type: SpawnPoint
+  - type: Sprite
+    layers:
+    - state: green
+    - sprite: Objects/Fun/sharkplush.rsi
+      state: blue
+
+- type: entity
+  id: SpawnPointShipwreckHecate
+  parent: MarkerBase
+  name: Hecate spawner
+  suffix: shipwrecked gamemode
+  components:
+  - type: SpawnPoint
+  - type: Sprite
+    layers:
+    - state: green
+    - sprite: Objects/Fun/sharkplush.rsi
+      state: pink

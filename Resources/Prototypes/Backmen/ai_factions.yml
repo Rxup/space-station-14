@@ -1,0 +1,50 @@
+﻿- type: npcFaction
+  id: MalfunctioningRobot
+  hostile:
+    - NanoTrasen
+    - SimpleNeutral
+    - SimpleHostile
+    - Syndicate
+    - Passive
+    - PetsNT
+    - Blob
+    - Zombie
+
+- type: npcFaction
+  id: Blob
+  hostile:
+    - NanoTrasen
+    - Syndicate
+    - Xeno
+    - PetsNT
+    - Zombie
+    - Dragon
+    #- RatPassive
+    #- RatHostile
+    #- Pet
+    #- FleshHuman
+    - Flesh
+    - MalfunctioningRobot
+    - Revolutionary
+
+- type: npcFaction
+  id: Flesh
+  hostile:
+    - NanoTrasen
+    - Syndicate
+    - Xeno
+    - Dragon
+    - SimpleHostile
+    - SimpleNeutral
+    - Blob
+    - Revolutionary
+
+- type: npcFaction
+  id: GlimmerMonster # Crew hostile psionic
+  hostile:
+    - PsionicInterloper
+
+- type: npcFaction
+  id: PsionicInterloper # Crew aligned psionic
+  hostile:
+    - GlimmerMonster

@@ -14,10 +14,10 @@
   - Research
   - Maintenance
   #start-backmen: currency
-  minBankBalance: 300
-  maxBankBalance: 600
+  minBankBalance: 150
+  maxBankBalance: 250
   wageDepartment: Science
-  wage: 140
+  wage: 70
   #end-backmen: currency
 
 - type: startingGear
@@ -30,6 +30,6 @@
     outerClothing: ClothingOuterCoatLabSeniorResearcher
     id: SeniorResearcherPDA
     ears: ClothingHeadsetScience
-  innerclothingskirt: ClothingUniformJumpskirtSeniorResearcher
+  innerClothingSkirt: ClothingUniformJumpskirtSeniorResearcher
   satchel: ClothingBackpackSatchelScienceFilled
   duffelbag: ClothingBackpackDuffelScienceFilled

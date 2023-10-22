@@ -1,5 +1,5 @@
 using System.Text.Json.Nodes;
-using Content.Server.Corvax.JoinQueue;
+using Content.Corvax.Interfaces.Server;
 using Content.Shared.CCVar;
 using Robust.Server.ServerStatus;
 using Robust.Shared.Configuration;
@@ -23,7 +23,10 @@ namespace Content.Server.GameTicking
         ///     For access to CVars in status responses.
         /// </summary>
         [Dependency] private readonly IConfigurationManager _cfg = default!;
-        [Dependency] private readonly JoinQueueManager _queueManager = default!; // Corvax-Queue
+
+        // Corvax-Queue-Start
+        [Dependency] private readonly IServerJoinQueueManager _joinQueueManager = default!;
+        // Corvax-Queue-End
 
         private void InitializeStatusShell()
         {
@@ -35,8 +38,14 @@ namespace Content.Server.GameTicking
             // This method is raised from another thread, so this better be thread safe!
             lock (_statusShellLock)
             {
+                // Corvax-Queue-Start
+                var players = IoCManager.Instance?.TryResolveType<IServerJoinQueueManager>(out var joinQueueManager) ?? false
+                    ? joinQueueManager.ActualPlayersCount
+                    : _playerManager.PlayerCount;
+                // Corvax-Queue-End
+
                 jObject["name"] = _baseServer.ServerName;
-                jObject["players"] = _queueManager.ActualPlayersCount; // Corvax-Queue
+                jObject["players"] = players; // Corvax-Queue
                 jObject["soft_max_players"] = _cfg.GetCVar(CCVars.SoftMaxPlayers);
                 jObject["run_level"] = (int) _runLevel;
                 if (_runLevel >= GameRunLevel.InRound)

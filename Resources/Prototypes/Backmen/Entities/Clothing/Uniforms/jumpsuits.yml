@@ -268,7 +268,7 @@
         Slash: 0.9
         Piercing: 0.9
         Heat: 0.9
-        
+
 - type: entity
   parent: ClothingUniformBase
   id: ClothingUniformJumpsuitDeliveryman
@@ -278,4 +278,85 @@
   - type: Sprite
     sprite: Backmen/Clothing/Uniforms/jumpsuit/space_club.rsi
   - type: Clothing
-    sprite: Backmen/Clothing/Uniforms/jumpsuit/space_club.rsi        
+    sprite: Backmen/Clothing/Uniforms/jumpsuit/space_club.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformJumpsuitExplorer
+  name: explorer's uniform
+  description: A rugged set of overalls for trekking across the stars.
+  components:
+    - type: Sprite
+      sprite: Backmen/Clothing/Uniforms/jumpsuit/explorer.rsi
+    - type: Clothing
+      sprite: Backmen/Clothing/Uniforms/jumpsuit/explorer.rsi
+
+- type: entity
+  parent: ClothingOuterStorageBase
+  id: ClothingOuterExplorerCoat
+  name: explorer's labcoat
+  description: Looks like it's seen its fair share of dusty trails.
+  components:
+    - type: Sprite
+      sprite: Backmen/Clothing/OuterClothing/Coats/explorer_coat.rsi
+    - type: Clothing
+      sprite: Backmen/Clothing/OuterClothing/Coats/explorer_coat.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformTShirtKhakiPants
+  name: drab t-shirt and khaki pants
+  description: Some drab but functional clothing.
+  components:
+    - type: Sprite
+      sprite: Backmen/Clothing/Uniforms/jumpsuit/tshirt_khaki.rsi
+    - type: Clothing
+      sprite: Backmen/Clothing/Uniforms/jumpsuit/tshirt_khaki.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformMailCarrier
+  name: mail carrier's uniform
+  description: Enemy of dogs everywhere.
+  components:
+    - type: Sprite
+      sprite: Backmen/Clothing/Uniforms/jumpsuit/mailman.rsi
+    - type: Clothing
+      sprite: Backmen/Clothing/Uniforms/jumpsuit/mailman.rsi
+#    - type: ClothingAddFaction
+#      faction: Mailman
+
+- type: entity
+  parent: ClothingUniformSkirtBase
+  id: ClothingUniformSkirtMailCarrier
+  name: mail carrier's jumpskirt
+  description: Enemy of dogs everywhere.
+  components:
+    - type: Sprite
+      sprite: Backmen/Clothing/Uniforms/Jumpskirt/mailman.rsi
+    - type: Clothing
+      sprite: Backmen/Clothing/Uniforms/Jumpskirt/mailman.rsi
+#    - type: ClothingAddFaction
+#      faction: Mailman
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformJumpsuitUEG
+  name: Водолазка представителя ОПЗ
+  description: Лёгкая и комфортная водолазка
+  components:
+  - type: Sprite
+    sprite: Backmen/Clothing/Uniforms/jumpsuit/eug-jumpsuit.rsi
+  - type: Clothing
+    sprite: Backmen/Clothing/Uniforms/jumpsuit/eug-jumpsuit.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformJumpsuitUEGofficer
+  name: Униформа офицера ОПЗ
+  description: Униформа с безполезным камуфляжем. Лучше не связыватся с её обладателями
+  components:
+  - type: Sprite
+    sprite: Backmen/Clothing/Uniforms/jumpsuit/eug-officer-jumpsuit.rsi
+  - type: Clothing
+    sprite: Backmen/Clothing/Uniforms/jumpsuit/eug-officer-jumpsuit.rsi

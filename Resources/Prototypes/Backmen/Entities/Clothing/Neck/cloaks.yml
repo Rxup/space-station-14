@@ -71,3 +71,11 @@
   - type: Sprite
     sprite: Backmen/Clothing/Neck/Cloaks/leather_coat.rsi
 
+- type: entity
+  parent: ClothingNeckBase
+  id: ClothingNeckCloakUEG
+  name: Плащ ОПЗ
+  description: Выдаётся только верхушке ОПЗ.
+  components:
+  - type: Sprite
+    sprite: Backmen/Clothing/Neck/Cloaks/eug-cloak.rsi

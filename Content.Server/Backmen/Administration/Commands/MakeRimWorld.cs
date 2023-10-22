@@ -30,7 +30,7 @@ public sealed class MakeRimWorld : IConsoleCommand
     [Dependency] private readonly IMapManager _mapManager = default!;
     public string Command => "makerimworld";
 
-    public string Description => "помещает отпечатки и ДНК жертвы на указанном объекте (волокна перчаток не берутся)";
+    public string Description => "Создаёт новую карту с биомом Continental и спавнит на нём \"Спавн\"";
 
     public string Help => "makerimworld";
 
@@ -38,7 +38,7 @@ public sealed class MakeRimWorld : IConsoleCommand
     {
         var _prototypeManager = IoCManager.Resolve<IPrototypeManager>();
         var _random = IoCManager.Resolve<IRobustRandom>();
-        if (!_prototypeManager.TryIndex<BiomeTemplatePrototype>("Grasslands", out var biomeTemplate))
+        if (!_prototypeManager.TryIndex<BiomeTemplatePrototype>("Continental", out var biomeTemplate))
         {
             return;
         }

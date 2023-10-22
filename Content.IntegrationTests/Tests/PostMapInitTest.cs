@@ -69,7 +69,10 @@ namespace Content.IntegrationTests.Tests
             "Core",
             "Marathon",
             "Kettle",
-            "MeteorArena"
+            "MeteorArena",
+            //backmen
+            "ShwrAdventurer",
+            "ShwrBig"
         };
 
         /// <summary>
@@ -262,6 +265,7 @@ namespace Content.IntegrationTests.Tests
                     var jobList = entManager.GetComponent<StationJobsComponent>(station).RoundStartJobList
                         .Where(x => x.Value != 0)
                         .Where(x=>x.Key != "Prisoner") // backmen: Fugitive
+                        .Where(x=>x.Key != "Freelancer") // backmen: shipwrecked
                         .Select(x => x.Key);
                     var spawnPoints = entManager.EntityQuery<SpawnPointComponent>()
                         .Where(spawnpoint => spawnpoint.SpawnType == SpawnPointType.Job)

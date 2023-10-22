@@ -204,7 +204,7 @@ namespace Content.Shared.Preferences
         public string Name { get; private set; }
         public string FlavorText { get; private set; }
         public string Species { get; private set; }
-        public string Voice { get; private set; } // Corvax-TTS
+        public ProtoId<TTSVoicePrototype> Voice { get; private set; } // Corvax-TTS
 
         [DataField("age")]
         public int Age { get; private set; }
@@ -371,7 +371,7 @@ namespace Content.Shared.Preferences
             return Appearance.MemberwiseEquals(other.Appearance);
         }
 
-        public void EnsureValid(string[] sponsorMarkings)
+        public void EnsureValid(string[] sponsorPrototypes)
         {
             var prototypeManager = IoCManager.Resolve<IPrototypeManager>();
 
@@ -380,6 +380,14 @@ namespace Content.Shared.Preferences
                 Species = SharedHumanoidAppearanceSystem.DefaultSpecies;
                 speciesPrototype = prototypeManager.Index<SpeciesPrototype>(Species);
             }
+
+            // Corvax-Sponsors-Start: Reset to human if player not sponsor
+            if (speciesPrototype.SponsorOnly && !sponsorPrototypes.Contains(Species))
+            {
+                Species = SharedHumanoidAppearanceSystem.DefaultSpecies;
+                speciesPrototype = prototypeManager.Index<SpeciesPrototype>(Species);
+            }
+            // Corvax-Sponsors-End
 
             var sex = Sex switch
             {
@@ -454,7 +462,7 @@ namespace Content.Shared.Preferences
                 flavortext = FormattedMessage.RemoveMarkup(FlavorText);
             }
 
-            var appearance = HumanoidCharacterAppearance.EnsureValid(Appearance, Species, Sex, sponsorMarkings);
+            var appearance = HumanoidCharacterAppearance.EnsureValid(Appearance, Species, Sex, sponsorPrototypes);
 
             var prefsUnavailableMode = PreferenceUnavailable switch
             {

@@ -3,7 +3,7 @@
   id: MobGolemBase
   save: false
   abstract: true
-  description: An artificial construct imitating life. This one has no soul installed yet.
+  description: Искусственная конструкция, имитирующая жизнь. У этого еще не установлен кристалл души.
   components:
   - type: Sprite
     noRot: true
@@ -203,6 +203,8 @@
   - type: Speech
     speechSounds: Baritone
   - type: Vocal
+    maleScream: /Audio/Corvax/Effects/off.ogg
+    femaleScream: /Audio/Corvax/Effects/off.ogg
   - type: Emoting
   - type: Grammar
     attributes:
@@ -257,9 +259,13 @@
 - type: entity
   parent: MobGolemBase
   id: MobGolemCult
-  name: golem
+  name: голем
   suffix: shell
+  description: Искусственная конструкция, имитирующая жизнь. У этого еще не установлен кристалл души.
   components:
+  - type: Tag
+    tags:
+      - FootstepSound
   - type: Repairable
     fuelcost: 60
     doAfterDelay: 32
@@ -270,9 +276,12 @@
 - type: entity
   parent: MobGolemBase
   id: MobGolemWood
-  name: wood golem
-  description: An artificial construct imitating life. This one has no soul installed yet.
+  name: деревянный голем
+  description: Искусственная конструкция, имитирующая жизнь. У этого еще не установлен кристалл души.
   components:
+  - type: Tag
+    tags:
+    - FootstepSound
   - type: Sprite
     noRot: true
     drawdepth: Mobs
@@ -375,9 +384,9 @@
 
 - type: entity
   parent: MobGolemBase
-  name: silver golem
+  name: серебрянный голем
   id: MobGolemSilver
-  description: A fusion between soul and quantum machine, the epitome of epistemics.
+  description: Слияние души и квантовой машины, воплощение эпистемологии.
   components:
     - type: MovementSpeedModifier
       baseWalkSpeed: 4

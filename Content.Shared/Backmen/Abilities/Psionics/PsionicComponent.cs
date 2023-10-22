@@ -1,4 +1,6 @@
+using Content.Shared.Radio;
 using Robust.Shared.GameStates;
+using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype;
 
 namespace Content.Shared.Backmen.Abilities.Psionics;
 
@@ -12,4 +14,10 @@ public sealed partial class PsionicComponent : Component
     /// </summary>
     [DataField("removable")]
     public bool Removable = true;
+
+    [DataField("channel", customTypeSerializer: typeof(PrototypeIdSerializer<RadioChannelPrototype>))]
+    public string? Channel;
+
+    [DataField("channelColor")]
+    public Color ChannelColor = Color.PaleVioletRed;
 }

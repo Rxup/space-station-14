@@ -271,6 +271,9 @@
       - id: BoxEncryptionKeyScience
       - id: AntiPsychicKnife # backmen
       - id: ClothingHeadCage # backmen
+      - id: PresentOracle # backmen
+      - id: PresentSophie # backmen
+      - id: PonderingOrbTelepathic # backmen
 
 - type: entity
   id: LockerResearchDirectorFilled
@@ -296,6 +299,9 @@
       - id: BoxEncryptionKeyScience
       - id: AntiPsychicKnife # backmen
       - id: ClothingHeadCage # backmen
+      - id: PresentOracle # backmen
+      - id: PresentSophie # backmen
+      - id: PonderingOrbTelepathic # backmen
 
 - type: entity
   id: LockerHeadOfSecurityFilledHardsuit

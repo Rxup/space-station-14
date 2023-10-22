@@ -21,10 +21,10 @@
   - Maintenance
   - Chemistry
   #start-backmen: currency
-  minBankBalance: 300
-  maxBankBalance: 600
+  minBankBalance: 150
+  maxBankBalance: 250
   wageDepartment: Medical
-  wage: 135
+  wage: 78
   #end-backmen: currency
 
 - type: startingGear
@@ -37,6 +37,6 @@
     id: SeniorPhysicianPDA
     ears: ClothingHeadsetMedical
     belt: ClothingBeltMedicalFilled
-  innerclothingskirt: ClothingUniformJumpskirtSeniorPhysician
+  innerClothingSkirt: ClothingUniformJumpskirtSeniorPhysician
   satchel: ClothingBackpackSatchelMedicalFilled
   duffelbag: ClothingBackpackDuffelMedicalFilled

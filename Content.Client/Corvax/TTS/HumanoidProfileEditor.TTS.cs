@@ -1,21 +1,25 @@
 ﻿using System.Linq;
-using Content.Client.Corvax.Sponsors;
 using Content.Client.Corvax.TTS;
 using Content.Shared.Corvax.TTS;
 using Content.Shared.Preferences;
 using Robust.Shared.Random;
+using Content.Corvax.Interfaces.Client;
 
 namespace Content.Client.Preferences.UI;
 
 public sealed partial class HumanoidProfileEditor
 {
-    private TTSManager _ttsMgr = default!;
+    private IRobustRandom _random = default!;
     private TTSSystem _ttsSys = default!;
+    private IClientSponsorsManager? _sponsorsMgr;
     private List<TTSVoicePrototype> _voiceList = default!;
 
     private void InitializeVoice()
     {
-        _ttsMgr = IoCManager.Resolve<TTSManager>();
+        if (!IoCManager.Instance!.TryResolveType(out _sponsorsMgr))
+            return;
+
+        _random = IoCManager.Resolve<IRobustRandom>();
         _ttsSys = _entMan.System<TTSSystem>();
         _voiceList = _prototypeManager
             .EnumeratePrototypes<TTSVoicePrototype>()
@@ -34,7 +38,8 @@ public sealed partial class HumanoidProfileEditor
 
     private void UpdateTTSVoicesControls()
     {
-        if (Profile is null)
+        if (Profile is null ||
+            _sponsorsMgr is null)
             return;
 
         _voiceButton.Clear();
@@ -52,9 +57,8 @@ public sealed partial class HumanoidProfileEditor
             if (firstVoiceChoiceId == 1)
                 firstVoiceChoiceId = i;
 
-            if (voice.SponsorOnly &&
-                IoCManager.Resolve<SponsorsManager>().TryGetInfo(out var sponsor) &&
-                !sponsor.AllowedMarkings.Contains(voice.ID))
+            if (voice.SponsorOnly && _sponsorsMgr != null &&
+                !_sponsorsMgr.Prototypes.Contains(voice.ID))
             {
                 _voiceButton.SetItemDisabled(_voiceButton.GetIdx(i), true);
             }
@@ -73,7 +77,6 @@ public sealed partial class HumanoidProfileEditor
         if (_previewDummy is null || Profile is null)
             return;
 
-        _ttsSys.StopAllStreams();
-        _ttsMgr.RequestTTS(IoCManager.Resolve<IEntityManager>().GetNetEntity(_previewDummy.Value), VoiceRequestType.Preview, Profile.Voice);
+        _ttsSys.RequestGlobalTTS(Content.Shared.Backmen.TTS.VoiceRequestType.Preview, Profile.Voice);
     }
 }
