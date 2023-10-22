@@ -9,6 +9,7 @@ using Content.Server.UserInterface;
 using Content.Shared.Access.Components;
 using Content.Shared.Backmen.Economy;
 using Content.Shared.Backmen.Economy.ATM;
+using Content.Shared.Backmen.Store;
 using Content.Shared.FixedPoint;
 using Content.Shared.Hands.EntitySystems;
 using Content.Shared.Interaction;
@@ -76,19 +77,24 @@ namespace Content.Server.Backmen.Economy.ATM;
             if (args.Handled || !args.CanReach)
                 return;
 
-            if (args.Target == null || !TryComp<PhysicalCompositionComponent>(args.Used, out var component) || !TryComp<AtmComponent>(args.Target, out var store))
+            if (args.Target == null || !TryComp<PhysicalCompositionComponent>(args.Used, out var component))
                 return;
 
-            var user = args.User;
-
-            args.Handled = TryAddCurrency(GetCurrencyValue(args.Used, component), (args.Target.Value, store));
-
-            if (args.Handled)
+            if (TryComp<AtmComponent>(args.Target, out var atmComponent))
             {
-                var msg = Loc.GetString("store-currency-inserted", ("used", args.Used), ("target", args.Target));
-                _popup.PopupEntity(msg, args.Target.Value);
-                Del(args.Used);
+                args.Handled = TryAddCurrency(GetCurrencyValue(args.Used, component), (args.Target.Value, atmComponent));
             }
+            else if (TryComp<StoreComponent>(args.Target, out var store))
+            {
+                args.Handled = _storeSystem.TryAddCurrency(GetCurrencyValue(args.Used, component), args.Target.Value, store);
+            }
+
+            if (!args.Handled)
+                return;
+
+            var msg = Loc.GetString("store-currency-inserted", ("used", args.Used), ("target", args.Target));
+            _popup.PopupEntity(msg, args.Target.Value);
+            Del(args.Used);
         }
 
         private void OnPowerChanged(EntityUid uid, AtmComponent component, ref PowerChangedEvent args)
