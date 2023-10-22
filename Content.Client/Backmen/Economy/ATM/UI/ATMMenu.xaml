@@ -1,6 +1,7 @@
 ﻿<DefaultWindow xmlns="https://spacestation14.io"
-               MinSize="380 191"
-               SetSize="380 191">
+               MinSize="380 195"
+               SetSize="380 195"
+               Resizable="False">
     <BoxContainer Orientation="Vertical" SeparationOverride="4">
         <Label
             HorizontalAlignment="Center"

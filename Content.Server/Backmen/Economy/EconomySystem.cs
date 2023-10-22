@@ -63,7 +63,7 @@ public sealed class EconomySystem : EntitySystem
 
     #region Verb
 
-    private void GetVerbs(ref GetVerbsEvent<Verb> args)
+    private void GetVerbs(GetVerbsEvent<Verb> args)
     {
         if (!TryComp<ActorComponent>(args.User, out var actor))
             return;
@@ -79,19 +79,20 @@ public sealed class EconomySystem : EntitySystem
         {
             if (TryComp<IdCardComponent>(pdaComponent.IdSlot.Item, out var idCardComponent))
             {
-                GetIdCardVerb(ref args, (pdaComponent.IdSlot.Item.Value, idCardComponent), actor);
+                GetIdCardVerb(args, (pdaComponent.IdSlot.Item.Value, idCardComponent), actor);
             }
         }
 
         {
             if (TryComp<IdCardComponent>(args.Target, out var idCardComponent))
             {
-                GetIdCardVerb(ref args, (args.Target, idCardComponent), actor);
+                GetIdCardVerb(args, (args.Target, idCardComponent), actor);
             }
         }
     }
 
-    private void GetIdCardVerb(ref GetVerbsEvent<Verb> args, Entity<IdCardComponent> card, ActorComponent actor)
+    private static readonly ResPath BankIcon = new("Backmen/Objects/Tools/rimbank.rsi");
+    private void GetIdCardVerb(GetVerbsEvent<Verb> args, Entity<IdCardComponent> card, ActorComponent actor)
     {
         if (!_bankManagerSystem.TryGetBankAccount(card.Owner, out var account))
         {
@@ -99,7 +100,7 @@ public sealed class EconomySystem : EntitySystem
             verb.Text = Loc.GetString("prayer-verbs-bank-new");
             verb.Message = "Создать счет";
             verb.Category = VerbCategory.Tricks;
-            verb.Icon = new SpriteSpecifier.Texture(new("/Textures/Backmen/Interface/VerbIcons/psionic_regeneration.png"));
+            verb.Icon = new SpriteSpecifier.Rsi(BankIcon,"icon");
             verb.Act = () =>
             {
                 var bankAccount = _bankManagerSystem.CreateNewBankAccount(card);
@@ -123,7 +124,7 @@ public sealed class EconomySystem : EntitySystem
             verb.Text = Loc.GetString("prayer-verbs-bank-getpin");
             verb.Message = "Получить пин код карты";
             verb.Category = VerbCategory.Tricks;
-            verb.Icon = new SpriteSpecifier.Texture(new("/Textures/Backmen/Interface/VerbIcons/psionic_regeneration.png"));
+            verb.Icon = new SpriteSpecifier.Rsi(BankIcon,"icon");
             verb.Act = () =>
             {
                 var msg = $"Cчет в банке: №{account.Value.Comp.AccountNumber}, пин-код {account.Value.Comp.AccountPin}, баланс {account.Value.Comp.Balance}";

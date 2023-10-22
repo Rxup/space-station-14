@@ -2,6 +2,7 @@
 using Content.Server.Popups;
 using Content.Server.UserInterface;
 using Content.Shared.Access.Components;
+using Content.Shared.Backmen.Economy;
 using Content.Shared.Backmen.Economy.Eftpos;
 using Content.Shared.FixedPoint;
 using Content.Shared.Interaction;
@@ -85,8 +86,10 @@ namespace Content.Server.Backmen.Economy.Eftpos;
                 Deny(uid);
                 return;
             }
+
             if (msg.Session.AttachedEntity is not { Valid: true } mob)
                 return;
+
             if (msg.LinkedAccountNumber == null)
             {
                 uid.Comp.LinkedAccount = null;
@@ -95,7 +98,23 @@ namespace Content.Server.Backmen.Economy.Eftpos;
                 return;
             }
 
-            if (!_bankManagerSystem.TryGetBankAccount(msg.LinkedAccountNumber, out var linkedAccount))
+            Entity<BankAccountComponent>? linkedAccount;
+
+            if (msg.LinkedAccountNumber == "auto")
+            {
+                if (!_idCardSystem.TryFindIdCard(msg.Session.AttachedEntity.Value, out var idCardComponent))
+                {
+                    Deny(uid);
+                    return;
+                }
+
+                if (!_bankManagerSystem.TryGetBankAccount(idCardComponent.Owner, out linkedAccount))
+                {
+                    Deny(uid);
+                    return;
+                }
+            }
+            else if (!_bankManagerSystem.TryGetBankAccount(msg.LinkedAccountNumber, out linkedAccount))
             {
                 Deny(uid);
                 return;
