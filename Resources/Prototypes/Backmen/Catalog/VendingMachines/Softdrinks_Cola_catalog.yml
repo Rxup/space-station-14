@@ -2,7 +2,7 @@
   id: RobustSoftdrinksInventory1
   productEntity: DrinkColaCan
   cost:
-    SpaceCash: 15
+    SpaceCash: 80
   categories:
     - RobustSoftdrinksInventory
   conditions:
@@ -13,65 +13,65 @@
   id: RobustSoftdrinksInventory2
   productEntity: DrinkGrapeCan
   cost:
-    SpaceCash: 15
+    SpaceCash: 80
   categories:
     - RobustSoftdrinksInventory
   conditions:
     - !type:ListingLimitedStockCondition
-      stock: 5
+      stock: 15
 
 - type: listing
   id: RobustSoftdrinksInventory3
   productEntity: DrinkRootBeerCan
   cost:
-    SpaceCash: 15
+    SpaceCash: 80
   categories:
     - RobustSoftdrinksInventory
   conditions:
     - !type:ListingLimitedStockCondition
-      stock: 5
+      stock: 15
 
 - type: listing
   id: RobustSoftdrinksInventory4
   productEntity: DrinkIcedTeaCan
   cost:
-    SpaceCash: 15
+    SpaceCash: 80
   categories:
     - RobustSoftdrinksInventory
   conditions:
     - !type:ListingLimitedStockCondition
-      stock: 5
+      stock: 15
 
 - type: listing
   id: RobustSoftdrinksInventory5
   productEntity: DrinkLemonLimeCan
   cost:
-    SpaceCash: 15
+    SpaceCash: 80
   categories:
     - RobustSoftdrinksInventory
   conditions:
     - !type:ListingLimitedStockCondition
-      stock: 5
+      stock: 15
 
 - type: listing
   id: RobustSoftdrinksInventory6
   productEntity: DrinkDrGibbCan
   cost:
-    SpaceCash: 15
+    SpaceCash: 80
   categories:
     - RobustSoftdrinksInventory
   conditions:
     - !type:ListingLimitedStockCondition
-      stock: 5
+      stock: 15
 
 - type: listing
   id: RobustSoftdrinksInventory7
   productEntity: DrinkFourteenLokoCan
   cost:
-    SpaceCash: 15
+    SpaceCash: 40
   categories:
     - RobustSoftdrinksInventory
   conditions:
     - !type:ListingLimitedStockCondition
-      stock: 5
+      stock: 20
 

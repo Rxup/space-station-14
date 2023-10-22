@@ -524,7 +524,10 @@ public sealed class ShipwreckedRuleSystem : GameRuleSystem<ShipwreckedRuleCompon
         warpPoint.Location = mobName;
         /* warpPoint.Follow = true; */
 
-        EnsureComp<PacifiedComponent>(mob);
+        if (_autoPacified)
+        {
+            EnsureComp<PacifiedComponent>(mob);
+        }
 
         return true;
     }
@@ -888,11 +891,6 @@ public sealed class ShipwreckedRuleSystem : GameRuleSystem<ShipwreckedRuleCompon
         if (!TryComp<MapGridComponent>(component.Shuttle, out var grid))
             return;
 
-        foreach (var (mob, _) in component.Survivors)
-        {
-            RemCompDeferred<PacifiedComponent>(mob);
-        }
-
         // Slam the front window.
         var aabb = grid.LocalAABB;
         var topY = grid.LocalAABB.Top + 1;
@@ -1069,7 +1067,6 @@ public sealed class ShipwreckedRuleSystem : GameRuleSystem<ShipwreckedRuleCompon
                 case ShipwreckedEventId.MidflightDamage:
                 {
                     DamageShuttleMidflight(component);
-                    CloseAllRuleJobs(component);
 
                     if (component.Hecate != null)
                     {
@@ -1141,6 +1138,11 @@ public sealed class ShipwreckedRuleSystem : GameRuleSystem<ShipwreckedRuleCompon
                             "status",
                             "weapons"
                         });
+                    CloseAllRuleJobs(component);
+                    foreach (var (mob, _) in component.Survivors)
+                    {
+                        RemCompDeferred<PacifiedComponent>(mob);
+                    }
 
                     break;
                 }
@@ -1181,6 +1183,8 @@ public sealed class ShipwreckedRuleSystem : GameRuleSystem<ShipwreckedRuleCompon
             .FirstOrNull(x=>x.Item3.MapID == map)?.Item3.GridUid;
     }
 
+    private bool _autoPacified = true;
+
     private void OpenAllRuleJobs(ShipwreckedRuleComponent component)
     {
         /*
@@ -1196,6 +1200,7 @@ public sealed class ShipwreckedRuleSystem : GameRuleSystem<ShipwreckedRuleCompon
             _stationJobsSystem.MakeJobUnlimited(component.ShuttleStation.Value, componentAvailableJobPrototype.Id);
         }
         */
+        _autoPacified = true;
     }
 
     private void CloseAllRuleJobs(ShipwreckedRuleComponent component)
@@ -1209,6 +1214,8 @@ public sealed class ShipwreckedRuleSystem : GameRuleSystem<ShipwreckedRuleCompon
         {
             _stationJobsSystem.TrySetJobSlot(component.ShuttleStation.Value, componentAvailableJobPrototype.Id, 0, true);
         }
+
+        _autoPacified = false;
     }
 
     protected override void Added(EntityUid uid, ShipwreckedRuleComponent component, GameRuleComponent gameRule, GameRuleAddedEvent args)
@@ -1238,6 +1245,10 @@ public sealed class ShipwreckedRuleSystem : GameRuleSystem<ShipwreckedRuleCompon
     {
         AttachMap(uid, component);
 
+        if (component.PlanetMapId == null)
+        {
+            SpawnPlanet(uid, component);
+        }
         _mapManager.SetMapPaused(component.PlanetMapId!.Value, false);
 
         var loadQuery = EntityQueryEnumerator<ApcPowerReceiverComponent, TransformComponent>();

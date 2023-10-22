@@ -141,7 +141,7 @@ public sealed class CargoTest
             }
             mapManager.DeleteMap(mapId);
         });
-
+        await server.WaitRunTicks(5);
         await pair.CleanReturnAsync();
     }
 

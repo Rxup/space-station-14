@@ -1,5 +1,4 @@
 using Content.Shared.Backmen.EntityHealthBar;
-using Content.Shared.Backmen.EntityHealthBar;
 using Content.Shared.GameTicking;
 using Robust.Client.GameObjects;
 using Robust.Client.Graphics;

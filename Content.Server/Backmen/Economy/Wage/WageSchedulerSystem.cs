@@ -49,7 +49,7 @@ public sealed class WageSchedulerSystem : GameRuleSystem<WageSchedulerRuleCompon
             component.TimeUntilNextWage -= frameTime;
             return;
         }
-        _wageManagerSystem.Payday();
+        QueueLocalEvent(new WagePaydayEvent());
         component.TimeUntilNextWage = component.WageInterval;
 
     }

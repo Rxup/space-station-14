@@ -2,7 +2,7 @@
   id: RandomHumanoidSpawnerZombie
   name: Random Zombie
   suffix: Dying
-  noSpawn: true
+  save: false
   components:
     - type: Sprite
       sprite: Mobs/Species/Human/parts.rsi
@@ -15,7 +15,7 @@
   id: RandomHumanoidSpawnerZombieSurprise
   name: Random Zombie
   suffix: Surprise
-  noSpawn: true
+  save: false
   components:
     - type: Sprite
       sprite: Mobs/Species/Human/parts.rsi
@@ -28,7 +28,7 @@
   id: RandomHumanoidSpawnerZombieBrute
   name: Random Zombie
   suffix: Brute
-  noSpawn: true
+  save: false
   components:
     - type: Sprite
       sprite: Mobs/Species/Human/parts.rsi

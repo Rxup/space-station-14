@@ -3,7 +3,7 @@ using Content.Server.Actions;
 using Content.Server.Atmos.Components;
 using Content.Server.Body.Components;
 using Content.Server.Body.Systems;
-using Content.Server.Chemistry.EntitySystems;
+using Content.Server.Cloning;
 using Content.Server.Flash.Components;
 using Content.Server.Fluids.EntitySystems;
 using Content.Server.Forensics;
@@ -35,7 +35,7 @@ using Content.Shared.Mind.Components;
 using Content.Shared.Mobs;
 using Content.Shared.Mobs.Components;
 using Content.Shared.Popups;
-using Content.Shared.Random.Helpers;
+using Content.Shared.Random;
 using Content.Shared.Tag;
 using Robust.Shared.Audio;
 using Robust.Shared.Collections;
@@ -68,6 +68,9 @@ public sealed partial class FleshCultistSystem : EntitySystem
     [Dependency] private readonly BloodstreamSystem _bloodstreamSystem = default!;
     [Dependency] private readonly GunSystem _gunSystem = default!;
     [Dependency] private readonly TagSystem _tagSystem = default!;
+    [Dependency] private readonly RandomHelperSystem _randomHelper = default!;
+    [Dependency] private readonly IPrototypeManager _prototype = default!;
+    [Dependency] private readonly SharedTransformSystem _transformSystem = default!;
 
 
     public override void Initialize()
@@ -85,8 +88,23 @@ public sealed partial class FleshCultistSystem : EntitySystem
         SubscribeLocalEvent<FleshCultistComponent, IsEquippingAttemptEvent>(OnBeingEquippedAttempt);
         SubscribeLocalEvent<FleshCultistComponent, MobStateChangedEvent>(OnMobStateChanged);
         SubscribeLocalEvent<FleshCultistComponent, FleshCultistAbsorbBloodPoolActionEvent>(OnAbsormBloodPoolActionEvent);
+        SubscribeLocalEvent<FleshCultistComponent, CloningEvent>(OnCultistCloning);
 
         InitializeAbilities();
+    }
+
+    private void OnCultistCloning(EntityUid uid, FleshCultistComponent component, ref CloningEvent args)
+    {
+        // If the cultist ate the body we need to visually reset it after cloning
+        if (!TryComp<HumanoidAppearanceComponent>(args.Target, out var huAppComponent))
+            return;
+
+        var speciesProto = _prototype.Index(huAppComponent.Species);
+        var skeletonSprites = _prototype.Index<HumanoidSpeciesBaseSpritesPrototype>(speciesProto.SpriteSet);
+        foreach (var (key, id) in skeletonSprites.Sprites)
+        {
+            _sharedHuApp.SetBaseLayerId(args.Target, key, id, humanoid: huAppComponent);
+        }
     }
 
     private void OnMobStateChanged(EntityUid uid, FleshCultistComponent component, MobStateChangedEvent args)
@@ -359,7 +377,7 @@ public sealed partial class FleshCultistSystem : EntitySystem
         _popupSystem.PopupEntity(Loc.GetString("flesh-cultist-devour-target",
                 ("Entity", uid), ("Target", args.Args.Target)), uid);
 
-        if (TryComp<HumanoidAppearanceComponent>(args.Args.Target, out var HuAppComponent))
+        if (TryComp<HumanoidAppearanceComponent>(args.Args.Target, out var humanoidAppearanceComponent))
         {
             if (TryComp(args.Args.Target.Value, out ContainerManagerComponent? container))
             {
@@ -372,8 +390,8 @@ public sealed partial class FleshCultistSystem : EntitySystem
                             continue;
                         }
                         cont.Remove(ent, EntityManager, force: true);
-                        Transform(ent).Coordinates = coordinates;
-                        ent.RandomOffset(0.25f);
+                        _transformSystem.SetCoordinates(ent, coordinates);
+                        _randomHelper.RandomOffset(ent, 0.25f);
                     }
                 }
             }
@@ -408,7 +426,7 @@ public sealed partial class FleshCultistSystem : EntitySystem
             {
                 if (key != HumanoidVisualLayers.Head)
                 {
-                    _sharedHuApp.SetBaseLayerId(args.Args.Target.Value, key, id, humanoid: HuAppComponent);
+                    _sharedHuApp.SetBaseLayerId(args.Args.Target.Value, key, id, humanoid: humanoidAppearanceComponent);
                 }
             }
 
@@ -542,8 +560,8 @@ public sealed partial class FleshCultistSystem : EntitySystem
                         if (HasComp<UnremoveableComponent>(ent))
                             continue;
                         cont.Remove(ent, EntityManager, force: true);
-                        Transform(ent).Coordinates = coordinates;
-                        ent.RandomOffset(0.25f);
+                        _transformSystem.SetCoordinates(ent, coordinates);
+                        _randomHelper.RandomOffset(ent, 0.25f);
                     }
                 }
             }
@@ -573,12 +591,14 @@ public sealed partial class FleshCultistSystem : EntitySystem
     {
         base.Update(frameTime);
 
-        foreach (var rev in EntityQuery<FleshCultistComponent>())
+        var q = EntityQueryEnumerator<FleshCultistComponent>();
+        while (q.MoveNext(out var owner, out var rev))
         {
             rev.Accumulator += frameTime;
 
             if (rev.Accumulator <= 1)
                 continue;
+
             rev.Accumulator -= 1;
 
             if (rev.Hunger <= 40)
@@ -588,16 +608,16 @@ public sealed partial class FleshCultistSystem : EntitySystem
                 {
                     rev.AccumulatorStarveNotify = 0;
                     _popup.PopupEntity(Loc.GetString("flesh-cultist-hungry"),
-                        rev.Owner, rev.Owner, PopupType.Large);
+                        owner, owner, PopupType.Large);
                 }
             }
 
             if (rev.Hunger < 0)
             {
-                ParasiteComesOut(rev.Owner, rev);
+                ParasiteComesOut(owner, rev);
             }
 
-            ChangeParasiteHunger(rev.Owner, rev.HungerСonsumption, rev);
+            ChangeParasiteHunger(owner, rev.HungerСonsumption, rev);
         }
     }
 

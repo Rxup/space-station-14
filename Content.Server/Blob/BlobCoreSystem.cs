@@ -68,10 +68,19 @@ public sealed class BlobCoreSystem : EntitySystem
         SubscribeLocalEvent<BlobCoreComponent, DestructionEventArgs>(OnDestruction);
         SubscribeLocalEvent<BlobCoreComponent, DamageChangedEvent>(OnDamaged);
         SubscribeLocalEvent<BlobCoreComponent, PlayerAttachedEvent>(OnPlayerAttached);
+        SubscribeLocalEvent<BlobCoreComponent, EntityTerminatingEvent>(OnTerminating);
 
 
         SubscribeLocalEvent<BlobCaptureConditionComponent, ObjectiveGetProgressEvent>(OnBlobCaptureProgress);
         SubscribeLocalEvent<BlobCaptureConditionComponent, ObjectiveAfterAssignEvent>(OnBlobCaptureInfo);
+    }
+
+    private void OnTerminating(EntityUid uid, BlobCoreComponent component, ref EntityTerminatingEvent args)
+    {
+        if (component.Observer != null && !TerminatingOrDeleted(component.Observer.Value) && !EntityManager.IsQueuedForDeletion(component.Observer.Value))
+        {
+            QueueDel(component.Observer.Value);
+        }
     }
 
     private void OnBlobCaptureInfo(EntityUid uid, BlobCaptureConditionComponent component, ref ObjectiveAfterAssignEvent args)

@@ -1,0 +1,85 @@
+- type: entity
+  parent: BaseItem
+  id: BasePlushieBk
+  abstract: true
+  components:
+  - type: Sprite
+    sprite: Backmen/Objects/Fun/toys.rsi
+  - type: EmitSoundOnUse
+    sound:
+      collection: ToySqueak
+  - type: EmitSoundOnActivate
+    sound:
+      collection: ToySqueak
+  - type: EmitSoundOnCollide
+    sound:
+      collection: ToySqueak
+  - type: EmitSoundOnLand
+    sound:
+      collection: ToyFall
+  - type: ItemCooldown
+  - type: UseDelay
+    delay: 0.5
+  - type: MeleeWeapon
+    soundHit:
+      collection: ToySqueak
+    damage:
+      types:
+        Blunt: 0
+  - type: PhysicalComposition
+    materialComposition:
+      Cloth: 100
+  - type: StaticPrice
+    price: 5
+
+- type: entity
+  parent: BasePlushieBk
+  id: RubberPig
+  name: Резиновая свинья
+  description: Диментий гони свиней 
+  components:
+  - type: Sprite
+    state: pig
+  - type: EmitSoundOnUse
+    sound:
+      path: /Audio/Backmen/Items/Toys/khryu.ogg
+  - type: EmitSoundOnLand
+    sound:
+      path: /Audio/Backmen/Items/Toys/khryu.ogg
+  - type: EmitSoundOnActivate
+    sound:
+      path: /Audio/Backmen/Items/Toys/khryu.ogg
+  - type: MeleeWeapon
+    soundHit:
+      path: /Audio/Backmen/Items/Toys/khryu.ogg
+  - type: Slippery
+    paralyzeTime: 0
+    slipSound:
+      path: /Audio/Backmen/Items/Toys/khryu.ogg
+      params:
+        variation: 0.125
+  - type: StepTrigger
+    intersectRatio: 0.2
+    requiredTriggeredSpeed: 1
+  - type: TriggerOnStepTrigger 
+  - type: Appearance
+  - type: CollisionWake
+    enabled: false  
+  - type: Physics
+    bodyType: Dynamic   
+  - type: Fixtures
+    fixtures:
+      slips:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.2,-0.2,0.2,0.2"
+        hard: false
+        layer:
+        - SlipLayer
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.2,-0.2,0.2,0.2"
+        density: 30
+        mask:
+        - ItemMask 

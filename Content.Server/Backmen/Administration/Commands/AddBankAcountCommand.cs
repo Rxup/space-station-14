@@ -38,9 +38,9 @@ public sealed class AddBankAcсountCommand : IConsoleCommand
 
         var bankManagerSystem = _entityManager.System<BankManagerSystem>();
 
-        BankAccountComponent? account = null;
+        Entity<BankAccountComponent>? account = null;
 
-        if (args.Length >= 2 && !bankManagerSystem.TryGetBankAccount(args[1], out var accountOwner, out account))
+        if (args.Length >= 2 && !bankManagerSystem.TryGetBankAccount(args[1], out account))
         {
             shell.WriteError("Банковский аккаунт не существует");
             return;
@@ -54,16 +54,16 @@ public sealed class AddBankAcсountCommand : IConsoleCommand
             return;
         }
 
-        (accountOwner, account) = playerBank.Value;
+        account = playerBank.Value;
 
         if (args.Length >= 3 && int.TryParse(args[2], out var banalce) && banalce != 0)
         {
-            bankManagerSystem.TryInsertToBankAccount(accountOwner,
-                new KeyValuePair<string, FixedPoint2>(account.CurrencyType, FixedPoint2.New(banalce)), account);
+            bankManagerSystem.TryInsertToBankAccount(account,
+                new KeyValuePair<string, FixedPoint2>(account.Value.Comp.CurrencyType, FixedPoint2.New(banalce)));
         }
 
         _adminLogger.Add(LogType.AdminMessage, LogImpact.Extreme,
-            $"Admin {(shell.Player != null ? shell.Player.Name : "An administrator")} AddBankAcсount {_entityManager.ToPrettyString(targetUid)} #{account!.AccountNumber} balance: {account.Balance}");
+            $"Admin {(shell.Player != null ? shell.Player.Name : "An administrator")} AddBankAcсount {_entityManager.ToPrettyString(targetUid)} #{account!.Value.Comp.AccountNumber} balance: {account.Value.Comp.Balance}");
     }
 
     public CompletionResult GetCompletion(IConsoleShell shell, string[] args)
@@ -74,7 +74,7 @@ public sealed class AddBankAcсountCommand : IConsoleCommand
                 "Персонаж с кпк"),
             2 => CompletionResult.FromHintOptions(
                 _entityManager.System<BankManagerSystem>().ActiveBankAccounts
-                    .Select(x => new CompletionOption(x.Value.account.AccountNumber, x.Value.account.AccountName))
+                    .Select(x => new CompletionOption(x.Value.Comp.AccountNumber, x.Value.Comp.AccountName+$" ({x.Value.Owner})"))
                 , "Аккаунт №"),
             _ => CompletionResult.Empty
         };

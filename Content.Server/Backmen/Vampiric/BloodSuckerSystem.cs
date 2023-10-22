@@ -216,9 +216,4 @@ public sealed class BloodSuckerSystem : EntitySystem
         }
         return true;
     }
-
-    private record struct BloodSuckData()
-    {
-
-    }
 }

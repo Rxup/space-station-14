@@ -54,7 +54,8 @@ public sealed class PsionicItemsSystem : EntitySystem
             return;
         // does the user already has this power?
         var componentType = _componentFactory.GetRegistration(component.Power).Type;
-        if (EntityManager.HasComponent(args.Equipee, componentType)) return;
+        if (EntityManager.HasComponent(args.Equipee, componentType))
+            return;
 
 
         var newComponent = (Component) _componentFactory.GetComponent(componentType);

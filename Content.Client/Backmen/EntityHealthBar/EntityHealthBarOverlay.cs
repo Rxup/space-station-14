@@ -52,9 +52,10 @@ public sealed class EntityHealthBarOverlay : Overlay
         var rotationMatrix = Matrix3.CreateRotation(-rotation);
         handle.UseShader(_shader);
 
-        foreach (var (thresholds, mob, dmg) in _entManager.EntityQuery<MobThresholdsComponent, MobStateComponent, DamageableComponent>(true))
+        var q = _entManager.AllEntityQueryEnumerator<MobThresholdsComponent, MobStateComponent, DamageableComponent>();
+        while (q.MoveNext(out var owner, out var thresholds, out var mob, out var dmg))
         {
-            if (!xformQuery.TryGetComponent(mob.Owner, out var xform) ||
+            if (!xformQuery.TryGetComponent(owner, out var xform) ||
                 xform.MapID != args.MapId)
             {
                 continue;
@@ -72,7 +73,7 @@ public sealed class EntityHealthBarOverlay : Overlay
             handle.SetTransform(matty);
 
             float yOffset;
-            if (spriteQuery.TryGetComponent(mob.Owner, out var sprite))
+            if (spriteQuery.TryGetComponent(owner, out var sprite))
             {
                 yOffset = sprite.Bounds.Height + 15f;
             }
@@ -88,7 +89,7 @@ public sealed class EntityHealthBarOverlay : Overlay
             handle.DrawTexture(_barTexture, position);
 
             // we are all progressing towards death every day
-            (float ratio, bool inCrit) deathProgress = CalcProgress(mob.Owner, mob, dmg, thresholds);
+            (float ratio, bool inCrit) deathProgress = CalcProgress(owner, mob, dmg, thresholds);
 
             var color = GetProgressColor(deathProgress.ratio, deathProgress.inCrit);
 

@@ -219,16 +219,16 @@ namespace Content.Server.Chat.Managers
                 wrappedMessage = Loc.GetString("chat-manager-send-ooc-patron-wrap-message", ("patronColor", patronColor),("playerName", player.Name), ("message", FormattedMessage.EscapeText(message)));
             }
 
+            ref var key = ref CollectionsMarshal.GetValueRefOrAddDefault(SenderKeys, player, out var exists);
+            if (!exists)
+                key = SenderKeys.Count;
+
             // Corvax-Sponsors-Start
             if (_sponsorsManager != null && _sponsorsManager.TryGetOocColor(player.UserId, out var oocColor))
             {
                 wrappedMessage = Loc.GetString("chat-manager-send-ooc-patron-wrap-message", ("patronColor", oocColor),("playerName", player.Name), ("message", FormattedMessage.EscapeText(message)));
             }
             // Corvax-Sponsors-End
-
-            ref var key = ref CollectionsMarshal.GetValueRefOrAddDefault(SenderKeys, player, out var exists);
-            if (!exists)
-                key = SenderKeys.Count;
 
             //TODO: player.Name color, this will need to change the structure of the MsgChatMessage
             ChatMessageToAll(ChatChannel.OOC, message, wrappedMessage, EntityUid.Invalid, hideChat: false, recordReplay: true, colorOverride: colorOverride, senderKey: key);

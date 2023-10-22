@@ -1,9 +1,11 @@
-﻿namespace Content.Server.Backmen.Economy;
+﻿using Content.Shared.Backmen.Economy;
+
+namespace Content.Server.Backmen.Economy;
 
 [RegisterComponent]
 public sealed partial class BankMemoryComponent : Component
 {
-    public string AccountNumber { get; set; } = "";
-    public string AccountPin { get; set; } = "";
-    public EntityUid? BankAccount { get; set; }
+    public string AccountNumber => BankAccount?.Comp.AccountNumber ?? "";
+    public string AccountPin => BankAccount?.Comp.AccountPin ?? "";
+    public Entity<BankAccountComponent>? BankAccount { get; set; }
 }
