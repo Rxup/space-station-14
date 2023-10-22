@@ -125,7 +125,7 @@ namespace Content.Server.Backmen.Item.PseudoItem
             }
 
             component.DoAfter = null;
-            Dirty(component);
+            Dirty(uid, component);
 
             if (args.Handled || args.Cancelled)
                 return;
