@@ -25,13 +25,8 @@ public sealed class FleshCultistObjectiveSystem : EntitySystem
         SubscribeLocalEvent<FleshCultistRoleComponent,MapInitEvent>(OnAssigned);
     }
 
-    private void OnAssigned(EntityUid uid, FleshCultistRoleComponent component, MapInitEvent args)
+    private void OnAssigned(EntityUid mindId, FleshCultistRoleComponent component, MapInitEvent args)
     {
-        if (!_mindSystem.TryGetMind(uid, out var mindId, out var mind))
-        {
-            return;
-        }
-
         if (!_mindSystem.TryGetSession(mindId, out var session))
         {
             return;

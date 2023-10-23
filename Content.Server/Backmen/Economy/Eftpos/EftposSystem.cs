@@ -1,6 +1,8 @@
 ﻿using Content.Server.Access.Systems;
 using Content.Server.Popups;
+using Content.Server.UserInterface;
 using Content.Shared.Access.Components;
+using Content.Shared.Backmen.Economy;
 using Content.Shared.Backmen.Economy.Eftpos;
 using Content.Shared.FixedPoint;
 using Content.Shared.Interaction;
@@ -8,6 +10,7 @@ using Content.Shared.Popups;
 using Content.Shared.Store;
 using Robust.Server.GameObjects;
 using Robust.Shared.Audio;
+using Robust.Shared.Players;
 using Robust.Shared.Prototypes;
 
 namespace Content.Server.Backmen.Economy.Eftpos;
@@ -24,154 +27,190 @@ namespace Content.Server.Backmen.Economy.Eftpos;
         {
             base.Initialize();
             SubscribeLocalEvent<IdCardComponent, AfterInteractEvent>(OnAfterInteract);
-            SubscribeLocalEvent<EftposComponent, ComponentStartup>((uid, comp, _) => UpdateComponentUserInterface(uid,comp));
+            //SubscribeLocalEvent<EftposComponent, ComponentStartup>((Entity<EftposComponent> ent, ref ComponentStartup _) => UpdateComponentUserInterface(ent));
+            SubscribeLocalEvent<EftposComponent, AfterActivatableUIOpenEvent>(OnInteract);
             SubscribeLocalEvent<EftposComponent, EftposChangeValueMessage>(OnChangeValue);
             SubscribeLocalEvent<EftposComponent, EftposChangeLinkedAccountNumberMessage>(OnChangeLinkedAccountNumber);
             SubscribeLocalEvent<EftposComponent, EftposSwipeCardMessage>(OnSwipeCard);
             SubscribeLocalEvent<EftposComponent, EftposLockMessage>(OnLock);
         }
-        private void UpdateComponentUserInterface(EntityUid uid, EftposComponent component)
+
+        private void OnInteract(Entity<EftposComponent> ent, ref AfterActivatableUIOpenEvent args)
         {
+            UpdateComponentUserInterface(ent, args.Session);
+        }
+
+        private void UpdateComponentUserInterface(Entity<EftposComponent> uid, ICommonSession? player = null)
+        {
+            var currencyType = uid.Comp.LinkedAccount?.Comp.CurrencyType;
+            var accountNumber = uid.Comp.LinkedAccount?.Comp.AccountNumber;
+            var accountName = uid.Comp.LinkedAccount?.Comp.AccountName;
+
+
             string? currSymbol = null;
-            if (component.CurrencyType != null && _prototypeManager.TryIndex(component.CurrencyType, out CurrencyPrototype? p))
+            if (currencyType != null && _prototypeManager.TryIndex(currencyType, out CurrencyPrototype? p))
                 currSymbol = Loc.GetString(p.CurrencySymbol);
             var newState = new SharedEftposComponent.EftposBoundUserInterfaceState(
-                component.Value,
-                component.LinkedAccountNumber,
-                component.LinkedAccountName,
-                component.LockedBy != null,
+                uid.Comp.Value,
+                accountNumber,
+                accountName,
+                uid.Comp.LockedBy != null,
                 currSymbol);
 
             if (!_uiSystem.TryGetUi(uid, EftposUiKey.Key, out var bui))
             {
                 return;
             }
-            _uiSystem.SetUiState(bui, newState);
+            _uiSystem.SetUiState(bui, newState, player);
         }
-        private void OnChangeValue(EntityUid uid, EftposComponent component, EftposChangeValueMessage msg)
+        private void OnChangeValue(Entity<EftposComponent> uid, ref EftposChangeValueMessage msg)
         {
-            if (component.LockedBy != null)
+            if (uid.Comp.LockedBy != null)
             {
-                Deny(component);
+                Deny(uid);
                 return;
             }
             if (msg.Session.AttachedEntity is not { Valid: true } mob)
                 return;
-            component.Value =
+            uid.Comp.Value =
                 msg.Value != null
                 ? FixedPoint2.Clamp((FixedPoint2) msg.Value, 0, FixedPoint2.MaxValue)
                 : null;
-            UpdateComponentUserInterface(uid,component);
+
+            UpdateComponentUserInterface(uid);
         }
-        private void OnChangeLinkedAccountNumber(EntityUid uid, EftposComponent component, EftposChangeLinkedAccountNumberMessage msg)
+        private void OnChangeLinkedAccountNumber(Entity<EftposComponent> uid, ref EftposChangeLinkedAccountNumberMessage msg)
         {
-            if (component.LockedBy != null || !component.CanChangeAccountNumber)
+            if (uid.Comp.LockedBy != null || !uid.Comp.CanChangeAccountNumber)
             {
-                Deny(component);
+                Deny(uid);
                 return;
             }
+
             if (msg.Session.AttachedEntity is not { Valid: true } mob)
                 return;
+
             if (msg.LinkedAccountNumber == null)
             {
-                component.CurrencyType = null;
-                component.LinkedAccountNumber = null;
-                component.LinkedAccountName = null;
-                UpdateComponentUserInterface(uid,component);
-                Apply(component);
+                uid.Comp.LinkedAccount = null;
+                UpdateComponentUserInterface(uid);
+                Apply(uid);
                 return;
             }
-            if (!_bankManagerSystem.TryGetBankAccountCurrencyType(msg.LinkedAccountNumber, out var currencyType))
-            {
-                Deny(component);
-                return;
-            }
-            component.CurrencyType = currencyType;
-            component.LinkedAccountNumber = msg.LinkedAccountNumber;
-            component.LinkedAccountName = _bankManagerSystem.GetBankAccountName(msg.LinkedAccountNumber);
 
-            Apply(component);
-            UpdateComponentUserInterface(uid,component);
+            Entity<BankAccountComponent>? linkedAccount;
+
+            if (msg.LinkedAccountNumber == "auto")
+            {
+                if (!_idCardSystem.TryFindIdCard(msg.Session.AttachedEntity.Value, out var idCardComponent))
+                {
+                    Deny(uid);
+                    return;
+                }
+
+                if (!_bankManagerSystem.TryGetBankAccount(idCardComponent.Owner, out linkedAccount))
+                {
+                    Deny(uid);
+                    return;
+                }
+            }
+            else if (!_bankManagerSystem.TryGetBankAccount(msg.LinkedAccountNumber, out linkedAccount))
+            {
+                Deny(uid);
+                return;
+            }
+
+            uid.Comp.LinkedAccount = linkedAccount;
+
+            Apply(uid);
+            UpdateComponentUserInterface(uid);
         }
-        private void OnSwipeCard(EntityUid uid, EftposComponent component, EftposSwipeCardMessage msg)
+        private void OnSwipeCard(Entity<EftposComponent> uid, ref EftposSwipeCardMessage msg)
         {
             if (msg.Session.AttachedEntity is not { Valid: true } buyer)
                 return;
             if (!_idCardSystem.TryFindIdCard(buyer, out var idCardComponent))
             {
-                Deny(component);
+                Deny(uid);
                 return;
             }
-            TryCompleteTransaction(uid, component, idCardComponent);
+            TryCompleteTransaction(uid, idCardComponent);
         }
-        private void OnAfterInteract(EntityUid uid, IdCardComponent component, AfterInteractEvent args)
+        private void OnAfterInteract(Entity<IdCardComponent> uid, ref AfterInteractEvent args)
         {
             if (!TryComp<EftposComponent>(args.Target, out var eftpos))
                 return;
-            TryCompleteTransaction(args.Target.Value, eftpos, component);
+            TryCompleteTransaction((args.Target.Value, eftpos), uid);
         }
-        private void TryCompleteTransaction(EntityUid terminal, EftposComponent component, IdCardComponent idCardComponent)
+        private void TryCompleteTransaction(Entity<EftposComponent> terminal, Entity<IdCardComponent> idCardComponent)
         {
-            if (idCardComponent.Owner == component.LockedBy)
+            if (idCardComponent.Owner == terminal.Comp.LockedBy)
             {
-                component.LockedBy = null;
-                UpdateComponentUserInterface(terminal, component);
-                Apply(component);
+                terminal.Comp.LockedBy = null;
+                UpdateComponentUserInterface(terminal);
+                Apply(terminal);
                 return;
             }
-            if (component.Value == null)
+
+            if (terminal.Comp.Value == null)
                 return;
+
+            if (!_bankManagerSystem.TryGetBankAccount(idCardComponent.Owner, out var payerAccount))
+            {
+                _popupSystem.PopupEntity(Loc.GetString("eftpos-ui-popup-deny-nomoney"),terminal.Owner, PopupType.LargeCaution);
+                Deny(terminal);
+                return;
+            }
 
             if (!_bankManagerSystem.TryTransferFromToBankAccount(
-                idCardComponent.StoredBankAccountNumber,
-                idCardComponent.StoredBankAccountPin,
-                component.LinkedAccountNumber,
-                (FixedPoint2) component.Value))
+                    payerAccount,
+                    terminal.Comp.LinkedAccount,
+                    (FixedPoint2) terminal.Comp.Value))
             {
-                _popupSystem.PopupEntity(Loc.GetString("eftpos-ui-popup-deny-nomoney"),component.Owner, PopupType.LargeCaution);
-                Deny(component);
+                _popupSystem.PopupEntity(Loc.GetString("eftpos-ui-popup-deny-nomoney"),terminal.Owner, PopupType.LargeCaution);
+                Deny(terminal);
                 return;
             }
-            _popupSystem.PopupEntity(Loc.GetString("eftpos-ui-popup-apply-done"),component.Owner, PopupType.Large);
-            Apply(component);
-            UpdateComponentUserInterface(terminal, component);
+            _popupSystem.PopupEntity(Loc.GetString("eftpos-ui-popup-apply-done"),terminal.Owner, PopupType.Large);
+            Apply(terminal);
+            UpdateComponentUserInterface(terminal);
         }
 
-        private void OnLock(EntityUid uid, EftposComponent component, EftposLockMessage msg)
+        private void OnLock(Entity<EftposComponent> uid, ref EftposLockMessage msg)
         {
             if (msg.Session.AttachedEntity is not { Valid: true } buyer)
                 return;
-            if (component.LockedBy != null)
+            if (uid.Comp.LockedBy != null)
             {
-                _popupSystem.PopupEntity(Loc.GetString("eftpos-ui-popup-deny-lock-already"),component.Owner, PopupType.SmallCaution);
-                Deny(component);
+                _popupSystem.PopupEntity(Loc.GetString("eftpos-ui-popup-deny-lock-already"), uid, PopupType.SmallCaution);
+                Deny(uid);
                 return;
             }
-            if (component.LinkedAccountNumber == null || component.Value == null)
+            if (uid.Comp.LinkedAccount == null || uid.Comp.Value == null)
             {
-                _popupSystem.PopupEntity(Loc.GetString("eftpos-ui-popup-deny-lock-invalid"), component.Owner,
+                _popupSystem.PopupEntity(Loc.GetString("eftpos-ui-popup-deny-lock-invalid"), uid,
                     PopupType.SmallCaution);
-                Deny(component);
+                Deny(uid);
                 return;
             }
             if (!_idCardSystem.TryFindIdCard(buyer, out var idCardComponent))
             {
-                _popupSystem.PopupEntity(Loc.GetString("eftpos-ui-popup-deny-lock-noidcard"),component.Owner, PopupType.SmallCaution);
-                Deny(component);
+                _popupSystem.PopupEntity(Loc.GetString("eftpos-ui-popup-deny-lock-noidcard"),uid, PopupType.SmallCaution);
+                Deny(uid);
                 return;
             }
-            component.LockedBy = idCardComponent.Owner;
-            _popupSystem.PopupEntity(Loc.GetString("eftpos-ui-popup-lock"),component.Owner, PopupType.Small);
-            Apply(component);
-            UpdateComponentUserInterface(uid, component);
+            uid.Comp.LockedBy = idCardComponent.Owner;
+            _popupSystem.PopupEntity(Loc.GetString("eftpos-ui-popup-lock"), uid, PopupType.Small);
+            Apply(uid);
+            UpdateComponentUserInterface(uid);
         }
 
-        private void Deny(EftposComponent component)
+        private void Deny(Entity<EftposComponent> component)
         {
-            _audioSystem.PlayPvs(component.SoundDeny, component.Owner, AudioParams.Default.WithVolume(-2f));
+            _audioSystem.PlayPvs(component.Comp.SoundDeny, component.Owner, AudioParams.Default.WithVolume(-2f));
         }
-        private void Apply(EftposComponent component)
+        private void Apply(Entity<EftposComponent> component)
         {
-            _audioSystem.PlayPvs(component.SoundApply, component.Owner, AudioParams.Default.WithVolume(-2f));
+            _audioSystem.PlayPvs(component.Comp.SoundApply, component.Owner, AudioParams.Default.WithVolume(-2f));
         }
     }

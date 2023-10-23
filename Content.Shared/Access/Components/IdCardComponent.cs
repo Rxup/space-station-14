@@ -1,4 +1,5 @@
 using Content.Shared.Access.Systems;
+using Content.Shared.Backmen.Economy;
 using Content.Shared.PDA;
 using Content.Shared.StatusIcon;
 using Robust.Shared.GameStates;
@@ -25,9 +26,6 @@ namespace Content.Shared.Access.Components
         [DataField("storedBankAccountNumber")]
         [AutoNetworkedField]
         public string? StoredBankAccountNumber;
-
-        [DataField("storedBankAccountPin")]
-        public string? StoredBankAccountPin;
         // end-backmen: currency
         /// <summary>
         /// The state of the job icon rsi.

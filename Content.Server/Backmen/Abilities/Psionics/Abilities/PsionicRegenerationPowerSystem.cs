@@ -23,11 +23,9 @@ namespace Content.Server.Backmen.Abilities.Psionics;
 
 public sealed class PsionicRegenerationPowerSystem : EntitySystem
 {
-    [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
     [Dependency] private readonly SharedActionsSystem _actions = default!;
     [Dependency] private readonly BloodstreamSystem _bloodstreamSystem = default!;
     [Dependency] private readonly AudioSystem _audioSystem = default!;
-    [Dependency] private readonly TagSystem _tagSystem = default!;
     [Dependency] private readonly DoAfterSystem _doAfterSystem = default!;
     [Dependency] private readonly SharedPopupSystem _popupSystem = default!;
     [Dependency] private readonly SharedPsionicAbilitiesSystem _psionics = default!;
@@ -75,7 +73,7 @@ public sealed class PsionicRegenerationPowerSystem : EntitySystem
             true,
             PopupType.Medium);
 
-        _audioSystem.PlayPvs(component.SoundUse, component.Owner, AudioParams.Default.WithVolume(8f).WithMaxDistance(1.5f).WithRolloffFactor(3.5f));
+        _audioSystem.PlayPvs(component.SoundUse, uid, AudioParams.Default.WithVolume(8f).WithMaxDistance(1.5f).WithRolloffFactor(3.5f));
         _psionics.LogPowerUsed(uid, "psionic regeneration");
         args.Handled = true;
     }

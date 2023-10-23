@@ -17,13 +17,13 @@ public sealed class EftposBoundUserInterface : BoundUserInterface
         base.Open();
         _menu = new EftposMenu { Title = IoCManager.Resolve<IEntityManager>().GetComponent<MetaDataComponent>(Owner).EntityName };
 
-        _menu.OnChangeValue += (_, value) => SendMessage(new EftposChangeValueMessage(value));
-        _menu.OnResetValue += (_) => SendMessage(new EftposChangeValueMessage(null));
-        _menu.OnChangeLinkedAccount += (_, accountNumber) => SendMessage(new EftposChangeLinkedAccountNumberMessage(accountNumber));
-        _menu.OnResetLinkedAccount += (_) => SendMessage(new EftposChangeLinkedAccountNumberMessage(null));
+        _menu.OnChangeValue += (value) => SendMessage(new EftposChangeValueMessage(value));
+        _menu.OnResetValue += () => SendMessage(new EftposChangeValueMessage(null));
+        _menu.OnChangeLinkedAccount += (accountNumber) => SendMessage(new EftposChangeLinkedAccountNumberMessage(accountNumber));
+        _menu.OnResetLinkedAccount += () => SendMessage(new EftposChangeLinkedAccountNumberMessage(null));
 
-        _menu.OnSwipeCard += (_) => SendMessage(new EftposSwipeCardMessage());
-        _menu.OnLock += (_) => SendMessage(new EftposLockMessage());
+        _menu.OnSwipeCard += () => SendMessage(new EftposSwipeCardMessage());
+        _menu.OnLock += () => SendMessage(new EftposLockMessage());
 
         _menu.OnClose += Close;
         _menu.OpenCentered();

@@ -1,6 +1,7 @@
 ﻿using System.Linq;
 using Content.Server.Store.Components;
 using Content.Server.Store.Conditions;
+using Content.Server.Store.Systems;
 using Content.Server.VendingMachines;
 using Content.Shared.Backmen.Store;
 using Content.Shared.DoAfter;
@@ -19,22 +20,26 @@ public sealed class StoreBankSystem : EntitySystem
     [Dependency] private readonly SharedPopupSystem _popup = default!;
 
     private ISawmill _sawmill = default!;
+
     public override void Initialize()
     {
         base.Initialize();
         _sawmill = Logger.GetSawmill("bankvending");
         SubscribeLocalEvent<BuyStoreBankComponent, AfterInteractEvent>(OnAfterInteract,
             before: new[] { typeof(VendingMachineSystem) });
-        SubscribeLocalEvent<BuyStoreBankComponent, RestockDoAfterEvent>(OnDoAfter, before: new[]{typeof(VendingMachineSystem)});
+        SubscribeLocalEvent<BuyStoreBankComponent, RestockDoAfterEvent>(OnDoAfter,
+            before: new[] { typeof(VendingMachineSystem) });
     }
 
-    private void TryRestockInventory(EntityUid uid, IEnumerable<string>? category = null, BuyStoreBankComponent? vendComponent = null, StoreComponent? storeComponent = null)
+    private void TryRestockInventory(EntityUid uid, IEnumerable<string>? category = null,
+        BuyStoreBankComponent? vendComponent = null, StoreComponent? storeComponent = null)
     {
         if (!Resolve(uid, ref vendComponent) || !Resolve(uid, ref storeComponent))
             return;
 
         //var _category = category?.ToArray() ?? Array.Empty<string>();
-        foreach (var storeComponentListing in storeComponent.Listings.Where(x=>storeComponent.Categories.Any(x.Categories.Contains)))
+        foreach (var storeComponentListing in storeComponent.Listings.Where(x =>
+                     storeComponent.Categories.Any(x.Categories.Contains)))
         {
             var limit = storeComponentListing?.Conditions?.OfType<ListingLimitedStockCondition>().FirstOrDefault();
             if ((limit == null && category != null) || storeComponentListing == null)
@@ -48,6 +53,7 @@ public sealed class StoreBankSystem : EntitySystem
                 storeComponentListing.PurchaseAmount -= limit.Stock;
             }
         }
+
         Dirty(uid, storeComponent);
         //UpdateVendingMachineInterfaceState(uid, vendComponent);
         //TryUpdateVisualState(uid, vendComponent);
@@ -60,13 +66,16 @@ public sealed class StoreBankSystem : EntitySystem
 
         if (!TryComp<VendingMachineRestockComponent>(args.Args.Used, out var restockComponent))
         {
-            _sawmill.Error($"{ToPrettyString(args.Args.User)} tried to restock {ToPrettyString(uid)} with {ToPrettyString(args.Args.Used.Value)} which did not have a VendingMachineRestockComponent.");
+            _sawmill.Error(
+                $"{ToPrettyString(args.Args.User)} tried to restock {ToPrettyString(uid)} with {ToPrettyString(args.Args.Used.Value)} which did not have a VendingMachineRestockComponent.");
             return;
         }
 
         TryRestockInventory(uid, restockComponent.CanRestock, component);
 
-        _popup.PopupEntity(Loc.GetString("vending-machine-restock-done", ("this", args.Args.Used), ("user", args.Args.User), ("target", uid)), args.Args.User, PopupType.Medium);
+        _popup.PopupEntity(
+            Loc.GetString("vending-machine-restock-done", ("this", args.Args.Used), ("user", args.Args.User),
+                ("target", uid)), args.Args.User, PopupType.Medium);
 
         _audio.PlayPvs(restockComponent.SoundRestockDone, uid, AudioParams.Default.WithVolume(-2f).WithVariation(0.2f));
 
