@@ -2,7 +2,7 @@
   id: SpaceUpInventory1
   productEntity: DrinkSpaceUpCan
   cost:
-    SpaceCash: 80
+    SpaceCash: 60
   categories:
     - SpaceUpInventory
   conditions:
@@ -13,7 +13,7 @@
   id: SpaceUpInventory2
   productEntity: DrinkSpaceMountainWindCan
   cost:
-    SpaceCash: 80
+    SpaceCash: 60
   categories:
     - SpaceUpInventory
   conditions:
@@ -24,7 +24,7 @@
   id: SpaceUpInventory3
   productEntity: DrinkGrapeCan
   cost:
-    SpaceCash: 80
+    SpaceCash: 60
   categories:
     - SpaceUpInventory
   conditions:
@@ -35,7 +35,7 @@
   id: SpaceUpInventory4
   productEntity: DrinkRootBeerCan
   cost:
-    SpaceCash: 80
+    SpaceCash: 60
   categories:
     - SpaceUpInventory
   conditions:
@@ -46,7 +46,7 @@
   id: SpaceUpInventory5
   productEntity:  DrinkIcedTeaCan
   cost:
-    SpaceCash: 80
+    SpaceCash: 60
   categories:
     - SpaceUpInventory
   conditions:
@@ -57,7 +57,7 @@
   id: SpaceUpInventory6
   productEntity: DrinkLemonLimeCan
   cost:
-    SpaceCash: 80
+    SpaceCash: 60
   categories:
     - SpaceUpInventory
   conditions:
@@ -68,7 +68,7 @@
   id: SpaceUpInventory7
   productEntity: DrinkFourteenLokoCan
   cost:
-    SpaceCash: 80
+    SpaceCash: 30
   categories:
     - SpaceUpInventory
   conditions:
