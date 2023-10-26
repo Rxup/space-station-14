@@ -32,6 +32,12 @@ public sealed class AnnounceTTSSystem : EntitySystem
         _sawmill = Logger.GetSawmill("AnnounceTTSSystem");
         _cfg.OnValueChanged(CCCVars.TTSAnnounceVolume, OnTtsVolumeChanged, true);
         SubscribeNetworkEvent<AnnounceTTSEvent>(OnAnnounceTTSPlay);
+        SubscribeNetworkEvent<RoundRestartCleanupEvent>(OnCleanup);
+    }
+
+    private void OnCleanup(RoundRestartCleanupEvent ev)
+    {
+        EndStreams();
     }
 
     /// <inheritdoc />
