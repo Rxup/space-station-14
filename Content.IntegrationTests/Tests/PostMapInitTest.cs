@@ -45,10 +45,10 @@ namespace Content.IntegrationTests.Tests
             // Corvax-Start
             "CorvaxAvrite",
             "CorvaxDelta",
-            "CorvaxIshimura",
 			"CorvaxSpectrum",
             "CorvaxGate",
             "CentComm",
+			"CorvaxGelta",
             // Corvax-End
             "Dev",
             "TestTeg",
