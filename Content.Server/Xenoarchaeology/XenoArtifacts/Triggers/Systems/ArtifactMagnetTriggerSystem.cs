@@ -34,8 +34,8 @@ public sealed class ArtifactMagnetTriggerSystem : EntitySystem
             if (!magboot.On)
                 continue;
 
-            var artiQuery = EntityQueryEnumerator<ArtifactMagnetTriggerComponent, TransformComponent>();
-            while (artiQuery.MoveNext(out var artifactUid, out var trigger, out var xform))
+            var artiQuery = EntityQueryEnumerator<ArtifactMagnetTriggerComponent, TransformComponent, ArtifactComponent>(); // backmen: fix spam errors
+            while (artiQuery.MoveNext(out var artifactUid, out var trigger, out var xform, out _))
             {
                 if (!magXform.Coordinates.TryDistance(EntityManager, xform.Coordinates, out var distance))
                     continue;

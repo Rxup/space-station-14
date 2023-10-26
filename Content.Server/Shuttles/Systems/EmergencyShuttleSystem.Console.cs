@@ -95,14 +95,6 @@ public sealed partial class EmergencyShuttleSystem
         SubscribeLocalEvent<EscapePodComponent, EntityUnpausedEvent>(OnEscapeUnpaused);
     }
 
-    // Corvax-Hijack-Start
-    private void OnEmagged(EntityUid uid, EmergencyShuttleConsoleComponent component, ref GotEmaggedEvent args)
-    {
-        _logger.Add(LogType.EmergencyShuttle, LogImpact.Extreme, $"{ToPrettyString(args.UserUid):player} emagged shuttle console for early launch");
-        EarlyLaunch();
-    }
-    // Corvax-Hijack-End
-
     private void OnEmergencyOpenAttempt(EntityUid uid, EmergencyShuttleConsoleComponent component, ActivatableUIOpenAttemptEvent args)
     {
         // I'm hoping ActivatableUI checks it's open before allowing these messages.
