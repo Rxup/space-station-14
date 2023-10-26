@@ -2,18 +2,18 @@
   id: DrGibbInventory1
   productEntity: DrinkDrGibbCan
   cost:
-    SpaceCash: 80
+    SpaceCash: 60
   categories:
     - DrGibbInventory
   conditions:
     - !type:ListingLimitedStockCondition
-      stock: 30
+      stock: 15
 
 - type: listing
   id: DrGibbInventory2
   productEntity: DrinkGrapeCan
   cost:
-    SpaceCash: 80
+    SpaceCash: 60
   categories:
     - DrGibbInventory
   conditions:
@@ -24,7 +24,7 @@
   id: DrGibbInventory3
   productEntity: DrinkRootBeerCan
   cost:
-    SpaceCash: 80
+    SpaceCash: 60
   categories:
     - DrGibbInventory
   conditions:
@@ -35,7 +35,7 @@
   id: DrGibbInventory4
   productEntity: DrinkIcedTeaCan
   cost:
-    SpaceCash: 80
+    SpaceCash: 60
   categories:
     - DrGibbInventory
   conditions:
@@ -46,7 +46,7 @@
   id: DrGibbInventory5
   productEntity: DrinkLemonLimeCan
   cost:
-    SpaceCash: 80
+    SpaceCash: 60
   categories:
     - DrGibbInventory
   conditions:
@@ -57,7 +57,7 @@
   id: DrGibbInventory6
   productEntity: DrinkFourteenLokoCan
   cost:
-    SpaceCash: 80
+    SpaceCash: 30
   categories:
     - DrGibbInventory
   conditions:
