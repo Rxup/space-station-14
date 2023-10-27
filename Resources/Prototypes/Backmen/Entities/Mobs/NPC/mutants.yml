@@ -123,10 +123,10 @@
       melee:
         reagents:
         - ReagentId: Nocturine
-          Quantity: 42
+          Quantity: 12
   - type: MeleeChemicalInjector
     solution: melee
-    transferAmount: 5
+    transferAmount: 4
   - type: SolutionRegeneration
     solution: melee
     generated:
@@ -375,16 +375,16 @@
         melee:
           reagents:
             - ReagentId: Nocturine
-              Quantity: 100
+              Quantity: 40
     - type: MeleeChemicalInjector
       solution: melee
-      transferAmount: 10
+      transferAmount: 7
     - type: SolutionRegeneration
       solution: melee
       generated:
         reagents:
           - ReagentId: Nocturine
-            Quantity: 5
+            Quantity: 4
     - type: MovementSpeedModifier
       baseWalkSpeed: 2
       baseSprintSpeed: 3
