@@ -29,8 +29,10 @@ public sealed class MindSwapPowerSystem : EntitySystem
     [Dependency] private readonly SharedPsionicAbilitiesSystem _psionics = default!;
     [Dependency] private readonly PopupSystem _popupSystem = default!;
     [Dependency] private readonly MindSystem _mindSystem = default!;
-    [Dependency] private readonly ActorSystem _actorSystem = default!;
     [Dependency] private readonly MetaDataSystem _metaDataSystem = default!;
+    #if !DEBUG
+    [Dependency] private readonly IGameTiming _gameTiming = default!;
+    #endif
 
     private ISawmill _logger = default!;
 
