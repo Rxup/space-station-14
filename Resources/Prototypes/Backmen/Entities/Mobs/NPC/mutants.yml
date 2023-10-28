@@ -123,7 +123,7 @@
       melee:
         reagents:
         - ReagentId: Nocturine
-          Quantity: 12
+          Quantity: 24
   - type: MeleeChemicalInjector
     solution: melee
     transferAmount: 4
@@ -132,7 +132,7 @@
     generated:
       reagents:
         - ReagentId: Nocturine
-          Quantity: 2
+          Quantity: 3
   - type: BloodSucker
     unitsToSucc: 35
     injectWhenSucc: true
