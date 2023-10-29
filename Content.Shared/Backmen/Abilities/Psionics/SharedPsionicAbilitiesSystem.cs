@@ -1,11 +1,9 @@
-using Content.Shared.Backmen.Abilities.Psionics;
 using Content.Shared.Actions;
 using Content.Shared.Administration.Logs;
 using Content.Shared.Backmen.Psionics.Glimmer;
 using Content.Shared.Mobs;
 using Content.Shared.Mobs.Components;
 using Content.Shared.Popups;
-using Content.Shared.Backmen.Psionics.Glimmer;
 using Robust.Shared.Random;
 using Robust.Shared.Serialization;
 

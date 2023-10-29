@@ -25,7 +25,7 @@
         - Jungle
         - Continental
         - Lava
-        #- RuinedMegacity
+        - RuinedMegacity
       spawnPointHecate: SpawnPointShipwreckHecate
       hecatePrototype: MobQuestHecateShipwrecked
       eventSchedule:

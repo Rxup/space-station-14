@@ -24,19 +24,22 @@ namespace Content.Server.Backmen.Abilities.Psionics;
 
 public sealed class MindSwapPowerSystem : EntitySystem
 {
-    [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
     [Dependency] private readonly SharedActionsSystem _actions = default!;
     [Dependency] private readonly MobStateSystem _mobStateSystem = default!;
-    [Dependency] private readonly IGameTiming _gameTiming = default!;
     [Dependency] private readonly SharedPsionicAbilitiesSystem _psionics = default!;
     [Dependency] private readonly PopupSystem _popupSystem = default!;
     [Dependency] private readonly MindSystem _mindSystem = default!;
-    [Dependency] private readonly ActorSystem _actorSystem = default!;
     [Dependency] private readonly MetaDataSystem _metaDataSystem = default!;
+    #if !DEBUG
+    [Dependency] private readonly IGameTiming _gameTiming = default!;
+    #endif
+
+    private ISawmill _logger = default!;
 
     public override void Initialize()
     {
         base.Initialize();
+        _logger = Logger.GetSawmill("mindswap");
         SubscribeLocalEvent<MindSwapPowerComponent, ComponentInit>(OnInit);
         SubscribeLocalEvent<MindSwapPowerComponent, ComponentShutdown>(OnShutdown);
         SubscribeLocalEvent<MindSwapPowerActionEvent>(OnPowerUsed);
@@ -56,12 +59,15 @@ public sealed class MindSwapPowerSystem : EntitySystem
 
         _actions.AddAction(uid, ref component.MindSwapPowerAction, ActionMindSwap);
 
-        if (_actions.TryGetActionData(component.MindSwapPowerAction, out var action) && action?.UseDelay != null)
+#if !DEBUG
+         if (_actions.TryGetActionData(component.MindSwapPowerAction, out var action) && action?.UseDelay != null)
             _actions.SetCooldown(component.MindSwapPowerAction, _gameTiming.CurTime,
                 _gameTiming.CurTime + (TimeSpan)  action?.UseDelay!);
-
+#endif
         if (TryComp<PsionicComponent>(uid, out var psionic) && psionic.PsionicAbility == null)
             psionic.PsionicAbility = component.MindSwapPowerAction;
+
+
     }
 
     private void OnShutdown(EntityUid uid, MindSwapPowerComponent component, ComponentShutdown args)
@@ -199,19 +205,36 @@ public sealed class MindSwapPowerSystem : EntitySystem
         var b = _mindSystem.TryGetMind(target, out var targetMindId, out var targetMind);
 
 
+        _logger.Info($"swap performer: {ToPrettyString(performer):Entity} target: {ToPrettyString(target):Entity}");
+
+        IPlayerSession? performerSession = null;
+        IPlayerSession? targetSession = null;
+
+        if (a)
+        {
+            performerSession = (IPlayerSession?) performerMind!.Session;
+            _mindSystem.TransferTo(performerMindId, null, true);
+        }
+
+        if (b)
+        {
+            targetSession = (IPlayerSession?) targetMind!.Session;
+            _mindSystem.TransferTo(targetMindId, null, true);
+        }
 
         // Do the transfer.
         if (a)
         {
             RemComp<ActorComponent>(target);
             RemComp<MindContainerComponent>(target);
-            _mindSystem.SetUserId(performerMindId, performerMind!.UserId, performerMind);
+            //_mindSystem.SetUserId(performerMindId, performerMind!.UserId, performerMind);
             var isSsd = true;
-            if (performerMind.Session != null)
+            if (performerSession != null)
             {
-                _actorSystem.Attach(target, (IPlayerSession) performerMind.Session!, true);
+                //_actorSystem.Attach(target, performerSession, true);
                 isSsd = false;
             }
+
             _mindSystem.TransferTo(performerMindId, target, true, false);
             Timer.Spawn(1_000, () =>
             {
@@ -223,19 +246,20 @@ public sealed class MindSwapPowerSystem : EntitySystem
 
         }
 
+
         if (b)
         {
+
             RemComp<ActorComponent>(performer);
             RemComp<MindContainerComponent>(performer);
-            _mindSystem.SetUserId(targetMindId, targetMind!.UserId, targetMind);
+            //_mindSystem.SetUserId(targetMindId, targetMind!.UserId, targetMind);
             var isSsd = true;
-            if (targetMind.Session != null)
+            if (targetSession != null)
             {
-                _actorSystem.Attach(target, (IPlayerSession) targetMind.Session!, true);
+                //_actorSystem.Attach(target, targetSession, true);
                 isSsd = false;
             }
             _mindSystem.TransferTo(targetMindId, performer, true, false);
-
             Timer.Spawn(1_000, () =>
             {
                 if (!performer.IsValid() || !TryComp<SSDIndicatorComponent>(performer, out var ssd))
@@ -243,6 +267,7 @@ public sealed class MindSwapPowerSystem : EntitySystem
                 ssd.IsSSD = isSsd;
                 Dirty(performer,ssd);
             });
+
         }
 
         if (end)

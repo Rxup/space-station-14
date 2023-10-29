@@ -28,6 +28,36 @@ public sealed class NyanoChatSystem : EntitySystem
     [Dependency] private readonly IAdminLogManager _adminLogger = default!;
     [Dependency] private readonly GlimmerSystem _glimmerSystem = default!;
     [Dependency] private readonly ChatSystem _chatSystem = default!;
+
+    public override void Initialize()
+    {
+        base.Initialize();
+
+        SubscribeLocalEvent<AfterPsionicChat>(OnAfterPsiChat);
+    }
+
+    private void OnAfterPsiChat(AfterPsionicChat ev)
+    {
+        var clients = GetPsionicChatClients().ToArray();
+
+        if (_random.Prob(0.1f))
+            _glimmerSystem.Glimmer++;
+
+        if (_random.Prob(Math.Min(0.33f + ((float) _glimmerSystem.Glimmer / 1500), 1)))
+        {
+            var obfuscation = (0.25f + (float) _glimmerSystem.Glimmer / 2000);
+            var obfuscated = _chatSystem.ObfuscateMessageReadability(ev.Message, obfuscation);
+            _chatManager.ChatMessageToMany(ChatChannel.Telepathic, obfuscated, ev.MessageWrap, ev.Source, ev.HideChat, false, GetDreamers(clients), Color.PaleVioletRed);
+        }
+
+        var q = EntityQueryEnumerator<TelepathicRepeaterComponent>();
+
+        while (q.MoveNext(out var uid, out _))
+        {
+            _chatSystem.TrySendInGameICMessage(uid, ev.Message, InGameICChatType.Speak, false, true);
+        }
+    }
+
     private IEnumerable<INetChannel> GetPsionicChatClients()
     {
         return Filter.Empty()
@@ -52,7 +82,9 @@ public sealed class NyanoChatSystem : EntitySystem
         var filteredList = filtered.ToList();
 
         foreach (var entity in removeList)
+        {
             filteredList.Remove(entity);
+        }
 
         return filteredList;
     }
@@ -70,17 +102,15 @@ public sealed class NyanoChatSystem : EntitySystem
         if (!IsEligibleForTelepathy(source))
             return;
 
-        var clients = GetPsionicChatClients().ToArray();
-        var admins = GetAdminClients().ToArray();
-        string messageWrap;
-        string adminMessageWrap;
-
-
-
         if (!TryComp<PsionicComponent>(source, out var psionicComponent))
         {
             return;
         }
+
+        var clients = GetPsionicChatClients().ToArray();
+        var admins = GetAdminClients().ToArray();
+        string messageWrap;
+        string adminMessageWrap;
 
         var isPsionicChat = false;
         var channelname = "Telepathic";
@@ -117,19 +147,20 @@ public sealed class NyanoChatSystem : EntitySystem
             return;
         }
 
-        if (_random.Prob(0.1f))
-            _glimmerSystem.Glimmer++;
-
-        if (_random.Prob(Math.Min(0.33f + ((float) _glimmerSystem.Glimmer / 1500), 1)))
+        QueueLocalEvent(new AfterPsionicChat
         {
-            float obfuscation = (0.25f + (float) _glimmerSystem.Glimmer / 2000);
-            var obfuscated = _chatSystem.ObfuscateMessageReadability(message, obfuscation);
-            _chatManager.ChatMessageToMany(ChatChannel.Telepathic, obfuscated, messageWrap, source, hideChat, false, GetDreamers(clients), Color.PaleVioletRed);
-        }
-
-        foreach (var repeater in EntityQuery<TelepathicRepeaterComponent>())
-        {
-            _chatSystem.TrySendInGameICMessage(repeater.Owner, message, InGameICChatType.Speak, false);
-        }
+            Source = source,
+            Message = message,
+            MessageWrap = messageWrap,
+            HideChat = hideChat
+        });
     }
+}
+
+public sealed class AfterPsionicChat : HandledEntityEventArgs
+{
+    public EntityUid Source { get; set; }
+    public string MessageWrap { get; set; } = default!;
+    public string Message { get; set; } = default!;
+    public bool HideChat { get; set; }
 }

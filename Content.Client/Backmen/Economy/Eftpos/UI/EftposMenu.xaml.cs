@@ -10,12 +10,12 @@ namespace Content.Client.Backmen.Economy.Eftpos.UI;
     [GenerateTypedNameReferences]
     public sealed partial class EftposMenu : DefaultWindow
     {
-        public event Action<LineEdit.LineEditEventArgs, FixedPoint2?>? OnChangeValue;
-        public event Action<BaseButton.ButtonEventArgs>? OnResetValue;
-        public event Action<LineEdit.LineEditEventArgs, string?>? OnChangeLinkedAccount;
-        public event Action<BaseButton.ButtonEventArgs>? OnResetLinkedAccount;
-        public event Action<BaseButton.ButtonEventArgs>? OnSwipeCard;
-        public event Action<BaseButton.ButtonEventArgs>? OnLock;
+        public event Action<FixedPoint2?> OnChangeValue = _ => {};
+        public event Action OnResetValue = () => { };
+        public event Action<string?> OnChangeLinkedAccount = _ => { };
+        public event Action OnResetLinkedAccount = () => { };
+        public event Action OnSwipeCard = () => { };
+        public event Action OnLock = () => { };
         public EftposMenu()
         {
             RobustXamlLoader.Load(this);
@@ -37,27 +37,37 @@ namespace Content.Client.Backmen.Economy.Eftpos.UI;
         private void OnValueLineEditTextEntered(LineEdit.LineEditEventArgs args)
         {
             if (TryGetValueFromValueLineEdit(out var value))
-                OnChangeValue?.Invoke(args, value);
+                OnChangeValue.Invoke(value);
         }
         private void OnValueButtonButtonDown(BaseButton.ButtonEventArgs args)
         {
-            OnResetValue?.Invoke(args);
+            OnResetValue.Invoke();
         }
         private void OnLinkedAccountLineEditTextEntered(LineEdit.LineEditEventArgs args)
         {
-            OnChangeLinkedAccount?.Invoke(args, LinkedAccountLineEdit.Text);
+            OnChangeLinkedAccount.Invoke(LinkedAccountLineEdit.Text);
         }
         private void OnLinkedAccounButtonButtonDown(BaseButton.ButtonEventArgs args)
         {
-            OnResetLinkedAccount?.Invoke(args);
+            OnResetLinkedAccount.Invoke();
         }
         private void OnSwipeCardButtonButtonDown(BaseButton.ButtonEventArgs args)
         {
-            OnSwipeCard?.Invoke(args);
+            OnSwipeCard.Invoke();
         }
         private void OnLockButtonButtonDown(BaseButton.ButtonEventArgs args)
         {
-            OnLock?.Invoke(args);
+            if (!ValueButton.Visible && TryGetValueFromValueLineEdit(out var value))
+            {
+                OnChangeValue.Invoke(value);
+            }
+
+            if (!LinkedAccountButton.Visible)
+            {
+                OnChangeLinkedAccount.Invoke(!string.IsNullOrEmpty(LinkedAccountLineEdit.Text) ? LinkedAccountLineEdit.Text : "auto");
+            }
+
+            OnLock.Invoke();
         }
         private bool TryGetValueFromValueLineEdit(out FixedPoint2 value)
         {

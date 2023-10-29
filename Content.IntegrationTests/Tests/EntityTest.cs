@@ -227,6 +227,7 @@ namespace Content.IntegrationTests.Tests
                 //Backmen
                 "FugitiveCountdown", // Fugitive.
                 "ShipyardConsole", // Shipyard Console
+                "Eftpos", // attach to bank account on mapinit
 
 
                 // Spawner entities
@@ -393,7 +394,7 @@ namespace Content.IntegrationTests.Tests
                     }
                 });
             });
-
+            await server.WaitRunTicks(5);
             await pair.CleanReturnAsync();
         }
     }

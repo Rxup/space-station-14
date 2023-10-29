@@ -48,7 +48,6 @@ public sealed class FleshCultRuleSystem : GameRuleSystem<FleshCultRuleComponent>
     [Dependency] private readonly SharedAudioSystem _audioSystem = default!;
     [Dependency] private readonly RoundEndSystem _roundEndSystem = default!;
     [Dependency] private readonly StationSystem _stationSystem = default!;
-    [Dependency] private readonly StoreSystem _store = default!;
     [Dependency] private readonly MindSystem _mindSystem = default!;
     [Dependency] private readonly ActorSystem _actorSystem = default!;
     [Dependency] private readonly RoleSystem _roleSystem = default!;
@@ -71,6 +70,17 @@ public sealed class FleshCultRuleSystem : GameRuleSystem<FleshCultRuleComponent>
         SubscribeLocalEvent<PlayerSpawnCompleteEvent>(HandleLatejoin);
         SubscribeLocalEvent<RoundEndTextAppendEvent>(OnRoundEndText);
         SubscribeLocalEvent<FleshHeartSystem.FleshHeartFinalEvent>(OnFleshHeartFinal);
+        SubscribeLocalEvent<FleshCultistRoleComponent, GetBriefingEvent>(OnGetBriefing);
+    }
+
+    private void OnGetBriefing(Entity<FleshCultistRoleComponent> ent, ref GetBriefingEvent args)
+    {
+        var q = EntityQueryEnumerator<FleshCultRuleComponent>();
+        while (q.MoveNext(out var rule))
+        {
+            args.Append(Loc.GetString("flesh-cult-role-cult-members",
+                ("cultMembers", string.Join(", ", rule.CultistsNames))));
+        }
     }
 
     private void OnFleshHeartFinal(FleshHeartSystem.FleshHeartFinalEvent ev)
@@ -153,7 +163,7 @@ public sealed class FleshCultRuleSystem : GameRuleSystem<FleshCultRuleComponent>
             return;
         }
 
-        component.TargetStation = _stationSystem.GetStations().FirstOrNull();
+        component.TargetStation = _stationSystem.GetStations().FirstOrNull(HasComp<StationEventEligibleComponent>);
 
         if (component.TargetStation == null)
         {
@@ -178,22 +188,9 @@ public sealed class FleshCultRuleSystem : GameRuleSystem<FleshCultRuleComponent>
             selectedCultists.Remove(cultistsLeader);
         }
 
-
-        foreach (var selectedCultist in selectedCultists)
-        {
-            if (_actorSystem.TryGetActorFromUserId(selectedCultist.Data.UserId, out _, out var ent))
-            {
-                component.CultistsNames.Add(MetaData(ent!.Value).EntityName);
-            }
-        }
-
         if (cultistsLeader != null)
         {
             MakeCultistLeader(cultistsLeader);
-            if (_actorSystem.TryGetActorFromUserId(cultistsLeader.Data.UserId, out _, out var ent))
-            {
-                component.CultistsNames.Add(MetaData(ent!.Value).EntityName);
-            }
         }
 
         foreach (var cultist in selectedCultists)
@@ -296,7 +293,13 @@ public sealed class FleshCultRuleSystem : GameRuleSystem<FleshCultRuleComponent>
                 continue;
             }
 
-            if (_roleSystem.MindIsAntagonist(mindId.Value))
+            if (_roleSystem.MindIsAntagonist(mindId.Value) || !_jobs.CanBeAntag(player))
+            {
+                continue;
+            }
+
+            // Role prevents antag.
+            if (!_jobs.CanBeAntag(player))
             {
                 continue;
             }
@@ -373,11 +376,23 @@ public sealed class FleshCultRuleSystem : GameRuleSystem<FleshCultRuleComponent>
 
         DebugTools.AssertNotNull(mind.OwnedEntity);
 
-        _roleSystem.MindAddRole(mindId, new FleshCultistRoleComponent
+        if (_actorSystem.TryGetActorFromUserId(traitor.Data.UserId, out _, out var ent))
         {
-            PrototypeId = role
-        });
-        fleshCultRule.Cultists.Add((mindId, mind));
+            fleshCultRule.CultistsNames.Add(MetaData(ent!.Value).EntityName);
+        }
+
+        if (!HasComp<FleshCultistRoleComponent>(mindId))
+        {
+            _roleSystem.MindAddRole(mindId, new FleshCultistRoleComponent
+            {
+                PrototypeId = role
+            });
+        }
+
+        if (fleshCultRule.Cultists.All(z => z.mindId != mindId))
+        {
+            fleshCultRule.Cultists.Add((mindId, mind));
+        }
 
         _faction.RemoveFaction(entity, "NanoTrasen", false);
         _faction.AddFaction(entity, "Flesh");
@@ -406,13 +421,6 @@ public sealed class FleshCultRuleSystem : GameRuleSystem<FleshCultRuleComponent>
 
         _mindSystem.TryAddObjective(mindId, mind, CreateFleshHeartObjective);
         _mindSystem.TryAddObjective(mindId, mind, FleshCultistSurvivalObjective);
-
-        // Assign briefing
-        _roleSystem.MindAddRole(mindId, new RoleBriefingComponent
-        {
-            Briefing = Loc.GetString("flesh-cult-role-cult-members",
-                ("cultMembers", string.Join(", ", fleshCultRule.CultistsNames)))
-        });
 
         _audioSystem.PlayGlobal(fleshCultRule.AddedSound, Filter.SinglePlayer(traitor), false, AudioParams.Default);
         return true;
