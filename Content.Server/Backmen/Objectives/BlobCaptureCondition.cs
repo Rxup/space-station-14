@@ -1,4 +1,4 @@
-using Content.Shared.Blob;
+using Content.Shared.Backmen.Blob;
 using Content.Shared.Mind;
 using JetBrains.Annotations;
 using Robust.Shared.Utility;

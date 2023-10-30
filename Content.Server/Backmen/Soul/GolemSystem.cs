@@ -10,9 +10,7 @@ using Content.Shared.Administration.Logs;
 using Content.Shared.Humanoid;
 using Content.Server.Speech;
 using Content.Server.Mind;
-using Content.Server.Silicons.Laws;
 using Content.Shared.Backmen.Psionics.Events;
-using Content.Shared.Backmen.Soul;
 using Content.Shared.Silicons.Laws;
 using Content.Shared.Silicons.Laws.Components;
 using Robust.Shared.Containers;
@@ -61,10 +59,10 @@ public sealed class GolemSystem : SharedGolemSystem
             return;
 
         // Add the first emag law
-        args.Laws.Add(new SiliconLaw
+        args.Laws.Laws.Add(new SiliconLaw
         {
             LawString = Loc.GetString("law-golem-1", ("name", component.Master)),
-            Order = 0
+            Order = 1
         });
 
         args.Handled = true;

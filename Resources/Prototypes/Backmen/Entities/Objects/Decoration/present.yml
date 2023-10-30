@@ -21,3 +21,15 @@
         - id: SophicScribe
       sound:
         path: /Audio/Effects/unwrap.ogg
+
+- type: entity
+  id: PresentMetempsychoticMachine
+  parent: [PresentBase, BaseItem]
+  name: маленький ящик пандоры
+  suffix: КлонеркаСпешел
+  components:
+  - type: SpawnItemsOnUse
+    items:
+    - id: MetempsychoticMachine
+    sound:
+      path: /Audio/Effects/unwrap.ogg

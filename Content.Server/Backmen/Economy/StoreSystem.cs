@@ -1,17 +1,12 @@
 ﻿// ReSharper disable once CheckNamespace
 
-using System.Linq;
 using Content.Server.Access.Systems;
 using Content.Server.Backmen.Economy;
 using Content.Server.Store.Components;
 using Content.Server.VendingMachines;
-using Content.Shared.Backmen.Economy;
 using Content.Shared.Backmen.Store;
 using Content.Shared.Store;
 using Content.Shared.VendingMachines;
-using Robust.Server.Player;
-using Robust.Shared.Audio;
-using Robust.Shared.Players;
 
 namespace Content.Server.Store.Systems;
 

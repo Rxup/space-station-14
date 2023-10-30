@@ -5,7 +5,7 @@ using Robust.Shared.Map;
 using Robust.Shared.Random;
 using Content.Server.GameTicking.Rules.Components;
 using Content.Server.Shuttles.Components;
-using Content.Shared.Blob;
+using Content.Shared.Backmen.Blob;
 using Robust.Server.Player;
 
 namespace Content.Server.StationEvents.Events;
@@ -44,7 +44,7 @@ public sealed class BlobSpawnRule : StationEventSystem<BlobSpawnRuleComponent>
             return;
         }
 
-        var playerPool = _playerSystem.ServerSessions.ToList();
+        var playerPool = _playerSystem.Sessions.ToList();
         var numBlobs = MathHelper.Clamp(playerPool.Count / component.PlayersPerCarrierBlob, 1, component.MaxCarrierBlob);
 
         for (var i = 0; i < numBlobs; i++)

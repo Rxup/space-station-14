@@ -254,9 +254,18 @@ namespace Content.Server.Cloning
                 }
             }
             // end of genetic damage checks
-
-            var mob = Spawn(speciesPrototype.Prototype, Transform(uid).MapPosition);
-            _humanoidSystem.CloneAppearance(bodyToClone, mob);
+            // start-backmen: cloning
+            var genetics = new Server.Backmen.Cloning.CloningSpawnEvent((uid,clonePod),bodyToClone)
+            {
+                Proto = speciesPrototype.Prototype
+            };
+            RaiseLocalEvent(ref genetics);
+            var mob = Spawn(genetics.Proto ?? speciesPrototype.Prototype, Transform(uid).MapPosition);
+            if (!genetics.IsHandleAppearance)
+            {
+                _humanoidSystem.CloneAppearance(bodyToClone, mob);
+            }
+            // end-backmen: cloning
 
             var ev = new CloningEvent(bodyToClone, mob);
             RaiseLocalEvent(bodyToClone, ref ev);

@@ -1,4 +1,5 @@
-﻿using Content.Shared.Eye.Blinding.Components;
+﻿using Content.Shared.Backmen.Blob;
+using Content.Shared.Eye.Blinding.Components;
 using Content.Shared.Mobs.Components;
 using Robust.Client.Console;
 using Robust.Client.Graphics;
@@ -26,10 +27,12 @@ public sealed class LightHandleSystem : EntitySystem
             return;
         }
 
-        var plr = _playerManager.LocalPlayer?.ControlledEntity;
+        var plr = _playerManager.LocalSession?.AttachedEntity;
         if (plr == null)
             return;
         if (!HasComp<MobStateComponent>(plr))
+            return;
+        if (HasComp<BlobObserverComponent>(plr))
             return;
         if (TryComp<BlindableComponent>(plr, out var blindableComponent) && blindableComponent.LightSetup)
             return;

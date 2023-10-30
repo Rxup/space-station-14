@@ -13,7 +13,6 @@ using Robust.Server.Player;
 using Robust.Shared.Configuration;
 using Robust.Shared.Console;
 using Robust.Shared.Network;
-using Robust.Shared.Players;
 using Robust.Shared.Utility;
 
 namespace Content.Server.Backmen.Administration.Bwoink.Gpt;
