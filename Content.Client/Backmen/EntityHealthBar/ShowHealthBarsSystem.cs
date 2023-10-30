@@ -3,6 +3,7 @@ using Content.Shared.GameTicking;
 using Robust.Client.GameObjects;
 using Robust.Client.Graphics;
 using Robust.Client.Player;
+using Robust.Server.GameObjects;
 using Robust.Shared.Prototypes;
 
 namespace Content.Client.Backmen.EntityHealthBar;
@@ -29,7 +30,7 @@ public sealed class ShowHealthBarsSystem : EntitySystem
 
     private void OnInit(EntityUid uid, ShowHealthBarsComponent component, ComponentInit args)
     {
-        if (_player.LocalPlayer?.ControlledEntity == uid)
+        if (_player.LocalSession?.AttachedEntity == uid)
         {
             ApplyOverlays(component);
         }
@@ -37,7 +38,7 @@ public sealed class ShowHealthBarsSystem : EntitySystem
 
     private void OnRemove(EntityUid uid, ShowHealthBarsComponent component, ComponentRemove args)
     {
-        if (_player.LocalPlayer?.ControlledEntity == uid)
+        if (_player.LocalSession?.AttachedEntity == uid)
         {
             _overlayMan.RemoveOverlay(_overlay);
         }

@@ -10,6 +10,7 @@ using Robust.Server.Player;
 using Robust.Shared.Configuration;
 using Robust.Shared.Enums;
 using Robust.Shared.Network;
+using Robust.Shared.Player;
 
 namespace Content.Server.Backmen.DiscordAuth;
 
@@ -28,7 +29,7 @@ public sealed class DiscordAuthManager : Content.Corvax.Interfaces.Server.IServe
     /// <summary>
     ///     Raised when player passed verification or if feature disabled
     /// </summary>
-    public event EventHandler<IPlayerSession>? PlayerVerified;
+    public event EventHandler<ICommonSession>? PlayerVerified;
 
     public void Initialize()
     {
@@ -49,7 +50,7 @@ public sealed class DiscordAuthManager : Content.Corvax.Interfaces.Server.IServe
         var isVerified = await IsVerified(message.MsgChannel.UserId);
         if (isVerified)
         {
-            var session = _playerMgr.GetSessionByUserId(message.MsgChannel.UserId);
+            var session = _playerMgr.GetSessionById(message.MsgChannel.UserId);
 
             PlayerVerified?.Invoke(this, session);
         }
@@ -77,7 +78,7 @@ public sealed class DiscordAuthManager : Content.Corvax.Interfaces.Server.IServe
 
             var authUrl = await GenerateAuthLink(e.Session.UserId);
             var msg = new MsgDiscordAuthRequired() { AuthUrl = authUrl.Url, QrCode = authUrl.Qrcode };
-            e.Session.ConnectedClient.SendMessage(msg);
+            e.Session.Channel.SendMessage(msg);
         }
     }
 
@@ -89,7 +90,7 @@ public sealed class DiscordAuthManager : Content.Corvax.Interfaces.Server.IServe
         var response = await _httpClient.PostAsync(requestUrl, null, cancel);
         if (!response.IsSuccessStatusCode)
         {
-            var content = await response.Content.ReadAsStringAsync();
+            var content = await response.Content.ReadAsStringAsync(cancel);
             throw new Exception($"Verification API returned bad status code: {response.StatusCode}\nResponse: {content}");
         }
 
@@ -105,7 +106,7 @@ public sealed class DiscordAuthManager : Content.Corvax.Interfaces.Server.IServe
         var response = await _httpClient.GetAsync(requestUrl, cancel);
         if (!response.IsSuccessStatusCode)
         {
-            var content = await response.Content.ReadAsStringAsync();
+            var content = await response.Content.ReadAsStringAsync(cancel);
             throw new Exception($"Verification API returned bad status code: {response.StatusCode}\nResponse: {content}");
         }
 

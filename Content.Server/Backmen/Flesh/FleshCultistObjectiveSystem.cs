@@ -4,7 +4,7 @@ using Content.Server.Chat.Managers;
 using Content.Server.GameTicking.Rules.Components;
 using Content.Server.Mind;
 using Content.Shared.Objectives.Components;
-using Robust.Shared.Players;
+using Robust.Shared.Player;
 
 namespace Content.Server.Backmen.Flesh;
 

@@ -205,7 +205,7 @@ namespace Content.Server.Ghost.Roles
                 return;
 
             // start-backmen: whitelist
-            if (role.Comp.WhitelistRequired && _cfg.GetCVar(Shared.Backmen.CCVar.CCVars.WhitelistRolesEnabled) && !_roleWhitelist.IsInWhitelist((IPlayerSession) player))
+            if (role.Comp.WhitelistRequired && _cfg.GetCVar(Shared.Backmen.CCVar.CCVars.WhitelistRolesEnabled) && !_roleWhitelist.IsInWhitelist(player))
                 return;
             // end-backmen: whitelist
 

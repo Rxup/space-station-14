@@ -61,7 +61,8 @@ namespace Content.Server.GameTicking
                     // timer time must be > tick length
                     // Corvax-Queue-Start
                     if (!IoCManager.Instance!.TryResolveType<IServerJoinQueueManager>(out _))
-                        Timer.Spawn(0, () => _playerManager.JoinGame(args.Session));
+                        EntityManager.System<Server.Backmen.PlayerManagerSystem>().JoinGame(args.Session);
+                        //Timer.Spawn(0, () => _playerManager.JoinGame(args.Session));
                     // Corvax-Queue-End
 
                     var record = await _dbManager.GetPlayerRecordByUserId(args.Session.UserId);

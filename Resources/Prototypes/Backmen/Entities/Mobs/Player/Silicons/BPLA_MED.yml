@@ -115,10 +115,7 @@
   - type: GhostTakeoverAvailable
   - type: SiliconLawBound
   - type: SiliconLawProvider
-    laws:
-    - Crewsimov1
-    - Crewsimov2
-    - Crewsimov3
+    laws: Crewsimov
   - type: MovementSpeedModifier
     baseWalkSpeed : 5.5
     baseSprintSpeed : 5.5

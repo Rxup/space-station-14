@@ -154,6 +154,13 @@ public sealed class SmokeSystem : EntitySystem
         {
             var coords = neighbor.Grid.GridTileToLocal(neighbor.Tile);
             var ent = Spawn(prototype.ID, coords);
+            // start-backmen: smoke color
+            if (TryComp<Shared.Backmen.Blob.Chemistry.BlobSmokeColorComponent>(uid, out var smokeColorComponent))
+            {
+                EnsureComp<Shared.Backmen.Blob.Chemistry.BlobSmokeColorComponent>(ent).Color =
+                    smokeColorComponent.Color;
+            }
+            // end-backmen: smoke color
             var spreadAmount = Math.Max(0, smokePerSpread);
             component.SpreadAmount -= args.NeighborFreeTiles.Count();
 
@@ -315,25 +322,6 @@ public sealed class SmokeSystem : EntitySystem
             var reagent = _prototype.Index<ReagentPrototype>(reagentQuantity.Reagent.Prototype);
             reagent.ReactionTile(tile, reagentQuantity.Quantity);
         }
-    }
-
-    private void HandleSmokeTrigger(EntityUid uid, SmokeOnTriggerComponent comp, TriggerEvent args)
-    {
-        var xform = Transform(uid);
-        var smokeEnt = Spawn("Smoke", xform.Coordinates);
-        var smoke = EnsureComp<SmokeComponent>(smokeEnt);
-        smoke.Color = comp.SmokeColor;
-        smoke.SmokeColor = comp.SmokeColor;
-        Dirty(smokeEnt,smoke);
-        smoke.SpreadAmount = comp.SpreadAmount;
-        var solution = new Solution();
-        foreach (var reagent in comp.SmokeReagents)
-        {
-            solution.AddReagent(reagent.Reagent, reagent.Quantity);
-        }
-        Start(smokeEnt, smoke, solution, comp.Time);
-        _audioSystem.PlayPvs(comp.Sound, xform.Coordinates, AudioParams.Default.WithVariation(0.125f));
-        args.Handled = true;
     }
 
     /// <summary>

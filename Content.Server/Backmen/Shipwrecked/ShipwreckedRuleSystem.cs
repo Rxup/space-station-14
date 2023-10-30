@@ -453,7 +453,7 @@ public sealed class ShipwreckedRuleSystem : GameRuleSystem<ShipwreckedRuleCompon
         return spawns;
     }
 
-    private bool SpawnTraveller(IPlayerSession player, EntityCoordinates spawnPoint, StringBuilder manifest, ShipwreckedRuleComponent component)
+    private bool SpawnTraveller(ICommonSession player, EntityCoordinates spawnPoint, StringBuilder manifest, ShipwreckedRuleComponent component)
     {
         var profile = _preferencesManager.GetPreferences(player.UserId).SelectedCharacter as HumanoidCharacterProfile;
 
@@ -473,7 +473,7 @@ public sealed class ShipwreckedRuleSystem : GameRuleSystem<ShipwreckedRuleCompon
 
         var jobProtoId = _random.Pick(component.AvailableJobPrototypes);
 
-        if (!_prototypeManager.TryIndex(jobProtoId, out JobPrototype? jobPrototype))
+        if (!_prototypeManager.TryIndex(jobProtoId, out var jobPrototype))
             throw new ArgumentException($"Invalid JobPrototype: {jobProtoId}");
 
         var mindId = _mindSystem.CreateMind(player.UserId, profile.Name);
@@ -919,11 +919,10 @@ public sealed class ShipwreckedRuleSystem : GameRuleSystem<ShipwreckedRuleCompon
         {
             var smokeEnt = Spawn("Smoke", spot);
             var smoke = EnsureComp<SmokeComponent>(smokeEnt);
-            smoke.SpreadAmount = 70;
 
             // Breathing smoke is not good for you.
             var toxin = new Solution("Toxin", FixedPoint2.New(2));
-            _smokeSystem.Start(smokeEnt, smoke, toxin, duration: 20f);
+            _smokeSystem.StartSmoke(smokeEnt, toxin, 20f, 70, smoke);
         }
 
         // Fry the console.
@@ -961,7 +960,7 @@ public sealed class ShipwreckedRuleSystem : GameRuleSystem<ShipwreckedRuleCompon
         var xformQuery = GetEntityQuery<TransformComponent>();
         var filter = Filter.Empty();
 
-        foreach (var player in _playerManager.ServerSessions)
+        foreach (var player in _playerManager.Sessions)
         {
             if (player.AttachedEntity is not {Valid: true} playerEntity)
                 continue;
@@ -1312,7 +1311,7 @@ public sealed class ShipwreckedRuleSystem : GameRuleSystem<ShipwreckedRuleCompon
             if (!GameTicker.IsGameRuleAdded(uid, gameRule))
                 continue;
 
-            var players = new List<IPlayerSession>(ev.PlayerPool)
+            var players = new List<ICommonSession>(ev.PlayerPool)
                 .Where(player => ev.Profiles.ContainsKey(player.UserId));
 
             var manifest = SpawnManifest(uid, shipwrecked);

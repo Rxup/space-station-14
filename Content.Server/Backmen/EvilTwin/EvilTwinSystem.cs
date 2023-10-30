@@ -2,7 +2,9 @@
 using System.Linq;
 using System.Text;
 using Content.Server.Administration.Logs;
+using Content.Server.Backmen.Cloning;
 using Content.Server.Backmen.Economy;
+using Content.Server.Backmen.Fugitive;
 using Content.Server.CartridgeLoader.Cartridges;
 using Content.Server.DetailExaminable;
 using Content.Server.Forensics;
@@ -44,6 +46,7 @@ using Content.Shared.Mind;
 using Content.Shared.Mind.Components;
 using Content.Shared.Objectives;
 using Content.Shared.Objectives.Components;
+using Content.Shared.Players;
 using Content.Shared.Roles.Jobs;
 using Robust.Server.Player;
 using Robust.Shared.Configuration;
@@ -198,6 +201,7 @@ public sealed class EvilTwinSystem : EntitySystem
                 var playerData = args.Player.ContentData();
                 if (playerData != null && _mindSystem.TryGetMind(playerData, out var mindId, out var mind))
                 {
+                    _mindSystem.TransferTo(mindId, null);
                     _mindSystem.TransferTo(mindId, twinMob);
 
 
@@ -231,7 +235,7 @@ public sealed class EvilTwinSystem : EntitySystem
                         }
 
                         RaiseLocalEvent(new PlayerSpawnCompleteEvent(twinMob.Value,
-                            (IPlayerSession) targetSession,
+                            targetSession,
                             currentJob?.PrototypeId, false,
                             0, station.Value, pref));
 
@@ -408,7 +412,10 @@ public sealed class EvilTwinSystem : EntitySystem
             return false;
         }
 
-        return !HasComp<EvilTwinComponent>(uid) && !HasComp<NukeOperativeComponent>(uid);
+        return !(HasComp<MetempsychosisKarmaComponent>(uid) ||
+                 HasComp<FugitiveComponent>(uid) ||
+                 HasComp<EvilTwinComponent>(uid) ||
+                 HasComp<NukeOperativeComponent>(uid));
     }
 
     private bool TryGetEligibleHumanoid([NotNullWhen(true)] out EntityUid? uid)
