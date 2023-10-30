@@ -11,6 +11,7 @@ using Content.Server.Station.Systems;
 using Content.Shared.Backmen.Abilities;
 using Content.Shared.Cargo.Components;
 using Content.Shared.CCVar;
+using Content.Shared.Emag.Systems;
 using Content.Shared.GameTicking;
 using Content.Shared.Shuttles.Components;
 using Robust.Server.GameObjects;
@@ -32,6 +33,7 @@ public sealed class CentcommSystem : EntitySystem
     [Dependency] private readonly GameTicker _gameTicker = default!;
     [Dependency] private readonly ShuttleSystem _shuttle = default!;
     [Dependency] private readonly IConfigurationManager _cfg = default!;
+    [Dependency] private readonly ShuttleConsoleSystem _console = default!;
     private ISawmill _sawmill = default!;
 
 
@@ -47,7 +49,13 @@ public sealed class CentcommSystem : EntitySystem
         SubscribeLocalEvent<PreGameMapLoad>(OnPreGameMapLoad, after: new[]{typeof(StationSystem)});
         SubscribeLocalEvent<RoundStartingEvent>(OnCentComInit, before: new []{ typeof(EmergencyShuttleSystem) });
         SubscribeLocalEvent<RoundRestartCleanupEvent>(OnCleanup);
+        SubscribeLocalEvent<ShuttleConsoleComponent, GotEmaggedEvent>(OnShuttleConsoleEmaged);
         _cfg.OnValueChanged(CCVars.GridFill, OnGridFillChange);
+    }
+
+    private void OnShuttleConsoleEmaged(Entity<ShuttleConsoleComponent> ent, ref GotEmaggedEvent args)
+    {
+        args.Handled = true;
     }
 
     private void OnGridFillChange(bool obj)
@@ -98,12 +106,35 @@ public sealed class CentcommSystem : EntitySystem
         if (ent != null)
         {
             CentComGrid = ent.Value;
-            _shuttle.AddFTLDestination(ent.Value, false);
+            _shuttle.AddFTLDestination(CentComGrid, true);
+            DisableFtl();
         }
         else
         {
             _sawmill.Warning("No CentComm map found, skipping setup.");
         }
+    }
+
+    // ReSharper disable once MemberCanBePrivate.Global
+    public void DisableFtl()
+    {
+        if (!CentComGrid.IsValid())
+            return;
+        var dest = EnsureComp<FTLDestinationComponent>(CentComGrid);
+        dest.Whitelist ??= new();
+        dest.Whitelist.RequireAll = false;
+        dest.Whitelist.Components = new[] { "Emagged" };
+        dest.Whitelist.UpdateRegistrations();
+        _console.RefreshShuttleConsoles();
+    }
+
+    public void EnableFtl()
+    {
+        if (!CentComGrid.IsValid())
+            return;
+        var dest = EnsureComp<FTLDestinationComponent>(CentComGrid);
+        dest.Whitelist = null;
+        _console.RefreshShuttleConsoles();
     }
 
     private void OnCentComInit(RoundStartingEvent ev)
