@@ -3,7 +3,6 @@ using Content.Shared.GameTicking;
 using Robust.Client.GameObjects;
 using Robust.Client.Graphics;
 using Robust.Client.Player;
-using Robust.Server.GameObjects;
 using Robust.Shared.Prototypes;
 
 namespace Content.Client.Backmen.EntityHealthBar;
@@ -21,8 +20,8 @@ public sealed class ShowHealthBarsSystem : EntitySystem
 
         SubscribeLocalEvent<ShowHealthBarsComponent, ComponentInit>(OnInit);
         SubscribeLocalEvent<ShowHealthBarsComponent, ComponentRemove>(OnRemove);
-        SubscribeLocalEvent<ShowHealthBarsComponent, PlayerAttachedEvent>(OnPlayerAttached);
-        SubscribeLocalEvent<ShowHealthBarsComponent, PlayerDetachedEvent>(OnPlayerDetached);
+        SubscribeLocalEvent<ShowHealthBarsComponent, LocalPlayerAttachedEvent>(OnPlayerAttached);
+        SubscribeLocalEvent<ShowHealthBarsComponent, LocalPlayerDetachedEvent>(OnPlayerDetached);
         SubscribeLocalEvent<RoundRestartCleanupEvent>(OnRoundRestart);
 
         _overlay = new(EntityManager, _protoMan);
@@ -44,7 +43,7 @@ public sealed class ShowHealthBarsSystem : EntitySystem
         }
     }
 
-    private void OnPlayerAttached(EntityUid uid, ShowHealthBarsComponent component, PlayerAttachedEvent args)
+    private void OnPlayerAttached(EntityUid uid, ShowHealthBarsComponent component, LocalPlayerAttachedEvent args)
     {
         ApplyOverlays(component);
     }
@@ -56,7 +55,7 @@ public sealed class ShowHealthBarsSystem : EntitySystem
         _overlay.DamageContainers.AddRange(component.DamageContainers);
     }
 
-    private void OnPlayerDetached(EntityUid uid, ShowHealthBarsComponent component, PlayerDetachedEvent args)
+    private void OnPlayerDetached(EntityUid uid, ShowHealthBarsComponent component, LocalPlayerDetachedEvent args)
     {
         _overlayMan.RemoveOverlay(_overlay);
     }
