@@ -275,6 +275,7 @@
       - id: PresentOracle # backmen
       - id: PresentSophie # backmen
       - id: PonderingOrbTelepathic # backmen
+      - id: PresentMetempsychoticMachine # backmen
 
 - type: entity
   id: LockerResearchDirectorFilled
@@ -303,6 +304,7 @@
       - id: PresentOracle # backmen
       - id: PresentSophie # backmen
       - id: PonderingOrbTelepathic # backmen
+      - id: PresentMetempsychoticMachine # backmen
 
 - type: entity
   id: LockerHeadOfSecurityFilledHardsuit
