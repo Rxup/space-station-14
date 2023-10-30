@@ -68,3 +68,5 @@
   - type: IconSmooth
     key: walls
     base: riveted
+  - type: Reflect
+    reflectProb: 1
