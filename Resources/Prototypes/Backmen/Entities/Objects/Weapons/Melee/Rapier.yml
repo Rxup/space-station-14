@@ -41,5 +41,5 @@
     sprite: Backmen/Objects/Weapons/Melee/Rapier_cvasoc.rsi
   - type: Tag
     tags:
-    - CaptainSabre
+    - Rapier
   - type: DisarmMalus  
