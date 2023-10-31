@@ -398,9 +398,10 @@
   id: MedkitAdvancedRXBZZ
   components:
     - type: Item
-      size: 30
+      size: Normal
     - type: Storage
       maxTotalWeight: 30
+
     - type: StorageFill
       contents:
         - id: BattleMedipenAntiVirus
@@ -416,6 +417,7 @@
   components:
     - type: Storage
       maxTotalWeight: 100
+      maxSlots: 35
     - type: StorageFill
       contents:
         - id: ShellShotgunIncendiary
