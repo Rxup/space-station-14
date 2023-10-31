@@ -14,7 +14,7 @@
     slots:
       - Back
   - type: Storage
-    capacity: 300
+    maxTotalWeight: 300
   - type: ContainerContainer
     containers:
       storagebase: !type:Container
@@ -375,7 +375,7 @@
   id: ClothingBackpackDuffelRXBZZ
   components:
     - type: Storage
-      capacity: 250
+      maxTotalWeight: 250
     - type: StorageFill
       contents:
         - id: BoxFlare
@@ -398,9 +398,10 @@
   id: MedkitAdvancedRXBZZ
   components:
     - type: Item
-      size: 30
+      size: Normal
     - type: Storage
-      capacity: 30
+      maxTotalWeight: 30
+
     - type: StorageFill
       contents:
         - id: BattleMedipenAntiVirus
@@ -415,7 +416,8 @@
   id: ClothingBeltBandolierRXBZZ
   components:
     - type: Storage
-      capacity: 100
+      maxTotalWeight: 100
+      maxSlots: 35
     - type: StorageFill
       contents:
         - id: ShellShotgunIncendiary

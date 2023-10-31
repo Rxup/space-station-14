@@ -6,6 +6,6 @@
     - type: StorageFill
       contents:
         - id: Paper
-          amount: 3
+          amount: 2
         - id: PenCentcom
         - id: RubberStampIAA

@@ -47,7 +47,8 @@
   - type: Pullable
   - type: Occluder
   - type: Storage
-    capacity: 300
+    maxSlots: 48
+    maxItemSize: Normal
     whitelist:
       tags:
         - Document

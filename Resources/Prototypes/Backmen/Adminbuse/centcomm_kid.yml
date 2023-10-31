@@ -73,7 +73,7 @@
       - state: icon-0
         map: ["enum.StorageFillLayers.Fill"]
   - type: Storage
-    capacity: 1000
+    maxTotalWeight: 1000
     quickInsert: true
     areaInsert: true
     storageOpenSound:

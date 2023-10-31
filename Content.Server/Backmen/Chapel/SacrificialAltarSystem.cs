@@ -22,6 +22,7 @@ using Content.Shared.Players;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Server.GameObjects;
+using Robust.Shared.Player;
 using Robust.Shared.Timing;
 
 namespace Content.Server.Backmen.Chapel;

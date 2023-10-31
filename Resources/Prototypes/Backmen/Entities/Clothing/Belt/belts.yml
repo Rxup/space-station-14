@@ -10,7 +10,7 @@
   - type: Clothing
     sprite: Backmen/Clothing/Belt/orden_sheath.rsi
   - type: Storage
-    capacity: 15
+    maxTotalWeight: 15
     whitelist:
       tags:
         - CaptainSabre
