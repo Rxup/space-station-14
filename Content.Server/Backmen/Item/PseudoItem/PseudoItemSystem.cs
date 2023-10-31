@@ -61,7 +61,10 @@ namespace Content.Server.Backmen.Item.PseudoItem
             if (!TryComp<StorageComponent>(args.Target, out var targetStorage))
                 return;
 
-            if (component.Size > targetStorage.StorageCapacityMax - targetStorage.StorageUsed)
+            if (targetStorage.MaxSlots != null)
+                return;
+
+            if (component.Size > targetStorage.MaxTotalWeight - _storageSystem.GetCumulativeItemSizes(args.Target, targetStorage))
                 return;
 
             if (Transform(args.Target).ParentUid == uid)
@@ -144,9 +147,9 @@ namespace Content.Server.Backmen.Item.PseudoItem
                 return;
             }
 
-            if (TryComp<StorageComponent>(parent, out var storage))
+            if (TryComp<StorageComponent>(parent, out var storage) && storage.MaxSlots != null)
             {
-                if (pseudoItem.Size > storage.StorageCapacityMax - storage.StorageUsed)
+                if (pseudoItem.Size > storage.MaxTotalWeight - _storageSystem.GetCumulativeItemSizes(parent, storage))
                 {
                     ClearState(uid, pseudoItem);
                     return;
@@ -195,11 +198,11 @@ namespace Content.Server.Backmen.Item.PseudoItem
             if (!Resolve(storageUid, ref storage))
                 return false;
 
-            if (component.Size > storage.StorageCapacityMax - storage.StorageUsed)
+            if (component.Size > storage.MaxTotalWeight - _storageSystem.GetCumulativeItemSizes(storageUid, storage))
                 return false;
 
             var item = EnsureComp<ItemComponent>(toInsert);
-            _itemSystem.SetSize(toInsert, component.Size, item);
+            _itemSystem.SetSize(toInsert, (ItemSize)component.Size, item);
             EnsureComp<CanEscapeInventoryComponent>(toInsert);
 
             if (!_storageSystem.Insert(storageUid, toInsert, out _, user, storage))

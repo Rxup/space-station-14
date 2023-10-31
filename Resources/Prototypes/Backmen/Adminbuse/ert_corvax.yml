@@ -142,7 +142,7 @@
   id: ClothingBackpackERTEngineerFilledV2.1
   components:
     - type: Storage
-      capacity: 400
+      maxTotalWeight: 400
     - type: StorageFill
       contents:
         - id: BoxFlare

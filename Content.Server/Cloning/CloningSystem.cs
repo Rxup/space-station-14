@@ -268,7 +268,7 @@ namespace Content.Server.Cloning
             // end-backmen: cloning
 
             var ev = new CloningEvent(bodyToClone, mob);
-            RaiseLocalEvent(bodyToClone, ref ev);
+            RaiseLocalEvent(bodyToClone, ref ev, true); // backmen: cloning
 
             if (!ev.NameHandled)
                 _metaSystem.SetEntityName(mob, MetaData(bodyToClone).EntityName);

@@ -6,8 +6,8 @@
   components:
     - type: MetempsychoticMachine
     - type: CloningPod
-      constantBiomassCost: 35
-      checkGeneticDamage: false
+      #constantBiomassCost: 35
+      #checkGeneticDamage: false
     - type: Machine
       board: MetempsychoticMachineCircuitboard
     - type: Sprite
