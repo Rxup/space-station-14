@@ -9,11 +9,8 @@ using Content.Shared.Humanoid;
 using Content.Shared.Mind;
 using Content.Shared.Mind.Components;
 using Content.Shared.Verbs;
-using Robust.Server.GameObjects;
-using Robust.Server.Player;
 using Robust.Shared.Utility;
-using Content.Server.GameTicking.Rules.Components;
-using System.Linq;
+using Robust.Shared.Player;
 
 namespace Content.Server.Administration.Systems;
 

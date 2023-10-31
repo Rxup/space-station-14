@@ -971,7 +971,7 @@
     - map: ["enum.DamageStateVisualLayers.Base"]
       state: mouse-0
   - type: Item
-    size: 5
+    size: Tiny
   - type: Clothing
     quickEquip: false
     sprite: Mobs/Animals/mouse.rsi
@@ -1070,6 +1070,7 @@
     price: 50
   - type: Puller
     needsHands: true
+  - type: BadFood
 
 - type: entity
   parent: MobMouse
@@ -1436,7 +1437,7 @@
       groups:
         Brute: 5
   - type: Item
-    size: 80
+    size: Normal
   - type: OnUseTimerTrigger
     delay: 10
     beepSound:
@@ -2347,7 +2348,7 @@
     - map: ["enum.DamageStateVisualLayers.Base"]
       state: hamster-0
   - type: Item
-    size: 5
+    size: Tiny
   - type: Physics
   - type: Fixtures
     fixtures:
