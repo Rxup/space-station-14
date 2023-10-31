@@ -6,8 +6,6 @@
   components:
   - type: Sprite
     sprite: Backmen/Clothing/Back/Backpacks/orden_backpacks.rsi
-  - type: Storage
-    maxTotalWeight: 300
 
 - type: entity
   parent: ClothingBackpack
