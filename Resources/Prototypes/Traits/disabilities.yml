@@ -74,6 +74,7 @@
   description: trait-wheelchair-bound-desc
   blacklist:
     components:
+      - Felinid
       - BSSDrone #backmen: bssdrone
   components:
     - type: WheelchairBound
