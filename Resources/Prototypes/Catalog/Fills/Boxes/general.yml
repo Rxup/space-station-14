@@ -16,7 +16,7 @@
     - type: StorageFill
       contents:
         - id: Mousetrap
-          amount: 6
+          amount: 4
     - type: Sprite
       layers:
         - state: box
@@ -102,7 +102,7 @@
   - type: StorageFill
     contents:
       - id: PassengerPDA
-        amount: 6
+        amount: 4
   - type: Sprite
     layers:
       - state: box
@@ -117,7 +117,7 @@
   - type: StorageFill
     contents:
       - id: PassengerIDCard
-        amount: 6
+        amount: 4
   - type: Sprite
     layers:
       - state: box
@@ -137,7 +137,7 @@
   - type: StorageFill
     contents:
       - id: ClothingHeadsetGrey
-        amount: 6
+        amount: 4
   - type: Sprite
     layers:
       - state: box
@@ -217,17 +217,11 @@
 
 
 - type: entity
-  name: hatsune miku day box
-  parent: BoxCardboard
+  name: hatsune miku day bag
+  parent: ClothingBackpackDuffel
   id: BoxPerformer
   description: Happy Hatsune Miku Day!
   components:
-  - type: Storage
-    maxItemSize: Normal
-    whitelist:
-      components:
-      - Clothing
-      - Food
   - type: StorageFill
     contents:
       - id: ClothingShoesBootsPerformer
@@ -283,7 +277,7 @@
   - type: StorageFill
     contents:
       - id: EncryptionKeyCommon
-        amount: 6
+        amount: 4
   - type: Sprite
     layers:
       - state: box
@@ -301,7 +295,7 @@
   - type: StorageFill
     contents:
       - id: EncryptionKeyCargo
-        amount: 6
+        amount: 4
 
 - type: entity
   name: engineering encryption key box
@@ -311,7 +305,7 @@
   - type: StorageFill
     contents:
       - id: EncryptionKeyEngineering
-        amount: 6
+        amount: 4
 
 - type: entity
   name: med-sci encryption key box
@@ -321,7 +315,7 @@
   - type: StorageFill
     contents:
       - id: EncryptionKeyMedicalScience
-        amount: 6
+        amount: 4
 
 - type: entity
   name: medical encryption key box
@@ -331,7 +325,7 @@
   - type: StorageFill
     contents:
       - id: EncryptionKeyMedical
-        amount: 6
+        amount: 4
 
 - type: entity
   name: robotech encryption key box
@@ -341,7 +335,7 @@
   - type: StorageFill
     contents:
       - id: EncryptionKeyRobo
-        amount: 6
+        amount: 4
 
 - type: entity
   name: science encryption key box
@@ -351,7 +345,7 @@
   - type: StorageFill
     contents:
       - id: EncryptionKeyScience
-        amount: 6
+        amount: 4
 
 - type: entity
   name: security encryption key box
@@ -361,7 +355,7 @@
   - type: StorageFill
     contents:
       - id: EncryptionKeySecurity
-        amount: 6
+        amount: 4
 
 - type: entity
   name: service encryption key box
@@ -371,7 +365,7 @@
   - type: StorageFill
     contents:
       - id: EncryptionKeyService
-        amount: 6
+        amount: 4
 
 - type: entity
   name: syndicate encryption key box

@@ -1,58 +1,6 @@
 Entries:
 - author: DrSmugleaf
   changes:
-  - {message: Fixed having to reopen ahelp and popped-out ahelp windows after round
-      start and end., type: Fix}
-  id: 4588
-  time: '2023-08-14T21:03:35.0000000+00:00'
-- author: DrSmugleaf
-  changes:
-  - {message: Faded admin notes now pop in when hovering over them., type: Tweak}
-  id: 4589
-  time: '2023-08-14T21:03:53.0000000+00:00'
-- author: DrSmugleaf
-  changes:
-  - {message: Fix editing an admin watchlist note making it temporarily appear as
-      a low severity note., type: Fix}
-  id: 4590
-  time: '2023-08-14T21:05:47.0000000+00:00'
-- author: Emisse
-  changes:
-  - {message: Operating table won't get you stuck in walls anymore, type: Fix}
-  id: 4591
-  time: '2023-08-14T22:25:05.0000000+00:00'
-- author: TheArturZh
-  changes:
-  - {message: Ritual chair no longer deletes mobs on disassembly, type: Fix}
-  id: 4592
-  time: '2023-08-14T22:57:33.0000000+00:00'
-- author: EmoGarbage404
-  changes:
-  - {message: Using the EMAG on borgs now requires the panel to be open. It also need
-      to be open to tell if it has been EMAG'ed in the past., type: Tweak}
-  - {message: Fixed wiping PAIs and Positronic Brains not actually removing the player
-      from them., type: Fix}
-  id: 4593
-  time: '2023-08-14T23:34:24.0000000+00:00'
-- author: mhamster
-  changes:
-  - {message: 'Added plastic sheets recipe. Mix together 5u oil, 3u ash and 2u sulfuric
-      acid, heat it up to 374k and receive your homemade plastic sheet.', type: Add}
-  id: 4594
-  time: '2023-08-14T23:40:48.0000000+00:00'
-- author: Just_Art
-  changes:
-  - {message: Now a mini gravity generator can be constructed using a machine board
-      and deconstructed., type: Add}
-  - {message: 'The mini gravity generator can be improved by replacing capacitors,
-      which will increase the maximum charge of the generator.', type: Add}
-  - {message: 'The amount of damage required to destroy the mini gravity generator
-      has been changed, and now it is completely destroyed, but it can still be restored
-      by welding.', type: Tweak}
-  id: 4595
-  time: '2023-08-15T00:23:40.0000000+00:00'
-- author: DrSmugleaf
-  changes:
   - {message: There is now a delay when disconnecting someone else's internals., type: Tweak}
   id: 4596
   time: '2023-08-15T00:25:58.0000000+00:00'
@@ -2914,3 +2862,55 @@ Entries:
   - {message: Slimes are fully immune to Nitrous Oxide again., type: Fix}
   id: 5087
   time: '2023-10-31T12:57:27.0000000+00:00'
+- author: potato1234x
+  changes:
+  - {message: Added cockroaches. Expect to see these mapped into maints soon., type: Add}
+  - {message: Added the glockroach admeme., type: Add}
+  id: 5088
+  time: '2023-10-31T20:28:43.0000000+00:00'
+- author: Psychpsyo
+  changes:
+  - {message: 'Soap and water now makes soapy water which can clean dirt off of floors.
+      Also please don''t eat the soap, it''s not good for you.', type: Add}
+  id: 5089
+  time: '2023-10-31T20:39:12.0000000+00:00'
+- author: brainfood1183
+  changes:
+  - {message: Arachnid and other Blue (hemocyanin) blooded creatures now require copper
+      to treat bloodloss instead of iron and brute medkits contain 2 copper pills
+      and 1 less iron pill., type: Add}
+  id: 5090
+  time: '2023-10-31T20:41:26.0000000+00:00'
+- author: TheShuEd
+  changes:
+  - {message: 'When the anomaly explodes, a very expensive core falls from it. Be
+      sure to sell it in 10 minutes before it becomes useless.', type: Add}
+  id: 5091
+  time: '2023-10-31T23:20:52.0000000+00:00'
+- author: Vasilis
+  changes:
+  - {message: Getting turned into a rev will now play the rev antag sound effect.,
+    type: Add}
+  id: 5092
+  time: '2023-11-01T03:11:09.0000000+00:00'
+- author: Titian3
+  changes:
+  - {message: No more skeletal crewmates., type: Remove}
+  id: 5093
+  time: '2023-11-01T21:47:56.0000000+00:00'
+- author: EmoGarbage404
+  changes:
+  - {message: Many items have had their sizes adjusted., type: Tweak}
+  - {message: Survival boxes and medkits can no longer hold more items than their
+      size would suggest., type: Tweak}
+  - {message: Fixed missing max size text in storage UIs, type: Fix}
+  - {message: Fixed the ore bag being unable to collect items when there is still
+      room., type: Fix}
+  - {message: Fixed the food cart not being able to hold anything., type: Fix}
+  id: 5094
+  time: '2023-11-01T23:19:41.0000000+00:00'
+- author: liltenhead
+  changes:
+  - {message: Fixed nukie medics not spawning with their hypospray., type: Fix}
+  id: 5095
+  time: '2023-11-02T19:35:56.0000000+00:00'
