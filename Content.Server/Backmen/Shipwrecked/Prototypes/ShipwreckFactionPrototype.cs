@@ -5,7 +5,7 @@ using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototy
 namespace Content.Server.Backmen.Shipwrecked.Prototypes;
 
 [Prototype("shipwreckFaction")]
-public sealed class ShipwreckFactionPrototype : IPrototype
+public sealed partial class ShipwreckFactionPrototype : IPrototype
 {
     [ViewVariables]
     [IdDataField]

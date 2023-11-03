@@ -9,7 +9,7 @@ namespace Content.Shared.Backmen.Shipyard.Prototypes;
 
 [Prototype("vessel")]
 
-public sealed class VesselPrototype : IPrototype
+public sealed partial class VesselPrototype : IPrototype
 {
     [ViewVariables]
     [IdDataField]

@@ -1,11 +1,19 @@
 - type: entity
+  parent: BoxFlare
+  id: BoxFlareSpecForce
+  components:
+  - type: Item
+    sprite: Objects/Storage/boxes.rsi
+    size: 10
+
+- type: entity
   name: рюкзак спецназа
   parent: JetpackBlackFilled
   id: ClothingBackpackSpecialForce
   components:
   - type: Item
     sprite: Objects/Tanks/Jetpacks/black.rsi
-    size: 9999
+    size: Ginormous
   - type: Sprite
     sprite: Objects/Tanks/Jetpacks/black.rsi
   - type: Clothing
@@ -14,7 +22,7 @@
     slots:
       - Back
   - type: Storage
-    maxTotalWeight: 300
+    maxTotalWeight: 400
   - type: ContainerContainer
     containers:
       storagebase: !type:Container
@@ -25,7 +33,7 @@
       type: StorageBoundUserInterface
   - type: StorageFill
     contents:
-      - id: BoxFlare
+      - id: BoxFlareSpecForce
       - id: PinpointerNuclear
       - id: WeaponPulseRifle
       - id: SpeedLoaderMagnum
@@ -378,7 +386,7 @@
       maxTotalWeight: 250
     - type: StorageFill
       contents:
-        - id: BoxFlare
+        - id: BoxFlareSpecForce
           amount: 2
         - id: MedkitAdvancedRXBZZ
         - id: WeaponDisabler

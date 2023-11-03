@@ -58,13 +58,18 @@ public sealed class MetempsychoticMachineSystem : EntitySystem
 
     private void OnCloningApply(ref CloningEvent ev)
     {
+        EnsureComp<PotentialPsionicComponent>(ev.Target);
         if (!TryComp<HumanoidAppearanceComponent>(ev.Source, out var humanoid) || !_prototypeManager.TryIndex(humanoid.Species, out var oldSpecies))
         {
             return;
         }
 
-        if (!TryComp<HumanoidAppearanceComponent>(ev.Target, out var newHumanoid) || !_prototypeManager.TryIndex(newHumanoid.Species, out var newSpecies))
+        if (!TryComp<HumanoidAppearanceComponent>(ev.Target, out var newHumanoid) || !_prototypeManager.TryIndex(newHumanoid.Species, out var newSpecies)) //non human fix
         {
+            RemComp<ReplacementAccentComponent>(ev.Target);
+            RemComp<MonkeyAccentComponent>(ev.Target);
+            RemComp<SentienceTargetComponent>(ev.Target);
+            RemComp<GhostTakeoverAvailableComponent>(ev.Target);
             return;
         }
 

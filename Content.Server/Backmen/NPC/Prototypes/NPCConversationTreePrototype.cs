@@ -7,7 +7,7 @@ using Content.Server.NPC.Events;
 namespace Content.Server.Backmen.NPC.Prototypes;
 
 [Prototype("npcConversationTree")]
-public sealed class NPCConversationTreePrototype : IPrototype, ISerializationHooks
+public sealed partial class NPCConversationTreePrototype : IPrototype, ISerializationHooks
 {
     [ViewVariables]
     [IdDataField]

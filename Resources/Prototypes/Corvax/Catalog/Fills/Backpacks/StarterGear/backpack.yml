@@ -3,6 +3,9 @@
   parent: ClothingBackpack
   id: ClothingBackpackIAAFilled
   components:
+    - type: Storage
+      maxItemSize: Huge
+      maxTotalWeight: 35
     - type: StorageFill
       contents:
         - id: BoxSurvival
