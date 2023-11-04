@@ -18,5 +18,3 @@
   - type: Sprite
     sprite: Corvax/Back/Satchels/ce.rsi
     state: icon
-  - type: Storage
-    maxTotalWeight: 100
