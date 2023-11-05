@@ -70,6 +70,7 @@
       - NotekeeperCartridge
       - BankCartridge
       - NewsReadCartridge
+      - GlimmerMonitorCartridge
     cartridgeSlot:
       priority: -1
       name: Cartridge

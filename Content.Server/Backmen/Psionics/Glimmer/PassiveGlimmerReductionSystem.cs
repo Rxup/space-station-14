@@ -75,6 +75,9 @@ namespace Content.Server.Backmen.Psionics.Glimmer
             LastUpdateTime = curTime;
         }
 
-        private void UpdatePassiveGlimmer(float value) => _glimmerLostPerSecond = value;
+        private void UpdatePassiveGlimmer(float value)
+        {
+            _glimmerLostPerSecond = value;
+        }
     }
 }

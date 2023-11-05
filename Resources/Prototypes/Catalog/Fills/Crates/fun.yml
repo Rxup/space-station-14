@@ -25,6 +25,7 @@
       - id: PlushieHampter
       - id: PlushieMoth
       - id: RubberPig
+      - id: PlushiePenguin
 
 - type: entity
   id: CrateFunInstrumentsVariety

@@ -19,3 +19,24 @@
         sprite: Backmen/Structures/Wallmounts/atm.rsi
         state: off
     - type: BankCartridge
+
+- type: entity
+  parent: BaseItem
+  id: GlimmerMonitorCartridge
+  name: glimmer monitor cartridge
+  description: A cartridge that keeps track of glimmer.
+  components:
+  - type: Sprite
+    sprite: Backmen/Objects/Devices/cartridge.rsi
+    state: cart-psi
+  - type: Icon
+    sprite: Backmen/Objects/Devices/cartridge.rsi
+    state: cart-psi
+  - type: UIFragment
+    ui: !type:GlimmerMonitorUi
+  - type: Cartridge
+    programName: glimmer-monitor-program-name
+    icon:
+      sprite: Backmen/Icons/psi.rsi
+      state: psi
+  - type: GlimmerMonitorCartridge
