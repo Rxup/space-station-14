@@ -267,7 +267,7 @@
   - type: MultiHandedItem
 
 - type: entity
-  id: BaseMagazineHeavyRifle
+  id: BaseMagazineHeavyRifle50
   name: "magazine (.50 BMG)"
   parent: BaseItem
   abstract: true
@@ -301,7 +301,7 @@
 - type: entity
   id: MagazineHeavyRifleMaDeuse
   name: "magazine (.50 BMG)"
-  parent: BaseMagazineHeavyRifle
+  parent: BaseMagazineHeavyRifle50
   components:
   - type: BallisticAmmoProvider
     proto: CartridgeAntiMateriel
@@ -1787,7 +1787,7 @@
         priority: 2
         whitelist:
           tags:
-            - MagazineHeavyRifle
+            - MagazineHeavyRifle62
   - type: ContainerContainer
     containers:
       gun_magazine: !type:ContainerSlot
@@ -1801,7 +1801,7 @@
     wieldTime: 1.3
 
 - type: Tag
-  id: MagazineHeavyRifle
+  id: MagazineHeavyRifle62
 
 - type: entity
   id: MagazineHeavyRifleBR64
@@ -1811,7 +1811,7 @@
   components:
   - type: Tag
     tags:
-      - MagazineHeavyRifle
+      - MagazineHeavyRifle62
   - type: BallisticAmmoProvider
     mayTransfer: true
     capacity: 20
@@ -1853,7 +1853,7 @@
     proto: BulletRifle
   - type: Sprite
     netsync: false
-    sprite: Backmen/Objects/Weapons/Guns/Ammunition/Casings/ammo_casing.rsi
+    sprite: Backmen/Objects/Weapons/Gunsx64/Ammunition/Casings/ammo_casing.rsi
     layers:
     - state: 20combat #corvax-resprite
       map: ["enum.AmmoVisualLayers.Base"]
@@ -2073,7 +2073,7 @@
 - type: entity
   name: Mateba
   parent: BaseWeaponRevolver
-  id: WeaponRevolverMateba
+  id: WeaponRevolverMatebaNew
   suffix: Револьвер
   description: The iconic sidearm of the dreaded death squads. Uses .45 magnum ammo.
   components:
@@ -2091,7 +2091,7 @@
 - type: entity
   name: Kardashev-Mosin
   parent: BaseWeaponSniper
-  id: WeaponSniperMosin
+  id: WeaponSniperMosinNew
   suffix: Винтовка
   description: A weapon for hunting, or endless trench warfare. Uses .30 rifle ammo.
   components:
@@ -2277,7 +2277,7 @@
     deleteOnSpawn: true
   - type: Sprite
     netsync: false
-    sprite: Backmen/Objects/Weapons/Guns/Ammunition/Casings/ammo_casing.rsi
+    sprite: Backmen/Objects/Weapons/Gunsx64/Ammunition/Casings/ammo_casing.rsi
     layers:
     - state: 45combat #corvax-resprite
       map: ["enum.AmmoVisualLayers.Base"]
@@ -2496,7 +2496,7 @@
     proto: BulletRifle
   - type: Sprite
     netsync: false
-    sprite: Backmen/Objects/Weapons/Guns/Ammunition/Casings/ammo_casing.rsi
+    sprite: Backmen/Objects/Weapons/Gunsx64/Ammunition/Casings/ammo_casing.rsi
     layers:
     - state: 30combat #corvax-resprite
       map: ["enum.AmmoVisualLayers.Base"]
@@ -2799,7 +2799,7 @@
 - type: entity
   id: MagazineHeavyRifleV41
   name: "magazine (.20 rifle)"
-  parent: BaseMagazineHeavyRifle
+  parent: BaseMagazineHeavyRifle50
   components:
   - type: BallisticAmmoProvider
     proto: CartridgeRifle

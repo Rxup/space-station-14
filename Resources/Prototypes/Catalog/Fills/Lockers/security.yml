@@ -196,7 +196,7 @@
   components:
   - type: StorageFill
     contents:
-    - id: WeaponPistolMk58
+    - id: WeaponPistolACP14
       amount: 4
     - id: MagazinePistol
       amount: 8
@@ -208,7 +208,7 @@
   components:
   - type: StorageFill
     contents:
-    - id: WeaponRifleLecter
+    - id: WeaponRifleAR18
       amount: 2
     - id: MagazineRifle
       amount: 4
@@ -220,7 +220,7 @@
   components:
   - type: StorageFill
     contents:
-    - id: WeaponSubMachineGunDrozd
+    - id: WeaponSubMachineGunVectorSpecial
       amount: 2
     - id: MagazinePistolSubMachineGun
       amount: 4
@@ -232,7 +232,7 @@
   components:
   - type: StorageFill
     contents:
-    - id: WeaponShotgunEnforcer
+    - id: WeaponShotgun39
       amount: 2
     - id: MagazineShotgun
       amount: 4
@@ -244,7 +244,7 @@
   components:
   - type: StorageFill
     contents:
-    - id: WeaponShotgunKammerer
+    - id: WeaponShotguntrenchgun4034
       amount: 2
     - id: MagazineShotgun
       amount: 4
@@ -257,7 +257,7 @@
   components:
   - type: StorageFill
     contents:
-    - id: WeaponSubMachineGunWt550
+    - id: WeaponSubMachineGunP90
       amount: 2
     - id: MagazinePistolSubMachineGun
       amount: 4
@@ -269,5 +269,5 @@
   components:
   - type: StorageFill
     contents:
-    - id: WeaponLaserCarbine
+    - id: WeaponEarthGovLaserRifle
       amount: 3

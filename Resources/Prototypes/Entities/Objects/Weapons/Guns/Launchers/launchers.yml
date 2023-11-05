@@ -25,6 +25,7 @@
   parent: BaseWeaponLauncher
   id: WeaponLauncherChinaLake
   description: PLOOP
+  noSpawn: true
   components:
   - type: Sprite
     sprite: Objects/Weapons/Guns/Launchers/china_lake.rsi

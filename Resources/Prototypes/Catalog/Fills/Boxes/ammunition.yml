@@ -120,7 +120,7 @@
   components:
   - type: StorageFill
     contents:
-      - id: MagazinePistolSubMachineGunTopMounted
+      - id: MagazinePistolTopSubMachineGun
         amount: 3
 
 - type: entity
