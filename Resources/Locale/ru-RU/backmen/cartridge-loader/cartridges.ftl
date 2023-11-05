@@ -6,6 +6,6 @@ bank-program-no-account = [color=red]Нет подключенного акка�
 bank-program-change-balance-notification = Баланс карты { $change }{ $currencySymbol }. Теперь { $balance }{ $currencySymbol }!
 
 glimmer-monitor-program-name = Монитор сияния
-glimmer-monitor-current-glimmer = Текущие сияние: {$glimmer}Ψ
+glimmer-monitor-current-glimmer = Текущий уровень сияния: {$glimmer}Ψ
 glimmer-monitor-interval = Интервал
 glimmer-monitor-sync = Синхронизация
