@@ -124,7 +124,7 @@ namespace Content.IntegrationTests.Tests
 
                 Assert.That(entityMan.EntityCount, Is.Zero);
             });
-
+            await server.WaitRunTicks(15);
             await pair.CleanReturnAsync();
         }
 
