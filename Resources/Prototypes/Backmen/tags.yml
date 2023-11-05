@@ -33,7 +33,14 @@
 
 - type: Tag
   id: RuinedShop
-  
+
 - type: Tag
   id: Rapier
+
+- type: Tag
+  id: CartridgeRifleLight762
+
+- type: Tag
+  id: NoSpinOnThrow
+
 

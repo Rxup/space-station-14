@@ -2596,7 +2596,7 @@
   parent: BaseWeaponLightMachineGun
   id: WeaponLightMachineGunMG42
   suffix: Пулемёт
-  description: Пулемёт ОПЗ периода Второй мировой войны. Разработан фирмой Metall-und Lackwarenfabrik Johannes Großfuß в 1942 году. После войны поставки данного пулемета возобновили в 2342 году. 
+  description: Пулемёт ОПЗ периода Второй мировой войны. Разработан фирмой Metall-und Lackwarenfabrik Johannes Großfuß в 1942 году. После войны поставки данного пулемета возобновили в 2342 году.
   components:
   - type: Sprite
     sprite: Backmen/Objects/Weapons/Gunsx64/LMGs/mg42/big.rsi

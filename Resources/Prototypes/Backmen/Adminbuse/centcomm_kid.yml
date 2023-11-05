@@ -342,7 +342,6 @@
 - type: entity
   parent: WeaponShotgun39
   id: WeaponShotgunEnforcerRXBZZ
-  components:
 
 - type: entity
   name: Лектер
