@@ -49,6 +49,7 @@
   parent: BaseItem
   id: WeaponShotgunBulldog
   description: It's a magazine-fed shotgun designed for close quarters combat. Uses .50 shotgun shells.
+  noSpawn: true
   components:
   - type: Sprite
     sprite: Objects/Weapons/Guns/Shotguns/bulldog.rsi
@@ -131,6 +132,7 @@
   parent: BaseWeaponShotgun
   id: WeaponShotgunEnforcer
   description: A next-generation Frozen Star shotgun. Uses .50 shotgun shells.
+  noSpawn: true
   components:
   - type: Sprite
     sprite: Objects/Weapons/Guns/Shotguns/enforcer.rsi
@@ -146,6 +148,7 @@
   parent: BaseWeaponShotgun
   id: WeaponShotgunEnforcerRubber
   description: A next-generation Frozen Star shotgun. Uses .50 shotgun shells.
+  noSpawn: true
   suffix: Non-Lethal
   components:
   - type: Sprite
@@ -162,6 +165,7 @@
   name: Kammerer
   parent: BaseWeaponShotgun
   id: WeaponShotgunKammerer
+  noSpawn: true
   description: When an old Remington design meets modern materials, this is the result. A favourite weapon of militia forces throughout many worlds. Uses .50 shotgun shells.
   components:
   - type: Sprite

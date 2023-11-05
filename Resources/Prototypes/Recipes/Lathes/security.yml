@@ -30,7 +30,7 @@
 
 - type: latheRecipe
   id: WeaponLaserCarbine
-  result: WeaponLaserCarbine
+  result: WeaponEarthGovLaserRifle
   completetime: 8
   materials:
     Steel: 2000
@@ -48,7 +48,7 @@
 
 - type: latheRecipe
   id: WeaponLaserCannon
-  result: WeaponLaserCannon
+  result: WeaponEarthGovLaserSniper
   completetime: 5
   materials:
     Steel: 1250
@@ -57,7 +57,7 @@
 
 - type: latheRecipe
   id: WeaponXrayCannon
-  result: WeaponXrayCannon
+  result: WeaponEarthGovXRay
   completetime: 5
   materials:
     Steel: 1500
@@ -264,7 +264,7 @@
 
 - type: latheRecipe
   id: MagazinePistolSubMachineGunTopMounted
-  result: MagazinePistolSubMachineGunTopMounted
+  result: MagazinePistolTopSubMachineGun
   completetime: 5
   materials:
     Steel: 300

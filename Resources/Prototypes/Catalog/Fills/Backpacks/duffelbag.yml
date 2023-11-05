@@ -293,7 +293,7 @@
   - type: StorageFill
     contents:
       - id: BoxSurvivalSyndicate
-      - id: WeaponPistolViper
+      - id: WeaponPistolHIB88M4
       - id: PinpointerNuclear
       - id: MicroBombImplanter
 
@@ -311,7 +311,7 @@
       - id: SawAdvanced
       - id: Cautery
       - id: CombatKnife
-      - id: WeaponPistolViper
+      - id: WeaponPistolHIB88M4
       - id: PinpointerNuclear
       - id: HandheldHealthAnalyzer
       - id: CombatMedipen

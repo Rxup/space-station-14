@@ -58,7 +58,7 @@
     gloves: ClothingHandsGlovesCombat
     ears: ClothingHeadsetAltSecurity
     belt: ClothingBeltSecurityFilled
-    pocket1: WeaponPistolMk58Nonlethal
+    pocket1: WeaponPistolG22
     pocket2: Eftpos
   innerClothingSkirt: ClothingUniformJumpskirtHoS
   satchel: ClothingBackpackSatchelHOSFilled

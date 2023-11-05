@@ -124,7 +124,7 @@
     head: ClothingHeadHatBeretMobileTaskForce
     id: DedSquadronLeaderGavnaIDCard
     ears: ClothingHeadsetCentComCC
-    belt: WeaponRevolverMateba
+    belt: WeaponRevolverMatebaNew
     pocket1: EnergySwordDedSad
     pocket2: WeaponPulsePistol
 
@@ -143,7 +143,7 @@
     suitstorage: OxygenTankFilled
     id: DedSquadronGavnaIDCard
     ears: ClothingHeadsetCentComCC
-    belt: WeaponRevolverMateba
+    belt: WeaponRevolverMatebaNew
     pocket1: EnergySwordDedSad
     pocket2: WeaponPulsePistol
 
