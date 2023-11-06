@@ -187,3 +187,25 @@ GeneratorUraniumMachineCircuitboard: PortableGeneratorSuperPacmanMachineCircuitb
 
 FoodTinBeansOpen: FoodTinBeans
 FoodTinMREOpen: FoodTinMRE
+
+# 2023-11-05
+WeaponRifleAk: WeaponAKMSRifle
+WeaponXrayCannon: WeaponEarthGovXRay
+WeaponLaserCarbine: WeaponEarthGovLaserRifle
+WeaponLaserCannon: WeaponEarthGovLaserSniper
+WeaponRifleLecter: WeaponRifleAR18
+WeaponSubMachineGunAtreides: WeaponSubMachineGunMP7
+WeaponPistolViper: WeaponPistolHIB88M4
+WeaponPistolMk58: WeaponPistolACP14
+WeaponPistolMk58Nonlethal: WeaponPistolG22
+WeaponSubMachineGunDrozd: WeaponSubMachineGunVectorSpecial
+WeaponSubMachineGunDrozdRubber: WeaponSubMachineGunMP5
+WeaponShotgunEnforcer: WeaponShotgun39
+WeaponShotgunEnforcerRubber: WeaponShotgun39
+WeaponSubMachineGunWt550: WeaponSubMachineGunP90
+MagazinePistolSubMachineGunTopMounted: MagazinePistolTopSubMachineGun
+WeaponShotgunKammerer: WeaponShotguntrenchgun4034
+WeaponSubMachineGunC20r: WeaponSubMachineGunMP7
+WeaponRevolverMateba: WeaponRevolverMatebaNew
+WeaponSniperMosin: WeaponSniperMosinNew
+WeaponShotgunBulldog: WeaponShotgunZauer

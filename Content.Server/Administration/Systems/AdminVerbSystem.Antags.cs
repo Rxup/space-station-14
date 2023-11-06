@@ -9,11 +9,8 @@ using Content.Shared.Humanoid;
 using Content.Shared.Mind;
 using Content.Shared.Mind.Components;
 using Content.Shared.Verbs;
-using Robust.Server.GameObjects;
-using Robust.Server.Player;
 using Robust.Shared.Utility;
-using Content.Server.GameTicking.Rules.Components;
-using System.Linq;
+using Robust.Shared.Player;
 
 namespace Content.Server.Administration.Systems;
 
@@ -68,7 +65,7 @@ public sealed partial class AdminVerbSystem
             Icon = new SpriteSpecifier.Rsi(new("/Textures/Backmen/Interface/Actions/blob.rsi"), "blobFactory"),
             Act = () =>
             {
-                EnsureComp<Shared.Blob.BlobCarrierComponent>(args.Target);
+                EnsureComp<Shared.Backmen.Blob.BlobCarrierComponent>(args.Target).HasMind = targetMindComp.HasMind;
             },
             Impact = LogImpact.High,
             Message = Loc.GetString("admin-verb-text-make-blob"),
@@ -86,7 +83,7 @@ public sealed partial class AdminVerbSystem
                     return;
 
                 EntityManager.System<Content.Server.Backmen.GameTicking.Rules.FleshCultRuleSystem>()
-                    .MakeCultist((IPlayerSession) session);
+                    .MakeCultist(session);
             },
             Impact = LogImpact.High,
             Message = Loc.GetString("admin-verb-text-make-flesh-leader-cultist"),
@@ -104,7 +101,7 @@ public sealed partial class AdminVerbSystem
                     return;
 
                 EntityManager.System<Content.Server.Backmen.GameTicking.Rules.FleshCultRuleSystem>()
-                    .MakeCultist((IPlayerSession) session);
+                    .MakeCultist(session);
             },
             Impact = LogImpact.High,
             Message = Loc.GetString("admin-verb-text-make-flesh-cultist"),

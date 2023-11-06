@@ -54,7 +54,7 @@
   id: CentComInternGearArmed # POWER IN QUANTITY!
   equipment:
     jumpsuit: ClothingUniformJumpsuitCentcomIntern
-    back: WeaponSniperMosin
+    back: WeaponSniperMosinNew
     shoes: ClothingShoesColorBlack
     eyes: ClothingEyesGlassesSunglasses
     neck: CombatKnifeSpetsnaz

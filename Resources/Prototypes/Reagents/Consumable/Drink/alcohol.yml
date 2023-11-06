@@ -478,14 +478,14 @@
   metabolisms:
     Drink:
       effects:
-        - !type:SatiateThirst
-          factor: 2
-        - !type:AdjustReagent
-          reagent: Ethanol
-          amount: 0.15
-        - !type:AdjustReagent
-          reagent: Radium
-          amount: 0.05
+      - !type:SatiateThirst
+        factor: 2
+      - !type:AdjustReagent
+        reagent: Ethanol
+        amount: 0.15
+      - !type:AdjustReagent
+        reagent: Uranium
+        amount: 0.05
 
 - type: reagent
   id: B52

@@ -248,8 +248,6 @@
   - type: Psionic
     removable: false
   - type: SiliconLawBound
-  - type: SiliconLawProvider
-    laws: []
   - type: GuideHelp
     guides:
     - AltarsGolemancy

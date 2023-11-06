@@ -2,7 +2,9 @@
 using System.Linq;
 using System.Text;
 using Content.Server.Administration.Logs;
+using Content.Server.Backmen.Cloning;
 using Content.Server.Backmen.Economy;
+using Content.Server.Backmen.Fugitive;
 using Content.Server.CartridgeLoader.Cartridges;
 using Content.Server.DetailExaminable;
 using Content.Server.Forensics;
@@ -44,9 +46,12 @@ using Content.Shared.Mind;
 using Content.Shared.Mind.Components;
 using Content.Shared.Objectives;
 using Content.Shared.Objectives.Components;
+using Content.Shared.Players;
 using Content.Shared.Roles.Jobs;
 using Robust.Server.Player;
 using Robust.Shared.Configuration;
+using Robust.Shared.Player;
+using Robust.Shared.Timing;
 using Robust.Shared.Utility;
 
 namespace Content.Server.Backmen.EvilTwin;
@@ -64,8 +69,122 @@ public sealed class EvilTwinSystem : EntitySystem
         SubscribeLocalEvent<EvilTwinSpawnerComponent, GhostRoleSpawnerUsedEvent>(OnGhostRoleSpawnerUsed);
         SubscribeLocalEvent<EvilTwinComponent, MobStateChangedEvent>(OnHandleComponentState);
         SubscribeLocalEvent<PickEvilTwinPersonComponent, ObjectiveAssignedEvent>(OnPersonAssigned);
+        SubscribeLocalEvent<SpawnEvilTwinEvent>(OnSpawn);
     }
 
+    private void OnSpawn(SpawnEvilTwinEvent ev)
+    {
+        var uid = ev.Entity.Owner;
+        var component = ev.Entity.Comp;
+        HumanoidCharacterProfile? pref = null;
+
+        EntityUid? targetUid = null;
+
+        if (component.TargetForce != EntityUid.Invalid)
+        {
+            if (IsEligibleHumanoid(component.TargetForce))
+            {
+                targetUid = component.TargetForce;
+            }
+        }
+        else
+        {
+            TryGetEligibleHumanoid(out targetUid);
+        }
+
+        if (targetUid.HasValue)
+        {
+            var xform = Transform(uid);
+            (var twinMob, pref) = SpawnEvilTwin(targetUid.Value, xform.Coordinates);
+            if (twinMob != null)
+            {
+                var playerData = ev.Session.ContentData();
+                if (playerData != null && _mindSystem.TryGetMind(playerData, out var mindId, out var mind))
+                {
+                    _mindSystem.TransferTo(mindId, null, true, false, mind);
+                    RemComp<MindContainerComponent>(twinMob.Value);
+                    Timer.Spawn(0, () =>
+                    {
+                        _mindSystem.TransferTo(mindId, twinMob, true, false, mind);
+                    });
+
+                    var station = _stationSystem.GetOwningStation(targetUid.Value) ?? _stationSystem.GetStations()
+                        .FirstOrNull(HasComp<StationEventEligibleComponent>);
+                    if (pref != null && station != null &&
+                        _mindSystem.TryGetMind(targetUid.Value, out var targetMindId, out var targetMind)
+                        && _roles.MindHasRole<JobComponent>(targetMindId))
+                    {
+                        /*if (TryComp<BankMemoryComponent>(targetMindId, out var mindBank) && TryComp<BankAccountComponent>(mindBank.BankAccount, out var bankAccountComponent))
+                        {
+                            _economySystem.AddPlayerBank(twinMob.Value, bankAccountComponent);
+                            if (TryComp<BankMemoryComponent>(mindId, out var twinBank))
+                            {
+                                twinBank.BankAccount = mindBank.BankAccount;
+                            }
+                        }*/
+
+                        var currentJob = Comp<JobComponent>(targetMindId);
+
+                        var targetSession = targetMind?.Session;
+                        var targetUserId = targetMind?.UserId ?? targetMind?.OriginalOwnerUserId;
+                        if (targetUserId == null)
+                        {
+                            targetSession = ev.Session;
+
+                        }
+                        else if (targetSession == null)
+                        {
+                            targetSession = _playerManager.GetSessionByUserId(targetUserId.Value);
+                        }
+
+                        RaiseLocalEvent(new PlayerSpawnCompleteEvent(twinMob.Value,
+                            targetSession,
+                            currentJob?.PrototypeId, false,
+                            0, station.Value, pref));
+
+                        if (!_roles.MindHasRole<JobComponent>(mindId))
+                        {
+                            _roles.MindAddRole(mindId, new JobComponent(){ PrototypeId = currentJob?.PrototypeId });
+                        }
+
+                        if (_inventory.TryGetSlotEntity(targetUid.Value, "id", out var targetPda) &&
+                            _inventory.TryGetSlotEntity(twinMob.Value, "id", out var twinPda) &&
+                            TryComp<CartridgeLoaderComponent>(targetPda, out var targetPdaComp) &&
+                            TryComp<CartridgeLoaderComponent>(twinPda, out var twinPdaComp))
+                        {
+                            var twinProgram =
+                                twinPdaComp.BackgroundPrograms.FirstOrDefault(HasComp<NotekeeperCartridgeComponent>);
+                            var targetProgram =
+                                targetPdaComp.BackgroundPrograms.FirstOrDefault(HasComp<NotekeeperCartridgeComponent>);
+                            if (twinProgram.Valid &&
+                                targetProgram.Valid &&
+                                TryComp<NotekeeperCartridgeComponent>(targetProgram, out var targetNotesComp) &&
+                                TryComp<NotekeeperCartridgeComponent>(twinProgram, out var twinNotesComp))
+                            {
+                                foreach (var note in targetNotesComp.Notes)
+                                {
+                                    twinNotesComp.Notes.Add(note);
+                                }
+                            }
+                        }
+                    }
+
+                    _allEvilTwins.Add((twinMob.Value, mind));
+                    _adminLogger.Add(LogType.Action, LogImpact.Extreme,
+                        $"{_entityManager.ToPrettyString(twinMob.Value)} take EvilTwin with target {_entityManager.ToPrettyString(targetUid.Value)}");
+                }
+            }
+        }
+        else
+        {
+            _adminLogger.Add(LogType.Action, LogImpact.Extreme,
+                $"{_entityManager.ToPrettyString(uid)} take EvilTwin with no target (delete)");
+            _prayerSystem.SendSubtleMessage(ev.Session, ev.Session, Loc.GetString("evil-twin-error-message"),
+                Loc.GetString("prayer-popup-subtle-default"));
+        }
+
+        QueueDel(uid);
+    }
 
     private List<(EntityUid Id, MindComponent Mind)> _allEvilTwins = new();
 
@@ -171,113 +290,10 @@ public sealed class EvilTwinSystem : EntitySystem
         return true;
     }
 
-    private void OnPlayerAttached(EntityUid uid, EvilTwinSpawnerComponent component, PlayerAttachedEvent args)
+    private void OnPlayerAttached(Entity<EvilTwinSpawnerComponent> uid, ref PlayerAttachedEvent args)
     {
-        HumanoidCharacterProfile? pref = null;
+        QueueLocalEvent(new SpawnEvilTwinEvent(uid, args.Player));
 
-        EntityUid? targetUid = null;
-
-        if (component.TargetForce != EntityUid.Invalid)
-        {
-            if (IsEligibleHumanoid(component.TargetForce))
-            {
-                targetUid = component.TargetForce;
-            }
-        }
-        else
-        {
-            TryGetEligibleHumanoid(out targetUid);
-        }
-
-        if (targetUid.HasValue)
-        {
-            var xform = Transform(uid);
-            (var twinMob, pref) = SpawnEvilTwin(targetUid.Value, xform.Coordinates);
-            if (twinMob != null)
-            {
-                var playerData = args.Player.ContentData();
-                if (playerData != null && _mindSystem.TryGetMind(playerData, out var mindId, out var mind))
-                {
-                    _mindSystem.TransferTo(mindId, twinMob);
-
-
-                    var station = _stationSystem.GetOwningStation(targetUid.Value) ?? _stationSystem.GetStations()
-                        .FirstOrNull(HasComp<StationEventEligibleComponent>);
-                    if (pref != null && station != null &&
-                        _mindSystem.TryGetMind(targetUid.Value, out var targetMindId, out var targetMind)
-                        && _roles.MindHasRole<JobComponent>(targetMindId))
-                    {
-                        /*if (TryComp<BankMemoryComponent>(targetMindId, out var mindBank) && TryComp<BankAccountComponent>(mindBank.BankAccount, out var bankAccountComponent))
-                        {
-                            _economySystem.AddPlayerBank(twinMob.Value, bankAccountComponent);
-                            if (TryComp<BankMemoryComponent>(mindId, out var twinBank))
-                            {
-                                twinBank.BankAccount = mindBank.BankAccount;
-                            }
-                        }*/
-
-                        var currentJob = Comp<JobComponent>(targetMindId);
-
-                        var targetSession = targetMind?.Session;
-                        var targetUserId = targetMind?.UserId ?? targetMind?.OriginalOwnerUserId;
-                        if (targetUserId == null)
-                        {
-                            targetSession = args.Player;
-
-                        }
-                        else if (targetSession == null)
-                        {
-                            targetSession = _playerManager.GetSessionByUserId(targetUserId.Value);
-                        }
-
-                        RaiseLocalEvent(new PlayerSpawnCompleteEvent(twinMob.Value,
-                            (IPlayerSession) targetSession,
-                            currentJob?.PrototypeId, false,
-                            0, station.Value, pref));
-
-                        if (!_roles.MindHasRole<JobComponent>(mindId))
-                        {
-                            _roles.MindAddRole(mindId, new JobComponent(){ PrototypeId = currentJob?.PrototypeId });
-                        }
-
-                        if (_inventory.TryGetSlotEntity(targetUid.Value, "id", out var targetPda) &&
-                            _inventory.TryGetSlotEntity(twinMob.Value, "id", out var twinPda) &&
-                            TryComp<CartridgeLoaderComponent>(targetPda, out var targetPdaComp) &&
-                            TryComp<CartridgeLoaderComponent>(twinPda, out var twinPdaComp))
-                        {
-                            var twinProgram =
-                                twinPdaComp.BackgroundPrograms.FirstOrDefault(HasComp<NotekeeperCartridgeComponent>);
-                            var targetProgram =
-                                targetPdaComp.BackgroundPrograms.FirstOrDefault(HasComp<NotekeeperCartridgeComponent>);
-                            if (twinProgram.Valid &&
-                                targetProgram.Valid &&
-                                TryComp<NotekeeperCartridgeComponent>(targetProgram, out var targetNotesComp) &&
-                                TryComp<NotekeeperCartridgeComponent>(twinProgram, out var twinNotesComp))
-                            {
-                                foreach (var note in targetNotesComp.Notes)
-                                {
-                                    twinNotesComp.Notes.Add(note);
-                                }
-                            }
-                        }
-                    }
-
-                    _allEvilTwins.Add((twinMob.Value, mind));
-                    _adminLogger.Add(LogType.Action, LogImpact.Extreme,
-                        $"{_entityManager.ToPrettyString(twinMob.Value)} take EvilTwin with target {_entityManager.ToPrettyString(targetUid.Value)}");
-                }
-            }
-        }
-        else
-        {
-            _adminLogger.Add(LogType.Action, LogImpact.Extreme,
-                $"{_entityManager.ToPrettyString(uid)} take EvilTwin with no target (delete)");
-            _prayerSystem.SendSubtleMessage(args.Player, args.Player, Loc.GetString("evil-twin-error-message"),
-                Loc.GetString("prayer-popup-subtle-default"));
-        }
-
-
-        QueueDel(uid);
     }
 
     private void OnMindAdded(EntityUid uid, EvilTwinComponent component, MindAddedMessage args)
@@ -408,7 +424,10 @@ public sealed class EvilTwinSystem : EntitySystem
             return false;
         }
 
-        return !HasComp<EvilTwinComponent>(uid) && !HasComp<NukeOperativeComponent>(uid);
+        return !(HasComp<MetempsychosisKarmaComponent>(uid) ||
+                 HasComp<FugitiveComponent>(uid) ||
+                 HasComp<EvilTwinComponent>(uid) ||
+                 HasComp<NukeOperativeComponent>(uid));
     }
 
     private bool TryGetEligibleHumanoid([NotNullWhen(true)] out EntityUid? uid)
@@ -521,29 +540,17 @@ public sealed class EvilTwinSystem : EntitySystem
     }
 
     [Dependency] private readonly InventorySystem _inventory = default!;
-
     [Dependency] private readonly IRobustRandom _random = default!;
-
     [Dependency] private readonly IPrototypeManager _prototype = default!;
-
     [Dependency] private readonly IServerPreferencesManager _prefs = default!;
-
     [Dependency] private readonly HumanoidAppearanceSystem _humanoid = default!;
-
     [Dependency] private readonly StationSpawningSystem _stationSpawning = default!;
-
     [Dependency] private readonly StationSystem _stationSystem = default!;
-
     [Dependency] private readonly PrayerSystem _prayerSystem = default!;
-
     [Dependency] private readonly IAdminLogManager _adminLogger = default!;
-
     [Dependency] private readonly IEntityManager _entityManager = default!;
-
     [Dependency] private readonly TagSystem _tagSystem = default!;
-
     [Dependency] private readonly MindSystem _mindSystem = default!;
-
     [Dependency] private readonly MetaDataSystem _metaSystem = default!;
     [Dependency] private readonly RoleSystem _roles = default!;
     [Dependency] private readonly IConfigurationManager _configurationManager = default!;
@@ -560,4 +567,16 @@ public sealed class EvilTwinSystem : EntitySystem
     [ValidatePrototypeId<EntityPrototype>] private const string EscapeObjective = "EscapeShuttleObjectiveEvilTwin";
 
     [ValidatePrototypeId<EntityPrototype>] private const string SpawnPointPrototype = "SpawnPointEvilTwin";
+}
+
+public sealed class SpawnEvilTwinEvent : EntityEventArgs
+{
+    public Entity<EvilTwinSpawnerComponent> Entity;
+    public ICommonSession Session;
+
+    public SpawnEvilTwinEvent(Entity<EvilTwinSpawnerComponent> entity, ICommonSession session)
+    {
+        Entity = entity;
+        Session = session;
+    }
 }

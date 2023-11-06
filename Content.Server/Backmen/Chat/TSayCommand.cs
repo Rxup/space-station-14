@@ -3,6 +3,7 @@ using Content.Shared.Administration;
 using Robust.Server.Player;
 using Robust.Shared.Console;
 using Robust.Shared.Enums;
+using Robust.Shared.Player;
 
 namespace Content.Server.Backmen.Chat.Commands;
 
@@ -15,7 +16,7 @@ internal sealed class TSayCommand : IConsoleCommand
 
     public void Execute(IConsoleShell shell, string argStr, string[] args)
     {
-        if (shell.Player is not IPlayerSession player)
+        if (shell.Player is not { } player)
         {
             shell.WriteError("This command cannot be run from the server.");
             return;

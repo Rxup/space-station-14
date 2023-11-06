@@ -18,18 +18,35 @@ public sealed class SponsorsManager : IClientSponsorsManager
     {
         Reset();
 
+#if DEBUG
+        Prototypes.Add("tier1");
+        Prototypes.Add("tier2");
+        Prototypes.Add("tier01");
+        Prototypes.Add("tier02");
+        Prototypes.Add("tier03");
+        Prototypes.Add("tier04");
+        Prototypes.Add("tier05");
+#endif
+
         if (message.Info == null)
         {
             return;
         }
 
-        Prototypes.AddRange(message.Info.AllowedMarkings);
+        foreach (var markings in message.Info.AllowedMarkings)
+        {
+            Prototypes.Add(markings);
+        }
+
+        Tier = message.Info.Tier ?? 0;
     }
 
     private void Reset()
     {
         Prototypes.Clear();
+        Tier = 0;
     }
 
-    public List<string> Prototypes { get; } = new();
+    public HashSet<string> Prototypes { get; } = new();
+    public int Tier { get; private set; } = 0;
 }

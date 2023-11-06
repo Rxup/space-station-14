@@ -23,6 +23,12 @@ public sealed class GhostThemeSystem: EntitySystem
         {
             return;
         }
+
+        Apply(uid, ghostThemePrototype);
+    }
+
+    public void Apply(EntityUid uid, GhostThemePrototype ghostThemePrototype)
+    {
         foreach (var entry in ghostThemePrototype.Components.Values)
         {
             if (entry.Component is SpriteComponent spriteComponent && EntityManager.TryGetComponent<SpriteComponent>(uid, out var targetsprite))

@@ -10,7 +10,7 @@ using Content.Shared.Popups;
 using Content.Shared.Store;
 using Robust.Server.GameObjects;
 using Robust.Shared.Audio;
-using Robust.Shared.Players;
+using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 
 namespace Content.Server.Backmen.Economy.Eftpos;

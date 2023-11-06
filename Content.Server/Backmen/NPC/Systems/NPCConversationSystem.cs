@@ -16,6 +16,7 @@ using Content.Server.Speech;
 using Content.Shared.Chat.TypingIndicator;
 using Content.Shared.Interaction;
 using Content.Shared.Random.Helpers;
+using Robust.Shared.Player;
 
 namespace Content.Server.Backmen.NPC.Systems;
 

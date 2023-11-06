@@ -16,6 +16,7 @@ using Content.Shared.Chemistry.EntitySystems;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Server.GameObjects;
+using Robust.Shared.Player;
 
 namespace Content.Server.Backmen.Research.Oracle;
 

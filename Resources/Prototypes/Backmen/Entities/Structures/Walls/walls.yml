@@ -51,3 +51,22 @@
       base: state
     - type: Reflect
       reflectProb: 1
+
+- type: entity
+  parent: BaseWall
+  id: WallRivetedIndestructible
+  name: riveted wall
+  suffix: indestructible
+  components:
+  - type: Tag
+    tags:
+    - Wall
+  - type: Sprite
+    sprite: Structures/Walls/riveted.rsi
+  - type: Icon
+    sprite: Structures/Walls/riveted.rsi
+  - type: IconSmooth
+    key: walls
+    base: riveted
+  - type: Reflect
+    reflectProb: 1

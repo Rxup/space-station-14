@@ -73,7 +73,7 @@
       - state: icon-0
         map: ["enum.StorageFillLayers.Fill"]
   - type: Storage
-    capacity: 1000
+    maxTotalWeight: 1000
     quickInsert: true
     areaInsert: true
     storageOpenSound:
@@ -340,25 +340,13 @@
 
 
 - type: entity
-  name: автоматический Силовик
-  parent: WeaponShotgunEnforcer
+  parent: WeaponShotgun39
   id: WeaponShotgunEnforcerRXBZZ
-  description: Дробовик марки Frozen Star нового поколения. Использует патроны калибра .50 ружейный.
-  components:
-  - type: BallisticAmmoProvider
-    whitelist:
-      tags:
-      - ShellShotgun
-    capacity: 10
-    proto: ShellShotgun
-    soundInsert:
-      path: /Audio/Weapons/Guns/MagIn/shotgun_insert.ogg
-
 
 - type: entity
   name: Лектер
   suffix: Зажигательные
-  parent: WeaponRifleLecter
+  parent: WeaponRifleAR18
   id: WeaponRifleLecterFire
   description: Первоклассная армейская штурмовая винтовка. Использует патроны калибра .20 винтовочный.
   components:

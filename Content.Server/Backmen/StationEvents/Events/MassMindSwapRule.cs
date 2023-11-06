@@ -10,6 +10,7 @@ using Content.Shared.Backmen.Abilities.Psionics;
 using Content.Shared.Mobs.Components;
 using Content.Shared.Mobs.Systems;
 using Robust.Server.GameObjects;
+using Robust.Shared.Player;
 using Robust.Shared.Random;
 
 namespace Content.Server.Backmen.StationEvents.Events;

@@ -2,7 +2,7 @@
   id: PwrGameInventory1
   productEntity: DrinkPwrGameCan
   cost:
-    SpaceCash: 80
+    SpaceCash: 60
   categories:
     - PwrGameInventory
   conditions:
@@ -13,7 +13,7 @@
   id: PwrGameInventory2
   productEntity: DrinkEnergyDrinkCan
   cost:
-    SpaceCash: 80
+    SpaceCash: 60
   categories:
     - PwrGameInventory
   conditions:
@@ -24,7 +24,7 @@
   id: PwrGameInventory3
   productEntity: DrinkGrapeCan
   cost:
-    SpaceCash: 80
+    SpaceCash: 60
   categories:
     - PwrGameInventory
   conditions:
@@ -35,7 +35,7 @@
   id: PwrGameInventory4
   productEntity: DrinkRootBeerCan
   cost:
-    SpaceCash: 80
+    SpaceCash: 60
   categories:
     - PwrGameInventory
   conditions:
@@ -46,7 +46,7 @@
   id: PwrGameInventory5
   productEntity: DrinkIcedTeaCan
   cost:
-    SpaceCash: 80
+    SpaceCash: 60
   categories:
     - PwrGameInventory
   conditions:
@@ -57,7 +57,7 @@
   id: PwrGameInventory6
   productEntity: DrinkLemonLimeCan
   cost:
-    SpaceCash: 80
+    SpaceCash: 60
   categories:
     - PwrGameInventory
   conditions:
@@ -68,7 +68,7 @@
   id: PwrGameInventory7
   productEntity: DrinkFourteenLokoCan
   cost:
-    SpaceCash: 80
+    SpaceCash: 60
   categories:
     - PwrGameInventory
   conditions:

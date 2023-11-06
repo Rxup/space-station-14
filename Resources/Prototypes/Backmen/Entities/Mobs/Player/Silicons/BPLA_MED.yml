@@ -5,7 +5,7 @@
   name: Сумка БСС Дрона Медицинского Направления
   components:
   - type: Storage
-    capacity: 1200
+    maxTotalWeight: 1200
   - type: Sprite
     sprite: Corvax/Sponsor/NEKISH/Clothing/Back/Satchels/hos.rsi
   - type: Tag
@@ -115,10 +115,7 @@
   - type: GhostTakeoverAvailable
   - type: SiliconLawBound
   - type: SiliconLawProvider
-    laws:
-    - Crewsimov1
-    - Crewsimov2
-    - Crewsimov3
+    laws: Crewsimov
   - type: MovementSpeedModifier
     baseWalkSpeed : 5.5
     baseSprintSpeed : 5.5

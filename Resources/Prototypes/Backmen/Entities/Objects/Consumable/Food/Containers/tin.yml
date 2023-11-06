@@ -10,7 +10,7 @@
   - type: Item
     sprite: Backmen/Objects/Consumable/Food/Tins/c-soupcan.rsi
     heldPrefix: packet
-    size: 3
+    size: Tiny
   - type: Destructible
     thresholds:
     - trigger:

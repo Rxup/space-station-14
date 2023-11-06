@@ -102,7 +102,7 @@
       - FullBodyOuter
 
 - type: entity
-  parent: ClothingOuterBase
+  parent: ClothingOuterBaseLarge
   id: ClothingOuterSuitSpaceNinja
   name: space ninja suit
   description: This black technologically advanced, cybernetically-enhanced suit provides many abilities like invisibility or teleportation.
@@ -195,7 +195,7 @@
   - type: Sprite
     sprite: Clothing/OuterClothing/Suits/iansuit.rsi
   - type: Item
-    size: 30
+    size: Normal
   - type: Clothing
     sprite: Clothing/OuterClothing/Suits/iansuit.rsi
   - type: ToggleableClothing
@@ -216,7 +216,7 @@
   - type: Sprite
     sprite: Clothing/OuterClothing/Suits/carpsuit.rsi
   - type: Item
-    size: 30
+    size: Normal
   - type: Clothing
     sprite: Clothing/OuterClothing/Suits/carpsuit.rsi
   - type: ToggleableClothing

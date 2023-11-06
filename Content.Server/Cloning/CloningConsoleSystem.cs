@@ -170,7 +170,15 @@ namespace Content.Server.Cloning
             if (mind.UserId.HasValue == false || mind.Session == null)
                 return;
 
-            if (_cloningSystem.TryCloning(cloningPodUid, body.Value, (mindId, mind), cloningPod, scannerComp.CloningFailChanceMultiplier))
+            // start-backmen: MetempsychoticMachine
+            var fail = scannerComp.CloningFailChanceMultiplier;
+            if (HasComp<Backmen.Cloning.MetempsychoticMachineComponent>(cloningPodUid))
+            {
+                fail = 0;
+            }
+            // end-backmen: MetempsychoticMachine
+
+            if (_cloningSystem.TryCloning(cloningPodUid, body.Value, (mindId, mind), cloningPod, fail))
                 _adminLogger.Add(LogType.Action, LogImpact.Medium, $"{ToPrettyString(uid)} successfully cloned {ToPrettyString(body.Value)}.");
         }
 

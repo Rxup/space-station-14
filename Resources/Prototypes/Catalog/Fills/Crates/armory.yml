@@ -4,9 +4,9 @@
   components:
   - type: StorageFill
     contents:
-      - id: WeaponSubMachineGunWt550
+      - id: WeaponSubMachineGunP90
         amount: 2
-      - id: MagazinePistolSubMachineGunTopMounted
+      - id: MagazinePistolTopSubMachineGun
         amount: 4
 
 - type: entity
@@ -15,7 +15,7 @@
   components:
   - type: StorageFill
     contents:
-      - id: WeaponShotgunEnforcer
+      - id: WeaponShotgun39
         amount: 2
       - id: BoxLethalshot
         amount: 3
@@ -44,7 +44,7 @@
   components:
   - type: StorageFill
     contents:
-      - id: WeaponLaserCarbine
+      - id: WeaponEarthGovLaserRifle
         amount: 3
 
 - type: entity
@@ -53,7 +53,7 @@
   components:
   - type: StorageFill
     contents:
-    - id: WeaponPistolMk58
+    - id: WeaponPistolACP14
       amount: 2
     - id: MagazinePistol
       amount: 4

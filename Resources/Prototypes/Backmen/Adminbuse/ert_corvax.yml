@@ -108,10 +108,10 @@
         - id: BattleMedipen
         - id: BattleMedipen
         - id: WeaponDisabler
-        - id: WeaponPistolMk58
+        - id: WeaponPistolACP14
         - id: MagazinePistol
         - id: MagazinePistol
-        - id: WeaponRifleLecter
+        - id: WeaponRifleAR18
         - id: MagazineRifle
         - id: MagazineRifle
         - id: MagazineRifle
@@ -142,7 +142,7 @@
   id: ClothingBackpackERTEngineerFilledV2.1
   components:
     - type: Storage
-      capacity: 400
+      maxTotalWeight: 400
     - type: StorageFill
       contents:
         - id: BoxFlare
@@ -150,10 +150,10 @@
         - id: BattleMedipen
         - id: BattleMedipen
         - id: trayScanner
-        - id: WeaponPistolMk58
+        - id: WeaponPistolACP14
         - id: MagazinePistol
         - id: MagazinePistol
-        - id: WeaponRifleLecter
+        - id: WeaponRifleAR18
         - id: MagazineRifle
         - id: MagazineRifle
         - id: MagazineRifle
@@ -202,10 +202,10 @@
         - id: BattleMedipen
         - id: BattleMedipen
         - id: WeaponDisabler
-        - id: WeaponPistolMk58
+        - id: WeaponPistolACP14
         - id: MagazinePistol
         - id: MagazinePistol
-        - id: WeaponRifleLecter
+        - id: WeaponRifleAR18
         - id: MagazineRifle
         - id: MagazineRifle
         - id: MagazineRifle
@@ -255,10 +255,10 @@
         - id: BoxFlare
         - id: BattleMedipen
         - id: BattleMedipen
-        - id: WeaponPistolMk58
+        - id: WeaponPistolACP14
         - id: MagazinePistol
         - id: MagazinePistol
-        - id: WeaponRifleLecter
+        - id: WeaponRifleAR18
         - id: MagazineRifle
         - id: MagazineRifle
         - id: MagazineRifle
@@ -297,7 +297,7 @@
       contents:
         - id: BattleMedipen
         - id: BattleMedipen
-        - id: WeaponPistolMk58
+        - id: WeaponPistolACP14
         - id: MagazinePistol
         - id: MagazinePistol
         - id: MagazinePistol

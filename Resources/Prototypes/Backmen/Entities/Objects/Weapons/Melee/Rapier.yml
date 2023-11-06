@@ -24,7 +24,7 @@
   - type: SolutionContainerManager
     solutions:
       melee:
-        maxVol: 5
+        maxVol: 15
   - type: MeleeChemicalInjector
     solution: melee
   - type: RefillableSolution
@@ -37,9 +37,9 @@
   - type: SolutionTransfer
     maxTransferAmount: 5    
   - type: Item
-    size: 10
+    size: 4
     sprite: Backmen/Objects/Weapons/Melee/Rapier_cvasoc.rsi
   - type: Tag
     tags:
-    - CaptainSabre
+    - Rapier
   - type: DisarmMalus  

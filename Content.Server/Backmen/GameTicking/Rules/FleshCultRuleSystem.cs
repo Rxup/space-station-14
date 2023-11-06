@@ -173,7 +173,7 @@ public sealed class FleshCultRuleSystem : GameRuleSystem<FleshCultRuleComponent>
 
         var numCultists = MathHelper.Clamp(component.StartCandidates.Count / PlayersPerCultist, 1, MaxCultists);
 
-        IPlayerSession? cultistsLeader = null;
+        ICommonSession? cultistsLeader = null;
         var cultistsLeaderPool = FindPotentialCultistsLeader(component.StartCandidates, component);
         if (cultistsLeaderPool.Count != 0)
         {
@@ -223,10 +223,10 @@ public sealed class FleshCultRuleSystem : GameRuleSystem<FleshCultRuleComponent>
         }
     }
 
-    public List<IPlayerSession> FindPotentialCultists(in Dictionary<IPlayerSession,
+    public List<ICommonSession> FindPotentialCultists(in Dictionary<ICommonSession,
         HumanoidCharacterProfile> candidates, FleshCultRuleComponent component)
     {
-        var list = new List<IPlayerSession>();
+        var list = new List<ICommonSession>();
         var pendingQuery = GetEntityQuery<PendingClockInComponent>();
 
         foreach (var player in candidates.Keys)
@@ -261,7 +261,7 @@ public sealed class FleshCultRuleSystem : GameRuleSystem<FleshCultRuleComponent>
             list.Add(player);
         }
 
-        var prefList = new List<IPlayerSession>();
+        var prefList = new List<ICommonSession>();
 
         foreach (var player in list)
         {
@@ -279,10 +279,10 @@ public sealed class FleshCultRuleSystem : GameRuleSystem<FleshCultRuleComponent>
         return prefList;
     }
 
-    public List<IPlayerSession> FindPotentialCultistsLeader(in Dictionary<IPlayerSession,
+    public List<ICommonSession> FindPotentialCultistsLeader(in Dictionary<ICommonSession,
         HumanoidCharacterProfile> candidates, FleshCultRuleComponent component)
     {
-        var list = new List<IPlayerSession>();
+        var list = new List<ICommonSession>();
         var pendingQuery = GetEntityQuery<PendingClockInComponent>();
 
         foreach (var player in candidates.Keys)
@@ -317,7 +317,7 @@ public sealed class FleshCultRuleSystem : GameRuleSystem<FleshCultRuleComponent>
             list.Add(player);
         }
 
-        var prefList = new List<IPlayerSession>();
+        var prefList = new List<ICommonSession>();
 
         foreach (var player in list)
         {
@@ -335,10 +335,10 @@ public sealed class FleshCultRuleSystem : GameRuleSystem<FleshCultRuleComponent>
         return prefList;
     }
 
-    public List<IPlayerSession> PickCultists(int cultistCount, List<IPlayerSession> prefList)
+    public List<ICommonSession> PickCultists(int cultistCount, List<ICommonSession> prefList)
     {
         cultistCount = Math.Max(0, cultistCount);
-        var results = new List<IPlayerSession>(cultistCount);
+        var results = new List<ICommonSession>(cultistCount);
         if (prefList.Count == 0 || cultistCount == 0)
         {
             _sawmill.Info("Insufficient ready players to fill up with traitors, stopping the selection.");
@@ -366,7 +366,7 @@ public sealed class FleshCultRuleSystem : GameRuleSystem<FleshCultRuleComponent>
     [ValidatePrototypeId<EntityPrototype>]
     public const string FleshCultistSurvivalObjective = "FleshCultistSurvivalObjective";
 
-    private bool BaseMakeCultist(IPlayerSession traitor, FleshCultRuleComponent fleshCultRule, EntityUid mindId, MindComponent mind, string role)
+    private bool BaseMakeCultist(ICommonSession traitor, FleshCultRuleComponent fleshCultRule, EntityUid mindId, MindComponent mind, string role)
     {
         if (mind.OwnedEntity is not { } entity)
         {
@@ -426,7 +426,7 @@ public sealed class FleshCultRuleSystem : GameRuleSystem<FleshCultRuleComponent>
         return true;
     }
 
-    public bool MakeCultist(IPlayerSession traitor)
+    public bool MakeCultist(ICommonSession traitor)
     {
         var fleshCultRule = EntityQuery<FleshCultRuleComponent>().FirstOrDefault();
         if (fleshCultRule == null)
@@ -446,7 +446,7 @@ public sealed class FleshCultRuleSystem : GameRuleSystem<FleshCultRuleComponent>
         return BaseMakeCultist(traitor, fleshCultRule, mindId.Value, mind, fleshCultRule.FleshCultistPrototypeId);
     }
 
-    public bool MakeCultistLeader(IPlayerSession traitor)
+    public bool MakeCultistLeader(ICommonSession traitor)
     {
         var fleshCultRule = EntityQuery<FleshCultRuleComponent>().FirstOrDefault();
         if (fleshCultRule == null)

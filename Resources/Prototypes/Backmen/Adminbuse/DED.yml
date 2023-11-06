@@ -1,11 +1,19 @@
 - type: entity
+  parent: BoxFlare
+  id: BoxFlareSpecForce
+  components:
+  - type: Item
+    sprite: Objects/Storage/boxes.rsi
+    size: 10
+
+- type: entity
   name: рюкзак спецназа
   parent: JetpackBlackFilled
   id: ClothingBackpackSpecialForce
   components:
   - type: Item
     sprite: Objects/Tanks/Jetpacks/black.rsi
-    size: 9999
+    size: Ginormous
   - type: Sprite
     sprite: Objects/Tanks/Jetpacks/black.rsi
   - type: Clothing
@@ -14,7 +22,7 @@
     slots:
       - Back
   - type: Storage
-    capacity: 300
+    maxTotalWeight: 400
   - type: ContainerContainer
     containers:
       storagebase: !type:Container
@@ -25,7 +33,7 @@
       type: StorageBoundUserInterface
   - type: StorageFill
     contents:
-      - id: BoxFlare
+      - id: BoxFlareSpecForce
       - id: PinpointerNuclear
       - id: WeaponPulseRifle
       - id: SpeedLoaderMagnum
@@ -116,7 +124,7 @@
     head: ClothingHeadHatBeretMobileTaskForce
     id: DedSquadronLeaderGavnaIDCard
     ears: ClothingHeadsetCentComCC
-    belt: WeaponRevolverMateba
+    belt: WeaponRevolverMatebaNew
     pocket1: EnergySwordDedSad
     pocket2: WeaponPulsePistol
 
@@ -135,7 +143,7 @@
     suitstorage: OxygenTankFilled
     id: DedSquadronGavnaIDCard
     ears: ClothingHeadsetCentComCC
-    belt: WeaponRevolverMateba
+    belt: WeaponRevolverMatebaNew
     pocket1: EnergySwordDedSad
     pocket2: WeaponPulsePistol
 
@@ -375,10 +383,10 @@
   id: ClothingBackpackDuffelRXBZZ
   components:
     - type: Storage
-      capacity: 250
+      maxTotalWeight: 250
     - type: StorageFill
       contents:
-        - id: BoxFlare
+        - id: BoxFlareSpecForce
           amount: 2
         - id: MedkitAdvancedRXBZZ
         - id: WeaponDisabler
@@ -398,9 +406,10 @@
   id: MedkitAdvancedRXBZZ
   components:
     - type: Item
-      size: 30
+      size: Normal
     - type: Storage
-      capacity: 30
+      maxTotalWeight: 30
+
     - type: StorageFill
       contents:
         - id: BattleMedipenAntiVirus
@@ -415,7 +424,8 @@
   id: ClothingBeltBandolierRXBZZ
   components:
     - type: Storage
-      capacity: 100
+      maxTotalWeight: 100
+      maxSlots: 35
     - type: StorageFill
       contents:
         - id: ShellShotgunIncendiary

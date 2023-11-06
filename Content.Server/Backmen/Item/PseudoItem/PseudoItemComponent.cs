@@ -1,4 +1,3 @@
-
 namespace Content.Server.Backmen.Item.PseudoItem;
 
 /// <summary>
@@ -9,7 +8,7 @@ namespace Content.Server.Backmen.Item.PseudoItem;
 public sealed partial class PseudoItemComponent : Component
 {
     [DataField("size")]
-    public int Size = 120;
+    public int Size = 30;
 
     public bool Active = false;
 }

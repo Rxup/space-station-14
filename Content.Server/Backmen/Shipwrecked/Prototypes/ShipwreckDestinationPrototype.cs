@@ -9,7 +9,7 @@ using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototy
 namespace Content.Server.Backmen.Shipwrecked.Prototypes;
 
 [Prototype("shipwreckDestination")]
-public sealed class ShipwreckDestinationPrototype : IPrototype
+public sealed partial class ShipwreckDestinationPrototype : IPrototype
 {
     [ViewVariables]
     [IdDataField]
