@@ -56,13 +56,13 @@
   - type: PointLight
     radius: 1.5
     energy: 3
-    color: "#4faffb"        
+    color: "#4faffb"
 
 - type: entity
   parent: FoodEggBaseVampire
   id: FoodEggSpiderVampire
   name: Яйцо паука
-  suffix: Vampire   
+  suffix: Vampire
   components:
   - type: Sprite
     sprite: Backmen/Objects/Misc/eggspider.rsi
@@ -72,5 +72,14 @@
   - type: PointLight
     radius: 1.5
     energy: 3
-    color: "#4faffb"        
+    color: "#4faffb"
+  - type: Timer
+  - type: TimedSpawner
+    prototypes:
+    - MobGiantSpiderVampireAngry
+    intervalSeconds: 10
+    minimumEntitiesSpawned: 1
+    maximumEntitiesSpawned: 1
+  - type: TimedDespawn
+    lifetime: 11
 

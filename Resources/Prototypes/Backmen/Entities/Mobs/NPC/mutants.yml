@@ -188,8 +188,8 @@
     whitelist:
       tags:
         - ArachneWeb
-  - type: SpiderVampire 
-    spawnEgg: FoodEggSpiderFertilizedVampire
+  - type: SpiderVampire
+    spawnEgg: FoodEggSpiderVampire
 
 - type: entity
   name: Чёрная вдова

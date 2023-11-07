@@ -14,8 +14,8 @@ public sealed partial class SpiderVampireComponent : Component
     [DataField]
     public float UsingEggTime = 20;
 
-    [DataField]
-    public EntProtoId SpawnEgg = default!;
+    [DataField("spawnEgg")]
+    public EntProtoId SpawnEgg = "FoodEggSpiderVampire";
 
     /// <summary>
     /// How much hunger is consumed when an entity
