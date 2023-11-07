@@ -47,8 +47,8 @@ public sealed class SpiderVampireSystem : EntitySystem
     private void OnMapInit(EntityUid uid, SpiderVampireComponent component, MapInitEvent args)
     {
         _action.AddAction(uid, ref component.SpiderVampireEggAction, SpiderVampireEggAction);
-        _action.SetCooldown(component.SpiderVampireEggAction, _gameTiming.CurTime,
-            _gameTiming.CurTime + (TimeSpan) component.InitCooldown);
+        //_action.SetCooldown(component.SpiderVampireEggAction, _gameTiming.CurTime,
+        //    _gameTiming.CurTime + (TimeSpan) component.InitCooldown);
         _action.SetCharges(component.SpiderVampireEggAction, component.Charges);
     }
 
@@ -115,7 +115,8 @@ public sealed class SpiderVampireSystem : EntitySystem
             {
                 _action.SetCharges(component.SpiderVampireEggAction, data.Charges+1);
                 _action.SetCooldown(component.SpiderVampireEggAction, _gameTiming.CurTime,
-                    _gameTiming.CurTime);
+                    _gameTiming.CurTime + TimeSpan.FromSeconds(1));
+                _action.SetEnabled(component.SpiderVampireEggAction, true);
             }
             return;
         }
