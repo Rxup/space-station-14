@@ -1,6 +1,7 @@
 
 using Robust.Shared.GameStates;
 using Content.Shared.DoAfter;
+using Content.Shared.FixedPoint;
 using Robust.Shared.Serialization;
 using Robust.Shared.Prototypes;
 
@@ -13,6 +14,12 @@ public sealed partial class SpiderVampireComponent : Component
     public EntityUid? SpiderVampireEggAction;
     [DataField]
     public float UsingEggTime = 20;
+
+    [DataField("charges")]
+    public int Charges = 1;
+
+    [DataField]
+    public TimeSpan InitCooldown = TimeSpan.FromMinutes(5);
 
     [DataField("spawnEgg")]
     public EntProtoId SpawnEgg = "FoodEggSpiderVampire";

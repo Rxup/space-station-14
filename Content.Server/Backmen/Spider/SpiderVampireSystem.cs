@@ -14,10 +14,9 @@ using Robust.Shared.Random;
 using Robust.Shared.Player;
 using Content.Shared.Database;
 using Content.Shared.IdentityManagement;
+using Robust.Shared.Timing;
 
 namespace Content.Server.Backmen.Spider;
-
-
 
 public sealed class SpiderVampireSystem : EntitySystem
 {
@@ -29,6 +28,7 @@ public sealed class SpiderVampireSystem : EntitySystem
     [Dependency] private readonly HungerSystem _hunger = default!;
     [Dependency] private readonly IAdminLogManager _adminLog = default!;
     [Dependency] private readonly IRobustRandom _random = default!;
+    [Dependency] private readonly IGameTiming _gameTiming = default!;
 
     public override void Initialize()
     {
@@ -40,18 +40,25 @@ public sealed class SpiderVampireSystem : EntitySystem
         SubscribeLocalEvent<SpiderVampireComponent, MapInitEvent>(OnMapInit);
     }
 
-#region Добавить скилл
+    #region Добавить скилл
 
     [ValidatePrototypeId<EntityPrototype>] private const string SpiderVampireEggAction = "ActionSpiderVampireEgg";
 
     private void OnMapInit(EntityUid uid, SpiderVampireComponent component, MapInitEvent args)
     {
         _action.AddAction(uid, ref component.SpiderVampireEggAction, SpiderVampireEggAction);
+        _action.SetCooldown(component.SpiderVampireEggAction, _gameTiming.CurTime,
+            _gameTiming.CurTime + (TimeSpan) component.InitCooldown);
+        _action.SetCharges(component.SpiderVampireEggAction, component.Charges);
     }
-#endregion
 
-#region Нажали на кнопку
-    private static readonly SoundSpecifier HairballPlay = new SoundPathSpecifier("/Audio/Backmen/Effects/Species/hairball.ogg", AudioParams.Default.WithVariation(0.15f));
+    #endregion
+
+    #region Нажали на кнопку
+
+    private static readonly SoundSpecifier HairballPlay =
+        new SoundPathSpecifier("/Audio/Backmen/Effects/Species/hairball.ogg", AudioParams.Default.WithVariation(0.15f));
+
     private void OnActionEggUsed(EntityUid uid, SpiderVampireComponent component, SpiderVampireEggActionEvent args)
     {
         if (args.Handled)
@@ -81,30 +88,45 @@ public sealed class SpiderVampireSystem : EntitySystem
             return;
         }
 
-        _doAfterSystem.TryStartDoAfter(new DoAfterArgs(EntityManager, uid, component.UsingEggTime, new SpiderVampireEggDoAfterEvent(), uid, used: uid)
+        _doAfterSystem.TryStartDoAfter(new DoAfterArgs(EntityManager, uid, component.UsingEggTime,
+            new SpiderVampireEggDoAfterEvent(), uid, used: uid)
         {
-            BreakOnTargetMove = true,
             BreakOnUserMove = true,
             BreakOnDamage = true,
         });
 
-        _audio.Play(HairballPlay, Filter.Pvs(uid, entityManager: EntityManager), Transform(uid).Coordinates, true, AudioParams.Default.WithVariation(0.025f));
+        _audio.Play(HairballPlay, Filter.Pvs(uid, entityManager: EntityManager), Transform(uid).Coordinates, true,
+            AudioParams.Default.WithVariation(0.025f));
         args.Handled = true;
     }
-#endregion
 
-#region После каста
-    private void OnActionEggUsedAfter(EntityUid uid, SpiderVampireComponent component, SpiderVampireEggDoAfterEvent args)
+    #endregion
+
+    #region После каста
+
+    private void OnActionEggUsedAfter(EntityUid uid, SpiderVampireComponent component,
+        SpiderVampireEggDoAfterEvent args)
     {
-        if (args.Handled || args.Cancelled)
+        if (args.Handled)
             return;
+        if (args.Cancelled)
+        {
+            if (_action.TryGetActionData(component.SpiderVampireEggAction, out var data))
+            {
+                _action.SetCharges(component.SpiderVampireEggAction, data.Charges+1);
+                _action.SetCooldown(component.SpiderVampireEggAction, _gameTiming.CurTime,
+                    _gameTiming.CurTime);
+            }
+            return;
+        }
+
         var xform = Transform(uid);
         var offspring = Spawn(component.SpawnEgg, xform.Coordinates.Offset(_random.NextVector2(0.3f)));
         _hunger.ModifyHunger(uid, -component.HungerPerBirth);
         _adminLog.Add(LogType.Action, $"{ToPrettyString(uid)} gave birth to {ToPrettyString(offspring)}.");
-        _popupSystem.PopupEntity(Loc.GetString("reproductive-birth-popup", ("parent", Identity.Entity(uid, EntityManager))), uid);
+        _popupSystem.PopupEntity(
+            Loc.GetString("reproductive-birth-popup", ("parent", Identity.Entity(uid, EntityManager))), uid);
     }
-#endregion
+
+    #endregion
 }
-
-

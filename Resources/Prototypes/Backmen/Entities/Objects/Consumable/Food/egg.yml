@@ -4,10 +4,6 @@
   description: An egg!
   abstract: true
   components:
-  - type: Tag
-    tags:
-      - EggVampire
-      - MeatVampire
   - type: Food
     trash: Eggshells
   - type: Sprite
