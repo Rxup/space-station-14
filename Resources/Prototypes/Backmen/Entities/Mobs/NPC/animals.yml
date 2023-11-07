@@ -1,0 +1,15 @@
+- type: entity
+  id: FoodEggSpiderFertilizedVampire
+  parent: FoodEggSpiderVampire
+  suffix: Оплодотворенный, Вампир
+  components:
+  - type: Timer
+  - type: TimedSpawner
+    prototypes:
+    - MobGiantSpiderVampireAngry
+    intervalSeconds: 10
+    minimumEntitiesSpawned: 1
+    maximumEntitiesSpawned: 1
+  - type: TimedDespawn 
+    lifetime: 11
+
