@@ -50,3 +50,5 @@
       collection: FelinidHisses
     FelinidPurrs:
       collection: FelinidPurrs
+    FelinidGrowls:
+      collection: FelinidGrowls

@@ -58,3 +58,15 @@
     - Purrs
     - Purrs.
     - Purrs!
+
+- type: emote
+  id: FelinidGrowls
+  category: Vocal
+  chatMessages: [рычит!]
+  chatTriggers:
+    - рычит
+    - рычит.
+    - рычит!
+    - Growls
+    - Growls.
+    - Growls!
