@@ -9,10 +9,7 @@ using Content.Server.CartridgeLoader.Cartridges;
 using Content.Server.DetailExaminable;
 using Content.Server.Forensics;
 using Content.Server.GameTicking;
-using Content.Server.GameTicking.Rules.Components;
 using Content.Server.Humanoid;
-using Content.Server.Jobs;
-using Content.Server.Players;
 using Content.Server.Prayer;
 using Content.Server.Preferences.Managers;
 using Content.Server.Shuttles.Components;
@@ -37,14 +34,13 @@ using Content.Server.Objectives.Components;
 using Content.Server.Objectives.Systems;
 using Content.Server.Roles;
 using Content.Server.Station.Components;
-using Content.Shared.Backmen.Economy;
 using Content.Shared.CartridgeLoader;
 using Content.Shared.CCVar;
 using Content.Shared.GameTicking;
 using Content.Shared.Inventory;
 using Content.Shared.Mind;
 using Content.Shared.Mind.Components;
-using Content.Shared.Objectives;
+using Content.Shared.NukeOps;
 using Content.Shared.Objectives.Components;
 using Content.Shared.Players;
 using Content.Shared.Roles.Jobs;
@@ -134,17 +130,17 @@ public sealed class EvilTwinSystem : EntitySystem
                         }
                         else if (targetSession == null)
                         {
-                            targetSession = _playerManager.GetSessionByUserId(targetUserId.Value);
+                            targetSession = _playerManager.GetSessionById(targetUserId.Value);
                         }
 
                         RaiseLocalEvent(new PlayerSpawnCompleteEvent(twinMob.Value,
                             targetSession,
-                            currentJob?.PrototypeId, false,
+                            currentJob?.Prototype, false,
                             0, station.Value, pref));
 
                         if (!_roles.MindHasRole<JobComponent>(mindId))
                         {
-                            _roles.MindAddRole(mindId, new JobComponent(){ PrototypeId = currentJob?.PrototypeId });
+                            _roles.MindAddRole(mindId, new JobComponent(){ Prototype = currentJob?.Prototype });
                         }
 
                         if (_inventory.TryGetSlotEntity(targetUid.Value, "id", out var targetPda) &&
@@ -515,8 +511,8 @@ public sealed class EvilTwinSystem : EntitySystem
 
 
 
-        if (TryComp<JobComponent>(mindId, out var jobComponent) && jobComponent.PrototypeId != null &&
-            _prototype.TryIndex<JobPrototype>(jobComponent.PrototypeId, out var twinTargetMindJob))
+        if (TryComp<JobComponent>(mindId, out var jobComponent) && jobComponent.Prototype != null &&
+            _prototype.TryIndex<JobPrototype>(jobComponent.Prototype, out var twinTargetMindJob))
         {
             if (_prototype.TryIndex<StartingGearPrototype>(twinTargetMindJob.StartingGear!, out var gear))
             {

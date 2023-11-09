@@ -492,7 +492,7 @@
     - type: Item
       sprite: Mobs/Aliens/FleshCult/flesh_cult_mobs.rsi
       heldPrefix: worm
-      size: 5
+      size: Normal
     - type: Clothing
       quickEquip: false
       sprite: Mobs/Aliens/FleshCult/flesh_cult_mobs.rsi

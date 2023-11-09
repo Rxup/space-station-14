@@ -12,3 +12,8 @@ item-component-size-Normal = средний
 item-component-size-Large = большой
 item-component-size-Huge = огромный
 item-component-size-Ginormous = гигантский
+
+
+# backmen
+item-component-size-Felinid = кошка?!
+item-component-size-HeavyMachineGun = тяжелое вооружение

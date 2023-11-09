@@ -83,12 +83,14 @@ public sealed class FugitiveSystem : EntitySystem
         SubscribeLocalEvent<PlayerSpawningEvent>(OnPlayerSpawn, before: new []{typeof(ArrivalsSystem),typeof(SpawnPointSystem)});
     }
 
+    [ValidatePrototypeId<JobPrototype>]
+    private const string JobPrisoner = "Prisoner";
     private void OnPlayerSpawn(PlayerSpawningEvent args)
     {
         if (args.SpawnResult != null)
             return;
 
-        if (!(args.Job?.PrototypeId != null && _prototypeManager.TryIndex<JobPrototype>(args.Job!.PrototypeId!, out var jobInfo) && jobInfo.AlwaysUseSpawner))
+        if (!(args.Job?.Prototype != null && _prototypeManager.TryIndex<JobPrototype>(args.Job!.Prototype!, out var jobInfo) && jobInfo.AlwaysUseSpawner))
         {
             return;
         }
@@ -104,14 +106,14 @@ public sealed class FugitiveSystem : EntitySystem
                     continue;
 
                 if (spawnPoint.SpawnType == SpawnPointType.Job &&
-                    (args.Job == null || spawnPoint.Job?.ID == args.Job.PrototypeId))
+                    (args.Job == null || spawnPoint.Job?.ID == args.Job.Prototype))
                 {
                     possiblePositions.Add(xform.Coordinates);
                 }
             }
         }
 
-        if (possiblePositions.Count == 0 && args.Job is { PrototypeId: "Prisoner" })
+        if (possiblePositions.Count == 0 && args.Job?.Prototype == JobPrisoner)
         {
             var points = EntityQueryEnumerator<EntityStorageComponent, TransformComponent, MetaDataComponent>();
 
@@ -280,7 +282,7 @@ public sealed class FugitiveSystem : EntitySystem
             }
             _roleSystem.MindAddRole(mindId, new JobComponent
             {
-                PrototypeId = FugitiveRole
+                Prototype = FugitiveRole
             }, mind, true);
         }
 

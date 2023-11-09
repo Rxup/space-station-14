@@ -4,7 +4,7 @@
   components:
   - type: Item
     sprite: Objects/Storage/boxes.rsi
-    size: 10
+    size: Large
 
 - type: entity
   name: рюкзак спецназа

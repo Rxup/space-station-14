@@ -89,12 +89,12 @@ public sealed class KillPersonConditionSystem : EntitySystem
         var centcom = _prototype.Index(_ccDep);
         foreach (var mindId in minds.ToArray())
         {
-            if (!TryComp<JobComponent>(mindId, out var job) || job.PrototypeId == null)
+            if (!TryComp<JobComponent>(mindId, out var job) || job.Prototype == null)
             {
                 continue;
             }
 
-            if (!centcom.Roles.Contains(job.PrototypeId))
+            if (!centcom.Roles.Contains(job.Prototype))
             {
                 continue;
             }
