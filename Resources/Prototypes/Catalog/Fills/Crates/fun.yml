@@ -272,6 +272,7 @@
       - id: ClothingHeadHatMagician
       - id: BeachBall
       - id: RubberPig
+      - id: ClothingShoesSkates
 
 - type: entity
   id: CrateFunBikeHornImplants
