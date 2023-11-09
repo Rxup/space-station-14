@@ -77,9 +77,9 @@
   - type: TimedSpawner
     prototypes:
     - MobGiantSpiderVampireAngry
-    intervalSeconds: 10
+    intervalSeconds: 300
     minimumEntitiesSpawned: 1
     maximumEntitiesSpawned: 1
   - type: TimedDespawn
-    lifetime: 11
+    lifetime: 301
 
