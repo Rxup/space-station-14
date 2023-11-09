@@ -1,6 +1,6 @@
 # vocal emotes
 - type: emote
-  id: FelinidMews
+  id: Mews
   category: Vocal
   chatMessages: [мя!]
   chatTriggers:
@@ -15,7 +15,7 @@
     - мя!
 
 - type: emote
-  id: FelinidMeows
+  id: Meows
   category: Vocal
   chatMessages: [мяу!]
   chatTriggers:
@@ -33,7 +33,7 @@
     - мяукает!
 
 - type: emote
-  id: FelinidHisses
+  id: Hisses
   category: Vocal
   chatMessages: [шипит!]
   chatTriggers:
@@ -48,7 +48,7 @@
     - hissing!
 
 - type: emote
-  id: FelinidPurrs
+  id: Purrs
   category: Vocal
   chatMessages: [мурчит!]
   chatTriggers:
@@ -60,7 +60,7 @@
     - Purrs!
 
 - type: emote
-  id: FelinidGrowls
+  id: Growls
   category: Vocal
   chatMessages: [рычит!]
   chatTriggers:
