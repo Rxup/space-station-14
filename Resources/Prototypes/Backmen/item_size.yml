@@ -1,0 +1,10 @@
+﻿
+- type: itemSize
+  id: Felinid
+  weight: 28
+  name: item-component-size-Felinid
+
+- type: itemSize
+  id: HeavyMachineGun
+  weight: 80
+  name: item-component-size-HeavyMachineGun

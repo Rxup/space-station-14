@@ -97,7 +97,7 @@
     slots: [belt]
     sprite: Objects/Specific/Janitorial/trashbag.rsi
   - type: Item
-    size: 1001
+    size: Ginormous
 
 
 - type: entity
@@ -122,7 +122,7 @@
     - neck
   - type: Item
     sprite: Objects/Weapons/Melee/combat_knife.rsi
-    size: 10
+    size: Large
   - type: ItemCooldown
   - type: MeleeWeapon
     damage:

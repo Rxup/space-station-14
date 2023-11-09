@@ -1,3 +1,4 @@
+using System.Linq;
 using Content.Server.Administration.Managers;
 using Content.Shared.StatusEffect;
 using Content.Shared.Mobs;
@@ -36,6 +37,7 @@ public sealed class PsionicsSystem : EntitySystem
     [Dependency] private readonly NpcFactionSystem _npcFactonSystem = default!;
     [Dependency] private readonly IConfigurationManager _cfg = default!;
     [Dependency] private readonly IAdminManager _adminManager = default!;
+    [Dependency] private readonly SharedAudioSystem _audio = default!;
 
     /// <summary>
     /// Unfortunately, since spawning as a normal role and anything else is so different,
@@ -126,17 +128,22 @@ public sealed class PsionicsSystem : EntitySystem
         _rollers.Enqueue((component, uid));
     }
 
+    [ValidatePrototypeId<StatusEffectPrototype>]
+    private const string PsionicsDisabled = "PsionicsDisabled";
+
+
+    private static readonly SoundPathSpecifier Lightburn = new("/Audio/Effects/lightburn.ogg");
+
     private void OnMeleeHit(EntityUid uid, AntiPsionicWeaponComponent component, MeleeHitEvent args)
     {
         foreach (var entity in args.HitEntities)
         {
             if (HasComp<PsionicComponent>(entity))
             {
-                SoundSystem.Play("/Audio/Effects/lightburn.ogg", Filter.Pvs(entity), entity);
+                _audio.PlayPvs(Lightburn,entity);
                 args.ModifiersList.Add(component.Modifiers);
                 if (_random.Prob(component.DisableChance))
-                    _statusEffects.TryAddStatusEffect(entity, "PsionicsDisabled", TimeSpan.FromSeconds(10), true,
-                        "PsionicsDisabled");
+                    _statusEffects.TryAddStatusEffect<PsionicsDisabledComponent>(entity, PsionicsDisabled, TimeSpan.FromSeconds(10), true);
             }
 
             if (TryComp<MindSwappedComponent>(entity, out var swapped))
@@ -171,8 +178,14 @@ public sealed class PsionicsSystem : EntitySystem
                 break;
         }
 
-        _chat.TrySendInGameICMessage(uid, message, InGameICChatType.Emote, false, ignoreActionBlocker: true);
+        _chat.TrySendInGameICMessage(uid, message, InGameICChatType.Emote, true, ignoreActionBlocker: true);
     }
+
+    [ValidatePrototypeId<NpcFactionPrototype>]
+    private const string FactionGlimmerMonster = "GlimmerMonster";
+
+    [ValidatePrototypeId<NpcFactionPrototype>]
+    private const string FactionPsionic = "PsionicInterloper";
 
     private void OnInit(EntityUid uid, PsionicComponent component, ComponentInit args)
     {
@@ -182,32 +195,23 @@ public sealed class PsionicsSystem : EntitySystem
         if (!TryComp<NpcFactionMemberComponent>(uid, out var factions))
             return;
 
-        if (_npcFactonSystem.ContainsFaction(uid, "GlimmerMonster", factions))
+        if (_npcFactonSystem.ContainsFaction(uid, FactionGlimmerMonster, factions))
             return;
 
-        _npcFactonSystem.AddFaction(uid, "PsionicInterloper");
+        _npcFactonSystem.AddFaction(uid, FactionPsionic);
     }
 
     private void OnRemove(EntityUid uid, PsionicComponent component, ComponentRemove args)
     {
-        if (!TryComp<NpcFactionMemberComponent>(uid, out var factions))
-            return;
-
-        _npcFactonSystem.RemoveFaction(uid, "PsionicInterloper");
+        _npcFactonSystem.RemoveFaction(uid, FactionPsionic);
     }
 
     private void OnStamHit(EntityUid uid, AntiPsionicWeaponComponent component, StaminaMeleeHitEvent args)
     {
-        var bonus = false;
-        foreach (var stam in args.HitList)
-        {
-            if (HasComp<PsionicComponent>(stam.Entity))
-                bonus = true;
-        }
+        var bonus = args.HitList.Any(z=>HasComp<PsionicComponent>(z.Entity));
 
         if (!bonus)
             return;
-
 
         args.FlatModifier += component.PsychicStaminaDamage;
     }

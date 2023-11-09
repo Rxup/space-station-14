@@ -5,7 +5,7 @@
   description: Gives a bloodsucker a gland that injects nocturine when they suck blood.
   components:
     - type: Item
-      size: 3
+      size: Small
     - type: Sprite
       sprite: Objects/Specific/Medical/medipen.rsi
       state: salpen
