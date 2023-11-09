@@ -17,6 +17,7 @@ using Content.Shared.Resist;
 using Content.Shared.Storage;
 using Robust.Server.GameObjects;
 using Robust.Shared.Containers;
+using Robust.Shared.Prototypes;
 
 namespace Content.Server.Backmen.Item.PseudoItem
 {
@@ -27,6 +28,7 @@ namespace Content.Server.Backmen.Item.PseudoItem
         [Dependency] private readonly DoAfterSystem _doAfter = default!;
         [Dependency] private readonly TransformSystem _transformSystem = default!;
         [Dependency] private readonly PopupSystem _popup = default!;
+        [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
 
         public override void Initialize()
         {
@@ -128,7 +130,12 @@ namespace Content.Server.Backmen.Item.PseudoItem
                 return false;
             }
 
-            return (int)pseudoItem.Comp.SizeInBackpack > storageComponent.MaxTotalWeight - _storageSystem.GetCumulativeItemSizes(storage, storageComponent);
+            if (!_prototypeManager.TryIndex(pseudoItem.Comp.SizeInBackpack, out var sizeInBackpack))
+            {
+                return false;
+            }
+
+            return sizeInBackpack.Weight > storageComponent.MaxTotalWeight - _storageSystem.GetCumulativeItemSizes(storage, storageComponent);
         }
 
         private void OnEscape(EntityUid uid, PseudoItemComponent pseudoItem, EscapeInventoryEvent args)

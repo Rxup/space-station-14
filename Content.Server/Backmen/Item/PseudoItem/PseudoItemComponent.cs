@@ -1,4 +1,5 @@
 using Content.Shared.Item;
+using Robust.Shared.Prototypes;
 
 namespace Content.Server.Backmen.Item.PseudoItem;
 
@@ -10,10 +11,10 @@ namespace Content.Server.Backmen.Item.PseudoItem;
 public sealed partial class PseudoItemComponent : Component
 {
     [DataField("size")]
-    public ItemSize Size = ItemSize.Huge;
+    public ProtoId<ItemSizePrototype> Size = "Huge";
 
     [DataField("sizeInBackpack")]
-    public ItemSize SizeInBackpack = (ItemSize)28;
+    public ProtoId<ItemSizePrototype> SizeInBackpack = "Felinid";
 
     public bool Active = false;
 }

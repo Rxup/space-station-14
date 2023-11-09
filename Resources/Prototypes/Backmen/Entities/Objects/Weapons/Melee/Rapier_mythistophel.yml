@@ -2,7 +2,7 @@
   name: Рапира Мифистофеля
   parent: BaseItem
   id: MythistophelRapier
-  description: Рапира выкована стариком Мифистофелем, чувствуется запах напалма 
+  description: Рапира выкована стариком Мифистофелем, чувствуется запах напалма
   components:
   - type: IgniteOnMeleeHit
     fireStacks: 1
@@ -39,9 +39,9 @@
   - type: SolutionTransfer
     maxTransferAmount: 5
   - type: Item
-    size: 4
+    size: Normal
     sprite: Backmen/Objects/Weapons/Melee/Rapier_cvasoc.rsi
   - type: Tag
     tags:
     - Rapier
-  - type: DisarmMalus 
+  - type: DisarmMalus
