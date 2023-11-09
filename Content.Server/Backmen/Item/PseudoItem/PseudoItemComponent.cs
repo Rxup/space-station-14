@@ -1,3 +1,5 @@
+using Content.Shared.Item;
+
 namespace Content.Server.Backmen.Item.PseudoItem;
 
 /// <summary>
@@ -8,7 +10,10 @@ namespace Content.Server.Backmen.Item.PseudoItem;
 public sealed partial class PseudoItemComponent : Component
 {
     [DataField("size")]
-    public int Size = 30;
+    public ItemSize Size = ItemSize.Huge;
+
+    [DataField("sizeInBackpack")]
+    public ItemSize SizeInBackpack = (ItemSize)28;
 
     public bool Active = false;
 }
