@@ -1,0 +1,22 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "Made by Nimfar11 (github) for SS14",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "icon"
+    },
+    {
+      "name": "blue-inhand-right",
+      "directions": 4
+    },
+    {
+      "name": "blue-inhand-left",
+      "directions": 4
+    }	
+  ]
+}

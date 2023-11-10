@@ -188,6 +188,8 @@
     whitelist:
       tags:
         - ArachneWeb
+  - type: SpiderVampire
+    spawnEgg: FoodEggSpiderVampire
 
 - type: entity
   name: Чёрная вдова
@@ -394,3 +396,6 @@
       description: ghost-role-information-giant-spider-vampire-description
       rules: No antagonist restrictions. Just don't talk in emote; you have telepathic chat.
     - type: GhostTakeoverAvailable
+    - type: SpiderVampire
+      spawnEgg: FoodEggSpiderVampire
+      charges: 10

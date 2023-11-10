@@ -60,11 +60,11 @@ public sealed class MindSwapPowerSystem : EntitySystem
 
         _actions.AddAction(uid, ref component.MindSwapPowerAction, ActionMindSwap);
 
-#if !DEBUG
+    #if !DEBUG
          if (_actions.TryGetActionData(component.MindSwapPowerAction, out var action) && action?.UseDelay != null)
             _actions.SetCooldown(component.MindSwapPowerAction, _gameTiming.CurTime,
                 _gameTiming.CurTime + (TimeSpan)  action?.UseDelay!);
-#endif
+    #endif
         if (TryComp<PsionicComponent>(uid, out var psionic) && psionic.PsionicAbility == null)
             psionic.PsionicAbility = component.MindSwapPowerAction;
 
