@@ -11,7 +11,6 @@ namespace Content.Server.Backmen.Abilities.Psionics;
 
 public sealed class PyrokinesisPowerSystem : EntitySystem
 {
-    [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
     [Dependency] private readonly SharedActionsSystem _actions = default!;
     [Dependency] private readonly FlammableSystem _flammableSystem = default!;
     [Dependency] private readonly SharedPsionicAbilitiesSystem _psionics = default!;

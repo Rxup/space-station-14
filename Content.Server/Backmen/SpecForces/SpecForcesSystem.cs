@@ -290,7 +290,7 @@ public sealed class SpecForcesSystem : EntitySystem
                     _chatSystem.DispatchStationAnnouncement(station,
                         Loc.GetString("spec-forces-system-ertcall-annonce"),
                         Loc.GetString("spec-forces-system-ertcall-title"),
-                        true, _ertAnnounce
+                        false, _ertAnnounce
                     );
                 }
 
@@ -359,12 +359,7 @@ public sealed class SpecForcesSystem : EntitySystem
     [Dependency] private readonly IPlayerManager _playerManager = default!;
     [Dependency] private readonly ChatSystem _chatSystem = default!;
     [Dependency] private readonly StationSystem _stationSystem = default!;
-    [Dependency] private readonly IConfigurationManager _cfg = default!;
-    [Dependency] private readonly PlayTimeTrackingManager _tracking = default!;
     [Dependency] private readonly IPrototypeManager _prototypes = default!;
-    [Dependency] private readonly IChatManager _chatManager = default!;
     [Dependency] private readonly ISerializationManager _serialization = default!;
-    [Dependency] private readonly IAdminManager _adminManager = default!;
     [Dependency] private readonly ActionsSystem _actions = default!;
-    [Dependency] private readonly WhitelistSystem _whitelistSystem = default!;
 }
