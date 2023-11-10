@@ -13,11 +13,11 @@
     maxTotalWeight: 15
     whitelist:
       tags:
-        - CaptainSabre
+        - SwordSquadRO
   - type: ItemMapper
     mapLayers:
       sheath-sabre:
         whitelist:
           tags:
-          - CaptainSabre
+          - SwordSquadRO
   - type: Appearance
