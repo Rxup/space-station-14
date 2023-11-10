@@ -58,7 +58,6 @@
     neck: ClothingNeckCloakOrden
     shoes: ClothingShoesBootsSalvage
     id: SalvagePDA
-    pocket: EncryptionKeyOrden
   innerClothingSkirt: ClothingUniformJumpskirtColorRed
   satchel: ClothingBackpackSatchelFilled
   duffelbag: ClothingBackpackDuffelFilled
