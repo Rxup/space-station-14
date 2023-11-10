@@ -14,7 +14,7 @@
     proto: CartridgeCaselessRifle
     capacity: 12
   - type: Item
-    size: 5
+    size: Normal
   - type: Sprite
     sprite: Backmen/Objects/Weapons/Guns/Ammunition/Magazine/CaselessRifle/caseless_universal_mag.rsi
     layers:

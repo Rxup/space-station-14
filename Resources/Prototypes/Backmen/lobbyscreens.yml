@@ -1,0 +1,7 @@
+﻿- type: lobbyBackground
+  id: pivo
+  background: /Textures/Backmen/LobbyScreens/pivo.png
+
+- type: lobbyBackground
+  id: twix
+  background: /Textures/Backmen/LobbyScreens/twix.png

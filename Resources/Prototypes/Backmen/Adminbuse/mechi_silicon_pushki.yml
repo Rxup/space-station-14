@@ -9,7 +9,7 @@
     state: mecha_pulse
     sprite: Objects/Specific/Mech/mecha_equipment.rsi
   - type: Item
-    size: 80
+    size: HeavyMachineGun
   - type: AmmoCounter
   - type: Gun
     maxAngle: 60
@@ -52,7 +52,7 @@
     sprite: Objects/Specific/Mech/mecha_equipment.rsi
     state: mecha_missilerack
   - type: Item
-    size: 80
+    size: HeavyMachineGun
   - type: Gun
     fireRate: 1
     selectedMode: FullAuto
@@ -200,7 +200,7 @@
     sprite: Objects/Specific/Mech/mecha_equipment.rsi
     state: mecha_carbine
   - type: Item
-    size: 80
+    size: HeavyMachineGun
   - type: Gun
     angleIncrease: 4
     angleDecay: 16
@@ -269,7 +269,7 @@
     sprite: Objects/Specific/Mech/mecha_equipment.rsi
     state: mecha_wholegen
   - type: Item
-    size: 80
+    size: HeavyMachineGun
   - type: AmmoCounter
   - type: Gun
     soundGunshot:
@@ -319,7 +319,7 @@
     sprite: Objects/Specific/Mech/mecha_equipment.rsi
     state: mecha_ion
   - type: Item
-    size: 80
+    size: HeavyMachineGun
   - type: MagazineVisuals
     magState: mag
     steps: 5
@@ -415,7 +415,7 @@
     sprite: Objects/Specific/Mech/mecha_equipment.rsi
     state: mecha_mime
   - type: Item
-    size: 80
+    size: HeavyMachineGun
   - type: Gun
     fireRate: 2
     selectedMode: FullAuto
@@ -442,7 +442,7 @@
     sprite: Objects/Specific/Mech/mecha_equipment.rsi
     state: mecha_exting
   - type: Item
-    size: 80
+    size: HeavyMachineGun
   - type: SolutionContainerManager
     solutions:
       spray:
@@ -513,7 +513,7 @@
     sprite: Objects/Specific/Mech/mecha_equipment.rsi
     state: mecha_uac2
   - type: Item
-    size: 80
+    size: HeavyMachineGun
   - type: Gun
     angleIncrease: 4
     angleDecay: 16

@@ -480,7 +480,7 @@ public sealed class ShipwreckedRuleSystem : GameRuleSystem<ShipwreckedRuleCompon
 
         var job = new JobComponent
         {
-            PrototypeId = jobProtoId
+            Prototype = jobProtoId
         };
         _roleSystem.MindAddRole(mindId, job);
 

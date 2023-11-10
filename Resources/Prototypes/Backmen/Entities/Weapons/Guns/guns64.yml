@@ -10,7 +10,7 @@
     tags:
       - PowerpackRifle
   - type: Item
-    size: 2000
+    size: HeavyMachineGun
   - type: Clothing
     slots: BACK
     sprite: Backmen/Clothing/Back/Powerpacks/backpack.rsi
@@ -2662,7 +2662,7 @@
         - CartridgeCaselessRifle
     capacity: 250
   - type: Item
-    size: 20
+    size: Huge
   - type: ContainerContainer
     containers:
       ballistic-ammo: !type:Container

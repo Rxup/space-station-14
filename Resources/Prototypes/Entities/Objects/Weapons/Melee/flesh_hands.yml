@@ -12,7 +12,7 @@
       state: icon
       netsync: false
     - type: Item
-      size: 50
+      size: Ginormous
     - type: TilePrying
     - type: LatticeCutting
     - type: Tool
@@ -59,7 +59,7 @@
           Blunt: 25
           Structural: 60
     - type: Item
-      size: 150
+      size: Ginormous
 
 - type: entity
   name: Flesh blade
@@ -78,7 +78,7 @@
         types:
           Slash: 30
     - type: Item
-      size: 15
+      size: Huge
       sprite: Objects/Weapons/Melee/flesh_blade.rsi
     - type: DisarmMalus
 
@@ -92,7 +92,7 @@
       state: icon
     - type: Item
       sprite: Objects/Weapons/Guns/Basic/flesh_spike_hand.rsi
-      size: 30
+      size: Ginormous
     - type: Gun
       fireRate: 3
       selectedMode: SemiAuto

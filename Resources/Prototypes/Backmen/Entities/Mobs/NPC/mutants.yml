@@ -277,7 +277,7 @@
       40: Critical
       80: Dead
   - type: Item
-    size: 12
+    size: Huge
   - type: Stamina
     critThreshold: 80
   - type: MeleeWeapon

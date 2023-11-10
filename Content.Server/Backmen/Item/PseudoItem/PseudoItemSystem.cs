@@ -8,13 +8,16 @@ using Content.Server.Storage.Components;
 using Content.Server.Storage.EntitySystems;
 using Content.Server.DoAfter;
 using Content.Server.Item;
+using Content.Server.Popups;
 using Content.Server.Resist;
 using Content.Shared.Backmen.Item;
 using Content.Shared.Inventory;
+using Content.Shared.Popups;
 using Content.Shared.Resist;
 using Content.Shared.Storage;
 using Robust.Server.GameObjects;
 using Robust.Shared.Containers;
+using Robust.Shared.Prototypes;
 
 namespace Content.Server.Backmen.Item.PseudoItem
 {
@@ -24,6 +27,9 @@ namespace Content.Server.Backmen.Item.PseudoItem
         [Dependency] private readonly ItemSystem _itemSystem = default!;
         [Dependency] private readonly DoAfterSystem _doAfter = default!;
         [Dependency] private readonly TransformSystem _transformSystem = default!;
+        [Dependency] private readonly PopupSystem _popup = default!;
+        [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
+        [Dependency] private readonly EntityStorageSystem _entityStorage = default!;
 
         public override void Initialize()
         {
@@ -58,13 +64,7 @@ namespace Content.Server.Backmen.Item.PseudoItem
             if (component.Active)
                 return;
 
-            if (!TryComp<StorageComponent>(args.Target, out var targetStorage))
-                return;
-
-            if (targetStorage.MaxSlots != null)
-                return;
-
-            if (component.Size > targetStorage.MaxTotalWeight - _storageSystem.GetCumulativeItemSizes(args.Target, targetStorage))
+            if (!TryComp<StorageComponent>(args.Target, out var storage))
                 return;
 
             if (Transform(args.Target).ParentUid == uid)
@@ -74,7 +74,7 @@ namespace Content.Server.Backmen.Item.PseudoItem
             {
                 Act = () =>
                 {
-                    TryInsert(args.Target, uid, uid, component, targetStorage);
+                    TryInsert(args.Target, uid, uid, component, storage);
                 },
                 Text = Loc.GetString("action-name-insert-self"),
                 Priority = 2
@@ -119,6 +119,25 @@ namespace Content.Server.Backmen.Item.PseudoItem
             args.Verbs.Add(verb);
         }
 
+        private bool CanInsertInto(Entity<PseudoItemComponent> pseudoItem, EntityUid storage, StorageComponent? storageComponent = null)
+        {
+            if (!Resolve(storage, ref storageComponent, false))
+            {
+                return false;
+            }
+
+            if (storageComponent.MaxSlots != null)
+            {
+                return false;
+            }
+
+            if (!_prototypeManager.TryIndex(pseudoItem.Comp.SizeInBackpack, out var sizeInBackpack))
+            {
+                return false;
+            }
+
+            return sizeInBackpack.Weight >= storageComponent.MaxTotalWeight - _storageSystem.GetCumulativeItemSizes(storage, storageComponent);
+        }
 
         private void OnEscape(EntityUid uid, PseudoItemComponent pseudoItem, EscapeInventoryEvent args)
         {
@@ -140,23 +159,35 @@ namespace Content.Server.Backmen.Item.PseudoItem
 
             args.Handled = true;
 
-            var parent = _transformSystem.GetParentUid(uid);
-            if (!parent.IsValid())
+            if (args.Target.HasValue)
             {
-                ClearState(uid, pseudoItem);
-                return;
-            }
-
-            if (TryComp<StorageComponent>(parent, out var storage) && storage.MaxSlots != null)
-            {
-                if (pseudoItem.Size > storage.MaxTotalWeight - _storageSystem.GetCumulativeItemSizes(parent, storage))
+                var parent = _transformSystem.GetParentUid(args.Target.Value);
+                if (!parent.IsValid())
                 {
                     ClearState(uid, pseudoItem);
                     return;
                 }
-                TryInsert(parent, uid, uid, pseudoItem, storage);
-                return;
+
+
+
+                if (CanInsertInto((uid, pseudoItem), parent))
+                {
+                    if(!TryInsert(parent, uid, uid, pseudoItem))
+                        return;
+                }
+
+
+                if (TryComp<EntityStorageComponent>(parent, out var entityStorageComponent))
+                {
+                    ClearState(uid, pseudoItem);
+                    if (_entityStorage.CanInsert(uid, parent, entityStorageComponent))
+                    {
+                        _entityStorage.Insert(uid, parent, entityStorageComponent);
+                        return;
+                    }
+                }
             }
+
 
             ClearState(uid, pseudoItem);
             //_containerSystem.AttachParentToContainerOrGrid(Transform(uid));
@@ -198,19 +229,35 @@ namespace Content.Server.Backmen.Item.PseudoItem
             if (!Resolve(storageUid, ref storage))
                 return false;
 
-            if (component.Size > storage.MaxTotalWeight - _storageSystem.GetCumulativeItemSizes(storageUid, storage))
+            if (!CanInsertInto((toInsert, component), storageUid, storage))
+            {
+                if (user.HasValue)
+                {
+                    _popup.PopupEntity(
+                        storage.MaxSlots == null
+                            ? Loc.GetString("comp-storage-too-big")
+                            : Loc.GetString("comp-storage-invalid-container"), toInsert, user.Value,
+                        PopupType.LargeCaution);
+                }
                 return false;
+            }
+
 
             var item = EnsureComp<ItemComponent>(toInsert);
-            _itemSystem.SetSize(toInsert, (ItemSize)component.Size, item);
+            _itemSystem.SetSize(toInsert, component.Size, item);
             EnsureComp<CanEscapeInventoryComponent>(toInsert);
 
-            if (!_storageSystem.Insert(storageUid, toInsert, out _, user, storage))
+            if (!_storageSystem.Insert(storageUid, toInsert, out _, out var reason, user, storage))
             {
+                if (!string.IsNullOrEmpty(reason) && user != null)
+                {
+                    _popup.PopupEntity(Loc.GetString(reason),toInsert, user.Value, PopupType.LargeCaution);
+                }
                 ClearState(toInsert, component);
                 return false;
             }
 
+            _itemSystem.SetSize(toInsert, component.SizeInBackpack, item);
             component.Active = true;
             _transformSystem.AttachToGridOrMap(storageUid);
             return true;
