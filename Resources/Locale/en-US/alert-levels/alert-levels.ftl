@@ -38,3 +38,7 @@ alert-level-epsilon-instructions = Consider all contracts terminated.
 alert-level-sigma = Lockdown
 alert-level-sigma-announcement = Central Command has ordered a complete lockdown of the station. All personnel must go to their department. Security personnel are allowed to use lethal weapons.
 alert-level-sigma-instructions = All personnel must go to their department.
+
+alert-level-white = white
+alert-level-white-announcement = The level of flickering at the post looks dangerous for the parties. Disable all measurement sensors. Look for psionic isolation. RnD should report mind hacking or golemolization. The fine for both actions was removed.
+alert-level-white-announcement = Crew members are advised to seek psionic isolation. RnD should report mind hacking or golemization.

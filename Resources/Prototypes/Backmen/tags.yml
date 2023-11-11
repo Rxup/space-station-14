@@ -94,4 +94,6 @@
 - type: Tag
   id: MagazinePistolTopSubMachineGun
 
+- type: Tag
+  id: SwordSquadRO
 
