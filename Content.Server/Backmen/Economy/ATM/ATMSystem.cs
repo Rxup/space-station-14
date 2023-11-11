@@ -39,7 +39,6 @@ namespace Content.Server.Backmen.Economy.ATM;
         [Dependency] private readonly StoreSystem _storeSystem = default!;
         [Dependency] private readonly SharedPopupSystem _popup = default!;
         [Dependency] private readonly UserInterfaceSystem _uiSystem = default!;
-        [Dependency] private readonly SharedInteractionSystem _interactionSystem = default!;
 
         public override void Initialize()
         {

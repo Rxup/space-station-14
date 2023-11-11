@@ -27,7 +27,6 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
     [Dependency] private readonly StationSystem _station = default!;
     [Dependency] private readonly MapLoaderSystem _map = default!;
     [Dependency] private readonly ShipyardConsoleSystem _shipyardConsole = default!;
-    [Dependency] private readonly IRobustRandom _random = default!;
     [Dependency] private readonly MetaDataSystem _metaDataSystem = default!;
 
     public MapId? ShipyardMap { get; private set; }
