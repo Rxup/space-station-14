@@ -57,7 +57,6 @@ public sealed class MindSwapPowerSystem : EntitySystem
 
     private void OnInit(EntityUid uid, MindSwapPowerComponent component, ComponentInit args)
     {
-
         _actions.AddAction(uid, ref component.MindSwapPowerAction, ActionMindSwap);
 
     #if !DEBUG

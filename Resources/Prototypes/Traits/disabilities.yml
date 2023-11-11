@@ -9,6 +9,7 @@
   blacklist:
     components:
       - BSSDrone #backmen: bssdrone
+      - StationAI # backmen: AI
   components:
     - type: PermanentBlindness
 
@@ -19,6 +20,7 @@
   blacklist:
     components:
       - BSSDrone #backmen: bssdrone
+      - StationAI # backmen: AI
   components:
     - type: Narcolepsy
       timeBetweenIncidents: 300, 600
@@ -30,6 +32,7 @@
   blacklist:
     components:
       - BSSDrone #backmen: bssdrone
+      - StationAI # backmen: AI
   components:
     - type: Pacified
 
@@ -40,6 +43,7 @@
   blacklist:
     components:
       - BSSDrone #backmen: bssdrone
+      - StationAI # backmen: AI
   components:
     - type: Paracusia
       minTimeBetweenIncidents: 0.1
@@ -55,6 +59,7 @@
   blacklist:
     components:
       - BSSDrone #backmen: bssdrone
+      - StationAI # backmen: AI
   components:
     - type: Muted
 
@@ -64,7 +69,8 @@
   description: trait-uncloneable-desc
   blacklist:
     components:
-      - BSSDrone
+      - BSSDrone #backmen: bssdrone
+      - StationAI # backmen: AI
   components:
     - type: Uncloneable
 
@@ -76,6 +82,7 @@
     components:
       - Felinid
       - BSSDrone #backmen: bssdrone
+      - StationAI # backmen: AI
   components:
     - type: WheelchairBound
     - type: LegsParalyzed
@@ -84,5 +91,9 @@
   id: FrontalLisp
   name: trait-frontal-lisp-name
   description: trait-frontal-lisp-desc
+  blacklist:
+    components:
+    - BSSDrone #backmen: bssdrone
+    - StationAI # backmen: AI
   components:
     - type: FrontalLisp

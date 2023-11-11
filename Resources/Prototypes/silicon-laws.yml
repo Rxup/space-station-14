@@ -19,7 +19,6 @@
   id: Golem1
   laws: []
 
-
 - type: siliconLawset
   id: Crewsimov
   laws:

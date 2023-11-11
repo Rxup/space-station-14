@@ -42,3 +42,6 @@
 
 - type: playTimeTracker
   id: JobFreelancerGear
+
+- type: playTimeTracker
+  id: JobSAI
