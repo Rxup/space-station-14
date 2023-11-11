@@ -169,8 +169,20 @@ namespace Content.Server.GameTicking
             // Figure out job restrictions
             var restrictedRoles = new HashSet<string>();
 
-            var getDisallowed = _playTimeTrackings.GetDisallowedJobs(player);
-            restrictedRoles.UnionWith(getDisallowed);
+            // start-backmen
+
+            try
+            {
+                var getDisallowed = _playTimeTrackings.GetDisallowedJobs(player);
+                restrictedRoles.UnionWith(getDisallowed);
+            }
+            catch (InvalidOperationException e)
+            {
+                player.Channel.Disconnect("Play time info is not yet loaded for this player!");
+                return;
+            }
+
+            // end-backmen
 
             var jobBans = _banManager.GetJobBans(player.UserId);
             if (jobBans != null)
