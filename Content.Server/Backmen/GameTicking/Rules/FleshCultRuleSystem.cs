@@ -49,7 +49,7 @@ public sealed class FleshCultRuleSystem : GameRuleSystem<FleshCultRuleComponent>
     [Dependency] private readonly RoundEndSystem _roundEndSystem = default!;
     [Dependency] private readonly StationSystem _stationSystem = default!;
     [Dependency] private readonly MindSystem _mindSystem = default!;
-    [Dependency] private readonly ActorSystem _actorSystem = default!;
+    [Dependency] private readonly ISharedPlayerManager _actorSystem = default!;
     [Dependency] private readonly RoleSystem _roleSystem = default!;
     [Dependency] private readonly SharedJobSystem _jobs = default!;
     [Dependency] private readonly ObjectivesSystem _objectivesSystem = default!;
@@ -376,9 +376,9 @@ public sealed class FleshCultRuleSystem : GameRuleSystem<FleshCultRuleComponent>
 
         DebugTools.AssertNotNull(mind.OwnedEntity);
 
-        if (_actorSystem.TryGetActorFromUserId(traitor.Data.UserId, out _, out var ent))
+        if (_actorSystem.TryGetSessionById(traitor.Data.UserId, out var sess) && sess.AttachedEntity != null && sess.AttachedEntity.Value.IsValid())
         {
-            fleshCultRule.CultistsNames.Add(MetaData(ent!.Value).EntityName);
+            fleshCultRule.CultistsNames.Add(MetaData(sess.AttachedEntity!.Value).EntityName);
         }
 
         if (!HasComp<FleshCultistRoleComponent>(mindId))

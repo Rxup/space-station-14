@@ -20,6 +20,7 @@ namespace Content.Server.Backmen.Administration.Commands
 
         [Dependency] private readonly IAdminLogManager _adminLogger = default!;
         [Dependency] private readonly IEntityManager _entityManager = default!;
+        [Dependency] private readonly ISharedPlayerManager _playerManager = default!;
 
         public string Command => "fixplayerchat";
 
@@ -76,8 +77,7 @@ namespace Content.Server.Backmen.Administration.Commands
 
             // ReSharper disable once InconsistentNaming
             var _mindSystem = _entityManager.System<SharedMindSystem>();
-            // ReSharper disable once InconsistentNaming
-            var _actorSystem = _entityManager.System<ActorSystem>();
+
             var mind = playerCData.Mind ?? _mindSystem.CreateMind(session.UserId, _entityManager.GetComponent<MetaDataComponent>(eUid).EntityName);
 
             //mind.TransferTo(null);
@@ -89,7 +89,7 @@ namespace Content.Server.Backmen.Administration.Commands
                         if (eUid.IsValid() && _entityManager.HasComponent<MetaDataComponent>(eUid))
                         {
                             _mindSystem.TransferTo(mind, eUid);
-                            _actorSystem.Attach(eUid, session, true);
+                            _playerManager.SetAttachedEntity(session, eUid, true);
                         }
                     });
                 }
