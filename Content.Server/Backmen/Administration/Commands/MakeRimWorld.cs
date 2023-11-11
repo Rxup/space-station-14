@@ -127,5 +127,5 @@ public sealed class MakeRimWorld : IConsoleCommand
         biomeGrid.SetTiles(tiles);
     }
 
-    protected const byte ChunkSize = 8;
+    private const byte ChunkSize = 8;
 }

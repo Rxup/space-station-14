@@ -10,14 +10,13 @@ using Content.Shared.Administration.Logs;
 using Content.Shared.Humanoid;
 using Content.Server.Speech;
 using Content.Server.Mind;
-using Content.Server.Silicons.Laws;
 using Content.Shared.Backmen.Psionics.Events;
-using Content.Shared.Backmen.Soul;
 using Content.Shared.Silicons.Laws;
 using Content.Shared.Silicons.Laws.Components;
 using Robust.Shared.Containers;
 using Robust.Shared.Random;
 using Robust.Server.GameObjects;
+using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 
 namespace Content.Server.Backmen.Soul;
@@ -61,10 +60,10 @@ public sealed class GolemSystem : SharedGolemSystem
             return;
 
         // Add the first emag law
-        args.Laws.Add(new SiliconLaw
+        args.Laws.Laws.Add(new SiliconLaw
         {
             LawString = Loc.GetString("law-golem-1", ("name", component.Master)),
-            Order = 0
+            Order = 1
         });
 
         args.Handled = true;

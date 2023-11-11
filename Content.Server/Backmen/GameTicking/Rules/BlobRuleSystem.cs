@@ -11,7 +11,7 @@ using Content.Server.Nuke;
 using Content.Server.Objectives;
 using Content.Server.RoundEnd;
 using Content.Server.Station.Systems;
-using Content.Shared.Blob;
+using Content.Shared.Backmen.Blob;
 using Content.Shared.Objectives.Components;
 using Robust.Shared.Audio;
 

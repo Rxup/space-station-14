@@ -188,6 +188,8 @@
     whitelist:
       tags:
         - ArachneWeb
+  - type: SpiderVampire
+    spawnEgg: FoodEggSpiderVampire
 
 - type: entity
   name: Чёрная вдова
@@ -275,7 +277,7 @@
       40: Critical
       80: Dead
   - type: Item
-    size: 12
+    size: Huge
   - type: Stamina
     critThreshold: 80
   - type: MeleeWeapon
@@ -394,3 +396,6 @@
       description: ghost-role-information-giant-spider-vampire-description
       rules: No antagonist restrictions. Just don't talk in emote; you have telepathic chat.
     - type: GhostTakeoverAvailable
+    - type: SpiderVampire
+      spawnEgg: FoodEggSpiderVampire
+      charges: 10

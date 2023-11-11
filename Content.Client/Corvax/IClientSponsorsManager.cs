@@ -5,5 +5,6 @@ namespace Content.Corvax.Interfaces.Client;
 
 public interface IClientSponsorsManager : ISharedSponsorsManager
 {
-    public List<string> Prototypes { get; }
+    public HashSet<string> Prototypes { get; }
+    public int Tier { get; }
 }

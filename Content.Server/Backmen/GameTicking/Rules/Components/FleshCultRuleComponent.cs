@@ -4,6 +4,7 @@ using Content.Shared.Preferences;
 using Content.Shared.Roles;
 using Robust.Server.Player;
 using Robust.Shared.Audio;
+using Robust.Shared.Player;
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype;
 
 namespace Content.Server.Backmen.GameTicking.Rules.Components;
@@ -60,5 +61,5 @@ public sealed partial class FleshCultRuleComponent : Component
     }
 
     public SelectionState SelectionStatus = SelectionState.WaitingForSpawn;
-    public Dictionary<IPlayerSession, HumanoidCharacterProfile> StartCandidates = new();
+    public Dictionary<ICommonSession, HumanoidCharacterProfile> StartCandidates = new();
 }

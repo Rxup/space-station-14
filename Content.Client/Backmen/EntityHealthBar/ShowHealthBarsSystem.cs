@@ -20,8 +20,8 @@ public sealed class ShowHealthBarsSystem : EntitySystem
 
         SubscribeLocalEvent<ShowHealthBarsComponent, ComponentInit>(OnInit);
         SubscribeLocalEvent<ShowHealthBarsComponent, ComponentRemove>(OnRemove);
-        SubscribeLocalEvent<ShowHealthBarsComponent, PlayerAttachedEvent>(OnPlayerAttached);
-        SubscribeLocalEvent<ShowHealthBarsComponent, PlayerDetachedEvent>(OnPlayerDetached);
+        SubscribeLocalEvent<ShowHealthBarsComponent, LocalPlayerAttachedEvent>(OnPlayerAttached);
+        SubscribeLocalEvent<ShowHealthBarsComponent, LocalPlayerDetachedEvent>(OnPlayerDetached);
         SubscribeLocalEvent<RoundRestartCleanupEvent>(OnRoundRestart);
 
         _overlay = new(EntityManager, _protoMan);
@@ -29,7 +29,7 @@ public sealed class ShowHealthBarsSystem : EntitySystem
 
     private void OnInit(EntityUid uid, ShowHealthBarsComponent component, ComponentInit args)
     {
-        if (_player.LocalPlayer?.ControlledEntity == uid)
+        if (_player.LocalSession?.AttachedEntity == uid)
         {
             ApplyOverlays(component);
         }
@@ -37,13 +37,13 @@ public sealed class ShowHealthBarsSystem : EntitySystem
 
     private void OnRemove(EntityUid uid, ShowHealthBarsComponent component, ComponentRemove args)
     {
-        if (_player.LocalPlayer?.ControlledEntity == uid)
+        if (_player.LocalSession?.AttachedEntity == uid)
         {
             _overlayMan.RemoveOverlay(_overlay);
         }
     }
 
-    private void OnPlayerAttached(EntityUid uid, ShowHealthBarsComponent component, PlayerAttachedEvent args)
+    private void OnPlayerAttached(EntityUid uid, ShowHealthBarsComponent component, LocalPlayerAttachedEvent args)
     {
         ApplyOverlays(component);
     }
@@ -55,7 +55,7 @@ public sealed class ShowHealthBarsSystem : EntitySystem
         _overlay.DamageContainers.AddRange(component.DamageContainers);
     }
 
-    private void OnPlayerDetached(EntityUid uid, ShowHealthBarsComponent component, PlayerDetachedEvent args)
+    private void OnPlayerDetached(EntityUid uid, ShowHealthBarsComponent component, LocalPlayerDetachedEvent args)
     {
         _overlayMan.RemoveOverlay(_overlay);
     }

@@ -43,12 +43,12 @@
     back: ClothingBackpackSecurityFilled
     shoes: ClothingShoesBootsJackSecFilled # Corvax-Resprite
     eyes: ClothingEyesGlassesSecurity
-    head: ClothingHeadHatBeret
+    head: ClothingHeadHatBeretSecurity
     outerClothing: ClothingOuterVestArmorSec # Corvax-Resprite
     id: SeniorOfficerPDA
     ears: ClothingHeadsetSecurity
     belt: ClothingBeltSecurityFilled
-    pocket1: WeaponPistolMk58Nonlethal
+    pocket1: WeaponPistolG22
   innerClothingSkirt: ClothingUniformJumpskirtSeniorOfficer
   satchel: ClothingBackpackSatchelSecurityFilled
   duffelbag: ClothingBackpackDuffelSecurityFilled

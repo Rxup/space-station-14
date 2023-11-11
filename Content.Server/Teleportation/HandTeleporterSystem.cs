@@ -55,7 +55,7 @@ public sealed class HandTeleporterSystem : EntitySystem
                 return;
 
             // start-backmen: protected grid
-            if (HasComp<Content.Shared.Tiles.ProtectedGridComponent>(xform.GridUid))
+            if (HasComp<Content.Shared.Tiles.ProtectedGridComponent>(xform.GridUid) || HasComp<Backmen.Arrivals.ArrivalsProtectGridComponent>(xform.GridUid))
             {
                 return;
             }

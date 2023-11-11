@@ -6,6 +6,7 @@ using Content.Server.Players;
 using Content.Server.Preferences.Managers;
 using Content.Server.Station.Systems;
 using Content.Shared.Administration;
+using Content.Shared.Players;
 using Content.Shared.Preferences;
 using Robust.Server.Player;
 using Robust.Shared.Console;
@@ -26,7 +27,7 @@ public sealed class SpawnCharacterCommand : IConsoleCommand
 
         public void Execute(IConsoleShell shell, string argStr, string[] args)
         {
-            var player = shell.Player as IPlayerSession;
+            var player = shell.Player;
             if (player == null)
             {
                 shell.WriteError(Loc.GetString("shell-only-players-can-run-this-command"));
@@ -79,7 +80,7 @@ public sealed class SpawnCharacterCommand : IConsoleCommand
         {
             if (args.Length == 1)
             {
-                var player = shell.Player as IPlayerSession;
+                var player = shell.Player;
                 if (player == null)
                     return CompletionResult.Empty;
                 var mind = player.ContentData();

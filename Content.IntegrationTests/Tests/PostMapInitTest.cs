@@ -47,8 +47,7 @@ namespace Content.IntegrationTests.Tests
             "CorvaxDelta",
 			"CorvaxSpectrum",
             "CorvaxGate",
-            "CentComm",
-			"CorvaxGelta",
+            "CorvaxSilly",
             // Corvax-End
             "Dev",
             "TestTeg",

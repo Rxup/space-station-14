@@ -30,7 +30,6 @@ public sealed partial class FleshWormSystem : EntitySystem
     [Dependency] private readonly DamageableSystem _damageableSystem = default!;
     [Dependency] private readonly PopupSystem _popup = default!;
     [Dependency] private readonly InventorySystem _inventory = default!;
-    [Dependency] private readonly SharedHandsSystem _handsSystem = default!;
     [Dependency] private readonly SharedCombatModeSystem _combat = default!;
     [Dependency] private readonly ThrowingSystem _throwing = default!;
     [Dependency] private readonly SharedAudioSystem _audioSystem = default!;

@@ -5,7 +5,7 @@
   name: Сумка БСС Дрона
   components:
   - type: Storage
-    capacity: 9999
+    maxTotalWeight: 9999
   - type: Tag
     tags:
     - InnateDontDelete
@@ -61,10 +61,7 @@
   - type: GhostTakeoverAvailable
   - type: SiliconLawBound
   - type: SiliconLawProvider
-    laws:
-    - Crewsimov1
-    - Crewsimov2
-    - Crewsimov3
+    laws: Crewsimov
   - type: MovementSpeedModifier
     baseWalkSpeed : 5
     baseSprintSpeed : 5

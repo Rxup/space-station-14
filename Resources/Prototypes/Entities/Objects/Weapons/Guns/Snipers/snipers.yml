@@ -10,7 +10,7 @@
     - state: base
       map: ["enum.GunVisualLayers.Base"]
   - type: Item
-    size: 50
+    size: Huge
   - type: Clothing
     sprite: Objects/Weapons/Guns/Snipers/bolt_gun_wood.rsi
     quickEquip: false
@@ -42,6 +42,7 @@
   parent: BaseWeaponSniper
   id: WeaponSniperMosin
   description: A weapon for hunting, or endless trench warfare. Uses .30 rifle ammo.
+  noSpawn: true
   components:
   - type: Sprite
     sprite: Objects/Weapons/Guns/Snipers/bolt_gun_wood.rsi
@@ -100,3 +101,5 @@
         - CartridgeAntiMateriel
     capacity: 1
     proto: CartridgeAntiMateriel
+  - type: StaticPrice
+    price: 0

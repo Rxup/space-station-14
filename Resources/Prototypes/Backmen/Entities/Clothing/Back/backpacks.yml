@@ -6,9 +6,7 @@
   components:
   - type: Sprite
     sprite: Backmen/Clothing/Back/Backpacks/orden_backpacks.rsi
-  - type: Storage
-    capacity: 300
-    
+
 - type: entity
   parent: ClothingBackpack
   id: ClothingNinjaSatchel
@@ -17,4 +15,4 @@
   components:
   - type: Sprite
     sprite: Backmen/Clothing/Back/Backpacks/ninja_backpacks.rsi
-    
+
