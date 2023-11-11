@@ -199,6 +199,8 @@
         type: StrippableBoundUserInterface
       - key: enum.GolemUiKey.Key
         type: GolemBoundUserInterface
+      - key: enum.SiliconLawsUiKey.Key
+        type: SiliconLawBoundUserInterface
   - type: Puller
   - type: Speech
     speechSounds: Baritone

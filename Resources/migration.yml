@@ -209,3 +209,6 @@ WeaponSubMachineGunC20r: WeaponSubMachineGunMP7
 WeaponRevolverMateba: WeaponRevolverMatebaNew
 WeaponSniperMosin: WeaponSniperMosinNew
 WeaponShotgunBulldog: WeaponShotgunZauer
+
+# 2023-11-11 Backmen: AI
+ToyAi: SpawnPointStationAI
