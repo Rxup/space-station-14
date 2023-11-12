@@ -58,7 +58,7 @@ public sealed class AIEyePowerSystem : EntitySystem
 
     private void OnPowerChange(EntityUid uid, StationAIComponent component, ref PowerChangedEvent args)
     {
-        if (HasComp<AIEyeComponent>(uid))
+        if (HasComp<AIEyeComponent>(uid) || TerminatingOrDeleted(uid))
         {
             return;
         }
