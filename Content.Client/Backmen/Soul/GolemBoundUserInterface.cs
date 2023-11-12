@@ -30,6 +30,8 @@ public sealed class GolemBoundUserInterface : BoundUserInterface
         _window.OnMasterEntered += OnMasterChanged;
         _window.OnInstallButtonPressed += _ =>
         {
+            SendMessage(new GolemNameChangedMessage(_window.GetCurrentName()));
+            SendMessage(new GolemMasterNameChangedMessage(_window.GetCurrentMaster()));
             SendMessage(new GolemInstallRequestMessage());
         };
     }

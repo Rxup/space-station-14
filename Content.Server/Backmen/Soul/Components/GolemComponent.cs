@@ -7,6 +7,7 @@ namespace Content.Server.Backmen.Soul;
 public sealed partial class GolemComponent : SharedGolemComponent
 {
     // we use these to config stuff via UI before installation
+    [ViewVariables(VVAccess.ReadWrite)]
     public string? Master;
     public string? GolemName;
     public EntityUid? PotentialCrystal;

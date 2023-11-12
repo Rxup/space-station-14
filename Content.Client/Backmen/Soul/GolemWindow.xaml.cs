@@ -22,6 +22,16 @@ public sealed partial class GolemWindow : DefaultWindow
         MasterLineEdit.OnTextEntered += e => OnMasterEntered?.Invoke(e.Text);
     }
 
+    public string GetCurrentName()
+    {
+        return NameLineEdit.Text;
+    }
+
+    public string GetCurrentMaster()
+    {
+        return MasterLineEdit.Text;
+    }
+
     public void SetCurrentName(string name)
     {
         NameLineEdit.Text = name;
