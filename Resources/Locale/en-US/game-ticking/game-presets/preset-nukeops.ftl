@@ -32,3 +32,6 @@ nukeops-no-one-ready = No players readied up! Can't start Nukeops.
 nukeops-role-commander = Commander
 nukeops-role-agent = Agent
 nukeops-role-operator = Operator
+
+
+nukeops-cond-nukeexplodedoncentcomlocation = The nuclear operatives managed to blow up the Central Command.
