@@ -1,5 +1,6 @@
 using Content.Server.Backmen.Abilities.Psionics;
 using Content.Shared.Actions;
+using Content.Shared.Backmen.EntityHealthBar;
 using Robust.Shared.Prototypes;
 using Content.Shared.Backmen.StationAI.Events;
 
@@ -24,12 +25,11 @@ public sealed class StationAISystem : EntitySystem
 
     private void OnTerminated(Entity<StationAIComponent> ent, ref EntityTerminatingEvent args)
     {
-        if (!TryComp<MindSwappedComponent>(ent, out var mindSwappedComponent))
-            return;
-        if (mindSwappedComponent.OriginalEntity.Valid)
+        if (!ent.Comp.ActiveEye.IsValid())
         {
-            QueueDel(mindSwappedComponent.OriginalEntity);
+            return;
         }
+        QueueDel(ent.Comp.ActiveEye);
     }
 
     private void OnStartup(EntityUid uid, StationAIComponent component, ComponentStartup args)
@@ -44,7 +44,18 @@ public sealed class StationAISystem : EntitySystem
 
     private void OnHealthOverlayEvent(AIHealthOverlayEvent args)
     {
-        RaiseNetworkEvent(new NetworkedAIHealthOverlayEvent(GetNetEntity(args.Performer)));
+        if (HasComp<ShowHealthBarsComponent>(args.Performer))
+        {
+            RemCompDeferred<ShowHealthBarsComponent>(args.Performer);
+        }
+        else
+        {
+            var comp = EnsureComp<ShowHealthBarsComponent>(args.Performer);
+            comp.DamageContainers.Clear();
+            comp.DamageContainers.Add("Biological");
+            comp.DamageContainers.Add("HalfSpirit");
+            Dirty(args.Performer, comp);
+        }
         args.Handled = true;
     }
 }

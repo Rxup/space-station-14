@@ -110,6 +110,17 @@
   name: AI Core
   description: Host for an AI. Likely more A than I.
   components:
+    - type: GenericVisualizer
+      visuals:
+        enum.PowerDeviceVisuals.Powered:
+          enum.PowerDeviceVisualLayers.Powered:
+            True: { visible: true }
+            False: { visible: false }
+    - type: ExtensionCableReceiver
+    - type: LitOnPowered
+    - type: ApcPowerReceiver
+      powerLoad: 1000
+    - type: ActivatableUIRequiresPower
     - type: AIEyePower
     # Can't move
     - type: MovementSpeedModifier
@@ -147,14 +158,6 @@
       radius: 3
       energy: 1.25
       color: "#9dc5c9"
-    - type: PowerConsumer
-      voltage: Medium
-      drawRate: 1000
-    - type: NodeContainer
-      examinable: true
-      nodes:
-        input: !type:CableDeviceNode
-          nodeGroupID: MVPower
     - type: PowerNetworkBattery
       maxChargeRate: 1000
       canCharge: true
@@ -178,8 +181,7 @@
       drawdepth: Mobs
       noRot: true
       layers:
-        - map: ["enum.DamageStateVisualLayers.Base"]
-          state: 4
+        - state: 4
         - map: ["enum.PowerDeviceVisualLayers.Powered"]
           state: blue
           shader: unshaded

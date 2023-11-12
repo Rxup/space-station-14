@@ -27,6 +27,12 @@
         - GhostImpassable
   - type: Eye
     drawFov: false
+    visMask:
+      - Normal
+      - Ghost
+      - PsionicInvisibility
+      - DarkSwapInvisibility
+      - AIEye
   - type: Input
     context: "ghost"
   - type: Examiner
