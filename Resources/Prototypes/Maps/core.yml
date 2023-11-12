@@ -67,9 +67,10 @@
             Musician: [ 1, 1 ]
             Boxer: [ 2, 2 ]
             Reporter: [ 1, 2 ]
-            Brigmedic: [ 0, 1 ] # backmen-Brigmedic
-            BKBPLATech: [0, 3] # backmen-BPLA-Silicons
-            BKBPLAMED: [0, 3] # backmen-BPLAMED-Silicons
-            Deliveryman: [ 0, 1 ]
-            Prisoner: [ 2, 3]
+            # backmen
+            Brigmedic: [ 1, 1 ] # backmen-Brigmedic
+            BKBPLATech: [3, 3] # backmen-BPLA-Silicons
+            BKBPLAMED: [3, 3] # backmen-BPLAMED-Silicons
+            Deliveryman: [ 1, 1 ]
+            Prisoner: [ 2, 2]
             SAI: [1, 1] # backmen-SAI
