@@ -119,7 +119,7 @@
     - type: ExtensionCableReceiver
     - type: LitOnPowered
     - type: ApcPowerReceiver
-      powerLoad: 1000
+      powerLoad: 15000
     - type: ActivatableUIRequiresPower
     - type: AIEyePower
     # Can't move
