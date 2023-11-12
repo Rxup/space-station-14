@@ -542,7 +542,7 @@
       gun_chamber: !type:ContainerSlot
 
 - type: entity
-  parent: BaseWeaponPistol
+  parent: WeaponPistolG22
   id: WeaponPistolG22NonLethal
   suffix: Пистолет [Non-lethal]
   components:
@@ -1167,7 +1167,7 @@
     delay: 0.5
 
 - type: entity
-  parent: BaseWeaponSubMachineGun
+  parent: WeaponSubMachineGunMP5
   id: WeaponSubMachineGunMP5NonLethal
   suffix: Пистолет-пулемёт [Non Lethal]
   components:
@@ -1762,7 +1762,7 @@
 
 - type: entity
   name: XM1014
-  parent: BaseWeaponShotgun
+  parent: WeaponShotgun39
   id: WeaponShotgun39NonLethal
   suffix: Дробовик [Non Lethal]
   components:
