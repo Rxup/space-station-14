@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System.Collections;
+using System.Linq;
 using System.Text.Json;
 using Content.Server.Administration.Managers;
 using Content.Server.Backmen.Administration.Bwoink.Gpt.Models;
@@ -10,7 +11,6 @@ using Content.Shared.Administration;
 using Content.Shared.Humanoid;
 using Content.Shared.Mind;
 using Content.Shared.Mobs.Systems;
-using Content.Shared.Roles.Jobs;
 using Robust.Server.Player;
 
 namespace Content.Server.Backmen.Administration.Bwoink.Gpt;
@@ -24,6 +24,7 @@ public sealed class GptCommands : EntitySystem
     [Dependency] private readonly MobStateSystem _mobStateSystem = default!;
     [Dependency] private readonly IAdminManager _adminManager = default!;
     [Dependency] private readonly RoleSystem _roleSystem = default!;
+    [Dependency] private readonly IEntityManager _entityManager = default!;
 
     public override void Initialize()
     {
@@ -38,7 +39,7 @@ public sealed class GptCommands : EntitySystem
             parameters = new
             {
                 @type = "object",
-                properties = new {}
+                properties = new { }
             }
         });
         _gptAhelpSystem.AddFunction(new
@@ -48,7 +49,7 @@ public sealed class GptCommands : EntitySystem
             parameters = new
             {
                 @type = "object",
-                properties = new {}
+                properties = new { }
             }
         });
         _gptAhelpSystem.AddFunction(new
@@ -58,7 +59,7 @@ public sealed class GptCommands : EntitySystem
             parameters = new
             {
                 @type = "object",
-                properties = new {}
+                properties = new { }
             }
         });
         _gptAhelpSystem.AddFunction(new
@@ -68,7 +69,7 @@ public sealed class GptCommands : EntitySystem
             parameters = new
             {
                 @type = "object",
-                properties = new {}
+                properties = new { }
             }
         });
         _gptAhelpSystem.AddFunction(new
@@ -78,7 +79,7 @@ public sealed class GptCommands : EntitySystem
             parameters = new
             {
                 @type = "object",
-                properties = new {}
+                properties = new { }
             }
         });
         _gptAhelpSystem.AddFunction(new
@@ -93,10 +94,33 @@ public sealed class GptCommands : EntitySystem
                     character = new
                     {
                         @type = "string",
-                        description = "имя персанажа о котором спрашивают или мой текущий персонаж, например имя персонажа"
+                        description =
+                            "имя персанажа о котором спрашивают или мой текущий персонаж, например имя персонажа"
                     }
                 },
-                required = new []{ "character" }
+                required = new[] { "character" }
+            }
+        });
+
+        _gptAhelpSystem.AddFunction(new
+        {
+            name = "get_current_gamemode",
+            description = "получить текущий игровой режим",
+            parameters = new
+            {
+                @type = "object",
+                properties = new { }
+            }
+        });
+
+        _gptAhelpSystem.AddFunction(new
+        {
+            name = "get_active_gamerules",
+            description = "получить все активные события",
+            parameters = new
+            {
+                @type = "object",
+                properties = new { }
             }
         });
     }
@@ -112,17 +136,21 @@ public sealed class GptCommands : EntitySystem
         switch (fnName)
         {
             case "get_current_round":
-                ev.History.Messages.Add(new GptMessageFunction(fnName, new { round = _gameTicker.RoundId, state = _gameTicker.RunLevel.ToString() }));
+                ev.History.Messages.Add(new GptMessageFunction(fnName,
+                    new { round = _gameTicker.RoundId, state = _gameTicker.RunLevel.ToString() }));
                 ev.Handled = true;
                 break;
+
             case "get_current_round_time":
                 ev.History.Messages.Add(new GptMessageFunction(fnName, new { time = _gameTicker.RoundDuration() }));
                 ev.Handled = true;
                 break;
+
             case PlayerInfoFn:
                 GetPlayerInfo(ev);
                 ev.Handled = true;
                 break;
+
             case "get_current_map":
             {
                 var query =
@@ -140,6 +168,7 @@ public sealed class GptCommands : EntitySystem
                 ev.Handled = true;
                 break;
             }
+
             case "get_current_admins":
             {
                 var admins = _adminManager.ActiveAdmins
@@ -149,9 +178,43 @@ public sealed class GptCommands : EntitySystem
                 ev.Handled = true;
                 break;
             }
+
             case PlayerAntagInfoFn:
             {
                 IsPlayerAntag(ev);
+                ev.Handled = true;
+                break;
+            }
+
+            case "get_current_gamemode":
+            {
+                if (_gameTicker.CurrentPreset == null)
+                {
+                    return;
+                }
+
+                var gamemode = _gameTicker.CurrentPreset.Alias;
+
+                ev.History.Messages.Add(new GptMessageFunction(fnName, new { gamemode }));
+
+                ev.Handled = true;
+                break;
+            }
+
+            case "get_active_gamerules":
+            {
+                var activeGameRules = _gameTicker.GetActiveGameRules();
+                var entityUids = activeGameRules as EntityUid[] ?? activeGameRules.ToArray();
+                var rulesNames = new string[entityUids.Length];
+
+                foreach (var uid in entityUids)
+                {
+                    var comp = _entityManager.GetEntityData(_entityManager.GetNetEntity(uid));
+                    ((IList) rulesNames).Add(comp.Item2.EntityName);
+                }
+
+                ev.History.Messages.Add(new GptMessageFunction(fnName, new { rulesNames }));
+
                 ev.Handled = true;
                 break;
             }
@@ -164,7 +227,8 @@ public sealed class GptCommands : EntitySystem
 
     private void IsPlayerAntag(EventGptFunctionCall ev)
     {
-        var character = JsonSerializer.Deserialize<GetIsAntagArgs>(ev.Msg.message.function_call?.arguments ?? "{}")?.character;
+        var character = JsonSerializer.Deserialize<GetIsAntagArgs>(ev.Msg.message.function_call?.arguments ?? "{}")
+            ?.character;
         if (string.IsNullOrWhiteSpace(character))
         {
             ev.History.Messages.Add(new GptMessageFunction(PlayerAntagInfoFn));
@@ -184,11 +248,13 @@ public sealed class GptCommands : EntitySystem
             }
         }
 
-        ev.History.Messages.Add(new GptMessageFunction(PlayerAntagInfoFn, new { matchNames = antag, isAntag = antag.Count > 0 }));
+        ev.History.Messages.Add(new GptMessageFunction(PlayerAntagInfoFn,
+            new { matchNames = antag, isAntag = antag.Count > 0 }));
     }
 
 
     private const string PlayerInfoFn = "get_current_char";
+
     private void GetPlayerInfo(EventGptFunctionCall ev)
     {
         if (!_playerManager.TryGetSessionById(ev.UserId, out var playerSession))
@@ -222,7 +288,8 @@ public sealed class GptCommands : EntitySystem
             info["desc"] = md.EntityDescription;
         }
 
-        if (isHaveAttachedEntity && TryComp<HumanoidAppearanceComponent>(attachedEntity, out var humanoidAppearanceComponent))
+        if (isHaveAttachedEntity &&
+            TryComp<HumanoidAppearanceComponent>(attachedEntity, out var humanoidAppearanceComponent))
         {
             info["age"] = humanoidAppearanceComponent.Age;
             info["gender"] = humanoidAppearanceComponent.Gender.ToString();
