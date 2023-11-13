@@ -112,7 +112,7 @@
     id: CargoIDCard
     pocket1: SurvivalKnife
     pocket2: FlashlightLantern
-  innerclothingskirt: ClothingUniformJumpskirtCargo
+  innerClothingSkirt: ClothingUniformJumpskirtCargo
 
 #--------------------------------------------------------------------
 
@@ -146,7 +146,7 @@
     belt: ClothingBeltMedicalFilled
     pocket1: FlashlightLantern
     pocket2: ScalpelCool
-  innerclothingskirt: ClothingUniformJumpskirtMedicalDoctor
+  innerClothingSkirt: ClothingUniformJumpskirtMedicalDoctor
 
 #--------------------------------------------------------------------
 
@@ -810,19 +810,7 @@
 
 #------------------------------------
 
-- type: entity
-  noSpawn: true
-  parent: ClothingBeltStorageBase
-  id: ClothingBeltAssaultMTF
-  name: штурмовой пояс
-  description: Тактический штурмовой пояс.
-  components:
-  - type: Sprite
-    sprite: Clothing/Belt/assault.rsi
-  - type: Clothing
-    sprite: Clothing/Belt/assault.rsi
-  - type: Storage
-    capacity: 60
+
 
 #------------------------------------
 
@@ -1458,75 +1446,6 @@
     - names_last_male
   - type: RandomHumanoidAppearance
     randomizeName: false
-
-- type: entity
-  name: Морпех ОПЗ
-  parent: BaseMobHuman
-  id: MobPMCMarineEUG
-  suffix: AI
-  components:
-    - type: NpcFactionMember
-      factions:
-        - NanoTrasen
-    - type: Loadout
-      prototypes:
-        - MarineGearAI
-    - type: InputMover
-    - type: MobMover
-    - type: HTN
-      rootTask:
-        task: SimpleHumanoidHostileCompound
-    - type: InnateTool
-      tools:
-        - id: WeaponRifleM16A4AI
-
-- type: entity
-  noSpawn: true
-  parent: WeaponRifleM16A4
-  id: WeaponRifleM16A4AI
-  components:
-  - type: ChamberMagazineAmmoProvider
-    boltClosed: null
-  - type: ItemSlots
-    slots:
-      gun_magazine:
-        name: Magazine
-        startingItem: MagazineRifleAI
-        insertSound: /Uploaded/base/ogg/Guns64/Rifles/ak47_reload.ogg
-        ejectSound: /Uploaded/base/ogg/Guns64/Rifles/ak47_unload.ogg
-        priority: 2
-        whitelist:
-          tags:
-            - MagazineRifle
-      gun_chamber:
-        name: Chamber
-        startingItem: CartridgeCaselessRifle
-        priority: 1
-        whitelist:
-          tags:
-            - CartridgeCaselessRifle
-
-- type: entity
-  id: MagazineRifleAI
-  noSpawn: true
-  name: "magazine (.30 rifle)"
-  parent: BaseMagazineRifle
-  components:
-  - type: BallisticAmmoProvider
-    proto: CartridgeCaselessRifle
-    capacity: 1000
-
-- type: startingGear
-  id: MarineGearAI
-  equipment:
-    jumpsuit: ClothingUniformJumpsuitEgov
-    shoes: ClothingShoesBootsCombatFilled
-    eyes: ClothingEyesGlassesSunglasses
-    head: ClothingHeadHatEgovCap
-    outerClothing: ClothingOuterNavyVest
-    gloves: ClothingHandsGlovesCombat
-    id: idcoinMarine
-    ears: ClothingHeadsetEarthGov
 
 - type: entity
   name: Солдат Синдиката
