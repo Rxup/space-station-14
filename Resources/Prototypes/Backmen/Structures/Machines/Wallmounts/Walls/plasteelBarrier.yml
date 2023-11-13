@@ -1,0 +1,77 @@
+- type: entity
+  name: Plasteel barrier
+  id: PlasteelBarrier
+  description: A deployable barrier. Swipe your ID card to lock/unlock it.
+  parent: BaseStructure
+  components:
+  - type: InteractionOutline
+  - type: Sprite
+    sprite: Backmen/Structures/Walls/steelbarricade.rsi
+    layers:
+    - state: idle
+      map: ["enum.DoorVisualLayers.Base"]
+  - type: AnimationPlayer
+  - type: Physics
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.49,-0.49,0.49,-0.25"
+        density: 1000
+        mask:
+        - TableMask
+        layer:
+        - TableLayer
+  - type: Door
+    openSpriteState: idle
+    closedSpriteState: deployed
+    canPry: false
+    occludes: false
+    changeAirtight: false
+    bumpOpen: false
+    clickOpen: true
+    canCrush: false
+    closeTimeOne: 0
+    closeTimeTwo: 0
+    openTimeOne: 0
+    openTimeTwo: 0
+    openingAnimationTime: 0
+    closingAnimationTime: 0
+    openSound:
+      path: /Audio/Nyanotrasen/Machines/washer_open.ogg
+    closeSound:
+      path: /Audio/Nyanotrasen/Machines/washer_open.ogg
+  - type: Appearance
+    fixVacuum: true
+  - type: Damageable
+    damageContainer: Inorganic
+    damageModifierSet: Metallic
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 300
+      behaviors:
+        - !type:DoActsBehavior
+          acts: [ "Destruction" ]
+    - trigger:
+        !type:DamageTrigger
+        damage: 150
+      behaviors:
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          SheetPlasteel1:
+            min: 2
+            max: 5
+      - !type:PlaySoundBehavior
+        sound:
+          path: /Audio/Effects/metalbreak.ogg
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+  - type: AccessReader
+    access: [["Security"]]
+  - type: Climbable
+  - type: Construction
+    graph: PlasteelBarrier
+    node: plasteelBarrier

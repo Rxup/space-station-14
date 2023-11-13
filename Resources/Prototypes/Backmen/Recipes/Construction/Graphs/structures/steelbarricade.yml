@@ -1,0 +1,27 @@
+- type: constructionGraph
+  id: Steelbarricade
+  start: start
+  graph:
+    - node: start
+      edges:
+        - to: steelbarricade
+          completed:
+            - !type:SnapToGrid
+              southRotation: true
+          steps:
+            - material: Steel
+              amount: 5
+              doAfter: 5
+
+    - node: steelbarricade
+      entity: Steelbarricade
+      edges:
+        - to: start
+          completed:
+            - !type:SpawnPrototype
+              prototype: SheetSteel1
+              amount: 5
+            - !type:DeleteEntity
+          steps:
+            - tool: Screwing
+              doAfter: 2

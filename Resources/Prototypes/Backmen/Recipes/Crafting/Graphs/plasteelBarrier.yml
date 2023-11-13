@@ -1,0 +1,17 @@
+
+- type: construction
+  name: Plasteel barrier
+  id: PlasteelBarrier
+  graph: PlasteelBarrier
+  startNode: start
+  targetNode: plasteelBarrier
+  category: construction-category-structures
+  description: Basic plasteel barricade meant to protect idiots like you from falling.
+  icon:
+    sprite: Backmen/Structures/Walls/steelbarricade.rsi
+    state: deployed
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+  - !type:TileNotBlocked

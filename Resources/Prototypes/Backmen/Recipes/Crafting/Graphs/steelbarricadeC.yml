@@ -1,0 +1,16 @@
+- type: construction
+  name: Steel barricade
+  id: Steelbarricade
+  graph: Steelbarricade
+  startNode: start
+  targetNode: steelbarricade
+  category: construction-category-structures
+  description: Basic Steel barricade meant to protect idiots like you from falling.
+  icon:
+    sprite: Backmen/Structures/Walls/steelbarricade.rsi
+    state: metal
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+  - !type:TileNotBlocked
