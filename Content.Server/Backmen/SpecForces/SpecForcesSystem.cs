@@ -178,18 +178,25 @@ public sealed class SpecForcesSystem : EntitySystem
 
         if (spawns.Count == 0)
         {
-            spawns.Add(EntityManager.GetComponent<TransformComponent>(shuttle).Coordinates);
+            spawns.Add(Transform(shuttle).Coordinates);
         }
 
         // TODO: Cvar
         var countExtra = _playerManager.PlayerCount switch
         {
-            >= 40 => 4,
-            >= 30 => 3,
-            >= 20 => 2,
-            >= 10 => 1,
-            _ => 0
+            >= 60 => 7,
+            >= 50 => 6,
+            >= 40 => 5,
+            >= 30 => 4,
+            >= 20 => 3,
+            >= 10 => 2,
+            _ => 1
         };
+
+        if (_random.Prob(0.3f))
+        {
+            SpawnEntity(SFOfficer, _random.Pick(spawns));
+        }
 
         switch (ev)
         {
@@ -220,7 +227,8 @@ public sealed class SpecForcesSystem : EntitySystem
 
                 break;
             case SpecForcesType.RXBZZ:
-                SpawnEntity(countExtra == 0 ? Rxbzz : RxbzzLeader, _random.Pick(spawns));
+                SpawnEntity(RxbzzLeader, _random.Pick(spawns));
+                SpawnEntity(RxbzzFlamer, _random.Pick(spawns));
                 while (countExtra > 0)
                 {
                     if (countExtra-- > 0)
@@ -332,6 +340,7 @@ public sealed class SpecForcesSystem : EntitySystem
     }
 
     [ValidatePrototypeId<EntityPrototype>] private const string SpawnMarker = "MarkerSpecforce";
+    [ValidatePrototypeId<EntityPrototype>] private const string SFOfficer = "SpawnMobHumanSFOfficer";
 
     private const string EtrShuttlePath = "Maps/Shuttles/dart.yml";
     [ValidatePrototypeId<EntityPrototype>] private const string ErtLeader = "SpawnMobHumanERTLeaderEVAV2_1";
@@ -341,8 +350,9 @@ public sealed class SpecForcesSystem : EntitySystem
     [ValidatePrototypeId<EntityPrototype>] private const string ErtMedical = "SpawnMobHumanERTMedicalEVAV2_1";
 
     private const string RxbzzShuttlePath = "Maps/Backmen/Grids/NT-CC-SRV-013.yml";
-    [ValidatePrototypeId<EntityPrototype>] private const string RxbzzLeader = "SpawnMobHumanSFOfficer";
+    [ValidatePrototypeId<EntityPrototype>] private const string RxbzzLeader = "MobHumanRXBZZLeader";
     [ValidatePrototypeId<EntityPrototype>] private const string Rxbzz = "SpawnMobHumanRXBZZ";
+    [ValidatePrototypeId<EntityPrototype>] private const string RxbzzFlamer = "MobHumanRXBZZFlamer";
 
     private const string SpestnazShuttlePath = "Maps/Backmen/Grids/Invincible.yml";
     [ValidatePrototypeId<EntityPrototype>] private const string SpestnazOfficer = "SpawnMobHumanSpecialReAgentCOM";
