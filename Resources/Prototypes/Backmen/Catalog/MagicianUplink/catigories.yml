@@ -1,0 +1,9 @@
+- type: storeCategory
+  id: MagicalUplinkMagic
+  name: магия
+  priority: 0
+
+- type: storeCategory
+  id: MagicalUplinkUtils
+  name: инструментарий
+  priority: 1
