@@ -43,11 +43,22 @@
     - key: enum.CommunicationsConsoleUiKey.Key
       type: CommunicationsConsoleBoundUserInterface
   - type: Computer
-    board: CommsComputerCircuitboard
+    board: CommsComputerCircuitboardCentComm
   - type: PointLight
     radius: 1.5
     energy: 1.6
     color: "#43ccb5"
+
+- type: entity
+  parent: BaseComputerCircuitboard
+  id: CommsComputerCircuitboardCentComm
+  name: communications computer board
+  description: A computer printed circuit board for a communications console.
+  components:
+    - type: Sprite
+      state: cpu_command
+    - type: ComputerBoard
+      prototype: ComputerCommssCentComm
 
 - type: entity
   parent: EncryptionKey
