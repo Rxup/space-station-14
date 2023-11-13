@@ -462,6 +462,8 @@
   suffix: МТФ Egg
   id: MobHumanERTLeaderReadyV3
   components:
+  - type: SpecForce
+    actionBssActionName: ActionCentcomFtlAction
   - type: Loadout
     prototypes: [ERTLeaderGearEggV3]
 
@@ -473,6 +475,8 @@
   suffix: МТФ Egg
   id: MobHumanERTEngineerReadyV3
   components:
+  - type: SpecForce
+    actionBssActionName: ActionCentcomFtlAction
   - type: Loadout
     prototypes: [ERTEngineerGearEggV3]
 
@@ -484,6 +488,8 @@
   suffix: МТФ Egg
   id: MobHumanERTSecurityReadyV3
   components:
+  - type: SpecForce
+    actionBssActionName: ActionCentcomFtlAction
   - type: Loadout
     prototypes: [ERTSecurityGearEggV3]
 
@@ -495,6 +501,8 @@
   suffix: МТФ Egg
   id: MobHumanERTMedicalReadyV3
   components:
+  - type: SpecForce
+    actionBssActionName: ActionCentcomFtlAction
   - type: Loadout
     prototypes: [ERTMedicalGearEggV3]
 
@@ -506,6 +514,8 @@
   suffix: МТФ Egg
   id: MobHumanERTJunitorEggV3
   components:
+  - type: SpecForce
+    actionBssActionName: ActionCentcomFtlAction
   - type: Loadout
     prototypes: [ERTJanitorGearEggV3]
 
@@ -668,6 +678,8 @@
       - !type:DepartmentTimeRequirement
         department: Command
         time: 9000
+  - type: SpecForce
+    actionBssActionName: ActionCentcomFtlAction
   - type: Loadout
     prototypes: [ERTLeaderGearEVAV3]
   - type: RandomMetadata
@@ -712,6 +724,8 @@
       - !type:DepartmentTimeRequirement
         department: Engineering
         time: 9000
+  - type: SpecForce
+    actionBssActionName: ActionCentcomFtlAction
   - type: Loadout
     prototypes: [ERTEngineerGearEVAV3]
   - type: RandomMetadata
@@ -753,6 +767,8 @@
         time: 16000
       - !type:OverallPlaytimeRequirement
         time: 16000
+  - type: SpecForce
+    actionBssActionName: ActionCentcomFtlAction
   - type: Loadout
     prototypes: [ERTSecurityGearEVAV3]
   - type: RandomMetadata
@@ -797,6 +813,8 @@
       - !type:DepartmentTimeRequirement
         department: Medical
         time: 9000
+  - type: SpecForce
+    actionBssActionName: ActionCentcomFtlAction
   - type: Loadout
     prototypes: [ERTMedicalGearEVAV3]
   - type: RandomMetadata
@@ -841,6 +859,8 @@
       - !type:RoleTimeRequirement
         role: JobJanitor
         time: 1500
+  - type: SpecForce
+    actionBssActionName: ActionCentcomFtlAction
   - type: Loadout
     prototypes: [ERTJanitorGearEVAV3]
   - type: RandomMetadata
@@ -1348,6 +1368,8 @@
       - !type:DepartmentTimeRequirement
         department: Command
         time: 18000
+  - type: SpecForce
+    actionBssActionName: ActionCentcomFtlAction
   - type: Loadout
     prototypes: [ERTLeaderGearEVAV2_1]
   - type: RandomMetadata
@@ -1393,6 +1415,8 @@
       - !type:DepartmentTimeRequirement
         department: Engineering
         time: 18000
+  - type: SpecForce
+    actionBssActionName: ActionCentcomFtlAction
   - type: Loadout
     prototypes: [ERTEngineerGearEVAV2_1]
   - type: RandomMetadata
@@ -1434,6 +1458,8 @@
         time: 36000
       - !type:OverallPlaytimeRequirement
         time: 36000
+  - type: SpecForce
+    actionBssActionName: ActionCentcomFtlAction
   - type: Loadout
     prototypes: [ERTSecurityGearEVAV2_1]
   - type: RandomMetadata
@@ -1478,6 +1504,8 @@
       - !type:DepartmentTimeRequirement
         department: Medical
         time: 18000
+  - type: SpecForce
+    actionBssActionName: ActionCentcomFtlAction
   - type: Loadout
     prototypes: [ERTMedicalGearEVAV2_1]
   - type: RandomMetadata
@@ -1522,6 +1550,8 @@
       - !type:RoleTimeRequirement
         role: JobJanitor
         time: 3000
+  - type: SpecForce
+    actionBssActionName: ActionCentcomFtlAction
   - type: Loadout
     prototypes: [ERTJanitorGearEVAV2_1]
   - type: RandomMetadata
@@ -1848,6 +1878,8 @@
         time: 18000
       - !type:OverallPlaytimeRequirement
         time: 36000
+  - type: SpecForce
+    actionBssActionName: ActionCentcomFtlAction
   - type: Loadout
     prototypes: [SpecialForceGearFull]
   - type: RandomMetadata
@@ -1887,6 +1919,8 @@
       - !type:DepartmentTimeRequirement
         department: Command
         time: 18000
+  - type: SpecForce
+    actionBssActionName: ActionCentcomFtlAction
   - type: Loadout
     prototypes: [SpecialForceGearCommanderFull]
   - type: RandomMetadata
@@ -1906,6 +1940,8 @@
   description: Жалкая кучка спецназа.
   id: MobHumanSpecialReAgentInvisible
   components:
+  - type: SpecForce
+    actionBssActionName: ActionCentcomFtlAction
   - type: Loadout
     prototypes: [SpecialForceAgentGearFull]
   - type: Stealth
@@ -1951,6 +1987,8 @@
       - !type:DepartmentTimeRequirement
         department: Command
         time: 18000
+  - type: SpecForce
+    actionBssActionName: ActionCentcomFtlAction
   - type: Loadout
     prototypes: [SFOForma]
   - type: RandomHumanoidAppearance
@@ -2211,6 +2249,8 @@
         time: 18000
       - !type:OverallPlaytimeRequirement
         time: 36000
+  - type: SpecForce
+    actionBssActionName: ActionCentcomFtlAction
   - type: Loadout
     prototypes: [RXBZZ]
   - type: RandomMetadata
@@ -2250,6 +2290,8 @@
         time: 18000
       - !type:OverallPlaytimeRequirement
         time: 36000
+  - type: SpecForce
+    actionBssActionName: ActionCentcomFtlAction
   - type: Loadout
     prototypes: [RXBZZFlamer]
   - type: RandomMetadata
@@ -2292,6 +2334,8 @@
       - !type:DepartmentTimeRequirement
         department: Command
         time: 18000
+  - type: SpecForce
+    actionBssActionName: ActionCentcomFtlAction
   - type: Loadout
     prototypes: [RXBZZLeader]
   - type: RandomMetadata
