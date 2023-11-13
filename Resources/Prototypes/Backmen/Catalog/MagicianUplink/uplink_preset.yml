@@ -1,0 +1,8 @@
+- type: storePreset
+  id: StorePresetMagicalUplink
+  storeName: Шар желаний
+  categories:
+  - MagicalUplinkMagic
+  - MagicalUplinkUtils
+  currencyWhitelist:
+  - UplinkMagicMana
