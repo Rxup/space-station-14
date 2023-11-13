@@ -69,7 +69,7 @@
   - type: EncryptionKey
     channels:
     - UEG
-    defaultChannel: EarthGov
+    defaultChannel: UEG
   - type: Sprite
     layers:
     - state: crypt_blue
@@ -465,13 +465,13 @@
     - neck
   - type: Item
     sprite: Objects/Weapons/Melee/combat_knife.rsi
-    size: 2
+    size: Small
   - type: ItemCooldown
   - type: MeleeWeapon
     damage:
       types:
         Slash: 20
-    hitSound:
+    soundHit:
       path: /Audio/Weapons/bladeslice.ogg
   - type: Tool
     qualities:
@@ -501,7 +501,7 @@
         Piercing: 0.95
         Heat: 0.95
   - type: Thieving
-    stealTime: 1
+    stripTimeReduction: 1
     stealthy: true
   - type: GloveHeatResistance
     heatResistance: 1400
@@ -940,6 +940,15 @@
   exclaimSound:
     path: /Audio/Corvax/Effects/Footsteps/say/off3.ogg
 
+- type: speechSounds
+  id: Combine
+  saySound:
+    path: /Audio/Corvax/Effects/Footsteps/off2.ogg
+  askSound:
+    path: /Audio/Corvax/Effects/Footsteps/off3.ogg
+  exclaimSound:
+    path: /Audio/Corvax/Effects/Footsteps/off1.ogg
+
 - type: soundCollection
   id: Metrocop
   files:
@@ -961,7 +970,7 @@
     speechSounds: Combine
     soundCooldownTime: 0.1
   - type: Stamina
-    excess: 250
+    critThreshold: 250
   - type: MobState
   - type: MobThresholds
     thresholds:
@@ -984,10 +993,10 @@
 - type: soundCollection
   id: SoldierDeath
   files:
-  - /Audio/Corvax/Effects/Footsteps/combinedie1.ogg
-  - /Audio/Corvax/Effects/Footsteps/combinedie2.ogg
-  - /Audio/Corvax/Effects/Footsteps/combinedie3.ogg
-  - /Audio/Corvax/Effects/Footsteps/combinedie4.ogg
+  - /Audio/Corvax/Effects/Footsteps/combine/die1.ogg
+  - /Audio/Corvax/Effects/Footsteps/combine/die2.ogg
+  - /Audio/Corvax/Effects/Footsteps/combine/die3.ogg
+  - /Audio/Corvax/Effects/Footsteps/combine/die4.ogg
 
 - type: dataset
   id: NameSpets
@@ -1257,7 +1266,7 @@
     slots:
       - Pocket
   - type: Item
-    size: 40
+    size: Big
   - type: Storage
     maxItemSize: Small
     maxTotalWeight: 10
@@ -1276,7 +1285,7 @@
     slots:
       - Pocket
   - type: Item
-    size: 40
+    size: Big
   - type: Storage
     maxItemSize: Small
     maxTotalWeight: 10
@@ -1300,7 +1309,7 @@
     slots:
       - Pocket
   - type: Item
-    size: 60
+    size: Big
   - type: Storage
     maxItemSize: Small
     maxTotalWeight: 10
@@ -1336,7 +1345,7 @@
     slots:
       - Pocket
   - type: Item
-    size: 10
+    size: Big
   - type: Storage
     maxItemSize: Small
     maxTotalWeight: 10
@@ -1358,7 +1367,7 @@
     slots:
       - Pocket
   - type: Item
-    size: 60
+    size: Big
   - type: Storage
     maxItemSize: Small
     maxTotalWeight: 20
