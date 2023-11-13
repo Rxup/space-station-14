@@ -370,13 +370,16 @@
   parent: ClothingPounchMTF
   id: ClothingPounchMTFEngineerFilled
   components:
+    - type: Storage
+      maxItemSize: Normal
+      maxTotalWeight: 16
     - type: StorageFill
       contents:
         - id: SheetSteel
           amount: 2
         - id: SheetRGlass
         - id: MagazinePistol
-          amount: 3
+          amount: 2
 
 - type: startingGear
   id: ERTSecurityGearEggV3
@@ -406,7 +409,7 @@
         - id: MagazineRifle
           amount: 3
         - id: MagazinePistol
-          amount: 3
+          amount: 2
 
 - type: startingGear
   id: ERTMedicalGearEggV3
@@ -446,12 +449,11 @@
     - type: StorageFill
       contents:
         - id: EpinephrineChemistryBottle
-          amount: 2
         - id: OmnizineChemistryBottle
         - id: Hypospray
         - id: HandheldHealthAnalyzer
         - id: MagazinePistol
-          amount: 3
+          amount: 2
 
 #------------------------------------
 
