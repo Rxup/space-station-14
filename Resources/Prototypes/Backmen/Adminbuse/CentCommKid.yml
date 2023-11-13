@@ -64,14 +64,6 @@
     - state: crypt_blue
     - state: com_label
 
-- type: radioChannel
-  id: UEG
-  name: ОПЗ
-  keycode: 'з'
-  frequency: 8121
-  color: "#3c87e8"
-  longRange: true
-
 - type: entity
   parent: EncryptionKey
   id: EncryptionKeyCentComOfficer
