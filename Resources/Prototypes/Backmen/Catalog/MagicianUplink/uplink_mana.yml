@@ -1,0 +1,4 @@
+- type: currency
+  id: UplinkMagicMana
+  displayName: МА
+  canWithdraw: false
