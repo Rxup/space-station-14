@@ -659,6 +659,15 @@
     makeSentient: true
     name: ОБР лидер
     description: Командир отряда Epsilon - 11, великий воин, герой НТ, знаменитый полководец, мог бы им быть если бы не пошел в Epsilon - 11.
+    requirements:
+      - !type:DepartmentTimeRequirement
+        department: Security
+        time: 9000
+      - !type:OverallPlaytimeRequirement
+        time: 16000
+      - !type:DepartmentTimeRequirement
+        department: Command
+        time: 9000
   - type: Loadout
     prototypes: [ERTLeaderGearEVAV3]
   - type: RandomMetadata
@@ -694,6 +703,15 @@
     makeSentient: true
     name: ОБР инженер
     description: Инженер отряда Epsilon - 11, может и не очень хороший инженер, но дело свое знает, наверное.
+    requirements:
+      - !type:DepartmentTimeRequirement
+        department: Security
+        time: 9000
+      - !type:OverallPlaytimeRequirement
+        time: 16000
+      - !type:DepartmentTimeRequirement
+        department: Engineering
+        time: 9000
   - type: Loadout
     prototypes: [ERTEngineerGearEVAV3]
   - type: RandomMetadata
@@ -729,6 +747,12 @@
     makeSentient: true
     name: ОБР офицер безопасности
     description: Солдат или же охранник Epsilon - 11, прошедший небольшую подготовку и готовый стрелять во все что движеться, я бы не доверил ему даже водяной пистолетик.
+    requirements:
+      - !type:DepartmentTimeRequirement
+        department: Security
+        time: 16000
+      - !type:OverallPlaytimeRequirement
+        time: 16000
   - type: Loadout
     prototypes: [ERTSecurityGearEVAV3]
   - type: RandomMetadata
@@ -764,6 +788,15 @@
     makeSentient: true
     name: ОБР медик
     description: Медик отделения Epsilon - 11, был в медицинском институте, поэтому и взяли в качестве медика, но никого не волнует что он там был всего неделю.
+    requirements:
+      - !type:DepartmentTimeRequirement
+        department: Security
+        time: 9000
+      - !type:OverallPlaytimeRequirement
+        time: 16000
+      - !type:DepartmentTimeRequirement
+        department: Medical
+        time: 9000
   - type: Loadout
     prototypes: [ERTMedicalGearEVAV3]
   - type: RandomMetadata
@@ -799,6 +832,15 @@
     makeSentient: true
     name: ОБР уборщик
     description: Уборщик отделения Epsilon - 11, эй! кто дал ему пистолет?!
+    requirements:
+      - !type:DepartmentTimeRequirement
+        department: Security
+        time: 9000
+      - !type:OverallPlaytimeRequirement
+        time: 16000
+      - !type:RoleTimeRequirement
+        role: JobJanitor
+        time: 1500
   - type: Loadout
     prototypes: [ERTJanitorGearEVAV3]
   - type: RandomMetadata
@@ -1297,6 +1339,15 @@
     makeSentient: true
     name: ОБР лидер
     description: Командир отряда Theta - 9, великий воин, герой НТ, знаменитый полководец, мог бы им быть если бы не пошел в Theta - 9.
+    requirements:
+      - !type:DepartmentTimeRequirement
+        department: Security
+        time: 18000
+      - !type:OverallPlaytimeRequirement
+        time: 36000
+      - !type:DepartmentTimeRequirement
+        department: Command
+        time: 18000
   - type: Loadout
     prototypes: [ERTLeaderGearEVAV2_1]
   - type: RandomMetadata
@@ -1333,6 +1384,15 @@
     makeSentient: true
     name: ОБР инженер
     description: Инженер отряда Theta - 9, может и не очень хороший инженер, но дело свое знает, наверное.
+    requirements:
+      - !type:DepartmentTimeRequirement
+        department: Security
+        time: 18000
+      - !type:OverallPlaytimeRequirement
+        time: 36000
+      - !type:DepartmentTimeRequirement
+        department: Engineering
+        time: 18000
   - type: Loadout
     prototypes: [ERTEngineerGearEVAV2_1]
   - type: RandomMetadata
@@ -1368,6 +1428,12 @@
     makeSentient: true
     name: ОБР офицер безопасности
     description: Солдат или же охранник Theta - 9, прошедший небольшую подготовку и готовый стрелять во все что движеться, я бы не доверил ему даже водяной пистолетик.
+    requirements:
+      - !type:DepartmentTimeRequirement
+        department: Security
+        time: 36000
+      - !type:OverallPlaytimeRequirement
+        time: 36000
   - type: Loadout
     prototypes: [ERTSecurityGearEVAV2_1]
   - type: RandomMetadata
@@ -1403,6 +1469,15 @@
     makeSentient: true
     name: ОБР медик
     description: Медик отделения Theta - 9, был в медицинском институте, поэтому и взяли в качестве медика, но никого не волнует что он там был всего неделю.
+    requirements:
+      - !type:DepartmentTimeRequirement
+        department: Security
+        time: 18000
+      - !type:OverallPlaytimeRequirement
+        time: 36000
+      - !type:DepartmentTimeRequirement
+        department: Medical
+        time: 18000
   - type: Loadout
     prototypes: [ERTMedicalGearEVAV2_1]
   - type: RandomMetadata
@@ -1438,6 +1513,15 @@
     makeSentient: true
     name: ОБР уборщик
     description: Уборщик отделения Theta - 9, эй! кто дал ему пистолет?!
+    requirements:
+      - !type:DepartmentTimeRequirement
+        department: Security
+        time: 18000
+      - !type:OverallPlaytimeRequirement
+        time: 36000
+      - !type:RoleTimeRequirement
+        role: JobJanitor
+        time: 3000
   - type: Loadout
     prototypes: [ERTJanitorGearEVAV2_1]
   - type: RandomMetadata
@@ -1758,6 +1842,12 @@
     name: Оперативник спец войск
     description: Элитный солдат отряда Omega - 0, напичканые импланты и курсы космического спецназа сделали из него бесчувственную машину.
     rules: Выполняйте различные приказы, ваша задача будет варьироваться от задач центрального командования.
+    requirements:
+      - !type:DepartmentTimeRequirement
+        department: Security
+        time: 18000
+      - !type:OverallPlaytimeRequirement
+        time: 36000
   - type: Loadout
     prototypes: [SpecialForceGearFull]
   - type: RandomMetadata
@@ -1788,6 +1878,15 @@
     name: коммандер спец войск
     description: Элитный коммандер отряда Omega - 0, напичканые импланты и курсы космического спецназа сделали из него бесчувственную машину с тактическим интеллектом.
     rules: Выполняйте различные приказы, ваша задача будет варьироваться от задач центрального командования.
+    requirements:
+      - !type:DepartmentTimeRequirement
+        department: Security
+        time: 18000
+      - !type:OverallPlaytimeRequirement
+        time: 36000
+      - !type:DepartmentTimeRequirement
+        department: Command
+        time: 18000
   - type: Loadout
     prototypes: [SpecialForceGearCommanderFull]
   - type: RandomMetadata
@@ -1843,6 +1942,15 @@
     makeSentient: true
     name: Офицер Специальных Операций
     description: Офицер Специальных Операций, руководитель департамента специальных операций в секторе.
+    requirements:
+      - !type:DepartmentTimeRequirement
+        department: Security
+        time: 18000
+      - !type:OverallPlaytimeRequirement
+        time: 36000
+      - !type:DepartmentTimeRequirement
+        department: Command
+        time: 18000
   - type: Loadout
     prototypes: [SFOForma]
   - type: RandomHumanoidAppearance
@@ -2097,6 +2205,12 @@
     makeSentient: true
     name: Оперативник РХБЗЗ
     description: Особый агент НаноТрейзен по борьбе с радиационно, химическо, биологическоми и зомби опасностями.
+    requirements:
+      - !type:DepartmentTimeRequirement
+        department: Security
+        time: 18000
+      - !type:OverallPlaytimeRequirement
+        time: 36000
   - type: Loadout
     prototypes: [RXBZZ]
   - type: RandomMetadata
@@ -2130,6 +2244,12 @@
     makeSentient: true
     name: Огнеметчик РХБЗЗ
     description: Особый агент НаноТрейзен по борьбе с радиационно, химическо, биологическоми и зомби опасностями.
+    requirements:
+      - !type:DepartmentTimeRequirement
+        department: Security
+        time: 18000
+      - !type:OverallPlaytimeRequirement
+        time: 36000
   - type: Loadout
     prototypes: [RXBZZFlamer]
   - type: RandomMetadata
@@ -2163,6 +2283,15 @@
     makeSentient: true
     name: Лидер РХБЗЗ
     description: Особый агент НаноТрейзен по борьбе с радиационно, химическо, биологическоми и зомби опасностями.
+    requirements:
+      - !type:DepartmentTimeRequirement
+        department: Security
+        time: 18000
+      - !type:OverallPlaytimeRequirement
+        time: 36000
+      - !type:DepartmentTimeRequirement
+        department: Command
+        time: 18000
   - type: Loadout
     prototypes: [RXBZZLeader]
   - type: RandomMetadata
