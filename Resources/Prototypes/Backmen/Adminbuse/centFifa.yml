@@ -528,7 +528,7 @@
     name: ОБР лидер
     description: Командир отряда Epsilon - 11, великий воин, герой НТ, знаменитый полководец, мог бы им быть если бы не пошел в Epsilon - 11.
   - type: EmitSoundOnUse
-    sound: /Audio/Misc/emergency_meeting.ogg
+    sound: /Audio/Effects/Emotes/parp1.ogg
   - type: ItemCooldown
   - type: UseDelay
     delay: 5
@@ -1480,8 +1480,8 @@
       gun_magazine:
         name: Magazine
         startingItem: MagazineLightRifleAI
-        insertSound: /Uploaded/base/ogg/Guns64/Rifles/ak47_reload.ogg
-        ejectSound: /Uploaded/base/ogg/Guns64/Rifles/ak47_unload.ogg
+        insertSound: /Audio/Weapons/Guns64/Rifles/ak47_reload.ogg
+        ejectSound: /Audio/Weapons/Guns64/Rifles/ak47_unload.ogg
         priority: 2
         whitelist:
           tags:
@@ -1514,89 +1514,6 @@
     outerClothing: ClothingOuterVestWeb
     head: ClothingHeadHatSyndie
     belt: ClothingBeltMilitaryWebbing
-
-- type: entity
-  name: Riot unit
-  parent: BaseMobHuman
-  id: MobPMCRiotNT
-  suffix: AINanoTrasen
-  components:
-    - type: NpcFactionMember
-      factions:
-        - NanoTrasen
-    - type: Loadout
-      prototypes:
-        - RiotGearAI
-    - type: InputMover
-    - type: MobMover
-    - type: HTN
-      rootTask:
-        task: SimpleHumanoidHostileCompound
-    - type: InnateTool
-      tools:
-        - id: Stunbaton
-        - id: RiotShieldAI
-
-- type: entity
-  name: Riot unit
-  parent: BaseMobHuman
-  id: MobPMCRiot
-  suffix: AISuperZloy
-  components:
-    - type: NpcFactionMember
-      factions:
-        - SuperZloy
-    - type: Loadout
-      prototypes:
-        - RiotGearAI
-    - type: InputMover
-    - type: MobMover
-    - type: HTN
-      rootTask:
-        task: SimpleHumanoidHostileCompound
-    - type: InnateTool
-      tools:
-        - id: Stunbaton
-        - id: RiotShieldAI
-
-- type: entity
-  name: riot shield
-  parent: RiotShield
-  id: RiotShieldAI
-  description: A large tower shield. Good for controlling crowds.
-  components:
-    - type: Destructible
-      thresholds:
-        - trigger:
-            !type:DamageTrigger
-            damage: 500
-          behaviors:
-            - !type:DoActsBehavior
-              acts: [ "Destruction" ]
-        - trigger:
-            !type:DamageTrigger
-            damage: 250
-          behaviors:
-            - !type:DoActsBehavior
-              acts: [ "Destruction" ]
-            - !type:PlaySoundBehavior
-              sound: /Audio/Effects/metalbreak.ogg
-            - !type:SpawnEntitiesBehavior
-              spawn:
-                SheetSteel:
-                  min: 2
-                  max: 2
-                SheetGlass:
-                  min: 2
-                  max: 2
-
-- type: startingGear
-  id: RiotGearAI
-  equipment:
-    jumpsuit: ClothingUniformJumpsuitEgov
-    shoes: ClothingShoesBootsCombat
-    head: ClothingHeadHelmetRiot
-    outerClothing: ClothingOuterArmorRiot
 
 - type: entity
   name: ГрейТайд

@@ -1266,7 +1266,7 @@
     slots:
       - Pocket
   - type: Item
-    size: Big
+    size: Large
   - type: Storage
     maxItemSize: Small
     maxTotalWeight: 10
@@ -1285,7 +1285,7 @@
     slots:
       - Pocket
   - type: Item
-    size: Big
+    size: Large
   - type: Storage
     maxItemSize: Small
     maxTotalWeight: 10
@@ -1309,7 +1309,7 @@
     slots:
       - Pocket
   - type: Item
-    size: Big
+    size: Large
   - type: Storage
     maxItemSize: Small
     maxTotalWeight: 10
@@ -1345,7 +1345,7 @@
     slots:
       - Pocket
   - type: Item
-    size: Big
+    size: Large
   - type: Storage
     maxItemSize: Small
     maxTotalWeight: 10
@@ -1367,7 +1367,7 @@
     slots:
       - Pocket
   - type: Item
-    size: Big
+    size: Large
   - type: Storage
     maxItemSize: Small
     maxTotalWeight: 20
