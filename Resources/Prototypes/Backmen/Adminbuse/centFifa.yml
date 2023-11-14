@@ -2076,6 +2076,12 @@
     makeSentient: true
     name: Ядерный оперативник
     description: GET DAT FUKKEN DISK
+    requirements:
+    - !type:DepartmentTimeRequirement
+      department: Security
+      time: 18000
+    - !type:OverallPlaytimeRequirement
+      time: 36000
   - type: NukeOperative
   - type: Loadout
     prototypes: [SyndicateOperativeGearFull]
@@ -2107,6 +2113,12 @@
     makeSentient: true
     name: Ядерный оперативник
     description: GET DAT FUKKEN DISK
+    requirements:
+    - !type:DepartmentTimeRequirement
+      department: Security
+      time: 18000
+    - !type:OverallPlaytimeRequirement
+      time: 36000
   - type: NukeOperative
   - type: Loadout
     prototypes: [SyndicateOperativeMedicFull]
