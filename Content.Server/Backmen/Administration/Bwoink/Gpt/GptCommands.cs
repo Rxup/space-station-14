@@ -205,14 +205,8 @@ public sealed class GptCommands : EntitySystem
             {
                 var activeGameRules = _gameTicker.GetActiveGameRules();
                 var entityUids = activeGameRules as EntityUid[] ?? activeGameRules.ToArray();
-                var rulesNames = new string[entityUids.Length];
-
-                foreach (var uid in entityUids)
-                {
-                    var comp = _entityManager.GetEntityData(_entityManager.GetNetEntity(uid));
-                    ((IList) rulesNames).Add(comp.Item2.EntityName);
-                }
-
+                var rulesNames = entityUids.Select(MetaData).Select(comp =>
+                    comp.EntityPrototype!.ID).ToList();
                 ev.History.Messages.Add(new GptMessageFunction(fnName, new { rulesNames }));
 
                 ev.Handled = true;
