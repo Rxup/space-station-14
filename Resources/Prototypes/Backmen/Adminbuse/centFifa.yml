@@ -526,6 +526,7 @@
 - type: entity
   parent: BaseItem
   id: ReinforcementRadioMTFLeaderEgg
+  save: false
   name: Еpsilon - 11 рация подкрепления
   suffix: МТФ Egg лидер
   components:
@@ -560,6 +561,7 @@
 - type: entity
   parent: ReinforcementRadioMTFLeaderEgg
   id: ReinforcementRadioMTFSecurityEgg
+  save: false
   name: Еpsilon - 11 рация подкрепления
   suffix: МТФ Egg пехотинец
   components:
@@ -572,6 +574,7 @@
 - type: entity
   parent: ReinforcementRadioMTFLeaderEgg
   id: ReinforcementRadioMTFMedicalEgg
+  save: false
   name: Еpsilon - 11 рация подкрепления
   suffix: МТФ Egg медик
   components:
@@ -584,6 +587,7 @@
 - type: entity
   parent: ReinforcementRadioMTFLeaderEgg
   id: ReinforcementRadioMTFJunitorEgg
+  save: false
   name: Еpsilon - 11 рация подкрепления
   suffix: МТФ Egg уборщик
   components:
@@ -685,7 +689,7 @@
   - type: Loadout
     prototypes: [ERTLeaderGearEVAV3]
   - type: RandomMetadata
-    nameSegments: 
+    nameSegments:
     - NamesSGTs
     - names_last_male
   - type: RandomHumanoidAppearance
@@ -731,7 +735,7 @@
   - type: Loadout
     prototypes: [ERTEngineerGearEVAV3]
   - type: RandomMetadata
-    nameSegments: 
+    nameSegments:
     - NamesCPLs
     - names_last_male
   - type: RandomHumanoidAppearance
@@ -774,7 +778,7 @@
   - type: Loadout
     prototypes: [ERTSecurityGearEVAV3]
   - type: RandomMetadata
-    nameSegments: 
+    nameSegments:
     - NamesPVTs
     - names_last_male
   - type: RandomHumanoidAppearance
@@ -820,7 +824,7 @@
   - type: Loadout
     prototypes: [ERTMedicalGearEVAV3]
   - type: RandomMetadata
-    nameSegments: 
+    nameSegments:
     - NamesCPLs
     - names_last_male
   - type: RandomHumanoidAppearance
@@ -866,7 +870,7 @@
   - type: Loadout
     prototypes: [ERTJanitorGearEVAV3]
   - type: RandomMetadata
-    nameSegments: 
+    nameSegments:
     - NamesPVTs
     - names_last_male
   - type: RandomHumanoidAppearance
@@ -1114,7 +1118,7 @@
     WeaponShotgun39: 5
 
 #------------------------------------
-  
+
 # Leader
 - type: startingGear
   id: ERTLeaderGearEVAV2_1
@@ -1335,7 +1339,7 @@
 
 
 #------------------------------------
-   
+
 - type: entity
   name:  Theta - 9 лидер ОБР
   parent: MobHuman
@@ -1375,7 +1379,7 @@
   - type: Loadout
     prototypes: [ERTLeaderGearEVAV2_1]
   - type: RandomMetadata
-    nameSegments: 
+    nameSegments:
     - NamesSGTs
     - names_last_male
   - type: RandomHumanoidAppearance
@@ -1422,7 +1426,7 @@
   - type: Loadout
     prototypes: [ERTEngineerGearEVAV2_1]
   - type: RandomMetadata
-    nameSegments: 
+    nameSegments:
     - NamesCPLs
     - names_last_male
   - type: RandomHumanoidAppearance
@@ -1465,7 +1469,7 @@
   - type: Loadout
     prototypes: [ERTSecurityGearEVAV2_1]
   - type: RandomMetadata
-    nameSegments: 
+    nameSegments:
     - NamesPVTs
     - names_last_male
   - type: RandomHumanoidAppearance
@@ -1511,7 +1515,7 @@
   - type: Loadout
     prototypes: [ERTMedicalGearEVAV2_1]
   - type: RandomMetadata
-    nameSegments: 
+    nameSegments:
     - NamesCPLs
     - names_last_male
   - type: RandomHumanoidAppearance
@@ -1557,7 +1561,7 @@
   - type: Loadout
     prototypes: [ERTJanitorGearEVAV2_1]
   - type: RandomMetadata
-    nameSegments: 
+    nameSegments:
     - NamesPVTs
     - names_last_male
   - type: RandomHumanoidAppearance

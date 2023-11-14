@@ -423,15 +423,22 @@
       - state: icon-0
         map: ["enum.StorageFillLayers.Fill"]
   - type: Storage
-    maxSlots: 1000
+    maxTotalWeight: 1000
     maxItemSize: Huge
     quickInsert: true
     areaInsert: true
-    areaInsertRadius: 1000
     storageOpenSound:
       collection: trashBagRustle
     storageInsertSound:
       collection: trashBagRustle
+    whitelist:
+      tags:
+      - Cartridge
+      - Trash
+  - type: Tag
+    tags:
+    - TrashBag
+    - DroneUsable
   - type: Appearance
   - type: StorageFillVisualizer
     maxFillLevels: 4
@@ -581,6 +588,7 @@
   name: боевой стимулятор
   parent: ChemicalMedipen
   id: BattleMedipen
+  save: false
   description: Боевой медипен для быстрого возращения в бой бойца, осторожно, после использования обратиться к настоящему врачу.
   components:
   - type: SolutionContainerManager
@@ -613,6 +621,7 @@
   parent: ChemicalMedipen
   id: SpetsnazMedipen
   description: Боевой медипен для быстрого возращения в бой бойца, осторожно, после использования обратиться к настоящему врачу.
+  save: false
   components:
   - type: SolutionContainerManager
     solutions:
@@ -645,6 +654,7 @@
   name: боевой космический стимулятор
   parent: ChemicalMedipen
   id: BattleSpaceMedipen
+  save: false
   description: Боевой медипен для более менее безопастного хождения по космосу без скафандра, осторожно, после использования обратиться к настоящему врачу.
   components:
   - type: SolutionContainerManager
@@ -672,6 +682,7 @@
   name: противовирусный стимулятор
   parent: ChemicalMedipen
   id: BattleMedipenAntiVirus
+  save: false
   description: Боевой медипен для быстрого возращения в бой бойца, осторожно, после использования обратиться к настоящему врачу.
   components:
   - type: SolutionContainerManager
@@ -757,12 +768,12 @@
     fireStacks: 0.3
 
 #------------------------------------
-  
+
 - type: dataset
   id: NameSpetsRXBZZ
   values:
   - Оперативник
-    
+
 - type: dataset
   id: NamesSGTs
   values:
@@ -788,7 +799,7 @@
   - Ефрейтор
   - Ефрейтор
   - Ефрейтор
-  
+
 #------------------------------------
 
 - type: entity
@@ -1028,15 +1039,15 @@
   - Normandy
   - Aquamarine
   - Albatross
-  - Barracuda 
-  - Curly 
+  - Barracuda
+  - Curly
   - Fighting Bob
   - Robust
-  - Walter 
-  - Angel 
-  - Atkins 
-  - Attila 
-  - Kraut 
+  - Walter
+  - Angel
+  - Atkins
+  - Attila
+  - Kraut
   - Balthazar
   - Joker
   - Doctor
