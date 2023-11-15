@@ -27,3 +27,23 @@
     id: UEGoffIDCard
     ears: ClothingHeadsetUEGofficer
     mask: ClothingMaskGasMerc
+
+#  NukeOpsJuggernaut я чертовски болен ха проклятый стокгольмом
+- type: startingGear
+  id: SyndicateJagerGearFull
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitOperative
+    back: ClothingBackpackDuffelSyndicateOperative
+    mask: ClothingMaskGasSyndicate
+    eyes: ClothingEyesHudSyndicate
+    ears: ClothingHeadsetAltSyndicate
+    gloves: ClothingHandsGlovesCombat
+    outerClothing: ClothingOuterHardsuitJuggernaut
+    shoes: ClothingShoesBootsMagSyndie
+    id: NukieAgentIDCard
+    pocket1: EnergySwordDouble
+    pocket2: WeaponLaserGun
+    belt: ClothingBeltMilitaryWebbing
+  innerClothingSkirt: ClothingUniformJumpskirtOperative
+  satchel: ClothingBackpackDuffelSyndicateOperative
+  duffelbag: ClothingBackpackDuffelSyndicateOperative
