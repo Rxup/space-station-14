@@ -5,7 +5,7 @@
   noSpawn: true
   components:
   - type: WorldTargetAction
-    useDelay: 30
+    useDelay: 1
     itemIconStyle: BigAction
     checkCanAccess: false
     range: 60
@@ -16,5 +16,6 @@
       state: fireball
     event: !type:ProjectileSpellEvent
       prototype: ProjectileFireball
-      posData: !type:TargetCasterPos
+      posData: !type:TargetInFront
+      offset: 0, 1
       speech: action-speech-spell-fireball
