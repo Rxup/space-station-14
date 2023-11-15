@@ -5,7 +5,7 @@
   noSpawn: true
   components:
   - type: WorldTargetAction
-    useDelay: 1
+    useDelay: 30
     itemIconStyle: BigAction
     checkCanAccess: false
     range: 60
