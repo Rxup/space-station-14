@@ -116,7 +116,10 @@ public sealed partial class NukeopsRuleComponent : Component
     public EntProtoId GhostSpawnPointProto = "SpawnPointGhostNukeOperative";
 
     [DataField]
-    public ProtoId<AntagPrototype> CommanderRoleProto = "NukeopsCommander";
+    public ProtoId<AntagPrototype> CommanderRoleProto = "NukeopsCommander"; //NukeopsCommander
+
+    [DataField]
+    public ProtoId<AntagPrototype> JagerRoleProto = "JagerOpsAntag"; //backmen
 
     [DataField]
     public ProtoId<AntagPrototype> OperativeRoleProto = "Nukeops";
@@ -125,13 +128,16 @@ public sealed partial class NukeopsRuleComponent : Component
     public ProtoId<AntagPrototype> MedicRoleProto = "NukeopsMedic";
 
     [DataField]
-    public ProtoId<StartingGearPrototype> CommanderStartGearProto = "SyndicateCommanderGearFull";
+    public ProtoId<StartingGearPrototype> CommanderStartGearProto = "SyndicateCommanderGearFull"; //SyndicateCommanderGearFull
 
     [DataField]
     public ProtoId<StartingGearPrototype> MedicStartGearProto = "SyndicateOperativeMedicFull";
 
     [DataField]
     public ProtoId<StartingGearPrototype> OperativeStartGearProto = "SyndicateOperativeGearFull";
+
+    [DataField]
+    public ProtoId<StartingGearPrototype> JagerStartGearProto = "SyndicateJagerGearFull"; //backmen
 
     [DataField(customTypeSerializer: typeof(PrototypeIdSerializer<DatasetPrototype>))]
     public string EliteNames = "SyndicateNamesElite";
