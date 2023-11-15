@@ -1,0 +1,10 @@
+
+- type: antag
+  id: JagerOpsAntag
+  name: Джаггернаут ядерных оперативников
+  antagonist: true
+  setPreference: true
+  objective: помогите коллегам пройти сквозь толпу сб.
+  requirements:
+  - !type:OverallPlaytimeRequirement
+    time: 18000 # 5h
