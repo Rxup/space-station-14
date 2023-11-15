@@ -609,6 +609,7 @@ public sealed class NukeopsRuleSystem : GameRuleSystem<NukeopsRuleComponent>
             var prefList = new List<ICommonSession>();
             var medPrefList = new List<ICommonSession>();
             var cmdrPrefList = new List<ICommonSession>();
+            var JagerPrefList = new List<ICommonSession>(); // backmen
             var operatives = new List<ICommonSession>();
 
             // The LINQ expression ReSharper keeps suggesting is completely unintelligible so I'm disabling it
@@ -633,6 +634,10 @@ public sealed class NukeopsRuleSystem : GameRuleSystem<NukeopsRuleComponent>
                 {
                     cmdrPrefList.Add(player);
                 }
+                if (profile.AntagPreferences.Contains(nukeops.JagerRoleProto.Id))
+                {
+                    JagerPrefList.Add(player); //backmen
+                }
             }
 
             var numNukies = MathHelper.Clamp(_playerManager.PlayerCount / playersPerOperative, 1, maxOperatives);
@@ -642,6 +647,7 @@ public sealed class NukeopsRuleSystem : GameRuleSystem<NukeopsRuleComponent>
                 // TODO: Please fix this if you touch it.
                 ICommonSession nukeOp;
                 // Only one commander, so we do it at the start
+                // прекрасная структура!
                 if (i == 0)
                 {
                     if (cmdrPrefList.Count == 0)
@@ -650,18 +656,29 @@ public sealed class NukeopsRuleSystem : GameRuleSystem<NukeopsRuleComponent>
                         {
                             if (prefList.Count == 0)
                             {
-                                if (everyone.Count == 0)
+                                if (JagerPrefList.Count == 0) //backmen
                                 {
-                                    Logger.InfoS("preset", "Insufficient ready players to fill up with nukeops, stopping the selection");
-                                    break;
+                                    if (everyone.Count == 0)
+                                    {
+                                        Logger.InfoS("preset", "Insufficient ready players to fill up with nukeops, stopping the selection");
+                                        break;
+                                    }
+                                    nukeOp = _random.PickAndTake(everyone);
+                                    Logger.InfoS("preset", "Insufficient preferred nukeop commanders, agents or nukies, picking at random.");
+
                                 }
-                                nukeOp = _random.PickAndTake(everyone);
-                                Logger.InfoS("preset", "Insufficient preferred nukeop commanders, agents or nukies, picking at random.");
+                                else
+                                {
+                                    nukeOp = _random.PickAndTake(JagerPrefList);
+                                    everyone.Remove(nukeOp);
+                                    Logger.InfoS("preset", "Insufficient preferred nukeop commander or agents, picking at random from regular op list.");
+                                }
                             }
                             else
                             {
                                 nukeOp = _random.PickAndTake(prefList);
                                 everyone.Remove(nukeOp);
+                                JagerPrefList.Remove(nukeOp);
                                 Logger.InfoS("preset", "Insufficient preferred nukeop commander or agents, picking at random from regular op list.");
                             }
                         }
@@ -688,13 +705,24 @@ public sealed class NukeopsRuleSystem : GameRuleSystem<NukeopsRuleComponent>
                     {
                         if (prefList.Count == 0)
                         {
-                            if (everyone.Count == 0)
+                            if (JagerPrefList.Count == 0) //backmen
                             {
-                                Logger.InfoS("preset", "Insufficient ready players to fill up with nukeops, stopping the selection");
-                                break;
+                                if (everyone.Count == 0)
+                                {
+                                    Logger.InfoS("preset", "Insufficient ready players to fill up with nukeops, stopping the selection");
+                                    break;
+                                }
+                                nukeOp = _random.PickAndTake(everyone);
+                                Logger.InfoS("preset", "Insufficient preferred nukeop commanders, agents or nukies, picking at random.");
                             }
-                            nukeOp = _random.PickAndTake(everyone);
-                            Logger.InfoS("preset", "Insufficient preferred nukeop commanders, agents or nukies, picking at random.");
+                            else
+                            {
+                                nukeOp = _random.PickAndTake(JagerPrefList);
+                                everyone.Remove(nukeOp);
+                                JagerPrefList.Remove(nukeOp);
+                                Logger.InfoS("preset", "Insufficient preferred nukeop commander or agents, picking at random from regular op list.");
+
+                            }
                         }
                         else
                         {
@@ -877,6 +905,11 @@ public sealed class NukeopsRuleSystem : GameRuleSystem<NukeopsRuleComponent>
                 name = Loc.GetString("nukeops-role-agent") + " " + _random.PickAndTake(component.OperativeNames[component.NormalNames]);
                 role = component.MedicRoleProto;
                 gear = component.MedicStartGearProto;
+                break;
+            case 2: //backmen
+                name = Loc.GetString("nukeops-role-agent") + " " + _random.PickAndTake(component.OperativeNames[component.NormalNames]);
+                role = component.JagerRoleProto;
+                gear = component.JagerStartGearProto;
                 break;
             default:
                 name = Loc.GetString("nukeops-role-operator") + " " + _random.PickAndTake(component.OperativeNames[component.NormalNames]);
