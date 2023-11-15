@@ -29,7 +29,7 @@ public sealed partial class NukeopsRuleComponent : Component
     public int PlayersPerOperative = 10;
 
     [DataField]
-    public int MaxOps = 5;
+    public int MaxOps = 6;
 
     /// <summary>
     /// What will happen if all of the nuclear operatives will die. Used by LoneOpsSpawn event.
