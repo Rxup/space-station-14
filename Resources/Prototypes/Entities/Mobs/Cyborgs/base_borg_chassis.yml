@@ -194,6 +194,7 @@
     - DoorBumpOpener
   - type: TTS
     voice: Borgs
+  - type: Emoting
 
 - type: entity
   id: BaseBorgChassisNT

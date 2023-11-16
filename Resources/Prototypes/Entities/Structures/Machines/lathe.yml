@@ -461,7 +461,6 @@
     - ProximitySensor
     - BorgModuleLightReplacer
     - BorgModuleAdvancedCleaning
-    - BorgModuleTrashCollection
     - BorgModuleMining
     - BorgModuleGrapplingGun
     - BorgModuleGasAnalyzer
