@@ -8,7 +8,6 @@
     - hardquit
     - svbind
     - bind
-    - exec # macro moment
     - cls
     - vram
     - monitor
@@ -41,6 +40,10 @@
     - replay_set_time
     - replay_stop
     - replay_load
+
+- Flags: ADMIN
+  Commands:
+    - exec
 
 - Flags: DEBUG
   Commands:
