@@ -94,7 +94,6 @@ public static class ClientPackaging
             inputPass,
             contentDir,
             "Content.Client",
-            new[] { "Content.Client", "Content.Shared", "Content.Shared.Database" },
             assemblies, // Corvax-Secrets
             cancel: cancel);
 
