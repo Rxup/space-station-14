@@ -2,18 +2,27 @@ using Content.Server.Backmen.Abilities.Psionics;
 using Content.Server.Mind;
 using Content.Server.Power.Components;
 using Content.Server.Speech.Components;
+using Content.Server.Storage.Components;
 using Content.Shared.Actions;
 using Content.Shared.Backmen.StationAI;
 using Content.Shared.Eye;
+using Content.Shared.Hands;
+using Content.Shared.Hands.EntitySystems;
+using Content.Shared.Interaction.Events;
+using Content.Shared.Inventory.Events;
+using Content.Shared.Item;
 using Content.Shared.Mind;
 using Content.Shared.Mind.Components;
 using Robust.Shared.Prototypes;
 using Content.Shared.Mobs;
 using Content.Shared.Mobs.Systems;
+using Content.Shared.Movement.Events;
+using Content.Shared.Physics.Pull;
 using Content.Shared.Random;
 using Content.Shared.Random.Helpers;
 using Content.Shared.Silicons.Laws;
 using Content.Shared.Silicons.Laws.Components;
+using Content.Shared.Throwing;
 using Robust.Shared.Audio;
 using Robust.Shared.Player;
 using Robust.Server.GameObjects;
@@ -36,6 +45,8 @@ public sealed class AIEyePowerSystem : EntitySystem
     [Dependency] private readonly MetaDataSystem _metaDataSystem = default!;
     [Dependency] private readonly SharedEyeSystem _sharedEyeSystem = default!;
 
+    [Dependency] private readonly UserInterfaceSystem _uiSystem = default!;
+
     public override void Initialize()
     {
         base.Initialize();
@@ -54,6 +65,8 @@ public sealed class AIEyePowerSystem : EntitySystem
         SubscribeLocalEvent<StationAIComponent, GetSiliconLawsEvent>(OnGetLaws);
 
         SubscribeLocalEvent<StationAIComponent, PowerChangedEvent>(OnPowerChange);
+
+
     }
 
     private void OnPowerChange(EntityUid uid, StationAIComponent component, ref PowerChangedEvent args)
@@ -77,6 +90,7 @@ public sealed class AIEyePowerSystem : EntitySystem
         if (!args.Powered)
         {
             EnsureComp<ReplacementAccentComponent>(uid).Accent = "dwarf";
+            _uiSystem.TryCloseAll(uid);
         }
         else
         {
