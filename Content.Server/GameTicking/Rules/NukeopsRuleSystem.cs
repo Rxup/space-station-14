@@ -81,6 +81,7 @@ public sealed class NukeopsRuleSystem : GameRuleSystem<NukeopsRuleComponent>
     [Dependency] private readonly StoreSystem _store = default!;
     [Dependency] private readonly TagSystem _tag = default!;
     [Dependency] private readonly WarDeclaratorSystem _warDeclarator = default!;
+    [Dependency] private readonly Backmen.Arrivals.CentcommSystem _centcommSystem = default!;
 
     [ValidatePrototypeId<CurrencyPrototype>]
     private const string TelecrystalCurrencyPrototype = "Telecrystal";
@@ -273,8 +274,19 @@ public sealed class NukeopsRuleSystem : GameRuleSystem<NukeopsRuleComponent>
                 if (TryComp(nukeops.TargetStation, out StationDataComponent? data))
                 {
                     var correctStation = false;
+                    var centcomStation = false; // backmen: centcom
                     foreach (var grid in data.Grids)
                     {
+                        // start-backmen: centcom
+                        if (_centcommSystem.CentComGrid == grid)
+                        {
+                            nukeops.WinConditions.Add(WinCondition.NukeExplodedOnCentComLocation);
+                            SetWinType(uid, WinType.OpsMajor, nukeops);
+                            centcomStation = true;
+                            break;
+                        }
+                        // end-backmen: centcom
+
                         if (grid != ev.OwningStation)
                         {
                             continue;
@@ -285,9 +297,11 @@ public sealed class NukeopsRuleSystem : GameRuleSystem<NukeopsRuleComponent>
                         correctStation = true;
                     }
 
-                    if (correctStation)
+                    if (correctStation || centcomStation) // backmen: centcom
                         continue;
                 }
+
+
 
                 nukeops.WinConditions.Add(WinCondition.NukeExplodedOnIncorrectLocation);
             }

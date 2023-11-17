@@ -28,6 +28,7 @@
     groups:
     - AllAccess
     - CentCom
+    - MTFLeader
     tags:
     - NuclearOperative
     - SyndicateAgent

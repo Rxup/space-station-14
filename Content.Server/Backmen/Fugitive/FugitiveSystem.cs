@@ -16,12 +16,14 @@ using Content.Server.Stunnable;
 using Content.Server.Ghost.Components;
 using Content.Server.Roles;
 using Content.Server.GameTicking;
+using Content.Server.Salvage.Expeditions;
 using Content.Server.Shuttles.Systems;
 using Content.Server.Spawners.Components;
 using Content.Server.Spawners.EntitySystems;
 using Content.Server.Station.Components;
 using Content.Server.Station.Systems;
 using Content.Server.Storage.Components;
+using Content.Shared.Cargo.Components;
 using Content.Shared.Roles;
 using Content.Shared.Movement.Systems;
 using Content.Shared.Humanoid.Prototypes;
@@ -113,7 +115,10 @@ public sealed class FugitiveSystem : EntitySystem
             {
                 if (args.Station != null && _stationSystem.GetOwningStation(uid, xform) != args.Station)
                     continue;
-
+                if(xform.GridUid == null)
+                    continue;
+                if(HasComp<CargoShuttleComponent>(xform.GridUid) || HasComp<SalvageShuttleComponent>(xform.GridUid))
+                    continue;
                 if (spawnPoint.SpawnType == SpawnPointType.Job &&
                     (args.Job == null || spawnPoint.Job?.ID == args.Job.Prototype))
                 {
@@ -131,6 +136,11 @@ public sealed class FugitiveSystem : EntitySystem
             while (points.MoveNext(out var uid, out _, out var xform, out var spawnPoint))
             {
                 if (args.Station != null && _stationSystem.GetOwningStation(uid, xform) != args.Station)
+                    continue;
+
+                if(xform.GridUid == null)
+                    continue;
+                if(HasComp<CargoShuttleComponent>(xform.GridUid) || HasComp<SalvageShuttleComponent>(xform.GridUid))
                     continue;
 
                 if (spawnPoint.EntityPrototype?.ID is "WardrobePrison" or "WardrobePrisonFilled" or "ClosetWallOrange")
@@ -159,6 +169,10 @@ public sealed class FugitiveSystem : EntitySystem
             while (points.MoveNext(out var uid, out _, out var xform, out var spawnPoint))
             {
                 if (args.Station != null && _stationSystem.GetOwningStation(uid, xform) != args.Station)
+                    continue;
+                if(xform.GridUid == null)
+                    continue;
+                if(HasComp<CargoShuttleComponent>(xform.GridUid) || HasComp<SalvageShuttleComponent>(xform.GridUid))
                     continue;
 
                 possiblePositions.Add(

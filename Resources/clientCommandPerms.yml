@@ -8,7 +8,6 @@
     - hardquit
     - svbind
     - bind
-    - exec # macro moment
     - cls
     - vram
     - monitor
@@ -42,6 +41,10 @@
     - replay_stop
     - replay_load
 
+- Flags: ADMIN
+  Commands:
+    - exec
+
 - Flags: DEBUG
   Commands:
     - atvrange
@@ -58,6 +61,7 @@
     - toggledecals
     - nodevis
     - nodevisfilter
+    - showbiome
     - net_draw_interp
     - showmeleespread
     - showgunspread
