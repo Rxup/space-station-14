@@ -17,5 +17,4 @@
     event: !type:ProjectileSpellEvent
       prototype: ProjectileFireball
       posData: !type:TargetInFront
-      offset: 0, 1
       speech: action-speech-spell-fireball
