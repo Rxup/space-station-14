@@ -1,0 +1,22 @@
+- type: entity
+  parent: BaseItem
+  id: BaseWishBall
+  name: шар желаний
+  description: Нужно немного потрясти.
+  components:
+  - type: Sprite
+    sprite: Objects/Fun/toys.rsi
+    state: orb
+  - type: Item
+    sprite: Objects/Fun/toys.rsi
+    heldPrefix: orb
+  - type: UserInterface
+    interfaces:
+    - key: enum.StoreUiKey.Key
+      type: StoreBoundUserInterface
+  - type: ActivatableUI
+    key: enum.StoreUiKey.Key
+  - type: Store
+    preset: StorePresetMagicalUplink
+    balance:
+      UplinkMagicMana: 25

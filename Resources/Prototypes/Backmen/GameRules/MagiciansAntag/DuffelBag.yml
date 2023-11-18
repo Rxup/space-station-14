@@ -1,0 +1,13 @@
+- type: entity
+  parent: ClothingBackpackDuffel
+  id: ClothingBackpackDuffelMagus
+  name: вещмешок магуса
+  description: Содержит броню и шлем магуса.
+  components:
+  - type: Storage
+    maxTotalWeight: 44
+  - type: StorageFill
+    contents:
+      - id: ClothingOuterArmorMagusblue
+      - id: ClothingOuterArmorMagusred
+      - id: ClothingHeadHelmetWizardHelm

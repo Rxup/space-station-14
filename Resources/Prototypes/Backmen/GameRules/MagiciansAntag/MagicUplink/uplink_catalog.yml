@@ -1,0 +1,110 @@
+- type: listing
+  id: MagicalUplinkForcewall
+  name: заклинание магических барьеров
+  description: Создает магические барьеры.
+  icon: { sprite: Objects/Magic/magicactions.rsi, state: shield }
+  productAction: ActionForceWall
+  cost:
+    UplinkMagicMana: 10
+  categories:
+    - MagicalUplinkMagic
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+
+- type: listing
+  id: MagicalUplinkFireball
+  name: заклинание огненного шара
+  description: Выпускает огненный шар из ваших рук. Обычно последствия плачевны.
+  icon: { sprite: Objects/Magic/magicactions.rsi, state: fireball }
+  productAction: ActionFireball
+  cost:
+    UplinkMagicMana: 10
+  categories:
+    - MagicalUplinkMagic
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+
+- type: listing
+  id: MagicalUplinkCarpSpell
+  name: заклинание мэджиккарпов
+  description: Создает 3-ех не очень преданных мэджиккарпов.
+  icon: { sprite: Objects/Magic/magicactions.rsi, state: spell_default }
+  productAction: ActionSpawnMagicarpSpell
+  cost:
+    UplinkMagicMana: 10
+  categories:
+    - MagicalUplinkMagic
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+
+- type: listing
+  id: MagicalUplinkBlink
+  name: заклинание прыжка
+  description: Перемещает вас в выбранную точку.
+  icon: { sprite: Objects/Magic/magicactions.rsi, state: blink }
+  productAction: ActionBlink
+  cost:
+    UplinkMagicMana: 15
+  categories:
+    - MagicalUplinkMagic
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+
+- type: listing
+  id: MagicalUplinkKnock
+  name: заклинание входа
+  description: Открывает ближайшие двери.
+  icon: { sprite: Objects/Magic/magicactions.rsi, state: knock }
+  productAction: ActionKnock
+  cost:
+    UplinkMagicMana: 20
+  categories:
+    - MagicalUplinkMagic
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+
+# инстр
+- type: listing
+  id: MagicalUplinkWizardHardsuit
+  name: скафандр волшебника
+  description: Причудливый скафандр, инкрустированный драгоценными камнями, излучающий магическую энергию.
+  productEntity: ClothingOuterHardsuitWizard
+  cost:
+    UplinkMagicMana: 5
+  categories:
+    - MagicalUplinkUtils
+
+- type: listing
+  id: MagicalUplinkWandBelt
+  name: пояс вошлебных палочек
+  description: Комбо!
+  productEntity: ClothingBeltWandFilled
+  cost:
+    UplinkMagicMana: 25 # стоит подумать
+  categories:
+    - MagicalUplinkUtils
+
+- type: listing
+  id: MagicalUplinkMagicHat
+  name: цилиндр фокусника
+  description: Иногда стоит прийти к мирному решению. Есть потайной карман.
+  productEntity: ClothingHeadHatMagician
+  cost:
+    UplinkMagicMana: 1
+  categories:
+    - MagicalUplinkUtils
+
+- type: listing
+  id: MagicalUplinkMagusBag
+  name: вещмешок магуса
+  description: Содержит броню и шлем магуса.
+  productEntity: ClothingBackpackDuffelMagus
+  cost:
+    UplinkMagicMana: 15
+  categories:
+    - MagicalUplinkUtils

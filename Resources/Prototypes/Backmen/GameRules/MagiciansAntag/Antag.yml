@@ -1,0 +1,30 @@
+- type: gamePreset
+  id: MagiciansPreset
+  name: Маги
+  description: Наполните станцию магией, вошлебством, феями и смертью...
+  showInVote: false
+  rules:
+    - MagiciansCorp
+    - BasicStationEventScheduler
+    - WageScheduler #backmen: currency
+
+- type: entity
+  id: MagiciansCorp
+  parent: BaseGameRule
+  noSpawn: true
+  components:
+  - type: MagiciansRule
+    faction: Syndicate
+
+- type: startingGear
+  id: MagiciangGear
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitColorDarkBlue
+    gloves: ClothingHandsGlovesColorYellow
+    back: ClothingBackpack
+    shoes: ClothingShoesWizard
+    outerClothing: ClothingOuterWizard
+    id: AgentIDCard
+    head: ClothingHeadHatWizard
+  inhand:
+    - BaseWishBall
