@@ -1,4 +1,4 @@
-- type: entity
+﻿- type: entity
   id: BaseStation
   abstract: true
   components:
@@ -53,7 +53,6 @@
   abstract: true
   components:
     - type: StationCentcomm
-      map: "/Maps/corvax_centcomm.yml" # Corvax-Mapping
 
 - type: entity
   id: BaseStationEvacuation
