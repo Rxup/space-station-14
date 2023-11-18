@@ -29,6 +29,5 @@
   result: ClothingBeltDemoman
   completetime: 4
   materials:
-    Steel: 30
+    Steel: 200
     Cloth: 30
-
