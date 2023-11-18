@@ -33,7 +33,7 @@
   - type: Clothing
     sprite: Backmen/Clothing/Belt/demoman.rsi
   - type: Storage
-    maxSlots: 10
+    maxSlots: 8
     whitelist:
       tags:
         - CableCoil
