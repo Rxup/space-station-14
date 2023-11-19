@@ -78,6 +78,7 @@ using Content.Shared.Shuttles.Components;
 using Content.Shared.Storage;
 using Content.Shared.Zombies;
 using Robust.Server.GameObjects;
+using Robust.Server.Maps;
 using Robust.Server.Player;
 using Robust.Shared.Audio;
 using Robust.Shared.Configuration;
@@ -254,6 +255,12 @@ public sealed class ShipwreckedRuleSystem : GameRuleSystem<ShipwreckedRuleCompon
 
     private void SpawnPlanet(EntityUid uid, ShipwreckedRuleComponent component)
     {
+        if (component.isMapLoaded)
+        {
+            return;
+        }
+
+        component.isMapLoaded = true;
         // Most of this code below comes from a protected function in SpawnSalvageMissionJob
         // which really should be made more generic and public...
         //
@@ -377,19 +384,73 @@ public sealed class ShipwreckedRuleSystem : GameRuleSystem<ShipwreckedRuleCompon
         }
     }
 
+
+    private MapId LoadDefaultMap()
+    {
+        _gameTicker.LoadGameMap(_prototypeManager.Index<GameMapPrototype>(DefaultShuttle), _gameTicker.DefaultMap, new MapLoadOptions(), null);
+        return _gameTicker.DefaultMap;
+    }
+
+    [ValidatePrototypeId<GameMapPrototype>]
+    private const string DefaultShuttle = "ShwrAdventurer";
     private bool AttachMap(EntityUid uid, ShipwreckedRuleComponent component)
     {
+        var mapId = component.SpaceMapId ?? _gameTicker.DefaultMap;
         //var spaceMapUid = _mapManager.GetMapEntityId(_gameTicker.DefaultMap);
-        component.SpaceMapId = _gameTicker.DefaultMap;
 
-        var shuttleStation = _stationSystem.GetStationInMap(_gameTicker.DefaultMap);
+        var isValidMap = false;
+
+        var query = EntityQueryEnumerator<SpawnPointComponent, MetaDataComponent, TransformComponent>();
+        while (query.MoveNext(out var spawnPointComponent,out var meta, out var xform))
+        {
+            if (meta.EntityPrototype?.ID != component.SpawnPointHecate.Id)
+                continue;
+
+            if (xform.MapID != mapId)
+                continue;
+
+            isValidMap = true;
+            break;
+        }
+
+        if (!isValidMap)
+        {
+            if (_mapManager.MapExists(_gameTicker.DefaultMap))
+            {
+                var qp = EntityQueryEnumerator<ActorComponent, MetaDataComponent, TransformComponent>();
+                while (qp.MoveNext(out var actor, out _, out _))
+                {
+                    _gameTicker.Respawn(actor.PlayerSession);
+                }
+                _mapManager.DeleteMap(_gameTicker.DefaultMap);
+
+
+                foreach (var map in _mapManager.GetAllMapIds().ToArray())
+                {
+                    _mapManager.DeleteMap(map);
+                }
+
+                _mapManager.CreateMap(_gameTicker.DefaultMap);
+                if (_gameTicker.RunLevel != GameRunLevel.InRound)
+                {
+                    _mapManager.AddUninitializedMap(_gameTicker.DefaultMap);
+                }
+
+            }
+
+            mapId = LoadDefaultMap();
+        }
+
+        var shuttleStation = _stationSystem.GetStationInMap(mapId); // then load secret no station in preloaded
         if (shuttleStation == null)
         {
-            return false;
+            mapId = LoadDefaultMap();
+            shuttleStation = _stationSystem.GetStationInMap(mapId);
         }
+        component.SpaceMapId = mapId;
         component.ShuttleStation = shuttleStation;
 
-        var shuttleGrid = GetShuttleInMap(_gameTicker.DefaultMap);//_stationSystem.GetStationInMap(_gameTicker.DefaultMap);
+        var shuttleGrid = GetShuttleInMap(mapId);//_stationSystem.GetStationInMap(_gameTicker.DefaultMap);
         if (shuttleGrid == null)
         {
             return false;
@@ -1243,11 +1304,24 @@ public sealed class ShipwreckedRuleSystem : GameRuleSystem<ShipwreckedRuleCompon
     protected override void Started(EntityUid uid, ShipwreckedRuleComponent component, GameRuleComponent gameRule, GameRuleStartedEvent args)
     {
         AttachMap(uid, component);
+        SpawnPlanet(uid, component);
 
-        if (component.PlanetMapId == null)
+        foreach (var map in _mapManager.GetAllMapIds().ToArray())
         {
-            SpawnPlanet(uid, component);
+            if (component.PlanetMapId.HasValue && component.PlanetMapId.Value == map)
+            {
+                continue;
+            }
+
+            if (_gameTicker.DefaultMap == map)
+            {
+                continue;
+            }
+
+            //cleanup
+            _mapManager.DeleteMap(map);
         }
+
         _mapManager.SetMapPaused(component.PlanetMapId!.Value, false);
 
         var loadQuery = EntityQueryEnumerator<ApcPowerReceiverComponent, TransformComponent>();
