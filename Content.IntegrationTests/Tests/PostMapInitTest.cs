@@ -68,7 +68,9 @@ namespace Content.IntegrationTests.Tests
             "Marathon",
             "Kettle",
             "MeteorArena",
+            "Atlas",
             //backmen
+            "CentCommv2",
             "ShwrAdventurer",
             "ShwrBig"
         };

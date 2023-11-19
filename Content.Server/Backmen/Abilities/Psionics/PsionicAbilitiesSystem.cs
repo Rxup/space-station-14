@@ -6,6 +6,7 @@ using Content.Shared.Random.Helpers;
 using Content.Server.EUI;
 using Content.Server.Mind;
 using Content.Shared.Backmen.Abilities.Psionics;
+using Content.Shared.GameTicking;
 using Content.Shared.StatusEffect;
 using Robust.Shared.Random;
 using Robust.Shared.Prototypes;
