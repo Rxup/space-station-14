@@ -17,6 +17,7 @@
         - ClothingNeckCloakTrans
         - ClothingNeckCloakAdmin
         - ClothingNeckCloakMoth
+        - ClothingNeckCloakVoid
         - ClothingNeckCloakGoliathCloak
         - ToySkeleton
         - Basketball
@@ -196,6 +197,7 @@
         - CableMVStack10
         - CableApcStack10
         - SheetUranium1
+        - PetCarrier
       chance: 0.6
       offset: 0.0
 

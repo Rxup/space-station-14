@@ -72,4 +72,4 @@
             Deliveryman: [ 0, 1 ] # backmen-Deliveryman
             Prisoner: [ 2, 2] # backmen-Prisoner
             SAI: [1, 1] # backmen-SAI
-            Brigmedic: [ 1, 1 ] # backmen-Brigmedic
+            Brigmedic: [ 0, 1 ] # backmen-Brigmedic

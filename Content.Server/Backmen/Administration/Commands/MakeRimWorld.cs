@@ -117,7 +117,7 @@ public sealed class MakeRimWorld : IConsoleCommand
 
                 var mod = biome.ModifiedTiles.GetOrNew(chunk * ChunkSize);
 
-                if (!mod.Add(index) || !biomeSystem.TryGetBiomeTile(index, biome.Layers, biome.Noise, biomeGrid, out var tile))
+                if (!mod.Add(index) || !biomeSystem.TryGetBiomeTile(index, biome.Layers, biome.Seed, biomeGrid, out var tile))
                     continue;
 
                 // If we flag it as modified then the tile is never set so need to do it ourselves.

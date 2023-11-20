@@ -46,7 +46,7 @@ namespace Content.IntegrationTests.Tests
             "CorvaxAvrite",
             "CorvaxDelta",
 			"CorvaxSpectrum",
-            "CorvaxGate",
+            //"CorvaxGate",
             "CorvaxSilly",
             // Corvax-End
             "Dev",
@@ -68,7 +68,9 @@ namespace Content.IntegrationTests.Tests
             "Marathon",
             "Kettle",
             "MeteorArena",
+            "Atlas",
             //backmen
+            "CentCommv2",
             "ShwrAdventurer",
             "ShwrBig"
         };

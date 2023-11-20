@@ -26,6 +26,11 @@ namespace Content.Server.Backmen.Psionics
                 Close();
                 return;
             }
+            if (!_entity.IsValid())
+            {
+                Close();
+                return;
+            }
 
             _psionicsSystem.AddRandomPsionicPower(_entity);
             Close();
