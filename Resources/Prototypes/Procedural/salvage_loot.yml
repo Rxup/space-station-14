@@ -110,6 +110,8 @@
         - proto: WaterTankHighCapacity
         - proto: WeldingFuelTankHighCapacity
           cost: 3
+        - proto: BluespacePillCanister
+          cost: 2
 
 # Mob loot table
 

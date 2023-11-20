@@ -277,6 +277,7 @@
       #- QSI
       - InsulativeHeadcage
       - HandTeleporter1
+      - BluespacePillCanister
   - type: EmagLatheRecipes
     emagDynamicRecipes:
       - ExplosivePayload
