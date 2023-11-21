@@ -313,6 +313,7 @@
         damage: 10
       behaviors:
       - !type:GibBehavior { }
+  - type: NonSpreaderZombie
 
 - type: entity
   name: glockroach
@@ -1284,6 +1285,7 @@
   - type: Puller
     needsHands: true
   - type: BadFood
+  - type: NonSpreaderZombie
 
 - type: entity
   parent: MobMouse
@@ -2708,6 +2710,7 @@
     BaseResistTime: 3
   - type: MobPrice
     price: 60
+  - type: NonSpreaderZombie
 
 - type: entity
   name: pig
