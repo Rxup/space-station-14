@@ -21,3 +21,36 @@
           tags:
           - SwordSquadRO
   - type: Appearance
+
+- type: entity
+  parent: ClothingBeltStorageBase
+  id: ClothingBeltDemoman
+  name: demoman belt
+  description: A Demoman's belt specifically for grenades.
+  components:
+  - type: Sprite
+    sprite: Backmen/Clothing/Belt/demoman.rsi
+  - type: Clothing
+    sprite: Backmen/Clothing/Belt/demoman.rsi
+  - type: Storage
+    maxSlots: 8
+    whitelist:
+      tags:
+        - CableCoil
+      components:
+        - ExplodeOnTrigger
+        - Explosive
+        - PayloadCase
+        - Signaller
+  - type: ItemMapper
+    mapLayers:
+     modular_grenade:
+        whitelist:
+          components:
+          - PayloadCase
+     signaller:
+        whitelist:
+          components:
+          - Signaller
+    sprite: Backmen/Clothing/Belt/belt_overlay.rsi
+  - type: Appearance
