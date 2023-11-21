@@ -10,6 +10,7 @@
     components:
       - BSSDrone #backmen: bssdrone
       - StationAI # backmen: AI
+      - Borg
   components:
     - type: PermanentBlindness
 
@@ -21,6 +22,7 @@
     components:
       - BSSDrone #backmen: bssdrone
       - StationAI # backmen: AI
+      - Borg
   components:
     - type: Narcolepsy
       timeBetweenIncidents: 300, 600
@@ -33,6 +35,7 @@
     components:
       - BSSDrone #backmen: bssdrone
       - StationAI # backmen: AI
+      - Borg
   components:
     - type: Pacified
 
@@ -44,6 +47,7 @@
     components:
       - BSSDrone #backmen: bssdrone
       - StationAI # backmen: AI
+      - Borg
   components:
     - type: Paracusia
       minTimeBetweenIncidents: 0.1
@@ -60,6 +64,7 @@
     components:
       - BSSDrone #backmen: bssdrone
       - StationAI # backmen: AI
+      - Borg
   components:
     - type: Muted
 
@@ -71,6 +76,7 @@
     components:
       - BSSDrone #backmen: bssdrone
       - StationAI # backmen: AI
+      - Borg
   components:
     - type: Uncloneable
 
@@ -83,6 +89,7 @@
       - Felinid
       - BSSDrone #backmen: bssdrone
       - StationAI # backmen: AI
+      - Borg
   components:
     - type: WheelchairBound
     - type: LegsParalyzed
@@ -95,5 +102,6 @@
     components:
     - BSSDrone #backmen: bssdrone
     - StationAI # backmen: AI
+    - Borg
   components:
     - type: FrontalLisp
