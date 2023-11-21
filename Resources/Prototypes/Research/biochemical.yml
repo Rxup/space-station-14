@@ -129,6 +129,7 @@
   recipeUnlocks:
   - BluespaceBeaker
   - SyringeBluespace
+  - BluespacePillCanister
 
 # look into revisiting this later once medical isn't a hellhole
 #- type: technology
