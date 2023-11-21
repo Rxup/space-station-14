@@ -25,7 +25,6 @@ public sealed class StationAISystem : EntitySystem
         SubscribeLocalEvent<StationAIComponent, IsUnequippingAttemptEvent>(OnAttempt);
         SubscribeLocalEvent<StationAIComponent, UpdateCanMoveEvent>(OnUpdateCanMove);
         SubscribeLocalEvent<StationAIComponent, ChangeDirectionAttemptEvent>(OnUpdateCanMove);
-        SubscribeLocalEvent<StationAIComponent, PullAttemptEvent>(OnPullAttempt);
 
         SubscribeLocalEvent<StationAIComponent, StrippingSlotButtonPressed>(OnStripEvent);
     }
@@ -39,11 +38,6 @@ public sealed class StationAISystem : EntitySystem
     {
         if(!HasComp<AIEyeComponent>(uid))
             args.Cancel();
-    }
-
-    private void OnPullAttempt(EntityUid uid, StationAIComponent component, PullAttemptEvent args)
-    {
-        args.Cancelled = true;
     }
 
     private void OnStripEvent(EntityUid uid, Component component, StrippingSlotButtonPressed args)
