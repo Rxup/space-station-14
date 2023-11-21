@@ -137,6 +137,7 @@
       - BorgChargerCircuitboard
       - WeaponCapacitorRechargerCircuitboard
       - AntiPsychicKnifeRecipe
+      - ClothingBeltDemoman
   - type: EmagLatheRecipes
     emagStaticRecipes:
        - CartridgePistol
