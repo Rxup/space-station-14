@@ -3450,6 +3450,7 @@ entities:
       type: GridAtmosphere
     - type: GasTileOverlay
     - type: RadiationGridResistance
+    - type: ProtectedGrid
     - id: centcomm
       type: BecomesStation
 - proto: AccessConfigurator
