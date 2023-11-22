@@ -6,6 +6,7 @@
     components:
       - BSSDrone # backmen: bssdrone
       - StationAI # backmen: AI
+      - Borg
   components:
     - type: PirateAccent
 
@@ -17,6 +18,7 @@
     components:
       - BSSDrone #backmen: bssdrone
       - StationAI # backmen: AI
+      - Borg
   components:
     - type: ArchaicAccent
 
@@ -28,6 +30,7 @@
     components:
       - BSSDrone #backmen: bssdrone
       - StationAI # backmen: AI
+      - Borg
   components:
   - type: Accentless
     removes:
@@ -43,6 +46,7 @@
     components:
     - BSSDrone #backmen: bssdrone
     - StationAI # backmen: AI
+    - Borg
   whitelist:
     components:
       - Felinid

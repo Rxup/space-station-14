@@ -88,98 +88,105 @@ public sealed class EvilTwinSystem : EntitySystem
             TryGetEligibleHumanoid(out targetUid);
         }
 
-        if (targetUid.HasValue)
+        try
         {
-            var xform = Transform(uid);
-            (var twinMob, pref) = SpawnEvilTwin(targetUid.Value, xform.Coordinates);
-            if (twinMob != null)
+            if (targetUid.HasValue)
             {
-                var playerData = ev.Session.ContentData();
-                if (playerData != null && _mindSystem.TryGetMind(playerData, out var mindId, out var mind))
+                var xform = Transform(uid);
+                (var twinMob, pref) = SpawnEvilTwin(targetUid.Value, xform.Coordinates);
+                if (twinMob != null)
                 {
-                    _mindSystem.TransferTo(mindId, null, true, false, mind);
-                    RemComp<MindContainerComponent>(twinMob.Value);
-                    Timer.Spawn(0, () =>
+                    var playerData = ev.Session.ContentData();
+                    if (playerData != null && _mindSystem.TryGetMind(playerData, out var mindId, out var mind))
                     {
-                        _mindSystem.TransferTo(mindId, twinMob, true, false, mind);
-                    });
-
-                    var station = _stationSystem.GetOwningStation(targetUid.Value) ?? _stationSystem.GetStations()
-                        .FirstOrNull(HasComp<StationEventEligibleComponent>);
-                    if (pref != null && station != null &&
-                        _mindSystem.TryGetMind(targetUid.Value, out var targetMindId, out var targetMind)
-                        && _roles.MindHasRole<JobComponent>(targetMindId))
-                    {
-                        /*if (TryComp<BankMemoryComponent>(targetMindId, out var mindBank) && TryComp<BankAccountComponent>(mindBank.BankAccount, out var bankAccountComponent))
+                        _mindSystem.TransferTo(mindId, null, true, false, mind);
+                        RemComp<MindContainerComponent>(twinMob.Value);
+                        Timer.Spawn(0, () =>
                         {
-                            _economySystem.AddPlayerBank(twinMob.Value, bankAccountComponent);
-                            if (TryComp<BankMemoryComponent>(mindId, out var twinBank))
+                            _mindSystem.TransferTo(mindId, twinMob, true, false, mind);
+                        });
+
+                        var station = _stationSystem.GetOwningStation(targetUid.Value) ?? _stationSystem.GetStations()
+                            .FirstOrNull(HasComp<StationEventEligibleComponent>);
+                        if (pref != null && station != null &&
+                            _mindSystem.TryGetMind(targetUid.Value, out var targetMindId, out var targetMind)
+                            && _roles.MindHasRole<JobComponent>(targetMindId))
+                        {
+                            /*if (TryComp<BankMemoryComponent>(targetMindId, out var mindBank) && TryComp<BankAccountComponent>(mindBank.BankAccount, out var bankAccountComponent))
                             {
-                                twinBank.BankAccount = mindBank.BankAccount;
-                            }
-                        }*/
-
-                        var currentJob = Comp<JobComponent>(targetMindId);
-
-                        var targetSession = targetMind?.Session;
-                        var targetUserId = targetMind?.UserId ?? targetMind?.OriginalOwnerUserId;
-                        if (targetUserId == null)
-                        {
-                            targetSession = ev.Session;
-
-                        }
-                        else if (targetSession == null)
-                        {
-                            targetSession = _playerManager.GetSessionById(targetUserId.Value);
-                        }
-
-                        RaiseLocalEvent(new PlayerSpawnCompleteEvent(twinMob.Value,
-                            targetSession,
-                            currentJob?.Prototype, false,
-                            0, station.Value, pref));
-
-                        if (!_roles.MindHasRole<JobComponent>(mindId))
-                        {
-                            _roles.MindAddRole(mindId, new JobComponent(){ Prototype = currentJob?.Prototype });
-                        }
-
-                        if (_inventory.TryGetSlotEntity(targetUid.Value, "id", out var targetPda) &&
-                            _inventory.TryGetSlotEntity(twinMob.Value, "id", out var twinPda) &&
-                            TryComp<CartridgeLoaderComponent>(targetPda, out var targetPdaComp) &&
-                            TryComp<CartridgeLoaderComponent>(twinPda, out var twinPdaComp))
-                        {
-                            var twinProgram =
-                                twinPdaComp.BackgroundPrograms.FirstOrDefault(HasComp<NotekeeperCartridgeComponent>);
-                            var targetProgram =
-                                targetPdaComp.BackgroundPrograms.FirstOrDefault(HasComp<NotekeeperCartridgeComponent>);
-                            if (twinProgram.Valid &&
-                                targetProgram.Valid &&
-                                TryComp<NotekeeperCartridgeComponent>(targetProgram, out var targetNotesComp) &&
-                                TryComp<NotekeeperCartridgeComponent>(twinProgram, out var twinNotesComp))
-                            {
-                                foreach (var note in targetNotesComp.Notes)
+                                _economySystem.AddPlayerBank(twinMob.Value, bankAccountComponent);
+                                if (TryComp<BankMemoryComponent>(mindId, out var twinBank))
                                 {
-                                    twinNotesComp.Notes.Add(note);
+                                    twinBank.BankAccount = mindBank.BankAccount;
+                                }
+                            }*/
+
+                            var currentJob = Comp<JobComponent>(targetMindId);
+
+                            var targetSession = targetMind?.Session;
+                            var targetUserId = targetMind?.UserId ?? targetMind?.OriginalOwnerUserId;
+                            if (targetUserId == null)
+                            {
+                                targetSession = ev.Session;
+
+                            }
+                            else if (targetSession == null)
+                            {
+                                targetSession = _playerManager.GetSessionById(targetUserId.Value);
+                            }
+
+                            RaiseLocalEvent(new PlayerSpawnCompleteEvent(twinMob.Value,
+                                targetSession,
+                                currentJob?.Prototype, false,
+                                0, station.Value, pref));
+
+                            if (!_roles.MindHasRole<JobComponent>(mindId))
+                            {
+                                _roles.MindAddRole(mindId, new JobComponent() { Prototype = currentJob?.Prototype });
+                            }
+
+                            if (_inventory.TryGetSlotEntity(targetUid.Value, "id", out var targetPda) &&
+                                _inventory.TryGetSlotEntity(twinMob.Value, "id", out var twinPda) &&
+                                TryComp<CartridgeLoaderComponent>(targetPda, out var targetPdaComp) &&
+                                TryComp<CartridgeLoaderComponent>(twinPda, out var twinPdaComp))
+                            {
+                                var twinProgram =
+                                    twinPdaComp.BackgroundPrograms.FirstOrDefault(
+                                        HasComp<NotekeeperCartridgeComponent>);
+                                var targetProgram =
+                                    targetPdaComp.BackgroundPrograms.FirstOrDefault(
+                                        HasComp<NotekeeperCartridgeComponent>);
+                                if (twinProgram.Valid &&
+                                    targetProgram.Valid &&
+                                    TryComp<NotekeeperCartridgeComponent>(targetProgram, out var targetNotesComp) &&
+                                    TryComp<NotekeeperCartridgeComponent>(twinProgram, out var twinNotesComp))
+                                {
+                                    foreach (var note in targetNotesComp.Notes)
+                                    {
+                                        twinNotesComp.Notes.Add(note);
+                                    }
                                 }
                             }
                         }
-                    }
 
-                    _allEvilTwins.Add((twinMob.Value, mind));
-                    _adminLogger.Add(LogType.Action, LogImpact.Extreme,
-                        $"{_entityManager.ToPrettyString(twinMob.Value)} take EvilTwin with target {_entityManager.ToPrettyString(targetUid.Value)}");
+                        _allEvilTwins.Add((twinMob.Value, mind));
+                        _adminLogger.Add(LogType.Action, LogImpact.Extreme,
+                            $"{_entityManager.ToPrettyString(twinMob.Value)} take EvilTwin with target {_entityManager.ToPrettyString(targetUid.Value)}");
+                    }
                 }
             }
+            else
+            {
+                _adminLogger.Add(LogType.Action, LogImpact.Extreme,
+                    $"{_entityManager.ToPrettyString(uid)} take EvilTwin with no target (delete)");
+                _prayerSystem.SendSubtleMessage(ev.Session, ev.Session, Loc.GetString("evil-twin-error-message"),
+                    Loc.GetString("prayer-popup-subtle-default"));
+            }
         }
-        else
+        finally
         {
-            _adminLogger.Add(LogType.Action, LogImpact.Extreme,
-                $"{_entityManager.ToPrettyString(uid)} take EvilTwin with no target (delete)");
-            _prayerSystem.SendSubtleMessage(ev.Session, ev.Session, Loc.GetString("evil-twin-error-message"),
-                Loc.GetString("prayer-popup-subtle-default"));
+            QueueDel(uid);
         }
-
-        QueueDel(uid);
     }
 
     private List<(EntityUid Id, MindComponent Mind)> _allEvilTwins = new();
