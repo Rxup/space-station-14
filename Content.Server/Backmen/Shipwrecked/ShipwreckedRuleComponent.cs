@@ -70,9 +70,6 @@ public sealed partial class ShipwreckedRuleComponent : Component
 
 #region Live Data
 
-    [ViewVariables]
-    public bool isMapLoaded = false;
-
     /// <summary>
     /// A list of all survivors and their player sessions.
     /// </summary>
