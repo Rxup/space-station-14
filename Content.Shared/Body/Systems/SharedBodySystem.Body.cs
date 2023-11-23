@@ -223,7 +223,7 @@ public partial class SharedBodySystem
     {
         if (id == null ||
             !Resolve(id.Value, ref body, false) ||
-            body.RootContainer.ContainedEntity == null ||
+            body.RootContainer?.ContainedEntity == null ||
             !Resolve(body.RootContainer.ContainedEntity.Value, ref rootPart))
         {
             yield break;

@@ -1,8 +1,10 @@
 ﻿using Content.Server.Backmen.Shipwrecked.Components;
 using Content.Server.Explosion.EntitySystems;
+using Content.Server.Humanoid.Systems;
 using Content.Server.NPC;
 using Content.Server.NPC.HTN;
 using Content.Server.NPC.Systems;
+using Content.Server.RandomMetadata;
 using Content.Server.Zombies;
 using Content.Shared.Damage;
 using Content.Shared.Humanoid;
@@ -31,8 +33,8 @@ public sealed class NPCZombieSystem : EntitySystem
     {
         base.Initialize();
 
-        SubscribeLocalEvent<ZombifiedOnSpawnComponent, ComponentAdd>(OnSpawnZombifiedStartup);
-        SubscribeLocalEvent<ZombieSurpriseComponent, ComponentInit>(OnZombieSurpriseInit);
+        SubscribeLocalEvent<ZombifiedOnSpawnComponent, MapInitEvent>(OnSpawnZombifiedStartup, after: new []{ typeof(RandomMetadataSystem), typeof(RandomHumanoidSystem) });
+        SubscribeLocalEvent<ZombieSurpriseComponent, MapInitEvent>(OnZombieSurpriseInit, after: new []{ typeof(RandomMetadataSystem), typeof(RandomHumanoidSystem) });
         SubscribeLocalEvent<ZombieWakeupOnTriggerComponent, TriggerEvent>(OnZombieWakeupTrigger);
         SubscribeLocalEvent<NpcZombieMakeEvent>(OnZombifyEntity);
     }
@@ -40,9 +42,8 @@ public sealed class NPCZombieSystem : EntitySystem
     private void OnZombifyEntity(NpcZombieMakeEvent ev)
     {
         if (TerminatingOrDeleted(ev.Target))
-        {
             return;
-        }
+
         _zombieSystem.ZombifyEntity(ev.Target);
 
 
@@ -101,8 +102,11 @@ public sealed class NPCZombieSystem : EntitySystem
         Dirty(ev.Target,z);
     }
 
-    private void OnSpawnZombifiedStartup(EntityUid uid, ZombifiedOnSpawnComponent component, ComponentAdd args)
+    private void OnSpawnZombifiedStartup(EntityUid uid, ZombifiedOnSpawnComponent component, MapInitEvent args)
     {
+        if (TerminatingOrDeleted(uid))
+            return;
+
         RemCompDeferred<ZombifiedOnSpawnComponent>(uid);
         QueueLocalEvent(new NpcZombieMakeEvent
         {
@@ -112,8 +116,11 @@ public sealed class NPCZombieSystem : EntitySystem
     }
 
     [ValidatePrototypeId<EntityPrototype>] private const string ZombieSurpriseDetector = "ZombieSurpriseDetector";
-    private void OnZombieSurpriseInit(EntityUid uid, ZombieSurpriseComponent component, ComponentInit args)
+    private void OnZombieSurpriseInit(EntityUid uid, ZombieSurpriseComponent component, MapInitEvent args)
     {
+        if (TerminatingOrDeleted(uid))
+            return;
+
         // Spawn a separate collider attached to the entity.
         var trigger = Spawn(ZombieSurpriseDetector, Transform(uid).Coordinates);
         Comp<ZombieWakeupOnTriggerComponent>(trigger).ToZombify = uid;
