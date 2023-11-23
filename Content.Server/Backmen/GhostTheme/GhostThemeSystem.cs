@@ -37,7 +37,7 @@ public sealed class GhostThemeSystem : EntitySystem
         {
             var comp = (Component) _serialization.CreateCopy(entry.Component, notNullableOverride: true);
             comp.Owner = uid;
-            EntityManager.AddComponent(uid, comp, true);
+            EntityManager.AddComponent(uid, comp);
         }
 
         EnsureComp<GhostThemeComponent>(uid).GhostTheme = ghostTheme;
