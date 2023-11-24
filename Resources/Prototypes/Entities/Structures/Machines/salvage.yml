@@ -57,7 +57,7 @@
   - type: ActiveRadio
     channels:
     - Supply
-  - type: SalvageMagnet
+  #- type: SalvageMagnet
   - type: ApcPowerReceiver
     powerLoad: 2500 # TODO change this to a HV power draw that really hits the grid hard WHEN active
   - type: Machine
@@ -70,8 +70,8 @@
   name: salvage locator
   description: Locates salvage.
   components:
-  - type: SalvageMagnet
-    offsetRadiusMax: 32
+  #- type: SalvageMagnet
+  #  offsetRadiusMax: 32
   - type: ApcPowerReceiver
     powerLoad: 1000
 
