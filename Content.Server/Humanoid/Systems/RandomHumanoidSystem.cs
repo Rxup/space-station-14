@@ -54,14 +54,15 @@ public sealed class RandomHumanoidSystem : EntitySystem
                 comp.Owner = humanoid; // This .owner must survive for now.
 
                 // start-backmen: fix
+                /*
                 var compType = comp.GetType();
                 if (EntityManager.HasComponent(humanoid, compType))
                 {
                     EntityManager.RemoveComponent(humanoid, compType);
                 }
+                */
                 // end-backmen: fix
-
-                EntityManager.AddComponent(humanoid, comp);
+                EntityManager.AddComponent(humanoid, comp, true);
             }
         }
 
