@@ -69,7 +69,7 @@ public sealed class SpecForcesSystem : EntitySystem
             {
                 var comp = (Component) _serialization.CreateCopy(entry.Component, notNullableOverride: true);
                 comp.Owner = uid;
-                EntityManager.AddComponent(uid, comp, true);
+                EntityManager.AddComponent(uid, comp);
             }
         }
     }
@@ -145,7 +145,7 @@ public sealed class SpecForcesSystem : EntitySystem
         {
             var comp = (Component) _serialization.CreateCopy(tplSpecForceComponent, notNullableOverride: true);
             comp.Owner = uid;
-            EntityManager.AddComponent(uid, comp, true);
+            EntityManager.AddComponent(uid, comp);
         }
 
         EnsureComp<SpecForceComponent>(uid);
@@ -153,7 +153,7 @@ public sealed class SpecForcesSystem : EntitySystem
         {
             var comp = (Component) _serialization.CreateCopy(tplGhostRoleComponent, notNullableOverride: true);
             comp.Owner = uid;
-            EntityManager.AddComponent(uid, comp, true);
+            EntityManager.AddComponent(uid, comp);
         }
 
         return uid;

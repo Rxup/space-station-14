@@ -49,13 +49,22 @@ public sealed class LoadCharacterCommand : IConsoleCommand
 
             if (args.Length >= 1)
             {
-                if (!EntityUid.TryParse(args.First(), out var uid))
+
+                if (!int.TryParse(args.First(), out var entInt))
                 {
                     shell.WriteLine(Loc.GetString("shell-entity-uid-must-be-number"));
                     return;
                 }
 
-                target = uid;
+                var targetNet = new NetEntity(entInt);
+
+                if (!_entityManager.TryGetEntity(targetNet, out var uid))
+                {
+                    shell.WriteLine(Loc.GetString("shell-invalid-entity-id"));
+                    return;
+                }
+
+                target = uid.Value;
             }
             else
             {

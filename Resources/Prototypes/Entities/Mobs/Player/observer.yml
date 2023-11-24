@@ -71,6 +71,7 @@
     - GROUPS_0
     - Binary
     - Flesh
+    - Freelance
     globalReceive: true
   - type: Physics
     bodyType: KinematicController

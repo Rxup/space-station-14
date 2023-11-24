@@ -91,6 +91,9 @@ public sealed class BloodstreamSystem : EntitySystem
 
             bloodstream.AccumulatedFrametime -= bloodstream.UpdateInterval;
 
+            if (bloodstream.BloodSolution == null)
+                continue;
+
             // Adds blood to their blood level if it is below the maximum; Blood regeneration. Must be alive.
             if (bloodstream.BloodSolution.Volume < bloodstream.BloodSolution.MaxVolume && !_mobStateSystem.IsDead(uid))
             {
