@@ -4,7 +4,9 @@
   description: trait-pirate-accent-desc
   blacklist:
     components:
-      - BSSDrone #backmen: bssdrone
+      - BSSDrone # backmen: bssdrone
+      - StationAI # backmen: AI
+      - BorgChassis
   components:
     - type: PirateAccent
 
@@ -15,6 +17,8 @@
   blacklist:
     components:
       - BSSDrone #backmen: bssdrone
+      - StationAI # backmen: AI
+      - BorgChassis
   components:
     - type: ArchaicAccent
 
@@ -25,19 +29,27 @@
   blacklist:
     components:
       - BSSDrone #backmen: bssdrone
+      - StationAI # backmen: AI
+      - BorgChassis
   components:
   - type: Accentless
     removes:
     - type: LizardAccent
     - type: ReplacementAccent
       accent: dwarf
-    
+
 - type: trait
   id: OwOAccent
   name: OwO акцент
-  description: Вы не можете перестать говорить как неко! 
-  whitelist: 
+  description: Вы не можете перестать говорить как неко!
+  blacklist:
+    components:
+    - BSSDrone #backmen: bssdrone
+    - StationAI # backmen: AI
+    - BorgChassis
+  whitelist:
     components:
       - Felinid
   components:
-    - type: OwOAccent    
+    - type: OwOAccent
+

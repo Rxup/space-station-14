@@ -197,11 +197,11 @@ WeaponRifleLecter: WeaponRifleAR18
 WeaponSubMachineGunAtreides: WeaponSubMachineGunMP7
 WeaponPistolViper: WeaponPistolHIB88M4
 WeaponPistolMk58: WeaponPistolACP14
-WeaponPistolMk58Nonlethal: WeaponPistolG22
+WeaponPistolMk58Nonlethal: WeaponPistolG22NonLethal
 WeaponSubMachineGunDrozd: WeaponSubMachineGunVectorSpecial
-WeaponSubMachineGunDrozdRubber: WeaponSubMachineGunMP5
+WeaponSubMachineGunDrozdRubber: WeaponSubMachineGunMP5NonLethal
 WeaponShotgunEnforcer: WeaponShotgun39
-WeaponShotgunEnforcerRubber: WeaponShotgun39
+WeaponShotgunEnforcerRubber: WeaponShotgun39NonLethal
 WeaponSubMachineGunWt550: WeaponSubMachineGunP90
 MagazinePistolSubMachineGunTopMounted: MagazinePistolTopSubMachineGun
 WeaponShotgunKammerer: WeaponShotguntrenchgun4034
@@ -209,3 +209,6 @@ WeaponSubMachineGunC20r: WeaponSubMachineGunMP7
 WeaponRevolverMateba: WeaponRevolverMatebaNew
 WeaponSniperMosin: WeaponSniperMosinNew
 WeaponShotgunBulldog: WeaponShotgunZauer
+
+# 2023-11-11 Backmen: AI
+ToyAi: SpawnPointStationAI

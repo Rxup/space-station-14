@@ -9,6 +9,7 @@
     - Blob
     - Flesh
     - Revolutionary
+    - SuperZloy
 
 - type: npcFaction
   id: NanoTrasen
@@ -21,6 +22,7 @@
   - Flesh
   - Revolutionary
   - MalfunctioningRobot
+  - SuperZloy
 
 - type: npcFaction
   id: Mouse
@@ -39,6 +41,7 @@
   - Xeno
   - Blob
   - Flesh
+  - SuperZloy
 
 - type: npcFaction
   id: SimpleHostile
@@ -51,6 +54,7 @@
   - Blob
   - Flesh
   - Revolutionary
+  - SuperZloy
 
 - type: npcFaction
   id: SimpleNeutral
@@ -65,6 +69,7 @@
   - Zombie
   - Blob
   - Flesh
+  - SuperZloy
 
 - type: npcFaction
   id: Xeno
@@ -77,6 +82,7 @@
   - Blob
   - Flesh
   - Revolutionary
+  - SuperZloy
 
 - type: npcFaction
   id: Zombie
@@ -89,6 +95,7 @@
   - PetsNT
   - Blob
   - Flesh
+  - SuperZloy
 
 
   - Revolutionary
@@ -103,3 +110,4 @@
   - MalfunctioningRobot
   - Blob
   - Flesh
+  - SuperZloy

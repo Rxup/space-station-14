@@ -11,6 +11,10 @@
       "name": "icon"
     },
     {
+      "name": "equipped-INNERCLOTHING-digi",
+      "directions": 4
+    },
+    {
       "name": "equipped-INNERCLOTHING",
       "directions": 4
     }

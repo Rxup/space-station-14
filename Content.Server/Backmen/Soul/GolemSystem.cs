@@ -1,4 +1,5 @@
 using System.Numerics;
+using Content.Server.Ghost.Roles.Components;
 using Content.Shared.Interaction;
 using Content.Shared.Containers.ItemSlots;
 using Content.Shared.Throwing;
@@ -79,6 +80,8 @@ public sealed class GolemSystem : SharedGolemSystem
         SharedOnEntRemoved(args);
     }
 
+    [ValidatePrototypeId<EntityPrototype>]
+    private const string AdminObserver = "AdminObserver";
     private void OnAfterInteract(EntityUid uid, SoulCrystalComponent component, AfterInteractEvent args)
     {
         if (!args.CanReach)
@@ -93,7 +96,7 @@ public sealed class GolemSystem : SharedGolemSystem
         if (!TryComp<ActorComponent>(args.User, out var userActor))
             return;
 
-        if (!HasComp<HumanoidAppearanceComponent>(args.User))
+        if (!(HasComp<HumanoidAppearanceComponent>(args.User) || Prototype(args.User)?.ID == AdminObserver))
             return;
 
         if (!_uiSystem.TryOpen(args.Target.Value, GolemUiKey.Key, userActor!.PlayerSession))
@@ -110,7 +113,10 @@ public sealed class GolemSystem : SharedGolemSystem
         if (_prototypes.TryIndex<DatasetPrototype>("names_golem", out var names))
             golemName = _robustRandom.Pick(names.Values);
 
-        var state = new GolemBoundUserInterfaceState(golemName, MetaData(args.User).EntityName);
+        golem.GolemName = golemName;
+        golem.Master = MetaData(args.User).EntityName;
+
+        var state = new GolemBoundUserInterfaceState(golem.GolemName, golem.Master);
         _userInterfaceSystem.SetUiState(ui, state);
     }
 
@@ -186,6 +192,8 @@ public sealed class GolemSystem : SharedGolemSystem
 
         _uiSystem.TryCloseAll(uid);
 
+        RemComp<GhostTakeoverAvailableComponent>(component.PotentialCrystal.Value);
+
         if (!string.IsNullOrEmpty(component.GolemName))
         {
             _metaDataSystem.SetEntityName(uid, component.GolemName);
@@ -205,7 +213,6 @@ public sealed class GolemSystem : SharedGolemSystem
             component.Master = MetaData(args.Session.AttachedEntity.Value).EntityName;
         }
 
-
         _mindSystem.TransferTo(mindId, uid);
 
         if (TryComp<AppearanceComponent>(uid, out var appearance))
@@ -214,7 +221,7 @@ public sealed class GolemSystem : SharedGolemSystem
         _adminLogger.Add(Shared.Database.LogType.Action, Shared.Database.LogImpact.High, $"{ToPrettyString(args.Session.AttachedEntity.Value):player} created a golem named {ToPrettyString(uid):target} obeying a master named {(component.Master)}");
 
         component.PotentialCrystal = null;
-        component.Master = null;
+        //component.Master = null;
         component.GolemName = null;
         DirtyEntity(uid);
         Dirty(uid, component);

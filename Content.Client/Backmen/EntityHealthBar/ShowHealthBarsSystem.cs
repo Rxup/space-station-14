@@ -1,8 +1,8 @@
 using Content.Shared.Backmen.EntityHealthBar;
 using Content.Shared.GameTicking;
-using Robust.Client.GameObjects;
 using Robust.Client.Graphics;
 using Robust.Client.Player;
+using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 
 namespace Content.Client.Backmen.EntityHealthBar;
@@ -20,11 +20,27 @@ public sealed class ShowHealthBarsSystem : EntitySystem
 
         SubscribeLocalEvent<ShowHealthBarsComponent, ComponentInit>(OnInit);
         SubscribeLocalEvent<ShowHealthBarsComponent, ComponentRemove>(OnRemove);
-        SubscribeLocalEvent<ShowHealthBarsComponent, LocalPlayerAttachedEvent>(OnPlayerAttached);
-        SubscribeLocalEvent<ShowHealthBarsComponent, LocalPlayerDetachedEvent>(OnPlayerDetached);
+        SubscribeLocalEvent<ShowHealthBarsComponent, AfterAutoHandleStateEvent>(OnUpdate);
         SubscribeLocalEvent<RoundRestartCleanupEvent>(OnRoundRestart);
 
+        _player.LocalPlayerAttached += OnPlayerAttached;
+        _player.LocalPlayerDetached += OnPlayerDetached;
+
         _overlay = new(EntityManager, _protoMan);
+    }
+
+    public override void Shutdown()
+    {
+        base.Shutdown();
+
+        _player.LocalPlayerAttached -= OnPlayerAttached;
+        _player.LocalPlayerDetached -= OnPlayerDetached;
+    }
+
+    private void OnUpdate(Entity<ShowHealthBarsComponent> ent, ref AfterAutoHandleStateEvent args)
+    {
+        _overlay.DamageContainers.Clear();
+        _overlay.DamageContainers.AddRange(ent.Comp.DamageContainers);
     }
 
     private void OnInit(EntityUid uid, ShowHealthBarsComponent component, ComponentInit args)
@@ -43,9 +59,12 @@ public sealed class ShowHealthBarsSystem : EntitySystem
         }
     }
 
-    private void OnPlayerAttached(EntityUid uid, ShowHealthBarsComponent component, LocalPlayerAttachedEvent args)
+    private void OnPlayerAttached(EntityUid uid)
     {
-        ApplyOverlays(component);
+        if (TryComp<ShowHealthBarsComponent>(uid, out var comp))
+        {
+            ApplyOverlays(comp);
+        }
     }
 
     private void ApplyOverlays(ShowHealthBarsComponent component)
@@ -55,7 +74,7 @@ public sealed class ShowHealthBarsSystem : EntitySystem
         _overlay.DamageContainers.AddRange(component.DamageContainers);
     }
 
-    private void OnPlayerDetached(EntityUid uid, ShowHealthBarsComponent component, LocalPlayerDetachedEvent args)
+    private void OnPlayerDetached(EntityUid uid)
     {
         _overlayMan.RemoveOverlay(_overlay);
     }

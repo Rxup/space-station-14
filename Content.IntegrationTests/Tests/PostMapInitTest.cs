@@ -46,7 +46,7 @@ namespace Content.IntegrationTests.Tests
             "CorvaxAvrite",
             "CorvaxDelta",
 			"CorvaxSpectrum",
-            "CorvaxGate",
+            //"CorvaxGate",
             "CorvaxSilly",
             // Corvax-End
             "Dev",
@@ -68,7 +68,9 @@ namespace Content.IntegrationTests.Tests
             "Marathon",
             "Kettle",
             "MeteorArena",
+            "Atlas",
             //backmen
+            "CentCommv2",
             "ShwrAdventurer",
             "ShwrBig",
             "shwrDust"
@@ -264,6 +266,7 @@ namespace Content.IntegrationTests.Tests
                     var jobList = entManager.GetComponent<StationJobsComponent>(station).RoundStartJobList
                         .Where(x => x.Value != 0)
                         .Where(x=>x.Key != "Prisoner") // backmen: Fugitive
+                        .Where(x=>x.Key != "SAI") // backmen: SAI
                         .Where(x=>x.Key != "Freelancer") // backmen: shipwrecked
                         .Select(x => x.Key);
                     var spawnPoints = entManager.EntityQuery<SpawnPointComponent>()

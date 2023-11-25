@@ -6,7 +6,6 @@ using Content.Shared.Administration;
 using Content.Shared.Backmen.Economy;
 using Content.Shared.Database;
 using Content.Shared.FixedPoint;
-using Robust.Server.GameObjects;
 using Robust.Shared.Console;
 using Robust.Shared.Player;
 
@@ -16,7 +15,7 @@ namespace Content.Server.Backmen.Administration.Commands;
 public sealed class AddBankAcсountCommand : IConsoleCommand
 {
     [Dependency] private readonly IAdminLogManager _adminLogger = default!;
-    [Dependency] private readonly IEntityManager _entityManager = default!;
+    [Dependency] private readonly IEntityManager _entManager = default!;
 
 
     public string Command { get; } = "addbankacсount";
@@ -30,14 +29,28 @@ public sealed class AddBankAcсountCommand : IConsoleCommand
             return;
         }
 
-        if (!EntityUid.TryParse(args[0], out var targetUid) || !targetUid.Valid ||
-            !_entityManager.HasComponent<ActorComponent>(targetUid))
+        if (!int.TryParse(args[0], out var entInt))
+        {
+            shell.WriteLine(Loc.GetString("shell-entity-uid-must-be-number"));
+            return;
+        }
+
+        var targetNet = new NetEntity(entInt);
+
+        if (!_entManager.TryGetEntity(targetNet, out var target))
+        {
+            shell.WriteLine(Loc.GetString("shell-invalid-entity-id"));
+            return;
+        }
+
+        if (!targetNet.Valid ||
+            !_entManager.HasComponent<ActorComponent>(target))
         {
             shell.WriteError("Игрок не найден!");
             return;
         }
 
-        var bankManagerSystem = _entityManager.System<BankManagerSystem>();
+        var bankManagerSystem = _entManager.System<BankManagerSystem>();
 
         Entity<BankAccountComponent>? account = null;
 
@@ -47,8 +60,8 @@ public sealed class AddBankAcсountCommand : IConsoleCommand
             return;
         }
 
-        var economySystem = _entityManager.System<EconomySystem>();
-        var playerBank = economySystem.AddPlayerBank(targetUid, account, true);
+        var economySystem = _entManager.System<EconomySystem>();
+        var playerBank = economySystem.AddPlayerBank(target.Value, account, true);
         if (playerBank == null)
         {
             shell.WriteError("Ошибка! Не возможно создать или привязать банковский аккаунт!");
@@ -64,18 +77,19 @@ public sealed class AddBankAcсountCommand : IConsoleCommand
         }
 
         _adminLogger.Add(LogType.AdminMessage, LogImpact.Extreme,
-            $"Admin {(shell.Player != null ? shell.Player.Name : "An administrator")} AddBankAcсount {_entityManager.ToPrettyString(targetUid)} #{account!.Value.Comp.AccountNumber} balance: {account.Value.Comp.Balance}");
+            $"Admin {(shell.Player != null ? shell.Player.Name : "An administrator")} AddBankAcсount {_entManager.ToPrettyString(target)} #{account!.Value.Comp.AccountNumber} balance: {account.Value.Comp.Balance}");
     }
 
     public CompletionResult GetCompletion(IConsoleShell shell, string[] args)
     {
         return args.Length switch
         {
-            1 => CompletionResult.FromHintOptions(CompletionHelper.NetEntities(args[0], _entityManager),
+            1 => CompletionResult.FromHintOptions(CompletionHelper.NetEntities(args[0], _entManager),
                 "Персонаж с кпк"),
             2 => CompletionResult.FromHintOptions(
-                _entityManager.System<BankManagerSystem>().ActiveBankAccounts
-                    .Select(x => new CompletionOption(x.Value.Comp.AccountNumber, x.Value.Comp.AccountName+$" ({x.Value.Owner})"))
+                _entManager.System<BankManagerSystem>().ActiveBankAccounts
+                    .Select(x => new CompletionOption(x.Value.Comp.AccountNumber,
+                        x.Value.Comp.AccountName + $" ({x.Value.Owner})"))
                 , "Аккаунт №"),
             _ => CompletionResult.Empty
         };
