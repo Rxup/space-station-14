@@ -1435,7 +1435,7 @@
 - type: listing
   id: UplinkAKMSBundle
   name: набор "AKMS"
-  description: Символ войны, легендарное оружие зарекомендовавшие себя кака самое надежное оружие в истории. В комплетке 3 магазина.
+  description: Символ войны, легендарное оружие зарекомендовавшие себя как самое надежное оружие в истории. В комплетке 3 магазина.
   icon: { sprite: Backmen/Objects/Weapons/Gunsx64/Rifles/akms/big.rsi, state: icon }
   productEntity: ClothingBackpackDuffelSyndicateFilledAKMS
   cost:
@@ -1697,6 +1697,28 @@
         - id: WeaponRifleBR64
         - id: MagazineCaselessRifleShort
           amount: 2
+
+- type: listing
+  id: UplinkSVDBundle
+  name: набор "SVD"
+  description: Легендарное оружие, зарекомендовала себя за счёт платформы АК на которой он был создан. В комплетке 3 магазина.
+  icon: { sprite: Backmen/Objects/Weapons/Gunsx64/Snipers/dragunov/big.rsi, state: icon }
+  productEntity: ClothingBackpackDuffelSyndicateFilledSVD
+  cost:
+    Telecrystal: 17
+  categories:
+  - UplinkBundles
+
+- type: entity
+  parent: ClothingBackpackDuffelSyndicate
+  id: ClothingBackpackDuffelSyndicateFilledSVD
+  name: набор "SVD"
+  components:
+    - type: StorageFill
+      contents:
+        - id: WeaponRifleDragunov
+        - id: MagazineRifleLightSniper
+        - id: MagazineRifleLightSniper
 
 #- type: listing
 #  id: UplinkFlamethrowerBundle
