@@ -212,3 +212,7 @@ WeaponShotgunBulldog: WeaponShotgunZauer
 
 # 2023-11-11 Backmen: AI
 ToyAi: SpawnPointStationAI
+
+# 2023-11-26
+WeaponSniperHristov: WeaponRifleSR127
+MagazineBoxAntiMateriel: MagazineAntiMaterielRifleSR

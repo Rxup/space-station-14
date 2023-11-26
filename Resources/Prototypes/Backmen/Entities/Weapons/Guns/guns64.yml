@@ -1,5 +1,4 @@
 # Empty mags
-
 - type: entity
   id: BasePowerpackRifle
   name: "powerpack (5.56)"
@@ -1824,8 +1823,9 @@
     soundEmpty:
       path: /Audio/Weapons/Guns64/Rifles/m41a_empty.ogg
   - type: MagazineAmmoProvider
-  - type: ChamberMagazineAmmoProvider
     autoEject: true
+    soundAutoEject: /Audio/Backmen/Misc/empty_alarm.ogg
+  - type: ChamberMagazineAmmoProvider
     boltClosed: null
   - type: ItemSlots
     slots:
@@ -2984,6 +2984,35 @@
   - type: UseDelay
     delay: 1.5
   - type: GunRequiresWield
+  - type: SolutionContainerManager
+    solutions:
+      spray:
+        maxVol: 100
+        reagents:
+        - ReagentId: Water
+          Quantity: 100
+  - type: SolutionRegeneration
+    solution: spray
+    generated:
+      reagents:
+      - ReagentId: Water
+        Quantity: 10
+  - type: RefillableSolution
+    solution: spray
+  - type: DrainableSolution
+    solution: spray
+  - type: SolutionTransfer
+  - type: ItemCooldown
+  - type: Spray
+    transferAmount: 10
+    spraySound:
+      path: /Audio/Effects/extinguish.ogg
+    sprayedPrototype: ExtinguisherSpray
+    vaporAmount: 3
+    vaporSpread: 30
+    sprayVelocity: 2.0
+  - type: FireExtinguisher
+    hasSafety: true
 
 - type: entity
   id: PowerpackFlame
