@@ -72,6 +72,14 @@
     - Binary
     - Flesh
     - Freelance
+    - AID
+    - AIMALF
+    - CentComOBR
+    - CentComOBREPS11
+    - CentComOBRSR6
+    - Rebels
+    - CentComDeath
+    - Hivemind
     globalReceive: true
   - type: Physics
     bodyType: KinematicController
