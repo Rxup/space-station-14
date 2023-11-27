@@ -132,7 +132,3 @@
       damage:
         types:
           Blunt: 0
-    - type: Reflect
-      enabled: true
-      reflectProb: .10
-      spread: 75
