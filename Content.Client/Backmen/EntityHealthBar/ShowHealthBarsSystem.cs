@@ -23,7 +23,18 @@ public sealed class ShowHealthBarsSystem : EntitySystem
         SubscribeLocalEvent<ShowHealthBarsComponent, AfterAutoHandleStateEvent>(OnUpdate);
         SubscribeLocalEvent<RoundRestartCleanupEvent>(OnRoundRestart);
 
+        _player.LocalPlayerAttached += OnPlayerAttached;
+        _player.LocalPlayerDetached += OnPlayerDetached;
+
         _overlay = new(EntityManager, _protoMan);
+    }
+
+    public override void Shutdown()
+    {
+        base.Shutdown();
+
+        _player.LocalPlayerAttached -= OnPlayerAttached;
+        _player.LocalPlayerDetached -= OnPlayerDetached;
     }
 
     private void OnUpdate(Entity<ShowHealthBarsComponent> ent, ref AfterAutoHandleStateEvent args)
@@ -48,9 +59,12 @@ public sealed class ShowHealthBarsSystem : EntitySystem
         }
     }
 
-    private void OnPlayerAttached(EntityUid uid, ShowHealthBarsComponent component, LocalPlayerAttachedEvent args)
+    private void OnPlayerAttached(EntityUid uid)
     {
-        ApplyOverlays(component);
+        if (TryComp<ShowHealthBarsComponent>(uid, out var comp))
+        {
+            ApplyOverlays(comp);
+        }
     }
 
     private void ApplyOverlays(ShowHealthBarsComponent component)
@@ -60,7 +74,7 @@ public sealed class ShowHealthBarsSystem : EntitySystem
         _overlay.DamageContainers.AddRange(component.DamageContainers);
     }
 
-    private void OnPlayerDetached(EntityUid uid, ShowHealthBarsComponent component, LocalPlayerDetachedEvent args)
+    private void OnPlayerDetached(EntityUid uid)
     {
         _overlayMan.RemoveOverlay(_overlay);
     }

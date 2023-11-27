@@ -21,12 +21,30 @@
   mapName: Баржа
   mapPath: /Maps/Backmen/Shuttles/Shatlik.yml
   minPlayers: 15
+  maxPlayers: 30
   stations:
     ShwrAdventurerBig:
       stationProto: StandardStationArena
       components:
         - type: StationNameSetup
           mapNameTemplate: "Баржа"
+        - type: StationJobs
+          overflowJobs:
+            - Freelancer
+          availableJobs:
+            Freelancer: [-1,-1]
+
+- type: gameMap
+  id: shwrDust
+  mapName: KL-Dust 469
+  mapPath: /Maps/Backmen/Shuttles/shwr-dust.yml
+  minPlayers: 30
+  stations:
+    shwrDust:
+      stationProto: StandardStationArena
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: "KL-Dust 469"
         - type: StationJobs
           overflowJobs:
             - Freelancer

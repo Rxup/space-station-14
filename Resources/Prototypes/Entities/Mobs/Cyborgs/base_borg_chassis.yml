@@ -210,5 +210,6 @@
     - AllAccess
   - type: Lock
     locked: true
+  - type: ActivatableUIRequiresLock
   - type: AccessReader
     access: [["Command"], ["Research"]]

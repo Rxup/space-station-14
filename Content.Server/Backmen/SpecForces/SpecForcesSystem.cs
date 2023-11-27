@@ -69,7 +69,7 @@ public sealed class SpecForcesSystem : EntitySystem
             {
                 var comp = (Component) _serialization.CreateCopy(entry.Component, notNullableOverride: true);
                 comp.Owner = uid;
-                EntityManager.AddComponent(uid, comp, true);
+                EntityManager.AddComponent(uid, comp);
             }
         }
     }
@@ -145,7 +145,7 @@ public sealed class SpecForcesSystem : EntitySystem
         {
             var comp = (Component) _serialization.CreateCopy(tplSpecForceComponent, notNullableOverride: true);
             comp.Owner = uid;
-            EntityManager.AddComponent(uid, comp, true);
+            EntityManager.AddComponent(uid, comp);
         }
 
         EnsureComp<SpecForceComponent>(uid);
@@ -153,7 +153,7 @@ public sealed class SpecForcesSystem : EntitySystem
         {
             var comp = (Component) _serialization.CreateCopy(tplGhostRoleComponent, notNullableOverride: true);
             comp.Owner = uid;
-            EntityManager.AddComponent(uid, comp, true);
+            EntityManager.AddComponent(uid, comp);
         }
 
         return uid;
@@ -193,7 +193,7 @@ public sealed class SpecForcesSystem : EntitySystem
             _ => 1
         };
 
-        if (_random.Prob(0.3f))
+        if (countExtra > 2 && _random.Prob(0.3f))
         {
             SpawnEntity(SFOfficer, _random.Pick(spawns));
         }
@@ -202,16 +202,13 @@ public sealed class SpecForcesSystem : EntitySystem
         {
             case SpecForcesType.ERT:
                 SpawnEntity(ErtLeader, _random.Pick(spawns));
+                SpawnEntity(ErtEngineer, _random.Pick(spawns));
+
                 while (countExtra > 0)
                 {
                     if (countExtra-- > 0)
                     {
                         SpawnEntity(ErtSecurity, _random.Pick(spawns));
-                    }
-
-                    if (countExtra-- > 0)
-                    {
-                        SpawnEntity(ErtEngineer, _random.Pick(spawns));
                     }
 
                     if (countExtra-- > 0)
@@ -239,7 +236,7 @@ public sealed class SpecForcesSystem : EntitySystem
 
                 break;
             case SpecForcesType.DeathSquad:
-                SpawnEntity(countExtra == 0 ? Spestnaz : SpestnazOfficer, _random.Pick(spawns));
+                SpawnEntity(SpestnazOfficer, _random.Pick(spawns));
                 while (countExtra > 0)
                 {
                     if (countExtra-- > 0)

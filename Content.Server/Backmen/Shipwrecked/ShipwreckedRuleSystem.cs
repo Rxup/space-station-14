@@ -255,12 +255,11 @@ public sealed class ShipwreckedRuleSystem : GameRuleSystem<ShipwreckedRuleCompon
 
     private void SpawnPlanet(EntityUid uid, ShipwreckedRuleComponent component)
     {
-        if (component.isMapLoaded)
+        if (component.PlanetMapId.HasValue && _mapManager.MapExists(component.PlanetMapId.Value))
         {
             return;
         }
 
-        component.isMapLoaded = true;
         // Most of this code below comes from a protected function in SpawnSalvageMissionJob
         // which really should be made more generic and public...
         //
@@ -1292,6 +1291,22 @@ public sealed class ShipwreckedRuleSystem : GameRuleSystem<ShipwreckedRuleCompon
             AttachMap(uid, component);
             SpawnPlanet(uid, component);
 
+            foreach (var map in _mapManager.GetAllMapIds().ToArray())
+            {
+                if (component.PlanetMapId.HasValue && component.PlanetMapId.Value == map)
+                {
+                    continue;
+                }
+
+                if (_gameTicker.DefaultMap == map)
+                {
+                    continue;
+                }
+
+                //cleanup
+                _mapManager.DeleteMap(map);
+            }
+
             if (component.Shuttle == null)
                 throw new ArgumentException($"Shipwrecked failed to spawn a Shuttle.");
         }
@@ -1306,23 +1321,10 @@ public sealed class ShipwreckedRuleSystem : GameRuleSystem<ShipwreckedRuleCompon
         AttachMap(uid, component);
         SpawnPlanet(uid, component);
 
-        foreach (var map in _mapManager.GetAllMapIds().ToArray())
+        if (component.PlanetMapId != null && _mapManager.MapExists(component.PlanetMapId.Value) && _mapManager.IsMapPaused(component.PlanetMapId.Value))
         {
-            if (component.PlanetMapId.HasValue && component.PlanetMapId.Value == map)
-            {
-                continue;
-            }
-
-            if (_gameTicker.DefaultMap == map)
-            {
-                continue;
-            }
-
-            //cleanup
-            _mapManager.DeleteMap(map);
+            _mapManager.SetMapPaused(component.PlanetMapId!.Value, false);
         }
-
-        _mapManager.SetMapPaused(component.PlanetMapId!.Value, false);
 
         var loadQuery = EntityQueryEnumerator<ApcPowerReceiverComponent, TransformComponent>();
         while (loadQuery.MoveNext(out _, out var apcPowerReceiver, out var xform))
