@@ -3,9 +3,7 @@ using Content.Server.Actions;
 using Content.Server.Movement.Systems;
 using Content.Shared.Item.Optic;
 using Content.Shared.Movement.Components;
-using Robust.Server.Player;
 using Robust.Shared.Prototypes;
-using SixLabors.ImageSharp.Processing.Processors.Filters;
 
 namespace Content.Server.Backmen.Item.Optic;
 
@@ -33,8 +31,10 @@ public sealed class OpticZoomEffectSystem : EntitySystem
     private void OnShutdown(Entity<OpticZoomEffectComponent> ent, ref ComponentShutdown args)
     {
         _actionsSystem.RemoveAction(ent.Owner, ent.Comp.ActionId);
+
         if (!TryComp<ContentEyeComponent>(ent, out var eyeComp))
             return;
+
         _contentEyeSystem.ResetZoom(ent.Owner, eyeComp);
     }
 
@@ -42,9 +42,11 @@ public sealed class OpticZoomEffectSystem : EntitySystem
     {
         if (!TryComp<ContentEyeComponent>(ent, out var eyeComp))
             return;
+
         if (ent.Comp.Zoomed)
         {
             _contentEyeSystem.ResetZoom(ent.Owner, eyeComp);
+            _actionsSystem.SetCooldown(ent.Comp.ActionId,TimeSpan.FromSeconds(1));
         }
         else
         {
