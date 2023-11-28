@@ -1,14 +1,18 @@
 ﻿using System.Numerics;
+using Content.Server.Actions;
 using Content.Server.Movement.Systems;
 using Content.Shared.Item.Optic;
 using Content.Shared.Movement.Components;
 using Robust.Server.Player;
+using Robust.Shared.Prototypes;
+using SixLabors.ImageSharp.Processing.Processors.Filters;
 
 namespace Content.Server.Backmen.Item.Optic;
 
 public sealed class OpticZoomEffectSystem : EntitySystem
 {
     [Dependency] private readonly ContentEyeSystem _contentEyeSystem = default!;
+    [Dependency] private readonly ActionsSystem _actionsSystem = default!;
 
     public override void Initialize()
     {
@@ -16,10 +20,19 @@ public sealed class OpticZoomEffectSystem : EntitySystem
 
         SubscribeLocalEvent<OpticZoomEffectComponent, OpticZoomEffectActionEvent>(OnToggleZoom);
         SubscribeLocalEvent<OpticZoomEffectComponent, ComponentShutdown>(OnShutdown);
+        SubscribeLocalEvent<OpticZoomEffectComponent, ComponentStartup>(OnStartup);
+    }
+
+    [ValidatePrototypeId<EntityPrototype>] private const string ActionOpticZoom = "ActionOpticZoom";
+
+    private void OnStartup(Entity<OpticZoomEffectComponent> ent, ref ComponentStartup args)
+    {
+        _actionsSystem.AddAction(ent.Owner, ref ent.Comp.ActionId, ActionOpticZoom);
     }
 
     private void OnShutdown(Entity<OpticZoomEffectComponent> ent, ref ComponentShutdown args)
     {
+        _actionsSystem.RemoveAction(ent.Owner, ent.Comp.ActionId);
         if (!TryComp<ContentEyeComponent>(ent, out var eyeComp))
             return;
         _contentEyeSystem.ResetZoom(ent.Owner, eyeComp);
@@ -29,12 +42,15 @@ public sealed class OpticZoomEffectSystem : EntitySystem
     {
         if (!TryComp<ContentEyeComponent>(ent, out var eyeComp))
             return;
-        var zoom = new Vector2(ent.Comp.TargetZoom, ent.Comp.TargetZoom);
-        if (Math.Abs(eyeComp.TargetZoom.X - ent.Comp.TargetZoom) < 0.1f)
+        if (ent.Comp.Zoomed)
         {
-            zoom = new Vector2(1f, 1f);
+            _contentEyeSystem.ResetZoom(ent.Owner, eyeComp);
+        }
+        else
+        {
+            _contentEyeSystem.SetZoom(args.Performer, new Vector2(ent.Comp.TargetZoom, ent.Comp.TargetZoom), true, eyeComp);
         }
 
-        _contentEyeSystem.SetZoom(args.Performer, zoom, false, eyeComp);
+        ent.Comp.Zoomed = !ent.Comp.Zoomed;
     }
 }
