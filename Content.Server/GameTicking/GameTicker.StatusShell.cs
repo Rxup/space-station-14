@@ -45,15 +45,15 @@ namespace Content.Server.GameTicking
             lock (_statusShellLock)
             {
                 // Corvax-Queue-Start
-                var players = IoCManager.Instance?.TryResolveType<IServerJoinQueueManager>(out var joinQueueManager) ?? false
-                    ? joinQueueManager.ActualPlayersCount
-                    : _playerManager.PlayerCount;
+                var players = _joinQueueManager.ActualPlayersCount;
                 // Corvax-Queue-End
 
                 jObject["name"] = _baseServer.ServerName;
                 jObject["map"] = _gameMapManager.GetSelectedMap()?.MapName;
                 jObject["round_id"] = _gameTicker.RoundId;
-                jObject["players"] = _playerManager.PlayerCount;
+                // Corvax-Queue-Start
+                jObject["players"] = players;
+                // Corvax-Queue-End
                 jObject["soft_max_players"] = _cfg.GetCVar(CCVars.SoftMaxPlayers);
                 jObject["run_level"] = (int) _runLevel;
                 if (_runLevel >= GameRunLevel.InRound)
