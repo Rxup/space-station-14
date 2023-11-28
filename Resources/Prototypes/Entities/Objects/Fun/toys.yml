@@ -827,8 +827,6 @@
   components:
     - type: EnergySword
       isSharp: false
-      colorOptions:
-        - DodgerBlue
     - type: Sprite
       sprite: Objects/Weapons/Melee/e_sword.rsi
       layers:
