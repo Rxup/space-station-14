@@ -60,7 +60,7 @@ public sealed class ZoomCommand : IConsoleCommand
             }
         }
 
-        var player = _playerManager.LocalEntity;
+        var player = _playerManager.LocalPlayer?.ControlledEntity;
 
         if (_entManager.TryGetComponent<ContentEyeComponent>(player, out var content))
         {
