@@ -63,6 +63,6 @@
             Prisoner: [ 2, 2]
             SAI: [1, 1] # backmen-SAI
             Paramedic: [ 1, 1 ]
-            Brigmedic: [ 1, 1 ] # backmen-Brigmedic
+            Brigmedic: [ 0, 1 ] # backmen-Brigmedic
             BKBPLATech: [0, 3] # backmen-BPLA-Silicons
             BKBPLAMED: [0, 3] # backmen-BPLAMED-Silicons
