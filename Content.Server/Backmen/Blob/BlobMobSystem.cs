@@ -8,6 +8,7 @@ using Content.Shared.Damage;
 using Content.Shared.Interaction.Events;
 using Content.Shared.Popups;
 using Robust.Shared.Audio;
+using Robust.Shared.Audio.Systems;
 
 namespace Content.Server.Backmen.Blob;
 

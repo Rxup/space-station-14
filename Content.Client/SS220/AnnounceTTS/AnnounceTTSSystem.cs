@@ -1,34 +1,43 @@
-﻿﻿using System.Diagnostics.CodeAnalysis;
+﻿using System.Diagnostics.CodeAnalysis;
 using System.IO;
 using Content.Shared.Corvax.CCCVars;
- using Content.Shared.GameTicking;
- using Content.Shared.SS220.AnnounceTTS;
-using Robust.Client.Graphics;
+using Content.Shared.GameTicking;
+using Content.Shared.SS220.AnnounceTTS;
+using Robust.Client.Audio;
 using Robust.Client.ResourceManagement;
- using Robust.Shared.Audio;
- using Robust.Shared.Configuration;
- using Robust.Shared.ContentPack;
- using Robust.Shared.Utility;
+using Robust.Shared.Audio;
+using Robust.Shared.Audio.Components;
+using Robust.Shared.Audio.Systems;
+using Robust.Shared.Configuration;
+using Robust.Shared.ContentPack;
+using Robust.Shared.Player;
+using Robust.Shared.Utility;
 
 namespace Content.Client.SS220.AnnounceTTS;
-
 
 // ReSharper disable once InconsistentNaming
 public sealed class AnnounceTTSSystem : EntitySystem
 {
-    [Dependency] private readonly IClydeAudio _clyde = default!;
+    [Dependency] private readonly SharedAudioSystem _audio = default!;
     [Dependency] private readonly IConfigurationManager _cfg = default!;
     [Dependency] private readonly IResourceCache _resourceCache = default!;
 
     private ISawmill _sawmill = default!;
-    private float _volume = 0.0f;
+    private readonly MemoryContentRoot _contentRoot = new();
+    private ResPath _prefix;
 
-    private AudioStream? _currentlyPlaying;
-    private readonly Queue<AudioStream> _queuedStreams = new();
+    private float _volume = 0.0f;
+    private ulong _fileIdx = 0;
+    private static ulong _shareIdx = 0;
+
+    private TTSAudioStream? _currentlyPlaying;
+    private readonly Queue<TTSAudioStream> _queuedStreams = new();
 
     /// <inheritdoc />
     public override void Initialize()
     {
+        _prefix = ResPath.Root / $"TTSAnon{_shareIdx++}";
+        _resourceCache.AddRoot(_prefix, _contentRoot);
         _sawmill = Logger.GetSawmill("AnnounceTTSSystem");
         _cfg.OnValueChanged(CCCVars.TTSAnnounceVolume, OnTtsVolumeChanged, true);
         SubscribeNetworkEvent<AnnounceTTSEvent>(OnAnnounceTTSPlay);
@@ -38,6 +47,7 @@ public sealed class AnnounceTTSSystem : EntitySystem
     private void OnCleanup(RoundRestartCleanupEvent ev)
     {
         EndStreams();
+        _contentRoot.Clear();
     }
 
     /// <inheritdoc />
@@ -46,7 +56,7 @@ public sealed class AnnounceTTSSystem : EntitySystem
         if (_queuedStreams.Count == 0)
             return;
 
-        if (_currentlyPlaying == null || !_currentlyPlaying.Source.IsPlaying)
+        if (_currentlyPlaying == null || !(_currentlyPlaying.AudioStream?.Comp.Playing ?? false))
             ProcessEntityQueue();
     }
 
@@ -55,62 +65,72 @@ public sealed class AnnounceTTSSystem : EntitySystem
     {
         _cfg.UnsubValueChanged(CCCVars.TTSAnnounceVolume, OnTtsVolumeChanged);
         EndStreams();
+        _contentRoot.Dispose();
     }
 
     private void OnAnnounceTTSPlay(AnnounceTTSEvent ev)
     {
         var volume = _volume;
 
-        if (!_resourceCache.TryGetResource<AudioResource>(new ResPath(ev.AnnouncementSound), out var audio))
+
+        var file = new ResPath(ev.AnnouncementSound);
+
+        if (!_resourceCache.TryGetResource<AudioResource>(file, out var audio))
         {
             _sawmill.Error($"Server tried to play audio file {ev.AnnouncementSound} which does not exist.");
             return;
         }
 
-        if (TryCreateAudioSource(audio, ev.AnnouncementParams.Volume, out var sourceAnnounce))
-            AddEntityStreamToQueue(new AudioStream(sourceAnnounce));
+        if (TryCreateAudioSource(file, ev.AnnouncementParams.Volume, out var sourceAnnounce))
+            AddEntityStreamToQueue(sourceAnnounce);
         if (ev.Data.Length > 0 && TryCreateAudioSource(ev.Data, volume, out var source))
-            AddEntityStreamToQueue(new AudioStream(source, (int)audio.AudioStream.Length.TotalMilliseconds));
+        {
+            source.DelayMs = (int) audio.AudioStream.Length.TotalMilliseconds;
+            AddEntityStreamToQueue(source);
+        }
+
     }
 
-    private void AddEntityStreamToQueue(AudioStream stream)
+    private void AddEntityStreamToQueue(TTSAudioStream stream)
     {
         _queuedStreams.Enqueue(stream);
     }
 
     private void ProcessEntityQueue()
     {
-        if(_queuedStreams.TryDequeue(out _currentlyPlaying))
+        if (_queuedStreams.TryDequeue(out _currentlyPlaying))
             PlayEntity(_currentlyPlaying);
     }
 
-    private bool TryCreateAudioSource(byte[] data, float volume, [NotNullWhen(true)] out IClydeAudioSource? source)
+    private bool TryCreateAudioSource(byte[] data, float volume, [NotNullWhen(true)] out TTSAudioStream? source)
     {
-        using var dataStream = new MemoryStream(data);
-        var audioStream = _clyde.LoadAudioOggVorbis(dataStream);
-        source = _clyde.CreateAudioSource(audioStream);
-        source?.SetMaxDistance(float.MaxValue);
-        source?.SetReferenceDistance(1f);
-        source?.SetRolloffFactor(1f);
-        source?.SetVolume(volume);
+        var filePath = new ResPath($"{_fileIdx++}.ogg");
+        _contentRoot.AddOrUpdateFile(filePath, data);
 
-        return source != null;
+        var audioParams = AudioParams.Default.WithVolume(volume).WithRolloffFactor(1f).WithMaxDistance(float.MaxValue).WithReferenceDistance(1f);
+        var soundPath = new SoundPathSpecifier(_prefix / filePath, audioParams);
+
+        source = new TTSAudioStream(soundPath, filePath);
+
+        return true;
     }
 
-    private bool TryCreateAudioSource(AudioResource audio, float volume, [NotNullWhen(true)] out IClydeAudioSource? source)
+    private bool TryCreateAudioSource(ResPath audio, float volume,
+        [NotNullWhen(true)] out TTSAudioStream? source)
     {
-        source = _clyde.CreateAudioSource(audio);
-        source?.SetMaxDistance(float.MaxValue);
-        source?.SetReferenceDistance(1f);
-        source?.SetRolloffFactor(1f);
-        source?.SetVolume(volume);
-        return source != null;
+        var audioParams = AudioParams.Default.WithVolume(volume).WithRolloffFactor(1f).WithMaxDistance(float.MaxValue).WithReferenceDistance(1f);
+
+        var soundPath = new SoundPathSpecifier(audio, audioParams);
+
+
+        source = new TTSAudioStream(soundPath, null);
+
+        return true;
     }
 
-    private void PlayEntity(AudioStream stream)
+    private void PlayEntity(TTSAudioStream stream)
     {
-        stream.Source.SetGlobal();
-        stream.Source.StartPlaying();
+        stream.AudioStream = _audio.PlayGlobal(stream.Source, Filter.Local(), false);
     }
 
     private void OnTtsVolumeChanged(float volume)
@@ -122,24 +142,39 @@ public sealed class AnnounceTTSSystem : EntitySystem
     {
         foreach (var stream in _queuedStreams)
         {
-            stream.Source.StopPlaying();
-            stream.Source.Dispose();
+            stream.StopAndClean(this);
         }
 
         _queuedStreams.Clear();
     }
 
     // ReSharper disable once InconsistentNaming
-    private sealed class AudioStream
+    private sealed class TTSAudioStream
     {
-        public IClydeAudioSource Source { get; }
+        public SoundPathSpecifier Source { get; }
+        public ResPath? CacheFile { get; }
+        public Entity<AudioComponent>? AudioStream { get; set; }
 
-        public int DelayMs { get; }
+        public int DelayMs { get; set; }
 
-        public AudioStream(IClydeAudioSource source, int delayMs = 0)
+        public TTSAudioStream(SoundPathSpecifier source, ResPath? cacheFile, int delayMs = 0)
         {
             Source = source;
+            CacheFile = cacheFile;
             DelayMs = delayMs;
+        }
+
+        public void StopAndClean(AnnounceTTSSystem sys)
+        {
+            if (AudioStream != null)
+            {
+                sys._audio.Stop(AudioStream.Value,AudioStream.Value);
+
+            }
+            if (CacheFile != null)
+            {
+                sys._contentRoot.RemoveFile(CacheFile.Value);
+            }
         }
     }
 }

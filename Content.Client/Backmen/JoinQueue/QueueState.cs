@@ -1,4 +1,5 @@
 ﻿using Content.Shared.Backmen.JoinQueue;
+using Robust.Client.Audio;
 using Robust.Client.Console;
 using Robust.Client.GameObjects;
 using Robust.Client.State;

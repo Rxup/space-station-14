@@ -1,16 +1,13 @@
 ﻿using System.Linq;
-using Content.Server.Backmen.DiscordAuth;
 using Content.Server.Connection;
 using Content.Shared.Backmen.JoinQueue;
 using Content.Shared.CCVar;
-using Content.Shared.Corvax.CCCVars;
 using Prometheus;
 using Robust.Server.Player;
 using Robust.Shared.Configuration;
 using Robust.Shared.Enums;
 using Robust.Shared.Network;
 using Robust.Shared.Player;
-using Robust.Shared.Timing;
 
 namespace Content.Server.Backmen.JoinQueue;
 

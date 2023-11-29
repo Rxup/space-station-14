@@ -7,7 +7,6 @@ using Content.Shared.CartridgeLoader;
 using Content.Shared.Popups;
 using Content.Shared.Store;
 using Robust.Server.Containers;
-using Robust.Server.GameObjects;
 using Robust.Shared.Containers;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;

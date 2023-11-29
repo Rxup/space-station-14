@@ -23,7 +23,6 @@ using Content.Shared.Mobs;
 using Content.Shared.Preferences;
 using Content.Shared.Roles;
 using Content.Shared.Tag;
-using Robust.Server.GameObjects;
 using Robust.Shared.Map;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
