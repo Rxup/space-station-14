@@ -500,7 +500,7 @@
     Telecrystal: 4
   categories:
   - UplinkUtility
-  
+
 - type: listing
   id: UplinkFFS
   name: Плата консоли системы опознавания синдиката
@@ -1740,3 +1740,14 @@
     Telecrystal: 1
   categories:
   - UplinkAmmo
+
+- type: listing
+  id: UplinkNightVisionDevice
+  name: прибор ночного видения
+  description: Ты можешь смотреть в темноте...
+  icon: { sprite: Clothing/Eyes/Glasses/ninjavisor.rsi, state: icon }
+  productEntity: ClothingEyesVision
+  cost:
+    Telecrystal: 2
+  categories:
+  - UplinkUtility

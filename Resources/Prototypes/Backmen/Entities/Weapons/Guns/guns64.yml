@@ -1998,6 +1998,7 @@
   - type: ClothingGrant
     component:
     - type: OpticZoomEffect
+      targetZoom: 1.5
 
 - type: entity
   id: MagazineAntiMaterielRifleSR
