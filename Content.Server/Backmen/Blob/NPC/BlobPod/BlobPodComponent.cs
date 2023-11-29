@@ -1,4 +1,5 @@
 using Robust.Shared.Audio;
+using Robust.Shared.Audio.Components;
 
 namespace Content.Server.Backmen.Blob.NPC.BlobPod
 {
@@ -23,7 +24,7 @@ namespace Content.Server.Backmen.Blob.NPC.BlobPod
         [ViewVariables(VVAccess.ReadWrite), DataField("zombifyFinishSoundPath")]
         public SoundSpecifier ZombifyFinishSoundPath = new SoundPathSpecifier("/Audio/Effects/gib1.ogg");
 
-        public IPlayingAudioStream? ZombifyStingStream;
+        public Entity<AudioComponent>? ZombifyStingStream;
         public EntityUid? ZombifyTarget;
     }
 }

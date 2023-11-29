@@ -10,7 +10,6 @@ using Content.Shared.Administration;
 using Content.Shared.Humanoid;
 using Content.Shared.Mind;
 using Content.Shared.Mobs.Systems;
-using Content.Shared.Roles.Jobs;
 using Robust.Server.Player;
 
 namespace Content.Server.Backmen.Administration.Bwoink.Gpt;

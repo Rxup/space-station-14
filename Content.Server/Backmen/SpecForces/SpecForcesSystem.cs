@@ -12,20 +12,10 @@ using Content.Server.Station.Systems;
 using Robust.Shared.Utility;
 using Robust.Shared.Audio;
 using System.Threading;
-using Content.Shared.Roles;
-using System.Diagnostics.CodeAnalysis;
-using System.Text;
 using Content.Server.Actions;
-using Robust.Shared.Configuration;
-using Content.Server.Players.PlayTimeTracking;
-using Content.Shared.CCVar;
-using Content.Server.Chat.Managers;
-using Content.Server.Ghost.Roles;
 using Content.Server.Ghost.Roles.Components;
 using Content.Server.RandomMetadata;
 using Robust.Shared.Serialization.Manager;
-using Content.Server.Administration.Managers;
-using Content.Server.Backmen.RoleWhitelist;
 
 namespace Content.Server.Backmen.SpecForces;
 

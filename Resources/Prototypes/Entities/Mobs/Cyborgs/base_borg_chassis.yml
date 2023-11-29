@@ -195,6 +195,9 @@
   - type: TTS
     voice: Borgs
   - type: Emoting
+  - type: GuideHelp
+    guides:
+      - Cyborgs
 
 - type: entity
   id: BaseBorgChassisNT

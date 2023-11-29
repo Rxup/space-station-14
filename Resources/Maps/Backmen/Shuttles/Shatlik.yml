@@ -2854,7 +2854,6 @@ entities:
             busname: Master
             pitchscale: 1
             volume: 0
-            attenuation: Default
           path: /Audio/Voice/Human/malescream_1.ogg
         ligneous: False
         sentient: False
@@ -2934,7 +2933,6 @@ entities:
             busname: Master
             pitchscale: 1
             volume: 0
-            attenuation: Default
           path: /Audio/Voice/Human/malescream_1.ogg
         ligneous: False
         sentient: False
@@ -3014,7 +3012,6 @@ entities:
             busname: Master
             pitchscale: 1
             volume: 0
-            attenuation: Default
           path: /Audio/Voice/Human/malescream_1.ogg
         ligneous: False
         sentient: False
@@ -3094,7 +3091,6 @@ entities:
             busname: Master
             pitchscale: 1
             volume: 0
-            attenuation: Default
           path: /Audio/Voice/Human/malescream_1.ogg
         ligneous: False
         sentient: False
@@ -3174,7 +3170,6 @@ entities:
             busname: Master
             pitchscale: 1
             volume: 0
-            attenuation: Default
           path: /Audio/Voice/Human/malescream_1.ogg
         ligneous: False
         sentient: False
@@ -3254,7 +3249,6 @@ entities:
             busname: Master
             pitchscale: 1
             volume: 0
-            attenuation: Default
           path: /Audio/Voice/Human/malescream_1.ogg
         ligneous: False
         sentient: False
@@ -3334,7 +3328,6 @@ entities:
             busname: Master
             pitchscale: 1
             volume: 0
-            attenuation: Default
           path: /Audio/Voice/Human/malescream_1.ogg
         ligneous: False
         sentient: False
@@ -3414,7 +3407,6 @@ entities:
             busname: Master
             pitchscale: 1
             volume: 0
-            attenuation: Default
           path: /Audio/Voice/Human/malescream_1.ogg
         ligneous: False
         sentient: False
@@ -3494,7 +3486,6 @@ entities:
             busname: Master
             pitchscale: 1
             volume: 0
-            attenuation: Default
           path: /Audio/Voice/Human/malescream_1.ogg
         ligneous: False
         sentient: False
@@ -3574,7 +3565,6 @@ entities:
             busname: Master
             pitchscale: 1
             volume: 0
-            attenuation: Default
           path: /Audio/Voice/Human/malescream_1.ogg
         ligneous: False
         sentient: False

@@ -1,4 +1,3 @@
-using System.Threading;
 using Content.Shared.Verbs;
 using Content.Shared.Item;
 using Content.Shared.Hands;
@@ -11,7 +10,6 @@ using Content.Server.Item;
 using Content.Server.Popups;
 using Content.Server.Resist;
 using Content.Shared.Backmen.Item;
-using Content.Shared.Inventory;
 using Content.Shared.Popups;
 using Content.Shared.Resist;
 using Content.Shared.Storage;
