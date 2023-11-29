@@ -71,5 +71,5 @@
             Deliveryman: [ 0, 1 ]
             Prisoner: [ 2, 2]
             SAI: [1, 1] # backmen-SAI
-            Paramedic: [ 1, 1 ]
+            Paramedic: [ 0, 1 ]
 
