@@ -368,3 +368,16 @@
         - id: Cutlass
         - id: WeaponRevolverPirate
         - id: ClothingEyesEyepatch
+
+# Backmen Brigmedic Backpack
+
+- type: entity
+  noSpawn: true
+  parent: ClothingBackpackBrigmedic
+  id: ClothingBackpackBrigmedicFilled
+  components:
+  - type: StorageFill
+    contents:
+      - id: BoxSurvivalSecurity
+      - id: Flash
+      - id: RubberStampBrigmedic

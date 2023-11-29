@@ -38,14 +38,14 @@
   id: BrigmedicGear
   equipment:
     jumpsuit: ClothingUniformJumpsuitBrigmedic
-    back: ClothingBackpackSecurityFilled
+    back: ClothingBackpackBrigmedicFilled # Backmen
     shoes: ClothingShoesBootsJackSec # Corvax-Resprite
     gloves: ClothingHandsGlovesNitrile
     eyes: ClothingEyesHudMedical
     head: ClothingHeadHatBeretSecurityMedic # Corvax-Resprite
     outerClothing: ClothingOuterVestArmorMedSec # Corvax-Resprite
     id: BrigmedicPDA
-    ears: ClothingHeadsetSecurity
+    ears: ClothingHeadsetBrigmedic # Backmen
     mask: ClothingMaskSterile
     belt: ClothingBeltMedicalFilled
   innerClothingSkirt: ClothingUniformJumpskirtBrigmedic

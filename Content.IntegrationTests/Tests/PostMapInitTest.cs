@@ -72,7 +72,8 @@ namespace Content.IntegrationTests.Tests
             //backmen
             "CentCommv2",
             "ShwrAdventurer",
-            "ShwrBig"
+            "ShwrBig",
+            "shwrDust"
         };
 
         /// <summary>
