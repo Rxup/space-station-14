@@ -56,8 +56,24 @@ public sealed class AnnounceTTSSystem : EntitySystem
         if (_queuedStreams.Count == 0)
             return;
 
-        if (_currentlyPlaying == null || !(_currentlyPlaying.AudioStream?.Comp.Playing ?? false))
+        var isDoNext = true;
+        try
+        {
+            isDoNext = _currentlyPlaying == null ||
+                       (_currentlyPlaying.AudioStream != null && TerminatingOrDeleted(_currentlyPlaying.AudioStream!.Value))
+                       || !(_currentlyPlaying.AudioStream?.Comp.Playing ?? false);
+        }
+        catch (Exception err)
+        {
+            isDoNext = true;
+        }
+
+        if (isDoNext)
+        {
+            _currentlyPlaying?.StopAndClean(this);
             ProcessEntityQueue();
+        }
+
     }
 
     /// <inheritdoc />
