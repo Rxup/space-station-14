@@ -1,0 +1,21 @@
+- type: entity
+  name: NVD
+  id: ClothingEyesVision
+  description: Night vision device. Provides an image of the terrain in low-light conditions.
+  components:
+  - type: Item
+  - type: Sprite
+    sprite: Clothing/Eyes/Glasses/ninjavisor.rsi
+    state: icon
+  - type: Clickable
+  - type: Clothing
+    sprite: Clothing/Eyes/Glasses/ninjavisor.rsi
+    quickEquip: true
+    slots: [ Eyes ]
+  - type: GroupExamine
+  - type: UseDelay
+    delay: 4
+  - type: PNV
+  - type: ClothingGrant
+    component:
+    - type: NightVision
