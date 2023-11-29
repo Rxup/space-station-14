@@ -22,7 +22,6 @@
       - FullAuto
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/batrifle.ogg
-  - type: MagazineAmmoProvider
   - type: ItemSlots
     slots:
       gun_magazine:
@@ -53,11 +52,11 @@
 - type: entity
   name: AP-12 NT
   parent: BaseWeaponEnergyRifle
-  id: WeaponRifleAP12
+  id: WeaponPulseRifleAP12
   description: The AP Motorized Pulse Rifle is a military-grade, rapid-fire assault rifle with large magazine ammunition capacity. The Pulse Rifle is the standard-issue service rifle of the Earth Special Force.
   components:
   - type: Sprite
-    sprite: Backmen/Objects/Weapons/Gunsx64/Battery/Pulse/ap12big.rsi
+    sprite: Backmen/Objects/Weapons/Gunsx64/Battery/Pulse/ap12/big.rsi
     layers:
       - state: base
         map: ["enum.GunVisualLayers.Base"]
@@ -81,7 +80,7 @@
     soundGunshot:
       path: /Audio/Weapons/Guns64/Pulse/ap12j.ogg
       params:
-        volume: -9
+        volume: -2
   - type: ItemSlots
     slots:
       gun_magazine:
@@ -93,6 +92,93 @@
         whitelist:
           tags:
             - MagazinePulseRifle
+
+- type: entity
+  name: XM LongRifle
+  parent: BaseWeaponEnergyRifle
+  id: WeaponPulseRifleXMLG
+  description: The XM Motorized Pulse Long Rifle is a military-grade, assault rifle with large magazine ammunition capacity. The Long Pulse Rifle is the standard-issue service rifle of the Earth Special Force.
+  components:
+  - type: Sprite
+    sprite: Backmen/Objects/Weapons/Gunsx64/Battery/Pulse/xmlg/big.rsi
+    layers:
+      - state: base
+        map: ["enum.GunVisualLayers.Base"]
+      - state: mag-0
+        map: ["enum.GunVisualLayers.Mag"]
+      - state: mag-unshaded-0
+        map: ["enum.GunVisualLayers.MagUnshaded"]
+        shader: unshaded
+  - type: Item
+    sprite: Backmen/Objects/Weapons/Gunsx64/Battery/Pulse/xmlg/tiny.rsi
+  - type: Clothing
+    sprite: Backmen/Objects/Weapons/Gunsx64/Battery/Pulse/xmlg/tiny.rsi
+  - type: GunWieldBonus
+    minAngle: -23
+    maxAngle: -44
+  - type: Gun
+    minAngle: 24
+    maxAngle: 45
+    fireRate: 8
+    soundEmpty: /Audio/Backmen/Misc/error.ogg
+    soundGunshot:
+      path: /Audio/Weapons/Guns64/Pulse/xmlg.ogg
+      params:
+        volume: -2
+  - type: ItemSlots
+    slots:
+      gun_magazine:
+        name: Magazine
+        startingItem: MagazinePulseRifle
+        insertSound: /Audio/Weapons/Guns64/Pulse/ap12_reload.ogg
+        ejectSound: /Audio/Weapons/Guns64/Pistols/divet_magout.ogg
+        priority: 1
+        whitelist:
+          tags:
+            - MagazinePulseRifle
+
+- type: entity
+  name: Hell Hammer
+  parent: BaseWeaponEnergyRifle
+  id: WeaponPulseShotgunHellHammer
+  description: The Auto Impulse shotgun, used motorizeded firing mechanism. The Pulse Shotgun is the standard-issue service shotgun of the Earth Special Force.
+  components:
+  - type: Sprite
+    sprite: Backmen/Objects/Weapons/Gunsx64/Battery/Pulse/hellhamer/big.rsi
+    layers:
+      - state: base
+        map: ["enum.GunVisualLayers.Base"]
+      - state: mag-0
+        map: ["enum.GunVisualLayers.Mag"]
+      - state: mag-unshaded-0
+        map: ["enum.GunVisualLayers.MagUnshaded"]
+        shader: unshaded
+  - type: Item
+    sprite: Backmen/Objects/Weapons/Gunsx64/Battery/Pulse/hellhamer/tiny.rsi
+  - type: Clothing
+    sprite: Backmen/Objects/Weapons/Gunsx64/Battery/Pulse/hellhamer/tiny.rsi
+  - type: Gun
+    fireRate: 2
+    selectedMode: FullAuto
+    availableModes:
+    - FullAuto
+    soundEmpty: /Audio/Backmen/Misc/error.ogg
+    soundGunshot:
+      path: /Audio/Weapons/Guns64/Pulse/hellhammer.ogg
+      params:
+        volume: -2
+  - type: GunRequiresWield
+  - type: ItemSlots
+    slots:
+      gun_magazine:
+        name: Magazine
+        startingItem: MagazinePulseShotgun
+        insertSound: /Audio/Weapons/Guns64/Pistols/divet_magin.ogg
+        ejectSound: /Audio/Weapons/Guns64/Pistols/divet_magout.ogg
+        priority: 1
+        whitelist:
+          tags:
+            - MagazinePulseShotgun
 
 - type: entity
   id: MuzzlePulseEffect
@@ -216,3 +302,57 @@
     steps: 7
     zeroVisible: false
   - type: Appearance
+
+- type: Tag
+  id: MagazinePulseShotgun
+
+- type: entity
+  id: MagazinePulseShotgun
+  name: pulse shotgun magazine
+  description: Standart EarthGov type of impulse magazines
+  parent: BaseItem
+  components:
+  - type: Tag
+    tags:
+      - MagazinePulseShotgun
+  - type: BallisticAmmoProvider
+    mayTransfer: true
+    capacity: 12
+    proto: ShellShotgunPulse
+    whitelist:
+      tags:
+        - ShellShotgunPulse
+  - type: ContainerContainer
+    containers:
+      ballistic-ammo: !type:Container
+  - type: Item
+    size: Small
+    sprite: Backmen/Objects/Weapons/Gunsx64/Battery/Pulse/Magazine/sws.rsi
+  - type: Sprite
+    netsync: false
+    sprite: Backmen/Objects/Weapons/Gunsx64/Battery/Pulse/Magazine/sws.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+  - type: Appearance
+
+- type: Tag
+  id: ShellShotgunPulse
+
+- type: entity
+  id: ShellShotgunPulse
+  name: shell (.12 pulse)
+  parent: BaseShellShotgun
+  components:
+  - type: Tag
+    tags:
+    - ShellShotgunPulse
+  - type: CartridgeAmmo
+    proto: PulseBullet
+    count: 6
+    spread: 15
+  - type: Sprite
+    sprite: Backmen/Objects/Weapons/Gunsx64/Ammunition/Casings/battary.rsi
+    layers:
+      - state: base
+        map: [ "enum.AmmoVisualLayers.Base" ]
