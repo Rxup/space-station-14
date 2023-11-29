@@ -49,5 +49,5 @@
     mask: ClothingMaskSterile
     belt: ClothingBeltMedicalFilled
   innerClothingSkirt: ClothingUniformJumpskirtBrigmedic
-  satchel: ClothingBackpackSatchelSecurityFilled
-  duffelbag: ClothingBackpackDuffelSecurityFilled
+  satchel: ClothingBackpackSatchelBrigmedicFilled # Backmen
+  duffelbag: ClothingBackpackDuffelBrigmedicFilled # Backmen
