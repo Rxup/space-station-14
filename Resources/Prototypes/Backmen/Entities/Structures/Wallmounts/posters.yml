@@ -133,14 +133,16 @@
   - type: Sprite
     state: poster6
 
-- type: entity
-  parent: PosterLegitEarthGovMC
-  id: PosterLegitEarthGov6
-  name: Нет ЛГБТ!
-  description: Скажи нет движению ЛГБТ, это движение пагубно влияет на детей и стариков!
-  components:
-  - type: Sprite
-    state: poster7
+#  official censor ship
+#
+#- type: entity
+#  parent: PosterLegitEarthGovMC
+#  id: PosterLegitEarthGov6
+#  name: Нет ЛГБТ!
+#  description: Скажи нет движению ЛГБТ, это движение пагубно влияет на детей и стариков!
+#  components:
+#  - type: Sprite
+#    state: poster7
 
 - type: entity
   parent: PosterLegitEarthGovMC
