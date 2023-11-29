@@ -3,12 +3,12 @@
   name: job-name-iaa
   playTimeTracker: JobIAA
   requirements:
-    - !type:DepartmentTimeRequirement
-      department: Command
-      time: 72000
-    - !type:DepartmentTimeRequirement
-      department: Security
-      time: 36000
+  - !type:DepartmentTimeRequirement
+    department: Command
+    time: 72000
+  - !type:DepartmentTimeRequirement
+    department: Security
+    time: 36000
   startingGear: IAAGear
   icon: "JobIconIAA"
   supervisors: job-supervisors-centcom
@@ -19,6 +19,7 @@
     - Maintenance
     - Command
     - External
+    - Lawyer
   #start-backmen: currency
   minBankBalance: 800
   maxBankBalance: 1200
