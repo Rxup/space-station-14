@@ -19,3 +19,10 @@
   - type: ClothingGrant
     component:
     - type: NightVision
+
+- type: entity
+  parent: ClothingEyesVision
+  id: ClothingEyesVisionNuki
+  components:
+  - type: ShowSyndicateIcons
+  - type: ShowSecurityIcons
