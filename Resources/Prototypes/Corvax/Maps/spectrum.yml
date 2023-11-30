@@ -61,4 +61,5 @@
             Boxer: [ 2, 2]
             Passenger: [ -1, -1 ] #Разное
             IAA: [ 1, 1 ]
+            Brigmedic: [ 0, 1 ] # backmen-Brigmedic
             SAI: [1, 1] # backmen-SAI
