@@ -45,19 +45,6 @@
 
 - type: entity
   parent: IDCardStandard
-  id: BrigmedIDCard
-  name: brigmedic ID card
-  components:
-    - type: Sprite
-      sprite: Backmen/Objects/Misc/id_cards.rsi
-      layers:
-        - state: default
-        - state: idbrigmedic
-    - type: PresetIdCard
-      job: Brigmedic
-
-- type: entity
-  parent: IDCardStandard
   id: DeliveryIDCard
   name: ID карта доставщика
   components:
