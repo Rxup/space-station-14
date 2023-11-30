@@ -23,6 +23,7 @@
 - type: entity
   parent: ClothingEyesVision
   id: ClothingEyesVisionNuki
+  suffix: nuke
   components:
   - type: ShowSyndicateIcons
   - type: ShowSecurityIcons
