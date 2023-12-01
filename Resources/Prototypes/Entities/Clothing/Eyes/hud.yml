@@ -123,6 +123,12 @@
   - type: Clothing
     sprite: Clothing/Eyes/Hud/medsec.rsi
   - type: ShowSecurityIcons
+  - type: ClothingGrant
+    component:
+    - type: ShowHealthBars
+      damageContainers:
+        - Biological
+        - HalfSpirit
 
 - type: entity
   parent: ClothingEyesBase
@@ -151,6 +157,12 @@
   - type: ShowHungerIcons
   - type: ShowThirstIcons
   - type: ShowSyndicateIcons
+  - type: ClothingGrant
+    component:
+    - type: ShowHealthBars
+      damageContainers:
+        - Biological
+        - HalfSpirit
 
 - type: entity
   parent: ClothingEyesBase
@@ -164,4 +176,4 @@
     sprite: Clothing/Eyes/Hud/synd.rsi
   - type: ShowSyndicateIcons
   - type: ShowSecurityIcons
-  
+

@@ -51,7 +51,6 @@
     contents:
       - id: BoxSurvivalSecurity
       - id: Flash
-      - id: RubberStampBrigmedic
 
 - type: entity
   noSpawn: true

@@ -11,7 +11,7 @@
       department: Security
       time: 7200
   startingGear: BrigmedicGear
-  icon: "JobIconSecurityCadet"
+  icon: "JobIconBrigmedic"
   supervisors: job-supervisors-hos
   canBeAntag: false
   access:
@@ -41,7 +41,7 @@
     back: ClothingBackpackBrigmedicFilled # Backmen
     shoes: ClothingShoesBootsJackSec # Corvax-Resprite
     gloves: ClothingHandsGlovesNitrile
-    eyes: ClothingEyesHudMedical
+    eyes: ClothingEyesHudMedSec
     head: ClothingHeadHatBeretSecurityMedic # Corvax-Resprite
     outerClothing: ClothingOuterVestArmorMedSec # Corvax-Resprite
     id: BrigmedicPDA
