@@ -2237,6 +2237,16 @@
           amount: 10
         - id: ShellShotgun
           amount: 20
+    - type: ContainerContainer
+      containers:
+        ballistic-ammo: !type:Container
+          showEnts: False
+          occludes: True
+          ents: [ ]
+        storagebase: !type:Container
+          showEnts: False
+          occludes: True
+          ents: [ ]
 
 - type: entity
   noSpawn: true
