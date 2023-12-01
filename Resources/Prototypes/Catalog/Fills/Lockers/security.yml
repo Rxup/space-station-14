@@ -90,6 +90,7 @@
       - id: ClothingHeadCage # backmen
         amount: 2
 
+# backmen brigmedic's locker reworked
 - type: entity
   id: LockerBrigmedicFilled
   suffix: Brigmedic, Filled
@@ -97,7 +98,6 @@
   components:
   - type: StorageFill
     contents:
-      - id: ClothingEyesHudSecurity
       - id: WeaponDisabler
       - id: TrackingImplanter
         amount: 2
@@ -111,28 +111,18 @@
         prob: 0.1
       - id: MedkitFilled
       - id: MedkitCombatFilled
-        prob: 0.6
       - id: MedkitAdvancedFilled
-        prob: 0.4
       - id: MedkitOxygenFilled
-        prob: 0.3
+        prob: 0.4
       - id: MedkitBruteFilled
-        prob: 0.3
+        prob: 0.4
       - id: MedkitToxinFilled
-        prob: 0.3
+        prob: 0.4
       - id: MedkitBurnFilled
-        prob: 0.7
-      - id: ClothingNeckCloakMoth #bzzz Moth-pocalypse
-        prob: 0.15
-      - id: ClothingHeadHelmetSecurityMedic # Corvax-Resprite
-      - id: ClothingOuterVestSecurityMedic # Corvax-Resprite
-        prob: 0.5
-      - id: ClothingOuterCoatLabSecurityMedic # Corvax-Resprite
-        prob: 0.5
+        prob: 0.4
       - id: AntiPsychicKnife # backmen
-        amount: 3
       - id: ClothingHeadCage # backmen
-        amount: 2
+      - id: ClothingHeadsetAltBrigmedic # backmen
 
 - type: entity
   id: LockerDetectiveFilled
