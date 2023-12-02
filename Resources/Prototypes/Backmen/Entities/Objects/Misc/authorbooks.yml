@@ -153,3 +153,42 @@
         - state: The_Adventures_of_Ian_and_Hamlet
     - type: Paper
       content: book-text-IanAndHamlet-p1
+
+- type: entity
+  parent: BookBase
+  id: BookPaperworkP3
+  name: Бумажная работа
+  description: Еще одна книга из кучи про бюрократов (часть 3)
+  components:
+    - type: Sprite
+      sprite: Objects/Misc/books_backmen.rsi
+      layers:
+        - state: paperwork_3
+    - type: Paper
+      content: book-text-paperwork-p3
+
+- type: entity
+  parent: BookBase
+  id: BookPaperworkP4
+  name: Бумажная работа
+  description: Еще одна книга из кучи про бюрократов (часть 4)
+  components:
+    - type: Sprite
+      sprite: Objects/Misc/books_backmen.rsi
+      layers:
+        - state: paperwork_4
+    - type: Paper
+      content: book-text-paperwork-p4
+
+- type: entity
+  parent: BookBase
+  id: BookPaperworkP5
+  name: Бумажная работа
+  description: Еще одна книга из кучи про бюрократов (часть 5)
+  components:
+    - type: Sprite
+      sprite: Objects/Misc/books_backmen.rsi
+      layers:
+        - state: paperwork_5
+    - type: Paper
+      content: book-text-paperwork-p5

@@ -20,8 +20,6 @@ using Content.Shared.Humanoid;
 using Content.Shared.Nutrition.Components;
 using Content.Shared.Nutrition.EntitySystems;
 using Content.Server.Buckle.Systems;
-using Content.Server.Nutrition.EntitySystems;
-using Content.Server.Nutrition.Components;
 using Content.Server.Popups;
 using Content.Server.DoAfter;
 using Content.Server.Body.Components;

@@ -10,7 +10,6 @@ using Robust.Server.Maps;
 using Robust.Shared.Map;
 using Content.Shared.Backmen.CCVar;
 using Robust.Shared.Configuration;
-using Robust.Shared.Random;
 using System.Diagnostics.CodeAnalysis;
 using System.Numerics;
 using Content.Shared.Backmen.Shipyard.Components;

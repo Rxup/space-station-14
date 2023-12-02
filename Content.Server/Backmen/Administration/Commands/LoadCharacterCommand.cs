@@ -1,7 +1,6 @@
 ﻿using System.Linq;
 using Content.Server.Administration;
 using Content.Server.GameTicking;
-using Content.Server.Players;
 using Content.Server.Preferences.Managers;
 using Content.Server.Station.Systems;
 using Content.Shared.Administration;
@@ -9,7 +8,6 @@ using Content.Shared.Humanoid;
 using Content.Shared.Humanoid.Prototypes;
 using Content.Shared.Players;
 using Content.Shared.Preferences;
-using Robust.Server.Player;
 using Robust.Shared.Console;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;

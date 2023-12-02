@@ -9,7 +9,6 @@ using Content.Shared.Hands.Components;
 using Content.Shared.Hands.EntitySystems;
 using Content.Shared.Interaction.Events;
 using Content.Shared.Item;
-using Content.Shared.Storage.Components;
 
 namespace Content.Server.Backmen.StationAI.Systems;
 

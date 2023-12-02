@@ -93,5 +93,12 @@
         prob: 0.1
       - id: BookIanAndHamlet
         prob: 0.1
+      - id: BookPaperworkP3
+        prob: 0.1
+      - id: BookPaperworkP4
+        prob: 0.1
+      - id: BookPaperworkP5
+        prob: 0.1
       - id: BookBusido # Corvax-Books
         prob: 0.1
+      

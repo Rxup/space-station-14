@@ -124,6 +124,7 @@
   - type: Speech
     speechVerb: Robotic
     speechSounds: Pai
+  - type: UnblockableSpeech
   - type: Construction
     graph: Cyborg
     containers:
@@ -195,6 +196,9 @@
   - type: TTS
     voice: Borgs
   - type: Emoting
+  - type: GuideHelp
+    guides:
+      - Cyborgs
 
 - type: entity
   id: BaseBorgChassisNT

@@ -1,19 +1,11 @@
 ﻿using Content.Server.Backmen.Shipwrecked.Components;
 using Content.Server.Explosion.EntitySystems;
 using Content.Server.Humanoid.Systems;
-using Content.Server.NPC;
-using Content.Server.NPC.HTN;
-using Content.Server.NPC.Systems;
 using Content.Server.RandomMetadata;
 using Content.Server.Zombies;
 using Content.Shared.Damage;
-using Content.Shared.Humanoid;
-using Content.Shared.Tools.Components;
 using Content.Shared.Weapons.Melee;
 using Content.Shared.Zombies;
-using Robust.Server.GameObjects;
-using Robust.Server.Physics;
-using Robust.Shared.Audio;
 using Robust.Shared.Prototypes;
 
 namespace Content.Server.Backmen.Shipwrecked;

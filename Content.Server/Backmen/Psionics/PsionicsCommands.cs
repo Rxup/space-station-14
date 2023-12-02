@@ -4,9 +4,7 @@ using Content.Shared.Administration;
 using Content.Shared.Backmen.Abilities.Psionics;
 using Content.Shared.Mobs.Components;
 using Robust.Shared.Console;
-using Robust.Server.GameObjects;
 using Robust.Shared.Player;
-using SQLitePCL;
 
 namespace Content.Server.Backmen.Psionics;
 

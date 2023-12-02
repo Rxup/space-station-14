@@ -137,7 +137,7 @@
       - BorgChargerCircuitboard
       - WeaponCapacitorRechargerCircuitboard
       - AntiPsychicKnifeRecipe
-      - ClothingBeltDemoman
+      - ClothingBeltDemoman # Backmen
   - type: EmagLatheRecipes
     emagStaticRecipes:
        - CartridgePistol
@@ -222,6 +222,7 @@
       - Beaker
       - LargeBeaker
       - CryostasisBeaker
+      - SyringeCryostasis
       - Dropper
       - Syringe
       - Implanter
@@ -278,7 +279,7 @@
       #- QSI
       - InsulativeHeadcage
       - HandTeleporter1
-      - BluespacePillCanister
+      - BluespacePillCanister # Backmen
   - type: EmagLatheRecipes
     emagDynamicRecipes:
       - ExplosivePayload
@@ -382,7 +383,7 @@
       - SodaDispenserMachineCircuitboard
       - TelecomServerCircuitboard
       - MassMediaCircuitboard
-      - ShipyardCircuitboard #backmen
+      - ShipyardCircuitboard # backmen
   - type: MaterialStorage
     whitelist:
       tags:
@@ -711,6 +712,8 @@
 #      - BluespaceBeaker1
       - SyringeBluespace
       - Jug
+      - SyringeCryostasis
+      - BluespacePillCanister # Backmen
   - type: Machine
     board: MedicalTechFabCircuitboard
 
