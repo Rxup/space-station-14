@@ -20,6 +20,7 @@
           availableJobs:
             #service
             Captain: [ 1, 1 ]
+            IAA: [ 1, 1 ] # Corvax-IAA
             HeadOfPersonnel: [ 1, 1 ]
             Bartender: [ 1, 2 ]
             Botanist: [ 3, 4 ]
@@ -27,7 +28,7 @@
             Janitor: [ 4, 4 ]
             Chaplain: [ 1, 2 ]
             Librarian: [ 1, 2 ]
-            Lawyer: [ 2, 3 ]
+            #Lawyer: [ 2, 3 ] # Corvax-IAA
             Zookeeper: [ 1, 1 ]
             ServiceWorker: [ 4, 4 ]
             #engineering
@@ -65,3 +66,10 @@
             Clown: [ 1, 2 ]
             Mime: [ 1, 2 ]
             Musician: [ 1, 2 ]
+            #backmen
+            Brigmedic: [ 0, 1 ] # backmen-Brigmedic
+            BKBPLATech: [0, 3] # backmen-BPLA-Silicons
+            BKBPLAMED: [0, 3] # backmen-BPLAMED-Silicons
+            Deliveryman: [ 0, 1 ]
+            Prisoner: [ 2, 3]
+            SAI: [1, 1] # backmen-SAI
