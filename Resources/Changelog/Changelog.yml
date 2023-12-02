@@ -1,31 +1,4 @@
 Entries:
-- author: Gotimanga
-  changes:
-  - {message: Winter coats now have hoods, type: Add}
-  id: 4733
-  time: '2023-09-02T17:10:19.0000000+00:00'
-- author: metalgearsloth
-  changes:
-  - {message: Fix context menu not opening if you toggled combat mode immediately
-      prior., type: Fix}
-  id: 4734
-  time: '2023-09-02T20:16:34.0000000+00:00'
-- author: DrSmugleaf
-  changes:
-  - {message: Fixed devouring as a dragon showing multiple popups., type: Fix}
-  id: 4735
-  time: '2023-09-03T01:59:36.0000000+00:00'
-- author: Lank
-  changes:
-  - {message: Technology Disks now sell for considerably less., type: Tweak}
-  id: 4736
-  time: '2023-09-03T02:31:53.0000000+00:00'
-- author: EmoGarbage404
-  changes:
-  - {message: 'Microwaves now become bloodstained if you microwave animals inside
-      of them. Who was doing this?', type: Add}
-  id: 4737
-  time: '2023-09-03T04:03:05.0000000+00:00'
 - author: deltanedas
   changes:
   - {message: The HAMTR and Vim now have builtin scrubbers to remove the risk of carbon
@@ -2899,3 +2872,32 @@ Entries:
       grind for milk', type: Add}
   id: 5232
   time: '2023-11-30T21:44:23.0000000+00:00'
+- author: Ubaser
+  changes:
+  - {message: The senior physician beret now matches their outfit more., type: Tweak}
+  id: 5233
+  time: '2023-12-01T08:34:08.0000000+00:00'
+- author: enumerate0
+  changes:
+  - {message: 'Recognizable solutions now appear sorted by volume first, then by name',
+    type: Tweak}
+  id: 5234
+  time: '2023-12-01T08:35:51.0000000+00:00'
+- author: Whisper
+  changes:
+  - {message: 'Added the Death Acidifier, an implant that destroys your body and equipment
+      without harming allies.', type: Add}
+  - {message: Added the microbomb implanter back to nukie uplinks., type: Add}
+  - {message: Nukies have exchanged microbomb implants for Death Acidifiers., type: Tweak}
+  id: 5235
+  time: '2023-12-01T20:14:45.0000000+00:00'
+- author: Vasilis
+  changes:
+  - {message: Tacos can be eaten by Lizards now. It's fricken Taco Tuesday!, type: Fix}
+  id: 5236
+  time: '2023-12-01T22:27:09.0000000+00:00'
+- author: Rainbeon
+  changes:
+  - {message: Cyborgs can now speak while in a Critical state., type: Tweak}
+  id: 5237
+  time: '2023-12-02T00:25:20.0000000+00:00'
