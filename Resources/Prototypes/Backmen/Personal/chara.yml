@@ -28,7 +28,7 @@
         maxVol: 2500
         reagents:
         - ReagentId: Nocturine
-          Quantity: 1000
+          Quantity: 900
         - ReagentId: LotophagoiOil
           Quantity: 1500
   - type: Hypospray
