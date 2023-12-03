@@ -448,3 +448,36 @@
       sprite: Backmen/Clothing/Uniforms/jumpsuit/stutman_uniform.rsi
     - type: Clothing
       sprite: Backmen/Clothing/Uniforms/jumpsuit/stutman_uniform.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformJumpsuitmaidblack
+  name: Черный Костюм Горничной
+  description: По всей видимости это классический костюм французской горничной.
+  components:
+    - type: Sprite
+      sprite: Backmen/Clothing/Uniforms/jumpsuit/maid_black.rsi
+    - type: Clothing
+      sprite: Backmen/Clothing/Uniforms/jumpsuit/maid_black.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformJumpsuitmaidblue
+  name: Синий Костюм Горничной
+  description: Он такой же как и черный, но синий, не обижайте его владельца ;)
+  components:
+    - type: Sprite
+      sprite: Backmen/Clothing/Uniforms/jumpsuit/maid_blue.rsi
+    - type: Clothing
+      sprite: Backmen/Clothing/Uniforms/jumpsuit/maid_blue.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformJumpsuitmaidpink
+  name: Розовый Костюм Горничной
+  description: Он такой же как и черный, но розовый, не обижайте его владельца ;)
+  components:
+    - type: Sprite
+      sprite: Backmen/Clothing/Uniforms/jumpsuit/maid_pink.rsi
+    - type: Clothing
+      sprite: Backmen/Clothing/Uniforms/jumpsuit/maid_pink.rsi
