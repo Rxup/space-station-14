@@ -1,8 +1,6 @@
-﻿using Content.Server.UserInterface;
-using Content.Shared.Backmen.Economy;
+﻿using Content.Shared.Backmen.Economy;
 using Content.Shared.Backmen.Economy.Eftpos;
 using Content.Shared.FixedPoint;
-using Robust.Server.GameObjects;
 using Robust.Shared.Audio;
 
 namespace Content.Server.Backmen.Economy.Eftpos;

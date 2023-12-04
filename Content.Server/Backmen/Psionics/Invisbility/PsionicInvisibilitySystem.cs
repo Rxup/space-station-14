@@ -1,7 +1,6 @@
 using Content.Server.Backmen.Abilities.Psionics;
 using Content.Shared.Vehicle.Components;
 using Content.Server.NPC.Systems;
-using Content.Server.Psionics;
 using Content.Shared.Backmen.Abilities.Psionics;
 using Content.Shared.Eye;
 using Robust.Shared.Containers;

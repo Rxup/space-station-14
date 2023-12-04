@@ -4,6 +4,7 @@ using Content.Shared.Backmen.Psionics.Events;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
 using Robust.Shared.Audio;
+using Robust.Shared.Audio.Systems;
 
 namespace Content.Server.Backmen.Abilities.Psionics;
 

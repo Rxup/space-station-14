@@ -34,6 +34,7 @@ using Content.Shared.Weapons.Melee;
 using Content.Shared.Zombies;
 using Robust.Shared.Audio;
 using Content.Shared.Prying.Components;
+using Robust.Shared.Audio.Systems;
 
 namespace Content.Server.Zombies
 {
@@ -111,8 +112,6 @@ namespace Content.Server.Zombies
             RemComp<PacifiedComponent>(target);
             _combat.SetCanDisarm(target, false, combat);
             _combat.SetInCombatMode(target, true, combat);
-
-            RemComp<PacifiedComponent>(target); // Corvax-DionaPacifist: Allow dionas zombies to harm
 
             //This is the actual damage of the zombie. We assign the visual appearance
             //and range here because of stuff we'll find out later
@@ -201,12 +200,10 @@ namespace Content.Server.Zombies
             if (TryComp<TemperatureComponent>(target, out var tempComp))
                 tempComp.ColdDamage.ClampMax(0);
 
-            _mobThreshold.SetAllowRevives(target, true);
             //Heals the zombie from all the damage it took while human
             if (TryComp<DamageableComponent>(target, out var damageablecomp))
                 _damageable.SetAllDamage(target, damageablecomp, 0);
             _mobState.ChangeMobState(target, MobState.Alive);
-            _mobThreshold.SetAllowRevives(target, false);
 
             var factionComp = EnsureComp<NpcFactionMemberComponent>(target);
             foreach (var id in new List<string>(factionComp.Factions))

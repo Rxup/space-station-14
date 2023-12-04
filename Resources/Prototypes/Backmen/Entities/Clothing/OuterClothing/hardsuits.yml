@@ -155,3 +155,35 @@
     sprintModifier: 0.85
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetHardsuitUEG
+
+#Mime Hardsuit
+- type: entity
+  parent: ClothingOuterHardsuitBase
+  id: ClothingOuterHardsuitMime
+  name: mime hardsuit
+  description: A custom made mime hardsuit. Ironicly, makes no sound.
+  components:
+  - type: Sprite
+    sprite: Backmen/Clothing/OuterClothing/Hardsuits/mime.rsi
+  - type: Clothing
+    sprite: Backmen/Clothing/OuterClothing/Hardsuits/mime.rsi
+  - type: PressureProtection
+    highPressureMultiplier: 0.5
+    lowPressureMultiplier: 1000
+  - type: ExplosionResistance
+    damageCoefficient: 0.9
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.9
+        Slash: 0.9
+        Piercing: 0.9
+        Caustic: 0.8
+  - type: ClothingSpeedModifier
+    walkModifier: 0.9
+    sprintModifier: 0.9
+  - type: Construction
+    graph: MimeHardsuit
+    node: mimeHardsuit
+  - type: ToggleableClothing
+    clothingPrototype: ClothingHeadHelmetHardsuitMime

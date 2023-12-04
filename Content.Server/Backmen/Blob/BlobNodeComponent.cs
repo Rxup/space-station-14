@@ -1,5 +1,3 @@
-using Content.Shared.FixedPoint;
-
 namespace Content.Server.Backmen.Blob;
 
 [RegisterComponent]

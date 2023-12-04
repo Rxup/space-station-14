@@ -4,6 +4,7 @@ using Content.Shared.Backmen.Flesh;
 using Content.Shared.Interaction.Events;
 using Content.Shared.Mobs;
 using Content.Shared.Popups;
+using Robust.Shared.Audio.Systems;
 using Robust.Shared.Map;
 
 namespace Content.Server.Backmen.Flesh

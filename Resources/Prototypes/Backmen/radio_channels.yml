@@ -36,3 +36,4 @@
   keycode: 'з'
   frequency: 8121
   color: "#228B22"
+  longRange: true

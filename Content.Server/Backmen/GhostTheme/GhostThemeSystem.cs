@@ -1,7 +1,7 @@
 ﻿using Content.Corvax.Interfaces.Server;
 using Content.Shared.Backmen.GhostTheme;
 using Content.Shared.Ghost;
-using Robust.Server.GameObjects;
+using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization.Manager;
 
@@ -36,7 +36,7 @@ public sealed class GhostThemeSystem : EntitySystem
         {
             var comp = (Component) _serialization.CreateCopy(entry.Component, notNullableOverride: true);
             comp.Owner = uid;
-            EntityManager.AddComponent(uid, comp, true);
+            EntityManager.AddComponent(uid, comp);
         }
 
         EnsureComp<GhostThemeComponent>(uid).GhostTheme = ghostTheme;

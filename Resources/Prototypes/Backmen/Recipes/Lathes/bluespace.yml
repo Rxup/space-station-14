@@ -70,3 +70,13 @@
   completetime: 4
   materials:
     Bluespace: 300
+
+- type: latheRecipe
+  id: BluespacePillCanister
+  result: BluespacePillCanister
+  completetime: 2
+  materials:
+    Steel: 250
+    Plastic: 250
+    Plasma: 100
+    Bluespace: 100

@@ -1,6 +1,5 @@
 using Content.Server.Backmen.NPC.Systems;
 using Robust.Shared.Audio;
-using Content.Server.NPC.Systems;
 
 namespace Content.Server.Backmen.NPC.Events;
 

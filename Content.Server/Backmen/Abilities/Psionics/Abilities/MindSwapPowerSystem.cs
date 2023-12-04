@@ -11,12 +11,9 @@ using Content.Server.Popups;
 using Content.Server.GameTicking;
 using Content.Shared.Backmen.Abilities.Psionics;
 using Content.Shared.Backmen.Psionics.Events;
-using Content.Shared.Mind;
 using Content.Shared.Mind.Components;
 using Content.Shared.NPC;
 using Content.Shared.SSDIndicator;
-using Robust.Server.GameObjects;
-using Robust.Server.Player;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
@@ -57,7 +54,6 @@ public sealed class MindSwapPowerSystem : EntitySystem
 
     private void OnInit(EntityUid uid, MindSwapPowerComponent component, ComponentInit args)
     {
-
         _actions.AddAction(uid, ref component.MindSwapPowerAction, ActionMindSwap);
 
     #if !DEBUG

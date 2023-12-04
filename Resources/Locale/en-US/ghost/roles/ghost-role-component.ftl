@@ -58,6 +58,9 @@ ghost-role-information-salvage-carp-description = Defend the loot inside the sal
 ghost-role-information-sentient-carp-name = Sentient Carp
 ghost-role-information-sentient-carp-description = Help the dragon flood the station with carps!
 
+ghost-role-information-salvage-shark-name = Space sharkminnow on salvage wreck
+ghost-role-information-salvage-shark-description = Help the younger fellow carp protect their prey. Smell the blood!
+
 ghost-role-information-willow-name = Willow the kangaroo
 ghost-role-information-willow-description = You're a kangaroo named willow! willow likes to box.
 
@@ -179,4 +182,8 @@ ghost-role-information-blobbernaut-description = You are a Blobbernaut. You must
 ghost-role-information-blob-name = Blob
 ghost-role-information-blob-description = You are a Blob. You must consume the station.
 ghost-role-information-Death-Squad-name = Death Squad Operative
-ghost-role-information-Death-Squad-description = Prepare for an all-out offensive on the station. As a heavily armed operative, your mission is to obliterate all life in your path. No witnesses.
+ghost-role-information-Death-Squad-description = One of Nanotrasen's top internal affairs agents. Await orders from CentComm or an official.
+
+ghost-role-information-Cak-name = Cak
+ghost-role-information-Cak-description = You are the chef's favorite child. You're a living cake cat.  
+ghost-role-information-Cak-rules = You are a living edible sweet cat. Your task is to find your place in this world where everything wants to eat you.

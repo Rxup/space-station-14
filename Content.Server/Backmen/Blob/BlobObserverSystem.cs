@@ -21,6 +21,7 @@ using Content.Shared.Mind;
 using Content.Shared.Mobs.Components;
 using Content.Shared.Popups;
 using Content.Shared.SubFloor;
+using Robust.Server.Audio;
 using Robust.Server.GameObjects;
 using Robust.Server.Player;
 using Robust.Shared.Audio;
@@ -55,7 +56,7 @@ public sealed class BlobObserverSystem : SharedBlobObserverSystem
     [Dependency] private readonly RoleSystem _roleSystem = default!;
     [Dependency] private readonly AlertsSystem _alerts = default!;
     [Dependency] private readonly IChatManager _chatManager = default!;
-    [Dependency] private readonly ActorSystem _actorSystem = default!;
+    [Dependency] private readonly ISharedPlayerManager _actorSystem = default!;
     [Dependency] private readonly ViewSubscriberSystem _viewSubscriberSystem = default!;
 
 
@@ -157,9 +158,9 @@ public sealed class BlobObserverSystem : SharedBlobObserverSystem
         _mindSystem.TryAddObjective(mindId, mind, "BlobCaptureObjective");
 
         _mindSystem.TransferTo(mindId, observer, true, mind: mind);
-        if (_actorSystem.TryGetActorFromUserId(args.UserId, out var session, out _))
+        if (_actorSystem.TryGetSessionById(args.UserId, out var session))
         {
-            _actorSystem.Attach(observer, session, true);
+            _actorSystem.SetAttachedEntity(session, observer, true);
         }
 
         UpdateUi(observer, core);

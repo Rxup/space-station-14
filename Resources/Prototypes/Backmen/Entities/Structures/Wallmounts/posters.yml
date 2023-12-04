@@ -77,3 +77,123 @@
     - type: Sprite
       sprite: Backmen/Structures/Wallmounts/Posters/Huvy.rsi
       state: PIZZA
+
+- type: entity
+  parent: PosterBase
+  id: PosterLegitEarthGovMC
+  name: Агитационный плакат EarthGov
+  description: Вступай в корпус морской пехоты ОПЗ!
+  components:
+  - type: Sprite
+    sprite: Backmen/Structures/Wallmounts/Posters/UEG.rsi
+    state: poster1
+
+- type: entity
+  parent: PosterLegitEarthGovMC
+  id: PosterLegitEarthGov
+  name: плакат EarthGov
+  description: Плакат объеденненого правительства земли. На плакате изображен герб ОПЗ.
+  components:
+  - type: Sprite
+    state: poster2
+
+- type: entity
+  parent: PosterLegitEarthGovMC
+  id: PosterLegitEarthGov2
+  name: будущее за нами
+  description: Во все века, земля была центром прогресса!
+  components:
+  - type: Sprite
+    state: poster3
+
+- type: entity
+  parent: PosterLegitEarthGovMC
+  id: PosterLegitEarthGov3
+  name: Земле нужен ты
+  description: Агитационный плакат с призывом вступить в федеральные структуры ОПЗ.
+  components:
+  - type: Sprite
+    state: poster4
+
+- type: entity
+  parent: PosterLegitEarthGovMC
+  id: PosterLegitEarthGov4
+  name: Земля наш дом
+  description: Пропагандистский плакат, напоминая откуда пошла цивилизация по галактике.
+  components:
+  - type: Sprite
+    state: poster5
+
+- type: entity
+  parent: PosterLegitEarthGovMC
+  id: PosterLegitEarthGov5
+  name: Вступай!
+  description: Запешитесь в резерв армейского спецназа ОПЗ! Станьте героем, о котором знает вся галактика!
+  components:
+  - type: Sprite
+    state: poster6
+
+#  official censor ship
+#
+#- type: entity
+#  parent: PosterLegitEarthGovMC
+#  id: PosterLegitEarthGov6
+#  name: Нет ЛГБТ!
+#  description: Скажи нет движению ЛГБТ, это движение пагубно влияет на детей и стариков!
+#  components:
+#  - type: Sprite
+#    state: poster7
+
+- type: entity
+  parent: PosterLegitEarthGovMC
+  id: PosterLegitEarthGov7
+  name: агитационный плакат EarthGov
+  description: Вступайте в офицерские училища, вы станете командующим целых армий! "Принимаем только людей с высшим образованием, тип образования не важен"
+  components:
+  - type: Sprite
+    state: poster8
+
+- type: entity
+  parent: PosterLegitEarthGovMC
+  id: PosterLegitEarthGov8
+  name: красная угроза!
+  description: Внимание граждане, будьте осторожны, враги государства все ещё активно занимаются терроризмом, сообщайте о любых возможных подозрений в связи с СССП
+  components:
+  - type: Sprite
+    state: poster9
+
+- type: entity
+  parent: PosterLegitEarthGovMC
+  id: PosterLegitEarthGov9
+  name: дева правосудья
+  description: Правительство Земли всегда была самым справедливым государством. Слава Земле!
+  components:
+  - type: Sprite
+    state: poster10
+
+- type: entity
+  parent: PosterLegitEarthGovMC
+  id: PosterLegitEarthGov10
+  name: агитационная брошура ОПЗ
+  description: На плакате написано "ОПЗ был основан на земле, нашими великими отцами основателями, тогда человечество стало едино и смогло подчинить себе всю галактику!"
+  components:
+  - type: Sprite
+    state: poster11
+
+- type: entity
+  parent: PosterLegitEarthGovMC
+  id: PosterLegitEarthGov11
+  name: выдача льгот молодым мамам
+  description: Правительство Земли рекомендует создавать семьи в молодом возрасте, тем самым развивая будущее Земли и получая льготы и материнские капиталы!
+  components:
+  - type: Sprite
+    state: poster12
+
+- type: entity
+  parent: PosterLegitEarthGovMC
+  id: PosterLegitEarthGov12
+  name: рекомендация ОПЗ
+  description: СССП стали часто проникать на космические станции, рекомендуется при обнаружении коммуниста, немедленно сообщать в местное отделение государственных структур ОПЗ.
+  components:
+  - type: Sprite
+    state: poster13

@@ -1,5 +1,4 @@
 ﻿using System.Numerics;
-using Content.Server.Chat.Managers;
 using Content.Server.Chat.Systems;
 using Content.Server.GameTicking;
 using Content.Server.GameTicking.Events;
@@ -22,10 +21,12 @@ using Content.Shared.Shuttles.Components;
 using Robust.Server.GameObjects;
 using Robust.Server.Maps;
 using Robust.Shared.Audio;
+using Robust.Shared.Audio.Systems;
 using Robust.Shared.Configuration;
 using Robust.Shared.Map;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
+using Robust.Shared.Random;
 using Robust.Shared.Utility;
 
 namespace Content.Server.Backmen.Arrivals;
@@ -50,6 +51,7 @@ public sealed class CentcommSystem : EntitySystem
     [Dependency] private readonly PopupSystem _popupSystem = default!;
     [Dependency] private readonly ChatSystem _chat = default!;
     [Dependency] private readonly TransformSystem _transformSystem = default!;
+    [Dependency] private readonly IRobustRandom _robustRandom = default!;
     private ISawmill _sawmill = default!;
 
 
@@ -196,7 +198,7 @@ public sealed class CentcommSystem : EntitySystem
         }
 
         var ent = _gameTicker.LoadGameMap(
-            _prototypeManager.Index<Maps.GameMapPrototype>("CentComm"), CentComMap, new MapLoadOptions()
+            _prototypeManager.Index<Maps.GameMapPrototype>(_robustRandom.Prob(0.35f) ? "CentCommv2" : "CentComm"), CentComMap, new MapLoadOptions()
             {
                 LoadMap = false
             }, null).FirstOrNull(HasComp<BecomesStationComponent>);

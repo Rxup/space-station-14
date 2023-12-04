@@ -11,9 +11,9 @@ using Content.Shared.Mind.Components;
 using Content.Shared.Mobs;
 using Content.Shared.Popups;
 using Content.Shared.Random;
-using Content.Shared.Random.Helpers;
 using Content.Shared.Zombies;
 using Robust.Shared.Audio;
+using Robust.Shared.Audio.Systems;
 using Robust.Shared.Containers;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
@@ -59,9 +59,8 @@ namespace Content.Server.Backmen.Flesh
 
                 var xform = Transform(uid);
                 var coordinates = xform.Coordinates;
-                var filter = Filter.Pvs(uid, entityManager: EntityManager);
                 var audio = AudioParams.Default.WithVariation(0.025f);
-                _audio.Play(component.TransformSound, filter, coordinates, true, audio);
+                _audio.PlayPvs(component.TransformSound, uid, audio);
 
                 if (TryComp(uid, out ContainerManagerComponent? container))
                 {

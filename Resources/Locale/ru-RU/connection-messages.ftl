@@ -24,16 +24,16 @@ cmd-whitelistremove-not-found = Unable to find '{ $username }'
 cmd-whitelistremove-arg-player = [player]
 cmd-kicknonwhitelisted-desc = Kicks all non-whitelisted players from the server.
 cmd-kicknonwhitelisted-help = Usage: kicknonwhitelisted
-ban-banned-permanent = Этот бан можно только обжаловать. Для этого посетите { $link }.
+ban-banned-permanent = Этот бан можно только обжаловать.
 ban-banned-permanent-appeal = Этот бан можно только обжаловать. Для этого посетите { $link }.
 ban-expires = Вы получили бан на { $duration } минут, и он истечёт { $time } по UTC (для москосвкого времени добавьте 3 часа).
 ban-banned-1 = Вам, или другому пользователю этого компьютера или соединения, запрещено здесь играть.
 ban-banned-2 = Причина бана: "{ $reason }"
 ban-banned-3 = Попытки обойти этот бан, например, путём создания нового аккаунта, будут фиксироваться.
 soft-player-cap-full = Сервер заполнен!
-panic-bunker-account-denied = Этот сервер находится в режиме "Бункер". В данный момент новые подключения не принимаются. Повторите попытку позже
-panic-bunker-account-denied-reason = Этот сервер находится в режиме "Бункер", и вам было отказано в доступе. Причина: "{ $reason }"
-panic-bunker-account-reason-account = Ваш аккаунт должен быть старше { $minutes } минут
+panic-bunker-account-denied = Этот сервер находится в режиме "Бункер", часто активируемого как предосторожность против рейдов. Новые соединения от учетных записей, не соответствующих определенным требованиям, временно не принимаются. Попробуйте снова позже.
+panic-bunker-account-denied-reason = Этот сервер находится в режиме "Бункер", часто активируемого как предосторожность против рейдов. Новые соединения от учетных записей, не соответствующих определенным требованиям, временно не принимаются. Попробуйте снова позже. Причина: "{$reason}"
+panic-bunker-account-reason-account = Ваша учетная запись в Space Station 14 слишком нова. Она должна быть старше { $minutes } минут.
 panic-bunker-account-reason-overall =
     Необходимо минимальное отыгранное время — { $hours } { $hours ->
         [one] час
