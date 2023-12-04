@@ -360,3 +360,124 @@
     sprite: Backmen/Clothing/Uniforms/jumpsuit/eug-officer-jumpsuit.rsi
   - type: Clothing
     sprite: Backmen/Clothing/Uniforms/jumpsuit/eug-officer-jumpsuit.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformJumpsuitcannonier
+  name: Униформа Канонира
+  description: Полевая униформа канонира.
+  components:
+    - type: Sprite
+      sprite: Backmen/Clothing/Uniforms/jumpsuit/cannonier.rsi
+    - type: Clothing
+      sprite: Backmen/Clothing/Uniforms/jumpsuit/cannonier.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformJumpsuitcannonieruniform
+  name: Парадная Униформа Канонира
+  description: Парадная униформа канонира.
+  components:
+    - type: Sprite
+      sprite: Backmen/Clothing/Uniforms/jumpsuit/cannonier_uniform.rsi
+    - type: Clothing
+      sprite: Backmen/Clothing/Uniforms/jumpsuit/cannonier_uniform.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformJumpsuitprivateofficer
+  name: Униформа Приватного Офицера СБ ЦК
+  description: Полевая униформа Приватного Офицера СБ ЦК
+  components:
+    - type: Sprite
+      sprite: Backmen/Clothing/Uniforms/jumpsuit/centcom-private_officer.rsi
+    - type: Clothing
+      sprite: Backmen/Clothing/Uniforms/jumpsuit/centcom-private_officer.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformJumpsuitseniorofficer
+  name: Униформа Старшего Офицера ЦК
+  description: Полевая униформа Старшего Офицера ЦК
+  components:
+    - type: Sprite
+      sprite: Backmen/Clothing/Uniforms/jumpsuit/centcom-senior_officer.rsi
+    - type: Clothing
+      sprite: Backmen/Clothing/Uniforms/jumpsuit/centcom-senior_officer.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformJumpsuitseniorofficeruniform
+  name: Парадная Униформа Старшего Офицера ЦК
+  description: Парадная униформа Старшего Офицера ЦК
+  components:
+    - type: Sprite
+      sprite: Backmen/Clothing/Uniforms/jumpsuit/centcom-senior_officer_uniform.rsi
+    - type: Clothing
+      sprite: Backmen/Clothing/Uniforms/jumpsuit/centcom-senior_officer_uniform.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformJumpsuitinformationsecurityanalyst
+  name: Униформа Аналитика Информационной Безопасности
+  description: Полевая униформа Аналитика Информационной Безопасности
+  components:
+    - type: Sprite
+      sprite: Backmen/Clothing/Uniforms/jumpsuit/information_security_analyst.rsi
+    - type: Clothing
+      sprite: Backmen/Clothing/Uniforms/jumpsuit/information_security_analyst.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformJumpsuitstutman
+  name: Униформа Штурмана
+  description: Полевая униформа Штурмана
+  components:
+    - type: Sprite
+      sprite: Backmen/Clothing/Uniforms/jumpsuit/stutman.rsi
+    - type: Clothing
+      sprite: Backmen/Clothing/Uniforms/jumpsuit/stutman.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformJumpsuitstutmanuniform
+  name: Парадная Униформа Штурмана
+  description: Парадная униформа Штурмана
+  components:
+    - type: Sprite
+      sprite: Backmen/Clothing/Uniforms/jumpsuit/stutman_uniform.rsi
+    - type: Clothing
+      sprite: Backmen/Clothing/Uniforms/jumpsuit/stutman_uniform.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformJumpsuitmaidblack
+  name: Черный Костюм Горничной
+  description: По всей видимости это классический костюм французской горничной.
+  components:
+    - type: Sprite
+      sprite: Backmen/Clothing/Uniforms/jumpsuit/maid_black.rsi
+    - type: Clothing
+      sprite: Backmen/Clothing/Uniforms/jumpsuit/maid_black.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformJumpsuitmaidblue
+  name: Синий Костюм Горничной
+  description: Он такой же как и черный, но синий, не обижайте его владельца ;)
+  components:
+    - type: Sprite
+      sprite: Backmen/Clothing/Uniforms/jumpsuit/maid_blue.rsi
+    - type: Clothing
+      sprite: Backmen/Clothing/Uniforms/jumpsuit/maid_blue.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformJumpsuitmaidpink
+  name: Розовый Костюм Горничной
+  description: Он такой же как и черный, но розовый, не обижайте его владельца ;)
+  components:
+    - type: Sprite
+      sprite: Backmen/Clothing/Uniforms/jumpsuit/maid_pink.rsi
+    - type: Clothing
+      sprite: Backmen/Clothing/Uniforms/jumpsuit/maid_pink.rsi
