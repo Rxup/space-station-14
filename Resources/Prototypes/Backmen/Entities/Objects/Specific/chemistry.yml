@@ -2,7 +2,7 @@
   name: bluespace pill canister
   id: BluespacePillCanister
   parent: BaseStorageItem
-  description: Pill canister with uses the Bluespace technology. Holds up to 50 pills.
+  description: Pill canister wich uses the Bluespace technology. Holds up to 50 pills.
   components:
   - type: Sprite
     sprite: Backmen/Objects/Specific/Chemistry/bluespace_pills_canister.rsi
@@ -14,6 +14,9 @@
     tags:
       - PillCanister
   - type: Storage
+    whitelist:
+      tags:
+        - Pill
     maxTotalWeight: 50
     quickInsert: true
     areaInsert: true
