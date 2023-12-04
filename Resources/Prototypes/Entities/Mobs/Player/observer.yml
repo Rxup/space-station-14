@@ -27,6 +27,12 @@
         - GhostImpassable
   - type: Eye
     drawFov: false
+    visMask:
+      - Normal
+      - Ghost
+      - PsionicInvisibility
+      - DarkSwapInvisibility
+      - AIEye
   - type: Input
     context: "ghost"
   - type: Examiner
@@ -65,6 +71,7 @@
     - GROUPS_0
     - Binary
     - Flesh
+    - Freelance
     globalReceive: true
   - type: Physics
     bodyType: KinematicController

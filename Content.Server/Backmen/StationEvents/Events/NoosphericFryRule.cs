@@ -15,6 +15,7 @@ using Content.Shared.Inventory;
 using Content.Shared.Mobs.Components;
 using Content.Shared.Mobs.Systems;
 using Robust.Server.GameObjects;
+using Robust.Shared.Audio.Systems;
 using Robust.Shared.Map.Components;
 using Robust.Shared.Physics.Components;
 using Robust.Shared.Player;
@@ -67,12 +68,12 @@ internal sealed class NoosphericFryRule : StationEventSystem<NoosphericFryRuleCo
                 QueueDel(wornOwner);
                 Spawn("Ash", Transform(wearer).Coordinates);
                 _popupSystem.PopupEntity(Loc.GetString("psionic-burns-up", ("item", wornOwner)), wearer, Filter.Pvs(wornOwner), true, Shared.Popups.PopupType.MediumCaution);
-                _audioSystem.Play("/Audio/Effects/lightburn.ogg", Filter.Pvs(wornOwner), wornOwner, true);
+                _audioSystem.PlayPvs("/Audio/Effects/lightburn.ogg", wornOwner);
             }
             else
             {
                 _popupSystem.PopupEntity(Loc.GetString("psionic-burn-resist", ("item", wornOwner)), wearer, Filter.Pvs(wornOwner), true, Shared.Popups.PopupType.SmallCaution);
-                _audioSystem.Play("/Audio/Effects/lightburn.ogg", Filter.Pvs(wornOwner), wornOwner, true);
+                _audioSystem.PlayPvs("/Audio/Effects/lightburn.ogg", wornOwner);
             }
 
             DamageSpecifier damage = new();

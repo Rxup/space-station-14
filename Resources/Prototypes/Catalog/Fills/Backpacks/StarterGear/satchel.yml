@@ -54,6 +54,8 @@
       - id: ForensicPad
       - id: ForensicScanner
 
+# Backmen Brigmedic Satchel
+
 - type: entity
   noSpawn: true
   parent: ClothingBackpackSatchelBrigmedic
@@ -61,6 +63,7 @@
   components:
   - type: StorageFill
     contents:
+      - id: BoxSurvivalSecurity
       - id: Flash
 
 - type: entity

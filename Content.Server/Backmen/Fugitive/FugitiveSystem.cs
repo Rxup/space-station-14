@@ -1,48 +1,44 @@
 ﻿using System.Diagnostics.CodeAnalysis;
 using System.Linq;
-using System.Numerics;
 using System.Text;
-using Content.Server.Backmen.EvilTwin;
 using Content.Server.Mind;
 using Content.Server.Ghost.Roles.Events;
-using Content.Server.Traitor;
 using Content.Server.Objectives;
 using Content.Server.Chat.Systems;
 using Content.Server.Communications;
 using Content.Server.Paper;
-using Content.Server.Humanoid;
 using Content.Server.Popups;
 using Content.Server.Stunnable;
-using Content.Server.Ghost.Components;
 using Content.Server.Roles;
 using Content.Server.GameTicking;
+using Content.Server.Salvage.Expeditions;
 using Content.Server.Shuttles.Systems;
 using Content.Server.Spawners.Components;
 using Content.Server.Spawners.EntitySystems;
 using Content.Server.Station.Components;
 using Content.Server.Station.Systems;
 using Content.Server.Storage.Components;
+using Content.Shared.Cargo.Components;
 using Content.Shared.Roles;
 using Content.Shared.Movement.Systems;
 using Content.Shared.Humanoid.Prototypes;
 using Content.Shared.Humanoid;
-using Content.Shared.Random.Helpers;
 using Content.Shared.Examine;
 using Content.Shared.Ghost;
 using Content.Shared.Mind.Components;
-using Content.Shared.Objectives;
 using Content.Shared.Objectives.Components;
 using Content.Shared.Paper;
+using Content.Shared.Radio.Components;
 using Content.Shared.Random;
 using Content.Shared.Roles.Jobs;
 using Content.Shared.Wall;
+using Robust.Server.Audio;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
 using Robust.Shared.Audio;
 using Robust.Shared.Utility;
 using Robust.Shared.Physics.Components;
 using Robust.Shared.Player;
-using Robust.Server.GameObjects;
 using Robust.Shared.Map;
 using Robust.Shared.Random;
 using static Content.Shared.Examine.ExamineSystemShared;
@@ -53,6 +49,7 @@ public sealed class FugitiveSystem : EntitySystem
 {
     [ValidatePrototypeId<AntagPrototype>] private const string FugitiveAntagRole = "Fugitive";
     [ValidatePrototypeId<JobPrototype>] private const string FugitiveRole = "Fugitive";
+
     [ValidatePrototypeId<EntityPrototype>]
     private const string EscapeObjective = "EscapeShuttleObjectiveFugitive";
 
@@ -80,17 +77,24 @@ public sealed class FugitiveSystem : EntitySystem
         SubscribeLocalEvent<FugitiveComponent, GhostRoleSpawnerUsedEvent>(OnSpawned);
         SubscribeLocalEvent<FugitiveComponent, MindAddedMessage>(OnMindAdded);
         SubscribeLocalEvent<RoundEndTextAppendEvent>(OnRoundEnd);
-        SubscribeLocalEvent<PlayerSpawningEvent>(OnPlayerSpawn, before: new []{typeof(ArrivalsSystem),typeof(SpawnPointSystem)});
+        SubscribeLocalEvent<PlayerSpawningEvent>(OnPlayerSpawn,
+            before: new[] { typeof(ArrivalsSystem), typeof(SpawnPointSystem) });
     }
 
     [ValidatePrototypeId<JobPrototype>]
     private const string JobPrisoner = "Prisoner";
+
+    [ValidatePrototypeId<JobPrototype>]
+    private const string JobSAI = "SAI";
+
     private void OnPlayerSpawn(PlayerSpawningEvent args)
     {
         if (args.SpawnResult != null)
             return;
 
-        if (!(args.Job?.Prototype != null && _prototypeManager.TryIndex<JobPrototype>(args.Job!.Prototype!, out var jobInfo) && jobInfo.AlwaysUseSpawner))
+        if (!(args.Job?.Prototype != null &&
+              _prototypeManager.TryIndex<JobPrototype>(args.Job!.Prototype!, out var jobInfo) &&
+              jobInfo.AlwaysUseSpawner))
         {
             return;
         }
@@ -104,7 +108,10 @@ public sealed class FugitiveSystem : EntitySystem
             {
                 if (args.Station != null && _stationSystem.GetOwningStation(uid, xform) != args.Station)
                     continue;
-
+                if(xform.GridUid == null)
+                    continue;
+                if(HasComp<CargoShuttleComponent>(xform.GridUid) || HasComp<SalvageShuttleComponent>(xform.GridUid))
+                    continue;
                 if (spawnPoint.SpawnType == SpawnPointType.Job &&
                     (args.Job == null || spawnPoint.Job?.ID == args.Job.Prototype))
                 {
@@ -112,6 +119,8 @@ public sealed class FugitiveSystem : EntitySystem
                 }
             }
         }
+
+        #region Prisoner
 
         if (possiblePositions.Count == 0 && args.Job?.Prototype == JobPrisoner)
         {
@@ -122,17 +131,49 @@ public sealed class FugitiveSystem : EntitySystem
                 if (args.Station != null && _stationSystem.GetOwningStation(uid, xform) != args.Station)
                     continue;
 
+                if(xform.GridUid == null)
+                    continue;
+                if(HasComp<CargoShuttleComponent>(xform.GridUid) || HasComp<SalvageShuttleComponent>(xform.GridUid))
+                    continue;
+
                 if (spawnPoint.EntityPrototype?.ID is "WardrobePrison" or "WardrobePrisonFilled" or "ClosetWallOrange")
                 {
                     if (HasComp<WallMountComponent>(uid))
                     {
-                        possiblePositions.Add(xform.Coordinates.WithPosition(xform.LocalPosition + xform.LocalRotation.ToWorldVec() * 1f));
+                        possiblePositions.Add(
+                            xform.Coordinates.WithPosition(xform.LocalPosition +
+                                                           xform.LocalRotation.ToWorldVec() * 1f));
                         continue;
                     }
+
                     possiblePositions.Add(xform.Coordinates);
                 }
             }
         }
+
+        #endregion
+
+        #region SAI
+
+        if (possiblePositions.Count == 0 && args.Job?.Prototype == JobSAI)
+        {
+            var points = EntityQueryEnumerator<TelecomServerComponent, TransformComponent, MetaDataComponent>();
+
+            while (points.MoveNext(out var uid, out _, out var xform, out var spawnPoint))
+            {
+                if (args.Station != null && _stationSystem.GetOwningStation(uid, xform) != args.Station)
+                    continue;
+                if(xform.GridUid == null)
+                    continue;
+                if(HasComp<CargoShuttleComponent>(xform.GridUid) || HasComp<SalvageShuttleComponent>(xform.GridUid))
+                    continue;
+
+                possiblePositions.Add(
+                    xform.Coordinates.WithPosition(xform.LocalPosition + xform.LocalRotation.ToWorldVec() * 1f));
+            }
+        }
+
+        #endregion
 
         if (possiblePositions.Count == 0)
         {
@@ -185,6 +226,7 @@ public sealed class FugitiveSystem : EntitySystem
         {
             EnsureComp<FugitiveComponent>(Fugitive.Value).ForcedHuman = true;
         }
+
         return true;
     }
 
@@ -223,7 +265,7 @@ public sealed class FugitiveSystem : EntitySystem
                 {
                     StampedColor = Color.Red,
                     StampedName = Loc.GetString("fugitive-announcement-GALPOL")
-                },"paper_stamp-generic");
+                }, "paper_stamp-generic");
             }
 
             RemCompDeferred<FugitiveCountdownComponent>(owner);
@@ -280,6 +322,7 @@ public sealed class FugitiveSystem : EntitySystem
             {
                 _roleSystem.MindRemoveRole<JobComponent>(mindId);
             }
+
             _roleSystem.MindAddRole(mindId, new JobComponent
             {
                 Prototype = FugitiveRole
@@ -442,5 +485,4 @@ public sealed class FugitiveSystem : EntitySystem
 
     [ValidatePrototypeId<EntityPrototype>] private const string SpawnPointPrototype = "SpawnPointGhostFugitive";
     [ValidatePrototypeId<EntityPrototype>] private const string SpawnMobPrototype = "MobHumanFugitive";
-
 }

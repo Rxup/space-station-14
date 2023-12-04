@@ -8,15 +8,14 @@ using Content.Shared.Stealth.Components;
 using Content.Shared.Backmen.Abilities.Psionics;
 using Content.Shared.Backmen.Psionics.Events;
 using Robust.Shared.Prototypes;
-using Robust.Shared.Player;
-using Robust.Shared.Audio;
+using Robust.Shared.Audio.Systems;
 using Robust.Shared.Timing;
 
 namespace Content.Server.Backmen.Abilities.Psionics;
 
 public sealed class PsionicInvisibilityPowerSystem : EntitySystem
 {
-    [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
+    [Dependency] private readonly SharedAudioSystem _audio = default!;
     [Dependency] private readonly SharedActionsSystem _actions = default!;
     [Dependency] private readonly SharedStunSystem _stunSystem = default!;
     [Dependency] private readonly SharedPsionicAbilitiesSystem _psionics = default!;
@@ -83,7 +82,7 @@ public sealed class PsionicInvisibilityPowerSystem : EntitySystem
         EnsureComp<PacifiedComponent>(uid);
         var stealth = EnsureComp<StealthComponent>(uid);
         _stealth.SetVisibility(uid, 0.66f, stealth);
-        SoundSystem.Play("/Audio/Effects/toss.ogg", Filter.Pvs(uid), uid);
+        _audio.PlayPvs("/Audio/Effects/toss.ogg", uid);
 
     }
 
@@ -95,7 +94,7 @@ public sealed class PsionicInvisibilityPowerSystem : EntitySystem
         RemComp<PsionicallyInvisibleComponent>(uid);
         RemComp<PacifiedComponent>(uid);
         RemComp<StealthComponent>(uid);
-        SoundSystem.Play("/Audio/Effects/toss.ogg", Filter.Pvs(uid), uid);
+        _audio.PlayPvs("/Audio/Effects/toss.ogg", uid);
 
         if (TryComp<PsionicInvisibilityPowerComponent>(uid, out var invisibilityPowerComponent))
         {
@@ -119,7 +118,8 @@ public sealed class PsionicInvisibilityPowerSystem : EntitySystem
         if (!HasComp<PsionicInvisibilityUsedComponent>(uid))
         {
             EnsureComp<PsionicInvisibilityUsedComponent>(uid);
-        } else
+        }
+        else
         {
             RemComp<PsionicInvisibilityUsedComponent>(uid);
         }

@@ -47,8 +47,11 @@ public sealed class MsgSponsorInfo : NetMessage
             return;
 
         var length = buffer.ReadVariableInt32();
-        using var stream = buffer.ReadAlignedMemory(length);
-        serializer.DeserializeDirect(stream, out Info);
+        using var stream = new MemoryStream();
+        {
+            buffer.ReadAlignedMemory(stream, length);
+            serializer.DeserializeDirect(stream, out Info);
+        }
     }
 
     public override void WriteToBuffer(NetOutgoingMessage buffer, IRobustSerializer serializer)

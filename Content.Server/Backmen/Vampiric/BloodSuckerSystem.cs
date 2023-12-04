@@ -9,7 +9,6 @@ using Content.Shared.Backmen.Vampiric;
 using Content.Server.Atmos.Components;
 using Content.Server.Body.Components;
 using Content.Server.Body.Systems;
-using Content.Server.Chemistry.EntitySystems;
 using Content.Server.Popups;
 using Content.Server.HealthExaminable;
 using Content.Server.DoAfter;
@@ -17,8 +16,7 @@ using Content.Server.Nutrition.EntitySystems;
 using Content.Shared.Chemistry;
 using Content.Shared.Chemistry.EntitySystems;
 using Robust.Shared.Prototypes;
-using Robust.Shared.Player;
-using Robust.Shared.Audio;
+using Robust.Shared.Audio.Systems;
 using Robust.Shared.Utility;
 
 namespace Content.Server.Backmen.Vampiric;
@@ -36,6 +34,7 @@ public sealed class BloodSuckerSystem : EntitySystem
     [Dependency] private readonly ISharedAdminLogManager _adminLogger = default!;
     [Dependency] private readonly SharedInteractionSystem _interactionSystem = default!;
     [Dependency] private readonly ReactiveSystem _reactiveSystem = default!;
+    [Dependency] private readonly SharedAudioSystem _audio = default!;
     public override void Initialize()
     {
         base.Initialize();
@@ -172,11 +171,11 @@ public sealed class BloodSuckerSystem : EntitySystem
             return false;
 
         // Does bloodsucker have a stomach?
-        var stomachList = _bodySystem.GetBodyOrganComponents<StomachComponent>(bloodsucker);
-        if (stomachList.Count == 0)
+        var stomachList = _bodySystem.GetBodyOrganComponents<StomachComponent>(bloodsucker).FirstOrNull();
+        if (stomachList == null)
             return false;
 
-        if (!_solutionSystem.TryGetSolution(stomachList[0].Comp.Owner, StomachSystem.DefaultSolutionName, out var stomachSolution))
+        if (!_solutionSystem.TryGetSolution(bloodsucker, StomachSystem.DefaultSolutionName, out var stomachSolution))
             return false;
 
         // Are we too full?
@@ -194,7 +193,7 @@ public sealed class BloodSuckerSystem : EntitySystem
         _adminLogger.Add(Shared.Database.LogType.MeleeHit, Shared.Database.LogImpact.Medium, $"{ToPrettyString(bloodsucker):player} sucked blood from {ToPrettyString(victim):target}");
 
         // All good, succ time.
-        SoundSystem.Play("/Audio/Items/drink.ogg", Filter.Pvs(bloodsucker), bloodsucker);
+        _audio.PlayPvs("/Audio/Items/drink.ogg", bloodsucker);
         _popups.PopupEntity(Loc.GetString("bloodsucker-blood-sucked-victim", ("sucker", bloodsucker)), victim, victim, Shared.Popups.PopupType.LargeCaution);
         _popups.PopupEntity(Loc.GetString("bloodsucker-blood-sucked", ("target", victim)), bloodsucker, bloodsucker, Shared.Popups.PopupType.Medium);
         EnsureComp<BloodSuckedComponent>(victim);
@@ -202,7 +201,7 @@ public sealed class BloodSuckerSystem : EntitySystem
         // Make everything actually ingest.
         var temp = _solutionSystem.SplitSolution(victim, bloodstream.BloodSolution, unitsToDrain);
         _reactiveSystem.DoEntityReaction(bloodsucker, temp, Shared.Chemistry.Reagent.ReactionMethod.Ingestion);
-        _stomachSystem.TryTransferSolution(stomachList[0].Comp.Owner, temp, stomachList[0].Comp);
+        _stomachSystem.TryTransferSolution(bloodsucker, temp, stomachList.Value.Comp);
 
         // Add a little pierce
         DamageSpecifier damage = new();

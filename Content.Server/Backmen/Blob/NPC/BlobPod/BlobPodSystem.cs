@@ -13,7 +13,7 @@ using Content.Shared.Inventory;
 using Content.Shared.Mobs.Systems;
 using Content.Shared.Rejuvenate;
 using Content.Shared.Verbs;
-using Robust.Server.GameObjects;
+using Robust.Server.Audio;
 using Robust.Shared.Player;
 
 namespace Content.Server.Backmen.Blob.NPC.BlobPod
@@ -74,7 +74,7 @@ namespace Content.Server.Backmen.Blob.NPC.BlobPod
             component.IsZombifying = false;
             if (args.Handled || args.Args.Target == null)
             {
-                component.ZombifyStingStream?.Stop();
+                _audioSystem.Stop(component.ZombifyStingStream, component.ZombifyStingStream);
                 return;
             }
 

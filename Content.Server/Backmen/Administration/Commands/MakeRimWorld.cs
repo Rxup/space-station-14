@@ -1,18 +1,14 @@
-﻿using System.Linq;
-using System.Numerics;
+﻿using System.Numerics;
 using Content.Server.Administration;
-using Content.Server.Administration.Logs;
 using Content.Server.Atmos;
 using Content.Server.Atmos.Components;
 using Content.Server.Atmos.EntitySystems;
-using Content.Server.Decals;
 using Content.Server.Parallax;
 using Content.Shared.Administration;
 using Content.Shared.Atmos;
 using Content.Shared.Gravity;
 using Content.Shared.Parallax.Biomes;
 using Robust.Server.GameObjects;
-using Robust.Server.Maps;
 using Robust.Shared.Console;
 using Robust.Shared.Map;
 using Robust.Shared.Map.Components;
@@ -117,7 +113,7 @@ public sealed class MakeRimWorld : IConsoleCommand
 
                 var mod = biome.ModifiedTiles.GetOrNew(chunk * ChunkSize);
 
-                if (!mod.Add(index) || !biomeSystem.TryGetBiomeTile(index, biome.Layers, biome.Noise, biomeGrid, out var tile))
+                if (!mod.Add(index) || !biomeSystem.TryGetBiomeTile(index, biome.Layers, biome.Seed, biomeGrid, out var tile))
                     continue;
 
                 // If we flag it as modified then the tile is never set so need to do it ourselves.

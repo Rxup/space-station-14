@@ -4,7 +4,6 @@ using Content.Server.Emp;
 using Content.Server.Explosion.EntitySystems;
 using Content.Shared.Backmen.Blob;
 using Content.Shared.Damage;
-using Content.Shared.Interaction.Events;
 using Content.Shared.Mobs;
 using Content.Shared.Popups;
 using Content.Shared.Weapons.Melee.Events;

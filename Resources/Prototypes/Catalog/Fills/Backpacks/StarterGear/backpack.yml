@@ -332,7 +332,7 @@
         - id: ToolDebug # spanish army knife
         - id: WelderExperimental
         - id: Hypospray
-        - id: MicroBombImplanter # crew will try to steal their amazing hardsuits
+        - id: DeathAcidifierImplanter # crew will try to steal their amazing hardsuits
         - id: FreedomImplanter
 
 # Cargo
@@ -368,3 +368,15 @@
         - id: Cutlass
         - id: WeaponRevolverPirate
         - id: ClothingEyesEyepatch
+
+# Backmen Brigmedic Backpack
+
+- type: entity
+  noSpawn: true
+  parent: ClothingBackpackBrigmedic
+  id: ClothingBackpackBrigmedicFilled
+  components:
+  - type: StorageFill
+    contents:
+      - id: BoxSurvivalSecurity
+      - id: Flash

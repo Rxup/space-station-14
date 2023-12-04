@@ -4,9 +4,9 @@
   components:
   - type: StorageFill
     contents:
-      - id: WeaponSubMachineGunP90
+      - id: WeaponSubMachineGunMP5
         amount: 2
-      - id: MagazinePistolTopSubMachineGun
+      - id: MagazinePistolSubMachineGun
         amount: 4
 
 - type: entity
