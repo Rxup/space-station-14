@@ -423,7 +423,8 @@
       - state: icon-0
         map: ["enum.StorageFillLayers.Fill"]
   - type: Storage
-    maxTotalWeight: 1000
+    grid:
+    - 0,0,19,9
     maxItemSize: Huge
     quickInsert: true
     areaInsert: true
