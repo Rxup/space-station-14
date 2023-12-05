@@ -1187,22 +1187,15 @@
     - type: Storage
       maxItemSize: Huge
       grid:
-      - 0,0,6,4
+      - 0,0,8,6
     - type: StorageFill
       contents:
-        - id: BoxFlare
-        - id: BoxFlare
         - id: BattleMedipen
         - id: BattleMedipen
         - id: trayScanner
-        - id: WeaponPistolACP14
-        - id: MagazinePistol
-        - id: MagazinePistol
         - id: WeaponShotgun39
         - id: BoxLethalshot
-          amount: 4
-        - id: C4
-        - id: C4
+          amount: 2
         - id: C4
         - id: C4
         - id: RCD
@@ -1721,18 +1714,15 @@
   components:
     - type: StorageFill
       contents:
-        - id: BoxFlare
         - id: PinpointerNuclear
         - id: WeaponPulseRifle
         - id: SpeedLoaderMagnum
           amount: 2
         - id: PaperManualCodes
         - id: C4
-          amount: 8
-        - id: SpetsnazMedipen
           amount: 4
-        - id: Multitool
-        - id: RemoteSignaller
+        - id: SpetsnazMedipen
+          amount: 2
         - id: WeaponRifleLecterPan
         - id: MagazineRiflePan
           amount: 4
@@ -2198,11 +2188,9 @@
     - type: Storage
       maxItemSize: Huge
       grid:
-      - 0,0,6,4
+      - 0,0,6,5
     - type: StorageFill
       contents:
-        - id: BoxFlare
-        - id: BoxFlare
         - id: MedkitAdvancedRXBZZ
         - id: WeaponDisabler
         - id: WeaponRifleG36
@@ -2235,7 +2223,7 @@
   components:
     - type: Storage
       grid:
-      - 0,0,5,3
+      - 0,0,5,4
     - type: StorageFill
       contents:
         - id: ShellShotgunIncendiary
