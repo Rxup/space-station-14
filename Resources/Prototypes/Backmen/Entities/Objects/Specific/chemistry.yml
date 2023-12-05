@@ -17,7 +17,8 @@
     whitelist:
       tags:
         - Pill
-    maxTotalWeight: 50
+    grid:
+    - 0,0,5,2
     quickInsert: true
     areaInsert: true
     areaInsertRadius: 1

@@ -124,13 +124,13 @@ namespace Content.Server.Backmen.Item.PseudoItem
                 return false;
             }
 
-            if (!_prototypeManager.TryIndex(pseudoItem.Comp.SizeInBackpack, out var sizeInBackpack))
+            if (!_prototypeManager.TryIndex(pseudoItem.Comp.SizeInBackpack, out var itemSizeInBackpack))
             {
                 return false;
             }
 
 
-            return sizeInBackpack.Weight >= storageComponent.Grid.GetArea() - _storageSystem.GetCumulativeItemAreas((storage,storageComponent));
+            return itemSizeInBackpack.Weight <= storageComponent.Grid.GetArea() - _storageSystem.GetCumulativeItemAreas((storage,storageComponent));
         }
 
         private void OnEscape(EntityUid uid, PseudoItemComponent pseudoItem, EscapeInventoryEvent args)

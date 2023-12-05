@@ -198,7 +198,6 @@
   - type: Sprite
     sprite: Clothing/Back/Backpacks/ertleader.rsi
   - type: Storage
-    maxTotalWeight: 80
     grid:
     - 0,0,20,3
 
