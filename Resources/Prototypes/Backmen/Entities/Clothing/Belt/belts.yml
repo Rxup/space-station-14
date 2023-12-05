@@ -10,7 +10,8 @@
   - type: Clothing
     sprite: Backmen/Clothing/Belt/orden_sheath.rsi
   - type: Storage
-    maxTotalWeight: 15
+    grid:
+    - 0,0,4,3
     whitelist:
       tags:
         - SwordSquadRO
@@ -33,7 +34,8 @@
   - type: Clothing
     sprite: Backmen/Clothing/Belt/demoman.rsi
   - type: Storage
-    maxSlots: 10
+    grid:
+    - 0,0,4,4
     whitelist:
       tags:
         - CableCoil

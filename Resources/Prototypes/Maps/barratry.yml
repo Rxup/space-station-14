@@ -43,6 +43,7 @@
             Chemist: [ 2, 2 ]
             MedicalDoctor: [ 3, 3 ]
             MedicalIntern: [ 2, 4 ]
+            Paramedic: [ 1, 1 ]
             #science
             ResearchDirector: [ 1, 1 ]
             SeniorResearcher: [ 1, 1 ]
@@ -71,5 +72,4 @@
             Deliveryman: [ 0, 1 ]
             Prisoner: [ 2, 2]
             SAI: [1, 1] # backmen-SAI
-            Paramedic: [ 0, 1 ]
 

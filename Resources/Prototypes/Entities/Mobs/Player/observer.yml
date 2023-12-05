@@ -45,33 +45,7 @@
   - type: MovementIgnoreGravity
   - type: IntrinsicRadioReceiver
   - type: ActiveRadio
-    channels:
-    - Binary
-    - Common
-    - Command
-    - CentCom
-    - Engineering
-    - Medical
-    - Science
-    - Security
-    - Service
-    - Supply
-    - Syndicate
-    - Redorden
-    - CSH
-    - GROUPS_1
-    - GROUPS_2
-    - GROUPS_3
-    - GROUPS_4
-    - GROUPS_5
-    - GROUPS_6
-    - GROUPS_7
-    - GROUPS_8
-    - GROUPS_9
-    - GROUPS_0
-    - Binary
-    - Flesh
-    - Freelance
+    receiveAllChannels: true
     globalReceive: true
   - type: Physics
     bodyType: KinematicController

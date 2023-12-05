@@ -124,17 +124,13 @@ namespace Content.Server.Backmen.Item.PseudoItem
                 return false;
             }
 
-            if (storageComponent.MaxSlots != null)
+            if (!_prototypeManager.TryIndex(pseudoItem.Comp.SizeInBackpack, out var itemSizeInBackpack))
             {
                 return false;
             }
 
-            if (!_prototypeManager.TryIndex(pseudoItem.Comp.SizeInBackpack, out var sizeInBackpack))
-            {
-                return false;
-            }
 
-            return sizeInBackpack.Weight >= storageComponent.MaxTotalWeight - _storageSystem.GetCumulativeItemSizes(storage, storageComponent);
+            return itemSizeInBackpack.Weight <= storageComponent.Grid.GetArea() - _storageSystem.GetCumulativeItemAreas((storage,storageComponent));
         }
 
         private void OnEscape(EntityUid uid, PseudoItemComponent pseudoItem, EscapeInventoryEvent args)
@@ -232,9 +228,7 @@ namespace Content.Server.Backmen.Item.PseudoItem
                 if (user.HasValue)
                 {
                     _popup.PopupEntity(
-                        storage.MaxSlots == null
-                            ? Loc.GetString("comp-storage-too-big")
-                            : Loc.GetString("comp-storage-invalid-container"), toInsert, user.Value,
+                        Loc.GetString("comp-storage-too-big"), toInsert, user.Value,
                         PopupType.LargeCaution);
                 }
                 return false;
