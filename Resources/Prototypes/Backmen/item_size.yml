@@ -3,8 +3,12 @@
   id: Felinid
   weight: 28
   name: item-component-size-Felinid
+  defaultShape:
+  - 0,0,5,3
 
 - type: itemSize
   id: HeavyMachineGun
   weight: 80
   name: item-component-size-HeavyMachineGun
+  defaultShape:
+  - 0,0,9,5

@@ -423,7 +423,8 @@
       - state: icon-0
         map: ["enum.StorageFillLayers.Fill"]
   - type: Storage
-    maxTotalWeight: 1000
+    grid:
+    - 0,0,19,9
     maxItemSize: Huge
     quickInsert: true
     areaInsert: true
@@ -1280,7 +1281,8 @@
     size: Large
   - type: Storage
     maxItemSize: Small
-    maxTotalWeight: 10
+    grid:
+    - 0,0,3,2
 
 - type: entity
   parent: BaseStorageItem
@@ -1299,7 +1301,8 @@
     size: Large
   - type: Storage
     maxItemSize: Small
-    maxTotalWeight: 10
+    grid:
+    - 0,0,3,2
     whitelist:
       tags:
         - MagazineRifle
@@ -1323,7 +1326,8 @@
     size: Large
   - type: Storage
     maxItemSize: Small
-    maxTotalWeight: 10
+    grid:
+    - 0,0,3,2
     whitelist:
       tags:
         - Wrench
@@ -1359,7 +1363,8 @@
     size: Large
   - type: Storage
     maxItemSize: Small
-    maxTotalWeight: 10
+    grid:
+    - 0,0,3,2
     whitelist:
       components:
         - Gun
@@ -1381,7 +1386,8 @@
     size: Large
   - type: Storage
     maxItemSize: Small
-    maxTotalWeight: 20
+    grid:
+    - 0,0,4,3
     whitelist:
       tags:
         - ShellShotgun
@@ -1397,8 +1403,9 @@
   - type: Clothing
     sprite: Backmen/Clothing/Belt/Gear/ammobelt.rsi
   - type: Storage
-    maxSlots: 6
     maxItemSize: Small
+    grid:
+    - 0,0,3,2
     whitelist:
       tags:
         - MagazineRifle
@@ -1416,7 +1423,8 @@
   - type: Clothing
     sprite: Backmen/Clothing/Belt/Gear/generalbelt.rsi
   - type: Storage
-    maxTotalWeight: 16
+    grid:
+    - 0,0,3,3
     maxItemSize: Normal
 
 - type: entity
@@ -1430,8 +1438,9 @@
   - type: Clothing
     sprite: Backmen/Clothing/Belt/Gear/medicalbelt.rsi
   - type: Storage
-    maxSlots: 12
     maxItemSize: Small
+    grid:
+    - 0,0,3,4
     whitelist:
       tags:
         - Wrench
@@ -1461,7 +1470,8 @@
   - type: Clothing
     sprite: Backmen/Clothing/Belt/Gear/pistolbelt.rsi
   - type: Storage
-    maxSlots: 5
+    grid:
+    - 0,0,5,1
     maxItemSize: Normal
     whitelist:
       components:
@@ -1480,7 +1490,8 @@
   - type: Clothing
     sprite: Backmen/Clothing/Belt/Gear/shotgunbelt.rsi
   - type: Storage
-    maxSlots: 80
+    grid:
+    - 0,0,5,4
     maxItemSize: Small
     whitelist:
       tags:
@@ -1494,7 +1505,7 @@
     - type: StorageFill
       contents:
         - id: ShellShotgun
-          amount: 60
+          amount: 30
 
 - type: accessGroup
   id: MTFLeader

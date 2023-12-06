@@ -5,7 +5,9 @@
   name: Сумка БСС Дрона Медицинского Направления
   components:
   - type: Storage
-    maxTotalWeight: 1200
+    maxItemSize: Huge
+    grid:
+    - 0,0,19,9
   - type: Sprite
     sprite: Corvax/Sponsor/NEKISH/Clothing/Back/Satchels/hos.rsi
   - type: Tag

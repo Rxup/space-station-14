@@ -5,7 +5,9 @@
   name: Borg backpack
   components:
     - type: Storage
-      maxTotalWeight: 1200
+      maxItemSize: Huge
+      grid:
+      - 0,0,19,9
     - type: Tag
       tags:
         - InnateDontDelete
