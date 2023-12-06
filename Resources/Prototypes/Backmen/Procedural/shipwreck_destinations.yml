@@ -4,8 +4,8 @@
   lightColor: "#010103"
   structures:
     RuinedDwellings: 2
-    RuinedHospital: 1
-    RuinedShop: 5
+    RuinedHospital: 2
+    RuinedShop: 4
   factions:
     - ZombieOutbreak
     - FleshMonsterInvasion
@@ -22,9 +22,9 @@
   biome: LowDesert
   lightColor: "#030101"
   structures:
-    RuinedDwellings: 2
+    RuinedDwellings: 3
     RuinedHospital: 1
-    RuinedShop: 5
+    RuinedShop: 4
   factions:
     - ZombieOutbreak
     - FleshMonsterInvasion
@@ -42,8 +42,8 @@
   lightColor: "#010301"
   structures:
     RuinedDwellings: 2
-    RuinedHospital: 1
-    RuinedShop: 5
+    RuinedHospital: 2
+    RuinedShop: 4
   factions:
     - ZombieOutbreak
     - FleshMonsterInvasion
@@ -60,9 +60,9 @@
   biome: Continental
   lightColor: "#D8B059" #DayLight
   structures:
-    RuinedDwellings: 2
-    RuinedHospital: 3
-    RuinedShop: 5
+    RuinedDwellings: 1
+    RuinedHospital: 1
+    RuinedShop: 6
   factions:
     - ZombieOutbreak
     - FleshMonsterInvasion
@@ -80,8 +80,8 @@
   lightColor: "#A34931" #LavaLight
   structures:
     RuinedDwellings: 2
-    RuinedHospital: 4
-    RuinedShop: 3
+    RuinedHospital: 6
+    RuinedShop: 2
   factions:
     - ZombieOutbreak
     - FleshMonsterInvasion
@@ -98,8 +98,8 @@
   biome: RuinedMegacity
   lightColor: "#2b3143" #Evening
   structures:
-    RuinedDwellings: 2
-    RuinedHospital: 4
+    RuinedDwellings: 1
+    RuinedHospital: 2
     RuinedShop: 5
   factions:
     - ZombieOutbreak

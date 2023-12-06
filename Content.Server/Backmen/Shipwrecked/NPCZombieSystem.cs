@@ -1,5 +1,6 @@
 ﻿using Content.Server.Backmen.Shipwrecked.Components;
 using Content.Server.Explosion.EntitySystems;
+using Content.Server.Ghost.Roles.Components;
 using Content.Server.Humanoid.Systems;
 using Content.Server.RandomMetadata;
 using Content.Server.Zombies;
@@ -37,7 +38,8 @@ public sealed class NPCZombieSystem : EntitySystem
             return;
 
         _zombieSystem.ZombifyEntity(ev.Target);
-
+        RemComp<GhostTakeoverAvailableComponent>(ev.Target);
+        RemComp<GhostRoleComponent>(ev.Target);
 
         var z = EnsureComp<ZombieComponent>(ev.Target);
         z.MaxZombieInfectionChance = 0.0001f;

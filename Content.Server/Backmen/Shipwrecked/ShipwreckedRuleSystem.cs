@@ -8,6 +8,7 @@ using Content.Server.Atmos.Components;
 using Content.Server.Atmos.EntitySystems;
 using Content.Server.Backmen.NPC.Prototypes;
 using Content.Server.Backmen.NPC.Systems;
+using Content.Server.Backmen.Shipwrecked.Biome;
 using Content.Server.Backmen.Shipwrecked.Components;
 using Content.Server.Backmen.Shipwrecked.Prototypes;
 using Content.Server.Body.Components;
@@ -54,6 +55,8 @@ using Content.Shared.Chemistry.Components;
 using Content.Shared.CombatMode.Pacification;
 using Content.Shared.Corvax.TTS;
 using Content.Shared.Damage;
+using Content.Shared.Dataset;
+using Content.Shared.Decals;
 using Content.Shared.Doors.Components;
 using Content.Shared.FixedPoint;
 using Content.Shared.Ghost;
@@ -63,14 +66,18 @@ using Content.Shared.Lock;
 using Content.Shared.Maps;
 using Content.Shared.Mobs;
 using Content.Shared.Mobs.Systems;
+using Content.Shared.Movement.Components;
 using Content.Shared.Parallax;
 using Content.Shared.Parallax.Biomes;
+using Content.Shared.Parallax.Biomes.Markers;
+using Content.Shared.Physics;
 using Content.Shared.Popups;
 using Content.Shared.Preferences;
 using Content.Shared.Procedural;
 using Content.Shared.Random;
 using Content.Shared.Random.Helpers;
 using Content.Shared.Roles.Jobs;
+using Content.Shared.Salvage;
 using Content.Shared.Shuttles.Components;
 using Content.Shared.Storage;
 using Content.Shared.Zombies;
@@ -82,6 +89,9 @@ using Robust.Shared.Audio;
 using Robust.Shared.Configuration;
 using Robust.Shared.Map;
 using Robust.Shared.Map.Components;
+using Robust.Shared.Physics.Collision.Shapes;
+using Robust.Shared.Physics.Components;
+using Robust.Shared.Physics.Systems;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
@@ -102,28 +112,22 @@ public sealed class ShipwreckedRuleSystem : GameRuleSystem<ShipwreckedRuleCompon
     [Dependency] private readonly IServerPreferencesManager _preferencesManager = default!;
     [Dependency] private readonly ITileDefinitionManager _tileDefinitionManager = default!;
     [Dependency] private readonly GameTicker _gameTicker = default!;
-    [Dependency] private readonly AccessSystem _accessSystem = default!;
     [Dependency] private readonly AtmosphereSystem _atmosphereSystem = default!;
     [Dependency] private readonly AudioSystem _audioSystem = default!;
     [Dependency] private readonly BiomeSystem _biomeSystem = default!;
     [Dependency] private readonly BuckleSystem _buckleSystem = default!;
-    [Dependency] private readonly ChatSystem _chatSystem = default!;
     [Dependency] private readonly DamageableSystem _damageableSystem = default!;
     [Dependency] private readonly DestructibleSystem _destructibleSystem = default!;
     [Dependency] private readonly DungeonSystem _dungeonSystem = default!;
     [Dependency] private readonly EntityLookupSystem _entityLookupSystem = default!;
     [Dependency] private readonly ExplosionSystem _explosionSystem = default!;
-    [Dependency] private readonly HumanoidAppearanceSystem _humanoidAppearanceSystem = default!;
     [Dependency] private readonly IdCardSystem _cardSystem = default!;
     [Dependency] private readonly InventorySystem _inventorySystem = default!;
     [Dependency] private readonly LockSystem _lockSystem = default!;
-    [Dependency] private readonly MapLoaderSystem _mapLoaderSystem = default!;
     [Dependency] private readonly MindSystem _mindSystem = default!;
     [Dependency] private readonly MobStateSystem _mobStateSystem = default!;
     [Dependency] private readonly NPCConversationSystem _npcConversationSystem = default!;
-    [Dependency] private readonly NPCSystem _npcSystem = default!;
     [Dependency] private readonly PaperSystem _paperSystem = default!;
-    [Dependency] private readonly PhysicsSystem _physicsSystem = default!;
     [Dependency] private readonly PopupSystem _popupSystem = default!;
     [Dependency] private readonly RoundEndSystem _roundEndSystem = default!;
     [Dependency] private readonly ShuttleSystem _shuttleSystem = default!;
@@ -136,6 +140,7 @@ public sealed class ShipwreckedRuleSystem : GameRuleSystem<ShipwreckedRuleCompon
     [Dependency] private readonly AirlockSystem _airlockSystem = default!;
     [Dependency] private readonly StationSystem _stationSystem = default!;
     [Dependency] private readonly StationJobsSystem _stationJobsSystem = default!;
+    [Dependency] private readonly MetaDataSystem _metadata = default!;
 
 
     private ISawmill _sawmill = default!;
@@ -165,6 +170,28 @@ public sealed class ShipwreckedRuleSystem : GameRuleSystem<ShipwreckedRuleCompon
 
         SubscribeLocalEvent<LoadingMapsEvent>(OnLoadingMaps);
         SubscribeLocalEvent<PlayerBeforeSpawnEvent>(OnBeforeSpawn);
+
+        SubscribeLocalEvent<ShipwreckMapGridComponent, UnLoadChunkEvent>(OnChunkUnLoaded);
+        SubscribeLocalEvent<ShipwreckMapGridComponent, MapInitEvent>(OnChunkLoad);
+    }
+
+    private void OnChunkLoad(EntityUid uid, ShipwreckMapGridComponent component, MapInitEvent args)
+    {
+        var enumerator = new ChunkIndicesEnumerator(component.Area, SharedBiomeSystem.ChunkSize);
+
+        while (enumerator.MoveNext(out var chunk))
+        {
+            var chunkOrigin = chunk * SharedBiomeSystem.ChunkSize;
+            component.LoadedChunks.Add(chunkOrigin.Value);
+        }
+    }
+
+    private void OnChunkUnLoaded(Entity<ShipwreckMapGridComponent> ent, ref UnLoadChunkEvent args)
+    {
+        if (ent.Comp.LoadedChunks.Contains(args.Chunk))
+        {
+            args.Cancel();
+        }
     }
 
     private void OnBeforeSpawn(PlayerBeforeSpawnEvent ev)
@@ -251,6 +278,11 @@ public sealed class ShipwreckedRuleSystem : GameRuleSystem<ShipwreckedRuleCompon
         }
     }
 
+    [ValidatePrototypeId<DatasetPrototype>]
+    private const string PlanetNames = "names_borer";
+
+    private const int MaxPreloadOffset  = 200;
+
     private void SpawnPlanet(EntityUid uid, ShipwreckedRuleComponent component)
     {
         if (component.PlanetMapId.HasValue && _mapManager.MapExists(component.PlanetMapId.Value))
@@ -276,8 +308,10 @@ public sealed class ShipwreckedRuleSystem : GameRuleSystem<ShipwreckedRuleCompon
         if (destination == null)
             throw new ArgumentException("There is no destination for Shipwrecked.");
 
+        var seed = _random.Next();
+
         var biome = AddComp<BiomeComponent>(planetMapUid);
-        _biomeSystem.SetSeed(biome, _random.Next());
+        _biomeSystem.SetSeed(biome, seed);
         _biomeSystem.SetTemplate(biome, _prototypeManager.Index<BiomeTemplatePrototype>(destination.BiomePrototype));
         _biomeSystem.AddMarkerLayer(biome, "OreTin");
         _biomeSystem.AddMarkerLayer(biome, "OreGold");
@@ -326,7 +360,36 @@ public sealed class ShipwreckedRuleSystem : GameRuleSystem<ShipwreckedRuleCompon
             Dirty(planetMapUid, lighting);
         }
 
+        // planetName
+        var planetName = SharedSalvageSystem.GetFTLName(_prototypeManager.Index<DatasetPrototype>(PlanetNames), seed);
+        _metadata.SetEntityName(planetMapUid, planetName);
+
+        // Позиция карта (точка начала)
+        var mapPos = new MapCoordinates(new Vector2(0f, 0f), planetMapId);
+
+        var restriction = AddComp<RestrictedRangeComponent>(planetMapUid);
+        restriction.Origin = mapPos.Position;
+
+        restriction.Range = MaxPreloadOffset;
+
+        // Enclose the area
+        var boundaryUid = Spawn(null, mapPos);
+        var boundaryPhysics = AddComp<PhysicsComponent>(boundaryUid);
+        var cShape = new ChainShape();
+        // Don't need it to be a perfect circle, just need it to be loosely accurate.
+        cShape.CreateLoop(Vector2.Zero, restriction.Range + 1f, false, count: 4);
+        EntityManager.System<FixtureSystem>().TryCreateFixture(
+            boundaryUid,
+            cShape,
+            "boundary",
+            collisionLayer: (int) (CollisionGroup.HighImpassable | CollisionGroup.Impassable | CollisionGroup.LowImpassable | CollisionGroup.GhostImpassable),
+            body: boundaryPhysics);
+        EntityManager.System<SharedPhysicsSystem>().WakeBody(boundaryUid, body: boundaryPhysics);
+        AddComp<BoundaryComponent>(boundaryUid);
+
         _mapManager.DoMapInitialize(planetMapId);
+
+
         _mapManager.SetMapPaused(planetMapId, true);
 
         component.PlanetMapId = planetMapId;
@@ -334,11 +397,38 @@ public sealed class ShipwreckedRuleSystem : GameRuleSystem<ShipwreckedRuleCompon
         component.PlanetGrid = planetGrid;
     }
 
+    private void PreloadPlanet(ShipwreckedRuleComponent component, BiomeComponent? biomeComponent = null)
+    {
+        if (!Resolve(component.PlanetMap!.Value, ref biomeComponent))
+        {
+            return;
+        }
+        var mapPos = new MapCoordinates(new Vector2(0f, 0f), component.PlanetMapId!.Value);
+        var preloadArea = new Vector2(MaxPreloadOffset, MaxPreloadOffset);
+        var targetArea = new Box2(mapPos.Position - preloadArea, mapPos.Position + preloadArea);
+
+        RemComp<ShipwreckMapGridComponent>(component.PlanetMap.Value);
+
+        AddComp(component.PlanetMap.Value, new ShipwreckMapGridComponent
+        {
+            Area = targetArea
+        });
+
+        _sawmill.Info("PreloadPlanet {0}", targetArea.ToString());
+
+        _biomeSystem.Preload(component.PlanetMap.Value, biomeComponent, targetArea); // как основная игровая карта должна быть предзагружена для всех!
+
+
+
+        _sawmill.Info("PreloadPlanet DONE!");
+    }
+
     private async void SpawnPlanetaryStructures(EntityUid uid, ShipwreckedRuleComponent component)
     {
         if (component.Destination == null || component.PlanetMap == null || component.PlanetGrid == null)
             return;
 
+        PreloadPlanet(component);
         var origin = new EntityCoordinates(component.PlanetMap.Value, Vector2.Zero);
         var directions = new Vector2i[]
         {
@@ -369,7 +459,7 @@ public sealed class ShipwreckedRuleSystem : GameRuleSystem<ShipwreckedRuleCompon
         foreach (var direction in directions)
         {
             var minDistance = component.Destination.StructureDistance;
-            var distance = _random.Next(minDistance, (int) (minDistance * 1.2));
+            var distance = Math.Min(_random.Next(minDistance, (int) (minDistance * 1.2)), MaxPreloadOffset - 5);
 
             var point = direction * distance;
 
