@@ -5,7 +5,9 @@
   name: Сумка БСС Дрона
   components:
   - type: Storage
-    maxTotalWeight: 9999
+    maxItemSize: Huge
+    grid:
+    - 0,0,20,10
   - type: Tag
     tags:
     - InnateDontDelete

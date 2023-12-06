@@ -47,7 +47,8 @@
   - type: Pullable
   - type: Occluder
   - type: Storage
-    maxSlots: 48
+    grid:
+    - 0,0,25,3
     maxItemSize: Normal
     whitelist:
       tags:
