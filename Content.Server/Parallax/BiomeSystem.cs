@@ -747,6 +747,12 @@ public sealed partial class BiomeSystem : SharedBiomeSystem
 
         foreach (var chunk in component.LoadedChunks)
         {
+            // start-backmen: Shipwrecked
+            var ev = new Backmen.Shipwrecked.Biome.UnLoadChunkEvent(chunk);
+            RaiseLocalEvent(gridUid, ev);
+            if(ev.Cancelled)
+                continue;
+            // end-backmen: Shipwrecked
             if (active.Contains(chunk) || !component.LoadedChunks.Remove(chunk))
                 continue;
 
