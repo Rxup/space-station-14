@@ -6,12 +6,19 @@ using Content.Server.Atmos.EntitySystems;
 using Content.Server.Parallax;
 using Content.Shared.Administration;
 using Content.Shared.Atmos;
+using Content.Shared.Dataset;
 using Content.Shared.Gravity;
+using Content.Shared.Movement.Components;
 using Content.Shared.Parallax.Biomes;
+using Content.Shared.Physics;
+using Content.Shared.Salvage;
 using Robust.Server.GameObjects;
 using Robust.Shared.Console;
 using Robust.Shared.Map;
 using Robust.Shared.Map.Components;
+using Robust.Shared.Physics.Collision.Shapes;
+using Robust.Shared.Physics.Components;
+using Robust.Shared.Physics.Systems;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Utility;
@@ -21,34 +28,49 @@ namespace Content.Server.Backmen.Administration.Commands;
 [AdminCommand(AdminFlags.Mapping)]
 public sealed class MakeRimWorld : IConsoleCommand
 {
-    [Dependency] private readonly IEntitySystemManager _system = default!;
     [Dependency] private readonly IEntityManager _entityManager = default!;
     [Dependency] private readonly IMapManager _mapManager = default!;
+    [Dependency] private readonly IPrototypeManager _protoManager = default!;
+    [Dependency] private readonly IRobustRandom _random = default!;
     public string Command => "makerimworld";
 
     public string Description => "Создаёт новую карту с биомом Continental и спавнит на нём \"Спавн\"";
 
     public string Help => "makerimworld";
 
+    [ValidatePrototypeId<DatasetPrototype>]
+    private const string PlanetNames = "names_borer";
+
     public void Execute(IConsoleShell shell, string argStr, string[] args)
     {
-        var _prototypeManager = IoCManager.Resolve<IPrototypeManager>();
-        var _random = IoCManager.Resolve<IRobustRandom>();
-        if (!_prototypeManager.TryIndex<BiomeTemplatePrototype>("Continental", out var biomeTemplate))
+        var _metadata = _entityManager.System<MetaDataSystem>();
+        if (!_protoManager.TryIndex<BiomeTemplatePrototype>("Continental", out var biomeTemplate))
         {
             return;
         }
-
+        var biomeSystem = _entityManager.System<BiomeSystem>();
         var mapId = _mapManager.NextMapId();
         _mapManager.CreateMap(mapId);
-
         var mapUid = _mapManager.GetMapEntityId(mapId);
-        var grid = _entityManager.EnsureComponent<MapGridComponent>(mapUid);
-        MetaDataComponent? metadata = null;
+
+
+
+        const int MaxOffset = 256;
+
+
+        var seed = _random.Next();
+        var random = new Random(seed);
+
+        var planetName = SharedSalvageSystem.GetFTLName(_protoManager.Index<DatasetPrototype>(PlanetNames), seed);
+        _metadata.SetEntityName(mapUid, planetName);
+
+        var mapPos = new MapCoordinates(new Vector2(0f, 0f), mapId);
+        var restriction = _entityManager.AddComponent<RestrictedRangeComponent>(mapUid);
+        restriction.Origin = mapPos.Position;
+        biomeSystem.EnsurePlanet(mapUid, _protoManager.Index<BiomeTemplatePrototype>("Continental"), seed);
 
         var biome = _entityManager.EnsureComponent<BiomeComponent>(mapUid);
 
-        var biomeSystem = _entityManager.System<BiomeSystem>();
         biomeSystem.SetSeed(biome, _random.Next());
         biomeSystem.SetTemplate(biome, biomeTemplate);
         biomeSystem.AddMarkerLayer(biome, "Carps");
@@ -57,53 +79,52 @@ public sealed class MakeRimWorld : IConsoleCommand
         biomeSystem.AddMarkerLayer(biome, "OreSilver");
         biomeSystem.AddMarkerLayer(biome, "OrePlasma");
         biomeSystem.AddMarkerLayer(biome, "OreUranium");
-        biomeSystem.AddTemplate(biome, "Loot", _prototypeManager.Index<BiomeTemplatePrototype>("Caves"), 1);
-        _entityManager.Dirty(biome);
+        biomeSystem.AddTemplate(biome, "Loot", _protoManager.Index<BiomeTemplatePrototype>("Caves"), 1);
+        _entityManager.Dirty(mapUid, biome);
 
-        var gravity = _entityManager.EnsureComponent<GravityComponent>(mapUid);
-        gravity.Enabled = true;
-        _entityManager.Dirty(gravity, metadata);
 
-        var light = _entityManager.EnsureComponent<MapLightComponent>(mapUid);
-        light.AmbientLightColor = Color.FromHex("#2b3143");
-        _entityManager.Dirty(light, metadata);
-
-        var atmos = _entityManager.EnsureComponent<MapAtmosphereComponent>(mapUid);
-
-        var moles = new float[Atmospherics.AdjustedNumberOfGases];
-        moles[(int) Gas.Oxygen] = 21.824779f;
-        moles[(int) Gas.Nitrogen] = 82.10312f;
-
-        var mixture = new GasMixture(2500)
+        if (_entityManager.System<MapLoaderSystem>()
+            .TryLoad(mapId, args.Length == 0 ? "Maps/Backmen/Grids/RimWorldSpawn.yml" : args[0], out _))
         {
-            Temperature = 293.15f,
-            Moles = moles,
-        };
-
-        _entityManager.System<AtmosphereSystem>().SetMapAtmosphere(mapUid, false, mixture, atmos);
-        _entityManager.EnsureComponent<MapGridComponent>(mapUid);
-        var preloadArea = new Vector2(32f, 32f);
-        var mapPos = new MapCoordinates(new Vector2(0f, 0f), mapId);
-        var targetArea = new Box2(mapPos.Position - preloadArea, mapPos.Position + preloadArea);
-        biomeSystem.Preload(mapUid, biome, targetArea);
-        if (_system.GetEntitySystem<MapLoaderSystem>()
-            .TryLoad(mapId, "Maps/Backmen/Grids/RimWorldSpawn.yml", out _))
-        {
-            AttachedGrid( mapUid);
+            AttachedGrid(mapId, mapUid);
         }
+
+        // Enclose the area
+        var boundaryUid = _entityManager.Spawn(null, mapPos);
+        var boundaryPhysics = _entityManager.AddComponent<PhysicsComponent>(boundaryUid);
+        var cShape = new ChainShape();
+        // Don't need it to be a perfect circle, just need it to be loosely accurate.
+        cShape.CreateLoop(Vector2.Zero, restriction.Range + 1f, false, count: 4);
+        _entityManager.System<FixtureSystem>().TryCreateFixture(
+            boundaryUid,
+            cShape,
+            "boundary",
+            collisionLayer: (int) (CollisionGroup.HighImpassable | CollisionGroup.Impassable | CollisionGroup.LowImpassable),
+            body: boundaryPhysics);
+        _entityManager.System<SharedPhysicsSystem>().WakeBody(boundaryUid, body: boundaryPhysics);
+        _entityManager.AddComponent<BoundaryComponent>(boundaryUid);
     }
 
-    private void AttachedGrid(EntityUid mapUid)
+    private void AttachedGrid(MapId mapId, EntityUid mapUid)
     {
         if (!_entityManager.TryGetComponent<BiomeComponent>(mapUid, out var biome) ||
             !_entityManager.TryGetComponent<MapGridComponent>(mapUid, out var biomeGrid))
         {
             return;
         }
+        var mapPos = new MapCoordinates(new Vector2(0f, 0f), mapId);
+
+        const int MaxPreloadOffset  = 16;
+        var preloadArea = new Vector2(MaxPreloadOffset, MaxPreloadOffset);
+        var targetArea = new Box2(mapPos.Position - preloadArea, mapPos.Position + preloadArea);
+        var biomeSystem = _entityManager.System<BiomeSystem>();
+
+
+        biomeSystem.Preload(mapUid, biome, targetArea);
 
         var tiles = new List<(Vector2i Index, Tile Tile)>();
-        var aabb = new Box2(-32, -32, 32, 32);
-        var biomeSystem = _entityManager.System<BiomeSystem>();
+        var aabb = new Box2(-MaxPreloadOffset, -MaxPreloadOffset, MaxPreloadOffset, MaxPreloadOffset);
+
         for (var x = Math.Floor(aabb.Left); x <= Math.Ceiling(aabb.Right); x++)
         {
             for (var y = Math.Floor(aabb.Bottom); y <= Math.Ceiling(aabb.Top); y++)
@@ -120,7 +141,7 @@ public sealed class MakeRimWorld : IConsoleCommand
                 tiles.Add((index, tile.Value));
             }
         }
-        biomeGrid.SetTiles(tiles);
+        _entityManager.System<MapSystem>().SetTiles(mapUid,biomeGrid,tiles);
     }
 
     private const byte ChunkSize = 8;
