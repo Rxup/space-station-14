@@ -33,6 +33,7 @@ namespace Content.Server.Connection
         [Dependency] private readonly IConfigurationManager _cfg = default!;
         [Dependency] private readonly ILocalizationManager _loc = default!;
         private IServerSponsorsManager? _sponsorsMgr; // Corvax-Sponsors
+        [Dependency] private readonly ServerDbEntryManager _serverDbEntry = default!;
 
         public void Initialize()
         {
@@ -71,11 +72,13 @@ namespace Content.Server.Connection
             var addr = e.IP.Address;
             var userId = e.UserId;
 
+            var serverId = (await _serverDbEntry.ServerEntity).Id;
+
             if (deny != null)
             {
                 var (reason, msg, banHits) = deny.Value;
 
-                var id = await _db.AddConnectionLogAsync(userId, e.UserName, addr, e.UserData.HWId, reason);
+                var id = await _db.AddConnectionLogAsync(userId, e.UserName, addr, e.UserData.HWId, reason, serverId);
                 if (banHits is { Count: > 0 })
                     await _db.AddServerBanHitsAsync(id, banHits);
 
@@ -83,7 +86,7 @@ namespace Content.Server.Connection
             }
             else
             {
-                await _db.AddConnectionLogAsync(userId, e.UserName, addr, e.UserData.HWId, null);
+                await _db.AddConnectionLogAsync(userId, e.UserName, addr, e.UserData.HWId, null, serverId);
 
                 if (!ServerPreferencesManager.ShouldStorePrefs(e.AuthType))
                     return;
