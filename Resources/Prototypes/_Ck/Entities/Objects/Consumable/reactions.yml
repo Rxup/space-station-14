@@ -1,0 +1,11 @@
+#реакции 
+
+- type: reaction
+  id: CookingMincedMeat
+  reactants:
+    Milk:
+      amount: 10
+    sourCreamStarter:
+      amount: 5
+  products:
+    MincedMeat: 1

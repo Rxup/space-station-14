@@ -1,0 +1,16 @@
+- type: entity
+  id: boxForSausages
+  name: Коробка с сосиками
+  parent: boxBaseMINI
+  suffix: Filled
+  components:
+  - type: Sprite
+    sprite: _Ck/Objects/Food/dop.rsi
+    layers:
+    - state: boxSausages
+  - type: Item
+    sprite: _Ck/Objects/Food/dop.rsi
+  - type: StorageFill
+    contents:
+      - id: FoodSausages
+        amount: 8

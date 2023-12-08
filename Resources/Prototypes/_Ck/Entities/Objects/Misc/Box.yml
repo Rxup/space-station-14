@@ -1,0 +1,189 @@
+- type: entity
+  id: boxBase
+  parent: BaseStorageItem
+  abstract: true
+  components:
+  - type: Sprite
+  - type: EmitSoundOnLand
+    sound:
+      path: /Audio/_Ck/Ambience/Objects/drop_box.ogg
+  - type: Storage
+    maxTotalWeight: 20
+    maxItemSize: Normal
+  - type: ItemCooldown
+
+- type: entity
+  id: boxBaseMINI
+  parent: BaseStorageItem
+  abstract: true
+  components:
+  - type: Sprite
+  - type: EmitSoundOnLand
+    sound:
+      path: /Audio/_Ck/Ambience/Objects/drop_box.ogg
+  - type: Storage
+    maxTotalWeight: 8
+    maxItemSize: Small
+  - type: ItemCooldown
+
+- type: entity
+  id: boxForPrinter
+  name: Набор для сборки принтера
+  parent: boxBase
+  suffix: Filled
+  components:
+  - type: Sprite
+    sprite: _Ck/Objects/Misc/Boxes.rsi
+    layers:
+    - state: box
+    - state: circuit
+  - type: Item
+    sprite: _Ck/Objects/Misc/Boxes.rsi
+  - type: StorageFill
+    contents:
+      - id: PrinterMachineCircuitboard
+      - id: MatterBinStockPart
+      - id: CableApcStack1
+        amount: 2
+      - id: MicroManipulatorStockPart
+      - id: SheetSteel1
+        amount: 5
+      - id: Screwdriver
+        prob: 0.1
+      - id: Wrench
+        prob: 0.1
+
+- type: entity
+  id: boxForPrinterCC
+  name: Набор для сборки принтера ЦК
+  parent: boxBase
+  suffix: Filled
+  components:
+  - type: Sprite
+    sprite: _Ck/Objects/Misc/Boxes.rsi
+    layers:
+    - state: box_olive
+    - state: circuit
+  - type: Item
+    sprite: _Ck/Objects/Misc/Boxes.rsi
+  - type: StorageFill
+    contents:
+      - id: PrinterMachineCircuitboardCC
+      - id: MatterBinStockPart
+      - id: CableApcStack1
+        amount: 2
+      - id: MicroManipulatorStockPart
+      - id: SheetSteel1
+        amount: 5
+      - id: Screwdriver
+        prob: 0.1
+      - id: Wrench
+        prob: 0.1
+
+- type: entity
+  id: boxForShreder
+  name: Набор для сборки шредера
+  parent: boxBase
+  suffix: Filled
+  components:
+  - type: Sprite
+    sprite: _Ck/Objects/Misc/Boxes.rsi
+    layers:
+    - state: box_olive
+    - state: circuit
+  - type: Item
+    sprite: _Ck/Objects/Misc/Boxes.rsi
+  - type: StorageFill
+    contents:
+      - id: ShredderMachineCircuitboard
+      - id: MatterBinStockPart
+      - id: CableApcStack1
+        amount: 1
+      - id: MicroManipulatorStockPart
+      - id: SheetSteel1
+        amount: 5
+      - id: Screwdriver
+        prob: 0.1
+      - id: Wrench
+        prob: 0.1
+
+- type: entity
+  id: boxForBioPrinter
+  name: Набор для сборки био принтера
+  parent: boxBase
+  suffix: Filled
+  components:
+  - type: Sprite
+    sprite: _Ck/Objects/Misc/Boxes.rsi
+    layers:
+    - state: box_olive
+    - state: circuit
+  - type: Item
+    sprite: _Ck/Objects/Misc/Boxes.rsi
+  - type: StorageFill
+    contents:
+      - id: BioPrinterMachineCircuitboard
+      - id: MatterBinStockPart
+        amount: 3
+      - id: CableApcStack1
+        amount: 6
+      - id: MicroManipulatorStockPart
+      - id: SheetGlass1
+        amount: 5
+      - id: SheetSteel1
+        amount: 5
+      - id: Screwdriver
+        prob: 0.1
+      - id: Wrench
+        prob: 0.1
+
+- type: entity
+  id: boxForMINIBioPrinter
+  name: Набор для сборки мини био принтера
+  parent: boxBase
+  suffix: Filled
+  components:
+  - type: Sprite
+    sprite: _Ck/Objects/Misc/Boxes.rsi
+    layers:
+    - state: box
+    - state: circuit
+  - type: Item
+    sprite: _Ck/Objects/Misc/Boxes.rsi
+  - type: StorageFill
+    contents:
+      - id: BioPrinterMINIMachineCircuitboard
+      - id: MatterBinStockPart
+      - id: CableApcStack1
+        amount: 2
+      - id: MicroManipulatorStockPart
+      - id: SheetGlass1
+        amount: 5
+      - id: SheetSteel1
+        amount: 5
+      - id: Screwdriver
+        prob: 0.1
+      - id: Wrench
+        prob: 0.1
+        
+- type: entity
+  id: boxForCandle
+  name: Коробка свечей
+  parent: boxBase
+  suffix: Filled
+  components:
+  - type: Storage
+    maxTotalWeight: 25
+    maxItemSize: Normal
+  - type: Sprite
+    sprite: _Ck/Objects/Misc/Boxes.rsi
+    layers:
+    - state: box
+  - type: Item
+    sprite: _Ck/Objects/Misc/Boxes.rsi
+  - type: StorageFill
+    contents:
+      - id: CandleElectrical
+        amount: 5
+      - id: CandleElectrical
+        prob: 0.5

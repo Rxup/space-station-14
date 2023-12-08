@@ -3,25 +3,21 @@
   name: job-name-centcomadmiral
   description: job-description-centcomadmiral
   playTimeTracker: JobCentralCommandAdmiral
-  setPreference: true
   startingGear: CentcomAdmiralGear
   icon: JobIconNanotrasen
   supervisors: job-supervisors-hoh
   canBeAntag: false
   weight: 1
-  requireAdminNotify: true
-  joinNotifyCrew: true
   whitelistRequired: true
   requirements:
-    - !type:RoleTimeRequirement
-      role: JobCentralCommandOperator
-      time: 21600
-    - !type:RoleTimeRequirement
-      role: JobCentralCommandOfficial
-      time: 21600
-    - !type:DepartmentTimeRequirement
-      department: CentCom
-      time: 31600
+     - !type:OverallPlaytimeRequirement
+       time: 60 #1 min #_Ck
+  #  - !type:RoleTimeRequirement
+  #    role: JobCentralCommandOfficial
+  #    time: 3600
+  #  - !type:DepartmentTimeRequirement
+  #    department: CentCom
+  #    time: 3600
   accessGroups:
     - AllAccess
     - CentCom

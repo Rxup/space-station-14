@@ -1,0 +1,107 @@
+- type: entity
+  id: BioMachine
+  parent: BaseLathe
+  suffix: _Ck
+  name: Индустриальный био-принтер
+  description: Печатает клетками
+  components:
+  - type: Sprite
+    sprite: _Ck/Entities/Structures/Machines/BioPrinter.rsi
+    snapCardinals: true
+    layers:
+    - state: icon
+      map: ["enum.LatheVisualLayers.IsRunning"]
+    - state: unlit
+      shader: unshaded
+      map: ["enum.PowerDeviceVisualLayers.Powered"]
+    - state: inserting
+      map: ["enum.MaterialStorageVisualLayers.Inserting"]
+    - state: panel
+      map: ["enum.WiresVisualLayers.MaintenancePanel"]
+  - type: Machine
+    board: BioPrinterMachineCircuitboard
+  - type: Wires
+    BoardName: wires-board-name-protolathe
+    LayoutId: Protolathe
+  - type: MaterialStorage
+    WhiteList:
+    - Biomass
+    - BioIndustrial
+  - type: Lathe
+    idleState: icon
+    runningState: building
+    staticRecipes:
+      - Industrial1
+      - Industrial2
+      - Industrial3
+      - Industrial4
+      - Industrial5
+      - Industrial6
+      - Industrial7
+      - Industrial8
+      - Industrial9
+      - Industrial10
+      - Industrial12
+      - Industrial13
+      - Industrial14
+      - Industrial15
+      - Industrial16
+
+- type: entity
+  id: BioMachineMini
+  parent: BaseLathe
+  name: простой био-принтер
+  description: Печатает клетками
+  suffix: _Ck
+  components:
+  - type: Physics
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.10,-0.10,0.10,0.10"
+        density: 190
+        mask:
+        - TabletopMachineMask
+        layer:
+        - TabletopMachineLayer
+  - type: Sprite
+    sprite: _Ck/Entities/Structures/Machines/BioPrinterMini.rsi
+    snapCardinals: true
+    layers:
+    - state: icon
+      map: ["enum.LatheVisualLayers.IsRunning"]
+    - state: unlit
+      shader: unshaded
+      map: ["enum.PowerDeviceVisualLayers.Powered"]
+    - state: inserting
+      map: ["enum.MaterialStorageVisualLayers.Inserting"]
+    - state: panel
+      map: ["enum.WiresVisualLayers.MaintenancePanel"]
+  - type: Machine
+    board: BioPrinterMINIMachineCircuitboard
+  - type: Wires
+    BoardName: wires-board-name-protolathe
+    LayoutId: Protolathe
+  - type: MaterialStorage
+    WhiteList:
+    - Biomass
+    - BioIndustrial
+  - type: Lathe
+    idleState: icon
+    runningState: building
+    staticRecipes:
+      - FOOD1
+      - FOOD2
+      - FOOD3
+      - FOOD4
+      - FOOD5 
+      - FOOD6
+      - FOOD7
+      - FOOD8
+      - FOOD9
+      - FOOD10
+      - FOOD11
+      - FOOD12
+      - FOOD13

@@ -1,0 +1,64 @@
+- type: entity
+  parent: SheetMetalBase
+  id: MaterialBioIndustrial
+  suffix: Full
+  name: Индустриальная био масса
+  components:
+    - type: Sprite
+      sprite: _Ck/Objects/Material.rsi
+      layers:
+        - state: bio_2
+          map: ["base"]
+    - type: Appearance
+    - type: Construction
+      graph: Glass
+      node: SheetGlass
+    - type: Material
+    - type: PhysicalComposition
+      materialComposition:
+        BioIndustrial: 100
+    - type: Tag
+      tags:
+        - bioIndustrial
+        - RawMaterial
+    - type: Stack
+      stackType: BioIndustrial
+      baseLayer: base
+      layerStates:
+        - bio
+        - bio_1
+        - bio_2
+      count: 30
+    - type: Extractable
+      grindableSolutionName: steel
+
+- type: entity
+  parent: MaterialBioIndustrial
+  id: MaterialBioIndustrial1
+  name: Индустриальная био масса
+  suffix: 1
+  components:
+    - type: Sprite
+      state: bio
+    - type: Stack
+      stackType: BioIndustrial
+      count: 1
+    - type: Tag
+      tags:
+        - Ore
+
+- type: stack
+  id: BioIndustrial
+  name: Индустриальная био масса
+  icon: { sprite: _Ck/Objects/Material.rsi, state: bio }
+  spawn: MaterialBioIndustrial
+  maxCount: 30
+
+
+- type: material
+  id: BioIndustrial
+  name: Индустриальная био масса
+  icon: /Textures/_Ck/Objects/Material.rsi/bio.png
+  color: "#1f7515"
+  stackEntity: MaterialBioIndustrial
+  price: 15

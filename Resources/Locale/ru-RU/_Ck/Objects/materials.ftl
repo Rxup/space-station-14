@@ -1,0 +1,1 @@
+materials-bioIndustrial = Индустриальная биомасса

@@ -2,7 +2,7 @@
   id: Box
   mapName: 'Box Station'
   mapPath: /Maps/box.yml
-  minPlayers: 50
+  minPlayers: 0
   stations:
     Boxstation:
       stationProto: StandardNanotrasenStation
@@ -20,11 +20,17 @@
           availableJobs:
             #service
             Captain: [ 1, 1 ]
-            IAA: [ 1, 1 ] # Corvax-IAA
             HeadOfPersonnel: [ 1, 1 ]
             Bartender: [ 2, 2 ]
             Botanist: [ 3, 3 ]
-            Chef: [ 2, 2 ]
+            #_Ck
+            Chef: [ 1, 1 ]
+            SuChefck: [ 1, 1 ]
+            Povar: [ 2, 2 ]
+            Ratatui: [ 1, 1 ]
+            Lox: [ 1, 1 ]
+            #_Ck end
+            Lawyer: [ 2, 2 ]
             Janitor: [ 2, 2 ]
             Chaplain: [ 1, 1 ]
             Librarian: [ 1, 1 ]
@@ -56,7 +62,6 @@
             SecurityOfficer: [ 4, 4 ]
             Detective: [ 1, 1 ]
             SecurityCadet: [ 8, 8 ]
-            #Lawyer: [ 2, 2 ] # Corvax-IAA
             #supply
             Quartermaster: [ 1, 1 ]
             SalvageSpecialist: [ 3, 3 ]

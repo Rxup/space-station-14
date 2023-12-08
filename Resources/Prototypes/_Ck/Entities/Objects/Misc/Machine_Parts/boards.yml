@@ -1,0 +1,10 @@
+#- type: entity
+#  parent: BaseMachineCircuitboard
+#  id: BoardBioPrinter
+#  name: плата био-принтера
+#  description: ничего необычного, лишь несколько припаянных ссд, ЦП и по мелочи.
+#  components:
+#  - type: Sprite
+#    sprite: _Ck/Objects/boards.rsi
+#    layers:
+#    - state: bioMashine

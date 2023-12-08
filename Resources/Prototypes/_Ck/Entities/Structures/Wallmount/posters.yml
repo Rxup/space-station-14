@@ -1,0 +1,120 @@
+- type: entity
+  parent: PosterBase
+  id: PosterDifferent1
+  name: "Не отчаивайся"
+  suffix: _Ck
+  description: "Всё будет хорошо."
+  components:
+  - type: Sprite
+    sprite: _Ck/Entities/Structures/Wallmount/Posters.rsi
+    state: poster1
+
+- type: entity
+  parent: PosterBase
+  id: PosterDifferent2
+  name: "Всё потеряно"
+  suffix: _Ck
+  description: "Но надежда ещё есть."
+  components:
+  - type: Sprite
+    sprite: _Ck/Entities/Structures/Wallmount/Posters.rsi
+    state: poster2
+
+- type: entity
+  parent: PosterBase
+  id: PosterDifferent3
+  name: "Не падай"
+  suffix: _Ck
+  description: "Не падай, держись даже за самую тонкую ветку, но не падай."
+  components:
+  - type: Sprite
+    sprite: _Ck/Entities/Structures/Wallmount/Posters.rsi
+    state: poster3
+
+- type: entity
+  parent: PosterBase
+  id: PosterDifferent4
+  name: "Родина-Мать"
+  suffix: _Ck
+  description: "Встань ради родины, ради Матери!"
+  components:
+  - type: Sprite
+    sprite: _Ck/Entities/Structures/Wallmount/Posters.rsi
+    state: poster4
+
+- type: entity
+  parent: PosterBase
+  id: PosterDifferent5
+  name: "Революции быть!"
+  suffix: _Ck
+  description: "Пока люди думают у революции есть шансы"
+  components:
+  - type: Sprite
+    sprite: _Ck/Entities/Structures/Wallmount/Posters.rsi
+    state: poster5
+
+- type: entity
+  parent: PosterBase
+  id: PosterDifferent6
+  name: "Картинка с котиком"
+  suffix: _Ck
+  description: "мяу"
+  components:
+  - type: Sprite
+    sprite: _Ck/Entities/Structures/Wallmount/Posters.rsi
+    state: poster6
+
+- type: entity
+  parent: PosterBase
+  id: PosterDifferent7
+  name: "Пейзаж"
+  suffix: _Ck
+  description: "Так выглядит желаемое, но не сущее..."
+  components:
+  - type: Sprite
+    sprite: _Ck/Entities/Structures/Wallmount/Posters.rsi
+    state: poster7
+
+- type: entity
+  parent: PosterBase
+  id: PosterDifferent8
+  name: "Странное существо"
+  suffix: _Ck
+  description: "Обычная ситуация, обычный гуманоид."
+  components:
+  - type: Sprite
+    sprite: _Ck/Entities/Structures/Wallmount/Posters.rsi
+    state: poster8
+
+- type: entity
+  parent: PosterBase
+  id: PosterDifferent9
+  name: "Быссмысленное"
+  suffix: _Ck
+  description: "Зачем делать то что не принесёт пользы? так ещё и отнимет кучу времени?"
+  components:
+  - type: Sprite
+    sprite: _Ck/Entities/Structures/Wallmount/Posters.rsi
+    state: poster9
+
+- type: entity
+  parent: PosterBase
+  id: PosterDifferent10
+  name: "Камень в поле"
+  suffix: _Ck
+  description: "Обычный камень в поле, простой умеротворяющий камень и поле..."
+  components:
+  - type: Sprite
+    sprite: _Ck/Entities/Structures/Wallmount/Posters.rsi
+    state: poster10
+
+- type: entity
+  parent: PosterBase
+  id: PosterDifferent11
+  name: "Глубокие линии"
+  suffix: _Ck
+  description: "такие чистые линии, такие прямые!"
+  components:
+  - type: Sprite
+    sprite: _Ck/Entities/Structures/Wallmount/Posters.rsi
+    state: poster11

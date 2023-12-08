@@ -1,0 +1,637 @@
+- type: latheRecipe
+  id: FormBase
+  icon:
+    sprite: /Textures/Objects/Misc/bureaucracy.rsi
+    state: paper_words
+  result: PaperFormBase
+  completetime: 5
+  materials:
+    PaperPrinter: 50
+
+- type: latheRecipe
+  id: FormComand1
+  icon:
+    sprite: /Textures/Objects/Misc/bureaucracy.rsi
+    state: paper_words
+  result: PaperFormComand1
+  completetime: 5
+  materials:
+    PaperPrinter: 50
+
+- type: latheRecipe
+  id: FormComand2
+  icon:
+    sprite: /Textures/Objects/Misc/bureaucracy.rsi
+    state: paper_words
+  result: PaperFormComand2
+  completetime: 5
+  materials:
+    PaperPrinter: 50
+
+- type: latheRecipe
+  id: FormComand3
+  icon:
+    sprite: /Textures/Objects/Misc/bureaucracy.rsi
+    state: paper_words
+  result: PaperFormComand3
+  completetime: 5
+  materials:
+    PaperPrinter: 50
+
+- type: latheRecipe
+  id: FormComand4
+  icon:
+    sprite: /Textures/Objects/Misc/bureaucracy.rsi
+    state: paper_words
+  result: PaperFormComand4
+  completetime: 5
+  materials:
+    PaperPrinter: 50
+
+- type: latheRecipe
+  id: FormComand5
+  icon:
+    sprite: /Textures/Objects/Misc/bureaucracy.rsi
+    state: paper_words
+  result: PaperFormComand5
+  completetime: 5
+  materials:
+    PaperPrinter: 50
+
+- type: latheRecipe
+  id: FormComand6
+  icon:
+    sprite: /Textures/Objects/Misc/bureaucracy.rsi
+    state: paper_words
+  result: PaperFormComand6
+  completetime: 5
+  materials:
+    PaperPrinter: 50
+
+- type: latheRecipe
+  id: FormComand7
+  icon:
+    sprite: /Textures/Objects/Misc/bureaucracy.rsi
+    state: paper_words
+  result: PaperFormComand7
+  completetime: 5
+  materials:
+    PaperPrinter: 50
+
+- type: latheRecipe
+  id: FormComand8
+  icon:
+    sprite: /Textures/Objects/Misc/bureaucracy.rsi
+    state: paper_words
+  result: PaperFormComand8
+  completetime: 5
+  materials:
+    PaperPrinter: 50
+
+- type: latheRecipe
+  id: FormComand9
+  icon:
+    sprite: /Textures/Objects/Misc/bureaucracy.rsi
+    state: paper_words
+  result: PaperFormComand9
+  completetime: 5
+  materials:
+    PaperPrinter: 50
+
+- type: latheRecipe
+  id: FormComand10
+  icon:
+    sprite: /Textures/Objects/Misc/bureaucracy.rsi
+    state: paper_words
+  result: PaperFormComand10
+  completetime: 5
+  materials:
+    PaperPrinter: 50
+
+- type: latheRecipe
+  id: FormComand11
+  icon:
+    sprite: /Textures/Objects/Misc/bureaucracy.rsi
+    state: paper_words
+  result: PaperFormComand11
+  completetime: 5
+  materials:
+    PaperPrinter: 50
+
+- type: latheRecipe
+  id: FormComand12
+  icon:
+    sprite: /Textures/Objects/Misc/bureaucracy.rsi
+    state: paper_words
+  result: PaperFormComand12
+  completetime: 5
+  materials:
+    PaperPrinter: 50
+
+- type: latheRecipe
+  id: FormComand13
+  icon:
+    sprite: /Textures/Objects/Misc/bureaucracy.rsi
+    state: paper_words
+  result: PaperFormComand13
+  completetime: 5
+  materials:
+    PaperPrinter: 50
+
+- type: latheRecipe
+  id: FormComand14
+  icon:
+    sprite: /Textures/Objects/Misc/bureaucracy.rsi
+    state: paper_words
+  result: PaperFormComand14
+  completetime: 5
+  materials:
+    PaperPrinter: 50
+
+- type: latheRecipe
+  id: FormComand15
+  icon:
+    sprite: /Textures/Objects/Misc/bureaucracy.rsi
+    state: paper_words
+  result: PaperFormComand15
+  completetime: 5
+  materials:
+    PaperPrinter: 50
+
+- type: latheRecipe
+  id: FormComand16
+  icon:
+    sprite: /Textures/Objects/Misc/bureaucracy.rsi
+    state: paper_words
+  result: PaperFormComand16
+  completetime: 5
+  materials:
+    PaperPrinter: 50
+
+#Юридический департамент
+
+- type: latheRecipe
+  id: FormAVD1
+  icon:
+    sprite: /Textures/Objects/Misc/bureaucracy.rsi
+    state: paper_words
+  result: PaperFormAVD1
+  completetime: 5
+  materials:
+    PaperPrinter: 50
+
+- type: latheRecipe
+  id: FormAVD2
+  icon:
+    sprite: /Textures/Objects/Misc/bureaucracy.rsi
+    state: paper_words
+  result: PaperFormAVD2
+  completetime: 5
+  materials:
+    PaperPrinter: 50
+
+- type: latheRecipe
+  id: FormAVD3
+  icon:
+    sprite: /Textures/Objects/Misc/bureaucracy.rsi
+    state: paper_words
+  result: PaperFormAVD3
+  completetime: 5
+  materials:
+    PaperPrinter: 50
+
+- type: latheRecipe
+  id: FormAVD4
+  icon:
+    sprite: /Textures/Objects/Misc/bureaucracy.rsi
+    state: paper_words
+  result: PaperFormAVD4
+  completetime: 5
+  materials:
+    PaperPrinter: 50
+
+- type: latheRecipe
+  id: FormAVD5
+  icon:
+    sprite: /Textures/Objects/Misc/bureaucracy.rsi
+    state: paper_words
+  result: PaperFormAVD5
+  completetime: 5
+  materials:
+    PaperPrinter: 50
+
+#Служба безопастности (нет)
+
+- type: latheRecipe
+  id: FormSecurity1
+  icon:
+    sprite: /Textures/Objects/Misc/bureaucracy.rsi
+    state: paper_words
+  result: PaperFormSecurity1
+  completetime: 5
+  materials:
+    PaperPrinter: 50
+
+- type: latheRecipe
+  id: FormSecurity2
+  icon:
+    sprite: /Textures/Objects/Misc/bureaucracy.rsi
+    state: paper_words
+  result: PaperFormSecurity2
+  completetime: 5
+  materials:
+    PaperPrinter: 50
+
+- type: latheRecipe
+  id: FormSecurity3
+  icon:
+    sprite: /Textures/Objects/Misc/bureaucracy.rsi
+    state: paper_words
+  result: PaperFormSecurity3
+  completetime: 5
+  materials:
+    PaperPrinter: 50
+
+- type: latheRecipe
+  id: FormSecurity4
+  icon:
+    sprite: /Textures/Objects/Misc/bureaucracy.rsi
+    state: paper_words
+  result: PaperFormSecurity4
+  completetime: 5
+  materials:
+    PaperPrinter: 50
+
+- type: latheRecipe
+  id: FormSecurity5
+  icon:
+    sprite: /Textures/Objects/Misc/bureaucracy.rsi
+    state: paper_words
+  result: PaperFormSecurity5
+  completetime: 5
+  materials:
+    PaperPrinter: 50
+
+- type: latheRecipe
+  id: FormSecurity6
+  icon:
+    sprite: /Textures/Objects/Misc/bureaucracy.rsi
+    state: paper_words
+  result: PaperFormSecurity6
+  completetime: 5
+  materials:
+    PaperPrinter: 50
+
+- type: latheRecipe
+  id: FormSecurity7
+  icon:
+    sprite: /Textures/Objects/Misc/bureaucracy.rsi
+    state: paper_words
+  result: PaperFormSecurity7
+  completetime: 5
+  materials:
+    PaperPrinter: 50
+
+- type: latheRecipe
+  id: FormSecurity8
+  icon:
+    sprite: /Textures/Objects/Misc/bureaucracy.rsi
+    state: paper_words
+  result: PaperFormSecurity8
+  completetime: 5
+  materials:
+    PaperPrinter: 50
+
+- type: latheRecipe
+  id: FormSecurity9
+  icon:
+    sprite: /Textures/Objects/Misc/bureaucracy.rsi
+    state: paper_words
+  result: PaperFormSecurity9
+  completetime: 5
+  materials:
+    PaperPrinter: 50
+
+#Медецинский отдел
+
+- type: latheRecipe
+  id: FormMedical1
+  icon:
+    sprite: /Textures/Objects/Misc/bureaucracy.rsi
+    state: paper_words
+  result: PaperFormMedical1
+  completetime: 5
+  materials:
+    PaperPrinter: 50
+
+- type: latheRecipe
+  id: FormMedical2
+  icon:
+    sprite: /Textures/Objects/Misc/bureaucracy.rsi
+    state: paper_words
+  result: PaperFormMedical2
+  completetime: 5
+  materials:
+    PaperPrinter: 50
+
+- type: latheRecipe
+  id: FormMedical3
+  icon:
+    sprite: /Textures/Objects/Misc/bureaucracy.rsi
+    state: paper_words
+  result: PaperFormMedical3
+  completetime: 5
+  materials:
+    PaperPrinter: 50
+
+- type: latheRecipe
+  id: FormMedical4
+  icon:
+    sprite: /Textures/Objects/Misc/bureaucracy.rsi
+    state: paper_words
+  result: PaperFormMedical4
+  completetime: 5
+  materials:
+    PaperPrinter: 50
+
+- type: latheRecipe
+  id: FormMedical5
+  icon:
+    sprite: /Textures/Objects/Misc/bureaucracy.rsi
+    state: paper_words
+  result: PaperFormMedical5
+  completetime: 5
+  materials:
+    PaperPrinter: 50
+
+- type: latheRecipe
+  id: FormMedical6
+  icon:
+    sprite: /Textures/Objects/Misc/bureaucracy.rsi
+    state: paper_words
+  result: PaperFormMedical6
+  completetime: 5
+  materials:
+    PaperPrinter: 50
+
+- type: latheRecipe
+  id: FormMedical7
+  icon:
+    sprite: /Textures/Objects/Misc/bureaucracy.rsi
+    state: paper_words
+  result: PaperFormMedical7
+  completetime: 5
+  materials:
+    PaperPrinter: 50
+
+- type: latheRecipe
+  id: FormMedical8
+  icon:
+    sprite: /Textures/Objects/Misc/bureaucracy.rsi
+    state: paper_words
+  result: PaperFormMedical8
+  completetime: 5
+  materials:
+    PaperPrinter: 50
+
+#Инженерный отдел
+
+- type: latheRecipe
+  id: FormEngineering1
+  icon:
+    sprite: /Textures/Objects/Misc/bureaucracy.rsi
+    state: paper_words
+  result: PaperFormEngineering1
+  completetime: 5
+  materials:
+    PaperPrinter: 50
+
+- type: latheRecipe
+  id: FormEngineering2
+  icon:
+    sprite: /Textures/Objects/Misc/bureaucracy.rsi
+    state: paper_words
+  result: PaperFormEngineering2
+  completetime: 5
+  materials:
+    PaperPrinter: 50
+
+- type: latheRecipe
+  id: FormEngineering3
+  icon:
+    sprite: /Textures/Objects/Misc/bureaucracy.rsi
+    state: paper_words
+  result: PaperFormEngineering3
+  completetime: 5
+  materials:
+    PaperPrinter: 50
+
+- type: latheRecipe
+  id: FormEngineering4
+  icon:
+    sprite: /Textures/Objects/Misc/bureaucracy.rsi
+    state: paper_words
+  result: PaperFormEngineering4
+  completetime: 5
+  materials:
+    PaperPrinter: 50
+
+- type: latheRecipe
+  id: FormEngineering5
+  icon:
+    sprite: /Textures/Objects/Misc/bureaucracy.rsi
+    state: paper_words
+  result: PaperFormEngineering5
+  completetime: 5
+  materials:
+    PaperPrinter: 50
+
+- type: latheRecipe
+  id: FormEngineering6
+  icon:
+    sprite: /Textures/Objects/Misc/bureaucracy.rsi
+    state: paper_words
+  result: PaperFormEngineering6
+  completetime: 5
+  materials:
+    PaperPrinter: 50
+
+#Научный отдел
+
+- type: latheRecipe
+  id: FormScience1
+  icon:
+    sprite: /Textures/Objects/Misc/bureaucracy.rsi
+    state: paper_words
+  result: PaperFormScience1
+  completetime: 5
+  materials:
+    PaperPrinter: 50
+
+- type: latheRecipe
+  id: FormScience2
+  icon:
+    sprite: /Textures/Objects/Misc/bureaucracy.rsi
+    state: paper_words
+  result: PaperFormScience2
+  completetime: 5
+  materials:
+    PaperPrinter: 50
+
+- type: latheRecipe
+  id: FormScience3
+  icon:
+    sprite: /Textures/Objects/Misc/bureaucracy.rsi
+    state: paper_words
+  result: PaperFormScience3
+  completetime: 5
+  materials:
+    PaperPrinter: 50
+
+#Отдел снабжения
+
+- type: latheRecipe
+  id: FormSupply1
+  icon:
+    sprite: /Textures/Objects/Misc/bureaucracy.rsi
+    state: paper_words
+  result: PaperFormSupply1
+  completetime: 5
+  materials:
+    PaperPrinter: 50
+
+- type: latheRecipe
+  id: FormSupply2
+  icon:
+    sprite: /Textures/Objects/Misc/bureaucracy.rsi
+    state: paper_words
+  result: PaperFormSupply2
+  completetime: 5
+  materials:
+    PaperPrinter: 50
+
+#Сервесный отдел
+
+- type: latheRecipe
+  id: FormService1
+  icon:
+    sprite: /Textures/Objects/Misc/bureaucracy.rsi
+    state: paper_words
+  result: PaperFormService1
+  completetime: 5
+  materials:
+    PaperPrinter: 50
+
+- type: latheRecipe
+  id: FormService2
+  icon:
+    sprite: /Textures/Objects/Misc/bureaucracy.rsi
+    state: paper_words
+  result: PaperFormService2
+  completetime: 5
+  materials:
+    PaperPrinter: 50
+
+
+#Центральное командование
+
+
+- type: latheRecipe
+  id: FormCentcomm1
+  icon:
+    sprite: /Textures/Objects/Misc/bureaucracy.rsi
+    state: paper_words
+  result: PaperFormCentcomm1
+  completetime: 5
+  materials:
+    PaperPrinter: 50
+
+- type: latheRecipe
+  id: FormCentcomm2
+  icon:
+    sprite: /Textures/Objects/Misc/bureaucracy.rsi
+    state: paper_words
+  result: PaperFormCentcomm2
+  completetime: 5
+  materials:
+    PaperPrinter: 50
+
+- type: latheRecipe
+  id: FormCentcomm3
+  icon:
+    sprite: /Textures/Objects/Misc/bureaucracy.rsi
+    state: paper_words
+  result: PaperFormCentcomm3
+  completetime: 5
+  materials:
+    PaperPrinter: 50
+
+- type: latheRecipe
+  id: FormCentcomm4
+  icon:
+    sprite: /Textures/Objects/Misc/bureaucracy.rsi
+    state: paper_words
+  result: PaperFormCentcomm4
+  completetime: 5
+  materials:
+    PaperPrinter: 50
+
+- type: latheRecipe
+  id: FormCentcomm5
+  icon:
+    sprite: /Textures/Objects/Misc/bureaucracy.rsi
+    state: paper_words
+  result: PaperFormCentcomm5
+  completetime: 5
+  materials:
+    PaperPrinter: 50
+
+- type: latheRecipe
+  id: FormCentcomm6
+  icon:
+    sprite: /Textures/Objects/Misc/bureaucracy.rsi
+    state: paper_words
+  result: PaperFormCentcomm6
+  completetime: 5
+  materials:
+    PaperPrinter: 50
+
+- type: latheRecipe
+  id: FormCentcomm7
+  icon:
+    sprite: /Textures/Objects/Misc/bureaucracy.rsi
+    state: paper_words
+  result: PaperFormCentcomm7
+  completetime: 5
+  materials:
+    PaperPrinter: 50
+
+- type: latheRecipe
+  id: FormCentcomm8
+  icon:
+    sprite: /Textures/Objects/Misc/bureaucracy.rsi
+    state: paper_words
+  result: PaperFormCentcomm8
+  completetime: 5
+  materials:
+    PaperPrinter: 50
+
+- type: latheRecipe
+  id: FormCentcomm9
+  icon:
+    sprite: /Textures/Objects/Misc/bureaucracy.rsi
+    state: paper_words
+  result: PaperFormCentcomm9
+  completetime: 5
+  materials:
+    PaperPrinter: 50
+
+- type: latheRecipe
+  id: FormCentcomm10
+  icon:
+    sprite: /Textures/Objects/Misc/bureaucracy.rsi
+    state: paper_words
+  result: PaperFormCentcomm10
+  completetime: 5
+  materials:
+    PaperPrinter: 50

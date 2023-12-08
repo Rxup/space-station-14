@@ -1,0 +1,48 @@
+- type: job
+  id: Ratatui
+  name: job-name-ratatui
+  description: job-description-ratatui
+  playTimeTracker: JobRatatui
+  joinNotifyCrew: false
+  whitelistRequired: true
+  requirements:
+    - !type:RoleTimeRequirement
+      role: JobChef_Ck
+      time: 10800 #3 hrs
+  icon: "JobIconRatatui"
+  startingGear: RatatuiGear
+  supervisors: job-supervisors-human
+  canBeAntag: false
+  access:
+  - Service
+  - Maintenance
+  - Hydroponics
+  - Bar
+  - Kitchen
+  jobEntity: MobRatatui
+  special:
+    - !type:AddComponentSpecial
+      components:
+        - type: PsionicBonusChance
+          flatBonus: 1
+  #start _Ck
+  minBankBalance: 500
+  maxBankBalance: 1000000
+  wageDepartment: Cafe
+  wage: 150000
+  #end _Ck
+
+- type: startingGear
+  id: RatatuiGear
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitPovar_ck
+    head: ClothingHeadHatPovar_ck
+    back: ClothingBackpackFilled
+    shoes: ClothingShoesColorBlack
+    id: ChefPDA
+    ears: ClothingHeadsetService
+    outerClothing: ClothingOuterJacketChef
+    pocket1: BookRecipiesALL
+  innerclothingskirt: ClothingUniformJumpskirtPovar_ck
+  satchel: ClothingBackpackSatchelFilled
+  duffelbag: ClothingBackpackDuffelFilled

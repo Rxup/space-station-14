@@ -1,0 +1,44 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "Taken from tgstation at commit https://github.com/tgstation/tgstation/commit/c6e3401f2e7e1e55c57060cdf956a98ef1fefc24",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "poster1"
+    },
+    {
+      "name": "poster2"
+    },
+    {
+      "name": "poster3"
+    },
+    {
+      "name": "poster4"
+    },
+    {
+      "name": "poster5"
+    },
+    {
+      "name": "poster6"
+    },
+    {
+      "name": "poster7"
+    },
+    {
+      "name": "poster8"
+    },
+    {
+      "name": "poster9"
+    },
+    {
+      "name": "poster10"
+    },
+    {
+      "name": "poster11"
+    }
+  ]
+}

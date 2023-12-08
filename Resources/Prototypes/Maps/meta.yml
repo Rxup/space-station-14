@@ -2,7 +2,7 @@
   id: Meta
   mapName: 'Meta Station'
   mapPath: /Maps/meta.yml
-  minPlayers: 50
+  minPlayers: 0
   stations:
     Meta:
       stationProto: StandardNanotrasenStation
@@ -20,11 +20,16 @@
           availableJobs:
             #service
             Captain: [ 1, 1 ]
-            IAA: [ 1, 1 ] # Corvax-IAA
             HeadOfPersonnel: [ 1, 1 ]
             Bartender: [ 2, 2 ]
             Botanist: [ 2, 3 ]
-            Chef: [ 2, 2 ]
+            #_Ck
+            Chef: [ 1, 1 ]
+            SuChefck: [ 1, 1 ]
+            Povar: [ 2, 2 ]
+            Ratatui: [ 1, 1 ]
+            Lox: [ 1, 1 ]
+            #_Ck end
             Janitor: [ 1, 2 ]
             Chaplain: [ 1, 1 ]
             Librarian: [ 1, 1 ]
@@ -55,7 +60,7 @@
             SecurityOfficer: [ 4, 6 ]
             Detective: [ 1, 1 ]
             SecurityCadet: [ 8, 8 ]
-            #Lawyer: [ 2, 2 ] # Corvax-IAA
+            Lawyer: [ 2, 2 ]
             #supply
             Quartermaster: [ 1, 1 ]
             SalvageSpecialist: [ 3, 3 ]

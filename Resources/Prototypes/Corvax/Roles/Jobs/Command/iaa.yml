@@ -3,12 +3,9 @@
   name: job-name-iaa
   playTimeTracker: JobIAA
   requirements:
-  - !type:DepartmentTimeRequirement
-    department: Command
-    time: 72000
-  - !type:DepartmentTimeRequirement
-    department: Security
-    time: 36000
+    - !type:RoleTimeRequirement
+      role: JobLawyer #_Ck
+      time: 14400 # 4 hrs #_Ck
   startingGear: IAAGear
   icon: "JobIconIAA"
   supervisors: job-supervisors-centcom
@@ -19,16 +16,21 @@
     - Maintenance
     - Command
     - External
-    - Lawyer
+    - CCGeneral
   #start-backmen: currency
   minBankBalance: 800
   maxBankBalance: 1200
-  wageDepartment: Specific
+  wageDepartment: Juridical
   wage: 200
   #end-backmen: currency
   special:
-  - !type:AddImplantSpecial
-    implants: [ MindShieldImplant ]
+    - !type:AddImplantSpecial
+      implants: [ MindShieldImplant ]
+    - !type:AddComponentSpecial
+      components:
+        - type: SpecForce
+          actionBssActionName: ActionCentcomFtlAction
+        - type: Psionic
 
 - type: startingGear
   id: IAAGear
@@ -40,6 +42,8 @@
     eyes: ClothingEyesGlassesSunglasses
     ears: ClothingHeadsetIAA
     neck: ClothingNeckLawyerbadge
+    pocket1: PaperFormAVD4
+    pocket2: EncryptionKeyCentCom
   inhand:
     - BriefcaseIAAFilled
   innerClothingSkirt: ClothingUniformJumpskirtLawyerBlack

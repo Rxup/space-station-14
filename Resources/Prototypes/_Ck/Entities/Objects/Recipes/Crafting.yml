@@ -1,0 +1,32 @@
+#- type: constructionGraph
+#  id: BioMassInd
+#  start: start
+#  graph:
+#    - node: start
+#      edges:
+#        - to: SheetBioMass
+#          completed:
+#            - !type:SetStackCount
+#              amount: 1
+#          steps:
+#            - material: FoodApple
+#            - material: FoodApple
+#            - material: FoodApple
+#            - material: FoodApple
+
+#    - node: SheetBioMass
+#      entity: MaterialBioIndustrial
+
+#- type: construction
+#  name: reinforced glass
+#  description: Лист биомассы для био принтеров
+#  id: SheetRGlass
+#  graph: SheetBioMass
+#  startNode: start
+#  targetNode: SheetBioMass
+#  objectType: Item
+#  category: construction-category-materials
+#  icon: 
+#    sprite: _Ck/Objects/Material.rsi
+#    state: bio
+  

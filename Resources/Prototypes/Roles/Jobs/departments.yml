@@ -40,13 +40,13 @@
   color: "#334E6D"
   roles:
   - Captain
-  - IAA # Corvax-IAA
   - ChiefEngineer
   - ChiefMedicalOfficer
   - HeadOfPersonnel
   - HeadOfSecurity
   - ResearchDirector
   - Quartermaster
+  - Chef
   - SAI
   accountNumber: 1317 #backmen: currency
 

@@ -1,0 +1,171 @@
+- type: entity
+  id: printerPaperMachine
+  parent: BaseLathe
+  name: простой принтер
+  description: просто лазерный принтер, заряжать его не надо.
+  suffix: Station
+  components:
+  - type: Physics
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.10,-0.10,0.10,0.10"
+        density: 190
+        mask:
+        - TabletopMachineMask
+        layer:
+        - TabletopMachineLayer
+  - type: Sprite
+    sprite: _Ck/Entities/Structures/Machines/Printer.rsi
+    snapCardinals: true
+    layers:
+    - state: icon
+      map: ["enum.LatheVisualLayers.IsRunning"]
+    - state: unlit
+      shader: unshaded
+      map: ["enum.PowerDeviceVisualLayers.Powered"]
+    - state: inserting
+      map: ["enum.MaterialStorageVisualLayers.Inserting"]
+    - state: panel
+      map: ["enum.WiresVisualLayers.MaintenancePanel"]
+  - type: Machine
+    board: PrinterMachineCircuitboard
+  - type: Wires
+    BoardName: wires-board-name-protolathe
+    LayoutId: Protolathe
+  - type: MaterialStorage
+    WhiteList:
+    - MaterialPaper
+  - type: Lathe
+    producingSound: /Audio/_Ck/Ambience/Objects/printer.ogg
+    idleState: icon
+    runningState: building
+    staticRecipes:
+    #Comand
+      - FormBase
+      - FormComand1
+      - FormComand2
+      - FormComand3
+      - FormComand4
+      - FormComand5
+      - FormComand6
+      - FormComand7
+      - FormComand8
+      - FormComand9
+      - FormComand10
+      - FormComand11
+      - FormComand12
+      - FormComand13
+      - FormComand14
+      - FormComand15
+      - FormComand16
+    #law
+      - FormAVD1
+      - FormAVD2
+      - FormAVD3
+      - FormAVD4
+      - FormAVD5
+    #Security
+      - FormSecurity1
+      - FormSecurity2
+      - FormSecurity3
+      - FormSecurity4
+      - FormSecurity5
+      - FormSecurity6
+      - FormSecurity7
+      - FormSecurity8
+      - FormSecurity9
+    #Engineering
+      - FormEngineering1
+      - FormEngineering2
+      - FormEngineering3
+      - FormEngineering4
+      - FormEngineering5
+      - FormEngineering6
+    #Science
+      - FormScience1
+      - FormScience2
+      - FormScience3
+    #Supply
+      - FormSupply1
+      - FormSupply2
+    #Service
+      - FormService1
+      - FormService2
+  - type: EmagLatheRecipes
+    emagDynamicRecipes:
+      - FormCentcomm1
+      - FormCentcomm2
+      - FormCentcomm3
+      - FormCentcomm4
+      - FormCentcomm5
+      - FormCentcomm6
+      - FormCentcomm7
+      - FormCentcomm8
+      - FormCentcomm9
+      - FormCentcomm10
+
+- type: entity
+  id: printerPaperCCMachine
+  parent: BaseLathe
+  name: принтер ЦК
+  description: просто лазерный принтер, заряжать его не надо.
+  suffix: CentComm
+  components:
+  - type: Physics
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.10,-0.10,0.10,0.10"
+        density: 190
+        mask:
+        - TabletopMachineMask
+        layer:
+        - TabletopMachineLayer
+  - type: Sprite
+    sprite: _Ck/Entities/Structures/Machines/Printer.rsi
+    snapCardinals: true
+    layers:
+    - state: icon
+      map: ["enum.LatheVisualLayers.IsRunning"]
+    - state: unlit
+      shader: unshaded
+      map: ["enum.PowerDeviceVisualLayers.Powered"]
+    - state: inserting
+      map: ["enum.MaterialStorageVisualLayers.Inserting"]
+    - state: panel
+      map: ["enum.WiresVisualLayers.MaintenancePanel"]
+  - type: Machine
+    board: PrinterMachineCircuitboardCC
+  - type: Wires
+    BoardName: wires-board-name-protolathe
+    LayoutId: Protolathe
+  - type: MaterialStorage
+    WhiteList:
+    - MaterialPaper
+  - type: Lathe
+    producingSound: /Audio/_Ck/Ambience/Objects/printer.ogg
+    idleState: icon
+    runningState: building
+    staticRecipes:
+    #Centcomm
+      - FormCentcomm1
+      - FormCentcomm2
+      - FormCentcomm3
+      - FormCentcomm4
+      - FormCentcomm5
+      - FormCentcomm6
+      - FormCentcomm7
+      - FormCentcomm8
+      - FormCentcomm9
+      - FormCentcomm10
+    #law
+      - FormAVD1
+      - FormAVD2
+      - FormAVD3
+      - FormAVD4
+      - FormAVD5

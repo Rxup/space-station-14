@@ -25,7 +25,6 @@
             HeadOfPersonnel: [ 1, 1 ]
             Bartender: [ 1, 1 ]
             Botanist: [ 2, 2 ]
-            Chef: [ 1, 1 ]
             Janitor: [ 1, 1 ]
             Chaplain: [ 1, 1 ]
             Librarian: [ 1, 1 ]
@@ -71,3 +70,11 @@
             Deliveryman: [ 0, 1 ]
             Prisoner: [ 2, 2]
             SAI: [1, 1] # backmen-SAI
+            #_Ck
+            Chef: [ 1, 1 ]
+            SuChefck: [ 1, 1 ]
+            Povar: [ 2, 2 ]
+            Ratatui: [ 1, 1 ]
+            Lox: [ 1, 1 ]
+            #_Ck end
+            Lawyer: [ 2, 2 ]

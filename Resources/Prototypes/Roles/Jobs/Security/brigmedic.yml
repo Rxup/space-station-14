@@ -1,4 +1,4 @@
-﻿- type: job
+- type: job
   id: Brigmedic
   name: job-name-brigmedic
   description: job-description-brigmedic
@@ -6,12 +6,12 @@
   requirements:
     - !type:DepartmentTimeRequirement
       department: Medical
-      time: 18000
+      time: 7200 #2 hrs
     - !type:DepartmentTimeRequirement
       department: Security
-      time: 7200
+      time: 7200 #2 hrs
   startingGear: BrigmedicGear
-  icon: "JobIconBrigmedic"
+  icon: "JobIconSecurityCadet"
   supervisors: job-supervisors-hos
   canBeAntag: false
   access:
@@ -38,16 +38,16 @@
   id: BrigmedicGear
   equipment:
     jumpsuit: ClothingUniformJumpsuitBrigmedic
-    back: ClothingBackpackBrigmedicFilled # Backmen
+    back: ClothingBackpackSecurityFilled
     shoes: ClothingShoesBootsJackSec # Corvax-Resprite
     gloves: ClothingHandsGlovesNitrile
-    eyes: ClothingEyesHudMedSec
+    eyes: ClothingEyesHudMedical
     head: ClothingHeadHatBeretSecurityMedic # Corvax-Resprite
     outerClothing: ClothingOuterVestArmorMedSec # Corvax-Resprite
     id: BrigmedicPDA
-    ears: ClothingHeadsetBrigmedic # Backmen
+    ears: ClothingHeadsetSecurity
     mask: ClothingMaskSterile
     belt: ClothingBeltMedicalFilled
   innerClothingSkirt: ClothingUniformJumpskirtBrigmedic
-  satchel: ClothingBackpackSatchelBrigmedicFilled # Backmen
-  duffelbag: ClothingBackpackDuffelBrigmedicFilled # Backmen
+  satchel: ClothingBackpackSatchelSecurityFilled
+  duffelbag: ClothingBackpackDuffelSecurityFilled

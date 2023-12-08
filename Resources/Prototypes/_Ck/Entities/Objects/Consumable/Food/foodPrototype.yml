@@ -1,0 +1,515 @@
+# Base
+- type: entity
+  parent: FoodInjectableBase
+  id: FoodBakedShawarmaBase
+  abstract: true
+  components:
+  - type: Food
+  - type: Sprite
+    sprite: _Ck/Objects/Food/East.rsi
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 6
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 15
+        - ReagentId: Vitamin
+          Quantity: 5
+  - type: Item
+    size: Small
+
+- type: entity
+  parent: FoodInjectableBase
+  id: FoodBakedMediumBase
+  abstract: true
+  components:
+  - type: Food
+  - type: Sprite
+    sprite: _Ck/Objects/Food/East.rsi
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 6
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 10
+        - ReagentId: Vitamin
+          Quantity: 7
+  - type: Item
+    size: Small
+
+- type: entity
+  parent: FoodBase
+  id: FoodBowlBaseSoup
+  abstract: true
+  components:
+  - type: Food
+    trash: FoodBowlBig
+    utensil: Spoon
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 20
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 20
+  - type: Sprite
+    sprite: _Ck/Objects/Food/East.rsi
+  - type: DamageOnLand
+    damage:
+      types:
+        Blunt: 5
+  - type: DamageOtherOnHit
+    damage:
+      types:
+        Blunt: 5
+  - type: Spillable
+    solution: food
+  # soup weapon!
+  - type: MeleeWeapon
+    soundNoDamage:
+      path: "/Audio/Effects/Fluids/splat.ogg"
+    damage:
+      types:
+        Blunt: 3
+  - type: Damageable
+    damageContainer: Inorganic
+  - type: Tag
+    tags:
+    - Soup
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 5
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: GlassBreak
+      - !type:SpillBehavior { }
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          FoodBowlBigTrash:
+            min: 1
+            max: 1
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+#------------------------------------------------------
+- type: entity
+  name: огромная шаурма
+  parent: FoodBakedShawarmaBase
+  id: FoodBakedshaurma_bogaturskaia
+  description: ОГРОМНЫЕ обьёмы
+  components:
+  - type: Item
+    size: Normal
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 8
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 35
+        - ReagentId: Vitamin
+          Quantity: 20
+  - type: Sprite
+    state: bogaturskaia
+  - type: FlavorProfile
+    flavors:
+      - bacon
+
+- type: entity
+  name: сырная шаурма
+  parent: FoodBakedShawarmaBase
+  id: FoodBakedshaurma_chees
+  description: Не мало сыра, немало вкуса!
+  components:
+  - type: Sprite
+    state: chees
+  - type: FlavorProfile
+    flavors:
+      - bacon
+      - cheesy
+
+- type: entity
+  name: классическая шаурма
+  parent: FoodBakedShawarmaBase
+  id: FoodBakedshaurma_classic
+  description: Не стареющая классика
+  components:
+  - type: Sprite
+    state: classic
+  - type: FlavorProfile
+    flavors:
+      - bacon
+
+- type: entity
+  name: грибная шаурма
+  parent: FoodBakedShawarmaBase
+  id: FoodBakedshaurma_gribnoi
+  description: А ниче так, необычно и вкусно
+  components:
+  - type: Sprite
+    state: gribnoi
+  - type: FlavorProfile
+    flavors:
+      - bacon
+      - funny
+
+- type: entity
+  name: мясная шаурма
+  parent: FoodBakedShawarmaBase
+  id: FoodBakedshaurma_meat
+  description: Любители мяса одобрят
+  components:
+  - type: Sprite
+    state: meat
+  - type: FlavorProfile
+    flavors:
+      - bacon
+      - meaty
+
+- type: entity
+  name: острая шаурма
+  parent: FoodBakedShawarmaBase
+  id: FoodBakedshaurma_ostraia
+  description: Ужас как печёт во рту
+  components:
+  - type: Sprite
+    state: ostraia
+  - type: FlavorProfile
+    flavors:
+      - bacon
+      - spicy
+
+- type: entity
+  name: вокзальная шаурма
+  parent: FoodBakedShawarmaBase
+  id: FoodBakedshaurma_classic_vokzal
+  description: Не стареющая классика из вокзала
+  components:
+  - type: Sprite
+    state: classic
+  - type: FlavorProfile
+    flavors:
+      - bacon
+      - magical
+#--------------
+
+- type: entity
+  name: плов
+  parent: FoodBowlBaseSoup
+  id: FoodBakedPlow
+  description: палов
+  components:
+  - type: FlavorProfile
+    flavors:
+      - meaty
+      - tomato
+      - rice
+  - type: Sprite
+    layers:
+    - state: bowl
+    - state: plow
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxvol: 15
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 8
+        - ReagentId: Vitamin
+          Quantity: 2
+        - ReagentId: DoctorsDelight
+          Quantity: 5
+
+- type: entity
+  name: Кари
+  parent: FoodBowlBaseSoup
+  id: FoodBakedCurry
+  description: рагу с востока
+  components:
+  - type: FlavorProfile
+    flavors:
+      - meaty
+      - potatoes
+      - rice
+  - type: Sprite
+    layers:
+    - state: bowl
+    - state: curry
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxvol: 15
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 8
+        - ReagentId: Vitamin
+          Quantity: 2
+        - ReagentId: DoctorsDelight
+          Quantity: 5
+
+- type: entity
+  name: Шурпа
+  parent: FoodBowlBaseSoup
+  id: FoodBakedShurpa
+  description: Ты незнаешь что такое шурпа?
+  components:
+  - type: FlavorProfile
+    flavors:
+      - meaty
+      - potatoes
+  - type: Sprite
+    layers:
+    - state: bowl
+    - state: shurpa
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxvol: 15
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 16
+        - ReagentId: Vitamin
+          Quantity: 6
+        - ReagentId: DoctorsDelight
+          Quantity: 10
+
+- type: entity
+  name: Самсы
+  parent: FoodBakedMediumBase
+  id: FoodBakedSamsa
+  description: пирожок с востока
+  components:
+  - type: Sprite
+    state: samsa
+  - type: FlavorProfile
+    flavors:
+      - bacon
+      - spicy
+
+- type: entity
+  name: чак-чак
+  parent: FoodBakedMediumBase
+  id: FoodBakedChuck-Chuck
+  description: класический дисерт восточной кухни
+  components:
+  - type: Sprite
+    state: chuck-chuck
+  - type: FlavorProfile
+    flavors:
+      - magical
+      - funny
+
+- type: entity
+  name: лепёшки
+  parent: FoodBakedMediumBase
+  id: FoodBakedTortillas
+  description: восточные лепёшки
+  components:
+  - type: Sprite
+    state: EastTortillas
+  - type: FlavorProfile
+    flavors:
+      - magical
+      - shocking
+
+- type: entity
+  name: чебуреки
+  parent: FoodBakedMediumBase
+  id: FoodBakedChebureks
+  description: чебурек барма
+  components:
+  - type: Sprite
+    state: chebureks
+  - type: FlavorProfile
+    flavors:
+      - magical
+      - shocking
+
+- type: entity
+  name: манты
+  parent: FoodBakedMediumBase
+  id: FoodBakedMantas
+  description: сочные, очень...
+  components:
+  - type: Sprite
+    state: mantas
+  - type: FlavorProfile
+    flavors:
+      - bacon
+      - funny
+
+- type: entity
+  name: Гошнан
+  parent: FoodBakedMediumBase
+  id: FoodBakedGoshnan
+  description: пирог с мясом
+  components:
+  - type: Sprite
+    state: MeatPie
+  - type: FlavorProfile
+    flavors:
+      - magical
+      - shocking
+      - bacon
+
+- type: entity
+  name: Кхара пера
+  parent: FoodBakedMediumBase
+  id: FoodBakedKharaPera
+  description: сладость востока
+  components:
+  - type: Sprite
+    state: KharaPera
+  - type: FlavorProfile
+    flavors:
+      - sweet
+      - chocolate
+
+- type: entity
+  name: Рахат лукум
+  parent: FoodBakedMediumBase
+  id: FoodBakedDelight
+  description: сладость востока
+  components:
+  - type: Sprite
+    state: delight
+  - type: FlavorProfile
+    flavors:
+      - sweet
+
+- type: entity
+  name: Пахлава
+  parent: FoodBakedMediumBase
+  id: FoodBakedBAKLAVA
+  description: сладость востока
+  components:
+  - type: Sprite
+    state: BAKLAVA
+  - type: FlavorProfile
+    flavors:
+      - sweet
+
+- type: entity
+  name: Халва
+  parent: FoodBakedMediumBase
+  id: FoodBakedHalva
+  description: сладость востока
+  components:
+  - type: Sprite
+    state: halva
+  - type: FlavorProfile
+    flavors:
+      - sweet
+
+- type: entity
+  name: Манка
+  parent: FoodBowlBaseSoup
+  id: FoodBakedSemolina
+  description: Манная Каша.
+  components:
+  - type: FlavorProfile
+    flavors:
+      - sweet
+      - magical
+      - funny
+  - type: Sprite
+    sprite: _Ck/Objects/Food/ALL.rsi
+    layers:
+    - state: bowl
+    - state: semolina
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxvol: 15
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 16
+        - ReagentId: Vitamin
+          Quantity: 6
+        - ReagentId: DoctorsDelight
+          Quantity: 10
+
+- type: entity
+  name: Кириешки
+  parent: FoodBakedMediumBase
+  id: FoodBakedCroutons
+  description: кириешки.
+  components:
+  - type: Sprite
+    sprite: _Ck/Objects/Food/ALL.rsi
+    state: croutons
+  - type: FlavorProfile
+    flavors:
+      - spicy
+
+- type: entity
+  name: Сосиска в тесте
+  parent: FoodBakedMediumBase
+  id: FoodSausageDough
+  description: сосиска в тесте, и ничего лишнего
+  components:
+  - type: Sprite
+    sprite: _Ck/Objects/Food/ALL.rsi
+    state: sausagesDough
+  - type: FlavorProfile
+    flavors:
+      - magical
+      - bacon
+
+- type: entity
+  name: котлеты
+  parent: FoodBakedMediumBase
+  id: FoodCutlet
+  description: котлеты, из мяса.
+  components:
+  - type: Sprite
+    sprite: _Ck/Objects/Food/ALL.rsi
+    state: cutlet
+  - type: FlavorProfile
+    flavors:
+      - meaty
+
+- type: entity
+  name: котлеты по киевски
+  parent: FoodBakedMediumBase
+  id: FoodCutletkiev
+  description: котлеты, из мяса и масла, положенные на листик салата, очень хороший перекус.
+  components:
+  - type: Sprite
+    sprite: _Ck/Objects/Food/ALL.rsi
+    state: kievcutlet
+  - type: FlavorProfile
+    flavors:
+      - meaty
+
+- type: entity
+  name: пончики по Московски
+  parent: FoodBakedMediumBase
+  id: FoodMoscowPies
+  description: Кухня Великого города, родина мать приготовила!
+  components:
+  - type: Sprite
+    sprite: _Ck/Objects/Food/ALL.rsi
+    state: MoscowPies
+  - type: FlavorProfile
+    flavors:
+      - sweet
+      - magical
+      - funny
+
+- type: entity
+  name: Кириешки с хреном
+  parent: FoodBakedMediumBase
+  id: FoodBakedCroutonsHorseradish
+  description: кириешки с хреном, полезно.
+  components:
+  - type: Sprite
+    sprite: _Ck/Objects/Food/ALL.rsi
+    state: croutons
+  - type: FlavorProfile
+    flavors:
+      - spicy

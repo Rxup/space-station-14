@@ -1,0 +1,29 @@
+- type: job
+  id: Lox
+  name: job-name-homeless
+  description: job-description-homeless
+  playTimeTracker: JobLox
+  startingGear: LoxGear
+  icon: "JobIconLox"
+  supervisors: job-supervisors-everyone
+  canBeAntag: true
+  access:
+  - Maintenance
+  - External
+#  access: # Corvax-MRP
+#  - Maintenance
+
+- type: startingGear
+  id: LoxGear
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitLox
+    head: ClothingHeadHatLox
+    back: ClothingBackpackFilled
+    shoes: ClothingShoesLox
+    eyes: ClothingEyesGlassesLox
+    id: PassengerPDA
+    ears: ClothingHeadsetGrey
+    outerClothing: ClothingOuterLox
+  innerclothingskirt: ClothingUniformJumpskirtLox
+  satchel: ClothingBackpackSatchelFilled
+  duffelbag: ClothingBackpackDuffelFilled

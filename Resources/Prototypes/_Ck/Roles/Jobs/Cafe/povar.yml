@@ -1,0 +1,33 @@
+- type: job
+  id: Povar
+  name: job-name-Cook
+  description: job-description-Cook
+  playTimeTracker: JobPovar
+  startingGear: PovarGear
+  icon: "JobIconPovar"
+  supervisors: job-supervisors-hop
+  access:
+  - Service
+  - Maintenance
+  - Kitchen
+  #start _Ck
+  minBankBalance: 300
+  maxBankBalance: 1000
+  wageDepartment: Cafe
+  wage: 100
+  #end _Ck
+  
+- type: startingGear
+  id: PovarGear
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitPovar_ck
+    head: ClothingHeadHatPovar_ck
+    back: ClothingBackpackFilled
+    shoes: ClothingShoesColorBlack
+    id: ChefPDA
+    ears: ClothingHeadsetService
+    outerClothing: ClothingOuterApronChef
+    pocket1: BookRecipiesALL
+  innerclothingskirt: ClothingUniformJumpskirtPovar_ck
+  satchel: ClothingBackpackSatchelFilled
+  duffelbag: ClothingBackpackDuffelFilled

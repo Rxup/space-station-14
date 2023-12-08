@@ -2,7 +2,7 @@
   id: Origin
   mapName: 'Origin'
   mapPath: /Maps/origin.yml
-  minPlayers: 50
+  minPlayers: 10
   stations:
     Origin:
       stationProto: StandardNanotrasenStation
@@ -20,15 +20,20 @@
           availableJobs:
             #service
             Captain: [ 1, 1 ]
-            IAA: [ 1, 1 ] # Corvax-IAA
             HeadOfPersonnel: [ 1, 1 ]
             Bartender: [ 2, 2 ]
             Botanist: [ 3, 3 ]
-            Chef: [ 3, 3 ]
+            #_Ck
+            Chef: [ 1, 1 ]
+            SuChefck: [ 1, 1 ]
+            Povar: [ 2, 2 ]
+            Ratatui: [ 1, 1 ]
+            Lox: [ 1, 1 ]
+            #_Ck end
             Janitor: [ 3, 3 ]
             Chaplain: [ 2, 2 ]
             Librarian: [ 2, 2 ]
-            #Lawyer: [ 2, 2 ] # Corvax-IAA
+            Lawyer: [ 2, 2 ]
             ServiceWorker: [ 3, 4 ]
             #engineering
             ChiefEngineer: [ 1, 1 ]

@@ -1,0 +1,244 @@
+- type: reagent
+  id: Smetana
+  name: сметана
+  group: Foods
+  desc: обычная сметанка
+  physicalDesc: reagent-physical-desc-gloopy
+  flavor: vitamin
+  color: white
+  recognizable: true
+
+- type: reaction
+  id: CookingSmetana
+  reactants:
+    Milk:
+      amount: 10
+    sourCreamStarter:
+      amount: 5
+  products:
+    Smetana: 15
+
+- type: entity
+  parent: DrinkBottleBaseFull
+  id: DrinkSmetanaBottleFull
+  name: сметана
+  description: сметана, вкусная и поезная! (для пельменей)
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      drink:
+        reagents:
+        - ReagentId: Smetana
+          Quantity: 100
+  - type: Sprite
+    sprite: _Ck/Objects/Food/dop.rsi
+    layers:
+    - state: smetana
+
+- type: reagent
+  id: PrimaryBroth
+  name: первичный бульон
+  group: Foods
+  desc: первичный бульон - Первичный бульон предположительно существовал в мелких водоёмах Земли 4 млрд лет назад. Он состоял из аминокислот, полипептидов, азотистых оснований, нуклеотидов. Он образовался под воздействием электрических разрядов, высокой температуры и космического излучения. При этом атмосфера Земли в то время не содержала кислорода.
+  physicalDesc: reagent-physical-desc-gloopy
+  flavor: vitamin
+  color: green
+  recognizable: true
+
+- type: reaction
+  id: CookingPrimaryBroth
+  reactants:
+    Hydrogen:
+      amount: 15
+    Iron:
+      amount: 10
+    Ipecac:
+      amount: 5
+    FoamingAgent:
+      amount: 1
+  products:
+    PrimaryBroth: 31
+
+- type: entity
+  parent: DrinkBottleBaseFull
+  id: DrinkPrimaryBrothBottleFull
+  name: бутылка первичного бульёна
+  description: ВНИМАНИЕ первичный бульён опастность - 1 уровень (не употрелять внутрь)
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      drink:
+        reagents:
+        - ReagentId: PrimaryBroth
+          Quantity: 100
+  - type: Sprite
+    sprite: _Ck/Objects/Food/dop.rsi
+    layers:
+    - state: bottleWithBioreagents
+    - state: PrimaryBroth
+
+- type: reagent
+  id: sgushenka
+  name: сгущёнка
+  group: Foods
+  desc: вау, сгущёнка!
+  physicalDesc: reagent-physical-desc-gloopy
+  flavor: vitamin
+  color: white
+  recognizable: true
+
+- type: reaction
+  id: Cookingsgushenka
+  reactants:
+    Milk:
+      amount: 10
+    Sugar:
+      amount: 5
+  products:
+    sgushenka: 10
+
+- type: entity
+  parent: DrinkBottleBaseFull
+  id: DrinkSgushenkaBottleFull
+  name: сгущеночка
+  description: та самая сгущёнка из вашего детства! единственная причина что бы слетать на планету СССП
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      drink:
+        reagents:
+        - ReagentId: sgushenka
+          Quantity: 100
+  - type: Sprite
+    sprite: _Ck/Objects/Food/dop.rsi
+    layers:
+    - state: sgushenka
+
+- type: reagent
+  id: honey
+  name: мёд
+  group: Foods
+  desc: тянущийся и сладкий мёд
+  physicalDesc: reagent-physical-desc-gloopy
+  flavor: vitamin
+  color: yellow
+  recognizable: true
+
+- type: entity
+  parent: DrinkBottleBaseFull
+  id: DrinkHoneyBottleFull
+  name: мёд
+  description: обыкновенный мёд!
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      drink:
+        reagents:
+        - ReagentId: honey
+          Quantity: 100
+  - type: Sprite
+    sprite: _Ck/Objects/Food/dop.rsi
+    layers:
+    - state: honey
+
+- type: reagent
+  id: sourCreamStarter
+  name: закваска
+  group: Foods
+  desc: закваска
+  physicalDesc: reagent-physical-desc-gloopy
+  flavor: chalky
+  color: white
+  recognizable: true
+
+- type: reaction
+  id: CookingCreamStarter
+  reactants:
+    Mercury:
+      amount: 5
+    Silicon:
+      amount: 5
+    Phosphorus:
+      amount: 5
+  products:
+    sourCreamStarter: 15
+
+- type: entity
+  parent: DrinkBottleBaseFull
+  id: DrinkUniversalFermentBottleFull
+  name: закваска
+  description: заквака для кисло-молочных продуктов.
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      drink:
+        reagents:
+        - ReagentId: sourCreamStarter
+          Quantity: 100
+  - type: Sprite
+    sprite: _Ck/Objects/Food/dop.rsi
+    layers:
+    - state: universalFerment
+
+- type: reagent
+  id: classicSauce1
+  name: соус классический сметанно-майонезный
+  group: Foods
+  desc: сметанно-майонезный соус
+  physicalDesc: reagent-physical-desc-gloopy
+  flavor: salty
+  color: white
+  recognizable: true
+
+- type: reaction
+  id: CookingClassicSauce1
+  reactants:
+    Milk:
+      amount: 5
+    Mayo:
+      amount: 5
+    Smetana: 
+      amount: 5
+    Blackpepper:
+      amount: 1
+    TableSalt:
+      amount: 1
+  products:
+    classicSauce1: 17
+
+- type: entity
+  parent: DrinkBottleBaseFull
+  id: DrinkUniversalSauceBottleFull
+  name: сметанно-майонезный соус
+  description: сметанно-майонезный соус
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      drink:
+        reagents:
+        - ReagentId: classicSauce1
+          Quantity: 100
+  - type: Sprite
+    sprite: _Ck/Objects/Food/dop.rsi
+    layers:
+    - state: sauce
+
+- type: reagent
+  id: jamApple
+  name: яблочное варенье
+  group: Foods
+  desc: варенье из яблок, очень вкусное
+  physicalDesc: reagent-physical-desc-gloopy
+  flavor: vitamin
+  color: orange
+  recognizable: true
+
+- type: reaction
+  id: CookingjamApple
+  reactants:
+    JuiceApple:
+      amount: 5
+    Sugar: 
+      amount: 3
+  products:
+    jamApple: 7

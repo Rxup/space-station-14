@@ -1,6 +1,9 @@
 - type: vendingMachineInventory
   id: PTechInventory
   startingInventory:
+    MaterialPaperPrinter: 10 #_Ck
+    boxForPrinter: 10 #_Ck
+    boxForShreder: 1 #_Ck
     PassengerPDA: 5
     ClearPDA: 5
     PassengerIDCard: 5

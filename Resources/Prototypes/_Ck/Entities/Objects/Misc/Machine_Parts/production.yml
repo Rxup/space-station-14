@@ -1,0 +1,84 @@
+- type: entity
+  id: BioPrinterMachineCircuitboard
+  parent: BaseMachineCircuitboard
+  name: плата био-принтера
+  description: ничего необычного, лишь несколько припаянных ссд, ЦП и по мелочи.
+  components:
+    - type: Sprite
+      sprite: _Ck/Objects/boards.rsi
+      state: bioMashine2
+    - type: MachineBoard
+      prototype: BioMachine
+      requirements:
+        MatterBin: 3
+        Manipulator: 1
+      materialRequirements:
+        Glass: 5
+        Cable: 5
+
+- type: entity
+  id: BioPrinterMINIMachineCircuitboard
+  parent: BaseMachineCircuitboard
+  name: плата мини био-принтера
+  description: ничего необычного, лишь несколько припаянных ссд, ЦП и по мелочи.
+  components:
+    - type: Sprite
+      sprite: _Ck/Objects/boards.rsi
+      state: bioMashine
+    - type: MachineBoard
+      prototype: BioMachineMini
+      requirements:
+        MatterBin: 1
+        Manipulator: 1
+      materialRequirements:
+        Glass: 5
+        Cable: 1
+
+- type: entity
+  id: ShredderMachineCircuitboard
+  parent: BaseMachineCircuitboard
+  name: плата шредера
+  description: плата чудо шредера
+  components:
+    - type: Sprite
+      sprite: _Ck/Objects/boards.rsi
+      state: shredder
+    - type: MachineBoard
+      prototype: Shredder
+      requirements:
+        MatterBin: 1
+        Manipulator: 1
+
+- type: entity
+  id: PrinterMachineCircuitboardCC
+  parent: BaseMachineCircuitboard
+  name: плата станционного принтера
+  description: печатает формы для заполнений
+  components:
+    - type: Sprite
+      sprite: _Ck/Objects/boards.rsi
+      state: printer
+    - type: MachineBoard
+      prototype: printerPaperCCMachine
+      requirements:
+        MatterBin: 1
+        Manipulator: 1
+      materialRequirements:
+        Cable: 1
+
+- type: entity
+  id: PrinterMachineCircuitboard
+  parent: BaseMachineCircuitboard
+  name: плата принтера ЦК
+  description: печатает формы для заполнений
+  components:
+    - type: Sprite
+      sprite: _Ck/Objects/boards.rsi
+      state: printer
+    - type: MachineBoard
+      prototype: printerPaperMachine
+      requirements:
+        MatterBin: 1
+        Manipulator: 1
+      materialRequirements:
+        Cable: 1

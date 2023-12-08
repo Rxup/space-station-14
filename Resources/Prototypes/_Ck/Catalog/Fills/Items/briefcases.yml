@@ -1,0 +1,35 @@
+- type: entity
+  id: BriefcaseBrownFilledJudge
+  name: чемодан судьи
+  parent: BriefcaseBrown
+  suffix: Filled
+  components:
+  - type: StorageFill
+    contents:
+      - id: Paper
+        amount: 3
+      - id: ClothingOuterRobesJudge
+      - id: RubberStampJudge
+      - id: RubberStampApproved
+      - id: RubberStampDenied
+      - id: RubberStampIAA
+      - id: PenCentcom
+      - id: boxForPrinterCC
+      - id: MaterialPaperPrinter
+      - id: BoxFolderRed
+
+- type: entity
+  id: BriefcaseBrownFilledCC
+  name: чемодан сотрудника ЦК
+  parent: BriefcaseBrown
+  suffix: Filled
+  components:
+  - type: StorageFill
+    contents:
+      - id: Paper
+        amount: 3
+      - id: PenCentcom
+      - id: boxForPrinterCC
+      - id: MaterialPaperPrinter
+      - id: BoxFolderRed
+      - id: boxForShreder

@@ -1,0 +1,53 @@
+- type: job
+  id: Judge
+  name: job-name-Judge
+  description: job-description-Judge
+  whitelistRequired: true
+  playTimeTracker: JobJudge
+  requirements:
+    - !type:RoleTimeRequirement
+      role: JobIAA #_Ck
+      time: 7200 # 2 hrs #_Ck
+  startingGear: JudgeGear
+  icon: "JobIconJudge"
+  supervisors: job-supervisors-centcom
+  canBeAntag: false
+  access:
+    - CCCargo
+    - CCSecurity
+    - CCGeneral
+    - CCOfficer
+  accessGroups:
+    - AllAccess
+  #start-backmen: currency
+  minBankBalance: 800
+  maxBankBalance: 1200
+  wageDepartment: Juridical
+  wage: 1000
+  #end-backmen: currency
+  sspecial:
+    - !type:AddImplantSpecial
+      implants: [ MindShieldImplant ]
+    - !type:AddComponentSpecial
+      components:
+        - type: SpecForce
+          actionBssActionName: ActionCentcomFtlAction
+        - type: Psionic
+
+- type: startingGear
+  id: JudgeGear
+  equipment:
+    jumpsuit: MagistratUniformSuit 
+    back: ClothingBackpackIAAFilled
+    shoes: ClothingShoesBootsLaceup
+    id: PDAJudge
+    eyes: ClothingEyesGlassesSunglasses
+    ears: ClothingHeadsetIAA
+    neck: ClothingNeckLawyerbadge
+    pocket1: PaperFormAVD4
+    pocket2: EncryptionKeyCentCom
+  inhand:
+    - BriefcaseBrownFilledJudge
+  innerClothingSkirt: MagistratUniformSuit
+  satchel: ClothingBackpackSatchelIAAFilled
+  duffelbag: ClothingBackpackDuffelIAAFilled

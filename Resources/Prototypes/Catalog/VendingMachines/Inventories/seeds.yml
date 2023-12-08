@@ -1,6 +1,8 @@
-- type: vendingMachineInventory
+ц- type: vendingMachineInventory
   id: MegaSeedServitorInventory
   startingInventory:
+    HorseradishSeeds: 3
+    CucumberSeeds: 5
     AloeSeeds: 3
     AmbrosiaVulgarisSeeds: 3
     AppleSeeds: 5

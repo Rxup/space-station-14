@@ -1,0 +1,34 @@
+- type: statusIcon
+  parent: JobIcon
+  id: JobIconSuChef
+  icon:
+    sprite: _Ck/interface/Misc/job_icons.rsi
+    state: SuChef
+
+- type: statusIcon
+  parent: JobIcon
+  id: JobIconRatatui
+  icon:
+    sprite: _Ck/interface/Misc/job_icons.rsi
+    state: Ratatui
+
+- type: statusIcon
+  parent: JobIcon
+  id: JobIconPovar
+  icon:
+    sprite: _Ck/interface/Misc/job_icons.rsi
+    state: Povar
+
+- type: statusIcon
+  parent: JobIcon
+  id: JobIconLox
+  icon:
+    sprite: _Ck/interface/Misc/job_icons.rsi
+    state: Lox
+
+- type: statusIcon
+  parent: JobIcon
+  id: JobIconJudge
+  icon:
+    sprite: _Ck/interface/Misc/job_icons.rsi
+    state: Judge

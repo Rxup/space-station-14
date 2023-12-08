@@ -1,0 +1,61 @@
+- type: entity
+  parent: [ BaseMachinePowered, ConstructibleMachine ]
+  id: Shredder
+  name: шредер
+  description: Шредер хорошо поел, черепахам ничего не оставил
+  components:
+  - type: Physics
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.10,-0.10,0.10,0.10"
+        density: 190
+        mask:
+        - TabletopMachineMask
+        layer:
+        - TabletopMachineLayer
+  - type: Sprite
+    sprite: _Ck/Entities/Structures/Machines/Shredder.rsi
+    drawdepth: SmallObjects
+    snapCardinals: true
+    layers:
+    - state: icon
+      map: ["enum.LatheVisualLayers.IsRunning"]
+    - state: gear-active
+      map: ["enum.DamageStateVisualLayers.Base"]
+  - type: Appearance
+  - type: LitOnPowered
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 100
+      behaviors:
+      - !type:ChangeConstructionNodeBehavior
+        node: machineFrame
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+  - type: Machine
+    board: ShredderMachineCircuitboard
+  - type: MaterialReclaimer
+    whitelist:
+      tags:
+      - Document
+      - Write
+    soundCooldown: 0
+    sound:
+      path: /Audio/_Ck/Ambience/Objects/paper.ogg
+  - type: MaterialStorage
+    insertOnInteract: false
+  - type: SolutionContainerManager
+    solutions:
+      output:
+        maxVol: 100
+  - type: DrainableSolution
+    solution: output
+  - type: ExaminableSolution
+    solution: output
+  - type: StaticPrice
+    price: 500

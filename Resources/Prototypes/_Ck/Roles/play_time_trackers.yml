@@ -1,0 +1,17 @@
+- type: playTimeTracker
+  id: JobChef_Ck
+
+- type: playTimeTracker
+  id: JobSuChef_Ck
+
+- type: playTimeTracker
+  id: JobPovar
+
+- type: playTimeTracker
+  id: JobRatatui
+
+- type: playTimeTracker
+  id: JobJudge
+  
+- type: playTimeTracker
+  id: JobLox

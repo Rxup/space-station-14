@@ -14,10 +14,10 @@
   - Kitchen
   - Bar
   #start-backmen: currency
-  minBankBalance: 150
-  maxBankBalance: 250
+  minBankBalance: 300
+  maxBankBalance: 500
   wageDepartment: Civilian
-  wage: 50
+  wage: 100
   #end-backmen: currency
 
 - type: startingGear
@@ -30,6 +30,6 @@
     ears: ClothingHeadsetService
     outerClothing: ClothingOuterApronBotanist
     belt: ClothingBeltPlantFilled
-  innerClothingSkirt: ClothingUniformJumpskirtHydroponics
+  innerclothingskirt: ClothingUniformJumpskirtHydroponics
   satchel: ClothingBackpackSatchelHydroponicsFilled
   duffelbag: ClothingBackpackDuffelHydroponicsFilled

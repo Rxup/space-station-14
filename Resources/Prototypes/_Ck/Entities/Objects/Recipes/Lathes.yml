@@ -1,0 +1,309 @@
+- type: latheRecipe
+  id: FOOD1
+  icon:
+    sprite: /Textures/Objects/Consumable/Food/meat.rsi
+    state: plain
+  result: FoodMeat
+  completetime: 8
+  materials:
+    BioIndustrial: 100
+    
+- type: latheRecipe
+  id: FOOD2
+  icon:
+    sprite: /Textures/Objects/Consumable/Food/meat.rsi
+    state: xeno
+  result: FoodMeatXeno
+  completetime: 8
+  materials:
+    BioIndustrial: 50
+
+- type: latheRecipe
+  id: FOOD3
+  icon:
+    sprite: /Textures/Objects/Consumable/Food/meat.rsi
+    state: crab
+  result: FoodMeatCrab
+  completetime: 8
+  materials:
+    BioIndustrial: 50
+
+- type: latheRecipe
+  id: FOOD4
+  icon:
+    sprite: /Textures/Objects/Consumable/Food/meat.rsi
+    state: goliath
+  result: FoodMeatGoliath
+  completetime: 8
+  materials:
+    BioIndustrial: 50
+
+- type: latheRecipe
+  id: FOOD5
+  icon:
+    sprite: /Textures/Objects/Consumable/Food/meat.rsi
+    state: plain
+  result: FoodMeatRat
+  completetime: 8
+  materials:
+    BioIndustrial: 50
+
+- type: latheRecipe
+  id: FOOD6
+  icon:
+    sprite: /Textures/Objects/Consumable/Food/meat.rsi
+    state: bird
+  result: FoodMeatChicken
+  completetime: 8
+  materials:
+    BioIndustrial: 50
+
+- type: latheRecipe
+  id: FOOD7
+  icon:
+    sprite: /Textures/Objects/Consumable/Food/meat.rsi
+    state: bear
+  result: FoodMeatBear
+  completetime: 8
+  materials:
+    BioIndustrial: 50
+
+- type: latheRecipe
+  id: FOOD8
+  icon:
+    sprite: /Textures/Objects/Consumable/Food/meat.rsi
+    state: spider
+  result: FoodMeatSpider
+  completetime: 8
+  materials:
+    BioIndustrial: 50
+
+- type: latheRecipe
+  id: FOOD9
+  icon:
+    sprite: /Textures/Objects/Consumable/Food/meat.rsi
+    state: bird
+  result: FoodMeatPenguin
+  completetime: 8
+  materials:
+    BioIndustrial: 50
+
+- type: latheRecipe
+  id: FOOD10
+  icon:
+    sprite: /Textures/Objects/Consumable/Food/meat.rsi
+    state: lizard
+  result: FoodMeatPlant
+  completetime: 8
+  materials:
+    BioIndustrial: 50
+
+- type: latheRecipe
+  id: FOOD11
+  icon:
+    sprite: /Textures/Objects/Consumable/Food/meat.rsi
+    state: bird
+  result: FoodMeatDuck
+  completetime: 8
+  materials:
+    BioIndustrial: 50
+
+- type: latheRecipe
+  id: FOOD12
+  icon:
+    sprite: /Textures/Objects/Consumable/Food/meat.rsi
+    state: bacon
+  result: FoodMeatBacon
+  completetime: 8
+  materials:
+    BioIndustrial: 50
+
+- type: latheRecipe
+  id: FOOD13
+  icon:
+    sprite: /Textures/Objects/Consumable/Food/meat.rsi
+    state: salami
+  result: FoodMeatSalami
+  completetime: 8
+  materials:
+    BioIndustrial: 50
+
+#Biomass: 5
+#НЕ ЕДА
+
+- type: latheRecipe
+  id: Industrial1
+  icon:
+    sprite: /Textures/Mobs/Species/Human/organs.rsi
+    state: eyeball-l
+  result: OrganHumanEyes
+  completetime: 30
+  materials:
+    BioIndustrial: 150
+    Biomass: 5
+
+- type: latheRecipe
+  id: Industrial2
+  icon:
+    sprite: /Textures/Mobs/Species/Human/organs.rsi
+    state: lung-l
+  result: OrganHumanLungs
+  completetime: 30
+  materials:
+    BioIndustrial: 150
+    Biomass: 5
+
+- type: latheRecipe
+  id: Industrial3
+  icon:
+    sprite: /Textures/Mobs/Species/Human/organs.rsi
+    state: liver
+  result: OrganHumanLiver
+  completetime: 30
+  materials:
+    BioIndustrial: 150
+    Biomass: 5
+
+- type: latheRecipe
+  id: Industrial4
+  icon:
+    sprite: /Textures/Mobs/Species/Human/organs.rsi
+    state: stomach
+  result: OrganHumanStomach
+  completetime: 30
+  materials:
+    BioIndustrial: 150
+    Biomass: 5
+
+- type: latheRecipe
+  id: Industrial5
+  icon:
+    sprite: /Textures/Mobs/Species/Human/organs.rsi
+    state: kidney-r
+  result: OrganHumanKidneys
+  completetime: 30
+  materials:
+    BioIndustrial: 150
+    Biomass: 5
+
+- type: latheRecipe
+  id: Industrial6
+  icon:
+    sprite: /Textures/Mobs/Species/Human/organs.rsi
+    state: heart-off
+  result: OrganHumanHeart
+  completetime: 30
+  materials:
+    BioIndustrial: 150
+    Biomass: 5
+
+- type: latheRecipe
+  id: Industrial7
+  icon:
+    sprite: /Textures/Mobs/Species/Human/organs.rsi
+    state: brain
+  result: OrganHumanBrain
+  completetime: 30
+  materials:
+    BioIndustrial: 150
+    Biomass: 5
+
+- type: latheRecipe
+  id: Industrial8
+  icon:
+    sprite: /Textures/Mobs/Species/Human/parts.rsi
+    state: full
+  result: HeadHuman
+  completetime: 60
+  materials:
+    BioIndustrial: 150
+    Biomass: 5
+
+- type: latheRecipe
+  id: Industrial9
+  icon:
+    sprite: /Textures/Mobs/Species/Human/parts.rsi
+    state: full
+  result: LeftArmHuman
+  completetime: 60
+  materials:
+    BioIndustrial: 150
+    Biomass: 5
+
+- type: latheRecipe
+  id: Industrial10
+  icon:
+    sprite: /Textures/Mobs/Species/Human/parts.rsi
+    state: full
+  result: RightArmHuman
+  completetime: 60
+  materials:
+    BioIndustrial: 150
+    Biomass: 5
+
+- type: latheRecipe
+  id: Industrial11
+  icon:
+    sprite: /Textures/Mobs/Species/Human/parts.rsi
+    state: full
+  result: LeftHandHuman
+  completetime: 60
+  materials:
+    BioIndustrial: 150
+    Biomass: 5
+
+- type: latheRecipe
+  id: Industrial12
+  icon:
+    sprite: /Textures/Mobs/Species/Human/parts.rsi
+    state: full
+  result: RightHandHuman
+  completetime: 60
+  materials:
+    BioIndustrial: 150
+    Biomass: 5
+
+- type: latheRecipe
+  id: Industrial13
+  icon:
+    sprite: /Textures/Mobs/Species/Human/parts.rsi
+    state: full
+  result: LeftFootHuman
+  completetime: 60
+  materials:
+    BioIndustrial: 150
+    Biomass: 5
+
+- type: latheRecipe
+  id: Industrial14
+  icon:
+    sprite: /Textures/Mobs/Species/Human/parts.rsi
+    state: full
+  result: RightFootHuman
+  completetime: 60
+  materials:
+    BioIndustrial: 150
+    Biomass: 5
+
+- type: latheRecipe
+  id: Industrial15
+  icon:
+    sprite: /Textures/Mobs/Species/Human/parts.rsi
+    state: full
+  result: LeftLegHuman
+  completetime: 60
+  materials:
+    BioIndustrial: 150
+    Biomass: 5
+
+- type: latheRecipe
+  id: Industrial16
+  icon:
+    sprite: /Textures/Mobs/Species/Human/parts.rsi
+    state: full
+  result: RightLegHuman
+  completetime: 60
+  materials:
+    BioIndustrial: 150
+    Biomass: 5
+

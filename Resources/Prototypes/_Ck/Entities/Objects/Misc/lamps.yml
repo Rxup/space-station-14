@@ -1,0 +1,16 @@
+- type: entity
+  name: свечка (электрическая)
+  id: CandleElectrical
+  parent: BaseLamp
+  description: кнопка снизу свечки говорит о том что она электрическая.
+  components:
+  - type: Sprite
+    sprite: _Ck/Objects/Misc/Lights/candle.rsi
+    layers:
+      - state: lamp
+      - state: lamp-on
+        shader: unshaded
+        visible: false
+        map: [ "light" ]
+  - type: Item
+    sprite: _Ck/Objects/Misc/Lights/candle.rsi

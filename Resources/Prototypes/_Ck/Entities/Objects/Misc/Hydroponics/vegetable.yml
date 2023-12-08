@@ -1,0 +1,85 @@
+# овощ - слайс
+
+# Огурец
+
+- type: entity
+  name: Огурец
+  parent: FoodProduceBase
+  id: FoodCucumber
+  description: Огурчики.. огурчики... хотябы бы не огузки
+  components:
+  - type: FlavorProfile
+    flavors:
+      - cucumber
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 14
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 10
+        - ReagentId: Vitamin
+          Quantity: 4
+        - ReagentId: Allicin
+          Quantity: 4
+  - type: Sprite
+    sprite: _Ck/Objects/Specific/Hydroponics/cucumber.rsi
+  - type: Produce
+    seedId: cucumber
+  - type: SliceableFood
+    count: 3
+    slice: FoodCucumberSlice
+
+- type: entity
+  name: Ломтик Огурца
+  parent: ProduceSliceBase
+  id: FoodCucumberSlice
+  description: Учитесь огузки, шеф покажет вам мастер-класс
+  components:
+  - type: FlavorProfile
+    flavors:
+      - cucumber
+  - type: Sprite
+    sprite: _Ck/Objects/Specific/Hydroponics/cucumber.rsi
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 3
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 2
+        - ReagentId: Allicin
+          Quantity: 1
+        - ReagentId: Vitamin
+          Quantity: 1
+
+# Хрен
+
+- type: entity
+  name: хрен
+  parent: FoodProduceBase
+  id: HorseradishBushel
+  description: Полезно, а это главное.
+  components:
+  - type: Sprite
+    sprite: _Ck/Objects/Misc/Hydroponics/horseradish.rsi
+    state: produce
+  - type: FlavorProfile
+    flavors:
+      - apple
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 14
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 5
+        - ReagentId: Vitamin
+          Quantity: 2
+  - type: Produce
+    seedId: horseradish
+  - type: Extractable
+    juiceSolution:
+      reagents:
+      - ReagentId: HorseradishSauce
+        Quantity: 10

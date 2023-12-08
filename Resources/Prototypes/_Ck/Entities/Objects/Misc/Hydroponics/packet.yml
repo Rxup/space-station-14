@@ -1,0 +1,19 @@
+- type: entity
+  parent: SeedBase
+  name: пакет семян хрена
+  id: HorseradishSeeds
+  components:
+    - type: Seed
+      seedId: horseradish
+    - type: Sprite
+      sprite: _Ck/Objects/Misc/Hydroponics/horseradish.rsi
+
+- type: entity
+  parent: SeedBase
+  name: пакет семян огурца
+  id: CucumberSeeds
+  components:
+    - type: Seed
+      seedId: cucumber
+    - type: Sprite
+      sprite: _Ck/Objects/Specific/Hydroponics/cucumber.rsi

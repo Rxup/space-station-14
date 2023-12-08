@@ -22,12 +22,14 @@
             BKCCSecOfficer: [ 2, 3]
             BKCCAssistant: [ 2, 4]
             BKCCAdmiral: [ 0, 0]
+            IAA: [ 1, 1 ]
+            Judge: [ 1, 1 ]
 
 - type: gameMap
   id: CentCommv2
   mapName: 'Central Command'
   mapPath: /Maps/Backmen/corvax_centcomm_bkm.yml
-  minPlayers: 20
+  minPlayers: 10
   stations:
     centcomm:
       stationProto: NanotrasenCentralCommand
@@ -47,3 +49,5 @@
           BKCCSecOfficer: [ 2, 3]
           BKCCAssistant: [ 2, 4]
           BKCCAdmiral: [ 0, 0]
+          IAA: [ 1, 1 ]
+          Judge: [ 1, 1 ]

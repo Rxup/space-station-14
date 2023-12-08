@@ -3,24 +3,21 @@
   name: job-name-centcomassistant
   description: job-description-centcomassistant
   playTimeTracker: JobCentralCommandAssistant
-  setPreference: true
   startingGear: CentComInternGear
   icon: JobIconServiceWorker
   supervisors: job-supervisors-centcommembers
   canBeAntag: false
   weight: 1
-  requireAdminNotify: true
-  joinNotifyCrew: true
+  whitelistRequired: true
   requirements:
-    - !type:DepartmentTimeRequirement
-      department: Engineering
-      time: 108000
-    - !type:DepartmentTimeRequirement
-      department: Medical
-      time: 108000
-    - !type:DepartmentTimeRequirement
-      department: Civilian
-      time: 108000
+     - !type:OverallPlaytimeRequirement
+       time: 60 #1 min #_Ck
+  #  - !type:DepartmentTimeRequirement
+  #    department: Medical
+  #    time: 3600
+  #  - !type:DepartmentTimeRequirement
+  #    department: Civilian
+  #    time: 3600
   access:
     - CCGeneral
   accessGroups:

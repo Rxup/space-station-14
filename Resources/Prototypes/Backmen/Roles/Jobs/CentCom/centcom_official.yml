@@ -3,25 +3,21 @@
   name: job-name-centcomoffBK
   description: job-description-centcomoffBK
   playTimeTracker: JobCentralCommandOfficial
-  setPreference: true
   startingGear: CentComCorvax
   icon: "JobIconNanotrasen"
   supervisors: job-supervisors-hoh
   canBeAntag: false
   weight: 1
-  requireAdminNotify: true
-  joinNotifyCrew: true
   whitelistRequired: true
   requirements:
-    - !type:DepartmentTimeRequirement
-      department: Command
-      time: 216000
-    - !type:RoleTimeRequirement
-      role: JobCentralCommandAssistant
-      time: 21600
-    - !type:DepartmentTimeRequirement
-      department: CentCom
-      time: 43200
+     - !type:OverallPlaytimeRequirement
+       time: 60 #1 min #_Ck
+  #  - !type:RoleTimeRequirement
+  #    role: JobCentralCommandAssistant
+  #    time: 3600
+  #  - !type:DepartmentTimeRequirement
+  #    department: CentCom
+  #    time: 3600
   access:
     - CCCargo
     - CCSecurity
@@ -58,6 +54,8 @@
     ears: ClothingHeadsetAltCentCom
     pocket1: CyberPen
     pocket2: BoxFolderSecretBlack
+  inhand:
+    - BriefcaseBrownFilledCC
   innerClothingSkirt: ClothingUniformJumpskirtCentcomOfficer
 
 - type: startingGear

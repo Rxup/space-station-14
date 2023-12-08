@@ -1,0 +1,52 @@
+- type: job
+  id: Chef
+  name: job-name-Chef
+  description: job-description-Chef
+  playTimeTracker: JobChef_Ck
+  whitelistRequired: false
+  requirements:
+    - !type:RoleTimeRequirement
+      role: JobSuChef_Ck
+      time: 7200 #1 hrs 
+    - !type:DepartmentTimeRequirement
+      department: Cafe
+      time: 10860 #3 hrs + 1 min
+  startingGear: Chef_CkGear
+  icon: "JobIconChef"
+  supervisors: job-supervisors-hop
+  canBeAntag: false
+  access:
+  - Service
+  - Maintenance
+  - Hydroponics
+  - Bar
+  - Kitchen
+  - Command
+  special:
+    - !type:AddComponentSpecial
+      components:
+        - type: PsionicBonusChance
+          flatBonus: 0.09
+  #start _Ck
+  minBankBalance: 500
+  maxBankBalance: 10000
+  wageDepartment: Cafe
+  wage: 350
+  #end _Ck
+
+- type: startingGear
+  id: Chef_CkGear
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitChef_ck
+    head: ClothingHeadHatChef_ck
+    back: ClothingBackpackFilled
+    mask: ClothingMaskItalianMoustache
+    shoes: ClothingShoesChef_ck
+    id: ChefPDA
+    ears: ClothingHeadsetService
+    outerClothing: ClothingOuterJacketChef_ck
+    pocket1: EncryptionKeyCommand
+    pocket2: RubberStampPOVAR
+  innerclothingskirt: ClothingUniformJumpskirtChef
+  satchel: ClothingBackpackSatchelFilled
+  duffelbag: ClothingBackpackDuffelFilled

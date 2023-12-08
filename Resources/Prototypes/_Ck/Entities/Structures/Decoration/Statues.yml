@@ -1,0 +1,26 @@
+- type: entity
+  id: StatueGoat
+  parent: BaseStructure
+  name: статуя козла
+  description: символично.
+  components:
+  - type: Sprite
+    sprite: _Ck/Entities/Structures/Decoration/statues.rsi
+    state: goat
+    drawdepth: Mobs
+    offset: "0.0,0.5"
+
+- type: entity
+  id: StatueBuddha
+  parent: BaseStructure
+  name: статуя будды
+  description: спокойно...
+  components:
+  - type: Sprite
+    sprite: _Ck/Entities/Structures/Decoration/statues.rsi
+    state: buddha
+    drawdepth: Mobs
+    offset: "0.0,0.5"
+  - type: Construction
+    graph: StatueStation
+    node: goatStatue

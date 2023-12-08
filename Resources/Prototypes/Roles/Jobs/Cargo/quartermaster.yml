@@ -7,12 +7,12 @@
 #    - !type:RoleTimeRequirement
 #      role: JobCargoTechnician
 #      time: 21600 #6 hrs
-    - !type:RoleTimeRequirement
-      role: JobSalvageSpecialist
-      time: 36000 #10 hrs # Corvax-RoleTime
+#    - !type:RoleTimeRequirement
+#      role: JobSalvageSpecialist
+#      time: 3600 #_Ck
     - !type:DepartmentTimeRequirement
       department: Cargo
-      time: 54000 #15 hrs # Corvax-RoleTime
+      time: 3600 #_Ck
 #    - !type:OverallPlaytimeRequirement
 #      time: 144000 #40 hrs
   weight: 10

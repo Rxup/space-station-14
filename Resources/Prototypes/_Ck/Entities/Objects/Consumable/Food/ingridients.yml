@@ -1,0 +1,54 @@
+- type: entity
+  parent: FoodInjectableBase
+  id: FoodDOPBase
+  abstract: true
+  components:
+  - type: Food
+  - type: Sprite
+    sprite: _Ck/Objects/Food/dop.rsi
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 6
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 1
+        - ReagentId: Vitamin
+          Quantity: 5
+  - type: Item
+    size: Tiny
+
+#ингридиент - рецепт - наполняемое им
+
+- type: entity
+  name: сосиска
+  parent: FoodDOPBase
+  id: FoodSausages
+  description: Молочная сосиска, по баварски!
+  components:
+  - type: Sprite
+    state: sausages
+  - type: FlavorProfile
+    flavors:
+      - bacon
+
+- type: entity
+  name: лаваш
+  parent: FoodDOPBase
+  id: FoodDoughLawa
+  description: Лаваш барма, сегодня будет шаурма
+  components:
+  - type: Sprite
+    state: lavash
+  - type: FlavorProfile
+    flavors:
+      - magical
+
+- type: entity
+  name: фарш
+  parent: FoodDOPBase
+  id: FoodMincedMeat
+  description: Фарш, человеческий... наверное!
+  components:
+  - type: Sprite
+    state: mincemeat

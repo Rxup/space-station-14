@@ -1,0 +1,59 @@
+- type: seed
+  id: horseradish
+  name: хрен
+  noun: seeds-noun-seeds
+  displayName: хрен
+  plantRsi: _Ck/Objects/Misc/Hydroponics/horseradish.rsi
+  packetPrototype: HorseradishSeeds
+  productPrototypes:
+    - HorseradishBushel
+  lifespan: 25
+  maturation: 10
+  production: 2
+  yield: 2
+  potency: 5
+  idealLight: 8
+  nutrientConsumption: 0.40
+  chemicals:
+    Nutriment:
+      Min: 1
+      Max: 15
+      PotencyDivisor: 20
+    Flour:
+      Min: 2
+      Max: 15
+      PotencyDivisor: 20
+
+- type: seed
+  id: cucumber
+  name: Огурец
+  displayName: Огурчики... Огурчики... Хотябы не огузки
+  plantRsi: _Ck/Objects/Specific/Hydroponics/cucumber.rsi
+  packetPrototype: CucumberSeeds
+  productPrototypes:
+    - FoodCucumber
+  harvestRepeat: Repeat
+  lifespan: 25
+  maturation: 8
+  production: 5
+  yield: 2
+  potency: 10
+  waterConsumption: 0.60
+  nutrientConsumption: 0.40
+  idealLight: 8
+  idealHeat: 298
+  juicy: true
+  splatPrototype: PuddleSplatter
+  chemicals:
+    Nutriment:
+      Min: 3
+      Max: 7
+      PotencyDivisor: 14
+    Vitamin:
+      Min: 2
+      Max: 5
+      PotencyDivisor: 33
+    Water:
+      Min: 5
+      Max: 8
+      PotencyDivisor: 25

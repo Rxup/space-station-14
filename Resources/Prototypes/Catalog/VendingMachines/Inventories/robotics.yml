@@ -1,6 +1,8 @@
 - type: vendingMachineInventory
   id: RoboticsInventory
   startingInventory:
+    boxForBioPrinter: 1 #_Ck
+    MaterialBioIndustrial: 1 #_Ck
     CableApcStack: 4
     SciFlash: 4
     ProximitySensor: 3

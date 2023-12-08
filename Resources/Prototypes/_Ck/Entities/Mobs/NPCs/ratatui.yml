@@ -1,0 +1,117 @@
+- type: entity
+  name:  Побратимы Рататуя
+  parent: MobMouse1
+  suffix: _Ck
+  id: MobRatatuiGroup
+  components:
+  - type: GhostRole
+    makeSentient: true
+    allowSpeech: true
+    allowMovement: true
+    name: Крыски
+    description: Готовь лучше всех!
+    rules: Слушай Рататуя! Забей на приказы поваров!
+  - type: Icon
+    sprite: Markers/jobs.rsi
+    state: ai
+  - type: GhostTakeoverAvailable
+  - type: Identity
+  - type: Hands
+  - type: Clickable
+  - type: Fingerprint
+  - type: Dna
+  - type: UserInterface
+    interfaces:
+    - key: enum.StrippingUiKey.Key
+      type: StrippableBoundUserInterface
+  - type: CanHostGuardian
+  - type: Inventory
+    templateId: InvRatatui
+  - type: InventorySlots
+  - type: Body
+    prototype: BodyHaisenberg
+  - type: RandomMetadata
+    nameSegments:
+    - NameRatatuiGroup
+  - type: RandomHumanoidAppearance
+    randomizeName: False
+
+- type: dataset
+  id: NameRatatuiGroup
+  values:
+  - Джанго #original
+  - Эмиль #original
+  - Анн
+  - Луиз
+  - Софи
+  - Лео
+  - Матео
+  - Николя
+  - Нолан
+
+- type: entity
+  name:  Рататуй
+  parent: MobMouse1
+  suffix: _Ck
+  id: MobRatatui
+  components:
+  - type: GhostRole
+    makeSentient: true
+    allowSpeech: true
+    allowMovement: true
+    name: Рататуй
+    description: Готовь лучше всех!
+    rules: Ты Рататуй, мама-миа!
+  - type: Icon
+    sprite: Markers/jobs.rsi
+    state: ai
+  - type: GhostTakeoverAvailable
+  - type: Identity
+  - type: Hands
+  - type: Clickable
+  - type: Fingerprint
+  - type: Dna
+  - type: UserInterface
+    interfaces:
+    - key: enum.StrippingUiKey.Key
+      type: StrippableBoundUserInterface
+  - type: CanHostGuardian
+  - type: Inventory
+    templateId: InvRatatui
+  - type: InventorySlots
+  - type: Body
+    prototype: BodyHaisenberg
+  - type: RandomMetadata
+    nameSegments:
+    - NameRatatui
+  - type: RandomHumanoidAppearance
+    randomizeName: False
+
+- type: dataset
+  id: NameRatatui
+  values:
+  - Рататуй
+
+- type: inventoryTemplate
+  id: InvRatatui
+  slots:
+  - name: back
+    slotTexture: back
+    slotFlags: BACK
+    slotGroup: SecondHotbar
+    stripTime: 6
+    uiWindowPos: 3,0
+    strippingWindowPos: 0,5
+    displayName: Back
+  - name: mask
+    slotTexture: mask
+    slotFlags: MASK
+    slotGroup: MainHotbar
+    uiWindowPos: 0,2
+    strippingWindowPos: 1,1
+    displayName: Mask
+    whitelist:
+      tags:
+        - PetWearable
+      components:
+        - Smokable

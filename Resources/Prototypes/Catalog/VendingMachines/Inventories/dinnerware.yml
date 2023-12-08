@@ -1,6 +1,15 @@
 ﻿- type: vendingMachineInventory
   id: DinnerwareInventory
   startingInventory:
+    boxForMINIBioPrinter: 1
+    ElectricGrillMachineCircuitboard: 2
+    BookRecipiesALL: 3
+    DrinkBasePots: 3
+    DrinkPots50: 1
+    DrinkPots200: 2
+    Jug: 5
+    DrinkPrimaryBrothBottleFull: 1
+    MaterialBioIndustrial: 1
     ButchCleaver: 1
     KitchenKnife: 5
     RollingPin: 4

@@ -1,0 +1,39 @@
+- type: job
+  id: SuChefck
+  name: job-name-suchef
+  description: job-description-suchef
+  playTimeTracker: JobSuChef_Ck
+  requirements:
+    - !type:RoleTimeRequirement
+      role: JobPovar
+      time: 3600 #1 hrs #_Ck
+  startingGear: SuChefGear
+  icon: "JobIconSuChef"
+  supervisors: job-supervisors-hop
+  access:
+  - Service
+  - Maintenance
+  - Hydroponics
+  - Bar
+  - Kitchen
+  #start _Ck
+  minBankBalance: 300
+  maxBankBalance: 1500
+  wageDepartment: Cafe
+  wage: 200
+  #end _Ck
+  
+- type: startingGear
+  id: SuChefGear
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitPovar_ck
+    head: ClothingHeadHatChef
+    back: ClothingBackpackFilled
+    shoes: ClothingShoesColorBlack
+    id: ChefPDA
+    ears: ClothingHeadsetService
+    outerClothing: ClothingOuterJacketChef
+    pocket1: BookRecipiesALL
+  innerclothingskirt: ClothingUniformJumpskirtPovar_ck
+  satchel: ClothingBackpackSatchelFilled
+  duffelbag: ClothingBackpackDuffelFilled

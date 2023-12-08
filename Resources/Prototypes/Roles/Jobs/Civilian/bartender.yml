@@ -3,10 +3,10 @@
   name: job-name-bartender
   description: job-description-bartender
   playTimeTracker: JobBartender
-  requirements:
-    - !type:DepartmentTimeRequirement
-      department: Civilian
-      time: 3600 #1 hrs # Corvax-RoleTime
+#  requirements:
+#    - !type:DepartmentTimeRequirement
+#      department: Civilian
+#      time: 3600 #1 hrs # Corvax-RoleTime
   startingGear: BartenderGear
   icon: "JobIconBartender"
   supervisors: job-supervisors-hop
@@ -18,10 +18,10 @@
   - Kitchen
   - Hydroponics
   #start-backmen: currency
-  minBankBalance: 150
-  maxBankBalance: 250
+  minBankBalance: 300
+  maxBankBalance: 500
   wageDepartment: Civilian
-  wage: 50
+  wage: 100
   #end-backmen: currency
 
 - type: startingGear
@@ -34,6 +34,6 @@
     shoes: ClothingShoesColorBlack
     id: BartenderPDA
     ears: ClothingHeadsetService
-  innerClothingSkirt: ClothingUniformJumpskirtBartender
+  innerclothingskirt: ClothingUniformJumpskirtBartender
   satchel: ClothingBackpackSatchelFilled
   duffelbag: ClothingBackpackDuffelFilled

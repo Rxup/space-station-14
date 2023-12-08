@@ -1,0 +1,80 @@
+- type: entity
+  name: Bank
+  parent: ReagentContainerBase
+  id: FoodBankBig
+  description: Банка идеально подходит для маринада огурцов
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 80 # enough to salted cucumber in.
+  - type: Sprite
+    sprite: _Ck/Objects/Consumable/Containers/jar.rsi
+    state: bowl
+  - type: DamageOnLand
+    damage:
+      types:
+        Blunt: 5
+  - type: DamageOtherOnHit
+    damage:
+      types:
+        Blunt: 5
+  - type: SolutionTransfer
+    canChangeTransferAmount: true
+  - type: UserInterface
+    interfaces:
+    - key: enum.TransferAmountUiKey.Key
+      type: TransferAmountBoundUserInterface
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 7
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: GlassBreak
+      - !type:SpillBehavior { }
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          FoodBankBigTrash:
+            min: 1
+            max: 2
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+  - type: Tag
+    tags:
+    - Trash
+
+- type: entity
+  parent: ReagentContainerBase
+  id: BankCap
+  name: Крышечка банки
+  description: Закроет банку так, что руками открыть невозможно...
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      drink:
+        maxVol: 5
+  - type: Sprite
+    sprite: _Ck/Objects/Consumable/Containers/jar.rsi
+    state: cap
+
+- type: entity
+  name: Осколки от банки
+  parent: BaseItem
+  id: FoodBankBigTrash
+  description: Что вы наделали... а как же... огурчики...
+  components:
+  - type: Sprite
+    sprite: _Ck/Objects/Consumable/Containers/jar.rsi
+    state: trash
+  - type: Tag
+    tags:
+    - Trash
+  - type: PhysicalComposition
+    materialComposition:
+      Glass: 50
+  - type: SpaceGarbage
+  - type: StaticPrice
+    price: 1

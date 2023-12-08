@@ -1,0 +1,7 @@
+﻿- type: lobbyBackground
+  id: Epsilon
+  background: /Textures/_Ck/LobbyScreens/epsilon.png
+
+- type: lobbyBackground
+  id: Syndicates
+  background: /Textures/_Ck/LobbyScreens/syndicates.png

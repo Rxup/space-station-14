@@ -7,7 +7,6 @@
   icon: "JobIconJanitor"
   supervisors: job-supervisors-hop
   access:
-  - Service
   - Janitor
   - Maintenance
   special:

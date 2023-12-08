@@ -1,0 +1,514 @@
+- type: entity
+  id: PaperFormBase
+  name: Универсальная
+  suffix: "База"
+  parent: Paper
+  components:
+  - type: Paper
+    content: form-text-base
+
+- type: entity
+  id: PaperFormComand1
+  name: Отчёт о цели (КОМ)
+  parent: Paper
+  components:
+  - type: Paper
+    content: form-text-Comand1-station
+
+- type: entity
+  id: PaperFormComand2
+  name:  Отчёт о состоянии станции (КОМ)
+  parent: Paper
+  components:
+  - type: Paper
+    content: form-text-Comand2-station
+
+- type: entity
+  id: PaperFormComand3
+  name: Отчёт о собрание глав (КОМ)
+  parent: Paper
+  components:
+  - type: Paper
+    content: form-text-Comand3-station
+
+- type: entity
+  id: PaperFormComand4
+  name: Заявление о назначении ВрИО Капитана (КОМ)
+  parent: Paper
+  components:
+  - type: Paper
+    content: form-text-Comand4-station
+
+- type: entity
+  id: PaperFormComand5
+  name: Заявление о назначении ВРиО Главы отдела (КОМ)
+  parent: Paper
+  components:
+  - type: Paper
+    content: form-text-Comand5-station
+
+- type: entity
+  id: PaperFormComand6
+  name: Заявление об увольнении Главы отдела (КОМ)
+  parent: Paper
+  components:
+  - type: Paper
+    content: form-text-Comand6-station
+
+- type: entity
+  id: PaperFormComand7
+  name: Запрос на выдачу премии (КОМ)
+  parent: Paper
+  components:
+  - type: Paper
+    content: form-text-Comand7-station
+
+- type: entity
+  id: PaperFormComand8
+  name: Заявление о смене должности (КОМ)
+  parent: Paper
+  components:
+  - type: Paper
+    content: form-text-Comand8-station
+
+- type: entity
+  id: PaperFormComand9
+  name: Ордер на повышение доступа (КОМ)
+  parent: Paper
+  components:
+  - type: Paper
+    content: form-text-Comand9-station
+
+- type: entity
+  id: PaperFormComand10
+  name: Приказ о лишении доступа (КОМ)
+  parent: Paper
+  components:
+  - type: Paper
+    content: form-text-Comand10-station
+
+- type: entity
+  id: PaperFormComand11
+  name: Приказ об увольнении (КОМ)
+  parent: Paper
+  components:
+  - type: Paper
+    content: form-text-Comand11-station
+
+- type: entity
+  id: PaperFormComand12
+  name: Запрос на вызов ОБР (КОМ)
+  parent: Paper
+  components:
+  - type: Paper
+    content: form-text-Comand12-station
+
+- type: entity
+  id: PaperFormComand13
+  name: Запрос на вызов ПЦК (КОМ)
+  parent: Paper
+  components:
+  - type: Paper
+    content: form-text-Comand13-station
+
+- type: entity
+  id: PaperFormComand14
+  name: Приказ о награждении (КОМ)
+  parent: Paper
+  components:
+  - type: Paper
+    content: form-text-Comand14-station
+
+- type: entity
+  id: PaperFormComand15
+  name: Заявление на получение id-карты (КОМ)
+  parent: Paper
+  components:
+  - type: Paper
+    content: form-text-Comand15-station
+
+- type: entity
+  id: PaperFormComand16
+  name: Заявление на получение КПК (КОМ)
+  parent: Paper
+  components:
+  - type: Paper
+    content: form-text-Comand16-station
+
+#Юридический департамент
+
+- type: entity
+  id: PaperFormAVD1
+  name: Заявление на нарушение СРП экипажа (ЮР)
+  parent: Paper
+  components:
+  - type: Paper
+    content: form-text-AVD1-station
+
+- type: entity
+  id: PaperFormAVD2
+  name: Запрос на УДО (ЮР)
+  parent: Paper
+  components:
+  - type: Paper
+    content: form-text-AVD2-station
+
+- type: entity
+  id: PaperFormAVD3
+  name: Заявление о нарушении СРП отдела (ЮР)
+  parent: Paper
+  components:
+  - type: Paper
+    content: form-text-AVD3-station
+
+- type: entity
+  id: PaperFormAVD4
+  name: Отчёт АВД (ЮР)
+  parent: Paper
+  components:
+  - type: Paper
+    content: form-text-AVD4-station
+
+- type: entity
+  id: PaperFormAVD5
+  name: Жалоба (ЮР)
+  parent: Paper
+  components:
+  - type: Paper
+    content: form-text-AVD5-station
+
+#Служба безопастности (нет)
+
+- type: entity
+  id: PaperFormSecurity1
+  name: Приказ о дежурствах (СБ)
+  parent: Paper
+  components:
+  - type: Paper
+    content: form-text-Security1-station
+
+- type: entity
+  id: PaperFormSecurity2
+  name: Объяснительная (СБ)
+  parent: Paper
+  components:
+  - type: Paper
+    content: form-text-Security2-station
+
+- type: entity
+  id: PaperFormSecurity3
+  name: Судебное производство (СБ)
+  parent: Paper
+  components:
+  - type: Paper
+    content: form-text-Security3-station
+
+- type: entity
+  id: PaperFormSecurity4
+  name: Постановление о розыске (СБ)
+  parent: Paper
+  components:
+  - type: Paper
+    content: form-text-Security4-station
+
+- type: entity
+  id: PaperFormSecurity5
+  name: Разрешение на ношение оружия (СБ)
+  parent: Paper
+  components:
+  - type: Paper
+    content: form-text-Security5-station
+
+- type: entity
+  id: PaperFormSecurity6
+  name: Постановление об установки отслеживающего импланта (СБ)
+  parent: Paper
+  components:
+  - type: Paper
+    content: form-text-Security6-station
+
+- type: entity
+  id: PaperFormSecurity7
+  name: Приказ о казни (СБ)
+  parent: Paper
+  components:
+  - type: Paper
+    content: form-text-Security7-station
+
+- type: entity
+  id: PaperFormSecurity8
+  name: Ордер (СБ)
+  parent: Paper
+  components:
+  - type: Paper
+    content: form-text-Security8-station
+
+- type: entity
+  id: PaperFormSecurity9
+  name: Отчет о расследовании (СБ)
+  parent: Paper
+  components:
+  - type: Paper
+    content: form-text-Security9-station
+
+#Медецинский отдел
+
+- type: entity
+  id: PaperFormMedical1
+  name: Заказ на химические вещества (МЕД)
+  parent: Paper
+  components:
+  - type: Paper
+    content: form-text-Medical1-station
+
+- type: entity
+  id: PaperFormMedical2
+  name: Выписной эпикриз (МЕД)
+  parent: Paper
+  components:
+  - type: Paper
+    content: form-text-Medical2-station
+
+- type: entity
+  id: PaperFormMedical3
+  name: Запрос на производство лекарстенных препаратов (МЕД)
+  parent: Paper
+  components:
+  - type: Paper
+    content: form-text-Medical3-station
+
+- type: entity
+  id: PaperFormMedical4
+  name: Свидетельство о смерти (МЕД)
+  parent: Paper
+  components:
+  - type: Paper
+    content: form-text-Medical4-station
+
+- type: entity
+  id: PaperFormMedical5
+  name: Заключение о психологическом здоровье (МЕД)
+  parent: Paper
+  components:
+  - type: Paper
+    content: form-text-Medical5-station
+
+- type: entity
+  id: PaperFormMedical6
+  name: Лекарственный рецепт (МЕД)
+  parent: Paper
+  components:
+  - type: Paper
+    content: form-text-Medical6-station
+
+- type: entity
+  id: PaperFormMedical7
+  name: Запрос на проведение эвтаназии (МЕД)
+  parent: Paper
+  components:
+  - type: Paper
+    content: form-text-Medical7-station
+
+- type: entity
+  id: PaperFormMedical8
+  name: Признание разумности существа (МЕД)
+  parent: Paper
+  components:
+  - type: Paper
+    content: form-text-Medical8-station
+
+#Инженерный отдел
+
+- type: entity
+  id: PaperFormEngineering1
+  name: Разрешение на строительство (ИНЖ)
+  parent: Paper
+  components:
+  - type: Paper
+    content: form-text-Engineering1-station
+
+- type: entity
+  id: PaperFormEngineering2
+  name: Заявление на проведение строительных работ (ИНЖ)
+  parent: Paper
+  components:
+  - type: Paper
+    content: form-text-Engineering2-station
+
+- type: entity
+  id: PaperFormEngineering3
+  name: Запрос на проведение технических работ (ИНЖ)
+  parent: Paper
+  components:
+  - type: Paper
+    content: form-text-Engineering3-station
+
+- type: entity
+  id: PaperFormEngineering4
+  name: Отчет о проведении технических работ (ИНЖ)
+  parent: Paper
+  components:
+  - type: Paper
+    content: form-text-Engineering4-station
+
+- type: entity
+  id: PaperFormEngineering5
+  name: Отчет о работе системы электроснабжения (ИНЖ)
+  parent: Paper
+  components:
+  - type: Paper
+    content: form-text-Engineering5-station
+
+- type: entity
+  id: PaperFormEngineering6
+  name: Отчет о работе системы АТМОС (ИНЖ)
+  parent: Paper
+  components:
+  - type: Paper
+    content: form-text-Engineering6-station
+
+#Научный отдел
+
+- type: entity
+  id: PaperFormScience1
+  name: Заказ на производство продукта (НИО)
+  parent: Paper
+  components:
+  - type: Paper
+    content: form-text-Science1-station
+
+- type: entity
+  id: PaperFormScience2
+  name: Отчет об артефакте (НИО)
+  parent: Paper
+  components:
+  - type: Paper
+    content: form-text-Science2-station
+
+- type: entity
+  id: PaperFormScience3
+  name: Отчет об изучении предмета (НИО)
+  parent: Paper
+  components:
+  - type: Paper
+    content: form-text-Science3-station
+
+#Отдел снабжения
+
+- type: entity
+  id: PaperFormSupply1
+  name: Заказ (СНБ)
+  parent: Paper
+  components:
+  - type: Paper
+    content: form-text-Supply1-station
+
+- type: entity
+  id: PaperFormSupply2
+  name: Заказ оружия (СНБ)
+  parent: Paper
+  components:
+  - type: Paper
+    content: form-text-Supply2-station
+
+#Сервесный отдел
+
+- type: entity
+  id: PaperFormService1
+  name: Заключение брака (СРВ)
+  parent: Paper
+  components:
+  - type: Paper
+    content: form-text-Service1-station
+
+- type: entity
+  id: PaperFormService2
+  name: Расторжение брака (СРВ)
+  parent: Paper
+  components:
+  - type: Paper
+    content: form-text-Service2-station
+
+
+#Центральное командование
+
+
+- type: entity
+  id: PaperFormCentcomm1
+  name: Запрос ситуации на станции (ЦК)
+  parent: Paper
+  components:
+  - type: Paper
+    content: form-text-Centcomm1-CC
+
+- type: entity
+  id: PaperFormCentcomm2
+  name: Документ о смене Цели станции (ЦК)
+  parent: Paper
+  components:
+  - type: Paper
+    content: form-text-Centcomm2-CC
+
+- type: entity
+  id: PaperFormCentcomm3
+  name: Приказ о аресте (ЦК)
+  parent: Paper
+  components:
+  - type: Paper
+    content: form-text-Centcomm3-CC
+
+- type: entity
+  id: PaperFormCentcomm4
+  name: Приказ о формировании Гражданской обороны (ЦК)
+  parent: Paper
+  components:
+  - type: Paper
+    content: form-text-Centcomm4-CC
+
+- type: entity
+  id: PaperFormCentcomm5
+  name: Заявление о заказе товара (ЦК)
+  parent: Paper
+  components:
+  - type: Paper
+    content: form-text-Centcomm5-CC
+
+- type: entity
+  id: PaperFormCentcomm6
+  name: документ об отмене действия КЗ/СРП (ЦК)
+  parent: Paper
+  components:
+  - type: Paper
+    content: form-text-Centcomm6-CC
+
+- type: entity
+  id: PaperFormCentcomm7
+  name: Указ о действии специального правила (ЦК)
+  parent: Paper
+  components:
+  - type: Paper
+    content: form-text-Centcomm7-CC
+
+- type: entity
+  id: PaperFormCentcomm8
+  name: Свидетельство смены должности (ЦК)
+  parent: Paper
+  components:
+  - type: Paper
+    content: form-text-Centcomm8-CC
+
+- type: entity
+  id: PaperFormCentcomm9
+  name: Директива (ЦК)
+  parent: Paper
+  components:
+  - type: Paper
+    content: form-text-Centcomm9-CC
+
+- type: entity
+  id: PaperFormCentcomm10
+  name: Запрос об отчете выполнения цели (ЦК)
+  parent: Paper
+  components:
+  - type: Paper
+    content: form-text-Centcomm10-CC

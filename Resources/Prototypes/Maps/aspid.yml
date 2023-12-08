@@ -2,7 +2,7 @@
   id: Aspid
   mapName: 'NCS Aspid'
   mapPath: /Maps/aspid.yml
-  minPlayers: 25
+  minPlayers: 0
   maxPlayers: 70
   stations:
     Aspid:
@@ -21,15 +21,20 @@
           availableJobs:
             #service
             Captain: [ 1, 1 ]
-            IAA: [ 1, 1 ] # Corvax-IAA
             HeadOfPersonnel: [ 1, 1 ]
             Bartender: [ 1, 2 ]
             Botanist: [ 2, 3 ]
-            Chef: [ 1, 3 ]
+            #_Ck
+            Chef: [ 1, 1 ]
+            SuChefck: [ 1, 1 ]
+            Povar: [ 2, 2 ]
+            Ratatui: [ 1, 1 ]
+            Lox: [ 1, 1 ]
+            #_Ck end
             Janitor: [ 2, 3 ]
             Chaplain: [ 1, 1 ]
             Librarian: [ 1, 1 ]
-            #Lawyer: [ 2, 2 ] # Corvax-IAA
+            Lawyer: [ 2, 2 ]
             ServiceWorker: [ 1, 1 ]
             #engineering
             ChiefEngineer: [ 1, 1 ]

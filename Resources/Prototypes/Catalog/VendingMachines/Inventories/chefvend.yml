@@ -1,11 +1,22 @@
 - type: vendingMachineInventory
   id: ChefvendInventory
   startingInventory:
+    DrinkSmetanaBottleFull: 2 #start _Ck
+    DrinkSgushenkaBottleFull: 2
+    DrinkHoneyBottleFull: 2
+    DrinkUniversalFermentBottleFull: 2
+    boxForSausages: 2 #end _Ck
+    DrinkWaterJug: 3
     ReagentContainerFlour: 2
+    ReagentContainerFlourSmall: 5
     ReagentContainerCornmeal: 2
+    ReagentContainerCornmealSmall: 5
     ReagentContainerSugar: 2
+    ReagentContainerSugarSmall: 5
     ReagentContainerRice: 2
+    ReagentContainerRiceSmall: 5
     FoodCondimentPacketSalt: 4
+    ReagentContainerMayo: 2
     FoodCondimentBottleEnzyme: 2
     FoodCondimentBottleHotsauce: 1
     FoodCondimentBottleKetchup: 1

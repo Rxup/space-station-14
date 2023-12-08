@@ -4,20 +4,20 @@
   description: job-description-hop
   playTimeTracker: JobHeadOfPersonnel
   requirements:
-    - !type:DepartmentTimeRequirement
-      department: Engineering
-      time: 18000 #5 hrs # Corvax-RoleTime
-    - !type:DepartmentTimeRequirement
-      department: Medical
-      time: 18000 #5 hrs # Corvax-RoleTime
-    - !type:DepartmentTimeRequirement
-      department: Security
-      time: 18000 #5 hrs # Corvax-RoleTime
 #    - !type:DepartmentTimeRequirement
-#      department: Command
-#      time: 72000 # 20 hrs
-    - !type:OverallPlaytimeRequirement
-      time: 180000 #50 hrs # Corvax-RoleTime
+#      department: Engineering
+#      time: 18000 #5 hrs # Corvax-RoleTime
+#    - !type:DepartmentTimeRequirement
+#      department: Medical
+#      time: 18000 #5 hrs # Corvax-RoleTime
+#    - !type:DepartmentTimeRequirement
+#      department: Security
+#      time: 18000 #5 hrs # Corvax-RoleTime
+    - !type:DepartmentTimeRequirement
+      department: Command
+      time: 10800 # 3 hrs
+#    - !type:OverallPlaytimeRequirement
+#      time: 54000 #15 hrs # Corvax-RoleTime
   weight: 20
   startingGear: HoPGear
   icon: "JobIconHeadOfPersonnel"
@@ -46,7 +46,6 @@
   - Salvage
   - Security
   - Brig
-  - Lawyer
   - Cargo
   - Atmospherics
   - Medical
@@ -75,7 +74,6 @@
     shoes: ClothingShoesColorBrown
     head: ClothingHeadHatHopcap
     id: HoPPDA
-    gloves: ClothingHandsGlovesHop
     ears: ClothingHeadsetAltCommand
     belt: BoxFolderClipboard
   innerClothingSkirt: ClothingUniformJumpskirtHoP

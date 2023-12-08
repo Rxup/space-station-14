@@ -1,0 +1,31 @@
+- type: department
+  id: Cafe
+  description: department-Cafe-description
+  color: "#bc987e"
+  roles:
+  - Bartender
+  - Botanist
+  - Povar
+  - Chef
+  - ServiceWorker
+  - Ratatui
+  - SuChefck
+  accountNumber: 1111 #Cafe account
+
+- type: department
+  id: Tex
+  description: department-Tex-description
+  color: "#857269"
+  roles:
+  - Lox
+  accountNumber: 1121 #Tex account
+
+- type: department
+  id: Juridical
+  description: department-Juridical-description
+  color: "#6d8c53"
+  roles:
+  - Judge
+  - IAA
+  - Lawyer
+  accountNumber: 1123 #Juridical account

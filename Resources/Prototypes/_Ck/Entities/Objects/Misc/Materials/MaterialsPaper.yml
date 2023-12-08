@@ -1,0 +1,64 @@
+- type: entity
+  parent: SheetMetalBase
+  id: MaterialPaperPrinter
+  suffix: Full
+  name: Рулон бумаги
+  components:
+    - type: Sprite
+      sprite: _Ck/Objects/Material.rsi
+      layers:
+        - state: paper_2
+          map: ["base"]
+    - type: Appearance
+    - type: Construction
+      graph: Glass
+      node: SheetGlass
+    - type: Material
+    - type: PhysicalComposition
+      materialComposition:
+        PaperPrinter: 100
+    - type: Tag
+      tags:
+        - paperPrinter
+        - RawMaterial
+    - type: Stack
+      stackType: PaperPrinter
+      baseLayer: base
+      layerStates:
+        - paper
+        - paper_1
+        - paper_2
+      count: 30
+    - type: Extractable
+      grindableSolutionName: steel
+
+- type: entity
+  parent: MaterialPaperPrinter
+  id: MaterialPaperPrinter1
+  name: Рулон бумаги
+  suffix: 1
+  components:
+    - type: Sprite
+      state: paper
+    - type: Stack
+      stackType: PaperPrinter
+      count: 1
+    - type: Tag
+      tags:
+        - Ore
+
+- type: stack
+  id: PaperPrinter
+  name: Рулон бумаги
+  icon: { sprite: _Ck/Objects/Material.rsi, state: paper }
+  spawn: MaterialPaperPrinter
+  maxCount: 30
+
+
+- type: material
+  id: PaperPrinter
+  name: Рулон бумаги
+  icon: /Textures/_Ck/Objects/Material.rsi/paper.png
+  color: "#dedede"
+  stackEntity: MaterialPaperPrinter
+  price: 15

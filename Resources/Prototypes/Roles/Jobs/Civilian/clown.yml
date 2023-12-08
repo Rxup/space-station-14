@@ -3,9 +3,10 @@
   name: job-name-clown
   description: job-description-clown
   playTimeTracker: JobClown
-  requirements:
-  - !type:OverallPlaytimeRequirement
-      time: 90000 #25 hrs # Corvax-RoleTime
+  whitelistRequired: false
+#  requirements:
+#  - !type:OverallPlaytimeRequirement
+#      time: 24000 #7 hrs #_Ck
   startingGear: ClownGear
   icon: "JobIconClown"
   supervisors: job-supervisors-hop

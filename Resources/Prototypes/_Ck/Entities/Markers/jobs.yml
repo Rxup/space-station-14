@@ -1,0 +1,28 @@
+#повар
+
+- type: entity
+  id: SpawnPointChefck
+  parent: SpawnPointJobBase
+  name: chefck
+  components:
+  - type: SpawnPoint
+    job_id: Chefck
+  - type: Sprite
+    sprite: _Ck\Markers
+    layers:
+      - state: green
+      - state: Chef_ck_spawn
+
+#бомж
+
+- type: entity
+  id: SpawnPointLox
+  parent: SpawnPointJobBase
+  name: lox
+  components:
+  - type: SpawnPoint
+    job_id: Lox
+  - type: Sprite
+    layers:
+      - state: green
+      - state: passenger

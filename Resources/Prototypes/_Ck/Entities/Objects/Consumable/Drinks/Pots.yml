@@ -1,0 +1,60 @@
+- type: entity
+  parent: DrinkBaseCup
+  id: DrinkBasePots
+#  abstract: false
+  name: кастрюля
+  description: обыкновенная кастрюля
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      drink:
+        maxVol: 100
+        canMix: true
+  - type: Sprite
+    sprite: _Ck/Objects/Misc/Pots/Pots100.rsi
+    layers:
+      - state: icon-0
+      - map: ["enum.SolutionContainerLayers.Fill"]
+        state: icon-3
+        visible: false
+  - type: Appearance
+  - type: SolutionContainerVisuals
+    maxFillLevels: 3
+    fillBaseName: icon-
+  - type: PhysicalComposition
+    materialComposition:
+      Steel: 25
+  - type: Item
+    size: Normal
+
+- type: entity
+  parent: DrinkBasePots
+  id: DrinkPots50
+  name: медный сотейник
+  description: сотейник на 50u
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      drink:
+        maxVol: 50
+        canMix: true
+  - type: Sprite
+    sprite: _Ck/Objects/Misc/Pots/Pots50.rsi
+  - type: Item
+    size: Small
+
+- type: entity
+  parent: DrinkBasePots
+  id: DrinkPots200
+  name: большая кастрюля
+  description: кастрюля на 200u
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      drink:
+        maxVol: 200
+        canMix: true
+  - type: Sprite
+    sprite: _Ck/Objects/Misc/Pots/Pots200.rsi
+  - type: Item
+    size: Large
