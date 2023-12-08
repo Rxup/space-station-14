@@ -1,28 +1,29 @@
-<Document>
-  
-  # Specialized Brute Chemicals
 
-  Nanotrasen's greatest scientists have synthesized three more specific brute chemicals! Each one heals a specific damage subtype.
+<Document>
+
+  # Специализированные химические средства от ушибов
+
+  Величайшие умы Нанотрейзен создали три более конкретных химических вещества от ушибов! Каждое из них лечит определенный подтип урона.
 
   <GuideReagentEmbed Reagent="Bruizine"/>
   <GuideReagentEmbed Reagent="Puncturase"/>
   <GuideReagentEmbed Reagent="Lacerinol"/>
 
-  # Razorium
+  # Разориум
 
-  [color=red]USE CAUTION[/color] when using the aforementioned specialized brute chemicals. Should one mix together with a different type of brute chemical, the resulting mixture will create a dangerous chemical known as Razorium!
+  [color=red]БУДЬТЕ ОСТОРОЖНЫ[/color] при использовании вышеупомянутых специализированных химических средств от ушибов. Если одно из них перемешивается с другим типом химического средства от ушибов, получившаяся смесь создаст опасное вещество, известное как Разориум!
   <GuideReagentEmbed Reagent="Razorium"/>
-  To avoid this, make sure the patient is done metabolizing one brute medication before giving them another. Keep an eye on the rate their health is changing.
+  Чтобы избежать этого, убедитесь, что пациент закончил метаболизм одного средства от ушибов, прежде чем давать ему другое. Следите за тем, как меняется их здоровье.
 
-  [bold]Some examples of mixtures that create Razorium are as follows:[/bold]
+  [bold]Некоторые примеры смесей, создающих Разориум:[/bold]
 
-  Bicaridine and Puncturase
+  Бикаридин и Пунктураз
 
-  Puncturase and Lacerinol
+  Пунктураз и Лацеринол
 
-  Bruizine and Bicaridine
+  Бруизин и Бикаридин
 
-  Lacerinol and Bruizine
+  Лацеринол и Бруизин
 
-  Please note that [bold]any[/bold] combination of these 4 chemicals will likely mix and create Razorium! Be careful when creating these chemicals, as they contain Bicaridine. Any leftover Bicaridine will likely mix to create Razorium!
+  Обратите внимание, что [bold]любое[/bold] сочетание этих 4 химических веществ, скорее всего, перемешается и создаст Разориум! Будьте осторожны при создании этих средств, так как они содержат Бикаридин. Любой оставшийся Бикаридин, скорее всего, перемешается и создаст Разориум!
 </Document>
