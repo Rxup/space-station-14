@@ -91,6 +91,7 @@ using Robust.Shared.Map;
 using Robust.Shared.Map.Components;
 using Robust.Shared.Physics.Collision.Shapes;
 using Robust.Shared.Physics.Components;
+using Robust.Shared.Physics.Dynamics;
 using Robust.Shared.Physics.Systems;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
@@ -1177,6 +1178,13 @@ public sealed class ShipwreckedRuleSystem : GameRuleSystem<ShipwreckedRuleCompon
             {
                 case ShipwreckedEventId.AnnounceTransit:
                 {
+                    // try to fix KeyNotFound in FindNewContacsts in client without /resetallents
+                    var q = EntityQueryEnumerator<PhysicsMapComponent,MetaDataComponent>();
+                    while (q.MoveNext(out var owner, out var comp, out var md))
+                    {
+                        Dirty(owner,comp,md);
+                    }
+
                     // We have to wait for the dungeon atlases to be ready, so do this here.
                     SpawnPlanetaryStructures(uid, component);
 
