@@ -8,6 +8,7 @@ using Robust.Client.GameObjects;
 using Robust.Client.UserInterface.Controls;
 using Robust.Client.UserInterface.CustomControls;
 using Robust.Client.UserInterface.XAML;
+using Robust.Shared.Configuration;
 using Robust.Shared.Map;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
@@ -20,6 +21,8 @@ public sealed partial class SponsorWindow : DefaultWindow
     [Dependency] private readonly IEntityManager _entityManager = default!;
     [Dependency] private readonly IClientSponsorsManager _clientSponsorsManager = default!;
     [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
+    [Dependency] private readonly IConfigurationManager _cfg = default!;
+
     public SponsorWindow()
     {
         RobustXamlLoader.Load(this);
@@ -51,16 +54,23 @@ public sealed partial class SponsorWindow : DefaultWindow
             }
         }
 
+        var selectedGhost = _cfg.GetCVar(Shared.Backmen.CCVar.CCVars.SponsorsSelectedGhost);
+        var selectedInt = -1;
+
         GhostTheme.AddItem(Loc.GetString("sponsor-win-manager-ghost-default"), id: -1);
         foreach (var (themePrototype,id) in _ghostThemePrototypes.Select((x,i)=>(x,i)))
         {
             GhostTheme.AddItem(Loc.GetString($"sponsor-win-manager-ghost-{themePrototype.ID}"), id);
+            if (selectedGhost == themePrototype.ID)
+            {
+                selectedInt = id;
+            }
         }
 
         //setVars
         Tier.Text = Loc.GetString($"sponsor-win-manager-tier-{_clientSponsorsManager.Tier}");
-        GhostTheme.SelectId(-1);
-        GhostPreview(GhostTheme.SelectedId);
+        GhostTheme.SelectId(selectedInt);
+        GhostPreview(selectedInt);
     }
 
     private float _accumulatedTime;
@@ -112,7 +122,17 @@ public sealed partial class SponsorWindow : DefaultWindow
     {
         GhostPreview(e.Id);
         GhostTheme.SelectId(e.Id);
-        // TODO: Save save changes in cvar
+        var selectedGhost = "";
+
+        foreach (var (themePrototype,id) in _ghostThemePrototypes!.Select((x,i)=>(x,i)))
+        {
+            if (e.Id == id)
+            {
+                selectedGhost = themePrototype.ID;
+            }
+        }
+        _cfg.SetCVar(Shared.Backmen.CCVar.CCVars.SponsorsSelectedGhost, selectedGhost);
+        _cfg.SaveToFile();
     }
 }
 
