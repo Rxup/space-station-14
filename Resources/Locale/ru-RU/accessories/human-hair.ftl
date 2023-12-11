@@ -39,6 +39,7 @@ marking-HumanHairBuzzcut = Баз кат
 marking-HumanHairCia = ЦРУ
 marking-HumanHairClassicAfro = Классическая Афро
 marking-HumanHairClassicBigAfro = Классическая Афро (Большая)
+marking-HumanHairClassicBusiness = Классическая Деловая
 marking-HumanHairClassicCia = Классическая ЦРУ
 marking-HumanHairClassicCornrows2 = Классические косички 2
 marking-HumanHairClassicFloorlengthBedhead = Классическая Небрежная (До пола)

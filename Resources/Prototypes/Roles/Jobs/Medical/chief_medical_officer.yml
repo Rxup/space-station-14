@@ -29,6 +29,7 @@
   - Maintenance
   - Chemistry
   - ChiefMedicalOfficer
+  - Brig
   #start-backmen: currency
   minBankBalance: 400
   maxBankBalance: 600
