@@ -1,4 +1,5 @@
 using Content.Shared.Destructible;
+using Content.Shared.Hands;
 using Content.Shared.Hands.Components;
 using Content.Shared.Hands.EntitySystems;
 using Content.Shared.Interaction.Components;
@@ -20,32 +21,34 @@ namespace Content.Server.Tools.Innate
         public override void Initialize()
         {
             base.Initialize();
-            SubscribeLocalEvent<InnateToolComponent, ComponentStartup>(OnStartup);
+            SubscribeLocalEvent<InnateToolComponent, HandCountChangedEvent>(OnStartup);
             SubscribeLocalEvent<InnateToolComponent, ComponentShutdown>(OnShutdown);
             SubscribeLocalEvent<InnateToolComponent, DestructionEventArgs>(OnDestroyed);
         }
 
-        private void OnStartup(EntityUid uid, InnateToolComponent component, ComponentStartup args)
+        private void OnStartup(EntityUid uid, InnateToolComponent component, HandCountChangedEvent args)
         {
-            if (component.Tools.Count == 0)
+            if (component.Tools.Count == 0 || component.Loaded)
                 return;
+
+            if (!TryComp<HandsComponent>(uid, out var hands) || hands.Count < component.Tools.Count)
+                return;
+
+            component.Loaded = true;
 
             var spawnCoord = Transform(uid).Coordinates;
 
-            if (TryComp<HandsComponent>(uid, out var hands) && hands.Count >= component.Tools.Count)
+            var items = EntitySpawnCollection.GetSpawns(component.Tools, _robustRandom);
+            foreach (var entry in items)
             {
-                var items = EntitySpawnCollection.GetSpawns(component.Tools, _robustRandom);
-                foreach (var entry in items)
+                var item = Spawn(entry, spawnCoord);
+                if (!_sharedHandsSystem.TryPickupAnyHand(uid, item, checkActionBlocker: false))
                 {
-                    var item = Spawn(entry, spawnCoord);
-                    AddComp<UnremoveableComponent>(item);
-                    if (!_sharedHandsSystem.TryPickupAnyHand(uid, item, checkActionBlocker: false))
-                    {
-                        QueueDel(item);
-                        continue;
-                    }
-                    component.ToolUids.Add(item);
+                    QueueDel(item);
+                    continue;
                 }
+                EnsureComp<UnremoveableComponent>(item);
+                component.ToolUids.Add(item);
             }
         }
 
