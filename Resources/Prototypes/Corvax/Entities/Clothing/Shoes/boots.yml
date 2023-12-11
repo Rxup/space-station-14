@@ -7,8 +7,9 @@
     - type: Clothing
       sprite: Corvax/Clothing/Shoes/Boots/jackboots_sec.rsi
     - type: ContainerContainer
-      item: !type:ContainerSlot
-      storagebase: !type:Container
+      containers:
+        item: !type:ContainerSlot
+        storagebase: !type:Container
     - type: Storage
       grid:
       - 0,0,2,1
