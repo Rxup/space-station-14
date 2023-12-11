@@ -72,6 +72,7 @@ namespace Content.IntegrationTests.Tests
             "Atlas",
             //backmen
             "CentCommv2",
+            "CentCommv3",
             "ShwrAdventurer",
             "ShwrBig",
             "shwrDust"
