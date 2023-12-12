@@ -11,13 +11,19 @@ public sealed partial class NightVisionComponent : Component
     [ViewVariables(VVAccess.ReadWrite), DataField("isOn"), AutoNetworkedField]
     public bool IsNightVision;
 
-	    [DataField("color")]
+    [DataField("color")]
     public Color NightVisionColor = Color.Green;
 
-    [Access(Other = AccessPermissions.ReadWriteExecute)]
-    public bool DrawShadows = false; // shitty code btw
+    [DataField]
+    public bool IsToggle = false;
 
+    [DataField] public EntityUid? ActionContainer;
+
+    [Access(Other = AccessPermissions.ReadWriteExecute)]
+    public bool DrawShadows = false;
 
     [Access(Other = AccessPermissions.ReadWriteExecute)]
     public bool GraceFrame = false;
 }
+
+public sealed partial class NVInstantActionEvent : InstantActionEvent { }

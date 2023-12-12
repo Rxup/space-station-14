@@ -27,3 +27,27 @@
   components:
   - type: ShowSyndicateIcons
   - type: ShowSecurityIcons
+
+- type: entity
+  id: NVToggleAction
+  name: nv toggle
+  description: bla
+  noSpawn: true
+  components:
+  - type: InstantAction
+    icon:
+      sprite: Clothing/Eyes/Glasses/ninjavisor.rsi
+      state: icon
+    event: !type:NVInstantActionEvent
+
+- type: entity
+  id: SwitchNightVision
+  name: switch night vision
+  description: bla
+  noSpawn: true
+  components:
+  - type: InstantAction
+    icon:
+      sprite: Clothing/Eyes/Glasses/ninjavisor.rsi
+      state: icon
+    event: !type:NVInstantActionEvent
