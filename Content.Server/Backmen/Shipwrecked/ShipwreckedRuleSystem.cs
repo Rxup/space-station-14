@@ -1440,7 +1440,7 @@ public sealed class ShipwreckedRuleSystem : GameRuleSystem<ShipwreckedRuleCompon
 
     protected override void Started(EntityUid uid, ShipwreckedRuleComponent component, GameRuleComponent gameRule, GameRuleStartedEvent args)
     {
-        if (component.Shuttle == null)
+        if (component.Shuttle == null || !component.Shuttle.Value.IsValid())
         {
             if (!AttachMap(EntityUid.Invalid, component, true))
             {
