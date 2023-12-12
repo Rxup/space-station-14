@@ -1926,6 +1926,9 @@
     tags:
     - DoorBumpOpener
     - FootstepSound
+  - type: NightVision
+    isToggle: true
+    color: "#808080"
 
 - type: entity
   name: tarantula
@@ -2225,6 +2228,9 @@
   - type: Tag
     tags:
     - VimPilot
+  - type: NightVision
+    isToggle: true
+    color: "#808080"
 
 - type: entity
   name: corrupted corgi
@@ -2377,6 +2383,9 @@
   - type: Tag
     tags:
     - VimPilot
+  - type: NightVision
+    isToggle: true
+    color: "#808080"
 
 - type: entity
   name: calico cat

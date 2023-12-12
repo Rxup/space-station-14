@@ -190,6 +190,9 @@
         - ArachneWeb
   - type: SpiderVampire
     spawnEgg: FoodEggSpiderVampire
+  - type: NightVision
+    isToggle: true
+    color: "#808080"
 
 - type: entity
   name: Чёрная вдова
