@@ -1,19 +1,30 @@
 ﻿using Content.Shared.Backmen.GhostTheme;
+using Content.Shared.GameTicking;
 using Robust.Client.GameObjects;
-using Robust.Shared.GameStates;
+using Robust.Shared.Configuration;
 using Robust.Shared.Prototypes;
-using Robust.Shared.Serialization.Manager;
 
 namespace Content.Client.Backmen.GhostTheme;
 
-public sealed class GhostThemeSystem: EntitySystem
+public sealed class GhostThemeSystem : EntitySystem
 {
-    [Dependency] private IPrototypeManager _prototypeManager = default!;
-    [Dependency] private readonly ISerializationManager _serialization = default!;
+    [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
+    [Dependency] private readonly IConfigurationManager _cfg = default!;
     public override void Initialize()
     {
         base.Initialize();
         SubscribeLocalEvent<GhostThemeComponent, AfterAutoHandleStateEvent>(OnInit);
+        SubscribeNetworkEvent<TickerJoinGameEvent>(JoinGame);
+    }
+
+    private void JoinGame(TickerJoinGameEvent ev)
+    {
+        var ghostTheme = _cfg.GetCVar(Shared.Backmen.CCVar.CCVars.SponsorsSelectedGhost);
+        if (string.IsNullOrEmpty(ghostTheme))
+        {
+            return;
+        }
+        RaiseNetworkEvent(new RequestGhostThemeEvent(ghostTheme));
     }
 
     private void OnInit(EntityUid uid, GhostThemeComponent component, ref AfterAutoHandleStateEvent args)
