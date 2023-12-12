@@ -169,11 +169,28 @@ public sealed class ShipwreckedRuleSystem : GameRuleSystem<ShipwreckedRuleCompon
         SubscribeLocalEvent<ShipwreckSurvivorComponent, BeingGibbedEvent>(OnSurvivorBeingGibbed);
         SubscribeLocalEvent<EntityZombifiedEvent>(OnZombified);
 
-        SubscribeLocalEvent<LoadingMapsEvent>(OnLoadingMaps);
+        //SubscribeLocalEvent<LoadingMapsEvent>(OnLoadingMaps);
+        SubscribeLocalEvent<PostGameMapLoad>(OnMapReady);
         SubscribeLocalEvent<PlayerBeforeSpawnEvent>(OnBeforeSpawn);
 
         SubscribeLocalEvent<ShipwreckMapGridComponent, UnLoadChunkEvent>(OnChunkUnLoaded);
         SubscribeLocalEvent<ShipwreckMapGridComponent, MapInitEvent>(OnChunkLoad);
+    }
+
+    private void OnMapReady(PostGameMapLoad ev)
+    {
+        if (_gameTicker.RunLevel != GameRunLevel.PreRoundLobby)
+        {
+            return; // we cant can't handle map without load
+        }
+        var query = EntityQueryEnumerator<ShipwreckedRuleComponent, GameRuleComponent>();
+        while (query.MoveNext(out var uid, out var shipwrecked, out var gameRule))
+        {
+            if (!GameTicker.IsGameRuleAdded(uid, gameRule))
+                continue;
+
+            AttachMap(ev.Grids.FirstOrDefault(), shipwrecked); // т.е. сначало добавление, далее загрузка карты, и после только запуск
+        }
     }
 
     private void OnChunkLoad(EntityUid uid, ShipwreckMapGridComponent component, MapInitEvent args)
@@ -260,7 +277,7 @@ public sealed class ShipwreckedRuleSystem : GameRuleSystem<ShipwreckedRuleCompon
 
         }
     }
-
+/*
     private void OnLoadingMaps(LoadingMapsEvent ev)
     {
         var query = EntityQueryEnumerator<ShipwreckedRuleComponent, GameRuleComponent>();
@@ -269,7 +286,8 @@ public sealed class ShipwreckedRuleSystem : GameRuleSystem<ShipwreckedRuleCompon
             if (!GameTicker.IsGameRuleAdded(uid, gameRule))
                 continue;
 
-            SpawnPlanet(uid, shipwrecked);
+
+            //SpawnPlanet(uid, shipwrecked);
 
             // This gamemode does not need a station. Revolutionary.
             //ev.Maps.Clear();
@@ -278,7 +296,7 @@ public sealed class ShipwreckedRuleSystem : GameRuleSystem<ShipwreckedRuleCompon
             // arrivals station, and centcomm station from loading that would be perfect.
         }
     }
-
+*/
     [ValidatePrototypeId<DatasetPrototype>]
     private const string PlanetNames = "names_borer";
 
@@ -312,14 +330,14 @@ public sealed class ShipwreckedRuleSystem : GameRuleSystem<ShipwreckedRuleCompon
         var seed = _random.Next();
 
         var biome = AddComp<BiomeComponent>(planetMapUid);
-        _biomeSystem.SetSeed(biome, seed);
-        _biomeSystem.SetTemplate(biome, _prototypeManager.Index<BiomeTemplatePrototype>(destination.BiomePrototype));
-        _biomeSystem.AddMarkerLayer(biome, "OreTin");
-        _biomeSystem.AddMarkerLayer(biome, "OreGold");
-        _biomeSystem.AddMarkerLayer(biome, "OreSilver");
-        _biomeSystem.AddMarkerLayer(biome, "OrePlasma");
-        _biomeSystem.AddMarkerLayer(biome, "OreUranium");
-        _biomeSystem.AddTemplate(biome, "Loot", _prototypeManager.Index<BiomeTemplatePrototype>("Caves"), 1);
+        _biomeSystem.SetSeed(planetMapUid, biome, seed);
+        _biomeSystem.SetTemplate(planetMapUid, biome, _prototypeManager.Index<BiomeTemplatePrototype>(destination.BiomePrototype));
+        _biomeSystem.AddMarkerLayer(planetMapUid, biome, "OreTin");
+        _biomeSystem.AddMarkerLayer(planetMapUid, biome, "OreGold");
+        _biomeSystem.AddMarkerLayer(planetMapUid, biome, "OreSilver");
+        _biomeSystem.AddMarkerLayer(planetMapUid, biome, "OrePlasma");
+        _biomeSystem.AddMarkerLayer(planetMapUid, biome, "OreUranium");
+        _biomeSystem.AddTemplate(planetMapUid, biome, "Loot", _prototypeManager.Index<BiomeTemplatePrototype>("Caves"), 1);
         Dirty(planetMapUid, biome);
 
         // Gravity
@@ -389,8 +407,6 @@ public sealed class ShipwreckedRuleSystem : GameRuleSystem<ShipwreckedRuleCompon
         AddComp<BoundaryComponent>(boundaryUid);
 
         _mapManager.DoMapInitialize(planetMapId);
-
-
         _mapManager.SetMapPaused(planetMapId, true);
 
         component.PlanetMapId = planetMapId;
@@ -481,24 +497,36 @@ public sealed class ShipwreckedRuleSystem : GameRuleSystem<ShipwreckedRuleCompon
 
     [ValidatePrototypeId<GameMapPrototype>]
     private const string DefaultShuttle = "ShwrAdventurer";
-    private bool AttachMap(EntityUid uid, ShipwreckedRuleComponent component)
+    private bool AttachMap(EntityUid gridId, ShipwreckedRuleComponent component, bool force = false)
     {
         var mapId = component.SpaceMapId ?? _gameTicker.DefaultMap;
         //var spaceMapUid = _mapManager.GetMapEntityId(_gameTicker.DefaultMap);
 
         var isValidMap = false;
 
-        var query = EntityQueryEnumerator<SpawnPointComponent, MetaDataComponent, TransformComponent>();
-        while (query.MoveNext(out var spawnPointComponent,out var meta, out var xform))
+        foreach (var (spawnPointComponent, meta, xform) in EntityQuery<SpawnPointComponent, MetaDataComponent, TransformComponent>(true))
         {
             if (meta.EntityPrototype?.ID != component.SpawnPointHecate.Id)
                 continue;
 
-            if (xform.MapID != mapId)
-                continue;
+            if (gridId.IsValid())
+            {
+                if (xform.GridUid != gridId)
+                    continue;
+            }
+            else
+            {
+                if(xform.MapID != mapId)
+                    continue;
+            }
 
             isValidMap = true;
             break;
+        }
+
+        if (!isValidMap && !force)
+        {
+            return false;
         }
 
         if (!isValidMap)
@@ -585,7 +613,7 @@ public sealed class ShipwreckedRuleSystem : GameRuleSystem<ShipwreckedRuleCompon
         var spawns = new List<EntityCoordinates>();
 
         var query = EntityQueryEnumerator<SpawnPointComponent, MetaDataComponent, TransformComponent>();
-        while (query.MoveNext(out var uid, out var meta, out var xform))
+        while (query.MoveNext(out _, out var meta, out var xform))
         {
             if (meta.EntityPrototype?.ID != component.SpawnPointTraveller.Id)
                 continue;
@@ -1381,12 +1409,10 @@ public sealed class ShipwreckedRuleSystem : GameRuleSystem<ShipwreckedRuleCompon
 
         component.Destination = _prototypeManager.Index<ShipwreckDestinationPrototype>(destination);
 
-
+        SpawnPlanet(uid, component);
+        /*
         if (_gameTicker.RunLevel == GameRunLevel.InRound)
         {
-            AttachMap(uid, component);
-            SpawnPlanet(uid, component);
-
             foreach (var map in _mapManager.GetAllMapIds().ToArray())
             {
                 if (component.PlanetMapId.HasValue && component.PlanetMapId.Value == map)
@@ -1406,7 +1432,7 @@ public sealed class ShipwreckedRuleSystem : GameRuleSystem<ShipwreckedRuleCompon
             if (component.Shuttle == null)
                 throw new ArgumentException($"Shipwrecked failed to spawn a Shuttle.");
         }
-
+*/
         // Currently, the AutoCallStartTime is part of the public API and not access restricted.
         // If this ever changes, I will send a patch upstream to allow it to be altered.
         _roundEndSystem.AutoCallStartTime = TimeSpan.MaxValue;
@@ -1414,13 +1440,16 @@ public sealed class ShipwreckedRuleSystem : GameRuleSystem<ShipwreckedRuleCompon
 
     protected override void Started(EntityUid uid, ShipwreckedRuleComponent component, GameRuleComponent gameRule, GameRuleStartedEvent args)
     {
-        AttachMap(uid, component);
-        SpawnPlanet(uid, component);
-
-        if (component.PlanetMapId != null && _mapManager.MapExists(component.PlanetMapId.Value) && _mapManager.IsMapPaused(component.PlanetMapId.Value))
+        if (component.Shuttle == null)
         {
-            _mapManager.SetMapPaused(component.PlanetMapId!.Value, false);
+            if (!AttachMap(EntityUid.Invalid, component, true))
+            {
+                _gameTicker.EndGameRule(uid, gameRule);
+                throw new ArgumentException("Неправильная карта! Отмена!");
+            }
+
         }
+        EnsureMapUnpaused(component);
 
         var loadQuery = EntityQueryEnumerator<ApcPowerReceiverComponent, TransformComponent>();
         while (loadQuery.MoveNext(out _, out var apcPowerReceiver, out var xform))
@@ -1475,6 +1504,14 @@ public sealed class ShipwreckedRuleSystem : GameRuleSystem<ShipwreckedRuleCompon
         return null;
     }
 
+    private void EnsureMapUnpaused(ShipwreckedRuleComponent shipwrecked)
+    {
+        if (shipwrecked.PlanetMapId != null && _mapManager.MapExists(shipwrecked.PlanetMapId.Value) && _mapManager.IsMapPaused(shipwrecked.PlanetMapId.Value))
+        {
+            _mapManager.SetMapPaused(shipwrecked.PlanetMapId!.Value, false);
+        }
+    }
+
     private void OnPlayersSpawning(RulePlayerSpawningEvent ev)
     {
         var query = EntityQueryEnumerator<ShipwreckedRuleComponent, GameRuleComponent>();
@@ -1482,6 +1519,8 @@ public sealed class ShipwreckedRuleSystem : GameRuleSystem<ShipwreckedRuleCompon
         {
             if (!GameTicker.IsGameRuleAdded(uid, gameRule))
                 continue;
+
+            EnsureMapUnpaused(shipwrecked);
 
             var players = new List<ICommonSession>(ev.PlayerPool)
                 .Where(player => ev.Profiles.ContainsKey(player.UserId));

@@ -50,10 +50,9 @@ public sealed class SliceRecipeEntry
         Name = TextTools.TextTools.CapitalizeString(proto.Name);
         Type = "sliceableRecipes";
         Input = proto.ID;
-        if (proto.Components.TryGetComponent("SliceableFood", out var comp))
+        if (proto.Components.TryGetComponent("SliceableFood", out var comp) && comp is SliceableFoodComponent sliceable)
         {
-            var sliceable = (SliceableFoodComponent) comp;
-            Result = sliceable.Slice;
+            Result = sliceable.Slice!;
             Count = sliceable.TotalCount;
         }
         else // just in case something will go wrong and we somehow will not get our component
