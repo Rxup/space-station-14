@@ -1480,9 +1480,20 @@ public sealed class ShipwreckedRuleSystem : GameRuleSystem<ShipwreckedRuleCompon
 
         component.NextEventTick = _gameTiming.CurTime + component.EventSchedule[0].timeOffset;
 
+        if (component.PlanetMap == null)
+        {
+            SpawnPlanet(uid,component);
+        }
+
+        if (component.PlanetMap == null)
+        {
+            _gameTicker.EndGameRule(uid, gameRule);
+            throw new ArgumentException("Неправильная карта планеты! Отмена!");
+        }
+
         _shuttleSystem.FTLTravel(shuttle,
             Comp<ShuttleComponent>(shuttle),
-            Transform(component.PlanetMap.GetValueOrDefault()).Coordinates,
+            Transform(component.PlanetMap.Value).Coordinates,
             // The travellers are already in FTL by the time the gamemode starts.
             startupTime: 0,
             hyperspaceTime: (float) flightTime.TotalSeconds);
