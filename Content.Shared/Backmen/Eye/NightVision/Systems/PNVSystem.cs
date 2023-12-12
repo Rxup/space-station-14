@@ -27,21 +27,27 @@ public sealed class PNVSystem : EntitySystem
 
     private void OnEquipped(EntityUid uid, PNVComponent component, GotEquippedEvent args)
     {
-        var nvcomp = _entManager.GetComponent<NightVisionComponent>(args.Equipee);
-        if (nvcomp == null)
-            return;
+        if (args.Slot == "eyes" || args.Slot == "mask" || args.Slot == "head")
+        {
+            var nvcomp = _entManager.GetComponent<NightVisionComponent>(args.Equipee);
+            if (nvcomp == null)
+                return;
 
-        _nightvisionableSystem.UpdateIsNightVision(args.Equipee);
-        _actionsSystem.AddAction(args.Equipee, ref component.ActionContainer, component.ActionProto);
+	            _nightvisionableSystem.UpdateIsNightVision(args.Equipee);
+            _actionsSystem.AddAction(args.Equipee, ref component.ActionContainer, component.ActionProto);
+        }
     }
 
     private void OnUnequipped(EntityUid uid, PNVComponent component, GotUnequippedEvent args)
     {
-	    var nvcomp = _entManager.GetComponent<NightVisionComponent>(args.Equipee);
-        if (nvcomp == null)
-            return;
+	        if (args.Slot == "eyes" || args.Slot == "mask" || args.Slot == "head")
+        {
+            var nvcomp = _entManager.GetComponent<NightVisionComponent>(args.Equipee);
+            if (nvcomp == null)
+                return;
 
-        _nightvisionableSystem.UpdateIsNightVision(args.Equipee);
-        _actionsSystem.RemoveAction(args.Equipee, component.ActionContainer);
+	            _nightvisionableSystem.UpdateIsNightVision(args.Equipee);
+            _actionsSystem.RemoveAction(args.Equipee, component.ActionContainer);
+        }
     }
 }
