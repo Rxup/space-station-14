@@ -15,3 +15,23 @@
     fiberMaterial: fibers-durathread
     fiberColor: fibers-regal-blue
   - type: FingerprintMask
+
+# Перчатки Деда Мороза
+
+- type: entity
+  parent: ClothingHandsBase
+  id: ClothingHandsGlovesSSSPMoroz
+  name: Рукавицы Деда Мороза. 
+  description: 
+  components:
+  - type: Sprite
+    sprite: _Ck/Entities/clothing/gloves/Moroz_gloves.rsi
+  - type: Clothing
+    sprite: _Ck/Entities/clothing/gloves/Moroz_gloves.rsi
+  - type: GloveHeatResistance
+    heatResistance: 1200
+  - type: Insulated
+  - type: Fiber
+    fiberMaterial: fibers-durathread
+    fiberColor: fibers-regal-blue
+  - type: FingerprintMask

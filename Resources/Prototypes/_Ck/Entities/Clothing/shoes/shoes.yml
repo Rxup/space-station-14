@@ -19,3 +19,18 @@
     sprite: _Ck/Entities/clothing/shoes/lox.rsi
   - type: Clothing
     sprite: _Ck/Entities/clothing/shoes/lox.rsi
+
+# Обувь Дед Мороза
+
+- type: entity
+  parent: ClothingShoesBaseButcherable
+  id: ClothingShoesBootsMoroz
+  name: Валенки
+  description: Современная теплая обувь, натуральные материалы, нескользящая подошва, утепленные на застежке Валенки.
+  components:
+  - type: Sprite
+    sprite: _Ck/Entities/clothing/shoes/Moroz_winterboots.rsi
+  - type: Clothing
+    sprite: _Ck/Entities/clothing/shoes/Moroz_winterboots.rsi
+  - type: TemperatureProtection
+    coefficient: 0.1
