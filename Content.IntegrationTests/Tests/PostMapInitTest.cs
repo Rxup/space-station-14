@@ -66,12 +66,12 @@ namespace Content.IntegrationTests.Tests
             "Saltern",
             "Core",
             "Marathon",
-            "Kettle",
             "Gemini",
             "MeteorArena",
             "Atlas",
             //backmen
             "CentCommv2",
+            "CentCommv3",
             "ShwrAdventurer",
             "ShwrBig",
             "shwrDust"

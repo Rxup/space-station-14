@@ -1712,6 +1712,10 @@
   parent: ClothingDeathSquadronBackpack
   id: ClothingBackpackSpecialForce
   components:
+    - type: Storage
+      grid:
+      - 0,0,9,5 # TODO: Change this
+      maxItemSize: Huge
     - type: StorageFill
       contents:
         - id: PinpointerNuclear

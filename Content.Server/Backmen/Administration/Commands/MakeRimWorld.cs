@@ -71,15 +71,15 @@ public sealed class MakeRimWorld : IConsoleCommand
 
         var biome = _entityManager.EnsureComponent<BiomeComponent>(mapUid);
 
-        biomeSystem.SetSeed(biome, _random.Next());
-        biomeSystem.SetTemplate(biome, biomeTemplate);
-        biomeSystem.AddMarkerLayer(biome, "Carps");
-        biomeSystem.AddMarkerLayer(biome, "OreTin");
-        biomeSystem.AddMarkerLayer(biome, "OreGold");
-        biomeSystem.AddMarkerLayer(biome, "OreSilver");
-        biomeSystem.AddMarkerLayer(biome, "OrePlasma");
-        biomeSystem.AddMarkerLayer(biome, "OreUranium");
-        biomeSystem.AddTemplate(biome, "Loot", _protoManager.Index<BiomeTemplatePrototype>("Caves"), 1);
+        biomeSystem.SetSeed(mapUid, biome, _random.Next());
+        biomeSystem.SetTemplate(mapUid, biome, biomeTemplate);
+        biomeSystem.AddMarkerLayer(mapUid, biome, "Carps");
+        biomeSystem.AddMarkerLayer(mapUid, biome, "OreTin");
+        biomeSystem.AddMarkerLayer(mapUid, biome, "OreGold");
+        biomeSystem.AddMarkerLayer(mapUid, biome, "OreSilver");
+        biomeSystem.AddMarkerLayer(mapUid, biome, "OrePlasma");
+        biomeSystem.AddMarkerLayer(mapUid, biome, "OreUranium");
+        biomeSystem.AddTemplate(mapUid, biome, "Loot", _protoManager.Index<BiomeTemplatePrototype>("Caves"), 1);
         _entityManager.Dirty(mapUid, biome);
 
 

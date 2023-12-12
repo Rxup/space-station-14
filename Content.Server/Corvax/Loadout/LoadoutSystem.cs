@@ -52,6 +52,11 @@ public sealed class LoadoutSystem : EntitySystem
                     if (isSponsorOnly || isWhitelisted || isBlacklisted || isSpeciesRestricted)
                         continue;
 
+                    if (!_inventorySystem.TryGetSlots(ev.Mob, out var slots))
+                    {
+                        continue;
+                    }
+
                     var entity = Spawn(loadout.EntityId, Transform(ev.Mob).Coordinates);
 
                     // Take in hand if not clothes
@@ -65,26 +70,24 @@ public sealed class LoadoutSystem : EntitySystem
                     string? firstSlotName = null;
                     var isEquiped = false;
 
-                    if (_inventorySystem.TryGetSlots(ev.Mob, out var slots))
+                    foreach (var slot in slots)
                     {
-                        foreach (var slot in slots)
+                        if (!clothing.Slots.HasFlag(slot.SlotFlags))
+                            continue;
+
+                        if (firstSlotName == null)
+                            firstSlotName = slot.Name;
+
+                        if (_inventorySystem.TryGetSlotEntity(ev.Mob, slot.Name, out var _))
+                            continue;
+
+                        if (_inventorySystem.TryEquip(ev.Mob, entity, slot.Name, true))
                         {
-                            if (!clothing.Slots.HasFlag(slot.SlotFlags))
-                                continue;
-
-                            if (firstSlotName == null)
-                                firstSlotName = slot.Name;
-
-                            if (_inventorySystem.TryGetSlotEntity(ev.Mob, slot.Name, out var _))
-                                continue;
-
-                            if (_inventorySystem.TryEquip(ev.Mob, entity, slot.Name, true))
-                            {
-                                isEquiped = true;
-                                break;
-                            }
+                            isEquiped = true;
+                            break;
                         }
                     }
+
 
 
                     if (isEquiped || firstSlotName == null)
