@@ -1,0 +1,26 @@
+# Мешок Деда Мороза
+
+- type: entity
+  parent: ClothingNeckBase
+  id: MorozBag
+  suffix: PresentsGiver
+  name: Подарочный мешок Деда Мороза !
+  description: Возьми только один подарок, ты заслужил:)
+  components:
+  - type: LimitedItemGiver
+    spawnEntries:
+      - id: PresentRandom
+        orGroup: present
+      - id: PresentRandomUnsafe
+        prob: 0.5
+        orGroup: present
+      - id: PresentRandomInsane
+        prob: 0.2
+        orGroup: present
+    receivedPopup: christmas-tree-got-gift
+    deniedPopup: christmas-tree-no-gift
+    requiredHoliday: FestiveSeason
+  - type: Sprite
+    sprite: _Ck/Entities/Objects/Decoration/Moroz_boxs_bag.rsi
+  - type: Clothing
+    sprite: _Ck/Entities/Objects/Decoration/Moroz_boxs_bag.rsi

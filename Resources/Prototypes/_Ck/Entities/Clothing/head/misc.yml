@@ -58,3 +58,16 @@
     sprite: _Ck/Entities/clothing/head/lox.rsi
   - type: Clothing
     sprite: _Ck/Entities/clothing/head/lox.rsi
+
+# Шапка Деда Мороза
+
+- type: entity
+  parent: ClothingHeadBase
+  id: ClothingHeadHatDedMorozhat
+  name: Шапка Деда Мороза
+  description: Шапочка Деда Мороза, кажется сзади виднеется веревочка - застежка для бороды...
+  components:
+  - type: Sprite
+    sprite: _Ck/Entities/clothing/head/Moroz_hat.rsi
+  - type: Clothing
+    sprite: _Ck/Entities/clothing/head/Moroz_hat.rsi
