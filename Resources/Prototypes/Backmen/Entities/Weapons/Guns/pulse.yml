@@ -67,6 +67,7 @@
         shader: unshaded
   - type: Item
     sprite: Backmen/Objects/Weapons/Gunsx64/Battery/Pulse/ap12/tiny.rsi
+    size: Large
   - type: Clothing
     sprite: Backmen/Objects/Weapons/Gunsx64/Battery/Pulse/ap12/tiny.rsi
   - type: GunWieldBonus
@@ -111,6 +112,7 @@
         shader: unshaded
   - type: Item
     sprite: Backmen/Objects/Weapons/Gunsx64/Battery/Pulse/xmlg/tiny.rsi
+    size: Large
   - type: Clothing
     sprite: Backmen/Objects/Weapons/Gunsx64/Battery/Pulse/xmlg/tiny.rsi
   - type: GunWieldBonus
@@ -119,12 +121,12 @@
   - type: Gun
     minAngle: 24
     maxAngle: 45
-    fireRate: 8
+    fireRate: 5
     soundEmpty: /Audio/Backmen/Misc/error.ogg
     soundGunshot:
       path: /Audio/Weapons/Guns64/Pulse/xmlg.ogg
       params:
-        volume: -2
+        volume: -1
   - type: ItemSlots
     slots:
       gun_magazine:
@@ -179,6 +181,53 @@
         whitelist:
           tags:
             - MagazinePulseShotgun
+
+- type: entity
+  name: Triton Mark 3
+  parent: BaseWeaponEnergyRifle
+  id: WeaponPulseSMGTritonM3
+  description: The AP Motorized Pulse SMP is a military-grade, rapid-fire assault rifle with large magazine ammunition capacity. The Pulse SMG is the standard-issue service rifle of the Earth Special Force.
+  components:
+  - type: Sprite
+    sprite: Backmen/Objects/Weapons/Gunsx64/Battery/Pulse/smpg/big.rsi
+    layers:
+      - state: base
+        map: ["enum.GunVisualLayers.Base"]
+      - state: mag-0
+        map: ["enum.GunVisualLayers.Mag"]
+      - state: mag-unshaded-0
+        map: ["enum.GunVisualLayers.MagUnshaded"]
+        shader: unshaded
+  - type: Item
+    sprite: Backmen/Objects/Weapons/Gunsx64/Battery/Pulse/smpg/tiny.rsi
+    size: Large
+  - type: Clothing
+    sprite: Backmen/Objects/Weapons/Gunsx64/Battery/Pulse/smpg/tiny.rsi
+  - type: GunWieldBonus
+    minAngle: -22
+    maxAngle: -44
+  - type: Gun
+    minAngle: 24
+    maxAngle: 57
+    angleIncrease: 3
+    angleDecay: 16
+    fireRate: 9
+    soundEmpty: /Audio/Backmen/Misc/error.ogg
+    soundGunshot:
+      path: /Audio/Weapons/Guns64/Pulse/xmlg.ogg
+      params:
+        volume: -1
+  - type: ItemSlots
+    slots:
+      gun_magazine:
+        name: Magazine
+        startingItem: MagazinePulseSubMachinePistol
+        insertSound: /Audio/Weapons/Guns64/Pulse/ap12_reload.ogg
+        ejectSound: /Audio/Weapons/Guns64/Pistols/divet_magout.ogg
+        priority: 1
+        whitelist:
+          tags:
+            - MagazinePulseSubMachinePistol
 
 - type: entity
   id: MuzzlePulseEffect
@@ -277,7 +326,7 @@
       - MagazinePulseRifle
   - type: BallisticAmmoProvider
     mayTransfer: true
-    capacity: 70
+    capacity: 60
     proto: PulseBullet
     whitelist:
       tags:
@@ -287,10 +336,10 @@
       ballistic-ammo: !type:Container
   - type: Item
     size: Small
-    sprite: Backmen/Objects/Weapons/Gunsx64/Battery/Pulse/Magazine/sws.rsi
+    sprite: Backmen/Objects/Weapons/Gunsx64/Magazines/Pulse/standart.rsi
   - type: Sprite
     netsync: false
-    sprite: Backmen/Objects/Weapons/Gunsx64/Battery/Pulse/Magazine/sws.rsi
+    sprite: Backmen/Objects/Weapons/Gunsx64/Magazines/Pulse/standart.rsi
     layers:
     - state: base
       map: ["enum.GunVisualLayers.Base"]
@@ -299,7 +348,7 @@
       shader: unshaded
   - type: MagazineVisuals
     magState: mag
-    steps: 7
+    steps: 2
     zeroVisible: false
   - type: Appearance
 
@@ -327,13 +376,19 @@
       ballistic-ammo: !type:Container
   - type: Item
     size: Small
-    sprite: Backmen/Objects/Weapons/Gunsx64/Battery/Pulse/Magazine/sws.rsi
+    sprite: Backmen/Objects/Weapons/Gunsx64/Magazines/Pulse/batteryMag.rsi
   - type: Sprite
     netsync: false
-    sprite: Backmen/Objects/Weapons/Gunsx64/Battery/Pulse/Magazine/sws.rsi
+    sprite: Backmen/Objects/Weapons/Gunsx64/Magazines/Pulse/batteryMag.rsi
     layers:
     - state: base
       map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: MagazineVisuals
+    magState: mag
+    steps: 2
+    zeroVisible: false
   - type: Appearance
 
 - type: Tag
@@ -356,3 +411,43 @@
     layers:
       - state: base
         map: [ "enum.AmmoVisualLayers.Base" ]
+
+- type: Tag
+  id: MagazinePulseSubMachinePistol
+
+- type: entity
+  id: MagazinePulseSubMachinePistol
+  name: pulse SMG magazine
+  description: Standart EarthGov type of impulse magazines
+  parent: BaseItem
+  components:
+  - type: Tag
+    tags:
+      - MagazinePulseSubMachinePistol
+  - type: BallisticAmmoProvider
+    mayTransfer: true
+    capacity: 100
+    proto: PulseBullet
+    whitelist:
+      tags:
+        - CartridgePulseBullet
+  - type: ContainerContainer
+    containers:
+      ballistic-ammo: !type:Container
+  - type: Item
+    size: Small
+    sprite: Backmen/Objects/Weapons/Gunsx64/Magazines/Pulse/smg.rsi
+  - type: Sprite
+    netsync: false
+    sprite: Backmen/Objects/Weapons/Gunsx64/Magazines/Pulse/smg.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-unshaded-1
+      map: ["enum.GunVisualLayers.MagUnshaded"]
+      shader: unshaded
+  - type: MagazineVisuals
+    magState: mag
+    steps: 2
+    zeroVisible: false
+  - type: Appearance

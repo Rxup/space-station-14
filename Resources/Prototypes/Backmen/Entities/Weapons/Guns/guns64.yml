@@ -720,6 +720,8 @@
       map: ["enum.GunVisualLayers.Base"]
     - state: mag-0
       map: ["enum.GunVisualLayers.Mag"]
+  - type: Item
+    size: NormalLarge
   - type: GunWieldBonus
     minAngle: -23
     maxAngle: -43
@@ -2696,7 +2698,7 @@
 
 - type: entity
   id: MagazineHeavyMachineGunDrum
-  name: Drum magazine (.35 винтовочный)
+  name: Drum magazine (.25 caseless)
   parent: BaseItem
   components:
   - type: Tag
@@ -2708,7 +2710,7 @@
     whitelist:
       tags:
         - CartridgeCaselessRifle
-    capacity: 250
+    capacity: 200
   - type: Item
     size: Huge
   - type: ContainerContainer

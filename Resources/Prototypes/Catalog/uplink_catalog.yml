@@ -1708,6 +1708,28 @@
           amount: 2
 
 - type: listing
+  id: UplinkRPDBundle
+  name: Набор "MG42"
+  description: Очень старый общевойсковой пулемет Объеденненого Правительства Земли, все оригинальные компоненты были заменены более усовршенственными, а барабан был дополнен БлюСпейс технологией, для более бесперебойной стрельбы. Имеет 1 магазин и 2 ящика патронов.
+  icon: { sprite: Backmen/Objects/Weapons/Gunsx64/LMGs/mg42/big.rsi, state: icon }
+  productEntity: ClothingBackpackDuffelSyndicateFilledMG42
+  cost:
+    Telecrystal: 60
+  categories:
+  - UplinkBundles
+
+- type: entity
+  parent: ClothingBackpackDuffelSyndicate
+  id: ClothingBackpackDuffelSyndicateFilledMG42
+  name: набор "MG42"
+  components:
+    - type: StorageFill
+      contents:
+        - id: WeaponLightMachineGunMG42
+        - id: MagazineBoxCaselessRifleBig
+          amount: 2
+
+- type: listing
   id: UplinkBR64Bundle
   name: Набор "BR-64"
   description: Специальная винтовка, не оставляющая следов, самое передовое вооружение, имеющая самое лучшее оборудование, не винтовка, а целая научная станция. Имеет 3 магазина .25 калибра.
@@ -1726,7 +1748,7 @@
     - type: StorageFill
       contents:
         - id: WeaponRifleBR64
-        - id: MagazineCaselessRifleShort
+        - id: MagazineHeavyRifleBR64
           amount: 2
 
 - type: listing
@@ -1749,7 +1771,7 @@
       contents:
         - id: WeaponRifleDragunov
         - id: MagazineRifleLightSniper
-        - id: MagazineRifleLightSniper
+          amount: 2
 
 #- type: listing
 #  id: UplinkFlamethrowerBundle
