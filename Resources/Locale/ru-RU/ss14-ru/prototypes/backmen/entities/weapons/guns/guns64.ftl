@@ -212,4 +212,4 @@ ent-ParticlesFireNRF = струя реактивного пламени
     .desc = Очень горячо!
 ent-ParticlesFireNRFHELL = струя реактивного пламени
     .desc = Очень горячо!
-    .suffix = Адское пламя
+    .suffix = Адское Пламя
