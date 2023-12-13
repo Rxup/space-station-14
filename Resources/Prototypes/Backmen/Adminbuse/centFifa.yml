@@ -2186,7 +2186,7 @@
   id: RXBZZFlamer
   equipment:
     jumpsuit: ClothingUniformJumpsuitColorBlack
-    back: PowerpackFlame
+    back: FirethrowerGun
     shoes: ClothingShoesBootsNedoSpetsnaz
     mask: ClothingMaskGasExplorer
     eyes: ClothingEyesGlassesSecurity
@@ -2198,8 +2198,6 @@
     ears: ClothingHeadsetCentComCCMTFSR6
     belt: ClothingBeltMilitaryWebbingFlamer
     pocket1: WeaponLaserGun
-  inhand:
-    - WeaponflamethrowerSG
 
 - type: startingGear
   id: RXBZZLeader
@@ -2232,8 +2230,8 @@
       contents:
         - id: MedkitAdvancedRXBZZ
         - id: WeaponDisabler
-        - id: WeaponRifleG36
-        - id: MagazineRifle
+        - id: WeaponPulseRifleXMLG
+        - id: MagazinePulseRifle
           amount: 4
         - id: WeaponShotgun39
 
@@ -2263,6 +2261,10 @@
     - type: Storage
       grid:
       - 0,0,5,4
+    - type: UserInterface
+      interfaces:
+      - key: enum.StorageUiKey.Key
+        type: StorageBoundUserInterface
     - type: StorageFill
       contents:
         - id: ShellShotgunIncendiary
@@ -2289,6 +2291,8 @@
       contents:
         - id: MedkitAdvancedRXBZZ
         - id: WeaponDisabler
+        - id: FuelTankFirethrower
+          amount: 5
 
 - type: entity
   name:  РХБЗЗ Реагент
