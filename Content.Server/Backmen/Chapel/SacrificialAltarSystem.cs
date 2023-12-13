@@ -19,9 +19,9 @@ using Content.Shared.Backmen.Abilities.Psionics;
 using Content.Shared.Backmen.Chapel;
 using Content.Shared.Backmen.Psionics.Glimmer;
 using Content.Shared.Players;
+using Robust.Server.Audio;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
-using Robust.Server.GameObjects;
 using Robust.Shared.Player;
 using Robust.Shared.Timing;
 
@@ -92,7 +92,7 @@ public sealed class SacrificialAltarSystem : EntitySystem
 
     private void OnDoAfter(EntityUid uid, SacrificialAltarComponent component, SacrificeDoAfterEvent args)
     {
-        component.SacrificeStingStream?.Stop();
+        _audioSystem.Stop(component.SacrificeStingStream,component.SacrificeStingStream);
         component.DoAfter = null;
 
         if (args.Cancelled || args.Handled || args.Args.Target == null)

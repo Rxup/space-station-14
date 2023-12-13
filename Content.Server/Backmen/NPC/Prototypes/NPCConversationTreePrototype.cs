@@ -2,7 +2,6 @@ using Content.Server.Backmen.NPC.Events;
 using Robust.Shared.Audio;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization;
-using Content.Server.NPC.Events;
 
 namespace Content.Server.Backmen.NPC.Prototypes;
 

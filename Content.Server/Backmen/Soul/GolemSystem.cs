@@ -14,6 +14,7 @@ using Content.Server.Mind;
 using Content.Shared.Backmen.Psionics.Events;
 using Content.Shared.Silicons.Laws;
 using Content.Shared.Silicons.Laws.Components;
+using Robust.Server.Audio;
 using Robust.Shared.Containers;
 using Robust.Shared.Random;
 using Robust.Server.GameObjects;

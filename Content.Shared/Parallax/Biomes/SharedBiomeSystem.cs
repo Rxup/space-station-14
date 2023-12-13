@@ -17,7 +17,7 @@ public abstract class SharedBiomeSystem : EntitySystem
     [Dependency] private readonly ISerializationManager _serManager = default!;
     [Dependency] protected readonly ITileDefinitionManager TileDefManager = default!;
 
-    protected const byte ChunkSize = 8;
+    public const byte ChunkSize = 8;
 
     private T Pick<T>(List<T> collection, float value)
     {

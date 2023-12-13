@@ -65,7 +65,6 @@
     contents:
       - id: BoxSurvivalSecurity
       - id: Flash
-      - id: RubberStampBrigmedic
 
 - type: entity
   noSpawn: true
@@ -239,9 +238,9 @@
     - type: StorageFill
       contents:
       - id: BoxSurvival
+      - id: BoxForensicPad
       - id: Lighter
       - id: CigPackBlack
-      - id: BoxForensicPad
       - id: HandLabeler
 
 - type: entity

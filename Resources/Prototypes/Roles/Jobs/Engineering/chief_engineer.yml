@@ -28,6 +28,7 @@
   - External
   - ChiefEngineer
   - Atmospherics
+  - Brig
   #start-backmen: currency
   minBankBalance: 400
   maxBankBalance: 600

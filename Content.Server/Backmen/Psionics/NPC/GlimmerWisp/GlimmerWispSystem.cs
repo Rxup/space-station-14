@@ -10,10 +10,9 @@ using Content.Shared.Rejuvenate;
 using Content.Shared.ActionBlocker;
 using Content.Shared.Pulling.Components;
 using Content.Server.Popups;
-using Content.Shared.Audio;
+using Robust.Server.Audio;
 using Robust.Shared.Player;
 using Robust.Shared.Utility;
-using Robust.Server.GameObjects;
 using Robust.Shared.Audio;
 
 namespace Content.Server.Backmen.Psionics.NPC.GlimmerWisp
@@ -63,13 +62,13 @@ namespace Content.Server.Backmen.Psionics.NPC.GlimmerWisp
             component.IsDraining = false;
             if (args.Handled || args.Args.Target == null)
             {
-                component.DrainStingStream?.Stop();
+                _audioSystem.Stop(component.DrainStingStream, component.DrainStingStream);
                 return;
             }
 
             if (args.Cancelled)
             {
-                component.DrainStingStream?.Stop();
+                _audioSystem.Stop(component.DrainStingStream, component.DrainStingStream);
                 if (TryComp<SharedPullableComponent>(args.Args.Target.Value, out var pullable) &&
                     pullable.Puller != null)
                 {

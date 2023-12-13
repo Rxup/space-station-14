@@ -8,12 +8,15 @@ using Content.Shared.Hands;
 using Content.Shared.Interaction;
 using Content.Shared.Inventory.Events;
 using Content.Shared.Mind;
+using Robust.Shared.Audio;
+using Robust.Shared.Audio.Systems;
 using Robust.Shared.Containers;
 using Robust.Shared.GameStates;
 using Robust.Shared.Map;
 using Robust.Shared.Network;
 using Robust.Shared.Timing;
 using Robust.Shared.Utility;
+using Content.Shared.Rejuvenate;
 
 namespace Content.Shared.Actions;
 
@@ -37,6 +40,7 @@ public abstract class SharedActionsSystem : EntitySystem
         SubscribeLocalEvent<ActionsComponent, DidEquipHandEvent>(OnHandEquipped);
         SubscribeLocalEvent<ActionsComponent, DidUnequipEvent>(OnDidUnequip);
         SubscribeLocalEvent<ActionsComponent, DidUnequipHandEvent>(OnHandUnequipped);
+        SubscribeLocalEvent<ActionsComponent, RejuvenateEvent>(OnRejuventate);
 
         SubscribeLocalEvent<ActionsComponent, ComponentShutdown>(OnShutdown);
 
@@ -160,6 +164,14 @@ public abstract class SharedActionsSystem : EntitySystem
 
         action.Cooldown = (GameTiming.CurTime, GameTiming.CurTime + action.UseDelay.Value);
         Dirty(actionId.Value, action);
+    }
+
+    private void OnRejuventate(EntityUid uid, ActionsComponent component, RejuvenateEvent args)
+    {
+        foreach (var act in component.Actions)
+        {
+            ClearCooldown(act);
+        }
     }
 
     #region ComponentStateManagement

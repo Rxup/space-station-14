@@ -5,10 +5,8 @@ using Content.Shared.Backmen.Psionics.Events;
 using Content.Shared.Mind;
 using Content.Shared.Mind.Components;
 using Content.Shared.Mobs;
-using Content.Shared.StatusEffect;
 using Robust.Server.GameObjects;
 using Robust.Shared.Prototypes;
-using Robust.Shared.Timing;
 
 namespace Content.Server.Backmen.Abilities.Psionics;
 

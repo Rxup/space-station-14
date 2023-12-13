@@ -35,6 +35,9 @@
   id: Balloon
 
 - type: Tag
+  id: BananaPeel
+
+- type: Tag
   id: BaseballBat
 
 - type: Tag
@@ -237,7 +240,7 @@
 
 - type: Tag
   id: CanPilot
-  
+
 - type: Tag
   id: CannonRestrict
 
@@ -315,6 +318,9 @@
   id: ClownShoes
 
 - type: Tag
+  id: ClownSuit
+
+- type: Tag
   id: CluwneHorn
 
 - type: Tag #Ohioans die happy
@@ -376,6 +382,9 @@
 
 - type: Tag
   id: CubanCarp
+
+- type: Tag
+  id: DeathAcidifier
 
 - type: Tag
   id: Debug
@@ -658,6 +667,9 @@
 
 - type: Tag
   id: Lemon
+
+- type: Tag
+  id: LightReplacer
 
 - type: Tag
   id: Lime
@@ -1081,6 +1093,9 @@
   id: WeaponPistolCHIMPUpgradeKit
 
 - type: Tag
+  id: WeaponShotgunKammerer
+
+- type: Tag
   id: Window
 
 - type: Tag
@@ -1118,3 +1133,6 @@
 
 - type: Tag
   id: MindShield
+
+- type: Tag
+  id:  boots
