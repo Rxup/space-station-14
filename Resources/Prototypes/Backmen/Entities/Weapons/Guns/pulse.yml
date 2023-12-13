@@ -40,7 +40,6 @@
     price: 5500
   - type: Appearance
   - type: Wieldable
-    wieldTime: 1.5
   - type: MagazineAmmoProvider
     autoEject: true
     soundAutoEject: /Audio/Backmen/Misc/empty_alarm.ogg
@@ -330,7 +329,7 @@
     proto: PulseBullet
     whitelist:
       tags:
-        - CartridgePulseBullet
+        - PulseBullet
   - type: ContainerContainer
     containers:
       ballistic-ammo: !type:Container
@@ -430,7 +429,7 @@
     proto: PulseBullet
     whitelist:
       tags:
-        - CartridgePulseBullet
+        - PulseBullet
   - type: ContainerContainer
     containers:
       ballistic-ammo: !type:Container
