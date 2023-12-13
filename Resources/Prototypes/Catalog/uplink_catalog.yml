@@ -1708,7 +1708,7 @@
           amount: 2
 
 - type: listing
-  id: UplinkRPDBundle
+  id: UplinkMG42Bundle
   name: Набор "MG42"
   description: Очень старый общевойсковой пулемет Объеденненого Правительства Земли, все оригинальные компоненты были заменены более усовршенственными, а барабан был дополнен БлюСпейс технологией, для более бесперебойной стрельбы. Имеет 1 магазин и 2 ящика патронов.
   icon: { sprite: Backmen/Objects/Weapons/Gunsx64/LMGs/mg42/big.rsi, state: icon }
