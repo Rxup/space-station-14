@@ -1493,7 +1493,7 @@ public sealed class ShipwreckedRuleSystem : GameRuleSystem<ShipwreckedRuleCompon
 
         _shuttleSystem.FTLTravel(shuttle,
             Comp<ShuttleComponent>(shuttle),
-            Transform(component.PlanetMap.Value).Coordinates,
+            new EntityCoordinates(component.PlanetMap.Value, Vector2.Zero),
             // The travellers are already in FTL by the time the gamemode starts.
             startupTime: 0,
             hyperspaceTime: (float) flightTime.TotalSeconds);

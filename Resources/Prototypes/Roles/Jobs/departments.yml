@@ -72,7 +72,6 @@
   - MedicalIntern
   - Psychologist
   - Paramedic
-  - SeniorPhysician
   accountNumber: 1319 #backmen: currency
 
 - type: department
