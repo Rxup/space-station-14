@@ -8,7 +8,6 @@ namespace Content.Shared.Backmen.Eye.NightVision.Systems;
 public sealed class PNVSystem : EntitySystem
 {
     [Dependency] private readonly NightVisionSystem _nightvisionableSystem = default!;
-    [Dependency] private readonly IEntityManager _entManager = default!;
     [Dependency] private readonly SharedActionsSystem _actionsSystem = default!;
 
     public override void Initialize()
@@ -27,27 +26,26 @@ public sealed class PNVSystem : EntitySystem
 
     private void OnEquipped(EntityUid uid, PNVComponent component, GotEquippedEvent args)
     {
-        if (args.Slot == "eyes" || args.Slot == "mask" || args.Slot == "head")
-        {
-            var nvcomp = _entManager.GetComponent<NightVisionComponent>(args.Equipee);
-            if (nvcomp == null)
-                return;
+        if (args.Slot is not ("eyes" or "mask" or "head"))
+            return;
 
-	            _nightvisionableSystem.UpdateIsNightVision(args.Equipee);
-            _actionsSystem.AddAction(args.Equipee, ref component.ActionContainer, component.ActionProto);
-        }
+        if (!TryComp<NightVisionComponent>(args.Equipee, out var nvcomp))
+            return;
+
+        _nightvisionableSystem.UpdateIsNightVision(args.Equipee, nvcomp);
+        _actionsSystem.AddAction(args.Equipee, ref component.ActionContainer, component.ActionProto);
+        _actionsSystem.SetCooldown(component.ActionContainer, TimeSpan.FromSeconds(1)); // GCD?
     }
 
     private void OnUnequipped(EntityUid uid, PNVComponent component, GotUnequippedEvent args)
     {
-	        if (args.Slot == "eyes" || args.Slot == "mask" || args.Slot == "head")
-        {
-            var nvcomp = _entManager.GetComponent<NightVisionComponent>(args.Equipee);
-            if (nvcomp == null)
-                return;
+        if (args.Slot is not ("eyes" or "mask" or "head"))
+            return;
 
-	            _nightvisionableSystem.UpdateIsNightVision(args.Equipee);
-            _actionsSystem.RemoveAction(args.Equipee, component.ActionContainer);
-        }
+        if (!TryComp<NightVisionComponent>(args.Equipee, out var nvcomp))
+            return;
+
+        _nightvisionableSystem.UpdateIsNightVision(args.Equipee, nvcomp);
+        _actionsSystem.RemoveAction(args.Equipee, component.ActionContainer);
     }
 }

@@ -2,6 +2,7 @@ using Content.Shared.Backmen.Eye.NightVision.Components;
 using Content.Shared.Inventory;
 using Content.Shared.Actions;
 using JetBrains.Annotations;
+using Robust.Shared.Prototypes;
 
 namespace Content.Shared.Backmen.Eye.NightVision.Systems;
 
@@ -17,10 +18,13 @@ public sealed class NightVisionSystem : EntitySystem
         SubscribeLocalEvent<NightVisionComponent, NVInstantActionEvent>(OnActionToggle);
     }
 
+    [ValidatePrototypeId<EntityPrototype>]
+    private const string SwitchNightVisionAction = "SwitchNightVision";
+
     private void OnComponentStartup(EntityUid uid, NightVisionComponent component, ComponentStartup args)
     {
         if (component.IsToggle)
-            _actionsSystem.AddAction(uid, ref component.ActionContainer, "SwitchNightVision");
+            _actionsSystem.AddAction(uid, ref component.ActionContainer, SwitchNightVisionAction);
     }
 
     private void OnActionToggle(EntityUid uid, NightVisionComponent component, NVInstantActionEvent args)

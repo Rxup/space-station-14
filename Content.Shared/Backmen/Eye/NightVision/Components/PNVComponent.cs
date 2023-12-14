@@ -5,10 +5,9 @@ using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototy
 namespace Content.Shared.Backmen.Eye.NightVision.Components;
 
 
-[RegisterComponent]
-[NetworkedComponent]
+[RegisterComponent, NetworkedComponent]
 public sealed partial class PNVComponent : Component
 {
-    [DataField(customTypeSerializer: typeof(PrototypeIdSerializer<EntityPrototype>))] public string ActionProto = "NVToggleAction";
+    [DataField] public EntProtoId ActionProto = "NVToggleAction";
     [DataField] public EntityUid? ActionContainer;
 }
