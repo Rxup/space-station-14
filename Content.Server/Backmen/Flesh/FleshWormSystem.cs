@@ -1,6 +1,7 @@
 ﻿using System.Linq;
 using Content.Server.Actions;
 using Content.Server.NPC.Components;
+using Content.Server.Nutrition.Components;
 using Content.Server.Nutrition.EntitySystems;
 using Content.Server.Popups;
 using Content.Shared.CombatMode;
