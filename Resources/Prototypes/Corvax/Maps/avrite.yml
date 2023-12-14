@@ -55,10 +55,6 @@
             Psychologist: [ 1, 1 ]
             Detective: [ 1, 1 ]
             Boxer: [ 2, 2]
-            SeniorOfficer: [ 1, 1 ]
-            SeniorResearcher: [ 1, 1 ]
-            SeniorPhysician: [ 1, 1 ]
-            SeniorEngineer: [ 1, 1 ]
             # backmen
             Prisoner: [ 2, 2]
             SAI: [1, 1] # backmen-SAI
