@@ -196,6 +196,9 @@
         - map: [ "enum.DamageStateVisualLayers.BaseUnshaded" ]
           state: nautdamage
           shader: unshaded
+    - type: NightVision
+      isToggle: true
+      color: "#808080"
 
 - type: entity
   id: BaseBlob

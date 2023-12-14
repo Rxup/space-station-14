@@ -124,6 +124,9 @@
     chance: -2
   - type: Psionic
     removable: false
+  - type: NightVision
+    isToggle: true
+    color: "#808080"
 
 - type: entity
   name: Praetorian

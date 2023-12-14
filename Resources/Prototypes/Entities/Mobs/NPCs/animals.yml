@@ -1929,6 +1929,9 @@
     tags:
     - DoorBumpOpener
     - FootstepSound
+  - type: NightVision
+    isToggle: true
+    color: "#808080"
 
 - type: entity
   name: tarantula
