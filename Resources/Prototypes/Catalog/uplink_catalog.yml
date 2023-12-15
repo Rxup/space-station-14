@@ -1772,6 +1772,27 @@
         - id: MagazineRifleLightSniper
           amount: 2
 
+- type: listing
+  id: UplinkSpas12Bundle
+  name: набор "SPAS-12"
+  description: Спас-12, великолепное оружие которое показала свою надежность и убойную силу. В комплетке 43 патрона.
+  icon: { sprite: Backmen/Objects/Weapons/Gunsx64/Shotguns/spas-16/big.rsi, state: icon }
+  productEntity: ClothingBackpackDuffelSyndicateFilledSPAS12
+  cost:
+    Telecrystal: 15
+  categories:
+  - UplinkBundles
+
+- type: entity
+  parent: ClothingBackpackDuffelSyndicate
+  id: ClothingBackpackDuffelSyndicateFilledSPAS12
+  name: набор "SPAS-12"
+  components:
+    - type: StorageFill
+      contents:
+        - id: WeaponShotgun12
+        - id: ClothingBeltShellShotgunFill
+
 #- type: listing
 #  id: UplinkFlamethrowerBundle
 #  name: набор "Огнемет М6"
