@@ -23,8 +23,8 @@
     - 0,0,6,3
   - type: StorageFill
     contents:
-      - id: WeaponSniperHristov
-      - id: MagazineBoxAntiMateriel
+      - id: WeaponRifleSR127
+      - id: MagazineAntiMaterielRifleSR
       - id: ClothingNeckTieRed
       - id: ClothingHandsGlovesLatex
       - id: ClothingUniformJumpsuitLawyerBlack
