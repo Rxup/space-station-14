@@ -44,8 +44,8 @@
   components:
   - type: StorageFill
     contents:
-      - id: WeaponEarthGovLaserRifle
-        amount: 3
+      - id: WeaponEarthGovLaserCarbine
+        amount: 2
 
 - type: entity
   id: CrateArmoryPistols
