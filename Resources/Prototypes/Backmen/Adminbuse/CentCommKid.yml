@@ -1487,6 +1487,8 @@
   components:
   - type: Sprite
     sprite: Backmen/Clothing/Belt/Gear/shotgunbelt.rsi
+  - type: Item
+    size: Huge
   - type: Clothing
     sprite: Backmen/Clothing/Belt/Gear/shotgunbelt.rsi
   - type: Storage

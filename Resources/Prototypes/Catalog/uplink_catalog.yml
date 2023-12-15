@@ -1731,7 +1731,7 @@
 - type: listing
   id: UplinkBR64Bundle
   name: Набор "BR-64"
-  description: Специальная винтовка, не оставляющая следов, самое передовое вооружение, имеющая самое лучшее оборудование, не винтовка, а целая научная станция. Имеет 3 магазина .25 калибра.
+  description: Марксменская тяжелая винтовка, имеет автодосылатель затвора, что облегчает эксплоатирование оружия (но не его чистку). Имеет 3 магазина .60 калибра.
   icon: { sprite: Backmen/Objects/Weapons/Gunsx64/Rifles/br-64/big.rsi, state: icon }
   productEntity: ClothingBackpackDuffelSyndicateFilledBR64
   cost:
