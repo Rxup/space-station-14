@@ -943,6 +943,9 @@
   id: ShellShotgun
 
 - type: Tag
+  id: PelletShotgunFlare
+
+- type: Tag
   id: Shiv
 
 - type: Tag
@@ -1139,3 +1142,6 @@
 
 - type: Tag
   id:  boots
+
+- type: Tag
+  id: CleansForensics
