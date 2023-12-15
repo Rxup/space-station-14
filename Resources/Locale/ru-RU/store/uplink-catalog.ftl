@@ -118,7 +118,7 @@ uplink-meds-bundle-desc = Все, что нужно для возвращени�
 uplink-ammo-bundle-name = Набор боеприпасов
 uplink-ammo-bundle-desc = Перезаряжаю! Содержит 4 магазина для C-20r, 4 барабана для Бульдога и 2 короба патронов для L6 SAW.
 uplink-sniper-bundle-name = Набор снайпера
-uplink-sniper-bundle-desc = Неприметный чемодан, в котором находятся Христов, 10 запасных патронов и удобная маскировка.
+uplink-sniper-bundle-desc = Неприметный чемодан, в котором находятся SR-127 Bauer, 10 запасных патронов и удобная маскировка.
 # Bundles
 uplink-c20r-bundle-name = { ent-ClothingBackpackDuffelSyndicateFilledSMG }
 uplink-c20r-bundle-desc = { ent-ClothingBackpackDuffelSyndicateFilledSMG.desc }

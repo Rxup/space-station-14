@@ -702,7 +702,7 @@
   id: UplinkSniperBundle
   name: uplink-sniper-bundle-name
   description: uplink-sniper-bundle-desc
-  icon: { sprite: /Textures/Objects/Weapons/Guns/Snipers/heavy_sniper.rsi, state: base }
+  icon: { sprite: Backmen/Objects/Weapons/Gunsx64/Snipers/snl177/big.rsi, state: base }
   productEntity: BriefcaseSyndieSniperBundleFilled
   cost:
     Telecrystal: 12
