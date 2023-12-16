@@ -5,10 +5,9 @@
   name: bullet (.60 anti-materiel)
   components:
   - type: Projectile
-    damage: # backmen hristov rebalance
+    damage:
       types:
-        Piercing: 34
-        Structural: 10
-    ignoreResistances: true
+        Piercing: 40
+        Structural: 30
   - type: StaminaDamageOnCollide
     damage: 35
