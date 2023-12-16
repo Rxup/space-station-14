@@ -34,7 +34,7 @@ public sealed class EntityHealthBarOverlay : Overlay
         _mobStateSystem = _entManager.EntitySysManager.GetEntitySystem<MobStateSystem>();
         _mobThresholdSystem = _entManager.EntitySysManager.GetEntitySystem<MobThresholdSystem>();
 
-        var sprite = new SpriteSpecifier.Rsi(new ("/Textures/Interface/Misc/health_bar.rsi"), "icon");
+        var sprite = new SpriteSpecifier.Rsi(new ResPath("/Textures/Backmen/Interface/Misc/health_bar.rsi"), "icon");
         _barTexture = _entManager.EntitySysManager.GetEntitySystem<SpriteSystem>().Frame0(sprite);
 
         _shader = protoManager.Index<ShaderPrototype>("unshaded").Instance();
@@ -73,13 +73,19 @@ public sealed class EntityHealthBarOverlay : Overlay
             handle.SetTransform(matty);
 
             float yOffset;
-            if (spriteQuery.TryGetComponent(owner, out var sprite))
+            float xIconOffset;
+            float yIconOffset;
+            if (spriteQuery.TryGetComponent(mob.Owner, out var sprite))
             {
-                yOffset = sprite.Bounds.Height + 15f;
+                yOffset = sprite.Bounds.Height + 10f;
+                yIconOffset = sprite.Bounds.Height + 11f;
+                xIconOffset = sprite.Bounds.Width + 11f;
             }
             else
             {
                 yOffset = 1f;
+                yIconOffset = 1f;
+                xIconOffset = 1f;
             }
 
             var position = new Vector2(-_barTexture.Width / 2f / EyeManager.PixelsPerMeter,
