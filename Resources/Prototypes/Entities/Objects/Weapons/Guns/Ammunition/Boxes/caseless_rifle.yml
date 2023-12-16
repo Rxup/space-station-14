@@ -51,6 +51,7 @@
   name: ammunition box (.25 caseless)
   components:
   - type: BallisticAmmoProvider
+    fillDelay: 0.3
     capacity: 200
     proto: CartridgeCaselessRifle
   - type: Sprite

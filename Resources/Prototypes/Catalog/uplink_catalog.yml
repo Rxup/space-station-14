@@ -743,7 +743,7 @@
   id: UplinkSniperBundle
   name: uplink-sniper-bundle-name
   description: uplink-sniper-bundle-desc
-  icon: { sprite: /Textures/Objects/Weapons/Guns/Snipers/heavy_sniper.rsi, state: base }
+  icon: { sprite: Backmen/Objects/Weapons/Gunsx64/Snipers/snl177/big.rsi, state: base }
   productEntity: BriefcaseSyndieSniperBundleFilled
   cost:
     Telecrystal: 12
@@ -1530,7 +1530,7 @@
 - type: listing
   id: UplinkAKMSBundle
   name: набор "AKMS"
-  description: Символ войны, легендарное оружие зарекомендовавшие себя кака самое надежное оружие в истории. В комплетке 3 магазина.
+  description: Символ войны, легендарное оружие зарекомендовавшие себя как самое надежное оружие в истории. В комплетке 3 магазина.
   icon: { sprite: Backmen/Objects/Weapons/Gunsx64/Rifles/akms/big.rsi, state: icon }
   productEntity: ClothingBackpackDuffelSyndicateFilledAKMS
   cost:
@@ -1772,9 +1772,31 @@
           amount: 2
 
 - type: listing
+  id: UplinkMG42Bundle
+  name: Набор "MG42"
+  description: Очень старый общевойсковой пулемет Объеденненого Правительства Земли, все оригинальные компоненты были заменены более усовршенственными, а барабан был дополнен БлюСпейс технологией, для более бесперебойной стрельбы. Имеет 1 магазин и 2 ящика патронов.
+  icon: { sprite: Backmen/Objects/Weapons/Gunsx64/LMGs/mg42/big.rsi, state: icon }
+  productEntity: ClothingBackpackDuffelSyndicateFilledMG42
+  cost:
+    Telecrystal: 60
+  categories:
+  - UplinkBundles
+
+- type: entity
+  parent: ClothingBackpackDuffelSyndicate
+  id: ClothingBackpackDuffelSyndicateFilledMG42
+  name: набор "MG42"
+  components:
+    - type: StorageFill
+      contents:
+        - id: WeaponLightMachineGunMG42
+        - id: MagazineBoxCaselessRifleBig
+          amount: 2
+
+- type: listing
   id: UplinkBR64Bundle
   name: Набор "BR-64"
-  description: Специальная винтовка, не оставляющая следов, самое передовое вооружение, имеющая самое лучшее оборудование, не винтовка, а целая научная станция. Имеет 3 магазина .25 калибра.
+  description: Марксменская тяжелая винтовка, имеет автодосылатель затвора, что облегчает эксплоатирование оружия (но не его чистку). Имеет 3 магазина .60 калибра.
   icon: { sprite: Backmen/Objects/Weapons/Gunsx64/Rifles/br-64/big.rsi, state: icon }
   productEntity: ClothingBackpackDuffelSyndicateFilledBR64
   cost:
@@ -1790,8 +1812,51 @@
     - type: StorageFill
       contents:
         - id: WeaponRifleBR64
-        - id: MagazineCaselessRifleShort
+        - id: MagazineHeavyRifleBR64
           amount: 2
+
+- type: listing
+  id: UplinkSVDBundle
+  name: набор "SVD"
+  description: Легендарное оружие, зарекомендовала себя за счёт платформы АК на которой он был создан. В комплетке 3 магазина.
+  icon: { sprite: Backmen/Objects/Weapons/Gunsx64/Snipers/dragunov/big.rsi, state: icon }
+  productEntity: ClothingBackpackDuffelSyndicateFilledSVD
+  cost:
+    Telecrystal: 17
+  categories:
+  - UplinkBundles
+
+- type: entity
+  parent: ClothingBackpackDuffelSyndicate
+  id: ClothingBackpackDuffelSyndicateFilledSVD
+  name: набор "SVD"
+  components:
+    - type: StorageFill
+      contents:
+        - id: WeaponRifleDragunov
+        - id: MagazineRifleLightSniper
+          amount: 2
+
+- type: listing
+  id: UplinkSpas12Bundle
+  name: набор "SPAS-12"
+  description: Спас-12, великолепное оружие которое показала свою надежность и убойную силу. В комплетке 43 патрона.
+  icon: { sprite: Backmen/Objects/Weapons/Gunsx64/Shotguns/spas-16/big.rsi, state: icon }
+  productEntity: ClothingBackpackDuffelSyndicateFilledSPAS12
+  cost:
+    Telecrystal: 15
+  categories:
+  - UplinkBundles
+
+- type: entity
+  parent: ClothingBackpackDuffelSyndicate
+  id: ClothingBackpackDuffelSyndicateFilledSPAS12
+  name: набор "SPAS-12"
+  components:
+    - type: StorageFill
+      contents:
+        - id: WeaponShotgun12
+        - id: ClothingBeltShellShotgunFill
 
 #- type: listing
 #  id: UplinkFlamethrowerBundle
