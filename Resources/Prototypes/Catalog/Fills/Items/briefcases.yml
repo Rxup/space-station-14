@@ -18,7 +18,7 @@
   - type: Item
     size: Ginormous
   - type: StorageFill
-    contents: # backmen hristov rebalance
+    contents:
       - id: WeaponRifleSR127
       - id: MagazineAntiMaterielRifleSR
       - id: ClothingEyesGlassesMercenary
