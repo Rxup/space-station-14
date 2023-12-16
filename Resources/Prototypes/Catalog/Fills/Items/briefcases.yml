@@ -21,9 +21,9 @@
     contents:
       - id: WeaponRifleSR127
       - id: MagazineAntiMaterielRifleSR
-      - id: ClothingEyesGlassesMercenary
-      - id: ClothingHeadHatStetson
-      - id: KukriKnife
+      - id: ClothingNeckTieRed
+      - id: ClothingHandsGlovesLatex
+      - id: ClothingUniformJumpsuitLawyerBlack
 
 - type: entity
   id: BriefcaseSyndieLobbyingBundleFilled
