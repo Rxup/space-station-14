@@ -1,0 +1,61 @@
+# Super Stimulants
+- type: reagent
+  id: StimulantsSuper
+  name: reagent-name-stimulants-super
+  group: Narcotics
+  desc: reagent-desc-stimulants-super
+  physicalDesc: reagent-physical-desc-energizing
+  flavor: sharp
+  color: "#DC143C"
+  boilingPoint: 212.0
+  meltingPoint: 170.0
+  metabolisms:
+    Narcotic:
+      metabolismRate: 1.0
+      effects:
+      - !type:MovespeedModifier # This is frickin' fast
+        walkSpeedModifier: 1.5
+        sprintSpeedModifier: 1.5
+      - !type:HealthChange
+        conditions:
+          - !type:ReagentThreshold
+            min: 15 # Small overdose so nukies won't spam with it
+        damage: # backmenTODO: add caustic damage when overdosed
+          types:
+            Poison: 3
+      - !type:GenericStatusEffect
+          key: Stutter
+          component: StutteringAccent
+      - !type:Jitter
+      - !type:GenericStatusEffect
+        key: Stun
+        time: 5
+        type: Remove
+      - !type:GenericStatusEffect
+        key: KnockedDown
+        time: 5
+        type: Remove
+      - !type:GenericStatusEffect
+        key: StaminaModifier
+        component: StaminaModifier
+        time: 5
+        type: Add
+      - !type:PopupMessage
+        visualType: Medium
+        messages: ["ephedrine-effect-tight-pain", "ephedrine-effect-heart-pounds"]
+        type: Local
+        probability: 0.33
+    Medicine:
+      metabolismRate: 1.0
+      effects:
+        - !type:ResetNarcolepsy
+        - !type:SatiateHunger
+          factor: 1.0
+        - !type:SatiateThirst
+          factor: 1.0
+        - !type:HealthChange
+          damage: # Good stats but for a short time makes it useful for very fast healing. Heals ~45 damage for 15 seconds
+            groups:
+              Burn: -7
+              Brute: -7
+              Airloss: -5 # Chance to get out of crit

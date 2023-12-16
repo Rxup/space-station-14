@@ -17,17 +17,13 @@
   components:
   - type: Item
     size: Ginormous
-  - type: Storage
-    maxItemSize: Huge
-    grid:
-    - 0,0,6,3
   - type: StorageFill
-    contents:
+    contents: # backmen hristov rebalance
       - id: WeaponSniperHristov
       - id: MagazineBoxAntiMateriel
-      - id: ClothingNeckTieRed
-      - id: ClothingHandsGlovesLatex
-      - id: ClothingUniformJumpsuitLawyerBlack
+      - id: ClothingEyesGlassesMercenary
+      - id: ClothingHeadHatStetson
+      - id: KukriKnife
 
 - type: entity
   id: BriefcaseSyndieLobbyingBundleFilled

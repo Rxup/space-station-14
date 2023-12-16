@@ -57,6 +57,7 @@
     lowPressureMultiplier: 1000
   - type: TemperatureProtection
     coefficient: 0.005
+  - type: EyeProtection
 
 #Engineering Hardsuit
 - type: entity
@@ -75,6 +76,7 @@
   - type: PressureProtection
     highPressureMultiplier: 0.1
     lowPressureMultiplier: 1000
+  - type: EyeProtection
 
 #Spationaut Hardsuit
 - type: entity
@@ -154,6 +156,7 @@
         Slash: 0.9
         Piercing: 0.9
         Heat: 0.9
+  - type: FlashImmunity
 
 #Brigmedic Hardsuit
 - type: entity
@@ -181,6 +184,7 @@
   - type: PressureProtection
     highPressureMultiplier: 0.6
     lowPressureMultiplier: 1000
+  - type: FlashImmunity
 
 #Warden's Hardsuit
 - type: entity
@@ -206,6 +210,7 @@
         Slash: 0.9
         Piercing: 0.9
         Heat: 0.9
+  - type: FlashImmunity
 
 #Captain's Hardsuit
 - type: entity
@@ -240,6 +245,7 @@
   - type: PressureProtection
     highPressureMultiplier: 0.08
     lowPressureMultiplier: 1000
+  - type: EyeProtection
 
 #Chief Medical Officer's Hardsuit
 - type: entity
@@ -301,6 +307,7 @@
         Slash: 0.9
         Piercing: 0.9
         Heat: 0.9
+  - type: FlashImmunity
 
 #Luxury Mining Hardsuit
 - type: entity
