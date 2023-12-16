@@ -42,7 +42,7 @@
         amount: 2
       - id: ClothingHeadHelmetRiot
         amount: 2
-      - id: WeaponShotgun39
+      - id: WeaponShotgun39NonLethal
         amount: 2
       - id: BoxBeanbag
         amount: 2

@@ -26,12 +26,15 @@
 <GuideEntityEmbed Entity="FoodDoughPie"/>
 <GuideEntityEmbed Entity="FoodCakeBatter"/>
 <GuideEntityEmbed Entity="FoodDoughFlat"/>
+<GuideEntityEmbed Entity="FoodDoughTortilla"/>
 </Box>
 
 <Box>
 <GuideEntityEmbed Entity="FoodButter"/>
 <GuideEntityEmbed Entity="FoodMeatMeatball"/>
 <GuideEntityEmbed Entity="FoodCheese"/>
+<GuideEntityEmbed Entity="FoodChevre"/>
+<GuideEntityEmbed Entity="FoodSnackChocolateBar"/>
 </Box>
 
 ## Второстепенные продукты
@@ -41,6 +44,9 @@
 - Сырая котлета: нарезать сырое мясо
 - Сырный ломтик: нарезать головку сыра
 - Плоское тесто: раскатайте тесто скалкой либо другим крыглым объектом (огнетушитель, жестяная банка, бутылка).
+- Tortilla Dough Slice: cut Tortilla Dough
+- Flat Tortilla Dough: Use a rolling pin or a round object (fire extinguisher, soda can, bottle) on Tortilla Dough Slice
+- Taco Shell: Microwave Flat Tortilla Dough for 5 Seconds
 
 ## Примеры блюд
 
@@ -51,6 +57,7 @@
 - Маргарита: положить в микроволновку 1 плоское тесто, 1 сырный ломтик и 4 помидора на 30 секунд
 - Торт: 1 тесто для торта в микроволновку на 15 секунд
 - Яблочный пирог: 1 тесто для пирога, 3 яблока и 1 формочку для пирога на 15 секунд
+- Beef Taco: Microwave 1 Taco Shell, 1 Raw Meat Cutlet, 1 Cheese Wedge for 10 Seconds
 
 <Box>
 <GuideEntityEmbed Entity="FoodBreadPlain"/>
@@ -62,6 +69,7 @@
 <GuideEntityEmbed Entity="FoodPizzaMargherita"/>
 <GuideEntityEmbed Entity="FoodCakePlain"/>
 <GuideEntityEmbed Entity="FoodPieApple"/>
+<GuideEntityEmbed Entity="FoodTacoBeef"/>
 </Box>
 
 </Document>
