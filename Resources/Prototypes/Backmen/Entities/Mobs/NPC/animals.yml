@@ -1,0 +1,27 @@
+- type: entity
+  name: bluespace goat
+  parent: MobGoat
+  id: MobGoatBluespace
+  description: A goat from another dimension. Beee.
+  components:
+  - type: Sprite
+    drawdepth: Mobs
+    layers:
+    - map: ["enum.DamageStateVisualLayers.Base"]
+      state: goat
+      sprite: Backmen/Mobs/Animals/bluespacegoat.rsi
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: goat
+      Critical:
+        Base: dead
+      Dead:
+        Base: dead
+  - type: Butcherable
+    spawned:
+    - id: MaterialBluespace
+  - type: Grammar
+    attributes:
+      gender: male
+      proper: true

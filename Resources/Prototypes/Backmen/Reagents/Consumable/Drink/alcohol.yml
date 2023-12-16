@@ -26,3 +26,29 @@
           groups:
             Brute: -0.4
             Airloss: -0.6
+
+- type: reagent
+  id: CondensedMilk
+  name: reagent-name-milk-condensed
+  group: Drinks
+  desc: reagent-desc-milk-condensed-desc
+  physicalDesc: reagent-physical-desc-opaque
+  flavor: milk
+  color: "#FAFAD1"
+  recognizable: true
+  plantMetabolism:
+    - !type:PlantAdjustNutrition
+      amount: 0.1
+    - !type:PlantAdjustWater
+      amount: 0.9
+  metabolisms:
+    Drink:
+      effects:
+        - !type:SatiateThirst
+          factor: 4
+    Medicine:
+      effects:
+      - !type:HealthChange
+        damage:
+          groups:
+            Brute: -0.2

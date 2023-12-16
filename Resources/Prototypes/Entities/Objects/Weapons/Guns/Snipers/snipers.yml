@@ -57,6 +57,8 @@
     sprite: Objects/Weapons/Guns/Snipers/heavy_sniper.rsi
   - type: Clothing
     sprite: Objects/Weapons/Guns/Snipers/heavy_sniper.rsi
+  - type: Gun
+    fireRate: 1
   - type: BallisticAmmoProvider
     whitelist:
       tags:
