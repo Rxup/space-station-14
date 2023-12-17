@@ -221,7 +221,7 @@ public sealed class ArrivalsProtectSystem : EntitySystem
         var enumerator = transformQuery.GetComponent(uid).ChildEnumerator;
         while (enumerator.MoveNext(out var child))
         {
-            RecursiveGodmode(transformQuery, child.Value);
+            RecursiveGodmode(transformQuery, child);
         }
     }
 
