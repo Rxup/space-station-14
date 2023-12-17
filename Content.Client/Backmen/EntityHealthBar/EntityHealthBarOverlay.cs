@@ -4,8 +4,11 @@ using Content.Shared.Mobs;
 using Content.Shared.Mobs.Components;
 using Content.Shared.Mobs.Systems;
 using Content.Shared.FixedPoint;
+using Content.Shared.Interaction;
+using Content.Shared.Physics;
 using Robust.Client.GameObjects;
 using Robust.Client.Graphics;
+using Robust.Client.Player;
 using Robust.Shared.Enums;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
@@ -18,33 +21,41 @@ namespace Content.Client.Backmen.EntityHealthBar;
 /// </summary>
 public sealed class EntityHealthBarOverlay : Overlay
 {
-    private readonly IEntityManager _entManager;
+    [Dependency]
+    private readonly IEntityManager _entManager = default!;
+    [Dependency]
+    private readonly IPrototypeManager _protoManager = default!;
+
     private readonly SharedTransformSystem _transform;
     private readonly MobStateSystem _mobStateSystem;
     private readonly MobThresholdSystem _mobThresholdSystem;
-    private readonly Texture _barTexture;
     private readonly ShaderInstance _shader;
+    private readonly SharedInteractionSystem _interaction;
+
+    [Dependency]
+    private readonly IPlayerManager _playerManager = default!;
     public override OverlaySpace Space => OverlaySpace.WorldSpaceBelowFOV;
     public List<string> DamageContainers = new();
 
-    public EntityHealthBarOverlay(IEntityManager entManager, IPrototypeManager protoManager)
+    public EntityHealthBarOverlay()
     {
-        _entManager = entManager;
-        _transform = _entManager.EntitySysManager.GetEntitySystem<SharedTransformSystem>();
-        _mobStateSystem = _entManager.EntitySysManager.GetEntitySystem<MobStateSystem>();
-        _mobThresholdSystem = _entManager.EntitySysManager.GetEntitySystem<MobThresholdSystem>();
+        IoCManager.InjectDependencies(this);
 
-        var sprite = new SpriteSpecifier.Rsi(new ResPath("/Textures/Backmen/Interface/Misc/health_bar.rsi"), "icon");
-        _barTexture = _entManager.EntitySysManager.GetEntitySystem<SpriteSystem>().Frame0(sprite);
+        _transform = _entManager.System<SharedTransformSystem>();
+        _mobStateSystem = _entManager.System<MobStateSystem>();
+        _mobThresholdSystem = _entManager.System<MobThresholdSystem>();
+        _interaction = _entManager.System<SharedInteractionSystem>();
 
-        _shader = protoManager.Index<ShaderPrototype>("unshaded").Instance();
+        _shader = _protoManager.Index<ShaderPrototype>("unshaded").Instance();
     }
-
-    public const int StandardSizeFull = 290;
-    public const int StandardRadiusCircle = 140;
 
     protected override void Draw(in OverlayDrawArgs args)
     {
+        if (_playerManager.LocalEntity == null)
+        {
+            return;
+        }
+
         var handle = args.WorldHandle;
         var rotation = args.Viewport.Eye?.Rotation ?? Angle.Zero;
         var spriteQuery = _entManager.GetEntityQuery<SpriteComponent>();
@@ -67,6 +78,10 @@ public sealed class EntityHealthBarOverlay : Overlay
             if (dmg.DamageContainerID == null || !DamageContainers.Contains(dmg.DamageContainerID))
                 continue;
 
+            if (!_interaction.InRangeUnobstructed(_playerManager.LocalEntity.Value, owner, range: 30f, collisionMask: CollisionGroup.FlyingMobLayer))
+                continue;
+
+
             var worldPosition = _transform.GetWorldPosition(xform);
             var worldMatrix = Matrix3.CreateTranslation(worldPosition);
 
@@ -77,7 +92,7 @@ public sealed class EntityHealthBarOverlay : Overlay
 
             var yOffset = spriteQuery.TryGetComponent(owner, out var sprite) ? sprite.Bounds.Height + 19f : 1f;
 
-            var position = new Vector2(-_barTexture.Width / 2f / EyeManager.PixelsPerMeter,
+            var position = new Vector2(-24 / 2f / EyeManager.PixelsPerMeter,
                 yOffset / EyeManager.PixelsPerMeter);
 
             // Draw the underlying bar texture
@@ -184,7 +199,8 @@ public sealed class EntityHealthBarOverlay : Overlay
         {
             var hue = (5f / 18f) * progress;
             return Color.FromHsv((hue, 1f, 0.75f, 1f));
-        } else
+        }
+        else
         {
             return Color.Red;
         }
