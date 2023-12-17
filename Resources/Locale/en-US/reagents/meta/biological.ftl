@@ -1,3 +1,12 @@
+reagent-name-syntheticblood = synthetic blood
+reagent-desc-syntheticblood = I hope this is ketchup.
+
+reagent-name-inactiveblood = inactive blood
+reagent-desc-inactiveblood = I hope this is ketchup.
+
+reagent-name-flesh-acid = flesh acid
+reagent-desc-flesh-acid = ...
+
 reagent-name-blood = blood
 reagent-desc-blood = I hope this is ketchup.
 
