@@ -78,7 +78,7 @@ public sealed class EntityHealthBarOverlay : Overlay
             if (dmg.DamageContainerID == null || !DamageContainers.Contains(dmg.DamageContainerID))
                 continue;
 
-            if (!_interaction.InRangeUnobstructed(_playerManager.LocalEntity.Value, owner, range: 30f, collisionMask: CollisionGroup.FlyingMobLayer))
+            if (!_interaction.InRangeUnobstructed(_playerManager.LocalEntity.Value, owner, range: 30f, collisionMask: CollisionGroup.Opaque))
                 continue;
 
 
