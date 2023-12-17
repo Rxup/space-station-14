@@ -10,7 +10,6 @@ namespace Content.Client.Backmen.EntityHealthBar;
 public sealed class ShowHealthBarsSystem : EntitySystem
 {
     [Dependency] private readonly IPlayerManager _player = default!;
-    [Dependency] private readonly IPrototypeManager _protoMan = default!;
     [Dependency] private readonly IOverlayManager _overlayMan = default!;
 
     private EntityHealthBarOverlay _overlay = default!;
@@ -26,7 +25,7 @@ public sealed class ShowHealthBarsSystem : EntitySystem
         _player.LocalPlayerAttached += OnPlayerAttached;
         _player.LocalPlayerDetached += OnPlayerDetached;
 
-        _overlay = new(EntityManager, _protoMan);
+        _overlay = new();
     }
 
     public override void Shutdown()
