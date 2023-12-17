@@ -75,21 +75,7 @@ public sealed class EntityHealthBarOverlay : Overlay
 
             handle.SetTransform(matty);
 
-            float yOffset;
-            float xIconOffset;
-            float yIconOffset;
-            if (spriteQuery.TryGetComponent(owner, out var sprite))
-            {
-                yOffset = sprite.Bounds.Height + 19f;
-                yIconOffset = sprite.Bounds.Height + 11f;
-                xIconOffset = sprite.Bounds.Width + 11f;
-            }
-            else
-            {
-                yOffset = 1f;
-                yIconOffset = 1f;
-                xIconOffset = 1f;
-            }
+            var yOffset = spriteQuery.TryGetComponent(owner, out var sprite) ? sprite.Bounds.Height + 19f : 1f;
 
             var position = new Vector2(-_barTexture.Width / 2f / EyeManager.PixelsPerMeter,
                 yOffset / EyeManager.PixelsPerMeter);
