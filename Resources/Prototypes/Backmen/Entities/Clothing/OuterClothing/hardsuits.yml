@@ -163,7 +163,7 @@
 
 #Mime Hardsuit
 - type: entity
-  parent: ClothingOuterHardsuitBase
+  parent: ClothingOuterHardsuitClown
   id: ClothingOuterHardsuitMime
   name: mime hardsuit
   description: A custom made mime hardsuit. Ironicly, makes no sound.
@@ -172,14 +172,6 @@
     sprite: Backmen/Clothing/OuterClothing/Hardsuits/mime.rsi
   - type: Clothing
     sprite: Backmen/Clothing/OuterClothing/Hardsuits/mime.rsi
-  - type: PressureProtection
-    highPressureMultiplier: 0.5
-    lowPressureMultiplier: 1000
-  - type: ExplosionResistance
-    damageCoefficient: 0.9
-  - type: ClothingSpeedModifier
-    walkModifier: 0.9
-    sprintModifier: 0.9
   - type: Construction
     graph: MimeHardsuit
     node: mimeHardsuit

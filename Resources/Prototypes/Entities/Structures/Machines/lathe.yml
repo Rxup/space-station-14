@@ -283,6 +283,8 @@
       - InsulativeHeadcage
       - HandTeleporter1
       - BluespacePillCanister # Backmen
+      - FauxTileAstroGrass
+      - FauxTileAstroIce
   - type: EmagLatheRecipes
     emagDynamicRecipes:
       - ExplosivePayload

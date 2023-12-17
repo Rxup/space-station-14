@@ -43,6 +43,7 @@
     ClothingHeadHatHairflower: 1
     ClothingHeadHatGladiator: 1
     ClothingUniformJumpsuitGladiator: 1
+    ClothingHeadHatStetson: 2 # backmen
   emaggedInventory:
     ClothingShoesBling: 1
     ClothingOuterDogi: 1

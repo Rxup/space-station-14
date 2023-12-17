@@ -10,3 +10,5 @@ ent-ClothingHeadHatCapOfficerSoviet = Фуражка Советского Офи
 ent-ClothingOuterArmorCrusader = Шляпа охотника за ведьмами
     .desc = Шляпа охотника за мифическими существами, а именно ведьмами в стиле средневековья.
     .suffix = { "" }
+ent-ClothingHeadHatStetson = стетсон
+    .desc = Почувствуй себя ковбоем!

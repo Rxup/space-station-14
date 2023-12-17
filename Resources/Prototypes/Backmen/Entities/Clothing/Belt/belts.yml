@@ -35,15 +35,22 @@
     sprite: Backmen/Clothing/Belt/demoman.rsi
   - type: Storage
     grid:
-    - 0,0,4,4
+    - 0,0,11,1
     whitelist:
       tags:
         - CableCoil
+        - GlassBeaker
+        - ProximitySensor
       components:
         - ExplodeOnTrigger
+        - ChemicalPayload
+        - FlashOnTrigger
+        - ClusterGrenade
+        - EmpOnTrigger
         - Explosive
         - PayloadCase
         - Signaller
+        - PayloadTrigger
   - type: ItemMapper
     mapLayers:
      modular_grenade:
