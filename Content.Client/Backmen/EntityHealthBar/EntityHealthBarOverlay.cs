@@ -40,6 +40,9 @@ public sealed class EntityHealthBarOverlay : Overlay
         _shader = protoManager.Index<ShaderPrototype>("unshaded").Instance();
     }
 
+    public const int StandardSizeFull = 290;
+    public const int StandardRadiusCircle = 140;
+
     protected override void Draw(in OverlayDrawArgs args)
     {
         var handle = args.WorldHandle;
@@ -75,9 +78,9 @@ public sealed class EntityHealthBarOverlay : Overlay
             float yOffset;
             float xIconOffset;
             float yIconOffset;
-            if (spriteQuery.TryGetComponent(mob.Owner, out var sprite))
+            if (spriteQuery.TryGetComponent(owner, out var sprite))
             {
-                yOffset = sprite.Bounds.Height + 14f;
+                yOffset = sprite.Bounds.Height + 19f;
                 yIconOffset = sprite.Bounds.Height + 11f;
                 xIconOffset = sprite.Bounds.Width + 11f;
             }
@@ -92,14 +95,18 @@ public sealed class EntityHealthBarOverlay : Overlay
                 yOffset / EyeManager.PixelsPerMeter);
 
             // Draw the underlying bar texture
-            handle.DrawTexture(_barTexture, position);
-
+            //handle.DrawTexture(_barTexture, position);
             // we are all progressing towards death every day
             (float ratio, bool inCrit) deathProgress = CalcProgress(owner, mob, dmg, thresholds);
 
+
             var color = GetProgressColor(deathProgress.ratio, deathProgress.inCrit);
 
+            handle.DrawCircle(position, 0.1f + 0.03f, Color.Gray, false);
+            DrawProgressCircle(handle, position, 0.1f, color, deathProgress.ratio);
+
             // Hardcoded width of the progress bar because it doesn't match the texture.
+            /*
             const float startX = 2f;
             const float endX = 22f;
 
@@ -108,10 +115,44 @@ public sealed class EntityHealthBarOverlay : Overlay
             var box = new Box2(new Vector2(startX, 3f) / EyeManager.PixelsPerMeter, new Vector2(xProgress, 4f) / EyeManager.PixelsPerMeter);
             box = box.Translated(position);
             handle.DrawRect(box, color);
+            */
         }
 
         handle.UseShader(null);
         handle.SetTransform(Matrix3.Identity);
+    }
+
+    private static void DrawProgressCircle(DrawingHandleWorld handleWorld, Vector2 position, float radius, Color color, float progress)
+    {
+        const int segments = 64;
+
+
+        if (progress >= 1)
+        {
+            handleWorld.DrawCircle(position, radius, color);
+            return;
+        }
+
+        // Вычисление количества вершин для заполненной части
+        var filledVerticesCount = (int)Math.Ceiling(segments * progress);
+        if (filledVerticesCount is <= 0 or >= segments)
+            return;
+
+        var filledBuffer = new Vector2[filledVerticesCount + 1];
+
+        filledBuffer[0] = position; // Центральная вершина
+
+        for (var i = 1; i <= filledVerticesCount; i++)
+        {
+            var angle = i / (float) segments * MathHelper.TwoPi;
+            var pos = new Vector2(MathF.Sin(angle), MathF.Cos(angle));
+
+            filledBuffer[i] = position + pos * radius;
+        }
+
+        // Рисование заполненной части
+        handleWorld.DrawPrimitives(DrawPrimitiveTopology.TriangleFan, filledBuffer, color);
+
     }
 
     /// <summary>
