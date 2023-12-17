@@ -177,14 +177,6 @@
     lowPressureMultiplier: 1000
   - type: ExplosionResistance
     damageCoefficient: 0.9
-  - type: Armor
-    modifiers:
-      coefficients:
-        Blunt: 0.9
-        Slash: 0.9
-        Piercing: 0.9
-        Caustic: 0.8
-        Stun: 1.4
   - type: ClothingSpeedModifier
     walkModifier: 0.9
     sprintModifier: 0.9
