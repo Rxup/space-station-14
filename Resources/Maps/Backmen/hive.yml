@@ -136352,10 +136352,6 @@ entities:
       pos: 64.39123,19.498093
       parent: 1
       type: Transform
-    - linkedPorts:
-        invalid:
-        - Pressed: Trigger
-      type: DeviceLinkSource
   - uid: 16872
     components:
     - pos: -15.623448,22.68428
@@ -140622,6 +140618,20 @@ entities:
     - pos: -49.5,-25.5
       parent: 1
       type: Transform
+- proto: SpawnMobBPLA
+  entities:
+  - uid: 7517
+    components:
+    - pos: -60.5,10.5
+      parent: 1
+      type: Transform
+- proto: SpawnMobBPLAMED
+  entities:
+  - uid: 7570
+    components:
+    - pos: -59.5,10.5
+      parent: 1
+      type: Transform
 - proto: SpawnMobCat
   entities:
   - uid: 7584
@@ -141072,6 +141082,18 @@ entities:
   - uid: 23891
     components:
     - pos: 6.5,-48.5
+      parent: 1
+      type: Transform
+- proto: SpawnPointDelivery
+  entities:
+  - uid: 7471
+    components:
+    - pos: -17.5,-2.5
+      parent: 1
+      type: Transform
+  - uid: 7472
+    components:
+    - pos: -17.5,-4.5
       parent: 1
       type: Transform
 - proto: SpawnPointDetective
