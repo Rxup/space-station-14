@@ -75,6 +75,8 @@ namespace Content.IntegrationTests.Tests
             "ShwrAdventurer",
             "ShwrBig",
             "shwrDust",
+            "Tortuga",
+            "TheHive",
             //end-backmen
             "Reach"
         };
