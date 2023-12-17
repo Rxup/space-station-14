@@ -21019,6 +21019,9 @@ entities:
     - pos: 12.5,13.5
       parent: 2
       type: Transform
+    - receiveStationGoal: True
+      name: Центральное Командование
+      type: FaxMachine
 - proto: FenceMetalCorner
   entities:
   - uid: 448

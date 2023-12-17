@@ -69977,7 +69977,7 @@ entities:
     - pos: 4.5,-1.5
       parent: 1
       type: Transform
-    - name: 'Head of Personnel '
+    - name: Head of Personnel
       type: FaxMachine
   - uid: 2125
     components:
@@ -69999,6 +69999,7 @@ entities:
       parent: 1
       type: Transform
     - name: Nyanotrasen News
+      receiveStationGoal: True
       type: FaxMachine
   - uid: 4726
     components:
@@ -70006,6 +70007,8 @@ entities:
       parent: 1
       type: Transform
     - name: Bridge
+      receiveStationGoal: True
+      receiveNukeCodes: true
       type: FaxMachine
   - uid: 5355
     components:
@@ -123506,10 +123509,10 @@ entities:
         Details: Fix faulty vacuum seals
 
 
-        Observations: Seals were cracked and missing in some corners. Atmos technicians were circumventing the air chamber as a quick fix negating the potential for hull breach mitigation. 
+        Observations: Seals were cracked and missing in some corners. Atmos technicians were circumventing the air chamber as a quick fix negating the potential for hull breach mitigation.
 
 
-        Work Completed: Replaced faulty or missing seals and repressurized. Vacuum tested and works as intended now. 
+        Work Completed: Replaced faulty or missing seals and repressurized. Vacuum tested and works as intended now.
 
 
         Assigned Technician: Araston DePlois

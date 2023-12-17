@@ -17013,6 +17013,9 @@ entities:
     - pos: 12.5,-12.5
       parent: 2
       type: Transform
+    - receiveStationGoal: True
+      name: Центральное Командование
+      type: FaxMachine
 - proto: filingCabinetDrawerRandom
   entities:
   - uid: 3410
