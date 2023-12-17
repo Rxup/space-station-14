@@ -7064,18 +7064,6 @@ entities:
     - pos: -14.5,0.5
       parent: 60
       type: Transform
-- proto: SignSec
-  entities:
-  - uid: 976
-    components:
-    - pos: 1.5,0.5
-      parent: 60
-      type: Transform
-  - uid: 977
-    components:
-    - pos: -2.5,0.5
-      parent: 60
-      type: Transform
 - proto: Sink
   entities:
   - uid: 277
