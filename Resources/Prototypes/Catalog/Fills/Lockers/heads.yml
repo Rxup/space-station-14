@@ -168,6 +168,8 @@
       - id: AccessConfigurator
       - id: AntiPsychicKnife  # backmen
       - id: ClothingHeadCage # backmen
+      - id: RCD
+      - id: RCDAmmo
 
 - type: entity
   id: LockerChiefEngineerFilled
@@ -194,6 +196,8 @@
       - id: AccessConfigurator
       - id: AntiPsychicKnife  # backmen
       - id: ClothingHeadCage # backmen
+      - id: RCD
+      - id: RCDAmmo
 
 - type: entity
   id: LockerChiefMedicalOfficerFilledHardsuit
