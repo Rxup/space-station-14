@@ -16067,11 +16067,6 @@ entities:
     - pos: 18.5,21.5
       parent: 1
       type: Transform
-  - uid: 4492
-    components:
-    - pos: 28.5,-37.5
-      parent: 1
-      type: Transform
   - uid: 4973
     components:
     - pos: 25.5,-12.5
@@ -16111,6 +16106,11 @@ entities:
   - uid: 4491
     components:
     - pos: 22.5,-37.5
+      parent: 1
+      type: Transform
+  - uid: 4492
+    components:
+    - pos: 28.5,-37.5
       parent: 1
       type: Transform
   - uid: 5141
@@ -55000,12 +55000,6 @@ entities:
       pos: 104.5,1.5
       parent: 1
       type: Transform
-  - uid: 9868
-    components:
-    - rot: -1.5707963267948966 rad
-      pos: 104.5,0.5
-      parent: 1
-      type: Transform
   - uid: 11108
     components:
     - rot: 1.5707963267948966 rad
@@ -58003,7 +57997,7 @@ entities:
     - pos: -42.5,7.5
       parent: 1
       type: Transform
-  - uid: 6295
+  - uid: 6291
     components:
     - rot: -1.5707963267948966 rad
       pos: 112.5,5.5
@@ -58089,11 +58083,11 @@ entities:
   entities:
   - uid: 6290
     components:
-    - rot: 1.5707963267948966 rad
-      pos: 103.5,0.5
+    - rot: 3.141592653589793 rad
+      pos: 104.5,0.5
       parent: 1
       type: Transform
-  - uid: 6291
+  - uid: 7576
     components:
     - rot: -1.5707963267948966 rad
       pos: 112.5,3.5
@@ -69977,7 +69971,7 @@ entities:
     - pos: 4.5,-1.5
       parent: 1
       type: Transform
-    - name: Head of Personnel
+    - name: Офис Главы Персонала
       type: FaxMachine
   - uid: 2125
     components:
@@ -69991,31 +69985,30 @@ entities:
     - pos: -43.5,7.5
       parent: 1
       type: Transform
-    - name: Engineering
+    - name: Отдел Инженерии
       type: FaxMachine
   - uid: 2860
     components:
     - pos: 42.5,-9.5
       parent: 1
       type: Transform
-    - name: Nyanotrasen News
-      receiveStationGoal: True
+    - receiveStationGoal: True
+      name: Новости НаноТрайзен
       type: FaxMachine
   - uid: 4726
     components:
     - pos: 107.5,9.5
       parent: 1
       type: Transform
-    - name: Bridge
-      receiveStationGoal: True
-      receiveNukeCodes: true
+    - receiveStationGoal: True
+      name: Мостик
       type: FaxMachine
   - uid: 5355
     components:
     - pos: 4.5,42.5
       parent: 1
       type: Transform
-    - name: Epistemics
+    - name: Отдел Научный
       type: FaxMachine
   - uid: 6430
     components:
@@ -70029,14 +70022,14 @@ entities:
     - pos: 43.5,12.5
       parent: 1
       type: Transform
-    - name: Lawyer's Office
+    - name: Офис АВД
       type: FaxMachine
   - uid: 7677
     components:
     - pos: 83.5,-13.5
       parent: 1
       type: Transform
-    - name: Medical
+    - name: Отдел Медецинский
       type: FaxMachine
   - uid: 13836
     components:
@@ -70055,21 +70048,30 @@ entities:
     - pos: 66.5,11.5
       parent: 1
       type: Transform
-    - name: Security
+    - name: Отдел Безопасности
       type: FaxMachine
   - uid: 25318
     components:
     - pos: -3.5,-2.5
       parent: 1
       type: Transform
-    - name: Cargo
+    - name: Отдел Снабжения
       type: FaxMachine
   - uid: 25613
     components:
     - pos: -41.5,-30.5
       parent: 1
       type: Transform
-    - name: Salvage
+    - name: Пост утилизаторов
+      type: FaxMachine
+- proto: FaxMachineCaptain
+  entities:
+  - uid: 7578
+    components:
+    - pos: 103.5,0.5
+      parent: 1
+      type: Transform
+    - name: Офис Капитана
       type: FaxMachine
 - proto: FigureSpawner
   entities:
@@ -146429,6 +146431,12 @@ entities:
     components:
     - rot: -1.5707963267948966 rad
       pos: 98.5,2.5
+      parent: 1
+      type: Transform
+  - uid: 6295
+    components:
+    - rot: 3.141592653589793 rad
+      pos: 103.5,0.5
       parent: 1
       type: Transform
   - uid: 6936
