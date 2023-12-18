@@ -1,0 +1,19 @@
+﻿<DefaultWindow xmlns="https://spacestation14.io" xmlns:style="clr-namespace:Content.Client.Stylesheets" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+               Title="{Loc 'sponsor-win-manager-title'}"
+               MinSize="250 250" Resizable="False">
+    <BoxContainer Orientation="Vertical">
+        <BoxContainer Orientation="Horizontal">
+            <Label Text="{Loc 'sponsor-win-manager-tier'}" />
+            <Label Text=" " />
+            <Label Name="Tier" Text="" />
+        </BoxContainer>
+        <BoxContainer Orientation="Horizontal">
+            <Label Text="{Loc 'sponsor-win-manager-theme'}" />
+            <Label Text=" " />
+            <OptionButton Name="GhostTheme" VerticalExpand="True"  Margin ="0 4" />
+        </BoxContainer>
+        <BoxContainer HorizontalAlignment="Center" VerticalAlignment="Center">
+            <SpriteView Name="GhostView" Scale="5 5"/>
+        </BoxContainer>
+    </BoxContainer>
+</DefaultWindow>

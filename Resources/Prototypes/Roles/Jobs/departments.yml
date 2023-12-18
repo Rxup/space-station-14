@@ -47,6 +47,7 @@
   - HeadOfSecurity
   - ResearchDirector
   - Quartermaster
+  - SAI
   accountNumber: 1317 #backmen: currency
 
 - type: department
@@ -56,7 +57,6 @@
   roles:
   - AtmosphericTechnician
   - ChiefEngineer
-  - SeniorEngineer
   - StationEngineer
   - TechnicalAssistant
   accountNumber: 1318 #backmen: currency
@@ -72,7 +72,6 @@
   - MedicalIntern
   - Psychologist
   - Paramedic
-  - SeniorPhysician
   accountNumber: 1319 #backmen: currency
 
 - type: department
@@ -83,7 +82,6 @@
   - HeadOfSecurity
   - SecurityCadet
   - SecurityOfficer
-  - SeniorOfficer
   - Detective
   - Warden
   - Brigmedic #backmen
@@ -96,7 +94,6 @@
   color: "#D381C9"
   roles:
   - ResearchDirector
-  - SeniorResearcher
   - Scientist
   - ResearchAssistant
   accountNumber: 1321  #backmen: currency

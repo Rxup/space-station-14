@@ -10,14 +10,56 @@
   - type: Clothing
     sprite: Backmen/Clothing/Belt/orden_sheath.rsi
   - type: Storage
-    capacity: 15
+    grid:
+    - 0,0,4,3
     whitelist:
       tags:
-        - CaptainSabre
+        - SwordSquadRO
   - type: ItemMapper
     mapLayers:
       sheath-sabre:
         whitelist:
           tags:
-          - CaptainSabre
+          - SwordSquadRO
+  - type: Appearance
+
+- type: entity
+  parent: ClothingBeltStorageBase
+  id: ClothingBeltDemoman
+  name: demoman belt
+  description: A Demoman's belt specifically for grenades.
+  components:
+  - type: Sprite
+    sprite: Backmen/Clothing/Belt/demoman.rsi
+  - type: Clothing
+    sprite: Backmen/Clothing/Belt/demoman.rsi
+  - type: Storage
+    grid:
+    - 0,0,11,1
+    whitelist:
+      tags:
+        - CableCoil
+        - GlassBeaker
+        - ProximitySensor
+      components:
+        - ExplodeOnTrigger
+        - ChemicalPayload
+        - FlashOnTrigger
+        - ClusterGrenade
+        - EmpOnTrigger
+        - Explosive
+        - PayloadCase
+        - Signaller
+        - PayloadTrigger
+  - type: ItemMapper
+    mapLayers:
+     modular_grenade:
+        whitelist:
+          components:
+          - PayloadCase
+     signaller:
+        whitelist:
+          components:
+          - Signaller
+    sprite: Backmen/Clothing/Belt/belt_overlay.rsi
   - type: Appearance

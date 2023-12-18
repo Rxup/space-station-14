@@ -9,7 +9,6 @@ using Content.Server.UserInterface;
 using Content.Shared.Access.Components;
 using Content.Shared.Backmen.Economy;
 using Content.Shared.Backmen.Economy.ATM;
-using Content.Shared.Backmen.Store;
 using Content.Shared.FixedPoint;
 using Content.Shared.Hands.EntitySystems;
 using Content.Shared.Interaction;
@@ -17,7 +16,7 @@ using Content.Shared.Materials;
 using Content.Shared.Popups;
 using Content.Shared.Stacks;
 using Content.Shared.Store;
-using Content.Shared.Wires;
+using Robust.Server.Audio;
 using Robust.Server.GameObjects;
 using Robust.Shared.Audio;
 using Robust.Shared.Containers;
@@ -39,7 +38,6 @@ namespace Content.Server.Backmen.Economy.ATM;
         [Dependency] private readonly StoreSystem _storeSystem = default!;
         [Dependency] private readonly SharedPopupSystem _popup = default!;
         [Dependency] private readonly UserInterfaceSystem _uiSystem = default!;
-        [Dependency] private readonly SharedInteractionSystem _interactionSystem = default!;
 
         public override void Initialize()
         {

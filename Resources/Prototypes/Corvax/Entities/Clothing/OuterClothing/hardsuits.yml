@@ -15,7 +15,7 @@
     walkModifier: 1.0
     sprintModifier: 1.0
   - type: TemperatureProtection
-    coefficient: 0.001    
+    coefficient: 0.001
   - type: Armor
     modifiers:
       coefficients:
@@ -26,6 +26,7 @@
         Cold: 0.1
         Shock: 0.1
         Radiation: 0.1
+        Stun: 0.2
   - type: ExplosionResistance
     damageCoefficient: 0.7
   - type: ToggleableClothing

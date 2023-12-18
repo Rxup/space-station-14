@@ -1,5 +1,4 @@
 using Content.Server.Administration;
-using Content.Server.Maps;
 using Content.Server.Backmen.Shipyard.Systems;
 using Content.Shared.Administration;
 using Content.Shared.Backmen.Shipyard.Prototypes;
@@ -14,7 +13,7 @@ namespace Content.Server.Backmen.Shipyard.Commands;
 [AdminCommand(AdminFlags.Fun)]
 public sealed class PurchaseShuttleCommand : IConsoleCommand
 {
-    [Dependency] private readonly IEntitySystemManager _entityManager = default!;
+    [Dependency] private readonly IEntityManager _entityManager = default!;
     [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
 
     public string Command => "purchaseshuttle";
@@ -40,10 +39,10 @@ public sealed class PurchaseShuttleCommand : IConsoleCommand
             return;
         }
 
-        var shuttlePath = args[1];
-        var system = _entityManager.GetEntitySystem<ShipyardSystem>();
-        var station = new EntityUid(stationId);
-        system.TryPurchaseShuttle(station, vessel, out _);
+        var system = _entityManager.System<ShipyardSystem>();
+        var stationNet = new NetEntity(stationId);
+        if(stationNet.Valid && _entityManager.TryGetEntity(stationNet, out var station))
+            system.TryPurchaseShuttle(station.Value, vessel, out _);
     }
 
     public CompletionResult GetCompletion(IConsoleShell shell, string[] args)

@@ -21,26 +21,48 @@ public sealed class FakeFingerprint : IConsoleCommand
 
     public void Execute(IConsoleShell shell, string argStr, string[] args)
     {
-        if(args.Length != 2){
+        if(args.Length != 2)
+        {
             shell.WriteLine(Loc.GetString("shell-wrong-arguments-number"));
             return;
         }
-        if(!EntityUid.TryParse(args[0], out var playerUid)){
+
+        if (!int.TryParse(args[0], out var playerInt))
+        {
+            shell.WriteLine(Loc.GetString("shell-entity-uid-must-be-number"));
+            return;
+        }
+
+        var playerNet = new NetEntity(playerInt);
+
+        if (!_entityManager.TryGetEntity(playerNet, out var playerUid))
+        {
             shell.WriteLine(Loc.GetString("shell-invalid-entity-id"));
             return;
         }
-        if(!EntityUid.TryParse(args[1], out var item)){
+
+        if (!int.TryParse(args[1], out var itemInt))
+        {
+            shell.WriteLine(Loc.GetString("shell-entity-uid-must-be-number"));
+            return;
+        }
+
+        var itemNet = new NetEntity(itemInt);
+
+        if (!_entityManager.TryGetEntity(itemNet, out var item))
+        {
             shell.WriteLine(Loc.GetString("shell-invalid-entity-id"));
             return;
         }
-        var f = _entityManager.EnsureComponent<ForensicsComponent>(item);
+
+        var f = _entityManager.EnsureComponent<ForensicsComponent>(item.Value);
         if (_entityManager.TryGetComponent<DnaComponent>(playerUid, out var dna))
         {
             f.DNAs.Add(dna.DNA);
         }
 
         var inventory = _entityManager.System<InventorySystem>();
-        if (inventory.TryGetSlotEntity(playerUid, "gloves", out var gloves))
+        if (inventory.TryGetSlotEntity(playerUid.Value, "gloves", out var gloves))
         {
             if (_entityManager.TryGetComponent<FiberComponent>(gloves, out var fiber) && !string.IsNullOrEmpty(fiber.FiberMaterial))
                 f.Fibers.Add(string.IsNullOrEmpty(fiber.FiberColor) ? Loc.GetString("forensic-fibers", ("material", fiber.FiberMaterial)) : Loc.GetString("forensic-fibers-colored", ("color", fiber.FiberColor), ("material", fiber.FiberMaterial)));

@@ -177,7 +177,7 @@
     soundHit:
       collection: Punch
       params:
-        pitchscale: 0.3
+        pitch: 0.3
     angle: 30
     animation: WeaponArcFist
     attackRate: 1
@@ -199,6 +199,8 @@
         type: StrippableBoundUserInterface
       - key: enum.GolemUiKey.Key
         type: GolemBoundUserInterface
+      - key: enum.SiliconLawsUiKey.Key
+        type: SiliconLawBoundUserInterface
   - type: Puller
   - type: Speech
     speechSounds: Baritone
@@ -248,8 +250,6 @@
   - type: Psionic
     removable: false
   - type: SiliconLawBound
-  - type: SiliconLawProvider
-    laws: []
   - type: GuideHelp
     guides:
     - AltarsGolemancy

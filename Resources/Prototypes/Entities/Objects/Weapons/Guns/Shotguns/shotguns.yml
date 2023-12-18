@@ -7,11 +7,11 @@
   components:
   - type: Sprite
     layers:
-      - state: icon
-        map: [ "enum.GunVisualLayers.Base" ]
+    - state: icon
+      map: [ "enum.GunVisualLayers.Base" ]
   - type: Item
     # If you update this also update the bulldog's size.
-    size: 30
+    size: Large
   - type: Clothing
     sprite: Objects/Weapons/Guns/Shotguns/db_shotgun.rsi
     quickEquip: false
@@ -49,6 +49,7 @@
   parent: BaseItem
   id: WeaponShotgunBulldog
   description: It's a magazine-fed shotgun designed for close quarters combat. Uses .50 shotgun shells.
+  noSpawn: true
   components:
   - type: Sprite
     sprite: Objects/Weapons/Guns/Shotguns/bulldog.rsi
@@ -58,7 +59,7 @@
     - state: mag-0
       map: ["enum.GunVisualLayers.Mag"]
   - type: Item
-    size: 30
+    size: Large
   - type: Clothing
     sprite: Objects/Weapons/Guns/Shotguns/bulldog.rsi
     quickEquip: false
@@ -107,6 +108,12 @@
   components:
   - type: Sprite
     sprite: Objects/Weapons/Guns/Shotguns/db_shotgun.rsi
+  - type: Item
+    size: Normal
+    shape:
+    - 0,0,4,0
+    sprite: Objects/Weapons/Guns/Shotguns/inhands_64x.rsi
+    heldPrefix: db
   - type: Gun
     fireRate: 2
   - type: BallisticAmmoProvider
@@ -130,28 +137,27 @@
   name: Enforcer
   parent: BaseWeaponShotgun
   id: WeaponShotgunEnforcer
-  description: A next-generation Frozen Star shotgun. Uses .50 shotgun shells.
+  description: A premium combat shotgun based on the Kammerer design, featuring an upgraded clip capacity. .50 shotgun shells.
+  noSpawn: true
   components:
   - type: Sprite
     sprite: Objects/Weapons/Guns/Shotguns/enforcer.rsi
   - type: Clothing
     sprite: Objects/Weapons/Guns/Shotguns/enforcer.rsi
+  - type: Item
+    sprite: Objects/Weapons/Guns/Shotguns/inhands_64x.rsi
+    heldPrefix: enforcer
   - type: BallisticAmmoProvider
   - type: Gun # Corvax-Guns
     soundGunshot:
       path: /Audio/Corvax/Weapons/Guns/Gunshots/shotgun_metal.ogg
 
 - type: entity
-  name: Enforcer
-  parent: BaseWeaponShotgun
+  parent: WeaponShotgunEnforcer
   id: WeaponShotgunEnforcerRubber
-  description: A next-generation Frozen Star shotgun. Uses .50 shotgun shells.
+  noSpawn: true
   suffix: Non-Lethal
   components:
-  - type: Sprite
-    sprite: Objects/Weapons/Guns/Shotguns/enforcer.rsi
-  - type: Clothing
-    sprite: Objects/Weapons/Guns/Shotguns/enforcer.rsi
   - type: BallisticAmmoProvider
     proto: ShellShotgunBeanbag
   - type: Gun # Corvax-Guns
@@ -162,8 +168,15 @@
   name: Kammerer
   parent: BaseWeaponShotgun
   id: WeaponShotgunKammerer
+  noSpawn: true
   description: When an old Remington design meets modern materials, this is the result. A favourite weapon of militia forces throughout many worlds. Uses .50 shotgun shells.
   components:
+  - type: Item
+    size: Normal
+    shape:
+    - 0,0,4,0
+    sprite: Objects/Weapons/Guns/Shotguns/inhands_64x.rsi
+    heldPrefix: pump
   - type: Sprite
     sprite: Objects/Weapons/Guns/Shotguns/pump.rsi
   - type: Clothing
@@ -173,6 +186,9 @@
   - type: Gun # Corvax-Guns
     soundGunshot:
       path: /Audio/Corvax/Weapons/Guns/Gunshots/shotgun_alt.ogg
+  - type: Tag
+    tags:
+    - WeaponShotgunKammerer
 
 - type: entity
   name: sawn-off shotgun
@@ -185,7 +201,9 @@
   - type: Clothing
     sprite: Objects/Weapons/Guns/Shotguns/sawn.rsi
   - type: Item
-    size: 10
+    size: Small
+    sprite: Objects/Weapons/Guns/Shotguns/inhands_64x.rsi
+    heldPrefix: sawn
   - type: Gun
     fireRate: 4
     soundGunshot: # Corvax-Guns
@@ -217,12 +235,13 @@
   id: WeaponShotgunHandmade
   description: Looks unreliable. Uses .50 shotgun shells.
   components:
+  - type: Item
+    size: Small
+    storedRotation: 90
   - type: Sprite
     sprite: Objects/Weapons/Guns/Shotguns/hm_pistol.rsi
   - type: Clothing
     sprite: Objects/Weapons/Guns/Shotguns/hm_pistol.rsi
-  - type: Item
-    size: 10
   - type: Gun
     fireRate: 4
     soundGunshot: # Corvax-Guns
@@ -233,6 +252,8 @@
     graph: ShotgunSawn
     node: shotgunsawn
     deconstructionTarget: null
+  - type: StaticPrice
+    price: 0
 
 - type: entity
   name: blunderbuss
@@ -241,12 +262,18 @@
   suffix: Pirate
   description: Deadly at close range.
   components:
+  - type: Item
+    size: Normal
+    shape:
+    - 0,0,4,0
   - type: Sprite
     sprite: Objects/Weapons/Guns/Shotguns/blunderbuss.rsi
   - type: Gun
     fireRate: 2
   - type: BallisticAmmoProvider
     capacity: 1
+  - type: StaticPrice
+    price: 0
 
 - type: entity
   name: improvised shotgun
@@ -259,7 +286,11 @@
   - type: Clothing
     sprite: Objects/Weapons/Guns/Shotguns/improvised_shotgun.rsi
   - type: Item
-    size: 75
+    size: Normal
+    shape:
+    - 0,0,4,0
+    sprite: Objects/Weapons/Guns/Shotguns/inhands_64x.rsi
+    heldPrefix: improvised
   - type: Gun
     fireRate: 4 #No reason to stifle the firerate since you have to manually reload every time anyways.
   - type: BallisticAmmoProvider
@@ -269,7 +300,7 @@
     graph: ImprovisedShotgunGraph
     node: shotgun
   - type: StaticPrice
-    price: 400
+    price: 20
 
 - type: entity
   name: improvised shotgun

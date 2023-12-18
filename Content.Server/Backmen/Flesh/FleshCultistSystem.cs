@@ -3,7 +3,6 @@ using Content.Server.Actions;
 using Content.Server.Atmos.Components;
 using Content.Server.Body.Components;
 using Content.Server.Body.Systems;
-using Content.Server.Cloning;
 using Content.Server.Flash.Components;
 using Content.Server.Fluids.EntitySystems;
 using Content.Server.Forensics;
@@ -25,6 +24,7 @@ using Content.Shared.Electrocution;
 using Content.Shared.FixedPoint;
 using Content.Shared.Backmen.Flesh;
 using Content.Shared.Chemistry.EntitySystems;
+using Content.Shared.Cloning;
 using Content.Shared.Fluids.Components;
 using Content.Shared.Hands.Components;
 using Content.Shared.Humanoid;
@@ -38,6 +38,7 @@ using Content.Shared.Popups;
 using Content.Shared.Random;
 using Content.Shared.Tag;
 using Robust.Shared.Audio;
+using Robust.Shared.Audio.Systems;
 using Robust.Shared.Collections;
 using Robust.Shared.Containers;
 using Robust.Shared.Physics;
@@ -371,9 +372,8 @@ public sealed partial class FleshCultistSystem : EntitySystem
 
         var xform = Transform(args.Args.Target.Value);
         var coordinates = xform.Coordinates;
-        var filter = Filter.Pvs(args.Args.Target.Value, entityManager: EntityManager);
         var audio = AudioParams.Default.WithVariation(0.025f);
-        _audio.Play(component.DevourSound, filter, coordinates, true, audio);
+        _audio.PlayPvs(component.DevourSound, args.Args.Target.Value, audio);
         _popupSystem.PopupEntity(Loc.GetString("flesh-cultist-devour-target",
                 ("Entity", uid), ("Target", args.Args.Target)), uid);
 
@@ -544,9 +544,8 @@ public sealed partial class FleshCultistSystem : EntitySystem
             ("Entity", uid), ("EntityTransform", abommob)), abommob, Filter.PvsExcept(abommob),
             true, PopupType.LargeCaution);
 
-        var filter = Filter.Pvs(uid, entityManager: EntityManager);
         var audio = AudioParams.Default.WithVariation(0.025f);
-        _audio.Play(component.SoundMutation, filter, coordinates, true, audio);
+        _audio.PlayPvs(component.SoundMutation, uid, audio);
 
         if (TryComp(uid, out ContainerManagerComponent? container))
         {

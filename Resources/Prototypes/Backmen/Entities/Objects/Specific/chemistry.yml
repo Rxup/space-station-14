@@ -1,0 +1,27 @@
+- type: entity
+  name: bluespace pill canister
+  id: BluespacePillCanister
+  parent: BaseStorageItem
+  description: Pill canister wich uses the Bluespace technology. Holds up to 50 pills.
+  components:
+  - type: Sprite
+    sprite: Backmen/Objects/Specific/Chemistry/bluespace_pills_canister.rsi
+    state: bluespace_pill_canister
+  - type: Item
+    sprite: Backmen/Objects/Specific/Chemistry/bluespace_pills_canister.rsi
+    size: Normal
+  - type: Tag
+    tags:
+      - PillCanister
+  - type: Storage
+    whitelist:
+      tags:
+        - Pill
+    grid:
+    - 0,0,5,2
+    quickInsert: true
+    areaInsert: true
+    areaInsertRadius: 1
+    storageInsertSound: /Audio/Effects/pill_insert.ogg
+    storageRemoveSound: /Audio/Effects/pill_remove.ogg
+  - type: Dumpable

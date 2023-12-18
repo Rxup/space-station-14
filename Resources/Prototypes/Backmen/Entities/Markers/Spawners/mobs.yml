@@ -14,3 +14,17 @@
   - type: ConditionalSpawner
     prototypes:
     - MobCarpFactionSyndicate
+
+- type: entity
+  name: Bluespace Goat Spawner
+  id: SpawnMobBluespaceGoat
+  parent: MarkerBase
+  components:
+  - type: Sprite
+    layers:
+    - state: green
+    - state: goat
+      sprite: Backmen/Mobs/Animals/bluespacegoat.rsi
+  - type: ConditionalSpawner
+    prototypes:
+    - MobGoatBluespace

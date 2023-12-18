@@ -1,0 +1,35 @@
+﻿
+- type: itemSize
+  id: Felinid
+  weight: 28
+  name: item-component-size-Felinid
+  defaultShape:
+  - 0,0,5,3
+
+- type: itemSize
+  id: HeavyMachineGun
+  weight: 80
+  name: item-component-size-HeavyMachineGun
+  defaultShape:
+  - 0,0,9,5
+
+- type: itemSize
+  id: SmallNormal
+  weight: 2
+  name: item-component-size-Normal
+  defaultShape:
+  - 0,0,1,1
+
+- type: itemSize
+  id: NormalLarge
+  weight: 8
+  name: item-component-size-Normal
+  defaultShape:
+  - 0,0,1,1
+
+- type: itemSize
+  id: LargeHuge
+  weight: 16
+  name: item-component-size-Large
+  defaultShape:
+  - 0,0,3,2

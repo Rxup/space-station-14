@@ -67,6 +67,9 @@ public sealed class CCVars
     public static readonly CVarDef<string> SponsorsApiUrl =
         CVarDef.Create("sponsor.api_url", "", CVar.SERVERONLY);
 
+    public static readonly CVarDef<string> SponsorsSelectedGhost =
+        CVarDef.Create("sponsor.ghost", "", CVar.CLIENTONLY);
+
 
     public static readonly CVarDef<bool>
         EconomyWagesEnabled = CVarDef.Create("economy.wages_enabled", true, CVar.SERVERONLY);
@@ -120,11 +123,11 @@ public sealed class CCVars
  */
 
     public static readonly CVarDef<int> FleshCultMinPlayers =
-        CVarDef.Create("fleshcult.min_players", 25);
+        CVarDef.Create("fleshcult.min_players", 25, CVar.SERVERONLY);
 
     public static readonly CVarDef<int> FleshCultMaxCultist =
-        CVarDef.Create("fleshcult.max_cultist", 6);
+        CVarDef.Create("fleshcult.max_cultist", 6, CVar.SERVERONLY);
 
     public static readonly CVarDef<int> FleshCultPlayersPerCultist =
-        CVarDef.Create("fleshcult.players_per_cultist", 7);
+        CVarDef.Create("fleshcult.players_per_cultist", 7, CVar.SERVERONLY);
 }

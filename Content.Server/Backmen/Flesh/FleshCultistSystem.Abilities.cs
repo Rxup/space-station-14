@@ -1,12 +1,15 @@
 ﻿using System.Linq;
 using System.Numerics;
-using Content.Server.Chemistry.EntitySystems;
 using Content.Server.Construction.Components;
 using Content.Server.Coordinates.Helpers;
 using Content.Server.Cuffs;
+using Content.Server.Salvage.Expeditions;
+using Content.Server.Station.Components;
+using Content.Server.Station.Systems;
 using Content.Shared.Chemistry.Components;
 using Content.Shared.Cuffs.Components;
 using Content.Shared.Backmen.Flesh;
+using Content.Shared.Cargo.Components;
 using Content.Shared.Chemistry.EntitySystems;
 using Content.Shared.Hands.Components;
 using Content.Shared.Hands.EntitySystems;
@@ -16,6 +19,7 @@ using Content.Shared.Mobs.Components;
 using Content.Shared.Movement.Systems;
 using Content.Shared.Physics;
 using Content.Shared.Popups;
+using Robust.Shared.Audio.Systems;
 using Robust.Shared.Map;
 using Robust.Shared.Physics.Components;
 using Robust.Shared.Player;
@@ -31,6 +35,7 @@ public sealed partial class FleshCultistSystem
     [Dependency] private readonly IMapManager _map = default!;
     [Dependency] private readonly SolutionContainerSystem _solutionContainerSystem = default!;
     [Dependency] private readonly MovementSpeedModifierSystem _movement = default!;
+    [Dependency] private readonly StationSystem _stationSystem = default!;
 
     private void InitializeAbilities()
     {
@@ -559,7 +564,17 @@ public sealed partial class FleshCultistSystem
         var radius = 1.5f;
         if (!_map.TryGetGrid(xform.GridUid, out var grid))
         {
-            _popup.PopupEntity(Loc.GetString("flesh-cultist-cant-spawn-flesh-heart-in-space",
+            _popup.PopupEntity(Loc.GetString("flesh-cultist-cant-spawn-flesh-heart",
+                ("Entity", uid)), uid, PopupType.Large);
+            return;
+        }
+
+        var station = _stationSystem.GetOwningStation(xform.GridUid.Value);
+        var isCargo = HasComp<CargoShuttleComponent>(xform.GridUid.Value) ||
+                      HasComp<SalvageShuttleComponent>(xform.GridUid.Value);
+        if (station == null || !HasComp<StationEventEligibleComponent>(station) || isCargo || !HasComp<BecomesStationComponent>(xform.GridUid.Value))
+        {
+            _popup.PopupEntity(Loc.GetString("flesh-cultist-cant-spawn-flesh-heart",
                 ("Entity", uid)), uid, PopupType.Large);
             return;
         }

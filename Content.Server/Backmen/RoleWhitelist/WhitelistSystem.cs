@@ -1,14 +1,10 @@
 ﻿using System.Threading.Tasks;
 using Content.Server.Database;
-using Content.Server.Ghost.Roles;
-using Content.Server.Ghost.Roles.Components;
-using Content.Server.Players;
 using Content.Shared.Backmen;
-using Content.Shared.Backmen.CCVar;
 using JetBrains.Annotations;
 using Robust.Server.Player;
-using Robust.Shared.Configuration;
 using Robust.Shared.Network;
+using Robust.Shared.Player;
 
 namespace Content.Server.Backmen.RoleWhitelist;
 
@@ -52,12 +48,12 @@ public sealed class WhitelistSystem  : EntitySystem
     {
         return _whitelisted.Contains(p);
     }
-    public bool IsInWhitelist(IPlayerSession p)
+    public bool IsInWhitelist(ICommonSession p)
     {
         return _whitelisted.Contains(p.UserId);
     }
 
-    public void AddWhitelist(IPlayerSession p)
+    public void AddWhitelist(ICommonSession p)
     {
         if (_whitelisted.Add(p.UserId))
         {
@@ -71,7 +67,7 @@ public sealed class WhitelistSystem  : EntitySystem
             SendWhitelistCached(p);
         }
     }
-    public void RemoveWhitelist(IPlayerSession p)
+    public void RemoveWhitelist(ICommonSession p)
     {
         if (_whitelisted.Remove(p.UserId))
         {
@@ -100,9 +96,9 @@ public sealed class WhitelistSystem  : EntitySystem
             SendWhitelistCached(p);
         }
     }
-    public void SendWhitelistCached(IPlayerSession playerSession)
+    public void SendWhitelistCached(ICommonSession playerSession)
     {
-        SendWhitelistCached(playerSession.ConnectedClient);
+        SendWhitelistCached(playerSession.Channel);
     }
 
     public override void Shutdown()

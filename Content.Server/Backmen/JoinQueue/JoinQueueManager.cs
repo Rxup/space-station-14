@@ -1,17 +1,17 @@
 ﻿using System.Linq;
-using Content.Server.Backmen.DiscordAuth;
 using Content.Server.Connection;
 using Content.Shared.Backmen.JoinQueue;
 using Content.Shared.CCVar;
-using Content.Shared.Corvax.CCCVars;
 using Prometheus;
 using Robust.Server.Player;
 using Robust.Shared.Configuration;
 using Robust.Shared.Enums;
 using Robust.Shared.Network;
-using Robust.Shared.Timing;
+using Robust.Shared.Player;
 
 namespace Content.Server.Backmen.JoinQueue;
+
+
 
 public sealed class JoinQueueManager : Content.Corvax.Interfaces.Server.IServerJoinQueueManager
 {
@@ -33,6 +33,7 @@ public sealed class JoinQueueManager : Content.Corvax.Interfaces.Server.IServerJ
         });
 
     [Dependency] private readonly IPlayerManager _playerManager = default!;
+    [Dependency] private readonly IEntityManager _entityManager = default!;
     [Dependency] private readonly IConnectionManager _connectionManager = default!;
     [Dependency] private readonly IConfigurationManager _cfg = default!;
     [Dependency] private readonly IServerNetManager _netManager = default!;
@@ -41,7 +42,7 @@ public sealed class JoinQueueManager : Content.Corvax.Interfaces.Server.IServerJ
     /// <summary>
     ///     Queue of active player sessions
     /// </summary>
-    private readonly List<IPlayerSession> _queue = new(); // Real Queue class can't delete disconnected users
+    private readonly List<ICommonSession> _queue = new(); // Real Queue class can't delete disconnected users
 
     private bool _isIsEnabled = false;
 
@@ -60,7 +61,7 @@ public sealed class JoinQueueManager : Content.Corvax.Interfaces.Server.IServerJ
 
     public void PostInitialize()
     {
-        
+
     }
 
     private void OnQueueCVarChanged(bool value)
@@ -71,12 +72,12 @@ public sealed class JoinQueueManager : Content.Corvax.Interfaces.Server.IServerJ
         {
             foreach (var session in _queue)
             {
-                session.ConnectedClient.Disconnect("Queue was disabled");
+                session.Channel.Disconnect("Queue was disabled");
             }
         }
     }
 
-    private async void OnPlayerVerified(object? sender, IPlayerSession session)
+    private async void OnPlayerVerified(object? sender, ICommonSession session)
     {
         if (!_isIsEnabled)
         {
@@ -151,7 +152,7 @@ public sealed class JoinQueueManager : Content.Corvax.Interfaces.Server.IServerJ
     {
         for (var i = 0; i < _queue.Count; i++)
         {
-            _queue[i].ConnectedClient.SendMessage(new MsgQueueUpdate
+            _queue[i].Channel.SendMessage(new MsgQueueUpdate
             {
                 Total = _queue.Count,
                 Position = i + 1,
@@ -163,8 +164,8 @@ public sealed class JoinQueueManager : Content.Corvax.Interfaces.Server.IServerJ
     ///     Letting player's session into game, change player state
     /// </summary>
     /// <param name="s">Player session that will be sent to game</param>
-    private void SendToGame(IPlayerSession s)
+    private void SendToGame(ICommonSession s)
     {
-        Timer.Spawn(0, s.JoinGame);
+        _entityManager.System<PlayerManagerSystem>().JoinGame(s);
     }
 }

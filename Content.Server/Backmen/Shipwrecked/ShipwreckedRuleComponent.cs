@@ -2,15 +2,11 @@
 using Content.Shared.Corvax.TTS;
 using Content.Shared.Procedural;
 using Content.Shared.Roles;
-using Robust.Server.Player;
 using Robust.Shared.Map;
 using Robust.Shared.Map.Components;
+using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
-using Robust.Shared.Serialization.TypeSerializers.Implementations;
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom;
-using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype;
-using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype.List;
-using Robust.Shared.Utility;
 
 namespace Content.Server.Backmen.Shipwrecked;
 
@@ -73,7 +69,7 @@ public sealed partial class ShipwreckedRuleComponent : Component
     /// A list of all survivors and their player sessions.
     /// </summary>
     [ViewVariables]
-    public List<(EntityUid entity, IPlayerSession session)> Survivors = new();
+    public List<(EntityUid entity, ICommonSession session)> Survivors = new();
 
     /// <summary>
     /// Where the game starts and ends.

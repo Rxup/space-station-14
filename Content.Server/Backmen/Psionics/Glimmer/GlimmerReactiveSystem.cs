@@ -16,11 +16,11 @@ using Content.Shared.Damage;
 using Content.Shared.Destructible;
 using Content.Shared.Construction.Components;
 using Robust.Shared.Audio;
-using Robust.Shared.Map;
 using Robust.Shared.Random;
 using Robust.Shared.Physics.Components;
 using Robust.Shared.Utility;
 using Robust.Server.GameObjects;
+using Robust.Shared.Audio.Systems;
 using Robust.Shared.Map.Components;
 using Robust.Shared.Prototypes;
 
@@ -259,24 +259,33 @@ namespace Content.Server.Backmen.Psionics.Glimmer
             }
         }
 
+        [ValidatePrototypeId<StatusEffectPrototype>]
+        private const string Electrocution = "Electrocution";
+
+        private readonly HashSet<Entity<IComponent>> _entitySet = new();
+        private readonly List<EntityUid> _entities = new();
         public void BeamRandomNearProber(EntityUid prober, int targets, float range = 10f)
         {
-            List<EntityUid> targetList = new();
-            foreach (var target in _entityLookupSystem.GetEntitiesInRange<StatusEffectsComponent>(
-                         Transform(prober).Coordinates, range))
+            var pos = Transform(prober).Coordinates.ToMap(EntityManager,_transformSystem);
+            _entitySet.Clear();
+            _entityLookupSystem.GetEntitiesInRange(typeof(StatusEffectsComponent),pos.MapId,pos.Position, range, _entitySet);
+            _entityLookupSystem.GetEntitiesInRange(typeof(SharedGlimmerReactiveComponent),pos.MapId,pos.Position, range, _entitySet);
+            _entities.Clear();
+
+            foreach (var target in _entitySet)
             {
-                if (target.Comp.AllowedEffects.Contains("Electrocution"))
-                    targetList.Add(target.Owner);
+                if (target.Comp is StatusEffectsComponent comp)
+                {
+                    if (!comp.AllowedEffects.Contains(Electrocution))
+                    {
+                        continue;
+                    }
+                }
+                _entities.Add(target);
             }
 
-            foreach (var reactive in _entityLookupSystem.GetEntitiesInRange<SharedGlimmerReactiveComponent>(
-                         Transform(prober).Coordinates, range))
-            {
-                targetList.Add(reactive.Owner);
-            }
-
-            _random.Shuffle(targetList);
-            foreach (var target in targetList)
+            _random.Shuffle(_entities);
+            foreach (var target in _entities)
             {
                 if (targets <= 0)
                     return;
@@ -286,37 +295,36 @@ namespace Content.Server.Backmen.Psionics.Glimmer
             }
         }
 
+        [ValidatePrototypeId<EntityPrototype>]
+        private const string SuperchargedLightning = "SuperchargedLightning";
+        [ValidatePrototypeId<EntityPrototype>]
+        private const string HyperchargedLightning = "HyperchargedLightning";
+        [ValidatePrototypeId<EntityPrototype>]
+        private const string ChargedLightning = "ChargedLightning";
+
         private void Beam(EntityUid prober, EntityUid target, GlimmerTier tier, bool obeyCd = true)
         {
             if (obeyCd && BeamCooldown != 0)
                 return;
 
-            if (Deleted(prober) || Deleted(target))
+            if (TerminatingOrDeleted(prober) || TerminatingOrDeleted(target))
                 return;
 
-            var lxform = Transform(prober);
-            var txform = Transform(target);
+            var lxform = Transform(prober).Coordinates;
+            var txform = Transform(target).Coordinates;
 
-            if (!lxform.Coordinates.TryDistance(EntityManager, txform.Coordinates, out var distance))
+            if (!lxform.TryDistance(EntityManager, txform, out var distance))
                 return;
+
             if (distance > (_glimmerSystem.Glimmer / 100f))
                 return;
 
-            string beamproto;
-
-            switch (tier)
+            var beamproto = tier switch
             {
-                case GlimmerTier.Dangerous:
-                    beamproto = "SuperchargedLightning";
-                    break;
-                case GlimmerTier.Critical:
-                    beamproto = "HyperchargedLightning";
-                    break;
-                default:
-                    beamproto = "ChargedLightning";
-                    break;
-            }
-
+                GlimmerTier.Dangerous => SuperchargedLightning,
+                GlimmerTier.Critical => HyperchargedLightning,
+                _ => ChargedLightning
+            };
 
             _lightning.ShootLightning(prober, target, beamproto);
             BeamCooldown += 3f;

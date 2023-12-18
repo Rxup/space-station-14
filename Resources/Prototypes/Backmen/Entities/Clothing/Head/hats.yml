@@ -117,3 +117,19 @@
       sprite: Backmen/Clothing/Head/Hats/mailman.rsi
     - type: Clothing
       sprite: Backmen/Clothing/Head/Hats/mailman.rsi
+
+- type: entity
+  parent: ClothingHeadBase
+  id: ClothingHeadHatStetson
+  name: Stetson
+  description: Feel like a cowboy!
+  components:
+  - type: Sprite
+    sprite: Backmen/Clothing/Head/Hats/stetson.rsi
+  - type: Clothing
+    sprite: Backmen/Clothing/Head/Hats/stetson.rsi
+  - type: Tag
+    tags:
+    - ClothMade
+    - HamsterWearable
+    - WhitelistChameleon

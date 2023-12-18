@@ -1,6 +1,5 @@
 using Content.Server.Damage.Systems;
 using Content.Server.Shuttles.Components;
-using Content.Shared.Tools;
 using JetBrains.Annotations;
 using Robust.Shared.Map;
 using Content.Shared.Tag;
@@ -14,17 +13,13 @@ using Content.Server.Light.Components;
 using Content.Server.StationEvents.Components;
 using Content.Shared.SubFloor;
 using Content.Server.SurveillanceCamera;
-using Content.Server.Atmos.Components;
 using Content.Server.Atmos.Piping.Binary.Components;
 using Content.Server.Atmos.Piping.Trinary.Components;
 using Content.Server.Construction;
 using Content.Server.Emp;
 using Content.Server.Gravity;
 using Content.Server.Power.EntitySystems;
-using Content.Shared.Damage;
-using Content.Shared.Damage.Components;
 using Content.Shared.DeviceLinking.Events;
-using Content.Shared.Tiles;
 using Content.Shared.Tools.Systems;
 
 namespace Content.Server.Backmen.Arrivals;
@@ -34,7 +29,11 @@ public sealed partial class ArrivalsProtectComponent : Component
 {
 
 }
+[RegisterComponent]
+public sealed partial class ArrivalsProtectGridComponent : Component
+{
 
+}
 
 [UsedImplicitly]
 public sealed class ArrivalsProtectSystem : EntitySystem
@@ -96,7 +95,7 @@ public sealed class ArrivalsProtectSystem : EntitySystem
             return;
         }
 
-        if (HasComp<ProtectedGridComponent>(grid.Value))
+        if (HasComp<ArrivalsProtectGridComponent>(grid.Value))
         {
             ev.Cancel();
         }
@@ -104,9 +103,9 @@ public sealed class ArrivalsProtectSystem : EntitySystem
 
     private void OnStartup(EntityUid uid, ArrivalsProtectComponent component, ComponentStartup args)
     {
-        EnsureComp<GodmodeComponent>(uid);
-        RemCompDeferred<DamageableComponent>(uid);
-        RemCompDeferred<MovedByPressureComponent>(uid);
+        //EnsureComp<GodmodeComponent>(uid);
+        //RemCompDeferred<DamageableComponent>(uid);
+        //RemCompDeferred<MovedByPressureComponent>(uid);
         ProcessGodmode(uid);
     }
 
@@ -155,6 +154,8 @@ public sealed class ArrivalsProtectSystem : EntitySystem
             return;
         }
 
+        EnsureComp<ArrivalsProtectGridComponent>(grid);
+
         var transformQuery = GetEntityQuery<TransformComponent>();
 
         RecursiveGodmode(transformQuery, grid);
@@ -165,17 +166,17 @@ public sealed class ArrivalsProtectSystem : EntitySystem
         if (TryComp<GasMixerComponent>(uid, out var gasMinerComponent))
         {
             (gasMinerComponent as dynamic).Enabled = true;
-            Dirty(gasMinerComponent);
+            Dirty(uid, gasMinerComponent);
         }
         if (TryComp<GasPressurePumpComponent>(uid, out var gasPressurePumpComponent))
         {
             gasPressurePumpComponent.Enabled = true;
-            Dirty(gasPressurePumpComponent);
+            Dirty(uid, gasPressurePumpComponent);
         }
 
         if(TryComp<DoorComponent>(uid, out var doorComp))
         {
-            doorComp.PryingQuality = "None";
+            //doorComp.PryingQuality = "None";
             EnsureComp<ArrivalsProtectComponent>(uid);
 
             if(HasComp<AirlockComponent>(uid))
@@ -220,7 +221,7 @@ public sealed class ArrivalsProtectSystem : EntitySystem
         var enumerator = transformQuery.GetComponent(uid).ChildEnumerator;
         while (enumerator.MoveNext(out var child))
         {
-            RecursiveGodmode(transformQuery, child.Value);
+            RecursiveGodmode(transformQuery, child);
         }
     }
 

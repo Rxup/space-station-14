@@ -30,7 +30,7 @@
 
 - type: latheRecipe
   id: WeaponLaserCarbine
-  result: WeaponLaserCarbine
+  result: WeaponEarthGovLaserRifle
   completetime: 8
   materials:
     Steel: 2000
@@ -48,7 +48,7 @@
 
 - type: latheRecipe
   id: WeaponLaserCannon
-  result: WeaponLaserCannon
+  result: WeaponEarthGovLaserSniper
   completetime: 5
   materials:
     Steel: 1250
@@ -56,24 +56,22 @@
     Gold: 500
 
 - type: latheRecipe
+  id: WeaponLaserSvalinn
+  result: WeaponLaserSvalinn
+  completetime: 5
+  materials:
+    Steel: 2000
+    Gold: 500
+
+- type: latheRecipe
   id: WeaponXrayCannon
-  result: WeaponXrayCannon
+  result: WeaponEarthGovXRay
   completetime: 5
   materials:
     Steel: 1500
     Glass: 500
     Plastic: 250
     Gold: 100
-
-- type: latheRecipe
-  id: WeaponTaser
-  result: WeaponTaser
-  completetime: 5
-  materials:
-    Steel: 700
-    Plastic: 300
-    Gold: 250
-    Silver: 500
 
 - type: latheRecipe
   id: ForensicPad
@@ -264,7 +262,7 @@
 
 - type: latheRecipe
   id: MagazinePistolSubMachineGunTopMounted
-  result: MagazinePistolSubMachineGunTopMounted
+  result: MagazinePistolTopSubMachineGun
   completetime: 5
   materials:
     Steel: 300

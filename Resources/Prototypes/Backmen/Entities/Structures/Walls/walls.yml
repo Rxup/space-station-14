@@ -37,17 +37,20 @@
         - RCDDeconstructWhitelist
 
 - type: entity
-  parent: WallSolid
-  id: WallShuttleInterior
-  name: shuttle wall
-  suffix: Interior
+  parent: BaseWall
+  id: WallRivetedIndestructible
+  name: riveted wall
+  suffix: indestructible
   components:
-    - type: Sprite
-      sprite: Structures/Walls/shuttle.rsi
-    - type: Icon
-      sprite: Structures/Walls/shuttle.rsi
-    - type: IconSmooth
-      key: walls
-      base: state
-    - type: Reflect
-      reflectProb: 1
+  - type: Tag
+    tags:
+    - Wall
+  - type: Sprite
+    sprite: Structures/Walls/riveted.rsi
+  - type: Icon
+    sprite: Structures/Walls/riveted.rsi
+  - type: IconSmooth
+    key: walls
+    base: riveted
+  - type: Reflect
+    reflectProb: 1

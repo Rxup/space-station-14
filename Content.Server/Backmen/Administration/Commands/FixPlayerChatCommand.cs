@@ -1,13 +1,13 @@
 using Content.Server.Administration;
 using Content.Server.Administration.Logs;
 using Content.Shared.Mind;
-using Content.Server.Players;
 using Content.Shared.Administration;
 using Content.Shared.Database;
 using Content.Shared.Mind.Components;
-using Robust.Server.GameObjects;
+using Content.Shared.Players;
 using Robust.Server.Player;
 using Robust.Shared.Console;
+using Robust.Shared.Player;
 using Robust.Shared.Timing;
 
 namespace Content.Server.Backmen.Administration.Commands
@@ -18,6 +18,7 @@ namespace Content.Server.Backmen.Administration.Commands
 
         [Dependency] private readonly IAdminLogManager _adminLogger = default!;
         [Dependency] private readonly IEntityManager _entityManager = default!;
+        [Dependency] private readonly ISharedPlayerManager _playerManager = default!;
 
         public string Command => "fixplayerchat";
 
@@ -74,8 +75,7 @@ namespace Content.Server.Backmen.Administration.Commands
 
             // ReSharper disable once InconsistentNaming
             var _mindSystem = _entityManager.System<SharedMindSystem>();
-            // ReSharper disable once InconsistentNaming
-            var _actorSystem = _entityManager.System<ActorSystem>();
+
             var mind = playerCData.Mind ?? _mindSystem.CreateMind(session.UserId, _entityManager.GetComponent<MetaDataComponent>(eUid).EntityName);
 
             //mind.TransferTo(null);
@@ -87,7 +87,7 @@ namespace Content.Server.Backmen.Administration.Commands
                         if (eUid.IsValid() && _entityManager.HasComponent<MetaDataComponent>(eUid))
                         {
                             _mindSystem.TransferTo(mind, eUid);
-                            _actorSystem.Attach(eUid, session, true);
+                            _playerManager.SetAttachedEntity(session, eUid, true);
                         }
                     });
                 }

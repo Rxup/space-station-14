@@ -1,5 +1,4 @@
-﻿using Content.Server.Chat.Managers;
-using Content.Server.GameTicking.Rules;
+﻿using Content.Server.GameTicking.Rules;
 using Content.Server.GameTicking.Rules.Components;
 
 namespace Content.Server.Backmen.Economy.Wage;

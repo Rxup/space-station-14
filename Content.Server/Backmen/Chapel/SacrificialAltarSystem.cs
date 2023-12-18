@@ -12,16 +12,17 @@ using Content.Server.Bible.Components;
 using Content.Server.Stunnable;
 using Content.Server.DoAfter;
 using Content.Server.Mind;
-using Content.Server.Players;
 using Content.Server.Popups;
 using Content.Server.Backmen.Soul;
 using Content.Server.Body.Systems;
 using Content.Shared.Backmen.Abilities.Psionics;
 using Content.Shared.Backmen.Chapel;
 using Content.Shared.Backmen.Psionics.Glimmer;
+using Content.Shared.Players;
+using Robust.Server.Audio;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
-using Robust.Server.GameObjects;
+using Robust.Shared.Player;
 using Robust.Shared.Timing;
 
 namespace Content.Server.Backmen.Chapel;
@@ -47,6 +48,7 @@ public sealed class SacrificialAltarSystem : EntitySystem
         SubscribeLocalEvent<SacrificialAltarComponent, GetVerbsEvent<AlternativeVerb>>(AddSacrificeVerb);
         SubscribeLocalEvent<SacrificialAltarComponent, BuckleChangeEvent>(OnBuckleChanged);
         SubscribeLocalEvent<SacrificialAltarComponent, SacrificeDoAfterEvent>(OnDoAfter);
+
     }
 
     private void AddSacrificeVerb(EntityUid uid, SacrificialAltarComponent component, GetVerbsEvent<AlternativeVerb> args)
@@ -90,7 +92,7 @@ public sealed class SacrificialAltarSystem : EntitySystem
 
     private void OnDoAfter(EntityUid uid, SacrificialAltarComponent component, SacrificeDoAfterEvent args)
     {
-        component.SacrificeStingStream?.Stop();
+        _audioSystem.Stop(component.SacrificeStingStream,component.SacrificeStingStream);
         component.DoAfter = null;
 
         if (args.Cancelled || args.Handled || args.Args.Target == null)

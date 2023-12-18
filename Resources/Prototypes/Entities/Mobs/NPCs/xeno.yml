@@ -124,6 +124,9 @@
     chance: -2
   - type: Psionic
     removable: false
+  - type: NightVision
+    isToggle: true
+    color: "#808080"
 
 - type: entity
   name: Praetorian
@@ -420,7 +423,14 @@
         - MobMask
         layer:
         - MobLayer
-
+  - type: FootstepModifier
+    footstepSoundCollection:
+      collection: FootstepSnake
+  - type: Tag
+    tags:
+    - DoorBumpOpener
+    - FootstepSound
+    
 - type: entity
   name: space adder
   parent: MobPurpleSnake

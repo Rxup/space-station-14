@@ -62,3 +62,23 @@
       blacklist:
         components:
           - SurplusBundle
+
+- type: listing
+  id: UplinkCostumeMime
+  name: uplink-costume-mime-name
+  description: uplink-costume-mime-desc
+  productEntity: ClothingBackpackDuffelSyndicateCostumeMime
+  cost:
+    Telecrystal: 3
+  categories:
+  - UplinkPointless
+
+- type: listing
+  id: UplinkBeltDemoman
+  name: uplink-belt-demoman-name
+  description: uplink-belt-demoman-desc
+  productEntity: ClothingBeltDemomanFilled
+  cost:
+    Telecrystal: 3
+  categories:
+  - UplinkExplosives

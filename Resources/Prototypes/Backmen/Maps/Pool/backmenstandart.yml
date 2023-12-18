@@ -1,0 +1,16 @@
+- type: gameMapPool
+  id: BackmenDefaultMapPool
+  maps:
+  - CorvaxDelta
+  - CorvaxAvrite
+  - CorvaxSilly
+  - Cluster
+  - Core
+  - Omega
+  - Atlas
+  - Gemini
+  - Reach
+  - Tortuga
+  - TheHive
+#  - ShouSho
+

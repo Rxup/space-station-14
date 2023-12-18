@@ -25,6 +25,7 @@
       - id: PlushieHampter
       - id: PlushieMoth
       - id: RubberPig
+      - id: PlushiePenguin
 
 - type: entity
   id: CrateFunInstrumentsVariety
@@ -130,7 +131,6 @@
   - type: StorageFill
     contents:
       - id: CrayonBox
-      - id: CrayonWhite
 
 - type: entity
   id: CrateFunBoardGames
@@ -271,6 +271,7 @@
       - id: ClothingHeadHatMagician
       - id: BeachBall
       - id: RubberPig
+      - id: ClothingShoesSkates
 
 - type: entity
   id: CrateFunBikeHornImplants
@@ -304,8 +305,8 @@
       - id: TargetDarts
         amount: 1
       - id: BoxDarts
-        amount: 1
+        amount: 2
       - id: BoxDarts
         amount: 1
         prob: 0.05
-  
+

@@ -47,7 +47,9 @@
   - type: Pullable
   - type: Occluder
   - type: Storage
-    capacity: 300
+    grid:
+    - 0,0,25,3
+    maxItemSize: Normal
     whitelist:
       tags:
         - Document

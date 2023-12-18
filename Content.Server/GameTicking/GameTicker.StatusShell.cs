@@ -1,6 +1,7 @@
 using System.Text.Json.Nodes;
 using Content.Corvax.Interfaces.Server;
 using Content.Shared.CCVar;
+using Content.Shared.GameTicking;
 using Robust.Server.ServerStatus;
 using Robust.Shared.Configuration;
 
@@ -28,6 +29,11 @@ namespace Content.Server.GameTicking
         [Dependency] private readonly IServerJoinQueueManager _joinQueueManager = default!;
         // Corvax-Queue-End
 
+        /// <summary>
+        ///     For access to the round ID in status responses.
+        /// </summary>
+        [Dependency] private readonly SharedGameTicker _gameTicker = default!;
+
         private void InitializeStatusShell()
         {
             IoCManager.Resolve<IStatusHost>().OnStatusRequest += GetStatusResponse;
@@ -39,12 +45,12 @@ namespace Content.Server.GameTicking
             lock (_statusShellLock)
             {
                 // Corvax-Queue-Start
-                var players = IoCManager.Instance?.TryResolveType<IServerJoinQueueManager>(out var joinQueueManager) ?? false
-                    ? joinQueueManager.ActualPlayersCount
-                    : _playerManager.PlayerCount;
+                var players = _joinQueueManager.ActualPlayersCount;
                 // Corvax-Queue-End
 
                 jObject["name"] = _baseServer.ServerName;
+                jObject["map"] = _gameMapManager.GetSelectedMap()?.MapName;
+                jObject["round_id"] = _gameTicker.RoundId;
                 jObject["players"] = players; // Corvax-Queue
                 jObject["soft_max_players"] = _cfg.GetCVar(CCVars.SoftMaxPlayers);
                 jObject["run_level"] = (int) _runLevel;

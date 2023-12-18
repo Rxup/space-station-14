@@ -2,12 +2,11 @@ using Content.Server.Backmen.NPC.Events;
 using Robust.Shared.Audio;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization;
-using Content.Server.NPC.Events;
 
 namespace Content.Server.Backmen.NPC.Prototypes;
 
 [Prototype("npcConversationTree")]
-public sealed class NPCConversationTreePrototype : IPrototype, ISerializationHooks
+public sealed partial class NPCConversationTreePrototype : IPrototype, ISerializationHooks
 {
     [ViewVariables]
     [IdDataField]

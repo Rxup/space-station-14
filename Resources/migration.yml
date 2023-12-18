@@ -187,3 +187,45 @@ GeneratorUraniumMachineCircuitboard: PortableGeneratorSuperPacmanMachineCircuitb
 
 FoodTinBeansOpen: FoodTinBeans
 FoodTinMREOpen: FoodTinMRE
+
+# 2023-11-05
+WeaponRifleAk: WeaponAKMSRifle
+WeaponXrayCannon: WeaponEarthGovXRay
+WeaponLaserCarbine: WeaponEarthGovLaserRifle
+WeaponLaserCannon: WeaponEarthGovLaserSniper
+WeaponRifleLecter: WeaponRifleAR18
+WeaponSubMachineGunAtreides: WeaponSubMachineGunMP7
+WeaponPistolViper: WeaponPistolHIB88M4
+WeaponPistolMk58: WeaponPistolACP14
+WeaponPistolMk58Nonlethal: WeaponPistolG22NonLethal
+WeaponSubMachineGunDrozd: WeaponSubMachineGunVectorSpecial
+WeaponSubMachineGunDrozdRubber: WeaponSubMachineGunMP5NonLethal
+WeaponShotgunEnforcer: WeaponShotgun39
+WeaponShotgunEnforcerRubber: WeaponShotgun39NonLethal
+WeaponSubMachineGunWt550: WeaponSubMachineGunP90
+MagazinePistolSubMachineGunTopMounted: MagazinePistolTopSubMachineGun
+WeaponShotgunKammerer: WeaponShotguntrenchgun4034
+WeaponSubMachineGunC20r: WeaponSubMachineGunMP7
+WeaponRevolverMateba: WeaponRevolverMatebaNew
+WeaponSniperMosin: WeaponSniperMosinNew
+WeaponShotgunBulldog: WeaponShotgunZauer
+
+# 2023-11-11 Backmen: AI
+ToyAi: SpawnPointStationAI
+
+# 2023-11-26
+WeaponSniperHristov: WeaponRifleSR127
+MagazineBoxAntiMateriel: MagazineAntiMaterielRifleSR
+
+# 2023-12-10
+SpawnPointSeniorResearcher: null
+SpawnPointSeniorOfficer: null
+SpawnPointSeniorEngineer: null
+SpawnPointSeniorPhysician: null
+
+# 2023-12-12
+#No this is not the CMO hardsuit, their prototype IDs were just confusingly similar
+ClothingOuterHardsuitMedic: ClothingOuterHardsuitSyndieMedic
+
+# 2023-12-13
+VendingMachineSmartFridge: SmartFridge

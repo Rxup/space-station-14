@@ -1,0 +1,24 @@
+﻿#- type: reaction
+#  id: MotorOil
+#  reactants:
+#    WeldingFuel:
+#      amount: 1
+#    Carbon:
+#      amount: 1
+#    Hydrogen:
+#      amount: 1
+#  products:
+#    MotorOil: 3
+
+- type: reaction
+  id: StimulantsSuper
+  impact: Medium
+  reactants:
+    Desoxyephedrine:
+      amount: 1
+    Omnizine:
+      amount: 1
+    Stimulants:
+      amount: 1
+  products:
+    StimulantsSuper: 1

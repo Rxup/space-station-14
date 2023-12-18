@@ -9,8 +9,8 @@ using Content.Shared.Backmen.Abilities.Psionics;
 using Content.Shared.StatusEffect;
 using Robust.Shared.Random;
 using Robust.Shared.Prototypes;
-using Robust.Server.GameObjects;
 using Robust.Server.Player;
+using Robust.Shared.Player;
 
 namespace Content.Server.Backmen.Abilities.Psionics;
 

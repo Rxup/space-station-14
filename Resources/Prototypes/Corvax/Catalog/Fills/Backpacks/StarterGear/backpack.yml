@@ -3,10 +3,13 @@
   parent: ClothingBackpack
   id: ClothingBackpackIAAFilled
   components:
+    - type: Storage
+      maxItemSize: Huge
+      grid:
+      - 0,0,4,3
     - type: StorageFill
       contents:
         - id: BoxSurvival
-        - id: BriefcaseIAAFilled
 
 - type: entity
   noSpawn: true

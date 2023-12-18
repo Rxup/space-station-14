@@ -1,14 +1,13 @@
 ﻿using System.Linq;
 using Content.Server.Administration;
 using Content.Server.GameTicking;
-using Content.Server.Players;
 using Content.Server.Preferences.Managers;
 using Content.Server.Station.Systems;
 using Content.Shared.Administration;
 using Content.Shared.Humanoid;
 using Content.Shared.Humanoid.Prototypes;
+using Content.Shared.Players;
 using Content.Shared.Preferences;
-using Robust.Server.Player;
 using Robust.Shared.Console;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
@@ -29,7 +28,7 @@ public sealed class LoadCharacterCommand : IConsoleCommand
 
         public void Execute(IConsoleShell shell, string argStr, string[] args)
         {
-            var player = shell.Player as IPlayerSession;
+            var player = shell.Player;
             if (player == null)
             {
                 shell.WriteError(Loc.GetString("shell-only-players-can-run-this-command"));
@@ -48,13 +47,22 @@ public sealed class LoadCharacterCommand : IConsoleCommand
 
             if (args.Length >= 1)
             {
-                if (!EntityUid.TryParse(args.First(), out var uid))
+
+                if (!int.TryParse(args.First(), out var entInt))
                 {
                     shell.WriteLine(Loc.GetString("shell-entity-uid-must-be-number"));
                     return;
                 }
 
-                target = uid;
+                var targetNet = new NetEntity(entInt);
+
+                if (!_entityManager.TryGetEntity(targetNet, out var uid))
+                {
+                    shell.WriteLine(Loc.GetString("shell-invalid-entity-id"));
+                    return;
+                }
+
+                target = uid.Value;
             }
             else
             {
@@ -124,7 +132,7 @@ public sealed class LoadCharacterCommand : IConsoleCommand
             }
             if (args.Length == 2)
             {
-                var player = shell.Player as IPlayerSession;
+                var player = shell.Player;
                 if (player == null)
                     return CompletionResult.Empty;
                 var mind = player.ContentData();

@@ -20,15 +20,13 @@ using Content.Shared.CartridgeLoader;
 using Content.Shared.Chat;
 using Content.Shared.Database;
 using Content.Shared.Inventory;
-using Content.Shared.Objectives;
 using Content.Shared.Objectives.Components;
 using Content.Shared.PDA;
 using Content.Shared.Roles;
 using Content.Shared.Roles.Jobs;
 using Content.Shared.Verbs;
 using JetBrains.Annotations;
-using Robust.Server.GameObjects;
-using Robust.Shared.Map;
+using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
 
@@ -289,8 +287,8 @@ public sealed class EconomySystem : EntitySystem
                 AttachWage = false;
             }
 
-            if (TryComp<JobComponent>(mindId, out var jobComponent) && jobComponent.PrototypeId != null &&
-                _prototype.TryIndex<JobPrototype>(jobComponent.PrototypeId, out var jobPrototype))
+            if (TryComp<JobComponent>(mindId, out var jobComponent) && jobComponent.Prototype != null &&
+                _prototype.TryIndex<JobPrototype>(jobComponent.Prototype, out var jobPrototype))
             {
                 _bankManagerSystem.TryGenerateStartingBalance(bankAccount, jobPrototype);
 

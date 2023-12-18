@@ -40,7 +40,6 @@
       - id: CaptainIDCard
       - id: ClothingHeadHatCaptain
       - id: ClothingNeckCloakCap
-      - id: ClothingHandsGlovesCaptain
       - id: ClothingOuterHardsuitCap
       - id: ClothingMaskGasCaptain
       - id: WeaponDisabler
@@ -221,6 +220,7 @@
       - id: BoxEncryptionKeyMedical
       - id: AntiPsychicKnife # backmen
       - id: ClothingHeadCage # backmen
+      - id: PresentMetempsychoticMachine # backmen
 
 - type: entity
   id: LockerChiefMedicalOfficerFilled
@@ -248,6 +248,7 @@
       - id: BoxEncryptionKeyMedical
       - id: AntiPsychicKnife # backmen
       - id: ClothingHeadCage # backmen
+      - id: PresentMetempsychoticMachine # backmen
 
 - type: entity
   id: LockerResearchDirectorFilledHardsuit
@@ -393,3 +394,19 @@
       - id: BookSecretDocuments
       - id: AntiPsychicKnife # backmen
       - id: ClothingHeadCage # backmen
+
+- type: entity
+  id: LockerFreezerVaultFilled
+  suffix: Vault, Locked
+  parent: LockerFreezerBase
+  components:
+  - type: AccessReader
+    access: [ [ "Command" ] ]
+  - type: StorageFill
+    contents:
+    - id: WeaponRevolverDeckard
+    - id: ClothingOuterHardsuitBasic
+    - id: JetpackBlue
+    - id: SpaceCash1000
+    - id: BeachBall
+    - id: BikeHorn

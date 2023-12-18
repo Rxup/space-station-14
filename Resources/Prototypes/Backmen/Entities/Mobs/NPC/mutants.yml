@@ -123,16 +123,16 @@
       melee:
         reagents:
         - ReagentId: Nocturine
-          Quantity: 42
+          Quantity: 24
   - type: MeleeChemicalInjector
     solution: melee
-    transferAmount: 5
+    transferAmount: 4
   - type: SolutionRegeneration
     solution: melee
     generated:
       reagents:
         - ReagentId: Nocturine
-          Quantity: 2
+          Quantity: 3
   - type: BloodSucker
     unitsToSucc: 35
     injectWhenSucc: true
@@ -188,6 +188,11 @@
     whitelist:
       tags:
         - ArachneWeb
+  - type: SpiderVampire
+    spawnEgg: FoodEggSpiderVampire
+  - type: NightVision
+    isToggle: true
+    color: "#808080"
 
 - type: entity
   name: Чёрная вдова
@@ -275,7 +280,7 @@
       40: Critical
       80: Dead
   - type: Item
-    size: 12
+    size: Huge
   - type: Stamina
     critThreshold: 80
   - type: MeleeWeapon
@@ -375,16 +380,16 @@
         melee:
           reagents:
             - ReagentId: Nocturine
-              Quantity: 100
+              Quantity: 40
     - type: MeleeChemicalInjector
       solution: melee
-      transferAmount: 10
+      transferAmount: 7
     - type: SolutionRegeneration
       solution: melee
       generated:
         reagents:
           - ReagentId: Nocturine
-            Quantity: 5
+            Quantity: 4
     - type: MovementSpeedModifier
       baseWalkSpeed: 2
       baseSprintSpeed: 3
@@ -394,3 +399,6 @@
       description: ghost-role-information-giant-spider-vampire-description
       rules: No antagonist restrictions. Just don't talk in emote; you have telepathic chat.
     - type: GhostTakeoverAvailable
+    - type: SpiderVampire
+      spawnEgg: FoodEggSpiderVampire
+      charges: 10

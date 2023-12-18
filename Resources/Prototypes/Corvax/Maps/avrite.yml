@@ -13,7 +13,7 @@
             !type:NanotrasenNameGenerator
             prefixCreator: 'TG'
         - type: StationEmergencyShuttle
-          emergencyShuttlePath: /Maps/Shuttles/emergency_courser.yml
+          emergencyShuttlePath: /Maps/Shuttles/emergency_corvaxavrit.yml
         - type: StationJobs
           overflowJobs:
             - Passenger
@@ -55,12 +55,10 @@
             Psychologist: [ 1, 1 ]
             Detective: [ 1, 1 ]
             Boxer: [ 2, 2]
+            # backmen
+            Prisoner: [ 2, 2]
+            SAI: [1, 1] # backmen-SAI
             Paramedic: [ 1, 1 ]
             Brigmedic: [ 0, 1 ] # backmen-Brigmedic
             BKBPLATech: [0, 3] # backmen-BPLA-Silicons
             BKBPLAMED: [0, 3] # backmen-BPLAMED-Silicons
-            SeniorOfficer: [ 1, 1 ]
-            SeniorResearcher: [ 1, 1 ]
-            SeniorPhysician: [ 1, 1 ]
-            SeniorEngineer: [ 1, 1 ]
-            Prisoner: [ 2, 3]
