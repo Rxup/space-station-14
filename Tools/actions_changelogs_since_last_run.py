@@ -118,9 +118,12 @@ def send_to_discord(entries: Iterable[ChangelogEntry]) -> None:
         for entry in group:
             for change in entry["changes"]:
                 emoji = TYPES_TO_EMOJI.get(change['type'], "❓")
-                url = entry["url"]
                 message = change['message']
-                content.write(f"{emoji} [-]({url}) {message}\n")
+                url = entry.get("url")
+                if url and url.strip():
+                    content.write(f"{emoji} [-]({url}) {message}\n")
+                else:
+                    content.write(f"{emoji} - {message}\n")
 
     content.seek(0) # Corvax
     for chunk in iter(lambda: content.read(2000), ''): # Corvax: Split big changelogs messages
