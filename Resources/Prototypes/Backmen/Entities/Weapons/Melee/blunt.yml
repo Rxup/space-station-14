@@ -19,6 +19,6 @@
   - type: StaminaDamageOnHit
     damage: 10
   - type: Item
-    size: 15
+    size: Huge
     sprite: Backmen/Objects/Weapons/Melee/shinai.rsi
   - type: DisarmMalus
