@@ -65,9 +65,6 @@
     sprite: Backmen/Structures/Walls/paper.rsi
   - type: Icon
     sprite: Backmen/Structures/Walls/paper.rsi
-  - type: Construction
-    graph: Girder
-    node: paperWall
   - type: Destructible
     thresholds:
     - trigger:

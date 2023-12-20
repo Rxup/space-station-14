@@ -144,17 +144,6 @@
             - material: MeatSheets
               amount: 2
               doAfter: 2
-              
-        - to: paperWall # Backmen
-          completed:
-            - !type:SnapToGrid
-              southRotation: true
-          conditions:
-            - !type:EntityAnchored {}
-          steps:
-            - material: Paper
-              amount: 2
-              doAfter: 2
 
         - to: shuttleInteriorWall
           completed:
