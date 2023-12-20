@@ -59,6 +59,7 @@ public sealed class CentcommSystem : EntitySystem
 
     public EntityUid CentComGrid { get; private set; } = EntityUid.Invalid;
     public MapId CentComMap { get; private set; } = MapId.Nullspace;
+    public EntityUid CentComMapUid { get; private set; } = EntityUid.Invalid;
     public float ShuttleIndex { get; set; } = 0;
 
     private WeightedRandomPrototype _stationCentComMapPool = default!;
@@ -191,6 +192,7 @@ public sealed class CentcommSystem : EntitySystem
             _mapManager.DeleteMap(CentComMap);
 
         CentComMap = MapId.Nullspace;
+        CentComMapUid = EntityUid.Invalid;
         ShuttleIndex = 0;
     }
 
@@ -220,6 +222,8 @@ public sealed class CentcommSystem : EntitySystem
         {
             CentComMap = _mapManager.CreateMap();
         }
+
+        CentComMapUid = _mapManager.GetMapEntityId(CentComMap);
 
         var mapId = _stationCentComMapPool.Pick();
         if (!_prototypeManager.TryIndex<GameMapPrototype>(mapId, out var map))
@@ -333,13 +337,13 @@ public sealed class CentcommSystem : EntitySystem
         var stationUid = _stationSystem.GetStations().FirstOrNull(HasComp<StationCentcommComponent>);
 
         if (!TryComp<StationCentcommComponent>(stationUid, out var centcomm) ||
-            Deleted(centcomm.Entity))
+             centcomm.Entity == null || !centcomm.Entity.Value.IsValid() || Deleted(centcomm.Entity))
         {
             _popup.PopupEntity(Loc.GetString("centcom-ftl-action-no-station"), args.Performer, args.Performer);
             return;
         }
 
-        if (shuttle.MapID == centcomm.MapId)
+        if (shuttle.MapUid == centcomm.MapEntity)
         {
             _popup.PopupEntity(Loc.GetString("centcom-ftl-action-at-centcomm"), args.Performer, args.Performer);
             return;
@@ -351,6 +355,6 @@ public sealed class CentcommSystem : EntitySystem
             return;
         }
 
-        _shuttleSystem.FTLTravel(shuttle.GridUid.Value, comp, centcomm.Entity);
+        _shuttleSystem.FTLTravel(shuttle.GridUid.Value, comp, centcomm.Entity.Value);
     }
 }

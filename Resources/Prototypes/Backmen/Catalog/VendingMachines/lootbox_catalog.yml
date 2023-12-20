@@ -27,7 +27,7 @@
   cost:
     SpaceCash: 10000
   categories:
-    - VendingLootboxInventory
+    - VendingLootboxInventoryEmag
   conditions:
     - !type:ListingLimitedStockCondition
       stock: 2

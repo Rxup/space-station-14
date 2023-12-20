@@ -212,8 +212,6 @@
       - AnomalyScanner
       - AnomalyLocator
       - AnomalyLocatorWide
-      - RCD
-      - RCDAmmo
       - HandheldCrewMonitor
       - Scalpel
       - Retractor
@@ -286,6 +284,7 @@
       - BluespacePillCanister # Backmen
       - FauxTileAstroGrass
       - FauxTileAstroIce
+      - OreBagOfHolding
   - type: EmagLatheRecipes
     emagDynamicRecipes:
       - ExplosivePayload
@@ -549,7 +548,6 @@
       - Zipties
       - Stunbaton
       - ForensicPad
-      - ClothingEyesGlassesSecurity
       - RiotShield
       - ShellShotgun
       - ShellShotgunFlare
@@ -576,6 +574,7 @@
       - CartridgeMagnumRubber
       - CartridgePistolRubber
       - CartridgeRifleRubber
+      - ClothingEyesGlassesSecurity
       - ExplosivePayload
       - FlashPayload
       - HoloprojectorSecurity

@@ -59,6 +59,8 @@
       balance:
         SpaceCash: 0
     - type: BuyStoreBank
+      emagCategories:
+        - VendingLootboxInventoryEmag
     - type: ActivatableUI
       key: enum.StoreUiKey.Key
       singleUser: true
