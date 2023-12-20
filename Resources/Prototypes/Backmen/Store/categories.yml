@@ -45,7 +45,7 @@
 - type: storeCategory
   id: VendingLootboxInventory
   name: store-category-lootbox
-
+  
 - type: storeCategory
   id: VendingLootboxInventoryEmag
   name: store-category-lootbox-emag
@@ -77,3 +77,11 @@
 - type: storeCategory
   id: HappyHonkInventory
   name: store-category-vendingmachineHappyHonk
+
+- type: storeCategory
+  id: BoxingDrobeInventory
+  name: store-category-vendingmachineboxingdrobe
+  
+- type: storeCategory
+  id: BoxingDrobeInventoryEmag
+  name: store-category-vendingmachineboxingdrobe-emag
