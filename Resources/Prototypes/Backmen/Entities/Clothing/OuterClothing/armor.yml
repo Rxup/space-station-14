@@ -64,3 +64,22 @@
   - type: ExplosionResistance
     damageCoefficient: 0.60
   - type: GroupExamine
+
+- type: entity
+  parent: ClothingOuterBase
+  id: ClothingOuterArmorKendoBogu
+  name: bogu
+  description: A set of armor used in Kendo. It covers the waist, torso, and hands. 
+  components:
+  - type: Sprite
+    sprite: Backmen/Clothing/OuterClothing/Armor/bogu.rsi
+  - type: Clothing
+    sprite: Backmen/Clothing/OuterClothing/Armor/bogu.rsi
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.75
+        Slash: 0.9
+  - type: ClothingSpeedModifier
+    walkModifier: 0.95
+    sprintModifier: 0.85

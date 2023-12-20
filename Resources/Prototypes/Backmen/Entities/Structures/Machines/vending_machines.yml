@@ -510,3 +510,43 @@
         - key: enum.StoreUiKey.Key
           type: StoreBoundUserInterface
 
+- type: entity
+  parent: VendingMachine
+  id: VendingMachineBoxingDrobe
+  suffix: backmen
+  components:
+  - type: VendingMachine
+    pack: VendingLootboxInventory
+    dispenseOnHitChance: 0.01
+    dispenseOnHitThreshold: 50
+    offState: off
+    brokenState: broken
+    normalState: normal-unshaded
+  - type: Sprite
+    sprite: Backmen/Structures/Machines/VendingMachines/boxingdrobe.rsi
+    layers:
+    - state: off
+      map: ["enum.VendingMachineVisualLayers.Base"]
+    - state: normal-unshaded
+      map: ["enum.VendingMachineVisualLayers.BaseUnshaded"]
+      shader: unshaded
+    - state: panel
+      map: ["enum.WiresVisualLayers.MaintenancePanel"]
+  - type: Store
+    categories:
+      - BoxingDrobeInventory
+    currencyWhitelist:
+      - SpaceCash
+    balance:
+      SpaceCash: 0
+  - type: BuyStoreBank
+    emagCategories:
+      - BoxingDrobeInventoryEmag
+  - type: ActivatableUI
+    key: enum.StoreUiKey.Key
+    singleUser: true
+  - type: ActivatableUIRequiresPower
+  - type: UserInterface
+    interfaces:
+      - key: enum.StoreUiKey.Key
+        type: StoreBoundUserInterface
