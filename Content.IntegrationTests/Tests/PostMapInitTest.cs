@@ -78,6 +78,7 @@ namespace Content.IntegrationTests.Tests
             "shwrDust",
             "Tortuga",
             "TheHive",
+            "Cogmap",
             //end-backmen
             "Reach"
         };
