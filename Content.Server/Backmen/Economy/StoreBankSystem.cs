@@ -4,6 +4,7 @@ using Content.Server.Store.Conditions;
 using Content.Server.VendingMachines;
 using Content.Shared.Backmen.Store;
 using Content.Shared.DoAfter;
+using Content.Shared.Emag.Systems;
 using Content.Shared.Interaction;
 using Content.Shared.Popups;
 using Content.Shared.VendingMachines;
@@ -29,6 +30,21 @@ public sealed class StoreBankSystem : EntitySystem
             before: new[] { typeof(VendingMachineSystem) });
         SubscribeLocalEvent<BuyStoreBankComponent, RestockDoAfterEvent>(OnDoAfter,
             before: new[] { typeof(VendingMachineSystem) });
+
+        SubscribeLocalEvent<BuyStoreBankComponent, GotEmaggedEvent>(OnEmagged);
+    }
+
+    private void OnEmagged(Entity<BuyStoreBankComponent> ent, ref GotEmaggedEvent args)
+    {
+        if (ent.Comp.EmagCategories.Count == 0 || !TryComp<StoreComponent>(ent, out var store))
+            return;
+        foreach (var emagCategory in ent.Comp.EmagCategories)
+        {
+            store.Categories.Add(emagCategory);
+        }
+        Dirty(ent, store);
+        args.Handled = true;
+        _audio.PlayPvs(ent.Comp.SparkSound, ent);
     }
 
     private void TryRestockInventory(EntityUid uid, IEnumerable<string>? category = null,

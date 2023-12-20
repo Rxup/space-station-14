@@ -386,17 +386,17 @@ public sealed partial class EmergencyShuttleSystem : EntitySystem
 
         centcom.EnsureCentcom(true);
 
-        component.MapId = centcom.CentComMap;
+        component.MapEntity = centcom.CentComMapUid;
         component.Entity = centcom.CentComGrid;
         component.ShuttleIndex = centcom.ShuttleIndex;
     }
 
     public HashSet<EntityUid> GetCentcommMaps()
     {
-        var maps = new HashSet<MapId>(Count<StationCentcommComponent>());
+        var maps = new HashSet<EntityUid>();
 
-        if(_centcommSystem.CentComMap != null)
-            maps.Add(_centcommSystem.CentComMap);
+        if(_centcommSystem.CentComMapUid.IsValid())
+            maps.Add(_centcommSystem.CentComMapUid);
 
         return maps;
     }

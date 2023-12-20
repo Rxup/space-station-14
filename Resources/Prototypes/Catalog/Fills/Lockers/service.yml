@@ -51,7 +51,6 @@
       # yes, I'm using this as an excuse to not have to do extra work.
       - id: DrinkMilkCarton
         amount: 2
-      - id: ReagentContainerMilkSoy
       - id: AntiPsychicKnife # backmen
       - id: ClothingHeadCage # backmen
       - id: DrinkSoyMilkCarton

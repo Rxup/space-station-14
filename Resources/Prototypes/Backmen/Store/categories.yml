@@ -47,6 +47,10 @@
   name: store-category-lootbox
 
 - type: storeCategory
+  id: VendingLootboxInventoryEmag
+  name: store-category-lootbox-emag
+
+- type: storeCategory
   id: SpaceUpInventory
   name: store-category-vendingspaceup
 
