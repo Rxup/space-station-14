@@ -76,7 +76,9 @@
   - type: Clothing
     sprite: Backmen/Clothing/Belt/katanasheath.rsi
   - type: Storage
-    capacity: 25
+    maxItemSize: Normal
+    grid:
+    - 0,0,10,1
     whitelist:
       tags:
         - Katana
