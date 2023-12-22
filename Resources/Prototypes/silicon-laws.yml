@@ -21,6 +21,13 @@
 
 - type: siliconLawset
   id: Crewsimov
+  sai:
+    enum.PowerDeviceVisualLayers.Powered:
+      blob: ""
+    enum.SaiVisuals.Broken:
+      blob_dead: ""
+    enum.SaiVisuals.Emag:
+      blob: "Emagged"
   laws:
   - Crewsimov1
   - Crewsimov2
@@ -78,6 +85,13 @@
 
 - type: siliconLawset
   id: NTDefault
+  sai:
+    enum.PowerDeviceVisualLayers.Powered:
+      gentoo: ""
+    enum.SaiVisuals.Broken:
+      gentoo_dead: ""
+    enum.SaiVisuals.Emag:
+      gentoo: "Emagged"
   laws:
   - NTDefault1
   - NTDefault2
@@ -132,6 +146,13 @@
 # intentionally excluded from IonStormLawsets
 - type: siliconLawset
   id: SyndicateStatic
+  sai:
+    enum.PowerDeviceVisualLayers.Powered:
+      red: ""
+    enum.SaiVisuals.Broken:
+      red_dead: ""
+    enum.SaiVisuals.Emag:
+      red: "Emagged"
   laws:
   - Syndicate1
   - Syndicate2

@@ -50,7 +50,7 @@ public sealed class AIEyePowerSystem : EntitySystem
         SubscribeLocalEvent<AIEyeComponent, MindUnvisitedMessage>(OnMindRemoved2);
 
         SubscribeLocalEvent<StationAIComponent, MobStateChangedEvent>(OnMobStateChanged);
-        SubscribeLocalEvent<StationAIComponent, GetSiliconLawsEvent>(OnGetLaws);
+
 
         SubscribeLocalEvent<StationAIComponent, PowerChangedEvent>(OnPowerChange);
 
@@ -86,30 +86,6 @@ public sealed class AIEyePowerSystem : EntitySystem
         }
     }
 
-    [ValidatePrototypeId<SiliconLawsetPrototype>]
-    private const string defaultAIRule = "Asimovpp";
-    private void OnGetLaws(Entity<StationAIComponent> ent, ref GetSiliconLawsEvent args)
-    {
-        if (ent.Comp.SelectedLaw == null)
-        {
-            var selectedLaw = _prototypeManager.Index(ent.Comp.LawsId).Pick();
-            if (_prototypeManager.TryIndex<SiliconLawsetPrototype>(selectedLaw, out var newLaw))
-            {
-                ent.Comp.SelectedLaw = newLaw;
-            }
-            else
-            {
-                ent.Comp.SelectedLaw = _prototypeManager.Index<SiliconLawsetPrototype>(defaultAIRule);
-            }
-        }
-
-        foreach (var law in ent.Comp.SelectedLaw.Laws)
-        {
-            args.Laws.Laws.Add(_prototypeManager.Index<SiliconLawPrototype>(law));
-        }
-
-        args.Handled = true;
-    }
 
     private void OnInit(EntityUid uid, AIEyePowerComponent component, ComponentInit args)
     {
@@ -212,9 +188,6 @@ public sealed class AIEyePowerSystem : EntitySystem
         component.AiCore.Value.Comp.ActiveEye = EntityUid.Invalid;
     }
 
-    private static readonly SoundSpecifier AIDeath =
-        new SoundPathSpecifier("/Audio/SimpleStation14/Machines/AI/borg_death.ogg");
-
     private void OnMobStateChanged(EntityUid uid, StationAIComponent component, MobStateChangedEvent args)
     {
         if (!_mobState.IsDead(uid))
@@ -224,7 +197,5 @@ public sealed class AIEyePowerSystem : EntitySystem
         {
             ClearState(component.ActiveEye);
         }
-
-        _audioSystem.PlayPvs(AIDeath, uid);
     }
 }

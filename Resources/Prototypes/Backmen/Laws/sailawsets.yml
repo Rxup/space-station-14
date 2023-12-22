@@ -36,6 +36,13 @@
 
 - type: siliconLawset
   id: Asimovpp # Fluent doesn't like the ++ in the ID, so it's in the name
+  sai:
+    enum.PowerDeviceVisualLayers.Powered:
+        blue: ""
+    enum.SaiVisuals.Broken:
+        blue_dead: ""
+    enum.SaiVisuals.Emag:
+      blue: "Emagged"
   laws:
     - Asimovpp1
     - Asimovpp2
@@ -58,6 +65,13 @@
 
 - type: siliconLawset
   id: Asimov
+  sai:
+    enum.PowerDeviceVisualLayers.Powered:
+      thinking: ""
+    enum.SaiVisuals.Broken:
+      thinking_dead: ""
+    enum.SaiVisuals.Emag:
+      thinking: "Emagged"
   laws:
     - Asimov1
     - Asimov2
@@ -85,6 +99,13 @@
 
 - type: siliconLawset
   id: CEO
+  sai:
+    enum.PowerDeviceVisualLayers.Powered:
+      static: ""
+    enum.SaiVisuals.Broken:
+      static_dead: ""
+    enum.SaiVisuals.Emag:
+      static: "Emagged"
   laws:
     - CEO1
     - CEO2
@@ -123,6 +144,13 @@
 
 - type: siliconLawset
   id: Clown
+  sai:
+    enum.PowerDeviceVisualLayers.Powered:
+      clown: ""
+    enum.SaiVisuals.Broken:
+      clown_dead: ""
+    enum.SaiVisuals.Emag:
+      clown: "Emagged"
   laws:
     - Clown1
     - Clown2
@@ -163,6 +191,13 @@
 
 - type: siliconLawset
   id: Cowboy
+  sai:
+    enum.PowerDeviceVisualLayers.Powered:
+      president: ""
+    enum.SaiVisuals.Broken:
+      president_dead: ""
+    enum.SaiVisuals.Emag:
+      president: "Emagged"
   laws:
     - Cowboy1
     - Cowboy2
@@ -198,6 +233,13 @@
 
 - type: siliconLawset
   id: Druid
+  sai:
+    enum.PowerDeviceVisualLayers.Powered:
+      rainbow: ""
+    enum.SaiVisuals.Broken:
+      rainbow_dead: ""
+    enum.SaiVisuals.Emag:
+      rainbow: "Emagged"
   laws:
     - Druid1
     - Druid2
@@ -237,6 +279,13 @@
 
 - type: siliconLawset
   id: Hippocratic
+  sai:
+    enum.PowerDeviceVisualLayers.Powered:
+      monochrome: ""
+    enum.SaiVisuals.Broken:
+      monochrome_dead: ""
+    enum.SaiVisuals.Emag:
+      monochrome: "Emagged"
   laws:
     - Hippocratic1
     - Hippocratic2
@@ -272,6 +321,13 @@
 
 - type: siliconLawset
   id: Mother
+  sai:
+    enum.PowerDeviceVisualLayers.Powered:
+      cat: ""
+    enum.SaiVisuals.Broken:
+      cat_dead: ""
+    enum.SaiVisuals.Emag:
+      cat: "Emagged"
   laws:
     - Mother1
     - Mother2
@@ -307,6 +363,13 @@
 
 - type: siliconLawset
   id: Paladin
+  sai:
+    enum.PowerDeviceVisualLayers.Powered:
+      firewall: ""
+    enum.SaiVisuals.Broken:
+      firewall_dead: ""
+    enum.SaiVisuals.Emag:
+      firewall: "Emagged"
   laws:
     - Paladin1
     - Paladin2
@@ -331,6 +394,13 @@
 
 - type: siliconLawset
   id: Robocop
+  sai:
+    enum.PowerDeviceVisualLayers.Powered:
+      weird: ""
+    enum.SaiVisuals.Broken:
+      weird_dead: ""
+    enum.SaiVisuals.Emag:
+      weird: "Emagged"
   laws:
     - Robocop1
     - Robocop2
@@ -343,6 +413,13 @@
 
 - type: siliconLawset
   id: Simple
+  sai:
+    enum.PowerDeviceVisualLayers.Powered:
+      plain: ""
+    enum.SaiVisuals.Broken:
+      blue_dead: ""
+    enum.SaiVisuals.Emag:
+      plain: "Emagged"
   laws:
     - Simple1
 
@@ -363,6 +440,13 @@
 
 - type: siliconLawset
   id: StationEfficiency
+  sai:
+    enum.PowerDeviceVisualLayers.Powered:
+      heartline: ""
+    enum.SaiVisuals.Broken:
+      heartline_dead: ""
+    enum.SaiVisuals.Emag:
+      heartline: "Emagged"
   laws:
     - StationEfficiency1
     - StationEfficiency2
@@ -390,6 +474,13 @@
 
 - type: siliconLawset
   id: Tyrant
+  sai:
+    enum.PowerDeviceVisualLayers.Powered:
+      murica: ""
+    enum.SaiVisuals.Broken:
+      murica_dead: ""
+    enum.SaiVisuals.Emag:
+      murica: "Emagged"
   laws:
     - Tyrant1
     - Tyrant2

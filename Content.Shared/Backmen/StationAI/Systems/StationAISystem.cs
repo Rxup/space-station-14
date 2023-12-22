@@ -6,6 +6,7 @@ using Content.Shared.Interaction.Events;
 using Content.Shared.Inventory.Events;
 using Content.Shared.Movement.Events;
 using Content.Shared.Physics.Pull;
+using Robust.Shared.Serialization;
 
 namespace Content.Shared.Backmen.StationAI;
 
@@ -44,4 +45,17 @@ public sealed class StationAISystem : EntitySystem
     {
         return;
     }
+}
+
+[Serializable, NetSerializable]
+public enum SaiVisuals : byte
+{
+    Broken, //if it broke and no longer works.
+    Emag
+}
+
+[Serializable, NetSerializable]
+public enum SaiVisualLayers : byte
+{
+    Base
 }
