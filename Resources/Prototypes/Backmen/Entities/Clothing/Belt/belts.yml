@@ -78,7 +78,7 @@
   - type: Storage
     maxItemSize: Normal
     grid:
-    - 0,0,10,1
+    - 0,0,4,1
     whitelist:
       tags:
         - Katana
