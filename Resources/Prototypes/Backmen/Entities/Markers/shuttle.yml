@@ -4,4 +4,4 @@
   id: PlanetShuttleMarker
   parent: FTLPoint
   components:
-  - type: Ghost # backmenTODO: make this mechanic work without adding random component
+  - type: Ftlimmune
