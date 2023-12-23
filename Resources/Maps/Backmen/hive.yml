@@ -13999,6 +13999,13 @@ entities:
     - pos: 75.5,-13.5
       parent: 1
       type: Transform
+- proto: AirlockChemistryLocked
+  entities:
+  - uid: 9506
+    components:
+    - pos: 74.5,-7.5
+      parent: 1
+      type: Transform
 - proto: AirlockChiefEngineerGlassLocked
   entities:
   - uid: 2368
@@ -15712,11 +15719,6 @@ entities:
       type: Transform
 - proto: AirlockMedicalLocked
   entities:
-  - uid: 579
-    components:
-    - pos: 74.5,-7.5
-      parent: 1
-      type: Transform
   - uid: 3085
     components:
     - pos: 78.5,-3.5
@@ -68343,6 +68345,11 @@ entities:
     - canCollide: False
       type: Physics
     - type: InsideEntityStorage
+  - uid: 7119
+    components:
+    - pos: 89.58452,18.72035
+      parent: 1
+      type: Transform
   - uid: 22486
     components:
     - flags: InContainer
@@ -132671,13 +132678,6 @@ entities:
     - pos: 15.3626995,-43.29776
       parent: 1
       type: Transform
-- proto: ReagentContainerMilk
-  entities:
-  - uid: 7119
-    components:
-    - pos: 89.58452,18.72035
-      parent: 1
-      type: Transform
 - proto: ReagentContainerOliveoil
   entities:
   - uid: 1109
@@ -148049,6 +148049,11 @@ entities:
       type: Transform
 - proto: VendingMachineChemicals
   entities:
+  - uid: 579
+    components:
+    - pos: 75.5,-8.5
+      parent: 1
+      type: Transform
   - uid: 3572
     components:
     - flags: SessionSpecific

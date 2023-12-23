@@ -36,7 +36,7 @@
         mapNameTemplate: '{0} Central Command {1}'
         nameGenerator:
           !type:NanotrasenCentComNameGenerator
-          prefixCreator: 'TG'
+          prefixCreator: 'CX'
       - type: StationJobs
         overflowJobs: []
         availableJobs:
@@ -61,7 +61,7 @@
         mapNameTemplate: '{0} Central Command {1}'
         nameGenerator:
           !type:NanotrasenCentComNameGenerator
-          prefixCreator: 'TG'
+          prefixCreator: 'B'
       - type: StationJobs
         overflowJobs: []
         availableJobs:
