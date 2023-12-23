@@ -84,6 +84,7 @@ public sealed class MakePlanetSystem : EntitySystem
 		biomeSystem.AddMarkerLayer(mapUid, biome, "OreSilver");
 		biomeSystem.AddMarkerLayer(mapUid, biome, "OrePlasma");
 		biomeSystem.AddMarkerLayer(mapUid, biome, "OreUranium");
+		biomeSystem.AddMarkerLayer(mapUid, biome, "OreQuartz");
 		biomeSystem.AddTemplate(mapUid, biome, "Loot", _protoManager.Index<BiomeTemplatePrototype>("Caves"), 1);
 		_entityManager.Dirty(mapUid, biome);
 
