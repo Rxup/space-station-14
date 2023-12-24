@@ -3,6 +3,7 @@
   save: false
   id: AIBase
   components:
+    - type: ShowSecurityIcons
     - type: StationAI
       lawsId: LawsStationAIDefault
     - type: Visibility
@@ -111,6 +112,8 @@
   components:
     - type: GenericVisualizer
       visuals:
+        enum.SaiVisuals.Emag:
+
         enum.PowerDeviceVisuals.Powered:
           enum.PowerDeviceVisualLayers.Powered:
             True: { visible: true }
@@ -184,6 +187,9 @@
         - map: ["enum.PowerDeviceVisualLayers.Powered"]
           state: blue
           shader: unshaded
+        - map: ["enum.SaiVisuals.Broken"]
+          state: blue_dead
+          shader: unshaded
     - type: Damageable
       damageContainer: Inorganic
     - type: Bloodstream
@@ -208,89 +214,6 @@
       factions:
         - NanoTrasen
     - type: RandomSprite
-      available:
-        - enum.PowerDeviceVisualLayers.Powered:
-            thinking: ""
-        - enum.PowerDeviceVisualLayers.Powered:
-            alien: ""
-        - enum.PowerDeviceVisualLayers.Powered:
-            angel: ""
-        - enum.PowerDeviceVisualLayers.Powered:
-            banned: ""
-        - enum.PowerDeviceVisualLayers.Powered:
-            bliss: ""
-        - enum.PowerDeviceVisualLayers.Powered:
-            blue: ""
-        - enum.PowerDeviceVisualLayers.Powered:
-            clown: ""
-        - enum.PowerDeviceVisualLayers.Powered:
-            database: ""
-        - enum.PowerDeviceVisualLayers.Powered:
-            dorf: ""
-        - enum.PowerDeviceVisualLayers.Powered:
-            firewall: ""
-        - enum.PowerDeviceVisualLayers.Powered:
-            fuzzy: ""
-        - enum.PowerDeviceVisualLayers.Powered:
-            gentoo: ""
-        - enum.PowerDeviceVisualLayers.Powered:
-            glitchman: ""
-        - enum.PowerDeviceVisualLayers.Powered:
-            goon: ""
-        - enum.PowerDeviceVisualLayers.Powered:
-            hades: ""
-        - enum.PowerDeviceVisualLayers.Powered:
-            heartline: ""
-        - enum.PowerDeviceVisualLayers.Powered:
-            helios: ""
-        - enum.PowerDeviceVisualLayers.Powered:
-            house: ""
-        - enum.PowerDeviceVisualLayers.Powered:
-            inverted: ""
-        - enum.PowerDeviceVisualLayers.Powered:
-            matrix: ""
-        - enum.PowerDeviceVisualLayers.Powered:
-            monochrome: ""
-        - enum.PowerDeviceVisualLayers.Powered:
-            murica: ""
-        - enum.PowerDeviceVisualLayers.Powered:
-            nanotrasen: ""
-        - enum.PowerDeviceVisualLayers.Powered:
-            not_malf: ""
-        - enum.PowerDeviceVisualLayers.Powered:
-            president: ""
-        - enum.PowerDeviceVisualLayers.Powered:
-            rainbow: ""
-        - enum.PowerDeviceVisualLayers.Powered:
-            red: ""
-        - enum.PowerDeviceVisualLayers.Powered:
-            red_october: ""
-        - enum.PowerDeviceVisualLayers.Powered:
-            static: ""
-        - enum.PowerDeviceVisualLayers.Powered:
-            syndicat_meow: ""
-        - enum.PowerDeviceVisualLayers.Powered:
-            text: ""
-        - enum.PowerDeviceVisualLayers.Powered:
-            too_deep: ""
-        - enum.PowerDeviceVisualLayers.Powered:
-            triumvirate: ""
-        - enum.PowerDeviceVisualLayers.Powered:
-            triumvirate-m: ""
-        - enum.PowerDeviceVisualLayers.Powered:
-            weird: ""
-        - enum.PowerDeviceVisualLayers.Powered:
-            random: ""
-        - enum.PowerDeviceVisualLayers.Powered:
-            gondola: ""
-        - enum.PowerDeviceVisualLayers.Powered:
-            plain: ""
-        - enum.PowerDeviceVisualLayers.Powered:
-            cat: ""
-        - enum.PowerDeviceVisualLayers.Powered:
-            blob: ""
-        - enum.PowerDeviceVisualLayers.Powered:
-            malicious: ""
 
 - type: entity
   id: AIEye

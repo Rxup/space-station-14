@@ -66,4 +66,10 @@ public sealed partial class SiliconLawsetPrototype : IPrototype
     /// </summary>
     [DataField(required: true, customTypeSerializer: typeof(PrototypeIdListSerializer<SiliconLawPrototype>))]
     public List<string> Laws = new();
+
+    // start-backmen: SAI
+    // ReSharper disable once InconsistentNaming
+    [ViewVariables(VVAccess.ReadWrite), DataField("sai")]
+    public Dictionary<string, (string State, string Color)>? SAI = new();
+    // end-backmen: SAI
 }
