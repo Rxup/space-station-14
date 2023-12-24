@@ -38,8 +38,8 @@ public sealed partial class PowerMonitoringWindow : FancyWindow
     {
         RobustXamlLoader.Load(this);
 
-        SetSize = new Vector2(500, 450); // Corvax-Resize
-        MinSize = new Vector2(300, 450); // Corvax-Resize
+        SetSize = new (500, 450); // Corvax-Resize
+        MinSize = new (300, 450); // Corvax-Resize
 
         _entManager = IoCManager.Resolve<IEntityManager>();
         _gameTiming = IoCManager.Resolve<IGameTiming>();
