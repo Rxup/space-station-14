@@ -177,7 +177,11 @@
   id: LizardChestTiger
   bodyPart: Chest
   markingCategory: Chest
-  speciesRestriction: [Reptilian]
+  speciesRestriction:
+    [
+      Reptilian,
+      Shadowkin,
+    ]
   sprites:
   - sprite: Mobs/Customization/reptilian_parts.rsi
     state: body_tiger
@@ -271,7 +275,7 @@
   sprites:
   - sprite: Mobs/Customization/reptilian_parts.rsi
     state: horns_kobold_ears
-    
+
 - type: marking
   id: LizardHornsFloppyKoboldEars
   bodyPart: HeadSide

@@ -56,6 +56,7 @@ public sealed class ChatUIController : UIController
     [UISystemDependency] private readonly TypingIndicatorSystem? _typingIndicator = default;
     [UISystemDependency] private readonly ChatSystem? _chatSys = default;
     [UISystemDependency] private readonly PsionicChatUpdateSystem? _psionic = default!; // backmen: psionic
+    [UISystemDependency] private readonly ShadowkinChatUpdateSystem? _shadowkin = default!; //backmen: shadowkin
 
     private ISawmill _sawmill = default!;
 
@@ -510,6 +511,13 @@ public sealed class ChatUIController : UIController
         {
             FilterableChannels |= ChatChannel.Telepathic;
             CanSendChannels |= ChatSelectChannel.Telepathic;
+        }
+
+        // Shadowkin
+        if (_shadowkin != null && _shadowkin.IsShadowkin)
+        {
+            FilterableChannels |= ChatChannel.Empathy;
+            CanSendChannels |= ChatSelectChannel.Empathy;
         }
 
         SelectableChannels = CanSendChannels;

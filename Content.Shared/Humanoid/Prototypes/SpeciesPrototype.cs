@@ -141,4 +141,6 @@ public enum SpeciesNaming : byte
     FirstDashFirst,
     XnoY, //backmen: oni
     TheFirstofLast,
+    FirstDashLast, // Parkstation-IPC
+    First, // Parkstation-Shadowkin
 }
