@@ -1,0 +1,79 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "Made by nomad",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "icon"
+    },
+    {
+      "name": "base_on",
+      "delays": [
+        [
+          0.1,
+          0.1
+        ]
+      ]
+    },
+    {
+      "name": "inhand-left",
+      "directions": 4
+    },
+    {
+      "name": "inhand-right",
+      "directions": 4
+    },
+    {
+      "name": "inhand-left-on",
+      "directions": 4,
+      "delays": [
+        [
+          0.04,
+          0.04
+        ],
+        [
+          0.04,
+          0.04
+        ],
+        [
+          0.04,
+          0.04
+        ],
+        [
+          0.04,
+          0.04
+        ]
+      ]
+    },
+    {
+      "name": "inhand-right-on",
+      "directions": 4,
+      "delays": [
+        [
+          0.04,
+          0.04
+        ],
+        [
+          0.04,
+          0.04
+        ],
+        [
+          0.04,
+          0.04
+        ],
+        [
+          0.04,
+          0.04
+        ]
+      ]
+    },
+    {
+      "name": "equipped-BELT",
+      "directions": 4
+    }
+  ]
+}
