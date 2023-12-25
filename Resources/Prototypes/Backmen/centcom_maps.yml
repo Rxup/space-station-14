@@ -4,4 +4,4 @@
   weights:
     CentComm: 0.5
     CentCommv2: 0.35
-    CentCommv3: 0.7
+#    CentCommv3: 0.7

@@ -5823,6 +5823,18 @@ entities:
     - canCollide: False
       type: Physics
     - type: InsideEntityStorage
+- proto: ArrivalsShuttleTimer
+  entities:
+  - uid: 10884
+    components:
+    - pos: 4.5,19.5
+      parent: 34
+      type: Transform
+  - uid: 10885
+    components:
+    - pos: 15.5,19.5
+      parent: 34
+      type: Transform
 - proto: ATM
   entities:
   - uid: 857
@@ -6937,6 +6949,22 @@ entities:
     - links:
       - 678
       - 679
+      type: DeviceLinkSink
+  - uid: 6012
+    components:
+    - pos: 45.5,-22.5
+      parent: 34
+      type: Transform
+    - links:
+      - 10995
+      type: DeviceLinkSink
+  - uid: 6014
+    components:
+    - pos: 45.5,-24.5
+      parent: 34
+      type: Transform
+    - links:
+      - 10995
       type: DeviceLinkSink
   - uid: 7707
     components:
@@ -35363,14 +35391,14 @@ entities:
     - pos: -51.5,-38.5
       parent: 34
       type: Transform
-- proto: GasMinerNitrogen
+- proto: GasMinerNitrogenStationLarge
   entities:
   - uid: 1458
     components:
     - pos: -37.5,-39.5
       parent: 34
       type: Transform
-- proto: GasMinerOxygenStation
+- proto: GasMinerOxygenStationLarge
   entities:
   - uid: 4463
     components:
@@ -60582,6 +60610,12 @@ entities:
       type: Transform
     - powerLoad: 0
       type: ApcPowerReceiver
+  - uid: 10993
+    components:
+    - rot: 1.5707963267948966 rad
+      pos: 41.5,-22.5
+      parent: 34
+      type: Transform
   - uid: 11230
     components:
     - pos: 18.5,-47.5
@@ -61791,20 +61825,9 @@ entities:
     - pos: 42.5,-24.5
       parent: 34
       type: Transform
-  - uid: 6012
-    components:
-    - pos: 45.5,-24.5
-      parent: 34
-      type: Transform
   - uid: 6013
     components:
     - pos: 44.5,-24.5
-      parent: 34
-      type: Transform
-  - uid: 6014
-    components:
-    - rot: 3.141592653589793 rad
-      pos: 45.5,-22.5
       parent: 34
       type: Transform
   - uid: 6015
@@ -62247,6 +62270,11 @@ entities:
     - pos: -47.5,-11.5
       parent: 34
       type: Transform
+  - uid: 10836
+    components:
+    - pos: 3.5,-46.5
+      parent: 34
+      type: Transform
   - uid: 10957
     components:
     - pos: 2.5,-13.5
@@ -62290,11 +62318,6 @@ entities:
   - uid: 11618
     components:
     - pos: -49.5,-23.5
-      parent: 34
-      type: Transform
-  - uid: 11699
-    components:
-    - pos: 3.5,-51.5
       parent: 34
       type: Transform
 - proto: RandomPosterAny
@@ -62528,6 +62551,11 @@ entities:
     - pos: -12.5,-2.5
       parent: 34
       type: Transform
+  - uid: 10834
+    components:
+    - pos: -4.5,-50.5
+      parent: 34
+      type: Transform
   - uid: 10953
     components:
     - pos: -28.5,-2.5
@@ -62596,11 +62624,6 @@ entities:
   - uid: 10994
     components:
     - pos: 7.5,-50.5
-      parent: 34
-      type: Transform
-  - uid: 10995
-    components:
-    - pos: -0.5,-51.5
       parent: 34
       type: Transform
   - uid: 11007
@@ -64904,6 +64927,18 @@ entities:
     - pos: -42.5,-31.5
       parent: 34
       type: Transform
+- proto: Screen
+  entities:
+  - uid: 10525
+    components:
+    - pos: -0.5,-51.5
+      parent: 34
+      type: Transform
+  - uid: 10534
+    components:
+    - pos: 3.5,-51.5
+      parent: 34
+      type: Transform
 - proto: Screwdriver
   entities:
   - uid: 5558
@@ -65401,6 +65436,22 @@ entities:
       type: Transform
     - linkedPorts:
         1484:
+        - Pressed: Toggle
+      type: DeviceLinkSource
+- proto: SignalButtonDirectional
+  entities:
+  - uid: 10995
+    components:
+    - name: Активация турелей
+      type: MetaData
+    - rot: -1.5707963267948966 rad
+      pos: 53.5,-23.5
+      parent: 34
+      type: Transform
+    - linkedPorts:
+        6014:
+        - Pressed: Toggle
+        6012:
         - Pressed: Toggle
       type: DeviceLinkSource
 - proto: SignalSwitch
@@ -79429,6 +79480,18 @@ entities:
     components:
     - rot: -1.5707963267948966 rad
       pos: 33.68402,-11.4360485
+      parent: 34
+      type: Transform
+- proto: WeaponTurretHostile
+  entities:
+  - uid: 10937
+    components:
+    - pos: 45.5,-24.5
+      parent: 34
+      type: Transform
+  - uid: 10938
+    components:
+    - pos: 45.5,-22.5
       parent: 34
       type: Transform
 - proto: WeldingFuelTankFull
