@@ -95,6 +95,17 @@
       right:
       - state: inhand-right-on
   - type: ItemCooldown
+  - type: Welder
+    FuelLitCost: 2
+  - type: RefillableSolution
+    solution: Welder
+  - type: SolutionContainerManager
+    solutions:
+      Welder:
+        reagents:
+        - ReagentId: WeldingFuel
+          Quantity: 200
+        maxVol: 200
   - type: MeleeWeapon
     wideAnimationRotation: -120
     soundHit:
