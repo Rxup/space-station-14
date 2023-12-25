@@ -727,16 +727,11 @@ public sealed partial class ShuttleSystem
                     continue;
                 }
 
-                if (_ghostQuery.HasComponent(ent))
+                if (_ghostQuery.HasComponent(ent) || _ftlimmuneQuery.HasComponent(ent)) // backmen FTL immune
                 {
                     continue;
                 }
-				// backmen FTL immune start
-                if (_ftlimmuneQuery.HasComponent(ent))
-                {
-                    continue;
-                }
-				// backmen FTL immune end
+
                 if (_bodyQuery.TryGetComponent(ent, out var mob))
                 {
                     var gibs = _bobby.GibBody(ent, body: mob);
