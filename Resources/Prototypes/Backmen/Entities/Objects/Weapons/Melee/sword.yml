@@ -31,7 +31,6 @@
     activeSound:
       path: /Audio/Backmen/Weapons/Melee/Chainsword/chainsword_loop.ogg
       params:
-        range: 5
         volume: 1
   - type: UseDelay
     delay: 5
@@ -74,7 +73,7 @@
         Piercing: 10
         Slash: 20
         Blunt: 15
-    DeactivatedDamage:
+    deactivatedDamage:
       types:
         Piercing: 5
         Blunt: 10
