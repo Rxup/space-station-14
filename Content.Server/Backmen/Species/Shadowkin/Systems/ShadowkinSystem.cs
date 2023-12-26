@@ -10,6 +10,7 @@ using Content.Shared.Mobs.Systems;
 using Content.Shared.Physics;
 using Content.Shared.Backmen.Species.Shadowkin.Components;
 using Content.Shared.Backmen.Species.Shadowkin.Events;
+using Content.Shared.Humanoid;
 using Robust.Server.Player;
 using Robust.Shared.Map;
 using Robust.Shared.Random;
@@ -23,6 +24,7 @@ public sealed class ShadowkinSystem : EntitySystem
     [Dependency] private readonly SharedInteractionSystem _interaction = default!;
     [Dependency] private readonly MobStateSystem _mobState = default!;
     [Dependency] private readonly MindSystem _mindSystem = default!;
+    [Dependency] private readonly ShadowkinBlackeyeSystem _shadowkinBlackeyeSystem = default!;
 
 
     public override void Initialize()
@@ -32,6 +34,20 @@ public sealed class ShadowkinSystem : EntitySystem
         SubscribeLocalEvent<ShadowkinComponent, ExaminedEvent>(OnExamine);
         SubscribeLocalEvent<ShadowkinComponent, ComponentInit>(OnInit);
         SubscribeLocalEvent<ShadowkinComponent, ComponentShutdown>(OnShutdown);
+        SubscribeLocalEvent<ShadowkinComponent, ComponentStartup>(OnMapInit, after: new[]{ typeof(SharedHumanoidAppearanceSystem) });
+    }
+
+    private void OnMapInit(Entity<ShadowkinComponent> ent, ref ComponentStartup args)
+    {
+        if (!TryComp<HumanoidAppearanceComponent>(ent, out var sprite))
+            return;
+
+        // Blackeye if none of the RGB values are greater than 75
+        if (sprite.EyeColor.R * 255 < 75 && sprite.EyeColor.G * 255 < 75 && sprite.EyeColor.B * 255 < 75)
+        {
+            // TODO: в данный момент почему-то всегда не приходит нужный цвент
+            //_shadowkinBlackeyeSystem.SetBlackEye(ent);
+        }
     }
 
 

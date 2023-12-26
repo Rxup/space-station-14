@@ -30,9 +30,30 @@ public sealed class ShadowkinTintSystem : EntitySystem
 
         SubscribeLocalEvent<ShadowkinComponent, ComponentStartup>(OnStartup);
         SubscribeLocalEvent<ShadowkinComponent, ComponentShutdown>(OnShutdown);
-        SubscribeLocalEvent<ShadowkinComponent, PlayerAttachedEvent>(OnPlayerAttached);
-        SubscribeLocalEvent<ShadowkinComponent, PlayerDetachedEvent>(OnPlayerDetached);
         SubscribeLocalEvent<RoundRestartCleanupEvent>(OnRoundRestart);
+
+        _player.LocalPlayerAttached += PlayerOnLocalPlayerAttached;
+        _player.LocalPlayerDetached += PlayerOnLocalPlayerDetached;
+    }
+
+    public override void Shutdown()
+    {
+        base.Shutdown();
+
+        _player.LocalPlayerAttached -= PlayerOnLocalPlayerAttached;
+        _player.LocalPlayerDetached -= PlayerOnLocalPlayerDetached;
+    }
+
+    private void PlayerOnLocalPlayerDetached(EntityUid uid)
+    {
+        if (_overlay.HasOverlay<ColorTintOverlay>())
+            _overlay.RemoveOverlay(_tintOverlay);
+    }
+
+    private void PlayerOnLocalPlayerAttached(EntityUid uid)
+    {
+        if(HasComp<ShadowkinComponent>(uid))
+            _overlay.AddOverlay(_tintOverlay);
     }
 
     private void OnStartup(EntityUid uid, ShadowkinComponent component, ComponentStartup args)
@@ -45,19 +66,9 @@ public sealed class ShadowkinTintSystem : EntitySystem
 
     private void OnShutdown(EntityUid uid, ShadowkinComponent component, ComponentShutdown args)
     {
-        if (_player.LocalSession?.AttachedEntity != uid)
+        if (_player.LocalSession != null && _player.LocalSession?.AttachedEntity != uid)
             return;
 
-        _overlay.RemoveOverlay(_tintOverlay);
-    }
-
-    private void OnPlayerAttached(EntityUid uid, ShadowkinComponent component, PlayerAttachedEvent args)
-    {
-        _overlay.AddOverlay(_tintOverlay);
-    }
-
-    private void OnPlayerDetached(EntityUid uid, ShadowkinComponent component, PlayerDetachedEvent args)
-    {
         _overlay.RemoveOverlay(_tintOverlay);
     }
 
@@ -71,13 +82,17 @@ public sealed class ShadowkinTintSystem : EntitySystem
     {
         base.Update(frameTime);
 
-        var uid = _player.LocalPlayer?.ControlledEntity;
+        var uid = _player.LocalSession?.AttachedEntity;
         if (uid == null ||
             !TryComp(uid, out ShadowkinComponent? comp) ||
             !TryComp(uid, out SpriteComponent? sprite) ||
             !sprite.LayerMapTryGet(HumanoidVisualLayers.Eyes, out var index) ||
             !sprite.TryGetLayer(index, out var layer))
+        {
+            if (_overlay.HasOverlay<ColorTintOverlay>())
+                _overlay.RemoveOverlay(_tintOverlay);
             return;
+        }
 
         // Eye color
         comp.TintColor = new Vector3(layer.Color.R, layer.Color.G, layer.Color.B);
