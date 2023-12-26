@@ -46,6 +46,20 @@
           - SurplusBundle
 
 - type: listing
+  id: UplinkChainsword
+  name: uplink-chainsword-name
+  description: uplink-chainsword-desc
+  productEntity: Chainsword
+  cost:
+    Telecrystal: 8
+  categories:
+    - UplinkJob
+  conditions:
+    - !type:BuyerJobCondition
+      whitelist:
+        - Chaplain
+
+- type: listing
   id: InjectorBloodsuckerNocturine
   name: uplink-nocturine-gland-injector-name
   description: uplink-nocturine-gland-injector-desc
