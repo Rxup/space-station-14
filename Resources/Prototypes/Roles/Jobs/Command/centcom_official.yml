@@ -6,10 +6,12 @@
 #  setPreference: false
 #  startingGear: CentcomGear
 #  icon: "JobIconNanotrasen"
-#  supervisors: job-supervisors-centcom # Corvax-JobSupervisors
+#  supervisors: job-supervisors-hos
 #  canBeAntag: false
 #  accessGroups:
 #  - AllAccess
+#  access:
+#  - CentralCommand
 
 - type: startingGear
   id: CentcomGear
