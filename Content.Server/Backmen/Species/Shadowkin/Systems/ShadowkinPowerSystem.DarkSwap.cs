@@ -178,7 +178,7 @@ public sealed class ShadowkinDarkSwapSystem : EntitySystem
                 !TryComp<ShadowkinLightComponent>(light, out var shadowkinLight))
                 continue;
 
-            _darken.ResetLight(uid, pointLight, shadowkinLight);
+            _darken.ResetLight(light, pointLight, shadowkinLight);
         }
 
         component.DarkenedLights.Clear();
@@ -202,7 +202,7 @@ public sealed class ShadowkinDarkSwapSystem : EntitySystem
             _visibility.RefreshVisibility(uid);
 
             // If not a ghost, add a stealth shader to the entity
-            if (!TryComp<GhostComponent>(uid, out _))
+            if (!HasComp<GhostComponent>(uid))
                 _stealth.SetVisibility(uid, 0.8f, EnsureComp<StealthComponent>(uid));
         }
         else // Visible
@@ -216,8 +216,10 @@ public sealed class ShadowkinDarkSwapSystem : EntitySystem
             _visibility.RefreshVisibility(uid);
 
             // Remove the stealth shader from the entity
-            if (!TryComp<GhostComponent>(uid, out _))
-                _stealth.SetVisibility(uid, 1f, EnsureComp<StealthComponent>(uid));
+            if (!HasComp<GhostComponent>(uid))
+                RemCompDeferred<StealthComponent>(uid);
+
+                //_stealth.SetVisibility(uid, 1f, EnsureComp<StealthComponent>(uid));
         }
     }
 

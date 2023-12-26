@@ -43,7 +43,7 @@ public sealed class ShadowkinDarkSwappedSystem : EntitySystem
 
     private void OnShutdown(EntityUid uid, ShadowkinDarkSwappedComponent component, ComponentShutdown args)
     {
-        if (_player.LocalSession?.AttachedEntity != uid)
+        if (_player.LocalSession?.AttachedEntity != null && _player.LocalSession?.AttachedEntity != uid)
             return;
 
         RemoveOverlay();
