@@ -19,7 +19,7 @@
       - right leg
       organs: # placeholders
         heart: OrganHumanHeart
-        # lungs: OrganLungs
+        lungs: OrganHumanLungs
         stomach: OrganHumanStomach
         liver:  OrganHumanLiver
         kidneys: OrganHumanKidneys
