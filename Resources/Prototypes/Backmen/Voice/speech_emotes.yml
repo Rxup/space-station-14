@@ -1,4 +1,111 @@
+# Harpy
+- type: emote
+  id: HonkHarpy
+  category: Vocal
+  chatMessages: [honks.]
+  chatTriggers:
+    - honk.
+    - honks.
+    - honks!
+    - honking.
+    - honked.
+
+- type: emote
+  id: Ring
+  category: Vocal
+  chatMessages: [rings.]
+  chatTriggers:
+    - ring.
+    - rings.
+    - rings!
+    - ringing.
+    - ringed.
+
+- type: emote
+  id: Pew
+  category: Vocal
+  chatMessages: [pews.]
+  chatTriggers:
+    - pew.
+    - pews.
+    - pew!
+
+- type: emote
+  id: Bang
+  category: Vocal
+  chatMessages: [bangs.]
+  chatTriggers:
+    - bangs.
+    - bang.
+    - bang!
+    - banging.
+    - banged.
+
+- type: emote
+  id: Beep
+  category: Vocal
+  chatMessages: [beeps.]
+  chatTriggers:
+    - beeps.
+    - beep.
+    - beep!
+    - beeping.
+    - beeped.
+
+- type: emote
+  id: Rev
+  category: Vocal
+  chatMessages: [revs.]
+  chatTriggers:
+    - revs.
+    - rev.
+    - rev!
+    - revving
+    - revved
+
+- type: emote
+  id: Click
+  category: Vocal
+  chatMessages: [clicks.]
+  chatTriggers:
+    - clicks.
+    - click.
+    - click!
+    - clicking.
+    - clicked.
+
+- type: emote
+  id: Caw
+  category: Vocal
+  chatMessages: [caws.]
+  chatTriggers:
+    - caws.
+    - caw.
+    - caw!
+    - cawing
+    - cawed
+
+- type: emote
+  id: Chirp
+  category: Vocal
+  chatMessages: [chirps.]
+  chatTriggers:
+    - chirps.
+    - chirp.
+    - chirp!
+    - chirping.
+    - chirped.
+
 # vocal emotes
+- type: emote
+  id: Hiss
+  category: Vocal
+  chatMessages: [ШШШШШШШ]
+  chatTriggers:
+    - шшш
+    - ш
+    - шш
+
 - type: emote
   id: Mews
   category: Vocal
@@ -13,6 +120,16 @@
     - мя
     - мя.
     - мя!
+
+- type: emote
+  id: Mew
+  category: Vocal
+  chatMessages: [мяв]
+  chatTriggers:
+    - мяв
+    - мяв!
+    - мяв
+    - мявкнул
 
 - type: emote
   id: Meows
@@ -31,6 +148,8 @@
     - мяукает
     - мяукает.
     - мяукает!
+
+
 
 - type: emote
   id: Hisses
@@ -70,3 +189,4 @@
     - Growls
     - Growls.
     - Growls!
+

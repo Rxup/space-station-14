@@ -397,12 +397,12 @@ public sealed class MagicSystem : EntitySystem
 
     #endregion
 
-    private void Speak(BaseActionEvent args)
+    public void Speak(BaseActionEvent args, bool showInChat = true)
     {
         if (args is not ISpeakSpell speak || string.IsNullOrWhiteSpace(speak.Speech))
             return;
 
         _chat.TrySendInGameICMessage(args.Performer, Loc.GetString(speak.Speech),
-            InGameICChatType.Speak, false);
+            InGameICChatType.Speak, !showInChat);
     }
 }

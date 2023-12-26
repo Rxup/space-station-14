@@ -2,7 +2,18 @@
   id: TattooHiveChest
   bodyPart: Chest
   markingCategory: Chest
-  speciesRestriction: [Human, Dwarf]
+  speciesRestriction:
+    [
+      Human,
+      Felinid,
+      Reptilian,
+      SlimePerson,
+      Oni,
+      Arachne,
+      Moth,
+      Shadowkin,
+      Dwarf
+    ]
   coloring:
     default:
       type:
@@ -16,7 +27,18 @@
   id: TattooNightlingChest
   bodyPart: Chest
   markingCategory: Chest
-  speciesRestriction: [Human, Dwarf]
+  speciesRestriction:
+    [
+      Human,
+      Felinid,
+      Reptilian,
+      SlimePerson,
+      Oni,
+      Arachne,
+      Moth,
+      Shadowkin,
+      Dwarf
+    ]
   coloring:
     default:
       type:
@@ -30,7 +52,18 @@
   id: TattooSilverburghLeftLeg
   bodyPart: LLeg
   markingCategory: Legs
-  speciesRestriction: [Human, Dwarf]
+  speciesRestriction:
+    [
+      Human,
+      Felinid,
+      Reptilian,
+      SlimePerson,
+      Oni,
+      Arachne,
+      Moth,
+      Shadowkin,
+      Dwarf
+    ]
   coloring:
     default:
       type:
@@ -44,7 +77,18 @@
   id: TattooSilverburghRightLeg
   bodyPart: RLeg
   markingCategory: Legs
-  speciesRestriction: [Human, Dwarf]
+  speciesRestriction:
+    [
+      Human,
+      Felinid,
+      Reptilian,
+      SlimePerson,
+      Oni,
+      Arachne,
+      Moth,
+      Shadowkin,
+      Dwarf
+    ]
   coloring:
     default:
       type:
@@ -58,7 +102,18 @@
   id: TattooCampbellLeftArm
   bodyPart: LArm
   markingCategory: Arms
-  speciesRestriction: [Human, Dwarf]
+  speciesRestriction:
+    [
+      Human,
+      Felinid,
+      Reptilian,
+      SlimePerson,
+      Oni,
+      Arachne,
+      Moth,
+      Shadowkin,
+      Dwarf
+    ]
   coloring:
     default:
       type:
@@ -72,7 +127,18 @@
   id: TattooCampbellRightArm
   bodyPart: RArm
   markingCategory: Arms
-  speciesRestriction: [Human, Dwarf]
+  speciesRestriction:
+    [
+      Human,
+      Felinid,
+      Reptilian,
+      SlimePerson,
+      Oni,
+      Arachne,
+      Moth,
+      Shadowkin,
+      Dwarf
+    ]
   coloring:
     default:
       type:
@@ -86,7 +152,18 @@
   id: TattooCampbellLeftLeg
   bodyPart: LLeg
   markingCategory: Legs
-  speciesRestriction: [Human, Dwarf]
+  speciesRestriction:
+    [
+      Human,
+      Felinid,
+      Reptilian,
+      SlimePerson,
+      Oni,
+      Arachne,
+      Moth,
+      Shadowkin,
+      Dwarf
+    ]
   coloring:
     default:
       type:
@@ -100,7 +177,18 @@
   id: TattooCampbellRightLeg
   bodyPart: RLeg
   markingCategory: Legs
-  speciesRestriction: [Human, Dwarf]
+  speciesRestriction:
+    [
+      Human,
+      Felinid,
+      Reptilian,
+      SlimePerson,
+      Oni,
+      Arachne,
+      Moth,
+      Shadowkin,
+      Dwarf
+    ]
   coloring:
     default:
       type:
@@ -114,7 +202,18 @@
   id: TattooEyeRight
   bodyPart: Eyes
   markingCategory: Head
-  speciesRestriction: [Human, SlimePerson, Reptilian, Dwarf]
+  speciesRestriction:
+    [
+      Human,
+      Felinid,
+      Reptilian,
+      SlimePerson,
+      Oni,
+      Arachne,
+      Moth,
+      Shadowkin,
+      Dwarf
+    ]
   coloring:
     default:
       type:
@@ -128,7 +227,18 @@
   id: TattooEyeLeft
   bodyPart: Eyes
   markingCategory: Head
-  speciesRestriction: [Human, SlimePerson, Reptilian, Dwarf]
+  speciesRestriction:
+    [
+      Human,
+      Felinid,
+      Reptilian,
+      SlimePerson,
+      Oni,
+      Arachne,
+      Moth,
+      Shadowkin,
+      Dwarf
+    ]
   coloring:
     default:
       type:

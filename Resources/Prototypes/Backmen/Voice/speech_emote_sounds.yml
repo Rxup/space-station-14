@@ -54,3 +54,54 @@
       collection: FelinidPurrs
     Growls:
       collection: FelinidGrowls
+
+# species
+- type: emoteSounds
+  id: SoundsHarpy
+  params:
+    variation: 0.125
+  sounds:
+    Scream:
+      collection: HarpyScreams
+    Laugh:
+      collection: HarpyLaugh
+    Sneeze:
+      collection: MaleSneezes
+    Cough:
+      collection: MaleCoughs
+    Sigh:
+      collection: MaleSigh
+    Crying:
+      collection: HarpyCry
+    Whistle:
+      collection: Whistles
+    Hiss:
+      collection: HarpyHisses
+    Mew:
+      collection: HarpyMews
+    Growls:
+      collection: HarpyGrowls
+    Purrs:
+      collection: HarpyPurrs
+    Ring:
+      collection: HarpyRings
+    HonkHarpy:
+      collection: HarpyHonks
+    Pew:
+      collection: HarpyPews
+    Bang:
+      collection: HarpyBangs
+    Beep:
+      collection: HarpyBeeps
+    Rev:
+      collection: HarpyRevs
+    Click:
+      collection: HarpyClicks
+    Chitter:
+      collection: HarpyChitter
+    Squeak:
+      collection: HarpySqueak
+    Caw:
+      collection: HarpyCaws
+    Chirp:
+      collection: HarpyChirps
