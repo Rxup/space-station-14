@@ -30,6 +30,14 @@
     {
       "name": "on-inhand-right",
       "directions": 4
+    },
+    {
+      "name": "christmaslamp",
+      "directions": 1
+    },
+    {
+      "name": "christmaslamp-on",
+      "directions": 1
     }
   ]
 }
