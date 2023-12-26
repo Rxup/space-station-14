@@ -39,40 +39,42 @@
   parent: AltarBase
   name: nanotrasen altar
   components:
-    - type: Sprite
-      sprite: Structures/Furniture/Altars/Gods/nanotrasen.rsi
-      state: nanotrasen
-    - type: Icon
-      sprite: Structures/Furniture/Altars/Gods/nanotrasen.rsi
-      state: nanotrasen
-    - type: Destructible
-      thresholds:
-        - trigger:
-            !type:DamageTrigger
-            damage: 125
-          behaviors:
-            - !type:DoActsBehavior
-              acts: [ "Destruction" ]
-        - trigger:
-            !type:DamageTrigger
-            damage: 25
-          behaviors:
-            - !type:PlaySoundBehavior
-              sound:
-                path: /Audio/Effects/metalbreak.ogg
-            - !type:SpawnEntitiesBehavior
-              spawn:
-                SheetPlasteel1:
-                  min: 1
-                  max: 5
-                MaterialBluespace:
-                  min: 1
-                  max: 2
-            - !type:DoActsBehavior
-              acts: [ "Destruction" ]
-    - type: Construction
-      graph: Altar
-      node: nanotrasen
+  - type: Sprite
+    sprite: Structures/Furniture/Altars/Gods/nanotrasen.rsi
+    state: nanotrasen
+  - type: Icon
+    sprite: Structures/Furniture/Altars/Gods/nanotrasen.rsi
+    state: nanotrasen
+  - type: Destructible
+    thresholds:
+      - trigger:
+          !type:DamageTrigger
+          damage: 125
+        behaviors:
+          - !type:DoActsBehavior
+            acts: [ "Destruction" ]
+      - trigger:
+          !type:DamageTrigger
+          damage: 25
+        behaviors:
+          - !type:PlaySoundBehavior
+            sound:
+              path: /Audio/Effects/metalbreak.ogg
+          - !type:SpawnEntitiesBehavior
+            spawn:
+              SheetPlasteel1:
+                min: 1
+                max: 5
+              MaterialBluespace:
+                min: 1
+                max: 2
+          - !type:DoActsBehavior
+            acts: [ "Destruction" ]
+  - type: Construction
+    graph: Altar
+    node: nanotrasen
+  - type: StealTarget
+    stealGroup: AltarNanotrasen
 
 - type: entity
   id: AltarChaos
