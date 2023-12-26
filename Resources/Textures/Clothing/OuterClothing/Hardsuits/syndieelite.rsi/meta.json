@@ -11,11 +11,7 @@
       "name": "icon"
     },
     {
-<<<<<<< HEAD
-      "name": "equipped-OUTERCLOTHING-digi",
-=======
       "name": "equipped-OUTERCLOTHING",
->>>>>>> parent of f9e99fa02c ([Resprite] Hardsuits (#1620))
       "directions": 4
     },
     {
