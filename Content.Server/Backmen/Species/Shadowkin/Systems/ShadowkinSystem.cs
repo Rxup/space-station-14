@@ -20,7 +20,6 @@ public sealed class ShadowkinSystem : EntitySystem
 {
     [Dependency] private readonly ShadowkinPowerSystem _power = default!;
     [Dependency] private readonly IRobustRandom _random = default!;
-    [Dependency] private readonly IEntityManager _entity = default!;
     [Dependency] private readonly SharedInteractionSystem _interaction = default!;
     [Dependency] private readonly MobStateSystem _mobState = default!;
     [Dependency] private readonly MindSystem _mindSystem = default!;
@@ -56,7 +55,7 @@ public sealed class ShadowkinSystem : EntitySystem
         else
         {
             args.PushMarkup(Loc.GetString("shadowkin-power-examined-other",
-                ("target", Identity.Entity(uid, _entity)),
+                ("target", Identity.Entity(uid, EntityManager)),
                 ("powerType", powerType)
             ));
         }
@@ -88,7 +87,7 @@ public sealed class ShadowkinSystem : EntitySystem
     {
         base.Update(frameTime);
 
-        var query = _entity.EntityQueryEnumerator<ShadowkinComponent>();
+        var query = EntityQueryEnumerator<ShadowkinComponent>();
 
         // Update power level for all shadowkin
         while (query.MoveNext(out var uid, out var shadowkin))
@@ -97,7 +96,7 @@ public sealed class ShadowkinSystem : EntitySystem
             if (_mobState.IsDead(uid) ||
                 _mobState.IsCritical(uid))
             {
-                _entity.RemoveComponent<ShadowkinDarkSwappedComponent>(uid);
+                RemComp<ShadowkinDarkSwappedComponent>(uid);
                 continue;
             }
 
@@ -113,7 +112,7 @@ public sealed class ShadowkinSystem : EntitySystem
             if (oldPowerLevel != _power.GetLevelName(shadowkin.PowerLevel))
             {
                 _power.TryBlackeye(uid);
-                Dirty(shadowkin);
+                Dirty(uid, shadowkin);
             }
             // I can't figure out how to get this to go to the 100% filled state in the above if statement 😢
             _power.UpdateAlert(uid, true, shadowkin.PowerLevel);
@@ -121,7 +120,7 @@ public sealed class ShadowkinSystem : EntitySystem
 
             // Don't randomly activate abilities if handcuffed
             // TODO: Something like the Psionic Headcage to disable powers for Shadowkin
-            if (_entity.HasComponent<HandcuffComponent>(uid))
+            if (HasComp<HandcuffComponent>(uid))
                 continue;
 
             #region MaxPower
@@ -168,7 +167,7 @@ public sealed class ShadowkinSystem : EntitySystem
                     ShadowkinComponent.PowerThresholds[ShadowkinPowerThreshold.Okay]
                 ) / 2f &&
                 // Don't sleep if asleep
-                !_entity.HasComponent<SleepingComponent>(uid)
+                !HasComp<SleepingComponent>(uid)
             )
             {
                 // If so, start the timer
@@ -199,10 +198,10 @@ public sealed class ShadowkinSystem : EntitySystem
     private void ForceDarkSwap(EntityUid uid, ShadowkinComponent component)
     {
         // Add/Remove the component, which should handle the rest
-        if (_entity.HasComponent<ShadowkinDarkSwappedComponent>(uid))
-            _entity.RemoveComponent<ShadowkinDarkSwappedComponent>(uid);
+        if (HasComp<ShadowkinDarkSwappedComponent>(uid))
+            RemComp<ShadowkinDarkSwappedComponent>(uid);
         else
-            _entity.AddComponent<ShadowkinDarkSwappedComponent>(uid);
+            AddComp<ShadowkinDarkSwappedComponent>(uid);
     }
 
     private void ForceTeleport(EntityUid uid, ShadowkinComponent component)

@@ -9,7 +9,6 @@ namespace Content.Server.Backmen.Species.Shadowkin.Systems;
 
 public sealed class ShadowkinDarkenSystem : EntitySystem
 {
-    [Dependency] private readonly IEntityManager _entity = default!;
     [Dependency] private readonly SharedPointLightSystem _light = default!;
     [Dependency] private readonly IRobustRandom _random = default!;
     [Dependency] private readonly EntityLookupSystem _lookup = default!;
@@ -33,7 +32,7 @@ public sealed class ShadowkinDarkenSystem : EntitySystem
     {
         base.Update(frameTime);
 
-        var shadowkins = _entity.EntityQueryEnumerator<ShadowkinDarkSwappedComponent>();
+        var shadowkins = EntityQueryEnumerator<ShadowkinDarkSwappedComponent>();
 
         while (shadowkins.MoveNext(out var uid, out var shadowkin))
         {
@@ -53,7 +52,7 @@ public sealed class ShadowkinDarkenSystem : EntitySystem
             var darkened = new List<EntityUid>();
             // Get all lights in range
             var lightQuery = _lookup.GetEntitiesInRange(transform.MapID, transform.WorldPosition, shadowkin.DarkenRange, flags: LookupFlags.StaticSundries)
-                .Where(x => _entity.HasComponent<ShadowkinLightComponent>(x) && _entity.HasComponent<PointLightComponent>(x));
+                .Where(x => HasComp<ShadowkinLightComponent>(x) && HasComp<PointLightComponent>(x));
 
             // Add all lights in range to the list if not already there
             foreach (var entity in lightQuery)
@@ -71,14 +70,14 @@ public sealed class ShadowkinDarkenSystem : EntitySystem
             foreach (var light in shadowkin.DarkenedLights.ToArray())
             {
                 var lightPos = Transform(light).WorldPosition;
-                var pointLight = _entity.GetComponent<PointLightComponent>(light);
+                var pointLight = Comp<PointLightComponent>(light);
 
 
                 // Not a light we should affect
-                if (!_entity.TryGetComponent(light, out ShadowkinLightComponent? shadowkinLight))
+                if (!TryComp(light, out ShadowkinLightComponent? shadowkinLight))
                     continue;
                 // Not powered, undo changes
-                if (_entity.TryGetComponent(light, out PoweredLightComponent? powered) && !powered.On)
+                if (TryComp(light, out PoweredLightComponent? powered) && !powered.On)
                 {
                     ResetLight(light, pointLight, shadowkinLight);
                     continue;

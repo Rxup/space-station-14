@@ -7,8 +7,6 @@ namespace Content.Client.Backmen.Species.Shadowkin.Systems;
 
 public sealed class ShadowkinBlackeyeSystem : EntitySystem
 {
-    [Dependency] private readonly IEntityManager _entity = default!;
-
     public override void Initialize()
     {
         base.Initialize();
@@ -26,7 +24,7 @@ public sealed class ShadowkinBlackeyeSystem : EntitySystem
 
     private void OnInit(EntityUid uid, ShadowkinComponent component, ComponentInit args)
     {
-        if (!_entity.TryGetComponent<SpriteComponent>(uid, out var sprite) ||
+        if (!TryComp<SpriteComponent>(uid, out var sprite) ||
             !sprite.LayerMapTryGet(HumanoidVisualLayers.Eyes, out var index) ||
             !sprite.TryGetLayer(index, out var layer))
             return;
@@ -41,7 +39,7 @@ public sealed class ShadowkinBlackeyeSystem : EntitySystem
 
     private void SetColor(EntityUid uid, Color color)
     {
-        if (!_entity.TryGetComponent<SpriteComponent>(uid, out var sprite) ||
+        if (!TryComp<SpriteComponent>(uid, out var sprite) ||
             !sprite.LayerMapTryGet(HumanoidVisualLayers.Eyes, out var index) ||
             !sprite.TryGetLayer(index, out var layer))
             return;

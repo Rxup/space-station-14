@@ -26,13 +26,11 @@ public sealed class ShadowkinDarkSwapSystem : EntitySystem
 {
     [Dependency] private readonly ShadowkinPowerSystem _power = default!;
     [Dependency] private readonly VisibilitySystem _visibility = default!;
-    [Dependency] private readonly IEntityManager _entity = default!;
     [Dependency] private readonly ShadowkinDarkenSystem _darken = default!;
     [Dependency] private readonly StaminaSystem _stamina = default!;
     [Dependency] private readonly SharedStealthSystem _stealth = default!;
     [Dependency] private readonly SharedAudioSystem _audio = default!;
     [Dependency] private readonly SharedActionsSystem _actions = default!;
-    [Dependency] private readonly IPrototypeManager _prototype = default!;
     [Dependency] private readonly MagicSystem _magic = default!;
     [Dependency] private readonly NpcFactionSystem _factions = default!;
     [Dependency] private readonly EyeSystem _eye = default!;
@@ -65,16 +63,16 @@ public sealed class ShadowkinDarkSwapSystem : EntitySystem
     private void DarkSwap(EntityUid uid, ShadowkinDarkSwapPowerComponent component, ShadowkinDarkSwapEvent args)
     {
         // Need power to drain power
-        if (!_entity.HasComponent<ShadowkinComponent>(args.Performer))
+        if (!HasComp<ShadowkinComponent>(args.Performer))
             return;
 
         // Don't activate abilities if handcuffed
         // TODO: Something like the Psionic Headcage to disable powers for Shadowkin
-        if (_entity.HasComponent<HandcuffComponent>(args.Performer))
+        if (HasComp<HandcuffComponent>(args.Performer))
             return;
 
 
-        var hasComp = _entity.HasComponent<ShadowkinDarkSwappedComponent>(args.Performer);
+        var hasComp = HasComp<ShadowkinDarkSwappedComponent>(args.Performer);
 
         SetDarkened(
             args.Performer,
@@ -122,7 +120,7 @@ public sealed class ShadowkinDarkSwapSystem : EntitySystem
 
         if (addComp)
         {
-            var comp = _entity.EnsureComponent<ShadowkinDarkSwappedComponent>(performer);
+            var comp = EnsureComp<ShadowkinDarkSwappedComponent>(performer);
             comp.Invisible = invisible;
             comp.Pacify = pacify;
             comp.Darken = darken;
@@ -136,7 +134,7 @@ public sealed class ShadowkinDarkSwapSystem : EntitySystem
         }
         else
         {
-            _entity.RemoveComponent<ShadowkinDarkSwappedComponent>(performer);
+            RemComp<ShadowkinDarkSwappedComponent>(performer);
             RaiseNetworkEvent(new ShadowkinDarkSwappedEvent(ent, false));
 
             _audio.PlayPvs(soundOff, performer, AudioParams.Default.WithVolume(volumeOff));
@@ -176,8 +174,8 @@ public sealed class ShadowkinDarkSwapSystem : EntitySystem
 
         foreach (var light in component.DarkenedLights.ToArray())
         {
-            if (!_entity.TryGetComponent<PointLightComponent>(light, out var pointLight) ||
-                !_entity.TryGetComponent<ShadowkinLightComponent>(light, out var shadowkinLight))
+            if (!TryComp<PointLightComponent>(light, out var pointLight) ||
+                !TryComp<ShadowkinLightComponent>(light, out var shadowkinLight))
                 continue;
 
             _darken.ResetLight(uid, pointLight, shadowkinLight);
@@ -195,7 +193,7 @@ public sealed class ShadowkinDarkSwapSystem : EntitySystem
         if (set) // Invisible
         {
             // Allow the entity to see DarkSwapped entities
-            if (_entity.TryGetComponent(uid, out EyeComponent? eye))
+            if (TryComp(uid, out EyeComponent? eye))
                 _eye.SetVisibilityMask(uid, eye.VisibilityMask | (int)VisibilityFlags.DarkSwapInvisibility, eye);
 
             // Make other entities unable to see the entity unless also DarkSwapped
@@ -204,13 +202,13 @@ public sealed class ShadowkinDarkSwapSystem : EntitySystem
             _visibility.RefreshVisibility(uid);
 
             // If not a ghost, add a stealth shader to the entity
-            if (!_entity.TryGetComponent<GhostComponent>(uid, out _))
-                _stealth.SetVisibility(uid, 0.8f, _entity.EnsureComponent<StealthComponent>(uid));
+            if (!TryComp<GhostComponent>(uid, out _))
+                _stealth.SetVisibility(uid, 0.8f, EnsureComp<StealthComponent>(uid));
         }
         else // Visible
         {
             // Remove the ability to see DarkSwapped entities
-            if (_entity.TryGetComponent(uid, out EyeComponent? eye))
+            if (TryComp(uid, out EyeComponent? eye))
                 _eye.SetVisibilityMask(uid, eye.VisibilityMask & ~(int)VisibilityFlags.DarkSwapInvisibility, eye);
             // Make other entities able to see the entity again
             _visibility.RemoveLayer(uid, visibility, (int) VisibilityFlags.DarkSwapInvisibility, false);
@@ -218,8 +216,8 @@ public sealed class ShadowkinDarkSwapSystem : EntitySystem
             _visibility.RefreshVisibility(uid);
 
             // Remove the stealth shader from the entity
-            if (!_entity.TryGetComponent<GhostComponent>(uid, out _))
-                _stealth.SetVisibility(uid, 1f, _entity.EnsureComponent<StealthComponent>(uid));
+            if (!TryComp<GhostComponent>(uid, out _))
+                _stealth.SetVisibility(uid, 1f, EnsureComp<StealthComponent>(uid));
         }
     }
 
@@ -231,12 +229,12 @@ public sealed class ShadowkinDarkSwapSystem : EntitySystem
     public void SuppressFactions(EntityUid uid, bool set)
     {
         // We require the power component to keep track of the factions
-        if (!_entity.TryGetComponent<ShadowkinDarkSwapPowerComponent>(uid, out var component))
+        if (!TryComp<ShadowkinDarkSwapPowerComponent>(uid, out var component))
             return;
 
         if (set)
         {
-            if (!_entity.TryGetComponent<NpcFactionMemberComponent>(uid, out var factions))
+            if (!TryComp<NpcFactionMemberComponent>(uid, out var factions))
                 return;
 
             // Copy the suppressed factions to the power component
@@ -244,21 +242,29 @@ public sealed class ShadowkinDarkSwapSystem : EntitySystem
 
             // Remove the factions from the entity
             foreach (var faction in factions.Factions)
+            {
                 _factions.RemoveFaction(uid, faction);
+            }
 
             // Add status factions for The Dark to the entity
             foreach (var faction in component.AddedFactions)
+            {
                 _factions.AddFaction(uid, faction);
+            }
         }
         else
         {
             // Remove the status factions from the entity
             foreach (var faction in component.AddedFactions)
+            {
                 _factions.RemoveFaction(uid, faction);
+            }
 
             // Add the factions back to the entity
             foreach (var faction in component.SuppressedFactions)
+            {
                 _factions.AddFaction(uid, faction);
+            }
 
             component.SuppressedFactions.Clear();
         }

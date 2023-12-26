@@ -14,7 +14,6 @@ public sealed class ShadowkinTintSystem : EntitySystem
 {
     [Dependency] private readonly IPlayerManager _player = default!;
     [Dependency] private readonly IOverlayManager _overlay = default!;
-    [Dependency] private readonly IEntityManager _entity = default!;
 
     private ColorTintOverlay _tintOverlay = default!;
 
@@ -38,7 +37,7 @@ public sealed class ShadowkinTintSystem : EntitySystem
 
     private void OnStartup(EntityUid uid, ShadowkinComponent component, ComponentStartup args)
     {
-        if (_player.LocalPlayer?.ControlledEntity != uid)
+        if (_player.LocalSession?.AttachedEntity != uid)
             return;
 
         _overlay.AddOverlay(_tintOverlay);
@@ -46,7 +45,7 @@ public sealed class ShadowkinTintSystem : EntitySystem
 
     private void OnShutdown(EntityUid uid, ShadowkinComponent component, ComponentShutdown args)
     {
-        if (_player.LocalPlayer?.ControlledEntity != uid)
+        if (_player.LocalSession?.AttachedEntity != uid)
             return;
 
         _overlay.RemoveOverlay(_tintOverlay);
@@ -74,8 +73,8 @@ public sealed class ShadowkinTintSystem : EntitySystem
 
         var uid = _player.LocalPlayer?.ControlledEntity;
         if (uid == null ||
-            !_entity.TryGetComponent(uid, out ShadowkinComponent? comp) ||
-            !_entity.TryGetComponent(uid, out SpriteComponent? sprite) ||
+            !TryComp(uid, out ShadowkinComponent? comp) ||
+            !TryComp(uid, out SpriteComponent? sprite) ||
             !sprite.LayerMapTryGet(HumanoidVisualLayers.Eyes, out var index) ||
             !sprite.TryGetLayer(index, out var layer))
             return;

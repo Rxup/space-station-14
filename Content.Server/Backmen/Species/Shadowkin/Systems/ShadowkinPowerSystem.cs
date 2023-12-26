@@ -2,29 +2,31 @@ using Content.Shared.Alert;
 using Content.Shared.Backmen.Species.Shadowkin.Components;
 using Content.Shared.Backmen.Species.Shadowkin.Events;
 using System.Threading.Tasks;
+using Robust.Shared.Timing;
 
 namespace Content.Server.Backmen.Species.Shadowkin.Systems;
 
 public sealed class ShadowkinPowerSystem : EntitySystem
 {
-    [Dependency] private readonly IEntityManager _entity = default!;
     [Dependency] private readonly AlertsSystem _alerts = default!;
 
-    private readonly Dictionary<ShadowkinPowerThreshold, string> _powerDictionary;
+    private readonly Dictionary<ShadowkinPowerThreshold, string> _powerDictionary = new();
 
-    public ShadowkinPowerSystem()
+    private ISawmill _sawmill = default!;
+
+
+    public override void Initialize()
     {
-        var Locale = IoCManager.Resolve<ILocalizationManager>(); // Whyyyy
+        base.Initialize();
 
-        _powerDictionary = new Dictionary<ShadowkinPowerThreshold, string>
-        {
-            { ShadowkinPowerThreshold.Max, Locale.GetString("shadowkin-power-max") },
-            { ShadowkinPowerThreshold.Great, Locale.GetString("shadowkin-power-great") },
-            { ShadowkinPowerThreshold.Good, Locale.GetString("shadowkin-power-good") },
-            { ShadowkinPowerThreshold.Okay, Locale.GetString("shadowkin-power-okay") },
-            { ShadowkinPowerThreshold.Tired, Locale.GetString("shadowkin-power-tired") },
-            { ShadowkinPowerThreshold.Min, Locale.GetString("shadowkin-power-min") }
-        };
+        _powerDictionary.Add(ShadowkinPowerThreshold.Max, Loc.GetString("shadowkin-power-max"));
+        _powerDictionary.Add(ShadowkinPowerThreshold.Great, Loc.GetString("shadowkin-power-great"));
+        _powerDictionary.Add(ShadowkinPowerThreshold.Good, Loc.GetString("shadowkin-power-good"));
+        _powerDictionary.Add(ShadowkinPowerThreshold.Okay, Loc.GetString("shadowkin-power-okay"));
+        _powerDictionary.Add(ShadowkinPowerThreshold.Tired, Loc.GetString("shadowkin-power-tired"));
+        _powerDictionary.Add(ShadowkinPowerThreshold.Min, Loc.GetString("shadowkin-power-min"));
+
+        _sawmill = Logger.GetSawmill("ShadowkinPowerSystem");
     }
 
     /// <param name="powerLevel">The current power level.</param>
@@ -67,9 +69,9 @@ public sealed class ShadowkinPowerSystem : EntitySystem
         }
 
         // Get shadowkin component
-        if (!_entity.TryGetComponent<ShadowkinComponent>(uid, out var component))
+        if (!TryComp<ShadowkinComponent>(uid, out var component))
         {
-            Logger.ErrorS("ShadowkinPowerSystem", "Tried to update alert of entity without shadowkin component.");
+            _sawmill.Error("Tried to update alert of entity without shadowkin component.");
             return;
         }
 
@@ -91,7 +93,7 @@ public sealed class ShadowkinPowerSystem : EntitySystem
     public bool TryUpdatePowerLevel(EntityUid uid, float frameTime)
     {
         // Check if the entity has a shadowkin component
-        if (!_entity.TryGetComponent<ShadowkinComponent>(uid, out var component))
+        if (!TryComp<ShadowkinComponent>(uid, out var component))
             return false;
 
         // Check if power gain is enabled
@@ -112,9 +114,9 @@ public sealed class ShadowkinPowerSystem : EntitySystem
     public void UpdatePowerLevel(EntityUid uid, float frameTime)
     {
         // Get shadowkin component
-        if (!_entity.TryGetComponent<ShadowkinComponent>(uid, out var component))
+        if (!TryComp<ShadowkinComponent>(uid, out var component))
         {
-            Logger.Error("Tried to update power level of entity without shadowkin component.");
+            _sawmill.Error("Tried to update power level of entity without shadowkin component.");
             return;
         }
 
@@ -137,7 +139,7 @@ public sealed class ShadowkinPowerSystem : EntitySystem
     public bool TryAddPowerLevel(EntityUid uid, float amount)
     {
         // Check if the entity has a shadowkin component
-        if (!_entity.TryGetComponent<ShadowkinComponent>(uid, out _))
+        if (!TryComp<ShadowkinComponent>(uid, out _))
             return false;
 
         // Set the new power level
@@ -154,9 +156,9 @@ public sealed class ShadowkinPowerSystem : EntitySystem
     public void AddPowerLevel(EntityUid uid, float amount)
     {
         // Get shadowkin component
-        if (!_entity.TryGetComponent<ShadowkinComponent>(uid, out var component))
+        if (!TryComp<ShadowkinComponent>(uid, out var component))
         {
-            Logger.Error("Tried to add to power level of entity without shadowkin component.");
+            _sawmill.Error("Tried to add to power level of entity without shadowkin component.");
             return;
         }
 
@@ -179,9 +181,9 @@ public sealed class ShadowkinPowerSystem : EntitySystem
     public void SetPowerLevel(EntityUid uid, float newPowerLevel)
     {
         // Get shadowkin component
-        if (!_entity.TryGetComponent<ShadowkinComponent>(uid, out var component))
+        if (!TryComp<ShadowkinComponent>(uid, out var component))
         {
-            Logger.Error("Tried to set power level of entity without shadowkin component.");
+            _sawmill.Error("Tried to set power level of entity without shadowkin component.");
             return;
         }
 
@@ -214,9 +216,9 @@ public sealed class ShadowkinPowerSystem : EntitySystem
     public void Blackeye(EntityUid uid)
     {
         // Get shadowkin component
-        if (!_entity.TryGetComponent<ShadowkinComponent>(uid, out var component))
+        if (!TryComp<ShadowkinComponent>(uid, out var component))
         {
-            Logger.Error("Tried to blackeye entity without shadowkin component.");
+            _sawmill.Error("Tried to blackeye entity without shadowkin component.");
             return;
         }
 
@@ -235,7 +237,7 @@ public sealed class ShadowkinPowerSystem : EntitySystem
     /// <param name="time">The time in seconds to wait before removing the multiplier.</param>
     public bool TryAddMultiplier(EntityUid uid, float multiplier, float? time = null)
     {
-        if (!_entity.HasComponent<ShadowkinComponent>(uid) ||
+        if (!HasComp<ShadowkinComponent>(uid) ||
             float.IsNaN(multiplier))
             return false;
 
@@ -253,22 +255,26 @@ public sealed class ShadowkinPowerSystem : EntitySystem
     public void AddMultiplier(EntityUid uid, float multiplier, float? time = null)
     {
         // Get shadowkin component
-        if (!_entity.TryGetComponent<ShadowkinComponent>(uid, out var component))
+        if (!TryComp<ShadowkinComponent>(uid, out var component))
         {
-            Logger.Error("Tried to add multiplier to entity without shadowkin component.");
+            _sawmill.Error("Tried to add multiplier to entity without shadowkin component.");
             return;
         }
 
         // Add the multiplier
         component.PowerLevelGainMultiplier += multiplier;
 
+        Dirty(uid, component);
+
         // Remove the multiplier after a certain amount of time
         if (time != null)
         {
-            Task.Run(async () =>
+            Timer.Spawn((int)time * 1000, () =>
             {
-                await Task.Delay((int) time * 1000);
+                if(!uid.IsValid())
+                    return;
                 component.PowerLevelGainMultiplier -= multiplier;
+                Dirty(uid, component);
             });
         }
     }

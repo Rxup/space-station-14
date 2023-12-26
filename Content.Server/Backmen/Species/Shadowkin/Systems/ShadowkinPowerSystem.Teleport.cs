@@ -21,11 +21,9 @@ public sealed class ShadowkinTeleportSystem : EntitySystem
     [Dependency] private readonly ShadowkinPowerSystem _power = default!;
     [Dependency] private readonly SharedTransformSystem _transform = default!;
     [Dependency] private readonly SharedAudioSystem _audio = default!;
-    [Dependency] private readonly IEntityManager _entity = default!;
     [Dependency] private readonly StaminaSystem _stamina = default!;
     [Dependency] private readonly PullingSystem _pulling = default!;
     [Dependency] private readonly SharedActionsSystem _actions = default!;
-    [Dependency] private readonly IPrototypeManager _prototype = default!;
     [Dependency] private readonly MagicSystem _magic = default!;
 
     public override void Initialize()
@@ -53,12 +51,12 @@ public sealed class ShadowkinTeleportSystem : EntitySystem
     private void Teleport(EntityUid uid, ShadowkinTeleportPowerComponent component, ShadowkinTeleportEvent args)
     {
         // Need power to drain power
-        if (!_entity.TryGetComponent<ShadowkinComponent>(args.Performer, out var comp))
+        if (!TryComp<ShadowkinComponent>(args.Performer, out var comp))
             return;
 
         // Don't activate abilities if handcuffed
         // TODO: Something like the Psionic Headcage to disable powers for Shadowkin
-        if (_entity.HasComponent<HandcuffComponent>(args.Performer))
+        if (HasComp<HandcuffComponent>(args.Performer))
             return;
 
 
@@ -67,9 +65,9 @@ public sealed class ShadowkinTeleportSystem : EntitySystem
             return;
 
         SharedPullableComponent? pullable = null; // To avoid "might not be initialized when accessed" warning
-        if (_entity.TryGetComponent<SharedPullerComponent>(args.Performer, out var puller) &&
+        if (TryComp<SharedPullerComponent>(args.Performer, out var puller) &&
             puller.Pulling != null &&
-            _entity.TryGetComponent<SharedPullableComponent>(puller.Pulling, out pullable) &&
+            TryComp<SharedPullableComponent>(puller.Pulling, out pullable) &&
             pullable.BeingPulled)
         {
             // Temporarily stop pulling to avoid not teleporting to the target
@@ -83,11 +81,11 @@ public sealed class ShadowkinTeleportSystem : EntitySystem
         if (pullable != null && puller != null)
         {
             // Get transform of the pulled entity
-            var pulledTransform = Transform(pullable.Owner);
+            var pulledTransform = Transform(puller.Pulling!.Value);
 
             // Teleport the pulled entity to the target
             // TODO: Relative position to the performer
-            _transform.SetCoordinates(pullable.Owner, args.Target);
+            _transform.SetCoordinates(puller.Pulling.Value, args.Target);
             pulledTransform.AttachToGridOrMap();
 
             // Resume pulling
@@ -100,7 +98,7 @@ public sealed class ShadowkinTeleportSystem : EntitySystem
         _audio.PlayPvs(args.Sound, args.Performer, AudioParams.Default.WithVolume(args.Volume));
 
         // Take power and deal stamina damage
-        _power.TryAddPowerLevel(comp.Owner, -args.PowerCost);
+        _power.TryAddPowerLevel(args.Performer, -args.PowerCost);
         _stamina.TakeStaminaDamage(args.Performer, args.StaminaCost);
 
         // Speak

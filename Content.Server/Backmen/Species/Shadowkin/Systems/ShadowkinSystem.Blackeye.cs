@@ -15,7 +15,6 @@ namespace Content.Server.Backmen.Species.Shadowkin.Systems;
 public sealed class ShadowkinBlackeyeSystem : EntitySystem
 {
     [Dependency] private readonly ShadowkinPowerSystem _power = default!;
-    [Dependency] private readonly IEntityManager _entity = default!;
     [Dependency] private readonly StaminaSystem _stamina = default!;
     [Dependency] private readonly DamageableSystem _damageable = default!;
     [Dependency] private readonly IPrototypeManager _prototype = default!;
@@ -55,10 +54,10 @@ public sealed class ShadowkinBlackeyeSystem : EntitySystem
         Dirty(ent, component);
 
         // Remove powers
-        _entity.RemoveComponent<ShadowkinDarkSwapPowerComponent>(ent);
-        _entity.RemoveComponent<ShadowkinDarkSwappedComponent>(ent);
-        _entity.RemoveComponent<ShadowkinRestPowerComponent>(ent);
-        _entity.RemoveComponent<ShadowkinTeleportPowerComponent>(ent);
+        RemCompDeferred<ShadowkinDarkSwapPowerComponent>(ent);
+        RemCompDeferred<ShadowkinDarkSwappedComponent>(ent);
+        RemCompDeferred<ShadowkinRestPowerComponent>(ent);
+        RemCompDeferred<ShadowkinTeleportPowerComponent>(ent);
 
         if (!ev.Damage)
             return;
@@ -67,14 +66,14 @@ public sealed class ShadowkinBlackeyeSystem : EntitySystem
         _popup.PopupEntity(Loc.GetString("shadowkin-blackeye"),ent, ent, PopupType.Large);
 
         // Stamina crit
-        if (_entity.TryGetComponent<StaminaComponent>(ent, out var stamina))
+        if (TryComp<StaminaComponent>(ent, out var stamina))
         {
             _stamina.TakeStaminaDamage(ent, stamina.CritThreshold, null, ent);
         }
 
         // Nearly crit with cellular damage
         // If already 5 damage off of crit, don't do anything
-        if (!_entity.TryGetComponent<DamageableComponent>(ent, out var damageable) ||
+        if (!TryComp<DamageableComponent>(ent, out var damageable) ||
             !_mobThreshold.TryGetThresholdForState(ent, MobState.Critical, out var key))
             return;
 

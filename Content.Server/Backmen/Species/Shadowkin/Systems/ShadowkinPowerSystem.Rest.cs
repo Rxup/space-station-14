@@ -10,8 +10,6 @@ namespace Content.Server.Backmen.Species.Shadowkin.Systems;
 
 public sealed class ShadowkinRestSystem : EntitySystem
 {
-    [Dependency] private readonly IEntityManager _entity = default!;
-    [Dependency] private readonly IPrototypeManager _prototype = default!;
     [Dependency] private readonly SharedActionsSystem _actions = default!;
     [Dependency] private readonly ShadowkinPowerSystem _power = default!;
 
@@ -39,7 +37,7 @@ public sealed class ShadowkinRestSystem : EntitySystem
     private void Rest(EntityUid uid, ShadowkinRestPowerComponent component, ShadowkinRestEvent args)
     {
         // Need power to modify power
-        if (!_entity.HasComponent<ShadowkinComponent>(args.Performer))
+        if (!HasComp<ShadowkinComponent>(args.Performer))
             return;
 
         // Rest is a funny ability, keep it :)
@@ -55,9 +53,11 @@ public sealed class ShadowkinRestSystem : EntitySystem
         if (component.IsResting)
         {
             // Sleepy time
-            _entity.EnsureComponent<ForcedSleepingComponent>(args.Performer);
+            EnsureComp<ForcedSleepingComponent>(args.Performer);
             // No waking up normally (it would do nothing)
             //_actions.RemoveAction(args.Performer, new InstantAction(_prototype.Index<InstantActionPrototype>("Wake")));
+            if(TryComp<SleepingComponent>(args.Performer, out var sleepingComponent))
+                _actions.RemoveAction(args.Performer, sleepingComponent.WakeAction);
             _power.TryAddMultiplier(args.Performer, 1.5f);
             // No action cooldown
             args.Handled = false;
@@ -66,8 +66,8 @@ public sealed class ShadowkinRestSystem : EntitySystem
         else
         {
             // Wake up
-            _entity.RemoveComponent<ForcedSleepingComponent>(args.Performer);
-            _entity.RemoveComponent<SleepingComponent>(args.Performer);
+            RemCompDeferred<ForcedSleepingComponent>(args.Performer);
+            RemCompDeferred<SleepingComponent>(args.Performer);
             _power.TryAddMultiplier(args.Performer, -1.5f);
             // Action cooldown
             args.Handled = true;

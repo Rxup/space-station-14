@@ -14,7 +14,8 @@ public sealed class ShadowkinBlackeyeTraitSystem : EntitySystem
 
     private void OnStartup(EntityUid uid, ShadowkinBlackeyeTraitComponent _, ComponentStartup args)
     {
-        RaiseLocalEvent(uid, new ShadowkinBlackeyeEvent(GetNetEntity(uid), false));
-        RaiseNetworkEvent(new ShadowkinBlackeyeEvent(GetNetEntity(uid), false));
+        var net = GetNetEntity(uid);
+        RaiseLocalEvent(uid, new ShadowkinBlackeyeEvent(net, false));
+        RaiseNetworkEvent(new ShadowkinBlackeyeEvent(net, false));
     }
 }
