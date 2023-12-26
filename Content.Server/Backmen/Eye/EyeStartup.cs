@@ -6,12 +6,16 @@ using Robust.Server.GameObjects;
 
 namespace Content.Server.Backmen.Eye;
 
+public sealed class EyeMapInit : EntityEventArgs
+{
+    public Entity<EyeComponent> Target;
+}
+
 /// <summary>
 ///     Place to handle eye component startup for whatever systems.
 /// </summary>
 public sealed class EyeStartup : EntitySystem
 {
-    [Dependency] private readonly IEntityManager _entityManager = default!;
     [Dependency] private readonly ShadowkinDarkSwapSystem _shadowkinPowerSystem = default!;
     [Dependency] private EyeSystem _eye = default!;
 
@@ -19,14 +23,23 @@ public sealed class EyeStartup : EntitySystem
     {
         base.Initialize();
 
-        SubscribeLocalEvent<EyeComponent, ComponentStartup>(OnEyeStartup);
+        SubscribeLocalEvent<EyeComponent, MapInitEvent>(OnEyeStartup);
+        SubscribeLocalEvent<EyeMapInit>(OnEyeInit);
     }
 
-    private void OnEyeStartup(EntityUid uid, EyeComponent component, ComponentStartup args)
+    private void OnEyeInit(EyeMapInit ev)
     {
-        if (HasComp<GhostComponent>(uid))
-            _eye.SetVisibilityMask(uid, component.VisibilityMask | (int) VisibilityFlags.AIEye, component);
+        if (HasComp<GhostComponent>(ev.Target))
+            _eye.SetVisibilityMask(ev.Target, ev.Target.Comp.VisibilityMask | (int) VisibilityFlags.AIEye, ev.Target.Comp);
 
-        _shadowkinPowerSystem.SetVisibility(uid, _entityManager.HasComponent<GhostComponent>(uid));
+        _shadowkinPowerSystem.SetVisibility(ev.Target, HasComp<GhostComponent>(ev.Target));
+    }
+
+    private void OnEyeStartup(EntityUid uid, EyeComponent component, MapInitEvent args)
+    {
+        RaiseLocalEvent(uid,new EyeMapInit
+        {
+            Target = (uid,component)
+        }, true);
     }
 }
