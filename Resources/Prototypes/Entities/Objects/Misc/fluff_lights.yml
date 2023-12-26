@@ -69,7 +69,6 @@
         map: [ "light" ]
   - type: Item
     sprite: Objects/Misc/Lights/lamp.rsi
-  - type: Rotatable
   - type: HolidayVisuals
     holidays:
       festive:
@@ -81,6 +80,7 @@
           festive: { state: christmaslamp }
         light:
           festive: { state: christmaslamp-on }
+  - type: Rotatable # Corvax-Resprite
 
 - type: entity
   name: banana lamp
@@ -114,7 +114,6 @@
         map: [ "light" ]
   - type: Item
     sprite: Objects/Misc/Lights/lampgreen.rsi
-  - type: Rotatable
   - type: HolidayVisuals
     holidays:
       festive:
@@ -130,6 +129,7 @@
           festive:
             sprite: Objects/Misc/Lights/lamp.rsi
             state: christmaslamp-on
+  - type: Rotatable # Corvax-Resprite
 
 - type: entity
   name: interrogator lamp
