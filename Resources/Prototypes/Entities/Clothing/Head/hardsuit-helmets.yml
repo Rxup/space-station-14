@@ -199,7 +199,7 @@
   - type: Clothing
     sprite: Clothing/Head/Hardsuits/security-warden.rsi
   - type: PointLight
-    color: cyan # Corvax-Resprite
+    color: "#ffeead"
   - type: PressureProtection
     highPressureMultiplier: 0.525
     lowPressureMultiplier: 1000
@@ -240,8 +240,8 @@
     sprite: Clothing/Head/Hardsuits/engineering-white.rsi
   - type: Clothing
     sprite: Clothing/Head/Hardsuits/engineering-white.rsi
-  - type: PointLight # Corvax-Resprite
-    color: "#e6aa5c"
+  - type: PointLight
+    color: "#daffad"
   - type: PressureProtection
     highPressureMultiplier: 0.08
     lowPressureMultiplier: 1000
@@ -277,8 +277,8 @@
     sprite: Clothing/Head/Hardsuits/rd.rsi
   - type: Clothing
     sprite: Clothing/Head/Hardsuits/rd.rsi
-  - type: PointLight # Corvax-Resprite
-    color: "#a4fef4"
+  - type: PointLight
+    color: "#d6adff"
   - type: PressureProtection
     highPressureMultiplier: 0.60
     lowPressureMultiplier: 1000
@@ -469,7 +469,7 @@
   - type: Clothing
     sprite: Clothing/Head/Hardsuits/wizard.rsi
   - type: PointLight
-    color: "#a4fef4" # Corvax-Resprite
+    color: "#ffadfb"
   - type: PressureProtection
     highPressureMultiplier: 0.27
     lowPressureMultiplier: 1000
@@ -567,7 +567,7 @@
   - type: Clothing
     sprite: Clothing/Head/Hardsuits/ERThelmets/ertengineer.rsi
   - type: PointLight
-    color: cyan # Corvax-Resprite
+    color: "#f4ffad"
   - type: Armor
     modifiers:
       coefficients:
@@ -604,7 +604,7 @@
   - type: Clothing
     sprite: Clothing/Head/Hardsuits/ERThelmets/ertsecurity.rsi
   - type: PointLight
-    color: cyan # Corvax-Resprite
+    color: "#ffadc6"
   - type: Armor
     modifiers:
       coefficients:
@@ -653,7 +653,7 @@
       - state: equipped-head-unshaded
         shader: unshaded
   - type: PointLight
-    color: "#a4fef4" # Corvax-Resprite
+    color: orange
   - type: PressureProtection
     highPressureMultiplier: 0.08
     lowPressureMultiplier: 1000
@@ -709,8 +709,6 @@
     sprite: Clothing/Head/Hardsuits/clown.rsi
     equipSound: /Audio/Mecha/mechmove03.ogg
     unequipSound: /Audio/Effects/Emotes/parp1.ogg
-  - type: PointLight # Corvax-Resprite
-    color: "#ff3399"
 
 #Santas Hardsuit
 - type: entity
@@ -727,4 +725,4 @@
   - type: PointLight
     color: "#f4ffad"
     radius: 5
-    energy: 2
+    energy: 2  
