@@ -1,7 +1,7 @@
 {
   "version": 1,
   "license": "CC-BY-SA-3.0",
-  "copyright": "Created by discord:IAmRasputin#5242, digi made by kuro(388673708753027083)",
+  "copyright": "Created by discord:IAmRasputin#5242",
   "size": {
     "x": 32,
     "y": 32
@@ -11,7 +11,7 @@
       "name": "icon"
     },
     {
-      "name": "equipped-OUTERCLOTHING-digi",
+      "name": "equipped-OUTERCLOTHING",
       "directions": 4
     },
     {
@@ -20,10 +20,6 @@
     },
     {
       "name": "inhand-right",
-      "directions": 4
-    },
-    {
-      "name": "equipped-OUTERCLOTHING",
       "directions": 4
     }
   ]
