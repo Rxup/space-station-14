@@ -71,7 +71,7 @@ public sealed class MakePlanetSystem : EntitySystem
 		var mapPos = new MapCoordinates(new Vector2(0f, 0f), mapId);
 		var restriction = _entityManager.AddComponent<RestrictedRangeComponent>(mapUid);
 		restriction.Origin = mapPos.Position;
-		restriction.Range = 128;
+		restriction.Range = 96;
 		biomeSystem.EnsurePlanet(mapUid, _protoManager.Index<BiomeTemplatePrototype>("Continental"), seed);
 
 		var biome = _entityManager.EnsureComponent<BiomeComponent>(mapUid);
@@ -80,7 +80,7 @@ public sealed class MakePlanetSystem : EntitySystem
 		biomeSystem.SetTemplate(mapUid, biome, biomeTemplate);
 		biomeSystem.AddMarkerLayer(mapUid, biome, "Carps");
 		biomeSystem.AddMarkerLayer(mapUid, biome, "OreTin");
-		biomeSystem.AddMarkerLayer(mapUid, biome, "OreSilver");
+		biomeSystem.AddMarkerLayer(mapUid, biome, "OreUranium");
 		biomeSystem.AddMarkerLayer(mapUid, biome, "OrePlasma");
 		biomeSystem.AddMarkerLayer(mapUid, biome, "OreQuartz");
 		biomeSystem.AddMarkerLayer(mapUid, biome, "OreCoal");
