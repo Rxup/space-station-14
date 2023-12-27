@@ -3,6 +3,7 @@ using Robust.Client.Player;
 using Content.Client.Backmen.Overlays;
 using Content.Client.Backmen.Overlays.Shaders;
 using Content.Shared.Backmen.Species.Shadowkin.Components;
+using Content.Shared.Ghost;
 using Robust.Client.GameObjects;
 using Content.Shared.Humanoid;
 using Robust.Shared.Player;
@@ -28,37 +29,42 @@ public sealed class ShadowkinDarkSwappedSystem : EntitySystem
 
         SubscribeLocalEvent<ShadowkinDarkSwappedComponent, ComponentStartup>(OnStartup);
         SubscribeLocalEvent<ShadowkinDarkSwappedComponent, ComponentShutdown>(OnShutdown);
-        SubscribeLocalEvent<ShadowkinDarkSwappedComponent, PlayerAttachedEvent>(OnPlayerAttached);
-        SubscribeLocalEvent<ShadowkinDarkSwappedComponent, PlayerDetachedEvent>(OnPlayerDetached);
+
+        _player.LocalPlayerAttached += PlayerOnLocalPlayerAttached;
+        _player.LocalPlayerDetached += PlayerOnLocalPlayerDetached;
+    }
+
+    public override void Shutdown()
+    {
+        base.Shutdown();
+
+        _player.LocalPlayerAttached -= PlayerOnLocalPlayerAttached;
+        _player.LocalPlayerDetached -= PlayerOnLocalPlayerDetached;
+    }
+
+    private void PlayerOnLocalPlayerDetached(EntityUid uid)
+    {
+        RemoveOverlay();
+    }
+
+    private void PlayerOnLocalPlayerAttached(EntityUid uid)
+    {
+        if(HasComp<ShadowkinDarkSwappedComponent>(uid))
+            AddOverlay();
     }
 
 
     private void OnStartup(EntityUid uid, ShadowkinDarkSwappedComponent component, ComponentStartup args)
     {
-        if (_player.LocalSession?.AttachedEntity != uid)
-            return;
-
-        AddOverlay();
+        if (_player.LocalSession?.AttachedEntity == uid && !HasComp<GhostComponent>(uid))
+            AddOverlay();
     }
 
     private void OnShutdown(EntityUid uid, ShadowkinDarkSwappedComponent component, ComponentShutdown args)
     {
-        if (_player.LocalSession?.AttachedEntity != uid)
-            return;
-
-        RemoveOverlay();
+        if (_player.LocalSession == null || _player.LocalSession?.AttachedEntity == uid)
+            RemoveOverlay();
     }
-
-    private void OnPlayerAttached(EntityUid uid, ShadowkinDarkSwappedComponent component, PlayerAttachedEvent args)
-    {
-        AddOverlay();
-    }
-
-    private void OnPlayerDetached(EntityUid uid, ShadowkinDarkSwappedComponent component, PlayerDetachedEvent args)
-    {
-        RemoveOverlay();
-    }
-
 
     private void AddOverlay()
     {

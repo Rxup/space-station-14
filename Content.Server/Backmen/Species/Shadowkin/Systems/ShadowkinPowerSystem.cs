@@ -9,6 +9,7 @@ namespace Content.Server.Backmen.Species.Shadowkin.Systems;
 public sealed class ShadowkinPowerSystem : EntitySystem
 {
     [Dependency] private readonly AlertsSystem _alerts = default!;
+    [Dependency] private readonly ShadowkinBlackeyeSystem _shadowkinBlackeyeSystem = default!;
 
     private readonly Dictionary<ShadowkinPowerThreshold, string> _powerDictionary = new();
 
@@ -201,8 +202,8 @@ public sealed class ShadowkinPowerSystem : EntitySystem
     public bool TryBlackeye(EntityUid uid)
     {
         // Raise an attempted blackeye event
-        var ev = new ShadowkinBlackeyeAttemptEvent(GetNetEntity(uid));
-        RaiseLocalEvent(ev);
+        var ev = new ShadowkinBlackeyeAttemptEvent();
+        RaiseLocalEvent(uid, ev);
         if (ev.Cancelled)
             return false;
 
@@ -222,10 +223,7 @@ public sealed class ShadowkinPowerSystem : EntitySystem
             return;
         }
 
-        component.Blackeye = true;
-        var ent = GetNetEntity(uid);
-        RaiseNetworkEvent(new ShadowkinBlackeyeEvent(ent));
-        RaiseLocalEvent(new ShadowkinBlackeyeEvent(ent));
+        _shadowkinBlackeyeSystem.SetBlackEye(uid, true);
     }
 
 
@@ -264,8 +262,6 @@ public sealed class ShadowkinPowerSystem : EntitySystem
         // Add the multiplier
         component.PowerLevelGainMultiplier += multiplier;
 
-        Dirty(uid, component);
-
         // Remove the multiplier after a certain amount of time
         if (time != null)
         {
@@ -274,7 +270,6 @@ public sealed class ShadowkinPowerSystem : EntitySystem
                 if(!uid.IsValid())
                     return;
                 component.PowerLevelGainMultiplier -= multiplier;
-                Dirty(uid, component);
             });
         }
     }

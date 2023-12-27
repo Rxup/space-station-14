@@ -11,16 +11,15 @@ public sealed class ShadowkinBlackeyeSystem : EntitySystem
     {
         base.Initialize();
 
-        SubscribeNetworkEvent<ShadowkinBlackeyeEvent>(OnBlackeye);
-
         SubscribeLocalEvent<ShadowkinComponent, ComponentInit>(OnInit);
+        SubscribeLocalEvent<ShadowkinComponent, AfterAutoHandleStateEvent>(OnUpdate);
     }
 
-    private void OnBlackeye(ShadowkinBlackeyeEvent ev)
+    private void OnUpdate(Entity<ShadowkinComponent> ent, ref AfterAutoHandleStateEvent args)
     {
-        SetColor( GetEntity(ev.Uid), Color.Black);
+        if(ent.Comp.Blackeye)
+            SetColor(ent, Color.Black);
     }
-
 
     private void OnInit(EntityUid uid, ShadowkinComponent component, ComponentInit args)
     {
@@ -30,10 +29,10 @@ public sealed class ShadowkinBlackeyeSystem : EntitySystem
             return;
 
         // Blackeye if none of the RGB values are greater than 75
-        if (layer.Color.R * 255 < 75 && layer.Color.G * 255 < 75 && layer.Color.B * 255 < 75)
-        {
-            RaiseNetworkEvent(new ShadowkinBlackeyeEvent(GetNetEntity(uid), false));
-        }
+        //if (layer.Color.R * 255 < 75 && layer.Color.G * 255 < 75 && layer.Color.B * 255 < 75)
+        //{
+            //RaiseNetworkEvent(new ShadowkinBlackeyeEvent(false));
+        //}
     }
 
 

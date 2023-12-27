@@ -25,24 +25,27 @@ public sealed class ShadowkinBlackeyeSystem : EntitySystem
     {
         base.Initialize();
 
-        SubscribeLocalEvent<ShadowkinBlackeyeAttemptEvent>(OnBlackeyeAttempt);
-        SubscribeAllEvent<ShadowkinBlackeyeEvent>(OnBlackeye);
+        SubscribeLocalEvent<ShadowkinComponent,ShadowkinBlackeyeAttemptEvent>(OnBlackeyeAttempt);
+        SubscribeLocalEvent<ShadowkinBlackeyeTraitComponent, ComponentStartup>(OnStartupTrait);
     }
 
-
-    private void OnBlackeyeAttempt(ShadowkinBlackeyeAttemptEvent ev)
+    private void OnBlackeyeAttempt(Entity<ShadowkinComponent> ent, ref ShadowkinBlackeyeAttemptEvent ev)
     {
-        if (!TryComp<ShadowkinComponent>(GetEntity(ev.Uid), out var component) ||
+        if (!TryComp<ShadowkinComponent>(ent, out var component) ||
             component.Blackeye ||
             !(component.PowerLevel <= ShadowkinComponent.PowerThresholds[ShadowkinPowerThreshold.Min] + 5))
             ev.Cancel();
     }
 
-    private void OnBlackeye(ShadowkinBlackeyeEvent ev)
+    private void OnStartupTrait(Entity<ShadowkinBlackeyeTraitComponent> ent, ref ComponentStartup args)
     {
-        var ent = GetEntity(ev.Uid);
+        SetBlackEye(ent);
+    }
+
+    public void SetBlackEye(EntityUid ent, bool damage = false)
+    {
         // Check if the entity is a shadowkin
-        if (!TryComp<ShadowkinComponent>(ent, out var component))
+        if (!TryComp<ShadowkinComponent>(ent, out var component) || component.Blackeye)
             return;
 
         // Stop gaining power
@@ -59,16 +62,16 @@ public sealed class ShadowkinBlackeyeSystem : EntitySystem
         RemCompDeferred<ShadowkinRestPowerComponent>(ent);
         RemCompDeferred<ShadowkinTeleportPowerComponent>(ent);
 
-        if (!ev.Damage)
-            return;
-
         // Popup
         _popup.PopupEntity(Loc.GetString("shadowkin-blackeye"),ent, ent, PopupType.Large);
+
+        if (!damage)
+            return;
 
         // Stamina crit
         if (TryComp<StaminaComponent>(ent, out var stamina))
         {
-            _stamina.TakeStaminaDamage(ent, stamina.CritThreshold, null, ent);
+            _stamina.TakeStaminaDamage(ent, stamina.CritThreshold, stamina, ent);
         }
 
         // Nearly crit with cellular damage
