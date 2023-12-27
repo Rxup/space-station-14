@@ -348,6 +348,7 @@
       - id: BoxEncryptionKeySecurity
       - id: HoloprojectorSecurity
       - id: BookSecretDocuments
+      - id: WeaponMultiphaseEnergyGun
       - id: BookBusido # Corvax-Books
       - id: AntiPsychicKnife # backmen
       - id: ClothingHeadCage # backmen
@@ -396,6 +397,7 @@
       - id: BoxEncryptionKeySecurity
       - id: HoloprojectorSecurity
       - id: BookSecretDocuments
+      - id: WeaponMultiphaseEnergyGun
       - id: AntiPsychicKnife # backmen
       - id: ClothingHeadCage # backmen
 
