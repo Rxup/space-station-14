@@ -117,7 +117,7 @@
 
 - type: technology
   id: JewelryCase
-  name: Ювелирное дело
+  name: research-technology-jewelry-case
   icon:
     sprite: Backmen/Clothing/Hands/Rings/rings.rsi
     state: goldring

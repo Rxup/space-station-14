@@ -9,9 +9,7 @@
     state: silverring
   - type: Clothing
     sprite: Backmen/Clothing/Hands/Rings/rings.rsi
-    heldPrefix: silver
-  - type: Item
-    size: 1
+    equippedPrefix: silver
   - type: StaticPrice
     price: 1
 
