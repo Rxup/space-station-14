@@ -40,7 +40,7 @@
   - type: Clothing
     equippedPrefix: gold
   - type: StaticPrice
-    price: 1000
+    price: 500
 
 - type: entity
   parent: ClothingStandardRing
