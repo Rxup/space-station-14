@@ -1,6 +1,7 @@
 using System.Numerics;
 using Content.Server.Mind;
 using Content.Server.Backmen.Species.Shadowkin.Events;
+using Content.Server.Preferences.Managers;
 using Content.Shared.Bed.Sleep;
 using Content.Shared.Cuffs.Components;
 using Content.Shared.Examine;
@@ -13,6 +14,7 @@ using Content.Shared.Backmen.Species.Shadowkin.Events;
 using Content.Shared.Humanoid;
 using Robust.Server.Player;
 using Robust.Shared.Map;
+using Robust.Shared.Player;
 using Robust.Shared.Random;
 
 namespace Content.Server.Backmen.Species.Shadowkin.Systems;
@@ -25,6 +27,7 @@ public sealed class ShadowkinSystem : EntitySystem
     [Dependency] private readonly MobStateSystem _mobState = default!;
     [Dependency] private readonly MindSystem _mindSystem = default!;
     [Dependency] private readonly ShadowkinBlackeyeSystem _shadowkinBlackeyeSystem = default!;
+    [Dependency] private readonly IServerPreferencesManager _prefs = default!;
 
 
     public override void Initialize()
@@ -34,10 +37,10 @@ public sealed class ShadowkinSystem : EntitySystem
         SubscribeLocalEvent<ShadowkinComponent, ExaminedEvent>(OnExamine);
         SubscribeLocalEvent<ShadowkinComponent, ComponentInit>(OnInit);
         SubscribeLocalEvent<ShadowkinComponent, ComponentShutdown>(OnShutdown);
-        SubscribeLocalEvent<ShadowkinComponent, ComponentStartup>(OnMapInit, after: new[]{ typeof(SharedHumanoidAppearanceSystem) });
+        SubscribeLocalEvent<ShadowkinComponent, PlayerAttachedEvent>(OnMapInit, after: new[]{ typeof(SharedHumanoidAppearanceSystem) });
     }
 
-    private void OnMapInit(Entity<ShadowkinComponent> ent, ref ComponentStartup args)
+    private void OnMapInit(Entity<ShadowkinComponent> ent, ref PlayerAttachedEvent args)
     {
         if (!TryComp<HumanoidAppearanceComponent>(ent, out var sprite))
             return;
@@ -45,8 +48,7 @@ public sealed class ShadowkinSystem : EntitySystem
         // Blackeye if none of the RGB values are greater than 75
         if (sprite.EyeColor.R * 255 < 75 && sprite.EyeColor.G * 255 < 75 && sprite.EyeColor.B * 255 < 75)
         {
-            // TODO: в данный момент почему-то всегда не приходит нужный цвент
-            //_shadowkinBlackeyeSystem.SetBlackEye(ent);
+            _shadowkinBlackeyeSystem.SetBlackEye(ent);
         }
     }
 
