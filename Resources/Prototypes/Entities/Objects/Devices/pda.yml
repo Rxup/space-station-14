@@ -51,6 +51,7 @@
     - idcard
     - Belt
   - type: UnpoweredFlashlight
+  - type: ShadowkinLight
   - type: PointLight
     enabled: false
     radius: 1.5
@@ -106,7 +107,7 @@
     - DoorBumpOpener
   - type: Input
     context: "human"
-    
+
 - type: entity
   parent: BasePDA
   id: BaseMedicalPDA
@@ -546,7 +547,7 @@
     accentVColor: "#2a4b5b"
   - type: Icon
     state: pda-paramedic
-    
+
 - type: entity
   parent: BaseMedicalPDA
   id: ChemistryPDA

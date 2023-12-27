@@ -25,7 +25,7 @@
   access:
     - CCCargo
     - CCSecurity
-    - CCGeneral
+    - CentralCommand
     - CCOfficer
   accessGroups:
     - AllAccess
@@ -113,7 +113,7 @@
       tags:
         - CCCargo
         - CCSecurity
-        - CCGeneral
+        - CentralCommand
         - CCOfficer
       groups:
         - AllAccess

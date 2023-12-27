@@ -1,0 +1,56 @@
+- type: entity
+  id: ShadowkinTeleport
+  name: action-name-shadowkin-teleport
+  description: action-description-shadowkin-teleport
+  noSpawn: true
+  components:
+    - type: WorldTargetAction
+      icon:
+        sprite: Backmen/Interface/Actions/shadowkin_icons.rsi
+        state: teleport
+      event: !type:ShadowkinTeleportEvent
+        powerCost: 40
+        staminaCost: 20
+        speech: action-description-shadowkin-teleport
+      checkCanAccess: true
+      useDelay: 5
+      range: 32
+      repeat: true
+      priority: -20
+      itemIconStyle: NoItem
+
+- type: entity
+  id: ShadowkinDarkSwap
+  name: action-name-shadowkin-darkswap
+  description: action-description-shadowkin-darkswap
+  noSpawn: true
+  components:
+    - type: InstantAction
+      useDelay: 5
+      itemIconStyle: NoItem
+      priority: -21
+      icon:
+        sprite: Backmen/Interface/Actions/shadowkin_icons.rsi
+        state: darkswap
+      event: !type:ShadowkinDarkSwapEvent
+        powerCostOn: 60
+        powerCostOff: 45
+        staminaCostOn: 25
+        staminaCostOff: 25
+        speech: action-description-shadowkin-darkswap
+
+- type: entity
+  id: ShadowkinRest
+  name: action-name-shadowkin-rest
+  description: action-description-shadowkin-rest
+  noSpawn: true
+  components:
+    - type: InstantAction
+      useDelay: 60
+      itemIconStyle: NoItem
+      priority: -22
+      icon:
+        sprite: Backmen/Interface/Actions/shadowkin_icons.rsi
+        state: rest
+      event: !type:ShadowkinRestEvent
+      checkCanInteract: false
