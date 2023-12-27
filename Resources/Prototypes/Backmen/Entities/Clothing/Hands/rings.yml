@@ -10,6 +10,8 @@
   - type: Clothing
     sprite: Backmen/Clothing/Hands/Rings/rings.rsi
     equippedPrefix: silver
+  - type: Item
+    size: Tiny
   - type: StaticPrice
     price: 1
 
