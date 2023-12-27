@@ -35,9 +35,10 @@
   description: Ring made of a real gold!
   components:
   - type: Sprite
-    state: goldring
+    layers:
+    - state: goldring
   - type: Clothing
-    heldPrefix: gold
+    equippedPrefix: gold
   - type: StaticPrice
     price: 1000
 
@@ -52,7 +53,7 @@
     - state: goldring_frame
     - state: ruby
   - type: Clothing
-    heldPrefix: gold
+    equippedPrefix: gold
   - type: StaticPrice
     price: 10000
 
@@ -63,20 +64,21 @@
   description: A ring made from ultra-rare gold materials.
   components:
   - type: Sprite
-    state: goldring
-    state: gold-glowing
-    shader: unshaded
+    layers:
+    - state: goldring
+    - state: gold-glowing
+      shader: unshaded
   - type: Clothing
     clothingVisuals:
-      hand:
-      - state: equipped-head
-      - state: equipped-head-unshaded
+      gloves:
+      - state: gold-equipped-HAND
+      - state: gold-glowing-equipped-HAND
         shader: unshaded
   - type: StaticPrice
     price: 20000
 
 - type: entity
-  parent: ClothingStandardRing
+  parent: ClothingGlowingGoldRing
   id: ClothingGlowingGoldRubyRing
   name: shiny golden ring with ruby
   description: A ring made from ultra-rare gold materials and a rare space ruby!
@@ -84,11 +86,9 @@
   - type: Sprite
     layers:
     - state: goldring_frame
-      shader: unshaded
     - state: goldframed-glowing
       shader: unshaded
     - state: ruby
-      shader: unshaded
     - state: ruby-glowing
       shader: unshaded
   - type: StaticPrice
@@ -104,8 +104,13 @@
     layers:
     - state: silverring_frame
     - state: sapphire
+      shader: unshaded
     - state: sapphire-glowing
+      shader: unshaded
   - type: Clothing
-    heldPrefix: silver
+    clothingVisuals:
+      gloves:
+      - state: silver-equipped-HAND
+        shader: unshaded
   - type: StaticPrice
     price: 12000
