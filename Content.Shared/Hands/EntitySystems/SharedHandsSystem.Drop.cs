@@ -25,9 +25,6 @@ public abstract partial class SharedHandsSystem
 
         var didUnequip = new DidUnequipHandEvent(uid, args.Entity, hand);
         RaiseLocalEvent(uid, didUnequip);
-
-        if (TryComp(args.Entity, out HandVirtualItemComponent? @virtual))
-            _virtualSystem.Delete((args.Entity, @virtual), uid);
     }
 
     /// <summary>
@@ -103,14 +100,8 @@ public abstract partial class SharedHandsSystem
         var entity = hand.HeldEntity!.Value;
         DoDrop(uid, hand, doDropInteraction: doDropInteraction, handsComp);
 
-        if (TerminatingOrDeleted(entity))
-            return true;
-
-        var itemXform = Transform(entity);
-        if (itemXform.MapUid == null)
-            return true;
-
         var userXform = Transform(uid);
+        var itemXform = Transform(entity);
         var isInContainer = ContainerSystem.IsEntityInContainer(uid);
 
         if (targetDropLocation == null || isInContainer)

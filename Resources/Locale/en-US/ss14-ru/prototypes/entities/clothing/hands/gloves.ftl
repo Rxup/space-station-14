@@ -47,5 +47,3 @@ ent-ClothingHandsGlovesNorthStar = gloves of the north star
     .desc = These gloves allow you to punch incredibly fast.
 ent-ClothingHandsGlovesForensic = forensic gloves
     .desc = Do not leave fibers or fingerprints. If you work without them, you're A TERRIBLE DETECTIVE.
-ent-ClothingHandsGlovesJanitor = rubber gloves
-    .desc = High-quality rubber gloves, squeaky to do some cleaning!

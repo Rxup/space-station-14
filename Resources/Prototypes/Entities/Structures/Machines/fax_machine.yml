@@ -106,5 +106,3 @@
       name: "Captain's Office"
       receiveNukeCodes: true
       receiveStationGoal: true # Corvax-StationGoal
-    - type: StealTarget
-      stealGroup: FaxMachineCaptain

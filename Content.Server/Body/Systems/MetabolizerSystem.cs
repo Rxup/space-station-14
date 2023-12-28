@@ -156,9 +156,10 @@ namespace Content.Server.Body.Systems
 
                 foreach (var group in meta.MetabolismGroups)
                 {
-                    if (!proto.Metabolisms.TryGetValue(group.Id, out var entry))
+                    if (!proto.Metabolisms.ContainsKey(group.Id))
                         continue;
 
+                    var entry = proto.Metabolisms[group.Id];
                     var rate = entry.MetabolismRate * group.MetabolismRateModifier;
 
                     // Remove $rate, as long as there's enough reagent there to actually remove that much

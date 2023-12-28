@@ -22,7 +22,7 @@
       role: JobCentralCommandAssistant
       time: 3600
   access:
-    - CentralCommand
+    - CCGeneral
     - CCSecurity
   accessGroups:
     - AllAccess
@@ -90,6 +90,6 @@
     - type: Access
       tags:
         - CCSecurity
-        - CentralCommand
+        - CCGeneral
       groups:
         - AllAccess

@@ -22,8 +22,6 @@
     tags:
     - DoorBumpOpener
     - WhitelistChameleon
-  - type: StealTarget
-    stealGroup: IDCard
 
 #IDs with layers
 
@@ -117,8 +115,6 @@
     - DoorBumpOpener
     - WhitelistChameleon
     - HighRiskItem
-  - type: StealTarget
-    stealGroup: CaptainIDCard
 
 - type: entity
   parent: IDCardStandard
@@ -460,10 +456,10 @@
     jobTitle: Central Commander
     jobIcon: JobIconNanotrasen
   - type: Access
+    tags:
+      - CCGeneral
     groups:
     - AllAccess
-    tags:
-    - CentralCommand
 
 - type: entity
   parent: CentcomIDCard

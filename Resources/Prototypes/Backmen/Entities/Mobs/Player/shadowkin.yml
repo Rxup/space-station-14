@@ -1,5 +1,0 @@
-﻿- type: entity
-  save: false
-  name: Player shadowkin
-  parent: [MobShadowkinBase, BaseMob]
-  id: MobShadowkin

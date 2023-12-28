@@ -10,5 +10,3 @@ ent-MagazineBoxLightRifleRubber = ammunition box (.30 rifle rubber)
     .desc = { ent-BaseMagazineBoxLightRifle.desc }
 ent-MagazineBoxLightRifleIncendiary = ammunition box (.30 rifle incendiary)
     .desc = { ent-BaseMagazineBoxLightRifle.desc }
-ent-MagazineBoxLightRifleUranium = ammunition box (.30 rifle uranium)
-    .desc = { ent-BaseMagazineBoxLightRifle.desc }

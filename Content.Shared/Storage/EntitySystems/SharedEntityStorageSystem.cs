@@ -258,7 +258,7 @@ public abstract class SharedEntityStorageSystem : EntitySystem
 
         if (component.Open)
         {
-            TransformSystem.DropNextTo(toInsert, container);
+            TransformSystem.SetWorldPosition(toInsert, TransformSystem.GetWorldPosition(container));
             return true;
         }
 

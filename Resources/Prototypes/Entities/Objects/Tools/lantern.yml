@@ -53,8 +53,6 @@
     - type: ContainerContainer
       containers:
         cell_slot: !type:ContainerSlot {}
-    - type: StealTarget
-      stealGroup: LAMP
 
 - type: entity
   parent: Lantern

@@ -1,7 +1,5 @@
 ent-ClosetBase = closet
     .desc = A standard-issue Nanotrasen storage unit.
-ent-ClosetSteelBase = { ent-ClosetBase }
-    .desc = { ent-ClosetBase.desc }
 ent-BaseWallCloset = wall closet
     .desc = A standard-issue Nanotrasen storage unit, now on walls.
 ent-BaseWallLocker = { ent-BaseWallCloset }

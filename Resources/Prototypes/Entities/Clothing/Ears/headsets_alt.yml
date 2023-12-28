@@ -96,8 +96,6 @@
     sprite: Clothing/Ears/Headsets/medical.rsi
   - type: Clothing
     sprite: Clothing/Ears/Headsets/medical.rsi
-  - type: StealTarget
-    stealGroup: ClothingHeadsetAltMedical
 
 - type: entity
   parent: ClothingHeadsetAlt

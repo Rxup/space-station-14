@@ -2,13 +2,14 @@
   id: Cogmap
   mapName: 'Cogmap'
   mapPath: /Maps/Backmen/cogmap.yml
-  minPlayers: 55
+  minPlayers: 40
+  maxPlayers: 75
   stations:
     Cogmap:
       stationProto: StandardNanotrasenStation
       components:
         - type: StationNameSetup
-          mapNameTemplate: '{0} Когмап {1}'
+          mapNameTemplate: '{0} Cogmap {1}'
           nameGenerator:
             !type:NanotrasenNameGenerator
             prefixCreator: 'G'

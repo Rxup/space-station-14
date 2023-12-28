@@ -1,4 +1,4 @@
-﻿- type: entity
+- type: entity
   name: flashlight
   parent: BaseItem
   id: FlashlightLantern
@@ -57,7 +57,6 @@
         map: [ "light" ]
   - type: Item
     sprite: Objects/Tools/flashlight.rsi
-    storedRotation: -90
   - type: PointLight
     enabled: false
     mask: /Textures/Effects/LightMasks/cone.png
@@ -67,8 +66,6 @@
   - type: Appearance
   - type: StaticPrice
     price: 40
-  - type: StealTarget
-    stealGroup: LAMP
 
 - type: entity
   name: seclite

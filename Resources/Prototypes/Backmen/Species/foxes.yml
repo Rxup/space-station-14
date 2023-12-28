@@ -8,10 +8,6 @@
   markingLimits: MobHumanoidFoxMarkingLimits
   dollPrototype: MobHumanoidFoxDummy
   skinColoration: Hues
-  maleFirstNames: names_vulp_first_male
-  femaleFirstNames: names_vulp_first_female
-  maleLastNames: names_vulp_last # Corvax-LastnameGender
-  femaleLastNames: names_vulp_last # Corvax-LastnameGender
 
 - type: speciesBaseSprites
   id: MobHumanoidFoxSprites

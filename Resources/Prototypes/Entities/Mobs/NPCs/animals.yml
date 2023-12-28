@@ -719,9 +719,6 @@
         - MobMask
         layer:
         - MobLayer
-  - type: Speech
-    speechVerb: Arachnid
-    speechSounds: Arachnid
   - type: DamageStateVisuals
     states:
       Alive:
@@ -737,10 +734,6 @@
     interactSuccessString: petting-success-crab
     interactFailureString: petting-failure-crab
     interactSuccessSpawn: EffectHearts
-    interactSuccessSound:
-      path: /Audio/Voice/Arachnid/arachnid_laugh.ogg
-  - type: ReplacementAccent
-    accent: crab
   - type: Bloodstream
     bloodMaxVolume: 50
     bloodReagent: CopperBlood

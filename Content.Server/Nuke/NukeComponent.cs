@@ -181,6 +181,6 @@ namespace Content.Server.Nuke
         /// </summary>
         [ViewVariables(VVAccess.ReadWrite)]
         [DataField("requiredFloorRadius")]
-        public float RequiredFloorRadius = 5;
+        public float RequiredFloorRadius = 7;
     }
 }

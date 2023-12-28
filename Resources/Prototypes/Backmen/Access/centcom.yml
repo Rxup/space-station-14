@@ -7,6 +7,10 @@
   name: ЦК Охрана
 
 - type: accessLevel
+  id: CCGeneral
+  name: ЦК Общий
+
+- type: accessLevel
   id: CCOfficer
   name: ЦК Офицеры
 
@@ -19,7 +23,7 @@
   tags:
   - CCCargo
   - CCSecurity
-  - CentralCommand
+  - CCGeneral
   - CCOfficer
   - CCAdmiral
 

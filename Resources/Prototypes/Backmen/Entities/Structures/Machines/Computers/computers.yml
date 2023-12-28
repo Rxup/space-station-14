@@ -6,7 +6,7 @@
   components:
     - type: IdCardConsole
       accessLevels:
-        - CentralCommand
+        - CCGeneral
         - CCCargo
         - CCOfficer
         - CCSecurity

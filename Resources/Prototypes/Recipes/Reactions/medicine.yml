@@ -83,12 +83,14 @@
       amount: 1
     Acetone:
       amount: 1
+    Oxygen:
+      amount: 1
     Chlorine:
       amount: 1
-    Hydroxide:
+    Hydrogen:
       amount: 1
   products:
-    Epinephrine: 4
+    Epinephrine: 5
 
 - type: reaction
   id: Dermaline
@@ -184,9 +186,9 @@
 - type: reaction
   id: Leporazine
   reactants:
-    Copper:
+    Silicon:
       amount: 1
-    Fersilicite:
+    Copper:
       amount: 1
     Plasma:
       amount: 1
@@ -342,8 +344,10 @@
       amount: 1
     Blood:
       amount: 1
-    Hydroxide:
-      amount: 2
+    Carbon:
+      amount: 1
+    Hydrogen:
+      amount: 1
   products:
     Oculine: 4
 
@@ -376,8 +380,6 @@
   reactants:
     SodiumCarbonate:
       amount: 1
-    SodiumHydroxide:
-      amount: 1
     Kelotane:
       amount: 1
     Water:
@@ -404,7 +406,7 @@
   reactants:
     Bicaridine: # Bicaridine is a conflicting brute medication and if mixed incorrectly will make Razorium. This is intended.
       amount: 1
-    Benzene:
+    Water:
       amount: 1
   products:
     Lacerinol: 2
@@ -416,7 +418,7 @@
   reactants:
     Bicaridine: # Bicaridine is a conflicting brute medication and if mixed incorrectly will make Razorium. This is intended.
       amount: 1
-    Hydroxide:
+    Carbon:
       amount: 1
   products:
     Puncturase: 2

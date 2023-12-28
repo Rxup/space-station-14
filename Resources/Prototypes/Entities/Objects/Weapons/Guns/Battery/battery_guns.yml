@@ -475,8 +475,6 @@
     - Sidearm
   - type: StaticPrice
     price: 750
-  - type: StealTarget
-    stealGroup: WeaponAntiqueLaser
 
 - type: entity
   name: advanced laser pistol

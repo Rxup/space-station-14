@@ -118,8 +118,9 @@
         components:
         - Hands # no use giving a mouse a storage implant, but a monkey is another story...
     - type: Storage
-      grid:
-      - 0,0,2,2
+      grid: # backmen storage implant rebalance
+      - 0,0,2,3
+      maxItemSize: Normal
     - type: ContainerContainer
       containers:
         storagebase: !type:Container

@@ -20,7 +20,6 @@ public sealed class RoleSystem : SharedRoleSystem
         SubscribeAntagEvents<NukeopsRoleComponent>();
         SubscribeAntagEvents<RevolutionaryRoleComponent>();
         SubscribeAntagEvents<SubvertedSiliconRoleComponent>();
-        SubscribeAntagEvents<TerminatorRoleComponent>();
         SubscribeAntagEvents<TraitorRoleComponent>();
         SubscribeAntagEvents<ZombieRoleComponent>();
 
@@ -30,7 +29,6 @@ public sealed class RoleSystem : SharedRoleSystem
         SubscribeAntagEvents<FugitiveRoleComponent>();
         SubscribeAntagEvents<FleshCultistRoleComponent>();
         //end-backmen: antag
-        SubscribeAntagEvents<ThiefRoleComponent>();
     }
 
     public string? MindGetBriefing(EntityUid? mindId)

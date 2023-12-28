@@ -11,8 +11,6 @@
   canBeAntag: false
   accessGroups:
   - AllAccess
-  access:
-  - CentralCommand
 
 - type: startingGear
   id: ERTLeaderGear
@@ -79,8 +77,6 @@
   canBeAntag: false
   accessGroups:
   - AllAccess
-  access:
-  - CentralCommand
 
 - type: startingGear
   id: ERTEngineerGear
@@ -128,8 +124,6 @@
   canBeAntag: false
   accessGroups:
   - AllAccess
-  access:
-  - CentralCommand
 
 - type: startingGear
   id: ERTSecurityGear
@@ -196,8 +190,6 @@
   canBeAntag: false
   accessGroups:
   - AllAccess
-  access:
-  - CentralCommand
 
 - type: startingGear
   id: ERTMedicalGear
@@ -245,8 +237,6 @@
   canBeAntag: false
   accessGroups:
   - AllAccess
-  access:
-  - CentralCommand
 
 - type: startingGear
   id: ERTJanitorGear

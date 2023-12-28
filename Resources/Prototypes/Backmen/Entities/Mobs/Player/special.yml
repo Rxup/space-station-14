@@ -44,7 +44,6 @@
       visMask:
         - Normal
         - PsionicInvisibility
-        - DarkSwapInvisibility
     - type: Input
       context: "ghost"
     - type: Examiner
