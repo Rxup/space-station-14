@@ -8,7 +8,7 @@ import subprocess
 IS_WINDOWS = sys.platform in ("win32", "cygwin")
 
 version = sys.version_info
-if version.major < 3 or (version.major == 3 and version.minor = 5):
+if version.major < 3 or (version.major == 3 and version.minor == 5):
     print("ERROR: You need at least Python 3.5 to build SS14.")
     sys.exit(1)
 
