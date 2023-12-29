@@ -213,7 +213,7 @@ public sealed class AIEyePowerSystem : EntitySystem
     }
 
     private static readonly SoundSpecifier AIDeath =
-        new SoundPathSpecifier("/Audio/SimpleStation14/Machines/AI/borg_death.ogg");
+        new SoundPathSpecifier("/Audio/Backmen/Machines/AI/borg_death.ogg");
 
     private void OnMobStateChanged(EntityUid uid, StationAIComponent component, MobStateChangedEvent args)
     {

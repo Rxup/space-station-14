@@ -69,3 +69,13 @@
     - Flesh
     - MalfunctioningRobot
     - Revolutionary
+
+- type: npcFaction
+  id: ShadowkinDarkHostile
+  hostile:
+    - ShadowkinDarkFriendly
+
+- type: npcFaction
+  id: ShadowkinDarkFriendly
+  hostile:
+    - ShadowkinDarkHostile

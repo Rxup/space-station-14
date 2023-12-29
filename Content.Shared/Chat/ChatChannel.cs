@@ -86,6 +86,11 @@ namespace Content.Shared.Chat
         Telepathic = 1 << 14,
 
         /// <summary>
+        ///     Empathy channel for Shadowkin.
+        /// </summary>
+        Empathy = 1 << 15,
+
+        /// <summary>
         ///     Channels considered to be IC.
         /// </summary>
         IC = Local | Whisper | Radio | Telepathic | Dead | Emotes | Damage | Visual,

@@ -28,7 +28,7 @@
       role: JobIAA
       time: 18000
   access:
-    - CCGeneral
+    - CentralCommand
     - CCSecurity
   accessGroups:
     - AllAccess
@@ -99,6 +99,6 @@
     - type: Access
       tags:
         - CCSecurity
-        - CCGeneral
+        - CentralCommand
       groups:
         - AllAccess
