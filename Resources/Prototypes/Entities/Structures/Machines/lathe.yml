@@ -140,6 +140,8 @@
       - WeaponCapacitorRechargerCircuitboard
       - AntiPsychicKnifeRecipe
       - ClothingBeltDemoman # Backmen
+      - Ring
+      - SapphireRing
   - type: EmagLatheRecipes
     emagStaticRecipes:
        - CartridgePistol
@@ -295,6 +297,9 @@
       - FauxTileAstroGrass
       - FauxTileAstroIce
       - OreBagOfHolding
+      - Ring
+      - SapphireRing
+      - GoldenRing
   - type: EmagLatheRecipes
     emagDynamicRecipes:
       - ExplosivePayload

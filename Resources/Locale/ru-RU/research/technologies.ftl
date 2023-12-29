@@ -58,6 +58,7 @@ research-technology-critter-mechs = Мехи для животных
 research-technology-basic-hydroponics = Основы гидропоники
 research-technology-food-service = Организация питания
 research-technology-advanced-entertainment = Продвинутые развлечения
+research-technology-jewelry-case = Ювелирное дело
 research-technology-robotic-cleanliness = Роботизированная уборка
 research-technology-faux-astro-tiles = Искусственная астроплитка
 research-technology-audio-visual-communication = А/В коммуникация
