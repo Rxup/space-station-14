@@ -115,6 +115,20 @@
     - MassMediaCircuitboard
     - ShipyardCircuitboard
 
+- type: technology
+  id: JewelryCase
+  name: research-technology-jewelry-case
+  icon:
+    sprite: Backmen/Clothing/Hands/Rings/rings.rsi
+    state: goldring
+  discipline: CivilianServices
+  tier: 1
+  cost: 1000
+  recipeUnlocks:
+    - Ring
+    - SapphireRing
+    - GoldenRing
+
 # Tier 2
 
 - type: technology
