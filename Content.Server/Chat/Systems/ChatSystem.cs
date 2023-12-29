@@ -76,7 +76,7 @@ public sealed partial class ChatSystem : SharedChatSystem
     public override void Initialize()
     {
         base.Initialize();
-        InitializeEmotes();
+        CacheEmotes();
         _configurationManager.OnValueChanged(CCVars.LoocEnabled, OnLoocEnabledChanged, true);
         _configurationManager.OnValueChanged(CCVars.DeadLoocEnabled, OnDeadLoocEnabledChanged, true);
         _configurationManager.OnValueChanged(CCVars.CritLoocEnabled, OnCritLoocEnabledChanged, true);
@@ -87,7 +87,6 @@ public sealed partial class ChatSystem : SharedChatSystem
     public override void Shutdown()
     {
         base.Shutdown();
-        ShutdownEmotes();
         _configurationManager.UnsubValueChanged(CCVars.LoocEnabled, OnLoocEnabledChanged);
         _configurationManager.UnsubValueChanged(CCVars.DeadLoocEnabled, OnDeadLoocEnabledChanged);
         _configurationManager.UnsubValueChanged(CCVars.CritLoocEnabled, OnCritLoocEnabledChanged);
@@ -339,7 +338,7 @@ public sealed partial class ChatSystem : SharedChatSystem
                 announcementSound = new SoundPathSpecifier(CentComAnnouncementSound); // Corvax-Announcements: Support custom alert sound from admin panel
             announcementSound ??= new SoundPathSpecifier(DefaultAnnouncementSound);
             var announcementFilename = announcementSound.GetSound();
-            var announcementEv = new AnnouncementSpokeEvent(Filter.Broadcast(), announcementFilename, AudioParams.Default.WithVolume(-2f), message);
+            var announcementEv = new AnnouncementSpokeEvent(Filter.Broadcast(), announcementFilename, announcementSound?.Params ?? AudioParams.Default.WithVolume(-2f), message);
             RaiseLocalEvent(announcementEv);
         }
         _adminLogger.Add(LogType.Chat, LogImpact.Low, $"Global station announcement from {sender}: {message}");
@@ -760,7 +759,7 @@ public sealed partial class ChatSystem : SharedChatSystem
 
         return ev.Message;
     }
- 
+
     public bool CheckIgnoreSpeechBlocker(EntityUid sender, bool ignoreBlocker)
     {
         if (ignoreBlocker)
@@ -956,7 +955,8 @@ public enum InGameICChatType : byte
     Speak,
     Emote,
     Whisper,
-    Telepathic
+    Telepathic,
+    Empathy
 }
 
 /// <summary>

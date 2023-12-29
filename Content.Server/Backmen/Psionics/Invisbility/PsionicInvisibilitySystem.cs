@@ -1,4 +1,5 @@
 using Content.Server.Backmen.Abilities.Psionics;
+using Content.Server.Backmen.Eye;
 using Content.Shared.Vehicle.Components;
 using Content.Server.NPC.Systems;
 using Content.Shared.Backmen.Abilities.Psionics;
@@ -21,7 +22,7 @@ public sealed class PsionicInvisibilitySystem : EntitySystem
         SubscribeLocalEvent<PotentialPsionicComponent, ComponentInit>(OnInit);
         SubscribeLocalEvent<PsionicInsulationComponent, ComponentInit>(OnInsulInit);
         SubscribeLocalEvent<PsionicInsulationComponent, ComponentShutdown>(OnInsulShutdown);
-        SubscribeLocalEvent<EyeComponent, MapInitEvent>(OnEyeInit);
+        SubscribeLocalEvent<EyeMapInit>(OnEyeInit);
 
         /// Layer
         SubscribeLocalEvent<PsionicallyInvisibleComponent, ComponentInit>(OnInvisInit);
@@ -104,12 +105,12 @@ public sealed class PsionicInvisibilitySystem : EntitySystem
             SetCanSeePsionicInvisiblity(uid, false);
     }
 
-    private void OnEyeInit(EntityUid uid, EyeComponent component, MapInitEvent args)
+    private void OnEyeInit(EyeMapInit args)
     {
-        if (HasComp<PotentialPsionicComponent>(uid) || HasComp<VehicleComponent>(uid))
+        if (HasComp<PotentialPsionicComponent>(args.Target) || HasComp<VehicleComponent>(args.Target))
             return;
 
-        SetCanSeePsionicInvisiblity(uid, true);
+        SetCanSeePsionicInvisiblity(args.Target, true, args.Target.Comp);
     }
     private void OnEntInserted(EntityUid uid, PsionicallyInvisibleComponent component, EntInsertedIntoContainerMessage args)
     {
@@ -121,9 +122,9 @@ public sealed class PsionicInvisibilitySystem : EntitySystem
         DirtyEntity(args.Entity);
     }
 
-    public void SetCanSeePsionicInvisiblity(EntityUid uid, bool set)
+    public void SetCanSeePsionicInvisiblity(EntityUid uid, bool set, EyeComponent? eye = null)
     {
-        if (!TryComp<EyeComponent>(uid, out var eye))
+        if (!Resolve(uid, ref eye, false))
             return;
 
         if (set)

@@ -6,7 +6,7 @@
   suffix: CentCom, Locked
   components:
     - type: AccessReader
-      access: [["CCGeneral"]]
+      access: [["CentralCommand"]]
     - type: PaintableAirlock
       group: Glass
     - type: Door
@@ -99,7 +99,7 @@
   suffix: CentCom, Engineering, Locked
   components:
     - type: AccessReader
-      access: [["CCGeneral"]]
+      access: [["CentralCommand"]]
 
 - type: entity
   parent: AirlockMedical
@@ -108,4 +108,4 @@
   suffix: CentCom, Medical, Locked
   components:
     - type: AccessReader
-      access: [["CCGeneral"]]
+      access: [["CentralCommand"]]

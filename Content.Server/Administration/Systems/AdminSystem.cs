@@ -12,6 +12,7 @@ using Content.Server.StationRecords.Systems;
 using Content.Shared.Administration;
 using Content.Shared.Administration.Events;
 using Content.Shared.CCVar;
+using Content.Shared.Corvax.CCCVars;
 using Content.Shared.GameTicking;
 using Content.Shared.Hands.Components;
 using Content.Shared.IdentityManagement;
@@ -77,6 +78,7 @@ namespace Content.Server.Administration.Systems
             _config.OnValueChanged(CCVars.PanicBunkerShowReason, OnShowReasonChanged, true);
             _config.OnValueChanged(CCVars.PanicBunkerMinAccountAge, OnPanicBunkerMinAccountAgeChanged, true);
             _config.OnValueChanged(CCVars.PanicBunkerMinOverallHours, OnPanicBunkerMinOverallHoursChanged, true);
+            _config.OnValueChanged(CCCVars.PanicBunkerDenyVPN, OnPanicBunkerDenyVpnChanged, true); // Corvax-VPNGuard
 
             SubscribeLocalEvent<IdentityChangedEvent>(OnIdentityChanged);
             SubscribeLocalEvent<PlayerAttachedEvent>(OnPlayerAttached);
@@ -293,6 +295,14 @@ namespace Content.Server.Administration.Systems
             SendPanicBunkerStatusAll();
         }
 
+        // Corvax-VPNGuard-Start
+        private void OnPanicBunkerDenyVpnChanged(bool deny)
+        {
+            _panicBunker.DenyVpn = deny;
+            SendPanicBunkerStatusAll();
+        }
+        // Corvax-VPNGuard-End
+
         private void UpdatePanicBunker()
         {
             var admins = _panicBunker.CountDeadminnedAdmins
@@ -368,15 +378,12 @@ namespace Content.Server.Administration.Systems
                     }
                 }
 
-                if (TryComp(entity.Value, out InventoryComponent? inventory) &&
-                    _inventory.TryGetSlots(entity.Value, out var slots, inventory))
+                if (_inventory.TryGetContainerSlotEnumerator(entity.Value, out var enumerator))
                 {
-                    foreach (var slot in slots)
+                    while (enumerator.NextItem(out var item, out var slot))
                     {
-                        if (_inventory.TryUnequip(entity.Value, entity.Value, slot.Name, out var item, true, true))
-                        {
-                            _physics.ApplyAngularImpulse(item.Value, ThrowingSystem.ThrowAngularImpulse);
-                        }
+                        if (_inventory.TryUnequip(entity.Value, entity.Value, slot.Name, true, true))
+                            _physics.ApplyAngularImpulse(item, ThrowingSystem.ThrowAngularImpulse);
                     }
                 }
 

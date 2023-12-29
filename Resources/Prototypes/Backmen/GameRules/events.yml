@@ -39,6 +39,17 @@
       earliestStart: 15
     - type: NoosphericStormRule
 
+- type: entity
+  id: BluespaceGoat
+  parent: BaseGameRule
+  noSpawn: true
+  components:
+  - type: StationEvent
+    weight: 5
+    startDelay: 30
+    duration: 35
+  - type: BluespaceGoatRule
+
 # Base glimmer event
 - type: entity
   id: BaseGlimmerEvent

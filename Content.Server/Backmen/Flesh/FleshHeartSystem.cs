@@ -111,7 +111,7 @@ namespace Content.Server.Backmen.Flesh
             var fleshWallsQuery = EntityQueryEnumerator<TagComponent>();
             while (fleshWallsQuery.MoveNext(out var ent, out var comp))
             {
-                var isFleshWall = _tagSystem.HasAllTags(ent, "Wall", "Flesh");
+                var isFleshWall = _tagSystem.HasAllTags(comp, "Wall", "Flesh");
                 if (isFleshWall)
                 {
                     fleshWalls.Add(ent);

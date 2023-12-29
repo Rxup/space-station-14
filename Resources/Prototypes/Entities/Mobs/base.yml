@@ -44,6 +44,7 @@
   - type: Polymorphable
   - type: StatusIcon
   - type: TTS # Corvax-TTS
+  - type: NightVision
 
 # Used for mobs that have health and can take damage.
 - type: entity
@@ -90,6 +91,9 @@
     soundHit:
       path: /Audio/Effects/hit_kick.ogg
   - type: Pullable
+  - type: LightningTarget
+    priority: 2
+    lightningExplode: false
 
 # Used for mobs that can enter combat mode and can attack.
 - type: entity

@@ -1,35 +1,59 @@
 using Content.Shared.Backmen.Eye.NightVision.Components;
 using Content.Shared.Inventory;
+using Content.Shared.Actions;
 using JetBrains.Annotations;
+using Robust.Shared.Prototypes;
 
 namespace Content.Shared.Backmen.Eye.NightVision.Systems;
 
 public sealed class NightVisionSystem : EntitySystem
 {
+    [Dependency] private readonly SharedActionsSystem _actionsSystem = default!;
+
     public override void Initialize()
     {
         base.Initialize();
+
+        SubscribeLocalEvent<NightVisionComponent, ComponentStartup>(OnComponentStartup);
+        SubscribeLocalEvent<NightVisionComponent, NVInstantActionEvent>(OnActionToggle);
+    }
+
+    [ValidatePrototypeId<EntityPrototype>]
+    private const string SwitchNightVisionAction = "SwitchNightVision";
+
+    private void OnComponentStartup(EntityUid uid, NightVisionComponent component, ComponentStartup args)
+    {
+        if (component.IsToggle)
+            _actionsSystem.AddAction(uid, ref component.ActionContainer, SwitchNightVisionAction);
+    }
+
+    private void OnActionToggle(EntityUid uid, NightVisionComponent component, NVInstantActionEvent args)
+    {
+        component.IsNightVision = !component.IsNightVision;
+        var changeEv = new NightVisionnessChangedEvent(component.IsNightVision);
+        RaiseLocalEvent(uid, ref changeEv);
+        Dirty(uid, component);
     }
 
     [PublicAPI]
-    public void UpdateIsNightVision(EntityUid uid, NightVisionComponent? nightvisionable = null)
+    public void UpdateIsNightVision(EntityUid uid, NightVisionComponent? component = null)
     {
-        if (!Resolve(uid, ref nightvisionable, false))
+        if (!Resolve(uid, ref component, false))
             return;
 
-        var old = nightvisionable.IsNightVision;
+        var old = component.IsNightVision;
 
 
         var ev = new CanVisionAttemptEvent();
         RaiseLocalEvent(uid, ev);
-        nightvisionable.IsNightVision = ev.NightVision;
+        component.IsNightVision = ev.NightVision;
 
-        if (old == nightvisionable.IsNightVision)
+        if (old == component.IsNightVision)
             return;
 
-        var changeEv = new NightVisionnessChangedEvent(nightvisionable.IsNightVision);
+        var changeEv = new NightVisionnessChangedEvent(component.IsNightVision);
         RaiseLocalEvent(uid, ref changeEv);
-        Dirty(nightvisionable);
+        Dirty(uid, component);
     }
 }
 

@@ -59,5 +59,5 @@
     stampedColor: "#4682B4"
     stampState: "paper_stamp-cap"
   - type: Sprite
-    sprite: Objects/Misc/bureaucracy.rsi
+    sprite: Objects/Misc/stamps.rsi
     state: stamp-cap

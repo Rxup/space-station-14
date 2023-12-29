@@ -56,6 +56,7 @@ public sealed class ChatUIController : UIController
     [UISystemDependency] private readonly TypingIndicatorSystem? _typingIndicator = default;
     [UISystemDependency] private readonly ChatSystem? _chatSys = default;
     [UISystemDependency] private readonly PsionicChatUpdateSystem? _psionic = default!; // backmen: psionic
+    [UISystemDependency] private readonly ShadowkinChatUpdateSystem? _shadowkin = default!; //backmen: shadowkin
 
     private ISawmill _sawmill = default!;
 
@@ -512,6 +513,13 @@ public sealed class ChatUIController : UIController
             CanSendChannels |= ChatSelectChannel.Telepathic;
         }
 
+        // Shadowkin
+        if (_shadowkin != null && _shadowkin.IsShadowkin)
+        {
+            FilterableChannels |= ChatChannel.Empathy;
+            CanSendChannels |= ChatSelectChannel.Empathy;
+        }
+
         SelectableChannels = CanSendChannels;
 
         // Necessary so that we always have a channel to fall back to.
@@ -719,21 +727,28 @@ public sealed class ChatUIController : UIController
 
     private void OnDamageForceSay(DamageForceSayEvent ev, EntitySessionEventArgs _)
     {
-        if (UIManager.ActiveScreen?.GetWidget<ChatBox>() is not { } chatBox)
-            return;
-
-        // Don't send on OOC/LOOC obviously!
-        if (chatBox.SelectedChannel is not
-            (ChatSelectChannel.Local or
-            ChatSelectChannel.Radio or
-            ChatSelectChannel.Whisper))
-            return;
-
-        if (_player.LocalPlayer?.ControlledEntity is not { } ent
-            || !EntityManager.TryGetComponent<DamageForceSayComponent>(ent, out var forceSay))
+        var chatBox = UIManager.ActiveScreen?.GetWidget<ChatBox>() ?? UIManager.ActiveScreen?.GetWidget<ResizableChatBox>();
+        if (chatBox == null)
             return;
 
         var msg = chatBox.ChatInput.Input.Text.TrimEnd();
+        // Don't send on OOC/LOOC obviously!
+
+        // we need to handle selected channel
+        // and prefix-channel separately..
+        var allowedChannels = ChatSelectChannel.Local | ChatSelectChannel.Whisper;
+        if ((chatBox.SelectedChannel & allowedChannels) == ChatSelectChannel.None)
+            return;
+
+        // none can be returned from this if theres no prefix,
+        // so we allow it in that case (assuming the previous check will have exited already if its an invalid channel)
+        var prefixChannel = SplitInputContents(msg).chatChannel;
+        if (prefixChannel != ChatSelectChannel.None && (prefixChannel & allowedChannels) == ChatSelectChannel.None)
+            return;
+
+        if (_player.LocalSession?.AttachedEntity is not { } ent
+            || !EntityManager.TryGetComponent<DamageForceSayComponent>(ent, out var forceSay))
+            return;
 
         if (string.IsNullOrWhiteSpace(msg))
             return;

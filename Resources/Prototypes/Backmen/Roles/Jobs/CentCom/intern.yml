@@ -22,7 +22,7 @@
       department: Civilian
       time: 108000
   access:
-    - CCGeneral
+    - CentralCommand
   accessGroups:
     - AllAccess
   special:
@@ -101,6 +101,6 @@
       job: BKCCAssistant
     - type: Access
       tags:
-        - CCGeneral
+        - CentralCommand
       groups:
         - AllAccess

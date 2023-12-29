@@ -7,8 +7,9 @@
     ClothingEyesGlassesSunglasses: 3
     ClothingUniformJumpsuitCentcomOfficer: 3
     ClothingUniformJumpsuitCentcomOfficial: 3
+    ClothingUniformJumpsuitCentcomAgent: 3
     ClothingUniformJumpsuitCentcomFormal: 3
-    ClothingUniformJumpsuitCentcomVeryOfficial: 3 # backmen 
+    ClothingUniformJumpsuitCentcomVeryOfficial: 3 # backmen
     ClothingUniformJumpsuitCentcomIntern: 3 # backmen
     ClothingUniformJumpskirttCentcomVeryOfficial: 3 # backmen
     ClothingUniformJumpskirtCentcomFormalDress: 3
@@ -19,4 +20,4 @@
     ClothingOuterWinterCentcom: 3
     ClothingNeckScarfStripedCentcom: 3
     ClothingNeckTieCentCom: 3 # backmen
-    
+
