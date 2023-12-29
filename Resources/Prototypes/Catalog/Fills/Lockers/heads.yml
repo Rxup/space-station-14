@@ -349,6 +349,7 @@
       - id: HoloprojectorSecurity
       - id: BookSecretDocuments
       - id: WeaponMultiphaseEnergyGun
+      - id: AntiPsychicKnife # backmen
       - id: BookBusido # Corvax-Books
       - id: ClothingHeadCage # backmen
 
@@ -397,6 +398,7 @@
       - id: HoloprojectorSecurity
       - id: BookSecretDocuments
       - id: WeaponMultiphaseEnergyGun
+      - id: AntiPsychicKnife # backmen
       - id: ClothingHeadCage # backmen
 
 - type: entity
