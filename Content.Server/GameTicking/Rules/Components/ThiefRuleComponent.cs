@@ -42,10 +42,9 @@ public sealed partial class ThiefRuleComponent : Component
     public List<EntProtoId> StarterItems = new List<EntProtoId> { "ToolboxThief", "ClothingHandsChameleonThief" }; //TO DO - replace to chameleon thieving gloves whem merg
 
     /// <summary>
-    /// All Thieves created by this rule
+    /// All Thiefes created by this rule
     /// </summary>
-    [DataField]
-    public List<EntityUid> ThievesMinds = new();
+    public readonly List<EntityUid> ThiefMinds = new();
 
     /// <summary>
     /// Max Thiefs created by rule on roundstart

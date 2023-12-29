@@ -166,10 +166,12 @@ public sealed class ArrivalsProtectSystem : EntitySystem
         if (TryComp<GasMixerComponent>(uid, out var gasMinerComponent))
         {
             (gasMinerComponent as dynamic).Enabled = true;
+            Dirty(uid, gasMinerComponent);
         }
         if (TryComp<GasPressurePumpComponent>(uid, out var gasPressurePumpComponent))
         {
             gasPressurePumpComponent.Enabled = true;
+            Dirty(uid, gasPressurePumpComponent);
         }
 
         if(TryComp<DoorComponent>(uid, out var doorComp))

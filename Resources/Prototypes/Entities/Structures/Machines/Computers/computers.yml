@@ -321,7 +321,7 @@
     board: StationRecordsComputerCircuitboard
   - type: GuideHelp
     guides:
-    - Forensics
+    - DNA
 
 - type: entity
   parent: BaseComputer

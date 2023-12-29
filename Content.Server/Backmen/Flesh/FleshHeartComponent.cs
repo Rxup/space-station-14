@@ -22,8 +22,6 @@ public sealed partial class FleshHeartComponent : Component
         "Oni",
         "Vox",
         "HumanoidFoxes",
-        "Shadowkin",
-        "Harpy",
     };
 
     [DataField("alertLevelOnActivate")] public string AlertLevelOnActivate = "red";

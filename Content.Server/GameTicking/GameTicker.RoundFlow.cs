@@ -41,6 +41,9 @@ namespace Content.Server.GameTicking
 #endif
 
         [ViewVariables]
+        private TimeSpan _roundStartTimeSpan;
+
+        [ViewVariables]
         private bool _startingRound;
 
         [ViewVariables]
@@ -244,7 +247,7 @@ namespace Content.Server.GameTicking
             _roundStartDateTime = DateTime.UtcNow;
             RunLevel = GameRunLevel.InRound;
 
-            RoundStartTimeSpan = _gameTiming.CurTime;
+            _roundStartTimeSpan = _gameTiming.CurTime;
             SendStatusToAll();
             ReqWindowAttentionAll();
             UpdateLateJoinStatus();
@@ -594,7 +597,7 @@ namespace Content.Server.GameTicking
 
         public TimeSpan RoundDuration()
         {
-            return _gameTiming.CurTime.Subtract(RoundStartTimeSpan);
+            return _gameTiming.CurTime.Subtract(_roundStartTimeSpan);
         }
 
         private void AnnounceRound()

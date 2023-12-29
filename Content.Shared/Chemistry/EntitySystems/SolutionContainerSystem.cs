@@ -228,7 +228,8 @@ public sealed partial class SolutionContainerSystem : EntitySystem
     public void UpdateAppearance(EntityUid uid, Solution solution,
         AppearanceComponent? appearanceComponent = null)
     {
-        if (!HasComp<SolutionContainerVisualsComponent>(uid) || !Resolve(uid, ref appearanceComponent, false))
+        if (!EntityManager.EntityExists(uid)
+            || !Resolve(uid, ref appearanceComponent, false))
             return;
 
         _appearance.SetData(uid, SolutionContainerVisuals.FillFraction, solution.FillFraction, appearanceComponent);

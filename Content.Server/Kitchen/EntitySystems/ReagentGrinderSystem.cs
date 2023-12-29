@@ -159,7 +159,7 @@ namespace Content.Server.Kitchen.EntitySystems
             if (inputContainer.ContainedEntities.Count >= reagentGrinder.StorageMaxEntities)
                 return;
 
-            if (!_containerSystem.Insert(heldEnt, inputContainer))
+            if (!inputContainer.Insert(heldEnt, EntityManager))
                 return;
 
             args.Handled = true;
@@ -230,7 +230,7 @@ namespace Content.Server.Kitchen.EntitySystems
             ClickSound(uid, reagentGrinder);
             foreach (var entity in inputContainer.ContainedEntities.ToList())
             {
-                _containerSystem.Remove(entity, inputContainer);
+                inputContainer.Remove(entity);
                 _randomHelper.RandomOffset(entity, 0.4f);
             }
             UpdateUiState(uid);
@@ -244,7 +244,7 @@ namespace Content.Server.Kitchen.EntitySystems
             var inputContainer = _containerSystem.EnsureContainer<Container>(uid, SharedReagentGrinder.InputContainerId);
             var ent = GetEntity(message.EntityId);
 
-            if (_containerSystem.Remove(ent, inputContainer))
+            if (inputContainer.Remove(ent))
             {
                 _randomHelper.RandomOffset(ent, 0.4f);
                 ClickSound(uid, reagentGrinder);

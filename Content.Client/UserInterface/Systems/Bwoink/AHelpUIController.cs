@@ -121,7 +121,6 @@ public sealed class AHelpUIController: UIController, IOnSystemChanged<BwoinkSyst
             LobbyAHelpButton.Pressed = pressed;
         }
 
-        UIManager.ClickSound();
         UnreadAHelpRead();
     }
 

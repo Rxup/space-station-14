@@ -20,7 +20,7 @@
 - type: entity
   id: PresentRandomUnsafe
   parent: [PresentBase, BaseItem]
-  suffix: Filled, any item
+  suffix: Filled Unsafe
   components:
   - type: RandomGift
     wrapper: PresentTrash
@@ -35,7 +35,7 @@
 - type: entity
   id: PresentRandomInsane
   parent: PresentRandomUnsafe
-  suffix: Filled, any entity
+  suffix: Filled Insane
   components:
     - type: RandomGift
       insaneMode: true
@@ -355,6 +355,9 @@
       - id: ToyRubberDuck
         orGroup: GiftPool
       - id: BalloonSyn
+        orGroup: GiftPool
+      - id: WeaponPulseCarbine
+        prob: .001
         orGroup: GiftPool
       - id: RGBStaff
         orGroup: GiftPool

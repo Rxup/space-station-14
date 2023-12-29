@@ -18,7 +18,6 @@
     CorgiMeatStealObjective: 1
     ClipboardStealObjective: 1
     CaptainGunStealObjective: 0.5
-    HosGunStealObjective: 0.5
     CaptainJetpackStealObjective: 0.5
     HandTeleporterStealObjective: 0.5
     SecretDocumentsStealObjective: 0.5
@@ -52,7 +51,7 @@
 - type: weightedRandom
   id: ThiefBigObjectiveGroups
   weights:
-    ThiefObjectiveGroupStructure: 0 #Temporarily disabled until obvious ways to steal structures are added
+    ThiefObjectiveGroupStructure: 1
     ThiefObjectiveGroupAnimal: 2
 
 - type: weightedRandom
@@ -80,7 +79,6 @@
   id: ThiefObjectiveGroupItem
   weights:
     ForensicScannerStealObjective: 1                    #sec
-    FlippoEngravedLighterStealObjective: 0.5
     AmmoTechFabCircuitboardStealObjective: 1
     ClothingHeadHatWardenStealObjective: 1
     ClothingOuterHardsuitVoidParamedStealObjective: 1   #med
@@ -95,7 +93,7 @@
     BibleStealObjective: 1
     ClothingNeckGoldmedalStealObjective: 1              #other
     ClothingNeckClownmedalStealObjective: 0.5
-
+    
 - type: weightedRandom
   id: ThiefObjectiveGroupStructure
   weights:
@@ -123,7 +121,7 @@
     ShivaStealObjective: 1
     SmileStealObjective: 1
     PunPunStealObjective: 1
-
+    
 - type: weightedRandom
   id: ThiefObjectiveGroupEscape
   weights:

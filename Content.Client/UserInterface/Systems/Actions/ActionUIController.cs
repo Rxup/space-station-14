@@ -285,7 +285,7 @@ public sealed class ActionUIController : UIController, IOnStateChanged<GameplayS
     private void OnWindowOpened()
     {
         if (ActionButton != null)
-            ActionButton.SetClickPressed(true);
+            ActionButton.Pressed = true;
 
         SearchAndDisplay();
     }
@@ -293,7 +293,7 @@ public sealed class ActionUIController : UIController, IOnStateChanged<GameplayS
     private void OnWindowClosed()
     {
         if (ActionButton != null)
-            ActionButton.SetClickPressed(false);
+            ActionButton.Pressed = false;
     }
 
     public void OnStateExited(GameplayState state)
@@ -773,10 +773,9 @@ public sealed class ActionUIController : UIController, IOnStateChanged<GameplayS
         if (_actionsSystem == null)
             return;
 
-        _actions.Clear();
-        foreach (var assign in assignments)
+        for (var i = 0; i < assignments.Count; i++)
         {
-            _actions.Add(assign.ActionId);
+            _actions[i] = assignments[i].ActionId;
         }
 
         _container?.SetActionData(_actionsSystem, _actions.ToArray());

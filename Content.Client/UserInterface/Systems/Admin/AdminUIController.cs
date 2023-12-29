@@ -127,12 +127,14 @@ public sealed class AdminUIController : UIController, IOnStateEntered<GameplaySt
 
     private void OnWindowOpen()
     {
-        AdminButton?.SetClickPressed(true);
+        if (AdminButton != null)
+            AdminButton.Pressed = true;
     }
 
     private void OnWindowClosed()
     {
-        AdminButton?.SetClickPressed(false);
+        if (AdminButton != null)
+            AdminButton.Pressed = false;
     }
 
     private void OnWindowDisposed()

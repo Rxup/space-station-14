@@ -422,11 +422,14 @@
     spawnEntries:
       - id: PresentRandom
         orGroup: present
-      - id: PresentRandomCash
+      - id: PresentRandomUnsafe
+        prob: 0.35
+        orGroup: present
+      - id: PresentRandomInsane
         prob: 0.20
         orGroup: present
-      - id: PresentRandomAsh
-        prob: 0.05
+      - id: PresentRandomCash
+        prob: 0.20
         orGroup: present
     receivedPopup: christmas-tree-got-gift
     deniedPopup: christmas-tree-no-gift
