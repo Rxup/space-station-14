@@ -44,6 +44,7 @@ flavor-base-sharp = резко
 flavor-base-syrupy = сиропово
 flavor-base-spaceshroom = таинственно
 flavor-base-clean = чисто
+flavor-base-holy = свято
 # lmao
 flavor-base-terrible = ужасно
 
@@ -89,6 +90,7 @@ flavor-complex-dough = как тесто
 flavor-complex-sweet-dough = как сладкое тесто
 flavor-complex-tofu = как тофу
 flavor-complex-miso = как мисо
+flavor-complex-lemoon = как лавр
 flavor-complex-muffin = как маффин
 flavor-complex-peas = как горох
 flavor-complex-pineapple = как ананас

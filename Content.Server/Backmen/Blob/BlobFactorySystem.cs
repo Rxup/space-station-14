@@ -1,5 +1,5 @@
-using Content.Server.Backmen.Blob.Fluids.EntitySystems;
 using Content.Server.Backmen.Blob.NPC.BlobPod;
+using Content.Server.Explosion.Components;
 using Content.Shared.Backmen.Blob;
 using Content.Shared.Damage;
 using Content.Shared.Destructible;
@@ -88,7 +88,7 @@ public sealed class BlobFactorySystem : EntitySystem
         var blobPod = EnsureComp<BlobPodComponent>(pod);
         blobPod.Core = blobTileComponent.Core.Value;
         var smokeOnTrigger = EnsureComp<SmokeOnTriggerComponent>(pod);
-        smokeOnTrigger.SmokeColor = blobCoreComponent.ChemСolors[blobCoreComponent.CurrentChem];
+        //smokeOnTrigger.SmokeColor = blobCoreComponent.ChemСolors[blobCoreComponent.CurrentChem];
         component.SpawnedCount += 1;
         component.NextSpawn = _gameTiming.CurTime + TimeSpan.FromSeconds(component.SpawnRate);
     }

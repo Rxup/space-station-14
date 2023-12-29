@@ -30,3 +30,12 @@ ent-CrateEngineeringMiniJetpack = Mini jetpack crate
 
 ent-CrateAirlockKit = Airlock kit
     .desc = A kit for building 6 airlocks, doesn't include tools.
+
+ent-CrateEvaKit = EVA kit
+    .desc = A set consisting of two prestigious EVA suits and helmets.
+
+ent-CrateRCDAmmo = RCD ammo crate
+    .desc = 3 RCD ammo, each restoring 5 charges.
+
+ent-CrateRCD = RCD crate
+    .desc = A crate containing a single Rapid Construction Device.

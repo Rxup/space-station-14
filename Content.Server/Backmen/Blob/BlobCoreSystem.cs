@@ -2,7 +2,6 @@ using System.Linq;
 using System.Numerics;
 using Content.Server.Actions;
 using Content.Server.AlertLevel;
-using Content.Server.Backmen.Blob.Fluids.EntitySystems;
 using Content.Server.Backmen.GameTicking.Rules.Components;
 using Content.Server.Chat.Managers;
 using Content.Server.Explosion.Components;
@@ -220,7 +219,7 @@ public sealed class BlobCoreSystem : EntitySystem
 
                     ChangeBlobEntChem(blobFactoryComponent.Blobbernaut.Value, oldChem, newChem);
                 }
-
+/*
                 foreach (var compBlobPod in blobFactoryComponent.BlobPods)
                 {
                     if (TryComp<SmokeOnTriggerComponent>(compBlobPod, out var smokeOnTriggerComponent))
@@ -228,6 +227,7 @@ public sealed class BlobCoreSystem : EntitySystem
                         smokeOnTriggerComponent.SmokeColor = component.ChemСolors[newChem];
                     }
                 }
+                */
             }
 
             ChangeBlobEntChem(blobTile, oldChem, newChem);

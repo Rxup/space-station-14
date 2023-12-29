@@ -54,3 +54,38 @@
     base: riveted
   - type: Reflect
     reflectProb: 1
+
+- type: entity
+  parent: BaseWall
+  id: WallPaper
+  name: paper wall
+  description: Helps to contain the repeated screams of martial artists.
+  components:
+  - type: Sprite
+    sprite: Backmen/Structures/Walls/paper.rsi
+  - type: Icon
+    sprite: Backmen/Structures/Walls/paper.rsi
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 300 
+      behaviors:
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+    - trigger:
+        !type:DamageTrigger
+        damage: 150
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          path: /Audio/Effects/metalbreak.ogg
+      - !type:ChangeConstructionNodeBehavior
+        node: girder
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+    destroySound:
+      path: /Audio/Effects/metalbreak.ogg
+  - type: IconSmooth
+    key: walls
+    base: paperwall

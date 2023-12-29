@@ -1,0 +1,70 @@
+- type: gameMap
+  id: Cogmap
+  mapName: 'Cogmap'
+  mapPath: /Maps/Backmen/cogmap.yml
+  minPlayers: 40
+  maxPlayers: 75
+  stations:
+    Cogmap:
+      stationProto: StandardNanotrasenStation
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: '{0} Cogmap {1}'
+          nameGenerator:
+            !type:NanotrasenNameGenerator
+            prefixCreator: 'G'
+        - type: StationEmergencyShuttle
+          emergencyShuttlePath: /Maps/Shuttles/emergency_rod.yml
+        - type: StationJobs
+          overflowJobs:
+            - Passenger
+          availableJobs:
+             #command
+            Captain: [ 1, 1 ]
+            IAA: [ 1, 1 ] # Corvax-IAA
+             #service
+            Clown: [ 1, 1 ]
+            Mime: [ 1, 1 ]
+            Musician: [ 1, 1 ]
+            Bartender: [ 2, 2 ]
+            Botanist: [ 3, 3]
+            Chef: [ 1, 2 ]
+            Janitor: [ 3, 3 ]
+            HeadOfPersonnel: [ 1, 1 ]
+            Chaplain: [ 1, 1 ]
+            Librarian: [ 1, 1 ]
+            ServiceWorker: [ 2, 3 ]
+             #engineering
+            ChiefEngineer: [ 1, 1 ]
+            StationEngineer: [ 5, 5 ]
+            AtmosphericTechnician: [ 3, 3 ]
+            TechnicalAssistant: [ 2, 3 ]
+             #medical
+            ChiefMedicalOfficer: [ 1, 1 ]
+            MedicalDoctor: [ 5, 5 ]
+            Chemist: [ 3, 4 ]
+            MedicalIntern: [ 2, 4 ]
+            Paramedic: [ 1, 2 ]
+            #science
+            ResearchDirector: [ 1, 1 ]
+            Scientist: [ 4, 5 ]
+            ResearchAssistant: [ 2, 3 ]
+             #security
+            HeadOfSecurity: [ 1, 1 ]
+            SecurityOfficer: [ 6, 6 ]
+            Warden: [ 1, 1 ]
+            Brigmedic: [ 1, 1 ]
+            #Lawyer: [ 2, 2 ]
+            SecurityCadet: [ 2, 4 ]
+            Detective: [ 1, 1 ]
+             #supply
+            CargoTechnician: [ 4, 5 ]
+            Quartermaster: [ 1, 1 ]
+            SalvageSpecialist: [ 4, 4 ]
+             #civilian
+            Zookeeper: [ 1, 1 ]
+            Passenger: [ -1, -1 ]
+            Boxer: [ 2, 2 ]
+            Reporter: [ 2, 2 ]
+            BKBPLATech: [0, 3] # backmen-BPLA-Silicons
+            BKBPLAMED: [0, 3] # backmen-BPLAMED-Silicons

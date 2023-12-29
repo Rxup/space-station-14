@@ -1,0 +1,78 @@
+- type: listing
+  id: BoxingDrobeInventory1
+  productEntity: UniformShortsRed
+  cost:
+    SpaceCash: 50
+  categories:
+    - BoxingDrobeInventory
+  conditions:
+    - !type:ListingLimitedStockCondition
+      stock: 3
+      
+- type: listing
+  id: BoxingDrobeInventory2
+  productEntity: UniformShortsRedWithTop
+  cost:
+    SpaceCash: 60
+  categories:
+    - BoxingDrobeInventory
+  conditions:
+    - !type:ListingLimitedStockCondition
+      stock: 3
+
+- type: listing
+  id: BoxingDrobeInventory3
+  productEntity: ClothingHandsGlovesBoxingRed
+  cost:
+    SpaceCash: 35
+  categories:
+    - BoxingDrobeInventory
+  conditions:
+    - !type:ListingLimitedStockCondition
+      stock: 2
+
+- type: listing
+  id: BoxingDrobeInventory4
+  productEntity: ClothingHandsGlovesBoxingBlue
+  cost:
+    SpaceCash: 35
+  categories:
+    - BoxingDrobeInventory
+  conditions:
+    - !type:ListingLimitedStockCondition
+      stock: 2
+
+- type: listing
+  id: BoxingDrobeInventory5
+  productEntity: ClothingHandsGlovesBoxingGreen
+  cost:
+    SpaceCash: 35
+  categories:
+    - BoxingDrobeInventory
+  conditions:
+    - !type:ListingLimitedStockCondition
+      stock: 2
+
+- type: listing
+  id: BoxingDrobeInventory6
+  productEntity: ClothingHandsGlovesBoxingYellow
+  cost:
+    SpaceCash: 35
+  categories:
+    - BoxingDrobeInventory
+  conditions:
+    - !type:ListingLimitedStockCondition
+      stock: 2
+
+# Emag
+
+- type: listing
+  id: BoxingDrobeInventory7
+  productEntity: ClothingUniformJumpsuitGachi
+  cost:
+    SpaceCash: 100
+  categories:
+    - BoxingDrobeInventoryEmag
+  conditions:
+    - !type:ListingLimitedStockCondition
+      stock: 5

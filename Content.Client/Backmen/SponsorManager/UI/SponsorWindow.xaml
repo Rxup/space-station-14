@@ -15,7 +15,5 @@
         <BoxContainer HorizontalAlignment="Center" VerticalAlignment="Center">
             <SpriteView Name="GhostView" Scale="5 5"/>
         </BoxContainer>
-        <Label Text="Только просмотр! В данный момент без применения в игре! В разработке!" FontColorOverride="{x:Static style:StyleNano.DangerousRedFore}" />
-        <Label Text="View only! Currently not used in the game! under development!" FontColorOverride="{x:Static style:StyleNano.DangerousRedFore}" />
     </BoxContainer>
 </DefaultWindow>

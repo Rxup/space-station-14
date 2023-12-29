@@ -12,6 +12,7 @@ using Content.Server.Body.Systems;
 using Content.Server.Popups;
 using Content.Server.HealthExaminable;
 using Content.Server.DoAfter;
+using Content.Server.Nutrition.Components;
 using Content.Server.Nutrition.EntitySystems;
 using Content.Shared.Chemistry;
 using Content.Shared.Chemistry.EntitySystems;

@@ -2,6 +2,7 @@
 using Content.Server.Chat.Systems;
 using Content.Server.GameTicking;
 using Content.Server.GameTicking.Events;
+using Content.Server.Maps;
 using Content.Server.Popups;
 using Content.Server.Power.EntitySystems;
 using Content.Server.Salvage.Expeditions;
@@ -17,6 +18,8 @@ using Content.Shared.CCVar;
 using Content.Shared.Emag.Components;
 using Content.Shared.Emag.Systems;
 using Content.Shared.GameTicking;
+using Content.Shared.Random;
+using Content.Shared.Random.Helpers;
 using Content.Shared.Shuttles.Components;
 using Robust.Server.GameObjects;
 using Robust.Server.Maps;
@@ -50,14 +53,16 @@ public sealed class CentcommSystem : EntitySystem
     [Dependency] private readonly SharedAudioSystem _audio = default!;
     [Dependency] private readonly PopupSystem _popupSystem = default!;
     [Dependency] private readonly ChatSystem _chat = default!;
-    [Dependency] private readonly TransformSystem _transformSystem = default!;
-    [Dependency] private readonly IRobustRandom _robustRandom = default!;
+    [Dependency] private readonly MetaDataSystem _metaDataSystem = default!;
     private ISawmill _sawmill = default!;
 
 
     public EntityUid CentComGrid { get; private set; } = EntityUid.Invalid;
     public MapId CentComMap { get; private set; } = MapId.Nullspace;
+    public EntityUid CentComMapUid { get; private set; } = EntityUid.Invalid;
     public float ShuttleIndex { get; set; } = 0;
+
+    private WeightedRandomPrototype _stationCentComMapPool = default!;
 
     public override void Initialize()
     {
@@ -66,11 +71,19 @@ public sealed class CentcommSystem : EntitySystem
         SubscribeLocalEvent<ActorComponent, CentcomFtlAction>(OnFtlActionUsed);
         SubscribeLocalEvent<PreGameMapLoad>(OnPreGameMapLoad, after: new[] { typeof(StationSystem) });
         SubscribeLocalEvent<RoundStartingEvent>(OnCentComInit, before: new[] { typeof(EmergencyShuttleSystem) });
+        SubscribeLocalEvent<RoundEndedEvent>(OnCentComEndRound);
         SubscribeLocalEvent<RoundRestartCleanupEvent>(OnCleanup);
         SubscribeLocalEvent<ShuttleConsoleComponent, GotEmaggedEvent>(OnShuttleConsoleEmaged);
         SubscribeLocalEvent<FTLCompletedEvent>(OnFTLCompleted);
         SubscribeLocalEvent<FtlCentComAnnounce>(OnFtlAnnounce);
         _cfg.OnValueChanged(CCVars.GridFill, OnGridFillChange);
+
+        _stationCentComMapPool = _prototypeManager.Index<WeightedRandomPrototype>(StationCentComMapPool);
+    }
+
+    private void OnCentComEndRound(RoundEndedEvent ev)
+    {
+        EnableFtl();
     }
 
     private void OnFtlAnnounce(FtlCentComAnnounce ev)
@@ -104,6 +117,11 @@ public sealed class CentcommSystem : EntitySystem
             }
 
             shuttleName = name;
+        }
+
+        if (_gameTicker.RunLevel != GameRunLevel.InRound)
+        {
+            return; // Do not announce out of round
         }
 
         _chat.DispatchStationAnnouncement(CentComGrid,
@@ -174,8 +192,16 @@ public sealed class CentcommSystem : EntitySystem
             _mapManager.DeleteMap(CentComMap);
 
         CentComMap = MapId.Nullspace;
+        CentComMapUid = EntityUid.Invalid;
         ShuttleIndex = 0;
     }
+
+    [ValidatePrototypeId<WeightedRandomPrototype>]
+    private const string StationCentComMapPool = "DefaultCentcomPool";
+
+    [ValidatePrototypeId<GameMapPrototype>]
+    private const string StationCentComMapDefault = "CentComm";
+
 
     public void EnsureCentcom(bool force = false)
     {
@@ -197,11 +223,23 @@ public sealed class CentcommSystem : EntitySystem
             CentComMap = _mapManager.CreateMap();
         }
 
+        CentComMapUid = _mapManager.GetMapEntityId(CentComMap);
+
+        var mapId = _stationCentComMapPool.Pick();
+        if (!_prototypeManager.TryIndex<GameMapPrototype>(mapId, out var map))
+        {
+            mapId = StationCentComMapDefault;
+            map = _prototypeManager.Index<GameMapPrototype>(StationCentComMapDefault);
+        }
+
+
         var ent = _gameTicker.LoadGameMap(
-            _prototypeManager.Index<Maps.GameMapPrototype>(_robustRandom.Prob(0.35f) ? "CentCommv2" : "CentComm"), CentComMap, new MapLoadOptions()
+            map, CentComMap, new MapLoadOptions()
             {
                 LoadMap = false
-            }, null).FirstOrNull(HasComp<BecomesStationComponent>);
+            }, "Central Command").FirstOrNull(HasComp<BecomesStationComponent>);
+
+        _metaDataSystem.SetEntityName(_mapManager.GetMapEntityId(CentComMap), "CentCom");
 
         if (ent != null)
         {
@@ -249,9 +287,10 @@ public sealed class CentcommSystem : EntitySystem
 
     private void OnPreGameMapLoad(PreGameMapLoad ev)
     {
-        if (ev.GameMap.ID != "CentComm")
+        if (!_stationCentComMapPool.Weights.ContainsKey(ev.GameMap.ID))
         {
-            return;
+            if(ev.GameMap.ID != StationCentComMapDefault) // fallback
+                return;
         }
 
         ev.Options.Offset = new Vector2(0, 0);
@@ -298,13 +337,13 @@ public sealed class CentcommSystem : EntitySystem
         var stationUid = _stationSystem.GetStations().FirstOrNull(HasComp<StationCentcommComponent>);
 
         if (!TryComp<StationCentcommComponent>(stationUid, out var centcomm) ||
-            Deleted(centcomm.Entity))
+             centcomm.Entity == null || !centcomm.Entity.Value.IsValid() || Deleted(centcomm.Entity))
         {
             _popup.PopupEntity(Loc.GetString("centcom-ftl-action-no-station"), args.Performer, args.Performer);
             return;
         }
 
-        if (shuttle.MapID == centcomm.MapId)
+        if (shuttle.MapUid == centcomm.MapEntity)
         {
             _popup.PopupEntity(Loc.GetString("centcom-ftl-action-at-centcomm"), args.Performer, args.Performer);
             return;
@@ -316,6 +355,6 @@ public sealed class CentcommSystem : EntitySystem
             return;
         }
 
-        _shuttleSystem.FTLTravel(shuttle.GridUid.Value, comp, centcomm.Entity);
+        _shuttleSystem.FTLTravel(shuttle.GridUid.Value, comp, centcomm.Entity.Value);
     }
 }
