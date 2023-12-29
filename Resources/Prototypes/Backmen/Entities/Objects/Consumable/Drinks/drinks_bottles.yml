@@ -13,9 +13,9 @@
           Quantity: 100
   - type: Sprite
     sprite: Backmen/Objects/Consumable/Drinks/saketokkuri.rsi
-    
+
 - type: entity
-  parent: DrinkBottleBaseFull
+  parent: DrinkBottleGlassBaseFull
   id: DrinkSojuBottleFull
   name: soju bottle
   description: It's like sake but if you're trying to get FUCKED. UP.
@@ -28,9 +28,9 @@
           Quantity: 100
   - type: Sprite
     sprite: Backmen/Objects/Consumable/Drinks/sojubottle.rsi
-    
+
 - type: entity
-  parent: DrinkBottleBaseFull
+  parent: DrinkBottleGlassBaseFull
   id: DrinkSakeBottleFull
   name: sake bottle
   description: |

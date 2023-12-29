@@ -140,6 +140,8 @@
       - WeaponCapacitorRechargerCircuitboard
       - AntiPsychicKnifeRecipe
       - ClothingBeltDemoman # Backmen
+      - Ring
+      - SapphireRing
   - type: EmagLatheRecipes
     emagStaticRecipes:
        - CartridgePistol
@@ -264,9 +266,10 @@
       - PowerCellMicroreactor
       - PowerCellHigh
       - WeaponPistolCHIMP
+      - WeaponGauntletGorilla
       - SynthesizerInstrument
       - RPED
-      - ClothingShoesBootsMag
+      - ClothingShoesBootsMagSci
       - ClothingShoesBootsSpeed
       - NodeScanner
       - HolofanProjector
@@ -294,6 +297,9 @@
       - FauxTileAstroGrass
       - FauxTileAstroIce
       - OreBagOfHolding
+      - Ring
+      - SapphireRing
+      - GoldenRing
   - type: EmagLatheRecipes
     emagDynamicRecipes:
       - ExplosivePayload
@@ -619,7 +625,9 @@
       - TimerTrigger
       - Truncheon
       - VoiceTrigger
+      - WeaponDisablerPractice
       - WeaponAdvancedLaser
+      - WeaponDisablerSMG
       - WeaponLaserCannon
       - WeaponLaserCarbine
       - WeaponLaserCarbinePractice

@@ -275,6 +275,15 @@
 - type: entity
   noSpawn: true
   parent: BaseCaptainObjective
+  id: HoSGunStealObjective
+  components:
+  - type: StealCondition
+    stealGroup: WeaponMultiphaseEnergyGun
+    owner: job-name-hos
+
+- type: entity
+  noSpawn: true
+  parent: BaseCaptainObjective
   id: NukeDiskStealObjective
   components:
   - type: Objective
