@@ -1,14 +1,21 @@
 - type: entity
-  id: maintenancehatch
+  id: doubleglassairlock
   parent: BaseStructure
-  name: Maintenance Hatch
-  description: Protects maintenance tunnels.
+  name: Double Glass Airlock
+  description: It opens, it closes, and maybe crushes you, but it bigger than normal door.
   placement:
-    mode: SnapgridCenter
+    mode: AlignTileAny
   components:
+  - type: MeleeSound
+    soundGroups:
+      Brute:
+        path:
+          "/Audio/Weapons/smash.ogg"
   - type: InteractionOutline
   - type: Sprite
-    sprite: Backmen/Structures/Doors/Hatches/maintenance_hatch.rsi
+    sprite: Backmen/Structures/Doors/Airlocks/Glass/double_glass_airlock.rsi
+    drawdepth: Mobs
+    offset: 0.5,0
     layers:
     - state: closed
       map: ["enum.DoorVisualLayers.Base"]
@@ -25,6 +32,8 @@
       shader: unshaded
     - state: panel_open
       map: ["enum.WiresVisualLayers.MaintenancePanel"]
+  - type: Transform
+    anchored: true
   - type: AnimationPlayer
   - type: Physics
   - type: Fixtures
@@ -32,31 +41,38 @@
       fix1:
         shape:
           !type:PhysShapeAabb
-          bounds: "-0.49,-0.49,0.49,0.49" # don't want this colliding with walls or they won't close
+          bounds: "-0.49,-0.49,1.49,0.49" # Collider
         density: 100
         mask:
-        - FullTileMask
-        layer:
-        - WallLayer
+        - LargeMobMask
+        layer:     #Glass Layer
+        - GlassAirlockLayer
+  - type: LayerChangeOnWeld
+    unWeldedLayer: AirlockLayer
+    weldedLayer: WallLayer
   - type: ContainerFill
     containers:
       board: [ DoorElectronics ]
-  - type: ContainerContainer
-    containers:
-      board: !type:Container
   - type: Door
+    occludes: false
     crushDamage:
       types:
-        Blunt: 50
+        Blunt: 15
     openSound:
       path: /Audio/Machines/airlock_open.ogg
     closeSound:
       path: /Audio/Machines/airlock_close.ogg
     denySound:
       path: /Audio/Machines/airlock_deny.ogg
+  - type: ContainerContainer
+    containers:
+      board: !type:Container
+  - type: Occluder
+    enabled: false
   - type: Weldable
-    time: 10
+    time: 3
   - type: Airlock
+    openUnlitVisible: true # Corvax-Resprite-Airlocks
   - type: DoorBolt
   - type: Appearance
   - type: WiresVisuals
@@ -67,19 +83,36 @@
     enabled: false
     usesApcPower: true
   - type: WiresPanel
-  - type: WiresPanelSecurity
-    securityLevel: maxSecurity
   - type: Wires
-    boardName: wires-board-name-highsec
-    layoutId: HighSec
-    alwaysRandomize: true
+    BoardName: "Airlock Control"
+    layoutId: Airlock
+  - type: DoorSignalControl
+  - type: DeviceNetwork
+    deviceNetId: Wireless
+    receiveFrequencyId: BasicDevice
+  - type: WirelessNetworkConnection
+    range: 200
+  - type: DeviceLinkSink
+    ports:
+      - Open
+      - Close
+      - Toggle
+      - AutoClose
+      - DoorBolt
+  - type: DeviceLinkSource
+    ports:
+      - DoorStatus
+  - type: SoundOnOverload
+  - type: SpawnOnOverload
   - type: UserInterface
     interfaces:
     - key: enum.WiresUiKey.Key
       type: WiresBoundUserInterface
   - type: Airtight
     fixVacuum: true
-  - type: Occluder
+    noAirWhenFullyAirBlocked: false
+  - type: RadiationBlocker
+    resistance: 3
   - type: Damageable
     damageContainer: Inorganic
     damageModifierSet: Metallic
@@ -87,18 +120,22 @@
     thresholds:
     - trigger:
         !type:DamageTrigger
-        damage: 1500
+        damage: 500
       behaviors:
       - !type:DoActsBehavior
         acts: ["Destruction"]
+  - type: Construction
+    graph: Airlock
+    node: airlock
+    containers:
+    - board
+  - type: PlacementReplacement
+    key: walls
   - type: IconSmooth
     key: walls
     mode: NoSprite
-  - type: Construction
-    graph: Airlock
-    node: highSecDoor
-  - type: Tag
-    tags:
-      - HighSecDoor
+  - type: PaintableAirlock
+    group: Standard
   - type: AccessReader
-    access: [["ResearchDirector"]]
+  - type: StaticPrice
+    price: 300

@@ -8,7 +8,7 @@
   components:
   - type: InteractionOutline
   - type: Sprite
-    sprite: Backmen/Structures/Doors/Hatches/centcom_hatch.rsi
+    sprite: Backmen/Structures/Doors/Airlocks/Hatches/centcom_hatch.rsi
     layers:
     - state: closed
       map: ["enum.DoorVisualLayers.Base"]
