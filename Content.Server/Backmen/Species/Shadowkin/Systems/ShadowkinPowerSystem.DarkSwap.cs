@@ -5,12 +5,16 @@ using Content.Server.NPC.Components;
 using Content.Server.NPC.Systems;
 using Content.Server.Backmen.Species.Shadowkin.Components;
 using Content.Server.Backmen.Species.Shadowkin.Events;
+using Content.Server.Stunnable;
 using Content.Shared.Actions;
+using Content.Shared.Backmen.Abilities.Psionics;
 using Content.Shared.CombatMode.Pacification;
 using Content.Shared.Cuffs.Components;
 using Content.Shared.Damage.Systems;
 using Content.Shared.Backmen.Species.Shadowkin.Components;
 using Content.Shared.Backmen.Species.Shadowkin.Events;
+using Content.Shared.Damage;
+using Content.Shared.Damage.Components;
 using Content.Shared.Eye;
 using Content.Shared.Ghost;
 using Content.Shared.Stealth;
@@ -19,6 +23,7 @@ using Robust.Server.GameObjects;
 using Robust.Shared.Audio;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Prototypes;
+using Robust.Shared.Timing;
 
 namespace Content.Server.Backmen.Species.Shadowkin.Systems;
 
@@ -34,6 +39,8 @@ public sealed class ShadowkinDarkSwapSystem : EntitySystem
     [Dependency] private readonly MagicSystem _magic = default!;
     [Dependency] private readonly NpcFactionSystem _factions = default!;
     [Dependency] private readonly EyeSystem _eye = default!;
+    [Dependency] private readonly StunSystem _stunSystem = default!;
+    [Dependency] private readonly IGameTiming _timing = default!;
 
     public override void Initialize()
     {
@@ -46,9 +53,40 @@ public sealed class ShadowkinDarkSwapSystem : EntitySystem
 
         SubscribeLocalEvent<ShadowkinDarkSwappedComponent, ComponentStartup>(OnInvisStartup);
         SubscribeLocalEvent<ShadowkinDarkSwappedComponent, ComponentShutdown>(OnInvisShutdown);
+        SubscribeLocalEvent<ShadowkinDarkSwappedComponent, MoveEvent>(OnMoveInInvis);
+        SubscribeLocalEvent<ShadowkinDarkSwappedComponent, DamageChangedEvent>(OnDamageInInvis);
+    }
+
+    private void OnDamageInInvis(Entity<ShadowkinDarkSwappedComponent> ent, ref DamageChangedEvent args)
+    {
+        RemCompDeferred<ShadowkinDarkSwappedComponent>(ent);
+        _stunSystem.TryParalyze(ent, TimeSpan.FromSeconds(3), false);
+    }
+
+    private void OnMoveInInvis(Entity<ShadowkinDarkSwappedComponent> ent, ref MoveEvent args)
+    {
+        if (!args.OldPosition.IsValid(EntityManager) ||
+            !args.NewPosition.IsValid(EntityManager) ||
+            !args.OldPosition.TryDistance(EntityManager, args.NewPosition, out var distance))
+        {
+            RemCompDeferred<ShadowkinDarkSwappedComponent>(ent);
+            return;
+        }
+
+        if (distance == 0)
+            return;
+
+        if (!TryComp<StaminaComponent>(ent, out var staminaComponent))
+        {
+            return;
+        }
+
+        _stamina.TakeStaminaDamage(ent, Math.Abs(distance), visual: false, source: ent, chaosDamage: true);
+        staminaComponent.NextUpdate = _timing.CurTime + TimeSpan.FromSeconds(staminaComponent.Cooldown);
     }
 
     [ValidatePrototypeId<EntityPrototype>] private const string ShadowkinDarkSwap = "ShadowkinDarkSwap";
+
     private void OnInit(Entity<ShadowkinDarkSwapPowerComponent> ent, ref ComponentInit args)
     {
         _actions.AddAction(ent, ref ent.Comp.ShadowkinDarkSwapAction, ShadowkinDarkSwap);
@@ -59,6 +97,31 @@ public sealed class ShadowkinDarkSwapSystem : EntitySystem
         _actions.RemoveAction(uid, component.ShadowkinDarkSwapAction);
     }
 
+    public override void Update(float frameTime)
+    {
+        base.Update(frameTime);
+
+        var currentTime = _timing.CurTime;
+
+        var q = EntityQueryEnumerator<StaminaComponent, ShadowkinDarkSwappedComponent>();
+        while (q.MoveNext(out var uid, out var stamina, out var comp))
+        {
+            if (stamina.Critical)
+            {
+                RemCompDeferred<ShadowkinDarkSwappedComponent>(uid);
+                _stunSystem.TryParalyze(uid, TimeSpan.FromSeconds(5), true);
+                continue;
+            }
+
+            if (currentTime > comp.NextStaminaDmg)
+            {
+                _stamina.TakeStaminaDamage(uid, 6, stamina, uid, chaosDamage: true);
+                comp.NextStaminaDmg = currentTime + TimeSpan.FromSeconds(2);
+                stamina.NextUpdate = _timing.CurTime + TimeSpan.FromSeconds(2);
+                Dirty(uid,stamina);
+            }
+        }
+    }
 
     private void DarkSwap(EntityUid uid, ShadowkinDarkSwapPowerComponent component, ShadowkinDarkSwapEvent args)
     {
@@ -68,7 +131,7 @@ public sealed class ShadowkinDarkSwapSystem : EntitySystem
 
         // Don't activate abilities if handcuffed
         // TODO: Something like the Psionic Headcage to disable powers for Shadowkin
-        if (HasComp<HandcuffComponent>(args.Performer))
+        if (HasComp<HandcuffComponent>(args.Performer) || HasComp<PsionicInsulationComponent>(args.Performer))
             return;
 
 
@@ -113,7 +176,7 @@ public sealed class ShadowkinDarkSwapSystem : EntitySystem
     )
     {
         var ent = GetNetEntity(performer);
-        var ev = new ShadowkinDarkSwapAttemptEvent(ent);
+        var ev = new ShadowkinDarkSwapAttemptEvent(performer);
         RaiseLocalEvent(ev);
         if (ev.Cancelled)
             return;
@@ -194,7 +257,7 @@ public sealed class ShadowkinDarkSwapSystem : EntitySystem
         {
             // Allow the entity to see DarkSwapped entities
             if (TryComp(uid, out EyeComponent? eye))
-                _eye.SetVisibilityMask(uid, eye.VisibilityMask | (int)VisibilityFlags.DarkSwapInvisibility, eye);
+                _eye.SetVisibilityMask(uid, eye.VisibilityMask | (int) VisibilityFlags.DarkSwapInvisibility, eye);
 
             // Make other entities unable to see the entity unless also DarkSwapped
             _visibility.AddLayer(uid, visibility, (int) VisibilityFlags.DarkSwapInvisibility, false);
@@ -209,7 +272,7 @@ public sealed class ShadowkinDarkSwapSystem : EntitySystem
         {
             // Remove the ability to see DarkSwapped entities
             if (TryComp(uid, out EyeComponent? eye))
-                _eye.SetVisibilityMask(uid, eye.VisibilityMask & ~(int)VisibilityFlags.DarkSwapInvisibility, eye);
+                _eye.SetVisibilityMask(uid, eye.VisibilityMask & ~(int) VisibilityFlags.DarkSwapInvisibility, eye);
             // Make other entities able to see the entity again
             _visibility.RemoveLayer(uid, visibility, (int) VisibilityFlags.DarkSwapInvisibility, false);
             _visibility.AddLayer(uid, visibility, (int) VisibilityFlags.Normal, false);
@@ -219,7 +282,7 @@ public sealed class ShadowkinDarkSwapSystem : EntitySystem
             if (!HasComp<GhostComponent>(uid))
                 RemCompDeferred<StealthComponent>(uid);
 
-                //_stealth.SetVisibility(uid, 1f, EnsureComp<StealthComponent>(uid));
+            //_stealth.SetVisibility(uid, 1f, EnsureComp<StealthComponent>(uid));
         }
     }
 

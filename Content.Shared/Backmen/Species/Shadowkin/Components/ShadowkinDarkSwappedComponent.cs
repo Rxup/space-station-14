@@ -37,4 +37,7 @@ public sealed partial class ShadowkinDarkSwappedComponent : Component
 
     [ViewVariables(VVAccess.ReadWrite)]
     public float DarkenAccumulator = 0f;
+
+    [ViewVariables(VVAccess.ReadOnly)]
+    public TimeSpan NextStaminaDmg = TimeSpan.Zero;
 }
