@@ -9,3 +9,4 @@ shadowkin-power-tired = истощены
 shadowkin-power-min = синяк
 
 shadowkin-blackeye = Вы чувствуете, как ваша сила исчезает, вы истощены!
+species-name-shadowkin = Шадовкин
