@@ -134,3 +134,80 @@
       sprite: Backmen/Clothing/Uniforms/Costume/arc.rsi
     - type: Clothing
       sprite: Backmen/Clothing/Uniforms/Costume/arc.rsi
+
+- type: entity
+  parent: ClothingUniformSkirtBase
+  id: ClothingKimonoBlue
+  name: blue kimono
+  description: I'm blue da ba dee da ba da-ee!
+  components:
+  - type: Sprite
+    sprite: Backmen/Clothing/Uniforms/Costume/kimono-blue.rsi
+  - type: Clothing
+    sprite: Backmen/Clothing/Uniforms/Costume/kimono-blue.rsi
+
+- type: entity
+  parent: ClothingUniformSkirtBase
+  id: ClothingKimonoPink
+  name: pink kimono
+  description: Pretty in pink, isn't she?
+  components:
+  - type: Sprite
+    sprite: Backmen/Clothing/Uniforms/Costume/kimono-pink.rsi
+  - type: Clothing
+    sprite: Backmen/Clothing/Uniforms/Costume/kimono-pink.rsi
+
+- type: entity
+  parent: ClothingUniformSkirtBase
+  id: ClothingKimonoPurple
+  name: purple kimono
+  description: You definitely won't look like a maroon in this.
+  components:
+  - type: Sprite
+    sprite: Backmen/Clothing/Uniforms/Costume/kimono-purple.rsi
+  - type: Clothing
+    sprite: Backmen/Clothing/Uniforms/Costume/kimono-purple.rsi
+
+- type: entity
+  parent: ClothingUniformSkirtBase
+  id: ClothingKimonoSky
+  name: sky blue kimono
+  description: Reminds you of natsu matsuri.
+  components:
+  - type: Sprite
+    sprite: Backmen/Clothing/Uniforms/Costume/kimono-sky.rsi
+  - type: Clothing
+    sprite: Backmen/Clothing/Uniforms/Costume/kimono-sky.rsi
+
+- type: entity
+  parent: ClothingUniformSkirtBase
+  id: ClothingKimonoGreen
+  name: sea green kimono
+  description: Colors and textures reminiscent of seaweed.
+  components:
+  - type: Sprite
+    sprite: Backmen/Clothing/Uniforms/Costume/kimono-green.rsi
+  - type: Clothing
+    sprite: Backmen/Clothing/Uniforms/Costume/kimono-green.rsi
+    
+- type: entity
+  parent: ClothingUniformSkirtBase
+  id: ClothingUniformKendoHakama
+  name: hakama
+  description: An elegant black and blue hakama that could be worn for kendo or formal events.
+  components:
+  - type: Sprite
+    sprite: Backmen/Clothing/Uniforms/Costume/hakama.rsi
+  - type: Clothing
+    sprite: Backmen/Clothing/Uniforms/Costume/hakama.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformMartialGi
+  name: gi
+  description: A white top and bottom traditionally used in martial arts, often paired with a belt.
+  components:
+  - type: Sprite
+    sprite: Backmen/Clothing/Uniforms/Costume/gi.rsi
+  - type: Clothing
+    sprite: Backmen/Clothing/Uniforms/Costume/gi.rsi

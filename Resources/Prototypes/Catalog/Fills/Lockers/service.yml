@@ -49,11 +49,11 @@
       - id: FoodCondimentBottleEnzyme
       # really, milk should go in the fridge. Unfortunately saltern only has freezers.
       # yes, I'm using this as an excuse to not have to do extra work.
-      - id: ReagentContainerMilk
+      - id: DrinkMilkCarton
         amount: 2
-      - id: ReagentContainerMilkSoy
       - id: AntiPsychicKnife # backmen
       - id: ClothingHeadCage # backmen
+      - id: DrinkSoyMilkCarton
 
 - type: entity
   id: ClosetJanitorFilled
@@ -103,9 +103,6 @@
       - id: ClothingHandsGlovesLeather
       - id: ClothingOuterApronBotanist
       - id: ClothingHeadBandBotany
-      - id: HydroponicsToolClippers
-      - id: HydroponicsToolSpade
-      - id: HydroponicsToolMiniHoe
       - id: RobustHarvestChemistryBottle
         prob: 0.3
       - id: ClothingBeltPlant

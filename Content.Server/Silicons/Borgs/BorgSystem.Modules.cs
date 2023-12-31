@@ -203,7 +203,7 @@ public sealed partial class BorgSystem
                     continue;
                 }
 
-                component.ProvidedContainer.Remove(item, EntityManager, force: true);
+                _container.Remove(item, component.ProvidedContainer, force: true);
             }
 
             if (!item.IsValid())
@@ -259,7 +259,7 @@ public sealed partial class BorgSystem
             if (LifeStage(item) <= EntityLifeStage.MapInitialized)
             {
                 RemComp<UnremoveableComponent>(item);
-                component.ProvidedContainer.Insert(item, EntityManager);
+                _container.Insert(item, component.ProvidedContainer);
             }
             _hands.RemoveHand(chassis, handId, hands);
         }

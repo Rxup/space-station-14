@@ -1,7 +1,0 @@
-- type: entity
-  id: SpawnPointDeliveryman
-  parent: SpawnPointAssistant
-  name: Доставщик
-  components:
-  - type: SpawnPoint
-    job_id: Deliveryman

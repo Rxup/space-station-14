@@ -81,6 +81,12 @@ namespace Content.Shared.CCVar
         public static readonly CVarDef<float> LobbyMusicVolume =
             CVarDef.Create("ambience.lobby_music_volume", 0.50f, CVar.ARCHIVE | CVar.CLIENTONLY);
 
+        /// <summary>
+        /// UI volume.
+        /// </summary>
+        public static readonly CVarDef<float> InterfaceVolume =
+            CVarDef.Create("audio.interface_volume", 0.50f, CVar.ARCHIVE | CVar.CLIENTONLY);
+
         /*
          * Status
          */
@@ -575,6 +581,16 @@ namespace Content.Shared.CCVar
             CVarDef.Create("database.sync", false, CVar.SERVERONLY);
 
         /*
+         * Interface
+         */
+
+        public static readonly CVarDef<string> UIClickSound =
+            CVarDef.Create("interface.click_sound", "/Audio/UserInterface/click.ogg", CVar.REPLICATED);
+
+        public static readonly CVarDef<string> UIHoverSound =
+            CVarDef.Create("interface.hover_sound", "/Audio/UserInterface/hover.ogg", CVar.REPLICATED);
+
+        /*
          * Outline
          */
 
@@ -777,6 +793,11 @@ namespace Content.Shared.CCVar
         public static readonly CVarDef<bool> AdminDeadminOnJoin =
             CVarDef.Create("admin.deadmin_on_join", false, CVar.SERVERONLY);
 
+        /// <summary>
+        ///     Overrides the name the client sees in ahelps. Set empty to disable.
+        /// </summary>
+        public static readonly CVarDef<string> AdminAhelpOverrideClientName =
+            CVarDef.Create("admin.override_adminname_in_client_ahelp", string.Empty, CVar.SERVERONLY);
         /*
          * Explosions
          */
@@ -1219,7 +1240,7 @@ namespace Content.Shared.CCVar
             CVarDef.Create("vote.restart_required_ratio", 0.85f, CVar.SERVERONLY);
 
         /// <summary>
-        /// Whether or not to restrict the restart vote when there's online admins.
+        /// Whether or not to prevent the restart vote from having any effect when there is an online admin
         /// </summary>
         public static readonly CVarDef<bool> VoteRestartNotAllowedWhenAdminOnline =
             CVarDef.Create("vote.restart_not_allowed_when_admin_online", true, CVar.SERVERONLY);

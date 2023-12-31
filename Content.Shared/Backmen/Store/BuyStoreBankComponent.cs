@@ -1,4 +1,5 @@
-﻿using Content.Shared.VendingMachines;
+﻿using Content.Shared.Store;
+using Content.Shared.VendingMachines;
 using Robust.Shared.Audio;
 using Robust.Shared.GameStates;
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype.Set;
@@ -43,4 +44,16 @@ public sealed partial class BuyStoreBankComponent : Component
     [ViewVariables(VVAccess.ReadWrite)]
     [DataField("soundRestockDone")]
     public SoundSpecifier SoundRestockDone = new SoundPathSpecifier("/Audio/Machines/vending_restock_done.ogg");
+
+    [DataField("emagCategories", customTypeSerializer: typeof(PrototypeIdHashSetSerializer<StoreCategoryPrototype>))]
+    public HashSet<string> EmagCategories = new();
+
+    /// <summary>
+    /// Emag sound effects.
+    /// </summary>
+    [DataField("sparkSound")]
+    public SoundSpecifier SparkSound = new SoundCollectionSpecifier("sparks")
+    {
+        Params = AudioParams.Default.WithVolume(8),
+    };
 }

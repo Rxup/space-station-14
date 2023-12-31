@@ -168,6 +168,8 @@
       - id: AccessConfigurator
       - id: AntiPsychicKnife  # backmen
       - id: ClothingHeadCage # backmen
+      - id: RCD
+      - id: RCDAmmo
 
 - type: entity
   id: LockerChiefEngineerFilled
@@ -194,6 +196,8 @@
       - id: AccessConfigurator
       - id: AntiPsychicKnife  # backmen
       - id: ClothingHeadCage # backmen
+      - id: RCD
+      - id: RCDAmmo
 
 - type: entity
   id: LockerChiefMedicalOfficerFilledHardsuit
@@ -331,7 +335,7 @@
         prob: 0.8
       - id: ClothingBeltSecurityFilled
       - id: ClothingHeadsetAltSecurity
-      - id: ClothingEyesGlassesSecurity
+      - id: ClothingEyesGlassesSunglasses
       - id: ClothingShoesBootsJack
       - id: CigarGoldCase
         prob: 0.50
@@ -344,8 +348,9 @@
       - id: BoxEncryptionKeySecurity
       - id: HoloprojectorSecurity
       - id: BookSecretDocuments
-      - id: BookBusido # Corvax-Books
+      - id: WeaponMultiphaseEnergyGun
       - id: AntiPsychicKnife # backmen
+      - id: BookBusido # Corvax-Books
       - id: ClothingHeadCage # backmen
 
 - type: entity
@@ -380,7 +385,7 @@
         prob: 0.8
       - id: ClothingBeltSecurityFilled
       - id: ClothingHeadsetAltSecurity
-      - id: ClothingEyesGlassesSecurity
+      - id: ClothingEyesGlassesSunglasses
       - id: ClothingShoesBootsJack
       - id: CigarGoldCase
         prob: 0.50
@@ -392,6 +397,7 @@
       - id: BoxEncryptionKeySecurity
       - id: HoloprojectorSecurity
       - id: BookSecretDocuments
+      - id: WeaponMultiphaseEnergyGun
       - id: AntiPsychicKnife # backmen
       - id: ClothingHeadCage # backmen
 

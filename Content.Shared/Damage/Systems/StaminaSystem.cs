@@ -242,7 +242,7 @@ public sealed partial class StaminaSystem : EntitySystem
     }
 
     public void TakeStaminaDamage(EntityUid uid, float value, StaminaComponent? component = null,
-        EntityUid? source = null, EntityUid? with = null, bool visual = true, SoundSpecifier? sound = null)
+        EntityUid? source = null, EntityUid? with = null, bool visual = true, SoundSpecifier? sound = null, bool chaosDamage = false)
     {
         if (!Resolve(uid, ref component, false))
             return;
@@ -255,11 +255,21 @@ public sealed partial class StaminaSystem : EntitySystem
         // Have we already reached the point of max stamina damage?
         if (component.Critical)
             return;
+
+        // start-backmen: stamina dmg
         // modify damage value by the entitys stun resistance, so certain armours can counter stunmeta
-        var damage = new DamageSpecifier(_proto.Index<DamageTypePrototype>("Stun"), FixedPoint2.New(value));
-        var modifyEv = new DamageModifyEvent(damage);
-        RaiseLocalEvent(uid, modifyEv);
-        value = modifyEv.Damage.DamageDict["Stun"].Float();
+        if (!chaosDamage)
+        {
+            var damage = new DamageSpecifier(_proto.Index<DamageTypePrototype>("Stun"), FixedPoint2.New(value));
+            var modifyEv = new DamageModifyEvent(damage);
+            RaiseLocalEvent(uid, modifyEv);
+            if (modifyEv.Damage.DamageDict.TryGetValue("Stun", out var val))
+            {
+                value = val.Float();
+            }
+        }
+        // end-backmen: stamina dmg
+
 
         var oldDamage = component.StaminaDamage;
         component.StaminaDamage = MathF.Max(0f, component.StaminaDamage + value);
@@ -304,13 +314,18 @@ public sealed partial class StaminaSystem : EntitySystem
 
         if (value <= 0)
             return;
-        if (source != null)
+
+        if (!chaosDamage) // backmen: stamina dmg
         {
-            _adminLogger.Add(LogType.Stamina, $"{ToPrettyString(source.Value):user} caused {value} stamina damage to {ToPrettyString(uid):target}{(with != null ? $" using {ToPrettyString(with.Value):using}" : "")}");
-        }
-        else
-        {
-            _adminLogger.Add(LogType.Stamina, $"{ToPrettyString(uid):target} took {value} stamina damage");
+            if (source != null)
+            {
+                _adminLogger.Add(LogType.Stamina,
+                    $"{ToPrettyString(source.Value):user} caused {value} stamina damage to {ToPrettyString(uid):target}{(with != null ? $" using {ToPrettyString(with.Value):using}" : "")}");
+            }
+            else
+            {
+                _adminLogger.Add(LogType.Stamina, $"{ToPrettyString(uid):target} took {value} stamina damage");
+            }
         }
 
         if (visual)
