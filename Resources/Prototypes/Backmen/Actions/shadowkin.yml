@@ -13,7 +13,7 @@
         staminaCost: 20
         speech: action-description-shadowkin-teleport
       checkCanAccess: true
-      useDelay: 5
+      useDelay: 15
       range: 32
       repeat: true
       priority: -20
@@ -35,8 +35,8 @@
       event: !type:ShadowkinDarkSwapEvent
         powerCostOn: 60
         powerCostOff: 45
-        staminaCostOn: 25
-        staminaCostOff: 25
+        staminaCostOn: 1
+        staminaCostOff: 1
         speech: action-description-shadowkin-darkswap
 
 - type: entity

@@ -109,6 +109,8 @@
   - type: MovementSpeedModifier
     baseWalkSpeed : 2.7
     baseSprintSpeed : 4.5
+  - type: PotentialPsionic
+    chance: -200
 
 
 - type: entity
