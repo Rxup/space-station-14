@@ -34,19 +34,19 @@
         - state: unaffiliated
         - state: idexplorer
     - type: PresetIdCard
-      job: Explorer
+      job: SalvageSpecialist
 
 - type: entity
   parent: UnaffiliatedIDCard
   id: StudentIDCard
-  name: student ID card
+  name: shuttle engineer ID card
   components:
     - type: Sprite
       layers:
         - state: unaffiliated
         - state: idstudent
     - type: PresetIdCard
-      job: Student
+      job: StationEngineer
 
 - type: entity
   parent: UnaffiliatedIDCard
@@ -59,3 +59,15 @@
         - state: idfreelancer
     - type: PresetIdCard
       job: Freelancer
+
+- type: entity
+  parent: UnaffiliatedIDCard
+  id: PilotIDCard
+  name: pilot ID card
+  components:
+    - type: Sprite
+      layers:
+        - state: unaffiliated
+        - state: idpilot
+    - type: PresetIdCard
+      job: Captain # Pilot is basically the cap

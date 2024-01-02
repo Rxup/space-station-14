@@ -1,4 +1,4 @@
-﻿using System.Diagnostics.CodeAnalysis;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Numerics;
 using System.Text;
@@ -333,6 +333,7 @@ public sealed class ShipwreckedRuleSystem : GameRuleSystem<ShipwreckedRuleCompon
         _biomeSystem.SetSeed(planetMapUid, biome, seed);
         _biomeSystem.SetTemplate(planetMapUid, biome, _prototypeManager.Index<BiomeTemplatePrototype>(destination.BiomePrototype));
         _biomeSystem.AddMarkerLayer(planetMapUid, biome, "OreTin");
+        _biomeSystem.AddMarkerLayer(planetMapUid, biome, "OreCoal");
         _biomeSystem.AddMarkerLayer(planetMapUid, biome, "OreGold");
         _biomeSystem.AddMarkerLayer(planetMapUid, biome, "OreSilver");
         _biomeSystem.AddMarkerLayer(planetMapUid, biome, "OrePlasma");
@@ -649,6 +650,10 @@ public sealed class ShipwreckedRuleSystem : GameRuleSystem<ShipwreckedRuleCompon
         }
 
         var jobProtoId = _random.Pick(component.AvailableJobPrototypes);
+        // If we get Shuttle Engineer - select either explorer or engineer, so there won't be too many of them
+        // TODO: Remade this whole system with separated roles to select
+        if (jobProtoId == "Student")
+            jobProtoId = _random.Pick(component.AvailablePremiumJobPrototypes);
 
         if (!_prototypeManager.TryIndex(jobProtoId, out var jobPrototype))
             throw new ArgumentException($"Invalid JobPrototype: {jobProtoId}");
@@ -844,9 +849,31 @@ public sealed class ShipwreckedRuleSystem : GameRuleSystem<ShipwreckedRuleCompon
         structure = _random.Pick(component.Structures);
         var offset = _random.NextVector2(-13, 13);
         var xy = _random.Pick(structure.Rooms).Center + offset;
+        var position = xy - offset;
 
         coordinates = new EntityCoordinates(component.PlanetMap.Value, xy);
 
+        // Write points where engines have fallen to new papers.
+        // This way players can find them in reasonable amount of time.
+        // Coordinates have an error of offset + 12, so it's giving pretty approximated data.
+        // TODO: Make this code rename created item to "Detached engine coords" or smth else
+        var query = EntityQueryEnumerator<ShipwreckedRuleComponent, GameRuleComponent>();
+        int engimanifcount = 0;
+        while (query.MoveNext(out var uid, out var shipwrecked, out var gameRule))
+        {
+            var engimanifest = SpawnManifest(uid, shipwrecked);
+            var engimanifestText = new StringBuilder();
+
+            engimanifestText.AppendLine(Loc.GetString("engines-manifest-line",
+                ("X", Math.Round(position.X + _random.Next(-12, 12))),
+                ("Y", Math.Round(position.Y + _random.Next(-12, 12))))); // Oh god 5 brackets in a row...
+            engimanifestText.AppendLine(Loc.GetString("engines-manifest-line-end"));
+
+            if (engimanifest != null)
+                _paperSystem.SetContent(engimanifest.Value, engimanifestText.ToString());
+            engimanifcount++;
+        }
+        _sawmill.Info("Sended engine messages: " + engimanifcount);
         return true;
     }
 
@@ -1911,8 +1938,10 @@ public sealed class ShipwreckedRuleSystem : GameRuleSystem<ShipwreckedRuleCompon
 
         DispatchShuttleAnnouncement(Loc.GetString("shipwrecked-hecate-shuttle-prepare-for-launch"),
             rule);
+		// Some cool music from qwertyqwerty so our travellers will know that it's time to run
+		_audioSystem.PlayGlobal("/Audio/Backmen/Misc/hierophant.ogg", Filter.Broadcast(), true);
 
-        rule.NextEventTick = _gameTiming.CurTime + TimeSpan.FromMinutes(2);
+        rule.NextEventTick = _gameTiming.CurTime + TimeSpan.FromMinutes(3);
         rule.EventSchedule.Add((TimeSpan.Zero, ShipwreckedEventId.Launch));
 
         var query = EntityQueryEnumerator<TransformComponent, ActorComponent>();
