@@ -481,3 +481,14 @@
       sprite: Backmen/Clothing/Uniforms/jumpsuit/maid_pink.rsi
     - type: Clothing
       sprite: Backmen/Clothing/Uniforms/jumpsuit/maid_pink.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformJumpsuitNavalUniform
+  name: Морская униформа
+  description: Униформа так и кричит "за ВДВ"
+  components:
+    - type: Sprite
+      sprite: Backmen/Clothing/Uniforms/jumpsuit/naval_uniform.rsi
+    - type: Clothing
+      sprite: Backmen/Clothing/Uniforms/jumpsuit/naval_uniform.rsi
