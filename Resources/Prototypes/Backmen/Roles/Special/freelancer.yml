@@ -23,6 +23,3 @@
     id: FreelancerIDCard
     shoes: ClothingShoesColorBlack
     outerClothing: ClothingOuterWinterCoat
-    back: ClothingBackpack
-  satchel: ClothingBackpackSatchel
-  duffelbag: ClothingBackpackDuffel

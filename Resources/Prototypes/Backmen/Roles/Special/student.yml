@@ -12,12 +12,11 @@
 - type: startingGear
   id: StudentGear
   equipment:
-    head: ClothingHeadHatHardhatYellow
-    jumpsuit: ClothingUniformJumpsuitEngineering
-    back: ClothingBackpackEngineering
-    shoes: ClothingShoesBootsWork
+    jumpsuit: ClothingUniformSchoolGakuranBlack
+    shoes: ClothingShoesColorBlack
+    back: ClothingBackpack
     id: StudentIDCard
-    outerClothing: ClothingOuterVestHazard
-  innerClothingSkirt: ClothingUniformJumpskirtEngineering
-  satchel: ClothingBackpackSatchelEngineering
-  duffelbag: ClothingBackpackDuffelEngineering
+    eyes: ClothingEyesGlasses
+  innerClothingSkirt: UniformSchoolgirlDusk
+  satchel: ClothingBackpackSatchel
+  duffelbag: ClothingBackpackDuffel

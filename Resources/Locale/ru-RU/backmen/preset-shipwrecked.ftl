@@ -36,8 +36,8 @@ job-name-explorer = Исследователь
 job-description-explorer = Составляет карты неизвестных планет для их изучения. 
 job-name-freelancer = Наёмник
 job-description-freelancer = Универсальный профи, возьмется за любую работу. Не забудьте заплатить!
-job-name-student = Инженер шаттла
-job-description-student = Занимается техническим обслуживанием шаттлов. Мастер шаттлостроения.
+job-name-student = Студент
+job-description-student = Студент который готовится к экзаменам.
 job-supervisors-generic = вашим работодателям
 job-supervisors-self = самому себе
 

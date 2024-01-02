@@ -650,10 +650,6 @@ public sealed class ShipwreckedRuleSystem : GameRuleSystem<ShipwreckedRuleCompon
         }
 
         var jobProtoId = _random.Pick(component.AvailableJobPrototypes);
-        // If we get Shuttle Engineer - select either explorer or engineer, so there won't be too many of them
-        // TODO: Remade this whole system with separated roles to select
-        if (jobProtoId == "Student")
-            jobProtoId = _random.Pick(component.AvailablePremiumJobPrototypes);
 
         if (!_prototypeManager.TryIndex(jobProtoId, out var jobPrototype))
             throw new ArgumentException($"Invalid JobPrototype: {jobProtoId}");
