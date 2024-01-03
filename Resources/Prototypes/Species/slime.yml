@@ -42,6 +42,8 @@
       required: false
     HeadTop: # :skull:
       points: 1 # Corvax Sponsors
+    Chest:
+      points: 1
       required: false
     Legs:
       points: 2
