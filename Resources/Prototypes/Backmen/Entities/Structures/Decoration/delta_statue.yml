@@ -1,0 +1,10 @@
+- type: entity
+  id: DeltaStatue
+  parent: BaseStructure
+  name: Delta Statue
+  description: Statue from Paradise Delta Station.
+  components:
+  - type: Sprite
+    sprite: Backmen/Structures/Decoration/delta_statue.rsi
+    state: delta_statue
+    drawdepth: Mobs
