@@ -8,6 +8,7 @@ using Content.Server.Backmen.Species.Shadowkin.Events;
 using Content.Server.Stunnable;
 using Content.Shared.Actions;
 using Content.Shared.Backmen.Abilities.Psionics;
+using Content.Shared.Backmen.Psionics.Events;
 using Content.Shared.CombatMode.Pacification;
 using Content.Shared.Cuffs.Components;
 using Content.Shared.Damage.Systems;
@@ -55,6 +56,13 @@ public sealed class ShadowkinDarkSwapSystem : EntitySystem
         SubscribeLocalEvent<ShadowkinDarkSwappedComponent, ComponentShutdown>(OnInvisShutdown);
         SubscribeLocalEvent<ShadowkinDarkSwappedComponent, MoveEvent>(OnMoveInInvis);
         SubscribeLocalEvent<ShadowkinDarkSwappedComponent, DamageChangedEvent>(OnDamageInInvis);
+        SubscribeLocalEvent<ShadowkinDarkSwappedComponent, DispelledEvent>(OnDispelled);
+    }
+
+    private void OnDispelled(Entity<ShadowkinDarkSwappedComponent> ent, ref DispelledEvent args)
+    {
+        RemCompDeferred<ShadowkinDarkSwappedComponent>(ent);
+        _stunSystem.TryParalyze(ent, TimeSpan.FromSeconds(5), true);
     }
 
     private void OnDamageInInvis(Entity<ShadowkinDarkSwappedComponent> ent, ref DamageChangedEvent args)
@@ -106,7 +114,7 @@ public sealed class ShadowkinDarkSwapSystem : EntitySystem
         var q = EntityQueryEnumerator<StaminaComponent, ShadowkinDarkSwappedComponent>();
         while (q.MoveNext(out var uid, out var stamina, out var comp))
         {
-            if (stamina.Critical)
+            if (stamina.Critical || HasComp<PsionicsDisabledComponent>(uid))
             {
                 RemCompDeferred<ShadowkinDarkSwappedComponent>(uid);
                 _stunSystem.TryParalyze(uid, TimeSpan.FromSeconds(5), true);
