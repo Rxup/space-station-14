@@ -1,4 +1,4 @@
-using Content.Server.Backmen.Shipwrecked.Prototypes;
+﻿using Content.Server.Backmen.Shipwrecked.Prototypes;
 using Content.Shared.Corvax.TTS;
 using Content.Shared.Procedural;
 using Content.Shared.Roles;
@@ -28,13 +28,6 @@ public sealed partial class ShipwreckedRuleComponent : Component
     [ViewVariables]
     [DataField("availableJobs", required: true)]
     public List<ProtoId<JobPrototype>> AvailableJobPrototypes = default!;
-
-    /// <summary>
-    /// List of all travellers jobs exept Freelancer.
-    /// </summary>
-    [ViewVariables]
-    [DataField("availablePremiumJobs", required: true)]
-    public List<ProtoId<JobPrototype>> AvailablePremiumJobPrototypes = default!;
 
     [ViewVariables]
     [DataField("tts")]

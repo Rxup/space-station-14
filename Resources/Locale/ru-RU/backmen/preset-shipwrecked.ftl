@@ -27,19 +27,18 @@ shipwrecked-list-all-objectives-complete = [color=green]Все задачи вы
 
 passenger-manifest-passenger-line = - { $name }, { $details }
 passenger-manifest-end-line = -< КОНЕЦ МАНИФЕСТА >-
-engines-manifest-line = Двигатель обрушился примерно по координатам { $X }, { $Y }. Будьте осторожны, если решитесь достать его: планета может таить в себе множество опасностей!
-engines-manifest-line-end = -< КОНЕЦ ЗАПИСИ >-
 
 ## Jobs
 
 job-name-explorer = Исследователь
-job-description-explorer = Составляет карты неизвестных планет для их изучения. 
+job-description-explorer = Составление карт неизвестной планеты для обеспечения безопасности и успешного исследования.
 job-name-freelancer = Наёмник
 job-description-freelancer = Универсальный профи, возьмется за любую работу. Не забудьте заплатить!
 job-name-student = Студент
 job-description-student = Студент который готовится к экзаменам.
-job-supervisors-generic = вашим работодателям
-job-supervisors-self = самому себе
+job-supervisors-generic = ваши работодатели
+job-supervisors-self = вы сами
+job-supervisors-teachers = ваши преподаватели
 
 ## Warp Points
 
@@ -111,7 +110,7 @@ shipwrecked-hecate-response-status-all-green-again = Мы готовы к зап
 shipwrecked-hecate-response-launch-need-thrusters = Похоже, что расположение двигателей изменилось. Все ли они по-прежнему прикреплены к судну?
 shipwrecked-hecate-response-launch-need-generator = Что-то нарушило работу нашей генераторной сети. Пожалуйста, убедитесь, что мы имеем достаточное питание перед запуском.
 shipwrecked-hecate-response-launch-need-console = Консоль шаттла, похоже, не выдерживает предпусковых тестов. Она снова повреждена...?
-shipwrecked-hecate-shuttle-prepare-for-launch = Этот шаттл будет отправляться через три минуты. Все на борт!
+shipwrecked-hecate-shuttle-prepare-for-launch = Этот шаттл будет отправляться через две минуты. Все на борт!
 shipwrecked-hecate-launch = Мы приступаем к запуску. Всем пристегнуться!
 shipwrecked-shuttle-popup-preparing = Вы слышите звук разогрева двигателей шаттла!
 shipwrecked-shuttle-popup-left-behind = Вы видите, как шаттл отрывается от поверхности и устремляется в небо...
