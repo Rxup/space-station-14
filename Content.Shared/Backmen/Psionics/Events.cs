@@ -1,6 +1,7 @@
 using Content.Shared.Actions;
 using Robust.Shared.Serialization;
 using Content.Shared.DoAfter;
+using Robust.Shared.GameStates;
 
 namespace Content.Shared.Backmen.Psionics.Events;
 
@@ -50,3 +51,9 @@ public sealed partial class MindSwapPowerReturnActionEvent : InstantActionEvent
 }
 public sealed partial class PyrokinesisPowerActionEvent : EntityTargetActionEvent {}
 public sealed partial class PsychokinesisPowerActionEvent : WorldTargetActionEvent {}
+
+[RegisterComponent, NetworkedComponent]
+public sealed partial class MetapsionicVisibleComponent : Component
+{
+
+}

@@ -3,6 +3,7 @@ using Content.Server.Actions;
 using Content.Server.Atmos.Components;
 using Content.Server.Body.Components;
 using Content.Server.Body.Systems;
+using Content.Server.Chemistry.Containers.EntitySystems;
 using Content.Server.Flash.Components;
 using Content.Server.Fluids.EntitySystems;
 using Content.Server.Forensics;
@@ -448,7 +449,9 @@ public sealed partial class FleshCultistSystem : EntitySystem
         var healPoint = MatchHealPoint(bloodstream.BloodMaxVolume.Value / 100, hasAppearance);
         var tempSol = new Solution() { MaxVolume = 5 };
 
-        tempSol.AddSolution(bloodstream.BloodSolution, _proto);
+        var bloodstreamSol = bloodstream.BloodSolution ?? bloodstream.ChemicalSolution ?? bloodstream.TemporarySolution;
+        if(bloodstreamSol != null)
+            tempSol.AddSolution(bloodstreamSol.Value.Comp.Solution, _proto);
 
         if (_puddleSystem.TrySpillAt(args.Args.Target.Value, tempSol.SplitSolution(50), out var puddleUid))
         {
@@ -464,14 +467,14 @@ public sealed partial class FleshCultistSystem : EntitySystem
             QueueDel(args.Args.Target.Value);
         }
 
-        if (_solutionSystem.TryGetInjectableSolution(uid, out var injectableSolution))
+        if (_solutionSystem.TryGetInjectableSolution(uid, out var injectableSolution, out _))
         {
             var transferSolution = new Solution();
             foreach (var reagent in component.HealDevourReagents)
             {
                 transferSolution.AddReagent(reagent.Reagent, reagent.Quantity * healPoint);
             }
-            _solutionSystem.TryAddSolution(uid, injectableSolution, transferSolution);
+            _solutionSystem.TryAddSolution(injectableSolution.Value, transferSolution);
         }
 
         component.Hunger += saturation;
@@ -565,11 +568,11 @@ public sealed partial class FleshCultistSystem : EntitySystem
             }
         }
 
-        if (TryComp<BloodstreamComponent>(uid, out var bloodstream))
+        if (TryComp<BloodstreamComponent>(uid, out var bloodstream) && bloodstream.BloodSolution != null)
         {
             var tempSol = new Solution() { MaxVolume = 5 };
 
-            tempSol.AddSolution(bloodstream.BloodSolution, _proto);
+            tempSol.AddSolution(bloodstream.BloodSolution.Value.Comp.Solution, _proto);
 
             if (_puddleSystem.TrySpillAt(uid, tempSol.SplitSolution(50), out var puddleUid))
             {
@@ -647,7 +650,7 @@ public sealed partial class FleshCultistSystem : EntitySystem
 
         foreach (var (puddle, solution) in puddles)
         {
-            if (!_solutionSystem.TryGetSolution(puddle, solution, out var puddleSolution))
+            if (!_solutionSystem.TryGetSolution(puddle, solution, out _, out var puddleSolution))
             {
                 continue;
             }
@@ -686,9 +689,9 @@ public sealed partial class FleshCultistSystem : EntitySystem
         {
             transferSolution.AddReagent(reagent.Reagent, reagent.Quantity * (totalBloodQuantity / 10));
         }
-        if (_solutionSystem.TryGetInjectableSolution(uid, out var injectableSolution))
+        if (_solutionSystem.TryGetInjectableSolution(uid, out var injectableSolution, out _))
         {
-            _solutionSystem.TryAddSolution(uid, injectableSolution, transferSolution);
+            _solutionSystem.TryAddSolution(injectableSolution.Value, transferSolution);
         }
         args.Handled = true;
     }
