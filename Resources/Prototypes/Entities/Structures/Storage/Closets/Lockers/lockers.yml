@@ -287,8 +287,9 @@
   parent: LockerBaseSecure
   name: head of security's locker
   components:
-  - type: EntityStorage
-    сapacity: 31
+  - type: Storage
+    grid:
+      -  0,0,7,5
   - type: Appearance
   - type: EntityStorageVisuals
     stateBaseClosed: hos
