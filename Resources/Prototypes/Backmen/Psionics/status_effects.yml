@@ -3,3 +3,6 @@
 
 - type: statusEffect
   id: PsionicallyInsulated
+
+- type: statusEffect
+  id: SeeAll

@@ -138,6 +138,9 @@
     - TemporaryBlindness
     - Pacified
     - StaminaModifier
+    - PsionicsDisabled
+    - PsionicallyInsulated
+    - SeeAll
   - type: Reflect
     enabled: false
     reflectProb: 0
@@ -266,6 +269,9 @@
     - Muted
     - Pacified
     - StaminaModifier
+    - PsionicsDisabled
+    - PsionicallyInsulated
+    - SeeAll
   - type: Blindable
   # Other
   - type: Temperature
