@@ -3,12 +3,11 @@
   biome: Snow
   lightColor: "#010103"
   structures:
-    RuinedDwellings: 2
+    RuinedDwellings: 3
     RuinedHospital: 2
-    RuinedShop: 4
+    RuinedShop: 3
   factions:
     - ZombieOutbreak
-    - FleshMonsterInvasion
     - MalfunctioningRobots
   atmosphere:
     volume: 2450
@@ -22,12 +21,11 @@
   biome: LowDesert
   lightColor: "#030101"
   structures:
-    RuinedDwellings: 3
-    RuinedHospital: 1
-    RuinedShop: 4
+    RuinedDwellings: 4
+    RuinedHospital: 2
+    RuinedShop: 2
   factions:
     - ZombieOutbreak
-    - FleshMonsterInvasion
     - MalfunctioningRobots
   atmosphere:
     volume: 2300
@@ -42,11 +40,10 @@
   lightColor: "#010301"
   structures:
     RuinedDwellings: 2
-    RuinedHospital: 2
-    RuinedShop: 4
+    RuinedHospital: 3
+    RuinedShop: 3
   factions:
     - ZombieOutbreak
-    - FleshMonsterInvasion
     - MalfunctioningRobots
   atmosphere:
     volume: 2400
@@ -60,12 +57,11 @@
   biome: Continental
   lightColor: "#D8B059" #DayLight
   structures:
-    RuinedDwellings: 1
-    RuinedHospital: 1
-    RuinedShop: 6
+    RuinedDwellings: 2
+    RuinedHospital: 2
+    RuinedShop: 4
   factions:
     - ZombieOutbreak
-    - FleshMonsterInvasion
     - MalfunctioningRobots
   atmosphere:
     volume: 2400
@@ -79,12 +75,11 @@
   biome: Lava
   lightColor: "#A34931" #LavaLight
   structures:
-    RuinedDwellings: 2
-    RuinedHospital: 6
-    RuinedShop: 2
+    RuinedDwellings: 4
+    RuinedHospital: 3
+    RuinedShop: 1
   factions:
     - ZombieOutbreak
-    - FleshMonsterInvasion
     - MalfunctioningRobots
   atmosphere:
     volume: 2300
@@ -98,12 +93,11 @@
   biome: RuinedMegacity
   lightColor: "#2b3143" #Evening
   structures:
-    RuinedDwellings: 1
-    RuinedHospital: 2
-    RuinedShop: 5
+    RuinedDwellings: 4
+    RuinedHospital: 3
+    RuinedShop: 2
   factions:
     - ZombieOutbreak
-    - FleshMonsterInvasion
     - MalfunctioningRobots
   atmosphere:
     volume: 2400
