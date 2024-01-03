@@ -3,7 +3,7 @@ using Content.Server.Actions;
 using Content.Server.Atmos.Components;
 using Content.Server.Body.Components;
 using Content.Server.Body.Systems;
-using Content.Server.Cloning;
+using Content.Server.Chemistry.Containers.EntitySystems;
 using Content.Server.Flash.Components;
 using Content.Server.Fluids.EntitySystems;
 using Content.Server.Forensics;
@@ -39,6 +39,7 @@ using Content.Shared.Popups;
 using Content.Shared.Random;
 using Content.Shared.Tag;
 using Robust.Shared.Audio;
+using Robust.Shared.Audio.Systems;
 using Robust.Shared.Collections;
 using Robust.Shared.Containers;
 using Robust.Shared.Physics;
@@ -78,7 +79,7 @@ public sealed partial class FleshCultistSystem : EntitySystem
     {
         base.Initialize();
 
-        SubscribeLocalEvent<FleshCultistComponent, ComponentStartup>(OnStartup);
+        SubscribeLocalEvent<FleshCultistComponent, MapInitEvent>(OnStartup);
         SubscribeLocalEvent<FleshCultistComponent, FleshCultistShopActionEvent>(OnShop);
         SubscribeLocalEvent<FleshCultistComponent, FleshCultistInsulatedImmunityMutationEvent>(OnInsulatedImmunityMutation);
         SubscribeLocalEvent<FleshCultistComponent, FleshCultistPressureImmunityMutationEvent>(OnPressureImmunityMutation);
@@ -205,7 +206,7 @@ public sealed partial class FleshCultistSystem : EntitySystem
     [ValidatePrototypeId<EntityPrototype>] private const string FleshCultistDevour = "FleshCultistDevour";
     [ValidatePrototypeId<EntityPrototype>] private const string FleshCultistAbsorbBloodPool = "FleshCultistAbsorbBloodPool";
 
-    private void OnStartup(EntityUid uid, FleshCultistComponent component, ComponentStartup args)
+    private void OnStartup(EntityUid uid, FleshCultistComponent component, MapInitEvent args)
     {
         EnsureComp<StoreComponent>(uid);
         //update the icon
@@ -213,8 +214,7 @@ public sealed partial class FleshCultistSystem : EntitySystem
 
 
 
-        _store.TryAddCurrency(new Dictionary<string, FixedPoint2>
-            { {component.StolenCurrencyPrototype, component.StartingEvolutionPoint} }, uid);
+        _store.TryAddCurrency(new Dictionary<string, FixedPoint2> { {component.StolenCurrencyPrototype, component.StartingEvolutionPoint} }, uid);
 
 
         _action.AddAction(uid, ref component.FleshCultistShop, FleshCultistShop);
@@ -372,9 +372,8 @@ public sealed partial class FleshCultistSystem : EntitySystem
 
         var xform = Transform(args.Args.Target.Value);
         var coordinates = xform.Coordinates;
-        var filter = Filter.Pvs(args.Args.Target.Value, entityManager: EntityManager);
         var audio = AudioParams.Default.WithVariation(0.025f);
-        _audio.Play(component.DevourSound, filter, coordinates, true, audio);
+        _audio.PlayPvs(component.DevourSound, args.Args.Target.Value, audio);
         _popupSystem.PopupEntity(Loc.GetString("flesh-cultist-devour-target",
                 ("Entity", uid), ("Target", args.Args.Target)), uid);
 
@@ -450,7 +449,9 @@ public sealed partial class FleshCultistSystem : EntitySystem
         var healPoint = MatchHealPoint(bloodstream.BloodMaxVolume.Value / 100, hasAppearance);
         var tempSol = new Solution() { MaxVolume = 5 };
 
-        tempSol.AddSolution(bloodstream.BloodSolution, _proto);
+        var bloodstreamSol = bloodstream.BloodSolution ?? bloodstream.ChemicalSolution ?? bloodstream.TemporarySolution;
+        if(bloodstreamSol != null)
+            tempSol.AddSolution(bloodstreamSol.Value.Comp.Solution, _proto);
 
         if (_puddleSystem.TrySpillAt(args.Args.Target.Value, tempSol.SplitSolution(50), out var puddleUid))
         {
@@ -466,14 +467,14 @@ public sealed partial class FleshCultistSystem : EntitySystem
             QueueDel(args.Args.Target.Value);
         }
 
-        if (_solutionSystem.TryGetInjectableSolution(uid, out var injectableSolution))
+        if (_solutionSystem.TryGetInjectableSolution(uid, out var injectableSolution, out _))
         {
             var transferSolution = new Solution();
             foreach (var reagent in component.HealDevourReagents)
             {
                 transferSolution.AddReagent(reagent.Reagent, reagent.Quantity * healPoint);
             }
-            _solutionSystem.TryAddSolution(uid, injectableSolution, transferSolution);
+            _solutionSystem.TryAddSolution(injectableSolution.Value, transferSolution);
         }
 
         component.Hunger += saturation;
@@ -545,9 +546,8 @@ public sealed partial class FleshCultistSystem : EntitySystem
             ("Entity", uid), ("EntityTransform", abommob)), abommob, Filter.PvsExcept(abommob),
             true, PopupType.LargeCaution);
 
-        var filter = Filter.Pvs(uid, entityManager: EntityManager);
         var audio = AudioParams.Default.WithVariation(0.025f);
-        _audio.Play(component.SoundMutation, filter, coordinates, true, audio);
+        _audio.PlayPvs(component.SoundMutation, uid, audio);
 
         if (TryComp(uid, out ContainerManagerComponent? container))
         {
@@ -568,11 +568,11 @@ public sealed partial class FleshCultistSystem : EntitySystem
             }
         }
 
-        if (TryComp<BloodstreamComponent>(uid, out var bloodstream))
+        if (TryComp<BloodstreamComponent>(uid, out var bloodstream) && bloodstream.BloodSolution != null)
         {
             var tempSol = new Solution() { MaxVolume = 5 };
 
-            tempSol.AddSolution(bloodstream.BloodSolution, _proto);
+            tempSol.AddSolution(bloodstream.BloodSolution.Value.Comp.Solution, _proto);
 
             if (_puddleSystem.TrySpillAt(uid, tempSol.SplitSolution(50), out var puddleUid))
             {
@@ -650,7 +650,7 @@ public sealed partial class FleshCultistSystem : EntitySystem
 
         foreach (var (puddle, solution) in puddles)
         {
-            if (!_solutionSystem.TryGetSolution(puddle, solution, out var puddleSolution))
+            if (!_solutionSystem.TryGetSolution(puddle, solution, out _, out var puddleSolution))
             {
                 continue;
             }
@@ -689,9 +689,9 @@ public sealed partial class FleshCultistSystem : EntitySystem
         {
             transferSolution.AddReagent(reagent.Reagent, reagent.Quantity * (totalBloodQuantity / 10));
         }
-        if (_solutionSystem.TryGetInjectableSolution(uid, out var injectableSolution))
+        if (_solutionSystem.TryGetInjectableSolution(uid, out var injectableSolution, out _))
         {
-            _solutionSystem.TryAddSolution(uid, injectableSolution, transferSolution);
+            _solutionSystem.TryAddSolution(injectableSolution.Value, transferSolution);
         }
         args.Handled = true;
     }

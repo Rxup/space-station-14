@@ -6,7 +6,6 @@ using System.Threading.Tasks;
 using Content.Corvax.Interfaces.Server;
 using Content.Shared.Backmen.Sponsors;
 using Content.Shared.Backmen.CCVar;
-using Content.Shared.Corvax.CCCVars;
 using Robust.Shared.Configuration;
 using Robust.Shared.Network;
 using Robust.Shared.Utility;

@@ -8,14 +8,13 @@ using Content.Shared.Mobs.Components;
 using Content.Server.Chat.Systems;
 using Content.Server.Chat.Managers;
 using Content.Server.Botany;
-using Content.Server.Chemistry.EntitySystems;
+using Content.Server.Chemistry.Containers.EntitySystems;
 using Content.Server.Fluids.EntitySystems;
 using Content.Shared.Backmen.Abilities.Psionics;
 using Content.Shared.Backmen.Psionics.Glimmer;
 using Content.Shared.Chemistry.EntitySystems;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
-using Robust.Server.GameObjects;
 using Robust.Shared.Player;
 
 namespace Content.Server.Backmen.Research.Oracle;
@@ -160,7 +159,7 @@ public sealed class OracleSystem : EntitySystem
             ("telepathicChannelName", Loc.GetString("chat-manager-telepathic-channel-name")), ("message", message));
 
         _chatManager.ChatMessageToOne(Shared.Chat.ChatChannel.Telepathic,
-            message, messageWrap, uid, false, actor.PlayerSession.ConnectedClient, Color.PaleVioletRed);
+            message, messageWrap, uid, false, actor.PlayerSession.Channel, Color.PaleVioletRed);
 
         if (component.LastDesiredPrototype != null)
         {
@@ -169,7 +168,7 @@ public sealed class OracleSystem : EntitySystem
                 ("telepathicChannelName", Loc.GetString("chat-manager-telepathic-channel-name")), ("message", message2));
 
             _chatManager.ChatMessageToOne(Shared.Chat.ChatChannel.Telepathic,
-                message2, messageWrap2, uid, false, actor.PlayerSession.ConnectedClient, Color.PaleVioletRed);
+                message2, messageWrap2, uid, false, actor.PlayerSession.Channel, Color.PaleVioletRed);
         }
     }
     private void OnInteractUsing(EntityUid uid, OracleComponent component, InteractUsingEvent args)
@@ -201,13 +200,13 @@ public sealed class OracleSystem : EntitySystem
             return;
         }
 
-        EntityManager.QueueDeleteEntity(args.Used);
+        QueueDel(args.Used);
 
-        EntityManager.SpawnEntity("ResearchDisk5000", Transform(args.User).Coordinates);
+        Spawn("ResearchDisk5000", Transform(args.User).Coordinates);
 
         DispenseLiquidReward(uid);
 
-        int i = _random.Next(1, 4);
+        var i = _random.Next(1, 4);
 
         while (i != 0)
         {
@@ -231,7 +230,7 @@ public sealed class OracleSystem : EntitySystem
     }
     private void DispenseLiquidReward(EntityUid uid)
     {
-        if (!_solutionSystem.TryGetSolution(uid, OracleComponent.SolutionName, out var fountainSol))
+        if (!_solutionSystem.TryGetSolution(uid, OracleComponent.SolutionName, out var fountainEnt, out var fountainSol))
             return;
 
         var allReagents = _prototypeManager.EnumeratePrototypes<ReagentPrototype>()
@@ -255,7 +254,7 @@ public sealed class OracleSystem : EntitySystem
 
         sol.AddReagent(reagent, amount);
 
-        _solutionSystem.TryMixAndOverflow(uid, fountainSol, sol, fountainSol.MaxVolume, out var overflowing);
+        _solutionSystem.TryMixAndOverflow(fountainEnt.Value, sol, fountainSol.MaxVolume, out var overflowing);
 
         if (overflowing != null && overflowing.Volume > 0)
             _puddleSystem.TrySpillAt(uid, overflowing, out var _);

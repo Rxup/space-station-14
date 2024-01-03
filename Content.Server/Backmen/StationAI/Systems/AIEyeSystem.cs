@@ -1,32 +1,20 @@
-using Content.Server.Backmen.Abilities.Psionics;
 using Content.Server.Mind;
 using Content.Server.Power.Components;
 using Content.Server.Speech.Components;
-using Content.Server.Storage.Components;
 using Content.Shared.Actions;
 using Content.Shared.Backmen.StationAI;
 using Content.Shared.Eye;
-using Content.Shared.Hands;
-using Content.Shared.Hands.EntitySystems;
-using Content.Shared.Interaction.Events;
-using Content.Shared.Inventory.Events;
-using Content.Shared.Item;
 using Content.Shared.Mind;
 using Content.Shared.Mind.Components;
 using Robust.Shared.Prototypes;
 using Content.Shared.Mobs;
 using Content.Shared.Mobs.Systems;
-using Content.Shared.Movement.Events;
-using Content.Shared.Physics.Pull;
-using Content.Shared.Random;
 using Content.Shared.Random.Helpers;
 using Content.Shared.Silicons.Laws;
 using Content.Shared.Silicons.Laws.Components;
-using Content.Shared.Throwing;
 using Robust.Shared.Audio;
-using Robust.Shared.Player;
 using Robust.Server.GameObjects;
-using Robust.Shared.Random;
+using Robust.Shared.Audio.Systems;
 
 namespace Content.Server.Backmen.StationAI;
 
@@ -225,7 +213,7 @@ public sealed class AIEyePowerSystem : EntitySystem
     }
 
     private static readonly SoundSpecifier AIDeath =
-        new SoundPathSpecifier("/Audio/SimpleStation14/Machines/AI/borg_death.ogg");
+        new SoundPathSpecifier("/Audio/Backmen/Machines/AI/borg_death.ogg");
 
     private void OnMobStateChanged(EntityUid uid, StationAIComponent component, MobStateChangedEvent args)
     {

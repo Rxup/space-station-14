@@ -1,4 +1,5 @@
 using Robust.Shared.Audio;
+using Robust.Shared.Audio.Components;
 
 namespace Content.Server.Backmen.Psionics.NPC.GlimmerWisp;
 
@@ -21,6 +22,6 @@ public sealed partial class GlimmerWispComponent : Component
     [DataField("drainCancelSound")]
     public SoundSpecifier DrainCancelSoundPath = new SoundPathSpecifier("/Audio/Voice/Human/malescream_guardian.ogg");
 
-    public IPlayingAudioStream? DrainStingStream;
+    public Entity<AudioComponent>? DrainStingStream;
     public EntityUid? DrainTarget;
 }

@@ -1,6 +1,5 @@
 using Content.Server.Damage.Systems;
 using Content.Server.Shuttles.Components;
-using Content.Shared.Tools;
 using JetBrains.Annotations;
 using Robust.Shared.Map;
 using Content.Shared.Tag;
@@ -14,17 +13,13 @@ using Content.Server.Light.Components;
 using Content.Server.StationEvents.Components;
 using Content.Shared.SubFloor;
 using Content.Server.SurveillanceCamera;
-using Content.Server.Atmos.Components;
 using Content.Server.Atmos.Piping.Binary.Components;
 using Content.Server.Atmos.Piping.Trinary.Components;
 using Content.Server.Construction;
 using Content.Server.Emp;
 using Content.Server.Gravity;
 using Content.Server.Power.EntitySystems;
-using Content.Shared.Damage;
-using Content.Shared.Damage.Components;
 using Content.Shared.DeviceLinking.Events;
-using Content.Shared.Tiles;
 using Content.Shared.Tools.Systems;
 
 namespace Content.Server.Backmen.Arrivals;
@@ -171,12 +166,10 @@ public sealed class ArrivalsProtectSystem : EntitySystem
         if (TryComp<GasMixerComponent>(uid, out var gasMinerComponent))
         {
             (gasMinerComponent as dynamic).Enabled = true;
-            Dirty(uid, gasMinerComponent);
         }
         if (TryComp<GasPressurePumpComponent>(uid, out var gasPressurePumpComponent))
         {
             gasPressurePumpComponent.Enabled = true;
-            Dirty(uid, gasPressurePumpComponent);
         }
 
         if(TryComp<DoorComponent>(uid, out var doorComp))
@@ -226,7 +219,7 @@ public sealed class ArrivalsProtectSystem : EntitySystem
         var enumerator = transformQuery.GetComponent(uid).ChildEnumerator;
         while (enumerator.MoveNext(out var child))
         {
-            RecursiveGodmode(transformQuery, child.Value);
+            RecursiveGodmode(transformQuery, child);
         }
     }
 

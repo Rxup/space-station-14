@@ -8,9 +8,8 @@
         - state: green
         - sprite: Backmen/Mobs/Silicon/BPLA.rsi
           state: shell
-    - type: ConditionalSpawner
-      prototypes:
-        - BackmenDrone
+    - type: SpawnPoint
+      job_id: BKBPLATech
 
 - type: entity
   name: BPLA Spawner MED
@@ -22,6 +21,6 @@
         - state: green
         - sprite: Backmen/Mobs/Silicon/BPLAMED.rsi
           state: shell
-    - type: ConditionalSpawner
-      prototypes:
-        - BackmenDroneMED
+    - type: SpawnPoint
+      job_id: BKBPLAMED 
+        

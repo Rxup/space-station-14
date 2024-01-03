@@ -1,6 +1,6 @@
 - type: entity
   save: false
   name: Urist McOni
-  parent: MobOniBase
+  parent: [MobOniBase, BaseMob]
   id: MobOni
 

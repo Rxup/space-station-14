@@ -57,13 +57,13 @@ public abstract partial class SharedCryoPodSystem: EntitySystem
 
         if (_light.TryGetLight(uid, out var light))
         {
-            _light.SetEnabled(uid, cryoPodEnabled && cryoPod.BodyContainer.ContainedEntity != null, light);
+            _light.SetEnabled(uid, cryoPodEnabled && cryoPod.BodyContainer?.ContainedEntity != null, light);
         }
 
         if (!Resolve(uid, ref appearance))
             return;
 
-        _appearanceSystem.SetData(uid, CryoPodComponent.CryoPodVisuals.ContainsEntity, cryoPod.BodyContainer.ContainedEntity == null, appearance);
+        _appearanceSystem.SetData(uid, CryoPodComponent.CryoPodVisuals.ContainsEntity, cryoPod.BodyContainer?.ContainedEntity == null, appearance);
         _appearanceSystem.SetData(uid, CryoPodComponent.CryoPodVisuals.IsOn, cryoPodEnabled, appearance);
     }
 
@@ -76,7 +76,7 @@ public abstract partial class SharedCryoPodSystem: EntitySystem
             return false;
 
         var xform = Transform(target);
-        cryoPodComponent.BodyContainer.Insert(target, transform: xform);
+        _containerSystem.Insert((target, xform), cryoPodComponent.BodyContainer);
 
         EnsureComp<InsideCryoPodComponent>(target);
         _standingStateSystem.Stand(target, force: true); // Force-stand the mob so that the cryo pod sprite overlays it fully
@@ -117,7 +117,7 @@ public abstract partial class SharedCryoPodSystem: EntitySystem
         if (cryoPodComponent.BodyContainer.ContainedEntity is not {Valid: true} contained)
             return null;
 
-        cryoPodComponent.BodyContainer.Remove(contained);
+        _containerSystem.Remove(contained, cryoPodComponent.BodyContainer);
         // InsideCryoPodComponent is removed automatically in its EntGotRemovedFromContainerMessage listener
         // RemComp<InsideCryoPodComponent>(contained);
 

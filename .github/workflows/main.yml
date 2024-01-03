@@ -19,7 +19,7 @@ jobs:
       uses: appleboy/ssh-action@master
       with:
         host: cdn.backmen.ru
-        username: root
+        username: buildbot
         key: ${{ secrets.BACKMEN_BUILDS_PUSH_KEY }}
         script: |
           if [ -d "/opt/builds/${{ github.sha }}" ]
@@ -37,7 +37,7 @@ jobs:
     - name: Setup .NET Core
       uses: actions/setup-dotnet@v3.2.0
       with:
-        dotnet-version: 7.0.x
+        dotnet-version: 8.0.x
 
     - name: Get Engine Tag
       run: |
@@ -68,7 +68,7 @@ jobs:
       uses: appleboy/scp-action@master
       with:
         host: cdn.backmen.ru
-        username: root
+        username: buildbot
         key: ${{ secrets.BACKMEN_BUILDS_PUSH_KEY }}
         source: "release/${{ github.sha }}"
         target: "/opt/builds/"
@@ -79,7 +79,7 @@ jobs:
       uses: appleboy/ssh-action@master
       with:
         host: cdn.backmen.ru
-        username: root
+        username: buildbot
         key: ${{ secrets.BACKMEN_BUILDS_PUSH_KEY }}
         script: "curl -X POST -d \"\" -H 'Authorization: Bearer ${{ secrets.CDN_TOKEN }}' http://localhost:5001/control/update"
 
@@ -87,6 +87,6 @@ jobs:
       uses: appleboy/ssh-action@master
       with:
         host: cdn.backmen.ru
-        username: root
+        username: buildbot
         key: ${{ secrets.BACKMEN_BUILDS_PUSH_KEY }}
         script: "python3 /opt/push.py"

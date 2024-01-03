@@ -101,7 +101,8 @@
   id: ClothingBeltSecuritySuper
   components:
     - type: Storage
-      maxTotalWeight: 60
+      grid:
+      - 0,0,5,4
     - type: StorageFill
       contents:
         - id: WeaponDisablerSuper

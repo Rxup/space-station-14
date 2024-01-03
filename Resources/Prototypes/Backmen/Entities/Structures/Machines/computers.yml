@@ -6,7 +6,7 @@
   components:
   - type: ShipyardConsole
   - type: AccessReader
-    access: [["Captain"], ["CCGeneral"]]
+    access: [["Captain"], ["CentralCommand"]]
   - type: ActivatableUI
     key: enum.ShipyardConsoleUiKey.Shipyard
   - type: UserInterface

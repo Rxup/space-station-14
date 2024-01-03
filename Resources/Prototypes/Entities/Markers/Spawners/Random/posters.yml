@@ -149,4 +149,17 @@
       - PosterLegitPeriodicTable
       - PosterLegitRenault
       - PosterLegitNTTGC
+      - PosterLegitEarthGovMC
+      - PosterLegitEarthGov
+      - PosterLegitEarthGov2
+      - PosterLegitEarthGov3
+      - PosterLegitEarthGov4
+      - PosterLegitEarthGov5
+#      - PosterLegitEarthGov6 //official censor ship
+      - PosterLegitEarthGov7
+      - PosterLegitEarthGov8
+      - PosterLegitEarthGov9
+      - PosterLegitEarthGov10
+      - PosterLegitEarthGov11
+      - PosterLegitEarthGov12
     chance: 1

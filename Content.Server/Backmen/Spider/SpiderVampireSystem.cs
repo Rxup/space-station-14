@@ -4,16 +4,15 @@ using Content.Server.Actions;
 using Content.Shared.Nutrition.EntitySystems;
 using Content.Shared.Mobs.Systems;
 using Content.Server.Popups;
-using Robust.Shared.GameObjects;
 using Content.Shared.DoAfter;
 using Robust.Shared.Audio;
 using Content.Shared.Nutrition.AnimalHusbandry;
 using Content.Shared.Nutrition.Components;
 using Content.Server.Administration.Logs;
 using Robust.Shared.Random;
-using Robust.Shared.Player;
 using Content.Shared.Database;
 using Content.Shared.IdentityManagement;
+using Robust.Shared.Audio.Systems;
 using Robust.Shared.Timing;
 
 namespace Content.Server.Backmen.Spider;
@@ -95,7 +94,7 @@ public sealed class SpiderVampireSystem : EntitySystem
             BreakOnDamage = true,
         });
 
-        _audio.Play(HairballPlay, Filter.Pvs(uid, entityManager: EntityManager), Transform(uid).Coordinates, true,
+        _audio.PlayPvs(HairballPlay, uid,
             AudioParams.Default.WithVariation(0.025f));
         args.Handled = true;
     }

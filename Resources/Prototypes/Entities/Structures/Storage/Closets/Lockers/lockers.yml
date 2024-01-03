@@ -21,7 +21,7 @@
 # Cargo
 - type: entity
   id: LockerQuarterMaster
-  parent: LockerBase
+  parent: LockerBaseSecure
   name: quartermaster's locker
   components:
   - type: Appearance
@@ -156,7 +156,7 @@
     stateDoorOpen: freezer_open
     stateDoorClosed: freezer_door
   - type: ExplosionResistance
-    resistance: 0.90
+    damageCoefficient: 0.01
   - type: AntiRottingContainer
 
 - type: entity
@@ -287,6 +287,8 @@
   parent: LockerBaseSecure
   name: head of security's locker
   components:
+  - type: EntityStorage
+    capacity: 40
   - type: Appearance
   - type: EntityStorageVisuals
     stateBaseClosed: hos

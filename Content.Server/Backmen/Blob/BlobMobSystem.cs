@@ -1,4 +1,3 @@
-using Content.Server.Backmen.Blob.Fluids.EntitySystems;
 using Content.Server.Explosion.EntitySystems;
 using Content.Server.Fluids.EntitySystems;
 using Content.Server.Popups;
@@ -8,6 +7,7 @@ using Content.Shared.Damage;
 using Content.Shared.Interaction.Events;
 using Content.Shared.Popups;
 using Robust.Shared.Audio;
+using Robust.Shared.Audio.Systems;
 
 namespace Content.Server.Backmen.Blob;
 
@@ -15,8 +15,8 @@ public sealed class BlobMobSystem : EntitySystem
 {
     [Dependency] private readonly DamageableSystem _damageableSystem = default!;
     [Dependency] private readonly PopupSystem _popupSystem = default!;
-    [Dependency] private readonly SmokeSystem _smokeSystem = default!;
-    [Dependency] private readonly SharedAudioSystem _audioSystem = default!;
+    //[Dependency] private readonly SmokeSystem _smokeSystem = default!;
+    //[Dependency] private readonly SharedAudioSystem _audioSystem = default!;
 
     public override void Initialize()
     {
@@ -24,7 +24,7 @@ public sealed class BlobMobSystem : EntitySystem
 
         SubscribeLocalEvent<BlobMobComponent, BlobMobGetPulseEvent>(OnPulsed);
         SubscribeLocalEvent<BlobMobComponent, AttackAttemptEvent>(OnBlobAttackAttempt);
-        SubscribeLocalEvent<SmokeOnTriggerComponent, TriggerEvent>(HandleSmokeTrigger);
+        //SubscribeLocalEvent<SmokeOnTriggerComponent, TriggerEvent>(HandleSmokeTrigger);
     }
 
     private void OnPulsed(EntityUid uid, BlobMobComponent component, BlobMobGetPulseEvent args)
@@ -42,7 +42,7 @@ public sealed class BlobMobSystem : EntitySystem
         args.Cancel();
     }
 
-
+/*
     private void HandleSmokeTrigger(EntityUid uid, SmokeOnTriggerComponent comp, TriggerEvent args)
     {
         var xform = Transform(uid);
@@ -60,5 +60,5 @@ public sealed class BlobMobSystem : EntitySystem
         _smokeSystem.StartSmoke(smokeEnt, solution, comp.Time, comp.SpreadAmount, smoke);
         _audioSystem.PlayPvs(comp.Sound, xform.Coordinates, AudioParams.Default.WithVariation(0.125f));
         args.Handled = true;
-    }
+    }*/
 }

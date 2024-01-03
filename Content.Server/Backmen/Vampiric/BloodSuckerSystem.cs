@@ -9,16 +9,17 @@ using Content.Shared.Backmen.Vampiric;
 using Content.Server.Atmos.Components;
 using Content.Server.Body.Components;
 using Content.Server.Body.Systems;
-using Content.Server.Chemistry.EntitySystems;
+using Content.Server.Chemistry.Containers.EntitySystems;
 using Content.Server.Popups;
 using Content.Server.HealthExaminable;
 using Content.Server.DoAfter;
+using Content.Server.Nutrition.Components;
 using Content.Server.Nutrition.EntitySystems;
 using Content.Shared.Chemistry;
+using Content.Shared.Chemistry.Components;
 using Content.Shared.Chemistry.EntitySystems;
 using Robust.Shared.Prototypes;
-using Robust.Shared.Player;
-using Robust.Shared.Audio;
+using Robust.Shared.Audio.Systems;
 using Robust.Shared.Utility;
 
 namespace Content.Server.Backmen.Vampiric;
@@ -36,6 +37,7 @@ public sealed class BloodSuckerSystem : EntitySystem
     [Dependency] private readonly ISharedAdminLogManager _adminLogger = default!;
     [Dependency] private readonly SharedInteractionSystem _interactionSystem = default!;
     [Dependency] private readonly ReactiveSystem _reactiveSystem = default!;
+    [Dependency] private readonly SharedAudioSystem _audio = default!;
     public override void Initialize()
     {
         base.Initialize();
@@ -126,13 +128,13 @@ public sealed class BloodSuckerSystem : EntitySystem
             }
         }
 
-        if (stream.BloodReagent != "Blood")
+        if (stream.BloodReagent != "Blood" || stream.BloodSolution == null)
         {
             _popups.PopupEntity(Loc.GetString("bloodsucker-fail-not-blood", ("target", victim)), victim, bloodsucker, Shared.Popups.PopupType.Medium);
             return;
         }
 
-        if (stream.BloodSolution.Volume <= 1)
+        if (stream.BloodSolution.Value.Comp.Solution.Volume <= 1)
         {
             if (HasComp<BloodSuckedComponent>(victim))
                 _popups.PopupEntity(Loc.GetString("bloodsucker-fail-no-blood-bloodsucked", ("target", victim)), victim, bloodsucker, Shared.Popups.PopupType.Medium);
@@ -168,22 +170,24 @@ public sealed class BloodSuckerSystem : EntitySystem
             return false;
 
         // No blood left, yikes.
-        if (bloodstream.BloodSolution.Volume == 0)
+        if (bloodstream.BloodSolution == null || bloodstream.BloodSolution.Value.Comp.Solution.Volume == 0)
             return false;
 
         // Does bloodsucker have a stomach?
-        var stomachList = _bodySystem.GetBodyOrganComponents<StomachComponent>(bloodsucker);
-        if (stomachList.Count == 0)
+        var stomachList = _bodySystem.GetBodyOrganComponents<StomachComponent>(bloodsucker).FirstOrNull();
+        if (stomachList == null)
             return false;
 
-        if (!_solutionSystem.TryGetSolution(stomachList[0].Comp.Owner, StomachSystem.DefaultSolutionName, out var stomachSolution))
+        if (!_solutionSystem.TryGetSolution(stomachList.Value.Comp.Owner, StomachSystem.DefaultSolutionName, out var stomachSolution))
             return false;
 
         // Are we too full?
         var unitsToDrain = bloodsuckerComp.UnitsToSucc;
 
-        if (stomachSolution.AvailableVolume < unitsToDrain)
-            unitsToDrain = (float) stomachSolution.AvailableVolume;
+        var stomachAvailableVolume = stomachSolution.Value.Comp.Solution.AvailableVolume;
+
+        if (stomachAvailableVolume < unitsToDrain)
+            unitsToDrain = (float) stomachAvailableVolume;
 
         if (unitsToDrain <= 2)
         {
@@ -194,15 +198,16 @@ public sealed class BloodSuckerSystem : EntitySystem
         _adminLogger.Add(Shared.Database.LogType.MeleeHit, Shared.Database.LogImpact.Medium, $"{ToPrettyString(bloodsucker):player} sucked blood from {ToPrettyString(victim):target}");
 
         // All good, succ time.
-        SoundSystem.Play("/Audio/Items/drink.ogg", Filter.Pvs(bloodsucker), bloodsucker);
+        _audio.PlayPvs("/Audio/Items/drink.ogg", bloodsucker);
         _popups.PopupEntity(Loc.GetString("bloodsucker-blood-sucked-victim", ("sucker", bloodsucker)), victim, victim, Shared.Popups.PopupType.LargeCaution);
         _popups.PopupEntity(Loc.GetString("bloodsucker-blood-sucked", ("target", victim)), bloodsucker, bloodsucker, Shared.Popups.PopupType.Medium);
         EnsureComp<BloodSuckedComponent>(victim);
 
+        var bloodSolution = bloodstream.BloodSolution.Value;
         // Make everything actually ingest.
-        var temp = _solutionSystem.SplitSolution(victim, bloodstream.BloodSolution, unitsToDrain);
+        var temp = _solutionSystem.SplitSolution(bloodSolution, unitsToDrain);
         _reactiveSystem.DoEntityReaction(bloodsucker, temp, Shared.Chemistry.Reagent.ReactionMethod.Ingestion);
-        _stomachSystem.TryTransferSolution(stomachList[0].Comp.Owner, temp, stomachList[0].Comp);
+        _stomachSystem.TryTransferSolution(stomachList.Value.Comp.Owner, temp, stomachList.Value.Comp);
 
         // Add a little pierce
         DamageSpecifier damage = new();
@@ -210,9 +215,9 @@ public sealed class BloodSuckerSystem : EntitySystem
 
         _damageableSystem.TryChangeDamage(victim, damage, true, true);
 
-        if (bloodsuckerComp.InjectWhenSucc && _solutionSystem.TryGetInjectableSolution(victim, out var injectable))
+        if (bloodsuckerComp.InjectWhenSucc)
         {
-            _solutionSystem.TryAddReagent(victim, injectable, bloodsuckerComp.InjectReagent, bloodsuckerComp.UnitsToInject, out var acceptedQuantity);
+            _solutionSystem.TryAddReagent(bloodSolution, bloodsuckerComp.InjectReagent, bloodsuckerComp.UnitsToInject, out var acceptedQuantity);
         }
         return true;
     }

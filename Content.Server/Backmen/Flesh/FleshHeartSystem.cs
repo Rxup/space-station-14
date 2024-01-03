@@ -26,6 +26,7 @@ using Content.Shared.Random.Helpers;
 using Content.Shared.Tag;
 using Robust.Server.Containers;
 using Robust.Shared.Audio;
+using Robust.Shared.Audio.Systems;
 using Robust.Shared.Containers;
 using Robust.Shared.Map;
 using Robust.Shared.Physics;
@@ -78,12 +79,12 @@ namespace Content.Server.Backmen.Flesh
 
         private void OnShutdown(EntityUid uid, FleshHeartComponent component, ComponentShutdown args)
         {
-            component.AmbientAudioStream?.Stop();
+            _audioSystem.Stop(component.AmbientAudioStream, component.AmbientAudioStream);
         }
 
         private void OnDestruction(EntityUid uid, FleshHeartComponent component, DestructionEventArgs args)
         {
-            component.AmbientAudioStream?.Stop();
+            _audioSystem.Stop(component.AmbientAudioStream, component.AmbientAudioStream);
             var stationUid = _stationSystem.GetOwningStation(uid);
             if (stationUid != null)
             {
@@ -110,7 +111,7 @@ namespace Content.Server.Backmen.Flesh
             var fleshWallsQuery = EntityQueryEnumerator<TagComponent>();
             while (fleshWallsQuery.MoveNext(out var ent, out var comp))
             {
-                var isFleshWall = _tagSystem.HasAllTags(ent, "Wall", "Flesh");
+                var isFleshWall = _tagSystem.HasAllTags(comp, "Wall", "Flesh");
                 if (isFleshWall)
                 {
                     fleshWalls.Add(ent);

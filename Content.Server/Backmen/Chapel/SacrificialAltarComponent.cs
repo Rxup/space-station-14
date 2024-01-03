@@ -1,5 +1,6 @@
 using Content.Shared.DoAfter;
 using Robust.Shared.Audio;
+using Robust.Shared.Audio.Components;
 
 namespace Content.Server.Backmen.Chapel;
 
@@ -15,7 +16,7 @@ public sealed partial class SacrificialAltarComponent : Component
     [DataField("sacrificeSound")]
     public SoundSpecifier SacrificeSoundPath = new SoundPathSpecifier("/Audio/Effects/clang2.ogg");
 
-    public IPlayingAudioStream? SacrificeStingStream;
+    public Entity<AudioComponent>? SacrificeStingStream;
 
     [DataField("rewardPool")]
     public string RewardPool = "PsionicArtifactPool";
