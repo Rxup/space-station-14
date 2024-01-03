@@ -289,7 +289,7 @@
   components:
   - type: Storage
     grid:
-      -  0,0,7,5
+      -  0,0,10,5
   - type: Appearance
   - type: EntityStorageVisuals
     stateBaseClosed: hos

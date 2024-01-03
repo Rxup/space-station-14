@@ -8,12 +8,6 @@
   },
   "states": [
     {
-      "name": "stamp-iaa"
-    },
-    {
-      "name": "stamp-psychologist"
-    },
-    {
       "name": "envelope_closed"
     },
     {

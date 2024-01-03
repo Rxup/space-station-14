@@ -79,11 +79,11 @@ namespace Content.Server.Backmen.Flesh
                     }
                 }
 
-                if (TryComp<BloodstreamComponent>(uid, out var bloodstream))
+                if (TryComp<BloodstreamComponent>(uid, out var bloodstream) && bloodstream.BloodSolution != null)
                 {
                     var tempSol = new Solution() { MaxVolume = 5 };
 
-                    tempSol.AddSolution(bloodstream.BloodSolution, _prototypeManager);
+                    tempSol.AddSolution(bloodstream.BloodSolution.Value.Comp.Solution, _prototypeManager);
 
                     if (_puddleSystem.TrySpillAt(uid, tempSol.SplitSolution(50), out var puddleUid))
                     {

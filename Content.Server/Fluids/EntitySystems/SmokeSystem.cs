@@ -158,7 +158,7 @@ public sealed class SmokeSystem : EntitySystem
             var coords = neighbor.Grid.GridTileToLocal(neighbor.Tile);
             var ent = Spawn(prototype.ID, coords);
             // start-backmen: smoke color
-            if (TryComp<Shared.Backmen.Blob.Chemistry.BlobSmokeColorComponent>(uid, out var smokeColorComponent))
+            if (TryComp<Shared.Backmen.Blob.Chemistry.BlobSmokeColorComponent>(entity, out var smokeColorComponent))
             {
                 EnsureComp<Shared.Backmen.Blob.Chemistry.BlobSmokeColorComponent>(ent).Color =
                     smokeColorComponent.Color;
