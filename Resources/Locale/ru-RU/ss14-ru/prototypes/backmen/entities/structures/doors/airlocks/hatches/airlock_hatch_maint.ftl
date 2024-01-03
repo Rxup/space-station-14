@@ -1,2 +1,2 @@
-ent-maintenancehatch = Технический Шлюз
+ent-AirlockHatchMaint = Технический Шлюз ЦК
     .desc = Защищает Тех.Тонели в безопасности.

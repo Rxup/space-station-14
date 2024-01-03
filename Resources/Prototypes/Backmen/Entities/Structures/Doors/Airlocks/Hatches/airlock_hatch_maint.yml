@@ -1,14 +1,14 @@
 - type: entity
-  id: centcomhatch
+  id: AirlockHatchMaint
   parent: BaseStructure
-  name: CentCom Hatch
-  description: Keeps the bad out and keeps the good in.
+  name: Maintenance Hatch
+  description: Protects maintenance tunnels.
   placement:
     mode: SnapgridCenter
   components:
   - type: InteractionOutline
   - type: Sprite
-    sprite: Backmen/Structures/Doors/Airlocks/Hatches/centcom_hatch.rsi
+    sprite: Backmen/Structures/Doors/Airlocks/Hatches/maintenance_hatch.rsi
     layers:
     - state: closed
       map: ["enum.DoorVisualLayers.Base"]
@@ -100,5 +100,3 @@
   - type: Tag
     tags:
       - HighSecDoor
-  - type: AccessReader
-    access: [["ResearchDirector"]]
