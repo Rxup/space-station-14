@@ -13,7 +13,6 @@ using Content.Shared.Parallax;
 using Content.Shared.Shuttles.Components;
 using Content.Shared.Shuttles.Systems;
 using Content.Shared.StatusEffect;
-using Content.Shared.Backmen.Shuttles.Components.Ftlimmune; // backmen
 using JetBrains.Annotations;
 using Robust.Shared.Audio;
 using Robust.Shared.Audio.Components;
@@ -84,7 +83,6 @@ public sealed partial class ShuttleSystem
     private EntityQuery<PhysicsComponent> _physicsQuery;
     private EntityQuery<StatusEffectsComponent> _statusQuery;
     private EntityQuery<TransformComponent> _xformQuery;
-    private EntityQuery<FtlEntityImmuneComponent> _ftlimmuneQuery; // backmen
 
     private void InitializeFTL()
     {
@@ -94,7 +92,6 @@ public sealed partial class ShuttleSystem
         _physicsQuery = GetEntityQuery<PhysicsComponent>();
         _statusQuery = GetEntityQuery<StatusEffectsComponent>();
         _xformQuery = GetEntityQuery<TransformComponent>();
-		_ftlimmuneQuery = GetEntityQuery<FtlEntityImmuneComponent>(); // backmen
 
         SubscribeLocalEvent<StationGridAddedEvent>(OnStationGridAdd);
     }
@@ -727,7 +724,7 @@ public sealed partial class ShuttleSystem
                     continue;
                 }
 
-                if (_ghostQuery.HasComponent(ent) || _ftlimmuneQuery.HasComponent(ent)) // backmen FTL immune
+                if (_ghostQuery.HasComponent(ent))
                 {
                     continue;
                 }

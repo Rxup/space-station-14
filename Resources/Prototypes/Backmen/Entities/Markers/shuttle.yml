@@ -1,7 +1,0 @@
-# This marker is exeption for deleting everything on the grid under the FTLed shuttle,
-# useful if you want to make non-deleting FTL point on the planet
-- type: entity
-  id: PlanetShuttleMarker
-  parent: FTLPoint
-  components:
-  - type: Ftlimmune

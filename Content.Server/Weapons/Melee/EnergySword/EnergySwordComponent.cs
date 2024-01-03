@@ -16,9 +16,7 @@ internal sealed partial class EnergySwordComponent : Component
         Color.DodgerBlue,
         Color.Aqua,
         Color.MediumSpringGreen,
-        Color.MediumOrchid,
-	    Color.DarkOrange, // backmen more energy sword colors
-	    Color.FloralWhite
+        Color.MediumOrchid
     };
 
     public bool Hacked = false;

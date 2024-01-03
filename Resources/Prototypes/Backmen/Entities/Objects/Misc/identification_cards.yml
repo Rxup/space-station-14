@@ -34,7 +34,7 @@
         - state: unaffiliated
         - state: idexplorer
     - type: PresetIdCard
-      job: Explorer
+      job: SalvageSpecialist
 
 - type: entity
   parent: UnaffiliatedIDCard

@@ -6,7 +6,6 @@
     - type: FleshCultRule
       faction: Flesh
 
-
 - type: entity
   id: Shipwrecked
   parent: BaseGameRule
@@ -19,13 +18,15 @@
         - Explorer
         - Freelancer
         - Student
+      availablePremiumJobs:
+        - Explorer
+        - Student
       destinations:
         - DesertWastes
         - FrozenWastes
         - Jungle
         - Continental
         - Lava
-        - RuinedMegacity
       spawnPointHecate: SpawnPointShipwreckHecate
       hecatePrototype: MobQuestHecateShipwrecked
       eventSchedule:

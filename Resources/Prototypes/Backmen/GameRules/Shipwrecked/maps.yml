@@ -3,7 +3,7 @@
   mapName: Транспортник
   mapPath: /Maps/Backmen/Shuttles/adventurer.yml
   minPlayers: 1
-  maxPlayers: 15
+  maxPlayers: 10
   stations:
     ShwrAdventurer:
       stationProto: StandardStationArena
@@ -20,8 +20,8 @@
   id: ShwrBig
   mapName: Баржа
   mapPath: /Maps/Backmen/Shuttles/Shatlik.yml
-  minPlayers: 15
-  maxPlayers: 30
+  minPlayers: 10
+  maxPlayers: 25
   stations:
     ShwrAdventurerBig:
       stationProto: StandardStationArena
@@ -38,7 +38,7 @@
   id: shwrDust
   mapName: KL-Dust 469
   mapPath: /Maps/Backmen/Shuttles/shwr-dust.yml
-  minPlayers: 30
+  minPlayers: 25
   stations:
     shwrDust:
       stationProto: StandardStationArena
