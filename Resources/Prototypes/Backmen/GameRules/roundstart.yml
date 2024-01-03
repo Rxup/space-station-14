@@ -18,9 +18,6 @@
         - Explorer
         - Freelancer
         - Student
-      availablePremiumJobs:
-        - Explorer
-        - Student
       destinations:
         - DesertWastes
         - FrozenWastes

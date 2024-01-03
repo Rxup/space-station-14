@@ -29,13 +29,6 @@ public sealed partial class ShipwreckedRuleComponent : Component
     [DataField("availableJobs", required: true)]
     public List<ProtoId<JobPrototype>> AvailableJobPrototypes = default!;
 
-    /// <summary>
-    /// List of all travellers jobs exept Freelancer.
-    /// </summary>
-    [ViewVariables]
-    [DataField("availablePremiumJobs", required: true)]
-    public List<ProtoId<JobPrototype>> AvailablePremiumJobPrototypes = default!;
-
     [ViewVariables]
     [DataField("tts")]
     public ProtoId<TTSVoicePrototype> Tts = "Baya";
