@@ -214,7 +214,8 @@ entities:
           0,2:
             0: 65535
           1,0:
-            0: 30583
+            0: 30037
+            1: 546
           1,1:
             0: 30583
           1,2:
@@ -240,7 +241,8 @@ entities:
             0: 30512
             3: 64
           1,-1:
-            0: 30583
+            0: 22391
+            1: 8192
         uniqueMixes:
         - volume: 2500
           temperature: 293.15
@@ -800,6 +802,44 @@ entities:
       pos: 3.5,3.5
       parent: 2
       type: Transform
+- proto: ClothingBeltSalvageWebbing
+  entities:
+  - uid: 353
+    components:
+    - flags: InContainer
+      type: MetaData
+    - parent: 153
+      type: Transform
+    - canCollide: False
+      type: Physics
+    - type: InsideEntityStorage
+  - uid: 354
+    components:
+    - flags: InContainer
+      type: MetaData
+    - parent: 302
+      type: Transform
+    - canCollide: False
+      type: Physics
+    - type: InsideEntityStorage
+  - uid: 355
+    components:
+    - flags: InContainer
+      type: MetaData
+    - parent: 303
+      type: Transform
+    - canCollide: False
+      type: Physics
+    - type: InsideEntityStorage
+  - uid: 356
+    components:
+    - flags: InContainer
+      type: MetaData
+    - parent: 325
+      type: Transform
+    - canCollide: False
+      type: Physics
+    - type: InsideEntityStorage
 - proto: ClothingBeltSheathFilledRapier
   entities:
   - uid: 154
@@ -975,6 +1015,8 @@ entities:
     - pos: 3.5,-2.5
       parent: 2
       type: Transform
+    - locked: False
+      type: Lock
 - proto: Firelock
   entities:
   - uid: 334
@@ -1586,21 +1628,137 @@ entities:
     - pos: 5.5,0.5
       parent: 2
       type: Transform
+    - air:
+        volume: 200
+        immutable: False
+        temperature: 293.14673
+        moles:
+        - 1.7459903
+        - 6.568249
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+      type: EntityStorage
+    - containers:
+        entity_storage: !type:Container
+          showEnts: False
+          occludes: True
+          ents:
+          - 353
+        paper_label: !type:ContainerSlot
+          showEnts: False
+          occludes: True
+          ent: null
+      type: ContainerContainer
   - uid: 302
     components:
     - pos: 5.5,1.5
       parent: 2
       type: Transform
+    - air:
+        volume: 200
+        immutable: False
+        temperature: 293.14673
+        moles:
+        - 1.7459903
+        - 6.568249
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+      type: EntityStorage
+    - containers:
+        entity_storage: !type:Container
+          showEnts: False
+          occludes: True
+          ents:
+          - 354
+        paper_label: !type:ContainerSlot
+          showEnts: False
+          occludes: True
+          ent: null
+      type: ContainerContainer
   - uid: 303
     components:
     - pos: 5.5,2.5
       parent: 2
       type: Transform
+    - air:
+        volume: 200
+        immutable: False
+        temperature: 293.14673
+        moles:
+        - 1.7459903
+        - 6.568249
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+      type: EntityStorage
+    - containers:
+        entity_storage: !type:Container
+          showEnts: False
+          occludes: True
+          ents:
+          - 355
+        paper_label: !type:ContainerSlot
+          showEnts: False
+          occludes: True
+          ent: null
+      type: ContainerContainer
   - uid: 325
     components:
     - pos: 5.5,-0.5
       parent: 2
       type: Transform
+    - air:
+        volume: 200
+        immutable: False
+        temperature: 293.14673
+        moles:
+        - 1.7459903
+        - 6.568249
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+      type: EntityStorage
+    - containers:
+        entity_storage: !type:Container
+          showEnts: False
+          occludes: True
+          ents:
+          - 356
+        paper_label: !type:ContainerSlot
+          showEnts: False
+          occludes: True
+          ent: null
+      type: ContainerContainer
 - proto: LockerWallMedicalFilled
   entities:
   - uid: 342
