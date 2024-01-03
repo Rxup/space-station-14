@@ -178,7 +178,7 @@ public sealed class BloodSuckerSystem : EntitySystem
         if (stomachList == null)
             return false;
 
-        if (!_solutionSystem.TryGetSolution(bloodsucker, StomachSystem.DefaultSolutionName, out var stomachSolution))
+        if (!_solutionSystem.TryGetSolution(stomachList.Value.Comp.Owner, StomachSystem.DefaultSolutionName, out var stomachSolution))
             return false;
 
         // Are we too full?
@@ -203,11 +203,11 @@ public sealed class BloodSuckerSystem : EntitySystem
         _popups.PopupEntity(Loc.GetString("bloodsucker-blood-sucked", ("target", victim)), bloodsucker, bloodsucker, Shared.Popups.PopupType.Medium);
         EnsureComp<BloodSuckedComponent>(victim);
 
-        Entity<SolutionComponent> bloodSolution = (victim, bloodstream.BloodSolution);
+        var bloodSolution = bloodstream.BloodSolution.Value;
         // Make everything actually ingest.
         var temp = _solutionSystem.SplitSolution(bloodSolution, unitsToDrain);
         _reactiveSystem.DoEntityReaction(bloodsucker, temp, Shared.Chemistry.Reagent.ReactionMethod.Ingestion);
-        _stomachSystem.TryTransferSolution(bloodsucker, temp, stomachList.Value.Comp);
+        _stomachSystem.TryTransferSolution(stomachList.Value.Comp.Owner, temp, stomachList.Value.Comp);
 
         // Add a little pierce
         DamageSpecifier damage = new();
