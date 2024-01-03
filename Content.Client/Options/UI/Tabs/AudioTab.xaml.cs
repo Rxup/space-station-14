@@ -37,9 +37,9 @@ namespace Content.Client.Options.UI.Tabs
             AmbienceVolumeSlider.OnValueChanged += OnAmbienceVolumeSliderChanged;
             AmbienceSoundsSlider.OnValueChanged += OnAmbienceSoundsSliderChanged;
             LobbyVolumeSlider.OnValueChanged += OnLobbyVolumeSliderChanged;
+            InterfaceVolumeSlider.OnValueChanged += OnInterfaceVolumeSliderChanged;
             TtsVolumeSlider.OnValueChanged += OnTtsVolumeSliderChanged; // Corvax-TTS
             TtsAnnounceVolumeSlider.OnValueChanged += OnTtsAnnounceVolumeSliderChanged; // Corvax-TTS
-            InterfaceVolumeSlider.OnValueChanged += OnInterfaceVolumeSliderChanged;
             LobbyMusicCheckBox.OnToggled += OnLobbyMusicCheckToggled;
             RestartSoundsCheckBox.OnToggled += OnRestartSoundsCheckToggled;
             EventMusicCheckBox.OnToggled += OnEventMusicCheckToggled;
@@ -60,9 +60,9 @@ namespace Content.Client.Options.UI.Tabs
             AmbientMusicVolumeSlider.OnValueChanged -= OnAmbientMusicVolumeSliderChanged;
             AmbienceVolumeSlider.OnValueChanged -= OnAmbienceVolumeSliderChanged;
             LobbyVolumeSlider.OnValueChanged -= OnLobbyVolumeSliderChanged;
+            InterfaceVolumeSlider.OnValueChanged -= OnInterfaceVolumeSliderChanged;
             TtsVolumeSlider.OnValueChanged -= OnTtsVolumeSliderChanged; // Corvax-TTS
             TtsAnnounceVolumeSlider.OnValueChanged -= OnTtsAnnounceVolumeSliderChanged; // Corvax-TTS
-            InterfaceVolumeSlider.OnValueChanged -= OnInterfaceVolumeSliderChanged;
             base.Dispose(disposing);
         }
 
@@ -140,9 +140,9 @@ namespace Content.Client.Options.UI.Tabs
             _cfg.SetCVar(CCVars.AmbienceVolume, AmbienceVolumeSlider.Value / 100f * ContentAudioSystem.AmbienceMultiplier);
             _cfg.SetCVar(CCVars.AmbientMusicVolume, AmbientMusicVolumeSlider.Value / 100f * ContentAudioSystem.AmbientMusicMultiplier);
             _cfg.SetCVar(CCVars.LobbyMusicVolume, LobbyVolumeSlider.Value / 100f * ContentAudioSystem.LobbyMultiplier);
+            _cfg.SetCVar(CCVars.InterfaceVolume, InterfaceVolumeSlider.Value / 100f * ContentAudioSystem.InterfaceMultiplier);
             _cfg.SetCVar(CCCVars.TTSVolume, TtsVolumeSlider.Value / 100f * ContentAudioSystem.TtsMultiplier); // Corvax-TTS
             _cfg.SetCVar(CCCVars.TTSAnnounceVolume, TtsAnnounceVolumeSlider.Value / 100f * ContentAudioSystem.TtsMultiplier); // Corvax-TTS
-            _cfg.SetCVar(CCVars.InterfaceVolume, InterfaceVolumeSlider.Value / 100f * ContentAudioSystem.InterfaceMultiplier);
 
             _cfg.SetCVar(CCVars.MaxAmbientSources, (int)AmbienceSoundsSlider.Value);
 
@@ -166,9 +166,9 @@ namespace Content.Client.Options.UI.Tabs
             AmbienceVolumeSlider.Value = _cfg.GetCVar(CCVars.AmbienceVolume) * 100f / ContentAudioSystem.AmbienceMultiplier;
             AmbientMusicVolumeSlider.Value = _cfg.GetCVar(CCVars.AmbientMusicVolume) * 100f / ContentAudioSystem.AmbientMusicMultiplier;
             LobbyVolumeSlider.Value = _cfg.GetCVar(CCVars.LobbyMusicVolume) * 100f / ContentAudioSystem.LobbyMultiplier;
+            InterfaceVolumeSlider.Value = _cfg.GetCVar(CCVars.InterfaceVolume) * 100f / ContentAudioSystem.InterfaceMultiplier;
             TtsVolumeSlider.Value = _cfg.GetCVar(CCCVars.TTSVolume) * 100f / ContentAudioSystem.TtsMultiplier; // Corvax-TTS
             TtsAnnounceVolumeSlider.Value = _cfg.GetCVar(CCCVars.TTSAnnounceVolume) * 100f / ContentAudioSystem.TtsMultiplier; // Corvax-TTS
-            InterfaceVolumeSlider.Value = _cfg.GetCVar(CCVars.InterfaceVolume) * 100f / ContentAudioSystem.InterfaceMultiplier;
 
             AmbienceSoundsSlider.Value = _cfg.GetCVar(CCVars.MaxAmbientSources);
 
@@ -192,11 +192,11 @@ namespace Content.Client.Options.UI.Tabs
                 Math.Abs(AmbientMusicVolumeSlider.Value - _cfg.GetCVar(CCVars.AmbientMusicVolume) * 100f / ContentAudioSystem.AmbientMusicMultiplier) < 0.01f;
             var isLobbyVolumeSame =
                 Math.Abs(LobbyVolumeSlider.Value - _cfg.GetCVar(CCVars.LobbyMusicVolume) * 100f / ContentAudioSystem.LobbyMultiplier) < 0.01f;
-            var isTtsVolumeSame =
-                Math.Abs(LobbyVolumeSlider.Value - _cfg.GetCVar(CCVars.LobbyMusicVolume) * 100f / ContentAudioSystem.TtsMultiplier) < 0.01f; // Corvax-TTS
-            var isTtsAnnounceVolumeSame = Math.Abs(TtsAnnounceVolumeSlider.Value - _cfg.GetCVar(CCCVars.TTSAnnounceVolume) * 100f / ContentAudioSystem.TtsMultiplier) < 0.01f; // Corvax-TTS
             var isInterfaceVolumeSame =
                 Math.Abs(InterfaceVolumeSlider.Value - _cfg.GetCVar(CCVars.InterfaceVolume) * 100f / ContentAudioSystem.InterfaceMultiplier) < 0.01f;
+            var isTtsVolumeSame =
+                Math.Abs(TtsVolumeSlider.Value - _cfg.GetCVar(CCCVars.TTSVolume) * 100f / ContentAudioSystem.TtsMultiplier) < 0.01f;
+            var isTtsAnnounceVolumeSame = Math.Abs(TtsAnnounceVolumeSlider.Value - _cfg.GetCVar(CCCVars.TTSAnnounceVolume) * 100f / ContentAudioSystem.TtsMultiplier) < 0.01f; // Corvax-TTS
 
             var isAmbientSoundsSame = (int)AmbienceSoundsSlider.Value == _cfg.GetCVar(CCVars.MaxAmbientSources);
             var isLobbySame = LobbyMusicCheckBox.Pressed == _cfg.GetCVar(CCVars.LobbyMusicEnabled);
@@ -218,12 +218,12 @@ namespace Content.Client.Options.UI.Tabs
                 Loc.GetString("ui-options-volume-percent", ("volume", AmbienceVolumeSlider.Value / 100));
             LobbyVolumeLabel.Text =
                 Loc.GetString("ui-options-volume-percent", ("volume", LobbyVolumeSlider.Value / 100));
+            InterfaceVolumeLabel.Text =
+                Loc.GetString("ui-options-volume-percent", ("volume", InterfaceVolumeSlider.Value / 100));
             TtsVolumeLabel.Text =
                 Loc.GetString("ui-options-volume-percent", ("volume", TtsVolumeSlider.Value / 100)); // Corvax-TTS
             TtsAnnounceVolumeLabel.Text =
                 Loc.GetString("ui-options-volume-percent", ("volume", TtsAnnounceVolumeSlider.Value / 100)); // Corvax-TTS
-            InterfaceVolumeLabel.Text =
-                Loc.GetString("ui-options-volume-percent", ("volume", InterfaceVolumeSlider.Value / 100));
             AmbienceSoundsLabel.Text = ((int)AmbienceSoundsSlider.Value).ToString();
         }
     }

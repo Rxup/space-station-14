@@ -4,6 +4,7 @@ cage-uncage-verb = Освободиться
 action-name-metapsionic = Метапсионический импульс
 action-description-metapsionic = Отправьте мысленный импульс вокруг себя, чтобы увидеть, есть ли поблизости псионики.
 metapsionic-pulse-success = Вы чувствуете присутствие псионика поблизости
+metapsionic-pulse-shadowkin-success = Вы чувствуете присутствие чего-то в тени поблизости
 metapsionic-pulse-failure = Вы не чувствуете поблизости никакого психического присутствия.
 metapsionic-pulse-power = Вы замечаете использование { $power } рядом с собой.
 action-name-dispel = Рассеять
