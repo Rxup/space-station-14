@@ -1,4 +1,5 @@
 ﻿using Content.Server.Actions;
+using Content.Server.Chemistry.Containers.EntitySystems;
 using Content.Server.Popups;
 using Content.Server.Weapons.Ranged.Systems;
 using Content.Shared.Backmen.Flesh;
@@ -97,7 +98,7 @@ public sealed class FleshPudgeSystem : EntitySystem
 
         foreach (var (puddle, solution) in puddles)
         {
-            if (!_solutionSystem.TryGetSolution(puddle, solution, out var puddleSolution))
+            if (!_solutionSystem.TryGetSolution(puddle, solution, out _, out var puddleSolution))
             {
                 continue;
             }
@@ -136,9 +137,9 @@ public sealed class FleshPudgeSystem : EntitySystem
         {
             transferSolution.AddReagent(reagent.Reagent, reagent.Quantity * (totalBloodQuantity / 10));
         }
-        if (_solutionSystem.TryGetInjectableSolution(uid, out var injectableSolution))
+        if (_solutionSystem.TryGetInjectableSolution(uid, out var injectableSolution, out _))
         {
-            _solutionSystem.TryAddSolution(uid, injectableSolution, transferSolution);
+            _solutionSystem.TryAddSolution(injectableSolution.Value, transferSolution);
         }
         args.Handled = true;
     }

@@ -1,5 +1,6 @@
 ﻿using System.Linq;
 using System.Numerics;
+using Content.Server.Chemistry.Containers.EntitySystems;
 using Content.Server.Construction.Components;
 using Content.Server.Coordinates.Helpers;
 using Content.Server.Cuffs;
@@ -547,14 +548,14 @@ public sealed partial class FleshCultistSystem
 
     private void OnAdrenalinActionEvent(EntityUid uid, FleshCultistComponent component, FleshCultistAdrenalinActionEvent args)
     {
-        if (!_solutionContainerSystem.TryGetInjectableSolution(uid, out var injectableSolution))
+        if (!_solutionContainerSystem.TryGetInjectableSolution(uid, out var soln, out var injectableSolution))
             return;
         var transferSolution = new Solution();
         foreach (var reagent in component.AdrenalinReagents)
         {
             transferSolution.AddReagent(reagent.Reagent, reagent.Quantity);
         }
-        _solutionContainerSystem.TryAddSolution(uid, injectableSolution, transferSolution);
+        _solutionContainerSystem.TryAddSolution(soln.Value, transferSolution);
         args.Handled = true;
     }
 
