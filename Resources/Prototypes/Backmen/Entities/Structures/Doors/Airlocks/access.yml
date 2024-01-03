@@ -109,3 +109,22 @@
   components:
     - type: AccessReader
       access: [["CentralCommand"]]
+
+#AI Hatches
+- type: entity
+  parent: AirlockHatchCentcomm
+  id: AirlockHatchCentcommLocked
+  name: CentCom Hatch
+  suffix: CentCom, Locked
+  components:
+    - type: AccessReader
+      access: [["ResearchDirector"]]
+      
+- type: entity
+  parent: AirlockHatchMaint
+  id: AirlockHatchMaintLocked
+  name: Maintenance Hatch
+  suffix: CentCom, Locked
+  components:
+    - type: AccessReader
+      access: [["ResearchDirector"]]
