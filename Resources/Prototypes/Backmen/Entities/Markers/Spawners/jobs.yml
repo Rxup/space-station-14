@@ -130,7 +130,6 @@
     layers:
       - state: green
       - state: roboticist
-      - state: jobicon
 
 #- type: entity
 #  id: SpawnPointGladiator
