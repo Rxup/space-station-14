@@ -128,3 +128,12 @@
   components:
     - type: AccessReader
       access: [["Maintenance"]]
+      
+- type: entity
+  parent: AirlockHatchCentcomm
+  id: AirlockHatchSyndicateLocked
+  name: Syndicate Hatch
+  suffix: Syndicate, Locked
+  components:
+    - type: AccessReader
+      access: [["SyndicateAgent"]]

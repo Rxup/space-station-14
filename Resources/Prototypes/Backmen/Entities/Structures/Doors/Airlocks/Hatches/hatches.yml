@@ -1,6 +1,6 @@
 - type: entity
   id: AirlockHatchMaint
-  parent: HighSecDoor
+  parent: Airlock
   name: Maintenance Hatch
   description: Protects maintenance tunnels.
   placement:

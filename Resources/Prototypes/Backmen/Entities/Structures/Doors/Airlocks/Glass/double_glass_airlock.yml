@@ -31,6 +31,10 @@
   - type: LayerChangeOnWeld
     unWeldedLayer: GlassAirlockLayer
     weldedLayer: GlassLayer
+  - type: Rotatable
+    rotateWhileAnchored: true
+  - type: Transform
+    noRot: false
   - type: Construction
     graph: Airlock
     node: glassAirlock
