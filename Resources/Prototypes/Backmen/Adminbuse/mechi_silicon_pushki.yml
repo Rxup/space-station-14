@@ -454,7 +454,6 @@
     solution: spray
   - type: DrainableSolution
     solution: spray
-  - type: ItemCooldown
   - type: Spray
     spraySound:
       path: /Audio/Effects/extinguish.ogg

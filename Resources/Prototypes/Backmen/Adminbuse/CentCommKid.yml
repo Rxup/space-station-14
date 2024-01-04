@@ -474,7 +474,6 @@
   - type: Item
     sprite: Objects/Weapons/Melee/combat_knife.rsi
     size: Small
-  - type: ItemCooldown
   - type: MeleeWeapon
     damage:
       types:

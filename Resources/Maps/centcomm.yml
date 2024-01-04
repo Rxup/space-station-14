@@ -19119,7 +19119,6 @@ entities:
           ents:
           - 3775
       type: ContainerContainer
-    - type: ItemCooldown
 - proto: ClothingBackpackSatchelHolding
   entities:
   - uid: 3737
@@ -39599,7 +39598,6 @@ entities:
     - pos: 0.5374246,2.212542
       parent: 1668
       type: Transform
-    - type: ItemCooldown
   - uid: 1611
     components:
     - pos: -14.5,23.5
