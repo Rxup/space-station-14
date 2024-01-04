@@ -70647,7 +70647,6 @@ entities:
         12123:
         - Pressed: Toggle
       type: DeviceLinkSource
-    - type: ItemCooldown
   - uid: 14631
     components:
     - pos: 19.5,16.5

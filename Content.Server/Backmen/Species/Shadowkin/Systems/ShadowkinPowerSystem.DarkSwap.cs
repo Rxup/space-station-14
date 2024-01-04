@@ -67,6 +67,9 @@ public sealed class ShadowkinDarkSwapSystem : EntitySystem
 
     private void OnDamageInInvis(Entity<ShadowkinDarkSwappedComponent> ent, ref DamageChangedEvent args)
     {
+        if (!args.DamageIncreased)
+            return;
+
         RemCompDeferred<ShadowkinDarkSwappedComponent>(ent);
         _stunSystem.TryParalyze(ent, TimeSpan.FromSeconds(3), false);
     }
