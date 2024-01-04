@@ -1,9 +1,8 @@
 - type: entity
   id: DoubleGlassAirlock
+  parent: Airlock
   name: Double Glass Airlock
   description: It opens, it closes, and maybe crushes you, but it bigger than normal door.
-  placement:
-    mode: SnapgridCenter
   components:
   - type: MeleeSound
     soundGroups:
@@ -17,24 +16,7 @@
   - type: Sprite
     sprite: Backmen/Structures/Doors/Airlocks/Glass/double_glass_airlock.rsi
     offset: 0.5,0
-    layers:
-    - state: closed
-      map: ["enum.DoorVisualLayers.Base"]
-    - state: closed_unlit
-      shader: unshaded
-      map: ["enum.DoorVisualLayers.BaseUnlit"]
-    - state: welded
-      map: ["enum.WeldableLayers.BaseWelded"]
-    - state: bolted_unlit
-      shader: unshaded
-      map: ["enum.DoorVisualLayers.BaseBolted"]
-    - state: emergency_unlit
-      map: ["enum.DoorVisualLayers.BaseEmergencyAccess"]
-      shader: unshaded
-    - state: panel_open
-      map: ["enum.WiresVisualLayers.MaintenancePanel"]
   - type: AnimationPlayer
-  - type: Physics
   - type: Fixtures
     fixtures:
       fix1:
@@ -46,80 +28,9 @@
         - FullTileMask
         layer:     #removed opaque from the layer, allowing lasers to pass through glass airlocks
         - GlassAirlockLayer
-  - type: ContainerFill
-    containers:
-      board: [ DoorElectronics ]
-  - type: ContainerContainer
-    containers:
-      board: !type:Container
-  - type: Door
-    crushDamage:
-      types:
-        Blunt: 50
-    openSound:
-      path: /Audio/Machines/airlock_open.ogg
-    closeSound:
-      path: /Audio/Machines/airlock_close.ogg
-    denySound:
-      path: /Audio/Machines/airlock_deny.ogg
-  - type: Weldable
-    time: 10
-  - type: Airlock
-  - type: DoorBolt
-  - type: Appearance
-  - type: WiresVisuals
-  - type: ApcPowerReceiver
-    powerLoad: 20
-  - type: ExtensionCableReceiver
-  - type: Electrified
-    enabled: false
-    usesApcPower: true
-  - type: WiresPanel
-  - type: WiresPanelSecurity
-  - type: Wires
-    boardName: wires-board-name-airlock
-    layoutId: Airlock
-  - type: DoorSignalControl
-  - type: DeviceNetwork
-    deviceNetId: Wireless
-    receiveFrequencyId: BasicDevice
-  - type: WirelessNetworkConnection
-    range: 200
-  - type: DeviceLinkSink
-    ports:
-      - Open
-      - Close
-      - Toggle
-      - AutoClose
-      - DoorBolt
-  - type: DeviceLinkSource
-    ports:
-      - DoorStatus
-  - type: SoundOnOverload
-  - type: SpawnOnOverload
-  - type: UserInterface
-    interfaces:
-    - key: enum.WiresUiKey.Key
-      type: WiresBoundUserInterface
-  - type: Airtight
-    fixVacuum: true
   - type: LayerChangeOnWeld
     unWeldedLayer: GlassAirlockLayer
     weldedLayer: GlassLayer
-  - type: Damageable
-    damageContainer: Inorganic
-    damageModifierSet: Metallic
-  - type: Destructible
-    thresholds:
-    - trigger:
-        !type:DamageTrigger
-        damage: 750
-      behaviors:
-      - !type:DoActsBehavior
-        acts: ["Destruction"]
-  - type: IconSmooth
-    key: walls
-    mode: NoSprite
   - type: Construction
     graph: Airlock
     node: glassAirlock
@@ -127,3 +38,7 @@
     group: Glass
   - type: RadiationBlocker
     resistance: 2
+  - type: Tag
+    tags:
+      - GlassAirlock
+      # This tag is used to nagivate the Airlock construction graph. It's needed because the construction graph is shared between Airlock, AirlockGlass, and HighSecDoor
