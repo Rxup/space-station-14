@@ -118,13 +118,13 @@
   suffix: CentCom, Locked
   components:
     - type: AccessReader
-      access: [["ResearchDirector"]]
+      access: [["CentralCommand"]]
       
 - type: entity
   parent: AirlockHatchMaint
   id: AirlockHatchMaintLocked
   name: Maintenance Hatch
-  suffix: CentCom, Locked
+  suffix: Maint, Locked
   components:
     - type: AccessReader
-      access: [["ResearchDirector"]]
+      access: [["Maintenance"]]
