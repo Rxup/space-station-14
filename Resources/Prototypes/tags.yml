@@ -224,8 +224,11 @@
   id: BulletFoam
 
 - type: Tag
-  id: BypassInteractionRangeChecks
+  id: BypassDropChecks
 
+- type: Tag
+  id: BypassInteractionRangeChecks
+  
 - type: Tag
   id: CableCoil
 
@@ -841,6 +844,9 @@
 
 - type: Tag
   id: Pancake
+
+- type: Tag
+  id: Pen
 
 - type: Tag
   id: PepperShaker
