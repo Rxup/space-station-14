@@ -9,6 +9,7 @@
   factions:
     - ZombieOutbreak
     - MalfunctioningRobots
+    - SpaceCarpInvasion
   atmosphere:
     volume: 2450
     temperature: 251
@@ -27,6 +28,7 @@
   factions:
     - ZombieOutbreak
     - MalfunctioningRobots
+    - SpaceXenoInvasion
   atmosphere:
     volume: 2300
     temperature: 307
@@ -45,6 +47,7 @@
   factions:
     - ZombieOutbreak
     - MalfunctioningRobots
+    - SpaceXenoInvasion
   atmosphere:
     volume: 2400
     temperature: 296
@@ -63,6 +66,7 @@
   factions:
     - ZombieOutbreak
     - MalfunctioningRobots
+    - SpaceCarpInvasion
   atmosphere:
     volume: 2400
     temperature: 280
@@ -81,6 +85,8 @@
   factions:
     - ZombieOutbreak
     - MalfunctioningRobots
+    - SpaceCarpInvasion
+    - SpaceXenoInvasion
   atmosphere:
     volume: 2300
     temperature: 320
@@ -99,6 +105,7 @@
   factions:
     - ZombieOutbreak
     - MalfunctioningRobots
+    - SpaceXenoInvasion
   atmosphere:
     volume: 2400
     temperature: 280

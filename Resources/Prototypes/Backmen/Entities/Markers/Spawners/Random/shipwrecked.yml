@@ -1,0 +1,65 @@
+- type: entity
+  parent: MarkerBase
+  id: RandomLootShipwrecked
+  name: loot spawner
+  suffix: shipwrecked gamemode
+  components:
+  - type: Sprite
+    layers:
+      - state: red
+      - sprite: Objects/Misc/books.rsi
+        state: book6
+  - type: RandomSpawner
+    offset: 0
+    prototypes:
+      - Pickaxe
+      - SheetUranium1
+      - EphedrineChemistryBottle
+      - PowerCellHigh
+      - SheetPlastic
+      - SheetPlasteel
+      - MedkitFilled
+      - BruteAutoInjector
+      - BurnAutoInjector
+      - ClothingEyesGlassesMeson
+      - ClothingMaskClown
+      - Floodlight
+      - CableApcStack
+      - SpaceCash100
+      - ClothingBeltUtilityFilled
+      - ClothingBackpack
+      - ClothingOuterVestHazard
+      - WeaponProtoKineticAccelerator
+      - HandheldHealthAnalyzer
+    chance: 0.9
+    rarePrototypes:
+      - SheetUranium
+      - SpearPlasma
+      - ClothingOuterHardsuitSalvage
+      - MiningDrill
+      - MedkitAdvancedFilled
+      - WeaponSubMachineGunMP5
+      - SpaceCash1000
+      - ClothingBeltMilitaryWebbing
+    rareChance: 0.25
+
+- type: entity
+  parent: MarkerBase
+  id: RandomLootBigShipwrecked
+  name: big loot spawner
+  suffix: shipwrecked gamemode
+  components:
+  - type: Sprite
+    layers:
+      - state: red
+      - sprite: Objects/Misc/books.rsi
+        state: book5
+  - type: RandomSpawner
+    offset: 0
+    prototypes:
+      - WaterTankFull
+      - VendingMachineBooze
+      - OxygenCanister
+      - NitrogenCanister
+      - VendingMachineTankDispenserEVA
+      - Autolathe
