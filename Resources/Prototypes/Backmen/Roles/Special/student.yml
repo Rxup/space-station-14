@@ -8,14 +8,20 @@
   canBeAntag: false
   icon: "JobIconUnknown" # TODO
   supervisors: job-supervisors-generic
+  special:
+  - !type:AddComponentSpecial
+    components:
+    - type: PsionicBonusChance
+      multiplier: 7
+      warn: false
 
 - type: startingGear
   id: StudentGear
   equipment:
     jumpsuit: ClothingUniformSchoolGakuranBlack
+    id: StudentIDCard
     shoes: ClothingShoesColorBlack
     back: ClothingBackpack
-    id: StudentIDCard
     eyes: ClothingEyesGlasses
   innerClothingSkirt: UniformSchoolgirlDusk
   satchel: ClothingBackpackSatchel

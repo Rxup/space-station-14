@@ -170,6 +170,7 @@ public enum ShipwreckedEventId : int
     AnnounceTransit,
     ShowHecate,
     IntroduceHecate,
+    PlayMusic,
     EncounterTurbulence,
     ShiftParallax,
     MidflightDamage,
