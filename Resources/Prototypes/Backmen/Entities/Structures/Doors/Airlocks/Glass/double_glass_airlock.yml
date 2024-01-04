@@ -15,7 +15,7 @@
     enabled: false
   - type: Sprite
     sprite: Backmen/Structures/Doors/Airlocks/Glass/double_glass_airlock.rsi
-    snapCardinals: true
+    snapCardinals: false
     offset: 0.5,0
   - type: AnimationPlayer
   - type: Fixtures
