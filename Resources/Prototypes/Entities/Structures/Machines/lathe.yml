@@ -105,6 +105,7 @@
       - SheetRGlass
       - Beaker
       - Syringe
+      - HandLabeler
       - LightTube
       - SodiumLightTube
       - ExteriorLightTube
@@ -371,6 +372,8 @@
     - CentrifugeMachineCircuitboard
     - CondenserMachineCircuitBoard
     - UniformPrinterMachineCircuitboard
+    - FloorGreenCircuit
+    - FloorBlueCircuit
     dynamicRecipes:
       - ThermomachineFreezerMachineCircuitBoard
       - PortableScrubberMachineCircuitBoard
@@ -786,6 +789,7 @@
     staticRecipes:
       - Brutepack
       - Ointment
+      - Gauze
       - HandLabeler
       - Defibrillator
       - HandheldHealthAnalyzer
