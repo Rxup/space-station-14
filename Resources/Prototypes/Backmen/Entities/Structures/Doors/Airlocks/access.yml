@@ -110,7 +110,7 @@
     - type: AccessReader
       access: [["CentralCommand"]]
 
-#AI Hatches
+#Hatches
 - type: entity
   parent: AirlockHatchCentcomm
   id: AirlockHatchCentcommLocked
@@ -138,9 +138,11 @@
     - type: AccessReader
       access: [["SyndicateAgent"]]
     
+#DoubleAirlocks
+
 - type: entity
   parent: DoubleGlassAirlock
-  id: DoubleGlassAirlockLocked
+  id: DoubleGlassAirlockCentcomLocked
   name: Double Glass Airlock
   suffix: CentCom, Locked
   components:
