@@ -9,7 +9,7 @@
   - type: Sprite
     sprite: Backmen/Structures/Doors/Airlocks/Hatches/maintenance_hatch.rsi
   - type: Weldable
-    time: 20
+    time: 10
     
 - type: entity
   id: AirlockHatchCentcomm
@@ -22,4 +22,4 @@
   - type: Sprite
     sprite: Backmen/Structures/Doors/Airlocks/Hatches/centcom_hatch.rsi
   - type: Weldable
-    time: 20
+    time: 10

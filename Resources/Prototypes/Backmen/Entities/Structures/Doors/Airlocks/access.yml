@@ -137,3 +137,21 @@
   components:
     - type: AccessReader
       access: [["SyndicateAgent"]]
+    
+- type: entity
+  parent: DoubleGlassAirlock
+  id: DoubleGlassAirlockLocked
+  name: Double Glass Airlock
+  suffix: CentCom, Locked
+  components:
+    -type: AccessReader
+     access: [["CentralCommand"]]
+     
+- type: entity
+  parent: DoubleGlassAirlock
+  id: DoubleGlassAirlockSyndicateLocked
+  name: Double Glass Airlock
+  suffix: Syndicate, Locked
+  components:
+    - type: AccessReader
+      access: [["SyndicateAgent"]]
