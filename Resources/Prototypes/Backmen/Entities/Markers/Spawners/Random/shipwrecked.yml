@@ -41,7 +41,7 @@
       - WeaponSubMachineGunMP5
       - SpaceCash1000
       - ClothingBeltMilitaryWebbing
-    rareChance: 0.25
+    rareChance: 0.2
 
 - type: entity
   parent: MarkerBase
