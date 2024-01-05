@@ -147,7 +147,7 @@
   suffix: CentCom, Locked
   components:
     -type: AccessReader
-     access: [["CentralCommand"]]
+      access: [["CentralCommand"]]
      
 - type: entity
   parent: DoubleGlassAirlock
