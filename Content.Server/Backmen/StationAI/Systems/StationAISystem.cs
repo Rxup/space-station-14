@@ -109,13 +109,13 @@ public sealed class StationAISystem : EntitySystem
 
     private void OnHealthOverlayEvent(AIHealthOverlayEvent args)
     {
-        if (HasComp<ShowHealthBarsComponent>(args.Performer))
+        if (HasComp<BkmShowHealthBarsComponent>(args.Performer))
         {
-            RemCompDeferred<ShowHealthBarsComponent>(args.Performer);
+            RemCompDeferred<BkmShowHealthBarsComponent>(args.Performer);
         }
         else
         {
-            var comp = EnsureComp<ShowHealthBarsComponent>(args.Performer);
+            var comp = EnsureComp<BkmShowHealthBarsComponent>(args.Performer);
             comp.DamageContainers.Clear();
             comp.DamageContainers.Add("Biological");
             comp.DamageContainers.Add("HalfSpirit");
