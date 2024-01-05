@@ -843,7 +843,7 @@ public sealed class ShipwreckedRuleSystem : GameRuleSystem<ShipwreckedRuleCompon
         // of sorts.
 
         structure = _random.Pick(component.Structures);
-        var offset = _random.NextVector2(-13, 13);
+        var offset = _random.NextVector2(-7, 7);
         var xy = _random.Pick(structure.Rooms).Center + offset;
         var position = xy - offset;
 
@@ -851,7 +851,7 @@ public sealed class ShipwreckedRuleSystem : GameRuleSystem<ShipwreckedRuleCompon
 
         // Write points where engines have fallen to new papers.
         // This way players can find them in reasonable amount of time.
-        // Coordinates have an error of offset + 12, so it's giving pretty approximated data.
+        // Coordinates have an error of offset + 15, so it's giving pretty approximated data.
         // TODO: Make this code rename created item to "Detached engine coords" or smth else
         var query = EntityQueryEnumerator<ShipwreckedRuleComponent, GameRuleComponent>();
         int engimanifcount = 0;
@@ -861,8 +861,8 @@ public sealed class ShipwreckedRuleSystem : GameRuleSystem<ShipwreckedRuleCompon
             var engimanifestText = new StringBuilder();
 
             engimanifestText.AppendLine(Loc.GetString("engines-manifest-line",
-                ("X", Math.Round(position.X + _random.Next(-12, 12))),
-                ("Y", Math.Round(position.Y + _random.Next(-12, 12))))); // Oh god 5 brackets in a row...
+                ("X", Math.Round(position.X + _random.Next(-15, 15))),
+                ("Y", Math.Round(position.Y + _random.Next(-15, 15)))));
             engimanifestText.AppendLine(Loc.GetString("engines-manifest-line-end"));
 
             if (engimanifest != null)
@@ -1019,7 +1019,7 @@ public sealed class ShipwreckedRuleSystem : GameRuleSystem<ShipwreckedRuleCompon
                 component.VitalPieceStructureSpots.TryGetValue(structure, out var spots) &&
                 spots.Count > 0)
             {
-                var spot = spots.Pop().Offset(_random.NextVector2(-2, 2));
+                var spot = spots.Pop().Offset(_random.NextVector2(-1, 1));
                 Spawn(faction.ObjectiveDefender, spot);
             }
 
