@@ -2437,5 +2437,4 @@ entities:
     - pos: 15.5,4.5
       parent: 1
       type: Transform
-    - type: ItemCooldown
 ...
