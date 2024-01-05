@@ -291,20 +291,20 @@ entities:
       type: Transform
     - container: 262
       type: InstantAction
-- proto: AirlockCommandGlass
-  entities:
-  - uid: 453
-    components:
-    - pos: 9.5,-2.5
-      parent: 3
-      type: Transform
-- proto: AirlockCommandLocked
+- proto: AirlockCommand
   entities:
   - uid: 81
     components:
     - flags: PvsPriority
       type: MetaData
     - pos: 7.5,1.5
+      parent: 3
+      type: Transform
+- proto: AirlockCommandGlass
+  entities:
+  - uid: 453
+    components:
+    - pos: 9.5,-2.5
       parent: 3
       type: Transform
 - proto: AirlockEngineeringLocked
@@ -428,6 +428,10 @@ entities:
     - pos: 11.5,4.5
       parent: 3
       type: Transform
+    - hasAccess: True
+      lastExternalState: Good
+      lastChargeState: Full
+      type: Apc
   - uid: 531
     components:
     - pos: 3.5,-3.5
@@ -2238,7 +2242,7 @@ entities:
       pos: 7.5,-17.5
       parent: 3
       type: Transform
-- proto: FireAxeCabinetFilledOpen
+- proto: FireAxeCabinetFilled
   entities:
   - uid: 427
     components:
@@ -2246,6 +2250,8 @@ entities:
       pos: 5.5,1.5
       parent: 3
       type: Transform
+    - locked: False
+      type: Lock
 - proto: FirelockGlass
   entities:
   - uid: 151
@@ -2557,11 +2563,16 @@ entities:
           showEnts: False
           occludes: True
           ents:
-          - 564
+          - 589
           - 577
-          - 580
-          - 582
+          - 597
+          - 564
           - 583
+          - 582
+          - 580
+          - 598
+          - 670
+          - 694
         paper_label: !type:ContainerSlot
           showEnts: False
           occludes: True
@@ -2929,7 +2940,7 @@ entities:
       type: Transform
     - locked: False
       type: Lock
-- proto: MagazinePistol
+- proto: MagazinePistolHighCapacity
   entities:
   - uid: 564
     components:
@@ -2941,6 +2952,24 @@ entities:
       type: Physics
     - type: InsideEntityStorage
   - uid: 577
+    components:
+    - flags: InContainer
+      type: MetaData
+    - parent: 561
+      type: Transform
+    - canCollide: False
+      type: Physics
+    - type: InsideEntityStorage
+  - uid: 589
+    components:
+    - flags: InContainer
+      type: MetaData
+    - parent: 561
+      type: Transform
+    - canCollide: False
+      type: Physics
+    - type: InsideEntityStorage
+  - uid: 598
     components:
     - flags: InContainer
       type: MetaData
@@ -3786,6 +3815,11 @@ entities:
   - uid: 444
     components:
     - pos: 4.5,-5.5
+      parent: 3
+      type: Transform
+  - uid: 698
+    components:
+    - pos: 9.5,4.5
       parent: 3
       type: Transform
 - proto: VendingMachineChefvend
@@ -4907,6 +4941,17 @@ entities:
     - pos: 10.470756,-18.441814
       parent: 3
       type: Transform
+- proto: WeaponEarthGovLaserPistol
+  entities:
+  - uid: 694
+    components:
+    - flags: InContainer
+      type: MetaData
+    - parent: 561
+      type: Transform
+    - canCollide: False
+      type: Physics
+    - type: InsideEntityStorage
 - proto: WeaponLaserGun
   entities:
   - uid: 582
@@ -4921,6 +4966,26 @@ entities:
 - proto: WeaponMakeshiftLaser
   entities:
   - uid: 583
+    components:
+    - flags: InContainer
+      type: MetaData
+    - parent: 561
+      type: Transform
+    - canCollide: False
+      type: Physics
+    - type: InsideEntityStorage
+  - uid: 597
+    components:
+    - flags: InContainer
+      type: MetaData
+    - parent: 561
+      type: Transform
+    - canCollide: False
+      type: Physics
+    - type: InsideEntityStorage
+- proto: WeaponPistolACP14
+  entities:
+  - uid: 670
     components:
     - flags: InContainer
       type: MetaData

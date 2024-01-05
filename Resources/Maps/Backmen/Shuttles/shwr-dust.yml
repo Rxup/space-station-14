@@ -86,10 +86,10 @@ entities:
             color: '#9FED58FF'
             id: MiniTileDarkLineS
           decals:
-            32: 0,-5
-            33: 1,-5
-            34: 2,-5
-            35: 3,-5
+            25: 0,-5
+            26: 1,-5
+            27: 2,-5
+            28: 3,-5
         - node:
             color: '#EFB341FF'
             id: MiniTileSteelInnerSe
@@ -126,10 +126,10 @@ entities:
             color: '#9FED58FF'
             id: MiniTileSteelLineS
           decals:
-            49: 0,-5
-            50: 1,-5
-            51: 2,-5
-            52: 3,-5
+            29: 0,-5
+            30: 1,-5
+            31: 2,-5
+            32: 3,-5
         - node:
             color: '#EFB341FF'
             id: MiniTileSteelLineS
@@ -142,9 +142,9 @@ entities:
             color: '#9FED58FF'
             id: MiniTileSteelLineW
           decals:
-            63: 0,-5
-            64: 0,-4
-            65: 0,-3
+            33: 0,-5
+            34: 0,-4
+            35: 0,-3
         - node:
             color: '#EFB341FF'
             id: MiniTileSteelLineW
@@ -158,133 +158,133 @@ entities:
             color: '#A4610696'
             id: MiniTileWhiteBox
           decals:
-            116: 4,-3
+            84: 4,-3
         - node:
             color: '#A4610696'
             id: MiniTileWhiteCornerNe
           decals:
-            106: 11,-2
+            75: 11,-2
         - node:
             color: '#A4610696'
             id: MiniTileWhiteCornerNw
           decals:
-            109: 5,-3
-            110: 6,-2
+            78: 5,-3
+            79: 6,-2
         - node:
             color: '#A4610696'
             id: MiniTileWhiteCornerSe
           decals:
-            107: 11,-5
+            76: 11,-5
         - node:
             color: '#A4610696'
             id: MiniTileWhiteCornerSw
           decals:
-            108: 5,-5
+            77: 5,-5
         - node:
             color: '#A4610696'
             id: MiniTileWhiteInnerNw
           decals:
-            111: 6,-3
+            80: 6,-3
         - node:
             color: '#334E6DFF'
             id: MiniTileWhiteLineE
           decals:
-            75: 7,7
-            76: 7,8
-            77: 7,9
+            45: 7,7
+            46: 7,8
+            47: 7,9
         - node:
             color: '#A4610696'
             id: MiniTileWhiteLineE
           decals:
-            113: 11,-3
-            115: 11,-4
+            82: 11,-3
+            83: 11,-4
         - node:
             color: '#334E6DFF'
             id: MiniTileWhiteLineN
           decals:
-            68: 3,5
-            78: 3,9
-            79: 4,9
-            80: 5,9
-            81: 6,9
-            82: 6,9
-            83: 7,9
+            38: 3,5
+            48: 3,9
+            49: 4,9
+            50: 5,9
+            51: 6,9
+            52: 6,9
+            53: 7,9
         - node:
             color: '#9FED58FF'
             id: MiniTileWhiteLineN
           decals:
-            66: 7,-10
-            67: 11,-10
+            36: 7,-10
+            37: 11,-10
         - node:
             color: '#A4610696'
             id: MiniTileWhiteLineN
           decals:
-            102: 7,-2
-            103: 8,-2
-            104: 9,-2
-            105: 10,-2
+            71: 7,-2
+            72: 8,-2
+            73: 9,-2
+            74: 10,-2
         - node:
             color: '#334E6DFF'
             id: MiniTileWhiteLineS
           decals:
-            69: 2,7
-            70: 3,7
-            71: 4,7
-            72: 5,7
-            73: 6,7
-            74: 7,7
+            39: 2,7
+            40: 3,7
+            41: 4,7
+            42: 5,7
+            43: 6,7
+            44: 7,7
         - node:
             color: '#A4610696'
             id: MiniTileWhiteLineS
           decals:
-            97: 7,-5
-            98: 8,-5
-            99: 9,-5
-            100: 10,-5
-            101: 6,-5
+            66: 7,-5
+            67: 8,-5
+            68: 9,-5
+            69: 10,-5
+            70: 6,-5
         - node:
             color: '#334E6DFF'
             id: MiniTileWhiteLineW
           decals:
-            84: 2,7
-            85: 2,8
+            54: 2,7
+            55: 2,8
         - node:
             color: '#A4610696'
             id: MiniTileWhiteLineW
           decals:
-            112: 5,-4
+            81: 5,-4
         - node:
             color: '#334E6D00'
             id: ThreeQuarterTileOverlayGreyscale180
           decals:
-            87: 2,9
-            88: 2,9
-            89: 2,9
+            57: 2,9
+            58: 2,9
+            59: 2,9
         - node:
             color: '#334E6DFF'
             id: ThreeQuarterTileOverlayGreyscale180
           decals:
-            86: 2,9
+            56: 2,9
         - node:
             cleanable: True
             color: '#334E6DFF'
             id: ThreeQuarterTileOverlayGreyscale180
           decals:
-            90: 2,9
+            60: 2,9
         - node:
             color: '#FFFFFFFF'
             id: WarnBox
           decals:
-            95: 9,13
+            65: 9,13
         - node:
             cleanable: True
             color: '#FFFFFF93'
             id: splatter
           decals:
-            91: 9.969701,-7.233479
-            92: 10.266941,-7.4118733
-            93: 9.806219,-7.753796
-            94: 10.727663,-7.9173245
+            61: 9.969701,-7.233479
+            62: 10.266941,-7.4118733
+            63: 9.806219,-7.753796
+            64: 10.727663,-7.9173245
       type: DecalGrid
     - version: 2
       data:
@@ -2533,13 +2533,15 @@ entities:
     - pos: 1.5,3.5
       parent: 2
       type: Transform
-- proto: FireAxeCabinetFilledOpen
+- proto: FireAxeCabinetFilled
   entities:
-  - uid: 657
+  - uid: 546
     components:
     - pos: 9.5,-11.5
       parent: 2
       type: Transform
+    - locked: False
+      type: Lock
 - proto: Fireplace
   entities:
   - uid: 105
@@ -3958,13 +3960,15 @@ entities:
           showEnts: False
           occludes: True
           ents:
-          - 538
-          - 539
-          - 541
-          - 280
-          - 284
-          - 536
           - 537
+          - 536
+          - 284
+          - 280
+          - 541
+          - 539
+          - 657
+          - 891
+          - 538
         paper_label: !type:ContainerSlot
           showEnts: False
           occludes: True
@@ -4075,16 +4079,16 @@ entities:
           showEnts: False
           occludes: True
           ents:
-          - 378
-          - 374
-          - 373
-          - 371
-          - 369
-          - 368
-          - 366
-          - 356
-          - 335
           - 326
+          - 335
+          - 356
+          - 366
+          - 368
+          - 369
+          - 371
+          - 373
+          - 374
+          - 378
         paper_label: !type:ContainerSlot
           showEnts: False
           occludes: True
@@ -4142,6 +4146,11 @@ entities:
     - pos: 7.5,-4.5
       parent: 2
       type: Transform
+  - uid: 893
+    components:
+    - pos: 10.5,-4.5
+      parent: 2
+      type: Transform
 - proto: LockerWallMedical
   entities:
   - uid: 591
@@ -4174,13 +4183,13 @@ entities:
           showEnts: False
           occludes: True
           ents:
+          - 635
+          - 633
+          - 621
+          - 620
+          - 619
           - 592
           - 594
-          - 619
-          - 620
-          - 621
-          - 633
-          - 635
       type: ContainerContainer
 - proto: MagazinePistol
   entities:
@@ -4437,6 +4446,11 @@ entities:
   - uid: 478
     components:
     - pos: 7.5,-6.5
+      parent: 2
+      type: Transform
+  - uid: 894
+    components:
+    - pos: 7.5,9.5
       parent: 2
       type: Transform
 - proto: PottedPlantRandomPlastic
@@ -4992,9 +5006,9 @@ entities:
       type: Transform
 - proto: SpawnPointShipwreckHecate
   entities:
-  - uid: 546
+  - uid: 892
     components:
-    - pos: 7.5,9.5
+    - pos: 4.5,3.5
       parent: 2
       type: Transform
 - proto: SpawnPointShipwreckTraveller
@@ -6436,6 +6450,17 @@ entities:
     - canCollide: False
       type: Physics
     - type: InsideEntityStorage
+- proto: WeaponLaserGun
+  entities:
+  - uid: 657
+    components:
+    - flags: InContainer
+      type: MetaData
+    - parent: 535
+      type: Transform
+    - canCollide: False
+      type: Physics
+    - type: InsideEntityStorage
 - proto: WeaponMakeshiftLaser
   entities:
   - uid: 280
@@ -6459,6 +6484,17 @@ entities:
 - proto: WeaponPistolACP14
   entities:
   - uid: 538
+    components:
+    - flags: InContainer
+      type: MetaData
+    - parent: 535
+      type: Transform
+    - canCollide: False
+      type: Physics
+    - type: InsideEntityStorage
+- proto: WeaponSubMachineGunMP5
+  entities:
+  - uid: 891
     components:
     - flags: InContainer
       type: MetaData
