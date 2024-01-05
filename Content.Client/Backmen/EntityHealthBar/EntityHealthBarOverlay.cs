@@ -19,7 +19,7 @@ namespace Content.Client.Backmen.EntityHealthBar;
 /// Yeah a lot of this is duplicated from doafters.
 /// Not much to be done until there's a generic HUD system
 /// </summary>
-public sealed class EntityHealthBarOverlay : Overlay
+public sealed class BkmEntityHealthBarOverlay : Overlay
 {
     [Dependency]
     private readonly IEntityManager _entManager = default!;
@@ -37,7 +37,7 @@ public sealed class EntityHealthBarOverlay : Overlay
     public override OverlaySpace Space => OverlaySpace.WorldSpaceBelowFOV;
     public List<string> DamageContainers = new();
 
-    public EntityHealthBarOverlay()
+    public BkmEntityHealthBarOverlay()
     {
         IoCManager.InjectDependencies(this);
 
