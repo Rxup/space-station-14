@@ -30,9 +30,9 @@
 <GuideEntityEmbed Entity="RadiationCollector"/>
 <GuideEntityEmbed Entity="PlasmaTank"/>
 </Box>
-Коллекторы радиации подключаются к ВВ кабелям и, будучи включеными, генерируют электроэнергию из попадающей на них радиации.
-Для нормальной работы в радиационных коллекторах должны находиться газовые баллоны, заправленные газообразной плазмой.
-Постоянное радиационное облучение будет постепенно превращать содержащуюся плазму в тритий, поэтому не забывайте периодически менять баллоны.
+They connect to HV cables and generate power from nearby radiation sources when turned on.
+Radiation collectors require a tank full of gaseous plasma in order to operate.
+Continous radiation exposure will gradually consume the stored plasma, so replace depleted tanks with fresh ones to maintain a high power output.
 
 ## Ускоритель частиц
 
@@ -105,5 +105,5 @@
 Сингулярность будет перемещаться, но сдерживающее поле будет её отталкивать.
 Если Сингулярность вырвется за пределы своего сдерживающего поля, событие известное как "Сингасбежала!", она начнет притягивать и поглощать всё на своем пути.
 
-В такой ситуации остаётся только убегать в противоположном ей направлении.
+В таких обстоятельствах мало что можно сделать, кроме как бежать в противоположном направлении.
 </Document>

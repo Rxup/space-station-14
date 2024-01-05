@@ -196,6 +196,10 @@ ghost-role-information-blobbernaut-description = You are a Blobbernaut. You must
 
 ghost-role-information-blob-name = Blob
 ghost-role-information-blob-description = You are a Blob. You must consume the station.
+
+ghost-role-information-hellspawn-name = Hellspawn
+ghost-role-information-hellspawn-description = You are an antagonist, bring death to those who do not follow the great god Nar'Sie.
+
 ghost-role-information-Death-Squad-name = Death Squad Operative
 ghost-role-information-Death-Squad-description = One of Nanotrasen's top internal affairs agents. Await orders from CentComm or an official.
 
