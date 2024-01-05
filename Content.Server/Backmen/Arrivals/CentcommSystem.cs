@@ -6,7 +6,7 @@ using Content.Server.Maps;
 using Content.Server.Popups;
 using Content.Server.Power.EntitySystems;
 using Content.Server.Salvage.Expeditions;
-using Content.Server.Shuttle.Components;
+using Content.Server.Shuttles;
 using Content.Server.Shuttles.Components;
 using Content.Server.Shuttles.Events;
 using Content.Server.Shuttles.Systems;

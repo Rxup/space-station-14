@@ -17,7 +17,6 @@
   - type: EmitSoundOnLand
     sound:
       collection: ToyFall
-  - type: ItemCooldown
   - type: UseDelay
     delay: 0.5
   - type: MeleeWeapon
@@ -36,7 +35,7 @@
   parent: BasePlushieBk
   id: RubberPig
   name: Резиновая свинья
-  description: Диментий гони свиней 
+  description: Диментий гони свиней
   components:
   - type: Sprite
     state: pig
@@ -61,12 +60,12 @@
   - type: StepTrigger
     intersectRatio: 0.2
     requiredTriggeredSpeed: 1
-  - type: TriggerOnStepTrigger 
+  - type: TriggerOnStepTrigger
   - type: Appearance
   - type: CollisionWake
-    enabled: false  
+    enabled: false
   - type: Physics
-    bodyType: Dynamic   
+    bodyType: Dynamic
   - type: Fixtures
     fixtures:
       slips:
