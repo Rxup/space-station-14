@@ -19,6 +19,7 @@
       - SheetPlastic
       - SheetPlasteel
       - MedkitFilled
+      - MedkitFilled
       - BruteAutoInjector
       - BurnAutoInjector
       - ClothingEyesGlassesMeson
@@ -34,13 +35,13 @@
     chance: 0.9
     rarePrototypes:
       - SheetUranium
+      - SheetUranium
       - SpearPlasma
       - ClothingOuterHardsuitSalvage
       - MiningDrill
       - MedkitAdvancedFilled
       - WeaponSubMachineGunMP5
       - SpaceCash1000
-      - ClothingBeltMilitaryWebbing
     rareChance: 0.2
 
 - type: entity
@@ -58,8 +59,10 @@
     offset: 0
     prototypes:
       - WaterTankFull
+      - WeldingFuelTankFull
       - VendingMachineBooze
       - OxygenCanister
       - NitrogenCanister
+      - AirCanister
       - VendingMachineTankDispenserEVA
       - Autolathe
