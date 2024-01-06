@@ -64,17 +64,6 @@
     - revved
 
 - type: emote
-  id: Click
-  category: Vocal
-  chatMessages: [clicks.]
-  chatTriggers:
-    - clicks.
-    - click.
-    - click!
-    - clicking.
-    - clicked.
-
-- type: emote
   id: Caw
   category: Vocal
   chatMessages: [caws.]

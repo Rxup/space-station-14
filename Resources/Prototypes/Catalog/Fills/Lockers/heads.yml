@@ -185,7 +185,7 @@
     contents:
       - id: MedkitFilled
       - id: ClothingHandsGlovesNitrile
-      #- name: ClothingEyesHudMedical #Removed until working properly
+      - id: ClothingEyesHudMedical
       - id: ClothingHeadsetAltMedical
       - id: ClothingCloakCmo
       - id: ClothingBackpackDuffelSurgeryFilled
@@ -214,7 +214,7 @@
         amount: 3 # backmen
       - id: MedkitFilled
       - id: ClothingHandsGlovesNitrile
-      #- name: ClothingEyesHudMedical #Removed until working properly
+      - id: ClothingEyesHudMedical
       - id: ClothingHeadsetAltMedical
       - id: ClothingBackpackDuffelSurgeryFilled
       - id: ClothingMaskSterile
