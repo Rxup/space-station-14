@@ -42,7 +42,7 @@
     - id: MobMalfunctioningRobotCutter
       prob: 0.3
     - id: MobMalfunctioningRobotPoisoner
-      prob: 0.15
+      prob: 0.2
   inactive:
     - id: RandomHumanoidSpawnerUnaffiliatedDead
       prob: 0.4
@@ -53,13 +53,13 @@
   objectiveDefender: MobXenoQueen
   active:
     - id: MobXeno
-      prob: 0.25
+      prob: 0.3
       orGroup: Xeno
     - id: MobXenoDrone
       prob: 0.05
       orGroup: Xeno
     - id: MobXenoRunner
-      prob: 0.075
+      prob: 0.1
       orGroup: Xeno
     - id: MobXenoPraetorian
       prob: 0.075

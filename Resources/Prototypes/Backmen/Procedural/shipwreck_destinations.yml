@@ -86,10 +86,9 @@
     - ZombieOutbreak
     - MalfunctioningRobots
     - SpaceCarpInvasion
-    - SpaceXenoInvasion
   atmosphere:
     volume: 2300
-    temperature: 320
+    temperature: 330
     moles:
       - 21.94724
       - 77.05276
