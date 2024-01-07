@@ -26,6 +26,7 @@
     jumpsuit: ClothingUniformJumpsuitRoboticist
     back: ClothingBackpackScienceFilled
     shoes: ClothingShoesColorBlack
+    eyes: ClothingEyesGlassesWelding
     outerClothing: ClothingOuterCoatRnd
     id: RoboticistPDA
     ears: ClothingHeadsetScience
