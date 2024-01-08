@@ -184,9 +184,10 @@
   - type: EnergySword
   - type: ItemToggleMeleeWeapon
     activatedDamage:
-        types:
-            Slash: 10
+        types: # backmen eCutlass buff
+            Slash: 12
             Heat: 12
+            Structural: 10
     deactivatedSecret: true
   - type: ItemToggleDisarmMalus
     activatedDisarmMalus: 0.6
