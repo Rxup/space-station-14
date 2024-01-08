@@ -16,3 +16,5 @@ ent-SpawnPointDelivery = Доставщик
     .desc = { ent-SpawnPointJobBase.desc }
 ent-SpawnPointPrisoner = Заключенный
     .desc = { ent-SpawnPointJobBase.desc }
+ent-SpawnPointRoboticist = Робототехник
+    .desc = { ent-SpawnPointJobBase.desc }
