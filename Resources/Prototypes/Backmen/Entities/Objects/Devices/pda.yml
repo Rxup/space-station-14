@@ -76,3 +76,34 @@
       state: pda-clear
     - type: Icon
       state: pda-clear
+
+- type: entity
+  parent: BasePDA
+  id: RoboticistPDA
+  name: Roboticist PDA
+  description:  An old black PDA with machine oil stains, scratches and other signs of age
+  components:
+    - type: Sprite
+      sprite: Backmen/Objects/Devices/pda.rsi
+      layers:
+      - map: [ "enum.PdaVisualLayers.Base" ]
+      - state: "light_overlay"
+        map: [ "enum.PdaVisualLayers.Flashlight" ]
+        shader: "unshaded"
+        visible: false
+      - state: "id_overlay"
+        map: [ "enum.PdaVisualLayers.IdLight" ]
+        shader: "unshaded"
+        visible: false
+    - type: Pda
+      id: RoboticistIDCard
+      state: pda-Roboticist
+      penSlot:
+        startingItem: Pen
+        priority: -1
+        whitelist:
+          tags:
+          - Write
+    - type: Icon
+      sprite: Backmen/Objects/Devices/pda.rsi
+      state: pda-Roboticist

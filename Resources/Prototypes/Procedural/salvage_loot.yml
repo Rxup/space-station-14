@@ -112,6 +112,9 @@
           cost: 3
         - proto: BluespacePillCanister # Backmen
           cost: 1
+        - proto: WeaponTeslaGun
+          prob: 0.1
+          cost: 2
 
 # Mob loot table
 
@@ -121,11 +124,11 @@
 # Ores - these are guaranteed
 # - Low value
 - type: salvageLoot
-  id: OreTin
+  id: OreIron
   guaranteed: true
   loots:
     - !type:BiomeMarkerLoot
-      proto: OreTin
+      proto: OreIron
 
 - type: salvageLoot
   id: OreCoal

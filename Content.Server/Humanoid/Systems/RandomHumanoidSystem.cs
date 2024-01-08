@@ -52,17 +52,8 @@ public sealed class RandomHumanoidSystem : EntitySystem
             {
                 var comp = (Component) _serialization.CreateCopy(entry.Component, notNullableOverride: true);
                 comp.Owner = humanoid; // This .owner must survive for now.
-
-                // start-backmen: fix
-                /*
-                var compType = comp.GetType();
-                if (EntityManager.HasComponent(humanoid, compType))
-                {
-                    EntityManager.RemoveComponent(humanoid, compType);
-                }
-                */
-                // end-backmen: fix
-                EntityManager.AddComponent(humanoid, comp, true);
+                EntityManager.RemoveComponent(humanoid, comp.GetType());
+                EntityManager.AddComponent(humanoid, comp);
             }
         }
 

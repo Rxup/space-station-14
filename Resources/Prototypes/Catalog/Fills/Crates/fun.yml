@@ -25,6 +25,7 @@
       - id: PlushieHampter
       - id: PlushieMoth
       - id: RubberPig
+      - id: PlushieArachind
       - id: PlushiePenguin
 
 - type: entity
