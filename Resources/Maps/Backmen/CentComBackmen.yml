@@ -30349,7 +30349,6 @@ entities:
       type: SolutionContainerManager
     - canCollide: False
       type: Physics
-    - type: ItemCooldown
 - proto: Morgue
   entities:
   - uid: 2189
