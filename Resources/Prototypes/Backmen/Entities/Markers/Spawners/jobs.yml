@@ -127,9 +127,11 @@
   - type: SpawnPoint
     job_id: Roboticist
   - type: Sprite
+    sprite: Backmen/Markers/jobs.rsi
     layers:
       - state: green
       - state: roboticist
+      - state: jobicon
 
 #- type: entity
 #  id: SpawnPointGladiator
