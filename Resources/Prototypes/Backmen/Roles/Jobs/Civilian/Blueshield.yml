@@ -1,0 +1,25 @@
+- type: job
+  id: Blueshield
+  name: blueshield
+  description: job-description-blueshield
+  playTimeTracker: JobBlueshield
+  startingGear: BlueshieldGear
+  icon: "JobIconBlueshield"
+  supervisors: job-supervisors-service
+  canBeAntag: false
+  setPreference: true
+  access:
+  - Blueshield
+  - Maintenance
+  - Command
+  - Service
+  - External
+  - Brig
+  - Security
+  - Medical
+  extendedAccess:
+  - Hydroponics
+  minBankBalance: 300
+  maxBankBalance: 500
+  wageDepartment: Civilian
+  wage: 80
