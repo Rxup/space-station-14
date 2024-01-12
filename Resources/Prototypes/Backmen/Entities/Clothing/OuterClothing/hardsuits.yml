@@ -181,7 +181,7 @@
 #Blueshield Hardsuit
 - type: entity
   parent: ClothingOuterHardsuitCap
-  id: ClothingOuterHardsuitBlushield
+  id: ClothingOuterHardsuitBlueshield
   name: blueshield's armored spacesuit
   description: Armored spacesuit, made for the blueshield.
   components:
