@@ -32,6 +32,16 @@
   maxBankBalance: 500
   wageDepartment: Civilian
   wage: 80
+  special:
+  - !type:AddComponentSpecial
+    components:
+      - type: PsionicBonusChance
+        flatBonus: 0.025
+  - !type:AddImplantSpecial
+    implants: [ MindShieldImplant ]
+  - !type:AddComponentSpecial
+    components:
+      - type: CommandStaff
   
 - type: startingGear
   id: BlueshieldGear
