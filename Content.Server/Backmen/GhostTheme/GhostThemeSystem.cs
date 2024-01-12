@@ -5,6 +5,8 @@ using Content.Shared.Backmen.GhostTheme;
 using Content.Shared.GameTicking;
 using Content.Shared.Ghost;
 using Content.Shared.Players;
+using Robust.Server.Configuration;
+using Robust.Shared;
 using Robust.Shared.Network;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
@@ -20,72 +22,44 @@ public sealed class GhostThemeSystem : EntitySystem
     [Dependency] private readonly IServerSponsorsManager _sponsorsMgr = default!; // Corvax-Sponsors
     [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
     [Dependency] private readonly ISerializationManager _serialization = default!;
-    [Dependency] private readonly MindSystem _mindSystem = default!;
-
-
-    private Dictionary<NetUserId, ProtoId<GhostThemePrototype>> _cachedGhosts = new();
+    [Dependency] private readonly IServerNetConfigurationManager _netConfigManager = default!;
 
     public override void Initialize()
     {
         base.Initialize();
         SubscribeLocalEvent<GhostComponent, PlayerAttachedEvent>(OnPlayerAttached);
-        SubscribeNetworkEvent<RequestGhostThemeEvent>(OnPlayerSelectGhost);
-        SubscribeLocalEvent<RoundRestartCleanupEvent>(OnCleanup);
     }
-
-    private void OnCleanup(RoundRestartCleanupEvent ev)
-    {
-        _cachedGhosts.Clear();
-    }
-
-    private void OnPlayerSelectGhost(RequestGhostThemeEvent msg, EntitySessionEventArgs args)
-    {
-#if DEBUG
-        if (!_sponsorsMgr.TryGetPrototypes(args.SenderSession.UserId, out var items))
-        {
-            items = new List<string>();
-            items.Add("tier1");
-            items.Add("tier2");
-            items.Add("tier01");
-            items.Add("tier02");
-            items.Add("tier03");
-            items.Add("tier04");
-            items.Add("tier05");
-        }
-#else
-        if (!_sponsorsMgr.TryGetPrototypes(args.SenderSession.UserId, out var items))
-            return;
-
-        if (!items.Contains(msg.Ghost.Id))
-            return;
-#endif
-
-        if (!_prototypeManager.TryIndex(msg.Ghost, out _))
-            return;
-
-        _cachedGhosts[args.SenderSession.UserId] = msg.Ghost;
-
-
-        if (args.SenderSession.AttachedEntity != null && args.SenderSession.AttachedEntity.Value.IsValid() && HasComp<GhostComponent>(args.SenderSession.AttachedEntity))
-        {
-            var comp = EnsureComp<GhostThemeComponent>(args.SenderSession.AttachedEntity.Value);
-            comp.GhostTheme = msg.Ghost.Id;
-            Dirty(args.SenderSession.AttachedEntity.Value, comp);
-        }
-
-        if (_mindSystem.TryGetMind(args.SenderSession, out var mindId, out var mind) && mind.IsVisitingEntity && HasComp<GhostComponent>(mind.VisitingEntity))
-        {
-            var comp = EnsureComp<GhostThemeComponent>(mind.VisitingEntity.Value);
-            comp.GhostTheme = msg.Ghost.Id;
-            Dirty(mind.VisitingEntity.Value, comp);
-        }
-
-    }
-
 
     private void OnPlayerAttached(EntityUid uid, GhostComponent component, PlayerAttachedEvent args)
     {
-        if (!(_cachedGhosts.TryGetValue(args.Player.UserId, out var value) && _prototypeManager.TryIndex(value, out var ghostThemePrototype)))
+        var prefGhost = _netConfigManager.GetClientCVar(args.Player.Channel, Shared.Backmen.CCVar.CCVars.SponsorsSelectedGhost);
+        {
+#if DEBUG
+            if (!_sponsorsMgr.TryGetPrototypes(args.Player.UserId, out var items))
+            {
+                items = new List<string>();
+                items.Add("tier1");
+                items.Add("tier2");
+                items.Add("tier01");
+                items.Add("tier02");
+                items.Add("tier03");
+                items.Add("tier04");
+                items.Add("tier05");
+            }
+            if (!items.Contains(prefGhost))
+            {
+                prefGhost = "";
+            }
+#else
+            if (!_sponsorsMgr.TryGetPrototypes(args.Player.UserId, out var items) || !items.Contains(prefGhost))
+            {
+                prefGhost = "";
+            }
+#endif
+        }
+
+        GhostThemePrototype? ghostThemePrototype = null;
+        if (string.IsNullOrEmpty(prefGhost) || !_prototypeManager.TryIndex<GhostThemePrototype>(prefGhost, out ghostThemePrototype))
         {
             if (!_sponsorsMgr.TryGetGhostTheme(args.Player.UserId, out var ghostTheme) ||
                 !_prototypeManager.TryIndex(ghostTheme, out ghostThemePrototype)
@@ -95,7 +69,7 @@ public sealed class GhostThemeSystem : EntitySystem
             }
         }
 
-        foreach (var entry in ghostThemePrototype!.Components.Values)
+        foreach (var entry in ghostThemePrototype.Components.Values)
         {
             var comp = (Component) _serialization.CreateCopy(entry.Component, notNullableOverride: true);
             comp.Owner = uid;
