@@ -110,20 +110,9 @@
       
 - type: entity
   parent: CaptainPDA
-  id: BLueShieldPDA
+  id: BlueshieldPDA
   name: blueshield PDA
   components:
-  - type: Sprite
-    layers:
-    - map: [ "enum.PdaVisualLayers.Base" ]
-    - state: "light_overlay"
-      map: [ "enum.PdaVisualLayers.Flashlight" ]
-      shader: "unshaded"
-      visible: false
-    - state: "id_overlay"
-      map: [ "enum.PdaVisualLayers.IdLight" ]
-      shader: "unshaded"
-      visible: false
   - type: Pda
     id: BlueshieldIDCard
     state: pda-captain
