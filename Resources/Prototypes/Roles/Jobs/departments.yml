@@ -13,6 +13,7 @@
   description: department-Civilian-description
   color: "#9FED58"
   roles:
+  - Blueshield        #backmen: currency
   - Bartender
   - Borg
   - Botanist
