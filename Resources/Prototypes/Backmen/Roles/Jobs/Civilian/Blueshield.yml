@@ -23,3 +23,18 @@
   maxBankBalance: 500
   wageDepartment: Civilian
   wage: 80
+  
+- type: startingGear
+  id: BlueshieldGear
+  equipment:
+    jumpsuit: BlueshieldUniformSuit
+    back: ClothingBackpackFilled
+    shoes: ClothingShoesBootsNedoSpetsnaz
+    eyes: ClothingEyesGlassesSunglasses
+    gloves: ClothingHandsGlovesCombat
+    outerClothing: ClothingOuterArmorBlueshieldCarapace
+    id: BlueshieldPDA
+    ears: ClothingHeadsetAltCommand
+  innerClothingSkirt: BlueshieldUniformSuit
+  satchel: ClothingBackpackSatchelFilled
+  duffelbag: ClothingBackpackDuffelFilled

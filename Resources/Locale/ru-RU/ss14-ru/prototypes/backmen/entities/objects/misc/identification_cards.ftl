@@ -8,3 +8,5 @@ ent-StudentIDCard = ID карта студента
     .desc = { ent-UnaffiliatedIDCard.desc }
 ent-FreelancerIDCard = ID карта наёмника
     .desc = { ent-UnaffiliatedIDCard.desc }
+ent-BlueShieldIDCard = ID карта Синего Щита
+    .desc = { ent-IDCardStandard.desc }
