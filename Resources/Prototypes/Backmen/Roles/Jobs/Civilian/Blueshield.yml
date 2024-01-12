@@ -3,6 +3,15 @@
   name: blueshield
   description: job-description-blueshield
   playTimeTracker: JobBlueshield
+  requirements:
+    - !type:DepartmentTimeRequirement
+      department: Security
+      time: 180000 #50 hrs
+    - !type:DepartmentTimeRequirement
+      department: Command
+      time: 180000 #50 hrs
+    - !type:OverallPlaytimeRequirement
+      time: 900000 #250 hrs
   startingGear: BlueshieldGear
   icon: "JobIconBlueshield"
   supervisors: job-supervisors-service

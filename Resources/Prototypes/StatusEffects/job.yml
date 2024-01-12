@@ -367,3 +367,9 @@
   icon:
     sprite: Interface/Misc/job_icons.rsi
     state: SeniorResearcher
+- type: statusIcon
+  parent: JobIcon
+  id: JobIconBlueshield
+  icon:
+    sprite: Interface/Misc/job_icons.rsi
+    state: blueshield
