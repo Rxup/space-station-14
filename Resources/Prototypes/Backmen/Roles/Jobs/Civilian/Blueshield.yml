@@ -39,7 +39,7 @@
     jumpsuit: BlueshieldUniformSuit
     back: ClothingBackpackFilled
     shoes: ClothingShoesBootsNedoSpetsnaz
-    eyes: ClothingEyesGlassesSunglasses
+    eyes: ClothingEyesGlassesSunglassesMed
     gloves: ClothingHandsGlovesCombat
     outerClothing: ClothingOuterArmorBlueshieldCarapace
     id: BlueshieldPDA
