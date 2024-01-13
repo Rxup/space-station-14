@@ -19,25 +19,3 @@
     sprite: Backmen/Clothing/Head/Soft/cargopostalsoft_flipped.rsi
   - type: Clothing
     sprite: Backmen/Clothing/Head/Soft/cargopostalsoft_flipped.rsi
-    
-- type: entity
-  parent: ClothingHeadBaseButcherable
-  id: ClothingHeadHatBlacksoft
-  name: Black cap
-  description: "It's a Black baseball hat."
-  components:
-  - type: Sprite
-    sprite: Clothing/Head/Soft/blacksoft.rsi
-  - type: Clothing
-    sprite: Clothing/Head/Soft/blacksoft.rsi
-    
-- type: entity
-  parent: ClothingHeadBaseButcherable
-  id: ClothingHeadHatBlacksoftFlipped
-  name: Black cap flipped
-  description: "It's a Black baseball hat. Flipped."
-  components:
-  - type: Sprite
-    sprite: Clothing/Head/Soft/blacksoft_flipped.rsi
-  - type: Clothing
-    sprite: Clothing/Head/Soft/blacksoft_flipped.rsi
