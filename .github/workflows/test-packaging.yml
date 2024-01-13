@@ -55,7 +55,7 @@ jobs:
 
       - name: fix network
         run: |
-          sed -i 's/session.LastSent = null;/session.LastSent = null; PlayerData.Remove(session.Session);/' RobustToolbox/Robust.Server/GameStates/PvsSystem.Session.cs
+          sed -i 's/ClearSendHistory(session);/ClearSendHistory(session); PlayerData.Remove(session.Session);/' RobustToolbox/Robust.Server/GameStates/PvsSystem.cs
 
       - name: Install dependencies
         run: dotnet restore

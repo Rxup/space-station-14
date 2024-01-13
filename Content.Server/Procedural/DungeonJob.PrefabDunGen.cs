@@ -224,23 +224,6 @@ public sealed partial class DungeonJob
                 var tileOffset = -roomCenter + grid.TileSizeHalfVector;
                 Box2i? mapBounds = null;
 
-                // start-backmen: revert fix mapBounds = null
-                // Load tiles
-                for (var x = 0; x < room.Size.X; x++)
-                {
-                    for (var y = 0; y < room.Size.Y; y++)
-                    {
-                        var indices = new Vector2i(x + room.Offset.X, y + room.Offset.Y);
-                        var tilePos = dungeonMatty.Transform(indices + tileOffset);
-                        var rounded = tilePos.Floored();
-
-                        // If this were a Box2 we'd add tilesize although here I think that's undesirable as
-                        // for example, a box2i of 0,0,1,1 is assumed to also include the tile at 1,1
-                        mapBounds = mapBounds?.Union(new Box2i(rounded, rounded)) ?? new Box2i(rounded, rounded);
-                    }
-                }
-                // end-backmen: revert fix mapBounds = null
-
                 for (var x = -1; x <= room.Size.X; x++)
                 {
                     for (var y = -1; y <= room.Size.Y; y++)
