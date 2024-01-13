@@ -17,11 +17,6 @@
         - MatterBinStockPart
       chance: 0.9
       offset: 0.0
-      rarePrototypes:
-        - AdvancedCapacitorStockPart
-        - NanoManipulatorStockPart
-        - AdvancedMatterBinStockPart
-      rareChance: 0.25
 
 - type: entity
   name: Salvage Parts Spawner
@@ -36,18 +31,10 @@
           state: advanced_matter_bin
     - type: RandomSpawner
       prototypes:
-        - SuperCapacitorStockPart
-        - PicoManipulatorStockPart
-        - SuperMatterBinStockPart
         - CrateMaterialSteel
         - CrateMaterialGlass
       chance: 0.45
       offset: 0.0
-      rarePrototypes:
-        - QuadraticCapacitorStockPart
-        - FemtoManipulatorStockPart
-        - BluespaceMatterBinStockPart
-      rareChance: 0.25
 
 - type: entity
   name: Salvage Parts Spawner
@@ -60,14 +47,3 @@
         - state: red
         - sprite: Objects/Misc/stock_parts.rsi
           state: subspace_ansible
-    - type: RandomSpawner
-      prototypes:
-        - AnsibleSubspaceStockPart
-        - FilterSubspaceStockPart
-        - AmplifierSubspaceStockPart
-        - TreatmentSubspaceStockPart
-        - AnalyzerSubspaceStockPart
-        - CrystalSubspaceStockPart
-        - TransmitterSubspaceStockPart
-      chance: 0.05
-      offset: 0.0
