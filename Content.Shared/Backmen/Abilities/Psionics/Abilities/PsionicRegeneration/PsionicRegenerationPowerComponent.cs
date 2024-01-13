@@ -16,7 +16,7 @@ public sealed partial class PsionicRegenerationPowerComponent : Component
     public float UseDelay = 8f;
 
     [DataField("soundUse")]
-    public SoundSpecifier SoundUse = new SoundPathSpecifier("/Audio/Backmen/heartbeat_fast.ogg");
+    public SoundSpecifier SoundUse = new SoundPathSpecifier("/Audio/Nyanotrasen/heartbeat_fast.ogg");
 
     public EntityUid? PsionicRegenerationPowerAction = null;
 }

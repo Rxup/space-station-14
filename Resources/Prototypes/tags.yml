@@ -170,6 +170,12 @@
   id: BorgModuleService
 
 - type: Tag
+  id: BorgModuleSyndicate
+
+- type: Tag
+  id: BorgModuleSyndicateAssault
+
+- type: Tag
   id: BorgServiceHead
 
 - type: Tag
@@ -228,7 +234,7 @@
 
 - type: Tag
   id: BypassInteractionRangeChecks
-  
+
 - type: Tag
   id: CableCoil
 
@@ -295,6 +301,9 @@
 # Allows you to walk over tile entities such as lava without steptrigger
 - type: Tag
   id: Catwalk
+
+- type: Tag
+  id: CentrifugeCompatible
 
 - type: Tag
   id: Chicken
@@ -495,9 +504,6 @@
   id: FleshBlocker
 
 - type: Tag
-  id: WhitelistChameleon
-
-- type: Tag
   id: FirelockElectronics
 
 - type: Tag
@@ -561,7 +567,16 @@
   id: Goat
 
 - type: Tag
+  id: GPS
+
+- type: Tag
   id: Grenade
+
+- type: Tag
+  id: HudMedical
+
+- type: Tag
+  id: HudSecurity
 
 - type: Tag
   id: GuideEmbeded
@@ -797,7 +812,13 @@
   id: MicrowaveSelfUnsafe
 
 - type: Tag
+  id: MindShield
+
+- type: Tag
   id: MindTransferTarget
+
+- type: Tag
+  id: ModularReceiver
 
 - type: Tag
   id: MonkeyCube
@@ -816,7 +837,6 @@
 
 - type: Tag
   id: Multitool
-
 
 - type: Tag
   id: NoBlockAnchoring
@@ -933,6 +953,9 @@
   id: ProximitySensor
 
 - type: Tag
+  id: QuantumSpinInverter
+
+- type: Tag
   id: Radio
 
 - type: Tag
@@ -947,6 +970,9 @@
 
 - type: Tag
   id: ReinforcedGlassShard
+
+- type: Tag
+  id: RifleStock
 
 - type: Tag
   id: RipleyCentralControlModule
@@ -1135,9 +1161,6 @@
   id: Wall
 
 - type: Tag
-  id: WetFloorSign
-
-- type: Tag
   id: WallmountGeneratorAPUElectronics
 
 - type: Tag
@@ -1151,6 +1174,12 @@
 
 - type: Tag
   id: WeaponShotgunKammerer
+
+- type: Tag
+  id: WetFloorSign
+
+- type: Tag
+  id: WhitelistChameleon
 
 - type: Tag
   id: Window
@@ -1185,14 +1214,4 @@
 - type: Tag
   id: WriteIgnoreStamps
 
-- type: Tag
-  id: RifleStock
-
-- type: Tag
-  id: ModularReceiver
-
-- type: Tag
-  id: MindShield
-
-- type: Tag
-  id:  boots
+# PUT YOUR TAGS IN ALPHABETICAL ORDER

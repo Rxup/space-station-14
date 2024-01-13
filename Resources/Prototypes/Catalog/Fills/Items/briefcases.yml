@@ -18,12 +18,12 @@
   - type: Item
     size: Ginormous
   - type: StorageFill
-    contents:
+    contents: # backmen
       - id: WeaponRifleSR127
       - id: MagazineAntiMaterielRifleSR
-      - id: ClothingNeckTieRed
-      - id: ClothingHandsGlovesLatex
-      - id: ClothingUniformJumpsuitLawyerBlack
+      - id: ClothingEyesGlassesMercenary
+      - id: KukriKnife
+      - id: ClothingHeadHatStetson
 
 - type: entity
   id: BriefcaseSyndieLobbyingBundleFilled

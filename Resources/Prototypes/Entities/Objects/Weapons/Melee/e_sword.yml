@@ -184,9 +184,10 @@
   - type: EnergySword
   - type: ItemToggleMeleeWeapon
     activatedDamage:
-        types:
-            Slash: 10
+        types: # backmen eCutlass buff
+            Slash: 12
             Heat: 12
+            Structural: 10
     deactivatedSecret: true
   - type: ItemToggleDisarmMalus
     activatedDisarmMalus: 0.6
@@ -213,7 +214,7 @@
         shader: unshaded
 
 - type: entity
-  name: Double Bladed Energy Sword
+  name: double-bladed energy sword
   parent: EnergySword
   id: EnergySwordDouble
   description: Syndicate Command Interns thought that having one blade on the energy sword was not enough. This can be stored in pockets.

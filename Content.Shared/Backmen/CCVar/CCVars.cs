@@ -68,7 +68,7 @@ public sealed class CCVars
         CVarDef.Create("sponsor.api_url", "", CVar.SERVERONLY);
 
     public static readonly CVarDef<string> SponsorsSelectedGhost =
-        CVarDef.Create("sponsor.ghost", "", CVar.CLIENTONLY);
+        CVarDef.Create("sponsor.ghost", "", CVar.REPLICATED | CVar.CLIENT);
 
 
     public static readonly CVarDef<bool>
