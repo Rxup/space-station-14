@@ -1260,7 +1260,7 @@ public sealed class ShipwreckedRuleSystem : GameRuleSystem<ShipwreckedRuleCompon
                     {
                         HecateSay(Loc.GetString("hecate-start-play-music"),
                             component);
-                        _audioSystem.PlayGlobal("/Audio/Backmen/Misc/kujlevka.ogg", Filter.Broadcast(), true);
+                        component.SoundTrack = _audioSystem.PlayPvs("/Audio/Backmen/Misc/kujlevka.ogg", component.Hecate!.Value);
                         break;
                     }
                 case ShipwreckedEventId.EncounterTurbulence:

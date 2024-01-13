@@ -2,6 +2,7 @@ using Content.Server.Backmen.Shipwrecked.Prototypes;
 using Content.Shared.Corvax.TTS;
 using Content.Shared.Procedural;
 using Content.Shared.Roles;
+using Robust.Shared.Audio.Components;
 using Robust.Shared.Map;
 using Robust.Shared.Map.Components;
 using Robust.Shared.Player;
@@ -161,7 +162,11 @@ public sealed partial class ShipwreckedRuleComponent : Component
     /// </summary>
     [ViewVariables] public bool AllObjectivesComplete;
 
-#endregion
+    [ViewVariables] public (EntityUid Entity, AudioComponent Component)? SoundTrack;
+
+    #endregion
+
+
 
 }
 
