@@ -9,22 +9,10 @@ namespace Content.Client.Backmen.GhostTheme;
 public sealed class GhostThemeSystem : EntitySystem
 {
     [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
-    [Dependency] private readonly IConfigurationManager _cfg = default!;
     public override void Initialize()
     {
         base.Initialize();
         SubscribeLocalEvent<GhostThemeComponent, AfterAutoHandleStateEvent>(OnInit);
-        SubscribeNetworkEvent<TickerJoinGameEvent>(JoinGame);
-    }
-
-    private void JoinGame(TickerJoinGameEvent ev)
-    {
-        var ghostTheme = _cfg.GetCVar(Shared.Backmen.CCVar.CCVars.SponsorsSelectedGhost);
-        if (string.IsNullOrEmpty(ghostTheme))
-        {
-            return;
-        }
-        RaiseNetworkEvent(new RequestGhostThemeEvent(ghostTheme));
     }
 
     private void OnInit(EntityUid uid, GhostThemeComponent component, ref AfterAutoHandleStateEvent args)
