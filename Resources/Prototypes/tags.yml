@@ -504,9 +504,6 @@
   id: FleshBlocker
 
 - type: Tag
-  id: WhitelistChameleon
-
-- type: Tag
   id: FirelockElectronics
 
 - type: Tag

@@ -61,17 +61,6 @@
     Plastic: 200
 
 - type: latheRecipe
-  id: BluespaceCrystal
-  icon:
-    sprite: Backmen/Objects/Materials/materials.rsi
-    state: bluespace
-  result: CrystalSubspaceStockPart
-  applyMaterialDiscount: false
-  completetime: 4
-  materials:
-    Bluespace: 300
-
-- type: latheRecipe
   id: BluespacePillCanister
   result: BluespacePillCanister
   completetime: 2

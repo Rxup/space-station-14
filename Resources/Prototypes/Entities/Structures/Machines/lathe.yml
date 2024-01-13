@@ -1051,7 +1051,7 @@
       idleState: icon
       runningState: building
       staticRecipes:
-        - BluespaceCrystal # backmen
+        #- BluespaceCrystal # backmen
         - SheetSteel30
         - SheetGlass30
         - SheetRGlass30
