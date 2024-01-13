@@ -108,6 +108,8 @@
   components:
     - type: StorageFill
       contents:
+        - id: DrinkCondensedmilkCan # backmen
+          prob: 0.2
         - id: Eftpos # backmen
           prob: 0.2
         - id: Lantern
@@ -147,6 +149,8 @@
         - id: ClothingHandsGlovesColorYellowBudget
           prob: 0.25
         - id: StrangePill
+          prob: 0.20
+        - id: DrinkMopwataBottleRandom
           prob: 0.20
         - id: ModularReceiver
           prob: 0.1
@@ -201,6 +205,8 @@
   components:
   - type: StorageFill
     contents:
+        - id: DrinkCondensedmilkCan # backmen
+          prob: 0.2
         - id: Eftpos # backmen
           prob: 0.2
         - id: Lantern

@@ -35,7 +35,7 @@
     contents:
       - id: Eftpos # backmen
       - id: CrowbarRed
-      - id: MonkeyCubeBox
+      - id: VariantCubeBox
       - id: BoxMousetrap
         amount: 2
       - id: SprayBottleWater
