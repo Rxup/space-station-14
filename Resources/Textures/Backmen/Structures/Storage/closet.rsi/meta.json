@@ -36,6 +36,12 @@
     },
     {
       "name": "locked"
+    },
+    {
+      "name": "unlocked"
+    },
+    {
+      "name": "sparking"
     }
   ]
 }

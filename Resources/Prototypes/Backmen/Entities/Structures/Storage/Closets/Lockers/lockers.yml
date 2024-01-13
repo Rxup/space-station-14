@@ -24,4 +24,4 @@
     stateDoorOpen: bs_open
     stateDoorClosed: bs_door
   - type: AccessReader
-    access: [["BlueShield"]]
+    access: [["Blueshield"]]
