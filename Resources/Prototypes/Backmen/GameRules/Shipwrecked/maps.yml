@@ -35,6 +35,24 @@
             Freelancer: [-1,-1]
 
 - type: gameMap
+  id: ShwrTraveller
+  mapName: Странник
+  mapPath: /Maps/Backmen/Shuttles/traveller.yml
+  minPlayers: 10
+  maxPlayers: 25
+  stations:
+    ShwrTraveller:
+      stationProto: StandardStationArena
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: "Странник"
+        - type: StationJobs
+          overflowJobs:
+            - Freelancer
+          availableJobs:
+            Freelancer: [-1,-1]
+
+- type: gameMap
   id: shwrDust
   mapName: KL-Dust 469
   mapPath: /Maps/Backmen/Shuttles/shwr-dust.yml
