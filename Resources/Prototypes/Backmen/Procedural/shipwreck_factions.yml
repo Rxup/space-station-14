@@ -74,9 +74,15 @@
   parent: MobXenoQueen
   id: MobXenoQueenShipwrecked
   suffix: shipwrecked gamemode
+  components:
+  - type: GhostRole
+    prob: 0.0
 
 - type: entity
   name: space dragon
   parent: MobDragonDungeon
   id: MobDragonShipwrecked
   suffix: shipwrecked gamemode
+  components:
+  - type: GhostRole
+    prob: 0.0
