@@ -1,7 +1,8 @@
+# For the shipwrecked gamemode
 - type: entity
   parent: MarkerBase
   id: RandomLootShipwrecked
-  name: loot spawner
+  name: salvage loot spawner
   suffix: shipwrecked gamemode
   components:
   - type: Sprite
@@ -14,24 +15,18 @@
     prototypes:
       - Pickaxe
       - SheetUranium1
-      - EphedrineChemistryBottle
       - PowerCellHigh
       - SheetPlastic
       - SheetPlasteel
-      - MedkitFilled
-      - MedkitFilled
-      - BruteAutoInjector
-      - BurnAutoInjector
       - ClothingEyesGlassesMeson
-      - ClothingMaskClown
       - Floodlight
       - CableApcStack
       - SpaceCash100
       - ClothingBeltUtilityFilled
-      - ClothingBackpack
+      - ClothingBackpackSalvage
       - ClothingOuterVestHazard
       - WeaponProtoKineticAccelerator
-      - HandheldHealthAnalyzer
+      - ClothingOuterHardsuitSpatio
     chance: 0.9
     rarePrototypes:
       - SheetUranium
@@ -39,10 +34,68 @@
       - SpearPlasma
       - ClothingOuterHardsuitSalvage
       - MiningDrill
-      - MedkitAdvancedFilled
-      - WeaponSubMachineGunMP5
       - SpaceCash1000
     rareChance: 0.2
+
+- type: entity
+  parent: MarkerBase
+  id: RandomLootShipwreckedMedical
+  name: medical loot spawner
+  suffix: shipwrecked gamemode
+  components:
+  - type: Sprite
+    layers:
+      - state: red
+      - sprite: Objects/Misc/books.rsi
+        state: book1
+  - type: RandomSpawner
+    offset: 0
+    prototypes:
+      - MedkitAdvancedFilled
+      - MedkitFilled
+      - MedkitFilled
+      - BruteAutoInjector
+      - BurnAutoInjector
+      - EphedrineChemistryBottle
+      - HandheldHealthAnalyzer
+      - HandheldHealthAnalyzer
+      - OmnizineChemistryBottle
+      - EpinephrineChemistryBottle
+      - BoxSyringe
+      - ClothingHeadHatParamedicsoft
+      - SyringeTranexamicAcid
+    chance: 0.95
+    rarePrototypes:
+      - MedkitCombat
+    rareChance: 0.05
+
+- type: entity
+  parent: MarkerBase
+  id: RandomLootShipwreckedSecurity
+  name: security loot spawner
+  suffix: shipwrecked gamemode
+  components:
+  - type: Sprite
+    layers:
+      - state: red
+      - sprite: Objects/Misc/books.rsi
+        state: book2
+  - type: RandomSpawner
+    offset: 0
+    prototypes:
+      - FlashlightSeclite
+      - CombatKnife
+      - Stunbaton
+      - ClothingEyesGlassesSecurity
+      - ClothingEyesGlassesSunglasses
+      - ClothingOuterCoatDetective
+      - MagazinePistolHighCapacity
+    chance: 0.95
+    rarePrototypes:
+      - WeaponRevolverInspector
+      - SpeedLoaderMagnum
+      - SpeedLoaderMagnum
+    rareChance: 0.1
 
 - type: entity
   parent: MarkerBase
@@ -66,3 +119,4 @@
       - AirCanister
       - VendingMachineTankDispenserEVA
       - Autolathe
+      - chem_master

@@ -16,7 +16,7 @@
 
 - type: shipwreckFaction
   id: SpaceCarpInvasion
-  objectiveDefender: MobDragonDungeon
+  objectiveDefender: MobDragonShipwrecked
   active:
     - id: MobCarpDungeon
       prob: 0.3
@@ -50,7 +50,7 @@
 
 - type: shipwreckFaction
   id: SpaceXenoInvasion
-  objectiveDefender: MobXenoQueen
+  objectiveDefender: MobXenoQueenShipwrecked
   active:
     - id: MobXeno
       prob: 0.3
@@ -68,3 +68,21 @@
     - id: RandomHumanoidSpawnerUnaffiliatedDead
       prob: 0.2
       maxAmount: 2
+
+- type: entity
+  name: queen
+  parent: MobXenoQueen
+  id: MobXenoQueenShipwrecked
+  suffix: shipwrecked gamemode
+  missingComponents:
+  - GhostRole
+  - GhostTakeoverAvailable
+
+- type: entity
+  name: space dragon
+  parent: MobDragonDungeon
+  id: MobDragonShipwrecked
+  suffix: shipwrecked gamemode
+  missingComponents:
+  - GhostRole
+  - GhostTakeoverAvailable
