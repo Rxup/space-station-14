@@ -74,15 +74,9 @@
   parent: MobXenoQueen
   id: MobXenoQueenShipwrecked
   suffix: shipwrecked gamemode
-  missingComponents:
-  - GhostRole
-  - GhostTakeoverAvailable
 
 - type: entity
   name: space dragon
   parent: MobDragonDungeon
   id: MobDragonShipwrecked
   suffix: shipwrecked gamemode
-  missingComponents:
-  - GhostRole
-  - GhostTakeoverAvailable
