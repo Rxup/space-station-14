@@ -332,11 +332,13 @@ public sealed class ShipwreckedRuleSystem : GameRuleSystem<ShipwreckedRuleCompon
         var biome = AddComp<BiomeComponent>(planetMapUid);
         _biomeSystem.SetSeed(planetMapUid, biome, seed);
         _biomeSystem.SetTemplate(planetMapUid, biome, _prototypeManager.Index<BiomeTemplatePrototype>(destination.BiomePrototype));
-        _biomeSystem.AddMarkerLayer(planetMapUid, biome, "OreTin");
+        _biomeSystem.AddMarkerLayer(planetMapUid, biome, "OreIron");
+        _biomeSystem.AddMarkerLayer(planetMapUid, biome, "OreQuartz");
         _biomeSystem.AddMarkerLayer(planetMapUid, biome, "OreGold");
         _biomeSystem.AddMarkerLayer(planetMapUid, biome, "OreSilver");
         _biomeSystem.AddMarkerLayer(planetMapUid, biome, "OrePlasma");
         _biomeSystem.AddMarkerLayer(planetMapUid, biome, "OreUranium");
+        _biomeSystem.AddMarkerLayer(planetMapUid, biome, "OreArtifactFragment");
         _biomeSystem.AddTemplate(planetMapUid, biome, "Loot", _prototypeManager.Index<BiomeTemplatePrototype>("Caves"), 1);
         Dirty(planetMapUid, biome);
 

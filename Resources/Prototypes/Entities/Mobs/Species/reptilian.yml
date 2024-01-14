@@ -21,14 +21,14 @@
   - type: Body
     prototype: Reptilian
     requiredLegs: 2
-  - type: Inventory # Corvax-Digitigrade
-    speciesId: digi
   - type: Perishable
   - type: Butcherable
     butcheringType: Spike
     spawned:
     - id: FoodMeatLizard
       amount: 5
+  - type: Inventory
+    speciesId: reptilian
   - type: LizardAccent
   - type: Speech
     speechSounds: Lizard
@@ -48,7 +48,7 @@
     animation: WeaponArcPunch
     damage:
       types:
-        Piercing: 5
+        Slash: 5
   - type: Temperature
     heatDamageThreshold: 400
     coldDamageThreshold: 285
@@ -69,7 +69,5 @@
   components:
   - type: HumanoidAppearance
     species: Reptilian
-  - type: Inventory # Corvax-Digitigrade
-    speciesId: digi
 
 #Weh

@@ -29,7 +29,7 @@ jobs:
           fi
 
     - name: Install dependencies
-      run: sudo apt-get install -y python3-paramiko
+      run: sudo apt-get install -y python3-paramiko python3-lxml
 
     - uses: actions/checkout@v3.6.0
       with:
@@ -46,6 +46,10 @@ jobs:
 
     - name: Install dependencies
       run: dotnet restore
+
+    - name: fix network
+      run: |
+        sed -i 's/ClearSendHistory(session);/ClearSendHistory(session); PlayerData.Remove(session.Session);/' RobustToolbox/Robust.Server/GameStates/PvsSystem.cs
 
     - name: Build Packaging
       run: dotnet build Content.Packaging --configuration Release --no-restore /m
