@@ -23,6 +23,18 @@
 
 - type: entity
   parent: IDCardStandard
+  id: BlueshieldIDCard
+  name: Blueshield ID Card
+  components:
+    - type: Sprite
+      layers:
+        - state: silver
+        - state: idblueshield
+    - type: PresetIdCard
+      job: Blueshield
+
+- type: entity
+  parent: IDCardStandard
   id: UnaffiliatedIDCard
   name: unaffiliated ID card
   description: A card displaying a name and other identifying details.
