@@ -1,4 +1,4 @@
-﻿- type: gameMapPool
+- type: gameMapPool
   id: CorvaxMapPool
   maps:
     - CorvaxDelta
@@ -6,5 +6,7 @@
     - CorvaxSpectrum
     - CorvaxSilly
     - CorvaxOutpost
+    - CorvaxAstra
+    - CorvaxGelta
     - Box
 

@@ -22,6 +22,15 @@
   - WageScheduler #backmen: currency
 
 - type: gamePreset
+  id: Greenshift
+  alias:
+  - greenshift
+  - shittersafarideluxeedition
+  name: greenshift-title
+  showInVote: false #4boring4vote
+  description: greenshift-description
+
+- type: gamePreset
   id: Secret
   alias:
     - secret

@@ -16,9 +16,6 @@ public sealed partial class HumanoidProfileEditor
 
     private void InitializeVoice()
     {
-        if (!IoCManager.Instance!.TryResolveType(out _sponsorsMgr))
-            return;
-
         _random = IoCManager.Resolve<IRobustRandom>();
         _ttsSys = _entMan.System<TTSSystem>();
         _voiceList = _prototypeManager
@@ -34,12 +31,12 @@ public sealed partial class HumanoidProfileEditor
         };
 
         _voicePlayButton.OnPressed += _ => { PlayTTS(); };
+        IoCManager.Instance!.TryResolveType(out _sponsorsMgr);
     }
 
     private void UpdateTTSVoicesControls()
     {
-        if (Profile is null ||
-            _sponsorsMgr is null)
+        if (Profile is null)
             return;
 
         _voiceButton.Clear();
@@ -57,6 +54,8 @@ public sealed partial class HumanoidProfileEditor
             if (firstVoiceChoiceId == 1)
                 firstVoiceChoiceId = i;
 
+            if (_sponsorsMgr is null)
+                continue;
             if (voice.SponsorOnly && _sponsorsMgr != null &&
                 !_sponsorsMgr.Prototypes.Contains(voice.ID))
             {
