@@ -120,6 +120,11 @@
           #audio: !type:SoundPathSpecifier
           #  path: /Audio/Nyanotrasen/Dialogue/Hecate/hecate_response_bye_3.ogg
           event: !type:NPCConversationByeEvent
+    - prompts: [music, музыка, музыку, название, назови, музычка]
+      weight: 0.4
+      hidden: true
+      responses:
+        - text: shipwrecked-hecate-response-music-name
 
             #
             # Quest-relevant
