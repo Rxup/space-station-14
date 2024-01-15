@@ -30,7 +30,7 @@
   - Reporter
   - Zookeeper
   - ServiceWorker
-  - TechnicalAssistant
+  #- TechnicalAssistant "The job TechnicalAssistant has more than 1 primary department!"
   - ResearchAssistant
   accountNumber: 1316 #backmen: currency
 

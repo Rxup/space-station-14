@@ -87,7 +87,7 @@
     tools:
       - id: BSSClothingBackpackSatchelDroneMED
       - id: HandheldHealthAnalyzerINF
-      - id: DefibrillatorINF
+      #- id: DefibrillatorINF #Broken
       - id: HandheldCrewMonitorINF
   - type: Inventory
     templateId: drone
