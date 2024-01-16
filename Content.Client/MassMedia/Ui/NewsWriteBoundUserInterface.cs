@@ -1,8 +1,5 @@
 using JetBrains.Annotations;
 using Content.Shared.MassMedia.Components;
-using Content.Client.GameTicking.Managers;
-using Content.Shared.CCVar;
-using Robust.Shared.Configuration;
 using Content.Shared.MassMedia.Systems;
 using Robust.Shared.Utility;
 
@@ -13,10 +10,6 @@ namespace Content.Client.MassMedia.Ui
     {
         [ViewVariables]
         private NewsWriteMenu? _menu;
-
-        [Dependency] private readonly IEntitySystemManager _entitySystem = default!;
-        [Dependency] private readonly IConfigurationManager _cfg = default!;
-        private ClientGameTicker? _gameTicker;
 
         [ViewVariables]
         private string _windowName = Loc.GetString("news-read-ui-default-title");
@@ -67,12 +60,9 @@ namespace Content.Client.MassMedia.Ui
             if (stringContent.Length == 0)
                 return;
 
-            var maxNameLength = _cfg.GetCVar(CCVars.NewsNameLimit);
-            var maxContentLength = _cfg.GetCVar(CCVars.NewsContentLimit);
-
             var stringName = _menu.NameInput.Text.Trim();
-            var name = stringName[..Math.Min(stringName.Length, (maxNameLength))];
-            var content = stringContent[..Math.Min(stringContent.Length, (maxContentLength))];
+            var name = stringName[..Math.Min(stringName.Length, (SharedNewsSystem.MaxNameLength))];
+            var content = stringContent[..Math.Min(stringContent.Length, (SharedNewsSystem.MaxArticleLength))];
             _menu.ContentInput.TextRope = new Rope.Leaf(string.Empty);
             _menu.NameInput.Text = string.Empty;
             SendMessage(new NewsWriteShareMessage(name, content));
