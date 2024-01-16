@@ -3,6 +3,7 @@ using Content.Client.Guidebook.Richtext;
 using Robust.Shared.ContentPack;
 using Robust.Shared.Prototypes;
 using System.Linq;
+using Robust.Shared.Log;
 
 namespace Content.IntegrationTests.Tests.Guidebook;
 
@@ -23,6 +24,8 @@ public sealed class GuideEntryPrototypeTests
         var parser = client.ResolveDependency<DocumentParsingManager>();
         var prototypes = protoMan.EnumeratePrototypes<GuideEntryPrototype>().ToList();
 
+        client.ResolveDependency<ILogManager>().GetSawmill("ui").Level = LogLevel.Error;
+
         await client.WaitAssertion(() =>
         {
             Assert.Multiple(() =>
@@ -34,6 +37,7 @@ public sealed class GuideEntryPrototypeTests
                 }
             });
         });
+        await client.WaitRunTicks(10);
 
         await pair.CleanReturnAsync();
     }

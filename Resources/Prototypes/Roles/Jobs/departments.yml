@@ -30,8 +30,8 @@
   - Reporter
   - Zookeeper
   - ServiceWorker
-  - TechnicalAssistant
-  - ResearchAssistant
+  #- TechnicalAssistant "The job TechnicalAssistant has more than 1 primary department!"
+  #- ResearchAssistant
   accountNumber: 1316 #backmen: currency
 
 - type: department
@@ -49,6 +49,7 @@
   - Quartermaster
   - SAI
   accountNumber: 1317 #backmen: currency
+  primary: false
 
 - type: department
   id: Engineering
@@ -109,3 +110,4 @@
   - Zookeeper
   - Psychologist
   accountNumber: 1322  #backmen: currency
+  primary: false
