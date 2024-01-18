@@ -34,7 +34,7 @@
   weights:
     EscapeShuttleObjective: 1
     DieObjective: 0.05
-    HijackShuttleObjective: 0.02
+    #HijackShuttleObjective: 0.02
 
 - type: weightedRandom
   id: TraitorObjectiveGroupSocial
@@ -121,6 +121,7 @@
     ShivaStealObjective: 1
     SmileStealObjective: 1
     PunPunStealObjective: 1
+    TropicoStealObjective: 1
 
 - type: weightedRandom
   id: ThiefObjectiveGroupEscape
