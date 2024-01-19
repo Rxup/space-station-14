@@ -77,6 +77,14 @@
   components:
   - type: GhostRole
     prob: 0.0
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      350: Dead
+  - type: MeleeWeapon
+    damage:
+     groups:
+       Brute: 20
 
 - type: entity
   name: space dragon
@@ -86,3 +94,11 @@
   components:
   - type: GhostRole
     prob: 0.0
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      250: Dead
+  - type: MeleeWeapon
+    damage:
+      groups:
+        Brute: 20
