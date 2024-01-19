@@ -169,7 +169,8 @@ entities:
           -1,-2:
             0: 65535
           -1,-1:
-            0: 65535
+            0: 65023
+            1: 512
           0,-2:
             0: 16191
             2: 192
@@ -245,6 +246,16 @@ entities:
     - type: GasTileOverlay
     - type: RadiationGridResistance
     - type: NavMap
+- proto: ActionToggleLight
+  entities:
+  - uid: 666
+    components:
+    - type: MetaData
+      flags: InContainer
+    - type: Transform
+      parent: 665
+    - type: InstantAction
+      container: 665
 - proto: AirAlarm
   entities:
   - uid: 312
@@ -382,6 +393,17 @@ entities:
       rot: -1.5707963267948966 rad
       pos: -1.5,0.5
       parent: 2
+- proto: AntiPoisonMedipen
+  entities:
+  - uid: 35
+    components:
+    - type: MetaData
+      flags: InContainer
+    - type: Transform
+      parent: 590
+    - type: Physics
+      canCollide: False
+    - type: InsideEntityStorage
 - proto: APCBasic
   entities:
   - uid: 180
@@ -484,6 +506,15 @@ entities:
       - 598
 - proto: BruteAutoInjector
   entities:
+  - uid: 160
+    components:
+    - type: MetaData
+      flags: InContainer
+    - type: Transform
+      parent: 590
+    - type: Physics
+      canCollide: False
+    - type: InsideEntityStorage
   - uid: 594
     components:
     - type: MetaData
@@ -1220,12 +1251,6 @@ entities:
       parent: 2
 - proto: Chair
   entities:
-  - uid: 220
-    components:
-    - type: Transform
-      rot: 3.141592653589793 rad
-      pos: -1.5,-6.5
-      parent: 2
   - uid: 316
     components:
     - type: Transform
@@ -1347,6 +1372,13 @@ entities:
     - type: Transform
       pos: -1.2646954,-4.228169
       parent: 2
+- proto: ClothingEyesSalesman
+  entities:
+  - uid: 667
+    components:
+    - type: Transform
+      pos: -4.4959173,9.244736
+      parent: 2
 - proto: ClothingHandsGlovesColorYellow
   entities:
   - uid: 534
@@ -1354,12 +1386,53 @@ entities:
     - type: Transform
       pos: -1.4929047,-4.525044
       parent: 2
+- proto: ClothingHandsGlovesCombat
+  entities:
+  - uid: 622
+    components:
+    - type: MetaData
+      flags: InContainer
+    - type: Transform
+      parent: 272
+    - type: Physics
+      canCollide: False
+    - type: InsideEntityStorage
 - proto: ClothingHeadHatHardhatYellow
   entities:
-  - uid: 535
+  - uid: 665
     components:
     - type: Transform
-      pos: -1.7178204,-4.243794
+      pos: -0.5062262,-6.4434876
+      parent: 2
+    - type: HandheldLight
+      toggleActionEntity: 666
+    - type: ContainerContainer
+      containers:
+        cell_slot: !type:ContainerSlot
+          showEnts: False
+          occludes: True
+          ent: null
+        actions: !type:Container
+          showEnts: False
+          occludes: True
+          ents:
+          - 666
+    - type: ActionsContainer
+- proto: ClothingNeckDeForestPin
+  entities:
+  - uid: 655
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: -4.6422405,9.614818
+      parent: 2
+- proto: ClothingNeckEarthPin
+  entities:
+  - uid: 623
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: -4.3141155,9.567943
       parent: 2
 - proto: ComputerId
   entities:
@@ -1374,6 +1447,14 @@ entities:
     components:
     - type: Transform
       pos: -0.5,14.5
+      parent: 2
+- proto: ComputerPowerMonitoring
+  entities:
+  - uid: 220
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: -1.5,-6.5
       parent: 2
 - proto: ComputerShuttle
   entities:
@@ -1485,20 +1566,20 @@ entities:
     - type: InsideEntityStorage
 - proto: DrinkWaterCup
   entities:
-  - uid: 35
+  - uid: 535
     components:
     - type: Transform
-      pos: 1.0740793,8.52092
+      pos: 2.032634,8.198591
       parent: 2
-  - uid: 160
+  - uid: 592
     components:
     - type: Transform
-      pos: 1.0740793,8.630295
+      pos: 2.032634,8.339216
       parent: 2
-  - uid: 655
+  - uid: 664
     components:
     - type: Transform
-      pos: 1.0740793,8.349045
+      pos: 2.032634,8.417341
       parent: 2
 - proto: Firelock
   entities:
@@ -2776,15 +2857,16 @@ entities:
           showEnts: False
           occludes: True
           ents:
-          - 281
-          - 280
-          - 279
-          - 278
-          - 277
-          - 276
-          - 275
-          - 274
+          - 622
           - 273
+          - 274
+          - 275
+          - 276
+          - 277
+          - 278
+          - 279
+          - 280
+          - 281
         paper_label: !type:ContainerSlot
           showEnts: False
           occludes: True
@@ -2985,17 +3067,35 @@ entities:
       parent: 2
     - type: Lock
       locked: False
+    - type: EntityStorage
+      air:
+        volume: 200
+        immutable: False
+        temperature: 293.14673
+        moles:
+        - 1.7459903
+        - 6.568249
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
     - type: ContainerContainer
       containers:
         entity_storage: !type:Container
           showEnts: False
           occludes: True
           ents:
-          - 591
-          - 592
           - 593
           - 594
+          - 160
           - 595
+          - 35
 - proto: LockerWallMedicalFilled
   entities:
   - uid: 589
@@ -3133,6 +3233,13 @@ entities:
     - type: Transform
       pos: -3.6997194,9.55811
       parent: 2
+- proto: Multitool
+  entities:
+  - uid: 317
+    components:
+    - type: Transform
+      pos: -1.796875,-4.199464
+      parent: 2
 - proto: OreProcessor
   entities:
   - uid: 230
@@ -3168,8 +3275,11 @@ entities:
   - uid: 167
     components:
     - type: Transform
+      anchored: True
       pos: -2.5,-4.5
       parent: 2
+    - type: Physics
+      bodyType: Static
 - proto: PottedPlantRandom
   entities:
   - uid: 566
@@ -3213,12 +3323,6 @@ entities:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: 1.5,12.5
-      parent: 2
-  - uid: 623
-    components:
-    - type: Transform
-      rot: -1.5707963267948966 rad
-      pos: 2.5,8.5
       parent: 2
 - proto: Poweredlight
   entities:
@@ -3424,17 +3528,6 @@ entities:
     - type: Transform
       pos: -0.5,-1.5
       parent: 2
-- proto: RegenerativeMesh
-  entities:
-  - uid: 592
-    components:
-    - type: MetaData
-      flags: InContainer
-    - type: Transform
-      parent: 590
-    - type: Physics
-      canCollide: False
-    - type: InsideEntityStorage
 - proto: SheetUranium
   entities:
   - uid: 195
@@ -3757,29 +3850,12 @@ entities:
     - type: Transform
       pos: 3.5,14.5
       parent: 2
-- proto: SyringeEphedrine
-  entities:
-  - uid: 591
-    components:
-    - type: MetaData
-      flags: InContainer
-    - type: Transform
-      parent: 590
-    - type: Physics
-      canCollide: False
-    - type: InsideEntityStorage
 - proto: Table
   entities:
   - uid: 192
     components:
     - type: Transform
       pos: -1.5,-4.5
-      parent: 2
-  - uid: 317
-    components:
-    - type: Transform
-      rot: -1.5707963267948966 rad
-      pos: 2.5,8.5
       parent: 2
   - uid: 318
     components:
@@ -4728,10 +4804,10 @@ entities:
       parent: 2
 - proto: WaterCooler
   entities:
-  - uid: 622
+  - uid: 591
     components:
     - type: Transform
-      pos: 1.5,8.5
+      pos: 2.5,8.5
       parent: 2
 - proto: WaterTankFull
   entities:
