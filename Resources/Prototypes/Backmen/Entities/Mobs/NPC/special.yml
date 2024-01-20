@@ -120,11 +120,6 @@
           #audio: !type:SoundPathSpecifier
           #  path: /Audio/Nyanotrasen/Dialogue/Hecate/hecate_response_bye_3.ogg
           event: !type:NPCConversationByeEvent
-    - prompts: [music, музыка, музыку, название, назови, музычка]
-      weight: 0.4
-      hidden: true
-      responses:
-        - text: shipwrecked-hecate-response-music-name
 
             #
             # Quest-relevant
@@ -201,6 +196,19 @@
               event: !type:ShipwreckedHecateAskWeaponsUnlockEvent
             afterUnlock:
               text: shipwrecked-hecate-response-weapons-after
+              #audio: !type:SoundPathSpecifier
+              #  path: /Audio/Nyanotrasen/Dialogue/Hecate/shipwrecked_hecate_response_weapons_after.ogg
+    - prompts: [music, boring, музыка, музыку, скучно, включи]
+      locked: true
+      responses:
+        - is: !type:ShipwreckedHecateAskMusicEvent
+            beforeMusic:
+              text: shipwrecked-hecate-response-music-start
+              #audio: !type:SoundPathSpecifier
+              #  path: /Audio/Nyanotrasen/Dialogue/Hecate/shipwrecked_hecate_response_weapons_before.ogg
+              event: !type:ShipwreckedHecateAskMusicStartEvent
+            afterMusic:
+              text: shipwrecked-hecate-response-music-playing
               #audio: !type:SoundPathSpecifier
               #  path: /Audio/Nyanotrasen/Dialogue/Hecate/shipwrecked_hecate_response_weapons_after.ogg
 

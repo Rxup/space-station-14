@@ -65,6 +65,7 @@ using Content.Shared.Inventory;
 using Content.Shared.Lock;
 using Content.Shared.Maps;
 using Content.Shared.Mobs;
+using Content.Shared.Mind.Components;
 using Content.Shared.Mobs.Systems;
 using Content.Shared.Movement.Components;
 using Content.Shared.Parallax;
@@ -164,15 +165,15 @@ public sealed class ShipwreckedRuleSystem : GameRuleSystem<ShipwreckedRuleCompon
         SubscribeLocalEvent<ShipwreckedNPCHecateComponent, ShipwreckedHecateAskGeneratorUnlockEvent>(OnAskGeneratorUnlock);
         SubscribeLocalEvent<ShipwreckedNPCHecateComponent, ShipwreckedHecateAskWeaponsEvent>(OnAskWeapons);
         SubscribeLocalEvent<ShipwreckedNPCHecateComponent, ShipwreckedHecateAskWeaponsUnlockEvent>(OnAskWeaponsUnlock);
-        //SubscribeLocalEvent<ShipwreckedNPCHecateComponent, ShipwreckedHecateAskMusicEvent>(OnAskMusic);
-        //SubscribeLocalEvent<ShipwreckedNPCHecateComponent, ShipwreckedHecateAskMusicStartEvent>(OnAskMusicStart);
+        SubscribeLocalEvent<ShipwreckedNPCHecateComponent, ShipwreckedHecateAskMusicEvent>(OnAskMusic);
+        SubscribeLocalEvent<ShipwreckedRuleComponent, ShipwreckedHecateAskMusicStartEvent>(OnAskMusicStart);
         SubscribeLocalEvent<ShipwreckedNPCHecateComponent, ShipwreckedHecateAskStatusEvent>(OnAskStatus);
         SubscribeLocalEvent<ShipwreckedNPCHecateComponent, ShipwreckedHecateAskLaunchEvent>(OnAskLaunch);
 
         SubscribeLocalEvent<ShipwreckSurvivorComponent, MobStateChangedEvent>(OnSurvivorMobStateChanged);
         SubscribeLocalEvent<ShipwreckSurvivorComponent, BeingGibbedEvent>(OnSurvivorBeingGibbed);
         SubscribeLocalEvent<EntityZombifiedEvent>(OnZombified);
-        SubscribeLocalEvent<ShipwreckSurvivorComponent, EntityTerminatingEvent>(OnSurvivorDeleted);
+        SubscribeLocalEvent<ShipwreckSurvivorComponent, MindRemovedMessage>(OnMindRemoved);
 
         SubscribeLocalEvent<PostGameMapLoad>(OnMapReady);
         SubscribeLocalEvent<PlayerBeforeSpawnEvent>(OnBeforeSpawn);
@@ -1609,7 +1610,8 @@ public sealed class ShipwreckedRuleSystem : GameRuleSystem<ShipwreckedRuleCompon
         }
     }
 
-    private void OnSurvivorDeleted(EntityUid survivor, ShipwreckSurvivorComponent component, ref EntityTerminatingEvent args)
+    // If you somehow manage to get deleted, this method will check should the round end.
+    private void OnMindRemoved(EntityUid survivor, ShipwreckSurvivorComponent component, ref MindRemovedMessage args)
     {
         var query = EntityQueryEnumerator<ShipwreckedRuleComponent, GameRuleComponent>();
         while (query.MoveNext(out var uid, out var shipwrecked, out var gameRule))
@@ -1783,20 +1785,24 @@ public sealed class ShipwreckedRuleSystem : GameRuleSystem<ShipwreckedRuleCompon
         }
     }
 
-    /*private void OnAskMusic(EntityUid uid, ShipwreckedNPCHecateComponent component, ShipwreckedHecateAskMusicEvent args)
+    private void OnAskMusic(EntityUid uid, ShipwreckedNPCHecateComponent component, ShipwreckedHecateAskMusicEvent args)
     {
         var response = component.PlayingMusic ? args.AfterMusic : args.BeforeMusic;
 
-        // Set the flag now so we don't get multiple unlock responses queued.
+        // Set the flag now so we don't get multiple start responses queued.
         component.PlayingMusic = true;
 
         _npcConversationSystem.QueueResponse(uid, response);
+
+        // Wait 5 minutes while music is playing, then you can ask for music again
+        TimeSpan Music = TimeSpan.FromMinutes(5);
+        component.PlayingMusic = false;
     }
 
-    private void OnAskMusicStart(EntityUid uid, ShipwreckedNPCHecateComponent component, ShipwreckedHecateAskMusicEvent args)
+    private void OnAskMusicStart(EntityUid uid, ShipwreckedRuleComponent component, ShipwreckedHecateAskMusicStartEvent args)
     {
         component.SoundTrack = _audioSystem.PlayPvs("/Audio/Backmen/Misc/kujlevka.ogg", component.Hecate!.Value);
-    } */
+    }
 
     private bool GetLaunchConditionConsole(ShipwreckedRuleComponent component)
     {

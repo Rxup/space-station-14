@@ -108,7 +108,8 @@ shipwrecked-hecate-response-status-need-generator = Нам требуется г
 shipwrecked-hecate-response-status-need-console = Консоль шаттла нуждается в ремонте.
 shipwrecked-hecate-response-status-all-green-first = Похоже, мы готовы к старту. Просто скажите мне, когда вы будете готовы к запуску.
 shipwrecked-hecate-response-status-all-green-again = Мы готовы к запуску в любое время.
-shipwrecked-hecate-response-music-name = Сейчас играет: "Kujlevka OST - Поезд на Сатурн".
+shipwrecked-hecate-response-music-start = Вы хотите, чтобы я включила вам музыки? Хорошо, у меня в памяти как раз есть одна. Приятного прослушивания.
+shipwrecked-hecate-response-music-playing = Музыка уже играет, пожалуйста дождитесь её завершения.
 # Pre-launch
 shipwrecked-hecate-response-launch-need-thrusters = Похоже, что расположение двигателей изменилось. Все ли они по-прежнему прикреплены к судну?
 shipwrecked-hecate-response-launch-need-generator = Что-то нарушило работу нашей генераторной сети. Пожалуйста, убедитесь, что мы имеем достаточное питание перед запуском.

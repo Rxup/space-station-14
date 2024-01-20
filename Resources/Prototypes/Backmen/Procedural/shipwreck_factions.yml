@@ -19,7 +19,7 @@
   objectiveDefender: MobDragonShipwrecked
   active:
     - id: MobCarpDungeon
-      prob: 0.15
+      prob: 0.1
       orGroup: Dragon
     - id: MobSharkSalvage
       prob: 0.025
@@ -32,7 +32,7 @@
       orGroup: Dragon
   inactive:
     - id: RandomHumanoidSpawnerUnaffiliatedDead
-      prob: 0.3
+      prob: 0.4
       maxAmount: 2
 
 - type: shipwreckFaction
@@ -40,7 +40,7 @@
   objectiveDefender: MobMalfunctioningRobotTank
   active:
     - id: MobMalfunctioningRobotCutter
-      prob: 0.2
+      prob: 0.15
     - id: MobMalfunctioningRobotPoisoner
       prob: 0.1
   inactive:
@@ -53,13 +53,13 @@
   objectiveDefender: MobXenoQueenShipwrecked
   active:
     - id: MobXeno
-      prob: 0.15
+      prob: 0.1
       orGroup: Xeno
     - id: MobXenoDrone
-      prob: 0.05
+      prob: 0.075
       orGroup: Xeno
     - id: MobXenoRunner
-      prob: 0.1
+      prob: 0.075
       orGroup: Xeno
     - id: MobXenoPraetorian
       prob: 0.05

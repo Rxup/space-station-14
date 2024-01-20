@@ -30,14 +30,6 @@ public sealed partial class ShipwreckedNPCHecateComponent : Component
 
     [ViewVariables(VVAccess.ReadWrite)]
     public bool PlayingMusic;
-
-    [ViewVariables] public (EntityUid Entity, AudioComponent Component)? SoundTrack;
-
-    /// <summary>
-    /// The spawned instance of Hecate.
-    /// </summary>
-    [ViewVariables]
-    public EntityUid? Hecate;
 }
 
 [Access(typeof(ShipwreckedRuleSystem))]
@@ -49,6 +41,12 @@ public sealed partial class ShipwreckedHecateAskGeneratorUnlockEvent : NPCConver
 
 [Access(typeof(ShipwreckedRuleSystem))]
 public sealed partial class ShipwreckedHecateAskWeaponsUnlockEvent : NPCConversationEvent
+{
+
+}
+
+[Access(typeof(ShipwreckedRuleSystem))]
+public sealed partial class ShipwreckedHecateAskMusicStartEvent : NPCConversationEvent
 {
 
 }
@@ -102,10 +100,4 @@ public sealed partial class ShipwreckedHecateAskMusicEvent : NPCConversationEven
 
     [DataField("afterMusic", required: true)]
     public NPCResponse AfterMusic { get; private set; } = default!;
-}
-
-[Access(typeof(ShipwreckedRuleSystem))]
-public sealed partial class ShipwreckedHecateAskMusicStartEvent : NPCConversationEvent
-{
-
 }
