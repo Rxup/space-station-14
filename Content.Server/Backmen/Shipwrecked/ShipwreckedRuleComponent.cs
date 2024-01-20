@@ -24,6 +24,13 @@ public sealed partial class ShipwreckedRuleComponent : Component
     public EntProtoId SpawnPointTraveller = default!;
 
     /// <summary>
+    /// The prototype that will be used to place travellers in latejoin.
+    /// </summary>
+    [ViewVariables]
+    [DataField("spawnPointLateJoin", required: true)]
+    public EntProtoId SpawnPointLateJoin = default!;
+
+    /// <summary>
     /// The jobs that the travellers will be randomly assigned.
     /// </summary>
     [ViewVariables]

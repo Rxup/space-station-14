@@ -3,10 +3,10 @@
   objectiveDefender: RandomHumanoidSpawnerZombieBrute
   active:
     - id: RandomHumanoidSpawnerZombie
-      prob: 0.4
+      prob: 0.3
       orGroup: zombie
     - id: RandomHumanoidSpawnerZombieSurprise
-      prob: 0.2
+      prob: 0.15
       maxAmount: 2
       orGroup: zombie
   inactive:
@@ -19,20 +19,20 @@
   objectiveDefender: MobDragonShipwrecked
   active:
     - id: MobCarpDungeon
-      prob: 0.3
+      prob: 0.2
       orGroup: Dragon
     - id: MobSharkSalvage
-      prob: 0.1
+      prob: 0.05
       orGroup: Dragon
     - id: MobCarpHolo
-      prob: 0.1
+      prob: 0.05
       orGroup: Dragon
     - id: MobCarpMagic
-      prob: 0.15
+      prob: 0.1
       orGroup: Dragon
   inactive:
     - id: RandomHumanoidSpawnerUnaffiliatedDead
-      prob: 0.2
+      prob: 0.3
       maxAmount: 2
 
 - type: shipwreckFaction
@@ -40,9 +40,9 @@
   objectiveDefender: MobMalfunctioningRobotTank
   active:
     - id: MobMalfunctioningRobotCutter
-      prob: 0.4
-    - id: MobMalfunctioningRobotPoisoner
       prob: 0.25
+    - id: MobMalfunctioningRobotPoisoner
+      prob: 0.1
   inactive:
     - id: RandomHumanoidSpawnerUnaffiliatedDead
       prob: 0.4
@@ -53,52 +53,18 @@
   objectiveDefender: MobXenoQueenShipwrecked
   active:
     - id: MobXeno
-      prob: 0.3
-      orGroup: Xeno
-    - id: MobXenoDrone
-      prob: 0.15
-      orGroup: Xeno
-    - id: MobXenoRunner
       prob: 0.2
       orGroup: Xeno
-    - id: MobXenoPraetorian
+    - id: MobXenoDrone
       prob: 0.1
+      orGroup: Xeno
+    - id: MobXenoRunner
+      prob: 0.1
+      orGroup: Xeno
+    - id: MobXenoPraetorian
+      prob: 0.05
       orGroup: Xeno
   inactive:
     - id: RandomHumanoidSpawnerUnaffiliatedDead
-      prob: 0.2
+      prob: 0.3
       maxAmount: 2
-
-- type: entity
-  name: queen
-  parent: MobXenoQueen
-  id: MobXenoQueenShipwrecked
-  suffix: shipwrecked gamemode
-  components:
-  - type: GhostRole
-    prob: 0.0
-  - type: MobThresholds
-    thresholds:
-      0: Alive
-      350: Dead
-  - type: MeleeWeapon
-    damage:
-     groups:
-       Brute: 20
-
-- type: entity
-  name: space dragon
-  parent: MobDragonDungeon
-  id: MobDragonShipwrecked
-  suffix: shipwrecked gamemode
-  components:
-  - type: GhostRole
-    prob: 0.0
-  - type: MobThresholds
-    thresholds:
-      0: Alive
-      250: Dead
-  - type: MeleeWeapon
-    damage:
-      groups:
-        Brute: 20

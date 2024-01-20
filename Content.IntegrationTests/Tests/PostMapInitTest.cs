@@ -75,7 +75,6 @@ namespace Content.IntegrationTests.Tests
             "CentCommv2",
             "CentCommv3",
             "ShwrAdventurer",
-            "ShwrBig",
             "shwrDust",
 			"ShwrTraveller",
             "Tortuga",

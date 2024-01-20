@@ -14,6 +14,7 @@
     - type: ShipwreckedRule
       shuttlePath: /Maps/Backmen/Shuttles/adventurer.yml
       spawnPointTraveller: SpawnPointShipwreckTraveller
+      spawnPointLateJoin: CryogenicSleepUnitShipwrecked
       availableJobs:
         - Explorer
         - Freelancer
@@ -47,6 +48,5 @@
   id: ShipwreckedPool
   maps:
     - ShwrAdventurer
-    - ShwrBig
     - shwrDust
     - ShwrTraveller

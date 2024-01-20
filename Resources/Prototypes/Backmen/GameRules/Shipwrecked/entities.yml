@@ -1,0 +1,44 @@
+# Latejoin sleepunit for shipwrecked
+- type: entity
+  parent: CryogenicSleepUnitSpawnerLateJoin
+  id: CryogenicSleepUnitShipwrecked
+  suffix: shipwrecked
+  name: cryogenic sleep unit
+  description: A super-cooled container that keeps crewmates safe during space travel.
+  components:
+    - type: SpawnPoint
+
+# Objective defenders
+- type: entity
+  name: queen
+  parent: MobXenoQueen
+  id: MobXenoQueenShipwrecked
+  suffix: shipwrecked gamemode
+  components:
+  - type: GhostRole
+    prob: 0.0
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      300: Dead
+  - type: MeleeWeapon
+    damage:
+     groups:
+       Brute: 10
+
+- type: entity
+  name: space dragon
+  parent: MobDragonDungeon
+  id: MobDragonShipwrecked
+  suffix: shipwrecked gamemode
+  components:
+  - type: GhostRole
+    prob: 0.0
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      250: Dead
+  - type: MeleeWeapon
+    damage:
+      groups:
+        Brute: 10
