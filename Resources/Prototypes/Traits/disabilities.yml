@@ -17,12 +17,12 @@
 - type: trait
   id: Narcolepsy
   name: trait-narcolepsy-name
-  description: trait-narcolepsy-decs
   blacklist:
     components:
       - BSSDrone #backmen: bssdrone
       - StationAI # backmen: AI
       - BorgChassis
+  description: trait-narcolepsy-desc
   components:
     - type: Narcolepsy
       timeBetweenIncidents: 300, 600
@@ -36,6 +36,7 @@
       - BSSDrone #backmen: bssdrone
       - StationAI # backmen: AI
       - BorgChassis
+  description: trait-pacifist-desc
   components:
     - type: Pacified
 
@@ -91,7 +92,8 @@
       - StationAI # backmen: AI
       - BorgChassis
   components:
-    - type: WheelchairBound
+    - type: BuckleOnMapInit
+      prototype: VehicleWheelchair
     - type: LegsParalyzed
 
 - type: trait

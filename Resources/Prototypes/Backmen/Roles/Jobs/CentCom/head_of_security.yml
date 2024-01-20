@@ -5,7 +5,7 @@
   playTimeTracker: JobCentralCommandSecGavna
   setPreference: true
   startingGear: HeadOfSecurityCentComGear
-  icon: JobIconNanotrasen
+  icon: JobIconCCHeadOfSecurity
   supervisors: job-supervisors-hoh
   canBeAntag: false
   weight: 1
@@ -45,6 +45,13 @@
   maxBankBalance: 600
   wageDepartment: CentCom
   wage: 75
+
+- type: statusIcon
+  parent: JobIcon
+  id: JobIconCCHeadOfSecurity
+  icon:
+    sprite: Backmen/Icons/jobicon.rsi
+    state: Security
 
 - type: startingGear
   id: HeadOfSecurityCentComGear
@@ -92,8 +99,10 @@
   components:
     - type: Sprite
       layers:
-      - state: centcom
+      - state: silver
       - state: idsecurityofficer
+    - type: Item
+      heldPrefix: silver
     - type: PresetIdCard
       job: BKCCSecGavna
     - type: Access
