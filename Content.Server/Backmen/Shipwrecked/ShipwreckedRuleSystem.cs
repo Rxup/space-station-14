@@ -164,12 +164,15 @@ public sealed class ShipwreckedRuleSystem : GameRuleSystem<ShipwreckedRuleCompon
         SubscribeLocalEvent<ShipwreckedNPCHecateComponent, ShipwreckedHecateAskGeneratorUnlockEvent>(OnAskGeneratorUnlock);
         SubscribeLocalEvent<ShipwreckedNPCHecateComponent, ShipwreckedHecateAskWeaponsEvent>(OnAskWeapons);
         SubscribeLocalEvent<ShipwreckedNPCHecateComponent, ShipwreckedHecateAskWeaponsUnlockEvent>(OnAskWeaponsUnlock);
+        //SubscribeLocalEvent<ShipwreckedNPCHecateComponent, ShipwreckedHecateAskMusicEvent>(OnAskMusic);
+        //SubscribeLocalEvent<ShipwreckedNPCHecateComponent, ShipwreckedHecateAskMusicStartEvent>(OnAskMusicStart);
         SubscribeLocalEvent<ShipwreckedNPCHecateComponent, ShipwreckedHecateAskStatusEvent>(OnAskStatus);
         SubscribeLocalEvent<ShipwreckedNPCHecateComponent, ShipwreckedHecateAskLaunchEvent>(OnAskLaunch);
 
         SubscribeLocalEvent<ShipwreckSurvivorComponent, MobStateChangedEvent>(OnSurvivorMobStateChanged);
         SubscribeLocalEvent<ShipwreckSurvivorComponent, BeingGibbedEvent>(OnSurvivorBeingGibbed);
         SubscribeLocalEvent<EntityZombifiedEvent>(OnZombified);
+        SubscribeLocalEvent<ShipwreckSurvivorComponent, EntityTerminatingEvent>(OnSurvivorDeleted);
 
         SubscribeLocalEvent<PostGameMapLoad>(OnMapReady);
         SubscribeLocalEvent<PlayerBeforeSpawnEvent>(OnBeforeSpawn);
@@ -1606,8 +1609,7 @@ public sealed class ShipwreckedRuleSystem : GameRuleSystem<ShipwreckedRuleCompon
         }
     }
 
-    // When traveller gets deleted by sleeppod, we should check if he was the last.
-   /* private void OnSurvivorDeleted(EntityUid survivor, ShipwreckSurvivorComponent component,  args)
+    private void OnSurvivorDeleted(EntityUid survivor, ShipwreckSurvivorComponent component, ref EntityTerminatingEvent args)
     {
         var query = EntityQueryEnumerator<ShipwreckedRuleComponent, GameRuleComponent>();
         while (query.MoveNext(out var uid, out var shipwrecked, out var gameRule))
@@ -1617,7 +1619,7 @@ public sealed class ShipwreckedRuleSystem : GameRuleSystem<ShipwreckedRuleCompon
 
             CheckShouldRoundEnd(uid, shipwrecked);
         }
-    } */
+    }
 
     private void OnSurvivorBeingGibbed(EntityUid survivor, ShipwreckSurvivorComponent component, BeingGibbedEvent args)
     {
@@ -1780,6 +1782,21 @@ public sealed class ShipwreckedRuleSystem : GameRuleSystem<ShipwreckedRuleCompon
             _lockSystem.Unlock(row, uid);
         }
     }
+
+    /*private void OnAskMusic(EntityUid uid, ShipwreckedNPCHecateComponent component, ShipwreckedHecateAskMusicEvent args)
+    {
+        var response = component.PlayingMusic ? args.AfterMusic : args.BeforeMusic;
+
+        // Set the flag now so we don't get multiple unlock responses queued.
+        component.PlayingMusic = true;
+
+        _npcConversationSystem.QueueResponse(uid, response);
+    }
+
+    private void OnAskMusicStart(EntityUid uid, ShipwreckedNPCHecateComponent component, ShipwreckedHecateAskMusicEvent args)
+    {
+        component.SoundTrack = _audioSystem.PlayPvs("/Audio/Backmen/Misc/kujlevka.ogg", component.Hecate!.Value);
+    } */
 
     private bool GetLaunchConditionConsole(ShipwreckedRuleComponent component)
     {

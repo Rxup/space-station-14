@@ -1,5 +1,6 @@
 ﻿using Content.Server.Backmen.NPC.Events;
 using Content.Server.Backmen.NPC.Prototypes;
+using Robust.Shared.Audio.Components;
 
 namespace Content.Server.Backmen.Shipwrecked;
 
@@ -26,6 +27,17 @@ public sealed partial class ShipwreckedNPCHecateComponent : Component
 
     [ViewVariables(VVAccess.ReadWrite)]
     public bool Launching;
+
+    [ViewVariables(VVAccess.ReadWrite)]
+    public bool PlayingMusic;
+
+    [ViewVariables] public (EntityUid Entity, AudioComponent Component)? SoundTrack;
+
+    /// <summary>
+    /// The spawned instance of Hecate.
+    /// </summary>
+    [ViewVariables]
+    public EntityUid? Hecate;
 }
 
 [Access(typeof(ShipwreckedRuleSystem))]
@@ -80,4 +92,20 @@ public sealed partial class ShipwreckedHecateAskLaunchEvent : ShipwreckedHecateA
 {
     [DataField("launch", required: true)]
     public NPCResponse Launch { get; private set; } = default!;
+}
+
+[Access(typeof(ShipwreckedRuleSystem))]
+public sealed partial class ShipwreckedHecateAskMusicEvent : NPCConversationEvent
+{
+    [DataField("beforeMusic", required: true)]
+    public NPCResponse BeforeMusic { get; private set; } = default!;
+
+    [DataField("afterMusic", required: true)]
+    public NPCResponse AfterMusic { get; private set; } = default!;
+}
+
+[Access(typeof(ShipwreckedRuleSystem))]
+public sealed partial class ShipwreckedHecateAskMusicStartEvent : NPCConversationEvent
+{
+
 }

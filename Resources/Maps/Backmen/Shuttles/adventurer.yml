@@ -65,9 +65,9 @@ entities:
             color: '#FFFFFFFF'
             id: DirtHeavy
           decals:
-            30: -1,6
-            31: 3,5
-            32: 2,7
+            28: -1,6
+            29: 3,5
+            30: 2,7
         - node:
             color: '#1861D57F'
             id: HalfTileOverlayGreyscale
@@ -84,9 +84,9 @@ entities:
             color: '#DE3A3A96'
             id: HalfTileOverlayGreyscale270
           decals:
-            34: 1,7
-            35: 1,5
-            36: 1,6
+            32: 1,7
+            33: 1,5
+            34: 1,6
         - node:
             color: '#9FED5896'
             id: HalfTileOverlayGreyscale90
@@ -121,7 +121,7 @@ entities:
           decals:
             23: 2,10
             24: 1,10
-            33: 3,10
+            31: 3,10
         - node:
             color: '#FFFFFFFF'
             id: MiniTileDarkLineW
@@ -142,34 +142,34 @@ entities:
             color: '#FFFFFFFF'
             id: WarnCornerNW
           decals:
-            42: 4,-3
-            43: 3,-4
+            40: 4,-3
+            41: 3,-4
         - node:
             color: '#FFFFFFFF'
             id: WarnCornerSE
           decals:
             1: 5,-4
-            37: 4,-6
+            35: 4,-6
         - node:
             color: '#FFFFFFFF'
             id: WarnCornerSW
           decals:
-            38: 3,-6
+            36: 3,-6
         - node:
             color: '#FFFFFFFF'
             id: WarnCornerSmallNW
           decals:
-            41: 4,-4
+            39: 4,-4
         - node:
             color: '#FFFFFFFF'
             id: WarnLineE
           decals:
-            40: 4,-5
+            38: 4,-5
         - node:
             color: '#FFFFFFFF'
             id: WarnLineS
           decals:
-            39: 3,-5
+            37: 3,-5
         - node:
             color: '#FFFFFFFF'
             id: WoodTrimThinCornerNe
@@ -419,6 +419,13 @@ entities:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: -1.5,6.5
+      parent: 2
+- proto: Beaker
+  entities:
+  - uid: 356
+    components:
+    - type: Transform
+      pos: -0.08882618,4.5389657
       parent: 2
 - proto: BedsheetMedical
   entities:
@@ -795,6 +802,44 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 3.5,3.5
       parent: 2
+- proto: ClothingBeltSalvageWebbing
+  entities:
+  - uid: 348
+    components:
+    - type: MetaData
+      flags: InContainer
+    - type: Transform
+      parent: 153
+    - type: Physics
+      canCollide: False
+    - type: InsideEntityStorage
+  - uid: 353
+    components:
+    - type: MetaData
+      flags: InContainer
+    - type: Transform
+      parent: 302
+    - type: Physics
+      canCollide: False
+    - type: InsideEntityStorage
+  - uid: 354
+    components:
+    - type: MetaData
+      flags: InContainer
+    - type: Transform
+      parent: 303
+    - type: Physics
+      canCollide: False
+    - type: InsideEntityStorage
+  - uid: 355
+    components:
+    - type: MetaData
+      flags: InContainer
+    - type: Transform
+      parent: 325
+    - type: Physics
+      canCollide: False
+    - type: InsideEntityStorage
 - proto: ComfyChair
   entities:
   - uid: 193
@@ -1609,6 +1654,17 @@ entities:
         - 0
         - 0
         - 0
+    - type: ContainerContainer
+      containers:
+        entity_storage: !type:Container
+          showEnts: False
+          occludes: True
+          ents:
+          - 348
+        paper_label: !type:ContainerSlot
+          showEnts: False
+          occludes: True
+          ent: null
   - uid: 302
     components:
     - type: Transform
@@ -1632,6 +1688,17 @@ entities:
         - 0
         - 0
         - 0
+    - type: ContainerContainer
+      containers:
+        entity_storage: !type:Container
+          showEnts: False
+          occludes: True
+          ents:
+          - 353
+        paper_label: !type:ContainerSlot
+          showEnts: False
+          occludes: True
+          ent: null
   - uid: 303
     components:
     - type: Transform
@@ -1655,6 +1722,17 @@ entities:
         - 0
         - 0
         - 0
+    - type: ContainerContainer
+      containers:
+        entity_storage: !type:Container
+          showEnts: False
+          occludes: True
+          ents:
+          - 354
+        paper_label: !type:ContainerSlot
+          showEnts: False
+          occludes: True
+          ent: null
   - uid: 325
     components:
     - type: Transform
@@ -1678,6 +1756,17 @@ entities:
         - 0
         - 0
         - 0
+    - type: ContainerContainer
+      containers:
+        entity_storage: !type:Container
+          showEnts: False
+          occludes: True
+          ents:
+          - 355
+        paper_label: !type:ContainerSlot
+          showEnts: False
+          occludes: True
+          ent: null
 - proto: LockerWallMedicalFilled
   entities:
   - uid: 342
