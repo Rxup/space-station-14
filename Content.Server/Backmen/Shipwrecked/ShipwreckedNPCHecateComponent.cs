@@ -27,9 +27,6 @@ public sealed partial class ShipwreckedNPCHecateComponent : Component
 
     [ViewVariables(VVAccess.ReadWrite)]
     public bool Launching;
-
-    [ViewVariables(VVAccess.ReadWrite)]
-    public bool PlayingMusic;
 }
 
 [Access(typeof(ShipwreckedRuleSystem))]

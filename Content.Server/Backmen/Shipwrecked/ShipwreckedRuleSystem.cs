@@ -166,14 +166,12 @@ public sealed class ShipwreckedRuleSystem : GameRuleSystem<ShipwreckedRuleCompon
         SubscribeLocalEvent<ShipwreckedNPCHecateComponent, ShipwreckedHecateAskWeaponsEvent>(OnAskWeapons);
         SubscribeLocalEvent<ShipwreckedNPCHecateComponent, ShipwreckedHecateAskWeaponsUnlockEvent>(OnAskWeaponsUnlock);
         SubscribeLocalEvent<ShipwreckedNPCHecateComponent, ShipwreckedHecateAskMusicEvent>(OnAskMusic);
-        SubscribeLocalEvent<ShipwreckedRuleComponent, ShipwreckedHecateAskMusicStartEvent>(OnAskMusicStart);
         SubscribeLocalEvent<ShipwreckedNPCHecateComponent, ShipwreckedHecateAskStatusEvent>(OnAskStatus);
         SubscribeLocalEvent<ShipwreckedNPCHecateComponent, ShipwreckedHecateAskLaunchEvent>(OnAskLaunch);
 
         SubscribeLocalEvent<ShipwreckSurvivorComponent, MobStateChangedEvent>(OnSurvivorMobStateChanged);
         SubscribeLocalEvent<ShipwreckSurvivorComponent, BeingGibbedEvent>(OnSurvivorBeingGibbed);
         SubscribeLocalEvent<EntityZombifiedEvent>(OnZombified);
-        SubscribeLocalEvent<ShipwreckSurvivorComponent, MindRemovedMessage>(OnMindRemoved);
 
         SubscribeLocalEvent<PostGameMapLoad>(OnMapReady);
         SubscribeLocalEvent<PlayerBeforeSpawnEvent>(OnBeforeSpawn);
@@ -655,8 +653,15 @@ public sealed class ShipwreckedRuleSystem : GameRuleSystem<ShipwreckedRuleCompon
         };
         _roleSystem.MindAddRole(mindId, job);
 
-        var mob = _stationSpawningSystem.SpawnPlayerMob(spawnPoint.Comp.Coordinates, job, profile, station: null);
+        var mob = _stationSpawningSystem.SpawnPlayerMob(spawnPoint.Comp.Coordinates, job, profile, station: component.ShuttleStation);
         var mobName = MetaData(mob).EntityName;
+
+        // Register job to the station
+        if (TryComp<StationJobsComponent>(component.ShuttleStation, out var stationJobsComponent))
+        {
+            stationJobsComponent.PlayerJobs.TryAdd(player.UserId, new());
+            stationJobsComponent.PlayerJobs[player.UserId].Add(jobProtoId);
+        }
 
         manifest.AppendLine(Loc.GetString("passenger-manifest-passenger-line",
                 ("name", mobName),
@@ -1317,7 +1322,8 @@ public sealed class ShipwreckedRuleSystem : GameRuleSystem<ShipwreckedRuleCompon
                             "rescue",
                             "scans",
                             "status",
-                            "weapons"
+                            "weapons",
+                            "music"
                         });
                     CloseAllRuleJobs(component);
                     foreach (var (mob, _) in component.Survivors)
@@ -1610,19 +1616,6 @@ public sealed class ShipwreckedRuleSystem : GameRuleSystem<ShipwreckedRuleCompon
         }
     }
 
-    // If you somehow manage to get deleted, this method will check should the round end.
-    private void OnMindRemoved(EntityUid survivor, ShipwreckSurvivorComponent component, ref MindRemovedMessage args)
-    {
-        var query = EntityQueryEnumerator<ShipwreckedRuleComponent, GameRuleComponent>();
-        while (query.MoveNext(out var uid, out var shipwrecked, out var gameRule))
-        {
-            if (!GameTicker.IsGameRuleActive(uid, gameRule))
-                continue;
-
-            CheckShouldRoundEnd(uid, shipwrecked);
-        }
-    }
-
     private void OnSurvivorBeingGibbed(EntityUid survivor, ShipwreckSurvivorComponent component, BeingGibbedEvent args)
     {
         var query = EntityQueryEnumerator<ShipwreckedRuleComponent, GameRuleComponent>();
@@ -1651,10 +1644,14 @@ public sealed class ShipwreckedRuleSystem : GameRuleSystem<ShipwreckedRuleCompon
     // and it's small enough to stay here for now. Feel free to move it.
     public bool IsDead(EntityUid uid)
     {
+        if (TryComp<MindContainerComponent>(uid, out var mind) && mind.Mind == null)
+        {
+            return true;
+        }
         return (_mobStateSystem.IsDead(uid) ||
-            // Zombies are not dead-dead, so check for that.
-            HasComp<ZombieComponent>(uid) ||
-            Deleted(uid));
+                // Zombies are not dead-dead, so check for that.
+                HasComp<ZombieComponent>(uid) ||
+                Deleted(uid));
     }
 
     private void CheckShouldRoundEnd(EntityUid uid, ShipwreckedRuleComponent component)
@@ -1785,23 +1782,27 @@ public sealed class ShipwreckedRuleSystem : GameRuleSystem<ShipwreckedRuleCompon
         }
     }
 
-    private void OnAskMusic(EntityUid uid, ShipwreckedNPCHecateComponent component, ShipwreckedHecateAskMusicEvent args)
+    private void OnAskMusic(EntityUid npc, ShipwreckedNPCHecateComponent component, ShipwreckedHecateAskMusicEvent args)
     {
-        var response = component.PlayingMusic ? args.AfterMusic : args.BeforeMusic;
+        var query = EntityQueryEnumerator<ShipwreckedRuleComponent, GameRuleComponent>();
+        while (query.MoveNext(out var uid, out var shipwrecked, out var gameRule))
+        {
+            if (!GameTicker.IsGameRuleActive(uid, gameRule))
+                continue;
 
-        // Set the flag now so we don't get multiple start responses queued.
-        component.PlayingMusic = true;
+            var response = shipwrecked.SoundTrack.HasValue &&
+                           !TerminatingOrDeleted(shipwrecked.SoundTrack.Value.Entity) &&
+                           !shipwrecked.SoundTrack.Value.Component.Playing;
 
-        _npcConversationSystem.QueueResponse(uid, response);
 
-        // Wait 5 minutes while music is playing, then you can ask for music again
-        TimeSpan Music = TimeSpan.FromMinutes(5);
-        component.PlayingMusic = false;
-    }
-
-    private void OnAskMusicStart(EntityUid uid, ShipwreckedRuleComponent component, ShipwreckedHecateAskMusicStartEvent args)
-    {
-        component.SoundTrack = _audioSystem.PlayPvs("/Audio/Backmen/Misc/kujlevka.ogg", component.Hecate!.Value);
+            _npcConversationSystem.QueueResponse(npc, response
+                ? args.AfterMusic
+                : args.BeforeMusic);
+            if (!response)
+            {
+                shipwrecked.SoundTrack = _audioSystem.PlayPvs("/Audio/Backmen/Misc/kujlevka.ogg", shipwrecked.Hecate!.Value);
+            }
+        }
     }
 
     private bool GetLaunchConditionConsole(ShipwreckedRuleComponent component)

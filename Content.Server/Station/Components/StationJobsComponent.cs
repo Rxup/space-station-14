@@ -11,7 +11,7 @@ namespace Content.Server.Station.Components;
 /// <summary>
 /// Stores information about a station's job selection.
 /// </summary>
-[RegisterComponent, Access(typeof(StationJobsSystem)), PublicAPI]
+[RegisterComponent, Access(typeof(StationJobsSystem), typeof(Content.Server.Backmen.Shipwrecked.ShipwreckedRuleSystem)), PublicAPI] // backmen
 public sealed partial class StationJobsComponent : Component
 {
     /// <summary>

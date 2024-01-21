@@ -206,7 +206,6 @@
               text: shipwrecked-hecate-response-music-start
               #audio: !type:SoundPathSpecifier
               #  path: /Audio/Nyanotrasen/Dialogue/Hecate/shipwrecked_hecate_response_weapons_before.ogg
-              event: !type:ShipwreckedHecateAskMusicStartEvent
             afterMusic:
               text: shipwrecked-hecate-response-music-playing
               #audio: !type:SoundPathSpecifier
