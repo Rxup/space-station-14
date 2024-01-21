@@ -39,6 +39,14 @@
           volume: -4
       color: Red
       shuttleTime: 600 #No reduction in time as we don't have swiping for red alert like in /tg/. Shuttle times are intended to create friction, so having a way to brainlessly bypass that would be dumb.
+    iota:
+      announcement: alert-level-iota-announcement
+      sound:
+        path: /Audio/Misc/iota.ogg
+        params:
+          volume: -5
+      color: Crimson
+      shuttleTime: 300
     gamma:
       announcement: alert-level-gamma-announcement
       selectable: false
