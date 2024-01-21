@@ -1,0 +1,18 @@
+- type: entity
+  name: comfy dark chair
+  id: ComfyDarkChair
+  parent: SeatBase
+  description: Quite a comfortable dark chair.
+  components:
+  - type: Transform
+    anchored: true
+  - type: Physics
+    bodyType: Static
+  - type: Anchorable
+  - type: Rotatable
+  - type: Sprite
+    sprite: Backmen/Structures/Furniture/chairs.rsi
+    state: comfy
+  - type: Construction
+    graph: Seat
+    node: chairDarkComfy

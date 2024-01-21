@@ -354,3 +354,20 @@
   canBuildInImpassable: false
   conditions:
     - !type:TileNotBlocked
+
+- type: construction
+  name: comfy dark chair
+  id: ChairDarkComfy
+  graph: Seat
+  startNode: start
+  targetNode: chairDarkComfy
+  category: construction-category-furniture
+  description: Quite a comfortable dark chair.
+  icon:
+    sprite: Backmen/Structures/Furniture/chairs.rsi
+    state: comfy
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+    - !type:TileNotBlocked
