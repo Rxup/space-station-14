@@ -113,6 +113,33 @@
   - type: GuideHelp
     guides:
     - Security
+    
+- type: entity
+  name: baton
+  parent: BaseItem
+  id: Baton
+  description: A special metal baton that is given to the heads for self-defense.
+  components:
+  - type: Sprite
+    sprite: Objects/Weapons/Melee/baton.rsi
+    state: icon
+  - type: MeleeWeapon
+    damage:
+      types:
+        Blunt: 5
+    bluntStaminaDamageFactor: 2.0
+  - type: StaminaDamageOnHit
+    damage: 16
+  - type: Item
+    size: Normal
+  - type: Clothing
+    sprite: Objects/Weapons/Melee/baton.rsi
+    quickEquip: false
+    slots:
+    - Belt
+  - type: DisarmMalus
+    malus: 0.225
+  - type: Appearance
 
 - type: entity
   name: flash
