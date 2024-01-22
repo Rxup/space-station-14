@@ -386,10 +386,11 @@ namespace Content.Server.GameTicking
 
             // This ordering mechanism isn't great (no ordering of minds) but functions
             var listOfPlayerInfoFinal = listOfPlayerInfo.OrderBy(pi => pi.PlayerOOCName).ToArray();
+            var sound = _audio.GetSound(new SoundCollectionSpecifier("RoundEnd"));
 
             RaiseNetworkEvent(new RoundEndMessageEvent(gamemodeTitle, roundEndText, roundDuration, RoundId,
-                listOfPlayerInfoFinal.Length, listOfPlayerInfoFinal, LobbySong));
-            RaiseLocalEvent(new RoundEndedEvent(RoundId, roundDuration)); // Corvax
+                listOfPlayerInfoFinal.Length, listOfPlayerInfoFinal, LobbySong, sound));
+                RaiseLocalEvent(new RoundEndedEvent(RoundId, roundDuration)); // Corvax
         }
 
         private async void SendRoundEndDiscordMessage()
