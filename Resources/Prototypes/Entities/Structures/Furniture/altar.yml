@@ -47,32 +47,32 @@
     state: nanotrasen
   - type: Destructible
     thresholds:
-      - trigger:
-          !type:DamageTrigger
-          damage: 125
-        behaviors:
-          - !type:DoActsBehavior
-            acts: [ "Destruction" ]
-      - trigger:
-          !type:DamageTrigger
-          damage: 25
-        behaviors:
-          - !type:PlaySoundBehavior
-            sound:
-              path: /Audio/Effects/metalbreak.ogg
-          - !type:SpawnEntitiesBehavior
-            spawn:
-              SheetPlasteel1:
-                min: 1
-                max: 5
-              MaterialBluespace:
-                min: 1
-                max: 2
-          - !type:DoActsBehavior
-            acts: [ "Destruction" ]
-  - type: Construction
-    graph: Altar
-    node: nanotrasen
+    - trigger:
+        !type:DamageTrigger
+        damage: 125
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+    - trigger:
+        !type:DamageTrigger
+        damage: 25
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalBreak
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          SheetSteel1:
+            min: 1
+            max: 5
+          MaterialCloth1:
+            min: 1
+            max: 3
+          MaterialBluespace:
+            min: 1
+            max: 2
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
   - type: StealTarget
     stealGroup: AltarNanotrasen
 
@@ -192,45 +192,45 @@
   parent: AltarBase
   name: festival altar
   components:
-    - type: Sprite
-      sprite: Structures/Furniture/Altars/Gods/convertaltar.rsi
-      state: festival
-    - type: Icon
-      sprite: Structures/Furniture/Altars/Gods/convertaltar.rsi
-      state: festival
-    - type: Damageable
-      damageModifierSet: Wood
-    - type: Destructible
-      thresholds:
-        - trigger:
-            !type:DamageTrigger
-            damage: 100
-          behaviors:
-            - !type:DoActsBehavior
-              acts: [ "Destruction" ]
-        - trigger:
-            !type:DamageTrigger
-            damage: 15
-          behaviors:
-            - !type:PlaySoundBehavior
-              sound:
-                path: /Audio/Effects/woodhit.ogg
-            - !type:SpawnEntitiesBehavior
-              spawn:
-                SheetPlasteel1:
-                  min: 1
-                  max: 5
-                MaterialBluespace:
-                  min: 1
-                  max: 2
-            - !type:DoActsBehavior
-              acts: [ "Destruction" ]
-    - type: Tag
-      tags:
-        - Wooden
-    - type: Construction
-      graph: Altar
-      node: festival
+  - type: Sprite
+    sprite: Structures/Furniture/Altars/Gods/convertaltar.rsi
+    state: festival
+  - type: Icon
+    sprite: Structures/Furniture/Altars/Gods/convertaltar.rsi
+    state: festival
+  - type: Damageable
+    damageModifierSet: Wood
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 100
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+    - trigger:
+        !type:DamageTrigger
+        damage: 15
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: WoodDestroyHeavy
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          MaterialWoodPlank:
+            min: 1
+            max: 5
+          MaterialCloth1:
+            min: 1
+            max: 3
+          MaterialBluespace:
+            min: 1
+            max: 2
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+  - type: Tag
+    tags:
+    - Wooden
 
 - type: entity
   id: AltarConvertMaint
@@ -413,47 +413,44 @@
   parent: AltarBase
   name: heaven altar
   components:
-    - type: Sprite
-      sprite: Structures/Furniture/Altars/Cults/heaven.rsi
-      layers:
-        - state: full
-        - state: blood
-          shader: unshaded
-    - type: Icon
-      sprite: Structures/Furniture/Altars/Cults/heaven.rsi
-      state: full
-    - type: Destructible
-      thresholds:
-        - trigger:
-            !type:DamageTrigger
-            damage: 125
-          behaviors:
-            - !type:DoActsBehavior
-              acts: [ "Destruction" ]
-        - trigger:
-            !type:DamageTrigger
-            damage: 25
-          behaviors:
-            - !type:PlaySoundBehavior
-              sound:
-                path: /Audio/Effects/metalbreak.ogg
-            - !type:SpawnEntitiesBehavior
-              spawn:
-                SheetPlasteel1:
-                  min: 1
-                  max: 5
-                MaterialBluespace:
-                  min: 1
-                  max: 2
-            - !type:DoActsBehavior
-              acts: [ "Destruction" ]
-    - type: PointLight
-      radius: 1.5
-      energy: 1
-      color: "#f08080"
-    - type: Construction
-      graph: Altar
-      node: heaven
+  - type: Sprite
+    sprite: Structures/Furniture/Altars/Cults/heaven.rsi
+    layers:
+    - state: full
+    - state: blood
+      shader: unshaded
+  - type: Icon
+    sprite: Structures/Furniture/Altars/Cults/heaven.rsi
+    state: full
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 125
+      behaviors:
+        - !type:DoActsBehavior
+          acts: [ "Destruction" ]
+    - trigger:
+        !type:DamageTrigger
+        damage: 25
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalBreak
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          SheetSteel1:
+            min: 1
+            max: 5
+          MaterialBluespace:
+            min: 1
+            max: 2
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+  - type: PointLight
+    radius: 1.5
+    energy: 1
+    color: "#f08080"
 
 - type: entity
   id: AltarFangs
