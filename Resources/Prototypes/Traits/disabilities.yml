@@ -17,12 +17,12 @@
 - type: trait
   id: Narcolepsy
   name: trait-narcolepsy-name
-  description: trait-narcolepsy-decs
   blacklist:
     components:
       - BSSDrone #backmen: bssdrone
       - StationAI # backmen: AI
       - BorgChassis
+  description: trait-narcolepsy-desc
   components:
     - type: Narcolepsy
       timeBetweenIncidents: 300, 600
@@ -36,6 +36,7 @@
       - BSSDrone #backmen: bssdrone
       - StationAI # backmen: AI
       - BorgChassis
+  description: trait-pacifist-desc
   components:
     - type: Pacified
 
@@ -57,6 +58,13 @@
         collection: Paracusia
 
 - type: trait
+  id: Unrevivable
+  name: trait-unrevivable-name
+  description: trait-unrevivable-desc
+  components:
+    - type: Unrevivable
+
+- type: trait
   id: Muted
   name: trait-muted-name
   description: trait-muted-desc
@@ -69,18 +77,6 @@
     - type: Muted
 
 - type: trait
-  id: Uncloneable
-  name: trait-uncloneable-name
-  description: trait-uncloneable-desc
-  blacklist:
-    components:
-      - BSSDrone #backmen: bssdrone
-      - StationAI # backmen: AI
-      - BorgChassis
-  components:
-    - type: Uncloneable
-
-- type: trait
   id: WheelchairBound
   name: trait-wheelchair-bound-name
   description: trait-wheelchair-bound-desc
@@ -91,7 +87,8 @@
       - StationAI # backmen: AI
       - BorgChassis
   components:
-    - type: WheelchairBound
+    - type: BuckleOnMapInit
+      prototype: VehicleWheelchair
     - type: LegsParalyzed
 
 - type: trait

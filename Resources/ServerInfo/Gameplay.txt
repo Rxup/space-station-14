@@ -1,6 +1,6 @@
 Если вы новичок в ролевых играх или не знакомы с IC и OOC, пожалуйста, читайте дальше. Если нет, переходите к следующему разделу.
 
-SS14 is at its core a roleplaying game - You play a role on the station through your character which you can customise from the lobby prior to joining the game. You can select the roles or jobs your character plays via the customisation menu too. When you’re in a round playing your character, you are IC or In Character. When you’re in character you forget any knowledge of previous rounds or essentially of the outside world and you play as if you’re a member of the station's crew.
+SS14 по своей сути является ролевой игрой - вы играете роль на станции через своего персонажа, которого вы можете настроить в лобби перед вступлением в игру. В меню настройки вы также можете выбрать роли или профессии, которые играет ваш персонаж. Поэтому, когда вы играете в раунде своим персонажем, вы IC или In Character. Когда вы в образе, вы забываете все знания о предыдущих раундах или, по сути, о внешнем мире и играете так, как будто вы член экипажа корабля.
 
 Таким образом, OOC или Out of Character - это любые разговоры, которые вы ведете вне игрового мира, например, в OOC-чате, на Discord или с друзьями. Вы не должны обсуждать текущий раунд или что-либо, что является IC (In Character), в OOC-чатах вне персонажа. Аналогично, все, что вы видите или читаете в OOC, не может быть использовано вашим персонажем в игре, например, если кто-то в discord называет предателя или говорит вам, что он умирает в определенном месте, и вы должны пойти помочь ему. Это называется как метагейминг, и в случае обнаружения вы будете забанены.
 
@@ -13,9 +13,9 @@ SS14 is at its core a roleplaying game - You play a role on the station through 
 
 Если в настройках кастомизации персонажа вы выбрали возможность стать антагонистом (antag) или другую роль предателя, это не гарантирует, что вы им станете. Когда начинается раунд режима "Предатель", происходит случайный выбор среди игроков, которые выбрали возможность стать предателем, и только некоторые из них станут предателем. Они будут уведомлены в чате о том, что стали предателями, и получат набор целей, которые они могут просмотреть, нажав кнопку - C.
 
-Being an antagonist is not an excuse to go on a murder spree. Your job is to complete your objectives which on occasion will include escaping alive or dying a glorious death. How you complete your objectives is up to you so murder is valid but try to have fun (ideally not at everyones expense but that’s up to you).
+Быть антагонистом - это не повод для убийств, ваша задача - выполнить поставленные цели, которые в некоторых случаях включают побег живым или славную смерть. Как вы будете выполнять свои задачи, зависит от вас, поэтому убийство допустимо, но постарайтесь получить удовольствие (в идеале не за счет всех остальных).
 
-If you suspect an antagonist such as a traitor or cultist etc report them to security as fast as possible and if necessary do what you can to protect yourself. Remember traitors are people too, so ideally they should be arrested and prosecuted under space law and not just murdered (but do what you need to do to survive).
+Если вы подозреваете антагониста, такого как предатель, культист и т.д., как можно быстрее сообщите о нем в службу безопасности и, если необходимо, сделайте все возможное, чтобы защитить себя (убегайте, если не можете разоружайте противника и только в крайнем случае нападайте в ответ). Помните, что предатели - тоже люди, поэтому в идеале их нужно арестовать и преследовать по космическому закону, а не просто убивать.
 
 RDM или random deathmatch - это убийство кого-либо без причины или попытка убийства. Если на вас напали, то, скорее всего, другой человек может быть антагом, но если вы не уверены, попросите помощи у администраторов (ahelp), чтобы проверить это при удобном случае.
 

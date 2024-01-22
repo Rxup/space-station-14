@@ -214,6 +214,8 @@
       shader: unshaded
   - type: Clothing
     sprite: Objects/Weapons/Guns/Battery/laser_gun.rsi
+  - type: StaticPrice
+    price: 420
   - type: Gun
     selectedMode: SemiAuto
     availableModes:
@@ -231,6 +233,8 @@
   - type: HitscanBatteryAmmoProvider
     proto: RedLaserPractice
     fireCost: 62.5
+  - type: StaticPrice
+    price: 300
 
 - type: entity
   name: pulse pistol
@@ -357,7 +361,7 @@
       walkModifier: 0.6
       sprintModifier: 0.6
     - type: HeldSpeedModifier
-    - type: Sprite 
+    - type: Sprite
       sprite: Objects/Weapons/Guns/Battery/particle_decelerator.rsi
       layers:
         - state: base
@@ -478,6 +482,8 @@
     magState: mag
     steps: 5
     zeroVisible: true
+  - type: StaticPrice
+    price: 260
 
 - type: entity
   name: practice disabler
@@ -498,6 +504,8 @@
       quickEquip: false
       slots:
         - Belt
+    - type: StaticPrice
+      price: 100
     - type: ProjectileBatteryAmmoProvider
       proto: BulletDisablerPractice
       fireCost: 100
@@ -652,6 +660,8 @@
   - type: Construction
     graph: UpgradeWeaponPistolCHIMP
     node: start
+  - type: StaticPrice
+    price: 100
 
 - type: entity
   name: experimental C.H.I.M.P. handcannon
@@ -671,7 +681,7 @@
       fireCost: 100
 
 - type: entity
-  name: Eye of a behonker
+  name: eye of a behonker
   parent: BaseWeaponBatterySmall
   id: WeaponBehonkerLaser
   description: The eye of a behonker, it fires a laser when squeezed.

@@ -20,6 +20,8 @@
 - type: randomHumanoidSettings
   id: DeathSquad
   randomizeName: false
+  speciesBlacklist: # Corvax-MRP
+    - Diona
   components:
     - type: MindShield
     - type: GhostRole
@@ -424,7 +426,7 @@
 
 - type: entity
   id: RandomHumanoidSpawnerSyndicateAgent
-  name: Syndicate Agent
+  name: syndicate agent
   components:
     - type: Sprite
       sprite: Mobs/Species/Human/parts.rsi

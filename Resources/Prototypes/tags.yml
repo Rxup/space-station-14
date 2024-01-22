@@ -170,6 +170,12 @@
   id: BorgModuleService
 
 - type: Tag
+  id: BorgModuleSyndicate
+
+- type: Tag
+  id: BorgModuleSyndicateAssault
+
+- type: Tag
   id: BorgServiceHead
 
 - type: Tag
@@ -248,6 +254,9 @@
   id: CanPilot
 
 - type: Tag
+  id: CannonBall
+  
+- type: Tag
   id: CannonRestrict
 
 - type: Tag
@@ -301,6 +310,9 @@
 
 - type: Tag
   id: Chicken
+
+- type: Tag
+  id: ChemDispensable # container that can go into the chem dispenser
 
 - type: Tag
   id: Cigarette
@@ -456,6 +468,9 @@
   id: DrinkSpaceGlue
 
 - type: Tag
+  id: DrinkBottle
+
+- type: Tag
   id: DroneUsable
 
 - type: Tag
@@ -496,9 +511,6 @@
 
 - type: Tag
   id: FleshBlocker
-
-- type: Tag
-  id: WhitelistChameleon
 
 - type: Tag
   id: FirelockElectronics
@@ -564,7 +576,16 @@
   id: Goat
 
 - type: Tag
+  id: GPS
+
+- type: Tag
   id: Grenade
+
+- type: Tag
+  id: HudMedical
+
+- type: Tag
+  id: HudSecurity
 
 - type: Tag
   id: GuideEmbeded
@@ -779,10 +800,16 @@
   id: MagazinePistolSubMachineGun
 
 - type: Tag
+  id: MagazineGrenade
+
+- type: Tag
   id: MailingUnitElectronics
 
 - type: Tag
   id: Matchstick
+
+- type: Tag
+  id: Mayo  
 
 - type: Tag
   id: Meat
@@ -932,6 +959,9 @@
   id: PowerCellSmall
 
 - type: Tag
+  id: PowerCage
+
+- type: Tag
   id: Powerdrill
 
 - type: Tag
@@ -939,6 +969,9 @@
 
 - type: Tag
   id: ProximitySensor
+
+- type: Tag
+  id: QuantumSpinInverter
 
 - type: Tag
   id: Radio
@@ -1128,6 +1161,9 @@
   id: TrashBag
 
 - type: Tag
+  id: Unimplantable
+
+- type: Tag
   id: Unstackable # To prevent things like atmos devices (filters etc) being stacked on one tile. See NoUnstackableInTile
 
 - type: Tag
@@ -1146,9 +1182,6 @@
   id: Wall
 
 - type: Tag
-  id: WetFloorSign
-
-- type: Tag
   id: WallmountGeneratorAPUElectronics
 
 - type: Tag
@@ -1162,6 +1195,12 @@
 
 - type: Tag
   id: WeaponShotgunKammerer
+
+- type: Tag
+  id: WetFloorSign
+
+- type: Tag
+  id: WhitelistChameleon
 
 - type: Tag
   id: Window

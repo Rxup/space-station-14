@@ -46,8 +46,9 @@ flavor-base-spaceshroom = таинственно
 flavor-base-clean = чисто
 flavor-base-alkaline = щёлочно
 flavor-base-holy = свято
+flavor-base-horrible = ужасно
 # lmao
-flavor-base-terrible = ужасно
+flavor-base-terrible = ужасающе
 
 # Complex flavors. Put a flavor here when you want something that's more
 # specific.
@@ -161,6 +162,7 @@ flavor-complex-plastic = как пластик
 flavor-complex-glue = как клей
 flavor-complex-spaceshroom-cooked = как космический умами
 flavor-complex-lost-friendship = как прошедшая дружба
+flavor-complex-light = like a light gone out
 
 ## Generic alcohol/soda taste. This should be replaced with an actual flavor profile.
 
@@ -191,6 +193,7 @@ flavor-complex-ice = как лёд
 
 ## Cocktails
 
+flavor-complex-mopwata = как застоявшаяся грязная вода
 flavor-complex-long-island = подозрительно похож на холодный чай
 flavor-complex-three-mile-island = как чай, заваренный в ядерных отходах
 flavor-complex-whiskey-cola = как газированная патока
