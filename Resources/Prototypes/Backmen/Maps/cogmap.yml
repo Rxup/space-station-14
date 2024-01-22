@@ -67,3 +67,4 @@
             Reporter: [ 2, 2 ]
             BKBPLATech: [0, 3] # backmen-BPLA-Silicons
             BKBPLAMED: [0, 3] # backmen-BPLAMED-Silicons
+            SAI: [1, 1] # backmen-SAI
