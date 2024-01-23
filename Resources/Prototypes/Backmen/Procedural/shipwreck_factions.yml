@@ -3,15 +3,15 @@
   objectiveDefender: RandomHumanoidSpawnerZombieBrute
   active:
     - id: RandomHumanoidSpawnerZombie
-      prob: 0.2
+      prob: 0.25
       orGroup: zombie
     - id: RandomHumanoidSpawnerZombieSurprise
-      prob: 0.1
+      prob: 0.15
       maxAmount: 2
       orGroup: zombie
   inactive:
     - id: RandomHumanoidSpawnerUnaffiliatedDead
-      prob: 0.5
+      prob: 0.4
       maxAmount: 3
 
 - type: shipwreckFaction
@@ -19,7 +19,7 @@
   objectiveDefender: MobDragonShipwrecked
   active:
     - id: MobCarpDungeon
-      prob: 0.1
+      prob: 0.15
       orGroup: Dragon
     - id: MobSharkSalvage
       prob: 0.025
@@ -28,7 +28,7 @@
       prob: 0.025
       orGroup: Dragon
     - id: MobCarpMagic
-      prob: 0.05
+      prob: 0.075
       orGroup: Dragon
   inactive:
     - id: RandomHumanoidSpawnerUnaffiliatedDead
@@ -40,9 +40,9 @@
   objectiveDefender: MobMalfunctioningRobotTank
   active:
     - id: MobMalfunctioningRobotCutter
-      prob: 0.15
+      prob: 0.25
     - id: MobMalfunctioningRobotPoisoner
-      prob: 0.1
+      prob: 0.15
   inactive:
     - id: RandomHumanoidSpawnerUnaffiliatedDead
       prob: 0.4
@@ -53,7 +53,7 @@
   objectiveDefender: MobXenoQueenShipwrecked
   active:
     - id: MobXeno
-      prob: 0.1
+      prob: 0.15
       orGroup: Xeno
     - id: MobXenoDrone
       prob: 0.075

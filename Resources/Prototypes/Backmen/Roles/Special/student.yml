@@ -7,7 +7,7 @@
   setPreference: false
   canBeAntag: false
   icon: "JobIconUnknown" # TODO
-  supervisors: job-supervisors-generic
+  supervisors: job-supervisors-explorer
   special:
   - !type:AddComponentSpecial
     components:

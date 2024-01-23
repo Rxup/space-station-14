@@ -66,8 +66,8 @@
       - SyringeTranexamicAcid
     chance: 0.95
     rarePrototypes:
-      - MedkitCombat
-    rareChance: 0.05
+      - MedkitCombatFilled
+    rareChance: 0.1
 
 - type: entity
   parent: MarkerBase

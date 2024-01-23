@@ -171,6 +171,7 @@ public sealed class ShipwreckedRuleSystem : GameRuleSystem<ShipwreckedRuleCompon
 
         SubscribeLocalEvent<ShipwreckSurvivorComponent, MobStateChangedEvent>(OnSurvivorMobStateChanged);
         SubscribeLocalEvent<ShipwreckSurvivorComponent, BeingGibbedEvent>(OnSurvivorBeingGibbed);
+        SubscribeLocalEvent<ShipwreckSurvivorComponent, MindGotRemovedEvent>(OnMindRemoved);
         SubscribeLocalEvent<EntityZombifiedEvent>(OnZombified);
 
         SubscribeLocalEvent<PostGameMapLoad>(OnMapReady);
@@ -1628,6 +1629,18 @@ public sealed class ShipwreckedRuleSystem : GameRuleSystem<ShipwreckedRuleCompon
         }
     }
 
+    private void OnMindRemoved(EntityUid survivor, ShipwreckSurvivorComponent component, MindGotRemovedEvent args)
+    {
+        var query = EntityQueryEnumerator<ShipwreckedRuleComponent, GameRuleComponent>();
+        while (query.MoveNext(out var uid, out var shipwrecked, out var gameRule))
+        {
+            if (!GameTicker.IsGameRuleActive(uid, gameRule))
+                continue;
+
+            CheckShouldRoundEnd(uid, shipwrecked);
+        }
+    }
+
     private void OnZombified(ref EntityZombifiedEvent args)
     {
         var query = EntityQueryEnumerator<ShipwreckedRuleComponent, GameRuleComponent>();
@@ -1794,13 +1807,12 @@ public sealed class ShipwreckedRuleSystem : GameRuleSystem<ShipwreckedRuleCompon
                            !TerminatingOrDeleted(shipwrecked.SoundTrack.Value.Entity) &&
                            !shipwrecked.SoundTrack.Value.Component.Playing;
 
-
             _npcConversationSystem.QueueResponse(npc, response
                 ? args.AfterMusic
                 : args.BeforeMusic);
             if (!response)
             {
-                shipwrecked.SoundTrack = _audioSystem.PlayPvs("/Audio/Backmen/Misc/kujlevka.ogg", shipwrecked.Hecate!.Value);
+                shipwrecked.SoundTrack = _audioSystem.PlayPvs("/Audio/Backmen/Misc/bossaluna.ogg", shipwrecked.Hecate!.Value);
             }
         }
     }
