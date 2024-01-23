@@ -22,7 +22,6 @@ entities:
   - uid: 1
     components:
     - type: MetaData
-      name: Гражданский шаттл NT
     - type: Transform
       pos: -0.4671297,-1.0890265
       parent: 12
@@ -568,6 +567,8 @@ entities:
         chunkSize: 4
     - type: GasTileOverlay
     - type: RadiationGridResistance
+    - type: BecomesStation
+      id: ShwrColossus
   - uid: 12
     components:
     - type: MetaData
