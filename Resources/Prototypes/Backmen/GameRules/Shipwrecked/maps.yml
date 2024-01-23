@@ -36,15 +36,33 @@
 
 - type: gameMap
   id: shwrDust
-  mapName: KL-Dust 469
+  mapName: KL-Dust
   mapPath: /Maps/Backmen/Shuttles/shwr-dust.yml
-  minPlayers: 25
+  minPlayers: 15
+  maxPlayers: 30
   stations:
     shwrDust:
       stationProto: StandardStationArena
       components:
         - type: StationNameSetup
-          mapNameTemplate: "KL-Dust 469"
+          mapNameTemplate: "KL-Dust"
+        - type: StationJobs
+          overflowJobs:
+            - Freelancer
+          availableJobs:
+            Freelancer: [-1,-1]
+
+- type: gameMap
+  id: ShwrColossus
+  mapName: Колосс
+  mapPath: /Maps/Backmen/Shuttles/colossus.yml
+  minPlayers: 25
+  stations:
+    ShwrColossus:
+      stationProto: StandardStationArena
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: "Колосс"
         - type: StationJobs
           overflowJobs:
             - Freelancer

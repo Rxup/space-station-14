@@ -259,6 +259,14 @@ entities:
       parent: 665
     - type: InstantAction
       container: 665
+  - uid: 680
+    components:
+    - type: MetaData
+      flags: InContainer
+    - type: Transform
+      parent: 679
+    - type: InstantAction
+      container: 679
 - proto: AirAlarm
   entities:
   - uid: 312
@@ -1449,15 +1457,6 @@ entities:
     - type: Physics
       canCollide: False
     - type: InsideEntityStorage
-  - uid: 513
-    components:
-    - type: MetaData
-      flags: InContainer
-    - type: Transform
-      parent: 239
-    - type: Physics
-      canCollide: False
-    - type: InsideEntityStorage
 - proto: ClothingEyesGlassesMeson
   entities:
   - uid: 536
@@ -1533,6 +1532,13 @@ entities:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: -4.3141155,9.567943
+      parent: 2
+- proto: ClothingOuterHardsuitSalvage
+  entities:
+  - uid: 513
+    components:
+    - type: Transform
+      pos: -3.5164247,-2.2917075
       parent: 2
 - proto: ComputerId
   entities:
@@ -3109,18 +3115,18 @@ entities:
           showEnts: False
           occludes: True
           ents:
-          - 561
-          - 560
-          - 559
-          - 558
-          - 557
-          - 556
-          - 555
-          - 554
-          - 553
-          - 552
-          - 551
           - 550
+          - 551
+          - 552
+          - 553
+          - 554
+          - 555
+          - 556
+          - 557
+          - 558
+          - 559
+          - 560
+          - 561
         paper_label: !type:ContainerSlot
           showEnts: False
           occludes: True
@@ -3395,40 +3401,6 @@ entities:
           occludes: True
           ents:
           - 360
-        paper_label: !type:ContainerSlot
-          showEnts: False
-          occludes: True
-          ent: null
-  - uid: 239
-    components:
-    - type: Transform
-      pos: -3.5,-2.5
-      parent: 2
-    - type: EntityStorage
-      air:
-        volume: 200
-        immutable: False
-        temperature: 293.14673
-        moles:
-        - 1.7459903
-        - 6.568249
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-    - type: ContainerContainer
-      containers:
-        entity_storage: !type:Container
-          showEnts: False
-          occludes: True
-          ents:
-          - 513
         paper_label: !type:ContainerSlot
           showEnts: False
           occludes: True
@@ -3847,6 +3819,14 @@ entities:
       flags: PvsPriority
     - type: Transform
       pos: 5.5,10.5
+      parent: 2
+- proto: Rack
+  entities:
+  - uid: 239
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: -3.5,-2.5
       parent: 2
 - proto: RandomPosterAny
   entities:
@@ -4423,7 +4403,7 @@ entities:
   - uid: 241
     components:
     - type: Transform
-      pos: -3.5015059,4.5809755
+      pos: -3.620839,4.62131
       parent: 2
 - proto: VendingMachineSalvage
   entities:
@@ -5191,6 +5171,21 @@ entities:
     - type: Transform
       pos: 3.5,-0.5
       parent: 2
+- proto: WeaponCrusherDagger
+  entities:
+  - uid: 679
+    components:
+    - type: Transform
+      pos: -3.071217,4.605685
+      parent: 2
+    - type: UnpoweredFlashlight
+      toggleActionEntity: 680
+    - type: ActionsContainer
+    - type: ContainerContainer
+      containers:
+        actions: !type:Container
+          ents:
+          - 680
 - proto: WeaponDisabler
   entities:
   - uid: 278
