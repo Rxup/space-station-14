@@ -17,6 +17,24 @@
             Freelancer: [-1,-1]
 
 - type: gameMap
+  id: ShwrArtur
+  mapName: CT-Artur
+  mapPath: /Maps/Backmen/Shuttles/ct-artur.yml
+  minPlayers: 5
+  maxPlayers: 20
+  stations:
+    ShwrArtur:
+      stationProto: StandardStationArena
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: "CT-Artur"
+        - type: StationJobs
+          overflowJobs:
+            - Freelancer
+          availableJobs:
+            Freelancer: [-1,-1]
+
+- type: gameMap
   id: ShwrTraveller
   mapName: Странник
   mapPath: /Maps/Backmen/Shuttles/traveller.yml

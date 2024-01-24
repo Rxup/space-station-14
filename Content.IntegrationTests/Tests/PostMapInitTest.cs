@@ -78,6 +78,7 @@ namespace Content.IntegrationTests.Tests
             "shwrDust",
 			"ShwrTraveller",
 			"ShwrColossus",
+			"ShwrArtur",
             "Tortuga",
             "TheHive",
             "Cogmap",
