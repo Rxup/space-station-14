@@ -7,7 +7,6 @@
     RuinedHospital: 2
     RuinedShop: 3
   factions:
-    - ZombieOutbreak
     - MalfunctioningRobots
     - SpaceCarpInvasion
   atmosphere:
@@ -27,7 +26,6 @@
     RuinedShop: 2
   factions:
     - ZombieOutbreak
-    - MalfunctioningRobots
     - SpaceXenoInvasion
   atmosphere:
     volume: 2300
@@ -46,7 +44,6 @@
     RuinedShop: 3
   factions:
     - ZombieOutbreak
-    - MalfunctioningRobots
     - SpaceXenoInvasion
   atmosphere:
     volume: 2400
@@ -61,10 +58,9 @@
   lightColor: "#D8B059" #DayLight
   structures:
     RuinedDwellings: 2
-    RuinedHospital: 2
-    RuinedShop: 4
+    RuinedHospital: 4
+    RuinedShop: 2
   factions:
-    - ZombieOutbreak
     - MalfunctioningRobots
     - SpaceCarpInvasion
   atmosphere:
@@ -83,8 +79,7 @@
     RuinedHospital: 3
     RuinedShop: 1
   factions:
-    - ZombieOutbreak
-    - MalfunctioningRobots
+    - SpaceXenoInvasion
     - SpaceCarpInvasion
   atmosphere:
     volume: 2300
@@ -104,7 +99,6 @@
   factions:
     - ZombieOutbreak
     - MalfunctioningRobots
-    - SpaceXenoInvasion
   atmosphere:
     volume: 2400
     temperature: 280
