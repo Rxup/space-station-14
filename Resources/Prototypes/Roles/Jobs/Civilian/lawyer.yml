@@ -5,7 +5,7 @@
   playTimeTracker: JobLawyer
   requirements:
     - !type:OverallPlaytimeRequirement
-      time: 36000 # 10 hrs
+      time: 3600 # 1 hrs # Astroplex-RoleTime
   startingGear: LawyerGear
   setPreference: false # Corvax-IAA
   icon: "JobIconLawyer"
