@@ -21,6 +21,7 @@ public class ActionButtonContainer : GridContainer
     public ActionButtonContainer()
     {
         IoCManager.InjectDependencies(this);
+        UserInterfaceManager.GetUIController<ActionUIController>().RegisterActionContainer(this);
     }
 
     public ActionButton this[int index]
@@ -28,43 +29,16 @@ public class ActionButtonContainer : GridContainer
         get => (ActionButton) GetChild(index);
     }
 
-    private void BuildActionButtons(int count)
-    {
-        var keys = ContentKeyFunctions.GetHotbarBoundKeys();
-
-        Children.Clear();
-        for (var index = 0; index < count; index++)
-        {
-            Children.Add(MakeButton(index));
-        }
-
-        ActionButton MakeButton(int index)
-        {
-            var button = new ActionButton(_entity);
-
-            if (keys.TryGetValue(index, out var boundKey))
-            {
-                button.KeyBind = boundKey;
-
-                var binding = _input.GetKeyBinding(boundKey);
-                button.Label.Text = binding.GetKeyString();
-            }
-
-            return button;
-        }
-    }
-
     public void SetActionData(ActionsSystem system, params EntityUid?[] actionTypes)
     {
-        var uniqueCount = Math.Min(system.GetClientActions().Count(), actionTypes.Length + 1);
-        if (ChildCount != uniqueCount)
-            BuildActionButtons(uniqueCount);
+        ClearActionData();
 
-        for (var i = 0; i < uniqueCount; i++)
+        for (var i = 0; i < actionTypes.Length; i++)
         {
-            if (!actionTypes.TryGetValue(i, out var action))
-                action = null;
-            ((ActionButton) GetChild(i)).UpdateData(action, system);
+            var action = actionTypes[i];
+            if (action == null)
+                continue;
+            ((ActionButton) GetChild(i)).UpdateData(action.Value, system);
         }
     }
 

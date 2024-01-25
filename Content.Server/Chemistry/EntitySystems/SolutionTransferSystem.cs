@@ -201,6 +201,58 @@ namespace Content.Server.Chemistry.EntitySystems
 
             return actualAmount;
         }
+
+        // THIS IS SCARY
+        public FixedPoint2 TransferDispenser(EntityUid user,
+            EntityUid sourceEntity,
+            Entity<SolutionComponent> source,
+            EntityUid targetEntity,
+            Entity<SolutionComponent> target,
+            FixedPoint2 amount)
+        {
+            var transferAttempt = new SolutionTransferAttemptEvent(sourceEntity, targetEntity);
+
+            // Check if the source is cancelling the transfer
+            RaiseLocalEvent(sourceEntity, transferAttempt, broadcast: true);
+            if (transferAttempt.Cancelled)
+            {
+                _popupSystem.PopupEntity(transferAttempt.CancelReason!, sourceEntity, user);
+                return FixedPoint2.Zero;
+            }
+
+            var sourceSolution = source.Comp.Solution;
+            if (sourceSolution.Volume == 0)
+            {
+                _popupSystem.PopupEntity(Loc.GetString("comp-solution-transfer-is-empty", ("target", sourceEntity)), sourceEntity, user);
+                return FixedPoint2.Zero;
+            }
+
+            // Check if the target is cancelling the transfer
+            RaiseLocalEvent(targetEntity, transferAttempt, broadcast: true);
+            if (transferAttempt.Cancelled)
+            {
+                _popupSystem.PopupEntity(transferAttempt.CancelReason!, sourceEntity, user);
+                return FixedPoint2.Zero;
+            }
+
+            var targetSolution = target.Comp.Solution;
+            if (targetSolution.AvailableVolume == 0)
+            {
+                _popupSystem.PopupEntity(Loc.GetString("comp-solution-transfer-is-full", ("target", targetEntity)), targetEntity, user);
+                return FixedPoint2.Zero;
+            }
+
+            var actualAmount = FixedPoint2.Min(amount, FixedPoint2.Min(sourceSolution.Volume, targetSolution.AvailableVolume));
+
+            var solution = _solutionContainerSystem.Drain(sourceEntity, source, actualAmount);
+            _solutionContainerSystem.Refill(targetEntity, target, solution);
+            _solutionContainerSystem.Refill(sourceEntity, source, solution);
+
+            _adminLogger.Add(LogType.Action, LogImpact.Medium,
+                $"{EntityManager.ToPrettyString(user):player} transferred {string.Join(", ", solution.Contents)} to {EntityManager.ToPrettyString(targetEntity):entity}, which now contains {SolutionContainerSystem.ToPrettyString(targetSolution)}");
+
+            return actualAmount;
+        }
     }
 
     /// <summary>

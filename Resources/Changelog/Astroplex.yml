@@ -1,0 +1,8 @@
+Entries:
+- author: totem
+  changes:
+  - message: Новый код "Йота"
+    type: Add
+  id: 2
+  time: '2024-01-22T17:35:36.0000000+00:00'
+  url: https://github.com/Astroplex-SS14/space-station-14/pull/2
