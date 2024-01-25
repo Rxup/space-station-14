@@ -54,3 +54,97 @@
     - type: Visibility
       layer: 4
     - type: NoNormalInteraction
+
+- type: entity
+  name: bluespace goat
+  parent: SimpleSpaceMobBase
+  id: MobGoatBluespace
+  description: A goat from another dimension. Beee.
+  components:
+  - type: Sprite
+    drawdepth: Mobs
+    layers:
+    - map: ["enum.DamageStateVisualLayers.Base"]
+      state: goat
+      sprite: Backmen/Mobs/Animals/bluespacegoat.rsi
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: goat
+      Critical:
+        Base: dead
+      Dead:
+        Base: dead
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      150: Critical
+      200: Dead
+  - type: MovementSpeedModifier
+    baseSprintSpeed: 6
+    baseWalkSpeed: 4
+  - type: Butcherable
+    spawned:
+    - id: MaterialBluespace
+    - id: MaterialBluespace
+      prob: 0.6
+    - id: ResearchDisk10000
+    - id: ResearchDisk5000
+      prob: 0.4
+  - type: GhostRole
+    allowMovement: true
+    allowSpeech: true
+    makeSentient: true
+    name: ghost-role-information-bluespace-goat-name
+    description: ghost-role-information-bluespace-goat-description
+    rules: ghost-role-information-bluespace-goat-rules
+  - type: GhostTakeoverAvailable
+  - type: Grammar
+    attributes:
+      gender: male
+      proper: true
+  # Abilities start
+  - type: Psionic
+  - type: DispelPower
+  - type: MindSwapPower
+  - type: PsionicRegenerationPower
+  - type: MassSleepPower
+  - type: Shadowkin # I'm too lazy to create another system and action for just a goat, so i'll just give shadowkin powers to him...
+  - type: ShadowkinTeleportPower
+  - type: ShadowkinDarkSwapPower
+  - type: ShadowkinRestPower
+  - type: AutoImplant
+    implants:
+    - ScramImplant
+  # Abilities end
+  - type: InteractionPopup
+    successChance: 0.33
+    interactSuccessString: petting-success-goat-bluespace
+    interactFailureString: petting-failure-goat
+    interactSuccessSpawn: EffectHearts
+    interactSuccessSound:
+      path: /Audio/Animals/goat_bah.ogg
+  - type: NpcFactionMember
+    factions:
+    - SimpleNeutral
+  - type: Body
+    prototype: AnimalRuminant
+  - type: NPCRetaliation
+    attackMemoryLength: 5
+  - type: FactionException
+  - type: HTN
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.35
+        density: 150
+        mask:
+        - MobMask
+        layer:
+        - MobLayer
+  - type: Tag
+    tags:
+    - Goat
+    - DoorBumpOpener

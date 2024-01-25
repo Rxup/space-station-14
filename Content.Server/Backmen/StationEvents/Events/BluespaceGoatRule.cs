@@ -10,8 +10,7 @@ public sealed class BluespaceGoatRule : StationEventSystem<BluespaceGoatRuleComp
     {
         base.Added(uid, component, gameRule, args);
 
-        var str = Loc.GetString("bluespace-artifact-event-announcement",
-            ("sighting", Loc.GetString(RobustRandom.Pick(component.PossibleSighting))));
+        var str = Loc.GetString("bluespace-goat-event-announcement");
         ChatSystem.DispatchGlobalAnnouncement(str, colorOverride: Color.FromHex("#18abf5"));
     }
 
@@ -19,7 +18,7 @@ public sealed class BluespaceGoatRule : StationEventSystem<BluespaceGoatRuleComp
     {
         base.Started(uid, component, gameRule, args);
 
-        var amountToSpawn = Math.Max(1, (int) MathF.Round(GetSeverityModifier() / 1.5f));
+        var amountToSpawn = 2;
         for (var i = 0; i < amountToSpawn; i++)
         {
             if (!TryFindRandomTile(out _, out _, out _, out var coords))
@@ -28,7 +27,7 @@ public sealed class BluespaceGoatRule : StationEventSystem<BluespaceGoatRuleComp
             Spawn(component.BsgoatSpawnerPrototype, coords);
             Spawn(component.ArtifactFlashPrototype, coords);
 
-            Sawmill.Info($"Spawning bluespace goat at {coords}");
+            Sawmill.Info($"Spawning bluespace goat at {coords}!");
         }
     }
 }
