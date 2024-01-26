@@ -485,7 +485,7 @@
       - Prying
     useSound:
       path: /Audio/Items/crowbar.ogg
-  - type: TilePrying
+  - type: ToolTileCompatible
 
 - type: entity
   parent: ClothingHandsBase
