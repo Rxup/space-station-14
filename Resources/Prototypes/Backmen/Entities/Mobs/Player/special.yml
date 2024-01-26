@@ -78,19 +78,29 @@
   - type: MobThresholds
     thresholds:
       0: Alive
-      150: Critical
-      200: Dead
+      250: Dead
+  - type: SlowOnDamage
+    speedModifierThresholds:
+      150: 0.8
+      200: 0.4
+      240: 0.2
   - type: MovementSpeedModifier
-    baseSprintSpeed: 6
+    baseSprintSpeed: 5
     baseWalkSpeed: 4
   - type: Butcherable
     spawned:
     - id: MaterialBluespace
     - id: MaterialBluespace
-      prob: 0.6
+      prob: 0.8
+    - id: ResearchDisk10000
     - id: ResearchDisk10000
     - id: ResearchDisk5000
-      prob: 0.4
+      prob: 0.8
+    - id: TechnologyDisk
+    - id: TechnologyDisk
+    - id: TechnologyDisk
+      prob: 0.5
+    - id: TechnologyDiskRare
   - type: GhostRole
     allowMovement: true
     allowSpeech: true
@@ -115,6 +125,7 @@
   - type: ShadowkinRestPower
   - type: AutoImplant
     implants:
+    - ScramImplant
     - ScramImplant
   # Abilities end
   - type: InteractionPopup
@@ -144,7 +155,26 @@
         - MobMask
         layer:
         - MobLayer
+  - type: Insulated
+  - type: Tool
+    speed: 1.5
+    qualities:
+      - Prying
+  - type: Prying
+    pryPowered: !type:Bool
+        true
+    force: !type:Bool
+      true
+    useSound:
+      path: /Audio/Items/crowbar.ogg
+  - type: Hands
+  - type: NoSlip
+  - type: NightVision
+    isToggle: true
+    color: "#808080"
+  - type: Puller
   - type: Tag
     tags:
     - Goat
     - DoorBumpOpener
+    - CannotSuicide
