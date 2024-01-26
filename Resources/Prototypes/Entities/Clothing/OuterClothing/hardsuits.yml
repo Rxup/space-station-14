@@ -784,6 +784,7 @@
   parent: ClothingOuterHardsuitCBURN
   id: ClothingOuterHardsuitERTEngineer
   name: ERT engineer's hardsuit
+  noSpawn: true
   description: A protective hardsuit worn by the engineers of an emergency response team.
   components:
   - type: Sprite
