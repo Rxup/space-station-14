@@ -4,7 +4,7 @@
   sprite: /Textures/Backmen/Tiles/red_circuit.png
   baseTurf: Plating
   isSubfloor: false
-  canCrowbar: true
+  deconstructTools: [ Prying ]
   footstepSounds:
     collection: FootstepHull
   itemDrop: FloorTileItemRCircuit

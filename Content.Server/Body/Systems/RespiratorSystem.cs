@@ -89,7 +89,7 @@ public sealed class RespiratorSystem : EntitySystem
                         respirator.Status = RespiratorStatus.Exhaling;
                         break;
                     case RespiratorStatus.Exhaling:
-                        Exhale(uid, body);
+                        Exhale(uid, respirator, body);
                         respirator.Status = RespiratorStatus.Inhaling;
                         break;
                 }
@@ -143,7 +143,7 @@ public sealed class RespiratorSystem : EntitySystem
         }
     }
 
-    public void Exhale(EntityUid uid, BodyComponent? body = null)
+    public void Exhale(EntityUid uid, RespiratorComponent? respirator = null, BodyComponent? body = null)
     {
         if (!Resolve(uid, ref body, false))
             return;
@@ -158,7 +158,7 @@ public sealed class RespiratorSystem : EntitySystem
         if (ev.Gas == null)
         {
             // start-backmen: blob zombie
-            if (respirator.HasImmunity)
+            if (Resolve(uid, ref respirator, false) && respirator!.HasImmunity)
                 return;
             // end-backmen: blob zombie
 
