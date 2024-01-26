@@ -79,3 +79,12 @@
   components:
   - type: Sprite
     sprite: Backmen/Clothing/Neck/Cloaks/eug-cloak.rsi
+
+- type: entity
+  parent: ClothingNeckBase
+  id: ClothingNeckCloakROE
+  name: Плащ кровавой пустоты
+  description: Завораживающий плащ, в этой пустоте явно что то есть!
+  components:
+  - type: Sprite
+    sprite: Backmen/Clothing/Neck/Cloaks/emptiness.rsi

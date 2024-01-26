@@ -255,7 +255,7 @@
 
 - type: Tag
   id: CannonBall
-  
+
 - type: Tag
   id: CannonRestrict
 
@@ -270,9 +270,6 @@
 
 - type: Tag
   id: Cartridge
-
-- type: Tag
-  id: CartridgeAntitank
 
 - type: Tag
   id: CartridgeCap
