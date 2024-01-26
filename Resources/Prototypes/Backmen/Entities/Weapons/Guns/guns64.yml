@@ -3339,3 +3339,34 @@
   - type: GrowingKudzu
   - type: TimedDespawn
     lifetime: 40
+
+- type: entity
+  name: ПТРД-М
+  parent: BaseWeaponSniper
+  id: WeaponSniperPtrd-m
+  description: Переносная противотанковая винтовка. Стреляет аналоговыми бронебойными снарядами калибра 14,5 мм. Использует противотанковые боеприпасы
+  components:
+  - type: Wieldable
+  - type: GunRequiresWield
+  - type: Sprite
+    sprite: Backmen/Objects/Weapons/Gunsx64/Snipers/ptrdm/big.rsi
+  - type: Clothing
+    sprite: Backmen/Objects/Weapons/Gunsx64/Snipers/ptrdm/tiny.rsi
+  - type: Item
+    sprite: Backmen/Objects/Weapons/Gunsx64/Snipers/ptrdm/tiny.rsi
+  - type: Gun
+    fireRate: 1
+    soundGunshot:
+      path: /Audio/Weapons/Guns64/Snipers/tl122.ogg
+      params:
+        volume: -2
+    soundEmpty:
+      path: /Audio/Weapons/Guns64/Rifles/m41a_empty.ogg
+  - type: BallisticAmmoProvider
+    soundRack:
+      path: /Audio/Weapons/Guns64/Snipers/tl-127_bolt.ogg
+    whitelist:
+      tags:
+      - CartridgeAntitank
+    capacity: 1
+    proto: CartridgeAntitank
