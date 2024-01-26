@@ -26,6 +26,7 @@
     - TemporaryBlindness
     - Pacified
     - ZombieDisease
+    - SeeAll
   - type: Body
     prototype: Animal
   - type: InjectableSolution
@@ -113,6 +114,9 @@
       - TemporaryBlindness
       - Pacified
       - StaminaModifier
+      - PsionicsDisabled
+      - PsionicallyInsulated
+      - SeeAll
   - type: Bloodstream
     bloodMaxVolume: 150
   - type: MobPrice

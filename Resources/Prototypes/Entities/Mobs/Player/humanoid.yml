@@ -5,6 +5,7 @@
 - type: entity
   id: RandomHumanoidSpawnerDeathSquad
   name: Death Squad Agent
+  noSpawn: true
   suffix: ERTRole, Death Squad
   components:
     - type: Sprite
@@ -20,6 +21,8 @@
 - type: randomHumanoidSettings
   id: DeathSquad
   randomizeName: false
+  speciesBlacklist: # Corvax-MRP
+    - Diona
   components:
     - type: MindShield
     - type: GhostRole
@@ -39,6 +42,7 @@
 - type: entity
   id: RandomHumanoidSpawnerERTLeader
   name: ERT leader
+  noSpawn: true
   suffix: ERTRole, Basic
   components:
     - type: Sprite
@@ -72,6 +76,7 @@
   id: RandomHumanoidSpawnerERTLeaderEVA
   parent: RandomHumanoidSpawnerERTLeader
   name: ERT leader
+  noSpawn: true
   suffix: ERTRole, Armored EVA
   components:
     - type: Sprite
@@ -95,6 +100,7 @@
 - type: entity
   id: RandomHumanoidSpawnerERTLeaderEVALecter
   parent: RandomHumanoidSpawnerERTLeaderEVA
+  noSpawn: true
   suffix: ERTRole, Lecter, EVA
   components:
     - type: RandomHumanoidSpawner
@@ -118,6 +124,7 @@
   id: RandomHumanoidSpawnerERTJanitor
   parent: RandomHumanoidSpawnerERTLeader
   name: ERT janitor
+  noSpawn: true
   suffix: ERTRole, Basic
   components:
     - type: Sprite
@@ -150,6 +157,7 @@
   id: RandomHumanoidSpawnerERTJanitorEVA
   parent: RandomHumanoidSpawnerERTJanitor
   name: ERT janitor
+  noSpawn: true
   suffix: ERTRole, Enviro EVA
   components:
     - type: Sprite
@@ -176,6 +184,7 @@
   id: RandomHumanoidSpawnerERTEngineer
   parent: RandomHumanoidSpawnerERTLeader
   name: ERT engineer
+  noSpawn: true
   suffix: ERTRole, Basic
   components:
     - type: Sprite
@@ -208,6 +217,7 @@
   id: RandomHumanoidSpawnerERTEngineerEVA
   parent: RandomHumanoidSpawnerERTEngineer
   name: ERT engineer
+  noSpawn: true
   suffix: ERTRole, Enviro EVA
   components:
     - type: Sprite
@@ -234,6 +244,7 @@
   id: RandomHumanoidSpawnerERTSecurity
   parent: RandomHumanoidSpawnerERTLeader
   name: ERT security
+  noSpawn: true
   suffix: ERTRole, Basic
   components:
     - type: Sprite
@@ -268,6 +279,7 @@
   id: RandomHumanoidSpawnerERTSecurityEVA
   parent: RandomHumanoidSpawnerERTSecurity
   name: ERT security
+  noSpawn: true
   suffix: ERTRole, Armored EVA
   components:
     - type: Sprite
@@ -291,6 +303,7 @@
 - type: entity
   id: RandomHumanoidSpawnerERTSecurityEVALecter
   parent: RandomHumanoidSpawnerERTSecurityEVA
+  noSpawn: true
   suffix: ERTRole, Lecter, EVA
   components:
     - type: RandomHumanoidSpawner
@@ -314,6 +327,7 @@
   id: RandomHumanoidSpawnerERTMedical
   parent: RandomHumanoidSpawnerERTLeader
   name: ERT medic
+  noSpawn: true
   suffix: ERTRole, Basic
   components:
     - type: Sprite
@@ -346,6 +360,7 @@
   id: RandomHumanoidSpawnerERTMedicalEVA
   parent: RandomHumanoidSpawnerERTMedical
   name: ERT medic
+  noSpawn: true
   suffix: ERTRole, Armored EVA
   components:
     - type: Sprite
@@ -371,6 +386,7 @@
 - type: entity
   id: RandomHumanoidSpawnerCBURNUnit
   name: CBURN Agent
+  noSpawn: true
   suffix: ERTRole
   components:
     - type: Sprite
@@ -424,7 +440,7 @@
 
 - type: entity
   id: RandomHumanoidSpawnerSyndicateAgent
-  name: Syndicate Agent
+  name: syndicate agent
   components:
     - type: Sprite
       sprite: Mobs/Species/Human/parts.rsi

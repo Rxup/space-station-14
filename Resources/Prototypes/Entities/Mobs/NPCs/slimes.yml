@@ -120,8 +120,11 @@
     description: ghost-role-information-slimes-description
   - type: Speech
     speechVerb: Slime
+    speechSounds: Slime
   - type: TTS # Corvax-TTS
     voice: Npc3
+  - type: TypingIndicator
+    proto: slime
 
 - type: entity
   name: blue slime

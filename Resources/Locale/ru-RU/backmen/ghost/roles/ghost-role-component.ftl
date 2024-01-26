@@ -5,3 +5,4 @@ ghost-role-information-canned-clown-description = Honk! Co консервиро�
 ghost-role-information-canned-clown-rules = Помогайте Хонк браткам во исполнении весёлых планов!
 ghost-role-information-giant-spider-vampire-name = Гигантский паук-вампир
 ghost-role-information-giant-spider-vampire-description = Стрёмный, старшный и даже паук, а ещё и кровь всасывать может.
+ghost-role-information-giant-spider-vampire-rules = Никаких ограничений для антагонистов. Только не говорите эмоционально; у вас есть телепатический чат.

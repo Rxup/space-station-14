@@ -170,6 +170,12 @@
   id: BorgModuleService
 
 - type: Tag
+  id: BorgModuleSyndicate
+
+- type: Tag
+  id: BorgModuleSyndicateAssault
+
+- type: Tag
   id: BorgServiceHead
 
 - type: Tag
@@ -224,6 +230,9 @@
   id: BulletFoam
 
 - type: Tag
+  id: BypassDropChecks
+
+- type: Tag
   id: BypassInteractionRangeChecks
 
 - type: Tag
@@ -244,6 +253,9 @@
 - type: Tag
   id: CanPilot
 
+- type: Tag
+  id: CannonBall
+  
 - type: Tag
   id: CannonRestrict
 
@@ -294,7 +306,13 @@
   id: Catwalk
 
 - type: Tag
+  id: CentrifugeCompatible
+
+- type: Tag
   id: Chicken
+
+- type: Tag
+  id: ChemDispensable # container that can go into the chem dispenser
 
 - type: Tag
   id: Cigarette
@@ -450,6 +468,9 @@
   id: DrinkSpaceGlue
 
 - type: Tag
+  id: DrinkBottle
+
+- type: Tag
   id: DroneUsable
 
 - type: Tag
@@ -490,9 +511,6 @@
 
 - type: Tag
   id: FleshBlocker
-
-- type: Tag
-  id: WhitelistChameleon
 
 - type: Tag
   id: FirelockElectronics
@@ -558,7 +576,16 @@
   id: Goat
 
 - type: Tag
+  id: GPS
+
+- type: Tag
   id: Grenade
+
+- type: Tag
+  id: HudMedical
+
+- type: Tag
+  id: HudSecurity
 
 - type: Tag
   id: GuideEmbeded
@@ -773,10 +800,16 @@
   id: MagazinePistolSubMachineGun
 
 - type: Tag
+  id: MagazineGrenade
+
+- type: Tag
   id: MailingUnitElectronics
 
 - type: Tag
   id: Matchstick
+
+- type: Tag
+  id: Mayo
 
 - type: Tag
   id: Meat
@@ -788,13 +821,13 @@
   id: Metal
 
 - type: Tag
-  id: MicrowaveMachineUnsafe
-
-- type: Tag
-  id: MicrowaveSelfUnsafe
+  id: MindShield
 
 - type: Tag
   id: MindTransferTarget
+
+- type: Tag
+  id: ModularReceiver
 
 - type: Tag
   id: MonkeyCube
@@ -813,7 +846,6 @@
 
 - type: Tag
   id: Multitool
-
 
 - type: Tag
   id: NoBlockAnchoring
@@ -841,6 +873,9 @@
 
 - type: Tag
   id: Pancake
+
+- type: Tag
+  id: Pen
 
 - type: Tag
   id: PepperShaker
@@ -918,6 +953,9 @@
   id: PowerCellSmall
 
 - type: Tag
+  id: PowerCage
+
+- type: Tag
   id: Powerdrill
 
 - type: Tag
@@ -925,6 +963,9 @@
 
 - type: Tag
   id: ProximitySensor
+
+- type: Tag
+  id: QuantumSpinInverter
 
 - type: Tag
   id: Radio
@@ -941,6 +982,9 @@
 
 - type: Tag
   id: ReinforcedGlassShard
+
+- type: Tag
+  id: RifleStock
 
 - type: Tag
   id: RipleyCentralControlModule
@@ -1022,9 +1066,6 @@
 
 - type: Tag
   id: Soap
-
-- type: Tag
-  id: SolarAssemblyPart
 
 - type: Tag
   id: SolarTrackerElectronics
@@ -1114,6 +1155,9 @@
   id: TrashBag
 
 - type: Tag
+  id: Unimplantable
+
+- type: Tag
   id: Unstackable # To prevent things like atmos devices (filters etc) being stacked on one tile. See NoUnstackableInTile
 
 - type: Tag
@@ -1132,9 +1176,6 @@
   id: Wall
 
 - type: Tag
-  id: WetFloorSign
-
-- type: Tag
   id: WallmountGeneratorAPUElectronics
 
 - type: Tag
@@ -1148,6 +1189,12 @@
 
 - type: Tag
   id: WeaponShotgunKammerer
+
+- type: Tag
+  id: WetFloorSign
+
+- type: Tag
+  id: WhitelistChameleon
 
 - type: Tag
   id: Window
@@ -1182,14 +1229,4 @@
 - type: Tag
   id: WriteIgnoreStamps
 
-- type: Tag
-  id: RifleStock
-
-- type: Tag
-  id: ModularReceiver
-
-- type: Tag
-  id: MindShield
-
-- type: Tag
-  id:  boots
+# PUT YOUR TAGS IN ALPHABETICAL ORDER

@@ -35,8 +35,8 @@ public sealed partial class ContentAudioSystem : SharedContentAudioSystem
     public const float AmbienceMultiplier = 3f;
     public const float AmbientMusicMultiplier = 3f;
     public const float LobbyMultiplier = 3f;
-    public const float TtsMultiplier = 3f; // Corvax-TTS
     public const float InterfaceMultiplier = 2f;
+    public const float TtsMultiplier = 3f; // Corvax-TTS
 
     public override void Initialize()
     {
@@ -119,7 +119,8 @@ public sealed partial class ContentAudioSystem : SharedContentAudioSystem
             }
 
             var volume = component.Volume - change * frameTime;
-            component.Volume = MathF.Max(MinVolume, volume);
+            volume = MathF.Max(MinVolume, volume);
+            _audio.SetVolume(stream, volume, component);
 
             if (component.Volume.Equals(MinVolume))
             {
@@ -145,7 +146,8 @@ public sealed partial class ContentAudioSystem : SharedContentAudioSystem
             }
 
             var volume = component.Volume + change * frameTime;
-            component.Volume = MathF.Min(target, volume);
+            volume = MathF.Max(target, volume);
+            _audio.SetVolume(stream, volume, component);
 
             if (component.Volume.Equals(target))
             {

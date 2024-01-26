@@ -288,7 +288,7 @@
   name: head of security's locker
   components:
   - type: EntityStorage
-    сapacity: 31
+    capacity: 40
   - type: Appearance
   - type: EntityStorageVisuals
     stateBaseClosed: hos

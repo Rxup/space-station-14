@@ -12,6 +12,7 @@ public sealed class ShadowkinDarkenSystem : EntitySystem
     [Dependency] private readonly SharedPointLightSystem _light = default!;
     [Dependency] private readonly IRobustRandom _random = default!;
     [Dependency] private readonly EntityLookupSystem _lookup = default!;
+    [Dependency] private readonly TransformSystem _transform = default!;
 
 
     public void ResetLight(EntityUid uid, PointLightComponent light, ShadowkinLightComponent sLight)
@@ -40,7 +41,7 @@ public sealed class ShadowkinDarkenSystem : EntitySystem
             if (!shadowkin.Darken)
                 continue;
 
-            var transform = Transform(uid);
+            var transform = _transform.GetMapCoordinates(uid);
 
             // Cooldown
             shadowkin.DarkenAccumulator -= frameTime;
@@ -50,14 +51,14 @@ public sealed class ShadowkinDarkenSystem : EntitySystem
 
 
             var darkened = new List<EntityUid>();
+            var lightQuery = new HashSet<Entity<ShadowkinLightComponent>>();
             // Get all lights in range
-            var lightQuery = _lookup.GetEntitiesInRange(transform.MapID, transform.WorldPosition, shadowkin.DarkenRange, flags: LookupFlags.StaticSundries)
-                .Where(x => HasComp<ShadowkinLightComponent>(x) && HasComp<PointLightComponent>(x));
+            _lookup.GetEntitiesInRange(transform, shadowkin.DarkenRange, lightQuery, flags: LookupFlags.StaticSundries);
 
             // Add all lights in range to the list if not already there
             foreach (var entity in lightQuery)
             {
-                if (!darkened.Contains(entity))
+                if (!darkened.Contains(entity) && HasComp<PointLightComponent>(entity))
                     darkened.Add(entity);
             }
 
@@ -65,13 +66,12 @@ public sealed class ShadowkinDarkenSystem : EntitySystem
             _random.Shuffle(darkened);
             shadowkin.DarkenedLights = darkened;
 
-            var playerPos = Transform(uid).WorldPosition;
+            var playerPos = _transform.GetWorldPosition(uid);
 
             foreach (var light in shadowkin.DarkenedLights.ToArray())
             {
-                var lightPos = Transform(light).WorldPosition;
+                var lightPos = _transform.GetWorldPosition(light);
                 var pointLight = Comp<PointLightComponent>(light);
-
 
                 // Not a light we should affect
                 if (!TryComp(light, out ShadowkinLightComponent? shadowkinLight))
@@ -85,7 +85,7 @@ public sealed class ShadowkinDarkenSystem : EntitySystem
 
 
                 // If the light isn't attached to an entity, attach it to this Shadowkin
-                if (shadowkinLight.AttachedEntity == EntityUid.Invalid)
+                if (shadowkinLight.AttachedEntity == EntityUid.Invalid || TerminatingOrDeleted(shadowkinLight.AttachedEntity))
                 {
                     shadowkinLight.AttachedEntity = uid;
                 }

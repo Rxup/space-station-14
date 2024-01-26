@@ -11,6 +11,18 @@
 
 - type: entity
   parent: IDCardStandard
+  id: RoboticistIDCard
+  name: Roboticist ID Card
+  components:
+    - type: Sprite
+      layers:
+        - state: default
+        - state: idroboticist
+    - type: PresetIdCard
+      job: Roboticist
+
+- type: entity
+  parent: IDCardStandard
   id: UnaffiliatedIDCard
   name: unaffiliated ID card
   description: A card displaying a name and other identifying details.

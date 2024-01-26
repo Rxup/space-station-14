@@ -17,7 +17,6 @@
   - type: EmitSoundOnLand
     sound:
       collection: ToyFall
-  - type: ItemCooldown
   - type: UseDelay
     delay: 0.5
   - type: MeleeWeapon
@@ -36,7 +35,7 @@
   parent: BasePlushieBk
   id: RubberPig
   name: Резиновая свинья
-  description: Диментий гони свиней 
+  description: Диментий гони свиней
   components:
   - type: Sprite
     state: pig
@@ -61,12 +60,12 @@
   - type: StepTrigger
     intersectRatio: 0.2
     requiredTriggeredSpeed: 1
-  - type: TriggerOnStepTrigger 
+  - type: TriggerOnStepTrigger
   - type: Appearance
   - type: CollisionWake
-    enabled: false  
+    enabled: false
   - type: Physics
-    bodyType: Dynamic   
+    bodyType: Dynamic
   - type: Fixtures
     fixtures:
       slips:
@@ -93,6 +92,15 @@
       isSharp: false
       litDisarmMalus: 0.7
     - type: Wieldable
+    - type: ItemToggle
+      soundActivate:
+        path: /Audio/Weapons/ebladeon.ogg
+        params:
+          volume: 3
+      soundDeactivate:
+        path: /Audio/Weapons/ebladeoff.ogg
+        params:
+          volume: 3
     - type: Sprite
       sprite: Objects/Weapons/Melee/e_sword_double.rsi
       layers:
@@ -104,7 +112,7 @@
           map: [ "blade" ]
     - type: Item
       size: Small
-      sprite: Objects/Weapons/Melee/e_sword_double.rsi
+      sprite: Objects/Weapons/Melee/e_sword_double-inhands.rsi
     - type: UseDelay
       delay: 1.5
     - type: PointLight
@@ -126,9 +134,22 @@
     - type: DisarmMalus
       malus: 0
     - type: StaminaDamageOnHit
-      damage: 12
+      damage: 8
     - type: MeleeWeapon
       attackRate: 1.5
       damage:
         types:
           Blunt: 0
+    - type: ItemToggleMeleeWeapon
+      activatedSoundOnHit:
+        path: /Audio/Weapons/eblade1.ogg
+        params:
+          variation: 0.250
+      activatedSoundOnHitNoDamage:
+        path: /Audio/Weapons/eblade1.ogg
+        params:
+          variation: 0.250
+      activatedSoundOnSwing:
+        path: /Audio/Weapons/eblademiss.ogg
+        params:
+          variation: 0.125

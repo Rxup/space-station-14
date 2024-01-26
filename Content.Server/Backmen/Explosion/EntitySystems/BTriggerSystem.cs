@@ -1,4 +1,5 @@
 ﻿using Content.Server.Backmen.Fluids.EntitySystems;
+using Content.Server.Chemistry.Containers.EntitySystems;
 using Content.Shared.Chemistry.Components;
 using Content.Server.Explosion.EntitySystems;
 using Content.Server.Fluids.EntitySystems;
@@ -31,9 +32,9 @@ public sealed class BTriggerSystem : EntitySystem
         {
             transferSolution.AddReagent(reagent.Reagent, reagent.Quantity);
         }
-        if (_solutionSystem.TryGetInjectableSolution(uid, out var injectableSolution))
+        if (_solutionSystem.TryGetInjectableSolution(uid, out var soln, out var injectableSolution))
         {
-            _solutionSystem.TryAddSolution(uid, injectableSolution, transferSolution);
+            _solutionSystem.TryAddSolution(soln.Value, transferSolution);
         }
 
         _puddleSystem.TrySplashSpillAt(uid, coords, transferSolution, out var puddleUid);

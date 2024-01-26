@@ -78,7 +78,7 @@ public sealed class FugitiveSystem : EntitySystem
         SubscribeLocalEvent<FugitiveComponent, MindAddedMessage>(OnMindAdded);
         SubscribeLocalEvent<RoundEndTextAppendEvent>(OnRoundEnd);
         SubscribeLocalEvent<PlayerSpawningEvent>(OnPlayerSpawn,
-            before: new[] { typeof(ArrivalsSystem), typeof(SpawnPointSystem) });
+            before: new[] { typeof(ContainerSpawnPointSystem),typeof(ArrivalsSystem), typeof(SpawnPointSystem) });
     }
 
     [ValidatePrototypeId<JobPrototype>]

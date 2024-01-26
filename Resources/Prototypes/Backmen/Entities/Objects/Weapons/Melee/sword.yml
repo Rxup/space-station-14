@@ -93,7 +93,6 @@
       - state: inhand-left-on
       right:
       - state: inhand-right-on
-  - type: ItemCooldown
   - type: Welder
     FuelLitCost: 2
   - type: RefillableSolution

@@ -59,8 +59,11 @@ public sealed partial class StaminaSystem : EntitySystem
         SubscribeLocalEvent<StaminaComponent, DisarmedEvent>(OnDisarmed);
         SubscribeLocalEvent<StaminaComponent, RejuvenateEvent>(OnRejuvenate);
 
+        SubscribeLocalEvent<StaminaDamageOnEmbedComponent, EmbedEvent>(OnProjectileEmbed);
+
         SubscribeLocalEvent<StaminaDamageOnCollideComponent, ProjectileHitEvent>(OnProjectileHit);
         SubscribeLocalEvent<StaminaDamageOnCollideComponent, ThrowDoHitEvent>(OnThrowHit);
+
         SubscribeLocalEvent<StaminaDamageOnHitComponent, MeleeHitEvent>(OnMeleeHit);
     }
 
@@ -118,7 +121,7 @@ public sealed partial class StaminaSystem : EntitySystem
         component.StaminaDamage = 0;
         RemComp<ActiveStaminaComponent>(uid);
         SetStaminaAlert(uid, component);
-        Dirty(component);
+        Dirty(uid, component);
     }
 
     private void OnDisarmed(EntityUid uid, StaminaComponent component, DisarmedEvent args)
@@ -196,6 +199,14 @@ public sealed partial class StaminaSystem : EntitySystem
         OnCollide(uid, component, args.Target);
     }
 
+    private void OnProjectileEmbed(EntityUid uid, StaminaDamageOnEmbedComponent component, ref EmbedEvent args)
+    {
+        if (!TryComp<StaminaComponent>(args.Embedded, out var stamina))
+            return;
+
+        TakeStaminaDamage(args.Embedded, component.Damage, stamina, source: uid);
+    }
+
     private void OnThrowHit(EntityUid uid, StaminaDamageOnCollideComponent component, ThrowDoHitEvent args)
     {
         OnCollide(uid, component, args.Target);
@@ -242,7 +253,7 @@ public sealed partial class StaminaSystem : EntitySystem
     }
 
     public void TakeStaminaDamage(EntityUid uid, float value, StaminaComponent? component = null,
-        EntityUid? source = null, EntityUid? with = null, bool visual = true, SoundSpecifier? sound = null)
+        EntityUid? source = null, EntityUid? with = null, bool visual = true, SoundSpecifier? sound = null, bool chaosDamage = false)
     {
         if (!Resolve(uid, ref component, false))
             return;
@@ -255,11 +266,21 @@ public sealed partial class StaminaSystem : EntitySystem
         // Have we already reached the point of max stamina damage?
         if (component.Critical)
             return;
+
+        // start-backmen: stamina dmg
         // modify damage value by the entitys stun resistance, so certain armours can counter stunmeta
-        var damage = new DamageSpecifier(_proto.Index<DamageTypePrototype>("Stun"), FixedPoint2.New(value));
-        var modifyEv = new DamageModifyEvent(damage);
-        RaiseLocalEvent(uid, modifyEv);
-        value = modifyEv.Damage.DamageDict["Stun"].Float();
+        if (!chaosDamage)
+        {
+            var damage = new DamageSpecifier(_proto.Index<DamageTypePrototype>("Stun"), FixedPoint2.New(value));
+            var modifyEv = new DamageModifyEvent(damage);
+            RaiseLocalEvent(uid, modifyEv);
+            if (modifyEv.Damage.DamageDict.TryGetValue("Stun", out var val))
+            {
+                value = val.Float();
+            }
+        }
+        // end-backmen: stamina dmg
+
 
         var oldDamage = component.StaminaDamage;
         component.StaminaDamage = MathF.Max(0f, component.StaminaDamage + value);
@@ -304,13 +325,18 @@ public sealed partial class StaminaSystem : EntitySystem
 
         if (value <= 0)
             return;
-        if (source != null)
+
+        if (!chaosDamage) // backmen: stamina dmg
         {
-            _adminLogger.Add(LogType.Stamina, $"{ToPrettyString(source.Value):user} caused {value} stamina damage to {ToPrettyString(uid):target}{(with != null ? $" using {ToPrettyString(with.Value):using}" : "")}");
-        }
-        else
-        {
-            _adminLogger.Add(LogType.Stamina, $"{ToPrettyString(uid):target} took {value} stamina damage");
+            if (source != null)
+            {
+                _adminLogger.Add(LogType.Stamina,
+                    $"{ToPrettyString(source.Value):user} caused {value} stamina damage to {ToPrettyString(uid):target}{(with != null ? $" using {ToPrettyString(with.Value):using}" : "")}");
+            }
+            else
+            {
+                _adminLogger.Add(LogType.Stamina, $"{ToPrettyString(uid):target} took {value} stamina damage");
+            }
         }
 
         if (visual)

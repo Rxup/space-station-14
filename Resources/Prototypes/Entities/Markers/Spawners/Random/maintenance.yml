@@ -20,6 +20,14 @@
         - ClothingNeckCloakMoth
         - ClothingNeckCloakVoid
         - ClothingNeckCloakGoliathCloak
+        - ClothingNeckCloakAce
+        - ClothingNeckCloakAro
+        - ClothingNeckCloakBi
+        - ClothingNeckCloakIntersex
+        - ClothingNeckCloakLesbian
+        - ClothingNeckCloakGay
+        - ClothingNeckCloakEnby
+        - ClothingNeckCloakPan
         - ToySkeleton
         - Basketball
         - Football
@@ -158,6 +166,7 @@
         - ToolboxArtisticFilled
         - NitrogenTankFilled
         - DoubleEmergencyNitrogenTankFilled
+        - EmergencyFunnyOxygenTankFilled
         - ToolboxElectricalFilled
         - ToolboxMechanicalFilled
         - ClothingBeltUtility

@@ -543,7 +543,6 @@
     description: Командир отряда Epsilon - 11, великий воин, герой НТ, знаменитый полководец, мог бы им быть если бы не пошел в Epsilon - 11.
   - type: EmitSoundOnUse
     sound: /Audio/Effects/Emotes/parp1.ogg
-  - type: ItemCooldown
   - type: UseDelay
     delay: 5
 
@@ -2287,6 +2286,10 @@
   parent: ClothingBeltMilitaryWebbing
   id: ClothingBeltMilitaryWebbingFlamer
   components:
+    - type: Storage
+      maxItemSize: Normal
+      grid:
+        - 0,0,5,2
     - type: StorageFill
       contents:
         - id: MedkitAdvancedRXBZZ
