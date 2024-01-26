@@ -26,6 +26,16 @@ public sealed class TTSSystem : EntitySystem
     private readonly MemoryContentRoot _contentRoot = new();
     private ResPath _prefix;
 
+    /// <summary>
+    /// Reducing the volume of the TTS when whispering. Will be converted to logarithm.
+    /// </summary>
+    private const float WhisperFade = 4f;
+
+    /// <summary>
+    /// The volume at which the TTS sound will not be heard.
+    /// </summary>
+    private const float MinimalVolume = -10f;
+
     private float _volume = 0.0f;
     private ulong _fileIdx = 0;
     private static ulong _shareIdx = 0;
@@ -66,9 +76,7 @@ public sealed class TTSSystem : EntitySystem
     {
         //_sawmill.Debug($"Play TTS audio {ev.Data.Length} bytes from {ev.SourceUid} entity");
 
-        var volume = _volume;
-        if (ev.IsWhisper)
-            volume -= 4;
+        var volume = AdjustVolume(ev.IsWhisper);
 
         var filePath = new ResPath($"{_fileIdx++}.ogg");
         _contentRoot.AddOrUpdateFile(filePath, ev.Data);
@@ -79,7 +87,7 @@ public sealed class TTSSystem : EntitySystem
         {
             var sourceUid = GetEntity(ev.SourceUid.Value);
             if(sourceUid.Valid)
-                _audio.PlayEntity(soundPath, EntityUid.Invalid, sourceUid); // recipient arg ignored on client
+                _audio.PlayEntity(soundPath, Filter.Local(), sourceUid, false, AudioParams.Default); // recipient arg ignored on client
         }
         else
         {
@@ -87,5 +95,17 @@ public sealed class TTSSystem : EntitySystem
         }
 
         _contentRoot.RemoveFile(filePath);
+    }
+
+    private float AdjustVolume(bool isWhisper)
+    {
+        var volume = MinimalVolume + SharedAudioSystem.GainToVolume(_volume);
+
+        if (isWhisper)
+        {
+            volume -= SharedAudioSystem.GainToVolume(WhisperFade);
+        }
+
+        return volume;
     }
 }

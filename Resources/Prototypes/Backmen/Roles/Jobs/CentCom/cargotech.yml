@@ -27,6 +27,7 @@
     - Cargo
     - Maintenance
     - Salvage
+    - External
   special:
     - !type:AddImplantSpecial
       implants: [ MindShieldImplant ]
