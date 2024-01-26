@@ -453,7 +453,7 @@
 
 - type: entity
   name: тактический нож
-  parent: BaseItem
+  parent: CombatKnife
   id: CombatKnifeSpetsnaz
   description: Нож для оперативников специальных операций, острый!
   components:
@@ -480,12 +480,7 @@
         Slash: 20
     soundHit:
       path: /Audio/Weapons/bladeslice.ogg
-  - type: Tool
-    qualities:
-      - Prying
-    useSound:
-      path: /Audio/Items/crowbar.ogg
-  - type: TilePrying
+  - type: Prying
 
 - type: entity
   parent: ClothingHandsBase
@@ -773,6 +768,13 @@
   id: NameSpetsRXBZZ
   values:
   - Оперативник
+
+- type: dataset
+  id: NamesOFCs
+  values:
+  - Полковник
+  - Подполковник
+  - Майор
 
 - type: dataset
   id: NamesSGTs
