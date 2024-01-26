@@ -438,6 +438,12 @@
     - type: ProjectileBatteryAmmoProvider
       proto: BulletDisabler
       fireCost: 100
+    - type: BatteryWeaponFireModes
+      fireModes:
+      - proto: BulletDisabler
+        fireCost: 100
+      - proto: X01Attack
+        fireCost: 100
     - type: MagazineVisuals
       magState: mag
       steps: 5
