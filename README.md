@@ -2,7 +2,7 @@
 
 Space Station 14 это ремейк SS13, который работает на собственном движке [Robust Toolbox](https://github.com/space-wizards/RobustToolbox), написанном на C#.
 
-Это репозиторий сервера Astroplex, форк backman 
+Это репозиторий сервера Astroplex, форк backman.
 
 ## Ссылки
 

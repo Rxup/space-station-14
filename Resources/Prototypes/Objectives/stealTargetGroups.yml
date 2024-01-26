@@ -83,6 +83,13 @@
   sprite:
     sprite: Objects/Misc/nukedisk.rsi
     state: icon
+    
+- type: stealTargetGroup
+  id: Baton
+  name: Baton
+  sprite:
+    sprite: Objects/Weapons/Melee/baton.rsi
+    state: icon
 
 # Thief Collection
 
