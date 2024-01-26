@@ -61,6 +61,10 @@
   plantMetabolism:
     - !type:PlantAdjustWater
       amount: 0.5
+  footstepSound:
+    collection: FootstepBlood
+    params:
+      volume: 6
 
 - type: reagent
   parent: Blood
@@ -140,6 +144,10 @@
           - !type:OrganType
             type: Vampiric
             shouldHave: false
+  footstepSound:
+    collection: FootstepBlood
+    params:
+      volume: 6
 
 - type: reagent
   id: InactiveBlood
@@ -173,6 +181,10 @@
   plantMetabolism:
     - !type:PlantAdjustWater
       amount: 0.5
+  footstepSound:
+    collection: FootstepBlood
+    params:
+      volume: 6
 
 - type: reagent
   parent: Blood
@@ -239,6 +251,10 @@
   plantMetabolism:
   - !type:PlantAdjustWater
     amount: 0.5
+  footstepSound:
+    collection: FootstepBlood
+    params:
+      volume: 6
 
 - type: reagent
   id: Fat
@@ -249,6 +265,10 @@
   color: "#d8d8b0"
   physicalDesc: reagent-physical-desc-exotic-smelling
   slippery: false
+  footstepSound:
+    collection: FootstepBlood
+    params:
+      volume: 6
 
 - type: reagent
   id: Vomit
@@ -267,3 +287,7 @@
       - !type:AdjustReagent
         reagent: Nutriment
         amount: 0.1
+  footstepSound:
+    collection: FootstepBlood
+    params:
+      volume: 6
