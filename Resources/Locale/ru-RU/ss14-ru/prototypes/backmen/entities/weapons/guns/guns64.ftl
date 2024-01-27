@@ -213,3 +213,5 @@ ent-ParticlesFireNRF = струя реактивного пламени
 ent-ParticlesFireNRFHELL = струя реактивного пламени
     .desc = Очень горячо!
     .suffix = Адское Пламя
+ent-MagazineBoxRifleLightSniper = пакет патронов (7,62 винтовка)
+ent-MagazineBoxHeavyRifle = коробка патронов (.62 винтовочный)

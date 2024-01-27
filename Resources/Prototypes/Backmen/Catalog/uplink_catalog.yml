@@ -86,3 +86,23 @@
     Telecrystal: 3
   categories:
   - UplinkPointless
+
+- type: listing
+  id: UplinkMagazineBoxHeavyRifle
+  name: uplink-box-heavy-rifle-name
+  description: uplink-box-heavy-rifle-desc
+  productEntity: MagazineBoxHeavyRifle
+  cost:
+    Telecrystal: 3
+  categories:
+  - UplinkAmmo
+
+- type: listing
+  id: UplinkMagazineBoxRifleLightSniper
+  name: uplink-box-light-rifle-name
+  description: uplink-box-light-rifle-desc
+  productEntity: MagazineBoxRifleLightSniper
+  cost:
+    Telecrystal: 3
+  categories:
+  - UplinkAmmo
