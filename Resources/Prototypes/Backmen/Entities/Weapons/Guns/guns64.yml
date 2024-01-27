@@ -712,7 +712,7 @@
 - type: entity
   id: MagazinePistol345
   name: pistol magazine (.345 magnum)
-  parent: BaseItem
+  parent: MagazinePistol
   components:
   - type: Tag
     tags:
