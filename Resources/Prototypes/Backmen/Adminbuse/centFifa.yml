@@ -1158,15 +1158,15 @@
     - type: StorageFill
       contents:
         - id: BoxFlare
-        - id: BoxFlare
+          amount: 2
         - id: BattleMedipen
-        - id: BattleMedipen
+          amount: 2
         - id: WeaponDisabler
         - id: WeaponPistolG23
         - id: MagazinePistol
           amount: 2
-        - id: WeaponPulseRifleAP12
-        - id: MagazinePulseRifle
+        - id: WeaponRifleM28
+        - id: MagazineRifle
           amount: 5
         - id: BoxHandcuff
 
@@ -1203,8 +1203,8 @@
         - id: BattleMedipen
           amount: 3
         - id: trayScanner
-        - id: WeaponPulseShotgunHellHammer
-        - id: MagazinePulseShotgun
+        - id: WeaponShotgunAA12
+        - id:  MagazineShotgunMagnum12
           amount: 4
         - id: WeaponPistolVP78
         - id: MagazinePistolHighCapacity
@@ -1248,15 +1248,15 @@
     - type: StorageFill
       contents:
         - id: BoxFlare
-        - id: BoxFlare
+          amount: 2
         - id: BattleMedipen
-        - id: BattleMedipen
+          amount: 2
         - id: WeaponDisabler
         - id: WeaponPistolG23
         - id: MagazinePistol
           amount: 2
-        - id: WeaponPulseRifleAP12
-        - id: MagazinePulseRifle
+        - id: WeaponRifleG36
+        - id: MagazineRifle
           amount: 5
         - id: BoxHandcuff
 
@@ -1294,9 +1294,9 @@
         - id: WeaponPistolG23
         - id: MagazinePistol
           amount: 2
-        - id: WeaponPulseSMGTritonM3
-        - id: MagazinePulseSubMachinePistol
-          amount: 4
+        - id: WeaponSubMachineGunMP5
+        - id: MagazinePistolSubMachineGun
+          amount: 6
         - id: MedkitFilled
         - id: SyringeInaprovaline
           amount: 2
@@ -1333,14 +1333,13 @@
     - type: StorageFill
       contents:
         - id: BattleMedipen
-        - id: BattleMedipen
+          amount: 2
         - id: WeaponPistolG23
         - id: MagazinePistol
-        - id: MagazinePistol
-        - id: MagazinePistol
+          amount: 3
         - id: MedkitFilled
         - id: BoxLightMixed
-        - id: BoxLightMixed
+          amount: 2
         - id: Soap
 
 
@@ -2516,9 +2515,9 @@
         - id: SpetsnazMedipen
           amount: 3
         - id: WeaponDisabler
-        - id: WeaponPistolG23
-        - id: MagazinePistol
-          amount: 2
+        - id: WeaponPistolDivet2
+        - id: MagazinePistol345
+          amount: 3
         - id: WeaponPulseRifleAP12
         - id: MagazinePulseRifle
           amount: 9

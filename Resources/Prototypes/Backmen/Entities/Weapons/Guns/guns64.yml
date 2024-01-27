@@ -648,6 +648,165 @@
       gun_chamber: !type:ContainerSlot
 
 - type: entity
+  name: Divet
+  parent: BaseWeaponPistol
+  id: WeaponPistolDivet
+  description: The Divet is a standard sidearm for police and security personnel of the Earth Goverment.
+  components:
+  - type: Sprite
+    sprite: Backmen/Objects/Weapons/Gunsx64/Pistols/divet.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-0
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: Clothing
+    sprite: Backmen/Objects/Weapons/Gunsx64/Pistols/divet.rsi
+  - type: ChamberMagazineAmmoProvider
+    autoEject: true
+    soundAutoEject: /Audio/Backmen/Misc/empty_alarm.ogg
+    boltClosed: null
+  - type: ItemSlots
+    slots:
+      gun_magazine:
+        name: Magazine
+        startingItem: MagazinePistol345
+        insertSound: /Audio/Weapons/Guns64/Pistols/divet_magin.ogg
+        ejectSound: /Audio/Weapons/Guns64/Pistols/divet_magout.ogg
+        priority: 2
+        whitelist:
+          tags:
+            - MagazinePistolEGov
+      gun_chamber:
+        name: Chamber
+        startingItem: CartridgeMagnum345
+        priority: 1
+        whitelist:
+          tags:
+            - CartridgeMagnum345
+  - type: Gun
+    fireRate: 3
+    soundEmpty: /Audio/Backmen/Misc/error.ogg
+    soundGunshot:
+      path: /Audio/Weapons/Guns64/Pistols/divet_fire.ogg
+      params:
+        volume: -10
+
+- type: entity
+  parent: WeaponPistolDivet
+  id: WeaponPistolDivet2
+  components:
+  - type: Sprite
+    sprite: Backmen/Objects/Weapons/Gunsx64/Pistols/prentor.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-0
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: Clothing
+    sprite: Backmen/Objects/Weapons/Gunsx64/Pistols/prentor.rsi
+
+- type: Tag
+  id: MagazinePistolEGov
+
+- type: entity
+  id: MagazinePistol345
+  name: pistol magazine (.345 magnum)
+  parent: BaseItem
+  components:
+  - type: Tag
+    tags:
+      - MagazinePistolEGov
+      - MagazinePistol
+  - type: BallisticAmmoProvider
+    proto: CartridgeMagnum345
+    mayTransfer: true
+    whitelist:
+      tags:
+        - CartridgeMagnum345
+    capacity: 9
+  - type: Item
+    size: Small
+  - type: Sprite
+    netsync: false
+    sprite: Backmen/Objects/Weapons/Gunsx64/Magazines/Pistol/divet.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: MagazineVisuals
+    magState: mag
+    steps: 2
+    zeroVisible: false
+  - type: Appearance
+
+- type: entity
+  id: BaseCartridgeMagnum345
+  name: cartridge (.345 magnum)
+  parent: BaseCartridge
+  abstract: true
+  components:
+  - type: Tag
+    tags:
+      - Cartridge
+      - CartridgeMagnum345
+  - type: CartridgeAmmo
+    proto: BulletMagnum
+  - type: Sprite
+    netsync: false
+    sprite: Backmen/Objects/Weapons/Gunsx64/Ammunition/Casings/ammo_casing.rsi
+    layers:
+    - state: 45combat
+      map: ["enum.AmmoVisualLayers.Base"]
+  - type: Appearance
+  - type: SpentAmmoVisuals
+  - type: StaticPrice
+    price: 10
+
+- type: Tag
+  id: CartridgeMagnum345
+
+- type: entity
+  id: CartridgeMagnum345
+  name: cartridge (.345 magnum)
+  parent: BaseCartridgeMagnum345
+  components:
+  - type: Sprite
+    layers:
+    - state: 45fast #corvax-resprite
+      map: ["enum.AmmoVisualLayers.Base"]
+  - type: SpentAmmoVisuals
+    state: 45fast
+  - type: CartridgeAmmo
+    proto: BulletMagnum345
+
+- type: Tag
+  id: BulletMagnum345
+
+- type: entity
+  id: BulletMagnum345
+  name: 345 magnum bullet
+  parent: BaseBullet
+  noSpawn: true
+  components:
+  - type: Sprite
+    sprite: Backmen/Effects/muzzle/divet.rsi
+    layers:
+    - state: projectiles_divet
+      shader: unshaded
+  - type: Ammo
+  - type: Projectile
+    damage:
+      types:
+        Piercing: 30
+    soundHit:
+      path: /Audio/Weapons/Guns/Hits/bullet_hit.ogg
+  - type: Tag
+    tags:
+      - BulletMagnum345
+
+- type: entity
   name: AKMS
   parent: BaseWeaponRifle
   id: WeaponAKMSRifle
@@ -1836,6 +1995,7 @@
   components:
   - type: BallisticAmmoProvider
     proto: ShellShotgun
+    capacity: 20
   - type: Sprite
     layers:
     - state: pellets
