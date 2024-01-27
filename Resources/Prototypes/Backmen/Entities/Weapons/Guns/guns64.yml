@@ -3339,10 +3339,10 @@
     lifetime: 40
 
 - type: entity
-  name: ПТРД-М
+  name: PTRD-M
   parent: BaseWeaponSniper
   id: WeaponSniperPtrd-m
-  description: Переносная противотанковая винтовка. Стреляет аналоговыми бронебойными снарядами калибра 14,5 мм. Использует противотанковые боеприпасы
+  description: Dragunov portable anti-tank rifle. It fires analog armor-piercing projectiles of 14.5 mm caliber. Uses anti-tank ammunition
   components:
   - type: Wieldable
   - type: GunRequiresWield
