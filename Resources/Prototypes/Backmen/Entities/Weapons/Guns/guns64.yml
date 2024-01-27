@@ -1994,7 +1994,7 @@
   parent: BaseMagazineShotgun
   components:
   - type: BallisticAmmoProvider
-    proto: ShellShotgun
+    proto: ShellShotgunMagnum12
     capacity: 20
   - type: Sprite
     layers:
@@ -2016,14 +2016,14 @@
   - type: CartridgeAmmo
     proto: PelletShotgun
     count: 10
-    spread: 10
+    spread: 16
     soundEject:
       collection: ShellEject
   - type: EmitSoundOnLand
     sound:
       collection: ShellLand
       params:
-        volume: 3
+        volume: 1
 
 - type: soundCollection
   id: ShellLand
