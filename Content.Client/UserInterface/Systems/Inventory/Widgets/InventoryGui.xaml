@@ -7,7 +7,8 @@
     VerticalExpand="True"
     VerticalAlignment="Bottom"
     Orientation="Horizontal"
-    HorizontalAlignment="Center">
+    HorizontalAlignment="Center"
+    Margin="128 128 128 0">
     <Control HorizontalAlignment="Center">
         <controls:SlotButton
             Name="InventoryButton"
