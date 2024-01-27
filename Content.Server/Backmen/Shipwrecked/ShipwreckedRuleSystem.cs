@@ -171,7 +171,7 @@ public sealed class ShipwreckedRuleSystem : GameRuleSystem<ShipwreckedRuleCompon
 
         SubscribeLocalEvent<ShipwreckSurvivorComponent, MobStateChangedEvent>(OnSurvivorMobStateChanged);
         SubscribeLocalEvent<ShipwreckSurvivorComponent, BeingGibbedEvent>(OnSurvivorBeingGibbed);
-        SubscribeLocalEvent<ShipwreckSurvivorComponent, MindGotRemovedEvent>(OnMindRemoved);
+        SubscribeLocalEvent<ShipwreckSurvivorComponent, ComponentRemove>(OnComponentRemoved);
         SubscribeLocalEvent<EntityZombifiedEvent>(OnZombified);
 
         SubscribeLocalEvent<PostGameMapLoad>(OnMapReady);
@@ -1629,7 +1629,7 @@ public sealed class ShipwreckedRuleSystem : GameRuleSystem<ShipwreckedRuleCompon
         }
     }
 
-    private void OnMindRemoved(EntityUid survivor, ShipwreckSurvivorComponent component, MindGotRemovedEvent args)
+    private void OnComponentRemoved(EntityUid survivor, ShipwreckSurvivorComponent component, ComponentRemove args)
     {
         var query = EntityQueryEnumerator<ShipwreckedRuleComponent, GameRuleComponent>();
         while (query.MoveNext(out var uid, out var shipwrecked, out var gameRule))
