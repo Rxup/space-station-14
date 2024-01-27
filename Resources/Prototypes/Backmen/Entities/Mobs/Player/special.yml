@@ -78,15 +78,15 @@
   - type: MobThresholds
     thresholds:
       0: Alive
-      250: Dead
+      200: Dead
   - type: SlowOnDamage
     speedModifierThresholds:
-      150: 0.8
-      200: 0.4
-      240: 0.2
+      120: 0.9
+      150: 0.7
+      180: 0.6
   - type: MovementSpeedModifier
-    baseSprintSpeed: 5
-    baseWalkSpeed: 4
+    baseSprintSpeed: 6
+    baseWalkSpeed: 3
   - type: Butcherable
     spawned:
     - id: MaterialBluespace
@@ -115,18 +115,16 @@
       proper: true
   # Abilities start
   - type: Psionic
-  - type: DispelPower
   - type: MindSwapPower
   - type: PsionicRegenerationPower
   - type: MassSleepPower
-  - type: Shadowkin # I'm too lazy to create another system and action for just a goat, so i'll just give shadowkin powers to him...
-  - type: ShadowkinTeleportPower
-  - type: ShadowkinDarkSwapPower
-  - type: ShadowkinRestPower
+  - type: PyrokinesisPower
+  - type: NightVision
+    isToggle: true
+    color: "#808080"
   - type: AutoImplant
     implants:
-    - ScramImplant
-    - ScramImplant
+    - BluespaceTeleportImplant
   # Abilities end
   - type: InteractionPopup
     successChance: 0.33
@@ -169,9 +167,6 @@
       path: /Audio/Items/crowbar.ogg
   - type: Hands
   - type: NoSlip
-  - type: NightVision
-    isToggle: true
-    color: "#808080"
   - type: Puller
   - type: Tag
     tags:

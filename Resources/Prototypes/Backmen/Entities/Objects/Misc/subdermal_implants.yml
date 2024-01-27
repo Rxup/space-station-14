@@ -1,0 +1,14 @@
+- type: entity
+  parent: BaseSubdermalImplant
+  id: BluespaceTeleportImplant
+  name: имплант блюспейс телепортации
+  description: Телепортирует вас в выбранное место.
+  noSpawn: true
+  components:
+    - type: SubdermalImplant
+      permanent: true
+      implantAction: ActionBluespaceTeleport
+    - type: Tag
+      tags:
+        - SubdermalImplant
+        - HideContextMenu
