@@ -914,6 +914,44 @@
   - type: ExplosionResistance
     damageCoefficient: 0.8
 
+- type: entity
+  parent: ClothingOuterHardsuitSyndieCommander
+  id: ClothingOuterHardsuitERTOperativeAlpha1
+  name: ERT leader's hardsuit
+  description: A protective hardsuit worn by the leader of an emergency response team.
+  components:
+  - type: Sprite
+    sprite: Backmen/Clothing/OuterClothing/Hardsuits/ERTSuits/ertSpecialOperative.rsi
+  - type: Clothing
+    sprite: Backmen/Clothing/OuterClothing/Hardsuits/ERTSuits/ertSpecialOperative.rsi
+  - type: ToggleableClothing
+    clothingPrototype: ClothingHeadHelmetHardsuitERTOperativeAlpha1
+  - type: ExplosionResistance
+    damageCoefficient: 0.3
+
+- type: entity
+  parent: ClothingHeadHardsuitBase
+  id: ClothingHeadHelmetHardsuitERTOperativeAlpha1
+  name: ERT hardsuit helmet
+  description: A special hardsuit helmet worn by members of an emergency response team.
+  components:
+  - type: BreathMask
+  - type: Sprite
+    sprite: Backmen/Clothing/Head/Hardsuits/ERThelmets/ertSpecialOperative.rsi
+  - type: Clothing
+    sprite: Backmen/Clothing/Head/Hardsuits/ERThelmets/ertSpecialOperative.rsi
+  - type: PressureProtection
+    highPressureMultiplier: 0.08
+    lowPressureMultiplier: 1000
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.9
+        Slash: 0.9
+        Piercing: 0.9
+        Heat: 0.9
+  - type: PNV
+
 #------------------------------------------------------
 
 - type: entity

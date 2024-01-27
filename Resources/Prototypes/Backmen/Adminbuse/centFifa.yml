@@ -2487,7 +2487,7 @@
 - type: startingGear
   id: ERTLeaderAlpha1Gear
   equipment:
-    jumpsuit: ClothingUniformJumpsuitERTLeader
+    jumpsuit: ClothingUniformJumpsuitSpetsnaz
     back: ClothingBackpackERTOperativeAlpha1
     shoes: ClothingShoesBootsMagAdv
     mask: ClothingMaskGasERTV2_1
@@ -2571,7 +2571,7 @@
 - type: startingGear
   id: ERTOperativeAlpha1Gear
   equipment:
-    jumpsuit: ClothingUniformJumpsuitERTLeader
+    jumpsuit: ClothingUniformJumpsuitSpetsnaz
     back: ClothingBackpackERTOperativeAlpha1
     shoes: ClothingShoesBootsMagAdv
     mask: ClothingMaskGasERTV2_1
@@ -2579,8 +2579,7 @@
     gloves: ClothingHandsGlovesSpetsnazcombat
     outerClothing: ClothingOuterHardsuitERTOperativeAlpha1
     suitstorage: OxygenTankFilled
-    head: ClothingHeadHatERTLeaderBeret
-    id: OBRGavnaLeaderIDCardAlpha1
+    id: OBRGavnaOperativeIDCardAlpha1
     ears: ClothingHeadsetCentComCCMTF
     belt: ClothingBeltSecurityFilled
     pocket1: CombatKnifeSpetsnaz
