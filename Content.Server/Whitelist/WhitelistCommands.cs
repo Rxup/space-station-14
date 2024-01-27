@@ -1,4 +1,4 @@
-﻿using Content.Server.Administration;
+using Content.Server.Administration;
 using Content.Server.Database;
 using Content.Shared.Administration;
 using Content.Shared.CCVar;
@@ -145,7 +145,7 @@ public sealed class KickNonWhitelistedCommand : LocalizedCommands
 
             if (!wlSystem.IsInWhitelist(session.UserId))
             {
-                net.DisconnectChannel(session.ConnectedClient, Loc.GetString("whitelist-not-whitelisted"));
+                net.DisconnectChannel(session.Channel, Loc.GetString("whitelist-not-whitelisted"));
             }
         }
     }

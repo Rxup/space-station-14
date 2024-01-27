@@ -254,6 +254,9 @@
   id: CanPilot
 
 - type: Tag
+  id: CannonBall
+  
+- type: Tag
   id: CannonRestrict
 
 - type: Tag
@@ -797,13 +800,16 @@
   id: MagazinePistolSubMachineGun
 
 - type: Tag
+  id: MagazineGrenade
+
+- type: Tag
   id: MailingUnitElectronics
 
 - type: Tag
   id: Matchstick
 
 - type: Tag
-  id: Mayo  
+  id: Mayo
 
 - type: Tag
   id: Meat
@@ -813,12 +819,6 @@
 
 - type: Tag
   id: Metal
-
-- type: Tag
-  id: MicrowaveMachineUnsafe
-
-- type: Tag
-  id: MicrowaveSelfUnsafe
 
 - type: Tag
   id: MindShield
@@ -951,6 +951,9 @@
 
 - type: Tag
   id: PowerCellSmall
+
+- type: Tag
+  id: PowerCage
 
 - type: Tag
   id: Powerdrill
