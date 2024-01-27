@@ -27,11 +27,12 @@
         - Lava
       spawnPointHecate: SpawnPointShipwreckHecate
       hecatePrototype: MobQuestHecateShipwrecked
+      engiManifestOffset: 15
       eventSchedule:
         - 13: AnnounceTransit
         - 9: ShowHecate
         - 1: IntroduceHecate
-        - 11: PlayMusic
+        - 10: PlayMusic
         - 160: EncounterTurbulence
         - 10: ShiftParallax
         - 60: MidFlightDamage

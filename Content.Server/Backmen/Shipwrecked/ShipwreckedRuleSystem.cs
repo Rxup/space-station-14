@@ -24,10 +24,8 @@ using Content.Server.GameTicking;
 using Content.Server.GameTicking.Rules;
 using Content.Server.GameTicking.Rules.Components;
 using Content.Server.Ghost.Roles.Components;
-using Content.Server.Humanoid;
 using Content.Server.Maps;
 using Content.Server.Mind;
-using Content.Server.NPC.Systems;
 using Content.Server.Paper;
 using Content.Server.Parallax;
 using Content.Server.Popups;
@@ -48,7 +46,6 @@ using Content.Server.Warps;
 using Content.Server.Zombies;
 using Content.Shared.Access.Components;
 using Content.Shared.Atmos;
-using Content.Shared.Backmen.CCVar;
 using Content.Shared.Buckle.Components;
 using Content.Shared.Chat;
 using Content.Shared.Chemistry.Components;
@@ -70,7 +67,6 @@ using Content.Shared.Mobs.Systems;
 using Content.Shared.Movement.Components;
 using Content.Shared.Parallax;
 using Content.Shared.Parallax.Biomes;
-using Content.Shared.Parallax.Biomes.Markers;
 using Content.Shared.Physics;
 using Content.Shared.Popups;
 using Content.Shared.Preferences;
@@ -171,7 +167,7 @@ public sealed class ShipwreckedRuleSystem : GameRuleSystem<ShipwreckedRuleCompon
 
         SubscribeLocalEvent<ShipwreckSurvivorComponent, MobStateChangedEvent>(OnSurvivorMobStateChanged);
         SubscribeLocalEvent<ShipwreckSurvivorComponent, BeingGibbedEvent>(OnSurvivorBeingGibbed);
-        SubscribeLocalEvent<ShipwreckSurvivorComponent, ComponentRemove>(OnComponentRemoved);
+        SubscribeLocalEvent<ShipwreckSurvivorComponent, EntityPausedEvent>(OnComponentRemoved);
         SubscribeLocalEvent<EntityZombifiedEvent>(OnZombified);
 
         SubscribeLocalEvent<PostGameMapLoad>(OnMapReady);
@@ -657,7 +653,7 @@ public sealed class ShipwreckedRuleSystem : GameRuleSystem<ShipwreckedRuleCompon
         var mob = _stationSpawningSystem.SpawnPlayerMob(spawnPoint.Comp.Coordinates, job, profile, station: component.ShuttleStation);
         var mobName = MetaData(mob).EntityName;
 
-        // Register job to the station
+        // Register job to the station, so cryosleep will work properly
         if (TryComp<StationJobsComponent>(component.ShuttleStation, out var stationJobsComponent))
         {
             stationJobsComponent.PlayerJobs.TryAdd(player.UserId, new());
@@ -833,22 +829,21 @@ public sealed class ShipwreckedRuleSystem : GameRuleSystem<ShipwreckedRuleCompon
         // This way players can find them in reasonable amount of time.
         // Coordinates have an error of offset + 15, so it's giving pretty approximated data.
         var query = EntityQueryEnumerator<ShipwreckedRuleComponent, GameRuleComponent>();
-        int engimanifcount = 0;
+        int engiOffset = component.engiManifestOffset;
         while (query.MoveNext(out var uid, out var shipwrecked, out var gameRule))
         {
             var engimanifest = SpawnManifest(uid, shipwrecked);
             var engimanifestText = new StringBuilder();
 
             engimanifestText.AppendLine(Loc.GetString("engines-manifest-line",
-                ("X", Math.Round(position.X + _random.Next(-15, 15))),
-                ("Y", Math.Round(position.Y + _random.Next(-15, 15)))));
+                ("X", Math.Round(position.X + _random.Next(-engiOffset, engiOffset))),
+                ("Y", Math.Round(position.Y + _random.Next(-engiOffset, engiOffset)))));
             engimanifestText.AppendLine(Loc.GetString("engines-manifest-line-end"));
 
             if (engimanifest != null)
                 _paperSystem.SetContent(engimanifest.Value, engimanifestText.ToString());
-            engimanifcount++;
         }
-        _sawmill.Info("Sended engine messages: " + engimanifcount);
+        _sawmill.Info("Sended 1 engine coords message to the console.");
         return true;
     }
 
@@ -1004,8 +999,12 @@ public sealed class ShipwreckedRuleSystem : GameRuleSystem<ShipwreckedRuleCompon
 
             foreach (var room in structure.Rooms)
             {
-                SpawnFactionMobs(component, faction.Active, room);
-                SpawnFactionMobs(component, faction.Inactive, room);
+                // 3/4 chance to spawn a mob. For balance.
+                if (_random.Next(0, 3) >= 1)
+                {
+                    SpawnFactionMobs(component, faction.Active, room);
+                    SpawnFactionMobs(component, faction.Inactive, room);
+                }
             }
         }
     }
@@ -1629,7 +1628,7 @@ public sealed class ShipwreckedRuleSystem : GameRuleSystem<ShipwreckedRuleCompon
         }
     }
 
-    private void OnComponentRemoved(EntityUid survivor, ShipwreckSurvivorComponent component, ComponentRemove args)
+    private void OnComponentRemoved(EntityUid survivor, ShipwreckSurvivorComponent component, EntityPausedEvent args)
     {
         var query = EntityQueryEnumerator<ShipwreckedRuleComponent, GameRuleComponent>();
         while (query.MoveNext(out var uid, out var shipwrecked, out var gameRule))
