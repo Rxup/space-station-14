@@ -7,8 +7,7 @@
     VerticalExpand="True"
     VerticalAlignment="Bottom"
     Orientation="Horizontal"
-    HorizontalAlignment="Center"
-    Margin="128 128 128 0">
+    HorizontalAlignment="Center">
     <Control HorizontalAlignment="Center">
         <controls:SlotButton
             Name="InventoryButton"
@@ -16,7 +15,8 @@
             VerticalAlignment="Bottom"
             HorizontalExpand="False"
             VerticalExpand="False"
-            ButtonTexturePath="Slots/toggle"/>
+            ButtonTexturePath="Slots/toggle"
+            Margin="133 0 0 0"/>
         <inventory:ItemSlotButtonContainer
             Name="InventoryHotbar"
             Access="Public"
