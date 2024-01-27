@@ -2588,7 +2588,7 @@
 - type: entity
   noSpawn: true
   parent: OBRGavnaLeaderIDCard
-  id: OBRGavnaLeaderIDCardAlpha1
+  id: OBRGavnaOperativeIDCardAlpha1
   name: Id карта оперативника ОБР Alpha 1
   components:
   - type: IdCard
