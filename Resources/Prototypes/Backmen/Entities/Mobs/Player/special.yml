@@ -114,17 +114,13 @@
       gender: male
       proper: true
   # Abilities start
-  - type: Psionic
-  - type: MindSwapPower
-  - type: PsionicRegenerationPower
-  - type: MassSleepPower
-  - type: PyrokinesisPower
   - type: NightVision
     isToggle: true
     color: "#808080"
   - type: AutoImplant
     implants:
-    - BluespaceTeleportImplant
+    - BluespaceTeleportPowerImplant
+    - BluespaceRegenerationPowerImplant
   # Abilities end
   - type: InteractionPopup
     successChance: 0.33

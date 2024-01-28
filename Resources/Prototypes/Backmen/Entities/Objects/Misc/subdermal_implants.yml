@@ -1,6 +1,6 @@
 - type: entity
   parent: BaseSubdermalImplant
-  id: BluespaceTeleportImplant
+  id: BluespaceTeleportPowerImplant
   name: имплант блюспейс телепортации
   description: Телепортирует вас в выбранное место.
   noSpawn: true
@@ -8,6 +8,21 @@
     - type: SubdermalImplant
       permanent: true
       implantAction: ActionBluespaceTeleport
+    - type: Tag
+      tags:
+        - SubdermalImplant
+        - HideContextMenu
+
+- type: entity
+  parent: BaseSubdermalImplant
+  id: BluespaceRegenerationPowerImplant
+  name: имплант блюспейс регенерации
+  description: Регенерирует ваш организм.
+  noSpawn: true
+  components:
+    - type: SubdermalImplant
+      permanent: true
+      implantAction: ActionBluespaceRegeneration
     - type: Tag
       tags:
         - SubdermalImplant
