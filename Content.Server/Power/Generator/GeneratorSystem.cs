@@ -26,11 +26,8 @@ public sealed class GeneratorSystem : SharedGeneratorSystem
     [Dependency] private readonly PopupSystem _popup = default!;
     [Dependency] private readonly PuddleSystem _puddle = default!;
 
-    private EntityQuery<UpgradePowerSupplierComponent> _upgradeQuery;
-
     public override void Initialize()
     {
-        _upgradeQuery = GetEntityQuery<UpgradePowerSupplierComponent>();
 
         UpdatesBefore.Add(typeof(PowerNetSystem));
 
@@ -96,9 +93,11 @@ public sealed class GeneratorSystem : SharedGeneratorSystem
             return;
 
         var totalAvailableReagents = solution.GetTotalPrototypeQuantity(entity.Comp.Reagents.Keys.Select(p => p.Id).ToArray()).Value;
+        if (totalAvailableReagents == 0) return; // Corvax-HOTFIX
         foreach (var (reagentId, multiplier) in entity.Comp.Reagents)
         {
             var availableReagent = solution.GetTotalPrototypeQuantity(reagentId).Value;
+            if (availableReagent == 0) return; // Corvax-HOTFIX
             var removalPercentage = availableReagent / totalAvailableReagents;
             var fractionalReagent = entity.Comp.FractionalReagents.GetValueOrDefault(reagentId);
             var toRemove = RemoveFractionalFuel(
@@ -216,9 +215,7 @@ public sealed class GeneratorSystem : SharedGeneratorSystem
 
             supplier.Enabled = true;
 
-            var upgradeMultiplier = _upgradeQuery.CompOrNull(uid)?.ActualScalar ?? 1f;
-
-            supplier.MaxSupply = gen.TargetPower * upgradeMultiplier;
+            supplier.MaxSupply = gen.TargetPower;
 
             var eff = 1 / CalcFuelEfficiency(gen.TargetPower, gen.OptimalPower, gen);
             var consumption = gen.OptimalBurnRate * frameTime * eff;
