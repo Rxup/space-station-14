@@ -105,9 +105,11 @@ entities:
           -2,-1:
             0: 34952
           -1,-4:
-            0: 65535
+            0: 61039
+            2: 4496
           -1,-3:
-            0: 65535
+            2: 1
+            0: 65534
           -1,-2:
             0: 65535
           0,-4:
@@ -150,6 +152,21 @@ entities:
           - 0
         - volume: 2500
           temperature: 293.14984
+          moles:
+          - 20.078888
+          - 75.53487
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+        - volume: 2500
+          temperature: 293.14975
           moles:
           - 20.078888
           - 75.53487
@@ -301,6 +318,20 @@ entities:
     - type: Transform
       pos: -0.5,0.5
       parent: 1
+    - type: DeviceList
+      devices:
+      - 172
+      - 202
+      - 195
+      - 137
+      - 198
+      - 173
+      - 171
+      - 175
+      - 207
+      - 177
+      - 176
+      - 182
     - type: AtmosDevice
       joinedGrid: 1
 - proto: AirCanister
@@ -308,11 +339,8 @@ entities:
   - uid: 313
     components:
     - type: Transform
-      anchored: True
       pos: 4.5,-14.5
       parent: 1
-    - type: Physics
-      bodyType: Static
     - type: AtmosDevice
       joinedGrid: 1
 - proto: Airlock
@@ -996,6 +1024,43 @@ entities:
     - type: Transform
       pos: 4.421376,-4.535508
       parent: 1
+- proto: ClothingBeltSalvageWebbing
+  entities:
+  - uid: 371
+    components:
+    - type: Transform
+      parent: 43
+    - type: Physics
+      canCollide: False
+    - type: InsideEntityStorage
+  - uid: 372
+    components:
+    - type: Transform
+      parent: 105
+    - type: Physics
+      canCollide: False
+    - type: InsideEntityStorage
+  - uid: 373
+    components:
+    - type: Transform
+      parent: 114
+    - type: Physics
+      canCollide: False
+    - type: InsideEntityStorage
+  - uid: 389
+    components:
+    - type: Transform
+      parent: 317
+    - type: Physics
+      canCollide: False
+    - type: InsideEntityStorage
+  - uid: 483
+    components:
+    - type: Transform
+      parent: 330
+    - type: Physics
+      canCollide: False
+    - type: InsideEntityStorage
 - proto: ClothingEyesGlassesSunglasses
   entities:
   - uid: 512
@@ -1010,12 +1075,19 @@ entities:
     - type: Transform
       pos: 4.399126,-6.882463
       parent: 1
+- proto: ClothingNeckCloakMiner
+  entities:
+  - uid: 531
+    components:
+    - type: Transform
+      pos: -0.28455567,-15.5577965
+      parent: 1
 - proto: ClothingOuterHardsuitSalvage
   entities:
   - uid: 514
     components:
     - type: Transform
-      pos: -0.55310607,-15.501402
+      pos: -0.72062075,-15.521809
       parent: 1
 - proto: ComfyChair
   entities:
@@ -1069,6 +1141,14 @@ entities:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: -2.5,2.5
+      parent: 1
+- proto: ComputerPowerMonitoring
+  entities:
+  - uid: 532
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 2.5,-15.5
       parent: 1
 - proto: ComputerShuttle
   entities:
@@ -1467,14 +1547,6 @@ entities:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: 0.5,-14.5
-      parent: 1
-    - type: AtmosPipeColor
-      color: '#0055CCFF'
-  - uid: 151
-    components:
-    - type: Transform
-      rot: -1.5707963267948966 rad
-      pos: 1.5,-14.5
       parent: 1
     - type: AtmosPipeColor
       color: '#0055CCFF'
@@ -1893,6 +1965,18 @@ entities:
       joinedGrid: 1
     - type: AtmosPipeColor
       color: '#0055CCFF'
+- proto: GasPressurePump
+  entities:
+  - uid: 151
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: 1.5,-14.5
+      parent: 1
+    - type: GasPressurePump
+      targetPressure: 300
+    - type: AtmosDevice
+      joinedGrid: 1
 - proto: GasVentPump
   entities:
   - uid: 137
@@ -1901,6 +1985,11 @@ entities:
       rot: 1.5707963267948966 rad
       pos: -2.5,-3.5
       parent: 1
+    - type: DeviceNetwork
+      configurators:
+      - 533
+      deviceLists:
+      - 365
     - type: AtmosDevice
       joinedGrid: 1
     - type: AtmosPipeColor
@@ -1911,6 +2000,11 @@ entities:
       rot: 1.5707963267948966 rad
       pos: -2.5,-9.5
       parent: 1
+    - type: DeviceNetwork
+      configurators:
+      - 533
+      deviceLists:
+      - 365
     - type: AtmosDevice
       joinedGrid: 1
     - type: AtmosPipeColor
@@ -1921,6 +2015,11 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 3.5,-9.5
       parent: 1
+    - type: DeviceNetwork
+      configurators:
+      - 533
+      deviceLists:
+      - 365
     - type: AtmosDevice
       joinedGrid: 1
     - type: AtmosPipeColor
@@ -1931,6 +2030,11 @@ entities:
       rot: 1.5707963267948966 rad
       pos: -2.5,-0.5
       parent: 1
+    - type: DeviceNetwork
+      configurators:
+      - 533
+      deviceLists:
+      - 365
     - type: AtmosDevice
       joinedGrid: 1
     - type: AtmosPipeColor
@@ -1941,6 +2045,11 @@ entities:
       rot: 3.141592653589793 rad
       pos: -1.5,-15.5
       parent: 1
+    - type: DeviceNetwork
+      configurators:
+      - 533
+      deviceLists:
+      - 365
     - type: AtmosDevice
       joinedGrid: 1
     - type: AtmosPipeColor
@@ -1950,6 +2059,11 @@ entities:
     - type: Transform
       pos: -0.5,3.5
       parent: 1
+    - type: DeviceNetwork
+      configurators:
+      - 533
+      deviceLists:
+      - 365
     - type: AtmosDevice
       joinedGrid: 1
     - type: AtmosPipeColor
@@ -1960,6 +2074,11 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 2.5,2.5
       parent: 1
+    - type: DeviceNetwork
+      configurators:
+      - 533
+      deviceLists:
+      - 365
     - type: AtmosDevice
       joinedGrid: 1
     - type: AtmosPipeColor
@@ -1972,6 +2091,11 @@ entities:
       rot: -1.5707963267948966 rad
       pos: -2.5,1.5
       parent: 1
+    - type: DeviceNetwork
+      configurators:
+      - 533
+      deviceLists:
+      - 365
     - type: AtmosDevice
       joinedGrid: 1
     - type: AtmosPipeColor
@@ -2001,6 +2125,11 @@ entities:
       rot: -1.5707963267948966 rad
       pos: -2.5,-1.5
       parent: 1
+    - type: DeviceNetwork
+      configurators:
+      - 533
+      deviceLists:
+      - 365
     - type: AtmosDevice
       joinedGrid: 1
     - type: AtmosPipeColor
@@ -2011,6 +2140,11 @@ entities:
       rot: -1.5707963267948966 rad
       pos: -2.5,-4.5
       parent: 1
+    - type: DeviceNetwork
+      configurators:
+      - 533
+      deviceLists:
+      - 365
     - type: AtmosDevice
       joinedGrid: 1
     - type: AtmosPipeColor
@@ -2021,6 +2155,11 @@ entities:
       rot: -1.5707963267948966 rad
       pos: -2.5,-7.5
       parent: 1
+    - type: DeviceNetwork
+      configurators:
+      - 533
+      deviceLists:
+      - 365
     - type: AtmosDevice
       joinedGrid: 1
     - type: AtmosPipeColor
@@ -2030,6 +2169,11 @@ entities:
     - type: Transform
       pos: -0.5,-15.5
       parent: 1
+    - type: DeviceNetwork
+      configurators:
+      - 533
+      deviceLists:
+      - 365
     - type: AtmosDevice
       joinedGrid: 1
     - type: AtmosPipeColor
@@ -2302,26 +2446,171 @@ entities:
     - type: Transform
       pos: -3.5,-11.5
       parent: 1
+    - type: EntityStorage
+      air:
+        volume: 200
+        immutable: False
+        temperature: 293.14673
+        moles:
+        - 1.7459903
+        - 6.568249
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+    - type: ContainerContainer
+      containers:
+        entity_storage: !type:Container
+          showEnts: False
+          occludes: True
+          ents:
+          - 371
+        paper_label: !type:ContainerSlot
+          showEnts: False
+          occludes: True
+          ent: null
   - uid: 105
     components:
     - type: Transform
       pos: -3.5,-12.5
       parent: 1
+    - type: EntityStorage
+      air:
+        volume: 200
+        immutable: False
+        temperature: 293.14673
+        moles:
+        - 1.7459903
+        - 6.568249
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+    - type: ContainerContainer
+      containers:
+        entity_storage: !type:Container
+          showEnts: False
+          occludes: True
+          ents:
+          - 372
+        paper_label: !type:ContainerSlot
+          showEnts: False
+          occludes: True
+          ent: null
   - uid: 114
     components:
     - type: Transform
       pos: -3.5,-14.5
       parent: 1
+    - type: EntityStorage
+      air:
+        volume: 200
+        immutable: False
+        temperature: 293.14673
+        moles:
+        - 1.7459903
+        - 6.568249
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+    - type: ContainerContainer
+      containers:
+        entity_storage: !type:Container
+          showEnts: False
+          occludes: True
+          ents:
+          - 373
+        paper_label: !type:ContainerSlot
+          showEnts: False
+          occludes: True
+          ent: null
   - uid: 317
     components:
     - type: Transform
       pos: -0.5,-14.5
       parent: 1
+    - type: EntityStorage
+      air:
+        volume: 200
+        immutable: False
+        temperature: 293.14673
+        moles:
+        - 1.7459903
+        - 6.568249
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+    - type: ContainerContainer
+      containers:
+        entity_storage: !type:Container
+          showEnts: False
+          occludes: True
+          ents:
+          - 389
+        paper_label: !type:ContainerSlot
+          showEnts: False
+          occludes: True
+          ent: null
   - uid: 330
     components:
     - type: Transform
       pos: -3.5,-13.5
       parent: 1
+    - type: EntityStorage
+      air:
+        volume: 200
+        immutable: False
+        temperature: 293.14673
+        moles:
+        - 1.7459903
+        - 6.568249
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+    - type: ContainerContainer
+      containers:
+        entity_storage: !type:Container
+          showEnts: False
+          occludes: True
+          ents:
+          - 483
+        paper_label: !type:ContainerSlot
+          showEnts: False
+          occludes: True
+          ent: null
 - proto: MagazinePistol
   entities:
   - uid: 92
@@ -2418,6 +2707,16 @@ entities:
     - type: Transform
       pos: -1.3958342,-16.665306
       parent: 1
+- proto: Multitool
+  entities:
+  - uid: 533
+    components:
+    - type: Transform
+      pos: 2.6301548,-14.667366
+      parent: 1
+    - type: NetworkConfigurator
+      devices:
+      linkModeActive: True
 - proto: NTFlag
   entities:
   - uid: 513
@@ -2431,6 +2730,13 @@ entities:
     components:
     - type: Transform
       pos: -0.5,-12.5
+      parent: 1
+- proto: PlushieAtmosian
+  entities:
+  - uid: 534
+    components:
+    - type: Transform
+      pos: 2.391093,-14.46549
       parent: 1
 - proto: PortableGeneratorSuperPacman
   entities:
