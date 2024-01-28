@@ -968,13 +968,17 @@ public sealed class ShipwreckedRuleSystem : GameRuleSystem<ShipwreckedRuleCompon
 
         foreach (var entry in spawns)
         {
-            var spawnTile = room.Tiles.ElementAt(_random.Next(room.Tiles.Count));
-            var spawnPosition = component.PlanetGrid.GridTileToLocal(spawnTile);
+            // 2/3 chance to spawn a mob. For balance.
+            if (_random.Next(0, 2) > 0)
+            {
+                var spawnTile = room.Tiles.ElementAt(_random.Next(room.Tiles.Count));
+                var spawnPosition = component.PlanetGrid.GridTileToLocal(spawnTile);
 
-            var uid = EntityManager.CreateEntityUninitialized(entry, spawnPosition);
-            RemComp<GhostTakeoverAvailableComponent>(uid);
-            RemComp<GhostRoleComponent>(uid);
-            EntityManager.InitializeAndStartEntity(uid);
+                var uid = EntityManager.CreateEntityUninitialized(entry, spawnPosition);
+                RemComp<GhostTakeoverAvailableComponent>(uid);
+                RemComp<GhostRoleComponent>(uid);
+                EntityManager.InitializeAndStartEntity(uid);
+            }
         }
     }
 
@@ -1000,12 +1004,8 @@ public sealed class ShipwreckedRuleSystem : GameRuleSystem<ShipwreckedRuleCompon
 
             foreach (var room in structure.Rooms)
             {
-                // 3/4 chance to spawn a mob. For balance.
-                if (_random.Next(0, 3) >= 1)
-                {
-                    SpawnFactionMobs(component, faction.Active, room);
-                    SpawnFactionMobs(component, faction.Inactive, room);
-                }
+                SpawnFactionMobs(component, faction.Active, room);
+                SpawnFactionMobs(component, faction.Inactive, room);
             }
         }
     }

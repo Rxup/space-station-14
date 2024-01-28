@@ -35,7 +35,7 @@ public sealed partial class ShipwreckedRuleComponent : Component
     /// </summary>
     [ViewVariables]
     [DataField("engiManifestOffset", required: true)]
-    public int engiManifestOffset = 15;
+    public int EngiManifestOffset = default!;
 
     /// <summary>
     /// The jobs that the travellers will be randomly assigned.
