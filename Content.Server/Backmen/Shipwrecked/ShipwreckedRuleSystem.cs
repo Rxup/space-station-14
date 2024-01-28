@@ -167,7 +167,8 @@ public sealed class ShipwreckedRuleSystem : GameRuleSystem<ShipwreckedRuleCompon
 
         SubscribeLocalEvent<ShipwreckSurvivorComponent, MobStateChangedEvent>(OnSurvivorMobStateChanged);
         SubscribeLocalEvent<ShipwreckSurvivorComponent, BeingGibbedEvent>(OnSurvivorBeingGibbed);
-        SubscribeLocalEvent<ShipwreckSurvivorComponent, EntityPausedEvent>(OnComponentRemoved);
+        SubscribeLocalEvent<ShipwreckSurvivorComponent, EntityPausedEvent>(OnSurvivorPaused);
+        SubscribeLocalEvent<ShipwreckSurvivorComponent, RemovedComponentEventArgs>(OnComponentRemoved);
         SubscribeLocalEvent<EntityZombifiedEvent>(OnZombified);
 
         SubscribeLocalEvent<PostGameMapLoad>(OnMapReady);
@@ -1604,6 +1605,7 @@ public sealed class ShipwreckedRuleSystem : GameRuleSystem<ShipwreckedRuleCompon
         }
     }
 
+    // If survivor is dead because he was killed by normal way.
     private void OnSurvivorMobStateChanged(EntityUid survivor, ShipwreckSurvivorComponent component, MobStateChangedEvent args)
     {
         var query = EntityQueryEnumerator<ShipwreckedRuleComponent, GameRuleComponent>();
@@ -1616,6 +1618,7 @@ public sealed class ShipwreckedRuleSystem : GameRuleSystem<ShipwreckedRuleCompon
         }
     }
 
+    // If survivor has been throngled very very hard.
     private void OnSurvivorBeingGibbed(EntityUid survivor, ShipwreckSurvivorComponent component, BeingGibbedEvent args)
     {
         var query = EntityQueryEnumerator<ShipwreckedRuleComponent, GameRuleComponent>();
@@ -1628,7 +1631,8 @@ public sealed class ShipwreckedRuleSystem : GameRuleSystem<ShipwreckedRuleCompon
         }
     }
 
-    private void OnComponentRemoved(EntityUid survivor, ShipwreckSurvivorComponent component, EntityPausedEvent args)
+    // If survivor was paused due to teleportation in null-space by the cryosleep pod.
+    private void OnSurvivorPaused(EntityUid survivor, ShipwreckSurvivorComponent component, EntityPausedEvent args)
     {
         var query = EntityQueryEnumerator<ShipwreckedRuleComponent, GameRuleComponent>();
         while (query.MoveNext(out var uid, out var shipwrecked, out var gameRule))
@@ -1640,6 +1644,20 @@ public sealed class ShipwreckedRuleSystem : GameRuleSystem<ShipwreckedRuleCompon
         }
     }
 
+    // If survivor was deleted, absolutely.
+    private void OnComponentRemoved(EntityUid survivor, ShipwreckSurvivorComponent component, RemovedComponentEventArgs args)
+    {
+        var query = EntityQueryEnumerator<ShipwreckedRuleComponent, GameRuleComponent>();
+        while (query.MoveNext(out var uid, out var shipwrecked, out var gameRule))
+        {
+            if (!GameTicker.IsGameRuleActive(uid, gameRule))
+                continue;
+
+            CheckShouldRoundEnd(uid, shipwrecked);
+        }
+    }
+
+    // If survivor was zombified. Can't happen on practice, but it is better to check.
     private void OnZombified(ref EntityZombifiedEvent args)
     {
         var query = EntityQueryEnumerator<ShipwreckedRuleComponent, GameRuleComponent>();

@@ -22,10 +22,10 @@
       prob: 0.2
       orGroup: Dragon
     - id: MobCarpHolo
-      prob: 0.025
+      prob: 0.05
       orGroup: Dragon
     - id: MobCarpMagic
-      prob: 0.05
+      prob: 0.1
       orGroup: Dragon
   inactive:
     - id: RandomHumanoidSpawnerUnaffiliatedDead

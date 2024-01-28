@@ -20,7 +20,7 @@
   - type: MobThresholds
     thresholds:
       0: Alive
-      300: Dead
+      250: Dead
   - type: MeleeWeapon
     damage:
      groups:
@@ -37,7 +37,7 @@
   - type: MobThresholds
     thresholds:
       0: Alive
-      250: Dead
+      200: Dead
   - type: MeleeWeapon
     damage:
       groups:
