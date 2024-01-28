@@ -98,6 +98,26 @@
       prototype: MobHumanRXBZZ
 
 - type: entity
+  id: SpawnMobHumanERTOperativeAlpha1
+  parent: SpawnSpecforce
+  noSpawn: true
+  name: Альфа лидер
+  suffix: спавнер спецсил
+  components:
+    - type: GhostRoleMobSpawner
+      prototype: MobHumanERTOperativeAlpha1
+
+- type: entity
+  id: SpawnMobHumanERTLeaderAlpha1
+  parent: SpawnSpecforce
+  noSpawn: true
+  name: Альфа Опер
+  suffix: спавнер спецсил
+  components:
+    - type: GhostRoleMobSpawner
+      prototype: MobHumanERTLeaderAlpha1
+
+- type: entity
   id: SpawnMobHumanSpecialReAgentCOM
   parent: SpawnSpecforce
   noSpawn: true

@@ -1158,15 +1158,15 @@
     - type: StorageFill
       contents:
         - id: BoxFlare
-        - id: BoxFlare
+          amount: 2
         - id: BattleMedipen
-        - id: BattleMedipen
+          amount: 2
         - id: WeaponDisabler
         - id: WeaponPistolG23
         - id: MagazinePistol
           amount: 2
-        - id: WeaponPulseRifleAP12
-        - id: MagazinePulseRifle
+        - id: WeaponRifleM28
+        - id: MagazineRifle
           amount: 5
         - id: BoxHandcuff
 
@@ -1203,8 +1203,8 @@
         - id: BattleMedipen
           amount: 3
         - id: trayScanner
-        - id: WeaponPulseShotgunHellHammer
-        - id: MagazinePulseShotgun
+        - id: WeaponShotgunAA12
+        - id:  MagazineShotgunMagnum12
           amount: 4
         - id: WeaponPistolVP78
         - id: MagazinePistolHighCapacity
@@ -1248,15 +1248,15 @@
     - type: StorageFill
       contents:
         - id: BoxFlare
-        - id: BoxFlare
+          amount: 2
         - id: BattleMedipen
-        - id: BattleMedipen
+          amount: 2
         - id: WeaponDisabler
         - id: WeaponPistolG23
         - id: MagazinePistol
           amount: 2
-        - id: WeaponPulseRifleAP12
-        - id: MagazinePulseRifle
+        - id: WeaponRifleG36
+        - id: MagazineRifle
           amount: 5
         - id: BoxHandcuff
 
@@ -1294,9 +1294,9 @@
         - id: WeaponPistolG23
         - id: MagazinePistol
           amount: 2
-        - id: WeaponPulseSMGTritonM3
-        - id: MagazinePulseSubMachinePistol
-          amount: 4
+        - id: WeaponSubMachineGunMP5
+        - id: MagazinePistolSubMachineGun
+          amount: 6
         - id: MedkitFilled
         - id: SyringeInaprovaline
           amount: 2
@@ -1333,14 +1333,13 @@
     - type: StorageFill
       contents:
         - id: BattleMedipen
-        - id: BattleMedipen
+          amount: 2
         - id: WeaponPistolG23
         - id: MagazinePistol
-        - id: MagazinePistol
-        - id: MagazinePistol
+          amount: 3
         - id: MedkitFilled
         - id: BoxLightMixed
-        - id: BoxLightMixed
+          amount: 2
         - id: Soap
 
 
@@ -2453,3 +2452,150 @@
   equipment:
     jumpsuit: ClothingUniformJumpsuitLoungewear
     shoes: ClothingShoesBootsWork
+
+#MTF alpha 1------------------------------------
+
+- type: entity
+  name:  Alpha - 1 командир ОБР
+  parent: MobHumanERTLeaderEVAV2_1
+  suffix: МТФ
+  id: MobHumanERTLeaderAlpha1
+  components:
+  - type: Icon
+    sprite: Markers/jobs.rsi
+    state: ertleadereva
+  - type: GhostTakeoverAvailable
+  - type: GhostRole
+    name: ОБР командир
+    description: Командир отряда Alpha - 1, выполняет порученые приказы по ликвидации противника, не задаёт вопросов.
+    requirements:
+      - !type:DepartmentTimeRequirement
+        department: Security
+        time: 18000
+      - !type:OverallPlaytimeRequirement
+        time: 36000
+      - !type:DepartmentTimeRequirement
+        department: Command
+        time: 18000
+  - type: Loadout
+    prototypes: [ERTLeaderAlpha1Gear]
+  - type: RandomMetadata
+    nameSegments:
+    - NamesOFCs
+    - names_last_male
+
+- type: startingGear
+  id: ERTLeaderAlpha1Gear
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitSpetsnaz
+    back: ClothingBackpackERTOperativeAlpha1
+    shoes: ClothingShoesBootsMagAdv
+    mask: ClothingMaskGasERTV2_1
+    eyes: ClothingEyesGlassesSunglasses
+    gloves: ClothingHandsGlovesSpetsnazcombat
+    outerClothing: ClothingOuterHardsuitERTOperativeAlpha1
+    suitstorage: OxygenTankFilled
+    head: ClothingHeadHatERTLeaderBeret
+    id: OBRGavnaLeaderIDCardAlpha1
+    ears: ClothingHeadsetCentComCCMTF
+    belt: ClothingBeltSecurityFilled
+    pocket1: CombatKnifeSpetsnaz
+
+- type: entity
+  noSpawn: true
+  parent: ClothingBackpackERTLeader
+  id: ClothingBackpackERTOperativeAlpha1
+  components:
+    - type: Clothing
+      sprite: Clothing/OuterClothing/Hardsuits/ERTSuits/ertleader.rsi
+    - type: StorageFill
+      contents:
+        - id: BoxFlare
+          amount: 2
+        - id: SpetsnazMedipen
+          amount: 3
+        - id: WeaponDisabler
+        - id: WeaponPistolDivet2
+        - id: MagazinePistol345
+          amount: 3
+        - id: WeaponPulseRifleAP12
+        - id: MagazinePulseRifle
+          amount: 9
+        - id: BoxHandcuff
+
+- type: entity
+  noSpawn: true
+  parent: OBRGavnaLeaderIDCard
+  id: OBRGavnaLeaderIDCardAlpha1
+  name: Id карта командира ОБР Alpha 1
+  components:
+  - type: IdCard
+    jobTitle: Alpha-1
+    fullName: Командир отделения
+  - type: Sprite
+    layers:
+    - state: syndie
+    - state: idcaptain
+  - type: Item
+    heldPrefix: black
+
+- type: entity
+  name:  Alpha - 1 оперативник ОБР
+  parent: MobHumanERTLeaderEVAV2_1
+  suffix: МТФ
+  id: MobHumanERTOperativeAlpha1
+  components:
+  - type: Icon
+    sprite: Markers/jobs.rsi
+    state: ertleadereva
+  - type: GhostTakeoverAvailable
+  - type: GhostRole
+    name: ОБР Оперативник
+    description: Оперативник отряда Alpha - 1, выполняет порученые приказы по ликвидации противника, не задаёт вопросов.
+    requirements:
+      - !type:DepartmentTimeRequirement
+        department: Security
+        time: 18000
+      - !type:OverallPlaytimeRequirement
+        time: 36000
+      - !type:DepartmentTimeRequirement
+        department: Command
+        time: 18000
+  - type: Loadout
+    prototypes: [ERTOperativeAlpha1Gear]
+  - type: RandomMetadata
+    nameSegments:
+    - NamesSGTs
+    - names_last_male
+
+- type: startingGear
+  id: ERTOperativeAlpha1Gear
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitSpetsnaz
+    back: ClothingBackpackERTOperativeAlpha1
+    shoes: ClothingShoesBootsMagAdv
+    mask: ClothingMaskGasERTV2_1
+    eyes: ClothingEyesGlassesSunglasses
+    gloves: ClothingHandsGlovesSpetsnazcombat
+    outerClothing: ClothingOuterHardsuitERTOperativeAlpha1
+    suitstorage: OxygenTankFilled
+    id: OBRGavnaOperativeIDCardAlpha1
+    ears: ClothingHeadsetCentComCCMTF
+    belt: ClothingBeltSecurityFilled
+    pocket1: CombatKnifeSpetsnaz
+
+- type: entity
+  noSpawn: true
+  parent: OBRGavnaLeaderIDCard
+  id: OBRGavnaOperativeIDCardAlpha1
+  name: Id карта оперативника ОБР Alpha 1
+  components:
+  - type: IdCard
+    jobTitle: Alpha-1
+    fullName: Оперативник отделения
+  - type: Sprite
+    layers:
+    - state: syndie
+    - state: idseniorofficer
+  - type: Item
+    heldPrefix: black
