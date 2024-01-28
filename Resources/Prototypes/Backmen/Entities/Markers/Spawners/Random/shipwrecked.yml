@@ -35,6 +35,8 @@
       - ClothingOuterHardsuitSalvage
       - MiningDrill
       - SpaceCash1000
+      - WeaponCrusher
+      - WeaponCrusherDagger
     rareChance: 0.2
 
 - type: entity
