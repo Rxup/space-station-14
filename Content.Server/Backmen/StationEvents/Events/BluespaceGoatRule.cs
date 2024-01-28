@@ -18,7 +18,7 @@ public sealed class BluespaceGoatRule : StationEventSystem<BluespaceGoatRuleComp
     {
         base.Started(uid, component, gameRule, args);
 
-        var amountToSpawn = 1;
+        var amountToSpawn = Math.Max(1, (int) MathF.Round(GetSeverityModifier() / 1.5f));
         for (var i = 0; i < amountToSpawn; i++)
         {
             if (!TryFindRandomTile(out _, out _, out _, out var coords))
