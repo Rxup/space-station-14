@@ -5,6 +5,7 @@
 - type: entity
   id: RandomHumanoidSpawnerDeathSquad
   name: Death Squad Agent
+  noSpawn: true
   suffix: ERTRole, Death Squad
   components:
     - type: Sprite
@@ -16,6 +17,7 @@
         - NamesLastMilitary
     - type: RandomHumanoidSpawner
       settings: DeathSquad
+    - type: InitialInfectedExempt
 
 - type: randomHumanoidSettings
   id: DeathSquad
@@ -34,6 +36,7 @@
       nameSegments:
         - NamesFirstMilitaryLeader
         - NamesLastMilitary
+    - type: InitialInfectedExempt
 
 
 ## ERT Leader
@@ -41,6 +44,7 @@
 - type: entity
   id: RandomHumanoidSpawnerERTLeader
   name: ERT leader
+  noSpawn: true
   suffix: ERTRole, Basic
   components:
     - type: Sprite
@@ -52,6 +56,7 @@
       - NamesLastMilitary
     - type: RandomHumanoidSpawner
       settings: ERTLeader
+    - type: InitialInfectedExempt
 
 - type: randomHumanoidSettings
   parent: BackmenSpecies
@@ -69,11 +74,13 @@
       nameSegments:
       - NamesFirstMilitaryLeader
       - NamesLastMilitary
+    - type: InitialInfectedExempt
 
 - type: entity
   id: RandomHumanoidSpawnerERTLeaderEVA
   parent: RandomHumanoidSpawnerERTLeader
   name: ERT leader
+  noSpawn: true
   suffix: ERTRole, Armored EVA
   components:
     - type: Sprite
@@ -81,6 +88,7 @@
       state: ertleadereva
     - type: RandomHumanoidSpawner
       settings: ERTLeaderEVA
+    - type: InitialInfectedExempt
 
 - type: randomHumanoidSettings
   id: ERTLeaderEVA
@@ -93,14 +101,17 @@
     - type: GhostTakeoverAvailable
     - type: Loadout
       prototypes: [ ERTLeaderGearEVA ]
+    - type: InitialInfectedExempt
 
 - type: entity
   id: RandomHumanoidSpawnerERTLeaderEVALecter
   parent: RandomHumanoidSpawnerERTLeaderEVA
+  noSpawn: true
   suffix: ERTRole, Lecter, EVA
   components:
     - type: RandomHumanoidSpawner
       settings: ERTLeaderEVALecter
+    - type: InitialInfectedExempt
 
 - type: randomHumanoidSettings
   id: ERTLeaderEVALecter
@@ -113,6 +124,7 @@
     - type: GhostTakeoverAvailable
     - type: Loadout
       prototypes: [ ERTLeaderGearEVALecter ]
+    - type: InitialInfectedExempt
 
 ## ERT Janitor
 
@@ -120,6 +132,7 @@
   id: RandomHumanoidSpawnerERTJanitor
   parent: RandomHumanoidSpawnerERTLeader
   name: ERT janitor
+  noSpawn: true
   suffix: ERTRole, Basic
   components:
     - type: Sprite
@@ -147,11 +160,13 @@
       - NamesLastMilitary
     - type: Loadout
       prototypes: [ ERTJanitorGear ]
+    - type: InitialInfectedExempt
 
 - type: entity
   id: RandomHumanoidSpawnerERTJanitorEVA
   parent: RandomHumanoidSpawnerERTJanitor
   name: ERT janitor
+  noSpawn: true
   suffix: ERTRole, Enviro EVA
   components:
     - type: Sprite
@@ -171,6 +186,7 @@
     - type: GhostTakeoverAvailable
     - type: Loadout
       prototypes: [ ERTJanitorGearEVA ]
+    - type: InitialInfectedExempt
 
 ## ERT Engineer
 
@@ -178,6 +194,7 @@
   id: RandomHumanoidSpawnerERTEngineer
   parent: RandomHumanoidSpawnerERTLeader
   name: ERT engineer
+  noSpawn: true
   suffix: ERTRole, Basic
   components:
     - type: Sprite
@@ -205,11 +222,13 @@
       - NamesLastMilitary
     - type: Loadout
       prototypes: [ ERTEngineerGear ]
+    - type: InitialInfectedExempt
 
 - type: entity
   id: RandomHumanoidSpawnerERTEngineerEVA
   parent: RandomHumanoidSpawnerERTEngineer
   name: ERT engineer
+  noSpawn: true
   suffix: ERTRole, Enviro EVA
   components:
     - type: Sprite
@@ -229,6 +248,7 @@
     - type: GhostTakeoverAvailable
     - type: Loadout
       prototypes: [ ERTEngineerGearEVA ]
+    - type: InitialInfectedExempt
 
 ## ERT Security
 
@@ -236,6 +256,7 @@
   id: RandomHumanoidSpawnerERTSecurity
   parent: RandomHumanoidSpawnerERTLeader
   name: ERT security
+  noSpawn: true
   suffix: ERTRole, Basic
   components:
     - type: Sprite
@@ -265,11 +286,13 @@
       - NamesLastMilitary
     - type: Loadout
       prototypes: [ ERTSecurityGear ]
+    - type: InitialInfectedExempt
 
 - type: entity
   id: RandomHumanoidSpawnerERTSecurityEVA
   parent: RandomHumanoidSpawnerERTSecurity
   name: ERT security
+  noSpawn: true
   suffix: ERTRole, Armored EVA
   components:
     - type: Sprite
@@ -289,10 +312,12 @@
     - type: GhostTakeoverAvailable
     - type: Loadout
       prototypes: [ ERTSecurityGearEVA ]
+    - type: InitialInfectedExempt
 
 - type: entity
   id: RandomHumanoidSpawnerERTSecurityEVALecter
   parent: RandomHumanoidSpawnerERTSecurityEVA
+  noSpawn: true
   suffix: ERTRole, Lecter, EVA
   components:
     - type: RandomHumanoidSpawner
@@ -309,6 +334,7 @@
     - type: GhostTakeoverAvailable
     - type: Loadout
       prototypes: [ ERTSecurityGearEVALecter ]
+    - type: InitialInfectedExempt
 
 ## ERT Medic
 
@@ -316,6 +342,7 @@
   id: RandomHumanoidSpawnerERTMedical
   parent: RandomHumanoidSpawnerERTLeader
   name: ERT medic
+  noSpawn: true
   suffix: ERTRole, Basic
   components:
     - type: Sprite
@@ -343,11 +370,13 @@
       - NamesLastMilitary
     - type: Loadout
       prototypes: [ ERTMedicalGear ]
+    - type: InitialInfectedExempt
 
 - type: entity
   id: RandomHumanoidSpawnerERTMedicalEVA
   parent: RandomHumanoidSpawnerERTMedical
   name: ERT medic
+  noSpawn: true
   suffix: ERTRole, Armored EVA
   components:
     - type: Sprite
@@ -367,12 +396,14 @@
     - type: GhostTakeoverAvailable
     - type: Loadout
       prototypes: [ ERTMedicalGearEVA ]
+    - type: InitialInfectedExempt
 
 ## CBURN
 
 - type: entity
   id: RandomHumanoidSpawnerCBURNUnit
   name: CBURN Agent
+  noSpawn: true
   suffix: ERTRole
   components:
     - type: Sprite
@@ -380,6 +411,7 @@
       state: cburn
     - type: RandomHumanoidSpawner
       settings: CBURNAgent
+    - type: InitialInfectedExempt
 
 - type: randomHumanoidSettings
   speciesBlacklist: # Corvax-MRP
@@ -398,6 +430,7 @@
       nameSegments:
       - NamesFirstMilitary
       - NamesLastMilitary
+    - type: InitialInfectedExempt
 ## Central Command
 
 - type: entity
@@ -409,6 +442,7 @@
       state: centcom
     - type: RandomHumanoidSpawner
       settings: CentcomOfficial
+    - type: InitialInfectedExempt
 
 - type: randomHumanoidSettings
   id: CentcomOfficial
@@ -420,7 +454,8 @@
       description: ghost-role-information-centcom-official-description
     - type: GhostTakeoverAvailable
     - type: Loadout
-      prototypes: [ CentComCorvax ]
+      prototypes: [ CentcomGear ]
+    - type: InitialInfectedExempt
 
 ## Syndicate
 

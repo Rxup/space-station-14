@@ -255,7 +255,7 @@
 
 - type: Tag
   id: CannonBall
-  
+
 - type: Tag
   id: CannonRestrict
 
@@ -809,7 +809,7 @@
   id: Matchstick
 
 - type: Tag
-  id: Mayo  
+  id: Mayo
 
 - type: Tag
   id: Meat
@@ -819,12 +819,6 @@
 
 - type: Tag
   id: Metal
-
-- type: Tag
-  id: MicrowaveMachineUnsafe
-
-- type: Tag
-  id: MicrowaveSelfUnsafe
 
 - type: Tag
   id: MindShield
@@ -1039,9 +1033,6 @@
 
 - type: Tag
   id: ShellShotgun
-
-- type: Tag
-  id: PelletShotgunFlare
 
 - type: Tag
   id: Shiv
