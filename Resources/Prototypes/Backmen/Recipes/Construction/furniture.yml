@@ -365,7 +365,24 @@
   description: Quite a comfortable dark chair.
   icon:
     sprite: Backmen/Structures/Furniture/chairs.rsi
-    state: comfy
+    state: dark-comfy
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+    - !type:TileNotBlocked
+
+- type: construction
+  id: CurtainsDarkC
+  name: dark curtains
+  description: Contains less than 1% mercury and dark.
+  graph: Curtains
+  startNode: start
+  targetNode: curtainsDark
+  category: construction-category-furniture
+  icon:
+    sprite: Backmen/Structures/Decoration/curtains.rsi
+    state: closed
   objectType: Structure
   placementMode: SnapgridCenter
   canBuildInImpassable: false
