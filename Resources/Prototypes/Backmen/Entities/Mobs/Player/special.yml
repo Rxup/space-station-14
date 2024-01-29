@@ -121,6 +121,8 @@
     implants:
     - BluespaceTeleportPowerImplant
     - BluespaceRegenerationPowerImplant
+    - ScramImplant
+    - ScramImplant
   # Abilities end
   - type: InteractionPopup
     successChance: 0.33
