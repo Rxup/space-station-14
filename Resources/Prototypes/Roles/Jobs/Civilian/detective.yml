@@ -32,8 +32,9 @@
     components:
       - type: PsionicBonusChance
         flatBonus: 0.5
-  - !type:AddImplantSpecial
-    implants: [ MindShieldImplant ]
+  # can be antag?
+  #- !type:AddImplantSpecial
+  #  implants: [ MindShieldImplant ]
 
 - type: startingGear
   id: DetectiveGear
