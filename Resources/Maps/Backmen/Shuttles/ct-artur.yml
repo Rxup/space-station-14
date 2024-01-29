@@ -2716,7 +2716,19 @@ entities:
       parent: 1
     - type: NetworkConfigurator
       devices:
-      linkModeActive: True
+        'UID: 49751': 172
+        'UID: 49761': 202
+        'UID: 49759': 195
+        'UID: 49749': 137
+        'UID: 49760': 198
+        'UID: 49752': 173
+        'UID: 49750': 171
+        'UID: 49753': 175
+        'UID: 49762': 207
+        'UID: 49755': 177
+        'UID: 49754': 176
+        'UID: 49756': 182
+      linkModeActive: False
 - proto: NTFlag
   entities:
   - uid: 513
