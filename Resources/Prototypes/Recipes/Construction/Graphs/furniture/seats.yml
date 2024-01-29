@@ -63,11 +63,7 @@
             - material: Steel
               amount: 2
               doAfter: 1
-        - to: chairDarkComfy
-          steps:
-            - material: Steel
-              amount: 2
-              doAfter: 1
+
 
     - node: chair
       entity: Chair
