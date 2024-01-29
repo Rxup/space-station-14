@@ -1,0 +1,53 @@
+- type: job
+  id: Detective
+  name: job-name-detective
+  description: job-description-detective
+  playTimeTracker: JobDetective
+  requirements:
+  - !type:DepartmentTimeRequirement
+    department: Security
+    time: 72000 #20 hrs # Corvax-RoleTime
+  - !type:DepartmentTimeRequirement
+    department: Civilian
+    time: 18000 # 5 hours
+  startingGear: DetectiveGear
+  icon: "JobIconDetective"
+  supervisors: job-supervisors-hop
+  canBeAntag: true
+  access:
+  - Brig
+  - Maintenance
+  - Service
+  - Detective
+  extendedAccess:
+  - Security
+  #start-backmen: currency
+  minBankBalance: 150
+  maxBankBalance: 250
+  wageDepartment: Security
+  wage: 50
+  #end-backmen: currency
+  special:
+  - !type:AddComponentSpecial
+    components:
+      - type: PsionicBonusChance
+        flatBonus: 0.5
+  # can be antag?
+  #- !type:AddImplantSpecial
+  #  implants: [ MindShieldImplant ]
+
+- type: startingGear
+  id: DetectiveGear
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitDetective
+    back: ClothingBackpackFilledDetective
+    shoes: ClothingShoesBootsCombatFilled
+    eyes: ClothingEyesGlassesSunglasses
+    head: ClothingHeadHatFedoraBrown
+    outerClothing: ClothingOuterVestDetective
+    id: DetectivePDA
+    ears: ClothingHeadsetSecurity
+    belt: ClothingBeltHolsterFilled
+  innerClothingSkirt: ClothingUniformJumpskirtDetective
+  satchel: ClothingBackpackSatchelFilledDetective
+  duffelbag: ClothingBackpackDuffelFilledDetective

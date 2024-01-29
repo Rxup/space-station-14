@@ -122,6 +122,8 @@ public sealed partial class AnomalySystem
             // don't spawn inside of solid objects
             var physQuery = GetEntityQuery<PhysicsComponent>();
             var valid = true;
+
+            // TODO: This should be using static lookup.
             foreach (var ent in gridComp.GetAnchoredEntities(tile))
             {
                 if (!physQuery.TryGetComponent(ent, out var body))
@@ -146,9 +148,9 @@ public sealed partial class AnomalySystem
                 if (antiXform.MapID != mapPos.MapId)
                     continue;
 
-                var antiCoordinates = _transform.GetMapCoordinates(antiXform);
+                var antiCoordinates = _transform.GetWorldPosition(antiXform);
 
-                var delta = antiCoordinates.Position - mapPos.Position;
+                var delta = antiCoordinates - mapPos.Position;
                 if (delta.LengthSquared() < zone.ZoneRadius * zone.ZoneRadius)
                 {
                     valid = false;
