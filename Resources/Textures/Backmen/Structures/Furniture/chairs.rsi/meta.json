@@ -8,11 +8,11 @@
   },
   "states": [
     {
-      "name": "comfy",
+      "name": "dark-comfy",
       "directions": 4
     },
     {
-      "name": "comfy-overlay",
+      "name": "dark-comfy-overlay",
       "directions": 4
     }
   ]
