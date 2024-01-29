@@ -138,18 +138,3 @@
         Piercing: 0.9
         Heat: 0.9
         Radiation: 0.9
-        
-#Mime Hardsuit
-- type: entity
-  parent: ClothingHeadHelmetHardsuitSecurity
-  id: ClothingHeadHelmetHardsuitMime
-  noSpawn: true
-  name: mime hardsuit helmet
-  description: A mime hardsuit helmet.
-  components:
-  - type: Sprite
-    sprite: Backmen/Clothing/Head/Hardsuits/mime.rsi
-  - type: Clothing
-    sprite: Backmen/Clothing/Head/Hardsuits/mime.rsi
-    equipSound: /Audio/Backmen/Misc/none.ogg
-    unequipSound: /Audio/Backmen/Misc/none.ogg
