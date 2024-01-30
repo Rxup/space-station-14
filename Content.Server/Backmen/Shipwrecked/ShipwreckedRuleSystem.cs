@@ -830,7 +830,7 @@ public sealed class ShipwreckedRuleSystem : GameRuleSystem<ShipwreckedRuleCompon
         // This way players can find them in reasonable amount of time.
         // Coordinates have an error of offset + 15, so it's giving pretty approximated data.
         var query = EntityQueryEnumerator<ShipwreckedRuleComponent, GameRuleComponent>();
-        int engiOffset = component.engiManifestOffset;
+        var engiOffset = component.EngiManifestOffset;
         while (query.MoveNext(out var uid, out var shipwrecked, out var gameRule))
         {
             var engimanifest = SpawnManifest(uid, shipwrecked);
@@ -968,17 +968,17 @@ public sealed class ShipwreckedRuleSystem : GameRuleSystem<ShipwreckedRuleCompon
 
         foreach (var entry in spawns)
         {
-            // 2/3 chance to spawn a mob. For balance.
-            if (_random.Next(0, 2) > 0)
-            {
-                var spawnTile = room.Tiles.ElementAt(_random.Next(room.Tiles.Count));
-                var spawnPosition = component.PlanetGrid.GridTileToLocal(spawnTile);
+            // 1/2 chance to spawn a mob. For balance.
+            if (!_random.Prob(component.MobSpawnChance))
+                continue;
 
-                var uid = EntityManager.CreateEntityUninitialized(entry, spawnPosition);
-                RemComp<GhostTakeoverAvailableComponent>(uid);
-                RemComp<GhostRoleComponent>(uid);
-                EntityManager.InitializeAndStartEntity(uid);
-            }
+            var spawnTile = room.Tiles.ElementAt(_random.Next(room.Tiles.Count));
+            var spawnPosition = component.PlanetGrid.GridTileToLocal(spawnTile);
+
+            var uid = EntityManager.CreateEntityUninitialized(entry, spawnPosition);
+            RemComp<GhostTakeoverAvailableComponent>(uid);
+            RemComp<GhostRoleComponent>(uid);
+            EntityManager.InitializeAndStartEntity(uid);
         }
     }
 

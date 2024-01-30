@@ -31,11 +31,18 @@ public sealed partial class ShipwreckedRuleComponent : Component
     public EntProtoId SpawnPointLateJoin = default!;
 
     /// <summary>
-    /// How big will be offset in engines coords manifests
+    /// How big will be offset in engines coords manifests.
     /// </summary>
     [ViewVariables]
     [DataField("engiManifestOffset", required: true)]
-    public int engiManifestOffset = default!;
+    public int EngiManifestOffset = default!;
+
+    /// <summary>
+    ///
+    /// </summary>
+    [ViewVariables]
+    [DataField("mobSpawnChance", required: true)]
+    public float MobSpawnChance = default!;
 
     /// <summary>
     /// The jobs that the travellers will be randomly assigned.
