@@ -294,3 +294,7 @@ ClothingHeadHelmetVoidParamed: null
 
 # 2024-01-19
 DefaultStationBeaconTeslaEngine: null
+
+# 2024-01-30 Backmen
+AirlockHatch: AirlockHatchBasik
+AirlockHatchMaintenance: AirlockHatchMaint
