@@ -9,9 +9,6 @@
     layers:
     - state: closed
       map: ["enum.DoorVisualLayers.Base"]
-  - type: Occluder
-  - type: Physics
-    canCollide: false
   - type: Construction
     graph: Curtains
     node: CurtainsDark
@@ -23,10 +20,6 @@
   components:
   - type: Door
     state: open
-  - type: Occluder
-    enabled: false
-  - type: Physics
-    canCollide: false
   - type: Construction
     graph: Curtains
     node: CurtainsOpenDark
