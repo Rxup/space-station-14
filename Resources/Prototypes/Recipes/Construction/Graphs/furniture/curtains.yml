@@ -13,7 +13,6 @@
             - material: Cloth
               amount: 2
               doAfter: 1
-    - node: start
       actions:
         - !type:DestroyEntity {}
       edges:
