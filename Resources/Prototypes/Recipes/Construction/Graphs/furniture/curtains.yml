@@ -3,7 +3,6 @@
   start: start
   graph:
     - node: start
-    - to: curtainsDark
       actions:
         - !type:DestroyEntity {}
       edges:
@@ -14,6 +13,7 @@
             - material: Cloth
               amount: 2
               doAfter: 1
+    - to: curtainsDark
       actions:
         - !type:DestroyEntity {}
       edges:
