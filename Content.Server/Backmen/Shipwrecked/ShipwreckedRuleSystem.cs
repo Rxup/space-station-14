@@ -282,7 +282,7 @@ public sealed class ShipwreckedRuleSystem : GameRuleSystem<ShipwreckedRuleCompon
     [ValidatePrototypeId<DatasetPrototype>]
     private const string PlanetNames = "names_borer";
 
-    private const int MaxPreloadOffset  = 200;
+    private const int MaxPreloadOffset  = 240;
 
     private void SpawnPlanet(EntityUid uid, ShipwreckedRuleComponent component)
     {
@@ -879,51 +879,6 @@ public sealed class ShipwreckedRuleSystem : GameRuleSystem<ShipwreckedRuleCompon
 
             component.VitalPieces.Add(uid, (spot, structure));
         }
-
-        // Part of the escape objective requires the shuttle to have enough
-        // power for liftoff, but due to luck of the draw with dungeon generation,
-        // it's possible that not enough generators are spawned in.
-        var planetGeneratorCount = 0;
-        var planetGeneratorPower = 0f;
-        var generatorQuery = EntityQueryEnumerator<PowerSupplierComponent, TransformComponent>();
-        while (generatorQuery.MoveNext(out _, out var powerSupplier, out var xform))
-        {
-            if (xform.GridUid != component.PlanetMap)
-                continue;
-
-            planetGeneratorPower += powerSupplier.MaxSupply;
-            ++planetGeneratorCount;
-        }
-
-        _sawmill.Info($"Shipwreck destination has {planetGeneratorPower} W worth of {planetGeneratorCount} scavengeable generators.");
-
-        if (planetGeneratorPower < component.OriginalPowerDemand)
-        {
-            // It's impossible to find enough generators to supply the shuttle's
-            // original power demand, assuming the players let the generator
-            // completely fail, therefore, we must spawn some generators,
-            // Deus Ex Machina.
-
-            // This is all very cheesy that there would be generators just lying around,
-            // but I'd rather players be able to win than be hard-locked into losing.
-
-            // How many will we need?
-            const float UraniumPower = 15000f;
-            var generatorsNeeded = Math.Max(1, component.OriginalPowerDemand / UraniumPower);
-
-            for (int i = 0; i < generatorsNeeded; ++i)
-            {
-                // Just need a temporary spawn point away from everything.
-                var somewhere = new EntityCoordinates(component.PlanetMap.Value, 200f + i, 200f + i);
-                var uid = Spawn("PortableGeneratorSuperPacman", somewhere);
-
-                TryGetRandomStructureSpot(component, out var spot, out var structure);
-                _sawmill.Info($"Heaven generator! {ToPrettyString(uid)} will go to {spot}");
-
-                MakeCrater(component.PlanetGrid, spot);
-                component.VitalPieces.Add(uid, (spot, structure));
-            }
-        }
     }
 
     private void DecoupleShuttleEngine(ShipwreckedRuleComponent component)
@@ -968,7 +923,7 @@ public sealed class ShipwreckedRuleSystem : GameRuleSystem<ShipwreckedRuleCompon
 
         foreach (var entry in spawns)
         {
-            // 1/2 chance to spawn a mob. For balance.
+            // Easy way to change mobs spawn rate without messing with probs in faction prototype.
             if (!_random.Prob(component.MobSpawnChance))
                 continue;
 
@@ -976,6 +931,7 @@ public sealed class ShipwreckedRuleSystem : GameRuleSystem<ShipwreckedRuleCompon
             var spawnPosition = component.PlanetGrid.GridTileToLocal(spawnTile);
 
             var uid = EntityManager.CreateEntityUninitialized(entry, spawnPosition);
+            // Players shouldn't take over dungeon mobs, because they can cause trouble...
             RemComp<GhostTakeoverAvailableComponent>(uid);
             RemComp<GhostRoleComponent>(uid);
             EntityManager.InitializeAndStartEntity(uid);
@@ -1166,8 +1122,6 @@ public sealed class ShipwreckedRuleSystem : GameRuleSystem<ShipwreckedRuleCompon
         var announcementSound = new SoundPathSpecifier(ChatSystem.DefaultAnnouncementSound);
         var announcementEv = new AnnouncementSpokeEvent(filter, _audioSystem.GetSound(announcementSound), AudioParams.Default.WithVolume(-2f), message);
         RaiseLocalEvent(announcementEv);
-        //var audioPath = _audioSystem.GetSound(audio);
-        //_audioSystem.PlayGlobal(audioPath, filter, true, AudioParams.Default.WithVolume(1f));
     }
 
     private void HecateSay(string message, ShipwreckedRuleComponent component)
@@ -1458,7 +1412,7 @@ public sealed class ShipwreckedRuleSystem : GameRuleSystem<ShipwreckedRuleCompon
         if (component.PlanetMap == null)
         {
             _gameTicker.EndGameRule(uid, gameRule);
-            throw new ArgumentException("Неправильная карта планеты! Отмена!");
+            throw new ArgumentException("Wrong planet map! Emergency round restart!");
         }
 
         _shuttleSystem.FTLTravel(shuttle,
@@ -1675,9 +1629,8 @@ public sealed class ShipwreckedRuleSystem : GameRuleSystem<ShipwreckedRuleCompon
     public bool IsDead(EntityUid uid)
     {
         if (TryComp<MindContainerComponent>(uid, out var mind) && mind.Mind == null)
-        {
             return true;
-        }
+
         return (_mobStateSystem.IsDead(uid) ||
                 // Zombies are not dead-dead, so check for that.
                 HasComp<ZombieComponent>(uid) ||

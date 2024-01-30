@@ -25,7 +25,7 @@ public sealed partial class ShipwreckDestinationPrototype : IPrototype
 
     [ViewVariables]
     [DataField("structureDistance")]
-    public readonly int StructureDistance = 80;
+    public readonly int StructureDistance = 90; // If too low, dungeons can have really bad time and start merging...
 
     [ViewVariables]
     [DataField("structures", customTypeSerializer: typeof(PrototypeIdDictionarySerializer<int, DungeonConfigPrototype>))]

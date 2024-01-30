@@ -28,7 +28,7 @@
       spawnPointHecate: SpawnPointShipwreckHecate
       hecatePrototype: MobQuestHecateShipwrecked
       engiManifestOffset: 15
-      mobSpawnChance: 0.5
+      mobSpawnChance: 0.8
       eventSchedule:
         - 13: AnnounceTransit
         - 9: ShowHecate
