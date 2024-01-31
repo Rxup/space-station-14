@@ -70,6 +70,13 @@
               doAfter: 1
             - material: Cloth
               amount: 1
+# backmen-start
+        - to: chairDarkComfy
+          steps:
+            - material: Steel
+              amount: 2
+              doAfter: 1
+# backmen-end
 
     - node: chair
       entity: Chair
@@ -219,3 +226,17 @@
               doAfter: 1
             - tool: Screwing
               doAfter: 1
+
+# backmen-start
+    - node: chairDarkComfy
+      entity: ComfyDarkChair
+      edges:
+        - to: start
+          completed:
+            - !type:SpawnPrototype
+              prototype: SheetSteel1
+              amount: 2
+          steps:
+            - tool: Screwing
+              doAfter: 1
+# backmen-end
