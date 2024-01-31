@@ -13,7 +13,7 @@
             - material: Cloth
               amount: 2
               doAfter: 1
-        - to: curtainsDark
+        - to: CurtainsDark
           completed:
             - !type:SnapToGrid { }
           steps:
@@ -43,7 +43,7 @@
           steps:
             - tool: Cutting
               doAfter: 1
-    - node: curtainsDark
+    - node: CurtainsDark
       entity: DarkCurtains
       edges:
         - to: start
@@ -54,7 +54,7 @@
           steps:
             - tool: Cutting
               doAfter: 1
-    - node: curtainsOpenDark
+    - node: СurtainsOpenDark
       entity: DarkCurtainsOpen
       edges:
         - to: start

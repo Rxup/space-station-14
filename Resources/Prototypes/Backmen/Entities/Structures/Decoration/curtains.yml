@@ -15,11 +15,11 @@
 
 - type: entity
   id: DarkCurtainsOpen
-  parent: HospitalCurtains
+  parent: HospitalCurtainsOpen
   suffix: Open
   components:
   - type: Door
     state: open
   - type: Construction
     graph: Curtains
-    node: CurtainsOpenDark
+    node: СurtainsOpenDark
