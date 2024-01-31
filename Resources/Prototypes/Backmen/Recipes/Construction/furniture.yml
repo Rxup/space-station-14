@@ -373,12 +373,12 @@
     - !type:TileNotBlocked
 
 - type: construction
-  id: CurtainsDarkC
+  id: CurtainsDark
   name: dark curtains
   description: Contains less than 1% mercury and dark.
   graph: Curtains
   startNode: start
-  targetNode: curtainsDark
+  targetNode: CurtainsDark
   category: construction-category-furniture
   icon:
     sprite: Backmen/Structures/Decoration/curtains.rsi
