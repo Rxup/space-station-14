@@ -46,11 +46,12 @@
         - 6: AfterCrash
         - 12: Sitrep
 
+# Big maps is hard to balance with small shuttles, so they are removed for now.
 - type: gameMapPool
   id: ShipwreckedPool
   maps:
     - ShwrAdventurer
-    - shwrDust
+    # - shwrDust
     - ShwrTraveller
-    - ShwrColossus
+    # - ShwrColossus
     - ShwrArtur

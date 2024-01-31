@@ -20,7 +20,7 @@
   id: ShwrArtur
   mapName: CT-Artur
   mapPath: /Maps/Backmen/Shuttles/ct-artur.yml
-  minPlayers: 1
+  minPlayers: 5
   maxPlayers: 15
   stations:
     ShwrArtur:
