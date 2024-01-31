@@ -13,9 +13,6 @@
             - material: Cloth
               amount: 2
               doAfter: 1
-      actions:
-        - !type:DestroyEntity {}
-      edges:
         - to: curtainsDark
           completed:
             - !type:SnapToGrid { }
