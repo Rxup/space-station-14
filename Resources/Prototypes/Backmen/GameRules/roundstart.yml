@@ -12,7 +12,7 @@
   noSpawn: true
   components:
     - type: ShipwreckedRule
-      shuttlePath: /Maps/Backmen/Shuttles/adventurer.yml
+      shuttlePath: /Maps/Backmen/Shuttles/Shipwrecked/adventurer.yml
       spawnPointTraveller: SpawnPointShipwreckTraveller
       spawnPointLateJoin: CryogenicSleepUnitShipwrecked
       availableJobs:

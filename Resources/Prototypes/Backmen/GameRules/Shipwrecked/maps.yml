@@ -1,7 +1,7 @@
 ﻿- type: gameMap
   id: ShwrAdventurer
   mapName: Транспортник
-  mapPath: /Maps/Backmen/Shuttles/adventurer.yml
+  mapPath: /Maps/Backmen/Shuttles/Shipwrecked/adventurer.yml
   minPlayers: 1
   maxPlayers: 10
   stations:
@@ -19,7 +19,7 @@
 - type: gameMap
   id: ShwrArtur
   mapName: CT-Artur
-  mapPath: /Maps/Backmen/Shuttles/ct-artur.yml
+  mapPath: /Maps/Backmen/Shuttles/Shipwrecked/ct-artur.yml
   minPlayers: 5
   maxPlayers: 15
   stations:
@@ -37,7 +37,7 @@
 - type: gameMap
   id: ShwrTraveller
   mapName: Странник
-  mapPath: /Maps/Backmen/Shuttles/traveller.yml
+  mapPath: /Maps/Backmen/Shuttles/Shipwrecked/traveller.yml
   minPlayers: 10
   maxPlayers: 25
   stations:
@@ -55,7 +55,7 @@
 - type: gameMap
   id: shwrDust
   mapName: KL-Dust
-  mapPath: /Maps/Backmen/Shuttles/shwr-dust.yml
+  mapPath: /Maps/Backmen/Shuttles/Shipwrecked/shwr-dust.yml
   minPlayers: 15
   maxPlayers: 30
   stations:
@@ -73,7 +73,7 @@
 - type: gameMap
   id: ShwrColossus
   mapName: Колосс
-  mapPath: /Maps/Backmen/Shuttles/colossus.yml
+  mapPath: /Maps/Backmen/Shuttles/Shipwrecked/colossus.yml
   minPlayers: 25
   stations:
     ShwrColossus:
