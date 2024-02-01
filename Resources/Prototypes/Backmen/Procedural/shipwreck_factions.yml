@@ -19,7 +19,7 @@
   objectiveDefender: MobDragonShipwrecked
   active:
     - id: MobCarpDungeon
-      prob: 0.2
+      prob: 0.3
       orGroup: Dragon
     - id: MobCarpHolo
       prob: 0.05

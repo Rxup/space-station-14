@@ -20,11 +20,11 @@
   - type: MobThresholds
     thresholds:
       0: Alive
-      250: Dead
+      300: Dead
   - type: MeleeWeapon
     damage:
      groups:
-       Brute: 10
+       Brute: 15
 
 - type: entity
   name: space dragon
@@ -37,8 +37,8 @@
   - type: MobThresholds
     thresholds:
       0: Alive
-      200: Dead
+      250: Dead
   - type: MeleeWeapon
     damage:
       groups:
-        Brute: 10
+        Brute: 15
