@@ -37,5 +37,7 @@
     DrinkChampagneBottleFull: 2 #because the premium drink
     DrinkSakeBottleFull: 2 # Backmen
     DrinkSojuBottleFull: 2 # Backmen
+    DrinkBeerCan: 5
+    DrinkWineCan: 5
   emaggedInventory:
     DrinkPoisonWinebottleFull: 2
