@@ -168,7 +168,6 @@ public sealed class ShipwreckedRuleSystem : GameRuleSystem<ShipwreckedRuleCompon
         SubscribeLocalEvent<ShipwreckSurvivorComponent, MobStateChangedEvent>(OnSurvivorMobStateChanged);
         SubscribeLocalEvent<ShipwreckSurvivorComponent, BeingGibbedEvent>(OnSurvivorBeingGibbed);
         SubscribeLocalEvent<ShipwreckSurvivorComponent, EntityPausedEvent>(OnSurvivorPaused);
-        SubscribeLocalEvent<ShipwreckSurvivorComponent, RemovedComponentEventArgs>(OnComponentRemoved);
         SubscribeLocalEvent<EntityZombifiedEvent>(OnZombified);
 
         SubscribeLocalEvent<PostGameMapLoad>(OnMapReady);
@@ -1598,19 +1597,6 @@ public sealed class ShipwreckedRuleSystem : GameRuleSystem<ShipwreckedRuleCompon
         }
     }
 
-    // If survivor was deleted, absolutely.
-    private void OnComponentRemoved(EntityUid survivor, ShipwreckSurvivorComponent component, RemovedComponentEventArgs args)
-    {
-        var query = EntityQueryEnumerator<ShipwreckedRuleComponent, GameRuleComponent>();
-        while (query.MoveNext(out var uid, out var shipwrecked, out var gameRule))
-        {
-            if (!GameTicker.IsGameRuleActive(uid, gameRule))
-                continue;
-
-            CheckShouldRoundEnd(uid, shipwrecked);
-        }
-    }
-
     // If survivor was zombified. Can't happen on practice, but it is better to check.
     private void OnZombified(ref EntityZombifiedEvent args)
     {
@@ -1780,10 +1766,9 @@ public sealed class ShipwreckedRuleSystem : GameRuleSystem<ShipwreckedRuleCompon
             _npcConversationSystem.QueueResponse(npc, response
                 ? args.AfterMusic
                 : args.BeforeMusic);
+
             if (!response)
-            {
                 shipwrecked.SoundTrack = _audioSystem.PlayPvs("/Audio/Backmen/Misc/bossaluna.ogg", shipwrecked.Hecate!.Value);
-            }
         }
     }
 
@@ -1859,7 +1844,7 @@ public sealed class ShipwreckedRuleSystem : GameRuleSystem<ShipwreckedRuleCompon
         var conditions = new (bool, NPCResponse)[] {
             (GetLaunchConditionConsole(rule), args.NeedConsole),
             (GetLaunchConditionGenerator(rule), args.NeedGenerator),
-            (GetLaunchConditionThrusters(rule, out _), args.NeedThrusters),
+            (GetLaunchConditionThrusters(rule, out var goodThrusters), args.NeedThrusters),
         };
 
         foreach (var (status, response) in conditions)
