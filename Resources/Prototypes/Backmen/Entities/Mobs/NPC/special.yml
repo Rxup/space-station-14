@@ -1,4 +1,4 @@
-﻿- type: entity
+- type: entity
   name: Катя
   id: MobQuestHecate
   parent: MobHologramHuman
@@ -198,7 +198,7 @@
               text: shipwrecked-hecate-response-weapons-after
               #audio: !type:SoundPathSpecifier
               #  path: /Audio/Nyanotrasen/Dialogue/Hecate/shipwrecked_hecate_response_weapons_after.ogg
-    - prompts: [music, boring, музыка, музыку, скучно, включи]
+    - prompts: [music, boring, музыка, музыку, музычку, музычка, скучно]
       locked: true
       responses:
         - is: !type:ShipwreckedHecateAskMusicEvent
@@ -212,7 +212,7 @@
               #  path: /Audio/Nyanotrasen/Dialogue/Hecate/shipwrecked_hecate_response_weapons_after.ogg
 
     # All objectives complete!
-    - prompts: [launch, takeoff, liftoff, blastoff, ready, go, leave, escape, запуск, готов, вперед, го, покидаем, бежим, запускай]
+    - prompts: [launch, takeoff, liftoff, blastoff, ready, go, leave, escape, запуск, готов, вперед, го, покидаем, бежим, запускай, сваливаем, погнали]
       locked: true
       responses:
         - is: !type:ShipwreckedHecateAskLaunchEvent

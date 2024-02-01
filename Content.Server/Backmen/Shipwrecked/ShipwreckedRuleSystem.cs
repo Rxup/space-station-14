@@ -1841,10 +1841,11 @@ public sealed class ShipwreckedRuleSystem : GameRuleSystem<ShipwreckedRuleCompon
         if (rule == null)
             return false;
 
-        var conditions = new (bool, NPCResponse)[] {
+        var conditions = new (bool, NPCResponse)[]
+        {
             (GetLaunchConditionConsole(rule), args.NeedConsole),
             (GetLaunchConditionGenerator(rule), args.NeedGenerator),
-            (GetLaunchConditionThrusters(rule, out var goodThrusters), args.NeedThrusters),
+            (GetLaunchConditionThrusters(rule, out _), args.NeedThrusters),
         };
 
         foreach (var (status, response) in conditions)
