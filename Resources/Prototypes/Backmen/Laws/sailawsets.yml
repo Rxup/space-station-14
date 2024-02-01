@@ -35,6 +35,7 @@
   lawString: lawset-law-Asimovpp-3
 
 - type: siliconLawset
+  obeysTo: laws-owner-station
   id: Asimovpp # Fluent doesn't like the ++ in the ID, so it's in the name
   laws:
     - Asimovpp1
@@ -58,6 +59,7 @@
 
 - type: siliconLawset
   id: Asimov
+  obeysTo: laws-owner-station
   laws:
     - Asimov1
     - Asimov2
@@ -85,6 +87,7 @@
 
 - type: siliconLawset
   id: CEO
+  obeysTo: laws-owner-station
   laws:
     - CEO1
     - CEO2
@@ -123,6 +126,7 @@
 
 - type: siliconLawset
   id: Clown
+  obeysTo: laws-owner-station
   laws:
     - Clown1
     - Clown2
@@ -163,6 +167,7 @@
 
 - type: siliconLawset
   id: Cowboy
+  obeysTo: laws-owner-station
   laws:
     - Cowboy1
     - Cowboy2
@@ -198,6 +203,7 @@
 
 - type: siliconLawset
   id: Druid
+  obeysTo: laws-owner-station
   laws:
     - Druid1
     - Druid2
@@ -237,6 +243,7 @@
 
 - type: siliconLawset
   id: Hippocratic
+  obeysTo: laws-owner-station
   laws:
     - Hippocratic1
     - Hippocratic2
@@ -272,6 +279,7 @@
 
 - type: siliconLawset
   id: Mother
+  obeysTo: laws-owner-station
   laws:
     - Mother1
     - Mother2
@@ -307,6 +315,7 @@
 
 - type: siliconLawset
   id: Paladin
+  obeysTo: laws-owner-station
   laws:
     - Paladin1
     - Paladin2
@@ -331,6 +340,7 @@
 
 - type: siliconLawset
   id: Robocop
+  obeysTo: laws-owner-station
   laws:
     - Robocop1
     - Robocop2
@@ -343,6 +353,7 @@
 
 - type: siliconLawset
   id: Simple
+  obeysTo: laws-owner-station
   laws:
     - Simple1
 
@@ -363,6 +374,7 @@
 
 - type: siliconLawset
   id: StationEfficiency
+  obeysTo: laws-owner-station
   laws:
     - StationEfficiency1
     - StationEfficiency2
@@ -390,6 +402,7 @@
 
 - type: siliconLawset
   id: Tyrant
+  obeysTo: laws-owner-station
   laws:
     - Tyrant1
     - Tyrant2

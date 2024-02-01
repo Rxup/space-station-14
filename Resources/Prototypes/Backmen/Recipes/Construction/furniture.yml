@@ -354,3 +354,37 @@
   canBuildInImpassable: false
   conditions:
     - !type:TileNotBlocked
+
+- type: construction
+  name: comfy dark chair
+  id: ChairDarkComfy
+  graph: Seat
+  startNode: start
+  targetNode: chairDarkComfy
+  category: construction-category-furniture
+  description: Quite a comfortable dark chair.
+  icon:
+    sprite: Backmen/Structures/Furniture/chairs.rsi
+    state: dark-comfy
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+    - !type:TileNotBlocked
+
+- type: construction
+  id: CurtainsDark
+  name: dark curtains
+  description: Contains less than 1% mercury and dark.
+  graph: Curtains
+  startNode: start
+  targetNode: CurtainsDark
+  category: construction-category-furniture
+  icon:
+    sprite: Backmen/Structures/Decoration/curtains.rsi
+    state: closed
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+    - !type:TileNotBlocked

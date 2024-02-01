@@ -41,6 +41,7 @@
           actionBssActionName: ActionCentcomFtlAction
         - type: Psionic
         - type: PyrokinesisPower
+        - type: InitialInfectedExempt
   minBankBalance: 400
   maxBankBalance: 600
   wageDepartment: CentCom

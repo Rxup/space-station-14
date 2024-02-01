@@ -467,6 +467,7 @@
   components:
   - type: SpecForce
     actionBssActionName: ActionCentcomFtlAction
+  - type: InitialInfectedExempt
   - type: Loadout
     prototypes: [ERTLeaderGearEggV3]
 
@@ -482,6 +483,7 @@
     actionBssActionName: ActionCentcomFtlAction
   - type: Loadout
     prototypes: [ERTEngineerGearEggV3]
+  - type: InitialInfectedExempt
 
 # ERT Security
 - type: entity
@@ -495,6 +497,7 @@
     actionBssActionName: ActionCentcomFtlAction
   - type: Loadout
     prototypes: [ERTSecurityGearEggV3]
+  - type: InitialInfectedExempt
 
 # ERT Medical
 - type: entity
@@ -508,6 +511,7 @@
     actionBssActionName: ActionCentcomFtlAction
   - type: Loadout
     prototypes: [ERTMedicalGearEggV3]
+  - type: InitialInfectedExempt
 
 # ERT Junitor
 - type: entity
@@ -521,6 +525,7 @@
     actionBssActionName: ActionCentcomFtlAction
   - type: Loadout
     prototypes: [ERTJanitorGearEggV3]
+  - type: InitialInfectedExempt
 
 #------------------------------------
 
@@ -694,6 +699,7 @@
     - names_last_male
   - type: RandomHumanoidAppearance
     randomizeName: false
+  - type: InitialInfectedExempt
 
 # ERT Engineer
 - type: entity
@@ -743,6 +749,7 @@
     - names_last_male
   - type: RandomHumanoidAppearance
     randomizeName: false
+  - type: InitialInfectedExempt
 
 # ERT Security
 - type: entity
@@ -789,6 +796,7 @@
     - names_last_male
   - type: RandomHumanoidAppearance
     randomizeName: false
+  - type: InitialInfectedExempt
 
 # ERT Medical
 - type: entity
@@ -838,6 +846,7 @@
     - names_last_male
   - type: RandomHumanoidAppearance
     randomizeName: false
+  - type: InitialInfectedExempt
 
 # ERT Junitor
 - type: entity
@@ -887,6 +896,7 @@
     - names_last_male
   - type: RandomHumanoidAppearance
     randomizeName: false
+  - type: InitialInfectedExempt
 
 #------------------------------------
 
@@ -1392,6 +1402,7 @@
     - names_last_male
   - type: RandomHumanoidAppearance
     randomizeName: false
+  - type: InitialInfectedExempt
 
 
 # ERT Engineer
@@ -1442,6 +1453,7 @@
     - names_last_male
   - type: RandomHumanoidAppearance
     randomizeName: false
+  - type: InitialInfectedExempt
 
 # ERT Security
 - type: entity
@@ -1488,6 +1500,7 @@
     - names_last_male
   - type: RandomHumanoidAppearance
     randomizeName: false
+  - type: InitialInfectedExempt
 
 # ERT Medical
 - type: entity
@@ -1537,6 +1550,7 @@
     - names_last_male
   - type: RandomHumanoidAppearance
     randomizeName: false
+  - type: InitialInfectedExempt
 
 # ERT Junitor
 - type: entity
@@ -1586,6 +1600,7 @@
     - names_last_male
   - type: RandomHumanoidAppearance
     randomizeName: false
+  - type: InitialInfectedExempt
 
 - type: entity
   name: Солдат Синдиката
@@ -1922,6 +1937,7 @@
   - type: NpcFactionMember
     factions:
     - NanoTrasen
+  - type: InitialInfectedExempt
 
 - type: entity
   name: SpestnazCommander
@@ -1967,6 +1983,7 @@
   - type: NpcFactionMember
     factions:
     - NanoTrasen
+  - type: InitialInfectedExempt
 
 - type: entity
   name: Spestnaz Super
@@ -1986,6 +2003,7 @@
   - type: NpcFactionMember
     factions:
     - NanoTrasen
+  - type: InitialInfectedExempt
 
 - type: entity
   parent: BaseWeaponTurret
@@ -2032,6 +2050,7 @@
     factions:
     - NanoTrasen
   - type: ShowSecurityIcons
+  - type: InitialInfectedExempt
 
 - type: startingGear
   id: SFOForma
@@ -2174,7 +2193,7 @@
     neck: CombatKnifeSpetsnaz
     gloves: ClothingHandsGlovesCombat
     outerClothing: ClothingOuterHardsuitCBURN
-    suitstorage: YellowOxygenTankFilled
+    suitstorage: OxygenTankFilled
     id: IdCardRXBZZ
     ears: ClothingHeadsetCentComCCMTFSR6
     belt: ClothingBeltBandolierRXBZZ
@@ -2191,7 +2210,7 @@
     neck: CombatKnifeSpetsnaz
     gloves: ClothingHandsGlovesCombat
     outerClothing: ClothingOuterHardsuitCBURN
-    suitstorage: YellowOxygenTankFilled
+    suitstorage: OxygenTankFilled
     id: IdCardRXBZZ
     ears: ClothingHeadsetCentComCCMTFSR6
     belt: ClothingBeltMilitaryWebbingFlamer
@@ -2208,7 +2227,7 @@
     neck: CombatKnifeSpetsnaz
     gloves: ClothingHandsGlovesCombat
     outerClothing: ClothingOuterHardsuitCBURNLeader
-    suitstorage: YellowOxygenTankFilled
+    suitstorage: OxygenTankFilled
     id: IdCardRXBZZLeader
     head: ClothingHeadHatERTLeaderBeret
     ears: ClothingHeadsetCentComCCMTFSR6
@@ -2339,6 +2358,7 @@
   - type: Speech
     speechSounds: Metrocop
     soundCooldownTime: 0.1
+  - type: InitialInfectedExempt
 
 - type: entity
   name:  РХБЗЗ Реагент Огнеметчик
@@ -2383,6 +2403,7 @@
   - type: Speech
     speechSounds: Metrocop
     soundCooldownTime: 0.1
+  - type: InitialInfectedExempt
 
 - type: entity
   name:  РХБЗЗ Лидер
@@ -2430,6 +2451,7 @@
   - type: Speech
     speechSounds: Metrocop
     soundCooldownTime: 0.1
+  - type: InitialInfectedExempt
 
 - type: entity
   name: Беженец ОПЗ

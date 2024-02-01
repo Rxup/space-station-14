@@ -699,9 +699,6 @@
   id: IntercomElectronics
 
 - type: Tag
-  id: JanicartKeys
-
-- type: Tag
   id: JawsOfLife
 
 - type: Tag
@@ -1035,9 +1032,6 @@
   id: ShellShotgun
 
 - type: Tag
-  id: PelletShotgunFlare
-
-- type: Tag
   id: Shiv
 
 - type: Tag
@@ -1162,9 +1156,6 @@
 
 - type: Tag
   id: UraniumGlassShard
-
-- type: Tag
-  id: VehicleKey
 
 - type: Tag
   id: VimPilot

@@ -87,6 +87,8 @@
         amount: 3
       - id: ClothingHeadCage # backmen
         amount: 2
+      - id: HoloprojectorSecurity
+        prob: 0.6
 
 # backmen brigmedic's locker reworked
 - type: entity
@@ -146,6 +148,7 @@
         amount: 3
       - id: ClothingHeadCage # backmen
         amount: 2
+      - id: HoloprojectorSecurity
 
 - type: entity
   id: ClosetBombFilled

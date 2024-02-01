@@ -80,6 +80,15 @@
     - хихикнула
     - ржёт
     # Corvax-Localization-End
+    - chortle
+    - chortle.
+    - chortle!
+    - chortles
+    - chortles.
+    - chortles!
+    - chortling
+    - chortling.
+    - chortling!
 
 - type: emote
   id: Honk
@@ -154,6 +163,14 @@
     - рыдает.
     - рыдает!
     # Corvax-Localization-End
+    - sob
+    - sob.
+    - sobs
+    - sobs.
+    - sobs!
+    - sobbing
+    - sobbing.
+    - sobbing!
 
 - type: emote
   id: Squish
@@ -218,7 +235,7 @@
 - type: emote
   id: Click
   category: Vocal
-  chatMessages: [click.]
+  chatMessages: [клацает.] # Corvax-Localization
   chatTriggers:
    - click
    - click.
@@ -226,6 +243,14 @@
    - clicks
    - clicks.
    - clicks!
+   # Corvax-Localization-Start
+   - клац
+   - клац.
+   - клац!
+   - клацает
+   - клацает.
+   - клацает!
+   # Corvax-Localization-End
 
 # hand emotes
 - type: emote

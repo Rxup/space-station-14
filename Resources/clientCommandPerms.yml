@@ -24,8 +24,6 @@
     - gcf
     - gc
     - gc_mode
-    - resetent
-    - resetallents
     - cvar
     - fuckrules
     - midipanic
@@ -57,6 +55,8 @@
     - hidemechanisms
     - showmechanisms
     - menuvis
+    - resetent
+    - resetallents
     - togglehealthoverlay
     - toggledecals
     - nodevis
