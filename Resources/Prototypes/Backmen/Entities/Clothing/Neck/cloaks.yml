@@ -88,3 +88,25 @@
   components:
   - type: Sprite
     sprite: Backmen/Clothing/Neck/Cloaks/emptiness.rsi
+
+- type: entity
+  parent: ClothingNeckBase
+  id: ClothingNeckChoker
+  name: Choker
+  description: The leather strap around your neck is shiny.
+  components:
+  - type: Sprite
+    sprite: Backmen/Clothing/Neck/Cloaks/choker.rsi
+  - type: Clothing
+    sprite: Backmen/Clothing/Neck/Cloaks/choker.rsi
+    
+- type: entity
+  parent: ClothingNeckBase
+  id: ClothingNeckChokerDog
+  name: Choker for dogs
+  description: Definitely not suitable for cats... Don't even try to put it on the cat, you don't need it...
+  components:
+  - type: Sprite
+    sprite: Backmen/Clothing/Neck/Cloaks/chokerdog.rsi
+  - type: Clothing
+    sprite: Backmen/Clothing/Neck/Cloaks/chokerdog.rsi
