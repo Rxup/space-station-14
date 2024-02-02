@@ -51,3 +51,6 @@
 
 - type: playTimeTracker
   id: JobBlueshield
+  
+- type: playTimeTracker
+  id: JobMagistrat
