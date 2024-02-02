@@ -1069,7 +1069,7 @@ public sealed class ShipwreckedRuleSystem : GameRuleSystem<ShipwreckedRuleCompon
 
             var smash = new DamageSpecifier();
             smash.DamageDict.Add("Structural", limit);
-            _damageableSystem.TryChangeDamage(consoleUid, smash, ignoreResistances: true);
+            var damage = _damageableSystem.TryChangeDamage(consoleUid, smash, ignoreResistances: true);
 
             // Break, because we're technically modifying the enumeration by destroying the console.
             break;
