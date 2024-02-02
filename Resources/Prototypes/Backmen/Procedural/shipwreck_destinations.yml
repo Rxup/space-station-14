@@ -3,9 +3,9 @@
   biome: Snow
   lightColor: "#010103"
   structures:
-    RuinedDwellings: 3
-    RuinedHospital: 2
-    RuinedShop: 3
+    RuinedDwellings: 4
+    RuinedHospital: 3
+    RuinedShop: 1
   factions:
     - MalfunctioningRobots
     - SpaceCarpInvasion
@@ -39,9 +39,9 @@
   biome: Grasslands
   lightColor: "#010301"
   structures:
-    RuinedDwellings: 2
+    RuinedDwellings: 3
     RuinedHospital: 3
-    RuinedShop: 3
+    RuinedShop: 2
   factions:
     - ZombieOutbreak
     - SpaceXenoInvasion
