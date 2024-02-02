@@ -1,0 +1,60 @@
+- type: job
+  id: Magistrat
+  name: job-name-magistrat
+  description: job-description-magistrat
+  playTimeTracker: JobMagistrat
+  requirements:
+    - !type:DepartmentTimeRequirement
+      department: Security
+      time: 180000 #50 hrs
+    - !type:DepartmentTimeRequirement
+      department: Command
+      time: 180000 #50 hrs
+    - !type:OverallPlaytimeRequirement
+      time: 900000 #250 hrs
+  startingGear: MagistratGear
+  icon: "JobIconMagistrat"
+  supervisors: job-supervisors-service
+  canBeAntag: false
+  setPreference: true
+  access:
+  - Magistrat
+  - Maintenance
+  - Command
+  - Service
+  - External
+  - Brig
+  - Security
+  - Medical
+  extendedAccess:
+  - Hydroponics
+  minBankBalance: 300
+  maxBankBalance: 500
+  wageDepartment: Civilian
+  wage: 80
+  special:
+  - !type:AddComponentSpecial
+    components:
+      - type: PsionicBonusChance
+        flatBonus: 0.025
+  - !type:AddImplantSpecial
+    implants: [ MindShieldImplant ]
+  - !type:AddComponentSpecial
+    components:
+      - type: CommandStaff
+  
+- type: startingGear
+  id: MagistratGear
+  equipment:
+    jumpsuit: MagistratUniformSuit
+    back: ClothingBackpackFilled
+    shoes: ClothingShoesBootsLaceup
+    eyes: ClothingEyesGlassesSecurity
+    gloves: ClothingHandsGlovesColorWhite
+    outerClothing: ClothingMagistrateroba
+    id: MagistratPDA
+    ears: ClothingHeadsetAltCommand
+    head: ClothingHeadHatPwig
+  innerClothingSkirt: MagistratUniformSuit
+  satchel: ClothingBackpackSatchelFilled
+  duffelbag: ClothingBackpackDuffelFilled
