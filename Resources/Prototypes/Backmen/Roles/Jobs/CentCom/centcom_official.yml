@@ -5,7 +5,7 @@
   playTimeTracker: JobCentralCommandOfficial
   setPreference: true
   startingGear: CentComCorvax
-  icon: "JobIconNanotrasen"
+  icon: JobIconNT
   supervisors: job-supervisors-hoh
   canBeAntag: false
   weight: 1
@@ -38,10 +38,18 @@
           actionBssActionName: ActionCentcomFtlAction
         - type: Psionic
         - type: DispelPower
+        - type: InitialInfectedExempt
   minBankBalance: 400
   maxBankBalance: 600
   wageDepartment: CentCom
   wage: 75
+
+- type: statusIcon
+  parent: JobIcon
+  id: JobIconNT
+  icon:
+    sprite: Backmen/Icons/jobicon.rsi
+    state: NT
 
 - type: startingGear
   id: CentComCorvax

@@ -79,3 +79,12 @@
   components:
   - type: Sprite
     sprite: Backmen/Clothing/Neck/Cloaks/eug-cloak.rsi
+
+- type: entity
+  parent: ClothingNeckBase
+  id: ClothingNeckCloakROE
+  name: The Cloak of the Bloody Void
+  description: A fascinating cloak, there is clearly something in this void!
+  components:
+  - type: Sprite
+    sprite: Backmen/Clothing/Neck/Cloaks/emptiness.rsi

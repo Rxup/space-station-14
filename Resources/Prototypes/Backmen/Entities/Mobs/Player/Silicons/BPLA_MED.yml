@@ -46,16 +46,6 @@
     - type: PowerCellDraw
       useRate: 0
 
-- type: entity
-  parent: HandheldCrewMonitor
-  id: HandheldCrewMonitorINF
-  name: handheld crew monitor
-  description: A hand-held crew monitor displaying the status of suit sensors.
-  suffix: Backmen, INF
-  components:
-    - type: PowerCellDraw
-      useRate: 0
-
 - type: nameIdentifierGroup
   id: BSSDroneMED
   prefix: МЕД
@@ -87,8 +77,8 @@
     tools:
       - id: BSSClothingBackpackSatchelDroneMED
       - id: HandheldHealthAnalyzerINF
-      - id: DefibrillatorINF
-      - id: HandheldCrewMonitorINF
+      #- id: DefibrillatorINF #Broken
+      #- id: HandheldCrewMonitorINF
   - type: Inventory
     templateId: drone
   - type: InventorySlots

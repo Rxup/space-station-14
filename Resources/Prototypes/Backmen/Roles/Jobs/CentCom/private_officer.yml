@@ -24,8 +24,13 @@
   access:
     - CentralCommand
     - CCSecurity
-  accessGroups:
-    - AllAccess
+    - Security
+    - Brig
+    - Maintenance
+    - Service
+    - External
+    - Armory
+    - Detective
   special:
     - !type:AddImplantSpecial
       implants: [ MindShieldImplant ]
@@ -35,6 +40,7 @@
           actionBssActionName: ActionCentcomFtlAction
         - type: PsionicBonusChance
           multiplier: 3
+        - type: InitialInfectedExempt
   minBankBalance: 100
   maxBankBalance: 250
   wageDepartment: CentCom
@@ -91,5 +97,10 @@
       tags:
         - CCSecurity
         - CentralCommand
-      groups:
-        - AllAccess
+        - Security
+        - Brig
+        - Maintenance
+        - Service
+        - External
+        - Armory
+        - Detective

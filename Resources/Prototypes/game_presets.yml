@@ -8,6 +8,20 @@
   rules:
     - RampingStationEventScheduler
     - WageScheduler #backmen: currency
+    - BasicRoundstartVariation
+
+- type: gamePreset
+  id: AllAtOnce
+  name: all-at-once-title
+  description: all-at-once-description
+  showInVote: false
+  rules:
+    - Nukeops
+    - Traitor
+    - Revolutionary
+    - Zombie
+    - RampingStationEventScheduler
+    - WageScheduler #backmen: currency
 
 - type: gamePreset
   id: Extended
@@ -20,6 +34,18 @@
   rules:
   - BasicStationEventScheduler
   - WageScheduler #backmen: currency
+  - BasicRoundstartVariation
+
+- type: gamePreset
+  id: Greenshift
+  alias:
+  - greenshift
+  - shittersafarideluxeedition
+  name: greenshift-title
+  showInVote: false #4boring4vote
+  description: greenshift-description
+  rules:
+  - BasicRoundstartVariation
 
 - type: gamePreset
   id: Secret
@@ -33,31 +59,22 @@
     - Secret
 
 - type: gamePreset
-  id: FleshCult
+  id: SecretExtended #For Admin Use: Runs Extended but shows "Secret" in lobby.
   alias:
-    - fleshcult
-    - fs
-  name: flesh-cult-title
-  description: flesh-cult-description
-  showInVote: false
+    - secretextended
+  name: secret-title
+  showInVote: false #Admin Use
+  description: secret-description
   rules:
-    - FleshCult
     - BasicStationEventScheduler
-    - WageScheduler #backmen: currency
 
 - type: gamePreset
-  id: FleshCultAndTraitor
+  id: SecretGreenshift #For Admin Use: Runs Greenshift but shows "Secret" in lobby.
   alias:
-    - madness
-    - fleshcultandtraitor
-  name: flesh-cult-and-traitor-title
-  showInVote: false
-  description: flesh-cult-and-traitor-description
-  rules:
-    - FleshCult
-    - Traitor
-    - BasicStationEventScheduler
-    - WageScheduler #backmen: currency
+  - secretgreenshift
+  name: secret-title
+  showInVote: false #Admin Use
+  description: secret-description
 
 - type: gamePreset
   id: Sandbox
@@ -81,6 +98,7 @@
     - Traitor
     - BasicStationEventScheduler
     - WageScheduler #backmen: currency
+    - BasicRoundstartVariation
 
 - type: gamePreset
   id: Deathmatch
@@ -120,6 +138,7 @@
     - Nukeops
     - Traitor
     - BasicStationEventScheduler
+    - BasicRoundstartVariation
 
 - type: gamePreset
   id: Revolutionary
@@ -133,6 +152,7 @@
   rules:
     - Revolutionary
     - BasicStationEventScheduler
+    - BasicRoundstartVariation
 
 - type: gamePreset
   id: Zombie
@@ -149,6 +169,7 @@
   - Zombie
   - BasicStationEventScheduler
   - WageScheduler #backmen: currency
+  - BasicRoundstartVariation
 
 - type: gamePreset
   id: Pirates
@@ -161,3 +182,4 @@
     - Pirates
     - BasicStationEventScheduler
     - WageScheduler #backmen: currency
+    - BasicRoundstartVariation

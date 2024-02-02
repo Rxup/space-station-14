@@ -33,15 +33,12 @@ using Robust.Shared.Audio.Systems;
 using Robust.Shared.Containers;
 using Robust.Shared.Player;
 using Robust.Shared.Timing;
-using Content.Shared.CCVar;
-using Robust.Shared.Configuration;
 
 namespace Content.Server.MassMedia.Systems;
 
 public sealed class NewsSystem : SharedNewsSystem
 {
     [Dependency] private readonly IGameTiming _timing = default!;
-    [Dependency] private readonly IConfigurationManager _cfg = default!;
     [Dependency] private readonly UserInterfaceSystem _ui = default!;
     [Dependency] private readonly RingerSystem _ringer = default!;
     [Dependency] private readonly CartridgeLoaderSystem _cartridgeLoaderSystem = default!;
@@ -161,14 +158,14 @@ public sealed class NewsSystem : SharedNewsSystem
             }
         }
 
-        var maxNameLength = _cfg.GetCVar(CCVars.NewsNameLimit);
-        var maxContentLength = _cfg.GetCVar(CCVars.NewsContentLimit);
+        var trimmedName = msg.Name.Trim();
+        var trimmedContent = msg.Content.Trim();
 
-        NewsArticle article = new NewsArticle
+        var article = new NewsArticle
         {
             Author = authorName,
-            Name = (msg.Name.Length <= maxNameLength ? msg.Name.Trim() : $"{msg.Name.Trim().Substring(0, maxNameLength)}..."),
-            Content = (msg.Content.Length <= maxContentLength ? msg.Content.Trim() : $"{msg.Content.Trim().Substring(0, maxContentLength)}..."),
+            Name = trimmedName.Length <= MaxNameLength ? trimmedName : $"{trimmedName[..MaxNameLength]}...",
+            Content = trimmedContent.Length <= MaxArticleLength ? trimmedContent : $"{trimmedContent[..MaxArticleLength]}...",
             ShareTime = _ticker.RoundDuration()
         };
 

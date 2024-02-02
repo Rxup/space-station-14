@@ -33,3 +33,16 @@
   - type: Sprite
     sprite: Backmen/Structures/Furniture/chairs.rsi
     state: leather_sofa_right
+    
+- type: entity
+  name: comfy dark chair
+  id: ComfyDarkChair
+  parent: ComfyChair
+  description: Quite a comfortable dark chair.
+  components:
+  - type: Sprite
+    sprite: Backmen/Structures/Furniture/chairs.rsi
+    state: dark-comfy
+  - type: Construction
+    graph: Seat
+    node: chairDarkComfy
