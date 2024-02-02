@@ -1,6 +1,5 @@
 using Content.Server.Backmen.Abilities.Psionics;
 using Content.Server.Backmen.Eye;
-using Content.Shared.Vehicle.Components;
 using Content.Server.NPC.Systems;
 using Content.Shared.Backmen.Abilities.Psionics;
 using Content.Shared.Eye;
@@ -107,7 +106,7 @@ public sealed class PsionicInvisibilitySystem : EntitySystem
 
     private void OnEyeInit(EyeMapInit args)
     {
-        if (HasComp<PotentialPsionicComponent>(args.Target) || HasComp<VehicleComponent>(args.Target))
+        if (HasComp<PotentialPsionicComponent>(args.Target)) //|| HasComp<VehicleComponent>(args.Target)
             return;
 
         SetCanSeePsionicInvisiblity(args.Target, true, args.Target.Comp);

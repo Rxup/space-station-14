@@ -80,6 +80,15 @@
     - хихикнула
     - ржёт
     # Corvax-Localization-End
+    - chortle
+    - chortle.
+    - chortle!
+    - chortles
+    - chortles.
+    - chortles!
+    - chortling
+    - chortling.
+    - chortling!
 
 - type: emote
   id: Honk
@@ -154,6 +163,14 @@
     - рыдает.
     - рыдает!
     # Corvax-Localization-End
+    - sob
+    - sob.
+    - sobs
+    - sobs.
+    - sobs!
+    - sobbing
+    - sobbing.
+    - sobbing!
 
 - type: emote
   id: Squish
