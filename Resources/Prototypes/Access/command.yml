@@ -9,6 +9,14 @@
 - type: accessLevel
   id: HeadOfPersonnel
   name: id-card-access-level-head-of-personnel
+  
+- type: accessLevel
+  id: Blueshield
+  name: id-card-access-level-blueshield
+  
+- type: accessLevel
+  id: Magistrat
+  name: id-card-access-level-magistrat
 
 - type: accessGroup
   id: Command
@@ -16,6 +24,7 @@
   - Command
   - Captain
   - HeadOfPersonnel
-
+  - Magistrat
+  - Blueshield
 - type: accessLevel
   id: EmergencyShuttleRepealAll

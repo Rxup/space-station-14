@@ -5,31 +5,34 @@
   playTimeTracker: JobMagistrat
   requirements:
     - !type:DepartmentTimeRequirement
-      department: Security
-      time: 180000 #50 hrs
-    - !type:DepartmentTimeRequirement
       department: Command
       time: 180000 #50 hrs
-    - !type:OverallPlaytimeRequirement
-      time: 900000 #250 hrs
   startingGear: MagistratGear
-  icon: "JobIconMagistrat"
+  icon: "JobIconIAA"
   supervisors: job-supervisors-service
   canBeAntag: false
   setPreference: true
   access:
   - Magistrat
-  - Maintenance
-  - Command
-  - Service
-  - External
+  - Bar
+  - Kitchen
+  - Hydroponics
+  - Janitor
+  - Theatre
+  - Chapel
+  - Lawyer
   - Brig
   - Security
   - Medical
+  - Research
+  - Engineering
+  - Cargo
+  - Salvage
+  - Command
   extendedAccess:
   - Hydroponics
-  minBankBalance: 300
-  maxBankBalance: 500
+  minBankBalance: 200
+  maxBankBalance: 300
   wageDepartment: Civilian
   wage: 80
   special:
@@ -55,6 +58,8 @@
     id: MagistratPDA
     ears: ClothingHeadsetAltCommand
     head: ClothingHeadHatPwig
+    pocket1: Flash
+    pocket2: ClothingNeckLawyerbadge
   innerClothingSkirt: MagistratUniformSuit
   satchel: ClothingBackpackSatchelFilled
   duffelbag: ClothingBackpackDuffelFilled
