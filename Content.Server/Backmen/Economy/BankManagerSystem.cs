@@ -179,7 +179,7 @@ namespace Content.Server.Backmen.Economy;
         public bool TryWithdrawFromBankAccount(EntityUid bankAccount,
             KeyValuePair<string, FixedPoint2> currency, BankAccountComponent? bankAccountComponent)
         {
-            return Resolve(bankAccount, ref bankAccountComponent) && TryWithdrawFromBankAccount((bankAccount, bankAccountComponent), currency);
+            return Resolve(bankAccount, ref bankAccountComponent, false) && TryWithdrawFromBankAccount((bankAccount, bankAccountComponent), currency);
         }
 
         public bool TryWithdrawFromBankAccount(Entity<BankAccountComponent> bankAccount, KeyValuePair<string, FixedPoint2> currency)

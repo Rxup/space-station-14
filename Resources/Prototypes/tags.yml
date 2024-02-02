@@ -254,6 +254,9 @@
   id: CanPilot
 
 - type: Tag
+  id: CannonBall
+
+- type: Tag
   id: CannonRestrict
 
 - type: Tag
@@ -307,6 +310,9 @@
 
 - type: Tag
   id: Chicken
+
+- type: Tag
+  id: ChemDispensable # container that can go into the chem dispenser
 
 - type: Tag
   id: Cigarette
@@ -460,6 +466,9 @@
 
 - type: Tag
   id: DrinkSpaceGlue
+
+- type: Tag
+  id: DrinkBottle
 
 - type: Tag
   id: DroneUsable
@@ -690,9 +699,6 @@
   id: IntercomElectronics
 
 - type: Tag
-  id: JanicartKeys
-
-- type: Tag
   id: JawsOfLife
 
 - type: Tag
@@ -791,10 +797,16 @@
   id: MagazinePistolSubMachineGun
 
 - type: Tag
+  id: MagazineGrenade
+
+- type: Tag
   id: MailingUnitElectronics
 
 - type: Tag
   id: Matchstick
+
+- type: Tag
+  id: Mayo
 
 - type: Tag
   id: Meat
@@ -804,12 +816,6 @@
 
 - type: Tag
   id: Metal
-
-- type: Tag
-  id: MicrowaveMachineUnsafe
-
-- type: Tag
-  id: MicrowaveSelfUnsafe
 
 - type: Tag
   id: MindShield
@@ -944,6 +950,9 @@
   id: PowerCellSmall
 
 - type: Tag
+  id: PowerCage
+
+- type: Tag
   id: Powerdrill
 
 - type: Tag
@@ -1021,9 +1030,6 @@
 
 - type: Tag
   id: ShellShotgun
-
-- type: Tag
-  id: PelletShotgunFlare
 
 - type: Tag
   id: Shiv
@@ -1143,13 +1149,13 @@
   id: TrashBag
 
 - type: Tag
+  id: Unimplantable
+
+- type: Tag
   id: Unstackable # To prevent things like atmos devices (filters etc) being stacked on one tile. See NoUnstackableInTile
 
 - type: Tag
   id: UraniumGlassShard
-
-- type: Tag
-  id: VehicleKey
 
 - type: Tag
   id: VimPilot

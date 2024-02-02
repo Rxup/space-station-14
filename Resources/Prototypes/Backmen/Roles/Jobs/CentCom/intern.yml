@@ -23,8 +23,11 @@
       time: 108000
   access:
     - CentralCommand
-  accessGroups:
-    - AllAccess
+    - Service
+    - Maintenance
+    - Bar
+    - Kitchen
+    - Hydroponics
   special:
     - !type:AddImplantSpecial
       implants: [ MindShieldImplant ]
@@ -34,6 +37,7 @@
           actionBssActionName: ActionCentcomFtlAction
         - type: PsionicBonusChance
           multiplier: 3
+        - type: InitialInfectedExempt
   minBankBalance: 100
   maxBankBalance: 250
   wageDepartment: CentCom
@@ -92,15 +96,15 @@
   components:
     - type: Sprite
       layers:
-      - state: silver
-      - state: idiaa
+      - state: centcom
       - state: idintern-service
-    - type: Item
-      heldPrefix: silver
     - type: PresetIdCard
       job: BKCCAssistant
     - type: Access
       tags:
         - CentralCommand
-      groups:
-        - AllAccess
+        - Service
+        - Maintenance
+        - Bar
+        - Kitchen
+        - Hydroponics

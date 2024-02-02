@@ -16,3 +16,5 @@ ent-ClothingNeckLeatherCoat = Кожаный плащ
     .desc = Как у дедушки...
 ent-ClothingNeckCloakUEG = Плащ ОПЗ
     .desc = Выдаётся только верхушке ОПЗ.
+ent-ClothingNeckCloakROE = Плащ кровавой пустоты
+    .desc = Завораживающий плащ, в этой пустоте явно что то есть!

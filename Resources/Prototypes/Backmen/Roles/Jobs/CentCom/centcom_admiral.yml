@@ -5,7 +5,7 @@
   playTimeTracker: JobCentralCommandAdmiral
   setPreference: true
   startingGear: CentcomAdmiralGear
-  icon: JobIconNanotrasen
+  icon: JobIconNanotrasenHighOfficer
   supervisors: job-supervisors-hoh
   canBeAntag: false
   weight: 1
@@ -25,6 +25,7 @@
   accessGroups:
     - AllAccess
     - CentCom
+    - MTFLeader
   special:
     - !type:AddImplantSpecial
       implants: [ MindShieldImplant ]
@@ -34,11 +35,18 @@
           actionBssActionName: ActionCentcomFtlAction
         - type: Psionic
         - type: DispelPower
+        - type: InitialInfectedExempt
   minBankBalance: 400
   maxBankBalance: 600
   wageDepartment: CentCom
   wage: 75
 
+- type: statusIcon
+  parent: JobIcon
+  id: JobIconNanotrasenHighOfficer
+  icon:
+    sprite: Backmen/Icons/jobicon.rsi
+    state: Nanotrasen
 
 - type: entity
   parent: CentcomPDABackmen
@@ -64,9 +72,17 @@
   id: IDCardCentComAdmiral
   name: Id карта Адмирала ЦК
   components:
+    - type: Sprite
+      layers:
+      - state: gold
+      - state: idiaa
+      - state: idcentcom
+    - type: Item
+      heldPrefix: gold
     - type: PresetIdCard
-      job: BKCCOperator
+      job: BKCCAdmiral
     - type: Access
       groups:
         - AllAccess
         - CentCom
+        - MTFLeader

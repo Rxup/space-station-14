@@ -12,6 +12,7 @@
   id: Civilian
   description: department-Civilian-description
   color: "#9FED58"
+  weight: -10
   roles:
   - Blueshield        #backmen: currency
   - Magistrat         #backmen: currency
@@ -32,8 +33,8 @@
   - Reporter
   - Zookeeper
   - ServiceWorker
-  - TechnicalAssistant
-  - ResearchAssistant
+  #- TechnicalAssistant "The job TechnicalAssistant has more than 1 primary department!"
+  #- ResearchAssistant
   accountNumber: 1316 #backmen: currency
 
 - type: department
@@ -51,6 +52,8 @@
   - Quartermaster
   - SAI
   accountNumber: 1317 #backmen: currency
+  primary: false
+  weight: 100
 
 - type: department
   id: Engineering
@@ -80,6 +83,7 @@
   id: Security
   description: department-Security-description
   color: "#DE3A3A"
+  weight: 20
   roles:
   - HeadOfSecurity
   - SecurityCadet
@@ -105,9 +109,11 @@
   id: Specific
   description: department-Specific-description
   color: "#9FED58"
+  weight: 10
   roles:
   - Boxer
   - Reporter
   - Zookeeper
   - Psychologist
   accountNumber: 1322  #backmen: currency
+  primary: false

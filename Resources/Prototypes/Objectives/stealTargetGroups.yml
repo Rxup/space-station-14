@@ -171,7 +171,7 @@
   sprite:
     sprite: Objects/Tools/lighters.rsi
     state: zippo_engraved_icon_base
-    
+
 - type: stealTargetGroup
   id: AmmoTechFabCircuitboard
   name: ammo techfab circuit board
@@ -294,13 +294,6 @@
     state: icon
 
 - type: stealTargetGroup
-  id: VehicleSecway
-  name: secway
-  sprite:
-    sprite: Objects/Vehicles/secway.rsi
-    state: icon
-
-- type: stealTargetGroup
   id: ChemDispenser
   name: chemical dispenser
   sprite:
@@ -420,3 +413,10 @@
   sprite:
     sprite: Mobs/Animals/monkey.rsi
     state: monkey
+
+- type: stealTargetGroup
+  id: AnimalTropico
+  name: Tropico
+  sprite:
+    sprite: Mobs/Animals/crab.rsi
+    state: crab
