@@ -92,7 +92,6 @@
       - Stunbaton
       - ClothingEyesGlassesSecurity
       - ClothingEyesGlassesSunglasses
-      - ClothingOuterCoatDetective
       - MagazinePistolHighCapacity
       - MagazinePistolHighCapacity
     chance: 0.95
@@ -100,6 +99,7 @@
       - WeaponRevolverInspector
       - SpeedLoaderMagnum
       - SpeedLoaderMagnum
+      - ClothingOuterCoatDetective
     rareChance: 0.1
 
 - type: entity

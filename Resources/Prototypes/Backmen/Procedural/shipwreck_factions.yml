@@ -19,7 +19,7 @@
   objectiveDefender: MobDragonShipwrecked
   active:
     - id: MobCarpDungeon
-      prob: 0.3
+      prob: 0.25
       orGroup: Dragon
     - id: MobCarpHolo
       prob: 0.05
@@ -50,10 +50,10 @@
   objectiveDefender: MobXenoQueenShipwrecked
   active:
     - id: MobXeno
-      prob: 0.3
+      prob: 0.2
       orGroup: Xeno
     - id: MobXenoDrone
-      prob: 0.15
+      prob: 0.1
       orGroup: Xeno
   inactive:
     - id: RandomHumanoidSpawnerUnaffiliatedDead
