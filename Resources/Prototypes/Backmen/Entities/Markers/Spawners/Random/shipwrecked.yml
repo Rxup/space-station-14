@@ -23,20 +23,19 @@
       - CableApcStack
       - SpaceCash100
       - ClothingBeltUtilityFilled
-      - ClothingBackpackSalvage
-      - ClothingOuterVestHazard
-      - WeaponProtoKineticAccelerator
       - ClothingOuterHardsuitSpatio
+      - MagazinePistolHighCapacity
     chance: 0.9
     rarePrototypes:
-      - SheetUranium
-      - SheetUranium
       - SpearPlasma
+      - PowerCellHyper
       - ClothingOuterHardsuitSalvage
       - MiningDrill
       - SpaceCash1000
       - WeaponCrusher
       - WeaponCrusherDagger
+      - ClothingBackpackSalvage
+      - WeaponProtoKineticAccelerator
     rareChance: 0.2
 
 - type: entity
@@ -69,7 +68,7 @@
     chance: 0.95
     rarePrototypes:
       - MedkitCombatFilled
-    rareChance: 0.1
+    rareChance: 0.05
 
 - type: entity
   parent: MarkerBase
@@ -91,6 +90,7 @@
       - ClothingEyesGlassesSecurity
       - ClothingEyesGlassesSunglasses
       - ClothingOuterCoatDetective
+      - MagazinePistolHighCapacity
       - MagazinePistolHighCapacity
     chance: 0.95
     rarePrototypes:

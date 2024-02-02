@@ -208,9 +208,9 @@ entities:
             color: '#FFFFFFFF'
             id: Box
           decals:
-            37: -1,-15
-            38: -1,-16
-            39: -1,-17
+            31: -1,-15
+            32: -1,-16
+            33: -1,-17
         - node:
             color: '#334E6DC8'
             id: HalfTileOverlayGreyscale
@@ -2369,8 +2369,6 @@ entities:
           showEnts: False
           occludes: True
           ents:
-          - 103
-          - 152
           - 317
           - 93
           - 98
@@ -2380,7 +2378,7 @@ entities:
           - 316
           - 104
           - 264
-          - 307
+          - 103
         paper_label: !type:ContainerSlot
           showEnts: False
           occludes: True
@@ -2512,8 +2510,8 @@ entities:
           showEnts: False
           occludes: True
           ents:
-          - 324
           - 531
+          - 324
         paper_label: !type:ContainerSlot
           showEnts: False
           occludes: True
@@ -2627,13 +2625,6 @@ entities:
           - 101
 - proto: MagazinePistolHighCapacity
   entities:
-  - uid: 152
-    components:
-    - type: Transform
-      parent: 336
-    - type: Physics
-      canCollide: False
-    - type: InsideEntityStorage
   - uid: 264
     components:
     - type: Transform
@@ -2794,7 +2785,6 @@ entities:
     - type: Physics
       bodyType: Static
     - type: InsertingMaterialStorage
-      endTime: 0
 - proto: PottedPlantRandom
   entities:
   - uid: 52
@@ -4050,15 +4040,6 @@ entities:
 - proto: WeaponMakeshiftLaser
   entities:
   - uid: 178
-    components:
-    - type: Transform
-      parent: 336
-    - type: Physics
-      canCollide: False
-    - type: InsideEntityStorage
-- proto: WeaponPistolACP14
-  entities:
-  - uid: 307
     components:
     - type: Transform
       parent: 336
