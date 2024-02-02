@@ -429,7 +429,7 @@ entities:
       pos: 0.5,6.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -335.53635
+      secondsUntilStateChange: -478.3525
       state: Opening
 - proto: AirlockGlassShuttle
   entities:
@@ -1174,8 +1174,6 @@ entities:
       parent: 2
     - type: AtmosDevice
       joinedGrid: 2
-    - type: AtmosPipeColor
-      color: '#990000FF'
 - proto: GasPassiveVent
   entities:
   - uid: 217
@@ -1490,6 +1488,8 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 3.5,-3.5
       parent: 2
+    - type: GasPressurePump
+      targetPressure: 300
     - type: AtmosDevice
       joinedGrid: 2
     - type: AtmosPipeColor
@@ -1743,15 +1743,14 @@ entities:
           showEnts: False
           occludes: True
           ents:
-          - 251
-          - 250
-          - 249
-          - 257
-          - 252
-          - 258
-          - 270
-          - 302
           - 178
+          - 302
+          - 270
+          - 252
+          - 249
+          - 250
+          - 258
+          - 251
         paper_label: !type:ContainerSlot
           showEnts: False
           occludes: True
@@ -1944,25 +1943,18 @@ entities:
       parent: 2
     - type: Lock
       locked: False
+- proto: MagazinePistol
+  entities:
+  - uid: 258
+    components:
+    - type: Transform
+      parent: 139
+    - type: Physics
+      canCollide: False
+    - type: InsideEntityStorage
 - proto: MagazinePistolHighCapacity
   entities:
   - uid: 252
-    components:
-    - type: Transform
-      parent: 139
-    - type: Physics
-      canCollide: False
-    - type: InsideEntityStorage
-  - uid: 257
-    components:
-    - type: Transform
-      parent: 139
-    - type: Physics
-      canCollide: False
-    - type: InsideEntityStorage
-- proto: MagazinePistolHighCapacityRubber
-  entities:
-  - uid: 258
     components:
     - type: Transform
       parent: 139
@@ -2135,6 +2127,12 @@ entities:
     components:
     - type: Transform
       parent: 178
+    - type: Physics
+      canCollide: False
+  - uid: 257
+    components:
+    - type: Transform
+      parent: 250
     - type: Physics
       canCollide: False
 - proto: PowerCellRecharger
@@ -3045,15 +3043,21 @@ entities:
     - type: Physics
       canCollide: False
     - type: InsideEntityStorage
-- proto: WeaponMakeshiftLaser
-  entities:
   - uid: 250
     components:
     - type: Transform
       parent: 139
+    - type: ContainerContainer
+      containers:
+        gun_magazine: !type:ContainerSlot
+          showEnts: False
+          occludes: True
+          ent: 257
     - type: Physics
       canCollide: False
     - type: InsideEntityStorage
+- proto: WeaponMakeshiftLaser
+  entities:
   - uid: 270
     components:
     - type: Transform
