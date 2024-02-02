@@ -281,7 +281,7 @@ public sealed class ShipwreckedRuleSystem : GameRuleSystem<ShipwreckedRuleCompon
     [ValidatePrototypeId<DatasetPrototype>]
     private const string PlanetNames = "names_borer";
 
-    private const int MaxPreloadOffset  = 240;
+    private const int MaxPreloadOffset  = 200;
 
     private void SpawnPlanet(EntityUid uid, ShipwreckedRuleComponent component)
     {

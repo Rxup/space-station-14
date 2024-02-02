@@ -14,6 +14,7 @@
     offset: 0
     prototypes:
       - Pickaxe
+      - Pickaxe
       - SheetUranium1
       - PowerCellHigh
       - SheetPlastic
@@ -22,9 +23,11 @@
       - Floodlight
       - CableApcStack
       - SpaceCash100
+      - SpaceCash100
       - ClothingBeltUtilityFilled
-      - ClothingOuterHardsuitSpatio
+      - MagazinePistol
       - MagazinePistolHighCapacity
+      - ClothingHandsGlovesColorYellow
     chance: 0.9
     rarePrototypes:
       - SpearPlasma
@@ -32,10 +35,10 @@
       - ClothingOuterHardsuitSalvage
       - MiningDrill
       - SpaceCash1000
-      - WeaponCrusher
       - WeaponCrusherDagger
-      - ClothingBackpackSalvage
+      - ClothingBeltSalvageWebbing
       - WeaponProtoKineticAccelerator
+      - WeaponLaserSvalinn
     rareChance: 0.2
 
 - type: entity
