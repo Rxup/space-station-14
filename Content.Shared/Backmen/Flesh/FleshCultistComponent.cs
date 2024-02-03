@@ -1,7 +1,9 @@
-﻿using Content.Shared.Chemistry.Components;
+﻿using Content.Shared.Antag;
+using Content.Shared.Chemistry.Components;
 using Content.Shared.Chemistry.Reagent;
 using Content.Shared.FixedPoint;
 using Content.Shared.Maps;
+using Content.Shared.StatusIcon;
 using Content.Shared.Store;
 using Robust.Shared.Audio;
 using Robust.Shared.GameStates;
@@ -11,7 +13,7 @@ using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototy
 namespace Content.Shared.Backmen.Flesh;
 
 [RegisterComponent, NetworkedComponent]
-public sealed partial class FleshCultistComponent : Component
+public sealed partial class FleshCultistComponent : Component, IAntagStatusIconComponent
 {
     [ViewVariables(VVAccess.ReadWrite)] public FixedPoint2 Hunger = 140;
 
@@ -121,4 +123,7 @@ public sealed partial class FleshCultistComponent : Component
     public EntityUid? FleshCultistShop;
     public EntityUid? FleshCultistDevour;
     public EntityUid? FleshCultistAbsorbBloodPool;
+
+    public ProtoId<StatusIconPrototype> StatusIcon { get; set; } = "FleshcultistFaction";
+    public bool IconVisibleToGhost { get; set; } = true;
 }
