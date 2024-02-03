@@ -39,7 +39,7 @@
   mapName: Странник
   mapPath: /Maps/Backmen/Shuttles/Shipwrecked/traveller.yml
   minPlayers: 10
-  maxPlayers: 25
+  maxPlayers: 20
   stations:
     ShwrTraveller:
       stationProto: StandardStationArena
@@ -52,12 +52,15 @@
           availableJobs:
             Freelancer: [-1,-1]
 
+# Maps that aren't used right now due to the balance issues when 30+ ptople just destroys mobs.
+# For now gamerule is for 15-20 players at maximum.
+
 - type: gameMap
   id: shwrDust
   mapName: KL-Dust
   mapPath: /Maps/Backmen/Shuttles/Shipwrecked/shwr-dust.yml
-  minPlayers: 15
-  maxPlayers: 30
+  minPlayers: 31
+#  maxPlayers: 99
   stations:
     shwrDust:
       stationProto: StandardStationArena
@@ -74,7 +77,7 @@
   id: ShwrColossus
   mapName: Колосс
   mapPath: /Maps/Backmen/Shuttles/Shipwrecked/colossus.yml
-  minPlayers: 25
+  minPlayers: 31
   stations:
     ShwrColossus:
       stationProto: StandardStationArena

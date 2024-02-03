@@ -39,7 +39,7 @@
       - ClothingBeltSalvageWebbing
       - WeaponProtoKineticAccelerator
       - WeaponLaserSvalinn
-    rareChance: 0.2
+    rareChance: 0.25
 
 - type: entity
   parent: MarkerBase

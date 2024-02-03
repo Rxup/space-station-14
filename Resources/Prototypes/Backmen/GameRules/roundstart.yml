@@ -1,4 +1,4 @@
-﻿- type: entity
+- type: entity
   id: FleshCult
   parent: BaseGameRule
   noSpawn: true
@@ -27,7 +27,7 @@
         - Lava
       spawnPointHecate: SpawnPointShipwreckHecate
       hecatePrototype: MobQuestHecateShipwrecked
-      engiManifestOffset: 15
+      engiManifestOffset: 20
       mobSpawnChance: 0.8
       eventSchedule:
         - 13: AnnounceTransit
@@ -46,12 +46,11 @@
         - 6: AfterCrash
         - 12: Sitrep
 
-# Big maps is hard to balance with small shuttles, so they are removed for now.
 - type: gameMapPool
   id: ShipwreckedPool
   maps:
     - ShwrAdventurer
-    # - shwrDust
+    - shwrDust
     - ShwrTraveller
-    # - ShwrColossus
+    - ShwrColossus
     - ShwrArtur
