@@ -217,7 +217,7 @@
     - survival
     - nukeops
   name: survival-nukeops-title
-  showInVote: true # secret
+  showInVote: false # secret
   description: survival-nukeops-description
   rules:
     - RampingStationEventScheduler
