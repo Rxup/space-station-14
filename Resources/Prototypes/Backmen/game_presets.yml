@@ -201,8 +201,8 @@
     - nukeops
     - fleshcult
     - syndinukies
-  name: nukeops-fleshcult-syndinukies-title
-  description: nukeops-fleshcult-syndinukies-description
+  name: nukeops-fleshcult-traitor-title
+  description: nukeops-fleshcult-traitor-description
   showInVote: false
   rules:
     - Nukeops
@@ -210,3 +210,17 @@
     - BasicStationEventScheduler
     - WageScheduler
     - Traitor
+
+- type: gamePreset
+  id: SurvivalNukeops
+  alias:
+    - survival
+    - nukeops
+  name: survival-nukeops-title
+  showInVote: true # secret
+  description: survival-nukeops-description
+  rules:
+    - RampingStationEventScheduler
+    - WageScheduler #backmen: currency
+    - Nukeops
+    - BasicStationEventScheduler
