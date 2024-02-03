@@ -648,6 +648,165 @@
       gun_chamber: !type:ContainerSlot
 
 - type: entity
+  name: Divet
+  parent: BaseWeaponPistol
+  id: WeaponPistolDivet
+  description: The Divet is a standard sidearm for police and security personnel of the Earth Goverment.
+  components:
+  - type: Sprite
+    sprite: Backmen/Objects/Weapons/Gunsx64/Pistols/divet.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-0
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: Clothing
+    sprite: Backmen/Objects/Weapons/Gunsx64/Pistols/divet.rsi
+  - type: ChamberMagazineAmmoProvider
+    autoEject: true
+    soundAutoEject: /Audio/Backmen/Misc/empty_alarm.ogg
+    boltClosed: null
+  - type: ItemSlots
+    slots:
+      gun_magazine:
+        name: Magazine
+        startingItem: MagazinePistol345
+        insertSound: /Audio/Weapons/Guns64/Pistols/divet_magin.ogg
+        ejectSound: /Audio/Weapons/Guns64/Pistols/divet_magout.ogg
+        priority: 2
+        whitelist:
+          tags:
+            - MagazinePistolEGov
+      gun_chamber:
+        name: Chamber
+        startingItem: CartridgeMagnum345
+        priority: 1
+        whitelist:
+          tags:
+            - CartridgeMagnum345
+  - type: Gun
+    fireRate: 3
+    soundEmpty: /Audio/Backmen/Misc/error.ogg
+    soundGunshot:
+      path: /Audio/Weapons/Guns64/Pistols/divet_fire.ogg
+      params:
+        volume: -10
+
+- type: entity
+  parent: WeaponPistolDivet
+  id: WeaponPistolDivet2
+  components:
+  - type: Sprite
+    sprite: Backmen/Objects/Weapons/Gunsx64/Pistols/prentor.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-0
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: Clothing
+    sprite: Backmen/Objects/Weapons/Gunsx64/Pistols/prentor.rsi
+
+- type: Tag
+  id: MagazinePistolEGov
+
+- type: entity
+  id: MagazinePistol345
+  name: pistol magazine (.345 magnum)
+  parent: MagazinePistol
+  components:
+  - type: Tag
+    tags:
+      - MagazinePistolEGov
+      - MagazinePistol
+  - type: BallisticAmmoProvider
+    proto: CartridgeMagnum345
+    mayTransfer: true
+    whitelist:
+      tags:
+        - CartridgeMagnum345
+    capacity: 9
+  - type: Item
+    size: Small
+  - type: Sprite
+    netsync: false
+    sprite: Backmen/Objects/Weapons/Gunsx64/Magazines/Pistol/divet.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: MagazineVisuals
+    magState: mag
+    steps: 2
+    zeroVisible: false
+  - type: Appearance
+
+- type: entity
+  id: BaseCartridgeMagnum345
+  name: cartridge (.345 magnum)
+  parent: BaseCartridge
+  abstract: true
+  components:
+  - type: Tag
+    tags:
+      - Cartridge
+      - CartridgeMagnum345
+  - type: CartridgeAmmo
+    proto: BulletMagnum
+  - type: Sprite
+    netsync: false
+    sprite: Backmen/Objects/Weapons/Gunsx64/Ammunition/Casings/ammo_casing.rsi
+    layers:
+    - state: 45combat
+      map: ["enum.AmmoVisualLayers.Base"]
+  - type: Appearance
+  - type: SpentAmmoVisuals
+  - type: StaticPrice
+    price: 10
+
+- type: Tag
+  id: CartridgeMagnum345
+
+- type: entity
+  id: CartridgeMagnum345
+  name: cartridge (.345 magnum)
+  parent: BaseCartridgeMagnum345
+  components:
+  - type: Sprite
+    layers:
+    - state: 45fast #corvax-resprite
+      map: ["enum.AmmoVisualLayers.Base"]
+  - type: SpentAmmoVisuals
+    state: 45fast
+  - type: CartridgeAmmo
+    proto: BulletMagnum345
+
+- type: Tag
+  id: BulletMagnum345
+
+- type: entity
+  id: BulletMagnum345
+  name: 345 magnum bullet
+  parent: BaseBullet
+  noSpawn: true
+  components:
+  - type: Sprite
+    sprite: Backmen/Effects/muzzle/divet.rsi
+    layers:
+    - state: projectiles_divet
+      shader: unshaded
+  - type: Ammo
+  - type: Projectile
+    damage:
+      types:
+        Piercing: 30
+    soundHit:
+      path: /Audio/Weapons/Guns/Hits/bullet_hit.ogg
+  - type: Tag
+    tags:
+      - BulletMagnum345
+
+- type: entity
   name: AKMS
   parent: BaseWeaponRifle
   id: WeaponAKMSRifle
@@ -1792,6 +1951,86 @@
   - type: UseDelay
     delay: 1.3
   - type: GunRequiresWield
+
+- type: entity
+  name: AA-12
+  parent: WeaponShotgunBulldog
+  id: WeaponShotgunAA12
+  suffix: Дробовик
+  description: It's a magazine-fed shotgun designed for close quarters combat. Uses .12 gauge shotgun shells.
+  components:
+  - type: Sprite
+    sprite: Backmen/Objects/Weapons/Gunsx64/Shotguns/aa12/big.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-0
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: Item
+    sprite: Backmen/Objects/Weapons/Gunsx64/Shotguns/aa12/tiny.rsi
+  - type: Clothing
+    sprite: Backmen/Objects/Weapons/Gunsx64/Shotguns/aa12/tiny.rsi
+  - type: Wieldable
+  - type: UseDelay
+    delay: 1.3
+  - type: GunRequiresWield
+  - type: Gun
+    fireRate: 4
+  - type: ItemSlots
+    slots:
+      gun_magazine:
+        name: Magazine
+        startingItem: MagazineShotgunMagnum12
+        priority: 2
+        whitelist:
+          tags:
+          - MagazineShotgun
+        insertSound: /Audio/Weapons/Guns/MagIn/smg_magin.ogg
+        ejectSound: /Audio/Weapons/Guns/MagOut/smg_magout.ogg
+
+- type: entity
+  id: MagazineShotgunMagnum12
+  name: ammo drum (.12 gauge magnum)
+  parent: BaseMagazineShotgun
+  components:
+  - type: BallisticAmmoProvider
+    proto: ShellShotgunMagnum12
+    capacity: 20
+  - type: Sprite
+    layers:
+    - state: pellets
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+
+- type: entity
+  id: ShellShotgunMagnum12
+  name: shell (.12 gauge magnum)
+  parent: BaseShellShotgun
+  components:
+  - type: Sprite
+    sprite: Backmen/Objects/Weapons/Gunsx64/Ammunition/Casings/shotgun_shell.rsi
+    layers:
+      - state: base
+        map: [ "enum.AmmoVisualLayers.Base" ]
+  - type: CartridgeAmmo
+    proto: PelletShotgun
+    count: 10
+    spread: 16
+    soundEject:
+      collection: ShellEject
+  - type: EmitSoundOnLand
+    sound:
+      collection: ShellLand
+      params:
+        volume: 1
+
+- type: soundCollection
+  id: ShellLand
+  files:
+  - /Audio/Backmen/Weapons/ShotgunShell/shotgun_shell1.ogg
+  - /Audio/Backmen/Weapons/ShotgunShell/shotgun_shell2.ogg
+  - /Audio/Backmen/Weapons/ShotgunShell/shotgun_shell3.ogg
 
 - type: entity
   name: BR-64
@@ -3337,3 +3576,34 @@
   - type: GrowingKudzu
   - type: TimedDespawn
     lifetime: 40
+
+- type: entity
+  name: PTRD-M
+  parent: BaseWeaponSniper
+  id: WeaponSniperPtrd-m
+  description: Dragunov portable anti-tank rifle. It fires analog armor-piercing projectiles of 14.5 mm caliber. Uses anti-tank ammunition
+  components:
+  - type: Wieldable
+  - type: GunRequiresWield
+  - type: Sprite
+    sprite: Backmen/Objects/Weapons/Gunsx64/Snipers/ptrdm/big.rsi
+  - type: Clothing
+    sprite: Backmen/Objects/Weapons/Gunsx64/Snipers/ptrdm/tiny.rsi
+  - type: Item
+    sprite: Backmen/Objects/Weapons/Gunsx64/Snipers/ptrdm/tiny.rsi
+  - type: Gun
+    fireRate: 1
+    soundGunshot:
+      path: /Audio/Weapons/Guns64/Snipers/tl122.ogg
+      params:
+        volume: -2
+    soundEmpty:
+      path: /Audio/Weapons/Guns64/Rifles/m41a_empty.ogg
+  - type: BallisticAmmoProvider
+    soundRack:
+      path: /Audio/Weapons/Guns64/Snipers/tl-127_bolt.ogg
+    whitelist:
+      tags:
+      - CartridgeAntitank
+    capacity: 1
+    proto: CartridgeAntitank

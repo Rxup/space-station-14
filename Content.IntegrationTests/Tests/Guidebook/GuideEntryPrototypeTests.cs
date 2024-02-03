@@ -3,7 +3,6 @@ using Content.Client.Guidebook.Richtext;
 using Robust.Shared.ContentPack;
 using Robust.Shared.Prototypes;
 using System.Linq;
-using Robust.Shared.Log;
 
 namespace Content.IntegrationTests.Tests.Guidebook;
 
@@ -24,20 +23,18 @@ public sealed class GuideEntryPrototypeTests
         var parser = client.ResolveDependency<DocumentParsingManager>();
         var prototypes = protoMan.EnumeratePrototypes<GuideEntryPrototype>().ToList();
 
-        client.ResolveDependency<ILogManager>().GetSawmill("ui").Level = LogLevel.Error;
-
-        await client.WaitAssertion(() =>
+        foreach (var proto in prototypes)
         {
-            Assert.Multiple(() =>
+            await client.WaitAssertion(() =>
             {
-                foreach (var proto in prototypes)
-                {
-                    var text = resMan.ContentFileReadText(proto.Text).ReadToEnd();
-                    Assert.That(parser.TryAddMarkup(new Document(), text), $"Failed to parse guidebook: {proto.Id}");
-                }
+                using var reader = resMan.ContentFileReadText(proto.Text);
+                var text = reader.ReadToEnd();
+                Assert.That(parser.TryAddMarkup(new Document(), text), $"Failed to parse guidebook: {proto.Id}");
             });
-        });
-        await client.WaitRunTicks(10);
+
+            // Avoid styleguide update limit
+            await client.WaitRunTicks(1);
+        }
 
         await pair.CleanReturnAsync();
     }

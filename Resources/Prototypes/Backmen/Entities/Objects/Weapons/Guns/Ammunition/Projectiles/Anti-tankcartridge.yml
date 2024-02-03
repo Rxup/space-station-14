@@ -1,0 +1,15 @@
+- type: entity
+  noSpawn: true
+  parent: BaseBullet
+  id: BulletAntitank
+  name: Cartridge (14.5 Anti-tank)
+  components:
+  - type: Projectile
+    damage:
+      types:
+        Piercing: 200
+        Structural: 200
+  - type: StaminaDamageOnCollide
+    damage: 100
+  - type:  Sprite
+    scale: 2.0,2.0

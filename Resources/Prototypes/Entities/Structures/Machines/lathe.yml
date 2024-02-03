@@ -134,7 +134,6 @@
       - TrashBag
       - PowerCellSmall
       - PowerCellMedium
-      - VehicleWheelchairFolded
       - RollerBedSpawnFolded
       - CheapRollerBedSpawnFolded
       - EmergencyRollerBedSpawnFolded
@@ -263,7 +262,6 @@
       - AnomalyScanner
       - AnomalyLocator
       - AnomalyLocatorWide
-      - HandheldCrewMonitor
       - Scalpel
       - Retractor
       - Cautery
@@ -383,6 +381,7 @@
     - ElectrolysisUnitMachineCircuitboard
     - CentrifugeMachineCircuitboard
     - CondenserMachineCircuitBoard
+    - PrinterDocMachineCircuitboard # Corvax-Printer
     - UniformPrinterMachineCircuitboard
     - FloorGreenCircuit
     - FloorBlueCircuit
@@ -662,6 +661,7 @@
       - ForensicPad
       - RiotShield
       - ShellShotgun
+      - ShellShotgunSlug
       - ShellShotgunFlare
       - ShellTranquilizer
       - MagazinePistol
@@ -777,6 +777,7 @@
         - CartridgePistol
         - CartridgeMagnum
         - ShellShotgun
+        - ShellShotgunSlug
         - ShellShotgunFlare
         - ShellTranquilizer
         - CartridgeLightRifle
@@ -828,7 +829,6 @@
       - PillCanister
       - BodyBag
       - ChemistryEmptyBottle01
-      - VehicleWheelchairFolded
       - RollerBedSpawnFolded
       - CheapRollerBedSpawnFolded
       - EmergencyRollerBedSpawnFolded
@@ -841,7 +841,6 @@
       - MedkitRadiation
       - MedkitCombat
     dynamicRecipes:
-      - HandheldCrewMonitor
       - ClothingHandsGlovesNitrile
       - CryostasisBeaker
       - LargeBeaker
@@ -1093,6 +1092,20 @@
   - type: Lathe
     materialUseMultiplier: 0.75
     timeMultiplier: 0.5
+    staticRecipes:
+      - SheetSteel30
+      - SheetGlass30
+      - SheetRGlass30
+      - SheetPlasma30
+      - SheetPGlass30
+      - SheetRPGlass30
+      - SheetPlasteel30
+      - SheetUranium30
+      - SheetUGlass30
+      - SheetRUGlass30
+      - IngotGold30
+      - IngotSilver30
+      - MaterialBananium10
 
 - type: entity
   parent: BaseLathe

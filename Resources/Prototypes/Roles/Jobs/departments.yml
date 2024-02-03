@@ -29,7 +29,9 @@
   - Musician
   - Passenger
   - Reporter
+  - Visitor
   - Zookeeper
+  - Detective
   - ServiceWorker
   #- TechnicalAssistant "The job TechnicalAssistant has more than 1 primary department!"
   #- ResearchAssistant
@@ -86,7 +88,6 @@
   - HeadOfSecurity
   - SecurityCadet
   - SecurityOfficer
-  - Detective
   - Warden
   - Brigmedic #backmen
   - Prisoner #backmen

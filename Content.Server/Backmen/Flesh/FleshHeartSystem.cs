@@ -25,10 +25,12 @@ using Content.Shared.Random;
 using Content.Shared.Random.Helpers;
 using Content.Shared.Tag;
 using Robust.Server.Containers;
+using Robust.Server.GameObjects;
 using Robust.Shared.Audio;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Containers;
 using Robust.Shared.Map;
+using Robust.Shared.Map.Components;
 using Robust.Shared.Physics;
 using Robust.Shared.Physics.Components;
 using Robust.Shared.Physics.Systems;
@@ -59,6 +61,8 @@ namespace Content.Server.Backmen.Flesh
         [Dependency] private readonly AlertLevelSystem _alertLevel = default!;
         [Dependency] private readonly RoundEndSystem _roundEndSystem = default!;
         [Dependency] private readonly RandomHelperSystem _randomHelper = default!;
+        [Dependency] private readonly MapSystem _mapSystem = default!;
+        [Dependency] private readonly TransformSystem _transform = default!;
 
         public enum HeartStates
         {
@@ -96,8 +100,7 @@ namespace Content.Server.Backmen.Flesh
             var coordinates = xform.Coordinates;
             foreach (var ent in component.BodyContainer.ContainedEntities.ToArray())
             {
-                component.BodyContainer.Remove(ent, EntityManager, force: true);
-                Transform(ent).Coordinates = coordinates;
+                _containerSystem.Remove(ent, component.BodyContainer, force: true, destination: coordinates);
                 _randomHelper.RandomOffset(ent, 1f);
             }
 
@@ -147,7 +150,8 @@ namespace Content.Server.Backmen.Flesh
                         if (comp.BodyContainer.ContainedEntities.Count >= comp.BodyToFinalStage)
                         {
                             comp.State = HeartStates.Active;
-                            var location = Transform(ent).MapPosition;
+
+                            var location = _transform.GetMapCoordinates(ent);
 
                             _chat.DispatchGlobalAnnouncement(
                                 Loc.GetString("flesh-heart-activate-warning", ("location", location.Position)),
@@ -246,7 +250,7 @@ namespace Content.Server.Backmen.Flesh
 
             if (TryComp(args.Climber, out ContainerManagerComponent? container))
             {
-                foreach (var cont in container.GetAllContainers().ToArray())
+                foreach (var cont in _containerSystem.GetAllContainers(args.Climber, container).ToArray())
                 {
                     foreach (var ent in cont.ContainedEntities.ToArray())
                     {
@@ -256,38 +260,37 @@ namespace Content.Server.Backmen.Flesh
                                 continue;
                             }
 
-                            cont.Remove(ent, EntityManager, force: true);
-                            Transform(ent).Coordinates = xform.Coordinates;
+                            _containerSystem.Remove(ent, cont, force: true, destination: xform.Coordinates);
                             _randomHelper.RandomOffset(ent, 0.25f);
                         }
                     }
                 }
             }
 
-            if (TryComp<HumanoidAppearanceComponent>(args.Climber, out var HuAppComponent))
+            if (
+                TryComp<HumanoidAppearanceComponent>(args.Climber, out var huAppComponent) &&
+                TryComp<BodyComponent>(args.Climber, out var bodyComponent))
             {
-                if (TryComp<BodyComponent>(args.Climber, out var bodyComponent))
+                var parts = _body.GetBodyChildren(args.Climber, bodyComponent).ToArray();
+
+                foreach (var part in parts)
                 {
-                    var parts = _body.GetBodyChildren(args.Climber, bodyComponent).ToArray();
+                    if (part.Component.PartType == BodyPartType.Head)
+                        continue;
 
-                    foreach (var part in parts)
+                    if (part.Component.PartType == BodyPartType.Torso)
                     {
-                        if (part.Component.PartType == BodyPartType.Head)
-                            continue;
-
-                        if (part.Component.PartType == BodyPartType.Torso)
+                        foreach (var organ in _body.GetPartOrgans(part.Id, part.Component))
                         {
-                            foreach (var organ in _body.GetPartOrgans(part.Id, part.Component))
-                            {
-                                _body.RemoveOrgan(organ.Id, organ.Component);
-                            }
-                        }
-                        else
-                        {
-                            QueueDel(part.Id);
+                            _body.RemoveOrgan(organ.Id, organ.Component);
                         }
                     }
+                    else
+                    {
+                        QueueDel(part.Id);
+                    }
                 }
+
 
                 _bloodstreamSystem.TryModifyBloodLevel(args.Climber, -300);
 
@@ -296,7 +299,7 @@ namespace Content.Server.Backmen.Flesh
                 {
                     if (key != HumanoidVisualLayers.Head)
                     {
-                        _sharedHuApp.SetBaseLayerId(args.Climber, key, id, humanoid: HuAppComponent);
+                        _sharedHuApp.SetBaseLayerId(args.Climber, key, id, humanoid: huAppComponent);
                     }
                 }
 
@@ -309,7 +312,7 @@ namespace Content.Server.Backmen.Flesh
                         new DamageSpecifier() { DamageDict = { { "Slash", 100 } } });
                 }
 
-                component.BodyContainer.Insert(args.Climber);
+                _containerSystem.Insert(args.Climber, component.BodyContainer);
                 _audioSystem.PlayPvs(component.TransformSound, uid, component.TransformSound.Params);
             }
         }
@@ -337,16 +340,16 @@ namespace Content.Server.Backmen.Flesh
         private void SpawnObjectsOnOpenTiles(FleshHeartComponent component, TransformComponent xform, int amount,
             float radius)
         {
-            if (!_map.TryGetGrid(xform.GridUid, out var grid))
+            if (!TryComp<MapGridComponent>(xform.GridUid, out var grid))
                 return;
 
             var localpos = xform.Coordinates.Position;
-            var tilerefs = grid.GetLocalTilesIntersecting(
+            var tilerefs = _mapSystem.GetLocalTilesIntersecting(xform.GridUid.Value, grid,
                 new Box2(localpos + new Vector2(-radius, -radius), localpos + new Vector2(radius, radius))).ToArray();
             foreach (var tileref in tilerefs)
             {
                 var canSpawnBlocker = true;
-                foreach (var ent in grid.GetAnchoredEntities(tileref.GridIndices).ToList())
+                foreach (var ent in _mapSystem.GetAnchoredEntities(xform.GridUid.Value, grid, tileref.GridIndices).ToList())
                 {
                     if (_tagSystem.HasAnyTag(ent, "FleshBlocker", "Wall", "Window"))
                     {
@@ -354,29 +357,26 @@ namespace Content.Server.Backmen.Flesh
                     }
                 }
 
-                if (canSpawnBlocker)
+                if (canSpawnBlocker && _random.Prob(0.01f))
                 {
-                    if (_random.Prob(0.01f))
-                    {
-                        EntityManager.SpawnEntity(component.FleshBlockerId,
-                            tileref.GridIndices.ToEntityCoordinates(xform.GridUid.Value, _map));
-                    }
+                    Spawn(component.FleshBlockerId,
+                        _mapSystem.ToCoordinates(xform.GridUid.Value, tileref.GridIndices, grid));
                 }
             }
         }
 
         private void SpawnFleshFloorOnOpenTiles(FleshHeartComponent component, TransformComponent xform, float radius)
         {
-            if (!_map.TryGetGrid(xform.GridUid, out var grid))
+            if (!TryComp<MapGridComponent>(xform.GridUid, out var grid))
                 return;
 
             var localpos = xform.Coordinates.Position;
-            var tilerefs = grid.GetLocalTilesIntersecting(
+            var tilerefs = _mapSystem.GetLocalTilesIntersecting(xform.GridUid.Value, grid,
                 new Box2(localpos + new Vector2(-radius, -radius), localpos + new Vector2(radius, radius))).ToArray();
             foreach (var tileref in tilerefs)
             {
                 var canSpawnFloor = true;
-                foreach (var ent in grid.GetAnchoredEntities(tileref.GridIndices).ToList())
+                foreach (var ent in _mapSystem.GetAnchoredEntities(xform.GridUid.Value, grid, tileref.GridIndices).ToList())
                 {
                     if (_tagSystem.HasAnyTag(ent, "Wall", "Window", "Flesh"))
                         canSpawnFloor = false;
@@ -384,8 +384,8 @@ namespace Content.Server.Backmen.Flesh
 
                 if (canSpawnFloor)
                 {
-                    EntityManager.SpawnEntity(component.FleshTileId,
-                        tileref.GridIndices.ToEntityCoordinates(xform.GridUid.Value, _map));
+                    Spawn(component.FleshTileId,
+                        _mapSystem.ToCoordinates(xform.GridUid.Value, tileref.GridIndices, grid));
                 }
             }
         }
@@ -393,11 +393,11 @@ namespace Content.Server.Backmen.Flesh
         private void SpawnMonstersOnOpenTiles(FleshHeartComponent component, TransformComponent xform, int amount,
             float radius)
         {
-            if (!_map.TryGetGrid(xform.GridUid, out var grid))
+            if (!TryComp<MapGridComponent>(xform.GridUid, out var grid))
                 return;
 
             var localpos = xform.Coordinates.Position;
-            var tilerefs = grid.GetLocalTilesIntersecting(
+            var tilerefs = _mapSystem.GetLocalTilesIntersecting(xform.GridUid.Value, grid,
                 new Box2(localpos + new Vector2(-radius, -radius), localpos + new Vector2(radius, radius))).ToArray();
             _random.Shuffle(tilerefs);
             var physQuery = GetEntityQuery<PhysicsComponent>();
@@ -405,7 +405,7 @@ namespace Content.Server.Backmen.Flesh
             foreach (var tileref in tilerefs)
             {
                 var valid = true;
-                foreach (var ent in grid.GetAnchoredEntities(tileref.GridIndices))
+                foreach (var ent in _mapSystem.GetAnchoredEntities(xform.GridUid.Value, grid, tileref.GridIndices))
                 {
                     if (!physQuery.TryGetComponent(ent, out var body))
                         continue;
@@ -422,7 +422,8 @@ namespace Content.Server.Backmen.Flesh
                 amountCounter++;
 
                 var randomMob = _random.Pick(component.Spawns);
-                var mob = Spawn(randomMob, tileref.GridIndices.ToEntityCoordinates(xform.GridUid.Value, _map));
+                var mob = Spawn(randomMob,
+                    _mapSystem.ToCoordinates(xform.GridUid.Value, tileref.GridIndices, grid));
                 component.EdgeMobs.Add(mob);
                 if (amountCounter >= amount)
                     return;
