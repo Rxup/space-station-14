@@ -1,9 +1,15 @@
 using Content.Server.Backmen.Blob.NPC.BlobPod;
+using Content.Server.Chemistry.Containers.EntitySystems;
 using Content.Server.Explosion.Components;
 using Content.Shared.Backmen.Blob;
+using Content.Shared.Chemistry.Components;
+using Content.Shared.Chemistry.Reagent;
 using Content.Shared.Damage;
 using Content.Shared.Destructible;
+using Content.Shared.Explosion.Components;
+using Content.Shared.FixedPoint;
 using Content.Shared.Weapons.Melee;
+using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
 
 namespace Content.Server.Backmen.Blob;
@@ -11,6 +17,9 @@ namespace Content.Server.Backmen.Blob;
 public sealed class BlobFactorySystem : EntitySystem
 {
     [Dependency] private readonly IGameTiming _gameTiming = default!;
+    [Dependency] private readonly SolutionContainerSystem _solutionSystem = default!;
+    [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
+
 
     public override void Initialize()
     {
@@ -68,6 +77,29 @@ public sealed class BlobFactorySystem : EntitySystem
         }
     }
 
+    [ValidatePrototypeId<ReagentPrototype>]
+    private const string Phlogiston = "Phlogiston";
+
+    [ValidatePrototypeId<ReagentPrototype>]
+    private const string TearGas = "TearGas";
+
+    [ValidatePrototypeId<ReagentPrototype>]
+
+    private const string Lexorin = "Lexorin";
+
+    [ValidatePrototypeId<ReagentPrototype>]
+    private const string Mold = "Mold";
+
+    [ValidatePrototypeId<ReagentPrototype>]
+    private const string Bicaridine = "Bicaridine";
+
+    [ValidatePrototypeId<ReagentPrototype>]
+    private const string Aluminium = "Aluminium";
+    [ValidatePrototypeId<ReagentPrototype>]
+    private const string Iron = "Iron";
+    [ValidatePrototypeId<ReagentPrototype>]
+    private const string Uranium = "Uranium";
+
     private void OnPulsed(EntityUid uid, BlobFactoryComponent component, BlobTileGetPulseEvent args)
     {
         if (!TryComp<BlobTileComponent>(uid, out var blobTileComponent) || blobTileComponent.Core == null)
@@ -87,7 +119,37 @@ public sealed class BlobFactorySystem : EntitySystem
         component.BlobPods.Add(pod);
         var blobPod = EnsureComp<BlobPodComponent>(pod);
         blobPod.Core = blobTileComponent.Core.Value;
-        var smokeOnTrigger = EnsureComp<SmokeOnTriggerComponent>(pod);
+        var blobGas = EnsureComp<SmokeOnTriggerComponent>(pod).Solution;
+        switch (blobCoreComponent.CurrentChem)
+        {
+            case BlobChemType.BlazingOil:
+                blobGas.AddSolution(new Solution(Phlogiston, FixedPoint2.New(30))
+                {
+                    Temperature = 1000
+                },_prototypeManager);
+                break;
+            case BlobChemType.ReactiveSpines:
+                blobGas.AddSolution(new Solution(Mold, FixedPoint2.New(30)),_prototypeManager);
+                break;
+            case BlobChemType.RegenerativeMateria:
+                blobGas.AddSolution(new Solution(Bicaridine, FixedPoint2.New(30)),_prototypeManager);
+                break;
+            case BlobChemType.ExplosiveLattice:
+                blobGas.AddSolution(new Solution(Lexorin, FixedPoint2.New(30))
+                {
+                    Temperature = 1000
+                },_prototypeManager);
+                break;
+            case BlobChemType.ElectromagneticWeb:
+                blobGas.AddSolution(new Solution(Aluminium, FixedPoint2.New(10)){ CanReact = false },_prototypeManager);
+                blobGas.AddSolution(new Solution(Iron, FixedPoint2.New(10)){ CanReact = false },_prototypeManager);
+                blobGas.AddSolution(new Solution(Uranium, FixedPoint2.New(10)){ CanReact = false },_prototypeManager);
+                break;
+            default:
+                blobGas.AddSolution(new Solution(TearGas, FixedPoint2.New(30)),_prototypeManager);
+                break;
+        }
+
         //smokeOnTrigger.SmokeColor = blobCoreComponent.ChemСolors[blobCoreComponent.CurrentChem];
         component.SpawnedCount += 1;
         component.NextSpawn = _gameTiming.CurTime + TimeSpan.FromSeconds(component.SpawnRate);

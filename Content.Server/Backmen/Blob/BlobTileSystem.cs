@@ -11,9 +11,11 @@ using Content.Shared.FixedPoint;
 using Content.Shared.Popups;
 using Content.Shared.Verbs;
 using Robust.Server.Audio;
+using Robust.Server.GameObjects;
 using Robust.Shared.Audio;
 using Robust.Shared.GameStates;
 using Robust.Shared.Map;
+using Robust.Shared.Map.Components;
 
 namespace Content.Server.Backmen.Blob;
 
@@ -25,6 +27,8 @@ public sealed class BlobTileSystem : SharedBlobTileSystem
     [Dependency] private readonly AudioSystem _audioSystem = default!;
     [Dependency] private readonly SharedPopupSystem _popup = default!;
     [Dependency] private readonly EmpSystem _empSystem = default!;
+    [Dependency] private readonly TransformSystem _transform = default!;
+    [Dependency] private readonly MapSystem _mapSystem = default!;
 
 
     public override void Initialize()
@@ -183,12 +187,12 @@ public sealed class BlobTileSystem : SharedBlobTileSystem
 
         var xform = Transform(uid);
 
-        if (!_map.TryGetGrid(xform.GridUid, out var grid))
+        if (!TryComp<MapGridComponent>(xform.GridUid, out var grid))
         {
             return;
         }
 
-        var mobTile = grid.GetTileRef(xform.Coordinates);
+        var mobTile = _mapSystem.GetTileRef(xform.GridUid.Value, grid, xform.Coordinates);
 
         var mobAdjacentTiles = new[]
         {
@@ -202,7 +206,7 @@ public sealed class BlobTileSystem : SharedBlobTileSystem
 
         var radius = 1.0f;
 
-        var innerTiles = grid.GetLocalTilesIntersecting(
+        var innerTiles = _mapSystem.GetLocalTilesIntersecting(xform.GridUid.Value, grid,
             new Box2(localPos + new Vector2(-radius, -radius), localPos + new Vector2(radius, radius))).ToArray();
 
         foreach (var innerTile in innerTiles)
@@ -212,7 +216,7 @@ public sealed class BlobTileSystem : SharedBlobTileSystem
                 continue;
             }
 
-            foreach (var ent in grid.GetAnchoredEntities(innerTile.GridIndices))
+            foreach (var ent in _mapSystem.GetAnchoredEntities(xform.GridUid.Value, grid, innerTile.GridIndices))
             {
                 if (!HasComp<DestructibleComponent>(ent) || !HasComp<ConstructionComponent>(ent))
                     continue;
@@ -222,7 +226,7 @@ public sealed class BlobTileSystem : SharedBlobTileSystem
                 return;
             }
             var spawn = true;
-            foreach (var ent in grid.GetAnchoredEntities(innerTile.GridIndices))
+            foreach (var ent in _mapSystem.GetAnchoredEntities(xform.GridUid.Value, grid, innerTile.GridIndices))
             {
                 if (!HasComp<BlobTileComponent>(ent))
                     continue;
@@ -233,7 +237,7 @@ public sealed class BlobTileSystem : SharedBlobTileSystem
             if (!spawn)
                 continue;
 
-            var location = innerTile.GridIndices.ToEntityCoordinates(xform.GridUid.Value, _map);
+            var location = _mapSystem.ToCoordinates(xform.GridUid.Value, innerTile.GridIndices, grid);
 
             if (_blobCoreSystem.TransformBlobTile(null,
                     blobTileComponent.Core.Value,

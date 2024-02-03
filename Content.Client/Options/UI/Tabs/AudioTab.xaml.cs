@@ -142,7 +142,7 @@ namespace Content.Client.Options.UI.Tabs
             _cfg.SetCVar(CCVars.LobbyMusicVolume, LobbyVolumeSlider.Value / 100f * ContentAudioSystem.LobbyMultiplier);
             _cfg.SetCVar(CCVars.InterfaceVolume, InterfaceVolumeSlider.Value / 100f * ContentAudioSystem.InterfaceMultiplier);
             _cfg.SetCVar(CCCVars.TTSVolume, TtsVolumeSlider.Value / 100f * ContentAudioSystem.TtsMultiplier); // Corvax-TTS
-            _cfg.SetCVar(CCCVars.TTSAnnounceVolume, TtsAnnounceVolumeSlider.Value / 100f * ContentAudioSystem.TtsMultiplier); // Corvax-TTS
+            _cfg.SetCVar(CCCVars.TTSAnnounceVolume, TtsAnnounceVolumeSlider.Value / 100f * ContentAudioSystem.TtsAnnounceMultiplier); // Corvax-TTS
 
             _cfg.SetCVar(CCVars.MaxAmbientSources, (int)AmbienceSoundsSlider.Value);
 
@@ -168,7 +168,7 @@ namespace Content.Client.Options.UI.Tabs
             LobbyVolumeSlider.Value = _cfg.GetCVar(CCVars.LobbyMusicVolume) * 100f / ContentAudioSystem.LobbyMultiplier;
             InterfaceVolumeSlider.Value = _cfg.GetCVar(CCVars.InterfaceVolume) * 100f / ContentAudioSystem.InterfaceMultiplier;
             TtsVolumeSlider.Value = _cfg.GetCVar(CCCVars.TTSVolume) * 100f / ContentAudioSystem.TtsMultiplier; // Corvax-TTS
-            TtsAnnounceVolumeSlider.Value = _cfg.GetCVar(CCCVars.TTSAnnounceVolume) * 100f / ContentAudioSystem.TtsMultiplier; // Corvax-TTS
+            TtsAnnounceVolumeSlider.Value = _cfg.GetCVar(CCCVars.TTSAnnounceVolume) * 100f / ContentAudioSystem.TtsAnnounceMultiplier; // Corvax-TTS
 
             AmbienceSoundsSlider.Value = _cfg.GetCVar(CCVars.MaxAmbientSources);
 
@@ -196,7 +196,7 @@ namespace Content.Client.Options.UI.Tabs
                 Math.Abs(InterfaceVolumeSlider.Value - _cfg.GetCVar(CCVars.InterfaceVolume) * 100f / ContentAudioSystem.InterfaceMultiplier) < 0.01f;
             var isTtsVolumeSame =
                 Math.Abs(TtsVolumeSlider.Value - _cfg.GetCVar(CCCVars.TTSVolume) * 100f / ContentAudioSystem.TtsMultiplier) < 0.01f;
-            var isTtsAnnounceVolumeSame = Math.Abs(TtsAnnounceVolumeSlider.Value - _cfg.GetCVar(CCCVars.TTSAnnounceVolume) * 100f / ContentAudioSystem.TtsMultiplier) < 0.01f; // Corvax-TTS
+            var isTtsAnnounceVolumeSame = Math.Abs(TtsAnnounceVolumeSlider.Value - _cfg.GetCVar(CCCVars.TTSAnnounceVolume) * 100f / ContentAudioSystem.TtsAnnounceMultiplier) < 0.01f; // Corvax-TTS
 
             var isAmbientSoundsSame = (int)AmbienceSoundsSlider.Value == _cfg.GetCVar(CCVars.MaxAmbientSources);
             var isLobbySame = LobbyMusicCheckBox.Pressed == _cfg.GetCVar(CCVars.LobbyMusicEnabled);

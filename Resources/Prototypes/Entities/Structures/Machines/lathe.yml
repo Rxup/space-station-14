@@ -381,6 +381,7 @@
     - ElectrolysisUnitMachineCircuitboard
     - CentrifugeMachineCircuitboard
     - CondenserMachineCircuitBoard
+    - PrinterDocMachineCircuitboard # Corvax-Printer
     - UniformPrinterMachineCircuitboard
     - FloorGreenCircuit
     - FloorBlueCircuit
