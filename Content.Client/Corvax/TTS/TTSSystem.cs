@@ -87,7 +87,7 @@ public sealed class TTSSystem : EntitySystem
         {
             var sourceUid = GetEntity(ev.SourceUid.Value);
             if(sourceUid.Valid)
-                _audio.PlayEntity(soundPath, Filter.Local(), sourceUid, false, AudioParams.Default); // recipient arg ignored on client
+                _audio.PlayEntity(soundPath, Filter.Local(), sourceUid, false, audioParams); // recipient arg ignored on client
         }
         else
         {

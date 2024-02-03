@@ -8,8 +8,8 @@
       - state: green
       - sprite: Objects/Vehicles/syndicatesegway.rsi
         state: keys
-  - type: RandomSpawner
-    prototypes:
-      - VehicleSyndicateSegway
-      - VehicleSkeletonMotorcycle
-    chance: 1
+#  - type: RandomSpawner
+#    prototypes:
+#      - VehicleSyndicateSegway
+#      - VehicleSkeletonMotorcycle
+#    chance: 1

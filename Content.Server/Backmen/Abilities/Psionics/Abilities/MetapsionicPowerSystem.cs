@@ -6,7 +6,6 @@ using Content.Shared.Backmen.Species.Shadowkin.Components;
 using Content.Shared.Eye;
 using Content.Shared.StatusEffect;
 using Content.Shared.Popups;
-using Content.Shared.Vehicle.Components;
 using Robust.Server.GameObjects;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
