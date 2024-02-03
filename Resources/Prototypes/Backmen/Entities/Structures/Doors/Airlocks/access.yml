@@ -9,6 +9,7 @@
       access: [["CentralCommand"]]
     - type: PaintableAirlock
       group: Glass
+      department: null
     - type: Door
       occludes: false
     - type: Occluder
@@ -27,6 +28,7 @@
       access: [["CCSecurity"]]
     - type: PaintableAirlock
       group: Glass
+      department: null
     - type: Door
       occludes: false
     - type: Occluder
@@ -45,6 +47,7 @@
       access: [["CCOfficer"]]
     - type: PaintableAirlock
       group: Glass
+      department: null
     - type: Door
       occludes: false
     - type: Occluder
@@ -63,6 +66,7 @@
       access: [["CCAdmiral"]]
     - type: PaintableAirlock
       group: Glass
+      department: null
     - type: Door
       occludes: false
     - type: Occluder
@@ -119,7 +123,7 @@
   components:
     - type: AccessReader
       access: [["CentralCommand"]]
-      
+
 - type: entity
   parent: AirlockHatchMaint
   id: AirlockHatchMaintLocked
@@ -128,7 +132,7 @@
   components:
     - type: AccessReader
       access: [["Maintenance"]]
-      
+
 - type: entity
   parent: AirlockHatchCentcomm
   id: AirlockHatchSyndicateLocked
@@ -137,7 +141,7 @@
   components:
     - type: AccessReader
       access: [["SyndicateAgent"]]
-    
+
 #DoubleAirlocks
 
 - type: entity
@@ -148,7 +152,7 @@
   components:
     - type: AccessReader
       access: [["CentralCommand"]]
-     
+
 - type: entity
   parent: DoubleGlassAirlock
   id: DoubleGlassAirlockSyndicateLocked
