@@ -3,7 +3,7 @@
   alias:
     - survival
   name: survival-title
-  showInVote: true # secret
+  showInVote: false # secret
   description: survival-description
   rules:
     - RampingStationEventScheduler
@@ -28,7 +28,7 @@
   - extended
   - shittersafari
   name: extended-title
-  showInVote: true #2boring2vote
+  showInVote: false #2boring2vote
   description: extended-description
   rules:
   - BasicStationEventScheduler
@@ -61,7 +61,7 @@
     - fs
   name: flesh-cult-title
   description: flesh-cult-description
-  showInVote: true
+  showInVote: false
   rules:
     - FleshCult
     - BasicStationEventScheduler
@@ -98,7 +98,7 @@
     - traitor
   name: traitor-title
   description: traitor-description
-  showInVote: true
+  showInVote: false
   rules:
     - Traitor
     - BasicStationEventScheduler
@@ -124,7 +124,7 @@
     - nukeops
   name: nukeops-title
   description: nukeops-description
-  showInVote: true
+  showInVote: false
   rules:
     - Nukeops
     - BasicStationEventScheduler
@@ -151,7 +151,7 @@
     - revolutionaries
   name: rev-title
   description: rev-description
-  showInVote: true
+  showInVote: false
   rules:
     - Revolutionary
     - BasicStationEventScheduler
@@ -166,7 +166,7 @@
   - zomber
   name: zombie-title
   description: zombie-description
-  showInVote: true
+  showInVote: false
   rules:
   - Zombie
   - BasicStationEventScheduler
@@ -178,7 +178,7 @@
     - pirates
   name: pirates-title
   description: pirates-description
-  showInVote: true
+  showInVote: false
   rules:
     - Pirates
     - BasicStationEventScheduler
