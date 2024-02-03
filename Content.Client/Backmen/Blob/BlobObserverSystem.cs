@@ -1,5 +1,8 @@
-﻿using Content.Shared.Backmen.Blob;
+﻿using Content.Shared.Antag;
+using Content.Shared.Backmen.Blob;
 using Content.Shared.GameTicking;
+using Content.Shared.Ghost;
+using Content.Shared.StatusIcon.Components;
 using Robust.Client.Graphics;
 using Robust.Shared.Player;
 
@@ -15,7 +18,30 @@ public sealed class BlobObserverSystem : SharedBlobObserverSystem
 
         SubscribeLocalEvent<BlobObserverComponent, LocalPlayerAttachedEvent>(OnPlayerAttached);
         SubscribeLocalEvent<BlobObserverComponent, LocalPlayerDetachedEvent>(OnPlayerDetached);
+
+        SubscribeLocalEvent<BlobCarrierComponent, CanDisplayStatusIconsEvent>(OnCanShowBlobIcon);
+        SubscribeLocalEvent<BlobObserverComponent, CanDisplayStatusIconsEvent>(OnCanShowBlobIcon);
+
         SubscribeNetworkEvent<RoundRestartCleanupEvent>(RoundRestartCleanup);
+    }
+
+    private void OnCanShowBlobIcon<T>(EntityUid uid, T comp, ref CanDisplayStatusIconsEvent args) where T : IAntagStatusIconComponent
+    {
+        args.Cancelled = !CanDisplayIcon(args.User, comp.IconVisibleToGhost);
+    }
+
+    /// <summary>
+    /// The criteria that determine whether a client should see Rev/Head rev icons.
+    /// </summary>
+    private bool CanDisplayIcon(EntityUid? uid, bool visibleToGhost)
+    {
+        if (HasComp<BlobCarrierComponent>(uid))
+            return true;
+
+        if (visibleToGhost && HasComp<GhostComponent>(uid))
+            return true;
+
+        return HasComp<BlobObserverComponent>(uid);
     }
 
     private void OnPlayerAttached(EntityUid uid, BlobObserverComponent component, LocalPlayerAttachedEvent args)
