@@ -41,6 +41,7 @@
   - WageScheduler #backmen: currency
   - BasicRoundstartVariation
 
+- type: gamePreset
   id: PiratesTraitor
   alias:
     - pirates
