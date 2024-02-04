@@ -31,7 +31,7 @@ entities:
     - type: MetaData
       name: TeamA
     - type: Transform
-      pos: -96.517395,0.43276936
+      pos: -600.517395,100.43276936
       parent: 1
     - type: MapGrid
       chunks:
@@ -466,7 +466,7 @@ entities:
     - type: MetaData
       name: TeamB
     - type: Transform
-      pos: 300.4826,0.43276936
+      pos: 600.4826,-100.43276936
       parent: 1
     - type: MapGrid
       chunks:

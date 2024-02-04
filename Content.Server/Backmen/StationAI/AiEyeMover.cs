@@ -51,7 +51,7 @@ public sealed class AiEyeMover : Job<object>
             var core = Eye.Comp.AiCore.Value;
 
             var gridUid = NewPosition.GetGridUid(_entityManager);
-            ;
+
             if (gridUid == null || _transform.GetMoverCoordinates(core).GetGridUid(_entityManager) != gridUid)
             {
                 _entityManager.QueueDeleteEntity(Eye);
