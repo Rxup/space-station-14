@@ -148,9 +148,9 @@
     - type: EntityTargetAction
       icon: Backmen/Interface/VerbIcons/pyrokinesis.png
       event: !type:PyrokinesisPowerActionEvent
-      useDelay: 90
+      useDelay: 50
       checkCanAccess: false
-      range: 4
+      range: 6
 
 
 - type: entity

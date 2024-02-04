@@ -49,7 +49,7 @@ public sealed class PyrokinesisPowerSystem : EntitySystem
         if (!TryComp<FlammableComponent>(args.Target, out var flammableComponent))
             return;
 
-        flammableComponent.FireStacks += 1;
+        flammableComponent.FireStacks += 5;
         _flammableSystem.Ignite(args.Target, args.Performer, flammableComponent);
         _popupSystem.PopupEntity(Loc.GetString("pyrokinesis-power-used", ("target", args.Target)), args.Target,
             Shared.Popups.PopupType.LargeCaution);
