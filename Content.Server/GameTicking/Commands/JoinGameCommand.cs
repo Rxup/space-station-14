@@ -13,7 +13,7 @@ namespace Content.Server.GameTicking.Commands
         [Dependency] private readonly IEntityManager _entManager = default!;
         [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
 
-        public string Command => "joingame";
+        public string Command => "notice";
         public string Description => "";
         public string Help => "";
 

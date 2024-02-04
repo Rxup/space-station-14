@@ -1,3 +1,4 @@
+using Content.Server.Backmen.StationAI.Systems;
 using Content.Server.Mind;
 using Content.Server.Power.Components;
 using Content.Server.Speech.Components;
@@ -35,6 +36,8 @@ public sealed class AIEyePowerSystem : EntitySystem
 
     [Dependency] private readonly UserInterfaceSystem _uiSystem = default!;
 
+    [Dependency] private readonly AICameraSystem _cameraSystem = default!;
+
     public override void Initialize()
     {
         base.Initialize();
@@ -44,6 +47,7 @@ public sealed class AIEyePowerSystem : EntitySystem
         SubscribeLocalEvent<AIEyePowerComponent, AIEyePowerActionEvent>(OnPowerUsed);
 
         SubscribeLocalEvent<AIEyeComponent, AIEyePowerReturnActionEvent>(OnPowerReturnUsed);
+        SubscribeLocalEvent<AIEyeComponent, ComponentShutdown>(OnEyeRemove);
 
         SubscribeLocalEvent<AIEyeComponent, ComponentStartup>(OnStartup);
         SubscribeLocalEvent<AIEyeComponent, MindRemovedMessage>(OnMindRemoved);
@@ -54,7 +58,11 @@ public sealed class AIEyePowerSystem : EntitySystem
 
         SubscribeLocalEvent<StationAIComponent, PowerChangedEvent>(OnPowerChange);
 
+    }
 
+    private void OnEyeRemove(Entity<AIEyeComponent> ent, ref ComponentShutdown args)
+    {
+        _cameraSystem.RemoveActiveCamera(ent);
     }
 
     private void OnPowerChange(EntityUid uid, StationAIComponent component, ref PowerChangedEvent args)

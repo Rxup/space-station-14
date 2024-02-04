@@ -11,6 +11,8 @@ public sealed partial class AIEyeComponent : Component
     public EntProtoId ReturnAction = "AIEyeReturnAction";
 
     public EntityUid? ReturnActionUid;
+    public EntityUid? Camera;
+    public bool IsProcessingMoveEvent = false;
 }
 
 public sealed partial class AIEyePowerActionEvent : InstantActionEvent

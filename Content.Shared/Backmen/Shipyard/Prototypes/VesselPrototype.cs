@@ -50,4 +50,7 @@ public sealed partial class VesselPrototype : IPrototype
     /// </summary>
     [DataField("shuttlePath", required: true)]
     public ResPath ShuttlePath { get; } = default!;
+
+    [DataField("private")]
+    public bool Private { get; } = false;
 }
