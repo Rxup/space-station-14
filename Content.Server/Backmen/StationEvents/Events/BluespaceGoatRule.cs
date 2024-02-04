@@ -10,7 +10,8 @@ public sealed class BluespaceGoatRule : StationEventSystem<BluespaceGoatRuleComp
     {
         base.Added(uid, component, gameRule, args);
 
-        var str = Loc.GetString("bluespace-goat-event-announcement");
+        var str = Loc.GetString("bluespace-artifact-event-announcement",
+            ("sighting", Loc.GetString(RobustRandom.Pick(component.PossibleSighting))));
         ChatSystem.DispatchGlobalAnnouncement(str, colorOverride: Color.FromHex("#18abf5"));
     }
 
