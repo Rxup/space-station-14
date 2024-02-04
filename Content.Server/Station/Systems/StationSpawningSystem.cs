@@ -49,6 +49,8 @@ public sealed class StationSpawningSystem : SharedStationSpawningSystem
     [Dependency] private readonly ArrivalsSystem _arrivalsSystem = default!;
     [Dependency] private readonly ContainerSpawnPointSystem _containerSpawnPointSystem = default!;
 
+    [Dependency] private readonly Backmen.Fugitive.FugitiveSystem _fugitiveSystem = default!; //backmen: job non-standart spawnpoint
+
     private bool _randomizeCharacters;
 
     private Dictionary<SpawnPriorityPreference, Action<PlayerSpawningEvent>> _spawnerCallbacks = new();
@@ -83,6 +85,8 @@ public sealed class StationSpawningSystem : SharedStationSpawningSystem
             throw new ArgumentException("Tried to use a non-station entity as a station!", nameof(station));
 
         var ev = new PlayerSpawningEvent(job, profile, station);
+
+        _fugitiveSystem.HandlePlayerSpawning(ev); //backmen: job non-standart spawnpoint
 
         if (station != null && profile != null)
         {
