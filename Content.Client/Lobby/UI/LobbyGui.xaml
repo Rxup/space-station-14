@@ -27,7 +27,7 @@
                                                  Margin="3 3 3 3" />
                                 <controls:StripeBack>
                                     <BoxContainer Orientation="Horizontal" SeparationOverride="6" Margin="3 3 3 3">
-                                        <cc:UICommandButton Command="observe" Name="ObserveButton" Access="Public"
+                                        <cc:UICommandButton Command="backmen" Name="ObserveButton" Access="Public"
                                                             Text="{Loc 'ui-lobby-observe-button'}"
                                                             StyleClasses="ButtonBig"
                                                             WindowType="{x:Type lobbyUi:ObserveWarningWindow}" />

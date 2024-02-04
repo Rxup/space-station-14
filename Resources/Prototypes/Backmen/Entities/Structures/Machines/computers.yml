@@ -29,3 +29,25 @@
       state: request
     - map: ["computerLayerKeys"]
       state: tech_key
+
+- type: entity
+  id: ComputerShipyardTeamA
+  parent: ComputerShipyard
+  name: shipyard console
+  suffix: Team A
+  description: Used to purchase and sell shuttles
+  components:
+  - type: ShipyardConsole
+    allowedGroup:
+    - TeamA
+
+- type: entity
+  id: ComputerShipyardTeamB
+  parent: ComputerShipyard
+  name: shipyard console
+  suffix: Team B
+  description: Used to purchase and sell shuttles
+  components:
+  - type: ShipyardConsole
+    allowedGroup:
+    - TeamB

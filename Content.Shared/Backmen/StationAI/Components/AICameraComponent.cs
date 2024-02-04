@@ -17,6 +17,9 @@ public sealed partial class AICameraComponent : Component
     {
         "Uncategorized"
     };
+
+    [ViewVariables]
+    public HashSet<EntityUid> ActiveViewers { get; } = new();
 }
 
 [Serializable, NetSerializable]

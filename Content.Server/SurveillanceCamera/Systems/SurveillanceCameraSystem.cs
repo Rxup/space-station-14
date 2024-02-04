@@ -348,13 +348,13 @@ public sealed class SurveillanceCameraSystem : EntitySystem
 
     public void RemoveActiveViewer(EntityUid camera, EntityUid player, EntityUid? monitor = null, SurveillanceCameraComponent? component = null, ActorComponent? actor = null)
     {
-        if (!Resolve(camera, ref component)
-            || !Resolve(player, ref actor))
+        if (!Resolve(camera, ref component))
         {
             return;
         }
 
-        _viewSubscriberSystem.RemoveViewSubscriber(camera, actor.PlayerSession);
+        if(Resolve(player, ref actor, false))
+            _viewSubscriberSystem.RemoveViewSubscriber(camera, actor.PlayerSession);
         component.ActiveViewers.Remove(player);
 
         if (monitor != null)
@@ -378,7 +378,7 @@ public sealed class SurveillanceCameraSystem : EntitySystem
         }
     }
 
-    private void UpdateVisuals(EntityUid uid, SurveillanceCameraComponent? component = null, AppearanceComponent? appearance = null)
+    public void UpdateVisuals(EntityUid uid, SurveillanceCameraComponent? component = null, AppearanceComponent? appearance = null)
     {
         // Don't log missing, because otherwise tests fail.
         if (!Resolve(uid, ref component, ref appearance, false))
