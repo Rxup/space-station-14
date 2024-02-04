@@ -107,7 +107,7 @@
   id: AICoreShip
   name: AI Core
   suffix: ship
-  save: true
+  save: false
   description: Ship core AI
   components:
   - type: NavMapBeacon
