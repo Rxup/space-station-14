@@ -457,6 +457,8 @@ entities:
     - type: GravityShake
       shakeTimes: 10
     - type: NavMap
+    - type: IFF
+      color: '#FF0000FF'
     - type: BecomesStation
       id: TeamA
   - uid: 602
@@ -889,6 +891,8 @@ entities:
     - type: SpreaderGrid
     - type: GravityShake
       shakeTimes: 10
+    - type: IFF
+      color: '#0000FFFF'
     - type: BecomesStation
       id: TeamB
 - proto: AirCanister
