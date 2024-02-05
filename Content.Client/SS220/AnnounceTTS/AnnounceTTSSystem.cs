@@ -86,7 +86,7 @@ public sealed class AnnounceTTSSystem : EntitySystem
 
     private void OnAnnounceTTSPlay(AnnounceTTSEvent ev)
     {
-        var volume = _volume;
+        var volume = Math.Max(-5f, SharedAudioSystem.GainToVolume(_volume));
 
 
         var file = new ResPath(ev.AnnouncementSound);

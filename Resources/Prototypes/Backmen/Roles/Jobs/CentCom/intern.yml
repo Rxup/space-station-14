@@ -37,6 +37,7 @@
           actionBssActionName: ActionCentcomFtlAction
         - type: PsionicBonusChance
           multiplier: 3
+        - type: InitialInfectedExempt
   minBankBalance: 100
   maxBankBalance: 250
   wageDepartment: CentCom

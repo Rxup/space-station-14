@@ -76,20 +76,20 @@
   components:
     - type: Muted
 
-- type: trait
-  id: WheelchairBound
-  name: trait-wheelchair-bound-name
-  description: trait-wheelchair-bound-desc
-  blacklist:
-    components:
-      - Felinid
-      - BSSDrone #backmen: bssdrone
-      - StationAI # backmen: AI
-      - BorgChassis
-  components:
-    - type: BuckleOnMapInit
-      prototype: VehicleWheelchair
-    - type: LegsParalyzed
+#- type: trait
+#  id: WheelchairBound
+#  name: trait-wheelchair-bound-name
+#  description: trait-wheelchair-bound-desc
+#  blacklist:
+#    components:
+#      - Felinid
+#      - BSSDrone #backmen: bssdrone
+#      - StationAI # backmen: AI
+#      - BorgChassis
+#  components:
+#    - type: BuckleOnMapInit
+#      prototype: VehicleWheelchair
+#    - type: LegsParalyzed
 
 - type: trait
   id: FrontalLisp

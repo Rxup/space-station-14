@@ -303,3 +303,32 @@
     - state: ai
     - state: jobicon
       sprite: Backmen/Markers/jobs.rsi
+
+- type: entity
+  id: SpawnPointShipAI
+  parent: SpawnPointJobBase
+  name: ship AI
+  components:
+  - type: SpawnPoint
+    job_id: SAIShip
+  - type: Sprite
+    layers:
+    - state: green
+    - state: ai
+    - state: jobicon
+      sprite: Backmen/Markers/jobs.rsi
+
+
+- type: entity
+  id: SpawnFreelancer
+  parent: SpawnPointJobBase
+  name: spawn point freelancer
+  components:
+  - type: SpawnPoint
+    job_id: Freelancer
+  - type: Sprite
+    layers:
+    - state: green
+    - state: ai
+    - state: jobicon
+      sprite: Backmen/Markers/jobs.rsi
