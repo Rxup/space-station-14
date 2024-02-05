@@ -12,6 +12,11 @@ public sealed partial class AIHealthOverlayEvent : InstantActionEvent
     }
 }
 
+public sealed partial class ToggleArmNukeEvent : InstantActionEvent
+{
+
+}
+
 [Serializable, NetSerializable]
 public sealed class AICameraListMessage : BoundUserInterfaceMessage
 {
