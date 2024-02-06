@@ -87,7 +87,7 @@ public sealed class TTSSystem : EntitySystem
         {
             var sourceUid = GetEntity(ev.SourceUid.Value);
             if(sourceUid.Valid)
-                _audio.PlayEntity(soundPath, Filter.Local(), sourceUid, false, AudioParams.Default); // recipient arg ignored on client
+                _audio.PlayEntity(soundPath, Filter.Local(), sourceUid, false, audioParams); // recipient arg ignored on client
         }
         else
         {
@@ -99,7 +99,7 @@ public sealed class TTSSystem : EntitySystem
 
     private float AdjustVolume(bool isWhisper)
     {
-        var volume = MinimalVolume + SharedAudioSystem.GainToVolume(_volume);
+        var volume = Math.Max(MinimalVolume, SharedAudioSystem.GainToVolume(_volume));
 
         if (isWhisper)
         {

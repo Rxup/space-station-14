@@ -1,13 +1,16 @@
 using Content.Shared.Actions;
+using Content.Shared.Antag;
 using Content.Shared.Damage;
 using Content.Shared.FixedPoint;
+using Content.Shared.StatusIcon;
 using Robust.Shared.GameStates;
+using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization;
 
 namespace Content.Shared.Backmen.Blob;
 
 [RegisterComponent, NetworkedComponent, AutoGenerateComponentState(false)]
-public sealed partial class BlobObserverComponent : Component
+public sealed partial class BlobObserverComponent : Component, IAntagStatusIconComponent
 {
     [ViewVariables(VVAccess.ReadOnly)]
     public bool IsProcessingMoveEvent;
@@ -22,6 +25,9 @@ public sealed partial class BlobObserverComponent : Component
     public BlobChemType SelectedChemId = BlobChemType.ReactiveSpines;
 
     public override bool SendOnlyToOwner => true;
+
+    public ProtoId<StatusIconPrototype> StatusIcon { get; set; } = "BlobFaction";
+    public bool IconVisibleToGhost { get; set; } = true;
 }
 
 [Serializable, NetSerializable]

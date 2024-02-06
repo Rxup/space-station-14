@@ -1,0 +1,19 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "by EDMI",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "dark-comfy",
+      "directions": 4
+    },
+    {
+      "name": "dark-comfy-overlay",
+      "directions": 4
+    }
+  ]
+}

@@ -20,4 +20,9 @@ public sealed partial class StationAIComponent : Component
 
     [ViewVariables(VVAccess.ReadWrite)]
     public SiliconLawsetPrototype? SelectedLaw;
+
+    [DataField("nukeToggle")]
+    public EntProtoId NukeToggle = "AIToggleArmNuke";
+
+    public EntityUid? NukeToggleId;
 }

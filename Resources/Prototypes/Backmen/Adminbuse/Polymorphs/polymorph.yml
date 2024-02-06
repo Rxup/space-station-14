@@ -1,55 +1,68 @@
 - type: polymorph
   id: BSkeletonMorph
-  entity: MobSkeletonPerson
-  forced: true
-  transferName: true
-  # transferHumanoidAppearance: true
-  revertOnCrit: false
-  revertOnDeath: false
-  inventory: Transfer
+  configuration:
+    entity: MobSkeletonPerson
+    forced: true
+    transferName: true
+    # transferHumanoidAppearance: true
+    revertOnCrit: false
+    revertOnDeath: false
+    inventory: Transfer
+
 - type: polymorph
   id: BDwarfMorph
-  entity: MobDwarf
-  forced: true
-  transferName: true
-  # transferHumanoidAppearance: true
-  revertOnCrit: false
-  revertOnDeath: false
-  inventory: Transfer
+  configuration:
+    entity: MobDwarf
+    forced: true
+    transferName: true
+    transferHumanoidAppearance: true
+    revertOnCrit: false
+    revertOnDeath: false
+    inventory: Transfer
+
 - type: polymorph
   id: BVoxMorph
-  entity: MobVox
-  forced: true
-  transferName: true
-  # transferHumanoidAppearance: true
-  revertOnCrit: false
-  revertOnDeath: false
-  inventory: Transfer
+  configuration:
+    entity: MobVox
+    forced: true
+    transferName: true
+    transferHumanoidAppearance: true
+    revertOnCrit: false
+    revertOnDeath: false
+    inventory: Transfer
+
 - type: polymorph
   id: BFoxMorph
-  entity: MobHumanoidFox
-  forced: true
-  transferName: true
-#  transferHumanoidAppearance: true
-  revertOnCrit: false
-  revertOnDeath: false
-  inventory: Transfer
-  allowRepeatedMorphs: true
+  configuration:
+    entity: MobHumanoidFox
+    forced: true
+    transferName: true
+    transferHumanoidAppearance: true
+    revertOnCrit: false
+    revertOnDeath: false
+    inventory: Transfer
+    allowRepeatedMorphs: true
+
 - type: polymorph
   id: BChicken
-  entity: MobChicken
-  revertOnCrit: true
-  revertOnDeath: true
-  transferName: true
+  configuration:
+    entity: MobChicken
+    revertOnCrit: true
+    revertOnDeath: true
+    transferName: true
+
 - type: polymorph
   id: BMouse
-  entity: MobMouse
-  revertOnCrit: true
-  revertOnDeath: true
-  transferName: true
+  configuration:
+    entity: MobMouse
+    revertOnCrit: true
+    revertOnDeath: true
+    transferName: true
+
 - type: polymorph
   id: BKenguru
-  entity: MobKangaroo
-  revertOnCrit: true
-  revertOnDeath: true
-  transferName: false
+  configuration:
+    entity: MobKangaroo
+    revertOnCrit: true
+    revertOnDeath: true
+    transferName: false

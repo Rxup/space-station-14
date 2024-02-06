@@ -11,6 +11,7 @@ using Content.Shared.Backmen.Shipyard.Prototypes;
 using Content.Shared.Access.Systems;
 using Content.Shared.Backmen.Shipyard.Components;
 using Content.Shared.Backmen.Shipyard;
+using Content.Shared.Backmen.StationAI;
 using Robust.Server.GameObjects;
 using Robust.Shared.Prototypes;
 using Content.Shared.Radio;
@@ -56,7 +57,7 @@ public sealed class ShipyardConsoleSystem : SharedShipyardSystem
             return;
         }
 
-        if (!_access.IsAllowed(player, uid))
+        if (!HasComp<StationAIComponent>(player) && !_access.IsAllowed(player, uid))
         {
             ConsolePopup(args.Session, Loc.GetString("comms-console-permission-denied"));
             PlayDenySound(uid, component);
@@ -66,6 +67,19 @@ public sealed class ShipyardConsoleSystem : SharedShipyardSystem
         VesselPrototype? vessel = null;
 
         if (!_prototypeManager.TryIndex<VesselPrototype>(args.Vessel, out vessel) || vessel == null)
+        {
+            ConsolePopup(args.Session, Loc.GetString("shipyard-console-invalid-vessel", ("vessel", args.Vessel)));
+            PlayDenySound(uid, component);
+            return;
+        }
+
+        if (component.AllowedGroup.Count != 0 && !component.AllowedGroup.Contains(vessel.Group))
+        {
+            ConsolePopup(args.Session, Loc.GetString("shipyard-console-invalid-vessel", ("vessel", args.Vessel)));
+            PlayDenySound(uid, component);
+            return;
+        }
+        else if (component.AllowedGroup.Count == 0 && vessel.Private)
         {
             ConsolePopup(args.Session, Loc.GetString("shipyard-console-invalid-vessel", ("vessel", args.Vessel)));
             PlayDenySound(uid, component);
@@ -101,7 +115,8 @@ public sealed class ShipyardConsoleSystem : SharedShipyardSystem
 
         var newState = new ShipyardConsoleInterfaceState(
             bank.Balance,
-            true);
+            true,
+            component.AllowedGroup);
 
         _ui.TrySetUiState(uid, ShipyardConsoleUiKey.Shipyard, newState);
     }
@@ -119,7 +134,8 @@ public sealed class ShipyardConsoleSystem : SharedShipyardSystem
 
         var newState = new ShipyardConsoleInterfaceState(
             bank.Balance,
-            true);
+            true,
+            component.AllowedGroup);
 
         _ui.TrySetUiState(uid, ShipyardConsoleUiKey.Shipyard, newState);
     }

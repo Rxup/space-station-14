@@ -22,6 +22,7 @@
       - id: BoxEncryptionKeyCargo
       - id: AntiPsychicKnife # backmen
       - id: ClothingHeadCage # backmen
+      - id: PrinterDocFlatpack # Corvax-Printer
 
 - type: entity
   id: LockerCaptainFilledHardsuit
@@ -122,6 +123,7 @@
       - id: AccessConfigurator
       - id: AntiPsychicKnife  # backmen
       - id: ClothingHeadCage # backmen
+      - id: PrinterDocFlatpack # Corvax-Printer
 
 - type: entity
   id: LockerChiefEngineerFilledHardsuit
@@ -194,7 +196,6 @@
       - id: ClothingHeadHatBeretCmo
       - id: ClothingOuterHardsuitMedical
       - id: Hypospray
-      - id: HandheldCrewMonitor
       - id: DoorRemoteMedical
       - id: RubberStampCMO
       - id: MedicalTechFabCircuitboard
@@ -219,7 +220,6 @@
       - id: ClothingBackpackDuffelSurgeryFilled
       - id: ClothingMaskSterile
       - id: Hypospray
-      - id: HandheldCrewMonitor
       - id: DoorRemoteMedical
       - id: RubberStampCMO
       - id: MedicalTechFabCircuitboard
@@ -250,6 +250,7 @@
       - id: PresentOracle # backmen
       - id: PresentSophie # backmen
       - id: PonderingOrbTelepathic # backmen
+      - id: EncryptionKeyBinary
 
 - type: entity
   id: LockerResearchDirectorFilled
@@ -274,6 +275,7 @@
       - id: PresentOracle # backmen
       - id: PresentSophie # backmen
       - id: PonderingOrbTelepathic # backmen
+      - id: EncryptionKeyBinary
 
 - type: entity
   id: LockerHeadOfSecurityFilledHardsuit

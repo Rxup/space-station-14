@@ -438,6 +438,7 @@
   components:
   - type: StationEvent
     earliestStart: 50
+    minimumPlayers: 15
     weight: 5
     duration: 1
   - type: ZombieRule
@@ -497,7 +498,7 @@
   id: IonStorm
   components:
   - type: StationEvent
-    weight: 5
+    weight: 10
     earliestStart: 20
     reoccurrenceDelay: 60
     duration: 1

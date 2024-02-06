@@ -255,7 +255,7 @@
 
 - type: Tag
   id: CannonBall
-  
+
 - type: Tag
   id: CannonRestrict
 
@@ -699,9 +699,6 @@
   id: IntercomElectronics
 
 - type: Tag
-  id: JanicartKeys
-
-- type: Tag
   id: JawsOfLife
 
 - type: Tag
@@ -727,9 +724,6 @@
 
 - type: Tag
   id: Lemon
-
-- type: Tag
-  id: LightReplacer
 
 - type: Tag
   id: Lime
@@ -866,10 +860,10 @@
   id: Packet
 
 - type: Tag
-  id: Payload # for grenade/bomb crafting
+  id: Paper
 
 - type: Tag
-  id: PaintableAirlock
+  id: Payload # for grenade/bomb crafting
 
 - type: Tag
   id: Pancake
@@ -1035,9 +1029,6 @@
   id: ShellShotgun
 
 - type: Tag
-  id: PelletShotgunFlare
-
-- type: Tag
   id: Shiv
 
 - type: Tag
@@ -1162,9 +1153,6 @@
 
 - type: Tag
   id: UraniumGlassShard
-
-- type: Tag
-  id: VehicleKey
 
 - type: Tag
   id: VimPilot

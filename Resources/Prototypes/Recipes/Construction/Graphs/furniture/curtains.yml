@@ -13,6 +13,14 @@
             - material: Cloth
               amount: 2
               doAfter: 1
+        - to: CurtainsDark
+          completed:
+            - !type:SnapToGrid { }
+          steps:
+            - material: Cloth
+              amount: 2
+              doAfter: 1
+
     - node: Curtains
       entity: HospitalCurtains
       edges:
@@ -35,3 +43,26 @@
           steps:
             - tool: Cutting
               doAfter: 1
+    - node: CurtainsDark
+      entity: DarkCurtains
+      edges:
+        - to: start
+          completed:
+            - !type:SpawnPrototype
+              prototype: MaterialCloth1
+              amount: 2
+          steps:
+            - tool: Cutting
+              doAfter: 1
+    - node: СurtainsOpenDark
+      entity: DarkCurtainsOpen
+      edges:
+        - to: start
+          completed:
+            - !type:SpawnPrototype
+              prototype: MaterialCloth1
+              amount: 2
+          steps:
+            - tool: Cutting
+              doAfter: 1
+
