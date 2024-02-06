@@ -6,7 +6,7 @@
   icon:
     sprite: Backmen/Structures/Machines/metempsychotic.rsi
     state: pod_0
-  discipline: Biochemical
+  discipline: Experimental
   tier: 2
   cost: 15000
   recipeUnlocks:
