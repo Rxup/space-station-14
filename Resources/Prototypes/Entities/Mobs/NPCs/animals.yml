@@ -1032,6 +1032,7 @@
     rootTask:
       task: SimpleHostileCompound
   - type: Puller
+    needsHands: false
   - type: Oni
     modifiers:
       coefficients:
