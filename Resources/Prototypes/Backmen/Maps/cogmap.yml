@@ -41,7 +41,7 @@
              #medical
             ChiefMedicalOfficer: [ 1, 1 ]
             MedicalDoctor: [ 5, 5 ]
-            Chemist: [ 3, 4 ]
+            Chemist: [ 3, 3 ]
             MedicalIntern: [ 2, 4 ]
             Paramedic: [ 1, 2 ]
             #science
