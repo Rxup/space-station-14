@@ -1,8 +1,8 @@
 ﻿- type: entity
   parent: BookBase
   id: BookDetectiveP1
-  name: Детективный роман
-  description: Детективный роман о жизни и предательстве (часть 1)
+  name: Detective Novel
+  description: Detective Novel about life and betrayal (part 1)
   components:
     - type: Sprite
       sprite: Objects/Misc/books_backmen.rsi
@@ -14,8 +14,8 @@
 - type: entity
   parent: BookBase
   id: BookDetectiveP2
-  name: Детективный роман
-  description: Детективный роман о жизни и предательстве (часть 2)
+  name: Detective Novel
+  description: Detective Novel about life and betrayal (part 2)
   components:
     - type: Sprite
       sprite: Objects/Misc/books_backmen.rsi
@@ -27,8 +27,8 @@
 - type: entity
   parent: BookBase
   id: BookDetectiveP3
-  name: Детективный роман
-  description: Детективный роман о жизни и предательстве (часть 3)
+  name: Detective Novel
+  description: Detective Novel about life and betrayal (part 3)
   components:
     - type: Sprite
       sprite: Objects/Misc/books_backmen.rsi
@@ -40,8 +40,8 @@
 - type: entity
   parent: BookBase
   id: BookPassionsP1
-  name: Страсти в СБ
-  description: Рассказ о страстях в СБ (строго 18+)
+  name: Passions in the SS
+  description: The story of the passions in the SS (only 18+)
   components:
     - type: Sprite
       sprite: Objects/Misc/books_backmen.rsi
@@ -53,8 +53,8 @@
 - type: entity
   parent: BookBase
   id: BookPaperworkP1
-  name: Бумажная работа
-  description: Еще одна книга из кучи про бюрократов (часть 1)
+  name: Paperwork
+  description: Another book from the pile about bureaucrats (part 1)
   components:
     - type: Sprite
       sprite: Objects/Misc/books_backmen.rsi
@@ -66,8 +66,8 @@
 - type: entity
   parent: BookBase
   id: BookPaperworkP2
-  name: Бумажная работа
-  description: Еще одна книга из кучи про бюрократов (часть 2)
+  name: Paperwork
+  description: Another book from the pile about bureaucrats (part 2)
   components:
     - type: Sprite
       sprite: Objects/Misc/books_backmen.rsi
@@ -92,8 +92,8 @@
 - type: entity
   parent: BookBase
   id: BookSelf
-  name: Самоучебник по эсперанто
-  description: Пыльная...
+  name: Esperanto Self-study guide
+  description: Dusty...
   components:
     - type: Sprite
       sprite: Objects/Misc/books_backmen.rsi
@@ -105,8 +105,8 @@
 - type: entity
   parent: BookBase
   id: BookKPCS
-  name: КПКС
-  description: Опять эти коммунисты...
+  name: KPCS
+  description: Those communists again...
   components:
     - type: Sprite
       sprite: Objects/Misc/books_backmen.rsi
@@ -118,8 +118,8 @@
 - type: entity
   parent: BookBase
   id: BookMimBobo
-  name: Мим бобо
-  description: Немой рассказ
+  name: Mime Bobo
+  description: The Silent Story
   components:
     - type: Sprite
       sprite: Objects/Misc/books_backmen.rsi
@@ -131,8 +131,8 @@
 - type: entity
   parent: BookBase
   id: BookBloodMoney
-  name: Кровавые деньги
-  description: История самой влиятельной преступной организации
+  name: Blood Money
+  description: The history of the most influential criminal organization
   components:
     - type: Sprite
       sprite: Objects/Misc/books_backmen.rsi
@@ -144,8 +144,8 @@
 - type: entity
   parent: BookBase
   id: BookIanAndHamlet
-  name: Путешествие Гамлета и Иана
-  description: Путешествие хомяка Гамлета и Иана на космической станции
+  name: The Journey of Hamlet and Ian
+  description: Hamlet and Ian's Hamster Journey on the Space Station
   components:
     - type: Sprite
       sprite: Objects/Misc/books_backmen.rsi
@@ -157,8 +157,8 @@
 - type: entity
   parent: BookBase
   id: BookPaperworkP3
-  name: Бумажная работа
-  description: Еще одна книга из кучи про бюрократов (часть 3)
+  name: Paperwork
+  description: Another book from the pile about bureaucrats (part 3)
   components:
     - type: Sprite
       sprite: Objects/Misc/books_backmen.rsi
@@ -170,8 +170,8 @@
 - type: entity
   parent: BookBase
   id: BookPaperworkP4
-  name: Бумажная работа
-  description: Еще одна книга из кучи про бюрократов (часть 4)
+  name: Paperwork
+  description: Another book from the pile about bureaucrats (part 4)
   components:
     - type: Sprite
       sprite: Objects/Misc/books_backmen.rsi
@@ -183,8 +183,8 @@
 - type: entity
   parent: BookBase
   id: BookPaperworkP5
-  name: Бумажная работа
-  description: Еще одна книга из кучи про бюрократов (часть 5)
+  name: Paperwork
+  description: Another book from the pile about bureaucrats (part 5)
   components:
     - type: Sprite
       sprite: Objects/Misc/books_backmen.rsi
@@ -192,3 +192,29 @@
         - state: paperwork_5
     - type: Paper
       content: book-text-paperwork-p5
+
+- type: entity
+  parent: BookBase
+  id: BookPaperworkP6
+  name: Paperwork. A warrant for love
+  description: A special edition of another book about bureaucrats. (part 1)
+  components:
+    - type: Sprite
+      sprite: Objects/Misc/books_backmen.rsi
+      layers:
+        - state: paperwork_6
+    - type: Paper
+      content: book-text-paperwork-p6
+
+- type: entity
+  parent: BookBase
+  id: BookPassionsP2
+  name: Passions in the SS 2
+  description: Another one story of the passions in the SS (only 18+)
+  components:
+    - type: Sprite
+      sprite: Objects/Misc/books_backmen.rsi
+      layers:
+        - state: Passions_in_the_SB
+    - type: Paper
+      content: book-text-Passions-p2
