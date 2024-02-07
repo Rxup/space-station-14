@@ -53,6 +53,8 @@
     - Pirates
     - Traitor
     - BasicStationEventScheduler
+    - WageScheduler #backmen: currency
+    - BasicRoundstartVariation
 
 - type: gamePreset
   id: PiratesNukeops
@@ -66,6 +68,8 @@
     - Pirates
     - Nukeops
     - BasicStationEventScheduler
+    - WageScheduler #backmen: currency
+    - BasicRoundstartVariation
 
 - type: gamePreset
   id: PiratesFleshCult
@@ -79,7 +83,8 @@
     - Pirates
     - FleshCult
     - BasicStationEventScheduler
-    - WageScheduler
+    - WageScheduler #backmen: currency
+    - BasicRoundstartVariation
 
 - type: gamePreset
   id: NukeopsFleshCult
@@ -93,7 +98,8 @@
     - Nukeops
     - FleshCult
     - BasicStationEventScheduler
-    - WageScheduler
+    - WageScheduler #backmen: currency
+    - BasicRoundstartVariation
 
 - type: gamePreset
   id: RevolutionaryTraitor
@@ -109,6 +115,8 @@
     - Revolutionary
     - BasicStationEventScheduler
     - Traitor
+    - WageScheduler #backmen: currency
+    - BasicRoundstartVariation
 
 - type: gamePreset
   id: RevolutionaryPirates
@@ -124,6 +132,8 @@
     - Revolutionary
     - BasicStationEventScheduler
     - Pirates
+    - WageScheduler #backmen: currency
+    - BasicRoundstartVariation
 
 - type: gamePreset
   id: RevolutionaryNukeops
@@ -139,6 +149,8 @@
     - Revolutionary
     - BasicStationEventScheduler
     - Nukeops
+    - WageScheduler #backmen: currency
+    - BasicRoundstartVariation
 
 - type: gamePreset
   id: ZombieTraitor
@@ -157,6 +169,7 @@
   - BasicStationEventScheduler
   - WageScheduler #backmen: currency
   - Traitor
+  - BasicRoundstartVariation
 
 - type: gamePreset
   id: ZombieNukeops
@@ -175,6 +188,7 @@
   - BasicStationEventScheduler
   - WageScheduler #backmen: currency
   - Nukeops
+  - BasicRoundstartVariation
 
 - type: gamePreset
   id: ZombiePirates
@@ -193,6 +207,7 @@
   - BasicStationEventScheduler
   - WageScheduler #backmen: currency
   - Pirates
+  - BasicRoundstartVariation
 
 - type: gamePreset
   id: PiratesTraitorNukeops
@@ -208,6 +223,8 @@
     - Traitor
     - BasicStationEventScheduler
     - Nukeops
+    - WageScheduler #backmen: currency
+    - BasicRoundstartVariation
 
 - type: gamePreset
   id: PiratesTraitorFleshCult
@@ -223,6 +240,8 @@
     - Traitor
     - BasicStationEventScheduler
     - FleshCult
+    - WageScheduler #backmen: currency
+    - BasicRoundstartVariation
 
 - type: gamePreset
   id: NukeopsFleshCultTraitor
@@ -237,8 +256,9 @@
     - Nukeops
     - FleshCult
     - BasicStationEventScheduler
-    - WageScheduler
+    - WageScheduler #backmen: currency
     - Traitor
+    - BasicRoundstartVariation
 
 - type: gamePreset
   id: SurvivalNukeops
@@ -246,10 +266,11 @@
     - survival
     - nukeops
   name: survival-nukeops-title
-  showInVote: false # secret
+  showInVote: false
+  minPlayers: 40
   description: survival-nukeops-description
   rules:
     - RampingStationEventScheduler
     - WageScheduler #backmen: currency
     - Nukeops
-    - BasicStationEventScheduler
+    - BasicRoundstartVariation

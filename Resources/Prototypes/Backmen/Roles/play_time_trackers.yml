@@ -45,7 +45,10 @@
 
 - type: playTimeTracker
   id: JobSAI
-  
+
+- type: playTimeTracker
+  id: JobSAIShip
+
 - type: playTimeTracker
   id: JobRoboticist
 

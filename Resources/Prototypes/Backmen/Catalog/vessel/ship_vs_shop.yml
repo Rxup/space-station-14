@@ -1,0 +1,40 @@
+﻿- type: entity
+  id: SpawnPointReturnToMenu
+  name: return to menu
+  suffix: admeme
+  parent: MarkerBase
+  components:
+  - type: GhostRole
+    name: Респавн в меню
+    description: выкинет в меню
+    rules: В БОЙ СОЛДАТ!
+  - type: GhostTakeoverAvailable
+  - type: BkmRespawner
+  - type: Sprite
+    sprite: Markers/jobs.rsi
+    layers:
+    - state: green
+    - sprite: Mobs/Animals/regalrat.rsi
+      state: icon
+
+
+- type: vessel
+  id: ToteTeam1
+  name: Красный бомбардир МК1
+  description: тут ваша реклама
+  price: 1000
+  category: Small
+  group: TeamA
+  private: true
+  shuttlePath: /Maps/Backmen/ForSale/teamA1.yml
+
+
+- type: vessel
+  id: ToteTeam2
+  name: Карабль синих
+  description: тут ваша реклама
+  price: 1000
+  category: Small
+  group: TeamB
+  private: true
+  shuttlePath: /Maps/Backmen/ForSale/teamB1.yml

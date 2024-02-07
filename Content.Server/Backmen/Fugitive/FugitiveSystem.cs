@@ -77,8 +77,6 @@ public sealed class FugitiveSystem : EntitySystem
         SubscribeLocalEvent<FugitiveComponent, GhostRoleSpawnerUsedEvent>(OnSpawned);
         SubscribeLocalEvent<FugitiveComponent, MindAddedMessage>(OnMindAdded);
         SubscribeLocalEvent<RoundEndTextAppendEvent>(OnRoundEnd);
-        SubscribeLocalEvent<PlayerSpawningEvent>(OnPlayerSpawn,
-            before: new[] { typeof(ContainerSpawnPointSystem),typeof(ArrivalsSystem), typeof(SpawnPointSystem) });
     }
 
     [ValidatePrototypeId<JobPrototype>]
@@ -87,7 +85,7 @@ public sealed class FugitiveSystem : EntitySystem
     [ValidatePrototypeId<JobPrototype>]
     private const string JobSAI = "SAI";
 
-    private void OnPlayerSpawn(PlayerSpawningEvent args)
+    public void HandlePlayerSpawning(PlayerSpawningEvent args)
     {
         if (args.SpawnResult != null)
             return;
@@ -119,6 +117,8 @@ public sealed class FugitiveSystem : EntitySystem
                 }
             }
         }
+
+        // auto points
 
         #region Prisoner
 
@@ -192,9 +192,9 @@ public sealed class FugitiveSystem : EntitySystem
             args.Station);
     }
 
-    public bool MakeFugitive([NotNullWhen(true)] out EntityUid? Fugitive, bool forceHuman = false)
+    public bool MakeFugitive([NotNullWhen(true)] out EntityUid? fugitive, bool forceHuman = false)
     {
-        Fugitive = null;
+        fugitive = null;
 
         EntityUid? station = null;
 
@@ -221,10 +221,10 @@ public sealed class FugitiveSystem : EntitySystem
         }
 
         var coords = _random.Pick(latejoin);
-        Fugitive = Spawn(forceHuman ? SpawnMobPrototype : SpawnPointPrototype, coords);
+        fugitive = Spawn(forceHuman ? SpawnMobPrototype : SpawnPointPrototype, coords);
         if (forceHuman)
         {
-            EnsureComp<FugitiveComponent>(Fugitive.Value).ForcedHuman = true;
+            EnsureComp<FugitiveComponent>(fugitive.Value).ForcedHuman = true;
         }
 
         return true;

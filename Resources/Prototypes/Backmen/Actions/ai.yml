@@ -40,6 +40,21 @@
     priority: 18
 
 - type: entity
+  id: AIToggleArmNuke
+  name: Nuke Arm/Disarm
+  description: Toggles the AI's nuke.
+  noSpawn: true
+  components:
+  - type: InstantAction
+    icon:
+      sprite: Objects/Devices/nuke.rsi
+      state: nuclearbomb_base
+    event: !type:ToggleArmNukeEvent
+    checkCanInteract: false
+    useDelay: 120
+    priority: 20
+
+- type: entity
   id: ActionAIShowCommunications
   name: Communications Interface
   description: View a communications interface.
