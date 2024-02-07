@@ -18,7 +18,7 @@
       tags:
         - Pill
     grid:
-    - 0,0,5,2
+    - 0,0,9,4
     quickInsert: true
     areaInsert: true
     areaInsertRadius: 1

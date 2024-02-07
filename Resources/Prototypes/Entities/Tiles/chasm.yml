@@ -45,6 +45,17 @@
   - type: Tag
     tags:
     - HideContextMenu
+  # backmen start
+  - type: Drain
+  - type: DumpableSolution
+    solution: drainBuffer
+  - type: SolutionContainerManager
+    solutions:
+      drainBuffer:
+        maxVol: 10000
+  - type: DrainableSolution
+    solution: drainBuffer
+  # backmen end
 
 - type: entity
   parent: FloorChasmEntity

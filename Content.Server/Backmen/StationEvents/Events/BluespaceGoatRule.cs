@@ -28,7 +28,7 @@ public sealed class BluespaceGoatRule : StationEventSystem<BluespaceGoatRuleComp
             Spawn(component.BsgoatSpawnerPrototype, coords);
             Spawn(component.ArtifactFlashPrototype, coords);
 
-            Sawmill.Info($"Spawning bluespace goat at {coords}");
+            Sawmill.Info($"Spawning bluespace goat at {coords}!");
         }
     }
 }
