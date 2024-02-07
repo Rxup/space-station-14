@@ -181,6 +181,9 @@
         },
         {
             "name": "blueshield"
+        },
+        {
+            "name": "Visitor"
         }
     ]
 }

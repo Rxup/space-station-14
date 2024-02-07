@@ -1,6 +1,5 @@
 ﻿using Content.Server.Access.Systems;
 using Content.Server.Popups;
-using Content.Server.UserInterface;
 using Content.Shared.Access.Components;
 using Content.Shared.Backmen.Economy;
 using Content.Shared.Backmen.Economy.Eftpos;
@@ -8,6 +7,7 @@ using Content.Shared.FixedPoint;
 using Content.Shared.Interaction;
 using Content.Shared.Popups;
 using Content.Shared.Store;
+using Content.Shared.UserInterface;
 using Robust.Server.Audio;
 using Robust.Server.GameObjects;
 using Robust.Shared.Audio;

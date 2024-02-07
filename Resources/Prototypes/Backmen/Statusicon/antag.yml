@@ -1,0 +1,13 @@
+- type: statusIcon
+  id: FleshcultistFaction
+  priority: 10
+  icon:
+    sprite: Backmen/Interface/Misc/antag_icon.rsi
+    state: flesh
+
+- type: statusIcon
+  id: BlobFaction
+  priority: 10
+  icon:
+    sprite: Backmen/Interface/Misc/antag_icon.rsi
+    state: blob
