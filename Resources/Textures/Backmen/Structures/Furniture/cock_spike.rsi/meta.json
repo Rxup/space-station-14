@@ -1,0 +1,15 @@
+{
+    "version" : 1,
+    "license": "CC-BY-SA-3.0",
+    "copyright": "Taken from Skyrat-tg at commit https://github.com/Skyrat-SS13/Skyrat-tg/commit/ed4fbf117973dafea6e654bee7efdc2316bc2d8d ,modifed by Devian505.",
+    "size": {
+        "x": 32,
+        "y": 32
+      },
+      "states" : [
+        {
+           "directions" : 1,
+           "name" : "cock_spike"
+        }
+    ]
+}

@@ -114,6 +114,12 @@
       - id: BookPaperworkP5
         prob: 0.1
         orGroup: BookPool
+      - id: BookPassionsP2
+        prob: 0.1
+        orGroup: BookPool
+      - id: BookPaperworkP6
+        prob: 0.1
+        orGroup: BookPool
       - id: BookBusido # Corvax-Books
         prob: 0.1
         orGroup: BookPool
