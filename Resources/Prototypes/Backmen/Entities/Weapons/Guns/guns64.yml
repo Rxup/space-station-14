@@ -3506,7 +3506,7 @@
   - type: Barotrauma
     damage:
       types:
-        Blunt: 0.10
+        Blunt: 5
   - type: AtmosExposed
   - type: TimedDespawn
     lifetime: 100
@@ -3523,7 +3523,9 @@
     sound:
       path: /Audio/Effects/fire.ogg
   - type: IgniteOnCollide
-    fireStacks: 1.8
+    fireStacks: 0.8
+    count: 100
+    fixtureId: fix1
   - type: Transform
     anchored: true
   - type: IgnitionSource
@@ -3535,7 +3537,7 @@
     thresholds:
     - trigger:
         !type:DamageTrigger
-        damage: 10
+        damage: 0.1
       behaviors:
       - !type:DoActsBehavior
         acts: [ "Destruction" ]
