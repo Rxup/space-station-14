@@ -345,7 +345,6 @@ public sealed class BloodSuckerSystem : EntitySystem
             )
         {
             bloodsucker.Converted += 1;
-            Dirty(bloodsucked.BloodSuckerMindId.Value, bloodsucker);
         }
 
         EnsureMindVampire(uid);
@@ -534,7 +533,6 @@ public sealed class BloodSuckerSystem : EntitySystem
             if (TryComp<VampireRoleComponent>(bloodsuckermidId, out var vpm))
             {
                 vpm.Drink += unitsToDrain;
-                Dirty(bloodsucker, vpm);
             }
         }
         else
