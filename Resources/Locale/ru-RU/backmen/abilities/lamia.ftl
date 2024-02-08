@@ -11,3 +11,7 @@ bloodsucker-doafter-start-victim = { CAPITALIZE(THE($sucker)) } пытается
 bloodsucker-blood-sucked-victim = { CAPITALIZE(THE($sucker)) } высасывает немного твоей крови!
 bloodsucked-health-examine = [color=red]{ CAPITALIZE(SUBJECT($target)) } имеет следы укусов на шее.[/color]
 bloodsucker-glands-throb = Железы за вашими клыками немного болят.
+
+
+reagent-name-bloodsucker-toxin = Вампирский вирус
+reagent-desc-bloodsucker-toxin = это лекарство или вирус?!

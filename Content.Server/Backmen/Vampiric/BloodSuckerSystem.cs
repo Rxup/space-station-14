@@ -15,9 +15,15 @@ using Content.Server.HealthExaminable;
 using Content.Server.DoAfter;
 using Content.Server.Nutrition.Components;
 using Content.Server.Nutrition.EntitySystems;
+using Content.Server.Polymorph.Components;
+using Content.Server.Polymorph.Systems;
+using Content.Shared.Body.Components;
+using Content.Shared.Body.Part;
 using Content.Shared.Chemistry;
 using Content.Shared.Chemistry.Components;
 using Content.Shared.Chemistry.EntitySystems;
+using Content.Shared.Nutrition.EntitySystems;
+using Content.Shared.Polymorph;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Utility;
@@ -38,6 +44,9 @@ public sealed class BloodSuckerSystem : EntitySystem
     [Dependency] private readonly SharedInteractionSystem _interactionSystem = default!;
     [Dependency] private readonly ReactiveSystem _reactiveSystem = default!;
     [Dependency] private readonly SharedAudioSystem _audio = default!;
+    [Dependency] private readonly PolymorphSystem _polymorph = default!;
+    [Dependency] private readonly HungerSystem _hunger = default!;
+
     public override void Initialize()
     {
         base.Initialize();
@@ -45,6 +54,43 @@ public sealed class BloodSuckerSystem : EntitySystem
         SubscribeLocalEvent<BloodSuckedComponent, HealthBeingExaminedEvent>(OnHealthExamined);
         SubscribeLocalEvent<BloodSuckedComponent, DamageChangedEvent>(OnDamageChanged);
         SubscribeLocalEvent<BloodSuckerComponent, BloodSuckDoAfterEvent>(OnDoAfter);
+
+        SubscribeLocalEvent<BloodSuckerComponent, PolymorphActionEvent>(OnPolymorphActionEvent, before: new []{ typeof(PolymorphSystem) });
+    }
+
+    private void OnPolymorphActionEvent(Entity<BloodSuckerComponent> ent, ref PolymorphActionEvent args)
+    {
+        _hunger.ModifyHunger(ent, -10);
+    }
+
+    [ValidatePrototypeId<EntityPrototype>] private const string OrganVampiricHumanoidStomach = "OrganVampiricHumanoidStomach";
+    [ValidatePrototypeId<PolymorphPrototype>] private const string BVampieBat = "BVampieBat";
+
+    public void ConvertToVampire(EntityUid uid)
+    {
+        if (
+            HasComp<BloodSuckerComponent>(uid) ||
+            !TryComp<BodyComponent>(uid, out var bodyComponent) ||
+            !TryComp<BodyPartComponent>(bodyComponent.RootContainer.ContainedEntity, out var bodyPartComponent)
+            )
+            return;
+
+        var bloodSucker = EnsureComp<BloodSuckerComponent>(uid);
+        bloodSucker.InjectReagent = "BloodSuckerToxin";
+        bloodSucker.InjectWhenSucc = true;
+
+        {
+            var stomachs = _bodySystem.GetBodyOrganComponents<StomachComponent>(uid);
+            foreach (var (comp, organ) in stomachs)
+            {
+                _bodySystem.RemoveOrgan(organ.Owner, organ);
+            }
+        }
+
+        var stomach = Spawn(OrganVampiricHumanoidStomach);
+
+        _bodySystem.InsertOrgan(bodyComponent.RootContainer.ContainedEntity.Value, stomach, "stomach", bodyPartComponent);
+        _polymorph.CreatePolymorphAction(BVampieBat, (uid,EnsureComp<PolymorphableComponent>(uid)));
     }
 
     private void AddSuccVerb(EntityUid uid, BloodSuckerComponent component, GetVerbsEvent<InnateVerb> args)
@@ -215,9 +261,9 @@ public sealed class BloodSuckerSystem : EntitySystem
 
         _damageableSystem.TryChangeDamage(victim, damage, true, true);
 
-        if (bloodsuckerComp.InjectWhenSucc)
+        if (bloodsuckerComp.InjectWhenSucc && _solutionSystem.TryGetSolution(victim, bloodstream.ChemicalSolutionName, out var chemical))
         {
-            _solutionSystem.TryAddReagent(bloodSolution, bloodsuckerComp.InjectReagent, bloodsuckerComp.UnitsToInject, out var acceptedQuantity);
+            _solutionSystem.TryAddReagent(chemical.Value, bloodsuckerComp.InjectReagent, bloodsuckerComp.UnitsToInject, out var acceptedQuantity);
         }
         return true;
     }
