@@ -1,0 +1,61 @@
+- type: entity
+  noSpawn: true
+  parent: BaseBloodsuckerObjective
+  id: BloodsuckerDrinkObjective
+  name: BloodsuckerDrink
+  description: BloodsuckerDrink
+  components:
+  - type: Objective
+    icon:
+      sprite: Backmen/Interface/Actions/vampire.rsi
+      state: bat
+  - type: BloodsuckerDrinkCondition
+    min: 400
+    max: 800
+
+- type: entity
+  noSpawn: true
+  parent: BaseBloodsuckerObjective
+  id: BloodsuckerConvertObjective
+  name: BloodsuckerConvert
+  description: BloodsuckerConvert
+  components:
+  - type: Objective
+    icon:
+      sprite: Mobs/Animals/goat.rsi
+      state: goat
+  - type: BloodsuckerConvertCondition
+    max: 5
+    perPlayers: 10
+
+- type: entity
+  noSpawn: true
+  parent: BaseBloodsuckerObjective
+  id: EscapeShuttleObjectiveBloodsucker
+  name: Сбегите в Центком живым и свободным.
+  description: Ваша задача дождатся конца смены и сбежать на Центком, живым и свободным!
+  components:
+  - type: Objective
+    difficulty: 1.3
+    icon:
+      sprite: Structures/Furniture/chairs.rsi
+      state: shuttle
+  - type: EscapeShuttleCondition
+
+
+- type: entity
+  abstract: true
+  parent: BaseObjective
+  id: BaseBloodsuckerObjective
+  components:
+  - type: Objective
+    issuer: Коалиция вампиров
+    unique: true
+    difficulty: 1
+    icon:
+      sprite: Structures/Furniture/chairs.rsi
+      state: shuttle
+  - type: RoleRequirement
+    roles:
+      components:
+      - VampireRole
