@@ -4,3 +4,17 @@ objective-bloodsucker-drink-desc = Выпей те из чистокровных
 
 objective-bloodsucker-conv-name = Обратить в вампиров { $goal } чистых гуманойдов
 objective-bloodsucker-conv-desc = Коалиция вампиров желает взаиметь больше соподвижников, процесс обращения займёт время и ненадолго окажет негативный эффект.
+
+vampire-elder = Вампир (Изначальный)
+vampire-bitten = Вампир (Укушенный)
+
+
+endgame-vamp-name-user = [color=#5e9cff]{ $name }[/color] ([color=gray]{ $username }[/color])
+
+endgame-vamp-name = [color=#5e9cff]{ $name }[/color]
+
+endgame-vamp-conv = обратил { $count } { $count ->
+[one] члена
+*[other] членов
+    } экипажа
+endgame-vamp-drink = выпил крови { $count } из { $goal }

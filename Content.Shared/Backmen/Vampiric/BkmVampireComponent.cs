@@ -11,15 +11,8 @@ namespace Content.Shared.Backmen.Vampiric;
 
 [RegisterComponent]
 [NetworkedComponent]
-[AutoGenerateComponentState]
 public sealed partial class BkmVampireComponent : Component, IAntagStatusIconComponent
 {
-    [AutoNetworkedField, ViewVariables(VVAccess.ReadWrite)]
-    public float Drink = 0;
-
-    [AutoNetworkedField, ViewVariables(VVAccess.ReadWrite)]
-    public int Converted = 0;
-
     public ProtoId<StatusIconPrototype> StatusIcon { get; set; } = "VampireFaction";
     public bool IconVisibleToGhost { get; set; } = true;
 

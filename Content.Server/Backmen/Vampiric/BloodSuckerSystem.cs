@@ -17,6 +17,7 @@ using Content.Server.DoAfter;
 using Content.Server.Mind;
 using Content.Server.Nutrition.Components;
 using Content.Server.Nutrition.EntitySystems;
+using Content.Server.Objectives;
 using Content.Server.Polymorph.Components;
 using Content.Server.Polymorph.Systems;
 using Content.Server.Roles;
@@ -107,7 +108,10 @@ public sealed class BloodSuckerSystem : EntitySystem
             return;
         }
 
-        EnsureComp<BloodSuckedComponent>(args.Target.Value).BloodSucker = ent;
+        if (_mindSystem.TryGetMind(ent, out var entMindId, out _))
+        {
+            EnsureComp<BloodSuckedComponent>(args.Target.Value).BloodSuckerMindId = entMindId;
+        }
 
         // Add a little pierce
         DamageSpecifier damage = new();
@@ -117,6 +121,7 @@ public sealed class BloodSuckerSystem : EntitySystem
 
         ConvertToVampire(args.Target.Value);
         _stun.TryKnockdown(args.Target.Value, TimeSpan.FromSeconds(30), true);
+        _stun.TryParalyze(args.Target.Value, TimeSpan.FromSeconds(30), true);
 
         _hunger.ModifyHunger(ent, -100);
         _stun.TryStun(ent, TimeSpan.FromSeconds(_random.Next(1, 3)), true);
@@ -232,7 +237,7 @@ public sealed class BloodSuckerSystem : EntitySystem
 
     private void OnGetConvertProgress(Entity<BloodsuckerConvertConditionComponent> ent, ref ObjectiveGetProgressEvent args)
     {
-        if (args.Mind.OwnedEntity == null || !TryComp<BkmVampireComponent>(args.Mind.OwnedEntity, out var vmp))
+        if (args.Mind.OwnedEntity == null || !TryComp<VampireRoleComponent>(args.MindId, out var vmp))
         {
             args.Progress = 0;
             return;
@@ -266,7 +271,7 @@ public sealed class BloodSuckerSystem : EntitySystem
 
     private void OnGetDrinkProgress(Entity<BloodsuckerDrinkConditionComponent> ent, ref ObjectiveGetProgressEvent args)
     {
-        if (args.Mind.OwnedEntity == null || !TryComp<BkmVampireComponent>(args.Mind.OwnedEntity, out var vmp))
+        if (args.Mind.OwnedEntity == null || !TryComp<VampireRoleComponent>(args.MindId, out var vmp))
         {
             args.Progress = 0;
             return;
@@ -334,13 +339,13 @@ public sealed class BloodSuckerSystem : EntitySystem
 
         if (
             TryComp<BloodSuckedComponent>(uid, out var bloodsucked) &&
-            bloodsucked.BloodSucker.HasValue &&
-            !TerminatingOrDeleted(bloodsucked.BloodSucker.Value) &&
-            TryComp<BkmVampireComponent>(bloodsucked.BloodSucker.Value, out var bloodsucker)
+            bloodsucked.BloodSuckerMindId.HasValue &&
+            !TerminatingOrDeleted(bloodsucked.BloodSuckerMindId.Value) &&
+            TryComp<VampireRoleComponent>(bloodsucked.BloodSuckerMindId.Value, out var bloodsucker)
             )
         {
             bloodsucker.Converted += 1;
-            Dirty(bloodsucked.BloodSucker.Value, bloodsucker);
+            Dirty(bloodsucked.BloodSuckerMindId.Value, bloodsucker);
         }
 
         EnsureMindVampire(uid);
@@ -522,7 +527,21 @@ public sealed class BloodSuckerSystem : EntitySystem
         _audio.PlayPvs("/Audio/Items/drink.ogg", bloodsucker);
         _popups.PopupEntity(Loc.GetString("bloodsucker-blood-sucked-victim", ("sucker", bloodsucker)), victim, victim, Shared.Popups.PopupType.LargeCaution);
         _popups.PopupEntity(Loc.GetString("bloodsucker-blood-sucked", ("target", victim)), bloodsucker, bloodsucker, Shared.Popups.PopupType.Medium);
-        EnsureComp<BloodSuckedComponent>(victim).BloodSucker = bloodsucker;
+
+        if (_mindSystem.TryGetMind(bloodsucker, out var bloodsuckermidId, out _))
+        {
+            EnsureComp<BloodSuckedComponent>(victim).BloodSuckerMindId = bloodsuckermidId;
+            if (TryComp<VampireRoleComponent>(bloodsuckermidId, out var vpm))
+            {
+                vpm.Drink += unitsToDrain;
+                Dirty(bloodsucker, vpm);
+            }
+        }
+        else
+        {
+            EnsureComp<BloodSuckedComponent>(victim).BloodSuckerMindId = null;
+        }
+
 
         var bloodSolution = bloodstream.BloodSolution.Value;
         // Make everything actually ingest.
@@ -541,11 +560,7 @@ public sealed class BloodSuckerSystem : EntitySystem
             _solutionSystem.TryAddReagent(chemical.Value, bloodsuckerComp.InjectReagent, bloodsuckerComp.UnitsToInject, out var acceptedQuantity);
         }
 
-        if (TryComp<BkmVampireComponent>(bloodsucker, out var vpm))
-        {
-            vpm.Drink += unitsToDrain;
-            Dirty(bloodsucker, vpm);
-        }
+
         return true;
     }
 }
