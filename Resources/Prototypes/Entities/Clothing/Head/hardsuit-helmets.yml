@@ -742,9 +742,9 @@
   components:
   - type: BreathMask
   - type: Sprite
-    sprite: Clothing/Head/Hardsuits/mime.rsi
+    sprite: Backmen/Clothing/Head/Hardsuits/mime.rsi
   - type: Clothing
-    sprite: Clothing/Head/Hardsuits/mime.rsi
+    sprite: Backmen/Clothing/Head/Hardsuits/mime.rsi
 
 #Santas Hardsuit
 - type: entity
