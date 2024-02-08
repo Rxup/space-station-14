@@ -8,6 +8,9 @@ objective-bloodsucker-conv-desc = Коалиция вампиров желает
 vampire-elder = Вампир (Изначальный)
 vampire-bitten = Вампир (Укушенный)
 
+vampire-action-convert-name = обратить в вампира
+vampire-action-convert-desc = Оращает чистокровную жертву в вампира, с незначительным негативным эффектом.
+
 
 endgame-vamp-name-user = [color=#5e9cff]{ $name }[/color] ([color=gray]{ $username }[/color])
 
