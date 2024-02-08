@@ -15,3 +15,20 @@ bloodsucker-glands-throb = Железы за вашими клыками нем�
 
 reagent-name-bloodsucker-toxin = Вампирский вирус
 reagent-desc-bloodsucker-toxin = это лекарство или вирус?!
+
+
+objective-bloodsucker-drink-name = Выпить { $goal } крови
+objective-bloodsucker-drink-desc = Выпий прямо из чей-то шеи { $goal } крови!
+
+
+objective-bloodsucker-conv-name = Сделать вампиром { $goal } живых существ
+objective-bloodsucker-conv-desc = Вампиров очень мало! и важно сделать больше братьев! Нужно сделать миниум { $goal }!
+
+
+vampire-health-examine = [color=red]{ CAPITALIZE(SUBJECT($target)) } имеет бледную кожу, синяки под глазами, явно торчащие клыки.[/color]
+
+
+roles-antag-bloodsucker-name = Вампир
+
+vampires-title = Вампиры
+vampires-description = Вампиры среди нас!

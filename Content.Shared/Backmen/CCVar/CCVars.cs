@@ -130,4 +130,14 @@ public sealed class CCVars
 
     public static readonly CVarDef<int> FleshCultPlayersPerCultist =
         CVarDef.Create("fleshcult.players_per_cultist", 7, CVar.SERVERONLY);
+
+    /*
+     * bloodsucker
+     */
+
+    public static readonly CVarDef<int> BloodsuckerMaxPerBloodsucker =
+        CVarDef.Create("bloodsucker.max_bloodsuckers", 5, CVar.SERVERONLY);
+
+    public static readonly CVarDef<int> BloodsuckerPlayersPerBloodsucker =
+        CVarDef.Create("bloodsucker.players_per_bloodsucker", 10, CVar.SERVERONLY);
 }

@@ -6,6 +6,11 @@
     state: flesh
 
 - type: statusIcon
+  id: VampireFaction
+  priority: 9
+  icon: /Textures/Backmen/Icons/verbiconfangs.png
+
+- type: statusIcon
   id: BlobFaction
   priority: 10
   icon:

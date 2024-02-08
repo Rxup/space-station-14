@@ -1,11 +1,74 @@
-﻿- type: polymorph
+﻿- type: entity
+  noSpawn: true
+  parent: BaseBloodsuckerObjective
+  id: BloodsuckerDrinkObjective
+  name: BloodsuckerDrink
+  description: BloodsuckerDrink
+  components:
+  - type: Objective
+  - type: BloodsuckerDrinkCondition
+    min: 400
+    max: 800
+
+- type: entity
+  noSpawn: true
+  parent: BaseBloodsuckerObjective
+  id: BloodsuckerConvertObjective
+  name: BloodsuckerConvert
+  description: BloodsuckerConvert
+  components:
+  - type: Objective
+  - type: BloodsuckerConvertCondition
+    max: 5
+    perPlayers: 10
+
+- type: entity
+  noSpawn: true
+  parent: BaseBloodsuckerObjective
+  id: EscapeShuttleObjectiveBloodsucker
+  name: Сбегите в Центком живым и свободным.
+  description: Ваша задача дождатся конца смены и сбежать на Центком, живым и свободным!
+  components:
+  - type: Objective
+    difficulty: 1.3
+    icon:
+      sprite: Structures/Furniture/chairs.rsi
+      state: shuttle
+  - type: EscapeShuttleCondition
+
+
+- type: entity
+  abstract: true
+  parent: BaseObjective
+  id: BaseBloodsuckerObjective
+  components:
+  - type: Objective
+    issuer: Коалиция вампиров
+    unique: true
+    difficulty: 1
+    icon:
+      sprite: Structures/Furniture/chairs.rsi
+      state: shuttle
+  - type: RoleRequirement
+    roles:
+      components:
+      - VampireRole
+
+- type: antag
+  id: Bloodsucker
+  name: roles-antag-bloodsucker-name
+  antagonist: true
+  setPreference: true
+  objective: roles-antag-bloodsucker-objective
+
+- type: polymorph
   id: BVampieBat
   configuration:
     entity: MobBatRemilia
     revertOnCrit: true
     revertOnDeath: true
     transferName: true
-    cooldown: 160
+    cooldown: 30
     delay: 5
     allowRepeatedMorphs: true
     revertOnEat: true
@@ -56,3 +119,19 @@
         - !type:ReagentThreshold
           reagent: BloodSuckerToxin
           min: 10
+
+
+- type: entity
+  id: ActionConvertToVampier
+  name: Make new bloodsucker
+  noSpawn: true
+  components:
+  - type: EntityTargetAction
+    icon:
+      entity: DoorRemoteAIOpenClose
+    event: !type:InnateNewVampierActionEvent
+    useDelay: 120
+    checkCanAccess: true
+    checkCanInteract: true
+    priority: -1
+    range: 3
