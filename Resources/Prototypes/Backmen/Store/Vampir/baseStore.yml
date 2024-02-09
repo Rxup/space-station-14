@@ -1,0 +1,66 @@
+﻿- type: storeCategory
+  id: VapmireT0
+  name: T0
+
+- type: storeCategory
+  id: VapmireT1
+  name: T1
+
+- type: storeCategory
+  id: VapmireT2
+  name: T2
+
+- type: storeCategory
+  id: VapmireT3
+  name: T3
+
+- type: currency
+  id: BloodEssence
+  displayName: Кровь
+  canWithdraw: false
+
+- type: listing
+  id: vmpt0tot1
+  name: Update to 1 tier
+  description: Unlock new shop items
+  productEvent: !type:VampireStoreEvent
+    buyType: Tier1Upgrade
+  cost:
+    BloodEssence: 10
+  categories:
+  - VapmireT0
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+
+- type: listing
+  id: vmpt1tot2
+  name: Update to 2 tier
+  description: Unlock new shop items
+  productEvent: !type:VampireStoreEvent
+    buyType: Tier2Upgrade
+  cost:
+    BloodEssence: 100
+  categories:
+  - VapmireT0
+  conditions:
+  - !type:RequireParentListingCondition
+    parent: vmpt0tot1
+  - !type:ListingLimitedStockCondition
+    stock: 1
+
+- type: listing
+  id: vmpt2tot3
+  name: Update to 3 tier
+  description: Unlock new shop items
+  productEvent: !type:VampireStoreEvent
+    buyType: Tier3Upgrade
+  cost:
+    BloodEssence: 1000
+  categories:
+  - VapmireT0
+  conditions:
+  - !type:RequireParentListingCondition
+    parent: vmpt1tot2
+  - !type:ListingLimitedStockCondition
+    stock: 1

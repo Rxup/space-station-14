@@ -1,0 +1,85 @@
+﻿
+
+- type: listing
+  id: vmpSkillConv
+  name: Обратить в вампира
+  description: тбд
+  productEvent: !type:VampireStoreEvent
+    buyType: MakeNewVamp
+  cost:
+    BloodEssence: 10
+  categories:
+  - VapmireT1
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+
+- type: listing
+  id: vmpSkillMouse1
+  name: Обратится в мышку (Мышь)
+  description: тбд
+  productEvent: !type:VampireStoreEvent
+    buyType: SkillMouse2
+  cost:
+    BloodEssence: 10
+  categories:
+  - VapmireT1
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+
+- type: listing
+  id: vmpSkillMouse2
+  name: Обратится в мышку (Ремилия)
+  description: тбд
+  productEvent: !type:VampireStoreEvent
+    buyType: SkillMouse1
+  cost:
+    BloodEssence: 10
+  categories:
+  - VapmireT1
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+
+- type: listing
+  id: vmpDispelPower
+  name: Рассеять
+  description: тбд
+  productEvent: !type:VampireStoreEvent
+    buyType: DispelPower
+  cost:
+    BloodEssence: 10
+  categories:
+  - VapmireT1
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+
+- type: listing
+  id: vmpRegenPower
+  name: Исцеление
+  description: тбд
+  productEvent: !type:VampireStoreEvent
+    buyType: RegenPower
+  cost:
+    BloodEssence: 10
+  categories:
+  - VapmireT1
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+
+- type: listing
+  id: vmpZapPower
+  name: Молния
+  description: тбд
+  productEvent: !type:VampireStoreEvent
+    buyType: ZapPower
+  cost:
+    BloodEssence: 10
+  categories:
+  - VapmireT1
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1

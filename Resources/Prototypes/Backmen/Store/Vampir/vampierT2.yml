@@ -1,0 +1,121 @@
+﻿
+
+- type: listing
+  id: vmpSkillSprint1
+  name: Спринт ур1
+  description: на шифт спринт вместо медленнного шага
+  productEvent: !type:VampireStoreEvent
+    buyType: Sprint1
+  cost:
+    BloodEssence: 10
+  categories:
+  - VapmireT2
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+
+- type: listing
+  id: vmpSkillSprint2
+  name: Спринт ур2
+  description: на шифт спринт вместо медленнного шага
+  productEvent: !type:VampireStoreEvent
+    buyType: Sprint2
+  cost:
+    BloodEssence: 10
+  categories:
+  - VapmireT2
+  conditions:
+  - !type:RequireParentListingCondition
+    parent: vmpSkillSprint1
+  - !type:ListingLimitedStockCondition
+    stock: 1
+
+- type: listing
+  id: vmpSkillSprint3
+  name: Спринт ур3
+  description: на шифт спринт вместо медленнного шага
+  productEvent: !type:VampireStoreEvent
+    buyType: Sprint3
+  cost:
+    BloodEssence: 10
+  categories:
+  - VapmireT2
+  conditions:
+  - !type:RequireParentListingCondition
+    parent: vmpSkillSprint2
+  - !type:ListingLimitedStockCondition
+    stock: 1
+
+- type: listing
+  id: vmpSkillSprint4
+  name: Спринт ур4
+  description: на шифт спринт вместо медленнного шага
+  productEvent: !type:VampireStoreEvent
+    buyType: Sprint4
+  cost:
+    BloodEssence: 10
+  categories:
+  - VapmireT2
+  conditions:
+  - !type:RequireParentListingCondition
+    parent: vmpSkillSprint3
+  - !type:ListingLimitedStockCondition
+    stock: 1
+
+- type: listing
+  id: vmpSkillSprint5
+  name: Спринт ур5
+  description: на шифт спринт вместо медленнного шага
+  productEvent: !type:VampireStoreEvent
+    buyType: Sprint5
+  cost:
+    BloodEssence: 10
+  categories:
+  - VapmireT2
+  conditions:
+    - !type:RequireParentListingCondition
+      parent: vmpSkillSprint4
+    - !type:ListingLimitedStockCondition
+      stock: 1
+
+- type: listing
+  id: vmpSkillNoSlip
+  name: Устойчивость
+  description: Вы больше не подскальзываетесь
+  productEvent: !type:VampireStoreEvent
+    buyType: NoSlip
+  cost:
+    BloodEssence: 10
+  categories:
+  - VapmireT2
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+
+- type: listing
+  id: vmpIgnitePower
+  name: Поджечь
+  description: тбд
+  productEvent: !type:VampireStoreEvent
+    buyType: IgnitePower
+  cost:
+    BloodEssence: 10
+  categories:
+  - VapmireT2
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+
+- type: listing
+  id: vmpPsiInvisPower
+  name: Невидимость
+  description: тбд
+  productEvent: !type:VampireStoreEvent
+    buyType: PsiInvisPower
+  cost:
+    BloodEssence: 10
+  categories:
+  - VapmireT2
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1

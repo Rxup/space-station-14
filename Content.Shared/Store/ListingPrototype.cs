@@ -116,12 +116,15 @@ public partial class ListingData : IEquatable<ListingData>, ICloneable
             return false;
 
         //simple conditions
+        if (ID != listing.ID)
+            return false;
+
+        //simple conditions
         if (Priority != listing.Priority ||
             Name != listing.Name ||
             Description != listing.Description ||
             ProductEntity != listing.ProductEntity ||
             ProductAction != listing.ProductAction ||
-            ProductEvent != listing.ProductEvent ||
             RestockTime != listing.RestockTime)
             return false;
 

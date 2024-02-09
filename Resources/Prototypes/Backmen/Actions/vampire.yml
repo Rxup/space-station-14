@@ -1,4 +1,14 @@
 - type: entity
+  id: VmpShop
+  name: Evolution Shop
+  description: Here you can purchase active skills and passive enhancements.
+  noSpawn: true
+  components:
+  - type: InstantAction
+    icon: Interface/Actions/fleshCultistShop.png
+    event: !type:VampireShopActionEvent
+
+- type: entity
   id: ActionConvertToVampier
   name: vampire-action-convert-name
   description: vampire-action-convert-desc

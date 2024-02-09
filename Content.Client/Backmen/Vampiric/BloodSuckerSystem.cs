@@ -6,7 +6,7 @@ using Content.Shared.StatusIcon.Components;
 
 namespace Content.Client.Backmen.Vampiric;
 
-public sealed class BloodSuckerSystem : EntitySystem
+public sealed class BloodSuckerSystem : SharedBloodSuckerSystem
 {
     public override void Initialize()
     {
