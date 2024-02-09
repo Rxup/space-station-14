@@ -2,8 +2,8 @@
 
 - type: listing
   id: vmpSkillConv
-  name: Обратить в вампира
-  description: тбд
+  name: store-vmpSkillConv-name
+  description: store-vmpSkillConv-desc
   productEvent: !type:VampireStoreEvent
     buyType: MakeNewVamp
   cost:
@@ -16,12 +16,12 @@
 
 - type: listing
   id: vmpSkillMouse1
-  name: Обратится в мышку (Мышь)
-  description: тбд
+  name: store-vmpSkillMouse1-name
+  description: store-vmpSkillMouse1-desc
   productEvent: !type:VampireStoreEvent
     buyType: SkillMouse2
   cost:
-    BloodEssence: 10
+    BloodEssence: 5
   categories:
   - VapmireT1
   conditions:
@@ -30,12 +30,12 @@
 
 - type: listing
   id: vmpSkillMouse2
-  name: Обратится в мышку (Ремилия)
-  description: тбд
+  name: store-vmpSkillMouse2-name
+  description: store-vmpSkillMouse2-desc
   productEvent: !type:VampireStoreEvent
     buyType: SkillMouse1
   cost:
-    BloodEssence: 10
+    BloodEssence: 5
   categories:
   - VapmireT1
   conditions:
@@ -44,12 +44,12 @@
 
 - type: listing
   id: vmpDispelPower
-  name: Рассеять
-  description: тбд
+  name: store-vmpDispelPower-name
+  description: store-vmpDispelPower-desc
   productEvent: !type:VampireStoreEvent
     buyType: DispelPower
   cost:
-    BloodEssence: 10
+    BloodEssence: 3
   categories:
   - VapmireT1
   conditions:
@@ -58,12 +58,12 @@
 
 - type: listing
   id: vmpRegenPower
-  name: Исцеление
-  description: тбд
+  name: store-vmpRegenPower-name
+  description: store-vmpRegenPower-desc
   productEvent: !type:VampireStoreEvent
     buyType: RegenPower
   cost:
-    BloodEssence: 10
+    BloodEssence: 5
   categories:
   - VapmireT1
   conditions:
@@ -72,8 +72,8 @@
 
 - type: listing
   id: vmpZapPower
-  name: Молния
-  description: тбд
+  name: store-vmpZapPower-name
+  description: store-vmpZapPower-desc
   productEvent: !type:VampireStoreEvent
     buyType: ZapPower
   cost:

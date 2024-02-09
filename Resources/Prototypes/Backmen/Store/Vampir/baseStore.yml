@@ -16,13 +16,13 @@
 
 - type: currency
   id: BloodEssence
-  displayName: Кровь
+  displayName: store-points-bloodEssence-name
   canWithdraw: false
 
 - type: listing
   id: vmpt0tot1
-  name: Update to 1 tier
-  description: Unlock new shop items
+  name: store-tier-update-to-1-name
+  description: store-tier-update-to-n-desc
   productEvent: !type:VampireStoreEvent
     buyType: Tier1Upgrade
   cost:
@@ -35,12 +35,12 @@
 
 - type: listing
   id: vmpt1tot2
-  name: Update to 2 tier
-  description: Unlock new shop items
+  name: store-tier-update-to-2-name
+  description: store-tier-update-to-n-desc
   productEvent: !type:VampireStoreEvent
     buyType: Tier2Upgrade
   cost:
-    BloodEssence: 100
+    BloodEssence: 25
   categories:
   - VapmireT0
   conditions:
@@ -51,12 +51,12 @@
 
 - type: listing
   id: vmpt2tot3
-  name: Update to 3 tier
-  description: Unlock new shop items
+  name: store-tier-update-to-3-name
+  description: store-tier-update-to-n-desc
   productEvent: !type:VampireStoreEvent
     buyType: Tier3Upgrade
   cost:
-    BloodEssence: 1000
+    BloodEssence: 50
   categories:
   - VapmireT0
   conditions:

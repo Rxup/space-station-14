@@ -2,12 +2,12 @@
 
 - type: listing
   id: vmpSkillSprint1
-  name: Спринт ур1
-  description: на шифт спринт вместо медленнного шага
+  name: store-vmpSkillSprint1-name
+  description: store-vmpSkillSprint-desc
   productEvent: !type:VampireStoreEvent
     buyType: Sprint1
   cost:
-    BloodEssence: 10
+    BloodEssence: 5
   categories:
   - VapmireT2
   conditions:
@@ -16,12 +16,12 @@
 
 - type: listing
   id: vmpSkillSprint2
-  name: Спринт ур2
-  description: на шифт спринт вместо медленнного шага
+  name: store-vmpSkillSprint2-name
+  description: store-vmpSkillSprint-desc
   productEvent: !type:VampireStoreEvent
     buyType: Sprint2
   cost:
-    BloodEssence: 10
+    BloodEssence: 5
   categories:
   - VapmireT2
   conditions:
@@ -32,12 +32,12 @@
 
 - type: listing
   id: vmpSkillSprint3
-  name: Спринт ур3
-  description: на шифт спринт вместо медленнного шага
+  name: store-vmpSkillSprint3-name
+  description: store-vmpSkillSprint-desc
   productEvent: !type:VampireStoreEvent
     buyType: Sprint3
   cost:
-    BloodEssence: 10
+    BloodEssence: 5
   categories:
   - VapmireT2
   conditions:
@@ -48,12 +48,12 @@
 
 - type: listing
   id: vmpSkillSprint4
-  name: Спринт ур4
-  description: на шифт спринт вместо медленнного шага
+  name: store-vmpSkillSprint4-name
+  description: store-vmpSkillSprint-desc
   productEvent: !type:VampireStoreEvent
     buyType: Sprint4
   cost:
-    BloodEssence: 10
+    BloodEssence: 5
   categories:
   - VapmireT2
   conditions:
@@ -64,12 +64,12 @@
 
 - type: listing
   id: vmpSkillSprint5
-  name: Спринт ур5
-  description: на шифт спринт вместо медленнного шага
+  name: store-vmpSkillSprint5-name
+  description: store-vmpSkillSprint-desc
   productEvent: !type:VampireStoreEvent
     buyType: Sprint5
   cost:
-    BloodEssence: 10
+    BloodEssence: 5
   categories:
   - VapmireT2
   conditions:
@@ -80,12 +80,12 @@
 
 - type: listing
   id: vmpSkillNoSlip
-  name: Устойчивость
-  description: Вы больше не подскальзываетесь
+  name: store-vmpSkillNoSlip-name
+  description: store-vmpSkillNoSlip-desc
   productEvent: !type:VampireStoreEvent
     buyType: NoSlip
   cost:
-    BloodEssence: 10
+    BloodEssence: 5
   categories:
   - VapmireT2
   conditions:
@@ -94,12 +94,12 @@
 
 - type: listing
   id: vmpIgnitePower
-  name: Поджечь
-  description: тбд
+  name: store-vmpIgnitePower-name
+  description: store-vmpIgnitePower-desk
   productEvent: !type:VampireStoreEvent
     buyType: IgnitePower
   cost:
-    BloodEssence: 10
+    BloodEssence: 20
   categories:
   - VapmireT2
   conditions:
@@ -108,8 +108,8 @@
 
 - type: listing
   id: vmpPsiInvisPower
-  name: Невидимость
-  description: тбд
+  name: store-vmpPsiInvisPower-name
+  description: store-vmpPsiInvisPower-desk
   productEvent: !type:VampireStoreEvent
     buyType: PsiInvisPower
   cost:
