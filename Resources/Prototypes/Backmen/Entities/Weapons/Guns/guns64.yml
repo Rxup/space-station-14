@@ -2071,6 +2071,7 @@
   name: bullet (бронебойно-разрывной)
   components:
   - type: Projectile
+    ignoreResistances: true
     damage:
       types:
         Piercing: 12
