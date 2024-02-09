@@ -2543,7 +2543,6 @@
         - id: WeaponPulseRifleAP12
         - id: MagazinePulseRifle
           amount: 9
-        - id: BoxHandcuff
         - id: WeaponShotgunAA12
         - id: MagazineShotgunFRAG12
           amount: 2
@@ -2648,3 +2647,7 @@
     - state: idseniorofficer
   - type: Item
     heldPrefix: black
+
+#MTF Tay 39------------------------------------
+
+
