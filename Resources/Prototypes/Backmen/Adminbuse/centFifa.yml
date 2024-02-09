@@ -1213,8 +1213,8 @@
         - id: BattleMedipen
           amount: 3
         - id: trayScanner
-        - id: WeaponShotgunAA12
-        - id:  MagazineShotgunMagnum12
+        - id: WeaponShotgun39
+        - id: MagazineShotgunMagnum12
           amount: 4
         - id: WeaponPistolVP78
         - id: MagazinePistolHighCapacity
@@ -2510,7 +2510,7 @@
   id: ERTLeaderAlpha1Gear
   equipment:
     jumpsuit: ClothingUniformJumpsuitSpetsnaz
-    back: ClothingBackpackERTOperativeAlpha1
+    back: ClothingBackpackERTLeaderAlpha1
     shoes: ClothingShoesBootsMagAdv
     mask: ClothingMaskGasERTV2_1
     eyes: ClothingEyesGlassesSunglasses
@@ -2522,6 +2522,33 @@
     ears: ClothingHeadsetCentComCCMTF
     belt: ClothingBeltSecurityFilled
     pocket1: CombatKnifeSpetsnaz
+
+- type: entity
+  noSpawn: true
+  parent: ClothingBackpackERTLeader
+  id: ClothingBackpackERTLeaderAlpha1
+  components:
+    - type: Clothing
+      sprite: Clothing/OuterClothing/Hardsuits/ERTSuits/ertleader.rsi
+    - type: StorageFill
+      contents:
+        - id: BoxFlare
+          amount: 2
+        - id: SpetsnazMedipen
+          amount: 3
+        - id: WeaponDisabler
+        - id: WeaponPistolDivet2
+        - id: MagazinePistol345
+          amount: 3
+        - id: WeaponPulseRifleAP12
+        - id: MagazinePulseRifle
+          amount: 9
+        - id: BoxHandcuff
+        - id: WeaponShotgunAA12
+        - id: MagazineShotgunFRAG12
+          amount: 2
+        - id: MagazineShotgunMagnum12
+          amount: 4
 
 - type: entity
   noSpawn: true
