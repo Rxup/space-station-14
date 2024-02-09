@@ -1,0 +1,16 @@
+- type: entity
+  id: ActionConvertToVampier
+  name: vampire-action-convert-name
+  description: vampire-action-convert-desc
+  noSpawn: true
+  components:
+  - type: EntityTargetAction
+    icon:
+      sprite: Backmen/Interface/Actions/vampire.rsi
+      state: bat
+    event: !type:InnateNewVampierActionEvent
+    useDelay: 120
+    checkCanAccess: true
+    checkCanInteract: true
+    priority: -1
+    range: 3

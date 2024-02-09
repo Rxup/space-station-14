@@ -1,0 +1,26 @@
+- type: entity
+  name: bloodsucker medipen
+  parent: ChemicalMedipen
+  id: BloodsuckerMedipen
+  description: Virus? And it's not a zombie...
+  components:
+  - type: Sprite
+    sprite: Objects/Specific/Medical/medipen.rsi
+    layers:
+    - state: medipen
+      map: ["enum.SolutionContainerLayers.Fill"]
+  - type: SolutionContainerVisuals
+    maxFillLevels: 1
+    changeColor: true
+    emptySpriteName: medipen_empty
+  - type: SolutionContainerManager
+    solutions:
+      pen:
+        maxVol: 20
+        reagents:
+        - ReagentId: BloodSuckerToxin
+          Quantity: 15
+        - ReagentId: SyntheticBlood
+          Quantity: 5
+  - type: Tag
+    tags: []

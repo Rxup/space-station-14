@@ -13,4 +13,7 @@ public partial class ShipyardConsoleComponent : Component
     [DataField("soundConfirm")]
     public SoundSpecifier ConfirmSound =
         new SoundPathSpecifier("/Audio/Effects/Cargo/ping.ogg");
+
+    [DataField("allowedGroup"), ViewVariables(VVAccess.ReadWrite)]
+    public List<string> AllowedGroup = new List<string>();
 }

@@ -35,7 +35,6 @@
         reagents:
           - ReagentId: TearGas
             Quantity: 3
-      sound: /Audio/Effects/smoke.ogg
     - type: Damageable
       damageContainer: Blob
       damageModifierSet: BlobMob

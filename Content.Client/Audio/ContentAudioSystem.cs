@@ -36,7 +36,8 @@ public sealed partial class ContentAudioSystem : SharedContentAudioSystem
     public const float AmbientMusicMultiplier = 3f;
     public const float LobbyMultiplier = 3f;
     public const float InterfaceMultiplier = 2f;
-    public const float TtsMultiplier = 3f; // Corvax-TTS
+    public const float TtsMultiplier = 5f; // Corvax-TTS
+    public const float TtsAnnounceMultiplier = 2f; // Corvax-TTS
 
     public override void Initialize()
     {
@@ -51,15 +52,24 @@ public sealed partial class ContentAudioSystem : SharedContentAudioSystem
         _fadingOut.Clear();
 
         // Preserve lobby music but everything else should get dumped.
-        var lobbyStream = EntityManager.System<BackgroundAudioSystem>().LobbyStream;
-        TryComp(lobbyStream, out AudioComponent? audioComp);
-        var oldGain = audioComp?.Gain;
+        var lobbyMusic = EntityManager.System<BackgroundAudioSystem>().LobbyMusicStream;
+        TryComp(lobbyMusic, out AudioComponent? lobbyMusicComp);
+        var oldMusicGain = lobbyMusicComp?.Gain;
+
+        var restartAudio = EntityManager.System<BackgroundAudioSystem>().LobbyRoundRestartAudioStream;
+        TryComp(restartAudio, out AudioComponent? restartComp);
+        var oldAudioGain = restartComp?.Gain;
 
         SilenceAudio();
 
-        if (oldGain != null)
+        if (oldMusicGain != null)
         {
-            Audio.SetGain(lobbyStream, oldGain.Value, audioComp);
+            Audio.SetGain(lobbyMusic, oldMusicGain.Value, lobbyMusicComp);
+        }
+
+        if (oldAudioGain != null)
+        {
+            Audio.SetGain(restartAudio, oldAudioGain.Value, restartComp);
         }
     }
 

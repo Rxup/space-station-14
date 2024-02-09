@@ -3,6 +3,9 @@
   save: false
   id: AIBase
   components:
+    - type: Tag
+      tags:
+      - CannotSuicide
     - type: StationAI
       lawsId: LawsStationAIDefault
     - type: Visibility
@@ -51,9 +54,6 @@
     - type: InteractionOutline
     - type: Examiner
     - type: Actions
-    - type: Tag
-      tags:
-        - CannotSuicide
     - type: DoAfter
     - type: Speech
       speechSounds: Pai
@@ -101,6 +101,52 @@
     - type: TypingIndicator
       proto: robot
     - type: SiliconLawBound
+
+- type: entity
+  parent: AICore
+  id: AICoreShip
+  name: AI Core
+  suffix: ship
+  save: false
+  description: Ship core AI
+  components:
+  - type: NavMapBeacon
+    color: "#ff0000"
+    text: AI Core ship nuclear fission explosive
+    enabled: false
+  - type: NukeLabel
+  - type: Nuke
+    explosionType: Default
+    maxIntensity: 100
+    intensitySlope: 5
+    totalIntensity: 5000000
+    diskSlot:
+      name: nuke-slot-component-slot-name-disk
+      insertSound:
+        path: /Audio/Machines/terminal_insert_disc.ogg
+      ejectSound:
+        path: /Audio/Machines/terminal_insert_disc.ogg
+      whitelist:
+        components:
+        - NukeDisk
+    alertLevelOnActivate: delta
+    alertLevelOnDeactivate: green
+  - type: StaticPrice
+    price: 5000000
+  - type: ContainerContainer
+    containers:
+      Nuke: !type:ContainerSlot
+  - type: WarpPoint
+    follow: true
+    location: ShipAI
+  - type: InteractionOutline
+  - type: ActivatableUI
+    key: enum.NukeUiKey.Key
+  - type: UserInterface
+    interfaces:
+    - key: enum.NukeUiKey.Key
+      type: NukeBoundUserInterface
+
 
 - type: entity
   save: false
@@ -299,13 +345,18 @@
   noSpawn: true
   save: false
   components:
+    - type: Tag
+      tags:
+      - CanPilot
+      - CannotSuicide
+    - type: Blindable
     - type: AIEye
     # Only ghosts can see the eye
     - type: Visibility
       layer: 4
     # Can see through walls for now
     - type: Eye
-      drawFov: false
+      drawFov: true
     - type: Input
       context: "human"
     - type: MobMover

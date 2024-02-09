@@ -1,4 +1,6 @@
 using Content.Shared.Actions;
+using Content.Shared.Antag;
+using Content.Shared.StatusIcon;
 using Robust.Shared.GameStates;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype;
@@ -6,7 +8,7 @@ using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototy
 namespace Content.Shared.Backmen.Blob;
 
 [RegisterComponent, NetworkedComponent]
-public sealed partial class BlobCarrierComponent : Component
+public sealed partial class BlobCarrierComponent : Component, IAntagStatusIconComponent
 {
     [ViewVariables(VVAccess.ReadWrite), DataField("transformationDelay")]
     public float TransformationDelay = 240;
@@ -32,6 +34,9 @@ public sealed partial class BlobCarrierComponent : Component
     public string CoreBlobGhostRolePrototype = "CoreBlobTileGhostRole";
 
     public EntityUid? TransformToBlob = null;
+
+    public ProtoId<StatusIconPrototype> StatusIcon { get; set; } = "BlobFaction";
+    public bool IconVisibleToGhost { get; set; } = true;
 }
 
 public sealed partial class TransformToBlobActionEvent : InstantActionEvent

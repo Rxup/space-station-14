@@ -21,6 +21,8 @@ public sealed partial class ShipyardConsoleMenu : FancyWindow
     private readonly List<string> _categoryStrings = new();
     private string? _category;
 
+    private List<string> _allowedGroup = new();
+
     public ShipyardConsoleMenu(ShipyardConsoleBoundUserInterface owner)
     {
         RobustXamlLoader.Load(this);
@@ -63,6 +65,14 @@ public sealed partial class ShipyardConsoleMenu : FancyWindow
         var search = SearchBar.Text.Trim().ToLowerInvariant();
         foreach (var prototype in vessels)
         {
+            if (_allowedGroup.Count != 0 && !_allowedGroup.Contains(prototype.Group))
+            {
+                continue;
+            }
+            if (_allowedGroup.Count == 0 && prototype.Private)
+            {
+                continue;
+            }
             // if no search or category
             // else if search
             // else if category and not search
@@ -113,5 +123,7 @@ public sealed partial class ShipyardConsoleMenu : FancyWindow
     public void UpdateState(ShipyardConsoleInterfaceState state)
     {
         BankAccountLabel.Text = Loc.GetString("cargo-console-menu-points-amount", ("amount", state.Balance.ToString()));
+        _allowedGroup = state.AllowedGroup;
+        PopulateProducts();
     }
 }

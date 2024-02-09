@@ -7,7 +7,7 @@ namespace Content.Server.GameTicking.Commands
     [AnyCommand]
     sealed class ObserveCommand : IConsoleCommand
     {
-        public string Command => "observe";
+        public string Command => "backmen";
         public string Description => "";
         public string Help => "";
 

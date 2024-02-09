@@ -88,6 +88,9 @@
     - type: Clothing
       sprite: Backmen/Clothing/Head/Hats/cage.rsi
     - type: HeadCage
+    - type: ClothingSpeedModifier
+      walkModifier: 0.80
+      sprintModifier: 0.80
 
 - type: entity
   parent: ClothingHeadTinfoil
