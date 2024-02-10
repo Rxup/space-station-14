@@ -1622,13 +1622,24 @@
 - type: entity
   parent: ClothingBeltMilitaryWebbingMed
   id: ClothingBeltERTWebbingTay39
-  name: РПС Отряда Tay 39
+  name: РПС отряда Tay 39
   description: Ременно-поясная система тактических ремней, отрядов ОБР.
   components:
   - type: Sprite
     sprite: Backmen/Clothing/Belt/traumawebbing.rsi
   - type: Clothing
     sprite: Backmen/Clothing/Belt/traumawebbing.rsi
+
+- type: entity
+  parent: ClothingBeltMedicalMarine
+  id: ClothingBeltMedicalTay39
+  name: медицинский армейский пояс отряда Tay 39
+  description: Медицинский армейский пояс, перекрашен специально под цвета отряда Tay 39 ОБР НТ.
+  components:
+  - type: Sprite
+    sprite: Backmen/Clothing/Belt/traumabelt.rsi
+  - type: Clothing
+    sprite: Backmen/Clothing/Belt/traumabelt.rsi
 
 - type: accessGroup
   id: MTFLeader
