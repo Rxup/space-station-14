@@ -919,7 +919,7 @@
 - type: entity
   parent: ClothingOuterHardsuitSyndieCommander
   id: ClothingOuterHardsuitERTOperativeAlpha1
-  name: ERT leader's hardsuit
+  name: ERT alpha hardsuit
   description: A protective hardsuit worn by the leader of an emergency response team.
   components:
   - type: Sprite
@@ -953,6 +953,45 @@
         Piercing: 0.9
         Heat: 0.9
   - type: PNV
+
+- type: entity
+  parent: ClothingOuterHardsuitSyndieElite
+  id: ClothingOuterHardsuitERTLeaderTay39
+  name: ERT leader tay 39 hardsuit
+  description: A protective hardsuit worn by the leader of an emergency response team.
+  components:
+  - type: Sprite
+    sprite: Backmen/Clothing/OuterClothing/Hardsuits/ERTSuits/ertTraumaTeamLeader.rsi
+  - type: Clothing
+    sprite: Backmen/Clothing/OuterClothing/Hardsuits/ERTSuits/ertTraumaTeamLeader.rsi
+  - type: ToggleableClothing
+    clothingPrototype: ClothingHeadHelmetHardsuitERTTay39
+
+- type: entity
+  parent: ClothingHeadHelmetHardsuitSyndieElite
+  id: ClothingHeadHelmetHardsuitERTTay39
+  name: ERT hardsuit helmet
+  description: A special hardsuit helmet worn by members of an emergency response team.
+  components:
+  - type: Sprite
+    sprite: Backmen/Clothing/Head/Hardsuits/ERThelmets/ertTraumaTeam.rsi
+  - type: Clothing
+    sprite: Backmen/Clothing/Head/Hardsuits/ERThelmets/ertTraumaTeam.rsi
+  - type: PointLight
+    color: cyan
+
+- type: entity
+  parent: ClothingOuterHardsuitSyndieElite
+  id: ClothingOuterHardsuitERTTay39
+  name: ERT leader tay 39 hardsuit
+  description: A protective hardsuit worn by the leader of an emergency response team.
+  components:
+  - type: Sprite
+    sprite: Backmen/Clothing/OuterClothing/Hardsuits/ERTSuits/ertTraumaTeam.rsi
+  - type: Clothing
+    sprite: Backmen/Clothing/OuterClothing/Hardsuits/ERTSuits/ertTraumaTeam.rsi
+  - type: ToggleableClothing
+    clothingPrototype: ClothingHeadHelmetHardsuitERTTay39
 
 #------------------------------------------------------
 
@@ -1579,6 +1618,17 @@
       contents:
         - id: ShellShotgun
           amount: 30
+
+- type: entity
+  parent: ClothingBeltMilitaryWebbingMed
+  id: ClothingBeltERTWebbingTay39
+  name: РПС Отряда Tay 39
+  description: Ременно-поясная система тактических ремней, отрядов ОБР.
+  components:
+  - type: Sprite
+    sprite: Backmen/Clothing/Belt/traumawebbing.rsi
+  - type: Clothing
+    sprite: Backmen/Clothing/Belt/traumawebbing.rsi
 
 - type: accessGroup
   id: MTFLeader
