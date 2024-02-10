@@ -5,4 +5,7 @@ namespace Content.Server.Backmen.Vampiric;
 /// </summary>
 [RegisterComponent]
 public sealed partial class BloodSuckedComponent : Component
-{}
+{
+    [ViewVariables]
+    public EntityUid? BloodSuckerMindId;
+}

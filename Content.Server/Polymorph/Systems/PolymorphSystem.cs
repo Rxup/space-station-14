@@ -119,7 +119,11 @@ public sealed partial class PolymorphSystem : EntitySystem
 
     private void OnPolymorphActionEvent(Entity<PolymorphableComponent> ent, ref PolymorphActionEvent args)
     {
-        PolymorphEntity(ent, args.Prototype.Configuration);
+        if (args.Handled)
+        {
+            return;
+        }
+        args.Handled = PolymorphEntity(ent, args.Prototype.Configuration) != null;
     }
 
     private void OnRevertPolymorphActionEvent(Entity<PolymorphedEntityComponent> ent,
@@ -355,6 +359,13 @@ public sealed partial class PolymorphSystem : EntitySystem
         EntityUid? actionId = default!;
         if (!_actions.AddAction(target, ref actionId, RevertPolymorphId, target))
             return;
+
+        // start-backmen: action fix
+        if (_actions.TryGetActionData(actionId, out var actionComponent))
+        {
+            actionComponent.UseDelay = polyProto.Configuration.Cooldown;
+        }
+        // end-backmen: action fix
 
         target.Comp.PolymorphActions.Add(id, actionId.Value);
 

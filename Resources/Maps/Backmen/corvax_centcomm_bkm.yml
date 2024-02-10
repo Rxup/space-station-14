@@ -20572,7 +20572,8 @@ entities:
     - type: FaxMachine
       receiveStationGoal: True
       name: Центральное Командование
-    - type: ArrivalsProtect
+    missingComponents:
+    - Anchorable
 - proto: FenceMetalCorner
   entities:
   - uid: 448
@@ -33459,12 +33460,11 @@ entities:
       rot: 1.5707963267948966 rad
       pos: 7.383754,27.626944
       parent: 2
-- proto: NuclearBomb
+- proto: NuclearBombKeg
   entities:
   - uid: 1400
     components:
     - type: Transform
-      rot: 1.5707963267948966 rad
       pos: 3.5,22.5
       parent: 2
 - proto: Omnitool

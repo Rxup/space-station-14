@@ -3,6 +3,7 @@ using Content.Shared.Actions;
 using Content.Shared.FixedPoint;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization;
+using Robust.Shared.Serialization.TypeSerializers.Implementations;
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype;
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype.Dictionary;
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype.List;
@@ -79,6 +80,20 @@ public partial class ListingData : IEquatable<ListingData>, ICloneable
     public string? ProductAction;
 
     /// <summary>
+    ///     The listing ID of the related upgrade listing. Can be used to link a <see cref="ProductAction"/> to an
+    ///         upgrade or to use standalone as an upgrade
+    /// </summary>
+    [DataField]
+    public ProtoId<ListingPrototype>? ProductUpgradeID;
+
+    /// <summary>
+    ///     Keeps track of the current action entity this is tied to, for action upgrades
+    /// </summary>
+    [DataField]
+    [NonSerialized]
+    public EntityUid? ProductActionEntity;
+
+    /// <summary>
     /// The event that is broadcast when the listing is purchased.
     /// </summary>
     [DataField("productEvent")]
@@ -101,12 +116,15 @@ public partial class ListingData : IEquatable<ListingData>, ICloneable
             return false;
 
         //simple conditions
+        if (ID != listing.ID)
+            return false;
+
+        //simple conditions
         if (Priority != listing.Priority ||
             Name != listing.Name ||
             Description != listing.Description ||
             ProductEntity != listing.ProductEntity ||
             ProductAction != listing.ProductAction ||
-            ProductEvent != listing.ProductEvent ||
             RestockTime != listing.RestockTime)
             return false;
 
@@ -147,6 +165,8 @@ public partial class ListingData : IEquatable<ListingData>, ICloneable
             Priority = Priority,
             ProductEntity = ProductEntity,
             ProductAction = ProductAction,
+            ProductUpgradeID = ProductUpgradeID,
+            ProductActionEntity = ProductActionEntity,
             ProductEvent = ProductEvent,
             PurchaseAmount = PurchaseAmount,
             RestockTime = RestockTime,

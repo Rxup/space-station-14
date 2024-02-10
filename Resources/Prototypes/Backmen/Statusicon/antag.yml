@@ -6,6 +6,13 @@
     state: flesh
 
 - type: statusIcon
+  id: VampireFaction
+  priority: 9
+  icon:
+    sprite: Backmen/Interface/Misc/antag_icon10x.rsi
+    state: vampire
+
+- type: statusIcon
   id: BlobFaction
   priority: 10
   icon:

@@ -14,6 +14,9 @@ bloodsucker-doafter-start = You try to suck blood from {$target}.
 bloodsucker-doafter-start-victim = {CAPITALIZE(THE($sucker))} is trying to bite your neck!
 bloodsucker-blood-sucked-victim = {CAPITALIZE(THE($sucker))} sucks some of your blood!
 
+reagent-name-bloodsucker-toxin = Vampire virus
+reagent-desc-bloodsucker-toxin = it's cure or virus?
+
 bloodsucked-health-examine = [color=red]{ CAPITALIZE(SUBJECT($target)) } { CONJUGATE-HAVE($target) } bite marks on { POSS-ADJ($target) } neck.[/color]
 
 bloodsucker-glands-throb = The glands behind your fangs feel a bit sore.
