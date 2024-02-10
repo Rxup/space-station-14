@@ -2667,7 +2667,7 @@
     head: ClothingHeadHatBeretCmo
     id: OBRGavnaLeaderIDCardTay39
     ears: ClothingHeadsetCentComCCMTF
-    belt: ClothingBeltSecurityFilled
+    belt: ClothingBeltERTWebbingLeaderTay39Filled
     pocket1: CombatKnifeSpetsnaz
 
 - type: entity
@@ -2688,7 +2688,7 @@
 
 - type: entity
   noSpawn: true
-  parent: ClothingBeltERTWebbingTay39
+  parent: ClothingBeltAmmo
   id: ClothingBeltERTWebbingLeaderTay39Filled
   components:
     - type: StorageFill
@@ -2748,14 +2748,13 @@
   id: ERTMedicTay39Gear
   equipment:
     jumpsuit: ClothingUniformJumpsuitERTMedic
-    back: ClothingBackpackERTLeaderTay39
+    back: ClothingBackpackERTMedicTay39
     shoes: ClothingShoesBootsNedoSpetsnaz
-    mask: ClothingMaskGasERTV2_1
+    mask: ClothingMaskGasERTTay39
     eyes: ClothingEyesHudMedical
     gloves: ClothingHandsGlovesSpetsnazcombat
     outerClothing: ClothingOuterHardsuitERTTay39
     suitstorage: OxygenTankFilled
-    head: ClothingHeadHatERTLeaderBeret
     id: OBRGavnaMedicIDCardTay39
     ears: ClothingHeadsetCentComCCMTF
     belt: ClothingBeltMedicalTay39Filled
@@ -2774,7 +2773,7 @@
 
 - type: entity
   noSpawn: true
-  parent: ClothingBeltMedicalTay39
+  parent: ClothingBeltMedicalMarine
   id: ClothingBeltMedicalTay39Filled
   components:
     - type: StorageFill
@@ -2842,7 +2841,6 @@
     gloves: ClothingHandsGlovesSpetsnazcombat
     outerClothing: ClothingOuterHardsuitERTTay39
     suitstorage: OxygenTankFilled
-    head: ClothingHeadHatBeretCmo
     id: OBRGavnaIDCardTay39
     ears: ClothingHeadsetCentComCCMTF
     belt: ClothingBeltERTWebbingSecurityTay39Filled
@@ -2859,7 +2857,7 @@
 
 - type: entity
   noSpawn: true
-  parent: ClothingBeltERTWebbingTay39
+  parent: ClothingBeltAmmo
   id: ClothingBeltERTWebbingSecurityTay39Filled
   components:
     - type: StorageFill
