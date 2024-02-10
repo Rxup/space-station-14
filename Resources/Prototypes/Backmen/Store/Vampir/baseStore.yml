@@ -1,0 +1,66 @@
+﻿- type: storeCategory
+  id: VapmireT0
+  name: T0
+
+- type: storeCategory
+  id: VapmireT1
+  name: T1
+
+- type: storeCategory
+  id: VapmireT2
+  name: T2
+
+- type: storeCategory
+  id: VapmireT3
+  name: T3
+
+- type: currency
+  id: BloodEssence
+  displayName: store-points-bloodEssence-name
+  canWithdraw: false
+
+- type: listing
+  id: vmpt0tot1
+  name: store-tier-update-to-1-name
+  description: store-tier-update-to-n-desc
+  productEvent: !type:VampireStoreEvent
+    buyType: Tier1Upgrade
+  cost:
+    BloodEssence: 10
+  categories:
+  - VapmireT0
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+
+- type: listing
+  id: vmpt1tot2
+  name: store-tier-update-to-2-name
+  description: store-tier-update-to-n-desc
+  productEvent: !type:VampireStoreEvent
+    buyType: Tier2Upgrade
+  cost:
+    BloodEssence: 25
+  categories:
+  - VapmireT0
+  conditions:
+  - !type:RequireParentListingCondition
+    parent: vmpt0tot1
+  - !type:ListingLimitedStockCondition
+    stock: 1
+
+- type: listing
+  id: vmpt2tot3
+  name: store-tier-update-to-3-name
+  description: store-tier-update-to-n-desc
+  productEvent: !type:VampireStoreEvent
+    buyType: Tier3Upgrade
+  cost:
+    BloodEssence: 50
+  categories:
+  - VapmireT0
+  conditions:
+  - !type:RequireParentListingCondition
+    parent: vmpt1tot2
+  - !type:ListingLimitedStockCondition
+    stock: 1
