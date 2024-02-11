@@ -2,6 +2,8 @@
   id: CentCom
   description: department-CentCom-description
   color: "#13db0f"
+  primary: true
+  weight: -5
   roles:
     - BKCCSecGavna
     - BKCCSecOfficer
@@ -16,6 +18,8 @@
   id: Silicons
   description: department-Silicons-description
   color: "#191e9e"
+  primary: true
+  weight: 10
   roles:
     - BKBPLATech
     - BKBPLAMED

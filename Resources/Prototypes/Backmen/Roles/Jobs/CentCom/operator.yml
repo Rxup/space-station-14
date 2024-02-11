@@ -13,9 +13,9 @@
   joinNotifyCrew: true
   whitelistRequired: true
   requirements:
-    - !type:DepartmentTimeRequirement
-      department: Command
-      time: 216000
+    - !type:RoleTimeRequirement
+      role: JobSAI
+      time: 18000
     - !type:RoleTimeRequirement
       role: JobCentralCommandAssistant
       time: 21600
