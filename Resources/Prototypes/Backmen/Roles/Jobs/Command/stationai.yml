@@ -19,6 +19,9 @@
     - !type:DepartmentTimeRequirement
       department: Engineering
       time: 14400
+    - !type:RoleTimeRequirement
+      role: JobBorg
+      time: 21600
     - !type:OverallPlaytimeRequirement
       time: 86400
   weight: 30
