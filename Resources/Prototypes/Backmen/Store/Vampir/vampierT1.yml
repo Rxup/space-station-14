@@ -1,0 +1,85 @@
+﻿
+
+- type: listing
+  id: vmpSkillConv
+  name: store-vmpSkillConv-name
+  description: store-vmpSkillConv-desc
+  productEvent: !type:VampireStoreEvent
+    buyType: MakeNewVamp
+  cost:
+    BloodEssence: 10
+  categories:
+  - VapmireT1
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+
+- type: listing
+  id: vmpSkillMouse1
+  name: store-vmpSkillMouse1-name
+  description: store-vmpSkillMouse1-desc
+  productEvent: !type:VampireStoreEvent
+    buyType: SkillMouse2
+  cost:
+    BloodEssence: 5
+  categories:
+  - VapmireT1
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+
+- type: listing
+  id: vmpSkillMouse2
+  name: store-vmpSkillMouse2-name
+  description: store-vmpSkillMouse2-desc
+  productEvent: !type:VampireStoreEvent
+    buyType: SkillMouse1
+  cost:
+    BloodEssence: 5
+  categories:
+  - VapmireT1
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+
+- type: listing
+  id: vmpDispelPower
+  name: store-vmpDispelPower-name
+  description: store-vmpDispelPower-desc
+  productEvent: !type:VampireStoreEvent
+    buyType: DispelPower
+  cost:
+    BloodEssence: 3
+  categories:
+  - VapmireT1
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+
+- type: listing
+  id: vmpRegenPower
+  name: store-vmpRegenPower-name
+  description: store-vmpRegenPower-desc
+  productEvent: !type:VampireStoreEvent
+    buyType: RegenPower
+  cost:
+    BloodEssence: 5
+  categories:
+  - VapmireT1
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+
+- type: listing
+  id: vmpZapPower
+  name: store-vmpZapPower-name
+  description: store-vmpZapPower-desc
+  productEvent: !type:VampireStoreEvent
+    buyType: ZapPower
+  cost:
+    BloodEssence: 10
+  categories:
+  - VapmireT1
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1

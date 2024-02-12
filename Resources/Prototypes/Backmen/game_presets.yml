@@ -13,6 +13,20 @@
     - Shipwrecked
 
 - type: gamePreset
+  id: Vampires
+  alias:
+  - vamp
+  - bloodsucker
+  name: vampires-title
+  description: vampires-description
+  showInVote: false
+  rules:
+  - VampiresGameRule
+  - BasicStationEventScheduler
+  - WageScheduler #backmen: currency
+  - BasicRoundstartVariation
+
+- type: gamePreset
   id: FleshCult
   alias:
   - fleshcult

@@ -1,0 +1,23 @@
+- type: polymorph
+  id: BVampieBat
+  configuration:
+    entity: MobBatRemilia
+    revertOnCrit: true
+    revertOnDeath: true
+    transferName: true
+    cooldown: 30
+    delay: 5
+    allowRepeatedMorphs: true
+    revertOnEat: true
+
+- type: polymorph
+  id: BVampieMouse
+  configuration:
+    entity: MobMouse
+    revertOnCrit: true
+    revertOnDeath: true
+    transferName: true
+    cooldown: 30
+    delay: 5
+    allowRepeatedMorphs: true
+    revertOnEat: true

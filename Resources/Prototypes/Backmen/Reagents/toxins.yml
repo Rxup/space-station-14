@@ -1,0 +1,19 @@
+- type: reagent
+  id: BloodSuckerToxin
+  name: reagent-name-bloodsucker-toxin
+  group: Toxins
+  desc: reagent-desc-bloodsucker-toxin
+  physicalDesc: reagent-physical-desc-opaque
+  flavor: bitter
+  color: "#77b58e"
+  plantMetabolism:
+  - !type:PlantAdjustToxins
+    amount: 10
+  metabolisms:
+    Poison:
+      effects:
+      - !type:ChemBloodSucker
+        conditions:
+        - !type:ReagentThreshold
+          reagent: BloodSuckerToxin
+          min: 10
