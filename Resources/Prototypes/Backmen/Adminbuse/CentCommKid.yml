@@ -657,12 +657,8 @@
       pen:
         maxVol: 90
         reagents:
-        - ReagentId: Omnizine
-          Quantity: 30
-        - ReagentId: Leporazine
-          Quantity: 20
-        - ReagentId: Barozine
-          Quantity: 40
+        - ReagentId: Baroleporazine
+          Quantity: 90
   - type: Hypospray
     solutionName: pen
     transferAmount: 90
@@ -2158,3 +2154,52 @@
       slowness: 0.20
       scale: "2, 2"
       scrolling: "0.1, -0.05"
+
+- type: reagent
+  id: Baroleporazine
+  name: reagent-name-leporazine
+  group: Medicine
+  desc: reagent-desc-leporazine
+  physicalDesc: reagent-physical-desc-pungent
+  flavor: medicine
+  color: "#ff7db5"
+  metabolisms:
+    Medicine:
+      effects:
+      - !type:HealthChange
+        damage:
+          types:
+            Cold: -4
+      - !type:AdjustTemperature
+        conditions:
+        - !type:Temperature
+          max: 293.15
+        amount: 100000 # thermal energy, not temperature!
+      - !type:AdjustTemperature
+        conditions:
+        - !type:Temperature
+          min: 293.15
+        amount: -10000
+      - !type:PopupMessage
+        type: Local
+        visualType: Medium
+        messages: [ "leporazine-effect-temperature-adjusting" ]
+        probability: 0.2
+      - !type:AdjustReagent
+        reagent: Fresium
+        amount: -5
+      - !type:GenericStatusEffect
+        key: PressureImmunity
+        component: PressureImmunity
+      - !type:GenericStatusEffect
+        key: Stutter
+        component: StutteringAccent
+      - !type:Jitter
+      - !type:Emote
+        emote: Scream
+        probability: 0.2
+      - !type:PopupMessage
+        type: Local
+        visualType: Large
+        messages: [ "barozine-effect-skin-burning", "barozine-effect-muscle-contract" ]
+        probability: 0.1

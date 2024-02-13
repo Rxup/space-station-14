@@ -236,6 +236,33 @@ public sealed class SpecForcesSystem : EntitySystem
                 }
 
                 break;
+            case SpecForcesType.ERTEpsilon:
+                SpawnEntity(ErtEpsilonLeader, _random.Pick(spawns));
+
+                while (countExtra > 0)
+                {
+                    if (countExtra-- > 0)
+                    {
+                        SpawnEntity(ErtEpsilonSecurity, _random.Pick(spawns));
+                    }
+
+                    if (countExtra-- > 0)
+                    {
+                        SpawnEntity(ErtEpsilonMedical, _random.Pick(spawns));
+                    }
+
+                    if (countExtra-- > 0)
+                    {
+                        SpawnEntity(ErtEpsilonMedical, _random.Pick(spawns));
+                    }
+
+                    if (countExtra-- > 0)
+                    {
+                        SpawnEntity(ErtEpsilonJunitor, _random.Pick(spawns));
+                    }
+                }
+
+                break;
             case SpecForcesType.DeathSquad:
                 SpawnEntity(SpestnazOfficer, _random.Pick(spawns));
                 while (countExtra > 0)
@@ -266,6 +293,7 @@ public sealed class SpecForcesSystem : EntitySystem
                     // todo: cvar
                     SpecForcesType.ERT => EtrShuttlePath,
                     SpecForcesType.ERTAlpha => ErtAplhaShuttlePath,
+                    SpecForcesType.ERTEpsilon => ErtEpsilonShuttlePath,
                     SpecForcesType.RXBZZ => RxbzzShuttlePath,
                     SpecForcesType.DeathSquad => SpestnazShuttlePath,
                     _ => EtrShuttlePath
@@ -362,6 +390,13 @@ public sealed class SpecForcesSystem : EntitySystem
     private const string ErtAplhaShuttlePath = "Maps/Backmen/Grids/NT-CC-Specnaz-013.yml";
     [ValidatePrototypeId<EntityPrototype>] private const string ErtAplhaLeader = "SpawnMobHumanERTLeaderAlpha1";
     [ValidatePrototypeId<EntityPrototype>] private const string ErtAplhaOperative = "SpawnMobHumanERTOperativeAlpha1";
+
+    private const string ErtEpsilonShuttlePath = "Maps/Backmen/Grids/NT-DF-Kolibri-011.yml";
+    [ValidatePrototypeId<EntityPrototype>] private const string ErtEpsilonLeader = "ReinforcementRadioMTFLeaderEgg";
+    [ValidatePrototypeId<EntityPrototype>] private const string ErtEpsilonSecurity = "ReinforcementRadioMTFSecurityEgg";
+    [ValidatePrototypeId<EntityPrototype>] private const string ErtEpsilonEngineer = "ReinforcementRadioMTFEngineerEgg";
+    [ValidatePrototypeId<EntityPrototype>] private const string ErtEpsilonJunitor = "ReinforcementRadioMTFJunitorEgg";
+    [ValidatePrototypeId<EntityPrototype>] private const string ErtEpsilonMedical = "ReinforcementRadioMTFMedicalEgg";
 
     private const string RxbzzShuttlePath = "Maps/Backmen/Grids/NT-CC-SRV-013.yml";
     [ValidatePrototypeId<EntityPrototype>] private const string RxbzzLeader = "MobHumanRXBZZLeader";
