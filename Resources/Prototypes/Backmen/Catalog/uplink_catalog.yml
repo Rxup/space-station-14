@@ -88,11 +88,21 @@
   - UplinkPointless
 
 - type: listing
-  id: UplinkBeltDemoman
-  name: uplink-belt-demoman-name
-  description: uplink-belt-demoman-desc
-  productEntity: ClothingBeltDemomanFilled
+  id: UplinkMagazineBoxHeavyRifle
+  name: uplink-box-heavy-rifle-name
+  description: uplink-box-heavy-rifle-desc
+  productEntity: MagazineBoxHeavyRifle
   cost:
     Telecrystal: 3
   categories:
-  - UplinkExplosives
+  - UplinkAmmo
+
+- type: listing
+  id: UplinkMagazineBoxRifleLightSniper
+  name: uplink-box-light-rifle-name
+  description: uplink-box-light-rifle-desc
+  productEntity: MagazineBoxRifleLightSniper
+  cost:
+    Telecrystal: 3
+  categories:
+  - UplinkAmmo

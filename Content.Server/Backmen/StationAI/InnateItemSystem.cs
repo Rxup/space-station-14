@@ -1,4 +1,5 @@
 using Content.Shared.Actions;
+using Content.Shared.Backmen.StationAI;
 using Content.Shared.Backmen.StationAI.Events;
 using Content.Shared.Interaction;
 using Content.Shared.Mind.Components;
@@ -71,10 +72,24 @@ public sealed partial class InnateItemSystem : EntitySystem
 
     private void StartBeforeInteract(EntityUid uid, InnateItemComponent component, InnateBeforeInteractActionEvent args)
     {
+        var tarPos = Transform(args.Target);
+
+        if (TryComp<AIEyeComponent>(uid, out var aiEyeComponent))
+        {
+            if (!aiEyeComponent.AiCore.HasValue || TerminatingOrDeleted(aiEyeComponent.AiCore.Value))
+            {
+                return;
+            }
+            if (Transform(aiEyeComponent.AiCore.Value).GridUid != tarPos.GridUid)
+            {
+                return;
+            }
+        }
+
         EnsureItem(uid, component, args.Item);
         if (!component.Items.ContainsKey(args.Item))
             return;
-        var ev = new BeforeRangedInteractEvent(args.Performer, component.Items[args.Item], args.Target, Transform(args.Target).Coordinates, true);
+        var ev = new BeforeRangedInteractEvent(args.Performer, component.Items[args.Item], args.Target, tarPos.Coordinates, true);
         RaiseLocalEvent(component.Items[args.Item], ev, false);
     }
 

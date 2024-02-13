@@ -15,7 +15,7 @@
     entity: MobDwarf
     forced: true
     transferName: true
-    transferHumanoidAppearance: true
+    transferHumanoidAppearance: false
     revertOnCrit: false
     revertOnDeath: false
     inventory: Transfer
@@ -26,7 +26,7 @@
     entity: MobVox
     forced: true
     transferName: true
-    transferHumanoidAppearance: true
+    transferHumanoidAppearance: false
     revertOnCrit: false
     revertOnDeath: false
     inventory: Transfer
@@ -37,7 +37,7 @@
     entity: MobHumanoidFox
     forced: true
     transferName: true
-    transferHumanoidAppearance: true
+    transferHumanoidAppearance: false
     revertOnCrit: false
     revertOnDeath: false
     inventory: Transfer
@@ -50,6 +50,7 @@
     revertOnCrit: true
     revertOnDeath: true
     transferName: true
+    revertOnEat: true
 
 - type: polymorph
   id: BMouse
@@ -58,6 +59,7 @@
     revertOnCrit: true
     revertOnDeath: true
     transferName: true
+    revertOnEat: true
 
 - type: polymorph
   id: BKenguru
@@ -66,3 +68,4 @@
     revertOnCrit: true
     revertOnDeath: true
     transferName: false
+    revertOnEat: true

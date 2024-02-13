@@ -338,7 +338,7 @@
     shoes: ClothingShoesBootsNedoSpetsnaz
     gloves: ClothingHandsGlovesCombat
     neck: CombatKnifeSpetsnaz
-    head: ClothingHeadHelmetSwat
+    head: ClothingHeadHelmetERTLeader
     outerClothing: ClothingOuterArmorBasic
     suitstorage: WeaponPistolACP14
     ears: ClothingHeadsetCentComCCMTFEPS11
@@ -352,18 +352,30 @@
   equipment:
     jumpsuit: ClothingUniformJumpsuitERTEngineer
     id: OBRGavnaEngineerIDCard2
-    back: WeaponRifleG36
+    back: WeaponShotgun39
     shoes: ClothingShoesBootsNedoSpetsnaz
     gloves: ClothingHandsGlovesCombat
     neck: CombatKnifeSpetsnaz
-    head: ClothingHeadHelmetSwat
+    head: ClothingHeadHelmetERTEngineer
     outerClothing: ClothingOuterArmorBasic
     suitstorage: WeaponPistolACP14
     ears: ClothingHeadsetCentComCCMTFEPS11
     eyes: ClothingEyesGlassesMeson
     belt: ClothingBeltChiefEngineerFilled
-    pocket1: ClothingPounchMTFBattleFilled
+    pocket1: ClothingPounchMTFBattleEngineerFilled
     pocket2: ClothingPounchMTFEngineerFilled
+
+- type: entity
+  noSpawn: true
+  parent: ClothingPounchMTF
+  id: ClothingPounchMTFBattleEngineerFilled
+  components:
+    - type: StorageFill
+      contents:
+        - id: BattleMedipen
+          amount: 2
+        - id: MagazineShotgun
+          amount: 4
 
 - type: entity
   noSpawn: true
@@ -390,7 +402,7 @@
     shoes: ClothingShoesBootsNedoSpetsnaz
     gloves: ClothingHandsGlovesCombat
     neck: CombatKnifeSpetsnaz
-    head: ClothingHeadHelmetSwat
+    head: ClothingHeadHelmetERTSecurity
     outerClothing: ClothingOuterArmorBasic
     suitstorage: WeaponPistolACP14
     ears: ClothingHeadsetCentComCCMTFEPS11
@@ -420,7 +432,7 @@
     shoes: ClothingShoesBootsNedoSpetsnaz
     gloves: ClothingHandsGlovesCombat
     neck: CombatKnifeSpetsnaz
-    head: ClothingHeadHelmetSwat
+    head: ClothingHeadHelmetERTMedic
     outerClothing: ClothingOuterArmorBasic
     suitstorage: WeaponPistolACP14
     ears: ClothingHeadsetCentComCCMTFEPS11
@@ -431,6 +443,15 @@
     pocket2: ClothingPounchMTFMedicalFilled
 
 - type: entity
+  parent: Medkit
+  id: MedkitBattleSpaceMedipen
+  components:
+    - type: StorageFill
+      contents:
+        - id: BattleSpaceMedipen
+          amount: 8
+
+- type: entity
   noSpawn: true
   parent: ClothingPounchMTF
   id: ClothingPounchMTFBattleFilled
@@ -438,6 +459,8 @@
     - type: StorageFill
       contents:
         - id: BattleMedipen
+          amount: 2
+        - id: BattleSpaceMedipen
           amount: 2
         - id: MagazineRifle
           amount: 4
@@ -450,8 +473,10 @@
     - type: StorageFill
       contents:
         - id: EpinephrineChemistryBottle
+          amount: 2
         - id: OmnizineChemistryBottle
-        - id: Hypospray
+          amount: 3
+        - id: SyringeBluespace
         - id: HandheldHealthAnalyzer
         - id: MagazinePistol
           amount: 2
@@ -1213,8 +1238,8 @@
         - id: BattleMedipen
           amount: 3
         - id: trayScanner
-        - id: WeaponShotgunAA12
-        - id:  MagazineShotgunMagnum12
+        - id: WeaponShotgun39
+        - id: MagazineShotgunMagnum12
           amount: 4
         - id: WeaponPistolVP78
         - id: MagazinePistolHighCapacity
@@ -2510,7 +2535,7 @@
   id: ERTLeaderAlpha1Gear
   equipment:
     jumpsuit: ClothingUniformJumpsuitSpetsnaz
-    back: ClothingBackpackERTOperativeAlpha1
+    back: ClothingBackpackERTLeaderAlpha1
     shoes: ClothingShoesBootsMagAdv
     mask: ClothingMaskGasERTV2_1
     eyes: ClothingEyesGlassesSunglasses
@@ -2522,6 +2547,32 @@
     ears: ClothingHeadsetCentComCCMTF
     belt: ClothingBeltSecurityFilled
     pocket1: CombatKnifeSpetsnaz
+
+- type: entity
+  noSpawn: true
+  parent: ClothingBackpackERTLeader
+  id: ClothingBackpackERTLeaderAlpha1
+  components:
+    - type: Clothing
+      sprite: Clothing/OuterClothing/Hardsuits/ERTSuits/ertleader.rsi
+    - type: StorageFill
+      contents:
+        - id: BoxFlare
+          amount: 2
+        - id: SpetsnazMedipen
+          amount: 3
+        - id: WeaponDisabler
+        - id: WeaponPistolDivet2
+        - id: MagazinePistol345
+          amount: 3
+        - id: WeaponPulseRifleAP12
+        - id: MagazinePulseRifle
+          amount: 9
+        - id: WeaponShotgunAA12
+        - id: MagazineShotgunFRAG12
+          amount: 2
+        - id: MagazineShotgunMagnum12
+          amount: 4
 
 - type: entity
   noSpawn: true
@@ -2621,3 +2672,7 @@
     - state: idseniorofficer
   - type: Item
     heldPrefix: black
+
+#MTF Tay 39------------------------------------
+
+

@@ -19,6 +19,9 @@
     - !type:DepartmentTimeRequirement
       department: Engineering
       time: 14400
+    - !type:RoleTimeRequirement
+      role: JobBorg
+      time: 21600
     - !type:OverallPlaytimeRequirement
       time: 86400
   weight: 30
@@ -33,6 +36,26 @@
   #canHaveTraits: false
   joinNotifyCrew: true
   whitelistRequired: true
+
+- type: job
+  id: SAIShip
+  name: job-name-sai-ship
+  description: job-description-sai-ship
+  playTimeTracker: JobSAIShip
+  requirements:
+  - !type:OverallPlaytimeRequirement
+    time: 86400
+  weight: 30
+  icon: JobIconStationAI
+  supervisors: "all crew"
+  accessGroups:
+  - AllAccess
+  canBeAntag: false
+  jobEntity: AICoreShip
+  startingGear: RobotGear # for char preview only
+  alwaysUseSpawner: true
+  #canHaveTraits: false
+  joinNotifyCrew: true
 
 # - type: startingGear
 #   id: AIGear

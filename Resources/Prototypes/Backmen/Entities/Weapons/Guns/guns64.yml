@@ -2004,6 +2004,21 @@
       map: ["enum.GunVisualLayers.Mag"]
 
 - type: entity
+  id: MagazineShotgunFRAG12
+  name: ammo drum (.12 gauge FRAG 12)
+  parent: BaseMagazineShotgun
+  components:
+  - type: BallisticAmmoProvider
+    proto: ShellShotgunFRAG12
+    capacity: 20
+  - type: Sprite
+    layers:
+    - state: pellets
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+
+- type: entity
   id: ShellShotgunMagnum12
   name: shell (.12 gauge magnum)
   parent: BaseShellShotgun
@@ -2024,6 +2039,51 @@
       collection: ShellLand
       params:
         volume: 1
+
+- type: entity
+  id: ShellShotgunFRAG12
+  name: shell (.12 gauge FRAG 12)
+  parent: BaseShellShotgun
+  components:
+  - type: Sprite
+    sprite: Backmen/Objects/Weapons/Gunsx64/Ammunition/Casings/shotgun_shell.rsi
+    layers:
+      - state: incendiary
+        map: [ "enum.AmmoVisualLayers.Base" ]
+  - type: CartridgeAmmo
+    proto: PelletShotgunRocket
+    count: 1
+    spread: 1
+    soundEject:
+      collection: ShellEject
+  - type: SpentAmmoVisuals
+    state: "incendiary"
+  - type: EmitSoundOnLand
+    sound:
+      collection: ShellLand
+      params:
+        volume: 1
+
+- type: entity
+  noSpawn: true
+  parent: BaseBulletTrigger
+  id: PelletShotgunRocket
+  name: bullet (бронебойно-разрывной)
+  components:
+  - type: Projectile
+    ignoreResistances: true
+    damage:
+      types:
+        Piercing: 12
+  - type: ExplodeOnTrigger
+  - type: Explosive
+    explosionType: Default
+    maxIntensity: 1
+    intensitySlope: 1
+    totalIntensity: 10
+    maxTileBreak: 0
+    tileBreakScale: 0
+    canCreateVacuum: false
 
 - type: soundCollection
   id: ShellLand
@@ -3506,7 +3566,7 @@
   - type: Barotrauma
     damage:
       types:
-        Blunt: 0.10
+        Blunt: 5
   - type: AtmosExposed
   - type: TimedDespawn
     lifetime: 100
@@ -3523,7 +3583,9 @@
     sound:
       path: /Audio/Effects/fire.ogg
   - type: IgniteOnCollide
-    fireStacks: 1.8
+    fireStacks: 0.8
+    count: 100
+    fixtureId: fix1
   - type: Transform
     anchored: true
   - type: IgnitionSource
@@ -3535,7 +3597,7 @@
     thresholds:
     - trigger:
         !type:DamageTrigger
-        damage: 10
+        damage: 1
       behaviors:
       - !type:DoActsBehavior
         acts: [ "Destruction" ]

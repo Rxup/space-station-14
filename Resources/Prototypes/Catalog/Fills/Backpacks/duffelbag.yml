@@ -137,12 +137,24 @@
   components:
   - type: StorageFill
     contents:
-      - id: MagazinePistolSubMachineGun
-        amount: 4
-      - id: MagazineShotgun
-        amount: 4
-      - id: MagazineLightRifleBox
+      # backmen ammo bundle change start
+      - id: MagazinePistolDrumSubMachineGun # For PPSH
+        amount: 1
+      - id: MagazinePistolTopSubMachineGun # For P90
+        amount: 1
+      - id: MagazineLightRiflePkBox # For RPD
         amount: 2
+      - id: MagazineLightRifle # For AKMS, AKSU and STG44
+        amount: 4
+      - id: MagazineRifleLightSniper # For Dragunov
+        amount: 1
+      - id: MagazineRifleRocket20 # For V31
+        amount: 1
+      - id: MagazineHeavyRifleBR64 # For BR64
+        amount: 1
+      - id: MagazineShotgun # For Zauer and SPAS12
+        amount: 2
+      # backmen ammo bundle change end
 
 - type: entity
   parent: ClothingBackpackDuffel

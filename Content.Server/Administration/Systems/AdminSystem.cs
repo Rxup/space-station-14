@@ -244,8 +244,15 @@ namespace Content.Server.Administration.Systems
                 overallPlaytime = playTime;
             }
 
+            // start-backmen: SAI
+            var parentAttachedEntity = CompOrNull<Shared.Mind.MindComponent>(
+                    CompOrNull<Shared.Mind.Components.VisitingMindComponent>(session?.AttachedEntity)?.MindId)?.OwnedEntity;
+            // end-backmen: SAI
+
             return new PlayerInfo(name, entityName, identityName, startingRole, antag, GetNetEntity(session?.AttachedEntity), data.UserId,
-                connected, _roundActivePlayers.Contains(data.UserId), overallPlaytime);
+                connected, _roundActivePlayers.Contains(data.UserId), overallPlaytime,
+                GetNetEntity(parentAttachedEntity) // backmen: SAI
+                );
         }
 
         private void OnPanicBunkerChanged(bool enabled)
@@ -359,7 +366,7 @@ namespace Content.Server.Administration.Systems
                     if (TryComp(item, out PdaComponent? pda) &&
                         TryComp(pda.ContainedId, out StationRecordKeyStorageComponent? keyStorage) &&
                         keyStorage.Key is { } key &&
-                        _stationRecords.TryGetRecord(key.OriginStation, key, out GeneralStationRecord? record))
+                        _stationRecords.TryGetRecord(key, out GeneralStationRecord? record))
                     {
                         if (TryComp(entity, out DnaComponent? dna) &&
                             dna.DNA != record.DNA)
@@ -373,7 +380,7 @@ namespace Content.Server.Administration.Systems
                             continue;
                         }
 
-                        _stationRecords.RemoveRecord(key.OriginStation, key);
+                        _stationRecords.RemoveRecord(key);
                         Del(item);
                     }
                 }
