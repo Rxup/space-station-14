@@ -14,7 +14,9 @@ namespace Content.Shared.Administration
         NetUserId SessionId,
         bool Connected,
         bool ActiveThisRound,
-        TimeSpan? OverallPlaytime)
+        TimeSpan? OverallPlaytime,
+        NetEntity? NetEntityOwn // backmen: SAI display visited mind
+        )
     {
         private string? _playtimeString;
 

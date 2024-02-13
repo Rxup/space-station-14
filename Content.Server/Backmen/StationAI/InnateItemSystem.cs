@@ -76,7 +76,7 @@ public sealed partial class InnateItemSystem : EntitySystem
 
         if (TryComp<AIEyeComponent>(uid, out var aiEyeComponent))
         {
-            if (!aiEyeComponent.AiCore.HasValue || !TerminatingOrDeleted(aiEyeComponent.AiCore.Value))
+            if (!aiEyeComponent.AiCore.HasValue || TerminatingOrDeleted(aiEyeComponent.AiCore.Value))
             {
                 return;
             }

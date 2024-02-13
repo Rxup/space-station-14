@@ -244,8 +244,15 @@ namespace Content.Server.Administration.Systems
                 overallPlaytime = playTime;
             }
 
+            // start-backmen: SAI
+            var parentAttachedEntity = CompOrNull<Shared.Mind.MindComponent>(
+                    CompOrNull<Shared.Mind.Components.VisitingMindComponent>(session?.AttachedEntity)?.MindId)?.OwnedEntity;
+            // end-backmen: SAI
+
             return new PlayerInfo(name, entityName, identityName, startingRole, antag, GetNetEntity(session?.AttachedEntity), data.UserId,
-                connected, _roundActivePlayers.Contains(data.UserId), overallPlaytime);
+                connected, _roundActivePlayers.Contains(data.UserId), overallPlaytime,
+                GetNetEntity(parentAttachedEntity) // backmen: SAI
+                );
         }
 
         private void OnPanicBunkerChanged(bool enabled)
