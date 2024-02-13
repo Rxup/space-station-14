@@ -338,7 +338,7 @@
     shoes: ClothingShoesBootsNedoSpetsnaz
     gloves: ClothingHandsGlovesCombat
     neck: CombatKnifeSpetsnaz
-    head: ClothingHeadHelmetSwat
+    head: ClothingHeadHelmetERTLeader
     outerClothing: ClothingOuterArmorBasic
     suitstorage: WeaponPistolACP14
     ears: ClothingHeadsetCentComCCMTFEPS11
@@ -352,11 +352,11 @@
   equipment:
     jumpsuit: ClothingUniformJumpsuitERTEngineer
     id: OBRGavnaEngineerIDCard2
-    back: WeaponRifleG36
+    back: WeaponShotgun39
     shoes: ClothingShoesBootsNedoSpetsnaz
     gloves: ClothingHandsGlovesCombat
     neck: CombatKnifeSpetsnaz
-    head: ClothingHeadHelmetSwat
+    head: ClothingHeadHelmetERTEngineer
     outerClothing: ClothingOuterArmorBasic
     suitstorage: WeaponPistolACP14
     ears: ClothingHeadsetCentComCCMTFEPS11
@@ -364,6 +364,18 @@
     belt: ClothingBeltChiefEngineerFilled
     pocket1: ClothingPounchMTFBattleFilled
     pocket2: ClothingPounchMTFEngineerFilled
+
+- type: entity
+  noSpawn: true
+  parent: ClothingPounchMTF
+  id: ClothingPounchMTFBattleFilled
+  components:
+    - type: StorageFill
+      contents:
+        - id: BattleMedipen
+          amount: 2
+        - id: MagazineShotgun
+          amount: 4
 
 - type: entity
   noSpawn: true
@@ -390,7 +402,7 @@
     shoes: ClothingShoesBootsNedoSpetsnaz
     gloves: ClothingHandsGlovesCombat
     neck: CombatKnifeSpetsnaz
-    head: ClothingHeadHelmetSwat
+    head: ClothingHeadHelmetERTSecurity
     outerClothing: ClothingOuterArmorBasic
     suitstorage: WeaponPistolACP14
     ears: ClothingHeadsetCentComCCMTFEPS11
@@ -420,7 +432,7 @@
     shoes: ClothingShoesBootsNedoSpetsnaz
     gloves: ClothingHandsGlovesCombat
     neck: CombatKnifeSpetsnaz
-    head: ClothingHeadHelmetSwat
+    head: ClothingHeadHelmetERTMedic
     outerClothing: ClothingOuterArmorBasic
     suitstorage: WeaponPistolACP14
     ears: ClothingHeadsetCentComCCMTFEPS11
@@ -450,8 +462,10 @@
     - type: StorageFill
       contents:
         - id: EpinephrineChemistryBottle
+          amount: 2
         - id: OmnizineChemistryBottle
-        - id: Hypospray
+          amount: 3
+        - id: SyringeBluespace
         - id: HandheldHealthAnalyzer
         - id: MagazinePistol
           amount: 2

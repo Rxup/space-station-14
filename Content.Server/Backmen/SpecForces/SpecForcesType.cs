@@ -4,6 +4,7 @@ public enum SpecForcesType
 {
     ERT = 0,
     ERTAlpha = 1,
-    DeathSquad = 2,
-    RXBZZ = 3
+    ERTEpsilon = 2,
+    DeathSquad = 3,
+    RXBZZ = 4
 }
