@@ -613,18 +613,44 @@ entities:
     - type: Transform
       pos: -2.5,-2.5
       parent: 1
+    - type: EntityStorage
+      air:
+        volume: 200
+        immutable: False
+        temperature: 293.14673
+        moles:
+        - 1.7459903
+        - 6.568249
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
     - type: ContainerContainer
       containers:
         entity_storage: !type:Container
           showEnts: False
           occludes: True
           ents:
-          - 7
-          - 10
-          - 8
-          - 11
-          - 12
+          - invalid
+          - invalid
+          - invalid
+          - invalid
+          - invalid
+          - invalid
+          - invalid
+          - invalid
           - 9
+          - 12
+          - 11
+          - 8
+          - 10
+          - 7
         paper_label: !type:ContainerSlot
           showEnts: False
           occludes: True
@@ -634,18 +660,44 @@ entities:
     - type: Transform
       pos: -2.5,1.5
       parent: 1
+    - type: EntityStorage
+      air:
+        volume: 200
+        immutable: False
+        temperature: 293.14673
+        moles:
+        - 1.7459903
+        - 6.568249
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
     - type: ContainerContainer
       containers:
         entity_storage: !type:Container
           showEnts: False
           occludes: True
           ents:
-          - 14
-          - 15
-          - 17
-          - 16
-          - 18
+          - invalid
+          - invalid
+          - invalid
+          - invalid
+          - invalid
+          - invalid
+          - invalid
+          - invalid
           - 19
+          - 18
+          - 16
+          - 17
+          - 15
+          - 14
         paper_label: !type:ContainerSlot
           showEnts: False
           occludes: True
@@ -655,18 +707,44 @@ entities:
     - type: Transform
       pos: 3.5,1.5
       parent: 1
+    - type: EntityStorage
+      air:
+        volume: 200
+        immutable: False
+        temperature: 293.14673
+        moles:
+        - 1.7459903
+        - 6.568249
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
     - type: ContainerContainer
       containers:
         entity_storage: !type:Container
           showEnts: False
           occludes: True
           ents:
-          - 21
-          - 24
-          - 22
-          - 23
-          - 25
+          - invalid
+          - invalid
+          - invalid
+          - invalid
+          - invalid
+          - invalid
+          - invalid
+          - invalid
           - 26
+          - 25
+          - 23
+          - 22
+          - 24
+          - 21
         paper_label: !type:ContainerSlot
           showEnts: False
           occludes: True
@@ -676,18 +754,44 @@ entities:
     - type: Transform
       pos: 3.5,-2.5
       parent: 1
+    - type: EntityStorage
+      air:
+        volume: 200
+        immutable: False
+        temperature: 293.14673
+        moles:
+        - 1.7459903
+        - 6.568249
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
     - type: ContainerContainer
       containers:
         entity_storage: !type:Container
           showEnts: False
           occludes: True
           ents:
-          - 28
-          - 31
-          - 29
-          - 32
-          - 30
+          - invalid
+          - invalid
+          - invalid
+          - invalid
+          - invalid
+          - invalid
+          - invalid
+          - invalid
           - 33
+          - 30
+          - 32
+          - 29
+          - 31
+          - 28
         paper_label: !type:ContainerSlot
           showEnts: False
           occludes: True
