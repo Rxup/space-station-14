@@ -20,7 +20,5 @@
       amount: 2
     Stimulants:
       amount: 1
-    TranexamicAcid:
-      amount: 1
   products:
     StimulantsSuper: 3

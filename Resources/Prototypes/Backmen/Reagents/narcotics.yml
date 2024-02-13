@@ -19,10 +19,10 @@
       - !type:HealthChange
         conditions:
           - !type:ReagentThreshold
-            min: 15
-        damage:
+            min: 16
+        damage: # If you get robust too much, you can go to hell!
           types:
-            Poison: 6 # If you get robust too much, you can go to hell!
+            Poison: 4
       - !type:GenericStatusEffect
           key: Stutter
           component: StutteringAccent
@@ -58,6 +58,6 @@
         - !type:HealthChange
           damage:
             groups:
-              Burn: -10
-              Brute: -10
-              Airloss: -8
+              Burn: -6
+              Brute: -6
+              Airloss: -4
