@@ -525,6 +525,7 @@ public sealed class ChatUIController : UIController
             FilterableChannels |= ChatChannel.AdminChat;
             CanSendChannels |= ChatSelectChannel.Admin;
             FilterableChannels |= ChatChannel.Telepathic;
+            FilterableChannels |= ChatChannel.Empathy;
         }
 
         // psionics
@@ -533,12 +534,20 @@ public sealed class ChatUIController : UIController
             FilterableChannels |= ChatChannel.Telepathic;
             CanSendChannels |= ChatSelectChannel.Telepathic;
         }
+        else if (_ghost is { IsGhost: true })
+        {
+            FilterableChannels |= ChatChannel.Telepathic;
+        }
 
         // Shadowkin
         if (_shadowkin != null && _shadowkin.IsShadowkin)
         {
             FilterableChannels |= ChatChannel.Empathy;
             CanSendChannels |= ChatSelectChannel.Empathy;
+        }
+        else if (_ghost is { IsGhost: true })
+        {
+            FilterableChannels |= ChatChannel.Empathy;
         }
 
         SelectableChannels = CanSendChannels;
