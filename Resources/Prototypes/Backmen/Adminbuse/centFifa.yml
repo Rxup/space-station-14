@@ -2694,7 +2694,7 @@
     - type: StorageFill
       contents:
         - id: MagazinePulseShotgun
-          amount: 4
+          amount: 2
         - id: MagazinePulseSubMachinePistol
           amount: 4
 
@@ -2753,7 +2753,7 @@
     mask: ClothingMaskGasERTTay39
     eyes: ClothingEyesHudMedical
     gloves: ClothingHandsGlovesSpetsnazcombat
-    outerClothing: ClothingOuterHardsuitERTTay39
+    outerClothing: ClothingOuterHardsuitERTMedicTay39
     suitstorage: OxygenTankFilled
     id: OBRGavnaMedicIDCardTay39
     ears: ClothingHeadsetCentComCCMTF
@@ -2764,6 +2764,7 @@
 - type: entity
   parent: OBRGavnaMedicIDCard
   id: OBRGavnaMedicIDCardTay39
+  noSpawn: true
   name: Id карта медика ОБР
   components:
   - type: IdCard
@@ -2786,7 +2787,7 @@
           amount: 4
         - id: Hypospray
         - id: EmergencyMedipen
-          amount: 4
+          amount: 2
         - id: CombatMedipen
           amount: 4
 
@@ -2805,7 +2806,7 @@
         - id: MagazinePistol
           amount: 2
         - id: MedkitFilled
-          amount: 2
+        - id: Defibrillator
         - id: MedkitCombatFilled
           amount: 3
         - id: MedkitAdvancedFilled
@@ -2863,7 +2864,7 @@
     - type: StorageFill
       contents:
         - id: MagazinePulseSubMachinePistol
-          amount: 8
+          amount: 6
 
 - type: entity
   noSpawn: true
