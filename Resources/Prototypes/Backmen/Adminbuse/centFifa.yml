@@ -362,13 +362,13 @@
     ears: ClothingHeadsetCentComCCMTFEPS11
     eyes: ClothingEyesGlassesMeson
     belt: ClothingBeltChiefEngineerFilled
-    pocket1: ClothingPounchMTFBattleFilled
+    pocket1: ClothingPounchMTFBattleEngineerFilled
     pocket2: ClothingPounchMTFEngineerFilled
 
 - type: entity
   noSpawn: true
   parent: ClothingPounchMTF
-  id: ClothingPounchMTFBattleFilled
+  id: ClothingPounchMTFBattleEngineerFilled
   components:
     - type: StorageFill
       contents:
@@ -450,6 +450,8 @@
     - type: StorageFill
       contents:
         - id: BattleMedipen
+          amount: 2
+        - id: BattleSpaceMedipen
           amount: 2
         - id: MagazineRifle
           amount: 4

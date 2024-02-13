@@ -293,7 +293,7 @@ public sealed class SpecForcesSystem : EntitySystem
                     // todo: cvar
                     SpecForcesType.ERT => EtrShuttlePath,
                     SpecForcesType.ERTAlpha => ErtAplhaShuttlePath,
-                    SpecForcesType.ERTEpsilon => ErtAplhaShuttlePath,
+                    SpecForcesType.ERTEpsilon => ErtEpsilonShuttlePath,
                     SpecForcesType.RXBZZ => RxbzzShuttlePath,
                     SpecForcesType.DeathSquad => SpestnazShuttlePath,
                     _ => EtrShuttlePath
