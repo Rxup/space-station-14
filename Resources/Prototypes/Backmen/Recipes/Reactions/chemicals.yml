@@ -14,11 +14,13 @@
   id: StimulantsSuper
   impact: Medium
   reactants:
-    Desoxyephedrine:
-      amount: 1
+    Ephedrine:
+      amount: 2
     Omnizine:
-      amount: 1
+      amount: 2
     Stimulants:
       amount: 1
+    TranexamicAcid:
+      amount: 1
   products:
-    StimulantsSuper: 1
+    StimulantsSuper: 3

@@ -1,0 +1,121 @@
+﻿
+
+- type: listing
+  id: vmpSkillSprint1
+  name: store-vmpSkillSprint1-name
+  description: store-vmpSkillSprint-desc
+  productEvent: !type:VampireStoreEvent
+    buyType: Sprint1
+  cost:
+    BloodEssence: 5
+  categories:
+  - VapmireT2
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+
+- type: listing
+  id: vmpSkillSprint2
+  name: store-vmpSkillSprint2-name
+  description: store-vmpSkillSprint-desc
+  productEvent: !type:VampireStoreEvent
+    buyType: Sprint2
+  cost:
+    BloodEssence: 5
+  categories:
+  - VapmireT2
+  conditions:
+  - !type:RequireParentListingCondition
+    parent: vmpSkillSprint1
+  - !type:ListingLimitedStockCondition
+    stock: 1
+
+- type: listing
+  id: vmpSkillSprint3
+  name: store-vmpSkillSprint3-name
+  description: store-vmpSkillSprint-desc
+  productEvent: !type:VampireStoreEvent
+    buyType: Sprint3
+  cost:
+    BloodEssence: 5
+  categories:
+  - VapmireT2
+  conditions:
+  - !type:RequireParentListingCondition
+    parent: vmpSkillSprint2
+  - !type:ListingLimitedStockCondition
+    stock: 1
+
+- type: listing
+  id: vmpSkillSprint4
+  name: store-vmpSkillSprint4-name
+  description: store-vmpSkillSprint-desc
+  productEvent: !type:VampireStoreEvent
+    buyType: Sprint4
+  cost:
+    BloodEssence: 5
+  categories:
+  - VapmireT2
+  conditions:
+  - !type:RequireParentListingCondition
+    parent: vmpSkillSprint3
+  - !type:ListingLimitedStockCondition
+    stock: 1
+
+- type: listing
+  id: vmpSkillSprint5
+  name: store-vmpSkillSprint5-name
+  description: store-vmpSkillSprint-desc
+  productEvent: !type:VampireStoreEvent
+    buyType: Sprint5
+  cost:
+    BloodEssence: 5
+  categories:
+  - VapmireT2
+  conditions:
+    - !type:RequireParentListingCondition
+      parent: vmpSkillSprint4
+    - !type:ListingLimitedStockCondition
+      stock: 1
+
+- type: listing
+  id: vmpSkillNoSlip
+  name: store-vmpSkillNoSlip-name
+  description: store-vmpSkillNoSlip-desc
+  productEvent: !type:VampireStoreEvent
+    buyType: NoSlip
+  cost:
+    BloodEssence: 5
+  categories:
+  - VapmireT2
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+
+- type: listing
+  id: vmpIgnitePower
+  name: store-vmpIgnitePower-name
+  description: store-vmpIgnitePower-desk
+  productEvent: !type:VampireStoreEvent
+    buyType: IgnitePower
+  cost:
+    BloodEssence: 20
+  categories:
+  - VapmireT2
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+
+- type: listing
+  id: vmpPsiInvisPower
+  name: store-vmpPsiInvisPower-name
+  description: store-vmpPsiInvisPower-desk
+  productEvent: !type:VampireStoreEvent
+    buyType: PsiInvisPower
+  cost:
+    BloodEssence: 10
+  categories:
+  - VapmireT2
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1

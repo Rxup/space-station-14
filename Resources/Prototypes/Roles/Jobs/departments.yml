@@ -50,7 +50,6 @@
   - HeadOfSecurity
   - ResearchDirector
   - Quartermaster
-  - SAI
   accountNumber: 1317 #backmen: currency
   primary: false
   weight: 100
@@ -90,7 +89,6 @@
   - SecurityOfficer
   - Warden
   - Brigmedic #backmen
-  - Prisoner #backmen
   accountNumber: 1320  #backmen: currency
 
 - type: department
@@ -114,5 +112,7 @@
   - Reporter
   - Zookeeper
   - Psychologist
+  - Prisoner #backmen
+  - SAI #backmen
   accountNumber: 1322  #backmen: currency
   primary: false
