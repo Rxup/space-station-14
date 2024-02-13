@@ -516,42 +516,6 @@ entities:
       parent: 1
 - proto: ChairPilotSeat
   entities:
-  - uid: 36
-    components:
-    - type: Transform
-      rot: -1.5707963267948966 rad
-      pos: -0.5,0.5
-      parent: 1
-  - uid: 37
-    components:
-    - type: Transform
-      rot: -1.5707963267948966 rad
-      pos: -0.5,-0.5
-      parent: 1
-  - uid: 38
-    components:
-    - type: Transform
-      rot: -1.5707963267948966 rad
-      pos: -0.5,-1.5
-      parent: 1
-  - uid: 39
-    components:
-    - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: 1.5,-1.5
-      parent: 1
-  - uid: 40
-    components:
-    - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: 1.5,-0.5
-      parent: 1
-  - uid: 41
-    components:
-    - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: 1.5,0.5
-      parent: 1
   - uid: 66
     components:
     - type: Transform
@@ -637,14 +601,6 @@ entities:
           showEnts: False
           occludes: True
           ents:
-          - invalid
-          - invalid
-          - invalid
-          - invalid
-          - invalid
-          - invalid
-          - invalid
-          - invalid
           - 9
           - 12
           - 11
@@ -660,44 +616,18 @@ entities:
     - type: Transform
       pos: -2.5,1.5
       parent: 1
-    - type: EntityStorage
-      air:
-        volume: 200
-        immutable: False
-        temperature: 293.14673
-        moles:
-        - 1.7459903
-        - 6.568249
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
     - type: ContainerContainer
       containers:
         entity_storage: !type:Container
           showEnts: False
           occludes: True
           ents:
-          - invalid
-          - invalid
-          - invalid
-          - invalid
-          - invalid
-          - invalid
-          - invalid
-          - invalid
-          - 19
-          - 18
-          - 16
-          - 17
-          - 15
           - 14
+          - 15
+          - 17
+          - 16
+          - 18
+          - 19
         paper_label: !type:ContainerSlot
           showEnts: False
           occludes: True
@@ -707,44 +637,18 @@ entities:
     - type: Transform
       pos: 3.5,1.5
       parent: 1
-    - type: EntityStorage
-      air:
-        volume: 200
-        immutable: False
-        temperature: 293.14673
-        moles:
-        - 1.7459903
-        - 6.568249
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
     - type: ContainerContainer
       containers:
         entity_storage: !type:Container
           showEnts: False
           occludes: True
           ents:
-          - invalid
-          - invalid
-          - invalid
-          - invalid
-          - invalid
-          - invalid
-          - invalid
-          - invalid
-          - 26
-          - 25
-          - 23
-          - 22
-          - 24
           - 21
+          - 24
+          - 22
+          - 23
+          - 25
+          - 26
         paper_label: !type:ContainerSlot
           showEnts: False
           occludes: True
@@ -754,44 +658,18 @@ entities:
     - type: Transform
       pos: 3.5,-2.5
       parent: 1
-    - type: EntityStorage
-      air:
-        volume: 200
-        immutable: False
-        temperature: 293.14673
-        moles:
-        - 1.7459903
-        - 6.568249
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
     - type: ContainerContainer
       containers:
         entity_storage: !type:Container
           showEnts: False
           occludes: True
           ents:
-          - invalid
-          - invalid
-          - invalid
-          - invalid
-          - invalid
-          - invalid
-          - invalid
-          - invalid
-          - 33
-          - 30
-          - 32
-          - 29
-          - 31
           - 28
+          - 31
+          - 29
+          - 32
+          - 30
+          - 33
         paper_label: !type:ContainerSlot
           showEnts: False
           occludes: True
@@ -1032,36 +910,6 @@ entities:
       parent: 1
 - proto: MarkerSpecforce
   entities:
-  - uid: 60
-    components:
-    - type: Transform
-      pos: -0.5,-0.5
-      parent: 1
-  - uid: 61
-    components:
-    - type: Transform
-      pos: 1.5,-0.5
-      parent: 1
-  - uid: 62
-    components:
-    - type: Transform
-      pos: -0.5,-1.5
-      parent: 1
-  - uid: 63
-    components:
-    - type: Transform
-      pos: -0.5,0.5
-      parent: 1
-  - uid: 64
-    components:
-    - type: Transform
-      pos: 1.5,0.5
-      parent: 1
-  - uid: 65
-    components:
-    - type: Transform
-      pos: 1.5,-1.5
-      parent: 1
   - uid: 67
     components:
     - type: Transform
@@ -1091,6 +939,38 @@ entities:
     components:
     - type: Transform
       pos: -2.5,-0.5
+      parent: 1
+- proto: MedkitBattleSpaceMedipen
+  entities:
+  - uid: 60
+    components:
+    - type: Transform
+      pos: 1.4828517,-1.3999484
+      parent: 1
+  - uid: 61
+    components:
+    - type: Transform
+      pos: -0.47548127,-0.44161487
+      parent: 1
+  - uid: 62
+    components:
+    - type: Transform
+      pos: 1.4828517,-0.50411487
+      parent: 1
+  - uid: 63
+    components:
+    - type: Transform
+      pos: 1.4620187,0.5792186
+      parent: 1
+  - uid: 64
+    components:
+    - type: Transform
+      pos: -0.4338143,-1.4624484
+      parent: 1
+  - uid: 65
+    components:
+    - type: Transform
+      pos: -0.5379813,0.55838513
       parent: 1
 - proto: Poweredlight
   entities:
@@ -1140,6 +1020,38 @@ entities:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: 2.5,3.5
+      parent: 1
+- proto: Rack
+  entities:
+  - uid: 36
+    components:
+    - type: Transform
+      pos: -0.5,0.5
+      parent: 1
+  - uid: 37
+    components:
+    - type: Transform
+      pos: -0.5,-0.5
+      parent: 1
+  - uid: 38
+    components:
+    - type: Transform
+      pos: -0.5,-1.5
+      parent: 1
+  - uid: 39
+    components:
+    - type: Transform
+      pos: 1.5,-0.5
+      parent: 1
+  - uid: 40
+    components:
+    - type: Transform
+      pos: 1.5,-1.5
+      parent: 1
+  - uid: 41
+    components:
+    - type: Transform
+      pos: 1.5,0.5
       parent: 1
 - proto: ReinforcedWindow
   entities:

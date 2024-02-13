@@ -443,6 +443,15 @@
     pocket2: ClothingPounchMTFMedicalFilled
 
 - type: entity
+  parent: Medkit
+  id: MedkitBattleSpaceMedipen
+  components:
+    - type: StorageFill
+      contents:
+        - id: BattleSpaceMedipen
+          amount: 8
+
+- type: entity
   noSpawn: true
   parent: ClothingPounchMTF
   id: ClothingPounchMTFBattleFilled
