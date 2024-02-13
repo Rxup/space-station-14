@@ -30,7 +30,7 @@ public sealed partial class NukeopsRuleComponent : Component
     public int PlayersPerOperative = 10;
 
     [DataField]
-    public int MaxOps = 5;
+    public int MaxOps = 7;
 
     /// <summary>
     /// What will happen if all of the nuclear operatives will die. Used by LoneOpsSpawn event.
@@ -90,7 +90,7 @@ public sealed partial class NukeopsRuleComponent : Component
     ///     This amount of TC will be given to each nukie
     /// </summary>
     [DataField]
-    public int WarTCAmountPerNukie = 40;
+    public int WarTCAmountPerNukie = 60;
 
     /// <summary>
     ///     Time allowed for declaration of war
