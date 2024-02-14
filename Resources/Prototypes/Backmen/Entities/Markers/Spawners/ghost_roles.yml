@@ -27,7 +27,7 @@
       prototype: MobHumanFugitive
     - type: GhostRole
       name: Беглец
-      whitelistRequired: false
+      #whitelistRequired: true
       description: Вы сбежавший заключенный. Выберись живым.
       rules: |
         Вы самый незначительный антаг.
