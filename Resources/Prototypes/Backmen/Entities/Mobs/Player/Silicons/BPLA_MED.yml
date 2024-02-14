@@ -90,7 +90,7 @@
     - key: enum.SiliconLawsUiKey.Key
       type: SiliconLawBoundUserInterface
   - type: GhostRole
-    whitelistRequired: true
+    #whitelistRequired: true
     makeSentient: true
     allowSpeech: true # backmen
     allowMovement: true # backmen
