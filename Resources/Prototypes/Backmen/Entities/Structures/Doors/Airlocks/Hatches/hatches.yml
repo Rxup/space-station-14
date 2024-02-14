@@ -1,10 +1,18 @@
 - type: entity
+  id: AirlockHatchBasik
+  parent: Airlock
+  name: airtight hatch
+  components:
+  - type: Sprite
+    sprite: Backmen/Structures/Doors/Airlocks/Hatches/hatch.rsi
+  - type: Weldable
+    time: 10
+
+- type: entity
   id: AirlockHatchMaint
   parent: Airlock
   name: Maintenance Hatch
   description: Protects maintenance tunnels.
-  placement:
-    mode: SnapgridCenter
   components:
   - type: Sprite
     sprite: Backmen/Structures/Doors/Airlocks/Hatches/maintenance_hatch.rsi
@@ -16,10 +24,8 @@
   parent: HighSecDoor
   name: CentCom Hatch
   description: Keeps the bad out and keeps the good in.
-  placement:
-    mode: SnapgridCenter
   components:
   - type: Sprite
-    sprite: Backmen/Structures/Doors/Airlocks/Hatches/centcom_hatch.rsi
+    sprite: Backmen/Structures/Doors/Airlocks/Hatches/hatch.rsi
   - type: Weldable
     time: 10
