@@ -7,6 +7,7 @@ using Content.Server.Administration.Managers;
 using Content.Server.Backmen.CartridgeLoader.Cartridges;
 using Content.Server.Backmen.Economy.Eftpos;
 using Content.Server.Backmen.Economy.Wage;
+using Content.Server.Backmen.Loadout;
 using Content.Server.Backmen.Mind;
 using Content.Server.Chat.Managers;
 using Content.Server.GameTicking;
@@ -51,7 +52,7 @@ public sealed class EconomySystem : EntitySystem
     {
         base.Initialize();
         SubscribeLocalEvent<PlayerSpawnCompleteEvent>(OnPlayerSpawned,
-            after: new[] { typeof(Corvax.Loadout.LoadoutSystem) });
+            after: new[] { typeof(LoadoutSystem) });
         SubscribeLocalEvent<RoundStartingEvent>(OnRoundStartingEvent);
         SubscribeLocalEvent<EftposComponent, MapInitEvent>(OnFtposInit);
         SubscribeLocalEvent<MindNoteConditionComponent, ObjectiveGetProgressEvent>(OnGetBankProgress);
