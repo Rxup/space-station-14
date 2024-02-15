@@ -88,7 +88,7 @@ public sealed class AICameraSystem : EntitySystem
         var job = new AiEyeMover(EntityManager, this, _lookup, _transform, MoverJobTime)
         {
             Eye = ent,
-            OldPosition = args.OldPosition,
+            //OldPosition = args.OldPosition,
             NewPosition = args.NewPosition
         };
 
