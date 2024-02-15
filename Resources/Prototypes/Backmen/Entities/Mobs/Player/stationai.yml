@@ -22,7 +22,7 @@
     - type: IntrinsicUI
       uis:
       - key: enum.CommunicationsConsoleUiKey.Key
-        toggleAction: ActionAGhostShowCommunications
+        toggleAction: ActionAIShowCommunications
     - type: ContainerContainer
       containers:
         tools: !type:Container
@@ -387,7 +387,7 @@
     - type: IntrinsicUI
       uis:
         - key: enum.CommunicationsConsoleUiKey.Key
-          toggleAction: ActionAGhostShowCommunications
+          toggleAction: ActionAIShowCommunications
         #- key: enum.CommunicationsConsoleUiKey.Key
         #  toggleAction:
         # Mostly works, just not as I wish, so I'm disabling it for now.
