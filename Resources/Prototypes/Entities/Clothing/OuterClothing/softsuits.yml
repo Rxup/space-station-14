@@ -6,9 +6,9 @@
   description: A lightweight space suit with the basic ability to protect the wearer from the vacuum of space during emergencies.
   components:
   - type: Sprite
-    sprite: Clothing/OuterClothing/Suits/eva.rsi
+    sprite: Backmen/Clothing/OuterClothing/Suits/eva.rsi # backmen resprite
   - type: Clothing
-    sprite: Clothing/OuterClothing/Suits/eva.rsi
+    sprite: Backmen/Clothing/OuterClothing/Suits/eva.rsi # backmen resprite
   - type: Tag
     tags:
     - SuitEVA
@@ -22,9 +22,9 @@
   description: "Has a tag on the back that reads: 'Totally not property of an enemy corporation, honest!'"
   components:
   - type: Sprite
-    sprite: Clothing/OuterClothing/Suits/eva_syndicate.rsi
+    sprite: Backmen/Clothing/OuterClothing/Suits/eva_syndicate.rsi # backmen resprite
   - type: Clothing
-    sprite: Clothing/OuterClothing/Suits/eva_syndicate.rsi
+    sprite: Backmen/Clothing/OuterClothing/Suits/eva_syndicate.rsi # backmen resprite
   - type: Tag
     tags:
     - SuitEVA

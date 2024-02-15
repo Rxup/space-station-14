@@ -11,21 +11,19 @@
   weight: 1
   requireAdminNotify: true
   joinNotifyCrew: true
+  whitelistRequired: true
   requirements:
+    - !type:RoleTimeRequirement
+      role: JobCentralCommandAssistant
+      time: 21600
     - !type:DepartmentTimeRequirement
-      department: Security
-      time: 180000
-    - !type:DepartmentTimeRequirement
-      department: Command
-      time: 126000
+      department: CentCom
+      time: 43200
     - !type:RoleTimeRequirement
       role: JobHeadOfSecurity
-      time: 54000
+      time: 18000
     - !type:RoleTimeRequirement
       role: JobCentralCommandSecOfficer
-      time: 36000
-    - !type:RoleTimeRequirement
-      role: JobIAA
       time: 18000
   access:
     - CentralCommand

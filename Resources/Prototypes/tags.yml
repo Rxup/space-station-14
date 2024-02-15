@@ -1065,6 +1065,9 @@
   id: Soup
 
 - type: Tag
+  id: SpookyFog
+
+- type: Tag
   id: Spray
 
 - type: Tag
@@ -1173,6 +1176,9 @@
   id: WallmountSubstationElectronics
 
 - type: Tag
+  id: WeaponAntiqueLaser
+
+- type: Tag
   id: WeaponPistolCHIMPUpgradeKit
 
 - type: Tag
@@ -1180,6 +1186,9 @@
 
 - type: Tag
   id: WetFloorSign
+
+- type: Tag
+  id: Wheat
 
 - type: Tag
   id: WhitelistChameleon

@@ -21,3 +21,5 @@ chatsan-tearfully-salutes = tearfully salutes
 chatsan-shrugs = shrugs
 chatsan-claps = claps
 chatsan-snaps = snaps
+chatsan-tearfully-smiles = tearfully smiles
+chatsan-winks = winks
