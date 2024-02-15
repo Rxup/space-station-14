@@ -1,7 +1,9 @@
 using Content.Server.Interaction;
+using Content.Server.Popups;
 using Content.Server.SurveillanceCamera;
 using Content.Shared.Backmen.StationAI;
 using Content.Shared.Eye.Blinding.Components;
+using Content.Shared.Popups;
 using Content.Shared.Traits.Assorted;
 using Robust.Server.GameObjects;
 using Robust.Shared.CPUJob.JobQueues.Queues;
@@ -14,11 +16,14 @@ public sealed class AICameraSystem : EntitySystem
     [Dependency] private readonly SharedTransformSystem _transform = default!;
     [Dependency] private readonly InteractionSystem _interaction = default!;
     [Dependency] private readonly SurveillanceCameraSystem _cameraSystem = default!;
+    [Dependency] private readonly PopupSystem _popup = default!;
 
 
     public const float CameraEyeRange = 10f;
     private const double MoverJobTime = 0.005;
     private readonly JobQueue _moveJobQueue = new(MoverJobTime);
+
+
 
     public override void Initialize()
     {
@@ -28,6 +33,27 @@ public sealed class AICameraSystem : EntitySystem
 
         SubscribeLocalEvent<AIEyeComponent, MoveEvent>(OnEyeMove);
         SubscribeLocalEvent<AICameraComponent, SurveillanceCameraDeactivateEvent>(OnActiveCameraDisable);
+        SubscribeLocalEvent<AIEyeComponent, EyeMoveToCam>(OnMoveToCam);
+    }
+
+    private void OnMoveToCam(Entity<AIEyeComponent> ent, ref EyeMoveToCam args)
+    {
+        if (!TryGetEntity(args.Uid, out var uid) || !ent.Comp.AiCore.HasValue)
+            return;
+        var camPos = Transform(uid.Value);
+        if (Transform(uid.Value).GridUid != Transform(ent.Comp.AiCore.Value).GridUid)
+            return;
+
+        if (!TryComp<SurveillanceCameraComponent>(uid, out var camera))
+            return;
+
+        if (!camera.Active)
+        {
+            _popup.PopupCursor("камера не работает!", ent, PopupType.LargeCaution);
+            return;
+        }
+        _transform.SetCoordinates(ent, camPos.Coordinates);
+        _transform.AttachToGridOrMap(ent);
     }
 
     private void OnActiveCameraDisable(Entity<AICameraComponent> ent, ref SurveillanceCameraDeactivateEvent args)
@@ -62,6 +88,7 @@ public sealed class AICameraSystem : EntitySystem
         var job = new AiEyeMover(EntityManager, this, _lookup, _transform, MoverJobTime)
         {
             Eye = ent,
+            OldPosition = args.OldPosition,
             NewPosition = args.NewPosition
         };
 
@@ -92,6 +119,7 @@ public sealed class AICameraSystem : EntitySystem
         _cameraSystem.UpdateVisuals(eye.Comp.Camera.Value, camera);
         EnsureComp<AICameraComponent>(eye.Comp.Camera.Value).ActiveViewers.Remove(eye);
         eye.Comp.Camera = null;
+        Dirty(eye,eye.Comp);
     }
     private void ChangeActiveCamera(Entity<AIEyeComponent> eye, EntityUid camUid, SurveillanceCameraComponent? cameraComponent = null)
     {
@@ -113,6 +141,7 @@ public sealed class AICameraSystem : EntitySystem
         var v = cameraComponent.ActiveViewers;
 
         eye.Comp.Camera = camUid;
+        Dirty(eye,eye.Comp);
         v.Add(eye);
         _cameraSystem.UpdateVisuals(camUid, cameraComponent);
         EnsureComp<AICameraComponent>(camUid).ActiveViewers.Add(eye);

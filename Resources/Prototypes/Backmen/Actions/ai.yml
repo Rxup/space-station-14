@@ -1,4 +1,19 @@
 ﻿- type: entity
+  id: AIEyeCamAction
+  name: AI Камеры
+  description: Отображение камер и телепорт к ним
+  noSpawn: true
+  components:
+  - type: InstantAction
+    icon:
+      sprite: Structures/Wallmounts/camera.rsi
+      state: camera
+    event: !type:AIEyeCampActionEvent
+    checkCanInteract: false
+    useDelay: 5
+    priority: 17
+
+- type: entity
   id: AIEyeAction
   name: AI Eye
   description: Puts you in to the AI Eye form, allowing you to float about the station's cameras.
