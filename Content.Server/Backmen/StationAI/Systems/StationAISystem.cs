@@ -6,6 +6,7 @@ using Content.Shared.Actions;
 using Content.Shared.Backmen.EntityHealthBar;
 using Content.Shared.Backmen.StationAI;
 using Content.Shared.Backmen.StationAI.Events;
+using Content.Shared.Backmen.StationAI.UI;
 using Content.Shared.Hands.Components;
 using Content.Shared.Hands.EntitySystems;
 using Content.Shared.Interaction.Events;
