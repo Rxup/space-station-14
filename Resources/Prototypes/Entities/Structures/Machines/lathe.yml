@@ -464,7 +464,6 @@
       - TelecomServerCircuitboard
       - MassMediaCircuitboard
       - ShipyardCircuitboard # backmen
-      - MetempsychoticMachineCircuitboard # backmen
   - type: MaterialStorage
     whitelist:
       tags:
