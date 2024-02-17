@@ -149,6 +149,7 @@
       - id: ClothingHeadCage # backmen
         amount: 2
       - id: HoloprojectorSecurity
+      - id: BoxEvidenceMarkers
 
 - type: entity
   id: ClosetBombFilled

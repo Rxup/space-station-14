@@ -80,6 +80,9 @@
             "name": "disk"
         },
         {
+            "name": "evidence_markers"
+        },
+        {
             "name": "flashbang"
         },
         {
