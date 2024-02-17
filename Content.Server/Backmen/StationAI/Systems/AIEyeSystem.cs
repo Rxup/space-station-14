@@ -202,6 +202,8 @@ public sealed class AIEyePowerSystem : EntitySystem
         _visibilitySystem.AddLayer((uid, visibility), (int) VisibilityFlags.AIEye);
         _actions.AddAction(uid, ref component.ReturnActionUid, component.ReturnAction);
         _actions.AddAction(uid, ref component.CamListUid, component.CamListAction);
+        _actions.AddAction(uid, ref component.CamShootUid, component.CamShootAction);
+
 
 
         var pos = Transform(uid).GridUid;

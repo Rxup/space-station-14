@@ -1,4 +1,20 @@
 ﻿- type: entity
+  id: AIEyeCamShootAction
+  name: Cam shoot
+  description: выстрел из камеры
+  noSpawn: true
+  components:
+  - type: WorldTargetAction
+    icon:
+      sprite: Structures/Wallmounts/camera.rsi
+      state: camera
+    event: !type:AIEyeCampShootActionEvent
+    checkCanInteract: false
+    useDelay: 1
+    priority: 17
+    range: 20
+
+- type: entity
   id: AIEyeCamAction
   name: AI Камеры
   description: Отображение камер и телепорт к ним

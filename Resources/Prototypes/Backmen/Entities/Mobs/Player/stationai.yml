@@ -350,6 +350,10 @@
       - CanPilot
       - CannotSuicide
     - type: Blindable
+    - type: Gun
+      fireRate: 2
+      soundGunshot:
+        path: /Audio/Weapons/Guns/Gunshots/taser2.ogg
     - type: AIEye
     # Only ghosts can see the eye
     - type: Visibility
