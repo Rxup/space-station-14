@@ -227,7 +227,8 @@
       - id: BoxEncryptionKeyMedical
       - id: AntiPsychicKnife # backmen
       - id: ClothingHeadCage # backmen
-      - id: PresentMetempsychoticMachine # backmen
+      - id: MetempsychoticMachineCircuitboard # backmen
+      - id: MaterialBiomass # backmen
 
 - type: entity
   id: LockerChiefMedicalOfficerFilled
@@ -251,7 +252,8 @@
       - id: BoxEncryptionKeyMedical
       - id: AntiPsychicKnife # backmen
       - id: ClothingHeadCage # backmen
-      - id: PresentMetempsychoticMachine # backmen
+      - id: MetempsychoticMachineCircuitboard # backmen
+      - id: MaterialBiomass # backmen
 
 - type: entity
   id: LockerResearchDirectorFilledHardsuit
