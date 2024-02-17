@@ -1,5 +1,6 @@
 using Content.Server.Backmen.Shipwrecked.Prototypes;
 using Content.Shared.Corvax.TTS;
+using Content.Shared.Parallax.Biomes.Markers;
 using Content.Shared.Procedural;
 using Content.Shared.Roles;
 using Robust.Shared.Audio.Components;
@@ -38,7 +39,7 @@ public sealed partial class ShipwreckedRuleComponent : Component
     public int EngiManifestOffset = default!;
 
     /// <summary>
-    ///
+    /// Global mob spawn chance, for easy testing and balance.
     /// </summary>
     [ViewVariables]
     [DataField("mobSpawnChance", required: true)]
@@ -61,6 +62,13 @@ public sealed partial class ShipwreckedRuleComponent : Component
     [ViewVariables]
     [DataField("destinations", required: true)]
     public List<ProtoId<ShipwreckDestinationPrototype>> ShipwreckDestinationPrototypes = default!;
+
+    /// <summary>
+    /// Markers that will be used upon the planet generation.
+    /// </summary>
+    [ViewVariables]
+    [DataField("markerLayers", required: true)]
+    public List<string> ShipwreckMarkerLayers = default!;
 
     /// <summary>
     /// Hecate's spawn point.

@@ -32,6 +32,14 @@
         - Jungle
         - Continental
         - Lava
+      markerLayers:
+        - OreIron
+        - OreQuartz
+        - OreGold
+        - OreSilver
+        - OrePlasma
+        - OreUranium
+        - OreCoal
       spawnPointHecate: SpawnPointShipwreckHecate
       hecatePrototype: MobQuestHecateShipwrecked
       engiManifestOffset: 20
