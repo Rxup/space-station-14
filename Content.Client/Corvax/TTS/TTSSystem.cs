@@ -1,6 +1,7 @@
 ﻿using Content.Shared.Chat;
 using Content.Shared.Corvax.CCCVars;
 using Content.Shared.Corvax.TTS;
+using Content.Shared.GameTicking;
 using Robust.Client.Audio;
 using Robust.Client.ResourceManagement;
 using Robust.Shared.Audio;
@@ -79,7 +80,7 @@ public sealed class TTSSystem : EntitySystem
         _contentRoot.AddOrUpdateFile(filePath, ev.Data);
 
         var audioResource = new AudioResource();
-        audioResource.Load(IoCManager.Instance!, Prefix / filePath);
+        audioResource.Load(IoCManager.Instance!, _prefix / filePath);
 
         var audioParams = AudioParams.Default
             .WithVolume(AdjustVolume(ev.IsWhisper))
@@ -88,7 +89,7 @@ public sealed class TTSSystem : EntitySystem
         if (ev.SourceUid != null)
         {
             var sourceUid = GetEntity(ev.SourceUid.Value);
-            if(sourceUid.IsValid)
+            if(sourceUid.IsValid())
                 _audio.PlayEntity(audioResource.AudioStream, sourceUid, audioParams);
         }
         else
