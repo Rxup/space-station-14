@@ -1,13 +1,11 @@
-﻿
-
-- type: listing
+﻿- type: listing
   id: vmpSkillSprint1
   name: store-vmpSkillSprint1-name
   description: store-vmpSkillSprint-desc
   productEvent: !type:VampireStoreEvent
     buyType: Sprint1
   cost:
-    BloodEssence: 5
+    BloodEssence: 20
   categories:
   - VapmireT2
   conditions:
@@ -21,7 +19,7 @@
   productEvent: !type:VampireStoreEvent
     buyType: Sprint2
   cost:
-    BloodEssence: 5
+    BloodEssence: 35
   categories:
   - VapmireT2
   conditions:
@@ -37,7 +35,7 @@
   productEvent: !type:VampireStoreEvent
     buyType: Sprint3
   cost:
-    BloodEssence: 5
+    BloodEssence: 50
   categories:
   - VapmireT2
   conditions:
@@ -47,59 +45,13 @@
     stock: 1
 
 - type: listing
-  id: vmpSkillSprint4
-  name: store-vmpSkillSprint4-name
-  description: store-vmpSkillSprint-desc
-  productEvent: !type:VampireStoreEvent
-    buyType: Sprint4
-  cost:
-    BloodEssence: 5
-  categories:
-  - VapmireT2
-  conditions:
-  - !type:RequireParentListingCondition
-    parent: vmpSkillSprint3
-  - !type:ListingLimitedStockCondition
-    stock: 1
-
-- type: listing
-  id: vmpSkillSprint5
-  name: store-vmpSkillSprint5-name
-  description: store-vmpSkillSprint-desc
-  productEvent: !type:VampireStoreEvent
-    buyType: Sprint5
-  cost:
-    BloodEssence: 5
-  categories:
-  - VapmireT2
-  conditions:
-    - !type:RequireParentListingCondition
-      parent: vmpSkillSprint4
-    - !type:ListingLimitedStockCondition
-      stock: 1
-
-- type: listing
   id: vmpSkillNoSlip
   name: store-vmpSkillNoSlip-name
   description: store-vmpSkillNoSlip-desc
   productEvent: !type:VampireStoreEvent
     buyType: NoSlip
   cost:
-    BloodEssence: 5
-  categories:
-  - VapmireT2
-  conditions:
-  - !type:ListingLimitedStockCondition
-    stock: 1
-
-- type: listing
-  id: vmpIgnitePower
-  name: store-vmpIgnitePower-name
-  description: store-vmpIgnitePower-desk
-  productEvent: !type:VampireStoreEvent
-    buyType: IgnitePower
-  cost:
-    BloodEssence: 20
+    BloodEssence: 55
   categories:
   - VapmireT2
   conditions:
@@ -113,9 +65,23 @@
   productEvent: !type:VampireStoreEvent
     buyType: PsiInvisPower
   cost:
-    BloodEssence: 10
+    BloodEssence: 35
   categories:
   - VapmireT2
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+
+- type: listing
+  id: vmpSkillMouse1
+  name: store-vmpSkillMouse1-name
+  description: store-vmpSkillMouse1-desc
+  productEvent: !type:VampireStoreEvent
+    buyType: SkillMouse2
+  cost:
+    BloodEssence: 15
+  categories:
+  - VapmireT1
   conditions:
   - !type:ListingLimitedStockCondition
     stock: 1

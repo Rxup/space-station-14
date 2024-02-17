@@ -1,0 +1,59 @@
+- type: listing
+  id: vmpSkillSprint4
+  name: store-vmpSkillSprint4-name
+  description: store-vmpSkillSprint-desc
+  productEvent: !type:VampireStoreEvent
+    buyType: Sprint4
+  cost:
+    BloodEssence: 75
+  categories:
+  - VapmireT3
+  conditions:
+  - !type:RequireParentListingCondition
+    parent: vmpSkillSprint3
+  - !type:ListingLimitedStockCondition
+    stock: 1
+
+- type: listing
+  id: vmpSkillSprint5
+  name: store-vmpSkillSprint5-name
+  description: store-vmpSkillSprint-desc
+  productEvent: !type:VampireStoreEvent
+    buyType: Sprint5
+  cost:
+    BloodEssence: 120
+  categories:
+  - VapmireT3
+  conditions:
+    - !type:RequireParentListingCondition
+      parent: vmpSkillSprint4
+    - !type:ListingLimitedStockCondition
+      stock: 1
+
+- type: listing
+  id: vmpIgnitePower
+  name: store-vmpIgnitePower-name
+  description: store-vmpIgnitePower-desk
+  productEvent: !type:VampireStoreEvent
+    buyType: IgnitePower
+  cost:
+    BloodEssence: 65
+  categories:
+  - VapmireT3
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+    
+- type: listing
+  id: vmpSkillConv
+  name: store-vmpSkillConv-name
+  description: store-vmpSkillConv-desc
+  productEvent: !type:VampireStoreEvent
+    buyType: MakeNewVamp
+  cost:
+    BloodEssence: 45
+  categories:
+  - VapmireT3
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1

@@ -248,7 +248,7 @@ public sealed class SpecForcesSystem : EntitySystem
 
                     if (countExtra-- > 0)
                     {
-                        SpawnEntity(ErtEpsilonMedical, _random.Pick(spawns));
+                        SpawnEntity(ErtEpsilonEngineer, _random.Pick(spawns));
                     }
 
                     if (countExtra-- > 0)
@@ -336,6 +336,17 @@ public sealed class SpecForcesSystem : EntitySystem
                     _chatSystem.DispatchStationAnnouncement(station,
                         Loc.GetString("spec-forces-system-ertcall-annonce"),
                         Loc.GetString("spec-forces-system-ertAplha1call-title"),
+                        false, _ertAnnounce
+                    );
+                }
+
+                break;
+            case SpecForcesType.ERTEpsilon:
+                foreach (var station in stations)
+                {
+                    _chatSystem.DispatchStationAnnouncement(station,
+                        Loc.GetString("spec-forces-system-ertcall-annonce"),
+                        Loc.GetString("spec-forces-system-ertEpsiloncall-title"),
                         false, _ertAnnounce
                     );
                 }

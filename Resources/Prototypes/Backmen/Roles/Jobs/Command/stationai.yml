@@ -35,7 +35,7 @@
   alwaysUseSpawner: true
   #canHaveTraits: false
   joinNotifyCrew: true
-  whitelistRequired: true
+  #whitelistRequired: true
 
 - type: job
   id: SAIShip
