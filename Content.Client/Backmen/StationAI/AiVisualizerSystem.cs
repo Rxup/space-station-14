@@ -43,10 +43,10 @@ public sealed class AiVisualizerSystem : VisualizerSystem<StationAIComponent>
 
         var layers = ent.Comp.Layers[ent.Comp.SelectedLayer];
 
-        foreach (var layer in spriteComponent.AllLayers.ToArray())
-        {
-            spriteComponent.RemoveLayer(layer);
-        }
+        var countLayers = spriteComponent.AllLayers.Count();
+
+        if (countLayers > 1)
+            return; // невкурсе как обновить слоя
 
         foreach (var layer in layers)
         {

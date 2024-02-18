@@ -189,6 +189,10 @@ public sealed class StationAISystem : EntitySystem
 
     private void OnStartup(EntityUid uid, StationAIComponent component, MapInitEvent args)
     {
+        if (component.Layers.Count == 0)
+        {
+            return;
+        }
         _actions.AddAction(uid, ref component.ActionId, component.Action);
         _hands.AddHand(uid,"SAI",HandLocation.Middle);
 

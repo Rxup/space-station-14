@@ -20,38 +20,19 @@ public sealed class AiEnemySystem : SharedAiEnemySystem
 
         SubscribeLocalEvent<AIEnemyNTComponent, MapInitEvent>(OnAdd);
         SubscribeLocalEvent<AIEnemyNTComponent, ComponentShutdown>(OnRemove);
-        SubscribeLocalEvent<NpcFactionMemberComponent, GetVerbsEvent<AlternativeVerb>>(OnMarkAsTarget);
-
     }
 
-    private void OnMarkAsTarget(Entity<NpcFactionMemberComponent> ent, ref GetVerbsEvent<AlternativeVerb> args)
+    protected override void ToggleEnemy(EntityUid u, EntityUid target)
     {
-        if (!HasComp<StationAIComponent>(args.User) && !HasComp<BorgAINTComponent>(args.User))
+        if (!EntityQuery.HasComponent(u))
+            return;
+        if (!HasComp<StationAIComponent>(u))
             return;
 
-        if (_mobState.IsDead(args.User))
+        if (_mobState.IsDead(u))
             return;
 
-        var u = args.User;
-        AlternativeVerb verb = new()
-        {
-            Act = () =>
-            {
-                ToggleEnemy(u, ent);
-            },
-            Text = Loc.GetString("sai-enemy-verb"),
-            Priority = 2
-        };
-
-        args.Verbs.Add(verb);
-    }
-
-    private void ToggleEnemy(EntityUid argsUser, Entity<NpcFactionMemberComponent> ent)
-    {
-        if (!HasComp<StationAIComponent>(argsUser) && !HasComp<BorgAINTComponent>(argsUser))
-            return;
-
-        var core = argsUser;
+        var core = u;
         if (TryComp<AIEyeComponent>(core, out var eyeComponent))
         {
             if(eyeComponent.AiCore == null)
@@ -65,15 +46,15 @@ public sealed class AiEnemySystem : SharedAiEnemySystem
         }
 
         var xform = Transform(core);
-        if (xform.GridUid != Transform(ent).GridUid || !xform.Anchored)
+        if (xform.GridUid != Transform(target).GridUid || !xform.Anchored)
         {
             return;
         }
 
-        if (HasComp<AIEnemyNTComponent>(ent))
-            RemCompDeferred<AIEnemyNTComponent>(ent);
+        if (HasComp<AIEnemyNTComponent>(target))
+            RemCompDeferred<AIEnemyNTComponent>(target);
         else
-            EnsureComp<AIEnemyNTComponent>(ent).Source = core;
+            EnsureComp<AIEnemyNTComponent>(target).Source = core;
     }
 
     [ValidatePrototypeId<NpcFactionPrototype>]
