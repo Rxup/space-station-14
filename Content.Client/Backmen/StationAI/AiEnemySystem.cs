@@ -23,7 +23,7 @@ public sealed class AiEnemySystem : SharedAiEnemySystem
     }
 
     [ValidatePrototypeId<StatusIconPrototype>]
-    private const string AiEnemyStatus = "HungerIconOverfed";
+    private const string AiEnemyStatus = "AiIconEnemyTarget";
     private void GetIcon(Entity<AIEnemyNTComponent> target, ref GetStatusIconsEvent args)
     {
         var ent = _player.LocalSession?.AttachedEntity ?? EntityUid.Invalid;

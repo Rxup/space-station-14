@@ -1,23 +1,21 @@
 ﻿- type: entity
   id: AIEyeCamShootAction
-  name: Cam shoot
-  description: выстрел из камеры
+  name: stun shot
+  description: destabilizing shot in some point
   noSpawn: true
   components:
   - type: WorldTargetAction
-    icon:
-      sprite: Structures/Wallmounts/camera.rsi
-      state: camera
+    icon: Backmen/Actions/AI/camera_stun.png
     event: !type:AIEyeCampShootActionEvent
     checkCanInteract: false
-    useDelay: 1
+    useDelay: 7
     priority: 17
     range: 20
 
 - type: entity
   id: AIEyeCamAction
-  name: AI Камеры
-  description: Отображение камер и телепорт к ним
+  name: AI cameras
+  description: Can jump on target cameras.
   noSpawn: true
   components:
   - type: InstantAction
