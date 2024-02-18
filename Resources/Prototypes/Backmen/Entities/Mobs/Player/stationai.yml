@@ -6,6 +6,7 @@
     - type: Tag
       tags:
       - CannotSuicide
+    - type: ContentEye
     - type: TTS
       voice: TrainingRobot
     - type: StationAI
@@ -65,7 +66,7 @@
         bliss:
         - state: 4
         - map: [ "enum.AiVisualLayers.Dead" ]
-          state: bliss_dead
+          state: blue_dead
           shader: unshaded
         - map: [ "enum.PowerDeviceVisualLayers.Powered" ]
           state: bliss
@@ -526,8 +527,8 @@
       noRot: true
       layers:
         - map: ["enum.DamageStateVisualLayers.Base"]
-          sprite: Backmen/Mobs/Silicon/ai.rsi
-          state: aieye
+          sprite: Backmen/Mobs/Silicon/cameramob.rsi
+          state: ai_camera
           shader: unshaded
     - type: IntrinsicUI
       uis:
