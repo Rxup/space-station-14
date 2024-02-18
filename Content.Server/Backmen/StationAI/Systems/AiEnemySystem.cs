@@ -4,6 +4,7 @@ using Content.Shared.Backmen.StationAI;
 using Content.Shared.Backmen.StationAI.Components;
 using Content.Shared.Backmen.StationAI.Systems;
 using Content.Shared.Examine;
+using Content.Shared.Mobs.Systems;
 using Content.Shared.Verbs;
 
 namespace Content.Server.Backmen.StationAI.Systems;
@@ -11,6 +12,7 @@ namespace Content.Server.Backmen.StationAI.Systems;
 public sealed class AiEnemySystem : SharedAiEnemySystem
 {
     [Dependency] private readonly NpcFactionSystem _faction = default!;
+    [Dependency] private readonly MobStateSystem _mobState = default!;
 
     public override void Initialize()
     {
@@ -18,40 +20,41 @@ public sealed class AiEnemySystem : SharedAiEnemySystem
 
         SubscribeLocalEvent<AIEnemyNTComponent, MapInitEvent>(OnAdd);
         SubscribeLocalEvent<AIEnemyNTComponent, ComponentShutdown>(OnRemove);
-        SubscribeLocalEvent<NpcFactionMemberComponent, GetVerbsEvent<AlternativeVerb>>(OnMarkAsTarget);
-
     }
 
-    private void OnMarkAsTarget(Entity<NpcFactionMemberComponent> ent, ref GetVerbsEvent<AlternativeVerb> args)
+    protected override void ToggleEnemy(EntityUid u, EntityUid target)
     {
-        if (!HasComp<StationAIComponent>(args.User) && !HasComp<BorgAINTComponent>(args.User))
+        if (!EntityQuery.HasComponent(u))
+            return;
+        if (!HasComp<StationAIComponent>(u))
             return;
 
-        var u = args.User;
-        AlternativeVerb verb = new()
-        {
-            Act = () =>
-            {
-                ToggleEnemy(u, ent);
-            },
-            Text = Loc.GetString("sai-enemy-verb"),
-            Priority = 2
-        };
+        if (_mobState.IsDead(u))
+            return;
 
-        args.Verbs.Add(verb);
-    }
-
-    private void ToggleEnemy(EntityUid argsUser, Entity<NpcFactionMemberComponent> ent)
-    {
-        var source = argsUser;
-        if (TryComp<AIEyeComponent>(argsUser, out var aiEyeComponent))
+        var core = u;
+        if (TryComp<AIEyeComponent>(core, out var eyeComponent))
         {
-            source = aiEyeComponent.AiCore?.Owner ?? EntityUid.Invalid;
+            if(eyeComponent.AiCore == null)
+                return;
+            core = eyeComponent.AiCore.Value.Owner;
         }
-        if (HasComp<AIEnemyNTComponent>(ent))
-            RemCompDeferred<AIEnemyNTComponent>(ent);
+
+        if (!core.Valid)
+        {
+            return;
+        }
+
+        var xform = Transform(core);
+        if (xform.GridUid != Transform(target).GridUid || !xform.Anchored)
+        {
+            return;
+        }
+
+        if (HasComp<AIEnemyNTComponent>(target))
+            RemCompDeferred<AIEnemyNTComponent>(target);
         else
-            EnsureComp<AIEnemyNTComponent>(ent).Source = source;
+            EnsureComp<AIEnemyNTComponent>(target).Source = core;
     }
 
     [ValidatePrototypeId<NpcFactionPrototype>]

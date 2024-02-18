@@ -42,8 +42,14 @@ public sealed class AICameraSystem : EntitySystem
 
         SubscribeLocalEvent<AIEyeComponent, MoveEvent>(OnEyeMove);
         SubscribeLocalEvent<AICameraComponent, SurveillanceCameraDeactivateEvent>(OnActiveCameraDisable);
+        SubscribeLocalEvent<AICameraComponent, EntityTerminatingEvent>(OnRemove);
         SubscribeLocalEvent<AIEyeComponent, EyeMoveToCam>(OnMoveToCam);
         SubscribeLocalEvent<AIEyeComponent, AIEyeCampShootActionEvent>(OnShootCam);
+    }
+
+    private void OnRemove(Entity<AICameraComponent> ent, ref EntityTerminatingEvent args)
+    {
+        OnCameraOffline(ent);
     }
 
     [ValidatePrototypeId<EntityPrototype>]
@@ -88,6 +94,11 @@ public sealed class AICameraSystem : EntitySystem
     }
 
     private void OnActiveCameraDisable(Entity<AICameraComponent> ent, ref SurveillanceCameraDeactivateEvent args)
+    {
+        OnCameraOffline(ent);
+    }
+
+    private void OnCameraOffline(Entity<AICameraComponent> ent)
     {
         foreach (var viewer in ent.Comp.ActiveViewers)
         {

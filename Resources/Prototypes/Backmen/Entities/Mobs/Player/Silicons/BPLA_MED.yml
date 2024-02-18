@@ -64,6 +64,7 @@
   - type: NameIdentifier
     group: BSSDroneMED
   - type: MetaData
+  - type: BorgAINT
   - type: IntrinsicRadioReceiver
   - type: IntrinsicRadioTransmitter
     channels:

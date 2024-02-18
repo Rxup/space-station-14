@@ -1,6 +1,6 @@
 - type: statusIcon
   id: FleshcultistFaction
-  priority: 10
+  priority: 5
   icon:
     sprite: Backmen/Interface/Misc/antag_icon.rsi
     state: flesh

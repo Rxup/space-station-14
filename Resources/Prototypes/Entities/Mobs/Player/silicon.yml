@@ -109,6 +109,7 @@
     - !type:OverallPlaytimeRequirement
       time: 21600
   - type: GhostTakeoverAvailable
+  - type: BorgAINT # backmen AI
   - type: SiliconLawBound
   - type: SiliconLawProvider
     laws: Drone
