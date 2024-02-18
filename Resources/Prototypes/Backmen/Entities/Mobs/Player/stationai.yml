@@ -424,13 +424,14 @@
       thresholds:
         0: Alive
         1000: Dead
-    # - type: DamageStateVisuals
-    #   states:
-    #     Alive:
-    #       Base: ai-blue
-    #     Dead:
-    #       Base: ai-blue_dead
+      stateAlertDict:
+        Alive: BorgHealth
+        Dead: BorgDead
+      showOverlays: false
+      allowRevives: true
+    - type: Alerts
     - type: Appearance
+    - type: ZombieImmune
     - type: PointLight
       radius: 3
       energy: 1.25
