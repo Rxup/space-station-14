@@ -48,6 +48,9 @@ public sealed class AiEnemySystem : SharedAiEnemySystem
 
     private void ToggleEnemy(EntityUid argsUser, Entity<NpcFactionMemberComponent> ent)
     {
+        if (!HasComp<StationAIComponent>(argsUser) && !HasComp<BorgAINTComponent>(argsUser))
+            return;
+
         var core = argsUser;
         if (TryComp<AIEyeComponent>(core, out var eyeComponent))
         {
