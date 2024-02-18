@@ -26,6 +26,13 @@ public sealed partial class AIEyeComponent : Component
 
     public EntityUid? CamListUid;
     public EntProtoId CamListAction = "AIEyeCamAction";
+
+    public EntityUid? CamShootUid;
+    public EntProtoId CamShootAction = "AIEyeCamShootAction";
+}
+
+public sealed partial class AIEyeCampShootActionEvent : WorldTargetActionEvent
+{
 }
 
 public sealed partial class AIEyeCampActionEvent : InstantActionEvent

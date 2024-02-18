@@ -1,6 +1,8 @@
+using Content.Server.Mind;
 using Content.Server.Nuke;
 using Content.Server.Popups;
 using Content.Server.Power.Components;
+using Content.Server.Roles;
 using Content.Server.Storage.Components;
 using Content.Shared.Actions;
 using Content.Shared.Backmen.EntityHealthBar;
@@ -12,6 +14,9 @@ using Content.Shared.Hands.EntitySystems;
 using Content.Shared.Interaction.Events;
 using Content.Shared.Item;
 using Content.Shared.Nuke;
+using Content.Shared.Roles;
+using Content.Shared.Roles.Jobs;
+using Robust.Shared.Player;
 
 namespace Content.Server.Backmen.StationAI.Systems;
 
@@ -23,6 +28,8 @@ public sealed class StationAISystem : EntitySystem
     [Dependency] private readonly PopupSystem _popup = default!;
 
     [Dependency] private readonly NukeSystem _nuke = default!;
+    [Dependency] private readonly RoleSystem _role = default!;
+    [Dependency] private readonly MindSystem _mind = default!;
 
     public override void Initialize()
     {
@@ -36,6 +43,34 @@ public sealed class StationAISystem : EntitySystem
 
         SubscribeLocalEvent<AIHealthOverlayEvent>(OnHealthOverlayEvent);
         SubscribeLocalEvent<StationAIComponent, ToggleArmNukeEvent>(OnToggleNuke);
+        SubscribeLocalEvent<StationAIComponent, PlayerAttachedEvent>(OnRoleUpdateIfNeed);
+    }
+
+    [ValidatePrototypeId<JobPrototype>]
+    private const string SAIJob = "SAI";
+
+    private void OnRoleUpdateIfNeed(Entity<StationAIComponent> ent, ref PlayerAttachedEvent args)
+    {
+        if (!_mind.TryGetMind(args.Player, out var mindId, out var mind))
+        {
+            return;
+        }
+
+        var job = CompOrNull<JobComponent>(mindId);
+        if (job != null && job.Prototype == SAIJob)
+        {
+            return;
+        }
+
+        if (job != null)
+        {
+            _role.MindRemoveRole<JobComponent>(mindId);
+        }
+
+        _role.MindAddRole(mindId, new JobComponent
+        {
+            Prototype = SAIJob
+        }, mind);
     }
 
     private void OnToggleNuke(Entity<StationAIComponent> ent, ref ToggleArmNukeEvent args)
