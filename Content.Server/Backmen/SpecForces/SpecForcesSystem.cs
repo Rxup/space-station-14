@@ -42,7 +42,7 @@ public sealed class SpecForcesSystem : EntitySystem
 
     private void OnShutdown(EntityUid uid, SpecForceComponent component, ComponentShutdown args)
     {
-            _actions.RemoveAction(uid, component.BssKey);
+        _actions.RemoveAction(uid, component.BssKey);
     }
 
     private void OnStartup(EntityUid uid, SpecForceComponent component, ComponentStartup args)
@@ -190,11 +190,14 @@ public sealed class SpecForcesSystem : EntitySystem
 
         switch (ev)
         {
+            #region ERT
             case SpecForcesType.ERT:
                 SpawnEntity(ErtLeader, _random.Pick(spawns));
                 SpawnEntity(ErtEngineer, _random.Pick(spawns));
 
-                while (countExtra > 3)
+                countExtra = Math.Max(0, countExtra - 3); // уменьшачем число на 3, если меньше 0 то 0
+
+                while (countExtra > 0)
                 {
                     if (countExtra-- > 0)
                     {
@@ -212,10 +215,16 @@ public sealed class SpecForcesSystem : EntitySystem
                     }
                 }
 
+
                 break;
+            #endregion
+
+            #region RXBZZ
             case SpecForcesType.RXBZZ:
+
                 SpawnEntity(RxbzzLeader, _random.Pick(spawns));
                 SpawnEntity(RxbzzFlamer, _random.Pick(spawns));
+
                 while (countExtra > 0)
                 {
                     if (countExtra-- > 0)
@@ -225,11 +234,17 @@ public sealed class SpecForcesSystem : EntitySystem
                 }
 
                 break;
+            #endregion
+
+            #region ERTAlpha
             case SpecForcesType.ERTAlpha:
+
                 SpawnEntity(ErtAplhaLeader, _random.Pick(spawns));
                 SpawnEntity(ErtAplhaOperative, _random.Pick(spawns));
                 SpawnEntity(ErtAplhaOperative, _random.Pick(spawns));
-                while (countExtra > 5)
+
+                countExtra = Math.Max(0, countExtra - 5); // уменьшачем число на 5, если меньше 0 то 0
+                while (countExtra > 0)
                 {
                     if (countExtra-- > 0)
                     {
@@ -238,7 +253,12 @@ public sealed class SpecForcesSystem : EntitySystem
                 }
 
                 break;
+            #endregion
+
+            #region ERTEpsilon
+
             case SpecForcesType.ERTEpsilon:
+
                 SpawnEntity(ErtEpsilonLeader, _random.Pick(spawns));
                 SpawnEntity(ErtEpsilonSecurity, _random.Pick(spawns));
                 SpawnEntity(ErtEpsilonEngineer, _random.Pick(spawns));
@@ -267,19 +287,30 @@ public sealed class SpecForcesSystem : EntitySystem
                 }
 
                 break;
+
+            #endregion
+
+            #region DeathSquad
+
             case SpecForcesType.DeathSquad:
+
+                // статично спавним 3
                 SpawnEntity(SpestnazOfficer, _random.Pick(spawns));
                 SpawnEntity(Spestnaz, _random.Pick(spawns));
                 SpawnEntity(Spestnaz, _random.Pick(spawns));
-                while (countExtra > 0)
+
+                countExtra = Math.Max(0, countExtra - 5); // уменьшачем число на 5, если меньше 0 то 0
+
+                while (countExtra > 0) // пока число countExtra больше 0
                 {
-                    if (countExtra-- > 5)
-                    {
-                        SpawnEntity(Spestnaz, _random.Pick(spawns));
-                    }
+                    countExtra--; // спавним по 1 и делаем минус 1
+                    SpawnEntity(Spestnaz, _random.Pick(spawns));
                 }
 
                 break;
+
+            #endregion
+
             default:
                 return;
         }
@@ -337,7 +368,7 @@ public sealed class SpecForcesSystem : EntitySystem
 
                 break;
             case SpecForcesType.ERTAlpha:
-                foreach (var station in stations)
+                foreach (var station in stations) // для каждой станции
                 {
                     _chatSystem.DispatchStationAnnouncement(station,
                         Loc.GetString("spec-forces-system-ertcall-annonce"),
@@ -348,7 +379,7 @@ public sealed class SpecForcesSystem : EntitySystem
 
                 break;
             case SpecForcesType.ERTEpsilon:
-                foreach (var station in stations)
+                foreach (var station in stations) // для каждой станции
                 {
                     _chatSystem.DispatchStationAnnouncement(station,
                         Loc.GetString("spec-forces-system-ertcall-annonce"),
@@ -359,7 +390,7 @@ public sealed class SpecForcesSystem : EntitySystem
 
                 break;
             case SpecForcesType.RXBZZ:
-                foreach (var station in stations)
+                foreach (var station in stations) // для каждой станции
                 {
                     _chatSystem.DispatchStationAnnouncement(station,
                         Loc.GetString("spec-forces-system-RXBZZ-annonce"),
@@ -376,7 +407,7 @@ public sealed class SpecForcesSystem : EntitySystem
 
     private void OnRoundEnd(RoundEndTextAppendEvent ev)
     {
-        foreach (var calledEvent in CalledEvents)
+        foreach (var calledEvent in CalledEvents) // выводим кто из админов что вызывал
         {
             ev.AddLine(Loc.GetString("spec-forces-system-" + calledEvent.Event,
                 ("time", calledEvent.RoundTime.ToString(@"hh\:mm\:ss")), ("who", calledEvent.WhoCalled)));
