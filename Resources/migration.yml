@@ -347,3 +347,7 @@ YellowOxygenTankFilled: OxygenTankFilled
 # 2024-01-30 Backmen
 AirlockHatch: AirlockHatchBasik
 AirlockHatchMaintenance: AirlockHatchMaint
+
+# 2024-02-18
+WeaponTurretSyndicateBroken: WeaponTurretLaserNanoTrasenAI
+

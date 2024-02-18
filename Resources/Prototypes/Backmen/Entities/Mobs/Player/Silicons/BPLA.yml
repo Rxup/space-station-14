@@ -37,6 +37,7 @@
       - id: WelderExperimental
   - type: Inventory
     templateId: drone
+  - type: BorgAINT
   - type: InventorySlots
   - type: Strippable
   - type: UserInterface

@@ -3,6 +3,7 @@ using Content.Shared.Backmen.StationAI;
 using Content.Shared.Backmen.StationAI.Events;
 using Content.Shared.Interaction;
 using Content.Shared.Mind.Components;
+using Content.Shared.Mobs.Systems;
 using Content.Shared.Tag;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
@@ -14,6 +15,7 @@ public sealed partial class InnateItemSystem : EntitySystem
 {
     [Dependency] private readonly SharedActionsSystem _actionsSystem = default!;
     [Dependency] private readonly TagSystem _tagSystem = default!;
+    [Dependency] private readonly MobStateSystem _mobState = default!;
 
     public override void Initialize()
     {
@@ -84,6 +86,13 @@ public sealed partial class InnateItemSystem : EntitySystem
             {
                 return;
             }
+            if (_mobState.IsDead(aiEyeComponent.AiCore.Value))
+                return;
+        }
+        else
+        {
+            if (_mobState.IsDead(uid))
+                return;
         }
 
         EnsureItem(uid, component, args.Item);
