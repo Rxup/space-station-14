@@ -2,8 +2,10 @@ using Content.Server.Backmen.StationAI.Systems;
 using Content.Server.Mind;
 using Content.Server.Power.Components;
 using Content.Server.Speech.Components;
+using Content.Server.SurveillanceCamera;
 using Content.Shared.Actions;
 using Content.Shared.Backmen.StationAI;
+using Content.Shared.Backmen.StationAI.UI;
 using Content.Shared.Eye;
 using Content.Shared.Mind;
 using Content.Shared.Mind.Components;
@@ -16,6 +18,7 @@ using Content.Shared.Silicons.Laws.Components;
 using Robust.Shared.Audio;
 using Robust.Server.GameObjects;
 using Robust.Shared.Audio.Systems;
+using Robust.Shared.Player;
 
 namespace Content.Server.Backmen.StationAI;
 
@@ -58,10 +61,22 @@ public sealed class AIEyePowerSystem : EntitySystem
 
         SubscribeLocalEvent<StationAIComponent, PowerChangedEvent>(OnPowerChange);
 
+        SubscribeLocalEvent<AIEyeComponent, AIEyeCampActionEvent>(OnOpenUiCams);
+    }
+
+    private void OnOpenUiCams(Entity<AIEyeComponent> ent, ref AIEyeCampActionEvent args)
+    {
+        if (!TryComp<ActorComponent>(ent, out var actorComponent))
+        {
+            return;
+        }
+
+        _uiSystem.TryToggleUi(ent, AICameraListUiKey.Key, actorComponent.PlayerSession);
     }
 
     private void OnEyeRemove(Entity<AIEyeComponent> ent, ref ComponentShutdown args)
     {
+        _uiSystem.TryCloseAll(ent, AICameraListUiKey.Key);
         _cameraSystem.RemoveActiveCamera(ent);
     }
 
@@ -178,24 +193,40 @@ public sealed class AIEyePowerSystem : EntitySystem
 
     private void OnStartup(EntityUid uid, AIEyeComponent component, ComponentStartup args)
     {
-        if (!_entityManager.HasComponent<StationAIComponent>(uid) ||
-            !_entityManager.TryGetComponent<VisibilityComponent>(uid, out var visibility) ||
-            !_entityManager.TryGetComponent<EyeComponent>(uid, out var eye))
+        if (!HasComp<StationAIComponent>(uid) ||
+            !TryComp<VisibilityComponent>(uid, out var visibility) ||
+            !TryComp<EyeComponent>(uid, out var eye))
             return;
 
         _sharedEyeSystem.SetVisibilityMask(uid,  eye.VisibilityMask | (int) VisibilityFlags.AIEye, eye);
-        _visibilitySystem.AddLayer(uid, visibility, (int) VisibilityFlags.AIEye);
+        _visibilitySystem.AddLayer((uid, visibility), (int) VisibilityFlags.AIEye);
         _actions.AddAction(uid, ref component.ReturnActionUid, component.ReturnAction);
+        _actions.AddAction(uid, ref component.CamListUid, component.CamListAction);
+        _actions.AddAction(uid, ref component.CamShootUid, component.CamShootAction);
+
+
+
+        var pos = Transform(uid).GridUid;
+        var cams = EntityQueryEnumerator<SurveillanceCameraComponent, TransformComponent>();
+        while (cams.MoveNext(out var camUid, out var cam, out var transformComponent))
+        {
+            if(transformComponent.GridUid != pos)
+                continue;
+            component.FollowsCameras.Add((GetNetEntity(camUid), GetNetCoordinates(transformComponent.Coordinates)));
+        }
+        Dirty(uid, component);
     }
 
     private void OnMindRemoved(EntityUid uid, AIEyeComponent component, MindRemovedMessage args)
     {
+        _uiSystem.TryCloseAll(uid, AICameraListUiKey.Key);
         QueueDel(uid);
         if (component.AiCore?.Comp != null)
             component.AiCore.Value.Comp.ActiveEye = EntityUid.Invalid;
     }
     private void OnMindRemoved2(EntityUid uid, AIEyeComponent component, MindUnvisitedMessage args)
     {
+        _uiSystem.TryCloseAll(uid, AICameraListUiKey.Key);
         QueueDel(uid);
         if (component.AiCore?.Comp != null)
             component.AiCore.Value.Comp.ActiveEye = EntityUid.Invalid;
@@ -218,6 +249,7 @@ public sealed class AIEyePowerSystem : EntitySystem
         }
 
         component.AiCore.Value.Comp.ActiveEye = EntityUid.Invalid;
+        _uiSystem.TryCloseAll(uid, AICameraListUiKey.Key);
     }
 
     private static readonly SoundSpecifier AIDeath =

@@ -22,7 +22,7 @@
     - type: IntrinsicUI
       uis:
       - key: enum.CommunicationsConsoleUiKey.Key
-        toggleAction: ActionAGhostShowCommunications
+        toggleAction: ActionAIShowCommunications
     - type: ContainerContainer
       containers:
         tools: !type:Container
@@ -155,6 +155,18 @@
   name: AI Core
   description: Host for an AI. Likely more A than I.
   components:
+    - type: BorgAINT
+    - type: Electrified
+      shockDamage: 30
+      shockTime: 5
+      requirePower: true
+      usesApcPower: true
+    - type: EmitSoundOnCollide
+      sound:
+        path: /Audio/Effects/Lightning/lightningshock.ogg
+        params:
+          variation: 0.65
+          volume: -10
     - type: GenericVisualizer
       visuals:
         enum.PowerDeviceVisuals.Powered:
@@ -345,11 +357,19 @@
   noSpawn: true
   save: false
   components:
+    - type: MobState
+      allowedStates:
+      - Alive
+    - type: BorgAINT
     - type: Tag
       tags:
       - CanPilot
       - CannotSuicide
     - type: Blindable
+    - type: Gun
+      fireRate: 2
+      soundGunshot:
+        path: /Audio/Weapons/Guns/Gunshots/taser2.ogg
     - type: AIEye
     # Only ghosts can see the eye
     - type: Visibility
@@ -387,7 +407,7 @@
     - type: IntrinsicUI
       uis:
         - key: enum.CommunicationsConsoleUiKey.Key
-          toggleAction: ActionAGhostShowCommunications
+          toggleAction: ActionAIShowCommunications
         #- key: enum.CommunicationsConsoleUiKey.Key
         #  toggleAction:
         # Mostly works, just not as I wish, so I'm disabling it for now.
