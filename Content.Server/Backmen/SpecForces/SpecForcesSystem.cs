@@ -194,7 +194,7 @@ public sealed class SpecForcesSystem : EntitySystem
                 SpawnEntity(ErtLeader, _random.Pick(spawns));
                 SpawnEntity(ErtEngineer, _random.Pick(spawns));
 
-                while (countExtra > 0)
+                while (countExtra > 3)
                 {
                     if (countExtra-- > 0)
                     {
@@ -227,7 +227,9 @@ public sealed class SpecForcesSystem : EntitySystem
                 break;
             case SpecForcesType.ERTAlpha:
                 SpawnEntity(ErtAplhaLeader, _random.Pick(spawns));
-                while (countExtra > 0)
+                SpawnEntity(ErtAplhaOperative, _random.Pick(spawns));
+                SpawnEntity(ErtAplhaOperative, _random.Pick(spawns));
+                while (countExtra > 5)
                 {
                     if (countExtra-- > 0)
                     {
@@ -238,6 +240,8 @@ public sealed class SpecForcesSystem : EntitySystem
                 break;
             case SpecForcesType.ERTEpsilon:
                 SpawnEntity(ErtEpsilonLeader, _random.Pick(spawns));
+                SpawnEntity(ErtEpsilonSecurity, _random.Pick(spawns));
+                SpawnEntity(ErtEpsilonEngineer, _random.Pick(spawns));
 
                 while (countExtra > 0)
                 {
@@ -265,9 +269,11 @@ public sealed class SpecForcesSystem : EntitySystem
                 break;
             case SpecForcesType.DeathSquad:
                 SpawnEntity(SpestnazOfficer, _random.Pick(spawns));
+                SpawnEntity(Spestnaz, _random.Pick(spawns));
+                SpawnEntity(Spestnaz, _random.Pick(spawns));
                 while (countExtra > 0)
                 {
-                    if (countExtra-- > 0)
+                    if (countExtra-- > 5)
                     {
                         SpawnEntity(Spestnaz, _random.Pick(spawns));
                     }
@@ -403,11 +409,11 @@ public sealed class SpecForcesSystem : EntitySystem
     [ValidatePrototypeId<EntityPrototype>] private const string ErtAplhaOperative = "SpawnMobHumanERTOperativeAlpha1";
 
     private const string ErtEpsilonShuttlePath = "Maps/Backmen/Grids/NT-DF-Kolibri-011.yml";
-    [ValidatePrototypeId<EntityPrototype>] private const string ErtEpsilonLeader = "ReinforcementRadioMTFLeaderEgg";
-    [ValidatePrototypeId<EntityPrototype>] private const string ErtEpsilonSecurity = "ReinforcementRadioMTFSecurityEgg";
-    [ValidatePrototypeId<EntityPrototype>] private const string ErtEpsilonEngineer = "ReinforcementRadioMTFEngineerEgg";
-    [ValidatePrototypeId<EntityPrototype>] private const string ErtEpsilonJunitor = "ReinforcementRadioMTFJunitorEgg";
-    [ValidatePrototypeId<EntityPrototype>] private const string ErtEpsilonMedical = "ReinforcementRadioMTFMedicalEgg";
+    [ValidatePrototypeId<EntityPrototype>] private const string ErtEpsilonLeader = "SpawnMobHumanERTLeaderEpsilon";
+    [ValidatePrototypeId<EntityPrototype>] private const string ErtEpsilonSecurity = "SpawnMobHumanERTSecurityEpsilon";
+    [ValidatePrototypeId<EntityPrototype>] private const string ErtEpsilonEngineer = "SpawnMobHumanERTEngineerEpsilon";
+    [ValidatePrototypeId<EntityPrototype>] private const string ErtEpsilonJunitor = "SpawnMobHumanERTJanitorEpsilon";
+    [ValidatePrototypeId<EntityPrototype>] private const string ErtEpsilonMedical = "SpawnMobHumanERTMedicalEpsilon";
 
     private const string RxbzzShuttlePath = "Maps/Backmen/Grids/NT-CC-SRV-013.yml";
     [ValidatePrototypeId<EntityPrototype>] private const string RxbzzLeader = "MobHumanRXBZZLeader";
