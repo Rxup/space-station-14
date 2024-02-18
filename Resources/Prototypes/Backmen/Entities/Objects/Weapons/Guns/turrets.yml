@@ -1,7 +1,16 @@
 - type: entity
+  parent: BaseWeaponTurret
+  id: WeaponTurretNanoSAI
+  suffix: SAI
+  components:
+  - type: NpcFactionMember
+    factions:
+    - AiTurret
+
+- type: entity
   parent: BaseStructure
   id: WeaponTurretBaseLaser
-  name: ballistic turret
+  name: laser turret
   abstract: true
   components:
     - type: Clickable

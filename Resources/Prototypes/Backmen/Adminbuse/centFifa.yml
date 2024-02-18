@@ -2039,15 +2039,6 @@
     factions:
     - NanoTrasen
 
-- type: entity
-  parent: BaseWeaponTurret
-  id: WeaponTurretNanoSAI
-  suffix: SAI
-  components:
-  - type: NpcFactionMember
-    factions:
-    - AiTurret
-
 #------------------------------------
 
 - type: entity
