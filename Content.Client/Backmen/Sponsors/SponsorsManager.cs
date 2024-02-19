@@ -8,7 +8,6 @@ namespace Content.Client.Backmen.Sponsors;
 public sealed class SponsorsManager : IClientSponsorsManager
 {
     [Dependency] private readonly IClientNetManager _netMgr = default!;
-    [Dependency] private readonly IEntityManager _entityManager = default!;
 
     public void Initialize()
     {
@@ -18,7 +17,7 @@ public sealed class SponsorsManager : IClientSponsorsManager
 
     private void RxWhitelist(Shared.Backmen.MsgWhitelist message)
     {
-        _entityManager.System<WL.WhitelistSystem>().Whitelisted = message.Whitelisted;
+        Whitelisted = message.Whitelisted;
     }
 
     private void OnUpdate(MsgSponsorInfo message)
@@ -56,4 +55,5 @@ public sealed class SponsorsManager : IClientSponsorsManager
 
     public HashSet<string> Prototypes { get; } = new();
     public int Tier { get; private set; } = 0;
+    public bool Whitelisted { get; private set; } = false;
 }
