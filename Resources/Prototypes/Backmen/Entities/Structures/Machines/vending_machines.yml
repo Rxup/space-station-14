@@ -83,6 +83,8 @@
       balance:
         SpaceCash: 0
     - type: BuyStoreBank
+      emagCategories:
+        - CigaretteMachineInventoryEmag
     - type: ActivatableUI
       key: enum.StoreUiKey.Key
       singleUser: true
@@ -221,6 +223,8 @@
       balance:
         SpaceCash: 0
     - type: BuyStoreBank
+      emagCategories:
+        - HotDrinksMachineInventoryEmag
     - type: ActivatableUI
       key: enum.StoreUiKey.Key
       singleUser: true

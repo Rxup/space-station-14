@@ -43,3 +43,27 @@
   conditions:
     - !type:ListingLimitedStockCondition
       stock: 1
+
+# Cigs
+- type: listing
+  id: CigaretteMachineInventoryEmag1
+  productEntity: CigPackSyndicate
+  cost:
+    SpaceCash: 50
+  categories:
+    - CigaretteMachineInventoryEmag
+  conditions:
+    - !type:ListingLimitedStockCondition
+      stock: 1
+
+# Coffee
+- type: listing
+  id: HotDrinksMachineInventoryEmag1
+  productEntity: DrinkNothing
+  cost:
+    SpaceCash: 30
+  categories:
+    - HotDrinksMachineInventoryEmag
+  conditions:
+    - !type:ListingLimitedStockCondition
+      stock: 2

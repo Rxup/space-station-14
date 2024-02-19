@@ -93,3 +93,11 @@
 - type: storeCategory
   id: HappyHonkInventoryEmag
   name: store-category-emag
+
+- type: storeCategory
+  id: CigaretteMachineInventoryEmag
+  name: store-category-emag
+
+- type: storeCategory
+  id: HotDrinksMachineInventoryEmag
+  name: store-category-emag
