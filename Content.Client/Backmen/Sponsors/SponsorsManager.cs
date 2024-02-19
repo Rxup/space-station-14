@@ -8,10 +8,17 @@ namespace Content.Client.Backmen.Sponsors;
 public sealed class SponsorsManager : IClientSponsorsManager
 {
     [Dependency] private readonly IClientNetManager _netMgr = default!;
+    [Dependency] private readonly IEntityManager _entityManager = default!;
 
     public void Initialize()
     {
         _netMgr.RegisterNetMessage<MsgSponsorInfo>(OnUpdate);
+        _netMgr.RegisterNetMessage<Shared.Backmen.MsgWhitelist>(RxWhitelist); //backmen: whitelist
+    }
+
+    private void RxWhitelist(Shared.Backmen.MsgWhitelist message)
+    {
+        _entityManager.System<WL.WhitelistSystem>().Whitelisted = message.Whitelisted;
     }
 
     private void OnUpdate(MsgSponsorInfo message)

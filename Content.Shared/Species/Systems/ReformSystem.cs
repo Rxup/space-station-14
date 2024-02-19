@@ -90,19 +90,23 @@ public sealed partial class ReformSystem : EntitySystem
             return;
 
         // Spawn a new entity
-        // This is, to an extent, taken from polymorph. I don't use polymorph for various reasons- most notably that this is permanent. 
+        // This is, to an extent, taken from polymorph. I don't use polymorph for various reasons- most notably that this is permanent.
         var child = Spawn(comp.ReformPrototype, Transform(uid).Coordinates);
 
         // This transfers the mind to the new entity
         if (_mindSystem.TryGetMind(uid, out var mindId, out var mind))
                 _mindSystem.TransferTo(mindId, child, mind: mind);
 
+        // start-bacmen: WL
+        EntityManager.SystemOrNull<Backmen.WL.SharedWhitelistSystem>()?.ProcessReform(child,(uid,comp));
+        // end-backen: WL
+
         // Delete the old entity
         QueueDel(uid);
     }
 
-    public sealed partial class ReformEvent : InstantActionEvent { } 
-    
+    public sealed partial class ReformEvent : InstantActionEvent { }
+
     [Serializable, NetSerializable]
     public sealed partial class ReformDoAfterEvent : SimpleDoAfterEvent { }
 }
