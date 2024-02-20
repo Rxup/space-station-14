@@ -12,6 +12,12 @@ public sealed class SponsorsManager : IClientSponsorsManager
     public void Initialize()
     {
         _netMgr.RegisterNetMessage<MsgSponsorInfo>(OnUpdate);
+        _netMgr.RegisterNetMessage<Shared.Backmen.MsgWhitelist>(RxWhitelist); //backmen: whitelist
+    }
+
+    private void RxWhitelist(Shared.Backmen.MsgWhitelist message)
+    {
+        Whitelisted = message.Whitelisted;
     }
 
     private void OnUpdate(MsgSponsorInfo message)
@@ -49,4 +55,5 @@ public sealed class SponsorsManager : IClientSponsorsManager
 
     public HashSet<string> Prototypes { get; } = new();
     public int Tier { get; private set; } = 0;
+    public bool Whitelisted { get; private set; } = false;
 }

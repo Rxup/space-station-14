@@ -194,10 +194,12 @@ public sealed class ShadowkinDarkSwapSystem : EntitySystem
 
         if (addComp)
         {
+            var needReturnPacify = HasComp<PacifiedComponent>(performer);
             var comp = EnsureComp<ShadowkinDarkSwappedComponent>(performer);
             comp.Invisible = invisible;
             comp.Pacify = pacify;
             comp.Darken = darken;
+            comp.NeedReturnPacify = needReturnPacify;
 
             RaiseNetworkEvent(new ShadowkinDarkSwappedEvent(ent, true));
 
@@ -236,7 +238,8 @@ public sealed class ShadowkinDarkSwapSystem : EntitySystem
 
     private void OnInvisShutdown(EntityUid uid, ShadowkinDarkSwappedComponent component, ComponentShutdown args)
     {
-        RemComp<PacifiedComponent>(uid);
+        if(!component.NeedReturnPacify) // не должны снимать цифизм -_-
+            RemComp<PacifiedComponent>(uid);
 
         if (component.Invisible)
         {
