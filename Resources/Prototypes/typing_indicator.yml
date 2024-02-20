@@ -44,8 +44,8 @@
 
 - type: typingIndicator
   id: vox
-  typingState: default0
-  idleState: default3 # Corvax-TypingIndicator
+  typingState: vox0
+  idleState: vox3 # Corvax-TypingIndicator
   offset: -0.125, 0.125
 
 - type: typingIndicator

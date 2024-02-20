@@ -29,9 +29,6 @@ public sealed class AIEyePowerSystem : EntitySystem
     [Dependency] private readonly MindSystem _mindSystem = default!;
     [Dependency] private readonly IEntityManager _entityManager = default!;
     [Dependency] private readonly TransformSystem _transformSystem = default!;
-    [Dependency] private readonly SharedAudioSystem _audioSystem = default!;
-
-    [Dependency] private readonly MobStateSystem _mobState = default!;
 
     [Dependency] private readonly VisibilitySystem _visibilitySystem = default!;
     [Dependency] private readonly MetaDataSystem _metaDataSystem = default!;
@@ -40,6 +37,8 @@ public sealed class AIEyePowerSystem : EntitySystem
     [Dependency] private readonly UserInterfaceSystem _uiSystem = default!;
 
     [Dependency] private readonly AICameraSystem _cameraSystem = default!;
+    [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
+    [Dependency] private readonly MobStateSystem _mobState = default!;
 
     public override void Initialize()
     {
@@ -56,7 +55,6 @@ public sealed class AIEyePowerSystem : EntitySystem
         SubscribeLocalEvent<AIEyeComponent, MindRemovedMessage>(OnMindRemoved);
         SubscribeLocalEvent<AIEyeComponent, MindUnvisitedMessage>(OnMindRemoved2);
 
-        SubscribeLocalEvent<StationAIComponent, MobStateChangedEvent>(OnMobStateChanged);
         SubscribeLocalEvent<StationAIComponent, GetSiliconLawsEvent>(OnGetLaws);
 
         SubscribeLocalEvent<StationAIComponent, PowerChangedEvent>(OnPowerChange);
@@ -136,7 +134,7 @@ public sealed class AIEyePowerSystem : EntitySystem
 
     private void OnInit(EntityUid uid, AIEyePowerComponent component, ComponentInit args)
     {
-        if (!_entityManager.HasComponent<StationAIComponent>(uid))
+        if (!HasComp<StationAIComponent>(uid))
             return;
 
         _actions.AddAction(uid, ref component.EyePowerAction, component.PrototypeAction);
@@ -160,13 +158,15 @@ public sealed class AIEyePowerSystem : EntitySystem
         )
             return;
 
-        _mindSystem.UnVisit(mindId.MindId.Value, mind);
-        QueueDel(args.Performer);
+        ClearState(args.Performer);
         args.Handled = true;
     }
 
     private void OnPowerUsed(EntityUid uid, AIEyePowerComponent component, AIEyePowerActionEvent args)
     {
+        if (_mobState.IsDead(args.Performer))
+            return;
+
         if (!_mindSystem.TryGetMind(args.Performer, out var mindId, out var mind))
             return;
 
@@ -177,7 +177,9 @@ public sealed class AIEyePowerSystem : EntitySystem
         var projection = EntityManager.CreateEntityUninitialized(component.Prototype, coords);
         ai.ActiveEye = projection;
         EnsureComp<AIEyeComponent>(projection).AiCore = (uid, ai);
-        EnsureComp<StationAIComponent>(projection).SelectedLaw = ai.SelectedLaw;
+        var eyeStation = EnsureComp<StationAIComponent>(projection);
+        eyeStation.SelectedLaw = ai.SelectedLaw;
+        eyeStation.SelectedLayer = ai.SelectedLayer;
         EnsureComp<SiliconLawBoundComponent>(projection);
         var core = MetaData(uid);
         // Consistent name
@@ -185,6 +187,8 @@ public sealed class AIEyePowerSystem : EntitySystem
         EntityManager.InitializeAndStartEntity(projection, coords.GetMapId(EntityManager));
 
         _transformSystem.AttachToGridOrMap(projection);
+
+        _appearance.SetData(uid, AiVisuals.InEye, true);
         _mindSystem.Visit(mindId, projection, mind); // Mind swap
 
         args.Handled = true;
@@ -202,6 +206,8 @@ public sealed class AIEyePowerSystem : EntitySystem
         _visibilitySystem.AddLayer((uid, visibility), (int) VisibilityFlags.AIEye);
         _actions.AddAction(uid, ref component.ReturnActionUid, component.ReturnAction);
         _actions.AddAction(uid, ref component.CamListUid, component.CamListAction);
+        _actions.AddAction(uid, ref component.CamShootUid, component.CamShootAction);
+
 
 
         var pos = Transform(uid).GridUid;
@@ -219,15 +225,15 @@ public sealed class AIEyePowerSystem : EntitySystem
     {
         _uiSystem.TryCloseAll(uid, AICameraListUiKey.Key);
         QueueDel(uid);
-        if (component.AiCore?.Comp != null)
-            component.AiCore.Value.Comp.ActiveEye = EntityUid.Invalid;
+        if(component.AiCore.HasValue)
+            OnReturnToCore(component.AiCore.Value);
     }
     private void OnMindRemoved2(EntityUid uid, AIEyeComponent component, MindUnvisitedMessage args)
     {
         _uiSystem.TryCloseAll(uid, AICameraListUiKey.Key);
         QueueDel(uid);
-        if (component.AiCore?.Comp != null)
-            component.AiCore.Value.Comp.ActiveEye = EntityUid.Invalid;
+        if(component.AiCore.HasValue)
+            OnReturnToCore(component.AiCore.Value);
     }
 
     private void ClearState(EntityUid uid, AIEyeComponent? component = null)
@@ -246,23 +252,13 @@ public sealed class AIEyePowerSystem : EntitySystem
             _mindSystem.UnVisit(mindId, mind);
         }
 
-        component.AiCore.Value.Comp.ActiveEye = EntityUid.Invalid;
-        _uiSystem.TryCloseAll(uid, AICameraListUiKey.Key);
+        OnReturnToCore(component.AiCore.Value);
     }
 
-    private static readonly SoundSpecifier AIDeath =
-        new SoundPathSpecifier("/Audio/Backmen/Machines/AI/borg_death.ogg");
-
-    private void OnMobStateChanged(EntityUid uid, StationAIComponent component, MobStateChangedEvent args)
+    private void OnReturnToCore(Entity<StationAIComponent> ent)
     {
-        if (!_mobState.IsDead(uid))
-            return;
-
-        if (component.ActiveEye.IsValid() && _mindSystem.TryGetMind(uid, out var mindId, out var mind))
-        {
-            ClearState(component.ActiveEye);
-        }
-
-        _audioSystem.PlayPvs(AIDeath, uid);
+        ent.Comp.ActiveEye = EntityUid.Invalid;
+        _uiSystem.TryCloseAll(ent, AICameraListUiKey.Key);
+        _appearance.SetData(ent, AiVisuals.InEye, false);
     }
 }

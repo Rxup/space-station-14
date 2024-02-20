@@ -79,3 +79,13 @@
   id: ShadowkinDarkFriendly
   hostile:
     - ShadowkinDarkHostile
+
+- type: npcFaction
+  id: AiEnemy
+  hostile:
+  - AiTurret
+
+- type: npcFaction
+  id: AiTurret
+  hostile:
+  - AiEnemy

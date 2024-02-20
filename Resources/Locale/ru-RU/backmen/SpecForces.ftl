@@ -6,6 +6,6 @@ spec-forces-system-RXBZZ-title = Sierra-6
 spec-forces-system-RXBZZ-annonce = ВНИМАНИЕ! Мы получили запрос на РХБЗЗ! Запрос одобрен! Отряд будет подготовлен и отправлен в кратчайшие сроки!
 spec-forces-system-ERT = Был вызван ОБР Theta 9 в { $time } ({ $who })!
 spec-forces-system-ERTAlpha = Был вызван СОБР Alpha 1 в { $time } ({ $who })!
-spec-forces-system-ERTERTEpsilon = Был вызван ОБР Epsilon 11 в { $time } ({ $who })!
+spec-forces-system-ERTEpsilon = Был вызван ОБР Epsilon 11 в { $time } ({ $who })!
 spec-forces-system-RXBZZ = Был вызван РХБЗЗ в { $time } ({ $who })!
 spec-forces-system-DeathSquad = Был вызван спецназ в { $time } ({ $who })!

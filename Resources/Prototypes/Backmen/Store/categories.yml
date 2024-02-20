@@ -12,11 +12,11 @@
 
 - type: storeCategory
   id: HotDrinksMachineInventory
-  name: store-category-vendingcoffee
+  name: store-category-vending-drinks
 
 - type: storeCategory
   id: RobustSoftdrinksInventory
-  name: store-category-vendingcola
+  name: store-category-vending-drinks
 
 - type: storeCategory
   id: DiscountDansInventory
@@ -36,7 +36,7 @@
 
 - type: storeCategory
   id: BodaInventory
-  name: store-category-vendingsovietsoda
+  name: store-category-vending-drinks
 
 - type: storeCategory
   id: VendingYouTool
@@ -48,35 +48,35 @@
   
 - type: storeCategory
   id: VendingLootboxInventoryEmag
-  name: store-category-lootbox-emag
+  name: store-category-emag
 
 - type: storeCategory
   id: SpaceUpInventory
-  name: store-category-vendingspaceup
+  name: store-category-vending-drinks
 
 - type: storeCategory
   id: ColaRedInventory
-  name: store-category-vendingcolared
+  name: store-category-vending-drinks
 
 - type: storeCategory
   id: ShamblersJuiceInventory
-  name: store-category-vendingshamblersjuice
+  name: store-category-vending-drinks
 
 - type: storeCategory
   id: PwrGameInventory
-  name: store-category-vendingmachinepwrgame
+  name: store-category-vending-drinks
 
 - type: storeCategory
   id: DrGibbInventory
-  name: store-category-vendingmachinedrgibb
+  name: store-category-vending-drinks
 
 - type: storeCategory
   id: StarkistInventory
-  name: store-category-vendingmachinestarkist
+  name: store-category-vending-drinks
 
 - type: storeCategory
   id: HappyHonkInventory
-  name: store-category-vendingmachineHappyHonk
+  name: store-category-HappyHonk
 
 - type: storeCategory
   id: BoxingDrobeInventory
@@ -84,4 +84,20 @@
   
 - type: storeCategory
   id: BoxingDrobeInventoryEmag
-  name: store-category-vendingmachineboxingdrobe-emag
+  name: store-category-emag
+
+- type: storeCategory
+  id: DrinkVendInventoryEmag
+  name: store-category-emag
+
+- type: storeCategory
+  id: HappyHonkInventoryEmag
+  name: store-category-emag
+
+- type: storeCategory
+  id: CigaretteMachineInventoryEmag
+  name: store-category-emag
+
+- type: storeCategory
+  id: HotDrinksMachineInventoryEmag
+  name: store-category-emag

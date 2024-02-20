@@ -1,12 +1,19 @@
+using System.Numerics;
 using Content.Server.Interaction;
+using Content.Server.Lightning;
 using Content.Server.Popups;
 using Content.Server.SurveillanceCamera;
+using Content.Server.Weapons.Ranged.Systems;
 using Content.Shared.Backmen.StationAI;
 using Content.Shared.Eye.Blinding.Components;
 using Content.Shared.Popups;
 using Content.Shared.Traits.Assorted;
+using Content.Shared.Weapons.Ranged;
+using Content.Shared.Weapons.Ranged.Components;
 using Robust.Server.GameObjects;
+using Robust.Shared.Audio.Systems;
 using Robust.Shared.CPUJob.JobQueues.Queues;
+using Robust.Shared.Prototypes;
 
 namespace Content.Server.Backmen.StationAI.Systems;
 
@@ -17,6 +24,8 @@ public sealed class AICameraSystem : EntitySystem
     [Dependency] private readonly InteractionSystem _interaction = default!;
     [Dependency] private readonly SurveillanceCameraSystem _cameraSystem = default!;
     [Dependency] private readonly PopupSystem _popup = default!;
+    [Dependency] private readonly GunSystem _gun = default!;
+    [Dependency] private readonly SharedAudioSystem _audio = default!;
 
 
     public const float CameraEyeRange = 10f;
@@ -33,7 +42,35 @@ public sealed class AICameraSystem : EntitySystem
 
         SubscribeLocalEvent<AIEyeComponent, MoveEvent>(OnEyeMove);
         SubscribeLocalEvent<AICameraComponent, SurveillanceCameraDeactivateEvent>(OnActiveCameraDisable);
+        SubscribeLocalEvent<AICameraComponent, EntityTerminatingEvent>(OnRemove);
         SubscribeLocalEvent<AIEyeComponent, EyeMoveToCam>(OnMoveToCam);
+        SubscribeLocalEvent<AIEyeComponent, AIEyeCampShootActionEvent>(OnShootCam);
+    }
+
+    private void OnRemove(Entity<AICameraComponent> ent, ref EntityTerminatingEvent args)
+    {
+        OnCameraOffline(ent);
+    }
+
+    [ValidatePrototypeId<EntityPrototype>]
+    private const string BulletDisabler = "BulletDisabler";
+
+    private void OnShootCam(Entity<AIEyeComponent> ent, ref AIEyeCampShootActionEvent args)
+    {
+        if (!ent.Comp.AiCore.HasValue || ent.Comp.Camera == null)
+            return;
+
+        var camMapPos = _transform.GetMapCoordinates(ent.Comp.Camera.Value);
+        var camPos = Transform(ent.Comp.Camera.Value).Coordinates;
+        if (args.Target.GetGridUid(EntityManager) != Transform(ent.Comp.AiCore.Value).GridUid)
+            return;
+
+        args.Handled = true;
+        var targetPos = args.Target.ToMap(EntityManager, _transform);
+
+        var ammo = Spawn(BulletDisabler, camPos);
+        _gun.ShootProjectile(ammo, targetPos.Position - camMapPos.Position, Vector2.One, ent.Comp.Camera.Value, args.Performer);
+        _audio.PlayPvs("/Audio/Weapons/Guns/Gunshots/taser2.ogg", ent.Comp.Camera.Value);
     }
 
     private void OnMoveToCam(Entity<AIEyeComponent> ent, ref EyeMoveToCam args)
@@ -57,6 +94,11 @@ public sealed class AICameraSystem : EntitySystem
     }
 
     private void OnActiveCameraDisable(Entity<AICameraComponent> ent, ref SurveillanceCameraDeactivateEvent args)
+    {
+        OnCameraOffline(ent);
+    }
+
+    private void OnCameraOffline(Entity<AICameraComponent> ent)
     {
         foreach (var viewer in ent.Comp.ActiveViewers)
         {
