@@ -68,7 +68,7 @@ public sealed class AiEyeMover : Job<object>
 
             foreach (var uid in _map.GetAnchoredEntities(gridUid.Value, grid, NewPosition))
             {
-                if (_tag.HasAnyTag(uid, "Wall","Window"))
+                if (_tag.HasAnyTag(uid, "Wall","Window","Airlock","GlassAirlock"))
                     return null;
             }
 
