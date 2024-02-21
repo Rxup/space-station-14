@@ -7,6 +7,7 @@ using Content.Server.Weapons.Ranged.Systems;
 using Content.Shared.Backmen.StationAI;
 using Content.Shared.Eye.Blinding.Components;
 using Content.Shared.Popups;
+using Content.Shared.Tag;
 using Content.Shared.Traits.Assorted;
 using Content.Shared.Weapons.Ranged;
 using Content.Shared.Weapons.Ranged.Components;
@@ -26,9 +27,11 @@ public sealed class AICameraSystem : EntitySystem
     [Dependency] private readonly PopupSystem _popup = default!;
     [Dependency] private readonly GunSystem _gun = default!;
     [Dependency] private readonly SharedAudioSystem _audio = default!;
+    [Dependency] private readonly MapSystem _map = default!;
+    [Dependency] private readonly TagSystem _tag = default!;
 
 
-    public const float CameraEyeRange = 10f;
+
     private const double MoverJobTime = 0.005;
     private readonly JobQueue _moveJobQueue = new(MoverJobTime);
 
@@ -127,7 +130,7 @@ public sealed class AICameraSystem : EntitySystem
 
         ent.Comp.IsProcessingMoveEvent = true;
 
-        var job = new AiEyeMover(EntityManager, this, _lookup, _transform, MoverJobTime)
+        var job = new AiEyeMover(EntityManager, this, _lookup, _transform, _map, _tag, MoverJobTime)
         {
             Eye = ent,
             //OldPosition = args.OldPosition,
@@ -142,7 +145,7 @@ public sealed class AICameraSystem : EntitySystem
         if (!eye.Comp.Camera.HasValue)
             return false;
 
-        return _interaction.InRangeUnobstructed(eye.Comp.Camera.Value, eye, CameraEyeRange);
+        return _interaction.InRangeUnobstructed(eye.Comp.Camera.Value, eye, SharedStationAISystem.CameraEyeRange);
     }
 
     public void RemoveActiveCamera(Entity<AIEyeComponent> eye)
@@ -197,7 +200,7 @@ public sealed class AICameraSystem : EntitySystem
             if(!cameraComponent.Comp.Active)
                 continue;
 
-            if(!_interaction.InRangeUnobstructed(cameraComponent, eye, CameraEyeRange))
+            if(!_interaction.InRangeUnobstructed(cameraComponent, eye, SharedStationAISystem.CameraEyeRange))
                 continue;
 
             RemCompDeferred<TemporaryBlindnessComponent>(eye);
