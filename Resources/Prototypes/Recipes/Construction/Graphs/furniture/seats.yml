@@ -70,6 +70,7 @@
               doAfter: 1
             - material: Cloth
               amount: 1
+        - to: blueComfBench
 # backmen-start
         - to: chairDarkComfy
           steps:
@@ -77,6 +78,8 @@
               amount: 2
               doAfter: 1
 # backmen-end
+            - material: Cloth
+              amount: 1
 
     - node: chair
       entity: Chair
@@ -209,7 +212,6 @@
           steps:
             - tool: Screwing
               doAfter: 1
-
     - node: redComfBench
       entity: BenchRedComfy
       edges:
@@ -227,7 +229,22 @@
             - tool: Screwing
               doAfter: 1
 
+    - node: blueComfBench
+      entity: BenchBlueComfy
+      edges:
+        - to: start
+          completed:
+            - !type:SpawnPrototype
+              prototype: MaterialCloth1
+              amount: 1
+          steps:
+            - tool: Cutting
+              doAfter: 1
+            - tool: Screwing
+              doAfter: 1
+
 # backmen-start
+
     - node: chairDarkComfy
       entity: ComfyDarkChair
       edges:
@@ -239,4 +256,5 @@
           steps:
             - tool: Screwing
               doAfter: 1
+              
 # backmen-end

@@ -37,7 +37,8 @@
     outerClothing: ClothingOuterArmorBasic
     id: SecurityCadetPDA
     ears: ClothingHeadsetSecurity
-    pocket1: WeaponPistolG22
-  innerClothingSkirt: ClothingUniformJumpskirtSecGrey # Corvax-Resprite
+    pocket1: WeaponPistolMk58Nonlethal
+    pocket2: BookSecurity
+  innerClothingSkirt: ClothingUniformJumpskirtColorRed
   satchel: ClothingBackpackSatchelSecurityFilled
   duffelbag: ClothingBackpackDuffelSecurityFilled

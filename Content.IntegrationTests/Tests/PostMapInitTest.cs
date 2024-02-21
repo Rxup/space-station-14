@@ -83,7 +83,8 @@ namespace Content.IntegrationTests.Tests
 			"Shoukou",
             "BargeVsShip",
             //end-backmen
-            "Reach"
+            "Reach",
+            "Train"
         };
 
         /// <summary>
