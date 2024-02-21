@@ -4,11 +4,16 @@ using Content.Shared.Backmen.StationAI;
 using Content.Shared.Backmen.StationAI.UI;
 using Content.Shared.Power;
 using Robust.Client.GameObjects;
+using Robust.Shared.Prototypes;
+using Robust.Shared.Serialization.Manager;
 
 namespace Content.Client.Backmen.StationAI;
 
 public sealed class AiVisualizerSystem : VisualizerSystem<StationAIComponent>
 {
+    [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
+    [Dependency] private readonly ISerializationManager _serialization = default!;
+
     public override void Initialize()
     {
         base.Initialize();
@@ -33,25 +38,27 @@ public sealed class AiVisualizerSystem : VisualizerSystem<StationAIComponent>
         {
             return;
         }
-        if (!TryComp<SpriteComponent>(ent, out var spriteComponent))
+        if (
+            !ent.Comp.Layers.ContainsKey(ent.Comp.SelectedLayer) ||
+            !TryComp<MetaDataComponent>(ent, out var metaDataComponent) ||
+            metaDataComponent.EntityPrototype == null ||
+            !_prototypeManager.TryIndex<EntityPrototype>(metaDataComponent.EntityPrototype.ID, out var proto) ||
+            !proto.TryGetComponent<SpriteComponent>(out var spriteProtoComponent)
+            )
         {
             return;
         }
 
-        if (!ent.Comp.Layers.ContainsKey(ent.Comp.SelectedLayer))
-            return;
+        var spriteComponent = (SpriteComponent) _serialization.CreateCopy(spriteProtoComponent, notNullableOverride: true);
 
         var layers = ent.Comp.Layers[ent.Comp.SelectedLayer];
-
-        var countLayers = spriteComponent.AllLayers.Count();
-
-        if (countLayers > 1)
-            return; // невкурсе как обновить слоя
 
         foreach (var layer in layers)
         {
             spriteComponent.AddLayer(layer);
         }
+
+        EntityManager.AddComponent(ent, spriteComponent, true);
 
         UpdateAppearance(ent, ent, sprite: spriteComponent);
     }

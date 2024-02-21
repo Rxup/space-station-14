@@ -65,7 +65,7 @@ public sealed class AiEyeMover : Job<object>
             var mapPos = NewPosition.ToMap(_entityManager, _transform);
 
             await WaitAsyncTask(Task.Run(() =>
-                _lookup.GetEntitiesInRange(mapPos, AICameraSystem.CameraEyeRange, _cameraComponents, LookupFlags.Sensors)));
+                _lookup.GetEntitiesInRange(mapPos, SharedStationAISystem.CameraEyeRange, _cameraComponents, LookupFlags.Sensors)));
 
             _cameraSystem.HandleMove(Eye, _cameraComponents);
         }

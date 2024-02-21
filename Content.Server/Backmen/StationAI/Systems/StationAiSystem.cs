@@ -1,3 +1,5 @@
+using System.Linq;
+using Content.Server.Administration;
 using Content.Server.Mind;
 using Content.Server.Nuke;
 using Content.Server.Popups;
@@ -5,6 +7,7 @@ using Content.Server.Power.Components;
 using Content.Server.Roles;
 using Content.Server.Storage.Components;
 using Content.Shared.Actions;
+using Content.Shared.Administration;
 using Content.Shared.Backmen.EntityHealthBar;
 using Content.Shared.Backmen.StationAI;
 using Content.Shared.Backmen.StationAI.Events;
@@ -19,14 +22,17 @@ using Content.Shared.Mobs.Systems;
 using Content.Shared.Nuke;
 using Content.Shared.Roles;
 using Content.Shared.Roles.Jobs;
+using Content.Shared.Silicons.Laws;
 using Robust.Shared.Audio;
 using Robust.Shared.Audio.Systems;
+using Robust.Shared.Console;
 using Robust.Shared.Player;
+using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 
 namespace Content.Server.Backmen.StationAI.Systems;
 
-public sealed class StationAISystem : EntitySystem
+public sealed class StationAiSystem : SharedStationAISystem
 {
     [Dependency] private readonly SharedActionsSystem _actions = default!;
     [Dependency] private readonly SharedHandsSystem _hands = default!;
@@ -40,6 +46,8 @@ public sealed class StationAISystem : EntitySystem
     [Dependency] private readonly SharedAudioSystem _audioSystem = default!;
     [Dependency] private readonly MobStateSystem _mobState = default!;
     [Dependency] private readonly IRobustRandom _robust = default!;
+    [Dependency] private readonly IConsoleHost _console = default!;
+    [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
 
 
     public override void Initialize()
@@ -58,7 +66,113 @@ public sealed class StationAISystem : EntitySystem
 
         //SubscribeLocalEvent<StationAIComponent, DestructionEventArgs>(OnDestruction);
         SubscribeLocalEvent<StationAIComponent, MobStateChangedEvent>(OnMobStateChanged);
+
+        _console.RegisterCommand("aiset_screen", AiSetScreen, AiSetScreenCompletion);
+        _console.RegisterCommand("aiset_law", AiSetLaw, AiSetLawCompletion);
     }
+
+    #region aiset_law
+
+    private CompletionResult AiSetLawCompletion(IConsoleShell shell, string[] args)
+    {
+        return args.Length switch
+        {
+            1 => CompletionResult.FromHintOptions(
+                StationAiComponents(args[^1]),
+                "ИИ"),
+            2 => CompletionResult.FromHintOptions(
+                CompletionHelper.PrototypeIDs<SiliconLawsetPrototype>(),
+                "Закон"),
+            _ => CompletionResult.Empty
+        };
+    }
+
+    [AdminCommand(AdminFlags.Fun)]
+    private void AiSetLaw(IConsoleShell shell, string argstr, string[] args)
+    {
+        if (args.Length != 2)
+        {
+            shell.WriteError(Loc.GetString("shell-wrong-arguments-number"));
+            return;
+        }
+
+        if (!NetEntity.TryParse(args[0], out var netEntity) || !TryGetEntity(netEntity, out var ent))
+        {
+            shell.WriteError(Loc.GetString("shell-entity-uid-must-be-number"));
+            return;
+        }
+
+        if (!TryComp<StationAIComponent>(ent, out var stationAiComponent) ||
+            HasComp<AIEyeComponent>(ent) ||
+            !_prototypeManager.TryIndex<SiliconLawsetPrototype>(args[1], out var lawsetPrototype)
+            )
+            return;
+
+        stationAiComponent.SelectedLaw = lawsetPrototype;
+
+        if (stationAiComponent.ActiveEye.IsValid() && !TerminatingOrDeleted(stationAiComponent.ActiveEye))
+            EnsureComp<StationAIComponent>(stationAiComponent.ActiveEye).SelectedLaw = lawsetPrototype;
+
+        shell.WriteLine("OK!");
+    }
+
+    #endregion
+
+    #region aiset_screen
+
+    private CompletionResult AiSetScreenCompletion(IConsoleShell shell, string[] args)
+    {
+        return args.Length switch
+        {
+            1 => CompletionResult.FromHintOptions(
+                StationAiComponents(args[^1]),
+                "ИИ"),
+            2 => CompletionResult.FromHint("Экран ии"),
+            _ => CompletionResult.Empty
+        };
+    }
+    [AdminCommand(AdminFlags.Fun)]
+    private void AiSetScreen(IConsoleShell shell, string argstr, string[] args)
+    {
+        if (args.Length < 1)
+        {
+            shell.WriteError(Loc.GetString("shell-wrong-arguments-number"));
+            return;
+        }
+
+        if (!NetEntity.TryParse(args[0], out var netEntity) || !TryGetEntity(netEntity, out var ent))
+        {
+            shell.WriteError(Loc.GetString("shell-entity-uid-must-be-number"));
+            return;
+        }
+
+        if (!TryComp<StationAIComponent>(ent, out var stationAiComponent) ||
+            HasComp<AIEyeComponent>(ent)
+           )
+            return;
+
+        if (args.Length != 2 || !stationAiComponent.Layers.ContainsKey(args[1]))
+        {
+            shell.WriteError("Текущий экран: "+stationAiComponent.SelectedLayer);
+            shell.WriteError("Доступные экраны: "+string.Join(", ",stationAiComponent.Layers.Keys));
+            return;
+        }
+
+        stationAiComponent.SelectedLayer = args[1];
+        Dirty(ent.Value,stationAiComponent);
+
+        if (stationAiComponent.ActiveEye.IsValid() && !TerminatingOrDeleted(stationAiComponent.ActiveEye))
+        {
+            var comp = EnsureComp<StationAIComponent>(stationAiComponent.ActiveEye);
+            comp.SelectedLayer = args[1];
+            Dirty(stationAiComponent.ActiveEye,comp);
+        }
+
+        shell.WriteLine("OK!");
+    }
+
+    #endregion
+
 
     [ValidatePrototypeId<JobPrototype>]
     private const string SAIJob = "SAI";

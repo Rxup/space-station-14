@@ -28,7 +28,7 @@ public sealed class AICameraSystem : EntitySystem
     [Dependency] private readonly SharedAudioSystem _audio = default!;
 
 
-    public const float CameraEyeRange = 10f;
+
     private const double MoverJobTime = 0.005;
     private readonly JobQueue _moveJobQueue = new(MoverJobTime);
 
@@ -142,7 +142,7 @@ public sealed class AICameraSystem : EntitySystem
         if (!eye.Comp.Camera.HasValue)
             return false;
 
-        return _interaction.InRangeUnobstructed(eye.Comp.Camera.Value, eye, CameraEyeRange);
+        return _interaction.InRangeUnobstructed(eye.Comp.Camera.Value, eye, SharedStationAISystem.CameraEyeRange);
     }
 
     public void RemoveActiveCamera(Entity<AIEyeComponent> eye)
@@ -197,7 +197,7 @@ public sealed class AICameraSystem : EntitySystem
             if(!cameraComponent.Comp.Active)
                 continue;
 
-            if(!_interaction.InRangeUnobstructed(cameraComponent, eye, CameraEyeRange))
+            if(!_interaction.InRangeUnobstructed(cameraComponent, eye, SharedStationAISystem.CameraEyeRange))
                 continue;
 
             RemCompDeferred<TemporaryBlindnessComponent>(eye);
