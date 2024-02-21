@@ -75,7 +75,6 @@ WindoorSecurityLocked: WindoorSecureSecurityLocked
 WindoorScienceLocked: WindoorSecureScienceLocked
 WindoorHeadOfPersonnelLocked: WindoorSecureHeadOfPersonnelLocked
 WindoorAtmosphericsLocked: WindoorSecureAtmosphericsLocked
-WindoorParamedicLocked: WindoorSecureParamedicLocked
 
 # 2023-07-03
 ClothingHeadHelmetHelmet: ClothingHeadHelmetBasic

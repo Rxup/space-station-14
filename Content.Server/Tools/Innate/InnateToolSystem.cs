@@ -52,42 +52,11 @@ public sealed class InnateToolSystem : EntitySystem
         AddComp<UnremoveableComponent>(item);
         if (!_sharedHandsSystem.TryPickupAnyHand(uid, item, checkActionBlocker: false))
         {
-            base.Initialize();
-            SubscribeLocalEvent<InnateToolComponent, HandCountChangedEvent>(OnStartup);
-            SubscribeLocalEvent<InnateToolComponent, ComponentShutdown>(OnShutdown);
-            SubscribeLocalEvent<InnateToolComponent, DestructionEventArgs>(OnDestroyed);
             QueueDel(item);
             component.ToSpawn.Clear();
         }
         component.ToSpawn.Remove(toSpawn);
         component.ToolUids.Add(item);
-    }
-
-        private void OnStartup(EntityUid uid, InnateToolComponent component, HandCountChangedEvent args)
-        {
-            if (component.Tools.Count == 0 || component.Loaded)
-                return;
-
-            if (!TryComp<HandsComponent>(uid, out var hands) || hands.Count < component.Tools.Count)
-                return;
-
-            component.Loaded = true;
-
-            var spawnCoord = Transform(uid).Coordinates;
-
-            var items = EntitySpawnCollection.GetSpawns(component.Tools, _robustRandom);
-            foreach (var entry in items)
-            {
-                var item = Spawn(entry, spawnCoord);
-                if (!_sharedHandsSystem.TryPickupAnyHand(uid, item, checkActionBlocker: false))
-                {
-                    QueueDel(item);
-                    continue;
-                }
-                EnsureComp<UnremoveableComponent>(item);
-                component.ToolUids.Add(item);
-            }
-        }
     }
 
     private void OnShutdown(EntityUid uid, InnateToolComponent component, ComponentShutdown args)
