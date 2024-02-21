@@ -231,16 +231,9 @@
 
     - node: blueComfBench
       entity: BenchBlueComfy
-# backmen-start
-    - node: chairDarkComfy
-      entity: ComfyDarkChair
       edges:
         - to: start
           completed:
-            - !type:SpawnPrototype
-              prototype: SheetSteel1
-              amount: 2
-# backmen-end
             - !type:SpawnPrototype
               prototype: MaterialCloth1
               amount: 1
@@ -249,3 +242,19 @@
               doAfter: 1
             - tool: Screwing
               doAfter: 1
+
+# backmen-start
+
+    - node: chairDarkComfy
+      entity: ComfyDarkChair
+      edges:
+        - to: start
+          completed:
+            - !type:SpawnPrototype
+              prototype: SheetSteel1
+              amount: 2
+          steps:
+            - tool: Screwing
+              doAfter: 1
+              
+# backmen-end

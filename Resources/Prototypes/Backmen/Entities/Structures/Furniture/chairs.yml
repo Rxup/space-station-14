@@ -10,5 +10,3 @@
   - type: Construction
     graph: Seat
     node: chairDarkComfy
-  - type: StaticPrice
-    price: 15
