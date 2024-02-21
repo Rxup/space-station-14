@@ -1,7 +1,6 @@
 using Content.Shared.Backmen.Drone.Actions;
 using Content.Server.Body.Systems;
 using Content.Server.Chat.Systems;
-using Content.Server.Drone.Components;
 using Content.Server.Ghost.Roles.Components;
 using Content.Server.Hands.Systems;
 using Content.Server.Popups;
@@ -9,8 +8,8 @@ using Content.Server.Radio.Components;
 using Content.Server.Radio.EntitySystems;
 using Content.Server.Tools.Innate;
 using Content.Shared.Actions;
+using Content.Shared.Backmen.Drone;
 using Content.Shared.Body.Components;
-using Content.Shared.Drone;
 using Content.Shared.Emoting;
 using Content.Shared.Examine;
 using Content.Shared.Mind.Components;
@@ -39,7 +38,7 @@ public sealed class BSSDroneSystem : SharedDroneSystem
     public override void Initialize()
     {
         base.Initialize();
-        SubscribeLocalEvent<BSSDroneComponent, MobStateChangedEvent>(OnMobStateChanged);
+        //SubscribeLocalEvent<BSSDroneComponent, MobStateChangedEvent>(OnMobStateChanged);
         SubscribeLocalEvent<BSSDroneComponent, ExaminedEvent>(OnExamined);
         SubscribeLocalEvent<BSSDroneComponent, MindAddedMessage>(OnMindAdded);
         SubscribeLocalEvent<BSSDroneComponent, MindRemovedMessage>(OnMindRemoved);
@@ -52,7 +51,7 @@ public sealed class BSSDroneSystem : SharedDroneSystem
         SubscribeLocalEvent<BSSDroneComponent, ointmentCraftActionEvent>(OnCraftOintment);
         SubscribeLocalEvent<BSSDroneComponent, brutepackCraftActionEvent>(OnCraftBrutepack);
 
-        SubscribeLocalEvent<DroneComponent, EntitySpokeEvent>((uid, _, args) => OnDroneSpeak(uid, args), before: new []{ typeof(RadioSystem) });
+        //SubscribeLocalEvent<DroneComponent, EntitySpokeEvent>((uid, _, args) => OnDroneSpeak(uid, args), before: new []{ typeof(RadioSystem) });
         SubscribeLocalEvent<BSSDroneComponent, EntitySpokeEvent>((uid, _, args) => OnDroneSpeak(uid, args), before: new []{ typeof(RadioSystem) });
     }
 
@@ -83,7 +82,7 @@ public sealed class BSSDroneSystem : SharedDroneSystem
             args.PushMarkup(Loc.GetString("drone-dormant"));
         }
     }
-
+/*
     private void OnMobStateChanged(EntityUid uid, BSSDroneComponent drone, MobStateChangedEvent args)
     {
         if (args.NewMobState == MobState.Dead)
@@ -95,7 +94,7 @@ public sealed class BSSDroneSystem : SharedDroneSystem
                 _bodySystem.GibBody(uid, body: body);
             QueueDel(uid);
         }
-    }
+    }*/
 
     private void OnMindAdded(EntityUid uid, BSSDroneComponent drone, MindAddedMessage args)
     {

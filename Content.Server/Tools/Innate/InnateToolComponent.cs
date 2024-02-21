@@ -9,5 +9,7 @@ namespace Content.Server.Tools.Innate
         public List<EntityUid> ToolUids = new();
 
         public bool Loaded = false;
+
+        public List<string> ToSpawn = new();
     }
 }

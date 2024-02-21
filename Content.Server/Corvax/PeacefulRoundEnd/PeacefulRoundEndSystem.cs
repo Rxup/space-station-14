@@ -2,6 +2,7 @@
 using Content.Server.GameTicking;
 using Content.Shared.CombatMode.Pacification;
 using Content.Shared.Corvax.CCCVars;
+using Content.Shared.Ghost;
 using Content.Shared.Mindshield.Components;
 using Robust.Server.Player;
 using Robust.Shared.Configuration;
@@ -32,6 +33,10 @@ public sealed class PeacefulRoundEndSystem : EntitySystem
             var entityId = session.AttachedEntity.Value;
             // start-backmen: specforce
             if (HasComp<SpecForceComponent>(entityId))
+            {
+                continue;
+            }
+            if (HasComp<GhostComponent>(entityId))
             {
                 continue;
             }
