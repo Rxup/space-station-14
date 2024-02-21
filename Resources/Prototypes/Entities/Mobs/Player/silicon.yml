@@ -262,9 +262,9 @@
   - type: ContainerFill
     containers:
       borg_brain:
-      - PositronicBrain
+        - PositronicBrain
       borg_module:
-      - BorgModuleTool
+        - BorgModuleTool
   - type: ItemSlots
     slots:
       cell_slot:
@@ -281,7 +281,7 @@
   - type: ContainerFill
     containers:
       borg_brain:
-      - MMIFilled
+        - MMIFilled
   - type: ItemSlots
     slots:
       cell_slot:
@@ -293,17 +293,17 @@
   parent: BorgChassisSyndicateAssault
   suffix: Battery, Module, Operative
   components:
-    - type: NukeOperative
-    - type: ContainerFill
-      containers:
-        borg_brain:
-          - PositronicBrain
-        borg_module:
-          - BorgModuleOperative
-          - BorgModuleL6C
-          - BorgModuleEsword
-    - type: ItemSlots
-      slots:
-        cell_slot:
-          name: power-cell-slot-component-slot-name-default
-          startingItem: PowerCellHyper
+  - type: NukeOperative
+  - type: ContainerFill
+    containers:
+      borg_brain:
+        - PositronicBrain
+      borg_module:
+        - BorgModuleOperative
+        - BorgModuleL6C
+        - BorgModuleEsword
+  - type: ItemSlots
+    slots:
+      cell_slot:
+        name: power-cell-slot-component-slot-name-default
+        startingItem: PowerCellHyper
