@@ -21,6 +21,7 @@
           availableJobs:
             #service
             Captain: [ 1, 1 ]
+            IAA: [ 1, 1 ] # Corvax-IAA
             HeadOfPersonnel: [ 1, 1 ]
             Bartender: [ 1, 1 ]
             Botanist: [ 2, 2 ]
@@ -49,7 +50,7 @@
             Warden: [ 1, 1 ]
             SecurityOfficer: [ 4, 4 ]
             SecurityCadet: [ 2, 3 ]
-            Lawyer: [ 1, 2 ]
+            #Lawyer: [ 1, 2 ] # Corvax-IAA
             #supply
             Quartermaster: [ 1, 1 ]
             SalvageSpecialist: [ 2, 2 ]
@@ -60,3 +61,9 @@
             Mime: [ 1, 1 ]
             Musician: [ 1, 1 ]
             Borg: [ 2, 2 ]
+            Brigmedic: [ 0, 1 ] # backmen-Brigmedic
+            BKBPLATech: [0, 3] # backmen-BPLA-Silicons
+            BKBPLAMED: [0, 3] # backmen-BPLAMED-Silicons
+            Deliveryman: [ 0, 1 ]
+            Prisoner: [ 2, 3]
+            SAI: [1, 1] # backmen-SAI
