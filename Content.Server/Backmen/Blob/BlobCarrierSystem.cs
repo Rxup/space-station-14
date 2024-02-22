@@ -65,6 +65,8 @@ public sealed class BlobCarrierSystem : EntitySystem
         ghostRole.RoleName = Loc.GetString("blob-carrier-role-name");
         ghostRole.RoleDescription = Loc.GetString("blob-carrier-role-desc");
         ghostRole.RoleRules = Loc.GetString("blob-carrier-role-rules");
+
+        EnsureComp<BlobSpeakComponent>(uid);
     }
 
     private void OnShutdown(EntityUid uid, BlobCarrierComponent component, ComponentShutdown args)

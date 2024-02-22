@@ -1,20 +1,32 @@
 ﻿using Content.Server.Backmen.Vampiric.Role;
+using Content.Server.Body.Components;
 using Content.Server.Mind;
 using Content.Server.Polymorph.Components;
 using Content.Server.Polymorph.Systems;
+using Content.Server.Popups;
 using Content.Server.Store.Components;
 using Content.Server.Store.Systems;
 using Content.Shared.Actions;
 using Content.Shared.Administration.Logs;
 using Content.Shared.Backmen.Abilities.Psionics;
 using Content.Shared.Backmen.Vampiric;
+using Content.Shared.Damage;
 using Content.Shared.Database;
+using Content.Shared.DoAfter;
 using Content.Shared.FixedPoint;
+using Content.Shared.Mobs.Systems;
 using Content.Shared.Movement.Components;
 using Content.Shared.Movement.Systems;
+using Content.Shared.Nutrition.Components;
+using Content.Shared.Nutrition.EntitySystems;
 using Content.Shared.Polymorph;
+using Content.Shared.Popups;
 using Content.Shared.Slippery;
+using Content.Shared.Stunnable;
+using Robust.Shared.Audio;
+using Robust.Shared.Audio.Systems;
 using Robust.Shared.Prototypes;
+using Robust.Shared.Random;
 
 namespace Content.Server.Backmen.Vampiric;
 
@@ -27,6 +39,20 @@ public sealed class BkmVampireLevelingSystem : EntitySystem
     [Dependency] private readonly PolymorphSystem _polymorph = default!;
     [Dependency] private readonly MovementSpeedModifierSystem _speedModifier = default!;
 
+    [Dependency] private readonly PopupSystem _popupSystem = default!;
+    [Dependency] private readonly SharedDoAfterSystem _doAfterSystem = default!;
+    [Dependency] private readonly MobStateSystem _mobStateSystem = default!;
+
+    [Dependency] private readonly HungerSystem _hunger = default!;
+    [Dependency] private readonly SharedAudioSystem _audio = default!;
+
+    [Dependency] private readonly IRobustRandom _random = default!;
+    [Dependency] private readonly SharedStunSystem _stun = default!;
+
+    [Dependency] private readonly DamageableSystem _damageableSystem = default!;
+
+    [Dependency] private readonly BloodSuckerSystem _bloodSucker = default!;
+
     public override void Initialize()
     {
         base.Initialize();
@@ -34,7 +60,101 @@ public sealed class BkmVampireLevelingSystem : EntitySystem
         SubscribeLocalEvent<BkmVampireComponent, VampireShopActionEvent>(OnOpenShop);
         SubscribeLocalEvent<BkmVampireComponent, VampireStoreEvent>(OnShopBuyPerk);
         SubscribeLocalEvent<BkmVampireComponent, RefreshMovementSpeedModifiersEvent>(OnApplySprint);
+
+        SubscribeLocalEvent<BkmVampireComponent, InnateNewVampierActionEvent>(OnUseNewVamp);
+        SubscribeLocalEvent<BkmVampireComponent, InnateNewVampierDoAfterEvent>(OnUseNewVampAfter);
+        SubscribeLocalEvent<BloodSuckerComponent, PolymorphActionEvent>(OnPolymorphActionEvent, before: new []{ typeof(PolymorphSystem) });
     }
+
+    private void OnPolymorphActionEvent(Entity<BloodSuckerComponent> ent, ref PolymorphActionEvent args)
+    {
+        if(TryComp<HungerComponent>(ent, out var hungerComponent))
+            _hunger.ModifyHunger(ent, -30, hungerComponent);
+    }
+
+    #region New vamp
+
+    private void OnUseNewVampAfter(Entity<BkmVampireComponent> ent, ref InnateNewVampierDoAfterEvent args)
+    {
+        if (args.Cancelled || args.Target == null || TerminatingOrDeleted(args.Target.Value))
+        {
+            _actions.ClearCooldown(ent.Comp.ActionNewVamp);
+            return;
+        }
+
+        if (_mindSystem.TryGetMind(ent, out var entMindId, out _))
+        {
+            EnsureComp<BloodSuckedComponent>(args.Target.Value).BloodSuckerMindId = entMindId;
+        }
+
+        // Add a little pierce
+        DamageSpecifier damage = new();
+        damage.DamageDict.Add("Piercing", 1); // Slowly accumulate enough to gib after like half an hour
+
+        _damageableSystem.TryChangeDamage(args.Target.Value, damage, true, true);
+
+        _bloodSucker.ConvertToVampire(args.Target.Value);
+        _stun.TryKnockdown(args.Target.Value, TimeSpan.FromSeconds(30), true);
+        _stun.TryParalyze(args.Target.Value, TimeSpan.FromSeconds(30), true);
+
+        _hunger.ModifyHunger(ent, -100);
+        _stun.TryStun(ent, TimeSpan.FromSeconds(_random.Next(1, 3)), true);
+    }
+
+    private void OnUseNewVamp(Entity<BkmVampireComponent> ent, ref InnateNewVampierActionEvent args)
+    {
+        if (HasComp<BkmVampireComponent>(args.Target))
+        {
+            return;
+        }
+
+        if (_mobStateSystem.IsDead(args.Target))
+        {
+            return;
+        }
+
+        if (!TryComp<BloodstreamComponent>(args.Target, out var bloodstream))
+            return;
+
+        if (bloodstream.BloodReagent != "Blood" || bloodstream.BloodSolution == null)
+        {
+            _popupSystem.PopupEntity(Loc.GetString("bloodsucker-fail-not-blood", ("target", args.Target)), args.Target, ent.Owner, Shared.Popups.PopupType.Medium);
+            return;
+        }
+
+        if (TryComp<HungerComponent>(ent, out var hunger) && _hunger.GetHungerThreshold(hunger) < HungerThreshold.Okay)
+        {
+            _popupSystem.PopupEntity("Вы хотите есть", ent, ent);
+            return;
+        }
+
+        if (TryComp<ThirstComponent>(ent, out var thirst) && thirst.CurrentThirstThreshold < ThirstThreshold.Okay)
+        {
+            _popupSystem.PopupEntity("Вы хотите пить", ent, ent);
+            return;
+        }
+
+        _popupSystem.PopupEntity(Loc.GetString("bloodsucker-doafter-start-victim", ("sucker", ent.Owner)), args.Target, args.Target, Shared.Popups.PopupType.LargeCaution);
+        _popupSystem.PopupEntity(Loc.GetString("bloodsucker-doafter-start", ("target", args.Target)), args.Target, ent, Shared.Popups.PopupType.Medium);
+
+        _doAfterSystem.TryStartDoAfter(new DoAfterArgs(EntityManager, ent, TimeSpan.FromSeconds(10),
+            new InnateNewVampierDoAfterEvent(), ent, target: args.Target, used: ent)
+        {
+            BreakOnUserMove = true,
+            BreakOnDamage = true,
+            NeedHand = true,
+            RequireCanInteract = true,
+            BreakOnHandChange = true,
+            BreakOnTargetMove = true,
+            BreakOnWeightlessMove = true
+        });
+
+        _audio.PlayPvs("/Audio/Items/drink.ogg", ent,
+            AudioParams.Default.WithVariation(0.025f));
+        args.Handled = true;
+    }
+
+    #endregion
 
     private void OnApplySprint(Entity<BkmVampireComponent> ent, ref RefreshMovementSpeedModifiersEvent args)
     {
@@ -170,10 +290,19 @@ public sealed class BkmVampireLevelingSystem : EntitySystem
         vmpRole.Tier = Math.Max(vmpRole.Tier, tier);
     }
 
-    public void AddCurrency(Entity<BkmVampireComponent> ent, FixedPoint2 va)
+    public void AddCurrency(Entity<BkmVampireComponent> ent, FixedPoint2 va, string? source = null)
     {
+        va = Math.Max(0D, va.Double());
+        if (va == 0)
+        {
+            _popupSystem.PopupEntity($"Вы не получили эссенцию"+(source != null ? $" за {source}" : ""), ent, ent, PopupType.MediumCaution);
+            return;
+        }
         _store.TryAddCurrency(new Dictionary<string, FixedPoint2>
                 { { ent.Comp.CurrencyPrototype, va } },
             ent);
+        var plus = va > 0;
+
+        _popupSystem.PopupEntity($"Вы получили {(plus ? "+" : "-")} {Math.Abs(va.Double())} эссенцию"+(source != null ? $" за {source}" : ""), ent, ent, plus ? PopupType.Medium : PopupType.MediumCaution);
     }
 }

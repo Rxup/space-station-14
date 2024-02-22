@@ -1,6 +1,7 @@
 ﻿using System.Linq;
 using Content.Server.Antag;
 using Content.Server.Backmen.Vampiric.Role;
+using Content.Server.Bible.Components;
 using Content.Server.Chat.Managers;
 using Content.Server.GameTicking;
 using Content.Server.GameTicking.Rules;
@@ -17,6 +18,7 @@ using Robust.Shared.Configuration;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
+using Robust.Shared.Timing;
 
 namespace Content.Server.Backmen.Vampiric;
 
@@ -35,6 +37,7 @@ public sealed class BloodsuckerRuleSystem : GameRuleSystem<BloodsuckerRuleCompon
     [Dependency] private readonly BloodSuckerSystem _bloodSuckerSystem = default!;
     [Dependency] private readonly IRobustRandom _random = default!;
     [Dependency] private readonly MindSystem _mindSystem = default!;
+    [Dependency] private readonly GameTicker _gameTicker = default!;
 
     public override void Initialize()
     {
@@ -45,91 +48,24 @@ public sealed class BloodsuckerRuleSystem : GameRuleSystem<BloodsuckerRuleCompon
         SubscribeLocalEvent<RoundStartAttemptEvent>(OnStartAttempt);
         SubscribeLocalEvent<RulePlayerJobsAssignedEvent>(OnPlayersSpawned);
         SubscribeLocalEvent<PlayerSpawnCompleteEvent>(HandleLatejoin);
-        SubscribeLocalEvent<RoundEndTextAppendEvent>(OnRoundEndText);
     }
 
-    private void OnRoundEndText(RoundEndTextAppendEvent ev)
+    [ValidatePrototypeId<EntityPrototype>]
+    private const string VampireObjective = "VampireObjective";
+
+    protected override void Added(EntityUid uid, BloodsuckerRuleComponent component, GameRuleComponent gameRule, GameRuleAddedEvent args)
     {
-        var query = AllEntityQuery<BloodsuckerRuleComponent>();
-        while (query.MoveNext(out var vampRule))
+        base.Added(uid, component, gameRule, args);
+
+        if (_gameTicker.RunLevel == GameRunLevel.InRound)
         {
-            ev.AddLine(Loc.GetString("vampire-elder"));
-
-            foreach (var player in vampRule.Elders)
-            {
-                var role = CompOrNull<VampireRoleComponent>(player.Value);
-                var count = role?.Converted ?? 0;
-                var blood = role?.Drink ?? 0;
-                var countGoal = 0;
-                var bloodGoal = 0f;
-
-                var mind = CompOrNull<MindComponent>(player.Value);
-                if (_mindSystem.TryGetObjectiveComp<BloodsuckerDrinkConditionComponent>(player.Value, out var obj1, mind))
-                {
-                    bloodGoal = obj1.Goal;
-                }
-                if (_mindSystem.TryGetObjectiveComp<BloodsuckerConvertConditionComponent>(player.Value, out var obj2, mind))
-                {
-                    countGoal = obj2.Goal;
-                }
-
-                _mindSystem.TryGetSession(player.Value, out var session);
-                var username = session?.Name;
-                if (username != null)
-                {
-                    ev.AddLine(Loc.GetString("endgame-vamp-name-user", ("name", player.Key), ("username", username)));
-                }
-                else
-                {
-                    ev.AddLine(Loc.GetString("endgame-vamp-name", ("name", player.Key)));
-                }
-                ev.AddLine(Loc.GetString("endgame-vamp-conv",
-                    ("count", count), ("goal", countGoal)));
-                ev.AddLine(Loc.GetString("endgame-vamp-drink",
-                    ("count", blood), ("goal", bloodGoal)));
-            }
-
-            ev.AddLine("");
-            ev.AddLine(Loc.GetString("vampire-bitten"));
-            var q = EntityQueryEnumerator<MindComponent,VampireRoleComponent>();
-            while (q.MoveNext(out var mindId,out var mind, out var role))
-            {
-                if (vampRule.Elders.ContainsValue(mindId))
-                {
-                    continue;
-                }
-                var count = role?.Converted ?? 0;
-                var blood = role?.Drink ?? 0;
-                var countGoal = 0;
-                var bloodGoal = 0f;
-
-                if (_mindSystem.TryGetObjectiveComp<BloodsuckerDrinkConditionComponent>(mindId, out var obj1,mind))
-                {
-                    bloodGoal = obj1.Goal;
-                }
-                if (_mindSystem.TryGetObjectiveComp<BloodsuckerConvertConditionComponent>(mindId, out var obj2,mind))
-                {
-                    countGoal = obj2.Goal;
-                }
-
-                _mindSystem.TryGetSession(mindId, out var session);
-                var username = session?.Name;
-                if (username != null)
-                {
-                    ev.AddLine(Loc.GetString("endgame-vamp-name-user", ("name", mind.CharacterName ?? "-"), ("username", username)));
-                }
-                else
-                {
-                    ev.AddLine(Loc.GetString("endgame-vamp-name", ("name", mind.CharacterName ?? "-")));
-                }
-                ev.AddLine(Loc.GetString("endgame-vamp-conv",
-                    ("count", count), ("goal", countGoal)));
-                ev.AddLine(Loc.GetString("endgame-vamp-drink",
-                    ("count", blood), ("goal", bloodGoal)));
-            }
+            _gameTicker.StartGameRule(VampireObjective);
+        }
+        else
+        {
+            _gameTicker.AddGameRule(VampireObjective);
         }
     }
-
 
     private void HandleLatejoin(PlayerSpawnCompleteEvent ev)
     {
@@ -141,9 +77,11 @@ public sealed class BloodsuckerRuleSystem : GameRuleSystem<BloodsuckerRuleCompon
 
             if (vpmRule.TotalBloodsuckers >= MaxBloodsuckers)
                 continue;
+
             if (!ev.LateJoin)
                 continue;
-            if (!ev.Profile.AntagPreferences.Contains("Bloodsucker"))
+
+            if (!ev.Profile.AntagPreferences.Contains(Bloodsucker))
                 continue;
 
             if (ev.JobId == null || !_prototypeManager.TryIndex<JobPrototype>(ev.JobId, out var job))
@@ -177,6 +115,8 @@ public sealed class BloodsuckerRuleSystem : GameRuleSystem<BloodsuckerRuleCompon
             // You get one shot.
             if (_random.Prob(chance) && ev.Player.AttachedEntity.HasValue)
             {
+                if(HasComp<BibleUserComponent>(ev.Player.AttachedEntity))
+                    continue;
                 _bloodSuckerSystem.ConvertToVampire(ev.Player.AttachedEntity.Value);
                 vpmRule.TotalBloodsuckers++;
                 if (_mindSystem.TryGetMind(ev.Player, out var mindId, out _))
@@ -205,6 +145,9 @@ public sealed class BloodsuckerRuleSystem : GameRuleSystem<BloodsuckerRuleCompon
                 if(!vpmRule.SpeciesWhitelist.Contains(ev.Profiles[player.UserId].Species))
                     continue;
 
+                if (player.AttachedEntity.HasValue && HasComp<BibleUserComponent>(player.AttachedEntity))
+                    continue;
+
                 plr.Add(player, ev.Profiles[player.UserId]);
             }
 
@@ -212,22 +155,25 @@ public sealed class BloodsuckerRuleSystem : GameRuleSystem<BloodsuckerRuleCompon
         }
     }
 
+    [ValidatePrototypeId<AntagPrototype>]
+    private const string Bloodsucker = "Bloodsucker";
+
     private void DoVampirStart(BloodsuckerRuleComponent vpmRule, Dictionary<ICommonSession, HumanoidCharacterProfile> startCandidates)
     {
         var numTraitors = MathHelper.Clamp(startCandidates.Count / PlayersPerBloodsucker, 1, MaxBloodsuckers);
-        var traitorPool = _antagSelection.FindPotentialAntags(startCandidates, "Bloodsucker");
+        var traitorPool = _antagSelection.FindPotentialAntags(startCandidates, Bloodsucker);
         var selectedTraitors = _antagSelection.PickAntag(numTraitors, traitorPool);
 
         foreach (var traitor in selectedTraitors)
         {
-            if (traitor.AttachedEntity.HasValue)
+            if (!traitor.AttachedEntity.HasValue)
+                continue;
+
+            _bloodSuckerSystem.ConvertToVampire(traitor.AttachedEntity.Value);
+            vpmRule.TotalBloodsuckers++;
+            if (_mindSystem.TryGetMind(traitor, out var mindId, out _))
             {
-                _bloodSuckerSystem.ConvertToVampire(traitor.AttachedEntity.Value);
-                vpmRule.TotalBloodsuckers++;
-                if (_mindSystem.TryGetMind(traitor, out var mindId, out _))
-                {
-                    vpmRule.Elders.Add(MetaData(traitor.AttachedEntity.Value).EntityName,mindId);
-                }
+                vpmRule.Elders.Add(MetaData(traitor.AttachedEntity.Value).EntityName,mindId);
             }
         }
     }

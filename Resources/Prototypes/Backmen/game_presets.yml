@@ -27,6 +27,19 @@
   - BasicRoundstartVariation
 
 - type: gamePreset
+  id: Blob
+  alias:
+  - blab
+  name: blob-title
+  description: blob-description
+  showInVote: false
+  rules:
+  - BlobGameMode
+  - BasicStationEventScheduler
+  - WageScheduler #backmen: currency
+  - BasicRoundstartVariation
+
+- type: gamePreset
   id: FleshCult
   alias:
   - fleshcult
