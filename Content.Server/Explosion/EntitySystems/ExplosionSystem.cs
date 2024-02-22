@@ -126,17 +126,15 @@ public sealed partial class ExplosionSystem : EntitySystem
         _pathfindingSystem.PauseUpdating = false;
     }
 
-    //start-backmen:blob
+    // start-backmen: blob
     public void SetExplosionResistance(EntityUid entityUid, float newCoefficient, ExplosionResistanceComponent? component = null)
     {
         if (!Resolve(entityUid, ref component))
             return;
 
         component.DamageCoefficient = newCoefficient;
-
-        Dirty(entityUid, component);
     }
-    //end-backmen:blob
+    // end-backmen: blob
 
     private void RelayedResistance(EntityUid uid, ExplosionResistanceComponent component,
         InventoryRelayedEvent<GetExplosionResistanceEvent> args)

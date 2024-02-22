@@ -27,6 +27,8 @@ public sealed partial class BkmVampireComponent : Component, IAntagStatusIconCom
 
     public EntityUid? ActionNewVamp;
     public ProtoId<EntityPrototype> NewVamp = "ActionConvertToVampier";
+
+    public Dictionary<string, FixedPoint2> DNA = new();
 }
 
 public sealed partial class InnateNewVampierActionEvent : EntityTargetActionEvent
