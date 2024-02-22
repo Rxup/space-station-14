@@ -168,7 +168,7 @@ public sealed class CentcommSystem : EntitySystem
             return;
 
         _audio.PlayPvs(SparkSound, ent);
-        _popupSystem.PopupEntity(Loc.GetString("cloning-pod-component-upgrade-emag-requirement"), ent);
+        _popupSystem.PopupEntity(Loc.GetString("shuttle-console-component-upgrade-emag-requirement"), ent);
         args.Handled = true;
         EnsureComp<EmaggedComponent>(ent); // для обновления консоли нужно чтобы компонент был до вызыва RefreshShuttleConsoles
         _console.RefreshShuttleConsoles();
