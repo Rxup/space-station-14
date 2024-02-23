@@ -45,6 +45,7 @@
   cost: 7500
   recipeUnlocks:
   - WeaponLaserCarbine
+  - WeaponEarthGovLaserPistol # backmen
 
 - type: technology
   id: NonlethalAmmunition

@@ -15,21 +15,26 @@
   - type: Clothing
     sprite: Backmen/Objects/Weapons/Guns/Energy/x01.rsi
   - type: Gun
+    fireRate: 2.5
+    selectedMode: FullAuto
+    availableModes:
+    - FullAuto
+    - SemiAuto
     projectileSpeed: 75
   - type: Item
     size: SmallNormal
   - type: ProjectileBatteryAmmoProvider
     proto: X01Attack
-    fireCost: 100
+    fireCost: 50
   - type: BatteryWeaponFireModes
     fireModes:
     - proto: X01Attack
-      fireCost: 100
+      fireCost: 50
     - proto: BulletDisabler
-      fireCost: 75
+      fireCost: 50
   - type: Battery
-    maxCharge: 1200
-    startingCharge: 1200
+    maxCharge: 600
+    startingCharge: 600
   - type: MagazineVisuals
     magState: mag
     steps: 5
@@ -49,7 +54,10 @@
     layers:
     - state: redtrac
       shader: unshaded
+  - type: Reflective
+    reflective:
+    - Energy
   - type: Projectile
     damage:
       types:
-        Heat: 22
+        Heat: 17

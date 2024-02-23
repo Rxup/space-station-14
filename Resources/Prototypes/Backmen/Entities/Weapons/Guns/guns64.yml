@@ -84,8 +84,8 @@
     steps: 3
     zeroVisible: true
   - type: Battery
-    maxCharge: 1500
-    startingCharge: 1500
+    maxCharge: 1250
+    startingCharge: 1250
   - type: HitscanBatteryAmmoProvider
     proto: RedLaser
     fireCost: 50
@@ -165,7 +165,7 @@
   - type: Gun
     minAngle: 7
     maxAngle: 45
-    fireRate: 5
+    fireRate: 2.5
     selectedMode: SemiAuto
     availableModes:
     - SemiAuto
@@ -204,9 +204,12 @@
     - state: mag-unshaded-2
       map: ["enum.GunVisualLayers.MagUnshaded"]
       shader: unshaded
+  - type: Battery
+    maxCharge: 600
+    startingCharge: 600
   - type: HitscanBatteryAmmoProvider
     proto: RedLaser
-    fireCost: 62.5
+    fireCost: 50
   - type: MagazineVisuals
     magState: mag
     steps: 3

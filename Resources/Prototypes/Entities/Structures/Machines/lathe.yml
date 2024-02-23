@@ -732,6 +732,7 @@
       - WeaponDisablerSMG
       - WeaponLaserCannon
       - WeaponLaserCarbine
+      - WeaponEarthGovLaserPistol # backmen
       - WeaponLaserCarbinePractice
       - InsulativeHeadcage
       - ClothingHeadHelmetInsulated

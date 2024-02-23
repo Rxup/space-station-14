@@ -32,7 +32,7 @@
 
 - type: latheRecipe
   id: WeaponLaserCarbine
-  result: WeaponEarthGovLaserRifle
+  result: WeaponEarthGovLaserCarbine
   category: Weapons
   completetime: 8
   materials:
