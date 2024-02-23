@@ -29,3 +29,33 @@
         whitelist:
           components:
             - IdCard
+
+- type: entity
+  parent: BaseComputer
+  id: ComputerCriminalRecords
+  name: criminal records computer
+  description: This can be used to check criminal records. Only security can modify them.
+  components:
+  - type: ReinforcementConsole
+  - type: UserInterface
+    interfaces:
+    - key: enum.ReinforcementConsoleKey.Key
+      type: ReinforcementConsoleBoundUserInterface
+  - type: ActivatableUI
+    key: enum.ReinforcementConsoleKey.Key
+  - type: Sprite
+    layers:
+    - map: ["computerLayerBody"]
+      state: computer
+    - map: ["computerLayerKeyboard"]
+      state: generic_keyboard
+    - map: ["computerLayerScreen"]
+      state: explosive
+    - map: ["computerLayerKeys"]
+      state: security_key
+  - type: PointLight
+    radius: 1.5
+    energy: 1.6
+    color: "#1f8c28"
+  - type: AccessReader
+    access: [["CCOfficer"]]
