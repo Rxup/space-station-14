@@ -33,8 +33,8 @@
     - proto: BulletDisabler
       fireCost: 50
   - type: Battery
-    maxCharge: 600
-    startingCharge: 600
+    maxCharge: 750
+    startingCharge: 750
   - type: MagazineVisuals
     magState: mag
     steps: 5
