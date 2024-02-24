@@ -30,13 +30,28 @@
           components:
             - IdCard
 
+
+- type: entity
+  noSpawn: true
+  parent: MarkerBase
+  id: ReinforcementSpawner
+
+- type: reinforcement
+  id: BKCCOfficial
+  name: ПЦК
+  job: BKCCOfficial
+  spawn: MobHumanCentComCorvax
+  max: 1
+
 - type: entity
   parent: BaseComputer
-  id: ComputerCriminalRecords
-  name: criminal records computer
+  id: ComputerReinforcement
+  name: reinforcement computer
   description: This can be used to check criminal records. Only security can modify them.
   components:
   - type: ReinforcementConsole
+    available:
+    - BKCCOfficial
   - type: UserInterface
     interfaces:
     - key: enum.ReinforcementConsoleKey.Key

@@ -8,6 +8,7 @@ using Content.Shared.Mobs;
 using Content.Shared.Mobs.Components;
 using Content.Shared.Mobs.Systems;
 using Robust.Server.GameObjects;
+using Robust.Shared.Prototypes;
 
 namespace Content.Server.Backmen.Reinforcement;
 
@@ -30,6 +31,9 @@ public sealed class ReinforcementSystem : SharedReinforcementSystem
             subs.Event<CallReinforcementStart>(OnStartCall);
         });
     }
+
+    [ValidatePrototypeId<EntityPrototype>]
+    private const string Spawner = "ReinforcementSpawner";
 
     private void OnStartCall(Entity<ReinforcementConsoleComponent> ent, ref CallReinforcementStart args)
     {
@@ -54,7 +58,7 @@ public sealed class ReinforcementSystem : SharedReinforcementSystem
         }
 
         ent.Comp.Brief = args.Brief ?? string.Empty;
-        UpdateUserInterface(ent);
+        //UpdateUserInterface(ent);
     }
 
     private void OnKeySelected(Entity<ReinforcementConsoleComponent> ent, ref ChangeReinforcementMsg args)
@@ -88,7 +92,7 @@ public sealed class ReinforcementSystem : SharedReinforcementSystem
                 });
             }
         }
-        UpdateUserInterface(ent);
+        //UpdateUserInterface(ent);
     }
 
     private void UpdateUserInterface<T>(Entity<ReinforcementConsoleComponent> ent, ref T args)

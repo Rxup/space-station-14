@@ -29,7 +29,7 @@ public sealed class ReinforcementConsoleBoundUserInterface : BoundUserInterface
 
         var comp = EntMan.GetComponent<ReinforcementConsoleComponent>(Owner);
 
-        _window = new(Owner, comp.MaxStringLength, _playerManager, _proto, _random, _accessReader);
+        _window = new(Owner, comp, _playerManager, _proto, _random, _accessReader);
         _window.OnKeySelected += (key,count) => SendMessage(new ChangeReinforcementMsg(key,count));
         _window.OnBriefChange += (brief) => SendMessage(new BriefReinforcementUpdate(brief));
         _window.OnStartCall += () => SendMessage(new CallReinforcementStart());
@@ -44,5 +44,12 @@ public sealed class ReinforcementConsoleBoundUserInterface : BoundUserInterface
         {
             _window?.Update(s);
         }
+    }
+
+    protected override void Dispose(bool disposing)
+    {
+        base.Dispose(disposing);
+
+        _window?.Close();
     }
 }
