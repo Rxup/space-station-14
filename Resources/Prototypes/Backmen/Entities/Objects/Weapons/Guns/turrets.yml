@@ -11,6 +11,7 @@
   parent: BaseStructure
   id: WeaponTurretBaseLaser
   name: laser turret
+  description: Automatic turret of laser destruction, with a self-charging battery inside.
   abstract: true
   components:
     - type: Clickable
@@ -30,7 +31,9 @@
     - type: Sprite
       sprite: Backmen/Objects/Weapons/Guns/Turrets/laser.rsi
       drawdepth: Mobs
+      noRot: true
       layers:
+        - state: stand
         - state: onestar
     - type: InteractionPopup
       interactDelay: 0.2
@@ -97,6 +100,8 @@
     - type: NoRotateOnMove
     - type: Input
       context: "human"
+    - type: StaticPrice
+      price: 750
       
 - type: entity
   parent: WeaponTurretBaseLaser
@@ -106,6 +111,7 @@
   - type: Sprite
     sprite: Backmen/Objects/Weapons/Guns/Turrets/laser.rsi
     layers:
+      - state: stand
       - state: nanotrasen
   - type: NpcFactionMember
     factions:
@@ -125,10 +131,13 @@
   id: WeaponTurretLaserNanoTrasenAI
   suffix: under sAI
   components:
+  - type: BorgAINT
   - type: Sprite
     sprite: Backmen/Objects/Weapons/Guns/Turrets/laser.rsi
     layers:
+      - state: stand
       - state: nanotrasen
   - type: NpcFactionMember
     factions:
     - AiTurret
+    

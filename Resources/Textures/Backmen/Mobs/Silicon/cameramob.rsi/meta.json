@@ -1,0 +1,20 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "taken from TGstation at commit https://github.com/tgstation/tgstation/blob/1c16eeeaaf06c6ed7e014bb9611a96bf6095abb3/icons/mob/silicon/cameramob.dmi",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "ai_camera",
+      "delays": [
+        [
+          1,
+          1
+        ]
+      ]
+    }
+  ]
+}

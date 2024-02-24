@@ -22,13 +22,21 @@ public sealed class AiEnemySystem : SharedAiEnemySystem
         SubscribeLocalEvent<AIEnemyNTComponent, GetStatusIconsEvent>(GetIcon);
     }
 
+    protected override void ToggleEnemy(EntityUid u, EntityUid target)
+    {
+        //noop
+    }
+
     [ValidatePrototypeId<StatusIconPrototype>]
     private const string AiEnemyStatus = "AiIconEnemyTarget";
     private void GetIcon(Entity<AIEnemyNTComponent> target, ref GetStatusIconsEvent args)
     {
         var ent = _player.LocalSession?.AttachedEntity ?? EntityUid.Invalid;
 
-        if (!(HasComp<BorgAINTComponent>(ent) || HasComp<GhostComponent>(ent)) || args.InContainer)
+        if(args.InContainer)
+            return;
+
+        if (!(EntityQuery.HasComponent(ent) || HasComp<GhostComponent>(ent)))
         {
             return;
         }

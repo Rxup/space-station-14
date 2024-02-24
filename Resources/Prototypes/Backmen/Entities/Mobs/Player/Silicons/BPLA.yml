@@ -12,13 +12,6 @@
     tags:
     - InnateDontDelete
 
-- type: nameIdentifierGroup
-  id: BSSDrone
-  prefix: БПЛА
-  fullName: true
-  minValue: 10000
-  maxValue: 99999
-
 - type: entity
   name: Blue Space Drone
   id: BackmenDrone
@@ -37,6 +30,7 @@
       - id: WelderExperimental
   - type: Inventory
     templateId: drone
+  - type: BorgAINT
   - type: InventorySlots
   - type: Strippable
   - type: UserInterface

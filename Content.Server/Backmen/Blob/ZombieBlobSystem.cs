@@ -60,6 +60,7 @@ public sealed class ZombieBlobSystem : EntitySystem
     private void OnStartup(EntityUid uid, ZombieBlobComponent component, ComponentStartup args)
     {
         EnsureComp<BlobMobComponent>(uid);
+        EnsureComp<BlobSpeakComponent>(uid);
 
         var oldFactions = new List<string>();
         var factionComp = EnsureComp<NpcFactionMemberComponent>(uid);
@@ -112,6 +113,11 @@ public sealed class ZombieBlobSystem : EntitySystem
         if (TerminatingOrDeleted(uid))
         {
             return;
+        }
+
+        if (HasComp<BlobSpeakComponent>(uid))
+        {
+            RemComp<BlobSpeakComponent>(uid);
         }
 
         if (HasComp<BlobMobComponent>(uid))
