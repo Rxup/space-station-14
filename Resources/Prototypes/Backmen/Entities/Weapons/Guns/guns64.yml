@@ -84,8 +84,8 @@
     steps: 3
     zeroVisible: true
   - type: Battery
-    maxCharge: 1500
-    startingCharge: 1500
+    maxCharge: 1250
+    startingCharge: 1250
   - type: HitscanBatteryAmmoProvider
     proto: RedLaser
     fireCost: 50
