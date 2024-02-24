@@ -72,7 +72,7 @@
   - type: Gun
     minAngle: 24
     maxAngle: 45
-    fireRate: 3
+    fireRate: 4
     selectedMode: SemiAuto
     availableModes:
     - SemiAuto
@@ -165,7 +165,7 @@
   - type: Gun
     minAngle: 7
     maxAngle: 45
-    fireRate: 2.5
+    fireRate: 3
     selectedMode: SemiAuto
     availableModes:
     - SemiAuto
@@ -205,8 +205,8 @@
       map: ["enum.GunVisualLayers.MagUnshaded"]
       shader: unshaded
   - type: Battery
-    maxCharge: 600
-    startingCharge: 600
+    maxCharge: 800
+    startingCharge: 800
   - type: HitscanBatteryAmmoProvider
     proto: RedLaser
     fireCost: 50
