@@ -10,6 +10,7 @@ using Content.Server.Players.PlayTimeTracking;
 using Content.Server.Popups;
 using Content.Server.Station.Systems;
 using Content.Shared.Access.Systems;
+using Content.Shared.Backmen.Cryostorage;
 using Content.Shared.Backmen.Reinforcement;
 using Content.Shared.Backmen.Reinforcement.Components;
 using Content.Shared.Database;
@@ -55,7 +56,6 @@ public sealed class ReinforcementSystem : SharedReinforcementSystem
 {
     [Dependency] private readonly AccessReaderSystem _access = default!;
     [Dependency] private readonly PopupSystem _popup = default!;
-    [Dependency] private readonly SharedIdCardSystem _idCard = default!;
     [Dependency] private readonly StationSystem _station = default!;
     [Dependency] private readonly UserInterfaceSystem _ui = default!;
     [Dependency] private readonly IPrototypeManager _prototype = default!;
@@ -76,6 +76,7 @@ public sealed class ReinforcementSystem : SharedReinforcementSystem
         SubscribeLocalEvent<ReinforcementSpawnerComponent, TakeGhostRoleEvent>(OnTakeoverTakeRole);
         SubscribeLocalEvent<ReinforcementSpawnPlayer>(OnSpawnPlayer);
         SubscribeLocalEvent<ReinforcementConsoleComponent,ActivatableUIOpenAttemptEvent>(OnTryOpenUi);
+        SubscribeLocalEvent<ReinforcementMemberComponent, MovedToStorageEvent>(OnMoveToSSD);
 
         Subs.BuiEvents<ReinforcementConsoleComponent>(ReinforcementConsoleKey.Key, subs =>
         {
@@ -86,6 +87,32 @@ public sealed class ReinforcementSystem : SharedReinforcementSystem
         });
     }
 
+    private void OnMoveToSSD(Entity<ReinforcementMemberComponent> ent, ref MovedToStorageEvent args)
+    {
+        if (TerminatingOrDeleted(ent.Comp.Linked))
+        {
+            args.Storage.Comp.StoredPlayers.Remove(ent);
+            Dirty(args.Storage);
+            QueueDel(ent);
+            return;
+        }
+        var members = ent.Comp.Linked.Comp.Members;
+        foreach (var member in ent.Comp.Linked.Comp.Members.ToArray())
+        {
+            if (member.Owner != ent.Owner)
+                continue;
+            ent.Comp.Linked.Comp.Members.Remove(member);
+            break;
+        }
+        var cc = members.Count;
+        if(cc == 0)
+            Clear(ent.Comp.Linked);
+
+        args.Storage.Comp.StoredPlayers.Remove(ent);
+        QueueDel(ent);
+        Dirty(args.Storage);
+    }
+
     private void OnTryOpenUi(Entity<ReinforcementConsoleComponent> ent, ref ActivatableUIOpenAttemptEvent args)
     {
         if (!_access.IsAllowed(args.User, ent))
@@ -93,6 +120,15 @@ public sealed class ReinforcementSystem : SharedReinforcementSystem
             _popup.PopupCursor(Loc.GetString("reinforcement-insufficient-access"), args.User, PopupType.Medium);
             args.Cancel();
         }
+    }
+
+    public void Clear(Entity<ReinforcementConsoleComponent> ent)
+    {
+        ent.Comp.Brief = "";
+        ent.Comp.CalledBy = EntityUid.Invalid;
+        ent.Comp.Members.Clear();
+        ent.Comp.IsActive = false;
+        UpdateUserInterface(ent);
     }
 
     private void OnSpawnPlayer(ReinforcementSpawnPlayer args)
@@ -119,6 +155,7 @@ public sealed class ReinforcementSystem : SharedReinforcementSystem
 
         var mob = spawnEv.SpawnResult ?? Spawn("MobHuman", Transform(ent).Coordinates);
 
+        EnsureComp<ReinforcementMemberComponent>(mob).Linked = ent.Comp.Linked;
         _appearance.LoadProfile(mob, character);
 
         _mind.TransferTo(newMind, mob);
