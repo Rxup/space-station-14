@@ -38,7 +38,7 @@ GunSafeSubMachineGunVector: GunSafeSubMachineGunDrozd
 # 2023-05-24
 AMEController: AmeController
 AMEJar: AmeJar
-AMEPart: AmePart
+#AMEPart: AmePart
 AMEShielding: AmeShielding
 
 # 2023-05-29
