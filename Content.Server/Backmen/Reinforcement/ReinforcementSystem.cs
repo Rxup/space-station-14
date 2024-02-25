@@ -7,6 +7,7 @@ using Content.Shared.Backmen.Reinforcement.Components;
 using Content.Shared.Mobs;
 using Content.Shared.Mobs.Components;
 using Content.Shared.Mobs.Systems;
+using Content.Shared.Popups;
 using Robust.Server.GameObjects;
 using Robust.Shared.Prototypes;
 
@@ -42,10 +43,21 @@ public sealed class ReinforcementSystem : SharedReinforcementSystem
             return;
         }
 
+        if (ent.Comp.Members.Count == 0)
+        {
+            _popup.PopupEntity(Loc.GetString("reinforcement-error-list"),ent, args.Session, PopupType.LargeCaution);
+            return;
+        }
+        if (ent.Comp.Brief.Length == 0)
+        {
+            _popup.PopupEntity(Loc.GetString("reinforcement-error-brief"),ent, args.Session, PopupType.LargeCaution);
+            return;
+        }
+
         ent.Comp.IsActive = true;
 
         // todo: spawn new ghost roles and forward to station spawn with record and roles
-        throw new NotImplementedException();
+        //throw new NotImplementedException();
 
         UpdateUserInterface(ent);
     }

@@ -8,3 +8,14 @@ reinforcement-active-row = [color=yellow]{ $name }[/color] ({ $job }) { $state -
 }
 
 reinforcement-row = { $name } ({ $job })
+
+reinforcement-console-title = Консоль вызова подкрепления
+reinforcement-console-brief = Причина вызова
+
+reinforcement-error-list = Ошибка! Список пуск!
+reinforcement-error-brief = Ошибка! Брифинг пуск!
+
+reinforcement-ghostrole-name = { $name } в роли { $job }
+reinforcement-ghostrole-desc = Брифинг: { $brief }
+
+reinforcement-called = Вызвано

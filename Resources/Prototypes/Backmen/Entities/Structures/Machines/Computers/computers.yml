@@ -58,6 +58,7 @@
       type: ReinforcementConsoleBoundUserInterface
   - type: ActivatableUI
     key: enum.ReinforcementConsoleKey.Key
+    singleUser: true
   - type: Sprite
     layers:
     - map: ["computerLayerBody"]
