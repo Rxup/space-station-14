@@ -167,7 +167,9 @@ public sealed class CryostorageSystem : SharedCryostorageSystem
             return;
 
         // if we have a session, we use that to add back in all the job slots the player had.
-        if (userId != null)
+        if (userId != null
+            && !HasComp<Backmen.Reinforcement.Components.ReinforcementMemberComponent>(ent) // backmen: reinforcement system
+           )
         {
             foreach (var station in _station.GetStationsSet())
             {
