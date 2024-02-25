@@ -208,6 +208,8 @@ public sealed class CryostorageSystem : SharedCryostorageSystem
         Dirty(ent, comp);
         UpdateCryostorageUIState((cryostorageEnt.Value, cryostorageComponent));
         AdminLog.Add(LogType.Action, LogImpact.High, $"{ToPrettyString(ent):player} was entered into cryostorage inside of {ToPrettyString(cryostorageEnt.Value)}");
+
+        RaiseLocalEvent(ent, new Content.Shared.Backmen.Cryostorage.MovedToStorageEvent{ Storage = (cryostorageEnt.Value, cryostorageComponent) });// backmen: reinforcement system
     }
 
     private void HandleCryostorageReconnection(Entity<CryostorageContainedComponent> entity)

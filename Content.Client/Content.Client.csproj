@@ -23,6 +23,17 @@
     <ProjectReference Include="..\RobustToolbox\Robust.Client\Robust.Client.csproj" />
     <ProjectReference Include="..\Content.Shared\Content.Shared.csproj" />
   </ItemGroup>
+  <ItemGroup>
+    <Compile Update="Backmen\Reinforcement\UI\ReinforcementConsoleWindow.cs">
+      <DependentUpon>ReinforcementConsoleWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Backmen\Reinforcement\UI\ReinforcementRow.cs">
+      <DependentUpon>ReinforcementRow.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Backmen\Reinforcement\UI\ActiveReinforcementRow.cs">
+      <DependentUpon>ActiveReinforcementRow.xaml</DependentUpon>
+    </Compile>
+  </ItemGroup>
   <Import Project="..\RobustToolbox\MSBuild\Robust.Properties.targets" />
   <Import Project="..\RobustToolbox\MSBuild\XamlIL.targets" />
 </Project>
