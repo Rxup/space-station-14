@@ -106,8 +106,9 @@ public sealed class ReinforcementSystem : SharedReinforcementSystem
 
         //var mob = Spawn(proto.Spawn);
         var spawnEv = new PlayerSpawningEvent(job, character, station);
-        var mob = spawnEv.SpawnResult ?? Spawn(args.Proto.Spawn);
         RaiseLocalEvent(spawnEv);
+
+        var mob = spawnEv.SpawnResult ?? Spawn(args.Proto.Spawn, Transform(ent).Coordinates);
 
         _appearance.LoadProfile(mob, character);
 
