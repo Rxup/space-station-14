@@ -15,7 +15,8 @@ reinforcement-console-brief = Причина вызова
 reinforcement-error-list = Ошибка! Список пуск!
 reinforcement-error-brief = Ошибка! Брифинг пуск!
 
-reinforcement-ghostrole-name = { $name } в роли { $job }
-reinforcement-ghostrole-desc = Брифинг: { $brief }
+reinforcement-ghostrole-name = Подкрепление: { $name }
+reinforcement-ghostrole-desc = в роли { $job }
+reinforcement-ghostrole-rule = Брифинг: { $brief }
 
 reinforcement-called = Вызвано
