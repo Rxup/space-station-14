@@ -15,9 +15,6 @@ public sealed partial class ReinforcementPrototype : IPrototype
     [DataField("job", required: true)]
     public ProtoId<JobPrototype> Job;
 
-    [DataField("spawn", required: true)]
-    public ProtoId<EntityPrototype> Spawn;
-
     [DataField("max")]
     public int MaxCount = 1;
 }

@@ -2,8 +2,8 @@
 
 reinforcement-active-row = [color=yellow]{ $name }[/color] ({ $job }) { $state ->
 [3] [color=red]Труп[/color]
-[2] [color=green]Жив[/color]
-[1] [color=yellow]Крит[/color]
+[2] [color=yellow]Крит[/color]
+[1] [color=green]Жив[/color]
 *[0] ???
 }
 
@@ -13,10 +13,18 @@ reinforcement-console-title = Консоль вызова подкреплени
 reinforcement-console-brief = Причина вызова
 
 reinforcement-error-list = Ошибка! Список пуск!
-reinforcement-error-brief = Ошибка! Брифинг пуск!
+reinforcement-error-list-1 = Ошибка! Список не соотвествует минимальным требованиям - { $num }!
+reinforcement-error-list-2 = Ошибка! Список превышает ограничение в { $num }!
+reinforcement-error-brief = Ошибка! Брифинг пуст!
+
+reinforcement-team-size = Размер команды:
+reinforcement-team-size-min = минмум: { $num }
+reinforcement-team-size-max = максимум: { $num }
 
 reinforcement-ghostrole-name = Подкрепление: { $name }
 reinforcement-ghostrole-desc = в роли { $job }
 reinforcement-ghostrole-rule = Брифинг: { $brief }
 
-reinforcement-called = Вызвано
+reinforcement-called = Вызвано:
+
+reinforcement-insufficient-access = Недостаточный доступ!

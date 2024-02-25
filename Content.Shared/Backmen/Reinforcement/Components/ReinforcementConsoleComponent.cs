@@ -17,6 +17,12 @@ public sealed partial class ReinforcementConsoleComponent : Component
 
     public bool IsActive = false;
 
+    [DataField("min")]
+    public int MinMembers = 1;
+
+    [DataField("max")]
+    public int MaxMembers = 3;
+
     [DataField("available")]
     public List<ProtoId<ReinforcementPrototype>> Available = new();
 

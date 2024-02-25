@@ -18,24 +18,27 @@ public sealed partial class ReinforcementConsoleWindow : FancyWindow
 {
     private readonly EntityUid _owner;
     private readonly ReinforcementConsoleComponent _comp;
-    private readonly IPlayerManager _playerManager;
+    private readonly string _stationName;
     private readonly IPrototypeManager _proto;
-    private readonly IRobustRandom _random;
-    private readonly AccessReaderSystem _accessReader;
 
-    public ReinforcementConsoleWindow(EntityUid owner, ReinforcementConsoleComponent comp, IPlayerManager playerManager, IPrototypeManager proto, IRobustRandom random, AccessReaderSystem accessReader)
+    public ReinforcementConsoleWindow(EntityUid owner, ReinforcementConsoleComponent comp, IPrototypeManager proto, string stationName)
     {
         _owner = owner;
         _comp = comp;
-        _playerManager = playerManager;
         _proto = proto;
-        _random = random;
-        _accessReader = accessReader;
+        _stationName = stationName;
 
         RobustXamlLoader.Load(this);
 
         Brief.OnTextChanged += BriefOnOnTextChanged;
         StartMission.OnPressed += StartMissionOnOnPressed;
+
+        var msg = new FormattedMessage();
+        msg.AddText(stationName);
+        StationName.SetMessage(msg);
+
+        TeamMin.Text = Loc.GetString("reinforcement-team-size-min", ("num",comp.MinMembers));
+        TeamMax.Text = Loc.GetString("reinforcement-team-size-max", ("num",comp.MaxMembers));
 
         OpenCentered();
     }
@@ -82,7 +85,7 @@ public sealed partial class ReinforcementConsoleWindow : FancyWindow
                     jobTitle = Loc.GetString(job.Name);
                 }
 
-                var msg = FormattedMessage.FromMarkup(Loc.GetString("reinforcement-active-row",("name", row.name), ("state", row.status), ("job",jobTitle)));
+                var msg = FormattedMessage.FromMarkup(Loc.GetString("reinforcement-active-row",("name", row.name), ("state", (int)row.status), ("job",jobTitle)));
                 r.TextInfo.SetMessage(msg);
 
                 SourcesList.AddChild(r);
@@ -109,7 +112,7 @@ public sealed partial class ReinforcementConsoleWindow : FancyWindow
                 {
                     Id = (uint)member,
                     Model = _proto.Index(proto),
-                    ModelCount = cur,
+                    ModelCount = cur
                 };
                 var jobTitle = "";
                 if (r.Model != null && _proto.TryIndex(r.Model.Job, out var job))
@@ -126,18 +129,49 @@ public sealed partial class ReinforcementConsoleWindow : FancyWindow
                     cur = Math.Max(0, cur-1);
                     OnKeySelected.Invoke((uint)member, (uint)cur);
                     r.Count.Text = cur+"x";
+                    r.ModelCount = cur;
+                    UpdateRows();
                 };
                 r.PlusBtn.OnPressed += args =>
                 {
                     cur = Math.Min(max, cur+1);
                     OnKeySelected.Invoke((uint)member, (uint)cur);
                     r.Count.Text = cur+"x";
+                    r.ModelCount = cur;
+                    UpdateRows();
                 };
                 SourcesList.AddChild(r);
             }
             // render grid row with plus minus id
             // hide callBy
             // enable button send
+        }
+        UpdateRows();
+    }
+
+    private void UpdateRows()
+    {
+        var min = _comp.MinMembers;
+        var max = _comp.MaxMembers;
+        var cur = 0;
+        foreach (var row in SourcesList.Children)
+        {
+            if (row is not ReinforcementRow r)
+            {
+                continue;
+            }
+
+            cur += r.ModelCount;
+        }
+
+        foreach (var row in SourcesList.Children)
+        {
+            if (row is not ReinforcementRow r)
+            {
+                continue;
+            }
+
+            r.PlusBtn.Disabled = max <= cur || r.Model?.MaxCount <= r.ModelCount;
         }
     }
 

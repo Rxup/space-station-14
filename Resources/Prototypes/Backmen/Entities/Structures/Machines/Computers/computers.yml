@@ -36,12 +36,36 @@
   parent: MarkerBase
   id: ReinforcementSpawner
 
+
+- type: reinforcement
+  id: ERTEngineer
+  name: Инженер
+  job: ERTEngineer
+  max: 1
+
+- type: reinforcement
+  id: ERTMedical
+  name: Медик
+  job: ERTMedical
+  max: 1
+
+- type: reinforcement
+  id: ERTJanitor
+  name: Уборщик
+  job: ERTJanitor
+  max: 1
+
 - type: reinforcement
   id: BKCCOfficial
   name: ПЦК
   job: BKCCOfficial
-  spawn: MobHumanCentComCorvax
   max: 1
+
+- type: reinforcement
+  id: BKCCSecOfficer
+  name: Охраник
+  job: BKCCSecOfficer
+  max: 2
 
 - type: entity
   parent: BaseComputer
@@ -50,8 +74,14 @@
   description: This can be used to check criminal records. Only security can modify them.
   components:
   - type: ReinforcementConsole
+    min: 2
+    max: 3
     available:
     - BKCCOfficial
+    - BKCCSecOfficer
+    - ERTEngineer
+    - ERTMedical
+    - ERTJanitor
   - type: UserInterface
     interfaces:
     - key: enum.ReinforcementConsoleKey.Key

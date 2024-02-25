@@ -21,6 +21,7 @@ using Content.Shared.Popups;
 using Content.Shared.Preferences;
 using Content.Shared.Roles;
 using Content.Shared.Roles.Jobs;
+using Content.Shared.UserInterface;
 using Robust.Server.GameObjects;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
@@ -60,7 +61,6 @@ public sealed class ReinforcementSystem : SharedReinforcementSystem
     [Dependency] private readonly IPrototypeManager _prototype = default!;
     [Dependency] private readonly IBanManager _banManager = default!;
     [Dependency] private readonly PlayTimeTrackingSystem _playTimeTrackings = default!;
-    [Dependency] private readonly GameTicker _gameTicker = default!;
     [Dependency] private readonly SharedHumanoidAppearanceSystem _appearance = default!;
     [Dependency] private readonly MindSystem _mind = default!;
     [Dependency] private readonly SharedRoleSystem _roles = default!;
@@ -68,7 +68,6 @@ public sealed class ReinforcementSystem : SharedReinforcementSystem
     [Dependency] private readonly IAdminLogManager _adminLogger = default!;
     [Dependency] private readonly StationJobsSystem _stationJobs = default!;
     [Dependency] private readonly IChatManager _chatManager = default!;
-    [Dependency] private readonly StationSpawningSystem _stationSpawning = default!;
 
     public override void Initialize()
     {
@@ -76,6 +75,7 @@ public sealed class ReinforcementSystem : SharedReinforcementSystem
 
         SubscribeLocalEvent<ReinforcementSpawnerComponent, TakeGhostRoleEvent>(OnTakeoverTakeRole);
         SubscribeLocalEvent<ReinforcementSpawnPlayer>(OnSpawnPlayer);
+        SubscribeLocalEvent<ReinforcementConsoleComponent,ActivatableUIOpenAttemptEvent>(OnTryOpenUi);
 
         Subs.BuiEvents<ReinforcementConsoleComponent>(ReinforcementConsoleKey.Key, subs =>
         {
@@ -84,6 +84,15 @@ public sealed class ReinforcementSystem : SharedReinforcementSystem
             subs.Event<BriefReinforcementUpdate>(OnBriefUpdate);
             subs.Event<CallReinforcementStart>(OnStartCall);
         });
+    }
+
+    private void OnTryOpenUi(Entity<ReinforcementConsoleComponent> ent, ref ActivatableUIOpenAttemptEvent args)
+    {
+        if (!_access.IsAllowed(args.User, ent))
+        {
+            _popup.PopupCursor(Loc.GetString("reinforcement-insufficient-access"), args.User, PopupType.Medium);
+            args.Cancel();
+        }
     }
 
     private void OnSpawnPlayer(ReinforcementSpawnPlayer args)
@@ -108,7 +117,7 @@ public sealed class ReinforcementSystem : SharedReinforcementSystem
         var spawnEv = new PlayerSpawningEvent(job, character, station);
         RaiseLocalEvent(spawnEv);
 
-        var mob = spawnEv.SpawnResult ?? Spawn(args.Proto.Spawn, Transform(ent).Coordinates);
+        var mob = spawnEv.SpawnResult ?? Spawn("MobHuman", Transform(ent).Coordinates);
 
         _appearance.LoadProfile(mob, character);
 
@@ -154,7 +163,7 @@ public sealed class ReinforcementSystem : SharedReinforcementSystem
             return;
         }
 
-        if (_banManager.GetRoleBans(args.Player.UserId)?.Contains(proto.Job) ?? false)
+        if (_banManager.GetRoleBans(args.Player.UserId)?.Contains("Job:"+proto.Job) ?? false)
         {
             _popup.PopupCursor(Loc.GetString("role-ban"), args.Player, PopupType.LargeCaution);
             ent.Comp.Used = false;
@@ -177,11 +186,27 @@ public sealed class ReinforcementSystem : SharedReinforcementSystem
 
     private void OnStartCall(Entity<ReinforcementConsoleComponent> ent, ref CallReinforcementStart args)
     {
+        if (args.Session.AttachedEntity == null || !_access.IsAllowed(args.Session.AttachedEntity.Value, ent))
+        {
+            _popup.PopupCursor(Loc.GetString("reinforcement-insufficient-access"), args.Session, PopupType.Medium);
+            return;
+        }
+
         if (ent.Comp.IsActive)
         {
             return;
         }
 
+        if (ent.Comp.Members.Count > ent.Comp.MaxMembers)
+        {
+            _popup.PopupEntity(Loc.GetString("reinforcement-error-list-1", ("num",ent.Comp.MaxMembers)), ent, args.Session, PopupType.LargeCaution);
+            return;
+        }
+        if (ent.Comp.Members.Count < ent.Comp.MinMembers)
+        {
+            _popup.PopupEntity(Loc.GetString("reinforcement-error-list-2", ("num",ent.Comp.MinMembers)), ent, args.Session, PopupType.LargeCaution);
+            return;
+        }
         if (ent.Comp.Members.Count == 0)
         {
             _popup.PopupEntity(Loc.GetString("reinforcement-error-list"), ent, args.Session, PopupType.LargeCaution);
@@ -195,6 +220,7 @@ public sealed class ReinforcementSystem : SharedReinforcementSystem
         }
 
         ent.Comp.IsActive = true;
+        ent.Comp.CalledBy = args.Session.AttachedEntity ?? EntityUid.Invalid;
 
         foreach (var member in ent.Comp.Members)
         {
@@ -211,7 +237,7 @@ public sealed class ReinforcementSystem : SharedReinforcementSystem
 
             var ghost = EnsureComp<GhostRoleComponent>(marker);
             ghost.RoleName = Loc.GetString("reinforcement-ghostrole-name", ("name", proto.Name));
-            ghost.RoleDescription = Loc.GetString("reinforcement-ghostrole-desc", ("job", job.Name));
+            ghost.RoleDescription = Loc.GetString("reinforcement-ghostrole-desc", ("job", Loc.GetString(job.Name)));
             ghost.RoleRules = Loc.GetString("reinforcement-ghostrole-rule", ("brief", ent.Comp.Brief));
 
             if (job.Requirements != null)
@@ -232,7 +258,8 @@ public sealed class ReinforcementSystem : SharedReinforcementSystem
             return;
         }
 
-        ent.Comp.Brief = args.Brief ?? string.Empty;
+        var brief = (args.Brief ?? string.Empty);
+        ent.Comp.Brief = brief[..Math.Min(brief.Length,ent.Comp.MaxStringLength)];
         //UpdateUserInterface(ent);
     }
 
@@ -291,9 +318,19 @@ public sealed class ReinforcementSystem : SharedReinforcementSystem
         {
             if (member.Owner.Valid)
             {
-                var state = TryComp<MobStateComponent>(member.Owner, out var mobState)
-                    ? mobState.CurrentState
-                    : MobState.Dead;
+                MobState state;
+                if (HasComp<ReinforcementSpawnerComponent>(member.Owner))
+                {
+                    state = MobState.Invalid;
+                }
+                else if (TryComp<MobStateComponent>(member.Owner, out var mobState))
+                {
+                    state = mobState.CurrentState;
+                }
+                else
+                {
+                    state = MobState.Dead;
+                }
                 msg.Members.Add((member.Id, GetNetEntity(member.Owner), member.Name, state));
             }
             else
