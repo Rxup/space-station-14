@@ -14,6 +14,14 @@
   id: CCAdmiral
   name: ЦК Адмирал
 
+- type: accessLevel
+  id: Blueshield
+  name: id-card-access-level-blueshield
+
+- type: accessLevel
+  id: Magistrat
+  name: id-card-access-level-magistrat
+
 - type: accessGroup
   id: CentCom
   tags:
@@ -22,4 +30,6 @@
   - CentralCommand
   - CCOfficer
   - CCAdmiral
+  - Magistrat
+  - Blueshield
 

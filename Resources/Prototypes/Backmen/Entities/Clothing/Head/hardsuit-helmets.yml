@@ -138,3 +138,19 @@
         Piercing: 0.9
         Heat: 0.9
         Radiation: 0.9
+
+#Blueshield Hardsuit
+- type: entity
+  parent: ClothingHeadHelmetHardsuitSecurity
+  id: ClothingHeadHelmetHardsuitBlueshield
+  noSpawn: true
+  name: Blueshield's hardsuit helmet
+  description: Strong hardsuit helmet, made for the blueshield.
+  components:
+  - type: PointLight
+    color: "#daffad"
+  - type: BreathMask
+  - type: Sprite
+    sprite: Backmen/Clothing/Head/Hardsuits/blueshield.rsi
+  - type: Clothing
+    sprite: Backmen/Clothing/Head/Hardsuits/blueshield.rsi

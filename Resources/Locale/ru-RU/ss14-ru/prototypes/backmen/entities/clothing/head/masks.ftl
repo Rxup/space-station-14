@@ -20,3 +20,5 @@ ent-ClothingihsGasmask = Противогаз IHS
 ent-ClothingMaskblacksilense = Трофейная маска черной тишины
     .desc = Маска знаменитого охотника по прозвищу Черная тишина. Источает отчаяние.
     .suffix = Одежда
+ent-ClothingMaskGasBlueSwat = Синий противогаз спецназа
+    .desc = Элитный противогаз Службы безопасности.

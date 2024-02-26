@@ -12,6 +12,8 @@
     - BKCCCargo
     - BKCCAssistant
     - BKCCAdmiral
+    - Magistrat
+    - Blueshield
   accountNumber: 1350  #backmen: currency
 
 - type: department
