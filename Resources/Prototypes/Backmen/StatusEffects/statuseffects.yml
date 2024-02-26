@@ -11,3 +11,10 @@
   icon:
     sprite: Backmen/Interface/Misc/job_icons.rsi
     state: stationAI
+
+- type: statusIcon
+  parent: JobIcon
+  id: JobIconBlueshield
+  icon:
+    sprite: Backmen/Interface/Misc/job_icons.rsi
+    state: blueshield

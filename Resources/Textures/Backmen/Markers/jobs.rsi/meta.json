@@ -36,6 +36,12 @@
     },
     {
       "name": "roboticist"
+    },
+    {
+       "name": "blueshield"
+    },
+    {
+       "name": "magistrat"
     }
   ]
 }
