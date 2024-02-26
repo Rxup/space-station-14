@@ -24,6 +24,24 @@
     },
 	{
       "name": "centcom_door"
+    },
+    {
+      "name": "bs"
+    },
+    {
+      "name": "bs_door"
+    },
+    {
+      "name": "bs_open"
+    },
+    {
+      "name": "locked"
+    },
+    {
+      "name": "unlocked"
+    },
+    {
+      "name": "sparking"
     }
   ]
 }

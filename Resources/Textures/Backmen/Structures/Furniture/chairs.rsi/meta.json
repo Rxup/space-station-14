@@ -1,12 +1,28 @@
 {
   "version": 1,
   "license": "CC-BY-SA-3.0",
-  "copyright": "by EDMI",
+  "copyright": "by EDMI, sofa By Rinary",
   "size": {
     "x": 32,
     "y": 32
   },
   "states": [
+    {
+        "name": "leather_sofa_corner",
+        "directions": 4
+      },
+      {
+        "name": "leather_sofa_left",
+        "directions": 4
+      },
+      {
+        "name": "leather_sofa_middle",
+        "directions": 4
+      },
+      {
+        "name": "leather_sofa_right",
+        "directions": 4
+      },
     {
       "name": "dark-comfy",
       "directions": 4

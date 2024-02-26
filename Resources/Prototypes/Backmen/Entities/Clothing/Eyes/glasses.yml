@@ -26,3 +26,24 @@
     tags:
     - HamsterWearable
     - WhitelistChameleon
+
+- type: entity
+  parent: ClothingEyesBase
+  id: ClothingEyesGlassesSunglassesMed
+  name: medical HUDSunglasses
+  description: Sunglasses with a medical HUD.
+  components:
+  - type: Sprite
+    sprite: Backmen/Clothing/Eyes/Glasses/sunglasseshudmed.rsi
+  - type: Clothing
+    sprite: Backmen/Clothing/Eyes/Glasses/sunglasseshudmed.rsi
+  - type: FlashImmunity
+  - type: EyeProtection
+    protectionTime: 5
+  - type: Tag
+    tags:
+    - HamsterWearable
+    - WhitelistChameleon
+  - type: ShowHealthIcons
+    damageContainers:
+    - Biological
