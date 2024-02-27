@@ -47,7 +47,7 @@
   parent: JobIcon
   id: JobIconCCCargoTech
   icon:
-    sprite: Backmen/Icons/jobicon.rsi
+    sprite: /Textures/Backmen/Icons/jobicon.rsi
     state: CargoTechnician
 
 - type: startingGear

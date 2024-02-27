@@ -4,7 +4,7 @@ using Content.Shared.Roles;
 namespace Content.Server.Ghost.Roles.Components
 {
     [RegisterComponent]
-    [Access(typeof(GhostRoleSystem))]
+    [Access(typeof(GhostRoleSystem),typeof(Content.Shared.Backmen.Reinforcement.SharedReinforcementSystem))]
     public sealed partial class GhostRoleComponent : Component
     {
         [DataField("name")] private string _roleName = "Unknown";

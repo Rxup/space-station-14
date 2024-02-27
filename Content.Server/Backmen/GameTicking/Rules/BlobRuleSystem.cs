@@ -2,6 +2,7 @@
 using Content.Server.AlertLevel;
 using Content.Server.Backmen.GameTicking.Rules.Components;
 using Content.Server.Backmen.SpecForces;
+using Content.Server.Chat.Managers;
 using Content.Server.Chat.Systems;
 using Content.Server.GameTicking;
 using Content.Server.GameTicking.Rules;
@@ -10,6 +11,7 @@ using Content.Server.Mind;
 using Content.Server.Nuke;
 using Content.Server.Objectives;
 using Content.Server.RoundEnd;
+using Content.Server.Station.Components;
 using Content.Server.Station.Systems;
 using Content.Shared.Backmen.Blob;
 using Content.Shared.Objectives.Components;
@@ -25,6 +27,8 @@ public sealed class BlobRuleSystem : GameRuleSystem<BlobRuleComponent>
     [Dependency] private readonly NukeCodePaperSystem _nukeCode = default!;
     [Dependency] private readonly StationSystem _stationSystem = default!;
     [Dependency] private readonly ObjectivesSystem _objectivesSystem = default!;
+    [Dependency] private readonly AlertLevelSystem _alertLevelSystem = default!;
+    [Dependency] private readonly IChatManager _chatManager = default!;
 
     private ISawmill _sawmill = default!;
     private static readonly SoundPathSpecifier BlobDetectAudio = new SoundPathSpecifier("/Audio/Corvax/Adminbuse/Outbreak5.ogg");
@@ -67,6 +71,12 @@ public sealed class BlobRuleSystem : GameRuleSystem<BlobRuleComponent>
                 }
 
                 var stationUid = _stationSystem.GetOwningStation(ent);
+                if (stationUid == null || !HasComp<StationEventEligibleComponent>(stationUid.Value))
+                {
+                    _chatManager.SendAdminAlert(ent, Loc.GetString("blob-alert-out-off-station"));
+                    QueueDel(ent);
+                    continue;
+                }
                 switch (blobRuleComp.Stage)
                 {
                     case BlobStage.Default when comp.BlobTiles.Count < 30:
@@ -74,8 +84,7 @@ public sealed class BlobRuleSystem : GameRuleSystem<BlobRuleComponent>
                     case BlobStage.Default:
                         _chatSystem.DispatchGlobalAnnouncement(Loc.GetString("blob-alert-detect"),
                             Loc.GetString("Station"), true, BlobDetectAudio, Color.Red);
-                        EntitySystem.Get<AlertLevelSystem>()
-                            .SetLevel(stationUid!.Value, "sigma", true, true, true, false);
+                        _alertLevelSystem.SetLevel(stationUid.Value, "sigma", true, true, true, true);
                         blobRuleComp.Stage = BlobStage.Begin;
                         break;
                     case BlobStage.Begin:
@@ -87,12 +96,10 @@ public sealed class BlobRuleSystem : GameRuleSystem<BlobRuleComponent>
                                 true,
                                 blobRuleComp.AlertAudio,
                                 Color.Red);
-                            if (stationUid != null)
-                                _nukeCode.SendNukeCodes(stationUid.Value);
-                            blobRuleComp.Stage = BlobStage.Critical;
-                            EntitySystem.Get<AlertLevelSystem>()
-                                .SetLevel(stationUid!.Value, "gamma", true, true, true, false);
 
+                            _nukeCode.SendNukeCodes(stationUid.Value);
+                            blobRuleComp.Stage = BlobStage.Critical;
+                            _alertLevelSystem.SetLevel(stationUid.Value, "gamma", true, true, true, true);
                             EntityManager.System<SpecForcesSystem>().CallOps(SpecForcesType.RXBZZ, "ДСО");
                         }
 

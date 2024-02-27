@@ -863,7 +863,7 @@
   parent: JobIcon
   id: JobIconDeathSquadron
   icon:
-    sprite: Backmen/Icons/jobicon.rsi
+    sprite: /Textures/Backmen/Icons/jobicon.rsi
     state: DeathSquadron
 
 - type: entity
@@ -1130,7 +1130,7 @@
   parent: JobIcon
   id: JobIconNanotrasenOSO
   icon:
-    sprite: Backmen/Icons/jobicon.rsi
+    sprite: /Textures/Backmen/Icons/jobicon.rsi
     state: NanotrasenOSO
 
 - type: entity
@@ -1218,7 +1218,7 @@
   parent: JobIcon
   id: JobIconNanotrasenSec
   icon:
-    sprite: Backmen/Icons/jobicon.rsi
+    sprite: /Textures/Backmen/Icons/jobicon.rsi
     state: NanotrasenSec
 
 - type: entity
@@ -1246,7 +1246,7 @@
   parent: JobIcon
   id: JobIconNanotrasenMed
   icon:
-    sprite: Backmen/Icons/jobicon.rsi
+    sprite: /Textures/Backmen/Icons/jobicon.rsi
     state: NanotrasenMed
 
 - type: entity
@@ -1274,7 +1274,7 @@
   parent: JobIcon
   id: JobIconNanotrasenEngi
   icon:
-    sprite: Backmen/Icons/jobicon.rsi
+    sprite: /Textures/Backmen/Icons/jobicon.rsi
     state: NanotrasenEngi
 
 - type: entity
@@ -1302,7 +1302,7 @@
   parent: JobIcon
   id: JobIconNanotrasenjanitor
   icon:
-    sprite: Backmen/Icons/jobicon.rsi
+    sprite: /Textures/Backmen/Icons/jobicon.rsi
     state: Nanotrasenjanitor
 
 - type: entity
