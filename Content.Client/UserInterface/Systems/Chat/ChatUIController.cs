@@ -63,6 +63,7 @@ public sealed class ChatUIController : UIController
     [UISystemDependency] private readonly ChatSystem? _chatSys = default;
     [UISystemDependency] private readonly PsionicChatUpdateSystem? _psionic = default!; // backmen: psionic
     [UISystemDependency] private readonly ShadowkinChatUpdateSystem? _shadowkin = default!; //backmen: shadowkin
+    [UISystemDependency] private readonly SharedTransformSystem? _xformSystem = default!;
 
     [ValidatePrototypeId<ColorPalettePrototype>]
     private const string ChatNamePalette = "ChatNames";
@@ -493,11 +494,12 @@ public sealed class ChatUIController : UIController
 
         if (_state.CurrentState is GameplayStateBase)
         {
-            // can always hear local / radio / emote when in the game
+            // can always hear local / radio / emote / notifications when in the game
             FilterableChannels |= ChatChannel.Local;
             FilterableChannels |= ChatChannel.Whisper;
             FilterableChannels |= ChatChannel.Radio;
             FilterableChannels |= ChatChannel.Emotes;
+            FilterableChannels |= ChatChannel.Notifications;
 
             // Can only send local / radio / emote when attached to a non-ghost entity.
             // TODO: this logic is iffy (checking if controlling something that's NOT a ghost), is there a better way to check this?
@@ -583,7 +585,7 @@ public sealed class ChatUIController : UIController
     private void UpdateQueuedSpeechBubbles(FrameEventArgs delta)
     {
         // Update queued speech bubbles.
-        if (_queuedSpeechBubbles.Count == 0 || _examine == null)
+        if (_queuedSpeechBubbles.Count == 0 || _examine is null || _xformSystem is null)
         {
             return;
         }
@@ -621,7 +623,7 @@ public sealed class ChatUIController : UIController
         var predicate = static (EntityUid uid, (EntityUid compOwner, EntityUid? attachedEntity) data)
             => uid == data.compOwner || uid == data.attachedEntity;
         var playerPos = player != null
-            ? EntityManager.GetComponent<TransformComponent>(player.Value).MapPosition
+            ? _xformSystem.GetMapCoordinates(player.Value)
             : MapCoordinates.Nullspace;
 
         var occluded = player != null && _examine.IsOccluded(player.Value);
@@ -640,7 +642,7 @@ public sealed class ChatUIController : UIController
                 continue;
             }
 
-            var otherPos = EntityManager.GetComponent<TransformComponent>(ent).MapPosition;
+            var otherPos = _xformSystem.GetMapCoordinates(ent);
 
             if (occluded && !ExamineSystemShared.InRangeUnOccluded(
                     playerPos,
