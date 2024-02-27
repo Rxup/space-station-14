@@ -1,0 +1,10 @@
+﻿<PanelContainer xmlns="https://spacestation14.io"
+                xmlns:gfx="clr-namespace:Robust.Client.Graphics;assembly=Robust.Client"
+                HorizontalExpand="True">
+    <BoxContainer Orientation="Horizontal"
+                  HorizontalExpand="True">
+        <RichTextLabel Name="TextInfo"
+               Access="Public"
+               HorizontalExpand="True" />
+    </BoxContainer>
+</PanelContainer>

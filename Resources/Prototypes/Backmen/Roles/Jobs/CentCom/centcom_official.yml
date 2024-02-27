@@ -48,7 +48,7 @@
   parent: JobIcon
   id: JobIconNT
   icon:
-    sprite: Backmen/Icons/jobicon.rsi
+    sprite: /Textures/Backmen/Icons/jobicon.rsi
     state: NT
 
 - type: startingGear

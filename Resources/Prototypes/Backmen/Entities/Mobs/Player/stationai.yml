@@ -245,10 +245,14 @@
           type: SiliconLawBoundUserInterface
         - key: enum.StrippingUiKey.Key
           type: StrippableBoundUserInterface
+        - key: enum.CriminalRecordsConsoleKey.Key
+          type: CriminalRecordsConsoleBoundUserInterface
     - type: IntrinsicUI
       uis:
       - key: enum.CommunicationsConsoleUiKey.Key
         toggleAction: ActionAIShowCommunications
+      - key: enum.CriminalRecordsConsoleKey.Key
+        toggleAction: ActionAiShowCriminalRecords
     - type: ContainerContainer
       containers:
         tools: !type:Container
@@ -530,22 +534,3 @@
           sprite: Backmen/Mobs/Silicon/cameramob.rsi
           state: ai_camera
           shader: unshaded
-    - type: IntrinsicUI
-      uis:
-        - key: enum.CommunicationsConsoleUiKey.Key
-          toggleAction: ActionAIShowCommunications
-        #- key: enum.CommunicationsConsoleUiKey.Key
-        #  toggleAction:
-        # Mostly works, just not as I wish, so I'm disabling it for now.
-        # Need to split this into two PRs,
-        # There is too many issues this PR has fixed we need live for me to keep delaying it with more things
-        # - key: enum.AICameraListUiKey.Key
-        #   toggleAction:
-        #     name: ai-warp-menu-title
-        #     description: ai-warp-menu-description
-        #     icon: Backmen/Mobs/Silicon/ai.rsi/icon-camera.png
-        #     iconOn: Backmen/Mobs/Silicon/ai.rsi/icon-camera.png
-        #     keywords: ["AI", "console", "interface"]
-        #     priority: -3
-        #     event: !type:ToggleIntrinsicUIEvent
-
