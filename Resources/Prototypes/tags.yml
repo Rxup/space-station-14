@@ -251,6 +251,33 @@
   id: Carpet
 
 - type: Tag
+  id: CarpetBlack
+
+- type: Tag
+  id: CarpetBlue
+
+- type: Tag
+  id: CarpetCyan
+
+- type: Tag
+  id: CarpetGreen
+
+- type: Tag
+  id: CarpetOrange
+
+- type: Tag
+  id: CarpetPurple
+
+- type: Tag
+  id: CarpetPink
+
+- type: Tag
+  id: CarpetRed
+
+- type: Tag
+  id: CarpetWhite
+
+- type: Tag
   id: CanPilot
 
 - type: Tag
@@ -637,6 +664,9 @@
 
 - type: Tag
   id: HidesLegs # for spider legs.
+
+- type: Tag
+  id: HidesNose # for non-standard noses.
 
 - type: Tag
   id: HighRiskItem
