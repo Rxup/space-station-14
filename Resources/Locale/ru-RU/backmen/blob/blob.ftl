@@ -48,8 +48,10 @@ blob-chem-electromagneticweb-info =
 
 blob-alert-out-off-station = Блоб был удален т.к. был обнаружен вне станции!
 
-blob-title=Блоб
-blob-description=Все мы блоб...
+# game-rule
+
+blob-title = Блоб
+blob-description = показатели биологической безопасности станции показывают наличие на станции некого паразита... "Слизневый блоб"
 
 # Announcment
 blob-alert-recall-shuttle = Эвакуационный шатл не может быть отправлен на станцию пока существует биологическая угроза 5 уровня.
