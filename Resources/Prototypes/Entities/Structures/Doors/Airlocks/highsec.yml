@@ -57,6 +57,7 @@
   - type: Weldable
     time: 10
   - type: Airlock
+    openUnlitVisible: true # backmen fix open state
   - type: NavMapDoor
   - type: DoorBolt
   - type: AccessReader
