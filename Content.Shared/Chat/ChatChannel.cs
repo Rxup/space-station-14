@@ -91,10 +91,6 @@ namespace Content.Shared.Chat
         /// </summary>
         Telepathic = 1 << 15,
 
-        /// <summary>
-        ///     Empathy channel for Shadowkin.
-        /// </summary>
-        Empathy = 1 << 16,
 
         /// <summary>
         ///     Channels considered to be IC.

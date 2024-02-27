@@ -62,7 +62,6 @@ public sealed class ChatUIController : UIController
     [UISystemDependency] private readonly TypingIndicatorSystem? _typingIndicator = default;
     [UISystemDependency] private readonly ChatSystem? _chatSys = default;
     [UISystemDependency] private readonly PsionicChatUpdateSystem? _psionic = default!; // backmen: psionic
-    [UISystemDependency] private readonly ShadowkinChatUpdateSystem? _shadowkin = default!; //backmen: shadowkin
     [UISystemDependency] private readonly SharedTransformSystem? _xformSystem = default!;
 
     [ValidatePrototypeId<ColorPalettePrototype>]
@@ -527,7 +526,6 @@ public sealed class ChatUIController : UIController
             FilterableChannels |= ChatChannel.AdminChat;
             CanSendChannels |= ChatSelectChannel.Admin;
             FilterableChannels |= ChatChannel.Telepathic;
-            FilterableChannels |= ChatChannel.Empathy;
         }
 
         // psionics
@@ -539,17 +537,6 @@ public sealed class ChatUIController : UIController
         else if (_ghost is { IsGhost: true })
         {
             FilterableChannels |= ChatChannel.Telepathic;
-        }
-
-        // Shadowkin
-        if (_shadowkin != null && _shadowkin.IsShadowkin)
-        {
-            FilterableChannels |= ChatChannel.Empathy;
-            CanSendChannels |= ChatSelectChannel.Empathy;
-        }
-        else if (_ghost is { IsGhost: true })
-        {
-            FilterableChannels |= ChatChannel.Empathy;
         }
 
         SelectableChannels = CanSendChannels;
