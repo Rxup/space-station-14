@@ -23,6 +23,15 @@ public sealed class CCVars
         GptApiToken = CVarDef.Create("gpt.token", "", CVar.SERVERONLY | CVar.CONFIDENTIAL);
 
     /*
+     * VPN Guard
+     */
+    public static readonly CVarDef<bool>
+        VpnGuardEnabled = CVarDef.Create("vpnguard.enabled", false, CVar.SERVERONLY);
+
+    public static readonly CVarDef<string>
+        VpnGuardToken = CVarDef.Create("vpnguard.token", "", CVar.SERVERONLY);
+
+    /*
      * Queue
      */
 
