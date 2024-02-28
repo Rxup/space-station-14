@@ -15,11 +15,10 @@
         - type: StationJobs
           overflowJobs: []
           availableJobs:
-            BKCCOfficial: [ 1, 1]
             BKCCOperator: [ 1, 1]
             BKCCSecGavna: [ 1, 1]
             BKCCCargo: [ 1, 2]
-            BKCCSecOfficer: [ 2, 3]
+            BKCCSecOfficer: [ 2, 2]
             BKCCAssistant: [ 2, 4]
             BKCCAdmiral: [ 0, 0]
 
@@ -40,11 +39,10 @@
       - type: StationJobs
         overflowJobs: []
         availableJobs:
-          BKCCOfficial: [ 1, 1]
           BKCCOperator: [ 1, 1]
           BKCCSecGavna: [ 1, 1]
           BKCCCargo: [ 1, 2]
-          BKCCSecOfficer: [ 2, 3]
+          BKCCSecOfficer: [ 2, 2]
           BKCCAssistant: [ 2, 4]
           BKCCAdmiral: [ 0, 0]
 
