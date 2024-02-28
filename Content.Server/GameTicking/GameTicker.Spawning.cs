@@ -410,7 +410,7 @@ namespace Content.Server.GameTicking
                     var gridXform = Transform(gridUid);
 
                     return new EntityCoordinates(gridUid,
-                        _transform.GetInvWorldMatrix(gridXform).Transform(toMap.Position));
+                        gridXform.InvWorldMatrix.Transform(toMap.Position));
                 }
 
                 return spawn;
