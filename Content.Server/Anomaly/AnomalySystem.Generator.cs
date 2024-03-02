@@ -90,7 +90,7 @@ public sealed partial class AnomalySystem
     {
         if (!TryComp<MapGridComponent>(grid, out var gridComp))
             return;
-        if (HasComp<ProtectedGridComponent>(grid) || HasComp<Backmen.Arrivals.ArrivalsProtectGridComponent>(grid)) // backmen: centcom
+        if (HasComp<ProtectedGridComponent>(grid) || HasComp<Shared.Backmen.Arrivals.ArrivalsProtectGridComponent>(grid)) // backmen: centcom
             return;
 
         var xform = Transform(grid);

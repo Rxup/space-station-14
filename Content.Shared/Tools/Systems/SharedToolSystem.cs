@@ -196,7 +196,7 @@ public abstract partial class SharedToolSystem : EntitySystem
 
         // check if the user allows using the tool
         var ev = new ToolUserAttemptUseEvent(target);
-        RaiseLocalEvent(user, ref ev);
+        RaiseLocalEvent(user, ref ev, true); // backmen: protect system
         if (ev.Cancelled)
             return false;
 
