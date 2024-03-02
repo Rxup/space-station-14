@@ -2070,6 +2070,8 @@ entities:
     - type: GasTileOverlay
     - type: SpreaderGrid
     - type: GridPathfinding
+    - type: BecomesStation
+      id: SyndicateOutpost
   - uid: 1295
     components:
     - type: MetaData
