@@ -18,6 +18,7 @@
     ClothingMaskGasCentcom: 3
     ClothingHeadsetCentCom: 3
     ClothingOuterWinterCentcom: 3
+    ClothingOuterCoatExpensive: 1
     ClothingNeckScarfStripedCentcom: 3
     ClothingNeckTieCentCom: 3 # backmen
     ClothingNeckCloakCentcom: 3
