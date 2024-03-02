@@ -48,6 +48,7 @@
       groups:
         trade:
           addComponents:
+            - type: ArrivalsProtectGrid
             - type: ProtectedGrid
             - type: TradeStation
           paths:
