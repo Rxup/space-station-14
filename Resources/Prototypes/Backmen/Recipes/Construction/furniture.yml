@@ -371,20 +371,3 @@
   canBuildInImpassable: false
   conditions:
     - !type:TileNotBlocked
-
-- type: construction
-  id: CurtainsDark
-  name: dark curtains
-  description: Contains less than 1% mercury and dark.
-  graph: Curtains
-  startNode: start
-  targetNode: CurtainsDark
-  category: construction-category-furniture
-  icon:
-    sprite: Backmen/Structures/Decoration/curtains.rsi
-    state: closed
-  objectType: Structure
-  placementMode: SnapgridCenter
-  canBuildInImpassable: false
-  conditions:
-    - !type:TileNotBlocked
