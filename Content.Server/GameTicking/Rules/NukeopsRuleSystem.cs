@@ -76,6 +76,8 @@ public sealed class NukeopsRuleSystem : GameRuleSystem<NukeopsRuleComponent>
 
     private ISawmill _sawmill = default!;
 
+    [Dependency] private readonly Backmen.Arrivals.CentcommSystem _centcommSystem = default!; // backmen: centcom
+
     [ValidatePrototypeId<CurrencyPrototype>]
     private const string TelecrystalCurrencyPrototype = "Telecrystal";
 

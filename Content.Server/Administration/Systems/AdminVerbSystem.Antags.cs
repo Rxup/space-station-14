@@ -57,7 +57,7 @@ public sealed partial class AdminVerbSystem
             Icon = new SpriteSpecifier.Rsi(new("/Textures/Backmen/Interface/Actions/blob.rsi"), "blobFactory"),
             Act = () =>
             {
-                EnsureComp<Shared.Backmen.Blob.BlobCarrierComponent>(args.Target).HasMind = targetMindComp.HasMind;
+                EnsureComp<Shared.Backmen.Blob.BlobCarrierComponent>(args.Target).HasMind = HasComp<ActorComponent>(args.Target);
             },
             Impact = LogImpact.High,
             Message = Loc.GetString("admin-verb-text-make-blob"),
@@ -71,11 +71,11 @@ public sealed partial class AdminVerbSystem
             Icon = new SpriteSpecifier.Rsi(new("/Textures/Structures/flesh_heart.rsi"), "base_heart"),
             Act = () =>
             {
-                if (!_minds.TryGetSession(targetMindComp.Mind, out var session))
+                if (!TryComp<ActorComponent>(args.Target, out var actor))
                     return;
 
                 EntityManager.System<Content.Server.Backmen.GameTicking.Rules.FleshCultRuleSystem>()
-                    .MakeCultist(session);
+                    .MakeCultist(actor.PlayerSession);
             },
             Impact = LogImpact.High,
             Message = Loc.GetString("admin-verb-text-make-flesh-leader-cultist"),
@@ -89,11 +89,11 @@ public sealed partial class AdminVerbSystem
             Icon = new SpriteSpecifier.Rsi(new("/Textures/Mobs/Aliens/FleshCult/flesh_cult_mobs.rsi"), "worm"),
             Act = () =>
             {
-                if (!_minds.TryGetSession(targetMindComp.Mind, out var session))
+                if (!TryComp<ActorComponent>(args.Target, out var actor))
                     return;
 
                 EntityManager.System<Content.Server.Backmen.GameTicking.Rules.FleshCultRuleSystem>()
-                    .MakeCultist(session);
+                    .MakeCultist(actor.PlayerSession);
             },
             Impact = LogImpact.High,
             Message = Loc.GetString("admin-verb-text-make-flesh-cultist"),
@@ -108,11 +108,8 @@ public sealed partial class AdminVerbSystem
                 "poster3_legit"),
             Act = () =>
             {
-                if (!_minds.TryGetSession(targetMindComp.Mind, out var session))
-                    return;
-
                 EntityManager.System<Content.Server.Backmen.EvilTwin.EvilTwinSystem>()
-                    .MakeTwin(out _, session.AttachedEntity);
+                    .MakeTwin(out _, args.Target);
             },
             Impact = LogImpact.High,
             Message = Loc.GetString("admin-verb-make-eviltwin"),

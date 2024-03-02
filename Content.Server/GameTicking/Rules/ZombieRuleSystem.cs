@@ -217,6 +217,7 @@ public sealed class ZombieRuleSystem : GameRuleSystem<ZombieRuleComponent>
 
         var players = AllEntityQuery<HumanoidAppearanceComponent, ActorComponent, MobStateComponent, TransformComponent>();
         var zombers = GetEntityQuery<ZombieComponent>();
+        var centcom = GetEntityQuery<ZombieComponent>(); // backmen: centcom
         while (players.MoveNext(out var uid, out _, out _, out var mob, out var xform))
         {
             if (!_mobState.IsAlive(uid, mob))
@@ -224,6 +225,11 @@ public sealed class ZombieRuleSystem : GameRuleSystem<ZombieRuleComponent>
 
             if (zombers.HasComponent(uid))
                 continue;
+
+            // start-backmen: centcom
+            if (centcom.HasComponent(uid))
+                continue;
+            // end-backmen: centcom
 
             if (!includeOffStation && !stationGrids.Contains(xform.GridUid ?? EntityUid.Invalid))
                 continue;
