@@ -4,8 +4,6 @@ namespace Content.Shared.Backmen.StationAI.Systems;
 
 public sealed class AICameraSystem : EntitySystem
 {
-    [Dependency] private readonly IEntityManager _entityManager = default!;
-
     public override void Initialize()
     {
         base.Initialize();

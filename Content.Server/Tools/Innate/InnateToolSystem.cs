@@ -49,12 +49,13 @@ public sealed class InnateToolSystem : EntitySystem
         var toSpawn = component.ToSpawn.First();
 
         var item = Spawn(toSpawn, spawnCoord);
-        AddComp<UnremoveableComponent>(item);
         if (!_sharedHandsSystem.TryPickupAnyHand(uid, item, checkActionBlocker: false))
         {
             QueueDel(item);
-            component.ToSpawn.Clear();
+            component.ToSpawn.Remove(toSpawn);
+            return;
         }
+        AddComp<UnremoveableComponent>(item);
         component.ToSpawn.Remove(toSpawn);
         component.ToolUids.Add(item);
     }

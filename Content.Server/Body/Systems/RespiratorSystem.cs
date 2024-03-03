@@ -36,30 +36,7 @@ public sealed class RespiratorSystem : EntitySystem
         // We want to process lung reagents before we inhale new reagents.
         UpdatesAfter.Add(typeof(MetabolizerSystem));
         SubscribeLocalEvent<RespiratorComponent, ApplyMetabolicMultiplierEvent>(OnApplyMetabolicMultiplier);
-
-        // start-backmen: blob zombie
-        SubscribeLocalEvent<RespiratorImmunityComponent, ComponentInit>(OnPressureImmuneInit);
-        SubscribeLocalEvent<RespiratorImmunityComponent, ComponentRemove>(OnPressureImmuneRemove);
-        // end-backmen: blob zombie
     }
-
-    // start-backmen: blob zombie
-    private void OnPressureImmuneInit(EntityUid uid, RespiratorImmunityComponent pressureImmunity, ComponentInit args)
-    {
-        if (TryComp<RespiratorComponent>(uid, out var respirator))
-        {
-            respirator.HasImmunity = true;
-        }
-    }
-
-    private void OnPressureImmuneRemove(EntityUid uid, RespiratorImmunityComponent pressureImmunity, ComponentRemove args)
-    {
-        if (TryComp<RespiratorComponent>(uid, out var respirator))
-        {
-            respirator.HasImmunity = false;
-        }
-    }
-    // end-backmen: blob zombie
 
     public override void Update(float frameTime)
     {
@@ -95,6 +72,18 @@ public sealed class RespiratorSystem : EntitySystem
                 }
             }
 
+            // start-backmen: blob zombie
+            if (respirator.HasImmunity)
+            {
+                if (respirator.SuffocationCycles > 0)
+                {
+                    StopSuffocation(uid, respirator);
+                    respirator.SuffocationCycles = 0;
+                }
+                continue;
+            }
+            else
+            // end-backmen: blob zombie
             if (respirator.Saturation < respirator.SuffocationThreshold)
             {
                 if (_gameTiming.CurTime >= respirator.LastGaspPopupTime + respirator.GaspPopupCooldown)

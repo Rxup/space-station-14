@@ -121,7 +121,7 @@ public sealed class FelinidSystem : EntitySystem
         args.Handled = true;
     }
 
-    private static readonly SoundSpecifier EatMousePlay = new SoundPathSpecifier("/Audio/Items/eatfood.ogg",
+    private static readonly SoundSpecifier EatMousePlay = new SoundCollectionSpecifier("eating",
         AudioParams.Default.WithVariation(0.15f));
 
     private void OnEatMouse(EntityUid uid, FelinidComponent component, EatMouseActionEvent args)
