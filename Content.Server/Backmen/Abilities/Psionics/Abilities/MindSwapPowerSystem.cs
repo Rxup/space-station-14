@@ -192,13 +192,13 @@ public sealed class MindSwapPowerSystem : EntitySystem
                 _popupSystem.PopupCursor("Ошибка! Ваша цель уже в другом теле!", performer);
                 return false; // Повторный свап!? TODO: chain swap, in current mode broken chained in no return (has no mind error)
             }
-
+/*
             if (HasComp<ActiveNPCComponent>(performer) || HasComp<ActiveNPCComponent>(target))
             {
                 _popupSystem.PopupCursor("Ошибка! Ваша цель в ссд!", performer);
                 return false;
             }
-
+*/
             if (HasComp<MindShieldComponent>(target))
             {
                 _popupSystem.PopupCursor("Ошибка! Ваша цель имеет защиту разума!", performer);

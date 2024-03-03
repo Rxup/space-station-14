@@ -58,10 +58,8 @@ internal sealed class MassMindSwapRule : StationEventSystem<MassMindSwapRuleComp
             var mindshild = GetEntityQuery<MindShieldComponent>();
             var psiIsulated = GetEntityQuery<PsionicInsulationComponent>();
 
-            var query =
-                EntityQueryEnumerator<PotentialPsionicComponent, TransformComponent, ActorComponent,
-                    MobStateComponent>();
-            while (query.MoveNext(out var psion, out _, out var xform, out var actorComponent, out _))
+            var query = EntityQueryEnumerator<PotentialPsionicComponent, TransformComponent, MobStateComponent>();
+            while (query.MoveNext(out var psion, out _, out var xform, out _))
             {
                 if (mindswaped.HasComponent(psion) || mindshild.HasComponent(psion) || psiIsulated.HasComponent(psion))
                 {
@@ -74,10 +72,7 @@ internal sealed class MassMindSwapRule : StationEventSystem<MassMindSwapRuleComp
                 if (!stationEvents.Contains(xform.MapID))
                     continue;
 
-                if (!_mindSystem.TryGetMind(actorComponent.PlayerSession, out var mindId, out var mind))
-                    continue;
-
-                if (_roleSystem.MindIsExclusiveAntagonist(mindId))
+                if (_mindSystem.TryGetMind(psion, out var mindId, out var mind) && _roleSystem.MindIsExclusiveAntagonist(mindId))
                     continue;
 
                 psionicPool.Add(psion);
@@ -88,6 +83,7 @@ internal sealed class MassMindSwapRule : StationEventSystem<MassMindSwapRuleComp
         _random.Shuffle(psionicPool);
 
         var activeNpc = GetEntityQuery<ActiveNPCComponent>();
+        var actorQuery = GetEntityQuery<ActorComponent>();
 
         var q1 = new Queue<EntityUid>(psionicPool.ToList());
 
@@ -100,16 +96,28 @@ internal sealed class MassMindSwapRule : StationEventSystem<MassMindSwapRuleComp
             var q2 = new Queue<EntityUid>(psionicPool.ToList());
             while (q2.TryDequeue(out var other))
             {
+                if(actor == other)
+                    continue;
+
                 if (mindswaped.HasComponent(other)) // skip if swapped
                 {
                     continue;
+                }
+                if(!(actorQuery.HasComponent(actor) && actorQuery.HasComponent(other)))
+                {
+                    var gridA = Transform(actor).GridUid;
+                    var gridB = Transform(other).GridUid;
+                    if(gridA == null || gridB == null)
+                        continue;
+                    if(gridA != gridB)
+                        continue;
                 }
                 if (!_mindSwap.Swap(actor, other))
                 {
                     continue;
                 }
 
-                if (activeNpc.HasComponent(actor) || activeNpc.HasComponent(other))
+                if (!actorQuery.HasComponent(actor) || !actorQuery.HasComponent(other))
                 {
                     component.IsTemporary = true;
                 }
