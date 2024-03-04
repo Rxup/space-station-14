@@ -57,7 +57,7 @@
   - type: Weldable
     time: 10
   - type: Airlock
-    openUnlitVisible: true # backmen fix open state
+    openUnlitVisible: true # Corvax-Resprite-Airlocks
   - type: NavMapDoor
   - type: DoorBolt
   - type: AccessReader
