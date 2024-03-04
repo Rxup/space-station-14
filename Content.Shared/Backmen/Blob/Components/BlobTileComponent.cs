@@ -1,13 +1,17 @@
-using Content.Shared.Backmen.Blob;
+﻿using Content.Shared.Backmen.Blob;
 using Content.Shared.Damage;
 using Content.Shared.FixedPoint;
+using Robust.Shared.GameStates;
 
-namespace Content.Server.Backmen.Blob;
+namespace Content.Shared.Backmen.Blob.Components;
 
-[RegisterComponent]
-public sealed partial class BlobTileComponent : SharedBlobTileComponent
+[RegisterComponent, NetworkedComponent, AutoGenerateComponentState(true)]
+public sealed partial class BlobTileComponent : Component
 {
-    [ViewVariables(VVAccess.ReadOnly)]
+    [DataField("color"), AutoNetworkedField]
+    public Color Color = Color.White;
+
+    [ViewVariables(VVAccess.ReadOnly), AutoNetworkedField]
     public EntityUid? Core = default!;
 
     [ViewVariables(VVAccess.ReadOnly)]

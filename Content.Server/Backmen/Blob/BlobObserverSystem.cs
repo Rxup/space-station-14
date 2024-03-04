@@ -3,6 +3,7 @@ using System.Numerics;
 using Content.Server.Actions;
 using Content.Server.Atmos.Components;
 using Content.Server.Atmos.EntitySystems;
+using Content.Server.Backmen.Blob.Components;
 using Content.Server.Backmen.GameTicking.Rules.Components;
 using Content.Server.Chat.Managers;
 using Content.Server.Destructible;
@@ -13,6 +14,7 @@ using Content.Server.Roles;
 using Content.Shared.ActionBlocker;
 using Content.Shared.Alert;
 using Content.Shared.Backmen.Blob;
+using Content.Shared.Backmen.Blob.Components;
 using Content.Shared.Coordinates.Helpers;
 using Content.Shared.Damage;
 using Content.Shared.Interaction;
@@ -61,6 +63,8 @@ public sealed class BlobObserverSystem : SharedBlobObserverSystem
     [Dependency] private readonly ViewSubscriberSystem _viewSubscriberSystem = default!;
     [Dependency] private readonly MapSystem _mapSystem = default!;
 
+    private EntityQuery<BlobTileComponent> _tileQuery;
+
     private const double MoverJobTime = 0.005;
     private readonly JobQueue _moveJobQueue = new(MoverJobTime);
 
@@ -92,6 +96,7 @@ public sealed class BlobObserverSystem : SharedBlobObserverSystem
 
 
         _logger = _logMan.GetSawmill("blob.core");
+        _tileQuery = GetEntityQuery<BlobTileComponent>();
     }
 
     private void SendBlobBriefing(EntityUid mind)
@@ -115,6 +120,7 @@ public sealed class BlobObserverSystem : SharedBlobObserverSystem
         }
 
         blobObserverComponent.Core = blobCoreUid;
+        Dirty(observer,blobObserverComponent);
 
 
         var isNewMind = false;
@@ -326,7 +332,7 @@ public sealed class BlobObserverSystem : SharedBlobObserverSystem
 
         foreach (var lookupUid in _lookup.GetEntitiesInRange(position, 5f))
         {
-            if (!HasComp<BlobTileComponent>(lookupUid))
+            if (!_tileQuery.HasComponent(lookupUid))
                 continue;
             var tileCords = Transform(lookupUid).Coordinates;
             var distance = Vector2.Distance(position.Position, tileCords.Position);
@@ -374,7 +380,7 @@ public sealed class BlobObserverSystem : SharedBlobObserverSystem
         {
             foreach (var ent in _mapSystem.GetAnchoredEntities(gridUid.Value, grid,tileref.GridIndices))
             {
-                if (!HasComp<BlobTileComponent>(ent))
+                if (!_tileQuery.HasComponent(ent))
                     continue;
                 blobTile = ent;
                 break;
@@ -427,7 +433,7 @@ public sealed class BlobObserverSystem : SharedBlobObserverSystem
         {
             foreach (var ent in _mapSystem.GetAnchoredEntities(gridUid.Value, grid, tileRef.GridIndices))
             {
-                if (!TryComp<BlobTileComponent>(ent, out var blobTileComponent))
+                if (!_tileQuery.HasComponent(ent))
                     continue;
                 blobTile = ent;
                 break;
@@ -578,7 +584,7 @@ public sealed class BlobObserverSystem : SharedBlobObserverSystem
         {
             foreach (var ent in _mapSystem.GetAnchoredEntities(gridUid.Value, grid, tileRef.GridIndices))
             {
-                if (!TryComp<BlobTileComponent>(ent, out var blobTileComponent))
+                if (!_tileQuery.TryGetComponent(ent, out var blobTileComponent))
                     continue;
                 blobTileType = blobTileComponent.BlobTileType;
                 blobTile = ent;
@@ -650,7 +656,7 @@ public sealed class BlobObserverSystem : SharedBlobObserverSystem
         {
             foreach (var ent in _mapSystem.GetAnchoredEntities(gridUid.Value, grid, tileref.GridIndices))
             {
-                if (!TryComp<BlobTileComponent>(ent, out var blobTileComponent))
+                if (!_tileQuery.TryGetComponent(ent, out var blobTileComponent))
                     continue;
                 blobTileType = blobTileComponent.BlobTileType;
                 blobTile = ent;
@@ -685,7 +691,7 @@ public sealed class BlobObserverSystem : SharedBlobObserverSystem
             }
         }
 
-        if (!_blobCoreSystem.CheckNearNode(args.Performer, xform.Coordinates, grid, blobCoreComponent))
+        if (!_blobCoreSystem.CheckNearNode(args.Performer, xform.Coordinates, (gridUid.Value,grid), blobCoreComponent))
             return;
 
         if (!_blobCoreSystem.TryUseAbility(args.Performer,
@@ -733,7 +739,7 @@ public sealed class BlobObserverSystem : SharedBlobObserverSystem
         }
 
         if (args.Target != null &&
-            !HasComp<BlobTileComponent>(args.Target.Value) &&
+            !_tileQuery.HasComponent(args.Target.Value) &&
             !HasComp<BlobMobComponent>(args.Target.Value))
         {
             var target = args.Target.Value;
@@ -749,7 +755,7 @@ public sealed class BlobObserverSystem : SharedBlobObserverSystem
                 mobTile.GridIndices.Offset(Direction.North),
                 mobTile.GridIndices.Offset(Direction.South)
             };
-            if (mobAdjacentTiles.Any(indices => _mapSystem.GetAnchoredEntities(gridUid.Value, grid,indices).Any(HasComp<BlobTileComponent>)))
+            if (mobAdjacentTiles.Any(indices => _mapSystem.GetAnchoredEntities(gridUid.Value, grid,indices).Any(_tileQuery.HasComponent)))
             {
                 if (HasComp<DestructibleComponent>(target) && !HasComp<ItemComponent>(target)&& !HasComp<SubFloorHideComponent>(target))
                 {
@@ -809,7 +815,7 @@ public sealed class BlobObserverSystem : SharedBlobObserverSystem
                 targetTileEmplty = true;
             }
 
-            if (_mapSystem.GetAnchoredEntities(gridUid.Value, grid, tileRef.GridIndices).Any(HasComp<BlobTileComponent>))
+            if (_mapSystem.GetAnchoredEntities(gridUid.Value, grid, tileRef.GridIndices).Any(_tileQuery.HasComponent))
             {
                 return;
             }
@@ -835,7 +841,7 @@ public sealed class BlobObserverSystem : SharedBlobObserverSystem
         };
 
         if (!adjacentTiles.Any(indices =>
-                _mapSystem.GetAnchoredEntities(gridUid.Value, grid, indices).Any(HasComp<BlobTileComponent>)))
+                _mapSystem.GetAnchoredEntities(gridUid.Value, grid, indices).Any(_tileQuery.HasComponent)))
             return;
         var cost = blobCoreComponent.NormalBlobCost;
         if (targetTileEmplty)
@@ -882,7 +888,7 @@ public sealed class BlobObserverSystem : SharedBlobObserverSystem
         {
             foreach (var ent in _mapSystem.GetAnchoredEntities(gridUid.Value, grid, tileRef.GridIndices))
             {
-                if (!TryComp<BlobTileComponent>(ent, out var blobTileComponent))
+                if (!_tileQuery.TryGetComponent(ent, out var blobTileComponent))
                     continue;
                 blobTileType = blobTileComponent.BlobTileType;
                 blobTile = ent;
@@ -917,7 +923,7 @@ public sealed class BlobObserverSystem : SharedBlobObserverSystem
             }
         }
 
-        if (!_blobCoreSystem.CheckNearNode(args.Performer, xform.Coordinates, grid, blobCoreComponent))
+        if (!_blobCoreSystem.CheckNearNode(args.Performer, xform.Coordinates, (gridUid.Value,grid), blobCoreComponent))
             return;
 
         if (!_blobCoreSystem.TryUseAbility(args.Performer, uid, blobCoreComponent,

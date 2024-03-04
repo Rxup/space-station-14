@@ -1,7 +1,7 @@
 using Robust.Shared.Audio;
 using Robust.Shared.Audio.Components;
 
-namespace Content.Server.Backmen.Blob.NPC.BlobPod
+namespace Content.Shared.Backmen.Blob.NPC.BlobPod
 {
     [RegisterComponent]
     public sealed partial class BlobPodComponent : Component

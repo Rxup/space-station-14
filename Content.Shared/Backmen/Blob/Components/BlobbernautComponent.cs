@@ -1,12 +1,17 @@
 using Content.Shared.Backmen.Blob;
 using Content.Shared.Damage;
 using Content.Shared.FixedPoint;
+using Robust.Shared.GameStates;
 
-namespace Content.Server.Backmen.Blob;
+namespace Content.Shared.Backmen.Blob.Components;
 
-[RegisterComponent]
-public sealed partial class BlobbernautComponent : SharedBlobbernautComponent
+[RegisterComponent, NetworkedComponent, AutoGenerateComponentState(true), Access(typeof(SharedBlobbernautSystem))]
+public sealed partial class BlobbernautComponent : Component
 {
+    [DataField("color"), AutoNetworkedField]
+    [Access(Other = AccessPermissions.ReadWrite)]
+    public Color Color = Color.White;
+
     [ViewVariables(VVAccess.ReadWrite), DataField("damageFrequency")]
     public float DamageFrequency = 5;
 
@@ -26,5 +31,6 @@ public sealed partial class BlobbernautComponent : SharedBlobbernautComponent
     public bool IsDead = false;
 
     [ViewVariables(VVAccess.ReadOnly)]
+    [Access(Other = AccessPermissions.ReadWrite)]
     public EntityUid? Factory = default!;
 }

@@ -15,7 +15,7 @@ public sealed partial class BlobObserverComponent : Component, IAntagStatusIconC
     [ViewVariables(VVAccess.ReadOnly)]
     public bool IsProcessingMoveEvent;
 
-    [ViewVariables(VVAccess.ReadOnly)]
+    [ViewVariables(VVAccess.ReadOnly),AutoNetworkedField]
     public EntityUid? Core = default!;
 
     [ViewVariables(VVAccess.ReadOnly)]
