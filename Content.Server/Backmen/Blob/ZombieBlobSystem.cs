@@ -1,5 +1,9 @@
-﻿using Content.Server.Atmos.Components;
+﻿using Content.Server.Atmos;
+using Content.Server.Atmos.Components;
+using Content.Server.Backmen.Blob.Components;
+using Content.Server.Backmen.Body.Components;
 using Content.Server.Body.Components;
+using Content.Server.Body.Systems;
 using Content.Server.Chat.Managers;
 using Content.Server.Mind;
 using Content.Server.NPC;
@@ -8,6 +12,8 @@ using Content.Server.NPC.HTN;
 using Content.Server.NPC.Systems;
 using Content.Server.Speech.Components;
 using Content.Server.Temperature.Components;
+using Content.Shared.Atmos;
+using Content.Shared.Damage;
 using Content.Shared.Mind.Components;
 using Content.Shared.Mobs;
 using Content.Shared.Physics;
@@ -30,6 +36,18 @@ public sealed class ZombieBlobSystem : EntitySystem
 
     private const int ClimbingCollisionGroup = (int) (CollisionGroup.BlobImpassable);
 
+    private readonly GasMixture _normalAtmos;
+    public ZombieBlobSystem()
+    {
+        _normalAtmos = new GasMixture(Atmospherics.CellVolume)
+        {
+            Temperature = Atmospherics.T20C
+        };
+        _normalAtmos.AdjustMoles(Gas.Oxygen, Atmospherics.OxygenMolesStandard);
+        _normalAtmos.AdjustMoles(Gas.Nitrogen, Atmospherics.NitrogenMolesStandard);
+        _normalAtmos.MarkImmutable();
+    }
+
     public override void Initialize()
     {
         base.Initialize();
@@ -37,6 +55,36 @@ public sealed class ZombieBlobSystem : EntitySystem
         SubscribeLocalEvent<ZombieBlobComponent, MobStateChangedEvent>(OnMobStateChanged);
         SubscribeLocalEvent<ZombieBlobComponent, ComponentStartup>(OnStartup);
         SubscribeLocalEvent<ZombieBlobComponent, ComponentShutdown>(OnShutdown);
+        SubscribeLocalEvent<ZombieBlobComponent, InhaleLocationEvent>(OnInhale);
+        SubscribeLocalEvent<ZombieBlobComponent, ExhaleLocationEvent>(OnExhale);
+
+        SubscribeLocalEvent<RespiratorImmunityComponent, ComponentInit>(OnPressureImmuneInit);
+        SubscribeLocalEvent<RespiratorImmunityComponent, ComponentRemove>(OnPressureImmuneRemove);
+    }
+
+    private void OnInhale(Entity<ZombieBlobComponent> ent, ref InhaleLocationEvent args)
+    {
+        args.Gas = _normalAtmos;
+    }
+    private void OnExhale(Entity<ZombieBlobComponent> ent, ref ExhaleLocationEvent args)
+    {
+        args.Gas = GasMixture.SpaceGas;
+    }
+
+    private void OnPressureImmuneInit(EntityUid uid, RespiratorImmunityComponent pressureImmunity, ComponentInit args)
+    {
+        if (TryComp<RespiratorComponent>(uid, out var respirator))
+        {
+            respirator.HasImmunity = true;
+        }
+    }
+
+    private void OnPressureImmuneRemove(EntityUid uid, RespiratorImmunityComponent pressureImmunity, ComponentRemove args)
+    {
+        if (TryComp<RespiratorComponent>(uid, out var respirator))
+        {
+            respirator.HasImmunity = false;
+        }
     }
 
     /// <summary>
@@ -78,7 +126,6 @@ public sealed class ZombieBlobSystem : EntitySystem
         _tagSystem.AddTag(uid, "BlobMob");
 
         EnsureComp<PressureImmunityComponent>(uid);
-
         EnsureComp<RespiratorImmunityComponent>(uid);
 
         if (TryComp<TemperatureComponent>(uid, out var temperatureComponent))
@@ -115,35 +162,12 @@ public sealed class ZombieBlobSystem : EntitySystem
             return;
         }
 
-        if (HasComp<BlobSpeakComponent>(uid))
-        {
-            RemComp<BlobSpeakComponent>(uid);
-        }
-
-        if (HasComp<BlobMobComponent>(uid))
-        {
-            RemComp<BlobMobComponent>(uid);
-        }
-
-        if (HasComp<HTNComponent>(uid))
-        {
-            RemComp<HTNComponent>(uid);
-        }
-
-        if (HasComp<ReplacementAccentComponent>(uid))
-        {
-            RemComp<ReplacementAccentComponent>(uid);
-        }
-
-        if (HasComp<PressureImmunityComponent>(uid))
-        {
-            RemComp<PressureImmunityComponent>(uid);
-        }
-
-        if (HasComp<RespiratorImmunityComponent>(uid))
-        {
-            RemComp<RespiratorImmunityComponent>(uid);
-        }
+        RemComp<BlobSpeakComponent>(uid);
+        RemComp<BlobMobComponent>(uid);
+        RemComp<HTNComponent>(uid);
+        RemComp<ReplacementAccentComponent>(uid);
+        RemComp<PressureImmunityComponent>(uid);
+        RemComp<RespiratorImmunityComponent>(uid);
 
         if (TryComp<TemperatureComponent>(uid, out var temperatureComponent) && component.OldColdDamageThreshold != null)
         {

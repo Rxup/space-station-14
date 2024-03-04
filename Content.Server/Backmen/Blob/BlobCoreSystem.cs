@@ -2,6 +2,7 @@ using System.Linq;
 using System.Numerics;
 using Content.Server.Actions;
 using Content.Server.AlertLevel;
+using Content.Server.Backmen.Blob.Components;
 using Content.Server.Backmen.GameTicking.Rules.Components;
 using Content.Server.Chat.Managers;
 using Content.Server.Explosion.Components;
@@ -13,12 +14,14 @@ using Content.Server.RoundEnd;
 using Content.Server.Station.Systems;
 using Content.Shared.Alert;
 using Content.Shared.Backmen.Blob;
+using Content.Shared.Backmen.Blob.Components;
 using Content.Shared.Damage;
 using Content.Shared.Destructible;
 using Content.Shared.FixedPoint;
 using Content.Shared.Objectives.Components;
 using Content.Shared.Popups;
 using Content.Shared.Weapons.Melee;
+using Robust.Server.GameObjects;
 using Robust.Shared.Map;
 using Robust.Shared.Map.Components;
 using Robust.Shared.Network;
@@ -27,15 +30,10 @@ using Robust.Shared.Prototypes;
 
 namespace Content.Server.Backmen.Blob;
 
-
-
-public sealed class BlobCoreSystem : EntitySystem
+public sealed class BlobCoreSystem : SharedBlobCoreSystem
 {
     [Dependency] private readonly AlertsSystem _alerts = default!;
     [Dependency] private readonly SharedPopupSystem _popup = default!;
-    [Dependency] private readonly MindSystem _mindSystem = default!;
-    [Dependency] private readonly IChatManager _chatManager = default!;
-    [Dependency] private readonly IMapManager _mapManager = default!;
     [Dependency] private readonly GameTicker _gameTicker = default!;
     [Dependency] private readonly ExplosionSystem _explosionSystem = default!;
     [Dependency] private readonly DamageableSystem _damageable = default!;
@@ -44,6 +42,10 @@ public sealed class BlobCoreSystem : EntitySystem
     [Dependency] private readonly RoundEndSystem _roundEndSystem = default!;
     [Dependency] private readonly MetaDataSystem _metaDataSystem = default!;
     [Dependency] private readonly ActionsSystem _action = default!;
+    [Dependency] private readonly MapSystem _map = default!;
+
+    private EntityQuery<BlobTileComponent> _tile;
+    private EntityQuery<BlobFactoryComponent> _factory;
 
     [ValidatePrototypeId<EntityPrototype>] private const string BlobCaptureObjective = "BlobCaptureObjective";
     public override void Initialize()
@@ -52,13 +54,16 @@ public sealed class BlobCoreSystem : EntitySystem
 
         SubscribeLocalEvent<BlobCoreComponent, ComponentStartup>(OnStartup);
         SubscribeLocalEvent<BlobCoreComponent, DestructionEventArgs>(OnDestruction);
-        SubscribeLocalEvent<BlobCoreComponent, DamageChangedEvent>(OnDamaged);
+
         SubscribeLocalEvent<BlobCoreComponent, PlayerAttachedEvent>(OnPlayerAttached);
         SubscribeLocalEvent<BlobCoreComponent, EntityTerminatingEvent>(OnTerminating);
 
 
         SubscribeLocalEvent<BlobCaptureConditionComponent, ObjectiveGetProgressEvent>(OnBlobCaptureProgress);
         SubscribeLocalEvent<BlobCaptureConditionComponent, ObjectiveAfterAssignEvent>(OnBlobCaptureInfo);
+
+        _tile = GetEntityQuery<BlobTileComponent>();
+        _factory = GetEntityQuery<BlobFactoryComponent>();
     }
 
     private void OnTerminating(EntityUid uid, BlobCoreComponent component, ref EntityTerminatingEvent args)
@@ -69,6 +74,7 @@ public sealed class BlobCoreSystem : EntitySystem
         }
     }
 
+    #region Objective
     private void OnBlobCaptureInfo(EntityUid uid, BlobCaptureConditionComponent component, ref ObjectiveAfterAssignEvent args)
     {
         _metaDataSystem.SetEntityName(uid,Loc.GetString("objective-condition-blob-capture-title"));
@@ -98,11 +104,12 @@ public sealed class BlobCoreSystem : EntitySystem
         }
         args.Progress = (float) blobCoreComponent.BlobTiles.Count / (float) component.Target;
     }
+    #endregion
 
     private void OnPlayerAttached(EntityUid uid, BlobCoreComponent component, PlayerAttachedEvent args)
     {
         var xform = Transform(uid);
-        if (!_mapManager.TryGetGrid(xform.GridUid, out var map))
+        if (!HasComp<MapGridComponent>(xform.GridUid))
             return;
 
         CreateBlobObserver(uid, args.Player.UserId, component);
@@ -127,23 +134,6 @@ public sealed class BlobCoreSystem : EntitySystem
         return !ev.Cancelled;
     }
 
-    private void SendBlobBriefing(EntityUid mind)
-    {
-        if (_mindSystem.TryGetSession(mind, out var session))
-        {
-            _chatManager.DispatchServerMessage(session, Loc.GetString("blob-role-greeting"));
-        }
-    }
-
-    private void OnDamaged(EntityUid uid, BlobCoreComponent component, DamageChangedEvent args)
-    {
-        var maxHealth = component.CoreBlobTotalHealth;
-        var currentHealth = maxHealth - args.Damageable.TotalDamage;
-
-        if (component.Observer != null)
-            _alerts.ShowAlert(component.Observer.Value, AlertType.BlobHealth, (short) Math.Clamp(Math.Round(currentHealth.Float() / 10f), 0, 20));
-    }
-
     [ValidatePrototypeId<EntityPrototype>] private const string ActionHelpBlob = "ActionHelpBlob";
     [ValidatePrototypeId<EntityPrototype>] private const string ActionSwapBlobChem = "ActionSwapBlobChem";
     [ValidatePrototypeId<EntityPrototype>] private const string ActionTeleportBlobToCore = "ActionTeleportBlobToCore";
@@ -159,7 +149,7 @@ public sealed class BlobCoreSystem : EntitySystem
     {
         ChangeBlobPoint(uid, 0, component);
 
-        if (TryComp<BlobTileComponent>(uid, out var blobTileComponent))
+        if (_tile.TryGetComponent(uid, out var blobTileComponent))
         {
             blobTileComponent.Core = uid;
             blobTileComponent.Color = component.ChemСolors[component.CurrentChem];
@@ -194,13 +184,13 @@ public sealed class BlobCoreSystem : EntitySystem
         component.CurrentChem = newChem;
         foreach (var blobTile in component.BlobTiles)
         {
-            if (!TryComp<BlobTileComponent>(blobTile, out var blobTileComponent))
+            if (!_tile.TryGetComponent(blobTile, out var blobTileComponent))
                 continue;
 
             blobTileComponent.Color = component.ChemСolors[newChem];
             Dirty(blobTile, blobTileComponent);
 
-            if (TryComp<BlobFactoryComponent>(blobTile, out var blobFactoryComponent))
+            if (_factory.TryGetComponent(blobTile, out var blobFactoryComponent))
             {
                 if (TryComp<BlobbernautComponent>(blobFactoryComponent.Blobbernaut, out var blobbernautComponent))
                 {
@@ -243,7 +233,7 @@ public sealed class BlobCoreSystem : EntitySystem
 
         foreach (var blobTile in component.BlobTiles)
         {
-            if (!TryComp<BlobTileComponent>(blobTile, out var blobTileComponent))
+            if (!_tile.TryGetComponent(blobTile, out var blobTileComponent))
                 continue;
             blobTileComponent.Core = null;
 
@@ -266,7 +256,7 @@ public sealed class BlobCoreSystem : EntitySystem
         if (isAllDie <= 1)
         {
             var blobFactoryQuery = EntityQueryEnumerator<BlobRuleComponent>();
-            while (blobFactoryQuery.MoveNext(out var blobRuleUid, out var blobRuleComp))
+            while (blobFactoryQuery.MoveNext(out _, out var blobRuleComp))
             {
                 if (blobRuleComp.Stage == BlobStage.Critical ||
                     blobRuleComp.Stage == BlobStage.Begin)
@@ -317,7 +307,7 @@ public sealed class BlobCoreSystem : EntitySystem
         }
         var tileBlob = EntityManager.SpawnEntity(newBlobTileProto, coordinates);
 
-        if (TryComp<BlobTileComponent>(tileBlob, out var blobTileComponent))
+        if (_tile.TryGetComponent(tileBlob, out var blobTileComponent))
         {
             blobTileComponent.ReturnCost = returnCost;
             blobTileComponent.Core = coreTileUid;
@@ -379,18 +369,20 @@ public sealed class BlobCoreSystem : EntitySystem
         return true;
     }
 
-    public bool CheckNearNode(EntityUid observer, EntityCoordinates coords, MapGridComponent grid, BlobCoreComponent core)
+    public bool CheckNearNode(EntityUid observer, EntityCoordinates coords, Entity<MapGridComponent> grid, BlobCoreComponent core)
     {
         var radius = 3f;
 
-        var innerTiles = grid.GetLocalTilesIntersecting(
+        var innerTiles = _map.GetLocalTilesIntersecting(grid,grid,
             new Box2(coords.Position + new Vector2(-radius, -radius), coords.Position + new Vector2(radius, radius)), false).ToArray();
 
+        var queryNode = GetEntityQuery<BlobNodeComponent>();
+        var queryCore = GetEntityQuery<BlobCoreComponent>();
         foreach (var tileRef in innerTiles)
         {
-            foreach (var ent in grid.GetAnchoredEntities(tileRef.GridIndices))
+            foreach (var ent in _map.GetAnchoredEntities(grid,grid,tileRef.GridIndices))
             {
-                if (HasComp<BlobNodeComponent>(ent) || HasComp<BlobCoreComponent>(ent))
+                if (queryNode.HasComponent(ent) || queryCore.HasComponent(ent))
                     return true;
             }
         }
