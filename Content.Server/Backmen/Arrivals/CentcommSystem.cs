@@ -13,6 +13,7 @@ using Content.Server.Shuttles.Systems;
 using Content.Server.Station.Components;
 using Content.Server.Station.Systems;
 using Content.Shared.Backmen.Abilities;
+using Content.Shared.Backmen.Arrivals;
 using Content.Shared.Cargo.Components;
 using Content.Shared.CCVar;
 using Content.Shared.Emag.Components;
@@ -175,10 +176,13 @@ public sealed class CentcommSystem : EntitySystem
         if (!HasComp<ShuttleComponent>(shuttle))
             return;
 
+        if (!(HasComp<CargoShuttleComponent>(shuttle) || HasComp<SalvageShuttleComponent>(shuttle)))
+            return;
+
         _audio.PlayPvs(SparkSound, ent);
         _popupSystem.PopupEntity(Loc.GetString("shuttle-console-component-upgrade-emag-requirement"), ent);
         args.Handled = true;
-        EnsureComp<EmaggedComponent>(shuttle.Value); // для обновления консоли нужно чтобы компонент был до вызыва RefreshShuttleConsoles
+        EnsureComp<AllowFtlToCentComComponent>(shuttle.Value); // для обновления консоли нужно чтобы компонент был до вызыва RefreshShuttleConsoles
         _console.RefreshShuttleConsoles();
     }
 
@@ -277,7 +281,7 @@ public sealed class CentcommSystem : EntitySystem
     {
         var d = new EntityWhitelist();
         d.RequireAll = false;
-        d.Components = new[] { "Emagged" };
+        d.Components = new[] { "AllowFtlToCentCom" };
         d.UpdateRegistrations();
         _shuttle.SetFTLWhitelist(ent, d);
     }

@@ -2319,6 +2319,10 @@ entities:
       rot: 1.5707963267948966 rad
       pos: 18.5,-37.5
       parent: 104
+    - type: GridFill
+      addComponents:
+      - type: NukeOpsShuttle
+      path: /Maps/Shuttles/infiltrator.yml
   - uid: 1575
     components:
     - type: Transform
