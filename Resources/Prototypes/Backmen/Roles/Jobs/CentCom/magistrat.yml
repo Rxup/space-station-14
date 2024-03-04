@@ -14,7 +14,7 @@
       role: JobIAA
       time: 90000 #25 hrs
   startingGear: MagistratGear
-  icon: "JobIconIAA"
+  icon: "JobIconMagistrat"
   supervisors: job-supervisors-service
   canBeAntag: false
   setPreference: true
@@ -35,6 +35,9 @@
   - Cargo
   - Salvage
   - Command
+  - CentralCommand
+  - CCSecurity
+  - CCOfficer
   extendedAccess:
   - Hydroponics
   minBankBalance: 200
@@ -64,8 +67,12 @@
     id: MagistratPDA
     ears: ClothingHeadsetAltCommand
     head: ClothingHeadHatPwig
+    neck: ClothingNeckLawyerbadge
     pocket1: Flash
-    pocket2: ClothingNeckLawyerbadge
+    pocket2: RubberStampCentcom
+#    inhand: - BriefcasemagistratFilled black magistrate's suitcase in development
+  inhand:
+    - BriefcaseIAAFilled
   innerClothingSkirt: MagistratUniformSuit
   satchel: ClothingBackpackSatchelFilled
   duffelbag: ClothingBackpackDuffelFilled

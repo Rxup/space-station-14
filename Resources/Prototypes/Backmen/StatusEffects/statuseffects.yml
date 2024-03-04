@@ -16,5 +16,12 @@
   parent: JobIcon
   id: JobIconBlueshield
   icon:
-    sprite: Backmen/Interface/Misc/job_icons.rsi
+    sprite: /Textures/Backmen/Interface/Misc/job_icons.rsi
     state: blueshield
+
+- type: statusIcon
+  parent: JobIcon
+  id: JobIconMagistrat
+  icon:
+    sprite: /Textures/Backmen/Interface/Misc/job_icons.rsi
+    state: magistrat
