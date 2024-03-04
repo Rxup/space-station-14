@@ -146,11 +146,6 @@ public sealed class RespiratorSystem : EntitySystem
 
         if (ev.Gas == null)
         {
-            // start-backmen: blob zombie
-            if (Resolve(uid, ref respirator, false) && respirator!.HasImmunity)
-                return;
-            // end-backmen: blob zombie
-
             ev.Gas = _atmosSys.GetContainingMixture(uid, false, true);
 
             // Walls and grids without atmos comp return null. I guess it makes sense to not be able to exhale in walls,

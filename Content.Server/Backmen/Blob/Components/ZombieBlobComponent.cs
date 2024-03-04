@@ -1,6 +1,8 @@
-﻿using Robust.Shared.Audio;
+﻿using Content.Shared.Damage;
+using Content.Shared.Damage.Prototypes;
+using Robust.Shared.Audio;
 
-namespace Content.Server.Backmen.Blob;
+namespace Content.Server.Backmen.Blob.Components;
 
 [RegisterComponent]
 public sealed partial class ZombieBlobComponent : Component
@@ -16,4 +18,5 @@ public sealed partial class ZombieBlobComponent : Component
 
     [DataField("greetSoundNotification")]
     public SoundSpecifier GreetSoundNotification = new SoundPathSpecifier("/Audio/Ambience/Antag/zombie_start.ogg");
+    
 }
