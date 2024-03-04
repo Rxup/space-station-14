@@ -29,6 +29,8 @@
   - Brig
   - Security
   - Medical
+  - CentralCommand
+  - CCSecurity
   extendedAccess:
   - Hydroponics
   minBankBalance: 300
@@ -50,13 +52,17 @@
   id: BlueshieldGear
   equipment:
     jumpsuit: BlueshieldUniformSuit
-    back: ClothingBackpackFilled
+    back: ClothingBackpackSecurityFilled
+    belt: ClothingBeltSecuritySuper
     shoes: ClothingShoesBootsNedoSpetsnaz
     eyes: ClothingEyesGlassesSunglassesMed
     gloves: ClothingHandsGlovesCombat
-    outerClothing: ClothingOuterArmorBlueshieldCarapace
+    outerClothing: ClothingOuterHardsuitBlueshield
+    suitstorage: WeaponPistolMk58
     id: BlueshieldPDA
     ears: ClothingHeadsetAltCommand
+    mask: ClothingMaskGasBlueSwat
+    pocket1: MagazinePistol
   innerClothingSkirt: BlueshieldUniformSuit
   satchel: ClothingBackpackSatchelFilled
   duffelbag: ClothingBackpackDuffelFilled
