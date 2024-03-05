@@ -4,6 +4,7 @@ using Content.Server.Body.Systems;
 using Content.Server.Ghost.Roles.Components;
 using Content.Server.Mind;
 using Content.Shared.Backmen.Blob;
+using Content.Shared.Backmen.Blob.Components;
 using Content.Shared.Mind.Components;
 using Content.Shared.Mobs;
 using Content.Shared.Popups;

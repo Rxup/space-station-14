@@ -6,7 +6,7 @@ using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization;
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype;
 
-namespace Content.Shared.Backmen.Blob;
+namespace Content.Shared.Backmen.Blob.Components;
 
 [RegisterComponent]
 public sealed partial class BlobCoreComponent : Component

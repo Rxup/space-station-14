@@ -1,5 +1,6 @@
 using Content.Server.Backmen.Blob.Components;
 using Content.Shared.Backmen.Blob;
+using Content.Shared.Backmen.Blob.Components;
 using Robust.Shared.Map.Components;
 using Robust.Shared.Player;
 

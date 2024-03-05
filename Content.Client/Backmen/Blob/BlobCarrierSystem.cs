@@ -1,4 +1,5 @@
 ﻿using Content.Shared.Backmen.Blob;
+using Content.Shared.Backmen.Blob.Components;
 
 namespace Content.Client.Backmen.Blob;
 
