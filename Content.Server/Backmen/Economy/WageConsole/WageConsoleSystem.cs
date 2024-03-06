@@ -1,6 +1,12 @@
 ﻿using System.Linq;
+using Content.Server.Administration.Logs;
 using Content.Server.Backmen.Economy.Wage;
+using Content.Server.Popups;
+using Content.Shared.Access.Systems;
 using Content.Shared.Backmen.Economy.WageConsole;
+using Content.Shared.Database;
+using Content.Shared.Popups;
+using Content.Shared.UserInterface;
 using Robust.Server.GameObjects;
 
 namespace Content.Server.Backmen.Economy.WageConsole;
@@ -9,10 +15,14 @@ public sealed class WageConsoleSystem : SharedWageConsoleSystem
 {
     [Dependency] private readonly UserInterfaceSystem _ui = default!;
     [Dependency] private readonly WageManagerSystem _wageManager = default!;
+    [Dependency] private readonly AccessReaderSystem _access = default!;
+    [Dependency] private readonly PopupSystem _popup = default!;
+    [Dependency] private readonly IAdminLogManager _adminLogger = default!;
 
     public override void Initialize()
     {
         base.Initialize();
+        SubscribeLocalEvent<WageConsoleComponent,ActivatableUIOpenAttemptEvent>(OnTryOpenUi);
         Subs.BuiEvents<WageConsoleComponent>(WageUiKey.Key, subs =>
         {
             subs.Event<BoundUIOpenedEvent>(UpdateUserInterface);
@@ -23,8 +33,25 @@ public sealed class WageConsoleSystem : SharedWageConsoleSystem
         });
     }
 
+    private void OnTryOpenUi(Entity<WageConsoleComponent> ent, ref ActivatableUIOpenAttemptEvent args)
+    {
+        if (!_access.IsAllowed(args.User, ent))
+        {
+            _popup.PopupCursor(Loc.GetString("reinforcement-insufficient-access"), args.User, PopupType.Medium);
+            args.Cancel();
+        }
+    }
+
     private void OnBonusMsg(Entity<WageConsoleComponent> ent, ref BonusWageRowMsg args)
     {
+        if (args.Session.AttachedEntity is null) { return; }
+
+        if (!_access.IsAllowed(args.Session.AttachedEntity.Value, ent))
+        {
+            _popup.PopupCursor(Loc.GetString("wageconsole-insufficient-access"), args.Session, PopupType.Medium);
+            return;
+        }
+
         var id = args.Id;
         var wagePayout = _wageManager.PayoutsList.FirstOrDefault(x => x.Id == id);
 
@@ -32,6 +59,9 @@ public sealed class WageConsoleSystem : SharedWageConsoleSystem
         {
             return;
         }
+
+        _adminLogger.Add(LogType.Transactions, LogImpact.Extreme,
+            $"Player {args.Session.Name} use BonusSystem on accountId {wagePayout.ToAccountNumber.Comp.AccountNumber} with name {wagePayout.ToAccountNumber:entity} and add {args.Wage}");
 
         QueueLocalEvent(new WagePaydayEvent()
         {
@@ -69,6 +99,14 @@ public sealed class WageConsoleSystem : SharedWageConsoleSystem
 
     private void OnEditWageRow(Entity<WageConsoleComponent> ent, ref SaveEditedWageRowMsg args)
     {
+        if (args.Session.AttachedEntity is null) { return; }
+
+        if (!_access.IsAllowed(args.Session.AttachedEntity.Value, ent))
+        {
+            _popup.PopupCursor(Loc.GetString("wageconsole-insufficient-access"), args.Session, PopupType.Medium);
+            return;
+        }
+
         var id = args.Id;
         var wagePayout = _wageManager.PayoutsList.FirstOrDefault(x => x.Id == id);
 
@@ -76,6 +114,9 @@ public sealed class WageConsoleSystem : SharedWageConsoleSystem
         {
             return;
         }
+
+        _adminLogger.Add(LogType.Transactions, LogImpact.Extreme,
+            $"Player {args.Session.Name} use EditPayoutSystem on accountId {wagePayout.ToAccountNumber.Comp.AccountNumber} with name {wagePayout.ToAccountNumber:entity} and set payout to {args.Wage}");
 
         wagePayout.PayoutAmount = args.Wage;
         UpdateUserInterface(ent);
