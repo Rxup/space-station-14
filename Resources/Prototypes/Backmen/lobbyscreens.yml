@@ -9,3 +9,7 @@
 - type: lobbyBackground
   id: capoleon
   background: /Textures/Backmen/LobbyScreens/capoleon.png
+
+- type: lobbyBackground
+  id: kissme
+  background: /Textures/Backmen/LobbyScreens/kissme.jpg
