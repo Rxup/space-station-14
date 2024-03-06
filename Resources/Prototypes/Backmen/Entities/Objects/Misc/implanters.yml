@@ -1,0 +1,8 @@
+- type: entity
+  id: mantisImplanter
+  name: implanter
+  suffix: mantis
+  parent: BaseImplantOnlyImplanterSyndi
+  components:
+    - type: Implanter
+      implant: mantisImplant
