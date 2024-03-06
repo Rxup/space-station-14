@@ -7,10 +7,15 @@ using Content.Server.GameTicking;
 using Content.Server.GameTicking.Rules;
 using Content.Server.GameTicking.Rules.Components;
 using Content.Server.Mind;
+using Content.Shared.Actions;
+using Content.Shared.Antag;
 using Content.Shared.Backmen.Blob;
+using Content.Shared.Backmen.Blob.Components;
 using Content.Shared.Backmen.CCVar;
+using Content.Shared.Humanoid;
 using Content.Shared.Preferences;
 using Content.Shared.Roles;
+using Robust.Server.Player;
 using Robust.Shared.Configuration;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
@@ -31,6 +36,8 @@ public sealed class BlobGameRuleSystem : GameRuleSystem<BlobGameRuleComponent>
     [Dependency] private readonly IChatManager _chatManager = default!;
     [Dependency] private readonly AntagSelectionSystem _antagSelection = default!;
     [Dependency] private readonly IRobustRandom _random = default!;
+    [Dependency] private readonly IPlayerManager _playerManager = default!;
+    [Dependency] private readonly SharedActionsSystem _actions = default!;
 
 
     public override void Initialize()
@@ -46,25 +53,16 @@ public sealed class BlobGameRuleSystem : GameRuleSystem<BlobGameRuleComponent>
 
     private void HandleLatejoin(PlayerSpawnCompleteEvent ev)
     {
-        var query = EntityQueryEnumerator<BlobGameRuleComponent, GameRuleComponent>();
-        while (query.MoveNext(out var uid, out var blob, out var gameRule))
+        var query = QueryActiveRules();
+        while (query.MoveNext(out _, out var blob, out var gameRule))
         {
-            if (!GameTicker.IsGameRuleAdded(uid, gameRule))
-                continue;
-
             if (blob.TotalBlobs >= MaxBlob)
                 continue;
 
             if (!ev.LateJoin)
                 continue;
 
-            if (!ev.Profile.AntagPreferences.Contains(Blob))
-                continue;
-
-            if (ev.JobId == null || !_prototypeManager.TryIndex<JobPrototype>(ev.JobId, out var job))
-                continue;
-
-            if (!job.CanBeAntag)
+            if (!_antagSelection.IsPlayerEligible(ev.Player, Blob, acceptableAntags: AntagAcceptability.NotExclusive, allowNonHumanoids: false))
                 continue;
 
             // the nth player we adjust our probabilities around
@@ -89,54 +87,52 @@ public sealed class BlobGameRuleSystem : GameRuleSystem<BlobGameRuleComponent>
             // You get one shot.
             if (_random.Prob(chance) && ev.Player.AttachedEntity.HasValue)
             {
-                MakeBlob(blob, ev.Player);
+                MakeBlob(blob, ev.Player.AttachedEntity.Value);
+                _antagSelection.SendBriefing(ev.Player, Loc.GetString("blob-carrier-role-greeting"), Color.Plum, blob.InitialInfectedSound);
             }
         }
     }
 
-    private void MakeBlob(BlobGameRuleComponent blob, ICommonSession player)
+    private void MakeBlob(BlobGameRuleComponent blob, EntityUid player)
     {
-        if (!player.AttachedEntity.HasValue)
-            return;
-
         blob.TotalBlobs++;
-        EnsureComp<BlobCarrierComponent>(player.AttachedEntity.Value).HasMind = true;
+        var comp = EnsureComp<BlobCarrierComponent>(player);
+        comp.HasMind = HasComp<ActorComponent>(player);
+        comp.TransformationDelay = 10 * 60; // 10min
+        _actions.SetCooldown(comp.TransformToBlob, TimeSpan.FromMinutes(5));
     }
 
     private void OnPlayersSpawned(RulePlayerJobsAssignedEvent ev)
     {
-        var query = EntityQueryEnumerator<BlobGameRuleComponent, GameRuleComponent>();
+        var query = QueryActiveRules();
         while (query.MoveNext(out var uid, out var blob, out var gameRule))
         {
-            var plr = new Dictionary<ICommonSession, HumanoidCharacterProfile>();
+            var eligiblePlayers = _antagSelection.GetEligiblePlayers(
+                ev.Players, Blob,
+                acceptableAntags: AntagAcceptability.None,
+                allowNonHumanoids: false, includeAllJobs: false);
 
-            if (!GameTicker.IsGameRuleAdded(uid, gameRule))
-                continue;
-
-            foreach (var player in ev.Players)
+            if (eligiblePlayers.Count == 0)
             {
-                if (!ev.Profiles.ContainsKey(player.UserId))
-                    continue;
-
-                plr.Add(player, ev.Profiles[player.UserId]);
+                //Log.Warning($"No eligible thieves found, ending game rule {ToPrettyString(uid):rule}");
+                //GameTicker.EndGameRule(uid, gameRule);
+                continue;
             }
 
-            DoBlobStart(blob, plr);
+            var initialInfectedCount = _antagSelection.CalculateAntagCount(_playerManager.PlayerCount, PlayersPerBlob, MaxBlob);
+
+            var blobs = _antagSelection.ChooseAntags(initialInfectedCount, eligiblePlayers);
+
+            DoBlobStart(blobs, blob);
+
+            _antagSelection.SendBriefing(blobs, Loc.GetString("blob-carrier-role-greeting"), Color.Plum, blob.InitialInfectedSound);
         }
     }
 
-    private void DoBlobStart(BlobGameRuleComponent blob,
-        Dictionary<ICommonSession, HumanoidCharacterProfile> startCandidates)
+    private void DoBlobStart(List<EntityUid> selectedTraitors, BlobGameRuleComponent blob)
     {
-        var numTraitors = MathHelper.Clamp(startCandidates.Count / PlayersPerBlob, 1, MaxBlob);
-        var traitorPool = _antagSelection.FindPotentialAntags(startCandidates, Blob);
-        var selectedTraitors = _antagSelection.PickAntag(numTraitors, traitorPool);
-
         foreach (var traitor in selectedTraitors)
         {
-            if (!traitor.AttachedEntity.HasValue)
-                continue;
-
             MakeBlob(blob, traitor);
         }
     }

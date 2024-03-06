@@ -18,6 +18,7 @@ namespace Content.Server.Backmen.Chat;
 /// <summary>
 /// Extensions for parkstation's chat stuff
 /// </summary>
+/*
 public sealed class SimpleStationChatSystem : EntitySystem
 {
     [Dependency] private readonly IAdminManager _adminManager = default!;
@@ -57,7 +58,8 @@ public sealed class SimpleStationChatSystem : EntitySystem
         _adminLogger.Add(LogType.Chat, LogImpact.Low, $"Empathy chat from {ToPrettyString(source):Player}: {message}");
 
         _chatSystem.TrySendInGameICMessage(source, localMessage, InGameICChatType.Speak, hideChat);
-        _chatManager.ChatMessageToMany(ChatChannel.Empathy, message, messageWrap, source, hideChat, true, clients.ToList(), Color.PaleVioletRed);
-        _chatManager.ChatMessageToMany(ChatChannel.Empathy, message, adminMessageWrap, source, hideChat, true, admins, Color.PaleVioletRed);
+        //_chatManager.ChatMessageToMany(ChatChannel.Empathy, message, messageWrap, source, hideChat, true, clients.ToList(), Color.PaleVioletRed);
+        //_chatManager.ChatMessageToMany(ChatChannel.Empathy, message, adminMessageWrap, source, hideChat, true, admins, Color.PaleVioletRed);
     }
 }
+*/
