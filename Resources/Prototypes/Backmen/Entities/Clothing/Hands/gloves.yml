@@ -15,3 +15,25 @@
     fiberMaterial: fibers-durathread
     fiberColor: fibers-regal-blue
   - type: FingerprintMask
+
+- type: entity
+  parent: ClothingHandsBase
+  id: ClothingHandsGlovesmantis
+  name: клинки богомола
+  description: Боевой кибернетический имплант. Клинки исходят из предплечья, что позволяет использовать их как оружие ближнего боя.
+  components:
+  - type: Sprite
+    sprite: Backmen/Clothing/Hands/Gloves/mantis.rsi
+  - type: Clothing
+    sprite: Backmen/Clothing/Hands/Gloves/mantis.rsi
+    equipSound: /Audio/Backmen/Weapons/Melee/bogomol/on.ogg
+    unequipSound: /Audio/Backmen/Weapons/Melee/bogomol/off.ogg
+  - type: MeleeWeapon
+    attackRate: 2
+    damage:
+      types:
+        Piercing: 10
+    soundSwing: /Audio/Backmen/Weapons/Melee/bogomol/miss.ogg
+    soundHit: /Audio/Backmen/Weapons/Melee/bogomol/hit.ogg
+  - type: StaticPrice
+    price: 1000

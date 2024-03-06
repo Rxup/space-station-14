@@ -106,3 +106,14 @@
     Telecrystal: 3
   categories:
   - UplinkAmmo
+
+- type: listing
+  id: UplinkBogomol
+  name: Имплант клинков богомола
+  description: Клинки богомола, в качестве импланта, скрытные, смертоносные, а самое главное стильные.
+  icon: { sprite: Backmen/Clothing/Hands/Gloves/mantis.rsi, state: icon }
+  productEntity: mantisImplanter
+  cost:
+    Telecrystal: 5
+  categories:
+  - UplinkImplants
