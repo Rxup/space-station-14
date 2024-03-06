@@ -6,6 +6,7 @@ using Robust.Shared.Random;
 using Content.Server.GameTicking.Rules.Components;
 using Content.Server.Shuttles.Components;
 using Content.Shared.Backmen.Blob;
+using Content.Shared.Backmen.Blob.Components;
 using Robust.Server.Player;
 
 namespace Content.Server.StationEvents.Events;

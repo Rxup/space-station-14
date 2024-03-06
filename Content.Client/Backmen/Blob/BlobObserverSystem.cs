@@ -1,5 +1,6 @@
 ﻿using Content.Shared.Antag;
 using Content.Shared.Backmen.Blob;
+using Content.Shared.Backmen.Blob.Components;
 using Content.Shared.GameTicking;
 using Content.Shared.Ghost;
 using Content.Shared.StatusIcon.Components;
@@ -21,6 +22,7 @@ public sealed class BlobObserverSystem : SharedBlobObserverSystem
 
         SubscribeLocalEvent<BlobCarrierComponent, CanDisplayStatusIconsEvent>(OnCanShowBlobIcon);
         SubscribeLocalEvent<BlobObserverComponent, CanDisplayStatusIconsEvent>(OnCanShowBlobIcon);
+        SubscribeLocalEvent<ZombieBlobComponent, CanDisplayStatusIconsEvent>(OnCanShowBlobIcon);
 
         SubscribeNetworkEvent<RoundRestartCleanupEvent>(RoundRestartCleanup);
     }
@@ -36,6 +38,9 @@ public sealed class BlobObserverSystem : SharedBlobObserverSystem
     private bool CanDisplayIcon(EntityUid? uid, bool visibleToGhost)
     {
         if (HasComp<BlobCarrierComponent>(uid))
+            return true;
+
+        if (HasComp<ZombieBlobComponent>(uid))
             return true;
 
         if (visibleToGhost && HasComp<GhostComponent>(uid))

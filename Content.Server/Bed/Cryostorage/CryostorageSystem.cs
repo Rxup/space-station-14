@@ -167,7 +167,9 @@ public sealed class CryostorageSystem : SharedCryostorageSystem
             return;
 
         // if we have a session, we use that to add back in all the job slots the player had.
-        if (userId != null)
+        if (userId != null
+            && !HasComp<Backmen.Reinforcement.Components.ReinforcementMemberComponent>(ent) // backmen: reinforcement system
+           )
         {
             foreach (var station in _station.GetStationsSet())
             {
@@ -197,7 +199,8 @@ public sealed class CryostorageSystem : SharedCryostorageSystem
 
         if (!CryoSleepRejoiningEnabled || !comp.AllowReEnteringBody)
         {
-            if (userId != null && Mind.TryGetMind(userId.Value, out var mind))
+            if (userId != null && Mind.TryGetMind(userId.Value, out var mind) &&
+                HasComp<CryostorageContainedComponent>(mind.Value.Comp.CurrentEntity))
             {
                 _gameTicker.OnGhostAttempt(mind.Value, false);
             }
@@ -208,6 +211,8 @@ public sealed class CryostorageSystem : SharedCryostorageSystem
         Dirty(ent, comp);
         UpdateCryostorageUIState((cryostorageEnt.Value, cryostorageComponent));
         AdminLog.Add(LogType.Action, LogImpact.High, $"{ToPrettyString(ent):player} was entered into cryostorage inside of {ToPrettyString(cryostorageEnt.Value)}");
+
+        RaiseLocalEvent(ent, new Content.Shared.Backmen.Cryostorage.MovedToStorageEvent{ Storage = (cryostorageEnt.Value, cryostorageComponent) });// backmen: reinforcement system
     }
 
     private void HandleCryostorageReconnection(Entity<CryostorageContainedComponent> entity)

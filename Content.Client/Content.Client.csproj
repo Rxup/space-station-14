@@ -2,7 +2,7 @@
   <PropertyGroup>
     <!-- Work around https://github.com/dotnet/project-system/issues/4314 -->
     <TargetFramework>$(TargetFramework)</TargetFramework>
-    <LangVersion>11</LangVersion>
+    <LangVersion>12</LangVersion>
     <IsPackable>false</IsPackable>
     <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
     <OutputPath>..\bin\Content.Client\</OutputPath>
@@ -22,6 +22,17 @@
     <ProjectReference Include="..\RobustToolbox\Robust.Shared\Robust.Shared.csproj" />
     <ProjectReference Include="..\RobustToolbox\Robust.Client\Robust.Client.csproj" />
     <ProjectReference Include="..\Content.Shared\Content.Shared.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Update="Backmen\Reinforcement\UI\ReinforcementConsoleWindow.cs">
+      <DependentUpon>ReinforcementConsoleWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Backmen\Reinforcement\UI\ReinforcementRow.cs">
+      <DependentUpon>ReinforcementRow.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Backmen\Reinforcement\UI\ActiveReinforcementRow.cs">
+      <DependentUpon>ActiveReinforcementRow.xaml</DependentUpon>
+    </Compile>
   </ItemGroup>
   <Import Project="..\RobustToolbox\MSBuild\Robust.Properties.targets" />
   <Import Project="..\RobustToolbox\MSBuild\XamlIL.targets" />

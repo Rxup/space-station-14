@@ -9,7 +9,6 @@ namespace Content.Shared.Backmen.Abilities.Psionics;
 
 public sealed class MassSleepPowerSystem : EntitySystem
 {
-    [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
     [Dependency] private readonly SharedActionsSystem _actions = default!;
     [Dependency] private readonly EntityLookupSystem _lookup = default!;
     [Dependency] private readonly SharedPsionicAbilitiesSystem _psionics = default!;

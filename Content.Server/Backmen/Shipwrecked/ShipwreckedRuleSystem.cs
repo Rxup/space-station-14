@@ -89,6 +89,7 @@ using Robust.Shared.Audio;
 using Robust.Shared.Configuration;
 using Robust.Shared.Map;
 using Robust.Shared.Map.Components;
+using Robust.Shared.Map.Enumerators;
 using Robust.Shared.Physics.Collision.Shapes;
 using Robust.Shared.Physics.Components;
 using Robust.Shared.Physics.Dynamics;
@@ -318,7 +319,10 @@ public sealed class ShipwreckedRuleSystem : GameRuleSystem<ShipwreckedRuleCompon
         var planetMapUid = _mapManager.GetMapEntityId(planetMapId);
         _mapManager.AddUninitializedMap(planetMapId);
 
-        var ftl = _shuttleSystem.AddFTLDestination(planetMapUid, true);
+        if (!_shuttleSystem.TryAddFTLDestination(planetMapId, true, out var ftl))
+        {
+            return;
+        }
         ftl.Whitelist = new ();
 
         var planetGrid = EnsureComp<MapGridComponent>(planetMapUid);
@@ -1352,10 +1356,11 @@ public sealed class ShipwreckedRuleSystem : GameRuleSystem<ShipwreckedRuleCompon
                     HecateSay(Loc.GetString("shipwrecked-hecate-launch"),
                         component);
 
-                    _shuttleSystem.FTLTravel(shuttle,
+                    _shuttleSystem.FTLToCoordinates(shuttle,
                         Comp<ShuttleComponent>(shuttle),
                         new EntityCoordinates(spaceMap, 0, 0),
-                        hyperspaceTime: 120f);
+                        Angle.Zero, hyperspaceTime: 120f)
+                        ;
                     break;
                 }
             }
@@ -1493,9 +1498,10 @@ public sealed class ShipwreckedRuleSystem : GameRuleSystem<ShipwreckedRuleCompon
             throw new ArgumentException("Неправильная карта планеты! Отмена!");
         }
 
-        _shuttleSystem.FTLTravel(shuttle,
+        _shuttleSystem.FTLToCoordinates(shuttle,
             Comp<ShuttleComponent>(shuttle),
             new EntityCoordinates(component.PlanetMap.Value, Vector2.Zero),
+            Angle.Zero,
             // The travellers are already in FTL by the time the gamemode starts.
             startupTime: 0,
             hyperspaceTime: (float) flightTime.TotalSeconds);
