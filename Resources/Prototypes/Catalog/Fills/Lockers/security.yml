@@ -264,4 +264,6 @@
   - type: StorageFill
     contents:
     - id: WeaponEarthGovLaserRifle
-      amount: 3
+      amount: 2
+    - id: WeaponEarthGovLaserCarbine
+      amount: 1

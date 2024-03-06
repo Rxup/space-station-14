@@ -67,8 +67,8 @@
   - type: Item
     sprite: Backmen/Objects/Weapons/Gunsx64/Battery/EG-R/tiny.rsi
   - type: GunWieldBonus
-    minAngle: -23
-    maxAngle: -44
+    minAngle: -20
+    maxAngle: -40
   - type: Gun
     minAngle: 24
     maxAngle: 45
