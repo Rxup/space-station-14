@@ -16,7 +16,7 @@
 
 - type: entity
   name: brass chair
-  id: ChairBrass
+  id: ChairBrassCorvax
   parent: SeatBase
   description: A spinny chair made of bronze. It has little cogs for wheels!
   components:
