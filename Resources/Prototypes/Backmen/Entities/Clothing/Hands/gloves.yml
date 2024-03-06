@@ -35,7 +35,5 @@
         Piercing: 10
     soundSwing: /Audio/Backmen/Weapons/Melee/bogomol/miss.ogg
     soundHit: /Audio/Backmen/Weapons/Melee/bogomol/hit.ogg
-    heavyWindupModifier: .9
-    heavyDamageModifier: 1.5
   - type: StaticPrice
     price: 1000
