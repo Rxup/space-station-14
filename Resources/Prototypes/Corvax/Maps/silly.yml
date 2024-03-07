@@ -1,7 +1,7 @@
 - type: gameMap
   id: CorvaxSilly
-  mapName: 'Silly Station'
-  mapPath: /Maps/corvax_silly.yml
+  mapName: 'Backmen Silly'
+  mapPath: /Maps/Backmen/backmen_silly.yml # backmen silly rework
   minPlayers: 0
   maxPlayers: 30
   stations:
