@@ -1,0 +1,31 @@
+- type: entity
+  parent: BaseSubdermalImplant
+  id: mantisImplant
+  name: implant
+  description: This implant gives the user blades, thanks to which he can kill his victim without leaving evidence.
+  noSpawn: true
+  components:
+    - type: SubdermalImplant
+      implantAction: ActionToggleMantis
+    - type: ToggleableClothing
+      clothingPrototype: ClothingHandsGlovesmantis
+      slot: gloves
+    - type: ContainerContainer
+      containers:
+        toggleable-clothing: !type:ContainerSlot {}
+    - type: TriggerImplantAction
+
+- type: entity
+  id: ActionToggleMantis
+  name: Активировать клинки богомола
+  description: Remember to equip the important pieces of your suit before going into action.
+  noSpawn: true
+  components:
+  - type: InstantAction
+    useDelay: 1 # equip noise spam.
+    event: !type:ToggleClothingEvent
+    itemIconStyle: BigAction
+    priority: -20
+    icon:
+      sprite: Backmen/Clothing/Hands/Gloves/mantis.rsi
+      state: icon
