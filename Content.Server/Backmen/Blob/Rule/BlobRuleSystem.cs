@@ -10,6 +10,7 @@ using Content.Server.Mind;
 using Content.Shared.Actions;
 using Content.Shared.Antag;
 using Content.Shared.Backmen.Blob;
+using Content.Shared.Backmen.Blob.Components;
 using Content.Shared.Backmen.CCVar;
 using Content.Shared.Humanoid;
 using Content.Shared.Preferences;
