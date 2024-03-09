@@ -150,4 +150,17 @@ public sealed class CCVars
 
     public static readonly CVarDef<int> BlobPlayersPer =
         CVarDef.Create("blob.players_per", 20, CVar.SERVERONLY);
+
+
+    /*
+     * Ghost roller
+     */
+    public static readonly CVarDef<bool>
+        GhostRollerEnabled = CVarDef.Create("ghost.roller_enabled", true, CVar.SERVERONLY);
+
+    /// <summary>
+    /// The time you must spend reading the rules, before the "Request" button is enabled
+    /// </summary>
+    public static readonly CVarDef<float> GhostRollerTime =
+        CVarDef.Create("ghost.roller_time", 10f, CVar.REPLICATED | CVar.SERVER);
 }
