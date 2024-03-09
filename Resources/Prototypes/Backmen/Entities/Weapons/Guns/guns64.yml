@@ -2402,7 +2402,7 @@
   parent: BaseWeaponPistol
   id: WeaponLauncherM81
   suffix: Гранатомёт
-  description: The RL-5 is the primary anti-armor used around the galaxy. Used to take out light-tanks and enemy structures, the RL-5 rocket launcher is a dangerous weapon with a variety of combat uses.
+  description: A lightweight single-shot grenade launcher used by the UEG for area blockades and large explosions or riot police units.
   components:
   - type: Sprite
     sprite: Backmen/Objects/Weapons/Gunsx64/Launchers/m81.rsi
