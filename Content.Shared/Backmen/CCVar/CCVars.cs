@@ -156,7 +156,7 @@ public sealed class CCVars
      * enabling a roll to enter a ghost role for one player from the vote
      */
     public static readonly CVarDef<bool>
-        GhostRollerEnabled = CVarDef.Create("ghost.roller_enabled", true, CVar.SERVERONLY);
+        GhostRollerEnabled = CVarDef.Create("ghost.roller_enabled", false, CVar.SERVERONLY);
 
     /// <summary>
     /// the time that will be given to throw a number to vote for the ghost role
