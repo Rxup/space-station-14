@@ -5,7 +5,7 @@ using Robust.Shared.GameStates;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype;
 
-namespace Content.Shared.Backmen.Blob.Components;
+namespace Content.Shared.Backmen.Blob;
 
 [RegisterComponent, NetworkedComponent]
 public sealed partial class BlobCarrierComponent : Component, IAntagStatusIconComponent

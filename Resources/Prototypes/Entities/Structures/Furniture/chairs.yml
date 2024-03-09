@@ -49,55 +49,17 @@
   - type: StaticPrice
     price: 10
 
-#Starts unanchored, cannot be rotated while anchored
-- type: entity
-  name: chair
-  id: UnanchoredChairBase
-  parent: SeatBase
-  abstract: true
-  components:
-  - type: Anchorable
-  - type: Rotatable
-
-#Start anchored, cannot be rotated while anchored
-- type: entity
-  name: chair
-  id: ChairBase
-  abstract: true
-  parent: UnanchoredChairBase
-  components:
-  - type: Physics
-    bodyType: Static
-  - type: Transform
-    anchored: true
-
-#Starts unanchored, can be rotated while anchored
-- type: entity
-  name: chair
-  id: OfficeChairBase
-  parent: UnanchoredChairBase
-  abstract: true
-  components:
-  - type: Rotatable
-    rotateWhileAnchored: true
-
-#Starts anchored, can be rotated while anchored
-- type: entity
-  name: stool
-  id: StoolBase
-  parent: OfficeChairBase
-  abstract: true
-  components:
-  - type: Physics
-    bodyType: Static
-  - type: Transform
-    anchored: true
-
 - type: entity
   name: chair
   id: Chair
-  parent: ChairBase
+  parent: SeatBase
   components:
+  - type: Transform
+    anchored: true
+  - type: Physics
+    bodyType: Static
+  - type: Anchorable
+  - type: Rotatable
   - type: Sprite
     state: chair
   - type: Construction
@@ -116,9 +78,11 @@
 - type: entity
   name: stool
   id: Stool
-  parent: ChairBase
+  parent: SeatBase
   description: Apply butt.
   components:
+  - type: Anchorable
+  - type: Rotatable
   - type: Sprite
     state: stool
   - type: Construction
@@ -128,8 +92,15 @@
 - type: entity
   name: bar stool
   id: StoolBar
-  parent: StoolBase
+  parent: SeatBase
   components:
+  - type: Transform
+    anchored: true
+  - type: Rotatable
+    rotateWhileAnchored: true
+  - type: Physics
+    bodyType: Static
+  - type: Anchorable
   - type: Sprite
     state: bar
   - type: Construction
@@ -137,21 +108,13 @@
     node: stoolBar
 
 - type: entity
-  name: brass chair
-  id: ChairBrass
-  parent: StoolBase
-  components:
-  - type: Sprite
-    state: brass_chair
-  - type: Construction
-    graph: Seat
-    node: chairBrass
-
-- type: entity
   name: white office chair
   id: ChairOfficeLight
-  parent: OfficeChairBase
+  parent: SeatBase
   components:
+  - type: Anchorable
+  - type: Rotatable
+    rotateWhileAnchored: true
   - type: Sprite
     state: office-white
   - type: Construction
@@ -172,9 +135,15 @@
 - type: entity
   name: comfy chair
   id: ComfyChair
-  parent: ChairBase
+  parent: SeatBase
   description: It looks comfy.
   components:
+  - type: Transform
+    anchored: true
+  - type: Physics
+    bodyType: Static
+  - type: Anchorable
+  - type: Rotatable
   - type: Sprite
     state: comfy
   - type: Construction
@@ -184,9 +153,15 @@
 - type: entity
   name: pilot seat
   id: ChairPilotSeat
-  parent: ChairBase
+  parent: SeatBase
   description: The pilot seat of a prestigious ship.
   components:
+  - type: Transform
+    anchored: true
+  - type: Physics
+    bodyType: Static
+  - type: Anchorable
+  - type: Rotatable
   - type: Sprite
     state: shuttle
   - type: Construction
@@ -196,10 +171,11 @@
 - type: entity
   name: wooden chair
   id: ChairWood
-  parent: UnanchoredChairBase
+  parent: SeatBase
   components:
   - type: Sprite
     state: wooden
+  - type: Rotatable
   - type: Construction
     graph: Seat
     node: chairWood
@@ -241,10 +217,11 @@
 
 - type: entity
   id: ChairMeat
-  parent: ChairBase
+  parent: SeatBase
   name: meat chair
   description: Uncomfortably sweaty.
   components:
+  - type: Rotatable
   - type: Sprite
     state: meat
   - type: Construction
@@ -285,8 +262,13 @@
   name: web chair
   id: ChairWeb
   description: For true web developers.
-  parent: ChairBase
+  parent: SeatBase
   components:
+  - type: Transform
+    anchored: true
+  - type: Physics
+    bodyType: Static
+  - type: Rotatable
   - type: Sprite
     sprite: Structures/Web/chair.rsi
     state: icon
@@ -356,9 +338,15 @@
 - type: entity
   name: steel bench
   id: SteelBench
-  parent: ChairBase
+  parent: SeatBase
   description: A long chair made for a metro. Really standard design.
   components:
+  - type: Transform
+    anchored: true
+  - type: Physics
+    bodyType: Static
+  - type: Anchorable
+  - type: Rotatable
   - type: Sprite
     state: steel-bench
   - type: Construction

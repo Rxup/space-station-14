@@ -1,5 +1,4 @@
 using Content.Server.Popups;
-using Content.Server.Power.EntitySystems;
 using Content.Server.PowerCell;
 using Content.Server.Radio.Components;
 using Content.Shared.Examine;
@@ -11,7 +10,6 @@ namespace Content.Server.Radio.EntitySystems;
 public sealed class JammerSystem : EntitySystem
 {
     [Dependency] private readonly PowerCellSystem _powerCell = default!;
-    [Dependency] private readonly BatterySystem _battery = default!;
     [Dependency] private readonly PopupSystem _popup = default!;
     [Dependency] private readonly SharedTransformSystem _transform = default!;
 
@@ -31,7 +29,7 @@ public sealed class JammerSystem : EntitySystem
         while (query.MoveNext(out var uid, out var _, out var jam))
         {
             if (_powerCell.TryGetBatteryFromSlot(uid, out var battery) &&
-                !_battery.TryUseCharge(uid, jam.Wattage * frameTime, battery))
+                !battery.TryUseCharge(jam.Wattage * frameTime))
             {
                 RemComp<ActiveRadioJammerComponent>(uid);
             }
@@ -40,7 +38,7 @@ public sealed class JammerSystem : EntitySystem
 
     private void OnActivate(EntityUid uid, RadioJammerComponent comp, ActivateInWorldEvent args)
     {
-        var activated = !HasComp<ActiveRadioJammerComponent>(uid) &&
+        var activated = !HasComp<ActiveRadioJammerComponent>(uid) && 
             _powerCell.TryGetBatteryFromSlot(uid, out var battery) &&
             battery.CurrentCharge > comp.Wattage;
         if (activated)

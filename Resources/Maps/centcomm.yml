@@ -3876,7 +3876,6 @@ entities:
       - ForceNoFixRotations
       - EmagImmune
     - type: GridFill
-      addComponents: []
       path: /Maps/Backmen/Grids/ntv-pickett.yml
   - uid: 5959
     components:
@@ -19922,9 +19921,6 @@ entities:
     - type: Transform
       pos: 30.5,-28.5
       parent: 1668
-    - type: SingletonDeviceNetServer
-      active: False
-      available: False
 - proto: CrowbarRed
   entities:
   - uid: 515

@@ -1,5 +1,4 @@
-﻿using Content.Shared.Backmen.Blob.Components;
-using Content.Shared.Movement.Events;
+﻿using Content.Shared.Movement.Events;
 
 namespace Content.Shared.Backmen.Blob;
 

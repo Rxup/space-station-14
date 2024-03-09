@@ -488,7 +488,7 @@
     sprite: Objects/Tools/shovel.rsi
     state: icon
   - type: MeleeWeapon
-    wideAnimationRotation: 45
+    wideAnimationRotation: -135
     damage:
       types:
         Blunt: 14

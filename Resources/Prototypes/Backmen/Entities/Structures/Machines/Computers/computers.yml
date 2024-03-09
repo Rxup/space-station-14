@@ -59,7 +59,6 @@
   id: BKCCOfficial
   name: ПЦК
   job: BKCCOfficial
-  min: 1
   max: 1
 
 - type: reinforcement
@@ -70,15 +69,9 @@
 
 - type: entity
   parent: BaseComputer
-<<<<<<< HEAD
   id: ComputerReinforcement
   name: reinforcement computer
   description: This can be used to check criminal records. Only security can modify them.
-=======
-  id: ComputerReinforcementCentCom
-  name: reinforcement-console-title
-  description: allows you to call for special reasons persons to solve these reasons
->>>>>>> master
   components:
   - type: ReinforcementConsole
     min: 2

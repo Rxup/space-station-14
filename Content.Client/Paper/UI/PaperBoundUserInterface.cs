@@ -1,5 +1,6 @@
 using JetBrains.Annotations;
 using Robust.Client.UserInterface.Controls;
+using Robust.Shared.Input;
 using Robust.Shared.Utility;
 using static Content.Shared.Paper.SharedPaperComponent;
 
@@ -21,7 +22,15 @@ public sealed class PaperBoundUserInterface : BoundUserInterface
 
         _window = new PaperWindow();
         _window.OnClose += Close;
-        _window.OnSaved += Input_OnTextEntered;
+        _window.Input.OnKeyBindDown += args => // Solution while TextEdit don't have events
+        {
+            if (args.Function == EngineKeyFunctions.MultilineTextSubmit)
+            {
+                var text = Rope.Collapse(_window.Input.TextRope);
+                Input_OnTextEntered(text);
+                args.Handle();
+            }
+        };
 
         if (EntMan.TryGetComponent<PaperVisualsComponent>(Owner, out var visuals))
         {

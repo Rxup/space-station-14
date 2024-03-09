@@ -12,7 +12,7 @@
   - type: EyeProtection
   - type: PhysicalComposition
     materialComposition:
-      Steel: 200
+      Steel: 500
       Glass: 100
   - type: StaticPrice
     price: 50

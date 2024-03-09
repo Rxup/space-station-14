@@ -1,5 +1,4 @@
-﻿using Content.Shared.Backmen.Blob.Components;
-using Content.Shared.Popups;
+﻿using Content.Shared.Popups;
 using Robust.Shared.Timing;
 
 namespace Content.Shared.Backmen.Blob;

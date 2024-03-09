@@ -9,15 +9,20 @@ namespace Content.Client.Shuttles.UI;
 
 [GenerateTypedNameReferences]
 public sealed partial class RadarConsoleWindow : FancyWindow,
-    IComputerWindow<NavInterfaceState>
+    IComputerWindow<RadarConsoleBoundInterfaceState>
 {
     public RadarConsoleWindow()
     {
         RobustXamlLoader.Load(this);
     }
 
-    public void UpdateState(NavInterfaceState scc)
+    public void UpdateState(RadarConsoleBoundInterfaceState scc)
     {
         RadarScreen.UpdateState(scc);
+    }
+
+    public void SetMatrix(EntityCoordinates? coordinates, Angle? angle)
+    {
+        RadarScreen.SetMatrix(coordinates, angle);
     }
 }

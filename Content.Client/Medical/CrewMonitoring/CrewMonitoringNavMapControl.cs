@@ -1,7 +1,6 @@
 using Content.Client.Pinpointer.UI;
 using Robust.Client.Graphics;
 using Robust.Client.UserInterface.Controls;
-using Robust.Shared.Timing;
 
 namespace Content.Client.Medical.CrewMonitoring;
 
@@ -17,7 +16,7 @@ public sealed partial class CrewMonitoringNavMapControl : NavMapControl
     {
         WallColor = new Color(192, 122, 196);
         TileColor = new(71, 42, 72);
-        BackgroundColor = Color.FromSrgb(TileColor.WithAlpha(BackgroundOpacity));
+        _backgroundColor = Color.FromSrgb(TileColor.WithAlpha(_backgroundOpacity));
 
         _trackedEntityLabel = new Label
         {
@@ -31,7 +30,7 @@ public sealed partial class CrewMonitoringNavMapControl : NavMapControl
         {
             PanelOverride = new StyleBoxFlat
             {
-                BackgroundColor = BackgroundColor,
+                BackgroundColor = _backgroundColor,
             },
 
             Margin = new Thickness(5f, 10f),
@@ -44,9 +43,9 @@ public sealed partial class CrewMonitoringNavMapControl : NavMapControl
         this.AddChild(_trackedEntityPanel);
     }
 
-    protected override void FrameUpdate(FrameEventArgs args)
+    protected override void Draw(DrawingHandleScreen handle)
     {
-        base.FrameUpdate(args);
+        base.Draw(handle);
 
         if (Focus == null)
         {

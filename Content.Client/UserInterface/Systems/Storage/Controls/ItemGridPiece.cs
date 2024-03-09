@@ -18,7 +18,7 @@ public sealed class ItemGridPiece : Control
 
     public readonly EntityUid Entity;
     public ItemStorageLocation Location;
-    public ItemGridPieceMarks? Marked;
+    public bool Marked = false;
 
     public event Action<GUIBoundKeyEventArgs, ItemGridPiece>? OnPiecePressed;
     public event Action<GUIBoundKeyEventArgs, ItemGridPiece>? OnPieceUnpressed;
@@ -42,10 +42,8 @@ public sealed class ItemGridPiece : Control
     private Texture? _bottomLeftTexture;
     private readonly string _bottomRightTexturePath = "Storage/piece_bottomRight";
     private Texture? _bottomRightTexture;
-    private readonly string _markedFirstTexturePath = "Storage/marked_first";
-    private Texture? _markedFirstTexture;
-    private readonly string _markedSecondTexturePath = "Storage/marked_second";
-    private Texture? _markedSecondTexture;
+    private readonly string _markedTexturePath = "Storage/marked";
+    private Texture? _markedTexture;
     #endregion
 
     public ItemGridPiece(Entity<ItemComponent> entity, ItemStorageLocation location,  IEntityManager entityManager)
@@ -90,8 +88,7 @@ public sealed class ItemGridPiece : Control
         _topRightTexture = Theme.ResolveTextureOrNull(_topRightTexturePath)?.Texture;
         _bottomLeftTexture = Theme.ResolveTextureOrNull(_bottomLeftTexturePath)?.Texture;
         _bottomRightTexture = Theme.ResolveTextureOrNull(_bottomRightTexturePath)?.Texture;
-        _markedFirstTexture = Theme.ResolveTextureOrNull(_markedFirstTexturePath)?.Texture;
-        _markedSecondTexture = Theme.ResolveTextureOrNull(_markedSecondTexturePath)?.Texture;
+        _markedTexture = Theme.ResolveTextureOrNull(_markedTexturePath)?.Texture;
     }
 
     protected override void Draw(DrawingHandleScreen handle)
@@ -116,7 +113,7 @@ public sealed class ItemGridPiece : Control
         //yeah, this coloring is kinda hardcoded. deal with it. B)
         Color? colorModulate = hovering  ? null : Color.FromHex("#a8a8a8");
 
-        var marked = Marked != null;
+        var marked = Marked;
         Vector2i? maybeMarkedPos = null;
 
         _texturesPositions.Clear();
@@ -192,19 +189,9 @@ public sealed class ItemGridPiece : Control
                 overrideDirection: Direction.South);
         }
 
-        if (maybeMarkedPos is {} markedPos)
+        if (maybeMarkedPos is {} markedPos && _markedTexture != null)
         {
-            var markedTexture = Marked switch
-            {
-                ItemGridPieceMarks.First => _markedFirstTexture,
-                ItemGridPieceMarks.Second => _markedSecondTexture,
-                _ => null,
-            };
-
-            if (markedTexture != null)
-            {
-                handle.DrawTextureRect(markedTexture, new UIBox2(markedPos, markedPos + size));
-            }
+            handle.DrawTextureRect(_markedTexture, new UIBox2(markedPos, markedPos + size));
         }
     }
 
@@ -287,10 +274,4 @@ public sealed class ItemGridPiece : Control
         var actualSize = new Vector2(boxSize.X + 1, boxSize.Y + 1);
         return actualSize * new Vector2i(8, 8);
     }
-}
-
-public enum ItemGridPieceMarks
-{
-    First,
-    Second,
 }

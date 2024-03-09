@@ -21,11 +21,6 @@
             - material: Steel
               amount: 1
               doAfter: 1
-        - to: chairBrass
-          steps:
-            - material: Brass
-              amount: 1
-              doAfter: 1
         - to: chairOffice
           steps:
             - material: Steel
@@ -115,17 +110,6 @@
           completed:
             - !type:SpawnPrototype
               prototype: SheetSteel1
-          steps:
-            - tool: Screwing
-              doAfter: 1
-
-    - node: chairBrass
-      entity: ChairBrass
-      edges:
-        - to: start
-          completed:
-            - !type:SpawnPrototype
-              prototype: SheetBrass1
           steps:
             - tool: Screwing
               doAfter: 1

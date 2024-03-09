@@ -103,7 +103,7 @@
     tags:
       - Syndicate
   - type: RadarConsole
-    maxRange: 384
+    maxRange: 1536
   - type: WorldLoader
     radius: 1536
   - type: PointLight

@@ -5,17 +5,14 @@ using Content.Server.Backmen.Body.Components;
 using Content.Server.Body.Components;
 using Content.Server.Body.Systems;
 using Content.Server.Chat.Managers;
-using Content.Server.Explosion.EntitySystems;
 using Content.Server.Mind;
 using Content.Server.NPC;
 using Content.Server.NPC.Components;
 using Content.Server.NPC.HTN;
 using Content.Server.NPC.Systems;
-using Content.Server.Roles;
 using Content.Server.Speech.Components;
 using Content.Server.Temperature.Components;
 using Content.Shared.Atmos;
-using Content.Shared.Backmen.Blob.Components;
 using Content.Shared.Damage;
 using Content.Shared.Mind.Components;
 using Content.Shared.Mobs;
@@ -36,8 +33,6 @@ public sealed class ZombieBlobSystem : EntitySystem
     [Dependency] private readonly SharedAudioSystem _audio = default!;
     [Dependency] private readonly IChatManager _chatMan = default!;
     [Dependency] private readonly SharedPhysicsSystem _physics = default!;
-    [Dependency] private readonly RoleSystem _roleSystem = default!;
-    [Dependency] private readonly TriggerSystem _trigger = default!;
 
     private const int ClimbingCollisionGroup = (int) (CollisionGroup.BlobImpassable);
 
@@ -145,22 +140,11 @@ public sealed class ZombieBlobSystem : EntitySystem
         }
 
         var mindComp = EnsureComp<MindContainerComponent>(uid);
-        if (mindComp.Mind != null)
+        if (_mind.TryGetSession(mindComp.Mind, out var session))
         {
-            /*
-            if (!_roleSystem.MindHasRole<BlobRoleComponent>(mindComp.Mind.Value))
-            {
-                _roleSystem.MindAddRole(mindComp.Mind.Value, new BlobRoleComponent
-                {
-                    PrototypeId = "Blob"
-                });
-            }
-*/
-            if (_mind.TryGetSession(mindComp.Mind, out var session))
-            {
-                _chatMan.DispatchServerMessage(session, Loc.GetString("blob-zombie-greeting"));
-                _audio.PlayGlobal(component.GreetSoundNotification, session);
-            }
+            _chatMan.DispatchServerMessage(session, Loc.GetString("blob-zombie-greeting"));
+
+            _audio.PlayGlobal(component.GreetSoundNotification, session);
         }
         else
         {
@@ -192,14 +176,6 @@ public sealed class ZombieBlobSystem : EntitySystem
 
         _tagSystem.RemoveTag(uid, "BlobMob");
 
-        /*
-        var mindComp = EnsureComp<MindContainerComponent>(uid);
-        if (mindComp.Mind != null)
-        {
-            _roleSystem.MindTryRemoveRole<BlobRoleComponent>(mindComp.Mind.Value);
-        }
-*/
-        _trigger.Trigger(component.BlobPodUid);
         QueueDel(component.BlobPodUid);
 
         EnsureComp<NpcFactionMemberComponent>(uid);

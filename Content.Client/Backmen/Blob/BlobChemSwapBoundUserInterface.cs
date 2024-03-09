@@ -1,5 +1,4 @@
 ﻿using Content.Shared.Backmen.Blob;
-using Content.Shared.Backmen.Blob.Components;
 using JetBrains.Annotations;
 using Robust.Client.GameObjects;
 

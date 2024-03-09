@@ -4504,7 +4504,6 @@ entities:
       pos: 36.5,-10.5
       parent: 2
     - type: GridFill
-      addComponents: []
       path: /Maps/Backmen/Grids/ntv-pickett.yml
   - uid: 1686
     components:
@@ -17918,9 +17917,6 @@ entities:
     - type: Transform
       pos: -34.5,-22.5
       parent: 2
-    - type: SingletonDeviceNetServer
-      active: False
-      available: False
 - proto: Crowbar
   entities:
   - uid: 3594

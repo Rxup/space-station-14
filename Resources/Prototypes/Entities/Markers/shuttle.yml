@@ -3,16 +3,6 @@
   parent: MarkerBase
   name: FTL point
   components:
-    - type: FTLBeacon
-    - type: Sprite
-      state: pink
-
-- type: entity
-  id: FTLExclusion
-  parent: MarkerBase
-  name: FTL exclusion point
-  components:
-    - type: FTLExclusion
-      range: 32
+    - type: FTLDestination
     - type: Sprite
       state: pink

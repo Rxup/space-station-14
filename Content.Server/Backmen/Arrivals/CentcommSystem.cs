@@ -13,7 +13,6 @@ using Content.Server.Shuttles.Systems;
 using Content.Server.Station.Components;
 using Content.Server.Station.Systems;
 using Content.Shared.Backmen.Abilities;
-using Content.Shared.Backmen.Arrivals;
 using Content.Shared.Cargo.Components;
 using Content.Shared.CCVar;
 using Content.Shared.Emag.Components;
@@ -22,7 +21,6 @@ using Content.Shared.GameTicking;
 using Content.Shared.Random;
 using Content.Shared.Random.Helpers;
 using Content.Shared.Shuttles.Components;
-using Content.Shared.Whitelist;
 using Robust.Server.GameObjects;
 using Robust.Server.Maps;
 using Robust.Shared.Audio;
@@ -85,10 +83,7 @@ public sealed class CentcommSystem : EntitySystem
 
     private void OnCentComEndRound(RoundEndedEvent ev)
     {
-        if (CentComMapUid.IsValid() && _shuttleSystem.TryAddFTLDestination(CentComMap, true, out var ftl))
-        {
-            EnableFtl((CentComMapUid, ftl));
-        }
+        EnableFtl();
     }
 
     private void OnFtlAnnounce(FtlCentComAnnounce ev)
@@ -172,17 +167,10 @@ public sealed class CentcommSystem : EntitySystem
         if (!this.IsPowered(ent, EntityManager))
             return;
 
-        var shuttle = Transform(ent).GridUid;
-        if (!HasComp<ShuttleComponent>(shuttle))
-            return;
-
-        if (!(HasComp<CargoShuttleComponent>(shuttle) || HasComp<SalvageShuttleComponent>(shuttle)))
-            return;
-
         _audio.PlayPvs(SparkSound, ent);
         _popupSystem.PopupEntity(Loc.GetString("shuttle-console-component-upgrade-emag-requirement"), ent);
         args.Handled = true;
-        EnsureComp<AllowFtlToCentComComponent>(shuttle.Value); // для обновления консоли нужно чтобы компонент был до вызыва RefreshShuttleConsoles
+        EnsureComp<EmaggedComponent>(ent); // для обновления консоли нужно чтобы компонент был до вызыва RefreshShuttleConsoles
         _console.RefreshShuttleConsoles();
     }
 
@@ -256,39 +244,35 @@ public sealed class CentcommSystem : EntitySystem
         if (ent != null)
         {
             CentComGrid = ent.Value;
-            if (_shuttle.TryAddFTLDestination(CentComMap, true, out var ftl))
-            {
-                DisableFtl((CentComMapUid,ftl));
-            }
+            _shuttle.AddFTLDestination(CentComGrid, true);
+            DisableFtl();
         }
         else
         {
             _sawmill.Warning("No CentComm map found, skipping setup.");
-            return;
-        }
-
-        var q = EntityQueryEnumerator<StationCentcommComponent>();
-        while (q.MoveNext(out var station))
-        {
-            station.MapEntity = CentComMapUid;
-            station.Entity = CentComGrid;
-            station.ShuttleIndex = ShuttleIndex;
         }
     }
 
     // ReSharper disable once MemberCanBePrivate.Global
-    public void DisableFtl(Entity<FTLDestinationComponent?> ent)
+    public void DisableFtl()
     {
-        var d = new EntityWhitelist();
-        d.RequireAll = false;
-        d.Components = new[] { "AllowFtlToCentCom" };
-        d.UpdateRegistrations();
-        _shuttle.SetFTLWhitelist(ent, d);
+        if (!CentComGrid.IsValid())
+            return;
+        var dest = EnsureComp<FTLDestinationComponent>(CentComGrid);
+        dest.Whitelist ??= new();
+        dest.Whitelist.RequireAll = false;
+        dest.Whitelist.Components = new[] { "Emagged" };
+        dest.Whitelist.UpdateRegistrations();
+        _console.RefreshShuttleConsoles();
     }
 
-    public void EnableFtl(Entity<FTLDestinationComponent?> ent)
+    public void EnableFtl()
     {
-        _shuttle.SetFTLWhitelist(ent, null);
+        if (!CentComGrid.IsValid())
+            return;
+        var dest = EnsureComp<FTLDestinationComponent>(CentComGrid);
+        dest.Whitelist = null;
+        _console.RefreshShuttleConsoles();
     }
 
     private void OnCentComInit(RoundStartingEvent ev)
@@ -365,12 +349,12 @@ public sealed class CentcommSystem : EntitySystem
             return;
         }
 
-        if (!_shuttleSystem.CanFTL(shuttle.GridUid.Value, out var reason))
+        if (!_shuttleSystem.CanFTL(shuttle.GridUid, out var reason))
         {
             _popup.PopupEntity(reason, args.Performer, args.Performer);
             return;
         }
 
-        _shuttleSystem.FTLToDock(shuttle.GridUid.Value, comp, centcomm.Entity.Value);
+        _shuttleSystem.FTLTravel(shuttle.GridUid.Value, comp, centcomm.Entity.Value);
     }
 }

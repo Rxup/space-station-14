@@ -7,7 +7,7 @@ using Robust.Shared.GameStates;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization;
 
-namespace Content.Shared.Backmen.Blob.Components;
+namespace Content.Shared.Backmen.Blob;
 
 [RegisterComponent, NetworkedComponent, AutoGenerateComponentState(false)]
 public sealed partial class BlobObserverComponent : Component, IAntagStatusIconComponent

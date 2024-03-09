@@ -11,7 +11,6 @@
     sprite: Objects/Tools/Cowtools/haycutters.rsi
     state: haycutters
   - type: MeleeWeapon
-    wideAnimationRotation: -90
     damage:
       types:
         Pierce: 0

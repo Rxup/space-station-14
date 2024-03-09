@@ -17,17 +17,13 @@
   components:
   - type: Item
     size: Ginormous
-  - type: Storage
-    grid:
-    - 0,0,6,4
   - type: StorageFill
-    contents:
-      - id: WeaponSniperHristov
-      - id: MagazineBoxAntiMateriel
-      - id: ClothingNeckTieRed
-      - id: ClothingHandsGlovesLatex
-      - id: ClothingUniformJumpsuitLawyerBlack
-      - id: BarberScissors
+    contents: # backmen
+      - id: WeaponRifleSR127
+      - id: MagazineAntiMaterielRifleSR
+      - id: ClothingEyesGlassesMercenary
+      - id: KukriKnife
+      - id: ClothingHeadHatStetson
 
 - type: entity
   id: BriefcaseSyndieLobbyingBundleFilled

@@ -11,24 +11,16 @@ public sealed class WagePaydayEvent : EntityEventArgs
 {
     public FixedPoint2 Mod { get; set; } = 1;
     public FixedPoint2? Value { get; set; } = null;
-    public readonly HashSet<Entity<BankAccountComponent>> WhiteListTo = new();
+    public readonly HashSet<Entity<BankAccountComponent>> WhiteListFrom = new();
 }
 
-public sealed record WagePaydayPayout(
-    uint Id,
-    Entity<BankAccountComponent> FromAccountNumber,
-    Entity<BankAccountComponent> ToAccountNumber)
-{
-    public FixedPoint2 PayoutAmount { get; set; }
-}
+public sealed record WagePaydayPayout(Entity<BankAccountComponent> FromAccountNumber, Entity<BankAccountComponent> ToAccountNumber, FixedPoint2 PayoutAmount);
 
 public sealed class WageManagerSystem : EntitySystem
 {
     [Dependency] private readonly IConfigurationManager _configurationManager = default!;
     [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
     [Dependency] private readonly BankManagerSystem _bankManagerSystem = default!;
-
-    private uint _nextId = 1;
 
     [ViewVariables(VVAccess.ReadWrite)]
     public readonly HashSet<WagePaydayPayout> PayoutsList = new();
@@ -51,7 +43,6 @@ public sealed class WageManagerSystem : EntitySystem
     private void OnCleanup(RoundRestartCleanupEvent ev)
     {
         PayoutsList.Clear();
-        _nextId = 1;
     }
 
     public override void Shutdown()
@@ -65,7 +56,7 @@ public sealed class WageManagerSystem : EntitySystem
         foreach (var payout in PayoutsList)
         {
             // бонусная зп на отдел?
-            if (ev.WhiteListTo.Count > 0 && !ev.WhiteListTo.Contains(payout.ToAccountNumber))
+            if (ev.WhiteListFrom.Count > 0 && !ev.WhiteListFrom.Contains(payout.FromAccountNumber))
             {
                 continue;
             }
@@ -77,22 +68,16 @@ public sealed class WageManagerSystem : EntitySystem
                 val * ev.Mod);
         }
     }
-
     public bool TryAddAccountToWagePayoutList(Entity<BankAccountComponent> bankAccount, JobPrototype jobPrototype)
     {
-        if (jobPrototype.WageDepartment == null ||
-            !_prototypeManager.TryIndex(jobPrototype.WageDepartment, out DepartmentPrototype? department))
+        if (jobPrototype.WageDepartment == null || !_prototypeManager.TryIndex(jobPrototype.WageDepartment, out DepartmentPrototype? department))
             return false;
 
         if (!_bankManagerSystem.TryGetBankAccount(department.AccountNumber, out var departmentBankAccount))
             return false;
 
-        var newPayout = new WagePaydayPayout(_nextId++, departmentBankAccount.Value, bankAccount)
-        {
-            PayoutAmount = jobPrototype.Wage
-        };
-
-    PayoutsList.Add(newPayout);
+        var newPayout = new WagePaydayPayout(departmentBankAccount.Value, bankAccount, jobPrototype.Wage);
+        PayoutsList.Add(newPayout);
         return true;
     }
 }

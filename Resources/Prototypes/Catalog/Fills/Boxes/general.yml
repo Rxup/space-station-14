@@ -173,14 +173,24 @@
       - state: writing
 
 - type: entity
-  parent: BoxHug
+  name: box of hugs
+  parent: BoxCardboard
   id: BoxHugHealing
-  suffix: Medical
+  description: A special box for sensitive people.
   components:
+  - type: Sprite
+    layers:
+      - state: box_hug
+      - state: heart
+  - type: Item
+    heldPrefix: hug
   - type: StorageFill
     contents:
       - id: Brutepack
         amount: 3
+  - type: Tag
+    tags:
+      - BoxHug
 
 - type: entity
   name: inflatable wall box

@@ -30,7 +30,7 @@
     thresholds:
     - trigger:
         !type:DamageTrigger
-        damage: 10
+        damage: 50
       behaviors:
       - !type:DoActsBehavior
           acts: [ "Destruction" ]
@@ -56,13 +56,7 @@
   placement:
     mode: SnapgridCenter
   components:
-  - type: PlacementReplacement
-    key: walls
-  - type: Tag
-    tags:
-    - Wooden
   - type: Sprite
-    noRot: true
     sprite: Objects/Decoration/mines.rsi
     state: support
   - type: Damageable
@@ -91,7 +85,7 @@
     thresholds:
     - trigger:
         !type:DamageTrigger
-        damage: 50
+        damage: 150
       behaviors:
       - !type:DoActsBehavior
           acts: [ "Destruction" ]
@@ -130,14 +124,7 @@
   placement:
     mode: SnapgridCenter
   components:
-  - type: PlacementReplacement
-    key: walls
-  - type: Tag
-    tags:
-    - Wall
-    - Wooden
   - type: Sprite
-    noRot: true
     sprite: Objects/Decoration/mines.rsi
     state: support_wall
   - type: Damageable
@@ -160,7 +147,7 @@
     thresholds:
     - trigger:
         !type:DamageTrigger
-        damage: 75
+        damage: 250
       behaviors:
       - !type:DoActsBehavior
           acts: [ "Destruction" ]
@@ -181,7 +168,7 @@
     thresholds:
     - trigger:
         !type:DamageTrigger
-        damage: 50
+        damage: 150
       behaviors:
       - !type:DoActsBehavior
           acts: [ "Destruction" ]

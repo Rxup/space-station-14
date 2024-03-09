@@ -107,7 +107,6 @@
         visible: false
         map: [ "light" ]
   - type: MeleeWeapon
-    wideAnimationRotation: 90
     damage:
       types:
         Blunt: 10

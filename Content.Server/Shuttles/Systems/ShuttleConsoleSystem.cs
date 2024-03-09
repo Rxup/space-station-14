@@ -3,6 +3,7 @@ using Content.Server.Power.EntitySystems;
 using Content.Server.Shuttles.Components;
 using Content.Server.Shuttles.Events;
 using Content.Server.Station.Systems;
+using Content.Server.UserInterface;
 using Content.Shared.ActionBlocker;
 using Content.Shared.Alert;
 using Content.Shared.Popups;
@@ -12,11 +13,12 @@ using Content.Shared.Shuttles.Events;
 using Content.Shared.Shuttles.Systems;
 using Content.Shared.Tag;
 using Content.Shared.Movement.Systems;
-using Content.Shared.Shuttles.UI.MapObjects;
 using Robust.Server.GameObjects;
 using Robust.Shared.Collections;
 using Robust.Shared.GameStates;
-using Robust.Shared.Map;
+using Robust.Shared.Map.Components;
+using Robust.Shared.Physics.Components;
+using Robust.Shared.Timing;
 using Robust.Shared.Utility;
 using Content.Shared.UserInterface;
 
@@ -24,29 +26,19 @@ namespace Content.Server.Shuttles.Systems;
 
 public sealed partial class ShuttleConsoleSystem : SharedShuttleConsoleSystem
 {
-    [Dependency] private readonly IMapManager _mapManager = default!;
+    [Dependency] private readonly IGameTiming _timing = default!;
     [Dependency] private readonly ActionBlockerSystem _blocker = default!;
     [Dependency] private readonly AlertsSystem _alertsSystem = default!;
-    [Dependency] private readonly EntityLookupSystem _lookup = default!;
     [Dependency] private readonly SharedPopupSystem _popup = default!;
-    [Dependency] private readonly SharedTransformSystem _transform = default!;
     [Dependency] private readonly ShuttleSystem _shuttle = default!;
     [Dependency] private readonly StationSystem _station = default!;
     [Dependency] private readonly TagSystem _tags = default!;
     [Dependency] private readonly UserInterfaceSystem _ui = default!;
     [Dependency] private readonly SharedContentEyeSystem _eyeSystem = default!;
 
-    private EntityQuery<MetaDataComponent> _metaQuery;
-    private EntityQuery<TransformComponent> _xformQuery;
-
-    private readonly HashSet<Entity<ShuttleConsoleComponent>> _consoles = new();
-
     public override void Initialize()
     {
         base.Initialize();
-
-        _metaQuery = GetEntityQuery<MetaDataComponent>();
-        _xformQuery = GetEntityQuery<TransformComponent>();
 
         SubscribeLocalEvent<ShuttleConsoleComponent, ComponentShutdown>(OnConsoleShutdown);
         SubscribeLocalEvent<ShuttleConsoleComponent, PowerChangedEvent>(OnConsolePowerChange);
@@ -54,8 +46,7 @@ public sealed partial class ShuttleConsoleSystem : SharedShuttleConsoleSystem
         SubscribeLocalEvent<ShuttleConsoleComponent, ActivatableUIOpenAttemptEvent>(OnConsoleUIOpenAttempt);
         Subs.BuiEvents<ShuttleConsoleComponent>(ShuttleConsoleUiKey.Key, subs =>
         {
-            subs.Event<ShuttleConsoleFTLBeaconMessage>(OnBeaconFTLMessage);
-            subs.Event<ShuttleConsoleFTLPositionMessage>(OnPositionFTLMessage);
+            subs.Event<ShuttleConsoleFTLRequestMessage>(OnDestinationMessage);
             subs.Event<BoundUIClosedEvent>(OnConsoleUIClose);
         });
 
@@ -69,12 +60,11 @@ public sealed partial class ShuttleConsoleSystem : SharedShuttleConsoleSystem
         SubscribeLocalEvent<DockEvent>(OnDock);
         SubscribeLocalEvent<UndockEvent>(OnUndock);
 
+        SubscribeLocalEvent<PilotComponent, MoveEvent>(HandlePilotMove);
         SubscribeLocalEvent<PilotComponent, ComponentGetState>(OnGetState);
 
         SubscribeLocalEvent<FTLDestinationComponent, ComponentStartup>(OnFtlDestStartup);
         SubscribeLocalEvent<FTLDestinationComponent, ComponentShutdown>(OnFtlDestShutdown);
-
-        InitializeFTL();
     }
 
     private void OnFtlDestStartup(EntityUid uid, FTLDestinationComponent component, ComponentStartup args)
@@ -87,6 +77,65 @@ public sealed partial class ShuttleConsoleSystem : SharedShuttleConsoleSystem
         RefreshShuttleConsoles();
     }
 
+    private void OnDestinationMessage(EntityUid uid, ShuttleConsoleComponent component,
+        ShuttleConsoleFTLRequestMessage args)
+    {
+        var destination = GetEntity(args.Destination);
+
+        if (!TryComp<FTLDestinationComponent>(destination, out var dest))
+        {
+            return;
+        }
+
+        if (!dest.Enabled)
+            return;
+
+        EntityUid? entity = uid;
+
+        var getShuttleEv = new ConsoleShuttleEvent
+        {
+            Console = uid,
+        };
+
+        RaiseLocalEvent(entity.Value, ref getShuttleEv);
+        entity = getShuttleEv.Console;
+
+        if (!TryComp<TransformComponent>(entity, out var xform) ||
+            !TryComp<ShuttleComponent>(xform.GridUid, out var shuttle))
+        {
+            return;
+        }
+
+        if (dest.Whitelist?.IsValid(entity.Value, EntityManager) == false &&
+            dest.Whitelist?.IsValid(xform.GridUid.Value, EntityManager) == false)
+        {
+            return;
+        }
+
+        var shuttleUid = xform.GridUid.Value;
+
+        if (HasComp<FTLComponent>(shuttleUid))
+        {
+            _popup.PopupCursor(Loc.GetString("shuttle-console-in-ftl"), args.Session);
+            return;
+        }
+
+        if (!_shuttle.CanFTL(xform.GridUid, out var reason))
+        {
+            _popup.PopupCursor(reason, args.Session);
+            return;
+        }
+
+        var dock = HasComp<MapComponent>(destination) && HasComp<MapGridComponent>(destination);
+        var tagEv = new FTLTagEvent();
+        RaiseLocalEvent(xform.GridUid.Value, ref tagEv);
+
+        var ev = new ShuttleConsoleFTLTravelStartEvent(uid);
+        RaiseLocalEvent(ref ev);
+
+        _shuttle.FTLTravel(xform.GridUid.Value, shuttle, destination, dock: dock, priorityTag: tagEv.Tag);
+    }
+
     private void OnDock(DockEvent ev)
     {
         RefreshShuttleConsoles();
@@ -97,21 +146,10 @@ public sealed partial class ShuttleConsoleSystem : SharedShuttleConsoleSystem
         RefreshShuttleConsoles();
     }
 
-    /// <summary>
-    /// Refreshes all the shuttle console data for a particular grid.
-    /// </summary>
-    public void RefreshShuttleConsoles(EntityUid gridUid)
+    public void RefreshShuttleConsoles(EntityUid _)
     {
-        var exclusions = new List<ShuttleExclusionObject>();
-        GetExclusions(ref exclusions);
-        _consoles.Clear();
-        _lookup.GetChildEntities(gridUid, _consoles);
-        DockingInterfaceState? dockState = null;
-
-        foreach (var entity in _consoles)
-        {
-            UpdateState(entity, ref dockState);
-        }
+        // TODO: Should really call this per shuttle in some instances.
+        RefreshShuttleConsoles();
     }
 
     /// <summary>
@@ -119,14 +157,12 @@ public sealed partial class ShuttleConsoleSystem : SharedShuttleConsoleSystem
     /// </summary>
     public void RefreshShuttleConsoles()
     {
-        var exclusions = new List<ShuttleExclusionObject>();
-        GetExclusions(ref exclusions);
+        var docks = GetAllDocks();
         var query = AllEntityQuery<ShuttleConsoleComponent>();
-        DockingInterfaceState? dockState = null;
 
-        while (query.MoveNext(out var uid, out _))
+        while (query.MoveNext(out var uid, out var _))
         {
-            UpdateState(uid,ref dockState);
+            UpdateState(uid, docks);
         }
     }
 
@@ -139,6 +175,12 @@ public sealed partial class ShuttleConsoleSystem : SharedShuttleConsoleSystem
             args.Session.AttachedEntity is not { } user)
         {
             return;
+        }
+
+        // In case they D/C should still clean them up.
+        foreach (var comp in EntityQuery<AutoDockComponent>(true))
+        {
+            comp.Requesters.Remove(user);
         }
 
         RemovePilot(user);
@@ -154,14 +196,12 @@ public sealed partial class ShuttleConsoleSystem : SharedShuttleConsoleSystem
     private void OnConsoleAnchorChange(EntityUid uid, ShuttleConsoleComponent component,
         ref AnchorStateChangedEvent args)
     {
-        DockingInterfaceState? dockState = null;
-        UpdateState(uid, ref dockState);
+        UpdateState(uid);
     }
 
     private void OnConsolePowerChange(EntityUid uid, ShuttleConsoleComponent component, ref PowerChangedEvent args)
     {
-        DockingInterfaceState? dockState = null;
-        UpdateState(uid, ref dockState);
+        UpdateState(uid);
     }
 
     private bool TryPilot(EntityUid user, EntityUid uid)
@@ -199,38 +239,33 @@ public sealed partial class ShuttleConsoleSystem : SharedShuttleConsoleSystem
     /// <summary>
     /// Returns the position and angle of all dockingcomponents.
     /// </summary>
-    public Dictionary<NetEntity, List<DockingPortState>> GetAllDocks()
+    private List<DockingInterfaceState> GetAllDocks()
     {
         // TODO: NEED TO MAKE SURE THIS UPDATES ON ANCHORING CHANGES!
-        var result = new Dictionary<NetEntity, List<DockingPortState>>();
-        var query = AllEntityQuery<DockingComponent, TransformComponent, MetaDataComponent>();
+        var result = new List<DockingInterfaceState>();
+        var query = AllEntityQuery<DockingComponent, TransformComponent>();
 
-        while (query.MoveNext(out var uid, out var comp, out var xform, out var metadata))
+        while (query.MoveNext(out var uid, out var comp, out var xform))
         {
             if (xform.ParentUid != xform.GridUid)
                 continue;
 
-            var gridDocks = result.GetOrNew(GetNetEntity(xform.GridUid.Value));
-
-            var state = new DockingPortState()
+            var state = new DockingInterfaceState()
             {
-                Name = metadata.EntityName,
                 Coordinates = GetNetCoordinates(xform.Coordinates),
                 Angle = xform.LocalRotation,
                 Entity = GetNetEntity(uid),
-                GridDockedWith =
-                    _xformQuery.TryGetComponent(comp.DockedWith, out var otherDockXform) ?
-                    GetNetEntity(otherDockXform.GridUid) :
-                    null,
+                Connected = comp.Docked,
+                Color = comp.RadarColor,
+                HighlightedColor = comp.HighlightedRadarColor,
             };
-
-            gridDocks.Add(state);
+            result.Add(state);
         }
 
         return result;
     }
 
-    private void UpdateState(EntityUid consoleUid, ref DockingInterfaceState? dockState)
+    private void UpdateState(EntityUid consoleUid, List<DockingInterfaceState>? docks = null)
     {
         EntityUid? entity = consoleUid;
 
@@ -243,26 +278,77 @@ public sealed partial class ShuttleConsoleSystem : SharedShuttleConsoleSystem
         entity = getShuttleEv.Console;
 
         TryComp<TransformComponent>(entity, out var consoleXform);
+        TryComp<RadarConsoleComponent>(entity, out var radar);
+        var range = radar?.MaxRange ?? SharedRadarConsoleSystem.DefaultMaxRange;
+
         var shuttleGridUid = consoleXform?.GridUid;
 
-        NavInterfaceState navState;
-        ShuttleMapInterfaceState mapState;
-        dockState ??= GetDockState();
+        var destinations = new List<(NetEntity, string, bool)>();
+        var ftlState = FTLState.Available;
+        var ftlTime = TimeSpan.Zero;
 
-        if (shuttleGridUid != null && entity != null)
+        if (TryComp<FTLComponent>(shuttleGridUid, out var shuttleFtl))
         {
-            navState = GetNavState(entity.Value, dockState.Docks);
-            mapState = GetMapState(shuttleGridUid.Value);
+            ftlState = shuttleFtl.State;
+            ftlTime = _timing.CurTime + TimeSpan.FromSeconds(shuttleFtl.Accumulator);
         }
-        else
+
+        // Mass too large
+        if (entity != null && shuttleGridUid != null &&
+            (!TryComp<PhysicsComponent>(shuttleGridUid, out var shuttleBody) || shuttleBody.Mass < 1000f))
         {
-            navState = new NavInterfaceState(0f, null, null, new Dictionary<NetEntity, List<DockingPortState>>());
-            mapState = new ShuttleMapInterfaceState(FTLState.Invalid, 0f, new List<ShuttleBeaconObject>(), new List<ShuttleExclusionObject>());
+            var metaQuery = GetEntityQuery<MetaDataComponent>();
+
+            // Can't go anywhere when in FTL.
+            var locked = shuttleFtl != null || Paused(shuttleGridUid.Value);
+
+            // Can't cache it because it may have a whitelist for the particular console.
+            // Include paused as we still want to show CentCom.
+            var destQuery = AllEntityQuery<FTLDestinationComponent>();
+
+            while (destQuery.MoveNext(out var destUid, out var comp))
+            {
+                // Can't warp to itself or if it's not on the whitelist (console or shuttle).
+                if (destUid == shuttleGridUid ||
+                    comp.Whitelist?.IsValid(entity.Value) == false &&
+                    (shuttleGridUid == null || comp.Whitelist?.IsValid(shuttleGridUid.Value, EntityManager) == false))
+                {
+                    continue;
+                }
+
+                var meta = metaQuery.GetComponent(destUid);
+                var name = meta.EntityName;
+
+                if (string.IsNullOrEmpty(name))
+                    name = Loc.GetString("shuttle-console-unknown");
+
+                var canTravel = !locked &&
+                                comp.Enabled &&
+                                (!TryComp<FTLComponent>(destUid, out var ftl) || ftl.State == FTLState.Cooldown);
+
+                // Can't travel to same map (yet)
+                if (canTravel && consoleXform?.MapUid == Transform(destUid).MapUid)
+                {
+                    canTravel = false;
+                }
+
+                destinations.Add((GetNetEntity(destUid), name, canTravel));
+            }
         }
+
+        docks ??= GetAllDocks();
 
         if (_ui.TryGetUi(consoleUid, ShuttleConsoleUiKey.Key, out var bui))
         {
-            _ui.SetUiState(bui, new ShuttleBoundUserInterfaceState(navState, mapState, dockState));
+            _ui.SetUiState(bui, new ShuttleConsoleBoundInterfaceState(
+                ftlState,
+                ftlTime,
+                destinations,
+                range,
+                GetNetCoordinates(consoleXform?.Coordinates),
+                consoleXform?.LocalRotation,
+                docks
+            ));
         }
     }
 
@@ -288,6 +374,27 @@ public sealed partial class ShuttleConsoleSystem : SharedShuttleConsoleSystem
         {
             RemovePilot(uid, comp);
         }
+    }
+
+    /// <summary>
+    /// If pilot is moved then we'll stop them from piloting.
+    /// </summary>
+    private void HandlePilotMove(EntityUid uid, PilotComponent component, ref MoveEvent args)
+    {
+        if (component.Console == null || component.Position == null)
+        {
+            DebugTools.Assert(component.Position == null && component.Console == null);
+            EntityManager.RemoveComponent<PilotComponent>(uid);
+            return;
+        }
+
+        if (args.NewPosition.TryDistance(EntityManager, component.Position.Value, out var distance) &&
+            distance < PilotComponent.BreakDistance)
+        {
+            return;
+        }
+
+        RemovePilot(uid, component);
     }
 
     protected override void HandlePilotShutdown(EntityUid uid, PilotComponent component, ComponentShutdown args)
@@ -359,71 +466,5 @@ public sealed partial class ShuttleConsoleSystem : SharedShuttleConsoleSystem
             if (query.TryGetComponent(pilot, out var pilotComponent))
                 RemovePilot(pilot, pilotComponent);
         }
-    }
-
-    /// <summary>
-    /// Specific for a particular shuttle.
-    /// </summary>
-    public NavInterfaceState GetNavState(Entity<RadarConsoleComponent?, TransformComponent?> entity, Dictionary<NetEntity, List<DockingPortState>> docks)
-    {
-        if (!Resolve(entity, ref entity.Comp1, ref entity.Comp2))
-            return new NavInterfaceState(SharedRadarConsoleSystem.DefaultMaxRange, null, null, docks);
-
-        return GetNavState(
-            entity,
-            docks,
-            entity.Comp2.Coordinates,
-            entity.Comp2.LocalRotation);
-    }
-
-    public NavInterfaceState GetNavState(
-        Entity<RadarConsoleComponent?, TransformComponent?> entity,
-        Dictionary<NetEntity, List<DockingPortState>> docks,
-        EntityCoordinates coordinates,
-        Angle angle)
-    {
-        if (!Resolve(entity, ref entity.Comp1, ref entity.Comp2))
-            return new NavInterfaceState(SharedRadarConsoleSystem.DefaultMaxRange, GetNetCoordinates(coordinates), angle, docks);
-
-        return new NavInterfaceState(
-            entity.Comp1.MaxRange,
-            GetNetCoordinates(coordinates),
-            angle,
-            docks);
-    }
-
-    /// <summary>
-    /// Global for all shuttles.
-    /// </summary>
-    /// <returns></returns>
-    public DockingInterfaceState GetDockState()
-    {
-        var docks = GetAllDocks();
-        return new DockingInterfaceState(docks);
-    }
-
-    /// <summary>
-    /// Specific to a particular shuttle.
-    /// </summary>
-    public ShuttleMapInterfaceState GetMapState(Entity<FTLComponent?> shuttle)
-    {
-        FTLState ftlState = FTLState.Available;
-        float stateDuration = 0f;
-
-        if (Resolve(shuttle, ref shuttle.Comp, false) && shuttle.Comp.LifeStage < ComponentLifeStage.Stopped)
-        {
-            ftlState = shuttle.Comp.State;
-            stateDuration = _shuttle.GetStateDuration(shuttle.Comp);
-        }
-
-        List<ShuttleBeaconObject>? beacons = null;
-        List<ShuttleExclusionObject>? exclusions = null;
-        GetBeacons(ref beacons);
-        GetExclusions(ref exclusions);
-
-        return new ShuttleMapInterfaceState(
-            ftlState, stateDuration,
-            beacons ?? new List<ShuttleBeaconObject>(),
-            exclusions ?? new List<ShuttleExclusionObject>());
     }
 }

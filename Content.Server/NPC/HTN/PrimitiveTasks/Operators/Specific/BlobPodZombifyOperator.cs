@@ -1,5 +1,4 @@
 using Content.Server.Backmen.Blob.NPC.BlobPod;
-using Content.Shared.Backmen.Blob.Components;
 using Content.Shared.Backmen.Blob.NPC.BlobPod;
 
 namespace Content.Server.NPC.HTN.PrimitiveTasks.Operators.Specific;

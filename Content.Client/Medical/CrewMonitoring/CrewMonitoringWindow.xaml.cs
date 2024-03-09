@@ -23,6 +23,7 @@ namespace Content.Client.Medical.CrewMonitoring;
 [GenerateTypedNameReferences]
 public sealed partial class CrewMonitoringWindow : FancyWindow
 {
+    private List<Control> _rowsContent = new();
     private readonly IEntityManager _entManager;
     private readonly IPrototypeManager _prototypeManager;
     private readonly SpriteSystem _spriteSystem;
@@ -99,6 +100,7 @@ public sealed partial class CrewMonitoringWindow : FancyWindow
                 };
 
                 SensorsTable.AddChild(spacer);
+                _rowsContent.Add(spacer);
             }
 
             var deparmentLabel = new RichTextLabel()
@@ -111,6 +113,7 @@ public sealed partial class CrewMonitoringWindow : FancyWindow
             deparmentLabel.StyleClasses.Add(StyleNano.StyleClassTooltipActionDescription);
 
             SensorsTable.AddChild(deparmentLabel);
+            _rowsContent.Add(deparmentLabel);
 
             PopulateDepartmentList(departmentSensors);
         }
@@ -126,6 +129,7 @@ public sealed partial class CrewMonitoringWindow : FancyWindow
             };
 
             SensorsTable.AddChild(spacer);
+            _rowsContent.Add(spacer);
 
             var deparmentLabel = new RichTextLabel()
             {
@@ -137,6 +141,7 @@ public sealed partial class CrewMonitoringWindow : FancyWindow
             deparmentLabel.StyleClasses.Add(StyleNano.StyleClassTooltipActionDescription);
 
             SensorsTable.AddChild(deparmentLabel);
+            _rowsContent.Add(deparmentLabel);
 
             PopulateDepartmentList(remainingSensors);
         }
@@ -170,6 +175,7 @@ public sealed partial class CrewMonitoringWindow : FancyWindow
                 sensorButton.AddStyleClass(StyleNano.StyleClassButtonColorGreen);
 
             SensorsTable.AddChild(sensorButton);
+            _rowsContent.Add(sensorButton);
 
             // Primary container to hold the button UI elements
             var mainContainer = new BoxContainer()
@@ -416,6 +422,7 @@ public sealed partial class CrewMonitoringWindow : FancyWindow
     private void ClearOutDatedData()
     {
         SensorsTable.RemoveAllChildren();
+        _rowsContent.Clear();
         NavMap.TrackedCoordinates.Clear();
         NavMap.TrackedEntities.Clear();
         NavMap.LocalizedNames.Clear();

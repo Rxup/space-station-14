@@ -41,7 +41,7 @@
   - type: SolutionContainerManager
     solutions:
       drink:
-        maxVol: 5
+        maxVol: 7
   - type: SolutionTransfer
     transferAmount: 10
     minTransferAmount: 10

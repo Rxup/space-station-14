@@ -12,7 +12,6 @@
   - type: Tag
     tags:
     - SuitEVA
-    - MonkeyWearable
     - WhitelistChameleon
 
 #Syndicate EVA
@@ -29,7 +28,6 @@
   - type: Tag
     tags:
     - SuitEVA
-    - MonkeyWearable
     - WhitelistChameleon
 
 #Emergency EVA
@@ -70,7 +68,6 @@
   - type: Tag
     tags:
     - SuitEVA
-    - MonkeyWearable
     - WhitelistChameleon
 
 #NTSRA Voidsuit / Ancient Voidsuit

@@ -1,5 +1,4 @@
 ﻿using Content.Shared.Alert;
-using Content.Shared.Backmen.Blob.Components;
 using Content.Shared.Damage;
 
 namespace Content.Shared.Backmen.Blob;
