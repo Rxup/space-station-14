@@ -153,13 +153,13 @@ public sealed class CCVars
 
 
     /*
-     * Ghost roller
+     * enabling a roll to enter a ghost role for one player from the vote
      */
     public static readonly CVarDef<bool>
         GhostRollerEnabled = CVarDef.Create("ghost.roller_enabled", true, CVar.SERVERONLY);
 
     /// <summary>
-    /// The time you must spend reading the rules, before the "Request" button is enabled
+    /// the time that will be given to throw a number to vote for the ghost role
     /// </summary>
     public static readonly CVarDef<float> GhostRollerTime =
         CVarDef.Create("ghost.roller_time", 10f, CVar.REPLICATED | CVar.SERVER);
