@@ -34,7 +34,7 @@
   components:
   - type: ItemCabinet
     cabinetSlot:
-      startingItem: WeaponShotgunKammerer
+      startingItem: WeaponShotguntrenchgun4034
       ejectOnInteract: true
       whitelist:
         tags:
