@@ -1,11 +1,12 @@
 using System.ComponentModel;
 using Content.Shared.Backmen.Silicon.Systems;
-using Content.Shared.Backmen.Species.Silicon.Systems;
 using Robust.Shared.GameStates;
+using Content.Shared.Backmen.Silicon.Systems;
 using Robust.Shared.Serialization.TypeSerializers.Implementations;
+using Robust.Shared.Containers;
 using Component = Robust.Shared.GameObjects.Component;
 
-namespace Content.Shared.Backmen.Species.Silicon.Components;
+namespace Content.Shared.Backmen.Silicon.Components;
 
 /// <summary>
 ///     Component for defining a mob as a robot.

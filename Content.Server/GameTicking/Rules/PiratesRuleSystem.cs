@@ -271,12 +271,11 @@ public sealed class PiratesRuleSystem : GameRuleSystem<PiratesRuleComponent>
     }
 
     //Forcing one player to be a pirate.
-    public void MakePirate(EntityUid entity)
+    public void MakePirate(EntityUid mindId, MindComponent mind)
     {
-        if (!_mindSystem.TryGetMind(entity, out var mindId, out var mind))
+        if (!mind.OwnedEntity.HasValue)
             return;
-
-        SetOutfitCommand.SetOutfit(entity, GearId, EntityManager);
+        SetOutfitCommand.SetOutfit(mind.OwnedEntity.Value, GearId, EntityManager);
 
         var pirateRule = EntityQuery<PiratesRuleComponent>().FirstOrDefault();
         if (pirateRule == null)

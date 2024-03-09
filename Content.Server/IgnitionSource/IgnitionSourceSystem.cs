@@ -1,5 +1,4 @@
-using Content.Server.Atmos.EntitySystems;
-using Content.Shared.Item.ItemToggle.Components;
+﻿using Content.Server.Atmos.EntitySystems;
 using Content.Shared.Temperature;
 using Robust.Server.GameObjects;
 
@@ -18,17 +17,11 @@ public sealed class IgnitionSourceSystem : EntitySystem
         base.Initialize();
 
         SubscribeLocalEvent<IgnitionSourceComponent, IsHotEvent>(OnIsHot);
-        SubscribeLocalEvent<ItemToggleHotComponent, ItemToggledEvent>(OnItemToggle);
     }
 
     private void OnIsHot(Entity<IgnitionSourceComponent> ent, ref IsHotEvent args)
     {
         SetIgnited((ent.Owner, ent.Comp), args.IsHot);
-    }
-    private void OnItemToggle(Entity<ItemToggleHotComponent> ent, ref ItemToggledEvent args)
-    {
-        if (TryComp<IgnitionSourceComponent>(ent, out var comp))
-            SetIgnited((ent.Owner, comp), args.Activated);
     }
 
     /// <summary>

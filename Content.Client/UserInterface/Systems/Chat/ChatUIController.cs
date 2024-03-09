@@ -62,6 +62,7 @@ public sealed class ChatUIController : UIController
     [UISystemDependency] private readonly TypingIndicatorSystem? _typingIndicator = default;
     [UISystemDependency] private readonly ChatSystem? _chatSys = default;
     [UISystemDependency] private readonly PsionicChatUpdateSystem? _psionic = default!; // backmen: psionic
+    [UISystemDependency] private readonly ShadowkinChatUpdateSystem? _shadowkin = default!; //backmen: shadowkin
 
     [ValidatePrototypeId<ColorPalettePrototype>]
     private const string ChatNamePalette = "ChatNames";
@@ -492,12 +493,11 @@ public sealed class ChatUIController : UIController
 
         if (_state.CurrentState is GameplayStateBase)
         {
-            // can always hear local / radio / emote / notifications when in the game
+            // can always hear local / radio / emote when in the game
             FilterableChannels |= ChatChannel.Local;
             FilterableChannels |= ChatChannel.Whisper;
             FilterableChannels |= ChatChannel.Radio;
             FilterableChannels |= ChatChannel.Emotes;
-            FilterableChannels |= ChatChannel.Notifications;
 
             // Can only send local / radio / emote when attached to a non-ghost entity.
             // TODO: this logic is iffy (checking if controlling something that's NOT a ghost), is there a better way to check this?
@@ -525,6 +525,7 @@ public sealed class ChatUIController : UIController
             FilterableChannels |= ChatChannel.AdminChat;
             CanSendChannels |= ChatSelectChannel.Admin;
             FilterableChannels |= ChatChannel.Telepathic;
+            FilterableChannels |= ChatChannel.Empathy;
         }
 
         // psionics
@@ -536,6 +537,17 @@ public sealed class ChatUIController : UIController
         else if (_ghost is { IsGhost: true })
         {
             FilterableChannels |= ChatChannel.Telepathic;
+        }
+
+        // Shadowkin
+        if (_shadowkin != null && _shadowkin.IsShadowkin)
+        {
+            FilterableChannels |= ChatChannel.Empathy;
+            CanSendChannels |= ChatSelectChannel.Empathy;
+        }
+        else if (_ghost is { IsGhost: true })
+        {
+            FilterableChannels |= ChatChannel.Empathy;
         }
 
         SelectableChannels = CanSendChannels;

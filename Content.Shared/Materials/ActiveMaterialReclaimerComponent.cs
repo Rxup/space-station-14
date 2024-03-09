@@ -8,7 +8,7 @@ namespace Content.Shared.Materials;
 /// Tracker component for the process of reclaiming entities
 /// <seealso cref="MaterialReclaimerComponent"/>
 /// </summary>
-[RegisterComponent, NetworkedComponent, Access(typeof(SharedMaterialReclaimerSystem)), AutoGenerateComponentPause]
+[RegisterComponent, NetworkedComponent, Access(typeof(SharedMaterialReclaimerSystem))]
 public sealed partial class ActiveMaterialReclaimerComponent : Component
 {
     /// <summary>
@@ -21,7 +21,6 @@ public sealed partial class ActiveMaterialReclaimerComponent : Component
     /// When the reclaiming process ends.
     /// </summary>
     [DataField("endTime", customTypeSerializer: typeof(TimeOffsetSerializer)), ViewVariables(VVAccess.ReadWrite)]
-    [AutoPausedField]
     public TimeSpan EndTime;
 
     /// <summary>

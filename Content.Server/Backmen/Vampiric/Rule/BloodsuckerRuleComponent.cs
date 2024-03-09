@@ -1,6 +1,4 @@
-﻿using Robust.Shared.Audio;
-
-namespace Content.Server.Backmen.Vampiric;
+﻿namespace Content.Server.Backmen.Vampiric;
 
 [RegisterComponent]
 public sealed partial class BloodsuckerRuleComponent : Component
@@ -18,7 +16,4 @@ public sealed partial class BloodsuckerRuleComponent : Component
         "Vox",
         "HumanoidFoxes",
     };
-
-    [DataField]
-    public SoundSpecifier InitialInfectedSound = new SoundPathSpecifier("/Audio/Backmen/Ambience/Antag/vampier_start.ogg");
 }

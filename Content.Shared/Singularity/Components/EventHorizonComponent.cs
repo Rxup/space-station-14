@@ -10,7 +10,7 @@ namespace Content.Shared.Singularity.Components;
 /// Primarily managed by <see cref="SharedEventHorizonSystem"/> and its server/client versions.
 /// </summary>
 [Access(friends: typeof(SharedEventHorizonSystem))]
-[RegisterComponent, NetworkedComponent, AutoGenerateComponentPause]
+[RegisterComponent, NetworkedComponent]
 public sealed partial class EventHorizonComponent : Component
 {
     /// <summary>
@@ -78,7 +78,6 @@ public sealed partial class EventHorizonComponent : Component
     /// The next time at which this consumed everything it overlapped with.
     /// </summary>
     [ViewVariables(VVAccess.ReadOnly), DataField("nextConsumeWaveTime", customTypeSerializer:typeof(TimeOffsetSerializer))]
-    [AutoPausedField]
     public TimeSpan NextConsumeWaveTime;
 
     #endregion Update Timing

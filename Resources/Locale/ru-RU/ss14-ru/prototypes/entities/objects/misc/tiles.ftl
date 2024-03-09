@@ -124,5 +124,3 @@ ent-FloorTileItemAstroGrass = астро-трава
     .desc = Искусственная трава, отлично прячущая провода, поставляется с реалистичными НаноТравинками!
 ent-FloorTileItemAstroIce = астро-лёд
     .desc = Искусственный лёд, такой же скользкий, как настоящий, и при этом легко снимается!
-ent-FloorTileItemWoodLarge = большой деревянный пол
-    .desc = { ent-FloorTileItemBase.desc }

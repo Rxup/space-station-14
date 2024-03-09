@@ -964,9 +964,6 @@
       state: request
     - map: ["computerLayerKeys"]
       state: tech_key
-  - type: Anchorable
-    flags:
-    - Anchorable
   - type: CargoPalletConsole
   - type: ActivatableUI
     key: enum.CargoPalletConsoleUiKey.Sale
@@ -987,7 +984,7 @@
 - type: entity
   parent: BaseComputer
   id: ComputerMassMedia
-  name: news manager console
+  name: mass-media console
   description: Write your message to the world!
   components:
   - type: Sprite
@@ -1003,18 +1000,18 @@
   - type: Computer
     board: ComputerMassMediaCircuitboard
   - type: DeviceNetworkRequiresPower
-  - type: NewsWriter
+  - type: NewsWrite
   - type: AccessReader
     access: [[ "Command" ]]
   - type: ActivatableUI
-    key: enum.NewsWriterUiKey.Key
+    key: enum.NewsWriteUiKey.Key
   - type: ActivatableUIRequiresVision
   - type: Transform
     anchored: true
   - type: UserInterface
     interfaces:
-      - key: enum.NewsWriterUiKey.Key
-        type: NewsWriterBoundUserInterface
+      - key: enum.NewsWriteUiKey.Key
+        type: NewsWriteBoundUserInterface
 
 - type: entity
   parent: BaseComputer

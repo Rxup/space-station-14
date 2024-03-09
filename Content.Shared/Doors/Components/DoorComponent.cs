@@ -97,6 +97,12 @@ public sealed partial class DoorComponent : Component
     public SoundSpecifier? DenySound;
 
     /// <summary>
+    /// Sound to play when a disarmed (hands comp with 0 hands) entity opens the door. What?
+    /// </summary>
+    [DataField("tryOpenDoorSound")]
+    public SoundSpecifier TryOpenDoorSound = new SoundCollectionSpecifier("MetalSlam");
+
+    /// <summary>
     /// Sound to play when door has been emagged or possibly electrically tampered
     /// </summary>
     [DataField("sparkSound")]

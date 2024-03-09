@@ -40,6 +40,7 @@ public sealed class SuitSensorSystem : EntitySystem
         base.Initialize();
         SubscribeLocalEvent<PlayerSpawnCompleteEvent>(OnPlayerSpawn);
         SubscribeLocalEvent<SuitSensorComponent, MapInitEvent>(OnMapInit);
+        SubscribeLocalEvent<SuitSensorComponent, EntityUnpausedEvent>(OnUnpaused);
         SubscribeLocalEvent<SuitSensorComponent, GotEquippedEvent>(OnEquipped);
         SubscribeLocalEvent<SuitSensorComponent, GotUnequippedEvent>(OnUnequipped);
         SubscribeLocalEvent<SuitSensorComponent, ExaminedEvent>(OnExamine);
@@ -48,6 +49,11 @@ public sealed class SuitSensorSystem : EntitySystem
         SubscribeLocalEvent<SuitSensorComponent, EntGotRemovedFromContainerMessage>(OnRemove);
         SubscribeLocalEvent<SuitSensorComponent, EmpPulseEvent>(OnEmpPulse);
         SubscribeLocalEvent<SuitSensorComponent, EmpDisabledRemoved>(OnEmpFinished);
+    }
+
+    private void OnUnpaused(EntityUid uid, SuitSensorComponent component, ref EntityUnpausedEvent args)
+    {
+        component.NextUpdate += args.PausedTime;
     }
 
     public override void Update(float frameTime)

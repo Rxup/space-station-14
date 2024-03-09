@@ -64,7 +64,7 @@ namespace Content.Server.Body.Components
         /// <summary>
         /// Whether the entity is immuned to pressure (i.e possess the PressureImmunity component)
         /// </summary>
-        [ViewVariables, Access(typeof(Backmen.Blob.ZombieBlobSystem))]
+        [ViewVariables]
         public bool HasImmunity = false;
     }
 }

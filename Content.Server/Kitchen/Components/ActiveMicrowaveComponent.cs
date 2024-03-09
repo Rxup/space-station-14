@@ -6,7 +6,7 @@ namespace Content.Server.Kitchen.Components;
 /// <summary>
 /// Attached to a microwave that is currently in the process of cooking
 /// </summary>
-[RegisterComponent, AutoGenerateComponentPause]
+[RegisterComponent]
 public sealed partial class ActiveMicrowaveComponent : Component
 {
     [ViewVariables(VVAccess.ReadWrite)]
@@ -17,7 +17,6 @@ public sealed partial class ActiveMicrowaveComponent : Component
 
     [ViewVariables(VVAccess.ReadWrite)]
     [DataField(customTypeSerializer: typeof(TimeOffsetSerializer))]
-    [AutoPausedField]
     public TimeSpan MalfunctionTime = TimeSpan.Zero;
 
     [ViewVariables]

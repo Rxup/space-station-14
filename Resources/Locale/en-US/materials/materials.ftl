@@ -34,4 +34,3 @@ materials-raw-silver = raw silver
 materials-raw-plasma = raw plasma
 materials-raw-uranium = raw uranium
 materials-raw-bananium = raw bananium
-materials-raw-salt = raw salt

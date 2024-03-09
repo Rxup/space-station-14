@@ -19,7 +19,6 @@
   - Service
   - External
   - Detective
-  - Cryogenics
   #start-backmen: currency
   minBankBalance: 150
   maxBankBalance: 250

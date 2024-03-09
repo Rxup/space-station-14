@@ -51,6 +51,3 @@ pda-bound-user-interface-music-button-description = Play music on your PDA
 comp-pda-ui-unknown = Unknown
 
 comp-pda-ui-unassigned = Unassigned
-
-pda-notification-message = [font size=12][bold]PDA[/bold] { $header }: [/font]
-    "{ $message }"

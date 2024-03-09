@@ -69,6 +69,9 @@ public sealed class ProjectileSystem : SharedProjectileSystem
 
         component.DamagedEntity = true;
 
+        var afterProjectileHitEvent = new AfterProjectileHitEvent(component.Damage, target, args.OtherFixture);
+        RaiseLocalEvent(uid, ref afterProjectileHitEvent);
+
         if (component.DeleteOnCollide)
             QueueDel(uid);
 

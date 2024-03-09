@@ -9,4 +9,3 @@ generic-error = ошибка
 generic-invalid = недействительно
 generic-hours = часов
 generic-playtime-title = Игровое время
-generic-confirm = Подтвердить

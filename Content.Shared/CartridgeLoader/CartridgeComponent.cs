@@ -10,9 +10,6 @@ namespace Content.Shared.CartridgeLoader;
 [RegisterComponent, NetworkedComponent, AutoGenerateComponentState]
 public sealed partial class CartridgeComponent : Component
 {
-    [DataField]
-    public EntityUid? LoaderUid;
-
     [DataField(required: true)]
     public LocId ProgramName = "default-program-name";
 

@@ -6,7 +6,7 @@ namespace Content.Server.Explosion.Components.OnTrigger;
 /// <summary>
 /// After being triggered applies the specified components and runs triggers again.
 /// </summary>
-[RegisterComponent, AutoGenerateComponentPause]
+[RegisterComponent]
 public sealed partial class TwoStageTriggerComponent : Component
 {
     /// <summary>
@@ -23,7 +23,6 @@ public sealed partial class TwoStageTriggerComponent : Component
     public ComponentRegistry SecondStageComponents = new();
 
     [DataField("nextTriggerTime", customTypeSerializer: typeof(TimeOffsetSerializer))]
-    [AutoPausedField]
     public TimeSpan? NextTriggerTime;
 
     [DataField("triggered")]

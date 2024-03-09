@@ -23,10 +23,16 @@ public sealed class HungerSystem : EntitySystem
     {
         base.Initialize();
 
+        SubscribeLocalEvent<HungerComponent, EntityUnpausedEvent>(OnUnpaused);
         SubscribeLocalEvent<HungerComponent, MapInitEvent>(OnMapInit);
         SubscribeLocalEvent<HungerComponent, ComponentShutdown>(OnShutdown);
         SubscribeLocalEvent<HungerComponent, RefreshMovementSpeedModifiersEvent>(OnRefreshMovespeed);
         SubscribeLocalEvent<HungerComponent, RejuvenateEvent>(OnRejuvenate);
+    }
+
+    private void OnUnpaused(EntityUid uid, HungerComponent component, ref EntityUnpausedEvent args)
+    {
+        component.NextUpdateTime += args.PausedTime;
     }
 
     private void OnMapInit(EntityUid uid, HungerComponent component, MapInitEvent args)

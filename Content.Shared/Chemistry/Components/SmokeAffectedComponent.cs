@@ -7,14 +7,13 @@ namespace Content.Shared.Chemistry.Components;
 /// This is used for entities which are currently being affected by smoke.
 /// Manages the gradual metabolism every second.
 /// </summary>
-[RegisterComponent, NetworkedComponent, AutoGenerateComponentPause]
+[RegisterComponent, NetworkedComponent]
 public sealed partial class SmokeAffectedComponent : Component
 {
     /// <summary>
     /// The time at which the next smoke metabolism will occur.
     /// </summary>
     [DataField(customTypeSerializer: typeof(TimeOffsetSerializer))]
-    [AutoPausedField]
     public TimeSpan NextSecond;
 
     /// <summary>

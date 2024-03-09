@@ -14,14 +14,14 @@
   whitelistRequired: true
   requirements:
     - !type:RoleTimeRequirement
+      role: JobSAI
+      time: 18000
+    - !type:RoleTimeRequirement
       role: JobCentralCommandAssistant
-      time: 7200
+      time: 21600
     - !type:DepartmentTimeRequirement
       department: CentCom
-      time: 14400
-    - !type:DepartmentTimeRequirement
-      department: Silicons
-      time: 6000
+      time: 43200
   access:
     - CCCargo
     - CCSecurity

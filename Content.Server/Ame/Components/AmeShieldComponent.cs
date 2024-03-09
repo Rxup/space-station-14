@@ -1,5 +1,5 @@
-using Content.Server.Ame.EntitySystems;
-using Content.Shared.Ame.Components;
+﻿using Content.Server.Ame.EntitySystems;
+using Content.Shared.Ame;
 
 namespace Content.Server.Ame.Components;
 

@@ -32,6 +32,7 @@ public sealed class GatewaySystem : EntitySystem
     {
         base.Initialize();
 
+        SubscribeLocalEvent<GatewayComponent, EntityUnpausedEvent>(OnGatewayUnpaused);
         SubscribeLocalEvent<GatewayComponent, ComponentStartup>(OnStartup);
         SubscribeLocalEvent<GatewayComponent, ActivatableUIOpenAttemptEvent>(OnGatewayOpenAttempt);
         SubscribeLocalEvent<GatewayComponent, BoundUIOpenedEvent>(UpdateUserInterface);
@@ -45,6 +46,11 @@ public sealed class GatewaySystem : EntitySystem
 
         component.Enabled = value;
         UpdateAllGateways();
+    }
+
+    private void OnGatewayUnpaused(EntityUid uid, GatewayComponent component, ref EntityUnpausedEvent args)
+    {
+        component.NextReady += args.PausedTime;
     }
 
     private void OnStartup(EntityUid uid, GatewayComponent comp, ComponentStartup args)

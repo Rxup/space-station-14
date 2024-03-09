@@ -6,7 +6,7 @@ namespace Content.Server.Tesla.Components;
 /// <summary>
 /// Periodically fires electric arcs at surrounding objects.
 /// </summary>
-[RegisterComponent, Access(typeof(LightningArcShooterSystem)), AutoGenerateComponentPause]
+[RegisterComponent, Access(typeof(LightningArcShooterSystem))]
 public sealed partial class LightningArcShooterComponent : Component
 {
     /// <summary>
@@ -45,7 +45,6 @@ public sealed partial class LightningArcShooterComponent : Component
     /// The time, upon reaching which the next batch of lightning bolts will be fired.
     /// </summary>
     [DataField, ViewVariables(VVAccess.ReadWrite)]
-    [AutoPausedField]
     public TimeSpan NextShootTime;
 
     /// <summary>

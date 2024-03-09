@@ -30,6 +30,10 @@
       state: glow
       shader: unshaded
   - type: MobState
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      50: Dead
   - type: SlowOnDamage
     speedModifierThresholds:
       20: 0.5
@@ -90,7 +94,7 @@
     thresholds:
       - trigger:
           !type:DamageTrigger
-          damage: 25
+          damage: 50
         behaviors:
           - !type:DoActsBehavior
             acts: [ "Destruction" ]
@@ -124,6 +128,10 @@
     - map: [ "enum.DamageStateVisualLayers.BaseUnshaded" ]
       state: glow
       shader: unshaded
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      50: Dead
   - type: DamageStateVisuals
     states:
       Alive:
@@ -151,6 +159,10 @@
     - map: [ "enum.DamageStateVisualLayers.BaseUnshaded" ]
       state: glow
       shader: unshaded
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      40: Dead
   - type: DamageStateVisuals
     states:
       Alive:

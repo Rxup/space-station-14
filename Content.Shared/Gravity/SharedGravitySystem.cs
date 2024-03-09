@@ -61,6 +61,8 @@ namespace Content.Shared.Gravity
             SubscribeLocalEvent<GravityChangedEvent>(OnGravityChange);
             SubscribeLocalEvent<GravityComponent, ComponentGetState>(OnGetState);
             SubscribeLocalEvent<GravityComponent, ComponentHandleState>(OnHandleState);
+
+            InitializeShake();
         }
 
         public override void Update(float frameTime)

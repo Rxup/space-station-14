@@ -147,58 +147,35 @@
 ## cmo
 
 - type: entity
-  abstract: true
+  noSpawn: true
   parent: BaseTraitorStealObjective
-  id: BaseCMOStealObjective
+  id: CMOHyposprayStealObjective
   components:
   - type: NotJobRequirement
     job: ChiefMedicalOfficer
   - type: StealCondition
-    owner: job-name-cmo
-
-- type: entity
-  noSpawn: true
-  parent: BaseCMOStealObjective
-  id: CMOHyposprayStealObjective
-  components:
-  - type: StealCondition
     stealGroup: Hypospray
-
-- type: entity
-  noSpawn: true
-  parent: BaseCMOStealObjective
-  id: CMOCrewMonitorStealObjective
-  components:
-  - type: StealCondition
-    stealGroup: HandheldCrewMonitor
+    owner: job-name-cmo
 
 ## rd
 
 - type: entity
-  abstract: true
-  parent: BaseTraitorStealObjective
-  id: BaseRDStealObjective
-  components:
-  - type: NotJobRequirement
-    job: ResearchDirector
-  - type: StealCondition
-    owner: job-name-rd
-
-- type: entity
   noSpawn: true
-  parent: BaseRDStealObjective
+  parent: BaseTraitorStealObjective
   id: RDHardsuitStealObjective
   components:
   - type: StealCondition
     stealGroup: ClothingOuterHardsuitRd
+    owner: job-name-rd
 
 - type: entity
   noSpawn: true
-  parent: BaseRDStealObjective
+  parent: BaseTraitorStealObjective
   id: HandTeleporterStealObjective
   components:
   - type: StealCondition
     stealGroup: HandTeleporter
+    owner: job-name-rd
 
 ## hos
 

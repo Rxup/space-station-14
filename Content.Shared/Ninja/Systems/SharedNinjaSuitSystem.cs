@@ -27,6 +27,7 @@ public abstract class SharedNinjaSuitSystem : EntitySystem
         base.Initialize();
 
         SubscribeLocalEvent<NinjaSuitComponent, MapInitEvent>(OnMapInit);
+        SubscribeLocalEvent<NinjaSuitComponent, EntityUnpausedEvent>(OnEntityUnpaused);
 
         SubscribeLocalEvent<NinjaSuitComponent, GotEquippedEvent>(OnEquipped);
         SubscribeLocalEvent<NinjaSuitComponent, GetItemActionsEvent>(OnGetItemActions);
@@ -40,6 +41,11 @@ public abstract class SharedNinjaSuitSystem : EntitySystem
         _actionContainer.EnsureAction(uid, ref component.CreateThrowingStarActionEntity, component.CreateThrowingStarAction);
         _actionContainer.EnsureAction(uid, ref component.EmpActionEntity, component.EmpAction);
         Dirty(uid, component);
+    }
+
+    private void OnEntityUnpaused(Entity<NinjaSuitComponent> ent, ref EntityUnpausedEvent args)
+    {
+        ent.Comp.DisableCooldown += args.PausedTime;
     }
 
     /// <summary>

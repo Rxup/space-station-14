@@ -289,7 +289,6 @@
   components:
   - type: StorageFill
     contents:
-      - id: SnapPopBox
       - id: CrazyGlue
         amount: 2
       - id: PlasticBanana
@@ -300,7 +299,6 @@
       - id: MrDips
         orGroup: Giftpool
       - id: RevolverCapGun
-      - id: BalloonNT
       - id: ClothingShoesClownLarge
       - id: ClothingHeadHatMagician
       - id: BeachBall

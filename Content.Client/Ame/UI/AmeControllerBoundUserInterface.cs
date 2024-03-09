@@ -1,5 +1,6 @@
-using Content.Shared.Ame.Components;
+﻿using Content.Shared.Ame;
 using JetBrains.Annotations;
+using Robust.Client.GameObjects;
 
 namespace Content.Client.Ame.UI
 {

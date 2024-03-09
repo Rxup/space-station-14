@@ -8,7 +8,6 @@ using Content.Server.Ghost.Roles.Components;
 using Content.Server.Mind;
 using Content.Server.Players.PlayTimeTracking;
 using Content.Server.Popups;
-using Content.Server.Roles;
 using Content.Server.Station.Systems;
 using Content.Shared.Access.Systems;
 using Content.Shared.Backmen.Cryostorage;
@@ -78,7 +77,6 @@ public sealed class ReinforcementSystem : SharedReinforcementSystem
         SubscribeLocalEvent<ReinforcementSpawnPlayer>(OnSpawnPlayer);
         SubscribeLocalEvent<ReinforcementConsoleComponent,ActivatableUIOpenAttemptEvent>(OnTryOpenUi);
         SubscribeLocalEvent<ReinforcementMemberComponent, MovedToStorageEvent>(OnMoveToSSD);
-        SubscribeLocalEvent<ReinforcementMindComponent, GetBriefingEvent>(OnGetBrief);
 
         Subs.BuiEvents<ReinforcementConsoleComponent>(ReinforcementConsoleKey.Key, subs =>
         {
@@ -87,17 +85,6 @@ public sealed class ReinforcementSystem : SharedReinforcementSystem
             subs.Event<BriefReinforcementUpdate>(OnBriefUpdate);
             subs.Event<CallReinforcementStart>(OnStartCall);
         });
-    }
-
-    private void OnGetBrief(Entity<ReinforcementMindComponent> ent, ref GetBriefingEvent args)
-    {
-        args.Append("Вы вызваны как подкрепление, брифинг: ");
-        if (TerminatingOrDeleted(ent.Comp.Linked))
-        {
-            args.Append("- нет связи с сервером -");
-            return;
-        }
-        args.Append(ent.Comp.Linked.Comp.Brief);
     }
 
     private void OnMoveToSSD(Entity<ReinforcementMemberComponent> ent, ref MovedToStorageEvent args)
@@ -158,7 +145,6 @@ public sealed class ReinforcementSystem : SharedReinforcementSystem
         var jobPrototype = _prototype.Index<JobPrototype>(args.Proto.Job);
         var job = new JobComponent { Prototype = args.Proto.Job };
         _roles.MindAddRole(newMind, job, silent: false);
-        EnsureComp<ReinforcementMindComponent>(newMind).Linked = ent.Comp.Linked;
         var jobName = _jobs.MindTryGetJobName(newMind);
 
         _playTimeTrackings.PlayerRolesChanged(args.Player);

@@ -42,18 +42,17 @@
   components:
   - type: StorageFill
     contents:
-      - id: Emitter # TODO change to flatpack
+      - id: Emitter
 
 - type: entity
   id: CrateEngineeringSingularityCollector
   parent: CrateEngineeringSecure
   name: radiation collector crate
-  description: A radiation collector, best used for singularity engines. Plasma is included.
+  description: A radiation collector, best used for singularity engines.
   components:
   - type: StorageFill
     contents:
-      - id: RadiationCollectorFlatpack
-      - id: PlasmaTankFilled
+      - id: RadiationCollectorFullTank
 
 - type: entity
   id: CrateEngineeringSingularityContainment
@@ -63,7 +62,7 @@
   components:
   - type: StorageFill
     contents:
-      - id: ContainmentFieldGeneratorFlatpack
+      - id: ContainmentFieldGenerator
 
 - type: entity
   id: CrateEngineeringSingularityGenerator
@@ -73,7 +72,7 @@
   components:
   - type: StorageFill
     contents:
-      - id: SingularityGeneratorFlatpack
+      - id: SingularityGenerator
 
 # Particle Accelerator
 
@@ -114,7 +113,7 @@
   components:
   - type: StorageFill
     contents:
-      - id: DebugGenerator # TODO change to flatpack
+      - id: DebugGenerator
 
 - type: entity
   id: CrateEngineeringSolar
@@ -148,7 +147,7 @@
   components:
   - type: StorageFill
     contents:
-      - id: TeslaGeneratorFlatpack
+      - id: TeslaGenerator
 
 - type: entity
   id: CrateEngineeringTeslaCoil
@@ -158,7 +157,7 @@
   components:
   - type: StorageFill
     contents:
-      - id: TeslaCoilFlatpack
+      - id: TeslaCoil
 
 - type: entity
   id: CrateEngineeringTeslaGroundingRod
@@ -168,4 +167,4 @@
   components:
   - type: StorageFill
     contents:
-      - id: TeslaGroundingRodFlatpack
+      - id: TeslaGroundingRod

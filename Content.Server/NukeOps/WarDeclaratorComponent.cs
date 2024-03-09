@@ -1,15 +1,11 @@
-﻿using Content.Server.GameTicking.Rules;
-using Content.Shared.NukeOps;
-using Robust.Shared.Audio;
-using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom;
+﻿using Robust.Shared.Audio;
 
 namespace Content.Server.NukeOps;
 
 /// <summary>
 /// Used with NukeOps game rule to send war declaration announcement
 /// </summary>
-[RegisterComponent, AutoGenerateComponentPause]
-[Access(typeof(WarDeclaratorSystem), typeof(NukeopsRuleSystem))]
+[RegisterComponent]
 public sealed partial class WarDeclaratorComponent : Component
 {
     /// <summary>
@@ -27,43 +23,22 @@ public sealed partial class WarDeclaratorComponent : Component
     public bool AllowEditingMessage = true;
 
     /// <summary>
-    /// War declaration text color
+    /// War declarement text color
     /// </summary>
     [ViewVariables(VVAccess.ReadWrite)]
     [DataField]
     public Color Color = Color.Red;
 
     /// <summary>
-    /// War declaration sound file path
+    /// War declarement sound file path
     /// </summary>
     [DataField]
     public SoundSpecifier Sound = new SoundPathSpecifier("/Audio/Announcements/war.ogg");
 
     /// <summary>
-    /// Fluent ID for the declaration sender title
+    /// Fluent ID for the declarement title
     /// </summary>
     [ViewVariables(VVAccess.ReadWrite)]
     [DataField]
-    public LocId SenderTitle = "comms-console-announcement-title-nukie";
-
-    /// <summary>
-    /// Time allowed for declaration of war
-    /// </summary>
-    [DataField]
-    public float WarDeclarationDelay = 6.0f;
-
-    [DataField(customTypeSerializer: typeof(TimeOffsetSerializer)), AutoPausedField]
-    public TimeSpan DisableAt;
-
-    /// <summary>
-    /// How long the shuttle will be disabled for
-    /// </summary>
-    [DataField(customTypeSerializer: typeof(TimeOffsetSerializer)), AutoPausedField]
-    public TimeSpan ShuttleDisabledTime;
-
-    [DataField]
-    public WarConditionStatus? CurrentStatus;
+    public LocId Title = "comms-console-announcement-title-nukie";
 }
-
-[ByRefEvent]
-public record struct WarDeclaredEvent(WarConditionStatus? Status, Entity<WarDeclaratorComponent> DeclaratorEntity);

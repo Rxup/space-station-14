@@ -6,10 +6,9 @@ namespace Content.Server.Shuttles.Components;
 /// <summary>
 /// If added to a grid gets launched when the emergency shuttle launches.
 /// </summary>
-[RegisterComponent, Access(typeof(EmergencyShuttleSystem)), AutoGenerateComponentPause]
+[RegisterComponent, Access(typeof(EmergencyShuttleSystem))]
 public sealed partial class EscapePodComponent : Component
 {
     [DataField("launchTime", customTypeSerializer:typeof(TimeOffsetSerializer))]
-    [AutoPausedField]
     public TimeSpan? LaunchTime;
 }

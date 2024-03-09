@@ -9,14 +9,13 @@ namespace Content.Shared.Nutrition.AnimalHusbandry;
 /// given they are next to a particular entity that fulfills a whitelist,
 /// can create several "child" entities.
 /// </summary>
-[RegisterComponent, AutoGenerateComponentPause]
+[RegisterComponent]
 public sealed partial class ReproductiveComponent : Component
 {
     /// <summary>
     /// The next time when breeding will be attempted.
     /// </summary>
     [DataField(customTypeSerializer: typeof(TimeOffsetSerializer)), ViewVariables(VVAccess.ReadWrite)]
-    [AutoPausedField]
     public TimeSpan NextBreedAttempt;
 
     /// <summary>

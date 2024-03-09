@@ -10,7 +10,7 @@ namespace Content.Server.Nutrition.Components;
 /// <summary>
 /// This is used for a machine that extracts hunger from entities and creates meat. Yum!
 /// </summary>
-[RegisterComponent, Access(typeof(FatExtractorSystem)), AutoGenerateComponentPause]
+[RegisterComponent, Access(typeof(FatExtractorSystem))]
 public sealed partial class FatExtractorComponent : Component
 {
     /// <summary>
@@ -48,7 +48,6 @@ public sealed partial class FatExtractorComponent : Component
     /// When the next update will occur
     /// </summary>
     [DataField("nextUpdate", customTypeSerializer: typeof(TimeOffsetSerializer)), ViewVariables(VVAccess.ReadWrite)]
-    [AutoPausedField]
     public TimeSpan NextUpdate;
 
     /// <summary>

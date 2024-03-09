@@ -8,15 +8,6 @@
     Glass: 50
 
 - type: latheRecipe
-  id: LedLightTube
-  result: LedLightTube
-  category: Lights
-  completetime: 2
-  materials:
-    Steel: 50
-    Glass: 50
-
-- type: latheRecipe
   id: SodiumLightTube
   result: SodiumLightTube
   category: Lights
@@ -37,15 +28,6 @@
 - type: latheRecipe
   id: LightBulb
   result: LightBulb
-  category: Lights
-  completetime: 2
-  materials:
-    Steel: 50
-    Glass: 50
-
-- type: latheRecipe
-  id: LedLightBulb
-  result: LedLightBulb
   category: Lights
   completetime: 2
   materials:
@@ -170,11 +152,3 @@
   completetime: 2
   materials:
     Steel: 100
-
-- type: latheRecipe
-  id: HandheldStationMap
-  result: HandheldStationMapEmpty
-  completetime: 2
-  materials:
-    Steel: 300
-    Plastic: 100

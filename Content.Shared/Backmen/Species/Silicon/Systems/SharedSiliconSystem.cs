@@ -1,9 +1,10 @@
+using Content.Shared.Backmen.Silicon.Components;
 using Content.Shared.Alert;
-using Content.Shared.Backmen.Species.Silicon.Components;
-using Content.Shared.Movement.Systems;
 using Robust.Shared.Serialization;
+using Content.Shared.Movement.Systems;
 
-namespace Content.Shared.Backmen.Species.Silicon.Systems;
+namespace Content.Shared.Backmen.Silicon.Systems;
+
 
 public sealed class SharedSiliconChargeSystem : EntitySystem
 {
@@ -12,12 +13,12 @@ public sealed class SharedSiliconChargeSystem : EntitySystem
     // Dictionary of ChargeState to Alert severity.
     private static readonly Dictionary<ChargeState, short> ChargeStateAlert = new()
     {
-        { ChargeState.Full, 4 },
-        { ChargeState.Mid, 3 },
-        { ChargeState.Low, 2 },
-        { ChargeState.Critical, 1 },
-        { ChargeState.Dead, 0 },
-        { ChargeState.Invalid, -1 },
+        {ChargeState.Full, 4},
+        {ChargeState.Mid, 3},
+        {ChargeState.Low, 2},
+        {ChargeState.Critical, 1},
+        {ChargeState.Dead, 0},
+        {ChargeState.Invalid, -1},
     };
 
     public override void Initialize()
@@ -61,6 +62,7 @@ public sealed class SharedSiliconChargeSystem : EntitySystem
     }
 }
 
+
 public enum SiliconType
 {
     Player,
@@ -77,6 +79,7 @@ public enum ChargeState
     Mid,
     Full,
 }
+
 
 /// <summary>
 ///     Event raised when a Silicon's charge state needs to be updated.

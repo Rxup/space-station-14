@@ -15,7 +15,6 @@ namespace Content.Shared.Ninja.Components;
 /// As an implementation detail, dashing with katana is a suit action which isn't ideal.
 /// </summary>
 [RegisterComponent, NetworkedComponent, Access(typeof(SharedNinjaSuitSystem)), AutoGenerateComponentState]
-[AutoGenerateComponentPause]
 public sealed partial class NinjaSuitComponent : Component
 {
     /// <summary>
@@ -47,7 +46,6 @@ public sealed partial class NinjaSuitComponent : Component
     /// Time at which we will be able to use our abilities again
     /// </summary>
     [DataField(customTypeSerializer: typeof(TimeOffsetSerializer))]
-    [AutoPausedField]
     public TimeSpan DisableCooldown;
 
     /// <summary>

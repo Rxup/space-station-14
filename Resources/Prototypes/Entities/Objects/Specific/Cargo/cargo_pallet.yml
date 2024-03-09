@@ -6,8 +6,6 @@
   components:
   - type: InteractionOutline
   - type: Anchorable
-    flags:
-    - Anchorable
   - type: CollideOnAnchor
   - type: Physics
     canCollide: false

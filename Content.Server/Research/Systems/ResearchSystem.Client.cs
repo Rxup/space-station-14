@@ -82,11 +82,12 @@ public sealed partial class ResearchSystem
         if (!Resolve(uid, ref component, false))
             return;
 
-        TryGetClientServer(uid, out _, out var serverComponent, component);
+        if (!TryGetClientServer(uid, out _, out var serverComponent, component))
+            return;
 
         var names = GetServerNames();
         var state = new ResearchClientBoundInterfaceState(names.Length, names,
-            GetServerIds(), serverComponent?.Id ?? -1);
+            GetServerIds(), component.ConnectedToServer ? serverComponent.Id : -1);
 
         _uiSystem.TrySetUiState(uid, ResearchClientUiKey.Key, state);
     }

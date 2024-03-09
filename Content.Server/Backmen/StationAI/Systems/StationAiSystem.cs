@@ -290,12 +290,6 @@ public sealed class StationAiSystem : SharedStationAISystem
             args.Cancel();
             return;
         }
-
-        if (HasComp<NukeComponent>(args.Target))
-        {
-            args.Cancel();
-            return;
-        }
     }
 
     private void OnTerminated(Entity<StationAIComponent> ent, ref EntityTerminatingEvent args)

@@ -14,6 +14,9 @@ public sealed partial class NukeOperativeSpawnerComponent : Component
     [DataField("name", required:true)]
     public string OperativeName = default!;
 
-    [DataField]
-    public NukeopSpawnPreset SpawnDetails = default!;
+    [DataField("rolePrototype", customTypeSerializer:typeof(PrototypeIdSerializer<AntagPrototype>), required:true)]
+    public string OperativeRolePrototype = default!;
+
+    [DataField("startingGearPrototype", customTypeSerializer:typeof(PrototypeIdSerializer<StartingGearPrototype>), required:true)]
+    public string OperativeStartingGear = default!;
 }

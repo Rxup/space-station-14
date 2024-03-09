@@ -385,7 +385,7 @@
 - type: emote
   id: Weh
   category: Vocal
-  chatMessages: [Wehs!]
+  chatMessages: [Weh!]
 
 - type: emote
   id: Chirp

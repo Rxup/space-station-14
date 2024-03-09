@@ -9,7 +9,7 @@ using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom;
 
 namespace Content.Shared.Weapons.Ranged.Components;
 
-[RegisterComponent, NetworkedComponent, AutoGenerateComponentState, AutoGenerateComponentPause]
+[RegisterComponent, NetworkedComponent, AutoGenerateComponentState]
 [Access(typeof(SharedGunSystem))]
 public sealed partial class GunComponent : Component
 {
@@ -198,7 +198,6 @@ public sealed partial class GunComponent : Component
     /// </summary>
     [DataField(customTypeSerializer:typeof(TimeOffsetSerializer))]
     [AutoNetworkedField]
-    [AutoPausedField]
     public TimeSpan NextFire = TimeSpan.Zero;
 
     /// <summary>

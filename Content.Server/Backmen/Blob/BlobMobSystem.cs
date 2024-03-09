@@ -1,4 +1,3 @@
-using Content.Server.Backmen.Blob.Components;
 using Content.Server.Chat.Systems;
 using Content.Server.Explosion.EntitySystems;
 using Content.Server.Fluids.EntitySystems;
@@ -7,7 +6,6 @@ using Content.Server.Radio.Components;
 using Content.Server.Radio.EntitySystems;
 using Content.Shared.Backmen.Blob;
 using Content.Shared.Backmen.Blob.Chemistry;
-using Content.Shared.Backmen.Blob.Components;
 using Content.Shared.Chemistry.Components;
 using Content.Shared.Damage;
 using Content.Shared.Interaction.Events;
@@ -45,19 +43,12 @@ public sealed class BlobMobSystem : EntitySystem
 
     private void OnSpokeName(Entity<BlobSpeakComponent> ent, ref TransformSpeakerNameEvent args)
     {
-        if (HasComp<BlobCarrierComponent>(ent))
-        {
-            return;
-        }
         args.Name = "Блоб";
+
     }
 
     private void OnSpokeCan(Entity<BlobSpeakComponent> ent, ref SpeakAttemptEvent args)
     {
-        if (HasComp<BlobCarrierComponent>(ent))
-        {
-            return;
-        }
         args.Uncancel();
     }
 

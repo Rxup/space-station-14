@@ -27,7 +27,6 @@
   - Maintenance
   - Command
   - Brig
-  - Cryogenics
   #start-backmen: currency
   minBankBalance: 150
   maxBankBalance: 250

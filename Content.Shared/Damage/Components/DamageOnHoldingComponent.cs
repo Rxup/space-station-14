@@ -5,7 +5,7 @@ using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom;
 namespace Content.Shared.Damage.Components;
 
 [RegisterComponent, NetworkedComponent]
-[AutoGenerateComponentState, AutoGenerateComponentPause]
+[AutoGenerateComponentState]
 [Access(typeof(DamageOnHoldingSystem))]
 public sealed partial class DamageOnHoldingComponent : Component
 {
@@ -29,6 +29,5 @@ public sealed partial class DamageOnHoldingComponent : Component
 
     [DataField("nextDamage", customTypeSerializer: typeof(TimeOffsetSerializer)), ViewVariables(VVAccess.ReadWrite)]
     [AutoNetworkedField]
-    [AutoPausedField]
     public TimeSpan NextDamage = TimeSpan.Zero;
 }

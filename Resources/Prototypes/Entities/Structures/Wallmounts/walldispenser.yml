@@ -8,7 +8,7 @@
     - Wallmount
   components:
   - type: WallMount
-    arc: 175
+    arc: 180
   - type: Sprite
     sprite: Structures/Storage/tanks.rsi
     state: cleanerdispenser

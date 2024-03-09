@@ -92,8 +92,7 @@ public sealed partial class AlertsUI : UIWidget
             {
                 // key is the same, simply update the existing control severity / cooldown
                 existingAlertControl.SetSeverity(alertState.Severity);
-                if (alertState.ShowCooldown)
-                    existingAlertControl.Cooldown = alertState.Cooldown;
+                existingAlertControl.Cooldown = alertState.Cooldown;
             }
             else
             {
@@ -134,13 +133,9 @@ public sealed partial class AlertsUI : UIWidget
 
     private AlertControl CreateAlertControl(AlertPrototype alert, AlertState alertState)
     {
-        (TimeSpan, TimeSpan)? cooldown = null;
-        if (alertState.ShowCooldown)
-            cooldown = alertState.Cooldown;
-
         var alertControl = new AlertControl(alert, alertState.Severity)
         {
-            Cooldown = cooldown
+            Cooldown = alertState.Cooldown
         };
         alertControl.OnPressed += AlertControlPressed;
         return alertControl;

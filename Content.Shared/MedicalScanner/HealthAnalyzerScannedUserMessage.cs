@@ -12,15 +12,13 @@ public sealed class HealthAnalyzerScannedUserMessage : BoundUserInterfaceMessage
     public float Temperature;
     public float BloodLevel;
     public bool? ScanMode;
-    public bool? Bleeding;
 
-    public HealthAnalyzerScannedUserMessage(NetEntity? targetEntity, float temperature, float bloodLevel, bool? scanMode, bool? bleeding)
+    public HealthAnalyzerScannedUserMessage(NetEntity? targetEntity, float temperature, float bloodLevel, bool? scanMode)
     {
         TargetEntity = targetEntity;
         Temperature = temperature;
         BloodLevel = bloodLevel;
         ScanMode = scanMode;
-        Bleeding = bleeding;
     }
 }
 

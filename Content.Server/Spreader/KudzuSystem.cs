@@ -21,6 +21,7 @@ public sealed class KudzuSystem : EntitySystem
     {
         SubscribeLocalEvent<KudzuComponent, ComponentStartup>(SetupKudzu);
         SubscribeLocalEvent<KudzuComponent, SpreadNeighborsEvent>(OnKudzuSpread);
+        SubscribeLocalEvent<GrowingKudzuComponent, EntityUnpausedEvent>(OnKudzuUnpaused);
         SubscribeLocalEvent<KudzuComponent, DamageChangedEvent>(OnDamageChanged);
     }
 
@@ -77,6 +78,11 @@ public sealed class KudzuSystem : EntitySystem
             if (args.Updates <= 0)
                 return;
         }
+    }
+
+    private void OnKudzuUnpaused(EntityUid uid, GrowingKudzuComponent component, ref EntityUnpausedEvent args)
+    {
+        component.NextTick += args.PausedTime;
     }
 
     private void SetupKudzu(EntityUid uid, KudzuComponent component, ComponentStartup args)

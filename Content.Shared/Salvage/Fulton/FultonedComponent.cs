@@ -7,7 +7,7 @@ namespace Content.Shared.Salvage.Fulton;
 /// <summary>
 /// Marks an entity as pending being fultoned.
 /// </summary>
-[RegisterComponent, NetworkedComponent, AutoGenerateComponentState(true), AutoGenerateComponentPause]
+[RegisterComponent, NetworkedComponent, AutoGenerateComponentState(true)]
 public sealed partial class FultonedComponent : Component
 {
     /// <summary>
@@ -26,7 +26,6 @@ public sealed partial class FultonedComponent : Component
     /// When the fulton is travelling to the beacon.
     /// </summary>
     [ViewVariables(VVAccess.ReadWrite), DataField("nextFulton", customTypeSerializer:typeof(TimeOffsetSerializer)), AutoNetworkedField]
-    [AutoPausedField]
     public TimeSpan NextFulton;
 
     [ViewVariables(VVAccess.ReadWrite), DataField("sound"), AutoNetworkedField]

@@ -12,7 +12,6 @@
       - id: OxygenTankFilled
       - id: FireExtinguisher
       - id: ClothingShoesBootsMag
-      - id: HandHeldMassScanner
       - id: Pickaxe
       - id: Welder
       - id: Wrench

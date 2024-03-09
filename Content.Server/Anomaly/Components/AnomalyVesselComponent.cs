@@ -10,7 +10,7 @@ namespace Content.Server.Anomaly.Components;
 /// they generate points for the selected server based on
 /// the anomaly's stability and severity.
 /// </summary>
-[RegisterComponent, Access(typeof(SharedAnomalySystem)), AutoGenerateComponentPause]
+[RegisterComponent, Access(typeof(SharedAnomalySystem))]
 public sealed partial class AnomalyVesselComponent : Component
 {
     /// <summary>
@@ -42,7 +42,6 @@ public sealed partial class AnomalyVesselComponent : Component
     /// When the next beep sound will play
     /// </summary>
     [DataField("nextBeep", customTypeSerializer:typeof(TimeOffsetSerializer))]
-    [AutoPausedField]
     public TimeSpan NextBeep = TimeSpan.Zero;
 
     /// <summary>

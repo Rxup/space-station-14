@@ -4,7 +4,7 @@ using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom;
 
 namespace Content.Shared.Climbing.Components;
 
-[RegisterComponent, NetworkedComponent, AutoGenerateComponentState, AutoGenerateComponentPause]
+[RegisterComponent, NetworkedComponent, AutoGenerateComponentState]
 public sealed partial class ClimbingComponent : Component
 {
     /// <summary>
@@ -17,7 +17,6 @@ public sealed partial class ClimbingComponent : Component
     /// Whether the owner is being moved onto the climbed entity.
     /// </summary>
     [AutoNetworkedField, DataField(customTypeSerializer: typeof(TimeOffsetSerializer))]
-    [AutoPausedField]
     public TimeSpan? NextTransition;
 
     /// <summary>

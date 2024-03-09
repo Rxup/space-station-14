@@ -1,12 +1,12 @@
-using Content.Server.Backmen.Blob.Components;
 using Content.Shared.Backmen.Blob;
-using Robust.Shared.Map.Components;
+using Robust.Shared.Map;
 using Robust.Shared.Player;
 
 namespace Content.Server.Backmen.Blob;
 
 public sealed class BlobSpawnerSystem : EntitySystem
 {
+    [Dependency] private readonly IMapManager _mapManager = default!;
     [Dependency] private readonly BlobCoreSystem _blobCoreSystem = default!;
 
     public override void Initialize()
@@ -18,7 +18,7 @@ public sealed class BlobSpawnerSystem : EntitySystem
     private void OnPlayerAttached(EntityUid uid, BlobSpawnerComponent component, PlayerAttachedEvent args)
     {
         var xform = Transform(uid);
-        if (!HasComp<MapGridComponent>(xform.GridUid))
+        if (!_mapManager.TryGetGrid(xform.GridUid, out var map))
             return;
 
         var core = Spawn(component.CoreBlobPrototype, xform.Coordinates);

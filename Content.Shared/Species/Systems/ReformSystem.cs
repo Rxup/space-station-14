@@ -4,11 +4,12 @@ using Content.Shared.DoAfter;
 using Content.Shared.Popups;
 using Content.Shared.Stunnable;
 using Content.Shared.Mind;
-using Content.Shared.Zombies;
+using Content.Shared.Humanoid;
 using Robust.Shared.Network;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization;
 using Robust.Shared.Timing;
+using Robust.Shared.Serialization.Manager;
 
 namespace Content.Shared.Species;
 
@@ -22,6 +23,8 @@ public sealed partial class ReformSystem : EntitySystem
     [Dependency] private readonly SharedStunSystem _stunSystem = default!;
     [Dependency] private readonly IGameTiming _gameTiming = default!;
     [Dependency] private readonly SharedMindSystem _mindSystem = default!;
+    [Dependency] private readonly MetaDataSystem _metaData = default!;
+    [Dependency] private readonly ISerializationManager _serializationManager = default!;
 
     public override void Initialize()
     {
@@ -32,8 +35,6 @@ public sealed partial class ReformSystem : EntitySystem
 
         SubscribeLocalEvent<ReformComponent, ReformEvent>(OnReform);
         SubscribeLocalEvent<ReformComponent, ReformDoAfterEvent>(OnDoAfter);
-
-        SubscribeLocalEvent<ReformComponent, EntityZombifiedEvent>(OnZombified);
     }
 
     private void OnMapInit(EntityUid uid, ReformComponent comp, MapInitEvent args)
@@ -94,7 +95,7 @@ public sealed partial class ReformSystem : EntitySystem
 
         // This transfers the mind to the new entity
         if (_mindSystem.TryGetMind(uid, out var mindId, out var mind))
-            _mindSystem.TransferTo(mindId, child, mind: mind);
+                _mindSystem.TransferTo(mindId, child, mind: mind);
 
         // start-bacmen: WL
         EntityManager.SystemOrNull<Backmen.WL.SharedWhitelistSystem>()?.ProcessReform(child,(uid,comp));
@@ -102,11 +103,6 @@ public sealed partial class ReformSystem : EntitySystem
 
         // Delete the old entity
         QueueDel(uid);
-    }
-
-    private void OnZombified(EntityUid uid, ReformComponent comp, ref EntityZombifiedEvent args)
-    {
-        _actionsSystem.RemoveAction(uid, comp.ActionEntity); // Zombies can't reform
     }
 
     public sealed partial class ReformEvent : InstantActionEvent { }

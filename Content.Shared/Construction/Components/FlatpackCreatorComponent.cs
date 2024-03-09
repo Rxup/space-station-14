@@ -11,7 +11,7 @@ namespace Content.Shared.Construction.Components;
 /// </summary>
 [RegisterComponent, NetworkedComponent]
 [Access(typeof(SharedFlatpackSystem))]
-[AutoGenerateComponentState, AutoGenerateComponentPause]
+[AutoGenerateComponentState]
 public sealed partial class FlatpackCreatorComponent : Component
 {
     /// <summary>
@@ -26,7 +26,6 @@ public sealed partial class FlatpackCreatorComponent : Component
     /// </summary>
     [DataField(customTypeSerializer: typeof(TimeOffsetSerializer)), ViewVariables(VVAccess.ReadWrite)]
     [AutoNetworkedField]
-    [AutoPausedField]
     public TimeSpan PackEndTime;
 
     /// <summary>

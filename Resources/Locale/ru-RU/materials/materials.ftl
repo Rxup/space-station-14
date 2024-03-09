@@ -31,4 +31,3 @@ materials-raw-silver = руда серебра
 materials-raw-plasma = руда плазмы
 materials-raw-uranium = руда урана
 materials-raw-bananium = руда бананиума
-materials-raw-salt = каменная соль

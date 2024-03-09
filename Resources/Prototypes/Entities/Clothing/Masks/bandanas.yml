@@ -22,9 +22,6 @@
     - state: icon
       map: ["foldedLayer"]
       visible: false
-  - type: Tag
-    tags:
-    - HidesNose
 
 - type: entity
   parent: ClothingMaskBandanaBase

@@ -3,7 +3,7 @@ using Content.Shared.Roles;
 namespace Content.Server.Roles;
 
 
-[RegisterComponent, ExclusiveAntagonist]
+[RegisterComponent]
 public sealed partial class BlobRoleComponent : AntagonistRoleComponent
 {
 

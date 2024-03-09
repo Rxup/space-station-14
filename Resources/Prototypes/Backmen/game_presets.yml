@@ -24,7 +24,6 @@
   - VampiresGameRule
   - BasicStationEventScheduler
   - WageScheduler #backmen: currency
-  - SubGamemodesRule
   - BasicRoundstartVariation
 
 - type: gamePreset
@@ -39,7 +38,6 @@
   - BasicStationEventScheduler
   - WageScheduler #backmen: currency
   - BasicRoundstartVariation
-  - SubGamemodesRule
 
 - type: gamePreset
   id: FleshCult
@@ -54,7 +52,6 @@
   - BasicStationEventScheduler
   - WageScheduler #backmen: currency
   - BasicRoundstartVariation
-  - SubGamemodesRule
 
 - type: gamePreset
   id: FleshCultAndTraitor

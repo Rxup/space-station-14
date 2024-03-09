@@ -1,21 +1,16 @@
 using Content.Shared.Construction.EntitySystems;
 using Content.Shared.Tools;
-using Robust.Shared.GameStates;
-using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype;
 
 namespace Content.Shared.Construction.Components
 {
-    [RegisterComponent, Access(typeof(AnchorableSystem)), NetworkedComponent, AutoGenerateComponentState]
+    [RegisterComponent, Access(typeof(AnchorableSystem))]
     public sealed partial class AnchorableComponent : Component
     {
-        [DataField]
-        public ProtoId<ToolQualityPrototype> Tool { get; private set; } = "Anchoring";
+        [DataField("tool", customTypeSerializer: typeof(PrototypeIdSerializer<ToolQualityPrototype>))]
+        public string Tool { get; private set; } = "Anchoring";
 
-        [DataField, AutoNetworkedField]
-        public AnchorableFlags Flags = AnchorableFlags.Anchorable | AnchorableFlags.Unanchorable;
-
-        [DataField]
+        [DataField("snap")]
         [ViewVariables(VVAccess.ReadWrite)]
         public bool Snap { get; private set; } = true;
 
@@ -23,16 +18,8 @@ namespace Content.Shared.Construction.Components
         /// Base delay to use for anchoring.
         /// </summary>
         [ViewVariables(VVAccess.ReadWrite)]
-        [DataField]
+        [DataField("delay")]
         public float Delay = 1f;
-    }
-
-    [Flags]
-    public enum AnchorableFlags : byte
-    {
-        None = 0,
-        Anchorable = 1 << 0,
-        Unanchorable = 1 << 1,
     }
 
     public abstract class BaseAnchoredAttemptEvent : CancellableEntityEventArgs

@@ -7,7 +7,7 @@ namespace Content.Server.Chemistry.Components;
 /// <summary>
 /// Passively increases a solution's quantity of a reagent.
 /// </summary>
-[RegisterComponent, AutoGenerateComponentPause]
+[RegisterComponent]
 [Access(typeof(SolutionRegenerationSystem))]
 public sealed partial class SolutionRegenerationComponent : Component
 {
@@ -39,6 +39,5 @@ public sealed partial class SolutionRegenerationComponent : Component
     /// The time when the next regeneration will occur.
     /// </summary>
     [DataField("nextChargeTime", customTypeSerializer: typeof(TimeOffsetSerializer)), ViewVariables(VVAccess.ReadWrite)]
-    [AutoPausedField]
     public TimeSpan NextRegenTime = TimeSpan.FromSeconds(0);
 }

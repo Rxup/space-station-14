@@ -148,7 +148,6 @@
         amount: 3
       - id: ClothingHeadCage # backmen
         amount: 2
-      - id: RubberStampDetective
       - id: HoloprojectorSecurity
       - id: BoxEvidenceMarkers
 

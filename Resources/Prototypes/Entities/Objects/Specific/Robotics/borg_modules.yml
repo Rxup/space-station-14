@@ -145,7 +145,6 @@
   - type: ItemBorgModule
     items:
     - HandheldGPSBasic
-    - HandHeldMassScannerBorg
     - HandheldStationMapUnpowered
 
 - type: entity

@@ -8,13 +8,6 @@
     state: hypo
 
 - type: stealTargetGroup
-  id: HandheldCrewMonitor
-  name: handheld crew monitor
-  sprite:
-    sprite: Objects/Specific/Medical/handheldcrewmonitor.rsi
-    state: scanner
-
-- type: stealTargetGroup
   id: ClothingOuterHardsuitRd
   name: experimental research hardsuit
   sprite:

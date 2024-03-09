@@ -5,7 +5,7 @@ using Robust.Shared.Timing;
 
 namespace Content.Shared.Throwing
 {
-    [RegisterComponent, NetworkedComponent, AutoGenerateComponentState(true), AutoGenerateComponentPause]
+    [RegisterComponent, NetworkedComponent, AutoGenerateComponentState(true)]
     public sealed partial class ThrownItemComponent : Component
     {
         /// <summary>
@@ -24,7 +24,6 @@ namespace Content.Shared.Throwing
         ///     Compared to <see cref="IGameTiming.CurTime"/> to land this entity, if any.
         /// </summary>
         [DataField, ViewVariables(VVAccess.ReadWrite), AutoNetworkedField]
-        [AutoPausedField]
         public TimeSpan? LandTime;
 
         /// <summary>

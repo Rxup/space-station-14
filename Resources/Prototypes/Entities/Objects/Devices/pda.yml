@@ -76,8 +76,8 @@
       - CrewManifestCartridge
       - NotekeeperCartridge
       - BankCartridge
+      - NewsReadCartridge
       - GlimmerMonitorCartridge
-      - NewsReaderCartridge
     cartridgeSlot:
       priority: -1
       name: device-pda-slot-component-slot-name-cartridge
@@ -676,7 +676,7 @@
     preinstalled:
       - CrewManifestCartridge
       - NotekeeperCartridge
-      - NewsReaderCartridge
+      - NewsReadCartridge
       - LogProbeCartridge
 
 - type: entity
@@ -772,7 +772,7 @@
 - type: entity
   parent: BasePDA
   id: ERTLeaderPDA
-  name: ERT Leader PDA
+  name: ERT PDA
   suffix: Leader
   description: Red for firepower.
   components:
@@ -789,9 +789,8 @@
 - type: entity
   parent: ERTLeaderPDA
   id: ERTChaplainPDA
-  name: ERT Chaplain PDA
+  name: ERT PDA
   suffix: Chaplain
-  description: Red for firepower, it's blessed.
   components:
   - type: Pda
     id: ERTChaplainIDCard
@@ -799,9 +798,7 @@
 - type: entity
   parent: ERTLeaderPDA
   id: ERTEngineerPDA
-  name: ERT Engineer PDA
   suffix: Engineer
-  description: Red for firepower, it's well-worn.
   components:
   - type: Pda
     id: ERTEngineerIDCard
@@ -809,9 +806,7 @@
 - type: entity
   parent: ERTLeaderPDA
   id: ERTJanitorPDA
-  name: ERT Janitor PDA
   suffix: Janitor
-  description: Red for firepower, it's squeaky clean.
   components:
   - type: Pda
     id: ERTJanitorIDCard
@@ -819,23 +814,15 @@
 - type: entity
   parent: ERTLeaderPDA
   id: ERTMedicPDA
-  name: ERT Medic PDA
   suffix: Medic
-  description: Red for firepower, it's shiny and sterile. Has a built-in rapid health analyzer.
   components:
   - type: Pda
     id: ERTMedicIDCard
-  - type: HealthAnalyzer
-    scanDelay: 1
-    scanningEndSound:
-      path: "/Audio/Items/Medical/healthscanner.ogg"
 
 - type: entity
   parent: ERTLeaderPDA
   id: ERTSecurityPDA
-  name: ERT Security PDA
   suffix: Security
-  description: Red for firepower, it has tally marks etched on the side.
   components:
   - type: Pda
     id: ERTSecurityIDCard
