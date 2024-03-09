@@ -61,7 +61,7 @@
   description: Nanotrasen's first attempt to remake the Antique Laser Gun. Has more firing modes on offer but lacks the ability to self-recharge.
   components:
   - type: Sprite
-    sprite: /Uploaded/Dominator.rsi
+    sprite: Backmen/Objects/Weapons/Gunsx64/Battery/Dominator.rsi
     layers:
     - state: base
       map: ["enum.GunVisualLayers.Base"]
@@ -69,7 +69,7 @@
       map: ["enum.GunVisualLayers.MagUnshaded"]
       shader: unshaded
   - type: Clothing
-    sprite: /Uploaded/Dominator.rsi
+    sprite: Backmen/Objects/Weapons/Gunsx64/Battery/Dominator.rsi
   - type: Gun
     fireRate: 2
     projectileSpeed: 75
@@ -80,6 +80,9 @@
       path: /Audio/Weapons/Guns/Gunshots/laser.ogg
   - type: Item
     size: SmallNormal
+  - type: ProjectileBatteryAmmoProvider
+    proto: X01Attack
+    fireCost: 200
   - type: BatteryWeaponFireModes
     fireModes:
     - proto: X01Attack
