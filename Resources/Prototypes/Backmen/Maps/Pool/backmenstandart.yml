@@ -1,7 +1,7 @@
 - type: gameMapPool
   id: BackmenDefaultMapPool
   maps:
-  - CorvaxSilly
+  - BackmenSilly
   - Tortuga
   - TheHive
   - Shoukou

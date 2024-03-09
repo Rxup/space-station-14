@@ -1,7 +1,7 @@
 - type: gameMap
-  id: CorvaxSilly
-  mapName: 'Silly Station'
-  mapPath: /Maps/corvax_silly.yml
+  id: BackmenSilly
+  mapName: 'Backmen Silly'
+  mapPath: /Maps/Backmen/backmen_silly.yml
   minPlayers: 0
   maxPlayers: 30
   stations:
@@ -19,13 +19,13 @@
           overflowJobs:
             - Passenger
           availableJobs:
-            CargoTechnician: [ 3, 3 ]
+            CargoTechnician: [ 2, 2 ]
             Passenger: [ -1, -1 ]
             Bartender: [ 1, 1 ]
             Botanist: [ 1, 1 ]
             Chef: [ 1, 1 ]
             Clown: [ 1, 1 ]
-            Janitor: [ 1, 2 ]
+            Janitor: [ 1, 1 ]
             Mime: [ 1, 1 ]
             Captain: [ 1, 1 ]
             IAA: [ 1, 1 ]
@@ -42,7 +42,7 @@
             Chaplain: [ 1, 1 ]
             Warden: [ 1, 1 ]
             Quartermaster: [ 1, 1 ]
-            SalvageSpecialist: [ 3, 3 ]
+            SalvageSpecialist: [ 2, 2 ]
             Musician: [ 1, 1 ]
             AtmosphericTechnician: [ 1, 1 ]
             TechnicalAssistant: [ 2, 2 ]
@@ -54,5 +54,5 @@
             Psychologist: [ 0, 0 ]
             Detective: [ 1, 1 ]
             Paramedic: [ 1, 1 ]
-            Brigmedic: [ 0, 1 ] # backmen-Brigmedic
+            Brigmedic: [ 1, 1 ] # backmen-Brigmedic
             SAI: [1, 1] # backmen-SAI
