@@ -968,6 +968,7 @@
     flags:
     - Anchorable
   - type: CargoPalletConsole
+    cashType: BillOfExchange
   - type: ActivatableUI
     key: enum.CargoPalletConsoleUiKey.Sale
   - type: UserInterface

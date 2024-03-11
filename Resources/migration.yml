@@ -362,5 +362,9 @@ Observationskit: null
 # 2024-02-26
 CrateBaseWeldable: CrateGenericSteel
 
+# 2024-09-03 Backmen
+WeaponRifleLecterRubber: WeaponRifleM28Rubber
+WeaponTaser: WeaponDominatorNT
+
 # 2024-03-11
 WeaponLauncherRocket: WeaponLauncherRL5

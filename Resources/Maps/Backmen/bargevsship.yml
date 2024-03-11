@@ -498,6 +498,7 @@ entities:
       color: '#FF0000FF'
     - type: BecomesStation
       id: TeamA
+    - type: TradeStation
   - uid: 602
     components:
     - type: MetaData
@@ -931,6 +932,7 @@ entities:
       color: '#0000FFFF'
     - type: BecomesStation
       id: TeamB
+    - type: TradeStation
   - uid: 1253
     components:
     - type: MetaData
