@@ -1833,8 +1833,10 @@
       map: ["enum.GunVisualLayers.Mag"]
   - type: GunWieldBonus
     minAngle: -22
-    maxAngle: -28
+    maxAngle: 0
   - type: Gun
+    angleDecay: 40
+    angleIncrease: 5
     minAngle: 24
     maxAngle: 45
     fireRate: 9
@@ -1887,12 +1889,13 @@
   - type: Item
     sprite: Backmen/Objects/Weapons/Gunsx64/Battery/EG-S/tiny.rsi
   - type: GunRequiresWield
-  - type: GunWieldBonus
-    minAngle: -93
-    maxAngle: -94
+  - type: ClothingSpeedModifier
+    walkModifier: 1
+    sprintModifier: 0.8
+  - type: HeldSpeedModifier
   - type: Gun
-    minAngle: 94
-    maxAngle: 95
+    minAngle: 1
+    maxAngle: 10
     fireRate: 1.5
     selectedMode: SemiAuto
     availableModes:
@@ -2004,6 +2007,8 @@
       map: ["enum.GunVisualLayers.Base"]
     - state: mag-0
       map: ["enum.GunVisualLayers.Mag"]
+  - type: Gun
+    fireRate: 3
   - type: Item
     sprite: Backmen/Objects/Weapons/Gunsx64/Shotguns/zauer/tiny.rsi
   - type: Clothing
@@ -3000,6 +3005,10 @@
   - type: Wieldable
   - type: UseDelay
     delay: 1.9
+  - type: ClothingSpeedModifier
+    walkModifier: 1
+    sprintModifier: 0.8
+  - type: HeldSpeedModifier
 
 - type: entity
   name: MG-42
@@ -3055,6 +3064,10 @@
   - type: UseDelay
     delay: 1.9
   - type: GunRequiresWield
+  - type: ClothingSpeedModifier
+    walkModifier: 1
+    sprintModifier: 0.5
+  - type: HeldSpeedModifier
 
 - type: entity
   id: MagazineHeavyMachineGunDrum
@@ -3150,6 +3163,10 @@
   - type: UseDelay
     delay: 1.9
   - type: GunRequiresWield
+  - type: ClothingSpeedModifier
+    walkModifier: 1
+    sprintModifier: 0.6
+  - type: HeldSpeedModifier
 
 - type: entity
   name: M-41
@@ -3205,6 +3222,10 @@
   - type: UseDelay
     delay: 1.9
   - type: GunRequiresWield
+  - type: ClothingSpeedModifier
+    walkModifier: 1
+    sprintModifier: 0.7
+  - type: HeldSpeedModifier
 
 - type: entity
   id: MagazineHeavyRifleV41
@@ -3314,6 +3335,10 @@
   - type: UseDelay
     delay: 2.3
   - type: GunRequiresWield
+  - type: ClothingSpeedModifier
+    walkModifier: 1
+    sprintModifier: 0.9
+  - type: HeldSpeedModifier
 
 - type: entity
   name: Огнемет М6
