@@ -55,6 +55,7 @@
   name: RPG-7
   parent: BaseWeaponLauncher
   id: WeaponLauncherRocket
+  noSpawn: true
   description: A modified ancient rocket-propelled grenade launcher.
   components:
   - type: Sprite
