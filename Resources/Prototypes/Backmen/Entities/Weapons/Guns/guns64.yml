@@ -1100,6 +1100,22 @@
     delay: 1.5
 
 - type: entity
+  parent: WeaponRifleM28
+  id: WeaponRifleM28Rubber
+  components:
+  - type: ItemSlots
+    slots:
+      gun_magazine:
+        name: Magazine
+        startingItem: MagazineRifleRubber
+        insertSound: /Audio/Weapons/Guns64/Rifles/m28_reload.ogg
+        ejectSound: /Audio/Weapons/Guns64/Rifles/m28_unload.ogg
+        priority: 2
+        whitelist:
+          tags:
+            - MagazineRifle
+
+- type: entity
   name: STG 44
   parent: BaseWeaponRifle
   id: WeaponRifleSTG44
@@ -2382,6 +2398,138 @@
   - type: GunRequiresWield
 
 - type: entity
+  name: M-81
+  parent: BaseWeaponPistol
+  id: WeaponLauncherM81
+  suffix: Гранатомёт
+  description: A lightweight single-shot grenade launcher used by the UEG for area blockades and large explosions or riot police units.
+  components:
+  - type: Sprite
+    sprite: Backmen/Objects/Weapons/Gunsx64/Launchers/m81.rsi
+    layers:
+      - state: base
+        map: ["enum.GunVisualLayers.Base"]
+  - type: Gun
+    fireRate: 1
+    selectedMode: SemiAuto
+    availableModes:
+      - SemiAuto
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/grenade_launcher.ogg
+  - type: ChamberMagazineAmmoProvider
+    autoCycle: false
+  - type: ItemSlots
+    slots:
+      gun_chamber:
+        name: Chamber
+        priority: 1
+        whitelist:
+          tags:
+            - Grenade
+  - type: ContainerContainer
+    containers:
+      gun_chamber: !type:ContainerSlot
+
+- type: entity
+  name: grenade box
+  parent: BoxCardboard
+  id: BoxGrenadeNonLetal
+  components:
+    - type: StorageFill
+      contents:
+        - id: GrenadeNonletal
+          amount: 4
+
+- type: entity
+  name: grenade box
+  parent: BoxCardboard
+  id: BoxGrenadeTearGas
+  components:
+    - type: StorageFill
+      contents:
+        - id: GrenadeTearGas
+          amount: 4
+
+- type: entity
+  id: GrenadeTearGas
+  name: tear gas grenade
+  parent: BaseGrenade
+  components:
+  - type: CartridgeAmmo
+    proto: BulletGrenadeTearGas
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Ammunition/Explosives/explosives.rsi
+    layers:
+    - state: baton
+      map: ["enum.AmmoVisualLayers.Base"]
+  - type: Appearance
+  - type: SpentAmmoVisuals
+    state: baton
+    suffix: false
+
+- type: entity
+  id: BulletGrenadeTearGas
+  name: tear gas grenade
+  parent: BaseBulletTrigger
+  noSpawn: true
+  components:
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Projectiles/projectiles2.rsi
+    layers:
+      - state: grenade
+  - type: Projectile
+    deleteOnCollide: false
+    damage:
+      types:
+        Blunt: 1
+    soundHit:
+      path: /Audio/Effects/gen_hit.ogg
+  - type: SmokeOnTrigger
+    duration: 10
+    spreadAmount: 30
+    solution:
+      reagents:
+      - ReagentId: TearGas
+        Quantity: 50
+
+- type: entity
+  id: GrenadeNonletal
+  name: non letal grenade
+  parent: BaseGrenade
+  components:
+  - type: CartridgeAmmo
+    proto: BulletGrenadeNonletal
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Ammunition/Explosives/explosives.rsi
+    layers:
+    - state: flash
+      map: ["enum.AmmoVisualLayers.Base"]
+  - type: Appearance
+  - type: SpentAmmoVisuals
+    state: flash
+    suffix: false
+
+- type: entity
+  id: BulletGrenadeNonletal
+  name: non letal grenade
+  parent: BaseBulletTrigger
+  noSpawn: true
+  components:
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Projectiles/projectiles2.rsi
+    layers:
+      - state: grenade
+  - type: FlashOnTrigger
+    range: 7
+  - type: SpawnOnTrigger
+    proto: GrenadeFlashEffect
+  - type: ActiveTimerTrigger
+    timeRemaining: 0.3
+  - type: DeleteOnTrigger
+  - type: StaminaDamageOnCollide
+    damage: 80
+
+- type: entity
   name: RL-5
   parent: BaseWeaponLauncher
   id: WeaponLauncherRL5
@@ -2414,7 +2562,7 @@
   - type: MagazineVisuals
     magState: mag
     steps: 2
-    zeroVisible: true
+    zeroVisible: false
   - type: Appearance
   - type: Wieldable
   - type: UseDelay
@@ -2728,6 +2876,9 @@
   - type: GunRequiresWield
   - type: Gun
     fireRate: 1
+  - type: Tag
+    tags:
+    - WeaponShotgunKammerer
 
 - type: entity
   name: Dragunov

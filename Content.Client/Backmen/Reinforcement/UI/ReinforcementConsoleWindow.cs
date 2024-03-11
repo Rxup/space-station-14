@@ -121,12 +121,19 @@ public sealed partial class ReinforcementConsoleWindow : FancyWindow
                 }
 
                 var max = r.Model?.MaxCount ?? 1;
+                var min = r.Model?.MinCount ?? 0;
+
+                if (cur < min)
+                {
+                    OnKeySelected.Invoke((uint)member, (uint)min);
+                    r.ModelCount = cur = min;
+                }
 
                 r.JobName.Text = Loc.GetString("reinforcement-row", ("name", Loc.GetString(r.Model!.Name)), ("job", jobTitle));
                 r.Count.Text = r.ModelCount+"x";
                 r.MinusBtn.OnPressed += args =>
                 {
-                    cur = Math.Max(0, cur-1);
+                    cur = Math.Max(min, cur-1);
                     OnKeySelected.Invoke((uint)member, (uint)cur);
                     r.Count.Text = cur+"x";
                     r.ModelCount = cur;
@@ -172,6 +179,7 @@ public sealed partial class ReinforcementConsoleWindow : FancyWindow
             }
 
             r.PlusBtn.Disabled = max <= cur || r.Model?.MaxCount <= r.ModelCount;
+            r.MinusBtn.Disabled = r.Model?.MinCount >= r.ModelCount;
         }
     }
 

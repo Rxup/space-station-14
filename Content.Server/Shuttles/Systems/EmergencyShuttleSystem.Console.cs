@@ -8,6 +8,7 @@ using Content.Shared.UserInterface;
 using Content.Shared.Access;
 using Content.Shared.CCVar;
 using Content.Shared.Database;
+using Content.Shared.Emag.Systems;
 using Content.Shared.DeviceNetwork;
 using Content.Shared.Popups;
 using Content.Shared.Shuttles.BUIStates;
@@ -93,6 +94,7 @@ public sealed partial class EmergencyShuttleSystem
         SubscribeLocalEvent<EmergencyShuttleConsoleComponent, EmergencyShuttleRepealMessage>(OnEmergencyRepeal);
         SubscribeLocalEvent<EmergencyShuttleConsoleComponent, EmergencyShuttleRepealAllMessage>(OnEmergencyRepealAll);
         SubscribeLocalEvent<EmergencyShuttleConsoleComponent, ActivatableUIOpenAttemptEvent>(OnEmergencyOpenAttempt);
+        SubscribeLocalEvent<EmergencyShuttleConsoleComponent, GotEmaggedEvent>(OnEmagged); // Corvax-Hijack
     }
 
     private void OnEmergencyOpenAttempt(EntityUid uid, EmergencyShuttleConsoleComponent component, ActivatableUIOpenAttemptEvent args)
@@ -104,6 +106,14 @@ public sealed partial class EmergencyShuttleSystem
             _popup.PopupEntity(Loc.GetString("emergency-shuttle-console-no-early-launches"), uid, args.User);
         }
     }
+
+    // Corvax-Hijack-Start
+    private void OnEmagged(EntityUid uid, EmergencyShuttleConsoleComponent component, ref GotEmaggedEvent args)
+    {
+        _logger.Add(LogType.EmergencyShuttle, LogImpact.Extreme, $"{ToPrettyString(args.UserUid):player} emagged shuttle console for early launch");
+        EarlyLaunch();
+    }
+    // Corvax-Hijack-End
 
     private void SetAuthorizeTime(float obj)
     {
@@ -178,13 +188,11 @@ public sealed partial class EmergencyShuttleSystem
             }
 
             var podQuery = AllEntityQuery<EscapePodComponent>();
-            var podLaunchOffset = 0.5f;
 
             // Stagger launches coz funny
             while (podQuery.MoveNext(out _, out var pod))
             {
-                pod.LaunchTime = _timing.CurTime + TimeSpan.FromSeconds(podLaunchOffset);
-                podLaunchOffset += _random.NextFloat(0.5f, 2.5f);
+                pod.LaunchTime = _timing.CurTime + TimeSpan.FromSeconds(_random.NextFloat(0.05f, 0.75f));
             }
         }
 
@@ -195,7 +203,9 @@ public sealed partial class EmergencyShuttleSystem
             var stationUid = _station.GetOwningStation(uid);
 
             if (!TryComp<StationCentcommComponent>(stationUid, out var centcomm) ||
-                Deleted(centcomm.Entity) || pod.LaunchTime == null || pod.LaunchTime < _timing.CurTime)
+                Deleted(centcomm.Entity) ||
+                pod.LaunchTime == null ||
+                pod.LaunchTime > _timing.CurTime)
             {
                 continue;
             }

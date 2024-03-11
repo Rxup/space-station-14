@@ -24,7 +24,7 @@
     sprite: Objects/Weapons/Guns/Battery/disabler.rsi
     state: base
   product: CrateSecurityNonlethal
-  cost: 4000
+  cost: 5500 #Backmen
   category: Security
   group: market
 

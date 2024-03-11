@@ -13,3 +13,19 @@
       reagents:
       - ReagentId: BloodSuckerToxin
         Quantity: 50
+
+- type: entity
+  parent: SmokeGrenade
+  id: PsiGrenade
+  name: psi gas grenade
+  description: psi? narko? polo?
+  components:
+  - type: Sprite
+    sprite: Objects/Weapons/Grenades/tear_gas.rsi
+  - type: SmokeOnTrigger
+    duration: 20
+    spreadAmount: 60
+    solution:
+      reagents:
+      - ReagentId: LotophagoiOil
+        Quantity: 100
