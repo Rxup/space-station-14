@@ -183,6 +183,8 @@
       - CartridgePistolRubber
       - CartridgeMagnumRubber
       - ShellShotgunBeanbag
+      - GrenadeTearGas
+      - GrenadeNonletal
       - CartridgeRifleRubber
       - CartridgeLightRifleRubber
       - MagazineBoxPistolRubber
@@ -338,6 +340,7 @@
     emagDynamicRecipes:
       - ExplosivePayload
       - WeaponLaserCarbine
+      - WeaponLaserPistol
       - WeaponAdvancedLaser
       - WeaponLaserCannon
       - WeaponXrayCannon
@@ -725,6 +728,8 @@
       - GrenadeEMP
       - GrenadeFlash
       - ShellShotgunBeanbag
+      - GrenadeTearGas
+      - GrenadeNonletal
       - ShellShotgunIncendiary
       - ShellShotgunUranium
       - Signaller
@@ -738,6 +743,7 @@
       - WeaponDisablerSMG
       - WeaponLaserCannon
       - WeaponLaserCarbine
+      - WeaponLaserPistol
       - WeaponLaserCarbinePractice
       - InsulativeHeadcage
       - ClothingHeadHelmetInsulated
