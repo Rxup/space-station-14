@@ -1,21 +1,23 @@
 <Document>
-# Felinid
+  # Фелиниды
 
-[color=#008000]Felinids are enabled for character creation.[/color]
+  <Box>
+    <GuideEntityEmbed Entity="MobFelinid" Caption=""/>
+  </Box>
 
-[color=#66bbff]Felinids can be achieved via the metem machine.[/color]
+  [color=#66bbff]Фелиниды могут быть достигнуты через метем-машина.[/color]
 
-Felinids are shorter humans, with cat ears and a tail.
+  Фелиниды - это более низкие люди с котовыми ушами и хвостом.
 
-## Ability Differences
+  ## Различия в способностях
 
-- Can cough up hairballs.
-- Slightly more blunt damage.
-- Slightly more slash damage.
-- Slightly more piercing damage.
+  - Могут выплевывать комки шерсти.
+  - Немного больше урона от тупого оружия.
+  - Немного больше урона от рубящего оружия.
+  - Немного больше проникающего урона.
 
-## Physical Differences
+  ## Физические отличия
 
-- Several ear/tail markings.
-- Short.
+  - Несколько отметин на ушах/хвосте.
+  - Низкие.
 </Document>
