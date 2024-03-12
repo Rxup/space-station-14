@@ -138,6 +138,10 @@
   - type: Wieldable
   - type: UseDelay
     delay: 2.5
+  - type: ClothingSpeedModifier
+    walkModifier: 1
+    sprintModifier: 0.6
+  - type: HeldSpeedModifier
 
 - type: entity
   name: EarthGov laser carbine
@@ -324,6 +328,10 @@
   - type: Item
     sprite: Backmen/Objects/Weapons/Gunsx64/Pistols/acp14/tiny.rsi
   - type: Gun
+    angleIncrease: 2
+    angleDecay: 10
+    maxAngle: 15
+    minAngle: 1
     selectedMode: SemiAuto
     availableModes:
       - SemiAuto
@@ -370,6 +378,10 @@
   - type: Item
     sprite: Backmen/Objects/Weapons/Gunsx64/Pistols/vp78/tiny.rsi
   - type: Gun
+    angleIncrease: 2
+    angleDecay: 10
+    maxAngle: 15
+    minAngle: 1
     selectedMode: FullAuto
     availableModes:
       - FullAuto
@@ -417,6 +429,10 @@
   - type: Item
     sprite: Backmen/Objects/Weapons/Gunsx64/Pistols/deagle/tiny.rsi
   - type: Gun
+    angleDecay: 15
+    angleIncrease: 10
+    maxAngle: 15
+    minAngle: 1
     selectedMode: SemiAuto
     availableModes:
       - SemiAuto
@@ -508,6 +524,10 @@
   - type: Item
     sprite: Backmen/Objects/Weapons/Gunsx64/Pistols/glock22/tiny.rsi
   - type: Gun
+    angleDecay: 7
+    angleIncrease: 2
+    maxAngle: 15
+    minAngle: 1
     soundGunshot:
       path: /Audio/Weapons/Guns64/Pistols/beretta_shot.ogg
     soundEmpty:
@@ -570,6 +590,10 @@
   - type: Item
     sprite: Backmen/Objects/Weapons/Gunsx64/Pistols/hi_power_br/tiny.rsi
   - type: Gun
+    angleDecay: 15
+    angleIncrease: 5
+    maxAngle: 15
+    minAngle: 1
     soundGunshot:
       path: /Audio/Weapons/Guns64/Pistols/vp70_shot.ogg
     soundEmpty:
@@ -614,6 +638,10 @@
   - type: Item
     sprite: Backmen/Objects/Weapons/Gunsx64/Pistols/service_pistol23/tiny.rsi
   - type: Gun
+    angleDecay: 15
+    angleIncrease: 5
+    maxAngle: 15
+    minAngle: 1
     selectedMode: SemiAuto
     availableModes:
       - SemiAuto
@@ -826,10 +854,12 @@
     sprite: Backmen/Objects/Weapons/Gunsx64/Rifles/akms/tiny.rsi
   - type: GunWieldBonus
     minAngle: -23
-    maxAngle: -43
+    maxAngle: 0
   - type: Gun
+    angleDecay: 20
+    angleIncrease: 2
     minAngle: 24
-    maxAngle: 45
+    maxAngle: 35
     fireRate: 5
     soundGunshot:
       path: /Audio/Weapons/Guns64/Rifles/ak47.ogg
@@ -883,8 +913,10 @@
     size: NormalLarge
   - type: GunWieldBonus
     minAngle: -23
-    maxAngle: -43
+    maxAngle: 0
   - type: Gun
+    angleDecay: 20
+    angleIncrease: 5
     minAngle: 24
     maxAngle: 45
     fireRate: 5
@@ -942,8 +974,10 @@
     sprite: Backmen/Objects/Weapons/Gunsx64/Rifles/ar18/tiny.rsi
   - type: GunWieldBonus
     minAngle: -23
-    maxAngle: -43
+    maxAngle: 0
   - type: Gun
+    angleDecay: 20
+    angleIncrease: 3
     minAngle: 24
     maxAngle: 45
     soundGunshot:
@@ -1001,8 +1035,10 @@
     sprite: Backmen/Objects/Weapons/Gunsx64/Rifles/g36/tiny.rsi
   - type: GunWieldBonus
     minAngle: -23
-    maxAngle: -43
+    maxAngle: 0
   - type: Gun
+    angleDecay: 20
+    angleIncrease: 2
     minAngle: 24
     maxAngle: 45
     soundGunshot:
@@ -1060,8 +1096,10 @@
     sprite: Backmen/Objects/Weapons/Gunsx64/Rifles/m28/tiny.rsi
   - type: GunWieldBonus
     minAngle: -23
-    maxAngle: -43
+    maxAngle: 0
   - type: Gun
+    angleDecay: 30
+    angleIncrease: 2
     minAngle: 24
     maxAngle: 45
     soundGunshot:
@@ -1135,8 +1173,10 @@
     sprite: Backmen/Objects/Weapons/Gunsx64/Rifles/stg44/tiny.rsi
   - type: GunWieldBonus
     minAngle: -23
-    maxAngle: -43
+    maxAngle: 0
   - type: Gun
+    angleDecay: 15
+    angleIncrease: 2
     minAngle: 24
     maxAngle: 45
     fireRate: 8
@@ -1194,8 +1234,10 @@
     sprite: Backmen/Objects/Weapons/Gunsx64/Rifles/m16/tiny.rsi
   - type: GunWieldBonus
     minAngle: -23
-    maxAngle: -43
+    maxAngle: 0
   - type: Gun
+    angleDecay: 15
+    angleIncrease: 3
     minAngle: 24
     maxAngle: 45
     soundGunshot:
@@ -1251,12 +1293,19 @@
     sprite: Backmen/Objects/Weapons/Gunsx64/Rifles/famas/tiny.rsi
   - type: GunWieldBonus
     minAngle: -23
-    maxAngle: -43
+    maxAngle: 0
   - type: Gun
+    angleDecay: 30
+    angleIncrease: 5
     minAngle: 24
     maxAngle: 45
+    fireRate: 14
     soundGunshot:
       path: /Audio/Weapons/Guns64/Rifles/famas.ogg
+    selectedMode: Burst
+    availableModes:
+      - SemiAuto
+      - Burst
   - type: ItemSlots
     slots:
       gun_magazine:
@@ -1308,8 +1357,10 @@
     sprite: Backmen/Objects/Weapons/Gunsx64/SMGs/mp5/tiny.rsi
   - type: GunWieldBonus
     minAngle: -22
-    maxAngle: -28
+    maxAngle: 0
   - type: Gun
+    angleDecay: 20
+    angleIncrease: 5
     minAngle: 24
     maxAngle: 45
     fireRate: 6
@@ -1378,11 +1429,13 @@
   - type: Item
     sprite: Backmen/Objects/Weapons/Gunsx64/SMGs/mp7/tiny.rsi
   - type: GunWieldBonus
-    minAngle: -22
-    maxAngle: -28
+    minAngle: -10
+    maxAngle: 0
   - type: Gun
-    minAngle: 24
-    maxAngle: 45
+    angleDecay: 20
+    angleIncrease: 3
+    minAngle: 14
+    maxAngle: 35
     fireRate: 8
     soundGunshot:
       path: /Audio/Weapons/Guns64/SMGs/mp7.ogg
@@ -1435,6 +1488,8 @@
     minAngle: -22
     maxAngle: -28
   - type: Gun
+    angleDecay: 40
+    angleIncrease: 5
     minAngle: 24
     maxAngle: 45
     fireRate: 10
@@ -1482,8 +1537,10 @@
     - state: mag-0
       map: ["enum.GunVisualLayers.Mag"]
   - type: Gun
+    angleDecay: 40
+    angleIncrease: 7
     minAngle: 2
-    maxAngle: 56
+    maxAngle: 36
     fireRate: 7
     soundGunshot:
       path: /Audio/Weapons/Guns64/SMGs/skorpion.ogg
@@ -1534,8 +1591,10 @@
     sprite: Backmen/Objects/Weapons/Gunsx64/SMGs/mp38/tiny.rsi
   - type: GunWieldBonus
     minAngle: -22
-    maxAngle: -28
+    maxAngle: 0
   - type: Gun
+    angleDecay: 20
+    angleIncrease: 2
     minAngle: 24
     maxAngle: 45
     fireRate: 5
@@ -1684,8 +1743,8 @@
   - type: Gun
     minAngle: 2
     maxAngle: 46
-    angleIncrease: 9
-    angleDecay: 36
+    angleDecay: 40
+    angleIncrease: 7
     fireRate: 12
     soundGunshot:
       path: /Audio/Weapons/Guns64/SMGs/uzi.ogg
@@ -1736,8 +1795,10 @@
     sprite: Backmen/Objects/Weapons/Gunsx64/SMGs/ppsh41/tiny.rsi
   - type: GunWieldBonus
     minAngle: -22
-    maxAngle: -28
+    maxAngle: 0
   - type: Gun
+    angleDecay: 40
+    angleIncrease: 7
     minAngle: 24
     maxAngle: 45
     fireRate: 9
@@ -1788,8 +1849,10 @@
       map: ["enum.GunVisualLayers.Mag"]
   - type: GunWieldBonus
     minAngle: -22
-    maxAngle: -28
+    maxAngle: 0
   - type: Gun
+    angleDecay: 40
+    angleIncrease: 5
     minAngle: 24
     maxAngle: 45
     fireRate: 9
@@ -1842,12 +1905,13 @@
   - type: Item
     sprite: Backmen/Objects/Weapons/Gunsx64/Battery/EG-S/tiny.rsi
   - type: GunRequiresWield
-  - type: GunWieldBonus
-    minAngle: -93
-    maxAngle: -94
+  - type: ClothingSpeedModifier
+    walkModifier: 1
+    sprintModifier: 0.8
+  - type: HeldSpeedModifier
   - type: Gun
-    minAngle: 94
-    maxAngle: 95
+    minAngle: 1
+    maxAngle: 10
     fireRate: 1.5
     selectedMode: SemiAuto
     availableModes:
@@ -1959,6 +2023,8 @@
       map: ["enum.GunVisualLayers.Base"]
     - state: mag-0
       map: ["enum.GunVisualLayers.Mag"]
+  - type: Gun
+    fireRate: 3
   - type: Item
     sprite: Backmen/Objects/Weapons/Gunsx64/Shotguns/zauer/tiny.rsi
   - type: Clothing
@@ -3090,6 +3156,10 @@
   - type: Wieldable
   - type: UseDelay
     delay: 1.9
+  - type: ClothingSpeedModifier
+    walkModifier: 1
+    sprintModifier: 0.8
+  - type: HeldSpeedModifier
 
 - type: entity
   name: MG-42
@@ -3145,6 +3215,10 @@
   - type: UseDelay
     delay: 1.9
   - type: GunRequiresWield
+  - type: ClothingSpeedModifier
+    walkModifier: 1
+    sprintModifier: 0.5
+  - type: HeldSpeedModifier
 
 - type: entity
   id: MagazineHeavyMachineGunDrum
@@ -3240,6 +3314,10 @@
   - type: UseDelay
     delay: 1.9
   - type: GunRequiresWield
+  - type: ClothingSpeedModifier
+    walkModifier: 1
+    sprintModifier: 0.6
+  - type: HeldSpeedModifier
 
 - type: entity
   name: M-41
@@ -3295,6 +3373,10 @@
   - type: UseDelay
     delay: 1.9
   - type: GunRequiresWield
+  - type: ClothingSpeedModifier
+    walkModifier: 1
+    sprintModifier: 0.7
+  - type: HeldSpeedModifier
 
 - type: entity
   id: MagazineHeavyRifleV41
@@ -3404,6 +3486,10 @@
   - type: UseDelay
     delay: 2.3
   - type: GunRequiresWield
+  - type: ClothingSpeedModifier
+    walkModifier: 1
+    sprintModifier: 0.9
+  - type: HeldSpeedModifier
 
 - type: entity
   name: Огнемет М6

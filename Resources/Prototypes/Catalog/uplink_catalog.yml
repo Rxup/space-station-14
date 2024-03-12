@@ -551,7 +551,7 @@
     Telecrystal: 2
   categories:
   - UplinkUtility
-  
+
 - type: listing
   id: UplinkClothingEyesHudSyndicate
   name: uplink-clothing-eyes-hud-syndicate-name
@@ -724,7 +724,7 @@
       whitelist:
         tags:
           - NukeOpsUplink
- 
+
 - type: listing
   id: UplinkUplinkImplanter # uplink uplink real
   name: uplink-uplink-implanter-name
@@ -1858,7 +1858,7 @@
 - type: listing
   id: UplinkZauerBundle
   name: набор "Zauer"
-  description: Простой и надеждный, штурмовой автоматически дробовик зауер. содержит барабан пуль и 3 барабана дроби.
+  description: Простой и надеждный, штурмовой автоматически дробовик зауер. содержит 2 барабан пуль и 4 барабана дроби.
   icon: { sprite: Backmen/Objects/Weapons/Gunsx64/Shotguns/zauer/big.rsi, state: icon }
   productEntity: ClothingBackpackDuffelSyndicateFilledZauer
   cost:
@@ -1874,9 +1874,11 @@
     - type: StorageFill
       contents:
         - id: WeaponShotgunZauer
+        - id: MagazineShotgunMagnum12
         - id: MagazineShotgun
-        - id: MagazineShotgun
-        - id: MagazineShotgunBeanbag
+          amount: 2
+        - id: MagazineShotgunSlug
+          amount: 2
 
 - type: listing
   id: UplinkGrenadeLauncher79Bundle
@@ -1901,6 +1903,30 @@
           amount: 2
         - id: GrenadeBlast
           amount: 4
+
+- type: listing
+  id: UplinkGrenadeLauncherM81Bundle
+  name: набор "M-81"
+  description: Однозарядный армейский штатный гранатомёт, используется пехотными подраздилениями для блокирывания зон и поддержки, имеет 6 гранат в комплекте
+  icon: { sprite: Backmen/Objects/Weapons/Gunsx64/Launchers/m81.rsi, state: base }
+  productEntity: ClothingBackpackDuffelSyndicateFilledGL79
+  cost:
+    Telecrystal: 13
+  categories:
+  - UplinkBundles
+
+- type: entity
+  parent: ClothingBackpackDuffelSyndicate
+  id: ClothingBackpackDuffelSyndicateFilledM81
+  name: набор "M-81"
+  components:
+    - type: StorageFill
+      contents:
+        - id: WeaponLauncherM81
+        - id: GrenadeFrag
+          amount: 3
+        - id: GrenadeBlast
+          amount: 3
 
 - type: listing
   id: UplinkRPDBundle
