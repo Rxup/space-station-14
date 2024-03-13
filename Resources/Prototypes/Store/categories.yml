@@ -63,6 +63,16 @@
   name: store-category-pointless
   priority: 10
 
+- type: storeCategory
+  id: UplinkMisc
+  name: store-category-misc
+  priority: 11
+
+- type: storeCategory
+  id: UplinkBundles
+  name: store-category-bundles
+  priority: 12
+
 #revenant
 - type: storeCategory
   id: RevenantAbilities
