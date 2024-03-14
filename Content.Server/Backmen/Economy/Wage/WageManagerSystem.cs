@@ -71,6 +71,12 @@ public sealed class WageManagerSystem : EntitySystem
             }
             var val = ev.Value ?? payout.PayoutAmount;
 
+            if (TerminatingOrDeleted(payout.ToAccountNumber) || TerminatingOrDeleted(payout.FromAccountNumber))
+            {
+                PayoutsList.Remove(payout);
+                continue;
+            }
+
             _bankManagerSystem.TryTransferFromToBankAccount(
                 payout.FromAccountNumber,
                 payout.ToAccountNumber,
