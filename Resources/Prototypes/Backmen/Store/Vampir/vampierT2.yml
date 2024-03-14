@@ -51,7 +51,7 @@
   productEvent: !type:VampireStoreEvent
     buyType: NoSlip
   cost:
-    BloodEssence: 45
+    BloodEssence: 35
   categories:
   - VapmireT2
   conditions:
