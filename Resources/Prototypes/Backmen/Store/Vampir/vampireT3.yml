@@ -5,7 +5,7 @@
   productEvent: !type:VampireStoreEvent
     buyType: Sprint4
   cost:
-    BloodEssence: 75
+    BloodEssence: 45
   categories:
   - VapmireT3
   conditions:
@@ -21,7 +21,7 @@
   productEvent: !type:VampireStoreEvent
     buyType: Sprint5
   cost:
-    BloodEssence: 120
+    BloodEssence: 75
   categories:
   - VapmireT3
   conditions:
@@ -37,7 +37,7 @@
   productEvent: !type:VampireStoreEvent
     buyType: IgnitePower
   cost:
-    BloodEssence: 65
+    BloodEssence: 50
   categories:
   - VapmireT3
   conditions:
@@ -51,7 +51,7 @@
   productEvent: !type:VampireStoreEvent
     buyType: MakeNewVamp
   cost:
-    BloodEssence: 45
+    BloodEssence: 20
   categories:
   - VapmireT3
   conditions:
