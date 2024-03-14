@@ -251,7 +251,7 @@
   name: набор "M-81"
   description: Однозарядный армейский штатный гранатомёт, используется пехотными подраздилениями для блокирывания зон и поддержки, имеет 6 гранат в комплекте
   icon: { sprite: Backmen/Objects/Weapons/Gunsx64/Launchers/m81.rsi, state: base }
-  productEntity: ClothingBackpackDuffelSyndicateFilledGL79
+  productEntity: ClothingBackpackDuffelSyndicateFilledM81
   cost:
     Telecrystal: 13
   categories:
