@@ -358,13 +358,13 @@ public sealed class CentcommSystem : EntitySystem
             _popup.PopupEntity(Loc.GetString("centcom-ftl-action-no-station"), args.Performer, args.Performer);
             return;
         }
-
+/*
         if (shuttle.MapUid == centcomm.MapEntity)
         {
             _popup.PopupEntity(Loc.GetString("centcom-ftl-action-at-centcomm"), args.Performer, args.Performer);
             return;
         }
-
+*/
         if (!_shuttleSystem.CanFTL(shuttle.GridUid.Value, out var reason))
         {
             _popup.PopupEntity(reason, args.Performer, args.Performer);
