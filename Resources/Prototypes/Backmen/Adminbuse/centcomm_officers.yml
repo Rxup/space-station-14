@@ -87,16 +87,6 @@
       energyPerUse: 10
 
 - type: entity
-  name: станнер спецсил
-  parent: WeaponDisabler
-  id: WeaponDisablerSuper
-  description: Оружие для самозащиты, которое изнуряет органические цели, пока они не свалятся с ног.
-  components:
-    - type: ProjectileBatteryAmmoProvider
-      proto: BulletDisabler
-      fireCost: 10
-
-- type: entity
   name: пояс охраны спецсил
   description: Может вмещать различное снаряжение службы безопасности, такое как наручники и вспышки.
   parent: ClothingBeltSecurity

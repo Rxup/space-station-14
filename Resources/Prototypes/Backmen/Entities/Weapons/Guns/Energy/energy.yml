@@ -53,3 +53,61 @@
     damage:
       types:
         Heat: 22
+
+- type: entity
+  name: 45MW.TRG
+  parent: BaseWeaponBatterySmall
+  id: WeaponDominatorNT
+  description: Nanotrasen's first attempt to remake the Antique Laser Gun. Has more firing modes on offer but lacks the ability to self-recharge.
+  components:
+  - type: Sprite
+    sprite: Backmen/Objects/Weapons/Gunsx64/Battery/Dominator.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-unshaded-0
+      map: ["enum.GunVisualLayers.MagUnshaded"]
+      shader: unshaded
+  - type: Clothing
+    sprite: Backmen/Objects/Weapons/Gunsx64/Battery/Dominator.rsi
+  - type: Gun
+    fireRate: 2
+    projectileSpeed: 75
+    selectedMode: SemiAuto
+    availableModes:
+    - SemiAuto
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/laser.ogg
+  - type: Item
+    size: SmallNormal
+  - type: ProjectileBatteryAmmoProvider
+    proto: X01Attack
+    fireCost: 200
+  - type: BatteryWeaponFireModes
+    fireModes:
+    - proto: X01Attack
+      fireCost: 200
+    - proto: BulletDisabler
+      fireCost: 100
+  - type: Battery
+    maxCharge: 2400
+    startingCharge: 2400
+  - type: MagazineVisuals
+    magState: mag
+    steps: 1
+    zeroVisible: true
+  - type: Appearance
+  - type: StaticPrice
+    price: 60000
+
+- type: entity
+  name: 45MW.TRG Super
+  parent: WeaponDominatorNT
+  id: WeaponDisablerSuper
+  components:
+  - type: BatteryWeaponFireModes
+    fireModes:
+    - proto: X01Attack
+      fireCost: 10
+    - proto: BulletDisabler
+      fireCost: 10

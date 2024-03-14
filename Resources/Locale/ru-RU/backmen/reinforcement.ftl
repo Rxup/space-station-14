@@ -18,7 +18,7 @@ reinforcement-error-list-2 = Ошибка! Список превышает ог�
 reinforcement-error-brief = Ошибка! Брифинг пуст!
 
 reinforcement-team-size = Размер команды:
-reinforcement-team-size-min = минмум: { $num }
+reinforcement-team-size-min = минимум: { $num }
 reinforcement-team-size-max = максимум: { $num }
 
 reinforcement-ghostrole-name = Подкрепление: { $name }
