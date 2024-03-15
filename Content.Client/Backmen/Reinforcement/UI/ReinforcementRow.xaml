@@ -1,0 +1,24 @@
+﻿<PanelContainer xmlns="https://spacestation14.io"
+                xmlns:gfx="clr-namespace:Robust.Client.Graphics;assembly=Robust.Client"
+                HorizontalExpand="True">
+    <BoxContainer Orientation="Horizontal"
+                  HorizontalExpand="True">
+        <Button Name="MinusBtn"
+                Access="Public"
+                ToolTip=""
+                Text="-"
+                StyleClasses="LabelSubText" />
+        <Button Name="PlusBtn"
+                Access="Public"
+                ToolTip=""
+                Text="+"
+                StyleClasses="LabelSubText" />
+        <Label Name="Count"
+               Access="Public"
+               MinSize="32 32"
+               Align="Right" />
+        <Label Name="JobName"
+               Access="Public"
+               HorizontalExpand="True" />
+    </BoxContainer>
+</PanelContainer>

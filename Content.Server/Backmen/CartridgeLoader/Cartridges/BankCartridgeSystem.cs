@@ -1,9 +1,11 @@
 ﻿using Content.Server.CartridgeLoader;
+using Content.Server.Chat.Managers;
 using Content.Server.PDA.Ringer;
 using Content.Server.Popups;
 using Content.Shared.Backmen.CartridgeLoader.Cartridges;
 using Content.Shared.Backmen.Economy;
 using Content.Shared.CartridgeLoader;
+using Content.Shared.Chat;
 using Content.Shared.Popups;
 using Content.Shared.Store;
 using Robust.Server.Containers;
@@ -19,7 +21,7 @@ public sealed class BankCartridgeSystem : EntitySystem
     [Dependency] private readonly CartridgeLoaderSystem? _cartridgeLoaderSystem = default!;
     [Dependency] private readonly RingerSystem _ringerSystem = default!;
     [Dependency] private readonly PopupSystem _popupSystem = default!;
-    [Dependency] private readonly ContainerSystem _containerSystem = default!;
+    [Dependency] private readonly IChatManager _chatManager = default!;
 
     public override void Initialize()
     {
@@ -95,17 +97,17 @@ public sealed class BankCartridgeSystem : EntitySystem
 
         if (TryComp<RingerComponent>(parent, out var ringerComponent))
         {
-            _ringerSystem.RingerPlayRingtone(parent, ringerComponent);
+            _ringerSystem.RingerPlayRingtone((parent, ringerComponent));
             _cartridgeLoaderSystem?.UpdateCartridgeUiState(parent, new BankUiState(component.Balance));
 
             var player = Transform(parent).ParentUid;
-            if (player.IsValid() && HasComp<ActorComponent>(player))
+            if (player.IsValid() && TryComp<ActorComponent>(player, out var actor))
             {
                 var currencySymbol = "";
                 if (_prototypeManager.TryIndex(component.CurrencyType, out CurrencyPrototype? p))
                     currencySymbol = Loc.GetString(p.CurrencySymbol);
 
-                var change = (double)(args.ChangeAmount ?? 0);
+                var change = (double) (args.ChangeAmount ?? 0);
                 var changeAmount = $"{change}";
                 switch (change)
                 {
@@ -121,17 +123,27 @@ public sealed class BankCartridgeSystem : EntitySystem
                     }
                 }
 
+                var wrappedMessage = Loc.GetString(
+                    "bank-program-change-balance-notification",
+                    ("balance", component.Balance), ("change", changeAmount),
+                    ("currencySymbol", currencySymbol)
+                );
+
                 _popupSystem.PopupEntity(
-                    Loc.GetString(
-                        "bank-program-change-balance-notification",
-                        ("balance", component.Balance), ("change", changeAmount),
-                        ( "currencySymbol", currencySymbol )
-                    ),
+                    wrappedMessage,
                     parent,
                     Filter.Entities(player),
                     true,
                     PopupType.Medium
                 );
+
+                _chatManager.ChatMessageToOne(
+                    ChatChannel.Notifications,
+                    wrappedMessage,
+                    wrappedMessage,
+                    EntityUid.Invalid,
+                    false,
+                    actor.PlayerSession.Channel);
             }
         }
         //UpdateUiState(uid, parent, component);

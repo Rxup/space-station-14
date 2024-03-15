@@ -4,10 +4,15 @@
   description: job-description-silicon-BPLATech
   playTimeTracker: BPLATech
   joinNotifyCrew: false
-  whitelistRequired: true
   requirements:
-    - !type:OverallPlaytimeRequirement
-      time: 24000
+  - !type:OverallPlaytimeRequirement
+    time: 24000
+  - !type:DepartmentTimeRequirement
+    department: Engineering
+    time: 14400
+  - !type:RoleTimeRequirement
+    role: JobCentralCommandAssistant
+    time: 18000
   icon: JobIconUnknown
   supervisors: job-supervisors-human
   canBeAntag: false

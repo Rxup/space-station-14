@@ -87,7 +87,7 @@
         Blunt: 2
         Slash: 3
         Piercing: 1
-  - type: EmpathyChat
+  #- type: EmpathyChat
   - type: Shadowkin
   - type: ShadowkinDarkSwapPower
   - type: ShadowkinRestPower

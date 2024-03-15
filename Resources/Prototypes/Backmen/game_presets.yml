@@ -24,7 +24,22 @@
   - VampiresGameRule
   - BasicStationEventScheduler
   - WageScheduler #backmen: currency
+  - SubGamemodesRule
   - BasicRoundstartVariation
+
+- type: gamePreset
+  id: Blob
+  alias:
+  - blab
+  name: blob-title
+  description: blob-description
+  showInVote: false
+  rules:
+  - BlobGameMode
+  - BasicStationEventScheduler
+  - WageScheduler #backmen: currency
+  - BasicRoundstartVariation
+  - SubGamemodesRule
 
 - type: gamePreset
   id: FleshCult
@@ -39,6 +54,7 @@
   - BasicStationEventScheduler
   - WageScheduler #backmen: currency
   - BasicRoundstartVariation
+  - SubGamemodesRule
 
 - type: gamePreset
   id: FleshCultAndTraitor

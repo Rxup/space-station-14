@@ -491,11 +491,11 @@
   description: A heavily armored hardsuit designed for work in special operations. Property of Gorlex Marauders.
   components:
   - type: Sprite
-    sprite: Clothing/OuterClothing/Hardsuits/syndicate.rsi
+    sprite: Backmen/Clothing/OuterClothing/Hardsuits/syndicate.rsi #backmen resprite
   - type: Item
     size: Huge
   - type: Clothing
-    sprite: Clothing/OuterClothing/Hardsuits/syndicate.rsi
+    sprite: Backmen/Clothing/OuterClothing/Hardsuits/syndicate.rsi #backmen resprite
   - type: PressureProtection
     highPressureMultiplier: 0.05
     lowPressureMultiplier: 1000
@@ -517,6 +517,11 @@
   - type: HeldSpeedModifier
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetHardsuitSyndie
+  - type: Tag
+    tags:
+    - MonkeyWearable
+    - Hardsuit
+    - WhitelistChameleon
 
 # Syndicate Medic Hardsuit
 - type: entity
@@ -531,6 +536,10 @@
     sprite: Clothing/OuterClothing/Hardsuits/syndiemedic.rsi
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetHardsuitSyndieMedic
+  - type: Tag
+    tags:
+    - Hardsuit
+    - WhitelistChameleon
 
 #Syndicate Elite Hardsuit
 - type: entity
@@ -540,9 +549,9 @@
   description: An elite version of the blood-red hardsuit, with improved mobility and fireproofing. Property of Gorlex Marauders.
   components:
   - type: Sprite
-    sprite: Clothing/OuterClothing/Hardsuits/syndieelite.rsi
+    sprite: Backmen/Clothing/OuterClothing/Hardsuits/syndieelite.rsi #backmen resprite
   - type: Clothing
-    sprite: Clothing/OuterClothing/Hardsuits/syndieelite.rsi
+    sprite: Backmen/Clothing/OuterClothing/Hardsuits/syndieelite.rsi #backmen resprite
   - type: PressureProtection
     highPressureMultiplier: 0.02
     lowPressureMultiplier: 1000
@@ -560,6 +569,8 @@
         Radiation: 0.01
         Caustic: 0.5
         Stun: 0.2
+  - type: Item
+    size: Huge
   - type: ClothingSpeedModifier
     walkModifier: 1.0
     sprintModifier: 1.0
@@ -575,9 +586,9 @@
   description: A bulked up version of the blood-red hardsuit, purpose-built for the commander of a syndicate operative squad. Has significantly improved armor for those deadly front-lines firefights.
   components:
   - type: Sprite
-    sprite: Clothing/OuterClothing/Hardsuits/syndiecommander.rsi
+    sprite: Backmen/Clothing/OuterClothing/Hardsuits/syndiecommander.rsi #backmen resprite
   - type: Clothing
-    sprite: Clothing/OuterClothing/Hardsuits/syndiecommander.rsi
+    sprite: Backmen/Clothing/OuterClothing/Hardsuits/syndiecommander.rsi #backmen resprite
   - type: PressureProtection
     highPressureMultiplier: 0.05
     lowPressureMultiplier: 1000
@@ -608,9 +619,9 @@
   description: A suit made by the cutting edge R&D department at cybersun to be hyper resilient.
   components:
   - type: Sprite
-    sprite: Clothing/OuterClothing/Hardsuits/cybersun.rsi
+    sprite: Backmen/Clothing/OuterClothing/Hardsuits/cybersun.rsi #backmen resprite
   - type: Clothing
-    sprite: Clothing/OuterClothing/Hardsuits/cybersun.rsi
+    sprite: Backmen/Clothing/OuterClothing/Hardsuits/cybersun.rsi #backmen resprite
   - type: PressureProtection
     highPressureMultiplier: 0.2
     lowPressureMultiplier: 1000
@@ -821,6 +832,10 @@
     sprite: Clothing/OuterClothing/Hardsuits/ERTSuits/ertsecurity.rsi
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetHardsuitERTSecurity
+  - type: Tag
+    tags:
+    - Hardsuit
+    - WhitelistChameleon
 
 #ERT Janitor Hardsuit
 - type: entity
@@ -951,9 +966,9 @@
   description: A custom-made mime hardsuit.
   components:
   - type: Sprite
-    sprite: Clothing/OuterClothing/Hardsuits/mime.rsi
+    sprite: Backmen/Clothing/OuterClothing/Hardsuits/mime.rsi
   - type: Clothing
-    sprite: Clothing/OuterClothing/Hardsuits/mime.rsi
+    sprite: Backmen/Clothing/OuterClothing/Hardsuits/mime.rsi
   - type: Construction
     graph: MimeHardsuit
     node: mimeHardsuit

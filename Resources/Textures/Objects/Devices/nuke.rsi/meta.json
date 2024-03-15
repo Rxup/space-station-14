@@ -8,10 +8,19 @@
   },
   "states": [
     {
-      "name": "nukefestive"
+      "name": "nuclearbomb_deployed"
     },
     {
-      "name": "nuclearbomb_deployed"
+      "name": "nuclearbomb_deployed_unlit"
+    },
+    {
+      "name": "nukefestive",
+      "delays": [
+        [
+          0.25,
+          0.25
+        ]
+      ]
     },
     {
       "name": "nuclearbomb_timing",

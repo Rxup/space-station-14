@@ -1,20 +1,20 @@
 - type: statusIcon
   id: FleshcultistFaction
-  priority: 10
+  priority: 5
   icon:
-    sprite: Backmen/Interface/Misc/antag_icon.rsi
+    sprite: /Textures/Backmen/Interface/Misc/antag_icon.rsi
     state: flesh
 
 - type: statusIcon
   id: VampireFaction
   priority: 9
   icon:
-    sprite: Backmen/Interface/Misc/antag_icon10x.rsi
+    sprite: /Textures/Backmen/Interface/Misc/antag_icon10x.rsi
     state: vampire
 
 - type: statusIcon
   id: BlobFaction
   priority: 10
   icon:
-    sprite: Backmen/Interface/Misc/antag_icon.rsi
+    sprite: /Textures/Backmen/Interface/Misc/antag_icon.rsi
     state: blob

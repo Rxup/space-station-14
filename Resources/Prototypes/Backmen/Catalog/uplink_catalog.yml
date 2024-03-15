@@ -67,7 +67,7 @@
   cost:
     Telecrystal: 8
   categories:
-    - UplinkMisc
+  - UplinkMisc
   conditions:
     - !type:BuyerSpeciesCondition
       whitelist:
@@ -106,3 +106,34 @@
     Telecrystal: 3
   categories:
   - UplinkAmmo
+
+- type: listing
+  id: UplinkBogomol
+  name: Имплант клинков богомола
+  description: Клинки богомола, в качестве импланта, скрытные, смертоносные, а самое главное стильные.
+  icon: { sprite: Backmen/Clothing/Hands/Gloves/mantis.rsi, state: icon }
+  productEntity: mantisImplanter
+  cost:
+    Telecrystal: 5
+  categories:
+  - UplinkImplants
+
+- type: listing
+  id: UplinkPsiGrenadeBundle
+  name: uplink-psi-grenade-bundle-name
+  description: uplink-psi-grenade-bundle-desc
+  productEntity: ClothingBackpackDuffelSyndicatePsiGrenadeBundle
+  cost:
+    Telecrystal: 1
+  categories:
+  - UplinkAllies
+  
+- type: listing
+  id: UplinkAntiPsiGrenadeBundle
+  name: uplink-anti-psi-grenade-bundle-name
+  description: uplink-anti-psi-grenade-bundle-desc
+  productEntity: ClothingBackpackDuffelSyndicateAntiPsiGrenadeBundle
+  cost:
+    Telecrystal: 2
+  categories:
+  - UplinkAllies

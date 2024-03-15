@@ -1,0 +1,44 @@
+﻿- type: entity
+  name: ??? # holo bee
+  suffix: station ghost, holo bee
+  id: effectStationGhostHoloBee
+  components:
+  - type: Sprite
+    drawdepth: Effects
+    noRot: true
+    layers:
+      - shader: unshaded
+        map: ["enum.EffectLayers.Unshaded"]
+        sprite: Backmen/Effects/stationghost/holobee.rsi
+        state: anim
+  - type: PointLight
+    enabled: true
+    energy: 3
+    radius: 1.3
+    color: blue
+  - type: EffectVisuals
+  - type: TimedDespawn
+    lifetime: 15
+    
+- type: entity
+  name: holo bee Timed Spawner
+  id: timetSoawnerEffectHoloBee
+  suffix: station ghost
+  parent: MarkerBase
+  components:
+    - type: Sprite
+      sprite: Backmen/Effects/stationghost/holobee.rsi
+      layers:
+        - state: blue
+          sprite: Markers/cross.rsi
+        - state: timed
+          sprite: Markers/cross.rsi
+        - state: base
+    - type: Timer
+    - type: TimedSpawner
+      prototypes:
+        - effectStationGhostHoloBee
+      chance: 0.1
+      intervalSeconds: 300
+      minimumEntitiesSpawned: 1
+      maximumEntitiesSpawned: 1

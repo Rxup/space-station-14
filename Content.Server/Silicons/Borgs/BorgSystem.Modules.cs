@@ -1,4 +1,4 @@
-﻿using System.Linq;
+using System.Linq;
 using Content.Shared.CombatMode.Pacification;
 using Content.Shared.Emag.Components;
 using Content.Shared.Hands.Components;

@@ -44,6 +44,18 @@
     allowRepeatedMorphs: true
 
 - type: polymorph
+  id: BDionaMorph
+  configuration:
+    entity: MobDiona
+    forced: true
+    transferName: true
+    transferHumanoidAppearance: false
+    revertOnCrit: false
+    revertOnDeath: false
+    inventory: Transfer
+    allowRepeatedMorphs: true
+
+- type: polymorph
   id: BChicken
   configuration:
     entity: MobChicken

@@ -122,22 +122,19 @@ public sealed partial class ExplosionSystem : EntitySystem
     public override void Shutdown()
     {
         base.Shutdown();
-        UnsubscribeCvars();
         _nodeGroupSystem.PauseUpdating = false;
         _pathfindingSystem.PauseUpdating = false;
     }
 
-    //start-backmen:blob
+    // start-backmen: blob
     public void SetExplosionResistance(EntityUid entityUid, float newCoefficient, ExplosionResistanceComponent? component = null)
     {
         if (!Resolve(entityUid, ref component))
             return;
 
         component.DamageCoefficient = newCoefficient;
-
-        Dirty(entityUid, component);
     }
-    //end-backmen:blob
+    // end-backmen: blob
 
     private void RelayedResistance(EntityUid uid, ExplosionResistanceComponent component,
         InventoryRelayedEvent<GetExplosionResistanceEvent> args)
@@ -303,7 +300,7 @@ public sealed partial class ExplosionSystem : EntitySystem
 
         if (!_prototypeManager.TryIndex<ExplosionPrototype>(typeId, out var type))
         {
-            Logger.Error($"Attempted to spawn unknown explosion prototype: {type}");
+            Log.Error($"Attempted to spawn unknown explosion prototype: {type}");
             return;
         }
 

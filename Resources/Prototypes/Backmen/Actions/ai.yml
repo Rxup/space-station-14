@@ -1,11 +1,38 @@
 ﻿- type: entity
+  id: AIEyeCamShootAction
+  name: stun shot
+  description: destabilizing shot in some point
+  noSpawn: true
+  components:
+  - type: WorldTargetAction
+    icon: Backmen/Actions/AI/camera_stun.png
+    event: !type:AIEyeCampShootActionEvent
+    checkCanInteract: false
+    useDelay: 3
+    priority: 17
+    range: 20
+
+- type: entity
+  id: AIEyeCamAction
+  name: AI cameras
+  description: Can jump on target cameras.
+  noSpawn: true
+  components:
+  - type: InstantAction
+    icon: Backmen/Actions/AI/camera.png
+    event: !type:AIEyeCampActionEvent
+    checkCanInteract: false
+    useDelay: 5
+    priority: 17
+
+- type: entity
   id: AIEyeAction
   name: AI Eye
   description: Puts you in to the AI Eye form, allowing you to float about the station's cameras.
   noSpawn: true
   components:
   - type: InstantAction
-    icon: Interface/VerbIcons/sentient.svg.192dpi.png
+    icon: Backmen/Actions/AI/eye.png
     event: !type:AIEyePowerActionEvent
     checkCanInteract: false
     useDelay: 5
@@ -18,7 +45,7 @@
   noSpawn: true
   components:
   - type: InstantAction
-    icon: Interface/VerbIcons/sentient.svg.192dpi.png
+    icon: Backmen/Actions/AI/core.png
     event: !type:AIEyePowerReturnActionEvent
     checkCanInteract: false
     useDelay: 5
@@ -31,9 +58,7 @@
   noSpawn: true
   components:
   - type: InstantAction
-    icon:
-      sprite: Interface/Alerts/human_alive.rsi
-      state: health0
+    icon: Backmen/Actions/AI/sensor.png
     event: !type:AIHealthOverlayEvent
     checkCanInteract: false
     useDelay: 2.5
@@ -55,18 +80,29 @@
     priority: 20
 
 - type: entity
+  parent: ActionAGhostShowCommunications
   id: ActionAIShowCommunications
   name: Communications Interface
   description: View a communications interface.
   noSpawn: true
   components:
   - type: InstantAction
+    icon: Backmen/Actions/AI/announcement.png
+    priority: -1
+    checkCanInteract: false
+
+- type: entity
+  id: ActionAiShowCriminalRecords
+  name: Criminal Records Interface
+  description: View a criminal records interface.
+  noSpawn: true
+  components:
+  - type: InstantAction
     icon: Corvax/Interface/AdminActions/communications.png # Corvax-Resprite
     iconOn: Corvax/Interface/AdminActions/communications.png # Corvax-Resprite
     keywords: [ "AI", "console", "interface" ]
-    priority: -1
-    event: !type:ToggleIntrinsicUIEvent { key: enum.CommunicationsConsoleUiKey.Key }
-    checkCanInteract: false
+    priority: -10
+    event: !type:ToggleIntrinsicUIEvent { key: enum.CriminalRecordsConsoleKey.Key }
 
 
 - type: entity
@@ -75,8 +111,7 @@
   noSpawn: true
   components:
   - type: EntityTargetAction
-    icon:
-      entity: DoorRemoteAIOpenClose
+    icon: Backmen/Actions/AI/door.png
     event: !type:InnateBeforeInteractActionEvent
       item: DoorRemoteAIOpenClose
     checkCanInteract: false
@@ -89,8 +124,7 @@
   noSpawn: true
   components:
   - type: EntityTargetAction
-    icon:
-      entity: DoorRemoteAIToggleBolts
+    icon: Backmen/Actions/AI/door_bolt.png
     event: !type:InnateBeforeInteractActionEvent
       item: DoorRemoteAIToggleBolts
     checkCanInteract: false
@@ -103,8 +137,7 @@
   noSpawn: true
   components:
   - type: EntityTargetAction
-    icon:
-      entity: DoorRemoteAIToggleEmergencyAccess
+    icon: Backmen/Actions/AI/door_emergency.png
     event: !type:InnateBeforeInteractActionEvent
       item: DoorRemoteAIToggleEmergencyAccess
     checkCanInteract: false

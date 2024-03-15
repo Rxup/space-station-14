@@ -1,12 +1,13 @@
-﻿using Content.Shared.Corvax.CCCVars;
+﻿using Content.Shared.Chat;
+using Content.Shared.Corvax.CCCVars;
 using Content.Shared.Corvax.TTS;
 using Content.Shared.GameTicking;
+using Robust.Client.Audio;
 using Robust.Client.ResourceManagement;
 using Robust.Shared.Audio;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Configuration;
 using Robust.Shared.ContentPack;
-using Robust.Shared.Player;
 using Robust.Shared.Utility;
 
 namespace Content.Client.Corvax.TTS;
@@ -18,9 +19,8 @@ namespace Content.Client.Corvax.TTS;
 public sealed class TTSSystem : EntitySystem
 {
     [Dependency] private readonly IConfigurationManager _cfg = default!;
-    [Dependency] private readonly IResourceCache _resourceCache = default!;
-    [Dependency] private readonly SharedAudioSystem _audio = default!;
-    //[Dependency] private readonly SharedGameTicker _gameTicker = default!;
+    [Dependency] private readonly IResourceManager _res = default!;
+    [Dependency] private readonly AudioSystem _audio = default!;
 
     private ISawmill _sawmill = default!;
     private readonly MemoryContentRoot _contentRoot = new();
@@ -44,7 +44,7 @@ public sealed class TTSSystem : EntitySystem
     {
         _prefix = ResPath.Root / $"TTS{_shareIdx++}";
         _sawmill = Logger.GetSawmill("tts");
-        _resourceCache.AddRoot(_prefix, _contentRoot);
+        _res.AddRoot(_prefix, _contentRoot);
         _cfg.OnValueChanged(CCCVars.TTSVolume, OnTtsVolumeChanged, true);
         SubscribeNetworkEvent<PlayTTSEvent>(OnPlayTTS);
         SubscribeLocalEvent<RoundRestartCleanupEvent>(OnRoundRestart);
@@ -74,24 +74,27 @@ public sealed class TTSSystem : EntitySystem
 
     private void OnPlayTTS(PlayTTSEvent ev)
     {
-        //_sawmill.Debug($"Play TTS audio {ev.Data.Length} bytes from {ev.SourceUid} entity");
-
-        var volume = AdjustVolume(ev.IsWhisper);
+        _sawmill.Verbose($"Play TTS audio {ev.Data.Length} bytes from {ev.SourceUid} entity");
 
         var filePath = new ResPath($"{_fileIdx++}.ogg");
         _contentRoot.AddOrUpdateFile(filePath, ev.Data);
 
-        var audioParams = AudioParams.Default.WithVolume(volume);
-        var soundPath = new SoundPathSpecifier(_prefix / filePath, audioParams);
+        var audioResource = new AudioResource();
+        audioResource.Load(IoCManager.Instance!, _prefix / filePath);
+
+        var audioParams = AudioParams.Default
+            .WithVolume(AdjustVolume(ev.IsWhisper))
+            .WithMaxDistance(AdjustDistance(ev.IsWhisper));
+
         if (ev.SourceUid != null)
         {
             var sourceUid = GetEntity(ev.SourceUid.Value);
-            if(sourceUid.Valid)
-                _audio.PlayEntity(soundPath, Filter.Local(), sourceUid, false, audioParams); // recipient arg ignored on client
+            if(sourceUid.IsValid())
+                _audio.PlayEntity(audioResource.AudioStream, sourceUid, audioParams);
         }
         else
         {
-            _audio.PlayGlobal(soundPath, Filter.Local(), false);// recordReplay arg ignored on client
+            _audio.PlayGlobal(audioResource.AudioStream, audioParams);
         }
 
         _contentRoot.RemoveFile(filePath);
@@ -107,5 +110,10 @@ public sealed class TTSSystem : EntitySystem
         }
 
         return volume;
+    }
+
+    private float AdjustDistance(bool isWhisper)
+    {
+        return isWhisper ? SharedChatSystem.WhisperMuffledRange : SharedChatSystem.VoiceRange;
     }
 }

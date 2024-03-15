@@ -1,14 +1,76 @@
 <controls:FancyWindow xmlns="https://spacestation14.io"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:controls="clr-namespace:Content.Client.UserInterface.Controls"
+    xmlns:ui="clr-namespace:Content.Client.Backmen.StationAI.UI"
     MinWidth="450" MinHeight="350" Title="{Loc ai-warp-menu-title}">
-    <BoxContainer Name="Box" Orientation="Vertical" Margin="5">
-        <BoxContainer Orientation="Horizontal" Margin="0 5 0 5">
-            <LineEdit Name="SearchBar" PlaceHolder="{Loc 'ai-warp-menu-search-placeholder'}" HorizontalExpand="True" Margin="0 0 2 0"/>
-            <Button Name="Refresh" Text="{Loc 'ai-warp-menu-refresh'}" Margin="2 0 0 0"/>
-        </BoxContainer>
+    <BoxContainer Orientation="Vertical">
+        <!-- Main display -->
+        <BoxContainer Orientation="Horizontal" VerticalExpand="True" HorizontalExpand="True">
+            <!-- Nav map -->
+            <BoxContainer Orientation="Vertical" VerticalExpand="True" HorizontalExpand="True">
+                <ui:CameraNavMapControl Name="NavMapScreen" Margin="5 5" VerticalExpand="True" HorizontalExpand="True">
+                    <!-- System warning -->
+                    <PanelContainer Name="SystemWarningPanel"
+                                    HorizontalAlignment="Center"
+                                    VerticalAlignment="Top"
+                                    HorizontalExpand="True"
+                                    Margin="0 48 0 0"
+                                    Visible="False">
+                        <RichTextLabel Name="SystemWarningLabel" Margin="12 8 12 8"/>
+                    </PanelContainer>
 
-        <Label Name="Text" Text="{Loc 'ai-warp-menu-no-cameras'}" />
-        <TabContainer Name="SubnetList" VerticalExpand="True" Margin="0 5" />
+                </ui:CameraNavMapControl>
+
+                <!-- Nav map legend -->
+                <BoxContainer Orientation="Horizontal" Margin="0 10 0 10">
+                    <TextureRect Stretch="KeepAspectCentered"
+                                 TexturePath="/Textures/Interface/NavMap/beveled_circle.png"
+                                 SetSize="16 16"
+                                 Modulate="#cc0000"
+                                 Margin="20 0 5 0"/>
+                    <Label Text="Активная КАМЕРА"/>
+                    <TextureRect Stretch="KeepAspectCentered"
+                                 TexturePath="/Textures/Interface/NavMap/beveled_circle.png"
+                                 SetSize="16 16"
+                                 Modulate="#00ccff"
+                                 Margin="20 0 5 0"/>
+                    <Label Text="КАМЕРА"/>
+                </BoxContainer>
+            </BoxContainer>
+
+                        <!-- Power status -->
+            <BoxContainer Orientation="Vertical" VerticalExpand="True" SetWidth="440" Margin="0 0 10 10">
+
+                <!-- Station name -->
+                <controls:StripeBack>
+                    <PanelContainer>
+                        <RichTextLabel Name="StationName" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0 5 0 3"/>
+                    </PanelContainer>
+                </controls:StripeBack>
+
+                <BoxContainer Orientation="Horizontal" Margin="0 5 0 5">
+                    <LineEdit Name="SearchBar" PlaceHolder="{Loc 'ai-warp-menu-search-placeholder'}" HorizontalExpand="True" Margin="0 0 2 0"/>
+                    <Button Name="Refresh" Text="{Loc 'ai-warp-menu-refresh'}" Margin="2 0 0 0"/>
+                </BoxContainer>
+
+                <!-- Loads / Sources (entries added by C# code) -->
+                <TabContainer Name="MasterTabContainer" VerticalExpand="True" HorizontalExpand="True" Margin="0 10 0 0">
+                    <ScrollContainer HorizontalExpand="True" Margin="8, 8, 8, 8">
+                        <BoxContainer Name="CameraList" Orientation="Vertical" VerticalExpand="True" HorizontalExpand="True" Margin="0 0 10 0"/>
+                    </ScrollContainer>
+                </TabContainer>
+            </BoxContainer>
+        </BoxContainer>
+        <!-- Footer -->
+        <BoxContainer Orientation="Vertical">
+            <PanelContainer StyleClasses="LowDivider" />
+            <BoxContainer Orientation="Horizontal" Margin="10 2 5 0" VerticalAlignment="Bottom">
+                <Label Text="{Loc 'power-monitoring-window-flavor-left'}" StyleClasses="WindowFooterText" />
+                <Label Text="{Loc 'power-monitoring-window-flavor-right'}" StyleClasses="WindowFooterText"
+                       HorizontalAlignment="Right" HorizontalExpand="True"  Margin="0 0 5 0" />
+                <TextureRect StyleClasses="NTLogoDark" Stretch="KeepAspectCentered"
+                             VerticalAlignment="Center" HorizontalAlignment="Right" SetSize="19 19"/>
+            </BoxContainer>
+        </BoxContainer>
     </BoxContainer>
 </controls:FancyWindow>

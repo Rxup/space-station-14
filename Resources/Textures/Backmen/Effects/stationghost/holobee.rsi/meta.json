@@ -1,0 +1,37 @@
+{
+    "version": 1,
+    "license": "CC-BY-NC-SA-3.0",
+    "copyright": "taken from goonstation at commit https://github.com/goonstation/goonstation/blob/43dcf5a3c7c86df963e314901c173bb259017fe8/icons/misc/bee.dmi, hologramed by kirillcas",
+    "size": {
+        "x": 32,
+        "y": 32
+    },
+    "states": [
+          {
+            "name": "anim",
+            "delays": [
+              [
+                0.1,
+                0.1,
+                0.1,
+                0.1,
+                0.1,
+                0.1,
+                0.1,
+                0.1,
+                0.1,
+                0.1,				
+                0.1,
+				0.1,
+				0.1,
+				0.1,
+				0.1,
+				0.1
+               ]
+			 ]
+		  },
+          {
+            "name": "base"
+          }
+    ]
+}

@@ -45,6 +45,7 @@
   - type: StatusIcon
   - type: TTS # Corvax-TTS
   - type: NightVision
+  - type: CanBeBorgNTEnemy
 
 # Used for mobs that have health and can take damage.
 - type: entity
@@ -209,7 +210,7 @@
   - type: Bloodstream
     bloodlossDamage:
       types:
-        Bloodloss: 1
+        Bloodloss: 0.5
     bloodlossHealDamage:
       types:
         Bloodloss: -1

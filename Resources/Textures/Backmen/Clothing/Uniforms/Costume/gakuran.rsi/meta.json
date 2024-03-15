@@ -19,11 +19,15 @@
       "directions": 4
     },
     {
-      "name": "equipped-INNERCLOTHING-digi",
+      "name": "equipped-INNERCLOTHING-reptilian",
       "directions": 4
     },
     {
       "name": "equipped-INNERCLOTHING",
+      "directions": 4
+    },
+    {
+      "name": "equipped-INNERCLOTHING-monkey",
       "directions": 4
     }
   ]

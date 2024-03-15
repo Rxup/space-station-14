@@ -1,7 +1,7 @@
-using Content.Server.Backmen.Blob.NPC.BlobPod;
-using Content.Server.Chemistry.Containers.EntitySystems;
-using Content.Server.Explosion.Components;
+using Content.Server.Backmen.Blob.Components;
 using Content.Shared.Backmen.Blob;
+using Content.Shared.Backmen.Blob.Components;
+using Content.Shared.Backmen.Blob.NPC.BlobPod;
 using Content.Shared.Chemistry.Components;
 using Content.Shared.Chemistry.Reagent;
 using Content.Shared.Damage;
@@ -17,7 +17,6 @@ namespace Content.Server.Backmen.Blob;
 public sealed class BlobFactorySystem : EntitySystem
 {
     [Dependency] private readonly IGameTiming _gameTiming = default!;
-    [Dependency] private readonly SolutionContainerSystem _solutionSystem = default!;
     [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
 
 
@@ -25,14 +24,9 @@ public sealed class BlobFactorySystem : EntitySystem
     {
         base.Initialize();
 
-        SubscribeLocalEvent<BlobFactoryComponent, ComponentStartup>(OnStartup);
         SubscribeLocalEvent<BlobFactoryComponent, BlobTileGetPulseEvent>(OnPulsed);
         SubscribeLocalEvent<BlobFactoryComponent, ProduceBlobbernautEvent>(OnProduceBlobbernaut);
         SubscribeLocalEvent<BlobFactoryComponent, DestructionEventArgs>(OnDestruction);
-    }
-
-    private void OnStartup(EntityUid uid, BlobFactoryComponent observerComponent, ComponentStartup args)
-    {
 
     }
 
@@ -64,7 +58,7 @@ public sealed class BlobFactorySystem : EntitySystem
         {
             blobbernautComponent.Factory = uid;
             blobbernautComponent.Color = blobCoreComponent.ChemСolors[blobCoreComponent.CurrentChem];
-            Dirty(blobbernautComponent);
+            Dirty(blobbernaut, blobbernautComponent);
         }
         if (TryComp<MeleeWeaponComponent>(blobbernaut, out var meleeWeaponComponent))
         {
@@ -100,27 +94,10 @@ public sealed class BlobFactorySystem : EntitySystem
     [ValidatePrototypeId<ReagentPrototype>]
     private const string Uranium = "Uranium";
 
-    private void OnPulsed(EntityUid uid, BlobFactoryComponent component, BlobTileGetPulseEvent args)
+    private void FillSmokeGas(Entity<BlobPodComponent> ent, BlobChemType currentChem)
     {
-        if (!TryComp<BlobTileComponent>(uid, out var blobTileComponent) || blobTileComponent.Core == null)
-            return;
-
-        if (!TryComp<BlobCoreComponent>(blobTileComponent.Core, out var blobCoreComponent))
-            return;
-
-        if (component.SpawnedCount >= component.SpawnLimit)
-            return;
-
-        if (_gameTiming.CurTime < component.NextSpawn)
-            return;
-
-        var xform = Transform(uid);
-        var pod = Spawn(component.Pod, xform.Coordinates);
-        component.BlobPods.Add(pod);
-        var blobPod = EnsureComp<BlobPodComponent>(pod);
-        blobPod.Core = blobTileComponent.Core.Value;
-        var blobGas = EnsureComp<SmokeOnTriggerComponent>(pod).Solution;
-        switch (blobCoreComponent.CurrentChem)
+        var blobGas = EnsureComp<SmokeOnTriggerComponent>(ent).Solution;
+        switch (currentChem)
         {
             case BlobChemType.BlazingOil:
                 blobGas.AddSolution(new Solution(Phlogiston, FixedPoint2.New(30))
@@ -149,6 +126,28 @@ public sealed class BlobFactorySystem : EntitySystem
                 blobGas.AddSolution(new Solution(TearGas, FixedPoint2.New(30)),_prototypeManager);
                 break;
         }
+    }
+
+    private void OnPulsed(EntityUid uid, BlobFactoryComponent component, BlobTileGetPulseEvent args)
+    {
+        if (!TryComp<BlobTileComponent>(uid, out var blobTileComponent) || blobTileComponent.Core == null)
+            return;
+
+        if (!TryComp<BlobCoreComponent>(blobTileComponent.Core, out var blobCoreComponent))
+            return;
+
+        if (component.SpawnedCount >= component.SpawnLimit)
+            return;
+
+        if (_gameTiming.CurTime < component.NextSpawn)
+            return;
+
+        var xform = Transform(uid);
+        var pod = Spawn(component.Pod, xform.Coordinates);
+        component.BlobPods.Add(pod);
+        var blobPod = EnsureComp<BlobPodComponent>(pod);
+        blobPod.Core = blobTileComponent.Core.Value;
+        FillSmokeGas((pod,blobPod), blobCoreComponent.CurrentChem);
 
         //smokeOnTrigger.SmokeColor = blobCoreComponent.ChemСolors[blobCoreComponent.CurrentChem];
         component.SpawnedCount += 1;

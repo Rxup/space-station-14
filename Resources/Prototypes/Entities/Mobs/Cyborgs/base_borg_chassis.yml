@@ -75,7 +75,7 @@
   - type: EmagSiliconLaw
     stunTime: 5
   - type: SiliconLawProvider
-    laws: Crewsimov
+    laws: NTDefault
   - type: IonStormTarget
   - type: Strippable
   - type: InventorySlots
@@ -220,6 +220,7 @@
   - type: NpcFactionMember
     factions:
     - NanoTrasen
+  - type: BorgAINT
   - type: Access
     enabled: false
     groups:

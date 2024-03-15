@@ -17,6 +17,9 @@
     sprite: Clothing/Head/Hardsuits/basic.rsi
   - type: Clothing
     sprite: Clothing/Head/Hardsuits/basic.rsi
+  - type: Tag
+    tags:
+    - HidesNose
 
 #Atmospherics Hardsuit
 - type: entity
@@ -361,9 +364,9 @@
   components:
   - type: BreathMask
   - type: Sprite
-    sprite: Clothing/Head/Hardsuits/syndicate.rsi
+    sprite: Backmen/Clothing/Head/Hardsuits/syndicate.rsi #backmen resprite
   - type: Clothing
-    sprite: Clothing/Head/Hardsuits/syndicate.rsi
+    sprite: Backmen/Clothing/Head/Hardsuits/syndicate.rsi #backmen resprite
   - type: PointLight
     color: green
   - type: PressureProtection
@@ -413,9 +416,9 @@
   components:
   - type: BreathMask
   - type: Sprite
-    sprite: Clothing/Head/Hardsuits/syndieelite.rsi
+    sprite: Backmen/Clothing/Head/Hardsuits/syndieelite.rsi #backmen resprite
   - type: Clothing
-    sprite: Clothing/Head/Hardsuits/syndieelite.rsi
+    sprite: Backmen/Clothing/Head/Hardsuits/syndieelite.rsi #backmen resprite
   - type: PointLight
     color: red
   - type: PressureProtection
@@ -441,9 +444,9 @@
   components:
   - type: BreathMask
   - type: Sprite
-    sprite: Clothing/Head/Hardsuits/syndiecommander.rsi
+    sprite: Backmen/Clothing/Head/Hardsuits/syndiecommander.rsi #backmen resprite
   - type: Clothing
-    sprite: Clothing/Head/Hardsuits/syndiecommander.rsi
+    sprite: Backmen/Clothing/Head/Hardsuits/syndiecommander.rsi #backmen resprite
   - type: PointLight
     color: green
   - type: PressureProtection
@@ -467,9 +470,9 @@
   components:
   - type: BreathMask
   - type: Sprite
-    sprite: Clothing/Head/Hardsuits/cybersun.rsi
+    sprite: Backmen/Clothing/Head/Hardsuits/cybersun.rsi #backmen resprite
   - type: Clothing
-    sprite: Clothing/Head/Hardsuits/cybersun.rsi
+    sprite: Backmen/Clothing/Head/Hardsuits/cybersun.rsi #backmen resprite
   - type: PointLight # Corvax-Resprite
     color: red
   - type: PressureProtection
@@ -493,9 +496,9 @@
   components:
   - type: BreathMask
   - type: Sprite
-    sprite: Clothing/Head/Hardsuits/wizard.rsi
+    sprite: Backmen/Clothing/Head/Hardsuits/wizard.rsi #backmen resprite
   - type: Clothing
-    sprite: Clothing/Head/Hardsuits/wizard.rsi
+    sprite: Backmen/Clothing/Head/Hardsuits/wizard.rsi #backmen resprite
   - type: PointLight
     color: "#ffadfb"
   - type: PressureProtection
@@ -748,9 +751,9 @@
   components:
   - type: BreathMask
   - type: Sprite
-    sprite: Clothing/Head/Hardsuits/mime.rsi
+    sprite: Backmen/Clothing/Head/Hardsuits/mime.rsi
   - type: Clothing
-    sprite: Clothing/Head/Hardsuits/mime.rsi
+    sprite: Backmen/Clothing/Head/Hardsuits/mime.rsi
 
 #Santas Hardsuit
 - type: entity

@@ -1,0 +1,62 @@
+﻿<controls:FancyWindow xmlns="https://spacestation14.io"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:controls="clr-namespace:Content.Client.UserInterface.Controls"
+    xmlns:ui="clr-namespace:Content.Client.Backmen.Reinforcement.UI"
+    MinWidth="450" MinHeight="350" Title="{Loc reinforcement-console-title}">
+    <BoxContainer Orientation="Vertical">
+        <!-- Main display -->
+        <BoxContainer Orientation="Horizontal" VerticalExpand="True" HorizontalExpand="True">
+            <!-- Station name -->
+            <controls:StripeBack>
+                <PanelContainer>
+                    <RichTextLabel Name="StationName" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0 5 0 3"/>
+                </PanelContainer>
+            </controls:StripeBack>
+        </BoxContainer>
+        <!-- Brief -->
+        <LineEdit Name="Brief" PlaceHolder="{Loc 'reinforcement-console-brief'}" HorizontalExpand="True" Margin="0 0 2 0"/>
+        <BoxContainer Orientation="Horizontal" Margin="0 5 0 5" Name="CallByBox">
+            <Label Text="{Loc 'reinforcement-called'}" />
+            <Label Text=" " />
+            <Label Text="" Name="CallBy" />
+        </BoxContainer>
+        <BoxContainer Orientation="Horizontal" Margin="0 5 0 5">
+            <Label Text="{Loc 'reinforcement-team-size'}" />
+            <Label Text=" " />
+            <Label Text=" " Name="TeamMin" />
+            <Label Text=" " />
+            <Label Text=" " Name="TeamMax" />
+        </BoxContainer>
+            <!--
+        <BoxContainer Orientation="Horizontal" Margin="0 5 0 5">
+
+            <Button Name="Refresh" Text="{Loc 'ai-warp-menu-refresh'}" Margin="2 0 0 0"/>
+        </BoxContainer>
+        -->
+        <!-- Data -->
+        <ScrollContainer HorizontalExpand="True"
+                         VerticalExpand="True"
+                         SizeFlagsStretchRatio="6">
+            <BoxContainer Name="SourcesList" Orientation="Vertical"
+                          HorizontalExpand="True"
+                          VerticalExpand="True"/>
+        </ScrollContainer>
+        <Button Name="StartMission"
+                Access="Public"
+                ToolTip=""
+                Text="{Loc 'create'}"
+                StyleClasses="LabelSubText" />
+
+        <!-- Footer -->
+        <BoxContainer Orientation="Vertical">
+            <PanelContainer StyleClasses="LowDivider" />
+            <BoxContainer Orientation="Horizontal" Margin="10 2 5 0" VerticalAlignment="Bottom">
+                <Label Text="{Loc 'power-monitoring-window-flavor-left'}" StyleClasses="WindowFooterText" />
+                <Label Text="{Loc 'power-monitoring-window-flavor-right'}" StyleClasses="WindowFooterText"
+                       HorizontalAlignment="Right" HorizontalExpand="True"  Margin="0 0 5 0" />
+                <TextureRect StyleClasses="NTLogoDark" Stretch="KeepAspectCentered"
+                             VerticalAlignment="Center" HorizontalAlignment="Right" SetSize="19 19"/>
+            </BoxContainer>
+        </BoxContainer>
+    </BoxContainer>
+</controls:FancyWindow>

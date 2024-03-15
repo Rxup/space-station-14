@@ -49,6 +49,7 @@ flavor-base-holy = свято
 flavor-base-horrible = ужасно
 # lmao
 flavor-base-terrible = ужасающе
+flavor-base-mindful = mindful
 
 # Complex flavors. Put a flavor here when you want something that's more
 # specific.
@@ -169,6 +170,9 @@ flavor-complex-light = как угасший свет
 
 ## Generic alcohol/soda taste. This should be replaced with an actual flavor profile.
 
+flavor-complex-profits = как прибыль
+flavor-complex-fishops = как страшная рыбья операция
+flavor-complex-violets = как фиалки
 flavor-complex-alcohol = как алкоголь
 flavor-complex-soda = как газировка
 flavor-complex-juice = как сок
@@ -253,3 +257,4 @@ flavor-complex-bee = беспчеловечно
 flavor-complex-sax = как джаз
 flavor-complex-bottledlightning = как молния в бутылке
 flavor-complex-punishment = как наказание
+flavor-weh = как вех

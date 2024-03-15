@@ -40,4 +40,8 @@ public sealed partial class ShadowkinDarkSwappedComponent : Component
 
     [ViewVariables(VVAccess.ReadOnly)]
     public TimeSpan NextStaminaDmg = TimeSpan.Zero;
+
+
+    [ViewVariables(VVAccess.ReadOnly)]
+    public bool NeedReturnPacify = false;
 }

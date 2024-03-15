@@ -78,6 +78,7 @@ public sealed class PsionicInvisibilityPowerSystem : EntitySystem
 
     private void OnStart(EntityUid uid, PsionicInvisibilityUsedComponent component, ComponentInit args)
     {
+        component.Pacify = HasComp<PacifiedComponent>(uid);
         EnsureComp<PsionicallyInvisibleComponent>(uid);
         EnsureComp<PacifiedComponent>(uid);
         var stealth = EnsureComp<StealthComponent>(uid);
@@ -92,7 +93,8 @@ public sealed class PsionicInvisibilityPowerSystem : EntitySystem
             return;
 
         RemComp<PsionicallyInvisibleComponent>(uid);
-        RemComp<PacifiedComponent>(uid);
+        if(!component.Pacify)
+            RemComp<PacifiedComponent>(uid);
         RemComp<StealthComponent>(uid);
         _audio.PlayPvs("/Audio/Effects/toss.ogg", uid);
 

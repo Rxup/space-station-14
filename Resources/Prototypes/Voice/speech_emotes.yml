@@ -381,3 +381,31 @@
     - зажужжала.
     - зажужжала!
     # Corvax-Localization-End
+
+- type: emote
+  id: Weh
+  category: Vocal
+  chatMessages: [издаёт вех!]
+
+- type: emote
+  id: Chirp
+  category: Vocal
+  chatMessages: [чирикает!]
+  chatTriggers:
+    - chirp
+    - chirp!
+    - chirp.
+    - chirps
+    - churps.
+    - chirps!
+    - chirped
+    - chirped.
+    - chirped!
+    - chirping
+    - chirping.
+    - chirping!
+    # Corvax-Localization-Start
+    - чирикает
+    - чирикает.
+    - чирикает!
+    # Corvax-Localization-End

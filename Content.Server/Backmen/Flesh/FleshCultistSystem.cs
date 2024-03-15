@@ -73,6 +73,7 @@ public sealed partial class FleshCultistSystem : EntitySystem
     [Dependency] private readonly RandomHelperSystem _randomHelper = default!;
     [Dependency] private readonly IPrototypeManager _prototype = default!;
     [Dependency] private readonly SharedTransformSystem _transformSystem = default!;
+    [Dependency] private readonly SharedContainerSystem _container = default!;
 
 
     public override void Initialize()
@@ -257,10 +258,10 @@ public sealed partial class FleshCultistSystem : EntitySystem
         _store.ToggleUi(uid, uid, store);
     }
 
-    private bool ChangeParasiteHunger(EntityUid uid, FixedPoint2 amount, FleshCultistComponent? component = null)
+    private void ChangeParasiteHunger(EntityUid uid, FixedPoint2 amount, FleshCultistComponent? component = null)
     {
         if (!Resolve(uid, ref component))
-            return false;
+            return;
 
         component.Hunger += amount;
 
@@ -268,8 +269,6 @@ public sealed partial class FleshCultistSystem : EntitySystem
             _store.UpdateUserInterface(uid, uid, store);
 
         _alerts.ShowAlert(uid, AlertType.MutationPoint, (short) Math.Clamp(Math.Round(component.Hunger.Float() / 10f), 0, 16));
-
-        return true;
     }
 
     private void OnDevourAction(EntityUid uid, FleshCultistComponent component, FleshCultistDevourActionEvent args)
@@ -379,9 +378,9 @@ public sealed partial class FleshCultistSystem : EntitySystem
 
         if (TryComp<HumanoidAppearanceComponent>(args.Args.Target, out var humanoidAppearanceComponent))
         {
-            if (TryComp(args.Args.Target.Value, out ContainerManagerComponent? container))
+            if (TryComp<ContainerManagerComponent>(args.Args.Target.Value, out var container))
             {
-                foreach (var cont in container.GetAllContainers().ToArray())
+                foreach (var cont in _container.GetAllContainers(args.Args.Target.Value,container).ToArray())
                 {
                     foreach (var ent in cont.ContainedEntities.ToArray())
                     {
@@ -389,8 +388,10 @@ public sealed partial class FleshCultistSystem : EntitySystem
                         {
                             continue;
                         }
-                        cont.Remove(ent, EntityManager, force: true);
-                        _transformSystem.SetCoordinates(ent, coordinates);
+
+                        _container.Remove(ent, cont, force: true, destination: coordinates);
+                        //cont.Remove(ent, EntityManager, force: true);
+                        //_transformSystem.SetCoordinates(ent, coordinates);
                         _randomHelper.RandomOffset(ent, 0.25f);
                     }
                 }
@@ -527,10 +528,10 @@ public sealed partial class FleshCultistSystem : EntitySystem
         };
     }
 
-    private bool ParasiteComesOut(EntityUid uid, FleshCultistComponent? component = null)
+    private void ParasiteComesOut(EntityUid uid, FleshCultistComponent? component = null)
     {
         if (!Resolve(uid, ref component))
-            return false;
+            return;
 
         var xform = Transform(uid);
         var coordinates = xform.Coordinates;
@@ -549,9 +550,9 @@ public sealed partial class FleshCultistSystem : EntitySystem
         var audio = AudioParams.Default.WithVariation(0.025f);
         _audio.PlayPvs(component.SoundMutation, uid, audio);
 
-        if (TryComp(uid, out ContainerManagerComponent? container))
+        if (TryComp<ContainerManagerComponent>(uid, out var container))
         {
-            foreach (var cont in container.GetAllContainers().ToArray())
+            foreach (var cont in _container.GetAllContainers(uid,container).ToArray())
             {
                 foreach (var ent in cont.ContainedEntities.ToArray())
                 {
@@ -560,8 +561,9 @@ public sealed partial class FleshCultistSystem : EntitySystem
                             continue;
                         if (HasComp<UnremoveableComponent>(ent))
                             continue;
-                        cont.Remove(ent, EntityManager, force: true);
-                        _transformSystem.SetCoordinates(ent, coordinates);
+                        _container.Remove(ent, cont, force: true, destination: coordinates);
+                        //cont.Remove(ent, EntityManager, force: true);
+                        //_transformSystem.SetCoordinates(ent, coordinates);
                         _randomHelper.RandomOffset(ent, 0.25f);
                     }
                 }
@@ -585,7 +587,6 @@ public sealed partial class FleshCultistSystem : EntitySystem
         }
 
         QueueDel(uid);
-        return true;
     }
 
     public override void Update(float frameTime)
@@ -628,10 +629,11 @@ public sealed partial class FleshCultistSystem : EntitySystem
         if (args.Handled)
             return;
 
-        var xform = Transform(uid);
+        var xform = _transformSystem.GetMapCoordinates(uid);
         var puddles = new ValueList<(EntityUid Entity, string Solution)>();
         puddles.Clear();
-        foreach (var entity in _lookup.GetEntitiesInRange(xform.MapPosition, 0.5f))
+
+        foreach (var entity in _lookup.GetEntitiesInRange(xform, 0.5f))
         {
             if (TryComp<PuddleComponent>(entity, out var puddle))
             {

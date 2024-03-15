@@ -28,13 +28,13 @@
     sprite: /Textures/Objects/Devices/hand_teleporter.rsi
     state: icon
   result: HandTeleporter
-  completetime: 8
+  completetime: 15
   materials:
-    Bluespace: 600
-    Steel: 200
-    Plastic: 200
-    Gold: 200
-    Bananium: 500
+    Steel: 1000
+    Plastic: 500
+    Gold: 300
+    Bananium: 600
+    Bluespace: 500
 
 #- type: latheRecipe
 #  id: BluespaceBeaker1
@@ -68,4 +68,4 @@
     Steel: 250
     Plastic: 250
     Plasma: 100
-    Bluespace: 100
+    Bluespace: 50

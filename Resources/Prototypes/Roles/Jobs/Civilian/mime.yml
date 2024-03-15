@@ -16,6 +16,7 @@
   - !type:AddComponentSpecial
     components:
     - type: MimePowers
+    - type: FrenchAccent
   #start-backmen: currency
   minBankBalance: 150
   maxBankBalance: 250

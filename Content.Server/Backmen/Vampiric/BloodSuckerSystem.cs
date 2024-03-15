@@ -14,28 +14,24 @@ using Content.Server.Chemistry.Containers.EntitySystems;
 using Content.Server.Popups;
 using Content.Server.HealthExaminable;
 using Content.Server.DoAfter;
+using Content.Server.Forensics;
+using Content.Server.GameTicking;
 using Content.Server.Mind;
 using Content.Server.Nutrition.Components;
-using Content.Server.Nutrition.EntitySystems;
-using Content.Server.Objectives;
-using Content.Server.Polymorph.Components;
 using Content.Server.Polymorph.Systems;
 using Content.Server.Roles;
 using Content.Shared.Actions;
-using Content.Shared.Backmen.Spider.Components;
 using Content.Shared.Body.Components;
 using Content.Shared.Body.Part;
 using Content.Shared.Chemistry;
-using Content.Shared.Chemistry.Components;
-using Content.Shared.Chemistry.EntitySystems;
 using Content.Shared.Chemistry.Reagent;
+using Content.Shared.FixedPoint;
+using Content.Shared.Mind;
 using Content.Shared.Mobs.Systems;
 using Content.Shared.Nutrition.Components;
 using Content.Shared.Nutrition.EntitySystems;
-using Content.Shared.Objectives.Components;
 using Content.Shared.Polymorph;
 using Content.Shared.Roles;
-using Content.Shared.Roles.Jobs;
 using Content.Shared.Stunnable;
 using Robust.Shared.Audio;
 using Robust.Shared.Prototypes;
@@ -46,7 +42,7 @@ using Robust.Shared.Utility;
 
 namespace Content.Server.Backmen.Vampiric;
 
-public sealed class BloodSuckerSystem : EntitySystem
+public sealed class BloodSuckerSystem : SharedBloodSuckerSystem
 {
     [Dependency] private readonly BodySystem _bodySystem = default!;
     [Dependency] private readonly SolutionContainerSystem _solutionSystem = default!;
@@ -54,25 +50,17 @@ public sealed class BloodSuckerSystem : EntitySystem
     [Dependency] private readonly DoAfterSystem _doAfter = default!;
     [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
     [Dependency] private readonly StomachSystem _stomachSystem = default!;
-    [Dependency] private readonly DamageableSystem _damageableSystem = default!;
     [Dependency] private readonly InventorySystem _inventorySystem = default!;
     [Dependency] private readonly ISharedAdminLogManager _adminLogger = default!;
     [Dependency] private readonly SharedInteractionSystem _interactionSystem = default!;
     [Dependency] private readonly ReactiveSystem _reactiveSystem = default!;
     [Dependency] private readonly SharedAudioSystem _audio = default!;
-    [Dependency] private readonly PolymorphSystem _polymorph = default!;
     [Dependency] private readonly HungerSystem _hunger = default!;
     [Dependency] private readonly RoleSystem _roleSystem = default!;
     [Dependency] private readonly MindSystem _mindSystem = default!;
-    [Dependency] private readonly IRobustRandom _random = default!;
-    [Dependency] private readonly ISharedPlayerManager _playerManager = default!;
-    [Dependency] private readonly MetaDataSystem _metaData = default!;
-    [Dependency] private readonly SharedActionsSystem _actions = default!;
-    [Dependency] private readonly PopupSystem _popupSystem = default!;
-    [Dependency] private readonly SharedDoAfterSystem _doAfterSystem = default!;
-    [Dependency] private readonly SharedStunSystem _stun = default!;
-    [Dependency] private readonly MobStateSystem _mobStateSystem = default!;
-
+    [Dependency] private readonly BkmVampireLevelingSystem _leveling = default!;
+    [Dependency] private readonly DamageableSystem _damageableSystem = default!;
+    [Dependency] private readonly GameTicker _gameTicker = default!;
 
     [ValidatePrototypeId<AntagPrototype>] private const string BloodsuckerAntagRole = "Bloodsucker";
 
@@ -84,108 +72,16 @@ public sealed class BloodSuckerSystem : EntitySystem
         SubscribeLocalEvent<BloodSuckedComponent, DamageChangedEvent>(OnDamageChanged);
         SubscribeLocalEvent<BloodSuckerComponent, BloodSuckDoAfterEvent>(OnDoAfter);
 
+
         SubscribeLocalEvent<BkmVampireComponent, MapInitEvent>(OnInitVmp);
+
         SubscribeLocalEvent<BkmVampireComponent, PlayerAttachedEvent>(OnAttachedVampireMind);
         SubscribeLocalEvent<BkmVampireComponent, HealthBeingExaminedEvent>(OnVampireExamined);
-        SubscribeLocalEvent<BkmVampireComponent, InnateNewVampierActionEvent>(OnUseNewVamp);
-        SubscribeLocalEvent<BkmVampireComponent, InnateNewVampierDoAfterEvent>(OnUseNewVampAfter);
-
-        SubscribeLocalEvent<BloodSuckerComponent, PolymorphActionEvent>(OnPolymorphActionEvent, before: new []{ typeof(PolymorphSystem) });
-
-        SubscribeLocalEvent<BloodsuckerConvertConditionComponent, ObjectiveGetProgressEvent>(OnGetConvertProgress);
-        SubscribeLocalEvent<BloodsuckerDrinkConditionComponent, ObjectiveGetProgressEvent>(OnGetDrinkProgress);
-        SubscribeLocalEvent<BloodsuckerConvertConditionComponent, ObjectiveAssignedEvent>(OnConvertAssigned);
-        SubscribeLocalEvent<BloodsuckerConvertConditionComponent, ObjectiveAfterAssignEvent>(OnConvertAfterAssigned);
-        SubscribeLocalEvent<BloodsuckerDrinkConditionComponent, ObjectiveAssignedEvent>(OnDrinkAssigned);
-        SubscribeLocalEvent<BloodsuckerDrinkConditionComponent, ObjectiveAfterAssignEvent>(OnDrinkAfterAssigned);
-    }
-
-    private void OnUseNewVampAfter(Entity<BkmVampireComponent> ent, ref InnateNewVampierDoAfterEvent args)
-    {
-        if (args.Cancelled || args.Target == null || TerminatingOrDeleted(args.Target.Value))
-        {
-            _actions.ClearCooldown(ent.Comp.ActionNewVamp);
-            return;
-        }
-
-        if (_mindSystem.TryGetMind(ent, out var entMindId, out _))
-        {
-            EnsureComp<BloodSuckedComponent>(args.Target.Value).BloodSuckerMindId = entMindId;
-        }
-
-        // Add a little pierce
-        DamageSpecifier damage = new();
-        damage.DamageDict.Add("Piercing", 1); // Slowly accumulate enough to gib after like half an hour
-
-        _damageableSystem.TryChangeDamage(args.Target.Value, damage, true, true);
-
-        ConvertToVampire(args.Target.Value);
-        _stun.TryKnockdown(args.Target.Value, TimeSpan.FromSeconds(30), true);
-        _stun.TryParalyze(args.Target.Value, TimeSpan.FromSeconds(30), true);
-
-        _hunger.ModifyHunger(ent, -100);
-        _stun.TryStun(ent, TimeSpan.FromSeconds(_random.Next(1, 3)), true);
-    }
-
-    private void OnUseNewVamp(Entity<BkmVampireComponent> ent, ref InnateNewVampierActionEvent args)
-    {
-        if (HasComp<BkmVampireComponent>(args.Target))
-        {
-            return;
-        }
-
-        if (_mobStateSystem.IsDead(args.Target))
-        {
-            return;
-        }
-
-        if (!TryComp<BloodstreamComponent>(args.Target, out var bloodstream))
-            return;
-
-        if (bloodstream.BloodReagent != "Blood" || bloodstream.BloodSolution == null)
-        {
-            _popups.PopupEntity(Loc.GetString("bloodsucker-fail-not-blood", ("target", args.Target)), args.Target, ent.Owner, Shared.Popups.PopupType.Medium);
-            return;
-        }
-
-        if (TryComp<HungerComponent>(ent, out var hunger) && _hunger.GetHungerThreshold(hunger) < HungerThreshold.Okay)
-        {
-            _popupSystem.PopupEntity("Вы хотите есть", ent, ent);
-            return;
-        }
-
-        if (TryComp<ThirstComponent>(ent, out var thirst) && thirst.CurrentThirstThreshold < ThirstThreshold.Okay)
-        {
-            _popupSystem.PopupEntity("Вы хотите пить", ent, ent);
-            return;
-        }
-
-        _popups.PopupEntity(Loc.GetString("bloodsucker-doafter-start-victim", ("sucker", ent.Owner)), args.Target, args.Target, Shared.Popups.PopupType.LargeCaution);
-        _popups.PopupEntity(Loc.GetString("bloodsucker-doafter-start", ("target", args.Target)), args.Target, ent, Shared.Popups.PopupType.Medium);
-
-        _doAfterSystem.TryStartDoAfter(new DoAfterArgs(EntityManager, ent, TimeSpan.FromSeconds(10),
-            new InnateNewVampierDoAfterEvent(), ent, target: args.Target, used: ent)
-        {
-            BreakOnUserMove = true,
-            BreakOnDamage = true,
-            NeedHand = true,
-            RequireCanInteract = true,
-            BreakOnHandChange = true,
-            BreakOnTargetMove = true,
-            BreakOnWeightlessMove = true
-        });
-
-        _audio.PlayPvs("/Audio/Items/drink.ogg", ent,
-            AudioParams.Default.WithVariation(0.025f));
-        args.Handled = true;
     }
 
     private void OnInitVmp(Entity<BkmVampireComponent> ent, ref MapInitEvent args)
     {
-        _actions.AddAction(ent, ref ent.Comp.ActionNewVamp, ent.Comp.NewVamp);
-#if !DEBUG
-        _actions.SetCooldown(ent.Comp.ActionNewVamp, TimeSpan.FromMinutes(5));
-#endif
+        _leveling.InitShop(ent);
     }
 
     private void OnVampireExamined(Entity<BkmVampireComponent> ent, ref HealthBeingExaminedEvent args)
@@ -197,104 +93,13 @@ public sealed class BloodSuckerSystem : EntitySystem
         args.Message.AddMarkup(Loc.GetString("vampire-health-examine", ("target", ent.Owner)));
     }
 
-    private void OnDrinkAfterAssigned(Entity<BloodsuckerDrinkConditionComponent> condition, ref ObjectiveAfterAssignEvent args)
-    {
-        _metaData.SetEntityName(condition.Owner, Loc.GetString(condition.Comp.ObjectiveText, ("goal", condition.Comp.Goal)), args.Meta);
-        _metaData.SetEntityDescription(condition.Owner, Loc.GetString(condition.Comp.DescriptionText, ("goal", condition.Comp.Goal)), args.Meta);
-    }
-
-    private void OnConvertAfterAssigned(Entity<BloodsuckerConvertConditionComponent> condition, ref ObjectiveAfterAssignEvent args)
-    {
-        _metaData.SetEntityName(condition.Owner, Loc.GetString(condition.Comp.ObjectiveText, ("goal", condition.Comp.Goal)), args.Meta);
-        _metaData.SetEntityDescription(condition.Owner, Loc.GetString(condition.Comp.DescriptionText, ("goal", condition.Comp.Goal)), args.Meta);
-    }
-
-    private void OnConvertAssigned(Entity<BloodsuckerConvertConditionComponent> ent, ref ObjectiveAssignedEvent args)
-    {
-        if (args.Mind.OwnedEntity == null)
-        {
-            args.Cancelled = true;
-            return;
-        }
-
-        var user = args.Mind.OwnedEntity.Value;
-        if (!TryComp<BkmVampireComponent>(user, out var vmp))
-        {
-            args.Cancelled = true;
-            return;
-        }
-
-        ent.Comp.Goal = _random.Next(
-            1,
-            Math.Max(1, // min 1 of 1
-                Math.Min(
-                    ent.Comp.MaxGoal, // 5
-                    (int)Math.Ceiling(Math.Max(_playerManager.PlayerCount, 1f) / ent.Comp.PerPlayers) // per players with max
-                    )
-                )
-            );
-    }
-
-    private void OnGetConvertProgress(Entity<BloodsuckerConvertConditionComponent> ent, ref ObjectiveGetProgressEvent args)
-    {
-        if (args.Mind.OwnedEntity == null || !TryComp<VampireRoleComponent>(args.MindId, out var vmp))
-        {
-            args.Progress = 0;
-            return;
-        }
-
-        args.Progress = vmp.Converted / ent.Comp.Goal;
-    }
-
-    private void OnDrinkAssigned(Entity<BloodsuckerDrinkConditionComponent> ent, ref ObjectiveAssignedEvent args)
-    {
-        if (args.Mind.OwnedEntity == null)
-        {
-            args.Cancelled = true;
-            return;
-        }
-
-        var user = args.Mind.OwnedEntity.Value;
-        if (!TryComp<BkmVampireComponent>(user, out var vmp))
-        {
-            args.Cancelled = true;
-            return;
-        }
-
-        ent.Comp.Goal = _random.Next(
-            ent.Comp.MinGoal,
-            Math.Max(ent.Comp.MinGoal + 1, // min 1 of 1
-                ent.Comp.MaxGoal
-            )
-        );
-    }
-
-    private void OnGetDrinkProgress(Entity<BloodsuckerDrinkConditionComponent> ent, ref ObjectiveGetProgressEvent args)
-    {
-        if (args.Mind.OwnedEntity == null || !TryComp<VampireRoleComponent>(args.MindId, out var vmp))
-        {
-            args.Progress = 0;
-            return;
-        }
-
-        args.Progress = vmp.Drink / ent.Comp.Goal;
-    }
-
     private void OnAttachedVampireMind(Entity<BkmVampireComponent> ent, ref PlayerAttachedEvent args)
     {
         EnsureMindVampire(ent);
     }
 
-    private void OnPolymorphActionEvent(Entity<BloodSuckerComponent> ent, ref PolymorphActionEvent args)
-    {
-        _hunger.ModifyHunger(ent, -30);
-    }
-
     [ValidatePrototypeId<EntityPrototype>]
     private const string OrganVampiricHumanoidStomach = "OrganVampiricHumanoidStomach";
-
-    [ValidatePrototypeId<PolymorphPrototype>]
-    private const string BVampieBat = "BVampieBat";
 
     [ValidatePrototypeId<ReagentPrototype>]
     private const string BloodSuckerToxin = "BloodSuckerToxin";
@@ -308,6 +113,9 @@ public sealed class BloodSuckerSystem : EntitySystem
     [ValidatePrototypeId<EntityPrototype>]
     private const string Objective2 = "BloodsuckerConvertObjective";
 
+    [ValidatePrototypeId<EntityPrototype>]
+    private const string VampireObjective = "VampireObjective";
+
     public void ConvertToVampire(EntityUid uid)
     {
         if (
@@ -316,6 +124,11 @@ public sealed class BloodSuckerSystem : EntitySystem
             !TryComp<BodyPartComponent>(bodyComponent.RootContainer.ContainedEntity, out var bodyPartComponent)
             )
             return;
+
+        if (!_gameTicker.IsGameRuleAdded(VampireObjective))
+        {
+            _gameTicker.StartGameRule(VampireObjective);
+        }
 
         var bloodSucker = EnsureComp<BloodSuckerComponent>(uid);
         //bloodSucker.InjectReagent = BloodSuckerToxin;
@@ -334,7 +147,7 @@ public sealed class BloodSuckerSystem : EntitySystem
         var stomach = Spawn(OrganVampiricHumanoidStomach);
 
         _bodySystem.InsertOrgan(bodyComponent.RootContainer.ContainedEntity.Value, stomach, "stomach", bodyPartComponent);
-        _polymorph.CreatePolymorphAction(BVampieBat, (uid,EnsureComp<PolymorphableComponent>(uid)));
+
         EnsureComp<BkmVampireComponent>(uid);
 
         if (
@@ -344,6 +157,16 @@ public sealed class BloodSuckerSystem : EntitySystem
             TryComp<VampireRoleComponent>(bloodsucked.BloodSuckerMindId.Value, out var bloodsucker)
             )
         {
+            var masterUid = CompOrNull<MindComponent>(bloodsucked.BloodSuckerMindId.Value)?.CurrentEntity;
+            if (TryComp<BkmVampireComponent>(masterUid, out var master))
+            {
+                _leveling.AddCurrency((masterUid.Value,master),
+                    10 * (bloodsucker.Tier + 1),
+                    "обращение"
+                    );
+            }
+
+
             bloodsucker.Converted += 1;
         }
 
@@ -498,6 +321,8 @@ public sealed class BloodSuckerSystem : EntitySystem
         if (bloodstream.BloodSolution == null || bloodstream.BloodSolution.Value.Comp.Solution.Volume == 0)
             return false;
 
+        var bloodstreamVolume = bloodstream.BloodSolution!.Value.Comp.Solution.Volume;
+
         // Does bloodsucker have a stomach?
         var stomachList = _bodySystem.GetBodyOrganComponents<StomachComponent>(bloodsucker).FirstOrNull();
         if (stomachList == null)
@@ -507,7 +332,7 @@ public sealed class BloodSuckerSystem : EntitySystem
             return false;
 
         // Are we too full?
-        var unitsToDrain = bloodsuckerComp.UnitsToSucc;
+        var unitsToDrain = Math.Min(bloodstreamVolume.Float(),bloodsuckerComp.UnitsToSucc);
 
         var stomachAvailableVolume = stomachSolution.Value.Comp.Solution.AvailableVolume;
 
@@ -525,7 +350,7 @@ public sealed class BloodSuckerSystem : EntitySystem
         // All good, succ time.
         _audio.PlayPvs("/Audio/Items/drink.ogg", bloodsucker);
         _popups.PopupEntity(Loc.GetString("bloodsucker-blood-sucked-victim", ("sucker", bloodsucker)), victim, victim, Shared.Popups.PopupType.LargeCaution);
-        _popups.PopupEntity(Loc.GetString("bloodsucker-blood-sucked", ("target", victim)), bloodsucker, bloodsucker, Shared.Popups.PopupType.Medium);
+        var doNotify = true;
 
         if (_mindSystem.TryGetMind(bloodsucker, out var bloodsuckermidId, out _))
         {
@@ -533,6 +358,18 @@ public sealed class BloodSuckerSystem : EntitySystem
             if (TryComp<VampireRoleComponent>(bloodsuckermidId, out var vpm))
             {
                 vpm.Drink += unitsToDrain;
+
+                if (TryComp<BkmVampireComponent>(bloodsucker, out var bkmVampireComponent))
+                {
+                    _leveling.AddCurrency((bloodsucker,bkmVampireComponent),
+
+                        (1 * (vpm.Tier + 1)) // 1 * (Тир + 1) * коэффицент
+
+                        * BloodPrice((bloodsucker,bkmVampireComponent), victim, unitsToDrain)
+
+                        , "укус");
+                    doNotify = false;
+                }
             }
         }
         else
@@ -540,11 +377,14 @@ public sealed class BloodSuckerSystem : EntitySystem
             EnsureComp<BloodSuckedComponent>(victim).BloodSuckerMindId = null;
         }
 
+        if(doNotify)
+            _popups.PopupEntity(Loc.GetString("bloodsucker-blood-sucked", ("target", victim)), bloodsucker, bloodsucker, Shared.Popups.PopupType.Medium);
+
 
         var bloodSolution = bloodstream.BloodSolution.Value;
         // Make everything actually ingest.
         var temp = _solutionSystem.SplitSolution(bloodSolution, unitsToDrain);
-        _reactiveSystem.DoEntityReaction(bloodsucker, temp, Shared.Chemistry.Reagent.ReactionMethod.Ingestion);
+        _reactiveSystem.DoEntityReaction(bloodsucker, temp, ReactionMethod.Ingestion);
         _stomachSystem.TryTransferSolution(stomachList.Value.Comp.Owner, temp, stomachList.Value.Comp);
 
         // Add a little pierce
@@ -560,5 +400,33 @@ public sealed class BloodSuckerSystem : EntitySystem
 
 
         return true;
+    }
+
+    private float BloodPrice(Entity<BkmVampireComponent> vamp, EntityUid victim, float unitsToDrain)
+    {
+        var pr = 1f;
+        if (HasComp<BloodSuckerComponent>(victim))
+        {
+            pr -= 0.6F;
+        }
+
+        if (!TryComp<DnaComponent>(victim, out var dnaComponent))
+        {
+            pr -= 0.6F;
+        }
+        else
+        {
+            vamp.Comp.DNA.TryAdd(dnaComponent.DNA, 0);
+
+            var blood = vamp.Comp.DNA[dnaComponent.DNA];
+            vamp.Comp.DNA[dnaComponent.DNA] += unitsToDrain;
+
+            var factor = (float)Math.Pow(1 - 0.03, blood.Double());
+            pr -= 0.6F * (1 - factor);
+        }
+
+        pr *= unitsToDrain / 20;
+
+        return Math.Max(0F,pr);
     }
 }
