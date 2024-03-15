@@ -379,26 +379,26 @@
     - id: WeaponShotgun12
     - id: ClothingBeltShellShotgunFill
 
-#- type: listing
-#  id: UplinkFlamethrowerBundle
-#  name: набор "Огнемет М6"
-#  description: Огнемет имеющий шланг под специальный резервуар с огненой смесью, которая способна гореть даже в полном вакууме! Имеет в наборе 1 powerpack.
-#  icon: { sprite: Backmen/Objects/Weapons/Gunsx64/Flamethrowers/M6/big.rsi, state: icon }
-#  productEntity: ClothingBackpackDuffelSyndicateFilledflamethrower
-#  cost:
-#    Telecrystal: 12
-#  categories:
-#  - UplinkBundles
+- type: listing
+  id: UplinkFlamethrowerBundle
+  name: набор "Огнемет М6"
+  description: Огнемет имеющий шланг под специальный резервуар с огненой смесью, которая способна гореть даже в полном вакууме! Имеет в наборе 1 powerpack.
+  icon: { sprite: Backmen/Objects/Weapons/Gunsx64/Flamethrowers/M6/big.rsi, state: icon }
+  productEntity: ClothingBackpackDuffelSyndicateFilledflamethrower
+  cost:
+    Telecrystal: 12
+  categories:
+  - UplinkBundles
 
-#- type: entity
-#  parent: ClothingBackpackDuffelSyndicate
-#  id: ClothingBackpackDuffelSyndicateFilledflamethrower
-#  name: набор "Огнемет М6"
-#  components:
-#    - type: StorageFill
-#      contents:
-#        - id: WeaponflamethrowerSG
-#        - id: PowerpackFlame
+- type: entity
+  parent: ClothingBackpackDuffelSyndicate
+  id: ClothingBackpackDuffelSyndicateFilledflamethrower
+  name: набор "Огнемет М6"
+  components:
+    - type: StorageFill
+      contents:
+        - id: WeaponflamethrowerSG
+        - id: PowerpackFlame
 
 - type: listing
   id: UplinkFlamethrower
@@ -432,3 +432,34 @@
     Telecrystal: 2
   categories:
   - UplinkWearables
+
+- type: listing
+  id: UplinkSniperSR127Bundle
+  name: uplink-sniper-bundle-name
+  description: uplink-sniper-bundle-desc
+  icon: { sprite: Backmen/Objects/Weapons/Gunsx64/Snipers/snl177/big.rsi, state: base }
+  productEntity: BriefcaseSyndicateSniperBundleFilled
+  cost:
+    Telecrystal: 12
+  categories:
+  - UplinkBundles
+
+- type: entity
+  id: BriefcaseSyndicateSniperBundleFilled
+  name: brown briefcase
+  parent: BriefcaseSyndie
+  suffix: SniperBundle
+  components:
+  - type: Item
+    size: Ginormous
+  - type: Storage
+    grid:
+    - 0,0,6,4
+  - type: StorageFill
+    contents:
+      - id: WeaponRifleSR127
+      - id: MagazineAntiMaterielRifleSR
+      - id: ClothingNeckTieRed
+      - id: ClothingHandsGlovesLatex
+      - id: ClothingUniformJumpsuitLawyerBlack
+      - id: BarberScissors

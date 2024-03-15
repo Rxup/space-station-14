@@ -11,6 +11,7 @@ store-category-allies = Allies
 store-category-wearables = Wearables
 store-category-implants = Импланты
 store-category-job = Работа
+store-category-bundles = Наборы
 store-category-pointless = Безделушки
 # Revenant
 store-category-abilities = Способности
