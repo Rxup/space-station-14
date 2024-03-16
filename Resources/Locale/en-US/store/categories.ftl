@@ -10,7 +10,6 @@ store-category-disruption = Disruption
 store-category-implants = Implants
 store-category-allies = Allies
 store-category-job = Job
-store-category-bundles = Bundles
 store-category-wearables = Wearables
 store-category-pointless = Pointless
 

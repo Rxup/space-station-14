@@ -18,3 +18,5 @@ uplink-psi-grenade-bundle-desc = Набор содержит вещь мешок
 
 uplink-anti-psi-grenade-bundle-name = набор анти-психических гранат
 uplink-anti-psi-grenade-bundle-desc = Полный вещьмешок ани-психических гранат.
+
+store-category-bundles = Наборы
