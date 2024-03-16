@@ -1,6 +1,10 @@
 using System.Linq;
 using System.Numerics;
+using Content.Server.Backmen.Blob.Components;
+using Content.Shared.Backmen.Blob.Components;
+using Robust.Server.GameObjects;
 using Robust.Shared.Map;
+using Robust.Shared.Map.Components;
 using Robust.Shared.Random;
 using Robust.Shared.Timing;
 
@@ -9,20 +13,15 @@ namespace Content.Server.Backmen.Blob;
 public sealed class BlobNodeSystem : EntitySystem
 {
     [Dependency] private readonly EntityLookupSystem _lookup = default!;
-    [Dependency] private readonly IMapManager _map = default!;
+    [Dependency] private readonly MapSystem _map = default!;
     [Dependency] private readonly IRobustRandom _random = default!;
     [Dependency] private readonly IGameTiming _gameTiming = default!;
 
+    private EntityQuery<BlobTileComponent> _tileQuery;
     public override void Initialize()
     {
         base.Initialize();
-
-        SubscribeLocalEvent<BlobNodeComponent, ComponentStartup>(OnStartup);
-    }
-
-    private void OnStartup(EntityUid uid, BlobNodeComponent component, ComponentStartup args)
-    {
-
+        _tileQuery = GetEntityQuery<BlobTileComponent>();
     }
 
     private void Pulse(EntityUid uid, BlobNodeComponent component)
@@ -33,15 +32,15 @@ public sealed class BlobNodeSystem : EntitySystem
 
         var localPos = xform.Coordinates.Position;
 
-        if (!_map.TryGetGrid(xform.GridUid, out var grid))
+        if (!TryComp<MapGridComponent>(xform.GridUid, out var grid))
         {
             return;
         }
 
-        if (!TryComp<BlobTileComponent>(uid, out var blobTileComponent) || blobTileComponent.Core == null)
+        if (!_tileQuery.TryGetComponent(uid, out var blobTileComponent) || blobTileComponent.Core == null)
             return;
 
-        var innerTiles = grid.GetLocalTilesIntersecting(
+        var innerTiles = _map.GetLocalTilesIntersecting(xform.GridUid.Value, grid,
             new Box2(localPos + new Vector2(-radius, -radius), localPos + new Vector2(radius, radius)), false).ToArray();
 
         _random.Shuffle(innerTiles);
@@ -49,7 +48,7 @@ public sealed class BlobNodeSystem : EntitySystem
         var explain = true;
         foreach (var tileRef in innerTiles)
         {
-            foreach (var ent in grid.GetAnchoredEntities(tileRef.GridIndices))
+            foreach (var ent in _map.GetAnchoredEntities(xform.GridUid.Value, grid, tileRef.GridIndices))
             {
                 if (!HasComp<BlobTileComponent>(ent))
                     continue;
@@ -82,7 +81,7 @@ public sealed class BlobNodeSystem : EntitySystem
             if (_gameTiming.CurTime < comp.NextPulse)
                 return;
 
-            if (TryComp<BlobTileComponent>(ent, out var blobTileComponent) && blobTileComponent.Core != null)
+            if (_tileQuery.TryGetComponent(ent, out var blobTileComponent) && blobTileComponent.Core != null)
             {
                 Pulse(ent, comp);
             }

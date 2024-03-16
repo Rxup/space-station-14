@@ -1,60 +1,18 @@
-# Wizden Species
-- type: guideEntry
-  id: SpeciesDiona
-  name: guide-entry-diona
-  text: "/ServerInfo/Guidebook/Species/WizdenSpecies/Diona.xml"
-
-- type: guideEntry
-  id: SpeciesDwarf
-  name: guide-entry-dwarf
-  text: "/ServerInfo/Guidebook/Species/WizdenSpecies/Dwarf.xml"
-
-- type: guideEntry
-  id: SpeciesHuman
-  name: guide-entry-human
-  text: "/ServerInfo/Guidebook/Species/WizdenSpecies/Human.xml"
-
-- type: guideEntry
-  id: SpeciesReptilian
-  name: guide-entry-reptilian
-  text: "/ServerInfo/Guidebook/Species/WizdenSpecies/Reptilian.xml"
-
-- type: guideEntry
-  id: SpeciesSkeleton
-  name: guide-entry-skeleton
-  text: "/ServerInfo/Guidebook/Species/WizdenSpecies/Skeleton.xml"
-
-- type: guideEntry
-  id: SpeciesSlime
-  name: guide-entry-slime
-  text: "/ServerInfo/Guidebook/Species/WizdenSpecies/Slime.xml"
-
-- type: guideEntry
-  id: SpeciesVox
-  name: guide-entry-vox
-  text: "/ServerInfo/Guidebook/Species/WizdenSpecies/Vox.xml"
-
-
 # Nyano Species
 
 - type: guideEntry
   id: SpeciesArachne
-  name: guide-entry-arachne
+  name: species-name-ArachneClassic
   text: "/ServerInfo/Guidebook/Species/NyanoSpecies/Arachne.xml"
 
 - type: guideEntry
   id: SpeciesFelinid
-  name: guide-entry-felinid
+  name: species-name-felinid
   text: "/ServerInfo/Guidebook/Species/NyanoSpecies/Felinid.xml"
 
 - type: guideEntry
-  id: SpeciesMoff
-  name: guide-entry-moth
-  text: "/ServerInfo/Guidebook/Species/NyanoSpecies/Moth.xml"
-
-- type: guideEntry
   id: SpeciesOni
-  name: guide-entry-oni
+  name: species-name-oni
   text: "/ServerInfo/Guidebook/Species/NyanoSpecies/Oni.xml"
 
 # SimpleStation Species
@@ -64,7 +22,16 @@
 #   name: guide-entry-plasmaman
 #   text: "/ServerInfo/Guidebook/Species/SimpleStationSpecies/Plasmaman.xml"
 
+
+
 - type: guideEntry
   id: SpeciesShadowkin
-  name: guide-entry-shadowkin
+  name: species-name-shadowkin
   text: "/ServerInfo/Guidebook/Species/SimpleStationSpecies/Shadowkin.xml"
+  children:
+  - SpeciesShadowkinLore
+
+- type: guideEntry
+  id: SpeciesShadowkinLore
+  name: guide-entry-shadowkin-lore
+  text: "/ServerInfo/Guidebook/Species/SimpleStationSpecies/Shadowkin.Lore.xml"

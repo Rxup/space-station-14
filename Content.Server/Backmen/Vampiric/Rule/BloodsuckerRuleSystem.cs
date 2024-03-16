@@ -8,12 +8,16 @@ using Content.Server.GameTicking.Rules;
 using Content.Server.GameTicking.Rules.Components;
 using Content.Server.Mind;
 using Content.Server.Objectives;
+using Content.Shared.Antag;
 using Content.Shared.Backmen.CCVar;
 using Content.Shared.Backmen.Vampiric;
+using Content.Shared.Humanoid;
 using Content.Shared.Mind;
 using Content.Shared.Mobs.Components;
 using Content.Shared.Preferences;
 using Content.Shared.Roles;
+using Robust.Server.Placement;
+using Robust.Server.Player;
 using Robust.Shared.Configuration;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
@@ -38,6 +42,7 @@ public sealed class BloodsuckerRuleSystem : GameRuleSystem<BloodsuckerRuleCompon
     [Dependency] private readonly IRobustRandom _random = default!;
     [Dependency] private readonly MindSystem _mindSystem = default!;
     [Dependency] private readonly GameTicker _gameTicker = default!;
+    [Dependency] private readonly IPlayerManager _playerManager = default!;
 
     public override void Initialize()
     {
@@ -69,28 +74,28 @@ public sealed class BloodsuckerRuleSystem : GameRuleSystem<BloodsuckerRuleCompon
 
     private void HandleLatejoin(PlayerSpawnCompleteEvent ev)
     {
-        var query = EntityQueryEnumerator<BloodsuckerRuleComponent, GameRuleComponent>();
-        while (query.MoveNext(out var uid, out var vpmRule, out var gameRule))
+        var query = QueryActiveRules();
+        while (query.MoveNext(out _, out var vpmRule, out _))
         {
-            if (!GameTicker.IsGameRuleAdded(uid, gameRule))
-                continue;
-
             if (vpmRule.TotalBloodsuckers >= MaxBloodsuckers)
                 continue;
 
             if (!ev.LateJoin)
                 continue;
 
-            if (!ev.Profile.AntagPreferences.Contains(Bloodsucker))
-                continue;
+            var whitelistSpecies = vpmRule.SpeciesWhitelist;
+            if (!_antagSelection.IsPlayerEligible(ev.Player, Bloodsucker, acceptableAntags: AntagAcceptability.NotExclusive,
+                    allowNonHumanoids: false,
+                    customExcludeCondition: ent =>
+                    {
+                        if (HasComp<BibleUserComponent>(ent))
+                        {
+                            return true;
+                        }
 
-            if (ev.JobId == null || !_prototypeManager.TryIndex<JobPrototype>(ev.JobId, out var job))
-                continue;
-
-            if (!job.CanBeAntag)
-                continue;
-
-            if(!vpmRule.SpeciesWhitelist.Contains(ev.Profile.Species))
+                        return TryComp<HumanoidAppearanceComponent>(ent, out var humanoidAppearanceComponent) &&
+                               !whitelistSpecies.Contains(humanoidAppearanceComponent.Species.Id);
+                    }))
                 continue;
 
             // the nth player we adjust our probabilities around
@@ -115,65 +120,71 @@ public sealed class BloodsuckerRuleSystem : GameRuleSystem<BloodsuckerRuleCompon
             // You get one shot.
             if (_random.Prob(chance) && ev.Player.AttachedEntity.HasValue)
             {
-                if(HasComp<BibleUserComponent>(ev.Player.AttachedEntity))
-                    continue;
                 _bloodSuckerSystem.ConvertToVampire(ev.Player.AttachedEntity.Value);
                 vpmRule.TotalBloodsuckers++;
                 if (_mindSystem.TryGetMind(ev.Player, out var mindId, out _))
                 {
                     vpmRule.Elders.Add(MetaData(ev.Player.AttachedEntity.Value).EntityName,mindId);
                 }
+                _antagSelection.SendBriefing(ev.Player, Loc.GetString("vampire-role-greeting"), Color.Plum, vpmRule.InitialInfectedSound);
             }
         }
     }
 
     private void OnPlayersSpawned(RulePlayerJobsAssignedEvent ev)
     {
-        var query = EntityQueryEnumerator<BloodsuckerRuleComponent, GameRuleComponent>();
-        while (query.MoveNext(out var uid, out var vpmRule, out var gameRule))
+        var query = QueryActiveRules();
+        while (query.MoveNext(out var uid, out _, out var comp, out var gameRule))
         {
-            var plr = new Dictionary<ICommonSession, HumanoidCharacterProfile>();
+            //Get all players eligible for this role, allow selecting existing antags
+            //TO DO: When voxes specifies are added, increase their chance of becoming a thief by 4 times >:)
+            var whitelistSpecies = comp.SpeciesWhitelist;
+            var eligiblePlayers = _antagSelection.GetEligiblePlayers(
+                ev.Players, Bloodsucker,
+                acceptableAntags: AntagAcceptability.NotExclusive,
+                allowNonHumanoids: false,
+                customExcludeCondition: ent =>
+                {
+                    if (HasComp<BibleUserComponent>(ent))
+                    {
+                        return true;
+                    }
 
-            if (!GameTicker.IsGameRuleAdded(uid, gameRule))
-                continue;
+                    return TryComp<HumanoidAppearanceComponent>(ent, out var humanoidAppearanceComponent) &&
+                           !whitelistSpecies.Contains(humanoidAppearanceComponent.Species.Id);
+                });
 
-            foreach (var player in ev.Players)
+            //Abort if there are none
+            if (eligiblePlayers.Count == 0)
             {
-                if (!ev.Profiles.ContainsKey(player.UserId))
-                    continue;
-
-                if(!vpmRule.SpeciesWhitelist.Contains(ev.Profiles[player.UserId].Species))
-                    continue;
-
-                if (player.AttachedEntity.HasValue && HasComp<BibleUserComponent>(player.AttachedEntity))
-                    continue;
-
-                plr.Add(player, ev.Profiles[player.UserId]);
+                //Log.Warning($"No eligible thieves found, ending game rule {ToPrettyString(uid):rule}");
+                //GameTicker.EndGameRule(uid, gameRule);
+                continue;
             }
 
-            DoVampirStart(vpmRule, plr);
+            var initialInfectedCount = _antagSelection.CalculateAntagCount(_playerManager.PlayerCount, PlayersPerBloodsucker, MaxBloodsuckers);
+
+            //Select our theives
+            var thieves = _antagSelection.ChooseAntags(initialInfectedCount, eligiblePlayers);
+
+            DoVampirStart(thieves, comp);
+
+            _antagSelection.SendBriefing(thieves, Loc.GetString("vampire-role-greeting"), Color.Plum, comp.InitialInfectedSound);
         }
     }
 
     [ValidatePrototypeId<AntagPrototype>]
     private const string Bloodsucker = "Bloodsucker";
 
-    private void DoVampirStart(BloodsuckerRuleComponent vpmRule, Dictionary<ICommonSession, HumanoidCharacterProfile> startCandidates)
+    private void DoVampirStart(List<EntityUid> startCandidates, BloodsuckerRuleComponent vpmRule)
     {
-        var numTraitors = MathHelper.Clamp(startCandidates.Count / PlayersPerBloodsucker, 1, MaxBloodsuckers);
-        var traitorPool = _antagSelection.FindPotentialAntags(startCandidates, Bloodsucker);
-        var selectedTraitors = _antagSelection.PickAntag(numTraitors, traitorPool);
-
-        foreach (var traitor in selectedTraitors)
+        foreach (var traitor in startCandidates)
         {
-            if (!traitor.AttachedEntity.HasValue)
-                continue;
-
-            _bloodSuckerSystem.ConvertToVampire(traitor.AttachedEntity.Value);
+            _bloodSuckerSystem.ConvertToVampire(traitor);
             vpmRule.TotalBloodsuckers++;
             if (_mindSystem.TryGetMind(traitor, out var mindId, out _))
             {
-                vpmRule.Elders.Add(MetaData(traitor.AttachedEntity.Value).EntityName,mindId);
+                vpmRule.Elders.Add(MetaData(traitor).EntityName,mindId);
             }
         }
     }

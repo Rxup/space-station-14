@@ -55,6 +55,7 @@
   name: RPG-7
   parent: BaseWeaponLauncher
   id: WeaponLauncherRocket
+  noSpawn: true
   description: A modified ancient rocket-propelled grenade launcher.
   components:
   - type: Sprite
@@ -159,6 +160,8 @@
   id: WeaponTetherGun
   description: Manipulates gravity around objects to fling them at high velocities.
   components:
+    - type: Item
+      storedRotation: -90
     - type: TetherGun
       frequency: 5
       dampingRatio: 4
@@ -196,6 +199,8 @@
   id: WeaponForceGun
   description: Manipulates gravity around objects to fling them at high velocities.
   components:
+    - type: Item
+      storedRotation: -90
     - type: ForceGun
       frequency: 15
       dampingRatio: 4

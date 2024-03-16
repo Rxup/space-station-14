@@ -31,13 +31,13 @@
   - Service
   - External
   - Detective
+  - Cryogenics
   #start-backmen: currency
   minBankBalance: 400
   maxBankBalance: 600
   wageDepartment: Command
   wage: 100
   #end-backmen: currency
-
   special:
   - !type:AddImplantSpecial
     implants: [ MindShieldImplant ]
@@ -52,7 +52,7 @@
     back: ClothingBackpackHOSFilled
     shoes: ClothingShoesBootsJackSecFilled # Corvax-Resprite
     outerClothing: ClothingOuterCoatHoSTrench
-    eyes: ClothingEyesGlassesSunglasses
+    eyes: ClothingEyesGlassesSecurity #backmen
     head: ClothingHeadHatBeretHoS
     id: HoSPDA
     gloves: ClothingHandsGlovesCombat

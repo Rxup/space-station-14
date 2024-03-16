@@ -10,14 +10,11 @@ using Content.Shared.Eye;
 using Content.Shared.Mind;
 using Content.Shared.Mind.Components;
 using Robust.Shared.Prototypes;
-using Content.Shared.Mobs;
 using Content.Shared.Mobs.Systems;
 using Content.Shared.Random.Helpers;
 using Content.Shared.Silicons.Laws;
 using Content.Shared.Silicons.Laws.Components;
-using Robust.Shared.Audio;
 using Robust.Server.GameObjects;
-using Robust.Shared.Audio.Systems;
 using Robust.Shared.Player;
 
 namespace Content.Server.Backmen.StationAI;
@@ -27,7 +24,6 @@ public sealed class AIEyePowerSystem : EntitySystem
     [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
     [Dependency] private readonly SharedActionsSystem _actions = default!;
     [Dependency] private readonly MindSystem _mindSystem = default!;
-    [Dependency] private readonly IEntityManager _entityManager = default!;
     [Dependency] private readonly TransformSystem _transformSystem = default!;
 
     [Dependency] private readonly VisibilitySystem _visibilitySystem = default!;

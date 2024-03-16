@@ -2,6 +2,7 @@
 using System.Threading.Tasks;
 using Content.Shared.ActionBlocker;
 using Content.Shared.Backmen.Blob;
+using Content.Shared.Backmen.Blob.Components;
 using Robust.Shared.CPUJob.JobQueues;
 using Robust.Shared.Map;
 using Robust.Shared.Timing;

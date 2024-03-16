@@ -1,4 +1,5 @@
 ﻿using Content.Shared.Backmen.Blob;
+using Content.Shared.Backmen.Blob.Components;
 using Content.Shared.Eye.Blinding.Components;
 using Content.Shared.Mobs.Components;
 using Robust.Client.Console;

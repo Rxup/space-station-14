@@ -73,6 +73,7 @@
     - Flesh
     - Freelance
     globalReceive: true
+    receiveAllChannels: true
   - type: Physics
     bodyType: KinematicController
     bodyStatus: InAir

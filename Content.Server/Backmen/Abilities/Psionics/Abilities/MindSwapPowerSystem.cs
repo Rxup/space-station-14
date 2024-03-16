@@ -10,8 +10,11 @@ using Content.Shared.Mobs.Systems;
 using Content.Server.Popups;
 using Content.Server.GameTicking;
 using Content.Shared.Backmen.Abilities.Psionics;
+using Content.Shared.Backmen.Blob;
+using Content.Shared.Backmen.Blob.Components;
 using Content.Shared.Backmen.Psionics.Events;
 using Content.Shared.Mind.Components;
+using Content.Shared.Mindshield.Components;
 using Content.Shared.NPC;
 using Content.Shared.SSDIndicator;
 using Robust.Shared.Player;
@@ -190,10 +193,22 @@ public sealed class MindSwapPowerSystem : EntitySystem
                 _popupSystem.PopupCursor("Ошибка! Ваша цель уже в другом теле!", performer);
                 return false; // Повторный свап!? TODO: chain swap, in current mode broken chained in no return (has no mind error)
             }
-
+/*
             if (HasComp<ActiveNPCComponent>(performer) || HasComp<ActiveNPCComponent>(target))
             {
                 _popupSystem.PopupCursor("Ошибка! Ваша цель в ссд!", performer);
+                return false;
+            }
+*/
+            if (HasComp<MindShieldComponent>(target))
+            {
+                _popupSystem.PopupCursor("Ошибка! Ваша цель имеет защиту разума!", performer);
+                return false;
+            }
+
+            if (HasComp<BlobCarrierComponent>(target) || HasComp<BlobCarrierComponent>(performer))
+            {
+                _popupSystem.PopupCursor("Ошибка! Ваша цель не стабильна!", performer);
                 return false;
             }
         }

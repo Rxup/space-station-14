@@ -91,6 +91,19 @@
     priority: -1
     checkCanInteract: false
 
+- type: entity
+  id: ActionAiShowCriminalRecords
+  name: Criminal Records Interface
+  description: View a criminal records interface.
+  noSpawn: true
+  components:
+  - type: InstantAction
+    icon: Corvax/Interface/AdminActions/communications.png # Corvax-Resprite
+    iconOn: Corvax/Interface/AdminActions/communications.png # Corvax-Resprite
+    keywords: [ "AI", "console", "interface" ]
+    priority: -10
+    event: !type:ToggleIntrinsicUIEvent { key: enum.CriminalRecordsConsoleKey.Key }
+
 
 - type: entity
   id: ActionOpenCloseRemote

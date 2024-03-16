@@ -49,7 +49,7 @@
   parent: JobIcon
   id: JobIconCCHeadOfSecurity
   icon:
-    sprite: Backmen/Icons/jobicon.rsi
+    sprite: /Textures/Backmen/Icons/jobicon.rsi
     state: Security
 
 - type: startingGear

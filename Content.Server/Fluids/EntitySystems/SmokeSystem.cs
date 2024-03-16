@@ -66,7 +66,6 @@ public sealed class SmokeSystem : EntitySystem
         SubscribeLocalEvent<SmokeComponent, ReactionAttemptEvent>(OnReactionAttempt);
         SubscribeLocalEvent<SmokeComponent, SolutionRelayEvent<ReactionAttemptEvent>>(OnReactionAttempt);
         SubscribeLocalEvent<SmokeComponent, SpreadNeighborsEvent>(OnSmokeSpread);
-        SubscribeLocalEvent<SmokeAffectedComponent, EntityUnpausedEvent>(OnAffectedUnpaused);
     }
 
     /// <inheritdoc/>
@@ -125,11 +124,6 @@ public sealed class SmokeSystem : EntitySystem
 
         if (smokeAffectedComponent != null)
             RemComp(args.OtherEntity, smokeAffectedComponent);
-    }
-
-    private void OnAffectedUnpaused(Entity<SmokeAffectedComponent> entity, ref EntityUnpausedEvent args)
-    {
-        entity.Comp.NextSecond += args.PausedTime;
     }
 
     private void OnSmokeSpread(Entity<SmokeComponent> entity, ref SpreadNeighborsEvent args)

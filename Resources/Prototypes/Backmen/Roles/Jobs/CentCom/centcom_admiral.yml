@@ -45,7 +45,7 @@
   parent: JobIcon
   id: JobIconNanotrasenHighOfficer
   icon:
-    sprite: Backmen/Icons/jobicon.rsi
+    sprite: /Textures/Backmen/Icons/jobicon.rsi
     state: Nanotrasen
 
 - type: entity

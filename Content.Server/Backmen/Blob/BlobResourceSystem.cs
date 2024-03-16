@@ -1,4 +1,6 @@
+using Content.Server.Backmen.Blob.Components;
 using Content.Shared.Backmen.Blob;
+using Content.Shared.Backmen.Blob.Components;
 using Content.Shared.FixedPoint;
 using Content.Shared.Popups;
 
@@ -32,7 +34,7 @@ public sealed class BlobResourceSystem : EntitySystem
 
         if (blobCoreComponent.CurrentChem == BlobChemType.RegenerativeMateria)
         {
-            points += FixedPoint2.New(1);
+            points += 1;
         }
 
         _blobCoreSystem.ChangeBlobPoint(blobTileComponent.Core.Value, points);
