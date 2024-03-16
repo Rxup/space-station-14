@@ -384,21 +384,23 @@
   name: набор "Огнемет М6"
   description: Огнемет имеющий шланг под специальный резервуар с огненой смесью, которая способна гореть даже в полном вакууме! Имеет в наборе 1 powerpack.
   icon: { sprite: Backmen/Objects/Weapons/Gunsx64/Flamethrowers/M6/big.rsi, state: icon }
-  productEntity: ClothingBackpackDuffelSyndicateFilledflamethrower
+  productEntity: CrateFlamethrowerBundle
   cost:
     Telecrystal: 12
   categories:
   - UplinkBundles
 
 - type: entity
-  parent: ClothingBackpackDuffelSyndicate
-  id: ClothingBackpackDuffelSyndicateFilledflamethrower
-  name: набор "Огнемет М6"
+  id: CrateFlamethrowerBundle
+  suffix: Filled
+  parent: CrateSyndicate
+  name: flamethrower bundle
+  description: Contains everything except a big gun to go postal.
   components:
-    - type: StorageFill
-      contents:
-        - id: WeaponflamethrowerSG
-        - id: PowerpackFlame
+  - type: StorageFill
+    contents:
+      - id: WeaponflamethrowerSG
+      - id: PowerpackFlame
 
 - type: listing
   id: UplinkFlamethrower
