@@ -55,8 +55,17 @@ public sealed class JoinQueueManager : Content.Corvax.Interfaces.Server.IServerJ
         _netManager.RegisterNetMessage<MsgQueueUpdate>();
 
         _cfg.OnValueChanged(Shared.Backmen.CCVar.CCVars.QueueEnabled, OnQueueCVarChanged, true);
+        _cfg.OnValueChanged(CCVars.SoftMaxPlayers, OnSoftMaxPlayerChanged);
         _playerManager.PlayerStatusChanged += OnPlayerStatusChanged;
         _discordAuthManager.PlayerVerified += OnPlayerVerified;
+    }
+
+    private int _softMaxPlayers = 30;
+
+    private void OnSoftMaxPlayerChanged(int val)
+    {
+        _softMaxPlayers = val;
+        ProcessQueue(false, DateTime.Now);
     }
 
     public void PostInitialize()
@@ -87,7 +96,7 @@ public sealed class JoinQueueManager : Content.Corvax.Interfaces.Server.IServerJ
 
         var isPrivileged = await _connectionManager.HavePrivilegedJoin(session.UserId);
         var currentOnline = _playerManager.PlayerCount - 1; // Do not count current session in general online, because we are still deciding her fate
-        var haveFreeSlot = currentOnline < _cfg.GetCVar(CCVars.SoftMaxPlayers);
+        var haveFreeSlot = currentOnline < _softMaxPlayers;
         if (isPrivileged || haveFreeSlot)
         {
             SendToGame(session);
@@ -129,7 +138,7 @@ public sealed class JoinQueueManager : Content.Corvax.Interfaces.Server.IServerJ
         if (isDisconnect)
             players--; // Decrease currently disconnected session but that has not yet been deleted
 
-        var haveFreeSlot = players < _cfg.GetCVar(CCVars.SoftMaxPlayers);
+        var haveFreeSlot = players < _softMaxPlayers;
         var queueContains = _queue.Count > 0;
         if (haveFreeSlot && queueContains)
         {
