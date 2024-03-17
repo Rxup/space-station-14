@@ -158,3 +158,23 @@
   name: Пристав
   job: Blueshield
   max: 1
+
+- type: constructionGraph
+  id: nullgraph
+  start: start
+  graph:
+    - node: start
+      edges:
+        - to: nullnode
+          completed:
+            - !type:SetAnchor
+              value: false
+          steps:
+            - material: Steel
+              amount: 5
+              doAfter: 2.5
+
+    - node: nullnode
+      actions:
+      - !type:AppearanceChange
+      entity: ComputerFrame
