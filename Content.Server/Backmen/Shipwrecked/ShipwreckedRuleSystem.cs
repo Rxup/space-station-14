@@ -53,7 +53,6 @@ using Content.Shared.CombatMode.Pacification;
 using Content.Shared.Corvax.TTS;
 using Content.Shared.Damage;
 using Content.Shared.Dataset;
-using Content.Shared.Decals;
 using Content.Shared.Doors.Components;
 using Content.Shared.FixedPoint;
 using Content.Shared.Ghost;
@@ -81,7 +80,6 @@ using Content.Shared.Zombies;
 using Robust.Server.Audio;
 using Robust.Server.Containers;
 using Robust.Server.GameObjects;
-using Robust.Server.GameStates;
 using Robust.Server.Maps;
 using Robust.Server.Player;
 using Robust.Shared.Audio;
@@ -1379,7 +1377,7 @@ public sealed class ShipwreckedRuleSystem : GameRuleSystem<ShipwreckedRuleCompon
             if (!AttachMap(EntityUid.Invalid, component, true))
             {
                 _gameTicker.EndGameRule(uid, gameRule);
-                throw new ArgumentException("Неправильная карта! Отмена!");
+                throw new ArgumentException("Wrong planet map! Emergency round restart!");
             }
 
         }
@@ -1909,7 +1907,7 @@ public sealed class ShipwreckedRuleSystem : GameRuleSystem<ShipwreckedRuleCompon
 
         DispatchShuttleAnnouncement(Loc.GetString("shipwrecked-hecate-shuttle-prepare-for-launch"),
             rule);
-		// Some cool music from qwertyqwerty so our travellers will know that it's time to run
+		// Some cool music from qwertyqwerty so our travellers will know that it's time to run.
 		_audioSystem.PlayGlobal("/Audio/Backmen/Misc/hierophant.ogg", Filter.Broadcast(), true);
 
         rule.NextEventTick = _gameTiming.CurTime + TimeSpan.FromMinutes(3);
