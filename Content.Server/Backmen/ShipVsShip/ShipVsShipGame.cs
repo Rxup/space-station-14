@@ -312,6 +312,7 @@ public sealed class ShipVsShipGame : GameRuleSystem<ShipVsShipGameComponent>
                 }
 
                 ct[team]++;
+                doRefresh = true;
                 playerInRole.Add(user.Value.Key, (job, stationUid));
             }
 

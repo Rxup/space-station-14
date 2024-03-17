@@ -1,10 +1,9 @@
 [game]
 # Straight in-game baby
-lobbyenabled = true
+lobbyenabled = false
 # Dev map for faster loading & convenience
-#map = "Dev"
+map = "Dev"
 role_timers = false
-defaultpreset = "ShipVsShip"
 
 [gateway]
 generator_enabled = false
