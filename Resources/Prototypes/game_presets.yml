@@ -141,6 +141,7 @@
     - Traitor
     - BasicStationEventScheduler
     - BasicRoundstartVariation
+    - WageScheduler #backmen: currency
 
 - type: gamePreset
   id: Revolutionary
@@ -156,6 +157,7 @@
     - SubGamemodesRule
     - BasicStationEventScheduler
     - BasicRoundstartVariation
+    - WageScheduler #backmen: currency
 
 - type: gamePreset
   id: Zombie

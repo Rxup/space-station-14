@@ -1,4 +1,5 @@
-﻿using Content.Shared.Roles;
+﻿using Content.Shared.Backmen.ShipVsShip;
+using Content.Shared.Roles;
 using Robust.Shared.Prototypes;
 
 namespace Content.Server.Backmen.ShipVsShip.Components;
@@ -14,11 +15,4 @@ public sealed partial class StationTeamMarkerComponent : Component
 
     [DataField("requireJobs")]
     public HashSet<ProtoId<JobPrototype>> RequireJobs = new();
-}
-
-public enum StationTeamMarker
-{
-    Neutral,
-    TeamA,
-    TeamB
 }
