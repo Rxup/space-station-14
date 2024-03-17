@@ -1,7 +1,9 @@
 ﻿using System.Linq;
 using Content.Server.Connection;
+using Content.Server.GameTicking;
 using Content.Shared.Backmen.JoinQueue;
 using Content.Shared.CCVar;
+using Content.Shared.GameTicking;
 using Prometheus;
 using Robust.Server.Player;
 using Robust.Shared.Configuration;
@@ -88,7 +90,12 @@ public sealed class JoinQueueManager : Content.Corvax.Interfaces.Server.IServerJ
         var isPrivileged = await _connectionManager.HavePrivilegedJoin(session.UserId);
         var currentOnline = _playerManager.PlayerCount - 1; // Do not count current session in general online, because we are still deciding her fate
         var haveFreeSlot = currentOnline < _cfg.GetCVar(CCVars.SoftMaxPlayers);
-        if (isPrivileged || haveFreeSlot)
+
+        var wasInGame = _entityManager.TrySystem<GameTicker>(out var ticker) &&
+                        ticker.PlayerGameStatuses.TryGetValue(session.UserId, out var status) &&
+                        status == PlayerGameStatus.JoinedGame;
+
+        if (isPrivileged || haveFreeSlot || wasInGame)
         {
             SendToGame(session);
 
