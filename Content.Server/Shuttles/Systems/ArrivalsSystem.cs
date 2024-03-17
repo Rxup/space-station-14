@@ -315,6 +315,11 @@ public sealed class ArrivalsSystem : EntitySystem
         if (!Enabled || _ticker.RunLevel != GameRunLevel.InRound)
             return;
 
+        // start-backmen: mini games
+        if(_ticker.CurrentPreset?.IsMiniGame ?? false)
+            return;
+        // end-backmen: mini games
+
         if (!HasComp<StationArrivalsComponent>(ev.Station))
             return;
 
