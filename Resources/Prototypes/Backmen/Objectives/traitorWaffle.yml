@@ -16,6 +16,7 @@
       - MI13
       - Donk
       - Interdyne
+      - Gorlex
   - type: Tag
     tags:
     - Waffle
@@ -28,7 +29,7 @@
   parent: BaseTraitorObjectiveWaffle
   id: DieObjectiveWaffle
   name: Умрите смертью храбрых
-  description: Умри.
+  description: Умри с честью и достоинством.
   components:
   - type: Objective
     difficulty: 0.5
@@ -45,6 +46,7 @@
       - MI13
       - Donk
       - Interdyne
+      - Gorlex
   - type: DieCondition
 
 # kill
@@ -53,7 +55,7 @@
   noSpawn: true
   parent: [BaseTraitorObjectiveWaffle, BaseKillObjective]
   id: KillRandomPersonObjectiveWaffle
-  description: Do it however you like, just make sure they don't make it to centcom.
+  description: Он видел то чего не следует, нужно чтоб он больше не увидел белого света.
   components:
   - type: Objective
     difficulty: 1.75
@@ -68,7 +70,7 @@
   noSpawn: true
   parent: [BaseTraitorObjectiveWaffle, BaseKillObjective]
   id: KillRandomHeadObjectiveWaffle
-  description: We need this head gone and you probably know why. Good luck, agent.
+  description: Этот глава явно что-то знает, нельзя допустить чтоб он выжил.
   components:
   - type: Objective
     difficulty: 3.0

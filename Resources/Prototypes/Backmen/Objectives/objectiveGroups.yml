@@ -33,6 +33,9 @@
     #Interdyne
     KillRandomPersonObjectiveInterdyne: 1
     KillRandomHeadObjectiveInterdyne: 0.25
+    #Gorlex
+    KillRandomPersonObjectiveGorlex: 0.5
+    KillRandomHeadObjectiveGorlex: 0.25
 
 - type: weightedRandom
   id: TraitorObjectiveGroupStateSyndicateFactions
@@ -47,6 +50,8 @@
     EscapeShuttleObjectiveDonk: 1
     #Interdyne
     EscapeShuttleObjectiveInterdyne: 1
+    #Gorlex
+    HijackShuttleObjectiveGorlex: 0.02
 
 - type: weightedRandom
   id: TraitorObjectiveGroupSocialSyndicateFactions
