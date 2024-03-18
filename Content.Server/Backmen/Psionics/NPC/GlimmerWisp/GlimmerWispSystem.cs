@@ -10,6 +10,7 @@ using Content.Shared.Rejuvenate;
 using Content.Shared.ActionBlocker;
 using Content.Shared.Pulling.Components;
 using Content.Server.Popups;
+using Content.Shared.NPC.Systems;
 using Robust.Server.Audio;
 using Robust.Shared.Player;
 using Robust.Shared.Utility;

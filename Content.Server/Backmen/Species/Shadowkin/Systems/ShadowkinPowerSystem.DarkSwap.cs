@@ -18,6 +18,8 @@ using Content.Shared.Damage;
 using Content.Shared.Damage.Components;
 using Content.Shared.Eye;
 using Content.Shared.Ghost;
+using Content.Shared.NPC.Components;
+using Content.Shared.NPC.Systems;
 using Content.Shared.Stealth;
 using Content.Shared.Stealth.Components;
 using Robust.Server.GameObjects;
@@ -317,7 +319,7 @@ public sealed class ShadowkinDarkSwapSystem : EntitySystem
                 return;
 
             // Copy the suppressed factions to the power component
-            component.SuppressedFactions = factions.Factions.ToList();
+            component.SuppressedFactions = factions.Factions.Select(x=>x.Id).ToList();
 
             // Remove the factions from the entity
             foreach (var faction in factions.Factions)
