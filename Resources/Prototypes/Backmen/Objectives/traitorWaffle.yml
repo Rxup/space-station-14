@@ -1,0 +1,80 @@
+- type: entity
+  abstract: true
+  parent: BaseObjective
+  id: BaseTraitorObjectiveWaffle
+  components:
+  - type: RoleRequirement
+    roles:
+      components:
+      - TraitorRole
+  - type: Objective
+    issuer: Waffle Corporation
+  - type: ObjectiveBlacklistRequirement
+    blacklist:
+      tags:
+      - Cybersan
+      - MI13
+      - Donk
+      - Interdyne
+  - type: Tag
+    tags:
+    - Waffle
+
+- type: Tag
+  id: Waffle
+
+- type: entity
+  noSpawn: true
+  parent: BaseTraitorObjectiveWaffle
+  id: DieObjectiveWaffle
+  name: Умрите смертью храбрых
+  description: Умри.
+  components:
+  - type: Objective
+    difficulty: 0.5
+    icon:
+      sprite: Mobs/Ghosts/ghost_human.rsi
+      state: icon
+  - type: ObjectiveBlacklistRequirement
+    blacklist:
+      components:
+      - EscapeShuttleCondition
+      - StealCondition
+      tags:
+      - Cybersan
+      - MI13
+      - Donk
+      - Interdyne
+  - type: DieCondition
+
+# kill
+
+- type: entity
+  noSpawn: true
+  parent: [BaseTraitorObjectiveWaffle, BaseKillObjective]
+  id: KillRandomPersonObjectiveWaffle
+  description: Do it however you like, just make sure they don't make it to centcom.
+  components:
+  - type: Objective
+    difficulty: 1.75
+    unique: false
+  - type: TargetObjective
+    title: objective-condition-kill-person-title
+  - type: PickRandomPerson
+  - type: KillPersonCondition
+    requireDead: true
+
+- type: entity
+  noSpawn: true
+  parent: [BaseTraitorObjectiveWaffle, BaseKillObjective]
+  id: KillRandomHeadObjectiveWaffle
+  description: We need this head gone and you probably know why. Good luck, agent.
+  components:
+  - type: Objective
+    difficulty: 3.0
+    unique: false
+  - type: TargetObjective
+    title: objective-condition-kill-head-title
+  - type: PickRandomHead
+  - type: KillPersonCondition
+    requireDead: true
