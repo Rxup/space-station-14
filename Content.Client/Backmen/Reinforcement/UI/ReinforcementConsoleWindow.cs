@@ -126,7 +126,7 @@ public sealed partial class ReinforcementConsoleWindow : FancyWindow
                 if (cur < min)
                 {
                     OnKeySelected.Invoke((uint)member, (uint)min);
-                    cur = min;
+                    r.ModelCount = cur = min;
                 }
 
                 r.JobName.Text = Loc.GetString("reinforcement-row", ("name", Loc.GetString(r.Model!.Name)), ("job", jobTitle));
@@ -179,6 +179,7 @@ public sealed partial class ReinforcementConsoleWindow : FancyWindow
             }
 
             r.PlusBtn.Disabled = max <= cur || r.Model?.MaxCount <= r.ModelCount;
+            r.MinusBtn.Disabled = r.Model?.MinCount >= r.ModelCount;
         }
     }
 

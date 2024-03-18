@@ -1,7 +1,9 @@
 <Document>
 # Arachne
 
-[color=#FF0000]Arachne are disabled for character creation.[/color]
+  <Box>
+    <GuideEntityEmbed Entity="MobArachneClassic" Caption=""/>
+  </Box>
 
 [color=#66bbff]Arachne can be achieved via the metem machine.[/color]
 

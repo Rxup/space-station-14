@@ -1,21 +1,23 @@
 <Document>
-# Oni
+# Они
 
-[color=#FF0000]Oni are disabled for character creation.[/color]
+  <Box>
+    <GuideEntityEmbed Entity="MobOni" Caption=""/>
+  </Box>
 
-[color=#66bbff]Oni can be achieved via the metem machine.[/color]
+[color=#66bbff]Они могут быть достигнуты через метем-машина.[/color]
 
-Oni are taller, much stronger humans with horns.
+Они выше, намного сильнее людей и обладают рогами.
 
-## Ability Differences
+## Различия в способностях
 
-- Very strong.
-- Slightly less blunt damage.
-- Slightly less slash damage.
-- Slightly less piercing damage.
+- Очень сильны.
+- Немного меньше урона от тупого оружия.
+- Немного меньше урона от рубящего оружия.
+- Немного меньше проникающего урона.
 
-## Physical Differences
+## Физические отличия
 
-- Several horn markings.
-- Tall
+- Несколько роговых отметин.
+- Высокие.
 </Document>

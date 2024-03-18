@@ -32,13 +32,23 @@
 
 - type: latheRecipe
   id: WeaponLaserCarbine
-  result: WeaponEarthGovLaserRifle
+  result: WeaponEarthGovLaserCarbine
   category: Weapons
   completetime: 8
   materials:
     Steel: 2000
     Glass: 800
     Plastic: 500
+
+- type: latheRecipe
+  id: WeaponLaserPistol
+  result: WeaponEarthGovLaserPistol
+  category: Weapons
+  completetime: 8
+  materials:
+    Steel: 500
+    Glass: 100
+    Plastic: 200
 
 - type: latheRecipe
   id: WeaponAdvancedLaser
@@ -136,6 +146,24 @@
     Glass: 100
     Plastic: 200
     Steel: 100
+
+- type: latheRecipe
+  id: GrenadeTearGas
+  result: GrenadeTearGas
+  category: Ammo
+  completetime: 5
+  materials:
+    Plastic: 15
+    Steel: 10
+
+- type: latheRecipe
+  id: GrenadeNonletal
+  result: GrenadeNonletal
+  category: Ammo
+  completetime: 5
+  materials:
+    Plastic: 20
+    Steel: 10
 
 - type: latheRecipe
   id: ShellShotgunBeanbag

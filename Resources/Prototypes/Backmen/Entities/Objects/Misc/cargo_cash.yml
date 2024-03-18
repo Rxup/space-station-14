@@ -1,0 +1,71 @@
+﻿- type: entity
+  parent: BaseItem
+  id: CargoCash
+  name: Векселя
+  description: Деньги Станции
+  components:
+  - type: Cash
+  - type: Item
+    shape:
+    - 0,0,1,0
+    storedOffset: 0,-2
+  - type: Material
+  - type: PhysicalComposition
+    materialComposition:
+      BillOfExchange: 1
+  - type: StaticPrice
+    price: 0
+  - type: Stack
+    stackType: Credit
+    count: 1
+    baseLayer: base
+    layerStates:
+    - cash
+    - cash_10
+    - cash_100
+    - cash_500
+    - cash_1000
+    - cash_1000000
+  - type: Sprite
+    sprite: Objects/Economy/cash.rsi
+    state: cash
+    layers:
+    - state: cash
+      map: ["base"]
+  - type: Physics
+    bodyType: Dynamic
+  - type: Fixtures
+    fixtures:
+      fix1:
+        density: 30
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.35,-0.2,0.25,0.1"
+        mask:
+        - ItemMask
+  - type: Appearance
+
+- type: material
+  id: BillOfExchange
+  name: вексель
+  unit: materials-unit-bill-of-exchange
+  stackEntity: SpaceCash
+  icon: { sprite: /Textures/Objects/Economy/cash.rsi, state: cash }
+  price: 1
+
+- type: stack
+  id: BillOfExchange
+  name: вексель
+  icon: { sprite: /Textures/Objects/Economy/cash.rsi, state: cash }
+  spawn: CargoCash
+
+- type: entity
+  parent: CargoCash
+  id: CargoCash5000
+  suffix: 5000
+  components:
+  - type: Icon
+    sprite: Objects/Economy/cash.rsi
+    state: cash_1000
+  - type: Stack
+    count: 5000

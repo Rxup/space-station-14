@@ -10,7 +10,7 @@
         params:
             volume: -4
       color: Green
-      shuttleTime: 1200
+      shuttleTime: 600
     blue:
       announcement: alert-level-blue-announcement
       sound:

@@ -1,4 +1,5 @@
-﻿using Content.Shared.Backmen.Economy;
+﻿using System.Linq;
+using Content.Shared.Backmen.Economy;
 using Content.Shared.FixedPoint;
 using Content.Shared.GameTicking;
 using Content.Shared.Roles;
@@ -62,7 +63,7 @@ public sealed class WageManagerSystem : EntitySystem
 
     public void OnPayday(WagePaydayEvent ev)
     {
-        foreach (var payout in PayoutsList)
+        foreach (var payout in PayoutsList.ToArray())
         {
             // бонусная зп на отдел?
             if (ev.WhiteListTo.Count > 0 && !ev.WhiteListTo.Contains(payout.ToAccountNumber))
@@ -70,6 +71,12 @@ public sealed class WageManagerSystem : EntitySystem
                 continue;
             }
             var val = ev.Value ?? payout.PayoutAmount;
+
+            if (TerminatingOrDeleted(payout.ToAccountNumber) || TerminatingOrDeleted(payout.FromAccountNumber))
+            {
+                PayoutsList.Remove(payout);
+                continue;
+            }
 
             _bankManagerSystem.TryTransferFromToBankAccount(
                 payout.FromAccountNumber,
