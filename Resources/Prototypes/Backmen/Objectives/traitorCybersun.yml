@@ -28,7 +28,7 @@
   parent: [BaseTraitorObjectiveCybersan, BaseLivingObjective]
   id: EscapeShuttleObjectiveCybersan
   name: Улететь на Центком живым и свободным.
-  description: Один из наших агентов под прикрытием допросит вас по прибытии. Не дайте себя арестовать.
+  description: Мы спрятали под горшком на центкоме поддельные документы для того чтоб вы ушли спокойно, ожидайте нас на месте выдачи задания для получения награды.
   components:
   - type: Objective
     difficulty: 1.3

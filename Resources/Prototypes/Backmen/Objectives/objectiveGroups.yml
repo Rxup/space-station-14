@@ -47,6 +47,8 @@
     EscapeShuttleObjectiveDonk: 1
     #Interdyne
     EscapeShuttleObjectiveInterdyne: 1
+    #Gorlex
+    HijackShuttleObjectiveGorlex: 0.02
 
 - type: weightedRandom
   id: TraitorObjectiveGroupSocialSyndicateFactions
