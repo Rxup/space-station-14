@@ -164,11 +164,11 @@
     sprite: Backmen/Objects/Weapons/Gunsx64/Battery/EG-C/tiny.rsi
     size: Large
   - type: GunWieldBonus
-    minAngle: -10
-    maxAngle: -30
+    minAngle: -6
+    maxAngle: -44
   - type: Gun
-    minAngle: 15
-    maxAngle: 40
+    minAngle: 7
+    maxAngle: 45
     fireRate: 4
     selectedMode: SemiAuto
     availableModes:
@@ -208,12 +208,9 @@
     - state: mag-unshaded-2
       map: ["enum.GunVisualLayers.MagUnshaded"]
       shader: unshaded
-  - type: Battery
-    maxCharge: 800
-    startingCharge: 800
   - type: HitscanBatteryAmmoProvider
     proto: RedLaser
-    fireCost: 50
+    fireCost: 62.5
   - type: MagazineVisuals
     magState: mag
     steps: 3
