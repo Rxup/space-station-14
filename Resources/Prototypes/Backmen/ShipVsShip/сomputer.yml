@@ -1,0 +1,53 @@
+﻿- type: entity
+  id: ComputerShipyardTeamA
+  parent: ComputerShipyard
+  name: shipyard console
+  suffix: Team A
+  description: Used to purchase and sell shuttles
+  components:
+  - type: AccessReader
+    access: [["Captain"], ["CentralCommand"]]
+  - type: Damageable
+    damageContainer: StructuralInorganic
+    damageModifierSet: StructuralMetallicStrong
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 1000
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: GlassBreak
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+  - type: ShipyardConsole
+    allowedGroup:
+    - TeamA
+
+- type: entity
+  id: ComputerShipyardTeamB
+  parent: ComputerShipyard
+  name: shipyard console
+  suffix: Team B
+  description: Used to purchase and sell shuttles
+  components:
+  - type: AccessReader
+    access: [["Captain"], ["CentralCommand"]]
+  - type: Damageable
+    damageContainer: StructuralInorganic
+    damageModifierSet: StructuralMetallicStrong
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 1000
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: GlassBreak
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+  - type: ShipyardConsole
+    allowedGroup:
+    - TeamB
