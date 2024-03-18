@@ -16,7 +16,6 @@
       - Waffle
       - MI13
       - Donk
-      - Gorlex
   - type: Tag
     tags:
     - Interdyne
@@ -31,7 +30,7 @@
   parent: [BaseTraitorObjectiveInterdyne, BaseLivingObjective]
   id: EscapeShuttleObjectiveInterdyne
   name: Улететь на Центком живым и свободным.
-  description: По прилету на центком ожидайте наш торговый транспортник, скажите сотрудникам на борту кодовые слова и они вас заберут.
+  description: Один из наших агентов под прикрытием допросит вас по прибытии. Не дайте себя арестовать.
   components:
   - type: Objective
     difficulty: 1.3

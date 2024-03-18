@@ -16,7 +16,6 @@
       - Waffle
       - MI13
       - Interdyne
-      - Gorlex
   - type: Tag
     tags:
     - Donk
@@ -56,7 +55,7 @@
   noSpawn: true
   parent: [BaseTraitorObjectiveDonk, BaseKillObjective]
   id: KillRandomPersonObjectiveDonk
-  description: Он может помешать нам, просто не дайте ему достигнуть центкома.
+  description: Do it however you like, just make sure they don't make it to centcom.
   components:
   - type: Objective
     difficulty: 1.75

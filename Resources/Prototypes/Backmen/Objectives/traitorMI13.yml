@@ -16,7 +16,6 @@
       - Waffle
       - Donk
       - Interdyne
-      - Gorlex
   - type: Tag
     tags:
     - MI13
@@ -29,7 +28,7 @@
   parent: [BaseTraitorObjectiveMI13, BaseLivingObjective]
   id: EscapeShuttleObjectiveMI13
   name: Улететь на Центком живым и свободным.
-  description: Один из наших агентов ожидает вас на центкоме, проследите что за вами нет хвоста.
+  description: Один из наших агентов под прикрытием допросит вас по прибытии. Не дайте себя арестовать.
   components:
   - type: Objective
     difficulty: 1.3
@@ -44,7 +43,7 @@
   noSpawn: true
   parent: [BaseTraitorObjectiveMI13, BaseKillObjective]
   id: KillRandomHeadObjectiveMI13
-  description: Нам нужно, чтобы этот глава исчез, и вы, вероятно, знаете, почему. Удачи, оперативник.
+  description: We need this head gone and you probably know why. Good luck, agent.
   components:
   - type: Objective
     difficulty: 3.0
@@ -72,7 +71,7 @@
   noSpawn: true
   parent: [BaseTraitorSocialObjectiveMI13, BaseKeepAliveObjective]
   id: RandomTraitorAliveObjectiveMI13
-  description: Раскрывать себя или нет — решайте сами. Нам нужно, чтобы он выжил.
+  description: Identify yourself at your own risk. We just need them alive.
   components:
   - type: Objective
     difficulty: 1.75
@@ -84,7 +83,7 @@
   noSpawn: true
   parent: [BaseTraitorSocialObjectiveMI13, BaseHelpProgressObjective]
   id: RandomTraitorProgressObjectiveMI13
-  description: Раскрывать себя или нет — решайте сами. Нам нужно, чтобы он преуспел.
+  description: Identify yourself at your own risk. We just need them to succeed.
   components:
   - type: Objective
     difficulty: 2.5
