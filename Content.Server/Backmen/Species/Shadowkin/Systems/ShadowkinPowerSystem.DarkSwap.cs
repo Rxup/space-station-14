@@ -18,6 +18,8 @@ using Content.Shared.Damage;
 using Content.Shared.Damage.Components;
 using Content.Shared.Eye;
 using Content.Shared.Ghost;
+using Content.Shared.NPC.Components;
+using Content.Shared.NPC.Systems;
 using Content.Shared.Stealth;
 using Content.Shared.Stealth.Components;
 using Robust.Server.GameObjects;

@@ -3,6 +3,7 @@ using Content.Server.Backmen.Eye;
 using Content.Server.NPC.Systems;
 using Content.Shared.Backmen.Abilities.Psionics;
 using Content.Shared.Eye;
+using Content.Shared.NPC.Systems;
 using Robust.Shared.Containers;
 using Robust.Server.GameObjects;
 

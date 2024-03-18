@@ -19,6 +19,8 @@ using Content.Shared.Backmen.Blob.Components;
 using Content.Shared.Damage;
 using Content.Shared.Mind.Components;
 using Content.Shared.Mobs;
+using Content.Shared.NPC.Components;
+using Content.Shared.NPC.Systems;
 using Content.Shared.Physics;
 using Content.Shared.Tag;
 using Robust.Shared.Audio.Systems;
