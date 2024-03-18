@@ -67,7 +67,7 @@
   cost:
     Telecrystal: 8
   categories:
-    - UplinkMisc
+  - UplinkChemicals
   conditions:
     - !type:BuyerSpeciesCondition
       whitelist:
@@ -117,3 +117,23 @@
     Telecrystal: 5
   categories:
   - UplinkImplants
+
+- type: listing
+  id: UplinkPsiGrenadeBundle
+  name: uplink-psi-grenade-bundle-name
+  description: uplink-psi-grenade-bundle-desc
+  productEntity: ClothingBackpackDuffelSyndicatePsiGrenadeBundle
+  cost:
+    Telecrystal: 1
+  categories:
+  - UplinkAllies
+
+- type: listing
+  id: UplinkAntiPsiGrenadeBundle
+  name: uplink-anti-psi-grenade-bundle-name
+  description: uplink-anti-psi-grenade-bundle-desc
+  productEntity: ClothingBackpackDuffelSyndicateAntiPsiGrenadeBundle
+  cost:
+    Telecrystal: 2
+  categories:
+  - UplinkAllies

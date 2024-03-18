@@ -45,7 +45,7 @@
   cost: 7500
   recipeUnlocks:
   - WeaponLaserCarbine
-  - WeaponEarthGovLaserPistol # backmen
+  - WeaponLaserPistol
 
 - type: technology
   id: NonlethalAmmunition
@@ -58,6 +58,8 @@
   cost: 5000
   recipeUnlocks:
   - ShellShotgunBeanbag
+  - GrenadeTearGas
+  - GrenadeNonletal
   - CartridgePistolRubber
   - CartridgeMagnumRubber
   - CartridgeLightRifleRubber
@@ -150,7 +152,7 @@
 - type: technology
   id: BasicShuttleArmament
   name: research-technology-basic-shuttle-armament
-  icon: 
+  icon:
     sprite: Structures/Power/cage_recharger.rsi
     state: full
   discipline: Arsenal
@@ -193,11 +195,11 @@
   cost: 15000
   recipeUnlocks:
   - WeaponLaserSvalinn
-  
+
 - type: technology
   id: AdvancedShuttleWeapon
   name: research-technology-advanced-shuttle-weapon
-  icon: 
+  icon:
     sprite: Objects/Weapons/Guns/Ammunition/Magazine/Grenade/grenade_cartridge.rsi
     state: icon
   discipline: Arsenal

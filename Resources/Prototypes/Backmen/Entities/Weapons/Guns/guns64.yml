@@ -138,6 +138,10 @@
   - type: Wieldable
   - type: UseDelay
     delay: 2.5
+  - type: ClothingSpeedModifier
+    walkModifier: 1
+    sprintModifier: 0.6
+  - type: HeldSpeedModifier
 
 - type: entity
   name: EarthGov laser carbine
@@ -327,6 +331,10 @@
   - type: Item
     sprite: Backmen/Objects/Weapons/Gunsx64/Pistols/acp14/tiny.rsi
   - type: Gun
+    angleIncrease: 2
+    angleDecay: 10
+    maxAngle: 15
+    minAngle: 1
     selectedMode: SemiAuto
     availableModes:
       - SemiAuto
@@ -373,6 +381,10 @@
   - type: Item
     sprite: Backmen/Objects/Weapons/Gunsx64/Pistols/vp78/tiny.rsi
   - type: Gun
+    angleIncrease: 2
+    angleDecay: 10
+    maxAngle: 15
+    minAngle: 1
     selectedMode: FullAuto
     availableModes:
       - FullAuto
@@ -420,6 +432,10 @@
   - type: Item
     sprite: Backmen/Objects/Weapons/Gunsx64/Pistols/deagle/tiny.rsi
   - type: Gun
+    angleDecay: 15
+    angleIncrease: 10
+    maxAngle: 15
+    minAngle: 1
     selectedMode: SemiAuto
     availableModes:
       - SemiAuto
@@ -511,6 +527,10 @@
   - type: Item
     sprite: Backmen/Objects/Weapons/Gunsx64/Pistols/glock22/tiny.rsi
   - type: Gun
+    angleDecay: 7
+    angleIncrease: 2
+    maxAngle: 15
+    minAngle: 1
     soundGunshot:
       path: /Audio/Weapons/Guns64/Pistols/beretta_shot.ogg
     soundEmpty:
@@ -573,6 +593,10 @@
   - type: Item
     sprite: Backmen/Objects/Weapons/Gunsx64/Pistols/hi_power_br/tiny.rsi
   - type: Gun
+    angleDecay: 15
+    angleIncrease: 5
+    maxAngle: 15
+    minAngle: 1
     soundGunshot:
       path: /Audio/Weapons/Guns64/Pistols/vp70_shot.ogg
     soundEmpty:
@@ -617,6 +641,10 @@
   - type: Item
     sprite: Backmen/Objects/Weapons/Gunsx64/Pistols/service_pistol23/tiny.rsi
   - type: Gun
+    angleDecay: 15
+    angleIncrease: 5
+    maxAngle: 15
+    minAngle: 1
     selectedMode: SemiAuto
     availableModes:
       - SemiAuto
@@ -829,10 +857,12 @@
     sprite: Backmen/Objects/Weapons/Gunsx64/Rifles/akms/tiny.rsi
   - type: GunWieldBonus
     minAngle: -23
-    maxAngle: -43
+    maxAngle: 0
   - type: Gun
+    angleDecay: 20
+    angleIncrease: 2
     minAngle: 24
-    maxAngle: 45
+    maxAngle: 35
     fireRate: 5
     soundGunshot:
       path: /Audio/Weapons/Guns64/Rifles/ak47.ogg
@@ -886,8 +916,10 @@
     size: NormalLarge
   - type: GunWieldBonus
     minAngle: -23
-    maxAngle: -43
+    maxAngle: 0
   - type: Gun
+    angleDecay: 20
+    angleIncrease: 5
     minAngle: 24
     maxAngle: 45
     fireRate: 5
@@ -945,8 +977,10 @@
     sprite: Backmen/Objects/Weapons/Gunsx64/Rifles/ar18/tiny.rsi
   - type: GunWieldBonus
     minAngle: -23
-    maxAngle: -43
+    maxAngle: 0
   - type: Gun
+    angleDecay: 20
+    angleIncrease: 3
     minAngle: 24
     maxAngle: 45
     soundGunshot:
@@ -1004,8 +1038,10 @@
     sprite: Backmen/Objects/Weapons/Gunsx64/Rifles/g36/tiny.rsi
   - type: GunWieldBonus
     minAngle: -23
-    maxAngle: -43
+    maxAngle: 0
   - type: Gun
+    angleDecay: 20
+    angleIncrease: 2
     minAngle: 24
     maxAngle: 45
     soundGunshot:
@@ -1063,8 +1099,10 @@
     sprite: Backmen/Objects/Weapons/Gunsx64/Rifles/m28/tiny.rsi
   - type: GunWieldBonus
     minAngle: -23
-    maxAngle: -43
+    maxAngle: 0
   - type: Gun
+    angleDecay: 30
+    angleIncrease: 2
     minAngle: 24
     maxAngle: 45
     soundGunshot:
@@ -1103,6 +1141,22 @@
     delay: 1.5
 
 - type: entity
+  parent: WeaponRifleM28
+  id: WeaponRifleM28Rubber
+  components:
+  - type: ItemSlots
+    slots:
+      gun_magazine:
+        name: Magazine
+        startingItem: MagazineRifleRubber
+        insertSound: /Audio/Weapons/Guns64/Rifles/m28_reload.ogg
+        ejectSound: /Audio/Weapons/Guns64/Rifles/m28_unload.ogg
+        priority: 2
+        whitelist:
+          tags:
+            - MagazineRifle
+
+- type: entity
   name: STG 44
   parent: BaseWeaponRifle
   id: WeaponRifleSTG44
@@ -1122,8 +1176,10 @@
     sprite: Backmen/Objects/Weapons/Gunsx64/Rifles/stg44/tiny.rsi
   - type: GunWieldBonus
     minAngle: -23
-    maxAngle: -43
+    maxAngle: 0
   - type: Gun
+    angleDecay: 15
+    angleIncrease: 2
     minAngle: 24
     maxAngle: 45
     fireRate: 8
@@ -1181,8 +1237,10 @@
     sprite: Backmen/Objects/Weapons/Gunsx64/Rifles/m16/tiny.rsi
   - type: GunWieldBonus
     minAngle: -23
-    maxAngle: -43
+    maxAngle: 0
   - type: Gun
+    angleDecay: 15
+    angleIncrease: 3
     minAngle: 24
     maxAngle: 45
     soundGunshot:
@@ -1238,12 +1296,19 @@
     sprite: Backmen/Objects/Weapons/Gunsx64/Rifles/famas/tiny.rsi
   - type: GunWieldBonus
     minAngle: -23
-    maxAngle: -43
+    maxAngle: 0
   - type: Gun
+    angleDecay: 30
+    angleIncrease: 5
     minAngle: 24
     maxAngle: 45
+    fireRate: 14
     soundGunshot:
       path: /Audio/Weapons/Guns64/Rifles/famas.ogg
+    selectedMode: Burst
+    availableModes:
+      - SemiAuto
+      - Burst
   - type: ItemSlots
     slots:
       gun_magazine:
@@ -1295,8 +1360,10 @@
     sprite: Backmen/Objects/Weapons/Gunsx64/SMGs/mp5/tiny.rsi
   - type: GunWieldBonus
     minAngle: -22
-    maxAngle: -28
+    maxAngle: 0
   - type: Gun
+    angleDecay: 20
+    angleIncrease: 5
     minAngle: 24
     maxAngle: 45
     fireRate: 6
@@ -1365,11 +1432,13 @@
   - type: Item
     sprite: Backmen/Objects/Weapons/Gunsx64/SMGs/mp7/tiny.rsi
   - type: GunWieldBonus
-    minAngle: -22
-    maxAngle: -28
+    minAngle: -10
+    maxAngle: 0
   - type: Gun
-    minAngle: 24
-    maxAngle: 45
+    angleDecay: 20
+    angleIncrease: 3
+    minAngle: 14
+    maxAngle: 35
     fireRate: 8
     soundGunshot:
       path: /Audio/Weapons/Guns64/SMGs/mp7.ogg
@@ -1422,6 +1491,8 @@
     minAngle: -22
     maxAngle: -28
   - type: Gun
+    angleDecay: 40
+    angleIncrease: 5
     minAngle: 24
     maxAngle: 45
     fireRate: 10
@@ -1469,8 +1540,10 @@
     - state: mag-0
       map: ["enum.GunVisualLayers.Mag"]
   - type: Gun
+    angleDecay: 40
+    angleIncrease: 7
     minAngle: 2
-    maxAngle: 56
+    maxAngle: 36
     fireRate: 7
     soundGunshot:
       path: /Audio/Weapons/Guns64/SMGs/skorpion.ogg
@@ -1521,8 +1594,10 @@
     sprite: Backmen/Objects/Weapons/Gunsx64/SMGs/mp38/tiny.rsi
   - type: GunWieldBonus
     minAngle: -22
-    maxAngle: -28
+    maxAngle: 0
   - type: Gun
+    angleDecay: 20
+    angleIncrease: 2
     minAngle: 24
     maxAngle: 45
     fireRate: 5
@@ -1671,8 +1746,8 @@
   - type: Gun
     minAngle: 2
     maxAngle: 46
-    angleIncrease: 9
-    angleDecay: 36
+    angleDecay: 40
+    angleIncrease: 7
     fireRate: 12
     soundGunshot:
       path: /Audio/Weapons/Guns64/SMGs/uzi.ogg
@@ -1723,8 +1798,10 @@
     sprite: Backmen/Objects/Weapons/Gunsx64/SMGs/ppsh41/tiny.rsi
   - type: GunWieldBonus
     minAngle: -22
-    maxAngle: -28
+    maxAngle: 0
   - type: Gun
+    angleDecay: 40
+    angleIncrease: 7
     minAngle: 24
     maxAngle: 45
     fireRate: 9
@@ -1775,8 +1852,10 @@
       map: ["enum.GunVisualLayers.Mag"]
   - type: GunWieldBonus
     minAngle: -22
-    maxAngle: -28
+    maxAngle: 0
   - type: Gun
+    angleDecay: 40
+    angleIncrease: 5
     minAngle: 24
     maxAngle: 45
     fireRate: 9
@@ -1829,12 +1908,13 @@
   - type: Item
     sprite: Backmen/Objects/Weapons/Gunsx64/Battery/EG-S/tiny.rsi
   - type: GunRequiresWield
-  - type: GunWieldBonus
-    minAngle: -93
-    maxAngle: -94
+  - type: ClothingSpeedModifier
+    walkModifier: 1
+    sprintModifier: 0.8
+  - type: HeldSpeedModifier
   - type: Gun
-    minAngle: 94
-    maxAngle: 95
+    minAngle: 1
+    maxAngle: 10
     fireRate: 1.5
     selectedMode: SemiAuto
     availableModes:
@@ -1946,6 +2026,8 @@
       map: ["enum.GunVisualLayers.Base"]
     - state: mag-0
       map: ["enum.GunVisualLayers.Mag"]
+  - type: Gun
+    fireRate: 3
   - type: Item
     sprite: Backmen/Objects/Weapons/Gunsx64/Shotguns/zauer/tiny.rsi
   - type: Clothing
@@ -2385,6 +2467,138 @@
   - type: GunRequiresWield
 
 - type: entity
+  name: M-81
+  parent: BaseWeaponPistol
+  id: WeaponLauncherM81
+  suffix: Гранатомёт
+  description: A lightweight single-shot grenade launcher used by the UEG for area blockades and large explosions or riot police units.
+  components:
+  - type: Sprite
+    sprite: Backmen/Objects/Weapons/Gunsx64/Launchers/m81.rsi
+    layers:
+      - state: base
+        map: ["enum.GunVisualLayers.Base"]
+  - type: Gun
+    fireRate: 1
+    selectedMode: SemiAuto
+    availableModes:
+      - SemiAuto
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/grenade_launcher.ogg
+  - type: ChamberMagazineAmmoProvider
+    autoCycle: false
+  - type: ItemSlots
+    slots:
+      gun_chamber:
+        name: Chamber
+        priority: 1
+        whitelist:
+          tags:
+            - Grenade
+  - type: ContainerContainer
+    containers:
+      gun_chamber: !type:ContainerSlot
+
+- type: entity
+  name: grenade box
+  parent: BoxCardboard
+  id: BoxGrenadeNonLetal
+  components:
+    - type: StorageFill
+      contents:
+        - id: GrenadeNonletal
+          amount: 4
+
+- type: entity
+  name: grenade box
+  parent: BoxCardboard
+  id: BoxGrenadeTearGas
+  components:
+    - type: StorageFill
+      contents:
+        - id: GrenadeTearGas
+          amount: 4
+
+- type: entity
+  id: GrenadeTearGas
+  name: tear gas grenade
+  parent: BaseGrenade
+  components:
+  - type: CartridgeAmmo
+    proto: BulletGrenadeTearGas
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Ammunition/Explosives/explosives.rsi
+    layers:
+    - state: baton
+      map: ["enum.AmmoVisualLayers.Base"]
+  - type: Appearance
+  - type: SpentAmmoVisuals
+    state: baton
+    suffix: false
+
+- type: entity
+  id: BulletGrenadeTearGas
+  name: tear gas grenade
+  parent: BaseBulletTrigger
+  noSpawn: true
+  components:
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Projectiles/projectiles2.rsi
+    layers:
+      - state: grenade
+  - type: Projectile
+    deleteOnCollide: false
+    damage:
+      types:
+        Blunt: 1
+    soundHit:
+      path: /Audio/Effects/gen_hit.ogg
+  - type: SmokeOnTrigger
+    duration: 10
+    spreadAmount: 30
+    solution:
+      reagents:
+      - ReagentId: TearGas
+        Quantity: 50
+
+- type: entity
+  id: GrenadeNonletal
+  name: non letal grenade
+  parent: BaseGrenade
+  components:
+  - type: CartridgeAmmo
+    proto: BulletGrenadeNonletal
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Ammunition/Explosives/explosives.rsi
+    layers:
+    - state: flash
+      map: ["enum.AmmoVisualLayers.Base"]
+  - type: Appearance
+  - type: SpentAmmoVisuals
+    state: flash
+    suffix: false
+
+- type: entity
+  id: BulletGrenadeNonletal
+  name: non letal grenade
+  parent: BaseBulletTrigger
+  noSpawn: true
+  components:
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Projectiles/projectiles2.rsi
+    layers:
+      - state: grenade
+  - type: FlashOnTrigger
+    range: 7
+  - type: SpawnOnTrigger
+    proto: GrenadeFlashEffect
+  - type: ActiveTimerTrigger
+    timeRemaining: 0.3
+  - type: DeleteOnTrigger
+  - type: StaminaDamageOnCollide
+    damage: 80
+
+- type: entity
   name: RL-5
   parent: BaseWeaponLauncher
   id: WeaponLauncherRL5
@@ -2417,7 +2631,7 @@
   - type: MagazineVisuals
     magState: mag
     steps: 2
-    zeroVisible: true
+    zeroVisible: false
   - type: Appearance
   - type: Wieldable
   - type: UseDelay
@@ -2731,6 +2945,9 @@
   - type: GunRequiresWield
   - type: Gun
     fireRate: 1
+  - type: Tag
+    tags:
+    - WeaponShotgunKammerer
 
 - type: entity
   name: Dragunov
@@ -2942,6 +3159,10 @@
   - type: Wieldable
   - type: UseDelay
     delay: 1.9
+  - type: ClothingSpeedModifier
+    walkModifier: 1
+    sprintModifier: 0.8
+  - type: HeldSpeedModifier
 
 - type: entity
   name: MG-42
@@ -2997,6 +3218,10 @@
   - type: UseDelay
     delay: 1.9
   - type: GunRequiresWield
+  - type: ClothingSpeedModifier
+    walkModifier: 1
+    sprintModifier: 0.5
+  - type: HeldSpeedModifier
 
 - type: entity
   id: MagazineHeavyMachineGunDrum
@@ -3092,6 +3317,10 @@
   - type: UseDelay
     delay: 1.9
   - type: GunRequiresWield
+  - type: ClothingSpeedModifier
+    walkModifier: 1
+    sprintModifier: 0.6
+  - type: HeldSpeedModifier
 
 - type: entity
   name: M-41
@@ -3147,6 +3376,10 @@
   - type: UseDelay
     delay: 1.9
   - type: GunRequiresWield
+  - type: ClothingSpeedModifier
+    walkModifier: 1
+    sprintModifier: 0.7
+  - type: HeldSpeedModifier
 
 - type: entity
   id: MagazineHeavyRifleV41
@@ -3256,6 +3489,10 @@
   - type: UseDelay
     delay: 2.3
   - type: GunRequiresWield
+  - type: ClothingSpeedModifier
+    walkModifier: 1
+    sprintModifier: 0.9
+  - type: HeldSpeedModifier
 
 - type: entity
   name: Огнемет М6

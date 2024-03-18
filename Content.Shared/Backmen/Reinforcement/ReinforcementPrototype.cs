@@ -19,5 +19,5 @@ public sealed partial class ReinforcementPrototype : IPrototype
     public int MaxCount = 1;
 
     [DataField("min")]
-    public int MinCount = 1;
+    public int MinCount = 0;
 }

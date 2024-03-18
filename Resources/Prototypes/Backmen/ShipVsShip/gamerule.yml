@@ -1,0 +1,29 @@
+﻿- type: gamePreset
+  id: ShipVsShip
+  alias:
+  - svs
+  name: svs-title
+  description: svs-description
+  maxPlayers: 15
+  showInVote: true
+  isMiniGame: true
+  supportedMaps: ShipVsShipMapPool
+  rules:
+  - ShipVsShip
+
+- type: gameMapPool
+  id: ShipVsShipMapPool
+  maps:
+  - BargeVsShip
+
+- type: entity
+  id: ShipVsShip
+  parent: BaseGameRule
+  noSpawn: true
+  components:
+  - type: ShipVsShipGame
+  - type: KillCalloutRule
+  - type: PointManager
+  - type: RespawnDeadRule
+  - type: RespawnTracker
+    respawnDelay: 5
