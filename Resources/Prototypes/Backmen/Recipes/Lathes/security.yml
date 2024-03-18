@@ -29,13 +29,3 @@
     Steel: 10
     Bluespace: 10
     Glass: 5
-
-- type: latheRecipe
-  id: WeaponEarthGovLaserPistol
-  result: WeaponEarthGovLaserPistol
-  category: Weapons
-  completetime: 6
-  materials:
-    Steel: 1500
-    Glass: 600
-    Plastic: 300
