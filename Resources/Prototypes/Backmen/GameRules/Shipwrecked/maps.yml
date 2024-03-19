@@ -1,4 +1,13 @@
-﻿- type: gameMap
+﻿- type: gameMapPool
+  id: ShipwreckedPool
+  maps:
+    - ShwrAdventurer
+    - shwrDust
+    - ShwrTraveller
+    - ShwrColossus
+    - ShwrArtur
+
+- type: gameMap
   id: ShwrAdventurer
   mapName: Транспортник
   mapPath: /Maps/Backmen/Shuttles/Shipwrecked/adventurer.yml
