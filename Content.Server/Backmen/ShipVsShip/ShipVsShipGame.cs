@@ -1,4 +1,5 @@
 ﻿using System.Linq;
+using Content.Server.Backmen.Arrivals;
 using Content.Server.Backmen.RoleWhitelist;
 using Content.Server.Backmen.ShipVsShip.Components;
 using Content.Server.GameTicking;
@@ -57,6 +58,17 @@ public sealed class ShipVsShipGame : GameRuleSystem<ShipVsShipGameComponent>
         SubscribeLocalEvent<FTLCompletedEvent>(OnAfterFtl);
         SubscribeLocalEvent<RoundStartedEvent>(OnStartRound);
         SubscribeLocalEvent<RoundEndTextAppendEvent>(OnRoundEndText);
+        SubscribeLocalEvent<CanHandleWithArrival>(CanUseArrivals);
+    }
+
+    private void CanUseArrivals(CanHandleWithArrival ev)
+    {
+        var activeRules = QueryActiveRules();
+
+        while (activeRules.MoveNext(out var ruleUid, out var r1, out var rule, out var r3))
+        {
+            ev.Cancel();
+        }
     }
 
     private void OnRoundEndText(RoundEndTextAppendEvent ev)
@@ -263,13 +275,15 @@ public sealed class ShipVsShipGame : GameRuleSystem<ShipVsShipGameComponent>
 
         var teamStation = teams.ToDictionary(x => x.Key, x => x.Value.Item1.Owner);
 
+
+        rule.Team = teamStation;
+
         var playerInRole = new Dictionary<NetUserId, (string?, EntityUid)>();
 
         // Капитан, Сай
         foreach (var (team, (md, marker, jobs)) in teams)
         {
             ct.TryAdd(team, 0);
-            var doRefresh = false;
 
             var stationUid = teamStation[team];
 
@@ -307,21 +321,13 @@ public sealed class ShipVsShipGame : GameRuleSystem<ShipVsShipGameComponent>
 
                     ct[team]++;
                     playerInRole.Add(pickedUser.Value, (job, stationUid));
-                    doRefresh = true;
+                    assign.Remove(pickedUser.Value);
                     continue;
                 }
 
                 ct[team]++;
-                doRefresh = true;
                 playerInRole.Add(user.Value.Key, (job, stationUid));
-            }
-
-            if (doRefresh)
-            {
-                assign = _stationJobs
-                    .AssignJobs(ev.Profiles.Where(x => !playerInRole.ContainsKey(x.Key)).ToDictionary(),
-                        new[] { stationUid })
-                    .ToDictionary(x => x.Key, x => x.Value.Item1);
+                assign.Remove(user.Value.Key);
             }
 
             var overflowJobs = jobs.OverflowJobs;
@@ -352,8 +358,6 @@ public sealed class ShipVsShipGame : GameRuleSystem<ShipVsShipGameComponent>
             ct[weakTeam]++;
             playerInRole.Add(user, (job, teamStation[weakTeam]));
         }
-
-        rule.Team = teamStation;
 
         foreach (var (player, (job, station)) in playerInRole)
         {
