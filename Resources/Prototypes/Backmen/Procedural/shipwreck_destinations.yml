@@ -1,19 +1,20 @@
-﻿- type: shipwreckDestination
+﻿### RnD focus
+- type: shipwreckDestination
   id: FrozenWastes
   biome: Snow
   lightColor: "#010103"
   markerLayers:
+  # Low value
    - OreIron
    - OreQuartz
-   - OreGold
+   - OreCoal
+  # High value
    - OreSilver
    - OrePlasma
-   - OreUranium
-   - OreCoal
+   - OreArtifactFragment
   structures:
     RuinedDwellings: 4
     RuinedHospital: 3
-    RuinedShop: 1
   factions:
     - MalfunctioningRobots
     - SpaceCarpInvasion
@@ -29,17 +30,19 @@
   biome: LowDesert
   lightColor: "#030101"
   markerLayers:
+  # Low value
    - OreIron
    - OreQuartz
-   - OreGold
-   - OreSilver
-   - OrePlasma
-   - OreUranium
    - OreCoal
+   - OreSalt
+  # High value
+   - OreGold
+   - OrePlasma
+   - OreArtifactFragment
+
   structures:
     RuinedDwellings: 4
     RuinedHospital: 2
-    RuinedShop: 2
   factions:
     - ZombieOutbreak
     - SpaceXenoInvasion
@@ -50,22 +53,22 @@
       - 21.94724
       - 77.05276
 
+### Engineer focus
 - type: shipwreckDestination
   id: Jungle
   biome: Grasslands
   lightColor: "#010301"
   markerLayers:
+  # Low value
    - OreIron
    - OreQuartz
-   - OreGold
-   - OreSilver
+   - OreCoal
+  # High value
    - OrePlasma
    - OreUranium
-   - OreCoal
   structures:
     RuinedDwellings: 3
     RuinedHospital: 3
-    RuinedShop: 2
   factions:
     - ZombieOutbreak
     - SpaceXenoInvasion
@@ -81,17 +84,17 @@
   biome: Continental
   lightColor: "#D8B059" #DayLight
   markerLayers:
+  # Low value
    - OreIron
    - OreQuartz
-   - OreGold
-   - OreSilver
-   - OrePlasma
-   - OreUranium
    - OreCoal
+   - OreSalt
+  # High value
+   - OreGold
+   - OreUranium
   structures:
     RuinedDwellings: 2
     RuinedHospital: 4
-    RuinedShop: 2
   factions:
     - MalfunctioningRobots
     - SpaceCarpInvasion
@@ -102,22 +105,25 @@
       - 21.94724
       - 77.05276
 
+### Salvage focus
 - type: shipwreckDestination
   id: Lava
   biome: Lava
   lightColor: "#A34931" #LavaLight
   markerLayers:
+  # Low value
    - OreIron
    - OreQuartz
-   - OreGold
+   - OreCoal
+   - OreSalt
+  # High value
    - OreSilver
    - OrePlasma
    - OreUranium
-   - OreCoal
+   - OreGold
   structures:
     RuinedDwellings: 4
     RuinedHospital: 3
-    RuinedShop: 1
   factions:
     - SpaceXenoInvasion
     - SpaceCarpInvasion
