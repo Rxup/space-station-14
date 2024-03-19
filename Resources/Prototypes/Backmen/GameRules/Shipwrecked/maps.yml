@@ -61,14 +61,15 @@
           availableJobs:
             Freelancer: [-1,-1]
 
-# Maps that aren't used right now due to the balance issues when 30+ ptople just destroys mobs.
-# For now gamerule is for 15-20 players at maximum.
+### Maps that aren't used right now due to the balance issues.
+### For now gamerule is for 15-20 players at maximum.
+### They can be forced by admins tho
 
 - type: gameMap
   id: shwrDust
   mapName: KL-Dust
   mapPath: /Maps/Backmen/Shuttles/Shipwrecked/shwr-dust.yml
-  minPlayers: 31
+  minPlayers: 99
 #  maxPlayers: 99
   stations:
     shwrDust:
@@ -86,7 +87,7 @@
   id: ShwrColossus
   mapName: Колосс
   mapPath: /Maps/Backmen/Shuttles/Shipwrecked/colossus.yml
-  minPlayers: 31
+  minPlayers: 99
   stations:
     ShwrColossus:
       stationProto: StandardStationArena
