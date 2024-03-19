@@ -84,13 +84,20 @@ public sealed class BloodsuckerObjectiveSystem  : GameRuleSystem<BloodsuckerObje
             ev.AddLine("");
         }
 
-        ev.AddLine(Loc.GetString("vampire-bitten"));
+        var isAddLine = true;
+
         var q = EntityQueryEnumerator<MindComponent,VampireRoleComponent>();
         while (q.MoveNext(out var mindId,out var mind, out var role))
         {
             if (skip.Contains(mindId))
             {
                 continue;
+            }
+
+            if (isAddLine)
+            {
+                ev.AddLine(Loc.GetString("vampire-bitten"));
+                isAddLine = false;
             }
             var count = role?.Converted ?? 0;
             var blood = role?.Drink ?? 0;
