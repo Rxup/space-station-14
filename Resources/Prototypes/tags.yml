@@ -921,6 +921,9 @@
   id: NoBlockAnchoring
 
 - type: Tag
+  id: NoPaint
+
+- type: Tag
   id: NozzleBackTank
 
 - type: Tag
@@ -1228,6 +1231,9 @@
 
 - type: Tag
   id: Torch
+
+- type: Tag
+  id: ToyRubberDuck
 
 - type: Tag
   id: ToySidearm

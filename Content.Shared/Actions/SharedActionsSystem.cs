@@ -8,6 +8,7 @@ using Content.Shared.Hands;
 using Content.Shared.Interaction;
 using Content.Shared.Inventory.Events;
 using Content.Shared.Mind;
+using Content.Shared.Mobs.Components;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Containers;
 using Robust.Shared.GameStates;
@@ -370,6 +371,9 @@ public abstract class SharedActionsSystem : EntitySystem
             ResetCharges(actionEnt);
 
         BaseActionEvent? performEvent = null;
+
+        if (action.CheckConsciousness && !_actionBlockerSystem.CanConsciouslyPerformAction(user))
+            return;
 
         // Validate request by checking action blockers and the like:
         switch (action)
