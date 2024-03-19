@@ -1,0 +1,46 @@
+- type: entity
+  parent: BaseItem
+  id: MeowHorn
+  name: Мяуксон
+  description: Это клаксон, издающий звук фелинида
+  components:
+  - type: Sprite
+    sprite: Objects/Fun/bikehorn.rsi
+    state: icon
+  - type: Item
+    sprite: Objects/Fun/bikehorn.rsi
+    size: Tiny
+  - type: Clothing
+    sprite: Objects/Fun/bikehorn.rsi
+    slots: [Belt]
+    quickEquip: false
+  - type: EmitSoundOnUse
+    sound:
+      collection: FelinidMews
+      params:
+        variation: 0.125
+  - type: UseDelay
+    delay: 0.5
+  - type: EmitSoundOnTrigger
+    sound:
+      collection: FelinidMews
+      params:
+        variation: 0.125
+  - type: Tag
+    tags:
+    - Payload # yes, you can make re-usable prank grenades
+    - BikeHorn
+  - type: MeleeWeapon
+    wideAnimationRotation: 135
+    soundHit:
+      collection: FelinidMews
+      params:
+        variation: 0.125
+    damage:
+      types:
+        Blunt: 0
+  - type: Tool
+    qualities:
+    - Honking
+    useSound:
+      collection: FelinidMews
