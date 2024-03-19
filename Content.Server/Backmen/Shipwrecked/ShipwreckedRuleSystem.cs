@@ -305,23 +305,22 @@ public sealed class ShipwreckedRuleSystem : GameRuleSystem<ShipwreckedRuleCompon
 
         var planetGrid = EnsureComp<MapGridComponent>(planetMapUid);
 
-        // If we don't have destination, then trow exception and cry
         var destination = component.Destination;
+        // It's bad if we don't have destination
         if (destination == null)
             throw new ArgumentException("There is no destination for Shipwrecked.");
 
         var seed = _random.Next();
 
         var biome = AddComp<BiomeComponent>(planetMapUid);
-        var markerLayers = component.ShipwreckMarkerLayers;
+        var markerLayers = destination.ShipwreckMarkerLayers;
 
         _biomeSystem.SetSeed(planetMapUid, biome, seed);
         _biomeSystem.SetTemplate(planetMapUid, biome, _prototypeManager.Index<BiomeTemplatePrototype>(destination.BiomePrototype));
 
-        // Add ore from the rule prototype.
+        // Add ore from the destination prototype.
         foreach (var marker in markerLayers)
         {
-            // Look in the prototype to find all ores.
             _biomeSystem.AddMarkerLayer(planetMapUid, biome, marker);
         }
 

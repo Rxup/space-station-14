@@ -20,6 +20,10 @@ public sealed partial class ShipwreckDestinationPrototype : IPrototype
     public readonly string BiomePrototype = default!;
 
     [ViewVariables]
+    [DataField("markerLayers")]
+    public readonly List<string> ShipwreckMarkerLayers = new();
+
+    [ViewVariables]
     [DataField("lightColor")]
     public readonly Color? LightColor = null; //= MapLightComponent.DefaultColor;
 

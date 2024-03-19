@@ -64,13 +64,6 @@ public sealed partial class ShipwreckedRuleComponent : Component
     public List<ProtoId<ShipwreckDestinationPrototype>> ShipwreckDestinationPrototypes = default!;
 
     /// <summary>
-    /// Markers that will be used upon the planet generation.
-    /// </summary>
-    [ViewVariables]
-    [DataField("markerLayers", required: true)]
-    public List<string> ShipwreckMarkerLayers = default!;
-
-    /// <summary>
     /// Hecate's spawn point.
     /// </summary>
     [ViewVariables]

@@ -2,6 +2,14 @@
   id: FrozenWastes
   biome: Snow
   lightColor: "#010103"
+  markerLayers:
+   - OreIron
+   - OreQuartz
+   - OreGold
+   - OreSilver
+   - OrePlasma
+   - OreUranium
+   - OreCoal
   structures:
     RuinedDwellings: 4
     RuinedHospital: 3
@@ -20,6 +28,14 @@
   id: DesertWastes
   biome: LowDesert
   lightColor: "#030101"
+  markerLayers:
+   - OreIron
+   - OreQuartz
+   - OreGold
+   - OreSilver
+   - OrePlasma
+   - OreUranium
+   - OreCoal
   structures:
     RuinedDwellings: 4
     RuinedHospital: 2
@@ -38,6 +54,14 @@
   id: Jungle
   biome: Grasslands
   lightColor: "#010301"
+  markerLayers:
+   - OreIron
+   - OreQuartz
+   - OreGold
+   - OreSilver
+   - OrePlasma
+   - OreUranium
+   - OreCoal
   structures:
     RuinedDwellings: 3
     RuinedHospital: 3
@@ -56,6 +80,14 @@
   id: Continental
   biome: Continental
   lightColor: "#D8B059" #DayLight
+  markerLayers:
+   - OreIron
+   - OreQuartz
+   - OreGold
+   - OreSilver
+   - OrePlasma
+   - OreUranium
+   - OreCoal
   structures:
     RuinedDwellings: 2
     RuinedHospital: 4
@@ -74,6 +106,14 @@
   id: Lava
   biome: Lava
   lightColor: "#A34931" #LavaLight
+  markerLayers:
+   - OreIron
+   - OreQuartz
+   - OreGold
+   - OreSilver
+   - OrePlasma
+   - OreUranium
+   - OreCoal
   structures:
     RuinedDwellings: 4
     RuinedHospital: 3
@@ -84,24 +124,6 @@
   atmosphere:
     volume: 2300
     temperature: 330
-    moles:
-      - 21.94724
-      - 77.05276
-
-- type: shipwreckDestination
-  id: RuinedMegacity
-  biome: RuinedMegacity
-  lightColor: "#2b3143" #Evening
-  structures:
-    RuinedDwellings: 4
-    RuinedHospital: 3
-    RuinedShop: 2
-  factions:
-    - ZombieOutbreak
-    - MalfunctioningRobots
-  atmosphere:
-    volume: 2400
-    temperature: 280
     moles:
       - 21.94724
       - 77.05276

@@ -85,37 +85,3 @@
       tile: Plating
       wall: WallDrywall
       cornerWall: WallDrywall
-
-# ruined shops
-
-- type: dungeonConfig
-  id: RuinedShop
-  generator: !type:PrefabDunGen
-    tile: FloorAsphalt
-    roomWhitelist:
-      - RuinedShop
-    presets:
-      - NyanoSolo9
-  postGeneration:
-    - !type:EntrancePostGen
-      count: 1
-      tile: FloorAsphalt
-      entities:
-        - WoodDoor
-
-    - !type:ExternalWindowPostGen
-      tile: FloorWood
-      entities:
-        - Window
-
-    - !type:WallMountPostGen
-      tile: Plating
-      prob: 0.05
-      spawns:
-        - id: RandomPosterAny
-          orGroup: content
-
-    - !type:BoundaryWallPostGen
-      tile: Plating
-      wall: WallDrywall
-      cornerWall: WallDrywall
