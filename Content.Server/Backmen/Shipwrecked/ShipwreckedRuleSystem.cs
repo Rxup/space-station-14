@@ -321,6 +321,9 @@ public sealed class ShipwreckedRuleSystem : GameRuleSystem<ShipwreckedRuleCompon
         // Add ore from the destination prototype.
         foreach (var marker in markerLayers)
         {
+            if (!_prototypeManager.TryIndex(marker, out _))
+                throw new ArgumentException($"Invalid MarkerLayer: {marker}");
+
             _biomeSystem.AddMarkerLayer(planetMapUid, biome, marker);
         }
 
@@ -433,7 +436,7 @@ public sealed class ShipwreckedRuleSystem : GameRuleSystem<ShipwreckedRuleCompon
             return;
 
         PreloadPlanet(component);
-        var origin = new EntityCoordinates(component.PlanetMap.Value, Vector2.Zero);
+        //var origin = new EntityCoordinates(component.PlanetMap.Value, Vector2.Zero);
         var directions = new Vector2i[]
         {
             ( 0,  1),
@@ -459,11 +462,13 @@ public sealed class ShipwreckedRuleSystem : GameRuleSystem<ShipwreckedRuleCompon
 
         _random.Shuffle(structuresToBuild);
         _random.Shuffle(directions);
+        if (structuresToBuild.Count < directions.Length)
+            throw new ArgumentException("Destination hasn't enough structures to build.");
 
         foreach (var direction in directions)
         {
             var minDistance = component.Destination.StructureDistance;
-            var distance = Math.Min(_random.Next(minDistance, (int) (minDistance * 1.2)), MaxPreloadOffset - 5);
+            var distance = Math.Min(_random.Next(minDistance, (int) (minDistance * 1.2)), MaxPreloadOffset - 10);
 
             var point = direction * distance;
 
@@ -475,7 +480,6 @@ public sealed class ShipwreckedRuleSystem : GameRuleSystem<ShipwreckedRuleCompon
             component.Structures.Add(dungeon);
         }
     }
-
 
     private MapId LoadDefaultMap()
     {

@@ -4,17 +4,18 @@
   biome: Snow
   lightColor: "#010103"
   markerLayers:
-  # Low value
-   - OreIron
-   - OreQuartz
-   - OreCoal
-  # High value
-   - OreSilver
-   - OrePlasma
-   - OreArtifactFragment
+  # Ore
+   - LowOreIron
+   - LowOreQuartz
+   - LowOreCoal
+   - LowOreSilver
+   - LowOrePlasma
+   - LowOreArtifactFragment
+   # Mobs
+   - LowWatchersIcewing
   structures:
     RuinedDwellings: 4
-    RuinedHospital: 3
+    RuinedHospital: 4
   factions:
     - MalfunctioningRobots
     - SpaceCarpInvasion
@@ -30,19 +31,18 @@
   biome: LowDesert
   lightColor: "#030101"
   markerLayers:
-  # Low value
-   - OreIron
-   - OreQuartz
-   - OreCoal
-   - OreSalt
-  # High value
-   - OreGold
-   - OrePlasma
-   - OreArtifactFragment
+  # Ore
+   - LowOreIron
+   - LowOreQuartz
+   - LowOreCoal
+   - LowOreSalt
+   - LowOreGold
+   - LowOrePlasma
+   - LowOreArtifactFragment
 
   structures:
     RuinedDwellings: 4
-    RuinedHospital: 2
+    RuinedHospital: 4
   factions:
     - ZombieOutbreak
     - SpaceXenoInvasion
@@ -59,16 +59,19 @@
   biome: Grasslands
   lightColor: "#010301"
   markerLayers:
-  # Low value
-   - OreIron
-   - OreQuartz
-   - OreCoal
-  # High value
-   - OrePlasma
-   - OreUranium
+  # Ore
+   - LowOreIron
+   - LowOreQuartz
+   - LowOreCoal
+   - LowOrePlasma
+   - LowOreUranium
+   - LowOreBananium
+   # Mobs
+   - Lizards
+   - LowXenos
   structures:
-    RuinedDwellings: 3
-    RuinedHospital: 3
+    RuinedDwellings: 4
+    RuinedHospital: 4
   factions:
     - ZombieOutbreak
     - SpaceXenoInvasion
@@ -84,16 +87,19 @@
   biome: Continental
   lightColor: "#D8B059" #DayLight
   markerLayers:
-  # Low value
-   - OreIron
-   - OreQuartz
-   - OreCoal
-   - OreSalt
-  # High value
-   - OreGold
-   - OreUranium
+  # Ore
+   - LowOreIron
+   - LowOreQuartz
+   - LowOreCoal
+   - LowOreSalt
+   - LowOreGold
+   - LowOreUranium
+   - LowOreBananium
+   # Mobs
+   - Lizards
+   - LowCarps
   structures:
-    RuinedDwellings: 2
+    RuinedDwellings: 4
     RuinedHospital: 4
   factions:
     - MalfunctioningRobots
@@ -111,19 +117,22 @@
   biome: Lava
   lightColor: "#A34931" #LavaLight
   markerLayers:
-  # Low value
-   - OreIron
-   - OreQuartz
-   - OreCoal
-   - OreSalt
-  # High value
-   - OreSilver
-   - OrePlasma
-   - OreUranium
-   - OreGold
+  # Ore
+   - LowOreIron
+   - LowOreQuartz
+   - LowOreCoal
+   - LowOreSalt
+   - LowOreSilver
+   - LowOrePlasma
+   - LowOreGold
+   - LowOreUranium
+   - LowOreBananium
+   # Mobs
+   - LowWatchersLavaland
+   - LowCarps
   structures:
     RuinedDwellings: 4
-    RuinedHospital: 3
+    RuinedHospital: 4
   factions:
     - SpaceXenoInvasion
     - SpaceCarpInvasion

@@ -1,5 +1,6 @@
 ﻿using Content.Server.Atmos;
 using Content.Shared.Parallax.Biomes;
+using Content.Shared.Parallax.Biomes.Markers;
 using Content.Shared.Procedural;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype;
@@ -21,7 +22,7 @@ public sealed partial class ShipwreckDestinationPrototype : IPrototype
 
     [ViewVariables]
     [DataField("markerLayers")]
-    public readonly List<string> ShipwreckMarkerLayers = new();
+    public readonly List<ProtoId<BiomeMarkerLayerPrototype>> ShipwreckMarkerLayers = new();
 
     [ViewVariables]
     [DataField("lightColor")]

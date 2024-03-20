@@ -1,7 +1,7 @@
 ## Gamemode
 
 shipwrecked-title = Кораблекрушение
-shipwrecked-description = Группа путешественников терпит крушение на неизведанной планете. Сможете ли вы починить шаттл и улететь, или узнаете свою историю смерти?
+shipwrecked-description = Группа путешественников терпит крушение на неизвестной планете. Сможете ли вы починить шаттл и улететь?
 shipwrecked-too-many-ready-players = Слишком много игроков было готово к игре! Количество готовых игроков { $readyPlayersCount } , но предел для этого режима { $maximumPlayers } .
 shipwrecked-no-one-ready = Нет готовых игроков! Невозможно начать игру с режимом Кораблекрушение.
 shipwrecked-shuttle-announcement = Анонс транспортного шаттла от { $sender }: { $message }
