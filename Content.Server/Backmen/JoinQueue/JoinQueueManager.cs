@@ -57,7 +57,7 @@ public sealed class JoinQueueManager : Content.Corvax.Interfaces.Server.IServerJ
         _netManager.RegisterNetMessage<MsgQueueUpdate>();
 
         _cfg.OnValueChanged(Shared.Backmen.CCVar.CCVars.QueueEnabled, OnQueueCVarChanged, true);
-        _cfg.OnValueChanged(CCVars.SoftMaxPlayers, OnSoftMaxPlayerChanged);
+        _cfg.OnValueChanged(CCVars.SoftMaxPlayers, OnSoftMaxPlayerChanged, true);
         _playerManager.PlayerStatusChanged += OnPlayerStatusChanged;
         _discordAuthManager.PlayerVerified += OnPlayerVerified;
     }

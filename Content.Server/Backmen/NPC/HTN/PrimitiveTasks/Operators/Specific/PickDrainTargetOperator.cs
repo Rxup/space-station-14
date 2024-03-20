@@ -6,6 +6,7 @@ using Content.Server.NPC.Pathfinding;
 using Content.Server.NPC.Systems;
 using Content.Shared.Backmen.Abilities.Psionics;
 using Content.Shared.Mobs.Systems;
+using Content.Shared.NPC.Systems;
 
 namespace Content.Server.Backmen.NPC.HTN.PrimitiveTasks.Operators.Specific;
 

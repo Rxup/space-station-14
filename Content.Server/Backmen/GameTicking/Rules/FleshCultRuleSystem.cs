@@ -20,6 +20,7 @@ using Content.Shared.Backmen.CCVar;
 using Content.Shared.Backmen.Flesh;
 using Content.Shared.Humanoid;
 using Content.Shared.Mind;
+using Content.Shared.NPC.Systems;
 using Content.Shared.Objectives.Components;
 using Content.Shared.Players;
 using Content.Shared.Preferences;

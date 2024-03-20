@@ -68,8 +68,6 @@ public sealed partial class EmergencyShuttleSystem : EntitySystem
     [Dependency] private readonly Content.Server.Backmen.Arrivals.CentcommSystem _centcommSystem = default!;
 
 
-    private ISawmill _sawmill = default!;
-
     private const float ShuttleSpawnBuffer = 1f;
 
     private bool _emergencyShuttleEnabled;
@@ -79,7 +77,6 @@ public sealed partial class EmergencyShuttleSystem : EntitySystem
 
     public override void Initialize()
     {
-        _sawmill = Logger.GetSawmill("shuttle.emergency");
         _emergencyShuttleEnabled = _configManager.GetCVar(CCVars.EmergencyShuttleEnabled);
         // Don't immediately invoke as roundstart will just handle it.
         Subs.CVar(_configManager, CCVars.EmergencyShuttleEnabled, SetEmergencyShuttleEnabled);
@@ -436,7 +433,7 @@ public sealed partial class EmergencyShuttleSystem : EntitySystem
 
         if (shuttle == null)
         {
-            _sawmill.Error($"Unable to spawn emergency shuttle {shuttlePath} for {ToPrettyString(uid)}");
+            Log.Error($"Unable to spawn emergency shuttle {shuttlePath} for {ToPrettyString(uid)}");
             return;
         }
 

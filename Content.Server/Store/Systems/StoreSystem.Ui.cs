@@ -154,6 +154,9 @@ public sealed partial class StoreSystem
                 return;
         }
 
+        if (!IsOnStartingMap(uid, component))
+            component.RefundAllowed = false;
+
         if (!HandleBankTransaction(uid, component, msg, listing)) // backmen: currency
         {
             //check that we have enough money
@@ -164,11 +167,6 @@ public sealed partial class StoreSystem
                     return;
                 }
             }
-
-            if (!IsOnStartingMap(uid, component))
-                component.RefundAllowed = false;
-            else
-                component.RefundAllowed = true;
 
             //subtract the cash
             foreach (var (currency, value) in listing.Cost)
@@ -181,7 +179,6 @@ public sealed partial class StoreSystem
             }
         // start-backmen: currency
         } else {
-            component.RefundAllowed = false;
             foreach (var (currency, value) in listing.Cost)
             {
                 component.BalanceSpent.TryAdd(currency, FixedPoint2.Zero);
