@@ -14,7 +14,7 @@
    # Mobs
    - LowWatchersIcewing
   structures:
-    RuinedDwellings: 4
+    RuinedDwellings: 1
     RuinedHospital: 4
   factions:
     - MalfunctioningRobots
@@ -41,7 +41,7 @@
    - LowOreArtifactFragment
 
   structures:
-    RuinedDwellings: 4
+    RuinedDwellings: 1
     RuinedHospital: 4
   factions:
     - ZombieOutbreak
@@ -70,7 +70,7 @@
    - Lizards
    - LowXenos
   structures:
-    RuinedDwellings: 4
+    RuinedDwellings: 1
     RuinedHospital: 4
   factions:
     - ZombieOutbreak
@@ -99,7 +99,7 @@
    - Lizards
    - LowCarps
   structures:
-    RuinedDwellings: 4
+    RuinedDwellings: 1
     RuinedHospital: 4
   factions:
     - MalfunctioningRobots
@@ -131,7 +131,7 @@
    - LowWatchersLavaland
    - LowCarps
   structures:
-    RuinedDwellings: 4
+    RuinedDwellings: 1
     RuinedHospital: 4
   factions:
     - SpaceXenoInvasion

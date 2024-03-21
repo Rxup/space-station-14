@@ -322,7 +322,7 @@ public sealed class ShipwreckedRuleSystem : GameRuleSystem<ShipwreckedRuleCompon
         foreach (var marker in markerLayers)
         {
             if (!_prototypeManager.TryIndex(marker, out _))
-                throw new ArgumentException($"Invalid MarkerLayer: {marker}");
+                throw new ArgumentException($"Invalid marker layer in destination prototype: {marker}");
 
             _biomeSystem.AddMarkerLayer(planetMapUid, biome, marker);
         }
@@ -436,8 +436,8 @@ public sealed class ShipwreckedRuleSystem : GameRuleSystem<ShipwreckedRuleCompon
             return;
 
         PreloadPlanet(component);
-        //var origin = new EntityCoordinates(component.PlanetMap.Value, Vector2.Zero);
-        var directions = new Vector2i[]
+
+        var availableDirections = new List<Vector2i>
         {
             ( 0,  1),
             ( 1,  1),
@@ -450,6 +450,8 @@ public sealed class ShipwreckedRuleSystem : GameRuleSystem<ShipwreckedRuleCompon
         };
 
         var structuresToBuild = new List<DungeonConfigPrototype>();
+        var directions = new List<Vector2i>();
+
         foreach (var (dungeon, count) in component.Destination.Structures)
         {
             var dungeonProto = _prototypeManager.Index<DungeonConfigPrototype>(dungeon);
@@ -457,13 +459,12 @@ public sealed class ShipwreckedRuleSystem : GameRuleSystem<ShipwreckedRuleCompon
             for (var i = 0; i < count; ++i)
             {
                 structuresToBuild.Add(dungeonProto);
+                directions.Add(_random.Pick(availableDirections));
             }
         }
 
         _random.Shuffle(structuresToBuild);
         _random.Shuffle(directions);
-        if (structuresToBuild.Count < directions.Length)
-            throw new ArgumentException("Destination hasn't enough structures to build.");
 
         foreach (var direction in directions)
         {
