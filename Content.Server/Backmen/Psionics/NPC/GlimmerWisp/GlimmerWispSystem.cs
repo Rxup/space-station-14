@@ -127,8 +127,7 @@ namespace Content.Server.Backmen.Psionics.NPC.GlimmerWisp
             var ev = new GlimmerWispDrainDoAfterEvent();
             var args = new DoAfterArgs(EntityManager ,uid, component.DrainDelay, ev, uid, target: target)
             {
-                BreakOnTargetMove = true,
-                BreakOnUserMove = false,
+                BreakOnMove = true,
                 BreakOnDamage = true,
                 DistanceThreshold = 2f,
                 NeedHand = false
