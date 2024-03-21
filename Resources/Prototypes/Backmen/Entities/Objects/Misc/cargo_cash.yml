@@ -16,7 +16,7 @@
   - type: StaticPrice
     price: 0
   - type: Stack
-    stackType: Credit
+    stackType: BillOfExchange
     count: 1
     baseLayer: base
     layerStates:
