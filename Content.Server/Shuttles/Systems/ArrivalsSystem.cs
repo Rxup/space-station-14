@@ -315,6 +315,17 @@ public sealed class ArrivalsSystem : EntitySystem
         if (!Enabled || _ticker.RunLevel != GameRunLevel.InRound)
             return;
 
+        // start-backmen: mini games
+        {
+            var evCan = new Backmen.Arrivals.CanHandleWithArrival(ev);
+            RaiseLocalEvent(evCan);
+            if (evCan.Cancelled)
+            {
+                return;
+            }
+        }
+        // end-backmen: mini games
+
         if (!HasComp<StationArrivalsComponent>(ev.Station))
             return;
 
@@ -464,6 +475,13 @@ public sealed class ArrivalsSystem : EntitySystem
 
     private void SetupArrivalsStation()
     {
+        // start-backmen: mini games
+        if (EntityManager.System<GameTicker>().CurrentPreset?.IsMiniGame ?? false)
+        {
+            return;
+        }
+        // end-backmen: mini games
+
         var mapId = _mapManager.CreateMap();
         var mapUid = _mapManager.GetMapEntityId(mapId);
         _mapManager.AddUninitializedMap(mapId);

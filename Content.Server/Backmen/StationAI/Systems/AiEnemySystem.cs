@@ -5,6 +5,9 @@ using Content.Shared.Backmen.StationAI.Components;
 using Content.Shared.Backmen.StationAI.Systems;
 using Content.Shared.Examine;
 using Content.Shared.Mobs.Systems;
+using Content.Shared.NPC.Components;
+using Content.Shared.NPC.Prototypes;
+using Content.Shared.NPC.Systems;
 using Content.Shared.Verbs;
 
 namespace Content.Server.Backmen.StationAI.Systems;
@@ -62,11 +65,18 @@ public sealed class AiEnemySystem : SharedAiEnemySystem
 
     private void OnRemove(Entity<AIEnemyNTComponent> ent, ref ComponentShutdown args)
     {
-        _faction.RemoveFaction(ent, AiEnemyFaction);
+        if (TryComp<NpcFactionMemberComponent>(ent, out var npcFactionMemberComponent))
+        {
+            _faction.RemoveFaction((ent.Owner, npcFactionMemberComponent), AiEnemyFaction);
+        }
+
     }
 
     private void OnAdd(Entity<AIEnemyNTComponent> ent, ref MapInitEvent args)
     {
-        _faction.AddFaction(ent, AiEnemyFaction);
+        if (TryComp<NpcFactionMemberComponent>(ent, out var npcFactionMemberComponent))
+        {
+            _faction.AddFaction((ent.Owner,npcFactionMemberComponent), AiEnemyFaction);
+        }
     }
 }

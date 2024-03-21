@@ -1,7 +1,6 @@
 using Content.Server.Backmen.Species.Shadowkin.Components;
 using Content.Server.Backmen.Species.Shadowkin.Events;
 using Content.Server.Magic;
-using Content.Server.Pulling;
 using Content.Server.Backmen.Species.Shadowkin.Components;
 using Content.Server.Backmen.Species.Shadowkin.Events;
 using Content.Shared.Actions;
@@ -9,8 +8,9 @@ using Content.Shared.Backmen.Abilities.Psionics;
 using Content.Shared.Backmen.Species.Shadowkin.Components;
 using Content.Shared.Cuffs.Components;
 using Content.Shared.Damage.Systems;
-using Content.Shared.Pulling.Components;
 using Content.Shared.Backmen.Species.Shadowkin.Components;
+using Content.Shared.Movement.Pulling.Components;
+using Content.Shared.Movement.Pulling.Systems;
 using Robust.Server.GameObjects;
 using Robust.Shared.Audio;
 using Robust.Shared.Audio.Systems;
@@ -66,14 +66,14 @@ public sealed class ShadowkinTeleportSystem : EntitySystem
         if (transform.MapID != args.Target.GetMapId(EntityManager) || transform.GridUid == null)
             return;
 
-        SharedPullableComponent? pullable = null; // To avoid "might not be initialized when accessed" warning
-        if (TryComp<SharedPullerComponent>(args.Performer, out var puller) &&
+        PullableComponent? pullable = null; // To avoid "might not be initialized when accessed" warning
+        if (TryComp<PullerComponent>(args.Performer, out var puller) &&
             puller.Pulling != null &&
-            TryComp<SharedPullableComponent>(puller.Pulling, out pullable) &&
+            TryComp<PullableComponent>(puller.Pulling, out pullable) &&
             pullable.BeingPulled)
         {
             // Temporarily stop pulling to avoid not teleporting to the target
-            _pulling.TryStopPull(pullable);
+            _pulling.TryStopPull(puller.Pulling.Value, pullable);
         }
 
         // Teleport the performer to the target
@@ -92,7 +92,7 @@ public sealed class ShadowkinTeleportSystem : EntitySystem
 
             // Resume pulling
             // TODO: This does nothing? // This does things sometimes, but the client never knows
-            _pulling.TryStartPull(puller, pullable);
+            _pulling.TryStartPull(args.Performer, puller.Pulling.Value, null, puller, pullable);
         }
 
 

@@ -132,7 +132,7 @@ namespace Content.Server.GameTicking
             SpawnPlayer(player, character, station, jobId, lateJoin, silent);
         }
 
-        private void SpawnPlayer(ICommonSession player, HumanoidCharacterProfile character, EntityUid station, string? jobId = null, bool lateJoin = true, bool silent = false)
+        public void SpawnPlayer(ICommonSession player, HumanoidCharacterProfile character, EntityUid station, string? jobId = null, bool lateJoin = true, bool silent = false)
         {
             // Can't spawn players with a dummy ticker!
             if (DummyTicker)
@@ -356,6 +356,7 @@ namespace Content.Server.GameTicking
             _metaData.SetEntityName(ghost, name);
             _ghost.SetCanReturnToBody(ghost, false);
             _mind.TransferTo(mind.Value, ghost);
+            _adminLogger.Add(LogType.LateJoin, LogImpact.Low, $"{player.Name} late joined the round as an Observer with {ToPrettyString(ghost):entity}.");
         }
 
         #region Mob Spawning Helpers

@@ -12,6 +12,9 @@
   - type: Clothing
     quickEquip: false
     sprite: Objects/Tanks/generic.rsi
+    clothingVisuals:
+      suitstorage:
+      - state: equipped-BACKPACK
     slots:
     - Back
     - suitStorage
@@ -96,6 +99,9 @@
       temperature: 293.15
   - type: Clothing
     sprite: Objects/Tanks/emergency.rsi
+    clothingVisuals:
+      suitstorage:
+      - state: equipped-BELT
     slots:
     - Pocket
     - Belt

@@ -1,5 +1,5 @@
-﻿using Content.Server.NPC.Components;
-using Content.Shared.Mind;
+﻿using Content.Shared.Mind;
+using Content.Shared.NPC.Prototypes;
 using Content.Shared.Preferences;
 using Content.Shared.Roles;
 using Robust.Shared.Audio;

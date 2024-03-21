@@ -15,6 +15,9 @@ using Content.Shared.Administration;
 using Content.Shared.Backmen.Abilities.Psionics;
 using Content.Shared.Backmen.Psionics.Glimmer;
 using Content.Shared.Database;
+using Content.Shared.NPC.Components;
+using Content.Shared.NPC.Prototypes;
+using Content.Shared.NPC.Systems;
 using Content.Shared.Verbs;
 using Robust.Shared.Audio;
 using Robust.Shared.Audio.Systems;
@@ -195,10 +198,12 @@ public sealed class PsionicsSystem : EntitySystem
         if (!TryComp<NpcFactionMemberComponent>(uid, out var factions))
             return;
 
-        if (_npcFactonSystem.ContainsFaction(uid, FactionGlimmerMonster, factions))
+        Entity<NpcFactionMemberComponent?> ent = (uid,factions);
+
+        if (_npcFactonSystem.IsMember(ent, FactionGlimmerMonster))
             return;
 
-        _npcFactonSystem.AddFaction(uid, FactionPsionic);
+        _npcFactonSystem.AddFaction(ent, FactionPsionic);
     }
 
     private void OnRemove(EntityUid uid, PsionicComponent component, ComponentRemove args)

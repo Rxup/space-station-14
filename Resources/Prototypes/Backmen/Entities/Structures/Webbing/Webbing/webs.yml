@@ -18,7 +18,7 @@
           web1: ""
       - enum.DamageStateVisualLayers.Base: #your guess for why randomsprite requires an arbitrary layer is as good as mine friend
           web2: ""
-  - type: SlowContacts
+  - type: SpeedModifierContacts
     walkSpeedModifier: 0.2
     sprintSpeedModifier: 0.2
     ignoreWhitelist:

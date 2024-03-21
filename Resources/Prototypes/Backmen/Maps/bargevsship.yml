@@ -17,7 +17,7 @@
   id: BargeVsShip
   mapName: 'Бой на баржах'
   mapPath: /Maps/Backmen/bargevsship.yml
-  minPlayers: 40
+  minPlayers: 2
   stations:
     TeamA:
       stationProto: StandardNanotrasenStationVsShip
@@ -27,6 +27,17 @@
         nameGenerator:
           !type:NanotrasenNameGenerator
           prefixCreator: 'G'
+      - type: StationBankAccount
+        balance: 20000
+        increasePerSecond: 100
+      - type: StationTeamMarker
+        team: TeamA
+        goal:
+        - AICoreShip
+        - ComputerShipyardTeamA
+        requireJobs:
+        - Captain
+        - SAIShip
       - type: StationJobs
         overflowJobs:
         - Freelancer
@@ -43,6 +54,17 @@
         nameGenerator:
           !type:NanotrasenNameGenerator
           prefixCreator: 'G'
+      - type: StationBankAccount
+        balance: 20000
+        increasePerSecond: 100
+      - type: StationTeamMarker
+        team: TeamB
+        goal:
+        - AICoreShip
+        - ComputerShipyardTeamB
+        requireJobs:
+        - Captain
+        - SAIShip
       - type: StationJobs
         overflowJobs:
         - Freelancer

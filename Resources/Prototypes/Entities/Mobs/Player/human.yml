@@ -79,7 +79,7 @@
       randomizeName: false
     - type: NukeOperative
     - type: Loadout
-      prototypes: [SyndicateOperativeGearFull]
+      prototypes: [SyndicateLoneOperativeGearFull]
     - type: RandomMetadata
       nameSegments:
       - SyndicateNamesPrefix
