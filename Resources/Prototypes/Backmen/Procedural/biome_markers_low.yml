@@ -128,10 +128,10 @@
     WallRockChromite: WallRockChromiteBananium
     WallRockSand: WallRockSandBananium
     WallRockSnow: WallRockSnowBananium
-  maxCount: 6
-  minGroupSize: 3
-  maxGroupSize: 6
-  radius: 4
+  maxCount: 3
+  minGroupSize: 1
+  maxGroupSize: 3
+  radius: 2
 
 # Artifact Fragment
 - type: biomeMarkerLayer
@@ -151,25 +151,33 @@
 ### Mobs
 
 - type: biomeMarkerLayer
-  id: Xenos
+  id: LowXenos
   prototype: MobXeno
+  maxCount: 1
   minGroupSize: 1
   maxGroupSize: 1
+  radius: 2
 
 - type: biomeMarkerLayer
-  id: Carps
+  id: LowCarps
   prototype: MobCarpDungeon
+  maxCount: 1
   minGroupSize: 1
   maxGroupSize: 1
+  radius: 2
 
 - type: biomeMarkerLayer
-  id: ShipwreckedWatchersLavaland
+  id: LowWatchersLavaland
   prototype: MobWatcherLavaland
+  maxCount: 1
   minGroupSize: 1
   maxGroupSize: 1
+  radius: 2
 
 - type: biomeMarkerLayer
-  id: ShipwreckedWatchersIcewing
+  id: LowWatchersIcewing
   prototype: MobWatcherIcewing
+  maxCount: 1
   minGroupSize: 1
   maxGroupSize: 1
+  radius: 2
