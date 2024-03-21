@@ -90,7 +90,7 @@ public sealed class SpiderVampireSystem : EntitySystem
         _doAfterSystem.TryStartDoAfter(new DoAfterArgs(EntityManager, uid, component.UsingEggTime,
             new SpiderVampireEggDoAfterEvent(), uid, used: uid)
         {
-            BreakOnUserMove = true,
+            BreakOnMove = true,
             BreakOnDamage = true,
         });
 
