@@ -62,7 +62,7 @@ public sealed class DiseaseSystem : EntitySystem
     private EntityQuery<DiseaseCarrierComponent> _carrierQuery;
 
     private readonly HashSet<EntityUid> _addQueue = new();
-    private readonly HashSet<(Entity<DiseaseCarrierComponent> carrier, DiseasePrototype disease)> _cureQueue = new();
+    private readonly HashSet<(Entity<DiseaseCarrierComponent> carrier, ProtoId<DiseasePrototype> disease)> _cureQueue = new();
 
     /// <summary>
     /// First, adds or removes diseased component from the queues and clears them.
@@ -85,8 +85,8 @@ public sealed class DiseaseSystem : EntitySystem
         {
             if (carrier.Comp.Diseases.Count > 0) //This is reliable unlike testing Count == 0 right after removal for reasons I don't quite get
                 RemCompDeferred<DiseasedComponent>(carrier);
-            carrier.Comp.PastDiseases.Add(disease.ID);
-            var d = carrier.Comp.Diseases.FirstOrDefault(x => x.ID == disease.ID);
+            carrier.Comp.PastDiseases.Add(disease);
+            var d = carrier.Comp.Diseases.FirstOrDefault(x => x.ID == disease);
             if (d != null)
             {
                 carrier.Comp.Diseases.Remove(d);
@@ -266,12 +266,12 @@ public sealed class DiseaseSystem : EntitySystem
         /// </summary>
         public void CureDisease(Entity<DiseaseCarrierComponent> carrier, DiseasePrototype disease)
         {
-            _cureQueue.Add((carrier, disease));
-            _popupSystem.PopupEntity(Loc.GetString("disease-cured"), carrier.Owner, carrier.Owner);
+            CureDisease(carrier, disease.ID);
         }
         public void CureDisease(Entity<DiseaseCarrierComponent> carrier, ProtoId<DiseasePrototype> disease)
         {
-            CureDisease(carrier, _prototypeManager.Index(disease));
+            _cureQueue.Add((carrier, disease));
+            _popupSystem.PopupEntity(Loc.GetString("disease-cured"), carrier.Owner, carrier.Owner);
         }
 
         public void CureAllDiseases(EntityUid uid, DiseaseCarrierComponent? carrier = null)

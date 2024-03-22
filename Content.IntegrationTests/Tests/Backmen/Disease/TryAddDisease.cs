@@ -40,7 +40,7 @@ public sealed class DiseaseTest
                 diseaseSystem.TryAddDisease(sickEntity, diseaseProto);
             });
             await server.WaitIdleAsync();
-            server.RunTicks(5);
+            server.RunTicks(1);
             if (!entManager.TryGetComponent<DiseaseCarrierComponent>(sickEntity, out var diseaseCarrierComponent))
             {
                 Assert.Fail("MobHuman has not DiseaseCarrierComponent");
@@ -50,16 +50,23 @@ public sealed class DiseaseTest
             {
                 Assert.Fail("Disease not apply");
             }
-
-            diseaseSystem.CureDisease((sickEntity,diseaseCarrierComponent), diseaseProto.ID);
-            if (diseaseCarrierComponent.Diseases.Any(x => x.ID == diseaseProto.ID))
+            await server.WaitAssertion(() =>
             {
-                Assert.Fail("Disease not remove");
-            }
-            if (diseaseCarrierComponent.PastDiseases.All(x => x != diseaseProto.ID))
+                diseaseSystem.CureDisease((sickEntity,diseaseCarrierComponent), diseaseProto.ID);
+            });
+            await server.WaitIdleAsync();
+            server.RunTicks(1);
+            await server.WaitAssertion(() =>
             {
-                Assert.Fail("Disease immunu not apply");
-            }
+                if (diseaseCarrierComponent.Diseases.Any(x => x.ID == diseaseProto.ID))
+                {
+                    Assert.Fail("Disease not remove");
+                }
+                if (diseaseCarrierComponent.PastDiseases.All(x => x != diseaseProto.ID))
+                {
+                    Assert.Fail("Disease immunu not apply");
+                }
+            });
         }
 
         await pair.CleanReturnAsync();
