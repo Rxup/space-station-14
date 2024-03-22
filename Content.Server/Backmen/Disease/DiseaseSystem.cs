@@ -1,4 +1,5 @@
-﻿using Content.Server.Backmen.Disease.Components;
+﻿using System.Linq;
+using Content.Server.Backmen.Disease.Components;
 using Content.Server.Body.Systems;
 using Content.Server.Chat.Systems;
 using Content.Server.Nutrition.Components;
@@ -85,14 +86,24 @@ public sealed class DiseaseSystem : EntitySystem
             if (carrier.Comp.Diseases.Count > 0) //This is reliable unlike testing Count == 0 right after removal for reasons I don't quite get
                 RemCompDeferred<DiseasedComponent>(carrier);
             carrier.Comp.PastDiseases.Add(disease.ID);
-            carrier.Comp.Diseases.Remove(disease);
+            var d = carrier.Comp.Diseases.FirstOrDefault(x => x.ID == disease.ID);
+            if (d != null)
+            {
+                carrier.Comp.Diseases.Remove(d);
+            }
         }
         _cureQueue.Clear();
 
         var q = EntityQueryEnumerator<DiseasedComponent, DiseaseCarrierComponent, MobStateComponent>();
         while (q.MoveNext(out var owner, out _, out var carrierComp, out var mobState))
         {
-            DebugTools.Assert(carrierComp.Diseases.Count > 0);
+            if (carrierComp.Diseases.Count == 0)
+            {
+                RemCompDeferred<DiseasedComponent>(owner);
+                continue;
+            }
+
+            //DebugTools.Assert(carrierComp.Diseases.Count > 0);
             /*
             if (_mobStateSystem.IsDead(owner, mobState))
             {

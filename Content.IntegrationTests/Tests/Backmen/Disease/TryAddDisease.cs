@@ -1,4 +1,5 @@
-﻿using Content.Server.Backmen.Disease;
+﻿using System.Linq;
+using Content.Server.Backmen.Disease;
 using Content.Shared.Backmen.Disease;
 using Robust.Shared.GameObjects;
 using Robust.Shared.IoC;
@@ -40,6 +41,25 @@ public sealed class DiseaseTest
             });
             await server.WaitIdleAsync();
             server.RunTicks(5);
+            if (!entManager.TryGetComponent<DiseaseCarrierComponent>(sickEntity, out var diseaseCarrierComponent))
+            {
+                Assert.Fail("MobHuman has not DiseaseCarrierComponent");
+            }
+
+            if (diseaseCarrierComponent.Diseases.All(x => x.ID != diseaseProto.ID))
+            {
+                Assert.Fail("Disease not apply");
+            }
+
+            diseaseSystem.CureDisease((sickEntity,diseaseCarrierComponent), diseaseProto.ID);
+            if (diseaseCarrierComponent.Diseases.Any(x => x.ID == diseaseProto.ID))
+            {
+                Assert.Fail("Disease not remove");
+            }
+            if (diseaseCarrierComponent.PastDiseases.All(x => x != diseaseProto.ID))
+            {
+                Assert.Fail("Disease immunu not apply");
+            }
         }
 
         await pair.CleanReturnAsync();

@@ -30,16 +30,16 @@
     event: !type:RevenantOverloadLightsActionEvent
     useDelay: 20
 
-#- type: entity
-#  id: ActionRevenantBlight
-#  name: Blight
-#  description: Costs 50 Essence.
-#  noSpawn: true
-#  components:
-#  - type: InstantAction
-#    icon: Interface/Actions/blight.png
-#    event: !type:RevenantBlightActionEvent
-#    useDelay: 20
+- type: entity
+  id: ActionRevenantBlight
+  name: Blight
+  description: Costs 50 Essence.
+  noSpawn: true
+  components:
+  - type: InstantAction
+    icon: Interface/Actions/blight.png
+    event: !type:RevenantBlightActionEvent
+    useDelay: 20
 
 - type: entity
   id: ActionRevenantMalfunction

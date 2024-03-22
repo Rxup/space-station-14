@@ -23,7 +23,7 @@ public sealed partial class DiseasePrototype : IPrototype, IInheritingPrototype
 
     [NeverPushInheritance]
     [AbstractDataField]
-    public bool Abstract { get; private set; }
+    public bool Abstract { get; private set; } = false;
 
     /// <summary>
     /// Controls how often a disease ticks.
