@@ -24,9 +24,3 @@ public sealed class DiseaseMachineSystem : VisualizerSystem<DiseaseMachineVisual
         }
     }
 }
-
-public enum DiseaseMachineVisualLayers : byte
-{
-    IsOn,
-    IsRunning
-}

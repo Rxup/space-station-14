@@ -86,8 +86,8 @@ public sealed partial class VaccineMachineMenu : DefaultWindow
 
         foreach (var disease in diseases)
         {
-            KnownDiseases.AddItem(disease.name);
-            _knownDiseasePrototypes.Add((disease.id, disease.name));
+            KnownDiseases.AddItem(Loc.GetString(disease.name));
+            _knownDiseasePrototypes.Add((disease.id, Loc.GetString(disease.name)));
         }
     }
 

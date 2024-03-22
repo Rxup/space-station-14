@@ -61,12 +61,13 @@ public sealed class DiseaseDiagnosisSystem : EntitySystem
         {
             diseaseMachine.Accumulator += frameTime;
 
-            while (diseaseMachine.Accumulator >= diseaseMachine.Delay)
+            if (diseaseMachine.Accumulator >= diseaseMachine.Delay)
             {
                 diseaseMachine.Accumulator -= diseaseMachine.Delay;
                 var ev = new DiseaseMachineFinishedEvent(diseaseMachine, true);
                 RaiseLocalEvent(owner, ev);
-                RemCompDeferred<DiseaseMachineRunningComponent>(owner);
+                if(ev.Dequeue)
+                    RemCompDeferred<DiseaseMachineRunningComponent>(owner);
             }
         }
     }

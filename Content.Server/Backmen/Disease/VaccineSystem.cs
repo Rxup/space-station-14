@@ -71,26 +71,6 @@ public sealed class VaccineSystem : EntitySystem
         SubscribeLocalEvent<DiseaseVaccineComponent, VaccineDoAfterEvent>(OnDoAfter);
     }
 
-    /// <summary>
-    /// This handles running disease machines
-    /// to handle their delay and visuals.
-    /// </summary>
-    public override void Update(float frameTime)
-    {
-        var q = EntityQueryEnumerator<DiseaseMachineRunningComponent, DiseaseMachineComponent>();
-        while (q.MoveNext(out var owner, out _, out var diseaseMachine))
-        {
-            diseaseMachine.Accumulator += frameTime;
-
-            while (diseaseMachine.Accumulator >= diseaseMachine.Delay)
-            {
-                diseaseMachine.Accumulator -= diseaseMachine.Delay;
-                var ev = new DiseaseMachineFinishedEvent(diseaseMachine, true);
-                RaiseLocalEvent(owner, ev);
-                RemCompDeferred<DiseaseMachineRunningComponent>(owner);
-            }
-        }
-    }
 
     private void OnResearchRegistrationChanged(EntityUid uid, DiseaseVaccineCreatorComponent component, ref ResearchRegistrationChangedEvent args)
     {
@@ -146,8 +126,8 @@ public sealed class VaccineSystem : EntitySystem
         if (args.Machine.Disease == null)
             return;
 
-        _metaData.SetEntityName(vaxx, Loc.GetString("vaccine-name", ("disease", args.Machine.Disease.Name)));
-        _metaData.SetEntityDescription(vaxx, Loc.GetString("vaccine-desc", ("disease", args.Machine.Disease.Name)));
+        _metaData.SetEntityName(vaxx, Loc.GetString("vaccine-name", ("disease", Loc.GetString(args.Machine.Disease.Name))));
+        _metaData.SetEntityDescription(vaxx, Loc.GetString("vaccine-desc", ("disease", Loc.GetString(args.Machine.Disease.Name))));
 
         if (!TryComp<DiseaseVaccineComponent>(vaxx, out var vaxxComp))
             return;
