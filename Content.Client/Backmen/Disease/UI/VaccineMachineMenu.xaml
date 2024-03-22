@@ -1,0 +1,50 @@
+﻿<DefaultWindow xmlns="https://spacestation14.io"
+            Title="{Loc 'vaccine-machine-menu-title'}"
+            MinSize="800 400"
+            SetSize="800 400">
+    <BoxContainer Orientation="Vertical"
+                  HorizontalExpand="True"
+                  VerticalExpand="True">
+        <BoxContainer Orientation="Horizontal"
+                      HorizontalExpand="True"
+                      VerticalExpand="True"
+                      SizeFlagsStretchRatio="2"
+                      SeparationOverride="10">
+            <BoxContainer Orientation="Vertical"
+                          HorizontalExpand="True"
+                          VerticalExpand="True">
+                <Label Text="{Loc 'vaccine-machine-menu-known-diseases-label'}" />
+                <ItemList Name="KnownDiseases"
+                          SelectMode="Single"
+                          HorizontalExpand="False"
+                          VerticalExpand="True">
+                    <!-- Diseases are are added here by code from the disease server -->
+                </ItemList>
+            </BoxContainer>
+                <BoxContainer Orientation="Vertical"
+                              Align="Center"
+                              HorizontalExpand="True"
+                              VerticalExpand="True"
+                              SeparationOverride="10">
+                    <Label Name="DiseaseName"
+                           Text="{Loc 'vaccine-machine-menu-none-selected'}"/>
+                    <Label Name="BiomassCost" />
+                    <Label Name="BiomassCurrent" />
+                    <Button Name="ServerSelectionButton"
+                            Access="Public"
+                            Text="{Loc 'research-console-menu-server-selection-button'}" />
+                    <Button Name="ServerSyncButton"
+                            Access="Public"
+                            Text="{Loc 'research-console-menu-server-sync-button'}" />
+                    <Button Name="CreateButton"
+                            Access="Public"
+                            Text="{Loc 'vaccine-machine-menu-create-vaccine-button'}"
+                            VerticalExpand="True"
+                            Disabled="True" />
+                    <SpinBox Name="CreateAmount"
+                                Access="Public"
+                                Value="1" />
+                </BoxContainer>
+        </BoxContainer>
+    </BoxContainer>
+</DefaultWindow>

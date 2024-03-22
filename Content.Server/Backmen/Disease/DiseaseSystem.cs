@@ -105,7 +105,8 @@ public sealed class DiseaseSystem : EntitySystem
             _parallel.ProcessNow(new DiseaseJob
             {
                 System = this,
-                Owner = (owner, carrierComp)
+                Owner = (owner, carrierComp),
+                FrameTime = frameTime
             }, carrierComp.Diseases.Count);
         }
     }
