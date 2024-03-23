@@ -2,6 +2,7 @@
 using Content.Shared.IdentityManagement;
 using Content.Shared.Popups;
 using JetBrains.Annotations;
+using Robust.Shared.Prototypes;
 
 namespace Content.Server.Backmen.Disease.Effects;
 
@@ -21,6 +22,11 @@ public sealed partial class DiseasePopUp : DiseaseEffect
 
     [DataField("visualType")]
     public PopupType VisualType = PopupType.Small;
+
+    public override object GenerateEvent(Entity<DiseaseCarrierComponent> ent, ProtoId<DiseasePrototype> disease)
+    {
+        return new DiseaseEffectArgs<DiseasePopUp>(ent, disease, this);
+    }
 }
 public enum PopupRecipients
 {
@@ -30,11 +36,14 @@ public enum PopupRecipients
 
 public sealed partial class DiseaseEffectSystem
 {
-    private void DiseasePopUp(DiseaseEffectArgs args, DiseasePopUp ds)
+    private void DiseasePopUp(Entity<DiseaseCarrierComponent> ent, ref DiseaseEffectArgs<DiseasePopUp> args)
     {
-        if (ds.Type == PopupRecipients.Local)
-            _popup.PopupEntity(Loc.GetString(ds.Message), args.DiseasedEntity, args.DiseasedEntity, ds.VisualType);
-        else if (ds.Type == PopupRecipients.Pvs)
-            _popup.PopupEntity(Loc.GetString(ds.Message, ("person", Identity.Entity(args.DiseasedEntity, EntityManager))), args.DiseasedEntity, ds.VisualType);
+        if(args.Handled)
+            return;
+        args.Handled = true;
+        if (args.DiseaseEffect.Type == PopupRecipients.Local)
+            _popup.PopupEntity(Loc.GetString(args.DiseaseEffect.Message), args.DiseasedEntity, args.DiseasedEntity, args.DiseaseEffect.VisualType);
+        else if (args.DiseaseEffect.Type == PopupRecipients.Pvs)
+            _popup.PopupEntity(Loc.GetString(args.DiseaseEffect.Message, ("person", Identity.Entity(args.DiseasedEntity, EntityManager))), args.DiseasedEntity, args.DiseaseEffect.VisualType);
     }
 }

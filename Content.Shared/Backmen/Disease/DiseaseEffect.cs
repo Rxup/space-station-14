@@ -17,6 +17,7 @@ public abstract partial class DiseaseEffect : HandledEntityEventArgs
     /// </summary>
     [DataField("stages")]
     public HashSet<int> Stages { get; private set; } = [0];
+    public abstract object GenerateEvent(Entity<DiseaseCarrierComponent> ent, ProtoId<DiseasePrototype> disease);
 }
 
 public abstract class DiseaseArgs(Entity<DiseaseCarrierComponent> diseasedEntity, ProtoId<DiseasePrototype> disease)
@@ -31,11 +32,11 @@ public abstract class DiseaseArgs(Entity<DiseaseCarrierComponent> diseasedEntity
 /// Includes an entity manager because it is out of scope
 /// otherwise.
 /// </summary>
-public sealed class DiseaseEffectArgs(
+public sealed class DiseaseEffectArgs<T>(
     Entity<DiseaseCarrierComponent> diseasedEntity,
     ProtoId<DiseasePrototype> disease,
-    DiseaseEffect diseaseEffect)
-    : DiseaseArgs(diseasedEntity, disease)
+    T diseaseEffect)
+    : DiseaseArgs(diseasedEntity, disease) where T : DiseaseEffect
 {
-    public readonly DiseaseEffect DiseaseEffect = diseaseEffect;
+    public readonly T DiseaseEffect = diseaseEffect;
 }
