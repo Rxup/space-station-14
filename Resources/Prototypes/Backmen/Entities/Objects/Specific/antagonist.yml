@@ -1,0 +1,46 @@
+# Uplinks
+- type: entity
+  parent: BaseItem
+  id: BaseWizardUplinkRadio
+  name: wizard uplink
+  description: You're a wizard, harry!
+  suffix: Empty
+  components:
+  - type: Sprite
+    sprite: Objects/Devices/communication.rsi
+    layers:
+    - state: old-radio
+    netsync: false
+  - type: Item
+    sprite: Objects/Devices/communication.rsi
+    heldPrefix: old-radio
+  - type: UserInterface
+    interfaces:
+    - key: enum.StoreUiKey.Key
+      type: StoreBoundUserInterface
+  - type: ActivatableUI
+    key: enum.StoreUiKey.Key
+  - type: Store
+    preset: WizardStorePresetUplink
+    balance:
+      MaterialBluespace: 0
+
+- type: entity
+  parent: BaseWizardUplinkRadio
+  id: BaseWizardUplinkRadio8BS
+  suffix: 8 Bluespace
+  components:
+  - type: Store
+    preset: WizardStorePresetUplink
+    balance:
+      MaterialBluespace: 8
+
+- type: entity
+  parent: BaseWizardUplinkRadio
+  id: BaseWizardUplinkRadio30BS
+  suffix: 30 Bluespace
+  components:
+  - type: Store
+    preset: WizardStorePresetUplink
+    balance:
+      MaterialBluespace: 30
