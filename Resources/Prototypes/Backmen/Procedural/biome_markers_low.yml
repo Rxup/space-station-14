@@ -12,7 +12,7 @@
     WallRockSnow: WallRockSnowTin
   maxCount: 15
   minGroupSize: 5
-  maxGroupSize: 10
+  maxGroupSize: 15
   radius: 4
 
 - type: biomeMarkerLayer
@@ -68,8 +68,8 @@
     WallRockSand: WallRockSandGold
     WallRockSnow: WallRockSnowGold
   maxCount: 6
-  minGroupSize: 5
-  maxGroupSize: 10
+  minGroupSize: 4
+  maxGroupSize: 6
   radius: 4
 
 # Silver
@@ -83,8 +83,8 @@
     WallRockSand: WallRockSandSilver
     WallRockSnow: WallRockSnowSilver
   maxCount: 12
-  minGroupSize: 5
-  maxGroupSize: 10
+  minGroupSize: 6
+  maxGroupSize: 12
   radius: 4
 
 # High value
@@ -99,8 +99,8 @@
     WallRockSand: WallRockSandPlasma
     WallRockSnow: WallRockSnowPlasma
   maxCount: 6
-  minGroupSize: 5
-  maxGroupSize: 10
+  minGroupSize: 4
+  maxGroupSize: 6
   radius: 6
 
 # Uranium
@@ -181,3 +181,11 @@
   minGroupSize: 1
   maxGroupSize: 1
   radius: 2
+
+- type: biomeMarkerLayer
+  id: LowLizards
+  prototype: MobLizard
+  maxCount: 2
+  minGroupSize: 1
+  maxGroupSize: 2
+  radius: 3

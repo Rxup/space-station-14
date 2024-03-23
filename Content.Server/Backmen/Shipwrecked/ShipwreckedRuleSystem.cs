@@ -284,7 +284,7 @@ public sealed class ShipwreckedRuleSystem : GameRuleSystem<ShipwreckedRuleCompon
     [ValidatePrototypeId<DatasetPrototype>]
     private const string PlanetNames = "names_borer";
 
-    private const int MaxPreloadOffset  = 200;
+    private const int MaxPreloadOffset  = 220;
 
     private void SpawnPlanet(EntityUid uid, ShipwreckedRuleComponent component)
     {
@@ -469,7 +469,7 @@ public sealed class ShipwreckedRuleSystem : GameRuleSystem<ShipwreckedRuleCompon
         foreach (var direction in directions)
         {
             var minDistance = component.Destination.StructureDistance;
-            var distance = Math.Min(_random.Next(minDistance, (int) (minDistance * 1.2)), MaxPreloadOffset - 10);
+            var distance = Math.Min(_random.Next(minDistance, (int) (minDistance * 1.2)), MaxPreloadOffset - 30);
 
             var point = direction * distance;
 

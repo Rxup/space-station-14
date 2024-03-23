@@ -67,7 +67,7 @@
    - LowOreUranium
    - LowOreBananium
    # Mobs
-   - Lizards
+   - LowLizards
    - LowXenos
   structures:
     RuinedDwellings: 1
@@ -96,7 +96,6 @@
    - LowOreUranium
    - LowOreBananium
    # Mobs
-   - Lizards
    - LowCarps
   structures:
     RuinedDwellings: 1
@@ -127,6 +126,7 @@
    - LowOreGold
    - LowOreUranium
    - LowOreBananium
+   - LowOreArtifactFragment
    # Mobs
    - LowWatchersLavaland
    - LowCarps
