@@ -24,25 +24,35 @@ public sealed partial class DiseaseReagentCure : DiseaseCure
             return string.Empty;
         return (Loc.GetString("diagnoser-cure-reagent", ("units", Min), ("reagent", reagentProt.LocalizedName)));
     }
+
+    public override object GenerateEvent(Entity<DiseaseCarrierComponent> ent, ProtoId<DiseasePrototype> disease)
+    {
+        return new DiseaseCureArgs<DiseaseReagentCure>(ent, disease, this);
+    }
 }
 
 public sealed partial class DiseaseCureSystem
 {
-    private void DiseaseReagentCure(DiseaseCureArgs args, DiseaseReagentCure ds)
+    private void DiseaseReagentCure(Entity<DiseaseCarrierComponent> ent, ref DiseaseCureArgs<DiseaseReagentCure> args)
     {
-        if (!TryComp<BloodstreamComponent>(args.DiseasedEntity, out var bloodstream)
+        if(args.Handled)
+            return;
+
+        args.Handled = true;
+
+        if (!_bloodstreamQuery.TryGetComponent(args.DiseasedEntity, out var bloodstream)
             || bloodstream.ChemicalSolution == null)
             return;
 
         var chemicalSolution = bloodstream.ChemicalSolution.Value;
 
         var quant = FixedPoint2.Zero;
-        if (ds.Reagent != null && chemicalSolution.Comp.Solution.ContainsReagent(ds.Reagent.Value))
+        if (args.DiseaseCure.Reagent != null && chemicalSolution.Comp.Solution.ContainsReagent(args.DiseaseCure.Reagent.Value))
         {
-            quant = chemicalSolution.Comp.Solution.GetReagentQuantity(ds.Reagent.Value);
+            quant = chemicalSolution.Comp.Solution.GetReagentQuantity(args.DiseaseCure.Reagent.Value);
         }
 
-        if (quant >= ds.Min)
+        if (quant >= args.DiseaseCure.Min)
         {
             _disease.CureDisease(args.DiseasedEntity, args.Disease);
         }

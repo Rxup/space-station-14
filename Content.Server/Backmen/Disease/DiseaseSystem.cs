@@ -4,6 +4,7 @@ using Content.Server.Body.Systems;
 using Content.Server.Chat.Systems;
 using Content.Server.Nutrition.Components;
 using Content.Server.Popups;
+using Content.Shared.Backmen.CCVar;
 using Content.Shared.Backmen.Disease;
 using Content.Shared.Backmen.Disease.Events;
 using Content.Shared.Clothing.Components;
@@ -16,6 +17,7 @@ using Content.Shared.Inventory.Events;
 using Content.Shared.Mobs.Components;
 using Content.Shared.Mobs.Systems;
 using Content.Shared.Rejuvenate;
+using Robust.Shared.Configuration;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Serialization.Manager;
@@ -34,13 +36,12 @@ public sealed class DiseaseSystem : EntitySystem
     [Dependency] private readonly IRobustRandom _random = default!;
     [Dependency] private readonly SharedDoAfterSystem _doAfterSystem = default!;
     [Dependency] private readonly PopupSystem _popupSystem = default!;
-    [Dependency] private readonly EntityLookupSystem _lookup = default!;
-    [Dependency] private readonly SharedInteractionSystem _interactionSystem = default!;
     [Dependency] private readonly InventorySystem _inventorySystem = default!;
     [Dependency] private readonly MobStateSystem _mobStateSystem = default!;
     [Dependency] private readonly ChatSystem _chatSystem = default!;
     [Dependency] private readonly IParallelManager _parallel = default!;
-    [Dependency] private readonly SharedTransformSystem _transform = default!;
+
+    [Dependency] private readonly IConfigurationManager _cfg = default!;
 
     public override void Initialize()
     {
@@ -57,7 +58,11 @@ public sealed class DiseaseSystem : EntitySystem
         SubscribeLocalEvent<DiseaseCarrierComponent, ApplyMetabolicMultiplierEvent>(OnApplyMetabolicMultiplier);
 
         _carrierQuery = GetEntityQuery<DiseaseCarrierComponent>();
+
+        _cfg.OnValueChanged(CCVars.GameDiseaseEnabled, v=> _enabled = v, true);
     }
+
+    private bool _enabled = true;
 
     private EntityQuery<DiseaseCarrierComponent> _carrierQuery;
 
@@ -72,6 +77,10 @@ public sealed class DiseaseSystem : EntitySystem
     public override void Update(float frameTime)
     {
         base.Update(frameTime);
+
+        if (!_enabled)
+            return;
+
         foreach (var entity in _addQueue)
         {
             if (TerminatingOrDeleted(entity))
@@ -99,7 +108,6 @@ public sealed class DiseaseSystem : EntitySystem
         {
             if (carrierComp.Diseases.Count == 0)
             {
-                RemCompDeferred<DiseasedComponent>(owner);
                 continue;
             }
 
@@ -161,8 +169,7 @@ public sealed class DiseaseSystem : EntitySystem
         {
             if (!cure.Stages.Contains(stage))
                 continue;
-            var args = new DiseaseCureArgs(owner, disease.ID, cure);
-            QueueLocalEvent(args);
+            RaiseLocalEvent(owner, cure.GenerateEvent(owner,disease.ID));
         }
 
         if (!doEffects)
@@ -172,8 +179,7 @@ public sealed class DiseaseSystem : EntitySystem
         {
             if (!effect.Stages.Contains(stage) || !_random.Prob(effect.Probability))
                 continue;
-            var args = new DiseaseEffectArgs(owner, disease.ID, effect);
-            QueueLocalEvent(args);
+            RaiseLocalEvent(owner, effect.GenerateEvent(owner,disease.ID));
         }
     }
         ///
@@ -297,7 +303,7 @@ public sealed class DiseaseSystem : EntitySystem
         {
             if (TryComp<DiseaseCarrierComponent>(uid, out var carrier))
             {
-                SneezeCough(uid, _random.Pick(carrier.Diseases), string.Empty);
+                SneezeCough(uid, _random.Pick(carrier.Diseases).ID, string.Empty);
             }
         }
 
@@ -392,30 +398,29 @@ public sealed class DiseaseSystem : EntitySystem
         /// </summary>
         public void TryAddDisease(EntityUid host, DiseasePrototype addedDisease, DiseaseCarrierComponent? target = null)
         {
+            TryAddDisease(host, addedDisease.ID, target);
+        }
+
+        public void TryAddDisease(EntityUid host, ProtoId<DiseasePrototype> addedDisease, DiseaseCarrierComponent? target = null)
+        {
             if (!Resolve(host, ref target, false))
                 return;
 
             foreach (var disease in target.AllDiseases)
             {
-                if (disease == addedDisease.ID) //ID because of the way protoypes work
+                if (disease == addedDisease) //ID because of the way protoypes work
                     return;
             }
 
-            var freshDisease = _serializationManager.CreateCopy(addedDisease, notNullableOverride: true);
+            if (!_prototypeManager.TryIndex(addedDisease, out var added))
+                return;
+            var freshDisease = _serializationManager.CreateCopy(added, notNullableOverride: true);
 
             //if (freshDisease == null)
             //    return;
 
             target.Diseases.Add(freshDisease);
             _addQueue.Add(host);
-        }
-
-        public void TryAddDisease(EntityUid host, string? addedDisease, DiseaseCarrierComponent? target = null)
-        {
-            if (addedDisease == null || !_prototypeManager.TryIndex<DiseasePrototype>(addedDisease, out var added))
-                return;
-
-            TryAddDisease(host, added, target);
         }
 
         /// <summary>
@@ -453,7 +458,7 @@ public sealed class DiseaseSystem : EntitySystem
         /// and then tries to infect anyone in range
         /// if the snougher is not wearing a mask.
         /// </summary>
-        public bool SneezeCough(EntityUid uid, DiseasePrototype? disease, string emoteId, bool airTransmit = true, TransformComponent? xform = null)
+        public bool SneezeCough(EntityUid uid, ProtoId<DiseasePrototype> diseaseId, string emoteId, bool airTransmit = true, TransformComponent? xform = null)
         {
             if (!Resolve(uid, ref xform))
                 return false;
@@ -468,26 +473,26 @@ public sealed class DiseaseSystem : EntitySystem
 
             _chatSystem.TryEmoteWithChat(uid, emoteId);
 
+            var disease = _prototypeManager.Index(diseaseId);
+
             if (disease is not { Infectious: true } || !airTransmit)
                 return true;
 
             if (_inventorySystem.TryGetSlotEntity(uid, "mask", out var maskUid) &&
-                EntityManager.TryGetComponent<IngestionBlockerComponent>(maskUid, out var blocker) &&
+                TryComp<IngestionBlockerComponent>(maskUid, out var blocker) &&
                 blocker.Enabled)
                 return true;
 
-            foreach (var entity in _lookup.GetEntitiesInRange(_transform.GetMapCoordinates(uid, xform), 2f))
+            QueueLocalEvent(new DiseaseInfectionSpreadEvent
             {
-                if (!_carrierQuery.TryGetComponent(entity, out var carrier) ||
-                    !_interactionSystem.InRangeUnobstructed(uid, entity))
-                    continue;
+                Owner = uid,
+                Disease = disease,
+                Range = 2f
+            });
 
-                TryInfect((entity,carrier), disease, 0.3f);
-            }
             return true;
         }
-
-    }
+}
 
 /// <summary>
 /// This event is fired by chems

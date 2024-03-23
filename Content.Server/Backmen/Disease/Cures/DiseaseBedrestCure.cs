@@ -2,6 +2,7 @@
 using Content.Shared.Backmen.Disease;
 using Content.Shared.Bed.Sleep;
 using Content.Shared.Buckle.Components;
+using Robust.Shared.Prototypes;
 
 namespace Content.Server.Backmen.Disease.Cures;
 
@@ -22,23 +23,33 @@ public sealed partial class DiseaseBedrestCure : DiseaseCure
     {
         return (Loc.GetString("diagnoser-cure-bedrest", ("time", MaxLength), ("sleep", (MaxLength / SleepMultiplier))));
     }
+
+    public override object GenerateEvent(Entity<DiseaseCarrierComponent> ent, ProtoId<DiseasePrototype> disease)
+    {
+        return new DiseaseCureArgs<DiseaseBedrestCure>(ent, disease, this);
+    }
 }
 
 public sealed partial class DiseaseCureSystem
 {
-    private void DiseaseBedrestCure(DiseaseCureArgs args, DiseaseBedrestCure ds)
+    private void DiseaseBedrestCure(Entity<DiseaseCarrierComponent> ent, ref DiseaseCureArgs<DiseaseBedrestCure> args)
     {
-        if (!TryComp<BuckleComponent>(args.DiseasedEntity, out var buckle) ||
-            !HasComp<HealOnBuckleComponent>(buckle.BuckledTo))
+        if(args.Handled)
+            return;
+
+        args.Handled = true;
+
+        if (!_buckleQuery.TryGetComponent(args.DiseasedEntity, out var buckle) ||
+            !_healOnBuckleQuery.HasComponent(buckle.BuckledTo))
             return;
 
         var ticks = 1;
-        if (HasComp<SleepingComponent>(args.DiseasedEntity))
-            ticks *= ds.SleepMultiplier;
+        if (_sleepingComponentQuery.HasComponent(args.DiseasedEntity))
+            ticks *= args.DiseaseCure.SleepMultiplier;
 
         if (buckle.Buckled)
-            ds.Ticker += ticks;
-        if (ds.Ticker >= ds.MaxLength)
+            args.DiseaseCure.Ticker += ticks;
+        if (args.DiseaseCure.Ticker >= args.DiseaseCure.MaxLength)
         {
             _disease.CureDisease(args.DiseasedEntity, args.Disease);
         }

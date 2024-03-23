@@ -1,58 +1,65 @@
-﻿using Content.Shared.Backmen.Disease;
+﻿using System.Linq;
+using Content.Server.Backmen.Disease.Components;
+using Content.Shared.Backmen.Disease;
 using Content.Shared.Backmen.Disease.Effects;
+using Content.Shared.Interaction;
+using Robust.Shared.CPUJob.JobQueues.Queues;
 using Robust.Shared.Prototypes;
 
 namespace Content.Server.Backmen.Disease.Effects;
 
 public sealed partial class DiseaseEffectSystem : SharedDiseaseEffectSystem
 {
-    [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
+    [Dependency] private readonly SharedTransformSystem _transform = default!;
+    [Dependency] private readonly EntityLookupSystem _lookup = default!;
+    [Dependency] private readonly SharedInteractionSystem _interactionSystem = default!;
+
     public override void Initialize()
     {
         base.Initialize();
 
-        SubscribeLocalEvent<DiseaseEffectArgs>(DoGenericEffect);
+        SubscribeLocalEvent<DiseaseCarrierComponent, DiseaseEffectArgs<DiseaseAddComponent>>(DiseaseAddComponent);
+        SubscribeLocalEvent<DiseaseCarrierComponent, DiseaseEffectArgs<DiseaseAdjustReagent>>(DiseaseAdjustReagent);
+        SubscribeLocalEvent<DiseaseCarrierComponent, DiseaseEffectArgs<DiseaseGenericStatusEffect>>(DiseaseGenericStatusEffect);
+        SubscribeLocalEvent<DiseaseCarrierComponent, DiseaseEffectArgs<DiseaseHealthChange>>(DiseaseHealthChange);
+        SubscribeLocalEvent<DiseaseCarrierComponent, DiseaseEffectArgs<DiseasePolymorph>>(DiseasePolymorph);
+        SubscribeLocalEvent<DiseaseCarrierComponent, DiseaseEffectArgs<DiseasePopUp>>(DiseasePopUp);
+        SubscribeLocalEvent<DiseaseCarrierComponent, DiseaseEffectArgs<DiseaseSnough>>(DiseaseSnough);
+        SubscribeLocalEvent<DiseaseCarrierComponent, DiseaseEffectArgs<DiseaseVomit>>(DiseaseVomit);
+
+        SubscribeLocalEvent<DiseaseInfectionSpreadEvent>(OnSpreadEvent);
     }
 
-    private void DoGenericEffect(DiseaseEffectArgs args)
-    {
-        if(args.Handled)
-            return;
+    private const double SpreadJobTime = 0.005;
+    private readonly JobQueue _spreadJobQueue = new(SpreadJobTime);
 
-        switch (args.DiseaseEffect)
+    private readonly HashSet<Entity<DiseaseCarrierComponent>> _diseaseCarrierSpread = new();
+    private void OnSpreadEvent(DiseaseInfectionSpreadEvent ev)
+    {
+        _spreadJobQueue.EnqueueJob(new DiseaseInfectionSpread(ev,this,SpreadJobTime));
+    }
+
+    public void DoSpread(EntityUid uid, DiseasePrototype disease, float range)
+    {
+        _diseaseCarrierSpread.Clear();
+        var pos = _transform.GetMapCoordinates(uid);
+        _lookup.GetEntitiesInRange(pos, range, _diseaseCarrierSpread, LookupFlags.Uncontained);
+        foreach (var entity in _diseaseCarrierSpread)
         {
-            case DiseaseAddComponent ds1:
-                args.Handled = true;
-                DiseaseAddComponent(args, ds1);
-                return;
-            case DiseaseAdjustReagent ds2:
-                args.Handled = true;
-                DiseaseAdjustReagent(args, ds2);
-                return;
-            case DiseaseGenericStatusEffect ds3:
-                args.Handled = true;
-                DiseaseGenericStatusEffect(args, ds3);
-                return;
-            case DiseaseHealthChange ds4:
-                args.Handled = true;
-                DiseaseHealthChange(args, ds4);
-                return;
-            case DiseasePolymorph ds5:
-                args.Handled = true;
-                DiseasePolymorph(args, ds5);
-                return;
-            case DiseasePopUp ds6:
-                args.Handled = true;
-                DiseasePopUp(args, ds6);
-                return;
-            case DiseaseSnough ds7:
-                args.Handled = true;
-                DiseaseSnough(args, ds7);
-                return;
-            case DiseaseVomit ds8:
-                args.Handled = true;
-                DiseaseVomit(args, ds8);
-                return;
+            if (entity.Owner == uid)
+                continue;
+            var tarPos = _transform.GetMapCoordinates(entity);
+            if (!_interactionSystem.InRangeUnobstructed(pos, tarPos, range))
+                continue;
+
+            _disease.TryInfect(entity, disease, 0.3f);
         }
+    }
+
+    public override void Update(float frameTime)
+    {
+        base.Update(frameTime);
+
+        _spreadJobQueue.Process();
     }
 }

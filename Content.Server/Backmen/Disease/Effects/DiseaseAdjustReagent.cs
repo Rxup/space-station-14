@@ -1,5 +1,6 @@
 ﻿using Content.Server.Body.Components;
 using Content.Server.Chemistry.Containers.EntitySystems;
+using Content.Server.Chemistry.ReagentEffects;
 using Content.Shared.Backmen.Disease;
 using Content.Shared.Chemistry.EntitySystems;
 using Content.Shared.Chemistry.Reagent;
@@ -25,15 +26,25 @@ public sealed partial class DiseaseAdjustReagent : DiseaseEffect
 
     [DataField("amount", required: true)]
     public FixedPoint2 Amount = default!;
+
+    public override object GenerateEvent(Entity<DiseaseCarrierComponent> ent, ProtoId<DiseasePrototype> disease)
+    {
+        return new DiseaseEffectArgs<DiseaseAdjustReagent>(ent, disease, this);
+    }
 }
 
 public sealed partial class DiseaseEffectSystem
 {
     [Dependency] private readonly SharedSolutionContainerSystem _solutionContainer = default!;
 
-    private void DiseaseAdjustReagent(DiseaseEffectArgs args, DiseaseAdjustReagent ds)
+    private void DiseaseAdjustReagent(Entity<DiseaseCarrierComponent> ent, ref DiseaseEffectArgs<DiseaseAdjustReagent> args)
     {
-        if (ds.Reagent == null)
+        if(args.Handled)
+            return;
+
+        args.Handled = true;
+
+        if (args.DiseaseEffect.Reagent == null)
             return;
 
         if (!TryComp<BloodstreamComponent>(args.DiseasedEntity, out var bloodstream))
@@ -43,9 +54,9 @@ public sealed partial class DiseaseEffectSystem
         if (stream == null)
             return;
 
-        if (ds.Amount < 0 && stream.Value.Comp.Solution.ContainsReagent(ds.Reagent.Value))
-            _solutionContainer.RemoveReagent(stream.Value,ds.Reagent.Value, -ds.Amount);
-        if (ds.Amount > 0)
-            _solutionContainer.TryAddReagent(stream.Value, ds.Reagent.Value, ds.Amount, out _);
+        if (args.DiseaseEffect.Amount < 0 && stream.Value.Comp.Solution.ContainsReagent(args.DiseaseEffect.Reagent.Value))
+            _solutionContainer.RemoveReagent(stream.Value,args.DiseaseEffect.Reagent.Value, -args.DiseaseEffect.Amount);
+        if (args.DiseaseEffect.Amount > 0)
+            _solutionContainer.TryAddReagent(stream.Value, args.DiseaseEffect.Reagent.Value, args.DiseaseEffect.Amount, out _);
     }
 }

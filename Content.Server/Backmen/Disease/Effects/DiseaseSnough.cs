@@ -1,6 +1,7 @@
 ﻿using Content.Shared.Backmen.Disease;
 using Content.Shared.Chat.Prototypes;
 using JetBrains.Annotations;
+using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype;
 
 namespace Content.Server.Backmen.Disease.Effects;
@@ -23,12 +24,20 @@ public sealed partial class DiseaseSnough : DiseaseEffect
     /// </summary>
     [DataField("airTransmit")]
     public bool AirTransmit = true;
+
+    public override object GenerateEvent(Entity<DiseaseCarrierComponent> ent, ProtoId<DiseasePrototype> disease)
+    {
+        return new DiseaseEffectArgs<DiseaseSnough>(ent, disease, this);
+    }
 }
 public sealed partial class DiseaseEffectSystem
 {
     [Dependency] private readonly DiseaseSystem _disease = default!;
-    private void DiseaseSnough(DiseaseEffectArgs args, DiseaseSnough ds)
+    private void DiseaseSnough(Entity<DiseaseCarrierComponent> ent, ref DiseaseEffectArgs<DiseaseSnough> args)
     {
-        _disease.SneezeCough(args.DiseasedEntity, _prototypeManager.Index(args.Disease), ds.EmoteId, ds.AirTransmit);
+        if(args.Handled)
+            return;
+        args.Handled = true;
+        _disease.SneezeCough(args.DiseasedEntity, args.Disease, args.DiseaseEffect.EmoteId, args.DiseaseEffect.AirTransmit);
     }
 }

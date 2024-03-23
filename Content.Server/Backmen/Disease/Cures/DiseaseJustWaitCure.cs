@@ -1,4 +1,5 @@
 ﻿using Content.Shared.Backmen.Disease;
+using Robust.Shared.Prototypes;
 
 namespace Content.Server.Backmen.Disease.Cures;
 
@@ -21,14 +22,24 @@ public sealed partial class DiseaseJustWaitCure : DiseaseCure
     {
         return Loc.GetString("diagnoser-cure-wait", ("time", MaxLength));
     }
+
+    public override object GenerateEvent(Entity<DiseaseCarrierComponent> ent, ProtoId<DiseasePrototype> disease)
+    {
+        return new DiseaseCureArgs<DiseaseJustWaitCure>(ent, disease, this);
+    }
 }
 
 public sealed partial class DiseaseCureSystem
 {
-    private void DiseaseJustWaitCure(DiseaseCureArgs args, DiseaseJustWaitCure ds)
+    private void DiseaseJustWaitCure(Entity<DiseaseCarrierComponent> ent, ref DiseaseCureArgs<DiseaseJustWaitCure> args)
     {
-        ds.Ticker++;
-        if (ds.Ticker >= ds.MaxLength)
+        if(args.Handled)
+            return;
+
+        args.Handled = true;
+
+        args.DiseaseCure.Ticker++;
+        if (args.DiseaseCure.Ticker >= args.DiseaseCure.MaxLength)
         {
             _disease.CureDisease(args.DiseasedEntity, args.Disease);
         }

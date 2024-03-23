@@ -16,20 +16,29 @@ public sealed partial class DiseaseAddComponent : DiseaseEffect
     /// </summary>
     [DataField("components")]
     public ComponentRegistry Components = new();
+
+    public override object GenerateEvent(Entity<DiseaseCarrierComponent> ent, ProtoId<DiseasePrototype> disease)
+    {
+        return new DiseaseEffectArgs<DiseaseAddComponent>(ent, disease, this);
+    }
 }
 
 public sealed partial class DiseaseEffectSystem
 {
     [Dependency] private readonly ISerializationManager _serialization = default!;
 
-    private void DiseaseAddComponent(DiseaseEffectArgs args, DiseaseAddComponent ds)
+    private void DiseaseAddComponent(Entity<DiseaseCarrierComponent> ent, ref DiseaseEffectArgs<DiseaseAddComponent> args)
     {
-        if (ds.Components.Count == 0)
+        if(args.Handled)
+            return;
+        args.Handled = true;
+
+        if (args.DiseaseEffect.Components.Count == 0)
             return;
 
         var uid = args.DiseasedEntity;
 
-        foreach (var compReg in ds.Components.Values)
+        foreach (var compReg in args.DiseaseEffect.Components.Values)
         {
             var compType = compReg.Component.GetType();
 

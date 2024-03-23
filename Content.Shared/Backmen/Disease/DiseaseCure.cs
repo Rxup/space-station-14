@@ -22,13 +22,15 @@ public abstract partial class DiseaseCure
     /// the cure
     /// </summary>
     public abstract string CureText();
+
+    public abstract object GenerateEvent(Entity<DiseaseCarrierComponent> ent, ProtoId<DiseasePrototype> disease);
 }
 
-public sealed class DiseaseCureArgs(
+public sealed class DiseaseCureArgs<T>(
     Entity<DiseaseCarrierComponent> diseasedEntity,
     ProtoId<DiseasePrototype> disease,
-    DiseaseCure diseaseCure)
-    : DiseaseArgs(diseasedEntity, disease)
+    T diseaseCure)
+    : DiseaseArgs(diseasedEntity, disease)  where T : DiseaseCure
 {
-    public readonly DiseaseCure DiseaseCure = diseaseCure;
+    public readonly T DiseaseCure = diseaseCure;
 }

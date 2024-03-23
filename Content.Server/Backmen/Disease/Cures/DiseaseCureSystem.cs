@@ -1,40 +1,34 @@
-﻿using Content.Shared.Backmen.Disease;
+﻿using Content.Server.Bed.Components;
+using Content.Server.Body.Components;
+using Content.Server.Temperature.Components;
+using Content.Shared.Backmen.Disease;
+using Content.Shared.Bed.Sleep;
+using Content.Shared.Buckle.Components;
 
 namespace Content.Server.Backmen.Disease.Cures;
 
 public sealed partial class DiseaseCureSystem : EntitySystem
 {
     [Dependency] private readonly DiseaseSystem _disease = default!;
+    private EntityQuery<BuckleComponent> _buckleQuery;
+    private EntityQuery<HealOnBuckleComponent> _healOnBuckleQuery;
+    private EntityQuery<SleepingComponent> _sleepingComponentQuery;
+    private EntityQuery<BloodstreamComponent> _bloodstreamQuery;
+    private EntityQuery<TemperatureComponent> _temperatureQuery;
+
     public override void Initialize()
     {
         base.Initialize();
 
-        SubscribeLocalEvent<DiseaseCureArgs>(DoGenericCure);
-    }
+        SubscribeLocalEvent<DiseaseCarrierComponent, DiseaseCureArgs<DiseaseBedrestCure>>(DiseaseBedrestCure);
+        SubscribeLocalEvent<DiseaseCarrierComponent, DiseaseCureArgs<DiseaseBodyTemperatureCure>>(DiseaseBodyTemperatureCure);
+        SubscribeLocalEvent<DiseaseCarrierComponent, DiseaseCureArgs<DiseaseJustWaitCure>>(DiseaseJustWaitCure);
+        SubscribeLocalEvent<DiseaseCarrierComponent, DiseaseCureArgs<DiseaseReagentCure>>(DiseaseReagentCure);
 
-    private void DoGenericCure(DiseaseCureArgs args)
-    {
-        if(args.Handled)
-            return;
-
-        switch (args.DiseaseCure)
-        {
-            case DiseaseBedrestCure ds1:
-                args.Handled = true;
-                DiseaseBedrestCure(args, ds1);
-                return;
-            case DiseaseBodyTemperatureCure ds2:
-                args.Handled = true;
-                DiseaseBodyTemperatureCure(args, ds2);
-                return;
-            case DiseaseJustWaitCure ds3:
-                args.Handled = true;
-                DiseaseJustWaitCure(args, ds3);
-                return;
-            case DiseaseReagentCure ds4:
-                args.Handled = true;
-                DiseaseReagentCure(args, ds4);
-                return;
-        }
+        _buckleQuery = GetEntityQuery<BuckleComponent>();
+        _healOnBuckleQuery = GetEntityQuery<HealOnBuckleComponent>();
+        _sleepingComponentQuery = GetEntityQuery<SleepingComponent>();
+        _bloodstreamQuery = GetEntityQuery<BloodstreamComponent>();
+        _temperatureQuery = GetEntityQuery<TemperatureComponent>();
     }
 }

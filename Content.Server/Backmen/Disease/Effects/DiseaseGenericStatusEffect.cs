@@ -1,6 +1,7 @@
 ﻿using Content.Shared.Backmen.Disease;
 using Content.Shared.StatusEffect;
 using JetBrains.Annotations;
+using Robust.Shared.Prototypes;
 
 namespace Content.Server.Backmen.Disease.Effects;
 
@@ -41,6 +42,11 @@ public sealed partial class DiseaseGenericStatusEffect : DiseaseEffect
     /// </summary>
     [DataField("type")]
     public StatusEffectDiseaseType Type = StatusEffectDiseaseType.Add;
+
+    public override object GenerateEvent(Entity<DiseaseCarrierComponent> ent, ProtoId<DiseasePrototype> disease)
+    {
+        return new DiseaseEffectArgs<DiseaseGenericStatusEffect>(ent, disease, this);
+    }
 }
 
 /// See status effects for how these work
@@ -55,19 +61,22 @@ public sealed partial class DiseaseEffectSystem
 {
     [Dependency] private readonly StatusEffectsSystem _effectsSystem = default!;
 
-    private void DiseaseGenericStatusEffect(DiseaseEffectArgs args, DiseaseGenericStatusEffect ds)
+    private void DiseaseGenericStatusEffect(Entity<DiseaseCarrierComponent> ent, ref DiseaseEffectArgs<DiseaseGenericStatusEffect> args)
     {
-        if (ds.Type == StatusEffectDiseaseType.Add && ds.Component != "")
+        if(args.Handled)
+            return;
+        args.Handled = true;
+        if (args.DiseaseEffect.Type == StatusEffectDiseaseType.Add && args.DiseaseEffect.Component != "")
         {
-            _effectsSystem.TryAddStatusEffect(args.DiseasedEntity, ds.Key, TimeSpan.FromSeconds(ds.Time), ds.Refresh, ds.Component);
+            _effectsSystem.TryAddStatusEffect(args.DiseasedEntity, args.DiseaseEffect.Key, TimeSpan.FromSeconds(args.DiseaseEffect.Time), args.DiseaseEffect.Refresh, args.DiseaseEffect.Component);
         }
-        else if (ds.Type == StatusEffectDiseaseType.Remove)
+        else if (args.DiseaseEffect.Type == StatusEffectDiseaseType.Remove)
         {
-            _effectsSystem.TryRemoveTime(args.DiseasedEntity, ds.Key, TimeSpan.FromSeconds(ds.Time));
+            _effectsSystem.TryRemoveTime(args.DiseasedEntity, args.DiseaseEffect.Key, TimeSpan.FromSeconds(args.DiseaseEffect.Time));
         }
-        else if (ds.Type == StatusEffectDiseaseType.Set)
+        else if (args.DiseaseEffect.Type == StatusEffectDiseaseType.Set)
         {
-            _effectsSystem.TrySetTime(args.DiseasedEntity, ds.Key, TimeSpan.FromSeconds(ds.Time));
+            _effectsSystem.TrySetTime(args.DiseasedEntity, args.DiseaseEffect.Key, TimeSpan.FromSeconds(args.DiseaseEffect.Time));
         }
     }
 }
