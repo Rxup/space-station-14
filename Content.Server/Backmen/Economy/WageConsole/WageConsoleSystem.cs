@@ -61,7 +61,7 @@ public sealed class WageConsoleSystem : SharedWageConsoleSystem
         }
 
         _adminLogger.Add(LogType.Transactions, LogImpact.Extreme,
-            $"Player {args.Session.Name} use BonusSystem on accountId {wagePayout.ToAccountNumber.Comp.AccountNumber} with name {wagePayout.ToAccountNumber:entity} and add {args.Wage}");
+            $"wage, player {ToPrettyString(args.Session.AttachedEntity.GetValueOrDefault()):player} use bonus on accountId {wagePayout.ToAccountNumber.Comp.AccountNumber} with name {wagePayout.ToAccountNumber:entity} and add {args.Wage}");
 
         QueueLocalEvent(new WagePaydayEvent()
         {
@@ -116,7 +116,7 @@ public sealed class WageConsoleSystem : SharedWageConsoleSystem
         }
 
         _adminLogger.Add(LogType.Transactions, LogImpact.Extreme,
-            $"Player {args.Session.Name} use EditPayoutSystem on accountId {wagePayout.ToAccountNumber.Comp.AccountNumber} with name {wagePayout.ToAccountNumber:entity} and set payout to {args.Wage}");
+            $"wage, player {ToPrettyString(args.Session.AttachedEntity.GetValueOrDefault()):player} use edit on accountId {wagePayout.ToAccountNumber.Comp.AccountNumber} with name {wagePayout.ToAccountNumber.Owner:entity} and set payout to {args.Wage}");
 
         wagePayout.PayoutAmount = args.Wage;
         UpdateUserInterface(ent);
@@ -132,16 +132,20 @@ public sealed class WageConsoleSystem : SharedWageConsoleSystem
             return;
         }
 
+        if(!TryComp<MetaDataComponent>(wagePayout.FromAccountNumber, out var mdFrom) ||
+           !TryComp<MetaDataComponent>(wagePayout.ToAccountNumber, out var mdTp))
+            return;
+
         _ui.TrySetUiState(ent, WageUiKey.Key, new OpenEditWageConsoleUi
         {
             Row = new UpdateWageRow
             {
                 Id = wagePayout.Id,
-                FromId = GetNetEntity(wagePayout.FromAccountNumber),
-                FromName = Name(wagePayout.FromAccountNumber),
+                FromId = GetNetEntity(wagePayout.FromAccountNumber, mdFrom),
+                FromName = Name(wagePayout.FromAccountNumber, mdFrom),
                 FromAccount = wagePayout.FromAccountNumber.Comp.AccountNumber,
-                ToId = GetNetEntity(wagePayout.ToAccountNumber),
-                ToName = Name(wagePayout.ToAccountNumber),
+                ToId = GetNetEntity(wagePayout.ToAccountNumber, mdTp),
+                ToName = Name(wagePayout.ToAccountNumber, mdTp),
                 ToAccount = wagePayout.ToAccountNumber.Comp.AccountNumber,
                 Wage = wagePayout.PayoutAmount,
             }
@@ -159,15 +163,18 @@ public sealed class WageConsoleSystem : SharedWageConsoleSystem
 
         foreach (var wagePayout in _wageManager.PayoutsList)
         {
+            if(!TryComp<MetaDataComponent>(wagePayout.FromAccountNumber, out var mdFrom) ||
+               !TryComp<MetaDataComponent>(wagePayout.ToAccountNumber, out var mdTp))
+                continue;
             msg.Records.Add(new UpdateWageRow
             {
                 Id = wagePayout.Id,
 
-                FromId = GetNetEntity(wagePayout.FromAccountNumber),
-                FromName = Name(wagePayout.FromAccountNumber),
+                FromId = GetNetEntity(wagePayout.FromAccountNumber, mdFrom),
+                FromName = Name(wagePayout.FromAccountNumber,mdFrom),
                 FromAccount = wagePayout.FromAccountNumber.Comp.AccountNumber,
-                ToId = GetNetEntity(wagePayout.ToAccountNumber),
-                ToName = Name(wagePayout.ToAccountNumber),
+                ToId = GetNetEntity(wagePayout.ToAccountNumber, mdTp),
+                ToName = Name(wagePayout.ToAccountNumber,mdTp),
                 ToAccount = wagePayout.ToAccountNumber.Comp.AccountNumber,
                 Wage = wagePayout.PayoutAmount,
             });
