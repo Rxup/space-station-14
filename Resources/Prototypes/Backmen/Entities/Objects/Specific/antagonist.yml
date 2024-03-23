@@ -1,3 +1,51 @@
+- type: entity
+  parent: MaterialBluespace
+  id: Bluespace1
+  suffix: 1 BS
+  components:
+  - type: Stack
+    count: 1
+  - type: Item
+    size: 1
+
+- type: entity
+  parent: MaterialBluespace
+  id: Bluespace5
+  suffix: 5 BS
+  components:
+  - type: Stack
+    count: 5
+
+- type: entity
+  parent: MaterialBluespace
+  id: Bluespace10
+  suffix: 10 BS
+  components:
+  - type: Stack
+    count: 10
+  - type: Item
+    size: 10
+
+- type: entity
+  parent: MaterialBluespace
+  id: Bluespace25
+  suffix: 25 BS
+  components:
+  - type: Stack
+    count: 25
+  - type: Item
+    size: 25
+
+- type: entity
+  parent: MaterialBluespace
+  id: Bluespace50
+  suffix: 50 BS
+  components:
+  - type: Stack
+    count: 50
+  - type: Item
+    size: 50
+
 # Uplinks
 - type: entity
   parent: BaseItem
@@ -23,7 +71,7 @@
   - type: Store
     preset: WizardStorePresetUplink
     balance:
-      MaterialBluespace: 0
+      Bluespace: 0
 
 - type: entity
   parent: BaseWizardUplinkRadio
@@ -33,7 +81,7 @@
   - type: Store
     preset: WizardStorePresetUplink
     balance:
-      MaterialBluespace: 8
+      Bluespace: 8
 
 - type: entity
   parent: BaseWizardUplinkRadio
@@ -43,4 +91,4 @@
   - type: Store
     preset: WizardStorePresetUplink
     balance:
-      MaterialBluespace: 30
+      Bluespace: 30

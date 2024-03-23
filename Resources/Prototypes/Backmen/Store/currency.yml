@@ -6,3 +6,14 @@
   canWithdraw: true
   currencySymbol: store-currency-spacecredits-currency-symbol
 
+- type: currency
+  id: Bluespace
+  displayName: BS
+  cash:
+    0: Bluespace
+    1: Bluespace1
+    5: Bluespace5
+    10: Bluespace10
+    25: Bluespace25
+    50: Bluespace50
+  canWithdraw: true

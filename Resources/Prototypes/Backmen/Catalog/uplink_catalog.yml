@@ -146,7 +146,7 @@
   description: uplink-book-spawnbook-desc
   productEntity: SpawnSpellbook
   cost:
-    MaterialBluespace: 8
+    Bluespace: 8
   categories:
   - WizardBooks
 
@@ -156,7 +156,7 @@
   description: uplink-book-forcewall-desc
   productEntity: ForceWallSpellbook
   cost:
-    MaterialBluespace: 10
+    Bluespace: 10
   categories:
   - WizardBooks
 
@@ -166,7 +166,7 @@
   description: uplink-book-blink-desc
   productEntity: BlinkBook
   cost:
-    MaterialBluespace: 16
+    Bluespace: 16
   categories:
   - WizardBooks
 
@@ -176,7 +176,7 @@
   description: uplink-book-smite-desc
   productEntity: SmiteBook
   cost:
-    MaterialBluespace: 50
+    Bluespace: 50
   categories:
   - WizardBooks
 
@@ -186,7 +186,7 @@
   description: uplink-book-knok-desc
   productEntity: KnockSpellbook
   cost:
-    MaterialBluespace: 14
+    Bluespace: 14
   categories:
   - WizardBooks
 
@@ -196,7 +196,7 @@
   description: uplink-book-fireball-desc
   productEntity: FireballSpellbook
   cost:
-    MaterialBluespace: 16
+    Bluespace: 16
   categories:
   - WizardBooks
 
@@ -206,7 +206,7 @@
   description: uplink-book-heal-desc
   productEntity: HealingSpellbook
   cost:
-    MaterialBluespace: 8
+    Bluespace: 8
   categories:
   - WizardBooks
 
@@ -220,7 +220,7 @@
   description: uplink-armor-hardsuit-desc
   productEntity: ClothingOuterHardsuitWizard
   cost:
-    MaterialBluespace: 6
+    Bluespace: 6
   categories:
   - WizardArmor
 
@@ -231,7 +231,7 @@
   description: uplink-utility-spellbelt-desc
   productEntity: ClothingBeltWand
   cost:
-    MaterialBluespace: 4
+    Bluespace: 4
   categories:
   - WizardUtility
 
@@ -242,7 +242,7 @@
   description: uplink-bundles-wizarsurpluscrate30bs-desc
   productEntity: CrateWizardSurplus
   cost:
-    MaterialBluespace: 30
+    Bluespace: 30
   categories:
   - WizardBundles
 
@@ -255,6 +255,6 @@
   description: uplink-pointless-spellburger-desc
   productEntity: FoodBurgerSpell
   cost:
-    MaterialBluespace: 1
+    Bluespace: 1
   categories:
   - WizardPointless

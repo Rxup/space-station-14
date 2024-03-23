@@ -10,7 +10,7 @@
     id: PassengerPDA
     ears: ClothingHeadsetService
     pocket2: BaseWizardUplinkRadio8BS
-  innerclothingskirt: ClothingUniformJumpskirtColorDarkBlue
+  innerClothingSkirt: ClothingUniformJumpskirtColorDarkBlue
   satchel: ClothingBackpackSatchelFilled
   duffelbag: ClothingBackpackDuffelFilled
 
@@ -25,7 +25,7 @@
     id: PassengerPDA
     ears: ClothingHeadsetService
     pocket2: BaseWizardUplinkRadio8BS
-  innerclothingskirt: ClothingUniformJumpskirtColorRed
+  innerClothingSkirt: ClothingUniformJumpskirtColorRed
   satchel: ClothingBackpackSatchelFilled
   duffelbag: ClothingBackpackDuffelFilled
 
@@ -40,7 +40,7 @@
     id: PassengerPDA
     ears: ClothingHeadsetService
     pocket2: BaseWizardUplinkRadio8BS
-  innerclothingskirt: ClothingUniformJumpskirtColorPurple
+  innerClothingSkirt: ClothingUniformJumpskirtColorPurple
   satchel: ClothingBackpackSatchelFilled
   duffelbag: ClothingBackpackDuffelFilled
 
@@ -54,6 +54,6 @@
     id: PassengerPDA
     ears: ClothingHeadsetService
     pocket2: BaseWizardUplinkRadio30BS
-  innerclothingskirt: ClothingUniformJumpskirtColorPurple
+  innerClothingSkirt: ClothingUniformJumpskirtColorPurple
   satchel: ClothingBackpackSatchelFilled
   duffelbag: ClothingBackpackDuffelFilled
