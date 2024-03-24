@@ -29,7 +29,7 @@ public sealed class BlobCarrierSystem : SharedBlobCarrierSystem
         SubscribeLocalEvent<BlobCarrierComponent, MobStateChangedEvent>(OnMobStateChanged);
         SubscribeLocalEvent<BlobCarrierComponent, TransformToBlobActionEvent>(OnTransformToBlobChanged);
 
-        SubscribeLocalEvent<BlobCarrierComponent, ComponentStartup>(OnStartup);
+        SubscribeLocalEvent<BlobCarrierComponent, MapInitEvent>(OnStartup);
 
         SubscribeLocalEvent<BlobCarrierComponent, MindAddedMessage>(OnMindAdded);
         SubscribeLocalEvent<BlobCarrierComponent, MindRemovedMessage>(OnMindRemove);
@@ -53,7 +53,7 @@ public sealed class BlobCarrierSystem : SharedBlobCarrierSystem
         TransformToBlob(uid);
     }
 
-    private void OnStartup(EntityUid uid, BlobCarrierComponent component, ComponentStartup args)
+    private void OnStartup(EntityUid uid, BlobCarrierComponent component, MapInitEvent args)
     {
         _action.AddAction(uid, ref component.TransformToBlob, ActionTransformToBlob);
 

@@ -16,6 +16,7 @@
   name: flesh-cultist-insulated-immunity-evolution-name
   description: flesh-cultist-insulated-immunity-evolution-desc
   icon: Interface/Actions/fleshCultistInsulatedImmunityMutation.png
+  raiseProductEventOnUser: true
   productEvent: !type:FleshCultistInsulatedImmunityMutationEvent
   cost:
     StolenMutationPoint: 10
@@ -30,6 +31,7 @@
   name: flesh-cultist-pressure-immunity-evolution-name
   description: flesh-cultist-pressure-immunity-evolution-desc
   icon: Interface/Actions/fleshCultistPressureImmunityMutation.png
+  raiseProductEventOnUser: true
   productEvent: !type:FleshCultistPressureImmunityMutationEvent
   cost:
     StolenMutationPoint: 10
@@ -44,6 +46,7 @@
   name: flesh-cultist-cold-teml-immunity-evolution-name
   description: flesh-cultist-cold-teml-immunity-evolution-desc
   icon: Interface/Actions/fleshCultistColdTempImmunityMutation.png
+  raiseProductEventOnUser: true
   productEvent: !type:FleshCultistColdTempImmunityMutationEvent
   cost:
     StolenMutationPoint: 10
@@ -58,6 +61,7 @@
   name: flesh-cultist-flash-immunity-evolution-name
   description: flesh-cultist-flash-immunity-evolution-desc
   icon: Interface/Actions/fleshCultistFlashImmunityMutation.png
+  raiseProductEventOnUser: true
   productEvent: !type:FleshCultistFlashImmunityMutationEvent
   cost:
     StolenMutationPoint: 10
