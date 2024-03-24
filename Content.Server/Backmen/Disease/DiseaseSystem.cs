@@ -169,7 +169,16 @@ public sealed class DiseaseSystem : EntitySystem
         {
             if (!cure.Stages.Contains(stage))
                 continue;
-            RaiseLocalEvent(owner, cure.GenerateEvent(owner,disease.ID));
+
+            try
+            {
+                RaiseLocalEvent(owner, cure.GenerateEvent(owner, disease.ID));
+            }
+            catch (Exception err)
+            {
+                Log.Error(err.ToString());
+            }
+
         }
 
         if (!doEffects)
@@ -179,7 +188,16 @@ public sealed class DiseaseSystem : EntitySystem
         {
             if (!effect.Stages.Contains(stage) || !_random.Prob(effect.Probability))
                 continue;
-            RaiseLocalEvent(owner, effect.GenerateEvent(owner,disease.ID));
+
+            try
+            {
+                RaiseLocalEvent(owner, effect.GenerateEvent(owner,disease.ID));
+            }
+            catch (Exception e)
+            {
+                Log.Error(e.ToString());
+            }
+
         }
     }
         ///
