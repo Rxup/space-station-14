@@ -1,7 +1,8 @@
 using Content.Shared.Store;
+using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype;
 
-namespace Content.Server.Traitor.Uplink.SurplusBundle;
+namespace Content.Server.Backmen.Traitor.Uplink.SurplusBundle;
 
 /// <summary>
 ///     Fill crate with a random wizard items.
@@ -20,6 +21,6 @@ public sealed partial class WizardSurplusBundleComponent : Component
     ///     The preset that will be used to get all the listings.
     ///     Currently just defaults to the basic uplink.
     /// </summary>
-    [DataField("storePreset", customTypeSerializer: typeof(PrototypeIdSerializer<StorePresetPrototype>))]
-    public string StorePreset = "WizardStorePresetUplink";
+    [DataField("storePreset")]
+    public ProtoId<StorePresetPrototype> StorePreset = "WizardStorePresetUplink";
 }

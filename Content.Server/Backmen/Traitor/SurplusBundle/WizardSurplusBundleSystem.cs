@@ -1,12 +1,13 @@
 using System.Linq;
-using Content.Server.Store.Systems;
+using Content.Server.Backmen.Traitor.Uplink.SurplusBundle;
 using Content.Server.Storage.EntitySystems;
-using Content.Shared.Store;
+using Content.Server.Store.Systems;
 using Content.Shared.FixedPoint;
+using Content.Shared.Store;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 
-namespace Content.Server.Traitor.Uplink.SurplusBundle;
+namespace Content.Server.Backmen.Traitor.SurplusBundle;
 
 public sealed class WizardSurplusBundleSystem : EntitySystem
 {
@@ -27,7 +28,7 @@ public sealed class WizardSurplusBundleSystem : EntitySystem
 
     private void OnInit(EntityUid uid, WizardSurplusBundleComponent component, ComponentInit args)
     {
-        var storePreset = _prototypeManager.Index<StorePresetPrototype>(component.StorePreset);
+        var storePreset = _prototypeManager.Index(component.StorePreset);
 
         _listings = _store.GetAvailableListings(uid, null, storePreset.Categories).ToArray();
 
@@ -50,7 +51,7 @@ public sealed class WizardSurplusBundleSystem : EntitySystem
         foreach (var item in content)
         {
             var ent = EntityManager.SpawnEntity(item.ProductEntity, cords);
-            _entityStorage.Insert(ent, component.Owner);
+            _entityStorage.Insert(ent, uid);
         }
     }
 
