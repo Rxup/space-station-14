@@ -6,7 +6,7 @@
   - type: Stack
     count: 1
   - type: Item
-    size: 1
+    size: Tiny
 
 - type: entity
   parent: MaterialBluespace
@@ -24,7 +24,7 @@
   - type: Stack
     count: 10
   - type: Item
-    size: 10
+    size: Small
 
 - type: entity
   parent: MaterialBluespace
@@ -34,7 +34,7 @@
   - type: Stack
     count: 25
   - type: Item
-    size: 25
+    size: Normal
 
 - type: entity
   parent: MaterialBluespace
@@ -44,7 +44,7 @@
   - type: Stack
     count: 50
   - type: Item
-    size: 50
+    size: Large
 
 # Uplinks
 - type: entity

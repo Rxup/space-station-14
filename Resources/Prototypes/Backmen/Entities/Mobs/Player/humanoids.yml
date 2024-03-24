@@ -108,7 +108,7 @@
   parent: UristMcWizardBase
   components:
     - type: Loadout
-      prototype: WizardVioletGear2
+#      prototype: WizardVioletGear2
       prototypes: [WizardVioletGear2]
 
 - type: entity
@@ -118,7 +118,7 @@
   parent: UristMcWizardBase
   components:
     - type: Loadout
-      prototype: WizardRedGear2
+#      prototype: WizardRedGear2
       prototypes: [WizardRedGear2]
 
 - type: entity
@@ -128,7 +128,7 @@
   parent: UristMcWizardBase
   components:
     - type: Loadout
-      prototype: WizardBlueGear2
+#      prototype: WizardBlueGear2
       prototypes: [WizardBlueGear2]
 
 - type: entity
@@ -138,7 +138,7 @@
   parent: UristMcWizardBase
   components:
     - type: Loadout
-      prototype: WizardHardsuitGear2
+#      prototype: WizardHardsuitGear2
       prototypes: [WizardHardsuitGear2]
 
 # SuperPsi - Urist McNars
@@ -177,7 +177,8 @@
       factions:
         - SimpleHostile
     - type: BibleUser
-    # - type: RandomHumanoidAppearance # Removes random names :(
+    - type: RandomHumanoidAppearance # Removes random names :(
+      randomizeName: false
 
     - type: DispelPower
     - type: MassSleepPower
