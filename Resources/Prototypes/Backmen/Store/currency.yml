@@ -10,9 +10,5 @@
   id: Bluespace
   displayName: BS
   cash:
-    1: Bluespace1
-    5: Bluespace5
-    10: Bluespace10
-    25: Bluespace25
-    50: Bluespace50
+    1: Bluespace
   canWithdraw: true

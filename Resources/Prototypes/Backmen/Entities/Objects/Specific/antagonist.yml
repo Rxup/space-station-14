@@ -1,7 +1,31 @@
 - type: entity
-  parent: MaterialBluespace
+  name: Блюспейс кристал
+  parent: BaseItem
+  id: Bluespace
+  suffix: 1 БС Кристал
+  description: It seems to be pulsing with suspiciously enticing energies.
+  components:
+  - type: Sprite
+    sprite: Backmen/Objects/Materials/materials.rsi
+    state: bluespace
+  - type: Item
+    sprite: Backmen/Objects/Materials/materials.rsi
+    size: Tiny
+  - type: Stack
+    count: 1
+    stackType: Bluespace
+  - type: StaticPrice
+    price: 0
+  - type: StackPrice
+    price: 0
+  - type: Currency
+    price:
+      Bluespace: 1
+
+- type: entity
+  parent: Bluespace
   id: Bluespace1
-  suffix: 1 BS
+  suffix: 1 БС Кристалл
   components:
   - type: Stack
     count: 1
@@ -9,17 +33,17 @@
     size: Tiny
 
 - type: entity
-  parent: MaterialBluespace
+  parent: Bluespace
   id: Bluespace5
-  suffix: 5 BS
+  suffix: 5 БС Кристаллов
   components:
   - type: Stack
     count: 5
 
 - type: entity
-  parent: MaterialBluespace
+  parent: Bluespace
   id: Bluespace10
-  suffix: 10 BS
+  suffix: 10 БС Кристаллов
   components:
   - type: Stack
     count: 10
@@ -27,9 +51,9 @@
     size: Small
 
 - type: entity
-  parent: MaterialBluespace
+  parent: Bluespace
   id: Bluespace25
-  suffix: 25 BS
+  suffix: 25 БС Кристаллов
   components:
   - type: Stack
     count: 25
@@ -37,9 +61,9 @@
     size: Normal
 
 - type: entity
-  parent: MaterialBluespace
+  parent: Bluespace
   id: Bluespace50
-  suffix: 50 BS
+  suffix: 50 БС Кристаллов
   components:
   - type: Stack
     count: 50
