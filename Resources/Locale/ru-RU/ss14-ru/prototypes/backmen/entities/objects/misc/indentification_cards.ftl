@@ -10,3 +10,7 @@ ent-UEGrepIDCard = ID карта представителя ОПЗ
     .desc = { ent-IDCardStandard.desc }
 ent-UEGoffIDCard = ID карта офицера ОПЗ
     .desc = { ent-IDCardStandard.desc }
+ent-BlueshieldIDCard = ID карта Синего Щита
+    .desc = { ent-IDCardStandard.desc }
+ent-MagistratIDCard = ID карта Магистрата
+    .desc = { ent-IDCardStandard.desc }

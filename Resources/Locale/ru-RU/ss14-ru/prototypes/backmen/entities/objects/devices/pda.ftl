@@ -4,3 +4,7 @@ ent-DeliveryPDA = КПК доставщика
     .desc = Пахнет пиццой
 ent-PrisonerPDA = КПК заключённого
     .desc = Чисто, чтобы вы могли убедиться, что внутри нет ничего контрабандного.
+ent-BlueshieldPDA = КПК Синего щита
+    .desc = { ent-CaptainPDA.desc }
+ent-MagistratPDA = КПК Магистрата
+    .desc = { ent-CaptainPDA.desc }

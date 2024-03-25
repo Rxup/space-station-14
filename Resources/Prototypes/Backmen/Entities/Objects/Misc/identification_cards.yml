@@ -71,3 +71,40 @@
         - state: idfreelancer
     - type: PresetIdCard
       job: Freelancer
+
+#Blue Shield and Magistrate
+- type: entity
+  parent: IDCardStandard
+  id: BlueshieldIDCard
+  name: Blueshield ID Card
+  components:
+    - type: Sprite
+      layers:
+        - state: silver
+        - state: idblueshield
+    - type: PresetIdCard
+      job: Blueshield
+    - type: Access
+      tags:
+        - CCSecurity
+        - CentralCommand
+
+- type: entity
+  parent: IDCardStandard
+  id: MagistratIDCard
+  name: Magistrate ID Card
+  components:
+    - type: Sprite
+      layers:
+        - state: silver
+        - state: idiaa
+    - type: Access
+      tags:
+        - CCCargo
+        - CCSecurity
+        - CentralCommand
+        - CCOfficer
+      groups:
+        - AllAccess
+    - type: PresetIdCard
+      job: Magistrat
