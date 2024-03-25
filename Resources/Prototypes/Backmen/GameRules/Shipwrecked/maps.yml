@@ -1,9 +1,18 @@
-﻿- type: gameMap
+﻿- type: gameMapPool
+  id: ShipwreckedPool
+  maps:
+    - ShwrAdventurer
+    - shwrDust
+    - ShwrTraveller
+    - ShwrColossus
+    - ShwrArtur
+
+- type: gameMap
   id: ShwrAdventurer
   mapName: Транспортник
-  mapPath: /Maps/Backmen/Shuttles/adventurer.yml
+  mapPath: /Maps/Backmen/Shuttles/Shipwrecked/adventurer.yml
   minPlayers: 1
-  maxPlayers: 15
+  maxPlayers: 10
   stations:
     ShwrAdventurer:
       stationProto: StandardStationArena
@@ -17,17 +26,17 @@
             Freelancer: [-1,-1]
 
 - type: gameMap
-  id: ShwrBig
-  mapName: Баржа
-  mapPath: /Maps/Backmen/Shuttles/Shatlik.yml
-  minPlayers: 15
-  maxPlayers: 30
+  id: ShwrArtur
+  mapName: CT-Artur
+  mapPath: /Maps/Backmen/Shuttles/Shipwrecked/ct-artur.yml
+  minPlayers: 5
+  maxPlayers: 15
   stations:
-    ShwrAdventurerBig:
+    ShwrArtur:
       stationProto: StandardStationArena
       components:
         - type: StationNameSetup
-          mapNameTemplate: "Баржа"
+          mapNameTemplate: "CT-Artur"
         - type: StationJobs
           overflowJobs:
             - Freelancer
@@ -35,16 +44,56 @@
             Freelancer: [-1,-1]
 
 - type: gameMap
+  id: ShwrTraveller
+  mapName: Странник
+  mapPath: /Maps/Backmen/Shuttles/Shipwrecked/traveller.yml
+  minPlayers: 10
+  maxPlayers: 20
+  stations:
+    ShwrTraveller:
+      stationProto: StandardStationArena
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: "Странник"
+        - type: StationJobs
+          overflowJobs:
+            - Freelancer
+          availableJobs:
+            Freelancer: [-1,-1]
+
+### Maps that aren't used right now due to the balance issues.
+### For now gamerule is for 15-20 players at maximum.
+### They can be forced by admins tho
+
+- type: gameMap
   id: shwrDust
-  mapName: KL-Dust 469
-  mapPath: /Maps/Backmen/Shuttles/shwr-dust.yml
-  minPlayers: 30
+  mapName: KL-Dust
+  mapPath: /Maps/Backmen/Shuttles/Shipwrecked/shwr-dust.yml
+  minPlayers: 99
+#  maxPlayers: 99
   stations:
     shwrDust:
       stationProto: StandardStationArena
       components:
         - type: StationNameSetup
-          mapNameTemplate: "KL-Dust 469"
+          mapNameTemplate: "KL-Dust"
+        - type: StationJobs
+          overflowJobs:
+            - Freelancer
+          availableJobs:
+            Freelancer: [-1,-1]
+
+- type: gameMap
+  id: ShwrColossus
+  mapName: Колосс
+  mapPath: /Maps/Backmen/Shuttles/Shipwrecked/colossus.yml
+  minPlayers: 99
+  stations:
+    ShwrColossus:
+      stationProto: StandardStationArena
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: "Колосс"
         - type: StationJobs
           overflowJobs:
             - Freelancer

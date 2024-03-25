@@ -1,0 +1,127 @@
+# For the shipwrecked gamemode
+- type: entity
+  parent: MarkerBase
+  id: RandomLootShipwrecked
+  name: salvage loot spawner
+  suffix: shipwrecked gamemode
+  components:
+  - type: Sprite
+    layers:
+      - state: red
+      - sprite: Objects/Misc/books.rsi
+        state: book6
+  - type: RandomSpawner
+    offset: 0
+    prototypes:
+      - Pickaxe
+      - Pickaxe
+      - SheetUranium1
+      - PowerCellHigh
+      - SheetPlastic
+      - SheetPlasteel
+      - ClothingEyesGlassesMeson
+      - Floodlight
+      - CableApcStack
+      - SpaceCash100
+      - SpaceCash100
+      - ClothingBeltUtilityFilled
+      - MagazinePistol
+      - MagazinePistolHighCapacity
+      - ClothingHandsGlovesColorYellow
+    chance: 0.9
+    rarePrototypes:
+      - SpearPlasma
+      - PowerCellHyper
+      - ClothingOuterHardsuitSalvage
+      - MiningDrill
+      - SpaceCash1000
+      - WeaponCrusherDagger
+      - ClothingBeltSalvageWebbing
+      - WeaponProtoKineticAccelerator
+      - WeaponLaserSvalinn
+    rareChance: 0.25
+
+- type: entity
+  parent: MarkerBase
+  id: RandomLootShipwreckedMedical
+  name: medical loot spawner
+  suffix: shipwrecked gamemode
+  components:
+  - type: Sprite
+    layers:
+      - state: red
+      - sprite: Objects/Misc/books.rsi
+        state: book1
+  - type: RandomSpawner
+    offset: 0
+    prototypes:
+      - MedkitAdvancedFilled
+      - MedkitFilled
+      - MedkitFilled
+      - BruteAutoInjector
+      - BurnAutoInjector
+      - EphedrineChemistryBottle
+      - HandheldHealthAnalyzer
+      - HandheldHealthAnalyzer
+      - OmnizineChemistryBottle
+      - EpinephrineChemistryBottle
+      - BoxSyringe
+      - ClothingHeadHatParamedicsoft
+      - SyringeTranexamicAcid
+    chance: 0.95
+    rarePrototypes:
+      - MedkitCombatFilled
+    rareChance: 0.05
+
+- type: entity
+  parent: MarkerBase
+  id: RandomLootShipwreckedSecurity
+  name: security loot spawner
+  suffix: shipwrecked gamemode
+  components:
+  - type: Sprite
+    layers:
+      - state: red
+      - sprite: Objects/Misc/books.rsi
+        state: book2
+  - type: RandomSpawner
+    offset: 0
+    prototypes:
+      - FlashlightSeclite
+      - CombatKnife
+      - Stunbaton
+      - ClothingEyesGlassesSecurity
+      - ClothingEyesGlassesSunglasses
+      - MagazinePistolHighCapacity
+      - MagazinePistolHighCapacity
+    chance: 0.95
+    rarePrototypes:
+      - WeaponRevolverInspector
+      - SpeedLoaderMagnum
+      - SpeedLoaderMagnum
+      - ClothingOuterCoatDetective
+    rareChance: 0.1
+
+- type: entity
+  parent: MarkerBase
+  id: RandomLootBigShipwrecked
+  name: big loot spawner
+  suffix: shipwrecked gamemode
+  components:
+  - type: Sprite
+    layers:
+      - state: red
+      - sprite: Objects/Misc/books.rsi
+        state: book5
+  - type: RandomSpawner
+    offset: 0
+    prototypes:
+      - WaterTankFull
+      - WeldingFuelTankFull
+      - VendingMachineBooze
+      - OxygenCanister
+      - NitrogenCanister
+      - AirCanister
+      - VendingMachineTankDispenserEVA
+      - Autolathe
+      - chem_master

@@ -1,4 +1,4 @@
-﻿- type: entity
+- type: entity
   id: FleshCult
   parent: BaseGameRule
   noSpawn: true
@@ -45,8 +45,9 @@
   noSpawn: true
   components:
     - type: ShipwreckedRule
-      shuttlePath: /Maps/Backmen/Shuttles/adventurer.yml
+      shuttlePath: /Maps/Backmen/Shuttles/Shipwrecked/adventurer.yml
       spawnPointTraveller: SpawnPointShipwreckTraveller
+      spawnPointLateJoin: CryogenicSleepUnitShipwrecked
       availableJobs:
         - Explorer
         - Freelancer
@@ -57,13 +58,15 @@
         - Jungle
         - Continental
         - Lava
-        - RuinedMegacity
       spawnPointHecate: SpawnPointShipwreckHecate
       hecatePrototype: MobQuestHecateShipwrecked
+      engiManifestOffset: 20
+      mobSpawnChance: 0.8
       eventSchedule:
         - 13: AnnounceTransit
         - 9: ShowHecate
         - 1: IntroduceHecate
+        - 10: PlayMusic
         - 160: EncounterTurbulence
         - 10: ShiftParallax
         - 60: MidFlightDamage
@@ -75,10 +78,3 @@
         - 6: Crash
         - 6: AfterCrash
         - 12: Sitrep
-
-- type: gameMapPool
-  id: ShipwreckedPool
-  maps:
-    - ShwrAdventurer
-    - ShwrBig
-    - shwrDust

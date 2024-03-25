@@ -1,5 +1,6 @@
 ﻿using Content.Server.Atmos;
 using Content.Shared.Parallax.Biomes;
+using Content.Shared.Parallax.Biomes.Markers;
 using Content.Shared.Procedural;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype;
@@ -20,12 +21,16 @@ public sealed partial class ShipwreckDestinationPrototype : IPrototype
     public readonly string BiomePrototype = default!;
 
     [ViewVariables]
+    [DataField("markerLayers")]
+    public readonly List<ProtoId<BiomeMarkerLayerPrototype>> ShipwreckMarkerLayers = new();
+
+    [ViewVariables]
     [DataField("lightColor")]
     public readonly Color? LightColor = null; //= MapLightComponent.DefaultColor;
 
     [ViewVariables]
     [DataField("structureDistance")]
-    public readonly int StructureDistance = 80;
+    public readonly int StructureDistance = 90; // If too low, dungeons can have really bad time...
 
     [ViewVariables]
     [DataField("structures", customTypeSerializer: typeof(PrototypeIdDictionarySerializer<int, DungeonConfigPrototype>))]

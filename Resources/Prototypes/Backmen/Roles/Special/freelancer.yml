@@ -8,11 +8,18 @@
   canBeAntag: false
   icon: "JobIconUnknown" # TODO
   supervisors: job-supervisors-self
+  access: # Freelancers need to have acces to service stuff, so...
+  - Service
+  - Maintenance
+  - Bar
+  - Kitchen
+  extendedAccess:
+  - Hydroponics
 
 - type: startingGear
   id: FreelancerGear
   equipment:
     jumpsuit: ClothingUniformTShirtKhakiPants
     id: FreelancerIDCard
-    shoes: ClothingShoesBootsWork
+    shoes: ClothingShoesColorBlack
     outerClothing: ClothingOuterWinterCoat

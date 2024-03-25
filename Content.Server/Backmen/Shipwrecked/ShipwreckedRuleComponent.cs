@@ -1,7 +1,9 @@
-﻿using Content.Server.Backmen.Shipwrecked.Prototypes;
+using Content.Server.Backmen.Shipwrecked.Prototypes;
 using Content.Shared.Corvax.TTS;
+using Content.Shared.Parallax.Biomes.Markers;
 using Content.Shared.Procedural;
 using Content.Shared.Roles;
+using Robust.Shared.Audio.Components;
 using Robust.Shared.Map;
 using Robust.Shared.Map.Components;
 using Robust.Shared.Player;
@@ -21,6 +23,27 @@ public sealed partial class ShipwreckedRuleComponent : Component
     [ViewVariables]
     [DataField("spawnPointTraveller", required: true)]
     public EntProtoId SpawnPointTraveller = default!;
+
+    /// <summary>
+    /// The prototype that will be used to place travellers in latejoin.
+    /// </summary>
+    [ViewVariables]
+    [DataField("spawnPointLateJoin", required: true)]
+    public EntProtoId SpawnPointLateJoin = default!;
+
+    /// <summary>
+    /// How big will be offset in engines coords manifests.
+    /// </summary>
+    [ViewVariables]
+    [DataField("engiManifestOffset", required: true)]
+    public int EngiManifestOffset = default!;
+
+    /// <summary>
+    /// Global mob spawn chance, for easy testing and balance.
+    /// </summary>
+    [ViewVariables]
+    [DataField("mobSpawnChance", required: true)]
+    public float MobSpawnChance = default!;
 
     /// <summary>
     /// The jobs that the travellers will be randomly assigned.
@@ -161,7 +184,11 @@ public sealed partial class ShipwreckedRuleComponent : Component
     /// </summary>
     [ViewVariables] public bool AllObjectivesComplete;
 
-#endregion
+    [ViewVariables] public (EntityUid Entity, AudioComponent Component)? SoundTrack;
+
+    #endregion
+
+
 
 }
 
@@ -170,6 +197,7 @@ public enum ShipwreckedEventId : int
     AnnounceTransit,
     ShowHecate,
     IntroduceHecate,
+    PlayMusic,
     EncounterTurbulence,
     ShiftParallax,
     MidflightDamage,

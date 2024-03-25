@@ -1,5 +1,6 @@
 ﻿using Content.Server.Backmen.NPC.Events;
 using Content.Server.Backmen.NPC.Prototypes;
+using Robust.Shared.Audio.Components;
 
 namespace Content.Server.Backmen.Shipwrecked;
 
@@ -13,6 +14,11 @@ public sealed partial class ShipwreckedNPCHecateComponent : Component
 
     [ViewVariables(VVAccess.ReadWrite)]
     public bool UnlockedSafe;
+
+    [ViewVariables(VVAccess.ReadWrite)] public HashSet<EntityUid> SalvageBayDoor = new ();
+
+    [ViewVariables(VVAccess.ReadWrite)]
+    public bool UnlockedSalvageBay;
 
     [ViewVariables(VVAccess.ReadWrite)] public HashSet<EntityUid> EngineBayDoor = new();
 
@@ -32,6 +38,12 @@ public sealed partial class ShipwreckedHecateAskGeneratorUnlockEvent : NPCConver
 
 [Access(typeof(ShipwreckedRuleSystem))]
 public sealed partial class ShipwreckedHecateAskWeaponsUnlockEvent : NPCConversationEvent
+{
+
+}
+
+[Access(typeof(ShipwreckedRuleSystem))]
+public sealed partial class ShipwreckedHecateAskMusicStartEvent : NPCConversationEvent
 {
 
 }
@@ -75,4 +87,14 @@ public sealed partial class ShipwreckedHecateAskLaunchEvent : ShipwreckedHecateA
 {
     [DataField("launch", required: true)]
     public NPCResponse Launch { get; private set; } = default!;
+}
+
+[Access(typeof(ShipwreckedRuleSystem))]
+public sealed partial class ShipwreckedHecateAskMusicEvent : NPCConversationEvent
+{
+    [DataField("beforeMusic", required: true)]
+    public NPCResponse BeforeMusic { get; private set; } = default!;
+
+    [DataField("afterMusic", required: true)]
+    public NPCResponse AfterMusic { get; private set; } = default!;
 }

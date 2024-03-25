@@ -7,7 +7,7 @@
   setPreference: false
   canBeAntag: false
   icon: "JobIconUnknown" # TODO
-  supervisors: job-supervisors-teachers
+  supervisors: job-supervisors-explorer
   special:
   - !type:AddComponentSpecial
     components:
@@ -22,6 +22,7 @@
     id: StudentIDCard
     shoes: ClothingShoesColorBlack
     back: ClothingBackpack
+    eyes: ClothingEyesGlasses
   innerClothingSkirt: UniformSchoolgirlDusk
   satchel: ClothingBackpackSatchel
   duffelbag: ClothingBackpackDuffel

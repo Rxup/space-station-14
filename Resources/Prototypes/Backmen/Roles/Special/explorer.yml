@@ -14,7 +14,7 @@
   equipment:
     jumpsuit: ClothingUniformJumpsuitExplorer
     id: ExplorerIDCard
-    shoes: ClothingShoesColorBlack
+    shoes: ClothingShoesBootsSalvage
     pocket1: HandheldGPSBasic
     pocket2: RadioHandheld
-    outerClothing: ClothingOuterExplorerCoat
+    outerClothing: ClothingOuterWinterMiner
