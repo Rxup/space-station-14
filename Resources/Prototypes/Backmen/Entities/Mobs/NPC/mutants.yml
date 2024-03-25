@@ -222,6 +222,7 @@
   name: Cancer Mouse
   description: Oh hey Civvie...
   components:
+  - type: BlobCarrier # backmen: blob
   - type: Sprite
     drawdepth: SmallMobs
     sprite: Mobs/Animals/mouse.rsi
@@ -250,6 +251,9 @@
     makeSentient: true
     name: ghost-role-information-cancer-mouse-name
     description: ghost-role-information-cancer-mouse-description
+    requirements:
+    - !type:OverallPlaytimeRequirement
+      time: 54000 # 15h # Corvax-RoleTime
   - type: GhostTakeoverAvailable
   - type: CombatMode
   - type: MovementSpeedModifier

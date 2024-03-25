@@ -46,6 +46,7 @@
   description: greenshift-description
   rules:
   - BasicRoundstartVariation
+  - WageScheduler #backmen: currency
 
 - type: gamePreset
   id: Secret
@@ -67,6 +68,7 @@
   description: secret-description
   rules:
     - BasicStationEventScheduler
+    - WageScheduler #backmen: currency
 
 - type: gamePreset
   id: SecretGreenshift #For Admin Use: Runs Greenshift but shows "Secret" in lobby.
@@ -141,6 +143,7 @@
     - Traitor
     - BasicStationEventScheduler
     - BasicRoundstartVariation
+    - WageScheduler #backmen: currency
 
 - type: gamePreset
   id: Revolutionary
@@ -156,6 +159,7 @@
     - SubGamemodesRule
     - BasicStationEventScheduler
     - BasicRoundstartVariation
+    - WageScheduler #backmen: currency
 
 - type: gamePreset
   id: Zombie

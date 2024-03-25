@@ -24,18 +24,18 @@
   - !type:ListingLimitedStockCondition
     stock: 1
 
-#- type: listing
-#  id: RevenantBlight
-#  name: Blight
-#  description: Infects all nearby organisms with an infectious disease that causes toxic buildup and tiredness. Using it leaves you vulnerable to attacks for a medium period of time.
-#  productAction: ActionRevenantBlight
-#  cost:
-#    StolenEssence: 75
-#  categories:
-#  - RevenantAbilities
-#  conditions:
-#  - !type:ListingLimitedStockCondition
-#    stock: 1
+- type: listing
+  id: RevenantBlight
+  name: Blight
+  description: Infects all nearby organisms with an infectious disease that causes toxic buildup and tiredness. Using it leaves you vulnerable to attacks for a medium period of time.
+  productAction: ActionRevenantBlight
+  cost:
+    StolenEssence: 75
+  categories:
+  - RevenantAbilities
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
 
 - type: listing
   id: RevenantMalfunction

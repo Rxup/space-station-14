@@ -149,6 +149,9 @@
     sprite: Objects/Tanks/Jetpacks/captain.rsi
   - type: Clothing
     sprite: Objects/Tanks/Jetpacks/captain.rsi
+    clothingVisuals:
+      suitstorage:
+      - state: equipped-BACKPACK
     slots:
       - Back
       - SuitStorage
@@ -191,6 +194,9 @@
       sprite: Objects/Tanks/Jetpacks/mini.rsi
     - type: Clothing
       sprite: Objects/Tanks/Jetpacks/mini.rsi
+      clothingVisuals:
+        suitstorage:
+        - state: equipped-BACKPACK
       slots:
         - Back
         - suitStorage
@@ -263,6 +269,9 @@
     sprite: Objects/Tanks/Jetpacks/void.rsi
   - type: Clothing
     sprite: Objects/Tanks/Jetpacks/void.rsi
+    clothingVisuals:
+      suitstorage:
+      - state: equipped-BACKPACK
     slots:
       - Back
       - suitStorage

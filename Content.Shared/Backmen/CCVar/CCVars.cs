@@ -7,6 +7,9 @@ namespace Content.Shared.Backmen.CCVar;
 [CVarDefs]
 public sealed class CCVars
 {
+    public static readonly CVarDef<bool>
+        GameDiseaseEnabled = CVarDef.Create("game.disease", true, CVar.SERVERONLY);
+
     /*
      * GPT
      */
@@ -161,6 +164,6 @@ public sealed class CCVars
     /// <summary>
     /// the time that will be given to throw a number to vote for the ghost role
     /// </summary>
-    public static readonly CVarDef<float> GhostRollerTime =
-        CVarDef.Create("ghost.roller_time", 10f, CVar.REPLICATED | CVar.SERVER);
+    public static readonly CVarDef<int> GhostRollerTime =
+        CVarDef.Create("ghost.roller_time", 20, CVar.REPLICATED | CVar.SERVER);
 }

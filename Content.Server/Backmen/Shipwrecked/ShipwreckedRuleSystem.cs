@@ -359,7 +359,7 @@ public sealed class ShipwreckedRuleSystem : GameRuleSystem<ShipwreckedRuleCompon
 
         if (destination.Atmosphere != null)
         {
-            _atmosphereSystem.SetMapAtmosphere(planetMapUid, false, destination.Atmosphere, atmos);
+            _atmosphereSystem.SetMapAtmosphere(planetMapUid, false, destination.Atmosphere);
         }
         else
         {
@@ -368,13 +368,9 @@ public sealed class ShipwreckedRuleSystem : GameRuleSystem<ShipwreckedRuleCompon
             moles[(int) Gas.Oxygen] = 21.824779f;
             moles[(int) Gas.Nitrogen] = 82.10312f;
 
-            var mixture = new GasMixture(2500)
-            {
-                Temperature = 293.15f,
-                Moles = moles,
-            };
+            var mixture = new GasMixture(moles, 293.15f,2500);
 
-            _atmosphereSystem.SetMapAtmosphere(planetMapUid, false, mixture, atmos);
+            _atmosphereSystem.SetMapAtmosphere(planetMapUid, false, mixture);
         }
 
         // Lighting

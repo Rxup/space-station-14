@@ -389,3 +389,12 @@ ClothingBackpackSatchelFilledDetective: ClothingBackpackSatchelSecurityFilledDet
 ImprovisedExplosive: FireBomb
 ImprovisedExplosiveEmpty: FireBombEmpty
 ImprovisedExplosiveFuel: FireBombFuel
+
+#2024-03-15
+ClothingBackpackDuffelSyndicateFilledShotgun: ClothingBackpackDuffelSyndicateFilledZauer
+ClothingBackpackDuffelSyndicateFilledSMG: ClothingBackpackDuffelSyndicateFilledMP7
+ClothingBackpackDuffelSyndicateFilledLMG: ClothingBackpackDuffelSyndicateFilledRPD
+ClothingBackpackDuffelSyndicateFilledGrenadeLauncher: ClothingBackpackDuffelSyndicateFilledGL79
+
+# 2024-03-21
+RPED: null

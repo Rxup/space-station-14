@@ -132,7 +132,7 @@ namespace Content.Server.GameTicking
             SpawnPlayer(player, character, station, jobId, lateJoin, silent);
         }
 
-        private void SpawnPlayer(ICommonSession player, HumanoidCharacterProfile character, EntityUid station, string? jobId = null, bool lateJoin = true, bool silent = false)
+        public void SpawnPlayer(ICommonSession player, HumanoidCharacterProfile character, EntityUid station, string? jobId = null, bool lateJoin = true, bool silent = false)
         {
             // Can't spawn players with a dummy ticker!
             if (DummyTicker)
@@ -404,7 +404,7 @@ namespace Content.Server.GameTicking
                 // Ideally engine would just spawn them on grid directly I guess? Right now grid traversal is handling it during
                 // update which means we need to add a hack somewhere around it.
                 var spawn = _robustRandom.Pick(_possiblePositions);
-                var toMap = spawn.ToMap(EntityManager);
+                var toMap = spawn.ToMap(EntityManager, _transform);
 
                 if (_mapManager.TryFindGridAt(toMap, out var gridUid, out _))
                 {

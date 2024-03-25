@@ -66,6 +66,17 @@
   - UplinkWeaponry
 
 - type: listing
+  id: UplinkThrowingKnivesKit
+  name: uplink-knives-kit-name
+  description: uplink-knives-kit-desc
+  icon: { sprite: /Textures/Objects/Storage/boxicons.rsi, state: throwing_knives }
+  productEntity: ThrowingKnivesKit
+  cost:
+    Telecrystal: 6
+  categories:
+    - UplinkWeaponry
+
+- type: listing
   id: UplinkGlovesNorthStar
   name: uplink-gloves-north-star-name
   description: uplink-gloves-north-star-desc
@@ -106,60 +117,60 @@
       tags:
       - NukeOpsUplink
 
-- type: listing
-  id: UplinkSniperBundle
-  name: uplink-sniper-bundle-name
-  description: uplink-sniper-bundle-desc
-  icon: { sprite: /Textures/Objects/Weapons/Guns/Snipers/heavy_sniper.rsi, state: base }
-  productEntity: BriefcaseSyndieSniperBundleFilled
-  cost:
-    Telecrystal: 12
-  categories:
-  - UplinkWeaponry
+#- type: listing
+#  id: UplinkSniperBundle
+#  name: uplink-sniper-bundle-name
+#  description: uplink-sniper-bundle-desc
+#  icon: { sprite: /Textures/Objects/Weapons/Guns/Snipers/heavy_sniper.rsi, state: base }
+#  productEntity: BriefcaseSyndieSniperBundleFilled
+#  cost:
+#    Telecrystal: 12
+#  categories:
+#  - UplinkWeaponry
 
-- type: listing
-  id: UplinkC20RBundle
-  name: uplink-c20r-bundle-name
-  description: uplink-c20r-bundle-desc
-  icon: { sprite: /Textures/Objects/Weapons/Guns/SMGs/c20r.rsi, state: icon }
-  productEntity: ClothingBackpackDuffelSyndicateFilledSMG
-  cost:
-    Telecrystal: 17
-  categories:
-  - UplinkWeaponry
+#- type: listing
+#  id: UplinkC20RBundle
+#  name: uplink-c20r-bundle-name
+#  description: uplink-c20r-bundle-desc
+#  icon: { sprite: /Textures/Objects/Weapons/Guns/SMGs/c20r.rsi, state: icon }
+#  productEntity: ClothingBackpackDuffelSyndicateFilledSMG
+#  cost:
+#    Telecrystal: 17
+#  categories:
+#  - UplinkWeaponry
 
-- type: listing
-  id: UplinkBulldogBundle
-  name: uplink-buldog-bundle-name
-  description: uplink-buldog-bundle-desc
-  icon: { sprite: /Textures/Objects/Weapons/Guns/Shotguns/bulldog.rsi, state: icon }
-  productEntity: ClothingBackpackDuffelSyndicateFilledShotgun
-  cost:
-    Telecrystal: 20
-  categories:
-  - UplinkWeaponry
+#- type: listing
+#  id: UplinkBulldogBundle
+#  name: uplink-buldog-bundle-name
+#  description: uplink-buldog-bundle-desc
+#  icon: { sprite: /Textures/Objects/Weapons/Guns/Shotguns/bulldog.rsi, state: icon }
+#  productEntity: ClothingBackpackDuffelSyndicateFilledShotgun
+#  cost:
+#    Telecrystal: 20
+#  categories:
+#  - UplinkWeaponry
 
-- type: listing
-  id: UplinkGrenadeLauncherBundle
-  name: uplink-grenade-launcher-bundle-name
-  description: uplink-grenade-launcher-bundle-desc
-  icon: { sprite: /Textures/Objects/Weapons/Guns/Launchers/china_lake.rsi, state: icon }
-  productEntity: ClothingBackpackDuffelSyndicateFilledGrenadeLauncher
-  cost:
-    Telecrystal: 25
-  categories:
-  - UplinkWeaponry
+#- type: listing
+#  id: UplinkGrenadeLauncherBundle
+#  name: uplink-grenade-launcher-bundle-name
+#  description: uplink-grenade-launcher-bundle-desc
+#  icon: { sprite: /Textures/Objects/Weapons/Guns/Launchers/china_lake.rsi, state: icon }
+#  productEntity: ClothingBackpackDuffelSyndicateFilledGrenadeLauncher
+#  cost:
+#    Telecrystal: 25
+#  categories:
+#  - UplinkWeaponry
 
-- type: listing
-  id: UplinkL6SawBundle
-  name: uplink-l6-saw-bundle-name
-  description: uplink-l6-saw-bundle-desc
-  icon: { sprite: /Textures/Objects/Weapons/Guns/LMGs/l6.rsi, state: icon }
-  productEntity: ClothingBackpackDuffelSyndicateFilledLMG
-  cost:
-    Telecrystal: 30
-  categories:
-  - UplinkWeaponry
+#- type: listing
+#  id: UplinkL6SawBundle
+#  name: uplink-l6-saw-bundle-name
+#  description: uplink-l6-saw-bundle-desc
+#  icon: { sprite: /Textures/Objects/Weapons/Guns/LMGs/l6.rsi, state: icon }
+#  productEntity: ClothingBackpackDuffelSyndicateFilledLMG
+#  cost:
+#    Telecrystal: 30
+#  categories:
+#  - UplinkWeaponry
 
 # Explosives
 
@@ -694,6 +705,16 @@
   categories:
   - UplinkDeception
 
+- type: listing
+  id: UplinkSyndicateBombFake
+  name: uplink-exploding-syndicate-bomb-fake-name
+  description: uplink-exploding-syndicate-bomb-fake-desc
+  productEntity: SyndicateBombFake
+  cost:
+    Telecrystal: 4
+  categories:
+  - UplinkDeception
+
 # Disruption
 
 - type: listing
@@ -912,7 +933,7 @@
   productEntity: ReinforcementRadioSyndicateMonkey
   icon: { sprite: Objects/Devices/communication.rsi, state: old-radio }
   cost:
-    Telecrystal: 8
+    Telecrystal: 6
   categories:
   - UplinkAllies
   conditions:
@@ -928,7 +949,7 @@
   productEntity: ReinforcementRadioSyndicateMonkeyNukeops
   icon: { sprite: Objects/Devices/communication.rsi, state: old-radio }
   cost:
-    Telecrystal: 8
+    Telecrystal: 6
   categories:
   - UplinkAllies
   conditions:
@@ -1287,7 +1308,17 @@
   categories:
   - UplinkWearables
 
-# Pointless
+- type: listing
+  id: UplinkBackpackSyndicate
+  name: uplink-backpack-syndicate-name
+  description: uplink-backpack-syndicate-desc
+  productEntity: ClothingBackpackSyndicate
+  cost:
+    Telecrystal: 2
+  categories:
+    - UplinkWearables
+
+ # Pointless
 
 - type: listing
   id: UplinkBarberScissors

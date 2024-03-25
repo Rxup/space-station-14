@@ -19,11 +19,15 @@ using Content.Shared.Backmen.Blob.Components;
 using Content.Shared.Damage;
 using Content.Shared.Mind.Components;
 using Content.Shared.Mobs;
+using Content.Shared.NPC.Components;
+using Content.Shared.NPC.Prototypes;
+using Content.Shared.NPC.Systems;
 using Content.Shared.Physics;
 using Content.Shared.Tag;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Physics;
 using Robust.Shared.Physics.Systems;
+using Robust.Shared.Prototypes;
 
 namespace Content.Server.Backmen.Blob;
 
@@ -117,7 +121,7 @@ public sealed class ZombieBlobSystem : EntitySystem
 
         var oldFactions = new List<string>();
         var factionComp = EnsureComp<NpcFactionMemberComponent>(uid);
-        foreach (var factionId in new List<string>(factionComp.Factions))
+        foreach (var factionId in new List<ProtoId<NpcFactionPrototype>>(factionComp.Factions))
         {
             oldFactions.Add(factionId);
             _faction.RemoveFaction(uid, factionId);

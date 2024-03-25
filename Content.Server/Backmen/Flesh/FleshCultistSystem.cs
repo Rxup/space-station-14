@@ -338,8 +338,7 @@ public sealed partial class FleshCultistSystem : EntitySystem
                     _doAfterSystem.TryStartDoAfter(new DoAfterArgs(EntityManager, uid, component.DevourTime,
                         new FleshCultistDevourDoAfterEvent(), uid, target: target, used: uid)
                     {
-                        BreakOnTargetMove = true,
-                        BreakOnUserMove = true,
+                        BreakOnMove = true,
                     });
                     args.Handled = true;
                     break;
