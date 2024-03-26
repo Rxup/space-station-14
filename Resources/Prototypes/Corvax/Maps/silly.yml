@@ -88,10 +88,15 @@
             SecurityOfficer: [ 2, 2 ]
             Warden: [ 1, 1 ]
             Detective: [ 1, 1 ]
-            Brigmedic: [ 0, 1 ] # backmen-Brigmedic
-            SAI: [1, 1] # backmen-SAI
             SecurityCadet: [ 2, 2 ]
             # cargo
             Quartermaster: [ 1, 1 ]
             SalvageSpecialist: [ 3, 3 ]
             CargoTechnician: [ 3, 3 ]
+            # backmen
+            Brigmedic: [ 0, 1 ] # backmen-Brigmedic
+            SAI: [1, 1] # backmen-SAI
+            BKBPLATech: [ 0, 1 ] # backmen-BPLA-Silicons
+            BKBPLAMED: [ 0, 1 ] # backmen-BPLAMED-Silicons
+            Deliveryman: [ 0, 1 ]
+            Prisoner: [ 1, 2 ]
