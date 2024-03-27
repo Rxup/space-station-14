@@ -140,12 +140,11 @@ public sealed class BkmVampireLevelingSystem : EntitySystem
         _doAfterSystem.TryStartDoAfter(new DoAfterArgs(EntityManager, ent, TimeSpan.FromSeconds(10),
             new InnateNewVampierDoAfterEvent(), ent, target: args.Target, used: ent)
         {
-            BreakOnUserMove = true,
             BreakOnDamage = true,
             NeedHand = true,
             RequireCanInteract = true,
             BreakOnHandChange = true,
-            BreakOnTargetMove = true,
+            BreakOnMove = true,
             BreakOnWeightlessMove = true
         });
 

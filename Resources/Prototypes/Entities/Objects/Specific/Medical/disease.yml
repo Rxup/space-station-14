@@ -14,6 +14,7 @@
     - Recyclable
     - Trash
   - type: BotanySwab
+  - type: DiseaseSwab # backmen
   - type: GuideHelp
     guides:
   # - Virology (when it's back)
@@ -27,6 +28,7 @@
   components:
   - type: Item
     size: Tiny
+  - type: DiseaseVaccine # backmen
   - type: Sprite
     sprite: Objects/Specific/Medical/medipen.rsi
     state: salpen

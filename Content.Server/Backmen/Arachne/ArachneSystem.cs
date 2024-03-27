@@ -262,7 +262,7 @@ public sealed class ArachneSystem : EntitySystem
         var ev = new ArachneWebDoAfterEvent(GetNetCoordinates(coords));
         var doAfterArgs = new DoAfterArgs(EntityManager, args.Performer, arachne.WebDelay, ev, args.Performer)
         {
-            BreakOnUserMove = true,
+            BreakOnMove = true,
         };
 
         _doAfter.TryStartDoAfter(doAfterArgs);
@@ -289,8 +289,7 @@ public sealed class ArachneSystem : EntitySystem
 
         var args = new DoAfterArgs(EntityManager, uid, delay, ev, uid, target: target)
         {
-            BreakOnUserMove = true,
-            BreakOnTargetMove = true,
+            BreakOnMove = true,
         };
 
         _doAfter.TryStartDoAfter(args);

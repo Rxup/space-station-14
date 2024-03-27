@@ -2,6 +2,7 @@
   id: vmpSkillSprint1
   name: store-vmpSkillSprint1-name
   description: store-vmpSkillSprint-desc
+  raiseProductEventOnUser: true
   productEvent: !type:VampireStoreEvent
     buyType: Sprint1
   cost:
@@ -16,6 +17,7 @@
   id: vmpSkillSprint2
   name: store-vmpSkillSprint2-name
   description: store-vmpSkillSprint-desc
+  raiseProductEventOnUser: true
   productEvent: !type:VampireStoreEvent
     buyType: Sprint2
   cost:
@@ -32,6 +34,7 @@
   id: vmpSkillSprint3
   name: store-vmpSkillSprint3-name
   description: store-vmpSkillSprint-desc
+  raiseProductEventOnUser: true
   productEvent: !type:VampireStoreEvent
     buyType: Sprint3
   cost:
@@ -48,6 +51,7 @@
   id: vmpSkillNoSlip
   name: store-vmpSkillNoSlip-name
   description: store-vmpSkillNoSlip-desc
+  raiseProductEventOnUser: true
   productEvent: !type:VampireStoreEvent
     buyType: NoSlip
   cost:
@@ -62,6 +66,7 @@
   id: vmpPsiInvisPower
   name: store-vmpPsiInvisPower-name
   description: store-vmpPsiInvisPower-desk
+  raiseProductEventOnUser: true
   productEvent: !type:VampireStoreEvent
     buyType: PsiInvisPower
   cost:
@@ -76,6 +81,7 @@
   id: vmpSkillMouse1
   name: store-vmpSkillMouse1-name
   description: store-vmpSkillMouse1-desc
+  raiseProductEventOnUser: true
   productEvent: !type:VampireStoreEvent
     buyType: SkillMouse2
   cost:

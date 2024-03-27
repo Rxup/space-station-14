@@ -157,8 +157,7 @@ public sealed class StoreBankSystem : EntitySystem
             new RestockDoAfterEvent(), target,
             target: target, used: uid)
         {
-            BreakOnTargetMove = true,
-            BreakOnUserMove = true,
+            BreakOnMove = true,
             BreakOnDamage = true,
             NeedHand = true
         };
