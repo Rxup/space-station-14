@@ -1,0 +1,118 @@
+- type: entity
+  name: Блюспейс кристал
+  parent: BaseItem
+  id: Bluespace
+  suffix: 1 БС Кристал
+  description: It seems to be pulsing with suspiciously enticing energies.
+  components:
+  - type: Sprite
+    sprite: Backmen/Objects/Materials/materials.rsi
+    state: bluespace
+  - type: Item
+    sprite: Backmen/Objects/Materials/materials.rsi
+    size: Tiny
+  - type: Stack
+    count: 1
+    stackType: Bluespace
+  - type: StaticPrice
+    price: 0
+  - type: StackPrice
+    price: 0
+  - type: Currency
+    price:
+      Bluespace: 1
+
+- type: entity
+  parent: Bluespace
+  id: Bluespace1
+  suffix: 1 БС Кристалл
+  components:
+  - type: Stack
+    count: 1
+  - type: Item
+    size: Tiny
+
+- type: entity
+  parent: Bluespace
+  id: Bluespace5
+  suffix: 5 БС Кристаллов
+  components:
+  - type: Stack
+    count: 5
+
+- type: entity
+  parent: Bluespace
+  id: Bluespace10
+  suffix: 10 БС Кристаллов
+  components:
+  - type: Stack
+    count: 10
+  - type: Item
+    size: Small
+
+- type: entity
+  parent: Bluespace
+  id: Bluespace25
+  suffix: 25 БС Кристаллов
+  components:
+  - type: Stack
+    count: 25
+  - type: Item
+    size: Normal
+
+- type: entity
+  parent: Bluespace
+  id: Bluespace50
+  suffix: 50 БС Кристаллов
+  components:
+  - type: Stack
+    count: 50
+  - type: Item
+    size: Large
+
+# Uplinks
+- type: entity
+  parent: BaseItem
+  id: BaseWizardUplinkRadio
+  name: wizard uplink
+  description: You're a wizard, harry!
+  suffix: Empty
+  components:
+  - type: Sprite
+    sprite: Objects/Devices/communication.rsi
+    layers:
+    - state: old-radio
+    netsync: false
+  - type: Item
+    sprite: Objects/Devices/communication.rsi
+    heldPrefix: old-radio
+  - type: UserInterface
+    interfaces:
+    - key: enum.StoreUiKey.Key
+      type: StoreBoundUserInterface
+  - type: ActivatableUI
+    key: enum.StoreUiKey.Key
+  - type: Store
+    preset: WizardStorePresetUplink
+    balance:
+      Bluespace: 0
+
+- type: entity
+  parent: BaseWizardUplinkRadio
+  id: BaseWizardUplinkRadio8BS
+  suffix: 8 Bluespace
+  components:
+  - type: Store
+    preset: WizardStorePresetUplink
+    balance:
+      Bluespace: 8
+
+- type: entity
+  parent: BaseWizardUplinkRadio
+  id: BaseWizardUplinkRadio30BS
+  suffix: 30 Bluespace
+  components:
+  - type: Store
+    preset: WizardStorePresetUplink
+    balance:
+      Bluespace: 30

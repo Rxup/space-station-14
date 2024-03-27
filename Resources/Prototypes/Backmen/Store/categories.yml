@@ -101,3 +101,35 @@
 - type: storeCategory
   id: HotDrinksMachineInventoryEmag
   name: store-category-emag
+
+   #withard
+
+- type: storeCategory
+  id: WizardBooks
+  name: store-category-books
+  priority: 0
+
+- type: storeCategory
+  id: WizardArmor
+  name: store-category-armor
+  priority: 2
+
+- type: storeCategory
+  id: WizardUtility
+  name: store-category-utility
+  priority: 3
+
+- type: storeCategory
+  id: WizardBundles
+  name: store-category-bundles
+  priority: 6
+
+- type: storeCategory
+  id: WizardMisc
+  name: store-category-misc
+  priority: 7
+
+- type: storeCategory
+  id: WizardPointless
+  name: store-category-pointless
+  priority: 8

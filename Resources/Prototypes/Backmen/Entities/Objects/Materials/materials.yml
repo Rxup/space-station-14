@@ -44,6 +44,7 @@
         - RawMaterial
 
 
+
 - type: entity
   parent: BaseItem
   id: HideMothroach
