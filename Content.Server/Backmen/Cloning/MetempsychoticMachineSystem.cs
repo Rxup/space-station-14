@@ -122,7 +122,7 @@ public sealed class MetempsychoticMachineSystem : EntitySystem
     {
         if (!Resolve(uid, ref component))
         {
-            Log.Error("Tried to get a spawn target from someone that was not a metempsychotic machine...");
+            Logger.Error("Tried to get a spawn target from someone that was not a metempsychotic machine...");
             return "MobHuman";
         }
 
@@ -157,7 +157,7 @@ public sealed class MetempsychoticMachineSystem : EntitySystem
                 }
                 else
                 {
-                    Log.Error("Could not index species for metempsychotic machine...");
+                    Logger.Error("Could not index species for metempsychotic machine...");
                     return "MobHuman";
                 }
             }
@@ -165,7 +165,7 @@ public sealed class MetempsychoticMachineSystem : EntitySystem
 
         if (!_prototypeManager.TryIndex<WeightedRandomPrototype>(MetempsychoticNonHumanoidPool, out var nonHumanoidPool))
         {
-            Log.Error("Could not index the pool of non humanoids for metempsychotic machine!");
+            Logger.Error("Could not index the pool of non humanoids for metempsychotic machine!");
             return "MobHuman";
         }
 

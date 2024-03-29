@@ -7,9 +7,9 @@ replay-loading-spawning = Спавн сущностей
 replay-loading-initializing = Инициализация сущностей
 replay-loading-starting = Запуск сущностей
 replay-loading-failed =
-    Не удалось загрузить повтор. Ошибка:
+    Не удалось загрузить повтор:
     { $reason }
-replay-loading-retry = Попробовать загрузить с большей допустимостью исключений - МОЖЕТ ВЫЗВАТЬ БАГИ!
+replay-loading-retry = Try load with more exception tolerance - MAY CAUSE BUGS!
 # Main Menu
 replay-menu-subtext = Повторы
 replay-menu-load = Загрузить выбранный повтор

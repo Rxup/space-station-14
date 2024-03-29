@@ -11,7 +11,7 @@ namespace Content.Server.Ghost.Roles.Components
 
         [DataField("description")] private string _roleDescription = "Unknown";
 
-        [DataField("rules")] private string _roleRules = "ghost-role-component-default-rules";
+        [DataField("rules")] private string _roleRules = "";
 
         [DataField("requirements")]
         public HashSet<JobRequirement>? Requirements;

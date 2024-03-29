@@ -51,7 +51,5 @@
   - type: InstantAction
     priority: -1
     useDelay: 30
-    icon:
-      sprite: Structures/Walls/solid.rsi
-      state: full
+    icon: Structures/Walls/solid.rsi/full.png
     event: !type:InvisibleWallActionEvent
