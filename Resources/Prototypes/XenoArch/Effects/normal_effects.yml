@@ -257,8 +257,7 @@
   effectHint: artifact-effect-hint-release
   components:
   - type: RadiationSource
-    intensity: 1
-    slope: 0.3
+    intensity: 2
 
 - type: artifactEffect
   id: EffectKnock
@@ -557,8 +556,7 @@
   effectHint: artifact-effect-hint-release
   components:
   - type: RadiationSource
-    intensity: 2
-    slope: 0.3
+    intensity: 6
 
 - type: artifactEffect
   id: EffectMaterialSpawn

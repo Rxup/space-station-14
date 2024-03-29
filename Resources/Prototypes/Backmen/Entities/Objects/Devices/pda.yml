@@ -30,7 +30,7 @@
     - type: Icon
       sprite: Backmen/Objects/Devices/pda.rsi
       state: pda-orden
-      
+
 - type: entity
   parent: BasePDA
   id: DeliveryPDA
@@ -63,7 +63,7 @@
     - type: Icon
       sprite: Backmen/Objects/Devices/pda.rsi
       state: pda-Delivery
-      
+
 
 - type: entity
   parent: BasePDA
@@ -107,3 +107,41 @@
     - type: Icon
       sprite: Backmen/Objects/Devices/pda.rsi
       state: pda-Roboticist
+
+- type: entity
+  parent: CaptainPDA
+  id: BlueshieldPDA
+  name: blueshield PDA
+  components:
+  - type: Pda
+    id: BlueshieldIDCard
+    state: pda-captain
+    penSlot:
+      startingItem: Pen
+      priority: -1
+      whitelist:
+        tags:
+        - Write
+  - type: PdaBorderColor
+    borderColor: "#7C5D00"
+  - type: Icon
+    state: pda-captain
+
+- type: entity
+  parent: CaptainPDA
+  id: MagistratPDA
+  name: magistrat PDA
+  components:
+  - type: Pda
+    id: MagistratIDCard
+    state: pda-captain
+    penSlot:
+      startingItem: Pen
+      priority: -1
+      whitelist:
+        tags:
+        - Write
+  - type: PdaBorderColor
+    borderColor: "#7C5D00"
+  - type: Icon
+    state: pda-captain

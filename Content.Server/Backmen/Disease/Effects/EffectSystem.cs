@@ -26,7 +26,6 @@ public sealed partial class DiseaseEffectSystem : SharedDiseaseEffectSystem
         SubscribeLocalEvent<DiseaseCarrierComponent, DiseaseEffectArgs<DiseasePopUp>>(DiseasePopUp);
         SubscribeLocalEvent<DiseaseCarrierComponent, DiseaseEffectArgs<DiseaseSnough>>(DiseaseSnough);
         SubscribeLocalEvent<DiseaseCarrierComponent, DiseaseEffectArgs<DiseaseVomit>>(DiseaseVomit);
-        SubscribeLocalEvent<DiseaseCarrierComponent, DiseaseEffectArgs<DiseaseCyborgConversion>>(DiseaseCyborgConversion);
 
         SubscribeLocalEvent<DiseaseInfectionSpreadEvent>(OnSpreadEvent);
     }

@@ -259,6 +259,9 @@
     {
       "name": "blue-inhand-right",
       "directions": 4
+    },
+    {
+      "name": "idblueshield"
     }
   ]
 }

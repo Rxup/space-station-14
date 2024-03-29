@@ -41,7 +41,7 @@
   components:
   - type: InstantAction
     icon: { sprite: Objects/Tools/flashlight.rsi, state: flashlight }
-    iconOn: { sprite: Objects/Tools/flashlight.rsi, state: flashlight-on }
+    iconOn: Objects/Tools/flashlight.rsi/flashlight-on.png
     event: !type:ToggleActionEvent
 
 - type: entity

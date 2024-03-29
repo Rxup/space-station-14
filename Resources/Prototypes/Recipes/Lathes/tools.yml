@@ -189,13 +189,14 @@
 
 - type: latheRecipe
   id: HolofanProjector
-  result: HolofanProjectorEmpty
+  result: HolofanProjector
   category: Tools
   completetime: 8
-  materials:
-    Steel: 300
-    Glass: 50
-    Plastic: 50
+  materials: # Inherited materials and time from PowerCellMedium recipe
+    Steel: 600
+    Glass: 350
+    Plastic: 150
+    Gold: 10
 
 - type: latheRecipe
   id: MiningDrill
@@ -228,7 +229,7 @@
 
 - type: latheRecipe
   id: HoloprojectorField
-  result: HoloprojectorFieldEmpty
+  result: HoloprojectorField
   category: Tools
   completetime: 3
   materials:

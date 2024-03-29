@@ -95,44 +95,27 @@
   id: VanAusdallsRobovirus
   name: disease-proto-robovirus
   cureResist: 0.1
-  stages:
-  - 0
-  - 240
   effects:
   - !type:DiseaseAdjustReagent
     probability: 0.025
     reagent:
       ReagentId: Licoxide
     amount: 0.5
-    stages:
-    - 0
-    - 1
   - !type:DiseaseSnough
     probability: 0.02
     emote: RobotBeep
-    stages:
-    - 0
-    - 1
-  - !type:DiseaseCyborgConversion
-    probability: 0.33
-    stages:
-    - 1
   cures:
   - !type:DiseaseJustWaitCure
     maxLength: 900
-    stages:
-    - 0
   - !type:DiseaseReagentCure
     reagent:
       ReagentId: BeepskySmash
-    stages:
-    - 0
 
 
 - type: disease
   id: AMIV
   name: disease-proto-amiv
-  cureResist: 0.1
+  cureResist: 0.10
   stages:
   - 0
   - 120
@@ -196,7 +179,7 @@
     - 2
   # possible monkefication if ignored too long
   - !type:DiseasePolymorph
-    probability: 0.000427 # ~5% chance over 120 secs
+    probability: 0.000427 ## ~5% chance over 120 secs
     polymorphId: AMIVMorph
     polymorphMessage: disease-polymorph
     polymorphSound:
@@ -285,9 +268,6 @@
   id: OwOnavirus
   name: disease-proto-owonavirus
   cureResist: 0.25
-  stages:
-  - 0
-  - 450
   effects:
   - !type:DiseaseGenericStatusEffect
     key: Stutter
@@ -303,21 +283,13 @@
   - !type:DiseaseSnough
     probability: 0.01
     emote: CatHisses
-  - !type:DiseasePolymorph
-    polymorphId: BNekoMorph
-    polymorphMessage: disease-polymorph
-    polymorphRandomAppereance: true
-    polymorphSound:
-      path: /Audio/Animals/cat_meow.ogg
-    stages:
-    - 1
   cures:
   - !type:DiseaseBodyTemperatureCure
     min: 420 ## Reachable with a flamer
   - !type:DiseaseReagentCure
     reagent:
       ReagentId: Theobromine
-    min: 10
+    min: 4
 
 - type: disease
   id: TongueTwister
