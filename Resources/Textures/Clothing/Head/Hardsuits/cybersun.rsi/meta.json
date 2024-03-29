@@ -1,7 +1,7 @@
 {
   "version": 1,
   "license": "CC-BY-SA-3.0",
-  "copyright": "Taken from tgstation at commit https://github.com/tgstation/tgstation/blob/8b79f5e4a1e1748baf8133466bf2fe6338d3a9dc/icons/obj/clothing/modsuit/mod_clothing.dmi. / https://github.com/tgstation/tgstation/blob/8b79f5e4a1e1748baf8133466bf2fe6338d3a9dc/icons/mob/clothing/modsuit/mod_clothing.dmi modified and added missing sprites by Kirillcas(github)",
+  "copyright": "Taken from Paradise SS13 at commit https://github.com/ParadiseSS13/Paradise/commit/a67c929b7394f78e7787114457ba42f4df6cc3a1",
   "size": {
     "x": 32,
     "y": 32
@@ -11,30 +11,15 @@
       "name": "icon"
     },
     {
-      "name": "icon-flash"
-    },
-    {
-      "name": "off-equipped-HELMET",
+      "name": "equipped-HELMET",
       "directions": 4
     },
     {
-      "name": "off-inhand-left",
+      "name": "inhand-left",
       "directions": 4
     },
     {
-      "name": "off-inhand-right",
-      "directions": 4
-    },
-    {
-      "name": "on-equipped-HELMET",
-      "directions": 4
-    },
-    {
-      "name": "on-inhand-left",
-      "directions": 4
-    },
-    {
-      "name": "on-inhand-right",
+      "name": "inhand-right",
       "directions": 4
     }
   ]

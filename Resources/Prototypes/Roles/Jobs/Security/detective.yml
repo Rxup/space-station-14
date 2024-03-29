@@ -6,7 +6,7 @@
   requirements:
   - !type:DepartmentTimeRequirement
     department: Security
-    time: 72000 #20 hrs # Corvax-RoleTime
+    time: 54000 # 15 hours
   startingGear: DetectiveGear
   icon: "JobIconDetective"
   supervisors: job-supervisors-hos
@@ -17,17 +17,7 @@
   - Maintenance
   - Service
   - Detective
-  #start-backmen: currency
-  minBankBalance: 150
-  maxBankBalance: 250
-  wageDepartment: Security
-  wage: 50
-  #end-backmen: currency
   special:
-  - !type:AddComponentSpecial
-    components:
-      - type: PsionicBonusChance
-        flatBonus: 0.5
   - !type:AddImplantSpecial
     implants: [ MindShieldImplant ]
 
@@ -37,7 +27,7 @@
     jumpsuit: ClothingUniformJumpsuitDetective
     back: ClothingBackpackSecurityFilledDetective
     shoes: ClothingShoesBootsCombatFilled
-    eyes: ClothingEyesGlassesSecurity #backmen
+    eyes: ClothingEyesGlassesSunglasses
     head: ClothingHeadHatFedoraBrown
     outerClothing: ClothingOuterVestDetective
     id: DetectivePDA

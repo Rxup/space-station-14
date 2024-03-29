@@ -55,10 +55,10 @@ public sealed class PiratesRuleSystem : GameRuleSystem<PiratesRuleComponent>
     private const string GameRuleId = "Pirates";
 
     [ValidatePrototypeId<EntityPrototype>]
-    private const string MobId = "MobHuman";
+    private const string MobId = "MobVox";
 
     [ValidatePrototypeId<SpeciesPrototype>]
-    private const string SpeciesId = "Human";
+    private const string SpeciesId = "Vox";
 
     [ValidatePrototypeId<NpcFactionPrototype>]
     private const string PirateFactionId = "Syndicate";
