@@ -19632,6 +19632,11 @@ entities:
     - type: Transform
       pos: 31.5,-3.5
       parent: 34
+  - uid: 12968
+    components:
+    - type: Transform
+      pos: 51.5,-22.5
+      parent: 34
 - proto: CableHVStack
   entities:
   - uid: 5064
@@ -53469,6 +53474,11 @@ entities:
       parent: 34
     - type: PowerSupplier
       supplyRate: 30000
+  - uid: 12969
+    components:
+    - type: Transform
+      pos: 51.5,-22.5
+      parent: 34
 - proto: GlimmerProber
   entities:
   - uid: 37
@@ -61646,13 +61656,6 @@ entities:
       parent: 34
     - type: ApcPowerReceiver
       powerLoad: 0
-  - uid: 11632
-    components:
-    - type: Transform
-      pos: 29.5,-9.5
-      parent: 34
-    - type: ApcPowerReceiver
-      powerLoad: 0
   - uid: 11634
     components:
     - type: Transform
@@ -68588,11 +68591,6 @@ entities:
       parent: 34
 - proto: SpawnMobMedibot
   entities:
-  - uid: 2246
-    components:
-    - type: Transform
-      pos: 2.5,0.5
-      parent: 34
   - uid: 10233
     components:
     - type: Transform
@@ -70467,6 +70465,19 @@ entities:
       id: Аномалистика
 - proto: SurveillanceCameraSecurity
   entities:
+  - uid: 2246
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 29.5,-9.5
+      parent: 34
+    - type: SurveillanceCamera
+      setupAvailableNetworks:
+      - SurveillanceCameraSecurity
+      nameSet: True
+      id: HoS office
+    - type: WiresPanel
+      open: True
   - uid: 5941
     components:
     - type: Transform
@@ -70625,6 +70636,28 @@ entities:
       parent: 34
     - type: SurveillanceCamera
       id: раздевалка Сб
+  - uid: 11632
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 26.5,1.5
+      parent: 34
+    - type: SurveillanceCamera
+      setupAvailableNetworks:
+      - SurveillanceCameraSecurity
+      nameSet: True
+      id: armory 1
+  - uid: 12966
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: 22.5,-14.5
+      parent: 34
+    - type: SurveillanceCamera
+      setupAvailableNetworks:
+      - SurveillanceCameraSecurity
+      nameSet: True
+      id: briefing room
 - proto: SurveillanceCameraService
   entities:
   - uid: 10739
