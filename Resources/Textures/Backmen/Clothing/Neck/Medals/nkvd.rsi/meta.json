@@ -1,0 +1,18 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "made by hz kto, v inete nashli",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "equipped-NECK",
+      "directions": 4
+    },
+    {
+      "name": "icon"
+    }
+  ]
+}
