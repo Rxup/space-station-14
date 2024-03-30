@@ -179,7 +179,9 @@ public sealed partial class StoreSystem
                 component.BalanceSpent[currency] += value;
             }
         // start-backmen: currency
-        } else {
+        }
+        else
+        {
             foreach (var (currency, value) in listing.Cost)
             {
                 component.BalanceSpent.TryAdd(currency, FixedPoint2.Zero);

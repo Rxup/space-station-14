@@ -106,7 +106,11 @@ public sealed class StationRecordCommand  : ToolshedCommand
     )
     {
         var player = playerRef.Evaluate(ctx);
-        if (player is null || player.AttachedEntity is null)
+        if (
+            player is null ||
+            player.AttachedEntity is null ||
+            !TryComp<MetaDataComponent>(player.AttachedEntity.Value, out var metaDataComponent) ||
+            !TryComp<StationRecordsComponent>(input, out var recordsComponent))
         {
             ctx.ReportError(new NotForServerConsoleError());
             return input;
@@ -116,6 +120,13 @@ public sealed class StationRecordCommand  : ToolshedCommand
 
         _recordsSystem ??= GetSys<StationRecordsSystem>();
         _inventory ??= GetSys<InventorySystem>();
+
+        // when adding a record that already exists use the old one
+        // this happens when respawning as the same character
+        if (_recordsSystem.GetRecordByName(input, metaDataComponent.EntityName, recordsComponent) is {} id)
+        {
+            _recordsSystem.RemoveRecord(new StationRecordKey(id, input), recordsComponent);
+        }
 
         foreach (var item in _inventory.GetHandOrInventoryEntities(playerUid))
         {
@@ -136,7 +147,7 @@ public sealed class StationRecordCommand  : ToolshedCommand
                     continue;
                 }
 
-                _recordsSystem.RemoveRecord(key);
+                _recordsSystem.RemoveRecord(key, recordsComponent);
             }
         }
 
