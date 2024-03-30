@@ -26,6 +26,8 @@
       collection: FelinidPurrs
     Growls:
       collection: FelinidGrowls
+    Weh:
+      collection: Weh
 
 - type: emoteSounds
   id: FemaleFelinid
@@ -54,6 +56,8 @@
       collection: FelinidPurrs
     Growls:
       collection: FelinidGrowls
+    Weh:
+      collection: Weh
 
 # species
 - type: emoteSounds
@@ -105,3 +109,5 @@
       collection: HarpyCaws
     Chirp:
       collection: HarpyChirps
+    Weh:
+      collection: Weh
