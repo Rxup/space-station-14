@@ -126,7 +126,7 @@ public sealed partial class PolymorphSystem : EntitySystem
         if (!_proto.TryIndex(args.ProtoId, out var prototype))
             return;
 
-        args.Handled = PolymorphEntity(ent, prototype.Configuration);
+        args.Handled = PolymorphEntity(ent, prototype.Configuration) != null;
     }
 
     private void OnRevertPolymorphActionEvent(Entity<PolymorphedEntityComponent> ent,

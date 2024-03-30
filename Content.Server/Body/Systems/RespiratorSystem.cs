@@ -87,7 +87,7 @@ public sealed class RespiratorSystem : EntitySystem
             {
                 if (respirator.SuffocationCycles > 0)
                 {
-                    StopSuffocation(uid, respirator);
+                    StopSuffocation((uid, respirator));
                     respirator.SuffocationCycles = 0;
                 }
                 continue;
