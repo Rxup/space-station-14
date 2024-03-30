@@ -1,4 +1,4 @@
-# Accents that work off of word replacements.
+﻿# Accents that work off of word replacements.
 
 # this is kind of dumb but localization demands it.
 # i guess you could just specify the prefix ('mobster') and count and let the system fill it
@@ -460,6 +460,7 @@
 #    chatsan-word-40: chatsan-replacement-etcetera
 #    chatsan-word-41: chatsan-replacement-41
 #    chatsan-word-42: chatsan-replacement-42
+#    chatsan-word-43: chatsan-replacement-43
     corvax-chatsan-word-1: corvax-chatsan-replacement-1
     corvax-chatsan-word-2: corvax-chatsan-replacement-2
     corvax-chatsan-word-3: corvax-chatsan-replacement-3

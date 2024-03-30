@@ -171,7 +171,6 @@ namespace Content.Server.Communications
 
             _uiSystem.SetUiState(ui, new CommunicationsConsoleInterfaceState(
                 CanAnnounce(comp),
-                CanBroadcast(comp),
                 CanCallOrRecall(comp),
                 levels,
                 currentLevel,
@@ -181,11 +180,6 @@ namespace Content.Server.Communications
         }
 
         private static bool CanAnnounce(CommunicationsConsoleComponent comp)
-        {
-            return comp.AnnouncementCooldownRemaining <= 0f;
-        }
-
-        private static bool CanBroadcast(CommunicationsConsoleComponent comp)
         {
             return comp.AnnouncementCooldownRemaining <= 0f;
         }
