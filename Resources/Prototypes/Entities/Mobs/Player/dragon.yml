@@ -125,9 +125,11 @@
   - type: Tag
     tags:
     - CannotSuicide
+    - DoorBumpOpener
   - type: NightVision
     isToggle: true
     color: "#808080"
+
 
 - type: entity
   parent: BaseMobDragon
