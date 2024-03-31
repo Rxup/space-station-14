@@ -468,6 +468,7 @@
       - TelecomServerCircuitboard
       - MassMediaCircuitboard
       - ShipyardCircuitboard # backmen
+      - ReagentGrinderIndustrialMachineCircuitboard
   - type: MaterialStorage
     whitelist:
       tags:
@@ -699,7 +700,6 @@
       - CartridgeMagnumUranium
       - CartridgePistolUranium
       - CartridgeRifleUranium
-      - ClothingEyesGlassesSecurity
       - ExplosivePayload
       - FlashPayload
       - HoloprojectorSecurity
