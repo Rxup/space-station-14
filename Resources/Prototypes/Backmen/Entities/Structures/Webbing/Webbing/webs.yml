@@ -79,7 +79,7 @@
       path: /Audio/Effects/plant_rustle.ogg
     unbuckleSound: !type:SoundPathSpecifier
       path: /Audio/Effects/plant_rustle.ogg
-    allowedEntities:
+    whitelist:
       components:
         - Arachne
   - type: HealOnBuckle
