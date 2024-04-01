@@ -53,7 +53,7 @@
 - type: startingGear
   id: HecateStartingGear
   equipment:
-    hat: ClothingHeadHatHairflower
+    #hat: ClothingHeadHatHairflower
     jumpsuit: ClothingCostumeArcDress
     shoes: ClothingShoesColorBlack
   innerClothingSkirt: ClothingCostumeArcDress

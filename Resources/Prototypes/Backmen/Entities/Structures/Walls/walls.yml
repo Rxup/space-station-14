@@ -34,7 +34,9 @@
     - type: Tag
       tags:
         - Wall
-        - RCDDeconstructWhitelist
+    - type: RCDDeconstructable
+      cost: 6
+      delay: 8
 
 - type: entity
   parent: BaseWall
