@@ -2,6 +2,7 @@
 using System.Net;
 using System.Net.Http;
 using System.Net.Http.Json;
+using System.Threading;
 using System.Threading.Tasks;
 using Content.Corvax.Interfaces.Server;
 using Content.Shared.Backmen.Sponsors;
@@ -24,6 +25,8 @@ public sealed class SponsorsManager : IServerSponsorsManager
 
     private readonly Dictionary<NetUserId, SponsorInfo> _cachedSponsors = new();
 
+    private readonly ReaderWriterLockSlim _lock = new();
+
     public void Initialize()
     {
         _sawmill = Logger.GetSawmill("sponsors");
@@ -43,29 +46,52 @@ public sealed class SponsorsManager : IServerSponsorsManager
 
     private async Task OnConnecting(NetConnectingArgs e)
     {
-        var info = await LoadSponsorInfo(e.UserId);
-        if (info?.Tier == null)
+        _lock.EnterWriteLock();
+        try
         {
-            _cachedSponsors.Remove(e.UserId); // Remove from cache if sponsor expired
-            return;
+            var info = await LoadSponsorInfo(e.UserId);
+            if (info?.Tier == null)
+            {
+                _cachedSponsors.Remove(e.UserId); // Remove from cache if sponsor expired
+                return;
+            }
+
+            DebugTools.Assert(!_cachedSponsors.ContainsKey(e.UserId), "Cached data was found on client connect");
+
+            _cachedSponsors[e.UserId] = info;
         }
-
-        DebugTools.Assert(!_cachedSponsors.ContainsKey(e.UserId), "Cached data was found on client connect");
-
-        _cachedSponsors[e.UserId] = info;
+        finally
+        {
+            _lock.ExitWriteLock();
+        }
     }
 
     private void OnConnected(object? sender, NetChannelArgs e)
     {
-        var info = _cachedSponsors.TryGetValue(e.Channel.UserId, out var sponsor) ? sponsor : null;
-        var msg = new MsgSponsorInfo() { Info = info };
-        _netMgr.ServerSendMessage(msg, e.Channel);
-
+        _lock.EnterReadLock();
+        try
+        {
+            var info = _cachedSponsors.TryGetValue(e.Channel.UserId, out var sponsor) ? sponsor : null;
+            var msg = new MsgSponsorInfo() { Info = info };
+            _netMgr.ServerSendMessage(msg, e.Channel);
+        }
+        finally
+        {
+            _lock.ExitReadLock();
+        }
     }
 
     private void OnDisconnect(object? sender, NetDisconnectedArgs e)
     {
-        _cachedSponsors.Remove(e.Channel.UserId);
+        _lock.EnterWriteLock();
+        try
+        {
+            _cachedSponsors.Remove(e.Channel.UserId);
+        }
+        finally
+        {
+            _lock.ExitWriteLock();
+        }
     }
 
     private async Task<SponsorInfo?> LoadSponsorInfo(NetUserId userId)
