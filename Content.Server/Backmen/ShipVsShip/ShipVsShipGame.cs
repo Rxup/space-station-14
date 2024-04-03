@@ -87,31 +87,42 @@ public sealed class ShipVsShipGame : GameRuleSystem<ShipVsShipGameComponent>
         while (activeRules.MoveNext(out _, out var rule, out _))
         {
             var xform = Transform(ev.Mob);
-            var team = rule.Players.FirstOrNull(x => x.Value.Contains(ev.Player.UserId))?.Key ?? StationTeamMarker.Neutral;
+            var team = rule.Players.FirstOrNull(x => x.Value.Contains(ev.Player.UserId))?.Key;
+
+            if (team == null)
+            {
+                var weakTeam = rule.Players.MinBy(x => x.Value.Count);
+                team = weakTeam.Key;
+                rule.Players[team.Value].Add(ev.Player.UserId);
+            }
+
+
             Log.Info($"Validate player spawning station {ev.Mob:entity} on {xform.GridUid:entity} (team: {team})");
 
 
-            SetFlag(ev.Mob, team);
-            if (rule.Team.ContainsKey(team) && TryComp<StationDataComponent>(rule.Team[team], out var stationDataComponent))
-            {
-                var stationGrids = stationDataComponent.Grids;
-                if (xform.GridUid == null || stationGrids.Contains(xform.GridUid.Value))
-                {
-                    return;
-                }
-                var latejoin = (from s in EntityQuery<SpawnPointComponent, TransformComponent>()
-                    where s.Item1.SpawnType == SpawnPointType.LateJoin && s.Item2.GridUid.HasValue && stationGrids.Contains(s.Item2.GridUid.Value)
-                    select s.Item2.Coordinates).ToList();
-                if (latejoin.Count == 0)
-                {
-                    Log.Error($"not found late join for {team}");
-                    return;
-                }
+            SetFlag(ev.Mob, team.Value);
+            if (!TryComp<StationDataComponent>(rule.Team[team.Value], out var stationDataComponent) ||
+                !rule.Team.ContainsKey(team.Value))
+                continue;
 
-                var point = RobustRandom.Pick(latejoin);
-                _transform.SetCoordinates(ev.Mob, point);
-                Log.Warning($"Invalid spawning station {ev.Mob:entity} on {xform.GridUid:entity} (team: {team}) do fixing, new grid = {point.EntityId:entity}");
+            var stationGrids = stationDataComponent.Grids;
+            if (xform.GridUid == null || stationGrids.Contains(xform.GridUid.Value))
+            {
+                return;
             }
+            var latejoin = (from s in EntityQuery<SpawnPointComponent, TransformComponent>()
+                where s.Item1.SpawnType == SpawnPointType.LateJoin && s.Item2.GridUid.HasValue && stationGrids.Contains(s.Item2.GridUid.Value)
+                select s.Item2.Coordinates).ToList();
+            if (latejoin.Count == 0)
+            {
+                Log.Error($"not found late join for {team}");
+                return;
+            }
+
+            var point = RobustRandom.Pick(latejoin);
+            _transform.SetCoordinates(ev.Mob, point);
+            Log.Warning($"Invalid spawning station {ev.Mob:entity} on {xform.GridUid:entity} (team: {team}) do fixing, new grid = {point.EntityId:entity}");
+
         }
     }
 

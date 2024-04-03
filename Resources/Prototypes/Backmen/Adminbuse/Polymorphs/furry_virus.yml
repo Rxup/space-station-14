@@ -90,20 +90,21 @@
     - !type:DiseaseReagentCure
       reagent:
         ReagentId: Sigynate
-      min: 30
+      min: 20
       stages:
+        - 1
         - 2
     - !type:DiseaseReagentCure
       reagent:
         ReagentId: Theobromine
-      min: 50
+      min: 20
       stages:
         - 0
-        - 1
     - !type:DiseaseReagentCure
       reagent:
-        ReagentId: WhiteRussian
-      min: 90
+        ReagentId: LotophagoiOil
+      min: 20
       stages:
         - 0
         - 1
+        - 2

@@ -2095,7 +2095,7 @@ entities:
       rot: 3.141592653589793 rad
       pos: 3.5,17.5
       parent: 1
-- proto: RandomBook
+- proto: BookRandomStory
   entities:
   - uid: 269
     components:
