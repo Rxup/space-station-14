@@ -18,6 +18,7 @@ using Content.Shared.Damage;
 using Content.Shared.Damage.Components;
 using Content.Shared.Eye;
 using Content.Shared.Ghost;
+using Content.Shared.Interaction.Events;
 using Content.Shared.NPC.Components;
 using Content.Shared.NPC.Systems;
 using Content.Shared.StatusEffect;
@@ -63,8 +64,15 @@ public sealed class ShadowkinDarkSwapSystem : EntitySystem
         SubscribeLocalEvent<ShadowkinDarkSwappedComponent, DamageChangedEvent>(OnDamageInInvis);
         SubscribeLocalEvent<ShadowkinDarkSwappedComponent, DispelledEvent>(OnDispelled);
 
+        SubscribeLocalEvent<ShadowkinDarkSwappedComponent, AttackAttemptEvent>(OnAttackAttempt);
+
         _activePsionicsDisabled = GetEntityQuery<PsionicsDisabledComponent>();
         _activeStamina = GetEntityQuery<StaminaComponent>();
+    }
+
+    private void OnAttackAttempt(Entity<ShadowkinDarkSwappedComponent> ent, ref AttackAttemptEvent args)
+    {
+        args.Cancel();
     }
 
     private void OnDispelled(Entity<ShadowkinDarkSwappedComponent> ent, ref DispelledEvent args)
