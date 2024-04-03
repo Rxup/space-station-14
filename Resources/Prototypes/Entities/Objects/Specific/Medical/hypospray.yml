@@ -426,6 +426,7 @@
 # Corvax-HiddenDesc-Start
   #- type: ExaminableSolution
   #  solution: hypospray
+  #  heldOnly: true # Allow examination only when held in hand.
 # Corvax-HiddenDesc-End
   - type: Hypospray
     onlyAffectsMobs: false

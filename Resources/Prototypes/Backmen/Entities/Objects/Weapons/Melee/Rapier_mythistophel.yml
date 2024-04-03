@@ -33,7 +33,8 @@
     solution: melee
   - type: InjectableSolution
     solution: melee
-  - type: SolutionInjectOnCollide
+  - type: SolutionInjectOnEmbed
+    solution: ammo
     transferAmount: 5
     blockSlots: NONE
   - type: SolutionTransfer
