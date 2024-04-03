@@ -1,0 +1,14 @@
+- type: entity
+  id: HealingSpellbook
+  name: healing spellbook
+  parent: BaseSpellbook
+  components:
+  - type: Sprite
+    netsync: false
+    sprite: Objects/Magic/spellbooks.rsi
+    layers:
+    - state: spellbook
+  - type: Spellbook
+    entitySpells:
+      HealingSpell: -1
+    learnTime: 0.75
