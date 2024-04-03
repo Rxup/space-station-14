@@ -2,5 +2,5 @@
   id: Bluespace
   name: bluespace
   icon: { sprite: Backmen/Objects/Materials/materials.rsi, state: bluespace }
-  spawn: Bluespace
+  spawn: MaterialBluespace
   itemSize: 1

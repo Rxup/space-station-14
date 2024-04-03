@@ -1,31 +1,22 @@
-- type: entity
-  name: Блюспейс кристал
-  parent: BaseItem
-  id: Bluespace
-  suffix: 1 БС Кристал
-  description: It seems to be pulsing with suspiciously enticing energies.
-  components:
-  - type: Sprite
-    sprite: Backmen/Objects/Materials/materials.rsi
-    state: bluespace
-  - type: Item
-    sprite: Backmen/Objects/Materials/materials.rsi
-    size: Tiny
-  - type: Stack
-    count: 1
-    stackType: Bluespace
-  - type: StaticPrice
-    price: 0
-  - type: StackPrice
-    price: 0
-  - type: Currency
-    price:
-      Bluespace: 1
+- type: currency
+  id: BluespaceUplink
+  displayName: store-currency-display-bluespace
+  cash:
+    1: BluespaceUplink1
+  canWithdraw: true
+
+- type: stack
+  id: BluespaceUplink
+  name: bluespace
+  icon: { sprite: Backmen/Objects/Materials/materials.rsi, state: bluespace }
+  spawn: MaterialBluespaceUplink
+  maxCount: 50
+  itemSize: 1
 
 - type: entity
-  parent: Bluespace
-  id: Bluespace1
-  suffix: 1 БС Кристалл
+  parent: MaterialBluespaceUplink
+  id: BluespaceUplink1
+  suffix: 1 BS Uplink
   components:
   - type: Stack
     count: 1
@@ -33,17 +24,17 @@
     size: Tiny
 
 - type: entity
-  parent: Bluespace
-  id: Bluespace5
-  suffix: 5 БС Кристаллов
+  parent: MaterialBluespaceUplink
+  id: BluespaceUplink5
+  suffix: 5 BS Uplink
   components:
   - type: Stack
     count: 5
 
 - type: entity
-  parent: Bluespace
-  id: Bluespace10
-  suffix: 10 БС Кристаллов
+  parent: MaterialBluespaceUplink
+  id: BluespaceUplink10
+  suffix: 10 BS Uplink
   components:
   - type: Stack
     count: 10
@@ -51,9 +42,9 @@
     size: Small
 
 - type: entity
-  parent: Bluespace
-  id: Bluespace25
-  suffix: 25 БС Кристаллов
+  parent: MaterialBluespaceUplink
+  id: BluespaceUplink25
+  suffix: 25 BS Uplink
   components:
   - type: Stack
     count: 25
@@ -61,9 +52,9 @@
     size: Normal
 
 - type: entity
-  parent: Bluespace
-  id: Bluespace50
-  suffix: 50 БС Кристаллов
+  parent: MaterialBluespaceUplink
+  id: BluespaceUplink50
+  suffix: 50 BS Uplink
   components:
   - type: Stack
     count: 50
@@ -95,7 +86,7 @@
   - type: Store
     preset: WizardStorePresetUplink
     balance:
-      Bluespace: 0
+      BluespaceUplink: 0
 
 - type: entity
   parent: BaseWizardUplinkRadio
@@ -105,7 +96,7 @@
   - type: Store
     preset: WizardStorePresetUplink
     balance:
-      Bluespace: 8
+      BluespaceUplink: 8
 
 - type: entity
   parent: BaseWizardUplinkRadio
@@ -115,4 +106,4 @@
   - type: Store
     preset: WizardStorePresetUplink
     balance:
-      Bluespace: 30
+      BluespaceUplink: 30

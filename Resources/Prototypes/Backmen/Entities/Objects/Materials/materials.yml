@@ -35,14 +35,43 @@
   name: bluespace crystal
   suffix: 1
   components:
+  - type: Stack
+    stackType: Bluespace
+    count: 1
+  - type: Tag
+    tags:
+    - BluespaceCrystal
+    - RawMaterial
+
+- type: entity
+  parent: MaterialBluespace
+  id: MaterialBluespaceUplink
+  name: bluespace crystal
+  suffix: Uplink
+  components:
+    - type: PhysicalComposition
+      materialComposition:
+        BluespaceUplink: 100
     - type: Stack
-      stackType: Bluespace
-      count: 1
+      stackType: BluespaceUplink
+      baseLayer: base
+      layerStates:
+      - bluespace
+      - bluespace_2
+      - bluespace_3
+      count: 5
     - type: Tag
       tags:
         - BluespaceCrystal
         - RawMaterial
 
+- type: material
+  id: BluespaceUplink
+  name: bluespace
+  icon: /Textures/Backmen/Objects/Materials/materials.rsi/bluespace.png
+  color: "#53a9ff"
+  stackEntity: MaterialBluespaceUplink
+  price: 1500
 
 
 - type: entity

@@ -146,7 +146,7 @@
   description: uplink-book-spawnbook-desc
   productEntity: SpawnSpellbook
   cost:
-    Bluespace: 8
+    BluespaceUplink: 8
   categories:
   - WizardBooks
 
@@ -156,7 +156,7 @@
   description: uplink-book-forcewall-desc
   productEntity: ForceWallSpellbook
   cost:
-    Bluespace: 10
+    BluespaceUplink: 10
   categories:
   - WizardBooks
 
@@ -166,7 +166,7 @@
   description: uplink-book-blink-desc
   productEntity: BlinkBook
   cost:
-    Bluespace: 16
+    BluespaceUplink: 16
   categories:
   - WizardBooks
 
@@ -176,7 +176,7 @@
   description: uplink-book-smite-desc
   productEntity: SmiteBook
   cost:
-    Bluespace: 50
+    BluespaceUplink: 50
   categories:
   - WizardBooks
 
@@ -186,7 +186,7 @@
   description: uplink-book-knok-desc
   productEntity: KnockSpellbook
   cost:
-    Bluespace: 14
+    BluespaceUplink: 14
   categories:
   - WizardBooks
 
@@ -196,7 +196,7 @@
   description: uplink-book-fireball-desc
   productEntity: FireballSpellbook
   cost:
-    Bluespace: 16
+    BluespaceUplink: 16
   categories:
   - WizardBooks
 
@@ -206,7 +206,7 @@
   description: uplink-book-heal-desc
   productEntity: HealingSpellbook
   cost:
-    Bluespace: 8
+    BluespaceUplink: 8
   categories:
   - WizardBooks
 
@@ -220,7 +220,7 @@
   description: uplink-armor-hardsuit-desc
   productEntity: ClothingOuterHardsuitWizard
   cost:
-    Bluespace: 6
+    BluespaceUplink: 6
   categories:
   - WizardArmor
 
@@ -231,7 +231,7 @@
   description: uplink-utility-spellbelt-desc
   productEntity: ClothingBeltWand
   cost:
-    Bluespace: 4
+    BluespaceUplink: 4
   categories:
   - WizardUtility
 
@@ -242,7 +242,7 @@
   description: uplink-bundles-wizarsurpluscrate30bs-desc
   productEntity: CrateWizardSurplus
   cost:
-    Bluespace: 30
+    BluespaceUplink: 30
   categories:
   - WizardBundles
 
@@ -255,6 +255,6 @@
   description: uplink-pointless-spellburger-desc
   productEntity: FoodBurgerSpell
   cost:
-    Bluespace: 1
+    BluespaceUplink: 1
   categories:
   - WizardPointless
