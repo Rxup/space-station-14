@@ -1773,7 +1773,7 @@ entities:
     - type: Transform
       pos: 4.5776534,10.851077
       parent: 2
-- proto: RandomBook
+- proto: BookRandomStory
   entities:
   - uid: 268
     components:
