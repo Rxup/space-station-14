@@ -4,10 +4,18 @@
   parent: BaseSpellbook
   components:
   - type: Sprite
-    netsync: false
-    sprite: Objects/Magic/spellbooks.rsi
+    sprite: Objects/Misc/books.rsi
     layers:
-    - state: spellbook
+    - state: paper
+    - state: cover_strong
+      color: "#117045"
+    - state: decor_wingette_circle
+      color: gold
+    - state: icon_magic_knock
+    - state: detail_rivets
+      color: gold
+    - state: detail_bookmark
+      color: "#98c495"
   - type: Spellbook
     entitySpells:
       HealingSpell: -1
