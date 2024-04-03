@@ -11,6 +11,18 @@
   - ShipVsShip
   - BasicRoundstartVariation
 
+- type: gamePreset
+  id: SecretSVS
+  alias: []
+  name: secret-title
+  showInVote: false
+  description: secret-description
+  isMiniGame: true
+  supportedMaps: ShipVsShipMapPool
+  rules:
+  - ShipVsShip
+  - BasicRoundstartVariation
+
 - type: gameMapPool
   id: ShipVsShipMapPool
   maps:
