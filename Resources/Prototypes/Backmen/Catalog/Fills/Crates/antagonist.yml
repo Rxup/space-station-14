@@ -1,0 +1,6 @@
+- type: entity
+  id: CrateWizardSurplus
+  parent: CrateGenericSteel
+  components:
+    - type: WizardSurplusBundle
+      totalPrice: 50

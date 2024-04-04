@@ -44,7 +44,6 @@
   - type: Polymorphable
   - type: StatusIcon
   - type: TTS # Corvax-TTS
-  - type: NightVision
   - type: CanBeBorgNTEnemy
 
 # Used for mobs that have health and can take damage.
@@ -105,6 +104,8 @@
   - type: CombatMode
   - type: MeleeWeapon
     hidden: true
+    soundHit:
+      collection: MetalThud
     damage:
       groups:
         Brute: 5

@@ -60,14 +60,6 @@
   - ShellShotgunBeanbag
   - GrenadeTearGas
   - GrenadeNonletal
-  - CartridgePistolRubber
-  - CartridgeMagnumRubber
-  - CartridgeLightRifleRubber
-  - CartridgeRifleRubber
-  - MagazineBoxPistolRubber
-  - MagazineBoxMagnumRubber
-  - MagazineBoxLightRifleRubber
-  - MagazineBoxRifleRubber
 
 - type: technology
   id: UraniumMunitions
@@ -99,7 +91,6 @@
   tier: 1
   cost: 8000
   recipeUnlocks:
-  - ClothingEyesGlassesSecurity
   - Truncheon
   - TelescopicShield
   - HoloprojectorSecurity

@@ -39,3 +39,21 @@
       contents:
         - id: AntiPsiGrenade
           amount: 20
+
+- type: entity
+  parent: ClothingBackpackDuffelSyndicateBundle
+  id: ClothingBackpackDuffelWizard
+  name: wizard outfit bag
+  description: "Contains 3 wizard outfits."
+  components:
+    - type: StorageFill
+      contents: 
+        - id: ClothingOuterWizardReal
+        - id: ClothingHeadHatWizardReal
+        - id: ClothingOuterWizardVioletReal
+        - id: ClothingHeadHatVioletwizardReal
+        - id: ClothingOuterWizardRedReal
+        - id: ClothingHeadHatRedwizardReal
+        - id: ClothingShoesWizard
+        - id: BedsheetWiz
+          amount: 3
