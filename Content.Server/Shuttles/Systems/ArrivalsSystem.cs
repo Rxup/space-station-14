@@ -1,13 +1,10 @@
 using System.Linq;
-using System.Numerics;
 using Content.Server.Administration;
 using Content.Server.GameTicking;
 using Content.Server.GameTicking.Events;
 using Content.Server.Parallax;
-using Content.Server.DeviceNetwork;
 using Content.Server.DeviceNetwork.Components;
 using Content.Server.DeviceNetwork.Systems;
-using Content.Server.Salvage;
 using Content.Server.Screens.Components;
 using Content.Server.Shuttles.Components;
 using Content.Server.Shuttles.Events;
@@ -22,7 +19,6 @@ using Content.Shared.Movement.Components;
 using Content.Shared.Parallax.Biomes;
 using Content.Shared.Salvage;
 using Content.Shared.Shuttles.Components;
-using Robust.Shared.Spawners;
 using Content.Shared.Tiles;
 using Robust.Server.GameObjects;
 using Robust.Shared.Collections;
@@ -51,7 +47,6 @@ public sealed class ArrivalsSystem : EntitySystem
     [Dependency] private readonly GameTicker _ticker = default!;
     [Dependency] private readonly MapLoaderSystem _loader = default!;
     [Dependency] private readonly DeviceNetworkSystem _deviceNetworkSystem = default!;
-    [Dependency] private readonly RestrictedRangeSystem _restricted = default!;
     [Dependency] private readonly SharedTransformSystem _transform = default!;
     [Dependency] private readonly ShuttleSystem _shuttles = default!;
     [Dependency] private readonly StationSpawningSystem _stationSpawning = default!;
@@ -316,8 +311,14 @@ public sealed class ArrivalsSystem : EntitySystem
             return;
 
         // start-backmen: mini games
-        if(_ticker.CurrentPreset?.IsMiniGame ?? false)
-            return;
+        {
+            var evCan = new Backmen.Arrivals.CanHandleWithArrival(ev);
+            RaiseLocalEvent(evCan);
+            if (evCan.Cancelled)
+            {
+                return;
+            }
+        }
         // end-backmen: mini games
 
         if (!HasComp<StationArrivalsComponent>(ev.Station))
@@ -469,6 +470,13 @@ public sealed class ArrivalsSystem : EntitySystem
 
     private void SetupArrivalsStation()
     {
+        // start-backmen: mini games
+        if (EntityManager.System<GameTicker>().CurrentPreset?.IsMiniGame ?? false)
+        {
+            return;
+        }
+        // end-backmen: mini games
+
         var mapId = _mapManager.CreateMap();
         var mapUid = _mapManager.GetMapEntityId(mapId);
         _mapManager.AddUninitializedMap(mapId);

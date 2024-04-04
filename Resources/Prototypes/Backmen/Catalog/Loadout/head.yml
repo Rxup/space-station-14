@@ -1,7 +1,7 @@
 ﻿- type: loadout
   id: ClothingHeadHatFlowerCrownLoadout
-  entity: ClothingHeadHatFlowerCrown
+  entity: ClothingHeadHatFlowerWreath
 
-- type: loadout
-  id: ClothingHeadHatHairflowerLoadout
-  entity: ClothingHeadHatHairflower
+#- type: loadout
+#  id: ClothingHeadHatHairflowerLoadout
+#  entity: ClothingHeadHatHairflower

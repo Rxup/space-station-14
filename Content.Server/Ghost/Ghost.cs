@@ -23,6 +23,12 @@ namespace Content.Server.Ghost
                 return;
             }
 
+            if(!_entities.System<GameTicker>().PlayerGameStatuses.TryGetValue(player.UserId, out var playerGameStatus) || playerGameStatus != Shared.GameTicking.PlayerGameStatus.JoinedGame)
+            {
+                shell.WriteLine("You have no JoinedGame, you can't ghost.");
+                return;
+            }
+
             var minds = _entities.System<SharedMindSystem>();
             if (!minds.TryGetMind(player, out var mindId, out var mind))
             {
@@ -30,7 +36,7 @@ namespace Content.Server.Ghost
                 mind = _entities.GetComponent<MindComponent>(mindId);
             }
 
-            if (!EntitySystem.Get<GameTicker>().OnGhostAttempt(mindId, true, true, mind))
+            if (!_entities.System<GameTicker>().OnGhostAttempt(mindId, true, true, mind))
             {
                 shell.WriteLine("You can't ghost right now.");
             }

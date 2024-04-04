@@ -12,6 +12,7 @@
       - state: server_o
         map: ["enum.WiresVisualLayers.MaintenancePanel"]
   - type: ResearchServer
+  - type: DiseaseServer
   - type: TechnologyDatabase
     supportedDisciplines:
     - Industrial
@@ -23,8 +24,6 @@
     priority: Low
   - type: ExtensionCableReceiver
   - type: WiresPanel
-  - type: Wires
-    layoutId: rndserver
   - type: WiresVisuals
   - type: Machine
     board: ResearchAndDevelopmentServerMachineCircuitboard

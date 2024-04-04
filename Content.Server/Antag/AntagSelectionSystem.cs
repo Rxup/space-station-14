@@ -51,8 +51,23 @@ public sealed class AntagSelectionSystem : GameRuleSystem<GameRuleComponent>
 
         foreach (var player in playerSessions)
         {
-            if (IsPlayerEligible(player, antagPrototype, includeAllJobs, acceptableAntags, ignorePreferences, allowNonHumanoids, customExcludeCondition))
-                eligiblePlayers.Add(player.AttachedEntity!.Value);
+            try
+            {
+                if (IsPlayerEligible(player, antagPrototype, includeAllJobs, acceptableAntags, ignorePreferences, allowNonHumanoids, customExcludeCondition))
+                    eligiblePlayers.Add(player.AttachedEntity!.Value);
+            }
+            catch (Exception
+#if !DEBUG
+                   err
+#endif
+                   )
+            {
+#if DEBUG
+                throw;
+#else
+                Logger.GetSawmill("AntagSelectionSystem").Error(err.ToString());
+#endif
+            }
         }
 
         return eligiblePlayers;

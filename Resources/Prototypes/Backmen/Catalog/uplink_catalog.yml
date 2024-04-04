@@ -137,3 +137,124 @@
     Telecrystal: 2
   categories:
   - UplinkAllies
+
+
+# Books
+- type: listing
+  id: WizardSpawnBook
+  name: uplink-book-spawnbook-name
+  description: uplink-book-spawnbook-desc
+  productEntity: SpawnSpellbook
+  cost:
+    BluespaceUplink: 8
+  categories:
+  - WizardBooks
+
+- type: listing
+  id: WizardWallBook
+  name: uplink-book-forcewall-name
+  description: uplink-book-forcewall-desc
+  productEntity: ForceWallSpellbook
+  cost:
+    BluespaceUplink: 10
+  categories:
+  - WizardBooks
+
+- type: listing
+  id: WizardBlinkBook
+  name: uplink-book-blink-name
+  description: uplink-book-blink-desc
+  productEntity: BlinkBook
+  cost:
+    BluespaceUplink: 16
+  categories:
+  - WizardBooks
+
+- type: listing
+  id: WizardSmiteBook
+  name: uplink-book-smite-name
+  description: uplink-book-smite-desc
+  productEntity: SmiteBook
+  cost:
+    BluespaceUplink: 50
+  categories:
+  - WizardBooks
+
+- type: listing
+  id: WizardKnockBook
+  name: uplink-book-knok-name
+  description: uplink-book-knok-desc
+  productEntity: KnockSpellbook
+  cost:
+    BluespaceUplink: 14
+  categories:
+  - WizardBooks
+
+- type: listing
+  id: WizardFireballBook
+  name: uplink-book-fireball-name
+  description: uplink-book-fireball-desc
+  productEntity: FireballSpellbook
+  cost:
+    BluespaceUplink: 16
+  categories:
+  - WizardBooks
+
+- type: listing
+  id: WizardHealingBook
+  name: uplink-book-heal-name
+  description: uplink-book-heal-desc
+  productEntity: HealingSpellbook
+  cost:
+    BluespaceUplink: 8
+  categories:
+  - WizardBooks
+
+# Wands
+
+
+# Armor
+- type: listing
+  id: WizardHardsuit
+  name: uplink-armor-hardsuit-name
+  description: uplink-armor-hardsuit-desc
+  productEntity: ClothingOuterHardsuitWizard
+  cost:
+    BluespaceUplink: 6
+  categories:
+  - WizardArmor
+
+# Utility
+- type: listing
+  id: WizardSpellBelt
+  name: uplink-utility-spellbelt-name
+  description: uplink-utility-spellbelt-desc
+  productEntity: ClothingBeltWand
+  cost:
+    BluespaceUplink: 4
+  categories:
+  - WizardUtility
+
+# Bundles
+- type: listing
+  id: WizardSurplusCrate30BS
+  name: uplink-bundles-wizarsurpluscrate30bs-name
+  description: uplink-bundles-wizarsurpluscrate30bs-desc
+  productEntity: CrateWizardSurplus
+  cost:
+    BluespaceUplink: 30
+  categories:
+  - WizardBundles
+
+# Miscellanious
+
+# Pointless
+- type: listing
+  id: WizardBurger
+  name: uplink-pointless-spellburger-name
+  description: uplink-pointless-spellburger-desc
+  productEntity: FoodBurgerSpell
+  cost:
+    BluespaceUplink: 1
+  categories:
+  - WizardPointless

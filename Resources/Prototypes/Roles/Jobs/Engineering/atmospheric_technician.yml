@@ -15,12 +15,6 @@
   - Engineering
   - External
   - Atmospherics
-  #start-backmen: currency
-  minBankBalance: 150
-  maxBankBalance: 250
-  wageDepartment: Engineering
-  wage: 50
-  #end-backmen: currency
 
 - type: startingGear
   id: AtmosphericTechnicianGear

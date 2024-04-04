@@ -114,7 +114,7 @@ public sealed class BkmFtlCommand : IConsoleCommand
         var targetMap = transformSystem.GetMapCoordinates(gridUid.Value,ftlTransform);
 
         // Check shuttle can FTL to this target.
-        if (!shuttleSystem.CanFTLTo(shuttle, targetMap.MapId))
+        if (!shuttleSystem.CanFTLTo(shuttle, targetMap.MapId, pilotComponent.Console.Value))
         {
             shell.WriteLine(Loc.GetString("shell-invalid-mapid"));
             return;

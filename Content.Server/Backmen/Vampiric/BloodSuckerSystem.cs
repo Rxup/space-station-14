@@ -298,8 +298,7 @@ public sealed class BloodSuckerSystem : SharedBloodSuckerSystem
         var ev = new BloodSuckDoAfterEvent();
         var args = new DoAfterArgs(EntityManager, bloodsucker, bloodSuckerComponent.SuccDelay, ev, bloodsucker, target: victim)
         {
-            BreakOnTargetMove = true,
-            BreakOnUserMove = false,
+            BreakOnMove = true,
             DistanceThreshold = 2f,
             NeedHand = false
         };
