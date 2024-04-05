@@ -1,0 +1,19 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "by KTDR-null (ktdr_ban)",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "open",
+      "directions": 1
+    },
+    {
+      "name": "closed",
+      "directions": 1
+    }
+  ]
+}

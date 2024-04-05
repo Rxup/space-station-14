@@ -1,0 +1,21 @@
+{
+    "version": 1,
+    "license": null,
+    "copyright": null,
+    "size": {
+        "x": 50,
+        "y": 109
+    },
+    "states": [
+        {
+            "name": "alive",
+            "delays": [
+                [
+                    2,
+                    2]]
+        },
+        {
+            "name": "dead"
+        }
+    ]
+}

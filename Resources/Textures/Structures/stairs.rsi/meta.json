@@ -24,13 +24,6 @@
         },
         {
             "name": "stairs_stage_dark"
-        },
-        {
-            "name": "stairs_wood",
-            "directions": 4
-        },
-        {
-            "name": "stairs_stage_wood"
         }
     ]
 }

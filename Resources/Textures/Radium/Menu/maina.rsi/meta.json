@@ -1,0 +1,19 @@
+{
+    "version": 1,
+    "license": "CC-BY-SA-3.0",
+    "copyright": "Radium @Freeze2222",
+    "size": {
+      "x": 1024,
+      "y": 576
+    },
+    "states": [
+		{
+			"name": "maina",
+			"directions": 1,
+			"delays":[
+			[0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1]
+			]
+		} 
+    ]
+  }
+

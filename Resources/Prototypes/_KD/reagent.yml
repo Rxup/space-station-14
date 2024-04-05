@@ -1,0 +1,36 @@
+- type: reagent
+  id: Morphiy
+  name: reagent-name-space-drugs
+  group: Narcotics
+  desc: reagent-desc-space-drugs
+  physicalDesc: reagent-physical-desc-syrupy
+  flavor: bitter
+  color: "#638"
+  metabolisms:
+    Medicine:
+      effects:
+      - !type:HealthChange
+        damage:
+          types:
+            Heat: -2
+            Shock: -2
+            Cold: -1
+    Narcotic:
+      effects:
+      - !type:GenericStatusEffect
+        key: SeeingRainbows
+        component: SeeingRainbows
+        type: Add
+        time: 5
+        refresh: false
+
+- type: reaction
+  id: Morphiy
+  reactants:
+    Dylovene:
+      amount: 1
+    Bicaridine:
+      amount: 1
+  products:
+    Morphiy: 2
+
