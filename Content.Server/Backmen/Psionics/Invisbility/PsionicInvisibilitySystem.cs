@@ -2,7 +2,9 @@ using Content.Server.Backmen.Abilities.Psionics;
 using Content.Server.Backmen.Eye;
 using Content.Server.NPC.Systems;
 using Content.Shared.Backmen.Abilities.Psionics;
+using Content.Shared.CombatMode.Pacification;
 using Content.Shared.Eye;
+using Content.Shared.Interaction.Events;
 using Content.Shared.NPC.Components;
 using Content.Shared.NPC.Prototypes;
 using Content.Shared.NPC.Systems;
@@ -20,19 +22,27 @@ public sealed class PsionicInvisibilitySystem : EntitySystem
     public override void Initialize()
     {
         base.Initialize();
-        /// Masking
+        // Masking
         SubscribeLocalEvent<PotentialPsionicComponent, ComponentInit>(OnInit);
         SubscribeLocalEvent<PsionicInsulationComponent, ComponentInit>(OnInsulInit);
         SubscribeLocalEvent<PsionicInsulationComponent, ComponentShutdown>(OnInsulShutdown);
         SubscribeLocalEvent<EyeMapInit>(OnEyeInit);
 
-        /// Layer
+        // Layer
         SubscribeLocalEvent<PsionicallyInvisibleComponent, ComponentInit>(OnInvisInit);
         SubscribeLocalEvent<PsionicallyInvisibleComponent, ComponentShutdown>(OnInvisShutdown);
 
         // PVS Stuff
         SubscribeLocalEvent<PsionicallyInvisibleComponent, EntInsertedIntoContainerMessage>(OnEntInserted);
         SubscribeLocalEvent<PsionicallyInvisibleComponent, EntRemovedFromContainerMessage>(OnEntRemoved);
+
+        SubscribeLocalEvent<PsionicallyInvisibleComponent, AttackAttemptEvent>(OnAttackAttempt);
+    }
+
+    private void OnAttackAttempt(Entity<PsionicallyInvisibleComponent> ent, ref AttackAttemptEvent args)
+    {
+        if(HasComp<PacifiedComponent>(ent))
+            args.Cancel();
     }
 
     private void OnInit(EntityUid uid, PotentialPsionicComponent component, ComponentInit args)

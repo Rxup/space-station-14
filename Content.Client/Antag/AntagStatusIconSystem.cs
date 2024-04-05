@@ -29,6 +29,7 @@ public sealed class AntagStatusIconSystem : SharedStatusIconSystem
         SubscribeLocalEvent<Shared.Backmen.Blob.Components.BlobCarrierComponent, GetStatusIconsEvent>(GetIcon);
         SubscribeLocalEvent<Shared.Backmen.Blob.Components.ZombieBlobComponent, GetStatusIconsEvent>(GetIcon);
         SubscribeLocalEvent<Shared.Backmen.Vampiric.BkmVampireComponent, GetStatusIconsEvent>(GetIcon);
+        SubscribeLocalEvent<Shared.Backmen.ShipVsShip.SVSTeamMemberComponent, GetStatusIconsEvent>(GetIcon);
         //end-backmen: antag
         SubscribeLocalEvent<InitialInfectedComponent, GetStatusIconsEvent>(GetIcon);
     }

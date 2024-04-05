@@ -99,7 +99,7 @@ public partial class ListingData : IEquatable<ListingData>, ICloneable
     [DataField("productEvent")]
     public object? ProductEvent;
 
-    [DataField]
+    [DataField("raiseProductEventOnUser")]
     public bool RaiseProductEventOnUser;
 
     /// <summary>
@@ -174,6 +174,7 @@ public partial class ListingData : IEquatable<ListingData>, ICloneable
             ProductEvent = ProductEvent,
             PurchaseAmount = PurchaseAmount,
             RestockTime = RestockTime,
+            RaiseProductEventOnUser = RaiseProductEventOnUser // backmen: vampires
         };
     }
 }

@@ -49,7 +49,7 @@ public sealed partial class DiseaseEffectSystem
             _appearanceSystem.SetTTSVoice(ent, "Baya", appearanceComponent);
             if (appearanceComponent.MarkingSet.Markings.TryGetValue(MarkingCategories.Tail, out var tails))
             {
-                foreach (var marking in tails)
+                foreach (var marking in tails.ToArray())
                 {
                     _appearanceSystem.RemoveMarking(ent, marking.MarkingId);
                 }
@@ -57,7 +57,7 @@ public sealed partial class DiseaseEffectSystem
 
             if (appearanceComponent.MarkingSet.Markings.TryGetValue(MarkingCategories.HeadTop, out var headtop))
             {
-                foreach (var marking in headtop)
+                foreach (var marking in headtop.ToArray())
                 {
                     _appearanceSystem.RemoveMarking(ent, marking.MarkingId);
                 }

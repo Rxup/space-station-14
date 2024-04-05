@@ -61,6 +61,7 @@ using Content.Shared.Doors.Components;
 using Content.Shared.FixedPoint;
 using Content.Shared.Ghost;
 using Content.Shared.Gravity;
+using Content.Shared.Interaction.Events;
 using Content.Shared.Inventory;
 using Content.Shared.Lock;
 using Content.Shared.Maps;
@@ -176,6 +177,13 @@ public sealed class ShipwreckedRuleSystem : GameRuleSystem<ShipwreckedRuleCompon
 
         SubscribeLocalEvent<ShipwreckMapGridComponent, UnLoadChunkEvent>(OnChunkUnLoaded);
         SubscribeLocalEvent<ShipwreckMapGridComponent, MapInitEvent>(OnChunkLoad);
+        SubscribeLocalEvent<ShipwreckSurvivorComponent, AttackAttemptEvent>(OnAttackAttempt);
+    }
+
+    private void OnAttackAttempt(Entity<ShipwreckSurvivorComponent> ent, ref AttackAttemptEvent args)
+    {
+        if(HasComp<PacifiedComponent>(ent))
+            args.Cancel();
     }
 
     private void OnMapReady(PostGameMapLoad ev)
