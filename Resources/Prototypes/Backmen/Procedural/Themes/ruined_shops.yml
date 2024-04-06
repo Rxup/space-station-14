@@ -60,6 +60,6 @@
   id: RuinedShop9x9Salvage
   size: 9,9
   atlas: /Maps/Dungeon/ruined_shops.yml
-  offset: 1,11
+  offset: 1,-9
   tags:
     - RuinedShop

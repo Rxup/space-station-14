@@ -1,6 +1,7 @@
 - type: entity
-  name: pinpointer
   id: PinpointerShipwreck
+  name: pinpointer
+  description: An emergency device designed to locate lost critical shuttle engines.
   parent: PinpointerBase
   suffix: Shipwreck
   components:
