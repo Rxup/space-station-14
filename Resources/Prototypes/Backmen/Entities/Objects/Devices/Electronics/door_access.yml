@@ -1,0 +1,39 @@
+- type: entity
+  parent: DoorElectronics
+  id: DoorElectronicsCCCargo
+  suffix: CentCom, Cargo, Locked
+  components:
+  - type: AccessReader
+    access: [["CCCargo"]]
+    
+- type: entity
+  parent: DoorElectronics
+  id: DoorElectronicsCCSecurity
+  suffix: CentCom, Security, Locked
+  components:
+  - type: AccessReader
+    access: [["CCSecurity"]]
+    
+- type: entity
+  parent: DoorElectronics
+  id: DoorElectronicsCentCom
+  suffix: CentCom, Locked
+  components:
+  - type: AccessReader
+    access: [["CentralCommand"]]
+
+- type: entity
+  parent: DoorElectronics
+  id: DoorElectronicsCCOfficer
+  suffix: CentCom, Officer Locked
+  components:
+  - type: AccessReader
+    access: [["CCOfficer"]]
+
+- type: entity
+  parent: DoorElectronics
+  id: DoorElectronicsCCAdmiral
+  suffix: CentCom, Admiral Locked
+  components:
+  - type: AccessReader
+    access: [["CCAdmiral"]]
