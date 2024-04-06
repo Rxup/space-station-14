@@ -925,7 +925,7 @@ public sealed class ShipwreckedRuleSystem : GameRuleSystem<ShipwreckedRuleCompon
             }
 
             Log.Info($"Space debris! {ToPrettyString(uid)} will go to {spot}");
-            _metadata.SetEntityName(uid, $"{metaDataComponent.EntityName} ({component.OriginalThrusterCount})");
+            _metadata.SetEntityName(uid, $"{metaDataComponent.EntityName} ({ic})");
             _metadata.SetEntityDescription(uid, $"Компонент необходимый для ремонта шаттла");
 
             // We do this before moving the pieces,
