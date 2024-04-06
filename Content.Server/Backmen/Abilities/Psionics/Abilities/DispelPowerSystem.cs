@@ -6,6 +6,7 @@ using Content.Server.Guardian;
 using Content.Server.Bible.Components;
 using Content.Server.Popups;
 using Content.Shared.Backmen.Abilities.Psionics;
+using Content.Shared.Backmen.Psionics;
 using Content.Shared.Backmen.Psionics.Events;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Prototypes;
@@ -63,6 +64,11 @@ public sealed class DispelPowerSystem : EntitySystem
 
     private void OnPowerUsed(DispelPowerActionEvent args)
     {
+        if (HasComp<PsionicallyInvisibleComponent>(args.Performer))
+        {
+            _popupSystem.PopupCursor(Loc.GetString("cant-use-in-invisible"),args.Performer);
+            return;
+        }
         if (HasComp<PsionicInsulationComponent>(args.Target))
             return;
 

@@ -12,6 +12,7 @@ using Content.Server.GameTicking;
 using Content.Shared.Backmen.Abilities.Psionics;
 using Content.Shared.Backmen.Blob;
 using Content.Shared.Backmen.Blob.Components;
+using Content.Shared.Backmen.Psionics;
 using Content.Shared.Backmen.Psionics.Events;
 using Content.Shared.Mind.Components;
 using Content.Shared.Mindshield.Components;

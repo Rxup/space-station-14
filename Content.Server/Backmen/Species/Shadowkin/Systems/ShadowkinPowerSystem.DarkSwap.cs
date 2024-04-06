@@ -64,15 +64,8 @@ public sealed class ShadowkinDarkSwapSystem : EntitySystem
         SubscribeLocalEvent<ShadowkinDarkSwappedComponent, DamageChangedEvent>(OnDamageInInvis);
         SubscribeLocalEvent<ShadowkinDarkSwappedComponent, DispelledEvent>(OnDispelled);
 
-        SubscribeLocalEvent<ShadowkinDarkSwappedComponent, AttackAttemptEvent>(OnAttackAttempt);
-
         _activePsionicsDisabled = GetEntityQuery<PsionicsDisabledComponent>();
         _activeStamina = GetEntityQuery<StaminaComponent>();
-    }
-
-    private void OnAttackAttempt(Entity<ShadowkinDarkSwappedComponent> ent, ref AttackAttemptEvent args)
-    {
-        args.Cancel();
     }
 
     private void OnDispelled(Entity<ShadowkinDarkSwappedComponent> ent, ref DispelledEvent args)

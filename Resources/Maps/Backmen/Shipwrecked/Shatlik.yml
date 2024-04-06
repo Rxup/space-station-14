@@ -3,6 +3,7 @@ meta:
   postmapinit: false
 tilemap:
   0: Space
+  1: FloorArcadeRed
   14: FloorBar
   27: FloorConcreteMono
   38: FloorDarkPlastic
@@ -53,7 +54,7 @@ entities:
           version: 6
         0,-1:
           ind: 0,-1
-          tiles: fQAAAAAAfQAAAAAAfQAAAAAAfQAAAAAAfQAAAAAAfQAAAAAAfQAAAAAAfQAAAAAAfQAAAAAAfQAAAAAAbAAAAAAAbAAAAAAAbAAAAAAAfQAAAAAAfAAAAAAAAAAAAAAAfQAAAAAAYwAAAAAAYwAAAAAAYwAAAAAAYwAAAAAAYwAAAAAAYwAAAAAAYwAAAAAAcgAAAAAAWAAAAAAAXgAAAAAAXgAAAAAAXgAAAAAAfQAAAAAAfAAAAAAAAAAAAAAAfQAAAAAAYwAAAAAAYwAAAAAAYwAAAAAAYwAAAAAAYwAAAAAAYwAAAAAAVwAAAAAAcgAAAAAAXgAAAAAAXgAAAAAAXgAAAAAAXgAAAAAAfQAAAAAAfAAAAAAAAAAAAAAAfQAAAAAAbwAAAAAAbwAAAAAAbwAAAAAAbwAAAAAAbwAAAAAAbwAAAAAAVwAAAAAAcgAAAAAAXgAAAAAAXgAAAAAAXgAAAAAAXgAAAAAAfQAAAAAAfAAAAAAAAAAAAAAAfQAAAAAAbwAAAAAAbwAAAAAAbwAAAAAAbwAAAAAAbwAAAAAAbwAAAAAAVwAAAAAAcgAAAAAAXgAAAAAAXgAAAAAAXgAAAAAAXgAAAAAAfQAAAAAAfAAAAAAAAAAAAAAAfQAAAAAAVwAAAAAAVwAAAAAAVwAAAAAAbwAAAAAAbwAAAAAAbwAAAAAAVwAAAAAAcgAAAAAAXgAAAAAAXgAAAAAAXgAAAAAAXgAAAAAAfQAAAAAAfAAAAAAAAAAAAAAAfQAAAAAAWAAAAAAAWAAAAAAAcgAAAAAAcgAAAAAAcgAAAAAAcgAAAAAAcgAAAAAAcgAAAAAAXgAAAAAAXgAAAAAAXgAAAAAAXgAAAAAAfQAAAAAAfAAAAAAAAAAAAAAAfQAAAAAAWAAAAAAAWAAAAAAAeQAAAAAAeQAAAAAAeQAAAAAAeQAAAAAAcgAAAAAAcgAAAAAAXgAAAAAAXgAAAAAAXgAAAAAAXgAAAAAAfQAAAAAAfAAAAAAAAAAAAAAAfQAAAAAADgAAAAAADgAAAAAAeQAAAAAAeQAAAAAAeQAAAAAAeQAAAAAAcgAAAAAAcgAAAAAAXgAAAAAAXgAAAAAAXgAAAAAAXgAAAAAAfQAAAAAAfAAAAAAAAAAAAAAAfQAAAAAADgAAAAAADgAAAAAAeQAAAAAAeQAAAAAAeQAAAAAAeQAAAAAAcgAAAAAAcgAAAAAAXgAAAAAAXgAAAAAAXgAAAAAAXgAAAAAAfQAAAAAAfAAAAAAAAAAAAAAAfQAAAAAADgAAAAAADgAAAAAAeQAAAAAAeQAAAAAAeQAAAAAAeQAAAAAAcgAAAAAAcgAAAAAAWAAAAAAAXgAAAAAAXgAAAAAAXgAAAAAAfQAAAAAAfAAAAAAAAAAAAAAAfQAAAAAADgAAAAAADgAAAAAAeQAAAAAAeQAAAAAAeQAAAAAAeQAAAAAAcgAAAAAAcgAAAAAAWAAAAAAAXgAAAAAAXgAAAAAAXgAAAAAAfQAAAAAAfAAAAAAAAAAAAAAAfQAAAAAAWAAAAAAAWAAAAAAAWAAAAAAAWAAAAAAAWAAAAAAAWAAAAAAAXgAAAAAAWAAAAAAAWAAAAAAAWAAAAAAAWAAAAAAAWAAAAAAAfQAAAAAAfQAAAAAAfAAAAAAAdAAAAAAAdAAAAAAAdAAAAAAAdAAAAAAAGwAAAAAASwAAAAAASwAAAAAASwAAAAAASwAAAAAAVwAAAAAAJgAAAAAAJgAAAAAAJgAAAAAAJgAAAAAAfQAAAAAAfAAAAAAAdAAAAAAAdAAAAAAAdAAAAAAAdAAAAAAAVwAAAAAASwAAAAAASwAAAAAASwAAAAAASwAAAAAAVwAAAAAAJgAAAAAAJgAAAAAAJgAAAAAAJgAAAAAAfQAAAAAAfAAAAAAAdAAAAAAAdAAAAAAAdAAAAAAAdAAAAAAAVwAAAAAASwAAAAAASwAAAAAASwAAAAAASwAAAAAAVwAAAAAAJgAAAAAAJgAAAAAAJgAAAAAAJgAAAAAAfQAAAAAAfAAAAAAA
+          tiles: fQAAAAAAfQAAAAAAfQAAAAAAfQAAAAAAfQAAAAAAfQAAAAAAfQAAAAAAfQAAAAAAfQAAAAAAfQAAAAAAbAAAAAAAbAAAAAAAbAAAAAAAfQAAAAAAfAAAAAAAAAAAAAAAfQAAAAAAAQAAAAAAAQAAAAAAAQAAAAAAAQAAAAAAAQAAAAAAAQAAAAAAcgAAAAAAcgAAAAAAWAAAAAAAXgAAAAAAXgAAAAAAXgAAAAAAfQAAAAAAfAAAAAAAAAAAAAAAfQAAAAAAAQAAAAAAAQAAAAAAAQAAAAAAAQAAAAAAAQAAAAAAAQAAAAAAVwAAAAAAcgAAAAAAXgAAAAAAXgAAAAAAXgAAAAAAXgAAAAAAfQAAAAAAfAAAAAAAAAAAAAAAfQAAAAAAbwAAAAAAbwAAAAAAbwAAAAAAbwAAAAAAbwAAAAAAbwAAAAAAVwAAAAAAcgAAAAAAXgAAAAAAXgAAAAAAXgAAAAAAXgAAAAAAfQAAAAAAfAAAAAAAAAAAAAAAfQAAAAAAbwAAAAAAbwAAAAAAbwAAAAAAbwAAAAAAbwAAAAAAbwAAAAAAVwAAAAAAcgAAAAAAXgAAAAAAXgAAAAAAXgAAAAAAXgAAAAAAfQAAAAAAfAAAAAAAAAAAAAAAfQAAAAAAVwAAAAAAVwAAAAAAVwAAAAAAbwAAAAAAbwAAAAAAbwAAAAAAVwAAAAAAcgAAAAAAXgAAAAAAXgAAAAAAXgAAAAAAXgAAAAAAfQAAAAAAfAAAAAAAAAAAAAAAfQAAAAAAWAAAAAAAWAAAAAAAcgAAAAAAcgAAAAAAcgAAAAAAcgAAAAAAcgAAAAAAcgAAAAAAXgAAAAAAXgAAAAAAXgAAAAAAXgAAAAAAfQAAAAAAfAAAAAAAAAAAAAAAfQAAAAAAWAAAAAAAWAAAAAAAeQAAAAAAeQAAAAAAeQAAAAAAeQAAAAAAcgAAAAAAcgAAAAAAXgAAAAAAXgAAAAAAXgAAAAAAXgAAAAAAfQAAAAAAfAAAAAAAAAAAAAAAfQAAAAAADgAAAAAADgAAAAAAeQAAAAAAeQAAAAAAeQAAAAAAeQAAAAAAcgAAAAAAcgAAAAAAXgAAAAAAXgAAAAAAXgAAAAAAXgAAAAAAfQAAAAAAfAAAAAAAAAAAAAAAfQAAAAAADgAAAAAADgAAAAAAeQAAAAAAeQAAAAAAeQAAAAAAeQAAAAAAcgAAAAAAcgAAAAAAXgAAAAAAXgAAAAAAXgAAAAAAXgAAAAAAfQAAAAAAfAAAAAAAAAAAAAAAfQAAAAAADgAAAAAADgAAAAAAeQAAAAAAeQAAAAAAeQAAAAAAeQAAAAAAcgAAAAAAcgAAAAAAWAAAAAAAXgAAAAAAXgAAAAAAXgAAAAAAfQAAAAAAfAAAAAAAAAAAAAAAfQAAAAAADgAAAAAADgAAAAAAeQAAAAAAeQAAAAAAeQAAAAAAeQAAAAAAcgAAAAAAcgAAAAAAWAAAAAAAXgAAAAAAXgAAAAAAXgAAAAAAfQAAAAAAfAAAAAAAAAAAAAAAfQAAAAAAWAAAAAAAWAAAAAAAWAAAAAAAWAAAAAAAWAAAAAAAWAAAAAAAXgAAAAAAWAAAAAAAWAAAAAAAWAAAAAAAWAAAAAAAWAAAAAAAfQAAAAAAfQAAAAAAfAAAAAAAdAAAAAAAdAAAAAAAdAAAAAAAdAAAAAAAGwAAAAAASwAAAAAASwAAAAAASwAAAAAASwAAAAAAVwAAAAAAJgAAAAAAJgAAAAAAJgAAAAAAJgAAAAAAfQAAAAAAfAAAAAAAdAAAAAAAdAAAAAAAdAAAAAAAdAAAAAAAVwAAAAAASwAAAAAASwAAAAAASwAAAAAASwAAAAAAVwAAAAAAJgAAAAAAJgAAAAAAJgAAAAAAJgAAAAAAfQAAAAAAfAAAAAAAdAAAAAAAdAAAAAAAdAAAAAAAdAAAAAAAVwAAAAAASwAAAAAASwAAAAAASwAAAAAASwAAAAAAVwAAAAAAJgAAAAAAJgAAAAAAJgAAAAAAJgAAAAAAfQAAAAAAfAAAAAAA
           version: 6
         0,-2:
           ind: 0,-2
@@ -125,7 +126,8 @@ entities:
           1,1:
             0: 255
           2,0:
-            0: 65535
+            0: 65523
+            2: 12
           2,1:
             0: 255
           3,0:
@@ -151,18 +153,20 @@ entities:
           2,-2:
             0: 65535
           2,-1:
-            0: 65535
+            0: 49151
+            3: 16384
           3,-4:
             0: 13107
-            2: 17476
+            4: 17476
           3,-3:
             0: 13107
-            2: 17476
+            4: 17476
           3,-2:
             0: 13107
-            2: 17476
+            4: 17476
           3,-1:
-            0: 65503
+            0: 64991
+            3: 512
             1: 32
           0,-6:
             0: 65392
@@ -179,23 +183,24 @@ entities:
           3,-6:
             0: 30576
           3,-5:
-            0: 13111
-            2: 17472
+            3: 17
+            0: 13094
+            4: 17472
           -1,-1:
             0: 52428
           -1,-6:
             0: 34944
           -1,-5:
             0: 8
-            2: 34944
+            4: 34944
           -1,0:
             0: 140
           -1,-4:
-            2: 34952
+            4: 34952
           -1,-3:
-            2: 8
+            4: 8
           -1,-2:
-            2: 34952
+            4: 34952
         uniqueMixes:
         - volume: 2500
           temperature: 293.15
@@ -214,6 +219,36 @@ entities:
           - 0
         - volume: 2500
           temperature: 293.14996
+          moles:
+          - 20.078888
+          - 75.53487
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+        - volume: 2500
+          temperature: 293.14975
+          moles:
+          - 20.078888
+          - 75.53487
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+        - volume: 2500
+          temperature: 293.1498
           moles:
           - 20.078888
           - 75.53487
@@ -252,6 +287,10 @@ entities:
     - type: Transform
       pos: 4.5,-2.5
       parent: 3
+    - type: Tag
+      tags:
+      - GlassAirlock
+      - SecureSafe
 - proto: AirlockEngineeringGlassLocked
   entities:
   - uid: 2
@@ -259,12 +298,20 @@ entities:
     - type: Transform
       pos: 7.5,-19.5
       parent: 3
+    - type: Tag
+      tags:
+      - GlassAirlock
+      - EngineeringAirlock
   - uid: 4
     components:
     - type: Transform
       pos: 9.5,-19.5
       parent: 3
-- proto: AirlockExternalEasyPry
+    - type: Tag
+      tags:
+      - GlassAirlock
+      - EngineeringAirlock
+- proto: AirlockExternal
   entities:
   - uid: 573
     components:
@@ -400,6 +447,14 @@ entities:
     - type: Transform
       pos: 6.5,4.5
       parent: 3
+- proto: BedsheetMedical
+  entities:
+  - uid: 32
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: 1.5,-12.5
+      parent: 3
 - proto: BedsheetSpawner
   entities:
   - uid: 109
@@ -446,25 +501,15 @@ entities:
       parent: 3
 - proto: Bucket
   entities:
-  - uid: 604
+  - uid: 336
     components:
     - type: Transform
-      pos: 1.4472828,-11.688129
+      pos: 6.3051405,-12.609341
       parent: 3
-  - uid: 710
+  - uid: 340
     components:
     - type: Transform
-      pos: 1.660172,-11.672934
-      parent: 3
-  - uid: 711
-    components:
-    - type: Transform
-      pos: 1.5385213,-11.672934
-      parent: 3
-  - uid: 720
-    components:
-    - type: Transform
-      pos: 1.3256321,-11.718525
+      pos: 6.5082655,-12.343716
       parent: 3
 - proto: CableApcExtension
   entities:
@@ -1904,6 +1949,13 @@ entities:
     - type: Transform
       pos: 10.682889,-18.470814
       parent: 3
+- proto: ClothingMaskSterile
+  entities:
+  - uid: 448
+    components:
+    - type: Transform
+      pos: 1.4922979,-11.314877
+      parent: 3
 - proto: ClothingNeckGoldmedal
   entities:
   - uid: 681
@@ -2091,10 +2143,10 @@ entities:
       air:
         volume: 200
         immutable: False
-        temperature: 75.31249
+        temperature: 293.14755
         moles:
-        - 0
-        - 0
+        - 1.7459903
+        - 6.568249
         - 0
         - 0
         - 0
@@ -2141,10 +2193,10 @@ entities:
       air:
         volume: 200
         immutable: False
-        temperature: 75.31249
+        temperature: 293.14755
         moles:
-        - 0
-        - 0
+        - 1.7459903
+        - 6.568249
         - 0
         - 0
         - 0
@@ -2173,6 +2225,24 @@ entities:
     - type: Transform
       pos: 10.5,0.5
       parent: 3
+    - type: EntityStorage
+      air:
+        volume: 200
+        immutable: False
+        temperature: 293.14673
+        moles:
+        - 1.7459903
+        - 6.568249
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
     missingComponents:
     - AccessReader
 - proto: CrateSecure
@@ -2206,30 +2276,34 @@ entities:
           showEnts: False
           occludes: True
           ents:
-          - 359
-          - 379
-          - 380
-          - 381
-          - 383
-          - 384
-          - 386
-          - 387
-          - 388
-          - 408
-          - 412
-          - 413
-          - 445
-          - 447
-          - 453
-          - 454
-          - 514
-          - 522
-          - 546
           - 552
+          - 546
+          - 522
+          - 514
+          - 454
+          - 453
+          - 447
+          - 445
+          - 413
+          - 412
+          - 408
+          - 388
+          - 387
+          - 386
+          - 384
+          - 383
+          - 381
+          - 380
+          - 379
+          - 359
         paper_label: !type:ContainerSlot
           showEnts: False
           occludes: True
           ent: null
+    - type: Tag
+      tags:
+      - Structure
+      - SecureSafe
     missingComponents:
     - AccessReader
 - proto: CrateTrashCart
@@ -2246,8 +2320,35 @@ entities:
     - type: Transform
       pos: 11.5,0.5
       parent: 3
+    - type: EntityStorage
+      air:
+        volume: 200
+        immutable: False
+        temperature: 293.14673
+        moles:
+        - 1.7459903
+        - 6.568249
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+    - type: Tag
+      tags:
+      - Structure
+      - SecureSafe
 - proto: DefibrillatorCabinetFilled
   entities:
+  - uid: 334
+    components:
+    - type: Transform
+      pos: 2.5,-10.5
+      parent: 3
   - uid: 724
     components:
     - type: Transform
@@ -2451,6 +2552,21 @@ entities:
     - type: Transform
       pos: 5.7299767,-17.512415
       parent: 3
+  - uid: 332
+    components:
+    - type: Transform
+      pos: 2.3051405,-11.687466
+      parent: 3
+  - uid: 520
+    components:
+    - type: Transform
+      pos: 2.6488905,-11.296841
+      parent: 3
+  - uid: 554
+    components:
+    - type: Transform
+      pos: 2.5238905,-11.453091
+      parent: 3
   - uid: 691
     components:
     - type: Transform
@@ -2464,15 +2580,6 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 7.5,-17.5
       parent: 3
-- proto: FatExtractor
-  entities:
-  - uid: 713
-    components:
-    - type: Transform
-      pos: 5.5,-11.5
-      parent: 3
-    - type: FatExtractor
-      processing: False
 - proto: FaxMachineBase
   entities:
   - uid: 442
@@ -2496,6 +2603,20 @@ entities:
       parent: 3
     missingComponents:
     - AccessReader
+- proto: FoodBoxPizzaFilled
+  entities:
+  - uid: 605
+    components:
+    - type: Transform
+      pos: 2.4001193,-14.244513
+      parent: 3
+- proto: FoodPizzaDank
+  entities:
+  - uid: 675
+    components:
+    - type: Transform
+      pos: 1.4081609,-13.661364
+      parent: 3
 - proto: GravityGeneratorMini
   entities:
   - uid: 155
@@ -2649,804 +2770,20 @@ entities:
       rot: 1.5707963267948966 rad
       pos: 2.5,-16.5
       parent: 3
-- proto: hydroponicsTray
-  entities:
-  - uid: 553
-    components:
-    - type: Transform
-      rot: -1.5707963267948966 rad
-      pos: 1.5,-13.5
-      parent: 3
-    - type: PlantHolder
-      lastProduce: 1
-      age: 1
-      health: 100
-      seed:
-        splatPrototype: null
-        lifespan: 55
-        endurance: 100
-        weedHighLevelThreshold: 10
-        weedTolerance: 5
-        pestTolerance: 5
-        highPressureTolerance: 121
-        lowPressureTolerance: 81
-        toxinsTolerance: 4
-        lightTolerance: 3
-        idealLight: 6
-        heatTolerance: 10
-        idealHeat: 293
-        waterConsumption: 0.5
-        nutrientConsumption: 0.75
-        exudeGasses: {}
-        consumeGasses: {}
-        chemicals:
-          Nutriment:
-            Inherent: True
-            PotencyDivisor: 10
-            Max: 10
-            Min: 1
-          Vitamin:
-            Inherent: True
-            PotencyDivisor: 25
-            Max: 4
-            Min: 1
-        productPrototypes:
-        - FoodApple
-        packetPrototype: AppleSeeds
-        immutable: False
-        yield: 3
-        maturation: 6
-        bioluminescentColor: '#FFFFFFFF'
-        production: 6
-        plantIconState: produce
-        plantRsi: Objects/Specific/Hydroponics/apple.rsi
-        displayName: seeds-apple-display-name
-        noun: seeds-noun-seeds
-        name: seeds-apple-name
-        mutationPrototypes: []
-        turnIntoKudzu: False
-        kudzuPrototype: WeakKudzu
-        bioluminescent: False
-        screaming: False
-        screamSound: !type:SoundPathSpecifier
-          params:
-            variation: null
-            playOffsetSeconds: 0
-            loop: False
-            referenceDistance: 1
-            rolloffFactor: 1
-            maxDistance: 20
-            busName: Master
-            pitch: 1
-            volume: 0
-            attenuation: LinearDistanceClamped
-          path: /Audio/Voice/Human/malescream_1.ogg
-        ligneous: False
-        sentient: False
-        slip: False
-        viable: True
-        seedless: False
-        potency: 10
-        harvestRepeat: Repeat
-        growthStages: 6
-        mysterious: False
-  - uid: 554
-    components:
-    - type: Transform
-      rot: -1.5707963267948966 rad
-      pos: 5.5,-14.5
-      parent: 3
-    - type: PlantHolder
-      lastProduce: 1
-      age: 1
-      health: 100
-      seed:
-        splatPrototype: null
-        lifespan: 55
-        endurance: 100
-        weedHighLevelThreshold: 10
-        weedTolerance: 5
-        pestTolerance: 5
-        highPressureTolerance: 121
-        lowPressureTolerance: 81
-        toxinsTolerance: 4
-        lightTolerance: 3
-        idealLight: 6
-        heatTolerance: 10
-        idealHeat: 293
-        waterConsumption: 0.5
-        nutrientConsumption: 0.75
-        exudeGasses: {}
-        consumeGasses: {}
-        chemicals:
-          Nutriment:
-            Inherent: True
-            PotencyDivisor: 10
-            Max: 10
-            Min: 1
-          Vitamin:
-            Inherent: True
-            PotencyDivisor: 25
-            Max: 4
-            Min: 1
-        productPrototypes:
-        - FoodApple
-        packetPrototype: AppleSeeds
-        immutable: False
-        yield: 3
-        maturation: 6
-        bioluminescentColor: '#FFFFFFFF'
-        production: 6
-        plantIconState: produce
-        plantRsi: Objects/Specific/Hydroponics/apple.rsi
-        displayName: seeds-apple-display-name
-        noun: seeds-noun-seeds
-        name: seeds-apple-name
-        mutationPrototypes: []
-        turnIntoKudzu: False
-        kudzuPrototype: WeakKudzu
-        bioluminescent: False
-        screaming: False
-        screamSound: !type:SoundPathSpecifier
-          params:
-            variation: null
-            playOffsetSeconds: 0
-            loop: False
-            referenceDistance: 1
-            rolloffFactor: 1
-            maxDistance: 20
-            busName: Master
-            pitch: 1
-            volume: 0
-            attenuation: LinearDistanceClamped
-          path: /Audio/Voice/Human/malescream_1.ogg
-        ligneous: False
-        sentient: False
-        slip: False
-        viable: True
-        seedless: False
-        potency: 10
-        harvestRepeat: Repeat
-        growthStages: 6
-        mysterious: False
-  - uid: 555
-    components:
-    - type: Transform
-      rot: -1.5707963267948966 rad
-      pos: 5.5,-13.5
-      parent: 3
-    - type: PlantHolder
-      lastProduce: 1
-      age: 1
-      health: 100
-      seed:
-        splatPrototype: null
-        lifespan: 55
-        endurance: 100
-        weedHighLevelThreshold: 10
-        weedTolerance: 5
-        pestTolerance: 5
-        highPressureTolerance: 121
-        lowPressureTolerance: 81
-        toxinsTolerance: 4
-        lightTolerance: 3
-        idealLight: 6
-        heatTolerance: 10
-        idealHeat: 293
-        waterConsumption: 0.5
-        nutrientConsumption: 0.75
-        exudeGasses: {}
-        consumeGasses: {}
-        chemicals:
-          Nutriment:
-            Inherent: True
-            PotencyDivisor: 10
-            Max: 10
-            Min: 1
-          Vitamin:
-            Inherent: True
-            PotencyDivisor: 25
-            Max: 4
-            Min: 1
-        productPrototypes:
-        - FoodApple
-        packetPrototype: AppleSeeds
-        immutable: False
-        yield: 3
-        maturation: 6
-        bioluminescentColor: '#FFFFFFFF'
-        production: 6
-        plantIconState: produce
-        plantRsi: Objects/Specific/Hydroponics/apple.rsi
-        displayName: seeds-apple-display-name
-        noun: seeds-noun-seeds
-        name: seeds-apple-name
-        mutationPrototypes: []
-        turnIntoKudzu: False
-        kudzuPrototype: WeakKudzu
-        bioluminescent: False
-        screaming: False
-        screamSound: !type:SoundPathSpecifier
-          params:
-            variation: null
-            playOffsetSeconds: 0
-            loop: False
-            referenceDistance: 1
-            rolloffFactor: 1
-            maxDistance: 20
-            busName: Master
-            pitch: 1
-            volume: 0
-            attenuation: LinearDistanceClamped
-          path: /Audio/Voice/Human/malescream_1.ogg
-        ligneous: False
-        sentient: False
-        slip: False
-        viable: True
-        seedless: False
-        potency: 10
-        harvestRepeat: Repeat
-        growthStages: 6
-        mysterious: False
-  - uid: 601
-    components:
-    - type: Transform
-      rot: -1.5707963267948966 rad
-      pos: 3.5,-13.5
-      parent: 3
-    - type: PlantHolder
-      lastProduce: 1
-      age: 1
-      health: 100
-      seed:
-        splatPrototype: null
-        lifespan: 55
-        endurance: 100
-        weedHighLevelThreshold: 10
-        weedTolerance: 5
-        pestTolerance: 5
-        highPressureTolerance: 121
-        lowPressureTolerance: 81
-        toxinsTolerance: 4
-        lightTolerance: 3
-        idealLight: 6
-        heatTolerance: 10
-        idealHeat: 293
-        waterConsumption: 0.5
-        nutrientConsumption: 0.75
-        exudeGasses: {}
-        consumeGasses: {}
-        chemicals:
-          Nutriment:
-            Inherent: True
-            PotencyDivisor: 10
-            Max: 10
-            Min: 1
-          Vitamin:
-            Inherent: True
-            PotencyDivisor: 25
-            Max: 4
-            Min: 1
-        productPrototypes:
-        - FoodApple
-        packetPrototype: AppleSeeds
-        immutable: False
-        yield: 3
-        maturation: 6
-        bioluminescentColor: '#FFFFFFFF'
-        production: 6
-        plantIconState: produce
-        plantRsi: Objects/Specific/Hydroponics/apple.rsi
-        displayName: seeds-apple-display-name
-        noun: seeds-noun-seeds
-        name: seeds-apple-name
-        mutationPrototypes: []
-        turnIntoKudzu: False
-        kudzuPrototype: WeakKudzu
-        bioluminescent: False
-        screaming: False
-        screamSound: !type:SoundPathSpecifier
-          params:
-            variation: null
-            playOffsetSeconds: 0
-            loop: False
-            referenceDistance: 1
-            rolloffFactor: 1
-            maxDistance: 20
-            busName: Master
-            pitch: 1
-            volume: 0
-            attenuation: LinearDistanceClamped
-          path: /Audio/Voice/Human/malescream_1.ogg
-        ligneous: False
-        sentient: False
-        slip: False
-        viable: True
-        seedless: False
-        potency: 10
-        harvestRepeat: Repeat
-        growthStages: 6
-        mysterious: False
-  - uid: 650
-    components:
-    - type: Transform
-      rot: -1.5707963267948966 rad
-      pos: 2.5,-13.5
-      parent: 3
-    - type: PlantHolder
-      lastProduce: 1
-      age: 1
-      health: 100
-      seed:
-        splatPrototype: null
-        lifespan: 55
-        endurance: 100
-        weedHighLevelThreshold: 10
-        weedTolerance: 5
-        pestTolerance: 5
-        highPressureTolerance: 121
-        lowPressureTolerance: 81
-        toxinsTolerance: 4
-        lightTolerance: 3
-        idealLight: 6
-        heatTolerance: 10
-        idealHeat: 293
-        waterConsumption: 0.5
-        nutrientConsumption: 0.75
-        exudeGasses: {}
-        consumeGasses: {}
-        chemicals:
-          Nutriment:
-            Inherent: True
-            PotencyDivisor: 10
-            Max: 10
-            Min: 1
-          Vitamin:
-            Inherent: True
-            PotencyDivisor: 25
-            Max: 4
-            Min: 1
-        productPrototypes:
-        - FoodApple
-        packetPrototype: AppleSeeds
-        immutable: False
-        yield: 3
-        maturation: 6
-        bioluminescentColor: '#FFFFFFFF'
-        production: 6
-        plantIconState: produce
-        plantRsi: Objects/Specific/Hydroponics/apple.rsi
-        displayName: seeds-apple-display-name
-        noun: seeds-noun-seeds
-        name: seeds-apple-name
-        mutationPrototypes: []
-        turnIntoKudzu: False
-        kudzuPrototype: WeakKudzu
-        bioluminescent: False
-        screaming: False
-        screamSound: !type:SoundPathSpecifier
-          params:
-            variation: null
-            playOffsetSeconds: 0
-            loop: False
-            referenceDistance: 1
-            rolloffFactor: 1
-            maxDistance: 20
-            busName: Master
-            pitch: 1
-            volume: 0
-            attenuation: LinearDistanceClamped
-          path: /Audio/Voice/Human/malescream_1.ogg
-        ligneous: False
-        sentient: False
-        slip: False
-        viable: True
-        seedless: False
-        potency: 10
-        harvestRepeat: Repeat
-        growthStages: 6
-        mysterious: False
-  - uid: 651
-    components:
-    - type: Transform
-      rot: -1.5707963267948966 rad
-      pos: 2.5,-14.5
-      parent: 3
-    - type: PlantHolder
-      lastProduce: 1
-      age: 1
-      health: 100
-      seed:
-        splatPrototype: null
-        lifespan: 55
-        endurance: 100
-        weedHighLevelThreshold: 10
-        weedTolerance: 5
-        pestTolerance: 5
-        highPressureTolerance: 121
-        lowPressureTolerance: 81
-        toxinsTolerance: 4
-        lightTolerance: 3
-        idealLight: 6
-        heatTolerance: 10
-        idealHeat: 293
-        waterConsumption: 0.5
-        nutrientConsumption: 0.75
-        exudeGasses: {}
-        consumeGasses: {}
-        chemicals:
-          Nutriment:
-            Inherent: True
-            PotencyDivisor: 10
-            Max: 10
-            Min: 1
-          Vitamin:
-            Inherent: True
-            PotencyDivisor: 25
-            Max: 4
-            Min: 1
-        productPrototypes:
-        - FoodApple
-        packetPrototype: AppleSeeds
-        immutable: False
-        yield: 3
-        maturation: 6
-        bioluminescentColor: '#FFFFFFFF'
-        production: 6
-        plantIconState: produce
-        plantRsi: Objects/Specific/Hydroponics/apple.rsi
-        displayName: seeds-apple-display-name
-        noun: seeds-noun-seeds
-        name: seeds-apple-name
-        mutationPrototypes: []
-        turnIntoKudzu: False
-        kudzuPrototype: WeakKudzu
-        bioluminescent: False
-        screaming: False
-        screamSound: !type:SoundPathSpecifier
-          params:
-            variation: null
-            playOffsetSeconds: 0
-            loop: False
-            referenceDistance: 1
-            rolloffFactor: 1
-            maxDistance: 20
-            busName: Master
-            pitch: 1
-            volume: 0
-            attenuation: LinearDistanceClamped
-          path: /Audio/Voice/Human/malescream_1.ogg
-        ligneous: False
-        sentient: False
-        slip: False
-        viable: True
-        seedless: False
-        potency: 10
-        harvestRepeat: Repeat
-        growthStages: 6
-        mysterious: False
-  - uid: 685
-    components:
-    - type: Transform
-      rot: -1.5707963267948966 rad
-      pos: 4.5,-14.5
-      parent: 3
-    - type: PlantHolder
-      lastProduce: 1
-      age: 1
-      health: 100
-      seed:
-        splatPrototype: null
-        lifespan: 55
-        endurance: 100
-        weedHighLevelThreshold: 10
-        weedTolerance: 5
-        pestTolerance: 5
-        highPressureTolerance: 121
-        lowPressureTolerance: 81
-        toxinsTolerance: 4
-        lightTolerance: 3
-        idealLight: 6
-        heatTolerance: 10
-        idealHeat: 293
-        waterConsumption: 0.5
-        nutrientConsumption: 0.75
-        exudeGasses: {}
-        consumeGasses: {}
-        chemicals:
-          Nutriment:
-            Inherent: True
-            PotencyDivisor: 10
-            Max: 10
-            Min: 1
-          Vitamin:
-            Inherent: True
-            PotencyDivisor: 25
-            Max: 4
-            Min: 1
-        productPrototypes:
-        - FoodApple
-        packetPrototype: AppleSeeds
-        immutable: False
-        yield: 3
-        maturation: 6
-        bioluminescentColor: '#FFFFFFFF'
-        production: 6
-        plantIconState: produce
-        plantRsi: Objects/Specific/Hydroponics/apple.rsi
-        displayName: seeds-apple-display-name
-        noun: seeds-noun-seeds
-        name: seeds-apple-name
-        mutationPrototypes: []
-        turnIntoKudzu: False
-        kudzuPrototype: WeakKudzu
-        bioluminescent: False
-        screaming: False
-        screamSound: !type:SoundPathSpecifier
-          params:
-            variation: null
-            playOffsetSeconds: 0
-            loop: False
-            referenceDistance: 1
-            rolloffFactor: 1
-            maxDistance: 20
-            busName: Master
-            pitch: 1
-            volume: 0
-            attenuation: LinearDistanceClamped
-          path: /Audio/Voice/Human/malescream_1.ogg
-        ligneous: False
-        sentient: False
-        slip: False
-        viable: True
-        seedless: False
-        potency: 10
-        harvestRepeat: Repeat
-        growthStages: 6
-        mysterious: False
-  - uid: 707
-    components:
-    - type: Transform
-      rot: -1.5707963267948966 rad
-      pos: 1.5,-14.5
-      parent: 3
-    - type: PlantHolder
-      lastProduce: 1
-      age: 1
-      health: 100
-      seed:
-        splatPrototype: null
-        lifespan: 55
-        endurance: 100
-        weedHighLevelThreshold: 10
-        weedTolerance: 5
-        pestTolerance: 5
-        highPressureTolerance: 121
-        lowPressureTolerance: 81
-        toxinsTolerance: 4
-        lightTolerance: 3
-        idealLight: 6
-        heatTolerance: 10
-        idealHeat: 293
-        waterConsumption: 0.5
-        nutrientConsumption: 0.75
-        exudeGasses: {}
-        consumeGasses: {}
-        chemicals:
-          Nutriment:
-            Inherent: True
-            PotencyDivisor: 10
-            Max: 10
-            Min: 1
-          Vitamin:
-            Inherent: True
-            PotencyDivisor: 25
-            Max: 4
-            Min: 1
-        productPrototypes:
-        - FoodApple
-        packetPrototype: AppleSeeds
-        immutable: False
-        yield: 3
-        maturation: 6
-        bioluminescentColor: '#FFFFFFFF'
-        production: 6
-        plantIconState: produce
-        plantRsi: Objects/Specific/Hydroponics/apple.rsi
-        displayName: seeds-apple-display-name
-        noun: seeds-noun-seeds
-        name: seeds-apple-name
-        mutationPrototypes: []
-        turnIntoKudzu: False
-        kudzuPrototype: WeakKudzu
-        bioluminescent: False
-        screaming: False
-        screamSound: !type:SoundPathSpecifier
-          params:
-            variation: null
-            playOffsetSeconds: 0
-            loop: False
-            referenceDistance: 1
-            rolloffFactor: 1
-            maxDistance: 20
-            busName: Master
-            pitch: 1
-            volume: 0
-            attenuation: LinearDistanceClamped
-          path: /Audio/Voice/Human/malescream_1.ogg
-        ligneous: False
-        sentient: False
-        slip: False
-        viable: True
-        seedless: False
-        potency: 10
-        harvestRepeat: Repeat
-        growthStages: 6
-        mysterious: False
-  - uid: 714
-    components:
-    - type: Transform
-      rot: -1.5707963267948966 rad
-      pos: 4.5,-13.5
-      parent: 3
-    - type: PlantHolder
-      lastProduce: 1
-      age: 1
-      health: 100
-      seed:
-        splatPrototype: null
-        lifespan: 55
-        endurance: 100
-        weedHighLevelThreshold: 10
-        weedTolerance: 5
-        pestTolerance: 5
-        highPressureTolerance: 121
-        lowPressureTolerance: 81
-        toxinsTolerance: 4
-        lightTolerance: 3
-        idealLight: 6
-        heatTolerance: 10
-        idealHeat: 293
-        waterConsumption: 0.5
-        nutrientConsumption: 0.75
-        exudeGasses: {}
-        consumeGasses: {}
-        chemicals:
-          Nutriment:
-            Inherent: True
-            PotencyDivisor: 10
-            Max: 10
-            Min: 1
-          Vitamin:
-            Inherent: True
-            PotencyDivisor: 25
-            Max: 4
-            Min: 1
-        productPrototypes:
-        - FoodApple
-        packetPrototype: AppleSeeds
-        immutable: False
-        yield: 3
-        maturation: 6
-        bioluminescentColor: '#FFFFFFFF'
-        production: 6
-        plantIconState: produce
-        plantRsi: Objects/Specific/Hydroponics/apple.rsi
-        displayName: seeds-apple-display-name
-        noun: seeds-noun-seeds
-        name: seeds-apple-name
-        mutationPrototypes: []
-        turnIntoKudzu: False
-        kudzuPrototype: WeakKudzu
-        bioluminescent: False
-        screaming: False
-        screamSound: !type:SoundPathSpecifier
-          params:
-            variation: null
-            playOffsetSeconds: 0
-            loop: False
-            referenceDistance: 1
-            rolloffFactor: 1
-            maxDistance: 20
-            busName: Master
-            pitch: 1
-            volume: 0
-            attenuation: LinearDistanceClamped
-          path: /Audio/Voice/Human/malescream_1.ogg
-        ligneous: False
-        sentient: False
-        slip: False
-        viable: True
-        seedless: False
-        potency: 10
-        harvestRepeat: Repeat
-        growthStages: 6
-        mysterious: False
-  - uid: 715
-    components:
-    - type: Transform
-      rot: -1.5707963267948966 rad
-      pos: 3.5,-14.5
-      parent: 3
-    - type: PlantHolder
-      lastProduce: 1
-      age: 1
-      health: 100
-      seed:
-        splatPrototype: null
-        lifespan: 55
-        endurance: 100
-        weedHighLevelThreshold: 10
-        weedTolerance: 5
-        pestTolerance: 5
-        highPressureTolerance: 121
-        lowPressureTolerance: 81
-        toxinsTolerance: 4
-        lightTolerance: 3
-        idealLight: 6
-        heatTolerance: 10
-        idealHeat: 293
-        waterConsumption: 0.5
-        nutrientConsumption: 0.75
-        exudeGasses: {}
-        consumeGasses: {}
-        chemicals:
-          Nutriment:
-            Inherent: True
-            PotencyDivisor: 10
-            Max: 10
-            Min: 1
-          Vitamin:
-            Inherent: True
-            PotencyDivisor: 25
-            Max: 4
-            Min: 1
-        productPrototypes:
-        - FoodApple
-        packetPrototype: AppleSeeds
-        immutable: False
-        yield: 3
-        maturation: 6
-        bioluminescentColor: '#FFFFFFFF'
-        production: 6
-        plantIconState: produce
-        plantRsi: Objects/Specific/Hydroponics/apple.rsi
-        displayName: seeds-apple-display-name
-        noun: seeds-noun-seeds
-        name: seeds-apple-name
-        mutationPrototypes: []
-        turnIntoKudzu: False
-        kudzuPrototype: WeakKudzu
-        bioluminescent: False
-        screaming: False
-        screamSound: !type:SoundPathSpecifier
-          params:
-            variation: null
-            playOffsetSeconds: 0
-            loop: False
-            referenceDistance: 1
-            rolloffFactor: 1
-            maxDistance: 20
-            busName: Master
-            pitch: 1
-            volume: 0
-            attenuation: LinearDistanceClamped
-          path: /Audio/Voice/Human/malescream_1.ogg
-        ligneous: False
-        sentient: False
-        slip: False
-        viable: True
-        seedless: False
-        potency: 10
-        harvestRepeat: Repeat
-        growthStages: 6
-        mysterious: False
 - proto: KitchenMicrowave
   entities:
   - uid: 378
     components:
     - type: Transform
       pos: 1.5,-4.5
+      parent: 3
+- proto: KnifePlastic
+  entities:
+  - uid: 674
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: 2.3844943,-14.385138
       parent: 3
 - proto: LockerFreezerBase
   entities:
@@ -3457,13 +2794,12 @@ entities:
       parent: 3
 - proto: LockerWallMedicalFilled
   entities:
-  - uid: 712
+  - uid: 604
     components:
     - type: Transform
-      pos: 4.5,-10.5
+      rot: -1.5707963267948966 rad
+      pos: 7.5,-11.5
       parent: 3
-    missingComponents:
-    - AccessReader
 - proto: MedicalBed
   entities:
   - uid: 34
@@ -3481,6 +2817,11 @@ entities:
     - type: Transform
       pos: 10.5,-4.5
       parent: 3
+  - uid: 603
+    components:
+    - type: Transform
+      pos: 1.5,-12.5
+      parent: 3
   - uid: 687
     components:
     - type: Transform
@@ -3496,36 +2837,41 @@ entities:
     - type: Transform
       pos: 12.5,-8.5
       parent: 3
+- proto: MedicalTechFab
+  entities:
+  - uid: 602
+    components:
+    - type: Transform
+      pos: 3.5,-11.5
+      parent: 3
 - proto: MedkitAdvancedFilled
   entities:
-  - uid: 32
+  - uid: 341
     components:
     - type: Transform
-      pos: 4.3142242,-11.377129
+      pos: 4.2152767,-11.219671
       parent: 3
-  - uid: 721
-    components:
-    - type: Transform
-      pos: 4.4967003,-11.392326
-      parent: 3
-- proto: MedkitFilled
+- proto: MedkitBruteFilled
   entities:
-  - uid: 722
+  - uid: 339
     components:
     - type: Transform
-      pos: 4.527114,-11.2555485
+      pos: 4.4027767,-11.391546
       parent: 3
-  - uid: 723
+- proto: MedkitToxinFilled
+  entities:
+  - uid: 342
     components:
     - type: Transform
-      pos: 4.7856216,-11.407524
+      pos: 4.6840267,-11.625921
       parent: 3
 - proto: Mirror
   entities:
-  - uid: 603
+  - uid: 343
     components:
     - type: Transform
-      pos: 1.5,-10.5
+      rot: -1.5707963267948966 rad
+      pos: 7.5,-12.5
       parent: 3
 - proto: NitrogenCanister
   entities:
@@ -3534,8 +2880,6 @@ entities:
     - type: Transform
       pos: 12.5,-17.5
       parent: 3
-    - type: AtmosDevice
-      joinedGrid: 3
 - proto: OreProcessor
   entities:
   - uid: 220
@@ -3550,8 +2894,6 @@ entities:
     - type: Transform
       pos: 12.5,-16.5
       parent: 3
-    - type: AtmosDevice
-      joinedGrid: 3
 - proto: PaintingHelloWorld
   entities:
   - uid: 558
@@ -3627,6 +2969,29 @@ entities:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: 11.819567,-18.824476
+      parent: 3
+- proto: PinpointerShipwreck
+  entities:
+  - uid: 553
+    components:
+    - type: Transform
+      parent: 513
+    - type: Physics
+      canCollide: False
+    - type: InsideEntityStorage
+  - uid: 555
+    components:
+    - type: Transform
+      parent: 512
+    - type: Physics
+      canCollide: False
+    - type: InsideEntityStorage
+- proto: PlushieLizardMirrored
+  entities:
+  - uid: 446
+    components:
+    - type: Transform
+      pos: 1.3516729,-11.299252
       parent: 3
 - proto: PortableGeneratorSuperPacman
   entities:
@@ -3844,6 +3209,20 @@ entities:
     components:
     - type: Transform
       pos: 6.5,0.5
+      parent: 3
+- proto: RandomArcade
+  entities:
+  - uid: 337
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 3.5,-14.5
+      parent: 3
+  - uid: 672
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 4.5,-14.5
       parent: 3
 - proto: RandomDrinkBottle
   entities:
@@ -4122,13 +3501,6 @@ entities:
     - type: Transform
       pos: 4.5,-10.5
       parent: 3
-- proto: SinkStemlessWater
-  entities:
-  - uid: 606
-    components:
-    - type: Transform
-      pos: 1.5,-11.5
-      parent: 3
 - proto: SinkWide
   entities:
   - uid: 686
@@ -4264,6 +3636,18 @@ entities:
     - type: Transform
       pos: 12.5,-12.5
       parent: 3
+- proto: StoolBar
+  entities:
+  - uid: 652
+    components:
+    - type: Transform
+      pos: 3.5,-13.5
+      parent: 3
+  - uid: 671
+    components:
+    - type: Transform
+      pos: 4.5,-13.5
+      parent: 3
 - proto: SubstationBasic
   entities:
   - uid: 158
@@ -4278,37 +3662,16 @@ entities:
     - type: Transform
       pos: 12.5,-19.5
       parent: 3
+    - type: Lock
+      locked: False
     - type: EntityStorage
       air:
         volume: 200
         immutable: False
-        temperature: 75.31249
+        temperature: 293.14755
         moles:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-  - uid: 513
-    components:
-    - type: Transform
-      pos: 12.5,-18.5
-      parent: 3
-    - type: EntityStorage
-      air:
-        volume: 200
-        immutable: False
-        temperature: 75.31249
-        moles:
-        - 0
-        - 0
+        - 1.7459903
+        - 6.568249
         - 0
         - 0
         - 0
@@ -4325,8 +3688,41 @@ entities:
           showEnts: False
           occludes: True
           ents:
-          - 166
+          - 555
+  - uid: 513
+    components:
+    - type: Transform
+      pos: 12.5,-18.5
+      parent: 3
+    - type: Lock
+      locked: False
+    - type: EntityStorage
+      air:
+        volume: 200
+        immutable: False
+        temperature: 293.14755
+        moles:
+        - 1.7459903
+        - 6.568249
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+    - type: ContainerContainer
+      containers:
+        entity_storage: !type:Container
+          showEnts: False
+          occludes: True
+          ents:
           - 167
+          - 553
+          - 166
 - proto: SuitStorageSec
   entities:
   - uid: 677
@@ -4361,6 +3757,11 @@ entities:
           - 698
 - proto: Table
   entities:
+  - uid: 333
+    components:
+    - type: Transform
+      pos: 1.5,-11.5
+      parent: 3
   - uid: 382
     components:
     - type: Transform
@@ -4377,6 +3778,12 @@ entities:
     components:
     - type: Transform
       pos: 5.5,-4.5
+      parent: 3
+  - uid: 515
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: 4.5,-11.5
       parent: 3
   - uid: 523
     components:
@@ -4396,11 +3803,6 @@ entities:
       parent: 3
 - proto: TableReinforced
   entities:
-  - uid: 602
-    components:
-    - type: Transform
-      pos: 4.5,-11.5
-      parent: 3
   - uid: 783
     components:
     - type: Transform
@@ -4461,6 +3863,24 @@ entities:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: 1.5,-4.5
+      parent: 3
+  - uid: 606
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 1.5,-14.5
+      parent: 3
+  - uid: 650
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 1.5,-13.5
+      parent: 3
+  - uid: 673
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 2.5,-14.5
       parent: 3
 - proto: Thruster
   entities:
@@ -4551,6 +3971,13 @@ entities:
       parent: 3
     missingComponents:
     - AccessReader
+- proto: VendingMachineMREDispancer
+  entities:
+  - uid: 338
+    components:
+    - type: Transform
+      pos: 6.5,-13.5
+      parent: 3
 - proto: VendingMachineMTFLeader
   entities:
   - uid: 328
@@ -4569,22 +3996,6 @@ entities:
       parent: 3
     missingComponents:
     - AccessReader
-- proto: VendingMachineNutri
-  entities:
-  - uid: 694
-    components:
-    - type: Transform
-      pos: 3.5,-11.5
-      parent: 3
-    missingComponents:
-    - AccessReader
-- proto: VendingMachineSeedsUnlocked
-  entities:
-  - uid: 605
-    components:
-    - type: Transform
-      pos: 2.5,-11.5
-      parent: 3
 - proto: VendingMachineTankDispenserEVA
   entities:
   - uid: 224
@@ -5405,11 +4816,6 @@ entities:
     - type: Transform
       pos: 8.5,-3.5
       parent: 3
-  - uid: 741
-    components:
-    - type: Transform
-      pos: 7.5,-11.5
-      parent: 3
   - uid: 746
     components:
     - type: Transform
@@ -5438,6 +4844,51 @@ entities:
     components:
     - type: Transform
       pos: 4.5,4.5
+      parent: 3
+- proto: WeaponPistolCHIMP
+  entities:
+  - uid: 651
+    components:
+    - type: Transform
+      pos: 1.4782443,-14.416388
+      parent: 3
+- proto: WindowDirectional
+  entities:
+  - uid: 335
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 1.5,-13.5
+      parent: 3
+  - uid: 516
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 4.5,-13.5
+      parent: 3
+  - uid: 517
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 5.5,-13.5
+      parent: 3
+  - uid: 518
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 3.5,-13.5
+      parent: 3
+  - uid: 519
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 6.5,-13.5
+      parent: 3
+  - uid: 601
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 2.5,-13.5
       parent: 3
 - proto: WindowReinforcedDirectional
   entities:
