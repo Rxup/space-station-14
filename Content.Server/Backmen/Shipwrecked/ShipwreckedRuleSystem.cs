@@ -82,6 +82,7 @@ using Content.Shared.Roles.Jobs;
 using Content.Shared.Salvage;
 using Content.Shared.Shuttles.Components;
 using Content.Shared.Storage;
+using Content.Shared.Tag;
 using Content.Shared.Verbs;
 using Content.Shared.Zombies;
 using Robust.Server.Audio;
@@ -147,6 +148,7 @@ public sealed class ShipwreckedRuleSystem : GameRuleSystem<ShipwreckedRuleCompon
     [Dependency] private readonly StationJobsSystem _stationJobsSystem = default!;
     [Dependency] private readonly MetaDataSystem _metadata = default!;
     [Dependency] private readonly SharedPinpointerSystem _pinpointerSystem = default!;
+    [Dependency] private readonly TagSystem _tagSystem = default!;
 
     public override void Initialize()
     {
@@ -1754,6 +1756,12 @@ public sealed class ShipwreckedRuleSystem : GameRuleSystem<ShipwreckedRuleCompon
 
 # region Hecate Dynamic Responses
 
+    [ValidatePrototypeId<TagPrototype>]
+    private const string TagEngineeringAirlock = "EngineeringAirlock";
+
+    [ValidatePrototypeId<TagPrototype>]
+    private const string TagSecureSafe = "SecureSafe";
+
     private void OnInitHecate(EntityUid uid, ShipwreckedNPCHecateComponent component, MapInitEvent args)
     {
         component.GunSafe.Clear();
@@ -1764,24 +1772,21 @@ public sealed class ShipwreckedRuleSystem : GameRuleSystem<ShipwreckedRuleCompon
 
         var shopGrid = Transform(uid).GridUid;
 
-        var query = EntityQueryEnumerator<AccessReaderComponent, TransformComponent>();
-        while (query.MoveNext(out var entity, out var access, out var xform))
+        var tagQuery = GetEntityQuery<TagComponent>();
+
+        var query = EntityQueryEnumerator<TransformComponent, TagComponent>();
+        while (query.MoveNext(out var entity, out var xform, out var tagComponent))
         {
             if (xform.GridUid != shopGrid)
                 continue;
 
-            foreach (var accessList in access.AccessLists)
+            if (_tagSystem.HasTag(entity, TagSecureSafe, tagQuery))
             {
-                if (accessList.Contains("Armory") && (storageQuery.HasComponent(entity) || doorQuery.HasComponent(entity)))
-                {
-                    // This is probably the gun safe.
-                    component.GunSafe.Add(entity);
-                }
-                if (accessList.Contains("Engineering") && (storageQuery.HasComponent(entity) || doorQuery.HasComponent(entity)))
-                {
-                    // This is probably the engine bay door.
-                    component.EngineBayDoor.Add(entity);
-                }
+                component.GunSafe.Add(entity);
+            }
+            else if (_tagSystem.HasTag(entity, TagEngineeringAirlock, tagQuery))
+            {
+                component.EngineBayDoor.Add(entity);
             }
         }
     }
