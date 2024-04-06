@@ -2,6 +2,7 @@ using Content.Server.Backmen.Abilities.Psionics;
 using Content.Server.Backmen.Eye;
 using Content.Server.NPC.Systems;
 using Content.Shared.Backmen.Abilities.Psionics;
+using Content.Shared.Backmen.Psionics;
 using Content.Shared.CombatMode.Pacification;
 using Content.Shared.Eye;
 using Content.Shared.Interaction.Events;
@@ -35,14 +36,6 @@ public sealed class PsionicInvisibilitySystem : EntitySystem
         // PVS Stuff
         SubscribeLocalEvent<PsionicallyInvisibleComponent, EntInsertedIntoContainerMessage>(OnEntInserted);
         SubscribeLocalEvent<PsionicallyInvisibleComponent, EntRemovedFromContainerMessage>(OnEntRemoved);
-
-        SubscribeLocalEvent<PsionicallyInvisibleComponent, AttackAttemptEvent>(OnAttackAttempt);
-    }
-
-    private void OnAttackAttempt(Entity<PsionicallyInvisibleComponent> ent, ref AttackAttemptEvent args)
-    {
-        if(HasComp<PacifiedComponent>(ent))
-            args.Cancel();
     }
 
     private void OnInit(EntityUid uid, PotentialPsionicComponent component, ComponentInit args)

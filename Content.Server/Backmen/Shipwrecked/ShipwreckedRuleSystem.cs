@@ -49,6 +49,7 @@ using Content.Server.Zombies;
 using Content.Shared.Access.Components;
 using Content.Shared.Atmos;
 using Content.Shared.Backmen.CCVar;
+using Content.Shared.Backmen.Shipwrecked.Components;
 using Content.Shared.Buckle.Components;
 using Content.Shared.Chat;
 using Content.Shared.Chemistry.Components;
@@ -177,11 +178,13 @@ public sealed class ShipwreckedRuleSystem : GameRuleSystem<ShipwreckedRuleCompon
 
         SubscribeLocalEvent<ShipwreckMapGridComponent, UnLoadChunkEvent>(OnChunkUnLoaded);
         SubscribeLocalEvent<ShipwreckMapGridComponent, MapInitEvent>(OnChunkLoad);
-        SubscribeLocalEvent<ShipwreckSurvivorComponent, AttackAttemptEvent>(OnAttackAttempt);
+
 
         SubscribeLocalEvent<ShipwreckPinPointerComponent, MapInitEvent>(OnPinPointerSpawn);
         SubscribeLocalEvent<ShipwreckPinPointerComponent, GetVerbsEvent<Verb>>(GetVerbsPinPointer);
     }
+
+
 
     public static readonly VerbCategory ShipwreckPinpointer =
         new("verb-categories-shipwreck-pinpointer", null);
