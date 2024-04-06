@@ -5,6 +5,10 @@
   noSpawn: true
   description: A glimmering hologram depicting a young woman with dark hair and a bright smile.
   components:
+    - type: MobThresholds
+      thresholds:
+        0: Alive
+        1000: Dead
     - type: HumanoidAppearance
       species: Human
       sex: Female

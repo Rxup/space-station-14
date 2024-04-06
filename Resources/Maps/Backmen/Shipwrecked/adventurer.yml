@@ -288,7 +288,8 @@ entities:
             0: 30512
             2: 64
           1,-1:
-            0: 30583
+            0: 30567
+            3: 16
         uniqueMixes:
         - volume: 2500
           temperature: 293.15
@@ -335,6 +336,21 @@ entities:
           - 0
           - 0
           - 0
+        - volume: 2500
+          temperature: 293.14975
+          moles:
+          - 20.078888
+          - 75.53487
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
         chunkSize: 4
     - type: GasTileOverlay
     - type: RadiationGridResistance
@@ -362,8 +378,6 @@ entities:
     - type: DeviceList
       devices:
       - 300
-    - type: AtmosDevice
-      joinedGrid: 2
   - uid: 152
     components:
     - type: Transform
@@ -377,8 +391,6 @@ entities:
       - 222
       - 237
       - 244
-    - type: AtmosDevice
-      joinedGrid: 2
 - proto: Airlock
   entities:
   - uid: 59
@@ -415,6 +427,10 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 2.5,-3.5
       parent: 2
+    - type: Tag
+      tags:
+      - GlassAirlock
+      - EngineeringAirlock
 - proto: AirlockExternalGlass
   entities:
   - uid: 28
@@ -514,6 +530,13 @@ entities:
     - type: DeviceLinkSink
       links:
       - 1
+- proto: BookRandomStory
+  entities:
+  - uid: 268
+    components:
+    - type: Transform
+      pos: 5.5,2.5
+      parent: 2
 - proto: BoxShotgunFlare
   entities:
   - uid: 240
@@ -980,6 +1003,9 @@ entities:
       parent: 2
     - type: AccessReader
       access: []
+    - type: Tag
+      tags:
+      - SecureSafe
 - proto: Flash
   entities:
   - uid: 155
@@ -1042,8 +1068,6 @@ entities:
       rot: 1.5707963267948966 rad
       pos: 4.5,6.5
       parent: 2
-    - type: AtmosDevice
-      joinedGrid: 2
     - type: AtmosPipeColor
       color: '#D02030FF'
 - proto: GasPassiveVent
@@ -1054,8 +1078,6 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 6.5,6.5
       parent: 2
-    - type: AtmosDevice
-      joinedGrid: 2
 - proto: GasPipeBend
   entities:
   - uid: 230
@@ -1231,8 +1253,6 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 4.5,2.5
       parent: 2
-    - type: AtmosDevice
-      joinedGrid: 2
     - type: AtmosPipeColor
       color: '#D02030FF'
   - uid: 220
@@ -1240,8 +1260,6 @@ entities:
     - type: Transform
       pos: 3.5,9.5
       parent: 2
-    - type: AtmosDevice
-      joinedGrid: 2
     - type: AtmosPipeColor
       color: '#D02030FF'
   - uid: 221
@@ -1250,8 +1268,6 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 4.5,-0.5
       parent: 2
-    - type: AtmosDevice
-      joinedGrid: 2
     - type: AtmosPipeColor
       color: '#D02030FF'
   - uid: 222
@@ -1260,8 +1276,6 @@ entities:
       rot: 1.5707963267948966 rad
       pos: 1.5,4.5
       parent: 2
-    - type: AtmosDevice
-      joinedGrid: 2
     - type: AtmosPipeColor
       color: '#D02030FF'
   - uid: 237
@@ -1270,8 +1284,6 @@ entities:
       rot: 3.141592653589793 rad
       pos: 0.5,-3.5
       parent: 2
-    - type: AtmosDevice
-      joinedGrid: 2
     - type: AtmosPipeColor
       color: '#D02030FF'
   - uid: 300
@@ -1280,8 +1292,6 @@ entities:
       rot: 1.5707963267948966 rad
       pos: -0.5,6.5
       parent: 2
-    - type: AtmosDevice
-      joinedGrid: 2
     - type: AtmosPipeColor
       color: '#D02030FF'
 - proto: GravityGeneratorMini
@@ -1431,26 +1441,30 @@ entities:
           showEnts: False
           occludes: True
           ents:
-          - 311
-          - 297
-          - 299
-          - 270
-          - 310
-          - 312
-          - 175
-          - 313
-          - 314
-          - 315
-          - 316
-          - 156
-          - 317
-          - 155
-          - 154
           - 240
+          - 154
+          - 155
+          - 317
+          - 156
+          - 316
+          - 315
+          - 314
+          - 313
+          - 312
+          - 310
+          - 270
+          - 299
+          - 297
+          - 311
+          - 175
         paper_label: !type:ContainerSlot
           showEnts: False
           occludes: True
           ent: null
+    - type: Tag
+      tags:
+      - Structure
+      - SecureSafe
 - proto: Gyroscope
   entities:
   - uid: 32
@@ -1684,6 +1698,15 @@ entities:
     - type: Physics
       canCollide: False
     - type: InsideEntityStorage
+- proto: PinpointerShipwreck
+  entities:
+  - uid: 336
+    components:
+    - type: Transform
+      parent: 200
+    - type: Physics
+      canCollide: False
+    - type: InsideEntityStorage
 - proto: PortableGeneratorSuperPacman
   entities:
   - uid: 178
@@ -1694,10 +1717,11 @@ entities:
       parent: 2
     - type: MaterialStorage
       storage:
-        Uranium: 200
+        Uranium: 100
     - type: Physics
       bodyType: Static
     - type: InsertingMaterialStorage
+      endTime: 0
 - proto: PosterLegitHotDonkExplosion
   entities:
   - uid: 198
@@ -1772,13 +1796,6 @@ entities:
     components:
     - type: Transform
       pos: 4.5776534,10.851077
-      parent: 2
-- proto: BookRandomStory
-  entities:
-  - uid: 268
-    components:
-    - type: Transform
-      pos: 5.5,2.5
       parent: 2
 - proto: RandomDrinkBottle
   entities:
@@ -2122,6 +2139,35 @@ entities:
     - type: Transform
       pos: 4.5,-2.5
       parent: 2
+    - type: EntityStorage
+      air:
+        volume: 200
+        immutable: False
+        temperature: 293.14673
+        moles:
+        - 1.7459903
+        - 6.568249
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+    - type: ContainerContainer
+      containers:
+        entity_storage: !type:Container
+          showEnts: False
+          occludes: True
+          ents:
+          - 336
+    - type: Tag
+      tags:
+      - Structure
+      - EngineeringAirlock
 - proto: TableCarpet
   entities:
   - uid: 146
