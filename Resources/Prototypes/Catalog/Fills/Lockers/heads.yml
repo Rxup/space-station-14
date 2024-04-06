@@ -227,6 +227,7 @@
       - id: ClothingHeadCage # backmen
       - id: MetempsychoticMachineCircuitboard # backmen
       - id: MaterialBiomass # backmen
+      - id: CompactDefibrillator
 
 - type: entity
   id: LockerChiefMedicalOfficerFilled
