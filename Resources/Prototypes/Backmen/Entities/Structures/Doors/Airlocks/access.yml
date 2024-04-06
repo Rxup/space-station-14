@@ -5,8 +5,9 @@
   name: Бронированная дверь ЦК
   suffix: CentCom, Locked
   components:
-    - type: AccessReader
-      access: [["CentralCommand"]]
+    - type: ContainerFill
+      containers:
+        board: [ DoorElectronicsCentCom ]
     - type: PaintableAirlock
       group: Glass
       department: null
@@ -24,8 +25,9 @@
   name: Бронированная дверь ЦК
   suffix: CentCom, Armory, Locked
   components:
-    - type: AccessReader
-      access: [["CCSecurity"]]
+    - type: ContainerFill
+      containers:
+        board: [ DoorElectronicsCCSecurity ]
     - type: PaintableAirlock
       group: Glass
       department: null
@@ -43,8 +45,9 @@
   name: Бронированная дверь ЦК
   suffix: CentCom, Officer, Locked
   components:
-    - type: AccessReader
-      access: [["CCOfficer"]]
+    - type: ContainerFill
+      containers:
+        board: [ DoorElectronicsCCOfficer ]
     - type: PaintableAirlock
       group: Glass
       department: null
@@ -62,8 +65,9 @@
   name: Бронированная дверь каюты Адмирала ЦК
   suffix: CentCom, Admiral, Locked
   components:
-    - type: AccessReader
-      access: [["CCAdmiral"]]
+    - type: ContainerFill
+      containers:
+        board: [ DoorElectronicsCCOfficer ]
     - type: PaintableAirlock
       group: Glass
       department: null
@@ -82,8 +86,9 @@
   name: Шлюз ЦК
   suffix: CentCom, Cargo, Locked
   components:
-    - type: AccessReader
-      access: [["CCCargo"]]
+    - type: ContainerFill
+      containers:
+        board: [ DoorElectronicsCCCargo ]
 
 - type: entity
   parent: AirlockSecurity
@@ -91,8 +96,9 @@
   name: Шлюз ЦК
   suffix: CentCom, Security, Locked
   components:
-    - type: AccessReader
-      access: [["CCSecurity"]]
+    - type: ContainerFill
+      containers:
+        board: [ DoorElectronicsCCSecurity ]
     - type: Wires
       LayoutId: AirlockSecurity
 
@@ -102,8 +108,9 @@
   name: Шлюз ЦК
   suffix: CentCom, Engineering, Locked
   components:
-    - type: AccessReader
-      access: [["CentralCommand"]]
+    - type: ContainerFill
+      containers:
+        board: [ DoorElectronicsCentCom ]
 
 - type: entity
   parent: AirlockMedical
@@ -111,8 +118,9 @@
   name: Шлюз ЦК
   suffix: CentCom, Medical, Locked
   components:
-    - type: AccessReader
-      access: [["CentralCommand"]]
+    - type: ContainerFill
+      containers:
+        board: [ DoorElectronicsCentCom ]
 
 #Hatches
 - type: entity
@@ -121,8 +129,9 @@
   name: CentCom Hatch
   suffix: CentCom, Locked
   components:
-    - type: AccessReader
-      access: [["CentralCommand"]]
+    - type: ContainerFill
+      containers:
+        board: [ DoorElectronicsCentCom ]
 
 - type: entity
   parent: AirlockHatchMaint
@@ -130,8 +139,9 @@
   name: Maintenance Hatch
   suffix: Maint, Locked
   components:
-    - type: AccessReader
-      access: [["Maintenance"]]
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsMaintenance ]
 
 - type: entity
   parent: AirlockHatchCentcomm
@@ -139,8 +149,9 @@
   name: Syndicate Hatch
   suffix: Syndicate, Locked
   components:
-    - type: AccessReader
-      access: [["SyndicateAgent"]]
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsSyndicateAgent ]
 
 #DoubleAirlocks
 
@@ -150,8 +161,9 @@
   name: Double Glass Airlock
   suffix: CentCom, Locked
   components:
-    - type: AccessReader
-      access: [["CentralCommand"]]
+    - type: ContainerFill
+      containers:
+        board: [ DoorElectronicsCentCom ]
 
 - type: entity
   parent: DoubleGlassAirlock
@@ -159,5 +171,6 @@
   name: Double Glass Airlock
   suffix: Syndicate, Locked
   components:
-    - type: AccessReader
-      access: [["SyndicateAgent"]]
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsSyndicateAgent ]
