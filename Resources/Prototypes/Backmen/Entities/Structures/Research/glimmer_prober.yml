@@ -4,6 +4,12 @@
   name: glimmer prober
   description: Probes the noösphere to generate research points. Might be worth turning off if glimmer is a problem.
   components:
+  - type: LightningTarget
+    priority: 0
+    hitProbability: 0.001
+    lightningResistance: 1000
+    lightningExplode: false
+    damageFromLightning: 0
   - type: Psionic
   - type: GlimmerSource
   - type: Construction

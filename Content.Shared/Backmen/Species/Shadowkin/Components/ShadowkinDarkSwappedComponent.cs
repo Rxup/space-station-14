@@ -44,4 +44,6 @@ public sealed partial class ShadowkinDarkSwappedComponent : Component
 
     [ViewVariables(VVAccess.ReadOnly)]
     public bool NeedReturnPacify = false;
+
+    public override bool SendOnlyToOwner => true;
 }

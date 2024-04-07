@@ -105,3 +105,9 @@
 
 - type: Tag
   id: CartridgeAntitank
+  
+- type: Tag
+  id: EngineeringAirlock
+  
+- type: Tag
+  id: SecureSafe

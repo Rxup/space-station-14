@@ -1,10 +1,10 @@
+using Content.Shared.Backmen.Psionics;
 using Content.Shared.Stealth;
 using Content.Shared.Stealth.Components;
 using Robust.Shared.Physics.Events;
 using Robust.Shared.Physics.Systems;
-using Robust.Shared.Timing;
 
-namespace Content.Server.Backmen.Psionics;
+namespace Content.Server.Backmen.Psionics.Invisbility;
 
 /// <summary>
 /// Allows an entity to become psionically invisible when touching certain entities.
@@ -12,7 +12,7 @@ namespace Content.Server.Backmen.Psionics;
 public sealed class PsionicInvisibleContactsSystem : EntitySystem
 {
     [Dependency] private readonly SharedStealthSystem _stealth = default!;
-    [Dependency] private readonly IGameTiming _gameTiming = default!;
+    private EntityQuery<PsionicallyInvisibleComponent> _psiInvisible;
 
     public override void Initialize()
     {
@@ -21,6 +21,8 @@ public sealed class PsionicInvisibleContactsSystem : EntitySystem
         SubscribeLocalEvent<PsionicInvisibleContactsComponent, EndCollideEvent>(OnEntityExit);
 
         UpdatesAfter.Add(typeof(SharedPhysicsSystem));
+
+        _psiInvisible = GetEntityQuery<PsionicallyInvisibleComponent>();
     }
 
     private void OnEntityEnter(EntityUid uid, PsionicInvisibleContactsComponent component, ref StartCollideEvent args)
@@ -35,7 +37,7 @@ public sealed class PsionicInvisibleContactsSystem : EntitySystem
         // It goes down twice per web exit, so everything's fine.
         ++component.Stages;
 
-        if (HasComp<PsionicallyInvisibleComponent>(ourEntity))
+        if (_psiInvisible.HasComp(ourEntity))
             return;
 
         EnsureComp<PsionicallyInvisibleComponent>(ourEntity);
@@ -51,17 +53,16 @@ public sealed class PsionicInvisibleContactsSystem : EntitySystem
         if (!component.Whitelist.IsValid(otherUid))
             return;
 
-        if (!HasComp<PsionicallyInvisibleComponent>(ourEntity))
+        if (!_psiInvisible.HasComp(ourEntity))
             return;
 
         if (--component.Stages > 0)
             return;
 
         RemComp<PsionicallyInvisibleComponent>(ourEntity);
-        var stealth = EnsureComp<StealthComponent>(ourEntity);
+        //var stealth = EnsureComp<StealthComponent>(ourEntity);
         // Just to be sure...
-        _stealth.SetVisibility(ourEntity, 1f, stealth);
-
+        //_stealth.SetVisibility(ourEntity, 1f, stealth);
         RemComp<StealthComponent>(ourEntity);
     }
 }

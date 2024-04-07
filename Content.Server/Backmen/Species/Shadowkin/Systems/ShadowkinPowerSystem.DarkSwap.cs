@@ -18,6 +18,7 @@ using Content.Shared.Damage;
 using Content.Shared.Damage.Components;
 using Content.Shared.Eye;
 using Content.Shared.Ghost;
+using Content.Shared.Interaction.Events;
 using Content.Shared.NPC.Components;
 using Content.Shared.NPC.Systems;
 using Content.Shared.StatusEffect;
@@ -210,7 +211,7 @@ public sealed class ShadowkinDarkSwapSystem : EntitySystem
             comp.Darken = darken;
             comp.NeedReturnPacify = needReturnPacify;
 
-            RaiseNetworkEvent(new ShadowkinDarkSwappedEvent(ent, true));
+            RaiseNetworkEvent(new ShadowkinDarkSwappedEvent(ent, true), performer);
 
             _audio.PlayPvs(soundOn, performer, AudioParams.Default.WithVolume(volumeOn));
 
@@ -220,7 +221,7 @@ public sealed class ShadowkinDarkSwapSystem : EntitySystem
         else
         {
             RemComp<ShadowkinDarkSwappedComponent>(performer);
-            RaiseNetworkEvent(new ShadowkinDarkSwappedEvent(ent, false));
+            RaiseNetworkEvent(new ShadowkinDarkSwappedEvent(ent, false), performer);
 
             _audio.PlayPvs(soundOff, performer, AudioParams.Default.WithVolume(volumeOff));
 

@@ -28,6 +28,9 @@
       count: 5
     - type: Item
       size: Normal
+    - type: Currency
+      price:
+        BluespaceUplink: 1
 
 - type: entity
   parent: MaterialBluespace
@@ -64,6 +67,9 @@
       tags:
         - BluespaceCrystal
         - RawMaterial
+    - type: Currency
+      price:
+        BluespaceUplink: 1
 
 - type: material
   id: BluespaceUplink

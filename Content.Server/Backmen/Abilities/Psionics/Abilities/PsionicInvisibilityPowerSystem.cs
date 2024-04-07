@@ -6,6 +6,7 @@ using Content.Shared.Stunnable;
 using Content.Shared.Stealth;
 using Content.Shared.Stealth.Components;
 using Content.Shared.Backmen.Abilities.Psionics;
+using Content.Shared.Backmen.Psionics;
 using Content.Shared.Backmen.Psionics.Events;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Audio.Systems;
