@@ -234,9 +234,8 @@
   id: WindoorMTFCommandLocked
   suffix: МТФ Command
   components:
-  - type: ContainerFill
-    containers:
-      board: [ DoorElectronicsMTFCommand ]
+  - type: AccessReader
+    access: [["MTFL"]]
 
 #-----------------------------------Cpls airlock
 
@@ -295,9 +294,8 @@
   id: WindoorMTFCplsLocked
   suffix: МТФ Cpls
   components:
-  - type: ContainerFill
-    containers:
-      board: [ DoorElectronicsMTFCpls ]
+  - type: AccessReader
+    access: [["MTFE"], ["MTFM"]]
 
 #-----------------------------------Medick airlock
 
@@ -356,9 +354,8 @@
   id: WindoorMTFMedicalLocked
   suffix: МТФ Medical
   components:
-  - type: ContainerFill
-    containers:
-      board: [ DoorElectronicsMTFMedic ]
+  - type: AccessReader
+    access: [["MTFM"]]
 
 #-----------------------------------Engineer airlock
 
@@ -417,9 +414,8 @@
   id: WindoorMTFEngineeringLocked
   suffix: МТФ Engineering
   components:
-  - type: ContainerFill
-    containers:
-      board: [ DoorElectronicsMTFEngineer ]
+  - type: AccessReader
+    access: [["MTFE"]]
 
 #-----------------------------------Security airlock
 
@@ -478,9 +474,8 @@
   id: WindoorMTFSecurityLocked
   suffix: МТФ Security
   components:
-  - type: ContainerFill
-    containers:
-      board: [ DoorElectronicsMTFSecurity ]
+  - type: AccessReader
+    access: [["MTFS"]]
 
 #-----------------------------------Janitor airlock
 
@@ -539,9 +534,8 @@
   id: WindoorMTFJanitorLocked
   suffix: МТФ Janitor
   components:
-  - type: ContainerFill
-    containers:
-      board: [ DoorElectronicsMTFJanitor ]
+  - type: AccessReader
+    access: [["MTFJ"]]
 
 #-----------------------------------MTF Base airlock
 
@@ -618,6 +612,5 @@
   id: WindoorMTFLocked
   suffix: МТФ
   components:
-  - type: ContainerFill
-    containers:
-      board: [ DoorElectronicsMTF ]
+  - type: AccessReader
+    access: [["MTF"]]
