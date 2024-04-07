@@ -66,18 +66,18 @@
         types: {}
       damage:
         types:
-          Heat: 1
+          Heat: 5
     - type: Reactive
       groups:
         Flammable: [Touch]
         Extinguish: [Touch]
     - type: SpiderWebObject
-    - type: SlowContacts
-      walkSpeedModifier: 0.5
-      sprintSpeedModifier: 0.5
+    - type: SpeedModifierContacts
+      walkSpeedModifier: 0.2
+      sprintSpeedModifier: 0.2
       ignoreWhitelist:
         components:
-            - IgnoreSpiderWeb
+        - IgnoreSpiderWeb
 
 - type: entity
   id: SpiderWebClown
@@ -153,7 +153,7 @@
         types: {}
       damage:
         types:
-          Heat: 1
+          Heat: 5
     - type: Reactive
       groups:
         Flammable: [Touch]

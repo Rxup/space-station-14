@@ -1,79 +1,3 @@
-# Implanters
-
-- type: entity
-  name: implanter
-  description: A syringe exclusively designed for the injection and extraction of subdermal implants.
-  id: BaseImplanter
-  parent: BaseItem
-  abstract: true
-  components:
-    - type: ItemSlots
-    - type: ContainerContainer
-      containers:
-        implanter_slot: !type:ContainerSlot { }
-    - type: Implanter
-      currentMode: Draw
-      implanterSlot:
-        name: Implant
-        locked: True
-        priority: 0
-        whitelist:
-          tags:
-            - SubdermalImplant
-    - type: Sprite
-      sprite: Objects/Specific/Chemistry/syringe.rsi
-      state: syringe_base0
-      layers:
-        - state: syringe2
-          map: [ "implantFull" ]
-          color: '#1cd94e'
-          visible: false
-        - state: syringe_base0
-          map: [ "implantOnly" ]
-    - type: Item
-      sprite: Objects/Specific/Chemistry/syringe.rsi
-      heldPrefix: 0
-    - type: Appearance
-    - type: GenericVisualizer
-      visuals:
-        enum.ImplanterVisuals.Full:
-          implantFull:
-            True: {visible: true}
-            False: {visible: false}
-        enum.ImplanterImplantOnlyVisuals.ImplantOnly:
-          implantOnly:
-            True: {state: broken}
-            False: {state: syringe_base0}
-
-- type: entity
-  id: Implanter
-  parent: BaseImplanter
-  description: A disposable syringe exclusively designed for the injection and extraction of subdermal implants.
-  components:
-    - type: Tag
-      tags:
-        - Trash
-
-- type: entity
-  id: BaseImplantOnlyImplanter
-  parent: Implanter
-  description: A disposable syringe exclusively designed for the injection of subdermal implants.
-  abstract: true
-  components:
-    - type: Sprite
-      sprite: Objects/Specific/Chemistry/syringe.rsi
-      state: syringe_base0
-      layers:
-        - state: syringe2
-          map: [ "implantFull" ]
-          color: '#1cd94e'
-          visible: true
-        - state: syringe_base0
-          map: [ "implantOnly" ]
-    - type: Implanter
-      currentMode: Inject
-      implantOnly: true
-
 - type: entity
   id: BaseImplantOnlyImplanterSyndi
   parent: BaseImplantOnlyImplanter
@@ -81,10 +5,9 @@
   abstract: true
   components:
     - type: Item
-      sprite: Objects/Specific/Medical/implanter.rsi
-      size: 3
+      sprite: Objects/Specific/Medical/syndi_implanter.rsi
     - type: Sprite
-      sprite: Objects/Specific/Medical/implanter.rsi
+      sprite: Objects/Specific/Medical/syndi_implanter.rsi
       state: implanter1
       layers:
         - state: implanter0
@@ -102,6 +25,99 @@
           implantOnly:
             True: {state: broken}
             False: {state: implanter1}
+
+- type: entity
+  name: implanter
+  description: A syringe exclusively designed for the injection and extraction of subdermal implants.
+  id: BaseImplanter
+  parent: BaseItem
+  abstract: true
+  components:
+    - type: ItemSlots
+    - type: ContainerContainer
+      containers:
+        implanter_slot: !type:ContainerSlot { }
+    - type: Implanter
+      whitelist:
+        components:
+        - Body # no chair microbomb
+      blacklist:
+        components:
+        - Guardian # no holoparasite macrobomb wombo combo
+        tags:
+        - Unimplantable
+      currentMode: Draw
+      implanterSlot:
+        name: Implant
+        locked: True
+        priority: 0
+        whitelist:
+          tags:
+            - SubdermalImplant
+    - type: Sprite
+      sprite: Objects/Specific/Medical/implanter.rsi
+      state: implanter0
+      layers:
+        - state: implanter0
+          map: [ "implantOnly" ]
+          visible: true
+        - state: implanter1
+          map: [ "implantFull" ]
+          visible: false
+    - type: Item
+      sprite: Objects/Specific/Medical/implanter.rsi
+      heldPrefix: 0
+      size: Small
+    - type: Appearance
+    - type: GenericVisualizer
+      visuals:
+        enum.ImplanterVisuals.Full:
+          implantFull:
+            True: {visible: true}
+            False: {visible: false}
+        enum.ImplanterImplantOnlyVisuals.ImplantOnly:
+          implantOnly:
+            True: {state: broken}
+            False: {state: implanter0}
+
+- type: entity
+  id: Implanter
+  parent: BaseImplanter
+  description: A disposable syringe exclusively designed for the injection and extraction of subdermal implants.
+  components:
+    - type: Tag
+      tags:
+        - Trash
+
+- type: entity
+  parent: Implanter
+  id: ImplanterAdmeme
+  suffix: Admeme
+  components:
+  - type: Implanter
+    # go wild with sentient chairs with macrobombs
+    whitelist: null
+    blacklist: null
+
+- type: entity
+  id: BaseImplantOnlyImplanter
+  parent: Implanter
+  description: A disposable syringe exclusively designed for the injection of subdermal implants.
+  abstract: true
+  components:
+    - type: Sprite
+      sprite: Objects/Specific/Medical/implanter.rsi
+      state: implanter0
+      layers:
+        - state: implanter1
+          map: [ "implantFull" ]
+          visible: true
+        - state: implanter0
+          map: [ "implantOnly" ]
+    - type: Implanter
+      currentMode: Inject
+      implantOnly: true
+
 
 #Fun implanters
 
@@ -174,6 +190,14 @@
       implant: EmpImplant
 
 - type: entity
+  id: ScramImplanter
+  name: scram implanter
+  parent: BaseImplantOnlyImplanterSyndi
+  components:
+    - type: Implanter
+      implant: ScramImplant
+
+- type: entity
   id: DnaScramblerImplanter
   name: DNA scrambler implanter
   parent: BaseImplantOnlyImplanterSyndi
@@ -206,6 +230,14 @@
   components:
     - type: Implanter
       implant: DeathRattleImplant
+
+- type: entity
+  id: DeathAcidifierImplanter
+  name: death acidifier implanter
+  parent: BaseImplantOnlyImplanterSyndi
+  components:
+  - type: Implanter
+    implant: DeathAcidifierImplant
 
 # Security and Command implanters
 

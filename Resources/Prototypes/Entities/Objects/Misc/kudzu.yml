@@ -1,26 +1,38 @@
 - type: entity
-  id: Kudzu
-  name: kudzu
-  description: A rapidly growing, dangerous plant. WHY ARE YOU STOPPING TO LOOK AT IT?!
+  id: BaseKudzu
+  abstract: true
   placement:
     mode: SnapgridCenter
     snap:
       - Wall
   components:
+    - type: Appearance
+    - type: Transform
+      anchored: true
+    - type: Physics
+    - type: Kudzu
+    - type: GrowingKudzu
+    - type: ActiveEdgeSpreader
+    - type: EdgeSpreader
+      id: Kudzu
+
+- type: entity
+  id: Kudzu
+  name: kudzu
+  parent: BaseKudzu
+  description: A rapidly growing, dangerous plant. WHY ARE YOU STOPPING TO LOOK AT IT?!
+  components:
     - type: MeleeSound
       soundGroups:
         Brute:
-          path: "/Audio/Weapons/slash.ogg"
+          path:
+            "/Audio/Weapons/slash.ogg"
     - type: Sprite
       sprite: Objects/Misc/kudzu.rsi
       state: kudzu_11
       drawdepth: Overdoors
-    - type: Appearance
     - type: KudzuVisuals
     - type: Clickable
-    - type: Transform
-      anchored: true
-    - type: Physics
     - type: Fixtures
       fixtures:
         fix1:
@@ -35,11 +47,12 @@
       damageModifierSet: Wood
     - type: Destructible
       thresholds:
-        - trigger: !type:DamageTrigger
-            damage: 10
-          behaviors:
-            - !type:DoActsBehavior
-              acts: ["Destruction"]
+      - trigger:
+          !type:DamageTrigger
+          damage: 10
+        behaviors:
+        - !type:DoActsBehavior
+          acts: [ "Destruction" ]
     - type: Temperature
       heatDamage:
         types:
@@ -52,51 +65,41 @@
         types: {}
       damage:
         types:
-          Heat: 1
+          Heat: 3
     - type: Reactive
       groups:
         Flammable: [Touch]
         Extinguish: [Touch]
       reactions:
-        - reagents: [WeedKiller, PlantBGone]
-          methods: [Touch]
-          effects:
-            - !type:HealthChange
-              scaled: true
-              damage:
-                types:
-                  Heat: 10
+      - reagents: [WeedKiller, PlantBGone]
+        methods: [Touch]
+        effects:
+        - !type:HealthChange
+          scaled: true
+          damage:
+            types:
+              Heat: 10
     - type: AtmosExposed
-    - type: Kudzu
       growthTickChance: 0.3
       spreadChance: 0.4
-    - type: GrowingKudzu
-    - type: SlowContacts
+    - type: SpeedModifierContacts
       walkSpeedModifier: 0.2
       sprintSpeedModifier: 0.2
       ignoreWhitelist:
         components:
         - IgnoreKudzu
-    - type: ActiveEdgeSpreader
-    - type: EdgeSpreader
-      id: Kudzu
-    # - type: NodeContainer
-    #   nodes:
-    #     kudzu:
-    #       !type:SpreaderNode
-    #       nodeGroupID: Spreader
     - type: Food
       requiredStomachs: 2 # ruminants have 4 stomachs but i dont care to give them literally 4 stomachs. 2 is good
       delay: 0.5
     - type: FlavorProfile
       flavors:
-        - fiber
+      - fiber
     - type: SolutionContainerManager
       solutions:
         food:
           reagents:
-            - ReagentId: Nutriment
-              Quantity: 2
+          - ReagentId: Nutriment
+            Quantity: 2
 
 - type: entity
   id: WeakKudzu
@@ -107,8 +110,61 @@
       spreadChance: 0.3
 
 - type: entity
+  id: KudzuFlowerFriendly
+  name: floral carpet
+  suffix: Friendly, Floral Anomaly
+  description: A colorful carpet of flowers sprawling in every direction. You're not sure whether to take it down or leave it up.
+  parent: Kudzu
+  components:
+    - type: Sprite
+      drawdepth: FloorObjects
+      sprite: Objects/Misc/kudzuflower.rsi
+      state: kudzu_11
+    - type: Kudzu
+      spriteVariants: 5
+      spreadChance: 0.01
+    - type: SpeedModifierContacts
+      walkSpeedModifier: 0.8
+      sprintSpeedModifier: 0.8
+      ignoreWhitelist:
+        components:
+        - IgnoreKudzu
+    - type: RandomSpawner
+      deleteSpawnerAfterSpawn: false
+      rareChance: 0.15
+      offset: 0.2
+      chance: 0.05
+      prototypes:
+      - LightTree01
+      - LightTree02
+      - LightTree03
+      - LightTree04
+      - LightTree05
+      - LightTree06
+      - CrystalCyan
+      rarePrototypes:
+      - AnomalyFloraBulb
+
+- type: entity
+  id: KudzuFlowerAngry
+  suffix: Angry, Floral Anomaly
+  parent: KudzuFlowerFriendly
+  components:
+    - type: Kudzu
+      spreadChance: 0.2
+    - type: RandomSpawner
+      chance: 0.05
+      rarePrototypes:
+      - AnomalyFloraBulb
+      - AnomalyFloraBulb
+      - MobLuminousEntity
+      - MobLuminousObject
+      - MobLuminousPerson
+
+- type: entity
   id: FleshKudzu
   name: tendons
+  parent: BaseKudzu
   description: A rapidly growing cluster of meaty tendons. WHY ARE YOU STOPPING TO LOOK AT IT?!
   placement:
     mode: SnapgridCenter
@@ -118,17 +174,14 @@
     - type: MeleeSound
       soundGroups:
         Brute:
-          path: "/Audio/Weapons/slash.ogg"
+          path:
+            "/Audio/Weapons/slash.ogg"
     - type: Sprite
       sprite: Objects/Misc/fleshkudzu.rsi
       state: kudzu_11
       drawdepth: Overdoors
-    - type: Appearance
     - type: KudzuVisuals
     - type: Clickable
-    - type: Transform
-      anchored: true
-    - type: Physics
     - type: Fixtures
       fixtures:
         fix1:
@@ -155,7 +208,7 @@
           Piercing: 1.5
       ignoreWhitelist:
         tags:
-          - Flesh
+        - Flesh
     - type: Kudzu
       growthTickChance: 0.1
       spreadChance: 0.4
@@ -181,24 +234,15 @@
       fireSpread: true
       damage:
        types:
-         Heat: 1
-    - type: GrowingKudzu
+         Heat: 3
       growthTickChance: 0.3
     - type: AtmosExposed
-    - type: ActiveEdgeSpreader
-    - type: EdgeSpreader
-      id: Kudzu
-    # - type: NodeContainer
-    #   nodes:
-    #     kudzu:
-    #       !type:SpreaderNode
-    #       nodeGroupID: Spreader
-    - type: SlowContacts
+    - type: SpeedModifierContacts
       walkSpeedModifier: 0.3
       sprintSpeedModifier: 0.3
       ignoreWhitelist:
         tags:
-          - Flesh
+        - Flesh
     - type: Food # delightfully devilish !
       delay: 0.5
     - type: SolutionContainerManager
@@ -216,9 +260,49 @@
           Asphyxiation: -0.25
 
 - type: entity
-  id: MiddleKudzu
-  parent: Kudzu
-  suffix: Weak
+  name: dark haze
+  id: ShadowKudzu
+  parent: [ BaseKudzu, BaseShadow ]
+  components:
+    - type: Physics
+      canCollide: false
+    - type: Occluder
+    - type: Sprite
+      drawdepth: Effects
+      sprite: Effects/spookysmoke.rsi
+      layers:
+      - state: spookysmoke
+        color: "#793a80dd"
+        map: [base]
+    - type: Kudzu
+      growthTickChance: 0.2
+      spreadChance: 0.99
+    - type: RandomSpawner
+      deleteSpawnerAfterSpawn: false
+      rareChance: 0.05
+      offset: 0.2
+      chance: 0.45
+      prototypes:
+      - ShadowBasaltRandom
+      rarePrototypes:
+      - ShadowPortal
+      - ShadowKudzuLootSpawner
+    - type: Tag
+      tags:
+        - HideContextMenu
+        - SpookyFog
+    - type: OptionsVisualizer
+      visuals:
+        base:
+        - options: Default
+          data: { state: spookysmoke }
+        - options: ReducedMotion
+          data: { state: spookysmoke_static }
+
+- type: entity
+  name: Haze
+  id: ShadowKudzuWeak
+  parent: ShadowKudzu
   components:
     - type: Kudzu
-      spreadChance: 0.5
+      spreadChance: 0 #appears during pulsation. It shouldnt spreading.
