@@ -1,4 +1,4 @@
-- type: entity
+﻿- type: entity
   parent: BaseItem
   id: FloorTileItemBase
   description: These could work as a pretty decent throwing weapon.
@@ -8,20 +8,22 @@
     sprite: Objects/Tiles/tile.rsi
   - type: Item
     sprite: Objects/Tiles/tile.rsi
-    size: Normal
   - type: DamageOtherOnHit
     damage:
       types:
         Blunt: 5
   - type: Stack
     count: 1
+  - type: Tag
+    tags:
+      - DroneUsable
   - type: Damageable
     damageContainer: Inorganic
   - type: Destructible
     thresholds:
     - trigger:
         !type:DamageTrigger
-        damage: 30
+        damage: 40
       behaviors:
         - !type:DoActsBehavior
           acts: [ "Destruction" ]
@@ -30,10 +32,7 @@
         damage: 20
       behaviors:
       - !type:PlaySoundBehavior
-        sound:
-          collection: MetalBreak
-          params:
-            volume: -8
+        sound: /Audio/Effects/metalbreak.ogg
       - !type:DoActsBehavior
         acts: [ "Destruction" ]
   - type: DamageOnLand
@@ -102,6 +101,11 @@
 #  - type: Construction
 #    graph: TileSteel
 #    node: steeltile
+  #Imperial craft tiles
+  - type: Construction
+    graph: TileDiamond
+    node: diamondtile
+
 
 - type: entity
   name: wood floor
@@ -175,6 +179,11 @@
       - FloorTechMaint
   - type: Stack
     stackType: FloorTileTechmaint
+  #Imperial craft tiles
+  - type: Construction
+    graph: TileTechmaint
+    node: techmainttile
+
 
 - type: entity
   name: reinforced tile
@@ -191,6 +200,9 @@
       - FloorReinforced
   - type: Stack
     stackType: FloorTileReinforced
+  - type: Construction
+    graph: TileReinforced
+    node: reinforcedtile
 
 # TODO add a catwalk tile item once tile smoothing is supported
 
@@ -209,6 +221,11 @@
       - FloorMono
   - type: Stack
     stackType: FloorTileMono
+  #Imperial craft tiles
+  - type: Construction
+    graph: TileMono
+    node: monotile
+
 
 - type: entity
   name: linoleum floor
@@ -225,44 +242,11 @@
       - FloorLino
   - type: Stack
     stackType: FloorTileLino
-
-- type: entity
-  name: filled brass plate
-  parent: FloorTileItemBase
-  id: FloorTileItemBrassFilled
-  components:
-  - type: Sprite
-    state: brass-filled
-  - type: Item
-    heldPrefix: brass
-  - type: FloorTile
-    outputs:
-      - PlatingBrass
-      - FloorBrassFilled
-  - type: Stack
-    stackType: FloorTileBrassFilled
+  #Imperial craft tiles
   - type: Construction
-    graph: TilesBrass
-    node: filledPlate
+    graph: TileLino
+    node: linotile
 
-- type: entity
-  name: smooth brass plate
-  parent: FloorTileItemBase
-  id: FloorTileItemBrassReebe
-  components:
-  - type: Sprite
-    state: reebe
-  - type: Item
-    heldPrefix: brass
-  - type: FloorTile
-    outputs:
-      - PlatingBrass
-      - FloorBrassReebe
-  - type: Stack
-    stackType: FloorTileBrassReebe
-  - type: Construction
-    graph: TilesBrass
-    node: reebe
 
 - type: entity
   name: dirty tile
@@ -328,70 +312,6 @@
   - type: Stack
     stackType: FloorTileBlue
 
-- type: entity
-  name: lime tile
-  parent: FloorTileItemBase
-  id: FloorTileItemLime
-  components:
-  - type: Sprite
-    state: lime
-  - type: Item
-    heldPrefix: steel
-  - type: FloorTile
-    outputs:
-      - Plating
-      - FloorSteelLime
-  - type: Stack
-    stackType: FloorTileLime
-
-- type: entity
-  name: mining tile
-  parent: FloorTileItemBase
-  id: FloorTileItemMining
-  components:
-  - type: Sprite
-    state: mining
-  - type: Item
-    heldPrefix: mining
-  - type: FloorTile
-    outputs:
-      - Plating
-      - FloorMining
-  - type: Stack
-    stackType: FloorTileMining
-
-- type: entity
-  name: dark mining tile
-  parent: FloorTileItemBase
-  id: FloorTileItemMiningDark
-  components:
-  - type: Sprite
-    state: miningdark
-  - type: Item
-    heldPrefix: miningdark
-  - type: FloorTile
-    outputs:
-      - Plating
-      - FloorMiningDark
-  - type: Stack
-    stackType: FloorTileMiningDark
-
-- type: entity
-  name: light mining tile
-  parent: FloorTileItemBase
-  id: FloorTileItemMiningLight
-  components:
-  - type: Sprite
-    state: mininglight
-  - type: Item
-    heldPrefix: mininglight
-  - type: FloorTile
-    outputs:
-      - Plating
-      - FloorMiningLight
-  - type: Stack
-    stackType: FloorTileMiningLight
-
 # Departamental
 - type: entity
   name: freezer tile
@@ -456,6 +376,11 @@
       - FloorBar
   - type: Stack
     stackType: FloorTileBar
+  #Imperial craft tiles
+  - type: Construction
+    graph: TileBar
+    node: bartile
+
 
 - type: entity
   name: clown tile
@@ -504,6 +429,11 @@
       - FloorKitchen
   - type: Stack
     stackType: FloorTileKitchen
+  #Imperial craft tiles
+  - type: Construction
+    graph: TileKitchen
+    node: kitchentile
+
 
 - type: entity
   name: laundry tile
@@ -586,6 +516,11 @@
       - FloorArcadeBlue
   - type: Stack
     stackType: FloorTileStackArcadeBlue
+  #Imperial craft tiles
+  - type: Construction
+    graph: TileArcadeBlue
+    node: arcadebluetile
+
 
 - type: entity
   name: blue arcade floor
@@ -602,6 +537,11 @@
       - FloorArcadeBlue2
   - type: Stack
     stackType: FloorTileStackArcadeBlue2
+  #Imperial craft tiles
+  - type: Construction
+    graph: TileArcadeBlue2
+    node: arcadeblue2tile
+
 
 - type: entity
   name: red arcade floor
@@ -618,6 +558,11 @@
       - FloorArcadeRed
   - type: Stack
     stackType: FloorTileStackArcadeRed
+  #Imperial craft tiles
+  - type: Construction
+    graph: TileArcadeRed
+    node: arcaderedtile
+
 
 - type: entity
   name: eighties floor
@@ -666,6 +611,11 @@
       - FloorCarpetOffice
   - type: Stack
     stackType: FloorTileStackCarpetOffice
+  #Imperial craft tiles
+  - type: Construction
+    graph: TileCarpetOffice
+    node: carpetofficetile
+
 
 - type: entity
   name: boxing ring floor
@@ -682,6 +632,11 @@
       - FloorBoxing
   - type: Stack
     stackType: FloorTileStackBoxing
+  #Imperial craft tiles
+  - type: Construction
+    graph: TileBoxing
+    node: boxingtile
+
 
 - type: entity
   name: gym floor
@@ -698,6 +653,11 @@
       - FloorGym
   - type: Stack
     stackType: FloorTileStackGym
+  #Imperial craft tiles
+  - type: Construction
+    graph: TileGym
+    node: gymtile
+
 
 # Shuttles
 - type: entity
@@ -715,6 +675,11 @@
       - FloorShuttleWhite
   - type: Stack
     stackType: FloorTileStackShuttleWhite
+  #Imperial craft tiles
+  - type: Construction
+    graph: TileShuttleWhite
+    node: shuttlewhitetile
+
 
 - type: entity
   name: blue shuttle floor
@@ -731,6 +696,11 @@
       - FloorShuttleBlue
   - type: Stack
     stackType: FloorTileStackShuttleBlue
+  #Imperial craft tiles
+  - type: Construction
+    graph: TileShuttleBlue
+    node: shuttlebluetile
+
 
 - type: entity
   name: orange shuttle floor
@@ -747,6 +717,11 @@
       - FloorShuttleOrange
   - type: Stack
     stackType: FloorTileStackShuttleOrange
+  #Imperial craft tiles
+  - type: Construction
+    graph: TileShuttleOrange
+    node: shuttleorangetile
+
 
 - type: entity
   name: purple shuttle floor
@@ -763,6 +738,11 @@
       - FloorShuttlePurple
   - type: Stack
     stackType: FloorTileStackShuttlePurple
+  #Imperial craft tiles
+  - type: Construction
+    graph: TileShuttlePurple
+    node: shuttlepurpletile
+
 
 - type: entity
   name: red shuttle floor
@@ -780,38 +760,6 @@
   - type: Stack
     stackType: FloorTileStackShuttleRed
 
-- type: entity
-  name: grey shuttle floor
-  parent: FloorTileItemBase
-  id: FloorTileItemShuttleGrey
-  components:
-  - type: Sprite
-    state: shuttlegrey
-  - type: Item
-    heldPrefix: shuttlegrey
-  - type: FloorTile
-    outputs:
-      - Plating
-      - FloorShuttleGrey
-  - type: Stack
-    stackType: FloorTileStackShuttleGrey
-
-- type: entity
-  name: black shuttle floor
-  parent: FloorTileItemBase
-  id: FloorTileItemShuttleBlack
-  components:
-  - type: Sprite
-    state: shuttleblack
-  - type: Item
-    heldPrefix: shuttleblack
-  - type: FloorTile
-    outputs:
-      - Plating
-      - FloorShuttleBlack
-  - type: Stack
-    stackType: FloorTileStackShuttleBlack
-
 # Materials
 - type: entity
   name: gold floor
@@ -828,6 +776,10 @@
       - FloorGold
   - type: Stack
     stackType: FloorTileGold
+  #Imperial craft tiles
+  - type: Construction
+    graph: TileGold
+    node: goldltile
 
 - type: entity
   name: silver tile
@@ -844,6 +796,10 @@
       - FloorSilver
   - type: Stack
     stackType: FloorTileSilver
+  #Imperial craft tiles
+  - type: Construction
+    graph: TileSilver
+    node: silvertile
 
 # Circuits
 - type: entity
@@ -877,24 +833,6 @@
       - FloorBlueCircuit
   - type: Stack
     stackType: FloorTileBCircuit
-
-# Circuits stacks
-
-- type: entity
-  parent: FloorTileItemGCircuit
-  id: FloorTileItemGCircuit4
-  suffix: 4
-  components:
-  - type: Stack
-    count: 4
-
-- type: entity
-  parent: FloorTileItemBCircuit
-  id: FloorTileItemBCircuit4
-  suffix: 4
-  components:
-  - type: Stack
-    count: 4
 
 # Terrain
 - type: entity
@@ -960,6 +898,11 @@
       - FloorWoodTile
   - type: Stack
     stackType: FloorTileWoodPattern
+  #imperial craft tiles
+  - type: Construction
+    graph: TileWoodPattern
+    node: woodpatterntile
+
 
 - type: entity
   id: FloorTileItemFlesh
@@ -995,6 +938,11 @@
       - FloorTechMaint2
   - type: Stack
     stackType: FloorTileSteelMaint
+  #Imperial craft tiles
+  - type: Construction
+    graph: TileSteelMaint
+    node: steelmainttile
+
 
 - type: entity
   name: grating maint floor
@@ -1011,6 +959,11 @@
       - FloorTechMaint3
   - type: Stack
     stackType: FloorTileGratingMaint
+  #Imperial craft tiles
+  - type: Construction
+    graph: TileGratingMaint
+    node: gratingmainttile
+
 
 - type: entity
   name: web tile
@@ -1028,109 +981,3 @@
   - type: Construction
     graph: WebObjects
     node: tile
-
-# Faux science tiles
-
-- type: entity
-  id: FloorTileItemAstroGrass
-  parent: FloorTileItemBase
-  name: astro-grass
-  description: Fake grass that covers up wires and even comes with realistic NanoTrimmings!
-  components:
-  - type: Sprite
-    state: astrograss
-  - type: Item
-    heldPrefix: grass
-  - type: FloorTile
-    outputs:
-    - Plating
-    - FloorAstroGrass
-  - type: Stack
-    stackType: FloorTileAstroGrass
-
-- type: entity
-  id: FloorTileItemMowedAstroGrass
-  parent: FloorTileItemBase
-  name: mowed astro-grass
-  description: Fake grass that covers up wires and even comes with realistic NanoTrimmings!
-  components:
-  - type: Sprite
-    state: grass
-  - type: Item
-    heldPrefix: grass
-  - type: FloorTile
-    outputs:
-    - Plating
-    - FloorMowedAstroGrass
-  - type: Stack
-    stackType: FloorTileAstroGrass
-
-- type: entity
-  id: FloorTileItemJungleAstroGrass
-  parent: FloorTileItemBase
-  name: jungle astro-grass
-  description: Fake grass that covers up wires and even comes with realistic NanoTrimmings!
-  components:
-  - type: Sprite
-    state: grassjungle
-  - type: Item
-    heldPrefix: grass
-  - type: FloorTile
-    outputs:
-    - Plating
-    - FloorJungleAstroGrass
-  - type: Stack
-    stackType: FloorTileAstroGrass
-
-- type: entity
-  id: FloorTileItemAstroIce
-  parent: FloorTileItemBase
-  name: astro-ice
-  description: Fake ice that's as slippery as the real thing, while being easily removable!
-  components:
-  - type: Sprite
-    state: astroice
-  - type: Item
-    heldPrefix: snow
-  - type: FloorTile
-    outputs:
-    - Plating
-    - FloorAstroIce
-  - type: Stack
-    stackType: FloorTileAstroIce
-
-- type: entity
-  id: FloorTileItemAstroSnow
-  parent: FloorTileItemBase
-  name: astro-snow
-  description: Fake snow that's as fluffy as the real thing, while being easily removable!
-  components:
-  - type: Sprite
-    state: snow
-  - type: Item
-    heldPrefix: snow
-  - type: FloorTile
-    outputs:
-    - Plating
-    - FloorAstroSnow
-  - type: Stack
-    stackType: FloorTileAstroSnow
-
-- type: entity
-  name: large wood floor
-  parent: FloorTileItemBase
-  id: FloorTileItemWoodLarge
-  components:
-  - type: Sprite
-    state: wood-large
-  - type: Item
-    heldPrefix: wood
-  - type: FloorTile
-    outputs:
-      - Plating
-      - FloorWoodLarge
-  - type: Stack
-    stackType: FloorTileWoodLarge
-  - type: Construction
-    graph: TileWoodLarge
-    node: woodtilelarge

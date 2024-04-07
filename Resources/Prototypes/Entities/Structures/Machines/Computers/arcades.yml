@@ -63,9 +63,9 @@
     - map: ["computerLayerBody"]
       state: arcade
     - map: ["computerLayerScreen"]
-      state: screen_spacevillain
+      state: invaders
     - map: ["enum.WiresVisualLayers.MaintenancePanel"]
-      state: panel
+      state: arcade_broken
       visible: false
   - type: PointLight
     color: "#e3a136"
@@ -172,9 +172,9 @@
     - map: ["computerLayerBody"]
       state: arcade
     - map: ["computerLayerScreen"]
-      state: screen_blockgame
+      state: blockgame
     - map: ["enum.WiresVisualLayers.MaintenancePanel"]
-      state: panel
+      state: arcade_broken
       visible: false
   - type: BlockGameArcade
   - type: ActivatableUI

@@ -38,9 +38,8 @@
     sprite: Objects/Misc/Lights/lights.rsi
   - type: Item
     sprite: Objects/Misc/Lights/lights.rsi
-    size: Normal
+    size: 20
     heldPrefix: off
-  - type: ShadowkinLight
   - type: PointLight
     enabled: false
     radius: 3
@@ -50,8 +49,6 @@
   - type: Appearance
   - type: Physics
     canCollide: false
-  - type: StealTarget
-    stealGroup: LAMP
 
 - type: entity
   name: lamp
@@ -63,25 +60,12 @@
     sprite: Objects/Misc/Lights/lamp.rsi
     layers:
       - state: lamp
-        map: [ "base" ]
       - state: lamp-on
         shader: unshaded
         visible: false
         map: [ "light" ]
   - type: Item
     sprite: Objects/Misc/Lights/lamp.rsi
-  - type: HolidayVisuals
-    holidays:
-      festive:
-      - FestiveSeason
-  - type: GenericVisualizer
-    visuals:
-      enum.HolidayVisuals.Holiday:
-        base:
-          festive: { state: christmaslamp }
-        light:
-          festive: { state: christmaslamp-on }
-  - type: Rotatable # Corvax-Resprite
 
 - type: entity
   name: banana lamp
@@ -96,7 +80,6 @@
         shader: unshaded
         visible: false
         map: [ "light" ]
-  - type: Rotatable
 
 - type: entity
   name: desk lamp
@@ -108,29 +91,12 @@
     sprite: Objects/Misc/Lights/lampgreen.rsi
     layers:
       - state: lampgreen
-        map: [ "base" ]
       - state: lampgreen-on
         shader: unshaded
         visible: false
         map: [ "light" ]
   - type: Item
     sprite: Objects/Misc/Lights/lampgreen.rsi
-  - type: HolidayVisuals
-    holidays:
-      festive:
-      - FestiveSeason
-  - type: GenericVisualizer
-    visuals:
-      enum.HolidayVisuals.Holiday:
-        base:
-          festive:
-            sprite: Objects/Misc/Lights/lamp.rsi
-            state: christmaslamp
-        light:
-          festive:
-            sprite: Objects/Misc/Lights/lamp.rsi
-            state: christmaslamp-on
-  - type: Rotatable # Corvax-Resprite
 
 - type: entity
   name: interrogator lamp
@@ -167,7 +133,6 @@
   - type: AutoRecharge
     rechargeDuration: 30
   - type: MeleeWeapon
-    wideAnimationRotation: 180
     damage:
       types:
         Blunt: 0 # melee weapon to allow flashing individual targets
@@ -193,7 +158,7 @@
   description: A pole with powerful mounted lights on it.
   components:
   - type: Item
-    size: Normal
+    size: 50
   - type: Sprite
     layers:
       - state: floodlight
@@ -211,7 +176,9 @@
           bounds: "-0.2, -0.5, 0.2, 0.5"
         density: 50
         mask:
-        - HighImpassable
+        - MachineMask
+        layer:
+        - MachineLayer
   - type: PointLight
     enabled: false
     radius: 8
@@ -228,7 +195,7 @@
       behaviors:
       - !type:PlaySoundBehavior
         sound:
-          collection: GlassBreak
+          path: /Audio/Effects/glass_break1.ogg
       - !type:SpawnEntitiesBehavior
         spawn:
           FloodlightBroken:
@@ -264,7 +231,7 @@
       behaviors:
       - !type:PlaySoundBehavior
         sound:
-          collection: MetalGlassBreak
+          path: /Audio/Effects/metalbreak.ogg
       - !type:SpawnEntitiesBehavior
         spawn:
           SheetSteel1:
@@ -281,4 +248,6 @@
           bounds: "-0.2, -0.5, 0.2, 0.5"
         density: 50
         mask:
-        - HighImpassable
+        - MachineMask
+        layer:
+        - MachineLayer
