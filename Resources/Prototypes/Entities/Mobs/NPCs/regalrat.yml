@@ -286,6 +286,9 @@
     guides:
     - MinorAntagonists
   - type: FelinidFood
+  - type: FireVisuals
+    sprite: Mobs/Effects/onfire.rsi
+    normalState: Mouse_burning
 
 - type: weightedRandomEntity
   id: RatKingLoot
