@@ -23,7 +23,7 @@
         "directions": 4
     },
     {
-      "name": "screen_invaders",
+      "name": "invaders",
       "directions": 4,
       "delays": [
         [
@@ -46,7 +46,7 @@
       ]
     },
     {
-      "name": "screen_blockgame",
+      "name": "blockgame",
       "directions": 4,
       "delays": [
         [
@@ -88,7 +88,7 @@
       ]
     },
     {
-        "name": "screen_spacevillain",
+        "name": "spacevillain",
         "directions": 4,
         "delays": [
           [
