@@ -51,9 +51,10 @@ public sealed class LoadoutSystem : EntitySystem
             var entity = Spawn(loadout.EntityId, Transform(ev.Mob).Coordinates);
 
             // Take in hand if not clothes
-            if (!TryComp<ClothingComponent>(entity, out var clothing))
+            if (!TryComp<ClothingComponent>(entity, out var clothing) || !TryComp<InventoryComponent>(ev.Mob, out var inventoryComponent))
             {
-                _handsSystem.TryPickup(ev.Mob, entity);
+                if(!_handsSystem.TryPickup(ev.Mob, entity))
+                    QueueDel(entity);
                 continue;
             }
 
@@ -71,10 +72,10 @@ public sealed class LoadoutSystem : EntitySystem
 
                 firstSlotName ??= slot.Name;
 
-                if (_inventorySystem.TryGetSlotEntity(ev.Mob, slot.Name, out var _))
+                if (_inventorySystem.TryGetSlotEntity(ev.Mob, slot.Name, out var _, inventoryComponent))
                     continue;
 
-                if (!_inventorySystem.TryEquip(ev.Mob, entity, slot.Name, true))
+                if (!_inventorySystem.TryEquip(ev.Mob, entity, slot.Name, true, force: true, clothing: clothing, inventory: inventoryComponent))
                     continue;
 
                 isEquiped = true;
@@ -90,11 +91,11 @@ public sealed class LoadoutSystem : EntitySystem
                 _inventorySystem.TryGetSlotEntity(ev.Mob, BackpackSlotId, out var backEntity) &&
                 _storageSystem.CanInsert(backEntity.Value, slotEntity.Value, out _))
             {
-                if(_storageSystem.Insert(backEntity.Value, slotEntity.Value, out _, playSound: false))
+                if(!_storageSystem.Insert(backEntity.Value, slotEntity.Value, out _, playSound: false))
                     continue;
             }
 
-            if (!_inventorySystem.TryEquip(ev.Mob, entity, firstSlotName, true))
+            if (!_inventorySystem.TryEquip(ev.Mob, entity, firstSlotName, true, force: true, clothing: clothing, inventory: inventoryComponent))
             {
                 QueueDel(entity);
             }
