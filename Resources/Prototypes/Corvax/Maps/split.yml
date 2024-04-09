@@ -18,6 +18,7 @@
               addComponents:
                 - type: ProtectedGrid
                 - type: TradeStation
+                - type: ArrivalsProtectGrid
               paths:
                 - /Maps/Shuttles/trading_mayhen.yml
         - type: StationCargoShuttle
@@ -63,6 +64,8 @@
             # cargo
             SalvageSpecialist: [ 1, 1 ]
             CargoTechnician: [ 3, 3 ]
+            # backmen
+            SAI: [1, 1] # backmen-SAI
     Payback:
       stationProto: NanotrasenStationNoArrivals
       components:
@@ -77,6 +80,7 @@
               addComponents:
                 - type: ProtectedGrid
                 - type: TradeStation
+                - type: ArrivalsProtectGrid
               paths:
                 - /Maps/Shuttles/trading_payback.yml
         - type: StationCargoShuttle
@@ -118,6 +122,10 @@
             # cargo
             SalvageSpecialist: [ 1, 1 ]
             CargoTechnician: [ 2, 3 ]
+            # backmen
+            Prisoner: [ 3, 6]
+            SAI: [1, 1] # backmen-SAI
+            Brigmedic: [ 0, 1 ] # backmen-Brigmedic
     Lumber:
       stationProto: NanotrasenStationNoArrivals
       components:
@@ -132,6 +140,7 @@
               addComponents:
                 - type: ProtectedGrid
                 - type: TradeStation
+                - type: ArrivalsProtectGrid
               paths:
                 - /Maps/Shuttles/trading_outpost.yml
             mining:
@@ -176,3 +185,5 @@
             Quartermaster: [ 1, 1 ]
             SalvageSpecialist: [ 3, 3 ]
             CargoTechnician: [ 3, 4 ]
+            # backmen
+            SAI: [1, 1] # backmen-SAI
