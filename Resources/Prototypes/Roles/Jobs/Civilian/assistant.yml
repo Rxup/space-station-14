@@ -6,8 +6,8 @@
   startingGear: PassengerGear
   icon: "JobIconPassenger"
   supervisors: job-supervisors-everyone
-#  access: # Corvax-MRP
-#  - Maintenance
+  access: # Corvax-MRP
+  - Maintenance
   #start-backmen: currency
   minBankBalance: 50
   maxBankBalance: 400

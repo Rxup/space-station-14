@@ -5,8 +5,7 @@
   playTimeTracker: JobRoboticist
   requirements:
     - !type:DepartmentTimeRequirement
-      department: Science
-      time: 36000 #10 hrs
+      time: 60 #10 hrs
   startingGear: RoboticistGear
   icon: "JobIconRoboticist"
   supervisors: job-supervisors-rd

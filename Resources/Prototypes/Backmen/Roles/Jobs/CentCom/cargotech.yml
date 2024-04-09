@@ -10,17 +10,11 @@
   canBeAntag: false
   weight: 1
   requireAdminNotify: true
+  whitelistRequired: true
   joinNotifyCrew: true
   requirements:
     - !type:DepartmentTimeRequirement
-      department: Cargo
-      time: 126000
-    - !type:RoleTimeRequirement
-      role: JobCentralCommandAssistant
-      time: 21600
-    - !type:DepartmentTimeRequirement
-      department: CentCom
-      time: 43200
+      time: 6000
   access:
     - CentralCommand
     - CCCargo

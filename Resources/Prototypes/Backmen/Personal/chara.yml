@@ -1,12 +1,10 @@
 ﻿- type: loadout
   id: BedsheetInvisibilityCloak
   entity: BedsheetInvisibilityCloak
-  sponsorOnly: true
 
 - type: loadout
   id: MedipenProbka
   entity: MedipenProbka
-  sponsorOnly: true
 
 - type: entity
   name: Пробка

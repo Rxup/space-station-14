@@ -6,13 +6,7 @@
   joinNotifyCrew: false
   requirements:
   - !type:OverallPlaytimeRequirement
-    time: 24000
-  - !type:DepartmentTimeRequirement
-    department: Medical
-    time: 14400
-  - !type:RoleTimeRequirement
-    role: JobCentralCommandAssistant
-    time: 18000
+    time: 60
   icon: JobIconUnknown
   supervisors: job-supervisors-human
   canBeAntag: false

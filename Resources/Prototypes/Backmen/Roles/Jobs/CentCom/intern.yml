@@ -10,17 +10,11 @@
   canBeAntag: false
   weight: 1
   requireAdminNotify: true
+  whitelistRequired: true
   joinNotifyCrew: true
   requirements:
     - !type:DepartmentTimeRequirement
-      department: Engineering
-      time: 108000
-    - !type:DepartmentTimeRequirement
-      department: Medical
-      time: 108000
-    - !type:DepartmentTimeRequirement
-      department: Civilian
-      time: 108000
+      time: 6000
   access:
     - CentralCommand
     - Service

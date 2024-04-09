@@ -14,8 +14,7 @@
   whitelistRequired: true
   requirements:
     - !type:DepartmentTimeRequirement
-      department: CentCom
-      time: 1
+      time: 6000
   access:
     - CCCargo
     - CCSecurity

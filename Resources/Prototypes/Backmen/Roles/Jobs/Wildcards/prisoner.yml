@@ -11,7 +11,7 @@
   supervisors: job-supervisors-security
   requirements:
     - !type:OverallPlaytimeRequirement
-      time: 3600
+      time: 60
   special:
     - !type:AddImplantSpecial
       implants: [ TrackingImplant ]

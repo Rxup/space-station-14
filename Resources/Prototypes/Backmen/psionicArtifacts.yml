@@ -7,11 +7,11 @@
     PonderingOrbTelepathic: 1
     ClothingShoesBootsMagBlinding: 0.5
     BedsheetInvisibilityCloak: 0.15
-    # WeaponWandPolymorphCarp: 0.05
-    # WeaponWandPolymorphMonkey: 0.05
-    # WeaponWandFireball: 0.025
-    # WeaponWandDeath: 0.001
-    # WeaponWandPolymorphDoor: 0.05
+    WeaponWandPolymorphCarp: 0.05
+    WeaponWandPolymorphMonkey: 0.05
+    WeaponWandFireball: 0.025
+    WeaponWandDeath: 0.001
+    WeaponWandPolymorphDoor: 0.05
     SpawnSpellbook: 0.025
     ForceWallSpellbook: 0.025
     BlinkBook: 0.025

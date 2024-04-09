@@ -10,14 +10,11 @@
   canBeAntag: false
   weight: 1
   requireAdminNotify: true
+  whitelistRequired: true
   joinNotifyCrew: true
   requirements:
     - !type:DepartmentTimeRequirement
-      department: Security
-      time: 108000
-    - !type:RoleTimeRequirement
-      role: JobCentralCommandAssistant
-      time: 3600
+      time: 6000
   access:
     - CentralCommand
     - CCSecurity
