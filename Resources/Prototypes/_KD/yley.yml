@@ -1,0 +1,7 @@
+- type: radioChannel
+  id: Hive
+  name: Hive
+  keycode: 'h'
+  frequency: 6969
+  color: "#6900C6"
+  longRange: true

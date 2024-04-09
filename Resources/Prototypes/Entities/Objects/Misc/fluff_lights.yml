@@ -40,7 +40,6 @@
     sprite: Objects/Misc/Lights/lights.rsi
     size: Normal
     heldPrefix: off
-  - type: ShadowkinLight
   - type: PointLight
     enabled: false
     radius: 3

@@ -1,0 +1,101 @@
+- type: entity
+  parent: ClothingOuterHardsuitBase
+  id: ClothingOuterHardsuitOrdersuit
+  name: Suit of the elite special squad of the red order
+  description: Extremely valuable and desirable for any corporation. an unreadable name engraved on the shoulder
+  components:
+  - type: Sprite
+    sprite: Backmen/Clothing/OuterClothing/Hardsuits/order_suit.rsi
+  - type: Clothing
+    sprite: Backmen/Clothing/OuterClothing/Hardsuits/order_suit.rsi
+  - type: PressureProtection
+    highPressureMultiplier: 0.02
+    lowPressureMultiplier: 10000
+  - type: ClothingSpeedModifier
+    walkModifier: 0.85
+    sprintModifier: 0.85
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.15
+        Slash: 0.15
+        Piercing: 0.20
+        Heat: 0.30
+        Radiation: 0.1
+        Caustic: 0.15
+        Stun: 0.15
+  - type: TemperatureProtection
+    coefficient: 0.01
+  - type: ExplosionResistance
+    damageCoefficient: 0.1
+  - type: ToggleableClothing
+    clothingPrototype: ClothingHeadHelmetHardsuitOrden
+
+- type: entity
+  parent: ClothingOuterHardsuitBase
+  id: ClothingOuterHardsuitOrdinaryOrdersuit
+  name: Suit of the special detachment of the red order
+  description: Extremely valuable and desirable for any corporation. an unreadable name engraved on the shoulder
+  components:
+  - type: Sprite
+    sprite: Backmen/Clothing/OuterClothing/Hardsuits/ordinary_orden_suit.rsi
+  - type: Clothing
+    sprite: Backmen/Clothing/OuterClothing/Hardsuits/ordinary_orden_suit.rsi
+  - type: PressureProtection
+    highPressureMultiplier: 0.02
+    lowPressureMultiplier: 10000
+  - type: ClothingSpeedModifier
+    walkModifier: 0.85
+    sprintModifier: 0.85
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.9
+        Slash: 0.9
+        Piercing: 0.9
+        Heat: 0.2
+        Radiation: 0.25
+        Caustic: 0.85
+        Stun: 0.65
+  - type: TemperatureProtection
+    coefficient: 0.01
+  - type: ExplosionResistance
+    damageCoefficient: 0.1
+  - type: ToggleableClothing
+    clothingPrototype: ClothingHeadHelmetHardsuitOrdinaryOrden
+
+- type: entity
+  parent: ClothingBeltStorageBase
+  id: ClothingBeltOrden
+  name: Scabbard of the red order
+  description: A special scabbard created exclusively for the sabers of the Red Order.
+  components:
+  - type: Sprite
+    sprite: Backmen/Clothing/Belt/orden_sheath.rsi
+    state: sheath
+  - type: Clothing
+    sprite: Backmen/Clothing/Belt/orden_sheath.rsi
+  - type: Storage
+    grid:
+    - 0,0,4,3
+    whitelist:
+      tags:
+        - SwordSquadRO
+  - type: ItemMapper
+    mapLayers:
+      sheath-sabre:
+        whitelist:
+          tags:
+          - SwordSquadRO
+
+- type: entity
+  parent: ClothingBackpack
+  id: ClothingOrderBackpack
+  name: Backpack of the Red Order.
+  description: A backpack of the death squad, taken as a trophy and remade to fit their needs by the order!
+  components:
+  - type: Storage
+    grid:
+    - 0,0,7,4
+  - type: Sprite
+    sprite: Backmen/Clothing/Back/Backpacks/orden_backpacks.rsi

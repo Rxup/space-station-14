@@ -468,7 +468,6 @@
 - type: entity
   parent: CentcomIDCard
   id: ERTLeaderIDCard
-  noSpawn: true
   name: ERT leader ID card
   components:
   - type: Sprite
@@ -483,7 +482,6 @@
 - type: entity
   parent: ERTLeaderIDCard
   id: ERTChaplainIDCard
-  noSpawn: true
   name: ERT chaplain ID card
   components:
   - type: Sprite
@@ -498,7 +496,6 @@
 - type: entity
   parent: ERTChaplainIDCard
   id: ERTEngineerIDCard
-  noSpawn: true
   name: ERT engineer ID card
   components:
   - type: Sprite
@@ -511,7 +508,6 @@
 - type: entity
   parent: ERTChaplainIDCard
   id: ERTJanitorIDCard
-  noSpawn: true
   name: ERT janitor ID card
   components:
   - type: Sprite
@@ -524,7 +520,6 @@
 - type: entity
   parent: ERTChaplainIDCard
   id: ERTMedicIDCard
-  noSpawn: true
   name: ERT medic ID card
   components:
   - type: Sprite
@@ -537,7 +532,6 @@
 - type: entity
   parent: ERTChaplainIDCard
   id: ERTSecurityIDCard
-  noSpawn: true
   name: ERT security ID card
   components:
   - type: Sprite
@@ -596,8 +590,8 @@
   id: AgentIDCard
   suffix: Agent
   components:
-  - type: PresetIdCard
-    job: Passenger
+  - type: IdCard
+    jobTitle: Passenger
   - type: Access
     tags:
     - Maintenance
@@ -640,6 +634,7 @@
     - JobIconChiefEngineer
     - JobIconBartender
     - JobIconHeadOfSecurity
+    - JobIconBrigmedic
     - JobIconMedicalDoctor
     - JobIconParamedic
     - JobIconChef
@@ -655,6 +650,10 @@
     - JobIconSecurityCadet
     - JobIconZookeeper
     - JobIconVisitor
+    - JobIconSeniorPhysician
+    - JobIconSeniorOfficer
+    - JobIconSeniorEngineer
+    - JobIconSeniorResearcher
   - type: ActivatableUI
     key: enum.AgentIDCardUiKey.Key
     inHandsOnly: true
@@ -670,21 +669,6 @@
         type: AgentIDCardBoundUserInterface
       - key: enum.ChameleonUiKey.Key
         type: ChameleonBoundUserInterface
-# Corvax-HiddenDesc-Start
-  - type: HiddenDescription
-    entries:
-    - label: corvax-hidden-desc-AgentIDCard-syndicate
-      whitelistMind:
-        components:
-          - TraitorRole
-          - NukeOperative
-    - label: corvax-hidden-desc-AgentIDCard-research
-      jobRequired:
-        - ResearchAssistant
-        - ResearchDirector
-        - Scientist
-        - Borg
-# Corvax-HiddenDesc-End
 
 - type: entity
   name: passenger ID card
@@ -833,6 +817,8 @@
     layers:
     - state: default
     - state: idseniorengineer
+  - type: PresetIdCard
+    job: SeniorEngineer
 
 - type: entity
   parent: IDCardStandard
@@ -843,6 +829,8 @@
     layers:
     - state: default
     - state: idseniorresearcher
+  - type: PresetIdCard
+    job: SeniorResearcher
 
 - type: entity
   parent: IDCardStandard
@@ -853,6 +841,8 @@
     layers:
     - state: default
     - state: idseniorphysician
+  - type: PresetIdCard
+    job: SeniorPhysician
 
 - type: entity
   parent: IDCardStandard
@@ -863,3 +853,5 @@
     layers:
     - state: default
     - state: idseniorofficer
+  - type: PresetIdCard
+    job: SeniorOfficer

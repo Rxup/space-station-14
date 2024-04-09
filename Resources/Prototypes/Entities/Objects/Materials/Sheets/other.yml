@@ -79,22 +79,14 @@
   name: plasma
   suffix: Full
   components:
+  - type: Sprite
+    state: plasma
   - type: Material
   - type: PhysicalComposition
     materialComposition:
       Plasma: 100
   - type: Stack
     stackType: Plasma
-    baseLayer: base
-    layerStates:
-    - plasma
-    - plasma_2
-    - plasma_3
-  - type: Sprite
-    state: plasma_3
-    layers:
-    - state: plasma_3
-      map: ["base"]
   - type: Item
     heldPrefix: plasma
   - type: Appearance

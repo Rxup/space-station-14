@@ -4,12 +4,8 @@
   description: job-description-brigmedic
   playTimeTracker: JobBrigmedic
   requirements:
-    - !type:DepartmentTimeRequirement
-      department: Medical
-      time: 18000
-    - !type:DepartmentTimeRequirement
-      department: Security
-      time: 7200
+    - !type:OverallPlaytimeRequirement
+      time: 60
   startingGear: BrigmedicGear
   icon: "JobIconBrigmedic"
   supervisors: job-supervisors-hos

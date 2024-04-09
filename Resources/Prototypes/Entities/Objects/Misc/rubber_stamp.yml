@@ -48,7 +48,6 @@
     stampedColor: "#3681bb"
     stampState: "paper_stamp-cap"
   - type: Sprite
-    sprite: Objects/Misc/stamps.rsi
     state: stamp-cap
 
 - type: entity

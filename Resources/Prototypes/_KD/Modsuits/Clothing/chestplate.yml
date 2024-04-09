@@ -1,0 +1,663 @@
+- type: entity #мосьюты
+  parent: ClothingOuterHardsuitBase
+  id: ClothingOuterChestplateModsuitSealedBase
+  name: marine modsuit
+  abstract: true
+  description: A special suit that protects against hazardous, low pressure environments. Has radiation shielding.
+  components:
+  - type: Sprite
+    sprite: _KD/Modsuits/Clothing/OuterClothing/advanced.rsi
+  - type: Clothing
+    sprite: _KD/Modsuits/Clothing/OuterClothing/advanced.rsi
+    equipSound: /Audio/_KD/Modsuits/ballin.ogg
+    unequipSound: /Audio/_KD/Modsuits/ballout.ogg
+  - type: PressureProtection
+    highPressureMultiplier: 0.002
+    lowPressureMultiplier: 1000
+  - type: ToggleableClothing
+    clothingPrototype: ClothingHeadHelmetModsuitCESealed
+    requiredSlot: outerClothing
+    slot: head
+  - type: TemperatureProtection
+    coefficient: 0.0001
+  # - type: QualityOfItem
+  #   qualityWeights:
+  #     0: 0
+  #     1: 0
+  #     2: 0
+  #     3: 80
+  #     4: 20
+  #     5: 0
+  #     6: 0
+  # СВЕРХУ ЭТО РАЗКОММЕНТИТь!!!
+
+- type: entity #мосьюты
+  parent: ClothingOuterChestplateModsuitSealedBase
+  id: ClothingOuterChestplateModsuitCESealed
+  name: marine modsuit
+  description: A special suit that protects against hazardous, low pressure environments. Has radiation shielding.
+  components:
+  - type: Sprite
+    sprite: _KD/Modsuits/Clothing/OuterClothing/advanced.rsi
+  - type: Clothing
+    sprite: _KD/Modsuits/Clothing/OuterClothing/advanced.rsi
+  - type: PressureProtection
+    highPressureMultiplier: 0.0002
+    lowPressureMultiplier: 1000
+  - type: ExplosionResistance
+    damageCoefficient: 0.15
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.65
+        Slash: 0.75
+        Piercing: 0.75
+        Shock: 0.65
+        Caustic: 0.35
+        Heat: 0.35
+        Radiation: 0
+        Stamina: 0.85 ## Stamina resistance
+  - type: ClothingSpeedModifier
+    walkModifier: 0.9
+    sprintModifier: 0.9
+  - type: ToggleableClothing
+    clothingPrototype: ClothingHeadHelmetModsuitCESealed
+    requiredSlot: outerClothing
+    slot: head
+  - type: Insulated
+  - type: TemperatureProtection
+    coefficient: 0.0000001
+
+- type: entity
+  parent: ClothingOuterChestplateModsuitSealedBase
+  id: ClothingOuterChestplateModsuitEngineerSealed
+  name: marine modsuit
+  description: A special suit that protects against hazardous, low pressure environments. Has radiation shielding.
+  components:
+  - type: Sprite
+    sprite: _KD/Modsuits/Clothing/OuterClothing/engineer.rsi
+  - type: Clothing
+    sprite: _KD/Modsuits/Clothing/OuterClothing/engineer.rsi
+  - type: PressureProtection
+    highPressureMultiplier: 0.04
+    lowPressureMultiplier: 1000
+  - type: ExplosionResistance
+    damageCoefficient: 0.25
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.8
+        Slash: 0.8
+        Piercing: 0.85
+        Shock: 0.7
+        Caustic: 0.4
+        Radiation: 0.2
+        Stamina: 0.85 ## Stamina resistance
+  - type: ClothingSpeedModifier
+    walkModifier: 0.85
+    sprintModifier: 0.85
+  - type: ToggleableClothing
+    clothingPrototype: ClothingHeadHelmetModsuitEngineerSealed
+    requiredSlot: outerClothing
+    slot: head
+  - type: Insulated
+  - type: TemperatureProtection
+    coefficient: 0.00001
+
+- type: entity
+  parent: ClothingOuterChestplateModsuitSealedBase
+  id: ClothingOuterChestplateModsuitRNDSealed
+  name: marine modsuit
+  description: A special suit that protects against hazardous, low pressure environments. Has radiation shielding.
+  components:
+  - type: Sprite
+    sprite: _KD/Modsuits/Clothing/OuterClothing/rnd.rsi
+  - type: Clothing
+    sprite: _KD/Modsuits/Clothing/OuterClothing/rnd.rsi
+  - type: PressureProtection
+    highPressureMultiplier: 0.1
+    lowPressureMultiplier: 1000
+  - type: ExplosionResistance
+    damageCoefficient: 0.5
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.6
+        Slash: 0.8
+        Piercing: 0.9
+        Caustic: 0.3
+        Heat: 0.6
+        Radiation: 0.4
+        Stamina: 0.85 ## Stamina resistance
+  - type: ClothingSpeedModifier
+    walkModifier: 0.75
+    sprintModifier: 0.75
+  - type: ToggleableClothing
+    clothingPrototype: ClothingHeadHelmetModsuitRNDSealed
+    requiredSlot: outerClothing
+    slot: head
+
+- type: entity
+  parent: ClothingOuterChestplateModsuitSealedBase
+  id: ClothingOuterChestplateModsuitAtmosphericsSealed
+  name: marine modsuit
+  description: A special suit that protects against hazardous, low pressure environments. Has radiation shielding.
+  components:
+  - type: Sprite
+    sprite: _KD/Modsuits/Clothing/OuterClothing/atmospheric.rsi
+  - type: Clothing
+    sprite: _KD/Modsuits/Clothing/OuterClothing/atmospheric.rsi
+  - type: PressureProtection
+    highPressureMultiplier: 0.02
+    lowPressureMultiplier: 1000
+  - type: ExplosionResistance
+    damageCoefficient: 0.5
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.8
+        Slash: 0.9
+        Piercing: 0.9
+        Caustic: 0.3
+        Heat: 0.1
+        Stamina: 0.85 ## Stamina resistance
+  - type: ClothingSpeedModifier
+    walkModifier: 0.85
+    sprintModifier: 0.85
+  - type: ToggleableClothing
+    clothingPrototype: ClothingHeadHelmetModsuitAtmosphericsSealed
+    requiredSlot: outerClothing
+    slot: head
+  - type: TemperatureProtection
+    coefficient: 0.0000001
+
+- type: entity
+  parent: ClothingOuterChestplateModsuitSealedBase
+  id: ClothingOuterChestplateModsuitMedicalSealed
+  name: marine modsuit
+  description: A special suit that protects against hazardous, low pressure environments. Has radiation shielding.
+  components:
+  - type: Sprite
+    sprite: _KD/Modsuits/Clothing/OuterClothing/medical.rsi
+  - type: Clothing
+    sprite: _KD/Modsuits/Clothing/OuterClothing/medical.rsi
+  - type: PressureProtection
+    highPressureMultiplier: 0.4
+    lowPressureMultiplier: 1000
+  - type: TemperatureProtection
+    coefficient: 0.0001
+  - type: ExplosionResistance
+    damageCoefficient: 0.9
+  - type: Armor
+    modifiers:
+      coefficients:
+        Caustic: 0.7
+        Heat: 0.9
+        Stamina: 0.85 ## Stamina resistance
+  - type: ClothingSpeedModifier
+    walkModifier: 0.95
+    sprintModifier: 0.95
+  - type: ToggleableClothing
+    clothingPrototype: ClothingHeadHelmetModsuitMedicalSealed
+    requiredSlot: outerClothing
+    slot: head
+
+- type: entity
+  parent: ClothingOuterChestplateModsuitSealedBase
+  id: ClothingOuterChestplateModsuitCMOSealed
+  name: marine modsuit
+  description: A special suit that protects against hazardous, low pressure environments. Has radiation shielding.
+  components:
+  - type: Sprite
+    sprite: _KD/Modsuits/Clothing/OuterClothing/cmo.rsi
+  - type: Clothing
+    sprite: _KD/Modsuits/Clothing/OuterClothing/cmo.rsi
+  - type: PressureProtection
+    highPressureMultiplier: 0.2
+    lowPressureMultiplier: 1000
+  - type: ExplosionResistance
+    damageCoefficient: 0.6
+  - type: Armor
+    modifiers:
+      coefficients:
+        Shock: 0.3
+        Caustic: 0.1
+        Blunt: 0.85
+        Slash: 0.85
+        Heat: 0.7
+        Stamina: 0.85 ## Stamina resistance
+  - type: ToggleableClothing
+    clothingPrototype: ClothingHeadHelmetModsuitCMOSealed
+    requiredSlot: outerClothing
+    slot: head
+  - type: ClothingSpeedModifier
+    walkModifier: 0.95
+    sprintModifier: 0.95
+
+- type: entity
+  parent: ClothingOuterChestplateModsuitSealedBase
+  id: ClothingOuterChestplateModsuitCivillianSealed
+  name: marine modsuit
+  description: A special suit that protects against hazardous, low pressure environments. Has radiation shielding.
+  components:
+  - type: Sprite
+    sprite: _KD/Modsuits/Clothing/OuterClothing/civillian.rsi
+  - type: Clothing
+    sprite: _KD/Modsuits/Clothing/OuterClothing/civillian.rsi
+  - type: PressureProtection
+    highPressureMultiplier: 0.6
+    lowPressureMultiplier: 1000
+  - type: ExplosionResistance
+    damageCoefficient: 0.9
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.95
+        Slash: 0.95
+        Piercing: 0.95
+        Heat: 0.95
+        Stamina: 0.85 ## Stamina resistance
+  - type: ClothingSpeedModifier
+    walkModifier: 0.9
+    sprintModifier: 0.9
+  - type: ToggleableClothing
+    clothingPrototype: ClothingHeadHelmetModsuitCivillianSealed
+    requiredSlot: outerClothing
+    slot: head
+
+- type: entity
+  parent: ClothingOuterChestplateModsuitSealedBase
+  id: ClothingOuterChestplateModsuitMagnateSealed
+  name: marine modsuit
+  description: A special suit that protects against hazardous, low pressure environments. Has radiation shielding.
+  components:
+  - type: Sprite
+    sprite: _KD/Modsuits/Clothing/OuterClothing/magnate.rsi
+  - type: Clothing
+    sprite: _KD/Modsuits/Clothing/OuterClothing/magnate.rsi
+  - type: PressureProtection
+    highPressureMultiplier: 0.1
+    lowPressureMultiplier: 1000
+  - type: ExplosionResistance
+    damageCoefficient: 0.4
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.55
+        Slash: 0.7
+        Piercing: 0.55
+        Caustic: 0.55
+        Radiation: 0.5
+        Heat: 0.6
+        Stamina: 0.85 ## Stamina resistance
+  - type: ClothingSpeedModifier
+    walkModifier: 0.85
+    sprintModifier: 0.85
+  - type: ToggleableClothing
+    clothingPrototype: ClothingHeadHelmetModsuitMagnateSealed
+    requiredSlot: outerClothing
+    slot: head
+
+- type: entity
+  parent: ClothingOuterChestplateModsuitSealedBase
+  id: ClothingOuterChestplateModsuitSecuritySealed
+  name: marine modsuit
+  description: A special suit that protects against hazardous, low pressure environments. Has radiation shielding.
+  components:
+  - type: Sprite
+    sprite: _KD/Modsuits/Clothing/OuterClothing/security.rsi
+  - type: Clothing
+    sprite: _KD/Modsuits/Clothing/OuterClothing/security.rsi
+  - type: PressureProtection
+    highPressureMultiplier: 0.35
+    lowPressureMultiplier: 1000
+  - type: ExplosionResistance
+    damageCoefficient: 0.3
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.5
+        Slash: 0.6
+        Piercing: 0.5
+        Shock: 0.65
+        Caustic: 0.7
+        Stamina: 0.8 ## Stamina resistance
+  - type: ClothingSpeedModifier
+    walkModifier: 0.8
+    sprintModifier: 0.8
+  - type: ToggleableClothing
+    clothingPrototype: ClothingHeadHelmetModsuitSecuritySealed
+    requiredSlot: outerClothing
+    slot: head
+
+
+- type: entity
+  parent: ClothingOuterChestplateModsuitSealedBase
+  id: ClothingOuterChestplateModsuitHOSSealed
+  name: marine modsuit
+  description: A special suit that protects against hazardous, low pressure environments. Has radiation shielding.
+  components:
+  - type: Sprite
+    sprite: _KD/Modsuits/Clothing/OuterClothing/hos.rsi
+  - type: Clothing
+    sprite: _KD/Modsuits/Clothing/OuterClothing/hos.rsi
+  - type: PressureProtection
+    highPressureMultiplier: 0.35
+    lowPressureMultiplier: 1000
+  - type: ExplosionResistance
+    damageCoefficient: 0.3
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.45
+        Slash: 0.45
+        Piercing: 0.45
+        Caustic: 0.45
+        Heat: 0.7
+        Stamina: 0.7 ## Stamina resistance
+  - type: ClothingSpeedModifier
+    walkModifier: 0.85
+    sprintModifier: 0.85
+  - type: ToggleableClothing
+    clothingPrototype: ClothingHeadHelmetModsuitHOSSealed
+    requiredSlot: outerClothing
+    slot: head
+
+- type: entity
+  parent: ClothingOuterChestplateModsuitSealedBase
+  id: ClothingOuterChestplateModsuitSalvageSealed
+  name: marine modsuit
+  description: A special suit that protects against hazardous, low pressure environments. Has radiation shielding.
+  components:
+  - type: Sprite
+    sprite: _KD/Modsuits/Clothing/OuterClothing/salvage.rsi
+  - type: Clothing
+    sprite: _KD/Modsuits/Clothing/OuterClothing/salvage.rsi
+  - type: PressureProtection
+    highPressureMultiplier: 0.6
+    lowPressureMultiplier: 1000
+  - type: ExplosionResistance
+    damageCoefficient: 0.7
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.7
+        Slash: 0.7
+        Piercing: 0.8
+        Caustic: 0.8
+        Stamina: 0.85 ## Stamina resistance
+  - type: ClothingSpeedModifier
+    walkModifier: 0.85
+    sprintModifier: 0.85
+  - type: ToggleableClothing
+    clothingPrototype: ClothingHeadHelmetModsuitSalvageSealed
+    requiredSlot: outerClothing
+    slot: head
+
+- type: entity
+  parent: ClothingOuterChestplateModsuitSealedBase
+  id: ClothingOuterChestplateModsuitMinerSealed
+  name: marine modsuit
+  description: A special suit that protects against hazardous, low pressure environments. Has radiation shielding.
+  components:
+  - type: Sprite
+    sprite: _KD/Modsuits/Clothing/OuterClothing/miner.rsi
+  - type: Clothing
+    sprite: _KD/Modsuits/Clothing/OuterClothing/miner.rsi
+  - type: PressureProtection
+    highPressureMultiplier: 0.5
+    lowPressureMultiplier: 1000
+  - type: ExplosionResistance
+    damageCoefficient: 0.2
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.55
+        Slash: 0.55
+        Piercing: 0.7
+        Caustic: 0.65
+        Heat: 0.7
+        Radiation: 0.5
+        Stamina: 0.85 ## Stamina resistance
+  - type: ClothingSpeedModifier
+    walkModifier: 0.85
+    sprintModifier: 0.85
+  - type: ToggleableClothing
+    clothingPrototype: ClothingHeadHelmetModsuitMinerSealed
+    requiredSlot: outerClothing
+    slot: head
+
+- type: entity
+  parent: ClothingOuterChestplateModsuitSealedBase
+  id: ClothingOuterChestplateModsuitOperativeSealed
+  name: marine modsuit
+  description: A special suit that protects against hazardous, low pressure environments. Has radiation shielding.
+  components:
+  - type: Sprite
+    sprite: _KD/Modsuits/Clothing/OuterClothing/nukeops.rsi
+  - type: Clothing
+    sprite: _KD/Modsuits/Clothing/OuterClothing/nukeops.rsi
+  - type: PressureProtection
+    highPressureMultiplier: 0.25
+    lowPressureMultiplier: 1000
+  - type: ExplosionResistance
+    damageCoefficient: 0.3
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.4
+        Slash: 0.8
+        Piercing: 0.5
+        Caustic: 0.4
+        Heat: 0.6
+        Radiation: 0.4
+        Stamina: 0.45 # Stamina resistance
+  - type: ClothingSpeedModifier
+    walkModifier: 0.9
+    sprintModifier: 0.9
+  - type: ToggleableClothing
+    clothingPrototype: ClothingHeadHelmetModsuitOperativeSealed
+    requiredSlot: outerClothing
+    slot: head
+  - type: GasTank
+    outputPressure: 42.6
+    air:
+      # 2 minutes of thrust
+      volume: 0.75
+      temperature: 293.15
+      moles:
+        - 0.153853429 # oxygen
+        - 0.153853429 # nitrogen
+  - type: ActivatableUI
+    key: enum.SharedGasTankUiKey.Key
+  - type: UserInterface
+    interfaces:
+      - key: enum.SharedGasTankUiKey.Key
+        type: GasTankBoundUserInterface
+  - type: Explosive
+    explosionType: Default
+    maxIntensity: 20
+  - type: Jetpack
+    moleUsage: 0.00085
+  - type: CanMoveInAir
+  - type: InputMover
+    toParent: true
+  - type: MovementSpeedModifier
+    weightlessAcceleration: 1.1
+    weightlessFriction: 0.3
+    weightlessModifier: 1.1
+  - type: Tag
+    tags:
+      - WhitelistChameleon
+
+- type: entity
+  parent: ClothingOuterChestplateModsuitOperativeSealed
+  id: ClothingOuterChestplateModsuitHonkOperativeSealed
+  name: marine modsuit
+  description: A special suit that protects against hazardous, low pressure environments. Has radiation shielding.
+  components:
+  - type: Sprite
+    sprite: _KD/Modsuits/Clothing/OuterClothing/nukeopsclown.rsi
+  - type: Clothing
+    sprite: _KD/Modsuits/Clothing/OuterClothing/nukeopsclown.rsi
+  - type: ToggleableClothing
+    clothingPrototype: ClothingHeadHelmetModsuitHonkOperativeSealed
+    requiredSlot: outerClothing
+    slot: head
+
+- type: entity
+  parent: ClothingOuterChestplateModsuitSealedBase
+  id: ClothingOuterChestplateModsuitOperativeCMDSealed
+  name: marine modsuit
+  description: A special suit that protects against hazardous, low pressure environments. Has radiation shielding.
+  components:
+  - type: Sprite
+    sprite: _KD/Modsuits/Clothing/OuterClothing/nukeopscmd.rsi
+  - type: Clothing
+    sprite: _KD/Modsuits/Clothing/OuterClothing/nukeopscmd.rsi
+  - type: PressureProtection
+    highPressureMultiplier: 0.001
+    lowPressureMultiplier: 1000
+  - type: ExplosionResistance
+    damageCoefficient: 0.3
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.3
+        Slash: 0.3
+        Piercing: 0.3
+        Caustic: 0.15
+        Heat: 0.3
+        Radiation: 0.15
+        Stamina: 0.45 # Stamina resistance
+  - type: ClothingSpeedModifier
+    walkModifier: 0.9
+    sprintModifier: 0.9
+  - type: ToggleableClothing
+    clothingPrototype: ClothingHeadHelmetModsuitOperativeCMDSealed
+    requiredSlot: outerClothing
+    slot: head
+  - type: GasTank
+    outputPressure: 42.6
+    air:
+      # 2 minutes of thrust
+      volume: 0.75
+      temperature: 293.15
+      moles:
+        - 0.153853429 # oxygen
+        - 0.153853429 # nitrogen
+  - type: ActivatableUI
+    key: enum.SharedGasTankUiKey.Key
+  - type: UserInterface
+    interfaces:
+      - key: enum.SharedGasTankUiKey.Key
+        type: GasTankBoundUserInterface
+  - type: Explosive
+    explosionType: Default
+    maxIntensity: 20
+  - type: Jetpack
+    moleUsage: 0.00085
+  - type: CanMoveInAir
+  - type: InputMover
+    toParent: true
+  - type: MovementSpeedModifier
+    weightlessAcceleration: 1.5
+    weightlessFriction: 0.3
+    weightlessModifier: 1.5
+  - type: Tag
+    tags:
+      - WhitelistChameleon
+
+- type: entity
+  parent: ClothingOuterChestplateModsuitOperativeSealed
+  id: ClothingOuterChestplateModsuitCCSealed
+  name: marine modsuit
+  description: A special suit that protects against hazardous, low pressure environments. Has radiation shielding.
+  components:
+  - type: Sprite
+    sprite: _KD/Modsuits/Clothing/OuterClothing/corporate.rsi
+  - type: Clothing
+    sprite: _KD/Modsuits/Clothing/OuterClothing/corporate.rsi
+  - type: PressureProtection
+    highPressureMultiplier: 0.04
+    lowPressureMultiplier: 1000
+  - type: ToggleableClothing
+    clothingPrototype: ClothingHeadHelmetModsuitCCSealed
+    requiredSlot: outerClothing
+    slot: head
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.7
+        Slash: 0.8
+        Piercing: 0.75
+        Caustic: 0.9
+        Heat: 0.85
+        Radiation: 0.7
+        Stamina: 0.85 ## Stamina resistance
+
+- type: entity
+  parent: ClothingOuterChestplateModsuitSealedBase
+  id: ClothingOuterChestplateModsuitApocryphalSealed
+  name: marine modsuit
+  description: A special suit that protects against hazardous, low pressure environments. Has radiation shielding.
+  components:
+  - type: Sprite
+    sprite: _KD/Modsuits/Clothing/OuterClothing/apocryphal.rsi
+  - type: Clothing
+    sprite: _KD/Modsuits/Clothing/OuterClothing/apocryphal.rsi
+  - type: PressureProtection
+    highPressureMultiplier: 0.4
+    lowPressureMultiplier: 1000
+  - type: TemperatureProtection
+    coefficient: 0.000000000005
+  - type: ExplosionResistance
+    damageCoefficient: 0.01
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.05
+        Slash: 0.05
+        Piercing: 0.05
+        Shock: 0.2
+        Caustic: 0.05
+        Heat: 0.05
+        Radiation: 0.05
+        Stamina: 0.5 ## Stamina resistance
+  - type: ClothingSpeedModifier
+    walkModifier: 0.95
+    sprintModifier: 0.95
+  - type: ToggleableClothing
+    clothingPrototype: ClothingHeadHelmetModsuitApocryphalSealed
+    requiredSlot: outerClothing
+    slot: head
+  - type: GasTank
+    outputPressure: 42.6
+    air:
+      # 2 minutes of thrust
+      volume: 0.75
+      temperature: 293.15
+      moles:
+        - 0.153853429 # oxygen
+        - 0.153853429 # nitrogen
+  - type: ActivatableUI
+    key: enum.SharedGasTankUiKey.Key
+  - type: UserInterface
+    interfaces:
+      - key: enum.SharedGasTankUiKey.Key
+        type: GasTankBoundUserInterface
+  - type: Explosive
+    explosionType: Default
+    maxIntensity: 20
+  - type: Jetpack
+    moleUsage: 0.00085
+  - type: CanMoveInAir
+  - type: InputMover
+    toParent: true
+  - type: MovementSpeedModifier
+    weightlessAcceleration: 1.5
+    weightlessFriction: 0.3
+    weightlessModifier: 1.5
+  - type: Tag
+    tags:
+      - WhitelistChameleon

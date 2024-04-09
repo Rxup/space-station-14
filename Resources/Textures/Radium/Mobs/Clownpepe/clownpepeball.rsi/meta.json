@@ -1,0 +1,29 @@
+﻿{
+    "version": 1,
+    "size": {
+        "x": 512,
+        "y": 512
+    },
+    "license": "CC-BY-SA-3.0",
+    "copyright": "by lopata 123 | discord: ogr8314",
+    "states": [
+        {
+            "name": "clownpepe"
+        },
+        {
+            "name": "clownpepe-dead"
+        },
+        {
+            "name": "clownpepe-moving",
+            "delays": [
+                [
+                    0.04,
+                    0.04,
+                    0.04,
+                    0.04,
+                    0.04
+                ]
+            ]
+        }
+    ]
+}

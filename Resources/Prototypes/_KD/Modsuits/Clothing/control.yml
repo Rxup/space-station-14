@@ -1,0 +1,492 @@
+- type: entity #Commented value in armor = overall defence
+  parent: ClothingBackpack
+  id: ClothingControlModsuitBase
+  abstract: true
+  name: CE modsuit helmet
+  description: Special hardsuit helmet, made for the CE of the station.
+  components:
+  - type: Sprite
+    sprite: Clothing/Back/Modsuits/advanced.rsi
+  - type: Clothing
+    sprite: Clothing/Back/Modsuits/advanced.rsi
+    equipSound: /Audio/Imperial/Modsuits/ballin.ogg
+    unequipSound: /Audio/_KD/Modsuits/ballout.ogg
+  - type: Armor
+    modifiers:
+      coefficients:
+        Shock: 0.7
+        Caustic: 0.7
+  - type: ToggleableClothing
+    clothingPrototype: ClothingOuterChestplateModsuitCESealed
+    requiredSlot: back
+    slot: outerClothing
+  - type: Storage
+    capacity: 100
+  - type: PointLight
+    color: "#a0f1e8"
+    enabled: false
+    mask: /Textures/Effects/LightMasks/cone.png
+    radius: 12
+    softness: 20
+    autoRot: true
+  - type: UnpoweredFlashlight
+  - type: PowerCellSlot
+    cellSlotId: cell_slot
+  - type: ContainerContainer
+    containers:
+      cell_slot: !type:ContainerSlot
+  - type: ItemSlots
+    slots:
+      cell_slot:
+        name: power-cell-slot-component-slot-name-default
+  - type: LightBehaviour
+    behaviours:
+      - !type:FadeBehaviour
+        id: radiating
+        maxDuration: 2.0
+        startValue: 3.0
+        endValue: 2.0
+        isLooped: true
+        reverseWhenFinished: true
+      - !type:PulseBehaviour
+        id: blinking
+        interpolate: Nearest
+        maxDuration: 1.0
+        minValue: 0.1
+        maxValue: 2.0
+        isLooped: true
+  # - type: QualityOfItem
+  #   qualityWeights:
+  #     0: 0
+  #     1: 0
+  #     2: 0
+  #     3: 80
+  #     4: 20
+  #     5: 0
+  #     6: 0
+  #  СВЕРХУ ЭТО РАЗКОММЕНТИТь!!!
+
+- type: entity
+  parent: ClothingControlModsuitBase
+  id: ClothingControlModsuitCESealed
+  name: CE modsuit helmet
+  description: Special hardsuit helmet, made for the CE of the station.
+  components:
+  - type: Sprite
+    sprite: _KD/Modsuits/Clothing/Back/advanced.rsi
+  - type: Clothing
+    sprite: _KD/Modsuits/Clothing/Back/advanced.rsi
+  - type: ToggleableClothing
+    clothingPrototype: ClothingOuterChestplateModsuitCESealed
+  - type: Storage
+    capacity: 150
+  - type: PointLight
+    color: "#a0f1e8"
+    enabled: false
+    mask: /Textures/Effects/LightMasks/cone.png
+    radius: 12
+    softness: 20
+    autoRot: true
+  - type: Construction
+    graph: ModsuitAdvanced
+    node: modsuitadvanced
+  - type: StaticPrice
+    price: 12000
+
+- type: entity
+  parent: ClothingControlModsuitBase
+  id: ClothingControlModsuitEngineerSealed
+  name: CE modsuit helmet
+  description: Special hardsuit helmet, made for the CE of the station.
+  components:
+  - type: Sprite
+    sprite: _KD/Modsuits/Clothing/Back/engineer.rsi
+  - type: Clothing
+    sprite: _KD/Modsuits/Clothing/Back/engineer.rsi
+  - type: ToggleableClothing
+    clothingPrototype: ClothingOuterChestplateModsuitEngineerSealed
+  - type: Storage
+    capacity: 150
+  - type: PointLight
+    color: "#a0f1e8"
+    enabled: false
+    mask: /Textures/Effects/LightMasks/cone.png
+    radius: 12
+    softness: 20
+    autoRot: true
+  - type: Construction
+    graph: ModsuitEngineer
+    node: modsuitengineer
+  - type: StaticPrice
+    price: 3150
+
+- type: entity
+  parent: ClothingControlModsuitBase
+  id: ClothingControlModsuitAtmosphericsSealed
+  name: CE modsuit helmet
+  description: Special hardsuit helmet, made for the CE of the station.
+  components:
+  - type: Sprite
+    sprite: _KD/Modsuits/Clothing/Back/atmospheric.rsi
+  - type: Clothing
+    sprite: _KD/Modsuits/Clothing/Back/atmospheric.rsi
+  - type: ToggleableClothing
+    clothingPrototype: ClothingOuterChestplateModsuitAtmosphericsSealed
+  - type: Storage
+    capacity: 150
+  - type: PointLight
+    color: "#a0f1e8"
+    enabled: false
+    mask: /Textures/Effects/LightMasks/cone.png
+    radius: 12
+    softness: 20
+    autoRot: true
+  - type: Construction
+    graph: ModsuitAtmospheric
+    node: modsuitatmospheric
+  - type: StaticPrice
+    price: 3750
+
+- type: entity
+  parent: ClothingControlModsuitBase
+  id: ClothingControlModsuitRNDSealed
+  name: CE modsuit helmet
+  description: Special hardsuit helmet, made for the CE of the station.
+  components:
+  - type: Sprite
+    sprite: _KD/Modsuits/Clothing/Back/rnd.rsi
+  - type: Clothing
+    sprite: _KD/Modsuits/Clothing/Back/rnd.rsi
+  - type: ToggleableClothing
+    clothingPrototype: ClothingOuterChestplateModsuitRNDSealed
+    requiredSlot: back
+    slot: outerClothing
+  - type: Storage
+    capacity: 100
+  - type: PointLight
+    color: "#a0f1e8"
+    enabled: false
+    mask: /Textures/Effects/LightMasks/cone.png
+    radius: 12
+    softness: 20
+    autoRot: true
+  - type: Construction
+    graph: ModsuitRND
+    node: modsuitrnd
+  - type: StaticPrice
+    price: 3500
+
+- type: entity
+  parent: ClothingControlModsuitBase
+  id: ClothingControlModsuitMedicalSealed
+  name: CE modsuit helmet
+  description: Special hardsuit helmet, made for the CE of the station.
+  components:
+  - type: Sprite
+    sprite: _KD/Modsuits/Clothing/Back/medical.rsi
+  - type: Clothing
+    sprite: _KD/Modsuits/Clothing/Back/medical.rsi
+  - type: ToggleableClothing
+    clothingPrototype: ClothingOuterChestplateModsuitMedicalSealed
+  - type: Storage
+    capacity: 100
+  - type: PointLight
+    color: "#a0f1e8"
+    enabled: false
+    mask: /Textures/Effects/LightMasks/cone.png
+    radius: 12
+    softness: 20
+    autoRot: true
+  - type: Construction
+    graph: ModsuitMedical
+    node: modsuitmedical
+  - type: StaticPrice
+    price: 2250
+
+- type: entity
+  parent: ClothingControlModsuitBase
+  id: ClothingControlModsuitCMOSealed
+  name: CE modsuit helmet
+  description: Special hardsuit helmet, made for the CE of the station.
+  components:
+  - type: Sprite
+    sprite: _KD/Modsuits/Clothing/Back/cmo.rsi
+  - type: Clothing
+    sprite: _KD/Modsuits/Clothing/Back/cmo.rsi
+  - type: ToggleableClothing
+    clothingPrototype: ClothingOuterChestplateModsuitCMOSealed
+  - type: Storage
+    capacity: 150
+  - type: PointLight
+    color: "#a0f1e8"
+    enabled: false
+    mask: /Textures/Effects/LightMasks/cone.png
+    radius: 12
+    softness: 20
+    autoRot: true
+  - type: Construction
+    graph: ModsuitRescue
+    node: modsuitrescue
+  - type: StaticPrice
+    price: 6000
+
+- type: entity
+  parent: ClothingControlModsuitBase
+  id: ClothingControlModsuitCivillianSealed
+  name: CE modsuit helmet
+  description: Special hardsuit helmet, made for the CE of the station.
+  components:
+  - type: Sprite
+    sprite: _KD/Modsuits/Clothing/Back/civillian.rsi
+  - type: Clothing
+    sprite: _KD/Modsuits/Clothing/Back/civillian.rsi
+  - type: ToggleableClothing
+    clothingPrototype: ClothingOuterChestplateModsuitCivillianSealed
+  - type: Storage
+    capacity: 100
+  - type: PointLight
+    color: "#a0f1e8"
+    enabled: false
+    mask: /Textures/Effects/LightMasks/cone.png
+    radius: 12
+    softness: 20
+    autoRot: true
+  - type: Construction
+    graph: ModsuitCivillian
+    node: modsuitcivillian
+  - type: StaticPrice
+    price: 1875
+
+- type: entity
+  parent: ClothingControlModsuitBase
+  id: ClothingControlModsuitSecuritySealed
+  name: CE modsuit helmet
+  description: Special hardsuit helmet, made for the CE of the station.
+  components:
+  - type: Sprite
+    sprite: _KD/Modsuits/Clothing/Back/security.rsi
+  - type: Clothing
+    sprite: _KD/Modsuits/Clothing/Back/security.rsi
+  - type: ToggleableClothing
+    clothingPrototype: ClothingOuterChestplateModsuitSecuritySealed
+  - type: Storage
+    capacity: 120
+  - type: PointLight
+    color: "#a0f1e8"
+    enabled: false
+    mask: /Textures/Effects/LightMasks/cone.png
+    radius: 12
+    softness: 20
+    autoRot: true
+  - type: Construction
+    graph: ModsuitSecurity
+    node: modsuitsecurity
+  - type: StaticPrice
+    price: 3500
+
+- type: entity
+  parent: ClothingControlModsuitBase
+  id: ClothingControlModsuitHOSSealed
+  name: CE modsuit helmet
+  description: Special hardsuit helmet, made for the CE of the station.
+  components:
+  - type: Sprite
+    sprite: _KD/Modsuits/Clothing/Back/hos.rsi
+  - type: Clothing
+    sprite: _KD/Modsuits/Clothing/Back/hos.rsi
+  - type: ToggleableClothing
+    clothingPrototype: ClothingOuterChestplateModsuitHOSSealed
+  - type: Storage
+    capacity: 150
+  - type: PointLight
+    color: "#a0f1e8"
+    enabled: false
+    mask: /Textures/Effects/LightMasks/cone.png
+    radius: 12
+    softness: 20
+    autoRot: true
+  - type: Construction
+    graph: ModsuitHOS
+    node: modsuithos
+  - type: StaticPrice
+    price: 8000
+
+- type: entity
+  parent: ClothingControlModsuitBase
+  id: ClothingControlModsuitSalvageSealed
+  name: CE modsuit helmet
+  description: Special hardsuit helmet, made for the CE of the station.
+  components:
+  - type: Sprite
+    sprite: _KD/Modsuits/Clothing/Back/salvage.rsi
+  - type: Clothing
+    sprite: _KD/Modsuits/Clothing/Back/salvage.rsi
+  - type: ToggleableClothing
+    clothingPrototype: ClothingOuterChestplateModsuitSalvageSealed
+  - type: Storage
+    capacity: 150 #molly come here
+  - type: PointLight
+    color: "#a0f1e8"
+    enabled: false
+    mask: /Textures/Effects/LightMasks/cone.png
+    radius: 12
+    softness: 20
+    autoRot: true
+  - type: Construction
+    graph: ModsuitSalvage
+    node: modsuitsalvage
+  - type: StaticPrice
+    price: 3250
+
+- type: entity
+  parent: ClothingControlModsuitBase
+  id: ClothingControlModsuitMinerSealed 
+  name: CE modsuit helmet
+  description: Special hardsuit helmet, made for the CE of the station.
+  components:
+  - type: Sprite
+    sprite: _KD/Modsuits/Clothing/Back/miner.rsi
+  - type: Clothing
+    sprite: _KD/Modsuits/Clothing/Back/miner.rsi
+  - type: ToggleableClothing
+    clothingPrototype: ClothingOuterChestplateModsuitMinerSealed
+  - type: Storage
+    capacity: 150 #molly come here
+  - type: PointLight
+    color: "#a0f1e8"
+    enabled: false
+    mask: /Textures/Effects/LightMasks/cone.png
+    radius: 12
+    softness: 20
+    autoRot: true
+  - type: StaticPrice
+    price: 6500
+
+- type: entity
+  parent: ClothingControlModsuitBase
+  id: ClothingControlModsuitOperativeSealed
+  name: CE modsuit helmet
+  description: Special hardsuit helmet, made for the CE of the station.
+  components:
+  - type: Sprite
+    sprite: _KD/Modsuits/Clothing/Back/nukeops.rsi
+  - type: Clothing
+    sprite: _KD/Modsuits/Clothing/Back/nukeops.rsi
+  - type: ToggleableClothing
+    clothingPrototype: ClothingOuterChestplateModsuitOperativeSealed
+  - type: Storage
+    capacity: 150
+  - type: PointLight
+    color: "#a0f1e8"
+    enabled: false
+    mask: /Textures/Effects/LightMasks/cone.png
+    radius: 12
+    softness: 20
+    autoRot: true
+  - type: Tag
+    tags:
+      - WhitelistChameleon
+  - type: StaticPrice
+    price: 5000
+
+- type: entity
+  parent: ClothingControlModsuitOperativeSealed
+  id: ClothingControlModsuitHonkOperativeSealed
+  name: CE modsuit helmet
+  description: Special hardsuit helmet, made for the CE of the station.
+  components:
+  - type: Sprite
+    sprite: _KD/Modsuits/Clothing/Back/nukeopsclown.rsi
+  - type: Clothing
+    sprite: _KD/Modsuits/Clothing/Back/nukeopsclown.rsi
+  - type: ToggleableClothing
+    clothingPrototype: ClothingOuterChestplateModsuitHonkOperativeSealed
+    requiredSlot: back
+    slot: outerClothing
+  - type: Storage
+    capacity: 150
+  - type: PointLight
+    color: "#a0f1e8"
+    enabled: false
+    mask: /Textures/Effects/LightMasks/cone.png
+    radius: 12
+    softness: 20
+    autoRot: true
+  - type: StaticPrice
+    price: 6500
+
+- type: entity
+  parent: ClothingControlModsuitBase
+  id: ClothingControlModsuitOperativeCMDSealed
+  name: CE modsuit helmet
+  description: Special hardsuit helmet, made for the CE of the station.
+  components:
+  - type: Sprite
+    sprite: _KD/Modsuits/Clothing/Back/nukeopscmd.rsi
+  - type: Clothing
+    sprite: _KD/Modsuits/Clothing/Back/nukeopscmd.rsi
+  - type: ToggleableClothing
+    clothingPrototype: ClothingOuterChestplateModsuitOperativeCMDSealed
+  - type: Storage
+    capacity: 200
+  - type: PointLight
+    color: "#a0f1e8"
+    enabled: false
+    mask: /Textures/Effects/LightMasks/cone.png
+    radius: 12
+    softness: 20
+    autoRot: true
+  - type: StaticPrice
+    price: 15000
+
+- type: entity
+  parent: ClothingControlModsuitOperativeSealed #same as oper, only GM-s can spawn
+  id: ClothingControlModsuitCCSealed
+  name: CE modsuit helmet
+  description: Special hardsuit helmet, made for the CE of the station.
+  components:
+  - type: Sprite
+    sprite: _KD/Modsuits/Clothing/Back/corporate.rsi
+  - type: Clothing
+    sprite: _KD/Modsuits/Clothing/Back/corporate.rsi
+    equipSound: /Audio/Items/Modsuits/ballin.ogg
+    unequipSound: /Audio/Items/Modsuits/ballout.ogg
+  - type: ToggleableClothing
+    clothingPrototype: ClothingOuterChestplateModsuitCCSealed
+    requiredSlot: back
+    slot: outerClothing
+  - type: Storage
+    capacity: 100
+  - type: PointLight
+    color: "#a0f1e8"
+    enabled: false
+    mask: /Textures/Effects/LightMasks/cone.png
+    radius: 12
+    softness: 20
+    autoRot: true
+  - type: StaticPrice
+    price: 8000
+
+- type: entity
+  parent: ClothingControlModsuitBase
+  id: ClothingControlModsuitApocryphalSealed
+  name: CE modsuit helmet
+  description: Special hardsuit helmet, made for the CE of the station.
+  components:
+  - type: Sprite
+    sprite: _KD/Modsuits/Clothing/Back/apocryphal.rsi
+  - type: Clothing
+    sprite: _KD/Modsuits/Clothing/Back/apocryphal.rsi
+  - type: ToggleableClothing
+    clothingPrototype: ClothingOuterChestplateModsuitApocryphalSealed
+  - type: Storage
+    capacity: 200
+  - type: PointLight
+    color: "#a0f1e8"
+    enabled: false
+    mask: /Textures/Effects/LightMasks/cone.png
+    radius: 12
+    softness: 20
+    autoRot: true
+  - type: StaticPrice
+    price: 35000

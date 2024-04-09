@@ -23,9 +23,9 @@
   description: "Has a tag on the back that reads: 'Totally not property of an enemy corporation, honest!'"
   components:
   - type: Sprite
-    sprite: Backmen/Clothing/OuterClothing/Suits/eva_syndicate.rsi # backmen resprite
+    sprite: Clothing/OuterClothing/Suits/eva_syndicate.rsi
   - type: Clothing
-    sprite: Backmen/Clothing/OuterClothing/Suits/eva_syndicate.rsi # backmen resprite
+    sprite: Clothing/OuterClothing/Suits/eva_syndicate.rsi
   - type: Tag
     tags:
     - SuitEVA

@@ -4,9 +4,8 @@
   description: job-description-atmostech
   playTimeTracker: JobAtmosphericTechnician
   requirements:
-    - !type:DepartmentTimeRequirement
-      department: Engineering
-      time: 36000 #10 hrs # Corvax-RoleTime
+    - !type:OverallPlaytimeRequirement
+      time: 60
   startingGear: AtmosphericTechnicianGear
   icon: "JobIconAtmosphericTechnician"
   supervisors: job-supervisors-ce

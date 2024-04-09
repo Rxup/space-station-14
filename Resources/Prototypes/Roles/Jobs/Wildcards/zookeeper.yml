@@ -3,6 +3,9 @@
   name: job-name-zookeeper
   description: job-description-zookeeper
   playTimeTracker: JobZookeeper
+  requirements:
+    - !type:OverallPlaytimeRequirement
+      time: 60
   startingGear: ZookeeperGear
   icon: "JobIconZookeeper"
   supervisors: job-supervisors-hop

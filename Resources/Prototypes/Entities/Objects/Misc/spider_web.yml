@@ -73,11 +73,11 @@
         Extinguish: [Touch]
     - type: SpiderWebObject
     - type: SpeedModifierContacts
-      walkSpeedModifier: 0.5
-      sprintSpeedModifier: 0.5
+      walkSpeedModifier: 0.2
+      sprintSpeedModifier: 0.2
       ignoreWhitelist:
         components:
-            - IgnoreSpiderWeb
+        - IgnoreSpiderWeb
 
 - type: entity
   id: SpiderWebClown

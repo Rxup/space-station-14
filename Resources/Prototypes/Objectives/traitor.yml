@@ -167,6 +167,14 @@
 - type: entity
   noSpawn: true
   parent: BaseCMOStealObjective
+  id: CMOCompactDefibrillatorStealObjective
+  components:
+  - type: StealCondition
+    stealGroup: CompactDefibrillator
+
+- type: entity
+  noSpawn: true
+  parent: BaseCMOStealObjective
   id: CMOCrewMonitorStealObjective
   components:
   - type: StealCondition

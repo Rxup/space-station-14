@@ -372,6 +372,7 @@
     idleState: icon
     runningState: building
     staticRecipes:
+    - ModsuitFabricatorMachineCircuitboard
     - ProtolatheMachineCircuitboard
     - AutolatheMachineCircuitboard
     - CircuitImprinterMachineCircuitboard

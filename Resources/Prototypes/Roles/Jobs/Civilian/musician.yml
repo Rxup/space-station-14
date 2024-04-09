@@ -3,6 +3,9 @@
   name: job-name-musician
   description: job-description-musician
   playTimeTracker: JobMusician
+  requirements:
+    - !type:OverallPlaytimeRequirement
+      time: 60
   startingGear: MusicianGear
   icon: "JobIconMusician"
   supervisors: job-supervisors-hop # Corvax-JobSupervisors
