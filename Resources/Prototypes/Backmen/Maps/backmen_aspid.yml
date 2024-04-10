@@ -29,19 +29,18 @@
             Janitor: [ 2, 3 ]
             Chaplain: [ 1, 1 ]
             Librarian: [ 1, 1 ]
-            #Lawyer: [ 2, 2 ] # Corvax-IAA
             ServiceWorker: [ 1, 1 ]
             #engineering
             ChiefEngineer: [ 1, 1 ]
             AtmosphericTechnician: [ 2, 2 ]
             StationEngineer: [ 3, 4 ]
-            TechnicalAssistant: [ 4, 4 ]
+            TechnicalAssistant: [ 3, 4 ]
             #medical
             ChiefMedicalOfficer: [ 1, 1 ]
             Paramedic: [ 1, 1 ]
-            Chemist: [ 1, 2 ]
-            MedicalDoctor: [ 4, 4 ]
-            MedicalIntern: [ 4, 4 ]
+            Chemist: [ 2, 2 ]
+            MedicalDoctor: [ 3, 4 ]
+            MedicalIntern: [ 2, 3 ]
             #science
             ResearchDirector: [ 1, 1 ]
             Scientist: [ 3, 4 ]
