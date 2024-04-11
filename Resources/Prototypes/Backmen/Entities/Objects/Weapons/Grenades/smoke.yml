@@ -29,7 +29,22 @@
       reagents:
       - ReagentId: LotophagoiOil
         Quantity: 100
-        
+
+- type: entity
+  parent: SmokeGrenade
+  id: XenoGrenade
+  name: xeno virus grenade
+  components:
+  - type: Sprite
+    sprite: Objects/Weapons/Grenades/tear_gas.rsi
+  - type: SmokeOnTrigger
+    duration: 5
+    spreadAmount: 20
+    solution:
+      reagents:
+      - ReagentId: FluorosulfuricAcid
+        Quantity: 20
+
 - type: entity
   parent: SmokeGrenade
   id: AntiPsiGrenade

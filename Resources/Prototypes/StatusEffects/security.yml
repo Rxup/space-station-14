@@ -3,8 +3,8 @@
   abstract: true
   priority: 2
   offset: 1
-  locationPreference: Right
   isShaded: true
+  locationPreference: Left # Corvax-TypingIndicator
 
 - type: statusIcon
   parent: SecurityIcon

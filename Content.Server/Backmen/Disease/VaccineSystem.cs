@@ -43,8 +43,6 @@ public sealed class VaccineSystem : EntitySystem
     [Dependency] private readonly PopupSystem _popupSystem = default!;
     [Dependency] private readonly DoAfterSystem _doAfterSystem = default!;
     [Dependency] private readonly AudioSystem _audioSystem = default!;
-    [Dependency] private readonly TagSystem _tagSystem = default!;
-    [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
     [Dependency] private readonly MetaDataSystem _metaData = default!;
 
     public override void Initialize()
@@ -258,14 +256,20 @@ public sealed class VaccineSystem : EntitySystem
     /// past diseases to give them immunity
     /// IF they don't already have the disease.
     /// </summary>
-    public void Vaccinate(DiseaseCarrierComponent carrier, DiseasePrototype disease)
+    public bool Vaccinate(DiseaseCarrierComponent carrier, DiseasePrototype disease)
     {
         foreach (var currentDisease in carrier.Diseases)
         {
             if (currentDisease.ID == disease.ID) //ID because of the way protoypes work
-                return;
+                return false;
+        }
+
+        if (!disease.Infectious)
+        {
+            return false;
         }
         carrier.PastDiseases.Add(disease.ID);
+        return true;
     }
 
     private void OnDoAfter(EntityUid uid, DiseaseVaccineComponent component, VaccineDoAfterEvent args)

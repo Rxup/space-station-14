@@ -1,35 +1,36 @@
 - type: statusIcon
-  id: HealthIcon
-  abstract: true
-  priority: 1
-  locationPreference: Right
-  isShaded: true
-
-- type: statusIcon
-  parent: HealthIcon
   id: HealthIconFine
+  priority: 1
   icon:
     sprite: /Textures/Interface/Misc/health_icons.rsi
     state: Fine
+  isShaded: true
+  locationPreference: Left # Corvax-TypingIndicator
 
 - type: statusIcon
   id: HealthIconCritical
-  parent: HealthIcon
+  priority: 1
   icon:
     sprite: /Textures/Interface/Misc/health_icons.rsi
     state: Critical
+  isShaded: true
+  locationPreference: Left # Corvax-TypingIndicator
 
 - type: statusIcon
   id: HealthIconDead
-  parent: HealthIcon
+  priority: 1
   icon:
     sprite: /Textures/Interface/Misc/health_icons.rsi
     state: Dead
+  isShaded: true
+  locationPreference: Left # Corvax-TypingIndicator
 
 - type: statusIcon
   id: HealthIconRotting
-  parent: HealthIcon
+  priority: 1
   icon:
     sprite: /Textures/Interface/Misc/health_icons.rsi
     state: Rotting
+  isShaded: true
+  locationPreference: Left # Corvax-TypingIndicator
 

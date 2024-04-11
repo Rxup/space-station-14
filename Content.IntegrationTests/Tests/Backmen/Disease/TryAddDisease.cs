@@ -67,9 +67,15 @@ public sealed class DiseaseTest
                 {
                     Assert.Fail("Disease not remove");
                 }
-                if (diseaseCarrierComponent.PastDiseases.All(x => x != diseaseProto.ID))
+
+                var hasNotImmuny = diseaseCarrierComponent.PastDiseases.All(x => x != diseaseProto.ID);
+                if (hasNotImmuny && diseaseProto.Infectious)
                 {
-                    Assert.Fail("Disease immunu not apply");
+                    Assert.Fail("Disease Infectious immunu not apply");
+                }
+                if (!hasNotImmuny && !diseaseProto.Infectious)
+                {
+                    Assert.Fail("Disease Not Infectious immunu apply");
                 }
             });
         }

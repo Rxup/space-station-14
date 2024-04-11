@@ -28,21 +28,3 @@
           Quantity: 100
   - type: Sprite
     sprite: Backmen/Objects/Consumable/Drinks/sojubottle.rsi
-
-- type: entity
-  parent: DrinkBottleGlassBaseFull
-  id: DrinkSakeBottleFull
-  name: sake bottle
-  description: |
-    Clear, or sometimes foggy
-    Chilled like ice cream alcohol
-    Fill a cup, drink up!
-  components:
-  - type: SolutionContainerManager
-    solutions:
-      drink:
-        reagents:
-        - ReagentId: Sake
-          Quantity: 100
-  - type: Sprite
-    sprite: Backmen/Objects/Consumable/Drinks/sakebottle.rsi

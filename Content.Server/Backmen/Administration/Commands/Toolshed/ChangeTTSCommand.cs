@@ -24,15 +24,17 @@ public sealed class ChangeTTSCommand : ToolshedCommand
         [CommandArgument] Prototype<TTSVoicePrototype> prototype
     )
     {
-        if (!EntityManager.TryGetComponent<HumanoidAppearanceComponent>(input, out var humanoidAppearanceComponent))
+        if (EntityManager.TryGetComponent<HumanoidAppearanceComponent>(input, out var humanoidAppearanceComponent))
         {
-            ctx.ReportError(new NotHumanoidError());
-            return null;
+            _appearanceSystem ??= GetSys<HumanoidAppearanceSystem>();
+
+            _appearanceSystem.SetTTSVoice(input, prototype.Id, humanoid: humanoidAppearanceComponent);
+            return input;
         }
 
-        _appearanceSystem ??= GetSys<HumanoidAppearanceSystem>();
+        var tts = EnsureComp<TTSComponent>(input);
+        tts.VoicePrototypeId = prototype.Id;
 
-        _appearanceSystem.SetTTSVoice(input, prototype.Id, humanoid: humanoidAppearanceComponent);
         return input;
     }
 

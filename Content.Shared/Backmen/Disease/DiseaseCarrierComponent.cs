@@ -32,7 +32,7 @@ public sealed partial class DiseaseCarrierComponent : Component
     /// Diseases the carrier has had, used for immunity.
     /// </summary>
     [ViewVariables(VVAccess.ReadWrite)]
-    public List<ProtoId<DiseasePrototype>> PastDiseases = new();
+    public HashSet<ProtoId<DiseasePrototype>> PastDiseases = new();
 
     /// <summary>
     /// All the diseases the carrier has or has had.
@@ -55,5 +55,5 @@ public sealed partial class DiseaseCarrierComponent : Component
     /// rendering them immune.
     /// </summary>
     [DataField("naturalImmunities")]
-    public List<ProtoId<DiseasePrototype>>? NaturalImmunities;
+    public HashSet<ProtoId<DiseasePrototype>>? NaturalImmunities;
 }

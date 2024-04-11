@@ -92,14 +92,17 @@ public sealed class DiseaseSystem : EntitySystem
 
         foreach (var (carrier, disease) in _cureQueue)
         {
-            if (carrier.Comp.Diseases.Count > 0) //This is reliable unlike testing Count == 0 right after removal for reasons I don't quite get
-                RemCompDeferred<DiseasedComponent>(carrier);
-            carrier.Comp.PastDiseases.Add(disease);
             var d = carrier.Comp.Diseases.FirstOrDefault(x => x.ID == disease);
             if (d != null)
             {
                 carrier.Comp.Diseases.Remove(d);
+                if (d.Infectious)
+                {
+                    carrier.Comp.PastDiseases.Add(disease);
+                }
             }
+            if (carrier.Comp.Diseases.Count == 0) //This is reliable unlike testing Count == 0 right after removal for reasons I don't quite get
+                RemCompDeferred<DiseasedComponent>(carrier);
         }
         _cureQueue.Clear();
 
