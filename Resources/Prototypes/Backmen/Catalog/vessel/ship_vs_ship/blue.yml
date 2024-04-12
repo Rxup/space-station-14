@@ -47,3 +47,13 @@
   group: TeamB
   private: true
   shuttlePath: /Maps/Backmen/ForSale/shipvsship/blue/gaul_dast.yml
+  
+- type: vessel
+  id: ShuttleForsaleBattleBlueSpear
+  name: spear
+  description: копеевидная форма должна обеспечивать высокою прямую скорость... "должна"!
+  price: 1000
+  category: Small
+  group: TeamB
+  private: true
+  shuttlePath: /Maps/Backmen/ForSale/shipvsship/blue/spear_dast.yml
