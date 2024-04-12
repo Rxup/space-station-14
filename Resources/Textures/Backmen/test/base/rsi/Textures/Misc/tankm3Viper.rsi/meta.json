@@ -1,0 +1,65 @@
+{
+  "version": 1,
+  "size": {
+    "x": 128,
+    "y": 128
+  },
+  "states": [
+    {
+      "name": "base",
+      "directions": 4
+    },
+    {
+      "name": "base_bigred",
+      "directions": 4
+    },
+    {
+      "name": "base_snow",
+      "directions": 4
+    },
+    {
+      "name": "base_urban",
+      "directions": 4
+    },
+    {
+      "name": "base_jungle",
+      "directions": 4
+    },
+    {
+      "name": "base_damaged",
+      "directions": 4
+    },
+    {
+      "name": "turret",
+      "directions": 4
+    },
+    {
+      "name": "turret_bigred",
+      "directions": 4
+    },
+    {
+      "name": "turret_snow",
+      "directions": 4
+    },
+    {
+      "name": "turret_urban",
+      "directions": 4
+    },
+    {
+      "name": "turret_jungle",
+      "directions": 4
+    },
+    {
+      "name": "turret_damaged",
+      "directions": 4
+    },
+    {
+      "name": "cannon",
+      "directions": 4
+    },
+    {
+      "name": "minigun",
+      "directions": 4
+    }
+  ]
+}
