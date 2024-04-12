@@ -60,9 +60,9 @@ public sealed class PsionicInvisibleContactsSystem : EntitySystem
             return;
 
         RemComp<PsionicallyInvisibleComponent>(ourEntity);
-        //var stealth = EnsureComp<StealthComponent>(ourEntity);
+        var stealth = EnsureComp<StealthComponent>(ourEntity);
         // Just to be sure...
-        //_stealth.SetVisibility(ourEntity, 1f, stealth);
+        _stealth.SetVisibility(ourEntity, 1f, stealth);
         RemComp<StealthComponent>(ourEntity);
     }
 }

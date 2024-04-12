@@ -305,10 +305,12 @@ public sealed class ShadowkinDarkSwapSystem : EntitySystem
             _visibility.RefreshVisibility(uid);
 
             // Remove the stealth shader from the entity
-            if (!HasComp<GhostComponent>(uid))
-                RemCompDeferred<StealthComponent>(uid);
-
-            //_stealth.SetVisibility(uid, 1f, EnsureComp<StealthComponent>(uid));
+            //if (!HasComp<GhostComponent>(uid))
+            RemComp<StealthComponent>(uid);
+            // Just to be sure...
+            var stealth =  EnsureComp<StealthComponent>(uid);
+            _stealth.SetVisibility(uid, 1f, stealth);
+            RemComp<StealthComponent>(uid);
         }
     }
 
