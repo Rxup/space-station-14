@@ -59,6 +59,12 @@ public sealed partial class SpeciesPrototype : IPrototype
     public Color DefaultSkinTone { get; private set; } = Color.White;
 
     /// <summary>
+    ///     Default eye tone for this species. This applies for non-human skin tones.
+    /// </summary>
+    [DataField]
+    public Color DefaultEyeTone { get; private set; } = Color.Black;
+
+    /// <summary>
     ///     Default human skin tone for this species. This applies for human skin tones.
     ///     See <see cref="SkinColor.HumanSkinTone"/> for the valid range of skin tones.
     /// </summary>

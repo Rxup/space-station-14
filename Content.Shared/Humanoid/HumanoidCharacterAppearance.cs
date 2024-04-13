@@ -112,7 +112,7 @@ namespace Content.Shared.Humanoid
                 Color.Black,
                 HairStyles.DefaultFacialHairStyle,
                 Color.Black,
-                Color.Black,
+                speciesPrototype.DefaultEyeTone,
                 skinColor,
                 new ()
             );

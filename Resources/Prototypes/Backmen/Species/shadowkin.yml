@@ -5,6 +5,7 @@
   prototype: MobShadowkin
   sprites: MobShadowkinSprites
   defaultSkinTone: "#FFFFFF"
+  defaultEyeTone: "#FFFFFF"
   markingLimits: MobShadowkinMarkingLimits
   dollPrototype: MobShadowkinDummy
   skinColoration: Hues
