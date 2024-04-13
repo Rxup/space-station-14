@@ -267,13 +267,6 @@
           min: 5
         causeChance: 0.3
         disease: XenoVirus
-      - !type:ChemCauseDisease
-        conditions:
-        - !type:ReagentThreshold
-          reagent: FluorosulfuricAcid
-          min: 5
-        causeChance: 0.7
-        disease: XenoDroneVirus
 # end-backmen: Disease
 
 - type: reagent
