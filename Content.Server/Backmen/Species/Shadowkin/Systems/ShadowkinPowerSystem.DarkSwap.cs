@@ -248,15 +248,18 @@ public sealed class ShadowkinDarkSwapSystem : EntitySystem
 
     private void OnInvisShutdown(EntityUid uid, ShadowkinDarkSwappedComponent component, ComponentShutdown args)
     {
-        if(!component.NeedReturnPacify) // не должны снимать цифизм -_-
-            RemComp<PacifiedComponent>(uid);
-
-        if (component.Invisible)
+        if (!TerminatingOrDeleted(uid))
         {
-            SetVisibility(uid, false);
-            SuppressFactions(uid, false);
-        }
+            if(!component.NeedReturnPacify) // не должны снимать цифизм -_-
+                RemComp<PacifiedComponent>(uid);
 
+            if (component.Invisible)
+            {
+                SetVisibility(uid, false);
+                SuppressFactions(uid, false);
+            }
+        }
+        
         component.Darken = false;
 
         foreach (var light in component.DarkenedLights.ToArray())
