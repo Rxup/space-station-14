@@ -1,6 +1,7 @@
 ﻿using System.Linq;
 using Content.Server.Administration.Logs;
 using Content.Server.Backmen.Economy.Wage;
+using Content.Server.Backmen.RoleWhitelist;
 using Content.Server.Popups;
 using Content.Shared.Access.Systems;
 using Content.Shared.Backmen.Economy.WageConsole;
@@ -8,6 +9,7 @@ using Content.Shared.Database;
 using Content.Shared.Popups;
 using Content.Shared.UserInterface;
 using Robust.Server.GameObjects;
+using Robust.Shared.Player;
 
 namespace Content.Server.Backmen.Economy.WageConsole;
 
@@ -18,6 +20,7 @@ public sealed class WageConsoleSystem : SharedWageConsoleSystem
     [Dependency] private readonly AccessReaderSystem _access = default!;
     [Dependency] private readonly PopupSystem _popup = default!;
     [Dependency] private readonly IAdminLogManager _adminLogger = default!;
+    [Dependency] private readonly WhitelistSystem _whitelist = default!;
 
     public override void Initialize()
     {
@@ -35,6 +38,12 @@ public sealed class WageConsoleSystem : SharedWageConsoleSystem
 
     private void OnTryOpenUi(Entity<WageConsoleComponent> ent, ref ActivatableUIOpenAttemptEvent args)
     {
+        if (!TryComp<ActorComponent>(args.User, out var actorComponent) || !_whitelist.IsInWhitelist(actorComponent.PlayerSession))
+        {
+            _popup.PopupCursor(Loc.GetString("reinforcement-insufficient-access"), args.User, PopupType.Medium);
+            args.Cancel();
+            return;
+        }
         if (!_access.IsAllowed(args.User, ent))
         {
             _popup.PopupCursor(Loc.GetString("reinforcement-insufficient-access"), args.User, PopupType.Medium);
@@ -45,6 +54,11 @@ public sealed class WageConsoleSystem : SharedWageConsoleSystem
     private void OnBonusMsg(Entity<WageConsoleComponent> ent, ref BonusWageRowMsg args)
     {
         if (args.Session.AttachedEntity is null) { return; }
+        if (!_whitelist.IsInWhitelist(args.Session))
+        {
+            _popup.PopupCursor(Loc.GetString("reinforcement-insufficient-access"), args.Session.AttachedEntity.Value, PopupType.Medium);
+            return;
+        }
 
         if (!_access.IsAllowed(args.Session.AttachedEntity.Value, ent))
         {
@@ -100,6 +114,11 @@ public sealed class WageConsoleSystem : SharedWageConsoleSystem
     private void OnEditWageRow(Entity<WageConsoleComponent> ent, ref SaveEditedWageRowMsg args)
     {
         if (args.Session.AttachedEntity is null) { return; }
+        if (!_whitelist.IsInWhitelist(args.Session))
+        {
+            _popup.PopupCursor(Loc.GetString("reinforcement-insufficient-access"), args.Session.AttachedEntity.Value, PopupType.Medium);
+            return;
+        }
 
         if (!_access.IsAllowed(args.Session.AttachedEntity.Value, ent))
         {

@@ -69,3 +69,25 @@
     state: cash_1000
   - type: Stack
     count: 5000
+
+- type: entity
+  parent: CargoCash
+  id: CargoCash30000
+  suffix: 30000
+  components:
+  - type: Icon
+    sprite: Objects/Economy/cash.rsi
+    state: cash_1000
+  - type: Stack
+    count: 30000
+
+- type: entity
+  parent: CargoCash
+  id: CargoCash20000
+  suffix: 20000
+  components:
+  - type: Icon
+    sprite: Objects/Economy/cash.rsi
+    state: cash_1000
+  - type: Stack
+    count: 20000
