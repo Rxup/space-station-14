@@ -728,6 +728,9 @@ entities:
       rot: 3.141592653589793 rad
       pos: 0.5,2.5
       parent: 1
+    - type: DeviceLinkSink
+      links:
+      - 89
 - proto: ShuttleWindow
   entities:
   - uid: 29
@@ -747,12 +750,14 @@ entities:
   - uid: 89
     components:
     - type: Transform
-      pos: 1.1134098,2.5
+      rot: 3.141592653589793 rad
+      pos: 0.5,0.5
       parent: 1
     - type: DeviceLinkSource
       linkedPorts:
-        invalid:
+        36:
         - Pressed: Toggle
+        - Pressed: Trigger
 - proto: SubstationWallBasic
   entities:
   - uid: 54
