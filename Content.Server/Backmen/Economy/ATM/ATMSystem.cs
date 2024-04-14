@@ -59,13 +59,29 @@ namespace Content.Server.Backmen.Economy.ATM;
             UpdateComponentUserInterface(uid);
         }
 
-        public Dictionary<string, FixedPoint2> GetCurrencyValue(EntityUid uid, PhysicalCompositionComponent component)
+        [ValidatePrototypeId<MaterialPrototype>]
+        private const string Credit = "Credit";
+
+        [ValidatePrototypeId<CurrencyPrototype>]
+        private const string SpaceCash = "SpaceCash";
+        public Dictionary<ProtoId<CurrencyPrototype>, FixedPoint2> GetCurrencyValue(EntityUid uid, PhysicalCompositionComponent component)
+        {
+            var amount = EntityManager.GetComponentOrNull<StackComponent>(uid)?.Count ?? 1;
+            var rt = new Dictionary<ProtoId<CurrencyPrototype>, FixedPoint2>();
+            if (component.MaterialComposition.TryGetValue(Credit, out var value))
+            {
+                rt.Add(SpaceCash, value * (FixedPoint2)amount);
+            }
+            return rt;
+        }
+        [Obsolete]
+        public Dictionary<string, FixedPoint2> GetCurrencyValueOld(EntityUid uid, PhysicalCompositionComponent component)
         {
             var amount = EntityManager.GetComponentOrNull<StackComponent>(uid)?.Count ?? 1;
             var rt = new Dictionary<string, FixedPoint2>();
-            if (component.MaterialComposition.TryGetValue("Credit", out var value))
+            if (component.MaterialComposition.TryGetValue(Credit, out var value))
             {
-                rt.Add("SpaceCash", value * (FixedPoint2)amount);
+                rt.Add(SpaceCash, value * (FixedPoint2)amount);
             }
             return rt;
         }
@@ -84,7 +100,7 @@ namespace Content.Server.Backmen.Economy.ATM;
             }
             else if (TryComp<StoreComponent>(args.Target, out var store))
             {
-                args.Handled = _storeSystem.TryAddCurrency(GetCurrencyValue(args.Used, component), args.Target.Value, store);
+                args.Handled = _storeSystem.TryAddCurrency(GetCurrencyValueOld(args.Used, component), args.Target.Value, store);
             }
 
             if (!args.Handled)
@@ -207,7 +223,7 @@ namespace Content.Server.Backmen.Economy.ATM;
             var amountRemaining = msg.Amount;
             if (!_bankManagerSystem.TryWithdrawFromBankAccount(
                 bankAccountNumber,
-                new KeyValuePair<string, FixedPoint2>(currency, amountRemaining)))
+                new KeyValuePair<ProtoId<CurrencyPrototype>, FixedPoint2>(currency, amountRemaining)))
             {
                 Deny(uid);
                 return;
@@ -228,7 +244,7 @@ namespace Content.Server.Backmen.Economy.ATM;
             _audioSystem.PlayPvs(uid.Comp.SoundWithdrawCurrency, uid, AudioParams.Default.WithVolume(-2f));
             UpdateComponentUserInterface(uid);
         }
-        public bool TryAddCurrency(Dictionary<string, FixedPoint2> currency, Entity<AtmComponent> atm)
+        public bool TryAddCurrency(Dictionary<ProtoId<CurrencyPrototype>, FixedPoint2> currency, Entity<AtmComponent> atm)
         {
             foreach (var type in currency)
             {
