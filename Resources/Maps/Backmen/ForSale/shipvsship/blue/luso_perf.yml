@@ -12,7 +12,7 @@ entities:
   - uid: 1
     components:
     - type: MetaData
-      name: grid
+      name: luso-B
     - type: Transform
       pos: -0.46875,-0.515625
       parent: invalid
@@ -43,6 +43,8 @@ entities:
       bodyType: Dynamic
     - type: Fixtures
       fixtures: {}
+    - type: IFF
+      color: '#0000FFFF'
     - type: OccluderTree
     - type: SpreaderGrid
     - type: Shuttle
@@ -66,6 +68,17 @@ entities:
             12: -1,4
             13: 0,4
         - node:
+            color: '#951710FF'
+            id: HalfTileOverlayGreyscale
+          decals:
+            66: -1,4
+            67: 1,4
+            68: 0,4
+            69: -1,1
+            70: 1,1
+            71: -2,0
+            72: 2,0
+        - node:
             color: '#1861D5FF'
             id: HalfTileOverlayGreyscale180
           decals:
@@ -76,6 +89,17 @@ entities:
             4: -1,4
             5: -2,0
             6: 2,0
+        - node:
+            color: '#951710FF'
+            id: HalfTileOverlayGreyscale180
+          decals:
+            59: 0,-3
+            60: -1,-1
+            61: 1,-1
+            62: -2,0
+            63: 2,0
+            64: -1,4
+            65: 1,4
         - node:
             color: '#1861D5FF'
             id: HalfTileOverlayGreyscale270
@@ -88,6 +112,17 @@ entities:
             19: 0,-2
             20: 0,-3
         - node:
+            color: '#951710FF'
+            id: HalfTileOverlayGreyscale270
+          decals:
+            73: 0,-2
+            74: 0,-3
+            75: -1,-1
+            76: -1,1
+            77: 0,2
+            78: 0,3
+            79: 0,4
+        - node:
             color: '#1861D5FF'
             id: HalfTileOverlayGreyscale90
           decals:
@@ -99,31 +134,52 @@ entities:
             26: 0,3
             27: 0,4
         - node:
-            color: '#1861D5FF'
+            color: '#951710FF'
+            id: HalfTileOverlayGreyscale90
+          decals:
+            80: 0,4
+            81: 0,3
+            82: 0,2
+            83: 1,1
+            84: 1,-1
+            85: 0,-2
+            86: 0,-3
+        - node:
+            color: '#951710FF'
             id: MiniTileWhiteInnerNe
           decals:
-            65: 1,0
-            66: 0,1
+            120: 0,1
+            121: 1,0
         - node:
-            color: '#1861D5FF'
+            color: '#951710FF'
             id: MiniTileWhiteInnerNw
           decals:
-            64: -1,0
-            67: 0,1
+            119: 0,1
+            122: -1,0
         - node:
             color: '#1861D5FF'
             id: MiniTileWhiteInnerSe
           decals:
-            58: 0,4
-            63: 1,0
-            68: 0,-1
+            57: 0,4
+        - node:
+            color: '#951710FF'
+            id: MiniTileWhiteInnerSe
+          decals:
+            116: 0,4
+            123: 1,0
+            126: 0,-1
         - node:
             color: '#1861D5FF'
             id: MiniTileWhiteInnerSw
           decals:
-            59: 0,4
-            60: -1,0
-            69: 0,-1
+            58: 0,4
+        - node:
+            color: '#951710FF'
+            id: MiniTileWhiteInnerSw
+          decals:
+            117: 0,4
+            124: -1,0
+            125: 0,-1
         - node:
             color: '#1861D5FF'
             id: MiniTileWhiteLineE
@@ -137,6 +193,18 @@ entities:
             34: 0,-2
             35: 0,-3
         - node:
+            color: '#951710FF'
+            id: MiniTileWhiteLineE
+          decals:
+            87: 2,0
+            88: 1,1
+            89: 1,-1
+            90: 0,-2
+            91: 0,-3
+            92: 0,3
+            93: 0,2
+            94: 1,4
+        - node:
             color: '#1861D5FF'
             id: MiniTileWhiteLineN
           decals:
@@ -148,15 +216,37 @@ entities:
             49: 2,0
             50: -2,0
         - node:
+            color: '#951710FF'
+            id: MiniTileWhiteLineN
+          decals:
+            95: -1,4
+            96: 0,4
+            97: 1,4
+            98: -1,1
+            99: 1,1
+            100: -2,0
+            101: 2,0
+        - node:
             color: '#1861D5FF'
             id: MiniTileWhiteLineS
           decals:
-            52: -1,-1
-            53: 1,-1
-            54: -2,0
-            55: 2,0
-            56: -1,4
-            57: 1,4
+            51: -1,-1
+            52: 1,-1
+            53: -2,0
+            54: 2,0
+            55: -1,4
+            56: 1,4
+        - node:
+            color: '#951710FF'
+            id: MiniTileWhiteLineS
+          decals:
+            102: 0,-3
+            107: -1,-1
+            108: 1,-1
+            109: -2,0
+            110: 2,0
+            111: -1,4
+            118: 1,4
         - node:
             color: '#1861D5FF'
             id: MiniTileWhiteLineW
@@ -169,6 +259,18 @@ entities:
             41: 0,2
             42: 0,3
             43: -1,4
+        - node:
+            color: '#951710FF'
+            id: MiniTileWhiteLineW
+          decals:
+            103: 0,-3
+            104: 0,-2
+            105: -1,-1
+            106: -2,0
+            112: -1,4
+            113: -1,1
+            114: 0,3
+            115: 0,2
     - type: GridAtmosphere
       version: 2
       data:
@@ -208,7 +310,7 @@ entities:
       rot: -1.5707963267948966 rad
       pos: -2.5,0.5
       parent: 1
-- proto: AlwaysPoweredLightColoredFrostyBlue
+- proto: AlwaysPoweredLightColoredRed
   entities:
   - uid: 124
     components:
@@ -771,11 +873,13 @@ entities:
   - uid: 130
     components:
     - type: Transform
+      rot: 3.141592653589793 rad
       pos: -1.5,-4.5
       parent: 1
   - uid: 131
     components:
     - type: Transform
+      rot: 3.141592653589793 rad
       pos: 2.5,-4.5
       parent: 1
 - proto: WallShuttle
