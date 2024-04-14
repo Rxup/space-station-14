@@ -3,7 +3,6 @@ using Content.Shared.Decals;
 using Content.Shared.Examine;
 using Content.Shared.Humanoid.Markings;
 using Content.Shared.Humanoid.Prototypes;
-
 using Content.Shared.Corvax.TTS;
 using Content.Shared.IdentityManagement;
 using Content.Shared.Preferences;
