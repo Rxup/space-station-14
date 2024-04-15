@@ -55,7 +55,7 @@ public sealed class StoreBankSystem : EntitySystem
 
         //var _category = category?.ToArray() ?? Array.Empty<string>();
         foreach (var storeComponentListing in storeComponent.Listings.Where(x =>
-                     storeComponent.Categories.Any(x.Categories.Contains)))
+                     storeComponent.Categories.Any(z=>x.Categories.Contains(z))))
         {
             var limit = storeComponentListing?.Conditions?.OfType<ListingLimitedStockCondition>().FirstOrDefault();
             if ((limit == null && category != null) || storeComponentListing == null)

@@ -92,7 +92,7 @@ public sealed class ShadowkinTeleportSystem : EntitySystem
 
             // Resume pulling
             // TODO: This does nothing? // This does things sometimes, but the client never knows
-            _pulling.TryStartPull(args.Performer, puller.Pulling.Value, null, puller, pullable);
+            _pulling.TryStartPull(args.Performer, puller.Pulling.Value, puller, pullable);
         }
 
 

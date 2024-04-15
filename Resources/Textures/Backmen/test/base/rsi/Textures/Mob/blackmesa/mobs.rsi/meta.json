@@ -1,0 +1,104 @@
+{
+  "version": 1,
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "bullsquid_dead"
+    },
+    {
+      "name": "bullsquid",
+      "directions": 4
+    },
+    {
+      "name": "headcrab",
+      "directions": 4
+    },
+    {
+      "name": "headcrab_dead"
+    },
+    {
+      "name": "naked_human",
+      "directions": 4
+    },
+    {
+      "name": "hecu_melee",
+      "directions": 4
+    },
+    {
+      "name": "hecu_ranged",
+      "directions": 4
+    },
+    {
+      "name": "hecu_ranged_smg",
+      "directions": 4
+    },
+    {
+      "name": "security_guard_melee",
+      "directions": 4
+    },
+    {
+      "name": "security_guard_ranged",
+      "directions": 4
+    },
+    {
+      "name": "blackops",
+      "directions": 4
+    },
+    {
+      "name": "blackops_ranged",
+      "directions": 4
+    },
+    {
+      "name": "houndeye",
+      "directions": 4
+    },
+    {
+      "name": "houndeye_dead"
+    },
+    {
+      "name": "headcrab_zombie",
+      "directions": 4
+    },
+    {
+      "name": "security_zombie",
+      "directions": 4
+    },
+    {
+      "name": "scientist_zombie",
+      "directions": 4
+    },
+    {
+      "name": "hecu_zombie",
+      "directions": 4
+    },
+    {
+      "name": "hev_zombie",
+      "directions": 4
+    },
+    {
+      "name": "zombie",
+      "directions": 4
+    },
+    {
+      "name": "zombie_dead"
+    },
+    {
+      "name": "gordon_freeman",
+      "directions": 4
+    },
+    {
+      "name": "vortigaunt",
+      "directions": 4
+    },
+    {
+      "name": "vortigaunt_slave",
+      "directions": 4
+    },
+    {
+      "name": "vortigaunt_dead"
+    }
+  ]
+}

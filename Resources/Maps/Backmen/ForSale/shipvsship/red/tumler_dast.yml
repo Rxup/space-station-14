@@ -12,7 +12,7 @@ entities:
   - uid: 1
     components:
     - type: MetaData
-      name: grid
+      name: tumler-R
     - type: Transform
       pos: -2.1843865,-0.015828788
       parent: invalid
@@ -43,6 +43,8 @@ entities:
       bodyType: Dynamic
     - type: Fixtures
       fixtures: {}
+    - type: IFF
+      color: '#FF0000FF'
     - type: OccluderTree
     - type: SpreaderGrid
     - type: Shuttle

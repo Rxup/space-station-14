@@ -127,6 +127,14 @@
     - 2
   # possible xeno polymorph
   - !type:DiseasePolymorph
+    probability: 0.050
+    polymorphId: XenoDroneMorph
+    polymorphMessage: disease-xeno-polymorph
+    polymorphSound:
+      path: /Audio/Animals/space_dragon_roar.ogg
+    stages:
+    - 2
+  - !type:DiseasePolymorph
     probability: 0.0015
     polymorphId: XenoQueenMorph
     polymorphMessage: disease-xeno-polymorph

@@ -127,7 +127,7 @@ public sealed class DiseaseSystem : EntitySystem
             _parallel.ProcessNow(new DiseaseJob
             {
                 System = this,
-                Owner = (owner, carrierComp),
+                Owner = (owner, carrierComp, mobState),
                 FrameTime = frameTime
             }, carrierComp.Diseases.Count);
         }
@@ -136,7 +136,7 @@ public sealed class DiseaseSystem : EntitySystem
     private record struct DiseaseJob : IParallelRobustJob
     {
         public DiseaseSystem System { get; init; }
-        public Entity<DiseaseCarrierComponent> Owner { get; init; }
+        public Entity<DiseaseCarrierComponent, MobStateComponent> Owner { get; init; }
         public float FrameTime { get; init; }
         public void Execute(int index)
         {
@@ -144,9 +144,9 @@ public sealed class DiseaseSystem : EntitySystem
         }
     }
 
-    private void Process(Entity<DiseaseCarrierComponent> owner, float frameTime, int i)
+    private void Process(Entity<DiseaseCarrierComponent, MobStateComponent> owner, float frameTime, int i)
     {
-        var disease = owner.Comp.Diseases[i];
+        var disease = owner.Comp1.Diseases[i];
         disease.Accumulator += frameTime;
         disease.TotalAccumulator += frameTime;
 
@@ -154,7 +154,7 @@ public sealed class DiseaseSystem : EntitySystem
             return;
 
         // if the disease is on the silent disease list, don't do effects
-        var doEffects = owner.Comp.CarrierDiseases?.Contains(disease.ID) != true;
+        var doEffects = owner.Comp1.CarrierDiseases?.Contains(disease.ID) != true;
         disease.Accumulator -= disease.TickTime;
 
         var stage = 0; //defaults to stage 0 because you should always have one
@@ -181,8 +181,10 @@ public sealed class DiseaseSystem : EntitySystem
             {
                 Log.Error(err.ToString());
             }
-
         }
+
+        if (_mobStateSystem.IsIncapacitated(owner, owner))
+            doEffects = false;
 
         if (!doEffects)
             return;

@@ -36,7 +36,7 @@
   - type: StorageFill
     contents:
       - id: ClothingEyesGlassesSunglasses
-      - id: SpaceCash30000
+      - id: CargoCash30000
         amount: 1
       - id: EncryptionKeySyndie
       - id: RubberStampTrader
@@ -55,7 +55,7 @@
   - type: StorageFill
     contents:
       - id: ClothingEyesGlassesSunglasses
-      - id: SpaceCash20000
+      - id: CargoCash20000
         amount: 1
       - id: ClothingUniformJumpsuitTacticool
       - id: ClothingOuterCoatJensen

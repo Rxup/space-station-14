@@ -6,6 +6,8 @@ using Content.Server.Backmen.Economy;
 using System.Linq;
 using Content.Shared.Database;
 using Content.Shared.FixedPoint;
+using Content.Shared.Store;
+using Robust.Shared.Prototypes;
 
 namespace Content.Server.Backmen.Administration.Commands;
 
@@ -52,7 +54,7 @@ public sealed class SetBankCurrencyCommand : IConsoleCommand
             case > 0:
             {
                 if (!bankManagerSystem.TryInsertToBankAccount(bankAccount,
-                        new KeyValuePair<string, FixedPoint2>(bankAccount.Value.Comp.CurrencyType, FixedPoint2.New(balance))))
+                        new KeyValuePair<ProtoId<CurrencyPrototype>, FixedPoint2>(bankAccount.Value.Comp.CurrencyType, FixedPoint2.New(balance))))
                 {
                     shell.WriteError($"Добавить на счет не удалось! Баланс аккаунта: {bankAccount.Value.Comp.Balance}");
                     return;
@@ -63,7 +65,7 @@ public sealed class SetBankCurrencyCommand : IConsoleCommand
             case < 0:
             {
                 if (!bankManagerSystem.TryWithdrawFromBankAccount(bankAccount,
-                        new KeyValuePair<string, FixedPoint2>(bankAccount.Value.Comp.CurrencyType, FixedPoint2.New(Math.Abs(balance)))))
+                        new KeyValuePair<ProtoId<CurrencyPrototype>, FixedPoint2>(bankAccount.Value.Comp.CurrencyType, FixedPoint2.New(Math.Abs(balance)))))
                 {
                     shell.WriteError($"Списать со счета не удалось! Баланс аккаунта: {bankAccount.Value.Comp.Balance}");
                     return;

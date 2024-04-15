@@ -248,15 +248,18 @@ public sealed class ShadowkinDarkSwapSystem : EntitySystem
 
     private void OnInvisShutdown(EntityUid uid, ShadowkinDarkSwappedComponent component, ComponentShutdown args)
     {
-        if(!component.NeedReturnPacify) // не должны снимать цифизм -_-
-            RemComp<PacifiedComponent>(uid);
-
-        if (component.Invisible)
+        if (!TerminatingOrDeleted(uid))
         {
-            SetVisibility(uid, false);
-            SuppressFactions(uid, false);
-        }
+            if(!component.NeedReturnPacify) // не должны снимать цифизм -_-
+                RemComp<PacifiedComponent>(uid);
 
+            if (component.Invisible)
+            {
+                SetVisibility(uid, false);
+                SuppressFactions(uid, false);
+            }
+        }
+        
         component.Darken = false;
 
         foreach (var light in component.DarkenedLights.ToArray())
@@ -305,10 +308,12 @@ public sealed class ShadowkinDarkSwapSystem : EntitySystem
             _visibility.RefreshVisibility(uid);
 
             // Remove the stealth shader from the entity
-            if (!HasComp<GhostComponent>(uid))
-                RemCompDeferred<StealthComponent>(uid);
-
-            //_stealth.SetVisibility(uid, 1f, EnsureComp<StealthComponent>(uid));
+            //if (!HasComp<GhostComponent>(uid))
+            RemComp<StealthComponent>(uid);
+            // Just to be sure...
+            var stealth =  EnsureComp<StealthComponent>(uid);
+            _stealth.SetVisibility(uid, 1f, stealth);
+            RemComp<StealthComponent>(uid);
         }
     }
 

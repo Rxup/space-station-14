@@ -267,13 +267,6 @@
           min: 5
         causeChance: 0.3
         disease: XenoVirus
-      - !type:ChemCauseDisease
-        conditions:
-        - !type:ReagentThreshold
-          reagent: FluorosulfuricAcid
-          min: 5
-        causeChance: 0.7
-        disease: XenoDroneVirus
 # end-backmen: Disease
 
 - type: reagent
@@ -538,7 +531,9 @@
       - !type:PopupMessage
         conditions:
           - !type:OrganType
-            type: Human
+            type: Animal
+            shouldHave: false
+        reagent: Protein
         type: Local
         visualType: MediumCaution
         messages: [ "generic-reagent-effect-sick" ]
@@ -547,19 +542,21 @@
         probability: 0.1
         conditions:
           - !type:OrganType
-            type: Human
+            type: Animal
+            shouldHave: false
       - !type:HealthChange
         conditions:
         - !type:OrganType
-          type: Human
+          type: Animal
+          shouldHave: false
         damage:
           types:
             Poison: 1
       - !type:AdjustReagent
         conditions:
         - !type:OrganType
-          type: Human
-          shouldHave: false
+          type: Animal
+          shouldHave: true
         reagent: Protein
         amount: 0.5
 
