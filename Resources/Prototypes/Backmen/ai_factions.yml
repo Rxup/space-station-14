@@ -10,6 +10,11 @@
     - Blob
     - Zombie
     - SuperZloy
+    - Spanish
+    - Britan
+    - SpecialForce
+    - CombineForce
+    - CentralCommand
 
 - type: npcFaction
   id: Blob
@@ -28,6 +33,11 @@
     - MalfunctioningRobot
     - Revolutionary
     - SuperZloy
+    - Spanish
+    - Britan
+    - SpecialForce
+    - CombineForce
+    - CentralCommand
 
 - type: npcFaction
   id: Flesh
@@ -41,6 +51,11 @@
     - Blob
     - Revolutionary
     - SuperZloy
+    - Spanish
+    - Britan
+    - SpecialForce
+    - CombineForce
+    - CentralCommand
 
 - type: npcFaction
   id: GlimmerMonster # Crew hostile psionic
@@ -69,6 +84,11 @@
     - Flesh
     - MalfunctioningRobot
     - Revolutionary
+    - Spanish
+    - Britan
+    - SpecialForce
+    - CombineForce
+    - CentralCommand
 
 - type: npcFaction
   id: ShadowkinDarkHostile
@@ -89,3 +109,95 @@
   id: AiTurret
   hostile:
   - AiEnemy
+
+- type: npcFaction
+  id: Britan
+  hostile:
+  - NanoTrasen
+  - Spanish
+  - SimpleHostile
+  - Xeno
+  - PetsNT
+  - Zombie
+  - Blob
+  - Flesh
+  - SuperZloy
+  - SpecialForce
+  - CombineForce
+  - CentralCommand
+
+- type: npcFaction
+  id: Spanish
+  hostile:
+    - Dragon
+    - SimpleHostile
+    - Xeno
+    - Zombie
+    - Blob
+    - Flesh
+    - MalfunctioningRobot
+    - Revolutionary
+    - Britan
+    - SuperZloy
+    - SpecialForce
+    - CombineForce
+    - AiEnemy
+  friendly:
+    - CentralCommand
+
+- type: npcFaction
+  id: SpecialForce
+  hostile:
+    - Dragon
+    - NanoTrasen
+    - Spanish
+    - SimpleHostile
+    - Syndicate
+    - Xeno
+    - Zombie
+    - Blob
+    - Flesh
+    - MalfunctioningRobot
+    - Revolutionary
+    - Britan
+    - SuperZloy
+    - CombineForce
+    - CentralCommand
+
+- type: npcFaction
+  id: CombineForce
+  hostile:
+    - Dragon
+    - NanoTrasen
+    - Spanish
+    - SimpleHostile
+    - Syndicate
+    - Xeno
+    - Zombie
+    - Blob
+    - Flesh
+    - MalfunctioningRobot
+    - Revolutionary
+    - Britan
+    - SuperZloy
+    - SpecialForce
+    - CentralCommand
+
+- type: npcFaction
+  id: CentralCommand
+  hostile:
+  - SimpleHostile
+  - Syndicate
+  - NanoTrasen
+  - Xeno
+  - Zombie
+  - Blob
+  - Flesh
+  - Revolutionary
+  - MalfunctioningRobot
+  - SuperZloy
+  - Britan
+  - SpecialForce
+  - CombineForce
+  friendly:
+  - Spanish
