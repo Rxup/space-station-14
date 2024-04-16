@@ -6,7 +6,7 @@
   productEvent: !type:VampireStoreEvent
     buyType: Sprint1
   cost:
-    BloodEssence: 10
+    BloodEssence: 7
   categories:
   - VapmireT2
   conditions:
@@ -21,7 +21,7 @@
   productEvent: !type:VampireStoreEvent
     buyType: Sprint2
   cost:
-    BloodEssence: 15
+    BloodEssence: 12
   categories:
   - VapmireT2
   conditions:
@@ -38,7 +38,7 @@
   productEvent: !type:VampireStoreEvent
     buyType: Sprint3
   cost:
-    BloodEssence: 25
+    BloodEssence: 17
   categories:
   - VapmireT2
   conditions:
@@ -55,7 +55,7 @@
   productEvent: !type:VampireStoreEvent
     buyType: NoSlip
   cost:
-    BloodEssence: 35
+    BloodEssence: 17
   categories:
   - VapmireT2
   conditions:
