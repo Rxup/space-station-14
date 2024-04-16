@@ -17,7 +17,7 @@ public sealed partial class HumanoidProfileEditor
     private void InitializeVoice()
     {
         _random = IoCManager.Resolve<IRobustRandom>();
-        _ttsSys = _entMan.System<TTSSystem>();
+        _ttsSys = IoCManager.Resolve<IEntityManager>().System<TTSSystem>();
         _voiceList = _prototypeManager
             .EnumeratePrototypes<TTSVoicePrototype>()
             .Where(o => o.RoundStart)
@@ -73,7 +73,7 @@ public sealed partial class HumanoidProfileEditor
 
     private void PlayTTS()
     {
-        if (_previewDummy is null || Profile is null)
+        if (Profile is null)
             return;
 
         _ttsSys.RequestGlobalTTS(Content.Shared.Backmen.TTS.VoiceRequestType.Preview, Profile.Voice);

@@ -10,6 +10,7 @@ using Content.Shared.Humanoid;
 using Content.Shared.Inventory;
 using Content.Shared.PDA;
 using Content.Shared.Preferences;
+using Content.Shared.Preferences.Loadouts;
 using Content.Shared.Roles;
 using Content.Shared.StationRecords;
 using Robust.Shared.Player;
@@ -71,8 +72,6 @@ public sealed class StationRecordCommand  : ToolshedCommand
                     humanoidAppearanceComponent.Sex,
                     humanoidAppearanceComponent.Gender,
                     new HumanoidCharacterAppearance(),
-                    ClothingPreference.Jumpsuit,
-                    BackpackPreference.Backpack,
                     SpawnPriorityPreference.None,
                     new Dictionary<string, JobPriority>
                     {
@@ -80,7 +79,8 @@ public sealed class StationRecordCommand  : ToolshedCommand
                     },
                     PreferenceUnavailableMode.SpawnAsOverflow,
                     new List<string>(),
-                    new List<string>()
+                    new List<string>(),
+                    new Dictionary<string, RoleLoadout>()
                 ),
                 recordsComponent
             );

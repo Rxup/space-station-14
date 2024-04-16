@@ -1,0 +1,8 @@
+﻿- type: roleLoadout
+  id: JobCentralCommandCargo
+  groups:
+  - QuartermasterHead
+  - QuartermasterNeck
+  - QuartermasterJumpsuit
+  - QuartermasterBackpack
+  - Trinkets

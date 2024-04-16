@@ -53,9 +53,9 @@
     id: CCOperatorPDA
     ears: ClothingHeadsetCentCom
     pocket1: ClothingMaskGasCentcom
-  innerClothingSkirt: ClothingUniformJumpskirttCentcomVeryOfficial
-  satchel: ClothingBackpackSatchelFilled
-  duffelbag: ClothingBackpackDuffelFilled
+  #innerClothingSkirt: ClothingUniformJumpskirttCentcomVeryOfficial
+  #satchel: ClothingBackpackSatchelFilled
+  #duffelbag: ClothingBackpackDuffelFilled
 
 - type: entity
   parent: CentcomPDABackmen

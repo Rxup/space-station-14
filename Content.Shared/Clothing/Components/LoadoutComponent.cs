@@ -13,7 +13,4 @@ public sealed partial class LoadoutComponent : Component
     /// </summary>
     [DataField("prototypes", required: true, customTypeSerializer: typeof(PrototypeIdListSerializer<StartingGearPrototype>)), AutoNetworkedField]
     public List<string>? Prototypes;
-
-    [DataField("force")]
-    public bool Force = false;
 }

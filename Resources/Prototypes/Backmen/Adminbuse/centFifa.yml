@@ -112,7 +112,7 @@
     id: CargoIDCard
     pocket1: SurvivalKnife
     pocket2: FlashlightLantern
-  innerClothingSkirt: ClothingUniformJumpskirtCargo
+#  innerClothingSkirt: ClothingUniformJumpskirtCargo
 
 #--------------------------------------------------------------------
 
@@ -146,7 +146,7 @@
     belt: ClothingBeltMedicalFilled
     pocket1: FlashlightLantern
     pocket2: ScalpelCool
-  innerClothingSkirt: ClothingUniformJumpskirtMedicalDoctor
+  #innerClothingSkirt: ClothingUniformJumpskirtMedicalDoctor
 
 #--------------------------------------------------------------------
 

@@ -10,9 +10,9 @@
     id: PassengerPDA
     ears: ClothingHeadsetService
     pocket2: BaseWizardUplinkRadio8BS
-  innerClothingSkirt: ClothingUniformJumpskirtColorDarkBlue
-  satchel: ClothingBackpackSatchelFilled
-  duffelbag: ClothingBackpackDuffelFilled
+  #innerClothingSkirt: ClothingUniformJumpskirtColorDarkBlue
+  #satchel: ClothingBackpackSatchelFilled
+  #duffelbag: ClothingBackpackDuffelFilled
 
 - type: startingGear
   id: WizardRedGear2
@@ -25,9 +25,9 @@
     id: PassengerPDA
     ears: ClothingHeadsetService
     pocket2: BaseWizardUplinkRadio8BS
-  innerClothingSkirt: ClothingUniformJumpskirtColorRed
-  satchel: ClothingBackpackSatchelFilled
-  duffelbag: ClothingBackpackDuffelFilled
+  #innerClothingSkirt: ClothingUniformJumpskirtColorRed
+  #satchel: ClothingBackpackSatchelFilled
+  #duffelbag: ClothingBackpackDuffelFilled
 
 - type: startingGear
   id: WizardVioletGear2
@@ -40,9 +40,9 @@
     id: PassengerPDA
     ears: ClothingHeadsetService
     pocket2: BaseWizardUplinkRadio8BS
-  innerClothingSkirt: ClothingUniformJumpskirtColorPurple
-  satchel: ClothingBackpackSatchelFilled
-  duffelbag: ClothingBackpackDuffelFilled
+  #innerClothingSkirt: ClothingUniformJumpskirtColorPurple
+  #satchel: ClothingBackpackSatchelFilled
+  #duffelbag: ClothingBackpackDuffelFilled
 
 - type: startingGear
   id: WizardHardsuitGear2
@@ -54,6 +54,6 @@
     id: PassengerPDA
     ears: ClothingHeadsetService
     pocket2: BaseWizardUplinkRadio30BS
-  innerClothingSkirt: ClothingUniformJumpskirtColorPurple
-  satchel: ClothingBackpackSatchelFilled
-  duffelbag: ClothingBackpackDuffelFilled
+  #innerClothingSkirt: ClothingUniformJumpskirtColorPurple
+  #satchel: ClothingBackpackSatchelFilled
+  #duffelbag: ClothingBackpackDuffelFilled

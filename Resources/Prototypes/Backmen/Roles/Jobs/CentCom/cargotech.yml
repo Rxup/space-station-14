@@ -60,9 +60,9 @@
     id: CCCargoPDA
     ears: ClothingHeadsetCentCom
     pocket1: AppraisalTool
-  innerClothingSkirt: ClothingUniformJumpskirtCargo
-  satchel: ClothingBackpackSatchelFilled
-  duffelbag: ClothingBackpackDuffelFilled
+  #innerClothingSkirt: ClothingUniformJumpskirtCargo
+  #satchel: ClothingBackpackSatchelFilled
+  #duffelbag: ClothingBackpackDuffelFilled
 
 - type: entity
   parent: OrdenPDA
