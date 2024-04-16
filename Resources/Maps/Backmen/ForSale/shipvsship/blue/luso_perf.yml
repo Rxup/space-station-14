@@ -68,7 +68,7 @@ entities:
             12: -1,4
             13: 0,4
         - node:
-            color: '#951710FF'
+            color: '#0096FFFF'
             id: HalfTileOverlayGreyscale
           decals:
             66: -1,4
@@ -90,7 +90,7 @@ entities:
             5: -2,0
             6: 2,0
         - node:
-            color: '#951710FF'
+            color: '#0096FFFF'
             id: HalfTileOverlayGreyscale180
           decals:
             59: 0,-3
@@ -112,7 +112,7 @@ entities:
             19: 0,-2
             20: 0,-3
         - node:
-            color: '#951710FF'
+            color: '#0096FFFF'
             id: HalfTileOverlayGreyscale270
           decals:
             73: 0,-2
@@ -134,7 +134,7 @@ entities:
             26: 0,3
             27: 0,4
         - node:
-            color: '#951710FF'
+            color: '#0096FFFF'
             id: HalfTileOverlayGreyscale90
           decals:
             80: 0,4
@@ -145,13 +145,13 @@ entities:
             85: 0,-2
             86: 0,-3
         - node:
-            color: '#951710FF'
+            color: '#0096FFFF'
             id: MiniTileWhiteInnerNe
           decals:
             120: 0,1
             121: 1,0
         - node:
-            color: '#951710FF'
+            color: '#0096FFFF'
             id: MiniTileWhiteInnerNw
           decals:
             119: 0,1
@@ -162,7 +162,7 @@ entities:
           decals:
             57: 0,4
         - node:
-            color: '#951710FF'
+            color: '#0096FFFF'
             id: MiniTileWhiteInnerSe
           decals:
             116: 0,4
@@ -174,7 +174,7 @@ entities:
           decals:
             58: 0,4
         - node:
-            color: '#951710FF'
+            color: '#0096FFFF'
             id: MiniTileWhiteInnerSw
           decals:
             117: 0,4
@@ -193,7 +193,7 @@ entities:
             34: 0,-2
             35: 0,-3
         - node:
-            color: '#951710FF'
+            color: '#0096FFFF'
             id: MiniTileWhiteLineE
           decals:
             87: 2,0
@@ -216,7 +216,7 @@ entities:
             49: 2,0
             50: -2,0
         - node:
-            color: '#951710FF'
+            color: '#0096FFFF'
             id: MiniTileWhiteLineN
           decals:
             95: -1,4
@@ -237,7 +237,7 @@ entities:
             55: -1,4
             56: 1,4
         - node:
-            color: '#951710FF'
+            color: '#0096FFFF'
             id: MiniTileWhiteLineS
           decals:
             102: 0,-3
@@ -260,7 +260,7 @@ entities:
             42: 0,3
             43: -1,4
         - node:
-            color: '#951710FF'
+            color: '#0096FFFF'
             id: MiniTileWhiteLineW
           decals:
             103: 0,-3
@@ -310,7 +310,7 @@ entities:
       rot: -1.5707963267948966 rad
       pos: -2.5,0.5
       parent: 1
-- proto: AlwaysPoweredLightColoredRed
+- proto: AlwaysPoweredLightColoredFrostyBlue
   entities:
   - uid: 124
     components:

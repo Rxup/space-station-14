@@ -6,7 +6,7 @@
   productEvent: !type:VampireStoreEvent
     buyType: SkillMouse1
   cost:
-    BloodEssence: 5
+    BloodEssence: 4
   categories:
   - VapmireT1
   conditions:
@@ -36,7 +36,7 @@
   productEvent: !type:VampireStoreEvent
     buyType: RegenPower
   cost:
-    BloodEssence: 15
+    BloodEssence: 7
   categories:
   - VapmireT1
   conditions:
@@ -51,7 +51,7 @@
   productEvent: !type:VampireStoreEvent
     buyType: ZapPower
   cost:
-    BloodEssence: 10
+    BloodEssence: 8
   categories:
   - VapmireT1
   conditions:

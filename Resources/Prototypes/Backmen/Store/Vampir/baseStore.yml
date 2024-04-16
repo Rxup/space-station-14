@@ -42,7 +42,7 @@
   productEvent: !type:VampireStoreEvent
     buyType: Tier2Upgrade
   cost:
-    BloodEssence: 20
+    BloodEssence: 10
   categories:
   - VapmireT0
   conditions:
@@ -59,7 +59,7 @@
   productEvent: !type:VampireStoreEvent
     buyType: Tier3Upgrade
   cost:
-    BloodEssence: 40
+    BloodEssence: 25
   categories:
   - VapmireT0
   conditions:
