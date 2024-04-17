@@ -38,6 +38,9 @@
         true
   - type: NPCRetaliation
     attackMemoryLength: 10
+  - type: NpcFactionMember
+    factions:
+      - SimpleNeutral
   - type: Hands
   - type: RotationVisuals
     defaultRotation: 90

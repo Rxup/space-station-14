@@ -277,9 +277,6 @@
     damage:
         types:
           Blunt: 5
-  - type: NpcFactionMember
-    factions:
-      - SimpleNeutral
   - type: Sprite
     drawdepth: Mobs
     sprite: Backmen/Mobs/Npc/Civilian.rsi
@@ -312,7 +309,7 @@
 - type: entity
   name: maid
   id: MobCivilianMaiden
-  parent: MobCivilianOld
+  parent: MobBaseNpc
   suffix: suppa Civilian Maiden
   description: Гражданский, просто существует.
   components:
@@ -325,7 +322,7 @@
 - type: entity
   name: Lenny
   id: MobCivilianLenny
-  parent: MobCivilianOld
+  parent: MobBaseNpc
   suffix: suppa Civilian Lenny
   description: Гражданский, просто существует.
   components:
