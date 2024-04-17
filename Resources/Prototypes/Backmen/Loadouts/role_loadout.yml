@@ -6,13 +6,5 @@
   - BKCCCargoBackpack
   - Trinkets
 
-- type: roleLoadout
-  id: JobBKCCOfficial
-  groups:
-  - BKCCOperatorGavnaJumpsuit
-  - BKCCOperatorGavnaNeck
-  - BKCCOperatorGavnaBackpack
-  - Trinkets
-
 
 

@@ -5,6 +5,11 @@
     id: CCOperatorPDA
     ears: ClothingHeadsetCentCom
     pocket1: ClothingMaskGasCentcom
+    jumpsuit: ClothingUniformJumpsuitCentcomVeryOfficial
+    innerClothingSkirt: ClothingUniformJumpskirttCentcomVeryOfficial
+    neck: ClothingNeckCloakCap
+    duffelbag: ClothingBackpackDuffelFilled
+    satchel: ClothingBackpackSatchelFilled
 
 # Jumpsuit
 - type: loadout
