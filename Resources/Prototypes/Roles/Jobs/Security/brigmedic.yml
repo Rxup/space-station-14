@@ -48,6 +48,6 @@
     ears: ClothingHeadsetBrigmedic # Backmen
     mask: ClothingMaskSterile
     belt: ClothingBeltMedicalFilled
-  innerClothingSkirt: ClothingUniformJumpskirtBrigmedic
-  satchel: ClothingBackpackSatchelBrigmedicFilled # Backmen
-  duffelbag: ClothingBackpackDuffelBrigmedicFilled # Backmen
+  #innerClothingSkirt: ClothingUniformJumpskirtBrigmedic
+  #satchel: ClothingBackpackSatchelBrigmedicFilled # Backmen
+  #duffelbag: ClothingBackpackDuffelBrigmedicFilled # Backmen

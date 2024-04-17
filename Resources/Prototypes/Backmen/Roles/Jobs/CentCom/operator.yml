@@ -47,18 +47,7 @@
   wageDepartment: CentCom
   wage: 75
 
-- type: startingGear
-  id: OperatorGavna
-  equipment:
-    jumpsuit: ClothingUniformJumpsuitCentcomVeryOfficial
-    back: ClothingBackpackFilled
-    shoes: ClothingShoesBootsLaceup
-    id: CCOperatorPDA
-    ears: ClothingHeadsetCentCom
-    pocket1: ClothingMaskGasCentcom
-  innerClothingSkirt: ClothingUniformJumpskirttCentcomVeryOfficial
-  satchel: ClothingBackpackSatchelFilled
-  duffelbag: ClothingBackpackDuffelFilled
+
 
 - type: entity
   parent: CentcomPDABackmen

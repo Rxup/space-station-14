@@ -54,8 +54,6 @@
     shoes: ClothingShoesColorBlack
     id: CentcomInternPDABackmen
     ears: ClothingHeadsetCentCom
-  satchel: ClothingBackpackSatchelFilled
-  duffelbag: ClothingBackpackDuffelFilled
 
 - type: startingGear
   id: CentComInternGearArmed # POWER IN QUANTITY!

@@ -5,7 +5,7 @@ using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototy
 
 namespace Content.Server.Backmen.Loadout;
 
-[Prototype("loadout")]
+[Prototype("bkmloadout")]
 public sealed class LoadoutItemPrototype : IPrototype
 {
     [IdDataField] public string ID { get; } = default!;

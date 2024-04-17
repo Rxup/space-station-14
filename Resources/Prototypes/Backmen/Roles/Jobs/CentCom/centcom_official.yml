@@ -48,22 +48,7 @@
     sprite: /Textures/Backmen/Icons/jobicon.rsi
     state: NT
 
-- type: startingGear
-  id: CentComCorvax
-  equipment:
-    jumpsuit: ClothingUniformJumpsuitCentcomOfficer
-    shoes: ClothingShoesBootsLaceup
-    mask: ClothingMaskGasCentcom
-    eyes: ClothingEyesGlassesSunglasses
-    gloves: ClothingHandsGlovesCentcomNaval
-    head: ClothingHeadHatCentcom
-    outerClothing: ClothingOuterArmorCentcomCarapace
-    suitstorage: OxygenTankFilled
-    id: CentcomPDABackmen
-    ears: ClothingHeadsetAltCentCom
-    pocket1: CyberPen
-    pocket2: BoxFolderSecretBlack
-  innerClothingSkirt: ClothingUniformJumpskirtCentcomOfficer
+
 
 - type: startingGear
   id: CentComOfficialEVAGear
@@ -79,7 +64,7 @@
     ears: ClothingHeadsetAltCentCom
     pocket1: CyberPen
     pocket2: BoxFolderSecretBlack
-  innerClothingSkirt: ClothingUniformJumpskirtCentcomOfficer
+  #innerClothingSkirt: ClothingUniformJumpskirtCentcomOfficer
 
 - type: entity
   parent: BasePDA

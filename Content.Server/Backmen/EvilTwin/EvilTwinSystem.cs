@@ -95,8 +95,7 @@ public sealed class EvilTwinSystem : EntitySystem
                 (var twinMob, pref) = SpawnEvilTwin(targetUid.Value, xform.Coordinates);
                 if (twinMob != null)
                 {
-                    var playerData = ev.Session.ContentData();
-                    if (playerData != null && _mindSystem.TryGetMind(playerData, out var mindId, out var mind))
+                    if (_mindSystem.TryGetMind(ev.Session, out var mindId, out var mind))
                     {
                         _mindSystem.TransferTo(mindId, null, true, false, mind);
                         RemComp<MindContainerComponent>(twinMob.Value);
@@ -522,7 +521,7 @@ public sealed class EvilTwinSystem : EntitySystem
         {
             if (_prototype.TryIndex<StartingGearPrototype>(twinTargetMindJob.StartingGear!, out var gear))
             {
-                _stationSpawning.EquipStartingGear(twinUid, gear, pref);
+                _stationSpawning.EquipStartingGear(twinUid, gear);
                 _stationSpawning.EquipIdCard(twinUid, pref.Name, twinTargetMindJob,
                     _stationSystem.GetOwningStation(target));
             }

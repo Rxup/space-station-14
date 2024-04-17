@@ -488,9 +488,9 @@
   description: Эти тактические перчатки огнеупорны и ударопрочны.
   components:
   - type: Sprite
-    sprite: Clothing/Hands/Gloves/ihscombat.rsi
+    sprite: Backmen/Clothing/Hands/Gloves/ihscombat.rsi
   - type: Clothing
-    sprite: Clothing/Hands/Gloves/ihscombat.rsi
+    sprite: Backmen/Clothing/Hands/Gloves/ihscombat.rsi
   - type: Fiber
     fiberMaterial: fibers-durathread
   - type: FingerprintMask
@@ -570,9 +570,28 @@
         Piercing: 0.70
         Heat: 0.90
   - type: Sprite
-    sprite: Clothing/Uniforms/Jumpsuit/Color/black.rsi
+    sprite: Clothing/Uniforms/Jumpsuit/color.rsi
+    layers:
+    - state: icon
+      color: "#3f3f3f"
+    - state: trinkets-icon
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left
+        color: "#3f3f3f"
+      - state: trinkets-inhand-left
+      right:
+      - state: inhand-right
+        color: "#3f3f3f"
+      - state: trinkets-inhand-right
   - type: Clothing
-    sprite: Clothing/Uniforms/Jumpsuit/Color/black.rsi
+    sprite: Clothing/Uniforms/Jumpsuit/color.rsi
+    clothingVisuals:
+      jumpsuit:
+      - state: equipped-INNERCLOTHING
+        color: "#3f3f3f"
+      - state: trinkets-equipped-INNERCLOTHING
   - type: SuitSensor
     controlsLocked: true
     randomMode: false

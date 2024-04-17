@@ -55,18 +55,6 @@
     price: 20
   - type: StorageFill
     contents:
-      - id: ClothingUniformRandomArmless
-        prob: 0.05
-        orGroup: dressermainloot
-      - id: ClothingUniformRandomStandart
-        prob: 0.05
-        orGroup: dressermainloot
-      - id: ClothingUniformRandomBra
-        prob: 0.05
-        orGroup: dressermainloot
-      - id: ClothingUniformRandomShorts
-        prob: 0.05
-        orGroup: dressermainloot
       - id: ClothingNeckLGBTPin
         prob: 0.06
         orGroup: dressermainloot

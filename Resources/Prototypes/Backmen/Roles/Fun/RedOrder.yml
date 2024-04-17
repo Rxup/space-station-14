@@ -11,9 +11,9 @@
     outerClothing: ClothingOuterHardsuitOrdersuit
     shoes: ClothingShoesBootsMagSyndie
     id: OrdenPDA
-  innerClothingSkirt: ClothingUniformJumpskirtColorRed
-  satchel: ClothingBackpackSatchelFilled
-  duffelbag: ClothingBackpackDuffelFilled
+  #innerClothingSkirt: ClothingUniformJumpskirtColorRed
+  #satchel: ClothingBackpackSatchelFilled
+  #duffelbag: ClothingBackpackDuffelFilled
 
 - type: startingGear
   id: RedOrderEliteSquad
@@ -27,9 +27,9 @@
     outerClothing: ClothingOuterHardsuitOrdersuit
     shoes: ClothingShoesBootsMagSyndie
     id: OrdenPDA
-  innerClothingSkirt: ClothingUniformJumpskirtColorRed
-  satchel: ClothingBackpackSatchelFilled
-  duffelbag: ClothingBackpackDuffelFilled
+  #innerClothingSkirt: ClothingUniformJumpskirtColorRed
+  #satchel: ClothingBackpackSatchelFilled
+  #duffelbag: ClothingBackpackDuffelFilled
 
 - type: startingGear
   id: RedOrderSquad
@@ -43,9 +43,9 @@
     outerClothing: ClothingOuterHardsuitOrdinaryOrdersuit
     shoes: ClothingShoesBootsMagSyndie
     id: OrdenPDA
-  innerClothingSkirt: ClothingUniformJumpskirtColorRed
-  satchel: ClothingBackpackSatchelFilled
-  duffelbag: ClothingBackpackDuffelFilled
+  #innerClothingSkirt: ClothingUniformJumpskirtColorRed
+  #satchel: ClothingBackpackSatchelFilled
+  #duffelbag: ClothingBackpackDuffelFilled
 
 - type: startingGear
   id: RedOrderAgent
@@ -58,6 +58,6 @@
     neck: ClothingNeckCloakOrden
     shoes: ClothingShoesBootsSalvage
     id: SalvagePDA
-  innerClothingSkirt: ClothingUniformJumpskirtColorRed
-  satchel: ClothingBackpackSatchelFilled
-  duffelbag: ClothingBackpackDuffelFilled
+  #innerClothingSkirt: ClothingUniformJumpskirtColorRed
+  #satchel: ClothingBackpackSatchelFilled
+  #duffelbag: ClothingBackpackDuffelFilled

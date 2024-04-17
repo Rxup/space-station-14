@@ -178,7 +178,7 @@ public sealed partial class AdminVerbSystem
         {
             Text = Loc.GetString("admin-verb-text-make-thief"),
             Category = VerbCategory.Antag,
-            Icon = new SpriteSpecifier.Rsi(new ResPath("/Textures/Clothing/Hands/Gloves/ihscombat.rsi"), "icon"),
+            Icon = new SpriteSpecifier.Rsi(new ResPath("/Textures/Backmen/Clothing/Hands/Gloves/ihscombat.rsi"), "icon"),
             Act = () =>
             {
                 _thief.AdminMakeThief(args.Target, false); //Midround add pacified is bad
