@@ -38,6 +38,9 @@
     - type: GhostTakeoverAvailable
     - type: RandomMetadata
     - type: RandomHumanoidAppearance
+    - type: NpcFactionMember
+      factions:
+        - CentralCommand
     - type: SpecForce
       actionBssActionName: ActionCentcomFtlAction
     - type: InitialInfectedExempt
@@ -71,6 +74,9 @@
     - type: GhostTakeoverAvailable
     - type: RandomMetadata
     - type: RandomHumanoidAppearance
+    - type: NpcFactionMember
+      factions:
+        - CentralCommand
     - type: SpecForce
       actionBssActionName: ActionCentcomFtlAction
     - type: InitialInfectedExempt
@@ -131,6 +137,9 @@
     - type: GhostTakeoverAvailable
     - type: RandomMetadata
     - type: RandomHumanoidAppearance
+    - type: NpcFactionMember
+      factions:
+        - CentralCommand
     - type: SpecForce
       actionBssActionName: ActionCentcomFtlAction
     - type: InitialInfectedExempt

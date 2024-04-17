@@ -62,6 +62,9 @@
       components:
         - type: PsionicBonusChance
           flatBonus: 0.025
+        - type: NpcFactionMember
+          factions:
+            - CentralCommand
     - !type:AddImplantSpecial
       implants: [ MindShieldImplant ]
     - !type:AddComponentSpecial

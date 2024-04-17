@@ -46,28 +46,6 @@
       - enum.DamageStateVisualLayers.Base:
           britishmelee6: ""
 
-- type: body
-  id: AnimalHuman
-  name: "animal"
-  root: torso
-  slots:
-    torso:
-      part: TorsoHuman
-      connections:
-      - legs
-      organs:
-        lungs: OrganAnimalLungs
-        stomach: OrganAnimalStomach
-        liver: OrganAnimalLiver
-        heart: OrganAnimalHeart
-        kidneys: OrganAnimalKidneys
-    legs:
-      part: RightLegHuman
-      connections:
-      - feet
-    feet:
-      part: RightFootHuman
-
 - type: entity
   name: British soldier
   id: MobBritishMeleeGuard
