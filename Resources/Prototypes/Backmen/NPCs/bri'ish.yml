@@ -69,35 +69,15 @@
 - type: entity
   name: British soldier
   id: MobBritishRanged
-  parent: MobBritishMelee
+  parent: MobSpanishRanged
   suffix: suppa Ranger
   components:
-  - type: HTN
-    rootTask:
-      task: SimpleRangedHostileCompound
   - type: Sprite
     drawdepth: Mobs
     sprite: Backmen/Mobs/Npc/britishSoldier.rsi
     layers:
     - state: britishranged1
       map: [ "enum.DamageStateVisualLayers.Base" ]
-  - type: RechargeBasicEntityAmmo
-    rechargeCooldown: 0.75
-    rechargeSound:
-      path: /Audio/Weapons/Guns/MagIn/kinetic_reload.ogg
-      params:
-        volume: -100
-  - type: BasicEntityAmmoProvider
-    proto: BulletRifle
-    capacity: 1
-    count: 1
-  - type: Gun
-    fireRate: 0.75
-    useKey: false
-    selectedMode: FullAuto
-    availableModes:
-      - FullAuto
-    soundGunshot: /Audio/Weapons/Guns/Gunshots/rifle2.ogg
   - type: RandomSprite
     available:
       - enum.DamageStateVisualLayers.Base:
@@ -138,7 +118,7 @@
 - type: entity
   name: Spanish soldier
   id: MobSpanishRanged
-  parent: MobBritishRanged
+  parent: MobSpanishMelee
   suffix: suppa Ranger
   description: Human in uniform of Spanish fleet. Em... Yeah...
   components:
@@ -150,11 +130,31 @@
   - type: NpcFactionMember
     factions:
       - Spanish
+  - type: RechargeBasicEntityAmmo
+    rechargeCooldown: 0.75
+    rechargeSound:
+      path: /Audio/Weapons/Guns/MagIn/kinetic_reload.ogg
+      params:
+        volume: -100
+  - type: BasicEntityAmmoProvider
+    proto: BulletRifle
+    capacity: 1
+    count: 1
+  - type: Gun
+    fireRate: 0.75
+    useKey: false
+    selectedMode: FullAuto
+    availableModes:
+      - FullAuto
+    soundGunshot: /Audio/Weapons/Guns/Gunshots/rifle2.ogg
+  - type: HTN
+    rootTask:
+      task: SimpleRangedHostileCompound
 
 - type: entity
   name: Spanish soldier
   id: MobSpanishMelee
-  parent: MobBritishMelee
+  parent: MobBaseNpc
   suffix: suppa Melee
   description: Human in uniform of Spanish fleet. Em... Yeah...
   components:
@@ -166,6 +166,15 @@
   - type: NpcFactionMember
     factions:
       - Spanish
+  - type: MeleeWeapon
+    angle: 0
+    animation: WeaponArcSmash
+    soundHit:
+        path: /Audio/Weapons/bladeslice.ogg
+    damage:
+        types:
+          Blunt: 5
+          Piercing: 5
 
 - type: entity
   name: pirate
@@ -314,7 +323,7 @@
     - state: barmaiden
 
 - type: entity
-  name: Lenni
+  name: Lenny
   id: MobCivilianLenny
   parent: MobCivilianOld
   suffix: suppa Civilian Lenny
