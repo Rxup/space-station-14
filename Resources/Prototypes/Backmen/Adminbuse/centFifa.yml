@@ -492,6 +492,9 @@
   components:
   - type: SpecForce
     actionBssActionName: ActionCentcomFtlAction
+  - type: NpcFactionMember
+    factions:
+      - CentralCommand
   - type: InitialInfectedExempt
   - type: Loadout
     prototypes: [ERTLeaderGearEggV3]
@@ -506,6 +509,9 @@
   components:
   - type: SpecForce
     actionBssActionName: ActionCentcomFtlAction
+  - type: NpcFactionMember
+    factions:
+      - CentralCommand
   - type: Loadout
     prototypes: [ERTEngineerGearEggV3]
   - type: InitialInfectedExempt
@@ -520,6 +526,9 @@
   components:
   - type: SpecForce
     actionBssActionName: ActionCentcomFtlAction
+  - type: NpcFactionMember
+    factions:
+      - CentralCommand
   - type: Loadout
     prototypes: [ERTSecurityGearEggV3]
   - type: InitialInfectedExempt
@@ -534,6 +543,9 @@
   components:
   - type: SpecForce
     actionBssActionName: ActionCentcomFtlAction
+  - type: NpcFactionMember
+    factions:
+      - CentralCommand
   - type: Loadout
     prototypes: [ERTMedicalGearEggV3]
   - type: InitialInfectedExempt
@@ -548,6 +560,9 @@
   components:
   - type: SpecForce
     actionBssActionName: ActionCentcomFtlAction
+  - type: NpcFactionMember
+    factions:
+      - CentralCommand
   - type: Loadout
     prototypes: [ERTJanitorGearEggV3]
   - type: InitialInfectedExempt
@@ -719,6 +734,9 @@
         time: 9000
   - type: SpecForce
     actionBssActionName: ActionCentcomFtlAction
+  - type: NpcFactionMember
+    factions:
+      - CentralCommand
   - type: Loadout
     prototypes: [ERTLeaderGearEVAV3]
   - type: RandomMetadata
@@ -769,6 +787,9 @@
         time: 9000
   - type: SpecForce
     actionBssActionName: ActionCentcomFtlAction
+  - type: NpcFactionMember
+    factions:
+      - CentralCommand
   - type: Loadout
     prototypes: [ERTEngineerGearEVAV3]
   - type: RandomMetadata
@@ -816,6 +837,9 @@
         time: 16000
   - type: SpecForce
     actionBssActionName: ActionCentcomFtlAction
+  - type: NpcFactionMember
+    factions:
+      - CentralCommand
   - type: Loadout
     prototypes: [ERTSecurityGearEVAV3]
   - type: RandomMetadata
@@ -866,6 +890,9 @@
         time: 9000
   - type: SpecForce
     actionBssActionName: ActionCentcomFtlAction
+  - type: NpcFactionMember
+    factions:
+      - CentralCommand
   - type: Loadout
     prototypes: [ERTMedicalGearEVAV3]
   - type: RandomMetadata
@@ -916,6 +943,9 @@
         time: 1500
   - type: SpecForce
     actionBssActionName: ActionCentcomFtlAction
+  - type: NpcFactionMember
+    factions:
+      - CentralCommand
   - type: Loadout
     prototypes: [ERTJanitorGearEVAV3]
   - type: RandomMetadata
@@ -1422,6 +1452,9 @@
         time: 18000
   - type: SpecForce
     actionBssActionName: ActionCentcomFtlAction
+  - type: NpcFactionMember
+    factions:
+      - CentralCommand
   - type: Loadout
     prototypes: [ERTLeaderGearEVAV2_1]
   - type: RandomMetadata
@@ -1473,6 +1506,9 @@
         time: 18000
   - type: SpecForce
     actionBssActionName: ActionCentcomFtlAction
+  - type: NpcFactionMember
+    factions:
+      - CentralCommand
   - type: Loadout
     prototypes: [ERTEngineerGearEVAV2_1]
   - type: RandomMetadata
@@ -1520,6 +1556,9 @@
         time: 36000
   - type: SpecForce
     actionBssActionName: ActionCentcomFtlAction
+  - type: NpcFactionMember
+    factions:
+      - CentralCommand
   - type: Loadout
     prototypes: [ERTSecurityGearEVAV2_1]
   - type: RandomMetadata
@@ -1570,6 +1609,9 @@
         time: 18000
   - type: SpecForce
     actionBssActionName: ActionCentcomFtlAction
+  - type: NpcFactionMember
+    factions:
+      - CentralCommand
   - type: Loadout
     prototypes: [ERTMedicalGearEVAV2_1]
   - type: RandomMetadata
@@ -1620,6 +1662,9 @@
         time: 3000
   - type: SpecForce
     actionBssActionName: ActionCentcomFtlAction
+  - type: NpcFactionMember
+    factions:
+      - CentralCommand
   - type: Loadout
     prototypes: [ERTJanitorGearEVAV2_1]
   - type: RandomMetadata
@@ -1954,6 +1999,9 @@
         time: 36000
   - type: SpecForce
     actionBssActionName: ActionCentcomFtlAction
+  - type: NpcFactionMember
+    factions:
+      - CentralCommand
   - type: Loadout
     prototypes: [SpecialForceGearFull]
   - type: RandomMetadata
@@ -1962,9 +2010,6 @@
     - NameSpets
   - type: RandomHumanoidAppearance
     randomizeName: False
-  - type: NpcFactionMember
-    factions:
-    - NanoTrasen
   - type: InitialInfectedExempt
 
 - type: entity
@@ -2000,6 +2045,9 @@
         time: 18000
   - type: SpecForce
     actionBssActionName: ActionCentcomFtlAction
+  - type: NpcFactionMember
+    factions:
+      - CentralCommand
   - type: Loadout
     prototypes: [SpecialForceGearCommanderFull]
   - type: RandomMetadata
@@ -2008,9 +2056,6 @@
     - NameSpets
   - type: RandomHumanoidAppearance
     randomizeName: False
-  - type: NpcFactionMember
-    factions:
-    - NanoTrasen
   - type: InitialInfectedExempt
 
 - type: entity
@@ -2022,15 +2067,15 @@
   components:
   - type: SpecForce
     actionBssActionName: ActionCentcomFtlAction
+  - type: NpcFactionMember
+    factions:
+      - CentralCommand
   - type: Loadout
     prototypes: [SpecialForceAgentGearFull]
   - type: Stealth
   - type: StealthOnMove
     passiveVisibilityRate: -0.37
     movementVisibilityRate: 0.2
-  - type: NpcFactionMember
-    factions:
-    - NanoTrasen
   - type: InitialInfectedExempt
 
 - type: entity
@@ -2040,7 +2085,7 @@
   components:
   - type: NpcFactionMember
     factions:
-    - NanoTrasen
+    - CentralCommand
 
 #------------------------------------
 
@@ -2071,13 +2116,13 @@
         time: 18000
   - type: SpecForce
     actionBssActionName: ActionCentcomFtlAction
+  - type: NpcFactionMember
+    factions:
+      - CentralCommand
   - type: Loadout
     prototypes: [SFOForma]
   - type: RandomHumanoidAppearance
     randomizeName: False
-  - type: NpcFactionMember
-    factions:
-    - NanoTrasen
   - type: ShowSecurityIcons
   - type: InitialInfectedExempt
 
@@ -2373,6 +2418,9 @@
         time: 36000
   - type: SpecForce
     actionBssActionName: ActionCentcomFtlAction
+  - type: NpcFactionMember
+    factions:
+      - CentralCommand
   - type: Loadout
     prototypes: [RXBZZ]
   - type: RandomMetadata
@@ -2418,6 +2466,9 @@
         time: 36000
   - type: SpecForce
     actionBssActionName: ActionCentcomFtlAction
+  - type: NpcFactionMember
+    factions:
+      - CentralCommand
   - type: Loadout
     prototypes: [RXBZZFlamer]
   - type: RandomMetadata
@@ -2466,6 +2517,9 @@
         time: 18000
   - type: SpecForce
     actionBssActionName: ActionCentcomFtlAction
+  - type: NpcFactionMember
+    factions:
+      - CentralCommand
   - type: Loadout
     prototypes: [RXBZZLeader]
   - type: RandomMetadata

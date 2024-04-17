@@ -44,6 +44,9 @@
   - !type:AddComponentSpecial
     components:
       - type: CommandStaff
+      - type: NpcFactionMember
+        factions:
+          - CentralCommand
 
 - type: startingGear
   id: HoSGear

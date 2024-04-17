@@ -37,6 +37,9 @@
       components:
         - type: SpecForce
           actionBssActionName: ActionCentcomFtlAction
+        - type: NpcFactionMember
+          factions:
+            - CentralCommand
         - type: Psionic
         - type: PyrokinesisPower
         - type: InitialInfectedExempt

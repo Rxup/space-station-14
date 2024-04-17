@@ -33,6 +33,9 @@
     components:
       - type: PsionicBonusChance
         multiplier: 3
+      - type: NpcFactionMember
+        factions:
+          - CentralCommand
   - !type:AddImplantSpecial
     implants: [ MindShieldImplant ]
   - !type:AddComponentSpecial

@@ -1,0 +1,131 @@
+#-----United Earth Government Civilians
+
+- type: entity
+  name: Spawner Civilian
+  id: SpawnMobCivilianSuppa
+  suffix: UEG Civilian
+  parent: MarkerBase
+  components:
+  - type: Sprite
+    layers:
+    - state: green
+    - state: civilian_1
+      sprite: Backmen/Mobs/Npc/Civilian.rsi
+  - type: ConditionalSpawner
+    prototypes:
+    - MobCivilianSuppa
+
+- type: entity
+  name: Spawner Lenny
+  id: SpawnMobCivilianLenny
+  suffix: UEG Civilian
+  parent: MarkerBase
+  components:
+  - type: Sprite
+    layers:
+    - state: green
+    - state: big_lenny
+      sprite: Backmen/Mobs/Npc/Civilian.rsi
+  - type: ConditionalSpawner
+    prototypes:
+    - MobCivilianLenny
+
+#-----Nanotrasen Security Force
+
+- type: entity
+  name: Spawner Security
+  id: SpawnMobSecurityNT
+  suffix: NT Sec
+  parent: MarkerBase
+  components:
+  - type: Sprite
+    layers:
+    - state: green
+    - state: hecu_melee
+      sprite: Backmen/Mobs/Npc/blackmesa/mobs.rsi
+  - type: ConditionalSpawner
+    prototypes:
+    - MobSecurityNT
+
+- type: entity
+  name: Spawner Security
+  id: SpawnMobSecurityNTDisabler
+  suffix: NT Sec Disabler
+  parent: MarkerBase
+  components:
+  - type: Sprite
+    layers:
+    - state: green
+    - state: hecu_ranged
+      sprite: Backmen/Mobs/Npc/blackmesa/mobs.rsi
+  - type: ConditionalSpawner
+    prototypes:
+    - MobSecurityNTDisabler
+
+- type: entity
+  id: SpawnMobGuardSecurityNT
+  suffix: NT Sec Guard
+  parent: SpawnMobSecurityNT
+  components:
+  - type: ConditionalSpawner
+    prototypes:
+    - MobGuardSecurityNT
+
+- type: entity
+  id: SpawnMobGuardSecurityNTDisabler
+  suffix: NT Sec Disabler Guard
+  parent: SpawnMobSecurityNTDisabler
+  components:
+  - type: ConditionalSpawner
+    prototypes:
+    - MobGuardSecurityNTDisabler
+
+#-----Nanotrasen Deportament of Special Operation
+
+- type: entity
+  name: Spawner Security
+  id: SpawnMobSecurityNTPistol
+  suffix: NT CC Sec Pistol
+  parent: MarkerBase
+  components:
+  - type: Sprite
+    layers:
+    - state: green
+    - state: hecu_ranged
+      sprite: Backmen/Mobs/Npc/blackmesa/mobs.rsi
+  - type: ConditionalSpawner
+    prototypes:
+    - MobSecurityNTPistol
+
+- type: entity
+  id: SpawnMobGuardSecurityNTPistol
+  suffix: NT CC Sec Pistol Guard
+  parent: SpawnMobSecurityNTPistol
+  components:
+  - type: ConditionalSpawner
+    prototypes:
+    - MobGuardSecurityNTPistol
+
+- type: entity
+  name: Spawner DSO Soldier
+  id: SpawnMobERTUnitSecurity
+  suffix: NT DSO Rifle
+  parent: MarkerBase
+  components:
+  - type: Sprite
+    layers:
+    - state: green
+    - state: hecu_ranged_smg
+      sprite: Backmen/Mobs/Npc/blackmesa/mobs.rsi
+  - type: ConditionalSpawner
+    prototypes:
+    - MobERTUnitSecurity
+
+- type: entity
+  id: SpawnMobGuardERTUnitSecurity
+  suffix: NT DSO Rifle Guard
+  parent: SpawnMobERTUnitSecurity
+  components:
+  - type: ConditionalSpawner
+    prototypes:
+    - MobGuardERTUnitSecurity

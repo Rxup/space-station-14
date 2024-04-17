@@ -35,6 +35,9 @@
       components:
         - type: SpecForce
           actionBssActionName: ActionCentcomFtlAction
+        - type: NpcFactionMember
+          factions:
+            - CentralCommand
         - type: PsionicBonusChance
           multiplier: 3
         - type: InitialInfectedExempt
