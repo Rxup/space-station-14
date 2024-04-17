@@ -179,7 +179,7 @@
 - type: entity
   name: pirate
   id: MobPirateRanged
-  parent: MobBritishRanged
+  parent: MobSpanishRanged
   suffix: suppa Ranger
   description: They mostly come at night. Mostly.
   components:
@@ -195,7 +195,7 @@
 - type: entity
   name: pirate
   id: MobPirateMelee
-  parent: MobBritishMelee
+  parent: MobBaseNpc
   suffix: suppa Melee
   description: They mostly come at night. Mostly.
   components:
@@ -220,7 +220,7 @@
 - type: entity
   name: civilian
   id: MobCivilianOld
-  parent: MobBritishMelee
+  parent: MobBaseNpc
   suffix: suppa Civilian Old
   description: Гражданский, просто существует.
   components:
@@ -265,7 +265,7 @@
 - type: entity
   name: civilian
   id: MobCivilianSuppa
-  parent: MobBritishMelee
+  parent: MobBaseNpc
   suffix: suppa Civilian
   description: Гражданский, просто существует.
   components:
