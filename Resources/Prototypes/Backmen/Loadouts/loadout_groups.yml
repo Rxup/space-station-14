@@ -1,0 +1,52 @@
+﻿# CentCom
+
+# Cargo
+- type: loadoutGroup
+  id: BKCCCargoJumpsuit
+  name: loadout-group-captain-jumpsuit
+  loadouts:
+  - BKCCCargoJumpsuit
+  - BKCCCargoJumpskirtCargo
+
+- type: loadoutGroup
+  id: BKCCCargoNeck
+  name: loadout-group-captain-neck
+  minLimit: 0
+  loadouts:
+  - BKCCCargoCloak
+  - BKCCCargoCloakFormal
+  - BKCCCargoMantle
+
+- type: loadoutGroup
+  id: BKCCCargoBackpack
+  name: loadout-group-captain-backpack
+  loadouts:
+  - BKCCCargoBackpack
+  - BKCCCargoSatchel
+  - BKCCCargoDuffel
+
+# Operator
+- type: loadoutGroup
+  id: BKCCOperatorGavnaJumpsuit
+  name: loadout-group-captain-jumpsuit
+  loadouts:
+  - BKCCOperatorGavnaJumpsuit
+  - BKCCOperatorGavnaJumpskirt
+
+- type: loadoutGroup
+  id: BKCCOperatorGavnaNeck
+  name: loadout-group-captain-neck
+  minLimit: 0
+  loadouts:
+  - BKCCOperatorGavnaCloak
+
+- type: loadoutGroup
+  id: BKCCOperatorGavnaBackpack
+  name: loadout-group-captain-backpack
+  loadouts:
+  - BKCCOperatorGavnaBackpack
+  - BKCCOperatorGavnaSatchel
+
+
+
+

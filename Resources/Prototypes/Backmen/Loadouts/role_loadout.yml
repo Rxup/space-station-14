@@ -1,8 +1,18 @@
 ﻿- type: roleLoadout
-  id: JobCentralCommandCargo
+  id: JobBKCCCargo
   groups:
-  - QuartermasterHead
-  - QuartermasterNeck
-  - QuartermasterJumpsuit
-  - QuartermasterBackpack
+  - BKCCCargoJumpsuit
+  - BKCCCargoNeck
+  - BKCCCargoBackpack
   - Trinkets
+
+- type: roleLoadout
+  id: JobBKCCOfficial
+  groups:
+  - BKCCOperatorGavnaJumpsuit
+  - BKCCOperatorGavnaNeck
+  - BKCCOperatorGavnaBackpack
+  - Trinkets
+
+
+
