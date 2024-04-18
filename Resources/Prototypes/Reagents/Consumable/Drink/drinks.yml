@@ -522,20 +522,6 @@
   fizziness: 0.3
 
 - type: reagent
-  id: WhiteGilgamesh
-  name: reagent-name-white-gilgamesh
-  parent: BaseDrink
-  desc: reagent-desc-white-gilgamesh
-  physicalDesc: reagent-physical-desc-creamy
-  flavor: white-gilgamesh
-  color: "#e5d27e"
-  metabolisms:
-    Drink:
-      effects:
-        - !type:SatiateThirst
-          factor: 1
-
-- type: reagent
   id: Mopwata
   name: reagent-name-mopwata
   parent: BaseDrink
