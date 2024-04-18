@@ -25,6 +25,7 @@ using Content.Shared.Construction.Components;
 using Content.Shared.Construction.EntitySystems;
 using Content.Shared.DeviceLinking.Events;
 using Content.Shared.DoAfter;
+using Content.Shared.Prying.Components;
 using Content.Shared.Tools.Components;
 using Content.Shared.Tools.Systems;
 
@@ -59,9 +60,15 @@ public sealed class ArrivalsProtectSystem : SharedArrivalsProtectSystem
         SubscribeLocalEvent<ArrivalsProtectComponent, InteractUsingEvent>(OnInteractUsing, before: new []{typeof(DoorSystem), typeof(WiresSystem), typeof(CableSystem)});
         SubscribeLocalEvent<ArrivalsProtectComponent, WeldableAttemptEvent>(OnWeldAttempt, before: new []{typeof(DoorSystem), typeof(WiresSystem)});
         SubscribeLocalEvent<ArrivalsProtectComponent, ApcToggleMainBreakerAttemptEvent>(OnToggleApc, before: new[]{ typeof(EmpSystem)});
+        SubscribeLocalEvent<ArrivalsProtectComponent, BeforePryEvent>(OnTryPry);
 
         SubscribeLocalEvent<BuildAttemptEvent>(OnBuildAttemptEvent);
         SubscribeLocalEvent<ArrivalsProtectComponent, LinkAttemptEvent>(OnLinkAttempt);
+    }
+
+    private void OnTryPry(Entity<ArrivalsProtectComponent> ent, ref BeforePryEvent args)
+    {
+        args.Cancelled = true;
     }
 
     private void OnLinkAttempt(EntityUid uid, ArrivalsProtectComponent component, LinkAttemptEvent args)

@@ -53,6 +53,5 @@
     shoes: ClothingShoesBootsLaceup
     eyes: ClothingEyesGlassesSunglasses
     gloves: ClothingHandsGlovesCaptain
-    outerClothing: ClothingOuterArmorCaptainCarapace
     id: CaptainPDA
     ears: ClothingHeadsetAltCommand

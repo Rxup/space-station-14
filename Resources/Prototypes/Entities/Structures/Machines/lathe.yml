@@ -463,6 +463,7 @@
       - MassMediaCircuitboard
       - ShipyardCircuitboard # backmen
       - ReagentGrinderIndustrialMachineCircuitboard
+      - JukeboxCircuitBoard
   - type: MaterialStorage
     whitelist:
       tags:
@@ -982,7 +983,8 @@
       - ClothingOuterWinterCE
       - ClothingOuterWinterCMO
       - ClothingOuterWinterHoP
-      - ClothingOuterWinterHoS
+      - ClothingOuterWinterHoSUnarmored
+      - ClothingOuterWinterWardenUnarmored
       - ClothingOuterWinterQM
       - ClothingOuterWinterRD
       - ClothingNeckMantleCap
