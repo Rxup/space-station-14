@@ -45,7 +45,6 @@
   noSpawn: true
   components:
     - type: ShipwreckedRule
-      shuttlePath: /Maps/Backmen/Shuttles/adventurer.yml
       spawnPointTraveller: SpawnPointShipwreckTraveller
       availableJobs:
         - Explorer

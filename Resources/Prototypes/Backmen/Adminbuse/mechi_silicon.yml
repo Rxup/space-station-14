@@ -89,6 +89,7 @@
       - id: WeaponGrenadeFragLauncher9000
       - id: WeaponLightMachineGunL69000
   - type: GhostTakeoverAvailable
+  - type: GhostRole
     makeSentient: true
     name: маулер синдиката
     description: Боевой мех на службе синдиката.
@@ -137,7 +138,7 @@
     baseWalkSpeed : 2
     baseSprintSpeed : 2
   - type: Repairable
-    fuelcost: 80
+    fuelCost: 80
     doAfterDelay: 35
   - type: MobState
   - type: MobThresholds
@@ -240,6 +241,7 @@
     - state: marauder
       sprite: Objects/Specific/Mech/mecha.rsi
   - type: GhostTakeoverAvailable
+  - type: GhostRole
     makeSentient: true
     name: мародёр НаноТрейзен
     description: Боевой мех на службе НаноТрейзен.
@@ -290,6 +292,7 @@
   parent: OneStarMechMauler
   components:
   - type: GhostTakeoverAvailable
+  - type: GhostRole
     makeSentient: true
     name: гайгэкс Синдиката
     description: Боевой мех на службе Синдиката.
@@ -374,6 +377,7 @@
     - state: seraph
       sprite: Objects/Specific/Mech/mecha.rsi
   - type: GhostTakeoverAvailable
+  - type: GhostRole
     makeSentient: true
     name: командный мех-серафим НаноТрейзен
     description: Командующий мех на службе НаноТрейзен.
@@ -455,6 +459,7 @@
     - state: durand
       sprite: Objects/Specific/Mech/mecha.rsi
   - type: GhostTakeoverAvailable
+  - type: GhostRole
     makeSentient: true
     name: древний дюранд
     description: Боевой мех правительства земли, интересно, что он тут забыл?
@@ -517,6 +522,7 @@
     - state: gygax
       sprite: Objects/Specific/Mech/mecha.rsi
   - type: GhostTakeoverAvailable
+  - type: GhostRole
     makeSentient: true
     name: гайгэкс НаноТрейзен
     description: Боевой мех на службе НаноТрейзен.

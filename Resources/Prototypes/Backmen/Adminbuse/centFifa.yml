@@ -2091,7 +2091,7 @@
 
 - type: entity
   name: Overwatch
-  parent: MobHumanCombine
+  parent: [MobHumanCombine,ShowSecurityIcons]
   suffix: CentCom Офицер специальный операций
   id: MobHumanSFOfficer
   components:
@@ -2123,7 +2123,6 @@
     prototypes: [SFOForma]
   - type: RandomHumanoidAppearance
     randomizeName: False
-  - type: ShowSecurityIcons
   - type: InitialInfectedExempt
 
 - type: startingGear

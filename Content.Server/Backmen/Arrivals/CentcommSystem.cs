@@ -56,6 +56,7 @@ public sealed class CentcommSystem : EntitySystem
     [Dependency] private readonly PopupSystem _popupSystem = default!;
     [Dependency] private readonly ChatSystem _chat = default!;
     [Dependency] private readonly MetaDataSystem _metaDataSystem = default!;
+    [Dependency] private readonly IRobustRandom _random = default!;
     private ISawmill _sawmill = default!;
 
 
@@ -237,7 +238,7 @@ public sealed class CentcommSystem : EntitySystem
 
         CentComMapUid = _mapManager.GetMapEntityId(CentComMap);
 
-        var mapId = _stationCentComMapPool.Pick();
+        var mapId = _stationCentComMapPool.Pick(_random);
         if (!_prototypeManager.TryIndex<GameMapPrototype>(mapId, out var map))
         {
             mapId = StationCentComMapDefault;

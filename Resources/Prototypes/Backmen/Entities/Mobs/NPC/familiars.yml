@@ -107,22 +107,19 @@
             - ReagentId: Phlogiston
               Quantity: 1000
           maxVol: 1000
-    - type: Welder
-      fuelReagent: Phlogiston
-      tankSafe: true
-      litMeleeDamageBonus:
+    - type: MeleeWeapon
+      wideAnimationRotation: -120
+      soundHit:
+        collection: WelderIfritHand
+      damage:
         types: # When lit, negate standard melee damage and replace with heat
           Heat: 10
           Blunt: -10
-      welderOnSounds:
-        collection: WelderIfritHandOn
-      welderOffSounds:
-        collection: WelderIfritHandOff
+    - type: Welder
+      fuelReagent: Phlogiston
+      tankSafe: true
     - type: Tool
       useSound:
-        collection: WelderIfritHand
-    - type: MeleeWeapon
-      soundHit:
         collection: WelderIfritHand
     # TODO some way to give the MeleeWeapon a separate soundHit for when it's on,
     # similar to EnergySword. will have to go in ToolSystem.Welder.cs

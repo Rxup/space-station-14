@@ -110,6 +110,15 @@ public sealed class MagicSystem : EntitySystem
         if (args.Handled)
             return;
 
+        // start-backmen: magick
+        var ev = new Shared.Backmen.Magic.Events.CanUseMagicEvent
+        {
+            User = args.User,
+        };
+        if(ev.Cancelled)
+            return;
+        // end-backmen: magick
+
         AttemptLearn(uid, component, args);
 
         args.Handled = true;
