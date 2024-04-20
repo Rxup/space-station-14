@@ -38,7 +38,7 @@ public sealed class EvacShuttleTest
 
         Assert.That(entMan.Count<StationCentcommComponent>(), Is.EqualTo(1));
         Assert.That(entMan.Count<StationEmergencyShuttleComponent>(), Is.EqualTo(1));
-        Assert.That(entMan.Count<StationDataComponent>(), Is.EqualTo(1));
+        Assert.That(entMan.Count<StationDataComponent>(), Is.EqualTo(2)); // backmen: centcom is playable station, so count +1
         Assert.That(entMan.Count<EmergencyShuttleComponent>(), Is.EqualTo(1));
         Assert.That(entMan.Count<FTLMapComponent>(), Is.EqualTo(0));
 
