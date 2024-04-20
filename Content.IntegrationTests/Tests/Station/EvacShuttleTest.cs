@@ -28,7 +28,7 @@ public sealed class EvacShuttleTest
         var shuttleEnabled = pair.Server.CfgMan.GetCVar(CCVars.EmergencyShuttleEnabled);
         pair.Server.CfgMan.SetCVar(CCVars.GameMap, "Saltern");
         pair.Server.CfgMan.SetCVar(CCVars.GameDummyTicker, false);
-        pair.Server.CfgMan.SetCVar(CCVars.EmergencyShuttleEnabled, true);
+        await server.WaitPost(() => pair.Server.CfgMan.SetCVar(CCVars.EmergencyShuttleEnabled, true));
 
         await server.WaitPost(() => ticker.RestartRound());
         await pair.RunTicksSync(25);
