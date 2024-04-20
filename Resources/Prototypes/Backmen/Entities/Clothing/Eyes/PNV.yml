@@ -17,12 +17,11 @@
   - type: PNV
 
 - type: entity
-  parent: ClothingEyesVision
+  parent: [ClothingEyesVision,ShowSecurityIcons]
   id: ClothingEyesVisionNuki
   suffix: nuke
   components:
   - type: ShowSyndicateIcons
-  - type: ShowSecurityIcons
 
 - type: entity
   id: NVToggleAction

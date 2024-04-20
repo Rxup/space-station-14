@@ -410,7 +410,7 @@ public sealed partial class EmergencyShuttleSystem : EntitySystem
         component.MapEntity = centcom.CentComMapUid;
         component.Entity = centcom.CentComGrid;
         component.ShuttleIndex = centcom.ShuttleIndex;
-        Log.Info($"Attached centcomm grid {ToPrettyString(grid)} on map {ToPrettyString(map)} for station {ToPrettyString(station)}");
+        Log.Info($"Attached centcomm grid {ToPrettyString(centcom.CentComGrid)} on map {ToPrettyString(centcom.CentComMapUid)} for station {ToPrettyString(station)}");
     }
 
     public HashSet<EntityUid> GetCentcommMaps()

@@ -165,7 +165,6 @@
   - type: Construction
     graph: HudMedSec
     node: medsecHud
-  - type: ShowSecurityIcons
   #- type: ClothingGrant
   #  component:
   #  - type: BkmShowHealthBars

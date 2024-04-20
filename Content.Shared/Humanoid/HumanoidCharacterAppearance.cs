@@ -132,7 +132,8 @@ public sealed partial class HumanoidCharacterAppearance : ICharacterAppearance
         var random = IoCManager.Resolve<IRobustRandom>();
         var markingManager = IoCManager.Resolve<MarkingManager>();
         var hairStyles = markingManager.MarkingsByCategoryAndSpecies(MarkingCategories.Hair, species).Keys.ToList();
-        var facialHairStyles = markingManager.MarkingsByCategoryAndSpecies(MarkingCategories.FacialHair, species).Keys.ToList();
+        var facialHairStyles = markingManager.MarkingsByCategoryAndSpecies(MarkingCategories.FacialHair, species).Keys
+            .ToList();
 
         var newHairStyle = hairStyles.Count > 0
             ? random.Pick(hairStyles)
@@ -159,7 +160,7 @@ public sealed partial class HumanoidCharacterAppearance : ICharacterAppearance
         {
             case HumanoidSkinColor.HumanToned:
                 var tone = Math.Round(Humanoid.SkinColor.HumanSkinToneFromColor(newSkinColor));
-                newSkinColor = Humanoid.SkinColor.HumanSkinTone((int)tone);
+                newSkinColor = Humanoid.SkinColor.HumanSkinTone((int) tone);
                 break;
             case HumanoidSkinColor.Hues:
                 break;
@@ -168,92 +169,12 @@ public sealed partial class HumanoidCharacterAppearance : ICharacterAppearance
                 break;
         }
 
-        return new HumanoidCharacterAppearance(newHairStyle, newHairColor, newFacialHairStyle, newHairColor, newEyeColor, newSkinColor, new ());
+        return new HumanoidCharacterAppearance(newHairStyle, newHairColor, newFacialHairStyle, newHairColor,
+            newEyeColor, newSkinColor, new());
 
         float RandomizeColor(float channel)
         {
             return MathHelper.Clamp01(channel + random.Next(-25, 25) / 100f);
-        }
-
-        public static HumanoidCharacterAppearance EnsureValid(HumanoidCharacterAppearance appearance, string species, Sex sex, string[] sponsorPrototypes)
-        {
-            var hairStyleId = appearance.HairStyleId;
-            var facialHairStyleId = appearance.FacialHairStyleId;
-
-            var hairColor = ClampColor(appearance.HairColor);
-            var facialHairColor = ClampColor(appearance.FacialHairColor);
-            var eyeColor = ClampColor(appearance.EyeColor);
-
-            var proto = IoCManager.Resolve<IPrototypeManager>();
-            var markingManager = IoCManager.Resolve<MarkingManager>();
-
-            if (!markingManager.MarkingsByCategory(MarkingCategories.Hair).ContainsKey(hairStyleId))
-            {
-                hairStyleId = HairStyles.DefaultHairStyle;
-            }
-
-            // Corvax-Sponsors-Start
-            if (proto.TryIndex(hairStyleId, out MarkingPrototype? hairProto) &&
-                hairProto.SponsorOnly &&
-                !sponsorPrototypes.Contains(hairStyleId))
-            {
-                hairStyleId = HairStyles.DefaultHairStyle;
-            }
-            // Corvax-Sponsors-End
-
-            if (!markingManager.MarkingsByCategory(MarkingCategories.FacialHair).ContainsKey(facialHairStyleId))
-            {
-                facialHairStyleId = HairStyles.DefaultFacialHairStyle;
-            }
-
-            // Corvax-Sponsors-Start
-            if (proto.TryIndex(facialHairStyleId, out MarkingPrototype? facialHairProto) &&
-                facialHairProto.SponsorOnly &&
-                !sponsorPrototypes.Contains(facialHairStyleId))
-            {
-                facialHairStyleId = HairStyles.DefaultFacialHairStyle;
-            }
-            // Corvax-Sponsors-End
-
-            var markingSet = new MarkingSet();
-            var skinColor = appearance.SkinColor;
-            if (proto.TryIndex(species, out SpeciesPrototype? speciesProto))
-            {
-                markingSet = new MarkingSet(appearance.Markings, speciesProto.MarkingPoints, markingManager, proto);
-                markingSet.EnsureValid(markingManager);
-
-                if (!Humanoid.SkinColor.VerifySkinColor(speciesProto.SkinColoration, skinColor))
-                {
-                    skinColor = Humanoid.SkinColor.ValidSkinTone(speciesProto.SkinColoration, skinColor);
-                }
-
-                markingSet.EnsureSpecies(species, skinColor, markingManager);
-                markingSet.EnsureSexes(sex, markingManager);
-                markingSet.FilterSponsor(sponsorPrototypes, markingManager); // Corvax-Sponsors
-            }
-
-            return new HumanoidCharacterAppearance(
-                hairStyleId,
-                hairColor,
-                facialHairStyleId,
-                facialHairColor,
-                eyeColor,
-                skinColor,
-                markingSet.GetForwardEnumerator().ToList());
-        }
-
-        public bool MemberwiseEquals(ICharacterAppearance maybeOther)
-        {
-            if (maybeOther is not HumanoidCharacterAppearance other) return false;
-            if (HairStyleId != other.HairStyleId) return false;
-            if (!HairColor.Equals(other.HairColor)) return false;
-            if (FacialHairStyleId != other.FacialHairStyleId) return false;
-            if (!FacialHairColor.Equals(other.FacialHairColor)) return false;
-            if (!EyeColor.Equals(other.EyeColor)) return false;
-            if (!SkinColor.Equals(other.SkinColor)) return false;
-            if (!Markings.SequenceEqual(other.Markings)) return false;
-            return true;
-
         }
     }
 
@@ -262,7 +183,7 @@ public sealed partial class HumanoidCharacterAppearance : ICharacterAppearance
         return new(color.RByte, color.GByte, color.BByte);
     }
 
-    public static HumanoidCharacterAppearance EnsureValid(HumanoidCharacterAppearance appearance, string species, Sex sex)
+    public static HumanoidCharacterAppearance EnsureValid(HumanoidCharacterAppearance appearance, string species, Sex sex, string[] sponsorPrototypes)
     {
         var hairStyleId = appearance.HairStyleId;
         var facialHairStyleId = appearance.FacialHairStyleId;
@@ -279,10 +200,28 @@ public sealed partial class HumanoidCharacterAppearance : ICharacterAppearance
             hairStyleId = HairStyles.DefaultHairStyle;
         }
 
+        // Corvax-Sponsors-Start
+        if (proto.TryIndex(hairStyleId, out MarkingPrototype? hairProto) &&
+            hairProto.SponsorOnly &&
+            !sponsorPrototypes.Contains(hairStyleId))
+        {
+            hairStyleId = HairStyles.DefaultHairStyle;
+        }
+        // Corvax-Sponsors-End
+
         if (!markingManager.MarkingsByCategory(MarkingCategories.FacialHair).ContainsKey(facialHairStyleId))
         {
             facialHairStyleId = HairStyles.DefaultFacialHairStyle;
         }
+
+        // Corvax-Sponsors-Start
+        if (proto.TryIndex(facialHairStyleId, out MarkingPrototype? facialHairProto) &&
+            facialHairProto.SponsorOnly &&
+            !sponsorPrototypes.Contains(facialHairStyleId))
+        {
+            facialHairStyleId = HairStyles.DefaultFacialHairStyle;
+        }
+        // Corvax-Sponsors-End
 
         var markingSet = new MarkingSet();
         var skinColor = appearance.SkinColor;
@@ -298,6 +237,7 @@ public sealed partial class HumanoidCharacterAppearance : ICharacterAppearance
 
             markingSet.EnsureSpecies(species, skinColor, markingManager);
             markingSet.EnsureSexes(sex, markingManager);
+            markingSet.FilterSponsor(sponsorPrototypes, markingManager); // Corvax-Sponsors
         }
 
         return new HumanoidCharacterAppearance(

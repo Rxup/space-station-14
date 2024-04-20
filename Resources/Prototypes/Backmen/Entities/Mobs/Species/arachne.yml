@@ -119,7 +119,6 @@
     - DoorBumpOpener
   - type: Bloodstream
     bloodReagent: DemonsBlood
-    webRequired: true
   - type: BloodSucker
     webRequired: true
   - type: Arachne

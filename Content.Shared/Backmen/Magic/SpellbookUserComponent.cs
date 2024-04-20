@@ -1,6 +1,9 @@
-﻿namespace Content.Shared.Backmen.Magic;
+﻿using Robust.Shared.GameStates;
 
-public sealed class SpellbookUserComponent
+namespace Content.Shared.Backmen.Magic;
+
+[RegisterComponent,NetworkedComponent]
+public sealed partial class SpellbookUserComponent : Component
 {
-    
+
 }

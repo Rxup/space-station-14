@@ -1,6 +1,8 @@
-﻿namespace Content.Client.Backmen.Magic;
+﻿using Content.Shared.Backmen.Magic;
 
-public sealed class BkmMagicSystem
+namespace Content.Client.Backmen.Magic;
+
+public sealed class BkmMagicSystem : SharedBkmMagicSystem
 {
-    
+
 }

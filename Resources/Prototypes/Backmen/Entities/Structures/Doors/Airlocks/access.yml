@@ -100,7 +100,7 @@
       containers:
         board: [ DoorElectronicsCCSecurity ]
     - type: Wires
-      LayoutId: AirlockSecurity
+      layoutId: AirlockSecurity
 
 - type: entity
   parent: AirlockEngineering

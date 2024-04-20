@@ -66,13 +66,15 @@
   abstract: true
   parent: MobHuman
   components:
-    - type: GhostTakeoverAvailable
+    - type: SpellbookUser
+    - type: GhostRole
       name: Urist McWizard
       description: |
         You have been sent to the station via bluespace and wizard magic. Your goal is to kill as many people as possible and destroy the station.
         You can gain more "BS" (Bluespace) for your uplink by completing Oracle quests.
         You are considered KOS (Kill On Sight) so be careful wandering the station for the Oracle's items.
         If you encounter an Urist McNars (SuperPsi), you may team up with them or kill them. The SuperPsi is able to steal and use your spellbooks, be very careful.
+    - type: GhostTakeoverAvailable
     - type: RandomMetadata
       nameSegments:
         - names_wizard_first
@@ -148,6 +150,7 @@
   parent: MobHuman
   components:
     - type: GhostTakeoverAvailable
+    - type: GhostRole
       name: Urist McNars
       description: |
         You have been sent to the station via the Noosphere. Your goal is to kill as many people as possible and destroy the station.

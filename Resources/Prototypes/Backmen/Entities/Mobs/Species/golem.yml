@@ -205,8 +205,10 @@
   - type: Speech
     speechSounds: Baritone
   - type: Vocal
-    maleScream: /Audio/Corvax/Effects/off.ogg
-    femaleScream: /Audio/Corvax/Effects/off.ogg
+    sounds:
+      male: GolemEmote
+      female: GolemEmote
+      unsexed: GolemEmote
   - type: Emoting
   - type: Grammar
     attributes:
@@ -256,6 +258,13 @@
   - type: TTS
     voice: Oleg
 
+- type: emoteSounds
+  id: GolemEmote
+  sound:
+    path: /Audio/Backmen/test/base/ogg/off.ogg
+    params:
+      variation: 0.125
+
 - type: entity
   parent: MobGolemBase
   id: MobGolemCult
@@ -267,7 +276,7 @@
     tags:
       - FootstepSound
   - type: Repairable
-    fuelcost: 60
+    fuelCost: 60
     doAfterDelay: 32
   - type: Construction
     graph: Golem
@@ -366,7 +375,7 @@
     solution: soil
     maxRefill: 50
   - type: Repairable #needs plant repair stuff l8er
-    fuelcost: 60
+    fuelCost: 60
     doAfterDelay: 32
   - type: Reactive
     groups:

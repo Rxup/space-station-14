@@ -58,7 +58,6 @@
     - tasks:
         - !type:HTNPrimitiveTask
           operator: !type:PickDrainTargetOperator
-            pathfindInPlanning: true
             targetKey: MovementTarget
             drainKey: DrainTarget
             rangeKey: IdleRange

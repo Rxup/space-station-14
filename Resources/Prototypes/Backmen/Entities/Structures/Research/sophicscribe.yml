@@ -16,9 +16,6 @@
   - type: Speech
     speechSounds: Snake
   - type: IntrinsicRadioReceiver
-    channels:
-    - Common
-    - Science
   - type: IntrinsicRadioTransmitter
     channels:
     - Common

@@ -190,8 +190,12 @@
           conditions:
             - !type:OrganType
               type: Vampiric
+        - !type:AdjustReagent
           reagent: Water
           amount: 0.15
+          conditions:
+            - !type:OrganType
+              type: Vampiric
   plantMetabolism:
     - !type:PlantAdjustWater
       amount: 0.5
