@@ -1906,7 +1906,7 @@
 - type: polymorph
   id: RavagerRage
   configuration:
-    entity: KsenosXenoRavagerRage
+    entity: KsenosXenoKing
     forced: true
     transferDamage: true
     revertOnCrit: true
