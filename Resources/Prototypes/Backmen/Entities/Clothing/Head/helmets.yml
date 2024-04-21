@@ -125,3 +125,115 @@
       coefficients:
         Slash: 0.9
         Heat: 0.95
+
+- type: entity
+  parent: ClothingHeadBase
+  id: ClothingHeadHelmetRed
+  name: Красный мотошлем
+  description: Вы чувствуете жажду. Не только скорости.
+  components:
+  - type: Sprite
+    sprite: Backmen/Clothing/Head/Helmets/motohelmetred.rsi
+  - type: Clothing
+    sprite: Backmen/Clothing/Head/Helmets/motohelmetred.rsi
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.9
+        Slash: 0.9
+        Piercing: 0.9
+        Heat: 0.9
+
+- type: entity
+  parent: ClothingHeadBase
+  id: ClothingHeadHelmetGreen
+  name: Зелёный мотошлем
+  description: Вы чувствуете жажду. Не только скорости.
+  components:
+  - type: Sprite
+    sprite: Backmen/Clothing/Head/Helmets/motohelmetgreen.rsi
+  - type: Clothing
+    sprite: Backmen/Clothing/Head/Helmets/motohelmetgreen.rsi
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.9
+        Slash: 0.9
+        Piercing: 0.9
+        Heat: 0.9
+  - type: Tag
+  
+- type: entity
+  parent: ClothingHeadBase
+  id: ClothingHeadHelmetBlue
+  name: Синий мотошлем
+  description: Вы чувствуете жажду. Не только скорости.
+  components:
+  - type: Sprite
+    sprite: Backmen/Clothing/Head/Helmets/motohelmetblue.rsi
+  - type: Clothing
+    sprite: Backmen/Clothing/Head/Helmets/motohelmetblue.rsi
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.9
+        Slash: 0.9
+        Piercing: 0.9
+        Heat: 0.9
+  - type: Tag
+  
+- type: entity
+  parent: ClothingHeadBase
+  id: ClothingHeadHelmetBlack
+  name: Чёрный мотошлем
+  description: Вы чувствуете жажду. Не только скорости.
+  components:
+  - type: Sprite
+    sprite: Backmen/Clothing/Head/Helmets/motohelmetblack.rsi
+  - type: Clothing
+    sprite: Backmen/Clothing/Head/Helmets/motohelmetblack.rsi
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.9
+        Slash: 0.9
+        Piercing: 0.9
+        Heat: 0.9
+  - type: Tag
+  
+- type: entity
+  parent: ClothingHeadBase
+  id: ClothingHeadHelmetYellow
+  name: Белый мотошлем
+  description: Вы чувствуете жажду. Не только скорости.
+  components:
+  - type: Sprite
+    sprite: Backmen/Clothing/Head/Helmets/motohelmetwhite.rsi
+  - type: Clothing
+    sprite: Backmen/Clothing/Head/Helmets/motohelmetwhite.rsi
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.9
+        Slash: 0.9
+        Piercing: 0.9
+        Heat: 0.9
+  - type: Tag
+  - type: entity
+  parent: ClothingHeadBase
+  id: ClothingHeadHelmetWhite
+  name: Жёлтый мотошлем
+  description: Вы чувствуете жажду. Не только скорости.
+  components:
+  - type: Sprite
+    sprite: Backmen/Clothing/Head/Helmets/motohelmetyellow.rsi
+  - type: Clothing
+    sprite: Backmen/Clothing/Head/Helmets/motohelmetyellow.rsi
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.9
+        Slash: 0.9
+        Piercing: 0.9
+        Heat: 0.9
+  - type: Tag

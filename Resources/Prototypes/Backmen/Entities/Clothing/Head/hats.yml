@@ -153,3 +153,18 @@
         Blunt: 0.80
         Slash: 0.95
         Piercing: 0.95
+
+- type: entity
+  parent: ClothingHeadBase
+  id: ClothingHeadHatSoldier
+  name: фуражка солдата СССП
+  description: Гласит приказ "Ни шагу назад"!
+  components:
+  - type: Sprite
+    sprite: Backmen/Clothing/Head/Hats/capsssp.rsi
+  - type: Clothing
+    sprite: Backmen/Clothing/Head/Hats/capsssp.rsi
+  - type: Tag
+    tags:
+    - ClothMade
+    - HamsterWearable
