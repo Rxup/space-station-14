@@ -54,14 +54,14 @@
   - type: Hands
     showInHands: true
   - type: MobState
-    thresholds:
-      0: Alive
-      300: Dead
+    allowedStates:
+      - Alive
+      - Dead
   - type: MovementSpeedModifier
     baseWalkSpeed : 2.5
     baseSprintSpeed : 4
   - type: Stamina
-    excess: 500
+    critThreshold: 500
   - type: Appearance
   - type: Bloodstream
     bloodMaxVolume: 0
@@ -235,7 +235,7 @@
       0: Alive
       600: Dead
   - type: Stamina
-    excess: 1500
+    critThreshold: 1500
   - type: MovementSpeedModifier
     baseWalkSpeed : 2.8
     baseSprintSpeed : 4.5
@@ -327,7 +327,7 @@
       behaviors:
       - !type:GibBehavior { }
   - type: Stamina
-    excess: 1000
+    critThreshold: 1000
   - type: MovementSpeedModifier
     baseWalkSpeed : 2.8
     baseSprintSpeed : 4.5
@@ -444,7 +444,7 @@
       0: Alive
       150: Dead
   - type: Stamina
-    excess: 200
+    critThreshold: 200
   - type: SlowOnDamage
     speedModifierThresholds:
       100: 0.8
@@ -610,7 +610,7 @@
       0: Alive
       140: Dead
   - type: Stamina
-    excess: 250
+    critThreshold: 250
   - type: MovementSpeedModifier
     baseWalkSpeed : 2.5
     baseSprintSpeed : 7.0
@@ -669,7 +669,7 @@
       0: Alive
       150: Dead
   - type: Stamina
-    excess: 250
+    critThreshold: 250
   - type: PsionicInvisibilityPower
   - type: MovementSpeedModifier
     baseWalkSpeed : 2.5
@@ -737,7 +737,7 @@
       behaviors:
       - !type:GibBehavior { }
   - type: Stamina
-    excess: 2000
+    critThreshold: 2000
   - type: MovementSpeedModifier
     baseWalkSpeed : 2
     baseSprintSpeed : 4
@@ -818,7 +818,6 @@
       path: /Audio/Animals/space_dragon_roar.ogg
       params:
         volume: 10
-        maxdistance: 20
   - type: PointLight
     enabled: true
     radius: 15
@@ -948,8 +947,6 @@
     - state: icon
   - type: MeleeWeapon
     attackRate: 1
-    heavyWindupModifier: 1
-    heavyDamageModifier: 1
     angle: 30
     range: 1.5
     soundHit:
@@ -972,8 +969,6 @@
     scale: 1.5, 1.5
   - type: MeleeWeapon
     attackRate: 1
-    heavyWindupModifier: 1
-    heavyDamageModifier: 1
     angle: 45
     range: 1.5
     damage:
@@ -992,8 +987,6 @@
     scale: 1.8, 1.8
   - type: MeleeWeapon
     attackRate: 0.8
-    heavyWindupModifier: 1
-    heavyDamageModifier: 1
     angle: 90
     range: 2.5
     damage:
@@ -1017,8 +1010,6 @@
     scale: 0.8, 0.8
   - type: MeleeWeapon
     attackRate: 0.4
-    heavyWindupModifier: 1
-    heavyDamageModifier: 1
     angle: 30
     range: 1.5
     soundHit:
@@ -1044,8 +1035,6 @@
     scale: 0.8, 0.8
   - type: MeleeWeapon
     attackRate: 0.2
-    heavyWindupModifier: 0.5
-    heavyDamageModifier: 1
     angle: 350
     range: 5
     soundHit:
@@ -1099,8 +1088,7 @@
     count: 1
   - type: AmmoCounter
   - type: RechargeBasicEntityAmmo
-    minRechargeCooldown: 5
-    maxRechargeCooldown: 5
+    rechargeCooldown: 5
     rechargeSound: /Audio/Animals/cat_hiss.ogg
 
 - type: entity
@@ -1190,8 +1178,7 @@
     count: 1
   - type: AmmoCounter
   - type: RechargeBasicEntityAmmo
-    minRechargeCooldown: 5
-    maxRechargeCooldown: 5
+    rechargeCooldown: 5
     rechargeSound: /Audio/Animals/cat_hiss.ogg
 
 - type: entity
@@ -1381,8 +1368,7 @@
     count: 10
   - type: AmmoCounter
   - type: RechargeBasicEntityAmmo
-    minRechargeCooldown: 6
-    maxRechargeCooldown: 6
+    rechargeCooldown: 6
     rechargeSound: /Audio/Animals/cat_hiss.ogg
 
 
@@ -1410,7 +1396,6 @@
         Burn: -10
         Airloss: -10
         Toxin: -10
-    bloodlossModifier: -2
     ignoreResistances: true
     soundHit:
       path: "/Audio/Weapons/Guns/Hits/energy_meat1.ogg"
@@ -1430,7 +1415,8 @@
     scale: 0.5, 0.5
   - type: Item
   - type: Healing
-    damageContainer: Biological
+    damageContainer:
+      - Biological
     damage:
       groups:
         Brute: -20
@@ -1521,11 +1507,8 @@
         types:
           Heat: 5
       coldDamage: {}
-      ColdDamageThreshold: 0
     - type: Flammable
       fireSpread: true
-      cold:
-        types: {}
       damage:
         types:
           Heat: 1
@@ -1641,7 +1624,8 @@
   description: Используется для строительства стен ксено.
   components:
   - type: Material
-    materials:
+  - type: PhysicalComposition
+    materialComposition:
       XenoSlimeMaterial: 100
   - type: Sprite
     netsync: false
@@ -1659,16 +1643,14 @@
   components:
   - type: Stack
     stackType: XenoSlimeStack
+    layerStates:
+    - b_checker_piece
+    - b_checker_piece
+    - b_checker_piece
   - type: Sprite
     state: b_checker_piece
   - type: Item
   - type: Appearance
-    visuals:
-    - type: StackVisualizer
-      stackLayers:
-      - b_checker_piece
-      - b_checker_piece
-      - b_checker_piece
 
 - type: entity
   parent: XenoSlime
@@ -1832,7 +1814,7 @@
   - type: InstantAction
     event: !type:PolymorphActionEvent
     itemIconStyle: NoItem
-    useDelay: 30
+    delay: 30
 
 - type: polymorph
   id: EggToLarva
@@ -1843,8 +1825,7 @@
     revertOnCrit: false
     revertOnDeath: false
     allowRepeatedMorphs: true
-    checkCanInteract: false
-    useDelay: 30
+    delay: 30
 
 - type: polymorph
   id: LarvaToDrone
