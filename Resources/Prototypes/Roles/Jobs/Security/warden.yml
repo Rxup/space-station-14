@@ -33,16 +33,8 @@
 - type: startingGear
   id: WardenGear
   equipment:
-    head: ClothingHeadHatWarden
-    jumpsuit: ClothingUniformJumpsuitWarden
-    back: ClothingBackpackSecurityFilled
-    shoes: ClothingShoesBootsJackSecFilled # Corvax-Resprite
     eyes: ClothingEyesGlassesSecurity
-    outerClothing: ClothingOuterCoatWarden
     id: WardenPDA
     ears: ClothingHeadsetSecurity
     belt: ClothingBeltSecurityFilled
-    pocket1: WeaponPistolG22
-  innerClothingSkirt: ClothingUniformJumpskirtWarden
-  satchel: ClothingBackpackSatchelSecurityFilled
-  duffelbag: ClothingBackpackDuffelSecurityFilled
+    pocket1: WeaponPistolMk58

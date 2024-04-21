@@ -22,6 +22,6 @@
     id: StudentIDCard
     shoes: ClothingShoesColorBlack
     back: ClothingBackpack
-  innerClothingSkirt: UniformSchoolgirlDusk
-  satchel: ClothingBackpackSatchel
-  duffelbag: ClothingBackpackDuffel
+  #innerClothingSkirt: UniformSchoolgirlDusk
+  #satchel: ClothingBackpackSatchel
+  #duffelbag: ClothingBackpackDuffel

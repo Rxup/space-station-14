@@ -18,7 +18,6 @@
         # TODO: Kill this shit
         - !type:HTNPrimitiveTask
           operator: !type:PickBlobPodZombifyTargetOperator
-            pathfindInPlanning: true
             targetKey: MovementTarget
             zombifyKey: ZombifyTarget
             rangeKey: IdleRange

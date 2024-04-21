@@ -35,6 +35,9 @@
       components:
         - type: SpecForce
           actionBssActionName: ActionCentcomFtlAction
+        - type: NpcFactionMember
+          factions:
+            - CentralCommand
         - type: PsionicBonusChance
           multiplier: 3
         - type: InitialInfectedExempt
@@ -51,8 +54,6 @@
     shoes: ClothingShoesColorBlack
     id: CentcomInternPDABackmen
     ears: ClothingHeadsetCentCom
-  satchel: ClothingBackpackSatchelFilled
-  duffelbag: ClothingBackpackDuffelFilled
 
 - type: startingGear
   id: CentComInternGearArmed # POWER IN QUANTITY!

@@ -35,6 +35,9 @@
       components:
         - type: SpecForce
           actionBssActionName: ActionCentcomFtlAction
+        - type: NpcFactionMember
+          factions:
+            - CentralCommand
         - type: PsionicBonusChance
           multiplier: 3
         - type: InitialInfectedExempt
@@ -50,19 +53,6 @@
     sprite: /Textures/Backmen/Icons/jobicon.rsi
     state: CargoTechnician
 
-- type: startingGear
-  id: CCCargo
-  equipment:
-    head: ClothingHeadHatCargosoft
-    jumpsuit: ClothingUniformJumpsuitCargo
-    back: ClothingBackpackFilled
-    shoes: ClothingShoesColorBlack
-    id: CCCargoPDA
-    ears: ClothingHeadsetCentCom
-    pocket1: AppraisalTool
-  innerClothingSkirt: ClothingUniformJumpskirtCargo
-  satchel: ClothingBackpackSatchelFilled
-  duffelbag: ClothingBackpackDuffelFilled
 
 - type: entity
   parent: OrdenPDA

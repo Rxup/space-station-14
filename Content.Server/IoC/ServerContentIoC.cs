@@ -23,6 +23,7 @@ using Content.Server.Worldgen.Tools;
 using Content.Shared.Administration.Logs;
 using Content.Shared.Administration.Managers;
 using Content.Shared.Kitchen;
+using Content.Shared.Players.PlayTimeTracking;
 
 namespace Content.Server.IoC
 {
@@ -66,6 +67,8 @@ namespace Content.Server.IoC
             IoCManager.Register<Content.Corvax.Interfaces.Server.IServerJoinQueueManager, Backmen.JoinQueue.JoinQueueManager>();
             // end-backmen: IoC
             IoCManager.Register<ServerDbEntryManager>();
+            IoCManager.Register<ISharedPlaytimeManager, PlayTimeTrackingManager>();
+            IoCManager.Register<ServerApi>();
         }
     }
 }

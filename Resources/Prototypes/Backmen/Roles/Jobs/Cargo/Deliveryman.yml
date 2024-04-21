@@ -8,6 +8,6 @@
     ears: ClothingHeadsetService
     pocket1: Eftpos
     pocket2: FoodBoxPizzaFilled
-  innerClothingSkirt: ClothingUniformJumpsuitDeliverygirl
-  satchel: ClothingBackpackSatchelFilled
-  duffelbag: ClothingBackpackDuffelFilled
+  #innerClothingSkirt: ClothingUniformJumpsuitDeliverygirl
+  #satchel: ClothingBackpackSatchelFilled
+  #duffelbag: ClothingBackpackDuffelFilled

@@ -37,6 +37,9 @@
       components:
         - type: SpecForce
           actionBssActionName: ActionCentcomFtlAction
+        - type: NpcFactionMember
+          factions:
+            - CentralCommand
         - type: Psionic
         - type: PyrokinesisPower
         - type: InitialInfectedExempt
@@ -69,8 +72,6 @@
     ears: ClothingHeadsetCentComCC
     belt: ClothingBeltSecuritySuper
     pocket2: MagazinePistol
-  satchel: ClothingBackpackSatchelSecurityFilled
-  duffelbag: ClothingBackpackDuffelSecurityFilled
 
 - type: entity
   parent: OrdenPDA

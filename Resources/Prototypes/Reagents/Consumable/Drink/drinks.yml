@@ -322,6 +322,7 @@
           damage:
             types:
               Poison: 1
+  fizziness: 0.5
 
 - type: reagent
   id: SodaWater
@@ -331,6 +332,7 @@
   physicalDesc: reagent-physical-desc-fizzy
   flavor: fizzy
   color: "#619494"
+  fizziness: 0.8
 
 - type: reagent
   id: SoyLatte
@@ -373,6 +375,7 @@
   physicalDesc: reagent-physical-desc-fizzy
   flavor: tonicwater
   color: "#0064C8"
+  fizziness: 0.4
 
 - type: reagent
   id: Water
@@ -475,6 +478,7 @@
       effects:
         - !type:SatiateThirst
           factor: 1
+  fizziness: 0.3
 
 - type: reagent
   id: Posca
@@ -499,6 +503,7 @@
   metamorphicMaxFillLevels: 3
   metamorphicFillBaseName: fill-
   metamorphicChangeColor: false
+  fizziness: 0.3
 
 - type: reagent
   id: Rewriter
@@ -514,20 +519,7 @@
   metamorphicMaxFillLevels: 5
   metamorphicFillBaseName: fill-
   metamorphicChangeColor: true
-
-- type: reagent
-  id: WhiteGilgamesh
-  name: reagent-name-white-gilgamesh
-  parent: BaseDrink
-  desc: reagent-desc-white-gilgamesh
-  physicalDesc: reagent-physical-desc-creamy
-  flavor: white-gilgamesh
-  color: "#e5d27e"
-  metabolisms:
-    Drink:
-      effects:
-        - !type:SatiateThirst
-          factor: 1
+  fizziness: 0.3
 
 - type: reagent
   id: Mopwata

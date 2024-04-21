@@ -17,6 +17,6 @@
     - state: detail_bookmark
       color: "#98c495"
   - type: Spellbook
-    entitySpells:
+    spells:
       HealingSpell: -1
     learnTime: 0.75

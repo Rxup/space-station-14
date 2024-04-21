@@ -3787,7 +3787,6 @@
         layer:
         - MidImpassable
   - type: Respirator
-    cycleDelay: 0.1
     saturation: 0.1
     maxSaturation: 0.1
     damage:
@@ -3847,7 +3846,6 @@
       methods: [Touch]
       effects:
       - !type:HealthChange
-        scaled: true
         damage:
           types:
             Heat: 10

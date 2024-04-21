@@ -89,8 +89,6 @@
   description: New Sandy-Cat plastic sword! Now with 2 blades!
   components:
     - type: EnergySword
-      isSharp: false
-      litDisarmMalus: 0.7
     - type: Wieldable
     - type: ItemToggle
       soundActivate:

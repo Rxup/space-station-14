@@ -13,9 +13,9 @@
     belt: ClothingBeltUtilityFilledUnremoveable
     pocket1: Bible
     pocket2: BibleNecronomicon
-  innerClothingSkirt: ClothingUniformJumpskirtColorBlack
-  satchel: ClothingBackpackSatchelPlagueDoctorFilled
-  duffelbag: ClothingBackpackDuffelPlagueDoctorFilled
+  #innerClothingSkirt: ClothingUniformJumpskirtColorBlack
+  #satchel: ClothingBackpackSatchelPlagueDoctorFilled
+  #duffelbag: ClothingBackpackDuffelPlagueDoctorFilled
 
 - type: entity
   parent: ClothingHeadHatPlaguedoctor

@@ -35,6 +35,6 @@
     neck: ClothingNeckTieRed
     belt: ClothingBeltSecurityFilled
     pocket1: WeaponPistolMk58Nonlethal
-  innerClothingSkirt: ClothingUniformJumpskirtSeniorOfficer
-  satchel: ClothingBackpackSatchelSecurityFilled
-  duffelbag: ClothingBackpackDuffelSecurityFilled
+  #innerClothingSkirt: ClothingUniformJumpskirtSeniorOfficer
+  #satchel: ClothingBackpackSatchelSecurityFilled
+  #duffelbag: ClothingBackpackDuffelSecurityFilled

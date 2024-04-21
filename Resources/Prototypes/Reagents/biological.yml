@@ -49,18 +49,29 @@
     Food:
       effects:
         - !type:AdjustReagent
+          conditions:
+          - !type:OrganType
+            type: Vampiric
+            shouldHave: false
           reagent: UncookedAnimalProteins
+          amount: 0.5
+        - !type:AdjustReagent
+          conditions:
+          - !type:OrganType
+            type: Vampiric
+          reagent: Protein
           amount: 0.5
     Medicine:
       effects:
       - !type:HealthChange
         conditions:
         - !type:OrganType
-          type: Bloodsucker
+          type: Vampiric
         damage:
           groups:
             Brute: -3
             Burn: -1.25
+            Airloss: -3
   plantMetabolism:
     - !type:PlantAdjustWater
       amount: 0.5
@@ -179,8 +190,12 @@
           conditions:
             - !type:OrganType
               type: Vampiric
+        - !type:AdjustReagent
           reagent: Water
           amount: 0.15
+          conditions:
+            - !type:OrganType
+              type: Vampiric
   plantMetabolism:
     - !type:PlantAdjustWater
       amount: 0.5

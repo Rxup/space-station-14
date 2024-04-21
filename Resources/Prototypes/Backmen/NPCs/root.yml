@@ -58,7 +58,6 @@
     - tasks:
         - !type:HTNPrimitiveTask
           operator: !type:PickDrainTargetOperator
-            pathfindInPlanning: true
             targetKey: MovementTarget
             drainKey: DrainTarget
             rangeKey: IdleRange
@@ -71,3 +70,20 @@
         - !type:HTNPrimitiveTask
           operator: !type:DrainOperator
             drainKey: DrainTarget
+
+- type: htnCompound
+  id: NPCGuardRangedCompound
+  branches:
+    - tasks:
+        - !type:HTNCompoundTask
+          task: InnateRangedCombatCompound
+    - tasks:
+        - !type:HTNCompoundTask
+          task: MeleeCombatCompound
+
+- type: htnCompound
+  id: NPCGuardCompound
+  branches:
+    - tasks:
+        - !type:HTNCompoundTask
+          task: MeleeCombatCompound
