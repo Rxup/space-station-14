@@ -1645,10 +1645,10 @@
     stackType: XenoSlimeStack
     layerStates:
     - b_checker_piece
-    - b_checker_piece
-    - b_checker_piece
   - type: Sprite
-    state: b_checker_piece
+    sprite: Objects/Fun/Tabletop/checker_pieces.rsi
+    layers:
+      - state: b_checker_piece
   - type: Item
   - type: Appearance
 
@@ -1659,7 +1659,8 @@
   suffix: Single
   components:
   - type: Sprite
-    state: b_checker_piece
+    layers:
+      - state: b_checker_piece
   - type: Stack
     stackType: XenoSlimeStack
     count: 1
@@ -1671,7 +1672,8 @@
   suffix: Single
   components:
   - type: Sprite
-    state: b_checker_piece
+    layers:
+      - state: b_checker_piece
   - type: Stack
     stackType: XenoSlimeStack
     unlimited: true
