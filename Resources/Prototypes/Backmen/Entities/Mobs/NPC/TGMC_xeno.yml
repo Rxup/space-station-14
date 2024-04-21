@@ -690,17 +690,6 @@
       - id: WeaponXenoClaw
       - id: PinpointerXeno
 
-- type: entity
-  id: ActionPsionicInvisibility
-  name: action-name-psionic-invisibility
-  description: action-description-psionic-invisibility
-  noSpawn: true
-  components:
-    - type: InstantAction
-      useDelay: 30
-      icon: Backmen/Interface/VerbIcons/psionic_invisibility.png
-      event: !type:PsionicInvisibilityPowerActionEvent
-
 # RAVAGER #
 
 - type: entity
