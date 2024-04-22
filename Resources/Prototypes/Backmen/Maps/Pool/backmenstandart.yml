@@ -2,6 +2,7 @@
   id: BackmenDefaultMapPool
   maps:
   - BackmenAspid
+  - BackmenKettle
   - Tortuga
   - TheHive
   - Shoukou
