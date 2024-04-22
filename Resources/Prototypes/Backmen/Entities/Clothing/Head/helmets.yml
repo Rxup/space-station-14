@@ -221,7 +221,7 @@
   - type: Tag
   - type: entity
   parent: ClothingHeadBase
-  id: ClothingHeadHelmetWhite
+  id: ClothingHeadHelmetYellow
   name: Жёлтый мотошлем
   description: Вы чувствуете жажду. Не только скорости.
   components:
