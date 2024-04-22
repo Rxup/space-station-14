@@ -49,8 +49,8 @@ public sealed class MakeRimWorld : IConsoleCommand
             return;
         }
         var biomeSystem = _entityManager.System<BiomeSystem>();
-        var mapId = _mapManager.NextMapId();
-        _mapManager.CreateMap(mapId);
+        var mapSystem = _entityManager.System<SharedMapSystem>();
+        var mapId = _mapManager.CreateMap();
         var mapUid = _mapManager.GetMapEntityId(mapId);
 
 

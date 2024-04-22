@@ -58,7 +58,7 @@
       - SurveillanceWirelessCameraMonitorCircuitboard
     chance: 0.8
     rarePrototypes:
-      - TraversalDistorterMachineCircuitboard
+#      - TraversalDistorterMachineCircuitboard
       - CloningPodMachineCircuitboard
       - MetempsychoticMachineCircuitboard
 #      - ReverseEngineeringMachineCircuitboard

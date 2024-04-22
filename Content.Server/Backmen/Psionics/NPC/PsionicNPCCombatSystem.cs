@@ -18,8 +18,9 @@ namespace Content.Server.Backmen.Psionics.NPC
 
         private void ZapCombat(EntityUid uid, NoosphericZapPowerComponent component, ref NPCSteeringEvent args)
         {
-            if (_actions.TryGetActionData(component.NoosphericZapPowerAction, out var action))
+            if (!_actions.TryGetActionData(component.NoosphericZapPowerAction, out var action))
                 return;
+
             var skill = (EntityTargetActionComponent?) action;
             if (skill?.Event == null)
                 return;
@@ -30,7 +31,7 @@ namespace Content.Server.Backmen.Psionics.NPC
             if (!TryComp<NPCRangedCombatComponent>(uid, out var combat))
                 return;
 
-            if (_actions.ValidateEntityTarget(uid, combat.Target,  skill!))
+            if (_actions.ValidateEntityTarget(uid, combat.Target,  (component.NoosphericZapPowerAction.Value,skill)))
             {
                 var ev = skill.Event;
                 ev.Performer = uid;
