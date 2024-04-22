@@ -990,14 +990,9 @@
   icon: { sprite: /Textures/Mobs/Pets/cat.rsi, state: syndicat }
   productEntity: MobCatSyndy
   cost:
-    Telecrystal: 10
+    Telecrystal: 6
   categories:
-  - UplinkAllies
-  conditions:
-  - !type:StoreWhitelistCondition
-    whitelist:
-      tags:
-      - NukeOpsUplink
+    - UplinkAllies
 
 - type: listing
   id: UplinkSyndicatePersonalAI
