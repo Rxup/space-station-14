@@ -24,7 +24,7 @@ entities:
       chunks:
         0,0:
           ind: 0,0
-          tiles: HQAAAAAAHQAAAAAAHQAAAAAAHQAAAAAAHQAAAAAAJQAAAAAAHQAAAAAAJQAAAAAAHQAAAAAAfQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAJQAAAAAAJQAAAAAAJQAAAAAAJQAAAAAAJQAAAAAAJQAAAAAAfQAAAAAAfQAAAAAAfQAAAAAAfAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAHQAAAAAAHQAAAAAAHQAAAAAAHQAAAAAAHQAAAAAAJQAAAAAAfQAAAAAAfAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAJQAAAAAAJQAAAAAAJQAAAAAAJQAAAAAAJQAAAAAAJQAAAAAAfQAAAAAAfQAAAAAAfAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAHQAAAAAAfQAAAAAAFQAAAAAAfQAAAAAAHQAAAAAAJQAAAAAAHQAAAAAAJQAAAAAAfQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAHQAAAAAAfQAAAAAAFQAAAAAAfQAAAAAAHQAAAAAAJQAAAAAAHQAAAAAAJQAAAAAAfQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAfQAAAAAAFQAAAAAAFQAAAAAAFQAAAAAAfQAAAAAAfQAAAAAAfQAAAAAAHQAAAAAAfQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAfQAAAAAAFQAAAAAAFQAAAAAAFQAAAAAAfQAAAAAAHQAAAAAAJQAAAAAAHQAAAAAAfQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAfQAAAAAAfQAAAAAAfQAAAAAAfQAAAAAAfQAAAAAAHQAAAAAAJQAAAAAAHQAAAAAAfQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAHQAAAAAAfQAAAAAAAAAAAAAAfQAAAAAAawAAAAAAHQAAAAAAJQAAAAAAHQAAAAAAfQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAHQAAAAAAfQAAAAAAAAAAAAAAfQAAAAAAawAAAAAAHQAAAAAAJQAAAAAAHQAAAAAAfQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAHQAAAAAAfQAAAAAAAAAAAAAAfQAAAAAAawAAAAAAHQAAAAAAJQAAAAAAHQAAAAAAfQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAHQAAAAAAfQAAAAAAAAAAAAAAfQAAAAAAawAAAAAAHQAAAAAAJQAAAAAAHQAAAAAAfQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAHQAAAAAAfQAAAAAAAAAAAAAAfQAAAAAAawAAAAAAHQAAAAAAawAAAAAAawAAAAAAfQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAHQAAAAAAfQAAAAAAAAAAAAAAfQAAAAAAawAAAAAAHQAAAAAAawAAAAAAfQAAAAAAfAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAHQAAAAAAfQAAAAAAAAAAAAAAfQAAAAAAawAAAAAAHQAAAAAAawAAAAAAfQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+          tiles: HQAAAAAAHQAAAAAAHQAAAAAAHQAAAAAAHQAAAAAAJQAAAAAAHQAAAAAAJQAAAAAAHQAAAAAAfQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAJQAAAAAAJQAAAAAAJQAAAAAAJQAAAAAAJQAAAAAAJQAAAAAAfQAAAAAAfQAAAAAAfQAAAAAAfAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAHQAAAAAAHQAAAAAAHQAAAAAAHQAAAAAAHQAAAAAAJQAAAAAAfQAAAAAAfAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAJQAAAAAAJQAAAAAAJQAAAAAAJQAAAAAAJQAAAAAAJQAAAAAAfQAAAAAAfQAAAAAAfAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAHQAAAAAAfQAAAAAAFQAAAAAAfQAAAAAAHQAAAAAAJQAAAAAAHQAAAAAAJQAAAAAAfQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAHQAAAAAAfQAAAAAAFQAAAAAAfQAAAAAAHQAAAAAAJQAAAAAAHQAAAAAAJQAAAAAAfQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAfQAAAAAAFQAAAAAAFQAAAAAAFQAAAAAAfQAAAAAAfQAAAAAAHQAAAAAAHQAAAAAAfQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAfQAAAAAAFQAAAAAAFQAAAAAAFQAAAAAAfQAAAAAAHQAAAAAAJQAAAAAAHQAAAAAAfQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAfQAAAAAAfQAAAAAAfQAAAAAAfQAAAAAAfQAAAAAAHQAAAAAAJQAAAAAAHQAAAAAAfQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAHQAAAAAAfQAAAAAAAAAAAAAAfQAAAAAAawAAAAAAHQAAAAAAJQAAAAAAHQAAAAAAfQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAHQAAAAAAfQAAAAAAAAAAAAAAfQAAAAAAawAAAAAAHQAAAAAAJQAAAAAAHQAAAAAAfQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAHQAAAAAAfQAAAAAAAAAAAAAAfQAAAAAAawAAAAAAHQAAAAAAJQAAAAAAHQAAAAAAfQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAHQAAAAAAfQAAAAAAAAAAAAAAfQAAAAAAawAAAAAAHQAAAAAAJQAAAAAAHQAAAAAAfQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAHQAAAAAAfQAAAAAAAAAAAAAAfQAAAAAAawAAAAAAHQAAAAAAawAAAAAAawAAAAAAfQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAHQAAAAAAfQAAAAAAAAAAAAAAfQAAAAAAawAAAAAAHQAAAAAAawAAAAAAfQAAAAAAfAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAHQAAAAAAfQAAAAAAAAAAAAAAfQAAAAAAawAAAAAAHQAAAAAAawAAAAAAfQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
           version: 6
         0,-1:
           ind: 0,-1
@@ -182,8 +182,6 @@ entities:
       - 484
       - 483
       - 491
-    - type: AtmosDevice
-      joinedGrid: 1
 - proto: AirCanister
   entities:
   - uid: 3
@@ -191,22 +189,16 @@ entities:
     - type: Transform
       pos: -0.5,-6.5
       parent: 1
-    - type: AtmosDevice
-      joinedGrid: 1
   - uid: 4
     components:
     - type: Transform
       pos: -0.5,-7.5
       parent: 1
-    - type: AtmosDevice
-      joinedGrid: 1
   - uid: 5
     components:
     - type: Transform
       pos: -0.5,-5.5
       parent: 1
-    - type: AtmosDevice
-      joinedGrid: 1
 - proto: AirlockExternalGlassShuttleLocked
   entities:
   - uid: 9
@@ -220,6 +212,59 @@ entities:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: 9.5,-5.5
+      parent: 1
+- proto: AirlockMTFCplsGlassLocked
+  entities:
+  - uid: 11
+    components:
+    - type: Transform
+      pos: 2.5,4.5
+      parent: 1
+- proto: AirlockMTFGlassLocked
+  entities:
+  - uid: 254
+    components:
+    - type: Transform
+      pos: 6.5,6.5
+      parent: 1
+  - uid: 371
+    components:
+    - type: Transform
+      pos: 7.5,6.5
+      parent: 1
+- proto: AirlockMTFGlassLockedAlt
+  entities:
+  - uid: 8
+    components:
+    - type: Transform
+      pos: -1.5,-2.5
+      parent: 1
+  - uid: 12
+    components:
+    - type: Transform
+      pos: -2.5,-2.5
+      parent: 1
+  - uid: 369
+    components:
+    - type: Transform
+      pos: -1.5,6.5
+      parent: 1
+  - uid: 370
+    components:
+    - type: Transform
+      pos: -2.5,6.5
+      parent: 1
+- proto: AirlockMTFLocked
+  entities:
+  - uid: 6
+    components:
+    - type: Transform
+      pos: 7.5,-2.5
+      parent: 1
+  - uid: 493
+    components:
+    - type: Transform
+      pos: 6.5,-2.5
       parent: 1
 - proto: APCHyperCapacity
   entities:
@@ -2033,41 +2078,6 @@ entities:
     - type: Transform
       pos: -2.566029,-6.5941944
       parent: 1
-- proto: ClothingHeadHatBeretHoS
-  entities:
-  - uid: 369
-    components:
-    - type: Transform
-      pos: 4.328587,11.260866
-      parent: 1
-- proto: ClothingHeadHatBeretSecurityMedic
-  entities:
-  - uid: 370
-    components:
-    - type: Transform
-      pos: 4.562962,11.370241
-      parent: 1
-- proto: ClothingHeadHatCatEars
-  entities:
-  - uid: 371
-    components:
-    - type: Transform
-      pos: -2.5461822,13.667342
-      parent: 1
-- proto: ClothingNeckCloakCentcomBlack
-  entities:
-  - uid: 372
-    components:
-    - type: Transform
-      pos: 4.3921227,10.573366
-      parent: 1
-- proto: ClothingUniformJumpskirtJanimaid
-  entities:
-  - uid: 373
-    components:
-    - type: Transform
-      pos: -2.5305572,13.495467
-      parent: 1
 - proto: ComputerAlert
   entities:
   - uid: 374
@@ -2190,8 +2200,6 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 2.5,-4.5
       parent: 1
-    - type: AtmosDevice
-      joinedGrid: 1
 - proto: GasPipeBend
   entities:
   - uid: 391
@@ -2702,8 +2710,6 @@ entities:
       rot: -1.5707963267948966 rad
       pos: -0.5,-5.5
       parent: 1
-    - type: AtmosDevice
-      joinedGrid: 1
 - proto: GasPressurePump
   entities:
   - uid: 478
@@ -2712,8 +2718,6 @@ entities:
       rot: 1.5707963267948966 rad
       pos: -0.5,-4.5
       parent: 1
-    - type: AtmosDevice
-      joinedGrid: 1
 - proto: GasVentPump
   entities:
   - uid: 479
@@ -2722,47 +2726,35 @@ entities:
       rot: 1.5707963267948966 rad
       pos: -3.5,-0.5
       parent: 1
-    - type: AtmosDevice
-      joinedGrid: 1
   - uid: 480
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: 8.5,-0.5
       parent: 1
-    - type: AtmosDevice
-      joinedGrid: 1
   - uid: 481
     components:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: 7.5,-5.5
       parent: 1
-    - type: AtmosDevice
-      joinedGrid: 1
   - uid: 482
     components:
     - type: Transform
       pos: 2.5,5.5
       parent: 1
-    - type: AtmosDevice
-      joinedGrid: 1
   - uid: 483
     components:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: -0.5,10.5
       parent: 1
-    - type: AtmosDevice
-      joinedGrid: 1
   - uid: 484
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: 5.5,10.5
       parent: 1
-    - type: AtmosDevice
-      joinedGrid: 1
 - proto: GasVentScrubber
   entities:
   - uid: 485
@@ -2771,53 +2763,39 @@ entities:
       rot: 3.141592653589793 rad
       pos: -1.5,-5.5
       parent: 1
-    - type: AtmosDevice
-      joinedGrid: 1
   - uid: 486
     components:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: 6.5,-4.5
       parent: 1
-    - type: AtmosDevice
-      joinedGrid: 1
   - uid: 487
     components:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: 1.5,-2.5
       parent: 1
-    - type: AtmosDevice
-      joinedGrid: 1
   - uid: 488
     components:
     - type: Transform
       pos: 3.5,1.5
       parent: 1
-    - type: AtmosDevice
-      joinedGrid: 1
   - uid: 489
     components:
     - type: Transform
       pos: -0.5,9.5
       parent: 1
-    - type: AtmosDevice
-      joinedGrid: 1
   - uid: 490
     components:
     - type: Transform
       pos: 5.5,8.5
       parent: 1
-    - type: AtmosDevice
-      joinedGrid: 1
   - uid: 491
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: 2.5,5.5
       parent: 1
-    - type: AtmosDevice
-      joinedGrid: 1
 - proto: GeneratorRTG
   entities:
   - uid: 252
@@ -2990,63 +2968,6 @@ entities:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: 7.5,2.5
-      parent: 1
-- proto: HighSecCentComLocked
-  entities:
-  - uid: 6
-    components:
-    - type: Transform
-      pos: -1.5,6.5
-      parent: 1
-    missingComponents:
-    - Occluder
-  - uid: 7
-    components:
-    - type: Transform
-      pos: -2.5,6.5
-      parent: 1
-    missingComponents:
-    - Occluder
-  - uid: 8
-    components:
-    - type: Transform
-      pos: 7.5,6.5
-      parent: 1
-    missingComponents:
-    - Occluder
-  - uid: 11
-    components:
-    - type: Transform
-      pos: 6.5,6.5
-      parent: 1
-    missingComponents:
-    - Occluder
-  - uid: 12
-    components:
-    - type: Transform
-      pos: 2.5,4.5
-      parent: 1
-    missingComponents:
-    - Occluder
-  - uid: 253
-    components:
-    - type: Transform
-      pos: -1.5,-2.5
-      parent: 1
-  - uid: 254
-    components:
-    - type: Transform
-      pos: -2.5,-2.5
-      parent: 1
-  - uid: 492
-    components:
-    - type: Transform
-      pos: 6.5,-2.5
-      parent: 1
-  - uid: 493
-    components:
-    - type: Transform
-      pos: 7.5,-2.5
       parent: 1
 - proto: LockerChemistryFilled
   entities:
@@ -3797,6 +3718,33 @@ entities:
     components:
     - type: Transform
       pos: -2.5,-7.5
+      parent: 1
+- proto: SpawnMobGuardERTUnitSecurity
+  entities:
+  - uid: 7
+    components:
+    - type: Transform
+      pos: 7.5,12.5
+      parent: 1
+  - uid: 253
+    components:
+    - type: Transform
+      pos: 1.5,3.5
+      parent: 1
+  - uid: 372
+    components:
+    - type: Transform
+      pos: 6.5,0.5
+      parent: 1
+  - uid: 373
+    components:
+    - type: Transform
+      pos: 3.5,3.5
+      parent: 1
+  - uid: 492
+    components:
+    - type: Transform
+      pos: -1.5,0.5
       parent: 1
 - proto: SpawnMobMedibot
   entities:

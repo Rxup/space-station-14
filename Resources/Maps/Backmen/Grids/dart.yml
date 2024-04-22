@@ -855,64 +855,6 @@ entities:
     - type: Transform
       pos: -2.5,-17.5
       parent: 1
-- proto: AirlockCommandLocked
-  entities:
-  - uid: 944
-    components:
-    - type: Transform
-      rot: 3.141592653589793 rad
-      pos: -0.5,0.5
-      parent: 1
-  - uid: 945
-    components:
-    - type: Transform
-      rot: 3.141592653589793 rad
-      pos: -0.5,4.5
-      parent: 1
-- proto: AirlockEngineeringLocked
-  entities:
-  - uid: 617
-    components:
-    - type: Transform
-      pos: 1.5,-17.5
-      parent: 1
-  - uid: 801
-    components:
-    - type: Transform
-      pos: -0.5,-15.5
-      parent: 1
-- proto: AirlockExternal
-  entities:
-  - uid: 620
-    components:
-    - type: Transform
-      pos: -6.5,-1.5
-      parent: 1
-  - uid: 621
-    components:
-    - type: Transform
-      pos: -6.5,-0.5
-      parent: 1
-  - uid: 750
-    components:
-    - type: Transform
-      pos: 5.5,-0.5
-      parent: 1
-  - uid: 757
-    components:
-    - type: Transform
-      pos: 5.5,-1.5
-      parent: 1
-  - uid: 758
-    components:
-    - type: Transform
-      pos: 5.5,-2.5
-      parent: 1
-  - uid: 918
-    components:
-    - type: Transform
-      pos: -6.5,-2.5
-      parent: 1
 - proto: AirlockExternalGlassShuttleLocked
   entities:
   - uid: 412
@@ -951,28 +893,84 @@ entities:
       rot: 1.5707963267948966 rad
       pos: 8.5,-2.5
       parent: 1
-- proto: AirlockGlass
+- proto: AirlockMTFCplsLocked
   entities:
-  - uid: 73
-    components:
-    - type: Transform
-      pos: -0.5,-3.5
-      parent: 1
   - uid: 846
     components:
     - type: Transform
-      pos: -0.5,-7.5
+      pos: -0.5,4.5
       parent: 1
-- proto: AirlockJanitorLocked
+  - uid: 918
+    components:
+    - type: Transform
+      pos: -0.5,0.5
+      parent: 1
+- proto: AirlockMTFEngineeringLocked
   entities:
   - uid: 141
     components:
     - type: Transform
+      pos: 1.5,-17.5
+      parent: 1
+  - uid: 801
+    components:
+    - type: Transform
+      pos: -0.5,-15.5
+      parent: 1
+- proto: AirlockMTFExternalLocked
+  entities:
+  - uid: 73
+    components:
+    - type: Transform
+      pos: -6.5,-2.5
+      parent: 1
+  - uid: 620
+    components:
+    - type: Transform
+      pos: 5.5,-2.5
+      parent: 1
+  - uid: 621
+    components:
+    - type: Transform
+      pos: 5.5,-1.5
+      parent: 1
+  - uid: 750
+    components:
+    - type: Transform
+      pos: 5.5,-0.5
+      parent: 1
+  - uid: 757
+    components:
+    - type: Transform
+      pos: -6.5,-0.5
+      parent: 1
+  - uid: 758
+    components:
+    - type: Transform
+      pos: -6.5,-1.5
+      parent: 1
+- proto: AirlockMTFGlassLockedAlt
+  entities:
+  - uid: 771
+    components:
+    - type: Transform
+      pos: -0.5,-7.5
+      parent: 1
+  - uid: 1006
+    components:
+    - type: Transform
+      pos: -0.5,-3.5
+      parent: 1
+- proto: AirlockMTFJanitorLocked
+  entities:
+  - uid: 827
+    components:
+    - type: Transform
       pos: 0.5,-9.5
       parent: 1
-- proto: AirlockSecurityLocked
+- proto: AirlockMTFSecurityLocked
   entities:
-  - uid: 252
+  - uid: 940
     components:
     - type: Transform
       pos: 0.5,-13.5
@@ -5352,6 +5350,18 @@ entities:
     - type: Transform
       pos: 3.5,-9.5
       parent: 1
+- proto: SpawnMobGuardERTUnitSecurity
+  entities:
+  - uid: 945
+    components:
+    - type: Transform
+      pos: -2.5,-0.5
+      parent: 1
+  - uid: 987
+    components:
+    - type: Transform
+      pos: 1.5,-0.5
+      parent: 1
 - proto: SpawnMobMedibot
   entities:
   - uid: 986
@@ -5608,13 +5618,6 @@ entities:
     components:
     - type: Transform
       pos: 3.5,4.5
-      parent: 1
-- proto: VendingMachineCentDrobe
-  entities:
-  - uid: 1004
-    components:
-    - type: Transform
-      pos: -1.5,1.5
       parent: 1
 - proto: VendingMachineChemicals
   entities:
@@ -6678,17 +6681,28 @@ entities:
       rot: 3.141592653589793 rad
       pos: -4.5,-10.5
       parent: 1
-- proto: WindoorSecureChemistryLocked
+- proto: WindoorMTFMedicalLocked
   entities:
-  - uid: 771
+  - uid: 252
     components:
     - type: Transform
       rot: 3.141592653589793 rad
-      pos: -4.5,-3.5
+      pos: -4.5,0.5
       parent: 1
-  - uid: 827
+  - uid: 617
     components:
     - type: Transform
+      pos: -4.5,-3.5
+      parent: 1
+  - uid: 944
+    components:
+    - type: Transform
+      pos: -5.5,0.5
+      parent: 1
+  - uid: 1004
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
       pos: -5.5,-3.5
       parent: 1
 - proto: WindoorSecureEngineeringLocked
@@ -6697,19 +6711,6 @@ entities:
     components:
     - type: Transform
       pos: 3.5,-20.5
-      parent: 1
-- proto: WindoorSecureMedicalLocked
-  entities:
-  - uid: 940
-    components:
-    - type: Transform
-      rot: 3.141592653589793 rad
-      pos: -5.5,0.5
-      parent: 1
-  - uid: 1006
-    components:
-    - type: Transform
-      pos: -4.5,1.5
       parent: 1
 - proto: WindoorSecureSecurityLocked
   entities:
