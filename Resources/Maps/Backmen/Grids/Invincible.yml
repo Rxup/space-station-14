@@ -15,6 +15,7 @@ entities:
   - uid: 1
     components:
     - type: MetaData
+      name: NT-CC-Invincible-102
     - type: Transform
       pos: -2.0767097,1.734375
       parent: invalid
@@ -258,39 +259,6 @@ entities:
         chunkSize: 4
     - type: GasTileOverlay
     - type: RadiationGridResistance
-- proto: AirlockCCEngineeringLocked
-  entities:
-  - uid: 96
-    components:
-    - type: Transform
-      pos: 7.5,-10.5
-      parent: 1
-  - uid: 99
-    components:
-    - type: Transform
-      pos: 3.5,-7.5
-      parent: 1
-- proto: AirlockCCMedicalLocked
-  entities:
-  - uid: 707
-    components:
-    - type: Transform
-      pos: 11.5,-4.5
-      parent: 1
-- proto: AirlockExternalGlassLocked
-  entities:
-  - uid: 148
-    components:
-    - type: Transform
-      rot: -1.5707963267948966 rad
-      pos: -1.5,-4.5
-      parent: 1
-  - uid: 149
-    components:
-    - type: Transform
-      rot: -1.5707963267948966 rad
-      pos: 12.5,-4.5
-      parent: 1
 - proto: AirlockGlassShuttle
   entities:
   - uid: 144
@@ -304,6 +272,63 @@ entities:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: 14.5,-4.5
+      parent: 1
+- proto: AirlockMTFCommandGlassLocked
+  entities:
+  - uid: 117
+    components:
+    - type: Transform
+      pos: 5.5,0.5
+      parent: 1
+- proto: AirlockMTFCommandLocked
+  entities:
+  - uid: 441
+    components:
+    - type: Transform
+      pos: 6.5,-1.5
+      parent: 1
+- proto: AirlockMTFEngineeringGlassLocked
+  entities:
+  - uid: 149
+    components:
+    - type: Transform
+      pos: 7.5,-10.5
+      parent: 1
+  - uid: 439
+    components:
+    - type: Transform
+      pos: 3.5,-7.5
+      parent: 1
+- proto: AirlockMTFExternalLocked
+  entities:
+  - uid: 99
+    components:
+    - type: Transform
+      pos: 12.5,-4.5
+      parent: 1
+  - uid: 442
+    components:
+    - type: Transform
+      pos: -1.5,-4.5
+      parent: 1
+- proto: AirlockMTFLocked
+  entities:
+  - uid: 148
+    components:
+    - type: Transform
+      pos: -0.5,-4.5
+      parent: 1
+  - uid: 440
+    components:
+    - type: Transform
+      pos: 11.5,-4.5
+      parent: 1
+- proto: AirlockMTFMedicalLockedGlass
+  entities:
+  - uid: 96
+    components:
+    - type: Transform
+      pos: 6.5,-6.5
       parent: 1
 - proto: AmeController
   entities:
@@ -470,36 +495,6 @@ entities:
     - type: Transform
       pos: 12.5,-6.5
       parent: 1
-  - uid: 399
-    components:
-    - type: Transform
-      pos: 7.5,-0.5
-      parent: 1
-  - uid: 400
-    components:
-    - type: Transform
-      pos: 8.5,-0.5
-      parent: 1
-  - uid: 401
-    components:
-    - type: Transform
-      pos: 9.5,-0.5
-      parent: 1
-  - uid: 402
-    components:
-    - type: Transform
-      pos: 7.5,-2.5
-      parent: 1
-  - uid: 403
-    components:
-    - type: Transform
-      pos: 8.5,-2.5
-      parent: 1
-  - uid: 404
-    components:
-    - type: Transform
-      pos: 9.5,-2.5
-      parent: 1
 - proto: BedsheetMedical
   entities:
   - uid: 168
@@ -525,38 +520,6 @@ entities:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: 12.5,-6.5
-      parent: 1
-- proto: BedsheetNT
-  entities:
-  - uid: 405
-    components:
-    - type: Transform
-      pos: 7.5,-0.5
-      parent: 1
-  - uid: 406
-    components:
-    - type: Transform
-      pos: 8.5,-0.5
-      parent: 1
-  - uid: 407
-    components:
-    - type: Transform
-      pos: 9.5,-0.5
-      parent: 1
-  - uid: 408
-    components:
-    - type: Transform
-      pos: 7.5,-2.5
-      parent: 1
-  - uid: 409
-    components:
-    - type: Transform
-      pos: 8.5,-2.5
-      parent: 1
-  - uid: 410
-    components:
-    - type: Transform
-      pos: 9.5,-2.5
       parent: 1
 - proto: BookStationsAndAgents
   entities:
@@ -2540,12 +2503,12 @@ entities:
     - type: Transform
       pos: 10.5,-6.5
       parent: 1
-- proto: CombatKnife
+- proto: CombatKnifeSpetsnaz
   entities:
-  - uid: 431
+  - uid: 443
     components:
     - type: Transform
-      pos: 0.53397584,-2.431706
+      pos: 3.5019512,-2.4490256
       parent: 1
 - proto: ComputerCloningConsole
   entities:
@@ -2654,45 +2617,6 @@ entities:
     - type: Transform
       pos: 1.061045,-2.181706
       parent: 1
-- proto: EncryptionKey_GROUPS_0
-  entities:
-  - uid: 439
-    components:
-    - type: Transform
-      pos: 10.858652,-2.5312397
-      parent: 1
-  - uid: 440
-    components:
-    - type: Transform
-      pos: 10.671152,-1.8124899
-      parent: 1
-  - uid: 441
-    components:
-    - type: Transform
-      pos: 10.733652,-1.3437397
-      parent: 1
-  - uid: 442
-    components:
-    - type: Transform
-      pos: 10.921152,-1.5312397
-      parent: 1
-  - uid: 443
-    components:
-    - type: Transform
-      pos: 10.764902,-2.1562397
-      parent: 1
-  - uid: 444
-    components:
-    - type: Transform
-      pos: 10.483652,-1.4843649
-      parent: 1
-- proto: EncryptionKeyCentCom
-  entities:
-  - uid: 438
-    components:
-    - type: Transform
-      pos: 10.374277,-1.2968649
-      parent: 1
 - proto: FoodBoxPizzaFilled
   entities:
   - uid: 435
@@ -2713,8 +2637,6 @@ entities:
       rot: 1.5707963267948966 rad
       pos: -1.5,-9.5
       parent: 1
-    - type: AtmosDevice
-      joinedGrid: 1
 - proto: GasMinerOxygen
   entities:
   - uid: 555
@@ -2723,8 +2645,6 @@ entities:
       rot: 1.5707963267948966 rad
       pos: -1.5,-7.5
       parent: 1
-    - type: AtmosDevice
-      joinedGrid: 1
 - proto: GasMixer
   entities:
   - uid: 565
@@ -2733,8 +2653,6 @@ entities:
       rot: 1.5707963267948966 rad
       pos: 0.5,-7.5
       parent: 1
-    - type: AtmosDevice
-      joinedGrid: 1
 - proto: GasPassiveVent
   entities:
   - uid: 157
@@ -2743,24 +2661,18 @@ entities:
       rot: 3.141592653589793 rad
       pos: 5.5,-16.5
       parent: 1
-    - type: AtmosDevice
-      joinedGrid: 1
   - uid: 557
     components:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: -0.5,-7.5
       parent: 1
-    - type: AtmosDevice
-      joinedGrid: 1
   - uid: 558
     components:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: -0.5,-9.5
       parent: 1
-    - type: AtmosDevice
-      joinedGrid: 1
 - proto: GasPipeBend
   entities:
   - uid: 561
@@ -2963,39 +2875,29 @@ entities:
       rot: 3.141592653589793 rad
       pos: 1.5,-8.5
       parent: 1
-    - type: AtmosDevice
-      joinedGrid: 1
   - uid: 566
     components:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: 2.5,-4.5
       parent: 1
-    - type: AtmosDevice
-      joinedGrid: 1
   - uid: 567
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: 8.5,-7.5
       parent: 1
-    - type: AtmosDevice
-      joinedGrid: 1
   - uid: 568
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: 8.5,-1.5
       parent: 1
-    - type: AtmosDevice
-      joinedGrid: 1
   - uid: 569
     components:
     - type: Transform
       pos: 5.5,2.5
       parent: 1
-    - type: AtmosDevice
-      joinedGrid: 1
 - proto: GasVentScrubber
   entities:
   - uid: 590
@@ -3003,8 +2905,6 @@ entities:
     - type: Transform
       pos: 5.5,-4.5
       parent: 1
-    - type: AtmosDevice
-      joinedGrid: 1
 - proto: GravityGeneratorMini
   entities:
   - uid: 687
@@ -3385,34 +3285,12 @@ entities:
       rot: 1.5707963267948966 rad
       pos: 0.5,-10.5
       parent: 1
-- proto: HighSecCentComLocked
-  entities:
-  - uid: 247
-    components:
-    - type: Transform
-      pos: 6.5,-6.5
-      parent: 1
-  - uid: 248
-    components:
-    - type: Transform
-      pos: -0.5,-4.5
-      parent: 1
-  - uid: 249
-    components:
-    - type: Transform
-      pos: 6.5,-1.5
-      parent: 1
-  - uid: 513
-    components:
-    - type: Transform
-      pos: 5.5,0.5
-      parent: 1
 - proto: KitchenMicrowave
   entities:
-  - uid: 434
+  - uid: 408
     components:
     - type: Transform
-      pos: 3.5,-2.5
+      pos: 0.5,-2.5
       parent: 1
 - proto: LockerWallMedicalFilled
   entities:
@@ -3420,6 +3298,63 @@ entities:
     components:
     - type: Transform
       pos: 11.5,-10.5
+      parent: 1
+- proto: MagazineShotgunMagnum12
+  entities:
+  - uid: 407
+    components:
+    - type: Transform
+      pos: 10.250643,-2.2583117
+      parent: 1
+  - uid: 821
+    components:
+    - type: Transform
+      pos: 10.453768,-2.2583117
+      parent: 1
+  - uid: 822
+    components:
+    - type: Transform
+      pos: 10.563143,-2.2583117
+      parent: 1
+  - uid: 823
+    components:
+    - type: Transform
+      pos: 10.641268,-2.2583117
+      parent: 1
+  - uid: 824
+    components:
+    - type: Transform
+      pos: 10.750643,-2.2583117
+      parent: 1
+  - uid: 827
+    components:
+    - type: Transform
+      pos: 10.219393,-2.5239367
+      parent: 1
+  - uid: 828
+    components:
+    - type: Transform
+      pos: 10.313143,-2.5395617
+      parent: 1
+  - uid: 829
+    components:
+    - type: Transform
+      pos: 10.391268,-2.5708117
+      parent: 1
+  - uid: 830
+    components:
+    - type: Transform
+      pos: 10.516268,-2.5864367
+      parent: 1
+  - uid: 831
+    components:
+    - type: Transform
+      pos: 10.641268,-2.5864367
+      parent: 1
+  - uid: 832
+    components:
+    - type: Transform
+      pos: 10.828768,-2.5708117
       parent: 1
 - proto: MarkerSpecforce
   entities:
@@ -3595,6 +3530,31 @@ entities:
       parent: 1
 - proto: Rack
   entities:
+  - uid: 249
+    components:
+    - type: Transform
+      pos: 9.5,-0.5
+      parent: 1
+  - uid: 402
+    components:
+    - type: Transform
+      pos: 10.5,-2.5
+      parent: 1
+  - uid: 404
+    components:
+    - type: Transform
+      pos: 10.5,-1.5
+      parent: 1
+  - uid: 444
+    components:
+    - type: Transform
+      pos: 8.5,-0.5
+      parent: 1
+  - uid: 513
+    components:
+    - type: Transform
+      pos: 7.5,-0.5
+      parent: 1
   - uid: 809
     components:
     - type: Transform
@@ -3828,6 +3788,43 @@ entities:
     - type: Transform
       pos: 2.5,-0.5
       parent: 1
+- proto: SpawnMobGuardERTUnitSecurity
+  entities:
+  - uid: 410
+    components:
+    - type: Transform
+      pos: 0.5,-1.5
+      parent: 1
+  - uid: 411
+    components:
+    - type: Transform
+      pos: 5.5,-5.5
+      parent: 1
+  - uid: 412
+    components:
+    - type: Transform
+      pos: 4.5,-0.5
+      parent: 1
+  - uid: 431
+    components:
+    - type: Transform
+      pos: 7.5,1.5
+      parent: 1
+  - uid: 434
+    components:
+    - type: Transform
+      pos: 7.5,-7.5
+      parent: 1
+  - uid: 438
+    components:
+    - type: Transform
+      pos: 8.5,-9.5
+      parent: 1
+  - uid: 820
+    components:
+    - type: Transform
+      pos: 3.5,1.5
+      parent: 1
 - proto: StoolBar
   entities:
   - uid: 423
@@ -3863,16 +3860,6 @@ entities:
       parent: 1
 - proto: Table
   entities:
-  - uid: 411
-    components:
-    - type: Transform
-      pos: 10.5,-1.5
-      parent: 1
-  - uid: 412
-    components:
-    - type: Transform
-      pos: 10.5,-2.5
-      parent: 1
   - uid: 625
     components:
     - type: Transform
@@ -4460,11 +4447,6 @@ entities:
     - type: Transform
       pos: 4.5,-10.5
       parent: 1
-  - uid: 117
-    components:
-    - type: Transform
-      pos: 6.5,-10.5
-      parent: 1
   - uid: 119
     components:
     - type: Transform
@@ -4687,6 +4669,11 @@ entities:
       rot: 1.5707963267948966 rad
       pos: 11.5,0.5
       parent: 1
+  - uid: 707
+    components:
+    - type: Transform
+      pos: 6.5,-10.5
+      parent: 1
 - proto: WallShuttleDiagonal
   entities:
   - uid: 11
@@ -4757,6 +4744,59 @@ entities:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: 13.5,-10.5
+      parent: 1
+- proto: WeaponEarthGovLaserMG
+  entities:
+  - uid: 401
+    components:
+    - type: Transform
+      pos: 10.514584,-1.562884
+      parent: 1
+  - uid: 406
+    components:
+    - type: Transform
+      pos: 10.436459,-1.266009
+      parent: 1
+- proto: WeaponMultiphaseEnergyGun
+  entities:
+  - uid: 247
+    components:
+    - type: Transform
+      pos: 9.577084,-0.29725897
+      parent: 1
+  - uid: 399
+    components:
+    - type: Transform
+      pos: 9.592709,-0.547259
+      parent: 1
+  - uid: 400
+    components:
+    - type: Transform
+      pos: 8.811459,-0.625384
+      parent: 1
+  - uid: 405
+    components:
+    - type: Transform
+      pos: 8.795834,-0.28163397
+      parent: 1
+- proto: WeaponShotgunAA12
+  entities:
+  - uid: 248
+    components:
+    - type: Transform
+      pos: 7.8114586,-0.28163397
+      parent: 1
+  - uid: 403
+    components:
+    - type: Transform
+      pos: 7.7802086,-0.578509
+      parent: 1
+- proto: WeaponTurretSpetsnaz
+  entities:
+  - uid: 409
+    components:
+    - type: Transform
+      pos: 3.5,-0.5
       parent: 1
 - proto: WindoorSecureSecurityLocked
   entities:

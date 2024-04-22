@@ -3504,6 +3504,11 @@
   - type: Item
     sprite: Backmen/Objects/Weapons/Gunsx64/Flamethrowers/M6/tiny.rsi
     size: Large
+  - type: Clothing
+    sprite: Backmen/Objects/Weapons/Gunsx64/Flamethrowers/M6/tiny.rsi
+    slots:
+      - BACK
+      - SUITSTORAGE
   - type: Gun
     projectileSpeed: 5
     fireRate: 10
@@ -3741,9 +3746,20 @@
           bounds: "-0.25,-0.25,0.25,0.25"
         density: 20
         mask:
-        - ItemMask
+        - Impassable
+        - HighImpassable
         restitution: 0.3  # fite me
         friction: 0.2
+      fire:
+        hard: false
+        density: 7
+        shape:
+          !type:PhysShapeAabb
+           bounds: "-0.2,-0.2,0.2,0.2"
+        layer:
+        - MidImpassable
+        mask:
+        - BlobImpassable
   - type: PointLight
     enabled: true
     color: "#FF8080"
@@ -3755,14 +3771,15 @@
     - FireThrowerBall
   - type: TimedDespawn
     lifetime: 5
-  - type: EmbeddableProjectile
-    offset: 0.15,0.15
   - type: ThrowingAngle
     angle: 0
-  - type: DamageOtherOnHit
-    damage:
-      types:
-        Heat: 5
+  - type: IgniteOnCollide
+    fireStacks: 0.3
+    count: 100
+    fixtureId: fire
+  - type: IgnitionSource
+    temperature: 700
+    ignited: true
 
 - type: entity
   name: струя реактивного пламени

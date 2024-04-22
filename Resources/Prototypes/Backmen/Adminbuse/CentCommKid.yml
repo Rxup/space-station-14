@@ -689,13 +689,11 @@
   - type: SolutionContainerManager
     solutions:
       pen:
-        maxVol: 55
+        maxVol: 40
         reagents:
-        - ReagentId: Omnizine
+        - ReagentId: Ultravasculine
           Quantity: 20
         - ReagentId: Epinephrine
-          Quantity: 15
-        - ReagentId: THC
           Quantity: 10
         - ReagentId: Ambuzol
           Quantity: 10
@@ -706,7 +704,7 @@
     sprite: Objects/Specific/Medical/medipen.rsi
     netsync: false
     layers:
-    - state: hypovolemic
+    - state: penacid
       map: [ "enum.SolutionContainerLayers.Fill" ]
 
 - type: entity
@@ -1738,10 +1736,61 @@
 - type: entity
   parent: [ClothingMaskGasERT,ShowSecurityIcons]
   id: ClothingMaskGasERTV2_1
+  components:
+  - type: ActivatableUI
+    key: enum.SharedGasTankUiKey.Key
+  - type: UserInterface
+    interfaces:
+    - key: enum.SharedGasTankUiKey.Key
+      type: GasTankBoundUserInterface
+  - type: GasTank
+    outputPressure: 21.3
+    air:
+      volume: 5
+      moles:
+        - 2.051379050 # oxygen
+      temperature: 293.15
+    tankLowPressure: 30.0
 
 - type: entity
   parent: [ClothingMaskGasDeathSquad,ShowSecurityIcons]
   id: ClothingMaskGasDeathSquadV2_1
+  components:
+  - type: ActivatableUI
+    key: enum.SharedGasTankUiKey.Key
+  - type: UserInterface
+    interfaces:
+    - key: enum.SharedGasTankUiKey.Key
+      type: GasTankBoundUserInterface
+  - type: GasTank
+    outputPressure: 21.3
+    air:
+      volume: 5
+      moles:
+        - 2.051379050 # oxygen
+      temperature: 293.15
+    tankLowPressure: 30.0
+
+- type: entity
+  parent: [ClothingMaskGasExplorer,ShowSecurityIcons]
+  id: ClothingMaskGasRXBZZ
+  name: армейский противогаз
+  description: Противогаз армейского класса, который можно подключить к дыхательному баллону.
+  components:
+  - type: ActivatableUI
+    key: enum.SharedGasTankUiKey.Key
+  - type: UserInterface
+    interfaces:
+    - key: enum.SharedGasTankUiKey.Key
+      type: GasTankBoundUserInterface
+  - type: GasTank
+    outputPressure: 21.3
+    air:
+      volume: 5
+      moles:
+        - 2.051379050 # oxygen
+      temperature: 293.15
+    tankLowPressure: 30.0
 
 - type: parallax
   id: FastSky
