@@ -1643,12 +1643,15 @@
   components:
   - type: Stack
     stackType: XenoSlimeStack
+    baseLayer: b_checker_piece
     layerStates:
     - b_checker_piece
+    - w_checker_piece
   - type: Sprite
     sprite: Objects/Fun/Tabletop/checker_pieces.rsi
     layers:
       - state: b_checker_piece
+        map: [ "b_checker_piece" ]
   - type: Item
   - type: Appearance
 
@@ -1661,8 +1664,13 @@
   - type: Sprite
     layers:
       - state: b_checker_piece
+        map: [ "b_checker_piece" ]
   - type: Stack
     stackType: XenoSlimeStack
+    baseLayer: b_checker_piece
+    layerStates:
+    - b_checker_piece
+    - w_checker_piece
     count: 1
 
 - type: entity
@@ -1674,8 +1682,13 @@
   - type: Sprite
     layers:
       - state: b_checker_piece
+        map: [ "b_checker_piece" ]
   - type: Stack
     stackType: XenoSlimeStack
+    baseLayer: b_checker_piece
+    layerStates:
+    - b_checker_piece
+    - w_checker_piece
     unlimited: true
     count: 1
 
@@ -1730,7 +1743,11 @@
   name: яйцо ксеноморфа
   suffix: KsenosXeno
   description: На вид мерзкое.
+  save: false
   components:
+  - type: ContainerContainer
+  - type: ActionsContainer
+  - type: Actions
   - type: Sprite
     sprite: Backmen/test/base/rsi/Textures/Misc/Egg.rsi
     layers:
