@@ -219,8 +219,8 @@
         Piercing: 0.9
         Heat: 0.9
   - type: Tag
- 
-  - type: entity
+
+- type: entity
   parent: ClothingHeadBase
   id: ClothingHeadHelmetYellow
   name: Жёлтый мотошлем
