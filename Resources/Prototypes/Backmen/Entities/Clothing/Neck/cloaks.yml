@@ -88,3 +88,12 @@
   components:
   - type: Sprite
     sprite: Backmen/Clothing/Neck/Cloaks/emptiness.rsi
+
+- type: entity
+  parent: ClothingNeckBase
+  id: ClothingNeckCloakTGMCCloak
+  name: Офицерский плащ
+  description: На воротнике видна подпись-MK II-Dusya
+  components:
+  - type: Sprite
+    sprite: Backmen/Clothing/Neck/Cloaks/TGMCcloak.rsi
