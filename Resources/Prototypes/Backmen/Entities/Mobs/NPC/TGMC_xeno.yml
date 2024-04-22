@@ -1681,7 +1681,7 @@
 
 - type: material
   id: XenoSlimeMaterial
-  stackEntity: XenoSlime1
+  stackEntity: XenoSlime
   name: слизь ксено
   icon: { sprite: /Textures/Objects/Fun/Tabletop/checker_pieces.rsi, state: b_checker_piece }
   color: "#8A9A5B"
