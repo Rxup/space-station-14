@@ -203,7 +203,7 @@
   
 - type: entity
   parent: ClothingHeadBase
-  id: ClothingHeadHelmetYellow
+  id: ClothingHeadHelmetWhite
   name: Белый мотошлем
   description: Вы чувствуете жажду. Не только скорости.
   components:
