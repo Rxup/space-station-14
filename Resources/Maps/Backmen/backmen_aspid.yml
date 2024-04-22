@@ -7138,7 +7138,8 @@ entities:
           1,5:
             0: 65535
           1,6:
-            0: 65535
+            0: 61439
+            2: 4096
           1,7:
             0: 65535
           2,4:
@@ -10355,6 +10356,16 @@ entities:
       parent: 1
 - proto: AirlockCommandGlassLocked
   entities:
+  - uid: 2070
+    components:
+    - type: Transform
+      pos: 25.5,35.5
+      parent: 1
+  - uid: 3640
+    components:
+    - type: Transform
+      pos: 26.5,35.5
+      parent: 1
   - uid: 6792
     components:
     - type: Transform
@@ -10504,25 +10515,6 @@ entities:
     components:
     - type: Transform
       pos: -24.5,53.5
-      parent: 1
-- proto: AirlockEVAGlassLocked
-  entities:
-  - uid: 2070
-    components:
-    - type: Transform
-      pos: 25.5,35.5
-      parent: 1
-  - uid: 2083
-    components:
-    - type: Transform
-      pos: 26.5,35.5
-      parent: 1
-- proto: AirlockEVALocked
-  entities:
-  - uid: 3640
-    components:
-    - type: Transform
-      pos: 24.5,29.5
       parent: 1
 - proto: AirlockExternalAtmosphericsLocked
   entities:
@@ -11387,6 +11379,13 @@ entities:
     components:
     - type: Transform
       pos: 23.5,51.5
+      parent: 1
+- proto: AirlockMaintCommandLocked
+  entities:
+  - uid: 2083
+    components:
+    - type: Transform
+      pos: 24.5,29.5
       parent: 1
 - proto: AirlockMaintEngiLocked
   entities:
@@ -59557,7 +59556,7 @@ entities:
       pos: 31.5,35.5
       parent: 1
     - type: Door
-      secondsUntilStateChange: -7201.8315
+      secondsUntilStateChange: -7322.9897
       state: Closing
   - uid: 5700
     components:
@@ -86143,6 +86142,11 @@ entities:
       rot: -1.5707963267948966 rad
       pos: -38.313637,-6.399371
       parent: 1
+  - uid: 18478
+    components:
+    - type: Transform
+      pos: 3.4083014,31.533094
+      parent: 1
 - proto: HandHeldMassScanner
   entities:
   - uid: 4120
@@ -87967,6 +87971,35 @@ entities:
     - type: Transform
       pos: 4.5,27.5
       parent: 1
+    - type: EntityStorage
+      air:
+        volume: 200
+        immutable: False
+        temperature: 293.14673
+        moles:
+        - 1.7459903
+        - 6.568249
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+    - type: ContainerContainer
+      containers:
+        entity_storage: !type:Container
+          showEnts: False
+          occludes: True
+          ents:
+          - 18448
+        paper_label: !type:ContainerSlot
+          showEnts: False
+          occludes: True
+          ent: null
 - proto: LockerFreezerVaultFilled
   entities:
   - uid: 6397
@@ -89170,6 +89203,11 @@ entities:
     - type: Transform
       pos: 6.538875,79.7297
       parent: 1
+  - uid: 18477
+    components:
+    - type: Transform
+      pos: 3.4708014,34.517467
+      parent: 1
 - proto: MedkitOxygenFilled
   entities:
   - uid: 6953
@@ -89599,6 +89637,15 @@ entities:
     - type: Transform
       pos: -36.5,23.5
       parent: 1
+- proto: OrganHumanHeart
+  entities:
+  - uid: 18448
+    components:
+    - type: Transform
+      parent: 8860
+    - type: Physics
+      canCollide: False
+    - type: InsideEntityStorage
 - proto: OxygenCanister
   entities:
   - uid: 3026
