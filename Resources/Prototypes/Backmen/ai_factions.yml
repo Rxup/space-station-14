@@ -142,8 +142,6 @@
     - SpecialForce
     - CombineForce
     - AiEnemy
-  friendly:
-    - CentralCommand
 
 - type: npcFaction
   id: SpecialForce
@@ -200,5 +198,3 @@
   - SpecialForce
   - CombineForce
   - AiEnemy
-  friendly:
-  - Spanish
