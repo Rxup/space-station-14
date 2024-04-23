@@ -210,7 +210,7 @@
     tools:
       - id: WeaponXenoQueenStun
       - id: WeaponXenoQueenClaw
-      - id: XenoSlimeUnlimited
+      - id: XenoRCD
       - id: WeaponXenoHealingSpit
       - id: PinpointerXeno
   - type: Destructible
@@ -428,7 +428,7 @@
       - id: WeaponXenoClaw
       - id: XenoHealing
       #- id: WeaponXenoHealingSpit # temporary fix because doesnt work
-      - id: XenoSlimeUnlimited
+      - id: XenoRCD
       - id: PinpointerXeno
   - type: Sprite
     drawdepth: Mobs
@@ -673,6 +673,8 @@
   - type: Stamina
     critThreshold: 250
   - type: PsionicInvisibilityPower
+    actionPsionicInvisibility: ActionHunterInvisibility
+    stunSecond: 0
   - type: MovementSpeedModifier
     baseWalkSpeed : 2.5
     baseSprintSpeed : 5.5
@@ -691,6 +693,17 @@
     tools:
       - id: WeaponXenoClaw
       - id: PinpointerXeno
+
+- type: entity
+  id: ActionHunterInvisibility
+  name: action-name-psionic-invisibility
+  description: action-description-psionic-invisibility
+  noSpawn: true
+  components:
+    - type: InstantAction
+      useDelay: 30
+      icon: Backmen/Interface/VerbIcons/psionic_invisibility.png
+      event: !type:PsionicInvisibilityPowerActionEvent
 
 # RAVAGER #
 
@@ -1569,9 +1582,6 @@
   suffix: KsenosXeno
   description: На вид мерзкое и непрочное.
   components:
-  - type: Construction
-    graph: XenoWallGraph
-    node: XenoWallNode
   - type: IconSmooth
     key: xenowalls
     base: weed
@@ -1612,132 +1622,37 @@
     Piercing: 0.2
     Shock: 1
 
-- type: stack
-  id: XenoSlimeStack
-  name: слизь ксено
-  icon: { sprite: /Textures/Objects/Fun/Tabletop/checker_pieces.rsi, state: b_checker_piece }
-  spawn: XenoSlime
-  maxCount: 30
-
 - type: entity
-  abstract: true
-  parent: BaseItem
-  id: XenoSlimeBase
-  description: Используется для строительства стен ксено.
+  id: XenoRCD
+  parent: RCD
+  name: ксено слизь
+  description: С помощью своих выделений производит монструозные пещеры для защиты своего улья. Да, все именно так как вы поняли.
+  suffix: AutoRecharge
   components:
-  - type: Material
-  - type: PhysicalComposition
-    materialComposition:
-      XenoSlimeMaterial: 100
-  - type: Sprite
-    netsync: false
-    sprite: Objects/Fun/Tabletop/checker_pieces.rsi
-  - type: Item
-    sprite: Objects/Fun/Tabletop/checker_pieces.rsi
-  - type: StaticPrice
-    price: 0
-
-- type: entity
-  parent: XenoSlimeBase
-  id: XenoSlime
-  name: слизь ксено
-  suffix: Full
-  components:
-  - type: Stack
-    stackType: XenoSlimeStack
-    baseLayer: b_checker_piece
-    layerStates:
-    - b_checker_piece
-    - w_checker_piece
   - type: Sprite
     sprite: Objects/Fun/Tabletop/checker_pieces.rsi
     layers:
       - state: b_checker_piece
-        map: [ "b_checker_piece" ]
-  - type: Item
-  - type: Appearance
+  - type: LimitedCharges
+    maxCharges: 50
+    charges: 50
+  - type: AutoRecharge
+    rechargeDuration: 5
+  - type: RCD
+    availablePrototypes:
+    - XenoWall
 
-- type: entity
-  parent: XenoSlime
-  id: XenoSlime1
-  name: слизь ксено
-  suffix: Single
-  components:
-  - type: Sprite
-    layers:
-      - state: b_checker_piece
-        map: [ "b_checker_piece" ]
-  - type: Stack
-    stackType: XenoSlimeStack
-    baseLayer: b_checker_piece
-    layerStates:
-    - b_checker_piece
-    - w_checker_piece
-    count: 1
-
-- type: entity
-  parent: XenoSlime
-  id: XenoSlimeUnlimited
-  name: слизь ксено
-  suffix: Single
-  components:
-  - type: Sprite
-    layers:
-      - state: b_checker_piece
-        map: [ "b_checker_piece" ]
-  - type: Stack
-    stackType: XenoSlimeStack
-    baseLayer: b_checker_piece
-    layerStates:
-    - b_checker_piece
-    - w_checker_piece
-    unlimited: true
-    count: 1
-
-- type: material
-  id: XenoSlimeMaterial
-  stackEntity: XenoSlime
-  name: слизь ксено
-  icon: { sprite: /Textures/Objects/Fun/Tabletop/checker_pieces.rsi, state: b_checker_piece }
-  color: "#8A9A5B"
-  price: 0.1
-
-
-- type: constructionGraph
-  id: XenoWallGraph
-  start: start
-  graph:
-    - node: start
-      edges:
-        - to: XenoWallNode
-          completed:
-            - !type:SnapToGrid
-              southRotation: true
-          steps:
-            - material: XenoSlimeStack
-              amount: 0
-              doAfter: 1
-    - node: XenoWallNode
-      entity: XenoWall
-
-
-- type: construction
-  name: "- стена ксено"
-  id: XenoWallConstruction
-  graph: XenoWallGraph
-  startNode: start
-  targetNode: XenoWallNode
-  category: construction-category-structures
-  description: Непрочная стена из слизи.
-  icon:
-    sprite: Backmen/test/base/rsi/Textures/Structures/xeno/wall.rsi
-    state: full
-  objectType: Structure
-  placementMode: SnapgridCenter
-  canRotate: false
-  canBuildInImpassable: false
-  conditions:
-    - !type:TileNotBlocked
+- type: rcd
+  id: XenoWall
+  category: WallsAndFlooring
+  sprite: /Textures/Interface/Radial/RCD/solid_wall.png
+  mode: ConstructObject
+  prototype: XenoWall
+  cost: 2
+  delay: 1
+  collisionMask: FullTileMask
+  rotation: Fixed
+  fx: EffectRCDConstruct2
 
 - type: entity
   id: XenoEgg
