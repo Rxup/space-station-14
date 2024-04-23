@@ -1210,7 +1210,6 @@
     eyes: ClothingEyesGlassesSunglasses
     gloves: ClothingHandsGlovesSpetsnazcombat
     outerClothing: ClothingOuterHardsuitERTLeader
-    suitstorage: OxygenTankFilled
     head: ClothingHeadHatERTLeaderBeret
     neck: ClothingNeckMantleERTLeader
     id: OBRGavnaLeaderIDCard
@@ -1250,7 +1249,6 @@
     eyes: ClothingEyesGlassesMeson
     gloves: ClothingHandsGlovesColorYellow
     outerClothing: ClothingOuterHardsuitERTEngineerReal
-    suitstorage: OxygenTankFilled
     id: OBRGavnaEngineerIDCard
     ears: ClothingHeadsetCentComCCMTFTHT9
     belt: ClothingBeltChiefEngineerFilled
@@ -1301,7 +1299,6 @@
     eyes: ClothingEyesGlassesSecurity
     gloves: ClothingHandsGlovesCombat
     outerClothing: ClothingOuterHardsuitERTSecurity
-    suitstorage: OxygenTankFilled
     id: OBRGavnaIDCard
     ears: ClothingHeadsetCentComCCMTFTHT9
     belt: ClothingBeltSecurityFilled
@@ -1340,7 +1337,6 @@
     eyes: ClothingEyesHudMedical
     gloves: ClothingHandsGlovesCombat
     outerClothing: ClothingOuterHardsuitERTMedical
-    suitstorage: OxygenTankFilled
     id: OBRGavnaMedicIDCard
     ears: ClothingHeadsetCentComCCMTFTHT9
     belt: ClothingBeltMedicalFilled
@@ -1385,7 +1381,6 @@
     mask: ClothingMaskGasERTV2_1
     gloves: ClothingHandsGlovesCombat
     outerClothing: ClothingOuterHardsuitERTJanitor
-    suitstorage: OxygenTankFilled
     id: OBRGavnaJunitorIDCard
     ears: ClothingHeadsetCentComCCMTFTHT9
     belt: ClothingBeltJanitorFilled
@@ -1925,7 +1920,6 @@
     eyes: ClothingEyesGlassesSecurity
     gloves: ClothingHandsGlovesSpetsnazcombat
     outerClothing: ClothingOuterHardsuitDeathsquad
-    suitstorage: OxygenTankFilled
     head: ClothingHeadHatBeretMobileTaskForce
     id: DedSquadronLeaderGavnaIDCard
     ears: ClothingHeadsetCentComCCAltDeath
@@ -1944,7 +1938,6 @@
     eyes: ClothingEyesGlassesSecurity
     gloves: ClothingHandsGlovesSpetsnazcombat
     outerClothing: ClothingOuterHardsuitDeathsquad
-    suitstorage: OxygenTankFilled
     id: DedSquadronGavnaIDCard
     ears: ClothingHeadsetCentComCCAltDeath
     belt: WeaponRevolverMateba
@@ -1962,7 +1955,6 @@
     eyes: ClothingEyesGlassesSecurity
     gloves: ClothingHandsGlovesSpetsnazcombat
     outerClothing: ClothingOuterHardsuitDeathsquad
-    suitstorage: OxygenTankFilled
     id: DedSquadronGavnaIDCard
     ears: ClothingHeadsetCentComCCAltDeath
     belt: WeaponRevolverMateba
@@ -2260,54 +2252,55 @@
   equipment:
     jumpsuit: ClothingUniformJumpsuitColorBlack
     back: ClothingBackpackDuffelRXBZZ
-    shoes: ClothingShoesBootsNedoSpetsnaz
-    mask: ClothingMaskGasExplorer
+    shoes: ClothingShoesBootsMagArmy
+    mask: ClothingMaskGasRXBZZ
     eyes: ClothingEyesGlassesSecurity
     neck: CombatKnifeSpetsnaz
     gloves: ClothingHandsGlovesCombat
     outerClothing: ClothingOuterHardsuitCBURN
-    suitstorage: OxygenTankFilled
+    suitstorage: WeaponPulseRifleXMLG
     id: IdCardRXBZZ
     ears: ClothingHeadsetCentComCCMTFSR6
-    belt: ClothingBeltBandolierRXBZZ
-    pocket1: WeaponLaserGun
+    belt: WeaponAdvancedLaser
+    pocket1: ClothingPounchRXBZZFilled
+    pocket2: ClothingMedicalPounchRXBZZFilled
 
 - type: startingGear
   id: RXBZZFlamer
   equipment:
     jumpsuit: ClothingUniformJumpsuitColorBlack
     back: PowerpackFlame
-    shoes: ClothingShoesBootsNedoSpetsnaz
-    mask: ClothingMaskGasExplorer
+    shoes: ClothingShoesBootsMagArmy
+    mask: ClothingMaskGasRXBZZ
     eyes: ClothingEyesGlassesSecurity
     neck: CombatKnifeSpetsnaz
     gloves: ClothingHandsGlovesCombat
     outerClothing: ClothingOuterHardsuitCBURN
-    suitstorage: OxygenTankFilled
+    suitstorage: WeaponflamethrowerSG
     id: IdCardRXBZZ
     ears: ClothingHeadsetCentComCCMTFSR6
     belt: ClothingBeltMilitaryWebbingFlamer
-    pocket1: WeaponLaserGun
-  inhand:
-    - WeaponflamethrowerSG
+    pocket1: ClothingPounchRXBZZSpecialistFilled
+    pocket2: ClothingMedicalPounchRXBZZFilled
 
 - type: startingGear
   id: RXBZZLeader
   equipment:
     jumpsuit: ClothingUniformJumpsuitColorBlack
     back: ClothingBackpackDuffelRXBZZ
-    shoes: ClothingShoesBootsNedoSpetsnaz
-    mask: ClothingMaskGasExplorer
+    shoes: ClothingShoesBootsMagArmy
+    mask: ClothingMaskGasRXBZZ
     eyes: ClothingEyesGlassesSecurity
     neck: CombatKnifeSpetsnaz
     gloves: ClothingHandsGlovesCombat
     outerClothing: ClothingOuterHardsuitCBURNLeader
-    suitstorage: OxygenTankFilled
+    suitstorage: WeaponPulseRifleXMLG
     id: IdCardRXBZZLeader
     head: ClothingHeadHatERTLeaderBeret
     ears: ClothingHeadsetCentComCCMTFSR6
-    belt: ClothingBeltBandolierRXBZZ
-    pocket1: WeaponAdvancedLaser
+    belt: WeaponAdvancedLaser
+    pocket1: ClothingPounchRXBZZFilled
+    pocket2: ClothingMedicalPounchRXBZZFilled
 
 - type: entity
   noSpawn: true
@@ -2321,10 +2314,12 @@
     - type: StorageFill
       contents:
         - id: MedkitAdvancedRXBZZ
-        - id: WeaponDisabler
-        - id: WeaponPulseRifleXMLG
         - id: MagazinePulseRifle
-          amount: 4
+          amount: 3
+        - id: BoxShotgunIncendiary
+          amount: 3
+        - id: BoxLethalshot
+          amount: 3
         - id: WeaponShotgun39
 
 - type: entity
@@ -2334,16 +2329,12 @@
   components:
     - type: Item
       size: Normal
-    - type: Storage
-      grid:
-      - 0,0,3,4
     - type: StorageFill
       contents:
-        - id: HandheldHealthAnalyzer
         - id: BattleMedipenAntiVirus
-          amount: 5
+          amount: 4
         - id: BattleMedipen
-          amount: 10
+          amount: 4
 
 - type: entity
   noSpawn: true
@@ -2388,6 +2379,49 @@
         - id: MedkitAdvancedRXBZZ
         - id: WeaponDisabler
         - id: WeaponLauncherM81
+        - id: GrenadeFrag
+          amount: 2
+        - id: GrenadeBlast
+          amount: 2
+
+- type: entity
+  parent: ClothingMedicalPounch
+  id: ClothingMedicalPounchRXBZZFilled
+  noSpawn: true
+  components:
+    - type: StorageFill
+      contents:
+        - id: RegenerativeMesh
+          amount: 2
+        - id: MedicatedSuture
+          amount: 2
+        - id: BattleMedipen
+          amount: 2
+        - id: HandheldHealthAnalyzer
+
+- type: entity
+  parent: ClothingPounchMTF
+  id: ClothingPounchRXBZZFilled
+  noSpawn: true
+  components:
+    - type: StorageFill
+      contents:
+        - id: Flare
+          amount: 3
+        - id: MagazinePulseRifle
+          amount: 3
+        - id: WeaponDisabler
+
+- type: entity
+  parent: ClothingPounchMTF
+  id: ClothingPounchRXBZZSpecialistFilled
+  noSpawn: true
+  components:
+    - type: StorageFill
+      contents:
+        - id: Flare
+          amount: 2
+        - id: DrinkMREFlask
         - id: GrenadeFrag
           amount: 2
         - id: GrenadeBlast
@@ -2603,7 +2637,6 @@
     eyes: ClothingEyesGlassesSunglasses
     gloves: ClothingHandsGlovesSpetsnazcombat
     outerClothing: ClothingOuterHardsuitERTOperativeAlpha1
-    suitstorage: OxygenTankFilled
     head: ClothingHeadHatERTLeaderBeret
     id: OBRGavnaLeaderIDCardAlpha1
     ears: ClothingHeadsetCentComCCMTF
@@ -2713,7 +2746,6 @@
     eyes: ClothingEyesGlassesSunglasses
     gloves: ClothingHandsGlovesSpetsnazcombat
     outerClothing: ClothingOuterHardsuitERTOperativeAlpha1
-    suitstorage: OxygenTankFilled
     id: OBRGavnaOperativeIDCardAlpha1
     ears: ClothingHeadsetCentComCCMTF
     belt: ClothingBeltSecurityFilled

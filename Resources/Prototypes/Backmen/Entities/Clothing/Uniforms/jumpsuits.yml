@@ -492,3 +492,36 @@
       sprite: Backmen/Clothing/Uniforms/jumpsuit/naval_uniform.rsi
     - type: Clothing
       sprite: Backmen/Clothing/Uniforms/jumpsuit/naval_uniform.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformJumpsuitSuitSssp
+  name: Спортивный костюм.
+  description: Может сегодня повезёт и пообщаемся с капитаном достойно.
+  components:
+    - type: Sprite
+      sprite: Backmen/Clothing/Uniforms/jumpsuit/tracksuit.rsi
+    - type: Clothing
+      sprite: Backmen/Clothing/Uniforms/jumpsuit/tracksuit.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformVamp
+  name: Деловая жилетка вампира
+  description:  Весьма стильно для данного рода занятий
+  components:
+  - type: Sprite
+    sprite: Backmen/Clothing/Uniforms/jumpsuit/vampsuit.rsi
+  - type: Clothing
+    sprite: Backmen/Clothing/Uniforms/jumpsuit/vampsuit.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformJumpsuitAlxLaiho
+  name: Чёрная футболка и зелёные карго
+  description: Вы чувствуете себя чем-то диким!
+  components:
+  - type: Sprite
+    sprite: Backmen/Clothing/Uniforms/jumpsuit/alxlaiho.rsi
+  - type: Clothing
+    sprite: Backmen/Clothing/Uniforms/jumpsuit/alxlaiho.rsi

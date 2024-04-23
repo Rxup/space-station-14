@@ -88,10 +88,10 @@ public sealed class ClientClothingSystem : ClothingSystem
         {
             args.Sprite.LayerSetVisible(layer, false);
         }
-        if (args.Sprite.LayerMapTryGet(HumanoidVisualLayers.LegsMask, out var jumpsuitLayer))
-        {
-            args.Sprite.LayerSetVisible(jumpsuitLayer, clothing.HidePants);
-        }
+        //if (args.Sprite.LayerMapTryGet(HumanoidVisualLayers.LegsMask, out var jumpsuitLayer))
+        //{
+        //    args.Sprite.LayerSetVisible(jumpsuitLayer, clothing.HidePants);
+        //}
     }
 
     private void OnGetVisuals(EntityUid uid, ClothingComponent item, GetEquipmentVisualsEvent args)
@@ -262,10 +262,10 @@ public sealed class ClientClothingSystem : ClothingSystem
                 else
                     sprite.LayerSetVisible(suitLayer, false);
             }
-            if (sprite.LayerMapTryGet(HumanoidVisualLayers.LegsMask, out var jumpsuitLayer))
-            {
-                sprite.LayerSetVisible(jumpsuitLayer, clothingComponent.HidePants);
-            }
+            //if (sprite.LayerMapTryGet(HumanoidVisualLayers.LegsMask, out var jumpsuitLayer))
+            //{
+            //    sprite.LayerSetVisible(jumpsuitLayer, clothingComponent.HidePants);
+            //}
         }
 
         if (!_inventorySystem.TryGetSlot(equipee, slot, out var slotDef, inventory))

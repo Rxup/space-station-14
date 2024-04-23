@@ -220,6 +220,9 @@
         Extinguish: [Touch]
     - type: ExplosionResistance
       damageCoefficient: 0.3
+    - type: FireVisuals
+      sprite: Effects/fire.rsi
+      normalState: 1
     - type: Damageable
       damageContainer: Blob
       damageModifierSet: BaseBlob
@@ -329,6 +332,7 @@
   - type: BlobTile
     tileType: Core
   - type: BlobSpeak
+    overrideName: false
   - type: ReplacementAccent
     accent: genericAggressive
   - type: BlobCore
@@ -601,6 +605,7 @@
       accent: genericAggressive
     - type: BlobObserver
     - type: BlobSpeak
+      overrideName: false
     - type: Visibility
       layer: 2
     - type: ContentEye

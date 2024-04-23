@@ -2,6 +2,7 @@
   id: BackmenDefaultMapPool
   maps:
   - BackmenAspid
+  - BackmenKettle
   - Tortuga
   - TheHive
   - Shoukou
@@ -16,3 +17,4 @@
   - Bagel
   - Train
   - CorvaxSplit
+  - Oasis
