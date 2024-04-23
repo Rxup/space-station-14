@@ -35,12 +35,9 @@ public sealed class PsionicInvisibilityPowerSystem : EntitySystem
         SubscribeLocalEvent<PsionicInvisibilityUsedComponent, DamageChangedEvent>(OnDamageChanged);
     }
 
-    [ValidatePrototypeId<EntityPrototype>] private const string ActionPsionicInvisibility = "ActionPsionicInvisibility";
-    [ValidatePrototypeId<EntityPrototype>] private const string ActionPsionicInvisibilityOff = "ActionPsionicInvisibilityOff";
-
     private void OnInit(EntityUid uid, PsionicInvisibilityPowerComponent component, ComponentInit args)
     {
-        _actions.AddAction(uid, ref component.PsionicInvisibilityPowerAction, ActionPsionicInvisibility);
+        _actions.AddAction(uid, ref component.PsionicInvisibilityPowerAction, component.ActionPsionicInvisibility);
 
         if (_actions.TryGetActionData(component.PsionicInvisibilityPowerAction, out var action) && action?.UseDelay != null)
             _actions.SetCooldown(component.PsionicInvisibilityPowerAction, _gameTiming.CurTime,
@@ -62,7 +59,7 @@ public sealed class PsionicInvisibilityPowerSystem : EntitySystem
 
         ToggleInvisibility(args.Performer);
 
-        _actions.AddAction(uid, ref component.PsionicInvisibilityPowerActionOff, ActionPsionicInvisibilityOff);
+        _actions.AddAction(uid, ref component.PsionicInvisibilityPowerActionOff, component.ActionPsionicInvisibilityOff);
 
         _psionics.LogPowerUsed(uid, "psionic invisibility");
         args.Handled = true;
@@ -104,7 +101,7 @@ public sealed class PsionicInvisibilityPowerSystem : EntitySystem
             _actions.RemoveAction(uid, invisibilityPowerComponent.PsionicInvisibilityPowerActionOff);
         }
 
-        _stunSystem.TryParalyze(uid, TimeSpan.FromSeconds(8), false);
+        _stunSystem.TryParalyze(uid, TimeSpan.FromSeconds(invisibilityPowerComponent?.StunSecond ?? 8), false);
         DirtyEntity(uid);
     }
 
