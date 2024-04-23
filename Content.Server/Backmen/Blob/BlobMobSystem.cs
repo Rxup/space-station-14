@@ -45,11 +45,11 @@ public sealed class BlobMobSystem : EntitySystem
 
     private void OnSpokeName(Entity<BlobSpeakComponent> ent, ref TransformSpeakerNameEvent args)
     {
-        if (HasComp<BlobCarrierComponent>(ent))
+        if (!ent.Comp.OverrideName)
         {
             return;
         }
-        args.Name = "Блоб";
+        args.Name = Loc.GetString(ent.Comp.Name);
     }
 
     private void OnSpokeCan(Entity<BlobSpeakComponent> ent, ref SpeakAttemptEvent args)

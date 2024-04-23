@@ -332,6 +332,7 @@
   - type: BlobTile
     tileType: Core
   - type: BlobSpeak
+    overrideName: false
   - type: ReplacementAccent
     accent: genericAggressive
   - type: BlobCore
@@ -604,6 +605,7 @@
       accent: genericAggressive
     - type: BlobObserver
     - type: BlobSpeak
+      overrideName: false
     - type: Visibility
       layer: 2
     - type: ContentEye
