@@ -51,7 +51,7 @@ public sealed class NukeOpsTest
         var factionSys = server.System<NpcFactionSystem>();
 
         Assert.That(server.CfgMan.GetCVar(CCVars.GridFill), Is.False);
-        server.CfgMan.SetCVar(CCVars.GridFill, true);
+        await server.WaitPost(()=>server.CfgMan.SetCVar(CCVars.GridFill, true));
 
         // Initially in the lobby
         Assert.That(ticker.RunLevel, Is.EqualTo(GameRunLevel.PreRoundLobby));
