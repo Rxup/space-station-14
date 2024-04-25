@@ -39333,12 +39333,27 @@ entities:
     - type: Transform
       pos: 30.5,-15.5
       parent: 2
+  - uid: 2040
+    components:
+    - type: Transform
+      pos: -16.5,9.5
+      parent: 2
 - proto: SpawnMobGuardSecurityNTPistol
   entities:
   - uid: 2020
     components:
     - type: Transform
       pos: 20.5,-32.5
+      parent: 2
+  - uid: 2044
+    components:
+    - type: Transform
+      pos: 5.5,18.5
+      parent: 2
+  - uid: 2048
+    components:
+    - type: Transform
+      pos: 29.5,-3.5
       parent: 2
 - proto: SpawnPointBKCCAdmiral
   entities:
