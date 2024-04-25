@@ -63,7 +63,7 @@ public sealed class BlobCarrierSystem : SharedBlobCarrierSystem
         ghostRole.RoleDescription = Loc.GetString("blob-carrier-role-desc");
         ghostRole.RoleRules = Loc.GetString("blob-carrier-role-rules");
 
-        EnsureComp<BlobSpeakComponent>(uid);
+        EnsureComp<BlobSpeakComponent>(uid).OverrideName = false;
     }
 
     private void OnMobStateChanged(Entity<BlobCarrierComponent> uid, ref MobStateChangedEvent args)
