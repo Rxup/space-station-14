@@ -514,7 +514,7 @@
   harvestRepeat: Repeat
   lifespan: 25
   maturation: 15
-  production: 6
+  production: 2 # backmen
   yield: 2
   potency: 10
   waterConsumption: 0.60

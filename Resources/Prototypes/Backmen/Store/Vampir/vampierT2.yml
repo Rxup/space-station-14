@@ -91,3 +91,19 @@
   conditions:
   - !type:ListingLimitedStockCondition
     stock: 1
+
+# items
+
+- type: listing
+  id: bloodsoulcrustal
+  name: ghost-role-information-BloodCrystalSoul-name
+  description: store-bloodsoulcrustal-desc
+  raiseProductEventOnUser: true
+  productEntity: BloodCrystalSoul
+  cost:
+    BloodEssence: 5
+  categories:
+  - VapmireT2
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 5
