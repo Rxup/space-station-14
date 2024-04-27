@@ -43,6 +43,9 @@ namespace Content.Server.Backmen.Economy.Eftpos;
 
         private void UpdateComponentUserInterface(Entity<EftposComponent> uid, EntityUid? player = null)
         {
+            if(!_uiSystem.HasUi(uid.Owner, EftposUiKey.Key))
+                return;
+
             var currencyType = uid.Comp.LinkedAccount?.Comp.CurrencyType;
             var accountNumber = uid.Comp.LinkedAccount?.Comp.AccountNumber;
             var accountName = uid.Comp.LinkedAccount?.Comp.AccountName;
@@ -58,12 +61,7 @@ namespace Content.Server.Backmen.Economy.Eftpos;
                 uid.Comp.LockedBy != null,
                 currSymbol);
 
-            if (!_uiSystem.TryGetOpenUi(uid.Owner, EftposUiKey.Key, out var bui))
-            {
-                return;
-            }
-
-            _uiSystem.SetUiState(bui.Owner, EftposUiKey.Key, newState);
+            _uiSystem.SetUiState(uid.Owner, EftposUiKey.Key, newState);
         }
         private void OnChangeValue(Entity<EftposComponent> uid, ref EftposChangeValueMessage msg)
         {
