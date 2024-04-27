@@ -105,11 +105,6 @@ public sealed class GolemSystem : SharedGolemSystem
 
         golem.PotentialCrystal = uid;
 
-        if (!_uiSystem.TryGetOpenUi(args.Target.Value, GolemUiKey.Key, out var ui))
-        {
-            return;
-        }
-
         var golemName = "golem";
         if (_prototypes.TryIndex<DatasetPrototype>("names_golem", out var names))
             golemName = _robustRandom.Pick(names.Values);
