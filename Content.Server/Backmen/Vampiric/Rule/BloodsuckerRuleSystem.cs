@@ -4,6 +4,7 @@ using Content.Server.Backmen.Vampiric.Role;
 using Content.Server.Bible.Components;
 using Content.Server.Chat.Managers;
 using Content.Server.GameTicking;
+using Content.Server.GameTicking.Components;
 using Content.Server.GameTicking.Rules;
 using Content.Server.GameTicking.Rules.Components;
 using Content.Server.Mind;
@@ -35,9 +36,9 @@ public sealed class BloodsuckerRuleSystem : GameRuleSystem<BloodsuckerRuleCompon
     private int MaxBloodsuckers => _cfg.GetCVar(CCVars.BloodsuckerMaxPerBloodsucker);
 
     [Dependency] private readonly IConfigurationManager _cfg = default!;
-    [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
-    [Dependency] private readonly IChatManager _chatManager = default!;
-    [Dependency] private readonly AntagSelectionSystem _antagSelection = default!;
+    //[Dependency] private readonly IPrototypeManager _prototypeManager = default!;
+    //[Dependency] private readonly IChatManager _chatManager = default!;
+    [Dependency] private readonly OldAntagSelectionSystem _antagSelection = default!;
     [Dependency] private readonly BloodSuckerSystem _bloodSuckerSystem = default!;
     [Dependency] private readonly IRobustRandom _random = default!;
     [Dependency] private readonly MindSystem _mindSystem = default!;
@@ -50,7 +51,6 @@ public sealed class BloodsuckerRuleSystem : GameRuleSystem<BloodsuckerRuleCompon
 
         _sawmill = Logger.GetSawmill("preset");
 
-        SubscribeLocalEvent<RoundStartAttemptEvent>(OnStartAttempt);
         SubscribeLocalEvent<RulePlayerJobsAssignedEvent>(OnPlayersSpawned);
         SubscribeLocalEvent<PlayerSpawnCompleteEvent>(HandleLatejoin);
     }
@@ -84,6 +84,7 @@ public sealed class BloodsuckerRuleSystem : GameRuleSystem<BloodsuckerRuleCompon
                 continue;
 
             var whitelistSpecies = vpmRule.SpeciesWhitelist;
+
             if (!_antagSelection.IsPlayerEligible(ev.Player, Bloodsucker, acceptableAntags: AntagAcceptability.NotExclusive,
                     allowNonHumanoids: false,
                     customExcludeCondition: ent =>
@@ -185,23 +186,6 @@ public sealed class BloodsuckerRuleSystem : GameRuleSystem<BloodsuckerRuleCompon
             if (_mindSystem.TryGetMind(traitor, out var mindId, out _))
             {
                 vpmRule.Elders.Add(MetaData(traitor).EntityName,mindId);
-            }
-        }
-    }
-
-
-    private void OnStartAttempt(RoundStartAttemptEvent ev)
-    {
-        var query = EntityQueryEnumerator<BloodsuckerRuleComponent, GameRuleComponent>();
-        while (query.MoveNext(out var uid, out _, out var gameRule))
-        {
-            if (!GameTicker.IsGameRuleAdded(uid, gameRule))
-                continue;
-
-            if (ev.Players.Length == 0)
-            {
-                _chatManager.DispatchServerAnnouncement(Loc.GetString("bloodsucker-no-one-ready"));
-                ev.Cancel();
             }
         }
     }

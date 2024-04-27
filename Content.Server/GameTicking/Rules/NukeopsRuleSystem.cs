@@ -143,7 +143,7 @@ public sealed class NukeopsRuleSystem : GameRuleSystem<NukeopsRuleComponent>
                         if (_centcommSystem.CentComGrid == grid)
                         {
                             nukeops.WinConditions.Add(WinCondition.NukeExplodedOnCentComLocation);
-                            SetWinType(uid, WinType.OpsMajor, nukeops);
+                            SetWinType((uid,nukeops), WinType.OpsMajor, true);
                             centcomStation = true;
                             break;
                         }

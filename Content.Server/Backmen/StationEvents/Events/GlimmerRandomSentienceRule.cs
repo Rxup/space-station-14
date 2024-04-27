@@ -1,5 +1,6 @@
 using Content.Server.Backmen.Psionics;
 using Content.Server.Backmen.StationEvents.Components;
+using Content.Server.GameTicking.Components;
 using Content.Server.GameTicking.Rules.Components;
 using Content.Server.Ghost.Roles.Components;
 using Content.Server.Speech.Components;

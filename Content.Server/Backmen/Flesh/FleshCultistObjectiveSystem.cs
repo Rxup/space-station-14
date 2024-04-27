@@ -1,6 +1,7 @@
 ﻿using Content.Server.Backmen.GameTicking.Rules.Components;
 using Content.Server.Backmen.Objectives;
 using Content.Server.Chat.Managers;
+using Content.Server.GameTicking.Components;
 using Content.Server.GameTicking.Rules.Components;
 using Content.Server.Mind;
 using Content.Shared.Objectives.Components;
