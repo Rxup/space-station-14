@@ -20,7 +20,7 @@
     maxAngle: 16
     fireRate: 8
     angleIncrease: 3
-    angleDecay: 16  
+    angleDecay: 16
     selectedMode: FullAuto
     availableModes:
     - SemiAuto
@@ -235,7 +235,7 @@
     minAngle: 1
     maxAngle: 6
     angleIncrease: 1.5
-    angleDecay: 6  
+    angleDecay: 6
     selectedMode: FullAuto
     shotsPerBurst: 5
     availableModes:
@@ -278,7 +278,7 @@
       slots:
         gun_magazine:
           name: Magazine
-          startingItem: MagazinePistolSubMachineGunRubber
+          startingItem: MagazinePistolSubMachineGun
           insertSound: /Audio/Weapons/Guns/MagIn/smg_magin.ogg
           ejectSound: /Audio/Weapons/Guns/MagOut/smg_magout.ogg
           priority: 2
@@ -287,7 +287,7 @@
               - MagazinePistolSubMachineGun
         gun_chamber:
           name: Chamber
-          startingItem: CartridgePistolRubber
+          startingItem: CartridgePistol
           priority: 1
           whitelist:
             tags:
@@ -305,7 +305,7 @@
     slots:
       gun_magazine:
         name: Magazine
-        startingItem: MagazineMagnumSubMachineGunRubber
+        startingItem: MagazineMagnumSubMachineGun
         insertSound: /Audio/Weapons/Guns/MagIn/smg_magin.ogg
         ejectSound: /Audio/Weapons/Guns/MagOut/smg_magout.ogg
         priority: 2
@@ -314,7 +314,7 @@
             - MagazineMagnumSubMachineGun
       gun_chamber:
         name: Chamber
-        startingItem: CartridgeMagnumRubber
+        startingItem: CartridgeMagnum
         priority: 1
         whitelist:
           tags:

@@ -2346,8 +2346,8 @@
       - 0,0,5,4
     - type: UserInterface
       interfaces:
-      - key: enum.StorageUiKey.Key
-        type: StorageBoundUserInterface
+        enum.StorageUiKey.Key:
+          type: StorageBoundUserInterface
     - type: StorageFill
       contents:
         - id: ShellShotgunIncendiary

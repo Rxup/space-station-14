@@ -55,8 +55,8 @@
   - type: Dna
   - type: UserInterface
     interfaces:
-    - key: enum.StrippingUiKey.Key
-      type: StrippableBoundUserInterface
+      enum.StrippingUiKey.Key:
+        type: StrippableBoundUserInterface
   - type: CanHostGuardian
   - type: Inventory
     templateId: InvHaisenberg
