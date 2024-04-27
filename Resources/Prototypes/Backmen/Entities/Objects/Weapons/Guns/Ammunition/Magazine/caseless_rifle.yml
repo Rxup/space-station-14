@@ -74,7 +74,7 @@
   parent: BaseMagazineUniversalCaselessRifle
   components:
   - type: BallisticAmmoProvider
-    proto: CartridgeCaselessRifleRubber
+    proto: CartridgeCaselessRifle
     capacity: 12
   - type: Sprite
     layers:

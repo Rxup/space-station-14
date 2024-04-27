@@ -299,7 +299,7 @@ public sealed class BlobObserverSystem : SharedBlobObserverSystem
         }
         var state = new BlobChemSwapBoundUserInterfaceState(blobCoreComponent.ChemСolors, observerComponent.SelectedChemId);
 
-        _uiSystem.TrySetUiState(uid, BlobChemSwapUiKey.Key, state);
+        _uiSystem.SetUiState(uid, BlobChemSwapUiKey.Key, state);
     }
 
     // TODO: This is very bad, but it is clearly better than invisible walls, let someone do better.

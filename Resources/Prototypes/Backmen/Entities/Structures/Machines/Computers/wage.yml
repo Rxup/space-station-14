@@ -10,8 +10,8 @@
   - type: WageConsole
   - type: UserInterface
     interfaces:
-    - key: enum.WageUiKey.Key
-      type: WageConsoleBoundUserInterface
+      enum.WageUiKey.Key:
+        type: WageConsoleBoundUserInterface
   - type: ActivatableUI
     key: enum.WageUiKey.Key
     singleUser: true

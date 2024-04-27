@@ -39,8 +39,8 @@
   - type: ActivatableUIRequiresPower
   - type: UserInterface
     interfaces:
-    - key: enum.CommunicationsConsoleUiKey.Key
-      type: CommunicationsConsoleBoundUserInterface
+      enum.CommunicationsConsoleUiKey.Key:
+        type: CommunicationsConsoleBoundUserInterface
   - type: Computer
     board: CommsComputerCircuitboardCentComm
   - type: PointLight
@@ -1741,8 +1741,8 @@
     key: enum.SharedGasTankUiKey.Key
   - type: UserInterface
     interfaces:
-    - key: enum.SharedGasTankUiKey.Key
-      type: GasTankBoundUserInterface
+      enum.SharedGasTankUiKey.Key:
+        type: GasTankBoundUserInterface
   - type: GasTank
     outputPressure: 21.3
     air:
@@ -1760,8 +1760,8 @@
     key: enum.SharedGasTankUiKey.Key
   - type: UserInterface
     interfaces:
-    - key: enum.SharedGasTankUiKey.Key
-      type: GasTankBoundUserInterface
+      enum.SharedGasTankUiKey.Key:
+        type: GasTankBoundUserInterface
   - type: GasTank
     outputPressure: 21.3
     air:
@@ -1781,8 +1781,8 @@
     key: enum.SharedGasTankUiKey.Key
   - type: UserInterface
     interfaces:
-    - key: enum.SharedGasTankUiKey.Key
-      type: GasTankBoundUserInterface
+      enum.SharedGasTankUiKey.Key:
+        type: GasTankBoundUserInterface
   - type: GasTank
     outputPressure: 21.3
     air:

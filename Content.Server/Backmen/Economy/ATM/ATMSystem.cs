@@ -133,14 +133,14 @@ namespace Content.Server.Backmen.Economy.ATM;
         }
         public void UpdateUi(EntityUid uid, BankAccountComponent bankAccount)
         {
-            if (!_uiSystem.TryGetUi(uid, ATMUiKey.Key, out var ui))
+            if (!_uiSystem.TryGetOpenUi(uid, ATMUiKey.Key, out var ui))
                 return;
 
             var currencySymbol = "";
             if(_prototypeManager.TryIndex(bankAccount.CurrencyType, out CurrencyPrototype? p))
                 currencySymbol = Loc.GetString(p.CurrencySymbol);
 
-            _uiSystem.SetUiState(ui,new AtmBoundUserInterfaceBalanceState(
+            _uiSystem.SetUiState(ui.Owner, ui.UiKey, new AtmBoundUserInterfaceBalanceState(
                 bankAccount.Balance,
                 currencySymbol
             ));
@@ -175,11 +175,10 @@ namespace Content.Server.Backmen.Economy.ATM;
                 idCardEntityName = MetaData(idCardEntityUid).EntityName;
             }
 
-            var ui = _uiSystem.GetUiOrNull(uid, ATMUiKey.Key);
-            if (ui == null)
+            if (!_uiSystem.TryGetOpenUi(uid.Owner, ATMUiKey.Key, out var ui))
                 return;
 
-            _uiSystem.SetUiState(ui,new AtmBoundUserInterfaceState(
+            _uiSystem.SetUiState(ui.Owner, ui.UiKey, new AtmBoundUserInterfaceState(
                 uid.Comp.IdCardSlot.HasItem,
                 idCardFullName,
                 idCardEntityName,
@@ -191,7 +190,7 @@ namespace Content.Server.Backmen.Economy.ATM;
         }
         private void OnRequestWithdraw(Entity<AtmComponent> uid, ref ATMRequestWithdrawMessage msg)
         {
-            if (msg.Session.AttachedEntity is not { Valid: true } buyer)
+            if (msg.Actor is not { Valid: true } buyer)
                 return;
             if (msg.Amount <= 0)
             {

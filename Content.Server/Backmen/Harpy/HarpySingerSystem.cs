@@ -132,7 +132,7 @@ namespace Content.Server.Backmen.Harpy
             if (HasComp<ActiveInstrumentComponent>(uid) &&
                 TryComp<ActorComponent>(uid, out var actor))
             {
-                _instrument.ToggleInstrumentUi(uid, actor.PlayerSession);
+                _instrument.ToggleInstrumentUi(uid, uid);
             }
         }
 

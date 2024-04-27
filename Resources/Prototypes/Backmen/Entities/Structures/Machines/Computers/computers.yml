@@ -88,8 +88,8 @@
     - ERTJanitor
   - type: UserInterface
     interfaces:
-    - key: enum.ReinforcementConsoleKey.Key
-      type: ReinforcementConsoleBoundUserInterface
+      enum.ReinforcementConsoleKey.Key:
+        type: ReinforcementConsoleBoundUserInterface
   - type: ActivatableUI
     key: enum.ReinforcementConsoleKey.Key
     singleUser: true

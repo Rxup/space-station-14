@@ -201,7 +201,7 @@
         type: HumanoidMarkingModifierBoundUserInterface
       enum.StrippingUiKey.Key:
         type: StrippableBoundUserInterface
-      - key: enum.StoreUiKey.Key
+      enum.StoreUiKey.Key:
         type: StoreBoundUserInterface
   - type: Puller
   - type: Speech

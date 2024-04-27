@@ -18,13 +18,10 @@ ClothingBackpackBrigmedicFilled: null
 # 2023-05-04
 BoxMagazineMagnumSubMachineGun: BoxMagazinePistolSubMachineGun
 BoxMagazineMagnumSubMachineGunPractice: BoxMagazinePistolSubMachineGunPractice
-BoxMagazineMagnumSubMachineGunRubber: BoxMagazinePistolSubMachineGunRubber
 
 MagazineMagnumSubMachineGun: MagazinePistolSubMachineGun
 MagazineMagnumSubMachineGunPractice: MagazinePistolSubMachineGunPractice
-MagazineMagnumSubMachineGunRubber: MagazinePistolSubMachineGunRubber
 WeaponSubMachineGunVector: WeaponSubMachineGunDrozd
-WeaponSubMachineGunVectorRubber: WeaponSubMachineGunDrozdRubber
 
 MagazineBoxAntiMaterial: MagazineBoxAntiMateriel
 CartridgeAntiMaterial: CartridgeAntiMateriel
@@ -196,9 +193,7 @@ WeaponRifleLecter: WeaponRifleAR18
 WeaponSubMachineGunAtreides: WeaponSubMachineGunMP7
 WeaponPistolViper: WeaponPistolHIB88M4
 WeaponPistolMk58: WeaponPistolACP14
-WeaponPistolMk58Nonlethal: WeaponPistolG22NonLethal
 WeaponSubMachineGunDrozd: WeaponSubMachineGunVectorSpecial
-WeaponSubMachineGunDrozdRubber: WeaponSubMachineGunMP5NonLethal
 WeaponShotgunEnforcer: WeaponShotgun39
 WeaponShotgunEnforcerRubber: WeaponShotgun39NonLethal
 WeaponSubMachineGunWt550: WeaponSubMachineGunP90
@@ -364,7 +359,6 @@ CrateBaseWeldable: CrateGenericSteel
 
 
 # 2024-09-03 Backmen
-WeaponRifleLecterRubber: WeaponRifleFamas
 WeaponTaser: WeaponDominatorNT
 
 # 2024-03-11
