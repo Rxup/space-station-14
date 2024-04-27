@@ -15,6 +15,7 @@
     description: ghost-role-information-BloodCrystalSoul-description
   - type: Speech
   - type: Psionic
+  - type: SoulCrystal
   - type: SolutionContainerManager
     solutions:
       ectoplasm:
