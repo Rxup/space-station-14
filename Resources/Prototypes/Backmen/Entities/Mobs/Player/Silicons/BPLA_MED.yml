@@ -179,6 +179,7 @@
     autoRot: true
   - type: Tag
     tags:
-      - ShoesRequiredStepTriggerImmune
       - CannotSuicide
   - type: SpecForce
+  - type: ClothingRequiredStepTriggerImmune
+    slots: WITHOUT_POCKET

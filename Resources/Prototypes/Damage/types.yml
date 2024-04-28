@@ -89,5 +89,6 @@
 # Used by certain armor to counter stun weaponry.
 - type: damageType
   id: Stun
+  name: damage-type-stun
   armorCoefficientPrice: 5
   armorFlatPrice: 20

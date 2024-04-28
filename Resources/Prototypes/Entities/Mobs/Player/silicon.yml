@@ -66,9 +66,8 @@
   - type: Puller
   - type: StandingState
   - type: Alerts
-  - type: Tag
-    tags:
-      - ShoesRequiredStepTriggerImmune
+  - type: ClothingRequiredStepTriggerImmune
+    slots: WITHOUT_POCKET
 
 - type: entity
   name: drone
@@ -182,9 +181,10 @@
     softness: 1
     mask: /Textures/Effects/LightMasks/cone.png
     autoRot: true
+  - type: ClothingRequiredStepTriggerImmune
+    slots: WITHOUT_POCKET
   - type: Tag
     tags:
-      - ShoesRequiredStepTriggerImmune
       - CannotSuicide
 
 - type: entity

@@ -1745,6 +1745,15 @@
   parent: MobMouse
   id: MobMouseCancer
   components:
+  - type: GhostTakeoverAvailable
+  - type: GhostRole
+    makeSentient: true
+    name: ghost-role-information-cancer-mouse-name
+    description: ghost-role-information-cancer-mouse-description
+    requirements:
+    - !type:OverallPlaytimeRequirement
+      time: 54000 # 15h # Corvax-RoleTime
+  - type: BlobCarrier # backmen: blob
   - type: Sprite
     color: LightGreen
   - type: PointLight
