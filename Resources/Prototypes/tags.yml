@@ -262,6 +262,9 @@
   id: CableCoil
 
 - type: Tag
+  id: CaneBlade
+
+- type: Tag
   id: CannonBall
 
 - type: Tag
@@ -873,6 +876,9 @@
   id: Meat
 
 - type: Tag
+  id: Medal
+
+- type: Tag
   id: Medkit
 
 - type: Tag
@@ -1111,13 +1117,13 @@
   id: Shiv
 
 - type: Tag
-  id: ShoesRequiredStepTriggerImmune
-
-- type: Tag
   id: Shovel
 
 - type: Tag
   id: Sidearm
+
+- type: Tag
+  id: SignalTrigger
 
 - type: Tag
   id: SkeletonMotorcycleKeys
@@ -1330,3 +1336,5 @@
 
 - type: Tag
   id: WriteIgnoreStamps
+
+# ALPHABETICAL
