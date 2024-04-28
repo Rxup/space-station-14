@@ -5,7 +5,7 @@
   productEvent: !type:VampireStoreEvent
     buyType: Sprint1
   cost:
-    BloodEssence: 20
+    BloodEssence: 10
   categories:
   - VapmireT2
   conditions:
@@ -19,7 +19,7 @@
   productEvent: !type:VampireStoreEvent
     buyType: Sprint2
   cost:
-    BloodEssence: 35
+    BloodEssence: 15
   categories:
   - VapmireT2
   conditions:
@@ -35,7 +35,7 @@
   productEvent: !type:VampireStoreEvent
     buyType: Sprint3
   cost:
-    BloodEssence: 50
+    BloodEssence: 25
   categories:
   - VapmireT2
   conditions:
@@ -51,7 +51,7 @@
   productEvent: !type:VampireStoreEvent
     buyType: NoSlip
   cost:
-    BloodEssence: 55
+    BloodEssence: 35
   categories:
   - VapmireT2
   conditions:
@@ -65,7 +65,7 @@
   productEvent: !type:VampireStoreEvent
     buyType: PsiInvisPower
   cost:
-    BloodEssence: 35
+    BloodEssence: 20
   categories:
   - VapmireT2
   conditions:
@@ -79,7 +79,7 @@
   productEvent: !type:VampireStoreEvent
     buyType: SkillMouse2
   cost:
-    BloodEssence: 15
+    BloodEssence: 10
   categories:
   - VapmireT1
   conditions:
