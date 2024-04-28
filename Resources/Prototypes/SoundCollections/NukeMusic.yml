@@ -5,5 +5,5 @@
     - /Audio/StationEvents/countdown.ogg
     - /Audio/StationEvents/clearly_nuclear.ogg
     - /Audio/Corvax/StationEvents/level.ogg # Corvax-NukeMusic
-    - /Audio/Backmen/Adminbuse/HARD-RESET.ogg
-    - /Audio/Backmen/Adminbuse/Invader-303.ogg
+    - /Audio/Backmen/Adminbuse/HARD-RESET.ogg # Backmen-NukeMusic-Start
+    - /Audio/Backmen/Adminbuse/Invader-303.ogg # Backmen-NukeMusic-End
