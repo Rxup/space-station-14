@@ -17,7 +17,16 @@
   - ClothingNeckTransPin
   - ClothingNeckAutismPin
   - ClothingNeckGoldAutismPin
-  
+  - ClothingNeckDonkPin #BackmenPins-start
+  - ClothingNeckDeForestPin
+  - ClothingNeckNakamuraPin
+  - ClothingNeckLogistikaPin
+  - ClothingNeckVitezstviPin
+  - ClothingNeckNanoTrasenPin
+  - ClothingNeckEarthPin
+  - ClothingNeckUSSPPin
+  - ClothingNeckSyndicakePin #BackmenPins-end
+
 - type: loadoutGroup
   id: Glasses
   name: loadout-group-glasses
@@ -26,7 +35,7 @@
   - Glasses
   - GlassesJamjar
   - GlassesJensen
-  
+
 # Command
 - type: loadoutGroup
   id: CaptainHead
@@ -845,6 +854,28 @@
   - HeadofSecurityCoat
   - HeadofSecurityWinterCoat
 
+- type: loadoutGroup #Backmen
+  id: SecurityOfficerPocket
+  name: loadout-group-security-pocket
+  loadouts:
+  - WeaponPistolMk58
+  - WeaponPistolG22
+  - WeaponPistolACP14
+  - WeaponPistolG23
+  - WeaponPistolVP78
+  - WeaponPistolDEagle
+  - WeaponRevolverMatebaNew
+
+- type: loadoutGroup #Backmen
+  id: SecurityOfficerPocket2
+  name: loadout-group-security-pocket2
+  minLimit: 0
+  loadouts:
+  - MagazinePistol
+  - MagazinePistolHighCapacity
+  - MagazineMagnumPistol
+  - SpeedLoaderMagnum
+
 - type: loadoutGroup
   id: WardenHead
   name: loadout-group-warden-head
@@ -875,6 +906,7 @@
   - SecurityHelmet
   - SecurityBeret
   - SecurityHat
+  - ClothingHeadHatCapSec #Backmen
 
 - type: loadoutGroup
   id: SecurityJumpsuit
@@ -882,8 +914,6 @@
   loadouts:
   - SecurityJumpsuit
   - SecurityJumpskirt
-  - SecurityJumpsuitGrey
-  - SecurityJumpskirtGrey
   - SeniorOfficerJumpsuit
   - SeniorOfficerJumpskirt
 
@@ -908,6 +938,8 @@
   loadouts:
   - ArmorVest
   - ArmorVestSlim
+  - ClothingOuterCoatSecurityOvercoat #Backmen
+  - ClothingOuterCoatSecurityOfficerOvercoat #Backmen
   - SecurityOfficerWintercoat
 
 - type: loadoutGroup
@@ -923,6 +955,26 @@
   loadouts:
   - SecurityPDA
   - SeniorOfficerPDA
+
+- type: loadoutGroup #Backmen
+  id: SecurityPocket
+  name: loadout-group-security-pocket
+  loadouts:
+  - WeaponPistolMk58
+  - WeaponPistolG22
+  - WeaponPistolACP14
+  - WeaponPistolG23
+  - WeaponPistolVP78
+  - WeaponPistolDEagle
+
+- type: loadoutGroup #Backmen
+  id: SecurityPocket2
+  name: loadout-group-security-pocket2
+  minLimit: 0
+  loadouts:
+  - MagazinePistol
+  - MagazinePistolHighCapacity
+  - MagazineMagnumPistol
 
 - type: loadoutGroup
   id: DetectiveHead
@@ -968,8 +1020,8 @@
   id: SecurityCadetJumpsuit
   name: loadout-group-security-cadet-jumpsuit
   loadouts:
-  - RedJumpsuit
-  - RedJumpskirt
+  - SecurityJumpsuitGrey #Backmen
+  - SecurityJumpskirtGrey #Backmen
 
 # Medical
 - type: loadoutGroup

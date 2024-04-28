@@ -261,6 +261,8 @@
   - SecurityBelt
   - HeadofSecurityOuterClothing
   - SecurityShoes
+  - SecurityOfficerPocket #Backmen
+  - SecurityOfficerPocket2 #Backmen
   - Trinkets
 
 - type: roleLoadout
@@ -272,6 +274,8 @@
   - SecurityBelt
   - WardenOuterClothing
   - SecurityShoes
+  - SecurityOfficerPocket #Backmen
+  - SecurityOfficerPocket2 #Backmen
   - Trinkets
 
 - type: roleLoadout
@@ -284,6 +288,8 @@
   - SecurityShoes
   - SecurityPDA
   - SecurityBelt
+  - SecurityPocket #Backmen
+  - SecurityPocket2 #Backmen
   - Trinkets
 
 - type: roleLoadout
