@@ -3755,11 +3755,12 @@
         density: 7
         shape:
           !type:PhysShapeAabb
-           bounds: "-0.2,-0.2,0.2,0.2"
+           bounds: "-0.4,-0.4,0.4,0.4"
         layer:
         - MidImpassable
         mask:
         - BlobImpassable
+        - MidImpassable
   - type: PointLight
     enabled: true
     color: "#FF8080"
@@ -3774,7 +3775,7 @@
   - type: ThrowingAngle
     angle: 0
   - type: IgniteOnCollide
-    fireStacks: 0.3
+    fireStacks: 1
     count: 100
     fixtureId: fire
   - type: IgnitionSource
