@@ -52,8 +52,8 @@ namespace Content.Server.Corvax.StationGoal
                     Loc.GetString(goal.Text),
                     Loc.GetString("station-goal-fax-paper-name"),
                     null,
-                    "paper_stamp-centcom",
                     null,
+                    "paper_stamp-centcom",
                     new List<StampDisplayInfo>
                     {
                         new() { StampedName = Loc.GetString("stamp-component-stamped-name-centcom"), StampedColor = Color.FromHex("#006600") },
