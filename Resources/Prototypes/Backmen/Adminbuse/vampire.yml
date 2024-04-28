@@ -1,4 +1,4 @@
-- type: entity
+﻿- type: entity
   parent: SmokeGrenade
   id: BloodsuckerGrenade
   name: vampire gas grenade
@@ -29,19 +29,3 @@
       reagents:
       - ReagentId: LotophagoiOil
         Quantity: 100
-        
-- type: entity
-  parent: SmokeGrenade
-  id: AntiPsiGrenade
-  name: anti-psi gas grenade
-  description: did you hate magic brain?
-  components:
-  - type: Sprite
-    sprite: Objects/Weapons/Grenades/tear_gas.rsi
-  - type: SmokeOnTrigger
-    duration: 20
-    spreadAmount: 60
-    solution:
-      reagents:
-      - ReagentId: MindbreakerToxin
-        Quantity: 75
