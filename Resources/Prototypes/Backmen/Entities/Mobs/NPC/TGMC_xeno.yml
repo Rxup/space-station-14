@@ -98,6 +98,10 @@
     tags:
     - Xeno
 
+- type: accessLevel
+  id: Xeno
+  name: Xeno
+
 - type: damageModifierSet
   id: Xenolian
   coefficients:
@@ -1650,7 +1654,7 @@
     bumpOpen: true
     clickOpen: true
     canCrush: false
-    canPray: false
+    canPry: false
     closeTimeOne: 0.4
     closeTimeTwo: 0.4
     openTimeOne: 0.4
