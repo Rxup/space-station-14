@@ -856,7 +856,7 @@
 
 - type: loadoutGroup #Backmen
   id: SecurityOfficerPocket
-  name: Табельное оружие
+  name: loadout-group-security-pocket
   loadouts:
   - WeaponPistolMk58
   - WeaponPistolG22
@@ -868,7 +868,7 @@
 
 - type: loadoutGroup #Backmen
   id: SecurityOfficerPocket2
-  name: Вторичный магазин
+  name: loadout-group-security-pocket2
   minLimit: 0
   loadouts:
   - MagazinePistol
@@ -960,7 +960,7 @@
 
 - type: loadoutGroup #Backmen
   id: SecurityPocket
-  name: Табельное оружие
+  name: loadout-group-security-pocket
   loadouts:
   - WeaponPistolMk58
   - WeaponPistolG22
@@ -971,7 +971,7 @@
 
 - type: loadoutGroup #Backmen
   id: SecurityPocket2
-  name: Вторичный магазин
+  name: loadout-group-security-pocket2
   minLimit: 0
   loadouts:
   - MagazinePistol

@@ -54,7 +54,7 @@
 # Brigmedic
 - type: loadoutGroup
   id: ClothingUniformJumpsuitBrigmedic
-  name: Одежда бригмедика
+  name: loadout-group-brigmedic-jumpsuit
   loadouts:
   - ClothingUniformJumpsuitBrigmedic
   - ClothingUniformJumpskirtBrigmedic
@@ -62,7 +62,7 @@
 
 - type: loadoutGroup
   id: ClothingBackpackBrigmedic
-  name: Рюкзак бригмедика
+  name: loadout-group-brigmedic-backpack
   loadouts:
   - ClothingBackpackBrigmedic
   - ClothingBackpackDuffelBrigmedic
@@ -70,7 +70,7 @@
 
 - type: loadoutGroup
   id: ClothingHeadHatBrigmedic
-  name: Головной убор бригмедика
+  name: loadout-group-brigmedic-hat
   minLimit: 0
   loadouts:
   - ClothingHeadHatBeretBrigmedic
@@ -79,7 +79,7 @@
 
 - type: loadoutGroup
   id: ClothingOuterBrigmedic
-  name: Верхняя одежда бригмедика
+  name: loadout-group-brigmedic-outer
   loadouts:
   - ClothingOuterVestArmorMedSec
   - ClothingOuterCoatAMG
@@ -88,14 +88,14 @@
 
 - type: loadoutGroup
   id: ClothingEarBrigmedic
-  name: Гарнитура бригмедика
+  name: loadout-group-brigmedic-ear
   loadouts:
   - ClothingHeadsetBrigmedic
   - ClothingHeadsetAltBrigmedic
 
 - type: loadoutGroup
   id: ClothingMaskBrigmedic
-  name: Маска бригмедика
+  name: loadout-group-brigmedic-mask
   minLimit: 0
   loadouts:
   - ClothingMaskBreathMedicalSecurity
