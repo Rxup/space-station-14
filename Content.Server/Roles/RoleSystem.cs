@@ -20,7 +20,6 @@ public sealed class RoleSystem : SharedRoleSystem
         SubscribeAntagEvents<NukeopsRoleComponent>();
         SubscribeAntagEvents<RevolutionaryRoleComponent>();
         SubscribeAntagEvents<SubvertedSiliconRoleComponent>();
-        SubscribeAntagEvents<TerminatorRoleComponent>();
         SubscribeAntagEvents<TraitorRoleComponent>();
         SubscribeAntagEvents<ZombieRoleComponent>();
 

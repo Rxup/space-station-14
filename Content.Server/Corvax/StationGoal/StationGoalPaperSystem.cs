@@ -1,5 +1,6 @@
 using System.Linq;
 using Content.Server.Fax;
+using Content.Shared.Fax.Components;
 using Content.Shared.GameTicking;
 using Content.Shared.Paper;
 using Robust.Shared.Prototypes;
@@ -40,22 +41,24 @@ namespace Content.Server.Corvax.StationGoal
         /// <returns>True if at least one fax received paper</returns>
         public bool SendStationGoal(StationGoalPrototype goal)
         {
-            var faxes = EntityManager.EntityQuery<FaxMachineComponent>();
+            var faxes = EntityQueryEnumerator<FaxMachineComponent>();
             var wasSent = false;
-            foreach (var fax in faxes)
+            while (faxes.MoveNext(out var owner, out var fax))
             {
-                if (!fax.ReceiveStationGoal) continue;
+                if (!fax.ReceiveStationGoal)
+                    continue;
 
                 var printout = new FaxPrintout(
                     Loc.GetString(goal.Text),
                     Loc.GetString("station-goal-fax-paper-name"),
+                    null,
                     null,
                     "paper_stamp-centcom",
                     new List<StampDisplayInfo>
                     {
                         new() { StampedName = Loc.GetString("stamp-component-stamped-name-centcom"), StampedColor = Color.FromHex("#006600") },
                     });
-                _faxSystem.Receive(fax.Owner, printout, null, fax);
+                _faxSystem.Receive(owner, printout, null, fax);
 
                 wasSent = true;
             }
