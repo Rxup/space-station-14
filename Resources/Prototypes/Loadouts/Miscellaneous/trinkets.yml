@@ -117,3 +117,93 @@
   storage:
     back:
     - ClothingNeckGoldAutismPin
+
+- type: loadout #Backmen
+  id: ClothingNeckDonkPin
+  equipment: ClothingNeckDonkPin
+
+- type: startingGear #Backmen
+  id: ClothingNeckDonkPin
+  storage:
+    back:
+    - ClothingNeckDonkPin
+
+- type: loadout #Backmen
+  id: ClothingNeckDeForestPin
+  equipment: ClothingNeckDeForestPin
+
+- type: startingGear #Backmen
+  id: ClothingNeckDeForestPin
+  storage:
+    back:
+    - ClothingNeckDeForestPin
+
+- type: loadout #Backmen
+  id: ClothingNeckNakamuraPin
+  equipment: ClothingNeckNakamuraPin
+
+- type: startingGear #Backmen
+  id: ClothingNeckNakamuraPin
+  storage:
+    back:
+    - ClothingNeckNakamuraPin
+
+- type: loadout #Backmen
+  id: ClothingNeckLogistikaPin
+  equipment: ClothingNeckLogistikaPin
+
+- type: startingGear #Backmen
+  id: ClothingNeckLogistikaPin
+  storage:
+    back:
+    - ClothingNeckLogistikaPin
+
+- type: loadout #Backmen
+  id: ClothingNeckVitezstviPin
+  equipment: ClothingNeckVitezstviPin
+
+- type: startingGear #Backmen
+  id: ClothingNeckVitezstviPin
+  storage:
+    back:
+    - ClothingNeckVitezstviPin
+
+- type: loadout #Backmen
+  id: ClothingNeckNanoTrasenPin
+  equipment: ClothingNeckNanoTrasenPin
+
+- type: startingGear #Backmen
+  id: ClothingNeckNanoTrasenPin
+  storage:
+    back:
+    - ClothingNeckNanoTrasenPin
+
+- type: loadout #Backmen
+  id: ClothingNeckEarthPin
+  equipment: ClothingNeckEarthPin
+
+- type: startingGear #Backmen
+  id: ClothingNeckEarthPin
+  storage:
+    back:
+    - ClothingNeckEarthPin
+
+- type: loadout #Backmen
+  id: ClothingNeckUSSPPin
+  equipment: ClothingNeckUSSPPin
+
+- type: startingGear #Backmen
+  id: ClothingNeckUSSPPin
+  storage:
+    back:
+    - ClothingNeckUSSPPin
+
+- type: loadout #Backmen
+  id: ClothingNeckSyndicakePin
+  equipment: ClothingNeckSyndicakePin
+
+- type: startingGear #Backmen
+  id: ClothingNeckSyndicakePin
+  storage:
+    back:
+    - ClothingNeckSyndicakePin

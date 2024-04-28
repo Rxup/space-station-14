@@ -47,6 +47,57 @@
 #  - BKCCOperatorGavnaBackpack
 #  - BKCCOperatorGavnaSatchel
 
+# Station Job
 
+# Security
 
+# Brigmedic
+- type: loadoutGroup
+  id: ClothingUniformJumpsuitBrigmedic
+  name: Одежда бригмедика
+  loadouts:
+  - ClothingUniformJumpsuitBrigmedic
+  - ClothingUniformJumpskirtBrigmedic
+  - ClothingUniformJumpskirtOfLife
 
+- type: loadoutGroup
+  id: ClothingBackpackBrigmedic
+  name: Рюкзак бригмедика
+  loadouts:
+  - ClothingBackpackBrigmedic
+  - ClothingBackpackDuffelBrigmedic
+  - ClothingBackpackSatchelBrigmedic
+
+- type: loadoutGroup
+  id: ClothingHeadHatBrigmedic
+  name: Головной убор бригмедика
+  minLimit: 0
+  loadouts:
+  - ClothingHeadHatBeretBrigmedic
+  - ClothingHeadHatBeretSecurityMedic
+  - ClothingHeadHelmetSecurityMedic
+
+- type: loadoutGroup
+  id: ClothingOuterBrigmedic
+  name: Верхняя одежда бригмедика
+  loadouts:
+  - ClothingOuterVestArmorMedSec
+  - ClothingOuterCoatAMG
+  - ClothingOuterVestSecurityMedic
+  - ClothingOuterCoatLabSecurityMedic
+
+- type: loadoutGroup
+  id: ClothingEarBrigmedic
+  name: Гарнитура бригмедика
+  loadouts:
+  - ClothingHeadsetBrigmedic
+  - ClothingHeadsetAltBrigmedic
+
+- type: loadoutGroup
+  id: ClothingMaskBrigmedic
+  name: Маска бригмедика
+  minLimit: 0
+  loadouts:
+  - ClothingMaskBreathMedicalSecurity
+  - ClothingMaskSterile
+  - ClothingMaskGasSecurity

@@ -168,3 +168,14 @@
     tags:
     - ClothMade
     - HamsterWearable
+
+- type: entity
+  parent: ClothingHeadBase
+  id: ClothingHeadHatCapSec
+  name: Фуражка офицера СБ
+  description: Фуражка сотрудника СБ, имеет эмблему НТ.
+  components:
+    - type: Sprite
+      sprite: Backmen/Clothing/Head/Hats/seccap.rsi
+    - type: Clothing
+      sprite: Backmen/Clothing/Head/Hats/seccap.rsi
