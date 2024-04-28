@@ -38,11 +38,14 @@ namespace Content.Server.Backmen.Economy.Eftpos;
 
         private void OnInteract(Entity<EftposComponent> ent, ref AfterActivatableUIOpenEvent args)
         {
-            UpdateComponentUserInterface(ent, args.Session);
+            UpdateComponentUserInterface(ent, args.Actor);
         }
 
-        private void UpdateComponentUserInterface(Entity<EftposComponent> uid, ICommonSession? player = null)
+        private void UpdateComponentUserInterface(Entity<EftposComponent> uid, EntityUid? player = null)
         {
+            if(!_uiSystem.HasUi(uid.Owner, EftposUiKey.Key))
+                return;
+
             var currencyType = uid.Comp.LinkedAccount?.Comp.CurrencyType;
             var accountNumber = uid.Comp.LinkedAccount?.Comp.AccountNumber;
             var accountName = uid.Comp.LinkedAccount?.Comp.AccountName;
@@ -58,11 +61,7 @@ namespace Content.Server.Backmen.Economy.Eftpos;
                 uid.Comp.LockedBy != null,
                 currSymbol);
 
-            if (!_uiSystem.TryGetUi(uid, EftposUiKey.Key, out var bui))
-            {
-                return;
-            }
-            _uiSystem.SetUiState(bui, newState, player);
+            _uiSystem.SetUiState(uid.Owner, EftposUiKey.Key, newState);
         }
         private void OnChangeValue(Entity<EftposComponent> uid, ref EftposChangeValueMessage msg)
         {
@@ -71,14 +70,14 @@ namespace Content.Server.Backmen.Economy.Eftpos;
                 Deny(uid);
                 return;
             }
-            if (msg.Session.AttachedEntity is not { Valid: true } mob)
+            if (msg.Actor is not { Valid: true } mob)
                 return;
             uid.Comp.Value =
                 msg.Value != null
                 ? FixedPoint2.Clamp((FixedPoint2) msg.Value, 0, FixedPoint2.MaxValue)
                 : null;
 
-            UpdateComponentUserInterface(uid);
+            UpdateComponentUserInterface(uid, mob);
         }
         private void OnChangeLinkedAccountNumber(Entity<EftposComponent> uid, ref EftposChangeLinkedAccountNumberMessage msg)
         {
@@ -88,7 +87,7 @@ namespace Content.Server.Backmen.Economy.Eftpos;
                 return;
             }
 
-            if (msg.Session.AttachedEntity is not { Valid: true } mob)
+            if (msg.Actor is not { Valid: true } mob)
                 return;
 
             if (msg.LinkedAccountNumber == null)
@@ -103,7 +102,7 @@ namespace Content.Server.Backmen.Economy.Eftpos;
 
             if (msg.LinkedAccountNumber == "auto")
             {
-                if (!_idCardSystem.TryFindIdCard(msg.Session.AttachedEntity.Value, out var idCardComponent))
+                if (!_idCardSystem.TryFindIdCard(msg.Actor, out var idCardComponent))
                 {
                     Deny(uid);
                     return;
@@ -128,7 +127,7 @@ namespace Content.Server.Backmen.Economy.Eftpos;
         }
         private void OnSwipeCard(Entity<EftposComponent> uid, ref EftposSwipeCardMessage msg)
         {
-            if (msg.Session.AttachedEntity is not { Valid: true } buyer)
+            if (msg.Actor is not { Valid: true } buyer)
                 return;
             if (!_idCardSystem.TryFindIdCard(buyer, out var idCardComponent))
             {
@@ -179,7 +178,7 @@ namespace Content.Server.Backmen.Economy.Eftpos;
 
         private void OnLock(Entity<EftposComponent> uid, ref EftposLockMessage msg)
         {
-            if (msg.Session.AttachedEntity is not { Valid: true } buyer)
+            if (msg.Actor is not { Valid: true } buyer)
                 return;
             if (uid.Comp.LockedBy != null)
             {

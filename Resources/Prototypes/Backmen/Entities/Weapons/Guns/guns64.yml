@@ -569,7 +569,7 @@
     slots:
       gun_magazine:
         name: Magazine
-        startingItem: MagazinePistolRubber
+        startingItem: MagazinePistol
         insertSound: /Audio/Weapons/Guns64/Pistols/beretta_reload.ogg
         ejectSound: /Audio/Weapons/Guns64/Pistols/beretta_unload.ogg
         priority: 2
@@ -1145,7 +1145,7 @@
     slots:
       gun_magazine:
         name: Magazine
-        startingItem: MagazineRifleRubber
+        startingItem: MagazineRifle
         insertSound: /Audio/Weapons/Guns64/Rifles/m28_reload.ogg
         ejectSound: /Audio/Weapons/Guns64/Rifles/m28_unload.ogg
         priority: 2
@@ -1402,7 +1402,7 @@
     slots:
       gun_magazine:
         name: Magazine
-        startingItem: MagazinePistolSubMachineGunRubber
+        startingItem: MagazinePistolSubMachineGun
         insertSound: /Audio/Weapons/Guns64/SMGs/mp5_reload.ogg
         ejectSound: /Audio/Weapons/Guns64/SMGs/mp5_unload.ogg
         priority: 2

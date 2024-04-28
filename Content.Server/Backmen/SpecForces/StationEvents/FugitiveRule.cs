@@ -1,4 +1,5 @@
 ﻿using Content.Server.Backmen.Fugitive;
+using Content.Server.GameTicking.Components;
 using Content.Server.GameTicking.Rules.Components;
 using Content.Server.StationEvents.Events;
 

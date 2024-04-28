@@ -191,15 +191,15 @@
   - type: Strippable
   - type: UserInterface
     interfaces:
-      - key: enum.VoiceMaskUIKey.Key
+      enum.VoiceMaskUIKey.Key:
         type: VoiceMaskBoundUserInterface
-      - key: enum.HumanoidMarkingModifierKey.Key
+      enum.HumanoidMarkingModifierKey.Key:
         type: HumanoidMarkingModifierBoundUserInterface
-      - key: enum.StrippingUiKey.Key
+      enum.StrippingUiKey.Key:
         type: StrippableBoundUserInterface
-      - key: enum.GolemUiKey.Key
+      enum.GolemUiKey.Key:
         type: GolemBoundUserInterface
-      - key: enum.SiliconLawsUiKey.Key
+      enum.SiliconLawsUiKey.Key:
         type: SiliconLawBoundUserInterface
   - type: Puller
   - type: Speech

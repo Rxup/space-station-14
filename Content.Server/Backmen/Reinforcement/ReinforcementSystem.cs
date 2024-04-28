@@ -237,9 +237,9 @@ public sealed class ReinforcementSystem : SharedReinforcementSystem
 
     private void OnStartCall(Entity<ReinforcementConsoleComponent> ent, ref CallReinforcementStart args)
     {
-        if (args.Session.AttachedEntity == null || !_access.IsAllowed(args.Session.AttachedEntity.Value, ent))
+        if (!_access.IsAllowed(args.Actor, ent))
         {
-            _popup.PopupCursor(Loc.GetString("reinforcement-insufficient-access"), args.Session, PopupType.Medium);
+            _popup.PopupCursor(Loc.GetString("reinforcement-insufficient-access"), args.Actor, PopupType.Medium);
             return;
         }
 
@@ -250,28 +250,28 @@ public sealed class ReinforcementSystem : SharedReinforcementSystem
 
         if (ent.Comp.Members.Count > ent.Comp.MaxMembers)
         {
-            _popup.PopupEntity(Loc.GetString("reinforcement-error-list-1", ("num",ent.Comp.MaxMembers)), ent, args.Session, PopupType.LargeCaution);
+            _popup.PopupEntity(Loc.GetString("reinforcement-error-list-1", ("num",ent.Comp.MaxMembers)), ent, args.Actor, PopupType.LargeCaution);
             return;
         }
         if (ent.Comp.Members.Count < ent.Comp.MinMembers)
         {
-            _popup.PopupEntity(Loc.GetString("reinforcement-error-list-2", ("num",ent.Comp.MinMembers)), ent, args.Session, PopupType.LargeCaution);
+            _popup.PopupEntity(Loc.GetString("reinforcement-error-list-2", ("num",ent.Comp.MinMembers)), ent, args.Actor, PopupType.LargeCaution);
             return;
         }
         if (ent.Comp.Members.Count == 0)
         {
-            _popup.PopupEntity(Loc.GetString("reinforcement-error-list"), ent, args.Session, PopupType.LargeCaution);
+            _popup.PopupEntity(Loc.GetString("reinforcement-error-list"), ent, args.Actor, PopupType.LargeCaution);
             return;
         }
 
         if (ent.Comp.Brief.Length == 0)
         {
-            _popup.PopupEntity(Loc.GetString("reinforcement-error-brief"), ent, args.Session, PopupType.LargeCaution);
+            _popup.PopupEntity(Loc.GetString("reinforcement-error-brief"), ent, args.Actor, PopupType.LargeCaution);
             return;
         }
 
         ent.Comp.IsActive = true;
-        ent.Comp.CalledBy = args.Session.AttachedEntity ?? EntityUid.Invalid;
+        ent.Comp.CalledBy = args.Actor;
 
         foreach (var member in ent.Comp.Members)
         {
@@ -390,6 +390,6 @@ public sealed class ReinforcementSystem : SharedReinforcementSystem
             }
         }
 
-        _ui.TrySetUiState(uid, ReinforcementConsoleKey.Key, msg);
+        _ui.SetUiState(uid.Owner, ReinforcementConsoleKey.Key, msg);
     }
 }

@@ -33,10 +33,10 @@
   - type: ActivatableUIRequiresPower
   - type: UserInterface
     interfaces:
-    - key: enum.VaccineMachineUiKey.Key
-      type: VaccineMachineBoundUserInterface
-    - key: enum.ResearchClientUiKey.Key
-      type: ResearchClientBoundUserInterface
+      enum.VaccineMachineUiKey.Key:
+        type: VaccineMachineBoundUserInterface
+      enum.ResearchClientUiKey.Key:
+        type: ResearchClientBoundUserInterface
   - type: MaterialStorage
     materialWhiteList:
     - Biomass

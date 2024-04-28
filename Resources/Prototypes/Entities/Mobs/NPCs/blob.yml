@@ -597,7 +597,7 @@
   components:
     - type: UserInterface
       interfaces:
-        - key: enum.BlobChemSwapUiKey.Key
+        enum.BlobChemSwapUiKey.Key:
           type: BlobChemSwapBoundUserInterface
     - type: Actions
     - type: Alerts

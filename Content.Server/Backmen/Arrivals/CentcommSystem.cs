@@ -79,9 +79,19 @@ public sealed class CentcommSystem : EntitySystem
         SubscribeLocalEvent<ShuttleConsoleComponent, GotEmaggedEvent>(OnShuttleConsoleEmaged);
         SubscribeLocalEvent<FTLCompletedEvent>(OnFTLCompleted);
         SubscribeLocalEvent<FtlCentComAnnounce>(OnFtlAnnounce);
+        SubscribeLocalEvent<LoadingMapsEvent>(OnLoadingMaps);
         _cfg.OnValueChanged(CCVars.GridFill, OnGridFillChange);
 
         _stationCentComMapPool = _prototypeManager.Index<WeightedRandomPrototype>(StationCentComMapPool);
+    }
+
+    private void OnLoadingMaps(LoadingMapsEvent ev)
+    {
+        if (_gameTicker.CurrentPreset?.IsMiniGame ?? false)
+            return;
+        if (!_cfg.GetCVar(CCVars.GridFill))
+            return;
+        EnsureCentcom(true);
     }
 
     private void OnCentComEndRound(RoundEndedEvent ev)
@@ -191,7 +201,7 @@ public sealed class CentcommSystem : EntitySystem
     {
         if (obj)
         {
-            EnsureCentcom(true);
+            EnsureCentcom();
         }
     }
 
@@ -218,10 +228,8 @@ public sealed class CentcommSystem : EntitySystem
 
     public void EnsureCentcom(bool force = false)
     {
-        if (!_cfg.GetCVar(CCVars.GridFill) && !force)
-        {
+        if (!force && (_gameTicker.RunLevel != GameRunLevel.InRound || !_cfg.GetCVar(CCVars.GridFill)))
             return;
-        }
 
         _sawmill.Info("EnsureCentcom");
         if (CentComGrid.IsValid())
@@ -294,12 +302,12 @@ public sealed class CentcommSystem : EntitySystem
 
     private void OnCentComInit(RoundStartingEvent ev)
     {
-        if (_gameTicker.CurrentPreset?.IsMiniGame ?? false) // no centcom in minigame
-        {
+        if (_gameTicker.CurrentPreset?.IsMiniGame ?? false)
             return;
-        }
+        if (!_cfg.GetCVar(CCVars.GridFill))
+            return;
 
-        EnsureCentcom();
+        EnsureCentcom(true);
     }
 
     private void OnPreGameMapLoad(PreGameMapLoad ev)

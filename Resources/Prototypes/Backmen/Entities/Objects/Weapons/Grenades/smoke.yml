@@ -15,6 +15,34 @@
         Quantity: 50
 
 - type: entity
+  name: psi mine
+  parent: BaseLandMine
+  id: LandMinePsi
+  components:
+  - type: SmokeOnTrigger
+    duration: 20
+    spreadAmount: 60
+    solution:
+      reagents:
+      - ReagentId: LotophagoiOil
+        Quantity: 100
+  - type: DeleteOnTrigger
+
+- type: entity
+  name: Xeno mine
+  parent: BaseLandMine
+  id: LandMineXeno
+  components:
+  - type: SmokeOnTrigger
+    duration: 5
+    spreadAmount: 20
+    solution:
+      reagents:
+      - ReagentId: FluorosulfuricAcid
+        Quantity: 20
+  - type: DeleteOnTrigger
+
+- type: entity
   parent: SmokeGrenade
   id: PsiGrenade
   name: psi gas grenade

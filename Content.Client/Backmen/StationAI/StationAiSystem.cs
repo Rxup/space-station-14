@@ -62,7 +62,7 @@ public sealed class StationAiSystem : SharedStationAISystem
     private void OnCamUpdate(Entity<AIEyeComponent> ent, ref AfterAutoHandleStateEvent args)
     {
         if (!TryComp<UserInterfaceComponent>(ent, out var userInterface) ||
-            !userInterface.OpenInterfaces.TryGetValue(AICameraListUiKey.Key, out var ui1) ||
+            !userInterface.ClientOpenInterfaces.TryGetValue(AICameraListUiKey.Key, out var ui1) ||
             ui1 is not AICameraListBoundUserInterface ui)
         {
             return;

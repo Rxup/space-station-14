@@ -17,8 +17,8 @@
     - type: ActivatableUIRequiresPower
     - type: UserInterface
       interfaces:
-      - key: enum.StoreUiKey.Key
-        type: StoreBoundUserInterface
+        enum.StoreUiKey.Key:
+          type: StoreBoundUserInterface
 
 - type: entity
   parent: VendingMachine
@@ -67,7 +67,7 @@
     - type: ActivatableUIRequiresPower
     - type: UserInterface
       interfaces:
-        - key: enum.StoreUiKey.Key
+        enum.StoreUiKey.Key:
           type: StoreBoundUserInterface
 
 - type: entity
@@ -91,7 +91,7 @@
     - type: ActivatableUIRequiresPower
     - type: UserInterface
       interfaces:
-        - key: enum.StoreUiKey.Key
+        enum.StoreUiKey.Key:
           type: StoreBoundUserInterface
 
 - type: entity
@@ -115,7 +115,7 @@
     - type: ActivatableUIRequiresPower
     - type: UserInterface
       interfaces:
-        - key: enum.StoreUiKey.Key
+        enum.StoreUiKey.Key:
           type: StoreBoundUserInterface
 
 - type: entity
@@ -139,7 +139,7 @@
     - type: ActivatableUIRequiresPower
     - type: UserInterface
       interfaces:
-        - key: enum.StoreUiKey.Key
+        enum.StoreUiKey.Key:
           type: StoreBoundUserInterface
 
 - type: entity
@@ -163,7 +163,7 @@
     - type: ActivatableUIRequiresPower
     - type: UserInterface
       interfaces:
-        - key: enum.StoreUiKey.Key
+        enum.StoreUiKey.Key:
           type: StoreBoundUserInterface
 
 - type: entity
@@ -185,7 +185,7 @@
     - type: ActivatableUIRequiresPower
     - type: UserInterface
       interfaces:
-        - key: enum.StoreUiKey.Key
+        enum.StoreUiKey.Key:
           type: StoreBoundUserInterface
 
 - type: entity
@@ -207,7 +207,7 @@
     - type: ActivatableUIRequiresPower
     - type: UserInterface
       interfaces:
-        - key: enum.StoreUiKey.Key
+        enum.StoreUiKey.Key:
           type: StoreBoundUserInterface
 
 - type: entity
@@ -231,7 +231,7 @@
     - type: ActivatableUIRequiresPower
     - type: UserInterface
       interfaces:
-        - key: enum.StoreUiKey.Key
+        enum.StoreUiKey.Key:
           type: StoreBoundUserInterface
 
 - type: entity
@@ -253,7 +253,7 @@
     - type: ActivatableUIRequiresPower
     - type: UserInterface
       interfaces:
-        - key: enum.StoreUiKey.Key
+        enum.StoreUiKey.Key:
           type: StoreBoundUserInterface
 
 - type: entity
@@ -275,7 +275,7 @@
     - type: ActivatableUIRequiresPower
     - type: UserInterface
       interfaces:
-        - key: enum.StoreUiKey.Key
+        enum.StoreUiKey.Key:
           type: StoreBoundUserInterface
 
 - type: entity
@@ -297,7 +297,7 @@
     - type: ActivatableUIRequiresPower
     - type: UserInterface
       interfaces:
-        - key: enum.StoreUiKey.Key
+        enum.StoreUiKey.Key:
           type: StoreBoundUserInterface
 
 - type: entity
@@ -319,7 +319,7 @@
     - type: ActivatableUIRequiresPower
     - type: UserInterface
       interfaces:
-        - key: enum.StoreUiKey.Key
+        enum.StoreUiKey.Key:
           type: StoreBoundUserInterface
 
 - type: entity
@@ -341,7 +341,7 @@
     - type: ActivatableUIRequiresPower
     - type: UserInterface
       interfaces:
-        - key: enum.StoreUiKey.Key
+        enum.StoreUiKey.Key:
           type: StoreBoundUserInterface
 
 - type: entity
@@ -363,7 +363,7 @@
     - type: ActivatableUIRequiresPower
     - type: UserInterface
       interfaces:
-        - key: enum.StoreUiKey.Key
+        enum.StoreUiKey.Key:
           type: StoreBoundUserInterface
 
 - type: entity
@@ -387,7 +387,7 @@
     - type: ActivatableUIRequiresPower
     - type: UserInterface
       interfaces:
-        - key: enum.StoreUiKey.Key
+        enum.StoreUiKey.Key:
           type: StoreBoundUserInterface
 
 - type: entity
@@ -411,7 +411,7 @@
     - type: ActivatableUIRequiresPower
     - type: UserInterface
       interfaces:
-        - key: enum.StoreUiKey.Key
+        enum.StoreUiKey.Key:
           type: StoreBoundUserInterface
 
 - type: entity
@@ -435,7 +435,7 @@
     - type: ActivatableUIRequiresPower
     - type: UserInterface
       interfaces:
-        - key: enum.StoreUiKey.Key
+        enum.StoreUiKey.Key:
           type: StoreBoundUserInterface
 
 - type: entity
@@ -459,7 +459,7 @@
     - type: ActivatableUIRequiresPower
     - type: UserInterface
       interfaces:
-        - key: enum.StoreUiKey.Key
+        enum.StoreUiKey.Key:
           type: StoreBoundUserInterface
 
 - type: entity
@@ -483,7 +483,7 @@
     - type: ActivatableUIRequiresPower
     - type: UserInterface
       interfaces:
-        - key: enum.StoreUiKey.Key
+        enum.StoreUiKey.Key:
           type: StoreBoundUserInterface
 
 - type: entity
@@ -507,7 +507,7 @@
     - type: ActivatableUIRequiresPower
     - type: UserInterface
       interfaces:
-        - key: enum.StoreUiKey.Key
+        enum.StoreUiKey.Key:
           type: StoreBoundUserInterface
 
 - type: entity
@@ -531,7 +531,7 @@
     - type: ActivatableUIRequiresPower
     - type: UserInterface
       interfaces:
-        - key: enum.StoreUiKey.Key
+        enum.StoreUiKey.Key:
           type: StoreBoundUserInterface
 
 - type: entity
@@ -572,5 +572,5 @@
   - type: ActivatableUIRequiresPower
   - type: UserInterface
     interfaces:
-      - key: enum.StoreUiKey.Key
+      enum.StoreUiKey.Key:
         type: StoreBoundUserInterface

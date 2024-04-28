@@ -34,7 +34,7 @@
     ears: ClothingHeadsetSecurity
     neck: ClothingNeckTieRed
     belt: ClothingBeltSecurityFilled
-    pocket1: WeaponPistolMk58Nonlethal
+    pocket1: WeaponPistolMk58
   #innerClothingSkirt: ClothingUniformJumpskirtSeniorOfficer
   #satchel: ClothingBackpackSatchelSecurityFilled
   #duffelbag: ClothingBackpackDuffelSecurityFilled

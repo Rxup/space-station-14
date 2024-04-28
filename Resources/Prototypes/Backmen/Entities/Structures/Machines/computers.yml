@@ -11,8 +11,8 @@
     key: enum.ShipyardConsoleUiKey.Shipyard
   - type: UserInterface
     interfaces:
-    - key: enum.ShipyardConsoleUiKey.Shipyard
-      type: ShipyardConsoleBoundUserInterface
+      enum.ShipyardConsoleUiKey.Shipyard:
+        type: ShipyardConsoleBoundUserInterface
   - type: Computer
     board: ShipyardComputerCircuitboard
   - type: PointLight

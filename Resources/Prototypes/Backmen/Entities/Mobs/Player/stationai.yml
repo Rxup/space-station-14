@@ -237,22 +237,22 @@
     - type: Visibility
     - type: UserInterface
       interfaces:
-        - key: enum.CommunicationsConsoleUiKey.Key
+        enum.CommunicationsConsoleUiKey.Key:
           type: CommunicationsConsoleBoundUserInterface
-        - key: enum.AICameraListUiKey.Key
+        enum.AICameraListUiKey.Key:
           type: AICameraListBoundUserInterface
-        - key: enum.SiliconLawsUiKey.Key
+        enum.SiliconLawsUiKey.Key:
           type: SiliconLawBoundUserInterface
-        - key: enum.StrippingUiKey.Key
+        enum.StrippingUiKey.Key:
           type: StrippableBoundUserInterface
-        - key: enum.CriminalRecordsConsoleKey.Key
+        enum.CriminalRecordsConsoleKey.Key:
           type: CriminalRecordsConsoleBoundUserInterface
     - type: IntrinsicUI
       uis:
-      - key: enum.CommunicationsConsoleUiKey.Key
-        toggleAction: ActionAIShowCommunications
-      - key: enum.CriminalRecordsConsoleKey.Key
-        toggleAction: ActionAiShowCriminalRecords
+        enum.CommunicationsConsoleUiKey.Key:
+          toggleAction: ActionAIShowCommunications
+        enum.CriminalRecordsConsoleKey.Key:
+          toggleAction: ActionAiShowCriminalRecords
     - type: ContainerContainer
       containers:
         tools: !type:Container
@@ -364,8 +364,8 @@
     key: enum.NukeUiKey.Key
   - type: UserInterface
     interfaces:
-    - key: enum.NukeUiKey.Key
-      type: NukeBoundUserInterface
+      enum.NukeUiKey.Key:
+        type: NukeBoundUserInterface
 
 
 - type: entity

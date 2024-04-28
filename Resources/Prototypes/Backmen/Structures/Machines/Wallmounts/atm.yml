@@ -116,7 +116,7 @@
     - type: ActivatableUIRequiresPower
     - type: UserInterface
       interfaces:
-        - key: enum.ATMUiKey.Key
+        enum.ATMUiKey.Key:
           type: ATMBoundUserInterface
     - type: PointLight
       enabled: false

@@ -4,6 +4,7 @@ using Content.Server.Backmen.Vampiric;
 using Content.Server.Bible.Components;
 using Content.Server.Chat.Managers;
 using Content.Server.GameTicking;
+using Content.Server.GameTicking.Components;
 using Content.Server.GameTicking.Rules;
 using Content.Server.GameTicking.Rules.Components;
 using Content.Server.Mind;
@@ -32,9 +33,9 @@ public sealed class BlobGameRuleSystem : GameRuleSystem<BlobGameRuleComponent>
     private int MaxBlob => _cfg.GetCVar(CCVars.BlobMax);
 
     [Dependency] private readonly IConfigurationManager _cfg = default!;
-    [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
-    [Dependency] private readonly IChatManager _chatManager = default!;
-    [Dependency] private readonly AntagSelectionSystem _antagSelection = default!;
+    //[Dependency] private readonly IPrototypeManager _prototypeManager = default!;
+    //[Dependency] private readonly IChatManager _chatManager = default!;
+    [Dependency] private readonly OldAntagSelectionSystem _antagSelection = default!;
     [Dependency] private readonly IRobustRandom _random = default!;
     [Dependency] private readonly IPlayerManager _playerManager = default!;
     [Dependency] private readonly SharedActionsSystem _actions = default!;
@@ -46,7 +47,6 @@ public sealed class BlobGameRuleSystem : GameRuleSystem<BlobGameRuleComponent>
 
         _sawmill = Logger.GetSawmill("preset");
 
-        SubscribeLocalEvent<RoundStartAttemptEvent>(OnStartAttempt);
         SubscribeLocalEvent<RulePlayerJobsAssignedEvent>(OnPlayersSpawned);
         SubscribeLocalEvent<PlayerSpawnCompleteEvent>(HandleLatejoin);
     }
@@ -134,22 +134,6 @@ public sealed class BlobGameRuleSystem : GameRuleSystem<BlobGameRuleComponent>
         foreach (var traitor in selectedTraitors)
         {
             MakeBlob(blob, traitor);
-        }
-    }
-
-    private void OnStartAttempt(RoundStartAttemptEvent ev)
-    {
-        var query = EntityQueryEnumerator<BlobGameRuleComponent, GameRuleComponent>();
-        while (query.MoveNext(out var uid, out _, out var gameRule))
-        {
-            if (!GameTicker.IsGameRuleAdded(uid, gameRule))
-                continue;
-
-            if (ev.Players.Length == 0)
-            {
-                _chatManager.DispatchServerAnnouncement(Loc.GetString("blob-no-one-ready"));
-                ev.Cancel();
-            }
         }
     }
 

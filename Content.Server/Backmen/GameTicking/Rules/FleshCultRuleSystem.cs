@@ -3,6 +3,7 @@ using Content.Server.Backmen.Flesh;
 using Content.Server.Backmen.GameTicking.Rules.Components;
 using Content.Server.Chat.Managers;
 using Content.Server.GameTicking;
+using Content.Server.GameTicking.Components;
 using Content.Server.GameTicking.Rules;
 using Content.Server.GameTicking.Rules.Components;
 using Content.Server.Mind;
@@ -64,7 +65,6 @@ public sealed class FleshCultRuleSystem : GameRuleSystem<FleshCultRuleComponent>
 
         _sawmill = Logger.GetSawmill("preset");
 
-        SubscribeLocalEvent<RoundStartAttemptEvent>(OnStartAttempt);
         SubscribeLocalEvent<RulePlayerJobsAssignedEvent>(OnPlayersSpawned);
         SubscribeLocalEvent<PlayerSpawnCompleteEvent>(HandleLatejoin);
         SubscribeLocalEvent<RoundEndTextAppendEvent>(OnRoundEndText);
@@ -125,31 +125,6 @@ public sealed class FleshCultRuleSystem : GameRuleSystem<FleshCultRuleComponent>
                 fleshCult.WinType = FleshCultRuleComponent.WinTypes.FleshHeartFinal;
                 _roundEndSystem.EndRound();
                 return;
-            }
-        }
-    }
-
-    private void OnStartAttempt(RoundStartAttemptEvent ev)
-    {
-        var query = EntityQueryEnumerator<FleshCultRuleComponent, GameRuleComponent>();
-        while (query.MoveNext(out var uid, out var fleshCult, out var gameRule))
-        {
-            if (!GameTicker.IsGameRuleAdded(uid, gameRule))
-                continue;
-
-            var minPlayers = _cfg.GetCVar(CCVars.FleshCultMinPlayers);
-            if (!ev.Forced && ev.Players.Length < minPlayers)
-            {
-                _chatManager.DispatchServerAnnouncement(Loc.GetString("flesh-cult-not-enough-ready-players",
-                    ("readyPlayersCount", ev.Players.Length), ("minimumPlayers", minPlayers)));
-                ev.Cancel();
-                continue;
-            }
-
-            if (ev.Players.Length == 0)
-            {
-                _chatManager.DispatchServerAnnouncement(Loc.GetString("flesh-cult-no-one-ready"));
-                ev.Cancel();
             }
         }
     }
