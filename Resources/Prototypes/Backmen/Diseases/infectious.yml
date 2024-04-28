@@ -235,11 +235,12 @@
   - !type:DiseaseReagentCure
     reagent:
       ReagentId: Coffee
-    min: 35
+    min: 10
   - !type:DiseaseReagentCure
     reagent:
       ReagentId: IrishCoffee
-    min: 10
+  - !type:DiseaseJustWaitCure
+    maxLength: 900
 
 - type: disease
   id: BleedersBite
