@@ -135,6 +135,8 @@
     - FullBodyOuter
     - Hardsuit
     - WhitelistChameleon
+  - type: ClothingRequiredStepTriggerImmune
+    slots: WITHOUT_POCKET
 
 - type: entity
   abstract: true
@@ -156,6 +158,8 @@
   - type: Tag
     tags:
       - FullBodyOuter
+  - type: ClothingRequiredStepTriggerImmune
+    slots: WITHOUT_POCKET
 
 - type: entity
   parent: ClothingOuterBase

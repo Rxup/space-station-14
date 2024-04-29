@@ -83,9 +83,10 @@
     tags:
     - CanPilot
     - DoorBumpOpener
-    - ShoesRequiredStepTriggerImmune
     # TODO: https://github.com/Backmen/Backmen/issues/1628
     # - GunsDisabled
+  - type: ClothingRequiredStepTriggerImmune
+    slots: WITHOUT_POCKET
   - type: Reactive
     groups:
       Acidic: [Touch]

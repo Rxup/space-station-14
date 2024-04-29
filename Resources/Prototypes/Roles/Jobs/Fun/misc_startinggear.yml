@@ -277,6 +277,10 @@
     back:
     - Flash
     - ClothingEyesGlassesSunglasses
+    - WeaponPistolMakarovsssp
+    - MagazinePistol
+    - ClothingNeckNKVDBagde
+    - CombatKnifeSpetsnaz
 
 #Thief Gear
 - type: startingGear
