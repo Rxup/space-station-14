@@ -102,7 +102,7 @@ public sealed class BlobRuleSystem : GameRuleSystem<BlobRuleComponent>
                             _nukeCode.SendNukeCodes(stationUid.Value);
                             blobRuleComp.Stage = BlobStage.Critical;
                             _alertLevelSystem.SetLevel(stationUid.Value, "gamma", true, true, true, true);
-                            EntityManager.System<SpecForcesSystem>().CallOps(SpecForcesType.RXBZZ, "ДСО");
+                            EntityManager.System<SpecForcesSystem>().CallOps("RXBZZ", "ДСО");
                         }
 
                         break;

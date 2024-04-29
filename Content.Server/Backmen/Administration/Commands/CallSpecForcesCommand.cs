@@ -4,6 +4,7 @@ using Content.Server.Backmen.SpecForces;
 using Content.Shared.Administration;
 using Robust.Shared.Console;
 using Content.Shared.Database;
+using Robust.Shared.Prototypes;
 
 namespace Content.Server.Backmen.Administration.Commands;
 
@@ -12,9 +13,10 @@ public sealed class CallSpecForcesCommand : IConsoleCommand
 {
     [Dependency] private readonly IAdminLogManager _adminLogger = default!;
     [Dependency] private readonly EntityManager EntityManager = default!;
+    [Dependency] private readonly IPrototypeManager _prototypes = default!;
     public string Command => "callspecforces";
 
-    public string Description => "вызов обр/рзбзз/спецназ";
+    public string Description => "Вызов команды спецсил";
 
     public string Help => "callspecforces";
 
@@ -24,24 +26,19 @@ public sealed class CallSpecForcesCommand : IConsoleCommand
             shell.WriteLine(Loc.GetString("shell-wrong-arguments-number"));
             return;
         }
-        if(!Enum.TryParse<SpecForcesType>(args[0], true, out var SpecType)){
-            shell.WriteLine(Loc.GetString("shell-invalid-entity-id"));
-            return;
-        }
         var specsys = EntityManager.System<SpecForcesSystem>();
-        if(!EntityManager.System<SpecForcesSystem>().CallOps(SpecType,shell.Player != null ? shell.Player.Name : "An administrator")){
+        if(!EntityManager.System<SpecForcesSystem>().CallOps(args[0],shell.Player != null ? shell.Player.Name : "An administrator")){
             shell.WriteLine($"Подождите еще {specsys.DelayTime} перед запуском следующих!");
         }
 
-        _adminLogger.Add(LogType.AdminMessage, LogImpact.Extreme, $"Admin {(shell.Player != null ? shell.Player.Name : "An administrator")} SpecForcesSystem call {SpecType}");
+        _adminLogger.Add(LogType.AdminMessage, LogImpact.Extreme, $"Admin {(shell.Player != null ? shell.Player.Name : "An administrator")} SpecForcesSystem call {args[0]}");
     }
-
-    public CompletionResult GetCompletion(IConsoleShell shell, string[] args){
+    /*public CompletionResult GetCompletion(IConsoleShell shell, string[] args){
         return args.Length switch
         {
             1 => CompletionResult.FromHintOptions(Enum.GetNames<SpecForcesType>(),
                 "Тип вызова"),
             _ => CompletionResult.Empty
         };
-    }
+    }*/
 }
