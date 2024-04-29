@@ -134,6 +134,7 @@ namespace Content.Client.Entry
             _prototypeManager.RegisterIgnore("shipwreckDestination");
             _prototypeManager.RegisterIgnore("shipwreckFaction");
             _prototypeManager.RegisterIgnore("bkmloadout");
+            _prototypeManager.RegisterIgnore("specForceTeam");
             // End Backmen.
 
             _componentFactory.GenerateNetIds();
