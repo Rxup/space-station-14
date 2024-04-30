@@ -20,8 +20,6 @@
       collection: FelinidMews
     Meows:
       collection: FelinidMeows
-    Hisses:
-      collection: FelinidHisses
     Purrs:
       collection: FelinidPurrs
     Growls:
@@ -50,8 +48,6 @@
       collection: FelinidMews
     Meows:
       collection: FelinidMeows
-    Hisses:
-      collection: FelinidHisses
     Purrs:
       collection: FelinidPurrs
     Growls:

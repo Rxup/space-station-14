@@ -1,23 +1,19 @@
 ﻿using System.Linq;
 using Content.Client.Corvax.TTS;
+using Content.Client.Lobby;
 using Content.Shared.Corvax.TTS;
 using Content.Shared.Preferences;
-using Robust.Shared.Random;
 using Content.Corvax.Interfaces.Client;
 
 namespace Content.Client.Preferences.UI;
 
 public sealed partial class HumanoidProfileEditor
 {
-    private IRobustRandom _random = default!;
-    private TTSSystem _ttsSys = default!;
     private IClientSponsorsManager? _sponsorsMgr;
     private List<TTSVoicePrototype> _voiceList = default!;
 
     private void InitializeVoice()
     {
-        _random = IoCManager.Resolve<IRobustRandom>();
-        _ttsSys = IoCManager.Resolve<IEntityManager>().System<TTSSystem>();
         _voiceList = _prototypeManager
             .EnumeratePrototypes<TTSVoicePrototype>()
             .Where(o => o.RoundStart)
@@ -30,7 +26,7 @@ public sealed partial class HumanoidProfileEditor
             SetVoice(_voiceList[args.Id].ID);
         };
 
-        _voicePlayButton.OnPressed += _ => { PlayTTS(); };
+        _voicePlayButton.OnPressed += _ => { UserInterfaceManager.GetUIController<LobbyUIController>().PlayTTS(); };
         IoCManager.Instance!.TryResolveType(out _sponsorsMgr);
     }
 
@@ -69,13 +65,5 @@ public sealed partial class HumanoidProfileEditor
         {
             SetVoice(_voiceList[firstVoiceChoiceId].ID);
         }
-    }
-
-    private void PlayTTS()
-    {
-        if (Profile is null)
-            return;
-
-        _ttsSys.RequestGlobalTTS(Content.Shared.Backmen.TTS.VoiceRequestType.Preview, Profile.Voice);
     }
 }

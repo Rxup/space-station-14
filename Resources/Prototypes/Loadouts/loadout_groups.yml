@@ -946,6 +946,7 @@
   id: SecurityShoes
   name: loadout-group-security-shoes
   loadouts:
+  - JackSecBoots # Corvax
   - CombatBoots
   - SecurityWinterBoots
 
