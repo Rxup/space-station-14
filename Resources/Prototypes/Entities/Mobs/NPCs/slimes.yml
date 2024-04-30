@@ -125,19 +125,14 @@
     makeSentient: true
     name: ghost-role-information-slimes-name
     description: ghost-role-information-slimes-description
-  - type: Speech
-    speechVerb: Slime
-    speechSounds: Slime
-  - type: TTS # Corvax-TTS
-    voice: Npc3
-  - type: TypingIndicator
-    proto: slime
   - type: NpcFactionMember
     factions:
     - SimpleNeutral
   - type: HTN
     rootTask:
       task: SimpleHostileCompound
+  - type: TTS # Corvax-TTS
+    voice: Npc3
 
 - type: entity
   name: geras

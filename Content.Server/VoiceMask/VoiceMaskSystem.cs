@@ -109,6 +109,6 @@ public sealed partial class VoiceMaskSystem : EntitySystem
         }
 
         if (_uiSystem.HasUi(owner, VoiceMaskUIKey.Key))
-            _uiSystem.SetUiState(owner, VoiceMaskUIKey.Key, new VoiceMaskBuiState(component.VoiceName, component.VoiceId, component.SpeechVerb)); // Corvax-TTS
+            _uiSystem.SetUiState(owner, VoiceMaskUIKey.Key, new VoiceMaskBuiState(component.VoiceName, component.VoiceId, component.SpeechVerb));
     }
 }
