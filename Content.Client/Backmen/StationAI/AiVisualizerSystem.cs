@@ -13,17 +13,20 @@ public sealed class AiVisualizerSystem : VisualizerSystem<StationAIComponent>
 {
     [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
     [Dependency] private readonly ISerializationManager _serialization = default!;
+    private EntityQuery<AIEyeComponent> _aiEye;
 
     public override void Initialize()
     {
         base.Initialize();
 
         SubscribeLocalEvent<StationAIComponent, AfterAutoHandleStateEvent>(OnUpdate);
+
+        _aiEye = GetEntityQuery<AIEyeComponent>();
     }
 
     protected override void OnAppearanceChange(EntityUid uid, StationAIComponent component, ref AppearanceChangeEvent args)
     {
-        if (HasComp<AIEyeComponent>(uid))
+        if (_aiEye.HasComp(uid))
         {
             base.OnAppearanceChange(uid, component, ref args);
             return;
@@ -34,7 +37,7 @@ public sealed class AiVisualizerSystem : VisualizerSystem<StationAIComponent>
 
     private void OnUpdate(Entity<StationAIComponent> ent, ref AfterAutoHandleStateEvent args)
     {
-        if (HasComp<AIEyeComponent>(ent))
+        if (_aiEye.HasComp(ent))
         {
             return;
         }
@@ -58,7 +61,7 @@ public sealed class AiVisualizerSystem : VisualizerSystem<StationAIComponent>
             spriteComponent.AddLayer(layer);
         }
 
-        EntityManager.AddComponent(ent, spriteComponent, true);
+        AddComp(ent, spriteComponent, true);
 
         UpdateAppearance(ent, ent, sprite: spriteComponent);
     }
@@ -68,6 +71,11 @@ public sealed class AiVisualizerSystem : VisualizerSystem<StationAIComponent>
     {
         if (!Resolve(id, ref appearance, ref sprite))
             return;
+
+        if (_aiEye.HasComp(id))
+        {
+            return;
+        }
 
         AppearanceSystem.TryGetData<bool>(id, PowerDeviceVisuals.Powered, out var powered, appearance);
         AppearanceSystem.TryGetData<bool>(id, AiVisuals.Dead, out var dead, appearance);
