@@ -4,7 +4,6 @@
     jumpsuit: ClothingUniformJumpsuitgalaxyred
     back: ClothingOrderBackpack
     belt: ClothingBeltSheathFilledOrd
-    ears: ClothingHeadsetOrden
     mask: ClothingMaskRed
     eyes: ClothingEyesGlassesSunglasses
     gloves: ClothingHandsGlovesOrdenHands
@@ -20,7 +19,6 @@
   equipment:
     jumpsuit: ClothingUniformJumpsuitgalaxyred
     back: ClothingOrderBackpack
-    ears: ClothingHeadsetOrden
     mask: ClothingMaskRed
     eyes: ClothingEyesGlassesSunglasses
     gloves: ClothingHandsGlovesOrdenHands
@@ -36,7 +34,6 @@
   equipment:
     jumpsuit: ClothingUniformJumpsuitgalaxy
     back: ClothingOrderBackpack
-    ears: ClothingHeadsetOrden
     mask: ClothingMaskRed
     eyes: ClothingEyesGlassesSunglasses
     gloves: ClothingHandsGlovesCombat

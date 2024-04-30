@@ -1,12 +1,4 @@
 - type: radioChannel
-  id: Redorden
-  name: Красный орден
-  keycode: 'ф'
-  frequency: 8117
-  color: "#8B0000"
-  longRange: true
-
-- type: radioChannel
   id: CSH
   name: CSH
   keycode: 'в'

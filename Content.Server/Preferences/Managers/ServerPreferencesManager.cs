@@ -308,8 +308,7 @@ namespace Content.Server.Preferences.Managers
             var collection = IoCManager.Instance!;
 
             // Corvax-Sponsors-Start
-            var sponsorPrototypes = _sponsors != null && _sponsors.TryGetPrototypes(userId, out var prototypes) ? prototypes.ToArray() : []; // Corvax-Sponsors
-            return SanitizePreferences(session, prefs, collection, sponsorPrototypes);
+            return SanitizePreferences(session, prefs, collection);
             // Corvax-Sponsors-End
         }
 
