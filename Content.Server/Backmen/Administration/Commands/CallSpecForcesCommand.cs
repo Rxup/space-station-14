@@ -22,7 +22,8 @@ public sealed class CallSpecForcesCommand : IConsoleCommand
 
     public void Execute(IConsoleShell shell, string argStr, string[] args)
     {
-        if(args.Length != 1){
+        if(args.Length != 1)
+        {
             shell.WriteLine(Loc.GetString("shell-wrong-arguments-number"));
             return;
         }
@@ -33,12 +34,13 @@ public sealed class CallSpecForcesCommand : IConsoleCommand
 
         _adminLogger.Add(LogType.AdminMessage, LogImpact.Extreme, $"Admin {(shell.Player != null ? shell.Player.Name : "An administrator")} SpecForcesSystem call {args[0]}");
     }
-    /*public CompletionResult GetCompletion(IConsoleShell shell, string[] args){
+    public CompletionResult GetCompletion(IConsoleShell shell, string[] args)
+    {
+        var variants = CompletionHelper.PrototypeIDs<SpecForceTeamPrototype>(true, _prototypes);
         return args.Length switch
         {
-            1 => CompletionResult.FromHintOptions(Enum.GetNames<SpecForcesType>(),
-                "Тип вызова"),
+            1 => CompletionResult.FromHintOptions(variants, "Тип вызова"),
             _ => CompletionResult.Empty
         };
-    }*/
+    }
 }

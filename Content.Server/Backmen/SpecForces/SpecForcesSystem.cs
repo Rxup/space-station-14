@@ -1,3 +1,4 @@
+using System.Configuration;
 using System.Linq;
 using Content.Server.GameTicking;
 using Content.Shared.GameTicking;
@@ -10,12 +11,15 @@ using Robust.Shared.Random;
 using Robust.Server.Player;
 using Content.Server.Chat.Systems;
 using Content.Server.Station.Systems;
+using Content.Shared.Storage;
 using Robust.Shared.Utility;
-using Robust.Shared.Audio;
 using System.Threading;
 using Content.Server.Actions;
 using Content.Server.Ghost.Roles.Components;
 using Content.Server.RandomMetadata;
+using Content.Shared.Backmen.CCVar;
+using Content.Shared.Coordinates;
+using Robust.Shared.Configuration;
 using Robust.Shared.Serialization.Manager;
 
 namespace Content.Server.Backmen.SpecForces;
@@ -32,15 +36,18 @@ public sealed class SpecForcesSystem : EntitySystem
     [Dependency] private readonly IPrototypeManager _prototypes = default!;
     [Dependency] private readonly ISerializationManager _serialization = default!;
     [Dependency] private readonly ActionsSystem _actions = default!;
+    [Dependency] private readonly IConfigurationManager _configurationManager = default!;
 
     [ViewVariables] public List<SpecForcesHistory> CalledEvents { get; private set; } = new();
     [ViewVariables] public TimeSpan LastUsedTime { get; private set; } = TimeSpan.Zero;
-    private readonly TimeSpan _delayUsage = TimeSpan.FromMinutes(2);
     private readonly ReaderWriterLockSlim _callLock = new();
+    private TimeSpan DelayUsage => TimeSpan.FromMinutes(_configurationManager.GetCVar(CCVars.SpecForceDelay));
+    private ISawmill _sawmill = default!;
 
     public override void Initialize()
     {
         base.Initialize();
+        _sawmill = IoCManager.Resolve<ILogManager>().GetSawmill("specforce");
 
         SubscribeLocalEvent<SpecForceComponent, MapInitEvent>(OnMapInit, after: new[] { typeof(RandomMetadataSystem) });
         SubscribeLocalEvent<RoundEndTextAppendEvent>(OnRoundEnd);
@@ -75,7 +82,7 @@ public sealed class SpecForcesSystem : EntitySystem
         get
         {
             var ct = _gameTicker.RoundDuration();
-            var lastUsedTime = LastUsedTime + _delayUsage;
+            var lastUsedTime = LastUsedTime + DelayUsage;
             return ct > lastUsedTime ? TimeSpan.Zero : lastUsedTime - ct;
         }
     }
@@ -93,7 +100,7 @@ public sealed class SpecForcesSystem : EntitySystem
             var currentTime = _gameTicker.RoundDuration();
 
 #if !DEBUG
-            if (LastUsedTime + _delayUsage > currentTime)
+            if (LastUsedTime + DelayUsage > currentTime)
             {
                 return false;
             }
@@ -163,29 +170,29 @@ public sealed class SpecForcesSystem : EntitySystem
     private void SpawnGhostRole(SpecForceTeamPrototype proto, EntityUid shuttle)
     {
         var spawns = new List<EntityCoordinates>();
-
-        foreach (var (_, meta, xform) in EntityManager
-                     .EntityQuery<SpawnPointComponent, MetaDataComponent, TransformComponent>(true))
+        var query = EntityQueryEnumerator<SpawnPointComponent, MetaDataComponent, TransformComponent>();
+        while (query.MoveNext(out _, out var meta, out var xform))
         {
-            if (meta.EntityPrototype?.ID != proto.SpawnMarker)
+            if (meta.EntityPrototype!.ID != proto.SpawnMarker)
                 continue;
 
-            if (xform.ParentUid != shuttle)
+            if (xform.GridUid != shuttle)
                 continue;
 
             spawns.Add(xform.Coordinates);
-            break;
         }
 
         if (spawns.Count == 0)
         {
+            _sawmill.Warning("Shuttle has no valid spawns for SpecForces! Making something up...");
             spawns.Add(Transform(shuttle).Coordinates);
         }
 
         // Spawn Guaranteed SpecForces from the prototype.
         foreach (var mob in proto.GuaranteedSpawn)
         {
-            SpawnEntity(mob, _random.Pick(spawns));
+            var spawned = SpawnEntity(mob, _random.Pick(spawns));
+            _sawmill.Info($"Successfully spawned {ToPrettyString(spawned)} SpecForce.");
         }
 
         // Count how many other forces there should be.
@@ -200,7 +207,8 @@ public sealed class SpecForcesSystem : EntitySystem
             foreach (var mob in proto.SpecForceSpawn.Where(mob => countExtra > 0))
             {
                 countExtra--;
-                SpawnEntity(mob, _random.Pick(spawns));
+                var spawned = SpawnEntity(mob, _random.Pick(spawns));
+                _sawmill.Info($"Successfully spawned {ToPrettyString(spawned)} SpecForce.");
             }
         }
     }
@@ -209,7 +217,7 @@ public sealed class SpecForcesSystem : EntitySystem
     /// Spawns shuttle for SpecForces on a new map.
     /// </summary>
     /// <param name="shuttlePath"></param>
-    /// <returns>Grid of the shuttle</returns>
+    /// <returns>Grid's entity of the shuttle.</returns>
     private EntityUid? SpawnShuttle(string shuttlePath)
     {
         var shuttleMap = _mapManager.CreateMap();
@@ -236,30 +244,15 @@ public sealed class SpecForcesSystem : EntitySystem
             return;
         }
 
-        // TODO: This probably needs refactor
         if (proto.AnnouncementText == null || proto.AnnouncementTitle == null)
             return;
 
-        if (proto.AnnouncementSoundPath != null)
+        foreach (var station in stations)
         {
-            var announcementSound = new SoundPathSpecifier(proto.AnnouncementSoundPath);
-            foreach (var station in stations)
-            {
-                _chatSystem.DispatchStationAnnouncement(station,
-                    Loc.GetString(proto.AnnouncementText),
-                    Loc.GetString(proto.AnnouncementTitle),
-                    false, announcementSound);
-            }
-        }
-        else
-        {
-            foreach (var station in stations)
-            {
-                _chatSystem.DispatchStationAnnouncement(station,
-                    Loc.GetString(proto.AnnouncementText),
-                    Loc.GetString(proto.AnnouncementTitle),
-                    false);
-            }
+            _chatSystem.DispatchStationAnnouncement(station,
+                Loc.GetString(proto.AnnouncementText),
+                Loc.GetString(proto.AnnouncementTitle),
+                false, proto.AnnouncementSoundPath);
         }
     }
 

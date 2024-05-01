@@ -9,7 +9,6 @@
   announcementSoundPath: /Audio/Corvax/Adminbuse/Yesert.ogg
   maxRolesAmount: 8
   guaranteedSpawn:
-    - SpawnMobHumanSFOfficer
     - SpawnMobHumanERTLeaderEVAV2_1
     - SpawnMobHumanERTEngineerEVAV2_1
   specForceSpawn:
@@ -25,7 +24,7 @@
   spawnMarker: MarkerSpecforce
   announcementText: spec-forces-system-RXBZZ-annonce
   announcementTitle: spec-forces-system-RXBZZ-title
-  maxRolesAmount: 7
+  maxRolesAmount: 8
   guaranteedSpawn:
     - SpawnMobHumanSFOfficer
     - MobHumanRXBZZLeader
@@ -37,7 +36,7 @@
 - type: specForceTeam
   id: DeathSquad
   specForceName: spec-forces-system-deathsquad-name
-  shuttlePath: Maps/Backmen/Grids/NT-CC-SRV-013.yml
+  shuttlePath: Maps/Backmen/Grids/Invincible.yml
   spawnMarker: MarkerSpecforce
   maxRolesAmount: 5
   guaranteedSpawn:
@@ -53,8 +52,10 @@
   spawnMarker: MarkerSpecforce
   announcementText: spec-forces-system-ertcall-annonce
   announcementTitle: spec-forces-system-ertAlpha-title
+  announcementSoundPath: /Audio/Corvax/Adminbuse/Yesert.ogg
   maxRolesAmount: 5
   guaranteedSpawn:
+    - SpawnMobHumanSFOfficer
     - SpawnMobHumanERTLeaderAlpha1
   specForceSpawn:
     - SpawnMobHumanERTOperativeAlpha1
@@ -67,6 +68,7 @@
   spawnMarker: MarkerSpecforce
   announcementText: spec-forces-system-ertcall-annonce
   announcementTitle: spec-forces-system-ertEpsilon-title
+  announcementSoundPath: /Audio/Corvax/Adminbuse/Yesert.ogg
   maxRolesAmount: 10
   guaranteedSpawn:
     - SpawnMobHumanERTLeaderEpsilon
