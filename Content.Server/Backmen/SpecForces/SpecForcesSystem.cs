@@ -87,7 +87,7 @@ public sealed class SpecForcesSystem : EntitySystem
         }
     }
 
-    public bool CallOps(string protoId, string source = "")
+    public bool CallOps(ProtoId<SpecForceTeamPrototype> protoId, string source = "")
     {
         _callLock.EnterWriteLock();
         try

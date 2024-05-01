@@ -38,7 +38,7 @@
   specForceName: spec-forces-system-deathsquad-name
   shuttlePath: Maps/Backmen/Grids/Invincible.yml
   spawnMarker: MarkerSpecforce
-  maxRolesAmount: 5
+  maxRolesAmount: 6
   guaranteedSpawn:
     - SpawnMobHumanSpecialReAgentCOM
   specForceSpawn:
@@ -53,7 +53,7 @@
   announcementText: spec-forces-system-ertcall-annonce
   announcementTitle: spec-forces-system-ertAlpha-title
   announcementSoundPath: /Audio/Corvax/Adminbuse/Yesert.ogg
-  maxRolesAmount: 5
+  maxRolesAmount: 6
   guaranteedSpawn:
     - SpawnMobHumanSFOfficer
     - SpawnMobHumanERTLeaderAlpha1
