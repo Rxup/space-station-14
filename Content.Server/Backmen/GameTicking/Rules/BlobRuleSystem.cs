@@ -32,6 +32,9 @@ public sealed class BlobRuleSystem : GameRuleSystem<BlobRuleComponent>
     [Dependency] private readonly AlertLevelSystem _alertLevelSystem = default!;
     [Dependency] private readonly IChatManager _chatManager = default!;
 
+    [ValidatePrototypeId<SpecForceTeamPrototype>]
+    private const string Rxbzz = "RXBZZ";
+
     private ISawmill _sawmill = default!;
     private static readonly SoundPathSpecifier BlobDetectAudio = new SoundPathSpecifier("/Audio/Corvax/Adminbuse/Outbreak5.ogg");
 
@@ -102,7 +105,7 @@ public sealed class BlobRuleSystem : GameRuleSystem<BlobRuleComponent>
                             _nukeCode.SendNukeCodes(stationUid.Value);
                             blobRuleComp.Stage = BlobStage.Critical;
                             _alertLevelSystem.SetLevel(stationUid.Value, "gamma", true, true, true, true);
-                            EntityManager.System<SpecForcesSystem>().CallOps(SpecForcesType.RXBZZ, "ДСО");
+                            EntityManager.System<SpecForcesSystem>().CallOps(Rxbzz, "ДСО");
                         }
 
                         break;
