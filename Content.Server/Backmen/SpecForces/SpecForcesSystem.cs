@@ -200,7 +200,7 @@ public sealed class SpecForcesSystem : EntitySystem
         var countExtra = _playerManager.PlayerCount / proto.SpawnPerPlayers;
         countExtra = Math.Max(0, countExtra - proto.GuaranteedSpawn.Count); // Either zero or bigger than zero, no negatives
         countExtra = Math.Min(countExtra, proto.MaxRolesAmount - proto.GuaranteedSpawn.Count); // If bigger than MaxAmount, set to MaxAmount and extract already spawned roles
-C
+
         // Spawn Guaranteed SpecForces from the prototype.
         // If all mobs from the list are spawned and we still have free slots, restart the cycle again.
         var toSpawnForces = EntitySpawnCollection.GetSpawns(proto.SpecForceSpawn, _random);
