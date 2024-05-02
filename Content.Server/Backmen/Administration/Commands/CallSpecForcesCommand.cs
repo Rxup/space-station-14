@@ -36,10 +36,11 @@ public sealed class CallSpecForcesCommand : IConsoleCommand
     }
     public CompletionResult GetCompletion(IConsoleShell shell, string[] args)
     {
-        var variants = CompletionHelper.PrototypeIDs<SpecForceTeamPrototype>(true, _prototypes);
         return args.Length switch
         {
-            1 => CompletionResult.FromHintOptions(variants, "Тип вызова"),
+            1 => CompletionResult.FromHintOptions(
+                CompletionHelper.PrototypeIDs<SpecForceTeamPrototype>
+                    (true, _prototypes), "Тип вызова"),
             _ => CompletionResult.Empty
         };
     }

@@ -189,7 +189,8 @@ public sealed class SpecForcesSystem : EntitySystem
         }
 
         // Spawn Guaranteed SpecForces from the prototype.
-        foreach (var mob in proto.GuaranteedSpawn)
+        var toSpawnGuaranteed = EntitySpawnCollection.GetSpawns(proto.GuaranteedSpawn, _random);
+        foreach (var mob in toSpawnGuaranteed)
         {
             var spawned = SpawnEntity(mob, _random.Pick(spawns));
             _sawmill.Info($"Successfully spawned {ToPrettyString(spawned)} SpecForce.");
@@ -199,12 +200,13 @@ public sealed class SpecForcesSystem : EntitySystem
         var countExtra = _playerManager.PlayerCount / proto.SpawnPerPlayers;
         countExtra = Math.Max(0, countExtra - proto.GuaranteedSpawn.Count); // Either zero or bigger than zero, no negatives
         countExtra = Math.Min(countExtra, proto.MaxRolesAmount - proto.GuaranteedSpawn.Count); // If bigger than MaxAmount, set to MaxAmount and extract already spawned roles
-
+C
         // Spawn Guaranteed SpecForces from the prototype.
         // If all mobs from the list are spawned and we still have free slots, restart the cycle again.
+        var toSpawnForces = EntitySpawnCollection.GetSpawns(proto.SpecForceSpawn, _random);
         while (countExtra > 0)
         {
-            foreach (var mob in proto.SpecForceSpawn.Where(mob => countExtra > 0))
+            foreach (var mob in toSpawnForces.Where( _ => countExtra > 0))
             {
                 countExtra--;
                 var spawned = SpawnEntity(mob, _random.Pick(spawns));
@@ -261,7 +263,7 @@ public sealed class SpecForcesSystem : EntitySystem
         foreach (var calledEvent in CalledEvents)
         {
             ev.AddLine(Loc.GetString("spec-forces-system-round-end",
-                ("specforce", calledEvent.Event),
+                ("specforce", Loc.GetString(calledEvent.Event)),
                 ("time", calledEvent.RoundTime.ToString(@"hh\:mm\:ss")),
                 ("who", calledEvent.WhoCalled)));
         }

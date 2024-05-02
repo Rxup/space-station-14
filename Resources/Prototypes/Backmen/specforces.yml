@@ -9,12 +9,12 @@
   announcementSoundPath: /Audio/Corvax/Adminbuse/Yesert.ogg
   maxRolesAmount: 8
   guaranteedSpawn:
-    - SpawnMobHumanERTLeaderEVAV2_1
-    - SpawnMobHumanERTEngineerEVAV2_1
+    - id: SpawnMobHumanERTLeaderEVAV2_1
+    - id: SpawnMobHumanERTEngineerEVAV2_1
   specForceSpawn:
-    - SpawnMobHumanERTSecurityEVAV2_1
-    - SpawnMobHumanERTMedicalEVAV2_1
-    - SpawnMobHumanERTJunitorEVAV2_1
+    - id: SpawnMobHumanERTSecurityEVAV2_1
+    - id: SpawnMobHumanERTMedicalEVAV2_1
+    - id: SpawnMobHumanERTJunitorEVAV2_1
 
 # RXBZZ
 - type: specForceTeam
@@ -26,11 +26,11 @@
   announcementTitle: spec-forces-system-RXBZZ-title
   maxRolesAmount: 8
   guaranteedSpawn:
-    - SpawnMobHumanSFOfficer
-    - MobHumanRXBZZLeader
-    - MobHumanRXBZZFlamer
+    - id: SpawnMobHumanSFOfficer
+    - id: MobHumanRXBZZLeader
+    - id: MobHumanRXBZZFlamer
   specForceSpawn:
-    - SpawnMobHumanRXBZZ
+    - id: SpawnMobHumanRXBZZ
 
 # Death Squad
 - type: specForceTeam
@@ -40,9 +40,9 @@
   spawnMarker: MarkerSpecforce
   maxRolesAmount: 6
   guaranteedSpawn:
-    - SpawnMobHumanSpecialReAgentCOM
+    - id: SpawnMobHumanSpecialReAgentCOM
   specForceSpawn:
-    - SpawnMobHumanSpecialReAgent
+    - id: SpawnMobHumanSpecialReAgent
 
 # ERT Alpha
 - type: specForceTeam
@@ -55,10 +55,10 @@
   announcementSoundPath: /Audio/Corvax/Adminbuse/Yesert.ogg
   maxRolesAmount: 6
   guaranteedSpawn:
-    - SpawnMobHumanSFOfficer
-    - SpawnMobHumanERTLeaderAlpha1
+    - id: SpawnMobHumanSFOfficer
+    - id: SpawnMobHumanERTLeaderAlpha1
   specForceSpawn:
-    - SpawnMobHumanERTOperativeAlpha1
+    - id: SpawnMobHumanERTOperativeAlpha1
 
 # ERT Epsilon
 - type: specForceTeam
@@ -71,11 +71,11 @@
   announcementSoundPath: /Audio/Corvax/Adminbuse/Yesert.ogg
   maxRolesAmount: 10
   guaranteedSpawn:
-    - SpawnMobHumanERTLeaderEpsilon
-    - SpawnMobHumanERTEngineerEpsilon
-    - SpawnMobHumanERTSecurityEpsilon
+    - id: SpawnMobHumanERTLeaderEpsilon
+    - id: SpawnMobHumanERTEngineerEpsilon
+    - id: SpawnMobHumanERTSecurityEpsilon
   specForceSpawn:
-    - SpawnMobHumanERTSecurityEpsilon
-    - SpawnMobHumanERTEngineerEpsilon
-    - SpawnMobHumanERTMedicalEpsilon
-    - SpawnMobHumanERTJanitorEpsilon
+    - id: SpawnMobHumanERTSecurityEpsilon
+    - id: SpawnMobHumanERTEngineerEpsilon
+    - id: SpawnMobHumanERTMedicalEpsilon
+    - id: SpawnMobHumanERTJanitorEpsilon
