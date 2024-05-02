@@ -1,6 +1,8 @@
-namespace Content.Server.Backmen.Psionics;
+using Robust.Shared.GameStates;
 
-[RegisterComponent]
+namespace Content.Shared.Backmen.Psionics.Components;
+
+[RegisterComponent, NetworkedComponent, AutoGenerateComponentState]
 public sealed partial class PotentialPsionicComponent : Component
 {
     [DataField("chance"), ViewVariables(VVAccess.ReadWrite)]
@@ -9,5 +11,6 @@ public sealed partial class PotentialPsionicComponent : Component
     /// <summary>
     /// YORO (you only reroll once)
     /// </summary>
+    [AutoNetworkedField]
     public bool Rerolled = false;
 }

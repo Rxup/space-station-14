@@ -4,6 +4,7 @@ using Content.Server.GameTicking.Components;
 using Content.Server.GameTicking.Rules.Components;
 using Content.Server.StationEvents.Events;
 using Content.Shared.Backmen.Abilities.Psionics;
+using Content.Shared.Backmen.Psionics.Components;
 using Content.Shared.Mobs.Components;
 using Content.Shared.Mobs.Systems;
 using Content.Shared.StatusEffect;
@@ -31,9 +32,9 @@ internal sealed class PsionicCatGotYourTongueRule : StationEventSystem<PsionicCa
         List<EntityUid> psionicList = new();
 
         var query = EntityQueryEnumerator<PotentialPsionicComponent, MobStateComponent>();
-        while (query.MoveNext(out var psion, out _, out _))
+        while (query.MoveNext(out var psion, out _, out var mobStateComponent))
         {
-            if (_mobStateSystem.IsAlive(psion) && !HasComp<PsionicInsulationComponent>(psion))
+            if (_mobStateSystem.IsAlive(psion, mobStateComponent) && !HasComp<PsionicInsulationComponent>(psion))
                 psionicList.Add(psion);
         }
 

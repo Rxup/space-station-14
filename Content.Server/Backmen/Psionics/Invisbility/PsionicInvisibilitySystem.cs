@@ -1,11 +1,9 @@
 using Content.Server.Backmen.Abilities.Psionics;
 using Content.Server.Backmen.Eye;
-using Content.Server.NPC.Systems;
 using Content.Shared.Backmen.Abilities.Psionics;
 using Content.Shared.Backmen.Psionics;
-using Content.Shared.CombatMode.Pacification;
+using Content.Shared.Backmen.Psionics.Components;
 using Content.Shared.Eye;
-using Content.Shared.Interaction.Events;
 using Content.Shared.NPC.Components;
 using Content.Shared.NPC.Prototypes;
 using Content.Shared.NPC.Systems;
@@ -99,11 +97,10 @@ public sealed class PsionicInvisibilitySystem : EntitySystem
 
     private void OnInvisInit(EntityUid uid, PsionicallyInvisibleComponent component, ComponentInit args)
     {
-        var visibility = EntityManager.EnsureComponent<VisibilityComponent>(uid);
-
-        _visibilitySystem.AddLayer(uid, visibility, (int) VisibilityFlags.PsionicInvisibility, false);
-        _visibilitySystem.RemoveLayer(uid, visibility, (int) VisibilityFlags.Normal, false);
-        _visibilitySystem.RefreshVisibility(uid, visibilityComponent: visibility);
+        Entity<VisibilityComponent?> vis = (uid, EnsureComp<VisibilityComponent>(uid));
+        _visibilitySystem.AddLayer(vis, (int) VisibilityFlags.PsionicInvisibility, false);
+        _visibilitySystem.RemoveLayer(vis, (int) VisibilityFlags.Normal, false);
+        _visibilitySystem.RefreshVisibility(uid, visibilityComponent: vis);
 
         SetCanSeePsionicInvisiblity(uid, true);
     }
@@ -113,8 +110,9 @@ public sealed class PsionicInvisibilitySystem : EntitySystem
     {
         if (TryComp<VisibilityComponent>(uid, out var visibility))
         {
-            _visibilitySystem.RemoveLayer(uid, visibility, (int) VisibilityFlags.PsionicInvisibility, false);
-            _visibilitySystem.AddLayer(uid, visibility, (int) VisibilityFlags.Normal, false);
+            Entity<VisibilityComponent?> vis = (uid, visibility);
+            _visibilitySystem.RemoveLayer(vis, (int) VisibilityFlags.PsionicInvisibility, false);
+            _visibilitySystem.AddLayer(vis, (int) VisibilityFlags.Normal, false);
             _visibilitySystem.RefreshVisibility(uid, visibilityComponent: visibility);
         }
         if (HasComp<PotentialPsionicComponent>(uid) && !HasComp<PsionicInsulationComponent>(uid))
