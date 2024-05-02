@@ -557,18 +557,17 @@ namespace Content.Shared.Preferences
         }
 
         // Corvax-TTS-Start
-        // MUST NOT BE PUBLIC, BUT....
+        // SHOULD BE NOT PUBLIC, BUT....
         public static bool CanHaveVoice(TTSVoicePrototype voice, Sex sex)
         {
             return voice.RoundStart && sex == Sex.Unsexed || (voice.Sex == sex || voice.Sex == Sex.Unsexed);
         }
         // Corvax-TTS-End
 
-
         public ICharacterProfile Validated(ICommonSession session, IDependencyCollection collection, string[] sponsorPrototypes)
         {
             var profile = new HumanoidCharacterProfile(this);
-            profile.EnsureValid(session, collection, sponsorPrototypes); // Corvax-Sponsors
+            profile.EnsureValid(session, collection, sponsorPrototypes);
             return profile;
         }
 

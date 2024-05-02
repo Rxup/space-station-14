@@ -16,11 +16,11 @@ namespace Content.Shared.Preferences
         /// <summary>
         ///     Makes this profile valid so there's no bad data like negative ages.
         /// </summary>
-        void EnsureValid(ICommonSession session, IDependencyCollection collection, string[] sponsorPrototypes); // Corvax-Sponsors: Integrated filtering for sponsor prototypes (markings/species/etc)
+        void EnsureValid(ICommonSession session, IDependencyCollection collection, string[] sponsorPrototypes);
 
         /// <summary>
         /// Gets a copy of this profile that has <see cref="EnsureValid"/> applied, i.e. no invalid data.
         /// </summary>
-        ICharacterProfile Validated(ICommonSession session, IDependencyCollection collection, string[] sponsorPrototypes); // Corvax-Sponsors: Integrated filtering for sponsor prototypes (markings/species/etc)
+        ICharacterProfile Validated(ICommonSession session, IDependencyCollection collection, string[] sponsorPrototypes);
     }
 }

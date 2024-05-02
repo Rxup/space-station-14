@@ -128,8 +128,7 @@
   - type: Speech
     speechVerb: Slime
     speechSounds: Slime
-  - type: TTS # Corvax-TTS
-    voice: Npc3
+    allowedEmotes: ['Squish']
   - type: TypingIndicator
     proto: slime
   - type: NpcFactionMember
@@ -138,6 +137,8 @@
   - type: HTN
     rootTask:
       task: SimpleHostileCompound
+  - type: TTS # Corvax-TTS
+    voice: Npc3
 
 - type: entity
   name: geras

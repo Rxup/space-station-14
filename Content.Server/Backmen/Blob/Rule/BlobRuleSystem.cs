@@ -1,25 +1,13 @@
-﻿using System.Linq;
-using Content.Server.Antag;
-using Content.Server.Backmen.Vampiric;
-using Content.Server.Bible.Components;
-using Content.Server.Chat.Managers;
-using Content.Server.GameTicking;
-using Content.Server.GameTicking.Components;
+﻿using Content.Server.GameTicking;
 using Content.Server.GameTicking.Rules;
-using Content.Server.GameTicking.Rules.Components;
-using Content.Server.Mind;
 using Content.Shared.Actions;
 using Content.Shared.Antag;
-using Content.Shared.Backmen.Blob;
 using Content.Shared.Backmen.Blob.Components;
 using Content.Shared.Backmen.CCVar;
-using Content.Shared.Humanoid;
-using Content.Shared.Preferences;
 using Content.Shared.Roles;
 using Robust.Server.Player;
 using Robust.Shared.Configuration;
 using Robust.Shared.Player;
-using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 
 namespace Content.Server.Backmen.Blob.Rule;
