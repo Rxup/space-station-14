@@ -14,7 +14,7 @@
 
 "Changes: Localization":
 - changed-files:
-  - any-glob-to-any-file: 'Resources/Locale/**/*.ftl'
+  - any-glob-to-any-file: '**/*.ftl'
 
 "No C#":
 - changed-files:
