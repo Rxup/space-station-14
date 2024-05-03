@@ -8,7 +8,7 @@
       unique: true
       difficulty: 1
       icon:
-        sprite: Mobs/Aliens/blob.rsi
+        sprite: Backmen/Mobs/Aliens/blob.rsi
         state: blob_nuke_overlay
     - type: RoleRequirement
       roles:

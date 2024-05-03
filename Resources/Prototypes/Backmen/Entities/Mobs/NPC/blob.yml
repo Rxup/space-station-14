@@ -14,7 +14,7 @@
       sprite: Markers/jobs.rsi
       layers:
         - state: green
-        - sprite: Mobs/Aliens/blob.rsi
+        - sprite: Backmen/Mobs/Aliens/blob.rsi
           state: blob_nuke_overlay
 
 
@@ -40,7 +40,7 @@
       damageModifierSet: BlobMob
     - type: Clothing
       quickEquip: false
-      sprite: Mobs/Aliens/blob.rsi
+      sprite: Backmen/Mobs/Aliens/blob.rsi
       equippedPrefix: blobPod
       slots:
         - HEAD
@@ -112,7 +112,7 @@
       baseSprintSpeed: 4
     - type: Sprite
       drawdepth: Mobs
-      sprite: Mobs/Aliens/blob.rsi
+      sprite: Backmen/Mobs/Aliens/blob.rsi
       state: blobpod
 
 
@@ -191,7 +191,7 @@
       baseWalkSpeed: 2.5
       baseSprintSpeed: 3
     - type: Sprite
-      sprite: Mobs/Aliens/blob.rsi
+      sprite: Backmen/Mobs/Aliens/blob.rsi
       drawdepth: Mobs
       layers:
         - map: [ "enum.DamageStateVisualLayers.Base" ]
@@ -269,7 +269,7 @@
           - !type:DoActsBehavior
             acts: [ "Destruction" ]
   - type: Sprite
-    sprite: Mobs/Aliens/blob.rsi
+    sprite: Backmen/Mobs/Aliens/blob.rsi
     drawdepth: BlobTiles
     layers:
       - map: [ "enum.DamageStateVisualLayers.Base" ]
@@ -348,7 +348,7 @@
   - type: BlobResource
     pointsPerPulsed: 5
   - type: Sprite
-    sprite: Mobs/Aliens/blob.rsi
+    sprite: Backmen/Mobs/Aliens/blob.rsi
     drawdepth: BlobTiles
     layers:
       - map: [ "enum.DamageStateVisualLayers.Base" ]
@@ -401,7 +401,7 @@
               acts: [ "Destruction" ]
     - type: BlobFactory
     - type: Sprite
-      sprite: Mobs/Aliens/blob.rsi
+      sprite: Backmen/Mobs/Aliens/blob.rsi
       drawdepth: BlobTiles
       layers:
         - map: [ "enum.DamageStateVisualLayers.Base" ]
@@ -439,7 +439,7 @@
               acts: [ "Destruction" ]
     - type: BlobResource
     - type: Sprite
-      sprite: Mobs/Aliens/blob.rsi
+      sprite: Backmen/Mobs/Aliens/blob.rsi
       drawdepth: BlobTiles
       layers:
         - map: [ "enum.DamageStateVisualLayers.Base" ]
@@ -478,7 +478,7 @@
               acts: [ "Destruction" ]
     - type: BlobNode
     - type: Sprite
-      sprite: Mobs/Aliens/blob.rsi
+      sprite: Backmen/Mobs/Aliens/blob.rsi
       drawdepth: BlobTiles
       layers:
         - map: [ "enum.DamageStateVisualLayers.Base" ]
@@ -507,7 +507,7 @@
             - !type:DoActsBehavior
               acts: [ "Destruction" ]
     - type: Sprite
-      sprite: Mobs/Aliens/blob.rsi
+      sprite: Backmen/Mobs/Aliens/blob.rsi
       drawdepth: BlobTiles
       layers:
         - map: [ "enum.DamageStateVisualLayers.Base" ]
@@ -543,7 +543,7 @@
         - Energy
     - type: Airtight
     - type: Sprite
-      sprite: Mobs/Aliens/blob.rsi
+      sprite: Backmen/Mobs/Aliens/blob.rsi
       drawdepth: BlobTiles
       layers:
         - map: [ "enum.DamageStateVisualLayers.Base" ]
@@ -637,7 +637,7 @@
     - type: Examiner
       skipChecks: true
     - type: Sprite
-      sprite: Mobs/Aliens/blob.rsi
+      sprite: Backmen/Mobs/Aliens/blob.rsi
       color: "#fc8403"
       state: marker
       noRot: true
