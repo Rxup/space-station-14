@@ -4511,6 +4511,43 @@ entities:
     - type: Transform
       pos: -1.5,-16.5
       parent: 1
+- proto: MarkerSpecforce
+  entities:
+  - uid: 1010
+    components:
+    - type: Transform
+      pos: 0.5,-2.5
+      parent: 1
+  - uid: 1011
+    components:
+    - type: Transform
+      pos: -1.5,-2.5
+      parent: 1
+  - uid: 1012
+    components:
+    - type: Transform
+      pos: -1.5,-0.5
+      parent: 1
+  - uid: 1013
+    components:
+    - type: Transform
+      pos: 0.5,-0.5
+      parent: 1
+  - uid: 1014
+    components:
+    - type: Transform
+      pos: -0.5,6.5
+      parent: 1
+  - uid: 1015
+    components:
+    - type: Transform
+      pos: -3.5,6.5
+      parent: 1
+  - uid: 1016
+    components:
+    - type: Transform
+      pos: 2.5,6.5
+      parent: 1
 - proto: MaterialBiomass
   entities:
   - uid: 1007
