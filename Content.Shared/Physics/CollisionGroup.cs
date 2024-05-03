@@ -41,12 +41,14 @@ public enum CollisionGroup
     FlyingMobLayer = Opaque | BulletImpassable,
 
     // start-backmen: blob
+
     BlobMobMask = Impassable | HighImpassable | MidImpassable | LowImpassable,
     BlobMobLayer = Opaque | BulletImpassable,
-    // end-backmen: blob
 
     FlyingBlobMobMask = Impassable | HighImpassable,
     FlyingBlobMobLayer = Opaque | BulletImpassable,
+
+    // end-backmen: blob
 
     // Mechs
     LargeMobMask = Impassable | HighImpassable | MidImpassable | LowImpassable | BlobImpassable,
