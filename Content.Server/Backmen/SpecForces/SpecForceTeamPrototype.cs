@@ -45,7 +45,7 @@ public sealed partial class SpecForceTeamPrototype : IPrototype
     /// </summary>
     [ViewVariables]
     [DataField("announcementSoundPath")]
-    public readonly SoundSpecifier AnnouncementSoundPath = default!;
+    public readonly SoundSpecifier? AnnouncementSoundPath = default!;
     /// <summary>
     /// На какое количество игроков будет приходиться спавн ещё одной гост роли.
     /// По умолчанию: за каждого 10-го игрока прибавляется 1 гост роль
