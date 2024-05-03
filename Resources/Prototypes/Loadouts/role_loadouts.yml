@@ -274,8 +274,8 @@
   - SecurityBelt
   - WardenOuterClothing
   - SecurityShoes
-  - SecurityOfficerPocket #Backmen
-  - SecurityOfficerPocket2 #Backmen
+  - SecurityPocket #Backmen
+  - SecurityPocket2 #Backmen
   - Trinkets
 
 - type: roleLoadout
