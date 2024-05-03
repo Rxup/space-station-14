@@ -27,8 +27,8 @@
   maxRolesAmount: 8
   guaranteedSpawn:
     - id: SpawnMobHumanSFOfficer
-    - id: MobHumanRXBZZLeader
-    - id: MobHumanRXBZZFlamer
+    - id: SpawnMobHumanRXBZZLeader
+    - id: SpawnMobHumanRXBZZFlamer
   specForceSpawn:
     - id: SpawnMobHumanRXBZZ
 

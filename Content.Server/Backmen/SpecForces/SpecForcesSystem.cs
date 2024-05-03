@@ -1,4 +1,3 @@
-using System.Configuration;
 using System.Linq;
 using Content.Server.GameTicking;
 using Content.Shared.GameTicking;
@@ -18,7 +17,6 @@ using Content.Server.Actions;
 using Content.Server.Ghost.Roles.Components;
 using Content.Server.RandomMetadata;
 using Content.Shared.Backmen.CCVar;
-using Content.Shared.Coordinates;
 using Robust.Shared.Configuration;
 using Robust.Shared.Serialization.Manager;
 
@@ -38,7 +36,7 @@ public sealed class SpecForcesSystem : EntitySystem
     [Dependency] private readonly ActionsSystem _actions = default!;
     [Dependency] private readonly IConfigurationManager _configurationManager = default!;
 
-    [ViewVariables] public List<SpecForcesHistory> CalledEvents { get; private set; } = new();
+    [ViewVariables] public List<SpecForcesHistory> CalledEvents { get; } = new();
     [ViewVariables] public TimeSpan LastUsedTime { get; private set; } = TimeSpan.Zero;
     private readonly ReaderWriterLockSlim _callLock = new();
     private TimeSpan DelayUsage => TimeSpan.FromMinutes(_configurationManager.GetCVar(CCVars.SpecForceDelay));
@@ -108,7 +106,7 @@ public sealed class SpecForcesSystem : EntitySystem
 
             LastUsedTime = currentTime;
 
-            if (!_prototypes.TryIndex<SpecForceTeamPrototype>(protoId, out var prototype))
+            if (!_prototypes.TryIndex(protoId, out var prototype))
             {
                 throw new ArgumentException("Wrong SpecForceTeamPrototype ID!");
             }
@@ -123,7 +121,7 @@ public sealed class SpecForcesSystem : EntitySystem
 
             SpawnGhostRole(prototype, shuttle.Value);
 
-            PlaySound(prototype);
+            DispatchAnnouncement(prototype);
 
             return true;
         }
@@ -238,23 +236,26 @@ public sealed class SpecForcesSystem : EntitySystem
         return mapGrid ?? null;
     }
 
-    private void PlaySound(SpecForceTeamPrototype proto)
+    private void DispatchAnnouncement(SpecForceTeamPrototype proto)
     {
         var stations = _stationSystem.GetStations();
+        var playTts = false;
+
         if (stations.Count == 0)
-        {
             return;
-        }
 
         if (proto.AnnouncementText == null || proto.AnnouncementTitle == null)
             return;
+
+        if (proto.AnnouncementSoundPath == default!)
+            playTts = true;
 
         foreach (var station in stations)
         {
             _chatSystem.DispatchStationAnnouncement(station,
                 Loc.GetString(proto.AnnouncementText),
                 Loc.GetString(proto.AnnouncementTitle),
-                false, proto.AnnouncementSoundPath);
+                playTts, proto.AnnouncementSoundPath);
         }
     }
 

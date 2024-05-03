@@ -198,8 +198,6 @@ entities:
     - type: Transform
       pos: -0.5,-8.5
       parent: 325
-    - type: AtmosDevice
-      joinedGrid: 325
 - proto: AirlockExternalShuttleSyndicateLocked
   entities:
   - uid: 142
@@ -825,6 +823,10 @@ entities:
           occludes: True
           ents:
           - 245
+        disk_slot: !type:ContainerSlot
+          showEnts: False
+          occludes: True
+          ent: null
 - proto: CyberPen
   entities:
   - uid: 77
@@ -1041,8 +1043,6 @@ entities:
       rot: 3.141592653589793 rad
       pos: -0.5,-8.5
       parent: 325
-    - type: AtmosDevice
-      joinedGrid: 325
 - proto: GasVentPump
   entities:
   - uid: 218
@@ -1054,8 +1054,6 @@ entities:
       address: Vnt-5f41a0ae
       transmitFrequency: 1621
       receiveFrequency: 1621
-    - type: AtmosDevice
-      joinedGrid: 325
   - uid: 219
     components:
     - type: Transform
@@ -1066,8 +1064,6 @@ entities:
       address: Vnt-129c27d2
       transmitFrequency: 1621
       receiveFrequency: 1621
-    - type: AtmosDevice
-      joinedGrid: 325
   - uid: 220
     components:
     - type: Transform
@@ -1078,8 +1074,6 @@ entities:
       address: Vnt-11c4609d
       transmitFrequency: 1621
       receiveFrequency: 1621
-    - type: AtmosDevice
-      joinedGrid: 325
   - uid: 221
     components:
     - type: Transform
@@ -1090,8 +1084,6 @@ entities:
       address: Vnt-6859729f
       transmitFrequency: 1621
       receiveFrequency: 1621
-    - type: AtmosDevice
-      joinedGrid: 325
   - uid: 222
     components:
     - type: Transform
@@ -1102,8 +1094,6 @@ entities:
       address: Vnt-19d24c7f
       transmitFrequency: 1621
       receiveFrequency: 1621
-    - type: AtmosDevice
-      joinedGrid: 325
 - proto: GeneratorBasic15kW
   entities:
   - uid: 41
@@ -1456,6 +1446,13 @@ entities:
     components:
     - type: Transform
       pos: 1.561105,-2.5567772
+      parent: 325
+- proto: OxygenTankFilled
+  entities:
+  - uid: 167
+    components:
+    - type: Transform
+      pos: 1.60798,-0.3062118
       parent: 325
 - proto: PinpointerNuclear
   entities:
@@ -2358,6 +2355,13 @@ entities:
     - type: Transform
       pos: -2.5,2.5
       parent: 325
+- proto: WeaponTurretSyndicate
+  entities:
+  - uid: 168
+    components:
+    - type: Transform
+      pos: -1.5,-0.5
+      parent: 325
 - proto: WindoorSecure
   entities:
   - uid: 166
@@ -2379,11 +2383,4 @@ entities:
           occludes: True
           ents:
           - 346
-- proto: YellowOxygenTankFilled
-  entities:
-  - uid: 167
-    components:
-    - type: Transform
-      pos: 1.60798,-0.3062118
-      parent: 325
 ...
