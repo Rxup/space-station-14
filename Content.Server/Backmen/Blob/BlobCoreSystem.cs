@@ -195,7 +195,7 @@ public sealed class BlobCoreSystem : SharedBlobCoreSystem
                 if (TryComp<BlobbernautComponent>(blobFactoryComponent.Blobbernaut, out var blobbernautComponent))
                 {
                     blobbernautComponent.Color = component.ChemСolors[newChem];
-                    Dirty(blobTile, blobbernautComponent);
+                    Dirty(blobFactoryComponent.Blobbernaut.Value, blobbernautComponent);
 
                     if (TryComp<MeleeWeaponComponent>(blobFactoryComponent.Blobbernaut, out var meleeWeaponComponent))
                     {
