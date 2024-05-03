@@ -53,6 +53,15 @@
   equipment:
     head: ClothingHeadHatCapSec
 
+- type: loadout #Backmen
+  id: ClothingHeadHatPilotkaSec
+  equipment: ClothingHeadHatPilotkaSec
+
+- type: startingGear #Backmen
+  id: ClothingHeadHatPilotkaSec
+  equipment:
+    head: ClothingHeadHatPilotkaSec
+
 # Jumpsuit
 - type: loadout
   id: SecurityJumpsuit
