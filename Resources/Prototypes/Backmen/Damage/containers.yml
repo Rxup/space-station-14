@@ -1,4 +1,10 @@
 ﻿- type: damageContainer
+  id: Blob
+  supportedGroups:
+  - Brute
+  - Burn
+
+- type: damageContainer
   id: HalfSpirit #Arachne, etc. Immunity to radiation/genetic, weakness to holy
   supportedGroups:
     - Burn

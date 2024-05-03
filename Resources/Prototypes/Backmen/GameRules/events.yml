@@ -40,6 +40,22 @@
     - type: NoosphericStormRule
 
 - type: entity
+  id: BlobSpawn
+  parent: BaseGameRule
+  noSpawn: true
+  components:
+  - type: StationEvent
+    weight: 15
+    duration: 1
+    earliestStart: 40
+    minimumPlayers: 20
+  - type: BlobSpawnRule
+    carrierBlobProtos:
+    - MobMouseCancer
+    playersPerCarrierBlob: 30
+    maxCarrierBlob: 3
+
+- type: entity
   id: BluespaceGoat
   parent: BaseGameRule
   noSpawn: true
@@ -162,4 +178,3 @@
     - type: VentCrittersRule
       entries:
         - id: MobGiantSpiderVampireAngry
-          prob: 0.05
