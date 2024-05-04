@@ -168,7 +168,6 @@
     emagStaticRecipes:
       - BoxLethalshot
       - BoxShotgunFlare
-      - GrenadeBlast
       - MagazineBoxLightRifle
       - MagazineBoxMagnum
       - MagazineBoxPistol
@@ -190,6 +189,7 @@
       - BoxBeanbag
       - BoxShotgunIncendiary
       - BoxShotgunUranium
+      - GrenadeBlast
       - GrenadeEMP
       - GrenadeFlash
       - MagazineBoxLightRifleIncendiary
@@ -726,6 +726,7 @@
       - BoxShotgunUranium
       - ExplosivePayload
       - FlashPayload
+      - GrenadeBlast
       - GrenadeEMP
       - GrenadeFlash
       - HoloprojectorSecurity
@@ -746,6 +747,7 @@
       - MagazineRifleUranium
       - MagazineShotgunBeanbag
       - MagazineShotgunIncendiary
+      - PortableRecharger
       - PowerCageHigh
       - PowerCageMedium
       - PowerCageSmall
@@ -773,14 +775,6 @@
       - ClothingHeadHelmetInsulated
       - ShellSoulbreaker
       - WeaponXrayCannon
-      - PowerCageSmall
-      - PowerCageMedium
-      - PowerCageHigh
-      - ShuttleGunSvalinnMachineGunCircuitboard
-      - ShuttleGunPerforatorCircuitboard
-      - ShuttleGunFriendshipCircuitboard
-      - ShuttleGunDusterCircuitboard
-      - PortableRecharger
   - type: MaterialStorage
     whitelist:
       tags:
