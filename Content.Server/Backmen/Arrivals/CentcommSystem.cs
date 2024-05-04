@@ -288,10 +288,11 @@ public sealed class CentcommSystem : EntitySystem
     // ReSharper disable once MemberCanBePrivate.Global
     public void DisableFtl(Entity<FTLDestinationComponent?> ent)
     {
-        var d = new EntityWhitelist();
-        d.RequireAll = false;
-        d.Components = new[] { "AllowFtlToCentCom" };
-        d.UpdateRegistrations();
+        var d = new EntityWhitelist
+        {
+            RequireAll = false,
+            Components = new[] { "AllowFtlToCentCom" }
+        };
         _shuttle.SetFTLWhitelist(ent, d);
     }
 
