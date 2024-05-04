@@ -1,5 +1,6 @@
 ﻿using Content.Server.Backmen.Vampiric.Role;
 using Content.Server.GameTicking;
+using Content.Server.GameTicking.Components;
 using Content.Server.GameTicking.Rules;
 using Content.Server.Mind;
 using Content.Shared.Backmen.Vampiric;
@@ -26,8 +27,6 @@ public sealed class BloodsuckerObjectiveSystem  : GameRuleSystem<BloodsuckerObje
 
         _sawmill = Logger.GetSawmill("preset");
 
-        SubscribeLocalEvent<RoundEndTextAppendEvent>(OnRoundEndText);
-
         SubscribeLocalEvent<BloodsuckerConvertConditionComponent, ObjectiveGetProgressEvent>(OnGetConvertProgress);
         SubscribeLocalEvent<BloodsuckerDrinkConditionComponent, ObjectiveGetProgressEvent>(OnGetDrinkProgress);
         SubscribeLocalEvent<BloodsuckerConvertConditionComponent, ObjectiveAssignedEvent>(OnConvertAssigned);
@@ -36,7 +35,8 @@ public sealed class BloodsuckerObjectiveSystem  : GameRuleSystem<BloodsuckerObje
         SubscribeLocalEvent<BloodsuckerDrinkConditionComponent, ObjectiveAfterAssignEvent>(OnDrinkAfterAssigned);
     }
 
-    private void OnRoundEndText(RoundEndTextAppendEvent ev)
+    protected override void AppendRoundEndText(EntityUid uid, BloodsuckerObjectiveComponent component, GameRuleComponent gameRule,
+        ref RoundEndTextAppendEvent ev)
     {
         var skip = new List<EntityUid>();
         var query = AllEntityQuery<BloodsuckerRuleComponent>();

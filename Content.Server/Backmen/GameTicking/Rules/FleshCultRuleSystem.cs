@@ -67,10 +67,10 @@ public sealed class FleshCultRuleSystem : GameRuleSystem<FleshCultRuleComponent>
 
         SubscribeLocalEvent<RulePlayerJobsAssignedEvent>(OnPlayersSpawned);
         SubscribeLocalEvent<PlayerSpawnCompleteEvent>(HandleLatejoin);
-        SubscribeLocalEvent<RoundEndTextAppendEvent>(OnRoundEndText);
         SubscribeLocalEvent<FleshHeartSystem.FleshHeartFinalEvent>(OnFleshHeartFinal);
         SubscribeLocalEvent<FleshCultistRoleComponent, GetBriefingEvent>(OnGetBriefing);
     }
+
 
     private void OnGetBriefing(Entity<FleshCultistRoleComponent> ent, ref GetBriefingEvent args)
     {
@@ -495,124 +495,119 @@ public sealed class FleshCultRuleSystem : GameRuleSystem<FleshCultRuleComponent>
         }
     }
 
-    private void OnRoundEndText(RoundEndTextAppendEvent ev)
+    protected override void AppendRoundEndText(EntityUid uid, FleshCultRuleComponent fleshCult, GameRuleComponent gameRule,
+        ref RoundEndTextAppendEvent ev)
     {
-        var query = EntityQueryEnumerator<FleshCultRuleComponent, GameRuleComponent>();
-        while (query.MoveNext(out var uid, out var fleshCult, out var gameRule))
+
+        var result = Loc.GetString("flesh-cult-round-end-result", ("cultistsCount",
+            fleshCult.Cultists.Count));
+
+        if (fleshCult.WinType is FleshCultRuleComponent.WinTypes.FleshHeartFinal)
         {
-            if (!GameTicker.IsGameRuleAdded(uid, gameRule))
-                continue;
+            result += "\n" + Loc.GetString("flesh-cult-round-end-flesh-heart-succes");
+        }
+        else
+        {
+            result += "\n" + Loc.GetString("flesh-cult-round-end-flesh-heart-fail");
+        }
 
-            var result = Loc.GetString("flesh-cult-round-end-result", ("cultistsCount",
-                fleshCult.Cultists.Count));
+        // result += "\n" + Loc.GetString("traitor-round-end-codewords", ("codewords", string.Join(", ", Codewords))) + "\n";
 
-            if (fleshCult.WinType is FleshCultRuleComponent.WinTypes.FleshHeartFinal)
+        foreach (var (mindId, mind) in fleshCult.Cultists)
+        {
+            var name = mind.CharacterName;
+            _mindSystem.TryGetSession(mind, out var session);
+            var username = session?.Name;
+
+            var objectives = mind.AllObjectives.ToArray();
+
+            var leader = "";
+            if (TryComp<FleshCultistRoleComponent>(mindId, out var cultist) && cultist.PrototypeId == fleshCult.FleshCultistLeaderPrototypeId)
             {
-                result += "\n" + Loc.GetString("flesh-cult-round-end-flesh-heart-succes");
+                leader = "-leader";
             }
-            else
+
+            if (objectives.Length == 0)
             {
-                result += "\n" + Loc.GetString("flesh-cult-round-end-flesh-heart-fail");
-            }
-
-            // result += "\n" + Loc.GetString("traitor-round-end-codewords", ("codewords", string.Join(", ", Codewords))) + "\n";
-
-            foreach (var (mindId, mind) in fleshCult.Cultists)
-            {
-                var name = mind.CharacterName;
-                _mindSystem.TryGetSession(mind, out var session);
-                var username = session?.Name;
-
-                var objectives = mind.AllObjectives.ToArray();
-
-                var leader = "";
-                if (TryComp<FleshCultistRoleComponent>(mindId, out var cultist) && cultist.PrototypeId == fleshCult.FleshCultistLeaderPrototypeId)
-                {
-                    leader = "-leader";
-                }
-
-                if (objectives.Length == 0)
-                {
-                    if (username != null)
-                    {
-                        if (name == null)
-                        {
-                            result += "\n" + Loc.GetString($"flesh-cult-user-was-a-cultist{leader}",
-                                ("user", username));
-                        }
-                        else
-                        {
-                            result += "\n" + Loc.GetString($"flesh-cult-user-was-a-cultist{leader}-named",
-                                ("user", username), ("name", name));
-                        }
-                    }
-                    else if (name != null)
-                        result += "\n" + Loc.GetString($"flesh-cult-was-a-cultist{leader}-named", ("name", name));
-
-                    continue;
-                }
-
                 if (username != null)
                 {
                     if (name == null)
                     {
-                        result += "\n" + Loc.GetString($"flesh-cult-user-was-a-cultist{leader}-with-objectives",
+                        result += "\n" + Loc.GetString($"flesh-cult-user-was-a-cultist{leader}",
                             ("user", username));
                     }
                     else
                     {
-                        result += "\n" + Loc.GetString($"flesh-cult-user-was-a-cultist{leader}-with-objectives-named",
+                        result += "\n" + Loc.GetString($"flesh-cult-user-was-a-cultist{leader}-named",
                             ("user", username), ("name", name));
                     }
                 }
                 else if (name != null)
+                    result += "\n" + Loc.GetString($"flesh-cult-was-a-cultist{leader}-named", ("name", name));
+
+                continue;
+            }
+
+            if (username != null)
+            {
+                if (name == null)
                 {
-                    result += "\n" + Loc.GetString($"flesh-cult-was-a-cultist{leader}-with-objectives-named",
-                        ("name", name));
+                    result += "\n" + Loc.GetString($"flesh-cult-user-was-a-cultist{leader}-with-objectives",
+                        ("user", username));
                 }
-
-                foreach (var objectiveGroup in objectives.GroupBy(o => Comp<ObjectiveComponent>(o).Issuer))
+                else
                 {
-                    if (objectiveGroup.Key == "Космический банк")
-                    {
-                        continue;
-                    }
-
-                    result += "\n" + Loc.GetString($"preset-flesh-cult-objective-issuer-{objectiveGroup.Key}");
-
-                    foreach (var objective in objectiveGroup)
-                    {
-                        var info = _objectivesSystem.GetInfo(objective, mindId);
-                        if (info == null)
-                            continue;
-
-                        var objectiveTitle = info.Value.Title;
-                        var progress = info.Value.Progress;
-                        if (progress > 0.99f)
-                        {
-                            result += "\n- " + Loc.GetString(
-                                "flesh-cult-objective-condition-success",
-                                ("condition", objectiveTitle),
-                                ("markupColor", "green")
-                            );
-                        }
-                        else
-                        {
-                            result += "\n- " + Loc.GetString(
-                                "flesh-cult-objective-condition-fail",
-                                ("condition", objectiveTitle),
-                                ("progress", (int) (progress * 100)),
-                                ("markupColor", "red")
-                            );
-                        }
-
-                    }
+                    result += "\n" + Loc.GetString($"flesh-cult-user-was-a-cultist{leader}-with-objectives-named",
+                        ("user", username), ("name", name));
                 }
             }
-            result += "\n" +
-                      "\n";
+            else if (name != null)
+            {
+                result += "\n" + Loc.GetString($"flesh-cult-was-a-cultist{leader}-with-objectives-named",
+                    ("name", name));
+            }
 
-            ev.AddLine(result);
+            foreach (var objectiveGroup in objectives.GroupBy(o => Comp<ObjectiveComponent>(o).Issuer))
+            {
+                if (objectiveGroup.Key == "Космический банк")
+                {
+                    continue;
+                }
+
+                result += "\n" + Loc.GetString($"preset-flesh-cult-objective-issuer-{objectiveGroup.Key}");
+
+                foreach (var objective in objectiveGroup)
+                {
+                    var info = _objectivesSystem.GetInfo(objective, mindId);
+                    if (info == null)
+                        continue;
+
+                    var objectiveTitle = info.Value.Title;
+                    var progress = info.Value.Progress;
+                    if (progress > 0.99f)
+                    {
+                        result += "\n- " + Loc.GetString(
+                            "flesh-cult-objective-condition-success",
+                            ("condition", objectiveTitle),
+                            ("markupColor", "green")
+                        );
+                    }
+                    else
+                    {
+                        result += "\n- " + Loc.GetString(
+                            "flesh-cult-objective-condition-fail",
+                            ("condition", objectiveTitle),
+                            ("progress", (int) (progress * 100)),
+                            ("markupColor", "red")
+                        );
+                    }
+
+                }
+            }
         }
+        result += "\n" +
+                  "\n";
+
+        ev.AddLine(result);
     }
 }

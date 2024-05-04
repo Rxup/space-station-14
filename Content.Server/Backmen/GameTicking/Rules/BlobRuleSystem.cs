@@ -35,16 +35,13 @@ public sealed class BlobRuleSystem : GameRuleSystem<BlobRuleComponent>
     [ValidatePrototypeId<SpecForceTeamPrototype>]
     private const string Rxbzz = "RXBZZ";
 
-    private ISawmill _sawmill = default!;
     private static readonly SoundPathSpecifier BlobDetectAudio = new SoundPathSpecifier("/Audio/Corvax/Adminbuse/Outbreak5.ogg");
 
     public override void Initialize()
     {
         base.Initialize();
 
-        _sawmill = Logger.GetSawmill("preset");
 
-        SubscribeLocalEvent<RoundEndTextAppendEvent>(OnRoundEndText);
     }
 
     public override void Update(float frameTime)
@@ -125,94 +122,88 @@ public sealed class BlobRuleSystem : GameRuleSystem<BlobRuleComponent>
         }
     }
 
-    private void OnRoundEndText(RoundEndTextAppendEvent ev)
+    protected override void AppendRoundEndText(EntityUid uid, BlobRuleComponent blob, GameRuleComponent gameRule,
+        ref RoundEndTextAppendEvent ev)
     {
-        var query = EntityQueryEnumerator<BlobRuleComponent, GameRuleComponent>();
-        while (query.MoveNext(out var uid, out var blob, out var gameRule))
+        if (blob.Blobs.Count < 1)
+            return;
+
+        var result = Loc.GetString("blob-round-end-result", ("blobCount", blob.Blobs.Count));
+
+        // yeah this is duplicated from traitor rules lol, there needs to be a generic rewrite where it just goes through all minds with objectives
+        foreach (var (mindId, mind) in blob.Blobs)
         {
-            if (!GameTicker.IsGameRuleAdded(uid, gameRule))
-                continue;
+            var name = mind.CharacterName;
+            _mindSystem.TryGetSession(mindId, out var session);
+            var username = session?.Name;
 
-            if (blob.Blobs.Count < 1)
-                return;
-
-            var result = Loc.GetString("blob-round-end-result", ("blobCount", blob.Blobs.Count));
-
-            // yeah this is duplicated from traitor rules lol, there needs to be a generic rewrite where it just goes through all minds with objectives
-            foreach (var (mindId, mind) in blob.Blobs)
+            var objectives = mind.AllObjectives.ToArray();
+            if (objectives.Length == 0)
             {
-                var name = mind.CharacterName;
-                _mindSystem.TryGetSession(mindId, out var session);
-                var username = session?.Name;
-
-                var objectives = mind.AllObjectives.ToArray();
-                if (objectives.Length == 0)
-                {
-                    if (username != null)
-                    {
-                        if (name == null)
-                            result += "\n" + Loc.GetString("blob-user-was-a-blob", ("user", username));
-                        else
-                        {
-                            result += "\n" + Loc.GetString("blob-user-was-a-blob-named", ("user", username),
-                                ("name", name));
-                        }
-                    }
-                    else if (name != null)
-                        result += "\n" + Loc.GetString("blob-was-a-blob-named", ("name", name));
-
-                    continue;
-                }
-
                 if (username != null)
                 {
                     if (name == null)
-                    {
-                        result += "\n" + Loc.GetString("blob-user-was-a-blob-with-objectives",
-                            ("user", username));
-                    }
+                        result += "\n" + Loc.GetString("blob-user-was-a-blob", ("user", username));
                     else
                     {
-                        result += "\n" + Loc.GetString("blob-user-was-a-blob-with-objectives-named",
-                            ("user", username), ("name", name));
+                        result += "\n" + Loc.GetString("blob-user-was-a-blob-named", ("user", username),
+                            ("name", name));
                     }
                 }
                 else if (name != null)
-                    result += "\n" + Loc.GetString("blob-was-a-blob-with-objectives-named", ("name", name));
+                    result += "\n" + Loc.GetString("blob-was-a-blob-named", ("name", name));
 
-                foreach (var objectiveGroup in objectives.GroupBy(o => Comp<ObjectiveComponent>(o).Issuer))
+                continue;
+            }
+
+            if (username != null)
+            {
+                if (name == null)
                 {
-                    foreach (var objective in objectiveGroup)
+                    result += "\n" + Loc.GetString("blob-user-was-a-blob-with-objectives",
+                        ("user", username));
+                }
+                else
+                {
+                    result += "\n" + Loc.GetString("blob-user-was-a-blob-with-objectives-named",
+                        ("user", username), ("name", name));
+                }
+            }
+            else if (name != null)
+                result += "\n" + Loc.GetString("blob-was-a-blob-with-objectives-named", ("name", name));
+
+            foreach (var objectiveGroup in objectives.GroupBy(o => Comp<ObjectiveComponent>(o).Issuer))
+            {
+                foreach (var objective in objectiveGroup)
+                {
+                    var info = _objectivesSystem.GetInfo(objective, mindId, mind);
+                    if (info == null)
+                        continue;
+
+                    var objectiveTitle = info.Value.Title;
+                    var progress = info.Value.Progress;
+
+                    if (progress > 0.99f)
                     {
-                        var info = _objectivesSystem.GetInfo(objective, mindId, mind);
-                        if (info == null)
-                            continue;
-
-                        var objectiveTitle = info.Value.Title;
-                        var progress = info.Value.Progress;
-
-                        if (progress > 0.99f)
-                        {
-                            result += "\n- " + Loc.GetString(
-                                "objectives-condition-success",
-                                ("condition", objectiveTitle),
-                                ("markupColor", "green")
-                            );
-                        }
-                        else
-                        {
-                            result += "\n- " + Loc.GetString(
-                                "objectives-condition-fail",
-                                ("condition", objectiveTitle),
-                                ("progress", (int) (progress * 100)),
-                                ("markupColor", "red")
-                            );
-                        }
+                        result += "\n- " + Loc.GetString(
+                            "objectives-condition-success",
+                            ("condition", objectiveTitle),
+                            ("markupColor", "green")
+                        );
+                    }
+                    else
+                    {
+                        result += "\n- " + Loc.GetString(
+                            "objectives-condition-fail",
+                            ("condition", objectiveTitle),
+                            ("progress", (int) (progress * 100)),
+                            ("markupColor", "red")
+                        );
                     }
                 }
             }
-
-            ev.AddLine(result);
         }
+
+        ev.AddLine(result);
     }
 }
