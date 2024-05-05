@@ -1,6 +1,7 @@
 using System.Linq;
 using Content.Client.CharacterInfo;
 using Content.Client.Gameplay;
+using Content.Client.Message; // backmen: locale
 using Content.Client.UserInterface.Controls;
 using Content.Client.UserInterface.Systems.Character.Controls;
 using Content.Client.UserInterface.Systems.Character.Windows;
@@ -172,11 +173,15 @@ public sealed class CharacterUIController : UIController, IOnStateEntered<Gamepl
                 Modulate = Color.Gray
             };
 
-            objectiveControl.AddChild(new Label
+            // start-backmen: locale
+            var objectiveControlLabel = new RichTextLabel
             {
-                Text = groupId,
                 Modulate = Color.LightSkyBlue
-            });
+            };
+            objectiveControlLabel.SetMarkup(Loc.GetString($"objective-issuer-{groupId}"));
+
+            objectiveControl.AddChild(objectiveControlLabel);
+            // end-backmen: locale
 
             foreach (var condition in conditions)
             {

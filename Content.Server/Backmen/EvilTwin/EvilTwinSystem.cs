@@ -402,7 +402,7 @@ public sealed class EvilTwinSystem : EntitySystem
                     if (progress > 0.99f)
                     {
                         result.Append("\n- " + Loc.GetString(
-                            "objectives-condition-success",
+                            "objective-condition-success",
                             ("condition", objectiveTitle),
                             ("markupColor", "green")
                         ));
@@ -410,7 +410,7 @@ public sealed class EvilTwinSystem : EntitySystem
                     else
                     {
                         result.Append("\n- " + Loc.GetString(
-                            "objectives-condition-fail",
+                            "objective-condition-fail",
                             ("condition", objectiveTitle),
                             ("progress", (int) (progress * 100)),
                             ("markupColor", "red")

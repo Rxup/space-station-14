@@ -21,6 +21,7 @@ flesh-cult-user-was-a-cultist-leader-with-objectives = [color=gray]{ $user }[/co
 flesh-cult-user-was-a-cultist-leader-with-objectives-named = [color=White]{ $name }[/color] ([color=gray]{ $user }[/color]) был лидером Культа Плоти со следующими целями:
 flesh-cult-was-a-cultist-leader-with-objectives-named = [color=White]{ $name }[/color] был лидером Культа Плоти со следующими целями:
 preset-flesh-cult-objective-issuer-flesh-cult = [color=#e0106a]Культ плоти[/color]
+objective-issuer-flesh-cult = [color=crimson]Культ плоти[/color]
 flesh-cult-objective-condition-success = { $condition } | [color={ $markupColor }]Успех![/color]
 flesh-cult-objective-condition-fail = { $condition } | [color={ $markupColor }]Провал![/color] ({ $progress }%)
 flesh-cult-title = Культ плоти
