@@ -1,18 +1,4 @@
 ﻿Entries:
-- author: Hanzdegloker
-  changes:
-  - message: ERT medic PDA now has a health analyzer built in.
-    type: Tweak
-  id: 6031
-  time: '2024-02-26T23:00:51.0000000+00:00'
-  url: https://github.com/space-wizards/space-station-14/pull/25606
-- author: Ilya246
-  changes:
-  - message: Macrobomb implant price reduced 20->13 TC.
-    type: Tweak
-  id: 6032
-  time: '2024-02-26T23:04:26.0000000+00:00'
-  url: https://github.com/space-wizards/space-station-14/pull/25585
 - author: QuietlyWhisper
   changes:
   - message: Handcuff and handcuff replacements are faster to escape. You can allow
@@ -3874,3 +3860,17 @@
   id: 6530
   time: '2024-05-04T20:06:16.0000000+00:00'
   url: https://github.com/space-wizards/space-station-14/pull/27672
+- author: lzk228
+  changes:
+  - message: Grey whistle added to arcade machine prizes.
+    type: Add
+  id: 6531
+  time: '2024-05-05T14:42:35.0000000+00:00'
+  url: https://github.com/space-wizards/space-station-14/pull/27676
+- author: Killerqu00
+  changes:
+  - message: Welding masks can now be put on utility belts.
+    type: Tweak
+  id: 6532
+  time: '2024-05-05T23:30:06.0000000+00:00'
+  url: https://github.com/space-wizards/space-station-14/pull/27694
