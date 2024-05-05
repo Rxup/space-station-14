@@ -3,7 +3,6 @@ using System.Linq;
 using Content.Server.AlertLevel;
 using Content.Server.Backmen.Blob.Rule;
 using Content.Server.Backmen.GameTicking.Rules.Components;
-using Content.Server.Backmen.SpecForces;
 using Content.Server.Chat.Managers;
 using Content.Server.Chat.Systems;
 using Content.Server.GameTicking;
@@ -109,10 +108,7 @@ public sealed class BlobRuleSystem : GameRuleSystem<BlobRuleComponent>
         return true;
     }
 
-    [ValidatePrototypeId<AlertLevelPrototype>]
     private const string StationGamma = "gamma";
-
-    [ValidatePrototypeId<AlertLevelPrototype>]
     private const string StationSigma = "sigma";
 
     private void CheckChangeStage(Entity<BlobCoreComponent> blobCore, EntityUid stationUid, BlobRuleComponent blobRuleComp)
