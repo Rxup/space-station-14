@@ -3,7 +3,6 @@ using System.Linq;
 using System.Numerics;
 using System.Text;
 using Content.Server.Access.Systems;
-using Content.Server.Atmos;
 using Content.Server.Atmos.Components;
 using Content.Server.Atmos.EntitySystems;
 using Content.Server.Backmen.NPC.Prototypes;
@@ -23,12 +22,9 @@ using Content.Server.Fluids.EntitySystems;
 using Content.Server.GameTicking;
 using Content.Server.GameTicking.Components;
 using Content.Server.GameTicking.Rules;
-using Content.Server.GameTicking.Rules.Components;
 using Content.Server.Ghost.Roles.Components;
-using Content.Server.Humanoid;
 using Content.Server.Maps;
 using Content.Server.Mind;
-using Content.Server.NPC.Systems;
 using Content.Server.Paper;
 using Content.Server.Parallax;
 using Content.Server.Popups;
@@ -58,7 +54,6 @@ using Content.Shared.CombatMode.Pacification;
 using Content.Shared.Corvax.TTS;
 using Content.Shared.Damage;
 using Content.Shared.Dataset;
-using Content.Shared.Decals;
 using Content.Shared.Doors.Components;
 using Content.Shared.FixedPoint;
 using Content.Shared.Ghost;
@@ -72,7 +67,6 @@ using Content.Shared.Mobs.Systems;
 using Content.Shared.Movement.Components;
 using Content.Shared.Parallax;
 using Content.Shared.Parallax.Biomes;
-using Content.Shared.Parallax.Biomes.Markers;
 using Content.Shared.Physics;
 using Content.Shared.Pinpointer;
 using Content.Shared.Popups;
@@ -160,7 +154,6 @@ public sealed class ShipwreckedRuleSystem : GameRuleSystem<ShipwreckedRuleCompon
         SubscribeLocalEvent<FTLStartedEvent>(OnFTLStarted);
 
         SubscribeLocalEvent<RulePlayerSpawningEvent>(OnPlayersSpawning);
-        SubscribeLocalEvent<RoundEndTextAppendEvent>(OnRoundEndText);
 
         SubscribeLocalEvent<ShipwreckedNPCHecateComponent, MapInitEvent>(OnInitHecate);
         SubscribeLocalEvent<ShipwreckedNPCHecateComponent, ShipwreckedHecateAskGeneratorUnlockEvent>(OnAskGeneratorUnlock);
@@ -1618,79 +1611,73 @@ public sealed class ShipwreckedRuleSystem : GameRuleSystem<ShipwreckedRuleCompon
         }
     }
 
-    private void OnRoundEndText(RoundEndTextAppendEvent ev)
+    protected override void AppendRoundEndText(EntityUid uid, ShipwreckedRuleComponent shipwrecked, GameRuleComponent gameRule,
+        ref RoundEndTextAppendEvent ev)
     {
-        var query = EntityQueryEnumerator<ShipwreckedRuleComponent, GameRuleComponent>();
-        while (query.MoveNext(out var uid, out var shipwrecked, out var gameRule))
+        ev.AddLine(Loc.GetString("shipwrecked-list-start"));
+
+        foreach (var (survivor, session) in shipwrecked.Survivors)
         {
-            if (!GameTicker.IsGameRuleActive(uid, gameRule))
-                continue;
-
-            ev.AddLine(Loc.GetString("shipwrecked-list-start"));
-
-            foreach (var (survivor, session) in shipwrecked.Survivors)
+            var name = Loc.GetString("generic-unknown");
+            if (!TerminatingOrDeleted(survivor))
             {
-                var name = Loc.GetString("generic-unknown");
-                if (!TerminatingOrDeleted(survivor))
-                {
-                    name = MetaData(survivor).EntityName;
-                }
-                if (IsDead(survivor))
-                {
-                    ev.AddLine(Loc.GetString("shipwrecked-list-perished-name",
-                        ("name", name),
-                        ("user", session.Name)));
-                }
-                else if (shipwrecked.AllObjectivesComplete &&
-                    Transform(survivor).GridUid == shipwrecked.Shuttle)
-                {
-                    ev.AddLine(Loc.GetString("shipwrecked-list-escaped-name",
-                        ("name", name),
-                        ("user", session.Name)));
-                }
-                else
-                {
-                    ev.AddLine(Loc.GetString("shipwrecked-list-survived-name",
-                        ("name", name),
-                        ("user", session.Name)));
-                }
+                name = MetaData(survivor).EntityName;
             }
+            if (IsDead(survivor))
+            {
+                ev.AddLine(Loc.GetString("shipwrecked-list-perished-name",
+                    ("name", name),
+                    ("user", session.Name)));
+            }
+            else if (shipwrecked.AllObjectivesComplete &&
+                Transform(survivor).GridUid == shipwrecked.Shuttle)
+            {
+                ev.AddLine(Loc.GetString("shipwrecked-list-escaped-name",
+                    ("name", name),
+                    ("user", session.Name)));
+            }
+            else
+            {
+                ev.AddLine(Loc.GetString("shipwrecked-list-survived-name",
+                    ("name", name),
+                    ("user", session.Name)));
+            }
+        }
 
+        ev.AddLine("");
+        ev.AddLine(Loc.GetString("shipwrecked-list-start-objectives"));
+
+        if (GetLaunchConditionConsole(shipwrecked))
+            ev.AddLine(Loc.GetString("shipwrecked-list-objective-console-pass"));
+        else
+            ev.AddLine(Loc.GetString("shipwrecked-list-objective-console-fail"));
+
+        if (GetLaunchConditionGenerator(shipwrecked))
+            ev.AddLine(Loc.GetString("shipwrecked-list-objective-generator-pass"));
+        else
+            ev.AddLine(Loc.GetString("shipwrecked-list-objective-generator-fail"));
+
+        if (GetLaunchConditionThrusters(shipwrecked, out var goodThrusters))
+        {
+            ev.AddLine(Loc.GetString("shipwrecked-list-objective-thrusters-pass",
+                    ("totalThrusterCount", shipwrecked.OriginalThrusterCount)));
+        }
+        else if(goodThrusters == 0)
+        {
+            ev.AddLine(Loc.GetString("shipwrecked-list-objective-thrusters-fail",
+                    ("totalThrusterCount", shipwrecked.OriginalThrusterCount)));
+        }
+        else
+        {
+            ev.AddLine(Loc.GetString("shipwrecked-list-objective-thrusters-partial",
+                    ("goodThrusterCount", shipwrecked.OriginalThrusterCount),
+                    ("totalThrusterCount", shipwrecked.OriginalThrusterCount)));
+        }
+
+        if (shipwrecked.AllObjectivesComplete)
+        {
             ev.AddLine("");
-            ev.AddLine(Loc.GetString("shipwrecked-list-start-objectives"));
-
-            if (GetLaunchConditionConsole(shipwrecked))
-                ev.AddLine(Loc.GetString("shipwrecked-list-objective-console-pass"));
-            else
-                ev.AddLine(Loc.GetString("shipwrecked-list-objective-console-fail"));
-
-            if (GetLaunchConditionGenerator(shipwrecked))
-                ev.AddLine(Loc.GetString("shipwrecked-list-objective-generator-pass"));
-            else
-                ev.AddLine(Loc.GetString("shipwrecked-list-objective-generator-fail"));
-
-            if (GetLaunchConditionThrusters(shipwrecked, out var goodThrusters))
-            {
-                ev.AddLine(Loc.GetString("shipwrecked-list-objective-thrusters-pass",
-                        ("totalThrusterCount", shipwrecked.OriginalThrusterCount)));
-            }
-            else if(goodThrusters == 0)
-            {
-                ev.AddLine(Loc.GetString("shipwrecked-list-objective-thrusters-fail",
-                        ("totalThrusterCount", shipwrecked.OriginalThrusterCount)));
-            }
-            else
-            {
-                ev.AddLine(Loc.GetString("shipwrecked-list-objective-thrusters-partial",
-                        ("goodThrusterCount", shipwrecked.OriginalThrusterCount),
-                        ("totalThrusterCount", shipwrecked.OriginalThrusterCount)));
-            }
-
-            if (shipwrecked.AllObjectivesComplete)
-            {
-                ev.AddLine("");
-                ev.AddLine(Loc.GetString("shipwrecked-list-all-objectives-complete"));
-            }
+            ev.AddLine(Loc.GetString("shipwrecked-list-all-objectives-complete"));
         }
     }
 

@@ -105,9 +105,8 @@ namespace Content.Server.Preferences.Managers
             var session = _playerManager.GetSessionById(userId);
             var collection = IoCManager.Instance!;
 
-            // Corvax-Sponsors-Start: Ensure removing sponsor markings if client somehow bypassed client filtering
-            // WARN! It's not removing markings from DB!
-            var sponsorPrototypes = _sponsors != null && _sponsors.TryGetPrototypes(message.MsgChannel.UserId, out var prototypes)
+            // Corvax-Sponsors-Start
+            var sponsorPrototypes = _sponsors != null && _sponsors.TryGetPrototypes(session.UserId, out var prototypes)
                 ? prototypes.ToArray()
                 : [];
             profile.EnsureValid(session, collection, sponsorPrototypes);
@@ -207,6 +206,7 @@ namespace Content.Server.Preferences.Managers
                 {
                     var prefs = await GetOrCreatePreferencesAsync(session.UserId);
                     // Corvax-Sponsors-Start: Remove sponsor markings from expired sponsors
+                    var collection = IoCManager.Instance!;
                     foreach (var (_, profile) in prefs.Characters)
                     {
                         var sponsorPrototypes = _sponsors != null && _sponsors.TryGetPrototypes(session.UserId, out var prototypes)
@@ -308,16 +308,16 @@ namespace Content.Server.Preferences.Managers
             var collection = IoCManager.Instance!;
 
             // Corvax-Sponsors-Start
-            var sponsorPrototypes = _sponsors != null && _sponsors.TryGetPrototypes(userId, out var prototypes) ? prototypes.ToArray() : []; // Corvax-Sponsors
-            return SanitizePreferences(session, prefs, collection, sponsorPrototypes);
+            return SanitizePreferences(session, prefs, collection);
             // Corvax-Sponsors-End
         }
 
-        private PlayerPreferences SanitizePreferences(ICommonSession session, PlayerPreferences prefs, IDependencyCollection collection, string[] sponsorPrototypes)
+        private PlayerPreferences SanitizePreferences(ICommonSession session, PlayerPreferences prefs, IDependencyCollection collection)
         {
             // Clean up preferences in case of changes to the game,
             // such as removed jobs still being selected.
 
+            var sponsorPrototypes = _sponsors != null && _sponsors.TryGetPrototypes(session.UserId, out var prototypes) ? prototypes.ToArray() : []; // Corvax-Sponsors
             return new PlayerPreferences(prefs.Characters.Select(p =>
             {
                 return new KeyValuePair<int, ICharacterProfile>(p.Key, p.Value.Validated(session, collection, sponsorPrototypes));

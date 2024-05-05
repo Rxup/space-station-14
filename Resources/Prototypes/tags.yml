@@ -28,9 +28,6 @@
   id: ATVKeys
 
 - type: Tag
-  id: BlobMob
-
-- type: Tag
   id: Baguette
 
 - type: Tag
@@ -402,6 +399,9 @@
 
 - type: Tag
   id: ClownSuit
+
+- type: Tag
+  id: CluwneHappyHonk
 
 - type: Tag
   id: CluwneHorn
@@ -1139,9 +1139,6 @@
 
 - type: Tag
   id: Smokable
-
-- type: Tag
-  id: SnapPop
 
 - type: Tag
   id: SnowyLabs

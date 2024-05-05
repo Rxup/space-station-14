@@ -249,6 +249,14 @@
   - LawyerNeck
 
 - type: loadoutGroup
+  id: LawyerBackpack
+  name: loadout-group-lawyer-backpack
+  loadouts:
+  - LawyerBackpack
+  - LawyerSatchel
+  - LawyerDuffel
+
+- type: loadoutGroup
   id: ChaplainHead
   name: loadout-group-chaplain-head
   minLimit: 0
@@ -863,7 +871,6 @@
   - WeaponPistolACP14
   - WeaponPistolG23
   - WeaponPistolVP78
-  - WeaponPistolDEagle
   - WeaponRevolverMatebaNew
 
 - type: loadoutGroup #Backmen
@@ -873,7 +880,6 @@
   loadouts:
   - MagazinePistol
   - MagazinePistolHighCapacity
-  - MagazineMagnumPistol
   - SpeedLoaderMagnum
 
 - type: loadoutGroup
@@ -907,6 +913,7 @@
   - SecurityBeret
   - SecurityHat
   - ClothingHeadHatCapSec #Backmen
+  - ClothingHeadHatPilotkaSec #Backmen
 
 - type: loadoutGroup
   id: SecurityJumpsuit
@@ -946,6 +953,7 @@
   id: SecurityShoes
   name: loadout-group-security-shoes
   loadouts:
+  - JackSecBoots # Corvax
   - CombatBoots
   - SecurityWinterBoots
 
@@ -964,8 +972,6 @@
   - WeaponPistolG22
   - WeaponPistolACP14
   - WeaponPistolG23
-  - WeaponPistolVP78
-  - WeaponPistolDEagle
 
 - type: loadoutGroup #Backmen
   id: SecurityPocket2
@@ -973,8 +979,6 @@
   minLimit: 0
   loadouts:
   - MagazinePistol
-  - MagazinePistolHighCapacity
-  - MagazineMagnumPistol
 
 - type: loadoutGroup
   id: DetectiveHead

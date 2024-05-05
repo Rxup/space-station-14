@@ -1,5 +1,4 @@
 using System.Linq;
-using Content.Server.Backmen.Psionics;
 using Content.Shared.Interaction;
 using Content.Shared.Research.Prototypes;
 using Content.Shared.Chemistry.Reagent;
@@ -11,8 +10,8 @@ using Content.Server.Botany;
 using Content.Server.Chemistry.Containers.EntitySystems;
 using Content.Server.Fluids.EntitySystems;
 using Content.Shared.Backmen.Abilities.Psionics;
+using Content.Shared.Backmen.Psionics.Components;
 using Content.Shared.Backmen.Psionics.Glimmer;
-using Content.Shared.Chemistry.EntitySystems;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Player;
@@ -268,7 +267,7 @@ public sealed class OracleSystem : EntitySystem
         if (_prototypeManager.TryIndex<EntityPrototype>(protoString, out var proto))
             component.DesiredPrototype = proto;
         else
-            Logger.Error("Oracle can't index prototype " + protoString);
+            Log.Error("Oracle can't index prototype " + protoString);
     }
 
     private string GetDesiredItem()

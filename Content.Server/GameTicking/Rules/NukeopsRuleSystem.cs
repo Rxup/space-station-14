@@ -31,6 +31,7 @@ using Robust.Shared.Random;
 using Robust.Shared.Utility;
 using System.Linq;
 using Content.Server.GameTicking.Components;
+using Content.Shared.CombatMode.Pacification;
 
 namespace Content.Server.GameTicking.Rules;
 
@@ -501,6 +502,7 @@ public sealed class NukeopsRuleSystem : GameRuleSystem<NukeopsRuleComponent>
         }
 
         args.Entity = Spawn(species.Prototype);
+        RemComp<PacifiedComponent>(args.Entity.Value); // Corvax-DionaPacifist: Allow dionas nukes to harm
         _humanoid.LoadProfile(args.Entity.Value, profile);
     }
 

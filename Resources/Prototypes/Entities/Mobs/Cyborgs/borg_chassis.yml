@@ -218,10 +218,15 @@
     - Science
   - type: AccessReader
     access: [["Medical"], ["Command"], ["Research"]]
-  - type: TTS
+  - type: TTS # Corvax-TTS
     voice: Borgs
   - type: Inventory
     templateId: borgDutch
+  - type: FootstepModifier
+    footstepSoundCollection:
+      collection: FootstepHoverBorg
+      params:
+        volume: -6
 
 - type: entity
   id: BorgChassisService

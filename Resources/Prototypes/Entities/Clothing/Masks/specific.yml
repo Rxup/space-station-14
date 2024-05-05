@@ -20,6 +20,9 @@
       interfaces:
         enum.ChameleonUiKey.Key:
           type: ChameleonBoundUserInterface
+    - type: HideLayerClothing
+      slots:
+      - Snout
 # Corvax-HiddenDesc-Start
     - type: HiddenDescription
       entries:
@@ -35,9 +38,6 @@
           - Scientist
           - Borg
 # Corvax-HiddenDesc-End
-    - type: HideLayerClothing
-      slots:
-      - Snout
 
 - type: entity
   parent: ClothingMaskGasChameleon
@@ -45,6 +45,9 @@
   suffix: Voice Mask, Chameleon
   components:
     - type: VoiceMasker
+    - type: HideLayerClothing
+      slots:
+      - Snout
 # Corvax-HiddenDesc-Start
     - type: HiddenDescription
       entries:
@@ -71,9 +74,6 @@
           - Scientist
           - Borg
 # Corvax-HiddenDesc-End
-    - type: HideLayerClothing
-      slots:
-      - Snout
 
 - type: entity
   parent: ClothingMaskBase

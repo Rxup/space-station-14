@@ -1,4 +1,5 @@
 ﻿//start-backmen: antag
+using Content.Server.Backmen.Blob.Roles;
 using Content.Server.Backmen.EvilTwin;
 using Content.Server.Backmen.Flesh;
 using Content.Server.Backmen.Fugitive;

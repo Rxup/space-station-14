@@ -60,9 +60,14 @@ public sealed class ShipVsShipGame : GameRuleSystem<ShipVsShipGameComponent>
         SubscribeLocalEvent<LoadingMapsEvent>(OnLoadMap);
         SubscribeLocalEvent<FTLCompletedEvent>(OnAfterFtl);
         SubscribeLocalEvent<RoundStartedEvent>(OnStartRound);
-        SubscribeLocalEvent<RoundEndTextAppendEvent>(OnRoundEndText);
         SubscribeLocalEvent<CanHandleWithArrival>(CanUseArrivals);
         SubscribeLocalEvent<PlayerSpawnCompleteEvent>(OnAfterSpawning);
+    }
+
+    protected override void AppendRoundEndText(EntityUid uid, ShipVsShipGameComponent rule, GameRuleComponent gameRule,
+        ref RoundEndTextAppendEvent args)
+    {
+        args.AddLine(Loc.GetString($"svs-team-{rule.Winner ?? StationTeamMarker.Neutral}-lose", ("target",rule.WinnerTarget ?? EntityUid.Invalid)));
     }
 
     private void SetFlag(EntityUid ent, StationTeamMarker team)
@@ -132,18 +137,6 @@ public sealed class ShipVsShipGame : GameRuleSystem<ShipVsShipGameComponent>
         {
             ev.Cancel();
         }
-    }
-
-    private void OnRoundEndText(RoundEndTextAppendEvent ev)
-    {
-        var activeRules = QueryActiveRules();
-
-        while (activeRules.MoveNext(out _, out var rule, out _))
-        {
-            ev.AddLine(Loc.GetString($"svs-team-{rule.Winner ?? StationTeamMarker.Neutral}-lose", ("target",rule.WinnerTarget ?? EntityUid.Invalid)));
-        }
-
-
     }
 
     private void OnStartRound(RoundStartedEvent ev)

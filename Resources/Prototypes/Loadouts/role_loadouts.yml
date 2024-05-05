@@ -75,7 +75,7 @@
   groups:
   - LawyerNeck
   - LawyerJumpsuit
-  - CommonBackpack
+  - LawyerBackpack
   - Glasses
   - Trinkets
 
@@ -274,8 +274,8 @@
   - SecurityBelt
   - WardenOuterClothing
   - SecurityShoes
-  - SecurityOfficerPocket #Backmen
-  - SecurityOfficerPocket2 #Backmen
+  - SecurityPocket #Backmen
+  - SecurityPocket2 #Backmen
   - Trinkets
 
 - type: roleLoadout
@@ -390,7 +390,7 @@
 - type: roleLoadout
   id: JobPsychologist
   groups:
-  - MedicalBackpack
+  - PsychologistBackpack # Corvax-MRP
   - Glasses
   - Trinkets
 

@@ -38,3 +38,12 @@
     - BorgChassis
   components:
     - type: SouthernAccent
+
+- type: trait
+  id: Liar
+  name: trait-liar-name
+  description: trait-liar-desc
+  components:
+    - type: ReplacementAccent
+      replacementChance: 0.15
+      accent: liar

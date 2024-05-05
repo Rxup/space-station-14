@@ -5,8 +5,8 @@
   - !type:JobRequirementLoadoutEffect
     requirement:
       !type:RoleTimeRequirement
-      role: JobHeadOfSecurity
-      time: 21600 #6 hrs
+      role: JobWarden
+      time: 72000 #20 hrs # Corvax-RoleTime
   - !type:JobRequirementLoadoutEffect
     requirement:
       !type:DepartmentTimeRequirement
@@ -52,6 +52,15 @@
   id: ClothingHeadHatCapSec
   equipment:
     head: ClothingHeadHatCapSec
+
+- type: loadout #Backmen
+  id: ClothingHeadHatPilotkaSec
+  equipment: ClothingHeadHatPilotkaSec
+
+- type: startingGear #Backmen
+  id: ClothingHeadHatPilotkaSec
+  equipment:
+    head: ClothingHeadHatPilotkaSec
 
 # Jumpsuit
 - type: loadout
