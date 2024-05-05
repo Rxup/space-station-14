@@ -1,20 +1,19 @@
-﻿using System.Linq;
+﻿using System.Diagnostics.CodeAnalysis;
+using System.Linq;
 using Content.Server.AlertLevel;
+using Content.Server.Backmen.Blob.Rule;
 using Content.Server.Backmen.GameTicking.Rules.Components;
-using Content.Server.Backmen.SpecForces;
 using Content.Server.Chat.Managers;
 using Content.Server.Chat.Systems;
 using Content.Server.GameTicking;
 using Content.Server.GameTicking.Components;
 using Content.Server.GameTicking.Rules;
-using Content.Server.GameTicking.Rules.Components;
 using Content.Server.Mind;
 using Content.Server.Nuke;
 using Content.Server.Objectives;
 using Content.Server.RoundEnd;
 using Content.Server.Station.Components;
 using Content.Server.Station.Systems;
-using Content.Shared.Backmen.Blob;
 using Content.Shared.Backmen.Blob.Components;
 using Content.Shared.Objectives.Components;
 using Robust.Shared.Audio;
@@ -32,92 +31,137 @@ public sealed class BlobRuleSystem : GameRuleSystem<BlobRuleComponent>
     [Dependency] private readonly AlertLevelSystem _alertLevelSystem = default!;
     [Dependency] private readonly IChatManager _chatManager = default!;
 
-    [ValidatePrototypeId<SpecForceTeamPrototype>]
-    private const string Rxbzz = "RXBZZ";
+
 
     private static readonly SoundPathSpecifier BlobDetectAudio = new SoundPathSpecifier("/Audio/Corvax/Adminbuse/Outbreak5.ogg");
 
     public override void Initialize()
     {
         base.Initialize();
-
-
     }
 
-    public override void Update(float frameTime)
+    protected override void Started(EntityUid uid, BlobRuleComponent component, GameRuleComponent gameRule, GameRuleStartedEvent args)
     {
-        base.Update(frameTime);
-
-        var blobFactoryQuery = EntityQueryEnumerator<BlobRuleComponent>();
-        while (blobFactoryQuery.MoveNext(out var blobRuleUid, out var blobRuleComp))
+        var activeRules = QueryActiveRules();
+        while (activeRules.MoveNext(out var entityUid, out _, out _, out _))
         {
-            var blobCoreQuery = EntityQueryEnumerator<BlobCoreComponent>();
-            while (blobCoreQuery.MoveNext(out var ent, out var comp))
+            if(uid == entityUid)
+                continue;
+
+            GameTicker.EndGameRule(uid, gameRule);
+            Log.Error("blob is active!!! remove!");
+            break;
+        }
+    }
+
+    protected override void ActiveTick(EntityUid uid, BlobRuleComponent component, GameRuleComponent gameRule, float frameTime)
+    {
+        component.Accumulator += frameTime;
+
+        if(component.Accumulator < 10)
+            return;
+
+        component.Accumulator = 0;
+
+        var blobCoreQuery = EntityQueryEnumerator<BlobCoreComponent, MetaDataComponent>();
+        while (blobCoreQuery.MoveNext(out var ent, out var comp, out _))
+        {
+            if (TerminatingOrDeleted(ent))
             {
-                if (TerminatingOrDeleted(ent))
+                continue;
+            }
+
+            if (comp.BlobTiles.Count >= 50)
+            {
+                if (_roundEndSystem.ExpectedCountdownEnd != null)
                 {
-                    continue;
+                    _roundEndSystem.CancelRoundEndCountdown(checkCooldown: false);
+                    _chatSystem.DispatchGlobalAnnouncement(Loc.GetString("blob-alert-recall-shuttle"),
+                        Loc.GetString("Station"),
+                        false,
+                        null,
+                        Color.Red);
                 }
+            }
 
-                if (comp.BlobTiles.Count >= 50)
+            if (!CheckBlobInStation(ent, out var stationUid))
+            {
+                continue;
+            }
+
+            CheckChangeStage((ent, comp), stationUid.Value, component);
+        }
+    }
+
+    private bool CheckBlobInStation(EntityUid blobCore, [NotNullWhen(true)] out EntityUid? stationUid)
+    {
+        var station = _stationSystem.GetOwningStation(blobCore);
+        if (station == null || !HasComp<StationEventEligibleComponent>(station.Value))
+        {
+            _chatManager.SendAdminAlert(blobCore, Loc.GetString("blob-alert-out-off-station"));
+            QueueDel(blobCore);
+            stationUid = null;
+            return false;
+        }
+
+        stationUid = station.Value;
+        return true;
+    }
+
+    private const string StationGamma = "gamma";
+    private const string StationSigma = "sigma";
+
+    private void CheckChangeStage(Entity<BlobCoreComponent> blobCore, EntityUid stationUid, BlobRuleComponent blobRuleComp)
+    {
+        switch (blobRuleComp.Stage)
+        {
+            case BlobStage.Default when blobCore.Comp.BlobTiles.Count > 30:
+                blobRuleComp.Stage = BlobStage.Begin;
+
+                _chatSystem.DispatchGlobalAnnouncement(Loc.GetString("blob-alert-detect"),
+                    Loc.GetString("Station"), true, BlobDetectAudio, Color.Red);
+                _alertLevelSystem.SetLevel(stationUid, StationSigma, true, true, true, true);
+
+                RaiseLocalEvent(stationUid, new BlobChangeLevelEvent
                 {
-                    if (_roundEndSystem.ExpectedCountdownEnd != null)
-                    {
-                        _roundEndSystem.CancelRoundEndCountdown(checkCooldown: false);
-                        _chatSystem.DispatchGlobalAnnouncement(Loc.GetString("blob-alert-recall-shuttle"),
-                            Loc.GetString("Station"),
-                            false,
-                            null,
-                            Color.Red);
-                    }
-                }
+                    BlobCore = blobCore,
+                    Station = stationUid,
+                    Level = blobRuleComp.Stage
+                }, broadcast: true);
+                return;
+            case BlobStage.Begin when blobCore.Comp.BlobTiles.Count >= 500:
+            {
+                blobRuleComp.Stage = BlobStage.Critical;
+                _chatSystem.DispatchGlobalAnnouncement(Loc.GetString("blob-alert-critical"),
+                    Loc.GetString("Station"),
+                    true,
+                    blobRuleComp.AlertAudio,
+                    Color.Red);
 
-                var stationUid = _stationSystem.GetOwningStation(ent);
-                if (stationUid == null || !HasComp<StationEventEligibleComponent>(stationUid.Value))
+                _nukeCode.SendNukeCodes(stationUid);
+                _alertLevelSystem.SetLevel(stationUid, StationGamma, true, true, true, true);
+
+                RaiseLocalEvent(stationUid, new BlobChangeLevelEvent
                 {
-                    _chatManager.SendAdminAlert(ent, Loc.GetString("blob-alert-out-off-station"));
-                    QueueDel(ent);
-                    continue;
-                }
-                switch (blobRuleComp.Stage)
+                    BlobCore = blobCore,
+                    Station = stationUid,
+                    Level = blobRuleComp.Stage
+                }, broadcast: true);
+                return;
+            }
+            case BlobStage.Critical when blobCore.Comp.BlobTiles.Count >= 900:
+            {
+                blobRuleComp.Stage = BlobStage.TheEnd;
+                blobCore.Comp.Points = 99999;
+                _roundEndSystem.EndRound();
+
+                RaiseLocalEvent(stationUid, new BlobChangeLevelEvent
                 {
-                    case BlobStage.Default when comp.BlobTiles.Count < 30:
-                        continue;
-                    case BlobStage.Default:
-                        _chatSystem.DispatchGlobalAnnouncement(Loc.GetString("blob-alert-detect"),
-                            Loc.GetString("Station"), true, BlobDetectAudio, Color.Red);
-                        _alertLevelSystem.SetLevel(stationUid.Value, "sigma", true, true, true, true);
-                        blobRuleComp.Stage = BlobStage.Begin;
-                        break;
-                    case BlobStage.Begin:
-                    {
-                        if (comp.BlobTiles.Count >= 500)
-                        {
-                            _chatSystem.DispatchGlobalAnnouncement(Loc.GetString("blob-alert-critical"),
-                                Loc.GetString("Station"),
-                                true,
-                                blobRuleComp.AlertAudio,
-                                Color.Red);
-
-                            _nukeCode.SendNukeCodes(stationUid.Value);
-                            blobRuleComp.Stage = BlobStage.Critical;
-                            _alertLevelSystem.SetLevel(stationUid.Value, "gamma", true, true, true, true);
-                            EntityManager.System<SpecForcesSystem>().CallOps(Rxbzz, "ДСО");
-                        }
-
-                        break;
-                    }
-                    case BlobStage.Critical:
-                    {
-                        if (comp.BlobTiles.Count >= 900)
-                        {
-                            comp.Points = 99999;
-                            _roundEndSystem.EndRound();
-                        }
-
-                        break;
-                    }
-                }
+                    BlobCore = blobCore,
+                    Station = stationUid,
+                    Level = blobRuleComp.Stage
+                }, broadcast: true);
+                return;
             }
         }
     }

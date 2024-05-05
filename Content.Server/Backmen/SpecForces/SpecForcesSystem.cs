@@ -14,6 +14,8 @@ using Content.Shared.Storage;
 using Robust.Shared.Utility;
 using System.Threading;
 using Content.Server.Actions;
+using Content.Server.Backmen.Blob.Rule;
+using Content.Server.Backmen.GameTicking.Rules.Components;
 using Content.Server.Ghost.Roles.Components;
 using Content.Server.RandomMetadata;
 using Content.Shared.Backmen.CCVar;
@@ -52,6 +54,16 @@ public sealed class SpecForcesSystem : EntitySystem
         SubscribeLocalEvent<RoundRestartCleanupEvent>(OnCleanup);
         SubscribeLocalEvent<SpecForceComponent, ComponentStartup>(OnStartup);
         SubscribeLocalEvent<SpecForceComponent, ComponentShutdown>(OnShutdown);
+        SubscribeLocalEvent<BlobChangeLevelEvent>(OnBlobChange);
+    }
+
+    [ValidatePrototypeId<SpecForceTeamPrototype>]
+    private const string Rxbzz = "RXBZZ";
+
+    private void OnBlobChange(BlobChangeLevelEvent ev)
+    {
+        if(ev.Level == BlobStage.Critical)
+            CallOps(Rxbzz, "ДСО");
     }
 
     private void OnShutdown(EntityUid uid, SpecForceComponent component, ComponentShutdown args)

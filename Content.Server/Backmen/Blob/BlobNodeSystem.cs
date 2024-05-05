@@ -1,8 +1,13 @@
 using System.Linq;
 using System.Numerics;
+using System.Threading;
+using System.Threading.Tasks;
 using Content.Server.Backmen.Blob.Components;
 using Content.Shared.Backmen.Blob.Components;
+using Content.Shared.Destructible;
 using Robust.Server.GameObjects;
+using Robust.Shared.CPUJob.JobQueues;
+using Robust.Shared.CPUJob.JobQueues.Queues;
 using Robust.Shared.Map;
 using Robust.Shared.Map.Components;
 using Robust.Shared.Random;
@@ -18,17 +23,48 @@ public sealed class BlobNodeSystem : EntitySystem
     [Dependency] private readonly IGameTiming _gameTiming = default!;
 
     private EntityQuery<BlobTileComponent> _tileQuery;
+
     public override void Initialize()
     {
         base.Initialize();
         _tileQuery = GetEntityQuery<BlobTileComponent>();
+
     }
 
-    private void Pulse(EntityUid uid, BlobNodeComponent component)
-    {
-        var xform = Transform(uid);
+    private const double PulseJobTime = 0.005;
+    private readonly JobQueue _pulseJobQueue = new(PulseJobTime);
 
-        var radius = component.PulseRadius;
+    public sealed class BlobPulse : Job<object>
+    {
+        private readonly BlobNodeSystem _system;
+        private readonly Entity<BlobNodeComponent> _ent;
+
+        public BlobPulse(BlobNodeSystem system, Entity<BlobNodeComponent> ent, double maxTime,
+            CancellationToken cancellation = default) : base(maxTime, cancellation)
+        {
+            _system = system;
+            _ent = ent;
+        }
+
+        public BlobPulse(BlobNodeSystem system, Entity<BlobNodeComponent> ent, double maxTime, IStopwatch stopwatch,
+            CancellationToken cancellation = default) : base(maxTime, stopwatch, cancellation)
+        {
+            _system = system;
+            _ent = ent;
+        }
+
+        protected override async Task<object?> Process()
+        {
+            _system.Pulse(_ent);
+            return null;
+        }
+    }
+
+    private void Pulse(Entity<BlobNodeComponent> ent)
+    {
+        var xform = Transform(ent);
+
+        var radius = ent.Comp.PulseRadius;
 
         var localPos = xform.Coordinates.Position;
 
@@ -37,35 +73,34 @@ public sealed class BlobNodeSystem : EntitySystem
             return;
         }
 
-        if (!_tileQuery.TryGetComponent(uid, out var blobTileComponent) || blobTileComponent.Core == null)
+        if (!_tileQuery.TryGetComponent(ent, out var blobTileComponent) || blobTileComponent.Core == null)
             return;
 
         var innerTiles = _map.GetLocalTilesIntersecting(xform.GridUid.Value, grid,
-            new Box2(localPos + new Vector2(-radius, -radius), localPos + new Vector2(radius, radius)), false).ToArray();
+            new Box2(localPos + new Vector2(-radius, -radius), localPos + new Vector2(radius, radius)),
+            false).ToArray();
 
         _random.Shuffle(innerTiles);
 
         var explain = true;
         foreach (var tileRef in innerTiles)
         {
-            foreach (var ent in _map.GetAnchoredEntities(xform.GridUid.Value, grid, tileRef.GridIndices))
+            foreach (var tile in _map.GetAnchoredEntities(xform.GridUid.Value, grid, tileRef.GridIndices))
             {
-                if (!HasComp<BlobTileComponent>(ent))
+                if (!_tileQuery.HasComp(tile))
                     continue;
 
                 var ev = new BlobTileGetPulseEvent
                 {
                     Explain = explain
                 };
-                RaiseLocalEvent(ent, ev);
+                RaiseLocalEvent(tile, ev);
                 explain = false;
             }
         }
 
-        foreach (var lookupUid in _lookup.GetEntitiesInRange(xform.Coordinates, radius))
+        foreach (var lookupUid in _lookup.GetEntitiesInRange<BlobMobComponent>(xform.Coordinates, radius))
         {
-            if (!HasComp<BlobMobComponent>(lookupUid))
-                continue;
             var ev = new BlobMobGetPulseEvent();
             RaiseLocalEvent(lookupUid, ev);
         }
@@ -75,6 +110,8 @@ public sealed class BlobNodeSystem : EntitySystem
     {
         base.Update(frameTime);
 
+        _pulseJobQueue.Process();
+
         var blobFactoryQuery = EntityQueryEnumerator<BlobNodeComponent>();
         while (blobFactoryQuery.MoveNext(out var ent, out var comp))
         {
@@ -83,7 +120,7 @@ public sealed class BlobNodeSystem : EntitySystem
 
             if (_tileQuery.TryGetComponent(ent, out var blobTileComponent) && blobTileComponent.Core != null)
             {
-                Pulse(ent, comp);
+                _pulseJobQueue.EnqueueJob(new BlobPulse(this,(ent, comp),PulseJobTime));
             }
 
             comp.NextPulse = _gameTiming.CurTime + TimeSpan.FromSeconds(comp.PulseFrequency);
