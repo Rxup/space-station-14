@@ -13,8 +13,9 @@ issuer-Gorlex-Marauders = [color=Red]Gorlex Marauders[/color]
 objective-issuer-Gorlex-Marauders = [color=Red]Gorlex Marauders[/color]
 
 issuer-Interdyne-Pharmaceutics = [color=LightBlue]Interdyne Pharmaceutics[/color]
-      Вы агент передовой корпорации, вашу личность не должны узнать, даже остальные члены Синдиката. Вы можете выполнять свои задачи так, как считаете нужным, но сделайте это чисто, и вы получите свои премиальные.
-      О вас никто не должен узнать. Даже остальные члены Синдиката.
+      [color=LightBlue]Вы агент передовой корпорации, вашу личность не должны узнать, даже остальные члены Синдиката.
+      Вы можете выполнять свои задачи так, как считаете нужным, но сделайте это чисто, и вы получите свои премиальные.
+      О вас никто не должен узнать. Даже остальные члены Синдиката.[/color]
 objective-issuer-Interdyne-Pharmaceutics = [color=LightBlue]Interdyne Pharmaceutics[/color]
 
 issuer-MI13 = [color=Crimson]MI13[/color]
