@@ -28,7 +28,7 @@ public sealed class CallSpecForcesCommand : IConsoleCommand
             return;
         }
         var specsys = EntityManager.System<SpecForcesSystem>();
-        if(!EntityManager.System<SpecForcesSystem>().CallOps(args[0],shell.Player != null ? shell.Player.Name : "An administrator")){
+        if(!specsys.CallOps(args[0],shell.Player != null ? shell.Player.Name : "An administrator")){
             shell.WriteLine($"Подождите еще {specsys.DelayTime} перед запуском следующих!");
         }
 

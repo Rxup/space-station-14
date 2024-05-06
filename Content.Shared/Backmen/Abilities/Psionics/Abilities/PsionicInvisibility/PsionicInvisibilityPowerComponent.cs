@@ -1,4 +1,5 @@
 
+using Content.Shared.Actions;
 using Robust.Shared.Prototypes;
 
 namespace Content.Shared.Backmen.Abilities.Psionics;
@@ -7,9 +8,9 @@ namespace Content.Shared.Backmen.Abilities.Psionics;
 public sealed partial class PsionicInvisibilityPowerComponent : Component
 {
     [DataField]
-    public EntProtoId ActionPsionicInvisibility = "ActionPsionicInvisibility";
+    public EntProtoId<InstantActionComponent> ActionPsionicInvisibility = "ActionPsionicInvisibility";
     [DataField]
-    public EntProtoId ActionPsionicInvisibilityOff = "ActionPsionicInvisibilityOff";
+    public EntProtoId<InstantActionComponent> ActionPsionicInvisibilityOff = "ActionPsionicInvisibilityOff";
 
     [DataField]
     public int StunSecond = 8;
