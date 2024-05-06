@@ -385,7 +385,7 @@ public sealed class EvilTwinSystem : EntitySystem
 
             foreach (var objectiveGroup in objectives.GroupBy(o => Comp<ObjectiveComponent>(o).Issuer))
             {
-                if (objectiveGroup.Key == "Космический банк")
+                if (objectiveGroup.Key == "SpaceBank")
                 {
                     continue;
                 }

@@ -137,7 +137,7 @@ public sealed class ObjectivesSystem : SharedObjectivesSystem
             {
 
                 // start-backmen: currency
-                if (objectiveGroup.Key == "Космический банк")
+                if (objectiveGroup.Key == "SpaceBank")
                 {
                     continue;
                 }

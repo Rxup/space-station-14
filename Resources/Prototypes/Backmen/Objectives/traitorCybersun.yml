@@ -8,7 +8,7 @@
       components:
       - TraitorRole
   - type: Objective
-    issuer: Cybersun Industries
+    issuer: Cybersun-Industries
   - type: ObjectiveBlacklistRequirement
     blacklist:
       tags:
@@ -16,6 +16,7 @@
       - MI13
       - Donk
       - Interdyne
+      - Gorlex
   - type: Tag
     tags:
     - Cybersan

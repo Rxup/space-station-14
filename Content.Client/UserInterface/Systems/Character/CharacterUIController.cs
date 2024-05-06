@@ -119,7 +119,7 @@ public sealed class CharacterUIController : UIController, IOnStateEntered<Gamepl
             _window.Memory.RemoveAllChildren();
             foreach (var (groupId, conditions) in objectives)
             {
-                if (groupId != "Космический банк")
+                if (groupId != "SpaceBank")
                 {
                     continue;
                 }
@@ -161,7 +161,7 @@ public sealed class CharacterUIController : UIController, IOnStateEntered<Gamepl
         foreach (var (groupId, conditions) in objectives)
         {
             // start backmen: currency
-            if (groupId == "Космический банк")
+            if (groupId == "SpaceBank")
             {
                 continue;
             }
@@ -178,7 +178,7 @@ public sealed class CharacterUIController : UIController, IOnStateEntered<Gamepl
             {
                 Modulate = Color.LightSkyBlue
             };
-            objectiveControlLabel.SetMarkup(Loc.GetString($"objective-issuer-{groupId}"));
+            objectiveControlLabel.SetMarkup(Loc.GetString($"issuer-{groupId}"));
 
             objectiveControl.AddChild(objectiveControlLabel);
             // end-backmen: locale
