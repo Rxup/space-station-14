@@ -75,7 +75,7 @@ public sealed class FleshCultistObjectiveSystem : EntitySystem
 
         foreach (var fleshHeartComp in EntityQuery<FleshHeartComponent>())
         {
-            Logger.Info("Find flesh heart");
+            Log.Info("Find flesh heart");
             if (!component.IsFleshHeartFinale(fleshHeartComp))
                 continue;
             fleshHeartFinale = true;

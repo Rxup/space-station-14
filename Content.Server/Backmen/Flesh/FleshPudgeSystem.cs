@@ -4,7 +4,6 @@ using Content.Server.Popups;
 using Content.Server.Weapons.Ranged.Systems;
 using Content.Shared.Backmen.Flesh;
 using Content.Shared.Chemistry.Components;
-using Content.Shared.Chemistry.EntitySystems;
 using Content.Shared.FixedPoint;
 using Content.Shared.Fluids.Components;
 using Content.Shared.Popups;
@@ -25,6 +24,7 @@ public sealed class FleshPudgeSystem : EntitySystem
     [Dependency] private readonly EntityLookupSystem _lookup = default!;
     [Dependency] private readonly GunSystem _gunSystem = default!;
     [Dependency] private readonly PhysicsSystem _physics = default!;
+    [Dependency] private readonly SharedTransformSystem _transform = default!;
 
     public override void Initialize()
     {
@@ -41,10 +41,11 @@ public sealed class FleshPudgeSystem : EntitySystem
             return;
 
         args.Handled = true;
-        var worm = Spawn(component.WormMobSpawnId, Transform(uid).Coordinates);
         var xform = Transform(uid);
-        var mapCoords = args.Target.ToMap(EntityManager);
-        var direction = mapCoords.Position - xform.MapPosition.Position;
+        var worm = Spawn(component.WormMobSpawnId, xform.Coordinates);
+
+        var mapCoords = _transform.ToMapCoordinates(args.Target);
+        var direction = mapCoords.Position - _transform.GetMapCoordinates(xform).Position;
 
         _throwing.TryThrow(worm, direction, 7F, uid, 10F);
         if (component.SoundThrowWorm != null)
@@ -60,10 +61,10 @@ public sealed class FleshPudgeSystem : EntitySystem
             return;
 
         args.Handled = true;
-        var acidBullet = Spawn(component.BulletAcidSpawnId, Transform(uid).Coordinates);
         var xform = Transform(uid);
-        var mapCoords = args.Target.ToMap(EntityManager);
-        var direction = mapCoords.Position - xform.MapPosition.Position;
+        var acidBullet = Spawn(component.BulletAcidSpawnId, xform.Coordinates);
+        var mapCoords = _transform.ToMapCoordinates(args.Target);
+        var direction = mapCoords.Position -  _transform.GetMapCoordinates(xform).Position;
         var userVelocity = _physics.GetMapLinearVelocity(uid);
 
         _gunSystem.ShootProjectile(acidBullet, direction, userVelocity, uid, uid);
@@ -79,12 +80,9 @@ public sealed class FleshPudgeSystem : EntitySystem
         var xform = Transform(uid);
         var puddles = new ValueList<(EntityUid Entity, string Solution)>();
         puddles.Clear();
-        foreach (var entity in _lookup.GetEntitiesInRange(xform.MapPosition, 0.5f))
+        foreach (var entity in _lookup.GetEntitiesInRange<PuddleComponent>(xform.Coordinates, 0.5f))
         {
-            if (TryComp<PuddleComponent>(entity, out var puddle))
-            {
-                puddles.Add((entity, puddle.SolutionName));
-            }
+            puddles.Add((entity, entity.Comp.SolutionName));
         }
 
         if (puddles.Count == 0)
@@ -94,7 +92,7 @@ public sealed class FleshPudgeSystem : EntitySystem
             return;
         }
 
-        var totalBloodQuantity = new float();
+        var totalBloodQuantity = 0f;
 
         foreach (var (puddle, solution) in puddles)
         {
@@ -103,7 +101,7 @@ public sealed class FleshPudgeSystem : EntitySystem
                 continue;
             }
             var hasImpurities = false;
-            var pudleBloodQuantity = new FixedPoint2();
+            FixedPoint2 puddleBloodQuantity = 0;
             foreach (var puddleSolutionContent in puddleSolution.Contents.ToArray())
             {
                 if (puddleSolutionContent.Reagent.Prototype != "Blood")
@@ -112,12 +110,12 @@ public sealed class FleshPudgeSystem : EntitySystem
                 }
                 else
                 {
-                    pudleBloodQuantity += puddleSolutionContent.Quantity;
+                    puddleBloodQuantity += puddleSolutionContent.Quantity;
                 }
             }
             if (hasImpurities)
                 continue;
-            totalBloodQuantity += pudleBloodQuantity.Float();
+            totalBloodQuantity += puddleBloodQuantity.Float();
             QueueDel(puddle);
         }
 
