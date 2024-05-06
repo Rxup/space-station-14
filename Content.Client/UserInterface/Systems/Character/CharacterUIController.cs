@@ -178,7 +178,7 @@ public sealed class CharacterUIController : UIController, IOnStateEntered<Gamepl
             {
                 Modulate = Color.LightSkyBlue
             };
-            objectiveControlLabel.SetMarkup(Loc.GetString($"objective-issuer-{groupId}"));
+            objectiveControlLabel.SetMarkup(Loc.GetString($"issuer-{groupId}"));
 
             objectiveControl.AddChild(objectiveControlLabel);
             // end-backmen: locale
