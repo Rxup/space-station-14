@@ -47,7 +47,7 @@
     - type: Objective
       difficulty: 0
       unique: true
-      issuer: Космический банк
+      issuer: SpaceBank
       icon:
         sprite: Backmen/Objects/Tools/rimbank.rsi
         state: icon
