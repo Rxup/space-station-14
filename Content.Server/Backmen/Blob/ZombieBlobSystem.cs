@@ -24,9 +24,11 @@ using Content.Shared.NPC.Prototypes;
 using Content.Shared.NPC.Systems;
 using Content.Shared.Physics;
 using Content.Shared.Tag;
+using Content.Shared.Zombies;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Physics;
 using Robust.Shared.Physics.Systems;
+using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 
 namespace Content.Server.Backmen.Blob;
@@ -40,7 +42,6 @@ public sealed class ZombieBlobSystem : EntitySystem
     [Dependency] private readonly SharedAudioSystem _audio = default!;
     [Dependency] private readonly IChatManager _chatMan = default!;
     [Dependency] private readonly SharedPhysicsSystem _physics = default!;
-    [Dependency] private readonly RoleSystem _roleSystem = default!;
     [Dependency] private readonly TriggerSystem _trigger = default!;
 
     private const int ClimbingCollisionGroup = (int) (CollisionGroup.BlobImpassable);
@@ -171,16 +172,21 @@ public sealed class ZombieBlobSystem : EntitySystem
             var htn = EnsureComp<HTNComponent>(uid);
             htn.RootTask = new HTNCompoundTask() {Task = "SimpleHostileCompound"};
             htn.Blackboard.SetValue(NPCBlackboard.Owner, uid);
-            _npc.WakeNPC(uid, htn);
+
+            if (!HasComp<ActorComponent>(component.BlobPodUid))
+            {
+                _npc.WakeNPC(uid, htn);
+            }
         }
+
+        var ev = new EntityZombifiedEvent(uid);
+        RaiseLocalEvent(uid, ref ev, true);
     }
 
     private void OnShutdown(EntityUid uid, ZombieBlobComponent component, ComponentShutdown args)
     {
         if (TerminatingOrDeleted(uid))
-        {
             return;
-        }
 
         RemComp<BlobSpeakComponent>(uid);
         RemComp<BlobMobComponent>(uid);

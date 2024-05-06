@@ -1,3 +1,4 @@
+using Content.Server.Spawners.Components;
 using Content.Shared.Storage;
 using Robust.Shared.Audio;
 using Robust.Shared.Prototypes;
@@ -27,7 +28,7 @@ public sealed partial class SpecForceTeamPrototype : IPrototype
     /// </summary>
     [ViewVariables]
     [DataField("spawnMarker", required: true)]
-    public readonly EntProtoId SpawnMarker;
+    public readonly EntProtoId<SpawnPointComponent> SpawnMarker;
     /// <summary>
     /// Announcement text for the SpecForce.
     /// </summary>

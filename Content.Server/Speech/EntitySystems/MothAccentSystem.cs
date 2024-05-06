@@ -7,6 +7,16 @@ namespace Content.Server.Speech.EntitySystems;
 public sealed class MothAccentSystem : EntitySystem
 {
     [Dependency] private readonly IRobustRandom _random = default!; // Corvax-Localization
+    private static readonly Regex RegexLowerBuzz = new Regex("z{1,3}");
+    private static readonly Regex RegexUpperBuzz = new Regex("Z{1,3}");
+
+        // Corvax-Localization-Start
+    private static readonly Regex RegexLoc1_1 = new("ж{1,3}");
+    private static readonly Regex RegexLoc1_2 = new("Ж{1,3}");
+
+    private static readonly Regex RegexLoc2_1 = new("з{1,3}");
+    private static readonly Regex RegexLoc2_2 = new("З{1,3}");
+    // Corvax-Localization-End
 
     public override void Initialize()
     {
@@ -19,34 +29,30 @@ public sealed class MothAccentSystem : EntitySystem
         var message = args.Message;
 
         // buzzz
-        message = Regex.Replace(message, "z{1,3}", "zzz");
+        message = RegexLowerBuzz.Replace(message, "zzz");
         // buZZZ
-        message = Regex.Replace(message, "Z{1,3}", "ZZZ");
+        message = RegexUpperBuzz.Replace(message, "ZZZ");
 
         // Corvax-Localization-Start
         // ж => жжж
-        message = Regex.Replace(
+        message = RegexLoc1_1.Replace(
             message,
-            "ж{1,3}",
-            _random.Pick(new List<string>() { "жж", "жжж" })
+            _=> _random.Pick(new List<string>() { "жж", "жжж" })
         );
         // Ж => ЖЖЖ
-        message = Regex.Replace(
+        message = RegexLoc1_2.Replace(
             message,
-            "Ж{1,3}",
-            _random.Pick(new List<string>() { "ЖЖ", "ЖЖЖ" })
+            _=> _random.Pick(new List<string>() { "ЖЖ", "ЖЖЖ" })
         );
         // з => ссс
-        message = Regex.Replace(
+        message = RegexLoc2_1.Replace(
             message,
-            "з{1,3}",
-            _random.Pick(new List<string>() { "зз", "ззз" })
+            _=> _random.Pick(new List<string>() { "зз", "ззз" })
         );
         // З => CCC
-        message = Regex.Replace(
+        message = RegexLoc2_2.Replace(
             message,
-            "З{1,3}",
-            _random.Pick(new List<string>() { "ЗЗ", "ЗЗЗ" })
+            _=> _random.Pick(new List<string>() { "ЗЗ", "ЗЗЗ" })
         );
         // Corvax-Localization-End
 

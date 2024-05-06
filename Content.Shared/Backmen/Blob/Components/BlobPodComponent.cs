@@ -11,6 +11,7 @@ public sealed partial class BlobPodComponent : Component
     [ViewVariables(VVAccess.ReadOnly)]
     public bool IsZombifying = false;
 
+    [AutoNetworkedField]
     [ViewVariables(VVAccess.ReadOnly)]
     public EntityUid? ZombifiedEntityUid = default!;
 
