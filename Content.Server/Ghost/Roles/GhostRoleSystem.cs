@@ -479,14 +479,14 @@ namespace Content.Server.Ghost.Roles
 
             // start-backmen: whitelist
             if (role.Comp.WhitelistRequired && _cfg.GetCVar(Shared.Backmen.CCVar.CCVars.WhitelistRolesEnabled) && !_roleWhitelist.IsInWhitelist(player))
-                return;
+                return false;
             // end-backmen: whitelist
 
             var ev = new TakeGhostRoleEvent(player);
             // start-backmen: ghost roller
             _roleRoller.Takeover(role, ref ev);
             if(ev.TookRole)
-                return;
+                return false;
             // end-backmen: ghost roller
             RaiseLocalEvent(role, ref ev);
 

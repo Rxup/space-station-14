@@ -1758,6 +1758,8 @@
     makeSentient: true
     name: ghost-role-information-cancer-mouse-name
     description: ghost-role-information-cancer-mouse-description
+    raffle:
+      settings: default
     requirements:
     - !type:OverallPlaytimeRequirement
       time: 54000 # 15h # Corvax-RoleTime

@@ -4,6 +4,7 @@ using Content.Server.Popups;
 using Content.Server.Weapons.Ranged.Systems;
 using Content.Shared.Backmen.Flesh;
 using Content.Shared.Chemistry.Components;
+using Content.Shared.Chemistry.EntitySystems;
 using Content.Shared.FixedPoint;
 using Content.Shared.Fluids.Components;
 using Content.Shared.Popups;
@@ -20,7 +21,7 @@ public sealed class FleshPudgeSystem : EntitySystem
     [Dependency] private readonly PopupSystem _popup = default!;
     [Dependency] private readonly ActionsSystem _action = default!;
     [Dependency] private readonly ThrowingSystem _throwing = default!;
-    [Dependency] private readonly SolutionContainerSystem _solutionSystem = default!;
+    [Dependency] private readonly SharedSolutionContainerSystem _solutionSystem = default!;
     [Dependency] private readonly EntityLookupSystem _lookup = default!;
     [Dependency] private readonly GunSystem _gunSystem = default!;
     [Dependency] private readonly PhysicsSystem _physics = default!;

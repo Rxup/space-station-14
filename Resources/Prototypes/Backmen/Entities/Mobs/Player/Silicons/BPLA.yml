@@ -46,6 +46,8 @@
     allowMovement: true # backmen
     name: Блюспейс Дрон #ghost-role-information-drone-name # backmen
     description: ghost-role-information-drone-description # backmen
+    raffle:
+      settings: default
     requirements:
       - !type:OverallPlaytimeRequirement
         time: 24000
