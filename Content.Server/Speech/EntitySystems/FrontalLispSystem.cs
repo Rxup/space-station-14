@@ -6,7 +6,6 @@ namespace Content.Server.Speech.EntitySystems;
 
 public sealed class FrontalLispSystem : EntitySystem
 {
-    [Dependency] private readonly IRobustRandom _random = default!; // Corvax-Localization
     // @formatter:off
     private static readonly Regex RegexUpperTh = new(@"[T]+[Ss]+|[S]+[Cc]+(?=[IiEeYy]+)|[C]+(?=[IiEeYy]+)|[P][Ss]+|([S]+[Tt]+|[T]+)(?=[Ii]+[Oo]+[Uu]*[Nn]*)|[C]+[Hh]+(?=[Ii]*[Ee]*)|[Z]+|[S]+|[X]+(?=[Ee]+)");
     private static readonly Regex RegexLowerTh = new(@"[t]+[s]+|[s]+[c]+(?=[iey]+)|[c]+(?=[iey]+)|[p][s]+|([s]+[t]+|[t]+)(?=[i]+[o]+[u]*[n]*)|[c]+[h]+(?=[i]*[e]*)|[z]+|[s]+|[x]+(?=[e]+)");
@@ -20,6 +19,8 @@ public sealed class FrontalLispSystem : EntitySystem
 
     // Corvax-Localization End
     // @formatter:on
+
+    [Dependency] private readonly IRobustRandom _random = default!; // Corvax-Localization
 
     public override void Initialize()
     {
