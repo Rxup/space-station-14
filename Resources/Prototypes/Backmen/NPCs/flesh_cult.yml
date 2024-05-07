@@ -86,6 +86,7 @@
       deathMobSpawnId: "MobFleshWorm"
       deathMobSpawnCount: 1
     - type: Sprite
+      sprite: Mobs/Aliens/FleshCult/flesh_cult_mobs.rsi
       layers:
         - map: [ "enum.DamageStateVisualLayers.Base" ]
           state: spider
@@ -331,6 +332,7 @@
       deathMobSpawnId: "MobFleshWorm"
       deathMobSpawnCount: 0
     - type: Sprite
+      sprite: Mobs/Aliens/FleshCult/flesh_cult_mobs.rsi
       layers:
         - map: [ "enum.DamageStateVisualLayers.Base" ]
           state: ball
@@ -400,6 +402,7 @@
       deathMobSpawnId: "MobFleshWorm"
       deathMobSpawnCount: 0
     - type: Sprite
+      sprite: Mobs/Aliens/FleshCult/flesh_cult_mobs.rsi
       layers:
         - map: [ "enum.DamageStateVisualLayers.Base" ]
           state: bat
@@ -473,6 +476,7 @@
           Piercing: 2
       actionWormJump: ActionWormJump
     - type: Sprite
+      sprite: Mobs/Aliens/FleshCult/flesh_cult_mobs.rsi
       drawdepth: SmallMobs
       noRot: true
       layers:
