@@ -36,7 +36,7 @@ public sealed partial class FleshCultistSystem
     [Dependency] private readonly InventorySystem _inventory = default!;
     [Dependency] private readonly CuffableSystem _cuffable = default!;
     [Dependency] private readonly MapSystem _map = default!;
-    [Dependency] private readonly SolutionContainerSystem _solutionContainerSystem = default!;
+    [Dependency] private readonly SharedSolutionContainerSystem _solutionContainerSystem = default!;
     [Dependency] private readonly MovementSpeedModifierSystem _movement = default!;
     [Dependency] private readonly StationSystem _stationSystem = default!;
     [Dependency] private readonly SharedTransformSystem _sharedTransform = default!;

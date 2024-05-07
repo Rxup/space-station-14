@@ -10,7 +10,7 @@ namespace Content.Server.Backmen.Explosion.EntitySystems;
 public sealed class BTriggerSystem : EntitySystem
 {
     [Dependency] private readonly PuddleSystem _puddleSystem = default!;
-    [Dependency] private readonly SolutionContainerSystem _solutionSystem = default!;
+    [Dependency] private readonly SharedSolutionContainerSystem _solutionSystem = default!;
     public override void Initialize()
     {
         base.Initialize();

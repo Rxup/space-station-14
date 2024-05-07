@@ -61,7 +61,7 @@ public sealed partial class FleshCultistSystem : EntitySystem
     [Dependency] private readonly SharedAudioSystem _audio = default!;
     [Dependency] private readonly PuddleSystem _puddleSystem = default!;
     [Dependency] private readonly EntityLookupSystem _lookup = default!;
-    [Dependency] private readonly SolutionContainerSystem _solutionSystem = default!;
+    [Dependency] private readonly SharedSolutionContainerSystem _solutionSystem = default!;
     [Dependency] private readonly HumanoidAppearanceSystem _sharedHuApp = default!;
     [Dependency] private readonly SharedAppearanceSystem _sharedAppearance = default!;
     [Dependency] private readonly DamageableSystem _damageableSystem = default!;
