@@ -71,8 +71,32 @@ public sealed class EvilTwinSystem : EntitySystem
         SubscribeLocalEvent<RoundRestartCleanupEvent>(OnCleanup);
         SubscribeLocalEvent<EvilTwinSpawnerComponent, GhostRoleSpawnerUsedEvent>(OnGhostRoleSpawnerUsed);
         SubscribeLocalEvent<EvilTwinComponent, MobStateChangedEvent>(OnHandleComponentState);
+        SubscribeLocalEvent<EvilTwinComponent, MapInitEvent>(OnMapInit, after: new[]{ typeof(ForensicsSystem) });
         SubscribeLocalEvent<PickEvilTwinPersonComponent, ObjectiveAssignedEvent>(OnPersonAssigned);
         SubscribeLocalEvent<SpawnEvilTwinEvent>(OnSpawn);
+    }
+
+    private void OnMapInit(Entity<EvilTwinComponent> twinUid, ref MapInitEvent args)
+    {
+        if (twinUid.Comp.TwinEntity == null || TerminatingOrDeleted(twinUid.Comp.TwinEntity.Value))
+            return;
+        var target = twinUid.Comp.TwinEntity;
+
+        if (TryComp<FingerprintComponent>(target, out var fingerprintComponent))
+        {
+            EnsureComp<FingerprintComponent>(twinUid).Fingerprint = fingerprintComponent.Fingerprint;
+        }
+
+        if (TryComp<DnaComponent>(target, out var dnaComponent))
+        {
+            EnsureComp<DnaComponent>(twinUid).DNA = dnaComponent.DNA;
+        }
+
+        if (TryComp<ForensicsComponent>(target, out var forensicsComponent))
+        {
+            _forensicsSystem.CopyForensicsFrom(forensicsComponent, twinUid);
+        }
+
     }
 
     private void OnSpawn(SpawnEvilTwinEvent ev)
@@ -111,6 +135,12 @@ public sealed class EvilTwinSystem : EntitySystem
                             () =>
                             {
                                 _mindSystem.TransferTo(mindId, twinMob, true, false, mind);
+                                var bank = _economySystem.AddPlayerBank(twinMob.Value);
+                                if (bank != null)
+                                {
+                                    bank.Value.Comp.Balance = 1_000;
+                                    Dirty(bank.Value);
+                                }
                             });
 
                         var station = _stationSystem.GetOwningStation(targetUid.Value) ?? _stationSystem.GetStations()
@@ -622,6 +652,8 @@ public sealed class EvilTwinSystem : EntitySystem
     [Dependency] private readonly TargetObjectiveSystem _target = default!;
     [Dependency] private readonly IPlayerManager _playerManager = default!;
     [Dependency] private readonly IdentitySystem _identity = default!;
+    [Dependency] private readonly EconomySystem _economySystem = default!;
+    [Dependency] private readonly ForensicsSystem _forensicsSystem = default!;
 
     [ValidatePrototypeId<AntagPrototype>] private const string EvilTwinRole = "EvilTwin";
 

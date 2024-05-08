@@ -171,10 +171,17 @@
   noSpawn: true
   components:
     - type: StationEvent
+      startAnnouncement: station-event-vent-creatures-start-announcement
+      startAudio:
+        path: /Audio/Announcements/attention.ogg
+      startDelay: 10
       earliestStart: 20
       minimumPlayers: 15
-      weight: 1
+      weight: 2
       duration: 60
     - type: VentCrittersRule
       entries:
         - id: MobGiantSpiderVampireAngry
+          prob: 0.02
+        - id: MobGiantSpiderVampireBoss
+          prob: 0.001
