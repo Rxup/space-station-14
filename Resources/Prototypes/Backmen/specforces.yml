@@ -27,6 +27,7 @@
   maxRolesAmount: 8
   guaranteedSpawn:
     - id: SpawnMobHumanSFOfficer
+      prob: 0.5
     - id: SpawnMobHumanRXBZZLeader
     - id: SpawnMobHumanRXBZZFlamer
   specForceSpawn:
@@ -41,6 +42,8 @@
   maxRolesAmount: 6
   guaranteedSpawn:
     - id: SpawnMobHumanSpecialReAgentCOM
+    - id: SpawnMobHumanSFOfficer
+      prob: 0.7
   specForceSpawn:
     - id: SpawnMobHumanSpecialReAgent
 
@@ -56,6 +59,7 @@
   maxRolesAmount: 6
   guaranteedSpawn:
     - id: SpawnMobHumanSFOfficer
+      prob: 0.3
     - id: SpawnMobHumanERTLeaderAlpha1
   specForceSpawn:
     - id: SpawnMobHumanERTOperativeAlpha1
@@ -70,12 +74,32 @@
   announcementTitle: spec-forces-system-ertEpsilon-title
   announcementSoundPath: /Audio/Corvax/Adminbuse/Yesert.ogg
   maxRolesAmount: 10
+  spawnPerPlayers: 5
   guaranteedSpawn:
     - id: SpawnMobHumanERTLeaderEpsilon
     - id: SpawnMobHumanERTEngineerEpsilon
+      prob: 0.5
     - id: SpawnMobHumanERTSecurityEpsilon
+      prob: 0.5
   specForceSpawn:
     - id: SpawnMobHumanERTSecurityEpsilon
     - id: SpawnMobHumanERTEngineerEpsilon
     - id: SpawnMobHumanERTMedicalEpsilon
     - id: SpawnMobHumanERTJanitorEpsilon
+
+# ERT Tay
+- type: specForceTeam
+  id: ERTTay
+  specForceName: spec-forces-system-tay-name
+  shuttlePath: Maps/Backmen/Grids/NT-CC-Specnaz-013.yml
+  spawnMarker: MarkerSpecforce
+  announcementText: spec-forces-system-ertcall-annonce
+  announcementTitle: spec-forces-system-ertTay-title
+  announcementSoundPath: /Audio/Corvax/Adminbuse/Yesert.ogg
+  maxRolesAmount: 6
+  guaranteedSpawn:
+    - id: SpawnMobHumanERTLeaderTay39
+    - id: SpawnMobHumanERTMedicTay39
+      amount: 2
+  specForceSpawn:
+    - id: SpawnMobHumanERTSecurityTay39

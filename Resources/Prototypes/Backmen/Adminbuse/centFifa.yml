@@ -2848,7 +2848,6 @@
     eyes: ClothingEyesHudMedical
     gloves: ClothingHandsGlovesSpetsnazcombat
     outerClothing: ClothingOuterHardsuitERTLeaderTay39
-    suitstorage: OxygenTankFilled
     head: ClothingHeadHatBeretCmo
     id: OBRGavnaLeaderIDCardTay39
     ears: ClothingHeadsetCentComCCMTF
@@ -2935,11 +2934,10 @@
     jumpsuit: ClothingUniformJumpsuitERTMedic
     back: ClothingBackpackERTMedicTay39
     shoes: ClothingShoesBootsNedoSpetsnaz
-    mask: ClothingMaskGasERTTay39
+    mask: ClothingMaskGasERTV2_1
     eyes: ClothingEyesHudMedical
     gloves: ClothingHandsGlovesSpetsnazcombat
     outerClothing: ClothingOuterHardsuitERTMedicTay39
-    suitstorage: OxygenTankFilled
     id: OBRGavnaMedicIDCardTay39
     ears: ClothingHeadsetCentComCCMTF
     belt: ClothingBeltMedicalTay39Filled
@@ -2998,7 +2996,7 @@
           amount: 3
 
 - type: entity
-  name:  Tay - 39 оперативник ОБР
+  name: Tay - 39 оперативник ОБР
   parent: MobHumanERTSecurityEVAV2_1
   suffix: МТФ
   id: MobHumanERTSecurityTay39
@@ -3026,7 +3024,6 @@
     eyes: ClothingEyesHudMedical
     gloves: ClothingHandsGlovesSpetsnazcombat
     outerClothing: ClothingOuterHardsuitERTTay39
-    suitstorage: OxygenTankFilled
     id: OBRGavnaIDCardTay39
     ears: ClothingHeadsetCentComCCMTF
     belt: ClothingBeltERTWebbingSecurityTay39Filled

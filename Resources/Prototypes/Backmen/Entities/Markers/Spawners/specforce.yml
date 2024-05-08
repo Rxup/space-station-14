@@ -206,3 +206,33 @@
   components:
     - type: GhostRoleMobSpawner
       prototype: MobHumanERTMedicalReadyV3
+
+- type: entity
+  id: SpawnMobHumanERTLeaderTay39
+  parent: SpawnSpecforce
+  noSpawn: true
+  name: Тау лидер
+  suffix: спавнер спецсил
+  components:
+    - type: GhostRoleMobSpawner
+      prototype: MobHumanERTLeaderTay39
+
+- type: entity
+  id: SpawnMobHumanERTMedicTay39
+  parent: SpawnSpecforce
+  noSpawn: true
+  name: Тау медик
+  suffix: спавнер спецсил
+  components:
+    - type: GhostRoleMobSpawner
+      prototype: MobHumanERTMedicTay39
+
+- type: entity
+  id: SpawnMobHumanERTSecurityTay39
+  parent: SpawnSpecforce
+  noSpawn: true
+  name: Тау опер
+  suffix: спавнер спецсил
+  components:
+    - type: GhostRoleMobSpawner
+      prototype: MobHumanERTSecurityTay39
