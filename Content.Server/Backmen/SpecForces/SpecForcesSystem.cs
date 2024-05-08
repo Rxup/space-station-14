@@ -198,7 +198,6 @@ public sealed class SpecForcesSystem : EntitySystem
     {
         var spawns = new List<EntityCoordinates>();
         var query = EntityQueryEnumerator<SpawnPointComponent, MetaDataComponent, TransformComponent>();
-
         while (query.MoveNext(out _, out var meta, out var xform))
         {
             if (meta.EntityPrototype!.ID != proto.SpawnMarker)
