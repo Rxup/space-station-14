@@ -448,20 +448,61 @@
 
 - type: entity
   id: BriefcaseSyndicateSniperBundleFilled
-  name: brown briefcase
+  name: коричневый чемодан
+  description: Пригодится для переноски предметов в руках.
   parent: BriefcaseSyndie
   suffix: SniperBundle
   components:
-  - type: Item
-    size: Ginormous
-  - type: Storage
-    grid:
-    - 0,0,6,4
   - type: StorageFill
     contents:
       - id: WeaponRifleSR127
       - id: MagazineAntiMaterielRifleSR
-      - id: ClothingNeckTieRed
-      - id: ClothingHandsGlovesLatex
-      - id: ClothingUniformJumpsuitLawyerBlack
-      - id: BarberScissors
+      - id: ClothingEyesGlassesMercenary
+      - id: ClothingHandsGlovesCombat
+      - id: ClothingHeadHatStetson
+      - id: KukriKnife
+
+- type: entity
+  parent: ClothingBackpackDuffelSyndicateAmmo
+  id: ClothingBackpackDuffelSyndicateAmmoBackmenFilled
+  name: набор боеприпасов
+  suffix: Backmen
+  description: "Перезаряжаюсь! Содержит магазины для большинства современного вооружения синдиката. Рекомендуется большим группам оперативников."
+  components:
+  - type: StorageFill
+    contents:
+      - id: MagazinePistolDrumSubMachineGun # For PPSH
+        amount: 1
+      - id: MagazinePistolTopSubMachineGun # For P90
+        amount: 1
+      - id: MagazineLightRiflePkBox # For RPD
+        amount: 2
+      - id: MagazinePistolSubMachineGun
+        amount: 2
+      - id: MagazineLightRifle # For AKMS, AKSU and STG44
+        amount: 3
+      - id: MagazineRifleLightSniper # For Dragunov
+        amount: 1
+      - id: MagazineRifleRocket20 # For V31
+        amount: 1
+      - id: MagazineHeavyRifleBR64 # For BR64
+        amount: 1
+      - id: MagazineShotgun # For Zauer and SPAS12
+        amount: 3
+
+- type: entity
+  parent: ClothingBackpackDuffelSyndicateMedicalBundle
+  id: ClothingBackpackDuffelSyndicateMedicalBundleBackmenFilled
+  name: набор медикаментов
+  description: "Всё, что нужно для возвращения в строй ваших товарищей: главным образом, боевая аптечка, дефибриллятор, три боевых медипена и инъектор суперстимулятора."
+  components:
+  - type: StorageFill
+    contents:
+      - id: MedkitCombatFilled
+      - id: Defibrillator
+      - id: CombatMedipen
+        amount: 3
+      - id: ClothingHandsGlovesNitrile
+      - id: SyringeTranexamicAcid
+      - id: StimpackMiniSuper
+      - id: HandheldHealthAnalyzer
