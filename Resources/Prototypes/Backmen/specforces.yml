@@ -91,7 +91,7 @@
 - type: specForceTeam
   id: ERTTay
   specForceName: spec-forces-system-tay-name
-  shuttlePath: Maps/Backmen/Grids/NT-CC-Specnaz-013.yml
+  shuttlePath: Maps/Backmen/Grids/NTMH-Medivak-TH39.yml
   spawnMarker: MarkerSpecforce
   announcementText: spec-forces-system-ertcall-annonce
   announcementTitle: spec-forces-system-ertTay-title

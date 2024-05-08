@@ -1226,6 +1226,7 @@
     ears: ClothingHeadsetCentComCCMTFTHT9
     belt: ClothingBeltSecurityFilled
     pocket1: CombatKnifeSpetsnaz
+    pocket2: PinpointerNuclear
 
 - type: entity
   noSpawn: true
@@ -1313,6 +1314,7 @@
     ears: ClothingHeadsetCentComCCMTFTHT9
     belt: ClothingBeltSecurityFilled
     pocket1: CombatKnifeSpetsnaz
+    pocket2: PinpointerNuclear
 
 
 - type: entity
@@ -2680,6 +2682,7 @@
     ears: ClothingHeadsetCentComCCMTF
     belt: ClothingBeltSecurityFilled
     pocket1: CombatKnifeSpetsnaz
+    pocket2: PinpointerNuclear
 
 - type: entity
   noSpawn: true
@@ -2728,6 +2731,8 @@
         - id: MagazinePulseRifle
           amount: 9
         - id: BoxHandcuff
+        - id: C4
+          amount: 4
 
 - type: entity
   noSpawn: true
@@ -2790,6 +2795,7 @@
     ears: ClothingHeadsetCentComCCMTF
     belt: ClothingBeltSecurityFilled
     pocket1: CombatKnifeSpetsnaz
+    pocket2: PinpointerNuclear
 
 - type: entity
   noSpawn: true
@@ -2898,7 +2904,7 @@
         - id: WeaponDisabler
         - id: WeaponPulseSMGTritonM3
         - id: WeaponPulseShotgunHellHammer
-        - id: MedkitAdvancedFilled
+        - id: MedkitCombatFilled
           amount: 3
         - id: BoxHandcuff
 
@@ -2994,6 +3000,7 @@
           amount: 3
         - id: MedkitAdvancedFilled
           amount: 3
+        - id: HandheldCrewMonitor
 
 - type: entity
   name: Tay - 39 оперативник ОБР
