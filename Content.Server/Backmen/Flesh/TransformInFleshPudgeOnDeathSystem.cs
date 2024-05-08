@@ -7,6 +7,7 @@ using Content.Server.Popups;
 using Content.Shared.Body.Part;
 using Content.Shared.Chemistry.Components;
 using Content.Shared.Humanoid;
+using Content.Shared.Mind;
 using Content.Shared.Mind.Components;
 using Content.Shared.Mobs;
 using Content.Shared.Popups;
@@ -29,6 +30,7 @@ public sealed class TransformInFleshPudgeOnDeathSystem : EntitySystem
     [Dependency] private readonly RandomHelperSystem _randomHelper = default!;
     //[Dependency] private readonly SharedTransformSystem _transform = default!;
     [Dependency] private readonly SharedContainerSystem _container = default!;
+    [Dependency] private readonly SharedMindSystem _mindSystem = default!;
 
     public override void Initialize()
     {
@@ -50,7 +52,7 @@ public sealed class TransformInFleshPudgeOnDeathSystem : EntitySystem
         {
             var golem = Spawn(component.FleshPudgeId, Transform(uid).Coordinates);
             if (TryComp<MindContainerComponent>(uid, out var mindComp))
-                EntityManager.System<MindSystem>().TransferTo(mindComp.Mind!.Value, golem, false);
+                _mindSystem.TransferTo(mindComp.Mind!.Value, golem, false);
             //mindComp.Mind?.TransferTo(golem, ghostCheckOverride: true);
 
             _popup.PopupEntity(Loc.GetString("flesh-pudge-transform-user", ("EntityTransform", golem)),

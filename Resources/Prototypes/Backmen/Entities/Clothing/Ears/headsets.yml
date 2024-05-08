@@ -1,20 +1,5 @@
 - type: entity
   parent: ClothingHeadset
-  id: ClothingHeadsetOrden
-  name: Headset of the Red Order
-  description: Special typeface used by members of the Red Order
-  components:
-  - type: ContainerFill
-    containers:
-      key_slots:
-      - EncryptionKeyOrden
-  - type: Sprite
-    sprite: Backmen/Clothing/Ears/Headsets/orden.rsi
-  - type: Clothing
-    sprite: Backmen/Clothing/Ears/Headsets/orden.rsi
-
-- type: entity
-  parent: ClothingHeadset
   id: ClothingHeadsetFleetAdmiral
   name: Fleet headset
   description: A headset used by the upper echelons of Nanotrasen.

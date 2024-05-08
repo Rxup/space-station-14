@@ -2,22 +2,21 @@ using Content.Server.Backmen.Blob.Components;
 using Content.Server.DoAfter;
 using Content.Server.Explosion.EntitySystems;
 using Content.Server.NPC.HTN;
+using Content.Server.NPC.Systems;
 using Content.Server.Popups;
 using Content.Shared.ActionBlocker;
-using Content.Shared.Backmen.Blob;
 using Content.Shared.Backmen.Blob.Components;
 using Content.Shared.Backmen.Blob.NPC.BlobPod;
 using Content.Shared.CombatMode;
+using Content.Shared.Damage;
 using Content.Shared.Destructible;
 using Content.Shared.DoAfter;
 using Content.Shared.Humanoid;
 using Content.Shared.Interaction.Components;
-using Content.Shared.Interaction.Events;
 using Content.Shared.Inventory;
-using Content.Shared.Inventory.Events;
 using Content.Shared.Mobs.Systems;
+using Content.Shared.Movement.Components;
 using Content.Shared.Rejuvenate;
-using Content.Shared.Verbs;
 using Robust.Server.Audio;
 using Robust.Shared.Containers;
 using Robust.Shared.Player;
@@ -33,6 +32,8 @@ public sealed class BlobPodSystem : SharedBlobPodSystem
     [Dependency] private readonly AudioSystem _audioSystem = default!;
     [Dependency] private readonly InventorySystem _inventory = default!;
     [Dependency] private readonly ExplosionSystem _explosionSystem = default!;
+    [Dependency] private readonly DamageableSystem _damageableSystem = default!;
+    [Dependency] private readonly NPCSystem _npc = default!;
 
     public override void Initialize()
     {
@@ -41,7 +42,18 @@ public sealed class BlobPodSystem : SharedBlobPodSystem
         SubscribeLocalEvent<BlobPodComponent, BlobPodZombifyDoAfterEvent>(OnZombify);
         SubscribeLocalEvent<BlobPodComponent, DestructionEventArgs>(OnDestruction);
         SubscribeLocalEvent<BlobPodComponent, EntGotRemovedFromContainerMessage>(OnUnequip);
+        SubscribeLocalEvent<BlobPodComponent, BeforeDamageChangedEvent>(OnGetDamage);
+    }
 
+
+
+    private void OnGetDamage(Entity<BlobPodComponent> ent, ref BeforeDamageChangedEvent args)
+    {
+        if (ent.Comp.ZombifiedEntityUid == null || TerminatingOrDeleted(ent.Comp.ZombifiedEntityUid.Value))
+            return;
+        // relay damage
+        args.Cancelled = true;
+        _damageableSystem.TryChangeDamage(ent.Comp.ZombifiedEntityUid.Value, args.Damage, origin: args.Origin);
     }
 
     private void OnUnequip(Entity<BlobPodComponent> ent, ref EntGotRemovedFromContainerMessage args)
@@ -109,6 +121,10 @@ public sealed class BlobPodSystem : SharedBlobPodSystem
 
         var zombieBlob = EnsureComp<ZombieBlobComponent>(args.Args.Target.Value);
         zombieBlob.BlobPodUid = uid;
+        if (HasComp<ActorComponent>(uid))
+        {
+            _npc.SleepNPC(args.Args.Target.Value);
+        }
     }
 
 
@@ -144,8 +160,7 @@ public sealed class BlobPodSystem : SharedBlobPodSystem
         var ev = new BlobPodZombifyDoAfterEvent();
         var args = new DoAfterArgs(EntityManager, uid, component.ZombifyDelay, ev, uid, target: target)
         {
-            BreakOnTargetMove = true,
-            BreakOnUserMove = false,
+            BreakOnMove = true,
             DistanceThreshold = 2f,
             NeedHand = false
         };

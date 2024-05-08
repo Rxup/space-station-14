@@ -32,7 +32,7 @@
     unWeldedLayer: GlassAirlockLayer
     weldedLayer: GlassLayer
   - type: Rotatable
-    rotateWhileAnchored: true
+    rotateWhileAnchored: false
   - type: Transform
     noRot: false
   - type: Construction

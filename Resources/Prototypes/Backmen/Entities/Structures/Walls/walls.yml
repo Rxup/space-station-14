@@ -34,7 +34,9 @@
     - type: Tag
       tags:
         - Wall
-        - RCDDeconstructWhitelist
+    - type: RCDDeconstructable
+      cost: 6
+      delay: 8
 
 - type: entity
   parent: BaseWall
@@ -84,8 +86,9 @@
         node: girder
       - !type:DoActsBehavior
         acts: ["Destruction"]
-    destroySound:
-      collection: MetalBreak
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalBreak
   - type: IconSmooth
     key: walls
     base: paperwall

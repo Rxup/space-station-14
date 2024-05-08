@@ -28,17 +28,22 @@
       accent: dwarf
 
 - type: trait
-  id: OwOAccent
-  name: OwO акцент
-  description: Вы не можете перестать говорить как неко!
+  id: Southern
+  name: trait-southern-name
+  description: trait-southern-desc
   blacklist:
     components:
     - BSSDrone #backmen: bssdrone
     - StationAI # backmen: AI
     - BorgChassis
-  whitelist:
-    components:
-      - Felinid
   components:
-    - type: OwOAccent
+    - type: SouthernAccent
 
+- type: trait
+  id: Liar
+  name: trait-liar-name
+  description: trait-liar-desc
+  components:
+    - type: ReplacementAccent
+      replacementChance: 0.15
+      accent: liar

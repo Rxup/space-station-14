@@ -83,9 +83,10 @@
     tags:
     - CanPilot
     - DoorBumpOpener
-    - ShoesRequiredStepTriggerImmune
     # TODO: https://github.com/Backmen/Backmen/issues/1628
     # - GunsDisabled
+  - type: ClothingRequiredStepTriggerImmune
+    slots: WITHOUT_POCKET
   - type: Reactive
     groups:
       Acidic: [Touch]
@@ -191,22 +192,24 @@
   - type: Strippable
   - type: UserInterface
     interfaces:
-      - key: enum.VoiceMaskUIKey.Key
+      enum.VoiceMaskUIKey.Key:
         type: VoiceMaskBoundUserInterface
-      - key: enum.HumanoidMarkingModifierKey.Key
+      enum.HumanoidMarkingModifierKey.Key:
         type: HumanoidMarkingModifierBoundUserInterface
-      - key: enum.StrippingUiKey.Key
+      enum.StrippingUiKey.Key:
         type: StrippableBoundUserInterface
-      - key: enum.GolemUiKey.Key
+      enum.GolemUiKey.Key:
         type: GolemBoundUserInterface
-      - key: enum.SiliconLawsUiKey.Key
+      enum.SiliconLawsUiKey.Key:
         type: SiliconLawBoundUserInterface
   - type: Puller
   - type: Speech
     speechSounds: Baritone
   - type: Vocal
-    maleScream: /Audio/Corvax/Effects/off.ogg
-    femaleScream: /Audio/Corvax/Effects/off.ogg
+    sounds:
+      male: GolemEmote
+      female: GolemEmote
+      unsexed: GolemEmote
   - type: Emoting
   - type: Grammar
     attributes:
@@ -256,6 +259,13 @@
   - type: TTS
     voice: Oleg
 
+- type: emoteSounds
+  id: GolemEmote
+  sound:
+    path: /Audio/Backmen/test/base/ogg/off.ogg
+    params:
+      variation: 0.125
+
 - type: entity
   parent: MobGolemBase
   id: MobGolemCult
@@ -267,7 +277,7 @@
     tags:
       - FootstepSound
   - type: Repairable
-    fuelcost: 60
+    fuelCost: 60
     doAfterDelay: 32
   - type: Construction
     graph: Golem
@@ -366,7 +376,7 @@
     solution: soil
     maxRefill: 50
   - type: Repairable #needs plant repair stuff l8er
-    fuelcost: 60
+    fuelCost: 60
     doAfterDelay: 32
   - type: Reactive
     groups:

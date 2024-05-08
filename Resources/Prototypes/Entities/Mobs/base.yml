@@ -44,7 +44,6 @@
   - type: Polymorphable
   - type: StatusIcon
   - type: TTS # Corvax-TTS
-  - type: NightVision
   - type: CanBeBorgNTEnemy
 
 # Used for mobs that have health and can take damage.
@@ -63,6 +62,21 @@
         damage: 400
       behaviors:
       - !type:GibBehavior { }
+    - trigger:
+        !type:DamageTypeTrigger
+        damageType: Heat
+        damage: 1500
+      behaviors:
+      - !type:SpawnEntitiesBehavior
+        spawnInContainer: true
+        spawn:
+          Ash:
+            min: 1
+            max: 1
+      - !type:BurnBodyBehavior { }
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MeatLaserImpact
   - type: RadiationReceiver
   - type: Stamina
   - type: MobState
@@ -105,6 +119,8 @@
   - type: CombatMode
   - type: MeleeWeapon
     hidden: true
+    soundHit:
+      collection: MetalThud
     damage:
       groups:
         Brute: 5
@@ -178,7 +194,7 @@
     canResistFire: true
     damage: #per second, scales with number of fire 'stacks'
       types:
-        Heat: 3
+        Heat: 1.5
   - type: FireVisuals
     sprite: Mobs/Effects/onfire.rsi
     normalState: Generic_mob_burning

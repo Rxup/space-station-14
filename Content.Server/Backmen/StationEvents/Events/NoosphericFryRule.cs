@@ -2,6 +2,7 @@
 using Content.Server.Atmos.EntitySystems;
 using Content.Server.Backmen.Psionics.Glimmer;
 using Content.Server.Backmen.StationEvents.Components;
+using Content.Server.GameTicking.Components;
 using Content.Server.GameTicking.Rules.Components;
 using Content.Server.Popups;
 using Content.Server.Power.Components;

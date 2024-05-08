@@ -1,123 +1,123 @@
 ﻿# OopsieDoopsie
-- type: loadout
+- type: bkmloadout
   id: ClothingOuterAtmosianBomberJacketLoadout
   entity: ClothingOuterAtmosianBomberJacket
   sponsorOnly: true
 
-- type: loadout
+- type: bkmloadout
   id: ClothingMaskGasAtmosianLoadout
   entity: ClothingMaskGasAtmosian
   sponsorOnly: true
 
-- type: loadout
+- type: bkmloadout
   id: ClothingCloakAtmosianLoadout
   entity: ClothingCloakAtmosian
   sponsorOnly: true
 
 # Fezory
-- type: loadout
+- type: bkmloadout
   id: ClothingMaskSkullLoadout
   entity: ClothingMaskSkull
   sponsorOnly: true
 
-- type: loadout
+- type: bkmloadout
   id: ClothingCloakGamerLoadout
   entity: ClothingCloakGamer
   sponsorOnly: true
 
-- type: loadout
+- type: bkmloadout
   id: ClothingUniformJumpsuitSkeletonLoadout
   entity: ClothingUniformJumpsuitSkeleton
   sponsorOnly: true
 
 # NEKISH
-- type: loadout
+- type: bkmloadout
   id: OldHoSJumpsuitLoadout
   entity: ClothingUniformJumpsuitHoSOld
   sponsorOnly: true
   whitelistJobs: [HeadOfSecurity]
 
-- type: loadout
+- type: bkmloadout
   id: OldHoSCoatLoadout
   entity: ClothingOuterCoatHoSOvercoat
   sponsorOnly: true
   whitelistJobs: [HeadOfSecurity]
 
-- type: loadout
+- type: bkmloadout
   id: OldHoSCapLoadout
   entity: ClothingHeadHatCapHoS
   sponsorOnly: true
   whitelistJobs: [HeadOfSecurity]
 
-- type: loadout
+- type: bkmloadout
   id: OldHoSGlovesLoadout
   entity: ClothingHandsGlovesLeatherHoS
   sponsorOnly: true
   whitelistJobs: [HeadOfSecurity]
 
-- type: loadout
+- type: bkmloadout
   id: OldHoSBeltLoadout
   entity: ClothingBeltHoS
   sponsorOnly: true
   whitelistJobs: [HeadOfSecurity]
 
-- type: loadout
+- type: bkmloadout
   id: OldHoSBackpackLoadout
   entity: ClothingBackpackSatchelHoS
   sponsorOnly: true
   whitelistJobs: [HeadOfSecurity]
 
-- type: loadout
+- type: bkmloadout
   id: OldHoSBootsLoadout
   entity: ClothingShoesBootsJack
   sponsorOnly: true
   whitelistJobs: [HeadOfSecurity]
 
-- type: loadout
+- type: bkmloadout
   id: OldHoSHeadsetLoadout
   entity: ClothingHeadsetSecurity
   sponsorOnly: true
   whitelistJobs: [HeadOfSecurity]
 
 # ken41k
-- type: loadout
+- type: bkmloadout
   id: DivineWatchLoadout
   entity: ClothingHandsWatchDivine
   sponsorOnly: true
 
 # jesuisunfou
-- type: loadout
+- type: bkmloadout
   id: OldUSSPGlovesLoadout
   entity: ClothingHandsGlovesLeatherUSSPBlack
   sponsorOnly: true
   whitelistJobs: [HeadOfSecurity, IAA]
 
-- type: loadout
+- type: bkmloadout
   id: OldUSSPCapLoadout
   entity: ClothingHeadHatCapUSSPBlack
   sponsorOnly: true
   whitelistJobs: [HeadOfSecurity, IAA]
 
-- type: loadout
+- type: bkmloadout
   id: OldUSSPOvercoatLoadout
   entity: ClothingOuterCoatUSSPOvercoatBlack
   sponsorOnly: true
   whitelistJobs: [HeadOfSecurity, IAA]
 
-- type: loadout
+- type: bkmloadout
   id: OldUSSPJumpsuitLoadout
   entity: ClothingUniformJumpsuitUSSPBlack
   sponsorOnly: true
   whitelistJobs: [HeadOfSecurity, IAA]
 
-- type: loadout
+- type: bkmloadout
   id: OldUSSPShoesLoadout
   entity: ClothingShoesUSSPBlack
   sponsorOnly: true
   whitelistJobs: [HeadOfSecurity, IAA]
 
 # ondapapers
-- type: loadout
+- type: bkmloadout
   id: FancyCrownLoadout
   entity: ClothingHeadHatFancyCrown
   sponsorOnly: true

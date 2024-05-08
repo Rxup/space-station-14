@@ -125,3 +125,5 @@ blob-was-a-blob-with-objectives-named = [color=White]{ $name }[/color] был б
 # Objectivies
 objective-condition-blob-capture-title = Захватить станцию
 objective-condition-blob-capture-description = Ваша единственная цель - полное и безоговорочное поглощение станции. Вам необходимо владеть как минимум { $count } тайлами блоба.
+objective-condition-success = { $condition } | [color={ $markupColor }]Успех![/color]
+objective-condition-fail = { $condition } | [color={ $markupColor }]Провал![/color] ({ $progress }%)

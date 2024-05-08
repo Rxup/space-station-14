@@ -94,7 +94,7 @@
       right:
       - state: inhand-right-on
   - type: Welder
-    FuelLitCost: 2
+    fuelLitCost: 2
   - type: RefillableSolution
     solution: Welder
   - type: SolutionContainerManager

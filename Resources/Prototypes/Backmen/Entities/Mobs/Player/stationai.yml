@@ -234,25 +234,26 @@
         - map: [ "enum.AiVisualLayers.NotInEye" ]
           state: not_in_eye
 
+    - type: CriminalRecordsConsole
     - type: Visibility
     - type: UserInterface
       interfaces:
-        - key: enum.CommunicationsConsoleUiKey.Key
+        enum.CommunicationsConsoleUiKey.Key:
           type: CommunicationsConsoleBoundUserInterface
-        - key: enum.AICameraListUiKey.Key
+        enum.AICameraListUiKey.Key:
           type: AICameraListBoundUserInterface
-        - key: enum.SiliconLawsUiKey.Key
+        enum.SiliconLawsUiKey.Key:
           type: SiliconLawBoundUserInterface
-        - key: enum.StrippingUiKey.Key
+        enum.StrippingUiKey.Key:
           type: StrippableBoundUserInterface
-        - key: enum.CriminalRecordsConsoleKey.Key
+        enum.CriminalRecordsConsoleKey.Key:
           type: CriminalRecordsConsoleBoundUserInterface
     - type: IntrinsicUI
       uis:
-      - key: enum.CommunicationsConsoleUiKey.Key
-        toggleAction: ActionAIShowCommunications
-      - key: enum.CriminalRecordsConsoleKey.Key
-        toggleAction: ActionAiShowCriminalRecords
+        enum.CommunicationsConsoleUiKey.Key:
+          toggleAction: ActionAIShowCommunications
+        enum.CriminalRecordsConsoleKey.Key:
+          toggleAction: ActionAiShowCriminalRecords
     - type: ContainerContainer
       containers:
         tools: !type:Container
@@ -293,16 +294,6 @@
         - AllAccess
     # Wow, this is a lot of reoccurrances
     - type: IntrinsicRadioReceiver
-      channels:
-        - Binary
-        - Common
-        - Command
-        - CentCom
-        - Engineering
-        - Medical
-        - Science
-        - Security
-        - Service
     - type: IntrinsicRadioTransmitter
       channels:
         - Binary
@@ -374,8 +365,8 @@
     key: enum.NukeUiKey.Key
   - type: UserInterface
     interfaces:
-    - key: enum.NukeUiKey.Key
-      type: NukeBoundUserInterface
+      enum.NukeUiKey.Key:
+        type: NukeBoundUserInterface
 
 
 - type: entity
@@ -446,10 +437,10 @@
       canCharge: true
       canDischarge: false
     - type: BatteryCharger
-    - type: Battery
-      charge: 12000
-      maxCharge: 120000
-      pricePerJoule: 0
+#    - type: Battery
+#      charge: 12000
+#      maxCharge: 120000
+#      pricePerJoule: 0
     - type: Sprite
       sprite: Backmen/Mobs/Silicon/ai.rsi
       drawdepth: Mobs

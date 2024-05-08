@@ -1,0 +1,14 @@
+- type: entity
+  parent: ClothingHeadHatVioletwizard
+  id: ClothingHeadHatVioletwizardReal
+
+
+- type: entity
+  parent: ClothingHeadHatWizard
+  id: ClothingHeadHatWizardReal
+
+
+- type: entity
+  parent: ClothingHeadHatRedwizard
+  id: ClothingHeadHatRedwizardReal
+  suffix: magical

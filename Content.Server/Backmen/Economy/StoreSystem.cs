@@ -40,7 +40,8 @@ public sealed partial class StoreSystem
         {
             return false;
         }
-        if (msg.Session.AttachedEntity is not { Valid: true } buyer)
+
+        if (msg.Actor is not { Valid: true } buyer)
             return false;
 
         //check that we have enough money

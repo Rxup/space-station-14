@@ -1,0 +1,79 @@
+{
+  "version": 1,
+  "size": {
+    "x": 128,
+    "y": 128
+  },
+  "states": [
+    {
+      "name": "base",
+      "directions": 4
+    },
+    {
+      "name": "base_damaged",
+      "directions": 4
+    },
+    {
+      "name": "turret",
+      "directions": 4
+    },
+    {
+      "name": "frontal_turret",
+      "directions": 4
+    },
+    {
+      "name": "wheels_1",
+      "directions": 4
+    },
+    {
+      "name": "wheels_damaged",
+      "directions": 4
+    },
+    {
+      "name": "wheels_0",
+      "directions": 4,
+      "delays": [
+        [
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1
+        ],
+        [
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1
+        ],
+        [
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1
+        ],
+        [
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1
+        ]
+      ]
+    }
+  ]
+}

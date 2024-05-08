@@ -212,8 +212,7 @@ public sealed class SacrificialAltarSystem : EntitySystem
         var args = new DoAfterArgs(EntityManager, agent, (float) component.SacrificeTime.TotalSeconds, ev, altar, target: patient, used: altar)
         {
             BreakOnDamage = true,
-            BreakOnTargetMove = true,
-            BreakOnUserMove = true,
+            BreakOnMove = true,
             NeedHand = true
         };
 

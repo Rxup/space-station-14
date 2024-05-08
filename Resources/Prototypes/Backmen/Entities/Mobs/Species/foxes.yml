@@ -26,6 +26,9 @@
     damage:
       types:
         Slash: 5
+  - type: DiseaseCarrier
+    naturalImmunities:
+    - FurryVirus
   - type: Hunger # on 1.5x more
     thresholds:
       Overfed: 250

@@ -1,6 +1,7 @@
 ﻿using System.Linq;
 using Content.Server.Administration.Logs;
 using Content.Server.Backmen.Economy.Wage;
+using Content.Server.Backmen.RoleWhitelist;
 using Content.Server.Popups;
 using Content.Shared.Access.Systems;
 using Content.Shared.Backmen.Economy.WageConsole;
@@ -8,6 +9,7 @@ using Content.Shared.Database;
 using Content.Shared.Popups;
 using Content.Shared.UserInterface;
 using Robust.Server.GameObjects;
+using Robust.Shared.Player;
 
 namespace Content.Server.Backmen.Economy.WageConsole;
 
@@ -18,6 +20,7 @@ public sealed class WageConsoleSystem : SharedWageConsoleSystem
     [Dependency] private readonly AccessReaderSystem _access = default!;
     [Dependency] private readonly PopupSystem _popup = default!;
     [Dependency] private readonly IAdminLogManager _adminLogger = default!;
+    [Dependency] private readonly WhitelistSystem _whitelist = default!;
 
     public override void Initialize()
     {
@@ -35,6 +38,12 @@ public sealed class WageConsoleSystem : SharedWageConsoleSystem
 
     private void OnTryOpenUi(Entity<WageConsoleComponent> ent, ref ActivatableUIOpenAttemptEvent args)
     {
+        if (!TryComp<ActorComponent>(args.User, out var actorComponent) || !_whitelist.IsInWhitelist(actorComponent.PlayerSession))
+        {
+            _popup.PopupCursor(Loc.GetString("reinforcement-insufficient-access"), args.User, PopupType.Medium);
+            args.Cancel();
+            return;
+        }
         if (!_access.IsAllowed(args.User, ent))
         {
             _popup.PopupCursor(Loc.GetString("reinforcement-insufficient-access"), args.User, PopupType.Medium);
@@ -44,11 +53,19 @@ public sealed class WageConsoleSystem : SharedWageConsoleSystem
 
     private void OnBonusMsg(Entity<WageConsoleComponent> ent, ref BonusWageRowMsg args)
     {
-        if (args.Session.AttachedEntity is null) { return; }
-
-        if (!_access.IsAllowed(args.Session.AttachedEntity.Value, ent))
+        if (!TryComp<ActorComponent>(args.Actor, out var actorComponent))
         {
-            _popup.PopupCursor(Loc.GetString("wageconsole-insufficient-access"), args.Session, PopupType.Medium);
+            return;
+        }
+        if (!_whitelist.IsInWhitelist(actorComponent.PlayerSession))
+        {
+            _popup.PopupCursor(Loc.GetString("reinforcement-insufficient-access"), args.Actor, PopupType.Medium);
+            return;
+        }
+
+        if (!_access.IsAllowed(args.Actor, ent))
+        {
+            _popup.PopupCursor(Loc.GetString("wageconsole-insufficient-access"), args.Actor, PopupType.Medium);
             return;
         }
 
@@ -61,7 +78,7 @@ public sealed class WageConsoleSystem : SharedWageConsoleSystem
         }
 
         _adminLogger.Add(LogType.Transactions, LogImpact.Extreme,
-            $"Player {args.Session.Name} use BonusSystem on accountId {wagePayout.ToAccountNumber.Comp.AccountNumber} with name {wagePayout.ToAccountNumber:entity} and add {args.Wage}");
+            $"wage, player {ToPrettyString(args.Actor):player} use bonus on accountId {wagePayout.ToAccountNumber.Comp.AccountNumber} with name {wagePayout.ToAccountNumber:entity} and add {args.Wage}");
 
         QueueLocalEvent(new WagePaydayEvent()
         {
@@ -81,7 +98,7 @@ public sealed class WageConsoleSystem : SharedWageConsoleSystem
             return;
         }
 
-        _ui.TrySetUiState(ent, WageUiKey.Key, new OpenBonusWageConsoleUi
+        _ui.SetUiState(ent.Owner, WageUiKey.Key, new OpenBonusWageConsoleUi
         {
             Row = new UpdateWageRow
             {
@@ -99,11 +116,19 @@ public sealed class WageConsoleSystem : SharedWageConsoleSystem
 
     private void OnEditWageRow(Entity<WageConsoleComponent> ent, ref SaveEditedWageRowMsg args)
     {
-        if (args.Session.AttachedEntity is null) { return; }
-
-        if (!_access.IsAllowed(args.Session.AttachedEntity.Value, ent))
+        if (!TryComp<ActorComponent>(args.Actor, out var actorComponent))
         {
-            _popup.PopupCursor(Loc.GetString("wageconsole-insufficient-access"), args.Session, PopupType.Medium);
+            return;
+        }
+        if (!_whitelist.IsInWhitelist(actorComponent.PlayerSession))
+        {
+            _popup.PopupCursor(Loc.GetString("reinforcement-insufficient-access"), args.Actor, PopupType.Medium);
+            return;
+        }
+
+        if (!_access.IsAllowed(args.Actor, ent))
+        {
+            _popup.PopupCursor(Loc.GetString("wageconsole-insufficient-access"), args.Actor, PopupType.Medium);
             return;
         }
 
@@ -116,7 +141,7 @@ public sealed class WageConsoleSystem : SharedWageConsoleSystem
         }
 
         _adminLogger.Add(LogType.Transactions, LogImpact.Extreme,
-            $"Player {args.Session.Name} use EditPayoutSystem on accountId {wagePayout.ToAccountNumber.Comp.AccountNumber} with name {wagePayout.ToAccountNumber:entity} and set payout to {args.Wage}");
+            $"wage, player {ToPrettyString(args.Actor):player} use edit on accountId {wagePayout.ToAccountNumber.Comp.AccountNumber} with name {wagePayout.ToAccountNumber.Owner:entity} and set payout to {args.Wage}");
 
         wagePayout.PayoutAmount = args.Wage;
         UpdateUserInterface(ent);
@@ -132,16 +157,20 @@ public sealed class WageConsoleSystem : SharedWageConsoleSystem
             return;
         }
 
-        _ui.TrySetUiState(ent, WageUiKey.Key, new OpenEditWageConsoleUi
+        if(!TryComp<MetaDataComponent>(wagePayout.FromAccountNumber, out var mdFrom) ||
+           !TryComp<MetaDataComponent>(wagePayout.ToAccountNumber, out var mdTp))
+            return;
+
+        _ui.SetUiState(ent.Owner, WageUiKey.Key, new OpenEditWageConsoleUi
         {
             Row = new UpdateWageRow
             {
                 Id = wagePayout.Id,
-                FromId = GetNetEntity(wagePayout.FromAccountNumber),
-                FromName = Name(wagePayout.FromAccountNumber),
+                FromId = GetNetEntity(wagePayout.FromAccountNumber, mdFrom),
+                FromName = Name(wagePayout.FromAccountNumber, mdFrom),
                 FromAccount = wagePayout.FromAccountNumber.Comp.AccountNumber,
-                ToId = GetNetEntity(wagePayout.ToAccountNumber),
-                ToName = Name(wagePayout.ToAccountNumber),
+                ToId = GetNetEntity(wagePayout.ToAccountNumber, mdTp),
+                ToName = Name(wagePayout.ToAccountNumber, mdTp),
                 ToAccount = wagePayout.ToAccountNumber.Comp.AccountNumber,
                 Wage = wagePayout.PayoutAmount,
             }
@@ -159,20 +188,23 @@ public sealed class WageConsoleSystem : SharedWageConsoleSystem
 
         foreach (var wagePayout in _wageManager.PayoutsList)
         {
+            if(!TryComp<MetaDataComponent>(wagePayout.FromAccountNumber, out var mdFrom) ||
+               !TryComp<MetaDataComponent>(wagePayout.ToAccountNumber, out var mdTp))
+                continue;
             msg.Records.Add(new UpdateWageRow
             {
                 Id = wagePayout.Id,
 
-                FromId = GetNetEntity(wagePayout.FromAccountNumber),
-                FromName = Name(wagePayout.FromAccountNumber),
+                FromId = GetNetEntity(wagePayout.FromAccountNumber, mdFrom),
+                FromName = Name(wagePayout.FromAccountNumber,mdFrom),
                 FromAccount = wagePayout.FromAccountNumber.Comp.AccountNumber,
-                ToId = GetNetEntity(wagePayout.ToAccountNumber),
-                ToName = Name(wagePayout.ToAccountNumber),
+                ToId = GetNetEntity(wagePayout.ToAccountNumber, mdTp),
+                ToName = Name(wagePayout.ToAccountNumber,mdTp),
                 ToAccount = wagePayout.ToAccountNumber.Comp.AccountNumber,
                 Wage = wagePayout.PayoutAmount,
             });
         }
 
-        _ui.TrySetUiState(ent, WageUiKey.Key, msg);
+        _ui.SetUiState(ent.Owner, WageUiKey.Key, msg);
     }
 }

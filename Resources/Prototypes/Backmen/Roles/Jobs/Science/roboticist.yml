@@ -30,6 +30,6 @@
     outerClothing: ClothingOuterCoatRnd
     id: RoboticistPDA
     ears: ClothingHeadsetScience
-  innerClothingSkirt: ClothingUniformJumpskirtRoboticist
-  satchel: ClothingBackpackSatchelScienceFilled
-  duffelbag: ClothingBackpackDuffelScienceFilled
+  #innerClothingSkirt: ClothingUniformJumpskirtRoboticist
+  #satchel: ClothingBackpackSatchelScienceFilled
+  #duffelbag: ClothingBackpackDuffelScienceFilled

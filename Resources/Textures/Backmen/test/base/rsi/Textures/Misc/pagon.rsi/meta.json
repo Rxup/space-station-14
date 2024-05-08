@@ -1,0 +1,116 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "Created by discord:no_mad#0260",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "private"
+    },
+    {
+      "name": "capral"
+    },
+    {
+      "name": "serg"
+    },
+    {
+      "name": "unter"
+    },
+    {
+      "name": "unter2"
+    },
+    {
+      "name": "unter3"
+    },
+    {
+      "name": "leitenant"
+    },
+    {
+      "name": "leitenant2"
+    },
+    {
+      "name": "hauptman"
+    },
+    {
+      "name": "mayor"
+    },
+    {
+      "name": "podpolk"
+    },
+    {
+      "name": "polk"
+    },
+    {
+      "name": "generalmayor"
+    },
+    {
+      "name": "general"
+    },
+    {
+      "name": "generalpolk"
+    },
+    {
+      "name": "equipped-private",
+      "directions": 4
+    },
+    {
+      "name": "equipped-capral",
+      "directions": 4
+    },
+    {
+      "name": "equipped-serg",
+      "directions": 4
+    },
+    {
+      "name": "equipped-unter",
+      "directions": 4
+    },
+    {
+      "name": "equipped-unter2",
+      "directions": 4
+    },
+    {
+      "name": "equipped-unter3",
+      "directions": 4
+    },
+    {
+      "name": "equipped-leitenant",
+      "directions": 4
+    },
+    {
+      "name": "equipped-leitenant2",
+      "directions": 4
+    },
+    {
+      "name": "equipped-hauptman",
+      "directions": 4
+    },
+    {
+      "name": "equipped-mayor",
+      "directions": 4
+    },
+    {
+      "name": "equipped-podpolk",
+      "directions": 4
+    },
+    {
+      "name": "equipped-polk",
+      "directions": 4
+    },
+    {
+      "name": "equipped-generalmayor",
+      "directions": 4
+    },
+    {
+      "name": "equipped-general",
+      "directions": 4
+    },
+    {
+      "name": "equipped-generalpolk",
+      "directions": 4
+    }
+  ]
+}

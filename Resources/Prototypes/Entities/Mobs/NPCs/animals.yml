@@ -5,17 +5,18 @@
   description: Some cultures find them terrifying, others crunchy on the teeth.
   components:
   - type: MovementSpeedModifier
-    baseWalkSpeed : 3
-    baseSprintSpeed : 6
+    baseWalkSpeed: 3
+    baseSprintSpeed: 6
   - type: Sprite
     drawdepth: Mobs
     layers:
-    - map: ["enum.DamageStateVisualLayers.Base"]
+    - map: [ "enum.DamageStateVisualLayers.Base" ]
       state: bat
       sprite: Mobs/Animals/bat.rsi
   - type: Speech
     speechSounds: Squeak
     speechVerb: SmallMob
+    allowedEmotes: ['Squeak']
   - type: Fixtures
     fixtures:
       fix1:
@@ -52,7 +53,7 @@
     accent: mouse
   - type: MeleeWeapon
     soundHit:
-        path: /Audio/Effects/bite.ogg
+      path: /Audio/Effects/bite.ogg
     angle: 0
     animation: WeaponArcBite
     damage:
@@ -70,12 +71,12 @@
   components:
   - type: CombatMode
   - type: MovementSpeedModifier
-    baseWalkSpeed : 7
-    baseSprintSpeed : 7
+    baseWalkSpeed: 7
+    baseSprintSpeed: 7
   - type: Sprite
     drawdepth: Mobs
     layers:
-    - map: ["enum.DamageStateVisualLayers.Base"]
+    - map: [ "enum.DamageStateVisualLayers.Base" ]
       state: 0
       sprite: Mobs/Animals/bee.rsi
   - type: Fixtures
@@ -159,7 +160,7 @@
   - type: Sprite
     drawdepth: Mobs
     layers:
-    - map: ["enum.DamageStateVisualLayers.Base", "movement"]
+    - map: [ "enum.DamageStateVisualLayers.Base", "movement" ]
       state: chicken-0
       sprite: Mobs/Animals/chicken.rsi
   - type: SpriteMovement
@@ -235,7 +236,7 @@
   components:
   - type: Sprite
     layers:
-    - map: ["enum.DamageStateVisualLayers.Base", "movement"]
+    - map: [ "enum.DamageStateVisualLayers.Base", "movement" ]
       state: chicken-1
       sprite: Mobs/Animals/chicken.rsi
   - type: SpriteMovement
@@ -260,7 +261,7 @@
   components:
   - type: Sprite
     layers:
-    - map: ["enum.DamageStateVisualLayers.Base", "movement"]
+    - map: [ "enum.DamageStateVisualLayers.Base", "movement" ]
       state: chicken-2
       sprite: Mobs/Animals/chicken.rsi
   - type: SpriteMovement
@@ -306,7 +307,7 @@
     drawdepth: SmallMobs
     sprite: Mobs/Animals/cockroach.rsi
     layers:
-    - map: ["enum.DamageStateVisualLayers.Base"]
+    - map: [ "enum.DamageStateVisualLayers.Base" ]
       state: cockroach
   - type: Item
     size: Tiny
@@ -331,8 +332,8 @@
       0: Alive
       1: Dead
   - type: MovementSpeedModifier
-    baseWalkSpeed : 5
-    baseSprintSpeed : 5
+    baseWalkSpeed: 5
+    baseSprintSpeed: 5
   - type: DamageStateVisuals
     states:
       Alive:
@@ -382,14 +383,14 @@
   components:
   - type: Sprite
     layers:
-    - map: ["enum.DamageStateVisualLayers.Base"]
+    - map: [ "enum.DamageStateVisualLayers.Base" ]
       state: glockroach
   - type: Gun
     fireRate: 2
     useKey: false
     selectedMode: SemiAuto
     availableModes:
-      - SemiAuto
+    - SemiAuto
     soundGunshot: /Audio/Weapons/Guns/Gunshots/pistol.ogg
   - type: BallisticAmmoProvider
     proto: CartridgeCaselessRifle
@@ -415,7 +416,6 @@
     makeSentient: true
     allowSpeech: true
     allowMovement: true
-    whitelistRequired: false
     name: ghost-role-information-mothroach-name
     description: ghost-role-information-mothroach-description
   - type: Fixtures
@@ -433,11 +433,14 @@
   - type: Speech
     speechVerb: Moth
     speechSounds: Squeak
+    allowedEmotes: ['Chitter', 'Squeak']
+  - type: FaxableObject
+    insertingState: inserting_mothroach
   - type: MothAccent
   - type: Sprite
     sprite: Mobs/Animals/mothroach.rsi
     layers:
-    - map: ["enum.DamageStateVisualLayers.Base", "movement"]
+    - map: [ "enum.DamageStateVisualLayers.Base", "movement" ]
       state: mothroach
   - type: SpriteMovement
     movementLayers:
@@ -469,8 +472,8 @@
       40: Critical
       60: Dead
   - type: MovementSpeedModifier
-    baseWalkSpeed : 2.5
-    baseSprintSpeed : 4
+    baseWalkSpeed: 2.5
+    baseSprintSpeed: 4
     weightlessAcceleration: 1.5
     weightlessFriction: 1
     weightlessModifier: 1
@@ -526,6 +529,13 @@
         damage: 60
       behaviors:
       - !type:GibBehavior { }
+  - type: FireVisuals
+    sprite: Mobs/Effects/onfire.rsi
+    normalState: Mouse_burning
+
+
+# Note that the mallard duck is actually a male drake mallard, with the brown duck being the female variant of the same species, however ss14 lacks sex specific textures
+# The white duck is more akin to a pekin or call duck.
 
 - type: entity
   name: mallard duck #Quack
@@ -536,7 +546,7 @@
   - type: Sprite
     drawdepth: Mobs
     layers:
-    - map: ["enum.DamageStateVisualLayers.Base"]
+    - map: [ "enum.DamageStateVisualLayers.Base" ]
       state: duck-0
     sprite: Mobs/Animals/duck.rsi
   - type: Fixtures
@@ -605,7 +615,7 @@
   components:
   - type: Sprite
     layers:
-    - map: ["enum.DamageStateVisualLayers.Base"]
+    - map: [ "enum.DamageStateVisualLayers.Base" ]
       state: duck-1
   - type: DamageStateVisuals
     states:
@@ -622,7 +632,7 @@
   components:
   - type: Sprite
     layers:
-    - map: ["enum.DamageStateVisualLayers.Base"]
+    - map: [ "enum.DamageStateVisualLayers.Base" ]
       state: duck-2
   - type: DamageStateVisuals
     states:
@@ -636,17 +646,17 @@
   parent: FoodEgg
   suffix: Fertilized, Duck
   components:
-    - type: Timer
-    - type: TimedSpawner
-      prototypes:
-      - MobDuckMallard
-      - MobDuckWhite
-      - MobDuckBrown
-      intervalSeconds: 20
-      minimumEntitiesSpawned: 1
-      maximumEntitiesSpawned: 1
-    - type: TimedDespawn #delete the egg after the chicken spawns
-      lifetime: 21
+  - type: Timer
+  - type: TimedSpawner
+    prototypes:
+    - MobDuckMallard
+    - MobDuckWhite
+    - MobDuckBrown
+    intervalSeconds: 20
+    minimumEntitiesSpawned: 1
+    maximumEntitiesSpawned: 1
+  - type: TimedDespawn #delete the egg after the chicken spawns
+    lifetime: 21
 
 - type: entity
   name: butterfly
@@ -655,12 +665,12 @@
   description: Despite popular misconceptions, it's not actually made of butter.
   components:
   - type: MovementSpeedModifier
-    baseWalkSpeed : 6
-    baseSprintSpeed : 6
+    baseWalkSpeed: 6
+    baseSprintSpeed: 6
   - type: Sprite
     drawdepth: Mobs
     layers:
-    - map: ["enum.DamageStateVisualLayers.Base"]
+    - map: [ "enum.DamageStateVisualLayers.Base" ]
       state: butterfly
       sprite: Mobs/Animals/butterfly.rsi
   - type: Fixtures
@@ -681,8 +691,8 @@
       10: Dead
   - type: RandomSprite
     available:
-      - enum.DamageStateVisualLayers.Base:
-          butterfly: Rainbow
+    - enum.DamageStateVisualLayers.Base:
+        butterfly: Rainbow
   - type: DamageStateVisuals
     states:
       Alive:
@@ -703,7 +713,7 @@
   - type: Sprite
     drawdepth: Mobs
     layers:
-    - map: ["enum.DamageStateVisualLayers.Base"]
+    - map: [ "enum.DamageStateVisualLayers.Base" ]
       state: cow
       sprite: Mobs/Animals/cow.rsi
   - type: Tag
@@ -744,9 +754,8 @@
           Quantity: 30
   - type: Udder
     reagentId: Milk
-    targetSolution: udder
-    quantity: 25
-    updateRate: 30
+    quantityPerUpdate: 25
+    growthDelay: 30
   - type: Butcherable
     spawned:
     - id: FoodMeat
@@ -785,7 +794,7 @@
   - type: Sprite
     drawdepth: Mobs
     layers:
-    - map: ["enum.DamageStateVisualLayers.Base", "movement"]
+    - map: [ "enum.DamageStateVisualLayers.Base", "movement" ]
       state: crab
       sprite: Mobs/Animals/crab.rsi
   - type: SpriteMovement
@@ -810,6 +819,7 @@
   - type: Speech
     speechVerb: Arachnid
     speechSounds: Arachnid
+    allowedEmotes: ['Click', 'Chitter']
   - type: DamageStateVisuals
     states:
       Alive:
@@ -850,7 +860,7 @@
   - type: Sprite
     drawdepth: Mobs
     layers:
-    - map: ["enum.DamageStateVisualLayers.Base"]
+    - map: [ "enum.DamageStateVisualLayers.Base" ]
       state: goat
       sprite: Mobs/Animals/goat.rsi
   - type: Fixtures
@@ -897,9 +907,8 @@
         maxVol: 250
   - type: Udder
     reagentId: MilkGoat
-    targetSolution: udder
-    quantity: 25
-    updateRate: 20
+    quantityPerUpdate: 25
+    growthDelay: 20
   - type: Wooly
   - type: Food
     solution: wool
@@ -942,7 +951,7 @@
   - type: Sprite
     drawdepth: Mobs
     layers:
-    - map: ["enum.DamageStateVisualLayers.Base"]
+    - map: [ "enum.DamageStateVisualLayers.Base" ]
       state: goose
       sprite: Mobs/Animals/goose.rsi
   - type: Fixtures
@@ -988,7 +997,7 @@
   - type: Sprite
     drawdepth: Mobs
     layers:
-    - map: ["enum.DamageStateVisualLayers.Base"]
+    - map: [ "enum.DamageStateVisualLayers.Base" ]
       state: crawling
       sprite: Mobs/Animals/gorilla.rsi
   - type: Physics
@@ -1019,6 +1028,8 @@
     bloodMaxVolume: 300
     # if you fuck with the gorilla he will harambe you
   - type: MeleeWeapon
+    soundHit:
+      collection: Punch
     damage:
       types:
         Blunt: 20
@@ -1057,9 +1068,9 @@
   - type: Sprite
     drawdepth: Mobs
     layers:
-      - map: ["enum.DamageStateVisualLayers.Base"]
-        state: kangaroo
-        sprite: Mobs/Animals/kangaroo.rsi
+    - map: [ "enum.DamageStateVisualLayers.Base" ]
+      state: kangaroo
+      sprite: Mobs/Animals/kangaroo.rsi
   - type: Fixtures
     fixtures:
       fix1:
@@ -1084,8 +1095,8 @@
     - id: FoodMeat
   - type: UserInterface
     interfaces:
-    - key: enum.StrippingUiKey.Key
-      type: StrippableBoundUserInterface
+      enum.StrippingUiKey.Key:
+        type: StrippableBoundUserInterface
   - type: DamageStateVisuals
     states:
       Alive:
@@ -1152,11 +1163,14 @@
   description: The genetic bipedal ancestor of... Uh... Something. Yeah, there's definitely something on the station that descended from whatever this is.
   abstract: true
   components:
+  - type: DiseaseCarrier
   - type: CombatMode
   - type: Inventory
     templateId: monkey
     speciesId: monkey
   - type: InventorySlots
+  - type: Deathgasp
+    prototype: MonkeyDeathgasp
   - type: Cuffable
   - type: RotationVisuals
     defaultRotation: 90
@@ -1176,12 +1190,12 @@
   - type: Strippable
   - type: UserInterface
     interfaces:
-    - key: enum.StrippingUiKey.Key
-      type: StrippableBoundUserInterface
+      enum.StrippingUiKey.Key:
+        type: StrippableBoundUserInterface
   - type: Sprite
     drawdepth: Mobs
     layers:
-    - map: ["enum.DamageStateVisualLayers.Base"]
+    - map: [ "enum.DamageStateVisualLayers.Base" ]
       state: monkey
       sprite: Mobs/Animals/monkey.rsi
     - map: [ "jumpsuit" ]
@@ -1204,8 +1218,8 @@
     visuals:
       enum.CreamPiedVisuals.Creamed:
         clownedon:
-          True: {visible: true}
-          False: {visible: false}
+          True: { visible: true }
+          False: { visible: false }
   - type: Body
     prototype: Primate
     requiredLegs: 1 # TODO: More than 1 leg
@@ -1222,6 +1236,15 @@
       path: /Audio/Animals/ferret_happy.ogg
     interactFailureSound:
       path: /Audio/Items/wirecutter.ogg
+  - type: MeleeWeapon
+    soundHit:
+      path: /Audio/Effects/bite.ogg
+    angle: 30
+    animation: WeaponArcBite
+    damage:
+      types:
+        Blunt: 3
+        Piercing: 3
   - type: Butcherable
     butcheringType: Spike
     spawned:
@@ -1235,7 +1258,7 @@
   - type: FactionException
   - type: NpcFactionMember
     factions:
-      - Passive
+    - Passive
   - type: HTN
     rootTask:
       task: SimpleHostileCompound
@@ -1299,16 +1322,18 @@
     makeSentient: true
     name: ghost-role-information-monkey-name
     description: ghost-role-information-monkey-description
+    raffle:
+      settings: default
   - type: GhostTakeoverAvailable
   - type: Loadout
-    prototypes: [SyndicateOperativeGearMonkey]
+    prototypes: [ SyndicateOperativeGearMonkey ]
 
 - type: entity
   id: MobMonkeySyndicateAgent
   parent: MobBaseSyndicateMonkey
   suffix: syndicate agent
   components:
-    # make the player a traitor once its taken
+  # make the player a traitor once its taken
   - type: AutoTraitor
     giveUplink: false
     giveObjectives: false
@@ -1322,9 +1347,10 @@
 
 - type: entity
   name: kobold
-  id: MobKobold
+  id: MobBaseKobold
   parent: MobBaseAncestor
   description: Cousins to the sentient race of lizard people, kobolds blend in with their natural habitat and are as nasty as monkeys; ready to pull out your hair and stab you to death.
+  abstract: true
   components:
   - type: NameIdentifier
     group: Kobold
@@ -1336,9 +1362,9 @@
     speechVerb: Reptilian
   - type: Vocal
     sounds:
-      Male: UnisexReptilian
-      Female: UnisexReptilian
-      Unsexed: UnisexReptilian
+      Male: MaleReptilian
+      Female: FemaleReptilian
+      Unsexed: MaleReptilian
   - type: TypingIndicator
     proto: lizard
   - type: InteractionPopup
@@ -1360,12 +1386,13 @@
     baseSprintSpeed: 5
   - type: MeleeWeapon
     soundHit:
-      path: /Audio/Weapons/pierce.ogg
+      collection: AlienClaw
     angle: 30
-    animation: WeaponArcPunch
+    animation: WeaponArcClaw
     damage:
       types:
-        Piercing: 9
+        Slash: 5
+        Piercing: 4
   - type: Temperature
     heatDamageThreshold: 360
     coldDamageThreshold: 285
@@ -1374,7 +1401,7 @@
   - type: Sprite
     drawdepth: Mobs
     layers:
-    - map: ["enum.DamageStateVisualLayers.Base"]
+    - map: [ "enum.DamageStateVisualLayers.Base" ]
       sprite: Mobs/Animals/kobold.rsi
       state: kobold
     - map: [ "outline" ]
@@ -1399,33 +1426,24 @@
   - type: RandomSprite
     getAllGroups: true
     available:
-      - enum.DamageStateVisualLayers.Base:
-          kobold: KoboldColors
-      - horns:
-          horns_curled: KoboldHornColors
-          horns_ram: KoboldHornColors
-          horns_short: KoboldHornColors
-          horns_myrsore: KoboldHornColors
-          horns_bighorn: KoboldHornColors
-          horns_argali: KoboldHornColors
-          horns_ayrshire: KoboldHornColors
-          horns_floppy_kobold_ears: Inherit
-          horns_double: Inherit
-          horns_kobold_ears: Inherit
+    - enum.DamageStateVisualLayers.Base:
+        kobold: KoboldColors
+    - horns:
+        horns_curled: KoboldHornColors
+        horns_ram: KoboldHornColors
+        horns_short: KoboldHornColors
+        horns_myrsore: KoboldHornColors
+        horns_bighorn: KoboldHornColors
+        horns_argali: KoboldHornColors
+        horns_ayrshire: KoboldHornColors
+        horns_floppy_kobold_ears: Inherit
+        horns_double: Inherit
+        horns_kobold_ears: Inherit
   - type: Butcherable
     butcheringType: Spike
     spawned:
     - id: FoodMeat
       amount: 2
-  - type: Clumsy
-    clumsyDamage:
-      types:
-        Blunt: 2
-        Piercing: 7
-      groups:
-        Burn: 3
-    clumsySound:
-      path: /Audio/Voice/Reptilian/reptilian_scream.ogg
   - type: AlwaysRevolutionaryConvertible
   - type: GhostTakeoverAvailable
   - type: SentienceTarget
@@ -1437,13 +1455,62 @@
     description: ghost-role-information-kobold-description
 
 - type: entity
+  name: kobold
+  id: MobKobold
+  parent: MobBaseKobold
+  description: Cousins to the sentient race of lizard people, kobolds blend in with their natural habitat and are as nasty as monkeys; ready to pull out your hair and stab you to death.
+  components:
+  - type: Clumsy
+    clumsyDamage:
+      types:
+        Blunt: 2
+        Piercing: 7
+      groups:
+        Burn: 3
+    clumsySound:
+      path: /Audio/Voice/Reptilian/reptilian_scream.ogg
+
+- type: entity
+  id: MobBaseSyndicateKobold
+  parent: MobBaseKobold
+  suffix: syndicate base
+  components:
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      75: Critical
+      200: Dead
+  - type: NpcFactionMember
+    factions:
+    - Syndicate
+  - type: Loadout
+    prototypes: [SyndicateOperativeGearMonkey]
+
+- type: entity
+  id: MobKoboldSyndicateAgent
+  parent: MobBaseSyndicateKobold
+  suffix: syndicate agent
+  components:
+    # make the player a traitor once its taken
+  - type: AutoTraitor
+    giveUplink: false
+    giveObjectives: false
+
+- type: entity
+  id: MobKoboldSyndicateAgentNukeops # Reinforcement exclusive to nukeops uplink
+  parent: MobBaseSyndicateKobold
+  suffix: NukeOps
+  components:
+  - type: NukeOperative
+
+- type: entity
   name: guidebook monkey
   parent: MobMonkey
   noSpawn: true
   id: MobGuidebookMonkey
   description: A hopefully helpful monkey whose only purpose in life is for you to click on. Does this count as having a monkey give you a tutorial?
   components:
-    - type: GuidebookControlsTest
+  - type: GuidebookControlsTest
 
 - type: entity
   name: mouse
@@ -1464,11 +1531,12 @@
   - type: Speech
     speechSounds: Squeak
     speechVerb: SmallMob
+    allowedEmotes: ['Squeak']
   - type: Sprite
     drawdepth: SmallMobs
     sprite: Mobs/Animals/mouse.rsi
     layers:
-    - map: ["enum.DamageStateVisualLayers.Base", "movement"]
+    - map: [ "enum.DamageStateVisualLayers.Base", "movement" ]
       state: mouse-0
   - type: SpriteMovement
     movementLayers:
@@ -1487,11 +1555,13 @@
     - HEAD
   - type: NpcFactionMember
     factions:
-      - Mouse
+    - Mouse
   - type: HTN
     rootTask:
       task: MouseCompound
   - type: Physics
+  - type: FaxableObject
+    insertingState: inserting_mouse
   - type: Fixtures
     fixtures:
       fix1:
@@ -1517,8 +1587,8 @@
       10: Critical
       20: Dead
   - type: MovementSpeedModifier
-    baseWalkSpeed : 5
-    baseSprintSpeed : 5
+    baseWalkSpeed: 5
+    baseSprintSpeed: 5
   - type: DamageStateVisuals
     states:
       Alive:
@@ -1594,6 +1664,9 @@
   - type: BadFood
   - type: NonSpreaderZombie
   - type: PreventSpiller
+  - type: FireVisuals
+    sprite: Mobs/Effects/onfire.rsi
+    normalState: Mouse_burning
 
 - type: entity
   parent: MobMouse
@@ -1628,7 +1701,7 @@
   components:
   - type: Sprite
     layers:
-    - map: ["enum.DamageStateVisualLayers.Base", "movement"]
+    - map: [ "enum.DamageStateVisualLayers.Base", "movement" ]
       state: mouse-1
   - type: SpriteMovement
     movementLayers:
@@ -1654,7 +1727,7 @@
   components:
   - type: Sprite
     layers:
-    - map: ["enum.DamageStateVisualLayers.Base", "movement"]
+    - map: [ "enum.DamageStateVisualLayers.Base", "movement" ]
       state: mouse-2
   - type: SpriteMovement
     movementLayers:
@@ -1675,6 +1748,52 @@
         Base: splat-2
 
 - type: entity
+  name: cancer mouse
+  description: Toxic. Squeak!
+  parent: MobMouse
+  id: MobMouseCancer
+  components:
+  - type: GhostTakeoverAvailable
+  - type: GhostRole
+    makeSentient: true
+    name: ghost-role-information-cancer-mouse-name
+    description: ghost-role-information-cancer-mouse-description
+    raffle:
+      settings: default
+    requirements:
+    - !type:OverallPlaytimeRequirement
+      time: 54000 # 15h # Corvax-RoleTime
+  - type: BlobCarrier # backmen: blob
+  - type: Sprite
+    color: LightGreen
+  - type: PointLight
+    color: LightGreen
+    radius: 5
+    energy: 5
+    netsync: false
+  - type: RadiationSource
+    intensity: 0.3
+  - type: Bloodstream
+    bloodReagent: UnstableMutagen
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        reagents:
+        - ReagentId: UncookedAnimalProteins
+          Quantity: 3
+        - ReagentId: Uranium
+          Quantity: 10
+  - type: Butcherable
+    spawned:
+    - id: FoodMeatRat
+      amount: 1
+    - id: SheetUranium1
+      amount: 1
+  - type: Damageable
+    damageContainer: Biological
+    damageModifierSet: Zombie
+
+- type: entity
   name: lizard #Weh
   parent: SimpleMobBase
   id: MobLizard
@@ -1686,7 +1805,7 @@
   - type: Sprite
     drawdepth: Mobs
     layers:
-    - map: ["enum.DamageStateVisualLayers.Base"]
+    - map: [ "enum.DamageStateVisualLayers.Base" ]
       state: lizard
       sprite: Mobs/Animals/lizard.rsi
   - type: Physics
@@ -1735,12 +1854,12 @@
   description: And they called this a lizard?
   components:
   - type: MovementSpeedModifier
-    baseWalkSpeed : 2
-    baseSprintSpeed : 3
+    baseWalkSpeed: 2
+    baseSprintSpeed: 3
   - type: Sprite
     drawdepth: Mobs
     layers:
-    - map: ["enum.DamageStateVisualLayers.Base"]
+    - map: [ "enum.DamageStateVisualLayers.Base" ]
       state: slug
       sprite: Mobs/Animals/slug.rsi
   - type: Physics
@@ -1785,7 +1904,7 @@
   - type: Sprite
     drawdepth: Mobs
     layers:
-    - map: ["enum.DamageStateVisualLayers.Base", "movement"]
+    - map: [ "enum.DamageStateVisualLayers.Base", "movement" ]
       state: frog
       sprite: Mobs/Animals/frog.rsi
   - type: SpriteMovement
@@ -1838,12 +1957,12 @@
   description: Infiltrates your domain, spies on you, and somehow still a cool pet.
   components:
   - type: MovementSpeedModifier
-    baseWalkSpeed : 6
-    baseSprintSpeed : 6
+    baseWalkSpeed: 6
+    baseSprintSpeed: 6
   - type: Sprite
     drawdepth: Mobs
     layers:
-    - map: ["enum.DamageStateVisualLayers.Base"]
+    - map: [ "enum.DamageStateVisualLayers.Base" ]
       state: parrot
       sprite: Mobs/Animals/parrot.rsi
   - type: Fixtures
@@ -1867,6 +1986,13 @@
     spawned:
     - id: FoodMeat
       amount: 1
+  - type: Speech
+    speechSounds: Parrot
+    speechVerb: Parrot
+  - type: Vocal
+    sounds:
+      Unsexed: Parrot
+  - type: ParrotAccent
   - type: InteractionPopup
     successChance: 0.6
     interactSuccessString: petting-success-bird
@@ -1886,7 +2012,7 @@
   - type: Sprite
     drawdepth: Mobs
     layers:
-    - map: ["enum.DamageStateVisualLayers.Base"]
+    - map: [ "enum.DamageStateVisualLayers.Base" ]
       state: penguin
       sprite: Mobs/Animals/penguin.rsi
   - type: Physics
@@ -1931,10 +2057,10 @@
     specificHeat: 46
     coldDamage:
       types:
-        Cold : 0.05 #per second, scales with temperature & other constants
+        Cold: 0.05 #per second, scales with temperature & other constants
     heatDamage:
       types:
-        Heat : 0.2 #per second, scales with temperature & other constants
+        Heat: 0.2 #per second, scales with temperature & other constants
 
 - type: entity
   name: grenade penguin
@@ -1956,7 +2082,7 @@
   - type: Sprite
     drawdepth: Mobs
     layers:
-    - map: ["enum.DamageStateVisualLayers.Base"]
+    - map: [ "enum.DamageStateVisualLayers.Base" ]
       state: penguin
       sprite: Mobs/Animals/grenadepenguin.rsi
   - type: Fixtures
@@ -2005,7 +2131,7 @@
       behaviors:
       - !type:ExplodeBehavior
 
-  # I have included a snake_hiss.ogg sound file so if you want to use that be my guest
+      # I have included a snake_hiss.ogg sound file so if you want to use that be my guest
 - type: entity
   name: snake
   parent: SimpleMobBase
@@ -2015,7 +2141,7 @@
   - type: Sprite
     drawdepth: Mobs
     layers:
-    - map: ["enum.DamageStateVisualLayers.Base"]
+    - map: [ "enum.DamageStateVisualLayers.Base" ]
       state: snake
       sprite: Mobs/Animals/snake.rsi
   - type: Physics
@@ -2062,7 +2188,7 @@
   - type: Sprite
     drawdepth: Mobs
     layers:
-    - map: ["enum.DamageStateVisualLayers.Base", "movement"]
+    - map: [ "enum.DamageStateVisualLayers.Base", "movement" ]
       state: tarantula
       sprite: Mobs/Animals/spider.rsi
   - type: SpriteMovement
@@ -2146,6 +2272,7 @@
   - type: Speech
     speechVerb: Arachnid
     speechSounds: Arachnid
+    allowedEmotes: ['Click', 'Chitter']
   - type: Vocal
     sounds:
       Male: UnisexArachnid
@@ -2163,12 +2290,12 @@
   - type: Tool # Open door from xeno.yml.
     speed: 1.5
     qualities:
-      - Prying
+    - Prying
     useSound:
       path: /Audio/Items/crowbar.ogg
   - type: Prying
     pryPowered: !type:Bool
-        true
+      true
     force: !type:Bool
       true
     useSound:
@@ -2190,19 +2317,21 @@
   id: MobGiantSpiderAngry
   suffix: Angry
   components:
-    - type: NpcFactionMember
-      factions:
-        - Xeno
-    - type: InputMover
-    - type: MobMover
-    - type: HTN
-      rootTask:
-        task: SimpleHostileCompound
-    - type: GhostRole
-      makeSentient: true
-      name: ghost-role-information-giant-spider-name
-      description: ghost-role-information-giant-spider-description
-    - type: GhostTakeoverAvailable
+  - type: NpcFactionMember
+    factions:
+    - Xeno
+  - type: InputMover
+  - type: MobMover
+  - type: HTN
+    rootTask:
+      task: SimpleHostileCompound
+  - type: GhostRole
+    makeSentient: true
+    name: ghost-role-information-giant-spider-name
+    description: ghost-role-information-giant-spider-description
+    raffle:
+      settings: short
+  - type: GhostTakeoverAvailable
 
 - type: entity
   name: clown spider
@@ -2210,44 +2339,44 @@
   id: MobClownSpider
   description: Combines the two most terrifying things in existence, spiders and clowns.
   components:
-    - type: Sprite
-      drawdepth: Mobs
-      layers:
-      - map: ["enum.DamageStateVisualLayers.Base"]
-        state: clown
-        sprite: Mobs/Animals/clownspider.rsi
-    - type: Butcherable
-      spawned:
-        - id: MaterialBananium1
-          amount: 1
-    - type: DamageStateVisuals
-      states:
-        Alive:
-          Base: clown
-        Dead:
-          Base: dead
-    - type: MobThresholds
-      thresholds:
-        0: Alive
-        180: Dead
-    - type: Spider
-      webPrototype: SpiderWebClown
-    - type: MeleeWeapon
-      angle: 0
-      animation: WeaponArcBite
-      soundHit:
-        path: /Audio/Effects/bite.ogg
-      damage:
-        types:
-          Piercing: 8
-    - type: FootstepModifier
-      footstepSoundCollection:
-        collection: FootstepClownFast
-    - type: Speech
-      speechVerb: Cluwne
-    - type: Bloodstream
-      bloodMaxVolume: 150
-      bloodReagent: Laughter
+  - type: Sprite
+    drawdepth: Mobs
+    layers:
+    - map: [ "enum.DamageStateVisualLayers.Base" ]
+      state: clown
+      sprite: Mobs/Animals/clownspider.rsi
+  - type: Butcherable
+    spawned:
+    - id: MaterialBananium1
+      amount: 1
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: clown
+      Dead:
+        Base: dead
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      180: Dead
+  - type: Spider
+    webPrototype: SpiderWebClown
+  - type: MeleeWeapon
+    angle: 0
+    animation: WeaponArcBite
+    soundHit:
+      path: /Audio/Effects/bite.ogg
+    damage:
+      types:
+        Piercing: 8
+  - type: FootstepModifier
+    footstepSoundCollection:
+      collection: FootstepClownFast
+  - type: Speech
+    speechVerb: Cluwne
+  - type: Bloodstream
+    bloodMaxVolume: 150
+    bloodReagent: Laughter
 
 - type: entity
   name: possum
@@ -2259,7 +2388,7 @@
     drawdepth: Mobs
     sprite: Mobs/Animals/possum.rsi
     layers:
-    - map: ["enum.DamageStateVisualLayers.Base"]
+    - map: [ "enum.DamageStateVisualLayers.Base" ]
       state: possum
   - type: Physics
   - type: Fixtures
@@ -2280,8 +2409,8 @@
   - type: Strippable
   - type: UserInterface
     interfaces:
-    - key: enum.StrippingUiKey.Key
-      type: StrippableBoundUserInterface
+      enum.StrippingUiKey.Key:
+        type: StrippableBoundUserInterface
   - type: DamageStateVisuals
     states:
       Alive:
@@ -2334,7 +2463,7 @@
     drawdepth: Mobs
     sprite: Mobs/Animals/raccoon.rsi
     layers:
-    - map: ["enum.DamageStateVisualLayers.Base"]
+    - map: [ "enum.DamageStateVisualLayers.Base" ]
       state: raccoon
   - type: Physics
   - type: Fixtures
@@ -2355,8 +2484,8 @@
   - type: Strippable
   - type: UserInterface
     interfaces:
-    - key: enum.StrippingUiKey.Key
-      type: StrippableBoundUserInterface
+      enum.StrippingUiKey.Key:
+        type: StrippableBoundUserInterface
   - type: DamageStateVisuals
     states:
       Alive:
@@ -2391,7 +2520,7 @@
     drawdepth: Mobs
     sprite: Mobs/Animals/fox.rsi
     layers:
-    - map: ["enum.DamageStateVisualLayers.Base", "movement"]
+    - map: [ "enum.DamageStateVisualLayers.Base", "movement" ]
       state: fox
   - type: SpriteMovement
     movementLayers:
@@ -2419,8 +2548,8 @@
   - type: Strippable
   - type: UserInterface
     interfaces:
-    - key: enum.StrippingUiKey.Key
-      type: StrippableBoundUserInterface
+      enum.StrippingUiKey.Key:
+        type: StrippableBoundUserInterface
   - type: DamageStateVisuals
     states:
       Alive:
@@ -2437,7 +2566,7 @@
     interactFailureString: petting-failure-generic
     interactSuccessSpawn: EffectHearts
     interactSuccessSound:
-      path: /Audio/Animals/fox_squeak.ogg
+      collection: Fox
   - type: Grammar
     attributes:
       gender: epicene
@@ -2473,7 +2602,7 @@
     drawdepth: Mobs
     sprite: Mobs/Pets/corgi.rsi
     layers:
-    - map: ["enum.DamageStateVisualLayers.Base"]
+    - map: [ "enum.DamageStateVisualLayers.Base" ]
       state: corgi
   - type: Physics
   - type: Speech
@@ -2496,8 +2625,8 @@
   - type: Strippable
   - type: UserInterface
     interfaces:
-    - key: enum.StrippingUiKey.Key
-      type: StrippableBoundUserInterface
+      enum.StrippingUiKey.Key:
+        type: StrippableBoundUserInterface
   - type: DamageStateVisuals
     states:
       Alive:
@@ -2537,7 +2666,7 @@
     drawdepth: Mobs
     sprite: Mobs/Pets/corgi.rsi
     layers:
-    - map: ["enum.DamageStateVisualLayers.Base"]
+    - map: [ "enum.DamageStateVisualLayers.Base" ]
       state: narsian
   - type: DamageStateVisuals
     states:
@@ -2547,7 +2676,7 @@
         Base: narsian_dead
   - type: MeleeWeapon
     soundHit:
-        path: /Audio/Effects/bite.ogg
+      path: /Audio/Effects/bite.ogg
     angle: 0
     animation: WeaponArcBite
     damage:
@@ -2580,11 +2709,11 @@
     currentTemperature: 310.15
     coldDamage:
       types:
-        Cold : 1 #per second, scales with temperature & other constants
+        Cold: 1 #per second, scales with temperature & other constants
     specificHeat: 42
     heatDamage:
       types:
-        Heat : 1 #per second, scales with temperature & other constants
+        Heat: 1 #per second, scales with temperature & other constants
 
 - type: entity
   name: corgi puppy
@@ -2596,7 +2725,7 @@
     drawdepth: Mobs
     sprite: Mobs/Pets/corgi.rsi
     layers:
-    - map: ["enum.DamageStateVisualLayers.Base"]
+    - map: [ "enum.DamageStateVisualLayers.Base" ]
       state: puppy
   - type: Inventory
     speciesId: puppy
@@ -2624,7 +2753,7 @@
     drawdepth: Mobs
     sprite: Mobs/Pets/cat.rsi
     layers:
-    - map: ["enum.DamageStateVisualLayers.Base"]
+    - map: [ "enum.DamageStateVisualLayers.Base" ]
       state: cat
   - type: Physics
   - type: Fixtures
@@ -2645,8 +2774,8 @@
   - type: Strippable
   - type: UserInterface
     interfaces:
-    - key: enum.StrippingUiKey.Key
-      type: StrippableBoundUserInterface
+      enum.StrippingUiKey.Key:
+        type: StrippableBoundUserInterface
   - type: DamageStateVisuals
     states:
       Alive:
@@ -2670,6 +2799,11 @@
     interactSuccessSound:
       path: /Audio/Animals/cat_meow.ogg
   - type: MeleeWeapon
+    altDisarm: false
+    angle: 0
+    animation: WeaponArcBite
+    soundHit:
+      path: /Audio/Effects/bite.ogg
     damage:
       types:
         Piercing: 5
@@ -2690,7 +2824,7 @@
   components:
   - type: Sprite
     layers:
-    - map: ["enum.DamageStateVisualLayers.Base"]
+    - map: [ "enum.DamageStateVisualLayers.Base" ]
       state: cat2
   - type: DamageStateVisuals
     states:
@@ -2707,7 +2841,7 @@
   components:
   - type: Sprite
     layers:
-    - map: ["enum.DamageStateVisualLayers.Base"]
+    - map: [ "enum.DamageStateVisualLayers.Base" ]
       state: syndicat
   - type: DamageStateVisuals
     states:
@@ -2721,13 +2855,28 @@
     allowMovement: true
     description: ghost-role-information-SyndiCat-description
     rules: ghost-role-information-SyndiCat-rules
+    raffle:
+      settings: default
   - type: GhostTakeoverAvailable
   - type: AutoImplant
     implants:
     - MicroBombImplant
+  - type: ExplosionResistance
+    damageCoefficient: 0.2
   - type: NpcFactionMember
     factions:
     - Syndicate
+  - type: MeleeWeapon
+    altDisarm: false
+    angle: 0
+    animation: WeaponArcBite
+    soundHit:
+      path: /Audio/Effects/bite.ogg
+    damage:
+      types:
+        Slash: 6
+        Piercing: 6
+        Structural: 15
 
 - type: entity
   name: space cat
@@ -2737,7 +2886,7 @@
   components:
   - type: Sprite
     layers:
-    - map: ["enum.DamageStateVisualLayers.Base"]
+    - map: [ "enum.DamageStateVisualLayers.Base" ]
       state: spacecat
   - type: DamageStateVisuals
     states:
@@ -2748,7 +2897,13 @@
   - type: Temperature
     heatDamageThreshold: 423
     coldDamageThreshold: 0
+  - type: Tag
+    tags:
+      - DoorBumpOpener
+  - type: MovementAlwaysTouching
   - type: PressureImmunity
+  - type: StepTriggerImmune
+  - type: Insulated
   - type: InteractionPopup
     successChance: 0.7
     interactSuccessString: petting-success-space-cat
@@ -2768,7 +2923,7 @@
   - type: Sprite
     sprite: Mobs/Pets/caracal.rsi
     layers:
-    - map: ["enum.DamageStateVisualLayers.Base"]
+    - map: [ "enum.DamageStateVisualLayers.Base" ]
       state: caracal_flop
   - type: DamageStateVisuals
     states:
@@ -2785,7 +2940,7 @@
   components:
   - type: Sprite
     layers:
-    - map: ["enum.DamageStateVisualLayers.Base"]
+    - map: [ "enum.DamageStateVisualLayers.Base" ]
       state: kitten
   - type: DamageStateVisuals
     states:
@@ -2817,13 +2972,13 @@
   description: Very slow animal. For people with low energy.
   components:
   - type: MovementSpeedModifier
-    baseWalkSpeed : 1
-    baseSprintSpeed : 1
+    baseWalkSpeed: 1
+    baseSprintSpeed: 1
   - type: Sprite
     drawdepth: Mobs
     sprite: Mobs/Pets/sloth.rsi
     layers:
-    - map: ["enum.DamageStateVisualLayers.Base"]
+    - map: [ "enum.DamageStateVisualLayers.Base" ]
       state: sloth
   - type: Physics
   - type: Fixtures
@@ -2844,8 +2999,8 @@
   - type: Strippable
   - type: UserInterface
     interfaces:
-    - key: enum.StrippingUiKey.Key
-      type: StrippableBoundUserInterface
+      enum.StrippingUiKey.Key:
+        type: StrippableBoundUserInterface
   - type: DamageStateVisuals
     states:
       Alive:
@@ -2880,7 +3035,7 @@
     drawdepth: Mobs
     sprite: Mobs/Pets/ferret.rsi
     layers:
-    - map: ["enum.DamageStateVisualLayers.Base"]
+    - map: [ "enum.DamageStateVisualLayers.Base" ]
       state: ferret
   - type: Physics
   - type: Fixtures
@@ -2901,8 +3056,8 @@
   - type: Strippable
   - type: UserInterface
     interfaces:
-    - key: enum.StrippingUiKey.Key
-      type: StrippableBoundUserInterface
+      enum.StrippingUiKey.Key:
+        type: StrippableBoundUserInterface
   - type: DamageStateVisuals
     states:
       Alive:
@@ -2944,11 +3099,12 @@
   - type: Speech
     speechVerb: SmallMob
     speechSounds: Squeak
+    allowedEmotes: ['Squeak']
   - type: Sprite
     drawdepth: SmallMobs
     sprite: Mobs/Animals/hamster.rsi
     layers:
-    - map: ["enum.DamageStateVisualLayers.Base", "movement"]
+    - map: [ "enum.DamageStateVisualLayers.Base", "movement" ]
       state: hamster-0
   - type: SpriteMovement
     movementLayers:
@@ -2960,6 +3116,8 @@
   - type: Item
     size: Tiny
   - type: Physics
+  - type: FaxableObject
+    insertingState: inserting_hamster
   - type: Fixtures
     fixtures:
       fix1:
@@ -2985,8 +3143,8 @@
       40: Critical
       60: Dead
   - type: MovementSpeedModifier
-    baseWalkSpeed : 4
-    baseSprintSpeed : 4
+    baseWalkSpeed: 4
+    baseSprintSpeed: 4
   - type: Inventory
     speciesId: hamster
     templateId: hamster
@@ -2994,8 +3152,8 @@
   - type: Strippable
   - type: UserInterface
     interfaces:
-    - key: enum.StrippingUiKey.Key
-      type: StrippableBoundUserInterface
+      enum.StrippingUiKey.Key:
+        type: StrippableBoundUserInterface
   - type: DamageStateVisuals
     states:
       Alive:
@@ -3045,7 +3203,7 @@
   - type: CombatMode
   - type: MeleeWeapon
     soundHit:
-        path: /Audio/Effects/bite.ogg
+      path: /Audio/Effects/bite.ogg
     angle: 0
     animation: WeaponArcBite
     damage:
@@ -3061,10 +3219,13 @@
   - type: Bloodstream
     bloodMaxVolume: 60
   - type: CanEscapeInventory
-    BaseResistTime: 3
+    baseResistTime: 3
   - type: MobPrice
     price: 60
   - type: NonSpreaderZombie
+  - type: FireVisuals
+    sprite: Mobs/Effects/onfire.rsi
+    normalState: Mouse_burning
 
 - type: entity
   name: pig
@@ -3075,7 +3236,7 @@
   - type: Sprite
     drawdepth: Mobs
     layers:
-    - map: ["enum.DamageStateVisualLayers.Base"]
+    - map: [ "enum.DamageStateVisualLayers.Base" ]
       state: pig
       sprite: Mobs/Animals/pig.rsi
   - type: Fixtures
@@ -3108,8 +3269,8 @@
   - type: Strippable
   - type: UserInterface
     interfaces:
-    - key: enum.StrippingUiKey.Key
-      type: StrippableBoundUserInterface
+      enum.StrippingUiKey.Key:
+        type: StrippableBoundUserInterface
   - type: DamageStateVisuals
     states:
       Alive:
@@ -3147,7 +3308,7 @@
   - type: Sprite
     drawdepth: Mobs
     layers:
-    - map: ["enum.DamageStateVisualLayers.Base"]
+    - map: [ "enum.DamageStateVisualLayers.Base" ]
       state: nymph
       sprite: Mobs/Animals/nymph.rsi
   - type: Physics
@@ -3168,12 +3329,12 @@
   - type: InventorySlots
   - type: Strippable
   - type: Bloodstream
-    bloodReagent: Water
+    bloodReagent: Sap
     bloodMaxVolume: 60
   - type: UserInterface
     interfaces:
-    - key: enum.StrippingUiKey.Key
-      type: StrippableBoundUserInterface
+      enum.StrippingUiKey.Key:
+        type: StrippableBoundUserInterface
   - type: DamageStateVisuals
     states:
       Alive:
@@ -3198,8 +3359,8 @@
       30: Critical
       60: Dead
   - type: MovementSpeedModifier
-    baseWalkSpeed : 2.5
-    baseSprintSpeed : 4.5
+    baseWalkSpeed: 2.5
+    baseSprintSpeed: 4.5
   - type: Grammar
     attributes:
       gender: epicene

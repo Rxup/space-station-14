@@ -194,48 +194,6 @@
     Poison: 0.8
 
 - type: damageModifierSet
-  id: BaseBlob # ReactiveSpines
-  coefficients:
-    Blunt: 0.25
-    Slash: 0.25
-    Piercing: 0.25
-    Heat: 2.00
-
-- type: damageModifierSet
-  id: ElectromagneticWebBlob # Explosive Lattice
-  coefficients:
-    Blunt: 0.50
-    Slash: 0.50
-    Piercing: 0.50
-    Heat: 2.50
-    Shock: 0.50
-
-- type: damageModifierSet
-  id: ExplosiveLatticeBlob # Explosive Lattice
-  coefficients:
-    Blunt: 0.25
-    Slash: 0.25
-    Piercing: 0.25
-    Heat: 3.00
-    Shock: 1.50
-
-- type: damageModifierSet
-  id: BlobMob # Blob mobs
-  coefficients:
-    Blunt: 0.5
-    Slash: 0.5
-    Piercing: 0.5
-    Heat: 1.5
-
-- type: damageModifierSet
-  id: BlobReflective # If it reflects lasers, then it must be fragile?
-  coefficients:
-    Blunt: 0.9
-    Slash: 0.9
-    Piercing: 0.9
-    Heat: 1.5
-
-- type: damageModifierSet
   id: Moth # Slightly worse at everything but cold
   coefficients:
     Cold: 0.7
@@ -293,7 +251,7 @@
     Piercing: 0.2
     Shock: 0.0
     Cold: 0.0
-    Heat: -1 # heat damage cauterizes wounds, but will still hurt obviously.
+    Heat: -0.5 # heat damage cauterizes wounds, but will still hurt obviously.
     Poison: 0.0
     Radiation: 0.0
     Asphyxiation: 0.0
@@ -347,41 +305,3 @@
     Cellular: 0.0
     Heat: 2.5
     Caustic: 0.0
-
-# terminator's flesh damage set
-- type: damageModifierSet
-  id: CyberneticFlesh
-  coefficients:
-    Blunt: 0.2
-    Slash: 0.2
-    Piercing: 0.1
-    # fire and lasers burn it good
-    Heat: 1.0
-    # zap
-    Shock: 1.5
-    Cold: 0.25
-    Caustic: 0.25
-    # doesnt have organs to poison
-    Poison: 0.0
-    Cellular: 0.0
-
-# terminator's endoskeleton damage set
-- type: damageModifierSet
-  id: Cybernetic
-  coefficients:
-    # bonk
-    Blunt: 1.0
-    # alloy too hard to cut or shoot
-    Slash: 0.0
-    Piercing: 0.0
-    # no burning anymore
-    Heat: 0.0
-    # zap zap
-    Shock: 2.5
-    Cold: 0.0
-    Caustic: 0.0
-    Poison: 0.0
-    Cellular: 0.0
-  flatReductions:
-    # can't punch the endoskeleton to death
-    Blunt: 5

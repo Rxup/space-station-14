@@ -1,11 +1,12 @@
 - type: entity
   save: false
-  parent: BaseMobHuman
+  parent: BaseMobSpeciesOrganic
   id: MobShadowkinBase
   name: Urist McFloof
   abstract: true
   components:
   - type: HumanoidAppearance
+    eyeColor: '#ffffff'
     species: Shadowkin
   - type: Hunger
   - type: Icon
@@ -14,8 +15,6 @@
   - type: Body
     prototype: Shadowkin
     requiredLegs: 2
-#  - type: DiseaseCarrier
-#    diseaseResist: 0.1
   - type: Flammable
     damage:
       types:
@@ -46,11 +45,6 @@
       types:
         Bloodloss:
           -0.25
-  - type: Tag
-    tags:
-    - CanPilot
-    - FootstepSound
-    - DoorBumpOpener
   - type: Temperature
     heatDamageThreshold: 330
     coldDamageThreshold: 195
@@ -97,20 +91,24 @@
       Male: MaleSlime
       Female: FemaleSlime
       Unsexed: MaleSlime
-  - type: CombatMode
-    canDisarm: true
   - type: InteractionPopup
     successChance: 0.75
     interactFailureString: petting-failure-generic
     interactSuccessString: petting-success-soft-floofy
     interactSuccessSound: /Audio/Effects/thudswoosh.ogg
     messagePerceivedByOthers: petting-success-soft-floofy-others
-  # - type: PotentialPsionic # They've their own abilities.
   - type: MovementSpeedModifier
     baseWalkSpeed : 2.7
     baseSprintSpeed : 4.5
   - type: PotentialPsionic
     chance: -200
+  - type: Respirator
+    damage:
+      types:
+        Asphyxiation: 2.0
+    damageRecovery:
+      types:
+        Asphyxiation: -1.0
 
 
 - type: entity

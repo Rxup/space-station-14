@@ -23,6 +23,7 @@
   id: vmpt0tot1
   name: store-tier-update-to-1-name
   description: store-tier-update-to-n-desc
+  raiseProductEventOnUser: true
   productEvent: !type:VampireStoreEvent
     buyType: Tier1Upgrade
   cost:
@@ -37,10 +38,11 @@
   id: vmpt1tot2
   name: store-tier-update-to-2-name
   description: store-tier-update-to-n-desc
+  raiseProductEventOnUser: true
   productEvent: !type:VampireStoreEvent
     buyType: Tier2Upgrade
   cost:
-    BloodEssence: 20
+    BloodEssence: 10
   categories:
   - VapmireT0
   conditions:
@@ -53,10 +55,11 @@
   id: vmpt2tot3
   name: store-tier-update-to-3-name
   description: store-tier-update-to-n-desc
+  raiseProductEventOnUser: true
   productEvent: !type:VampireStoreEvent
     buyType: Tier3Upgrade
   cost:
-    BloodEssence: 40
+    BloodEssence: 25
   categories:
   - VapmireT0
   conditions:

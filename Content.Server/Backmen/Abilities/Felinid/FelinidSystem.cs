@@ -30,7 +30,7 @@ public sealed class FelinidSystem : EntitySystem
     [Dependency] private readonly SharedActionsSystem _actionsSystem = default!;
     [Dependency] private readonly HungerSystem _hungerSystem = default!;
     [Dependency] private readonly VomitSystem _vomitSystem = default!;
-    [Dependency] private readonly SolutionContainerSystem _solutionSystem = default!;
+    [Dependency] private readonly SharedSolutionContainerSystem _solutionSystem = default!;
     [Dependency] private readonly IRobustRandom _robustRandom = default!;
     [Dependency] private readonly PopupSystem _popupSystem = default!;
     [Dependency] private readonly InventorySystem _inventorySystem = default!;

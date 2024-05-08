@@ -66,9 +66,8 @@
   - type: Puller
   - type: StandingState
   - type: Alerts
-  - type: Tag
-    tags:
-      - ShoesRequiredStepTriggerImmune
+  - type: ClothingRequiredStepTriggerImmune
+    slots: WITHOUT_POCKET
 
 - type: entity
   name: drone
@@ -90,10 +89,10 @@
   - type: Strippable
   - type: UserInterface
     interfaces:
-    - key: enum.StrippingUiKey.Key
-      type: StrippableBoundUserInterface
-    - key: enum.SiliconLawsUiKey.Key
-      type: SiliconLawBoundUserInterface
+      enum.StrippingUiKey.Key:
+        type: StrippableBoundUserInterface
+      enum.SiliconLawsUiKey.Key:
+        type: SiliconLawBoundUserInterface
   - type: GhostRole
     makeSentient: true
     allowSpeech: true # backmen
@@ -105,6 +104,8 @@
      1. Вы не можете вмешиваться в дела другого существа, даже если такие вопросы противоречат Закону Два или Закону Третьему, если это другое существо не является другим Дроном.
      2. Вы не можете навредить никому, независимо от намерения или обстоятельств.
      3. Ваши цели состоят в том, чтобы строить, поддерживать, ремонтировать, улучшать и увеличивать мощность в меру своих возможностей. Вы никогда не должны активно работать против этих целей.
+    raffle:
+      settings: default
     requirements:
     - !type:OverallPlaytimeRequirement
       time: 21600
@@ -172,7 +173,7 @@
   - type: TTS
     voice: Npc3
   - type: Repairable
-    fuelcost: 15
+    fuelCost: 15
     doAfterDelay: 8
   - type: Actions
   - type: UnpoweredFlashlight
@@ -182,9 +183,10 @@
     softness: 1
     mask: /Textures/Effects/LightMasks/cone.png
     autoRot: true
+  - type: ClothingRequiredStepTriggerImmune
+    slots: WITHOUT_POCKET
   - type: Tag
     tags:
-      - ShoesRequiredStepTriggerImmune
       - CannotSuicide
 
 - type: entity
@@ -200,13 +202,15 @@
       - id: WeaponXrayCannon
   - type: UserInterface
     interfaces:
-    - key: enum.StrippingUiKey.Key
-      type: StrippableBoundUserInterface
+      enum.StrippingUiKey.Key:
+        type: StrippableBoundUserInterface
   - type: GhostRole
     makeSentient: true
     name: ghost-role-information-onestar-mecha-name
     description: ghost-role-information-onestar-mecha-description
     rules: ghost-role-information-onestar-mecha-rules
+    raffle:
+      settings: default
     requirements:
       - !type:OverallPlaytimeRequirement
         time: 18000

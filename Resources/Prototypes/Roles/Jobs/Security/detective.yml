@@ -17,32 +17,14 @@
   - Maintenance
   - Service
   - Detective
-  #start-backmen: currency
-  minBankBalance: 150
-  maxBankBalance: 250
-  wageDepartment: Security
-  wage: 50
-  #end-backmen: currency
   special:
-  - !type:AddComponentSpecial
-    components:
-      - type: PsionicBonusChance
-        flatBonus: 0.5
   - !type:AddImplantSpecial
     implants: [ MindShieldImplant ]
 
 - type: startingGear
   id: DetectiveGear
   equipment:
-    jumpsuit: ClothingUniformJumpsuitDetective
-    back: ClothingBackpackSecurityFilledDetective
-    shoes: ClothingShoesBootsCombatFilled
-    eyes: ClothingEyesGlassesSecurity #backmen
-    head: ClothingHeadHatFedoraBrown
-    outerClothing: ClothingOuterVestDetective
+    eyes: ClothingEyesGlassesSecurity
     id: DetectivePDA
     ears: ClothingHeadsetSecurity
     belt: ClothingBeltHolsterFilled
-  innerClothingSkirt: ClothingUniformJumpskirtDetective
-  satchel: ClothingBackpackSatchelSecurityFilledDetective
-  duffelbag: ClothingBackpackDuffelSecurityFilledDetective

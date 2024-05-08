@@ -65,12 +65,12 @@ public sealed class AIEyePowerSystem : EntitySystem
             return;
         }
 
-        _uiSystem.TryToggleUi(ent, AICameraListUiKey.Key, actorComponent.PlayerSession);
+        _uiSystem.TryToggleUi(ent.Owner, AICameraListUiKey.Key, actorComponent.PlayerSession);
     }
 
     private void OnEyeRemove(Entity<AIEyeComponent> ent, ref ComponentShutdown args)
     {
-        _uiSystem.TryCloseAll(ent, AICameraListUiKey.Key);
+        _uiSystem.CloseUis(ent.Owner);
         _cameraSystem.RemoveActiveCamera(ent);
     }
 
@@ -95,7 +95,7 @@ public sealed class AIEyePowerSystem : EntitySystem
         if (!args.Powered)
         {
             EnsureComp<ReplacementAccentComponent>(uid).Accent = "dwarf";
-            _uiSystem.TryCloseAll(uid);
+            _uiSystem.CloseUis(uid);
         }
         else
         {
@@ -219,14 +219,14 @@ public sealed class AIEyePowerSystem : EntitySystem
 
     private void OnMindRemoved(EntityUid uid, AIEyeComponent component, MindRemovedMessage args)
     {
-        _uiSystem.TryCloseAll(uid, AICameraListUiKey.Key);
+        _uiSystem.CloseUis(uid);
         QueueDel(uid);
         if(component.AiCore.HasValue)
             OnReturnToCore(component.AiCore.Value);
     }
     private void OnMindRemoved2(EntityUid uid, AIEyeComponent component, MindUnvisitedMessage args)
     {
-        _uiSystem.TryCloseAll(uid, AICameraListUiKey.Key);
+        _uiSystem.CloseUis(uid);
         QueueDel(uid);
         if(component.AiCore.HasValue)
             OnReturnToCore(component.AiCore.Value);
@@ -254,7 +254,7 @@ public sealed class AIEyePowerSystem : EntitySystem
     private void OnReturnToCore(Entity<StationAIComponent> ent)
     {
         ent.Comp.ActiveEye = EntityUid.Invalid;
-        _uiSystem.TryCloseAll(ent, AICameraListUiKey.Key);
+        _uiSystem.CloseUis(ent.Owner);
         _appearance.SetData(ent, AiVisuals.InEye, false);
     }
 }

@@ -1,6 +1,5 @@
 - type: entity
   id: BriefcaseBrownFilled
-  name: brown briefcase
   parent: BriefcaseBrown
   suffix: Filled, Paper
   components:
@@ -11,9 +10,9 @@
 
 - type: entity
   id: BriefcaseSyndieSniperBundleFilled
-  name: brown briefcase
   parent: BriefcaseSyndie
-  suffix: SniperBundle
+  noSpawn: true
+  suffix: Syndicate, Sniper Bundle
   components:
   - type: Item
     size: Ginormous
@@ -31,14 +30,13 @@
 
 - type: entity
   id: BriefcaseSyndieLobbyingBundleFilled
-  name: brown briefcase
   parent: BriefcaseSyndie
   suffix: Syndicate, Spesos
   components:
   - type: StorageFill
     contents:
       - id: ClothingEyesGlassesSunglasses
-      - id: SpaceCash30000
+      - id: CargoCash30000
         amount: 1
       - id: EncryptionKeySyndie
       - id: RubberStampTrader
@@ -51,14 +49,13 @@
 
 - type: entity
   id: BriefcaseThiefBribingBundleFilled
-  name: brown briefcase
   parent: BriefcaseSyndie
   suffix: Thief, Spesos
   components:
   - type: StorageFill
     contents:
       - id: ClothingEyesGlassesSunglasses
-      - id: SpaceCash20000
+      - id: CargoCash20000
         amount: 1
       - id: ClothingUniformJumpsuitTacticool
       - id: ClothingOuterCoatJensen

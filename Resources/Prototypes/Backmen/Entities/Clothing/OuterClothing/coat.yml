@@ -19,3 +19,14 @@
     sprite: Backmen/Clothing/OuterClothing/Coats/ssspcoatbelov.rsi
   - type: Clothing
     sprite: Backmen/Clothing/OuterClothing/Coats/ssspcoatbelov.rsi
+
+- type: entity
+  parent: ClothingOuterCoatSecurityOvercoat
+  id: ClothingOuterCoatSecurityOfficerOvercoat
+  name: шинель офицер СБ
+  description: Легкобронированная кожаная шинель, предназначенная для повседневной носки офицерами. Имеет логотип компании Nanotrasen Security.
+  components:
+  - type: Sprite
+    sprite: Backmen/Clothing/OuterClothing/Coats/sec_greatcoat.rsi
+  - type: Clothing
+    sprite: Backmen/Clothing/OuterClothing/Coats/sec_greatcoat.rsi

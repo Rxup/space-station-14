@@ -16,7 +16,6 @@
   id: CorpseUnaffiliated
   components:
     - type: Loadout
-      force: true
       prototypes:
         - UnaffiliatedChaplainGear
         - UnaffiliatedChefGear

@@ -569,7 +569,7 @@
     slots:
       gun_magazine:
         name: Magazine
-        startingItem: MagazinePistolRubber
+        startingItem: MagazinePistol
         insertSound: /Audio/Weapons/Guns64/Pistols/beretta_reload.ogg
         ejectSound: /Audio/Weapons/Guns64/Pistols/beretta_unload.ogg
         priority: 2
@@ -674,6 +674,12 @@
     containers:
       gun_magazine: !type:ContainerSlot
       gun_chamber: !type:ContainerSlot
+  - type: UnpoweredFlashlight
+  - type: PointLight
+    enabled: false
+    mask: /Textures/Effects/LightMasks/cone.png
+    autoRot: true
+    radius: 6
 
 - type: entity
   name: Divet
@@ -1145,7 +1151,7 @@
     slots:
       gun_magazine:
         name: Magazine
-        startingItem: MagazineRifleRubber
+        startingItem: MagazineRifle
         insertSound: /Audio/Weapons/Guns64/Rifles/m28_reload.ogg
         ejectSound: /Audio/Weapons/Guns64/Rifles/m28_unload.ogg
         priority: 2
@@ -1402,7 +1408,7 @@
     slots:
       gun_magazine:
         name: Magazine
-        startingItem: MagazinePistolSubMachineGunRubber
+        startingItem: MagazinePistolSubMachineGun
         insertSound: /Audio/Weapons/Guns64/SMGs/mp5_reload.ogg
         ejectSound: /Audio/Weapons/Guns64/SMGs/mp5_unload.ogg
         priority: 2
@@ -3504,6 +3510,11 @@
   - type: Item
     sprite: Backmen/Objects/Weapons/Gunsx64/Flamethrowers/M6/tiny.rsi
     size: Large
+  - type: Clothing
+    sprite: Backmen/Objects/Weapons/Gunsx64/Flamethrowers/M6/tiny.rsi
+    slots:
+      - BACK
+      - SUITSTORAGE
   - type: Gun
     projectileSpeed: 5
     fireRate: 10
@@ -3741,9 +3752,21 @@
           bounds: "-0.25,-0.25,0.25,0.25"
         density: 20
         mask:
-        - ItemMask
+        - Impassable
+        - HighImpassable
         restitution: 0.3  # fite me
         friction: 0.2
+      fire:
+        hard: false
+        density: 7
+        shape:
+          !type:PhysShapeAabb
+           bounds: "-0.4,-0.4,0.4,0.4"
+        layer:
+        - MidImpassable
+        mask:
+        - BlobImpassable
+        - MidImpassable
   - type: PointLight
     enabled: true
     color: "#FF8080"
@@ -3755,14 +3778,15 @@
     - FireThrowerBall
   - type: TimedDespawn
     lifetime: 5
-  - type: EmbeddableProjectile
-    offset: 0.15,0.15
   - type: ThrowingAngle
     angle: 0
-  - type: DamageOtherOnHit
-    damage:
-      types:
-        Heat: 5
+  - type: IgniteOnCollide
+    fireStacks: 1
+    count: 100
+    fixtureId: fire
+  - type: IgnitionSource
+    temperature: 700
+    ignited: true
 
 - type: entity
   name: струя реактивного пламени
@@ -3787,7 +3811,6 @@
         layer:
         - MidImpassable
   - type: Respirator
-    cycleDelay: 0.1
     saturation: 0.1
     maxSaturation: 0.1
     damage:
@@ -3847,7 +3870,6 @@
       methods: [Touch]
       effects:
       - !type:HealthChange
-        scaled: true
         damage:
           types:
             Heat: 10

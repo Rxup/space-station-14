@@ -7,6 +7,7 @@
       powerRequired: true
       unobstructedRequired: true
       listenRange: 2
+    - type: Intercom
       supportedChannels:
       - Common
       - Command
@@ -18,7 +19,6 @@
       - Service
       - Supply
       - Syndicate
-      - Redorden
       - CSH
       - GROUPS_0
       - GROUPS_1

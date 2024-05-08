@@ -13,6 +13,11 @@
       map: ["enum.GunVisualLayers.Mag"]
   - type: Clothing
     sprite: Backmen/Objects/Weapons/Guns/Pistols/makarovbel.rsi
+  - type: Item
+    size: Small
+    shape:
+    - 0,0,0,0
+    - 0,1,0,1
   - type: Gun
     fireRate: 5
     availableModes:

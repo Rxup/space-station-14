@@ -33,6 +33,9 @@
       components:
         - type: SpecForce
           actionBssActionName: ActionCentcomFtlAction
+        - type: NpcFactionMember
+          factions:
+            - CentralCommand
         - type: Psionic
         - type: DispelPower
         - type: InitialInfectedExempt

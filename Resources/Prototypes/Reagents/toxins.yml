@@ -259,6 +259,15 @@
       - !type:Emote
         emote: Scream
         probability: 0.25
+# start-backmen: Disease
+      - !type:ChemCauseDisease
+        conditions:
+        - !type:ReagentThreshold
+          reagent: FluorosulfuricAcid
+          min: 5
+        causeChance: 0.3
+        disease: XenoVirus
+# end-backmen: Disease
 
 - type: reagent
   id: SulfuricAcid
@@ -468,11 +477,12 @@
   color: "#D6CE7B"
   metabolisms:
     Poison:
+      metabolismRate: 0.2
       effects:
       - !type:HealthChange
         damage:
           types:
-            Poison: 6
+            Poison: 3
 
 - type: reagent
   id: VentCrud
@@ -498,6 +508,7 @@
   physicalDesc: reagent-physical-desc-necrotic
   flavor: bitter
   color: "#7e916e"
+  worksOnTheDead: true
   metabolisms:
     Medicine:
       effects:
@@ -520,8 +531,8 @@
       - !type:PopupMessage
         conditions:
           - !type:OrganType
-            type: Human
-        reagent: Protein
+            type: Animal
+            shouldHave: false
         type: Local
         visualType: MediumCaution
         messages: [ "generic-reagent-effect-sick" ]
@@ -530,19 +541,21 @@
         probability: 0.1
         conditions:
           - !type:OrganType
-            type: Human
+            type: Animal
+            shouldHave: false
       - !type:HealthChange
         conditions:
         - !type:OrganType
-          type: Human
+          type: Animal
+          shouldHave: false
         damage:
           types:
             Poison: 1
       - !type:AdjustReagent
         conditions:
         - !type:OrganType
-          type: Human
-          shouldHave: false
+          type: Animal
+          shouldHave: true
         reagent: Protein
         amount: 0.5
 
@@ -680,3 +693,23 @@
       - !type:Electrocute
         probability: 0.8
 
+- type: reagent
+  id: Lipolicide
+  name: reagent-name-lipolicide
+  group: Toxins
+  desc: reagent-desc-lipolicide
+  physicalDesc: reagent-physical-desc-strong-smelling
+  flavor: mothballs #why does weightloss juice taste like mothballs
+  color: "#F0FFF0"
+  metabolisms:
+    Poison:
+      effects:
+      - !type:HealthChange
+        conditions:
+        - !type:Hunger
+          max: 50
+        damage:
+          types:
+            Poison: 2
+      - !type:SatiateHunger
+        factor: -6

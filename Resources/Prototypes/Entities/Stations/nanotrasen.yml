@@ -25,6 +25,7 @@
     - BaseStationSiliconLawCrewsimov
     - BaseStationAllEventsEligible
     - BaseStationNanotrasen
+    - BaseRandomStation
   noSpawn: true
   components:
     - type: Transform
@@ -40,6 +41,7 @@
     - BaseStationRecords #Backmen
     - BaseStationShuttles #Backmen
     - BaseStationExpeditions #Backmen
+    - BaseStationMagnet #Backmen
   noSpawn: true
   components:
     - type: Transform

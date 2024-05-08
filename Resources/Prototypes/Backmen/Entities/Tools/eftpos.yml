@@ -12,13 +12,13 @@
     - type: ActivatableUI
       key: enum.EftposUiKey.Key
       singleUser: true
-      closeOnHandDeselect: false
+      requireActiveHand: false
     - type: Construction
       graph: eftpos
       node: eftpos
     - type: UserInterface
       interfaces:
-        - key: enum.EftposUiKey.Key
+        enum.EftposUiKey.Key:
           type: EftposBoundUserInterface
     - type: Clothing
       quickEquip: false

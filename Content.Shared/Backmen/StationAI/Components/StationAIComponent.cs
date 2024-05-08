@@ -1,3 +1,4 @@
+using Content.Shared.Actions;
 using Robust.Shared.Prototypes;
 using Content.Shared.Random;
 using Content.Shared.Silicons.Laws;
@@ -9,7 +10,7 @@ namespace Content.Shared.Backmen.StationAI;
 public sealed partial class StationAIComponent : Component
 {
     [DataField("action")]
-    public EntProtoId Action = "AIHealthOverlay";
+    public EntProtoId<InstantActionComponent> Action = "AIHealthOverlay";
 
     public EntityUid? ActionId;
 
@@ -23,7 +24,7 @@ public sealed partial class StationAIComponent : Component
     public SiliconLawsetPrototype? SelectedLaw;
 
     [DataField("nukeToggle")]
-    public EntProtoId NukeToggle = "AIToggleArmNuke";
+    public EntProtoId<InstantActionComponent> NukeToggle = "AIToggleArmNuke";
 
     public EntityUid? NukeToggleId;
 

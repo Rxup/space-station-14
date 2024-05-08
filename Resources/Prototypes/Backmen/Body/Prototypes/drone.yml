@@ -4,7 +4,7 @@
   root: torso
   slots:
     torso:
-      part: TorsoTerminator
+      part: TorsoDrone
       connections:
       - hand 1
       - hand 2
@@ -24,3 +24,27 @@
       part: RightArmBorg
     hand 6:
       part: RightArmBorg
+
+- type: entity
+  parent: BaseItem
+  id: TorsoDrone
+  name: nt-800 torso
+  components:
+  - type: Sprite
+    sprite: Mobs/Species/Terminator/parts.rsi
+    state: torso_m
+  - type: Icon
+    sprite: Mobs/Species/Terminator/parts.rsi
+    state: torso_m
+  - type: Damageable
+    damageContainer: Inorganic
+    damageModifierSet: Metallic
+  - type: ContainerContainer
+    containers:
+      bodypart: !type:Container
+        ents: []
+  - type: Gibbable
+  - type: StaticPrice
+    price: 200
+  - type: BodyPart
+    partType: Torso
