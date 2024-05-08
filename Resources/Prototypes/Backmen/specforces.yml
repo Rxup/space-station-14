@@ -12,8 +12,8 @@
     - id: SpawnMobHumanERTLeaderEVAV2_1
     - id: SpawnMobHumanERTEngineerEVAV2_1
   specForceSpawn:
-    - id: SpawnMobHumanERTSecurityEVAV2_1
     - id: SpawnMobHumanERTMedicalEVAV2_1
+    - id: SpawnMobHumanERTSecurityEVAV2_1
     - id: SpawnMobHumanERTJunitorEVAV2_1
 
 # RXBZZ
@@ -75,7 +75,7 @@
     - id: SpawnMobHumanERTEngineerEpsilon
     - id: SpawnMobHumanERTSecurityEpsilon
   specForceSpawn:
-    - id: SpawnMobHumanERTSecurityEpsilon
-    - id: SpawnMobHumanERTEngineerEpsilon
     - id: SpawnMobHumanERTMedicalEpsilon
+    - id: SpawnMobHumanERTEngineerEpsilon
+    - id: SpawnMobHumanERTSecurityEpsilon
     - id: SpawnMobHumanERTJanitorEpsilon
