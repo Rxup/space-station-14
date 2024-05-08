@@ -44,7 +44,7 @@ public sealed class BlobCoreActionSystem : EntitySystem
     [Dependency] private readonly DamageableSystem _damageableSystem = default!;
     [Dependency] private readonly MapSystem _mapSystem = default!;
     [Dependency] private readonly EntityLookupSystem _lookup = default!;
-    [Dependency] private readonly GridFixtureSystem _gridFixture = default!;
+    //[Dependency] private readonly GridFixtureSystem _gridFixture = default!;
 
     private const double ActionJobTime = 0.005;
     private readonly JobQueue _actionJobQueue = new(ActionJobTime);
@@ -68,10 +68,10 @@ public sealed class BlobCoreActionSystem : EntitySystem
     {
         private readonly Entity<BlobObserverComponent> _ent;
         private readonly Entity<BlobCoreComponent> _core;
-        private readonly BlobMouseActionSystem _system;
+        private readonly BlobCoreActionSystem _system;
         private readonly InteractNoHandEvent _args;
 
-        public BlobMouseActionProcess(Entity<BlobObserverComponent> ent, Entity<BlobCoreComponent> core, BlobMouseActionSystem system, InteractNoHandEvent args, double maxTime, CancellationToken cancellation = default) : base(maxTime, cancellation)
+        public BlobMouseActionProcess(Entity<BlobObserverComponent> ent, Entity<BlobCoreComponent> core, BlobCoreActionSystem system, InteractNoHandEvent args, double maxTime, CancellationToken cancellation = default) : base(maxTime, cancellation)
         {
             _ent = ent;
             _core = core;
@@ -79,7 +79,7 @@ public sealed class BlobCoreActionSystem : EntitySystem
             _args = args;
         }
 
-        public BlobMouseActionProcess(Entity<BlobObserverComponent> ent, Entity<BlobCoreComponent> core, BlobMouseActionSystem system, InteractNoHandEvent args, double maxTime, IStopwatch stopwatch, CancellationToken cancellation = default) : base(maxTime, stopwatch, cancellation)
+        public BlobMouseActionProcess(Entity<BlobObserverComponent> ent, Entity<BlobCoreComponent> core, BlobCoreActionSystem system, InteractNoHandEvent args, double maxTime, IStopwatch stopwatch, CancellationToken cancellation = default) : base(maxTime, stopwatch, cancellation)
         {
             _ent = ent;
             _core = core;
