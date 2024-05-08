@@ -66,10 +66,9 @@ public sealed partial class ClothingComponent : Component
     [DataField("unisexMask")]
     public ClothingMask UnisexMask = ClothingMask.UniformFull;
 
-    [ViewVariables(VVAccess.ReadWrite)]
-    [DataField("hidePants")]
-    public bool HidePants = false;
-
+    /// <summary>
+    /// Name of the inventory slot the clothing is in.
+    /// </summary>
     public string? InSlot;
 
     [DataField, ViewVariables(VVAccess.ReadWrite)]

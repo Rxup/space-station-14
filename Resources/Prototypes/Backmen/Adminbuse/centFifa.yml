@@ -112,7 +112,7 @@
     id: CargoIDCard
     pocket1: SurvivalKnife
     pocket2: FlashlightLantern
-  innerClothingSkirt: ClothingUniformJumpskirtCargo
+#  innerClothingSkirt: ClothingUniformJumpskirtCargo
 
 #--------------------------------------------------------------------
 
@@ -146,7 +146,7 @@
     belt: ClothingBeltMedicalFilled
     pocket1: FlashlightLantern
     pocket2: ScalpelCool
-  innerClothingSkirt: ClothingUniformJumpskirtMedicalDoctor
+  #innerClothingSkirt: ClothingUniformJumpskirtMedicalDoctor
 
 #--------------------------------------------------------------------
 
@@ -492,6 +492,9 @@
   components:
   - type: SpecForce
     actionBssActionName: ActionCentcomFtlAction
+  - type: NpcFactionMember
+    factions:
+      - CentralCommand
   - type: InitialInfectedExempt
   - type: Loadout
     prototypes: [ERTLeaderGearEggV3]
@@ -506,6 +509,9 @@
   components:
   - type: SpecForce
     actionBssActionName: ActionCentcomFtlAction
+  - type: NpcFactionMember
+    factions:
+      - CentralCommand
   - type: Loadout
     prototypes: [ERTEngineerGearEggV3]
   - type: InitialInfectedExempt
@@ -520,6 +526,9 @@
   components:
   - type: SpecForce
     actionBssActionName: ActionCentcomFtlAction
+  - type: NpcFactionMember
+    factions:
+      - CentralCommand
   - type: Loadout
     prototypes: [ERTSecurityGearEggV3]
   - type: InitialInfectedExempt
@@ -534,6 +543,9 @@
   components:
   - type: SpecForce
     actionBssActionName: ActionCentcomFtlAction
+  - type: NpcFactionMember
+    factions:
+      - CentralCommand
   - type: Loadout
     prototypes: [ERTMedicalGearEggV3]
   - type: InitialInfectedExempt
@@ -548,6 +560,9 @@
   components:
   - type: SpecForce
     actionBssActionName: ActionCentcomFtlAction
+  - type: NpcFactionMember
+    factions:
+      - CentralCommand
   - type: Loadout
     prototypes: [ERTJanitorGearEggV3]
   - type: InitialInfectedExempt
@@ -708,6 +723,8 @@
     makeSentient: true
     name: ОБР лидер
     description: Командир отряда Epsilon - 11, великий воин, герой НТ, знаменитый полководец, мог бы им быть если бы не пошел в Epsilon - 11.
+    raffle:
+      settings: default
     requirements:
       - !type:DepartmentTimeRequirement
         department: Security
@@ -719,6 +736,9 @@
         time: 9000
   - type: SpecForce
     actionBssActionName: ActionCentcomFtlAction
+  - type: NpcFactionMember
+    factions:
+      - CentralCommand
   - type: Loadout
     prototypes: [ERTLeaderGearEVAV3]
   - type: RandomMetadata
@@ -758,6 +778,8 @@
     makeSentient: true
     name: ОБР инженер
     description: Инженер отряда Epsilon - 11, может и не очень хороший инженер, но дело свое знает, наверное.
+    raffle:
+      settings: default
     requirements:
       - !type:DepartmentTimeRequirement
         department: Security
@@ -769,6 +791,9 @@
         time: 9000
   - type: SpecForce
     actionBssActionName: ActionCentcomFtlAction
+  - type: NpcFactionMember
+    factions:
+      - CentralCommand
   - type: Loadout
     prototypes: [ERTEngineerGearEVAV3]
   - type: RandomMetadata
@@ -808,6 +833,8 @@
     makeSentient: true
     name: ОБР офицер безопасности
     description: Солдат или же охранник Epsilon - 11, прошедший небольшую подготовку и готовый стрелять во все что движеться, я бы не доверил ему даже водяной пистолетик.
+    raffle:
+      settings: default
     requirements:
       - !type:DepartmentTimeRequirement
         department: Security
@@ -816,6 +843,9 @@
         time: 16000
   - type: SpecForce
     actionBssActionName: ActionCentcomFtlAction
+  - type: NpcFactionMember
+    factions:
+      - CentralCommand
   - type: Loadout
     prototypes: [ERTSecurityGearEVAV3]
   - type: RandomMetadata
@@ -855,6 +885,8 @@
     makeSentient: true
     name: ОБР медик
     description: Медик отделения Epsilon - 11, был в медицинском институте, поэтому и взяли в качестве медика, но никого не волнует что он там был всего неделю.
+    raffle:
+      settings: default
     requirements:
       - !type:DepartmentTimeRequirement
         department: Security
@@ -866,6 +898,9 @@
         time: 9000
   - type: SpecForce
     actionBssActionName: ActionCentcomFtlAction
+  - type: NpcFactionMember
+    factions:
+      - CentralCommand
   - type: Loadout
     prototypes: [ERTMedicalGearEVAV3]
   - type: RandomMetadata
@@ -905,6 +940,8 @@
     makeSentient: true
     name: ОБР уборщик
     description: Уборщик отделения Epsilon - 11, эй! кто дал ему пистолет?!
+    raffle:
+      settings: default
     requirements:
       - !type:DepartmentTimeRequirement
         department: Security
@@ -916,6 +953,9 @@
         time: 1500
   - type: SpecForce
     actionBssActionName: ActionCentcomFtlAction
+  - type: NpcFactionMember
+    factions:
+      - CentralCommand
   - type: Loadout
     prototypes: [ERTJanitorGearEVAV3]
   - type: RandomMetadata
@@ -1180,7 +1220,6 @@
     eyes: ClothingEyesGlassesSunglasses
     gloves: ClothingHandsGlovesSpetsnazcombat
     outerClothing: ClothingOuterHardsuitERTLeader
-    suitstorage: OxygenTankFilled
     head: ClothingHeadHatERTLeaderBeret
     neck: ClothingNeckMantleERTLeader
     id: OBRGavnaLeaderIDCard
@@ -1220,7 +1259,6 @@
     eyes: ClothingEyesGlassesMeson
     gloves: ClothingHandsGlovesColorYellow
     outerClothing: ClothingOuterHardsuitERTEngineerReal
-    suitstorage: OxygenTankFilled
     id: OBRGavnaEngineerIDCard
     ears: ClothingHeadsetCentComCCMTFTHT9
     belt: ClothingBeltChiefEngineerFilled
@@ -1271,7 +1309,6 @@
     eyes: ClothingEyesGlassesSecurity
     gloves: ClothingHandsGlovesCombat
     outerClothing: ClothingOuterHardsuitERTSecurity
-    suitstorage: OxygenTankFilled
     id: OBRGavnaIDCard
     ears: ClothingHeadsetCentComCCMTFTHT9
     belt: ClothingBeltSecurityFilled
@@ -1310,7 +1347,6 @@
     eyes: ClothingEyesHudMedical
     gloves: ClothingHandsGlovesCombat
     outerClothing: ClothingOuterHardsuitERTMedical
-    suitstorage: OxygenTankFilled
     id: OBRGavnaMedicIDCard
     ears: ClothingHeadsetCentComCCMTFTHT9
     belt: ClothingBeltMedicalFilled
@@ -1355,7 +1391,6 @@
     mask: ClothingMaskGasERTV2_1
     gloves: ClothingHandsGlovesCombat
     outerClothing: ClothingOuterHardsuitERTJanitor
-    suitstorage: OxygenTankFilled
     id: OBRGavnaJunitorIDCard
     ears: ClothingHeadsetCentComCCMTFTHT9
     belt: ClothingBeltJanitorFilled
@@ -1411,6 +1446,8 @@
     makeSentient: true
     name: ОБР лидер
     description: Командир отряда Theta - 9, великий воин, герой НТ, знаменитый полководец, мог бы им быть если бы не пошел в Theta - 9.
+    raffle:
+      settings: default
     requirements:
       - !type:DepartmentTimeRequirement
         department: Security
@@ -1422,6 +1459,9 @@
         time: 18000
   - type: SpecForce
     actionBssActionName: ActionCentcomFtlAction
+  - type: NpcFactionMember
+    factions:
+      - CentralCommand
   - type: Loadout
     prototypes: [ERTLeaderGearEVAV2_1]
   - type: RandomMetadata
@@ -1462,6 +1502,8 @@
     makeSentient: true
     name: ОБР инженер
     description: Инженер отряда Theta - 9, может и не очень хороший инженер, но дело свое знает, наверное.
+    raffle:
+      settings: default
     requirements:
       - !type:DepartmentTimeRequirement
         department: Security
@@ -1473,6 +1515,9 @@
         time: 18000
   - type: SpecForce
     actionBssActionName: ActionCentcomFtlAction
+  - type: NpcFactionMember
+    factions:
+      - CentralCommand
   - type: Loadout
     prototypes: [ERTEngineerGearEVAV2_1]
   - type: RandomMetadata
@@ -1512,6 +1557,8 @@
     makeSentient: true
     name: ОБР офицер безопасности
     description: Солдат или же охранник Theta - 9, прошедший небольшую подготовку и готовый стрелять во все что движеться, я бы не доверил ему даже водяной пистолетик.
+    raffle:
+      settings: default
     requirements:
       - !type:DepartmentTimeRequirement
         department: Security
@@ -1520,6 +1567,9 @@
         time: 36000
   - type: SpecForce
     actionBssActionName: ActionCentcomFtlAction
+  - type: NpcFactionMember
+    factions:
+      - CentralCommand
   - type: Loadout
     prototypes: [ERTSecurityGearEVAV2_1]
   - type: RandomMetadata
@@ -1559,6 +1609,8 @@
     makeSentient: true
     name: ОБР медик
     description: Медик отделения Theta - 9, был в медицинском институте, поэтому и взяли в качестве медика, но никого не волнует что он там был всего неделю.
+    raffle:
+      settings: default
     requirements:
       - !type:DepartmentTimeRequirement
         department: Security
@@ -1570,6 +1622,9 @@
         time: 18000
   - type: SpecForce
     actionBssActionName: ActionCentcomFtlAction
+  - type: NpcFactionMember
+    factions:
+      - CentralCommand
   - type: Loadout
     prototypes: [ERTMedicalGearEVAV2_1]
   - type: RandomMetadata
@@ -1609,6 +1664,8 @@
     makeSentient: true
     name: ОБР уборщик
     description: Уборщик отделения Theta - 9, эй! кто дал ему пистолет?!
+    raffle:
+      settings: default
     requirements:
       - !type:DepartmentTimeRequirement
         department: Security
@@ -1620,6 +1677,9 @@
         time: 3000
   - type: SpecForce
     actionBssActionName: ActionCentcomFtlAction
+  - type: NpcFactionMember
+    factions:
+      - CentralCommand
   - type: Loadout
     prototypes: [ERTJanitorGearEVAV2_1]
   - type: RandomMetadata
@@ -1880,7 +1940,6 @@
     eyes: ClothingEyesGlassesSecurity
     gloves: ClothingHandsGlovesSpetsnazcombat
     outerClothing: ClothingOuterHardsuitDeathsquad
-    suitstorage: OxygenTankFilled
     head: ClothingHeadHatBeretMobileTaskForce
     id: DedSquadronLeaderGavnaIDCard
     ears: ClothingHeadsetCentComCCAltDeath
@@ -1899,7 +1958,6 @@
     eyes: ClothingEyesGlassesSecurity
     gloves: ClothingHandsGlovesSpetsnazcombat
     outerClothing: ClothingOuterHardsuitDeathsquad
-    suitstorage: OxygenTankFilled
     id: DedSquadronGavnaIDCard
     ears: ClothingHeadsetCentComCCAltDeath
     belt: WeaponRevolverMateba
@@ -1917,7 +1975,6 @@
     eyes: ClothingEyesGlassesSecurity
     gloves: ClothingHandsGlovesSpetsnazcombat
     outerClothing: ClothingOuterHardsuitDeathsquad
-    suitstorage: OxygenTankFilled
     id: DedSquadronGavnaIDCard
     ears: ClothingHeadsetCentComCCAltDeath
     belt: WeaponRevolverMateba
@@ -1946,6 +2003,8 @@
     name: Оперативник спец войск
     description: Элитный солдат отряда Omega - 0, напичканые импланты и курсы космического спецназа сделали из него бесчувственную машину.
     rules: Выполняйте различные приказы, ваша задача будет варьироваться от задач центрального командования.
+    raffle:
+      settings: default
     requirements:
       - !type:DepartmentTimeRequirement
         department: Security
@@ -1954,6 +2013,9 @@
         time: 36000
   - type: SpecForce
     actionBssActionName: ActionCentcomFtlAction
+  - type: NpcFactionMember
+    factions:
+      - CentralCommand
   - type: Loadout
     prototypes: [SpecialForceGearFull]
   - type: RandomMetadata
@@ -1962,9 +2024,6 @@
     - NameSpets
   - type: RandomHumanoidAppearance
     randomizeName: False
-  - type: NpcFactionMember
-    factions:
-    - NanoTrasen
   - type: InitialInfectedExempt
 
 - type: entity
@@ -1989,6 +2048,8 @@
     name: коммандер спец войск
     description: Элитный коммандер отряда Omega - 0, напичканые импланты и курсы космического спецназа сделали из него бесчувственную машину с тактическим интеллектом.
     rules: Выполняйте различные приказы, ваша задача будет варьироваться от задач центрального командования.
+    raffle:
+      settings: default
     requirements:
       - !type:DepartmentTimeRequirement
         department: Security
@@ -2000,6 +2061,9 @@
         time: 18000
   - type: SpecForce
     actionBssActionName: ActionCentcomFtlAction
+  - type: NpcFactionMember
+    factions:
+      - CentralCommand
   - type: Loadout
     prototypes: [SpecialForceGearCommanderFull]
   - type: RandomMetadata
@@ -2008,9 +2072,6 @@
     - NameSpets
   - type: RandomHumanoidAppearance
     randomizeName: False
-  - type: NpcFactionMember
-    factions:
-    - NanoTrasen
   - type: InitialInfectedExempt
 
 - type: entity
@@ -2022,15 +2083,15 @@
   components:
   - type: SpecForce
     actionBssActionName: ActionCentcomFtlAction
+  - type: NpcFactionMember
+    factions:
+      - CentralCommand
   - type: Loadout
     prototypes: [SpecialForceAgentGearFull]
   - type: Stealth
   - type: StealthOnMove
     passiveVisibilityRate: -0.37
     movementVisibilityRate: 0.2
-  - type: NpcFactionMember
-    factions:
-    - NanoTrasen
   - type: InitialInfectedExempt
 
 - type: entity
@@ -2040,13 +2101,13 @@
   components:
   - type: NpcFactionMember
     factions:
-    - NanoTrasen
+    - CentralCommand
 
 #------------------------------------
 
 - type: entity
   name: Overwatch
-  parent: MobHumanCombine
+  parent: [MobHumanCombine,ShowSecurityIcons]
   suffix: CentCom Офицер специальный операций
   id: MobHumanSFOfficer
   components:
@@ -2060,6 +2121,8 @@
     makeSentient: true
     name: Офицер Специальных Операций
     description: Офицер Специальных Операций, руководитель департамента специальных операций в секторе.
+    raffle:
+      settings: default
     requirements:
       - !type:DepartmentTimeRequirement
         department: Security
@@ -2071,14 +2134,13 @@
         time: 18000
   - type: SpecForce
     actionBssActionName: ActionCentcomFtlAction
+  - type: NpcFactionMember
+    factions:
+      - CentralCommand
   - type: Loadout
     prototypes: [SFOForma]
   - type: RandomHumanoidAppearance
     randomizeName: False
-  - type: NpcFactionMember
-    factions:
-    - NanoTrasen
-  - type: ShowSecurityIcons
   - type: InitialInfectedExempt
 
 - type: startingGear
@@ -2153,6 +2215,8 @@
     makeSentient: true
     name: Ядерный оперативник
     description: GET DAT FUKKEN DISK
+    raffle:
+      settings: default
     requirements:
     - !type:DepartmentTimeRequirement
       department: Security
@@ -2190,6 +2254,8 @@
     makeSentient: true
     name: Ядерный оперативник
     description: GET DAT FUKKEN DISK
+    raffle:
+      settings: default
     requirements:
     - !type:DepartmentTimeRequirement
       department: Security
@@ -2216,52 +2282,55 @@
   equipment:
     jumpsuit: ClothingUniformJumpsuitColorBlack
     back: ClothingBackpackDuffelRXBZZ
-    shoes: ClothingShoesBootsNedoSpetsnaz
-    mask: ClothingMaskGasExplorer
+    shoes: ClothingShoesBootsMagArmy
+    mask: ClothingMaskGasRXBZZ
     eyes: ClothingEyesGlassesSecurity
     neck: CombatKnifeSpetsnaz
     gloves: ClothingHandsGlovesCombat
     outerClothing: ClothingOuterHardsuitCBURN
-    suitstorage: OxygenTankFilled
+    suitstorage: WeaponPulseRifleXMLG
     id: IdCardRXBZZ
     ears: ClothingHeadsetCentComCCMTFSR6
-    belt: ClothingBeltBandolierRXBZZ
-    pocket1: WeaponLaserGun
+    belt: WeaponAdvancedLaser
+    pocket1: ClothingPounchRXBZZFilled
+    pocket2: ClothingMedicalPounchRXBZZFilled
 
 - type: startingGear
   id: RXBZZFlamer
   equipment:
     jumpsuit: ClothingUniformJumpsuitColorBlack
-    back: FirethrowerGun
-    shoes: ClothingShoesBootsNedoSpetsnaz
-    mask: ClothingMaskGasExplorer
+    back: PowerpackFlame
+    shoes: ClothingShoesBootsMagArmy
+    mask: ClothingMaskGasRXBZZ
     eyes: ClothingEyesGlassesSecurity
     neck: CombatKnifeSpetsnaz
     gloves: ClothingHandsGlovesCombat
     outerClothing: ClothingOuterHardsuitCBURN
-    suitstorage: OxygenTankFilled
+    suitstorage: WeaponflamethrowerSG
     id: IdCardRXBZZ
     ears: ClothingHeadsetCentComCCMTFSR6
     belt: ClothingBeltMilitaryWebbingFlamer
-    pocket1: WeaponLaserGun
+    pocket1: ClothingPounchRXBZZSpecialistFilled
+    pocket2: ClothingMedicalPounchRXBZZFilled
 
 - type: startingGear
   id: RXBZZLeader
   equipment:
     jumpsuit: ClothingUniformJumpsuitColorBlack
     back: ClothingBackpackDuffelRXBZZ
-    shoes: ClothingShoesBootsNedoSpetsnaz
-    mask: ClothingMaskGasExplorer
+    shoes: ClothingShoesBootsMagArmy
+    mask: ClothingMaskGasRXBZZ
     eyes: ClothingEyesGlassesSecurity
     neck: CombatKnifeSpetsnaz
     gloves: ClothingHandsGlovesCombat
     outerClothing: ClothingOuterHardsuitCBURNLeader
-    suitstorage: OxygenTankFilled
+    suitstorage: WeaponPulseRifleXMLG
     id: IdCardRXBZZLeader
     head: ClothingHeadHatERTLeaderBeret
     ears: ClothingHeadsetCentComCCMTFSR6
-    belt: ClothingBeltBandolierRXBZZ
-    pocket1: WeaponAdvancedLaser
+    belt: WeaponAdvancedLaser
+    pocket1: ClothingPounchRXBZZFilled
+    pocket2: ClothingMedicalPounchRXBZZFilled
 
 - type: entity
   noSpawn: true
@@ -2275,10 +2344,12 @@
     - type: StorageFill
       contents:
         - id: MedkitAdvancedRXBZZ
-        - id: WeaponDisabler
-        - id: WeaponPulseRifleXMLG
         - id: MagazinePulseRifle
-          amount: 4
+          amount: 3
+        - id: BoxShotgunIncendiary
+          amount: 3
+        - id: BoxLethalshot
+          amount: 3
         - id: WeaponShotgun39
 
 - type: entity
@@ -2288,16 +2359,12 @@
   components:
     - type: Item
       size: Normal
-    - type: Storage
-      grid:
-      - 0,0,3,4
     - type: StorageFill
       contents:
-        - id: HandheldHealthAnalyzer
         - id: BattleMedipenAntiVirus
-          amount: 5
+          amount: 4
         - id: BattleMedipen
-          amount: 10
+          amount: 4
 
 - type: entity
   noSpawn: true
@@ -2309,8 +2376,8 @@
       - 0,0,5,4
     - type: UserInterface
       interfaces:
-      - key: enum.StorageUiKey.Key
-        type: StorageBoundUserInterface
+        enum.StorageUiKey.Key:
+          type: StorageBoundUserInterface
     - type: StorageFill
       contents:
         - id: ShellShotgunIncendiary
@@ -2341,8 +2408,54 @@
       contents:
         - id: MedkitAdvancedRXBZZ
         - id: WeaponDisabler
-        - id: FuelTankFirethrower
-          amount: 5
+        - id: WeaponLauncherM81
+        - id: GrenadeFrag
+          amount: 2
+        - id: GrenadeBlast
+          amount: 2
+
+- type: entity
+  parent: ClothingMedicalPounch
+  id: ClothingMedicalPounchRXBZZFilled
+  noSpawn: true
+  components:
+    - type: StorageFill
+      contents:
+        - id: RegenerativeMesh
+          amount: 2
+        - id: MedicatedSuture
+          amount: 2
+        - id: BattleMedipen
+          amount: 2
+        - id: HandheldHealthAnalyzer
+
+- type: entity
+  parent: ClothingPounchMTF
+  id: ClothingPounchRXBZZFilled
+  noSpawn: true
+  components:
+    - type: StorageFill
+      contents:
+        - id: Flare
+          amount: 3
+        - id: MagazinePulseRifle
+          amount: 3
+        - id: WeaponDisabler
+
+- type: entity
+  parent: ClothingPounchMTF
+  id: ClothingPounchRXBZZSpecialistFilled
+  noSpawn: true
+  components:
+    - type: StorageFill
+      contents:
+        - id: Flare
+          amount: 2
+        - id: DrinkMREFlask
+        - id: GrenadeFrag
+          amount: 2
+        - id: GrenadeBlast
+          amount: 2
 
 - type: entity
   name:  РХБЗЗ Реагент
@@ -2360,6 +2473,8 @@
     makeSentient: true
     name: Оперативник РХБЗЗ
     description: Особый агент НаноТрейзен по борьбе с радиационно, химическо, биологическоми и зомби опасностями.
+    raffle:
+      settings: default
     requirements:
       - !type:DepartmentTimeRequirement
         department: Security
@@ -2368,6 +2483,9 @@
         time: 36000
   - type: SpecForce
     actionBssActionName: ActionCentcomFtlAction
+  - type: NpcFactionMember
+    factions:
+      - CentralCommand
   - type: Loadout
     prototypes: [RXBZZ]
   - type: RandomMetadata
@@ -2405,6 +2523,8 @@
     makeSentient: true
     name: Огнеметчик РХБЗЗ
     description: Особый агент НаноТрейзен по борьбе с радиационно, химическо, биологическоми и зомби опасностями.
+    raffle:
+      settings: default
     requirements:
       - !type:DepartmentTimeRequirement
         department: Security
@@ -2413,6 +2533,9 @@
         time: 36000
   - type: SpecForce
     actionBssActionName: ActionCentcomFtlAction
+  - type: NpcFactionMember
+    factions:
+      - CentralCommand
   - type: Loadout
     prototypes: [RXBZZFlamer]
   - type: RandomMetadata
@@ -2450,6 +2573,8 @@
     makeSentient: true
     name: Лидер РХБЗЗ
     description: Особый агент НаноТрейзен по борьбе с радиационно, химическо, биологическоми и зомби опасностями.
+    raffle:
+      settings: default
     requirements:
       - !type:DepartmentTimeRequirement
         department: Security
@@ -2461,6 +2586,9 @@
         time: 18000
   - type: SpecForce
     actionBssActionName: ActionCentcomFtlAction
+  - type: NpcFactionMember
+    factions:
+      - CentralCommand
   - type: Loadout
     prototypes: [RXBZZLeader]
   - type: RandomMetadata
@@ -2519,6 +2647,8 @@
   - type: GhostRole
     name: ОБР командир
     description: Командир отряда Alpha - 1, выполняет порученые приказы по ликвидации противника, не задаёт вопросов.
+    raffle:
+      settings: default
     requirements:
       - !type:DepartmentTimeRequirement
         department: Security
@@ -2545,7 +2675,6 @@
     eyes: ClothingEyesGlassesSunglasses
     gloves: ClothingHandsGlovesSpetsnazcombat
     outerClothing: ClothingOuterHardsuitERTOperativeAlpha1
-    suitstorage: OxygenTankFilled
     head: ClothingHeadHatERTLeaderBeret
     id: OBRGavnaLeaderIDCardAlpha1
     ears: ClothingHeadsetCentComCCMTF
@@ -2629,6 +2758,8 @@
   - type: GhostRole
     name: ОБР Оперативник
     description: Оперативник отряда Alpha - 1, выполняет порученые приказы по ликвидации противника, не задаёт вопросов.
+    raffle:
+      settings: default
     requirements:
       - !type:DepartmentTimeRequirement
         department: Security
@@ -2655,7 +2786,6 @@
     eyes: ClothingEyesGlassesSunglasses
     gloves: ClothingHandsGlovesSpetsnazcombat
     outerClothing: ClothingOuterHardsuitERTOperativeAlpha1
-    suitstorage: OxygenTankFilled
     id: OBRGavnaOperativeIDCardAlpha1
     ears: ClothingHeadsetCentComCCMTF
     belt: ClothingBeltSecurityFilled

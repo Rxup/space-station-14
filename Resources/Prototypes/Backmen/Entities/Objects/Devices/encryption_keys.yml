@@ -1,21 +1,5 @@
 - type: entity
   parent: EncryptionKey
-  id: EncryptionKeyOrden
-  name: Red order encryption key
-  description: Special encryption key needed to access Red Order communication channels
-  components:
-  - type: EncryptionKey
-    channels:
-    - Redorden
-    defaultChannel: Redorden
-  - type: Sprite
-    sprite: Backmen/Objects/Devices/encryption_keysRO.rsi
-    layers:
-    - state: crypt_black
-    - state: ord_label
-
-- type: entity
-  parent: EncryptionKey
   id: EncryptionKeyCSH
   name: Encryption Key CSH
   components:

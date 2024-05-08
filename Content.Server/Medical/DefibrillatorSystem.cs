@@ -178,8 +178,6 @@ public sealed class DefibrillatorSystem : EntitySystem
             uid, target, uid)
             {
                 BlockDuplicate = true,
-                BreakOnUserMove = true,
-                BreakOnTargetMove = true,
                 BreakOnHandChange = true,
                 NeedHand = true
             });
@@ -240,6 +238,13 @@ public sealed class DefibrillatorSystem : EntitySystem
                 {
                     _euiManager.OpenEui(new ReturnToBodyEui(mind, _mind), session);
                 }
+
+                // start-backmen: revenant
+                if (TryComp<Server.Revenant.Components.EssenceComponent>(target, out var essenceComponent))
+                {
+                    essenceComponent.Harvested = false;
+                }
+                // end-backmen: revenant
             }
             else
             {

@@ -139,3 +139,19 @@
     sprite: Backmen/Clothing/Head/Masks/blacksilense.rsi
   - type: Clothing
     sprite: Backmen/Clothing/Head/Masks/blacksilense.rsi
+
+- type: entity
+  parent: ClothingMaskBase
+  id: ClothingMaskKitsune
+  name: Маска Кицунэ
+  description: Обмани эту станцию!
+  components:
+  - type: Sprite
+    sprite: Backmen/Clothing/Head/Masks/kitsunemask.rsi
+  - type: Clothing
+    sprite: Backmen/Clothing/Head/Masks/kitsunemask.rsi
+  - type: BreathMask
+  - type: IdentityBlocker
+  - type: Tag
+    tags:
+    - HidesNose

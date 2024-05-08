@@ -1,4 +1,6 @@
-﻿using Robust.Server.Player;
+﻿using Content.Corvax.Interfaces.Server;
+using Content.Shared.GameTicking;
+using Robust.Server.Player;
 using Robust.Shared.Player;
 
 namespace Content.Server.Backmen;
@@ -15,27 +17,30 @@ public sealed class PlayerJoinMoveToGameEvent : EntityEventArgs
 public sealed class PlayerManagerSystem : EntitySystem
 {
     [Dependency] private readonly IPlayerManager _playerManager = default!;
-    [Dependency] private readonly ILogManager _logManager = default!;
-
-
-    private ISawmill _sawmill = default!;
+    [Dependency] private readonly IServerSponsorsManager _sponsorsManager = default!;
     public override void Initialize()
     {
         base.Initialize();
 
         SubscribeLocalEvent<PlayerJoinMoveToGameEvent>(OnPlayerJoinMoveToGame);
-        _sawmill = _logManager.GetSawmill("backmen.plrman");
+        SubscribeLocalEvent<RoundRestartCleanupEvent>(OnCleanup);
+    }
+
+    private void OnCleanup(RoundRestartCleanupEvent msg)
+    {
+        Log.Info("do sponsor cleanup");
+        _sponsorsManager.Cleanup();
     }
 
     private void OnPlayerJoinMoveToGame(PlayerJoinMoveToGameEvent ev)
     {
-        _sawmill.Info($"player via event move to game {ev.Player.Name}");
+        Log.Info($"player via event move to game {ev.Player.Name}");
         _playerManager.JoinGame(ev.Player);
     }
 
     public void JoinGame(ICommonSession sess)
     {
-        _sawmill.Info($"player queue move to game {sess.Name}");
+        Log.Info($"player queue move to game {sess.Name}");
         QueueLocalEvent(new PlayerJoinMoveToGameEvent(sess));
     }
 }

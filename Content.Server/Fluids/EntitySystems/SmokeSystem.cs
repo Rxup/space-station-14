@@ -17,6 +17,7 @@ using Robust.Server.GameObjects;
 using Robust.Shared.Audio;
 using Robust.Shared.GameStates;
 using Robust.Shared.Map;
+using Robust.Shared.Map.Components;
 using Robust.Shared.Physics;
 using Robust.Shared.Physics.Components;
 using Robust.Shared.Physics.Events;
@@ -38,7 +39,7 @@ public sealed class SmokeSystem : EntitySystem
     // If I could do it all again this could probably use a lot more of puddles.
     [Dependency] private readonly IAdminLogManager _logger = default!;
     [Dependency] private readonly IGameTiming _timing = default!;
-    [Dependency] private readonly IMapManager _mapManager = default!;
+    [Dependency] private readonly SharedMapSystem _map = default!;
     [Dependency] private readonly IPrototypeManager _prototype = default!;
     [Dependency] private readonly IRobustRandom _random = default!;
     [Dependency] private readonly AppearanceSystem _appearance = default!;
@@ -48,7 +49,6 @@ public sealed class SmokeSystem : EntitySystem
     [Dependency] private readonly SharedBroadphaseSystem _broadphase = default!;
     [Dependency] private readonly SharedPhysicsSystem _physics = default!;
     [Dependency] private readonly SolutionContainerSystem _solutionContainerSystem = default!;
-    [Dependency] private readonly TransformSystem _transform = default!;
 
     private EntityQuery<SmokeComponent> _smokeQuery;
     private EntityQuery<SmokeAffectedComponent> _smokeAffectedQuery;
@@ -140,7 +140,7 @@ public sealed class SmokeSystem : EntitySystem
             return;
         }
 
-        if (!args.NeighborFreeTiles.Any())
+        if (args.NeighborFreeTiles.Count == 0)
             return;
 
         TryComp<TimedDespawnComponent>(entity, out var timer);
@@ -149,7 +149,7 @@ public sealed class SmokeSystem : EntitySystem
         var smokePerSpread = entity.Comp.SpreadAmount / Math.Max(1, args.NeighborFreeTiles.Count);
         foreach (var neighbor in args.NeighborFreeTiles)
         {
-            var coords = neighbor.Grid.GridTileToLocal(neighbor.Tile);
+            var coords = _map.GridTileToLocal(neighbor.Tile.GridUid, neighbor.Grid, neighbor.Tile.GridIndices);
             var ent = Spawn(prototype.ID, coords);
             // start-backmen: smoke color
             if (TryComp<Shared.Backmen.Blob.Chemistry.BlobSmokeColorComponent>(entity, out var smokeColorComponent))
@@ -159,7 +159,7 @@ public sealed class SmokeSystem : EntitySystem
             }
             // end-backmen: smoke color
             var spreadAmount = Math.Max(0, smokePerSpread);
-            entity.Comp.SpreadAmount -= args.NeighborFreeTiles.Count();
+            entity.Comp.SpreadAmount -= args.NeighborFreeTiles.Count;
 
             StartSmoke(ent, solution.Clone(), timer?.Lifetime ?? entity.Comp.Duration, spreadAmount);
 
@@ -315,10 +315,10 @@ public sealed class SmokeSystem : EntitySystem
         if (!_solutionContainerSystem.ResolveSolution(uid, SmokeComponent.SolutionName, ref component.Solution, out var solution) || !solution.Any())
             return;
 
-        if (!_mapManager.TryGetGrid(xform.GridUid, out var mapGrid))
+        if (!TryComp<MapGridComponent>(xform.GridUid, out var mapGrid))
             return;
 
-        var tile = mapGrid.GetTileRef(xform.Coordinates.ToVector2i(EntityManager, _mapManager, _transform));
+        var tile = _map.GetTileRef(xform.GridUid.Value, mapGrid, xform.Coordinates);
 
         foreach (var reagentQuantity in solution.Contents.ToArray())
         {

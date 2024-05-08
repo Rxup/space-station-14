@@ -20,12 +20,12 @@
       collection: FelinidMews
     Meows:
       collection: FelinidMeows
-    Hisses:
-      collection: FelinidHisses
     Purrs:
       collection: FelinidPurrs
     Growls:
       collection: FelinidGrowls
+    Weh:
+      collection: Weh
 
 - type: emoteSounds
   id: FemaleFelinid
@@ -48,12 +48,12 @@
       collection: FelinidMews
     Meows:
       collection: FelinidMeows
-    Hisses:
-      collection: FelinidHisses
     Purrs:
       collection: FelinidPurrs
     Growls:
       collection: FelinidGrowls
+    Weh:
+      collection: Weh
 
 # species
 - type: emoteSounds
@@ -85,7 +85,7 @@
       collection: HarpyPurrs
     Ring:
       collection: HarpyRings
-    HonkHarpy:
+    Honk:
       collection: HarpyHonks
     Pew:
       collection: HarpyPews
@@ -105,3 +105,5 @@
       collection: HarpyCaws
     Chirp:
       collection: HarpyChirps
+    Weh:
+      collection: Weh

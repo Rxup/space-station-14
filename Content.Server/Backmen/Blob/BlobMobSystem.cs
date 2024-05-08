@@ -45,11 +45,11 @@ public sealed class BlobMobSystem : EntitySystem
 
     private void OnSpokeName(Entity<BlobSpeakComponent> ent, ref TransformSpeakerNameEvent args)
     {
-        if (HasComp<BlobCarrierComponent>(ent))
+        if (!ent.Comp.OverrideName)
         {
             return;
         }
-        args.Name = "Блоб";
+        args.Name = Loc.GetString(ent.Comp.Name);
     }
 
     private void OnSpokeCan(Entity<BlobSpeakComponent> ent, ref SpeakAttemptEvent args)
@@ -63,6 +63,8 @@ public sealed class BlobMobSystem : EntitySystem
 
     private void OnSpokeRemove(Entity<BlobSpeakComponent> ent, ref ComponentShutdown args)
     {
+        if(TerminatingOrDeleted(ent))
+            return;
         var radio = EnsureComp<ActiveRadioComponent>(ent);
         radio.Channels.Remove(ent.Comp.Channel);
         var snd = EnsureComp<IntrinsicRadioTransmitterComponent>(ent);
@@ -71,6 +73,8 @@ public sealed class BlobMobSystem : EntitySystem
 
     private void OnSpokeAdd(Entity<BlobSpeakComponent> ent, ref ComponentStartup args)
     {
+        if(TerminatingOrDeleted(ent))
+            return;
         EnsureComp<IntrinsicRadioReceiverComponent>(ent);
         var radio = EnsureComp<ActiveRadioComponent>(ent);
         radio.Channels.Add(ent.Comp.Channel);

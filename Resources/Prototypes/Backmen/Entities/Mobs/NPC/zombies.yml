@@ -53,7 +53,6 @@
         path: /Audio/Items/jaws_pry.ogg
     # BASE
     - type: Loadout
-      force: true
       prototypes:
         - UnaffiliatedChaplainGear
         - UnaffiliatedChefGear
@@ -86,7 +85,6 @@
         path: /Audio/Items/jaws_pry.ogg
     # BASE
     - type: Loadout
-      force: true
       prototypes:
         - UnaffiliatedChaplainGear
         - UnaffiliatedChefGear
@@ -125,7 +123,6 @@
         path: /Audio/Items/jaws_pry.ogg
     # BASE
     - type: Loadout
-      force: true
       prototypes:
         - ZombieBruteGear
     - type: Damageable

@@ -6,6 +6,7 @@
   noSpawn: true
   components:
   - type: CargoSellBlacklist
+  - type: GhostVisRoller
   - type: Sprite
     overrideContainerOcclusion: true # Ghosts always show up regardless of where they're contained.
     drawdepth: Ghosts
@@ -57,7 +58,6 @@
     - Service
     - Supply
     - Syndicate
-    - Redorden
     - CSH
     - GROUPS_1
     - GROUPS_2

@@ -3,6 +3,7 @@ using Content.Server.Ghost.Roles.Components;
 using Content.Server.Humanoid;
 using Content.Server.Speech.Components;
 using Content.Server.StationEvents.Components;
+using Content.Shared.Backmen.Psionics.Components;
 using Content.Shared.Cloning;
 using Content.Shared.Humanoid;
 using Content.Shared.Humanoid.Prototypes;
@@ -122,7 +123,7 @@ public sealed class MetempsychoticMachineSystem : EntitySystem
     {
         if (!Resolve(uid, ref component))
         {
-            Logger.Error("Tried to get a spawn target from someone that was not a metempsychotic machine...");
+            Log.Error("Tried to get a spawn target from someone that was not a metempsychotic machine...");
             return "MobHuman";
         }
 
@@ -157,7 +158,7 @@ public sealed class MetempsychoticMachineSystem : EntitySystem
                 }
                 else
                 {
-                    Logger.Error("Could not index species for metempsychotic machine...");
+                    Log.Error("Could not index species for metempsychotic machine...");
                     return "MobHuman";
                 }
             }
@@ -165,7 +166,7 @@ public sealed class MetempsychoticMachineSystem : EntitySystem
 
         if (!_prototypeManager.TryIndex<WeightedRandomPrototype>(MetempsychoticNonHumanoidPool, out var nonHumanoidPool))
         {
-            Logger.Error("Could not index the pool of non humanoids for metempsychotic machine!");
+            Log.Error("Could not index the pool of non humanoids for metempsychotic machine!");
             return "MobHuman";
         }
 

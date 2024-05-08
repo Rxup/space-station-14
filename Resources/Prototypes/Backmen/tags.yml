@@ -1,4 +1,7 @@
 ﻿- type: Tag
+  id: BlobMob
+
+- type: Tag
   id: SpaceCash
 
 - type: Tag
@@ -9,6 +12,9 @@
 
 - type: Tag
   id: ForensicBeltEquip
+
+- type: Tag
+  id: FleshBlocker
 
 - type: Tag
   id: CoreSilver
@@ -102,3 +108,9 @@
 
 - type: Tag
   id: CartridgeAntitank
+
+- type: Tag
+  id: EngineeringAirlock
+
+- type: Tag
+  id: SecureSafe

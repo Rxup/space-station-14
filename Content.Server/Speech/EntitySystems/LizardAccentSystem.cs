@@ -6,6 +6,25 @@ namespace Content.Server.Speech.EntitySystems;
 
 public sealed class LizardAccentSystem : EntitySystem
 {
+    private static readonly Regex RegexLowerS = new("s+");
+    private static readonly Regex RegexUpperS = new("S+");
+    private static readonly Regex RegexInternalX = new(@"(\w)x");
+    private static readonly Regex RegexLowerEndX = new(@"\bx([\-|r|R]|\b)");
+    private static readonly Regex RegexUpperEndX = new(@"\bX([\-|r|R]|\b)");
+
+    // Corvax-Localization-Start
+    private static readonly Regex RegexLoc1_1 = new("с+");
+    private static readonly Regex RegexLoc1_2 = new("С+");
+
+    private static readonly Regex RegexLoc2_1 = new("з+");
+    private static readonly Regex RegexLoc2_2 = new("З+");
+
+    private static readonly Regex RegexLoc3_1 = new("ш+");
+    private static readonly Regex RegexLoc3_2 = new("Ш+");
+
+    private static readonly Regex RegexLoc4_1 = new("ч+");
+    private static readonly Regex RegexLoc4_2 = new("Ч+");
+    // Corvax-Localization-End
     [Dependency] private readonly IRobustRandom _random = default!; // Corvax-Localization
 
     public override void Initialize()
@@ -19,64 +38,56 @@ public sealed class LizardAccentSystem : EntitySystem
         var message = args.Message;
 
         // hissss
-        message = Regex.Replace(message, "s+", "sss");
+        message = RegexLowerS.Replace(message, "sss");
         // hiSSS
-        message = Regex.Replace(message, "S+", "SSS");
+        message = RegexUpperS.Replace(message, "SSS");
         // ekssit
-        message = Regex.Replace(message, @"(\w)x", "$1kss");
+        message = RegexInternalX.Replace(message, "$1kss");
         // ecks
-        message = Regex.Replace(message, @"\bx([\-|r|R]|\b)", "ecks$1");
+        message = RegexLowerEndX.Replace(message, "ecks$1");
         // eckS
-        message = Regex.Replace(message, @"\bX([\-|r|R]|\b)", "ECKS$1");
+        message = RegexUpperEndX.Replace(message, "ECKS$1");
 
         // Corvax-Localization-Start
         // c => ссс
-        message = Regex.Replace(
+        message = RegexLoc1_1.Replace(
             message,
-            "с+",
-            _random.Pick(new List<string>() { "сс", "ссс" })
+            _=> _random.Pick(new List<string>() { "сс", "ссс" })
         );
         // С => CCC
-        message = Regex.Replace(
+        message = RegexLoc1_2.Replace(
             message,
-            "С+",
-            _random.Pick(new List<string>() { "СС", "ССС" })
+            _=> _random.Pick(new List<string>() { "СС", "ССС" })
         );
         // з => ссс
-        message = Regex.Replace(
+        message = RegexLoc2_1.Replace(
             message,
-            "з+",
-            _random.Pick(new List<string>() { "сс", "ссс" })
+            _=> _random.Pick(new List<string>() { "сс", "ссс" })
         );
         // З => CCC
-        message = Regex.Replace(
+        message = RegexLoc2_2.Replace(
             message,
-            "З+",
-            _random.Pick(new List<string>() { "СС", "ССС" })
+            _=> _random.Pick(new List<string>() { "СС", "ССС" })
         );
         // ш => шшш
-        message = Regex.Replace(
+        message = RegexLoc3_1.Replace(
             message,
-            "ш+",
-            _random.Pick(new List<string>() { "шш", "шшш" })
+            _=> _random.Pick(new List<string>() { "шш", "шшш" })
         );
         // Ш => ШШШ
-        message = Regex.Replace(
+        message = RegexLoc3_2.Replace(
             message,
-            "Ш+",
-            _random.Pick(new List<string>() { "ШШ", "ШШШ" })
+            _=> _random.Pick(new List<string>() { "ШШ", "ШШШ" })
         );
         // ч => щщщ
-        message = Regex.Replace(
+        message = RegexLoc4_1.Replace(
             message,
-            "ч+",
-            _random.Pick(new List<string>() { "щщ", "щщщ" })
+            _=> _random.Pick(new List<string>() { "щщ", "щщщ" })
         );
         // Ч => ЩЩЩ
-        message = Regex.Replace(
+        message = RegexLoc1_2.Replace(
             message,
-            "Ч+",
-            _random.Pick(new List<string>() { "ЩЩ", "ЩЩЩ" })
+            _=> _random.Pick(new List<string>() { "ЩЩ", "ЩЩЩ" })
         );
         // Corvax-Localization-End
         args.Message = message;

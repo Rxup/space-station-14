@@ -1,7 +1,7 @@
 ﻿- type: gameMap
   id: ShwrAdventurer
   mapName: Транспортник
-  mapPath: /Maps/Backmen/Shuttles/adventurer.yml
+  mapPath: /Maps/Backmen/Shipwrecked/adventurer.yml
   minPlayers: 1
   maxPlayers: 15
   stations:
@@ -9,7 +9,10 @@
       stationProto: StandardStationArena
       components:
         - type: StationNameSetup
-          mapNameTemplate: "Транспортник"
+          mapNameTemplate: "Транспортник {1}"
+          nameGenerator:
+            !type:NanotrasenNameGenerator
+            prefixCreator: 'N'
         - type: StationJobs
           overflowJobs:
             - Freelancer
@@ -19,7 +22,7 @@
 - type: gameMap
   id: ShwrBig
   mapName: Баржа
-  mapPath: /Maps/Backmen/Shuttles/Shatlik.yml
+  mapPath: /Maps/Backmen/Shipwrecked/Shatlik.yml
   minPlayers: 15
   maxPlayers: 30
   stations:
@@ -27,7 +30,10 @@
       stationProto: StandardStationArena
       components:
         - type: StationNameSetup
-          mapNameTemplate: "Баржа"
+          mapNameTemplate: "Баржа {1}"
+          nameGenerator:
+            !type:NanotrasenNameGenerator
+            prefixCreator: 'BM'
         - type: StationJobs
           overflowJobs:
             - Freelancer
@@ -36,15 +42,18 @@
 
 - type: gameMap
   id: shwrDust
-  mapName: KL-Dust 469
-  mapPath: /Maps/Backmen/Shuttles/shwr-dust.yml
+  mapName: KL-Dust
+  mapPath: /Maps/Backmen/Shipwrecked/shwr-dust.yml
   minPlayers: 30
   stations:
     shwrDust:
       stationProto: StandardStationArena
       components:
         - type: StationNameSetup
-          mapNameTemplate: "KL-Dust 469"
+          mapNameTemplate: "KL-Dust {1}"
+          nameGenerator:
+            !type:NanotrasenNameGenerator
+            prefixCreator: 'BM'
         - type: StationJobs
           overflowJobs:
             - Freelancer

@@ -96,6 +96,11 @@
   - type: Clothing
     sprite: Objects/Weapons/Guns/SMGs/c20r.rsi
   - type: Gun
+    shotsPerBurst: 5
+    availableModes:
+    - SemiAuto
+    - Burst
+    - FullAuto
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/c-20r.ogg
   - type: ChamberMagazineAmmoProvider
@@ -226,9 +231,16 @@
   - type: ChamberMagazineAmmoProvider
     boltClosed: null
   - type: Gun
-    fireRate: 5
+    fireRate: 5.5
+    minAngle: 1
+    maxAngle: 6
+    angleIncrease: 1.5
+    angleDecay: 6
     selectedMode: FullAuto
+    shotsPerBurst: 5
     availableModes:
+    - SemiAuto
+    - Burst
     - FullAuto
   - type: ItemSlots
     slots:
@@ -266,7 +278,7 @@
       slots:
         gun_magazine:
           name: Magazine
-          startingItem: MagazinePistolSubMachineGunRubber
+          startingItem: MagazinePistolSubMachineGun
           insertSound: /Audio/Weapons/Guns/MagIn/smg_magin.ogg
           ejectSound: /Audio/Weapons/Guns/MagOut/smg_magout.ogg
           priority: 2
@@ -275,7 +287,7 @@
               - MagazinePistolSubMachineGun
         gun_chamber:
           name: Chamber
-          startingItem: CartridgePistolRubber
+          startingItem: CartridgePistol
           priority: 1
           whitelist:
             tags:
@@ -293,7 +305,7 @@
     slots:
       gun_magazine:
         name: Magazine
-        startingItem: MagazineMagnumSubMachineGunRubber
+        startingItem: MagazineMagnumSubMachineGun
         insertSound: /Audio/Weapons/Guns/MagIn/smg_magin.ogg
         ejectSound: /Audio/Weapons/Guns/MagOut/smg_magout.ogg
         priority: 2
@@ -302,7 +314,7 @@
             - MagazineMagnumSubMachineGun
       gun_chamber:
         name: Chamber
-        startingItem: CartridgeMagnumRubber
+        startingItem: CartridgeMagnum
         priority: 1
         whitelist:
           tags:

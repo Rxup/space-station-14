@@ -4,6 +4,7 @@ using Content.Server.Actions;
 using Content.Server.Atmos.Components;
 using Content.Server.Atmos.EntitySystems;
 using Content.Server.Backmen.Blob.Components;
+using Content.Server.Backmen.Blob.Roles;
 using Content.Server.Backmen.GameTicking.Rules.Components;
 using Content.Server.Chat.Managers;
 using Content.Server.Destructible;
@@ -33,27 +34,20 @@ using Robust.Shared.Map.Components;
 using Robust.Shared.Player;
 using Robust.Shared.Random;
 using Robust.Shared.Timing;
+using Robust.Shared.Utility;
 
 namespace Content.Server.Backmen.Blob;
 
 public sealed class BlobObserverSystem : SharedBlobObserverSystem
 {
     [Dependency] private readonly ActionsSystem _action = default!;
-    [Dependency] private readonly IMapManager _map = default!;
-    [Dependency] private readonly DamageableSystem _damageableSystem = default!;
     [Dependency] private readonly BlobCoreSystem _blobCoreSystem = default!;
-    [Dependency] private readonly AudioSystem _audioSystem = default!;
-    [Dependency] private readonly ITileDefinitionManager _tileDefinitionManager = default!;
-    [Dependency] private readonly IGameTiming _gameTiming = default!;
     [Dependency] private readonly SharedPopupSystem _popup = default!;
     [Dependency] private readonly IRobustRandom _random = default!;
     [Dependency] private readonly SharedTransformSystem _transform = default!;
     [Dependency] private readonly EntityLookupSystem _lookup = default!;
     [Dependency] private readonly ActionBlockerSystem _blocker = default!;
     [Dependency] private readonly UserInterfaceSystem _uiSystem = default!;
-    [Dependency] private readonly ExplosionSystem _explosionSystem = default!;
-    [Dependency] private readonly FlammableSystem _flammable = default!;
-    [Dependency] private readonly EmpSystem _empSystem = default!;
     [Dependency] private readonly MindSystem _mindSystem = default!;
     [Dependency] private readonly IPlayerManager _playerManager = default!;
     [Dependency] private readonly RoleSystem _roleSystem = default!;
@@ -87,7 +81,6 @@ public sealed class BlobObserverSystem : SharedBlobObserverSystem
         SubscribeLocalEvent<BlobCoreComponent, BlobToNodeActionEvent>(OnBlobToNode);
         SubscribeLocalEvent<BlobCoreComponent, BlobHelpActionEvent>(OnBlobHelp);
         SubscribeLocalEvent<BlobCoreComponent, BlobSwapChemActionEvent>(OnBlobSwapChem);
-        SubscribeLocalEvent<BlobObserverComponent, InteractNoHandEvent>(OnInteract);
         SubscribeLocalEvent<BlobCoreComponent, BlobSwapCoreActionEvent>(OnSwapCore);
         SubscribeLocalEvent<BlobCoreComponent, BlobSplitCoreActionEvent>(OnSplitCore);
 
@@ -299,7 +292,7 @@ public sealed class BlobObserverSystem : SharedBlobObserverSystem
         }
         var state = new BlobChemSwapBoundUserInterfaceState(blobCoreComponent.ChemСolors, observerComponent.SelectedChemId);
 
-        _uiSystem.TrySetUiState(uid, BlobChemSwapUiKey.Key, state);
+        _uiSystem.SetUiState(uid, BlobChemSwapUiKey.Key, state);
     }
 
     // TODO: This is very bad, but it is clearly better than invisible walls, let someone do better.
@@ -711,161 +704,6 @@ public sealed class BlobObserverSystem : SharedBlobObserverSystem
         args.Handled = true;
     }
 
-    private void OnInteract(EntityUid uid, BlobObserverComponent observerComponent, InteractNoHandEvent args)
-    {
-        if (args.Target == args.User)
-            return;
-
-        if (observerComponent.Core == null ||
-            !TryComp<BlobCoreComponent>(observerComponent.Core.Value, out var blobCoreComponent))
-            return;
-
-        var location = args.ClickLocation;
-        if (!location.IsValid(EntityManager))
-            return;
-
-        var gridUid = location.GetGridUid(EntityManager);
-        if (!HasComp<MapGridComponent>(gridUid))
-        {
-            location = location.AlignWithClosestGridTile();
-            gridUid = location.GetGridUid(EntityManager);
-            if (!HasComp<MapGridComponent>(gridUid))
-                return;
-        }
-
-        if (!TryComp<MapGridComponent>(gridUid, out var grid))
-        {
-            return;
-        }
-
-        if (args.Target != null &&
-            !_tileQuery.HasComponent(args.Target.Value) &&
-            !HasComp<BlobMobComponent>(args.Target.Value))
-        {
-            var target = args.Target.Value;
-
-            // Check if the target is adjacent to a tile with BlobCellComponent horizontally or vertically
-            var xform = Transform(target);
-            var mobTile = _mapSystem.GetTileRef(gridUid.Value, grid,xform.Coordinates);
-
-            var mobAdjacentTiles = new[]
-            {
-                mobTile.GridIndices.Offset(Direction.East),
-                mobTile.GridIndices.Offset(Direction.West),
-                mobTile.GridIndices.Offset(Direction.North),
-                mobTile.GridIndices.Offset(Direction.South)
-            };
-            if (mobAdjacentTiles.Any(indices => _mapSystem.GetAnchoredEntities(gridUid.Value, grid,indices).Any(_tileQuery.HasComponent)))
-            {
-                if (HasComp<DestructibleComponent>(target) && !HasComp<ItemComponent>(target)&& !HasComp<SubFloorHideComponent>(target))
-                {
-                    if (_blobCoreSystem.TryUseAbility(uid, observerComponent.Core.Value, blobCoreComponent, blobCoreComponent.AttackCost))
-                    {
-                        if (_gameTiming.CurTime < blobCoreComponent.NextAction)
-                            return;
-                        if (blobCoreComponent.Observer != null)
-                        {
-                            _popup.PopupCoordinates(Loc.GetString("blob-spent-resource", ("point", blobCoreComponent.AttackCost)),
-                                args.ClickLocation,
-                                blobCoreComponent.Observer.Value,
-                                PopupType.LargeCaution);
-                        }
-                        _damageableSystem.TryChangeDamage(target, blobCoreComponent.ChemDamageDict[blobCoreComponent.CurrentChem]);
-
-                        switch (blobCoreComponent.CurrentChem)
-                        {
-                            case BlobChemType.ExplosiveLattice:
-                                _explosionSystem.QueueExplosion(target, blobCoreComponent.BlobExplosive, 4, 1, 6, maxTileBreak: 0);
-                                break;
-                            case BlobChemType.ElectromagneticWeb:
-                            {
-                                if (_random.Prob(0.2f))
-                                    _empSystem.EmpPulse(_transform.GetMapCoordinates(xform), 3f, 50f, 3f);
-                                break;
-                            }
-                            case BlobChemType.BlazingOil:
-                            {
-                                if (TryComp<FlammableComponent>(target, out var flammable))
-                                {
-                                    flammable.FireStacks += 2;
-                                    _flammable.Ignite(target, uid, flammable);
-                                }
-
-                                break;
-                            }
-                        }
-
-                        blobCoreComponent.NextAction =
-                            _gameTiming.CurTime + TimeSpan.FromSeconds(blobCoreComponent.AttackRate);
-                        _audioSystem.PlayPvs(blobCoreComponent.AttackSound, uid, AudioParams.Default);
-                        return;
-                    }
-                }
-            }
-        }
-
-        var centerTile = _mapSystem.GetLocalTilesIntersecting(gridUid.Value, grid,
-            new Box2(location.Position, location.Position), false).ToArray();
-
-        var targetTileEmplty = false;
-        foreach (var tileRef in centerTile)
-        {
-            if (tileRef.Tile.IsEmpty)
-            {
-                targetTileEmplty = true;
-            }
-
-            if (_mapSystem.GetAnchoredEntities(gridUid.Value, grid, tileRef.GridIndices).Any(_tileQuery.HasComponent))
-            {
-                return;
-            }
-
-            foreach (var entityUid in _lookup.GetEntitiesIntersecting(
-                         _transform.ToMapCoordinates(_mapSystem.ToCoordinates(gridUid.Value, tileRef.GridIndices, grid))
-                         )
-                     )
-            {
-                if (HasComp<MobStateComponent>(entityUid) && !HasComp<BlobMobComponent>(entityUid))
-                    return;
-            }
-        }
-
-        var targetTile = _mapSystem.GetTileRef(gridUid.Value, grid, location);
-
-        var adjacentTiles = new[]
-        {
-            targetTile.GridIndices.Offset(Direction.East),
-            targetTile.GridIndices.Offset(Direction.West),
-            targetTile.GridIndices.Offset(Direction.North),
-            targetTile.GridIndices.Offset(Direction.South)
-        };
-
-        if (!adjacentTiles.Any(indices =>
-                _mapSystem.GetAnchoredEntities(gridUid.Value, grid, indices).Any(_tileQuery.HasComponent)))
-            return;
-        var cost = blobCoreComponent.NormalBlobCost;
-        if (targetTileEmplty)
-        {
-            cost *= 2;
-        }
-
-        if (!_blobCoreSystem.TryUseAbility(uid, observerComponent.Core.Value, blobCoreComponent, cost))
-            return;
-
-        if (targetTileEmplty)
-        {
-            var plating = _tileDefinitionManager["Plating"];
-            var platingTile = new Tile(plating.TileId);
-            _mapSystem.SetTile(gridUid.Value, grid, location, platingTile);
-        }
-
-        _blobCoreSystem.TransformBlobTile(null,
-            observerComponent.Core.Value,
-            blobCoreComponent.NormalBlobTile,
-            location,
-            blobCoreComponent,
-            transformCost: cost);
-    }
     private void OnCreateFactory(EntityUid uid, BlobCoreComponent blobCoreComponent, BlobCreateFactoryActionEvent args)
     {
         if (args.Handled)

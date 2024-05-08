@@ -1,0 +1,59 @@
+- type: vessel
+  id: ShuttleForsaleBattleBlueTumler
+  name: tumler
+  description: тут ваша реклама
+  price: 1000
+  category: Small
+  group: TeamB
+  private: true
+  shuttlePath: /Maps/Backmen/ForSale/shipvsship/blue/tumler_dast.yml
+  
+- type: vessel
+  id: ShuttleForsaleBattleBlueLuso
+  name: luso
+  description: шаттл имеющий на своё борту два защищённых от внешнего кинетического воздействия - лазера
+  price: 1000
+  category: Small
+  group: TeamB
+  private: true
+  shuttlePath: /Maps/Backmen/ForSale/shipvsship/blue/luso_perf.yml
+
+- type: vessel
+  id: ShuttleForsaleBattleBlueGemme
+  name: gemme
+  description: тут ваша реклама
+  price: 1000
+  category: Small
+  group: TeamB
+  private: true
+  shuttlePath: /Maps/Backmen/ForSale/shipvsship/blue/gemme_perf.yml
+
+- type: vessel
+  id: ShuttleForsaleBattleBlueShuttler
+  name: shuttler
+  description: скорпионо подобны шаттлы предназначенный для быстрых лобовых манёвров, вооружён корабельной пушкой "дастер"
+  price: 1000
+  category: Small
+  group: TeamB
+  private: true
+  shuttlePath: /Maps/Backmen/ForSale/shipvsship/blue/shuttler_perf.yml
+  
+- type: vessel
+  id: ShuttleForsaleBattleBlueGaul
+  name: gaul
+  description: вам нужна арта? вам нужна имба? ИМБА-АРТА!
+  price: 1000
+  category: Small
+  group: TeamB
+  private: true
+  shuttlePath: /Maps/Backmen/ForSale/shipvsship/blue/gaul_dast.yml
+  
+- type: vessel
+  id: ShuttleForsaleBattleBlueSpear
+  name: spear
+  description: копеевидная форма должна обеспечивать высокою прямую скорость... "должна"!
+  price: 1000
+  category: Small
+  group: TeamB
+  private: true
+  shuttlePath: /Maps/Backmen/ForSale/shipvsship/blue/spear_dast.yml

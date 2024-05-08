@@ -1,14 +1,18 @@
 ﻿using System.Diagnostics.CodeAnalysis;
+using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Net.Http.Json;
+using System.Threading;
 using System.Threading.Tasks;
 using Content.Corvax.Interfaces.Server;
 using Content.Shared.Backmen.Sponsors;
 using Content.Shared.Backmen.CCVar;
+using Robust.Server.Player;
 using Robust.Shared.Configuration;
 using Robust.Shared.Network;
 using Robust.Shared.Utility;
+using Exception = System.Exception;
 
 namespace Content.Server.Backmen.Sponsors;
 
@@ -16,6 +20,7 @@ public sealed class SponsorsManager : IServerSponsorsManager
 {
     [Dependency] private readonly IServerNetManager _netMgr = default!;
     [Dependency] private readonly IConfigurationManager _cfg = default!;
+    [Dependency] private readonly IPlayerManager _playerManager = default!;
 
     private readonly HttpClient _httpClient = new();
 
@@ -23,6 +28,8 @@ public sealed class SponsorsManager : IServerSponsorsManager
     private string _apiUrl = string.Empty;
 
     private readonly Dictionary<NetUserId, SponsorInfo> _cachedSponsors = new();
+
+    private readonly ReaderWriterLockSlim _lock = new();
 
     public void Initialize()
     {
@@ -33,7 +40,6 @@ public sealed class SponsorsManager : IServerSponsorsManager
 
         _netMgr.Connecting += OnConnecting;
         _netMgr.Connected += OnConnected;
-        _netMgr.Disconnect += OnDisconnect;
     }
 
     public bool TryGetInfo(NetUserId userId, [NotNullWhen(true)] out SponsorInfo? sponsor)
@@ -43,29 +49,65 @@ public sealed class SponsorsManager : IServerSponsorsManager
 
     private async Task OnConnecting(NetConnectingArgs e)
     {
-        var info = await LoadSponsorInfo(e.UserId);
-        if (info?.Tier == null)
+        SponsorInfo? info;
+        try
         {
-            _cachedSponsors.Remove(e.UserId); // Remove from cache if sponsor expired
+            info = await LoadSponsorInfo(e.UserId);
+            if (info?.Tier == null)
+            {
+                _cachedSponsors.Remove(e.UserId); // Remove from cache if sponsor expired
+                return;
+            }
+        }
+        catch (Exception err)
+        {
+            _sawmill.Error(err.ToString());
             return;
         }
 
-        DebugTools.Assert(!_cachedSponsors.ContainsKey(e.UserId), "Cached data was found on client connect");
 
-        _cachedSponsors[e.UserId] = info;
+        //DebugTools.Assert(!_cachedSponsors.ContainsKey(e.UserId), "Cached data was found on client connect");
+
+        _lock.EnterWriteLock();
+        try
+        {
+            _cachedSponsors[e.UserId] = info;
+        }
+        finally
+        {
+            _lock.ExitWriteLock();
+        }
     }
 
     private void OnConnected(object? sender, NetChannelArgs e)
     {
-        var info = _cachedSponsors.TryGetValue(e.Channel.UserId, out var sponsor) ? sponsor : null;
-        var msg = new MsgSponsorInfo() { Info = info };
-        _netMgr.ServerSendMessage(msg, e.Channel);
-
+        _lock.EnterReadLock();
+        try
+        {
+            var info = _cachedSponsors.TryGetValue(e.Channel.UserId, out var sponsor) ? sponsor : null;
+            _netMgr.ServerSendMessage(new MsgSponsorInfo() { Info = info }, e.Channel);
+        }
+        finally
+        {
+            _lock.ExitReadLock();
+        }
     }
 
-    private void OnDisconnect(object? sender, NetDisconnectedArgs e)
+    public void Cleanup()
     {
-        _cachedSponsors.Remove(e.Channel.UserId);
+        _lock.EnterWriteLock();
+        try
+        {
+            var online = _playerManager.SessionsDict.Keys.ToArray();
+            foreach (var userId in _cachedSponsors.Keys.Where(x => !online.Contains(x)).ToArray())
+            {
+                _cachedSponsors.Remove(userId);
+            }
+        }
+        finally
+        {
+            _lock.ExitWriteLock();
+        }
     }
 
     private async Task<SponsorInfo?> LoadSponsorInfo(NetUserId userId)

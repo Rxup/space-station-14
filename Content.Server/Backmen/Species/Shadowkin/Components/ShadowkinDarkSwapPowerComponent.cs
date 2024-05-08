@@ -1,4 +1,6 @@
 using Content.Server.NPC.Components;
+using Content.Shared.NPC.Prototypes;
+using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype.List;
 
 namespace Content.Server.Backmen.Species.Shadowkin.Components;

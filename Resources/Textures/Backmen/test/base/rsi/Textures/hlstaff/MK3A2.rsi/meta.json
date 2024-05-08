@@ -1,0 +1,24 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "made by no_mad.",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "primed",
+      "delays": [
+        [
+          0.4,
+          0.15,
+          0.1
+        ]
+      ]
+    },
+    {
+      "name": "icon"
+    }
+  ]
+}

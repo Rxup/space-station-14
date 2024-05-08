@@ -8,7 +8,9 @@ using Content.Shared.Database;
 using Content.Shared.FixedPoint;
 using Content.Shared.GameTicking;
 using Content.Shared.Roles;
+using Content.Shared.Store;
 using Robust.Shared.GameStates;
+using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Utility;
 
@@ -167,7 +169,7 @@ namespace Content.Server.Backmen.Economy;
             return pin;
         }
 
-        public bool TryWithdrawFromBankAccount(Entity<BankAccountComponent>? bankAccount, KeyValuePair<string, FixedPoint2> currency)
+        public bool TryWithdrawFromBankAccount(Entity<BankAccountComponent>? bankAccount, KeyValuePair<ProtoId<CurrencyPrototype>, FixedPoint2> currency)
         {
             if (bankAccount == null)
             {
@@ -177,12 +179,12 @@ namespace Content.Server.Backmen.Economy;
         }
 
         public bool TryWithdrawFromBankAccount(EntityUid bankAccount,
-            KeyValuePair<string, FixedPoint2> currency, BankAccountComponent? bankAccountComponent)
+            KeyValuePair<ProtoId<CurrencyPrototype>, FixedPoint2> currency, BankAccountComponent? bankAccountComponent)
         {
             return Resolve(bankAccount, ref bankAccountComponent, false) && TryWithdrawFromBankAccount((bankAccount, bankAccountComponent), currency);
         }
 
-        public bool TryWithdrawFromBankAccount(Entity<BankAccountComponent> bankAccount, KeyValuePair<string, FixedPoint2> currency)
+        public bool TryWithdrawFromBankAccount(Entity<BankAccountComponent> bankAccount, KeyValuePair<ProtoId<CurrencyPrototype>, FixedPoint2> currency)
         {
             if (currency.Key != bankAccount.Comp.CurrencyType)
                 return false;
@@ -200,7 +202,7 @@ namespace Content.Server.Backmen.Economy;
             return result;
         }
 
-        public bool TryInsertToBankAccount(string? bankAccountNumber, KeyValuePair<string, FixedPoint2> currency)
+        public bool TryInsertToBankAccount(string? bankAccountNumber, KeyValuePair<ProtoId<CurrencyPrototype>, FixedPoint2> currency)
         {
             if (!TryGetBankAccount(bankAccountNumber, out var bankAccount))
                 return false;
@@ -211,7 +213,7 @@ namespace Content.Server.Backmen.Economy;
             return true;
         }
 
-        public bool TryInsertToBankAccount(Entity<BankAccountComponent>? bankAccount, KeyValuePair<string, FixedPoint2> currency)
+        public bool TryInsertToBankAccount(Entity<BankAccountComponent>? bankAccount, KeyValuePair<ProtoId<CurrencyPrototype>, FixedPoint2> currency)
         {
             if (bankAccount == null)
                 return false;
@@ -219,7 +221,7 @@ namespace Content.Server.Backmen.Economy;
             return TryInsertToBankAccount(bankAccount.Value, currency);
         }
 
-        public bool TryInsertToBankAccount(Entity<BankAccountComponent> bankAccount, KeyValuePair<string, FixedPoint2> currency)
+        public bool TryInsertToBankAccount(Entity<BankAccountComponent> bankAccount, KeyValuePair<ProtoId<CurrencyPrototype>, FixedPoint2> currency)
         {
             if (currency.Key != bankAccount.Comp.CurrencyType)
                 return false;

@@ -6,8 +6,10 @@ using Content.Shared.Administration;
 using Content.Shared.Backmen.Economy;
 using Content.Shared.Database;
 using Content.Shared.FixedPoint;
+using Content.Shared.Store;
 using Robust.Shared.Console;
 using Robust.Shared.Player;
+using Robust.Shared.Prototypes;
 
 namespace Content.Server.Backmen.Administration.Commands;
 
@@ -73,7 +75,7 @@ public sealed class AddBankAcсountCommand : IConsoleCommand
         if (args.Length >= 3 && int.TryParse(args[2], out var banalce) && banalce != 0)
         {
             bankManagerSystem.TryInsertToBankAccount(account,
-                new KeyValuePair<string, FixedPoint2>(account.Value.Comp.CurrencyType, FixedPoint2.New(banalce)));
+                new KeyValuePair<ProtoId<CurrencyPrototype>, FixedPoint2>(account.Value.Comp.CurrencyType, FixedPoint2.New(banalce)));
         }
 
         _adminLogger.Add(LogType.AdminMessage, LogImpact.Extreme,

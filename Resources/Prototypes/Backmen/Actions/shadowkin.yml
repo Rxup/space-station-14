@@ -54,3 +54,4 @@
         state: rest
       event: !type:ShadowkinRestEvent
       checkCanInteract: false
+      checkConsciousness: false

@@ -25,3 +25,14 @@
     - ClothMade
     - HamsterWearable
     - WhitelistChameleon
+
+- type: entity
+  parent: ClothingHeadBase
+  id: ClothingHeadHatPilotkaSec
+  name: пилотка СБ
+  description: Пилотка сотрудников СБ НТ, в основном используется силами космической обороны. Имеет двойную окантовку и кокарду НТ.
+  components:
+    - type: Sprite
+      sprite: Backmen/Clothing/Head/Soft/secpilotka.rsi
+    - type: Clothing
+      sprite: Backmen/Clothing/Head/Soft/secpilotka.rsi

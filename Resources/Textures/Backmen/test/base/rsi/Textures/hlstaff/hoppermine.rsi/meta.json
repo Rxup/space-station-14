@@ -1,0 +1,27 @@
+{
+  "version": 1,
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "license": "CC-BY-SA-3.0",
+  "copyright": "Made by no_mad.",
+  "states": [
+    {
+      "name": "landmine-unshaded",
+      "delays": [
+        [
+          0.4,
+          0.15,
+          0.1
+        ]
+      ]
+    },
+    {
+      "name": "landmine-inactive"
+    },
+    {
+      "name": "landmine"
+    }
+  ]
+}

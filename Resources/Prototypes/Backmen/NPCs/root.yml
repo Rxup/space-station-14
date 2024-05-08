@@ -10,9 +10,6 @@
     - tasks:
         - !type:HTNCompoundTask
           task: DrainPsionicCompound
-    - tasks:
-        - !type:HTNCompoundTask
-          task: WispIdleCompound
 
 - type: htnCompound
   id: WispRangedCombatCompound
@@ -24,6 +21,9 @@
       tasks:
         - !type:HTNCompoundTask
           task: GunCombatCompound
+    - tasks:
+      - !type:HTNCompoundTask
+        task: IdleCompound
 
 # Picks a random location for the NPC to move to and idle.
 - type: htnCompound
@@ -58,7 +58,6 @@
     - tasks:
         - !type:HTNPrimitiveTask
           operator: !type:PickDrainTargetOperator
-            pathfindInPlanning: true
             targetKey: MovementTarget
             drainKey: DrainTarget
             rangeKey: IdleRange
@@ -71,3 +70,20 @@
         - !type:HTNPrimitiveTask
           operator: !type:DrainOperator
             drainKey: DrainTarget
+
+- type: htnCompound
+  id: NPCGuardRangedCompound
+  branches:
+    - tasks:
+        - !type:HTNCompoundTask
+          task: InnateRangedCombatCompound
+    - tasks:
+        - !type:HTNCompoundTask
+          task: MeleeCombatCompound
+
+- type: htnCompound
+  id: NPCGuardCompound
+  branches:
+    - tasks:
+        - !type:HTNCompoundTask
+          task: MeleeCombatCompound

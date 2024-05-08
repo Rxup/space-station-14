@@ -2,10 +2,11 @@
   id: vmpSkillSprint1
   name: store-vmpSkillSprint1-name
   description: store-vmpSkillSprint-desc
+  raiseProductEventOnUser: true
   productEvent: !type:VampireStoreEvent
     buyType: Sprint1
   cost:
-    BloodEssence: 10
+    BloodEssence: 7
   categories:
   - VapmireT2
   conditions:
@@ -16,10 +17,11 @@
   id: vmpSkillSprint2
   name: store-vmpSkillSprint2-name
   description: store-vmpSkillSprint-desc
+  raiseProductEventOnUser: true
   productEvent: !type:VampireStoreEvent
     buyType: Sprint2
   cost:
-    BloodEssence: 15
+    BloodEssence: 12
   categories:
   - VapmireT2
   conditions:
@@ -32,10 +34,11 @@
   id: vmpSkillSprint3
   name: store-vmpSkillSprint3-name
   description: store-vmpSkillSprint-desc
+  raiseProductEventOnUser: true
   productEvent: !type:VampireStoreEvent
     buyType: Sprint3
   cost:
-    BloodEssence: 25
+    BloodEssence: 17
   categories:
   - VapmireT2
   conditions:
@@ -48,10 +51,11 @@
   id: vmpSkillNoSlip
   name: store-vmpSkillNoSlip-name
   description: store-vmpSkillNoSlip-desc
+  raiseProductEventOnUser: true
   productEvent: !type:VampireStoreEvent
     buyType: NoSlip
   cost:
-    BloodEssence: 35
+    BloodEssence: 17
   categories:
   - VapmireT2
   conditions:
@@ -62,6 +66,7 @@
   id: vmpPsiInvisPower
   name: store-vmpPsiInvisPower-name
   description: store-vmpPsiInvisPower-desk
+  raiseProductEventOnUser: true
   productEvent: !type:VampireStoreEvent
     buyType: PsiInvisPower
   cost:
@@ -76,6 +81,7 @@
   id: vmpSkillMouse1
   name: store-vmpSkillMouse1-name
   description: store-vmpSkillMouse1-desc
+  raiseProductEventOnUser: true
   productEvent: !type:VampireStoreEvent
     buyType: SkillMouse2
   cost:
@@ -85,3 +91,19 @@
   conditions:
   - !type:ListingLimitedStockCondition
     stock: 1
+
+# items
+
+- type: listing
+  id: bloodsoulcrustal
+  name: ghost-role-information-BloodCrystalSoul-name
+  description: store-bloodsoulcrustal-desc
+  raiseProductEventOnUser: true
+  productEntity: BloodCrystalSoul
+  cost:
+    BloodEssence: 5
+  categories:
+  - VapmireT2
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 5

@@ -11,7 +11,7 @@
           map: ["spiderWebLayer"]
       drawdepth: WallMountedItems
       netsync: false
-    - type: SlowContacts
+    - type: SpeedModifierContacts
       walkSpeedModifier: 0.5
       sprintSpeedModifier: 0.5
       ignoreWhitelist:

@@ -4,7 +4,6 @@
   suffix: Dead, Service
   components:
   - type: Loadout
-    force: true
     prototypes:
       - HoPGear
       - ClownGear
@@ -23,7 +22,6 @@
   suffix: Dead, Engineer
   components:
   - type: Loadout
-    force: true
     prototypes:
     - TechnicalAssistantGear
     - AtmosphericTechnicianGear
@@ -35,7 +33,6 @@
   suffix: Dead, Cargo
   components:
   - type: Loadout
-    force: true
     prototypes:
     - CargoTechGear
     - SalvageSpecialistGear
@@ -46,7 +43,6 @@
   suffix: Dead, Medic
   components:
   - type: Loadout
-    force: true
     prototypes:
     - MedicalInternGear
     - PsychologistGear
@@ -59,7 +55,6 @@
   suffix: Dead, Science
   components:
   - type: Loadout
-    force: true
     prototypes:
     - ResearchAssistantGear
     - ScientistGear
@@ -70,7 +65,6 @@
   suffix: Dead, Security
   components:
   - type: Loadout
-    force: true
     prototypes:
     - SecurityCadetGear
     - SecurityOfficerGear
@@ -83,7 +77,6 @@
   suffix: Dead, Command
   components:
   - type: Loadout
-    force: true
     prototypes:
     - HoPGear
     - CentComCorvax

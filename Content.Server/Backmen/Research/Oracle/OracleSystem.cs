@@ -1,5 +1,4 @@
 using System.Linq;
-using Content.Server.Backmen.Psionics;
 using Content.Shared.Interaction;
 using Content.Shared.Research.Prototypes;
 using Content.Shared.Chemistry.Reagent;
@@ -11,6 +10,7 @@ using Content.Server.Botany;
 using Content.Server.Chemistry.Containers.EntitySystems;
 using Content.Server.Fluids.EntitySystems;
 using Content.Shared.Backmen.Abilities.Psionics;
+using Content.Shared.Backmen.Psionics.Components;
 using Content.Shared.Backmen.Psionics.Glimmer;
 using Content.Shared.Chemistry.EntitySystems;
 using Robust.Shared.Prototypes;
@@ -25,7 +25,7 @@ public sealed class OracleSystem : EntitySystem
     [Dependency] private readonly IRobustRandom _random = default!;
     [Dependency] private readonly ChatSystem _chat = default!;
     [Dependency] private readonly IChatManager _chatManager = default!;
-    [Dependency] private readonly SolutionContainerSystem _solutionSystem = default!;
+    [Dependency] private readonly SharedSolutionContainerSystem _solutionSystem = default!;
     [Dependency] private readonly GlimmerSystem _glimmerSystem = default!;
     [Dependency] private readonly PuddleSystem _puddleSystem = default!;
 
@@ -74,7 +74,7 @@ public sealed class OracleSystem : EntitySystem
         "BluespaceCrystal",
         "InsulativeHeadcage",
         "CrystalNormality",
-        "BodyBag_Folded",
+        "BodyBagFolded",
         "BodyBag",
         "LockboxDecloner",
         "MopBucket",
@@ -268,7 +268,7 @@ public sealed class OracleSystem : EntitySystem
         if (_prototypeManager.TryIndex<EntityPrototype>(protoString, out var proto))
             component.DesiredPrototype = proto;
         else
-            Logger.Error("Oracle can't index prototype " + protoString);
+            Log.Error("Oracle can't index prototype " + protoString);
     }
 
     private string GetDesiredItem()

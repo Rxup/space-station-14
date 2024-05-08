@@ -5,8 +5,9 @@
   name: Бронированная дверь ЦК
   suffix: CentCom, Locked
   components:
-    - type: AccessReader
-      access: [["CentralCommand"]]
+    - type: ContainerFill
+      containers:
+        board: [ DoorElectronicsCentCom ]
     - type: PaintableAirlock
       group: Glass
       department: null
@@ -24,8 +25,9 @@
   name: Бронированная дверь ЦК
   suffix: CentCom, Armory, Locked
   components:
-    - type: AccessReader
-      access: [["CCSecurity"]]
+    - type: ContainerFill
+      containers:
+        board: [ DoorElectronicsCCSecurity ]
     - type: PaintableAirlock
       group: Glass
       department: null
@@ -43,8 +45,9 @@
   name: Бронированная дверь ЦК
   suffix: CentCom, Officer, Locked
   components:
-    - type: AccessReader
-      access: [["CCOfficer"]]
+    - type: ContainerFill
+      containers:
+        board: [ DoorElectronicsCCOfficer ]
     - type: PaintableAirlock
       group: Glass
       department: null
@@ -62,8 +65,9 @@
   name: Бронированная дверь каюты Адмирала ЦК
   suffix: CentCom, Admiral, Locked
   components:
-    - type: AccessReader
-      access: [["CCAdmiral"]]
+    - type: ContainerFill
+      containers:
+        board: [ DoorElectronicsCCOfficer ]
     - type: PaintableAirlock
       group: Glass
       department: null
@@ -82,8 +86,9 @@
   name: Шлюз ЦК
   suffix: CentCom, Cargo, Locked
   components:
-    - type: AccessReader
-      access: [["CCCargo"]]
+    - type: ContainerFill
+      containers:
+        board: [ DoorElectronicsCCCargo ]
 
 - type: entity
   parent: AirlockSecurity
@@ -91,10 +96,11 @@
   name: Шлюз ЦК
   suffix: CentCom, Security, Locked
   components:
-    - type: AccessReader
-      access: [["CCSecurity"]]
+    - type: ContainerFill
+      containers:
+        board: [ DoorElectronicsCCSecurity ]
     - type: Wires
-      LayoutId: AirlockSecurity
+      layoutId: AirlockSecurity
 
 - type: entity
   parent: AirlockEngineering
@@ -102,8 +108,9 @@
   name: Шлюз ЦК
   suffix: CentCom, Engineering, Locked
   components:
-    - type: AccessReader
-      access: [["CentralCommand"]]
+    - type: ContainerFill
+      containers:
+        board: [ DoorElectronicsCentCom ]
 
 - type: entity
   parent: AirlockMedical
@@ -111,8 +118,9 @@
   name: Шлюз ЦК
   suffix: CentCom, Medical, Locked
   components:
-    - type: AccessReader
-      access: [["CentralCommand"]]
+    - type: ContainerFill
+      containers:
+        board: [ DoorElectronicsCentCom ]
 
 #Hatches
 - type: entity
@@ -121,8 +129,9 @@
   name: CentCom Hatch
   suffix: CentCom, Locked
   components:
-    - type: AccessReader
-      access: [["CentralCommand"]]
+    - type: ContainerFill
+      containers:
+        board: [ DoorElectronicsCentCom ]
 
 - type: entity
   parent: AirlockHatchMaint
@@ -130,8 +139,9 @@
   name: Maintenance Hatch
   suffix: Maint, Locked
   components:
-    - type: AccessReader
-      access: [["Maintenance"]]
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsMaintenance ]
 
 - type: entity
   parent: AirlockHatchCentcomm
@@ -139,8 +149,9 @@
   name: Syndicate Hatch
   suffix: Syndicate, Locked
   components:
-    - type: AccessReader
-      access: [["SyndicateAgent"]]
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsSyndicateAgent ]
 
 #DoubleAirlocks
 
@@ -150,8 +161,9 @@
   name: Double Glass Airlock
   suffix: CentCom, Locked
   components:
-    - type: AccessReader
-      access: [["CentralCommand"]]
+    - type: ContainerFill
+      containers:
+        board: [ DoorElectronicsCentCom ]
 
 - type: entity
   parent: DoubleGlassAirlock
@@ -159,5 +171,446 @@
   name: Double Glass Airlock
   suffix: Syndicate, Locked
   components:
-    - type: AccessReader
-      access: [["SyndicateAgent"]]
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsSyndicateAgent ]
+
+#----------------------------------------------------------------------ERT DOOR
+
+#-----------------------------------Leader airlock
+
+- type: entity
+  parent: AirlockCommandGlass
+  id: AirlockMTFCommandGlassLocked
+  suffix: МТФ Command
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsMTFCommand ]
+
+- type: entity
+  parent: AirlockCommand
+  id: AirlockMTFCommandLocked
+  suffix: МТФ Command
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsMTFCommand ]
+
+- type: entity
+  parent: AirlockMaint
+  id: AirlockMaintMTFCommandLocked
+  suffix: МТФ Command
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsMTFCommand ]
+
+- type: entity
+  parent: HighSecDoor
+  id: HighSecMTFLeaderLocked
+  suffix: МТФ Command
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsMTFCommand ]
+
+#----External
+
+- type: entity
+  parent: AirlockExternal
+  name: external airlock
+  id: AirlockMTFCommandExternalLocked
+  suffix: МТФ Command
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsMTFCommand ]
+
+#----Windoor
+
+- type: entity
+  parent: WindoorSecureArmoryLocked
+  id: WindoorMTFCommandLocked
+  suffix: МТФ Command
+  components:
+  - type: AccessReader
+    access: [["MTFL"]]
+
+#-----------------------------------Cpls airlock
+
+- type: entity
+  parent: AirlockCommandGlass
+  id: AirlockMTFCplsGlassLocked
+  suffix: МТФ Cpls
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsMTFCpls ]
+
+- type: entity
+  parent: AirlockCommand
+  id: AirlockMTFCplsLocked
+  suffix: МТФ Cpls
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsMTFCpls ]
+
+- type: entity
+  parent: AirlockMaint
+  id: AirlockMaintMTFCplLocked
+  suffix: МТФ Cpls
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsMTFCpls ]
+
+- type: entity
+  parent: HighSecDoor
+  id: HighSecMTFCplsLocked
+  suffix: МТФ Cpls
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsMTFCpls ]
+
+#----External
+
+- type: entity
+  parent: AirlockExternal
+  name: external airlock
+  id: AirlockMTFCplsExternalLocked
+  suffix: МТФ Cpls
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsMTFCpls ]
+
+#----Windoor
+
+- type: entity
+  parent: WindoorSecureArmoryLocked
+  id: WindoorMTFCplsLocked
+  suffix: МТФ Cpls
+  components:
+  - type: AccessReader
+    access: [["MTFE"], ["MTFM"]]
+
+#-----------------------------------Medick airlock
+
+- type: entity
+  parent: AirlockMedical
+  id: AirlockMTFMedicalLocked
+  suffix: МТФ Medical
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsMTFMedic ]
+
+- type: entity
+  parent: AirlockMedicalGlass
+  id: AirlockMTFMedicalLockedGlass
+  suffix: МТФ Medical
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsMTFMedic ]
+
+- type: entity
+  parent: AirlockMaint
+  id: AirlockMaintMTFMedicalLocked
+  suffix: МТФ Medical
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsMTFMedic ]
+
+- type: entity
+  parent: HighSecDoor
+  id: HighSecMTFMedicalLocked
+  suffix: МТФ Medical
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsMTFMedic ]
+
+#----External
+
+- type: entity
+  parent: AirlockExternal
+  name: external airlock
+  id: AirlockMTFMedicalExternalLocked
+  suffix: МТФ Medical
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsMTFMedic ]
+
+#----Windoor
+
+- type: entity
+  parent: WindoorSecureArmoryLocked
+  id: WindoorMTFMedicalLocked
+  suffix: МТФ Medical
+  components:
+  - type: AccessReader
+    access: [["MTFM"]]
+
+#-----------------------------------Engineer airlock
+
+- type: entity
+  parent: AirlockEngineering
+  id: AirlockMTFEngineeringLocked
+  suffix: МТФ Engineering
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsMTFEngineer ]
+
+- type: entity
+  parent: AirlockEngineeringGlass
+  id: AirlockMTFEngineeringGlassLocked
+  suffix: МТФ Engineering
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsMTFEngineer ]
+
+- type: entity
+  parent: AirlockMaint
+  id: AirlockMaintMTFEngineeringLocked
+  suffix: МТФ Engineering
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsMTFEngineer ]
+
+- type: entity
+  parent: HighSecDoor
+  id: HighSecMTFEngineeringLocked
+  suffix: МТФ Engineering
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsMTFEngineer ]
+
+#----External
+
+- type: entity
+  parent: AirlockExternal
+  name: external airlock
+  id: AirlockMTFEngineeringExternalLocked
+  suffix: МТФ Engineering
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsMTFEngineer ]
+
+#----Windoor
+
+- type: entity
+  parent: WindoorSecureArmoryLocked
+  id: WindoorMTFEngineeringLocked
+  suffix: МТФ Engineering
+  components:
+  - type: AccessReader
+    access: [["MTFE"]]
+
+#-----------------------------------Security airlock
+
+- type: entity
+  parent: AirlockSecurityGlass
+  id: AirlockMTFSecurityGlassLocked
+  suffix: МТФ Security
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsMTFSecurity ]
+
+- type: entity
+  parent: AirlockSecurity
+  id: AirlockMTFSecurityLocked
+  suffix: МТФ Security
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsMTFSecurity ]
+
+- type: entity
+  parent: AirlockMaint
+  id: AirlockMaintMTFSecurityLocked
+  suffix: МТФ Security
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsMTFSecurity ]
+
+- type: entity
+  parent: HighSecDoor
+  id: HighSecMTFSecurityLocked
+  suffix: МТФ Security
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsMTFSecurity ]
+
+#----External
+
+- type: entity
+  parent: AirlockExternal
+  name: external airlock
+  id: AirlockMTFSecurityExternalLocked
+  suffix: МТФ Security
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsMTFSecurity ]
+
+#----Windoor
+
+- type: entity
+  parent: WindoorSecureArmoryLocked
+  id: WindoorMTFSecurityLocked
+  suffix: МТФ Security
+  components:
+  - type: AccessReader
+    access: [["MTFS"]]
+
+#-----------------------------------Janitor airlock
+
+- type: entity
+  parent: AirlockGlass
+  id: AirlockMTFJanitorGlassLocked
+  suffix: МТФ Janitor
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsMTFJanitor ]
+
+- type: entity
+  parent: Airlock
+  id: AirlockMTFJanitorLocked
+  suffix: МТФ Janitor
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsMTFJanitor ]
+
+- type: entity
+  parent: AirlockMaint
+  id: AirlockMaintMTFJanitorLocked
+  suffix: МТФ Janitor
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsMTFJanitor ]
+
+- type: entity
+  parent: HighSecDoor
+  id: HighSecMTFJanitorLocked
+  suffix: МТФ Janitor
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsMTFJanitor ]
+
+#----External
+
+- type: entity
+  parent: AirlockExternal
+  name: external airlock
+  id: AirlockMTFJanitorExternalLocked
+  suffix: МТФ Janitor
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsMTFJanitor ]
+
+#----Windoor
+
+- type: entity
+  parent: WindoorJanitorLocked
+  id: WindoorMTFJanitorLocked
+  suffix: МТФ Janitor
+  components:
+  - type: AccessReader
+    access: [["MTFJ"]]
+
+#-----------------------------------MTF Base airlock
+
+- type: entity
+  parent: AirlockSecurityGlass
+  id: AirlockMTFGlassLocked
+  suffix: МТФ
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsMTF ]
+
+- type: entity
+  parent: AirlockSecurity
+  id: AirlockMTFLocked
+  suffix: МТФ
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsMTF ]
+
+- type: entity
+  parent: AirlockGlass
+  id: AirlockMTFGlassLockedAlt
+  suffix: МТФ
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsMTF ]
+
+- type: entity
+  parent: Airlock
+  id: AirlockMTFLockedAlt
+  suffix: МТФ
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsMTF ]
+
+- type: entity
+  parent: AirlockMaint
+  id: AirlockMaintMTFLocked
+  suffix: МТФ
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsMTF ]
+
+- type: entity
+  parent: HighSecDoor
+  id: HighSecMTFLocked
+  suffix: МТФ
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsMTF ]
+
+#----External
+
+- type: entity
+  parent: AirlockExternal
+  name: external airlock
+  id: AirlockMTFExternalLocked
+  suffix: МТФ
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsMTF ]
+
+#----Windoor
+
+- type: entity
+  parent: WindoorSecureArmoryLocked
+  id: WindoorMTFLocked
+  suffix: МТФ
+  components:
+  - type: AccessReader
+    access: [["MTF"]]

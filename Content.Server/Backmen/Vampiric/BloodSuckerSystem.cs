@@ -24,6 +24,7 @@ using Content.Shared.Actions;
 using Content.Shared.Body.Components;
 using Content.Shared.Body.Part;
 using Content.Shared.Chemistry;
+using Content.Shared.Chemistry.EntitySystems;
 using Content.Shared.Chemistry.Reagent;
 using Content.Shared.FixedPoint;
 using Content.Shared.Mind;
@@ -45,7 +46,7 @@ namespace Content.Server.Backmen.Vampiric;
 public sealed class BloodSuckerSystem : SharedBloodSuckerSystem
 {
     [Dependency] private readonly BodySystem _bodySystem = default!;
-    [Dependency] private readonly SolutionContainerSystem _solutionSystem = default!;
+    [Dependency] private readonly SharedSolutionContainerSystem _solutionSystem = default!;
     [Dependency] private readonly PopupSystem _popups = default!;
     [Dependency] private readonly DoAfterSystem _doAfter = default!;
     [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
@@ -298,8 +299,7 @@ public sealed class BloodSuckerSystem : SharedBloodSuckerSystem
         var ev = new BloodSuckDoAfterEvent();
         var args = new DoAfterArgs(EntityManager, bloodsucker, bloodSuckerComponent.SuccDelay, ev, bloodsucker, target: victim)
         {
-            BreakOnTargetMove = true,
-            BreakOnUserMove = false,
+            BreakOnMove = true,
             DistanceThreshold = 2f,
             NeedHand = false
         };

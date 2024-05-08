@@ -2,10 +2,10 @@
 - type: weightedRandom
   id: TraitorObjectiveGroups
   weights:
-    TraitorObjectiveGroupSteal: 1
-    TraitorObjectiveGroupKill: 1
-    TraitorObjectiveGroupState: 1 #As in, something about your character. Alive, dead, arrested, gained an ability...
-    TraitorObjectiveGroupSocial: 1 #Involves helping/harming others without killing them or stealing their stuff
+    TraitorObjectiveGroupStealSyndicateFactions: 1
+    TraitorObjectiveGroupKillSyndicateFactions: 1
+    TraitorObjectiveGroupStateSyndicateFactions: 1
+    TraitorObjectiveGroupSocialSyndicateFactions: 1
 
 - type: weightedRandom
   id: TraitorObjectiveGroupSteal
@@ -73,7 +73,6 @@
     TechnologyDiskStealCollectionObjective: 1        #rnd
     FigurineStealCollectionObjective: 0.3          #service
     IDCardsStealCollectionObjective: 1
-    CannabisStealCollectionObjective: 1
     LAMPStealCollectionObjective: 2 #only for moth
 
 - type: weightedRandom

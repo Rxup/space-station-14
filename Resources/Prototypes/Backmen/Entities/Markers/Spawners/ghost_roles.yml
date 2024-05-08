@@ -8,6 +8,8 @@
     name: Злой Близнец (Антагонист)
     description: Вы злой близнец. Ваша задача убить своего оригинала.
     rules: Вы злой близнец (антагонист). Ваша задача заменить свой оригинал. Вы не можете убивать никого, кроме своего оригинала.
+    raffle:
+      settings: default
   - type: GhostRoleMobSpawner
     prototype: MobEvilTwin
   - type: Sprite
@@ -32,6 +34,8 @@
       rules: |
         Вы самый незначительный антаг.
         РДМ/ФД = бан и удаление из WL.
+      raffle:
+        settings: default
     - type: Sprite
       sprite: Markers/jobs.rsi
       layers:
@@ -51,6 +55,8 @@
       name: Mystagogue's Ifrit
       description: Obey the mystagogue. Defend the oracle.
       rules: You are a servant of the mystagogue. Obey them directly.
+      raffle:
+        settings: default
     - type: Sprite
       sprite: Markers/jobs.rsi
       layers:
@@ -63,7 +69,6 @@
   name: ghost role spawn point
   suffix: Vampire spider
   parent: MarkerBase
-  noSpawn: true
   components:
     - type: GhostRoleMobSpawner
       prototype: MobGiantSpiderVampireAngry
@@ -72,6 +77,8 @@
       name: ghost-role-information-giant-spider-vampire-name
       description: ghost-role-information-giant-spider-vampire-description
       rules: No antagonist restrictions. Just don't talk in emote; you have telepathic chat.
+      raffle:
+        settings: default
     - type: Sprite
       sprite: Markers/jobs.rsi
       layers:

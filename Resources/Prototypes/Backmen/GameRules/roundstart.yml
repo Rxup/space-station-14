@@ -14,6 +14,13 @@
   - type: BlobGameRule
 
 - type: entity
+  id: Blob
+  parent: BaseGameRule
+  noSpawn: true
+  components:
+  - type: BlobRule
+
+- type: entity
   id: VampiresGameRule
   parent: BaseGameRule
   noSpawn: true
@@ -45,7 +52,6 @@
   noSpawn: true
   components:
     - type: ShipwreckedRule
-      shuttlePath: /Maps/Backmen/Shuttles/adventurer.yml
       spawnPointTraveller: SpawnPointShipwreckTraveller
       availableJobs:
         - Explorer
@@ -67,11 +73,11 @@
         - 160: EncounterTurbulence
         - 10: ShiftParallax
         - 60: MidFlightDamage
-        - 1: Alert
-        - 8: DecoupleEngine
+        - 6: Alert
+        - 16: DecoupleEngine
         - 14: SendDistressSignal
-        - 8: InterstellarBody
-        - 8: EnteringAtmosphere
+        - 16: InterstellarBody
+        - 16: EnteringAtmosphere
         - 6: Crash
         - 6: AfterCrash
         - 12: Sitrep

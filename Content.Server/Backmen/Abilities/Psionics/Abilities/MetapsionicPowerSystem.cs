@@ -1,6 +1,8 @@
 using Content.Server.Backmen.Psionics;
 using Content.Shared.Actions;
 using Content.Shared.Backmen.Abilities.Psionics;
+using Content.Shared.Backmen.Psionics;
+using Content.Shared.Backmen.Psionics.Components;
 using Content.Shared.Backmen.Psionics.Events;
 using Content.Shared.Backmen.Species.Shadowkin.Components;
 using Content.Shared.Eye;

@@ -6,6 +6,7 @@ using Content.Server.Ghost.Roles.Events;
 using Content.Server.Objectives;
 using Content.Server.Chat.Systems;
 using Content.Server.Communications;
+using Content.Server.Examine;
 using Content.Server.Paper;
 using Content.Server.Popups;
 using Content.Server.Stunnable;
@@ -67,9 +68,9 @@ public sealed class FugitiveSystem : EntitySystem
     [Dependency] private readonly StationSystem _stationSystem = default!;
     [Dependency] private readonly IRobustRandom _random = default!;
     [Dependency] private readonly StationSpawningSystem _stationSpawning = default!;
-    [Dependency] private readonly FugitiveSystem _fugitiveSystem = default!;
     [Dependency] private readonly ObjectivesSystem _objectivesSystem = default!;
     [Dependency] private readonly RandomHelperSystem _randomHelper = default!;
+    [Dependency] private readonly ExamineSystem _examine = default!;
 
     public override void Initialize()
     {
@@ -179,7 +180,7 @@ public sealed class FugitiveSystem : EntitySystem
         {
             Log.Warning("No spawn points were available! MakeFugitive");
 
-            _fugitiveSystem.MakeFugitive(out args.SpawnResult, true);
+            MakeFugitive(out args.SpawnResult, true);
             return;
         }
 
@@ -284,7 +285,7 @@ public sealed class FugitiveSystem : EntitySystem
 
         _popupSystem.PopupEntity(Loc.GetString("fugitive-spawn", ("name", uid)), uid,
             Filter.Pvs(uid).RemoveWhereAttachedEntity(entity =>
-                !ExamineSystemShared.InRangeUnOccluded(uid, entity, ExamineRange, null)), true,
+                !_examine.InRangeUnOccluded(uid, entity, ExamineRange, null)), true,
             Shared.Popups.PopupType.LargeCaution);
 
         _stun.TryParalyze(uid, TimeSpan.FromSeconds(2), false);
@@ -395,7 +396,7 @@ public sealed class FugitiveSystem : EntitySystem
 
             foreach (var objectiveGroup in objectives.GroupBy(o => Comp<ObjectiveComponent>(o).Issuer))
             {
-                if (objectiveGroup.Key == "Космический банк")
+                if (objectiveGroup.Key == "SpaceBank")
                 {
                     continue;
                 }

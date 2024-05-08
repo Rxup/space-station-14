@@ -116,7 +116,7 @@
     - type: ActivatableUIRequiresPower
     - type: UserInterface
       interfaces:
-        - key: enum.ATMUiKey.Key
+        enum.ATMUiKey.Key:
           type: ATMBoundUserInterface
     - type: PointLight
       enabled: false
@@ -125,7 +125,6 @@
     - type: LitOnPowered
     - type: ApcPowerReceiver
       powerLoad: 200
-      priority: Low
     - type: ExtensionCableReceiver
     - type: EmitSoundOnUIOpen
       sound:

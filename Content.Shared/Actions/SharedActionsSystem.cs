@@ -8,6 +8,7 @@ using Content.Shared.Hands;
 using Content.Shared.Interaction;
 using Content.Shared.Inventory.Events;
 using Content.Shared.Mind;
+using Content.Shared.Rejuvenate;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Containers;
 using Robust.Shared.GameStates;
@@ -15,7 +16,6 @@ using Robust.Shared.Map;
 using Robust.Shared.Network;
 using Robust.Shared.Timing;
 using Robust.Shared.Utility;
-using Content.Shared.Rejuvenate;
 
 namespace Content.Shared.Actions;
 
@@ -124,7 +124,7 @@ public abstract class SharedActionsSystem : EntitySystem
             return true;
 
         if (logError)
-            Log.Error($"Failed to get action from action entity: {ToPrettyString(uid.Value)}");
+            Log.Error($"Failed to get action from action entity: {ToPrettyString(uid.Value)}. Trace: {Environment.StackTrace}");
 
         return false;
     }
@@ -371,6 +371,9 @@ public abstract class SharedActionsSystem : EntitySystem
 
         BaseActionEvent? performEvent = null;
 
+        if (action.CheckConsciousness && !_actionBlockerSystem.CanConsciouslyPerformAction(user))
+            return;
+
         // Validate request by checking action blockers and the like:
         switch (action)
         {
@@ -386,7 +389,7 @@ public abstract class SharedActionsSystem : EntitySystem
                 var targetWorldPos = _transformSystem.GetWorldPosition(entityTarget);
                 _rotateToFaceSystem.TryFaceCoordinates(user, targetWorldPos);
 
-                if (!ValidateEntityTarget(user, entityTarget, entityAction))
+                if (!ValidateEntityTarget(user, entityTarget, (actionEnt, entityAction)))
                     return;
 
                 _adminLogger.Add(LogType.Action,
@@ -410,7 +413,7 @@ public abstract class SharedActionsSystem : EntitySystem
                 var entityCoordinatesTarget = GetCoordinates(netCoordinatesTarget);
                 _rotateToFaceSystem.TryFaceCoordinates(user, entityCoordinatesTarget.ToMapPos(EntityManager, _transformSystem));
 
-                if (!ValidateWorldTarget(user, entityCoordinatesTarget, worldAction))
+                if (!ValidateWorldTarget(user, entityCoordinatesTarget, (actionEnt, worldAction)))
                     return;
 
                 _adminLogger.Add(LogType.Action,
@@ -442,7 +445,17 @@ public abstract class SharedActionsSystem : EntitySystem
         PerformAction(user, component, actionEnt, action, performEvent, curTime);
     }
 
-    public bool ValidateEntityTarget(EntityUid user, EntityUid target, EntityTargetActionComponent action)
+    public bool ValidateEntityTarget(EntityUid user, EntityUid target, Entity<EntityTargetActionComponent> actionEnt)
+    {
+        if (!ValidateEntityTargetBase(user, target, actionEnt))
+            return false;
+
+        var ev = new ValidateActionEntityTargetEvent(user, target);
+        RaiseLocalEvent(actionEnt, ref ev);
+        return !ev.Cancelled;
+    }
+
+    private bool ValidateEntityTargetBase(EntityUid user, EntityUid target, EntityTargetActionComponent action)
     {
         if (!target.IsValid() || Deleted(target))
             return false;
@@ -481,7 +494,17 @@ public abstract class SharedActionsSystem : EntitySystem
         return _interactionSystem.CanAccessViaStorage(user, target);
     }
 
-    public bool ValidateWorldTarget(EntityUid user, EntityCoordinates coords, WorldTargetActionComponent action)
+    public bool ValidateWorldTarget(EntityUid user, EntityCoordinates coords, Entity<WorldTargetActionComponent> action)
+    {
+        if (!ValidateWorldTargetBase(user, coords, action))
+            return false;
+
+        var ev = new ValidateActionWorldTargetEvent(user, coords);
+        RaiseLocalEvent(action, ref ev);
+        return !ev.Cancelled;
+    }
+
+    private bool ValidateWorldTargetBase(EntityUid user, EntityCoordinates coords, WorldTargetActionComponent action)
     {
         if (action.CheckCanInteract && !_actionBlockerSystem.CanInteract(user, null))
             return false;
@@ -801,7 +824,7 @@ public abstract class SharedActionsSystem : EntitySystem
                               || !comp.Actions.Contains(actionId.Value));
 
             if (!GameTiming.ApplyingState)
-                Log.Warning($"Attempted to remove an action {ToPrettyString(actionId)} from an entity that it was never attached to: {ToPrettyString(performer)}");
+                Log.Error($"Attempted to remove an action {ToPrettyString(actionId)} from an entity that it was never attached to: {ToPrettyString(performer)}. Trace: {Environment.StackTrace}");
             return;
         }
 
