@@ -28,6 +28,7 @@ using Robust.Shared.Map;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Content.Server.Ghost.Roles.Events;
+using Content.Server.IdentityManagement;
 using Content.Server.Mind;
 using Content.Server.Objectives;
 using Content.Server.Objectives.Components;
@@ -38,6 +39,7 @@ using Content.Server.Station.Components;
 using Content.Shared.Access.Components;
 using Content.Shared.CartridgeLoader;
 using Content.Shared.CCVar;
+using Content.Shared.Clothing;
 using Content.Shared.GameTicking;
 using Content.Shared.Inventory;
 using Content.Shared.Mind;
@@ -46,6 +48,7 @@ using Content.Shared.NukeOps;
 using Content.Shared.Objectives.Components;
 using Content.Shared.PDA;
 using Content.Shared.Players;
+using Content.Shared.Preferences.Loadouts;
 using Content.Shared.Roles.Jobs;
 using Content.Shared.StatusIcon;
 using Robust.Server.Player;
@@ -104,10 +107,11 @@ public sealed class EvilTwinSystem : EntitySystem
                     {
                         _mindSystem.TransferTo(mindId, null, true, false, mind);
                         RemComp<MindContainerComponent>(twinMob.Value);
-                        Timer.Spawn(0, () =>
-                        {
-                            _mindSystem.TransferTo(mindId, twinMob, true, false, mind);
-                        });
+                        Timer.Spawn(0,
+                            () =>
+                            {
+                                _mindSystem.TransferTo(mindId, twinMob, true, false, mind);
+                            });
 
                         var station = _stationSystem.GetOwningStation(targetUid.Value) ?? _stationSystem.GetStations()
                             .FirstOrNull(HasComp<StationEventEligibleComponent>);
@@ -139,8 +143,11 @@ public sealed class EvilTwinSystem : EntitySystem
 
                             RaiseLocalEvent(new PlayerSpawnCompleteEvent(twinMob.Value,
                                 targetSession,
-                                currentJob?.Prototype, false,
-                                0, station.Value, pref));
+                                currentJob?.Prototype,
+                                false,
+                                0,
+                                station.Value,
+                                pref));
 
                             if (!_roles.MindHasRole<JobComponent>(mindId))
                             {
@@ -172,16 +179,20 @@ public sealed class EvilTwinSystem : EntitySystem
                         }
 
                         _allEvilTwins.Add((twinMob.Value, mind));
-                        _adminLogger.Add(LogType.Action, LogImpact.Extreme,
+                        _adminLogger.Add(LogType.Action,
+                            LogImpact.Extreme,
                             $"{_entityManager.ToPrettyString(twinMob.Value)} take EvilTwin with target {_entityManager.ToPrettyString(targetUid.Value)}");
                     }
                 }
             }
             else
             {
-                _adminLogger.Add(LogType.Action, LogImpact.Extreme,
+                _adminLogger.Add(LogType.Action,
+                    LogImpact.Extreme,
                     $"{_entityManager.ToPrettyString(uid)} take EvilTwin with no target (delete)");
-                _prayerSystem.SendSubtleMessage(ev.Session, ev.Session, Loc.GetString("evil-twin-error-message"),
+                _prayerSystem.SendSubtleMessage(ev.Session,
+                    ev.Session,
+                    Loc.GetString("evil-twin-error-message"),
                     Loc.GetString("prayer-popup-subtle-default"));
             }
         }
@@ -227,7 +238,8 @@ public sealed class EvilTwinSystem : EntitySystem
         _target.SetTarget(uid, targetMind.Mind!.Value, target);
     }
 
-    private void OnGhostRoleSpawnerUsed(EntityUid uid, EvilTwinSpawnerComponent component,
+    private void OnGhostRoleSpawnerUsed(EntityUid uid,
+        EvilTwinSpawnerComponent component,
         GhostRoleSpawnerUsedEvent args)
     {
         if (TerminatingOrDeleted(args.Spawner) || EntityManager.IsQueuedForDeletion(args.Spawner))
@@ -353,7 +365,8 @@ public sealed class EvilTwinSystem : EntitySystem
                     }
                     else
                     {
-                        result.Append("\n" + Loc.GetString("evil-twin-user-was-an-evil-twin-named", ("user", username),
+                        result.Append("\n" + Loc.GetString("evil-twin-user-was-an-evil-twin-named",
+                            ("user", username),
                             ("name", name)));
                     }
                 }
@@ -375,7 +388,8 @@ public sealed class EvilTwinSystem : EntitySystem
                 else
                 {
                     result.Append("\n" + Loc.GetString("evil-twin-user-was-an-evil-twin-with-objectives-named",
-                        ("user", username), ("name", name)));
+                        ("user", username),
+                        ("name", name)));
                 }
             }
             else if (name != null)
@@ -528,14 +542,56 @@ public sealed class EvilTwinSystem : EntitySystem
             if (_prototype.TryIndex<StartingGearPrototype>(twinTargetMindJob.StartingGear!, out var gear))
             {
                 _stationSpawning.EquipStartingGear(twinUid, gear);
-                EquipIdCard(twinUid, pref.Name, twinTargetMindJob,
-                    _stationSystem.GetOwningStation(target));
             }
 
-            foreach (var special in twinTargetMindJob.Special)
+            // Run loadouts after so stuff like storage loadouts can get
+            var jobLoadout = LoadoutSystem.GetJobPrototype(jobComponent.Prototype);
+
+            if (_prototype.TryIndex(jobLoadout, out RoleLoadoutPrototype? roleProto))
             {
-                special.AfterEquip(twinUid);
+                RoleLoadout? loadout = null;
+                pref?.Loadouts.TryGetValue(jobLoadout, out loadout);
+
+                // Set to default if not present
+                if (loadout == null)
+                {
+                    loadout = new RoleLoadout(jobLoadout);
+                    loadout.SetDefault(_prototype);
+                }
+
+                // Order loadout selections by the order they appear on the prototype.
+                foreach (var group in
+                         loadout.SelectedLoadouts.OrderBy(x => roleProto.Groups.FindIndex(e => e == x.Key)))
+                {
+                    foreach (var items in group.Value)
+                    {
+                        if (!_prototype.TryIndex(items.Prototype, out var loadoutProto))
+                        {
+                            Log.Error($"Unable to find loadout prototype for {items.Prototype}");
+                            continue;
+                        }
+
+                        if (!_prototype.TryIndex(loadoutProto.Equipment, out var startingGear))
+                        {
+                            Log.Error(
+                                $"Unable to find starting gear {loadoutProto.Equipment} for loadout {loadoutProto}");
+                            continue;
+                        }
+
+                        // Handle any extra data here.
+                        _stationSpawning.EquipStartingGear(twinUid, startingGear, raiseEvent: false);
+                    }
+                }
             }
+
+            var gearEquippedEv = new StartingGearEquippedEvent(twinUid);
+            RaiseLocalEvent(twinUid, ref gearEquippedEv, true);
+
+
+            _stationSpawning.SetPdaAndIdCardData(twinUid, pref!.Name, twinTargetMindJob, _stationSystem.GetOwningStation(target));
+
+            _stationSpawning.DoJobSpecials(jobComponent, twinUid);
+            _identity.QueueIdentityUpdate(twinUid);
         }
 
         var twin = EnsureComp<EvilTwinComponent>(twinUid);
@@ -544,46 +600,6 @@ public sealed class EvilTwinSystem : EntitySystem
         twin.TwinEntity = target;
 
         return (twinUid, pref);
-    }
-
-    /// <summary>
-    /// Equips an ID card and PDA onto the given entity.
-    /// </summary>
-    /// <param name="entity">Entity to load out.</param>
-    /// <param name="characterName">Character name to use for the ID.</param>
-    /// <param name="jobPrototype">Job prototype to use for the PDA and ID.</param>
-    /// <param name="station">The station this player is being spawned on.</param>
-    public void EquipIdCard(EntityUid entity, string characterName, JobPrototype jobPrototype, EntityUid? station)
-    {
-        if (!_inventorySystem.TryGetSlotEntity(entity, "id", out var idUid))
-            return;
-
-        var cardId = idUid.Value;
-        if (TryComp<PdaComponent>(idUid, out var pdaComponent) && pdaComponent.ContainedId != null)
-            cardId = pdaComponent.ContainedId.Value;
-
-        if (!TryComp<IdCardComponent>(cardId, out var card))
-            return;
-
-        _cardSystem.TryChangeFullName(cardId, characterName, card);
-        _cardSystem.TryChangeJobTitle(cardId, jobPrototype.LocalizedName, card);
-
-        if (_prototype.TryIndex<StatusIconPrototype>(jobPrototype.Icon, out var jobIcon))
-        {
-            _cardSystem.TryChangeJobIcon(cardId, jobIcon, card);
-        }
-
-        var extendedAccess = false;
-        if (station != null)
-        {
-            var data = Comp<StationJobsComponent>(station.Value);
-            extendedAccess = data.ExtendedAccess;
-        }
-
-        _accessSystem.SetAccessToJob(cardId, jobPrototype, extendedAccess);
-
-        if (pdaComponent != null)
-            _pdaSystem.SetOwner(idUid.Value, pdaComponent, characterName);
     }
 
     [Dependency] private readonly InventorySystem _inventory = default!;
@@ -604,11 +620,8 @@ public sealed class EvilTwinSystem : EntitySystem
     [Dependency] private readonly HumanoidAppearanceSystem _humanoidSystem = default!;
     [Dependency] private readonly ObjectivesSystem _objectivesSystem = default!;
     [Dependency] private readonly TargetObjectiveSystem _target = default!;
-    [Dependency] private readonly InventorySystem _inventorySystem = default!;
     [Dependency] private readonly IPlayerManager _playerManager = default!;
-    [Dependency] private readonly IdCardSystem _cardSystem = default!;
-    [Dependency] private readonly AccessSystem _accessSystem = default!;
-    [Dependency] private readonly PdaSystem _pdaSystem = default!;
+    [Dependency] private readonly IdentitySystem _identity = default!;
 
     [ValidatePrototypeId<AntagPrototype>] private const string EvilTwinRole = "EvilTwin";
 
