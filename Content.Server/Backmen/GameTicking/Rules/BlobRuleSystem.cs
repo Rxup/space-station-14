@@ -230,7 +230,7 @@ public sealed class BlobRuleSystem : GameRuleSystem<BlobRuleComponent>
                     if (progress > 0.99f)
                     {
                         result += "\n- " + Loc.GetString(
-                            "objectives-condition-success",
+                            "objective-condition-success",
                             ("condition", objectiveTitle),
                             ("markupColor", "green")
                         );
@@ -238,7 +238,7 @@ public sealed class BlobRuleSystem : GameRuleSystem<BlobRuleComponent>
                     else
                     {
                         result += "\n- " + Loc.GetString(
-                            "objectives-condition-fail",
+                            "objective-condition-fail",
                             ("condition", objectiveTitle),
                             ("progress", (int) (progress * 100)),
                             ("markupColor", "red")
