@@ -217,10 +217,12 @@ public sealed class SpecForcesSystem : EntitySystem
 
         // Spawn Guaranteed SpecForces from the prototype.
         var toSpawnGuaranteed = EntitySpawnCollection.GetSpawns(proto.GuaranteedSpawn, _random);
+        var countGuaranteed = 0;
         foreach (var mob in toSpawnGuaranteed)
         {
             var spawned = SpawnEntity(mob, _random.Pick(spawns));
             _sawmill.Info($"Successfully spawned {ToPrettyString(spawned)} SpecForce.");
+            countGuaranteed++;
         }
 
         // Count how many other forces there should be.
@@ -228,7 +230,7 @@ public sealed class SpecForcesSystem : EntitySystem
         // Either zero or bigger than zero, no negatives
         countExtra = Math.Max(0, countExtra);
         // If bigger than MaxAmount, set to MaxAmount and extract already spawned roles
-        countExtra = Math.Min(countExtra, proto.MaxRolesAmount - proto.GuaranteedSpawn.Count);
+        countExtra = Math.Min(countExtra, proto.MaxRolesAmount - countGuaranteed);
 
         // Spawn Guaranteed SpecForces from the prototype.
         // If all mobs from the list are spawned and we still have free slots, restart the cycle again.
