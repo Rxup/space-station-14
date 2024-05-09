@@ -13,6 +13,8 @@
     makeSentient: true
     name: ghost-role-information-BloodCrystalSoul-name
     description: ghost-role-information-BloodCrystalSoul-description
+    raffle:
+      settings: default
   - type: Speech
   - type: Psionic
   - type: SoulCrystal

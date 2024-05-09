@@ -49,6 +49,8 @@
     name: ghost-role-information-canned-clown-name
     description: ghost-role-information-canned-clown-description
     rules: Помогайте Хонк браткам во исполнении весёлых планов!
+    raffle:
+      settings: default
   - type: GhostRoleMobSpawner
     prototype: HumanCannedClown
   - type: DamageOnLand
