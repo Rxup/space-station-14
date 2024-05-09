@@ -472,7 +472,7 @@
   id: ClothingBackpackDuffelSyndicateAmmoBackmenFilled
   name: набор боеприпасов
   suffix: Backmen
-  description: "Перезаряжаюсь! Содержит магазины для большинства современного вооружения синдиката. Рекомендуется большим группам оперативников."
+  description: "Перезаряжаюсь! Содержит магазины для большинства современного вооружения синдиката."
   components:
   - type: StorageFill
     contents:
