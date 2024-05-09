@@ -453,6 +453,11 @@
   parent: BriefcaseSyndie
   suffix: SniperBundle
   components:
+  - type: Item
+    size: Ginormous
+  - type: Storage
+    grid:
+    - 0,0,6,4
   - type: StorageFill
     contents:
       - id: WeaponRifleSR127
