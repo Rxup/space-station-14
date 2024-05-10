@@ -17,6 +17,7 @@ using Content.Server.Actions;
 using Content.Server.Backmen.Blob.Rule;
 using Content.Server.Backmen.GameTicking.Rules.Components;
 using Content.Server.Ghost.Roles.Components;
+using Content.Server.Ghost.Roles.Raffles;
 using Content.Server.RandomMetadata;
 using Content.Shared.Backmen.CCVar;
 using Robust.Shared.Configuration;
@@ -37,6 +38,7 @@ public sealed class SpecForcesSystem : EntitySystem
     [Dependency] private readonly ISerializationManager _serialization = default!;
     [Dependency] private readonly ActionsSystem _actions = default!;
     [Dependency] private readonly IConfigurationManager _configurationManager = default!;
+    [Dependency] private readonly IComponentFactory _componentFactory = default!;
 
     [ViewVariables] public List<SpecForcesHistory> CalledEvents { get; } = new();
     [ViewVariables] public TimeSpan LastUsedTime { get; private set; } = TimeSpan.Zero;
@@ -82,7 +84,6 @@ public sealed class SpecForcesSystem : EntitySystem
         foreach (var entry in component.Components.Values)
         {
             var comp = (Component) _serialization.CreateCopy(entry.Component, notNullableOverride: true);
-            comp.Owner = uid;
             EntityManager.AddComponent(uid, comp);
         }
     }
@@ -156,22 +157,38 @@ public sealed class SpecForcesSystem : EntitySystem
             mobSpawnerComponent.Prototype == null ||
             !_prototypes.TryIndex<EntityPrototype>(mobSpawnerComponent.Prototype, out var spawnObj))
         {
+            if (TryComp<GhostRoleComponent>(uid, out var ghostRoleComponent) && ghostRoleComponent.RaffleConfig == null)
+            {
+                ghostRoleComponent.RaffleConfig = new GhostRoleRaffleConfig
+                {
+                    Settings = "default"
+                };
+            }
             return uid;
         }
 
-        if (spawnObj.TryGetComponent<SpecForceComponent>(out var tplSpecForceComponent))
+        if (spawnObj.TryGetComponent<SpecForceComponent>(out var tplSpecForceComponent, _componentFactory))
         {
             var comp = (Component) _serialization.CreateCopy(tplSpecForceComponent, notNullableOverride: true);
-            comp.Owner = uid;
             EntityManager.AddComponent(uid, comp);
         }
 
         EnsureComp<SpecForceComponent>(uid);
-        if (spawnObj.TryGetComponent<GhostRoleComponent>(out var tplGhostRoleComponent))
+        if (spawnObj.TryGetComponent<GhostRoleComponent>(out var tplGhostRoleComponent, _componentFactory))
         {
-            var comp = (Component) _serialization.CreateCopy(tplGhostRoleComponent, notNullableOverride: true);
-            comp.Owner = uid;
+            var comp = (GhostRoleComponent) _serialization.CreateCopy(tplGhostRoleComponent, notNullableOverride: true);
+            comp.RaffleConfig = new GhostRoleRaffleConfig
+            {
+                Settings = "default"
+            };
             EntityManager.AddComponent(uid, comp);
+        }
+        if (TryComp<GhostRoleComponent>(uid, out var ghostRole) && ghostRole.RaffleConfig == null)
+        {
+            ghostRole.RaffleConfig = new GhostRoleRaffleConfig
+            {
+                Settings = "default"
+            };
         }
 
         return uid;

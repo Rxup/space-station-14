@@ -723,6 +723,8 @@
     makeSentient: true
     name: ОБР лидер
     description: Командир отряда Epsilon - 11, великий воин, герой НТ, знаменитый полководец, мог бы им быть если бы не пошел в Epsilon - 11.
+    raffle:
+      settings: default
     requirements:
       - !type:DepartmentTimeRequirement
         department: Security
@@ -776,6 +778,8 @@
     makeSentient: true
     name: ОБР инженер
     description: Инженер отряда Epsilon - 11, может и не очень хороший инженер, но дело свое знает, наверное.
+    raffle:
+      settings: default
     requirements:
       - !type:DepartmentTimeRequirement
         department: Security
@@ -829,6 +833,8 @@
     makeSentient: true
     name: ОБР офицер безопасности
     description: Солдат или же охранник Epsilon - 11, прошедший небольшую подготовку и готовый стрелять во все что движеться, я бы не доверил ему даже водяной пистолетик.
+    raffle:
+      settings: default
     requirements:
       - !type:DepartmentTimeRequirement
         department: Security
@@ -879,6 +885,8 @@
     makeSentient: true
     name: ОБР медик
     description: Медик отделения Epsilon - 11, был в медицинском институте, поэтому и взяли в качестве медика, но никого не волнует что он там был всего неделю.
+    raffle:
+      settings: default
     requirements:
       - !type:DepartmentTimeRequirement
         department: Security
@@ -932,6 +940,8 @@
     makeSentient: true
     name: ОБР уборщик
     description: Уборщик отделения Epsilon - 11, эй! кто дал ему пистолет?!
+    raffle:
+      settings: default
     requirements:
       - !type:DepartmentTimeRequirement
         department: Security
@@ -1216,6 +1226,7 @@
     ears: ClothingHeadsetCentComCCMTFTHT9
     belt: ClothingBeltSecurityFilled
     pocket1: CombatKnifeSpetsnaz
+    pocket2: PinpointerNuclear
 
 - type: entity
   noSpawn: true
@@ -1303,6 +1314,7 @@
     ears: ClothingHeadsetCentComCCMTFTHT9
     belt: ClothingBeltSecurityFilled
     pocket1: CombatKnifeSpetsnaz
+    pocket2: PinpointerNuclear
 
 
 - type: entity
@@ -1436,6 +1448,8 @@
     makeSentient: true
     name: ОБР лидер
     description: Командир отряда Theta - 9, великий воин, герой НТ, знаменитый полководец, мог бы им быть если бы не пошел в Theta - 9.
+    raffle:
+      settings: default
     requirements:
       - !type:DepartmentTimeRequirement
         department: Security
@@ -1490,6 +1504,8 @@
     makeSentient: true
     name: ОБР инженер
     description: Инженер отряда Theta - 9, может и не очень хороший инженер, но дело свое знает, наверное.
+    raffle:
+      settings: default
     requirements:
       - !type:DepartmentTimeRequirement
         department: Security
@@ -1543,6 +1559,8 @@
     makeSentient: true
     name: ОБР офицер безопасности
     description: Солдат или же охранник Theta - 9, прошедший небольшую подготовку и готовый стрелять во все что движеться, я бы не доверил ему даже водяной пистолетик.
+    raffle:
+      settings: default
     requirements:
       - !type:DepartmentTimeRequirement
         department: Security
@@ -1593,6 +1611,8 @@
     makeSentient: true
     name: ОБР медик
     description: Медик отделения Theta - 9, был в медицинском институте, поэтому и взяли в качестве медика, но никого не волнует что он там был всего неделю.
+    raffle:
+      settings: default
     requirements:
       - !type:DepartmentTimeRequirement
         department: Security
@@ -1646,6 +1666,8 @@
     makeSentient: true
     name: ОБР уборщик
     description: Уборщик отделения Theta - 9, эй! кто дал ему пистолет?!
+    raffle:
+      settings: default
     requirements:
       - !type:DepartmentTimeRequirement
         department: Security
@@ -1983,6 +2005,8 @@
     name: Оперативник спец войск
     description: Элитный солдат отряда Omega - 0, напичканые импланты и курсы космического спецназа сделали из него бесчувственную машину.
     rules: Выполняйте различные приказы, ваша задача будет варьироваться от задач центрального командования.
+    raffle:
+      settings: default
     requirements:
       - !type:DepartmentTimeRequirement
         department: Security
@@ -2026,6 +2050,8 @@
     name: коммандер спец войск
     description: Элитный коммандер отряда Omega - 0, напичканые импланты и курсы космического спецназа сделали из него бесчувственную машину с тактическим интеллектом.
     rules: Выполняйте различные приказы, ваша задача будет варьироваться от задач центрального командования.
+    raffle:
+      settings: default
     requirements:
       - !type:DepartmentTimeRequirement
         department: Security
@@ -2097,6 +2123,8 @@
     makeSentient: true
     name: Офицер Специальных Операций
     description: Офицер Специальных Операций, руководитель департамента специальных операций в секторе.
+    raffle:
+      settings: default
     requirements:
       - !type:DepartmentTimeRequirement
         department: Security
@@ -2189,6 +2217,8 @@
     makeSentient: true
     name: Ядерный оперативник
     description: GET DAT FUKKEN DISK
+    raffle:
+      settings: default
     requirements:
     - !type:DepartmentTimeRequirement
       department: Security
@@ -2226,6 +2256,8 @@
     makeSentient: true
     name: Ядерный оперативник
     description: GET DAT FUKKEN DISK
+    raffle:
+      settings: default
     requirements:
     - !type:DepartmentTimeRequirement
       department: Security
@@ -2443,6 +2475,8 @@
     makeSentient: true
     name: Оперативник РХБЗЗ
     description: Особый агент НаноТрейзен по борьбе с радиационно, химическо, биологическоми и зомби опасностями.
+    raffle:
+      settings: default
     requirements:
       - !type:DepartmentTimeRequirement
         department: Security
@@ -2491,6 +2525,8 @@
     makeSentient: true
     name: Огнеметчик РХБЗЗ
     description: Особый агент НаноТрейзен по борьбе с радиационно, химическо, биологическоми и зомби опасностями.
+    raffle:
+      settings: default
     requirements:
       - !type:DepartmentTimeRequirement
         department: Security
@@ -2539,6 +2575,8 @@
     makeSentient: true
     name: Лидер РХБЗЗ
     description: Особый агент НаноТрейзен по борьбе с радиационно, химическо, биологическоми и зомби опасностями.
+    raffle:
+      settings: default
     requirements:
       - !type:DepartmentTimeRequirement
         department: Security
@@ -2611,6 +2649,8 @@
   - type: GhostRole
     name: ОБР командир
     description: Командир отряда Alpha - 1, выполняет порученые приказы по ликвидации противника, не задаёт вопросов.
+    raffle:
+      settings: default
     requirements:
       - !type:DepartmentTimeRequirement
         department: Security
@@ -2642,6 +2682,7 @@
     ears: ClothingHeadsetCentComCCMTF
     belt: ClothingBeltSecurityFilled
     pocket1: CombatKnifeSpetsnaz
+    pocket2: PinpointerNuclear
 
 - type: entity
   noSpawn: true
@@ -2690,6 +2731,8 @@
         - id: MagazinePulseRifle
           amount: 9
         - id: BoxHandcuff
+        - id: C4
+          amount: 4
 
 - type: entity
   noSpawn: true
@@ -2720,6 +2763,8 @@
   - type: GhostRole
     name: ОБР Оперативник
     description: Оперативник отряда Alpha - 1, выполняет порученые приказы по ликвидации противника, не задаёт вопросов.
+    raffle:
+      settings: default
     requirements:
       - !type:DepartmentTimeRequirement
         department: Security
@@ -2750,6 +2795,7 @@
     ears: ClothingHeadsetCentComCCMTF
     belt: ClothingBeltSecurityFilled
     pocket1: CombatKnifeSpetsnaz
+    pocket2: PinpointerNuclear
 
 - type: entity
   noSpawn: true
@@ -2769,4 +2815,265 @@
 
 #MTF Tay 39------------------------------------
 
+- type: entity
+  name:  Tay - 39 командир ОБР
+  parent: MobHumanERTLeaderEVAV2_1
+  suffix: МТФ
+  id: MobHumanERTLeaderTay39
+  components:
+  - type: Icon
+    sprite: Markers/jobs.rsi
+    state: ertleadereva
+  - type: GhostTakeoverAvailable
+  - type: GhostRole
+    name: ОБР командир
+    description: Командир отряда Tay - 39, особо ничем не отличается от рядовых оперативников, но имеет красные рукава, показывая его кровожданость, ну или любовь к женщинам, тут пока он сам не определился.
+    requirements:
+      - !type:DepartmentTimeRequirement
+        department: Security
+        time: 18000
+      - !type:OverallPlaytimeRequirement
+        time: 36000
+      - !type:DepartmentTimeRequirement
+        department: Command
+        time: 18000
+  - type: Loadout
+    prototypes: [ERTLeaderTay39Gear]
+  - type: RandomMetadata
+    nameSegments:
+    - NamesSGTs
+    - names_last_male
+
+- type: startingGear
+  id: ERTLeaderTay39Gear
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitERTMedic
+    back: ClothingBackpackERTLeaderTay39
+    shoes: ClothingShoesBootsNedoSpetsnaz
+    mask: ClothingMaskGasERTV2_1
+    eyes: ClothingEyesHudMedical
+    gloves: ClothingHandsGlovesSpetsnazcombat
+    outerClothing: ClothingOuterHardsuitERTLeaderTay39
+    head: ClothingHeadHatBeretCmo
+    id: OBRGavnaLeaderIDCardTay39
+    ears: ClothingHeadsetCentComCCMTF
+    belt: ClothingBeltERTWebbingLeaderTay39Filled
+    pocket1: CombatKnifeSpetsnaz
+
+- type: entity
+  noSpawn: true
+  parent: OBRGavnaLeaderIDCard
+  id: OBRGavnaLeaderIDCardTay39
+  name: Id карта лидера ОБР Tay 39
+  components:
+  - type: IdCard
+    jobTitle: Tay-39
+    fullName: Лидер отделения
+  - type: Sprite
+    layers:
+    - state: ert_medic
+    - state: idchiefmedicalofficer
+  - type: Item
+    heldPrefix: blue
+
+- type: entity
+  noSpawn: true
+  parent: ClothingBeltAmmo
+  id: ClothingBeltERTWebbingLeaderTay39Filled
+  components:
+    - type: StorageFill
+      contents:
+        - id: MagazinePulseShotgun
+          amount: 2
+        - id: MagazinePulseSubMachinePistol
+          amount: 4
+
+- type: entity
+  noSpawn: true
+  parent: ClothingBackpackERTLeader
+  id: ClothingBackpackERTLeaderTay39
+  components:
+    - type: Clothing
+      sprite: Clothing/OuterClothing/Hardsuits/ERTSuits/ertleader.rsi
+    - type: StorageFill
+      contents:
+        - id: BoxFlare
+          amount: 2
+        - id: CombatMedipen
+          amount: 3
+        - id: WeaponDisabler
+        - id: WeaponPulseSMGTritonM3
+        - id: WeaponPulseShotgunHellHammer
+        - id: MedkitCombatFilled
+          amount: 3
+        - id: BoxHandcuff
+
+- type: entity
+  name:  Tay - 39 медик ОБР
+  parent: MobHumanERTMedicalEVAV2_1
+  suffix: МТФ
+  id: MobHumanERTMedicTay39
+  components:
+  - type: GhostTakeoverAvailable
+  - type: GhostRole
+    name: ОБР медик
+    description: Медик отряда Tay - 39, учился на то чтоб лечить живых существ, странно что он забыл в ОБР НТ.
+    requirements:
+      - !type:DepartmentTimeRequirement
+        department: Security
+        time: 18000
+      - !type:OverallPlaytimeRequirement
+        time: 36000
+      - !type:DepartmentTimeRequirement
+        department: Medical
+        time: 18000
+  - type: Loadout
+    prototypes: [ERTMedicTay39Gear]
+  - type: RandomMetadata
+    nameSegments:
+    - NamesCPLs
+    - names_last_male
+
+- type: startingGear
+  id: ERTMedicTay39Gear
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitERTMedic
+    back: ClothingBackpackERTMedicTay39
+    shoes: ClothingShoesBootsNedoSpetsnaz
+    mask: ClothingMaskGasERTV2_1
+    eyes: ClothingEyesHudMedical
+    gloves: ClothingHandsGlovesSpetsnazcombat
+    outerClothing: ClothingOuterHardsuitERTMedicTay39
+    id: OBRGavnaMedicIDCardTay39
+    ears: ClothingHeadsetCentComCCMTF
+    belt: ClothingBeltMedicalTay39Filled
+    pocket1: HandheldHealthAnalyzer
+    pocket2: CombatKnifeSpetsnaz
+
+- type: entity
+  parent: OBRGavnaMedicIDCard
+  id: OBRGavnaMedicIDCardTay39
+  noSpawn: true
+  name: Id карта медика ОБР
+  components:
+  - type: IdCard
+    jobTitle: Tay-39
+    fullName: Медик отделения
+    jobIcon: JobIconNanotrasenMed
+
+- type: entity
+  noSpawn: true
+  parent: ClothingBeltMedicalMarine
+  id: ClothingBeltMedicalTay39Filled
+  components:
+    - type: StorageFill
+      contents:
+        - id: OmnizineChemistryBottle
+          amount: 4
+        - id: EpinephrineChemistryBottle
+          amount: 4
+        - id: EphedrineChemistryBottle
+          amount: 4
+        - id: Hypospray
+        - id: EmergencyMedipen
+          amount: 2
+        - id: CombatMedipen
+          amount: 4
+
+- type: entity
+  noSpawn: true
+  parent: ClothingBackpackERTMedical
+  id: ClothingBackpackERTMedicTay39
+  components:
+    - type: Clothing
+      sprite: Clothing/OuterClothing/Hardsuits/ERTSuits/ertleader.rsi
+    - type: StorageFill
+      contents:
+        - id: BoxFlare
+        - id: BoxFlare
+        - id: WeaponPistolG22
+        - id: MagazinePistol
+          amount: 2
+        - id: MedkitFilled
+        - id: Defibrillator
+        - id: MedkitCombatFilled
+          amount: 3
+        - id: MedkitAdvancedFilled
+          amount: 3
+        - id: HandheldCrewMonitor
+
+- type: entity
+  name: Tay - 39 оперативник ОБР
+  parent: MobHumanERTSecurityEVAV2_1
+  suffix: МТФ
+  id: MobHumanERTSecurityTay39
+  components:
+  - type: GhostTakeoverAvailable
+  - type: GhostRole
+    name: ОБР оперативник
+    description: Оперативник отряда Tay - 39, студент мед. училища которому нужна практика, но его не так поняли в регистрационном столе и послали в качестве "мед брата" в силы ОБР НТ.
+    requirements:
+      - !type:DepartmentTimeRequirement
+        department: Security
+        time: 36000
+      - !type:OverallPlaytimeRequirement
+        time: 36000
+  - type: Loadout
+    prototypes: [ERTSecurityTay39Gear]
+
+- type: startingGear
+  id: ERTSecurityTay39Gear
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitERTMedic
+    back: ClothingBackpackERTSecurityTay39
+    shoes: ClothingShoesBootsNedoSpetsnaz
+    mask: ClothingMaskGasERTV2_1
+    eyes: ClothingEyesHudMedical
+    gloves: ClothingHandsGlovesSpetsnazcombat
+    outerClothing: ClothingOuterHardsuitERTTay39
+    id: OBRGavnaIDCardTay39
+    ears: ClothingHeadsetCentComCCMTF
+    belt: ClothingBeltERTWebbingSecurityTay39Filled
+    pocket1: CombatKnifeSpetsnaz
+
+- type: entity
+  noSpawn: true
+  parent: OBRGavnaIDCard
+  id: OBRGavnaIDCardTay39
+  name: Id карта лидера ОБР Tay 39
+  components:
+  - type: IdCard
+    jobTitle: Tay-39
+
+- type: entity
+  noSpawn: true
+  parent: ClothingBeltAmmo
+  id: ClothingBeltERTWebbingSecurityTay39Filled
+  components:
+    - type: StorageFill
+      contents:
+        - id: MagazinePulseSubMachinePistol
+          amount: 6
+
+- type: entity
+  noSpawn: true
+  parent: ClothingBackpackERTSecurity
+  id: ClothingBackpackERTSecurityTay39
+  components:
+    - type: Clothing
+      sprite: Clothing/OuterClothing/Hardsuits/ERTSuits/ertleader.rsi
+    - type: StorageFill
+      contents:
+        - id: BoxFlare
+          amount: 2
+        - id: CombatMedipen
+          amount: 3
+        - id: WeaponDisabler
+        - id: WeaponPulseSMGTritonM3
+        - id: MedkitAdvancedFilled
+          amount: 3
+        - id: BoxHandcuff
+        - id: WeaponPistolG22
+        - id: MagazinePistol
+          amount: 4
 

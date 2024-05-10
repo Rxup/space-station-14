@@ -1,4 +1,5 @@
-﻿using Content.Server.Mind.Commands;
+﻿using Content.Server.Ghost.Roles.Raffles;
+using Content.Server.Mind.Commands;
 using Content.Shared.Roles;
 
 namespace Content.Server.Ghost.Roles.Components
@@ -94,5 +95,11 @@ namespace Content.Server.Ghost.Roles.Components
         [DataField("whitelistRequired")]
         public bool WhitelistRequired = false;
         // end-backmen: whitelist
+        /// <summary>
+        /// If set, ghost role is raffled, otherwise it is first-come-first-serve.
+        /// </summary>
+        [DataField("raffle")]
+        [Access(typeof(GhostRoleSystem), Other = AccessPermissions.ReadWriteExecute)] // FIXME Friends
+        public GhostRoleRaffleConfig? RaffleConfig { get; set; }
     }
 }

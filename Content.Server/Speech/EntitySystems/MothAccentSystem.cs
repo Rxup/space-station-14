@@ -7,16 +7,17 @@ namespace Content.Server.Speech.EntitySystems;
 public sealed class MothAccentSystem : EntitySystem
 {
     [Dependency] private readonly IRobustRandom _random = default!; // Corvax-Localization
-    private static readonly Regex RegexLowerBuzz = new Regex("z{1,3}");
-    private static readonly Regex RegexUpperBuzz = new Regex("Z{1,3}");
 
-        // Corvax-Localization-Start
+    // Corvax-Localization-Start
     private static readonly Regex RegexLoc1_1 = new("ж{1,3}");
     private static readonly Regex RegexLoc1_2 = new("Ж{1,3}");
 
     private static readonly Regex RegexLoc2_1 = new("з{1,3}");
     private static readonly Regex RegexLoc2_2 = new("З{1,3}");
     // Corvax-Localization-End
+
+    private static readonly Regex RegexLowerBuzz = new Regex("z{1,3}");
+    private static readonly Regex RegexUpperBuzz = new Regex("Z{1,3}");
 
     public override void Initialize()
     {

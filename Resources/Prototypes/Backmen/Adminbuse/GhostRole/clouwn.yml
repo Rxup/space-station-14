@@ -1,8 +1,8 @@
 ﻿
 - type: entity
   id: CluwneGhostRole
-  name: Cluwne
-  suffix: ghostrole
+  name: Клувень
+  suffix: спавнер, гост роли, персонаж
   parent: MarkerBase
   components:
   - type: GhostTakeoverAvailable
@@ -12,6 +12,8 @@
     makeSentient: false
     name: Клувень
     description: Живой хаос на станции
+    raffle:
+      settings: short
   - type: CloningAppearance
     gear: CluwneGear
     components:

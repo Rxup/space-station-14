@@ -923,7 +923,7 @@
 - type: entity
   parent: ClothingOuterHardsuitSyndieCommander
   id: ClothingOuterHardsuitERTOperativeAlpha1
-  name: ERT leader's hardsuit
+  name: ERT alpha hardsuit
   description: A protective hardsuit worn by the leader of an emergency response team.
   components:
   - type: Sprite
@@ -957,6 +957,94 @@
         Piercing: 0.9
         Heat: 0.9
   - type: PNV
+
+- type: entity
+  parent: ClothingOuterHardsuitSyndieElite
+  id: ClothingOuterHardsuitERTLeaderTay39
+  name: ERT leader tay 39 hardsuit
+  description: A protective hardsuit worn by the leader of an emergency response team.
+  components:
+  - type: Sprite
+    sprite: Backmen/Clothing/OuterClothing/Hardsuits/ERTSuits/ertTraumaTeamLeader.rsi
+  - type: Clothing
+    sprite: Backmen/Clothing/OuterClothing/Hardsuits/ERTSuits/ertTraumaTeamLeader.rsi
+  - type: ToggleableClothing
+    clothingPrototype: ClothingHeadHelmetHardsuitERTLeaderTay39
+
+- type: entity
+  parent: ClothingHeadHelmetHardsuitSyndieElite
+  id: ClothingHeadHelmetHardsuitERTLeaderTay39
+  name: helmet ERT leader hardsuit
+  description: A special hardsuit helmet worn by members of an emergency response team.
+  components:
+  - type: Sprite
+    sprite: Backmen/Clothing/Head/Hardsuits/ERThelmets/ertTraumaTeamLeader.rsi
+  - type: Clothing
+    sprite: Backmen/Clothing/Head/Hardsuits/ERThelmets/ertTraumaTeamLeader.rsi
+  - type: PointLight
+    color: cyan
+
+- type: entity
+  parent: ClothingOuterHardsuitSyndieElite
+  id: ClothingOuterHardsuitERTTay39
+  name: ERT leader tay 39 hardsuit
+  description: A protective hardsuit worn by the leader of an emergency response team.
+  components:
+  - type: Sprite
+    sprite: Backmen/Clothing/OuterClothing/Hardsuits/ERTSuits/ertTraumaTeam.rsi
+  - type: Clothing
+    sprite: Backmen/Clothing/OuterClothing/Hardsuits/ERTSuits/ertTraumaTeam.rsi
+  - type: ToggleableClothing
+    clothingPrototype: ClothingHeadHelmetHardsuitERTTay39
+
+- type: entity
+  parent: ClothingHeadHelmetHardsuitSyndieElite
+  id: ClothingHeadHelmetHardsuitERTTay39
+  name: helmet ERT leader hardsuit
+  description: A special hardsuit helmet worn by members of an emergency response team.
+  components:
+  - type: Sprite
+    sprite: Backmen/Clothing/Head/Hardsuits/ERThelmets/ertTraumaTeam.rsi
+  - type: Clothing
+    sprite: Backmen/Clothing/Head/Hardsuits/ERThelmets/ertTraumaTeam.rsi
+  - type: PointLight
+    color: cyan
+
+- type: entity
+  parent: ClothingOuterHardsuitSyndieElite
+  id: ClothingOuterHardsuitERTMedicTay39
+  name: ERT medic tay 39 hardsuit
+  description: A protective hardsuit worn by the leader of an emergency response team.
+  components:
+  - type: Sprite
+    sprite: Backmen/Clothing/OuterClothing/Hardsuits/ERTSuits/ertTraumaTeamMedic.rsi
+  - type: Clothing
+    sprite: Backmen/Clothing/OuterClothing/Hardsuits/ERTSuits/ertTraumaTeamMedic.rsi
+  - type: ToggleableClothing
+    clothingPrototype: ClothingHeadHelmetHardsuitERTMedicTay39
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.8
+        Slash: 0.8
+        Piercing: 0.7
+        Heat: 0.2
+        Radiation: 0.01
+        Caustic: 0.5
+        Stun: 0.2
+
+- type: entity
+  parent: ClothingHeadHelmetHardsuitSyndieElite
+  id: ClothingHeadHelmetHardsuitERTMedicTay39
+  name: helmet ERT medic hardsuit
+  description: A special hardsuit helmet worn by members of an emergency response team.
+  components:
+  - type: Sprite
+    sprite: Backmen/Clothing/Head/Hardsuits/ERThelmets/ertTraumaTeamMedic.rsi
+  - type: Clothing
+    sprite: Backmen/Clothing/Head/Hardsuits/ERThelmets/ertTraumaTeamMedic.rsi
+  - type: PointLight
+    color: cyan
 
 #------------------------------------------------------
 
@@ -1484,6 +1572,9 @@
     whitelist:
       tags:
         - MagazineRifle
+        - MagazinePulseSubMachinePistol
+        - MagazinePulseShotgun
+        - MagazinePulseRifle
         - MagazineLightRifle
         - MagazineCaselessRifle
 
@@ -1791,6 +1882,15 @@
         - 2.051379050 # oxygen
       temperature: 293.15
     tankLowPressure: 30.0
+
+- type: entity
+  parent: ClothingMaskGasERT
+  id: ClothingMaskGasERTTay39
+  components:
+  - type: Sprite
+    sprite: Backmen/Clothing/Mask/traumamedic.rsi
+  - type: Clothing
+    sprite: Backmen/Clothing/Mask/traumamedic.rsi
 
 - type: parallax
   id: FastSky

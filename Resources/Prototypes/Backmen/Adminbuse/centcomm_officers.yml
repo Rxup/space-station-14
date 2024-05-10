@@ -23,6 +23,8 @@
       name: Представитель ЦК
       description: Летит на станцию, дабы удостовериться, насколько экипаж станции убог.
       whitelistRequired: true
+      raffle:
+        settings: default
       requirements:
         - !type:DepartmentTimeRequirement
           department: Command
@@ -59,6 +61,8 @@
       name: Оператор ЦК
       description: Оператор центрального командования, выполняет приказы офицера цк и координирует действия станции.
       whitelistRequired: true
+      raffle:
+        settings: default
       requirements:
         - !type:DepartmentTimeRequirement
           department: Command
@@ -122,6 +126,8 @@
     - type: GhostRole
       name: Начальник Безопасности ЦК
       description: Охрана ЦК, охраняет членов ЦК и саму ЦК.
+      raffle:
+        settings: default
       requirements:
         - !type:DepartmentTimeRequirement
           department: Security

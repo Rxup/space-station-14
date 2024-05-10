@@ -68,7 +68,6 @@ public sealed class FugitiveSystem : EntitySystem
     [Dependency] private readonly StationSystem _stationSystem = default!;
     [Dependency] private readonly IRobustRandom _random = default!;
     [Dependency] private readonly StationSpawningSystem _stationSpawning = default!;
-    [Dependency] private readonly FugitiveSystem _fugitiveSystem = default!;
     [Dependency] private readonly ObjectivesSystem _objectivesSystem = default!;
     [Dependency] private readonly RandomHelperSystem _randomHelper = default!;
     [Dependency] private readonly ExamineSystem _examine = default!;
@@ -181,7 +180,7 @@ public sealed class FugitiveSystem : EntitySystem
         {
             Log.Warning("No spawn points were available! MakeFugitive");
 
-            _fugitiveSystem.MakeFugitive(out args.SpawnResult, true);
+            MakeFugitive(out args.SpawnResult, true);
             return;
         }
 
@@ -397,7 +396,7 @@ public sealed class FugitiveSystem : EntitySystem
 
             foreach (var objectiveGroup in objectives.GroupBy(o => Comp<ObjectiveComponent>(o).Issuer))
             {
-                if (objectiveGroup.Key == "Космический банк")
+                if (objectiveGroup.Key == "SpaceBank")
                 {
                     continue;
                 }

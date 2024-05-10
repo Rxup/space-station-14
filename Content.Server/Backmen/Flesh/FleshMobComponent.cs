@@ -11,9 +11,9 @@ public sealed partial class FleshMobComponent : Component
     [ViewVariables(VVAccess.ReadWrite), DataField("soundDeath")]
     public SoundSpecifier? SoundDeath = new SoundPathSpecifier("/Audio/Animals/Flesh/flesh_pudge_dead.ogg");
 
-    [ViewVariables(VVAccess.ReadWrite),
-     DataField("deathMobSpawnId", customTypeSerializer: typeof(PrototypeIdSerializer<EntityPrototype>))]
-    public string DeathMobSpawnId = "MobFleshWorm";
+    [ViewVariables(VVAccess.ReadWrite)]
+    [DataField("deathMobSpawnId")]
+    public EntProtoId<FleshMobComponent>? DeathMobSpawnId;
 
     [DataField("deathMobSpawnCount"), ViewVariables(VVAccess.ReadWrite)]
     public int DeathMobSpawnCount = 0;

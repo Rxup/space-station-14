@@ -248,7 +248,7 @@ public sealed class StationSpawningSystem : SharedStationSpawningSystem
         return entity.Value;
     }
 
-    private void DoJobSpecials(JobComponent? job, EntityUid entity)
+    public void DoJobSpecials(JobComponent? job, EntityUid entity)
     {
         if (!_prototypeManager.TryIndex(job?.Prototype ?? string.Empty, out JobPrototype? prototype))
             return;

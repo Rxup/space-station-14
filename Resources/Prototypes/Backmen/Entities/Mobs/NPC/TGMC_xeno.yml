@@ -170,6 +170,8 @@
     name: Грудолом
     description: Молодой ксеноморф
     rules: "Эволюционируй в полноценного ксеноморфа."
+    raffle:
+      settings: default
   - type: SlowOnDamage
     speedModifierThresholds:
       5: 0.8
@@ -211,6 +213,8 @@
     name: Королева улья
     description: Командуй ульем ксеноморфов.
     rules: "Командуй ульем, защищай свою кладку яиц. Способности: Размах хвостом (стан на лкм или вокруг на пкм) Липкие корни, Строительство стен ксено (на G), Лечебные феромоны, Широкий удар (ПКМ)"
+    raffle:
+      settings: default
   - type: Body
     prototype: Xeno5hand
   - type: InnateTool
@@ -304,6 +308,8 @@
     name: Преторианец
     description: Защищай королеву и улей с помощью своих способностей.
     rules: "Координируй улей. Защищай и лечи королеву. Способности: Липкие корни, Лечебные феромоны, Кислотный плевок, Широкий удар (ПКМ)"
+    raffle:
+      settings: default
   - type: Body
     prototype: Xeno4hand
   - type: InnateTool
@@ -392,6 +398,8 @@
     name: Воин
     description: Защитник улья
     rules: "Защищай королеву и гнездо. Способность: Широкий удар (ПКМ), Сбивающий удар."
+    raffle:
+      settings: default
   - type: NameIdentifier
     group: Xeno
   - type: Body
@@ -428,6 +436,8 @@
     name: Трутень
     description: Сделай из улья крепость. Лечи.
     rules: "Укрепляй улей для защиты королевы, Лечи ксеноморфов. Способности: Липкие корни, Строительство стен ксено (на G), Лечение, Широкий удар (ПКМ)"
+    raffle:
+      settings: default
   - type: Body
     prototype: Xeno4hand
   - type: InnateTool
@@ -487,6 +497,8 @@
     name: Часовой
     description: Жги десантников кислотой.
     rules: "Защищай королеву и жги космодесантников с расстояния. Способности: Кислотный плевок, Широкий удар (ПКМ)"
+    raffle:
+      settings: default
   - type: Body
     prototype: Xeno4hand
   - type: HTN
@@ -545,6 +557,8 @@
     name: Плевальщик
     description: Жги десантников кислотой.
     rules: "Защищай королеву и жги космодесантников с расстояния. Способности: Кислотный плевок, Широкий удар (ПКМ)"
+    raffle:
+      settings: default
   - type: Body
     prototype: Xeno5hand
   - type: HTN
@@ -604,6 +618,8 @@
     name: Разведчик
     description: Делайте любимую тактику всех любителей dark souls, тыкнули и убежали.
     rules: "Слушай королеву, проводи разведку и устраивай засады. Способности: Быстрый как понос"
+    raffle:
+      settings: default
   - type: Sprite
     drawdepth: Mobs
     sprite: Backmen/test/base/rsi/Textures/Mob/xeno/runner.rsi
@@ -662,6 +678,8 @@
     name: Охотник
     description: Устраивай засады на космодесант.
     rules: "Слушай королеву, проводи разведку и устраивай засады. Способности: Невидимость"
+    raffle:
+      settings: default
   - type: Sprite
     drawdepth: Mobs
     sprite: Backmen/test/base/rsi/Textures/Mob/xeno/hunter.rsi
@@ -725,6 +743,8 @@
     name: Крушитель
     description: Круши всё на своём пути.
     rules: "Используй свою прочность и разрушительную силу, слушай приказы королевы. Способности: Широкий удар (ПКМ), защитный гребень."
+    raffle:
+      settings: default
   - type: Body
     prototype: Xeno3hand
   - type: Damageable
@@ -1797,6 +1817,8 @@
     name: Яйцо ксеноморфа
     description: Готово вылупиться
     rules: "Вырасти в полноценного защитника улья."
+    raffle:
+      settings: default
   - type: Polymorphable
     innatePolymorphs: [ EggToLarva ]
 

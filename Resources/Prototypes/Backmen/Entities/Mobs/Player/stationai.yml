@@ -234,6 +234,7 @@
         - map: [ "enum.AiVisualLayers.NotInEye" ]
           state: not_in_eye
 
+    - type: CriminalRecordsConsole
     - type: Visibility
     - type: UserInterface
       interfaces:
