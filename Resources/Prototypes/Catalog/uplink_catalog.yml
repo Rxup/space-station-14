@@ -451,7 +451,7 @@
   id: UplinkAmmoBundle
   name: uplink-ammo-bundle-name
   description: uplink-ammo-bundle-desc
-  productEntity: ClothingBackpackDuffelSyndicateAmmoFilled
+  productEntity: ClothingBackpackDuffelSyndicateAmmoBackmenFilled
   cost:
     Telecrystal: 15
   categories:
@@ -585,7 +585,7 @@
   id: UplinkMedsBundle
   name: uplink-meds-bundle-name
   description: uplink-meds-bundle-desc
-  productEntity: ClothingBackpackDuffelSyndicateMedicalBundleFilled
+  productEntity: ClothingBackpackDuffelSyndicateMedicalBundleBackmenFilled
   cost:
     Telecrystal: 20
   categories:
