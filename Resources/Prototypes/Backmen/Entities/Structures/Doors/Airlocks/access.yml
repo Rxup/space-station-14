@@ -234,8 +234,9 @@
   id: WindoorMTFCommandLocked
   suffix: МТФ Command
   components:
-  - type: AccessReader
-    access: [["MTFL"]]
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsMTFCommand ]
 
 #-----------------------------------Cpls airlock
 
@@ -294,8 +295,9 @@
   id: WindoorMTFCplsLocked
   suffix: МТФ Cpls
   components:
-  - type: AccessReader
-    access: [["MTFE"], ["MTFM"]]
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsMTFCpls ]
 
 #-----------------------------------Medick airlock
 
@@ -354,8 +356,9 @@
   id: WindoorMTFMedicalLocked
   suffix: МТФ Medical
   components:
-  - type: AccessReader
-    access: [["MTFM"]]
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsMTFMedic ]
 
 #-----------------------------------Engineer airlock
 
@@ -414,8 +417,9 @@
   id: WindoorMTFEngineeringLocked
   suffix: МТФ Engineering
   components:
-  - type: AccessReader
-    access: [["MTFE"]]
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsMTFEngineer ]
 
 #-----------------------------------Security airlock
 
@@ -474,8 +478,9 @@
   id: WindoorMTFSecurityLocked
   suffix: МТФ Security
   components:
-  - type: AccessReader
-    access: [["MTFS"]]
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsMTFSecurity ]
 
 #-----------------------------------Janitor airlock
 
@@ -534,8 +539,9 @@
   id: WindoorMTFJanitorLocked
   suffix: МТФ Janitor
   components:
-  - type: AccessReader
-    access: [["MTFJ"]]
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsMTFJanitor ]
 
 #-----------------------------------MTF Base airlock
 
@@ -612,5 +618,34 @@
   id: WindoorMTFLocked
   suffix: МТФ
   components:
-  - type: AccessReader
-    access: [["MTF"]]
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsMTF ]
+
+#----UEG
+
+- type: entity
+  parent: Airlock
+  id: AirlockEGov
+  suffix: EarthGov
+  components:
+  - type: Sprite
+    sprite: Backmen/Structures/Doors/Airlocks/Airlock/UEG.rsi
+
+- type: entity
+  parent: AirlockEGov
+  id: AirlockEGovLocked
+  suffix: EarthGov, Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsUEG ]
+
+- type: entity
+  parent: AirlockEGov
+  id: AirlockEGovLockedCommand
+  suffix: EarthGov, Locked Command
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsUEGCommand]
