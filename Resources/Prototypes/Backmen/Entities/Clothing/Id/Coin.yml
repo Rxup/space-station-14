@@ -45,8 +45,10 @@
     fullName: Командир Отряда
     jobIcon: JobIconSergant
   - type: Access
-    groups:
+    tags:
     - EarthGov
+    - EarthGovCommand
+    groups:
     - AllAccess
 
 - type: statusIcon
