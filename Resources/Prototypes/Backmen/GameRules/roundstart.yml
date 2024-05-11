@@ -3,6 +3,8 @@
   parent: BaseGameRule
   noSpawn: true
   components:
+    - type: GameRule
+      minPlayers: 15
     - type: FleshCultRule
       faction: Flesh
 
@@ -11,6 +13,8 @@
   parent: BaseGameRule
   noSpawn: true
   components:
+  - type: GameRule
+    minPlayers: 15
   - type: BlobGameRule
 
 - type: entity
@@ -25,6 +29,8 @@
   parent: BaseGameRule
   noSpawn: true
   components:
+  - type: GameRule
+    minPlayers: 15
   - type: BloodsuckerRule
 
 - type: entity
@@ -51,6 +57,8 @@
   parent: BaseGameRule
   noSpawn: true
   components:
+    - type: GameRule
+      minPlayers: 1
     - type: ShipwreckedRule
       spawnPointTraveller: SpawnPointShipwreckTraveller
       availableJobs:

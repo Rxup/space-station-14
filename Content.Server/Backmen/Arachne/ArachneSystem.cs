@@ -26,6 +26,7 @@ using Content.Server.Body.Components;
 using Content.Server.Backmen.Vampiric;
 using Content.Server.Speech.Components;
 using Content.Shared.Backmen.Abilities;
+using Content.Shared.Backmen.Vampiric.Components;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Player;
 using Robust.Shared.Physics.Components;
