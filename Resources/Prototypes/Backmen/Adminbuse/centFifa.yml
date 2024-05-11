@@ -2291,8 +2291,8 @@
     gloves: ClothingHandsGlovesCombat
     outerClothing: ClothingOuterHardsuitCBURN
     suitstorage: WeaponPulseRifleXMLG
-    id: IdCardRXBZZ
-    ears: ClothingHeadsetCentComCCMTFSR6
+    id: idcoinRXBZZ
+    ears: ClothingHeadsetEarthGov
     belt: WeaponAdvancedLaser
     pocket1: ClothingPounchRXBZZFilled
     pocket2: ClothingMedicalPounchRXBZZFilled
@@ -2309,8 +2309,8 @@
     gloves: ClothingHandsGlovesCombat
     outerClothing: ClothingOuterHardsuitCBURN
     suitstorage: WeaponflamethrowerSG
-    id: IdCardRXBZZ
-    ears: ClothingHeadsetCentComCCMTFSR6
+    id: idcoinRXBZZ
+    ears: ClothingHeadsetEarthGov
     belt: ClothingBeltMilitaryWebbingFlamer
     pocket1: ClothingPounchRXBZZSpecialistFilled
     pocket2: ClothingMedicalPounchRXBZZFilled
@@ -2327,9 +2327,9 @@
     gloves: ClothingHandsGlovesCombat
     outerClothing: ClothingOuterHardsuitCBURNLeader
     suitstorage: WeaponPulseRifleXMLG
-    id: IdCardRXBZZLeader
+    id: idcoinRXBZZSergant
     head: ClothingHeadHatERTLeaderBeret
-    ears: ClothingHeadsetCentComCCMTFSR6
+    ears: ClothingHeadsetEarthGov
     belt: WeaponAdvancedLaser
     pocket1: ClothingPounchRXBZZFilled
     pocket2: ClothingMedicalPounchRXBZZFilled
