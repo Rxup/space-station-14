@@ -236,7 +236,7 @@ namespace Content.Server.Preferences.Managers
             msg.Preferences = prefsData.Prefs;
             msg.Settings = new GameSettings
             {
-                MaxCharacterSlots = GetMaxUserCharacterSlots(session.UserId),  // Corvax-Sponsors
+                MaxCharacterSlots = GetMaxUserCharacterSlots(session.UserId) // Corvax-Sponsors
             };
             _netManager.ServerSendMessage(msg, session.Channel);
         }
