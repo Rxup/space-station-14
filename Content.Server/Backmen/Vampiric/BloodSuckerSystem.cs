@@ -10,35 +10,27 @@ using Content.Server.Atmos.Components;
 using Content.Server.Backmen.Vampiric.Role;
 using Content.Server.Body.Components;
 using Content.Server.Body.Systems;
-using Content.Server.Chemistry.Containers.EntitySystems;
 using Content.Server.Popups;
-using Content.Server.HealthExaminable;
 using Content.Server.DoAfter;
 using Content.Server.Forensics;
 using Content.Server.GameTicking;
 using Content.Server.Mind;
 using Content.Server.Nutrition.Components;
-using Content.Server.Polymorph.Systems;
 using Content.Server.Roles;
-using Content.Shared.Actions;
+using Content.Shared.Backmen.Vampiric.Components;
 using Content.Shared.Body.Components;
 using Content.Shared.Body.Part;
 using Content.Shared.Chemistry;
 using Content.Shared.Chemistry.EntitySystems;
 using Content.Shared.Chemistry.Reagent;
-using Content.Shared.FixedPoint;
+using Content.Shared.HealthExaminable;
 using Content.Shared.Mind;
-using Content.Shared.Mobs.Systems;
 using Content.Shared.Nutrition.Components;
 using Content.Shared.Nutrition.EntitySystems;
-using Content.Shared.Polymorph;
 using Content.Shared.Roles;
-using Content.Shared.Stunnable;
-using Robust.Shared.Audio;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Player;
-using Robust.Shared.Random;
 using Robust.Shared.Utility;
 
 namespace Content.Server.Backmen.Vampiric;
@@ -69,7 +61,7 @@ public sealed class BloodSuckerSystem : SharedBloodSuckerSystem
     {
         base.Initialize();
         SubscribeLocalEvent<BloodSuckerComponent, GetVerbsEvent<InnateVerb>>(AddSuccVerb);
-        SubscribeLocalEvent<BloodSuckedComponent, HealthBeingExaminedEvent>(OnHealthExamined);
+
         SubscribeLocalEvent<BloodSuckedComponent, DamageChangedEvent>(OnDamageChanged);
         SubscribeLocalEvent<BloodSuckerComponent, BloodSuckDoAfterEvent>(OnDoAfter);
 
@@ -218,12 +210,6 @@ public sealed class BloodSuckerSystem : SharedBloodSuckerSystem
             Priority = 2
         };
         args.Verbs.Add(verb);
-    }
-
-    private void OnHealthExamined(EntityUid uid, BloodSuckedComponent component, HealthBeingExaminedEvent args)
-    {
-        args.Message.PushNewline();
-        args.Message.AddMarkup(Loc.GetString("bloodsucked-health-examine", ("target", uid)));
     }
 
     private void OnDamageChanged(EntityUid uid, BloodSuckedComponent component, DamageChangedEvent args)

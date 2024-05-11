@@ -1,4 +1,4 @@
-namespace Content.Server.Backmen.Vampiric;
+namespace Content.Shared.Backmen.Vampiric.Components;
 
 [RegisterComponent]
 public sealed partial class BloodSuckerComponent : Component
