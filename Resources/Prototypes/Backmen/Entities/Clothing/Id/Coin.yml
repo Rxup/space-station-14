@@ -25,7 +25,7 @@
   noSpawn: true
   components:
   - type: IdCard
-    jobTitle: Войска РХБЗЗ
+    jobTitle: Войска РХБЗЗ Sierra-6
     fullName: Оперативник
     jobIcon: JobIconMarin
   - type: Access
@@ -41,7 +41,7 @@
   noSpawn: true
   components:
   - type: IdCard
-    jobTitle: Войска РХБЗЗ
+    jobTitle: Войска РХБЗЗ Sierra-6
     fullName: Командир Отряда
     jobIcon: JobIconSergant
   - type: Access
