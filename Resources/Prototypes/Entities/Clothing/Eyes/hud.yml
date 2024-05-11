@@ -175,6 +175,10 @@
     damageContainers:
     - Biological
     - HalfSpirit
+  - type: ShowHealthIcons
+    damageContainers:
+    - Biological
+    - HalfSpirit
 
 - type: entity
   parent: [ClothingEyesBase, ShowSecurityIcons]
@@ -193,6 +197,7 @@
   - type: ShowHealthIcons
     damageContainers:
     - Biological
+    - HalfSpirit
   - type: ShowSyndicateIcons
 
 - type: entity
