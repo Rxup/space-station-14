@@ -30,11 +30,11 @@ passenger-manifest-end-line = -< КОНЕЦ МАНИФЕСТА >-
 
 ## Jobs
 
-job-name-explorer = Исследователь
+job-name-explorer = исследователь
 job-description-explorer = Составление карт неизвестной планеты для обеспечения безопасности и успешного исследования.
-job-name-freelancer = Наёмник
+job-name-freelancer = наёмник
 job-description-freelancer = Универсальный профи, возьмется за любую работу. Не забудьте заплатить!
-job-name-student = Студент
+job-name-student = студент
 job-description-student = Студент который готовится к экзаменам.
 job-supervisors-generic = ваши работодатели
 job-supervisors-self = вы сами
