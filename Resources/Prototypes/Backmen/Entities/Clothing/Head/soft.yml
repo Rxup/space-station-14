@@ -55,6 +55,6 @@
   description: Кепка полиции ОПЗ, имеет какарду министерства внутренних дел ОПЗ.
   components:
   - type: Sprite
-    sprite: Backmen/Clothing/Head/Softmvdcap.rsi
+    sprite: Backmen/Clothing/Head/Soft/mvdcap.rsi
   - type: Clothing
-    sprite: Backmen/Clothing/Head/Softmvdcap.rsi
+    sprite: Backmen/Clothing/Head/Soft/mvdcap.rsi
