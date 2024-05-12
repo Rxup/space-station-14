@@ -1244,6 +1244,7 @@
   parent: CentcomIDCardDeathsquad
   id: IdCardRXBZZLeader
   name: Id card leader CBURN
+  noSpawn: true
   components:
   - type: Sprite
     layers:
@@ -1268,6 +1269,7 @@
   parent: CentcomIDCardDeathsquad
   id: IdCardRXBZZ
   name: Id карта Оперативника РХБЗЗ
+  noSpawn: true
   components:
   - type: Sprite
     layers:

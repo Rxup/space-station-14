@@ -95,3 +95,21 @@
   components:
   - type: AccessReader
     access: [["MTF"]]
+
+#----UEG
+
+- type: entity
+  parent: DoorElectronics
+  id: DoorElectronicsUEG
+  suffix: EarthGov, Locked
+  components:
+  - type: AccessReader
+    access: [["EarthGov"]]
+
+- type: entity
+  parent: DoorElectronics
+  id: DoorElectronicsUEGCommand
+  suffix: EarthGovCommand, Locked
+  components:
+  - type: AccessReader
+    access: [["EarthGovCommand"]]
