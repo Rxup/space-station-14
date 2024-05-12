@@ -176,7 +176,7 @@ public sealed class SpecForcesSystem : EntitySystem
         EnsureComp<SpecForceComponent>(uid);
         if (spawnObj.TryGetComponent<GhostRoleComponent>(out var tplGhostRoleComponent, _componentFactory))
         {
-            var comp = (GhostRoleComponent) _serialization.CreateCopy(tplGhostRoleComponent, notNullableOverride: true);
+            var comp = _serialization.CreateCopy(tplGhostRoleComponent, notNullableOverride: true);
             comp.RaffleConfig = new GhostRoleRaffleConfig
             {
                 Settings = "default"
@@ -217,22 +217,26 @@ public sealed class SpecForcesSystem : EntitySystem
 
         // Spawn Guaranteed SpecForces from the prototype.
         var toSpawnGuaranteed = EntitySpawnCollection.GetSpawns(proto.GuaranteedSpawn, _random);
+        var countGuaranteed = 0;
         foreach (var mob in toSpawnGuaranteed)
         {
             var spawned = SpawnEntity(mob, _random.Pick(spawns));
             _sawmill.Info($"Successfully spawned {ToPrettyString(spawned)} SpecForce.");
+            countGuaranteed++;
         }
 
         // Count how many other forces there should be.
-        var countExtra = _playerManager.PlayerCount / proto.SpawnPerPlayers;
-        countExtra = Math.Max(0, countExtra - proto.GuaranteedSpawn.Count); // Either zero or bigger than zero, no negatives
-        countExtra = Math.Min(countExtra, proto.MaxRolesAmount - proto.GuaranteedSpawn.Count); // If bigger than MaxAmount, set to MaxAmount and extract already spawned roles
+        var countExtra = (_playerManager.PlayerCount - proto.SpawnPerPlayers) / proto.SpawnPerPlayers;
+        // Either zero or bigger than zero, no negatives
+        countExtra = Math.Max(0, countExtra);
+        // If bigger than MaxAmount, set to MaxAmount and extract already spawned roles
+        countExtra = Math.Min(countExtra, proto.MaxRolesAmount - countGuaranteed);
 
         // Spawn Guaranteed SpecForces from the prototype.
         // If all mobs from the list are spawned and we still have free slots, restart the cycle again.
-        var toSpawnForces = EntitySpawnCollection.GetSpawns(proto.SpecForceSpawn, _random);
         while (countExtra > 0)
         {
+            var toSpawnForces = EntitySpawnCollection.GetSpawns(proto.SpecForceSpawn, _random);
             foreach (var mob in toSpawnForces.Where( _ => countExtra > 0))
             {
                 countExtra--;
@@ -250,7 +254,7 @@ public sealed class SpecForcesSystem : EntitySystem
     private EntityUid? SpawnShuttle(string shuttlePath)
     {
         var shuttleMap = _mapManager.CreateMap();
-        var options = new MapLoadOptions()
+        var options = new MapLoadOptions
         {
             LoadMap = true
         };
@@ -284,7 +288,8 @@ public sealed class SpecForcesSystem : EntitySystem
             _chatSystem.DispatchStationAnnouncement(station,
                 Loc.GetString(proto.AnnouncementText),
                 Loc.GetString(proto.AnnouncementTitle),
-                playTts, proto.AnnouncementSoundPath);
+                playTts,
+                proto.AnnouncementSoundPath);
         }
     }
 
