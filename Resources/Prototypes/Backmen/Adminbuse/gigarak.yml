@@ -672,22 +672,6 @@
           components:
             - IdCard
 
-- type: accessLevel
-  id: EarthGovCommand
-  name: ОПЗ Командующий
-
-- type: accessLevel
-  id: EarthGovSpecialits
-  name: ОПЗ Специальный
-
-- type: accessLevel
-  id: EarthGovMedic
-  name: ОПЗ Медицинский
-
-- type: accessLevel
-  id: EarthGov
-  name: ОПЗ Общий
-
 - type: entity
   name: 711-MarkCL Rivet Gun
   parent: BaseWeaponPistol
@@ -1122,31 +1106,6 @@
 
 - type: entity
   parent: Clothing
-  id: idcoin
-  name: жетон
-  components:
-  - type: Sprite
-    sprite: Backmen/test/base/rsi/Textures/id.rsi
-    state: base
-  - type: Clothing
-    slots:
-    - idcard
-  - type: Item
-    heldPrefix: default
-  - type: IdCard
-    jobTitle: Армия ОПЗ
-    fullName: Военно-служащий
-    jobIcon: JobIconEarth
-  - type: Access
-    tags:
-    - EarthGov
-  - type: Tag
-    tags:
-    - DoorBumpOpener
-    - WhitelistChameleon
-
-- type: entity
-  parent: Clothing
   id: idbadgepmc
   name: pmc badge
   components:
@@ -1389,97 +1348,6 @@
     BattleMedipen: 10
     BoxBodyBag: 10
     CheapRollerBed: 10
-
-- type: entity
-  name: таблетка бикаридина
-  description: Без рецепта не отпускать!
-  parent: Pill
-  id: PillBicaridine
-  components:
-  - type: SolutionContainerManager
-    solutions:
-      food:
-        maxVol: 50
-        reagents:
-        - ReagentId: Bicaridine
-          Quantity: 15
-
-- type: entity
-  name: баночка таблеток бикаридина
-  description: Без рецепта не отпускать!
-  parent: PillCanister
-  id: PillCanisterBicaridine
-  suffix: MarinesGear
-  components:
-  - type: StorageFill
-    contents:
-      - id: PillBicaridine
-        amount: 9
-
-- type: entity
-  name: таблетка дермалина
-  description: Без рецепта не отпускать!
-  parent: Pill
-  id: PillDermaline
-  components:
-  - type: SolutionContainerManager
-    solutions:
-      food:
-        maxVol: 50
-        reagents:
-        - ReagentId: Dermaline
-          Quantity: 15
-
-- type: entity
-  name: баночка таблеток дермалина
-  description: Без рецепта не отпускать!
-  parent: PillCanister
-  id: PillCanisterDermaline
-  suffix: MarinesGear
-  components:
-  - type: StorageFill
-    contents:
-      - id: PillDermaline
-        amount: 9
-
-- type: entity
-  name: таблетка диловена
-  description: Без рецепта не отпускать!
-  parent: Pill
-  id: PillDylovene
-  suffix: MarinesGear
-  components:
-  - type: SolutionContainerManager
-    solutions:
-      food:
-        maxVol: 50
-        reagents:
-        - ReagentId: Dylovene
-          Quantity: 15
-
-- type: entity
-  name: баночка таблеток диловена
-  description: Без рецепта не отпускать!
-  parent: PillCanister
-  id: PillCanisterDylovene
-  suffix: MarinesGear
-  components:
-  - type: StorageFill
-    contents:
-      - id: PillDylovene
-        amount: 9
-
-- type: entity
-  name: баночка таблеток дексалина
-  description: Без рецепта не отпускать!
-  parent: PillCanister
-  id: PillCanisterDexalin
-  suffix: MarinesGear
-  components:
-  - type: StorageFill
-    contents:
-      - id: PillDexalin
-        amount: 9
 
 - type: Tag
   id: EarthGov
@@ -2117,194 +1985,6 @@
       - id: WeaponRifleBR64
         prob: 0.1
 
-
-- type: entity
-  parent: BaseStorageItem
-  id: ClothingPounchMTF
-  name: подсумок общего назначения
-  description: Тактический штурмовой подсумок.
-  components:
-  - type: Sprite
-    netsync: false
-    state: icon
-    sprite: Backmen/Clothing/Belt/Gear/generalpounch.rsi
-  - type: Clothing
-    slots:
-      - Pocket
-  - type: Item
-    size: Large
-  - type: Storage
-    maxItemSize: Small
-    grid:
-    - 0,0,3,1
-
-- type: entity
-  parent: BaseStorageItem
-  id: ClothingAmmoPounch
-  name: магазинный подсумок
-  description: Тактический штурмовой подсумок для хранения магазинов.
-  components:
-  - type: Sprite
-    netsync: false
-    state: icon
-    sprite: Backmen/Clothing/Belt/Gear/ammopounch.rsi
-  - type: Clothing
-    slots:
-      - Pocket
-  - type: Item
-    size: Large
-  - type: Storage
-    maxItemSize: Small
-    grid:
-    - 0,0,3,1
-    whitelist:
-      tags:
-        - MagazineRifle
-        - MagazineLightRifle
-        - MagazineCaselessRifle
-        - MagazineHeavyRifle62
-        - MagazineAntiMaterielRifle
-
-- type: entity
-  parent: BaseStorageItem
-  id: ClothingMedicalPounch
-  name: медицинский подсумок
-  description: Тактический штурмовой подсумок для хранения медикоментов.
-  components:
-  - type: Sprite
-    netsync: false
-    state: icon
-    sprite: Backmen/Clothing/Belt/Gear/medicalpounch.rsi
-  - type: Clothing
-    slots:
-      - Pocket
-  - type: Item
-    size: Large
-  - type: Storage
-    maxItemSize: Small
-    grid:
-    - 0,0,2,1
-    whitelist:
-      tags:
-        - Wrench
-        - Bottle
-        - Spray
-        - Brutepack
-        - Bloodpack
-        - Gauze
-        - Ointment
-        - CigPack
-        - PillCanister
-        - Radio
-        - DiscreteHealthAnalyzer
-      components:
-        - Hypospray
-        - Injector
-        - Pill
-
-- type: entity
-  parent: BaseStorageItem
-  id: ClothingPistolPounch
-  name: пистолетная кобура
-  description: Кобура для пистолетов.
-  components:
-  - type: Sprite
-    netsync: false
-    state: icon
-    sprite: Backmen/Clothing/Belt/Gear/pistolpounch.rsi
-  - type: Clothing
-    slots:
-      - Pocket
-  - type: Item
-    size: Large
-  - type: Storage
-    maxItemSize: Small
-    grid:
-    - 0,0,1,1
-    whitelist:
-      components:
-        - Gun
-      tags:
-        - MagazinePistol
-
-- type: entity
-  parent: BaseStorageItem
-  id: ClothingShellPounch
-  name: подсумок для дроби
-  description: Тактический штурмовой подсумок для хранения дроби.
-  components:
-  - type: Sprite
-    netsync: false
-    state: icon
-    sprite: Backmen/Clothing/Belt/Gear/shotgunpounch.rsi
-  - type: Clothing
-    slots:
-      - Pocket
-  - type: Item
-    size: Large
-  - type: Storage
-    maxItemSize: Small
-    grid:
-    - 0,0,3,1
-    whitelist:
-      tags:
-        - ShellShotgun
-
-- type: entity
-  parent: ClothingBeltStorageBase
-  id: ClothingBeltAmmo
-  name: ammo belt
-  description: A tactical assault belt.
-  components:
-  - type: Sprite
-    sprite: Backmen/Clothing/Belt/Gear/ammobelt.rsi
-  - type: Clothing
-    sprite: Backmen/Clothing/Belt/Gear/ammobelt.rsi
-  - type: Storage
-    maxItemSize: Small
-    grid:
-    - 0,0,3,2
-    whitelist:
-      tags:
-        - MagazineRifle
-        - MagazineLightRifle
-        - MagazineCaselessRifle
-        - MagazineHeavyRifle62
-        - MagazineAntiMaterielRifle
-
-- type: entity
-  id: MagazineLightMachineGunDrum
-  name: барабанный магазин (.20 винтовочный)
-  parent: BaseItem
-  components:
-  - type: Tag
-    tags:
-      - MagazineLightMachineGunDrum
-  - type: BallisticAmmoProvider
-    mayTransfer: true
-    proto: CartridgeRifle
-    whitelist:
-      tags:
-        - CartridgeRifle
-    capacity: 250
-  - type: Item
-    size: Normal
-  - type: ContainerContainer
-    containers:
-      ballistic-ammo: !type:Container
-  - type: Sprite
-    sprite: Backmen/Objects/Weapons/Gunsx64/Magazines/Heavy/mg60.rsi
-    layers:
-    - state: base
-      map: ["enum.GunVisualLayers.Base"]
-    - state: mag-1
-      map: ["enum.GunVisualLayers.Mag"]
-  - type: MagazineVisuals
-    magState: mag
-    steps: 2
-    zeroVisible: false
-  - type: Appearance
-
 - type: startingGear
   id: ChronoLegionnaireGear
   equipment:
@@ -2562,30 +2242,6 @@
           components:
             - IdCard
 
-- type: accessLevel
-  id: MTF
-  name: ДСО Общий
-
-- type: accessLevel
-  id: MTFL
-  name: ДСО Командный
-
-- type: accessLevel
-  id: MTFS
-  name: ДСО Охранный
-
-- type: accessLevel
-  id: MTFJ
-  name: ДСО Уборочный
-
-- type: accessLevel
-  id: MTFE
-  name: ДСО Инженерный
-
-- type: accessLevel
-  id: MTFM
-  name: ДСО Медицинский
-
 - type: entity
   parent: WallPlastitaniumIndestructible
   id: WallPlastitShuttleWall
@@ -2637,7 +2293,7 @@
   suffix: Корабельный fighterR
   components:
     - type: GridFill
-      path: /Maps/Backmen/Grids/no_mad/fighterR.yml 
+      path: /Maps/Backmen/Grids/no_mad/fighterR.yml
 
 - type: entity
   parent: AirlockGlassShuttle
@@ -2645,7 +2301,7 @@
   suffix: Корабельный fighterB
   components:
     - type: GridFill
-      path: /Maps/Backmen/Grids/no_mad/fighterB.yml 
+      path: /Maps/Backmen/Grids/no_mad/fighterB.yml
 
 - type: entity
   id: ShuttleCruiserWindow
@@ -2878,123 +2534,6 @@
       - state: equipped-OUTERCLOTHING-belt
       - state: equipped-OUTERCLOTHING
 
-- type: entity
-  parent: ClothingHandsBase
-  id: ClothingStandardRing
-  name: silver ring
-  description: Repainted steel ring.
-  components:
-  - type: Sprite
-    sprite: Backmen/test/base/rsi/Textures/Misc/rings.rsi
-    state: silverring
-  - type: Clothing
-    sprite: Backmen/test/base/rsi/Textures/Misc/rings.rsi
-    equippedPrefix: silver
-  - type: Item
-    size: Small
-  - type: StaticPrice
-    price: 1
-
-- type: entity
-  parent: ClothingStandardRing
-  id: ClothingSilverSapphireRing
-  name: ring with sapphire
-  description: Cheap replica of a sapphire made of glass.
-  components:
-  - type: Sprite
-    layers:
-    - state: silverring_frame
-    - state: sapphire
-  - type: StaticPrice
-    price: 5
-
-- type: entity
-  parent: ClothingStandardRing
-  id: ClothingGoldRing
-  name: golden ring
-  description: Ring made of a real gold!
-  components:
-  - type: Sprite
-    layers:
-    - state: goldring
-  - type: Clothing
-    equippedPrefix: gold
-  - type: StaticPrice
-    price: 1000
-
-- type: entity
-  parent: ClothingStandardRing
-  id: ClothingGoldRubyRing
-  name: golden ring with ruby
-  description: Golden ring with ruby!
-  components:
-  - type: Sprite
-    layers:
-    - state: goldring_frame
-    - state: ruby
-  - type: Clothing
-    equippedPrefix: gold
-  - type: StaticPrice
-    price: 10000
-
-- type: entity
-  parent: ClothingStandardRing
-  id: ClothingGlowingGoldRing
-  name: shiny golden ring
-  description: A ring made from ultra-rare gold materials.
-  components:
-  - type: Sprite
-    layers:
-    - state: goldring
-    - state: gold-glowing
-      shader: unshaded
-  - type: Clothing
-    clothingVisuals:
-      gloves:
-      - state: gold-equipped-HAND
-      - state: gold-glowing-equipped-HAND
-        shader: unshaded
-  - type: StaticPrice
-    price: 20000
-
-- type: entity
-  parent: ClothingGlowingGoldRing
-  id: ClothingGlowingGoldRubyRing
-  name: shiny golden ring with ruby
-  description: A ring made from ultra-rare gold materials and a rare space ruby!
-  components:
-  - type: Sprite
-    layers:
-    - state: goldring_frame
-    - state: goldframed-glowing
-      shader: unshaded
-    - state: ruby
-    - state: ruby-glowing
-      shader: unshaded
-  - type: StaticPrice
-    price: 90000
-
-- type: entity
-  parent: ClothingStandardRing
-  id: ClothingGlowingSilverSapphireRing
-  name: shiny silver ring with sapphire
-  description: Simple silver ring and a rare space sapphire!
-  components:
-  - type: Sprite
-    layers:
-    - state: silverring_frame
-    - state: sapphire
-      shader: unshaded
-    - state: sapphire-glowing
-      shader: unshaded
-  - type: Clothing
-    clothingVisuals:
-      gloves:
-      - state: silver-equipped-HAND
-        shader: unshaded
-  - type: StaticPrice
-    price: 12000
-
 #ERP STUFF------------------------------------------------
 
 - type: entity
@@ -3094,55 +2633,6 @@
           types:
             Bloodloss: -10
 
-- type: reagent
-  id: Baroleporazine
-  name: reagent-name-leporazine
-  group: Medicine
-  desc: reagent-desc-leporazine
-  physicalDesc: reagent-physical-desc-pungent
-  flavor: medicine
-  color: "#ff7db5"
-  metabolisms:
-    Medicine:
-      effects:
-      - !type:HealthChange
-        damage:
-          types:
-            Cold: -4
-      - !type:AdjustTemperature
-        conditions:
-        - !type:Temperature
-          max: 293.15
-        amount: 100000 # thermal energy, not temperature!
-      - !type:AdjustTemperature
-        conditions:
-        - !type:Temperature
-          min: 293.15
-        amount: -10000
-      - !type:PopupMessage
-        type: Local
-        visualType: Medium
-        messages: [ "leporazine-effect-temperature-adjusting" ]
-        probability: 0.2
-      - !type:AdjustReagent
-        reagent: Fresium
-        amount: -5
-      - !type:GenericStatusEffect
-        key: PressureImmunity
-        component: PressureImmunity
-      - !type:GenericStatusEffect
-        key: Stutter
-        component: StutteringAccent
-      - !type:Jitter
-      - !type:Emote
-        emote: Scream
-        probability: 0.2
-      - !type:PopupMessage
-        type: Local
-        visualType: Large
-        messages: [ "barozine-effect-skin-burning", "barozine-effect-muscle-contract" ]
-        probability: 0.1
-
 - type: entity
   parent: BaseItem
   id: AccessConfiguratorALLACCESS
@@ -3236,13 +2726,13 @@
       containers:
         AccessOverrider-privilegedId: !type:ContainerSlot
 
-- type: entity 
+- type: entity
   id: TeslaAmmoEnergyBall
   parent: TeslaMiniEnergyBall
   name: mini ball lightning
   description: The cub of a destructive energy cage. Not as dangerous, but still not worth touching with bare hands.
   noSpawn: true
-  components: 
+  components:
   - type: TimedDespawn
     lifetime: 15
   - type: Sprite
@@ -3339,7 +2829,7 @@
     showExamineText: false
     availableModes:
       - FullAuto
-    soundGunshot: 
+    soundGunshot:
     path: /Audio/Weapons/Guns/Gunshots/laser.ogg
     params:
         volume: -12
@@ -3353,28 +2843,3 @@
   damage:
     groups:
       Burn: 1
-
-
-- type: salvageFaction
-  id: Xenos
-  entries:
-    - proto: MobXeno
-    - proto: MobXenoDrone
-      cost: 2
-    - proto: MobXenoPraetorian
-      cost: 5
-      prob: 0.1
-    - proto: MobXenoQueen
-      cost: 10
-      prob: 0.02
-    - proto: MobXenoRavager
-      cost: 5
-    - proto: MobXenoRouny
-      cost: 3
-      prob: 0.02
-    - proto: MobXenoSpitter
-    - proto: WeaponTurretXeno
-      prob: 0.1
-  configs:
-    DefenseStructure: XenoWardingTower
-    Megafauna: MobXenoQueen
