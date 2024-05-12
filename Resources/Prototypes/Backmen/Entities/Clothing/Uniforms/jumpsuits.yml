@@ -525,3 +525,118 @@
     sprite: Backmen/Clothing/Uniforms/jumpsuit/alxlaiho.rsi
   - type: Clothing
     sprite: Backmen/Clothing/Uniforms/jumpsuit/alxlaiho.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformJumpsuitEgov
+  name: marine navy uniform
+  description: Jumpsuit made of dense camouflage fabric. Doesn't make you invisible.
+  components:
+    - type: Sprite
+      sprite: Backmen/Clothing/Uniforms/jumpsuit/marine_suit.rsi
+    - type: Clothing
+      sprite: Backmen/Clothing/Uniforms/jumpsuit/marine_suit.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformJumpsuitEgovOfficer
+  name: navy officer uniform
+  description: Navy officer uniform. Better than any stripes will emphasize your importance and rank.
+  components:
+    - type: Sprite
+      sprite: Backmen/Clothing/Uniforms/jumpsuit/officer_suit.rsi
+    - type: Clothing
+      sprite: Backmen/Clothing/Uniforms/jumpsuit/officer_suit.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformJumpsuitEgovOfficerALT
+  name: officer uniform
+  description: Officer uniform. Better than any stripes will emphasize your importance and rank.
+  components:
+    - type: Sprite
+      sprite: Backmen/Clothing/Uniforms/jumpsuit/officer_suitALT.rsi
+    - type: Clothing
+      sprite: Backmen/Clothing/Uniforms/jumpsuit/officer_suitALT.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformJumpsuitMVDInspector
+  name: Inspector uniform
+  description: Inspector uniform. Better than any stripes will emphasize your importance and rank.
+  components:
+    - type: Sprite
+      sprite: Backmen/Clothing/Uniforms/jumpsuit/mvd.rsi
+    - type: Clothing
+      sprite: Backmen/Clothing/Uniforms/jumpsuit/mvd.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformJumpsuitMVDWhite
+  name: white uniform
+  description: White uniform.
+  components:
+    - type: Sprite
+      sprite: Backmen/Clothing/Uniforms/jumpsuit/white.rsi
+    - type: Clothing
+      sprite: Backmen/Clothing/Uniforms/jumpsuit/white.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformEGovOfficer
+  name: officer uniform
+  components:
+  - type: Sprite
+    sprite: Backmen/Clothing/Uniforms/jumpsuit/officer.rsi
+  - type: Clothing
+    sprite: Backmen/Clothing/Uniforms/jumpsuit/officer.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformEGovFlotOfficer
+  name: flot officer uniform
+  components:
+  - type: Sprite
+    sprite: Backmen/Clothing/Uniforms/jumpsuit/flot.rsi
+  - type: Clothing
+    sprite: Backmen/Clothing/Uniforms/jumpsuit/flot.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformEGovGrey
+  name: grey uniform
+  components:
+  - type: Sprite
+    sprite: Backmen/Clothing/Uniforms/jumpsuit/grey.rsi
+  - type: Clothing
+    sprite: Backmen/Clothing/Uniforms/jumpsuit/grey.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformEGovGreen
+  name: green uniform
+  components:
+  - type: Sprite
+    sprite: Backmen/Clothing/Uniforms/jumpsuit/green.rsi
+  - type: Clothing
+    sprite: Backmen/Clothing/Uniforms/jumpsuit/green.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformEGovSpecial
+  name: special force uniform
+  components:
+  - type: Sprite
+    sprite: Backmen/Clothing/Uniforms/jumpsuit/special.rsi
+  - type: Clothing
+    sprite: Backmen/Clothing/Uniforms/jumpsuit/special.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformEGovShtab
+  name: staff officer uniform
+  components:
+  - type: Sprite
+    sprite: Backmen/Clothing/Uniforms/jumpsuit/shtab.rsi
+  - type: Clothing
+    sprite: Backmen/Clothing/Uniforms/jumpsuit/shtab.rsi

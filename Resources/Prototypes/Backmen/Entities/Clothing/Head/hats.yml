@@ -179,3 +179,91 @@
       sprite: Backmen/Clothing/Head/Hats/seccap.rsi
     - type: Clothing
       sprite: Backmen/Clothing/Head/Hats/seccap.rsi
+
+- type: entity
+  parent: ClothingHeadBase
+  id: ClothingHeadHatEgovNavyOfficerCap
+  name: navy officer cap #имеется ввиду фуражка :humanTorch:
+  description: Navy officer cap. Better than any stripes will emphasize your importance and rank.
+  components:
+  - type: Sprite
+    sprite: Backmen/Clothing/Head/Hats/officer_cap.rsi
+  - type: Clothing
+    sprite: Backmen/Clothing/Head/Hats/officer_cap.rsi
+
+- type: entity
+  parent: ClothingHeadBase
+  id: ClothingHeadHatEgovShtabCap
+  name: staff officer cap #имеется ввиду фуражка :humanTorch:
+  description: Officer cap. Better than any stripes will emphasize your importance and rank.
+  components:
+  - type: Sprite
+    sprite: Backmen/Clothing/Head/Hats/shtab.rsi
+  - type: Clothing
+    sprite: Backmen/Clothing/Head/Hats/shtab.rsi
+
+- type: entity
+  parent: ClothingHeadBase
+  id: ClothingHeadHatEgovShtabGuardCap
+  name: staff guard cap #имеется ввиду кепка :humanTorch:
+  description: Officer cap. Better than any stripes will emphasize your importance and rank.
+  components:
+  - type: Sprite
+    sprite: Backmen/Clothing/Head/Hats/shtabguard.rsi
+  - type: Clothing
+    sprite: Backmen/Clothing/Head/Hats/shtabguard.rsi
+
+- type: entity
+  parent: ClothingHeadBase
+  id: ClothingHeadHatEgovOfficerCap
+  name: officer cap
+  description: Officer cap. Better than any stripes will emphasize your importance and rank.
+  components:
+  - type: Sprite
+    sprite: Backmen/Clothing/Head/Hats/officer.rsi
+  - type: Clothing
+    sprite: Backmen/Clothing/Head/Hats/officer.rsi
+
+- type: entity
+  parent: ClothingHeadBase
+  id: ClothingHeadHatEgovFlotOfficerCap
+  name: flot officer cap
+  description: Officer cap. Better than any stripes will emphasize your importance and rank.
+  components:
+  - type: Sprite
+    sprite: Backmen/Clothing/Head/Hats/flot.rsi
+  - type: Clothing
+    sprite: Backmen/Clothing/Head/Hats/flot.rsi
+
+- type: entity
+  parent: ClothingHeadBase
+  id: ClothingHeadHatMarineBeret
+  name: marine navy beret
+  description: Beret made of dense camouflage fabric. Doesn't make you invisible.
+  components:
+  - type: Sprite
+    sprite: Backmen/Clothing/Head/Hats/beret.rsi
+  - type: Clothing
+    sprite: Backmen/Clothing/Head/Hats/beret.rsi
+
+- type: entity
+  parent: ClothingHeadBase
+  id: ClothingHeadHatMVDBeret
+  name: берет полиции ОПЗ
+  description: Берет офицеров полиции ОПЗ, имеет эмблему министерства внутренних дел ОПЗ.
+  components:
+  - type: Sprite
+    sprite: Backmen/Clothing/Head/Hats/mvdberet.rsi
+  - type: Clothing
+    sprite: Backmen/Clothing/Head/Hats/mvdberet.rsi
+
+- type: entity
+  parent: ClothingHeadBase
+  id: ClothingHeadHatMVDOfficerCap
+  name: фуражка ОПЗ
+  description: Фуражка полиции ОПЗ, имеет какарду с винками министерства внутренних дел ОПЗ.
+  components:
+  - type: Sprite
+    sprite: Backmen/Clothing/Head/Hats/mvdcapofficer.rsi
+  - type: Clothing
+    sprite: Backmen/Clothing/Head/Hats/mvdcapofficer.rsi

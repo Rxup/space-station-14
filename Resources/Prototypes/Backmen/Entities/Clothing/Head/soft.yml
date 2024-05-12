@@ -36,3 +36,25 @@
       sprite: Backmen/Clothing/Head/Soft/secpilotka.rsi
     - type: Clothing
       sprite: Backmen/Clothing/Head/Soft/secpilotka.rsi
+
+- type: entity
+  parent: ClothingHeadBase
+  id: ClothingHeadHatEgovCap
+  name: marine navy cap
+  description: Cap made of thick camouflage fabric.
+  components:
+  - type: Sprite
+    sprite: Backmen/Clothing/Head/Soft/marine_cap.rsi
+  - type: Clothing
+    sprite: Backmen/Clothing/Head/Soft/marine_cap.rsi
+
+- type: entity
+  parent: ClothingHeadBase
+  id: ClothingHeadHatMVDCap
+  name: кепка полиции ОПЗ
+  description: Кепка полиции ОПЗ, имеет какарду министерства внутренних дел ОПЗ.
+  components:
+  - type: Sprite
+    sprite: Backmen/Clothing/Head/Softmvdcap.rsi
+  - type: Clothing
+    sprite: Backmen/Clothing/Head/Softmvdcap.rsi
