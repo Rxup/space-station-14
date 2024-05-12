@@ -11,3 +11,9 @@ ghost-role-information-giant-spider-vampire-rules = Никаких ограни�
 
 ghost-role-information-BloodCrystalSoul-name = кровавый кристалл души
 ghost-role-information-BloodCrystalSoul-description = Повинуйтесь вашему вампирскому хозяину, пусть он вас поместит в конструкт голема.
+
+ghost-role-information-blobbernaut-name = блоббернаут
+ghost-role-information-blobbernaut-description = Вы массивный блоббернаут, защищайте ядро блоба или следуйте его приказам.
+
+ghost-role-information-blob-name = блоб
+ghost-role-information-blob-description = Ты блоб, вы должны захватить эту станцию.
