@@ -425,7 +425,7 @@
   parent: JobIcon
   id: JobIconLeitenant
   icon:
-    sprite: /Textures/Backmen/Icons/jobicon.rsi
+    sprite: /Textures/Backmen/test/base/rsi/Textures/Misc/jobicon.rsi
     state: leitenant
 
 - type: statusIcon
@@ -490,7 +490,7 @@
   parent: JobIcon
   id: JobIconCommandeer
   icon:
-    sprite: /Textures/Backmen/Icons/jobicon.rsi
+    sprite: /Textures/Backmen/test/base/rsi/Textures/Misc/jobicon.rsi
     state: commandeer
 
 - type: entity
@@ -548,7 +548,7 @@
   parent: JobIcon
   id: JobIconCommander
   icon:
-    sprite: /Textures/Backmen/Icons/jobicon.rsi
+    sprite: /Textures/Backmen/test/base/rsi/Textures/Misc/jobicon.rsi
     state: commander
 
 - type: entity
