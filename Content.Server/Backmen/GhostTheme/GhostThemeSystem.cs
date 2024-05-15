@@ -52,7 +52,7 @@ public sealed class GhostThemeSystem : EntitySystem
                 prefGhost = "";
             }
 #else
-            if (!_sponsorsMgr.TryGetPrototypes(args.Player.UserId, out var items) || !items.Contains(prefGhost))
+            if (!_sponsorsMgr.TryGetServerPrototypes(args.Player.UserId, out var items) || !items.Contains(prefGhost))
             {
                 prefGhost = "";
             }
