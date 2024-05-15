@@ -1,2 +1,2 @@
-ent-ClothingNeckTieCentCom = Галстук Центком
+ent-ClothingNeckTieCentCom = галстук Центком
     .desc = Зеленый галстук ходячей бюрократии.

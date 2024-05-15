@@ -1,4 +1,4 @@
-ent-SpawnMobBPLA = Спавнер БПЛА
+ent-SpawnMobBPLA = спавнер БПЛА
     .desc = { ent-MarkerBase.desc }
-ent-SpawnMobBPLAMED = Спавнер БПЛА МЕД
+ent-SpawnMobBPLAMED = спавнер БПЛА МЕД
     .desc = { ent-MarkerBase.desc }

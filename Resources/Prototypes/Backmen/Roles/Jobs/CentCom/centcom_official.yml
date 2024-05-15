@@ -88,7 +88,7 @@
 - type: entity
   parent: CentcomIDCardDeathsquad
   id: IDCardCentComOfficialCorvax
-  name: Id карта ПЦК
+  name: ID карта ПЦК
   components:
     - type: Sprite
       layers:
