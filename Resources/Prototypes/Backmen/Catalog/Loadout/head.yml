@@ -2,6 +2,6 @@
   id: ClothingHeadHatFlowerCrownLoadout
   entity: ClothingHeadHatFlowerWreath
 
-#- type: loadout
-#  id: ClothingHeadHatHairflowerLoadout
-#  entity: ClothingHeadHatHairflower
+- type: bkmloadout
+  id: ClothingHeadHatHairflowerLoadout
+  entity: FoodPoppy

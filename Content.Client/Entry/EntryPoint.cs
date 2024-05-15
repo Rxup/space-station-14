@@ -181,7 +181,7 @@ namespace Content.Client.Entry
             _documentParsingManager.Initialize();
 
             // start-backmen: ioc
-            IoCManager.Resolve<Content.Corvax.Interfaces.Client.IClientSponsorsManager>().Initialize();
+            IoCManager.Resolve<Content.Corvax.Interfaces.Shared.ISharedSponsorsManager>().Initialize();
             IoCManager.Resolve<Content.Corvax.Interfaces.Client.IClientJoinQueueManager>().Initialize();
             IoCManager.Resolve<Content.Corvax.Interfaces.Client.IClientDiscordAuthManager>().Initialize();
             // end-backmen: ioc

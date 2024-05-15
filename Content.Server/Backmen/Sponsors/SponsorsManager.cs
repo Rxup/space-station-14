@@ -6,6 +6,7 @@ using System.Net.Http.Json;
 using System.Threading;
 using System.Threading.Tasks;
 using Content.Corvax.Interfaces.Server;
+using Content.Corvax.Interfaces.Shared;
 using Content.Shared.Backmen.Sponsors;
 using Content.Shared.Backmen.CCVar;
 using Robust.Server.Player;
@@ -16,7 +17,7 @@ using Exception = System.Exception;
 
 namespace Content.Server.Backmen.Sponsors;
 
-public sealed class SponsorsManager : IServerSponsorsManager
+public sealed class SponsorsManager : ISharedSponsorsManager
 {
     [Dependency] private readonly IServerNetManager _netMgr = default!;
     [Dependency] private readonly IConfigurationManager _cfg = default!;
@@ -42,9 +43,38 @@ public sealed class SponsorsManager : IServerSponsorsManager
         _netMgr.Connected += OnConnected;
     }
 
-    public bool TryGetInfo(NetUserId userId, [NotNullWhen(true)] out SponsorInfo? sponsor)
+    public bool TryGetServerPrototypes(NetUserId userId, [NotNullWhen(true)] out List<string>? prototypes)
     {
-        return _cachedSponsors.TryGetValue(userId, out sponsor);
+        if (_cachedSponsors.TryGetValue(userId, out var sponsor))
+        {
+            prototypes = sponsor.AllowedMarkings.ToList();
+            return true;
+        }
+
+        prototypes = null;
+        return false;
+    }
+
+    public bool TryGetServerOocColor(NetUserId userId, [NotNullWhen(true)] out Color? color)
+    {
+        if (_cachedSponsors.TryGetValue(userId, out var sponsor))
+        {
+            color = Color.TryFromHex(sponsor.OOCColor);
+            return color != null;
+        }
+
+        color = null;
+        return false;
+    }
+
+    public int GetServerExtraCharSlots(NetUserId userId)
+    {
+        return _cachedSponsors.TryGetValue(userId, out var sponsor) ? sponsor.ExtraSlots : 0;
+    }
+
+    public bool HaveServerPriorityJoin(NetUserId userId)
+    {
+        return _cachedSponsors.TryGetValue(userId, out var sponsor) && sponsor.HavePriorityJoin;
     }
 
     private async Task OnConnecting(NetConnectingArgs e)
