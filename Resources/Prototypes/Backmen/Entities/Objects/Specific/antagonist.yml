@@ -66,7 +66,7 @@
   parent: BaseItem
   id: BaseWizardUplinkRadio
   name: wizard uplink
-  description: You're a wizard, harry!
+  description: You're a wizard, Harry!
   suffix: Empty
   components:
   - type: Sprite

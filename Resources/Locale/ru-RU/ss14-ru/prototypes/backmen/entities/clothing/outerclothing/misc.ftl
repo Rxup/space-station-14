@@ -1,4 +1,4 @@
-ent-ClothingWitchHunter = Накидка охотника за ведьмами
+ent-ClothingWitchHunter = накидка охотника за ведьмами
     .desc = Убей этих ведьм!
-ent-ClothingMagistrateroba = Накидка магистрата
+ent-ClothingMagistrateroba = накидка магистрата
     .desc = Пора уволить срочников.

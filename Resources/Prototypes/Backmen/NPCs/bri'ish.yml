@@ -222,7 +222,7 @@
   id: MobCivilianOld
   parent: MobBaseNpc
   suffix: suppa Civilian Old
-  description: Гражданский, просто существует.
+  description: Civilian, just exists.
   components:
   - type: Sprite
     drawdepth: Mobs
@@ -267,7 +267,7 @@
   id: MobCivilianSuppa
   parent: MobBaseNpc
   suffix: suppa Civilian
-  description: Гражданский, просто существует.
+  description: Civilian, just exists.
   components:
   - type: MeleeWeapon
     angle: 0
@@ -311,7 +311,7 @@
   id: MobCivilianMaiden
   parent: MobBaseNpc
   suffix: suppa Civilian Maiden
-  description: Гражданский, просто существует.
+  description: Civilian, just exists.
   components:
   - type: Sprite
     drawdepth: Mobs
@@ -324,7 +324,7 @@
   id: MobCivilianLenny
   parent: MobBaseNpc
   suffix: suppa Civilian Lenny
-  description: Гражданский, просто существует.
+  description: Civilian, just exists.
   components:
   - type: Sprite
     drawdepth: Mobs
