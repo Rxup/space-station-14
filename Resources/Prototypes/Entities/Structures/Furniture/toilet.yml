@@ -55,6 +55,14 @@
     fixtures:
       fix1:
         hard: false
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.45,-0.45,0.45,0.45"
+        density: 190
+        mask:
+        - MachineMask
+        layer:
+        - MachineLayer
   - type: Construction
     graph: Toilet
     node: toilet
