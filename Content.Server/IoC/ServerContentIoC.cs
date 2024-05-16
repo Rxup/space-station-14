@@ -62,7 +62,7 @@ namespace Content.Server.IoC
             IoCManager.Register<DiscordWebhook>();
 
             // start-backmen: IoC
-            IoCManager.Register<Content.Corvax.Interfaces.Server.IServerSponsorsManager, Backmen.Sponsors.SponsorsManager>();
+            IoCManager.Register<Content.Corvax.Interfaces.Shared.ISharedSponsorsManager, Backmen.Sponsors.SponsorsManager>();
             IoCManager.Register<Content.Corvax.Interfaces.Server.IServerDiscordAuthManager, Backmen.DiscordAuth.DiscordAuthManager>();
             IoCManager.Register<Content.Corvax.Interfaces.Server.IServerJoinQueueManager, Backmen.JoinQueue.JoinQueueManager>();
             // end-backmen: IoC

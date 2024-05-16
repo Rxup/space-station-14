@@ -118,6 +118,8 @@
       name: mob-flesh-spider-ghost-role-name
       description: mob-flesh-spider-ghost-role-name
       rules: Не атакуйте культистов плоти, не ломайте ДАМы, сервера, консоли и прочее. Не делайте разгерметизацию.
+      raffle:
+        settings: default
     - type: GhostTakeoverAvailable
     - type: MeleeWeapon
       hidden: true
@@ -214,6 +216,8 @@
       name: mob-flesh-pudge-ghost-role-name
       description: mob-flesh-pudge-ghost-role-name
       rules: Не атакуйте культистов плоти, не ломайте ДАМы, сервера, консоли и прочее. Не делайте разгерметизацию.
+      raffle:
+        settings: default
     - type: GhostTakeoverAvailable
     - type: Fixtures
       fixtures:
@@ -307,6 +311,8 @@
       name: mob-flesh-abom-ghost-role-name
       description: mob-flesh-abom-ghost-role-name
       rules: Не атакуйте культистов плоти, не ломайте ДАМы, сервера, консоли и прочее. Не делайте разгерметизацию.
+      raffle:
+        settings: default
     - type: GhostTakeoverAvailable
     - type: Fixtures
       fixtures:
@@ -371,6 +377,8 @@
       name: mob-flesh-ball-ghost-role-name
       description: mob-flesh-ball-ghost-role-name
       rules: Не атакуйте культистов плоти, не ломайте ДАМы, сервера, консоли и прочее. Не делайте разгерметизацию.
+      raffle:
+        settings: default
     - type: GhostTakeoverAvailable
     - type: MobThresholds
       thresholds:
@@ -438,6 +446,8 @@
       name: mob-flesh-bat-ghost-role-name
       description: mob-flesh-bat-ghost-role-name
       rules: Не атакуйте культистов плоти, не ломайте ДАМ, сервера, консоли и прочее. Не делайте разгерметизацию.
+      raffle:
+        settings: default
     - type: GhostTakeoverAvailable
     - type: MeleeWeapon
       hidden: true
@@ -527,6 +537,8 @@
       name: mob-flesh-worm-ghost-role-name
       description: mob-flesh-worm-ghost-role-name
       rules: Не атакуйте культистов плоти, не ломайте ДАМы, сервера, консоли и прочее. Не делайте разгерметизацию.
+      raffle:
+        settings: default
     - type: GhostTakeoverAvailable
     - type: MeleeWeapon
       hidden: true

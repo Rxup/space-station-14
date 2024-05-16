@@ -214,6 +214,8 @@
       name: ghost-role-information-giant-spider-vampire-name
       description: ghost-role-information-giant-spider-vampire-description
       rules: No antagonist restrictions. Just don't talk in emote; you have telepathic chat.
+      raffle:
+        settings: default
     - type: GhostTakeoverAvailable
 
 - type: entity
@@ -252,6 +254,8 @@
       name: Босс павуков
       description: ghost-role-information-giant-spider-vampire-description
       rules: No antagonist restrictions. Just don't talk in emote; you have telepathic chat.
+      raffle:
+        settings: default
     - type: GhostTakeoverAvailable
     - type: SpiderVampire
       spawnEgg: FoodEggSpiderVampire

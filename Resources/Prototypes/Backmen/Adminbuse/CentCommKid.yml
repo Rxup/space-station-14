@@ -849,7 +849,7 @@
 - type: entity
   parent: CentcomIDCard
   id: DedSquadronGavnaIDCard
-  name: Id карта оперативника специальных операций
+  name: ID карта оперативника специальных операций
   components:
   - type: Sprite
     layers:
@@ -878,7 +878,7 @@
 - type: entity
   parent: CentcomIDCard
   id: DedSquadronLeaderGavnaIDCard
-  name: Id карта Коммандера Специальных Операций
+  name: ID карта Коммандера Специальных Операций
   components:
   - type: Sprite
     layers:
@@ -1204,7 +1204,7 @@
 - type: entity
   parent: CentcomIDCard
   id: IDSFO
-  name: Id Офицера СП
+  name: ID Офицера СП
   description: Карта, необходимая для доступа в различные области станции.
   components:
   - type: Sprite
@@ -1234,7 +1234,7 @@
   noSpawn: true
   parent: CentcomIDCardDeathsquad
   id: CentcomBaseIDCard
-  name: Id карта
+  name: ID карта
   components:
   - type: Access
     groups:
@@ -1243,7 +1243,7 @@
 - type: entity
   parent: CentcomIDCardDeathsquad
   id: IdCardRXBZZLeader
-  name: Id card leader CBURN
+  name: ID card leader CBURN
   noSpawn: true
   components:
   - type: Sprite
@@ -1268,7 +1268,7 @@
 - type: entity
   parent: CentcomIDCardDeathsquad
   id: IdCardRXBZZ
-  name: Id карта Оперативника РХБЗЗ
+  name: ID карта Оперативника РХБЗЗ
   noSpawn: true
   components:
   - type: Sprite
@@ -1293,7 +1293,7 @@
 - type: entity
   parent: CentcomIDCard
   id: OBRGavnaIDCard
-  name: Id карта пехотинца ОБР
+  name: ID карта пехотинца ОБР
   components:
   - type: Sprite
     layers:
@@ -1323,7 +1323,7 @@
 - type: entity
   parent: OBRGavnaIDCard
   id: OBRGavnaMedicIDCard
-  name: Id карта медика ОБР
+  name: ID карта медика ОБР
   components:
   - type: Sprite
     layers:
@@ -1351,7 +1351,7 @@
 - type: entity
   parent: OBRGavnaIDCard
   id: OBRGavnaEngineerIDCard
-  name: Id карта инженера ОБР
+  name: ID карта инженера ОБР
   components:
   - type: Sprite
     layers:
@@ -1379,7 +1379,7 @@
 - type: entity
   parent: OBRGavnaIDCard
   id: OBRGavnaJunitorIDCard
-  name: Id карта уборщика ОБР
+  name: ID карта уборщика ОБР
   components:
   - type: Sprite
     layers:
@@ -1407,7 +1407,7 @@
 - type: entity
   parent: CentcomIDCard
   id: OBRGavnaLeaderIDCard
-  name: Id карта командира ОБР
+  name: ID карта командира ОБР
   components:
   - type: Sprite
     layers:

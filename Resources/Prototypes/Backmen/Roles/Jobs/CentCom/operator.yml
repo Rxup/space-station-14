@@ -71,7 +71,7 @@
 - type: entity
   parent: CentcomIDCardDeathsquad
   id: IDCardCentComGavnaOperator
-  name: Id карта оператора ЦК
+  name: ID карта оператора ЦК
   components:
     - type: PresetIdCard
       job: BKCCOperator

@@ -1,11 +1,13 @@
 ﻿using System.Diagnostics.CodeAnalysis;
+using System.Linq;
 using Content.Corvax.Interfaces.Client;
+using Content.Corvax.Interfaces.Shared;
 using Content.Shared.Backmen.Sponsors;
 using Robust.Shared.Network;
 
 namespace Content.Client.Backmen.Sponsors;
 
-public sealed class SponsorsManager : IClientSponsorsManager
+public sealed class SponsorsManager : ISharedSponsorsManager
 {
     [Dependency] private readonly IClientNetManager _netMgr = default!;
 
@@ -13,6 +15,16 @@ public sealed class SponsorsManager : IClientSponsorsManager
     {
         _netMgr.RegisterNetMessage<MsgSponsorInfo>(OnUpdate);
         _netMgr.RegisterNetMessage<Shared.Backmen.MsgWhitelist>(RxWhitelist); //backmen: whitelist
+    }
+
+    public List<string> GetClientPrototypes()
+    {
+        return Prototypes.ToList();
+    }
+
+    public void Cleanup()
+    {
+        Reset();
     }
 
     private void RxWhitelist(Shared.Backmen.MsgWhitelist message)
@@ -45,15 +57,19 @@ public sealed class SponsorsManager : IClientSponsorsManager
         }
 
         Tier = message.Info.Tier ?? 0;
+        GhostTheme = message.Info.GhostTheme;
     }
 
     private void Reset()
     {
         Prototypes.Clear();
         Tier = 0;
+        GhostTheme = null;
     }
 
     public HashSet<string> Prototypes { get; } = new();
     public int Tier { get; private set; } = 0;
     public bool Whitelisted { get; private set; } = false;
+    public string? GhostTheme { get; private set; } = null;
+
 }

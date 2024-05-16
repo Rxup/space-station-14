@@ -1,7 +1,7 @@
 - type: entity
   parent: CentcomIDCardDeathsquad
   id: IDCardMOG
-  name: Id карта МОГ
+  name: ID карта МОГ
   components:
   - type: Sprite
     sprite: Backmen/Objects/Misc/id_cards.rsi
@@ -16,7 +16,7 @@
 - type: entity
   parent: CentcomIDCardDeathsquad
   id: IdCardIOG
-  name: Id карта ИОГ
+  name: ID карта ИОГ
   components:
   - type: Sprite
     sprite: Backmen/Objects/Misc/id_cards.rsi
@@ -31,7 +31,7 @@
 - type: entity
   parent: CentcomIDCardDeathsquad
   id: IdCardRO
-  name: Id карта RO
+  name: ID карта RO
   components:
   - type: Sprite
     sprite: Backmen/Objects/Misc/id_cards.rsi
