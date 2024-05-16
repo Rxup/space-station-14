@@ -116,7 +116,7 @@
   - type: InstantAction
     itemIconStyle: BigAction
     icon:
-      sprite: Backmen/test/base/rsi/Textures/Backpack/RIG/chrono.rsi
+      sprite: Backmen/Clothing/Back/RIGs/chrono.rsi
       state: icon
     useDelay: 30
     event: !type:PsionicInvisibilityPowerActionEvent
