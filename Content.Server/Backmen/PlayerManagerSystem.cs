@@ -1,4 +1,5 @@
 ﻿using Content.Corvax.Interfaces.Server;
+using Content.Corvax.Interfaces.Shared;
 using Content.Shared.GameTicking;
 using Robust.Server.Player;
 using Robust.Shared.Player;
@@ -17,7 +18,7 @@ public sealed class PlayerJoinMoveToGameEvent : EntityEventArgs
 public sealed class PlayerManagerSystem : EntitySystem
 {
     [Dependency] private readonly IPlayerManager _playerManager = default!;
-    [Dependency] private readonly IServerSponsorsManager _sponsorsManager = default!;
+    [Dependency] private readonly ISharedSponsorsManager _sponsorsManager = default!;
     public override void Initialize()
     {
         base.Initialize();
@@ -28,7 +29,7 @@ public sealed class PlayerManagerSystem : EntitySystem
 
     private void OnCleanup(RoundRestartCleanupEvent msg)
     {
-        Log.Info("do sponsor cleanup");
+        Log.Debug("do sponsor cleanup");
         _sponsorsManager.Cleanup();
     }
 

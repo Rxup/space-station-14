@@ -1,4 +1,4 @@
-ent-HumanCannedClown = Консервированный клоун
+ent-HumanCannedClown = консервированный клоун
     .desc = { ent-MobHuman.desc }
-ent-MobHumanFugitive = Беглец
+ent-MobHumanFugitive = беглец
     .desc = { ent-MobHuman.desc }

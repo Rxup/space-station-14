@@ -85,7 +85,7 @@
 - type: entity
   parent: CentcomIDCardDeathsquad
   id: IDCardCentComPrivateOfficer
-  name: Id карта охраны ЦК
+  name: ID карта охраны ЦК
   components:
     - type: Sprite
       layers:

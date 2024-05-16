@@ -1,4 +1,4 @@
-ent-BaseMobHumanoidFox = Urist McFox
-    .desc = { ent-BaseMobHuman.desc }
-ent-MobHumanoidFoxDummy = Urist McHands
-    .desc = A dummy fox meant to be used in character setup.
+ent-BaseMobHumanoidFox = Урист МакЛис
+    .desc = { ent-BaseMobSpeciesOrganic.desc }
+ent-MobHumanoidFoxDummy = { ent-BaseSpeciesDummy }
+    .desc = { ent-BaseSpeciesDummy.desc }
