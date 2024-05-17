@@ -508,7 +508,7 @@ public abstract class SharedMagicSystem : EntitySystem
 
     // When any spell is cast it will raise this as an event, so then it can be played in server or something. At least until chat gets moved to shared
     // TODO: Temp until chat is in shared
-    private void Speak(BaseActionEvent args)
+    public void Speak(BaseActionEvent args)
     {
         if (args is not ISpeakSpell speak || string.IsNullOrWhiteSpace(speak.Speech))
             return;

@@ -1447,6 +1447,7 @@ namespace Content.Client.Lobby.UI
             UpdateNameEdit();
 
             UpdateTTSVoicesControls(); // Corvax-TTS
+        }
 
         private async void ImportProfile()
         {

@@ -4,7 +4,7 @@ using Content.Corvax.Interfaces.Shared;
 using Content.Shared.Corvax.TTS;
 using Content.Shared.Preferences;
 
-namespace Content.Client.Preferences.UI;
+namespace Content.Client.Lobby.UI;
 
 public sealed partial class HumanoidProfileEditor
 {
@@ -19,13 +19,13 @@ public sealed partial class HumanoidProfileEditor
             .OrderBy(o => Loc.GetString(o.Name))
             .ToList();
 
-        _voiceButton.OnItemSelected += args =>
+        CVoiceButton.OnItemSelected += args =>
         {
-            _voiceButton.SelectId(args.Id);
+            CVoiceButton.SelectId(args.Id);
             SetVoice(_voiceList[args.Id].ID);
         };
 
-        _voicePlayButton.OnPressed += _ => { UserInterfaceManager.GetUIController<LobbyUIController>().PlayTTS(); };
+        CVoicePlayButton.OnPressed += _ => { UserInterfaceManager.GetUIController<LobbyUIController>().PlayTTS(); };
         IoCManager.Instance!.TryResolveType(out _sponsorsMgr);
     }
 
@@ -34,7 +34,7 @@ public sealed partial class HumanoidProfileEditor
         if (Profile is null)
             return;
 
-        _voiceButton.Clear();
+        CVoiceButton.Clear();
 
         var firstVoiceChoiceId = 1;
         for (var i = 0; i < _voiceList.Count; i++)
@@ -44,7 +44,7 @@ public sealed partial class HumanoidProfileEditor
                 continue;
 
             var name = Loc.GetString(voice.Name);
-            _voiceButton.AddItem(name, i);
+            CVoiceButton.AddItem(name, i);
 
             if (firstVoiceChoiceId == 1)
                 firstVoiceChoiceId = i;
@@ -54,13 +54,13 @@ public sealed partial class HumanoidProfileEditor
             if (voice.SponsorOnly && _sponsorsMgr != null &&
                 !_sponsorsMgr.GetClientPrototypes().Contains(voice.ID))
             {
-                _voiceButton.SetItemDisabled(_voiceButton.GetIdx(i), true);
+                CVoiceButton.SetItemDisabled(CVoiceButton.GetIdx(i), true);
             }
         }
 
         var voiceChoiceId = _voiceList.FindIndex(x => x.ID == Profile.Voice);
-        if (!_voiceButton.TrySelectId(voiceChoiceId) &&
-            _voiceButton.TrySelectId(firstVoiceChoiceId))
+        if (!CVoiceButton.TrySelectId(voiceChoiceId) &&
+            CVoiceButton.TrySelectId(firstVoiceChoiceId))
         {
             SetVoice(_voiceList[firstVoiceChoiceId].ID);
         }

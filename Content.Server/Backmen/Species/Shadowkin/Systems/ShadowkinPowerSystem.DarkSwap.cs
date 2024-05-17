@@ -102,7 +102,12 @@ public sealed class ShadowkinDarkSwapSystem : EntitySystem
             return;
         }
 
-        _stamina.TakeStaminaDamage(ent, Math.Abs(distance), staminaComponent, visual: false, source: ent, chaosDamage: true);
+        _stamina.TakeStaminaDamage(ent,
+            Math.Abs(distance),
+            staminaComponent,
+            visual: false,
+            source: ent,
+            chaosDamage: true);
         staminaComponent.NextUpdate = _timing.CurTime + TimeSpan.FromSeconds(staminaComponent.Cooldown);
     }
 
@@ -139,7 +144,7 @@ public sealed class ShadowkinDarkSwapSystem : EntitySystem
                 _stamina.TakeStaminaDamage(uid, 6, stamina, uid, chaosDamage: true);
                 comp.NextStaminaDmg = currentTime + TimeSpan.FromSeconds(2);
                 stamina.NextUpdate = _timing.CurTime + TimeSpan.FromSeconds(2);
-                Dirty(uid,stamina);
+                Dirty(uid, stamina);
             }
         }
     }
@@ -175,7 +180,7 @@ public sealed class ShadowkinDarkSwapSystem : EntitySystem
             args
         );
 
-        _magic.Speak(args, false);
+        _magic.Speak(args);
     }
 
 
@@ -250,7 +255,7 @@ public sealed class ShadowkinDarkSwapSystem : EntitySystem
     {
         if (!TerminatingOrDeleted(uid))
         {
-            if(!component.NeedReturnPacify) // не должны снимать цифизм -_-
+            if (!component.NeedReturnPacify) // не должны снимать цифизм -_-
                 RemComp<PacifiedComponent>(uid);
 
             if (component.Invisible)
@@ -259,7 +264,7 @@ public sealed class ShadowkinDarkSwapSystem : EntitySystem
                 SuppressFactions(uid, false);
             }
         }
-        
+
         component.Darken = false;
 
         foreach (var light in component.DarkenedLights.ToArray())
@@ -311,7 +316,7 @@ public sealed class ShadowkinDarkSwapSystem : EntitySystem
             //if (!HasComp<GhostComponent>(uid))
             RemComp<StealthComponent>(uid);
             // Just to be sure...
-            var stealth =  EnsureComp<StealthComponent>(uid);
+            var stealth = EnsureComp<StealthComponent>(uid);
             _stealth.SetVisibility(uid, 1f, stealth);
             RemComp<StealthComponent>(uid);
         }
@@ -334,7 +339,7 @@ public sealed class ShadowkinDarkSwapSystem : EntitySystem
                 return;
 
             // Copy the suppressed factions to the power component
-            component.SuppressedFactions = factions.Factions.Select(x=>x.Id).ToList();
+            component.SuppressedFactions = factions.Factions.Select(x => x.Id).ToList();
 
             // Remove the factions from the entity
             foreach (var faction in factions.Factions)

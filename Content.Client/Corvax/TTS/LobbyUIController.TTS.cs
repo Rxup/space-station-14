@@ -11,9 +11,9 @@ public sealed partial class LobbyUIController
     public void PlayTTS()
     {
         // Test moment
-        if (_profile == null || _stateManager.CurrentState is not LobbyState)
+        if (EditedProfile == null || _stateManager.CurrentState is not LobbyState)
             return;
 
-        _tts.RequestGlobalTTS(Content.Shared.Backmen.TTS.VoiceRequestType.Preview, _profile.Voice);
+        _tts.RequestGlobalTTS(Content.Shared.Backmen.TTS.VoiceRequestType.Preview, EditedProfile.Voice);
     }
 }
