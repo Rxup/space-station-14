@@ -175,7 +175,7 @@ public sealed class SponsorsManager : ISharedSponsorsManager
         return true;
     }
 
-    public bool TryGetPrototypes(NetUserId userId, [NotNullWhen(true)]  out List<string>? prototypes)
+    public bool TryGetPrototypes(NetUserId userId, [NotNullWhen(true)] out List<string>? prototypes)
     {
         if (!_cachedSponsors.ContainsKey(userId) || _cachedSponsors[userId].AllowedMarkings.Length == 0)
         {
@@ -187,6 +187,25 @@ public sealed class SponsorsManager : ISharedSponsorsManager
         prototypes.AddRange(_cachedSponsors[userId].AllowedMarkings);
 
         return true;
+    }
+
+    public bool TryGetLoadouts(NetUserId userId, [NotNullWhen(true)] out List<string>? prototypes)
+    {
+        if (!_cachedSponsors.ContainsKey(userId) || _cachedSponsors[userId].Loadouts.Length == 0)
+        {
+            prototypes = null;
+            return false;
+        }
+
+        prototypes = new List<string>();
+        prototypes.AddRange(_cachedSponsors[userId].Loadouts);
+
+        return true;
+    }
+
+    public bool IsServerAllRoles(NetUserId userId)
+    {
+        return _cachedSponsors.ContainsKey(userId) && _cachedSponsors[userId].OpenAllRoles;
     }
 
     public bool TryGetOocColor(NetUserId userId, [NotNullWhen(true)] out Color? color)

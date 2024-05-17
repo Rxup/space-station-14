@@ -13,13 +13,18 @@ public sealed partial class GroupLoadoutEffect : LoadoutEffect
     [DataField(required: true)]
     public ProtoId<LoadoutEffectGroupPrototype> Proto;
 
-    public override bool Validate(RoleLoadout loadout, LoadoutPrototype proto, ICommonSession session, IDependencyCollection collection, [NotNullWhen(false)] out FormattedMessage? reason) // Corvax-Sponsors
+    public override bool Validate(HumanoidCharacterProfile profile,
+        RoleLoadout loadout,
+        LoadoutPrototype proto /*Corvax-Sponsors*/,
+        ICommonSession session,
+        IDependencyCollection collection,
+        [NotNullWhen(false)] out FormattedMessage? reason)
     {
         var effectsProto = collection.Resolve<IPrototypeManager>().Index(Proto);
 
         foreach (var effect in effectsProto.Effects)
         {
-            if (!effect.Validate(loadout, proto, session, collection, out reason))
+            if (!effect.Validate(profile, loadout, proto, session, collection, out reason))
                 return false;
         }
 
