@@ -23,12 +23,17 @@ public sealed class SponsorInfo
     public int ExtraSlots { get; set; }
 
     [JsonPropertyName("allowedMarkings")] // TODO: Rename API field in separate PR as breaking change!
-    public string[] AllowedMarkings { get; set; } = Array.Empty<string>();
+    public string[] AllowedMarkings { get; set; } = [];
+
+    [JsonPropertyName("loadouts")]
+    public string[] Loadouts { get; set; } = [];
+
+    [JsonPropertyName("openAllRoles")]
+    public bool OpenAllRoles { get; set; } = false;
 
     [JsonPropertyName("ghostTheme")]
     public string? GhostTheme { get; set; }
 }
-
 
 /// <summary>
 /// Server sends sponsoring info to client on connect only if user is sponsor

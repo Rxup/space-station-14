@@ -184,6 +184,7 @@ namespace Content.Client.Entry
             IoCManager.Resolve<Content.Corvax.Interfaces.Shared.ISharedSponsorsManager>().Initialize();
             IoCManager.Resolve<Content.Corvax.Interfaces.Client.IClientJoinQueueManager>().Initialize();
             IoCManager.Resolve<Content.Corvax.Interfaces.Client.IClientDiscordAuthManager>().Initialize();
+            IoCManager.Resolve<Content.Corvax.Interfaces.Shared.ISharedLoadoutsManager>().Initialize();
             // end-backmen: ioc
 
             _baseClient.RunLevelChanged += (_, args) =>

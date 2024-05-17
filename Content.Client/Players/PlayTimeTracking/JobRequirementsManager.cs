@@ -22,6 +22,8 @@ public sealed class JobRequirementsManager : ISharedPlaytimeManager
     [Dependency] private readonly IPlayerManager _playerManager = default!;
     [Dependency] private readonly IPrototypeManager _prototypes = default!;
 
+    [Dependency] private readonly Content.Corvax.Interfaces.Shared.ISharedSponsorsManager _sponsorsManager = default!; // backmen: allRoles
+
     private readonly Dictionary<string, TimeSpan> _roles = new();
     private readonly List<string> _roleBans = new();
 
@@ -95,6 +97,11 @@ public sealed class JobRequirementsManager : ISharedPlaytimeManager
             return false;
         }
 
+        //start-backmen: allRoles
+        if (_sponsorsManager.IsClientAllRoles())
+            return true;
+        //end-backmen
+
         var player = _playerManager.LocalSession;
         if (player == null)
             return true;
@@ -102,7 +109,8 @@ public sealed class JobRequirementsManager : ISharedPlaytimeManager
         //start-backmen: whitelist
         var isOk = CheckRoleTime(job.Requirements, out reason);
 
-        if (job.WhitelistRequired && _cfg.GetCVar(Shared.Backmen.CCVar.CCVars.WhitelistRolesEnabled) && !IsWhitelisted())
+        if (job.WhitelistRequired && _cfg.GetCVar(Shared.Backmen.CCVar.CCVars.WhitelistRolesEnabled) &&
+            !IsWhitelisted())
         {
             isOk = false;
             if (reason == null)
@@ -111,9 +119,10 @@ public sealed class JobRequirementsManager : ISharedPlaytimeManager
             }
             else
             {
-                reason.AddMarkup("\n"+Loc.GetString("playtime-deny-reason-not-whitelisted"));
+                reason.AddMarkup("\n" + Loc.GetString("playtime-deny-reason-not-whitelisted"));
             }
         }
+
         return isOk;
         //end-backmen: whitelist
     }
@@ -124,6 +133,11 @@ public sealed class JobRequirementsManager : ISharedPlaytimeManager
 
         if (requirements == null || !_cfg.GetCVar(CCVars.GameRoleTimers))
             return true;
+
+        //start-backmen: allRoles
+        if (_sponsorsManager.IsClientAllRoles())
+            return true;
+        //end-backmen
 
         var reasons = new List<string>();
         foreach (var requirement in requirements)

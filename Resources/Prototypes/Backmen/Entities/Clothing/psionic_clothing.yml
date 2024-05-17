@@ -57,6 +57,7 @@
   name: изолированные перчатки
   description: Тонкие рабочие перчатки из синтетической резины, выполненные в тускло-желтом цвете. Они не имеют электрической изоляции и не обеспечивают никакой защиты от ударов.
   components:
+    - type: Insulated
     - type: Sprite
       sprite: Clothing/Hands/Gloves/Color/yellow.rsi
     - type: Clothing

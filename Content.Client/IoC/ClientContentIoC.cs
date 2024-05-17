@@ -36,6 +36,7 @@ namespace Content.Client.IoC
             collection.Register<Content.Corvax.Interfaces.Client.ISponsorWindowCreator,Backmen.Sponsors.SponsorWindowCreator>(); // Corvax-Sponsors
             collection.Register<Content.Corvax.Interfaces.Client.IClientJoinQueueManager,Backmen.JoinQueue.JoinQueueManager>(); // Corvax-Queue
             collection.Register<Content.Corvax.Interfaces.Client.IClientDiscordAuthManager,Backmen.DiscordAuth.DiscordAuthManager>(); // Corvax-DiscordAuth
+            collection.Register<Content.Corvax.Interfaces.Shared.ISharedLoadoutsManager, Backmen.Sponsors.LoadoutsManager>(); // Corvax-Sponsors
 
             collection.Register<IParallaxManager, ParallaxManager>();
             collection.Register<IChatManager, ChatManager>();

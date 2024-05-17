@@ -22,6 +22,16 @@ public sealed class SponsorsManager : ISharedSponsorsManager
         return Prototypes.ToList();
     }
 
+    public List<string> GetClientLoadouts()
+    {
+        return Loadouts.ToList();
+    }
+
+    public bool IsClientAllRoles()
+    {
+        return OpenAllRoles;
+    }
+
     public void Cleanup()
     {
         Reset();
@@ -56,6 +66,12 @@ public sealed class SponsorsManager : ISharedSponsorsManager
             Prototypes.Add(markings);
         }
 
+        foreach (var loadout in message.Info.Loadouts)
+        {
+            Loadouts.Add(loadout);
+        }
+
+        OpenAllRoles = message.Info.OpenAllRoles;
         Tier = message.Info.Tier ?? 0;
         GhostTheme = message.Info.GhostTheme;
     }
@@ -63,13 +79,16 @@ public sealed class SponsorsManager : ISharedSponsorsManager
     private void Reset()
     {
         Prototypes.Clear();
+        Loadouts.Clear();
+        OpenAllRoles = false;
         Tier = 0;
         GhostTheme = null;
     }
 
     public HashSet<string> Prototypes { get; } = new();
+    public HashSet<string> Loadouts { get; } = new();
+    public bool OpenAllRoles { get; private set; } = false;
     public int Tier { get; private set; } = 0;
     public bool Whitelisted { get; private set; } = false;
     public string? GhostTheme { get; private set; } = null;
-
 }

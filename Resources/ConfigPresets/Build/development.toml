@@ -30,3 +30,6 @@ see_own_notes = true
 
 [net]
 tickrate = 20
+
+[sponsor]
+api_url = "https://backmen.ru/ss14/discord"
