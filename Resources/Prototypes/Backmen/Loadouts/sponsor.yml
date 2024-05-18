@@ -42,7 +42,7 @@
   id: SpaceCash5000Bkm
   storage:
     back:
-    - SpaceCash5000
+    - SpaceCash500
 
 #Человечина
 - type: loadout
