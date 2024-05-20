@@ -1,0 +1,17 @@
+- type: vendingMachineInventory
+  id: SecDrobeInventoryNanoTrasenLeader
+  startingInventory:
+    ClothingUniformJumpsuitERTLeader: 5
+    ClothingHeadHatERTLeaderBeret: 5
+    ClothingNeckMantleERTLeader: 5
+    ClothingEyesGlassesSunglasses: 5
+    ClothingBeltSheathFilled: 5
+    ClothingHeadHelmetSwat: 5
+    ClothingPounchMTF: 10
+    ClothingOuterArmorBasic: 5
+    ClothingOuterArmorBulletproof: 5
+    ClothingEyesGlassesSecurity: 5
+    ClothingHandsGlovesCombat: 5
+    ClothingShoesBootsNedoSpetsnaz: 5
+    CombatKnifeSpetsnaz: 5
+    FlashlightSeclite: 5

@@ -1,0 +1,18 @@
+- type: startingGear
+  id: PlagueDoctorGear
+  equipment:
+    eyes: ClothingEyesGlassesSunglasses
+    head: ClothingHeadHatPlaguedoctorUnremoveable
+    mask: ClothingMaskPlagueUnremoveable
+    outerClothing: ClothingOuterPlagueSuitUnremoveable
+    id: PassengerPDA
+    ears: ClothingHeadsetService
+    shoes: ClothingShoesCult
+    jumpsuit: ClothingUniformJumpsuitColorBlack
+    back: ClothingBackpackPlagueDoctorFilled
+    belt: ClothingBeltUtilityFilledUnremoveable
+    pocket1: Bible
+    pocket2: BibleNecronomicon
+  #innerClothingSkirt: ClothingUniformJumpskirtColorBlack
+  #satchel: ClothingBackpackSatchelPlagueDoctorFilled
+  #duffelbag: ClothingBackpackDuffelPlagueDoctorFilled

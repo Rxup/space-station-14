@@ -1,0 +1,19 @@
+- type: vendingMachineInventory
+  id: MREDispenserInventory
+  startingInventory:
+    FoodTinPeaches: 5
+    FoodTinBeans: 5
+    FoodTinMRE: 5
+    FoodSnackMREBrownie: 10
+    FoodSnackNutribrick: 5
+    DrinkMREFlask: 20
+    FoodSnackBoritos: 10
+    FoodBoxNugget: 5
+    FoodSnackSyndi: 10
+    FoodCondimentPacketKetchup: 5
+    FoodCondimentPacketBbq: 5
+    FoodCondimentPacketHotsauce: 5
+    FoodCondimentPacketSoy: 5
+    FoodBoxDonkpocketTeriyaki: 5
+    FoodBoxDonkpocket: 5
+    FoodBoxDonkpocketSpicy: 5
