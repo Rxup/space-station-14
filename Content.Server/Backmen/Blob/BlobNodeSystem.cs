@@ -39,14 +39,19 @@ public sealed class BlobNodeSystem : EntitySystem
         private readonly BlobNodeSystem _system;
         private readonly Entity<BlobNodeComponent> _ent;
 
-        public BlobPulse(BlobNodeSystem system, Entity<BlobNodeComponent> ent, double maxTime,
+        public BlobPulse(BlobNodeSystem system,
+            Entity<BlobNodeComponent> ent,
+            double maxTime,
             CancellationToken cancellation = default) : base(maxTime, cancellation)
         {
             _system = system;
             _ent = ent;
         }
 
-        public BlobPulse(BlobNodeSystem system, Entity<BlobNodeComponent> ent, double maxTime, IStopwatch stopwatch,
+        public BlobPulse(BlobNodeSystem system,
+            Entity<BlobNodeComponent> ent,
+            double maxTime,
+            IStopwatch stopwatch,
             CancellationToken cancellation = default) : base(maxTime, stopwatch, cancellation)
         {
             _system = system;
@@ -62,7 +67,8 @@ public sealed class BlobNodeSystem : EntitySystem
 
     private void Pulse(Entity<BlobNodeComponent> ent)
     {
-        var xform = Transform(ent);
+        if(TerminatingOrDeleted(ent) || !EntityManager.TransformQuery.TryComp(ent, out var xform))
+            return;
 
         var radius = ent.Comp.PulseRadius;
 
@@ -78,7 +84,8 @@ public sealed class BlobNodeSystem : EntitySystem
 
         var innerTiles = _map.GetLocalTilesIntersecting(xform.GridUid.Value, grid,
             new Box2(localPos + new Vector2(-radius, -radius), localPos + new Vector2(radius, radius)),
-            false).ToArray();
+            false)
+            .ToArray();
 
         _random.Shuffle(innerTiles);
 
@@ -116,7 +123,7 @@ public sealed class BlobNodeSystem : EntitySystem
         while (blobFactoryQuery.MoveNext(out var ent, out var comp))
         {
             if (_gameTiming.CurTime < comp.NextPulse)
-                return;
+                continue;
 
             if (_tileQuery.TryGetComponent(ent, out var blobTileComponent) && blobTileComponent.Core != null)
             {
