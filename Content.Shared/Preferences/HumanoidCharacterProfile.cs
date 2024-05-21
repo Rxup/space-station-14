@@ -256,7 +256,6 @@ namespace Content.Shared.Preferences
             {
                 Name = name,
                 Sex = sex,
-                Voice = voiceId,
                 Age = age,
                 Gender = gender,
                 Species = species,

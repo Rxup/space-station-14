@@ -88,22 +88,25 @@ public abstract class SharedHumanoidAppearanceSystem : EntitySystem
          * Add custom handling here for forks / version numbers if you care.
          */
 
-        string[] sponsorPrototypes;
-        if (_netManager.IsClient)
-        {
-            sponsorPrototypes = _sponsorsManager.GetClientPrototypes().ToArray();
-        }
-        else
-        {
-            sponsorPrototypes = _sponsorsManager.TryGetServerPrototypes(session.UserId, out var prototypes)
-                ? prototypes.ToArray()
-                : [];
-        }
-
-
         var profile = export.Profile;
         var collection = IoCManager.Instance;
-        var sponsorPrototypes = _sponsors != null && _sponsors.TryGetServerPrototypes(session.UserId, out var prototypes) ? prototypes.ToArray() : []; // Corvax-Sponsors
+
+        string[] sponsorPrototypes = [];
+        if (_sponsors != null) // Corvax-Sponsors
+        {
+
+            if (_netManager.IsClient)
+            {
+                sponsorPrototypes = _sponsors.GetClientPrototypes().ToArray();
+            }
+            else
+            {
+                sponsorPrototypes = _sponsors.TryGetServerPrototypes(session.UserId, out var prototypes)
+                    ? prototypes.ToArray()
+                    : [];
+            }
+        }
+
         profile.EnsureValid(session, collection!, sponsorPrototypes);
         return profile;
     }
