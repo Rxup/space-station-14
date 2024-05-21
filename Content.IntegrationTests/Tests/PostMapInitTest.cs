@@ -86,6 +86,7 @@ namespace Content.IntegrationTests.Tests
 			"Shoukou",
 			"BackmenAspid",
 			"BackmenKettle",
+			"Rook",
             "BargeVsShip",
             //end-backmen
             "Reach",
