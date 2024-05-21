@@ -51,12 +51,7 @@ jobs:
       - name: Setup .NET Core
         uses: actions/setup-dotnet@v3.2.0
         with:
-          dotnet-version: '8.0.205'  # Используем версию .NET SDK 8.0.205
-
-      - name: Update Directory.Packages.props
-        run: |
-          dotnet --list-sdks
-          cp -f global.json RobustToolbox/
+          dotnet-version: 8.0.x
 
       - name: Install dependencies
         run: dotnet restore

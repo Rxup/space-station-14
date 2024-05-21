@@ -41,4 +41,24 @@ public interface ISharedSponsorsManager
     {
         throw new NotImplementedException();
     }
+
+    public bool TryGetLoadouts(NetUserId userId, [NotNullWhen(true)] out List<string>? prototypes)
+    {
+        throw new NotImplementedException();
+    }
+
+    public List<string> GetClientLoadouts()
+    {
+        throw new NotImplementedException();
+    }
+
+    public bool IsClientAllRoles()
+    {
+        throw new NotImplementedException();
+    }
+
+    public bool IsServerAllRoles(NetUserId userId)
+    {
+        throw new NotImplementedException();
+    }
 }

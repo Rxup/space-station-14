@@ -104,7 +104,7 @@ public sealed class ShadowkinTeleportSystem : EntitySystem
         _stamina.TakeStaminaDamage(args.Performer, args.StaminaCost);
 
         // Speak
-        _magic.Speak(args, false);
+        _magic.Speak(args);
 
         args.Handled = true;
     }
