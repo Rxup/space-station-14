@@ -1046,6 +1046,16 @@ entities:
             179: 3,6
         - node:
             color: '#FFFFFFFF'
+            id: WoodTrimThinEndE
+          decals:
+            458: -10,-29
+        - node:
+            color: '#FFFFFFFF'
+            id: WoodTrimThinEndW
+          decals:
+            457: -11,-29
+        - node:
+            color: '#FFFFFFFF'
             id: WoodTrimThinLineE
           decals:
             16: -5,7
@@ -38674,6 +38684,13 @@ entities:
     components:
     - type: Transform
       pos: -9.5,-0.5
+      parent: 2
+- proto: SpawnPointDetective
+  entities:
+  - uid: 7451
+    components:
+    - type: Transform
+      pos: -9.5,-28.5
       parent: 2
 - proto: SpawnPointHeadOfPersonnel
   entities:
