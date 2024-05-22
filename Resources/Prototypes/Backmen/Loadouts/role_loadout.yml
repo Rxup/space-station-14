@@ -5,6 +5,7 @@
   - BKCCCargoNeck
   - BKCCCargoBackpack
   - Trinkets
+  - Medals #backmen
 
 - type: roleLoadout
   id: JobBrigmedic
@@ -16,3 +17,4 @@
   - ClothingEarBrigmedic
   - ClothingMaskBrigmedic
   - Trinkets
+  - Medals #backmen
