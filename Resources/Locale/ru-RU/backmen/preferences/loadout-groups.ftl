@@ -8,3 +8,6 @@ loadout-group-brigmedic-hat = Головной убор бригмедика
 loadout-group-brigmedic-outer = Верхняя одежда бригмедика
 loadout-group-brigmedic-ear = Гарнитура бригмедика
 loadout-group-brigmedic-mask = Маска бригмедика
+
+# Misc
+loadout-group-medals = Медали

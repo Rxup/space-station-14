@@ -256,10 +256,10 @@ namespace Content.Shared.Preferences
             {
                 Name = name,
                 Sex = sex,
-                Voice = voiceId,
                 Age = age,
                 Gender = gender,
                 Species = species,
+                Voice = voiceId, // Corvax-TTS
                 Appearance = HumanoidCharacterAppearance.Random(species, sex),
             };
         }
@@ -410,6 +410,7 @@ namespace Content.Shared.Preferences
             if (!_antagPreferences.SequenceEqual(other._antagPreferences)) return false;
             if (!_traitPreferences.SequenceEqual(other._traitPreferences)) return false;
             if (!Loadouts.SequenceEqual(other.Loadouts)) return false;
+            if (FlavorText != other.FlavorText) return false;
             return Appearance.MemberwiseEquals(other.Appearance);
         }
 
