@@ -218,7 +218,7 @@
       - id: BoxSurvival
       - id: Bible
       - id: RubberStampChaplain
-  
+
 - type: entity
   noSpawn: true
   parent: ClothingBackpackSatchel
@@ -300,4 +300,5 @@
     contents:
     - id: GasAnalyzer
     - id: trayScanner
+    - id: AccessConfiguratorUniversal
   - type: Unremoveable
