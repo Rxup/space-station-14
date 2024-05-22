@@ -2267,6 +2267,7 @@ entities:
     - type: Transform
       pos: -22.5,-20.5
       parent: 2
+  - uid: 1367
     components:
     - type: Transform
       pos: -22.5,-19.5
