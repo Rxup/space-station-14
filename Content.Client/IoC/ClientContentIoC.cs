@@ -3,7 +3,6 @@ using Content.Client.Changelog;
 using Content.Client.Chat.Managers;
 using Content.Client.Clickable;
 using Content.Client.Corvax.TTS;
-using Content.Client.Options;
 using Content.Client.Eui;
 using Content.Client.GhostKick;
 using Content.Client.Info;
