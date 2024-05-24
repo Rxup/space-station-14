@@ -13,3 +13,10 @@
   - PsychologistSatchel
   - PsychologistDuffel
 
+- type: loadoutGroup # backmen
+  id: PsychologistJumpsuit
+  name: Униформа психолога
+  loadouts:
+  - PsychologistJumpsuit
+  - PsychologistJumpsuitCrimson
+  
