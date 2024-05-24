@@ -4053,8 +4053,8 @@
 - type: entity
   parent: BaseItem
   id: UpgradeStation
-  name: upgrade station
-  description: Test text.
+  name: upgrade pack
+  description: Pack of attechment for weapons.
   components:
   - type: Sprite
     sprite: Objects/Tools/Toolboxes/toolbox_red.rsi
