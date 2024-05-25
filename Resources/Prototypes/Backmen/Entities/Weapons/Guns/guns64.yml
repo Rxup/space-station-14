@@ -2094,6 +2094,7 @@
       path: /Audio/Weapons/Guns64/Shotguns/sh39.ogg
   - type: ContainerContainer
     containers:
+      ballistic-ammo: !type:Container
       mech-assembly-container: !type:Container
   - type: MechAssembly
     finishedPrototype: WeaponShotgun39Tactical
