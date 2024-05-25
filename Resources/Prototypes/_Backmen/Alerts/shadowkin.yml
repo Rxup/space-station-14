@@ -1,3 +1,6 @@
+- type: alertCategory
+  id: ShadowkinPower
+
 - type: alert
   id: ShadowkinPower
   category: ShadowkinPower

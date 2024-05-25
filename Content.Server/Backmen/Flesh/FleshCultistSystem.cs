@@ -258,6 +258,9 @@ public sealed partial class FleshCultistSystem : EntitySystem
         _store.ToggleUi(uid, uid, store);
     }
 
+    [ValidatePrototypeId<AlertPrototype>]
+    private const string MutationPoint = "MutationPoint";
+
     private void ChangeParasiteHunger(EntityUid uid, FixedPoint2 amount, FleshCultistComponent? component = null)
     {
         if (!Resolve(uid, ref component))
@@ -268,7 +271,7 @@ public sealed partial class FleshCultistSystem : EntitySystem
         if (TryComp<StoreComponent>(uid, out var store))
             _store.UpdateUserInterface(uid, uid, store);
 
-        _alerts.ShowAlert(uid, AlertType.MutationPoint, (short) Math.Clamp(Math.Round(component.Hunger.Float() / 10f), 0, 16));
+        _alerts.ShowAlert(uid, MutationPoint, (short) Math.Clamp(Math.Round(component.Hunger.Float() / 10f), 0, 16));
     }
 
     private void OnDevourAction(EntityUid uid, FleshCultistComponent component, FleshCultistDevourActionEvent args)
