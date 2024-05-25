@@ -1,0 +1,11 @@
+- type: entity
+  noSpawn: true
+  parent: BoxFolderBlack
+  id: BoxFolderSecretBlack
+  components:
+    - type: StorageFill
+      contents:
+        - id: StationGoalPaper
+        - id: Paper
+        - id: Paper
+        - id: Paper

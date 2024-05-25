@@ -1,0 +1,94 @@
+- type: dataset
+  id: NameSpetsRXBZZ
+  values:
+  - Оперативник
+
+- type: dataset
+  id: NamesOFCs
+  values:
+  - Полковник
+  - Подполковник
+  - Майор
+
+- type: dataset
+  id: NamesSGTs
+  values:
+  - Старший Лейтенант
+  - Лейтенант
+  - Капитан
+
+- type: dataset
+  id: NamesCPLs
+  values:
+  - Капрал
+  - Сержант
+  - Старший Сержант
+
+- type: dataset
+  id: NamesPVTs
+  values:
+  - Рядовой
+  - Рядовой
+  - Рядовой
+  - Рядовой
+  - Рядовой
+  - Ефрейтор
+  - Ефрейтор
+  - Ефрейтор
+
+- type: dataset
+  id: NameSpets
+  values:
+  - DipCol
+  - BitCop
+  - Jazz
+  - Yololo
+  - Baycon
+  - Quest
+  - Pod
+  - Nail
+  - Pesok
+  - QSP
+  - Fiery
+  - Limo
+  - Maxvel
+  - Wield
+  - Nompad
+  - Henry
+  - Stick
+  - Crazy
+  - Diamond
+  - Jojo
+  - Isaac
+  - Klark
+  - Burn
+  - Jakarta
+  - Normandy
+  - Aquamarine
+  - Albatross
+  - Barracuda
+  - Curly
+  - Fighting Bob
+  - Robust
+  - Walter
+  - Angel
+  - Atkins
+  - Attila
+  - Kraut
+  - Balthazar
+  - Joker
+  - Doctor
+  - Patriot
+  - Professor
+  - Gomes
+  - Phoenix
+
+- type: dataset
+  id: NameSpetsCommander
+  values:
+  - Commander
+
+- type: dataset
+  id: NameSpetsOperative
+  values:
+  - Operative

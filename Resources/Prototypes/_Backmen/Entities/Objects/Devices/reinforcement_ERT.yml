@@ -1,0 +1,72 @@
+- type: entity
+  parent: BaseItem
+  id: ReinforcementRadioMTFLeaderEgg
+  save: false
+  name: Еpsilon - 11 рация подкрепления
+  suffix: МТФ Egg лидер
+  components:
+  - type: Sprite
+    sprite: Objects/Devices/communication.rsi
+    layers:
+    - state: radio
+    netsync: false
+  - type: GhostRoleMobSpawner
+    prototype: MobHumanERTLeaderReadyV3
+  - type: GhostRole
+    name: ОБР лидер
+    description: Командир отряда Epsilon - 11, великий воин, герой НТ, знаменитый полководец, мог бы им быть если бы не пошел в Epsilon - 11.
+  - type: EmitSoundOnUse
+    sound: /Audio/Effects/Emotes/parp1.ogg
+  - type: UseDelay
+    delay: 5
+
+- type: entity
+  parent: ReinforcementRadioMTFLeaderEgg
+  id: ReinforcementRadioMTFEngineerEgg
+  name: Еpsilon - 11 рация подкрепления
+  suffix: МТФ Egg инженер
+  components:
+  - type: GhostRoleMobSpawner
+    prototype: MobHumanERTEngineerReadyV3
+  - type: GhostRole
+    name: ОБР инженер
+    description: Инженер отряда Epsilon - 11, может и не очень хороший инженер, но дело свое знает, наверное.
+
+- type: entity
+  parent: ReinforcementRadioMTFLeaderEgg
+  id: ReinforcementRadioMTFSecurityEgg
+  save: false
+  name: Еpsilon - 11 рация подкрепления
+  suffix: МТФ Egg пехотинец
+  components:
+  - type: GhostRoleMobSpawner
+    prototype: MobHumanERTSecurityReadyV3
+  - type: GhostRole
+    name: ОБР офицер безопасности
+    description: Солдат или же охранник Epsilon - 11, прошедший небольшую подготовку и готовый стрелять во все что движеться, я бы не доверил ему даже водяной пистолетик.
+
+- type: entity
+  parent: ReinforcementRadioMTFLeaderEgg
+  id: ReinforcementRadioMTFMedicalEgg
+  save: false
+  name: Еpsilon - 11 рация подкрепления
+  suffix: МТФ Egg медик
+  components:
+  - type: GhostRoleMobSpawner
+    prototype: MobHumanERTMedicalReadyV3
+  - type: GhostRole
+    name: ОБР медик
+    description: Медик отделения Epsilon - 11, был в медицинском институте, поэтому и взяли в качестве медика, но никого не волнует что он там был всего неделю.
+
+- type: entity
+  parent: ReinforcementRadioMTFLeaderEgg
+  id: ReinforcementRadioMTFJunitorEgg
+  save: false
+  name: Еpsilon - 11 рация подкрепления
+  suffix: МТФ Egg уборщик
+  components:
+  - type: GhostRoleMobSpawner
+    prototype: MobHumanERTJunitorEggV3
+  - type: GhostRole
+    name: ОБР уборщик
+    description: Уборщик отделения Epsilon - 11, эй! кто дал ему пистолет?!

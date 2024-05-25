@@ -1,0 +1,10 @@
+- type: startingGear
+  id: SFOForma
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitCentcomOfficerBlack
+    shoes: ClothingShoesCentcomBlack
+    head: ClothingHeadCapCentcomBlack
+    neck: ClothingNeckCloakCentcomBlack
+    eye: ClothingEyesGlassesSunglasses
+    id: IDSFO
+    ears: ClothingHeadsetCentComCCAlt

@@ -1,0 +1,14 @@
+- type: vendingMachineInventory
+  id: AmmoVendAdsNanoTrasen
+  startingInventory:
+    BattleMedipen: 20
+    MagazinePistol: 20
+    MagazinePistolSubMachineGun: 20
+    MagazineRifle: 20
+    SpeedLoaderMagnum: 20
+    BoxLethalshot: 20
+    WeaponSubMachineGunVectorSpecial: 5
+    WeaponRifleG36: 5
+    WeaponRevolverInspector: 5
+    WeaponPistolACP14: 5
+    WeaponShotgun39: 5
