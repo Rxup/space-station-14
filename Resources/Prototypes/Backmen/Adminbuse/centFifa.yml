@@ -2346,12 +2346,12 @@
     - type: StorageFill
       contents:
         - id: MedkitAdvancedRXBZZ
-        - id: MagazinePulseRifle
-          amount: 3
         - id: BoxShotgunIncendiary
-          amount: 3
+          amount: 1
         - id: BoxLethalshot
-          amount: 3
+          amount: 2
+        - id: WeaponDisabler
+        - id: BoxFlare
         - id: WeaponShotgun39Tactical
 
 - type: entity
@@ -2438,11 +2438,8 @@
   components:
     - type: StorageFill
       contents:
-        - id: Flare
-          amount: 3
         - id: MagazinePulseRifle
-          amount: 3
-        - id: WeaponDisabler
+          amount: 6
 
 - type: entity
   parent: ClothingPounchMTF
