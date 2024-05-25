@@ -1,0 +1,20 @@
+- type: vendingMachineInventory
+  id: SecDrobeInventoryNanoTrasenEngineer
+  startingInventory:
+    ClothingUniformJumpsuitEngineeringHazard: 5
+    ClothingUniformJumpsuitERTEngineer: 5
+    ClothingHeadHelmetSwat: 5
+    ClothingHeadHatHardhatYellow: 5
+    ClothingHeadHatHardhatOrange: 5
+    ClothingOuterVestHazard: 5
+    ClothingPounchMTF: 10
+    ClothingBeltChiefEngineerFilled: 5
+    ClothingOuterArmorBasic: 5
+    ClothingOuterArmorBulletproof: 5
+    ClothingEyesGlassesSecurity: 5
+    ClothingEyesGlassesMeson: 5
+    ClothingEyesHudDiagnostic: 55
+    ClothingHandsGlovesColorYellow: 5
+    ClothingShoesBootsNedoSpetsnaz: 5
+    CombatKnifeSpetsnaz: 5
+    FlashlightSeclite: 5

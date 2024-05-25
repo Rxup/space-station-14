@@ -1,0 +1,59 @@
+- type: entity
+  name: ГрейТайд
+  parent: BaseMobHuman
+  suffix: AI
+  id: MobPMCGreyTide
+  components:
+    - type: NpcFactionMember
+      factions:
+        - Syndicate
+    - type: Loadout
+      prototypes:
+        - GreyTideAI
+    - type: InputMover
+    - type: MobMover
+    - type: HTN
+      rootTask:
+        task: SimpleHumanoidHostileCompound
+    - type: RandomHumanoidAppearance
+      randomizeName: true
+
+- type: entity
+  name: ГрейТайд
+  parent: BaseMobHuman
+  suffix: AISuperZloy
+  id: MobPMCGreyTideSuperZloy
+  components:
+    - type: NpcFactionMember
+      factions:
+        - SuperZloy
+    - type: Loadout
+      prototypes:
+        - GreyTideAI
+    - type: InputMover
+    - type: MobMover
+    - type: HTN
+      rootTask:
+        task: SimpleHumanoidHostileCompound
+    - type: RandomHumanoidAppearance
+      randomizeName: true
+
+- type: entity
+  name: ГрейТайд
+  parent: BaseMobHuman
+  suffix: AIMosin
+  id: MobPMCGreyTideMosin
+  components:
+    - type: NpcFactionMember
+      factions:
+        - Syndicate
+    - type: Loadout
+      prototypes:
+        - GreyTideAIMosin
+    - type: InputMover
+    - type: MobMover
+    - type: HTN
+      rootTask:
+        task: SimpleHumanoidHostileCompound
+    - type: RandomHumanoidAppearance
+      randomizeName: true

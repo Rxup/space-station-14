@@ -1,0 +1,34 @@
+- type: entity
+  id: MagazineLightRifleAI
+  noSpawn: true
+  name: "magazine (.30 rifle)"
+  parent: BaseMagazineLightRifle
+  components:
+  - type: BallisticAmmoProvider
+    proto: CartridgeCaselessRifle
+    capacity: 1000
+
+- type: entity
+  id: MagazineRiflePan
+  name: "дисковый магазин (.20 винтовочные)"
+  parent: BaseMagazineRifle
+  components:
+  - type: BallisticAmmoProvider
+    proto: CartridgeRifle
+    capacity: 96
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Ammunition/Magazine/LightRifle/maxim.rsi
+
+- type: entity
+  id: MagazineRifleFire
+  name: "магазин (.20 винтовочно-зажигательные)"
+  parent: BaseMagazineRifle
+  components:
+  - type: BallisticAmmoProvider
+    proto: CartridgeRifleFire
+  - type: Sprite
+    layers:
+    - state: practice
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]

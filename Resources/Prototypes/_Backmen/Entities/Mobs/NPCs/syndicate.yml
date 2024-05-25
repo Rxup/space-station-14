@@ -1,0 +1,98 @@
+- type: entity
+  name: Солдат Синдиката
+  parent: BaseMobHuman
+  suffix: AI
+  id: MobPMCSindy
+  components:
+    - type: NpcFactionMember
+      factions:
+        - Syndicate
+    - type: Loadout
+      prototypes:
+        - SyndicateSoldierFullAI
+    - type: InputMover
+    - type: MobMover
+    - type: HTN
+      rootTask:
+        task: SimpleHumanoidHostileCompound
+    - type: InnateTool
+      tools:
+        - id: WeaponAKMSRifleAI
+
+- type: entity
+  name: Ядерный оперативник
+  parent: MobHumanCombine
+  suffix: Vova
+  id: MobHumanSyndicateNukeOpsV2_0
+  components:
+  - type: Speech
+    speechSounds: Alto
+  - type: Icon
+    sprite: Markers/jobs.rsi
+    state: green
+  - type: GhostTakeoverAvailable
+  - type: GhostRole
+    allowMovement: true
+    allowSpeech: true
+    makeSentient: true
+    name: Ядерный оперативник
+    description: GET DAT FUKKEN DISK
+    raffle:
+      settings: default
+    requirements:
+    - !type:DepartmentTimeRequirement
+      department: Security
+      time: 18000
+    - !type:OverallPlaytimeRequirement
+      time: 36000
+  - type: NukeOperative
+  - type: Loadout
+    prototypes: [SyndicateOperativeGearFull]
+  - type: RandomMetadata
+    nameSegments:
+    - SyndicateZvanieSuperNormal
+    - names_last_male
+  - type: RandomHumanoidAppearance
+    randomizeName: false
+  - type: NpcFactionMember
+    factions:
+    - Syndicate
+
+- type: entity
+  name: Ядерный агент
+  parent: MobHumanCombine
+  suffix: Vova
+  id: MobHumanSyndicateNukeOpsV3.0
+  components:
+  - type: Speech
+    speechSounds: Alto
+  - type: Icon
+    sprite: Markers/jobs.rsi
+    state: green
+  - type: GhostTakeoverAvailable
+  - type: GhostRole
+    allowMovement: true
+    allowSpeech: true
+    makeSentient: true
+    name: Ядерный оперативник
+    description: GET DAT FUKKEN DISK
+    raffle:
+      settings: default
+    requirements:
+    - !type:DepartmentTimeRequirement
+      department: Security
+      time: 18000
+    - !type:OverallPlaytimeRequirement
+      time: 36000
+  - type: NukeOperative
+  - type: Loadout
+    prototypes: [SyndicateOperativeMedicFull]
+  - type: RandomMetadata
+    nameSegments:
+    - SyndicateZvanieSuperNormalAgent
+    - names_last_male
+  - type: RandomHumanoidAppearance
+    randomizeName: false
+  - type: NpcFactionMember
+    factions:
+    - Syndicate

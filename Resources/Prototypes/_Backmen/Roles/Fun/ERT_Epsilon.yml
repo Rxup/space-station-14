@@ -1,0 +1,120 @@
+- type: startingGear
+  id: ERTLeaderGearEVAV3
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitERTLeader
+    id: OBRGavnaLeaderIDCard2
+    ears: ClothingHeadsetCentComCCMTFEPS11
+
+- type: startingGear
+  id: ERTEngineerGearEVAV3
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitERTEngineer
+    id: OBRGavnaEngineerIDCard2
+    ears: ClothingHeadsetCentComCCMTFEPS11
+
+- type: startingGear
+  id: ERTSecurityGearEVAV3
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitERTSecurity
+    ears: ClothingHeadsetCentComCCMTFEPS11
+    id: OBRGavnaIDCard2
+
+- type: startingGear
+  id: ERTMedicalGearEVAV3
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitERTMedic
+    ears: ClothingHeadsetCentComCCMTFEPS11
+    id: OBRGavnaMedicIDCard2
+
+- type: startingGear
+  id: ERTJanitorGearEVAV3
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitERTJanitor
+    ears: ClothingHeadsetCentComCCMTFEPS11
+    id: OBRGavnaJunitorIDCard2
+
+- type: startingGear
+  id: ERTJanitorGearEggV3
+  equipment:
+    jumpsuit: ClothingUniformJumpskirtJanimaidmini
+    shoes: ClothingShoesGaloshes
+    gloves: ClothingHandsGlovesLatex
+    neck: CombatKnifeSpetsnaz
+    head: ClothingHeadHatCatEars
+    pocket1: WeaponPistolACP14
+    ears: ClothingHeadsetCentComCCMTFEPS11
+    id: OBRGavnaJunitorIDCard2
+    belt: ClothingBeltJanitorFilled
+
+- type: startingGear
+  id: ERTLeaderGearEggV3
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitERTLeader
+    id: OBRGavnaLeaderIDCard2
+    back: WeaponRifleG36
+    shoes: ClothingShoesBootsNedoSpetsnaz
+    gloves: ClothingHandsGlovesCombat
+    neck: CombatKnifeSpetsnaz
+    head: ClothingHeadHelmetERTLeader
+    outerClothing: ClothingOuterArmorBasic
+    suitstorage: WeaponPistolACP14
+    ears: ClothingHeadsetCentComCCMTFEPS11
+    eyes: ClothingEyesGlassesSunglasses
+    belt: ClothingBeltSheathFilled
+    pocket1: ClothingPounchMTFBattleFilled
+    pocket2: ClothingPounchMTFSecurityFilled
+
+- type: startingGear
+  id: ERTEngineerGearEggV3
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitERTEngineer
+    id: OBRGavnaEngineerIDCard2
+    back: WeaponShotgun39
+    shoes: ClothingShoesBootsNedoSpetsnaz
+    gloves: ClothingHandsGlovesCombat
+    neck: CombatKnifeSpetsnaz
+    head: ClothingHeadHelmetERTEngineer
+    outerClothing: ClothingOuterArmorBasic
+    suitstorage: WeaponPistolACP14
+    ears: ClothingHeadsetCentComCCMTFEPS11
+    eyes: ClothingEyesGlassesMeson
+    belt: ClothingBeltChiefEngineerFilled
+    pocket1: ClothingPounchMTFBattleEngineerFilled
+    pocket2: ClothingPounchMTFEngineerFilled
+
+- type: startingGear
+  id: ERTSecurityGearEggV3
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitERTSecurity
+    back: WeaponRifleG36
+    shoes: ClothingShoesBootsNedoSpetsnaz
+    gloves: ClothingHandsGlovesCombat
+    neck: CombatKnifeSpetsnaz
+    head: ClothingHeadHelmetERTSecurity
+    outerClothing: ClothingOuterArmorBasic
+    suitstorage: WeaponPistolACP14
+    ears: ClothingHeadsetCentComCCMTFEPS11
+    pocket1: ClothingPounchMTFBattleFilled
+    pocket2: ClothingPounchMTFSecurityFilled
+    belt: ClothingBeltSecurityFilled
+    eyes: ClothingEyesGlassesSecurity
+    id: OBRGavnaIDCard2
+
+- type: startingGear
+  id: ERTMedicalGearEggV3
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitERTMedic
+    back: WeaponRifleG36
+    shoes: ClothingShoesBootsNedoSpetsnaz
+    gloves: ClothingHandsGlovesCombat
+    neck: CombatKnifeSpetsnaz
+    head: ClothingHeadHelmetERTMedic
+    outerClothing: ClothingOuterArmorBasic
+    suitstorage: WeaponPistolACP14
+    ears: ClothingHeadsetCentComCCMTFEPS11
+    pocket1: ClothingPounchMTFBattleFilled
+    eyes: ClothingEyesHudMedical
+    id: OBRGavnaMedicIDCard2
+    belt: ClothingBeltMedicalFilled
+    pocket2: ClothingPounchMTFMedicalFilled
+
