@@ -26,8 +26,6 @@
   announcementTitle: spec-forces-system-RXBZZ-title
   maxRolesAmount: 8
   guaranteedSpawn:
-    - id: SpawnMobHumanSFOfficer
-      prob: 0.5
     - id: SpawnMobHumanRXBZZLeader
     - id: SpawnMobHumanRXBZZFlamer
   specForceSpawn:
