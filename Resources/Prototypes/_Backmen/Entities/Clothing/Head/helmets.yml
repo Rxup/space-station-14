@@ -117,7 +117,7 @@
   - type: Sprite
     sprite: Backmen/Clothing/Head/Helmets/eva_cargo.rsi
   - type: Clothing
-    sprite: Backmen/Clothing/Head/Helmets/eva_cargo.rsi 
+    sprite: Backmen/Clothing/Head/Helmets/eva_cargo.rsi
   - type: PointLight
     color: "#ffdbad"
   - type: Armor
@@ -154,7 +154,7 @@
     sprite: Backmen/Clothing/Head/Helmets/motohelmetgreen.rsi
   - type: Clothing
     sprite: Backmen/Clothing/Head/Helmets/motohelmetgreen.rsi
-  
+
 - type: entity
   parent: ClothingHeadHelmetRed
   id: ClothingHeadHelmetBlue
@@ -165,7 +165,7 @@
     sprite: Backmen/Clothing/Head/Helmets/motohelmetblue.rsi
   - type: Clothing
     sprite: Backmen/Clothing/Head/Helmets/motohelmetblue.rsi
-  
+
 - type: entity
   parent: ClothingHeadHelmetRed
   id: ClothingHeadHelmetBlack
@@ -176,7 +176,7 @@
     sprite: Backmen/Clothing/Head/Helmets/motohelmetblack.rsi
   - type: Clothing
     sprite: Backmen/Clothing/Head/Helmets/motohelmetblack.rsi
-  
+
 - type: entity
   parent: ClothingHeadHelmetRed
   id: ClothingHeadHelmetWhite
@@ -198,3 +198,24 @@
     sprite: Backmen/Clothing/Head/Helmets/motohelmetyellow.rsi
   - type: Clothing
     sprite: Backmen/Clothing/Head/Helmets/motohelmetyellow.rsi
+
+- type: entity
+  parent: ClothingHeadEVAHelmetBase
+  id: ClothingHeadHelmetSpaceNinjaBK
+  name: space ninja helmet
+  description: What may appear to be a simple black garment is in fact a highly sophisticated nano-weave helmet. Standard issue ninja gear.
+  components:
+  - type: Sprite
+    sprite: Clothing/Head/Helmets/spaceninja.rsi
+  - type: Clothing
+    sprite: Clothing/Head/Helmets/spaceninja.rsi
+  - type: Tag
+    tags:
+    - WhitelistChameleon
+  - type: IngestionBlocker
+  - type: IdentityBlocker
+  - type: TinfoilHat #Backmen
+  - type: HideLayerClothing
+    slots:
+    - Hair
+    - Snout

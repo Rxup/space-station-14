@@ -164,7 +164,6 @@
     - WhitelistChameleon
   - type: IngestionBlocker
   - type: IdentityBlocker
-  - type: TinfoilHat #Backmen
   - type: HideLayerClothing
     slots:
     - Hair
