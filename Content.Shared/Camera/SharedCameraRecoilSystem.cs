@@ -26,7 +26,7 @@ public abstract class SharedCameraRecoilSystem : EntitySystem
     /// <summary>
     ///     The maximum magnitude of the kick applied to the camera at any point.
     /// </summary>
-    protected const float KickMagnitudeMax = 6f;
+    protected const float KickMagnitudeMax = 1f;
 
     [Dependency] private readonly SharedEyeSystem _eye = default!;
 
@@ -37,7 +37,12 @@ public abstract class SharedCameraRecoilSystem : EntitySystem
     ///     If the entity is missing <see cref="CameraRecoilComponent" /> and/or <see cref="EyeComponent" />,
     ///     this call will have no effect. It is safe to call this function on any entity.
     /// </remarks>
-    public abstract void KickCamera(EntityUid euid, Vector2 kickback, CameraRecoilComponent? component = null);
+    public abstract void KickCamera(
+        EntityUid euid,
+        Vector2 kickback,
+        CameraRecoilComponent? component = null,
+        float? kickMagnitudeMax = null // backmen: KickMagnitudeMax
+        );
 
     public override void FrameUpdate(float frameTime)
     {

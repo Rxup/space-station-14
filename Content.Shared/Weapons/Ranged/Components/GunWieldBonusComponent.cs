@@ -17,14 +17,6 @@ public sealed partial class GunWieldBonusComponent : Component
     /// </summary>
     [ViewVariables(VVAccess.ReadWrite), DataField("maxAngle"), AutoNetworkedField]
     public Angle MaxAngle = Angle.FromDegrees(-43);
-    ///CameraRecoilScalar GunWieldBonus start
-    /// <summary>
-    /// A scalar value applied to the vector governing camera recoil.
-    /// If 0, there will be no camera recoil.
-    /// </summary>
-    [ViewVariables(VVAccess.ReadWrite), DataField("cameraRecoilScalar"), AutoNetworkedField]
-    public float CameraRecoilScalar = 0f;
-    ///CameraRecoilScalar GunWieldBonus end
 
     /// <summary>
     /// Recoil bonuses applied upon being wielded.

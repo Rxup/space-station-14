@@ -98,9 +98,6 @@ public sealed class WieldableSystem : EntitySystem
         {
             args.MinAngle += bonus.Comp.MinAngle;
             args.MaxAngle += bonus.Comp.MaxAngle;
-            ///CameraRecoilScalar GunWieldBonus start
-            args.CameraRecoilScalar += bonus.Comp.CameraRecoilScalar;
-            ///CameraRecoilScalar GunWieldBonus end
             args.AngleDecay += bonus.Comp.AngleDecay;
             args.AngleIncrease += bonus.Comp.AngleIncrease;
         }
