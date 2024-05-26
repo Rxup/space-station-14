@@ -1,0 +1,7 @@
+- type: entity
+  id: CartridgeRifleFire
+  name: патрон (.20 винтовочно-зажигательные)
+  parent: BaseCartridgeRifle
+  components:
+  - type: CartridgeAmmo
+    proto: BulletFire

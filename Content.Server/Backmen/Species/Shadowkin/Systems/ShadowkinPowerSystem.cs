@@ -55,6 +55,9 @@ public sealed class ShadowkinPowerSystem : EntitySystem
         return powerType;
     }
 
+    [ValidatePrototypeId<AlertPrototype>]
+    private const string ShadowkinPower = "ShadowkinPower";
+
     /// <summary>
     ///    Sets the alert level of a shadowkin.
     /// </summary>
@@ -65,7 +68,7 @@ public sealed class ShadowkinPowerSystem : EntitySystem
     {
         if (!enabled || powerLevel == null)
         {
-            _alerts.ClearAlert(uid, AlertType.ShadowkinPower);
+            _alerts.ClearAlert(uid, ShadowkinPower);
             return;
         }
 
@@ -82,7 +85,7 @@ public sealed class ShadowkinPowerSystem : EntitySystem
         var power = Math.Clamp(Math.Round(component.PowerLevel / 35), 0, 7);
 
         // Set the alert level
-        _alerts.ShowAlert(uid, AlertType.ShadowkinPower, (short) power);
+        _alerts.ShowAlert(uid, ShadowkinPower, (short) power);
     }
 
 

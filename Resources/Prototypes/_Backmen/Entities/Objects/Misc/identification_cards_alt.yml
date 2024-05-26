@@ -1,0 +1,52 @@
+- type: entity
+  parent: Clothing
+  id: idcoin
+  name: жетон
+  components:
+  - type: Sprite
+    sprite: Backmen/test/base/rsi/Textures/id.rsi
+    state: base
+  - type: Clothing
+    slots:
+    - idcard
+  - type: Item
+    heldPrefix: default
+  - type: IdCard
+    jobIcon: JobIconEarth
+  - type: Tag
+    tags:
+    - DoorBumpOpener
+    - WhitelistChameleon
+
+- type: entity
+  parent: idcoin
+  id: idcoinRXBZZ
+  name: жетон РХБЗЗ
+  noSpawn: true
+  components:
+  - type: IdCard
+    jobTitle: Войска РХБЗЗ Sierra-6
+    fullName: Оперативник
+    jobIcon: JobIconMarin
+  - type: Access
+    tags:
+    - EarthGov
+    groups:
+    - AllAccess
+
+- type: entity
+  parent: idcoin
+  id: idcoinRXBZZSergant
+  name: жетон РХБЗЗ Лидер
+  noSpawn: true
+  components:
+  - type: IdCard
+    jobTitle: Войска РХБЗЗ Sierra-6
+    fullName: Командир Отряда
+    jobIcon: JobIconSergant
+  - type: Access
+    tags:
+    - EarthGov
+    - EarthGovCommand
+    groups:
+    - AllAccess

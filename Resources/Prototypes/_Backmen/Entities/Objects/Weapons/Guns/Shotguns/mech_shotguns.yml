@@ -1,0 +1,29 @@
+- type: entity
+  name: LBX AC 10 «Залп»
+  parent: BaseItem
+  id: WeaponShotgunEnforcer9000
+  description: Навесное огнестрельное орудие, стреляющее дробовыми патронами.
+  components:
+  - type: Sprite
+    sprite: Objects/Specific/Mech/mecha_equipment.rsi
+    state: mecha_scatter
+  - type: BallisticAmmoProvider
+    whitelist:
+      tags:
+      - ShellShotgun
+    capacity: 20
+    proto: ShellShotgun
+    soundInsert:
+      path: /Audio/Weapons/Guns/MagIn/shotgun_insert.ogg
+  - type: AmmoCounter
+  - type: Gun
+    fireRate: 1
+    selectedMode: FullAuto
+    availableModes:
+    - FullAuto
+  - type: ContainerContainer
+    containers:
+      ballistic-ammo: !type:Container
+        ents: []
+  - type: MechEquipment
+  - type: UIFragment
