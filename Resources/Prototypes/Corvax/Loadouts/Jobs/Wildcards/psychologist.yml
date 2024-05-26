@@ -25,3 +25,18 @@
   id: PsychologistDuffel
   equipment:
     back: ClothingBackpackDuffelPsychologistFilled
+    
+# Jumpsuit
+- type: loadout
+  id: PsychologistJumpsuit
+  equipment: PsychologistJumpsuit
+
+- type: startingGear
+  id: PsychologistJumpsuit
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitPsychologist
+
+- type: startingGear
+  id: PsychologistJumpsuit
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitPsychologistCrimson

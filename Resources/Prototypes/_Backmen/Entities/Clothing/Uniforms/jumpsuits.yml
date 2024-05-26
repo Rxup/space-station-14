@@ -566,3 +566,14 @@
     controlsLocked: true
     randomMode: false
     mode: SensorOff
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformJumpsuitPsychologistCrimson
+  name: малиновый костюм психолога
+  description: Что вы знаете о нулях и хроносе?
+  components:
+  - type: Sprite
+    sprite: Backmen/Clothing/Uniforms/jumpsuit/psycrimson.rsi
+  - type: Clothing
+    sprite: Backmen/Clothing/Uniforms/jumpsuit/psycrimson.rsi
