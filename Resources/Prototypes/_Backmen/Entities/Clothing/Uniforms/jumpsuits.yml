@@ -588,3 +588,14 @@
     sprite: Backmen/Clothing/Uniforms/jumpsuit/null.rsi
   - type: Clothing
     sprite: Backmen/Clothing/Uniforms/jumpsuit/null.rsi
+    
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformJumpsuitjecket
+  name: Бомбер Джекета
+  description: Вы чувствуете себя чем-то диким!
+  components:
+  - type: Sprite
+    sprite: Backmen/Clothing/Uniforms/jumpsuit/jecket.rsi
+  - type: Clothing
+    sprite: Backmen/Clothing/Uniforms/jumpsuit/jecket.rsi
