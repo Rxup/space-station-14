@@ -26,7 +26,7 @@
 
 - type: entity
   suffix: Дисковый
-  parent: WeaponRifleM28
+  parent: WeaponRifleM28Tactical
   id: WeaponRifleLecterPan
   description: Первоклассная армейская штурмовая винтовка. Использует патроны калибра .20 винтовочный.
   components:

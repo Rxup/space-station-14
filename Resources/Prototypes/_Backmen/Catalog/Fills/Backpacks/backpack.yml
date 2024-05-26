@@ -32,7 +32,7 @@
         - id: WeaponPistolG23
         - id: MagazinePistol
           amount: 2
-        - id: WeaponRifleM28
+        - id: WeaponRifleM28Tactical
         - id: MagazineRifle
           amount: 5
         - id: BoxHandcuff
@@ -51,7 +51,7 @@
         - id: BattleMedipen
           amount: 3
         - id: trayScanner
-        - id: WeaponShotgun39
+        - id: WeaponShotgun39Tactical
         - id: MagazineShotgunMagnum12
           amount: 4
         - id: WeaponPistolVP78
@@ -84,7 +84,7 @@
         - id: WeaponPistolG23
         - id: MagazinePistol
           amount: 2
-        - id: WeaponRifleG36
+        - id: WeaponRifleG36Tactical
         - id: MagazineRifle
           amount: 5
         - id: BoxHandcuff
@@ -103,7 +103,7 @@
         - id: WeaponPistolG23
         - id: MagazinePistol
           amount: 2
-        - id: WeaponSubMachineGunMP5
+        - id: WeaponSubMachineGunMP5Tactical
         - id: MagazinePistolSubMachineGun
           amount: 6
         - id: MedkitFilled
@@ -166,13 +166,13 @@
     - type: StorageFill
       contents:
         - id: MedkitAdvancedRXBZZ
-        - id: MagazinePulseRifle
-          amount: 3
         - id: BoxShotgunIncendiary
-          amount: 3
+          amount: 1
         - id: BoxLethalshot
-          amount: 3
-        - id: WeaponShotgun39
+          amount: 2
+        - id: WeaponDisabler
+        - id: BoxFlare
+        - id: WeaponShotgun39Tactical
 
 - type: entity
   name: продвинутая аптечка стимуляторов
