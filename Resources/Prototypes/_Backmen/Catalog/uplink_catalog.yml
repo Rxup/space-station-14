@@ -264,7 +264,7 @@
   id: UplinkBrassknuckles
   name: Кастеты
   description: Пара кастетов, для ваших жертв
-  icon: { sprite: Backmen/Objects/Weapons/Meleebrassknuckles.rsi, state: icon }
+  icon: { sprite: Backmen/Objects/Weapons/Melee/brassknuckles.rsi, state: icon }
   productEntity: ClothingHandsGlovesBrassknuckles
   cost:
     Telecrystal: 3

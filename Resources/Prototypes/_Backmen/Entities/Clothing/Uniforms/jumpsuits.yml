@@ -577,3 +577,14 @@
     sprite: Backmen/Clothing/Uniforms/jumpsuit/psycrimson.rsi
   - type: Clothing
     sprite: Backmen/Clothing/Uniforms/jumpsuit/psycrimson.rsi
+    
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformJumpsuitNull
+  name: Порванный халат
+  description: Халат у которого порван рукав, но для костюма на хэллоуин
+  components:
+  - type: Sprite
+    sprite: Backmen/Clothing/Uniforms/jumpsuit/null.rsi
+  - type: Clothing
+    sprite: Backmen/Clothing/Uniforms/jumpsuit/null.rsi
