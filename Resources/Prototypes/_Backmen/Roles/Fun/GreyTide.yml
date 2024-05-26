@@ -1,0 +1,17 @@
+- type: startingGear
+  id: GreyTideAI
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitColorGrey
+    shoes: ClothingShoesColorBlack
+    mask: ClothingMaskGas
+    gloves: ClothingHandsGlovesColorYellowBudget
+
+- type: startingGear
+  id: GreyTideAIMosin
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitColorGrey
+    shoes: ClothingShoesColorBlack
+    mask: ClothingMaskGas
+    gloves: ClothingHandsGlovesColorYellowBudget
+  inhand:
+    - WeaponSniperMosinAI

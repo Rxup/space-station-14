@@ -1,0 +1,10 @@
+- type: startingGear
+  id: SyndicateSoldierFullAI
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitOperative
+    shoes: ClothingShoesBootsCombatFilled
+    mask: ClothingMaskNeckGaiter
+    gloves: ClothingHandsGlovesCombat
+    outerClothing: ClothingOuterVestWeb
+    head: ClothingHeadHatSyndie
+    belt: ClothingBeltMilitaryWebbing

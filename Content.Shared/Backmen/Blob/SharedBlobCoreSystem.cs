@@ -14,13 +14,16 @@ public abstract class SharedBlobCoreSystem : EntitySystem
         SubscribeLocalEvent<BlobCoreComponent, DamageChangedEvent>(OnDamaged);
     }
 
+    [ValidatePrototypeId<AlertPrototype>]
+    private const string BlobHealth = "BlobHealth";
+
     private void OnDamaged(EntityUid uid, BlobCoreComponent component, DamageChangedEvent args)
     {
         var maxHealth = component.CoreBlobTotalHealth;
         var currentHealth = maxHealth - args.Damageable.TotalDamage;
 
         if (component.Observer != null)
-            _alerts.ShowAlert(component.Observer.Value, AlertType.BlobHealth, (short) Math.Clamp(Math.Round(currentHealth.Float() / 10f), 0, 20));
+            _alerts.ShowAlert(component.Observer.Value, BlobHealth, (short) Math.Clamp(Math.Round(currentHealth.Float() / 10f), 0, 20));
     }
 
 

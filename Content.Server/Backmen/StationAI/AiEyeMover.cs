@@ -49,22 +49,23 @@ public sealed class AiEyeMover : Job<object>
 
             var core = Eye.Comp.AiCore.Value;
 
-            var gridUid = NewPosition.GetGridUid(_entityManager);
+
+            var gridUid = _transform.GetGrid(NewPosition);
 
             if (
                 gridUid == null ||
-                _transform.GetMoverCoordinates(core).GetGridUid(_entityManager) != gridUid ||
+                _transform.GetGrid(_transform.GetMoverCoordinates(core)) != gridUid ||
                 !_entityManager.TryGetComponent<MapGridComponent>(gridUid, out var grid))
             {
                 _entityManager.QueueDeleteEntity(Eye);
                 return null;
             }
 
-            // cache
-            if (_cameraSystem.IsCameraActive(Eye))
-                return null;
+            var mapPos = _transform.ToMapCoordinates(NewPosition);
 
-            var mapPos = NewPosition.ToMap(_entityManager, _transform);
+            // cache
+            if (_cameraSystem.IsCameraActive(Eye, mapPos))
+                return null;
 
             foreach (var uid in _map.GetAnchoredEntities(gridUid.Value, grid, NewPosition))
             {
@@ -75,7 +76,7 @@ public sealed class AiEyeMover : Job<object>
             await WaitAsyncTask(Task.Run(() =>
                 _lookup.GetEntitiesInRange(mapPos, SharedStationAISystem.CameraEyeRange, _cameraComponents, LookupFlags.Sensors)));
 
-            _cameraSystem.HandleMove(Eye, _cameraComponents);
+            _cameraSystem.HandleMove(Eye, mapPos, _cameraComponents);
         }
         finally
         {
