@@ -5,9 +5,9 @@
   description: Контактное ударно-раздробляющее оружие для кулачного боя из твёрдого материала.
   components:
   - type: Sprite
-    sprite: Backmen/Objects/Weapons/Meleebrassknuckles.rsi
+    sprite: Backmen/Objects/Weapons/Melee/brassknuckles.rsi
   - type: Clothing
-    sprite: Backmen/Objects/Weapons/Meleebrassknuckles.rsi
+    sprite: Backmen/Objects/Weapons/Melee/brassknuckles.rsi
   - type: EmitSoundOnLand
     sound:
       path: /Audio/Items/crowbar_drop.ogg

@@ -591,8 +591,8 @@
     
 - type: entity
   parent: ClothingUniformBase
-  id: ClothingUniformJumpsuitjecket # Backmen
-  name: Бомбер Джекета
+  id: ClothingUniformJumpsuitRichard # Backmen
+  name: Бомбер Ричарда
   description: Вы чувствуете себя чем-то диким!
   components:
   - type: Sprite
