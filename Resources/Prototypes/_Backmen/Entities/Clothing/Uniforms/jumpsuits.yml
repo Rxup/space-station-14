@@ -591,7 +591,7 @@
     
 - type: entity
   parent: ClothingUniformBase
-  id: ClothingUniformJumpsuitjecket
+  id: ClothingUniformJumpsuitjecket # Backmen
   name: Бомбер Джекета
   description: Вы чувствуете себя чем-то диким!
   components:
@@ -599,3 +599,14 @@
     sprite: Backmen/Clothing/Uniforms/jumpsuit/jecket.rsi
   - type: Clothing
     sprite: Backmen/Clothing/Uniforms/jumpsuit/jecket.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformJumpsuitbiker # Backmen
+  name: Байкерская жилетка
+  description: Вы чувствуете себя чем-то диким!
+  components:
+  - type: Sprite
+    sprite: Backmen/Clothing/Uniforms/jumpsuit/biker.rsi
+  - type: Clothing
+    sprite: Backmen/Clothing/Uniforms/jumpsuit/biker.rsi

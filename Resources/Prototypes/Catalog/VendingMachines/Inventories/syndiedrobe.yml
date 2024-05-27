@@ -15,7 +15,8 @@
     ClothingNeckScarfStripedSyndieGreen: 2
     ClothingNeckScarfStripedSyndieRed: 2
     ClothingShoesBootsWinterSyndicate: 2
-    ClothingUniformJumpsuitjecket: 1
+    ClothingUniformJumpsuitjecket: 1 # Backmen
+    ClothingUniformJumpsuitbiker: 1 # Backmen
     
   emaggedInventory:
     ClothingOuterCoatSyndieCapArmored: 1
