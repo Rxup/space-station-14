@@ -36,10 +36,10 @@
         alien:
         - state: 4
         - map: [ "enum.AiVisualLayers.Dead" ]
-          state: thinking_dead
+          state: alien_dead
           shader: unshaded
         - map: [ "enum.PowerDeviceVisualLayers.Powered" ]
-          state: thinking
+          state: alien
           shader: unshaded
         - map: [ "enum.AiVisualLayers.NotInEye" ]
           state: not_in_eye
