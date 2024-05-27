@@ -21,10 +21,6 @@
       {
         "name": "equipped-INNERCLOTHING",
         "directions": 4
-      },
-      {
-        "name": "equipped-INNERCLOTHING-monkey",
-        "directions": 4
       }
     ]
   }

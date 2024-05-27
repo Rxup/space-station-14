@@ -1,7 +1,6 @@
-- type: constructionGraph
 - type: construction
   name: боксерский бинт
-  id: Hands_Bint # Backmen
+  id: Hands_Bint
   graph: HandsBint
   startNode: start
   targetNode: Hands_Bint
@@ -13,7 +12,7 @@
   objectType: Item
   
 - type: constructionGraph
-  id: HandsBint # Backmen
+  id: HandsBint
   start: start
   graph:
     - node: start

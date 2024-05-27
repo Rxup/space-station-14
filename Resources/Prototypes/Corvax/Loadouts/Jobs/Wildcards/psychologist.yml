@@ -35,8 +35,12 @@
   id: PsychologistJumpsuit
   equipment:
     jumpsuit: ClothingUniformJumpsuitPsychologist
+    
+- type: loadout
+  id: PsychologistJumpsuitCrimson
+  equipment: PsychologistJumpsuitCrimson
 
 - type: startingGear
-  id: PsychologistJumpsuit
+  id: PsychologistJumpsuitCrimson
   equipment:
     jumpsuit: ClothingUniformJumpsuitPsychologistCrimson

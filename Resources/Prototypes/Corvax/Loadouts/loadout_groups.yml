@@ -12,4 +12,10 @@
   - PsychologistBackpack
   - PsychologistSatchel
   - PsychologistDuffel
-
+# Jumpsuit
+- type: loadoutGroup
+  id: PsychologistJumpsuit
+  name: Костюм психолога
+  loadouts: 
+  - PsychologistJumpsuit
+  - PsychologistJumpsuitCrimson
