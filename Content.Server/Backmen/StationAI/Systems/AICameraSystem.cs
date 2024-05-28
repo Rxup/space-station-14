@@ -14,6 +14,7 @@ using Content.Shared.Weapons.Ranged.Components;
 using Robust.Server.GameObjects;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.CPUJob.JobQueues.Queues;
+using Robust.Shared.Map;
 using Robust.Shared.Prototypes;
 
 namespace Content.Server.Backmen.StationAI.Systems;
@@ -140,12 +141,13 @@ public sealed class AICameraSystem : EntitySystem
         _moveJobQueue.EnqueueJob(job);
     }
 
-    public bool IsCameraActive(Entity<AIEyeComponent> eye)
+    public bool IsCameraActive(Entity<AIEyeComponent> eye, MapCoordinates eyeCoordinates)
     {
         if (!eye.Comp.Camera.HasValue)
             return false;
 
-        return _interaction.InRangeUnobstructed(eye.Comp.Camera.Value, eye, SharedStationAISystem.CameraEyeRange);
+
+        return _interaction.InRangeUnobstructed(eyeCoordinates, eye.Comp.Camera.Value, SharedStationAISystem.CameraEyeRange);
     }
 
     public void RemoveActiveCamera(Entity<AIEyeComponent> eye)
@@ -192,7 +194,7 @@ public sealed class AICameraSystem : EntitySystem
         EnsureComp<AICameraComponent>(camUid).ActiveViewers.Add(eye);
     }
 
-    public void HandleMove(Entity<AIEyeComponent> eye, HashSet<Entity<SurveillanceCameraComponent>> cameraComponents)
+    public void HandleMove(Entity<AIEyeComponent> eye, MapCoordinates eyeCoordinates, HashSet<Entity<SurveillanceCameraComponent>> cameraComponents)
     {
         foreach (var cameraComponent in cameraComponents)
         {
@@ -200,7 +202,7 @@ public sealed class AICameraSystem : EntitySystem
             if(!cameraComponent.Comp.Active)
                 continue;
 
-            if(!_interaction.InRangeUnobstructed(cameraComponent, eye, SharedStationAISystem.CameraEyeRange))
+            if(!_interaction.InRangeUnobstructed(eyeCoordinates, cameraComponent, SharedStationAISystem.CameraEyeRange))
                 continue;
 
             RemCompDeferred<TemporaryBlindnessComponent>(eye);

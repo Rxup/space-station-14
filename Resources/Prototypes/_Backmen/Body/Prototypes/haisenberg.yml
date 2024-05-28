@@ -5,27 +5,27 @@
   slots:
     torso:
       part: TorsoAnimal
-      connections:
-      - right arm
-      - left arm
-      - legs
       organs:
         lungs: OrganAnimalLungs
         stomach: OrganAnimalStomach
         liver: OrganAnimalLiver
         heart: OrganAnimalHeart
         kidneys: OrganAnimalKidneys
-    right arm:
+      connections:
+      - right_arm
+      - left_arm
+      - legs
+    right_arm:
       part: RightArmHuman
       connections:
-      - right hand
-    left arm:
+      - right_hand
+    left_arm:
       part: LeftArmHuman
       connections:
-      - left hand
-    right hand:
+      - left_hand
+    right_hand:
       part: RightHandHuman
-    left hand:
+    left_hand:
       part: LeftHandHuman
     legs:
       part: LegsAnimal

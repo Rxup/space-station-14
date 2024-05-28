@@ -12,27 +12,27 @@
         eyes: OrganHumanEyes
     torso:
       part: TorsoHuman
-      connections:
-      - right arm
-      - left arm
-      - thorax
       organs:
         heart: OrganHumanHeart
         lungs: OrganHumanLungs
         stomach: OrganVampiricHumanoidStomach
         liver:  OrganHumanLiver
         kidneys: OrganHumanKidneys
-    right arm:
+      connections:
+      - right_arm
+      - left_arm
+      - thorax
+    right_arm:
       part: RightArmHuman
       connections:
-      - right hand
-    left arm:
+      - right_hand
+    left_arm:
       part: LeftArmHuman
       connections:
-      - left hand
-    right hand:
+      - left_hand
+    right_hand:
       part: RightHandHuman
-    left hand:
+    left_hand:
       part: LeftHandHuman
     thorax:
       part: ThoraxSpider
