@@ -10,10 +10,10 @@ public sealed class SharedBkmCameraRecoilSystem : EntitySystem
     {
         base.Initialize();
 
-        SubscribeLocalEvent<BkmCameraRecoilComponent, GunRefreshModifiersEvent>(OnGunRefreshModifiers);
+        SubscribeLocalEvent<BkmGunWieldBonusComponent, GunRefreshModifiersEvent>(OnGunRefreshModifiers);
     }
 
-    private void OnGunRefreshModifiers(EntityUid uid, BkmCameraRecoilComponent component, ref GunRefreshModifiersEvent args)
+    private void OnGunRefreshModifiers(EntityUid uid, BkmGunWieldBonusComponent component, ref GunRefreshModifiersEvent args)
     {
         if (TryComp(uid, out WieldableComponent? wield) &&
             wield.Wielded)

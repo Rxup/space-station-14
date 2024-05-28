@@ -86,7 +86,7 @@ public sealed partial class GunSystem : SharedGunSystem
         InitializeMagazineVisuals();
         InitializeSpentAmmo();
 
-        _bkmCameraRecoilQuery = GetEntityQuery<Shared.Backmen.Camera.Components.BkmCameraRecoilComponent>(); // backmen: KickMagnitudeMax
+        _bkmCameraRecoilQuery = GetEntityQuery<Shared.Backmen.Camera.Components.BkmGunWieldBonusComponent>(); // backmen: KickMagnitudeMax
     }
 
     private void OnMuzzleFlash(MuzzleFlashEvent args)
@@ -258,7 +258,7 @@ public sealed partial class GunSystem : SharedGunSystem
         }
     }
 
-    private EntityQuery<BkmCameraRecoilComponent> _bkmCameraRecoilQuery; // backmen: KickMagnitudeMax
+    private EntityQuery<BkmGunWieldBonusComponent> _bkmCameraRecoilQuery; // backmen: KickMagnitudeMax
     private void Recoil(EntityUid? user, Vector2 recoil, float recoilScalar, EntityUid? gunUid = null) // backmen: KickMagnitudeMax
     {
         if (!Timing.IsFirstTimePredicted || user == null || recoil == Vector2.Zero || recoilScalar == 0)

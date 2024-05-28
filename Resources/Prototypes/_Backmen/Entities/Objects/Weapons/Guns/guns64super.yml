@@ -12,8 +12,9 @@
       map: ["enum.GunVisualLayers.Base"]
     - state: mag-0
       map: ["enum.GunVisualLayers.Mag"]
-  - type: GunWieldBonus
+  - type: BkmGunWieldBonus
     cameraRecoilScalar: -4.5
+  - type: GunWieldBonus
     angleIncrease: -3
   - type: Gun
     soundGunshot:
@@ -40,10 +41,11 @@
       map: ["enum.GunVisualLayers.Base"]
     - state: mag-0
       map: ["enum.GunVisualLayers.Mag"]
+  - type: BkmGunWieldBonus
+    cameraRecoilScalar: -4.5
   - type: GunWieldBonus
     minAngle: -23
     maxAngle: 0
-    cameraRecoilScalar: -4.5
     angleIncrease: -7
   - type: UseDelay
     delay: 0.3
@@ -73,10 +75,11 @@
       map: ["enum.GunVisualLayers.Base"]
     - state: mag-0
       map: ["enum.GunVisualLayers.Mag"]
+  - type: BkmGunWieldBonus
+    cameraRecoilScalar: -4.5
   - type: GunWieldBonus
     minAngle: -23
     maxAngle: 0
-    cameraRecoilScalar: -4.5
     angleIncrease: -7
   - type: UseDelay
     delay: 0.6
@@ -107,10 +110,11 @@
   - type: Gun
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/silenced.ogg
+  - type: BkmGunWieldBonus
+    cameraRecoilScalar: -4.5
   - type: GunWieldBonus
     minAngle: -22
     maxAngle: -28
-    cameraRecoilScalar: -4.5
     angleIncrease: -7
   - type: UseDelay
     delay: 0.2
@@ -134,10 +138,11 @@
       map: ["enum.GunVisualLayers.Base"]
     - state: mag-0
       map: ["enum.GunVisualLayers.Mag"]
+  - type: BkmGunWieldBonus
+    cameraRecoilScalar: -4.5
   - type: GunWieldBonus
     minAngle: -22
     maxAngle: 0
-    cameraRecoilScalar: -4.5
     angleIncrease: -5
   - type: UnpoweredFlashlight
   - type: PointLight
