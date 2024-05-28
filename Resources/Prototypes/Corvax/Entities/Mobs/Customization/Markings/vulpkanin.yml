@@ -65,10 +65,10 @@
   markingCategory: Tail
   speciesRestriction: []
   sprites:
-    - sprite: Corvax/Mobs/Customization/vulpkanin.rsi
+    - sprite: Backmen/Mobs/Customization/fox_markings.rsi # backmen
       state: tail_fox_waggin
-    - sprite: Corvax/Mobs/Customization/vulpkanin.rsi
-      state: tail_fox_inner_waggin
+    # - sprite: Corvax/Mobs/Customization/vulpkanin.rsi # backmen
+      # state: tail_fox_inner_waggin
 
 - type: marking
   id: WolfTailAnimated
