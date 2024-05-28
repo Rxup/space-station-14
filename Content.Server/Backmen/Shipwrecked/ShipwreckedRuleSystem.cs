@@ -108,6 +108,7 @@ public sealed class ShipwreckedRuleSystem : GameRuleSystem<ShipwreckedRuleCompon
     [Dependency] private readonly IConfigurationManager _configurationManager = default!;
     [Dependency] private readonly IGameTiming _gameTiming = default!;
     [Dependency] private readonly IMapManager _mapManager = default!;
+    [Dependency] private readonly MapSystem _mapSystem = default!;
     [Dependency] private readonly IPlayerManager _playerManager = default!;
     [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
     [Dependency] private readonly IRobustRandom _random = default!;
@@ -347,7 +348,7 @@ public sealed class ShipwreckedRuleSystem : GameRuleSystem<ShipwreckedRuleCompon
 
     private void SpawnPlanet(EntityUid uid, ShipwreckedRuleComponent component)
     {
-        if (component.PlanetMapId.HasValue && _mapManager.MapExists(component.PlanetMapId.Value))
+        if (component.PlanetMap.HasValue && !TerminatingOrDeleted(component.PlanetMap.Value) && component.PlanetMapId.HasValue && _mapManager.MapExists(component.PlanetMapId.Value))
         {
             return;
         }
@@ -357,9 +358,10 @@ public sealed class ShipwreckedRuleSystem : GameRuleSystem<ShipwreckedRuleCompon
         //
         // Some of it has been modified to suit my needs.
 
-        var planetMapId = _mapManager.CreateMap();
-        var planetMapUid = _mapManager.GetMapEntityId(planetMapId);
-        _mapManager.AddUninitializedMap(planetMapId);
+
+        var planetMapUid = _mapSystem.CreateMap(out var planetMapId,false);
+        //var planetMapUid = _mapManager.GetMapEntityId(planetMapId);
+        //_mapManager.AddUninitializedMap(planetMapId);
 
         if (!_shuttleSystem.TryAddFTLDestination(planetMapId, true, out var ftl))
         {
@@ -441,7 +443,8 @@ public sealed class ShipwreckedRuleSystem : GameRuleSystem<ShipwreckedRuleCompon
         var cShape = new ChainShape();
         // Don't need it to be a perfect circle, just need it to be loosely accurate.
         cShape.CreateLoop(Vector2.Zero, restriction.Range + 1f, false, count: 4);
-        EntityManager.System<FixtureSystem>().TryCreateFixture(
+        EntityManager.System<FixtureSystem>()
+            .TryCreateFixture(
             boundaryUid,
             cShape,
             "boundary",
@@ -470,7 +473,8 @@ public sealed class ShipwreckedRuleSystem : GameRuleSystem<ShipwreckedRuleCompon
 
         RemComp<ShipwreckMapGridComponent>(component.PlanetMap.Value);
 
-        AddComp(component.PlanetMap.Value, new ShipwreckMapGridComponent
+        AddComp(component.PlanetMap.Value,
+            new ShipwreckMapGridComponent
         {
             Area = targetArea
         });
@@ -525,8 +529,11 @@ public sealed class ShipwreckedRuleSystem : GameRuleSystem<ShipwreckedRuleCompon
             var point = direction * distance;
 
             var dungeonProto = structuresToBuild.Pop();
-            var dungeon = await _dungeonSystem.GenerateDungeonAsync(dungeonProto, component.PlanetMap.Value, component.PlanetGrid,
-                point, _random.Next());
+            var dungeon = await _dungeonSystem.GenerateDungeonAsync(dungeonProto,
+                component.PlanetMap.Value,
+                component.PlanetGrid,
+                point,
+                _random.Next());
 
             component.Structures.Add(dungeon);
         }
@@ -590,12 +597,7 @@ public sealed class ShipwreckedRuleSystem : GameRuleSystem<ShipwreckedRuleCompon
                     _mapManager.DeleteMap(map);
                 }
 
-                _mapManager.CreateMap(_gameTicker.DefaultMap);
-                if (_gameTicker.RunLevel != GameRunLevel.InRound)
-                {
-                    _mapManager.AddUninitializedMap(_gameTicker.DefaultMap);
-                }
-
+                _mapSystem.CreateMap(_gameTicker.DefaultMap, _gameTicker.RunLevel == GameRunLevel.InRound);
             }
 
             mapId = LoadDefaultMap();
@@ -1531,12 +1533,12 @@ public sealed class ShipwreckedRuleSystem : GameRuleSystem<ShipwreckedRuleCompon
 
         component.NextEventTick = _gameTiming.CurTime + component.EventSchedule[0].timeOffset;
 
-        if (component.PlanetMap == null)
+        if (component.PlanetMap == null || TerminatingOrDeleted(component.PlanetMap.Value))
         {
             SpawnPlanet(uid,component);
         }
 
-        if (component.PlanetMap == null)
+        if (component.PlanetMap == null || TerminatingOrDeleted(component.PlanetMap.Value))
         {
             _gameTicker.EndGameRule(uid, gameRule);
             throw new ArgumentException("Неправильная карта планеты! Отмена!");
