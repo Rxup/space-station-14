@@ -935,7 +935,10 @@
       map: ["enum.GunVisualLayers.Base"]
     - state: mag-0
       map: ["enum.GunVisualLayers.Mag"]
+  - type: Clothing
+    sprite: Backmen/Objects/Weapons/Gunsx64/Rifles/aksu.rsi
   - type: Item
+    sprite: Backmen/Objects/Weapons/Gunsx64/Rifles/aksu.rsi
     size: NormalLarge
   - type: BkmGunWieldBonus
     cameraRecoilScalar: -3
@@ -1949,6 +1952,10 @@
       map: ["enum.GunVisualLayers.Base"]
     - state: mag-0
       map: ["enum.GunVisualLayers.Mag"]
+  - type: Clothing
+    sprite: Backmen/Objects/Weapons/Gunsx64/SMGs/p90.rsi
+  - type: Item
+    sprite: Backmen/Objects/Weapons/Gunsx64/SMGs/p90.rsi
   - type: BkmGunWieldBonus
     cameraRecoilScalar: -4
   - type: GunWieldBonus

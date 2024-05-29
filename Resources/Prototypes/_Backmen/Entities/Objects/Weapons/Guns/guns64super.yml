@@ -12,6 +12,10 @@
       map: ["enum.GunVisualLayers.Base"]
     - state: mag-0
       map: ["enum.GunVisualLayers.Mag"]
+  - type: Clothing
+    sprite: Backmen/Objects/Weapons/Gunsx64/Rifles/akms/tinysuper.rsi
+  - type: Item
+    sprite: Backmen/Objects/Weapons/Gunsx64/Rifles/akms/tinysuper.rsi
   - type: BkmGunWieldBonus
     cameraRecoilScalar: -4.5
   - type: GunWieldBonus
@@ -19,6 +23,8 @@
   - type: Gun
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/silenced.ogg
+      params:
+        volume: -2
   - type: MechAssembly
     requiredParts:
       CanPilot: false
@@ -41,6 +47,10 @@
       map: ["enum.GunVisualLayers.Base"]
     - state: mag-0
       map: ["enum.GunVisualLayers.Mag"]
+  - type: Clothing
+    sprite: Backmen/Objects/Weapons/Gunsx64/Rifles/m28/tinysuper.rsi
+  - type: Item
+    sprite: Backmen/Objects/Weapons/Gunsx64/Rifles/m28/tinysuper.rsi
   - type: BkmGunWieldBonus
     cameraRecoilScalar: -4.5
   - type: GunWieldBonus
@@ -75,6 +85,10 @@
       map: ["enum.GunVisualLayers.Base"]
     - state: mag-0
       map: ["enum.GunVisualLayers.Mag"]
+  - type: Clothing
+    sprite: Backmen/Objects/Weapons/Gunsx64/Rifles/g36/tinysuper.rsi
+  - type: Item
+    sprite: Backmen/Objects/Weapons/Gunsx64/Rifles/g36/tinysuper.rsi
   - type: BkmGunWieldBonus
     cameraRecoilScalar: -4.5
   - type: GunWieldBonus
@@ -107,9 +121,15 @@
       map: ["enum.GunVisualLayers.Base"]
     - state: mag-0
       map: ["enum.GunVisualLayers.Mag"]
+  - type: Clothing
+    sprite: Backmen/Objects/Weapons/Gunsx64/SMGs/vector/tinysuper.rsi
+  - type: Item
+    sprite: Backmen/Objects/Weapons/Gunsx64/SMGs/vector/tinysuper.rsi
   - type: Gun
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/silenced.ogg
+      params:
+        volume: -3
   - type: BkmGunWieldBonus
     cameraRecoilScalar: -4.5
   - type: GunWieldBonus
@@ -138,6 +158,10 @@
       map: ["enum.GunVisualLayers.Base"]
     - state: mag-0
       map: ["enum.GunVisualLayers.Mag"]
+  - type: Clothing
+    sprite: Backmen/Objects/Weapons/Gunsx64/SMGs/mp5/tinysuper.rsi
+  - type: Item
+    sprite: Backmen/Objects/Weapons/Gunsx64/SMGs/mp5/tinysuper.rsi
   - type: BkmGunWieldBonus
     cameraRecoilScalar: -4.5
   - type: GunWieldBonus
@@ -169,6 +193,10 @@
     - state: laser
       shader: unshaded
     - state: base
+  - type: Clothing
+    sprite: Backmen/Objects/Weapons/Gunsx64/Shotguns/sh-39/tinysuper.rsi
+  - type: Item
+    sprite: Backmen/Objects/Weapons/Gunsx64/Shotguns/sh-39/tinysuper.rsi
   - type: UseDelay
     delay: 0.3
   - type: Gun
