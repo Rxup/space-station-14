@@ -566,3 +566,47 @@
     controlsLocked: true
     randomMode: false
     mode: SensorOff
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformJumpsuitPsychologistCrimson
+  name: малиновый костюм психолога
+  description: Что вы знаете о нулях и хроносе?
+  components:
+  - type: Sprite
+    sprite: Backmen/Clothing/Uniforms/jumpsuit/psycrimson.rsi
+  - type: Clothing
+    sprite: Backmen/Clothing/Uniforms/jumpsuit/psycrimson.rsi
+    
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformJumpsuitNull
+  name: Порванный халат
+  description: Халат у которого порван рукав, но для костюма на хэллоуин
+  components:
+  - type: Sprite
+    sprite: Backmen/Clothing/Uniforms/jumpsuit/null.rsi
+  - type: Clothing
+    sprite: Backmen/Clothing/Uniforms/jumpsuit/null.rsi
+    
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformJumpsuitRichard # Backmen
+  name: Бомбер Ричарда
+  description: Вы чувствуете себя чем-то диким!
+  components:
+  - type: Sprite
+    sprite: Backmen/Clothing/Uniforms/jumpsuit/jecket.rsi
+  - type: Clothing
+    sprite: Backmen/Clothing/Uniforms/jumpsuit/jecket.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformJumpsuitbiker # Backmen
+  name: Байкерская жилетка
+  description: Вы чувствуете себя чем-то диким!
+  components:
+  - type: Sprite
+    sprite: Backmen/Clothing/Uniforms/jumpsuit/biker.rsi
+  - type: Clothing
+    sprite: Backmen/Clothing/Uniforms/jumpsuit/biker.rsi

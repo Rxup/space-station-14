@@ -258,3 +258,27 @@
     BluespaceUplink: 1
   categories:
   - WizardPointless
+  
+# Weapon and mask
+- type: listing
+  id: UplinkBrassknuckles
+  name: Кастеты
+  description: Пара кастетов, для ваших жертв
+  icon: { sprite: Backmen/Objects/Weapons/Melee/brassknuckles.rsi, state: icon }
+  productEntity: ClothingHandsGlovesBrassknuckles
+  cost:
+    Telecrystal: 3
+  categories:
+  - UplinkWeaponry
+  
+- type: listing
+  id: UplinkSpecialDelivery
+  name: особая посылка
+  description: Посылка с случайной маской психов Майами!
+  icon: { sprite: Backmen/Objects/Misc/specialdelivery.rsi, state: specialdelivery }
+  productEntity: SpecialDeliveryBox
+  cost:
+    Telecrystal: 1
+  categories:
+  - UplinkPointless
+
