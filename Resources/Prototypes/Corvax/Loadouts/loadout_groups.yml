@@ -15,7 +15,7 @@
 # Jumpsuit
 - type: loadoutGroup
   id: PsychologistJumpsuit
-  name: Костюм психолога
+  name: loadout-group-psychologist-jumpsuit
   loadouts: 
   - PsychologistJumpsuit
   - PsychologistJumpsuitCrimson
