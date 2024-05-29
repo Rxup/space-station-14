@@ -114,7 +114,7 @@
   id: UplinkVectorBundle
   name: набор "Vector"
   description: Оружие используемая спецназом, такой экзепляр стал очень быстро востребован на черном рынке, благодаря своей передовой системе глушение отдачи. В комплетке 3 магазина.
-  icon: { sprite: Backmen/Objects/Weapons/Gunsx64/SMGs/mp5/big.rsi, state: icon }
+  icon: { sprite: Backmen/Objects/Weapons/Gunsx64/SMGs/vector/big.rsi, state: icon }
   productEntity: ClothingBackpackDuffelSyndicateFilledVector
   cost:
     Telecrystal: 17
