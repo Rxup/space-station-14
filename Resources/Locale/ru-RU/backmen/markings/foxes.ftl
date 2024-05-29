@@ -12,3 +12,4 @@ marking-FoxBelly-vulp_belly-torso = Лисий живот
 marking-FoxBelly = Лисий живот
 marking-FoxSnout-vulp_face = Лисья морда
 marking-FoxSnout = Лисья морда
+marking-FoxTailinner = Лисий хвост (кончик)

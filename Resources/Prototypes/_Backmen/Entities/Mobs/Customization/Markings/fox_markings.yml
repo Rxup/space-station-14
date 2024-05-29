@@ -55,3 +55,25 @@
   sprites:
     - sprite: Backmen/Mobs/Customization/fox_markings.rsi
       state: vulp_face
+
+- type: marking
+  id: FoxTailinner
+  bodyPart: Tail
+  markingCategory: Tail
+  speciesRestriction: [HumanoidFoxes]
+  sprites:
+    - sprite: Corvax/Mobs/Customization/vulpkanin.rsi
+      state: vulp_tail
+    - sprite: Corvax/Mobs/Customization/vulpkanin.rsi
+      state: vulp_tail_inner
+      
+- type: marking
+  id: FoxTailinnerAnimated
+  bodyPart: Tail
+  markingCategory: Tail
+  speciesRestriction: []
+  sprites:
+    - sprite: Corvax/Mobs/Customization/vulpkanin.rsi
+      state: tail_fox_waggin
+    - sprite: Corvax/Mobs/Customization/vulpkanin.rsi
+      state: tail_fox_inner_waggin

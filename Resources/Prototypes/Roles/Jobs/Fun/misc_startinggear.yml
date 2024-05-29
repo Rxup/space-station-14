@@ -22,7 +22,7 @@
     # belt holds katana so satchel has the tools for sabotaging things
     back: ClothingBackpackSatchelTools
     mask: ClothingMaskNinja
-    head: ClothingHeadHelmetSpaceNinja
+    head: ClothingHeadHelmetSpaceNinjaBK #Backmen
     eyes: ClothingEyesVisorNinja
     gloves: ClothingHandsGlovesSpaceNinja
     outerClothing: ClothingOuterSuitSpaceNinja

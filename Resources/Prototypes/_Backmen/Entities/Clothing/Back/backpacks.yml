@@ -11,7 +11,7 @@
     sprite: Backmen/Clothing/Back/Backpacks/orden_backpacks.rsi
 
 - type: entity
-  parent: ClothingBackpack
+  parent: ClothingBackpackSatchel
   id: ClothingNinjaSatchel
   name: Ninja satchel
   description: Space ninja backpack
