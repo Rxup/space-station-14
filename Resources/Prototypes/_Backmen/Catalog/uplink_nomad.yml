@@ -510,11 +510,12 @@
   parent: ClothingBackpackDuffelSyndicateMedicalBundle
   id: ClothingBackpackDuffelSyndicateMedicalBundleBackmenFilled
   name: набор медикаментов
-  description: "Всё, что нужно для возвращения в строй ваших товарищей: главным образом, боевая аптечка, дефибриллятор, три боевых медипена и инъектор суперстимулятора."
+  description: "Всё, что нужно для возвращения в строй ваших товарищей: главным образом, 2 боевых аптечки, дефибриллятор, три боевых медипена и инъектор суперстимулятора."
   components:
   - type: StorageFill
     contents:
       - id: MedkitCombatFilled
+        amount: 2
       - id: Defibrillator
       - id: CombatMedipen
         amount: 3
