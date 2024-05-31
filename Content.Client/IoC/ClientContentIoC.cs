@@ -3,23 +3,20 @@ using Content.Client.Changelog;
 using Content.Client.Chat.Managers;
 using Content.Client.Clickable;
 using Content.Client.Corvax.TTS;
-using Content.Client.Options;
 using Content.Client.Eui;
 using Content.Client.GhostKick;
 using Content.Client.Info;
 using Content.Client.Launcher;
 using Content.Client.Parallax.Managers;
 using Content.Client.Players.PlayTimeTracking;
-using Content.Client.Preferences;
 using Content.Client.Screenshot;
 using Content.Client.Fullscreen;
 using Content.Client.Stylesheets;
 using Content.Client.Viewport;
 using Content.Client.Voting;
-using Content.Shared.Administration;
 using Content.Shared.Administration.Logs;
-using Content.Shared.Module;
 using Content.Client.Guidebook;
+using Content.Client.Lobby;
 using Content.Client.Replay;
 using Content.Shared.Administration.Managers;
 using Content.Shared.Players.PlayTimeTracking;
@@ -36,6 +33,7 @@ namespace Content.Client.IoC
             collection.Register<Content.Corvax.Interfaces.Client.ISponsorWindowCreator,Backmen.Sponsors.SponsorWindowCreator>(); // Corvax-Sponsors
             collection.Register<Content.Corvax.Interfaces.Client.IClientJoinQueueManager,Backmen.JoinQueue.JoinQueueManager>(); // Corvax-Queue
             collection.Register<Content.Corvax.Interfaces.Client.IClientDiscordAuthManager,Backmen.DiscordAuth.DiscordAuthManager>(); // Corvax-DiscordAuth
+            collection.Register<Content.Corvax.Interfaces.Shared.ISharedLoadoutsManager, Backmen.Sponsors.LoadoutsManager>(); // Corvax-Sponsors
 
             collection.Register<IParallaxManager, ParallaxManager>();
             collection.Register<IChatManager, ChatManager>();

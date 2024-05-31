@@ -100,6 +100,9 @@ public sealed class BlobObserverSystem : SharedBlobObserverSystem
         }
     }
 
+    [ValidatePrototypeId<AlertPrototype>]
+    private const string BlobHealth = "BlobHealth";
+
     private void OnCreateBlobObserver(EntityUid blobCoreUid, BlobCoreComponent core, CreateBlobObserverEvent args)
     {
         var observer = Spawn(core.ObserverBlobPrototype, Transform(blobCoreUid).Coordinates);
@@ -153,7 +156,7 @@ public sealed class BlobObserverSystem : SharedBlobObserverSystem
         _roleSystem.MindAddRole(mindId, new BlobRoleComponent{ PrototypeId = core.AntagBlobPrototypeId });
         SendBlobBriefing(mindId);
 
-        _alerts.ShowAlert(observer, AlertType.BlobHealth, (short) Math.Clamp(Math.Round(core.CoreBlobTotalHealth.Float() / 10f), 0, 20));
+        _alerts.ShowAlert(observer, BlobHealth, (short) Math.Clamp(Math.Round(core.CoreBlobTotalHealth.Float() / 10f), 0, 20));
 
         var blobRule = EntityQuery<BlobRuleComponent>().FirstOrDefault();
         blobRule?.Blobs.Add((mindId,mind));

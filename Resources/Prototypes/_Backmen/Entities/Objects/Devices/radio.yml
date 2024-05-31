@@ -1,0 +1,12 @@
+- type: entity
+  name: рация ОБР
+  description: A handy handheld radio.
+  parent: BaseItem
+  id: RadioMTFHandheld
+  components:
+  - type: Sprite
+    sprite: Objects/Devices/communication.rsi
+    state: radio
+  - type: Item
+    sprite: Objects/Devices/communication.rsi
+    heldPrefix: radio

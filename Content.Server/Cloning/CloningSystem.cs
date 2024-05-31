@@ -225,7 +225,7 @@ namespace Content.Server.Cloning
                 Proto = speciesPrototype.Prototype
             };
             RaiseLocalEvent(ref genetics);
-            var mob = Spawn(genetics.Proto ?? speciesPrototype.Prototype, Transform(uid).MapPosition);
+            var mob = Spawn(genetics.Proto ?? speciesPrototype.Prototype, _transformSystem.GetMapCoordinates(uid));
             if (!genetics.IsHandleAppearance)
             {
                 _humanoidSystem.CloneAppearance(bodyToClone, mob);

@@ -1,8 +1,21 @@
 - type: loadoutGroup
+  id: Inventory
+  name: loadout-group-inventory
+  minLimit: 0
+  maxLimit: 5
+  loadouts: []
+
+- type: loadoutGroup
   id: PsychologistBackpack
   name: loadout-group-psychologist-backpack
   loadouts:
   - PsychologistBackpack
   - PsychologistSatchel
   - PsychologistDuffel
-
+# Jumpsuit
+- type: loadoutGroup
+  id: PsychologistJumpsuit
+  name: loadout-group-psychologist-jumpsuit
+  loadouts: 
+  - PsychologistJumpsuit
+  - PsychologistJumpsuitCrimson

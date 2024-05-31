@@ -1,0 +1,12 @@
+- type: entity
+  id: BulletFire
+  name: огненная пуля
+  parent: BaseBullet
+  noSpawn: true
+  components:
+  - type: Projectile
+    damage:
+      types:
+        Piercing: 8
+  - type: IgniteOnCollide
+    fireStacks: 0.3

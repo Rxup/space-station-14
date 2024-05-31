@@ -1,0 +1,149 @@
+- type: entity
+  parent: ClothingNeckBase
+  id: ClothingNeckNKVDBagde
+  name: NKVD bagde
+  description: NKVD badge, issued to field officers to search for traitors and orders for mass executions.
+  components:
+  - type: Sprite
+    sprite: Backmen/Clothing/Neck/Medals/nkvd.rsi
+    state: icon
+  - type: Clothing
+    sprite: Backmen/Clothing/Neck/Medals/nkvd.rsi
+  - type: Item
+    size: Tiny
+
+- type: entity
+  parent: ClothingNeckBase
+  id: ClothingMedalIronStar
+  name: Medal "Iron Star"
+  description: Iron Star Award, given for outstanding achievements in a combat zone.
+  components:
+  - type: Sprite
+    sprite: Backmen/test/base/rsi/Textures/Medals/solgov.rsi
+    state: solgov-accessory_iron_star
+  - type: Clothing
+    sprite: Backmen/test/base/rsi/Textures/Medals/solgov.rsi
+    clothingVisuals:
+      neck:
+      - state: iron_star
+  - type: Item
+    size: Tiny
+  - type: StaticPrice
+    price: 1000
+
+- type: entity
+  parent: ClothingMedalIronStar
+  id: ClothingMedalIronSol
+  name: medal "Silver Sun"
+  description: Silver medal, awarded for faithful service in the expeditionary forces of the United Earth Government.
+  components:
+  - type: Sprite
+    state: solgov-accessory_iron_sol
+  - type: Clothing
+    clothingVisuals:
+      neck:
+      - state: iron_sol
+
+- type: entity
+  parent: ClothingMedalIronStar
+  id: ClothingMedalBronzesol
+  name: Medal "Bronze Sun"
+  description: Bronze medal, awarded for participation in research expeditions outside the explored galaxy.
+  components:
+  - type: Sprite
+    state: solgov-accessory_bronze_sol
+  - type: Clothing
+    clothingVisuals:
+      neck:
+      - state: bronze_sol
+
+- type: entity
+  parent: ClothingMedalIronStar
+  id: ClothingMedalSilversword
+  name: medal "combat action"
+  description: Silver medal, awarded for active participation in hostilities as part of the UEG forces.
+  components:
+  - type: Sprite
+    state: solgov-accessory_silver_sword
+  - type: Clothing
+    clothingVisuals:
+      neck:
+      - state: silver_sword
+
+- type: entity
+  parent: ClothingMedalIronStar
+  id: ClothingMedalSilversol
+  name: medal "Silver Sun"
+  description: Silver Medal, awarded for exceptional valor in the medical field.
+  components:
+  - type: Sprite
+    state: solgov-accessory_silver_sol
+  - type: Clothing
+    clothingVisuals:
+      neck:
+      - state: silver_sol
+
+- type: entity
+  parent: ClothingMedalIronStar
+  id: ClothingMedalGoldenStar
+  name: medal "Golden Star"
+  description: Gold Medal, awarded for superior piloting skill and courage as a career attack pilot.
+  components:
+  - type: Sprite
+    state: solgov-accessory_gold_star
+  - type: Clothing
+    clothingVisuals:
+      neck:
+      - state: gold_star
+
+- type: entity
+  parent: ClothingMedalIronStar
+  id: ClothingMedalGoldenSun
+  name: Medal "For Service to Humanity"
+  description: Gold medal awarded by the President of the HMO for significant contribution to the activities of the United Earth Government.
+  components:
+  - type: Sprite
+    state: solgov-accessory_gold_sun
+  - type: Clothing
+    clothingVisuals:
+      neck:
+      - state: gold_sun
+
+- type: entity
+  parent: ClothingMedalIronStar
+  id: ClothingMedalGoldenCrest
+  name: medal "Hero of the United Government Earth"
+  description: A gold medal awarded by the Commander-in-Chief of the Armed Forces of the UEG to military personnel for personal valor and heroism above and beyond the call of duty.
+  components:
+  - type: Sprite
+    state: solgov-accessory_gold_crest
+  - type: Clothing
+    clothingVisuals:
+      neck:
+      - state: gold_crest
+
+- type: entity
+  parent: ClothingMedalIronStar
+  id: ClothingMedalGoldenSol
+  name: sapientia medal
+  description: The Gold Medal is awarded for significant contributions to the protection of the rights of sentient beings.
+  components:
+  - type: Sprite
+    state: solgov-accessory_gold_sol
+  - type: Clothing
+    clothingVisuals:
+      neck:
+      - state: gold_sol
+
+- type: entity
+  parent: ClothingMedalIronStar
+  id: ClothingMedalPinPilot
+  name: pilot's qualification pin
+  description: An gold pin denoting the qualification to fly in the SGDF.
+  components:
+  - type: Sprite
+    state: solgov-accessory_pin_pilot
+  - type: Clothing
+    clothingVisuals:
+      neck:
+      - state: pin_pilot

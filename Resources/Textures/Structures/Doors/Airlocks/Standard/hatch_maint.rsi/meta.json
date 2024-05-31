@@ -1,7 +1,7 @@
 {
   "version": 1,
   "license": "CC-BY-SA-3.0",
-  "copyright": "Taken from paradise station at commit https://github.com/ParadiseSS13/Paradise/commit/9312f1fb7dcdf1c195e255a528f31092613fb60d",
+  "copyright": "Taken from paradise station at commit https://github.com/ParadiseSS13/Paradise/commit/9312f1fb7dcdf1c195e255a528f31092613fb60d, Resprite by KREKS",
   "size": {
     "x": 32,
     "y": 32
@@ -14,10 +14,16 @@
       "name": "bolted_unlit"
     },
     {
+      "name": "bolted_open_unlit"
+    },
+    {
       "name": "closed"
     },
     {
       "name": "closed_unlit"
+    },
+    {
+      "name": "open_unlit"
     },
     {
       "name": "closing",
@@ -25,10 +31,10 @@
         [
           0.1,
           0.1,
-          0.1,
-          0.1,
-          0.1,
-          0.1
+          0.07,
+          0.07,
+          0.07,
+          0.2
         ]
       ]
     },
@@ -38,10 +44,10 @@
         [
           0.1,
           0.1,
-          0.1,
-          0.1,
-          0.1,
-          0.1
+          0.07,
+          0.07,
+          0.07,
+          0.2
         ]
       ]
     },
@@ -49,7 +55,6 @@
       "name": "deny_unlit",
       "delays": [
         [
-          0.1,
           0.1,
           0.1,
           0.1,
@@ -62,18 +67,15 @@
       "name": "open"
     },
     {
-      "name": "open_unlit"
-    },
-    {
       "name": "opening",
       "delays": [
         [
           0.1,
           0.1,
-          0.1,
-          0.1,
-          0.1,
-          0.1
+          0.07,
+          0.07,
+          0.07,
+          0.2
         ]
       ]
     },
@@ -83,10 +85,10 @@
         [
           0.1,
           0.1,
-          0.1,
-          0.1,
-          0.1,
-          0.1
+          0.07,
+          0.07,
+          0.07,
+          0.2
         ]
       ]
     },
@@ -96,15 +98,15 @@
         [
           0.1,
           0.1,
-          0.1,
-          0.1,
-          0.1,
-          0.1
+          0.07,
+          0.07,
+          0.07,
+          0.2
         ]
       ]
     },
     {
-      "name": "panel_open"
+      "name": "panel_closed"
     },
     {
       "name": "panel_opening",
@@ -112,12 +114,16 @@
         [
           0.1,
           0.1,
-          0.1,
-          0.1,
-          0.1,
-          0.1
+          0.07,
+          0.07,
+          0.07,
+          0.2
         ]
       ]
+    },
+
+    {
+      "name": "panel_open"
     },
     {
       "name": "sparks",
@@ -142,9 +148,7 @@
           0.1,
           0.1,
           0.1,
-          0.1,
-          0.1,
-          0.1
+          1.7
         ]
       ]
     },
@@ -157,8 +161,7 @@
           0.1,
           0.1,
           0.1,
-          0.1,
-          1.7
+          0.1
         ]
       ]
     },
@@ -182,10 +185,13 @@
       "name": "emergency_unlit",
       "delays": [
         [
-          0.4,
-          0.4
+          1.2,
+          1.2
         ]
       ]
+    },
+    {
+      "name": "emergency_open_unlit"
     }
   ]
 }

@@ -34,6 +34,11 @@ public sealed class PlayTimeTrackingSystem : EntitySystem
     [Dependency] private readonly MindSystem _minds = default!;
     [Dependency] private readonly PlayTimeTrackingManager _tracking = default!;
     [Dependency] private readonly Backmen.RoleWhitelist.WhitelistSystem _roleWhitelist = default!; // backmen: whitelist
+
+    [Dependency]
+    private readonly Content.Corvax.Interfaces.Shared.ISharedSponsorsManager
+        _sponsorsManager = default!; // backmen: allRoles
+
     [Dependency] private readonly IAdminManager _adminManager = default!;
 
     public override void Initialize()
@@ -182,6 +187,11 @@ public sealed class PlayTimeTrackingSystem : EntitySystem
             !_cfg.GetCVar(CCVars.GameRoleTimers))
             return true;
 
+        //start-backmen: allRoles
+        if (_sponsorsManager.IsServerAllRoles(player.UserId))
+            return true;
+        //end-backmen
+
         // start-backmen: whitelist
         if (_cfg.GetCVar(Shared.Backmen.CCVar.CCVars.WhitelistRolesEnabled) &&
             job.WhitelistRequired &&
@@ -206,6 +216,11 @@ public sealed class PlayTimeTrackingSystem : EntitySystem
         if (!_cfg.GetCVar(CCVars.GameRoleTimers))
             return roles;
 
+        //start-backmen: allRoles
+        if (_sponsorsManager.IsServerAllRoles(player.UserId))
+            return roles;
+        //end-backmen
+
         if (!_tracking.TryGetTrackerTimes(player, out var playTimes))
         {
             Log.Error($"Unable to check playtimes {Environment.StackTrace}");
@@ -226,7 +241,7 @@ public sealed class PlayTimeTrackingSystem : EntitySystem
             }
 
             roles.Add(job.ID);
-            NoRole:;
+            NoRole: ;
         }
 
         return roles;
@@ -236,6 +251,11 @@ public sealed class PlayTimeTrackingSystem : EntitySystem
     {
         if (!_cfg.GetCVar(CCVars.GameRoleTimers))
             return;
+
+        //start-backmen: allRoles
+        if (_sponsorsManager.IsServerAllRoles(userId))
+            return;
+        //end-backmen
 
         var player = _playerManager.GetSessionById(userId);
         if (!_tracking.TryGetTrackerTimes(player, out var playTimes))

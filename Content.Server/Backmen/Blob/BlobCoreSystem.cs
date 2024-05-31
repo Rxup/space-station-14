@@ -343,6 +343,9 @@ public sealed class BlobCoreSystem : SharedBlobCoreSystem
         return true;
     }
 
+    [ValidatePrototypeId<AlertPrototype>]
+    private const string BlobResource = "BlobResource";
+
     public bool ChangeBlobPoint(EntityUid uid, FixedPoint2 amount, BlobCoreComponent? component = null)
     {
         if (!Resolve(uid, ref component))
@@ -351,7 +354,7 @@ public sealed class BlobCoreSystem : SharedBlobCoreSystem
         component.Points += amount;
 
         if (component.Observer != null)
-            _alerts.ShowAlert(component.Observer.Value, AlertType.BlobResource, (short) Math.Clamp(Math.Round(component.Points.Float() / 10f), 0, 16));
+            _alerts.ShowAlert(component.Observer.Value, BlobResource, (short) Math.Clamp(Math.Round(component.Points.Float() / 10f), 0, 16));
 
         return true;
     }

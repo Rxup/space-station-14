@@ -102,6 +102,8 @@
   components:
   - type: StorageFill
     contents:
+      - id: Eftpos # backmen
+        prob: 0.3
       - id: ClothingHandsGlovesLeather
       - id: ClothingOuterApronBotanist
       - id: ClothingHeadBandBotany
@@ -138,7 +140,7 @@
 - type: entity
   id: ClosetJanitorBombFilled
   parent: ClosetJanitorBomb
-  suffix: Filled
+  suffix: DO NOT MAP, Filled
   components:
   - type: StorageFill
     contents:
