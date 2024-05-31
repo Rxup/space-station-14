@@ -72,6 +72,7 @@
   - type: Gun
     minAngle: 24
     maxAngle: 45
+    cameraRecoilScalar: 0.5
     fireRate: 3
     selectedMode: SemiAuto
     availableModes:
@@ -119,6 +120,7 @@
   - type: Gun
     maxAngle: 60
     minAngle: 60
+    cameraRecoilScalar: 0.5
     fireRate: 8
     selectedMode: FullAuto
     availableModes:
@@ -169,6 +171,7 @@
   - type: Gun
     minAngle: 7
     maxAngle: 45
+    cameraRecoilScalar: 0.5
     fireRate: 5
     selectedMode: SemiAuto
     availableModes:
@@ -198,6 +201,7 @@
   description: A Earth Government standard issue laser pistol, use by army and police.
   components:
   - type: Gun
+    cameraRecoilScalar: 0.5
     soundGunshot:
       path: /Audio/Weapons/Guns64/EG-P/shot.ogg
   - type: Sprite
@@ -330,6 +334,7 @@
   - type: Gun
     angleIncrease: 2
     angleDecay: 10
+    cameraRecoilScalar: 0.5
     maxAngle: 15
     minAngle: 1
     selectedMode: SemiAuto
@@ -380,6 +385,7 @@
   - type: Gun
     angleIncrease: 2
     angleDecay: 10
+    cameraRecoilScalar: 0.5
     maxAngle: 15
     minAngle: 1
     selectedMode: FullAuto
@@ -431,6 +437,7 @@
   - type: Gun
     angleDecay: 15
     angleIncrease: 10
+    cameraRecoilScalar: 2
     maxAngle: 15
     minAngle: 1
     selectedMode: SemiAuto
@@ -526,6 +533,7 @@
   - type: Gun
     angleDecay: 7
     angleIncrease: 2
+    cameraRecoilScalar: 0.5
     maxAngle: 15
     minAngle: 1
     soundGunshot:
@@ -592,6 +600,7 @@
   - type: Gun
     angleDecay: 15
     angleIncrease: 5
+    cameraRecoilScalar: 0.5
     maxAngle: 15
     minAngle: 1
     soundGunshot:
@@ -720,6 +729,7 @@
             - CartridgeMagnum345
   - type: Gun
     fireRate: 3
+    cameraRecoilScalar: 0.5
     soundEmpty: /Audio/Backmen/Misc/error.ogg
     soundGunshot:
       path: /Audio/Weapons/Guns64/Pistols/divet_fire.ogg
@@ -858,12 +868,16 @@
     sprite: Backmen/Objects/Weapons/Gunsx64/Rifles/akms/tiny.rsi
   - type: Item
     sprite: Backmen/Objects/Weapons/Gunsx64/Rifles/akms/tiny.rsi
+  - type: BkmGunWieldBonus
+    cameraRecoilScalar: -3.5
   - type: GunWieldBonus
     minAngle: -23
     maxAngle: 0
+    angleIncrease: -2
   - type: Gun
     angleDecay: 20
-    angleIncrease: 2
+    angleIncrease: 5
+    cameraRecoilScalar: 5
     minAngle: 24
     maxAngle: 35
     fireRate: 5
@@ -880,6 +894,7 @@
         priority: 2
         whitelist:
           tags:
+
             - MagazineLightRifle
       gun_chamber:
         name: Chamber
@@ -892,6 +907,7 @@
     containers:
       gun_magazine: !type:ContainerSlot
       gun_chamber: !type:ContainerSlot
+      mech-assembly-container: !type:Container
   - type: MagazineVisuals
     magState: mag
     steps: 1
@@ -900,6 +916,10 @@
   - type: Wieldable
   - type: UseDelay
     delay: 1.3
+  - type: MechAssembly
+    finishedPrototype: WeaponAKMSTacticalRifle
+    requiredParts:
+      UpgradeStation: false
 
 - type: entity
   name: AK74-U
@@ -915,14 +935,21 @@
       map: ["enum.GunVisualLayers.Base"]
     - state: mag-0
       map: ["enum.GunVisualLayers.Mag"]
+  - type: Clothing
+    sprite: Backmen/Objects/Weapons/Gunsx64/Rifles/aksu.rsi
   - type: Item
+    sprite: Backmen/Objects/Weapons/Gunsx64/Rifles/aksu.rsi
     size: NormalLarge
+  - type: BkmGunWieldBonus
+    cameraRecoilScalar: -3
   - type: GunWieldBonus
     minAngle: -23
     maxAngle: 0
+    angleIncrease: -2
   - type: Gun
     angleDecay: 20
-    angleIncrease: 5
+    angleIncrease: 6
+    cameraRecoilScalar: 5
     minAngle: 24
     maxAngle: 45
     fireRate: 5
@@ -978,12 +1005,16 @@
     sprite: Backmen/Objects/Weapons/Gunsx64/Rifles/ar18/tiny.rsi
   - type: Item
     sprite: Backmen/Objects/Weapons/Gunsx64/Rifles/ar18/tiny.rsi
+  - type: BkmGunWieldBonus
+    cameraRecoilScalar: -4
   - type: GunWieldBonus
     minAngle: -23
     maxAngle: 0
+    angleIncrease: -6
   - type: Gun
     angleDecay: 20
-    angleIncrease: 3
+    angleIncrease: 8
+    cameraRecoilScalar: 5
     minAngle: 24
     maxAngle: 45
     soundGunshot:
@@ -1039,12 +1070,16 @@
     sprite: Backmen/Objects/Weapons/Gunsx64/Rifles/g36/tiny.rsi
   - type: Item
     sprite: Backmen/Objects/Weapons/Gunsx64/Rifles/g36/tiny.rsi
+  - type: BkmGunWieldBonus
+    cameraRecoilScalar: -4
   - type: GunWieldBonus
     minAngle: -23
     maxAngle: 0
+    angleIncrease: -6
   - type: Gun
     angleDecay: 20
-    angleIncrease: 2
+    angleIncrease: 8
+    cameraRecoilScalar: 5
     minAngle: 24
     maxAngle: 45
     soundGunshot:
@@ -1073,6 +1108,7 @@
     containers:
       gun_magazine: !type:ContainerSlot
       gun_chamber: !type:ContainerSlot
+      mech-assembly-container: !type:Container
   - type: MagazineVisuals
     magState: mag
     steps: 1
@@ -1081,6 +1117,10 @@
   - type: Wieldable
   - type: UseDelay
     delay: 1.3
+  - type: MechAssembly
+    finishedPrototype: WeaponRifleG36Tactical
+    requiredParts:
+      UpgradeStation: false
 
 - type: entity
   name: M-28
@@ -1100,12 +1140,16 @@
     sprite: Backmen/Objects/Weapons/Gunsx64/Rifles/m28/tiny.rsi
   - type: Item
     sprite: Backmen/Objects/Weapons/Gunsx64/Rifles/m28/tiny.rsi
+  - type: BkmGunWieldBonus
+    cameraRecoilScalar: -4
   - type: GunWieldBonus
     minAngle: -23
     maxAngle: 0
+    angleIncrease: -6
   - type: Gun
     angleDecay: 30
-    angleIncrease: 2
+    angleIncrease: 8
+    cameraRecoilScalar: 5
     minAngle: 24
     maxAngle: 45
     soundGunshot:
@@ -1134,6 +1178,7 @@
     containers:
       gun_magazine: !type:ContainerSlot
       gun_chamber: !type:ContainerSlot
+      mech-assembly-container: !type:Container
   - type: MagazineVisuals
     magState: mag
     steps: 1
@@ -1142,6 +1187,10 @@
   - type: Wieldable
   - type: UseDelay
     delay: 1.5
+  - type: MechAssembly
+    finishedPrototype: WeaponRifleM28Tactical
+    requiredParts:
+      UpgradeStation: false
 
 - type: entity
   parent: WeaponRifleM28
@@ -1177,12 +1226,16 @@
     sprite: Backmen/Objects/Weapons/Gunsx64/Rifles/stg44/tiny.rsi
   - type: Item
     sprite: Backmen/Objects/Weapons/Gunsx64/Rifles/stg44/tiny.rsi
+  - type: BkmGunWieldBonus
+    cameraRecoilScalar: -4
   - type: GunWieldBonus
     minAngle: -23
     maxAngle: 0
+    angleIncrease: -6
   - type: Gun
     angleDecay: 15
-    angleIncrease: 2
+    angleIncrease: 8
+    cameraRecoilScalar: 5
     minAngle: 24
     maxAngle: 45
     fireRate: 8
@@ -1238,12 +1291,16 @@
     sprite: Backmen/Objects/Weapons/Gunsx64/Rifles/m16/tiny.rsi
   - type: Item
     sprite: Backmen/Objects/Weapons/Gunsx64/Rifles/m16/tiny.rsi
+  - type: BkmGunWieldBonus
+    cameraRecoilScalar: -4
   - type: GunWieldBonus
     minAngle: -23
     maxAngle: 0
+    angleIncrease: -5
   - type: Gun
     angleDecay: 15
-    angleIncrease: 3
+    angleIncrease: 8
+    cameraRecoilScalar: 5
     minAngle: 24
     maxAngle: 45
     soundGunshot:
@@ -1297,12 +1354,16 @@
     sprite: Backmen/Objects/Weapons/Gunsx64/Rifles/famas/tiny.rsi
   - type: Item
     sprite: Backmen/Objects/Weapons/Gunsx64/Rifles/famas/tiny.rsi
+  - type: BkmGunWieldBonus
+    cameraRecoilScalar: -4
   - type: GunWieldBonus
     minAngle: -23
     maxAngle: 0
+    angleIncrease: -5
   - type: Gun
     angleDecay: 30
-    angleIncrease: 5
+    angleIncrease: 10
+    cameraRecoilScalar: 5
     minAngle: 24
     maxAngle: 45
     fireRate: 14
@@ -1361,12 +1422,16 @@
     sprite: Backmen/Objects/Weapons/Gunsx64/SMGs/mp5/tiny.rsi
   - type: Item
     sprite: Backmen/Objects/Weapons/Gunsx64/SMGs/mp5/tiny.rsi
+  - type: BkmGunWieldBonus
+    cameraRecoilScalar: -4
   - type: GunWieldBonus
     minAngle: -22
     maxAngle: 0
+    angleIncrease: -3
   - type: Gun
     angleDecay: 20
-    angleIncrease: 5
+    angleIncrease: 8
+    cameraRecoilScalar: 5
     minAngle: 24
     maxAngle: 45
     fireRate: 6
@@ -1390,6 +1455,15 @@
         whitelist:
           tags:
             - CartridgePistol
+  - type: ContainerContainer
+    containers:
+      gun_magazine: !type:ContainerSlot
+      gun_chamber: !type:ContainerSlot
+      mech-assembly-container: !type:Container
+  - type: MechAssembly
+    finishedPrototype: WeaponSubMachineGunMP5Tactical
+    requiredParts:
+      UpgradeStation: false
   - type: MagazineVisuals
     magState: mag
     steps: 1
@@ -1434,12 +1508,16 @@
     sprite: Backmen/Objects/Weapons/Gunsx64/SMGs/mp7/tiny.rsi
   - type: Item
     sprite: Backmen/Objects/Weapons/Gunsx64/SMGs/mp7/tiny.rsi
+  - type: BkmGunWieldBonus
+    cameraRecoilScalar: -4
   - type: GunWieldBonus
     minAngle: -10
     maxAngle: 0
+    angleIncrease: -3
   - type: Gun
     angleDecay: 20
-    angleIncrease: 3
+    angleIncrease: 6
+    cameraRecoilScalar: 5
     minAngle: 14
     maxAngle: 35
     fireRate: 8
@@ -1490,12 +1568,16 @@
     sprite: Backmen/Objects/Weapons/Gunsx64/SMGs/vector/tiny.rsi
   - type: Item
     sprite: Backmen/Objects/Weapons/Gunsx64/SMGs/vector/tiny.rsi
+  - type: BkmGunWieldBonus
+    cameraRecoilScalar: -4
   - type: GunWieldBonus
     minAngle: -22
     maxAngle: -28
+    angleIncrease: -4
   - type: Gun
     angleDecay: 40
-    angleIncrease: 5
+    angleIncrease: 9
+    cameraRecoilScalar: 5
     minAngle: 24
     maxAngle: 45
     fireRate: 10
@@ -1519,6 +1601,15 @@
         whitelist:
           tags:
             - CartridgePistol
+  - type: ContainerContainer
+    containers:
+      gun_magazine: !type:ContainerSlot
+      gun_chamber: !type:ContainerSlot
+      mech-assembly-container: !type:Container
+  - type: MechAssembly
+    finishedPrototype: WeaponSubMachineGunVectorSpecialTactical
+    requiredParts:
+      UpgradeStation: false
   - type: MagazineVisuals
     magState: mag
     steps: 1
@@ -1595,12 +1686,16 @@
     sprite: Backmen/Objects/Weapons/Gunsx64/SMGs/mp38/tiny.rsi
   - type: Item
     sprite: Backmen/Objects/Weapons/Gunsx64/SMGs/mp38/tiny.rsi
+  - type: BkmGunWieldBonus
+    cameraRecoilScalar: -4
   - type: GunWieldBonus
     minAngle: -22
     maxAngle: 0
+    angleIncrease: -2
   - type: Gun
     angleDecay: 20
-    angleIncrease: 2
+    angleIncrease: 4
+    cameraRecoilScalar: 5
     minAngle: 24
     maxAngle: 45
     fireRate: 5
@@ -1799,12 +1894,16 @@
     sprite: Backmen/Objects/Weapons/Gunsx64/SMGs/ppsh41/tiny.rsi
   - type: Item
     sprite: Backmen/Objects/Weapons/Gunsx64/SMGs/ppsh41/tiny.rsi
+  - type: BkmGunWieldBonus
+    cameraRecoilScalar: -4
   - type: GunWieldBonus
     minAngle: -22
     maxAngle: 0
+    angleIncrease: -5
   - type: Gun
     angleDecay: 40
-    angleIncrease: 7
+    angleIncrease: 12
+    cameraRecoilScalar: 5
     minAngle: 24
     maxAngle: 45
     fireRate: 9
@@ -1853,12 +1952,20 @@
       map: ["enum.GunVisualLayers.Base"]
     - state: mag-0
       map: ["enum.GunVisualLayers.Mag"]
+  - type: Clothing
+    sprite: Backmen/Objects/Weapons/Gunsx64/SMGs/p90.rsi
+  - type: Item
+    sprite: Backmen/Objects/Weapons/Gunsx64/SMGs/p90.rsi
+  - type: BkmGunWieldBonus
+    cameraRecoilScalar: -4
   - type: GunWieldBonus
     minAngle: -22
     maxAngle: 0
+    angleIncrease: -3
   - type: Gun
     angleDecay: 40
-    angleIncrease: 5
+    angleIncrease: 8
+    cameraRecoilScalar: 5
     minAngle: 24
     maxAngle: 45
     fireRate: 9
@@ -2003,8 +2110,17 @@
     delay: 1.3
   - type: GunRequiresWield
   - type: Gun
+    cameraRecoilScalar: 2
     soundGunshot:
       path: /Audio/Weapons/Guns64/Shotguns/sh39.ogg
+  - type: ContainerContainer
+    containers:
+      ballistic-ammo: !type:Container
+      mech-assembly-container: !type:Container
+  - type: MechAssembly
+    finishedPrototype: WeaponShotgun39Tactical
+    requiredParts:
+      UpgradeStation: false
 
 - type: entity
   name: XM1014
@@ -2031,6 +2147,7 @@
       map: ["enum.GunVisualLayers.Mag"]
   - type: Gun
     fireRate: 3
+    cameraRecoilScalar: 2
   - type: Item
     sprite: Backmen/Objects/Weapons/Gunsx64/Shotguns/zauer/tiny.rsi
   - type: Clothing
@@ -2064,6 +2181,7 @@
   - type: GunRequiresWield
   - type: Gun
     fireRate: 4
+    cameraRecoilScalar: 2
   - type: ItemSlots
     slots:
       gun_magazine:
@@ -2198,12 +2316,15 @@
     sprite: Backmen/Objects/Weapons/Gunsx64/Rifles/br-64/tiny.rsi
   - type: Item
     sprite: Backmen/Objects/Weapons/Gunsx64/Rifles/br-64/tiny.rsi
+  - type: BkmGunWieldBonus
+    cameraRecoilScalar: -4
   - type: GunWieldBonus
     minAngle: -23
     maxAngle: -43
   - type: Gun
     fireRate: 2
     minAngle: 24
+    cameraRecoilScalar: 5
     maxAngle: 45
     soundGunshot:
       path: /Audio/Weapons/Guns64/Rifles/T64.ogg
@@ -2347,6 +2468,7 @@
     maxAngle: -43
   - type: Gun
     fireRate: 1
+    cameraRecoilScalar: 3
     minAngle: 24
     maxAngle: 45
     soundGunshot:
@@ -2621,6 +2743,7 @@
     sprite: Backmen/Objects/Weapons/Gunsx64/Launchers/rpg/tiny.rsi
   - type: Gun
     fireRate: 0.5
+    cameraRecoilScalar: 2
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/rpgfire.ogg
   - type: BallisticAmmoProvider
@@ -2656,6 +2779,7 @@
     sprite: Backmen/Objects/Weapons/Gunsx64/Revolver/mateba.rsi/tiny.rsi
   - type: Gun
     fireRate: 3
+    cameraRecoilScalar: 2
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/mateba.ogg
 
@@ -2761,11 +2885,14 @@
     sprite: Backmen/Objects/Weapons/Gunsx64/Rifles/v31/tiny.rsi
   - type: Item
     sprite: Backmen/Objects/Weapons/Gunsx64/Rifles/v31/tiny.rsi
+  - type: BkmGunWieldBonus
+    cameraRecoilScalar: -4
   - type: GunWieldBonus
     minAngle: -23
     maxAngle: -43
   - type: Gun
     fireRate: 5
+    cameraRecoilScalar: 5
     minAngle: 24
     maxAngle: 45
     soundGunshot:
@@ -2918,6 +3045,7 @@
   - type: GunRequiresWield
   - type: Gun
     fireRate: 1
+    cameraRecoilScalar: 2
     soundGunshot:
       path: /Audio/Weapons/Guns64/Shotguns/shotgun_cmb.ogg
       params:
@@ -2948,6 +3076,7 @@
   - type: GunRequiresWield
   - type: Gun
     fireRate: 1
+    cameraRecoilScalar: 2
   - type: Tag
     tags:
     - WeaponShotgunKammerer
@@ -2970,6 +3099,8 @@
     sprite: Backmen/Objects/Weapons/Gunsx64/Snipers/dragunov/tiny.rsi
   - type: Item
     sprite: Backmen/Objects/Weapons/Gunsx64/Snipers/dragunov/tiny.rsi
+  - type: BkmGunWieldBonus
+    cameraRecoilScalar: -9
   - type: GunWieldBonus
     minAngle: -23
     maxAngle: -44
@@ -2979,6 +3110,7 @@
     - SemiAuto
     minAngle: 24
     maxAngle: 45
+    cameraRecoilScalar: 10
     fireRate: 3
     soundGunshot:
       path: /Audio/Weapons/Guns64/Snipers/svd.ogg
@@ -3122,12 +3254,15 @@
     sprite: Backmen/Objects/Weapons/Gunsx64/LMGs/rpd/tiny.rsi
   - type: Item
     sprite: Backmen/Objects/Weapons/Gunsx64/LMGs/rpd/tiny.rsi
+  - type: BkmGunWieldBonus
+    cameraRecoilScalar: -4
   - type: GunWieldBonus
     minAngle: -30
     maxAngle: -50
   - type: Gun
     minAngle: 34
     maxAngle: 55
+    cameraRecoilScalar: 5
     fireRate: 5
     soundGunshot:
       path: /Audio/Weapons/Guns64/Rifles/ak47.ogg
@@ -3185,12 +3320,15 @@
     sprite: Backmen/Objects/Weapons/Gunsx64/LMGs/mg42/tiny.rsi
   - type: Item
     sprite: Backmen/Objects/Weapons/Gunsx64/LMGs/mg42/tiny.rsi
+  - type: BkmGunWieldBonus
+    cameraRecoilScalar: -4
   - type: GunWieldBonus
     minAngle: -30
     maxAngle: -50
   - type: Gun
     minAngle: 34
     maxAngle: 55
+    cameraRecoilScalar: 5
     fireRate: 12
     soundGunshot:
       path: /Audio/Weapons/Guns64/LMGs/t27.ogg
@@ -3277,12 +3415,15 @@
     sprite: Backmen/Objects/Weapons/Gunsx64/LMGs/t42/tiny.rsi
   - type: Item
     sprite: Backmen/Objects/Weapons/Gunsx64/LMGs/t42/tiny.rsi
+  - type: BkmGunWieldBonus
+    cameraRecoilScalar: -4
   - type: GunWieldBonus
     minAngle: -30
     maxAngle: -50
   - type: Gun
     minAngle: 34
     maxAngle: 55
+    cameraRecoilScalar: 5
     fireRate: 5
     soundGunshot:
       path: /Audio/Weapons/Guns64/LMGs/t42.ogg
@@ -3457,6 +3598,7 @@
   - type: GunRequiresWield
   - type: Gun
     fireRate: 1
+    cameraRecoilScalar: 2
     soundGunshot:
       path: /Audio/Weapons/Guns64/Shotguns/t35.ogg
 
@@ -3476,6 +3618,7 @@
   - type: Gun
     minAngle: 1
     maxAngle: 20
+    cameraRecoilScalar: 0.5
     fireRate: 10
     selectedMode: FullAuto
     availableModes:
@@ -3518,6 +3661,7 @@
   - type: Gun
     projectileSpeed: 5
     fireRate: 10
+    cameraRecoilScalar: 0.2
     maxAngle: 60
     minAngle: 60
     selectedMode: FullAuto
@@ -3623,6 +3767,7 @@
   - type: Gun
     projectileSpeed: 5
     fireRate: 10
+    cameraRecoilScalar: 0.2
     maxAngle: 60
     minAngle: 60
     soundGunshot:
@@ -3914,6 +4059,7 @@
     sprite: Backmen/Objects/Weapons/Gunsx64/Snipers/ptrdm/tiny.rsi
   - type: Gun
     fireRate: 1
+    cameraRecoilScalar: 5
     soundGunshot:
       path: /Audio/Weapons/Guns64/Snipers/tl122.ogg
       params:
@@ -3928,3 +4074,19 @@
       - CartridgeAntitank
     capacity: 1
     proto: CartridgeAntitank
+
+- type: Tag
+  id: UpgradeStation
+
+- type: entity
+  parent: BaseItem
+  id: UpgradeStation
+  name: upgrade pack
+  description: Pack of attechment for weapons.
+  components:
+  - type: Sprite
+    sprite: Objects/Tools/Toolboxes/toolbox_red.rsi
+    state: icon
+  - type: Tag
+    tags:
+    - UpgradeStation

@@ -1,0 +1,26 @@
+{
+    "version": 1,
+    "license": "CC-BY-SA-3.0",
+    "copyright": "Modified by no_mad",
+    "size": {
+        "x": 64,
+        "y": 32
+    },
+    "states": [
+	{
+		"name": "icon"
+	},
+	{
+		"name": "bolt-open"
+	},
+	{
+		"name": "base"
+	},
+	{
+		"name": "laser"
+	},
+	{
+		"name": "mag-0"
+    }
+    ]
+}

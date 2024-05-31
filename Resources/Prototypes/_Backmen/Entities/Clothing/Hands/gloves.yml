@@ -64,3 +64,26 @@
   - type: GloveHeatResistance
     heatResistance: 1400
   - type: Insulated
+
+- type: entity
+  parent: ClothingHandsBase
+  id: ClothingHandsBint # Backmen
+  name: боксерский бинт
+  description: полоса ткани, которую используют боксёры и представители других спортивных единоборств .
+  components:
+  - type: Sprite
+    sprite: Backmen/Clothing/Hands/Gloves/binti.rsi
+  - type: Clothing
+    sprite: Backmen/Clothing/Hands/Gloves/binti.rsi
+  - type: MeleeWeapon
+    attackRate: 1.7
+    damage:
+      types:
+        Blunt: 2
+    animation: WeaponArcFist
+  - type: Tag
+    tags:
+    - WhitelistChameleon
+  - type: Construction
+    graph: HandsBint
+    node: Hands_Bint

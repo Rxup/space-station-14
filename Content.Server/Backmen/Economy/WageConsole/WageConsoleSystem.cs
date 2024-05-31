@@ -26,7 +26,8 @@ public sealed class WageConsoleSystem : SharedWageConsoleSystem
     {
         base.Initialize();
         SubscribeLocalEvent<WageConsoleComponent,ActivatableUIOpenAttemptEvent>(OnTryOpenUi);
-        Subs.BuiEvents<WageConsoleComponent>(WageUiKey.Key, subs =>
+        Subs.BuiEvents<WageConsoleComponent>(WageUiKey.Key,
+            subs =>
         {
             subs.Event<BoundUIOpenedEvent>(UpdateUserInterface);
             subs.Event<OpenWageRowMsg>(OnOpenWageRow);

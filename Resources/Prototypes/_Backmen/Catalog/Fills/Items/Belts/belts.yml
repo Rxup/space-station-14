@@ -176,11 +176,8 @@
   components:
     - type: StorageFill
       contents:
-        - id: Flare
-          amount: 3
         - id: MagazinePulseRifle
-          amount: 3
-        - id: WeaponDisabler
+          amount: 6
 
 - type: entity
   parent: ClothingPounchMTF
