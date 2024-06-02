@@ -1,7 +1,7 @@
 - type: gameMap
-  id: Rook
+  id: BackmenRook
   mapName: 'Rook'
-  mapPath: /Maps/Backmen/rook.yml
+  mapPath: /Maps/Backmen/backmen_rook.yml
   minPlayers: 0
   maxPlayers: 25
   stations:

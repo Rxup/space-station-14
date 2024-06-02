@@ -1,7 +1,7 @@
 - type: gameMap
-  id: TheHive
+  id: BackmenHive
   mapName: 'The Hive'
-  mapPath: /Maps/Backmen/hive.yml
+  mapPath: /Maps/Backmen/backmen_hive.yml
   minPlayers: 30
   maxPlayers: 80
   stations:
