@@ -1,4 +1,5 @@
 using JetBrains.Annotations;
+using Robust.Shared.Map;
 
 namespace Content.Shared.Interaction;
 
@@ -57,10 +58,15 @@ public sealed class UserActivateInWorldEvent : HandledEntityEventArgs, ITargeted
     /// </summary>
     public bool Complex;
 
-    public UserActivateInWorldEvent(EntityUid user, EntityUid target, bool complex)
+    // start-backmen: blob
+    public EntityCoordinates? ClickLocation { get; }
+    // end-backmen: blob
+
+    public UserActivateInWorldEvent(EntityUid user, EntityUid target, bool complex, EntityCoordinates? entityCoordinates) // backmen: blob
     {
         User = user;
         Target = target;
         Complex = complex;
+        ClickLocation = entityCoordinates; // backmen: blob
     }
 }

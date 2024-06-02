@@ -28,7 +28,7 @@ public sealed partial class ReinforcementConsoleComponent : Component
 
     public ProtoId<ReinforcementPrototype>? GetById(int id)
     {
-        return Available.Count <= id ? null! : Available[id];
+        return Available.Count <= id ? default : Available[id];
     }
     public ProtoId<ReinforcementPrototype>? GetById(uint id)
     {

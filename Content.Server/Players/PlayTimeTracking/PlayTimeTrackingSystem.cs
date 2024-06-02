@@ -214,7 +214,7 @@ public sealed class PlayTimeTrackingSystem : EntitySystem
 
         // start-backmen: whitelist
         if (_cfg.GetCVar(Shared.Backmen.CCVar.CCVars.WhitelistRolesEnabled) &&
-            job.WhitelistRequired &&
+            job.Whitelisted &&
             !_roleWhitelist.IsInWhitelist(player))
         {
             return false;

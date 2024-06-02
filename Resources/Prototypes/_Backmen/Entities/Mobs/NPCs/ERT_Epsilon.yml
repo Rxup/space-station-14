@@ -1,6 +1,6 @@
 # ERT Leader
 - type: entity
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   name: Еpsilon - 11 лидер ОБР
   parent: MobHumanERTLeaderEVAV3
   suffix: МТФ Egg

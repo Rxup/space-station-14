@@ -366,7 +366,7 @@ public sealed partial class StationJobsSystem
                     continue;
 
                 // start-backmen: whitelist
-                if (job.WhitelistRequired && !EntityManager.System<Backmen.RoleWhitelist.WhitelistSystem>().IsInWhitelist(player))
+                if (job.Whitelisted && !EntityManager.System<Backmen.RoleWhitelist.WhitelistSystem>().IsInWhitelist(player))
                 {
                     continue;
                 }

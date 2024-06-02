@@ -28,6 +28,7 @@ using Content.Shared.Preferences;
 using Content.Shared.Radio;
 using Content.Shared.Roles;
 using Content.Shared.Roles.Jobs;
+using Content.Shared.Store.Components;
 using Robust.Shared.Audio;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Configuration;

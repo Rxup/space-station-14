@@ -1,4 +1,7 @@
 ﻿- type: Tag
+  id: GlassesNearsight
+
+- type: Tag
   id: BlobMob
 
 - type: Tag

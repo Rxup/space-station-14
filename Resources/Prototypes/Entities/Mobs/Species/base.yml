@@ -242,7 +242,6 @@
   abstract: true
   components:
   - type: DiseaseCarrier # backmen
-  - type: Flashable
   - type: Barotrauma
     damage:
       types:

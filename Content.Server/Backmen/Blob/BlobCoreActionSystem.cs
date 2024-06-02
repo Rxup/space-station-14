@@ -54,7 +54,7 @@ public sealed class BlobCoreActionSystem : EntitySystem
     {
         base.Initialize();
 
-        SubscribeLocalEvent<BlobObserverComponent, InteractNoHandEvent>(OnInteract);
+        SubscribeLocalEvent<BlobObserverComponent, UserActivateInWorldEvent>(OnInteract);
         _tileQuery = GetEntityQuery<BlobTileComponent>();
     }
 
@@ -69,9 +69,9 @@ public sealed class BlobCoreActionSystem : EntitySystem
         private readonly Entity<BlobObserverComponent> _ent;
         private readonly Entity<BlobCoreComponent> _core;
         private readonly BlobCoreActionSystem _system;
-        private readonly InteractNoHandEvent _args;
+        private readonly UserActivateInWorldEvent _args;
 
-        public BlobMouseActionProcess(Entity<BlobObserverComponent> ent, Entity<BlobCoreComponent> core, BlobCoreActionSystem system, InteractNoHandEvent args, double maxTime, CancellationToken cancellation = default) : base(maxTime, cancellation)
+        public BlobMouseActionProcess(Entity<BlobObserverComponent> ent, Entity<BlobCoreComponent> core, BlobCoreActionSystem system, UserActivateInWorldEvent args, double maxTime, CancellationToken cancellation = default) : base(maxTime, cancellation)
         {
             _ent = ent;
             _core = core;
@@ -79,7 +79,7 @@ public sealed class BlobCoreActionSystem : EntitySystem
             _args = args;
         }
 
-        public BlobMouseActionProcess(Entity<BlobObserverComponent> ent, Entity<BlobCoreComponent> core, BlobCoreActionSystem system, InteractNoHandEvent args, double maxTime, IStopwatch stopwatch, CancellationToken cancellation = default) : base(maxTime, stopwatch, cancellation)
+        public BlobMouseActionProcess(Entity<BlobObserverComponent> ent, Entity<BlobCoreComponent> core, BlobCoreActionSystem system, UserActivateInWorldEvent args, double maxTime, IStopwatch stopwatch, CancellationToken cancellation = default) : base(maxTime, stopwatch, cancellation)
         {
             _ent = ent;
             _core = core;
@@ -95,11 +95,13 @@ public sealed class BlobCoreActionSystem : EntitySystem
     }
 
     private readonly HashSet<Entity<MobStateComponent>> _entitiesTrackTiles = new();
-    private void BlobInteract(Entity<BlobObserverComponent> observer, Entity<BlobCoreComponent> core, InteractNoHandEvent args)
+    private void BlobInteract(Entity<BlobObserverComponent> observer, Entity<BlobCoreComponent> core, UserActivateInWorldEvent args)
     {
-        var location = args.ClickLocation;
-        if (!location.IsValid(EntityManager))
+        var loc = args.ClickLocation;
+        if (loc == null || !loc.Value.IsValid(EntityManager))
             return;
+
+        var location = loc.Value;
 
         if (TerminatingOrDeleted(observer) || TerminatingOrDeleted(core))
             return;
@@ -119,15 +121,15 @@ public sealed class BlobCoreActionSystem : EntitySystem
         }
 
         #region OnTarget
-        if (args.Target != null &&
-            !_tileQuery.HasComponent(args.Target.Value) &&
-            !HasComp<BlobMobComponent>(args.Target.Value))
+        if (args.Target.Valid &&
+            !_tileQuery.HasComponent(args.Target) &&
+            !HasComp<BlobMobComponent>(args.Target))
         {
-            var target = args.Target.Value;
+            var target = args.Target;
 
             // Check if the target is adjacent to a tile with BlobCellComponent horizontally or vertically
             var xform = Transform(target);
-            var mobTile = _mapSystem.GetTileRef(gridUid.Value, grid,xform.Coordinates);
+            var mobTile = _mapSystem.GetTileRef(gridUid.Value, grid, xform.Coordinates);
 
             var mobAdjacentTiles = new[]
             {
@@ -293,7 +295,7 @@ public sealed class BlobCoreActionSystem : EntitySystem
         _audioSystem.PlayPvs(ent.Comp.AttackSound, from, AudioParams.Default);
     }
 
-    private void OnInteract(EntityUid uid, BlobObserverComponent observerComponent, InteractNoHandEvent args)
+    private void OnInteract(EntityUid uid, BlobObserverComponent observerComponent, UserActivateInWorldEvent args)
     {
         if (args.Target == args.User)
             return;
@@ -306,7 +308,7 @@ public sealed class BlobCoreActionSystem : EntitySystem
             return;
 
         var location = args.ClickLocation;
-        if (!location.IsValid(EntityManager))
+        if (location == null || !location.Value.IsValid(EntityManager))
             return;
 
         blobCoreComponent.NextAction = _gameTiming.CurTime + TimeSpan.FromMilliseconds(333); // GCD?

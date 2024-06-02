@@ -25,7 +25,7 @@
   name: Blob pod
   description: An ordinary person fighting opponents, not like a thing attached to a tile, zombifies corpses.
   parent: SimpleSpaceMobBase
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
     - type: ZombieImmune
     - type: TriggerOnMobstateChange
@@ -124,7 +124,7 @@
   name: Blobbernaut
   description: Juggernaut, but blob! when the station crew shows full hatred of you, with the help of such strong men you can organize a blitzkriek if you tell them the plan in advance.
   parent: SimpleSpaceMobBase
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
     - type: ZombieImmune
     - type: Damageable
@@ -219,7 +219,16 @@
       - Wall
   components:
     - type: ZombieImmune
-    - type: Flashable
+    - type: StatusEffects
+      allowed:
+      - Stun
+      - KnockedDown
+      - SlowedDown
+      - Electrocution
+      - PressureImmunity
+      - StaminaModifier
+      - SeeAll
+      - Flashed
     - type: Reactive
       groups:
         Flammable: [Touch]
