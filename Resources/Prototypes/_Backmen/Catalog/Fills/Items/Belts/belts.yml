@@ -18,15 +18,6 @@
       - id: OrdenSabre
 
 - type: entity
-  id: ClothingBeltSheathFilledRapier
-  parent: ClothingBeltRapier
-  suffix: Filled
-  components:
-    - type: StorageFill
-      contents:
-        - id: Rapier
-
-- type: entity
   noSpawn: true
   parent: ClothingPounchMTF
   id: ClothingPounchMTFBattleEngineerFilled

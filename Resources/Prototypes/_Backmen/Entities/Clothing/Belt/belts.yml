@@ -22,7 +22,7 @@
           tags:
           - SwordSquadRO
   - type: Appearance
-  
+
 - type: entity
   parent: ClothingBeltStorageBase
   id: ClothingBeltKatanaSheath
@@ -293,3 +293,43 @@
     whitelist:
       tags:
         - ShellShotgun
+
+- type: entity
+  parent: [ClothingBeltBase, ClothingSlotBase]
+  id: ClothingBeltRapier
+  name: rapier scaddard
+  description: Rapier scaddard
+  components:
+  - type: Sprite
+    sprite: Backmen/Clothing/Belt/rapier.rsi
+    state: sheath
+  - type: Clothing
+    sprite: Backmen/Clothing/Belt/rapier.rsi
+  - type: ItemSlots
+    slots:
+      item:
+        name: Sabre
+        insertVerbText: sheath-insert-verb
+        ejectVerbText: sheath-eject-verb
+        insertSound: /Audio/Backmen/Weapons/Melee/rapier/sheath.ogg
+        ejectSound: /Audio/Backmen/Weapons/Melee/rapier/unsheath.ogg
+        whitelist:
+          tags:
+          - Rapier
+  - type: ItemMapper
+    mapLayers:
+      sheath-sabre:
+        whitelist:
+          tags:
+          - Rapier
+  - type: Appearance
+
+- type: entity
+  id: ClothingBeltRapierFilled
+  parent: ClothingBeltRapier
+  suffix: Filled
+  components:
+  - type: ContainerFill
+    containers:
+      item:
+      - Rapier

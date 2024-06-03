@@ -1,22 +1,22 @@
 - type: entity
-  name: Рапира
+  name: rapier
   parent: BaseItem
   id: Rapier
-  description: Рапира выкована стариком Мифистофелем.
+  description: This rapier was forged by old man Mephistopheles.
   components:
   - type: Sharp
   - type: Sprite
-    sprite: Backmen/Objects/Weapons/Melee/Rapier_cvasoc.rsi
+    sprite: Backmen/Objects/Weapons/Melee/rapier.rsi
     state: icon
   - type: MeleeWeapon
-    attackRate: 1.6
+    attackRate: 1.5
     damage:
       types:
-        Slash: 10
-        Piercing: 5
-        Holy: 7
+        Slash: 13
+        Piercing: 7
+        Holy: 15
     soundHit:
-        path: /Audio/Weapons/Rapier.ogg
+        path: /Audio/Backmen/Weapons/Melee/rapier/rapier.ogg
   - type: Reflect
     enabled: true
     reflectProb: .6
@@ -39,7 +39,7 @@
     maxTransferAmount: 5
   - type: Item
     size: Normal
-    sprite: Backmen/Objects/Weapons/Melee/Rapier_cvasoc.rsi
+    sprite: Backmen/Objects/Weapons/Melee/rapier.rsi
   - type: Tag
     tags:
     - Rapier
