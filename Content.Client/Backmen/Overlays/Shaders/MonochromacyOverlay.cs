@@ -1,3 +1,4 @@
+using System.Numerics;
 using Robust.Client.Graphics;
 using Robust.Client.Player;
 using Robust.Shared.Enums;
@@ -25,16 +26,22 @@ namespace Content.Client.Backmen.Overlays
 
         protected override void Draw(in OverlayDrawArgs args)
         {
-            if (ScreenTexture == null) return;
-            if (_playerManager.LocalPlayer?.ControlledEntity is not { Valid: true } player) return;
-            if (!_entityManager.HasComponent<MonochromacyComponent>(player)) return;
+            if (ScreenTexture == null)
+                return;
+            if (
+                _playerManager.LocalSession?.AttachedEntity
+                is not { Valid: true } player
+                )
+                return;
+            if (!_entityManager.HasComponent<MonochromacyComponent>(player))
+                return;
 
             _greyscaleShader?.SetParameter("SCREEN_TEXTURE", ScreenTexture);
 
 
             var worldHandle = args.WorldHandle;
             var viewport = args.WorldBounds;
-            worldHandle.SetTransform(Matrix3.Identity);
+            worldHandle.SetTransform(Matrix3x2.Identity);
             worldHandle.UseShader(_greyscaleShader);
             worldHandle.DrawRect(viewport, Color.White);
             worldHandle.UseShader(null);

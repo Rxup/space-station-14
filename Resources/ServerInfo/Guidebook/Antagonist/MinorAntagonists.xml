@@ -30,18 +30,18 @@
     <GuideEntityEmbed Entity="MobRatKing" Scale="2.4" Caption="The Rat King"/>
   </Box>
 
- A Rat King is a gigantic rat capable of eating an enormous amount of food, scampering under doors and tables, and raising an army of rats to defend them and do their bidding.
+  Крысиный король - это гигантская крыса, способная устроить гнездо и создать крыс, которые будут выполнять её приказы (обычно для получения пищи).
 
   ## Способности
 
-  Abilities come at the cost of some of the Rat King's hunger. Eat to replenish it.
+  За способности приходится расплачиваться голодом Крысиного короля. Простой приём пищи восполняет его.
 
   <Box>
    <GuideEntityEmbed Entity="MobMouse" Caption="Обычная мыша"/>
    <GuideEntityEmbed Entity="MobRatServant" Caption="Крысиный слуга"/>
   </Box>
-  - Raise an Army of [color=#a4885c]Rat Servants[/color]. You may command these [color=#a4885c]Rat Servants[/color] to stay in place, follow you, attack a target of your choice, or attack indiscriminately.
-  - Conjure a cloud of [color=#77b58e]ammonia[/color]. Note that [color=#77b58e]ammonia[/color] is mildly poisonous to others, but heals rats.
+  - Вырастить армию [color=#a4885c]слуг-крыс[/color].
+  - Вызвать облако аммиака.
 
   # Космический дракон
 
@@ -49,13 +49,11 @@
     <GuideEntityEmbed Entity="MobDragon" Caption=""/>
   </Box>
 
-  A Space Dragon is a giant extradimensional dragon that creates space carp rifts and eats the crew.
+  Космический дракон - это гигантский дракон, который создаёт космические разломы и поедает экипаж.
 
   ## Способности
 
-  - Devour critical or dead victims to heal slightly, or devour infrastructure such as doors, windows, and walls.
-
-  - Breathe out a powerful flaming sphere which will explode periodically along a straight flight path and explode when it hits something, igniting things along the way. Be careful, your carps are not immune to the Dragon's Breath!
+  - Пожирать мёртвых жертв, или в критическом состоянии.
 
   <Box>
     <GuideEntityEmbed Entity="MobCarp" Caption=""/>
@@ -63,7 +61,7 @@
     <GuideEntityEmbed Entity="MobCarp" Caption=""/>
   </Box>
 
-  - Summon a Carp Rift that periodically spawns [color=#a4885c]Space Carp[/color].
+  - Вызовите Карповый разлом, который периодически порождает [color=#a4885c]Космических карпов[/color].
 
   ## Carp Rifts
 

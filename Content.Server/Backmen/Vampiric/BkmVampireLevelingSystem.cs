@@ -23,6 +23,7 @@ using Content.Shared.Nutrition.EntitySystems;
 using Content.Shared.Polymorph;
 using Content.Shared.Popups;
 using Content.Shared.Slippery;
+using Content.Shared.Store.Components;
 using Content.Shared.Stunnable;
 using Robust.Shared.Audio;
 using Robust.Shared.Audio.Systems;

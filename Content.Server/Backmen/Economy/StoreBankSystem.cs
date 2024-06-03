@@ -7,6 +7,7 @@ using Content.Shared.DoAfter;
 using Content.Shared.Emag.Systems;
 using Content.Shared.Interaction;
 using Content.Shared.Popups;
+using Content.Shared.Store.Components;
 using Content.Shared.VendingMachines;
 using Content.Shared.Wires;
 using Robust.Shared.Audio;
@@ -126,7 +127,7 @@ public sealed class StoreBankSystem : EntitySystem
         EntityUid user,
         EntityUid target)
     {
-        if (!component.CanRestock.Any(machineComponent.Categories.Contains))
+        if (!component.CanRestock.Any(x=>machineComponent.Categories.Contains(x)))
         {
             _popup.PopupCursor(Loc.GetString("vending-machine-restock-invalid-inventory", ("this", uid), ("user", user),
                 ("target", target)), user);

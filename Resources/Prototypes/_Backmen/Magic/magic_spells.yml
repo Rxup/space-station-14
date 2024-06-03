@@ -2,7 +2,6 @@
   id: HealingSpell
   name: action-name-spell-healing
   description: action-description-spell-healing
-  noSpawn: true
   components:
   - type: EntityTargetAction
     useDelay: 30

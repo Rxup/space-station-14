@@ -2,7 +2,6 @@
   id: AIEyeCamShootAction
   name: stun shot
   description: destabilizing shot in some point
-  noSpawn: true
   components:
   - type: WorldTargetAction
     icon: Backmen/Actions/AI/camera_stun.png
@@ -16,7 +15,6 @@
   id: AIEyeCamAction
   name: AI cameras
   description: Can jump on target cameras.
-  noSpawn: true
   components:
   - type: InstantAction
     icon: Backmen/Actions/AI/camera.png
@@ -29,7 +27,6 @@
   id: AIEyeAction
   name: AI Eye
   description: Puts you in to the AI Eye form, allowing you to float about the station's cameras.
-  noSpawn: true
   components:
   - type: InstantAction
     icon: Backmen/Actions/AI/eye.png
@@ -42,7 +39,6 @@
   id: AIEyeReturnAction
   name: AI Eye Return
   description: Return view to AI Core
-  noSpawn: true
   components:
   - type: InstantAction
     icon: Backmen/Actions/AI/core.png
@@ -55,7 +51,6 @@
   id: AIHealthOverlay
   name: Health Overlay
   description: Toggles the AI's health overlay.
-  noSpawn: true
   components:
   - type: InstantAction
     icon: Backmen/Actions/AI/sensor.png
@@ -68,7 +63,6 @@
   id: AIToggleArmNuke
   name: Nuke Arm/Disarm
   description: Toggles the AI's nuke.
-  noSpawn: true
   components:
   - type: InstantAction
     icon:
@@ -84,7 +78,6 @@
   id: ActionAIShowCommunications
   name: Communications Interface
   description: View a communications interface.
-  noSpawn: true
   components:
   - type: InstantAction
     icon: Backmen/Actions/AI/announcement.png
@@ -95,7 +88,6 @@
   id: ActionAiShowCriminalRecords
   name: Criminal Records Interface
   description: View a criminal records interface.
-  noSpawn: true
   components:
   - type: InstantAction
     icon: Corvax/Interface/AdminActions/communications.png # Corvax-Resprite
@@ -108,7 +100,6 @@
 - type: entity
   id: ActionOpenCloseRemote
   name: Open targeted door
-  noSpawn: true
   components:
   - type: EntityTargetAction
     icon: Backmen/Actions/AI/door.png
@@ -121,7 +112,6 @@
 - type: entity
   id: ActionToggleBolts
   name: Toggle bolts on door
-  noSpawn: true
   components:
   - type: EntityTargetAction
     icon: Backmen/Actions/AI/door_bolt.png
@@ -134,7 +124,6 @@
 - type: entity
   id: ActionToggleEmergencyAccess
   name: Toggle emergency on door
-  noSpawn: true
   components:
   - type: EntityTargetAction
     icon: Backmen/Actions/AI/door_emergency.png

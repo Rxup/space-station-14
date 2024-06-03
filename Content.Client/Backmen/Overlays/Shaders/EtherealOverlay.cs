@@ -1,3 +1,4 @@
+using System.Numerics;
 using Robust.Client.Graphics;
 using Robust.Client.Player;
 using Robust.Shared.Enums;
@@ -25,13 +26,17 @@ public sealed class EtherealOverlay : Overlay
     protected override void Draw(in OverlayDrawArgs args)
     {
         if (ScreenTexture == null) return;
-        if (_player.LocalPlayer?.ControlledEntity is not { Valid: true } player) return;
+        if (
+            _player.LocalSession?.AttachedEntity
+            is not { Valid: true } player
+        )
+            return;
 
         _shader?.SetParameter("SCREEN_TEXTURE", ScreenTexture);
 
         var worldHandle = args.WorldHandle;
         var viewport = args.WorldBounds;
-        worldHandle.SetTransform(Matrix3.Identity);
+        worldHandle.SetTransform(Matrix3x2.Identity);
         worldHandle.UseShader(_shader);
         worldHandle.DrawRect(viewport, Color.White);
         worldHandle.UseShader(null);

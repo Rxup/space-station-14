@@ -125,13 +125,13 @@
     thresholds:
       0: Alive
       60: Dead
-  - type: Flashable
   - type: NoSlip
   - type: StatusEffects
     allowed:
     - Stun
     - KnockedDown
     - SlowedDown
+    - Flashed
   - type: SlowOnDamage
     speedModifierThresholds:
       30: 0.7

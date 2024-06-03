@@ -36,7 +36,14 @@
         Flammable: [Touch]
         Extinguish: [Touch]
         Acidic: [Touch]
-    - type: Flashable
+    - type: StatusEffects
+      allowed:
+      - Stun
+      - KnockedDown
+      - SlowedDown
+      - Stutter
+      - Electrocution
+      - Flashed
     - type: NoSlip
     - type: Tool
       speed: 2.0

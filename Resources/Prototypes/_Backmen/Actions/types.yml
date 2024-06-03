@@ -2,7 +2,6 @@
   id: ActionEatMouse
   name: action-name-eat-mouse
   description: action-description-eat-mouse
-  noSpawn: true
   components:
     - type: InstantAction
       useDelay: 10
@@ -13,7 +12,6 @@
   id: ActionMetapsionicPulse
   name: action-name-metapsionic
   description: action-description-metapsionic
-  noSpawn: true
   components:
     - type: InstantAction
       useDelay: 45
@@ -24,7 +22,6 @@
   id: ActionDispel
   name: action-name-dispel
   description: action-description-dispel
-  noSpawn: true
   components:
     - type: EntityTargetAction
       icon: Backmen/Interface/VerbIcons/dispel.png
@@ -38,7 +35,6 @@
   id: ActionMassSleep
   name: action-name-mass-sleep
   description: action-description-mass-sleep
-  noSpawn: true
   components:
     - type: WorldTargetAction
       icon: Backmen/Interface/VerbIcons/mass_sleep.png
@@ -51,7 +47,6 @@
   id: ActionPsionicInvisibility
   name: action-name-psionic-invisibility
   description: action-description-psionic-invisibility
-  noSpawn: true
   components:
     - type: InstantAction
       useDelay: 120
@@ -62,7 +57,6 @@
   id: ActionPsionicInvisibilityOff
   name: action-description-psionic-invisibility-off
   description: action-description-psionic-invisibility
-  noSpawn: true
   components:
     - type: InstantAction
       icon: Backmen/Interface/VerbIcons/psionic_invisibility_off.png
@@ -72,7 +66,6 @@
   id: ActionMindSwap
   name: action-name-mind-swap
   description: action-description-mind-swap
-  noSpawn: true
   components:
     - type: EntityTargetAction
       icon: Backmen/Interface/VerbIcons/mind_swap.png
@@ -85,7 +78,6 @@
   id: ActionMindSwapReturn
   name: action-name-mind-swap-return
   description: action-description-mind-swap-return
-  noSpawn: true
   components:
     - type: InstantAction
       icon: Backmen/Interface/VerbIcons/psionic_invisibility_off.png
@@ -97,7 +89,6 @@
   id: ActionTelegnosis
   name: action-name-telegnosis
   description: action-description-telegnosis
-  noSpawn: true
   components:
     - type: InstantAction
       icon: Backmen/Interface/VerbIcons/telegnosis.png
@@ -108,7 +99,6 @@
   id: ActionTelegnosisReturn
   name: action-name-telegnosis
   description: action-description-telegnosis
-  noSpawn: true
   components:
     - type: InstantAction
       icon: Backmen/Interface/VerbIcons/psionic_invisibility_off.png
@@ -120,7 +110,6 @@
   id: ActionPsionicRegeneration
   name: action-name-psionic-regeneration
   description: action-description-psionic-regeneration
-  noSpawn: true
   components:
     - type: InstantAction
       icon: Backmen/Interface/VerbIcons/psionic_regeneration.png
@@ -131,7 +120,6 @@
   id: ActionNoosphericZap
   name: action-name-noospheric-zap
   description: action-description-noospheric-zap
-  noSpawn: true
   components:
     - type: EntityTargetAction
       icon: Backmen/Interface/VerbIcons/noospheric_zap.png
@@ -143,7 +131,6 @@
   id: ActionPyrokinesis
   name: action-name-pyrokinesis
   description: action-description-pyrokinesis
-  noSpawn: true
   components:
     - type: EntityTargetAction
       icon: Backmen/Interface/VerbIcons/pyrokinesis.png
@@ -157,7 +144,6 @@
   id: ActionPsychokinesis
   name: action-name-psychokinesis
   description: action-description-psychokinesis
-  noSpawn: true
   components:
     - type: WorldTargetAction
       icon: { sprite: Objects/Misc/guardian_info.rsi, state: icon}
@@ -171,7 +157,6 @@
   id: ActionSpinWeb
   name: action-name-spin-web
   description: action-desc-spin-web
-  noSpawn: true
   components:
     - type: WorldTargetAction
       icon: { sprite: Backmen/Structures/web.rsi, state: web1 }
@@ -182,7 +167,6 @@
   id: ActionHairball
   name: hairball-action
   description: hairball-action-desc
-  noSpawn: true
   components:
     - type: InstantAction
 #      icon: { sprite: Backmen/Structures/web.rsi, state: web1 }

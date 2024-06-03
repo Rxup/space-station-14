@@ -2,7 +2,7 @@
   id: MobObserverTelegnostic
   name: Телегностическая проекция
   description: Зловещий. Спрайт-заполнитель.
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   save: false
   components:
     - type: Sprite

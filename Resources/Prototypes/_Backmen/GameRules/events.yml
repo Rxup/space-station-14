@@ -62,7 +62,7 @@
   components:
   - type: StationEvent
     weight: 5
-    startDelay: 30
+    earliestStart: 30
     duration: 35
   - type: BluespaceGoatRule
 
@@ -71,6 +71,7 @@
   id: BaseGlimmerEvent
   parent: BaseGameRule
   noSpawn: true
+  abstract: true
   components:
     - type: StationEvent
       # Favor glimmer events just a little more than regular events.
@@ -174,7 +175,6 @@
       startAnnouncement: station-event-vent-creatures-start-announcement
       startAudio:
         path: /Audio/Announcements/attention.ogg
-      startDelay: 10
       earliestStart: 20
       minimumPlayers: 15
       weight: 2

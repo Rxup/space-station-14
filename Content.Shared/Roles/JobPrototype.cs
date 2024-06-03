@@ -1,11 +1,9 @@
 using Content.Shared.Access;
 using Content.Shared.FixedPoint;
 using Content.Shared.Players.PlayTimeTracking;
-using Content.Shared.Roles;
 using Content.Shared.StatusIcon;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype;
-using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype.List;
 
 namespace Content.Shared.Roles
 {
@@ -130,10 +128,6 @@ namespace Content.Shared.Roles
         [DataField("wage")]
         public FixedPoint2 Wage { get; private set; } = 0;
 // end-backmen: currency
-// start-backmen: Whitelist
-        [DataField("whitelistRequired")]
-        public bool WhitelistRequired { get; private set; } = false;
-// end-backmen: Whitelist
 // start-backmen
         /// <summary>
         /// For e.g. prisoners, they'll never use their latejoin spawner.
@@ -141,6 +135,8 @@ namespace Content.Shared.Roles
         [DataField("alwaysUseSpawner")]
         public bool AlwaysUseSpawner { get; private set; } = false;
 // end-backmen
+        [DataField]
+        public bool Whitelisted;
     }
 
     /// <summary>

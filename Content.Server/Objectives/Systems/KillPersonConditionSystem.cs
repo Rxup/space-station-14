@@ -94,7 +94,7 @@ public sealed class KillPersonConditionSystem : EntitySystem
                 continue;
             }
 
-            if (!centcom.Roles.Contains(job.Prototype))
+            if (!centcom.Roles.Contains(job.Prototype.Value))
             {
                 continue;
             }

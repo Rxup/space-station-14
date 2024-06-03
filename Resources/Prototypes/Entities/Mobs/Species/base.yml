@@ -143,6 +143,7 @@
     - PsionicsDisabled
     - PsionicallyInsulated
     - SeeAll
+    - Flashed
   - type: Reflect
     enabled: false
     reflectProb: 0
@@ -152,6 +153,7 @@
   - type: Identity
   - type: IdExaminable
   - type: Hands
+  - type: ComplexInteraction
   - type: Internals
   - type: Inventory
   - type: InventorySlots
@@ -240,7 +242,6 @@
   abstract: true
   components:
   - type: DiseaseCarrier # backmen
-  - type: Flashable
   - type: Barotrauma
     damage:
       types:
@@ -255,27 +256,6 @@
         Heat: -0.07
       groups:
         Brute: -0.07
-  # Organs
-  - type: StatusEffects
-    allowed:
-    - Stun
-    - KnockedDown
-    - SlowedDown
-    - Stutter
-    - SeeingRainbows
-    - Electrocution
-    - ForcedSleep
-    - TemporaryBlindness
-    - Drunk
-    - SlurredSpeech
-    - RatvarianLanguage
-    - PressureImmunity
-    - Muted
-    - Pacified
-    - StaminaModifier
-    - PsionicsDisabled
-    - PsionicallyInsulated
-    - SeeAll
   - type: Blindable
   # Other
   - type: Temperature
@@ -319,6 +299,7 @@
   abstract: true
   components:
   - type: Hands
+  - type: ComplexInteraction
   - type: Inventory
   - type: InventorySlots
   - type: ContainerContainer
