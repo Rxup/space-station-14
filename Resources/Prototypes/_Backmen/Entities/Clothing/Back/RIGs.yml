@@ -118,5 +118,5 @@
     icon:
       sprite: Backmen/Clothing/Back/RIGs/chrono.rsi
       state: icon
-    useDelay: 30
+    useDelay: 2
     event: !type:PsionicInvisibilityPowerActionEvent

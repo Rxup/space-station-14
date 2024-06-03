@@ -38,7 +38,8 @@
             - !type:DoActsBehavior
               acts: [ "Destruction" ]
             - !type:PlaySoundBehavior
-              sound: /Audio/Effects/metalbreak.ogg
+              sound:
+                collection: MetalBreak
             - !type:SpawnEntitiesBehavior
               spawn:
                 SheetPlasteel1:

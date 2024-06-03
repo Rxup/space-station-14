@@ -49,9 +49,9 @@
 
 - type: reagent
   id: AntlionGrubCore
-  name: сок из личинки муровьиного льва
+  name: reagent-name-antliongrubcore
   group: Medicine
-  desc: Редкий целебный нектар, который содержиться в личинках муровьиных львов.
+  desc: reagent-desc-antliongrubcore
   physicalDesc: reagent-physical-desc-soothing
   flavor: medicine
   color: "#6cfc05"

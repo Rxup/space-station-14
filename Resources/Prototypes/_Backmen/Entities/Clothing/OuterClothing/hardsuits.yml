@@ -349,8 +349,8 @@
     sprite: Backmen/Clothing/OuterClothing/Hardsuits/RescueTroopsUnits/dungeonmasterhardsuit.rsi
   - type: Clothing
     sprite: Backmen/Clothing/OuterClothing/Hardsuits/RescueTroopsUnits/dungeonmasterhardsuit.rsi
-    equipSound: /Audio/Backmen/test/base/ogg/suit/nominal.ogg
-    unequipSound: /Audio/Backmen/test/base/ogg/suit/mechmove03.ogg
+    equipSound: /Audio/Backmen/Misc/suit/nominal.ogg
+    unequipSound: /Audio/Backmen/Misc/suit/mechmove03.ogg
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetHardsuitRTULeader
 

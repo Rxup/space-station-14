@@ -77,6 +77,21 @@
             "name": "spets"
         },
         {
+            "name": "CargoTechnician"
+        },
+        {
+            "name": "Security"
+        },
+        {
+            "name": "commandeer"
+        },
+        {
+            "name": "commandeer"
+        },
+        {
+            "name": "commandeer"
+        },
+        {
             "name": "cap",
 	  "delays": [
         [
