@@ -3,10 +3,10 @@
   maps:
   - BackmenAspid
   - BackmenKettle
-  - Tortuga
-  - TheHive
-  - Shoukou
-  - Rook
+  - BackmenTortuga
+  - BackmenHive
+  - BackmenShoukou
+  - BackmenRook
   - Meta
   - Fland
   - CorvaxOutpost
