@@ -9,6 +9,12 @@ using Robust.Shared.Serialization;
 
 namespace Content.Shared.Backmen.Blob.Components;
 
+[RegisterComponent]
+public sealed partial class BlobObserverControllerComponent : Component
+{
+    public Entity<BlobObserverComponent> Blob;
+}
+
 [RegisterComponent, NetworkedComponent, AutoGenerateComponentState(false)]
 public sealed partial class BlobObserverComponent : Component, IAntagStatusIconComponent
 {
@@ -28,6 +34,9 @@ public sealed partial class BlobObserverComponent : Component, IAntagStatusIconC
 
     public ProtoId<StatusIconPrototype> StatusIcon { get; set; } = "BlobFaction";
     public bool IconVisibleToGhost { get; set; } = true;
+
+    [ViewVariables(VVAccess.ReadOnly), AutoNetworkedField]
+    public EntityUid VirtualItem = EntityUid.Invalid;
 }
 
 [Serializable, NetSerializable]

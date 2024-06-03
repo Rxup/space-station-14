@@ -134,6 +134,7 @@
 - type: entity
   parent: BaseLightning
   id: LightningNoospheric
+  save: false
   name: noospheric lightning
   categories: [ HideSpawnMenu ]
   components:

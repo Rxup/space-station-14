@@ -54,7 +54,8 @@ public sealed class BlobCoreActionSystem : EntitySystem
     {
         base.Initialize();
 
-        SubscribeLocalEvent<BlobObserverComponent, UserActivateInWorldEvent>(OnInteract);
+        SubscribeLocalEvent<BlobObserverControllerComponent, AfterInteractEvent>(OnInteractController);
+        SubscribeLocalEvent<BlobObserverComponent, UserActivateInWorldEvent>(OnInteractTarget);
         _tileQuery = GetEntityQuery<BlobTileComponent>();
     }
 
@@ -69,9 +70,9 @@ public sealed class BlobCoreActionSystem : EntitySystem
         private readonly Entity<BlobObserverComponent> _ent;
         private readonly Entity<BlobCoreComponent> _core;
         private readonly BlobCoreActionSystem _system;
-        private readonly UserActivateInWorldEvent _args;
+        private readonly AfterInteractEvent _args;
 
-        public BlobMouseActionProcess(Entity<BlobObserverComponent> ent, Entity<BlobCoreComponent> core, BlobCoreActionSystem system, UserActivateInWorldEvent args, double maxTime, CancellationToken cancellation = default) : base(maxTime, cancellation)
+        public BlobMouseActionProcess(Entity<BlobObserverComponent> ent, Entity<BlobCoreComponent> core, BlobCoreActionSystem system, AfterInteractEvent args, double maxTime, CancellationToken cancellation = default) : base(maxTime, cancellation)
         {
             _ent = ent;
             _core = core;
@@ -79,7 +80,7 @@ public sealed class BlobCoreActionSystem : EntitySystem
             _args = args;
         }
 
-        public BlobMouseActionProcess(Entity<BlobObserverComponent> ent, Entity<BlobCoreComponent> core, BlobCoreActionSystem system, UserActivateInWorldEvent args, double maxTime, IStopwatch stopwatch, CancellationToken cancellation = default) : base(maxTime, stopwatch, cancellation)
+        public BlobMouseActionProcess(Entity<BlobObserverComponent> ent, Entity<BlobCoreComponent> core, BlobCoreActionSystem system, AfterInteractEvent args, double maxTime, IStopwatch stopwatch, CancellationToken cancellation = default) : base(maxTime, stopwatch, cancellation)
         {
             _ent = ent;
             _core = core;
@@ -95,13 +96,11 @@ public sealed class BlobCoreActionSystem : EntitySystem
     }
 
     private readonly HashSet<Entity<MobStateComponent>> _entitiesTrackTiles = new();
-    private void BlobInteract(Entity<BlobObserverComponent> observer, Entity<BlobCoreComponent> core, UserActivateInWorldEvent args)
+    private void BlobInteract(Entity<BlobObserverComponent> observer, Entity<BlobCoreComponent> core, AfterInteractEvent args)
     {
-        var loc = args.ClickLocation;
-        if (loc == null || !loc.Value.IsValid(EntityManager))
+        var location = args.ClickLocation;
+        if (!location.IsValid(EntityManager))
             return;
-
-        var location = loc.Value;
 
         if (TerminatingOrDeleted(observer) || TerminatingOrDeleted(core))
             return;
@@ -121,14 +120,14 @@ public sealed class BlobCoreActionSystem : EntitySystem
         }
 
         #region OnTarget
-        if (args.Target.Valid &&
+        if (args.Target != null &&
             !_tileQuery.HasComponent(args.Target) &&
             !HasComp<BlobMobComponent>(args.Target))
         {
             var target = args.Target;
 
             // Check if the target is adjacent to a tile with BlobCellComponent horizontally or vertically
-            var xform = Transform(target);
+            var xform = Transform(target.Value);
             var mobTile = _mapSystem.GetTileRef(gridUid.Value, grid, xform.Coordinates);
 
             var mobAdjacentTiles = new[]
@@ -143,7 +142,7 @@ public sealed class BlobCoreActionSystem : EntitySystem
 
             if (nearTile != null && HasComp<DestructibleComponent>(target) && !HasComp<ItemComponent>(target)&& !HasComp<SubFloorHideComponent>(target))
             {
-                BlobTargetAttack(core, nearTile.Value, (gridUid.Value, grid), target);
+                BlobTargetAttack(core, nearTile.Value, (gridUid.Value, grid), target.Value);
                 return;
             }
         }
@@ -295,7 +294,7 @@ public sealed class BlobCoreActionSystem : EntitySystem
         _audioSystem.PlayPvs(ent.Comp.AttackSound, from, AudioParams.Default);
     }
 
-    private void OnInteract(EntityUid uid, BlobObserverComponent observerComponent, UserActivateInWorldEvent args)
+    private void OnInteract(EntityUid uid, BlobObserverComponent observerComponent, AfterInteractEvent args)
     {
         if (args.Target == args.User)
             return;
@@ -308,10 +307,12 @@ public sealed class BlobCoreActionSystem : EntitySystem
             return;
 
         var location = args.ClickLocation;
-        if (location == null || !location.Value.IsValid(EntityManager))
+        if (!location.IsValid(EntityManager))
             return;
 
         blobCoreComponent.NextAction = _gameTiming.CurTime + TimeSpan.FromMilliseconds(333); // GCD?
+
+        args.Handled = true;
 
         _actionJobQueue.EnqueueJob(new BlobMouseActionProcess(
             (uid,observerComponent),
@@ -320,5 +321,17 @@ public sealed class BlobCoreActionSystem : EntitySystem
             args,
             ActionJobTime
         ));
+    }
+    private void OnInteractTarget(Entity<BlobObserverComponent> ent, ref UserActivateInWorldEvent args)
+    {
+        var ev = new AfterInteractEvent(args.User, EntityUid.Invalid, args.Target, Transform(args.Target).Coordinates, true);
+        OnInteract(ent, ent, ev); // proxy?
+        args.Handled = ev.Handled;
+    }
+    private void OnInteractController(Entity<BlobObserverControllerComponent> ent, ref AfterInteractEvent args)
+    {
+        var ev = new AfterInteractEvent(args.User, EntityUid.Invalid, args.Target, args.ClickLocation, true);
+        OnInteract(ent.Comp.Blob, ent.Comp.Blob, ev); // proxy?
+        args.Handled = ev.Handled;
     }
 }

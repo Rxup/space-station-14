@@ -987,7 +987,7 @@ namespace Content.Shared.Interaction
             if (Deleted(uid))
                 return false;
 
-            InteractionActivate(user.Value, uid, checkAccess: ShouldCheckAccess(user.Value), entityCoordinates: coords); // backmen: blob
+            InteractionActivate(user.Value, uid, checkAccess: ShouldCheckAccess(user.Value));
             return false;
         }
 
@@ -1004,8 +1004,7 @@ namespace Content.Shared.Interaction
             bool checkCanInteract = true,
             bool checkUseDelay = true,
             bool checkAccess = true,
-            bool? complexInteractions = null,
-            EntityCoordinates? entityCoordinates = null  // backmen: blob
+            bool? complexInteractions = null
             )
         {
             _delayQuery.TryComp(used, out var delayComponent);
@@ -1026,7 +1025,7 @@ namespace Content.Shared.Interaction
             complexInteractions ??= SupportsComplexInteractions(user);
             var activateMsg = new ActivateInWorldEvent(user, used, complexInteractions.Value);
             RaiseLocalEvent(used, activateMsg, true);
-            var userEv = new UserActivateInWorldEvent(user, used, complexInteractions.Value, entityCoordinates);
+            var userEv = new UserActivateInWorldEvent(user, used, complexInteractions.Value);
             RaiseLocalEvent(user, userEv, true);
             if (!activateMsg.Handled && !userEv.Handled)
                 return false;

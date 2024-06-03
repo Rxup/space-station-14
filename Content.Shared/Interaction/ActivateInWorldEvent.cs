@@ -58,15 +58,10 @@ public sealed class UserActivateInWorldEvent : HandledEntityEventArgs, ITargeted
     /// </summary>
     public bool Complex;
 
-    // start-backmen: blob
-    public EntityCoordinates? ClickLocation { get; }
-    // end-backmen: blob
-
-    public UserActivateInWorldEvent(EntityUid user, EntityUid target, bool complex, EntityCoordinates? entityCoordinates) // backmen: blob
+    public UserActivateInWorldEvent(EntityUid user, EntityUid target, bool complex)
     {
         User = user;
         Target = target;
         Complex = complex;
-        ClickLocation = entityCoordinates; // backmen: blob
     }
 }
