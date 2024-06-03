@@ -46,3 +46,27 @@
         visualType: Large
         messages: [ "barozine-effect-skin-burning", "barozine-effect-muscle-contract" ]
         probability: 0.1
+
+- type: reagent
+  id: AntlionGrubCore
+  name: сок из личинки муровьиного льва
+  group: Medicine
+  desc: Редкий целебный нектар, который содержиться в личинках муровьиных львов.
+  physicalDesc: reagent-physical-desc-soothing
+  flavor: medicine
+  color: "#6cfc05"
+  metabolisms:
+    Medicine:
+      effects:
+      - !type:ModifyBloodLevel
+        amount: 10
+      - !type:HealthChange
+        damage:
+          groups:
+            Burn: -10
+            Toxin: -10
+            Airloss: -10
+            Brute: -10
+            Immaterial: -10
+          types:
+            Bloodloss: -10

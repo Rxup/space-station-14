@@ -59,3 +59,25 @@
       collection: FootstepSoldier
       params:
         volume: -2
+
+- type: entity
+  parent: ClothingShoesBootsMag
+  id: ChronoLegionnaireBoots
+  name: advanced chrono boots
+  description: Minimalist shoes with magnetic soles, allowing the wearer to move at an impressive speed and not worry about clowns with banana peels.
+  components:
+  - type: Sprite
+    sprite: Backmen/Clothing/Shoes/Boots/chrono.rsi
+    state: icon
+  - type: Clothing
+    sprite: Backmen/Clothing/Shoes/Boots/chrono.rsi
+  - type: ClothingSpeedModifier
+    walkModifier: 1.5
+    sprintModifier: 1.5
+    enabled: false
+  - type: FootstepModifier
+    footstepSoundCollection:
+      collection: FootstepSoldier
+      params:
+        volume: -999
+  - type: NoSlip

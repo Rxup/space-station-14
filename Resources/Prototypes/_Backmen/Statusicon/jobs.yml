@@ -28,6 +28,41 @@
 
 - type: statusIcon
   parent: JobIcon
+  id: JobIconLeitenant
+  icon:
+    sprite: /Textures/Backmen/Icons/jobicon.rsi
+    state: leitenant
+
+- type: statusIcon
+  parent: JobIcon
+  id: JobIconShtab
+  icon:
+    sprite: /Textures/Backmen/Icons/jobicon.rsi
+    state: shtab
+
+- type: statusIcon
+  parent: JobIcon
+  id: JobIconSpecialits
+  icon:
+    sprite: /Textures/Backmen/Icons/jobicon.rsi
+    state: smartgunner
+
+- type: statusIcon
+  parent: JobIcon
+  id: JobIconCommander
+  icon:
+    sprite: /Textures/Backmen/Icons/jobicon.rsi
+    state: commander
+
+- type: statusIcon
+  parent: JobIcon
+  id: JobIconCommandeer
+  icon:
+    sprite: /Textures/Backmen/Icons/jobicon.rsi
+    state: commandeer
+
+- type: statusIcon
+  parent: JobIcon
   id: JobIconNanotrasenOSO
   icon:
     sprite: /Textures/Backmen/Icons/jobicon.rsi
