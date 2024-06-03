@@ -108,6 +108,22 @@
 
 - type: entity
   parent: DoorElectronics
+  id: DoorElectronicsUEGMedic
+  suffix: EarthGov Medic, Locked
+  components:
+  - type: AccessReader
+    access: [["EarthGovMedic"]]
+
+- type: entity
+  parent: DoorElectronics
+  id: DoorElectronicsUEGSpecialits
+  suffix: EarthGov Specialits, Locked
+  components:
+  - type: AccessReader
+    access: [["EarthGovSpecialits"]]
+
+- type: entity
+  parent: DoorElectronics
   id: DoorElectronicsUEGCommand
   suffix: EarthGovCommand, Locked
   components:

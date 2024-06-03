@@ -527,3 +527,25 @@
     - CCCargo
     - CCSecurity
     - CentralCommand
+
+- type: entity
+  parent: CentcomIDCardDeathsquad
+  id: ChronoGavnaIDCard
+  name: Id карта Chrono Legionnaire
+  components:
+  - type: Sprite
+    layers:
+    - state: syndie
+    - state: idcaptain
+    - state: idcentcom
+  - type: Item
+    heldPrefix: blue
+  - type: IdCard
+    jobTitle: Chrono Legionnaire
+    fullName: Legionnaire
+    jobIcon: JobIconDeathSquadron
+  - type: Access
+    groups:
+    - MTFLeader
+    - AllAccess
+    - CentCom

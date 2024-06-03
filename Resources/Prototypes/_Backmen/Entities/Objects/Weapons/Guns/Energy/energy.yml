@@ -111,3 +111,49 @@
       fireCost: 10
     - proto: BulletDisabler
       fireCost: 10
+
+- type: entity
+  name: SWS Motorized Pulse Rifle
+  parent: BaseWeaponRifle
+  id: WeaponRifleSWS
+  description: The Pulse Rifle is the standard-issue service rifle of the Earth Defense Force and is also common among corporate security officers.
+  components:
+  - type: Sprite
+    sprite: Backmen/Objects/Weapons/Gunsx64/Battery/Pulse/sws/big.rsi
+    state: base
+  - type: Item
+    sprite: Backmen/Objects/Weapons/Gunsx64/Battery/Pulse/sws/tiny.rsi
+    size: Huge
+  - type: Clothing
+    sprite: Backmen/Objects/Weapons/Gunsx64/Battery/Pulse/sws/tiny.rsi
+  - type: GunWieldBonus
+    minAngle: -23
+    maxAngle: -44
+  - type: Gun
+    minAngle: 24
+    maxAngle: 45
+    fireRate: 8
+    soundGunshot:
+      path: /Audio/Backmen/Weapons/Energy/giperperdesh.ogg
+      params:
+        volume: -1
+  - type: ItemSlots
+    slots:
+      gun_magazine:
+        name: Magazine
+        startingItem: MagazinePulseRifleSWS
+        insertSound: /Audio/Weapons/Guns/MagIn/kinetic_reload.ogg
+        ejectSound: /Audio/Weapons/Guns/MagOut/lmg_magout.ogg
+        priority: 2
+        whitelist:
+          tags:
+            - MagazinePulseRifleSWS
+  - type: ChamberMagazineAmmoProvider
+    boltClosed: null
+  - type: MagazineAmmoProvider
+  - type: ContainerContainer
+    containers:
+      gun_magazine: !type:ContainerSlot
+      gun_chamber: !type:ContainerSlot
+  - type: Appearance
+  - type: Wieldable

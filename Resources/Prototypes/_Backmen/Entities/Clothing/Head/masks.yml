@@ -230,3 +230,21 @@
     sprite: Backmen/Clothing/Mask/traumamedic.rsi
   - type: Clothing
     sprite: Backmen/Clothing/Mask/traumamedic.rsi
+
+- type: entity
+  parent: ClothingMaskGasERT
+  id: ClothingMaskTacticalGas
+  name: tactical gas mask
+  description: A military-grade gas mask that can be connected to an air supply.
+  components:
+  - type: Sprite
+    sprite: Backmen/Clothing/Mask/millitary.rsi
+  - type: Clothing
+    sprite: Backmen/Clothing/Mask/millitary.rsi
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.90
+        Slash: 0.90
+        Piercing: 0.95
+        Heat: 0.95

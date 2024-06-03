@@ -283,3 +283,131 @@
         Radiation: 0.01
         Caustic: 0.5
         Stun: 0.2
+
+- type: entity
+  parent: ClothingOuterHardsuitDeathsquad
+  id: ClothingOuterHardsuitSpecialForce
+  noSpawn: true
+  name: EarthGov special force hardsuit
+  components:
+  - type: Sprite
+    sprite: Backmen/Clothing/OuterClothing/Hardsuits/specialforce.rsi
+  - type: Clothing
+    sprite: Backmen/Clothing/OuterClothing/Hardsuits/specialforce.rsi
+    equipSound: /Audio/Backmen/Misc/suit/nominal.ogg
+    unequipSound: /Audio/Backmen/Misc/suit/mechmove03.ogg
+  - type: ToggleableClothing
+    clothingPrototype: ClothingHeadHelmetHardsuitSpecialForce
+
+- type: entity
+  parent: ClothingOuterHardsuitRTULeader
+  id: ClothingOuterHardsuitRTU
+  noSpawn: true
+  name: EarthGov RTU hardsuit
+  description: A rescue troop unit suit designed specifically for combat in space and the harsh far-off worlds.
+  components:
+  - type: Sprite
+    sprite: Backmen/Clothing/OuterClothing/Hardsuits/RescueTroopsUnits/grunthardsuit.rsi
+  - type: Clothing
+    sprite: Backmen/Clothing/OuterClothing/Hardsuits/RescueTroopsUnits/grunthardsuit.rsi
+  - type: ToggleableClothing
+    clothingPrototype: ClothingHeadHelmetHardsuitRTU
+
+- type: entity
+  parent: ClothingOuterHardsuitRTULeader
+  id: ClothingOuterHardsuitRTUMedick
+  noSpawn: true
+  name: EarthGov medic RTU hardsuit
+  components:
+  - type: Sprite
+    sprite: Backmen/Clothing/OuterClothing/Hardsuits/RescueTroopsUnits/medickhardsuit.rsi
+  - type: Clothing
+    sprite: Backmen/Clothing/OuterClothing/Hardsuits/RescueTroopsUnits/medickhardsuit.rsi
+  - type: ToggleableClothing
+    clothingPrototype: ClothingHeadHelmetHardsuitRTUMedick
+
+- type: entity
+  parent: ClothingOuterHardsuitRTULeader
+  id: ClothingOuterHardsuitRTUEnginegr
+  noSpawn: true
+  name: EarthGov engineer RTU hardsuit
+  components:
+  - type: Sprite
+    sprite: Backmen/Clothing/OuterClothing/Hardsuits/RescueTroopsUnits/enginegrhardsuit.rsi
+  - type: Clothing
+    sprite: Backmen/Clothing/OuterClothing/Hardsuits/RescueTroopsUnits/enginegrhardsuit.rsi
+  - type: ToggleableClothing
+    clothingPrototype: ClothingHeadHelmetHardsuitRTUEnginegr
+
+- type: entity
+  parent: ClothingOuterHardsuitSyndie
+  id: ClothingOuterHardsuitRTULeader
+  noSpawn: true
+  name: EarthGov commander RTU hardsuit
+  components:
+  - type: Sprite
+    sprite: Backmen/Clothing/OuterClothing/Hardsuits/RescueTroopsUnits/dungeonmasterhardsuit.rsi
+  - type: Clothing
+    sprite: Backmen/Clothing/OuterClothing/Hardsuits/RescueTroopsUnits/dungeonmasterhardsuit.rsi
+    equipSound: /Audio/Backmen/Misc/suit/nominal.ogg
+    unequipSound: /Audio/Backmen/Misc/suit/mechmove03.ogg
+  - type: ToggleableClothing
+    clothingPrototype: ClothingHeadHelmetHardsuitRTULeader
+
+- type: entity
+  parent: ClothingOuterHardsuitSyndieCommander
+  id: ClothingOuterHardsuitSecurityEgovSpecial
+  name: special EarthGov force hardsuit
+  description: A marine suit designed specifically for combat in space and the harsh far-off worlds.
+  components:
+  - type: Sprite
+    sprite: Backmen/Clothing/OuterClothing/Hardsuits/marinespecialhardsuit.rsi
+  - type: Clothing
+    sprite: Backmen/Clothing/OuterClothing/Hardsuits/marinespecialhardsuit.rsi
+  - type: ToggleableClothing
+    clothingPrototype: ClothingHeadHelmetHardsuitSecurityEgov
+
+- type: entity
+  parent: ClothingOuterHardsuitSyndie
+  id: ClothingOuterHardsuitSecurityEgov
+  name: marine hardsuit
+  description: A marine suit designed specifically for combat in space and the harsh far-off worlds.
+  components:
+  - type: Sprite
+    sprite: Backmen/Clothing/OuterClothing/Hardsuits/marinehardsuit.rsi
+  - type: Clothing
+    sprite: Backmen/Clothing/OuterClothing/Hardsuits/marinehardsuit.rsi
+  - type: ToggleableClothing
+    clothingPrototype: ClothingHeadHelmetHardsuitSecurityEgov
+
+- type: entity
+  parent: ClothingOuterHardsuitBase
+  id: ClothingOuterHardsuitChronoLegionnaire
+  name: chrono legionnaire hardsuit
+  description: An advanced and stylish hardsuit right from the future.
+  components:
+  - type: Sprite
+    sprite: Backmen/Clothing/OuterClothing/Hardsuits/chronolegionnaire.rsi
+  - type: Clothing
+    sprite: Backmen/Clothing/OuterClothing/Hardsuits/chronolegionnaire.rsi
+  - type: PressureProtection
+    highPressureMultiplier: 0.02
+    lowPressureMultiplier: 1000
+  - type: TemperatureProtection
+    coefficient: 0.001
+  - type: ExplosionResistance
+    damageCoefficient: 0.2
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.2
+        Slash: 0.2
+        Piercing: 0.2
+        Heat: 0.1
+        Radiation: 0
+        Caustic: 0.2
+  - type: ClothingSpeedModifier
+    walkModifier: 1
+    sprintModifier: 1
+  - type: ToggleableClothing
+    clothingPrototype: ClothingHeadHelmetHardsuitChronoLegionnaire
