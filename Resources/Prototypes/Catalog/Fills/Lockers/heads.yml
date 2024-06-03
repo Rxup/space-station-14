@@ -10,6 +10,7 @@
       - id: ClothingNeckCloakQm
       - id: BoxFolderQmClipboard
       - id: CargoRequestComputerCircuitboard
+      - id: CargoSaleComputerCircuitboard
       - id: CargoShuttleComputerCircuitboard
       - id: CargoShuttleConsoleCircuitboard
       - id: SalvageShuttleConsoleCircuitboard

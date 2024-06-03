@@ -25,21 +25,8 @@
     - ForcedSleep
     - TemporaryBlindness
     - Pacified
-    - ZombieDisease
     - SeeAll
-  - type: Body
-    prototype: Animal
-  - type: InjectableSolution
-    solution: chemicals
-  - type: Examiner
-  - type: Appearance
-  - type: RotationVisuals
-    defaultRotation: 0
-    horizontalRotation: 0
-  - type: Actions
-  - type: DoAfter
-  - type: Polymorphable
-  - type: Pullable
+    - Flashed
   - type: Buckle
   - type: StandingState
   - type: Tag
@@ -118,6 +105,7 @@
       - PsionicsDisabled
       - PsionicallyInsulated
       - SeeAll
+      - Flashed
   - type: Bloodstream
     bloodMaxVolume: 150
   - type: MobPrice

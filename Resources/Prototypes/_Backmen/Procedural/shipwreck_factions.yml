@@ -51,7 +51,7 @@
 - type: entity
   id: AnomalyFleshStatic
   parent: AnomalyFlesh
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
     - type: Anomaly
       severityGrowthCoefficient: 0

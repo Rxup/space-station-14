@@ -137,6 +137,18 @@ public sealed class EventManagerSystem : EntitySystem
             if (!prototype.TryGetComponent<StationEventComponent>(out var stationEvent))
                 continue;
 
+            // start-backmen: Glimmer
+            if (prototype.TryGetComponent<Backmen.StationEvents.Components.GlimmerEventComponent>(
+                    out var glimmerEventComponent))
+            {
+                var glimmer = EntityManager.SystemOrNull<Shared.Backmen.Psionics.Glimmer.GlimmerSystem>()?.Glimmer ?? 0;
+                if(glimmer < glimmerEventComponent.MinimumGlimmer)
+                    continue;
+                if(glimmer > glimmerEventComponent.MaximumGlimmer)
+                    continue;
+            }
+            // end-backmen: Glimmer
+
             allEvents.Add(prototype, stationEvent);
         }
 

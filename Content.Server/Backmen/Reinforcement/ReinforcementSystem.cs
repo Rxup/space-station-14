@@ -296,7 +296,7 @@ public sealed class ReinforcementSystem : SharedReinforcementSystem
                 ghost.Requirements = new HashSet<JobRequirement>(job.Requirements);
             }
 
-            ghost.WhitelistRequired = job.WhitelistRequired;
+            ghost.WhitelistRequired = job.Whitelisted;
         }
 
         UpdateUserInterface(ent);

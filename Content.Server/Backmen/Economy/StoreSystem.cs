@@ -6,6 +6,7 @@ using Content.Server.Store.Components;
 using Content.Server.VendingMachines;
 using Content.Shared.Backmen.Store;
 using Content.Shared.Store;
+using Content.Shared.Store.Components;
 using Content.Shared.VendingMachines;
 
 namespace Content.Server.Store.Systems;

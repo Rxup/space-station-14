@@ -2,7 +2,6 @@
   id: FleshCultistShop
   name: Evolution Shop
   description: Here you can purchase active skills and passive enhancements.
-  noSpawn: true
   components:
     - type: InstantAction
       icon: Interface/Actions/fleshCultistShop.png
@@ -12,7 +11,6 @@
   id: FleshCultistBlade
   name: Flesh Blade
   description: Transforms the active hand into a deadly blade made of flesh and bones.
-  noSpawn: true
   components:
     - type: InstantAction
       icon: Interface/Actions/fleshCultistBlade.png
@@ -23,7 +21,6 @@
   id: FleshCultistBreakCuffs
   name: Break Cuffs
   description: You can break free from any handcuffs or straightjacket.
-  noSpawn: true
   components:
     - type: InstantAction
       checkCanInteract: false
@@ -39,7 +36,6 @@
   id: FleshCultistAdrenalin
   name: Adrenaline Synthesis
   description: The parasite synthesizes and injects a dose of adrenaline into you, increasing your speed and stun resistance.
-  noSpawn: true
   components:
     - type: InstantAction
       icon: Interface/Actions/fleshCultistAdrenalin.png
@@ -50,7 +46,6 @@
   id: FleshCultistCreateFleshHeart
   name: Create Flesh Heart
   description: Creates a flesh heart in front of you. It is your key objective on the station. To activate it, you need to use 3 bodies of evolved flesh creatures. After activation, be prepared to defend it against security personnel.
-  noSpawn: true
   components:
     - type: InstantAction
       icon: Interface/Actions/fleshCultistFleshHeart.png
@@ -61,7 +56,6 @@
   id: FleshCultistThrowWorm
   name: Worm Vomit
   description: Vomits a flesh worm to throw at enemy faces.
-  noSpawn: true
   components:
     - type: InstantAction
       icon: Interface/Actions/fleshCultistThrowWorm.png
@@ -72,7 +66,6 @@
   id: FleshCultistAcidSpit
   name: Acid Spit
   description: Spit acid at your enemies.
-  noSpawn: true
   components:
     - type: WorldTargetAction
       icon: Interface/Actions/fleshAcidSpit.png
@@ -84,7 +77,6 @@
   id: FleshCultistClaw
   name: Flesh Claw
   description: Transforms the active hand into a functional claw made of flesh and bones.
-  noSpawn: true
   components:
     - type: InstantAction
       icon: Interface/Actions/fleshCultistClaw.png
@@ -95,7 +87,6 @@
   id: FleshCultistFist
   name: Flesh Fist
   description: Transforms the active hand into a massive flesh fist that can easily break through any structures.
-  noSpawn: true
   components:
     - type: InstantAction
       icon: Interface/Actions/fleshCultistFist.png
@@ -106,7 +97,6 @@
   id: FleshCultistSpikeGun
   name: Spike Gun Hand
   description: Transforms the active hand into a deadly spike gun made of flesh.
-  noSpawn: true
   components:
     - type: InstantAction
       icon: Interface/Actions/fleshCultistSpikeGun.png
@@ -117,7 +107,6 @@
   id: FleshCultistArmor
   name: Flesh Armor
   description: Covers you in armor made of flesh and bones.
-  noSpawn: true
   components:
     - type: InstantAction
       icon: Interface/Actions/fleshCultistArmor.png
@@ -128,7 +117,6 @@
   id: FleshCultistSpiderlegs
   name: Spider Form
   description: Transforms a part of your body into a spider-like form, providing moderate protection and a significant increase in speed.
-  noSpawn: true
   components:
     - type: InstantAction
       icon: Interface/Actions/fleshCultistSpiderLegs.png
@@ -139,7 +127,6 @@
   id: FleshCultistAbsorbBloodPool
   name: Blood Pool Absorption
   description: Allows you to absorb clean blood puddles for healing.
-  noSpawn: true
   components:
     - type: InstantAction
       icon: Interface/Actions/fleshCultistAbsorbBloodPool.png
@@ -150,7 +137,6 @@
   id: FleshCultistDevour
   name: Corpse Devour
   description: You can devour any flesh creature to gain evolution points and heal wounds.
-  noSpawn: true
   components:
     - type: EntityTargetAction
       icon: Interface/Actions/fleshCultistDevour.png
@@ -164,7 +150,6 @@
   id: ActionWormJump
   name: Worm Jump
   description: Jump into mouse target
-  noSpawn: true
   components:
     - type: WorldTargetAction
       icon: Interface/Actions/fleshPudgeThrowWorm.png
@@ -177,7 +162,6 @@
   id: ActionThrowWorm
   name: Worm Jump
   description: Jump into mouse target
-  noSpawn: true
   components:
     - type: WorldTargetAction
       icon: Interface/Actions/fleshPudgeThrowWorm.png
@@ -190,7 +174,6 @@
   id: ActionAcidSpit
   name: Acid Spit
   description: Spit acid at your enemies.
-  noSpawn: true
   components:
     - type: WorldTargetAction
       icon: Interface/Actions/fleshAcidSpit.png
@@ -203,7 +186,6 @@
   id: ActionAbsorbBloodPool
   name: Blood Pool Absorption
   description: Allows you to absorb clean blood puddles for healing.
-  noSpawn: true
   components:
     - type: InstantAction
       icon: Interface/Actions/fleshCultistAbsorbBloodPool.png

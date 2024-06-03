@@ -18,6 +18,7 @@
     canInteract: true
   - type: GhostHearing
   - type: Hands
+  - type: ComplexInteraction
   - type: Puller
   - type: CombatMode
   - type: Physics
@@ -98,7 +99,6 @@
   id: ActionAGhostShowSolar
   name: Solar Control Interface
   description: View a solar control interface.
-  noSpawn: true
   components:
   - type: InstantAction
     icon: Corvax/Interface/AdminActions/solar.png # Corvax-Resprite
@@ -111,7 +111,6 @@
   id: ActionAGhostShowCommunications
   name: Communications Interface
   description: View a communications interface.
-  noSpawn: true
   components:
   - type: InstantAction
     icon: Corvax/Interface/AdminActions/communications.png # Corvax-Resprite
@@ -124,7 +123,6 @@
   id: ActionAGhostShowRadar
   name: Mass Scanner Interface
   description: View a mass scanner interface.
-  noSpawn: true
   components:
   - type: InstantAction
     icon: Corvax/Interface/AdminActions/radar.png # Corvax-Resprite
@@ -137,7 +135,6 @@
   id: ActionAGhostShowCargo
   name: Cargo Ordering Interface
   description: View a cargo ordering interface.
-  noSpawn: true
   components:
   - type: InstantAction
     icon: Corvax/Interface/AdminActions/cargo.png # Corvax-Resprite
@@ -150,7 +147,6 @@
   id: ActionAGhostShowCrewMonitoring
   name: Crew Monitoring Interface
   description: View a crew monitoring interface.
-  noSpawn: true
   components:
   - type: InstantAction
     icon: Corvax/Interface/AdminActions/monitoring.png # Corvax-Resprite
@@ -163,7 +159,6 @@
   id: ActionAGhostShowStationRecords
   name: Station Records Interface
   description: View a station records Interface
-  noSpawn: true
   components:
   - type: InstantAction
     icon: Corvax/Interface/AdminActions/records.png # Corvax-Resprite

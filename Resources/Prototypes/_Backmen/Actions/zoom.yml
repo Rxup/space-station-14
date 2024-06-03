@@ -2,7 +2,6 @@
   id: ActionOpticZoom
   name: action-name-optic-zoom
   description: action-description-optic-zoom
-  noSpawn: true
   components:
   - type: InstantAction
     useDelay: 10
