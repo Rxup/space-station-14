@@ -211,3 +211,17 @@
     proto: TeslaAmmoEnergyBall
     capacity: 10
   - type: Appearance
+  - type: ContainerContainer
+    containers:
+      toggleable-clothing: !type:ContainerSlot
+        showEnts: False
+        occludes: True
+        ent: null
+      storagebase: !type:Container
+        showEnts: False
+        occludes: True
+        ents: [ ]
+      ballistic-ammo: !type:Container
+        showEnts: False
+        occludes: True
+        ents: [ ]

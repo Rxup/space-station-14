@@ -17,7 +17,14 @@
     - 0,0,10,5
   - type: ContainerContainer
     containers:
-      toggleable-clothing: !type:ContainerSlot {}
+      toggleable-clothing: !type:ContainerSlot
+        showEnts: False
+        occludes: True
+        ent: null
+      storagebase: !type:Container
+        showEnts: False
+        occludes: True
+        ents: []
 
 - type: entity
   parent: ClothingBackpackRIGRTULeader
@@ -40,6 +47,16 @@
     sprite: Backmen/Clothing/Back/RIGs/RTU.rsi
   - type: ToggleableClothing
     clothingPrototype: ClothingOuterHardsuitRTUMedick
+  - type: ContainerContainer
+    containers:
+      toggleable-clothing: !type:ContainerSlot
+        showEnts: False
+        occludes: True
+        ent: null
+      storagebase: !type:Container
+        showEnts: False
+        occludes: True
+        ents: [ ]
 
 - type: entity
   parent: ClothingBackpackRIGRTULeader
@@ -51,6 +68,16 @@
     sprite: Backmen/Clothing/Back/RIGs/RTU.rsi
   - type: ToggleableClothing
     clothingPrototype: ClothingOuterHardsuitRTUEnginegr
+  - type: ContainerContainer
+    containers:
+      toggleable-clothing: !type:ContainerSlot
+        showEnts: False
+        occludes: True
+        ent: null
+      storagebase: !type:Container
+        showEnts: False
+        occludes: True
+        ents: [ ]
 
 - type: entity
   parent: ClothingBackpack
@@ -71,7 +98,14 @@
     - back
   - type: ContainerContainer
     containers:
-      toggleable-clothing: !type:ContainerSlot {}
+      toggleable-clothing: !type:ContainerSlot
+        showEnts: False
+        occludes: True
+        ent: null
+      storagebase: !type:Container
+        showEnts: False
+        occludes: True
+        ents: [ ]
 
 - type: entity
   parent: ClothingBackpack
@@ -105,7 +139,14 @@
       stunSecond: 0
   - type: ContainerContainer
     containers:
-      toggleable-clothing: !type:ContainerSlot {}
+      toggleable-clothing: !type:ContainerSlot
+        showEnts: False
+        occludes: True
+        ent: null
+      storagebase: !type:Container
+        showEnts: False
+        occludes: True
+        ents: [ ]
 
 - type: entity
   id: ActionToggleSuitInvisiblePower

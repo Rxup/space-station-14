@@ -54,6 +54,7 @@
 - type: entity
   parent: Clothing
   id: PagonStandard
+  abstract: true
   name: shoulder strap
   description: A shoulder strap necessary to access various areas.
   noSpawn: true
@@ -332,6 +333,7 @@
 - type: entity
   parent: Clothing
   id: IDbadgeStandard
+  abstract: true
   name: identification badge
   description: A badge necessary to access various areas.
   noSpawn: true

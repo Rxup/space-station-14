@@ -157,7 +157,7 @@
   description: Стандартная турель точечной защиты, используется военными формированиями ОПЗ.
   components:
     - type: Physics
-      bodyType: Dynamic
+      bodyType: Static
     - type: Fixtures
       fixtures:
         fix1:

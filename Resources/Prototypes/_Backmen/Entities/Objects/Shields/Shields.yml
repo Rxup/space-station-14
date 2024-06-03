@@ -11,6 +11,8 @@
       sprite: Backmen/Objects/Weapons/Melee/shields.rsi
       size: Huge
       heldPrefix: egov
+    - type: StaticPrice
+      price: 200
     - type: Blocking
       passiveBlockModifier:
         coefficients:
