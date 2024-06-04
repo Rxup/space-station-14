@@ -49,7 +49,7 @@ public sealed class RandomMetadataSystem : EntitySystem
         {
             if (_prototype.TryIndex<DatasetPrototype>(segment, out var proto)) {
                 var random = _random.Pick(proto.Values);
-                if (Loc.TryGetString(random, out var localizedSegment))
+                if (!string.IsNullOrWhiteSpace(random) && Loc.TryGetString(random, out var localizedSegment))
                     outputSegments.Add(localizedSegment);
                 else
                     outputSegments.Add(random);
