@@ -1,7 +1,7 @@
 - type: gameMap
-  id: Cogmap
+  id: BackmenCogmap
   mapName: 'Cogmap'
-  mapPath: /Maps/Backmen/cogmap.yml
+  mapPath: /Maps/Backmen/backmen_cogmap.yml
   minPlayers: 55
   stations:
     Cogmap:

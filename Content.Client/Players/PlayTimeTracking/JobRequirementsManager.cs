@@ -1,6 +1,7 @@
 ﻿using System.Diagnostics.CodeAnalysis;
 using Content.Shared.CCVar;
 using Content.Shared.Players;
+using Content.Shared.Players.JobWhitelist;
 using Content.Shared.Players.PlayTimeTracking;
 using Content.Shared.Roles;
 using Robust.Client;
@@ -26,6 +27,7 @@ public sealed class JobRequirementsManager : ISharedPlaytimeManager
 
     private readonly Dictionary<string, TimeSpan> _roles = new();
     private readonly List<string> _roleBans = new();
+    private readonly List<string> _jobWhitelists = new();
 
     private ISawmill _sawmill = default!;
 
@@ -38,6 +40,8 @@ public sealed class JobRequirementsManager : ISharedPlaytimeManager
         // Yeah the client manager handles role bans and playtime but the server ones are separate DEAL.
         _net.RegisterNetMessage<MsgRoleBans>(RxRoleBans);
         _net.RegisterNetMessage<MsgPlayTime>(RxPlayTime);
+        _net.RegisterNetMessage<MsgJobWhitelist>(RxJobWhitelist);
+
         _client.RunLevelChanged += ClientOnRunLevelChanged;
     }
 
@@ -87,6 +91,13 @@ public sealed class JobRequirementsManager : ISharedPlaytimeManager
         Updated?.Invoke();
     }
 
+    private void RxJobWhitelist(MsgJobWhitelist message)
+    {
+        _jobWhitelists.Clear();
+        _jobWhitelists.AddRange(message.Whitelist);
+        Updated?.Invoke();
+    }
+
     public bool IsAllowed(JobPrototype job, [NotNullWhen(false)] out FormattedMessage? reason)
     {
         reason = null;
@@ -102,29 +113,14 @@ public sealed class JobRequirementsManager : ISharedPlaytimeManager
             return true;
         //end-backmen
 
+        if (!CheckWhitelist(job, out reason))
+            return false;
+
         var player = _playerManager.LocalSession;
         if (player == null)
             return true;
 
-        //start-backmen: whitelist
-        var isOk = CheckRoleTime(job.Requirements, out reason);
-
-        if (job.WhitelistRequired && _cfg.GetCVar(Shared.Backmen.CCVar.CCVars.WhitelistRolesEnabled) &&
-            !IsWhitelisted())
-        {
-            isOk = false;
-            if (reason == null)
-            {
-                reason = FormattedMessage.FromMarkup(Loc.GetString("playtime-deny-reason-not-whitelisted"));
-            }
-            else
-            {
-                reason.AddMarkup("\n" + Loc.GetString("playtime-deny-reason-not-whitelisted"));
-            }
-        }
-
-        return isOk;
-        //end-backmen: whitelist
+        return CheckRoleTime(job.Requirements, out reason);
     }
 
     public bool CheckRoleTime(HashSet<JobRequirement>? requirements, [NotNullWhen(false)] out FormattedMessage? reason)
@@ -150,6 +146,21 @@ public sealed class JobRequirementsManager : ISharedPlaytimeManager
 
         reason = reasons.Count == 0 ? null : FormattedMessage.FromMarkup(string.Join('\n', reasons));
         return reason == null;
+    }
+
+    public bool CheckWhitelist(JobPrototype job, [NotNullWhen(false)] out FormattedMessage? reason)
+    {
+        reason = default;
+        if (!_cfg.GetCVar(CCVars.GameRoleWhitelist))
+            return true;
+
+        if (job.Whitelisted && !_jobWhitelists.Contains(job.ID))
+        {
+            reason = FormattedMessage.FromUnformatted(Loc.GetString("role-not-whitelisted"));
+            return false;
+        }
+
+        return true;
     }
 
     public TimeSpan FetchOverallPlaytime()

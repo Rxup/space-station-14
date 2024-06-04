@@ -2,7 +2,6 @@
   id: ActionBPLAMEDActionBrutepack
   name: Brutepack-action-name
   description: Brutepack-action-description
-  noSpawn: true
   components:
     - type: InstantAction
       useDelay: 300
@@ -13,7 +12,6 @@
   id: ActionBPLAMEDActionOintment
   name: Ointment-action-name
   description: Ointment-action-description
-  noSpawn: true
   components:
     - type: InstantAction
       useDelay: 300
@@ -24,7 +22,6 @@
   id: ActionBPLAMEDActionBloodpack
   name: Bloodpack-action-name
   description: Bloodpack-action-description
-  noSpawn: true
   components:
     - type: InstantAction
       useDelay: 300

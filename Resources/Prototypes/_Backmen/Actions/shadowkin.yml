@@ -2,7 +2,6 @@
   id: ShadowkinTeleport
   name: action-name-shadowkin-teleport
   description: action-description-shadowkin-teleport
-  noSpawn: true
   components:
     - type: WorldTargetAction
       icon:
@@ -23,7 +22,6 @@
   id: ShadowkinDarkSwap
   name: action-name-shadowkin-darkswap
   description: action-description-shadowkin-darkswap
-  noSpawn: true
   components:
     - type: InstantAction
       useDelay: 5
@@ -43,7 +41,6 @@
   id: ShadowkinRest
   name: action-name-shadowkin-rest
   description: action-description-shadowkin-rest
-  noSpawn: true
   components:
     - type: InstantAction
       useDelay: 60

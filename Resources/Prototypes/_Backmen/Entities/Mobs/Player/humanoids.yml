@@ -52,7 +52,7 @@
   parent: MobHuman
   id: MobHumanFugitive
   name: Fugitive
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
     - type: Loadout
       prototypes: [FugitiveStartingGear]
@@ -115,7 +115,7 @@
   components:
     - type: Loadout
 #      prototype: WizardVioletGear2
-      prototypes: [WizardVioletGear2]
+      prototypes: [WizardVioletGear]
 
 - type: entity
   name: Urist McWizard
@@ -125,7 +125,7 @@
   components:
     - type: Loadout
 #      prototype: WizardRedGear2
-      prototypes: [WizardRedGear2]
+      prototypes: [WizardRedGear]
 
 - type: entity
   name: Urist McWizard
@@ -135,7 +135,7 @@
   components:
     - type: Loadout
 #      prototype: WizardBlueGear2
-      prototypes: [WizardBlueGear2]
+      prototypes: [WizardBlueGear]
 
 - type: entity
   name: Urist McWizard
@@ -145,7 +145,7 @@
   components:
     - type: Loadout
 #      prototype: WizardHardsuitGear2
-      prototypes: [WizardHardsuitGear2]
+      prototypes: [WizardHardsuitGear]
 
 # SuperPsi - Urist McNars
 - type: entity

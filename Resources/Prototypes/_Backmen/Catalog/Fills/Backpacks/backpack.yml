@@ -2,7 +2,7 @@
   parent: ClothingBackpack
   id: ClothingBackpackPlagueDoctorFilled
   suffix: PlagueDoctor
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
   - type: StorageFill
     contents:
@@ -18,7 +18,7 @@
         amount: 3
 
 - type: entity
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   parent: ClothingBackpackERTLeader
   id: ClothingBackpackERTLeaderFilledV2_1
   components:
@@ -38,7 +38,7 @@
         - id: BoxHandcuff
 
 - type: entity
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   parent: ClothingBackpackERTEngineer
   id: ClothingBackpackERTEngineerFilledV2_1
   components:
@@ -70,7 +70,7 @@
           amount: 4
 
 - type: entity
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   parent: ClothingBackpackERTSecurity
   id: ClothingBackpackERTSecurityFilledV2_1
   components:
@@ -90,7 +90,7 @@
         - id: BoxHandcuff
 
 - type: entity
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   parent: ClothingBackpackERTMedical
   id: ClothingBackpackERTMedicalFilledV2_1
   components:

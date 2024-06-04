@@ -10,6 +10,7 @@ using Content.Server.Chat.Managers;
 using Content.Server.Destructible;
 using Content.Server.Emp;
 using Content.Server.Explosion.EntitySystems;
+using Content.Server.Hands.Systems;
 using Content.Server.Mind;
 using Content.Server.Roles;
 using Content.Shared.ActionBlocker;
@@ -18,6 +19,7 @@ using Content.Shared.Backmen.Blob;
 using Content.Shared.Backmen.Blob.Components;
 using Content.Shared.Coordinates.Helpers;
 using Content.Shared.Damage;
+using Content.Shared.Hands.Components;
 using Content.Shared.Interaction;
 using Content.Shared.Item;
 using Content.Shared.Mind;
@@ -32,6 +34,7 @@ using Robust.Shared.CPUJob.JobQueues.Queues;
 using Robust.Shared.Map;
 using Robust.Shared.Map.Components;
 using Robust.Shared.Player;
+using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Timing;
 using Robust.Shared.Utility;
@@ -56,6 +59,7 @@ public sealed class BlobObserverSystem : SharedBlobObserverSystem
     [Dependency] private readonly ISharedPlayerManager _actorSystem = default!;
     [Dependency] private readonly ViewSubscriberSystem _viewSubscriberSystem = default!;
     [Dependency] private readonly MapSystem _mapSystem = default!;
+    [Dependency] private readonly HandsSystem _hands = default!;
 
     private EntityQuery<BlobTileComponent> _tileQuery;
 
@@ -87,9 +91,29 @@ public sealed class BlobObserverSystem : SharedBlobObserverSystem
         SubscribeLocalEvent<BlobObserverComponent, MoveEvent>(OnMoveEvent);
         SubscribeLocalEvent<BlobObserverComponent, BlobChemSwapPrototypeSelectedMessage>(OnChemSelected);
 
+        SubscribeLocalEvent<BlobObserverComponent, ComponentStartup>(OnStartup);
+
 
         _logger = _logMan.GetSawmill("blob.core");
         _tileQuery = GetEntityQuery<BlobTileComponent>();
+    }
+
+    [ValidatePrototypeId<EntityPrototype>]
+    private const string MobObserverBlobController = "MobObserverBlobController";
+    private void OnStartup(Entity<BlobObserverComponent> ent, ref ComponentStartup args)
+    {
+        _hands.AddHand(ent,"BlobHand",HandLocation.Middle);
+
+        ent.Comp.VirtualItem = Spawn(MobObserverBlobController, Transform(ent).Coordinates);
+        var comp = EnsureComp<BlobObserverControllerComponent>(ent.Comp.VirtualItem);
+        comp.Blob = ent;
+        Dirty(ent);
+
+        if (!_hands.TryPickup(ent, ent.Comp.VirtualItem, "BlobHand", false, false, false))
+        {
+            QueueDel(ent);
+            return;
+        }
     }
 
     private void SendBlobBriefing(EntityUid mind)

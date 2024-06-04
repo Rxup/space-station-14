@@ -2,7 +2,6 @@
   id: SpiderWebArachneClassicAction
   name: spider-web-action-name
   description: spider-web-action-description
-  noSpawn: true
   components:
     - type: InstantAction
       useDelay: 180
@@ -13,7 +12,6 @@
   id: ActionSpiderVampireEgg
   name: name-Spider-Vampire-Egg
   description: description-Spider-Vampire-Egg
-  noSpawn: true
   components:
     - type: InstantAction
       icon: { sprite: Backmen/Objects/Misc/eggspider.rsi, state: icon }

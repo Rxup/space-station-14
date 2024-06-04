@@ -14,10 +14,7 @@
             "name": "DeathSquadron"
         },
         {
-            "name": "CargoTechnician"
-        },
-        {
-            "name": "Security"
+            "name": "union"
         },
         {
             "name": "Nanotrasen"
@@ -56,6 +53,12 @@
             "name": "commander"
         },
         {
+            "name": "commandeer"
+        },
+        {
+            "name": "leitenant"
+        },
+        {
             "name": "engi"
         },
         {
@@ -72,6 +75,12 @@
         },
         {
             "name": "spets"
+        },
+        {
+            "name": "CargoTechnician"
+        },
+        {
+            "name": "Security"
         },
         {
             "name": "cap",

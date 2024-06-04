@@ -28,9 +28,6 @@
       count: 5
     - type: Item
       size: Normal
-    - type: Currency
-      price:
-        BluespaceUplink: 1
 
 - type: entity
   parent: MaterialBluespace
@@ -45,40 +42,6 @@
     tags:
     - BluespaceCrystal
     - RawMaterial
-
-- type: entity
-  parent: MaterialBluespace
-  id: MaterialBluespaceUplink
-  name: bluespace crystal
-  suffix: Uplink
-  components:
-    - type: PhysicalComposition
-      materialComposition:
-        BluespaceUplink: 100
-    - type: Stack
-      stackType: BluespaceUplink
-      baseLayer: base
-      layerStates:
-      - bluespace
-      - bluespace_2
-      - bluespace_3
-      count: 5
-    - type: Tag
-      tags:
-        - BluespaceCrystal
-        - RawMaterial
-    - type: Currency
-      price:
-        BluespaceUplink: 1
-
-- type: material
-  id: BluespaceUplink
-  name: bluespace
-  icon: /Textures/Backmen/Objects/Materials/materials.rsi/bluespace.png
-  color: "#53a9ff"
-  stackEntity: MaterialBluespaceUplink
-  price: 1500
-
 
 - type: entity
   parent: BaseItem

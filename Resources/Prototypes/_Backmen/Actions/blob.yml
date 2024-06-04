@@ -2,7 +2,6 @@
   id: ActionCreateBlobFactory
   name: blob-create-factory-action-name
   description: blob-create-factory-action-desc
-  noSpawn: true
   components:
     - type: WorldTargetAction
       icon:
@@ -17,7 +16,6 @@
   id: ActionCreateBlobResource
   name: blob-create-resource-action-name
   description: blob-create-resource-action-desc
-  noSpawn: true
   components:
     - type: WorldTargetAction
       icon:
@@ -32,7 +30,6 @@
   id: ActionCreateBlobNode
   name: blob-create-node-action-name
   description: blob-create-node-action-desc
-  noSpawn: true
   components:
     - type: WorldTargetAction
       icon:
@@ -47,7 +44,6 @@
   id: ActionCreateBlobbernaut
   name: blob-produce-blobbernaut-action-name
   description: blob-produce-blobbernaut-action-desc
-  noSpawn: true
   components:
     - type: WorldTargetAction
       icon:
@@ -62,7 +58,6 @@
   id: ActionSplitBlobCore
   name: blob-split-core-action-name
   description: blob-split-core-action-desc
-  noSpawn: true
   components:
     - type: WorldTargetAction
       icon:
@@ -77,7 +72,6 @@
   id: ActionSwapBlobCore
   name: blob-swap-core-action-name
   description: blob-swap-core-action-desc
-  noSpawn: true
   components:
     - type: WorldTargetAction
       icon:
@@ -92,7 +86,6 @@
   id: ActionTeleportBlobToCore
   name: blob-teleport-to-core-action-name
   description: blob-teleport-to-core-action-desc
-  noSpawn: true
   components:
     - type: InstantAction
       icon:
@@ -106,7 +99,6 @@
   id: ActionTeleportBlobToNode
   name: blob-teleport-to-node-action-name
   description: blob-teleport-to-node-action-desc
-  noSpawn: true
   components:
     - type: InstantAction
       icon:
@@ -119,7 +111,6 @@
   id: ActionHelpBlob
   name: blob-help-action-name
   description: blob-help-action-desc
-  noSpawn: true
   components:
     - type: InstantAction
       icon:
@@ -132,7 +123,6 @@
   id: ActionSwapBlobChem
   name: blob-swap-chem-action-name
   description: blob-swap-chem-action-desc
-  noSpawn: true
   components:
     - type: InstantAction
       icon:
@@ -144,7 +134,6 @@
   id: ActionTransformToBlob
   name: blob-carrier-transform-to-blob-action-name
   description: blob-carrier-transform-to-blob-action-desc
-  noSpawn: true
   components:
     - type: InstantAction
       icon:

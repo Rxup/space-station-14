@@ -2,7 +2,6 @@
   id: ActionCentcomFtlAction
   name: centcom-ftl-action-name
   description: centcom-ftl-action-description
-  noSpawn: true
   components:
     - type: InstantAction
       useDelay: 180

@@ -5,6 +5,7 @@ using Content.Server.Backmen.Reinforcement.Components;
 using Content.Server.Chat.Managers;
 using Content.Server.GameTicking;
 using Content.Server.Ghost.Roles.Components;
+using Content.Server.Ghost.Roles.Raffles;
 using Content.Server.Mind;
 using Content.Server.Players.PlayTimeTracking;
 using Content.Server.Popups;
@@ -287,6 +288,11 @@ public sealed class ReinforcementSystem : SharedReinforcementSystem
             var job = _prototype.Index(proto.Job);
 
             var ghost = EnsureComp<GhostRoleComponent>(marker);
+            ghost.RaffleConfig = new GhostRoleRaffleConfig
+            {
+                Settings = "default"
+            };
+
             ghost.RoleName = Loc.GetString("reinforcement-ghostrole-name", ("name", proto.Name));
             ghost.RoleDescription = Loc.GetString("reinforcement-ghostrole-desc", ("job", Loc.GetString(job.Name)));
             ghost.RoleRules = Loc.GetString("reinforcement-ghostrole-rule", ("brief", ent.Comp.Brief));
@@ -296,7 +302,7 @@ public sealed class ReinforcementSystem : SharedReinforcementSystem
                 ghost.Requirements = new HashSet<JobRequirement>(job.Requirements);
             }
 
-            ghost.WhitelistRequired = job.WhitelistRequired;
+            ghost.WhitelistRequired = job.Whitelisted;
         }
 
         UpdateUserInterface(ent);

@@ -81,3 +81,29 @@
     maxRange: 1536
   - type: Computer
     board: ShuttleConsoleCircuitboard
+
+- type: entity
+  parent: BaseComputerShuttle
+  id: ComputerShuttleEarthGov
+  components:
+  - type: Sprite
+    layers:
+    - map: ["computerLayerBody"]
+      state: computer
+    - map: ["computerLayerKeyboard"]
+      state: generic_keyboard
+    - map: ["computerLayerScreen"]
+      state: turbinecomp
+    - map: ["computerLayerKeys"]
+      state: generic_keys
+  - type: Tag
+    tags:
+      - EarthGov
+  - type: RadarConsole
+    maxRange: 1536
+  - type: WorldLoader
+    radius: 1536
+  - type: PointLight
+    radius: 1.5
+    energy: 1.6
+    color: "#c94242"

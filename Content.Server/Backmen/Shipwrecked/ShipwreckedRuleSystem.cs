@@ -1773,11 +1773,11 @@ public sealed class ShipwreckedRuleSystem : GameRuleSystem<ShipwreckedRuleCompon
             if (xform.GridUid != shopGrid)
                 continue;
 
-            if (_tagSystem.HasTag(entity, TagSecureSafe, tagQuery))
+            if (_tagSystem.HasTag(tagComponent, TagSecureSafe))
             {
                 component.GunSafe.Add(entity);
             }
-            else if (_tagSystem.HasTag(entity, TagEngineeringAirlock, tagQuery))
+            else if (_tagSystem.HasTag(tagComponent, TagEngineeringAirlock))
             {
                 component.EngineBayDoor.Add(entity);
             }

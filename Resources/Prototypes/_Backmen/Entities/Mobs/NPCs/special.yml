@@ -2,7 +2,7 @@
   name: Катя
   id: MobQuestHecate
   parent: MobHologramHuman
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   description: A glimmering hologram depicting a young woman with dark hair and a bright smile.
   components:
     - type: MobThresholds
@@ -30,7 +30,7 @@
 - type: entity
   id: MobQuestHecateShipwrecked
   parent: MobQuestHecate
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
     - type: ShipwreckedNPCHecate
     - type: NPCConversation

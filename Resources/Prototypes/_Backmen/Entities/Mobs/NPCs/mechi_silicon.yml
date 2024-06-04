@@ -36,7 +36,7 @@
             max: 1
 
 - type: entity
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   id: MechGavnaReticenceDestroyed
   parent: MechGavnaMaulerDestroyed
   name: полностью сломанный молчун
@@ -94,7 +94,7 @@
     rules: Используйте свое оружие, чтобы вызвать хаос. Вы антагонист.
 
 - type: entity
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   name: маулер синдиката
   id: OneStarMechMauler
   parent: PlayerSiliconBase
