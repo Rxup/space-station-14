@@ -649,3 +649,30 @@
   - type: ContainerFill
     containers:
       board: [ DoorElectronicsUEGCommand]
+
+- type: entity
+  parent: WindoorSecureArmoryLocked
+  id: WindoorEGSpecialits
+  suffix: EGMC Specialist
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsUEGSpecialits ]
+
+- type: entity
+  parent: WindoorSecureArmoryLocked
+  id: WindoorEGMedical
+  suffix: EGMC Medic
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsUEGMedic ]
+
+- type: entity
+  parent: WindoorSecureArmoryLocked
+  id: WindoorEGCommand
+  suffix: EGMC Command
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsUEGCommand]

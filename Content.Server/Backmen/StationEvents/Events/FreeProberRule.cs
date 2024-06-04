@@ -6,16 +6,19 @@ using Content.Server.Station.Systems;
 using Content.Server.Backmen.Psionics.Glimmer;
 using Content.Server.Backmen.StationEvents.Components;
 using Content.Server.GameTicking.Components;
+using Content.Server.Station.Components;
 using Content.Server.StationEvents.Events;
 using Content.Shared.Backmen.Psionics.Glimmer;
 using Content.Shared.Construction.EntitySystems;
+using Robust.Server.GameObjects;
+using Robust.Shared.Map.Components;
 
 namespace Content.Server.Backmen.StationEvents.Events;
 
 internal sealed class FreeProberRule : StationEventSystem<FreeProberRuleComponent>
 {
     [Dependency] private readonly IRobustRandom _robustRandom = default!;
-    [Dependency] private readonly IMapManager _mapManager = default!;
+    [Dependency] private readonly MapSystem _mapSystem = default!;
     [Dependency] private readonly AnchorableSystem _anchorable = default!;
     [Dependency] private readonly GlimmerSystem _glimmerSystem = default!;
     [Dependency] private readonly StationSystem _stationSystem = default!;
@@ -27,56 +30,58 @@ internal sealed class FreeProberRule : StationEventSystem<FreeProberRuleComponen
     {
         base.Started(uid, component, gameRule, args);
 
-        List<EntityUid> PossibleSpawns = new();
+        List<Entity<TransformComponent>> possibleSpawns = new();
 
-        var query = EntityQueryEnumerator<GlimmerSourceComponent>();
-        while (query.MoveNext(out var glimmerSource, out var glimmerSourceComponent))
+        var query = EntityQueryEnumerator<GlimmerSourceComponent,TransformComponent>();
+        while (query.MoveNext(out var glimmerSource, out var glimmerSourceComponent, out var transformComponent))
         {
-            if (glimmerSourceComponent.AddToGlimmer && glimmerSourceComponent.Active)
+            if (glimmerSourceComponent is { AddToGlimmer: true, Active: true })
             {
-                PossibleSpawns.Add(glimmerSource);
+                possibleSpawns.Add((glimmerSource,transformComponent));
             }
         }
 
-        if (PossibleSpawns.Count == 0 || _glimmerSystem.Glimmer >= 500 || _robustRandom.Prob(0.25f))
+        if (possibleSpawns.Count == 0 || _glimmerSystem.Glimmer >= 500 || _robustRandom.Prob(0.25f))
         {
-            var queryBattery = EntityQueryEnumerator<PowerNetworkBatteryComponent>();
-            while (query.MoveNext(out var battery, out var _))
+            var queryBattery = EntityQueryEnumerator<PowerNetworkBatteryComponent,TransformComponent>();
+            while (queryBattery.MoveNext(out var battery, out var _, out var transformComponent))
             {
-                PossibleSpawns.Add(battery);
+                possibleSpawns.Add((battery,transformComponent));
             }
         }
 
-        if (PossibleSpawns.Count > 0)
+        if (possibleSpawns.Count <= 0)
+            return;
+
+        _robustRandom.Shuffle(possibleSpawns);
+
+        foreach (var source in possibleSpawns)
         {
-            _robustRandom.Shuffle(PossibleSpawns);
+            var xform = source.Comp;
 
-            foreach (var source in PossibleSpawns)
+            var station = _stationSystem.GetOwningStation(source, xform);
+
+            if (station == null || !HasComp<StationEventEligibleComponent>(station))
+                continue;
+
+            var coordinates = xform.Coordinates;
+            if (!TryComp<MapGridComponent>(xform.GridUid, out var grid))
+                continue;
+
+
+            var tileIndices = _mapSystem.TileIndicesFor(xform.GridUid.Value, grid, coordinates);
+
+            for (var i = 0; i < SpawnDirections; i++)
             {
-                var xform = Transform(source);
+                var direction = (DirectionFlag) (1 << i);
+                var offsetIndices = tileIndices.Offset(direction.AsDir());
 
-                if (_stationSystem.GetOwningStation(source, xform) == null)
+                // This doesn't check against the prober's mask/layer, because it hasn't spawned yet...
+                if (!_anchorable.TileFree(grid, offsetIndices))
                     continue;
 
-                var coordinates = xform.Coordinates;
-                var gridUid = xform.GridUid;
-                if (!_mapManager.TryGetGrid(gridUid, out var grid))
-                    continue;
-
-                var tileIndices = grid.TileIndicesFor(coordinates);
-
-                for (var i = 0; i < SpawnDirections; i++)
-                {
-                    var direction = (DirectionFlag) (1 << i);
-                    var offsetIndices = tileIndices.Offset(direction.AsDir());
-
-                    // This doesn't check against the prober's mask/layer, because it hasn't spawned yet...
-                    if (!_anchorable.TileFree(grid, offsetIndices))
-                        continue;
-
-                    Spawn(ProberPrototype, grid.GridTileToLocal(offsetIndices));
-                    return;
-                }
+                Spawn(ProberPrototype, _mapSystem.GridTileToLocal(xform.GridUid.Value, grid, offsetIndices));
+                return;
             }
         }
     }

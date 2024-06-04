@@ -19,3 +19,10 @@
   - type: Sprite
     sprite: Backmen/Clothing/Back/Backpacks/ninja_backpacks.rsi
 
+- type: entity
+  parent: ClothingBackpackSatchel
+  id: ClothingBackpackMVD
+  name: satchel
+  components:
+  - type: Sprite
+    sprite: Backmen/Clothing/Back/Backpacks/mvd.rsi

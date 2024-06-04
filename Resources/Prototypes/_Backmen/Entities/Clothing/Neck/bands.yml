@@ -1,0 +1,10 @@
+- type: entity
+  parent: ClothingNeckBase
+  id: ClothingNeckMPBand
+  name: military police band
+  description: Damn, it feels good to be a law.
+  components:
+  - type: Sprite
+    sprite: Backmen/Clothing/Neck/Bands/mpband.rsi
+  - type: Clothing
+    sprite: Backmen/Clothing/Neck/Bands/mpband.rsi

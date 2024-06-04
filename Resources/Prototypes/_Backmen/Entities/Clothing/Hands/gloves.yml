@@ -87,3 +87,35 @@
   - type: Construction
     graph: HandsBint
     node: Hands_Bint
+
+- type: entity
+  parent: ClothingHandsBase
+  id: ClothingHandsChronoLegionnaire
+  name: chrono legionnaire combat gloves
+  description: High-quality combat gloves form pa... Future.
+  components:
+  - type: Sprite
+    sprite: Backmen/Clothing/Hands/Gloves/chronogloves.rsi
+  - type: Clothing
+    sprite: Backmen/Clothing/Hands/Gloves/chronogloves.rsi
+  - type: GloveHeatResistance
+    heatResistance: 1400
+  - type: Insulated
+  - type: FingerprintMask
+  - type: DashAbility
+    dashAction: ActionPhaseDash
+
+- type: entity
+  id: ActionPhaseDash
+  name: phase dash
+  description: Teleport to anywhere you can see.
+  noSpawn: true
+  components:
+  - type: WorldTargetAction
+    icon:
+      sprite: Objects/Magic/magicactions.rsi
+      state: blink
+    itemIconStyle: NoItem
+    priority: -12
+    event: !type:DashEvent
+    range: 0

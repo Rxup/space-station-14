@@ -200,6 +200,78 @@
     sprite: Backmen/Clothing/Head/Helmets/motohelmetyellow.rsi
 
 - type: entity
+  parent: ClothingHeadHelmetEGov
+  id: ClothingHeadHelmetEGovPilot
+  name: pilot helmet
+  components:
+  - type: Sprite
+    sprite: Backmen/Clothing/Head/Helmets/pilothelmet.rsi
+  - type: Clothing
+    sprite: Backmen/Clothing/Head/Helmets/pilothelmet.rsi
+
+- type: entity
+  parent: ClothingHeadBase
+  id: ClothingHeadHelmetXenonauten
+  name: xenonauten helmet
+  description: A helmet using by UEG marine corp.
+  components:
+  - type: Sprite
+    sprite: Backmen/Clothing/Head/Helmets/ballistichelmet.rsi
+  - type: Clothing
+    sprite: Backmen/Clothing/Head/Helmets/ballistichelmet.rsi
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.7
+        Slash: 0.7
+        Piercing: 0.6
+        Heat: 0.8
+        Radiation: 0.8
+        Caustic: 0.95
+  - type: ExplosionResistance
+    damageCoefficient: 0.75
+
+- type: entity
+  parent: ClothingHeadBase
+  id: ClothingHeadHelmetEGov
+  name: helmet
+  description: A usual helmet.
+  components:
+  - type: Sprite
+    sprite: Backmen/Clothing/Head/Helmets/helmet.rsi
+  - type: Clothing
+    sprite: Backmen/Clothing/Head/Helmets/helmet.rsi
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.8
+        Slash: 0.8
+        Piercing: 0.9
+        Heat: 0.8
+  - type: ExplosionResistance
+    damageCoefficient: 0.8
+
+- type: entity
+  parent: ClothingHeadBase
+  id: ClothingHeadHelmetMVD
+  name: противоударный шлем
+  description: Обычный шлем с желтым визором.
+  components:
+  - type: Sprite
+    sprite: Backmen/Clothing/Head/Helmets/helmetmvd.rsi
+  - type: Clothing
+    sprite: Backmen/Clothing/Head/Helmets/helmetmvd.rsi
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.7
+        Slash: 0.8
+        Piercing: 0.9
+        Heat: 0.8
+  - type: ExplosionResistance
+    damageCoefficient: 0.8
+
+- type: entity
   parent: ClothingHeadEVAHelmetBase
   id: ClothingHeadHelmetSpaceNinjaBK
   name: space ninja helmet

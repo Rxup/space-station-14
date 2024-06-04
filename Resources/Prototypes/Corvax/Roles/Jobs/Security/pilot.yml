@@ -10,6 +10,12 @@
   icon: "JobIconPilot"
   supervisors: job-supervisors-hos
   canBeAntag: false
+  #start-backmen: currency
+  minBankBalance: 1500
+  maxBankBalance: 2500
+  wageDepartment: Security
+  wage: 500
+  #end-backmen: currency
   access:
   - Security
   - Brig

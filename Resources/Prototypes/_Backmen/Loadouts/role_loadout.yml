@@ -6,6 +6,7 @@
   - BKCCCargoBackpack
   - Trinkets
   - Medals #backmen
+  - Inventory # Corvax-Loadouts
 
 - type: roleLoadout
   id: JobBrigmedic
@@ -18,3 +19,4 @@
   - ClothingMaskBrigmedic
   - Trinkets
   - Medals #backmen
+  - Inventory # Corvax-Loadouts

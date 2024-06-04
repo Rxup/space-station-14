@@ -1,0 +1,14 @@
+- type: Tag
+  id: EarthGov
+
+- type: entity
+  id: FTLPointEarthGov
+  parent: MarkerBase
+  name: FTL point EarthGov
+  components:
+  - type: FTLDestination
+    whitelist:
+      tags:
+      - EarthGov
+  - type: Sprite
+    state: pink

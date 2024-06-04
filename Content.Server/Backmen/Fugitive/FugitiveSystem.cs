@@ -20,6 +20,7 @@ using Content.Server.Station.Components;
 using Content.Server.Station.Systems;
 using Content.Server.Storage.Components;
 using Content.Shared.Cargo.Components;
+using Content.Shared.Construction.EntitySystems;
 using Content.Shared.Roles;
 using Content.Shared.Movement.Systems;
 using Content.Shared.Humanoid.Prototypes;
@@ -34,6 +35,7 @@ using Content.Shared.Random;
 using Content.Shared.Roles.Jobs;
 using Content.Shared.Wall;
 using Robust.Server.Audio;
+using Robust.Server.GameObjects;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
 using Robust.Shared.Audio;
@@ -41,6 +43,7 @@ using Robust.Shared.Utility;
 using Robust.Shared.Physics.Components;
 using Robust.Shared.Player;
 using Robust.Shared.Map;
+using Robust.Shared.Map.Components;
 using Robust.Shared.Random;
 using static Content.Shared.Examine.ExamineSystemShared;
 
@@ -71,6 +74,8 @@ public sealed class FugitiveSystem : EntitySystem
     [Dependency] private readonly ObjectivesSystem _objectivesSystem = default!;
     [Dependency] private readonly RandomHelperSystem _randomHelper = default!;
     [Dependency] private readonly ExamineSystem _examine = default!;
+    [Dependency] private readonly AnchorableSystem _anchorable = default!;
+    [Dependency] private readonly MapSystem _mapSystem = default!;
 
     public override void Initialize()
     {
@@ -85,6 +90,8 @@ public sealed class FugitiveSystem : EntitySystem
 
     [ValidatePrototypeId<JobPrototype>]
     private const string JobSAI = "SAI";
+
+    private static readonly int SpawnDirections = 4;
 
     public void HandlePlayerSpawning(PlayerSpawningEvent args)
     {
@@ -168,9 +175,21 @@ public sealed class FugitiveSystem : EntitySystem
                     continue;
                 if(HasComp<CargoShuttleComponent>(xform.GridUid) || HasComp<SalvageShuttleComponent>(xform.GridUid))
                     continue;
+                if(!TryComp<MapGridComponent>(xform.GridUid, out var grid))
+                    continue;
 
-                possiblePositions.Add(
-                    xform.Coordinates.WithPosition(xform.LocalPosition + xform.LocalRotation.ToWorldVec() * 1f));
+                var tileIndices = _mapSystem.TileIndicesFor(xform.GridUid.Value, grid, xform.Coordinates);
+
+                for (var i = 0; i < SpawnDirections; i++)
+                {
+                    var direction = (DirectionFlag) (1 << i);
+                    var offsetIndices = tileIndices.Offset(direction.AsDir());
+                    if (!_anchorable.TileFree(grid, offsetIndices))
+                        continue;
+                    possiblePositions.Add(
+                        _mapSystem.GridTileToLocal(xform.GridUid.Value, grid, offsetIndices)
+                    );
+                }
             }
         }
 

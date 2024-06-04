@@ -27,3 +27,14 @@
     id: UEGoffIDCard
     ears: ClothingHeadsetUEGofficer
     mask: ClothingMaskGasMerc
+
+- type: startingGear
+  id: ChronoLegionnaireGear
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitDeathSquad
+    back: ClothingBackpackRIGChronoLegionnaire
+    shoes: ChronoLegionnaireBoots
+    outerClothing: ClothingOuterHardsuitChronoLegionnaire
+    id: ChronoGavnaIDCard
+    eyes: ClothingEyesGlassesSunglasses
+    gloves: ClothingHandsChronoLegionnaire

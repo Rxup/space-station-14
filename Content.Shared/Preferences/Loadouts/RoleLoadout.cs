@@ -107,7 +107,7 @@ public sealed partial class RoleLoadout : IEquatable<RoleLoadout>
                 }
 
                 // Malicious client maybe, check the group even has it.
-                if (!groupProto.Loadouts.Contains(loadout.Prototype))
+                if (!groupProtoLoadouts.Contains(loadout.Prototype))
                 {
                     loadouts.RemoveAt(i);
                     continue;
