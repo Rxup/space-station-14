@@ -30,6 +30,7 @@ using Content.Shared.Ghost;
 using Content.Shared.Mind.Components;
 using Content.Shared.Objectives.Components;
 using Content.Shared.Paper;
+using Content.Shared.Physics;
 using Content.Shared.Radio.Components;
 using Content.Shared.Random;
 using Content.Shared.Roles.Jobs;
@@ -171,10 +172,13 @@ public sealed class FugitiveSystem : EntitySystem
             {
                 if (args.Station != null && _stationSystem.GetOwningStation(uid, xform) != args.Station)
                     continue;
+
                 if(xform.GridUid == null)
                     continue;
+
                 if(HasComp<CargoShuttleComponent>(xform.GridUid) || HasComp<SalvageShuttleComponent>(xform.GridUid))
                     continue;
+
                 if(!TryComp<MapGridComponent>(xform.GridUid, out var grid))
                     continue;
 
@@ -184,8 +188,16 @@ public sealed class FugitiveSystem : EntitySystem
                 {
                     var direction = (DirectionFlag) (1 << i);
                     var offsetIndices = tileIndices.Offset(direction.AsDir());
-                    if (!_anchorable.TileFree(grid, offsetIndices))
+
+                    var offsetMobTile = _mapSystem.GetTileRef(xform.GridUid.Value, grid, offsetIndices);
+
+                    if(offsetMobTile.Tile.IsEmpty)
                         continue;
+
+                    // This doesn't check against the prober's mask/layer, because it hasn't spawned yet...
+                    if (!_anchorable.TileFree(grid, offsetIndices, (int)CollisionGroup.WallLayer, (int)CollisionGroup.MachineMask))
+                        continue;
+
                     possiblePositions.Add(
                         _mapSystem.GridTileToLocal(xform.GridUid.Value, grid, offsetIndices)
                     );
