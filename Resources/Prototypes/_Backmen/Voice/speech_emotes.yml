@@ -191,14 +191,14 @@
 - type: emote
   id: Growls
   category: Vocal
-  name: chat-emote-name-growls
+  name: chat-speech-verb-large-mob-2
   whitelist:
     components:
     - Vocal
   blacklist:
     components:
     - BorgChassis
-  chatMessages: ["chat-emote-msg-growls"]
+  chatMessages: ["chat-speech-verb-large-mob-2"]
   chatTriggers:
     - рычит
     - рычит.
