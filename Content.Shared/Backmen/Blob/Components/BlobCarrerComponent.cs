@@ -8,7 +8,7 @@ using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototy
 namespace Content.Shared.Backmen.Blob.Components;
 
 [RegisterComponent, NetworkedComponent]
-public sealed partial class BlobCarrierComponent : Component, IAntagStatusIconComponent
+public sealed partial class BlobCarrierComponent : Component
 {
     [ViewVariables(VVAccess.ReadWrite), DataField("transformationDelay")]
     public float TransformationDelay = 240;
@@ -34,9 +34,6 @@ public sealed partial class BlobCarrierComponent : Component, IAntagStatusIconCo
     public string CoreBlobGhostRolePrototype = "CoreBlobTileGhostRole";
 
     public EntityUid? TransformToBlob = null;
-
-    public ProtoId<StatusIconPrototype> StatusIcon { get; set; } = "BlobFaction";
-    public bool IconVisibleToGhost { get; set; } = true;
 }
 
 public sealed partial class TransformToBlobActionEvent : InstantActionEvent
