@@ -1,17 +1,21 @@
 ﻿using Content.Shared.Antag;
 using Content.Shared.Backmen.Blob;
 using Content.Shared.Backmen.Blob.Components;
+using Content.Shared.Backmen.Flesh;
 using Content.Shared.GameTicking;
 using Content.Shared.Ghost;
+using Content.Shared.StatusIcon;
 using Content.Shared.StatusIcon.Components;
 using Robust.Client.Graphics;
 using Robust.Shared.Player;
+using Robust.Shared.Prototypes;
 
 namespace Content.Client.Backmen.Blob;
 
 public sealed class BlobObserverSystem : SharedBlobObserverSystem
 {
     [Dependency] private readonly ILightManager _lightManager = default!;
+    [Dependency] private readonly IPrototypeManager _prototype = default!;
 
     public override void Initialize()
     {
@@ -20,7 +24,20 @@ public sealed class BlobObserverSystem : SharedBlobObserverSystem
         SubscribeLocalEvent<BlobObserverComponent, LocalPlayerAttachedEvent>(OnPlayerAttached);
         SubscribeLocalEvent<BlobObserverComponent, LocalPlayerDetachedEvent>(OnPlayerDetached);
 
+        SubscribeLocalEvent<BlobObserverComponent, GetStatusIconsEvent>(OnShowBlobIcon);
+        SubscribeLocalEvent<ZombieBlobComponent, GetStatusIconsEvent>(OnShowBlobIcon);
+        SubscribeLocalEvent<BlobCarrierComponent, GetStatusIconsEvent>(OnShowBlobIcon);
+        SubscribeLocalEvent<BlobbernautComponent, GetStatusIconsEvent>(OnShowBlobIcon);
+
         SubscribeNetworkEvent<RoundRestartCleanupEvent>(RoundRestartCleanup);
+    }
+
+    [ValidatePrototypeId<StatusIconPrototype>]
+    private const string BlobFaction = "BlobFaction";
+
+    private void OnShowBlobIcon<T>(Entity<T> ent, ref GetStatusIconsEvent args) where T : Component
+    {
+        args.StatusIcons.Add(_prototype.Index<StatusIconPrototype>(BlobFaction));
     }
 
     private void OnPlayerAttached(EntityUid uid, BlobObserverComponent component, LocalPlayerAttachedEvent args)

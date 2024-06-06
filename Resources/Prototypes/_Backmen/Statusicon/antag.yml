@@ -28,6 +28,7 @@
     - BlobCarrier
     - BlobObserver
     - ZombieBlob
+    - Blobbernaut
   icon:
     sprite: /Textures/Backmen/Interface/Misc/antag_icon.rsi
     state: blob
