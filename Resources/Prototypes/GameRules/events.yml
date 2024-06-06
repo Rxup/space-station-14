@@ -39,13 +39,11 @@
   - type: StationEvent
     startAnnouncementColor: "#18abf5"
     startAudio:
-      path: /Audio/Announcements/announce.ogg
+      path: /Audio/Corvax/Announcements/flux.ogg # Corvax-Announcements
+      params:
+        volume: -4
     weight: 8
     duration: 35
-#    startAudio: # Corvax-Announcements
-#      path: /Audio/Corvax/Announcements/flux.ogg
-#      params:
-#        volume: -4
   - type: AnomalySpawnRule
 
 - type: entity
@@ -60,7 +58,9 @@
   - type: StationEvent
     startAnnouncementColor: "#18abf5"
     startAudio:
-      path: /Audio/Announcements/announce.ogg
+      path: /Audio/Corvax/Announcements/blusp_anomalies.ogg # Corvax-Announcements
+      params:
+        volume: -4
     weight: 8
     duration: 35
   - type: BluespaceArtifactRule
@@ -204,6 +204,10 @@
         volume: -4
     endAnnouncement: station-event-gas-leak-end-announcement
     weight: 8
+    endAudio:
+      path: /Audio/Announcements/gasleak_end.ogg # Corvax-Announcements
+      params:
+        volume: -4
   - type: GasLeakRule
 
 - type: entity

@@ -40,7 +40,6 @@
   speciesBlacklist: # Corvax-MRP
     - Diona
   components:
-    - type: MindShield
     - type: GhostRole
       name: ghost-role-information-Death-Squad-name
       description: ghost-role-information-Death-Squad-description
