@@ -131,7 +131,7 @@
 - type: startingGear
   id: SecurityBackpack
   equipment:
-    back: ClothingBackpackSecurityFilled
+    back: ClothingBackpackSecurity
 
 - type: loadout
   id: SecuritySatchel
@@ -140,7 +140,7 @@
 - type: startingGear
   id: SecuritySatchel
   equipment:
-    back: ClothingBackpackSatchelSecurityFilled
+    back: ClothingBackpackSatchelSecurity
 
 - type: loadout
   id: SecurityDuffel
@@ -149,7 +149,7 @@
 - type: startingGear
   id: SecurityDuffel
   equipment:
-    back: ClothingBackpackDuffelSecurityFilled
+    back: ClothingBackpackDuffelSecurity
 
 # Belt
 - type: loadout

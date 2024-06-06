@@ -3,6 +3,7 @@
   name: trait-blindness-name
   description: trait-blindness-desc
   traitGear: WhiteCane
+  category: Disabilities
   whitelist:
     components:
       - Blindable
@@ -19,6 +20,12 @@
   name: trait-poor-vision-name
   description: trait-poor-vision-desc
   traitGear: ClothingEyesGlasses
+  category: Disabilities
+  blacklist:
+    components:
+    - BSSDrone #backmen: bssdrone
+    - StationAI # backmen: AI
+    - BorgChassis
   whitelist:
     components:
       - Blindable
@@ -35,6 +42,7 @@
       - StationAI # backmen: AI
       - BorgChassis
   description: trait-narcolepsy-desc
+  category: Disabilities
   components:
     - type: Narcolepsy
       timeBetweenIncidents: 300, 600
@@ -49,8 +57,49 @@
       - StationAI # backmen: AI
       - BorgChassis
   description: trait-pacifist-desc
+  category: Disabilities
   components:
     - type: Pacified
+
+- type: trait
+  id: Unrevivable
+  name: trait-unrevivable-name
+  description: trait-unrevivable-desc
+  blacklist:
+    components:
+    - BSSDrone #backmen: bssdrone
+    - StationAI # backmen: AI
+    - BorgChassis
+  category: Disabilities
+  components:
+    - type: Unrevivable
+
+- type: trait
+  id: Muted
+  name: trait-muted-name
+  description: trait-muted-desc
+  category: Disabilities
+  blacklist:
+    components:
+    - BSSDrone #backmen: bssdrone
+    - StationAI # backmen: AI
+    - BorgChassis
+  components:
+    - type: Muted
+
+- type: trait
+  id: LightweightDrunk
+  name: trait-lightweight-name
+  description: trait-lightweight-desc
+  category: Disabilities
+  blacklist:
+    components:
+    - BSSDrone #backmen: bssdrone
+    - StationAI # backmen: AI
+    - BorgChassis
+  components:
+    - type: LightweightDrunk
+      boozeStrengthMultiplier: 2
 
 - type: trait
   id: Paracusia
@@ -61,6 +110,7 @@
       - BSSDrone #backmen: bssdrone
       - StationAI # backmen: AI
       - BorgChassis
+  category: Disabilities
   components:
     - type: Paracusia
       minTimeBetweenIncidents: 0.1
@@ -73,6 +123,11 @@
   id: Unrevivable
   name: trait-unrevivable-name
   description: trait-unrevivable-desc
+  blacklist:
+    components:
+    - BSSDrone #backmen: bssdrone
+    - StationAI # backmen: AI
+    - BorgChassis
   components:
     - type: Unrevivable
 
@@ -119,5 +174,11 @@
   id: Snoring
   name: trait-snoring-name
   description: trait-snoring-desc
+  category: Disabilities
+  blacklist:
+    components:
+    - BSSDrone #backmen: bssdrone
+    - StationAI # backmen: AI
+    - BorgChassis
   components:
     - type: Snoring
