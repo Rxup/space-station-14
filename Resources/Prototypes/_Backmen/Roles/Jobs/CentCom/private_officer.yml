@@ -50,7 +50,7 @@
   id: CentComPrivateOfficerGear
   equipment:
     jumpsuit: ClothingUniformJumpsuitSec
-    back: ClothingBackpackSecurityFilled
+    back: ClothingBackpackSecurity
     shoes: ClothingShoesBootsJackSec # Corvax-Resprite
     eyes: ClothingEyesGlassesSecurity
     head: ClothingHeadHelmetBasic
