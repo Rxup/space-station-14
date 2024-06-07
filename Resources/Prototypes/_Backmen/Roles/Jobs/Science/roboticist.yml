@@ -24,7 +24,7 @@
   id: RoboticistGear
   equipment:
     jumpsuit: ClothingUniformJumpsuitRoboticist
-    back: ClothingBackpackScienceFilled
+    back: ClothingBackpackScience
     shoes: ClothingShoesColorBlack
     eyes: ClothingEyesGlassesWelding
     outerClothing: ClothingOuterCoatRnd

@@ -56,6 +56,7 @@ namespace Content.IntegrationTests.Tests
             "CorvaxPilgrim",
             "CorvaxSplit",
             "CorvaxTerra",
+            "CorvaxFrame",
             // Corvax-End
             "Dev",
             "TestTeg",
@@ -273,25 +274,22 @@ namespace Content.IntegrationTests.Tests
 
                     // Test all availableJobs have spawnPoints
                     // This is done inside gamemap test because loading the map takes ages and we already have it.
-                    var jobList = entManager.GetComponent<StationJobsComponent>(station).RoundStartJobList
-                        .Where(x => x.Value != 0)
-                        .Where(x=>x.Key != "Prisoner") // backmen: Fugitive
-                        .Where(x=>x.Key != "SAI") // backmen: SAI
-                        .Where(x=>x.Key != "Freelancer") // backmen: shipwrecked
-                        .Select(x => x.Key);
-                    var spawnPoints = entManager.EntityQuery<SpawnPointComponent>()
-                        .Where(spawnpoint => spawnpoint.SpawnType == SpawnPointType.Job)
-                        .Select(spawnpoint => spawnpoint.Job.ID)
-                        .Distinct();
-                    List<string> missingSpawnPoints = new();
-                    foreach (var spawnpoint in jobList.Except(spawnPoints))
-                    {
-                        if (protoManager.Index<JobPrototype>(spawnpoint).SetPreference)
-                            missingSpawnPoints.Add(spawnpoint);
-                    }
+                    var comp = entManager.GetComponent<StationJobsComponent>(station);
+                    var jobs = new HashSet<ProtoId<JobPrototype>>(
+                        comp.SetupAvailableJobs
+                            .Where(x=>x.Value[0] > 0 || x.Value[0] == -1)
+                            .Select(x=>x.Key)
+                        .Where(x=>x != "Prisoner") // backmen: Fugitive
+                        .Where(x=>x != "SAI") // backmen: SAI
+                        .Where(x=>x != "Freelancer") // backmen: shipwrecked
+                    );
 
-                    Assert.That(missingSpawnPoints, Has.Count.EqualTo(0),
-                        $"There is no spawnpoint for {string.Join(", ", missingSpawnPoints)} on {mapProto}.");
+                    var spawnPoints = entManager.EntityQuery<SpawnPointComponent>()
+                        .Where(x => x.SpawnType == SpawnPointType.Job)
+                        .Select(x => x.Job!.Value);
+
+                    jobs.ExceptWith(spawnPoints);
+                    Assert.That(jobs, Is.Empty,$"There is no spawnpoints for {string.Join(", ", jobs)} on {mapProto}.");
                 }
 
                 try

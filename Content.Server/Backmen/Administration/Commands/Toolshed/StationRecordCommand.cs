@@ -14,6 +14,7 @@ using Content.Shared.Preferences.Loadouts;
 using Content.Shared.Roles;
 using Content.Shared.StationRecords;
 using Robust.Shared.Player;
+using Robust.Shared.Prototypes;
 using Robust.Shared.Toolshed;
 using Robust.Shared.Toolshed.Errors;
 using Robust.Shared.Toolshed.Syntax;
@@ -80,7 +81,7 @@ public sealed class StationRecordCommand : ToolshedCommand
                     humanoidAppearanceComponent.Gender,
                     new HumanoidCharacterAppearance(),
                     SpawnPriorityPreference.None,
-                    new Dictionary<string, JobPriority>
+                    new Dictionary<ProtoId<JobPrototype>, JobPriority>
                     {
                         { SharedGameTicker.FallbackOverflowJob, JobPriority.High }
                     },

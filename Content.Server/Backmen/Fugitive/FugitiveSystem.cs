@@ -120,7 +120,7 @@ public sealed class FugitiveSystem : EntitySystem
                 if(HasComp<CargoShuttleComponent>(xform.GridUid) || HasComp<SalvageShuttleComponent>(xform.GridUid))
                     continue;
                 if (spawnPoint.SpawnType == SpawnPointType.Job &&
-                    (args.Job == null || spawnPoint.Job?.ID == args.Job.Prototype))
+                    (args.Job == null || spawnPoint.Job == args.Job.Prototype))
                 {
                     possiblePositions.Add(xform.Coordinates);
                 }

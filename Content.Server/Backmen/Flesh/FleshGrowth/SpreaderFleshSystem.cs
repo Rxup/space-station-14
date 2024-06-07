@@ -9,6 +9,8 @@ using Content.Server.Destructible;
 using Content.Server.Destructible.Thresholds;
 using Content.Server.Destructible.Thresholds.Behaviors;
 using Content.Server.Destructible.Thresholds.Triggers;
+using Content.Shared.Destructible.Thresholds;
+using Robust.Shared.Prototypes;
 
 namespace Content.Server.Backmen.Flesh.FleshGrowth;
 
@@ -169,7 +171,7 @@ public sealed class SpreaderFleshSystem : EntitySystem
                     };
                     damageThreshold.AddBehavior(new SpawnEntitiesBehavior
                     {
-                        Spawn = new Dictionary<string, MinMax> { { entityStrucrureId, new MinMax{Min = 1, Max = 1} } },
+                        Spawn = new Dictionary<EntProtoId, MinMax> { { entityStrucrureId, new MinMax{Min = 1, Max = 1} } },
                         Offset = 0f
                     });
                     damageThreshold.AddBehavior(new DoActsBehavior

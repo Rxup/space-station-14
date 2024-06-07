@@ -1,8 +1,8 @@
 ﻿
 - type: trait
   id: OwOAccent
-  name: OwO акцент
-  description: Вы не можете перестать говорить как неко!
+  name: OwOAccent-name
+  description: OwOAccent-desc
   blacklist:
     components:
     - BSSDrone #backmen: bssdrone

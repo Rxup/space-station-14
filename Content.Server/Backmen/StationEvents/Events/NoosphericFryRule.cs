@@ -2,8 +2,6 @@
 using Content.Server.Atmos.EntitySystems;
 using Content.Server.Backmen.Psionics.Glimmer;
 using Content.Server.Backmen.StationEvents.Components;
-using Content.Server.GameTicking.Components;
-using Content.Server.GameTicking.Rules.Components;
 using Content.Server.Popups;
 using Content.Server.Power.Components;
 using Content.Server.Power.EntitySystems;
@@ -12,6 +10,7 @@ using Content.Shared.Backmen.Abilities.Psionics;
 using Content.Shared.Backmen.Psionics.Glimmer;
 using Content.Shared.Construction.EntitySystems;
 using Content.Shared.Damage;
+using Content.Shared.GameTicking.Components;
 using Content.Shared.Inventory;
 using Content.Shared.Mobs.Components;
 using Content.Shared.Mobs.Systems;

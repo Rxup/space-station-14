@@ -16,7 +16,7 @@ public sealed partial class BlobObserverControllerComponent : Component
 }
 
 [RegisterComponent, NetworkedComponent, AutoGenerateComponentState(false)]
-public sealed partial class BlobObserverComponent : Component, IAntagStatusIconComponent
+public sealed partial class BlobObserverComponent : Component
 {
     [ViewVariables(VVAccess.ReadOnly)]
     public bool IsProcessingMoveEvent;
@@ -31,9 +31,6 @@ public sealed partial class BlobObserverComponent : Component, IAntagStatusIconC
     public BlobChemType SelectedChemId = BlobChemType.ReactiveSpines;
 
     public override bool SendOnlyToOwner => true;
-
-    public ProtoId<StatusIconPrototype> StatusIcon { get; set; } = "BlobFaction";
-    public bool IconVisibleToGhost { get; set; } = true;
 
     [ViewVariables(VVAccess.ReadOnly), AutoNetworkedField]
     public EntityUid VirtualItem = EntityUid.Invalid;

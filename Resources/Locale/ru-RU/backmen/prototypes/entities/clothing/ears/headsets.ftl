@@ -1,6 +1,10 @@
-ent-ClothingHeadsetOrden = Гарнитура красного ордена
-    .desc = Специальная гарнитура использующаяся членами красного ордена
-ent-ClothingHeadsetFleet = Гарнитура флота Nanotrasen
-    .desc = Специальная гарнитура использующаяся флотом NT. Слава Nanotrasen!
-ent-ClothingHeadsetFleetAdmiral = Гарнитура Адмирала флота Nanotrasen
-    .desc = Специальная гарнитура использующаяся Адмиралом NT. Слава Nanotrasen!
+ent-ClothingHeadsetOrden = Гарнитура Красного ордена
+    .desc = Специальный шрифт, используемый членами Красного ордена
+ent-ClothingHeadsetFleetAdmiral = Флотская гарнитура
+    .desc = Гарнитура, используемая высшими эшелонами Nanotrasen.
+ent-ClothingHeadsetFleet = Флотская гарнитура
+    .desc = Гарнитура, используемая высшими эшелонами Nanotrasen.
+ent-ClothingHeadsetUEG = Гарнитура ОПЗ
+    .desc = Гарнитура используемая представителями ОПЗ
+ent-ClothingHeadsetUEGofficer = Гарнитура охраны ОПЗ
+    .desc = Гарнитура используемая офицерами ОПЗ

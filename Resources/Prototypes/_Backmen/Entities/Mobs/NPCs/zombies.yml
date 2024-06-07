@@ -48,7 +48,7 @@
     - type: Tool
       qualities:
         - Prying
-      speed: 0.5
+      speedModifier: 0.5
       useSound:
         path: /Audio/Items/jaws_pry.ogg
     # BASE
@@ -80,7 +80,7 @@
     - type: Tool
       qualities:
         - Prying
-      speed: 1.0
+      speedModifier: 1.0
       useSound:
         path: /Audio/Items/jaws_pry.ogg
     # BASE
@@ -118,7 +118,7 @@
     - type: Tool
       qualities:
         - Prying
-      speed: 3.0
+      speedModifier: 3.0
       useSound:
         path: /Audio/Items/jaws_pry.ogg
     # BASE

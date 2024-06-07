@@ -13,7 +13,7 @@ using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototy
 namespace Content.Shared.Backmen.Flesh;
 
 [RegisterComponent, NetworkedComponent]
-public sealed partial class FleshCultistComponent : Component, IAntagStatusIconComponent
+public sealed partial class FleshCultistComponent : Component
 {
     [ViewVariables(VVAccess.ReadWrite)] public FixedPoint2 Hunger = 140;
 
@@ -123,7 +123,4 @@ public sealed partial class FleshCultistComponent : Component, IAntagStatusIconC
     public EntityUid? FleshCultistShop;
     public EntityUid? FleshCultistDevour;
     public EntityUid? FleshCultistAbsorbBloodPool;
-
-    public ProtoId<StatusIconPrototype> StatusIcon { get; set; } = "FleshcultistFaction";
-    public bool IconVisibleToGhost { get; set; } = true;
 }
