@@ -491,3 +491,6 @@ DoorRemoteFirefight: null
 
 # 2024-06-03
 AirlockServiceCaptainLocked: AirlockCaptainLocked
+
+# fix ishimura test
+ClothingBackpackSatchelClownFilled: ClothingBackpackSatchelClown
