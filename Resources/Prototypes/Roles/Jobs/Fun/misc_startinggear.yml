@@ -14,31 +14,6 @@
     id: PassengerPDA
     ears: ClothingHeadsetGrey
 
-#Space Ninja Outfit
-- type: startingGear
-  id: SpaceNinjaGear
-  equipment:
-    jumpsuit: ClothingUniformJumpsuitNinja
-    # belt holds katana so satchel has the tools for sabotaging things
-    back: ClothingBackpackSatchelTools
-    mask: ClothingMaskNinja
-    head: ClothingHeadHelmetSpaceNinjaBK #Backmen
-    eyes: ClothingEyesVisorNinja
-    gloves: ClothingHandsGlovesSpaceNinja
-    outerClothing: ClothingOuterSuitSpaceNinja
-    shoes: ClothingShoesSpaceNinja
-    id: AgentIDCard
-    ears: ClothingHeadsetGrey
-    pocket1: SpiderCharge
-    pocket2: PinpointerStation
-    belt: EnergyKatana
-    suitstorage: OxygenTankFilled
-  inhand:
-    - JetpackBlackFilled
-  storage:
-    back:
-    - BoxSurvival
-
 #Deathsquad Outfit
 - type: startingGear
   id: DeathSquadGear
@@ -203,21 +178,6 @@
     - GasAnalyzer
     - trayScanner
     - AccessConfiguratorUniversal
-
-
-#Thief Gear
-- type: startingGear
-  id: ThiefGear
-  storage:
-    back:
-    - ToolboxThief
-    - ClothingHandsChameleonThief
-    - Flash
-    - ClothingEyesGlassesSunglasses
-    - WeaponPistolMakarovsssp
-    - MagazinePistol
-    - ClothingNeckNKVDBagde
-    - CombatKnifeSpetsnaz
 
 #Gladiator with spear
 - type: startingGear

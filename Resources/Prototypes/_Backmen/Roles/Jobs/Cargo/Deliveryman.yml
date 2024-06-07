@@ -25,7 +25,7 @@
   id: DeliverymanGear
   equipment:
     jumpsuit: ClothingUniformJumpsuitDeliveryman
-    back: ClothingBackpackFilled
+    back: ClothingBackpack
     shoes: ClothingShoesColorBlack
     id: DeliveryPDA
     ears: ClothingHeadsetService

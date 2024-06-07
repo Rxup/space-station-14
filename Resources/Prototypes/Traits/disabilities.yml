@@ -119,30 +119,6 @@
       sounds:
         collection: Paracusia
 
-- type: trait
-  id: Unrevivable
-  name: trait-unrevivable-name
-  description: trait-unrevivable-desc
-  blacklist:
-    components:
-    - BSSDrone #backmen: bssdrone
-    - StationAI # backmen: AI
-    - BorgChassis
-  components:
-    - type: Unrevivable
-
-- type: trait
-  id: Muted
-  name: trait-muted-name
-  description: trait-muted-desc
-  blacklist:
-    components:
-      - BSSDrone #backmen: bssdrone
-      - StationAI # backmen: AI
-      - BorgChassis
-  components:
-    - type: Muted
-
 #- type: trait
 #  id: WheelchairBound
 #  name: trait-wheelchair-bound-name
@@ -157,18 +133,6 @@
 #    - type: BuckleOnMapInit
 #      prototype: VehicleWheelchair
 #    - type: LegsParalyzed
-
-- type: trait
-  id: FrontalLisp
-  name: trait-frontal-lisp-name
-  description: trait-frontal-lisp-desc
-  blacklist:
-    components:
-    - BSSDrone #backmen: bssdrone
-    - StationAI # backmen: AI
-    - BorgChassis
-  components:
-    - type: FrontalLisp
 
 - type: trait
   id: Snoring

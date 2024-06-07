@@ -14,8 +14,6 @@
             !type:NanotrasenNameGenerator
             prefixCreator: 'N'
         - type: StationJobs
-          overflowJobs:
-            - Freelancer
           availableJobs:
             Freelancer: [-1,-1]
 
@@ -35,8 +33,6 @@
             !type:NanotrasenNameGenerator
             prefixCreator: 'BM'
         - type: StationJobs
-          overflowJobs:
-            - Freelancer
           availableJobs:
             Freelancer: [-1,-1]
 
@@ -55,7 +51,5 @@
             !type:NanotrasenNameGenerator
             prefixCreator: 'BM'
         - type: StationJobs
-          overflowJobs:
-            - Freelancer
           availableJobs:
             Freelancer: [-1,-1]

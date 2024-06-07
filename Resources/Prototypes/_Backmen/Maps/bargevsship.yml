@@ -39,8 +39,6 @@
         - Captain
         - SAIShip
       - type: StationJobs
-        overflowJobs:
-        - Freelancer
         availableJobs:
           Freelancer: [ -1, -1 ]
           StationEngineer: [ 5, 5 ]
@@ -66,8 +64,6 @@
         - Captain
         - SAIShip
       - type: StationJobs
-        overflowJobs:
-        - Freelancer
         availableJobs:
           Freelancer: [ -1, -1 ]
           StationEngineer: [ 5, 5 ]

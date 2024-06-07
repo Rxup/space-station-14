@@ -17,7 +17,7 @@
     - type: Tool
       qualities:
         - Prying
-      speed: 1.5
+      speedModifier: 1.5
       useSound: /Audio/Items/jaws_pry.ogg
     - type: MeleeWeapon
       damage:
