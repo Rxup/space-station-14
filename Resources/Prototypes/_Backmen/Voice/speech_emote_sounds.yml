@@ -22,7 +22,7 @@
       collection: FelinidMeows
     Purrs:
       collection: FelinidPurrs
-    Growls:
+    Growl:
       collection: FelinidGrowls
     Weh:
       collection: Weh
@@ -50,7 +50,7 @@
       collection: FelinidMeows
     Purrs:
       collection: FelinidPurrs
-    Growls:
+    Growl:
       collection: FelinidGrowls
     Weh:
       collection: Weh
@@ -79,7 +79,7 @@
       collection: HarpyHisses
     Mew:
       collection: HarpyMews
-    Growls:
+    Growl:
       collection: HarpyGrowls
     Purrs:
       collection: HarpyPurrs

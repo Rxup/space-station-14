@@ -20,6 +20,7 @@ using Content.Server.Station.Components;
 using Content.Server.Station.Systems;
 using Content.Server.Storage.Components;
 using Content.Shared.Cargo.Components;
+using Content.Shared.Construction.EntitySystems;
 using Content.Shared.Roles;
 using Content.Shared.Movement.Systems;
 using Content.Shared.Humanoid.Prototypes;
@@ -29,11 +30,13 @@ using Content.Shared.Ghost;
 using Content.Shared.Mind.Components;
 using Content.Shared.Objectives.Components;
 using Content.Shared.Paper;
+using Content.Shared.Physics;
 using Content.Shared.Radio.Components;
 using Content.Shared.Random;
 using Content.Shared.Roles.Jobs;
 using Content.Shared.Wall;
 using Robust.Server.Audio;
+using Robust.Server.GameObjects;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
 using Robust.Shared.Audio;
@@ -41,6 +44,7 @@ using Robust.Shared.Utility;
 using Robust.Shared.Physics.Components;
 using Robust.Shared.Player;
 using Robust.Shared.Map;
+using Robust.Shared.Map.Components;
 using Robust.Shared.Random;
 using static Content.Shared.Examine.ExamineSystemShared;
 
@@ -71,6 +75,8 @@ public sealed class FugitiveSystem : EntitySystem
     [Dependency] private readonly ObjectivesSystem _objectivesSystem = default!;
     [Dependency] private readonly RandomHelperSystem _randomHelper = default!;
     [Dependency] private readonly ExamineSystem _examine = default!;
+    [Dependency] private readonly AnchorableSystem _anchorable = default!;
+    [Dependency] private readonly MapSystem _mapSystem = default!;
 
     public override void Initialize()
     {
@@ -85,6 +91,8 @@ public sealed class FugitiveSystem : EntitySystem
 
     [ValidatePrototypeId<JobPrototype>]
     private const string JobSAI = "SAI";
+
+    private static readonly int SpawnDirections = 4;
 
     public void HandlePlayerSpawning(PlayerSpawningEvent args)
     {
@@ -112,7 +120,7 @@ public sealed class FugitiveSystem : EntitySystem
                 if(HasComp<CargoShuttleComponent>(xform.GridUid) || HasComp<SalvageShuttleComponent>(xform.GridUid))
                     continue;
                 if (spawnPoint.SpawnType == SpawnPointType.Job &&
-                    (args.Job == null || spawnPoint.Job?.ID == args.Job.Prototype))
+                    (args.Job == null || spawnPoint.Job == args.Job.Prototype))
                 {
                     possiblePositions.Add(xform.Coordinates);
                 }
@@ -164,13 +172,36 @@ public sealed class FugitiveSystem : EntitySystem
             {
                 if (args.Station != null && _stationSystem.GetOwningStation(uid, xform) != args.Station)
                     continue;
+
                 if(xform.GridUid == null)
                     continue;
+
                 if(HasComp<CargoShuttleComponent>(xform.GridUid) || HasComp<SalvageShuttleComponent>(xform.GridUid))
                     continue;
 
-                possiblePositions.Add(
-                    xform.Coordinates.WithPosition(xform.LocalPosition + xform.LocalRotation.ToWorldVec() * 1f));
+                if(!TryComp<MapGridComponent>(xform.GridUid, out var grid))
+                    continue;
+
+                var tileIndices = _mapSystem.TileIndicesFor(xform.GridUid.Value, grid, xform.Coordinates);
+
+                for (var i = 0; i < SpawnDirections; i++)
+                {
+                    var direction = (DirectionFlag) (1 << i);
+                    var offsetIndices = tileIndices.Offset(direction.AsDir());
+
+                    var offsetMobTile = _mapSystem.GetTileRef(xform.GridUid.Value, grid, offsetIndices);
+
+                    if(offsetMobTile.Tile.IsEmpty)
+                        continue;
+
+                    // This doesn't check against the prober's mask/layer, because it hasn't spawned yet...
+                    if (!_anchorable.TileFree(grid, offsetIndices, (int)CollisionGroup.WallLayer, (int)CollisionGroup.MachineMask))
+                        continue;
+
+                    possiblePositions.Add(
+                        _mapSystem.GridTileToLocal(xform.GridUid.Value, grid, offsetIndices)
+                    );
+                }
             }
         }
 

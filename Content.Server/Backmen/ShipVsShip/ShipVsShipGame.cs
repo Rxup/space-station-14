@@ -3,10 +3,7 @@ using Content.Server.Backmen.Arrivals;
 using Content.Server.Backmen.RoleWhitelist;
 using Content.Server.Backmen.ShipVsShip.Components;
 using Content.Server.GameTicking;
-using Content.Server.GameTicking.Components;
 using Content.Server.GameTicking.Rules;
-using Content.Server.GameTicking.Rules.Components;
-using Content.Server.KillTracking;
 using Content.Server.Maps;
 using Content.Server.RoundEnd;
 using Content.Server.Shuttles.Components;
@@ -19,6 +16,7 @@ using Content.Shared.Backmen.ShipVsShip;
 using Content.Shared.Clothing.Components;
 using Content.Shared.Destructible;
 using Content.Shared.GameTicking;
+using Content.Shared.GameTicking.Components;
 using Content.Shared.Mind;
 using Content.Shared.Mobs;
 using Content.Shared.Players;
@@ -74,12 +72,6 @@ public sealed class ShipVsShipGame : GameRuleSystem<ShipVsShipGameComponent>
     {
         var teamFlag = EnsureComp<SVSTeamMemberComponent>(ent);
         teamFlag.Team = team;
-        teamFlag.StatusIcon = team switch
-        {
-            StationTeamMarker.TeamA => "TeamAFaction",
-            StationTeamMarker.TeamB => "TeamBFaction",
-            _ => "Team0Faction"
-        };
         Dirty(ent, teamFlag);
     }
 
@@ -387,7 +379,7 @@ public sealed class ShipVsShipGame : GameRuleSystem<ShipVsShipGameComponent>
             var overflowJobs = jobs.OverflowJobs;
             foreach (var (user, job) in assign)
             {
-                if (job == null || overflowJobs.Contains(job))
+                if (job == null || overflowJobs.Contains(job.Value.Id))
                     continue;
 
                 ct[team]++;

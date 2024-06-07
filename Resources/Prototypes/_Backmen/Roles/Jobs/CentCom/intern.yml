@@ -50,7 +50,7 @@
   id: CentComInternGear
   equipment:
     jumpsuit: ClothingUniformJumpsuitCentcomIntern
-    back: ClothingBackpackFilled
+    back: ClothingBackpack
     shoes: ClothingShoesColorBlack
     id: CentcomInternPDABackmen
     ears: ClothingHeadsetCentCom

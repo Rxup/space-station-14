@@ -133,6 +133,19 @@
     - type: GlimmerWispRule
 
 - type: entity
+  id: FreeProberEarly
+  parent: BaseGlimmerEvent
+  noSpawn: true
+  components:
+  - type: GlimmerEvent
+    minimumGlimmer: 0
+    maximumGlimmer: 100
+    report: glimmer-event-report-signatures
+  - type: FreeProberRule
+    propExtra: 1
+    afterGlimmerExtra: 0
+
+- type: entity
   id: FreeProber
   parent: BaseGlimmerEvent
   noSpawn: true

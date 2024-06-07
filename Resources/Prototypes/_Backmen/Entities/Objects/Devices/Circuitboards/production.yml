@@ -8,12 +8,12 @@
       state: medical
     - type: MachineBoard
       prototype: MetempsychoticMachine
-      requirements:
-        Capacitor: 2
-        Manipulator: 2
-      materialRequirements:
-        Glass: 1
-        Cable: 1
+#      requirements:
+#        Capacitor: 2
+#        Manipulator: 2
+#      materialRequirements:
+#        Glass: 1
+#        Cable: 1
 #    - type: ReverseEngineering
 #      difficulty: 3
 #      recipes:
