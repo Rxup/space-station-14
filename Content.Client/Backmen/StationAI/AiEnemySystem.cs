@@ -33,10 +33,7 @@ public sealed class AiEnemySystem : SharedAiEnemySystem
     {
         var ent = _player.LocalSession?.AttachedEntity ?? EntityUid.Invalid;
 
-        if(args.InContainer)
-            return;
-
-        if (!(EntityQuery.HasComponent(ent) || HasComp<GhostComponent>(ent)))
+        if (!EntityQuery.HasComponent(ent))
         {
             return;
         }

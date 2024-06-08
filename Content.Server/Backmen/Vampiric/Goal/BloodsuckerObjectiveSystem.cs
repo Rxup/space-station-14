@@ -1,9 +1,9 @@
 ﻿using Content.Server.Backmen.Vampiric.Role;
 using Content.Server.GameTicking;
-using Content.Server.GameTicking.Components;
 using Content.Server.GameTicking.Rules;
 using Content.Server.Mind;
 using Content.Shared.Backmen.Vampiric;
+using Content.Shared.GameTicking.Components;
 using Content.Shared.Mind;
 using Content.Shared.Objectives.Components;
 using Robust.Shared.Player;

@@ -59,7 +59,7 @@
   id: HeadOfSecurityCentComGear
   equipment:
     jumpsuit: ClothingUniformJumpsuitCentcomMilitary
-    back: ClothingBackpackSecurityFilled
+    back: ClothingBackpackSecurity
     shoes: ClothingShoesBootsNedoSpetsnaz
     mask: ClothingMaskGasSecurity
     neck: CombatKnifeSpetsnaz

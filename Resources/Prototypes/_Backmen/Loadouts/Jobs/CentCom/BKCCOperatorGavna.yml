@@ -8,8 +8,8 @@
     jumpsuit: ClothingUniformJumpsuitCentcomVeryOfficial
     innerClothingSkirt: ClothingUniformJumpskirttCentcomVeryOfficial
     neck: ClothingNeckCloakCap
-    duffelbag: ClothingBackpackDuffelFilled
-    satchel: ClothingBackpackSatchelFilled
+    duffelbag: ClothingBackpackDuffel
+    satchel: ClothingBackpackSatchel
 
 # Jumpsuit
 - type: loadout
@@ -52,7 +52,7 @@
 - type: startingGear
   id: BKCCOpearotGavnaBackpack
   equipment:
-    duffelbag: ClothingBackpackDuffelFilled
+    duffelbag: ClothingBackpackDuffel
 
 
 - type: loadout
@@ -62,4 +62,4 @@
 - type: startingGear
   id: BKCCOpearotGavnaSatchel
   equipment:
-    satchel: ClothingBackpackSatchelFilled
+    satchel: ClothingBackpackSatchel

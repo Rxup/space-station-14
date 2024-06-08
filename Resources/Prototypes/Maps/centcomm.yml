@@ -13,7 +13,6 @@
             !type:NanotrasenCentComNameGenerator
             prefixCreator: 'TG'
         - type: StationJobs
-          overflowJobs: []
           availableJobs:
             BKCCOperator: [ 1, 1]
             BKCCSecGavna: [ 1, 1]
@@ -37,7 +36,6 @@
           !type:NanotrasenCentComNameGenerator
           prefixCreator: 'CX'
       - type: StationJobs
-        overflowJobs: []
         availableJobs:
           BKCCOperator: [ 1, 1]
           BKCCSecGavna: [ 1, 1]
@@ -61,7 +59,6 @@
           !type:NanotrasenCentComNameGenerator
           prefixCreator: 'B'
       - type: StationJobs
-        overflowJobs: []
         availableJobs:
           BKCCOfficial: [ 1, 1]
           BKCCOperator: [ 1, 1]

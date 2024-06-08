@@ -2,6 +2,9 @@
   save: false
   abstract: true
   id: PlayerSiliconBase #for player controlled silicons
+#  parent:
+#  - MobFlammable
+#  - BaseMobSpecies
   components:
   - type: Reactive
     groups:
@@ -61,9 +64,10 @@
     - Binary
     - Common
   - type: DoAfter
-  - type: Pullable
+  - type: ComplexInteraction
   - type: Examiner
   - type: Puller
+  - type: Pullable
   - type: StandingState
   - type: Alerts
   - type: ClothingRequiredStepTriggerImmune

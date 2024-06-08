@@ -26,11 +26,10 @@ chat-emote-msg-meow = мя!
 chat-emote-name-mew = Mew
 chat-emote-msg-mew = мяв
 
-chat-emote-name-mew = Purrs
-chat-emote-msg-mew = мурчит!
+chat-emote-name-purrs = Purrs
+chat-emote-msg-purrs = мурчит!
 
-chat-emote-name-growls = Growls
-chat-emote-msg-growls = рычит!
+
 
 
 

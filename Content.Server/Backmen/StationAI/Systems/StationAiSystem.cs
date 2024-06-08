@@ -105,7 +105,7 @@ public sealed class StationAiSystem : SharedStationAISystem
         if (!TryComp<StationAIComponent>(ent, out var stationAiComponent) ||
             HasComp<AIEyeComponent>(ent) ||
             !_prototypeManager.TryIndex<SiliconLawsetPrototype>(args[1], out var lawsetPrototype)
-            )
+           )
             return;
 
         stationAiComponent.SelectedLaw = lawsetPrototype;
@@ -131,6 +131,7 @@ public sealed class StationAiSystem : SharedStationAISystem
             _ => CompletionResult.Empty
         };
     }
+
     [AdminCommand(AdminFlags.Fun)]
     private void AiSetScreen(IConsoleShell shell, string argstr, string[] args)
     {
@@ -153,19 +154,19 @@ public sealed class StationAiSystem : SharedStationAISystem
 
         if (args.Length != 2 || !stationAiComponent.Layers.ContainsKey(args[1]))
         {
-            shell.WriteError("Текущий экран: "+stationAiComponent.SelectedLayer);
-            shell.WriteError("Доступные экраны: "+string.Join(", ",stationAiComponent.Layers.Keys));
+            shell.WriteError("Текущий экран: " + stationAiComponent.SelectedLayer);
+            shell.WriteError("Доступные экраны: " + string.Join(", ", stationAiComponent.Layers.Keys));
             return;
         }
 
         stationAiComponent.SelectedLayer = args[1];
-        Dirty(ent.Value,stationAiComponent);
+        Dirty(ent.Value, stationAiComponent);
 
         if (stationAiComponent.ActiveEye.IsValid() && !TerminatingOrDeleted(stationAiComponent.ActiveEye))
         {
             var comp = EnsureComp<StationAIComponent>(stationAiComponent.ActiveEye);
             comp.SelectedLayer = args[1];
-            Dirty(stationAiComponent.ActiveEye,comp);
+            Dirty(stationAiComponent.ActiveEye, comp);
         }
 
         shell.WriteLine("OK!");
@@ -195,10 +196,12 @@ public sealed class StationAiSystem : SharedStationAISystem
             _role.MindRemoveRole<JobComponent>(mindId);
         }
 
-        _role.MindAddRole(mindId, new JobComponent
-        {
-            Prototype = SAIJob
-        }, mind);
+        _role.MindAddRole(mindId,
+            new JobComponent
+            {
+                Prototype = SAIJob
+            },
+            mind);
     }
 
     private void OnToggleNuke(Entity<StationAIComponent> ent, ref ToggleArmNukeEvent args)
@@ -213,13 +216,13 @@ public sealed class StationAiSystem : SharedStationAISystem
 
         if (nuke.Status == NukeStatus.COOLDOWN)
         {
-            _popup.PopupCursor("На перезарядке!",ent);
+            _popup.PopupCursor("На перезарядке!", ent);
             return;
         }
 
         if (nuke.DiskSlot.Item != null)
         {
-            _popup.PopupCursor("Невозможно управлять бомбой при вставленном диске!",ent);
+            _popup.PopupCursor("Невозможно управлять бомбой при вставленном диске!", ent);
             return;
         }
 
@@ -245,13 +248,16 @@ public sealed class StationAiSystem : SharedStationAISystem
                 args.Cancel();
                 return;
             }
+
             core = eye.AiCore.Value;
         }
+
         if (!core.Owner.Valid)
         {
             args.Cancel();
             return;
         }
+
         if (_mobState.IsDead(core))
             return;
 
@@ -285,7 +291,8 @@ public sealed class StationAiSystem : SharedStationAISystem
             return;
         }
 
-        if (TryComp<ApcPowerReceiverComponent>(args.Target, out var targetPower) && targetPower.NeedsPower && !targetPower.Powered)
+        if (TryComp<ApcPowerReceiverComponent>(args.Target, out var targetPower) && targetPower.NeedsPower &&
+            !targetPower.Powered)
         {
             args.Cancel();
             return;
@@ -304,6 +311,7 @@ public sealed class StationAiSystem : SharedStationAISystem
         {
             return;
         }
+
         QueueDel(ent.Comp.ActiveEye);
     }
 
@@ -313,13 +321,14 @@ public sealed class StationAiSystem : SharedStationAISystem
         {
             return;
         }
+
         _actions.AddAction(uid, ref component.ActionId, component.Action);
-        _hands.AddHand(uid,"SAI",HandLocation.Middle);
+        _hands.AddHand(uid, "SAI", HandLocation.Middle);
 
         if (!HasComp<AIEyeComponent>(uid))
         {
             component.SelectedLayer = _robust.Pick(component.Layers.Keys);
-            Dirty(uid,component);
+            Dirty(uid, component);
 
             _appearance.SetData(uid, AiVisuals.Dead, false);
             _appearance.SetData(uid, AiVisuals.InEye, false);
@@ -363,11 +372,13 @@ public sealed class StationAiSystem : SharedStationAISystem
             comp.DamageContainers.Add("HalfSpirit");
             Dirty(args.Performer, comp);
         }
+
         args.Handled = true;
     }
 
     private static readonly SoundSpecifier AiDeath =
         new SoundPathSpecifier("/Audio/Machines/AI/borg_death.ogg");
+
     private void OnMobStateChanged(EntityUid uid, StationAIComponent component, MobStateChangedEvent args)
     {
         if (HasComp<AIEyeComponent>(uid))
@@ -375,16 +386,15 @@ public sealed class StationAiSystem : SharedStationAISystem
 
         if (args.OldMobState != MobState.Dead && args.NewMobState == MobState.Dead)
         {
-            SetAsDead((uid,component),true);
+            SetAsDead((uid, component), true);
         }
         else if (args.OldMobState != MobState.Alive && args.NewMobState == MobState.Alive)
         {
-            SetAsDead((uid,component),false);
+            SetAsDead((uid, component), false);
         }
-
     }
 
-    private void SetAsDead(Entity<StationAIComponent> ent,bool state)
+    private void SetAsDead(Entity<StationAIComponent> ent, bool state)
     {
         if (state)
         {

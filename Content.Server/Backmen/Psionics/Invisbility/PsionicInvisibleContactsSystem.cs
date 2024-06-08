@@ -1,6 +1,7 @@
 using Content.Shared.Backmen.Psionics;
 using Content.Shared.Stealth;
 using Content.Shared.Stealth.Components;
+using Content.Shared.Whitelist;
 using Robust.Shared.Physics.Events;
 using Robust.Shared.Physics.Systems;
 
@@ -12,6 +13,7 @@ namespace Content.Server.Backmen.Psionics.Invisbility;
 public sealed class PsionicInvisibleContactsSystem : EntitySystem
 {
     [Dependency] private readonly SharedStealthSystem _stealth = default!;
+    [Dependency] private readonly EntityWhitelistSystem _whitelist = default!;
     private EntityQuery<PsionicallyInvisibleComponent> _psiInvisible;
 
     public override void Initialize()
@@ -30,7 +32,7 @@ public sealed class PsionicInvisibleContactsSystem : EntitySystem
         var otherUid = args.OtherEntity;
         var ourEntity = args.OurEntity;
 
-        if (!component.Whitelist.IsValid(otherUid))
+        if (!_whitelist.IsValid(component.Whitelist,otherUid))
             return;
 
         // This will go up twice per web hit, since webs also have a flammable fixture.
@@ -50,7 +52,7 @@ public sealed class PsionicInvisibleContactsSystem : EntitySystem
         var otherUid = args.OtherEntity;
         var ourEntity = args.OurEntity;
 
-        if (!component.Whitelist.IsValid(otherUid))
+        if (!_whitelist.IsValid(component.Whitelist,otherUid))
             return;
 
         if (!_psiInvisible.HasComp(ourEntity))

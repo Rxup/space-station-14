@@ -19,8 +19,6 @@
           enableStationRotation: false
           maxStationOffset: null
         - type: StationJobs
-          overflowJobs:
-            - Passenger
           availableJobs:
             CargoTechnician: [ 2, 2 ]
             Passenger: [ -1, -1 ]

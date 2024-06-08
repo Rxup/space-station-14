@@ -128,6 +128,11 @@ public sealed class EventManagerSystem : EntitySystem
 
     public Dictionary<EntityPrototype, StationEventComponent> AllEvents()
     {
+        // start-backmen: Glimmer
+        var glimmer = EntityManager.SystemOrNull<Shared.Backmen.Psionics.Glimmer.GlimmerSystem>()?.Glimmer ?? 0;
+        var glimmerOn = _configurationManager.GetCVar(Shared.Backmen.CCVar.CCVars.GlimmerEnabled);
+        // end-backmen: Glimmer
+
         var allEvents = new Dictionary<EntityPrototype, StationEventComponent>();
         foreach (var prototype in _prototype.EnumeratePrototypes<EntityPrototype>())
         {
@@ -141,7 +146,8 @@ public sealed class EventManagerSystem : EntitySystem
             if (prototype.TryGetComponent<Backmen.StationEvents.Components.GlimmerEventComponent>(
                     out var glimmerEventComponent))
             {
-                var glimmer = EntityManager.SystemOrNull<Shared.Backmen.Psionics.Glimmer.GlimmerSystem>()?.Glimmer ?? 0;
+                if(!glimmerOn)
+                    continue;
                 if(glimmer < glimmerEventComponent.MinimumGlimmer)
                     continue;
                 if(glimmer > glimmerEventComponent.MaximumGlimmer)

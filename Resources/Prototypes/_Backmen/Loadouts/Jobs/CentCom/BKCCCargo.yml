@@ -66,7 +66,7 @@
 - type: startingGear
   id: BKCCCargoBackpack
   equipment:
-    back: ClothingBackpackFilled
+    back: ClothingBackpack
 
 
 - type: loadout
@@ -76,7 +76,7 @@
 - type: startingGear
   id: BKCCCargoSatchel
   equipment:
-    satchel: ClothingBackpackSatchelFilled
+    satchel: ClothingBackpackSatchel
 
 
 - type: loadout
@@ -86,4 +86,4 @@
 - type: startingGear
   id: BKCCCargoDuffel
   equipment:
-    duffelbag: ClothingBackpackDuffelFilled
+    duffelbag: ClothingBackpackDuffel
