@@ -27,6 +27,12 @@
             mining:
               paths:
               - /Maps/Backmen/Shuttles/nt-bishop.yml # backmen-rook-salvage-shuttle
+            ruin: # backmen-science-ruin
+              hide: true
+              nameGrid: true
+              stationGrid: false
+              paths:
+              - /Maps/Backmen/Grids/ruin_science.yml
             # Spawn last
             ruins:
               hide: true
