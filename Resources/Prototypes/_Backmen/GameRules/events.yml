@@ -49,6 +49,7 @@
     duration: 1
     earliestStart: 50
     minimumPlayers: 20
+    maxOccurrences: 2 # can only happen once per round
   - type: BlobSpawnRule
     carrierBlobProtos:
     - MobMouseCancer

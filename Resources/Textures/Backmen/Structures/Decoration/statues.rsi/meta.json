@@ -13,6 +13,9 @@
     {
       "name": "oracle-0"
     },
+      {
+          "name": "oracle-o0bld"
+      },
     {
       "name": "oracle-1"
     },
