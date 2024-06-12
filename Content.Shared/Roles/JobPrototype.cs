@@ -42,7 +42,7 @@ namespace Content.Shared.Roles
         [ViewVariables(VVAccess.ReadOnly)]
         public string? LocalizedDescription => Description is null ? null : Loc.GetString(Description);
 
-        [DataField, Access(typeof(SharedRoleSystem), Other = AccessPermissions.None)]
+        [DataField, Access(typeof(SharedRoleSystem),typeof(Content.Shared.Backmen.Reinforcement.SharedReinforcementSystem), Other = AccessPermissions.None)]
         public HashSet<JobRequirement>? Requirements;
 
         [DataField("joinNotifyCrew")]
