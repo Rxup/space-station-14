@@ -10,6 +10,7 @@
   - !type:DepartmentTimeRequirement
     department: Security
     time: 18000 # 5h # Corvax-RoleTime
+  guides: [ NuclearOperatives ]
 
 - type: antag
   id: NukeopsMedic
@@ -26,6 +27,7 @@
   - !type:DepartmentTimeRequirement
     department: Security
     time: 36000 # 10h # Corvax-RoleTime
+  guides: [ NuclearOperatives ]
 
 - type: antag
   id: NukeopsCommander
@@ -40,6 +42,7 @@
     department: Security
     time: 54000 # 15h # Corvax-RoleTime
   # should be changed to nukie playtime when thats tracked (wyci)
+  guides: [ NuclearOperatives ]
 
 #Nuclear Operative Gear
 - type: startingGear
