@@ -19,13 +19,13 @@ public sealed class SpecForceTest
     {
         await using var pair = await PoolManager.GetServerClient(new PoolSettings
         {
-            Dirty = true,
             DummyTicker = false,
             Connected = true,
             InLobby = true
         });
 
         var server = pair.Server;
+        var client = pair.Client;
 
         var protoManager = server.ResolveDependency<IPrototypeManager>();
         var entSysManager = server.ResolveDependency<IEntitySystemManager>();
@@ -38,6 +38,8 @@ public sealed class SpecForceTest
 
         // Initially in the lobby
         Assert.That(ticker.RunLevel, Is.EqualTo(GameRunLevel.PreRoundLobby));
+        Assert.That(client.AttachedEntity, Is.Null);
+        Assert.That(ticker.PlayerGameStatuses[client.User!.Value], Is.EqualTo(PlayerGameStatus.NotReadyToPlay));
 
         // Add several dummy players
         await pair.Server.AddDummySessions(1);
