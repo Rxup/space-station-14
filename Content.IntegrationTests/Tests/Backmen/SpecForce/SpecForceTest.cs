@@ -16,7 +16,14 @@ public sealed class SpecForceTest
     [Test]
     public async Task CallSpecForces()
     {
-        await using var pair = await PoolManager.GetServerClient();
+        await using var pair = await PoolManager.GetServerClient(new PoolSettings
+        {
+            Dirty = true,
+            DummyTicker = false,
+            Connected = true,
+            InLobby = true
+        });
+
         var server = pair.Server;
 
         var protoManager = server.ResolveDependency<IPrototypeManager>();
