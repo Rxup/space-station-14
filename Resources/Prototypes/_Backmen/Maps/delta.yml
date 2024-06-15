@@ -1,8 +1,8 @@
 - type: gameMap
-  id: no_madDelta
+  id: BackmenDelta
   mapName: 'Delta Station'
-  mapPath: /Maps/Backmen/no_madDelta.yml
-  minPlayers: 30
+  mapPath: /Maps/Backmen/backmen_delta.yml
+  minPlayers: 40
   stations:
     Delta:
       stationProto: StandardNanotrasenStation

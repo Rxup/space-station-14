@@ -91,7 +91,7 @@ namespace Content.IntegrationTests.Tests
 			"BackmenKettle",
 			"BackmenRook",
             "BargeVsShip",
-            "no_madDelta",
+            "BackmenDelta",
             //end-backmen
             "Reach",
             "Train",
