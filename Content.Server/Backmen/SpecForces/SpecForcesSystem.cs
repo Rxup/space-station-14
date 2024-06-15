@@ -253,8 +253,8 @@ public sealed class SpecForcesSystem : EntitySystem
         }
 
         var mapGrid = grids.FirstOrNull();
-        return null;
-        //return mapGrid ?? null;
+
+        return mapGrid ?? null;
     }
 
     private void DispatchAnnouncement(SpecForceTeamPrototype proto)
