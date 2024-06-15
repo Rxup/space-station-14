@@ -242,10 +242,7 @@ public sealed class SpecForcesSystem : EntitySystem
     private EntityUid? SpawnShuttle(string shuttlePath)
     {
         var shuttleMap = _mapManager.CreateMap();
-        var options = new MapLoadOptions
-        {
-            LoadMap = true
-        };
+        var options = new MapLoadOptions {LoadMap = true};
 
         if (!_map.TryLoad(shuttleMap, shuttlePath, out var grids, options))
         {

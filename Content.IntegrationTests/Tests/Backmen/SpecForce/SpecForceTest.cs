@@ -1,12 +1,14 @@
 ﻿using System.Linq;
+using Content.IntegrationTests.Tests.GameRules;
 using Content.Server.Backmen.SpecForces;
 using Content.Server.GameTicking;
 using Content.Server.GameTicking.Presets;
 using Content.Server.Ghost.Roles.Components;
-using Content.Shared.Backmen.CCVar;
 using Content.Shared.GameTicking;
 using Robust.Shared.GameObjects;
 using Robust.Shared.Prototypes;
+using CCVars = Content.Shared.CCVar.CCVars;
+using BkmCCVars = Content.Shared.Backmen.CCVar.CCVars;
 
 namespace Content.IntegrationTests.Tests.Backmen.Specforce;
 
@@ -19,6 +21,7 @@ public sealed class SpecForceTest
     {
         await using var pair = await PoolManager.GetServerClient(new PoolSettings
         {
+            Dirty = true,
             DummyTicker = false,
             Connected = true,
             InLobby = true
@@ -34,7 +37,8 @@ public sealed class SpecForceTest
         var ticker = server.System<GameTicker>();
 
         // Set SpecForce cooldown to 0
-        await server.WaitPost(()=>server.CfgMan.SetCVar(CCVars.SpecForceDelay, 0));
+        await server.WaitPost(()=>server.CfgMan.SetCVar(BkmCCVars.SpecForceDelay, 0));
+        server.CfgMan.SetCVar(CCVars.GridFill, true);
 
         // Initially in the lobby
         Assert.That(ticker.RunLevel, Is.EqualTo(GameRunLevel.PreRoundLobby));
@@ -48,7 +52,8 @@ public sealed class SpecForceTest
         // Start normal round
         ticker.ToggleReadyAll(true);
         Assert.That(ticker.PlayerGameStatuses.Values.All(x => x == PlayerGameStatus.ReadyToPlay));
-        await pair.WaitCommand("forcepreset Nukeops");
+        await pair.WaitCommand("setgamepreset extended");
+        await pair.WaitCommand("startround");
         await pair.RunTicksSync(10);
 
         // Game should have started
@@ -68,7 +73,11 @@ public sealed class SpecForceTest
             // TODO: Probably need to implement more detailed check in the future, like does the spawned roles have any gear.
         }
 
-        ticker.SetGamePreset((GamePresetPrototype)null);
+        ticker.SetGamePreset((GamePresetPrototype?)null);
+        server.CfgMan.SetCVar(CCVars.GridFill, false);
+        server.CfgMan.SetCVar(CCVars.GameLobbyFallbackEnabled, true);
+        server.CfgMan.SetCVar(CCVars.GameLobbyDefaultPreset, "secret");
+
         await pair.CleanReturnAsync();
     }
 }
