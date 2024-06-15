@@ -1,5 +1,5 @@
-﻿using System.Linq;
-using Content.IntegrationTests.Tests.GameRules;
+﻿#nullable enable
+using System.Linq;
 using Content.Server.Backmen.SpecForces;
 using Content.Server.GameTicking;
 using Content.Server.GameTicking.Presets;
@@ -13,7 +13,6 @@ using BkmCCVars = Content.Shared.Backmen.CCVar.CCVars;
 namespace Content.IntegrationTests.Tests.Backmen.Specforce;
 
 [TestFixture]
-[TestOf(typeof(SpecForcesSystem))]
 public sealed class SpecForceTest
 {
     [Test]
@@ -38,7 +37,7 @@ public sealed class SpecForceTest
 
         // Set SpecForce cooldown to 0
         await server.WaitPost(()=>server.CfgMan.SetCVar(BkmCCVars.SpecForceDelay, 0));
-        server.CfgMan.SetCVar(CCVars.GridFill, true);
+        await server.WaitPost(()=>server.CfgMan.SetCVar(CCVars.GridFill, true));
 
         // Initially in the lobby
         Assert.That(ticker.RunLevel, Is.EqualTo(GameRunLevel.PreRoundLobby));
@@ -73,7 +72,7 @@ public sealed class SpecForceTest
             // TODO: Probably need to implement more detailed check in the future, like does the spawned roles have any gear.
         }
 
-        ticker.SetGamePreset((GamePresetPrototype)null);
+        ticker.SetGamePreset((GamePresetPrototype?)null);
         server.CfgMan.SetCVar(CCVars.GridFill, false);
         server.CfgMan.SetCVar(CCVars.GameLobbyFallbackEnabled, true);
         server.CfgMan.SetCVar(CCVars.GameLobbyDefaultPreset, "secret");
