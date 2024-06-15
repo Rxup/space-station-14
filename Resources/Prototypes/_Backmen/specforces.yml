@@ -2,7 +2,7 @@
 - type: specForceTeam
   id: ERT
   specForceName: spec-forces-system-ert-name
-  shuttlePath: Maps/Backmen/Shuttles/SpecForces/dart.yml
+  shuttlePath: #Maps/Backmen/Shuttles/SpecForces/dart.yml
   spawnMarker: MarkerSpecforce
   announcementText: spec-forces-system-ertcall-annonce
   announcementTitle: spec-forces-system-ertcall-title

@@ -26,6 +26,10 @@ public sealed class SpecForceTest
         // Set SpecForce cooldown to 0
         await server.WaitPost(()=>server.CfgMan.SetCVar(CCVars.SpecForceDelay, 0));
 
+        // Start normal round
+        await pair.WaitCommand("forcepreset Extended");
+        await pair.RunTicksSync(10);
+
         // Game should have started
         Assert.That(ticker.RunLevel, Is.EqualTo(GameRunLevel.InRound));
 
@@ -34,7 +38,7 @@ public sealed class SpecForceTest
         {
             // Here it probably can fail only because the shuttle didn't spawn
             if (!specForceSystem.CallOps(teamProto))
-                Assert.Fail();
+                Assert.Fail($"CallOps method failed while trying to spawn {teamProto.ID} SpecForce.");
 
             // Now check if there are any GhostRoles and SpecForces
             Assert.That(entMan.Count<GhostRoleComponent>(), Is.GreaterThan(0));
