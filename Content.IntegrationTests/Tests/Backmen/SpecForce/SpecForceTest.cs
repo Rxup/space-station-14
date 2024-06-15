@@ -1,6 +1,7 @@
 ﻿using System.Linq;
 using Content.Server.Backmen.SpecForces;
 using Content.Server.GameTicking;
+using Content.Server.GameTicking.Presets;
 using Content.Server.Ghost.Roles.Components;
 using Content.Shared.Backmen.CCVar;
 using Content.Shared.GameTicking;
@@ -37,6 +38,9 @@ public sealed class SpecForceTest
 
         // Initially in the lobby
         Assert.That(ticker.RunLevel, Is.EqualTo(GameRunLevel.PreRoundLobby));
+
+        // Add several dummy players
+        await pair.Server.AddDummySessions(1);
         await pair.RunTicksSync(5);
 
         // Start normal round
@@ -62,6 +66,7 @@ public sealed class SpecForceTest
             // TODO: Probably need to implement more detailed check in the future, like does the spawned roles have any gear.
         }
 
+        ticker.SetGamePreset((GamePresetPrototype)null);
         await pair.CleanReturnAsync();
     }
 }
