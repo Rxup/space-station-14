@@ -1,7 +1,9 @@
-﻿using Content.Server.Backmen.SpecForces;
+﻿using System.Linq;
+using Content.Server.Backmen.SpecForces;
 using Content.Server.GameTicking;
 using Content.Server.Ghost.Roles.Components;
 using Content.Shared.Backmen.CCVar;
+using Content.Shared.GameTicking;
 using Robust.Shared.GameObjects;
 using Robust.Shared.Prototypes;
 
@@ -26,8 +28,14 @@ public sealed class SpecForceTest
         // Set SpecForce cooldown to 0
         await server.WaitPost(()=>server.CfgMan.SetCVar(CCVars.SpecForceDelay, 0));
 
+        // Initially in the lobby
+        Assert.That(ticker.RunLevel, Is.EqualTo(GameRunLevel.PreRoundLobby));
+        await pair.RunTicksSync(5);
+
         // Start normal round
-        await pair.WaitCommand("forcepreset Extended");
+        ticker.ToggleReadyAll(true);
+        Assert.That(ticker.PlayerGameStatuses.Values.All(x => x == PlayerGameStatus.ReadyToPlay));
+        await pair.WaitCommand("forcepreset Nukeops");
         await pair.RunTicksSync(10);
 
         // Game should have started
