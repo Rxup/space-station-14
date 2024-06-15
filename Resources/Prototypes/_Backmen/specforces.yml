@@ -73,6 +73,8 @@
   announcementSoundPath: /Audio/Corvax/Adminbuse/Yesert.ogg
   maxRolesAmount: 10
   spawnPerPlayers: 5
+  raffleConfig:
+    settings: short
   guaranteedSpawn:
     - id: SpawnMobHumanERTLeaderEpsilon
     - id: SpawnMobHumanERTEngineerEpsilon

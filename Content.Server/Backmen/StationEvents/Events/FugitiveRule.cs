@@ -1,8 +1,9 @@
 ﻿using Content.Server.Backmen.Fugitive;
+using Content.Server.Backmen.StationEvents.Components;
 using Content.Server.StationEvents.Events;
 using Content.Shared.GameTicking.Components;
 
-namespace Content.Server.Backmen.SpecForces.StationEvents;
+namespace Content.Server.Backmen.StationEvents.Events;
 
 public sealed class FugitiveRule : StationEventSystem<FugitiveRuleComponent>
 {
