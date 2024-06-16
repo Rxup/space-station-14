@@ -302,8 +302,8 @@
       - id: BoxEncryptionKeyScience
       - id: AntiPsychicKnife # backmen
       - id: ClothingHeadCage # backmen
-      - id: PresentOracle # backmen
-      - id: PresentSophie # backmen
+      - id: FlatpackOracle # backmen
+      - id: FlatpackSophie # backmen
       - id: PonderingOrbTelepathic # backmen
       - id: ClothingHeadsetAltScience
       - id: EncryptionKeyBinary
