@@ -2294,6 +2294,7 @@
     - DoorBumpOpener
     - FootstepSound
   - type: NightVision
+    playSoundOn: false
     isToggle: true
     color: "#808080"
   - type: Tool # Open door from xeno.yml.
