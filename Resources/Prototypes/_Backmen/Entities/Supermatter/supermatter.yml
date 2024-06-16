@@ -6,7 +6,7 @@
   components:
   - type: Sprite
     layers:
-    - state: ame-part
+    - state: supermatter
   - type: Flatpack
     entity: supermatter
   - type: StaticPrice
