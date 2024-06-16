@@ -7,6 +7,7 @@ using Content.Server.Cuffs;
 using Content.Server.Salvage.Expeditions;
 using Content.Server.Station.Components;
 using Content.Server.Station.Systems;
+using Content.Server.Warps;
 using Content.Shared.Chemistry.Components;
 using Content.Shared.Cuffs.Components;
 using Content.Shared.Backmen.Flesh;
@@ -20,6 +21,7 @@ using Content.Shared.Mobs.Components;
 using Content.Shared.Movement.Systems;
 using Content.Shared.Physics;
 using Content.Shared.Popups;
+using Content.Shared.SubFloor;
 using Robust.Server.GameObjects;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Map;
@@ -572,7 +574,9 @@ public sealed partial class FleshCultistSystem
         if (!TryComp<MapGridComponent>(xform.GridUid, out var grid))
         {
             _popup.PopupEntity(Loc.GetString("flesh-cultist-cant-spawn-flesh-heart",
-                ("Entity", uid)), uid, PopupType.Large);
+                ("Entity", uid)),
+                uid,
+                PopupType.Large);
             return;
         }
 
@@ -582,21 +586,35 @@ public sealed partial class FleshCultistSystem
         if (station == null || !HasComp<StationEventEligibleComponent>(station) || isCargo || !HasComp<BecomesStationComponent>(xform.GridUid.Value))
         {
             _popup.PopupEntity(Loc.GetString("flesh-cultist-cant-spawn-flesh-heart",
-                ("Entity", uid)), uid, PopupType.Large);
+                ("Entity", uid)),
+                uid,
+                PopupType.Large);
             return;
         }
 
         var offsetValue = xform.LocalRotation.ToWorldVec();
         var targetCord = xform.Coordinates.Offset(offsetValue).SnapToGrid(EntityManager);
         var tilerefs = new Box2(targetCord.Position + new Vector2(-radius, -radius), targetCord.Position + new Vector2(radius, radius));
-        foreach (var entity in _lookupSystem.GetEntitiesIntersecting(xform.GridUid.Value, tilerefs, LookupFlags.All))
+
+        foreach (var entity in _lookupSystem.GetEntitiesIntersecting(xform.GridUid.Value, tilerefs, LookupFlags.Uncontained))
         {
-            if (HasComp<MobStateComponent>(entity) && entity != uid || // Is it a mob?
+            if(entity == uid)
+                continue;
+
+            if(HasComp<SubFloorHideComponent>(entity))
+                continue;
+
+            if(HasComp<WarpPointComponent>(entity))
+                continue;
+
+            if (HasComp<MobStateComponent>(entity) || // Is it a mob?
                 !TryComp<PhysicsComponent>(entity, out var physics) || (physics.CollisionLayer & (int) CollisionGroup.Impassable) != 0 ||
-                HasComp<ConstructionComponent>(entity) && entity != uid) // Is construction?
+                HasComp<ConstructionComponent>(entity)) // Is construction?
             {
                 _popup.PopupEntity(Loc.GetString("flesh-cultist-cant-spawn-flesh-heart-here",
-                    ("Entity", uid)), uid, PopupType.Large);
+                    ("Entity", entity)),
+                    uid,
+                    PopupType.Large);
                 return;
             }
         }

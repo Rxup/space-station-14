@@ -139,6 +139,9 @@
     - WhitelistChameleon
   - type: ClothingRequiredStepTriggerImmune
     slots: WITHOUT_POCKET
+  - type: ClothingGrant
+    component:
+    - type: BkmSupermatterImmune
 
 - type: entity
   abstract: true
