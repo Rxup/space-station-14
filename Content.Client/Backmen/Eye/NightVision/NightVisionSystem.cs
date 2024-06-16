@@ -1,14 +1,15 @@
+using Content.Client.Overlays;
 using Content.Shared.GameTicking;
 using Content.Shared.Backmen.Eye.NightVision.Components;
+using Content.Shared.Inventory.Events;
 using Robust.Client.Graphics;
 using Robust.Client.Player;
 using Robust.Shared.Player;
 
 namespace Content.Client.GG.Eye.NightVision;
 
-public sealed class NightVisionSystem : EntitySystem
+public sealed class NightVisionSystem : EquipmentHudSystem<NightVisionComponent>
 {
-    [Dependency] private readonly IPlayerManager _player = default!;
     [Dependency] private readonly IOverlayManager _overlayMan = default!;
     [Dependency] private readonly ILightManager _lightManager = default!;
 
@@ -19,47 +20,28 @@ public sealed class NightVisionSystem : EntitySystem
     {
         base.Initialize();
 
-        SubscribeLocalEvent<NightVisionComponent, ComponentInit>(OnNightVisionInit);
-        SubscribeLocalEvent<NightVisionComponent, ComponentShutdown>(OnNightVisionShutdown);
-
-        SubscribeLocalEvent<NightVisionComponent, LocalPlayerAttachedEvent>(OnPlayerAttached);
-        SubscribeLocalEvent<NightVisionComponent, LocalPlayerDetachedEvent>(OnPlayerDetached);
-
-        SubscribeNetworkEvent<RoundRestartCleanupEvent>(RoundRestartCleanup);
+        _overlay = new(Color.Green);
     }
 
-    private void OnPlayerAttached(EntityUid uid, NightVisionComponent component, LocalPlayerAttachedEvent args)
+    protected override void UpdateInternal(RefreshEquipmentHudEvent<NightVisionComponent> component)
     {
-    	_overlay = new(component.NightVisionColor);
-        _overlayMan.AddOverlay(_overlay);
-    }
+        base.UpdateInternal(component);
 
-    private void OnPlayerDetached(EntityUid uid, NightVisionComponent component, LocalPlayerDetachedEvent args)
-    {
-        _overlay = new(component.NightVisionColor);
-        _overlayMan.RemoveOverlay(_overlay);
-        _lightManager.DrawLighting = true;
-    }
-
-    private void OnNightVisionInit(EntityUid uid, NightVisionComponent component, ComponentInit args)
-    {
-	    _overlay = new(component.NightVisionColor);
-        if (_player.LocalPlayer?.ControlledEntity == uid)
-            _overlayMan.AddOverlay(_overlay);
-    }
-
-    private void OnNightVisionShutdown(EntityUid uid, NightVisionComponent component, ComponentShutdown args)
-    {
-        _overlay = new(component.NightVisionColor);
-        if (_player.LocalPlayer?.ControlledEntity == uid)
+        foreach (var comp in component.Components)
         {
-            _lightManager.DrawLighting = true;
-            _overlayMan.RemoveOverlay(_overlay);
+            _overlay.NightvisionColor = comp.NightVisionColor;
         }
+        if (!_overlayMan.HasOverlay<NightVisionOverlay>())
+        {
+            _overlayMan.AddOverlay(_overlay);
+        }
+        _lightManager.DrawLighting = false;
     }
 
-    private void RoundRestartCleanup(RoundRestartCleanupEvent ev)
+    protected override void DeactivateInternal()
     {
+        base.DeactivateInternal();
+        _overlayMan.RemoveOverlay(_overlay);
         _lightManager.DrawLighting = true;
     }
 }
