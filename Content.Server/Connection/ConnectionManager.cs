@@ -249,7 +249,7 @@ namespace Content.Server.Connection
             var adminBypass = _cfg.GetCVar(CCVars.AdminBypassMaxPlayers) && adminData != null;
             // Corvax-Queue-Start
             var isQueueEnabled = IoCManager.Instance!.TryResolveType<IServerJoinQueueManager>(out var mgr) && mgr.IsEnabled;
-            if (_plyMgr.PlayerCount >= _cfg.GetCVar(CCVars.SoftMaxPlayers) && !isPrivileged && !isQueueEnabled)
+            if ((_plyMgr.PlayerCount >= _cfg.GetCVar(CCVars.SoftMaxPlayers) && !adminBypass) && !wasInGame && !isQueueEnabled)
             // Corvax-Queue-End
             {
                 return (ConnectionDenyReason.Full, Loc.GetString("soft-player-cap-full"), null);

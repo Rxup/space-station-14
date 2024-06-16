@@ -18,6 +18,7 @@ using Content.Shared.Zombies;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using Content.Shared.Backmen.Harpy.Components;
+using Content.Shared.Bed.Sleep;
 
 namespace Content.Server.Backmen.Harpy
 {

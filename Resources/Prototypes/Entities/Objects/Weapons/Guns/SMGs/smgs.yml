@@ -96,6 +96,7 @@
   - type: Clothing
     sprite: Objects/Weapons/Guns/SMGs/c20r.rsi
   - type: Wieldable
+    unwieldOnUse: false
   - type: GunWieldBonus
     minAngle: -19
     maxAngle: -16
@@ -134,6 +135,7 @@
     - type: Clothing
       sprite: Objects/Weapons/Guns/SMGs/drozd.rsi
     - type: Wieldable
+      unwieldOnUse: false
     - type: GunWieldBonus
       minAngle: -19
       maxAngle: -16

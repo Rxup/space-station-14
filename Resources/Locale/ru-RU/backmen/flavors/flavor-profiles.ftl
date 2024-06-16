@@ -6,7 +6,6 @@ flavor-complex-enthralling = заворажывающе
 flavor-complex-sublime = возвышенно
 flavor-complex-holy = небесно
 flavor-base-seeds = масленно
-flavor-complex-cotton = как хлопок
 flavor-complex-vanilla = как ваниль
 flavor-complex-soju = как жирный алкогольный рис
 flavor-complex-orangecreamcicle = как сливочный алкогольный апельсиновый сок

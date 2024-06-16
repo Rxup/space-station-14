@@ -586,7 +586,8 @@ public sealed class EvilTwinSystem : EntitySystem
                 if (loadout == null)
                 {
                     loadout = new RoleLoadout(jobLoadout);
-                    loadout.SetDefault(_prototype);
+
+                    loadout.SetDefault(pref, _playerManager.TryGetSessionById(targetSession.Value, out var sess) ? sess : null, _prototype, true);
                 }
 
                 // Order loadout selections by the order they appear on the prototype.
