@@ -116,7 +116,6 @@ public sealed class SpecForceTest
 
                 // Use the ghost command at the end and move on
                 conHost.ExecuteCommand("ghost");
-                entMan.DeleteEntity(player);
                 await pair.RunTicksSync(5);
             }
         }
