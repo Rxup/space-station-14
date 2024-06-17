@@ -43,7 +43,7 @@ public sealed class SpecForceTest
         var ticker = server.System<GameTicker>();
 
         var sPlayerMan = server.ResolveDependency<Robust.Server.Player.IPlayerManager>();
-        var session = sPlayerMan.Sessions.Last();
+        var session = sPlayerMan.Sessions.Single();
         var originalMindId = session.ContentData()!.Mind!.Value;
 
         // Set SpecForce cooldown to 0
@@ -77,7 +77,8 @@ public sealed class SpecForceTest
                 await server.WaitPost(() =>
                 {
                     var id = ghostRoleComp.Identifier;
-                    entMan.EntitySysManager.GetEntitySystem<GhostRoleSystem>().Takeover(session, id);
+                    if (!entMan.EntitySysManager.GetEntitySystem<GhostRoleSystem>().Takeover(session, id))
+                        Assert.Fail("Failed attaching player to an entity.");
                 });
 
                 // Check that role name and description is valid.
