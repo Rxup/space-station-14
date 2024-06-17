@@ -1,10 +1,18 @@
 ﻿#nullable enable
 using System.Linq;
 using Content.Server.Backmen.SpecForces;
+using Content.Server.Body.Components;
 using Content.Server.GameTicking;
 using Content.Server.GameTicking.Presets;
+using Content.Server.Ghost.Roles;
 using Content.Server.Ghost.Roles.Components;
+using Content.Shared.Damage;
+using Content.Shared.FixedPoint;
 using Content.Shared.GameTicking;
+using Content.Shared.Inventory;
+using Content.Shared.Mind;
+using Content.Shared.Players;
+using Robust.Shared.Console;
 using Robust.Shared.GameObjects;
 using Robust.Shared.Prototypes;
 using CCVars = Content.Shared.CCVar.CCVars;
@@ -32,8 +40,14 @@ public sealed class SpecForceTest
         var protoManager = server.ResolveDependency<IPrototypeManager>();
         var entSysManager = server.ResolveDependency<IEntitySystemManager>();
         var entMan = server.EntMan;
+        var conHost = client.ResolveDependency<IConsoleHost>();
         var specForceSystem = entSysManager.GetEntitySystem<SpecForcesSystem>();
+        var invSys = server.System<InventorySystem>();
         var ticker = server.System<GameTicker>();
+
+        var sPlayerMan = server.ResolveDependency<Robust.Server.Player.IPlayerManager>();
+        var session = sPlayerMan.Sessions.Single();
+        var originalMindId = session.ContentData()!.Mind!.Value;
 
         // Set SpecForce cooldown to 0
         await server.WaitPost(()=>server.CfgMan.SetCVar(BkmCCVars.SpecForceDelay, 0));
@@ -72,7 +86,58 @@ public sealed class SpecForceTest
             Assert.That(entMan.Count<GhostRoleComponent>(), Is.GreaterThan(0));
             Assert.That(entMan.Count<SpecForceComponent>(), Is.GreaterThan(0));
 
-            // TODO: Probably need to implement more detailed check in the future, like does the spawned roles have any gear.
+            // Get all ghost roles and take them over.
+            var ghostRoles = entMan.EntityQuery<GhostRoleComponent>();
+            foreach (var ghostRoleComp in ghostRoles)
+            {
+                var player = ghostRoleComp.Owner;
+
+                // Check that role name and description is valid
+                Assert.That(ghostRoleComp.RoleName, Is.Not.EqualTo("Unknown"));
+                Assert.That(ghostRoleComp.RoleDescription, Is.Not.EqualTo("Unknown"));
+
+                // Take the ghost role
+                await server.WaitPost(() =>
+                {
+                    var id = ghostRoleComp.Identifier;
+                    entMan.EntitySysManager.GetEntitySystem<GhostRoleSystem>().Takeover(session, id);
+                });
+
+                // Check player got attached to ghost role.
+                await pair.RunTicksSync(10);
+                var newMindId = session.ContentData()!.Mind!.Value;
+                var newMind = entMan.GetComponent<MindComponent>(newMindId);
+                Assert.That(newMindId, Is.Not.EqualTo(originalMindId));
+                Assert.That(session.AttachedEntity, Is.EqualTo(player));
+                Assert.That(newMind.OwnedEntity, Is.EqualTo(player));
+                Assert.That(newMind.VisitingEntity, Is.Null);
+
+                // SpecForce should have at least 3 items in their inventory slots.
+                var enumerator = invSys.GetSlotEnumerator(player);
+                var total = 0;
+                while (enumerator.NextItem(out _))
+                {
+                    total++;
+                }
+                Assert.That(total, Is.GreaterThan(3));
+
+                // Finally check if The Great NT Evil-Fighter Agent passed basic training and figured out how to breathe.
+                var totalSeconds = 30;
+                var totalTicks = (int) Math.Ceiling(totalSeconds / server.Timing.TickPeriod.TotalSeconds);
+                int increment = 5;
+                var resp = entMan.GetComponent<RespiratorComponent>(player);
+                var damage = entMan.GetComponent<DamageableComponent>(player);
+                for (var tick = 0; tick < totalTicks; tick += increment)
+                {
+                    await pair.RunTicksSync(increment);
+                    Assert.That(resp.SuffocationCycles, Is.LessThanOrEqualTo(resp.SuffocationCycleThreshold));
+                    Assert.That(damage.TotalDamage, Is.EqualTo(FixedPoint2.Zero));
+                }
+
+                // Use the ghost command at the end and move on
+                conHost.ExecuteCommand("ghost");
+                await pair.RunTicksSync(5);
+            }
         }
 
         ticker.SetGamePreset((GamePresetPrototype?)null);
