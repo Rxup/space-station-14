@@ -54,13 +54,12 @@ public sealed class SpecForceTest
         // Try to spawn every SpecForceTeam
         foreach (var teamProto in protoManager.EnumeratePrototypes<SpecForceTeamPrototype>())
         {
+            specForceSystem.Log.Info($"Calling {teamProto.ID} SpecForce team!");
             await server.WaitPost(() =>
             {
                 // Here it probably can fail only because the shuttle didn't spawn
                 if (!specForceSystem.CallOps(teamProto))
                     Assert.Fail($"CallOps method failed while trying to spawn {teamProto.ID} SpecForce.");
-                else
-                    server.WaitPost(() => specForceSystem.Log.Info($"Calling {teamProto.ID} SpecForce team!"));
             });
 
             // Now check if there are any GhostRoles and SpecForces
