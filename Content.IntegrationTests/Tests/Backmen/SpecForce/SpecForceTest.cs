@@ -45,10 +45,6 @@ public sealed class SpecForceTest
         var invSys = server.System<InventorySystem>();
         var ticker = server.System<GameTicker>();
 
-        var sPlayerMan = server.ResolveDependency<Robust.Server.Player.IPlayerManager>();
-        var session = sPlayerMan.Sessions.Single();
-        var originalMindId = session.ContentData()!.Mind!.Value;
-
         // Set SpecForce cooldown to 0
         await server.WaitPost(()=>server.CfgMan.SetCVar(BkmCCVars.SpecForceDelay, 0));
         await server.WaitPost(()=>server.CfgMan.SetCVar(CCVars.GridFill, true));
@@ -61,6 +57,10 @@ public sealed class SpecForceTest
         // Add several dummy players
         await pair.Server.AddDummySessions(1);
         await pair.RunTicksSync(5);
+
+        var sPlayerMan = server.ResolveDependency<Robust.Server.Player.IPlayerManager>();
+        var session = sPlayerMan.Sessions.Single();
+        var originalMindId = session.ContentData()!.Mind!.Value;
 
         // Start normal round
         ticker.ToggleReadyAll(true);
