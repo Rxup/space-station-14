@@ -8,6 +8,7 @@ using Content.Server.Ghost.Roles.Components;
 using Content.Shared.Backmen.CCVar;
 using Content.Shared.Damage;
 using Content.Shared.FixedPoint;
+using Content.Shared.Ghost;
 using Content.Shared.Inventory;
 using Content.Shared.Mind;
 using Content.Shared.Players;
@@ -58,6 +59,8 @@ public sealed class SpecForceTest
                 // Here it probably can fail only because the shuttle didn't spawn
                 if (!specForceSystem.CallOps(teamProto))
                     Assert.Fail($"CallOps method failed while trying to spawn {teamProto.ID} SpecForce.");
+                else
+                    server.WaitPost(() => specForceSystem.Log.Info($"Calling {teamProto} SpecForce team!"));
             });
 
             // Now check if there are any GhostRoles and SpecForces
@@ -91,6 +94,8 @@ public sealed class SpecForceTest
                 var newMind = entMan.GetComponent<MindComponent>(newMindId);
                 Assert.That(newMind.OwnedEntity, Is.EqualTo(player));
                 Assert.That(newMind.VisitingEntity, Is.Null);
+                if (entMan.HasComponent<GhostComponent>(player))
+                    Assert.Fail("Player is still a ghost after attaching to an entity!");
 
                 await server.WaitPost(() => specForceSystem.Log.Info("Player attaching succeeded, starting side checks."));
 
@@ -102,7 +107,7 @@ public sealed class SpecForceTest
                     total++;
                 }
                 if (total < 3)
-                    Assert.Fail($"SpecForce {player.ToString()} in team {teamProto.ID} has less than 3 items in inventory: {total}.");
+                    Assert.Fail($"SpecForce {entMan.ToPrettyString(player)} in team {teamProto.ID} has less than 3 items in inventory: {total}.");
 
                 // Finally check if The Great NT Evil-Fighter Agent passed basic training and figured out how to breathe.
                 var totalSeconds = 30;
