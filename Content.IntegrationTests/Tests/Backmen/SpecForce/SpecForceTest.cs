@@ -54,7 +54,7 @@ public sealed class SpecForceTest
         // Try to spawn every SpecForceTeam
         foreach (var teamProto in protoManager.EnumeratePrototypes<SpecForceTeamPrototype>())
         {
-            specForceSystem.Log.Info($"Calling {teamProto.ID} SpecForce team!");
+            await server.WaitPost(() => specForceSystem.Log.Info($"Calling {teamProto.ID} SpecForce team!"));
             await server.WaitPost(() =>
             {
                 // Here it probably can fail only because the shuttle didn't spawn
@@ -85,9 +85,8 @@ public sealed class SpecForceTest
                     Assert.That(ghostRoleComp.RoleDescription, Is.Not.EqualTo("Unknown"));
                 });
 
-                var player = session.AttachedEntity!.Value;
-
                 // Check player got attached to ghost role.
+                var player = session.AttachedEntity!.Value;
                 await pair.RunTicksSync(10);
                 var newMindId = session.ContentData()!.Mind!.Value;
                 var newMind = entMan.GetComponent<MindComponent>(newMindId);
@@ -107,6 +106,7 @@ public sealed class SpecForceTest
                 Assert.That(total, Is.GreaterThan(3), $"SpecForce {entMan.ToPrettyString(player)} in team {teamProto.ID} has less than 3 items in inventory: {total}.");
 
                 // Finally check if The Great NT Evil-Fighter Agent passed basic training and figured out how to breathe.
+                await pair.RunTicksSync(10);
                 var totalSeconds = 30;
                 var totalTicks = (int) Math.Ceiling(totalSeconds / server.Timing.TickPeriod.TotalSeconds);
                 int increment = 5;
