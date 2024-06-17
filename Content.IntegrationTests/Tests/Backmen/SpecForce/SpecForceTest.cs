@@ -73,9 +73,14 @@ public sealed class SpecForceTest
             {
                 var player = ghostRoleComp.Owner;
 
-                // Check that role name and description is valid
-                Assert.That(ghostRoleComp.RoleName, Is.Not.EqualTo("Unknown"));
-                Assert.That(ghostRoleComp.RoleDescription, Is.Not.EqualTo("Unknown"));
+                // Check that role name and description is valid.
+                // We must wait because GhostRoleComponent uses Localisation methods in get property
+                await server.WaitPost(() =>
+                {
+                    Assert.That(ghostRoleComp.RoleName, Is.Not.EqualTo("Unknown"));
+                    Assert.That(ghostRoleComp.RoleDescription, Is.Not.EqualTo("Unknown"));
+                });
+
 
                 // Take the ghost role
                 await server.WaitPost(() =>
