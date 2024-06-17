@@ -3,12 +3,10 @@ using System.Linq;
 using Content.Server.Backmen.SpecForces;
 using Content.Server.Body.Components;
 using Content.Server.GameTicking;
-using Content.Server.GameTicking.Presets;
 using Content.Server.Ghost.Roles;
 using Content.Server.Ghost.Roles.Components;
 using Content.Shared.Damage;
 using Content.Shared.FixedPoint;
-using Content.Shared.GameTicking;
 using Content.Shared.Inventory;
 using Content.Shared.Mind;
 using Content.Shared.Players;
@@ -30,8 +28,7 @@ public sealed class SpecForceTest
         {
             Dirty = true,
             DummyTicker = false,
-            Connected = true,
-            InLobby = true
+            Connected = true
         });
 
         var server = pair.Server;
@@ -45,31 +42,15 @@ public sealed class SpecForceTest
         var invSys = server.System<InventorySystem>();
         var ticker = server.System<GameTicker>();
 
-        // Set SpecForce cooldown to 0
-        await server.WaitPost(()=>server.CfgMan.SetCVar(BkmCCVars.SpecForceDelay, 0));
-        await server.WaitPost(()=>server.CfgMan.SetCVar(CCVars.GridFill, true));
-
-        // Initially in the lobby
-        Assert.That(ticker.RunLevel, Is.EqualTo(GameRunLevel.PreRoundLobby));
-        Assert.That(client.AttachedEntity, Is.Null);
-        Assert.That(ticker.PlayerGameStatuses[client.User!.Value], Is.EqualTo(PlayerGameStatus.NotReadyToPlay));
-
-        // Add several dummy players
-        await pair.Server.AddDummySessions(1);
-        await pair.RunTicksSync(5);
-
         var sPlayerMan = server.ResolveDependency<Robust.Server.Player.IPlayerManager>();
         var session = sPlayerMan.Sessions.Last();
         var originalMindId = session.ContentData()!.Mind!.Value;
 
-        // Start normal round
-        ticker.ToggleReadyAll(true);
-        Assert.That(ticker.PlayerGameStatuses.Values.All(x => x == PlayerGameStatus.ReadyToPlay));
-        await pair.WaitCommand("setgamepreset extended");
-        await pair.WaitCommand("startround");
-        await pair.RunTicksSync(10);
+        // Set SpecForce cooldown to 0
+        await server.WaitPost(()=>server.CfgMan.SetCVar(BkmCCVars.SpecForceDelay, 0));
+        await server.WaitPost(()=>server.CfgMan.SetCVar(CCVars.GridFill, true));
 
-        // Game should have started
+        // The game should be running for CallOps to work properly
         Assert.That(ticker.RunLevel, Is.EqualTo(GameRunLevel.InRound));
 
         // Try to spawn every SpecForceTeam
@@ -140,11 +121,7 @@ public sealed class SpecForceTest
             }
         }
 
-        ticker.SetGamePreset((GamePresetPrototype?)null);
         server.CfgMan.SetCVar(CCVars.GridFill, false);
-        server.CfgMan.SetCVar(CCVars.GameLobbyFallbackEnabled, true);
-        server.CfgMan.SetCVar(CCVars.GameLobbyDefaultPreset, "secret");
-
         await pair.CleanReturnAsync();
     }
 }
