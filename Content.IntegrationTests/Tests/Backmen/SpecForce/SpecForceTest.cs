@@ -76,7 +76,7 @@ public sealed class SpecForceTest
                 // Take the ghost role
                 await server.WaitPost(() =>
                 {
-                    var id = ghostRoleComp.Identifier;
+                    var id = entMan.GetComponent<GhostRoleComponent>(player).Identifier;
                     if (!entMan.EntitySysManager.GetEntitySystem<GhostRoleSystem>().Takeover(session, id))
                         Assert.Fail("Failed attaching player to an entity.");
                 });
@@ -92,11 +92,11 @@ public sealed class SpecForceTest
                 // Check player got attached to ghost role.
                 await pair.RunTicksSync(10);
                 var newMindId = session.ContentData()!.Mind!.Value;
-                /*var newMind = entMan.GetComponent<MindComponent>(newMindId);
+                var newMind = entMan.GetComponent<MindComponent>(newMindId);
                 Assert.That(newMindId, Is.Not.EqualTo(originalMindId));
                 Assert.That(session.AttachedEntity, Is.EqualTo(player));
                 Assert.That(newMind.OwnedEntity, Is.EqualTo(player));
-                Assert.That(newMind.VisitingEntity, Is.Null);*/
+                Assert.That(newMind.VisitingEntity, Is.Null);
 
                 // SpecForce should have at least 3 items in their inventory slots.
                 var enumerator = invSys.GetSlotEnumerator(player);
