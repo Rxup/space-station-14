@@ -73,13 +73,15 @@ public sealed class SpecForceTest
             {
                 var player = ghostRoleComp.Owner;
 
-                // Take the ghost role
+                // Take the ghost role.
+                // We can't just use Takeover method because Specforce typically has GhostMobSpawnerComponent,
+                // and session will take over spawner, not it's child entity
                 await server.WaitPost(() =>
                 {
                     var id = entMan.GetComponent<GhostRoleComponent>(player).Identifier;
-                    if (!entMan.EntitySysManager.GetEntitySystem<GhostRoleSystem>().Takeover(session, id))
-                        Assert.Fail("Failed attaching player to an entity.");
+                    entMan.EntitySysManager.GetEntitySystem<GhostRoleSystem>().Request(session, id);
                 });
+                await pair.RunTicksSync(30);
 
                 // Check that role name and description is valid.
                 // We must wait because GhostRoleComponent uses Localisation methods in get property
