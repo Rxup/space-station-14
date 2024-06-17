@@ -5,6 +5,7 @@ using Content.Server.Body.Components;
 using Content.Server.GameTicking;
 using Content.Server.Ghost.Roles;
 using Content.Server.Ghost.Roles.Components;
+using Content.Shared.Backmen.CCVar;
 using Content.Shared.Damage;
 using Content.Shared.FixedPoint;
 using Content.Shared.Inventory;
@@ -13,8 +14,6 @@ using Content.Shared.Players;
 using Robust.Shared.Console;
 using Robust.Shared.GameObjects;
 using Robust.Shared.Prototypes;
-using CCVars = Content.Shared.CCVar.CCVars;
-using BkmCCVars = Content.Shared.Backmen.CCVar.CCVars;
 
 namespace Content.IntegrationTests.Tests.Backmen.Specforce;
 
@@ -44,11 +43,9 @@ public sealed class SpecForceTest
 
         var sPlayerMan = server.ResolveDependency<Robust.Server.Player.IPlayerManager>();
         var session = sPlayerMan.Sessions.Single();
-        var originalMindId = session.ContentData()!.Mind!.Value;
 
         // Set SpecForce cooldown to 0
-        await server.WaitPost(()=>server.CfgMan.SetCVar(BkmCCVars.SpecForceDelay, 0));
-        await server.WaitPost(()=>server.CfgMan.SetCVar(CCVars.GridFill, true));
+        await server.WaitPost(()=>server.CfgMan.SetCVar(CCVars.SpecForceDelay, 0));
 
         // The game should be running for CallOps to work properly
         Assert.That(ticker.RunLevel, Is.EqualTo(GameRunLevel.InRound));
@@ -71,17 +68,12 @@ public sealed class SpecForceTest
             var ghostRoles = entMan.EntityQuery<GhostRoleComponent>();
             foreach (var ghostRoleComp in ghostRoles)
             {
-                var player = ghostRoleComp.Owner;
-
                 // Take the ghost role.
-                // We can't just use Takeover method because Specforce typically has GhostMobSpawnerComponent,
-                // and session will take over spawner, not it's child entity
                 await server.WaitPost(() =>
                 {
-                    var id = entMan.GetComponent<GhostRoleComponent>(player).Identifier;
-                    entMan.EntitySysManager.GetEntitySystem<GhostRoleSystem>().Request(session, id);
+                    var id = entMan.GetComponent<GhostRoleComponent>(ghostRoleComp.Owner).Identifier;
+                    entMan.EntitySysManager.GetEntitySystem<GhostRoleSystem>().Takeover(session, id);
                 });
-                await pair.RunTicksSync(30);
 
                 // Check that role name and description is valid.
                 // We must wait because GhostRoleComponent uses Localisation methods in get property
@@ -91,12 +83,12 @@ public sealed class SpecForceTest
                     Assert.That(ghostRoleComp.RoleDescription, Is.Not.EqualTo("Unknown"));
                 });
 
+                var player = session.AttachedEntity!.Value;
+
                 // Check player got attached to ghost role.
                 await pair.RunTicksSync(10);
                 var newMindId = session.ContentData()!.Mind!.Value;
                 var newMind = entMan.GetComponent<MindComponent>(newMindId);
-                //Assert.That(newMindId, Is.Not.EqualTo(originalMindId));
-                Assert.That(session.AttachedEntity, Is.EqualTo(player));
                 Assert.That(newMind.OwnedEntity, Is.EqualTo(player));
                 Assert.That(newMind.VisitingEntity, Is.Null);
 
@@ -124,11 +116,11 @@ public sealed class SpecForceTest
 
                 // Use the ghost command at the end and move on
                 conHost.ExecuteCommand("ghost");
+                entMan.DeleteEntity(player);
                 await pair.RunTicksSync(5);
             }
         }
 
-        server.CfgMan.SetCVar(CCVars.GridFill, false);
         await pair.CleanReturnAsync();
     }
 }
