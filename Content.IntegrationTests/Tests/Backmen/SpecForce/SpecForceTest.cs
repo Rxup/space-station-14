@@ -92,6 +92,8 @@ public sealed class SpecForceTest
                 Assert.That(newMind.OwnedEntity, Is.EqualTo(player));
                 Assert.That(newMind.VisitingEntity, Is.Null);
 
+                await server.WaitPost(() => specForceSystem.Log.Info("Player attaching succeeded, starting side checks."));
+
                 // SpecForce should have at least 3 items in their inventory slots.
                 var enumerator = invSys.GetSlotEnumerator(player);
                 var total = 0;
@@ -99,7 +101,8 @@ public sealed class SpecForceTest
                 {
                     total++;
                 }
-                Assert.That(total, Is.GreaterThan(3));
+                if (total < 3)
+                    Assert.Fail($"SpecForce {player.ToString()} in team {teamProto.ID} has less than 3 items in inventory: {total}.");
 
                 // Finally check if The Great NT Evil-Fighter Agent passed basic training and figured out how to breathe.
                 var totalSeconds = 30;
