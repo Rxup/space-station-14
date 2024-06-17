@@ -78,6 +78,7 @@ public sealed class PseudoItemSystem : SharedPseudoItemSystem
     private void ClearState(Entity<PseudoItemComponent> uid)
     {
         uid.Comp.Active = false;
+        Dirty(uid, uid.Comp);
         RemComp<ItemComponent>(uid);
         RemComp<CanEscapeInventoryComponent>(uid);
         _transformSystem.AttachToGridOrMap(uid);

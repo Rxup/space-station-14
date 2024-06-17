@@ -1,4 +1,20 @@
 ﻿- type: entity
+  parent: BaseFlatpack
+  id: SupermatterFlatpack
+  name: Supermatter flatpack
+  description: A flatpack used for constructing an supermatter engine reactor.
+  components:
+  - type: Sprite
+    layers:
+    - state: supermatter
+  - type: Flatpack
+    entity: supermatter
+  - type: StaticPrice
+    price: 500
+  - type: CargoSellBlacklist
+
+
+- type: entity
   id: supermatter
   name: Supermatter
   description: A strangely translucent and iridescent crystal.
