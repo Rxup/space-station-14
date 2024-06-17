@@ -59,7 +59,7 @@ public sealed class SpecForceTest
         await pair.RunTicksSync(5);
 
         var sPlayerMan = server.ResolveDependency<Robust.Server.Player.IPlayerManager>();
-        var session = sPlayerMan.Sessions.Single();
+        var session = sPlayerMan.Sessions.Last();
         var originalMindId = session.ContentData()!.Mind!.Value;
 
         // Start normal round
