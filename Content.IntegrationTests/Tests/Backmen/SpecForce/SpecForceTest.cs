@@ -65,7 +65,7 @@ public sealed class SpecForceTest
             Assert.That(entMan.Count<SpecForceComponent>(), Is.GreaterThan(0));
 
             // Get all ghost roles and take them over.
-            var ghostRoles = entMan.EntityQuery<GhostRoleComponent>();
+            var ghostRoles = entMan.EntityQuery<GhostRoleComponent>().ToList();
             foreach (var ghostRoleComp in ghostRoles)
             {
                 // Take the ghost role.
