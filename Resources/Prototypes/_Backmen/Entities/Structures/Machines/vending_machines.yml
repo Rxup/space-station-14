@@ -69,6 +69,28 @@
       interfaces:
         enum.StoreUiKey.Key:
           type: StoreBoundUserInterface
+    - type: Destructible
+      thresholds:
+      - trigger:
+          !type:DamageTrigger
+          damage: 100
+        behaviors:
+        - !type:DoActsBehavior
+          acts: ["Breakage"]
+      - trigger:
+          !type:DamageTrigger
+          damage: 200
+        behaviors:
+        - !type:SpawnEntitiesBehavior
+          spawn:
+            SheetSteel1:
+              min: 1
+              max: 1
+        - !type:DoActsBehavior
+          acts: [ "Destruction" ]
+        - !type:PlaySoundBehavior
+          sound:
+            collection: MetalGlassBreak
 
 - type: entity
   parent: VendingMachineCigs
