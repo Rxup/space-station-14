@@ -73,20 +73,19 @@ public sealed class SpecForceTest
             {
                 var player = ghostRoleComp.Owner;
 
+                // Take the ghost role
+                await server.WaitPost(() =>
+                {
+                    var id = ghostRoleComp.Identifier;
+                    entMan.EntitySysManager.GetEntitySystem<GhostRoleSystem>().Takeover(session, id);
+                });
+
                 // Check that role name and description is valid.
                 // We must wait because GhostRoleComponent uses Localisation methods in get property
                 await server.WaitPost(() =>
                 {
                     Assert.That(ghostRoleComp.RoleName, Is.Not.EqualTo("Unknown"));
                     Assert.That(ghostRoleComp.RoleDescription, Is.Not.EqualTo("Unknown"));
-                });
-
-
-                // Take the ghost role
-                await server.WaitPost(() =>
-                {
-                    var id = ghostRoleComp.Identifier;
-                    entMan.EntitySysManager.GetEntitySystem<GhostRoleSystem>().Takeover(session, id);
                 });
 
                 // Check player got attached to ghost role.
