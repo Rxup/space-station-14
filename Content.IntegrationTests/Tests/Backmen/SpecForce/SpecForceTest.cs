@@ -60,7 +60,7 @@ public sealed class SpecForceTest
                 if (!specForceSystem.CallOps(teamProto))
                     Assert.Fail($"CallOps method failed while trying to spawn {teamProto.ID} SpecForce.");
                 else
-                    server.WaitPost(() => specForceSystem.Log.Info($"Calling {teamProto} SpecForce team!"));
+                    server.WaitPost(() => specForceSystem.Log.Info($"Calling {teamProto.ID} SpecForce team!"));
             });
 
             // Now check if there are any GhostRoles and SpecForces
@@ -94,8 +94,7 @@ public sealed class SpecForceTest
                 var newMind = entMan.GetComponent<MindComponent>(newMindId);
                 Assert.That(newMind.OwnedEntity, Is.EqualTo(player));
                 Assert.That(newMind.VisitingEntity, Is.Null);
-                if (entMan.HasComponent<GhostComponent>(player))
-                    Assert.Fail("Player is still a ghost after attaching to an entity!");
+                Assert.That(entMan.HasComponent<GhostComponent>(player), Is.False, "Player is still a ghost after attaching to an entity!");
 
                 await server.WaitPost(() => specForceSystem.Log.Info("Player attaching succeeded, starting side checks."));
 
@@ -106,8 +105,7 @@ public sealed class SpecForceTest
                 {
                     total++;
                 }
-                if (total < 3)
-                    Assert.Fail($"SpecForce {entMan.ToPrettyString(player)} in team {teamProto.ID} has less than 3 items in inventory: {total}.");
+                Assert.That(total, Is.GreaterThan(3), $"SpecForce {entMan.ToPrettyString(player)} in team {teamProto.ID} has less than 3 items in inventory: {total}.");
 
                 // Finally check if The Great NT Evil-Fighter Agent passed basic training and figured out how to breathe.
                 var totalSeconds = 30;
@@ -119,7 +117,7 @@ public sealed class SpecForceTest
                 {
                     await pair.RunTicksSync(increment);
                     Assert.That(resp.SuffocationCycles, Is.LessThanOrEqualTo(resp.SuffocationCycleThreshold));
-                    Assert.That(damage.TotalDamage, Is.EqualTo(FixedPoint2.Zero));
+                    Assert.That(damage.TotalDamage, Is.EqualTo(FixedPoint2.Zero), $"SpecForce {entMan.ToPrettyString(player)} in team {teamProto.ID} is stupid and don't know how to breathe!");
                 }
 
                 // Use the ghost command at the end and move on
