@@ -1,3 +1,21 @@
+# СПРАВКА ПО ПОВОДУ РАБОТЫ guaranteedSpawn & specForceSpawn
+#
+# specForceSpawn считает количество ролей для спавна по формуле (Количество игроков + maxRolesAmount) / maxRolesAmount,
+# потому на 20 человек на сервере в обычных условиях заспавнится 3 оперативника.
+#
+# guaranteedSpawn спавнит все роли из своего списка, не смотря на какие-либо ограничения по игрокам.
+# Однако guaranteedSpawn роли учитываются при подсчёте для specForceSpawn, тем самым specForceSpawn НИКОГДА
+# не будет выходить за пределы формулы. Заспавнив гарантированно 2 человек, при 20 игроках на сервере заспавнится лишь
+# 1 дополнительный опер, суммарно как и в прошлом примере - 3 оперативника.
+#
+# ОДНАКО: Если EntitySpawnEntry в guaranteedSpawn имеет шанс на появление < 1, то оно НЕ ИДЁТ в общий учёт.
+# Таким образом например ОСО не будет учитываться при спавне specForceSpawn, и его случайное появление не навредит силе спецотряда.
+#
+# Это значит, что в guaranteedSpawn лучше всего указывать только Уникальные и случайные бонусные роли,
+# и не обязательно повторять сущности из specForcesSpawn.
+#
+# Учитывайте это при построении новых прототипов или изменении старых.
+
 # ERT
 - type: specForceTeam
   id: ERT
@@ -32,19 +50,18 @@
     - id: SpawnMobHumanRXBZZ
 
 # Death Squad
-#- type: specForceTeam
-#  id: DeathSquad
-#  specForceName: spec-forces-system-deathsquad-name
-#  shuttlePath: Maps/Backmen/Shuttles/SpecForces/Invincible.yml
-#  spawnMarker: MarkerSpecforce
-#  maxRolesAmount: 6
-#  guaranteedSpawn:
-#    - id: SpawnMobHumanSpecialReAgentCOM
-#    - id: SpawnMobHumanSpecialReAgent
-#    - id: SpawnMobHumanSFOfficer
-#      prob: 0.7
-#  specForceSpawn:
-#    - id: SpawnMobHumanSpecialReAgent
+- type: specForceTeam
+  id: DeathSquad
+  specForceName: spec-forces-system-deathsquad-name
+  shuttlePath: Maps/Backmen/Shuttles/SpecForces/Invincible.yml
+  spawnMarker: MarkerSpecforce
+  maxRolesAmount: 6
+  guaranteedSpawn:
+    - id: SpawnMobHumanSpecialReAgentCOM
+    - id: SpawnMobHumanSFOfficer
+      prob: 0.7
+  specForceSpawn:
+    - id: SpawnMobHumanSpecialReAgent
 
 # ERT Alpha
 - type: specForceTeam
@@ -60,7 +77,6 @@
     - id: SpawnMobHumanSFOfficer
       prob: 0.3
     - id: SpawnMobHumanERTLeaderAlpha1
-    - id: SpawnMobHumanERTOperativeAlpha1
   specForceSpawn:
     - id: SpawnMobHumanERTOperativeAlpha1
 
@@ -79,7 +95,6 @@
     settings: short
   guaranteedSpawn:
     - id: SpawnMobHumanERTLeaderEpsilon
-    - id: SpawnMobHumanERTEngineerEpsilon
   specForceSpawn:
     - id: SpawnMobHumanERTMedicalEpsilon
     - id: SpawnMobHumanERTSecurityEpsilon

@@ -211,6 +211,7 @@ public sealed class SpecForcesSystem : EntitySystem
 
         // Spawn Guaranteed SpecForces from the prototype.
         var toSpawnGuaranteed = EntitySpawnCollection.GetSpawns(proto.GuaranteedSpawn, _random);
+
         var countGuaranteed = 0;
         foreach (var mob in toSpawnGuaranteed)
         {
@@ -219,8 +220,14 @@ public sealed class SpecForcesSystem : EntitySystem
             countGuaranteed++;
         }
 
+        // Don't count entry's with have not 100% chance to spawn. This way random will only help and won't hurt SpecForce team.
+        foreach (var _ in proto.GuaranteedSpawn.Where(spawnEntry => spawnEntry.SpawnProbability < 1))
+        {
+            countGuaranteed--;
+        }
+
         // Count how many other forces there should be.
-        var countExtra = _playerManager.PlayerCount / proto.SpawnPerPlayers;
+        var countExtra = _playerManager.PlayerCount + proto.SpawnPerPlayers / proto.SpawnPerPlayers;
         // Either zero or bigger than zero, no negatives
         countExtra = Math.Max(0, countExtra);
         // If bigger than MaxAmount, set to MaxAmount and extract already spawned roles
