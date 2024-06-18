@@ -32,18 +32,19 @@
     - id: SpawnMobHumanRXBZZ
 
 # Death Squad
-- type: specForceTeam
-  id: DeathSquad
-  specForceName: spec-forces-system-deathsquad-name
-  shuttlePath: Maps/Backmen/Shuttles/SpecForces/Invincible.yml
-  spawnMarker: MarkerSpecforce
-  maxRolesAmount: 6
-  guaranteedSpawn:
-    - id: SpawnMobHumanSpecialReAgentCOM
-    - id: SpawnMobHumanSFOfficer
-      prob: 0.7
-  specForceSpawn:
-    - id: SpawnMobHumanSpecialReAgent
+#- type: specForceTeam
+#  id: DeathSquad
+#  specForceName: spec-forces-system-deathsquad-name
+#  shuttlePath: Maps/Backmen/Shuttles/SpecForces/Invincible.yml
+#  spawnMarker: MarkerSpecforce
+#  maxRolesAmount: 6
+#  guaranteedSpawn:
+#    - id: SpawnMobHumanSpecialReAgentCOM
+#    - id: SpawnMobHumanSpecialReAgent
+#    - id: SpawnMobHumanSFOfficer
+#      prob: 0.7
+#  specForceSpawn:
+#    - id: SpawnMobHumanSpecialReAgent
 
 # ERT Alpha
 - type: specForceTeam
@@ -59,6 +60,7 @@
     - id: SpawnMobHumanSFOfficer
       prob: 0.3
     - id: SpawnMobHumanERTLeaderAlpha1
+    - id: SpawnMobHumanERTOperativeAlpha1
   specForceSpawn:
     - id: SpawnMobHumanERTOperativeAlpha1
 
@@ -78,13 +80,10 @@
   guaranteedSpawn:
     - id: SpawnMobHumanERTLeaderEpsilon
     - id: SpawnMobHumanERTEngineerEpsilon
-      prob: 0.5
-    - id: SpawnMobHumanERTSecurityEpsilon
-      prob: 0.5
   specForceSpawn:
+    - id: SpawnMobHumanERTMedicalEpsilon
     - id: SpawnMobHumanERTSecurityEpsilon
     - id: SpawnMobHumanERTEngineerEpsilon
-    - id: SpawnMobHumanERTMedicalEpsilon
     - id: SpawnMobHumanERTJanitorEpsilon
 
 # ERT Tay
