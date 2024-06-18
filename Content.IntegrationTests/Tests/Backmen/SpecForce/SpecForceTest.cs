@@ -57,8 +57,9 @@ public sealed class SpecForceTest
             await server.WaitPost(() => specForceSystem.Log.Info($"Calling {teamProto.ID} SpecForce team!"));
             await server.WaitPost(() =>
             {
-                // Here it probably can fail only because the shuttle didn't spawn
-                if (!specForceSystem.CallOps(teamProto))
+                // Call every specForce and force spawn every extra specforce from the SpecForceSpawn prototype.
+                // This way it is spawning EVERY available ghost role, so we can also check them.
+                if (!specForceSystem.CallOps(teamProto, "Test", teamProto.SpecForceSpawn.Count))
                     Assert.Fail($"CallOps method failed while trying to spawn {teamProto.ID} SpecForce.");
             });
 
