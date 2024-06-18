@@ -233,7 +233,7 @@ public sealed class SpecForcesSystem : EntitySystem
         // If bigger than MaxAmount, set to MaxAmount and extract already spawned roles
         countExtra = Math.Min(countExtra, proto.MaxRolesAmount - countGuaranteed);
 
-        if (forceCountExtra != null)
+        if (forceCountExtra is >= 0 and <= 15)
             countExtra = forceCountExtra.Value;
 
         _sawmill.Info($"Guaranteed spawned {countGuaranteed} SpecForces, spawning {countExtra} more.");
