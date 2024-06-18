@@ -110,7 +110,7 @@ public sealed class SpecForcesSystem : EntitySystem
     /// <param name="forceCountExtra"> How many extra SpecForces will be forced to spawn.</param>
     /// <returns>Returns true if call was successful.</returns>
     /// <exception cref="ArgumentException"> If ProtoId of the team is invalid.</exception>
-    public bool CallOps(ProtoId<SpecForceTeamPrototype> protoId, string source = "", uint? forceCountExtra = null)
+    public bool CallOps(ProtoId<SpecForceTeamPrototype> protoId, string source = "", int? forceCountExtra = null)
     {
         _callLock.EnterWriteLock();
         try
@@ -187,7 +187,7 @@ public sealed class SpecForcesSystem : EntitySystem
         return uid;
     }
 
-    private void SpawnGhostRole(SpecForceTeamPrototype proto, EntityUid shuttle, uint? forceCountExtra = null)
+    private void SpawnGhostRole(SpecForceTeamPrototype proto, EntityUid shuttle, int? forceCountExtra = null)
     {
         // Find all spawn points on the shuttle, add them in list
         var spawns = new List<EntityCoordinates>();
@@ -227,7 +227,7 @@ public sealed class SpecForcesSystem : EntitySystem
         countExtra = Math.Min(countExtra, proto.MaxRolesAmount - countGuaranteed);
 
         if (forceCountExtra != null)
-            countExtra = (int) forceCountExtra.Value;
+            countExtra = forceCountExtra.Value;
 
         _sawmill.Info($"Guaranteed spawned {countGuaranteed} SpecForces, spawning {countExtra} more.");
 
