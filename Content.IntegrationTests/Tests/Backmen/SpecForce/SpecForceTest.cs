@@ -95,7 +95,7 @@ public sealed class SpecForceTest
             Assert.That(newMind.VisitingEntity, Is.Null);
             Assert.That(entMan.HasComponent<GhostComponent>(player),
                 Is.False,
-                "Player is still a ghost after attaching to an entity!");
+                $"Player {entMan.ToPrettyString(player)} is still a ghost after attaching to an entity!");
 
             await server.WaitPost(() =>
                 specForceSystem.Log.Info("Player attaching succeeded, starting side checks."));
