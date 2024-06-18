@@ -5,6 +5,9 @@
   setPreference: true
   objective: roles-antag-rev-head-objective
   guides: [ Revolutionaries ]
+  requirements:
+  - !type:OverallPlaytimeRequirement
+    time: 108000 # 30h # Corvax-RoleTime
 
 - type: antag
   id: Rev

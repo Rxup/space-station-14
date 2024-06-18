@@ -108,6 +108,8 @@ namespace Content.IntegrationTests.Tests
                     .ToList();
                 foreach (var protoId in protoIds)
                 {
+                    if (!map.GridCoords.IsValid(entityMan))
+                        continue;
                     entityMan.SpawnEntity(protoId, map.GridCoords);
                 }
             });

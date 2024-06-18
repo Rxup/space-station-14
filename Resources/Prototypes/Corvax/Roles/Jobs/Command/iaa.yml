@@ -40,3 +40,6 @@
     pocket2: HyperLinkBookCorporateLaw
   inhand:
     - BriefcaseIAAFilled
+  storage:
+    back:
+    - BoxSurvival
