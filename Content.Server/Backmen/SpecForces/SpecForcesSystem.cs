@@ -227,14 +227,14 @@ public sealed class SpecForcesSystem : EntitySystem
         }
 
         // Count how many other forces there should be.
-        var countExtra = _playerManager.PlayerCount + proto.SpawnPerPlayers / proto.SpawnPerPlayers;
+        var countExtra = (_playerManager.PlayerCount + proto.SpawnPerPlayers) / proto.SpawnPerPlayers;
+        // If bigger than MaxAmount, set to MaxAmount and extract already spawned roles
+        countExtra = Math.Min(countExtra - countGuaranteed, proto.MaxRolesAmount - countGuaranteed);
         // Either zero or bigger than zero, no negatives
         countExtra = Math.Max(0, countExtra);
-        // If bigger than MaxAmount, set to MaxAmount and extract already spawned roles
-        countExtra = Math.Min(countExtra, proto.MaxRolesAmount - countGuaranteed);
 
         if (forceCountExtra is >= 0 and <= 15)
-            countExtra = forceCountExtra.Value;
+            countExtra = forceCountExtra.Value - countGuaranteed;
 
         _sawmill.Info($"Guaranteed spawned {countGuaranteed} SpecForces, spawning {countExtra} more.");
 
