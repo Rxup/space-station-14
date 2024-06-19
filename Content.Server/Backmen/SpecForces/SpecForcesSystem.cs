@@ -220,10 +220,13 @@ public sealed class SpecForcesSystem : EntitySystem
             countGuaranteed++;
         }
 
-        // Don't count entry's with have not 100% chance to spawn. This way random will only help and won't hurt SpecForce team.
-        foreach (var _ in proto.GuaranteedSpawn.Where(spawnEntry => spawnEntry.SpawnProbability < 1))
+        // Don't count entry's with have not 100% chance to spawn.
+        // This way random will only help and won't hurt SpecForce team.
+        foreach (var spawnEntry in proto.GuaranteedSpawn.Where(spawnEntry => spawnEntry.SpawnProbability < 1))
         {
-            countGuaranteed--;
+            // We also need to check if this role was spawned by The Gods Of Random
+            if (toSpawnGuaranteed.Contains(spawnEntry.PrototypeId!.Value))
+                countGuaranteed--;
         }
 
         // Count how many other forces there should be.
