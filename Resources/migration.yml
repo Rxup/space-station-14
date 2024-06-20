@@ -494,3 +494,5 @@ AirlockServiceCaptainLocked: AirlockCaptainLocked
 
 # fix ishimura test
 ClothingBackpackSatchelClownFilled: ClothingBackpackSatchelClown
+# 2024-06-15
+ClothingOuterCoatInspector: ClothingOuterCoatDetectiveLoadout
