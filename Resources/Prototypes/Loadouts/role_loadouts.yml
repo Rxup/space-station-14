@@ -464,8 +464,6 @@
 - type: roleLoadout
   id: JobPsychologist
   groups:
-  - PsychologistJumpsuit #backmen
-  - PsychologistBackpack # Corvax-MRP
   - MedicalBackpack
   - Glasses
   - Trinkets

@@ -245,7 +245,7 @@ public sealed class StationAiSystem : SharedStationAISystem
             if (eye.AiCore == null)
             {
                 QueueDel(ent);
-                args.Cancel();
+                args.Cancelled = true;
                 return;
             }
 
@@ -254,7 +254,7 @@ public sealed class StationAiSystem : SharedStationAISystem
 
         if (!core.Owner.Valid)
         {
-            args.Cancel();
+            args.Cancelled = true;
             return;
         }
 
@@ -263,44 +263,44 @@ public sealed class StationAiSystem : SharedStationAISystem
 
         if (args.Target != null && Transform(core).GridUid != Transform(args.Target.Value).GridUid)
         {
-            args.Cancel();
+            args.Cancelled = true;
             return;
         }
 
         if (!TryComp<ApcPowerReceiverComponent>(core, out var power))
         {
-            args.Cancel();
+            args.Cancelled = true;
             return;
         }
 
         if (power is { NeedsPower: true, Powered: false })
         {
-            args.Cancel();
+            args.Cancelled = true;
             return;
         }
 
         if (HasComp<ItemComponent>(args.Target))
         {
-            args.Cancel();
+            args.Cancelled = true;
             return;
         }
 
         if (HasComp<EntityStorageComponent>(args.Target))
         {
-            args.Cancel();
+            args.Cancelled = true;
             return;
         }
 
         if (TryComp<ApcPowerReceiverComponent>(args.Target, out var targetPower) && targetPower.NeedsPower &&
             !targetPower.Powered)
         {
-            args.Cancel();
+            args.Cancelled = true;
             return;
         }
 
         if (HasComp<NukeComponent>(args.Target))
         {
-            args.Cancel();
+            args.Cancelled = true;
             return;
         }
     }
