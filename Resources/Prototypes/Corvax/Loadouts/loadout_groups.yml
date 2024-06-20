@@ -6,16 +6,21 @@
   loadouts: []
 
 - type: loadoutGroup
-  id: PsychologistBackpack
-  name: loadout-group-psychologist-backpack
+  id: ChiefEngineerBackpack
+  name: loadout-group-chief-engineer-backpack
   loadouts:
   - PsychologistBackpack
   - PsychologistSatchel
   - PsychologistDuffel
+  - ChiefEngineerBackpack
+  - ChiefEngineerSatchel
+  - ChiefEngineerDuffel
+
 # Jumpsuit
 - type: loadoutGroup
   id: PsychologistJumpsuit
   name: loadout-group-psychologist-jumpsuit
-  loadouts: 
+  loadouts:
   - PsychologistJumpsuit
   - PsychologistJumpsuitCrimson
+

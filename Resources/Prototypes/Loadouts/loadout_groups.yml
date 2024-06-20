@@ -62,6 +62,10 @@
   - CaptainJumpskirt
   - CaptainFormalSuit
   - CaptainFormalSkirt
+  # Corvax-Loadouts-Start
+  - CaptainJumpsuitTurtleneck
+  - CaptainJumpskirtTurtleneck
+  # Corvax-Loadouts-End
 
 - type: loadoutGroup
   id: CaptainNeck
@@ -100,6 +104,10 @@
   loadouts:
   - HoPJumpsuit
   - HoPJumpskirt
+  # Corvax-Loadouts-Start
+  - HoPJumpsuitTurtleneck
+  - HoPJumpskirtTurtleneck
+  # Corvax-Loadouts-End
 
 - type: loadoutGroup
   id: HoPNeck
@@ -728,6 +736,10 @@
   loadouts:
   - ResearchDirectorJumpsuit
   - ResearchDirectorJumpskirt
+  # Corvax-Loadouts-Start
+  - ResearchDirectorJumpsuitFormal
+  - ResearchDirectorJumpskirtFormal
+  # Corvax-Loadouts-End
 
 - type: loadoutGroup
   id: ResearchDirectorOuterClothing
@@ -841,6 +853,10 @@
   - HeadofSecurityTurtleneckSkirt
   - HeadofSecurityFormalSuit
   - HeadofSecurityFormalSkirt
+  # Corvax-Loadouts-Start
+  - HeadofSecurityJumpsuitBlack
+  - HeadofSecurityJumpskirtBlack
+  # Corvax-Loadouts-End
 
 - type: loadoutGroup
   id: HeadofSecurityNeck
