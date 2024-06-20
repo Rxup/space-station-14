@@ -8,6 +8,7 @@
   rules:
     - RampingStationEventScheduler
     - WageScheduler #backmen: currency
+    - GameRuleMeteorScheduler
     - BasicRoundstartVariation
 
 - type: gamePreset
@@ -22,6 +23,7 @@
     - Zombie
     - RampingStationEventScheduler
     - WageScheduler #backmen: currency
+    - GameRuleMeteorScheduler
 
 - type: gamePreset
   id: Extended
@@ -48,6 +50,7 @@
   rules:
   - BasicRoundstartVariation
   - WageScheduler #backmen: currency
+  - GameRuleMeteorScheduler
 
 - type: gamePreset
   id: Secret
