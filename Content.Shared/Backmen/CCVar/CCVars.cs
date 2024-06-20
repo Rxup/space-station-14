@@ -154,6 +154,18 @@ public sealed class CCVars
     public static readonly CVarDef<int> BlobPlayersPer =
         CVarDef.Create("blob.players_per", 20, CVar.SERVERONLY);
 
+    public static readonly CVarDef<bool> BlobCanGrowInSpace =
+        CVarDef.Create("blob.grow_space", true, CVar.REPLICATED);
+
+    public static readonly CVarDef<int> BlobTilesDetect =
+        CVarDef.Create("blob.tiles_detect", 40, CVar.REPLICATED);
+
+    public static readonly CVarDef<int> BlobTilesCritical =
+        CVarDef.Create("blob.tiles_critical", 500, CVar.REPLICATED);
+
+    public static readonly CVarDef<int> BlobTilesWin =
+        CVarDef.Create("blob.tiles_win", 1000, CVar.REPLICATED);
+
     /*
      * SpecForces
      */

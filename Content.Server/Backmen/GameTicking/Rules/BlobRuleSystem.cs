@@ -17,11 +17,14 @@ using Content.Shared.Backmen.Blob.Components;
 using Content.Shared.GameTicking.Components;
 using Content.Shared.Objectives.Components;
 using Robust.Shared.Audio;
+using Content.Shared.Backmen.CCVar;
+using Robust.Shared.Configuration;
 
 namespace Content.Server.Backmen.GameTicking.Rules;
 
 public sealed class BlobRuleSystem : GameRuleSystem<BlobRuleComponent>
 {
+    [Dependency] private readonly IConfigurationManager _cfg = default!;
     [Dependency] private readonly MindSystem _mindSystem = default!;
     [Dependency] private readonly RoundEndSystem _roundEndSystem = default!;
     [Dependency] private readonly ChatSystem _chatSystem = default!;
@@ -71,7 +74,7 @@ public sealed class BlobRuleSystem : GameRuleSystem<BlobRuleComponent>
                 continue;
             }
 
-            if (comp.BlobTiles.Count >= 50)
+            if (comp.BlobTiles.Count >= _cfg.GetCVar(CCVars.BlobTilesDetect))
             {
                 if (_roundEndSystem.ExpectedCountdownEnd != null)
                 {
@@ -115,7 +118,7 @@ public sealed class BlobRuleSystem : GameRuleSystem<BlobRuleComponent>
     {
         switch (blobRuleComp.Stage)
         {
-            case BlobStage.Default when blobCore.Comp.BlobTiles.Count > 30:
+            case BlobStage.Default when blobCore.Comp.BlobTiles.Count > _cfg.GetCVar(CCVars.BlobTilesDetect):
                 blobRuleComp.Stage = BlobStage.Begin;
 
                 _chatSystem.DispatchGlobalAnnouncement(Loc.GetString("blob-alert-detect"),
@@ -129,7 +132,7 @@ public sealed class BlobRuleSystem : GameRuleSystem<BlobRuleComponent>
                     Level = blobRuleComp.Stage
                 }, broadcast: true);
                 return;
-            case BlobStage.Begin when blobCore.Comp.BlobTiles.Count >= 500:
+            case BlobStage.Begin when blobCore.Comp.BlobTiles.Count >= _cfg.GetCVar(CCVars.BlobTilesCritical):
             {
                 blobRuleComp.Stage = BlobStage.Critical;
                 _chatSystem.DispatchGlobalAnnouncement(Loc.GetString("blob-alert-critical"),
@@ -149,7 +152,7 @@ public sealed class BlobRuleSystem : GameRuleSystem<BlobRuleComponent>
                 }, broadcast: true);
                 return;
             }
-            case BlobStage.Critical when blobCore.Comp.BlobTiles.Count >= 900:
+            case BlobStage.Critical when blobCore.Comp.BlobTiles.Count >= _cfg.GetCVar(CCVars.BlobTilesWin):
             {
                 blobRuleComp.Stage = BlobStage.TheEnd;
                 blobCore.Comp.Points = 99999;
