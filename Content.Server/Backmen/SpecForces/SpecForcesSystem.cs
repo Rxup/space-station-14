@@ -27,6 +27,7 @@ namespace Content.Server.Backmen.SpecForces;
 public sealed class SpecForcesSystem : EntitySystem
 {
     [Dependency] private readonly IMapManager _mapManager = default!;
+    [Dependency] private readonly IConfigurationManager _cfg = default!;
     [Dependency] private readonly MapLoaderSystem _map = default!;
     [Dependency] private readonly GameTicker _gameTicker = default!;
     [Dependency] private readonly IRobustRandom _random = default!;
@@ -66,7 +67,7 @@ public sealed class SpecForcesSystem : EntitySystem
         if (ev.Level != BlobStage.Critical)
             return;
 
-        if (!CallOps(Rxbzz, "ДСО", 8)) // Full squad
+        if (!CallOps(Rxbzz, "ДСО", _cfg.GetCVar(CCVars.SpecForceBlob))) // 6 by default
         {
             _sawmill.Error($"Failed to spawn {Rxbzz} SpecForce for the blob GameRule!");
         }
