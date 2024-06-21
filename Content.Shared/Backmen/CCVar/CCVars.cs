@@ -161,10 +161,10 @@ public sealed class CCVars
         CVarDef.Create("blob.tiles_detect", 40, CVar.REPLICATED);
 
     public static readonly CVarDef<int> BlobTilesCritical =
-        CVarDef.Create("blob.tiles_critical", 500, CVar.REPLICATED);
+        CVarDef.Create("blob.tiles_critical", 400, CVar.REPLICATED);
 
     public static readonly CVarDef<int> BlobTilesWin =
-        CVarDef.Create("blob.tiles_win", 1000, CVar.REPLICATED);
+        CVarDef.Create("blob.tiles_win", 900, CVar.REPLICATED);
 
     /*
      * SpecForces

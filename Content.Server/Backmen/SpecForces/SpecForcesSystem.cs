@@ -66,7 +66,7 @@ public sealed class SpecForcesSystem : EntitySystem
         if (ev.Level != BlobStage.Critical)
             return;
 
-        if (!CallOps(Rxbzz, "ДСО"))
+        if (!CallOps(Rxbzz, "ДСО", 8)) // Full squad
         {
             _sawmill.Error($"Failed to spawn {Rxbzz} SpecForce for the blob GameRule!");
         }
@@ -235,7 +235,8 @@ public sealed class SpecForcesSystem : EntitySystem
         countExtra = Math.Min(countExtra - countGuaranteed, proto.MaxRolesAmount - countGuaranteed);
 
         // If CountExtra was forced to some number, check if this number is in range and extract already spawned roles.
-        if (forceCountExtra is >= 0 and <= 15)
+        // 30 is definitely will be enough, so if it is bigger we ignore the number
+        if (forceCountExtra is >= 0 and <= 30)
             countExtra = forceCountExtra.Value - countGuaranteed;
 
         // Either zero or bigger than zero, no negatives
