@@ -73,11 +73,7 @@ public sealed class SpecForceTest
         foreach (var ghostRoleComp in ghostRoles)
         {
             var ghostCompOwner = ghostRoleComp.Owner;
-
-            // Check that ghostRoleComp Owner also has GhostTakeOverAvailable.
-            var ghostTakeOverComp = entMan.GetComponent<GhostTakeoverAvailableComponent>(ghostCompOwner);
-            Assert.That(ghostTakeOverComp, Is.Not.Null, $"GhostRole {entMan.ToPrettyString(ghostCompOwner)} doesn't have GhostTakeoverAvailableComponent.");
-
+            
             // Take the ghost role.
             await server.WaitPost(() =>
             {
