@@ -59,7 +59,7 @@ public sealed class SpecForceTest
             {
                 // Call every specForce and force spawn every extra specforce from the SpecForceSpawn prototype.
                 // This way it is spawning EVERY available ghost role, so we can also check them.
-                if (!specForceSystem.CallOps(teamProto, "Test", teamProto.SpecForceSpawn.Count))
+                if (!specForceSystem.CallOps(teamProto, "Test", teamProto.SpecForceSpawn.Count + teamProto.GuaranteedSpawn.Count))
                     Assert.Fail($"CallOps method failed while trying to spawn {teamProto.ID} SpecForce.");
             });
 
@@ -72,10 +72,16 @@ public sealed class SpecForceTest
         var ghostRoles = entMan.EntityQuery<GhostRoleComponent>().ToList();
         foreach (var ghostRoleComp in ghostRoles)
         {
+            var ghostCompOwner = ghostRoleComp.Owner;
+
+            // Check that ghostRoleComp Owner also has GhostTakeOverAvailable.
+            var ghostTakeOverComp = entMan.GetComponent<GhostTakeoverAvailableComponent>(ghostCompOwner);
+            Assert.That(ghostTakeOverComp, Is.Not.Null, $"GhostRole {entMan.ToPrettyString(ghostCompOwner)} doesn't have GhostTakeoverAvailableComponent.");
+
             // Take the ghost role.
             await server.WaitPost(() =>
             {
-                var id = entMan.GetComponent<GhostRoleComponent>(ghostRoleComp.Owner).Identifier;
+                var id = entMan.GetComponent<GhostRoleComponent>(ghostCompOwner).Identifier;
                 entMan.EntitySysManager.GetEntitySystem<GhostRoleSystem>().Takeover(session, id);
             });
 
