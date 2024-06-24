@@ -52,7 +52,10 @@
   name: Blue Space Drone MED
   id: BackmenDroneMED
   description: Разработан в НИИ Космических технологий с использованием Блюспейс технологий.
-  parent: PlayerSiliconBase
+  parent:
+  - MobSiliconBase
+  - ShowMedicalIcons
+  - StripableInventoryBase
   components:
   - type: BSSDrone
     droneType: MED

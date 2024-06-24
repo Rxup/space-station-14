@@ -33,7 +33,7 @@
         - CentralCommand
     - type: SpecForce
       actionBssActionName: ActionCentcomFtlAction
-    - type: InitialInfectedExempt
+    - type: AntagImmune
 
 - type: entity
   name:  Оператор ЦК
@@ -70,7 +70,7 @@
         - CentralCommand
     - type: SpecForce
       actionBssActionName: ActionCentcomFtlAction
-    - type: InitialInfectedExempt
+    - type: AntagImmune
 
 - type: entity
   name: Overwatch
@@ -108,7 +108,7 @@
     prototypes: [SFOForma]
   - type: RandomHumanoidAppearance
     randomizeName: False
-  - type: InitialInfectedExempt
+  - type: AntagImmune
 
 - type: entity
   name:  Начальник Безопасности ЦК
@@ -144,4 +144,4 @@
         - CentralCommand
     - type: SpecForce
       actionBssActionName: ActionCentcomFtlAction
-    - type: InitialInfectedExempt
+    - type: AntagImmune
