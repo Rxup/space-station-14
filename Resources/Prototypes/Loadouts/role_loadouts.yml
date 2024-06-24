@@ -9,8 +9,10 @@
   - CaptainOuterClothing
   - Trinkets
   - Medals #backmen
-  - Survival
   - Inventory # Corvax-Loadouts
+  - Survival
+  - Trinkets
+
 
 - type: roleLoadout
   id: JobHeadOfPersonnel
@@ -21,10 +23,10 @@
   - HoPBackpack
   - HoPOuterClothing
   - Glasses
-  - Trinkets
   - Medals #backmen
-  - Survival
   - Inventory # Corvax-Loadouts
+  - Survival
+  - Trinkets
 
 # Civilian
 - type: roleLoadout
@@ -37,10 +39,10 @@
   - PassengerOuterClothing
   - PassengerShoes
   - Glasses
-  - Trinkets
   - Medals #backmen
-  - Survival
   - Inventory # Corvax-Loadouts
+  - Survival
+  - Trinkets
 
 - type: roleLoadout
   id: JobBartender
@@ -50,10 +52,10 @@
   - CommonBackpack
   - BartenderOuterClothing
   - Glasses
-  - Trinkets
   - Medals #backmen
-  - Survival
   - Inventory # Corvax-Loadouts
+  - Survival
+  - Trinkets
 
 - type: roleLoadout
   id: JobServiceWorker
@@ -61,10 +63,10 @@
   - BartenderJumpsuit
   - CommonBackpack
   - Glasses
-  - Trinkets
   - Medals #backmen
-  - Survival
   - Inventory # Corvax-Loadouts
+  - Survival
+  - Trinkets
 
 - type: roleLoadout
   id: JobChef
@@ -75,10 +77,10 @@
   - CommonBackpack
   - ChefOuterClothing
   - Glasses
-  - Trinkets
   - Medals #backmen
-  - Survival
   - Inventory # Corvax-Loadouts
+  - Survival
+  - Trinkets
 
 - type: roleLoadout
   id: JobLibrarian
@@ -127,10 +129,10 @@
   - CommonBackpack
   - JanitorOuterClothing
   - Glasses
+  - Survival
   - Trinkets
   - Medals #backmen
   - JanitorPlunger
-  - Survival
   - Inventory # Corvax-Loadouts
 
 - type: roleLoadout
@@ -141,10 +143,10 @@
   - BotanistBackpack
   - BotanistOuterClothing
   - Glasses
-  - Trinkets
   - Medals #backmen
-  - Survival
   - Inventory # Corvax-Loadouts
+  - Survival
+  - Trinkets
 
 - type: roleLoadout
   id: JobClown
@@ -155,10 +157,10 @@
   - ClownOuterClothing
   - ClownShoes
   - Glasses
-  - Trinkets
   - Medals #backmen
-  - SurvivalClown
   - Inventory # Corvax-Loadouts
+  - SurvivalClown
+  - Trinkets
 
 - type: roleLoadout
   id: JobMime
@@ -169,10 +171,10 @@
   - MimeBackpack
   - MimeOuterClothing
   - Glasses
-  - Trinkets
   - Medals #backmen
-  - Survival
   - Inventory # Corvax-Loadouts
+  - Survival
+  - Trinkets
 
 - type: roleLoadout
   id: JobMusician
@@ -181,12 +183,11 @@
   - CommonBackpack
   - MusicianOuterClothing
   - Glasses
+  - Survival
   - Trinkets
   - Medals #backmen
   - Instruments
-  - Survival
   - Inventory # Corvax-Loadouts
-  - Instruments
 
 # Cargo
 - type: roleLoadout
@@ -199,10 +200,10 @@
   - QuartermasterOuterClothing
   - QuartermasterShoes
   - Glasses
-  - Trinkets
   - Medals #backmen
-  - Survival
   - Inventory # Corvax-Loadouts
+  - Survival
+  - Trinkets
 
 - type: roleLoadout
   id: JobCargoTechnician
@@ -213,10 +214,9 @@
   - CargoTechnicianOuterClothing
   - CargoTechnicianShoes
   - Glasses
-  - Trinkets
   - Medals #backmen
-  - Survival
   - Inventory # Corvax-Loadouts
+  - Trinkets
 
 - type: roleLoadout
   id: JobSalvageSpecialist
@@ -225,10 +225,10 @@
   - SalvageSpecialistOuterClothing
   - SalvageSpecialistShoes
   - Glasses
-  - Trinkets
   - Medals #backmen
-  - Survival
   - Inventory # Corvax-Loadouts
+  - Survival
+  - Trinkets
 
 # Engineering
 - type: roleLoadout
@@ -240,21 +240,19 @@
   - ChiefEngineerNeck
   - ChiefEngineerOuterClothing
   - ChiefEngineerShoes
-  - Trinkets
   - Medals #backmen
-  - SurvivalExtended
   - Inventory # Corvax-Loadouts
+  - SurvivalExtended
+  - Trinkets
 
 - type: roleLoadout
   id: JobTechnicalAssistant
   groups:
   - TechnicalAssistantJumpsuit
   - StationEngineerBackpack
-  - Trinkets
   - Medals #backmen
-  - SurvivalExtended
   - Inventory # Corvax-Loadouts
-
+  - Trinkets
 - type: roleLoadout
   id: JobStationEngineer
   groups:
@@ -264,11 +262,9 @@
   - StationEngineerOuterClothing
   - StationEngineerShoes
   - StationEngineerID
-  - Trinkets
   - Medals #backmen
-  - SurvivalExtended
   - Inventory # Corvax-Loadouts
-
+  - Trinkets
 - type: roleLoadout
   id: JobAtmosphericTechnician
   groups:
@@ -276,10 +272,10 @@
   - AtmosphericTechnicianBackpack
   - AtmosphericTechnicianOuterClothing
   - AtmosphericTechnicianShoes
-  - Trinkets
   - Medals #backmen
-  - SurvivalExtended
   - Inventory # Corvax-Loadouts
+  - SurvivalExtended
+  - Trinkets
 
 # Science
 - type: roleLoadout
@@ -293,10 +289,10 @@
   - ScientistGloves
   - ResearchDirectorShoes
   - Glasses
-  - Trinkets
   - Medals #backmen
-  - Survival
   - Inventory # Corvax-Loadouts
+  - Survival
+  - Trinkets
 
 - type: roleLoadout
   id: JobScientist
@@ -310,10 +306,10 @@
   - ScientistShoes
   - ScientistPDA
   - Glasses
-  - Trinkets
   - Medals #backmen
-  - Survival
   - Inventory # Corvax-Loadouts
+  - Survival
+  - Trinkets
 
 - type: roleLoadout
   id: JobResearchAssistant
@@ -321,10 +317,10 @@
   - ResearchAssistantJumpsuit
   - ScientistBackpack
   - Glasses
-  - Trinkets
   - Medals #backmen
-  - Survival
   - Inventory # Corvax-Loadouts
+  - Survival
+  - Trinkets
 
 # Security
 - type: roleLoadout
@@ -339,10 +335,10 @@
   - SecurityShoes
   - SecurityOfficerPocket #Backmen
   - SecurityOfficerPocket2 #Backmen
-  - Trinkets
   - Medals #backmen
-  - SurvivalSecurity
   - Inventory # Corvax-Loadouts
+  - SurvivalSecurity
+  - Trinkets
 
 - type: roleLoadout
   id: JobWarden
@@ -355,10 +351,10 @@
   - SecurityShoes
   - SecurityPocket #Backmen
   - SecurityPocket2 #Backmen
-  - Trinkets
   - Medals #backmen
-  - SurvivalSecurity
   - Inventory # Corvax-Loadouts
+  - SurvivalSecurity
+  - Trinkets
 
 - type: roleLoadout
   id: JobSecurityOfficer
@@ -372,10 +368,10 @@
   - SecurityBelt
   - SecurityPocket #Backmen
   - SecurityPocket2 #Backmen
-  - Trinkets
   - Medals #backmen
-  - SurvivalSecurity
   - Inventory # Corvax-Loadouts
+  - SurvivalSecurity
+  - Trinkets
 
 - type: roleLoadout
   id: JobDetective
@@ -386,20 +382,20 @@
   - SecurityBackpack
   - DetectiveOuterClothing
   - SecurityShoes
-  - Trinkets
   - Medals #backmen
-  - SurvivalSecurity
   - Inventory # Corvax-Loadouts
+  - SurvivalSecurity
+  - Trinkets
 
 - type: roleLoadout
   id: JobSecurityCadet
   groups:
   - SecurityCadetJumpsuit
   - SecurityBackpack
-  - Trinkets
   - Medals #backmen
-  - SurvivalSecurity
   - Inventory # Corvax-Loadouts
+  - SurvivalSecurity
+  - Trinkets
 
 # Medical
 - type: roleLoadout
@@ -414,10 +410,10 @@
   - ChiefMedicalOfficerNeck
   - ChiefMedicalOfficerShoes
   - Glasses
-  - Trinkets
   - Medals #backmen
-  - SurvivalMedical
   - Inventory # Corvax-Loadouts
+  - SurvivalMedical
+  - Trinkets
 
 - type: roleLoadout
   id: JobMedicalDoctor
@@ -431,10 +427,10 @@
   - MedicalShoes
   - MedicalDoctorPDA
   - Glasses
-  - Trinkets
   - Medals #backmen
-  - SurvivalMedical
   - Inventory # Corvax-Loadouts
+  - SurvivalMedical
+  - Trinkets
 
 - type: roleLoadout
   id: JobMedicalIntern
@@ -442,10 +438,9 @@
   - MedicalInternJumpsuit
   - MedicalBackpack
   - Glasses
-  - Trinkets
   - Medals #backmen
-  - SurvivalMedical
   - Inventory # Corvax-Loadouts
+  - Trinkets
 
 - type: roleLoadout
   id: JobChemist
@@ -456,10 +451,10 @@
   - ChemistBackpack
   - ChemistOuterClothing
   - MedicalShoes
-  - Trinkets
   - Medals #backmen
-  - SurvivalMedical
   - Inventory # Corvax-Loadouts
+  - SurvivalMedical
+  - Trinkets
 
 - type: roleLoadout
   id: JobParamedic
@@ -472,10 +467,10 @@
   - ParamedicOuterClothing
   - ParamedicShoes
   - Glasses
-  - Trinkets
   - Medals #backmen
-  - SurvivalMedical
   - Inventory # Corvax-Loadouts
+  - SurvivalMedical
+  - Trinkets
 
 # Wildcards
 - type: roleLoadout
@@ -483,10 +478,10 @@
   groups:
   - CommonBackpack
   - Glasses
-  - Trinkets
   - Medals #backmen
-  - Survival
   - Inventory # Corvax-Loadouts
+  - Survival
+  - Trinkets
 
 - type: roleLoadout
   id: JobReporter
@@ -494,20 +489,19 @@
   - ReporterJumpsuit
   - CommonBackpack
   - Glasses
-  - Trinkets
   - Medals #backmen
-  - Survival
   - Inventory # Corvax-Loadouts
+  - Survival
+  - Trinkets
 
 - type: roleLoadout
   id: JobPsychologist
   groups:
   - MedicalBackpack
   - Glasses
-  - Trinkets
   - Medals #backmen
-  - Survival
   - Inventory # Corvax-Loadouts
+  - Trinkets
 
 - type: roleLoadout
   id: JobBoxer
@@ -516,10 +510,10 @@
   - BoxerGloves
   - CommonBackpack
   - Glasses
-  - Trinkets
   - Medals #backmen
-  - Survival
   - Inventory # Corvax-Loadouts
+  - Survival
+  - Trinkets
 
 # These loadouts will be used without player configuration, thus they must be designed to work without manual selection
 
