@@ -1,3 +1,4 @@
+using Content.Server.Ghost.Roles.Raffles;
 using Content.Server.Spawners.Components;
 using Content.Shared.Storage;
 using Robust.Shared.Audio;
@@ -60,6 +61,15 @@ public sealed class SpecForceTeamPrototype : IPrototype
     [ViewVariables]
     [DataField("maxRolesAmount")]
     public int MaxRolesAmount = 8;
+    /// <summary>
+    /// Specifies the raffle settings to use.
+    /// </summary>
+    [ViewVariables]
+    [DataField("raffleConfig")]
+    public GhostRoleRaffleConfig RaffleConfig = new()
+    {
+        Settings = "default"
+    };
     /// <summary>
     /// SpecForces that will be spawned no matter what.
     /// Uses EntitySpawnEntry and therefore has ability to change spawn prob.

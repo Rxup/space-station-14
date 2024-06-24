@@ -57,6 +57,7 @@ namespace Content.IntegrationTests.Tests
             "CorvaxSplit",
             "CorvaxTerra",
             "CorvaxFrame",
+            "CorvaxPearl",
             // Corvax-End
             "Dev",
             "TestTeg",
@@ -90,6 +91,7 @@ namespace Content.IntegrationTests.Tests
 			"BackmenKettle",
 			"BackmenRook",
             "BargeVsShip",
+            "no_madDelta",
             //end-backmen
             "Reach",
             "Train",

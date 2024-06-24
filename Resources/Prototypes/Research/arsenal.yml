@@ -59,7 +59,7 @@
   cost: 5000
   recipeUnlocks:
   - MagazineShotgunBeanbag
-  - ShellTranquilizer
+  - BoxShellTranquilizer
   - BoxBeanbag
   - WeaponDisabler
 

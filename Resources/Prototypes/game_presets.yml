@@ -8,6 +8,7 @@
   rules:
     - RampingStationEventScheduler
     - WageScheduler #backmen: currency
+    - GameRuleMeteorScheduler
     - BasicRoundstartVariation
 
 - type: gamePreset
@@ -22,6 +23,7 @@
     - Zombie
     - RampingStationEventScheduler
     - WageScheduler #backmen: currency
+    - GameRuleMeteorScheduler
 
 - type: gamePreset
   id: Extended
@@ -34,6 +36,7 @@
   rules:
   - BasicStationEventScheduler
   - WageScheduler #backmen: currency
+  - GameRuleMeteorScheduler
   - BasicRoundstartVariation
 
 - type: gamePreset
@@ -47,6 +50,7 @@
   rules:
   - BasicRoundstartVariation
   - WageScheduler #backmen: currency
+  - GameRuleMeteorScheduler
 
 - type: gamePreset
   id: Secret
@@ -69,6 +73,7 @@
   rules:
     - BasicStationEventScheduler
     - WageScheduler #backmen: currency
+    - GameRuleMeteorScheduler
 
 - type: gamePreset
   id: SecretGreenshift #For Admin Use: Runs Greenshift but shows "Secret" in lobby.
@@ -101,6 +106,7 @@
     - SubGamemodesRule
     - BasicStationEventScheduler
     - WageScheduler #backmen: currency
+    - GameRuleMeteorScheduler
     - BasicRoundstartVariation
 
 - type: gamePreset
@@ -130,21 +136,7 @@
     - SubGamemodesRule
     - BasicStationEventScheduler
     - WageScheduler #backmen: currency
-
-- type: gamePreset
-  id: NukeopsTraitor
-  alias:
-    - nukeopstraitor
-    - syndinukies
-  name: nukeops-traitor-title
-  description: nukeops-traitor-description
-  showInVote: false
-  rules:
-    - Nukeops
-    - Traitor
-    - BasicStationEventScheduler
-    - BasicRoundstartVariation
-    - WageScheduler #backmen: currency
+    - GameRuleMeteorScheduler
 
 - type: gamePreset
   id: Revolutionary
@@ -159,6 +151,7 @@
     - Revolutionary
     - SubGamemodesRule
     - BasicStationEventScheduler
+    - GameRuleMeteorScheduler
     - BasicRoundstartVariation
     - WageScheduler #backmen: currency
 
@@ -177,4 +170,5 @@
   - Zombie
   - BasicStationEventScheduler
   - WageScheduler #backmen: currency
+  - GameRuleMeteorScheduler
   - BasicRoundstartVariation

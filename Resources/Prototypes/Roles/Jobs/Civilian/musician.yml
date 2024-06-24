@@ -23,7 +23,6 @@
 - type: startingGear
   id: MusicianGear
   equipment:
-    jumpsuit: ClothingUniformJumpsuitMusician
     eyes: ClothingEyesGlassesSunglasses
     shoes: ClothingShoesBootsLaceup
     id: MusicianPDA
@@ -31,5 +30,3 @@
   storage:
     back:
     - BoxSurvival
-    - AcousticGuitarInstrument
-    - SaxophoneInstrument

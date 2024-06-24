@@ -163,12 +163,14 @@
 - type: roleLoadout
   id: JobMusician
   groups:
+  - MusicianJumpsuit
   - CommonBackpack
   - MusicianOuterClothing
   - Glasses
   - Trinkets
   - Medals #backmen
   - Inventory # Corvax-Loadouts
+  - Instruments
 
 # Cargo
 - type: roleLoadout
@@ -215,7 +217,7 @@
   groups:
   - ChiefEngineerHead
   - ChiefEngineerJumpsuit
-  - StationEngineerBackpack
+  - ChiefEngineerBackpack # Corvax-Loadouts
   - ChiefEngineerNeck
   - ChiefEngineerOuterClothing
   - ChiefEngineerShoes
@@ -462,8 +464,7 @@
 - type: roleLoadout
   id: JobPsychologist
   groups:
-  - PsychologistJumpsuit #backmen
-  - PsychologistBackpack # Corvax-MRP
+  - MedicalBackpack
   - Glasses
   - Trinkets
   - Medals #backmen

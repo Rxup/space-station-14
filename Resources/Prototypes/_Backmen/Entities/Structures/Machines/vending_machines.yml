@@ -28,9 +28,9 @@
   description: Испытайте удачу и откройте свой лутбокс!
   components:
     - type: VendingMachine
-      pack: VendingLootboxInventory
-      dispenseOnHitChance: 0.01
-      dispenseOnHitThreshold: 50
+      pack: BoozeOMatInventory
+      dispenseOnHitChance: 0.00001
+      dispenseOnHitThreshold: 5000
       offState: off
       brokenState: broken
       normalState: normal-unshaded

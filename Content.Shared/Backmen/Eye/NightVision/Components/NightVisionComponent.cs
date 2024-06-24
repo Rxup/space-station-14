@@ -1,5 +1,6 @@
 using Content.Shared.Actions;
 using Content.Shared.Backmen.Eye.NightVision.Systems;
+using Robust.Shared.Audio;
 using Robust.Shared.GameStates;
 
 namespace Content.Shared.Backmen.Eye.NightVision.Components;
@@ -25,6 +26,10 @@ public sealed partial class NightVisionComponent : Component
 
     [Access(Other = AccessPermissions.ReadWriteExecute)]
     public bool GraceFrame = false;
+
+    [DataField("playSoundOn")]
+    public bool PlaySoundOn = true;
+    public SoundSpecifier OnOffSound = new SoundPathSpecifier("/Audio/Backmen/Misc/night-vision-sound-effect_E_minor.ogg");
 }
 
 public sealed partial class NVInstantActionEvent : InstantActionEvent { }
