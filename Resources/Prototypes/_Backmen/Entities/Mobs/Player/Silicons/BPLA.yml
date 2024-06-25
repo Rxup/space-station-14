@@ -16,7 +16,9 @@
   name: Blue Space Drone
   id: BackmenDrone
   description: Разработан в НИИ Космических технологий с использованием Блюспейс технологий.
-  parent: PlayerSiliconBase
+  parent:
+  - MobSiliconBase
+  - StripableInventoryBase
   components:
   - type: NameIdentifier
     group: BSSDrone

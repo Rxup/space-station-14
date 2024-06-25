@@ -46,7 +46,7 @@
   - type: Speech
     speechSounds: Metrocop
     soundCooldownTime: 0.1
-  - type: InitialInfectedExempt
+  - type: AntagImmune
 
 - type: entity
   name:  РХБЗЗ Реагент Огнеметчик
@@ -96,7 +96,7 @@
   - type: Speech
     speechSounds: Metrocop
     soundCooldownTime: 0.1
-  - type: InitialInfectedExempt
+  - type: AntagImmune
 
 - type: entity
   name:  РХБЗЗ Лидер
@@ -149,4 +149,4 @@
   - type: Speech
     speechSounds: Metrocop
     soundCooldownTime: 0.1
-  - type: InitialInfectedExempt
+  - type: AntagImmune

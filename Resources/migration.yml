@@ -496,3 +496,6 @@ AirlockServiceCaptainLocked: AirlockCaptainLocked
 ClothingBackpackSatchelClownFilled: ClothingBackpackSatchelClown
 # 2024-06-15
 ClothingOuterCoatInspector: ClothingOuterCoatDetectiveLoadout
+
+# 2024-06-23
+FloorTileItemReinforced: PartRodMetal1

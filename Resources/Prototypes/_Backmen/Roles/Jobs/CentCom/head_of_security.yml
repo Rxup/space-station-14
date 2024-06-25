@@ -42,7 +42,7 @@
             - CentralCommand
         - type: Psionic
         - type: PyrokinesisPower
-        - type: InitialInfectedExempt
+        - type: AntagImmune
   minBankBalance: 400
   maxBankBalance: 600
   wageDepartment: CentCom
