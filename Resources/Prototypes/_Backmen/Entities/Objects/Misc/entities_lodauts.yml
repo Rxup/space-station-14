@@ -204,7 +204,7 @@
     state: icon
   content:
   - WeaponPistolVP78
-  - ClothingPounchRXBZZPistolFilled
+  - ClothingBeltMilitaryWebbingPistolFilled
 
 - type: thiefBackpackSet
   id: DivetSet
