@@ -17,8 +17,8 @@
     mayTransfer: true
     whitelist:
       tags:
-        - CartridgeCaselessRifle
-    capacity: 2000
+        - CartridgeHeavyRifle
+    capacity: 5000
   - type: ClothingSpeedModifier
     walkModifier: 0.6
     sprintModifier: 0.6
@@ -45,7 +45,7 @@
   parent: BasePowerpackRifle
   components:
   - type: BallisticAmmoProvider
-    proto: CartridgeCaselessRifle
+    proto: CartridgeMinigun
 
 - type: entity
   name: EarthGov laser rifle
@@ -2739,6 +2739,9 @@
         map: ["enum.GunVisualLayers.Mag"]
   - type: Clothing
     sprite: Backmen/Objects/Weapons/Gunsx64/Launchers/rpg/tiny.rsi
+    slots:
+      - BACK
+      - SUITSTORAGE
   - type: Item
     sprite: Backmen/Objects/Weapons/Gunsx64/Launchers/rpg/tiny.rsi
   - type: Gun
@@ -3617,9 +3620,11 @@
     size: Ginormous
   - type: Gun
     minAngle: 1
-    maxAngle: 20
+    maxAngle: 30
+    angleDecay: 10
+    angleIncrease: 1.5
     cameraRecoilScalar: 0.5
-    fireRate: 10
+    fireRate: 15
     selectedMode: FullAuto
     availableModes:
       - FullAuto
