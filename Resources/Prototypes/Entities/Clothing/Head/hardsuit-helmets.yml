@@ -62,6 +62,8 @@
   - type: TemperatureProtection
     coefficient: 0.005
   - type: EyeProtection
+  - type: FireProtection
+    reduction: 0.2
 
 #Engineering Hardsuit
 - type: entity
@@ -710,6 +712,8 @@
   - type: PressureProtection
     highPressureMultiplier: 0.08
     lowPressureMultiplier: 1000
+  - type: FireProtection
+    reduction: 0.2
   - type: Armor
     modifiers:
       coefficients:
