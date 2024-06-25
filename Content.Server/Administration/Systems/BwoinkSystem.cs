@@ -10,6 +10,7 @@ using Content.Server.Backmen.Administration.Bwoink.Gpt;
 using Content.Server.Afk;
 using Content.Server.Discord;
 using Content.Server.GameTicking;
+using Content.Server.Players.RateLimiting;
 using Content.Shared.Administration;
 using Content.Shared.CCVar;
 using Content.Shared.Mind;
@@ -28,6 +29,8 @@ namespace Content.Server.Administration.Systems
     [UsedImplicitly]
     public sealed partial class BwoinkSystem : SharedBwoinkSystem
     {
+        private const string RateLimitKey = "AdminHelp";
+
         [Dependency] private readonly IPlayerManager _playerManager = default!;
         [Dependency] private readonly IAdminManager _adminManager = default!;
         [Dependency] private readonly IConfigurationManager _config = default!;
@@ -36,6 +39,7 @@ namespace Content.Server.Administration.Systems
         [Dependency] private readonly GameTicker _gameTicker = default!;
         [Dependency] private readonly SharedMindSystem _minds = default!;
         [Dependency] private readonly IAfkManager _afkManager = default!;
+        [Dependency] private readonly PlayerRateLimitManager _rateLimit = default!;
 
         [GeneratedRegex(@"^https://discord\.com/api/webhooks/(\d+)/((?!.*/).*)$")]
         private static partial Regex DiscordRegex();
@@ -81,6 +85,22 @@ namespace Content.Server.Administration.Systems
 
             SubscribeLocalEvent<GameRunLevelChangedEvent>(OnGameRunLevelChanged);
             SubscribeNetworkEvent<BwoinkClientTypingUpdated>(OnClientTypingUpdated);
+
+            _rateLimit.Register(
+                RateLimitKey,
+                new RateLimitRegistration
+                {
+                    CVarLimitPeriodLength = CCVars.AhelpRateLimitPeriod,
+                    CVarLimitCount = CCVars.AhelpRateLimitCount,
+                    PlayerLimitedAction = PlayerRateLimitedAction
+                });
+        }
+
+        private void PlayerRateLimitedAction(ICommonSession obj)
+        {
+            RaiseNetworkEvent(
+                new BwoinkTextMessage(obj.UserId, default, Loc.GetString("bwoink-system-rate-limited"), playSound: false),
+                obj.Channel);
         }
 
         private void OnOverrideChanged(string obj)
@@ -395,6 +415,9 @@ namespace Content.Server.Administration.Systems
                 // Unauthorized bwoink (log?)
                 return;
             }
+
+            if (_rateLimit.CountAction(eventArgs.SenderSession, RateLimitKey) != RateLimitStatus.Allowed)
+                return;
 
             var escapedText = FormattedMessage.EscapeText(message.Text);
 

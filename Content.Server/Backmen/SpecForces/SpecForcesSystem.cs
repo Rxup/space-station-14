@@ -44,12 +44,10 @@ public sealed class SpecForcesSystem : EntitySystem
     [ViewVariables] public TimeSpan LastUsedTime { get; private set; } = TimeSpan.Zero;
     private readonly ReaderWriterLockSlim _callLock = new();
     private TimeSpan DelayUsage => TimeSpan.FromMinutes(_configurationManager.GetCVar(CCVars.SpecForceDelay));
-    private ISawmill _sawmill = default!;
 
     public override void Initialize()
     {
         base.Initialize();
-        _sawmill = IoCManager.Resolve<ILogManager>().GetSawmill("specforce");
 
         SubscribeLocalEvent<SpecForceComponent, MapInitEvent>(OnMapInit, after: [typeof(RandomMetadataSystem)]);
         SubscribeLocalEvent<RoundEndTextAppendEvent>(OnRoundEnd);
@@ -69,7 +67,7 @@ public sealed class SpecForcesSystem : EntitySystem
 
         if (!CallOps(Rxbzz, "ДСО", _cfg.GetCVar(CCVars.SpecForceBlob))) // 6 by default
         {
-            _sawmill.Error($"Failed to spawn {Rxbzz} SpecForce for the blob GameRule!");
+            Log.Error($"Failed to spawn {Rxbzz} SpecForce for the blob GameRule!");
         }
     }
 
@@ -134,7 +132,8 @@ public sealed class SpecForcesSystem : EntitySystem
 
             if (!_prototypes.TryIndex(protoId, out var prototype))
             {
-                throw new ArgumentException("Wrong SpecForceTeamPrototype ID!");
+                Log.Error("Wrong SpecForceTeamPrototype ID!");
+                return false;
             }
 
             CalledEvents.Add(new SpecForcesHistory { Event = prototype.SpecForceName, RoundTime = currentTime, WhoCalled = source });
@@ -142,7 +141,7 @@ public sealed class SpecForcesSystem : EntitySystem
             var shuttle = SpawnShuttle(prototype.ShuttlePath);
             if (shuttle == null)
             {
-                _sawmill.Error("Failed to load SpecForce shuttle!");
+                Log.Error("Failed to load SpecForce shuttle!");
                 return false;
             }
 
@@ -188,6 +187,9 @@ public sealed class SpecForcesSystem : EntitySystem
         return uid;
     }
 
+    public int GetOptIdCount(SpecForceTeamPrototype proto, int? plrCount = null) =>
+        ((plrCount ?? _playerManager.PlayerCount) + proto.SpawnPerPlayers) / proto.SpawnPerPlayers;
+
     private void SpawnGhostRole(SpecForceTeamPrototype proto, EntityUid shuttle, int? forceCountExtra = null)
     {
         // Find all spawn points on the shuttle, add them in list
@@ -206,7 +208,7 @@ public sealed class SpecForcesSystem : EntitySystem
 
         if (spawns.Count == 0)
         {
-            _sawmill.Warning("Shuttle has no valid spawns for SpecForces! Making something up...");
+            Log.Warning("Shuttle has no valid spawns for SpecForces! Making something up...");
             spawns.Add(Transform(shuttle).Coordinates);
         }
 
@@ -217,23 +219,25 @@ public sealed class SpecForcesSystem : EntitySystem
         foreach (var mob in toSpawnGuaranteed)
         {
             var spawned = SpawnEntity(mob, _random.Pick(spawns), proto);
-            _sawmill.Info($"Successfully spawned {ToPrettyString(spawned)} SpecForce.");
+            Log.Info($"Successfully spawned {ToPrettyString(spawned)} SpecForce.");
             countGuaranteed++;
         }
 
         // Don't count entry's with have not 100% chance to spawn.
         // This way random will only help and won't hurt SpecForce team.
+        /*
         foreach (var spawnEntry in proto.GuaranteedSpawn.Where(spawnEntry => spawnEntry.SpawnProbability < 1))
         {
             // We also need to check if this role was spawned by The Gods Of Random
             if (toSpawnGuaranteed.Contains(spawnEntry.PrototypeId!.Value))
                 countGuaranteed--;
         }
+        */
 
         // Count how many other forces there should be.
-        var countExtra = (_playerManager.PlayerCount + proto.SpawnPerPlayers) / proto.SpawnPerPlayers;
+        var countExtra = GetOptIdCount(proto);
         // If bigger than MaxAmount, set to MaxAmount and extract already spawned roles
-        countExtra = Math.Min(countExtra - countGuaranteed, proto.MaxRolesAmount - countGuaranteed);
+        countExtra = Math.Min(countExtra, proto.MaxRolesAmount);//Math.Min(countExtra - countGuaranteed, proto.MaxRolesAmount - countGuaranteed);
 
         // If CountExtra was forced to some number, check if this number is in range and extract already spawned roles.
         // 30 is definitely will be enough, so if it is bigger we ignore the number
@@ -243,7 +247,7 @@ public sealed class SpecForcesSystem : EntitySystem
         // Either zero or bigger than zero, no negatives
         countExtra = Math.Max(0, countExtra);
 
-        _sawmill.Info($"Guaranteed spawned {countGuaranteed} SpecForces, spawning {countExtra} more.");
+        Log.Info($"Guaranteed spawned static {countGuaranteed} SpecForces, spawning opt-in {countExtra} more.");
 
         // Spawn Guaranteed SpecForces from the prototype.
         // If all mobs from the list are spawned and we still have free slots, restart the cycle again.
@@ -254,7 +258,7 @@ public sealed class SpecForcesSystem : EntitySystem
             {
                 countExtra--;
                 var spawned = SpawnEntity(mob, _random.Pick(spawns), proto);
-                _sawmill.Info($"Successfully spawned {ToPrettyString(spawned)} SpecForce.");
+                Log.Info($"Successfully spawned {ToPrettyString(spawned)} SpecForce.");
             }
         }
     }

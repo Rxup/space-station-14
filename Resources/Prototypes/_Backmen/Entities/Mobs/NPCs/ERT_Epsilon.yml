@@ -11,7 +11,7 @@
   - type: NpcFactionMember
     factions:
       - CentralCommand
-  - type: InitialInfectedExempt
+  - type: AntagImmune
   - type: Loadout
     prototypes: [ERTLeaderGearEggV3]
 
@@ -30,7 +30,7 @@
       - CentralCommand
   - type: Loadout
     prototypes: [ERTEngineerGearEggV3]
-  - type: InitialInfectedExempt
+  - type: AntagImmune
 
 # ERT Security
 - type: entity
@@ -47,7 +47,7 @@
       - CentralCommand
   - type: Loadout
     prototypes: [ERTSecurityGearEggV3]
-  - type: InitialInfectedExempt
+  - type: AntagImmune
 
 # ERT Medical
 - type: entity
@@ -64,7 +64,7 @@
       - CentralCommand
   - type: Loadout
     prototypes: [ERTMedicalGearEggV3]
-  - type: InitialInfectedExempt
+  - type: AntagImmune
 
 # ERT Junitor
 - type: entity
@@ -81,7 +81,7 @@
       - CentralCommand
   - type: Loadout
     prototypes: [ERTJanitorGearEggV3]
-  - type: InitialInfectedExempt
+  - type: AntagImmune
 
 #------------------------------------
 
@@ -137,7 +137,7 @@
     - names_last_male
   - type: RandomHumanoidAppearance
     randomizeName: false
-  - type: InitialInfectedExempt
+  - type: AntagImmune
 
 # ERT Engineer
 - type: entity
@@ -192,7 +192,7 @@
     - names_last_male
   - type: RandomHumanoidAppearance
     randomizeName: false
-  - type: InitialInfectedExempt
+  - type: AntagImmune
 
 # ERT Security
 - type: entity
@@ -244,7 +244,7 @@
     - names_last_male
   - type: RandomHumanoidAppearance
     randomizeName: false
-  - type: InitialInfectedExempt
+  - type: AntagImmune
 
 # ERT Medical
 - type: entity
@@ -299,7 +299,7 @@
     - names_last_male
   - type: RandomHumanoidAppearance
     randomizeName: false
-  - type: InitialInfectedExempt
+  - type: AntagImmune
 
 # ERT Junitor
 - type: entity
@@ -354,5 +354,5 @@
     - names_last_male
   - type: RandomHumanoidAppearance
     randomizeName: false
-  - type: InitialInfectedExempt
+  - type: AntagImmune
 
