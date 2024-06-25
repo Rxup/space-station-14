@@ -17,8 +17,7 @@
   id: BackmenDrone
   description: Разработан в НИИ Космических технологий с использованием Блюспейс технологий.
   parent:
-  - MobSiliconBase
-  - StripableInventoryBase
+  - PlayerSiliconBase
   components:
   - type: NameIdentifier
     group: BSSDrone

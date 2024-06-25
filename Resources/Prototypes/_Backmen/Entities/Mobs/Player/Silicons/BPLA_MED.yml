@@ -53,9 +53,8 @@
   id: BackmenDroneMED
   description: Разработан в НИИ Космических технологий с использованием Блюспейс технологий.
   parent:
-  - MobSiliconBase
+  - PlayerSiliconBase
   - ShowMedicalIcons
-  - StripableInventoryBase
   components:
   - type: BSSDrone
     droneType: MED
