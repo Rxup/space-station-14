@@ -214,40 +214,25 @@ public sealed class SpecForcesSystem : EntitySystem
 
         // Spawn Guaranteed SpecForces from the prototype.
         var toSpawnGuaranteed = EntitySpawnCollection.GetSpawns(proto.GuaranteedSpawn, _random);
-
-        var countGuaranteed = 0;
         foreach (var mob in toSpawnGuaranteed)
         {
             var spawned = SpawnEntity(mob, _random.Pick(spawns), proto);
             Log.Info($"Successfully spawned {ToPrettyString(spawned)} SpecForce.");
-            countGuaranteed++;
         }
-
-        // Don't count entry's with have not 100% chance to spawn.
-        // This way random will only help and won't hurt SpecForce team.
-        /*
-        foreach (var spawnEntry in proto.GuaranteedSpawn.Where(spawnEntry => spawnEntry.SpawnProbability < 1))
-        {
-            // We also need to check if this role was spawned by The Gods Of Random
-            if (toSpawnGuaranteed.Contains(spawnEntry.PrototypeId!.Value))
-                countGuaranteed--;
-        }
-        */
 
         // Count how many other forces there should be.
         var countExtra = GetOptIdCount(proto);
-        // If bigger than MaxAmount, set to MaxAmount and extract already spawned roles
-        countExtra = Math.Min(countExtra, proto.MaxRolesAmount);//Math.Min(countExtra - countGuaranteed, proto.MaxRolesAmount - countGuaranteed);
+        // If bigger than MaxAmount, set to MaxAmount
+        countExtra = Math.Min(countExtra, proto.MaxRolesAmount);
 
         // If CountExtra was forced to some number, check if this number is in range and extract already spawned roles.
-        // 30 is definitely will be enough, so if it is bigger we ignore the number
-        if (forceCountExtra is >= 0 and <= 30)
-            countExtra = forceCountExtra.Value - countGuaranteed;
+        if (forceCountExtra is >= 0 and <= 15)
+            countExtra = forceCountExtra.Value;
 
         // Either zero or bigger than zero, no negatives
         countExtra = Math.Max(0, countExtra);
 
-        Log.Info($"Guaranteed spawned static {countGuaranteed} SpecForces, spawning opt-in {countExtra} more.");
+        Log.Debug($"Spawning opt-in {countExtra} specforces.");
 
         // Spawn Guaranteed SpecForces from the prototype.
         // If all mobs from the list are spawned and we still have free slots, restart the cycle again.
