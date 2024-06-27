@@ -497,6 +497,7 @@
 - type: roleLoadout
   id: JobPsychologist
   groups:
+  - PsychologistJumpsuit #backmen
   - MedicalBackpack
   - Glasses
   - Medals #backmen
