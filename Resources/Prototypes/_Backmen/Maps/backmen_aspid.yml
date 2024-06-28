@@ -9,7 +9,7 @@
       stationProto: StandardNanotrasenStation
       components:
         - type: StationNameSetup
-          mapNameTemplate: '{0} NCS Aspid {1}'
+          mapNameTemplate: 'NCS Aspid {1}'
           nameGenerator:
             !type:NanotrasenNameGenerator
             prefixCreator: '14'
