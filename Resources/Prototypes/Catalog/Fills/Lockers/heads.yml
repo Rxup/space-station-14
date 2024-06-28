@@ -56,6 +56,7 @@
       - id: MedalCase
       - id: AntiPsychicKnife  # backmen
       - id: ClothingHeadCage # backmen
+      - id: HandheldReinforcementCentCom # backmen
       - id: ClothingHeadHatCapcap
 
 - type: entity
@@ -92,6 +93,7 @@
       # Corvax-Resprite-End
       - id: AntiPsychicKnife  # backmen
       - id: ClothingHeadCage # backmen
+      - id: HandheldReinforcementCentCom # backmen
 
 - type: entity
   id: LockerCaptainFilledNoLaser
@@ -117,6 +119,7 @@
       - id: RubberStampCaptain
       - id: JetpackCaptainFilled
       - id: MedalCase
+      - id: HandheldReinforcementCentCom # backmen
 
 - type: entity
   id: LockerHeadOfPersonnelFilled
