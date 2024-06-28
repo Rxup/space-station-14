@@ -1,6 +1,7 @@
 ﻿using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using Content.Server.AlertLevel;
+using Content.Server.Backmen.Blob.Components;
 using Content.Server.Backmen.Blob.Rule;
 using Content.Server.Backmen.GameTicking.Rules.Components;
 using Content.Server.Chat.Managers;
@@ -33,8 +34,6 @@ public sealed class BlobRuleSystem : GameRuleSystem<BlobRuleComponent>
     [Dependency] private readonly ObjectivesSystem _objectivesSystem = default!;
     [Dependency] private readonly AlertLevelSystem _alertLevelSystem = default!;
     [Dependency] private readonly IChatManager _chatManager = default!;
-
-
 
     private static readonly SoundPathSpecifier BlobDetectAudio = new SoundPathSpecifier("/Audio/Corvax/Adminbuse/Outbreak5.ogg");
 
@@ -74,7 +73,14 @@ public sealed class BlobRuleSystem : GameRuleSystem<BlobRuleComponent>
                 continue;
             }
 
-            if (comp.BlobTiles.Count >= _cfg.GetCVar(CCVars.BlobTilesDetect))
+            if (!CheckBlobInStation(ent, out var stationUid))
+            {
+                continue;
+            }
+
+            var stationConfig = EnsureComp<StationBlobConfigComponent>(stationUid.Value);
+
+            if (comp.BlobTiles.Count >= stationConfig.BlobTilesDetect)
             {
                 if (_roundEndSystem.ExpectedCountdownEnd != null)
                 {
@@ -87,12 +93,7 @@ public sealed class BlobRuleSystem : GameRuleSystem<BlobRuleComponent>
                 }
             }
 
-            if (!CheckBlobInStation(ent, out var stationUid))
-            {
-                continue;
-            }
-
-            CheckChangeStage((ent, comp), stationUid.Value, component);
+            CheckChangeStage((ent, comp), stationUid.Value, component, stationConfig);
         }
     }
 
@@ -114,11 +115,11 @@ public sealed class BlobRuleSystem : GameRuleSystem<BlobRuleComponent>
     private const string StationGamma = "gamma";
     private const string StationSigma = "sigma";
 
-    private void CheckChangeStage(Entity<BlobCoreComponent> blobCore, EntityUid stationUid, BlobRuleComponent blobRuleComp)
+    private void CheckChangeStage(Entity<BlobCoreComponent> blobCore, EntityUid stationUid, BlobRuleComponent blobRuleComp, StationBlobConfigComponent stationConfig)
     {
         switch (blobRuleComp.Stage)
         {
-            case BlobStage.Default when blobCore.Comp.BlobTiles.Count > _cfg.GetCVar(CCVars.BlobTilesDetect):
+            case BlobStage.Default when blobCore.Comp.BlobTiles.Count > stationConfig.BlobTilesDetect:
                 blobRuleComp.Stage = BlobStage.Begin;
 
                 _chatSystem.DispatchGlobalAnnouncement(Loc.GetString("blob-alert-detect"),
@@ -132,7 +133,7 @@ public sealed class BlobRuleSystem : GameRuleSystem<BlobRuleComponent>
                     Level = blobRuleComp.Stage
                 }, broadcast: true);
                 return;
-            case BlobStage.Begin when blobCore.Comp.BlobTiles.Count >= _cfg.GetCVar(CCVars.BlobTilesCritical):
+            case BlobStage.Begin when blobCore.Comp.BlobTiles.Count >= stationConfig.BlobTilesCritical:
             {
                 blobRuleComp.Stage = BlobStage.Critical;
                 _chatSystem.DispatchGlobalAnnouncement(Loc.GetString("blob-alert-critical"),
@@ -152,7 +153,7 @@ public sealed class BlobRuleSystem : GameRuleSystem<BlobRuleComponent>
                 }, broadcast: true);
                 return;
             }
-            case BlobStage.Critical when blobCore.Comp.BlobTiles.Count >= _cfg.GetCVar(CCVars.BlobTilesWin):
+            case BlobStage.Critical when blobCore.Comp.BlobTiles.Count >= stationConfig.BlobTilesWin:
             {
                 blobRuleComp.Stage = BlobStage.TheEnd;
                 blobCore.Comp.Points = 99999;

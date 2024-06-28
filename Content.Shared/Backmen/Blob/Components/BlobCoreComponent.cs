@@ -206,6 +206,18 @@ public sealed partial class BlobCoreComponent : Component
     public EntityUid? ActionSplitBlobCore = null;
     [DataField("actionSwapBlobCore")]
     public EntityUid? ActionSwapBlobCore = null;
+
+    [ViewVariables(VVAccess.ReadWrite), DataField("blobTilesDetect")]
+    public int BlobTilesDetect = 30;
+
+    [ViewVariables(VVAccess.ReadWrite), DataField("blobTilesCritical")]
+    public int BlobTilesCritical = 400;
+
+    [ViewVariables(VVAccess.ReadWrite), DataField("blobTilesWin")]
+    public int BlobTilesWin = 800;
+
+    [ViewVariables(VVAccess.ReadWrite), DataField("specForceAmount")]
+    public int SpecForceAmount = 6;
 }
 
 [Serializable, NetSerializable]

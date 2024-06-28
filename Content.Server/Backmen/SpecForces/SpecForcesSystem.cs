@@ -14,6 +14,7 @@ using Content.Shared.Storage;
 using Robust.Shared.Utility;
 using System.Threading;
 using Content.Server.Actions;
+using Content.Server.Backmen.Blob.Components;
 using Content.Server.Backmen.Blob.Rule;
 using Content.Server.Backmen.GameTicking.Rules.Components;
 using Content.Server.Ghost.Roles.Components;
@@ -39,6 +40,7 @@ public sealed class SpecForcesSystem : EntitySystem
     [Dependency] private readonly ActionsSystem _actions = default!;
     [Dependency] private readonly IConfigurationManager _configurationManager = default!;
     [Dependency] private readonly IComponentFactory _componentFactory = default!;
+    [Dependency] private readonly IEntityManager _entMan = default!;
 
     [ViewVariables] public List<SpecForcesHistory> CalledEvents { get; } = new();
     [ViewVariables] public TimeSpan LastUsedTime { get; private set; } = TimeSpan.Zero;
@@ -65,7 +67,8 @@ public sealed class SpecForcesSystem : EntitySystem
         if (ev.Level != BlobStage.Critical)
             return;
 
-        if (!CallOps(Rxbzz, "ДСО", _cfg.GetCVar(CCVars.SpecForceBlob))) // 6 by default
+        var stationConfig = EnsureComp<StationBlobConfigComponent>(ev.Station);
+        if (!CallOps(Rxbzz, "ДСО", stationConfig.SpecForceAmount))
         {
             Log.Error($"Failed to spawn {Rxbzz} SpecForce for the blob GameRule!");
         }
