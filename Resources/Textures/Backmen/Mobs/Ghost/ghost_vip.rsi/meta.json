@@ -36,6 +36,10 @@
         "directions": 4
       },
       {
+        "name": "animated_kaiju",
+        "directions": 4
+      },
+      {
           "name": "icon"
       }
   ]

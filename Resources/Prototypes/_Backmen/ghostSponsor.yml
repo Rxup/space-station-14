@@ -114,3 +114,16 @@
       color: "#fff8"
       layers:
         - state: animated_faceless
+
+- type: ghostTheme
+  id: tier08
+  components:
+    - type: Sprite
+      overrideContainerOcclusion: true # Ghosts always show up regardless of where they're contained.
+      noRot: true
+      drawdepth: Ghosts
+      sprite: Backmen/Mobs/Ghost/ghost_vip.rsi
+      state: animated_kaiju
+      color: "#fff8"
+      layers:
+        - state: animated_kaiju

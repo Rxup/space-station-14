@@ -10,6 +10,7 @@ sponsor-win-manager-ghost-tier04 = Ледяной
 sponsor-win-manager-ghost-tier05 = Снег
 sponsor-win-manager-ghost-tier06 = Звездный
 sponsor-win-manager-ghost-tier07 = Безликий
+sponsor-win-manager-ghost-tier08 = Кайдзю
 sponsor-win-manager-theme = Тема призрака:
 sponsor-win-manager-tier-0 = Бесплатный
 sponsor-win-manager-tier-1 = EAT
