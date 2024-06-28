@@ -1419,7 +1419,7 @@ namespace Content.Shared.CCVar
         /// Whether the arrivals terminal should be on a planet map.
         /// </summary>
         public static readonly CVarDef<bool> ArrivalsPlanet =
-            CVarDef.Create("shuttle.arrivals_planet", true, CVar.SERVERONLY);
+            CVarDef.Create("shuttle.arrivals_planet", false, CVar.SERVERONLY);
 
         /// <summary>
         /// Whether the arrivals shuttle is enabled.
@@ -1431,7 +1431,7 @@ namespace Content.Shared.CCVar
         /// The map to use for the arrivals station.
         /// </summary>
         public static readonly CVarDef<string> ArrivalsMap =
-            CVarDef.Create("shuttle.arrivals_map", "/Maps/Misc/terminal.yml", CVar.SERVERONLY);
+            CVarDef.Create("shuttle.arrivals_map", "/Maps/Misc/kosmoport.yml", CVar.SERVERONLY);
 
         /// <summary>
         /// Cooldown between arrivals departures. This should be longer than the FTL time or it will double cycle.
