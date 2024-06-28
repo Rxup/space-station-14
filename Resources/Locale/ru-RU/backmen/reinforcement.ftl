@@ -10,6 +10,8 @@ reinforcement-active-row = [color=yellow]{ $name }[/color] ({ $job }) { $state -
 reinforcement-row = { $name } ({ $job })
 
 reinforcement-console-title = Консоль вызова подкрепления
+handheld-reinforcement-console-title = Ручная консоль вызова подкрепления
+handheld-reinforcement-console-desc = Ручная версия консоли для вызова ПЦК.
 reinforcement-console-brief = Причина вызова
 
 reinforcement-error-list = Ошибка! Список пуск!
