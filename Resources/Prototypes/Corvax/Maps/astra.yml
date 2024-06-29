@@ -2,6 +2,8 @@
   id: CorvaxAstra
   mapName: 'Astra Station'
   mapPath: /Maps/corvax_astra.yml
+  maxRandomOffset: 0
+  randomRotation: false
   minPlayers: 30
   stations:
     Astra:
@@ -71,3 +73,14 @@
 
 
 
+        - type: StationGoal
+          goals:
+          - Shuttle
+          - Singularity
+          - SolarPanels
+          - Artifacts
+          - Bank
+          - Zoo
+          - MiningOutpost
+          - Tesla
+          - VirusologyAmbusol

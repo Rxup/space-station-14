@@ -2,6 +2,8 @@
   id: CorvaxFrame
   mapName: 'Frame Station'
   mapPath: /Maps/corvax_frame.yml
+  maxRandomOffset: 0
+  randomRotation: false
   minPlayers: 0
   maxPlayers: 15
   stations:
@@ -68,3 +70,6 @@
             Brigmedic: [ 0, 1 ] # backmen-Brigmedic
             BKBPLATech: [0, 3] # backmen-BPLA-Silicons
             BKBPLAMED: [0, 3] # backmen-BPLAMED-Silicons
+        - type: StationGoal
+          goals:
+          - FrameRepair
