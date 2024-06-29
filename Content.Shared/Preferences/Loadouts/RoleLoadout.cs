@@ -145,10 +145,9 @@ public sealed partial class RoleLoadout : IEquatable<RoleLoadout>
             // If you put invalid ones first but that's your fault for not using sensible defaults
             if (loadouts.Count < groupProto.MinLimit)
             {
-                var minLimit = Math.Min(groupProto.MinLimit, groupProtoLoadouts.Count);
                 foreach (var protoId in groupProtoLoadouts) // Corvax-Loadout: Use groupProtoLoadouts instead of groupProto.Loadouts
                 {
-                    if (loadouts.Count >= minLimit)
+                    if (loadouts.Count >= groupProto.MinLimit)
                         break;
 
                     if (!protoManager.TryIndex(protoId, out var loadoutProto))

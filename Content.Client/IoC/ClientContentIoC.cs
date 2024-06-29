@@ -3,6 +3,7 @@ using Content.Client.Changelog;
 using Content.Client.Chat.Managers;
 using Content.Client.Clickable;
 using Content.Client.Corvax.TTS;
+using Content.Client.DebugMon;
 using Content.Client.Eui;
 using Content.Client.GhostKick;
 using Content.Client.Launcher;
@@ -54,6 +55,7 @@ namespace Content.Client.IoC
             collection.Register<DocumentParsingManager>();
             collection.Register<ContentReplayPlaybackManager, ContentReplayPlaybackManager>();
             collection.Register<ISharedPlaytimeManager, JobRequirementsManager>();
+            collection.Register<DebugMonitorManager>();
         }
     }
 }
