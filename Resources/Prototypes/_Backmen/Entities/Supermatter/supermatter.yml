@@ -72,3 +72,6 @@
     maxIntensity: 10000
     intensitySlope: 10
     totalIntensity: 10000
+  - type: GuideHelp 
+    guides:
+    - Supermatter
