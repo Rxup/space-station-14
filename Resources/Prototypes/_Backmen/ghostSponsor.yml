@@ -8,6 +8,7 @@
       sprite: Backmen/Mobs/Ghost/ghost_red.rsi
       state: animated-red
       color: "#fff8"
+      unshaded: true
       layers:
         - state: animated-red
 
@@ -21,6 +22,7 @@
       sprite: Backmen/Mobs/Ghost/ghost_lava.rsi
       state: animated-lava
       color: "#fff8"
+      unshaded: true
       layers:
         - state: animated-lava
 
@@ -34,6 +36,7 @@
       sprite: Backmen/Mobs/Ghost/ghost_vip.rsi
       state: animated_orange
       color: "#fff8"
+      unshaded: true
       layers:
         - state: animated_orange
 
@@ -47,6 +50,7 @@
       sprite: Backmen/Mobs/Ghost/ghost_vip.rsi
       state: animated_white
       color: "#fff8"
+      unshaded: true
       layers:
         - state: animated_white
 
@@ -60,6 +64,7 @@
       sprite: Backmen/Mobs/Ghost/ghost_vip.rsi
       state: animated_ash
       color: "#fff8"
+      unshaded: true
       layers:
         - state: animated_ash
 
@@ -73,6 +78,7 @@
       sprite: Backmen/Mobs/Ghost/ghost_vip.rsi
       state: animated_ice
       color: "#fff8"
+      unshaded: true
       layers:
         - state: animated_ice
 
@@ -86,6 +92,7 @@
       sprite: Backmen/Mobs/Ghost/ghost_vip.rsi
       state: animated_superwhite
       color: "#fff8"
+      unshaded: true
       layers:
         - state: animated_superwhite
 
