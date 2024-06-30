@@ -12,14 +12,14 @@
           nameGenerator:
             !type:NanotrasenCentComNameGenerator
             prefixCreator: 'TG'
-        - type: StationJobs
-          availableJobs:
-            BKCCOperator: [ 1, 1]
-            BKCCSecGavna: [ 1, 1]
-            BKCCCargo: [ 1, 2]
-            BKCCSecOfficer: [ 2, 2]
-            BKCCAssistant: [ 2, 4]
-            BKCCAdmiral: [ 0, 0]
+#        - type: StationJobs
+#          availableJobs:
+#            BKCCOperator: [ 1, 1]
+#            BKCCSecGavna: [ 1, 1]
+#            BKCCCargo: [ 1, 2]
+#            BKCCSecOfficer: [ 2, 2]
+#            BKCCAssistant: [ 2, 4]
+#            BKCCAdmiral: [ 0, 0]
 
 - type: gameMap
   id: CentCommv2
@@ -35,14 +35,14 @@
         nameGenerator:
           !type:NanotrasenCentComNameGenerator
           prefixCreator: 'CX'
-      - type: StationJobs
-        availableJobs:
-          BKCCOperator: [ 1, 1]
-          BKCCSecGavna: [ 1, 1]
-          BKCCCargo: [ 1, 2]
-          BKCCSecOfficer: [ 2, 2]
-          BKCCAssistant: [ 2, 4]
-          BKCCAdmiral: [ 0, 0]
+#      - type: StationJobs
+#        availableJobs:
+#          BKCCOperator: [ 1, 1]
+#          BKCCSecGavna: [ 1, 1]
+#          BKCCCargo: [ 1, 2]
+#          BKCCSecOfficer: [ 2, 2]
+#          BKCCAssistant: [ 2, 4]
+#          BKCCAdmiral: [ 0, 0]
 
 - type: gameMap
   id: CentCommv3
@@ -58,12 +58,13 @@
         nameGenerator:
           !type:NanotrasenCentComNameGenerator
           prefixCreator: 'B'
-      - type: StationJobs
-        availableJobs:
-          BKCCOfficial: [ 1, 1]
-          BKCCOperator: [ 1, 1]
-          BKCCSecGavna: [ 1, 1]
-          BKCCCargo: [ 1, 2]
-          BKCCSecOfficer: [ 2, 3]
-          BKCCAssistant: [ 2, 4]
-          BKCCAdmiral: [ 0, 0]
+#      - type: StationJobs
+#        availableJobs:
+#          BKCCOfficial: [ 1, 1]
+#          BKCCOperator: [ 1, 1]
+#          BKCCSecGavna: [ 1, 1]
+#          BKCCCargo: [ 1, 2]
+#          BKCCSecOfficer: [ 2, 3]
+#          BKCCAssistant: [ 2, 4]
+#          BKCCAdmiral: [ 0, 0]
+

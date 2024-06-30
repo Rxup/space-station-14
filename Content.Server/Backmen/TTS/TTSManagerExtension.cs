@@ -160,7 +160,7 @@ public static class TTSManagerExtension
         var reqTime = DateTime.UtcNow;
         try
         {
-            var cts = new CancellationTokenSource(TimeSpan.FromSeconds(4));
+            var cts = new CancellationTokenSource(TimeSpan.FromSeconds(15));
             var response = await _httpClient.PostAsJsonAsync(url, body, cts.Token);
             if (!response.IsSuccessStatusCode)
             {
@@ -188,7 +188,7 @@ public static class TTSManagerExtension
         {
             AnnounceRequestTimings.WithLabels("Error").Observe((DateTime.UtcNow - reqTime).TotalSeconds);
             _sawmill.Error($"Failed of request generation new announce sound for '{text}' speech by '{speaker}' speaker\n{e}");
-            throw new Exception("TTS request failed");
+            throw new Exception("TTS request failed", e);
         }
     }
 

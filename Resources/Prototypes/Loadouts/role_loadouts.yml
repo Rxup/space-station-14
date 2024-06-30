@@ -2,6 +2,7 @@
 - type: roleLoadout
   id: JobCaptain
   groups:
+  - Inventory # Corvax-Loadouts
   - CaptainHead
   - CaptainNeck
   - CaptainJumpsuit
@@ -17,6 +18,7 @@
 - type: roleLoadout
   id: JobHeadOfPersonnel
   groups:
+  - Inventory # Corvax-Loadouts
   - HoPHead
   - HoPNeck
   - HoPJumpsuit
@@ -32,6 +34,7 @@
 - type: roleLoadout
   id: JobPassenger
   groups:
+  - Inventory # Corvax-Loadouts
   - PassengerJumpsuit
   - CommonBackpack
   - PassengerFace
@@ -47,6 +50,7 @@
 - type: roleLoadout
   id: JobBartender
   groups:
+  - Inventory # Corvax-Loadouts
   - BartenderHead
   - BartenderJumpsuit
   - CommonBackpack
@@ -60,6 +64,7 @@
 - type: roleLoadout
   id: JobServiceWorker
   groups:
+  - Inventory # Corvax-Loadouts
   - BartenderJumpsuit
   - CommonBackpack
   - Glasses
@@ -71,6 +76,7 @@
 - type: roleLoadout
   id: JobChef
   groups:
+  - Inventory # Corvax-Loadouts
   - ChefHead
   - ChefMask
   - ChefJumpsuit
@@ -85,29 +91,31 @@
 - type: roleLoadout
   id: JobLibrarian
   groups:
+  - Inventory # Corvax-Loadouts
   - LibrarianJumpsuit
   - CommonBackpack
   - Glasses
-  - Trinkets
   - Medals #backmen
-  - Survival
   - Inventory # Corvax-Loadouts
+  - Survival
+  - Trinkets
 
 - type: roleLoadout
   id: JobLawyer
   groups:
+  - Inventory # Corvax-Loadouts
   - LawyerNeck
   - LawyerJumpsuit
   - CommonBackpack
   - Glasses
-  - Trinkets
   - Medals #backmen
-  - Survival
   - Inventory # Corvax-Loadouts
+  - Trinkets
 
 - type: roleLoadout
   id: JobChaplain
   groups:
+  - Inventory # Corvax-Loadouts
   - ChaplainHead
   - ChaplainMask
   - ChaplainNeck
@@ -115,14 +123,14 @@
   - CommonBackpack
   - ChaplainOuterClothing
   - Glasses
-  - Trinkets
   - Medals #backmen
-  - Survival
   - Inventory # Corvax-Loadouts
+  - Trinkets
 
 - type: roleLoadout
   id: JobJanitor
   groups:
+  - Inventory # Corvax-Loadouts
   - JanitorHead
   - JanitorJumpsuit
   - JanitorGloves
@@ -133,24 +141,24 @@
   - Trinkets
   - Medals #backmen
   - JanitorPlunger
-  - Inventory # Corvax-Loadouts
 
 - type: roleLoadout
   id: JobBotanist
   groups:
+  - Inventory # Corvax-Loadouts
   - BotanistHead
   - BotanistJumpsuit
   - BotanistBackpack
   - BotanistOuterClothing
   - Glasses
   - Medals #backmen
-  - Inventory # Corvax-Loadouts
   - Survival
   - Trinkets
 
 - type: roleLoadout
   id: JobClown
   groups:
+  - Inventory # Corvax-Loadouts
   - ClownHead
   - ClownJumpsuit
   - ClownBackpack
@@ -158,13 +166,13 @@
   - ClownShoes
   - Glasses
   - Medals #backmen
-  - Inventory # Corvax-Loadouts
   - SurvivalClown
   - Trinkets
 
 - type: roleLoadout
   id: JobMime
   groups:
+  - Inventory # Corvax-Loadouts
   - MimeHead
   - MimeMask
   - MimeJumpsuit
@@ -172,13 +180,12 @@
   - MimeOuterClothing
   - Glasses
   - Medals #backmen
-  - Inventory # Corvax-Loadouts
-  - Survival
   - Trinkets
 
 - type: roleLoadout
   id: JobMusician
   groups:
+  - Inventory # Corvax-Loadouts
   - MusicianJumpsuit
   - CommonBackpack
   - MusicianOuterClothing
@@ -187,12 +194,12 @@
   - Trinkets
   - Medals #backmen
   - Instruments
-  - Inventory # Corvax-Loadouts
 
 # Cargo
 - type: roleLoadout
   id: JobQuartermaster
   groups:
+  - Inventory # Corvax-Loadouts
   - QuartermasterHead
   - QuartermasterNeck
   - QuartermasterJumpsuit
@@ -201,13 +208,13 @@
   - QuartermasterShoes
   - Glasses
   - Medals #backmen
-  - Inventory # Corvax-Loadouts
   - Survival
   - Trinkets
 
 - type: roleLoadout
   id: JobCargoTechnician
   groups:
+  - Inventory # Corvax-Loadouts
   - CargoTechnicianHead
   - CargoTechnicianJumpsuit
   - CargoTechnicianBackpack
@@ -215,18 +222,18 @@
   - CargoTechnicianShoes
   - Glasses
   - Medals #backmen
-  - Inventory # Corvax-Loadouts
+  - Survival
   - Trinkets
 
 - type: roleLoadout
   id: JobSalvageSpecialist
   groups:
+  - Inventory # Corvax-Loadouts
   - SalvageSpecialistBackpack
   - SalvageSpecialistOuterClothing
   - SalvageSpecialistShoes
   - Glasses
   - Medals #backmen
-  - Inventory # Corvax-Loadouts
   - Survival
   - Trinkets
 
@@ -234,6 +241,7 @@
 - type: roleLoadout
   id: JobChiefEngineer
   groups:
+  - Inventory # Corvax-Loadouts
   - ChiefEngineerHead
   - ChiefEngineerJumpsuit
   - ChiefEngineerBackpack # Corvax-Loadouts
@@ -241,21 +249,24 @@
   - ChiefEngineerOuterClothing
   - ChiefEngineerShoes
   - Medals #backmen
-  - Inventory # Corvax-Loadouts
   - SurvivalExtended
   - Trinkets
 
 - type: roleLoadout
   id: JobTechnicalAssistant
   groups:
+  - Inventory # Corvax-Loadouts
   - TechnicalAssistantJumpsuit
   - StationEngineerBackpack
   - Medals #backmen
-  - Inventory # Corvax-Loadouts
   - Trinkets
+  - SurvivalExtended
+  - Trinkets
+
 - type: roleLoadout
   id: JobStationEngineer
   groups:
+  - Inventory # Corvax-Loadouts
   - StationEngineerHead
   - StationEngineerJumpsuit
   - StationEngineerBackpack
@@ -263,17 +274,19 @@
   - StationEngineerShoes
   - StationEngineerID
   - Medals #backmen
-  - Inventory # Corvax-Loadouts
   - Trinkets
+  - SurvivalExtended
+  - Trinkets
+
 - type: roleLoadout
   id: JobAtmosphericTechnician
   groups:
+  - Inventory # Corvax-Loadouts
   - AtmosphericTechnicianJumpsuit
   - AtmosphericTechnicianBackpack
   - AtmosphericTechnicianOuterClothing
   - AtmosphericTechnicianShoes
   - Medals #backmen
-  - Inventory # Corvax-Loadouts
   - SurvivalExtended
   - Trinkets
 
@@ -281,6 +294,7 @@
 - type: roleLoadout
   id: JobResearchDirector
   groups:
+  - Inventory # Corvax-Loadouts
   - ResearchDirectorHead
   - ResearchDirectorNeck
   - ResearchDirectorJumpsuit
@@ -290,13 +304,13 @@
   - ResearchDirectorShoes
   - Glasses
   - Medals #backmen
-  - Inventory # Corvax-Loadouts
   - Survival
   - Trinkets
 
 - type: roleLoadout
   id: JobScientist
   groups:
+  - Inventory # Corvax-Loadouts
   - ScientistHead
   - ScientistNeck
   - ScientistJumpsuit
@@ -307,18 +321,17 @@
   - ScientistPDA
   - Glasses
   - Medals #backmen
-  - Inventory # Corvax-Loadouts
   - Survival
   - Trinkets
 
 - type: roleLoadout
   id: JobResearchAssistant
   groups:
+  - Inventory # Corvax-Loadouts
   - ResearchAssistantJumpsuit
   - ScientistBackpack
   - Glasses
   - Medals #backmen
-  - Inventory # Corvax-Loadouts
   - Survival
   - Trinkets
 
@@ -326,6 +339,7 @@
 - type: roleLoadout
   id: JobHeadOfSecurity
   groups:
+  - Inventory # Corvax-Loadouts
   - HeadofSecurityHead
   - HeadofSecurityNeck
   - HeadofSecurityJumpsuit
@@ -336,13 +350,13 @@
   - SecurityOfficerPocket #Backmen
   - SecurityOfficerPocket2 #Backmen
   - Medals #backmen
-  - Inventory # Corvax-Loadouts
   - SurvivalSecurity
   - Trinkets
 
 - type: roleLoadout
   id: JobWarden
   groups:
+  - Inventory # Corvax-Loadouts
   - WardenHead
   - WardenJumpsuit
   - SecurityBackpack
@@ -352,13 +366,13 @@
   - SecurityPocket #Backmen
   - SecurityPocket2 #Backmen
   - Medals #backmen
-  - Inventory # Corvax-Loadouts
   - SurvivalSecurity
   - Trinkets
 
 - type: roleLoadout
   id: JobSecurityOfficer
   groups:
+  - Inventory # Corvax-Loadouts
   - SecurityHead
   - SecurityJumpsuit
   - SecurityBackpack
@@ -369,13 +383,12 @@
   - SecurityPocket #Backmen
   - SecurityPocket2 #Backmen
   - Medals #backmen
-  - Inventory # Corvax-Loadouts
-  - SurvivalSecurity
   - Trinkets
 
 - type: roleLoadout
   id: JobDetective
   groups:
+  - Inventory # Corvax-Loadouts
   - DetectiveHead
   - DetectiveNeck
   - DetectiveJumpsuit
@@ -383,24 +396,23 @@
   - DetectiveOuterClothing
   - SecurityShoes
   - Medals #backmen
-  - Inventory # Corvax-Loadouts
   - SurvivalSecurity
   - Trinkets
 
 - type: roleLoadout
   id: JobSecurityCadet
   groups:
+  - Inventory # Corvax-Loadouts
   - SecurityCadetJumpsuit
   - SecurityBackpack
   - Medals #backmen
-  - Inventory # Corvax-Loadouts
-  - SurvivalSecurity
   - Trinkets
 
 # Medical
 - type: roleLoadout
   id: JobChiefMedicalOfficer
   groups:
+  - Inventory # Corvax-Loadouts
   - ChiefMedicalOfficerHead
   - MedicalMask
   - ChiefMedicalOfficerJumpsuit
@@ -411,13 +423,13 @@
   - ChiefMedicalOfficerShoes
   - Glasses
   - Medals #backmen
-  - Inventory # Corvax-Loadouts
   - SurvivalMedical
   - Trinkets
 
 - type: roleLoadout
   id: JobMedicalDoctor
   groups:
+  - Inventory # Corvax-Loadouts
   - MedicalDoctorHead
   - MedicalMask
   - MedicalDoctorJumpsuit
@@ -428,23 +440,24 @@
   - MedicalDoctorPDA
   - Glasses
   - Medals #backmen
-  - Inventory # Corvax-Loadouts
   - SurvivalMedical
   - Trinkets
 
 - type: roleLoadout
   id: JobMedicalIntern
   groups:
+  - Inventory # Corvax-Loadouts
   - MedicalInternJumpsuit
   - MedicalBackpack
   - Glasses
   - Medals #backmen
-  - Inventory # Corvax-Loadouts
+  - SurvivalMedical
   - Trinkets
 
 - type: roleLoadout
   id: JobChemist
   groups:
+  - Inventory # Corvax-Loadouts
   - MedicalMask
   - ChemistJumpsuit
   - MedicalGloves
@@ -452,13 +465,13 @@
   - ChemistOuterClothing
   - MedicalShoes
   - Medals #backmen
-  - Inventory # Corvax-Loadouts
   - SurvivalMedical
   - Trinkets
 
 - type: roleLoadout
   id: JobParamedic
   groups:
+  - Inventory # Corvax-Loadouts
   - ParamedicHead
   - MedicalMask
   - ParamedicJumpsuit
@@ -468,7 +481,6 @@
   - ParamedicShoes
   - Glasses
   - Medals #backmen
-  - Inventory # Corvax-Loadouts
   - SurvivalMedical
   - Trinkets
 
@@ -476,21 +488,20 @@
 - type: roleLoadout
   id: JobZookeeper
   groups:
+  - Inventory # Corvax-Loadouts
   - CommonBackpack
   - Glasses
   - Medals #backmen
-  - Inventory # Corvax-Loadouts
-  - Survival
   - Trinkets
 
 - type: roleLoadout
   id: JobReporter
   groups:
+  - Inventory # Corvax-Loadouts
   - ReporterJumpsuit
   - CommonBackpack
   - Glasses
   - Medals #backmen
-  - Inventory # Corvax-Loadouts
   - Survival
   - Trinkets
 
@@ -502,17 +513,18 @@
   - Glasses
   - Medals #backmen
   - Inventory # Corvax-Loadouts
+  - Survival
   - Trinkets
 
 - type: roleLoadout
   id: JobBoxer
   groups:
+  - Inventory # Corvax-Loadouts
   - BoxerJumpsuit
   - BoxerGloves
   - CommonBackpack
   - Glasses
   - Medals #backmen
-  - Inventory # Corvax-Loadouts
   - Survival
   - Trinkets
 
