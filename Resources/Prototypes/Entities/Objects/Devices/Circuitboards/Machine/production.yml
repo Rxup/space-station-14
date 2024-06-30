@@ -47,7 +47,7 @@
   id: ProtolatheCashMachineCircuitboard
   parent: BaseMachineCircuitboard
   name: принтер кредитов (машинная плата)
-  description: A machine printed circuit board for a protolathecash.
+  description: машина печатающая фальнишые кредиты.
   components:
     - type: MachineBoard
       prototype: ProtolatheCash

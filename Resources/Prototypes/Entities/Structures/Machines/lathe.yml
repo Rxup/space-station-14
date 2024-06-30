@@ -208,6 +208,7 @@
       - BoxShotgunFlare
       - BoxShotgunSlug
       - CombatKnife
+      - CashMachineCircuitboard
       - MagazineBoxLightRifle
       - MagazineBoxMagnum
       - MagazineBoxPistol
@@ -1281,7 +1282,7 @@
   description: Распечатывает "фальшивые", неофициальные кредиты, в обход систем и бюррократии, за счет бумаги и некоторых связных материалов
   components:
   - type: Sprite
-    sprite: Textures/Backmen/Structures/Machines/protoprint.rsi 
+    sprite: Backmen/Structures/Machines/protoprint.rsi 
     snapCardinals: true
     layers:
     - state: icon
