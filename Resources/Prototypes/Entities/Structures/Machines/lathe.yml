@@ -137,6 +137,7 @@
       - UtilityBelt
       - Fulton
       - FultonBeacon
+      - Paper
       - Pickaxe
       - ModularReceiver
       - AppraisalTool
@@ -1272,3 +1273,39 @@
     staticRecipes:
     - MaterialSheetMeat
     - SheetPaper
+    
+- type: entity
+  id: ProtolatheCash
+  parent: BaseLathe
+  name: Принтер кредитов
+  description: Распечатывает "фальшивые", неофициальные кредиты, в обход систем и бюррократии, за счет бумаги и некоторых связных материалов
+  components:
+  - type: Sprite
+    sprite: Textures/Backmen/Structures/Machines/protoprint.rsi 
+    snapCardinals: true
+    layers:
+    - state: icon
+      map: ["enum.LatheVisualLayers.IsRunning"]
+    - state: unlit
+      shader: unshaded
+      map: ["enum.PowerDeviceVisualLayers.Powered"]
+    - state: inserting
+      map: ["enum.MaterialStorageVisualLayers.Inserting"]
+    - state: panel
+      map: ["enum.WiresVisualLayers.MaintenancePanel"]
+  - type: Machine
+    board: ProtolatheCashMachineCircuitboard
+  - type: MaterialStorage
+    whitelist:
+      tags:
+        - Document
+        - RawMaterial
+  - type: Lathe
+    producingSound: /Audio/Machines/scanning.ogg
+    idleState: icon
+    runningState: building
+    staticRecipes:
+    - SpaceCash
+  - type: EmagLatheRecipes
+    emagStaticRecipes:
+    - SpaceCashemag

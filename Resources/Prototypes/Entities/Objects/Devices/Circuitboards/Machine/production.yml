@@ -42,6 +42,22 @@
         GlassBeaker:
           amount: 2
           defaultPrototype: Beaker
+          
+- type: entity
+  id: ProtolatheCashMachineCircuitboard
+  parent: BaseMachineCircuitboard
+  name: принтер кредитов (машинная плата)
+  description: A machine printed circuit board for a protolathecash.
+  components:
+    - type: MachineBoard
+      prototype: ProtolatheCash
+      stackRequirements:
+        MatterBin: 2
+        Manipulator: 2
+      tagRequirements:
+        GlassBeaker:
+          amount: 2
+          defaultPrototype: Beaker
 
 - type: entity
   parent: BaseMachineCircuitboard

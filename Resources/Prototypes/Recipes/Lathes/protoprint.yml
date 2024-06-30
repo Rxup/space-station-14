@@ -1,0 +1,167 @@
+- type: entity
+  parent: SpaceCash
+  id: FakeSpaceCash
+  name: Ненастоящие кредиты
+  description: Выглядят, как настоящие, но странно пахнут и имеют тускрый окрас, подойдёт для банкомата.
+  components:
+  - type: Stack
+    stackType: FakeCredit
+    count: 1
+    baseLayer: base
+    layerStates:
+    - cash
+    - cash_10
+    - cash_100
+    - cash_500
+    - cash_1000
+    - cash_1000000
+    
+- type: material
+  id: FakeCredit
+  name: speso
+  unit: materials-unit-bill
+  stackEntity: FakeSpaceCash
+  icon: { sprite: /Textures/Objects/Economy/cash.rsi, state: cash }
+  price: 1
+
+- type: stack
+  id: FakeCredit
+  name: speso
+  icon: { sprite: /Textures/Objects/Economy/cash.rsi, state: cash }
+  spawn: FakeSpaceCash
+
+
+- type: entity
+  parent: FakeSpaceCash
+  id: FakeSpaceCash10
+  suffix: 10
+  components:
+  - type: Icon
+    sprite: Objects/Economy/cash.rsi
+    state: cash_10
+  - type: Stack
+    count: 10
+
+- type: entity
+  parent: FakeSpaceCash
+  id: FakeSpaceCash100
+  suffix: 100
+  components:
+  - type: Icon
+    sprite: Objects/Economy/cash.rsi
+    state: cash_100
+  - type: Stack
+    count: 100
+
+- type: entity
+  parent: FakeSpaceCash
+  id: FakeSpaceCash500
+  suffix: 500
+  components:
+  - type: Icon
+    sprite: Objects/Economy/cash.rsi
+    state: cash_500
+  - type: Stack
+    count: 500
+
+- type: entity
+  parent: FakeSpaceCash
+  id: FakeSpaceCash1000
+  suffix: 1000
+  components:
+  - type: Icon
+    sprite: Objects/Economy/cash.rsi
+    state: cash_1000
+  - type: Stack
+    count: 1000
+
+- type: entity
+  parent: FakeSpaceCash
+  id: FakeSpaceCash2500
+  suffix: 2500
+  components:
+  - type: Icon
+    sprite: Objects/Economy/cash.rsi
+    state: cash_1000
+  - type: Stack
+    count: 2500
+
+- type: entity
+  parent: FakeSpaceCash
+  id: FakeSpaceCash5000
+  suffix: 5000
+  components:
+  - type: Icon
+    sprite: Objects/Economy/cash.rsi
+    state: cash_1000
+  - type: Stack
+    count: 5000
+
+- type: entity
+  parent: FakeSpaceCash
+  id: FakeSpaceCash10000
+  suffix: 10000
+  components:
+  - type: Icon
+    sprite: Objects/Economy/cash.rsi
+    state: cash_1000
+  - type: Stack
+    count: 10000
+
+- type: entity
+  parent: FakeSpaceCash
+  id: FakeSpaceCash20000
+  suffix: 20000
+  components:
+  - type: Icon
+    sprite: Objects/Economy/cash.rsi
+    state: cash_1000
+  - type: Stack
+    count: 20000
+
+- type: entity
+  parent: FakeSpaceCash
+  id: FakeSpaceCash30000
+  suffix: 30000
+  components:
+  - type: Icon
+    sprite: Objects/Economy/cash.rsi
+    state: cash_1000
+  - type: Stack
+    count: 30000
+
+- type: entity
+  parent: FakeSpaceCash
+  id: FakeSpaceCash1000000
+  suffix: 1000000
+  components:
+  - type: Icon
+    sprite: Objects/Economy/cash.rsi
+    state: cash_1000000
+  - type: Stack
+    count: 1000000
+
+- type: latheRecipe
+  id: SpaceCash
+  result: FakeSpaceCash100
+  completetime: 3
+  materials:
+    SheetPrinter: 100
+    Cloth: 200
+    Durathread: 50
+    
+- type: latheRecipe
+  id: SpaceCashemag
+  result: FakeSpaceCash1000
+  completetime: 5
+  materials:
+    SheetPrinter: 200
+    Cloth: 500
+    Durathread: 200
+    
+- type: latheRecipe #autolathe
+  id: Paper
+  result: Paper
+  completetime: 2
+  materials:
+    Wood: 30
