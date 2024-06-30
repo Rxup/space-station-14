@@ -129,7 +129,7 @@ public sealed class BlobRuleSystem : GameRuleSystem<BlobRuleComponent>
                     Level = blobRuleComp.Stage
                 }, broadcast: true);
                 return;
-            case BlobStage.Begin when blobCore.Comp.BlobTiles.Count >= 500:
+            case BlobStage.Begin when blobCore.Comp.BlobTiles.Count >= 400:
             {
                 blobRuleComp.Stage = BlobStage.Critical;
                 _chatSystem.DispatchGlobalAnnouncement(Loc.GetString("blob-alert-critical"),
@@ -149,7 +149,7 @@ public sealed class BlobRuleSystem : GameRuleSystem<BlobRuleComponent>
                 }, broadcast: true);
                 return;
             }
-            case BlobStage.Critical when blobCore.Comp.BlobTiles.Count >= 900:
+            case BlobStage.Critical when blobCore.Comp.BlobTiles.Count >= 800:
             {
                 blobRuleComp.Stage = BlobStage.TheEnd;
                 blobCore.Comp.Points = 99999;
