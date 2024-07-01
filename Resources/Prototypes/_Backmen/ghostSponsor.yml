@@ -1,28 +1,30 @@
 ﻿- type: ghostTheme
   id: tier1
   components:
-    - type: Sprite
-      overrideContainerOcclusion: true # Ghosts always show up regardless of where they're contained.
-      noRot: true
-      drawdepth: Ghosts
-      sprite: Backmen/Mobs/Ghost/ghost_red.rsi
-      state: animated-red
-      color: "#fff8"
-      layers:
-        - state: animated-red
+  - type: Sprite
+    overrideContainerOcclusion: true # Ghosts always show up regardless of where they're contained.
+    noRot: true
+    drawdepth: Ghosts
+    sprite: Backmen/Mobs/Ghost/ghost_red.rsi
+    state: animated-red
+    color: "#fff8"
+    layers:
+    - state: animated-red
+      shader: unshaded
 
 - type: ghostTheme
   id: tier2
   components:
-    - type: Sprite
-      overrideContainerOcclusion: true # Ghosts always show up regardless of where they're contained.
-      noRot: true
-      drawdepth: Ghosts
-      sprite: Backmen/Mobs/Ghost/ghost_lava.rsi
-      state: animated-lava
-      color: "#fff8"
-      layers:
-        - state: animated-lava
+  - type: Sprite
+    overrideContainerOcclusion: true # Ghosts always show up regardless of where they're contained.
+    noRot: true
+    drawdepth: Ghosts
+    sprite: Backmen/Mobs/Ghost/ghost_lava.rsi
+    state: animated-lava
+    color: "#fff8"
+    layers:
+    - state: animated-lava
+      shader: unshaded
 
 - type: ghostTheme
   id: tier01
@@ -35,7 +37,8 @@
       state: animated_orange
       color: "#fff8"
       layers:
-        - state: animated_orange
+      - state: animated_orange
+        shader: unshaded
 
 - type: ghostTheme
   id: tier02
@@ -48,7 +51,8 @@
       state: animated_white
       color: "#fff8"
       layers:
-        - state: animated_white
+      - state: animated_white
+        shader: unshaded
 
 - type: ghostTheme
   id: tier03
@@ -61,7 +65,8 @@
       state: animated_ash
       color: "#fff8"
       layers:
-        - state: animated_ash
+      - state: animated_ash
+        shader: unshaded
 
 - type: ghostTheme
   id: tier04
@@ -74,7 +79,8 @@
       state: animated_ice
       color: "#fff8"
       layers:
-        - state: animated_ice
+      - state: animated_ice
+        shader: unshaded
 
 - type: ghostTheme
   id: tier05
@@ -87,7 +93,8 @@
       state: animated_superwhite
       color: "#fff8"
       layers:
-        - state: animated_superwhite
+      - state: animated_superwhite
+        shader: unshaded
 
 - type: ghostTheme
   id: tier06
@@ -100,7 +107,8 @@
       state: animated_star
       color: "#fff8"
       layers:
-        - state: animated_star
+      - state: animated_star
+        shader: unshaded
 
 - type: ghostTheme
   id: tier07
@@ -113,7 +121,8 @@
       state: animated_faceless
       color: "#fff8"
       layers:
-        - state: animated_faceless
+      - state: animated_faceless
+        shader: unshaded
 
 - type: ghostTheme
   id: tier08
@@ -126,4 +135,5 @@
       state: animated_kaiju
       color: "#fff8"
       layers:
-        - state: animated_kaiju
+      - state: animated_kaiju
+        shader: unshaded
