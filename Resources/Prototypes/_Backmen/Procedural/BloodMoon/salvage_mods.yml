@@ -1,0 +1,6 @@
+﻿# Dungeons
+- type: salvageDungeonMod
+  id: TempleOfBloodMoon
+  proto: TempleOfBloodMoon
+  biomes:
+  - Lava
