@@ -146,7 +146,7 @@
   icon: { sprite: Backmen/Objects/Weapons/Melee/brassknuckles.rsi, state: icon }
   productEntity: ClothingHandsGlovesBrassknuckles
   cost:
-    Telecrystal: 3
+    Telecrystal: 1
   categories:
   - UplinkWeaponry
 
