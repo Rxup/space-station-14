@@ -32,7 +32,7 @@ public sealed class CallSpecForcesCommand : IConsoleCommand
                 _adminLogger.Add(
                     LogType.AdminMessage,
                     LogImpact.Extreme,
-                    $"Admin {(shell.Player != null ? shell.Player.Name : "An administrator")} SpecForcesSystem call {args[0]}");
+                    $"Admin {(shell.Player != null ? shell.Player.Name : "An administrator")} called SpecForceTeam {args[0]}.");
                 break;
             case 2:
                 if (!TryParse(args[1], out var forceCountExtra))
@@ -45,7 +45,7 @@ public sealed class CallSpecForcesCommand : IConsoleCommand
                 _adminLogger.Add(
                     LogType.AdminMessage,
                     LogImpact.Extreme,
-                    $"Admin {(shell.Player != null ? shell.Player.Name : "An administrator")} called SpecForceTeam {args[0]} AND forced countExtra to {forceCountExtra}");
+                    $"Admin {(shell.Player != null ? shell.Player.Name : "An administrator")} called SpecForceTeam {args[0]} AND forced countExtra to {forceCountExtra}.");
                 break;
             default:
                 shell.WriteLine(Loc.GetString("shell-wrong-arguments-number"));
@@ -57,7 +57,7 @@ public sealed class CallSpecForcesCommand : IConsoleCommand
         // Index all SpecForceTeams prototypes and write them down in completion result.
         return args.Length switch
         {
-            2 => CompletionResult.FromHint("Сколько ролей заспавнить, обходя стандартный подсчёт"),
+            2 => CompletionResult.FromHint("Сколько доп. ролей заспавнить, обходя стандартный подсчёт (число от 0 до 15)"),
             1 => CompletionResult.FromHintOptions(
                 CompletionHelper.PrototypeIDs<SpecForceTeamPrototype>(true, _prototypes),
                 "Тип вызова"),
