@@ -93,6 +93,6 @@
             CargoTechnician: [ 2, 3 ]
           #silicon
             SAI: [ 1, 1 ]
-            BKBPLATech: [0, 2]
-            BKBPLAMED: [0, 2]
+            #BKBPLATech: [0, 2]
+            #BKBPLAMED: [0, 2]
             Borg: [ 1, 2 ]
