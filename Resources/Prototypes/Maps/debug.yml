@@ -27,6 +27,11 @@
         - type: StationJobs
           availableJobs:
             Captain: [ -1, -1 ]
+        - type: StationBlobConfig
+          stageBegin: 10
+          stageCritical: 20
+          stageTheEnd: 30
+          specForceTeam: RXBZZ
 
 - type: gameMap
   id: TestTeg

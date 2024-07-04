@@ -14,6 +14,7 @@ using Content.Shared.Storage;
 using Robust.Shared.Utility;
 using System.Threading;
 using Content.Server.Actions;
+using Content.Server.Backmen.Blob.Components;
 using Content.Server.Backmen.Blob.Rule;
 using Content.Server.Backmen.GameTicking.Rules.Components;
 using Content.Server.Ghost.Roles.Components;
@@ -64,7 +65,9 @@ public sealed class SpecForcesSystem : EntitySystem
         if (ev.Level != BlobStage.Critical)
             return;
 
-        if (!_prototypes.TryIndex<SpecForceTeamPrototype>(Rxbzz, out var prototype) ||
+        var specForceTeam = CompOrNull<StationBlobConfigComponent>(ev.Station)?.SpecForceTeam ?? Rxbzz;
+
+        if (!_prototypes.TryIndex<SpecForceTeamPrototype>(specForceTeam, out var prototype) ||
             !CallOps(Rxbzz, "ДСО", GetOptIdCount(prototype) + 2))
         {
             Log.Error($"Failed to spawn {Rxbzz} SpecForce for the blob GameRule!");
@@ -110,7 +113,11 @@ public sealed class SpecForcesSystem : EntitySystem
     /// <returns>Returns true if call was successful.</returns>
     public bool CallOps(ProtoId<SpecForceTeamPrototype> protoId, string source = "", int? forceCountExtra = null)
     {
-        _callLock.EnterWriteLock();
+        if (!_callLock.TryEnterWriteLock(-1))
+        {
+            Log.Warning("SpecForces is busy!");
+            return false;
+        }
         try
         {
             if (_gameTicker.RunLevel != GameRunLevel.InRound)
