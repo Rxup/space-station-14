@@ -69,7 +69,7 @@ public sealed class SpecForcesSystem : EntitySystem
         var specForceTeam = blobConfig?.SpecForceTeam ?? Rxbzz;
 
         if (!_prototypes.TryIndex(specForceTeam, out var prototype) ||
-            !CallOps(prototype.ID, "ДСО", (int?) (GetOptIdCount(prototype) * blobConfig?.SpecForceMultiplier)))
+            !CallOps(prototype.ID, "ДСО"))
         {
             Log.Error($"Failed to spawn {Rxbzz} SpecForce for the blob GameRule!");
         }
@@ -221,16 +221,31 @@ public sealed class SpecForcesSystem : EntitySystem
             spawns.Add(Transform(shuttle).Coordinates);
         }
 
+        SpawnGuaranteed(proto, spawns);
+        SpawnSpecForces(proto, spawns, forceCountExtra);
+    }
+
+    private void SpawnGuaranteed(SpecForceTeamPrototype proto, List<EntityCoordinates> spawns)
+    {
+        // If specForceSpawn is empty, we can't continue
+        if (proto.GuaranteedSpawn == null)
+            return;
+
         // Spawn Guaranteed SpecForces from the prototype.
         var toSpawnGuaranteed = EntitySpawnCollection.GetSpawns(proto.GuaranteedSpawn, _random);
 
-        var countGuaranteed = 0;
         foreach (var mob in toSpawnGuaranteed)
         {
             var spawned = SpawnEntity(mob, _random.Pick(spawns), proto);
             Log.Info($"Successfully spawned {ToPrettyString(spawned)} Static SpecForce.");
-            countGuaranteed++;
         }
+    }
+
+    private void SpawnSpecForces(SpecForceTeamPrototype proto, List<EntityCoordinates> spawns, int? forceCountExtra)
+    {
+        // If specForceSpawn is empty, we can't continue
+        if (proto.SpecForceSpawn == null)
+            return;
 
         // Count how many other forces there should be.
         var countExtra = GetOptIdCount(proto);
@@ -243,8 +258,6 @@ public sealed class SpecForcesSystem : EntitySystem
 
         // Either zero or bigger than zero, no negatives
         countExtra = Math.Max(0, countExtra);
-
-        Log.Debug($"Guaranteed spawned static {countGuaranteed} SpecForces and opt-in {countExtra} more.");
 
         // Spawn Guaranteed SpecForces from the prototype.
         // If all mobs from the list are spawned and we still have free slots, restart the cycle again.

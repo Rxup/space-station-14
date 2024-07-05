@@ -3,12 +3,28 @@ using Content.Server.Spawners.Components;
 using Content.Shared.Storage;
 using Robust.Shared.Audio;
 using Robust.Shared.Prototypes;
+using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype.Array;
 
 namespace Content.Server.Backmen.SpecForces;
 
 [Prototype("specForceTeam")]
-public sealed class SpecForceTeamPrototype : IPrototype
+public sealed partial class SpecForceTeamPrototype : IPrototype, IInheritingPrototype
 {
+    /// <summary>
+    /// Name of the SpecForceTeam that will be shown at the round end manifest.
+    /// </summary>
+    [ViewVariables]
+    [ParentDataField(typeof(AbstractPrototypeIdArraySerializer<EntityPrototype>))]
+    public string[]? Parents { get; }
+
+    /// <summary>
+    /// Is that SpecForceTeam is abstract.
+    /// </summary>
+    [ViewVariables]
+    [NeverPushInheritance]
+    [AbstractDataField]
+    public bool Abstract { get; }
+
     [ViewVariables]
     [IdDataField]
     public string ID { get; } = default!;
@@ -76,12 +92,12 @@ public sealed class SpecForceTeamPrototype : IPrototype
     /// </summary>
     [ViewVariables]
     [DataField("guaranteedSpawn")]
-    public List<EntitySpawnEntry> GuaranteedSpawn = default!;
+    public List<EntitySpawnEntry>? GuaranteedSpawn;
     /// <summary>
     /// SpecForces that will be spawned using the spawnPerPlayers variable.
     /// Ghost roles will spawn by the order they arranged in list.
     /// </summary>
     [ViewVariables]
     [DataField("specForceSpawn")]
-    public List<EntitySpawnEntry> SpecForceSpawn = default!;
+    public List<EntitySpawnEntry>? SpecForceSpawn;
 }

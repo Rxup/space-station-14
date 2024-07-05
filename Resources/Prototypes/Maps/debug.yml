@@ -32,8 +32,7 @@
           stageBegin: 10
           stageCritical: 20
           stageTheEnd: 30
-          specForceTeam: RXBZZ
-          specForceMultiplier: 2.5
+          specForceTeam: RXBZZBlobBig
         # backmen blob-config-end
 
 - type: gameMap

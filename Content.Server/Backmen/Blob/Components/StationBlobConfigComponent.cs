@@ -19,8 +19,5 @@ public sealed partial class StationBlobConfigComponent : Component
     public int StageTheEnd { get; set; } = DefaultStageEnd;
 
     [DataField("specForceTeam")]
-    public ProtoId<SpecForceTeamPrototype>? SpecForceTeam { get; set; }
-
-    [DataField("specForceMultiplier")]
-    public float SpecForceMultiplier { get; set; } = 1.0f;
+    public ProtoId<SpecForceTeamPrototype>? SpecForceTeam { get; set; } = "RXBZZBlobDefault";
 }
