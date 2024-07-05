@@ -23,7 +23,7 @@ public sealed class CargoTest
     [
         // This is ignored because it is explicitly intended to be able to sell for more than it costs.
         //new("FunCrateGambling")
-    };
+    ];
 
     [Test]
     public async Task NoCargoOrderArbitrage()

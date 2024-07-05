@@ -17,18 +17,18 @@
           emergencyShuttlePath: /Maps/Shuttles/emergency_courser.yml
         - type: GridSpawn
           groups:
-            trade:
+            trade: !type:GridSpawnGroup
               addComponents:
                 - type: ArrivalsProtectGrid
                 - type: ProtectedGrid
                 - type: TradeStation
               paths:
                 - /Maps/Shuttles/trading_outpost.yml
-            mining:
+            mining: !type:GridSpawnGroup
               paths:
               - /Maps/Backmen/Grids/discoverer.yml # backmen-aspid-salvage-shuttle
             # Spawn last
-            ruins:
+            ruins: !type:GridSpawnGroup
               hide: true
               nameGrid: true
               minCount: 2

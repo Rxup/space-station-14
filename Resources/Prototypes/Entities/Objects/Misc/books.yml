@@ -370,10 +370,10 @@
   - type: Tag
     tags:
     - Book
-  - type: GuideHelp
-    openOnActivation: true
-    guides:
-    - SpaceLaw
+  #- type: GuideHelp
+  #  openOnActivation: true
+  #  guides:
+  #  - SpaceLaw
   - type: MeleeWeapon # so you can beat stupid cadets
     soundHit:
       collection: Punch
