@@ -14,7 +14,7 @@ public sealed partial class SpecForceTeamPrototype : IPrototype, IInheritingProt
     /// Name of the SpecForceTeam that will be shown at the round end manifest.
     /// </summary>
     [ViewVariables]
-    [ParentDataField(typeof(AbstractPrototypeIdArraySerializer<EntityPrototype>))]
+    [ParentDataField(typeof(AbstractPrototypeIdArraySerializer<SpecForceTeamPrototype>))]
     public string[]? Parents { get; }
 
     /// <summary>

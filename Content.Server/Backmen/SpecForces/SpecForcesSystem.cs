@@ -71,7 +71,7 @@ public sealed class SpecForcesSystem : EntitySystem
         if (!_prototypes.TryIndex(specForceTeam, out var prototype) ||
             !CallOps(prototype.ID, "ДСО"))
         {
-            Log.Error($"Failed to spawn {Rxbzz} SpecForce for the blob GameRule!");
+            Log.Error($"Failed to spawn {specForceTeam} SpecForce for the blob GameRule!");
         }
     }
 
