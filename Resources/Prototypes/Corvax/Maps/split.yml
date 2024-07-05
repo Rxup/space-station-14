@@ -64,6 +64,11 @@
             CargoTechnician: [ 3, 3 ]
             # backmen
             SAI: [1, 1] # backmen-SAI
+        - type: StationGoal
+          goals:
+            - Artifacts
+            - XenobiologyRepair
+            - VirusologyAmbusol
     Payback:
       stationProto: NanotrasenStationNoArrivals
       components:
@@ -122,6 +127,9 @@
             Prisoner: [ 3, 6]
             SAI: [1, 1] # backmen-SAI
             Brigmedic: [ 0, 1 ] # backmen-Brigmedic
+        - type: StationGoal
+          goals:
+            - SectorSecurity
     Lumber:
       stationProto: NanotrasenStationNoArrivals
       components:
@@ -196,3 +204,11 @@
             CargoTechnician: [ 3, 4 ]
             # backmen
             SAI: [1, 1] # backmen-SAI
+        - type: StationGoal
+          goals:
+            - Shuttle
+            - Singularity
+            - SolarPanels
+            - Zoo
+            - MiningOutpost
+            - Tesla

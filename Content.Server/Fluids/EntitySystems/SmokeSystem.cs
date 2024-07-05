@@ -4,6 +4,7 @@ using Content.Server.Body.Systems;
 using Content.Server.Chemistry.Containers.EntitySystems;
 using Content.Server.Chemistry.ReactionEffects;
 using Content.Server.Explosion.EntitySystems;
+using Content.Server.EntityEffects.Effects;
 using Content.Server.Spreader;
 using Content.Shared.Chemistry;
 using Content.Shared.Chemistry.Components;
