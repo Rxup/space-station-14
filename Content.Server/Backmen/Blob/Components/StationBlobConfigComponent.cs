@@ -1,4 +1,5 @@
-﻿using Content.Server.Backmen.SpecForces;
+﻿using System.ComponentModel.DataAnnotations;
+using Content.Server.Backmen.SpecForces;
 using Robust.Shared.Prototypes;
 
 namespace Content.Server.Backmen.Blob.Components;
@@ -19,4 +20,7 @@ public sealed partial class StationBlobConfigComponent : Component
 
     [DataField("specForceTeam")]
     public ProtoId<SpecForceTeamPrototype>? SpecForceTeam { get; set; }
+
+    [DataField("specForceMultiplier")]
+    public float SpecForceMultiplier { get; set; } = 1.0f;
 }

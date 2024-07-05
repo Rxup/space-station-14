@@ -65,10 +65,11 @@ public sealed class SpecForcesSystem : EntitySystem
         if (ev.Level != BlobStage.Critical)
             return;
 
-        var specForceTeam = CompOrNull<StationBlobConfigComponent>(ev.Station)?.SpecForceTeam ?? Rxbzz;
+        var blobConfig = CompOrNull<StationBlobConfigComponent>(ev.Station);
+        var specForceTeam = blobConfig?.SpecForceTeam ?? Rxbzz;
 
-        if (!_prototypes.TryIndex<SpecForceTeamPrototype>(specForceTeam, out var prototype) ||
-            !CallOps(Rxbzz, "ДСО", GetOptIdCount(prototype) + 2))
+        if (!_prototypes.TryIndex(specForceTeam, out var prototype) ||
+            !CallOps(prototype.ID, "ДСО", (int?) (GetOptIdCount(prototype) * blobConfig?.SpecForceMultiplier)))
         {
             Log.Error($"Failed to spawn {Rxbzz} SpecForce for the blob GameRule!");
         }

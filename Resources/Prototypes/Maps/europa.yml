@@ -69,3 +69,9 @@
             Prisoner: [ 2, 3]
             Brigmedic: [ 0, 1 ] # backmen-Brigmedic
             SAI: [1, 1] # backmen-SAI
+        # backmen blob-config-start SMALL+
+        - type: StationBlobConfig
+          stageBegin: 25
+          stageCritical: 350
+          stageTheEnd: 700
+        # backmen blob-config-end

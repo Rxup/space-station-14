@@ -96,3 +96,9 @@
             #BKBPLATech: [0, 2]
             #BKBPLAMED: [0, 2]
             Borg: [ 1, 2 ]
+        # backmen blob-config-start LOW
+        - type: StationBlobConfig
+          stageBegin: 15
+          stageCritical: 200
+          stageTheEnd: 400
+        # backmen blob-config-end
