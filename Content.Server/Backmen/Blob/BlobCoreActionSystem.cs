@@ -8,6 +8,7 @@ using Content.Server.Destructible;
 using Content.Server.Emp;
 using Content.Server.Explosion.EntitySystems;
 using Content.Shared.Backmen.Blob.Components;
+using Content.Shared.Backmen.CCVar;
 using Content.Shared.Damage;
 using Content.Shared.Interaction;
 using Content.Shared.Item;
@@ -19,6 +20,7 @@ using Robust.Server.Audio;
 using Robust.Server.GameObjects;
 using Robust.Server.Physics;
 using Robust.Shared.Audio;
+using Robust.Shared.Configuration;
 using Robust.Shared.CPUJob.JobQueues;
 using Robust.Shared.CPUJob.JobQueues.Queues;
 using Robust.Shared.Map;
@@ -31,6 +33,7 @@ namespace Content.Server.Backmen.Blob;
 
 public sealed class BlobCoreActionSystem : EntitySystem
 {
+    [Dependency] private readonly IConfigurationManager _cfg = default!;
     [Dependency] private readonly SharedPopupSystem _popup = default!;
     [Dependency] private readonly IRobustRandom _random = default!;
     [Dependency] private readonly BlobCoreSystem _blobCoreSystem = default!;
@@ -157,6 +160,8 @@ public sealed class BlobCoreActionSystem : EntitySystem
             if (tileRef.Tile.IsEmpty)
             {
                 targetTileEmpty = true;
+                if (!_cfg.GetCVar(CCVars.BlobCanGrowInSpace))
+                    return;
             }
 
             if (_mapSystem.GetAnchoredEntities(gridUid.Value, grid, tileRef.GridIndices).Any(_tileQuery.HasComponent))

@@ -110,6 +110,35 @@
   - type: AccessReader
     access: [["CCOfficer"]]
 
+- type: entity
+  parent: BaseItem
+  id: HandheldReinforcementCentCom
+  name: handheld-reinforcement-console-title
+  description: handheld-reinforcement-console-desc
+  components:
+  - type: ReinforcementConsole
+    min: 1
+    max: 3
+    available:
+    - BKCCOfficial
+    - BKCCSecOfficer
+  - type: UserInterface
+    interfaces:
+      enum.ReinforcementConsoleKey.Key:
+        type: ReinforcementConsoleBoundUserInterface
+  - type: ActivatableUI
+    key: enum.ReinforcementConsoleKey.Key
+    singleUser: true
+  - type: Sprite
+    sprite: Backmen/Objects/Devices/pda_modern.rsi
+    state: pda-captain
+  - type: PointLight
+    radius: 1.5
+    energy: 1.6
+    color: "#1f8c28"
+  - type: AccessReader
+    access: [["Captain"]]
+
  # graph TODO: переместить в следуйщий раз
 
 - type: constructionGraph

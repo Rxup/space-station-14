@@ -2,6 +2,8 @@
   id: CorvaxPaper
   mapName: 'Paper Station'
   mapPath: /Maps/corvax_paper.yml
+  maxRandomOffset: 0
+  randomRotation: false
   minPlayers: 20
   maxPlayers: 50
   stations:
@@ -66,6 +68,6 @@
             Prisoner: [ 3, 3]
             SAI: [1, 1] # backmen-SAI
             Brigmedic: [ 0, 1 ] # backmen-Brigmedic
-            BKBPLATech: [0, 3] # backmen-BPLA-Silicons
-            BKBPLAMED: [0, 3] # backmen-BPLAMED-Silicons
+            #BKBPLATech: [0, 3] # backmen-BPLA-Silicons
+            #BKBPLAMED: [0, 3] # backmen-BPLAMED-Silicons
 
