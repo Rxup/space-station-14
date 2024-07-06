@@ -69,4 +69,10 @@
             Deliveryman: [ 0, 1 ] # backmen-delivery
             Prisoner: [ 3, 3] # backmen-Prisoner
             SAI: [1, 1] # backmen-SAI
-
+        # backmen blob-config-start HUGE
+        - type: StationBlobConfig
+          stageBegin: 40
+          stageCritical: 450
+          stageTheEnd: 900
+          specForceTeam: RXBZZBlobBig
+        # backmen blob-config-end
