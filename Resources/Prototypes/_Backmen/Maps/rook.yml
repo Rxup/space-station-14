@@ -17,24 +17,24 @@
           emergencyShuttlePath: /Maps/Backmen/Shuttles/emergency_rook.yml
         - type: GridSpawn
           groups:
-            trade:
+            trade: !type:GridSpawnGroup
               addComponents:
                 - type: ArrivalsProtectGrid
                 - type: ProtectedGrid
                 - type: TradeStation
               paths:
                 - /Maps/Shuttles/trading_outpost.yml
-            mining:
+            mining: !type:GridSpawnGroup
               paths:
               - /Maps/Backmen/Shuttles/nt-bishop.yml # backmen-rook-salvage-shuttle
-            ruin: # backmen-science-ruin
+            ruin: !type:GridSpawnGroup # backmen-science-ruin
               hide: true
               nameGrid: true
               stationGrid: false
               paths:
               - /Maps/Backmen/Grids/ruin_science.yml
             # Spawn last
-            ruins:
+            ruins: !type:GridSpawnGroup
               hide: true
               nameGrid: true
               minCount: 2
