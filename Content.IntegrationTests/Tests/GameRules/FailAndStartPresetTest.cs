@@ -115,6 +115,8 @@ public sealed class FailAndStartPresetTest
         server.CfgMan.SetCVar(CCVars.GameLobbyFallbackEnabled, true);
         server.CfgMan.SetCVar(CCVars.GameLobbyDefaultPreset, "secret");
         server.System<TestRuleSystem>().Run = false;
+        await pair.RunTicksSync(10);
+        await pair.ReallyBeIdle();
         await pair.CleanReturnAsync();
     }
 }
