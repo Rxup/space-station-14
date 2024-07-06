@@ -1,5 +1,6 @@
 using Content.Shared.Chemistry.Reagent;
 using Content.Server.Backmen.Abilities.Psionics;
+using Content.Shared.EntityEffects;
 using JetBrains.Annotations;
 using Robust.Shared.Prototypes;
 
@@ -9,18 +10,20 @@ namespace Content.Server.Backmen.Chemistry.ReagentEffects;
 /// Rerolls psionics once.
 /// </summary>
 [UsedImplicitly]
-public sealed partial class ChemRemovePsionic : ReagentEffect
+public sealed partial class ChemRemovePsionic : EntityEffect
 {
+    public override bool ShouldLog => true;
+
     protected override string? ReagentEffectGuidebookText(IPrototypeManager prototype, IEntitySystemManager entSys)
         => Loc.GetString("reagent-effect-guidebook-chem-remove-psionic", ("chance", Probability));
 
-    public override void Effect(ReagentEffectArgs args)
+    public override void Effect(EntityEffectBaseArgs args)
     {
-        if (args.Scale != 1f)
+        if (args is EntityEffectReagentArgs reagentArgs && reagentArgs.Scale != 1f)
             return;
 
         var psySys = args.EntityManager.EntitySysManager.GetEntitySystem<PsionicAbilitiesSystem>();
 
-        psySys.RemovePsionics(args.SolutionEntity);
+        psySys.RemovePsionics(args.TargetEntity);
     }
 }

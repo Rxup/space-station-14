@@ -14,7 +14,7 @@
             prefixCreator: 'MT'
         - type: GridSpawn
           groups:
-            trade:
+            trade: !type:GridSpawnGroup
               addComponents:
                 - type: ProtectedGrid
                 - type: TradeStation
@@ -70,6 +70,11 @@
           stageCritical: 300
           stageTheEnd: 600
         # backmen blob-config-end
+        - type: StationGoal
+          goals:
+            - Artifacts
+            - XenobiologyRepair
+            - VirusologyAmbusol
     Payback:
       stationProto: NanotrasenStationNoArrivals
       components:
@@ -80,7 +85,7 @@
             prefixCreator: 'MT'
         - type: GridSpawn
           groups:
-            trade:
+            trade: !type:GridSpawnGroup
               addComponents:
                 - type: ProtectedGrid
                 - type: TradeStation
@@ -134,6 +139,9 @@
           stageCritical: 300
           stageTheEnd: 600
         # backmen blob-config-end
+        - type: StationGoal
+          goals:
+            - SectorSecurity
     Lumber:
       stationProto: NanotrasenStationNoArrivals
       components:
@@ -144,18 +152,18 @@
             prefixCreator: 'MT'
         - type: GridSpawn
           groups:
-            trade:
+            trade: !type:GridSpawnGroup
               addComponents:
                 - type: ProtectedGrid
                 - type: TradeStation
                 - type: ArrivalsProtectGrid
               paths:
                 - /Maps/Shuttles/trading_outpost.yml
-            mining:
+            mining: !type:GridSpawnGroup
               paths:
               - /Maps/Shuttles/corvax_mining.yml
             # Spawn last
-            ruins:
+            ruins: !type:GridSpawnGroup
               hide: true
               nameGrid: true
               minCount: 3
@@ -214,3 +222,11 @@
           stageCritical: 300
           stageTheEnd: 600
         # backmen blob-config-end
+        - type: StationGoal
+          goals:
+            - Shuttle
+            - Singularity
+            - SolarPanels
+            - Zoo
+            - MiningOutpost
+            - Tesla

@@ -24,6 +24,8 @@
     ClothingHeadHatOutlawHat: 1
     ClothingHeadHatTophat: 1
     # Corvax-LawyerDrip-End
+    BriefcaseBrown: 2
+    BookSpaceLaw: 3
     LuxuryPen: 2
   contrabandInventory:
     ClothingOuterRobesJudge: 1
