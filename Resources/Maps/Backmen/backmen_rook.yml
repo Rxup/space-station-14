@@ -33498,7 +33498,6 @@ entities:
   - uid: 1265
     components:
     - type: Transform
-      rot: 1.5707963267948966 rad
       pos: 19.5,-9.5
       parent: 2
     - type: DeviceLinkSink

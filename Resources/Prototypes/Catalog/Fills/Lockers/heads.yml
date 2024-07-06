@@ -352,6 +352,7 @@
       - id: AntiPsychicKnife # backmen
       - id: BookBusido # Corvax-Books
       - id: ClothingHeadCage # backmen
+      - id: BookSpaceLaw
 
 - type: entity
   id: LockerHeadOfSecurityFilled
@@ -399,6 +400,7 @@
       - id: WeaponMultiphaseEnergyGun
       - id: AntiPsychicKnife # backmen
       - id: ClothingHeadCage # backmen
+      - id: BookSpaceLaw
 
 - type: entity
   id: LockerFreezerVaultFilled

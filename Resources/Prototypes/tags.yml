@@ -548,6 +548,9 @@
 - type: Tag
   id: DrinkSpaceGlue
 
+- type: Tag 
+  id: Dropper
+
 - type: Tag
   id: Duck
 
@@ -625,6 +628,9 @@
 
 - type: Tag
   id: GasScrubber
+
+- type: Tag
+  id: GasTank
 
 - type: Tag
   id: GasVent
