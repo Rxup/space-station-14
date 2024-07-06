@@ -92,12 +92,12 @@ public sealed partial class SpecForceTeamPrototype : IPrototype, IInheritingProt
     /// </summary>
     [ViewVariables]
     [DataField("guaranteedSpawn")]
-    public List<EntitySpawnEntry>? GuaranteedSpawn;
+    public List<EntitySpawnEntry> GuaranteedSpawn = new();
     /// <summary>
     /// SpecForces that will be spawned using the spawnPerPlayers variable.
     /// Ghost roles will spawn by the order they arranged in list.
     /// </summary>
     [ViewVariables]
     [DataField("specForceSpawn")]
-    public List<EntitySpawnEntry>? SpecForceSpawn;
+    public List<EntitySpawnEntry> SpecForceSpawn= new();
 }

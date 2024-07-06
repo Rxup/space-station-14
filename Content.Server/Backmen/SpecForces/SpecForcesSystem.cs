@@ -228,7 +228,7 @@ public sealed class SpecForcesSystem : EntitySystem
     private void SpawnGuaranteed(SpecForceTeamPrototype proto, List<EntityCoordinates> spawns)
     {
         // If specForceSpawn is empty, we can't continue
-        if (proto.GuaranteedSpawn == null)
+        if (proto.GuaranteedSpawn.Count == 0)
             return;
 
         // Spawn Guaranteed SpecForces from the prototype.
@@ -244,7 +244,7 @@ public sealed class SpecForcesSystem : EntitySystem
     private void SpawnSpecForces(SpecForceTeamPrototype proto, List<EntityCoordinates> spawns, int? forceCountExtra)
     {
         // If specForceSpawn is empty, we can't continue
-        if (proto.SpecForceSpawn == null)
+        if (proto.SpecForceSpawn.Count == 0)
             return;
 
         // Count how many other forces there should be.
