@@ -11,7 +11,7 @@
   meltingPoint: 170.0
   metabolisms:
     Narcotic:
-      metabolismRate: 0.5
+      metabolismRate: 1
       effects:
       - !type:MovespeedModifier # This is frickin' fast
         walkSpeedModifier: 1.5
@@ -19,10 +19,10 @@
       - !type:HealthChange
         conditions:
           - !type:ReagentThreshold
-            min: 16
+            min: 30
         damage: # If you get robust too much, you can go to hell!
           types:
-            Poison: 4
+            Poison: 3
       - !type:GenericStatusEffect
           key: Stutter
           component: StutteringAccent
@@ -46,14 +46,14 @@
         type: Local
         probability: 0.10
     Medicine:
-      metabolismRate: 0.5
+      metabolismRate: 1
       effects:
         - !type:ResetNarcolepsy
         - !type:SatiateHunger
           factor: 1.0
         - !type:SatiateThirst
           factor: 1.0
-        - !type:ModifyBleedAmount # Tranexamic acid in recipe, so it's also stops bleeding, but not that efficient
+        - !type:ModifyBleedAmount
           amount: -1
         - !type:HealthChange
           damage:
