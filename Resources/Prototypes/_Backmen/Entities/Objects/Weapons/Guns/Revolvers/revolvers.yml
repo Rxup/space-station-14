@@ -84,9 +84,9 @@
   description: Uses .45 magnum. Timeless design, from antiquity to the future. This one is well known among the police as a versatile and unpretentious weapon.
   components:
   - type: Sprite
-    sprite: Backmen/Objects/Weapons/Gunsx64/Revolver/ny762.rsi
+    sprite: Backmen/Objects/Weapons/Gunsx64/Revolver/rebota.rsi
   - type: Clothing
-    sprite: Backmen/Objects/Weapons/Gunsx64/Revolver/ny762.rsi
+    sprite: Backmen/Objects/Weapons/Gunsx64/Revolver/rebota.rsi
   - type: RevolverAmmoProvider
     capacity: 6
     chambers: [ True, True, True, True, True, True ]
