@@ -1086,6 +1086,7 @@
   - WeaponRevolverR44
   - WeaponRevolverRebota
   - WeaponRevolverNY
+  - WeaponRevolverInspector
 
 - type: loadoutGroup
   id: SecurityCadetJumpsuit

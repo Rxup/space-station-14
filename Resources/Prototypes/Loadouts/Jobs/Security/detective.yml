@@ -119,3 +119,12 @@
   id: WeaponRevolverNY
   equipment:
     belt: WeaponRevolverNY
+
+- type: loadout
+  id: WeaponRevolverInspector
+  equipment: WeaponRevolverInspector
+
+- type: startingGear
+  id: WeaponRevolverInspector
+  equipment:
+    belt: WeaponRevolverInspector
