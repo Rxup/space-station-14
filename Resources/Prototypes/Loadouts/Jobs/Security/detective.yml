@@ -113,7 +113,7 @@
 
 - type: loadout
   id: WeaponRevolverNY
-  equipment: WWeaponRevolverNY
+  equipment: WeaponRevolverNY
 
 - type: startingGear
   id: WeaponRevolverNY
