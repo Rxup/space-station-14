@@ -15,7 +15,7 @@
     fireRate: 3
     cameraRecoilScalar: 2
     soundGunshot:
-      path: /Audio/Weapons/Guns/Gunshots/mateba.ogg
+      path: /Audio/Weapons/Guns64/Revolvers/mateba.ogg
 
 - type: entity
   name: CMB autorevolver
@@ -34,7 +34,7 @@
   - type: Gun
     fireRate: 3
     soundGunshot:
-      path: /Audio/Weapons/Guns/Gunshots/revolver_light.ogg
+      path: /Audio/Weapons/Guns64/Revolvers/revolver_light.ogg
     selectedMode: SemiAuto
     availableModes:
       - SemiAuto
@@ -56,7 +56,7 @@
     ammoSlots: [ null, null, null, null, null, null ]
   - type: Gun
     soundGunshot:
-      path: /Audio/Weapons/Guns/Gunshots/44mag.ogg
+      path: /Audio/Weapons/Guns64/Revolvers/44mag.ogg
 
 - type: entity
   name: N-Y revolver
@@ -75,7 +75,7 @@
   - type: Gun
     fireRate: 1
     soundGunshot:
-      path: /Audio/Weapons/Guns/Gunshots/ny.ogg
+      path: /Audio/Weapons/Guns64/Revolvers/nagant.ogg
 
 - type: entity
   name: FFA 'Rebota' revolver
@@ -93,4 +93,4 @@
     ammoSlots: [ null, null, null, null, null, null ]
   - type: Gun
     soundGunshot:
-      path: /Audio/Weapons/Guns/Gunshots/revolver.ogg
+      path: /Audio/Weapons/Guns64/Revolvers/revolver.ogg
