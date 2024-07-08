@@ -90,19 +90,6 @@
       entity: WeaponRifleAKSUTactical
 
 - type: constructionGraph
-  id: AKSUTactical
-  start: start
-  graph:
-    - node: start
-      edges:
-        - to: upgraded
-          steps:
-            - tag: UpgradeStation
-              doAfter: 2
-    - node: upgraded
-      entity: WeaponRifleAKSUTactical
-
-- type: constructionGraph
   id: P90Tactical
   start: start
   graph:
