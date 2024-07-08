@@ -933,6 +933,7 @@
   - WeaponPistolG22
   - WeaponPistolACP14
   - WeaponPistolG23
+  - WeaponPistolM1911
   - WeaponPistolVP78
   - WeaponRevolverMatebaNew
 
@@ -1036,6 +1037,7 @@
   - WeaponPistolG22
   - WeaponPistolACP14
   - WeaponPistolG23
+  - WeaponPistolM1911
 
 - type: loadoutGroup #Backmen
   id: SecurityPocket2
@@ -1075,6 +1077,15 @@
   loadouts:
   - DetectiveArmorVest
   - DetectiveCoat
+
+- type: loadoutGroup #Backmen
+  id: DetectiveRevolver
+  name: loadout-group-security-pocket
+  loadouts:
+  - WeaponRevolverCMB
+  - WeaponRevolverR44
+  - WeaponRevolverRebota
+  - WeaponRevolverNY
 
 - type: loadoutGroup
   id: SecurityCadetJumpsuit

@@ -333,6 +333,15 @@
   equipment:
     pocket1: WeaponPistolDEagle
 
+- type: loadout
+  id: WeaponPistolM1911
+  equipment: WeaponPistolM1911
+
+- type: startingGear
+  id: WeaponPistolM1911
+  equipment:
+    pocket1: WeaponPistolM1911
+
 # Pocket 2 #Backmen
 
 - type: loadout
