@@ -1,0 +1,116 @@
+- type: constructionGraph
+  id: AKMSTactical
+  start: start
+  graph:
+    - node: start
+      edges:
+        - to: upgraded
+          steps:
+            - tag: UpgradeStation
+              doAfter: 2
+    - node: upgraded
+      entity: WeaponAKMSTacticalRifle
+
+- type: constructionGraph
+  id: G36Tactical
+  start: start
+  graph:
+    - node: start
+      edges:
+        - to: upgraded
+          steps:
+            - tag: UpgradeStation
+              doAfter: 2
+    - node: upgraded
+      entity: WeaponRifleG36Tactical
+
+- type: constructionGraph
+  id: M28Tactical
+  start: start
+  graph:
+    - node: start
+      edges:
+        - to: upgraded
+          steps:
+            - tag: UpgradeStation
+              doAfter: 2
+    - node: upgraded
+      entity: WeaponRifleM28Tactical
+
+- type: constructionGraph
+  id: MP5Tactical
+  start: start
+  graph:
+    - node: start
+      edges:
+        - to: upgraded
+          steps:
+            - tag: UpgradeStation
+              doAfter: 2
+    - node: upgraded
+      entity: WeaponSubMachineGunMP5Tactical
+
+- type: constructionGraph
+  id: VectorTactical
+  start: start
+  graph:
+    - node: start
+      edges:
+        - to: upgraded
+          steps:
+            - tag: UpgradeStation
+              doAfter: 2
+    - node: upgraded
+      entity: WeaponSubMachineGunVectorSpecialTactical
+
+- type: constructionGraph
+  id: Shotgun39Tactical
+  start: start
+  graph:
+    - node: start
+      edges:
+        - to: upgraded
+          steps:
+            - tag: UpgradeStation
+              doAfter: 2
+    - node: upgraded
+      entity: WeaponShotgun39Tactical
+
+- type: constructionGraph
+  id: AKSUTactical
+  start: start
+  graph:
+    - node: start
+      edges:
+        - to: upgraded
+          steps:
+            - tag: UpgradeStation
+              doAfter: 2
+    - node: upgraded
+      entity: WeaponRifleAKSUTactical
+
+- type: constructionGraph
+  id: P90Tactical
+  start: start
+  graph:
+    - node: start
+      edges:
+        - to: upgraded
+          steps:
+            - tag: UpgradeStation
+              doAfter: 2
+    - node: upgraded
+      entity: WeaponSubMachineGunP90Tactical
+
+- type: constructionGraph
+  id: RPDTactical
+  start: start
+  graph:
+    - node: start
+      edges:
+        - to: upgraded
+          steps:
+            - tag: UpgradeStation
+              doAfter: 2
+    - node: upgraded
+      entity: WeaponLightMachineGunRPDTactical
