@@ -1,6 +1,6 @@
 - type: guideEntry
   id: NyanoSpecies
-  name: guide-entry-nyano-species
+  name: guide-entry-backmen-species
   text: "/ServerInfo/_Backmen/Guidebook/Species/NyanoSpecies.xml"
   children:
     - SpeciesArachne
