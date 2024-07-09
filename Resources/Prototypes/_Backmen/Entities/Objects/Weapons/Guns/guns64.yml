@@ -691,6 +691,56 @@
     radius: 6
 
 - type: entity
+  name: M-1911
+  parent: BaseWeaponPistol
+  id: WeaponPistolM1911
+  suffix: Пистолет
+  description: A M-1911 chambered in .35 An archaic weapon, yet its popular and extremely reliable mechanism provided a template for many semi-automatic pistols to come.
+  components:
+  - type: Sprite
+    sprite: Backmen/Objects/Weapons/Gunsx64/Pistols/m1911/big.rsi
+  - type: Item
+    sprite: Backmen/Objects/Weapons/Gunsx64/Pistols/m1911/tiny.rsi
+  - type: Gun
+    angleDecay: 15
+    angleIncrease: 5
+    cameraRecoilScalar: 0.5
+    maxAngle: 15
+    minAngle: 1
+    selectedMode: SemiAuto
+    availableModes:
+      - SemiAuto
+    soundGunshot:
+      path: /Audio/Weapons/Guns64/Pistols/colt.ogg
+  - type: ItemSlots
+    slots:
+      gun_magazine:
+        name: Magazine
+        startingItem: MagazinePistol
+        insertSound: /Audio/Weapons/Guns64/Pistols/colt_reload.ogg
+        ejectSound: /Audio/Weapons/Guns64/Pistols/colt_unload.ogg
+        priority: 2
+        whitelist:
+          tags:
+            - MagazinePistol
+            - MagazinePistolHighCapacity
+      gun_chamber:
+        name: Chamber
+        startingItem: CartridgePistol
+        priority: 1
+        whitelist:
+          tags:
+            - CartridgePistol
+  - type: MagazineVisuals
+    magState: mag
+    steps: 1
+    zeroVisible: true
+  - type: ContainerContainer
+    containers:
+      gun_magazine: !type:ContainerSlot
+      gun_chamber: !type:ContainerSlot
+
+- type: entity
   name: Divet
   parent: BaseWeaponPistol
   id: WeaponPistolDivet
@@ -2740,25 +2790,6 @@
   - type: UseDelay
     delay: 0.8
   - type: GunRequiresWield
-
-- type: entity
-  name: Mateba
-  parent: BaseWeaponRevolver
-  id: WeaponRevolverMatebaNew
-  suffix: Револьвер
-  description: The iconic sidearm of the dreaded death squads. Uses .45 magnum ammo.
-  components:
-  - type: Sprite
-    sprite: Backmen/Objects/Weapons/Gunsx64/Revolver/mateba.rsi/big.rsi
-  - type: Clothing
-    sprite: Backmen/Objects/Weapons/Gunsx64/Revolver/mateba.rsi/tiny.rsi
-  - type: Item
-    sprite: Backmen/Objects/Weapons/Gunsx64/Revolver/mateba.rsi/tiny.rsi
-  - type: Gun
-    fireRate: 3
-    cameraRecoilScalar: 2
-    soundGunshot:
-      path: /Audio/Weapons/Guns/Gunshots/mateba.ogg
 
 - type: entity
   name: Kardashev-Mosin
