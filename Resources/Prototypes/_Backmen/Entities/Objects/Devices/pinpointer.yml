@@ -16,3 +16,4 @@
   components:
   - type: Pinpointer
     component: Nuke
+    targetName: nuclear bomb
