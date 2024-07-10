@@ -25760,7 +25760,6 @@ entities:
   - uid: 4278
     components:
     - type: Transform
-      rot: 1.5707963267948966 rad
       pos: 38.5,113.5
       parent: 4118
 - proto: PortableGeneratorPacman

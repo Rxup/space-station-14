@@ -46,12 +46,22 @@
   - GlassesJensen
 
 - type: loadoutGroup
+  id: GroupTankHarness
+  name: loadout-group-tank-harness
+  minLimit: 1
+  hidden: true
+  loadouts:
+  - LoadoutTankHarness
+
+- type: loadoutGroup
   id: Survival
   name: loadout-group-survival-basic
+  minLimit: 3
   hidden: true
   loadouts:
   - EmergencyNitrogen
   - EmergencyOxygen
+  - LoadoutSpeciesEVANitrogen
 
 # Command
 - type: loadoutGroup
@@ -426,10 +436,12 @@
 - type: loadoutGroup
   id: SurvivalClown
   name: loadout-group-survival-clown
+  minLimit: 2
   hidden: true
   loadouts:
   - EmergencyNitrogenClown
   - EmergencyOxygenClown
+  - LoadoutSpeciesEVANitrogen
 
 - type: loadoutGroup
   id: MimeHead
@@ -747,10 +759,12 @@
 - type: loadoutGroup
   id: SurvivalExtended
   name: loadout-group-survival-extended
+  minLimit: 2
   hidden: true
   loadouts:
   - EmergencyNitrogenExtended
   - EmergencyOxygenExtended
+  - LoadoutSpeciesEVANitrogen
 
 # Science
 - type: loadoutGroup
@@ -919,6 +933,7 @@
   - WeaponPistolG22
   - WeaponPistolACP14
   - WeaponPistolG23
+  - WeaponPistolM1911
   - WeaponPistolVP78
   - WeaponRevolverMatebaNew
 
@@ -1022,6 +1037,7 @@
   - WeaponPistolG22
   - WeaponPistolACP14
   - WeaponPistolG23
+  - WeaponPistolM1911
 
 - type: loadoutGroup #Backmen
   id: SecurityPocket2
@@ -1062,6 +1078,16 @@
   - DetectiveArmorVest
   - DetectiveCoat
 
+- type: loadoutGroup #Backmen
+  id: DetectiveRevolver
+  name: loadout-group-security-pocket
+  loadouts:
+  - WeaponRevolverCMB
+  - WeaponRevolverR44
+  - WeaponRevolverRebota
+  - WeaponRevolverNY
+  - WeaponRevolverInspector
+
 - type: loadoutGroup
   id: SecurityCadetJumpsuit
   name: loadout-group-security-cadet-jumpsuit
@@ -1072,10 +1098,12 @@
 - type: loadoutGroup
   id: SurvivalSecurity
   name: loadout-group-survival-security
+  minLimit: 2
   hidden: true
   loadouts:
   - EmergencyNitrogenSecurity
   - EmergencyOxygenSecurity
+  - LoadoutSpeciesEVANitrogen
 
 # Medical
 - type: loadoutGroup
@@ -1252,10 +1280,12 @@
 - type: loadoutGroup
   id: SurvivalMedical
   name: loadout-group-survival-medical
+  minLimit: 2
   hidden: true
   loadouts:
   - EmergencyNitrogenMedical
   - EmergencyOxygenMedical
+  - LoadoutSpeciesEVANitrogen
 
 # Wildcards
 - type: loadoutGroup
@@ -1285,7 +1315,36 @@
 - type: loadoutGroup
   id: SurvivalSyndicate
   name: loadout-group-survival-syndicate
+  minLimit: 2
   hidden: true
   loadouts:
   - EmergencyNitrogenSyndicate
   - EmergencyOxygenSyndicate
+  - LoadoutSpeciesEVANitrogen
+
+- type: loadoutGroup
+  id: GroupSpeciesBreathTool
+  name: loadout-group-breath-tool
+  minLimit: 1
+  maxLimit: 1
+  hidden: true
+  loadouts:
+  - LoadoutSpeciesBreathTool
+
+- type: loadoutGroup
+  id: GroupSpeciesBreathToolMedical
+  name: loadout-group-breath-tool
+  minLimit: 1
+  maxLimit: 1
+  hidden: true
+  loadouts:
+  - LoadoutSpeciesBreathToolMedical
+
+- type: loadoutGroup
+  id: GroupSpeciesBreathToolSecurity
+  name: loadout-group-breath-tool
+  minLimit: 1
+  maxLimit: 1
+  hidden: true
+  loadouts:
+  - LoadoutSpeciesBreathToolSecurity
