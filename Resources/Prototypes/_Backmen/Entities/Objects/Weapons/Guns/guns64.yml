@@ -944,7 +944,6 @@
         priority: 2
         whitelist:
           tags:
-
             - MagazineLightRifle
       gun_chamber:
         name: Chamber
@@ -957,7 +956,6 @@
     containers:
       gun_magazine: !type:ContainerSlot
       gun_chamber: !type:ContainerSlot
-      mech-assembly-container: !type:Container
   - type: MagazineVisuals
     magState: mag
     steps: 1
@@ -966,10 +964,9 @@
   - type: Wieldable
   - type: UseDelay
     delay: 1.3
-  - type: MechAssembly
-    finishedPrototype: WeaponAKMSTacticalRifle
-    requiredParts:
-      UpgradeStation: false
+  - type: Construction
+    graph: AKMSTactical
+    node: start
 
 - type: entity
   name: AK74-U
@@ -1036,6 +1033,9 @@
   - type: Wieldable
   - type: UseDelay
     delay: 0.5
+  - type: Construction
+    graph: AKSUTactical
+    node: start
 
 - type: entity
   name: AR-18
@@ -1154,11 +1154,6 @@
         whitelist:
           tags:
             - CartridgeRifle
-  - type: ContainerContainer
-    containers:
-      gun_magazine: !type:ContainerSlot
-      gun_chamber: !type:ContainerSlot
-      mech-assembly-container: !type:Container
   - type: MagazineVisuals
     magState: mag
     steps: 1
@@ -1167,10 +1162,9 @@
   - type: Wieldable
   - type: UseDelay
     delay: 1.3
-  - type: MechAssembly
-    finishedPrototype: WeaponRifleG36Tactical
-    requiredParts:
-      UpgradeStation: false
+  - type: Construction
+    graph: G36Tactical
+    node: start
 
 - type: entity
   name: M-28
@@ -1224,11 +1218,6 @@
         whitelist:
           tags:
             - CartridgeRifle
-  - type: ContainerContainer
-    containers:
-      gun_magazine: !type:ContainerSlot
-      gun_chamber: !type:ContainerSlot
-      mech-assembly-container: !type:Container
   - type: MagazineVisuals
     magState: mag
     steps: 1
@@ -1237,10 +1226,9 @@
   - type: Wieldable
   - type: UseDelay
     delay: 1.5
-  - type: MechAssembly
-    finishedPrototype: WeaponRifleM28Tactical
-    requiredParts:
-      UpgradeStation: false
+  - type: Construction
+    graph: M28Tactical
+    node: start
 
 - type: entity
   parent: WeaponRifleM28
@@ -1505,15 +1493,6 @@
         whitelist:
           tags:
             - CartridgePistol
-  - type: ContainerContainer
-    containers:
-      gun_magazine: !type:ContainerSlot
-      gun_chamber: !type:ContainerSlot
-      mech-assembly-container: !type:Container
-  - type: MechAssembly
-    finishedPrototype: WeaponSubMachineGunMP5Tactical
-    requiredParts:
-      UpgradeStation: false
   - type: MagazineVisuals
     magState: mag
     steps: 1
@@ -1522,6 +1501,9 @@
   - type: Wieldable
   - type: UseDelay
     delay: 0.5
+  - type: Construction
+    graph: MP5Tactical
+    node: start
 
 - type: entity
   parent: WeaponSubMachineGunMP5
@@ -1651,15 +1633,9 @@
         whitelist:
           tags:
             - CartridgePistol
-  - type: ContainerContainer
-    containers:
-      gun_magazine: !type:ContainerSlot
-      gun_chamber: !type:ContainerSlot
-      mech-assembly-container: !type:Container
-  - type: MechAssembly
-    finishedPrototype: WeaponSubMachineGunVectorSpecialTactical
-    requiredParts:
-      UpgradeStation: false
+  - type: Construction
+    graph: VectorTactical
+    node: start
   - type: MagazineVisuals
     magState: mag
     steps: 1
@@ -2047,6 +2023,9 @@
   - type: Wieldable
   - type: UseDelay
     delay: 0.5
+  - type: Construction
+    graph: P90Tactical
+    node: start
 
 - type: entity
   name: EarthGov heavy laser rifle
@@ -2163,14 +2142,9 @@
     cameraRecoilScalar: 2
     soundGunshot:
       path: /Audio/Weapons/Guns64/Shotguns/sh39.ogg
-  - type: ContainerContainer
-    containers:
-      ballistic-ammo: !type:Container
-      mech-assembly-container: !type:Container
-  - type: MechAssembly
-    finishedPrototype: WeaponShotgun39Tactical
-    requiredParts:
-      UpgradeStation: false
+  - type: Construction
+    graph: Shotgun39Tactical
+    node: start
 
 - type: entity
   name: XM1014
@@ -3335,6 +3309,9 @@
     walkModifier: 1
     sprintModifier: 0.8
   - type: HeldSpeedModifier
+  - type: Construction
+    graph: RPDTactical
+    node: start
 
 - type: entity
   name: MG-42
