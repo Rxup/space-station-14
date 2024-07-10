@@ -8,3 +8,12 @@
   - type: Pinpointer
     updateTargetName: true
   - type: ShipwreckPinPointer
+
+- type: entity
+  name: pinpointer nuclear bomb
+  id: PinpointerNuclearBomb
+  parent: PinpointerBase
+  components:
+  - type: Pinpointer
+    component: Nuke
+    targetName: nuclear bomb
