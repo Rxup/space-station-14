@@ -1784,6 +1784,14 @@
     intensity: 0.3
   - type: Bloodstream
     bloodReagent: UnstableMutagen
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        reagents:
+        - ReagentId: UncookedAnimalProteins
+          Quantity: 3
+        - ReagentId: Uranium
+          Quantity: 10
   - type: Butcherable
     spawned:
     - id: FoodMeatRat
