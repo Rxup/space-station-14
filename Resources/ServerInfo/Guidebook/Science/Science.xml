@@ -15,10 +15,9 @@ Each technology costs [color=#a4885c]Research Points[/color] and unlocks recipes
 Информацию о различных технологиях можно посмотреть [textlink="на странице справочника технологий" link="Technologies"].
 
 ## Дисциплины
-Технологии распределены по 5 различным дисциплинам:
+Технологии распределены по 4 различным дисциплинам:
 <Box>
   <GuideEntityEmbed Entity="Wrench" Caption="Промышленность"/>
-  <GuideEntityEmbed Entity="Syringe" Caption="Биохимия"/>
   <GuideEntityEmbed Entity="WeaponTetherGun" Caption="Экспериментальное"/>
   <GuideEntityEmbed Entity="ComputerTelevision" Caption="Обслуживание персонала"/>
   <GuideEntityEmbed Entity="WeaponXrayCannon" Caption="Арсенал"/>

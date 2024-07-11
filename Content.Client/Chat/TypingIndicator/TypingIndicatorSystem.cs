@@ -103,7 +103,7 @@ public sealed class TypingIndicatorSystem : SharedTypingIndicatorSystem
             state = _isClientTyping ? TypingIndicatorState.Typing : TypingIndicatorState.Idle;
         // Corvax-TypingIndicator-End
         // send a networked event to server
-        RaisePredictiveEvent(new TypingChangedEvent(state)); // Corvax-TypingIndicator
+        RaisePredictiveEvent((TypingChangedEvent)state); // Corvax-TypingIndicator
     }
 
     private void OnShowTypingChanged(bool showTyping)
