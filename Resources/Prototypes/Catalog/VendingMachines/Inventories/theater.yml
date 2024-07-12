@@ -50,14 +50,24 @@
     ClothingHeadHatGladiator: 1
     ClothingUniformJumpsuitGladiator: 1
     ClothingHeadHatStetson: 2 # backmen
-    ClothingHeadHatCowboyBrown: 1
-    ClothingHeadHatCowboyBlack: 1
-    ClothingHeadHatCowboyWhite: 1
-    ClothingHeadHatCowboyGrey: 1
-    ClothingShoesBootsCowboyBrown: 1
-    ClothingShoesBootsCowboyBlack: 1
-    ClothingShoesBootsCowboyWhite: 1
-    ClothingMaskNeckGaiterRed: 2
+    ClothingHeadHatCowboyBrown: 1 # backmen 
+    ClothingHeadHatCowboyBlack: 1 # backmen
+    ClothingHeadHatCowboyWhite: 1 # backmen
+    ClothingHeadHatCowboyGrey: 1 # backmen
+    ClothingShoesBootsCowboyBrown: 1 # backmen
+    ClothingShoesBootsCowboyBlack: 1 # backmen
+    ClothingShoesBootsCowboyWhite: 1 # backmen
+    ClothingMaskNeckGaiterRed: 2 # backmen
+    ClothingUniformJumpsuitVergil: 1 # backmen
+    ClothingUniformJumpsuitPants: 2 # backmen
+    ClothingOuterCoatBlackdmc: 1 # backmen
+    ClothingOuterCoatBluedmc: 1 # backmen
+    ClothingOuterCoatDesertdmc: 1 # backmen
+    ClothingOuterCoatGolddmc: 1 # backmen
+    ClothingOuterCoatPurpledmc: 1 # backmen
+    ClothingOuterCoatReddmc: 1 # backmen
+    ClothingOuterCoatSnowdmc: 1 # backmen
+    ClothingBal: 1 # backmen
   emaggedInventory:
     ClothingShoesBling: 1
     ClothingShoesBootsCowboyFancy: 1

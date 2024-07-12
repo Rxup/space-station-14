@@ -293,7 +293,7 @@
     - Hair
     - Snout
 
-- type: entity
+- type: entity # backmen
   parent: ClothingHeadBase
   id: ClothingHeadHelmetSWAT
   name: шлем SWAT

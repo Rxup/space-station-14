@@ -358,7 +358,7 @@
    - type: IngestionBlocker
    - type: IdentityBlocker
 
-- type: entity
+- type: entity # backmen
   parent: ClothingMaskBase
   id: ClothingBal
   name: баллаклава SWAT

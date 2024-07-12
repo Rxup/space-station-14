@@ -232,7 +232,7 @@
     - type: Clothing
       sprite: Backmen/Clothing/OuterClothing/Armor/armor_sec_med.rsi
 
-- type: entity
+- type: entity # backmen
   parent: ClothingOuterArmorBasic
   id: ClothingOuterArmorSWAT
   name: бронежилет SWAT
