@@ -539,8 +539,8 @@
 - type: entity # backmen
   parent: [ClothingBeltBase, ClothingSlotBase]
   id: ClothingBeltYamato
-  name: Ножны ямато
-  description: Ножны для ямато. Найдено в секторе "Бекман"
+  name: Ножны Ямато
+  description: Ножны для Ямато. Найдено в секторе "Бекман"
   components:
   - type: Sprite
     sprite: Backmen/Clothing/Belt/yamato.rsi

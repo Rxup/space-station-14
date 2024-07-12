@@ -297,7 +297,7 @@
   parent: ClothingHeadBase
   id: ClothingHeadHelmetSWAT
   name: шлем SWAT
-  description:  шлем SWATа, способен выдержать выстрел оружия.
+  description:  Шлем SWATа, способен выдержать выстрел оружия.
   components:
   - type: Sprite
     sprite: Backmen/Clothing/Head/Helmets/helm.rsi
@@ -311,3 +311,22 @@
         Slash: 0.8
         Piercing: 0.9
         Heat: 0.80
+        
+- type: entity # backmen
+  parent: ClothingHeadBase
+  id: ClothingHeadHelmetGreen
+  name: шлем милитарист
+  description:  Шлем милитарист, способен выдержать выстрел оружия.
+  components:
+  - type: Sprite
+    sprite: Backmen/Clothing/Head/Helmets/helmetgrin.rsi
+  - type: Clothing
+    sprite: Backmen/Clothing/Head/Helmets/helmetgrin.rsi
+  - type: IngestionBlocker
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.40
+        Slash: 0.3
+        Piercing: 0.9
+        Heat: 0.60

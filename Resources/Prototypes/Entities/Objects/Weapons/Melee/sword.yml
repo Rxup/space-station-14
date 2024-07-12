@@ -196,7 +196,7 @@
   name: Ямато
   parent: BaseItem
   id: YamatoSabre
-  description: личное оружие Вергилия, выкованное из тёмного сплава. Найдено в секторе "Бекман"
+  description: Личное оружие Вергилия, выкованное из тёмного сплава. Найдено в секторе "Бекман"
   components:
   - type: Sprite
     sprite: Backmen/Objects/Weapons/Melee/yamato.rsi

@@ -97,3 +97,21 @@
   components:
   - type: Sprite
     sprite: Backmen/Clothing/Neck/Cloaks/TGMCcloak.rsi
+    
+- type: entity
+  parent: ClothingNeckBase
+  id: ClothingNeckCloakPoncho
+  name: Пончо милитарист
+  description:  Ваш верный друг в борьбе с дождём и вьюгой
+  components:
+  - type: Sprite
+    sprite: Backmen/Clothing/Neck/Cloaks/poncho.rsi
+    
+- type: entity
+  parent: ClothingNeckBase
+  id: ClothingNeckCloakGreenMantie
+  name: Мантия милитариста
+  description: Удобство и скрытность, то что и важно для обладателя этой мантии
+  components:
+  - type: Sprite
+    sprite: Backmen/Clothing/Neck/Cloaks/mantie.rsi

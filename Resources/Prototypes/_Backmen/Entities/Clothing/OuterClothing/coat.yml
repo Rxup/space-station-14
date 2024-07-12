@@ -118,3 +118,36 @@
     sprite: Backmen/Clothing/OuterClothing/Coats/snow.rsi
   - type: Clothing
     sprite: Backmen/Clothing/OuterClothing/Coats/snow.rsi
+    
+- type: entity #backmen 
+  parent:  ClothingOuterStorageBase
+  id: ClothingOuterCoatBlackViF
+  name: Чёрный бомбер
+  description: Удобный чёрный бомбер.
+  components:
+  - type: Sprite
+    sprite: Backmen/Clothing/OuterClothing/Coats/blackViF.rsi
+  - type: Clothing
+    sprite: Backmen/Clothing/OuterClothing/Coats/blackViF.rsi
+    
+- type: entity #backmen 
+  parent: ClothingOuterWinterCoat
+  id: ClothingOuterCoatJacket
+  name: Куртка милитарист
+  description: Осталось прожить три дня, три...
+  components:
+  - type: Sprite
+    sprite: Backmen/Clothing/OuterClothing/Coats/jacket.rsi
+  - type: Clothing
+    sprite: Backmen/Clothing/OuterClothing/Coats/jacket.rsi
+    
+- type: entity #backmen 
+  parent:  ClothingOuterStorageBase
+  id: ClothingOuterCoatNT
+  name: Бомбер NT
+  description: Удобный бомбер с эмблемой Nanotrasen.
+  components:
+  - type: Sprite
+    sprite: Backmen/Clothing/OuterClothing/Coats/NT.rsi
+  - type: Clothing
+    sprite: Backmen/Clothing/OuterClothing/Coats/NT.rsi
