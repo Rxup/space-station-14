@@ -725,7 +725,7 @@
 - type: entity
   parent: ClothingUniformBase
   id: ClothingUniformJumpsuitCamoB # Backmen
-  name: Камуфляжная униформа чёрная
+  name: Камуфляжная униформа городская
   description: Военная милитаристическая форма, в чёрном цвете.
   components:
   - type: Sprite

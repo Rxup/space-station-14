@@ -314,7 +314,7 @@
         
 - type: entity # backmen
   parent: ClothingHeadBase
-  id: ClothingHeadHelmetGreen
+  id: ClothingHeadHelmetGreenMilee
   name: шлем милитарист
   description:  Шлем милитарист, способен выдержать выстрел оружия.
   components:
