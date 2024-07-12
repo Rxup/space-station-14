@@ -231,3 +231,23 @@
       sprite: Backmen/Clothing/OuterClothing/Armor/armor_sec_med.rsi
     - type: Clothing
       sprite: Backmen/Clothing/OuterClothing/Armor/armor_sec_med.rsi
+
+- type: entity
+  parent: ClothingOuterArmorBasic
+  id: ClothingOuterArmorSWAT
+  name: бронежилет SWAT
+  description: Тяжелый пуленепробиваемый жилет, который в незначительной степени защищает владельца от традиционного огнестрельного оружия и взрывчатых веществ.
+  components:
+  - type: Sprite
+    sprite: Backmen/Clothing/OuterClothing/Armor/vestswat.rsi
+  - type: Clothing
+    sprite: Backmen/Clothing/OuterClothing/Armor/vestswat.rsi
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.9
+        Slash: 0.9
+        Piercing: 0.4
+        Heat: 0.9
+  - type: ExplosionResistance
+    damageCoefficient: 0.80

@@ -357,3 +357,14 @@
      sprite: Backmen/Clothing/Head/Hats/tony.rsi
    - type: IngestionBlocker
    - type: IdentityBlocker
+
+- type: entity
+  parent: ClothingMaskBase
+  id: ClothingBal
+  name: баллаклава SWAT
+  description: аааа!
+  components:
+  - type: Sprite
+    sprite: Backmen/Clothing/Head/Masks/balaclawa.rsi
+  - type: Clothing
+    sprite: Backmen/Clothing/Head/Masks/balaclawa.rsi

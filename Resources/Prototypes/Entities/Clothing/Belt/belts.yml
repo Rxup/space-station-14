@@ -535,7 +535,51 @@
           tags:
           - CaptainSabre
   - type: Appearance
+  
+- type: entity
+  parent: [ClothingBeltBase, ClothingSlotBase]
+  id: ClothingBeltYamato
+  name: Ножны ямато
+  description: Ножны для ямато. Найдено в секторе "Бекман"
+  components:
+  - type: Sprite
+    sprite: Backmen/Clothing/Belt/yamato.rsi
+    state: sheath
+  - type: Clothing
+    sprite: Backmen/Clothing/Belt/yamato.rsi
+  - type: Item
+    size: Ginormous
+  - type: ItemSlots
+    slots:
+      item:
+        name: Sabre
+        insertVerbText: sheath-insert-verb
+        ejectVerbText: sheath-eject-verb
+        insertSound: /Audio/Items/sheath.ogg
+        ejectSound: /Audio/Items/unsheath.ogg
+        whitelist:
+          tags:
+          - YamatoSabre
+  - type: ItemMapper
+    mapLayers:
+      sheath-sabre:
+        whitelist:
+          tags:
+          - YamatoSabre
+  - type: Appearance
+  
+- type: entity
+  id: ClothingBeltYamatoFilled
+  parent: ClothingBeltYamato
+  suffix: Filled
+  components:
+  - type: ContainerFill
+    containers:
+      item:
+      - YamatoSabre
 
+- type: Tag
+  id: YamatoSabre
 # Belts without visualizers
 
 - type: entity

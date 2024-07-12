@@ -610,6 +610,39 @@
     sprite: Backmen/Clothing/Uniforms/jumpsuit/biker.rsi
   - type: Clothing
     sprite: Backmen/Clothing/Uniforms/jumpsuit/biker.rsi
+    
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformJumpsuitCenK # Backmen
+  name: Костюм Центрального Коммандования
+  description: Темно-зелёный костюм ЦК
+  components:
+  - type: Sprite
+    sprite: Backmen/Clothing/Uniforms/jumpsuit/uni.rsi
+  - type: Clothing
+    sprite: Backmen/Clothing/Uniforms/jumpsuit/uni.rsi
+    
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformJumpsuitDecSerii # Backmen
+  name: Серый костюм детектива
+  description: Серый костюм детектива, тахней тайной!
+  components:
+  - type: Sprite
+    sprite: Backmen/Clothing/Uniforms/jumpsuit/dec.rsi
+  - type: Clothing
+    sprite: Backmen/Clothing/Uniforms/jumpsuit/dec.rsi
+    
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformJumpsuitSWAT # Backmen
+  name: боевая униформа SWAT
+  description: стой! SWAT идёт!
+  components:
+  - type: Sprite
+    sprite: Backmen/Clothing/Uniforms/jumpsuit/uniformswat.rsi
+  - type: Clothing
+    sprite: Backmen/Clothing/Uniforms/jumpsuit/uniformswat.rsi
 
 - type: entity
   parent: ClothingUniformBase
@@ -621,6 +654,29 @@
       sprite: Backmen/Clothing/Uniforms/jumpsuit/marine_suit.rsi
     - type: Clothing
       sprite: Backmen/Clothing/Uniforms/jumpsuit/marine_suit.rsi
+      
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformJumpsuitPants # Backmen
+  name: штаны
+  description: хехех.
+  components:
+  - type: Sprite
+    sprite: Backmen/Clothing/Uniforms/jumpsuit/pants.rsi
+  - type: Clothing
+    sprite: Backmen/Clothing/Uniforms/jumpsuit/pants.rsi
+    
+      
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformJumpsuitVergil # Backmen
+  name: костюм Вергилия
+  description: А я без тебя никогда не умру.
+  components:
+  - type: Sprite
+    sprite: Backmen/Clothing/Uniforms/jumpsuit/vergil.rsi
+  - type: Clothing
+    sprite: Backmen/Clothing/Uniforms/jumpsuit/vergil.rsi
 
 - type: entity
   parent: ClothingUniformBase
