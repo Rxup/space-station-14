@@ -1,4 +1,4 @@
 - type: guideEntry
   id: Supermatter
-  name: Суперматерия
-  text: "/ServerInfo/_Backmen/GuideBook/Engineering/Supermatter.xml"
+  name: guide-entry-supermatter
+  text: "/ServerInfo/_Backmen/Guidebook/Engineering/Supermatter.xml"
