@@ -179,6 +179,28 @@
       sprite: Backmen/Clothing/Head/Hats/seccap.rsi
     - type: Clothing
       sprite: Backmen/Clothing/Head/Hats/seccap.rsi
+      
+- type: entity
+  parent: ClothingHeadBase
+  id: ClothingHeadHatBeretVet
+  name: Берет ветерана
+  description: Зелёный берет ветерана, в милитарическом стиле.
+  components:
+    - type: Sprite
+      sprite: Backmen/Clothing/Head/Hats/beretvet.rsi
+    - type: Clothing
+      sprite: Backmen/Clothing/Head/Hats/beretvet.rsi
+      
+- type: entity
+  parent: ClothingHeadBase
+  id: ClothingHeadHatChapa
+  name: Камилавка
+  description: Шляпа из верблюжьей шерсти, крайне похожа на древний головной убор священника.
+  components:
+    - type: Sprite
+      sprite: Backmen/Clothing/Head/Hats/headchap.rsi
+    - type: Clothing
+      sprite: Backmen/Clothing/Head/Hats/headchap.rsi
 
 - type: entity
   parent: ClothingHeadBase

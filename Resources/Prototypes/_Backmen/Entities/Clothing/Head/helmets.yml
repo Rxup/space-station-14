@@ -330,3 +330,41 @@
         Slash: 0.3
         Piercing: 0.9
         Heat: 0.60
+        
+- type: entity # backmen
+  parent: ClothingHeadBase
+  id: ClothingHeadHelmetTGMCwhite
+  name: белый боевой шлем
+  description:  Белый боевой шлем, способен выдержать выстрел оружия.
+  components:
+  - type: Sprite
+    sprite: Backmen/Clothing/Head/Helmets/helmwhitetgmc.rsi
+  - type: Clothing
+    sprite: Backmen/Clothing/Head/Helmets/helmwhitetgmc.rsi
+  - type: IngestionBlocker
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.30
+        Slash: 0.3
+        Piercing: 0.9
+        Heat: 0.60
+        
+- type: entity # backmen
+  parent: ClothingHeadBase
+  id: ClothingHeadHelmetTGMCwhiteMed
+  name: белый медицинский шлем
+  description:  Белый боевой-медицинский шлем, способен выдержать выстрел оружия.
+  components:
+  - type: Sprite
+    sprite: Backmen/Clothing/Head/Helmets/helm_medtgmc.rsi
+  - type: Clothing
+    sprite: Backmen/Clothing/Head/Helmets/helm_medtgmc.rsi
+  - type: IngestionBlocker
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.30
+        Slash: 0.3
+        Piercing: 0.9
+        Heat: 0.60

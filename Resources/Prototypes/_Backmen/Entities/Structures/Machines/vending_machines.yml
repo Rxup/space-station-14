@@ -764,6 +764,7 @@
     ClothingUniformJumpsuitJeester: 1 # backmen
     ClothingHeadJeester: 1 # backmen
     ClothingHeadHelmetGreenMilee: 2 # backmen
+    ClothingHeadHatBeretVet: 2 # backmen
     ClothingNeckCloakPoncho: 2 # backmen
     ClothingNeckCloakGreenMantie: 2 # backmen
     ClothingUniformJumpsuitCamo: 3 # backmen
@@ -775,4 +776,12 @@
     ClothingOuterCoatNT: 2 # backmen
     ClothingOuterCoatBlackViF: 2 # backmen
     ClothingOuterCoatJacket: 2 # backmen
-    
+    ClothingNeckCloakSanabi: 1 # backmen
+    #TGMCwhite
+    ClothingUniformJumpsuitTGMCwhite: 2 # backmen
+    ClothingHandsGlovesTGMCwhite: 2 # backmen
+    ClothingMaskTGMCwhite: 2 # backmen
+    ClothingHeadHelmetTGMCwhite: 2 # backmen
+    ClothingHeadHelmetTGMCwhiteMed: 2 # backmen
+    ClothingNeckCloakTGMCwhite: 2 # backmen
+    ClothingBeltTGMCwhite: 2 # backmen

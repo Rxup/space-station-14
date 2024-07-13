@@ -754,6 +754,17 @@
     sprite: Backmen/Clothing/Uniforms/jumpsuit/cloth.rsi
   - type: Clothing
     sprite: Backmen/Clothing/Uniforms/jumpsuit/cloth.rsi
+    
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformJumpsuitTGMCwhite # Backmen
+  name: белая боевая униформа
+  description: Военная белая униформа.
+  components:
+  - type: Sprite
+    sprite: Backmen/Clothing/Uniforms/jumpsuit/uniformtgmc.rsi
+  - type: Clothing
+    sprite: Backmen/Clothing/Uniforms/jumpsuit/uniformtgmc.rsi
 
 
 - type: entity
