@@ -77,8 +77,8 @@
       types:
         Piercing: 5
         Blunt: 10
-  - type: ItemToggleDisarmMalus
-    activatedDisarmMalus: 0.6
+#  - type: ItemToggleDisarmMalus
+#    activatedDisarmMalus: 0.6
   - type: Item
     size: Huge
     sprite: Backmen/Objects/Weapons/Melee/chainsword.rsi
