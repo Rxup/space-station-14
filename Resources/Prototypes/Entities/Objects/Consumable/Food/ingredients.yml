@@ -302,10 +302,6 @@
       - dough
   - type: Sprite
     state: dough-slice
-  - type: MeleeWeapon
-    damage:
-      types:
-        Blunt: 20000
   - type: Tag
     tags:
     - Slice
