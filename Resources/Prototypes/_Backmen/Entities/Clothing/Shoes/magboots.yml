@@ -1,5 +1,5 @@
 - type: entity
-  parent: ClothingShoesBootsMagSyndie
+  parent: [ClothingShoesBootsMagSyndie, BaseToggleClothing]
   id: ClothingShoesBootsMagArmy
   name: армейские магнитные сапоги
   description: Армейский образец магнитных сапог, дешевый и более массовый вариант продвинутых магниток, имеет встроенный джетпак.
@@ -10,13 +10,9 @@
   - type: Clothing
     sprite: Backmen/Clothing/Shoes/Boots/magboots-army.rsi
   - type: Magboots
-    toggleAction: ActionToggleMagbootsArmy
-
-- type: entity
-  id: ActionToggleMagbootsArmy
-  parent: ActionBaseToggleMagboots
-  noSpawn: true
-  components:
-  - type: InstantAction
-    icon: { sprite: Backmen/Clothing/Shoes/Boots/magboots-army.rsi, state: icon }
-    iconOn: Backmen/Clothing/Shoes/Boots/magboots-army.rsi/icon-on.png
+  - type: GenericVisualizer
+    visuals:
+      enum.ToggleVisuals.Toggled:
+        enum.ToggleVisuals.Layer:
+          True: {state: icon-on}
+          False: {state: icon}

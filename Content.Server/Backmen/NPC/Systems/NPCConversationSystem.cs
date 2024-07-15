@@ -150,7 +150,7 @@ public sealed class NPCConversationSystem : EntitySystem
         if (component.ResponseQueue.Count == 0)
         {
             DelayResponse(uid, component, response);
-            RaiseLocalEvent(uid, new TypingChangedEvent(true));
+            _typingIndicatorSystem.SetTypingIndicatorState(uid, TypingIndicatorState.Typing);
         }
 
         component.ResponseQueue.Push(response);
@@ -305,7 +305,7 @@ public sealed class NPCConversationSystem : EntitySystem
     private void Respond(EntityUid uid, NPCConversationComponent component, NPCResponse response)
     {
         if (component.ResponseQueue.Count == 0)
-            RaiseLocalEvent(uid, (TypingChangedEvent)TypingIndicatorState.None);
+            _typingIndicatorSystem.SetTypingIndicatorState(uid, TypingIndicatorState.None);
         else
             DelayResponse(uid, component, component.ResponseQueue.Peek());
 
