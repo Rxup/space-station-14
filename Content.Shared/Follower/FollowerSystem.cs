@@ -255,7 +255,7 @@ public sealed class FollowerSystem : EntitySystem
 
         if (_netMan.IsClient)
         {
-            _transform.DetachParentToNull(uid, xform);
+            _transform.DetachEntity(uid, xform);
             return;
         }
 

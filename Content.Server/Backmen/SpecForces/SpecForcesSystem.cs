@@ -14,6 +14,7 @@ using Content.Shared.Storage;
 using Robust.Shared.Utility;
 using System.Threading;
 using Content.Server.Actions;
+using Content.Server.Backmen.Blob.Components;
 using Content.Server.Backmen.Blob.Rule;
 using Content.Server.Backmen.GameTicking.Rules.Components;
 using Content.Server.Ghost.Roles.Components;
@@ -64,9 +65,13 @@ public sealed class SpecForcesSystem : EntitySystem
         if (ev.Level != BlobStage.Critical)
             return;
 
-        if (!CallOps(Rxbzz, "ДСО"))
+        var blobConfig = CompOrNull<StationBlobConfigComponent>(ev.Station);
+        var specForceTeam = blobConfig?.SpecForceTeam ?? Rxbzz;
+
+        if (!_prototypes.TryIndex(specForceTeam, out var prototype) ||
+            !CallOps(prototype.ID, "ДСО"))
         {
-            Log.Error($"Failed to spawn {Rxbzz} SpecForce for the blob GameRule!");
+            Log.Error($"Failed to spawn {specForceTeam} SpecForce for the blob GameRule!");
         }
     }
 
@@ -107,14 +112,18 @@ public sealed class SpecForcesSystem : EntitySystem
     /// <param name="source"> Source of the call.</param>
     /// <param name="forceCountExtra"> How many extra SpecForces will be forced to spawn.</param>
     /// <returns>Returns true if call was successful.</returns>
-    /// <exception cref="ArgumentException"> If ProtoId of the team is invalid.</exception>
     public bool CallOps(ProtoId<SpecForceTeamPrototype> protoId, string source = "", int? forceCountExtra = null)
     {
-        _callLock.EnterWriteLock();
+        if (!_callLock.TryEnterWriteLock(-1))
+        {
+            Log.Warning("SpecForces is busy!");
+            return false;
+        }
         try
         {
             if (_gameTicker.RunLevel != GameRunLevel.InRound)
             {
+                Log.Warning("Can't call SpecForces while not in the round.");
                 return false;
             }
 
@@ -123,6 +132,7 @@ public sealed class SpecForcesSystem : EntitySystem
 #if !DEBUG
             if (LastUsedTime + DelayUsage > currentTime)
             {
+                Log.Info("Tried to call SpecForce when it's on cooldown.");
                 return false;
             }
 #endif
@@ -211,41 +221,43 @@ public sealed class SpecForcesSystem : EntitySystem
             spawns.Add(Transform(shuttle).Coordinates);
         }
 
+        SpawnGuaranteed(proto, spawns);
+        SpawnSpecForces(proto, spawns, forceCountExtra);
+    }
+
+    private void SpawnGuaranteed(SpecForceTeamPrototype proto, List<EntityCoordinates> spawns)
+    {
+        // If specForceSpawn is empty, we can't continue
+        if (proto.GuaranteedSpawn.Count == 0)
+            return;
+
         // Spawn Guaranteed SpecForces from the prototype.
         var toSpawnGuaranteed = EntitySpawnCollection.GetSpawns(proto.GuaranteedSpawn, _random);
 
-        var countGuaranteed = 0;
         foreach (var mob in toSpawnGuaranteed)
         {
             var spawned = SpawnEntity(mob, _random.Pick(spawns), proto);
-            Log.Info($"Successfully spawned {ToPrettyString(spawned)} SpecForce.");
-            countGuaranteed++;
+            Log.Info($"Successfully spawned {ToPrettyString(spawned)} Static SpecForce.");
         }
+    }
 
-        // Don't count entry's with have not 100% chance to spawn.
-        // This way random will only help and won't hurt SpecForce team.
-        /*
-        foreach (var spawnEntry in proto.GuaranteedSpawn.Where(spawnEntry => spawnEntry.SpawnProbability < 1))
-        {
-            // We also need to check if this role was spawned by The Gods Of Random
-            if (toSpawnGuaranteed.Contains(spawnEntry.PrototypeId!.Value))
-                countGuaranteed--;
-        }
-        */
+    private void SpawnSpecForces(SpecForceTeamPrototype proto, List<EntityCoordinates> spawns, int? forceCountExtra)
+    {
+        // If specForceSpawn is empty, we can't continue
+        if (proto.SpecForceSpawn.Count == 0)
+            return;
 
         // Count how many other forces there should be.
         var countExtra = GetOptIdCount(proto);
         // If bigger than MaxAmount, set to MaxAmount and extract already spawned roles
-        countExtra = Math.Min(countExtra, proto.MaxRolesAmount);//Math.Min(countExtra - countGuaranteed, proto.MaxRolesAmount - countGuaranteed);
+        countExtra = Math.Min(countExtra, proto.MaxRolesAmount);
 
         // If CountExtra was forced to some number, check if this number is in range and extract already spawned roles.
         if (forceCountExtra is >= 0 and <= 15)
-            countExtra = forceCountExtra.Value;// - countGuaranteed;
+            countExtra = forceCountExtra.Value;
 
         // Either zero or bigger than zero, no negatives
         countExtra = Math.Max(0, countExtra);
-
-        Log.Info($"Guaranteed spawned static {countGuaranteed} SpecForces, spawning opt-in {countExtra} more.");
 
         // Spawn Guaranteed SpecForces from the prototype.
         // If all mobs from the list are spawned and we still have free slots, restart the cycle again.
@@ -256,7 +268,7 @@ public sealed class SpecForcesSystem : EntitySystem
             {
                 countExtra--;
                 var spawned = SpawnEntity(mob, _random.Pick(spawns), proto);
-                Log.Info($"Successfully spawned {ToPrettyString(spawned)} SpecForce.");
+                Log.Info($"Successfully spawned {ToPrettyString(spawned)} Opt-in SpecForce.");
             }
         }
     }

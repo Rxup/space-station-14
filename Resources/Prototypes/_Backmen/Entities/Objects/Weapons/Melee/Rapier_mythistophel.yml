@@ -20,7 +20,7 @@
     soundHit:
         path: /Audio/Weapons/Rapier.ogg
   - type: Reflect
-    enabled: true
+#    enabled: true
     reflectProb: .7
     spread: 90
   - type: SolutionContainerManager

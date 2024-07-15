@@ -74,7 +74,7 @@
   - type: ClothingSpeedModifier
     walkModifier: 1.5
     sprintModifier: 1.5
-    enabled: false
+#    enabled: false
   - type: FootstepModifier
     footstepSoundCollection:
       collection: FootstepSoldier

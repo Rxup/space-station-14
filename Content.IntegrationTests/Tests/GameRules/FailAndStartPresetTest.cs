@@ -110,11 +110,14 @@ public sealed class FailAndStartPresetTest
         player = pair.Player!.AttachedEntity!.Value;
         Assert.That(entMan.EntityExists(player));
 
-        ticker.SetGamePreset((GamePresetPrototype?)null);
+        ticker.SetGamePreset((GamePresetPrototype?) null);
         server.CfgMan.SetCVar(CCVars.GridFill, false);
         server.CfgMan.SetCVar(CCVars.GameLobbyFallbackEnabled, true);
         server.CfgMan.SetCVar(CCVars.GameLobbyDefaultPreset, "secret");
         server.System<TestRuleSystem>().Run = false;
+        await pair.WaitCommand("golobby");
+        await pair.RunTicksSync(30);
+        await pair.ReallyBeIdle();
         await pair.CleanReturnAsync();
     }
 }

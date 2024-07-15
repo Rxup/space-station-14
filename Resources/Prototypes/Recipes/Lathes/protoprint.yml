@@ -2,10 +2,20 @@
 
 
 - type: entity
-  parent: SpaceCash
+  parent: BaseItem
   id: FakeSpaceCash
   suffix: Fake
   components:
+  - type: Material
+  - type: PhysicalComposition
+    materialComposition:
+      FakeCredit: 1
+  - type: Item
+    shape:
+    - 0,0,1,0
+    storedOffset: 0,-2
+  - type: StaticPrice
+    price: 0
   - type: Stack
     stackType: FakeCredit
     count: 1
@@ -17,6 +27,24 @@
     - cash_500
     - cash_1000
     - cash_1000000
+  - type: Sprite
+    sprite: Objects/Economy/cash.rsi
+    state: cash
+    layers:
+    - state: cash
+      map: ["base"]
+  - type: Physics
+    bodyType: Dynamic
+  - type: Fixtures
+    fixtures:
+      fix1:
+        density: 30
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.35,-0.2,0.25,0.1"
+        mask:
+        - ItemMask
+  - type: Appearance
   - type: HiddenDescription
     entries:
     - label: backman-hidden-desc-spacecash-syndicate
@@ -37,7 +65,7 @@
         - SecurityCadet
         - Brigmedic
         - HeadOfSecurity
-    
+
 - type: material
   id: FakeCredit
   name: speso
@@ -171,7 +199,7 @@
     SheetPrinter: 100
     Cloth: 200
     Durathread: 50
-    
+
 - type: latheRecipe
   id: SpaceCashemag
   result: FakeSpaceCash1000
@@ -180,14 +208,14 @@
     SheetPrinter: 200
     Cloth: 500
     Durathread: 200
-    
+
 - type: latheRecipe #autolathe
   id: Paper
   result: Paper
   completetime: 2
   materials:
     Wood: 30
-    
+
 - type: latheRecipe
   id: CashMachineCircuitboard
   result: ProtolatheCashMachineCircuitboard

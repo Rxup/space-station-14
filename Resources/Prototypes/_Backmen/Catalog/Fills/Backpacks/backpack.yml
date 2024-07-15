@@ -178,7 +178,7 @@
     - type: StorageFill
       contents:
         - id: CartridgeRocket
-          amount: 10
+          amount: 20
 
 - type: entity
   noSpawn: true
@@ -188,7 +188,7 @@
     - type: StorageFill
       contents:
         - id: MagazineLightMachineGunDrum
-          amount: 4
+          amount: 6
 
 - type: entity
   noSpawn: true
@@ -198,7 +198,7 @@
     - type: StorageFill
       contents:
         - id: MagazineHeavyRifleV41
-          amount: 3
+          amount: 6
 
 - type: entity
   name: продвинутая аптечка стимуляторов
