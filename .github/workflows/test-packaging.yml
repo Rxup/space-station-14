@@ -48,6 +48,20 @@ jobs:
           cd RobustToolbox/
           git submodule update --init --recursive
 
+      # Corvax-Secrets-Start
+      - name: Setup secrets
+        env:
+          SSH_KEY: ${{ secrets.SECRETS_PRIVATE_KEY }}
+        if: ${{ env.SSH_KEY != '' }}
+        run: |
+          mkdir ~/.ssh
+          echo "${{ secrets.SECRETS_PRIVATE_KEY }}" > ~/.ssh/id_rsa
+          chmod 600 ~/.ssh/id_rsa
+          echo "HOST *" > ~/.ssh/config
+          echo "StrictHostKeyChecking no" >> ~/.ssh/config
+          git -c submodule.Secrets.update=checkout submodule update --init
+      # Corvax-Secrets-End
+
       - name: Setup .NET Core
         uses: actions/setup-dotnet@v3.2.0
         with:
@@ -64,11 +78,3 @@ jobs:
 
       - name: Package client
         run: dotnet run --project Content.Packaging client --no-wipe-release
-
-      - name: Update Build Info
-        run: Tools/gen_build_info.py
-
-      - name: Shuffle files around
-        run: |
-          mkdir "release/${{ github.sha }}"
-          mv release/*.zip "release/${{ github.sha }}"

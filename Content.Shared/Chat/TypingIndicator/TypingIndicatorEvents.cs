@@ -12,27 +12,14 @@ namespace Content.Shared.Chat.TypingIndicator;
 [Serializable, NetSerializable]
 public sealed class TypingChangedEvent : EntityEventArgs
 {
-    public readonly bool? IsTyping;
+    // Corvax-TypingIndicator-Start
+    public readonly TypingIndicatorState State;
 
-    public static implicit operator TypingIndicatorState(TypingChangedEvent ev) => ev.IsTyping switch
+    public TypingChangedEvent(TypingIndicatorState state)
     {
-        null => TypingIndicatorState.None,
-        false => TypingIndicatorState.Idle,
-        true => TypingIndicatorState.Typing,
-    };
-
-    public static explicit operator TypingChangedEvent(TypingIndicatorState state) => state switch
-    {
-        TypingIndicatorState.None => new TypingChangedEvent(null),
-        TypingIndicatorState.Idle => new TypingChangedEvent(false),
-        TypingIndicatorState.Typing => new TypingChangedEvent(true),
-        _ => throw new ArgumentOutOfRangeException(),
-    };
-
-    public TypingChangedEvent(bool? isTyping)
-    {
-        IsTyping = isTyping;
+        State = state;
     }
+    // Corvax-TypingIndicator-End
 }
 
 /// <summary>
