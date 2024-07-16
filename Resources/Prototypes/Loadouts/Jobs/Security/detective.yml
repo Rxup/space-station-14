@@ -63,6 +63,24 @@
   id: NoirJumpskirt
   equipment:
     jumpsuit: ClothingUniformJumpskirtDetectiveGrey
+    
+- type: loadout
+  id: JumpsuitDecSerii
+  equipment: JumpsuitDecSerii
+
+- type: startingGear
+  id: JumpsuitDecSerii
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitDecSerii
+    
+- type: loadout
+  id: ClothingJumpsuitDecSerii
+  equipment: ClothingJumpsuitDecSerii
+
+- type: startingGear
+  id: ClothingJumpsuitDecSerii
+  equipment:
+    jumpsuit: ClothingJumpsuitDec
 
 # OuterClothing
 - type: loadout

@@ -119,3 +119,30 @@
     priority: -12
     event: !type:DashEvent
     range: 0
+
+- type: entity
+  parent: ClothingHandsBase
+  id: ClothingHandsGlovesTGMCwhite
+  name: белые боевые перчатки
+  description: Эти тактические белые перчатки огнеупорны и ударопрочны.
+  components:
+  - type: Sprite
+    sprite: Backmen/Clothing/Hands/Gloves/whitetgmc.rsi
+  - type: Clothing
+    sprite: Backmen/Clothing/Hands/Gloves/whitetgmc.rsi
+  - type: Fiber
+    fiberMaterial: fibers-durathread
+  - type: FingerprintMask
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.90
+        Slash: 0.90
+        Piercing: 0.95
+        Heat: 0.95
+  - type: Thieving
+    stripTimeReduction: 1
+    stealthy: true
+  - type: GloveHeatResistance
+    heatResistance: 1400
+  - type: Insulated
