@@ -691,6 +691,56 @@
     radius: 6
 
 - type: entity
+  name: M-1911
+  parent: BaseWeaponPistol
+  id: WeaponPistolM1911
+  suffix: Пистолет
+  description: A M-1911 chambered in .35 An archaic weapon, yet its popular and extremely reliable mechanism provided a template for many semi-automatic pistols to come.
+  components:
+  - type: Sprite
+    sprite: Backmen/Objects/Weapons/Gunsx64/Pistols/m1911/big.rsi
+  - type: Item
+    sprite: Backmen/Objects/Weapons/Gunsx64/Pistols/m1911/tiny.rsi
+  - type: Gun
+    angleDecay: 15
+    angleIncrease: 5
+    cameraRecoilScalar: 0.5
+    maxAngle: 15
+    minAngle: 1
+    selectedMode: SemiAuto
+    availableModes:
+      - SemiAuto
+    soundGunshot:
+      path: /Audio/Weapons/Guns64/Pistols/colt.ogg
+  - type: ItemSlots
+    slots:
+      gun_magazine:
+        name: Magazine
+        startingItem: MagazinePistol
+        insertSound: /Audio/Weapons/Guns64/Pistols/colt_reload.ogg
+        ejectSound: /Audio/Weapons/Guns64/Pistols/colt_unload.ogg
+        priority: 2
+        whitelist:
+          tags:
+            - MagazinePistol
+            - MagazinePistolHighCapacity
+      gun_chamber:
+        name: Chamber
+        startingItem: CartridgePistol
+        priority: 1
+        whitelist:
+          tags:
+            - CartridgePistol
+  - type: MagazineVisuals
+    magState: mag
+    steps: 1
+    zeroVisible: true
+  - type: ContainerContainer
+    containers:
+      gun_magazine: !type:ContainerSlot
+      gun_chamber: !type:ContainerSlot
+
+- type: entity
   name: Divet
   parent: BaseWeaponPistol
   id: WeaponPistolDivet
@@ -894,7 +944,6 @@
         priority: 2
         whitelist:
           tags:
-
             - MagazineLightRifle
       gun_chamber:
         name: Chamber
@@ -907,7 +956,6 @@
     containers:
       gun_magazine: !type:ContainerSlot
       gun_chamber: !type:ContainerSlot
-      mech-assembly-container: !type:Container
   - type: MagazineVisuals
     magState: mag
     steps: 1
@@ -916,10 +964,9 @@
   - type: Wieldable
   - type: UseDelay
     delay: 1.3
-  - type: MechAssembly
-    finishedPrototype: WeaponAKMSTacticalRifle
-    requiredParts:
-      UpgradeStation: false
+  - type: Construction
+    graph: AKMSTactical
+    node: start
 
 - type: entity
   name: AK74-U
@@ -986,6 +1033,9 @@
   - type: Wieldable
   - type: UseDelay
     delay: 0.5
+  - type: Construction
+    graph: AKSUTactical
+    node: start
 
 - type: entity
   name: AR-18
@@ -1104,11 +1154,6 @@
         whitelist:
           tags:
             - CartridgeRifle
-  - type: ContainerContainer
-    containers:
-      gun_magazine: !type:ContainerSlot
-      gun_chamber: !type:ContainerSlot
-      mech-assembly-container: !type:Container
   - type: MagazineVisuals
     magState: mag
     steps: 1
@@ -1117,10 +1162,9 @@
   - type: Wieldable
   - type: UseDelay
     delay: 1.3
-  - type: MechAssembly
-    finishedPrototype: WeaponRifleG36Tactical
-    requiredParts:
-      UpgradeStation: false
+  - type: Construction
+    graph: G36Tactical
+    node: start
 
 - type: entity
   name: M-28
@@ -1174,11 +1218,6 @@
         whitelist:
           tags:
             - CartridgeRifle
-  - type: ContainerContainer
-    containers:
-      gun_magazine: !type:ContainerSlot
-      gun_chamber: !type:ContainerSlot
-      mech-assembly-container: !type:Container
   - type: MagazineVisuals
     magState: mag
     steps: 1
@@ -1187,10 +1226,9 @@
   - type: Wieldable
   - type: UseDelay
     delay: 1.5
-  - type: MechAssembly
-    finishedPrototype: WeaponRifleM28Tactical
-    requiredParts:
-      UpgradeStation: false
+  - type: Construction
+    graph: M28Tactical
+    node: start
 
 - type: entity
   parent: WeaponRifleM28
@@ -1455,15 +1493,6 @@
         whitelist:
           tags:
             - CartridgePistol
-  - type: ContainerContainer
-    containers:
-      gun_magazine: !type:ContainerSlot
-      gun_chamber: !type:ContainerSlot
-      mech-assembly-container: !type:Container
-  - type: MechAssembly
-    finishedPrototype: WeaponSubMachineGunMP5Tactical
-    requiredParts:
-      UpgradeStation: false
   - type: MagazineVisuals
     magState: mag
     steps: 1
@@ -1472,6 +1501,9 @@
   - type: Wieldable
   - type: UseDelay
     delay: 0.5
+  - type: Construction
+    graph: MP5Tactical
+    node: start
 
 - type: entity
   parent: WeaponSubMachineGunMP5
@@ -1601,15 +1633,9 @@
         whitelist:
           tags:
             - CartridgePistol
-  - type: ContainerContainer
-    containers:
-      gun_magazine: !type:ContainerSlot
-      gun_chamber: !type:ContainerSlot
-      mech-assembly-container: !type:Container
-  - type: MechAssembly
-    finishedPrototype: WeaponSubMachineGunVectorSpecialTactical
-    requiredParts:
-      UpgradeStation: false
+  - type: Construction
+    graph: VectorTactical
+    node: start
   - type: MagazineVisuals
     magState: mag
     steps: 1
@@ -1997,6 +2023,9 @@
   - type: Wieldable
   - type: UseDelay
     delay: 0.5
+  - type: Construction
+    graph: P90Tactical
+    node: start
 
 - type: entity
   name: EarthGov heavy laser rifle
@@ -2113,14 +2142,9 @@
     cameraRecoilScalar: 2
     soundGunshot:
       path: /Audio/Weapons/Guns64/Shotguns/sh39.ogg
-  - type: ContainerContainer
-    containers:
-      ballistic-ammo: !type:Container
-      mech-assembly-container: !type:Container
-  - type: MechAssembly
-    finishedPrototype: WeaponShotgun39Tactical
-    requiredParts:
-      UpgradeStation: false
+  - type: Construction
+    graph: Shotgun39Tactical
+    node: start
 
 - type: entity
   name: XM1014
@@ -2768,25 +2792,6 @@
   - type: GunRequiresWield
 
 - type: entity
-  name: Mateba
-  parent: BaseWeaponRevolver
-  id: WeaponRevolverMatebaNew
-  suffix: Револьвер
-  description: The iconic sidearm of the dreaded death squads. Uses .45 magnum ammo.
-  components:
-  - type: Sprite
-    sprite: Backmen/Objects/Weapons/Gunsx64/Revolver/mateba.rsi/big.rsi
-  - type: Clothing
-    sprite: Backmen/Objects/Weapons/Gunsx64/Revolver/mateba.rsi/tiny.rsi
-  - type: Item
-    sprite: Backmen/Objects/Weapons/Gunsx64/Revolver/mateba.rsi/tiny.rsi
-  - type: Gun
-    fireRate: 3
-    cameraRecoilScalar: 2
-    soundGunshot:
-      path: /Audio/Weapons/Guns/Gunshots/mateba.ogg
-
-- type: entity
   name: Kardashev-Mosin
   parent: BaseWeaponSniper
   id: WeaponSniperMosinNew
@@ -3304,6 +3309,9 @@
     walkModifier: 1
     sprintModifier: 0.8
   - type: HeldSpeedModifier
+  - type: Construction
+    graph: RPDTactical
+    node: start
 
 - type: entity
   name: MG-42
@@ -3712,8 +3720,8 @@
     vaporAmount: 3
     vaporSpread: 30
     sprayVelocity: 2.0
-  - type: FireExtinguisher
-    hasSafety: true
+#  - type: FireExtinguisher
+#    hasSafety: true
 
 - type: entity
   id: PowerpackFlame
@@ -3833,8 +3841,8 @@
     vaporAmount: 3
     vaporSpread: 30
     sprayVelocity: 2.0
-  - type: FireExtinguisher
-    hasSafety: true
+#  - type: FireExtinguisher
+#    hasSafety: true
 
 - type: entity
   id: FuelTankFirethrower

@@ -443,6 +443,7 @@
   - SecurityBackpack
   - DetectiveOuterClothing
   - SecurityShoes
+  - DetectiveRevolver
   - Medals #backmen
   - SurvivalSecurity
   - Trinkets
@@ -573,6 +574,7 @@
   id: JobPsychologist
   groups:
   - PsychologistJumpsuit #backmen
+  - Inventory # Corvax-Loadouts
   - GroupTankHarness
   - MedicalBackpack
   - Glasses

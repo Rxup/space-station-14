@@ -74,10 +74,24 @@
   - type: ClothingSpeedModifier
     walkModifier: 1.5
     sprintModifier: 1.5
-    enabled: false
+#    enabled: false
   - type: FootstepModifier
     footstepSoundCollection:
       collection: FootstepSoldier
       params:
         volume: -999
   - type: NoSlip
+  
+- type: entity  
+  parent: ClothingShoesBaseButcherable
+  id: ClothingShoesBootsBerrci
+  name: Шнурованные берцы
+  description: Удобная обувь с шнурками.
+  components:
+  - type: Sprite
+    sprite: Backmen/Clothing/Shoes/Boots/berrci.rsi
+  - type: Clothing
+    sprite: Backmen/Clothing/Shoes/Boots/berrci.rsi
+  - type: FootstepModifier # Corvax-Sounds
+    footstepSoundCollection:
+      collection: FootstepBoots

@@ -16,7 +16,7 @@
   id: DetectiveFedoraGrey
   equipment:
     head: ClothingHeadHatFedoraGrey
-  
+
 # Neck
 - type: loadout
   id: DetectiveTie
@@ -63,6 +63,24 @@
   id: NoirJumpskirt
   equipment:
     jumpsuit: ClothingUniformJumpskirtDetectiveGrey
+    
+- type: loadout
+  id: JumpsuitDecSerii
+  equipment: JumpsuitDecSerii
+
+- type: startingGear
+  id: JumpsuitDecSerii
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitDecSerii
+    
+- type: loadout
+  id: ClothingJumpsuitDecSerii
+  equipment: ClothingJumpsuitDecSerii
+
+- type: startingGear
+  id: ClothingJumpsuitDecSerii
+  equipment:
+    jumpsuit: ClothingJumpsuitDec
 
 # OuterClothing
 - type: loadout
@@ -82,3 +100,49 @@
   id: DetectiveCoat
   equipment:
     outerClothing: ClothingOuterCoatDetectiveLoadout
+
+# Weapon #Backmen
+- type: loadout
+  id: WeaponRevolverCMB
+  equipment: WeaponRevolverCMB
+
+- type: startingGear
+  id: WeaponRevolverCMB
+  equipment:
+    belt: WeaponRevolverCMB
+
+- type: loadout
+  id: WeaponRevolverR44
+  equipment: WeaponRevolverR44
+
+- type: startingGear
+  id: WeaponRevolverR44
+  equipment:
+    belt: WeaponRevolverR44
+
+- type: loadout
+  id: WeaponRevolverRebota
+  equipment: WeaponRevolverRebota
+
+- type: startingGear
+  id: WeaponRevolverRebota
+  equipment:
+    belt: WeaponRevolverRebota
+
+- type: loadout
+  id: WeaponRevolverNY
+  equipment: WeaponRevolverNY
+
+- type: startingGear
+  id: WeaponRevolverNY
+  equipment:
+    belt: WeaponRevolverNY
+
+- type: loadout
+  id: WeaponRevolverInspector
+  equipment: WeaponRevolverInspector
+
+- type: startingGear
+  id: WeaponRevolverInspector
+  equipment:
+    belt: WeaponRevolverInspector

@@ -102,6 +102,17 @@
     sprite: Backmen/Clothing/Uniforms/Jumpskirt/blackunderwear.rsi
   - type: Clothing
     sprite: Backmen/Clothing/Uniforms/Jumpskirt/blackunderwear.rsi
+    
+- type: entity # Backmen
+  parent: ClothingUniformSkirtBase
+  id: ClothingJumpsuitDec
+  name: серая юбка-костюм детектива
+  description: серая юбка с рубашкой, тахнет тайной!
+  components:
+  - type: Sprite
+    sprite: Backmen/Clothing/Uniforms/Jumpskirt/dec.rsi
+  - type: Clothing
+    sprite: Backmen/Clothing/Uniforms/Jumpskirt/dec.rsi
 
 - type: entity
   parent: ClothingUniformSkirtBase

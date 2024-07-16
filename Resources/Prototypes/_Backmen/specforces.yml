@@ -100,7 +100,7 @@
   announcementText: spec-forces-system-ertcall-annonce
   announcementTitle: spec-forces-system-ertTay-title
   announcementSoundPath: /Audio/Corvax/Adminbuse/Yesert.ogg
-  maxRolesAmount: 6
+  maxRolesAmount: 2
   guaranteedSpawn:
     - id: SpawnMobHumanERTLeaderTay39
     - id: SpawnMobHumanERTMedicTay39
@@ -122,7 +122,7 @@
   id: RXBZZBlobLow
   parent: BaseRXBZZ
   guaranteedSpawn:
-    - id: SpawnMobHumanRXBZZLeader
+    - id: SpawnMobHumanRXBZZBlobLeader
     - id: SpawnMobHumanRXBZZFlamer
     - id: SpawnMobHumanRXBZZ
       amount: 2
@@ -131,7 +131,7 @@
   id: RXBZZBlobDefault
   parent: BaseRXBZZ
   guaranteedSpawn:
-    - id: SpawnMobHumanRXBZZLeader
+    - id: SpawnMobHumanRXBZZBlobLeader
     - id: SpawnMobHumanRXBZZFlamer
     - id: SpawnMobHumanRXBZZ
       amount: 4
@@ -140,7 +140,7 @@
   id: RXBZZBlobBig
   parent: BaseRXBZZ
   guaranteedSpawn:
-    - id: SpawnMobHumanRXBZZLeader
+    - id: SpawnMobHumanRXBZZBlobLeader
     - id: SpawnMobHumanRXBZZFlamer
       amount: 2
     - id: SpawnMobHumanRXBZZ

@@ -49,3 +49,13 @@
     ears: ClothingHeadsetEarthGov
     belt: WeaponAdvancedLaser
     pocket2: ClothingMedicalPounchRXBZZFilled
+
+- type: startingGear
+  id: RXBZZBlobLeader
+  parent: RXBZZLeader
+  storage:
+    back:
+    - NukeCodePaperStation
+    - PinpointerNuclear
+    - PinpointerNuclearBomb
+    - PaperOrderRXBZZ
