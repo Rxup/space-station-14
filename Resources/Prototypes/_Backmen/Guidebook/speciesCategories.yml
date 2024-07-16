@@ -1,16 +1,9 @@
 - type: guideEntry
   id: NyanoSpecies
-  name: guide-entry-nyano-species
-  text: "/ServerInfo/Guidebook/Species/NyanoSpecies.xml"
+  name: guide-entry-backmen-species
+  text: "/ServerInfo/_Backmen/Guidebook/Species/NyanoSpecies.xml"
   children:
     - SpeciesArachne
     - SpeciesFelinid
     - SpeciesOni
-
-- type: guideEntry
-  id: SimpleStationSpecies
-  name: guide-entry-simplestation-species
-  text: "/ServerInfo/Guidebook/Species/SimpleStationSpecies.xml"
-  children:
-    # - SpeciesPlasmaman
     - SpeciesShadowkin

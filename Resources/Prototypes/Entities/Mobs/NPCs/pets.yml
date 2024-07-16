@@ -808,3 +808,37 @@
 #  - type: AlwaysRevolutionaryConvertible
   - type: StealTarget
     stealGroup: AnimalTropico
+
+- type: entity # Backmen
+  name: Есперон
+  parent: MobCat
+  id: MobCatEsperon
+  description: Космический кот??! Найдено в секторе "Бекман"
+  components:
+  - type: Sprite
+    drawdepth: Mobs
+    sprite: Mobs/Pets/espeon.rsi
+    layers:
+    - map: ["enum.DamageStateVisualLayers.Base"]
+      state: espeon
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: espeon
+      Critical:
+        Base: espeon_dead
+      Dead:
+  - type: NpcFactionMember
+    factions:
+      - PetsNT
+  - type: HTN
+    rootTask:
+      task: SimpleHostileCompound
+  - type: Grammar
+    attributes:
+      proper: true
+      gender: female
+  - type: Tag
+    tags:
+    - CannotSuicide
+    - VimPilot

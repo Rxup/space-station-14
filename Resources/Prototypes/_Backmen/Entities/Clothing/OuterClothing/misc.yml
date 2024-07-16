@@ -26,3 +26,25 @@
   suffix: Unremoveable
   components:
   - type: Unremoveable
+  
+- type: entity
+  parent: ClothingOuterBase
+  id: ClothingGlavaKylt
+  name: Чёрная накидка старшего 
+  description: Странная чёрная накидка старшего последователя, пахнет мистикой.
+  components:
+  - type: Sprite
+    sprite: Backmen/Clothing/OuterClothing/Misc/glava.rsi
+  - type: Clothing
+    sprite: Backmen/Clothing/OuterClothing/Misc/glava.rsi
+
+- type: entity
+  parent: ClothingOuterBase
+  id: ClothingPosledKylt
+  name: Чёрная накидка последователя
+  description: Странная чёрная накидка последователя, пахнет мистикой.
+  components:
+  - type: Sprite
+    sprite: Backmen/Clothing/OuterClothing/Misc/posledov.rsi
+  - type: Clothing
+    sprite: Backmen/Clothing/OuterClothing/Misc/posledov.rsi
