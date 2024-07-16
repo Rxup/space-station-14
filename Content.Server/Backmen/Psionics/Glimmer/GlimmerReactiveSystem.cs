@@ -1,10 +1,10 @@
 using Content.Server.Backmen.Audio;
+using Content.Server.CartridgeLoader.Cartridges;
 using Content.Server.Power.Components;
 using Content.Server.Electrocution;
 using Content.Server.Lightning;
 using Content.Server.Explosion.EntitySystems;
-using Content.Server.Ghost;
-using Content.Server.Revenant.EntitySystems;
+using Content.Server.GameTicking;
 using Content.Shared.Audio;
 using Content.Shared.Backmen.Psionics.Glimmer;
 using Content.Shared.Construction.EntitySystems;
@@ -15,6 +15,8 @@ using Content.Shared.StatusEffect;
 using Content.Shared.Damage;
 using Content.Shared.Destructible;
 using Content.Shared.Construction.Components;
+using Content.Shared.MassMedia.Components;
+using Content.Shared.MassMedia.Systems;
 using Robust.Shared.Audio;
 using Robust.Shared.Random;
 using Robust.Shared.Physics.Components;
@@ -39,11 +41,12 @@ namespace Content.Server.Backmen.Psionics.Glimmer
         [Dependency] private readonly EntityLookupSystem _entityLookupSystem = default!;
         [Dependency] private readonly AnchorableSystem _anchorableSystem = default!;
         [Dependency] private readonly SharedDestructibleSystem _destructibleSystem = default!;
-        [Dependency] private readonly GhostSystem _ghostSystem = default!;
-        [Dependency] private readonly RevenantSystem _revenantSystem = default!;
+        //[Dependency] private readonly GhostSystem _ghostSystem = default!;
+        //[Dependency] private readonly RevenantSystem _revenantSystem = default!;
         [Dependency] private readonly MapSystem _mapSystem = default!;
         [Dependency] private readonly SharedTransformSystem _transformSystem = default!;
         [Dependency] private readonly SharedPointLightSystem _pointLightSystem = default!;
+        [Dependency] private readonly GameTicker _ticker = default!;
 
 
         public float Accumulator = 0;
@@ -52,13 +55,9 @@ namespace Content.Server.Backmen.Psionics.Glimmer
         public GlimmerTier LastGlimmerTier = GlimmerTier.Minimal;
         public bool GhostsVisible = false;
 
-        private ISawmill _sawmill = default!;
-
         public override void Initialize()
         {
             base.Initialize();
-
-            _sawmill = Logger.GetSawmill("glimmer.reactive");
 
             SubscribeLocalEvent<RoundRestartCleanupEvent>(Reset);
 
@@ -81,8 +80,10 @@ namespace Content.Server.Backmen.Psionics.Glimmer
         /// <param name="glimmerTierDelta">The number of steps in tier
         /// difference since last update. This can be zero for the sake of
         /// toggling the enabled states.</param>
-        private void UpdateEntityState(EntityUid uid, SharedGlimmerReactiveComponent component,
-            GlimmerTier currentGlimmerTier, int glimmerTierDelta)
+        private void UpdateEntityState(EntityUid uid,
+            SharedGlimmerReactiveComponent component,
+            GlimmerTier currentGlimmerTier,
+            int glimmerTierDelta)
         {
             var isEnabled = true;
 
@@ -134,11 +135,11 @@ namespace Content.Server.Backmen.Psionics.Glimmer
         {
             if (component.RequiresApcPower && !HasComp<ApcPowerReceiverComponent>(uid))
             {
-                _sawmill.Warning($"{ToPrettyString(uid)} had RequiresApcPower set to true but no ApcPowerReceiverComponent was found on init.");
+                Log.Warning($"{ToPrettyString(uid)} had RequiresApcPower set to true but no ApcPowerReceiverComponent was found on init.");
             }
 
             if (component.ModulatesPointLight && !HasComp<PointLightComponent>(uid))
-                _sawmill.Warning($"{ToPrettyString(uid)} had ModulatesPointLight set to true but no PointLightComponent was found on init.");
+                Log.Warning($"{ToPrettyString(uid)} had ModulatesPointLight set to true but no PointLightComponent was found on init.");
 
             UpdateEntityState(uid, component, LastGlimmerTier, (int) LastGlimmerTier);
         }
@@ -166,7 +167,8 @@ namespace Content.Server.Backmen.Psionics.Glimmer
         /// <summary>
         ///     Enable / disable special effects from higher tiers.
         /// </summary>
-        private void OnTierChanged(EntityUid uid, SharedGlimmerReactiveComponent component,
+        private void OnTierChanged(EntityUid uid,
+            SharedGlimmerReactiveComponent component,
             GlimmerTierChangedEvent args)
         {
             if (!TryComp<ApcPowerReceiverComponent>(uid, out var receiver))
@@ -186,7 +188,8 @@ namespace Content.Server.Backmen.Psionics.Glimmer
             }
         }
 
-        private void AddShockVerb(EntityUid uid, SharedGlimmerReactiveComponent component,
+        private void AddShockVerb(EntityUid uid,
+            SharedGlimmerReactiveComponent component,
             GetVerbsEvent<AlternativeVerb> args)
         {
             if (!args.CanAccess || !args.CanInteract)
@@ -385,21 +388,63 @@ namespace Content.Server.Backmen.Psionics.Glimmer
                     var glimmerTierDelta = (int) currentGlimmerTier - (int) LastGlimmerTier;
                     var ev = new GlimmerTierChangedEvent(LastGlimmerTier, currentGlimmerTier, glimmerTierDelta);
 
-                    var reactives = EntityQueryEnumerator<SharedGlimmerReactiveComponent>();
-                    while (reactives.MoveNext(out var owner, out var reactive))
+                    var reactiv = EntityQueryEnumerator<SharedGlimmerReactiveComponent>();
+                    while (reactiv.MoveNext(out var owner, out var reactive))
                     {
                         UpdateEntityState(owner, reactive, currentGlimmerTier, glimmerTierDelta);
                         RaiseLocalEvent(owner, ev);
                     }
-
+                    var wrappedMessage = Loc.GetString(
+                        "glimmer-change-notification",
+                        ("last", LastGlimmerTier),
+                        ("now", currentGlimmerTier),
+                        ("delta", glimmerTierDelta > 0 ? $"+{glimmerTierDelta}" : glimmerTierDelta)
+                    );
                     LastGlimmerTier = currentGlimmerTier;
+
+                    var stationNews = EntityQueryEnumerator<StationNewsComponent>();
+                    while (stationNews.MoveNext(out var station, out var stationNewsComponent))
+                    {
+                        var article = new NewsArticle();
+                        article.Author = Loc.GetString("ent-SophicScribe");
+                        article.Title = wrappedMessage;
+                        article.Content = currentGlimmerTier switch
+                        {
+                            GlimmerTier.Minimal => Loc.GetString("glimmer-reading-minimal"),
+                            GlimmerTier.Low => Loc.GetString("glimmer-reading-low"),
+                            GlimmerTier.Moderate => Loc.GetString("glimmer-reading-moderate"),
+                            GlimmerTier.High => Loc.GetString("glimmer-reading-high"),
+                            GlimmerTier.Dangerous => Loc.GetString("glimmer-reading-dangerous"),
+                            _ => Loc.GetString("glimmer-reading-critical"),
+                        };
+                        article.ShareTime = _ticker.RoundDuration();
+                        stationNewsComponent.Articles.Add(article);
+                        var args = new NewsArticlePublishedEvent(article);
+                        var query = EntityQueryEnumerator<NewsReaderCartridgeComponent>();
+                        while (query.MoveNext(out var readerUid, out _))
+                        {
+                            RaiseLocalEvent(readerUid, ref args);
+                        }
+                    }
                 }
 
+                var reactives = EntityQueryEnumerator<SharedGlimmerReactiveComponent,TransformComponent>();
+                while (reactives.MoveNext(out var owner, out _, out var transformComponent))
+                {
+                    if (currentGlimmerTier == GlimmerTier.Critical)
+                        BeamRandomNearProber(owner, 1, 12);
+
+                    if (currentGlimmerTier is GlimmerTier.Critical or GlimmerTier.Dangerous && !transformComponent.Anchored)
+                        AnchorOrExplode(owner);
+
+                }
+
+                /*
                 if (currentGlimmerTier == GlimmerTier.Critical)
                 {
-                    _ghostSystem.MakeVisible(true);
-                    _revenantSystem.MakeVisible(true);
-                    GhostsVisible = true;
+                    //_ghostSystem.MakeVisible(true);
+                    //_revenantSystem.MakeVisible(true);
+                    //GhostsVisible = true;
                     var reactives = EntityQueryEnumerator<SharedGlimmerReactiveComponent>();
                     while (reactives.MoveNext(out var owner, out _))
                     {
@@ -408,45 +453,13 @@ namespace Content.Server.Backmen.Psionics.Glimmer
                 }
                 else if (GhostsVisible == true)
                 {
-                    _ghostSystem.MakeVisible(false);
-                    _revenantSystem.MakeVisible(false);
-                    GhostsVisible = false;
-                }
+                    //_ghostSystem.MakeVisible(false);
+                    //_revenantSystem.MakeVisible(false);
+                    //GhostsVisible = false;
+                }*/
 
                 Accumulator = 0;
             }
-        }
-    }
-
-    /// <summary>
-    /// This event is fired when the broader glimmer tier has changed,
-    /// not on every single adjustment to the glimmer count.
-    ///
-    /// <see cref="GlimmerSystem.GetGlimmerTier"/> has the exact
-    /// values corresponding to tiers.
-    /// </summary>
-    public sealed class GlimmerTierChangedEvent : EntityEventArgs
-    {
-        /// <summary>
-        /// What was the last glimmer tier before this event fired?
-        /// </summary>
-        public readonly GlimmerTier LastTier;
-
-        /// <summary>
-        /// What is the current glimmer tier?
-        /// </summary>
-        public readonly GlimmerTier CurrentTier;
-
-        /// <summary>
-        /// What is the change in tiers between the last and current tier?
-        /// </summary>
-        public readonly int TierDelta;
-
-        public GlimmerTierChangedEvent(GlimmerTier lastTier, GlimmerTier currentTier, int tierDelta)
-        {
-            LastTier = lastTier;
-            CurrentTier = currentTier;
-            TierDelta = tierDelta;
         }
     }
 }

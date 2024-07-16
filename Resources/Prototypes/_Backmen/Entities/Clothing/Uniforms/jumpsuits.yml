@@ -610,6 +610,39 @@
     sprite: Backmen/Clothing/Uniforms/jumpsuit/biker.rsi
   - type: Clothing
     sprite: Backmen/Clothing/Uniforms/jumpsuit/biker.rsi
+    
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformJumpsuitCenK # Backmen
+  name: Костюм Центрального Коммандования
+  description: Темно-зелёный костюм ЦК
+  components:
+  - type: Sprite
+    sprite: Backmen/Clothing/Uniforms/jumpsuit/uni.rsi
+  - type: Clothing
+    sprite: Backmen/Clothing/Uniforms/jumpsuit/uni.rsi
+    
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformJumpsuitDecSerii # Backmen
+  name: Серый костюм детектива
+  description: Серый костюм детектива, тахней тайной!
+  components:
+  - type: Sprite
+    sprite: Backmen/Clothing/Uniforms/jumpsuit/dec.rsi
+  - type: Clothing
+    sprite: Backmen/Clothing/Uniforms/jumpsuit/dec.rsi
+    
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformJumpsuitSWAT # Backmen
+  name: боевая униформа SWAT
+  description: стой! SWAT идёт!
+  components:
+  - type: Sprite
+    sprite: Backmen/Clothing/Uniforms/jumpsuit/uniformswat.rsi
+  - type: Clothing
+    sprite: Backmen/Clothing/Uniforms/jumpsuit/uniformswat.rsi
 
 - type: entity
   parent: ClothingUniformBase
@@ -621,6 +654,118 @@
       sprite: Backmen/Clothing/Uniforms/jumpsuit/marine_suit.rsi
     - type: Clothing
       sprite: Backmen/Clothing/Uniforms/jumpsuit/marine_suit.rsi
+      
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformJumpsuitPants # Backmen
+  name: боевые штаны
+  description: Чувствуешь себя крутым? Ну что ж, тогда это для тебя!
+  components:
+  - type: Sprite
+    sprite: Backmen/Clothing/Uniforms/jumpsuit/pants.rsi
+  - type: Clothing
+    sprite: Backmen/Clothing/Uniforms/jumpsuit/pants.rsi
+    
+      
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformJumpsuitVergil # Backmen
+  name: костюм Вергилия
+  description: А я без тебя никогда не умру.
+  components:
+  - type: Sprite
+    sprite: Backmen/Clothing/Uniforms/jumpsuit/vergil.rsi
+  - type: Clothing
+    sprite: Backmen/Clothing/Uniforms/jumpsuit/vergil.rsi
+    
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformJumpsuitJeester # Backmen
+  name: костюм Джестера
+  description: Младший единокровный брат Короля и дядя Принца.
+  components:
+  - type: Sprite
+    sprite: Backmen/Clothing/Uniforms/jumpsuit/jeester.rsi
+  - type: Clothing
+    sprite: Backmen/Clothing/Uniforms/jumpsuit/jeester.rsi
+    
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformJumpsuitdirF # Backmen
+  name: Униформа ViF
+  description: Униформа сотрудника компании ViF.
+  components:
+  - type: Sprite
+    sprite: Backmen/Clothing/Uniforms/jumpsuit/dirF.rsi
+  - type: Clothing
+    sprite: Backmen/Clothing/Uniforms/jumpsuit/dirF.rsi
+    
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformJumpsuitWorkerViF # Backmen
+  name: Униформа ViF
+  description: Униформа сотрудника компании ViF.
+  components:
+  - type: Sprite
+    sprite: Backmen/Clothing/Uniforms/jumpsuit/worker.rsi
+  - type: Clothing
+    sprite: Backmen/Clothing/Uniforms/jumpsuit/worker.rsi
+    
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformJumpsuitCamo # Backmen
+  name: Камуфляжная униформа
+  description: Военная милитаристическая форма.
+  components:
+  - type: Sprite
+    sprite: Backmen/Clothing/Uniforms/jumpsuit/camo.rsi
+  - type: Clothing
+    sprite: Backmen/Clothing/Uniforms/jumpsuit/camo.rsi
+    
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformJumpsuitCamoB # Backmen
+  name: Камуфляжная униформа городская
+  description: Военная милитаристическая форма, в чёрном цвете.
+  components:
+  - type: Sprite
+    sprite: Backmen/Clothing/Uniforms/jumpsuit/camo_b.rsi
+  - type: Clothing
+    sprite: Backmen/Clothing/Uniforms/jumpsuit/camo_b.rsi
+    
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformJumpsuitUnder # Backmen
+  name: Форма армии Новой Мекии
+  description: Зелённая форма армии Новой Мекии.
+  components:
+  - type: Sprite
+    sprite: Backmen/Clothing/Uniforms/jumpsuit/under.rsi
+  - type: Clothing
+    sprite: Backmen/Clothing/Uniforms/jumpsuit/under.rsi
+    
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformJumpsuitCloth # Backmen
+  name: Форма армии Новой Мекии
+  description: Форма армии Новой Мекии.
+  components:
+  - type: Sprite
+    sprite: Backmen/Clothing/Uniforms/jumpsuit/cloth.rsi
+  - type: Clothing
+    sprite: Backmen/Clothing/Uniforms/jumpsuit/cloth.rsi
+    
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformJumpsuitTGMCwhite # Backmen
+  name: белая боевая униформа
+  description: Военная белая униформа.
+  components:
+  - type: Sprite
+    sprite: Backmen/Clothing/Uniforms/jumpsuit/uniformtgmc.rsi
+  - type: Clothing
+    sprite: Backmen/Clothing/Uniforms/jumpsuit/uniformtgmc.rsi
+
 
 - type: entity
   parent: ClothingUniformBase

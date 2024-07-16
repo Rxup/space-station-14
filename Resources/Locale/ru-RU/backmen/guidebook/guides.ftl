@@ -8,3 +8,6 @@ guide-entry-jurisdiction = Юрисдикция
 guide-entry-trial-prodedure = Судебная процедура
 guide-entry-shogi = Сёги
 guide-entry-charges-and-times = Обвинения и вынесение приговора
+guide-entry-blob = Блоб
+guide-entry-backmen-species = Другие расы
+guide-entry-supermatter = Суперматерия

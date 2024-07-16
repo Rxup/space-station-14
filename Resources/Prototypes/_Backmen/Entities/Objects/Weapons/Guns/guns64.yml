@@ -3720,8 +3720,8 @@
     vaporAmount: 3
     vaporSpread: 30
     sprayVelocity: 2.0
-  - type: FireExtinguisher
-    hasSafety: true
+#  - type: FireExtinguisher
+#    hasSafety: true
 
 - type: entity
   id: PowerpackFlame
@@ -3841,8 +3841,8 @@
     vaporAmount: 3
     vaporSpread: 30
     sprayVelocity: 2.0
-  - type: FireExtinguisher
-    hasSafety: true
+#  - type: FireExtinguisher
+#    hasSafety: true
 
 - type: entity
   id: FuelTankFirethrower

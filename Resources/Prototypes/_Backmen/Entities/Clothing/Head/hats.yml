@@ -179,6 +179,28 @@
       sprite: Backmen/Clothing/Head/Hats/seccap.rsi
     - type: Clothing
       sprite: Backmen/Clothing/Head/Hats/seccap.rsi
+      
+- type: entity
+  parent: ClothingHeadBase
+  id: ClothingHeadHatBeretVet
+  name: Берет ветерана
+  description: Зелёный берет ветерана, в милитарическом стиле.
+  components:
+    - type: Sprite
+      sprite: Backmen/Clothing/Head/Hats/beretvet.rsi
+    - type: Clothing
+      sprite: Backmen/Clothing/Head/Hats/beretvet.rsi
+      
+- type: entity
+  parent: ClothingHeadBase
+  id: ClothingHeadHatChapa
+  name: Камилавка
+  description: Шляпа из верблюжьей шерсти, крайне похожа на древний головной убор священника.
+  components:
+    - type: Sprite
+      sprite: Backmen/Clothing/Head/Hats/headchap.rsi
+    - type: Clothing
+      sprite: Backmen/Clothing/Head/Hats/headchap.rsi
 
 - type: entity
   parent: ClothingHeadBase
@@ -357,3 +379,36 @@
      sprite: Backmen/Clothing/Head/Hats/tony.rsi
    - type: IngestionBlocker
    - type: IdentityBlocker
+
+- type: entity # backmen
+  parent: ClothingMaskBase
+  id: ClothingMaskBal
+  name: баллаклава SWAT
+  description: аааа!
+  components:
+  - type: Sprite
+    sprite: Backmen/Clothing/Head/Masks/balaclawa.rsi
+  - type: Clothing
+    sprite: Backmen/Clothing/Head/Masks/balaclawa.rsi
+    
+- type: entity # backmen
+  parent: ClothingHeadBase
+  id: ClothingHeadJeester
+  name: шляпа Джестера
+  description: Младший единокровный брат Короля и дядя Принца.
+  components:
+  - type: Sprite
+    sprite: Backmen/Clothing/Head/Hats/jeester.rsi
+  - type: Clothing
+    sprite: Backmen/Clothing/Head/Hats/jeester.rsi
+    
+- type: entity # backmen
+  parent: ClothingHeadBase
+  id: ClothingHeadPlet
+  name: плетенная шляпа
+  description: Шляпа прямиком с восточной части земли, где она популярна среди туристов и земляков
+  components:
+  - type: Sprite
+    sprite: Backmen/Clothing/Head/Hats/hatfriz.rsi
+  - type: Clothing
+    sprite: Backmen/Clothing/Head/Hats/hatfriz.rsi
