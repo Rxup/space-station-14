@@ -28,6 +28,7 @@
     - label: backman-hidden-desc-spacecash-research
       jobRequired:
         - ResearchDirector
+        - Scientist
         - Borg
         - Detective
         - Warden
