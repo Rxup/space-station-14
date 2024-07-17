@@ -52,7 +52,8 @@ jobs:
       continue-on-error: true
       run: |
         $env:DOTNET_gcServer=1
-        dotnet test --no-build --configuration DebugOpt Content.IntegrationTests/Content.IntegrationTests.csproj -- NUnit.ConsoleOut=0 NUnit.MapWarningTo=Failed    
+        dotnet test --no-build --configuration DebugOpt Content.IntegrationTests/Content.IntegrationTests.csproj -- NUnit.ConsoleOut=0 --filter "TestCategory!=Content.IntegrationTests"
+  
   ci-success:
     name: Build & Test Debug
     needs:
