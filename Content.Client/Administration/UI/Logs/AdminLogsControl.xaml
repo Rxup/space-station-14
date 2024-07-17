@@ -1,4 +1,3 @@
-﻿
 <Control xmlns="https://spacestation14.io"
          xmlns:aui="clr-namespace:Content.Client.Administration.UI.CustomControls">
     <PanelContainer StyleClasses="BackgroundDark">
@@ -95,8 +94,8 @@
                     </Collapsible>
                 </BoxContainer>
                 <aui:VSeparator/>
-                <ScrollContainer VerticalExpand="True" HorizontalExpand="True" HScrollEnabled="False">
-                    <BoxContainer Name="LogsContainer" Access="Public" Orientation="Vertical" VerticalExpand="True"/>
+                <ScrollContainer Name="AdminLogsScrollContainer" Access="Public" VerticalExpand="True" HorizontalExpand="True" HScrollEnabled="False">
+                    <TextEdit Name="AdminLogsTextEdit" Access="Public" VerticalExpand="True"/>
                 </ScrollContainer>
             </BoxContainer>
         </BoxContainer>
