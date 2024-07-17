@@ -8,7 +8,10 @@
 ## Промышленность
 <GuideTechDisciplineEmbed Discipline="Industrial"/>
 
-## Arsenal
+## Биохимия
+<GuideTechDisciplineEmbed Discipline="Biochemical"/>
+
+## Арсенал
 <GuideTechDisciplineEmbed Discipline="Arsenal"/>
 
 ## Экспериментальное

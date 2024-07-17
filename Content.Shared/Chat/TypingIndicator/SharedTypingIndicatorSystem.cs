@@ -80,10 +80,10 @@ public abstract class SharedTypingIndicatorSystem : EntitySystem
             return;
         }
 
-        SetTypingIndicatorState(uid.Value, (TypingIndicatorState)ev); // Corvax-TypingIndicator
+        SetTypingIndicatorState(uid.Value, ev.State); // Corvax-TypingIndicator
     }
 
-    private void SetTypingIndicatorState(EntityUid uid, TypingIndicatorState state, AppearanceComponent? appearance = null) // Corvax-TypingIndicator
+    public void SetTypingIndicatorState(EntityUid uid, TypingIndicatorState state, AppearanceComponent? appearance = null) // Corvax-TypingIndicator
     {
         // if (!Resolve(uid, ref appearance, false)) // Corvax-TypingIndicator
         //     return;

@@ -352,6 +352,7 @@
       - id: AntiPsychicKnife # backmen
       - id: BookBusido # Corvax-Books
       - id: ClothingHeadCage # backmen
+      - id: BookBusido # Corvax-Books
       - id: BookSpaceLaw
 
 - type: entity
