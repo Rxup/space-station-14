@@ -2,7 +2,7 @@
   id: BackmenKettle
   mapName: 'Kettle'
   mapPath: /Maps/Backmen/backmen_kettle.yml
-  minPlayers: 30
+  minPlayers: 25
   stations:
     Kettle:
       stationProto: StandardNanotrasenStation
