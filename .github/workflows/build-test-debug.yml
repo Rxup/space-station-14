@@ -10,7 +10,7 @@ on:
 
 jobs:
   build:
-    if: github.actor != 'PJBot' && github.event.pull_request.draft == false
+    if: github.actor != 'IanComradeBot' && github.event.pull_request.draft == false
     strategy:
       matrix:
         os: [ubuntu-latest]
@@ -40,10 +40,6 @@ jobs:
 
     - name: Install dependencies
       run: dotnet restore
-
-#    - name: skip locale check
-#      run: |
-#        sed -i 's/_logSawmill.Error(sbErr.ToString());/_logSawmill.Warning(sbErr.ToString());/g' RobustToolbox/Robust.Shared/Localization/LocalizationManager.cs
 
     - name: Build Project
       run: dotnet build --configuration DebugOpt --no-restore /p:WarningsAsErrors=nullable /m
