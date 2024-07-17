@@ -49,11 +49,12 @@
     duration: 1
     earliestStart: 50
     minimumPlayers: 20
+    maxOccurrences: 1 # can only happen once per round
   - type: BlobSpawnRule
     carrierBlobProtos:
     - SpawnPointGhostBlobRat
     playersPerCarrierBlob: 30
-    maxCarrierBlob: 3
+    maxCarrierBlob: 2
 
 - type: entity
   id: BluespaceGoat
