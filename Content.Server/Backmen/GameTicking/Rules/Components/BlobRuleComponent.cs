@@ -22,7 +22,6 @@ public enum BlobStage : byte
 {
     Default,
     Begin,
-    Medium,
     Critical,
     TheEnd
 }
