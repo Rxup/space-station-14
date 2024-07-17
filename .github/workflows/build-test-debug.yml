@@ -22,7 +22,8 @@ jobs:
       uses: actions/checkout@v3.6.0
 
     - name: Setup Submodule
-      run: git submodule update --init --recursive
+      run: |
+        git submodule update --init --recursive
 
     - name: Pull engine updates
       uses: space-wizards/submodule-dependency@v0.1.5
@@ -40,18 +41,21 @@ jobs:
     - name: Install dependencies
       run: dotnet restore
 
+#    - name: skip locale check
+#      run: |
+#        sed -i 's/_logSawmill.Error(sbErr.ToString());/_logSawmill.Warning(sbErr.ToString());/g' RobustToolbox/Robust.Shared/Localization/LocalizationManager.cs
+
     - name: Build Project
       run: dotnet build --configuration DebugOpt --no-restore /p:WarningsAsErrors=nullable /m
 
     - name: Run Content.Tests
-      run: dotnet test --no-build --configuration DebugOpt Content.Tests/Content.Tests.csproj -- NUnit.ConsoleOut=0 --logger "trx;LogFileName=content_tests_results.trx" --blame --timeout 3000000
+      run: dotnet test --no-build --configuration DebugOpt Content.Tests/Content.Tests.csproj -- NUnit.ConsoleOut=0
 
     - name: Run Content.IntegrationTests
       shell: pwsh
       run: |
         $env:DOTNET_gcServer=1
-        dotnet test --no-build --configuration DebugOpt Content.IntegrationTests/Content.IntegrationTests.csproj -- NUnit.ConsoleOut=0 --logger "trx;LogFileName=integration_tests_results.trx" --blame --timeout 3000000
-
+        dotnet test --no-build --configuration DebugOpt Content.IntegrationTests/Content.IntegrationTests.csproj -- NUnit.ConsoleOut=0 NUnit.MapWarningTo=Failed
   ci-success:
     name: Build & Test Debug
     needs:
