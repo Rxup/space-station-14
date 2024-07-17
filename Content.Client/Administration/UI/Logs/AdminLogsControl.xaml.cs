@@ -1,5 +1,5 @@
 ﻿using System.Linq;
-using System.Text.RegularExpressions;
+using System.Runtime.InteropServices;
 using Content.Client.Administration.UI.CustomControls;
 using Content.Shared.Administration.Logs;
 using Content.Shared.Database;
@@ -15,20 +15,13 @@ namespace Content.Client.Administration.UI.Logs;
 [GenerateTypedNameReferences]
 public sealed partial class AdminLogsControl : Control
 {
-    /// <summary>
-    /// <para>List of used tags can be found here: Robust.Client/UserInterface/RichText/MarkupTagManager.cs</para>
-    /// <para>Pattern test online: https://regex101.com/r/3krK2I/2</para>
-    /// </summary>
-    private const string BBCodeRegexPattern = "((\\[|\\[/)(color|cmdlink|font|bold|italic)=?\\w*\\])";
     private readonly Comparer<AdminLogTypeButton> _adminLogTypeButtonComparer =
-        Comparer<AdminLogTypeButton>.Create(
-            (a, b) => string.Compare(a.Type.ToString(), b.Type.ToString(), StringComparison.Ordinal)
-        );
+        Comparer<AdminLogTypeButton>.Create((a, b) =>
+            string.Compare(a.Type.ToString(), b.Type.ToString(), StringComparison.Ordinal));
 
     private readonly Comparer<AdminLogPlayerButton> _adminLogPlayerButtonComparer =
-        Comparer<AdminLogPlayerButton>.Create(
-            (a, b) => string.Compare(a.Text, b.Text, StringComparison.Ordinal)
-        );
+        Comparer<AdminLogPlayerButton>.Create((a, b) =>
+            string.Compare(a.Text, b.Text, StringComparison.Ordinal));
 
     public AdminLogsControl()
     {
@@ -51,17 +44,8 @@ public sealed partial class AdminLogsControl : Control
 
         ResetRoundButton.OnPressed += ResetRoundPressed;
 
-        RecievedLogs = new List<SharedAdminLog>();
-
         SetImpacts(Enum.GetValues<LogImpact>().OrderBy(impact => impact).ToArray());
         SetTypes(Enum.GetValues<LogType>());
-        EarlyBorderEditHours.OnTextChanged += e => OnEarlyBorderHoursChange(e.Text);
-        EarlyBorderEditMinutes.OnTextChanged += e => OnEarlyBorderMinutesChange(e.Text);
-        EarlyBorderEditSeconds.OnTextChanged += e => OnEarlyBorderSecondsChange(e.Text);
-
-        LateBorderEditHours.OnTextChanged += e => OnLateBorderHoursChange(e.Text);
-        LateBorderEditMinutes.OnTextChanged += e => OnLateBorderMinutesChange(e.Text);
-        LateBorderEditSeconds.OnTextChanged += e => OnLateBorderSecondsChange(e.Text);
     }
 
     private int CurrentRound { get; set; }
@@ -71,12 +55,6 @@ public sealed partial class AdminLogsControl : Control
     private int ShownLogs { get; set; }
     private int TotalLogs { get; set; }
     private int RoundLogs { get; set; }
-
-    /// <summary>
-    /// Storage of recieved logs
-    /// </summary>
-    private List<SharedAdminLog> RecievedLogs { get; set; }
-
     public bool IncludeNonPlayerLogs { get; set; }
 
     public HashSet<LogType> SelectedTypes { get; } = new();
@@ -261,49 +239,22 @@ public sealed partial class AdminLogsControl : Control
     private void UpdateLogs()
     {
         ShownLogs = 0;
-        var logsText = "";
 
-        FormBordersDateTime(RecievedLogs); 
-
-        // build logs string
-        for (var i = RecievedLogs.Count - 1; i >= 0; i--)
+        foreach (var child in LogsContainer.Children)
         {
-            var log = RecievedLogs[i];
-            if (ShouldShowLog(log))
+            if (child is not AdminLogLabel log)
+            {
+                continue;
+            }
+
+            child.Visible = ShouldShowLog(log);
+            if (child.Visible)
             {
                 ShownLogs++;
-                logsText += string.Format(
-                    "{0:HH:mm:ss} - {1}\n{2}\n\n",
-                    log.Date,
-                    log.Type,
-                    log.Message
-                );
             }
         }
-        // set new text in TextEdit and clear BB tags only in result log string to
-        // preserve original log messages for posible future use
-        AdminLogsTextEdit.TextRope = new Robust.Shared.Utility.Rope.Leaf(
-                Regex.Replace(logsText, BBCodeRegexPattern, "")
-            );
-        UpdateCount(ShownLogs, RecievedLogs.Count);
-        ScrollLogsToBottom();
-    }
 
-    /// <summary>
-    /// Try to scroll AdminLogsTextEdit to the end
-    /// </summary>
-    private void ScrollLogsToBottom()
-    {
-        // find scrollbar in TextEdit's children
-        // it must be at index 1, but may be changed in future
-        for (var i = 0; i < AdminLogsTextEdit.ChildCount; i++)
-        {
-            if (AdminLogsTextEdit.GetChild(i) is VScrollBar scrollbar)
-            {
-                scrollbar.ValueTarget = float.PositiveInfinity;
-                break;
-            }
-        }
+        UpdateCount();
     }
 
     private bool ShouldShowType(AdminLogTypeButton button)
@@ -318,35 +269,30 @@ public sealed partial class AdminLogsControl : Control
                button.Text.Contains(PlayerSearch.Text, StringComparison.OrdinalIgnoreCase);
     }
 
-    private bool LogMatchesPlayerFilter(SharedAdminLog log)
+    private bool LogMatchesPlayerFilter(AdminLogLabel label)
     {
-        if (log.Players.Length == 0)
+        if (label.Log.Players.Length == 0)
             return SelectedPlayers.Count == 0 || IncludeNonPlayerLogs;
 
-        return SelectedPlayers.Overlaps(log.Players);
+        return SelectedPlayers.Overlaps(label.Log.Players);
     }
 
-    private bool ShouldShowLog(SharedAdminLog log)
+    private bool ShouldShowLog(AdminLogLabel label)
     {
         // Check log type
-        if (!SelectedTypes.Contains(log.Type))
+        if (!SelectedTypes.Contains(label.Log.Type))
             return false;
 
         // Check players
-        if (!LogMatchesPlayerFilter(log))
+        if (!LogMatchesPlayerFilter(label))
             return false;
 
         // Check impact
-        if (!SelectedImpacts.Contains(log.Impact))
+        if (!SelectedImpacts.Contains(label.Log.Impact))
             return false;
 
         // Check search
-        if (!log.Message.Contains(LogSearch.Text, StringComparison.OrdinalIgnoreCase))
-            return false;
-        if (!CheckEarlyTimeFilter(log))
-            return false;
-
-        if (!CheckLateTimeFilter(log))
+        if (!label.Log.Message.Contains(LogSearch.Text, StringComparison.OrdinalIgnoreCase))
             return false;
 
         return true;
@@ -518,14 +464,32 @@ public sealed partial class AdminLogsControl : Control
 
     public void AddLogs(List<SharedAdminLog> logs)
     {
-        RecievedLogs.AddRange(logs);
-        UpdateLogs();
+        var span = CollectionsMarshal.AsSpan(logs);
+        for (var i = 0; i < span.Length; i++)
+        {
+            ref var log = ref span[i];
+            var separator = new HSeparator();
+            var label = new AdminLogLabel(ref log, separator);
+            label.Visible = ShouldShowLog(label);
+
+            TotalLogs++;
+            if (label.Visible)
+            {
+                ShownLogs++;
+            }
+
+            LogsContainer.AddChild(label);
+            LogsContainer.AddChild(separator);
+        }
+
+        UpdateCount();
     }
 
     public void SetLogs(List<SharedAdminLog> logs)
     {
-        RecievedLogs = logs;
-        UpdateLogs();
+        LogsContainer.RemoveAllChildren();
+        UpdateCount(0, 0);
+        AddLogs(logs);
     }
 
     public void UpdateCount(int? shown = null, int? total = null, int? round = null)
@@ -571,129 +535,4 @@ public sealed partial class AdminLogsControl : Control
 
         ResetRoundButton.OnPressed -= ResetRoundPressed;
     }
-
-
-    public event Action<string>? OnEarlyBorderHoursChanged;
-    public event Action<string>? OnEarlyBorderMinutesChanged;
-    public event Action<string>? OnEarlyBorderSecondsChanged;
-
-    public event Action<string>? OnLateBorderHoursChanged;
-    public event Action<string>? OnLateBorderMinutesChanged;
-    public event Action<string>? OnLateBorderSecondsChanged;
-
-    private DateTime _earlyBorder;
-    private DateTime _lateBorder;
-
-    public void OnEarlyBorderHoursChange(string text)
-    {
-        AdjustTextForTimer(EarlyBorderEditHours, text, true);
-        OnEarlyBorderHoursChanged?.Invoke(EarlyBorderEditHours.Text);
-    }
-    public void OnEarlyBorderMinutesChange(string text)
-    {
-        AdjustTextForTimer(EarlyBorderEditMinutes, text);
-        OnEarlyBorderMinutesChanged?.Invoke(EarlyBorderEditMinutes.Text);
-    }
-    public void OnEarlyBorderSecondsChange(string text)
-    {
-        AdjustTextForTimer(EarlyBorderEditSeconds, text);
-        OnEarlyBorderSecondsChanged?.Invoke(EarlyBorderEditSeconds.Text);
-    }
-    public void OnLateBorderHoursChange(string text)
-    {
-        AdjustTextForTimer(LateBorderEditHours, text, true);
-        OnLateBorderHoursChanged?.Invoke(LateBorderEditHours.Text);
-    }
-    public void OnLateBorderMinutesChange(string text)
-    {
-        AdjustTextForTimer(LateBorderEditMinutes, text);
-        OnLateBorderMinutesChanged?.Invoke(LateBorderEditMinutes.Text);
-    }
-    public void OnLateBorderSecondsChange(string text)
-    {
-        AdjustTextForTimer(LateBorderEditSeconds, text);
-        OnLateBorderSecondsChanged?.Invoke(LateBorderEditSeconds.Text);
-    }
-    public bool AdjustTextForTimer(LineEdit line, string text, bool isHour = false)
-    {
-        List<char> toRemove = new();
-
-        foreach (var a in text)
-        {
-            if (!char.IsDigit(a))
-                toRemove.Add(a);
-        }
-
-        foreach (var a in toRemove)
-        {
-            line.Text = text.Replace(a.ToString(), "");
-        }
-
-        if (line.Text == "")
-            return false;
-
-        while (line.Text[0] == '0' && line.Text.Length > 2)
-        {
-            line.Text = line.Text.Remove(0, 1);
-        }
-
-        if (line.Text.Length > 2)
-        {
-            line.Text = line.Text.Remove(2);
-        }
-
-        if (!int.TryParse(line.Text, out var timeInt))
-            return false;
-
-        if (isHour && timeInt > 23)
-            line.Text = "23";
-
-        if (!isHour && timeInt > 59)
-            line.Text = "59";
-
-        return true;
-    }
-    private bool CheckEarlyTimeFilter(SharedAdminLog log)
-    {
-        if (log.Date < _earlyBorder)
-            return false;
-
-        return true;
-    }
-    private bool CheckLateTimeFilter(SharedAdminLog log)
-    {
-        if (log.Date > _lateBorder)
-            return false;
-
-        return true;
-    }
-
-    private void FormBordersDateTime(List<SharedAdminLog> recievedLogs)
-    {
-        if (recievedLogs.Count == 0)
-            return;
-
-        if (!int.TryParse(EarlyBorderEditHours.Text, out var earlyHour))
-            earlyHour = 0;
-
-        if (!int.TryParse(EarlyBorderEditMinutes.Text, out var earlyMinute))
-            earlyMinute = 0;
-
-        if (!int.TryParse(EarlyBorderEditSeconds.Text, out var earlySecond))
-            earlySecond = 0;
-
-        if (!int.TryParse(LateBorderEditHours.Text, out var lateHour))
-            lateHour = 23;
-
-        if (!int.TryParse(LateBorderEditMinutes.Text, out var lateMinute))
-            lateMinute = 59;
-
-        if (!int.TryParse(LateBorderEditSeconds.Text, out var lateSecond))
-            lateSecond = 59;
-
-        _earlyBorder = new DateTime(recievedLogs[0].Date.Year, recievedLogs[0].Date.Month, recievedLogs[0].Date.Day, earlyHour, earlyMinute, earlySecond, 0, 0);
-
-        _lateBorder = new DateTime(recievedLogs[recievedLogs.Count - 1].Date.Year, recievedLogs[recievedLogs.Count - 1].Date.Month, recievedLogs[recievedLogs.Count - 1].Date.Day, lateHour, lateMinute, lateSecond, 999, 999);
-    }
-
 }
