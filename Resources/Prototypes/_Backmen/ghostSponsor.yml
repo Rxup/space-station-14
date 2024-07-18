@@ -2,6 +2,7 @@
   id: tier1
   components:
     - type: Sprite
+      noRot: true
       overrideContainerOcclusion: true # Ghosts always show up regardless of where they're contained.
       drawdepth: Ghosts
       sprite: Backmen/Mobs/Ghost/ghost_red.rsi
@@ -14,6 +15,7 @@
   id: tier2
   components:
     - type: Sprite
+      noRot: true
       overrideContainerOcclusion: true # Ghosts always show up regardless of where they're contained.
       drawdepth: Ghosts
       sprite: Backmen/Mobs/Ghost/ghost_lava.rsi
@@ -26,6 +28,7 @@
   id: tier01
   components:
     - type: Sprite
+      noRot: true
       overrideContainerOcclusion: true # Ghosts always show up regardless of where they're contained.
       drawdepth: Ghosts
       sprite: Backmen/Mobs/Ghost/ghost_vip.rsi
@@ -38,6 +41,7 @@
   id: tier02
   components:
     - type: Sprite
+      noRot: true
       overrideContainerOcclusion: true # Ghosts always show up regardless of where they're contained.
       drawdepth: Ghosts
       sprite: Backmen/Mobs/Ghost/ghost_vip.rsi
@@ -50,6 +54,7 @@
   id: tier03
   components:
     - type: Sprite
+      noRot: true
       overrideContainerOcclusion: true # Ghosts always show up regardless of where they're contained.
       drawdepth: Ghosts
       sprite: Backmen/Mobs/Ghost/ghost_vip.rsi
@@ -62,6 +67,7 @@
   id: tier04
   components:
     - type: Sprite
+      noRot: true
       overrideContainerOcclusion: true # Ghosts always show up regardless of where they're contained.
       drawdepth: Ghosts
       sprite: Backmen/Mobs/Ghost/ghost_vip.rsi
@@ -74,6 +80,7 @@
   id: tier05
   components:
     - type: Sprite
+      noRot: true
       overrideContainerOcclusion: true # Ghosts always show up regardless of where they're contained.
       drawdepth: Ghosts
       sprite: Backmen/Mobs/Ghost/ghost_vip.rsi
@@ -86,6 +93,7 @@
   id: tier06
   components:
     - type: Sprite
+      noRot: true
       overrideContainerOcclusion: true # Ghosts always show up regardless of where they're contained.
       drawdepth: Ghosts
       sprite: Backmen/Mobs/Ghost/ghost_vip.rsi
@@ -98,6 +106,7 @@
   id: tier07
   components:
     - type: Sprite
+      noRot: true
       overrideContainerOcclusion: true # Ghosts always show up regardless of where they're contained.
       drawdepth: Ghosts
       sprite: Backmen/Mobs/Ghost/ghost_vip.rsi
@@ -110,6 +119,7 @@
   id: tier08
   components:
     - type: Sprite
+      noRot: true
       overrideContainerOcclusion: true # Ghosts always show up regardless of where they're contained.
       drawdepth: Ghosts
       sprite: Backmen/Mobs/Ghost/ghost_vip.rsi
