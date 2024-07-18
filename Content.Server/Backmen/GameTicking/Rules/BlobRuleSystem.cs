@@ -58,6 +58,7 @@ public sealed class BlobRuleSystem : GameRuleSystem<BlobRuleComponent>
         component.Accumulator = 0;
 
         var blobTilesCount = new Dictionary<EntityUid, int>();
+        var blobCores = new List<Entity<BlobCoreComponent>>();
 
         var blobCoreQuery = EntityQueryEnumerator<BlobCoreComponent, MetaDataComponent>();
         while (blobCoreQuery.MoveNext(out var ent, out var comp, out _))
@@ -74,10 +75,11 @@ public sealed class BlobRuleSystem : GameRuleSystem<BlobRuleComponent>
             {
                 blobTilesCount[stationUid.Value] += comp.BlobTiles.Count;
             }
+            blobCores.Add((ent, comp));
         }
         foreach (var blobTiles in blobTilesCount)
         {
-            CheckChangeStage(blobTiles.Key, component, blobTiles.Value);
+            CheckChangeStage(blobTiles.Key, component, blobCores, blobTiles.Value);
         }
     }
 
@@ -99,14 +101,20 @@ public sealed class BlobRuleSystem : GameRuleSystem<BlobRuleComponent>
     private const string StationGamma = "gamma";
     private const string StationSigma = "sigma";
 
-    private void CheckChangeStage(Entity<StationBlobConfigComponent?> stationUid, BlobRuleComponent blobRuleComp, int blobTilesCount)
+    private void CheckChangeStage(
+        Entity<StationBlobConfigComponent?> stationUid,
+        BlobRuleComponent blobRuleComp,
+        List<Entity<BlobCoreComponent>> blobCores,
+        int blobTilesCount)
     {
         Resolve(stationUid, ref stationUid.Comp, false);
 
-        if (blobTilesCount >= (stationUid.Comp?.StageBegin ?? StationBlobConfigComponent.DefaultStageBegin) && _roundEndSystem.ExpectedCountdownEnd != null)
+        if (blobTilesCount >= (stationUid.Comp?.StageBegin ?? StationBlobConfigComponent.DefaultStageBegin)
+            && _roundEndSystem.ExpectedCountdownEnd != null)
         {
             _roundEndSystem.CancelRoundEndCountdown(checkCooldown: false);
-            _chatSystem.DispatchGlobalAnnouncement(Loc.GetString("blob-alert-recall-shuttle"),
+            _chatSystem.DispatchStationAnnouncement(stationUid,
+                Loc.GetString("blob-alert-recall-shuttle"),
                 Loc.GetString("Station"),
                 false,
                 null,
@@ -118,7 +126,8 @@ public sealed class BlobRuleSystem : GameRuleSystem<BlobRuleComponent>
             case BlobStage.Default when blobTilesCount >= (stationUid.Comp?.StageBegin ?? StationBlobConfigComponent.DefaultStageBegin):
                 blobRuleComp.Stage = BlobStage.Begin;
 
-                _chatSystem.DispatchGlobalAnnouncement(Loc.GetString("blob-alert-detect"),
+                _chatSystem.DispatchStationAnnouncement(stationUid,
+                    Loc.GetString("blob-alert-detect"),
                     Loc.GetString("Station"),
                     true,
                     BlobDetectAudio,
@@ -127,6 +136,7 @@ public sealed class BlobRuleSystem : GameRuleSystem<BlobRuleComponent>
 
                 RaiseLocalEvent(stationUid, new BlobChangeLevelEvent
                 {
+                    BlobCore = blobCores,
                     Station = stationUid,
                     Level = blobRuleComp.Stage
                 }, broadcast: true);
@@ -134,7 +144,8 @@ public sealed class BlobRuleSystem : GameRuleSystem<BlobRuleComponent>
             case BlobStage.Begin when blobTilesCount >= (stationUid.Comp?.StageCritical ?? StationBlobConfigComponent.DefaultStageCritical):
             {
                 blobRuleComp.Stage = BlobStage.Critical;
-                _chatSystem.DispatchGlobalAnnouncement(Loc.GetString("blob-alert-critical"),
+                _chatSystem.DispatchStationAnnouncement(stationUid,
+                    Loc.GetString("blob-alert-critical"),
                     Loc.GetString("Station"),
                     true,
                     blobRuleComp.AlertAudio,
