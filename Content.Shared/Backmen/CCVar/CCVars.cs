@@ -163,16 +163,4 @@ public sealed class CCVars
     public static readonly CVarDef<int> SpecForceDelay =
         CVarDef.Create("specforce.delay", 2, CVar.SERVERONLY);
 
-
-    /*
-     * enabling a roll to enter a ghost role for one player from the vote
-     */
-    public static readonly CVarDef<bool>
-        GhostRollerEnabled = CVarDef.Create("ghost.roller_enabled", false, CVar.SERVERONLY);
-
-    /// <summary>
-    /// the time that will be given to throw a number to vote for the ghost role
-    /// </summary>
-    public static readonly CVarDef<int> GhostRollerTime =
-        CVarDef.Create("ghost.roller_time", 20, CVar.REPLICATED | CVar.SERVER);
 }

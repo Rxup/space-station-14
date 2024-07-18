@@ -425,15 +425,14 @@ public sealed class FugitiveSystem : EntitySystem
             else if (name != null)
                 result.AppendLine(Loc.GetString("fugitive-was-a-fugitive-with-objectives-named", ("name", name)));
 
-            foreach (var objectiveGroup in objectives.GroupBy(o => Comp<ObjectiveComponent>(o).Issuer))
+            foreach (var objectiveGroup in objectives.Select(x=>(Entity<ObjectiveComponent>)(x, Comp<ObjectiveComponent>(x)))
+                         .GroupBy(o => o.Comp.LocIssuer))
             {
-                if (objectiveGroup.Key == "SpaceBank")
-                {
-                    continue;
-                }
-
                 foreach (var objective in objectiveGroup)
                 {
+                    if(objective.Comp.HideFromTotal)
+                        continue;
+
                     var info = _objectivesSystem.GetInfo(objective, mindId, mind);
                     if (info == null)
                         continue;

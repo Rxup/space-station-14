@@ -227,22 +227,6 @@
             ]
         },
         {
-            "name": "chemistry1",
-            "delays": [
-                [
-                    1
-                ]
-            ]
-        },
-        {
-            "name": "chemistry2",
-            "delays": [
-                [
-                    1
-                ]
-            ]
-        },
-        {
             "name": "commander",
             "delays": [
                 [
@@ -260,14 +244,6 @@
         },
         {
             "name": "corrosives",
-            "delays": [
-                [
-                    1
-                ]
-            ]
-        },
-        {
-            "name": "court",
             "delays": [
                 [
                     1
@@ -747,14 +723,6 @@
             ]
         },
         {
-            "name": "drones",
-            "delays": [
-                [
-                    1
-                ]
-            ]
-        },
-        {
             "name": "electrical",
             "delays": [
                 [
@@ -835,30 +803,6 @@
             ]
         },
         {
-            "name": "hydro1",
-            "delays": [
-                [
-                    1
-                ]
-            ]
-        },
-        {
-            "name": "hydro2",
-            "delays": [
-                [
-                    1
-                ]
-            ]
-        },
-        {
-            "name": "hydro3",
-            "delays": [
-                [
-                    1
-                ]
-            ]
-        },
-        {
             "name": "interrogation",
             "delays": [
                 [
@@ -924,14 +868,6 @@
         },
         {
             "name": "memetic",
-            "delays": [
-                [
-                    1
-                ]
-            ]
-        },
-        {
-            "name": "miner_dock",
             "delays": [
                 [
                     1
@@ -1075,22 +1011,6 @@
             ]
         },
         {
-            "name": "science1",
-            "delays": [
-                [
-                    1
-                ]
-            ]
-        },
-        {
-            "name": "science2",
-            "delays": [
-                [
-                    1
-                ]
-            ]
-        },
-        {
             "name": "secure",
             "delays": [
                 [
@@ -1100,14 +1020,6 @@
         },
         {
             "name": "securearea",
-            "delays": [
-                [
-                    1
-                ]
-            ]
-        },
-        {
-            "name": "shield",
             "delays": [
                 [
                     1
@@ -1155,14 +1067,6 @@
             ]
         },
         {
-            "name": "toxins2",
-            "delays": [
-                [
-                    1
-                ]
-            ]
-        },
-        {
             "name": "toxins",
             "delays": [
                 [
@@ -1180,22 +1084,6 @@
         },
         {
             "name": "xenobio",
-            "delays": [
-                [
-                    1
-                ]
-            ]
-        },
-        {
-            "name": "xenobio2",
-            "delays": [
-                [
-                    1
-                ]
-            ]
-        },
-        {
-            "name": "xenolab",
             "delays": [
                 [
                     1
@@ -1387,14 +1275,6 @@
             ]
         },
         {
-            "name": "atmominsky",
-            "delays": [
-                [
-                    1
-                ]
-            ]
-        },
-        {
             "name": "one",
             "delays": [
                 [
@@ -1489,6 +1369,39 @@
                     1
                 ]
             ]
+        },
+        {
+            "name": "cans"
+        },
+        {
+            "name": "xenoarch"
+        },
+        {
+            "name": "drama1"
+        },
+        {
+            "name": "cryo"
+        },
+        {
+            "name": "ai_upload"
+        },
+        {
+            "name": "kitchen"
+        },
+        {
+            "name": "vault"
+        },
+        {
+            "name": "hydro"
+        },
+        {
+            "name": "restroom"
+        },
+        {
+            "name": "data"
+        },
+        {
+            "name": "mats"
         }
     ]
 }
