@@ -34,7 +34,7 @@ namespace Content.Server.Objectives.Commands
             }
 
             shell.WriteLine($"Objectives for player {player.UserId}:");
-            var objectivesGr = mind.AllObjectives
+            var objectivesGr = mind.Objectives.ToList()
                 .Select(x=> (Entity<ObjectiveComponent?>)(x,_entities.GetComponentOrNull<ObjectiveComponent>(x))).GroupBy(x=>x.Comp?.Issuer ?? "") //backmen: locale
                 .ToList();
             if (objectivesGr.Count == 0)
