@@ -45,9 +45,6 @@
     <Compile Update="Backmen\Economy\WageConsole\UI\BonusWageWindow.cs">
       <DependentUpon>BonusWageWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Update="Backmen\Ghost\Roles\UI\RollerRow.cs">
-      <DependentUpon>RollerRow.xaml</DependentUpon>
-    </Compile>
   </ItemGroup>
   <Import Project="..\RobustToolbox\MSBuild\Robust.Properties.targets" />
   <Import Project="..\RobustToolbox\MSBuild\XamlIL.targets" />

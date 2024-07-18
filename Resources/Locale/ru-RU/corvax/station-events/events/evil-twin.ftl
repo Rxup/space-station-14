@@ -15,3 +15,5 @@ evil-twin-user-was-an-evil-twin-with-objectives-named = [color=White]{ $name }[/
 evil-twin-was-an-evil-twin-with-objectives-named = [color=white]{ $name }[/color] был(а) злым двойником со следующими целями:
 roles-antag-evil-twin-name = Злой двойник
 roles-antag-evil-twin-objective = Ваша задача - устранение и замена оригинальной персоны.
+objective-issuer-evil-twin = Злой двойник
+objective-issuer-self = Сам
