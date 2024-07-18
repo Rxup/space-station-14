@@ -1,0 +1,13 @@
+name: Minimal Workflow
+
+on: [push, pull_request]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Run a one-line script
+        run: echo "Hello, world!"
