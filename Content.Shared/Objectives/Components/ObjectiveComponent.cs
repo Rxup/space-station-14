@@ -23,7 +23,7 @@ public sealed partial class ObjectiveComponent : Component
     /// Organisation that issued this objective, used for grouping and as a header above common objectives.
     /// </summary>
     [DataField("issuer", required: true)]
-    private LocId Issuer { get; set; }
+    public LocId Issuer { get; set; }
 
     [ViewVariables(VVAccess.ReadOnly)]
     public string LocIssuer => Loc.GetString(Issuer);
@@ -41,6 +41,9 @@ public sealed partial class ObjectiveComponent : Component
     /// </summary>
     [DataField]
     public SpriteSpecifier? Icon;
+
+    [DataField("hideFromTotal")]
+    public bool HideFromTotal = false;
 }
 
 /// <summary>

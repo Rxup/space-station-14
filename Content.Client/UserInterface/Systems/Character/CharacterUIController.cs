@@ -130,11 +130,17 @@ public sealed class CharacterUIController : UIController, IOnStateEntered<Gamepl
                     Modulate = Color.Gray
                 };
 
-                objectiveControl.AddChild(new Label
+
+                var objectiveText = new FormattedMessage();
+                objectiveText.TryAddMarkup(Loc.GetString($"objective-issuer-{groupId}"), out _); // backmen: locale
+
+                var objectiveLabel = new RichTextLabel
                 {
-                    Text = groupId,
-                    Modulate = Color.LightSkyBlue
-                });
+                    StyleClasses = {StyleNano.StyleClassTooltipActionTitle}
+                };
+                objectiveLabel.SetMessage(objectiveText);
+
+                objectiveControl.AddChild(objectiveLabel);
 
                 foreach (var condition in conditions)
                 {

@@ -8,7 +8,7 @@
       components:
       - TraitorRole
   - type: Objective
-    issuer: Donk-Pocket-Corp
+    issuer: objective-issuer-Donk-Pocket-Corp
   - type: ObjectiveBlacklistRequirement
     blacklist:
       tags:
