@@ -2,7 +2,7 @@
 using System.Linq;
 using Content.Server.AlertLevel;
 using Content.Server.Backmen.Blob.Components;
-using Content.Server.Backmen.SpecForces;
+using Content.Server.Backmen.Blob.Rule;
 using Content.Server.Backmen.GameTicking.Rules.Components;
 using Content.Server.Chat.Managers;
 using Content.Server.Chat.Systems;
@@ -18,7 +18,6 @@ using Content.Shared.Backmen.Blob.Components;
 using Content.Shared.GameTicking.Components;
 using Content.Shared.Objectives.Components;
 using Robust.Shared.Audio;
-using Robust.Shared.Prototypes;
 
 namespace Content.Server.Backmen.GameTicking.Rules;
 
@@ -32,10 +31,15 @@ public sealed class BlobRuleSystem : GameRuleSystem<BlobRuleComponent>
     [Dependency] private readonly ObjectivesSystem _objectivesSystem = default!;
     [Dependency] private readonly AlertLevelSystem _alertLevelSystem = default!;
     [Dependency] private readonly IChatManager _chatManager = default!;
-    [Dependency] private readonly SpecForcesSystem _specForces = default!;
-    [Dependency] private readonly IPrototypeManager _prototypes = default!;
 
-    private static readonly SoundPathSpecifier BlobDetectAudio = new("/Audio/Corvax/Adminbuse/Outbreak5.ogg");
+
+
+    private static readonly SoundPathSpecifier BlobDetectAudio = new SoundPathSpecifier("/Audio/Corvax/Adminbuse/Outbreak5.ogg");
+
+    public override void Initialize()
+    {
+        base.Initialize();
+    }
 
     protected override void Started(EntityUid uid, BlobRuleComponent component, GameRuleComponent gameRule, GameRuleStartedEvent args)
     {
@@ -59,9 +63,6 @@ public sealed class BlobRuleSystem : GameRuleSystem<BlobRuleComponent>
             return;
 
         component.Accumulator = 0;
-
-        var blobTilesCount = 0;
-        var activeStations = new HashSet<EntityUid>();
 
         var blobCoreQuery = EntityQueryEnumerator<BlobCoreComponent, MetaDataComponent>();
         while (blobCoreQuery.MoveNext(out var ent, out var comp, out _))
@@ -89,12 +90,7 @@ public sealed class BlobRuleSystem : GameRuleSystem<BlobRuleComponent>
                 continue;
             }
 
-            blobTilesCount += comp.BlobTiles.Count;
-            activeStations.Add(stationUid.Value);
-        }
-        foreach (var stationUid in activeStations)
-        {
-            CheckChangeStage(stationUid, component, blobTilesCount);
+            CheckChangeStage((ent, comp), stationUid.Value, component);
         }
     }
 
@@ -113,50 +109,61 @@ public sealed class BlobRuleSystem : GameRuleSystem<BlobRuleComponent>
         return true;
     }
 
-    [ValidatePrototypeId<SpecForceTeamPrototype>]
-    private const string Rxbzz = "RXBZZ";
     private const string StationGamma = "gamma";
     private const string StationSigma = "sigma";
 
-    private void CheckChangeStage(Entity<StationBlobConfigComponent?> stationUid, BlobRuleComponent blobRuleComp, int blobTilesCount)
+    private void CheckChangeStage(Entity<BlobCoreComponent> blobCore, Entity<StationBlobConfigComponent?> stationUid, BlobRuleComponent blobRuleComp)
     {
         Resolve(stationUid, ref stationUid.Comp, false);
 
         switch (blobRuleComp.Stage)
         {
-            case BlobStage.Default when blobTilesCount >= (stationUid.Comp?.StageBegin ?? StationBlobConfigComponent.DefaultStageBegin):
+            case BlobStage.Default when blobCore.Comp.BlobTiles.Count >= (stationUid.Comp?.StageBegin ?? 30):
                 blobRuleComp.Stage = BlobStage.Begin;
 
                 _chatSystem.DispatchGlobalAnnouncement(Loc.GetString("blob-alert-detect"),
                     Loc.GetString("Station"), true, BlobDetectAudio, Color.Red);
                 _alertLevelSystem.SetLevel(stationUid, StationSigma, true, true, true, true);
+
+                RaiseLocalEvent(stationUid, new BlobChangeLevelEvent
+                {
+                    BlobCore = blobCore,
+                    Station = stationUid,
+                    Level = blobRuleComp.Stage
+                }, broadcast: true);
                 return;
-            case BlobStage.Begin when blobTilesCount >= (stationUid.Comp?.StageCritical ?? StationBlobConfigComponent.DefaultStageCritical):
+            case BlobStage.Begin when blobCore.Comp.BlobTiles.Count >= (stationUid.Comp?.StageCritical ?? 400):
             {
                 blobRuleComp.Stage = BlobStage.Critical;
-
                 _chatSystem.DispatchGlobalAnnouncement(Loc.GetString("blob-alert-critical"),
                     Loc.GetString("Station"),
                     true,
                     blobRuleComp.AlertAudio,
                     Color.Red);
 
-                var specForceTeam = stationUid.Comp?.SpecForceTeam ?? Rxbzz;
-                if (!_prototypes.TryIndex(specForceTeam, out var prototype) ||
-                    !_specForces.CallOps(prototype.ID, "ДСО"))
-                {
-                    Log.Error($"Failed to spawn {specForceTeam} SpecForce for the blob GameRule!");
-                }
-
                 _nukeCode.SendNukeCodes(stationUid);
                 _alertLevelSystem.SetLevel(stationUid, StationGamma, true, true, true, true);
+
+                RaiseLocalEvent(stationUid, new BlobChangeLevelEvent
+                {
+                    BlobCore = blobCore,
+                    Station = stationUid,
+                    Level = blobRuleComp.Stage
+                }, broadcast: true);
                 return;
             }
-            case BlobStage.Critical when blobTilesCount >= (stationUid.Comp?.StageTheEnd ?? StationBlobConfigComponent.DefaultStageEnd):
+            case BlobStage.Critical when blobCore.Comp.BlobTiles.Count >= (stationUid.Comp?.StageTheEnd ?? StationBlobConfigComponent.DefaultStageEnd):
             {
                 blobRuleComp.Stage = BlobStage.TheEnd;
-
+                blobCore.Comp.Points = 99999;
                 _roundEndSystem.EndRound();
+
+                RaiseLocalEvent(stationUid, new BlobChangeLevelEvent
+                {
+                    BlobCore = blobCore,
+                    Station = stationUid,
+                    Level = blobRuleComp.Stage
+                }, broadcast: true);
                 return;
             }
         }

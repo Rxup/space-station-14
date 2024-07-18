@@ -54,6 +54,25 @@ public sealed class SpecForcesSystem : EntitySystem
         SubscribeLocalEvent<RoundRestartCleanupEvent>(OnCleanup);
         SubscribeLocalEvent<SpecForceComponent, ComponentStartup>(OnStartup);
         SubscribeLocalEvent<SpecForceComponent, ComponentShutdown>(OnShutdown);
+        SubscribeLocalEvent<BlobChangeLevelEvent>(OnBlobChange);
+    }
+
+    [ValidatePrototypeId<SpecForceTeamPrototype>]
+    private const string Rxbzz = "RXBZZ";
+
+    private void OnBlobChange(BlobChangeLevelEvent ev)
+    {
+        if (ev.Level != BlobStage.Critical)
+            return;
+
+        var blobConfig = CompOrNull<StationBlobConfigComponent>(ev.Station);
+        var specForceTeam = blobConfig?.SpecForceTeam ?? Rxbzz;
+
+        if (!_prototypes.TryIndex(specForceTeam, out var prototype) ||
+            !CallOps(prototype.ID, "ДСО"))
+        {
+            Log.Error($"Failed to spawn {specForceTeam} SpecForce for the blob GameRule!");
+        }
     }
 
     private void OnShutdown(EntityUid uid, SpecForceComponent component, ComponentShutdown args)
