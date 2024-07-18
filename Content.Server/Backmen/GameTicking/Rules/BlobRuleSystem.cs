@@ -103,7 +103,7 @@ public sealed class BlobRuleSystem : GameRuleSystem<BlobRuleComponent>
     {
         Resolve(stationUid, ref stationUid.Comp, false);
 
-        if (blobTilesCount >= 50 && _roundEndSystem.ExpectedCountdownEnd != null)
+        if (blobTilesCount >= (stationUid.Comp?.StageBegin ?? StationBlobConfigComponent.DefaultStageBegin) && _roundEndSystem.ExpectedCountdownEnd != null)
         {
             _roundEndSystem.CancelRoundEndCountdown(checkCooldown: false);
             _chatSystem.DispatchGlobalAnnouncement(Loc.GetString("blob-alert-recall-shuttle"),
@@ -115,11 +115,14 @@ public sealed class BlobRuleSystem : GameRuleSystem<BlobRuleComponent>
 
         switch (blobRuleComp.Stage)
         {
-            case BlobStage.Default when blobTilesCount >= (stationUid.Comp?.StageBegin ?? 30):
+            case BlobStage.Default when blobTilesCount >= (stationUid.Comp?.StageBegin ?? StationBlobConfigComponent.DefaultStageBegin):
                 blobRuleComp.Stage = BlobStage.Begin;
 
                 _chatSystem.DispatchGlobalAnnouncement(Loc.GetString("blob-alert-detect"),
-                    Loc.GetString("Station"), true, BlobDetectAudio, Color.Red);
+                    Loc.GetString("Station"),
+                    true,
+                    BlobDetectAudio,
+                    Color.Red);
                 _alertLevelSystem.SetLevel(stationUid, StationSigma, true, true, true, true);
 
                 RaiseLocalEvent(stationUid, new BlobChangeLevelEvent
@@ -128,7 +131,7 @@ public sealed class BlobRuleSystem : GameRuleSystem<BlobRuleComponent>
                     Level = blobRuleComp.Stage
                 }, broadcast: true);
                 return;
-            case BlobStage.Begin when blobTilesCount >= (stationUid.Comp?.StageCritical ?? 400):
+            case BlobStage.Begin when blobTilesCount >= (stationUid.Comp?.StageCritical ?? StationBlobConfigComponent.DefaultStageCritical):
             {
                 blobRuleComp.Stage = BlobStage.Critical;
                 _chatSystem.DispatchGlobalAnnouncement(Loc.GetString("blob-alert-critical"),
@@ -140,7 +143,8 @@ public sealed class BlobRuleSystem : GameRuleSystem<BlobRuleComponent>
                 _nukeCode.SendNukeCodes(stationUid);
                 _alertLevelSystem.SetLevel(stationUid, StationGamma, true, true, true, true);
 
-                RaiseLocalEvent(stationUid, new BlobChangeLevelEvent
+                RaiseLocalEvent(stationUid,
+                    new BlobChangeLevelEvent
                 {
                     Station = stationUid,
                     Level = blobRuleComp.Stage
