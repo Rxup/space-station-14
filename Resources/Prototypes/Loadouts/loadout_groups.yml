@@ -5,7 +5,7 @@
   minLimit: 0
   maxLimit: 3
   loadouts:
-  - CorporateLaw # Corvax-HyperLink
+  - SpaceLaw # Corvax-HyperLink
   - PlushieLizard
   - PlushieSpaceLizard
   - Lighter
@@ -35,7 +35,16 @@
   - ClothingNeckEarthPin
   - ClothingNeckUSSPPin
   - ClothingNeckSyndicakePin #BackmenPins-end
-
+   # Corvax-Loadouts-Start
+  - ClothingNeckAtharaPin
+  - ClothingNeckCorvaxPin
+  - ClothingNeckEchoPin
+  - ClothingNeckElysiumPin
+  - ClothingNeckMainPin
+  - ClothingNeckNebulaPin
+  - ClothingNeckNovaPin
+  - ClothingNeckWhiteListPin
+  # Corvax-Loadouts-End
 - type: loadoutGroup
   id: Glasses
   name: loadout-group-glasses

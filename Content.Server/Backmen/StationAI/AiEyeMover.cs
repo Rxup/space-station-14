@@ -47,10 +47,17 @@ public sealed class AiEyeMover : Job<object>
                 return null;
             }
 
+            if (!NewPosition.EntityId.IsValid())
+            {
+                _entityManager.QueueDeleteEntity(Eye);
+                return null;
+            }
+
+
             var core = Eye.Comp.AiCore.Value;
 
 
-            var gridUid = _transform.GetGrid(NewPosition);
+            var gridUid = _transform.GetGrid(NewPosition.EntityId);
 
             if (
                 gridUid == null ||

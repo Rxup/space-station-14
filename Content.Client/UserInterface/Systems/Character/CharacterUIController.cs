@@ -1,12 +1,13 @@
 using System.Linq;
 using Content.Client.CharacterInfo;
 using Content.Client.Gameplay;
-using Content.Client.Message; // backmen: locale
+using Content.Client.Stylesheets;
 using Content.Client.UserInterface.Controls;
 using Content.Client.UserInterface.Systems.Character.Controls;
 using Content.Client.UserInterface.Systems.Character.Windows;
 using Content.Client.UserInterface.Systems.Objectives.Controls;
 using Content.Shared.Input;
+using Content.Shared.Objectives.Systems;
 using JetBrains.Annotations;
 using Robust.Client.GameObjects;
 using Robust.Client.Player;
@@ -129,11 +130,17 @@ public sealed class CharacterUIController : UIController, IOnStateEntered<Gamepl
                     Modulate = Color.Gray
                 };
 
-                objectiveControl.AddChild(new Label
+
+                var objectiveText = new FormattedMessage();
+                objectiveText.TryAddMarkup(Loc.GetString($"objective-issuer-{groupId}"), out _); // backmen: locale
+
+                var objectiveLabel = new RichTextLabel
                 {
-                    Text = groupId,
-                    Modulate = Color.LightSkyBlue
-                });
+                    StyleClasses = {StyleNano.StyleClassTooltipActionTitle}
+                };
+                objectiveLabel.SetMessage(objectiveText);
+
+                objectiveControl.AddChild(objectiveLabel);
 
                 foreach (var condition in conditions)
                 {
@@ -173,15 +180,17 @@ public sealed class CharacterUIController : UIController, IOnStateEntered<Gamepl
                 Modulate = Color.Gray
             };
 
-            // start-backmen: locale
-            var objectiveControlLabel = new RichTextLabel
-            {
-                Modulate = Color.LightSkyBlue
-            };
-            objectiveControlLabel.SetMarkup(Loc.GetString($"issuer-{groupId}"));
 
-            objectiveControl.AddChild(objectiveControlLabel);
-            // end-backmen: locale
+            var objectiveText = new FormattedMessage();
+            objectiveText.TryAddMarkup(Loc.GetString($"issuer-{groupId}"), out _); // backmen: locale
+
+            var objectiveLabel = new RichTextLabel
+            {
+                StyleClasses = {StyleNano.StyleClassTooltipActionTitle}
+            };
+            objectiveLabel.SetMessage(objectiveText);
+
+            objectiveControl.AddChild(objectiveLabel);
 
             foreach (var condition in conditions)
             {

@@ -13,7 +13,7 @@
     allowSpeech: true
     makeSentient: true
     name: Оперативник РХБЗЗ
-    description: Особый агент НаноТрейзен по борьбе с радиационно, химическо, биологическоми и зомби опасностями.
+    description: Отделение ВС ОПЗ по борьбе с радиационно, химическо, биологическоми и зомби опасностями.
     raffle:
       settings: default
     requirements:
@@ -49,7 +49,7 @@
   - type: AntagImmune
 
 - type: entity
-  name:  РХБЗЗ Реагент Огнеметчик
+  name:  РХБЗЗ Реагент Специалист
   parent: MobHuman
   suffix: ready
   id: MobHumanRXBZZFlamer
@@ -62,8 +62,8 @@
     allowMovement: true
     allowSpeech: true
     makeSentient: true
-    name: Огнеметчик РХБЗЗ
-    description: Особый агент НаноТрейзен по борьбе с радиационно, химическо, биологическоми и зомби опасностями.
+    name: Специалист РХБЗЗ
+    description: Отделение ВС ОПЗ по борьбе с радиационно, химическо, биологическоми и зомби опасностями.
     raffle:
       settings: default
     requirements:
@@ -113,7 +113,7 @@
     allowSpeech: true
     makeSentient: true
     name: Лидер РХБЗЗ
-    description: Особый агент НаноТрейзен по борьбе с радиационно, химическо, биологическоми и зомби опасностями.
+    description: Отделение ВС ОПЗ по борьбе с радиационно, химическо, биологическоми и зомби опасностями.
     raffle:
       settings: default
     requirements:
@@ -150,3 +150,12 @@
     speechSounds: Metrocop
     soundCooldownTime: 0.1
   - type: AntagImmune
+
+- type: entity
+  name:  РХБЗЗ Лидер
+  parent: MobHumanRXBZZLeader
+  suffix: Blob
+  id: MobHumanRXBZZBlobLeader
+  components:
+  - type: Loadout
+    prototypes: [RXBZZBlobLeader]

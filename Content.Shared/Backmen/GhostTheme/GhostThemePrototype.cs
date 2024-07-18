@@ -2,7 +2,7 @@
 
 namespace Content.Shared.Backmen.GhostTheme;
 
-[Prototype("ghostTheme")]
+[Prototype("ghostTheme", -2)]
 public sealed partial class GhostThemePrototype : IPrototype
 {
     /// <inheritdoc/>

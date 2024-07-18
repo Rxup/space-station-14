@@ -39,7 +39,8 @@
     id: SecurityCadetPDA
     ears: ClothingHeadsetSecurity
     belt: ClothingBeltSecurityFilled
-    pocket2: HyperLinkBookCorporateLaw # Corvax-HyperLink
+    pocket1: WeaponPistolMk58
+    pocket2: BookSpaceLaw # Corvax-HyperLink
   storage:
     back:
     - Flash

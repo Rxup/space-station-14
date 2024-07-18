@@ -97,3 +97,58 @@
   components:
   - type: Sprite
     sprite: Backmen/Clothing/Neck/Cloaks/TGMCcloak.rsi
+    
+- type: entity
+  parent: ClothingNeckBase
+  id: ClothingNeckCloakPoncho
+  name: Пончо милитарист
+  description: Ваш верный друг в борьбе с дождём и вьюгой
+  components:
+  - type: Sprite
+    sprite: Backmen/Clothing/Neck/Cloaks/poncho.rsi
+    
+- type: entity
+  parent: ClothingNeckBase
+  id: ClothingNeckCloakGreenMantie
+  name: Мантия милитариста
+  description: Удобство и скрытность, то что и важно для обладателя этой мантии
+  components:
+  - type: Sprite
+    sprite: Backmen/Clothing/Neck/Cloaks/mantie.rsi
+    
+- type: entity
+  parent: ClothingNeckBase
+  id: ClothingNeckCloakBlackCloak
+  name: Чёрная мантия священника
+  description: Чёрная мантия, скрывает тайны?
+  components:
+  - type: Sprite
+    sprite: Backmen/Clothing/Neck/Cloaks/black.rsi
+    
+    
+- type: entity
+  parent: ClothingNeckBase
+  id: ClothingNeckCloakWhiteCloak
+  name: Белая мантия священника
+  description: Белая официальная мантия священника.
+  components:
+  - type: Sprite
+    sprite: Backmen/Clothing/Neck/Cloaks/white.rsi
+    
+- type: entity
+  parent: ClothingNeckBase
+  id: ClothingNeckCloakSanabi
+  name: Чёрный плащ "Санаби"
+  description: Чёрный плащ, с красной оконтовкой, на очень маленькой бирке написано Санаби!
+  components:
+  - type: Sprite
+    sprite: Backmen/Clothing/Neck/Cloaks/sanabi.rsi
+    
+- type: entity
+  parent: ClothingNeckBase
+  id: ClothingNeckCloakTGMCwhite
+  name: белый боевой плащ
+  description: Белый боевой плащ из лёгкой ткани.
+  components:
+  - type: Sprite
+    sprite: Backmen/Clothing/Neck/Cloaks/tgmcwhite.rsi

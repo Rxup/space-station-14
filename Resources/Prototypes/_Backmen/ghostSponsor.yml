@@ -1,41 +1,38 @@
 ﻿- type: ghostTheme
   id: tier1
   components:
-  - type: Sprite
-    overrideContainerOcclusion: true # Ghosts always show up regardless of where they're contained.
-    noRot: true
-    drawdepth: Ghosts
-    sprite: Backmen/Mobs/Ghost/ghost_red.rsi
-    state: animated-red
-    color: "#fff8"
-    layers:
-    - state: animated-red
-      shader: unshaded
+    - type: Sprite
+      overrideContainerOcclusion: true # Ghosts always show up regardless of where they're contained.
+      drawdepth: Ghosts
+      sprite: Backmen/Mobs/Ghost/ghost_red.rsi
+      color: "#fff8"
+      noRot: true
+      layers:
+      - state: animated-red
+        shader: unshaded
 
 - type: ghostTheme
   id: tier2
   components:
-  - type: Sprite
-    overrideContainerOcclusion: true # Ghosts always show up regardless of where they're contained.
-    noRot: true
-    drawdepth: Ghosts
-    sprite: Backmen/Mobs/Ghost/ghost_lava.rsi
-    state: animated-lava
-    color: "#fff8"
-    layers:
-    - state: animated-lava
-      shader: unshaded
+    - type: Sprite
+      overrideContainerOcclusion: true # Ghosts always show up regardless of where they're contained.
+      drawdepth: Ghosts
+      sprite: Backmen/Mobs/Ghost/ghost_lava.rsi
+      color: "#fff8"
+      noRot: true
+      layers:
+      - state: animated-lava
+        shader: unshaded
 
 - type: ghostTheme
   id: tier01
   components:
     - type: Sprite
       overrideContainerOcclusion: true # Ghosts always show up regardless of where they're contained.
-      noRot: true
       drawdepth: Ghosts
       sprite: Backmen/Mobs/Ghost/ghost_vip.rsi
-      state: animated_orange
       color: "#fff8"
+      noRot: true
       layers:
       - state: animated_orange
         shader: unshaded
@@ -45,11 +42,10 @@
   components:
     - type: Sprite
       overrideContainerOcclusion: true # Ghosts always show up regardless of where they're contained.
-      noRot: true
       drawdepth: Ghosts
       sprite: Backmen/Mobs/Ghost/ghost_vip.rsi
-      state: animated_white
       color: "#fff8"
+      noRot: true
       layers:
       - state: animated_white
         shader: unshaded
@@ -59,11 +55,10 @@
   components:
     - type: Sprite
       overrideContainerOcclusion: true # Ghosts always show up regardless of where they're contained.
-      noRot: true
       drawdepth: Ghosts
       sprite: Backmen/Mobs/Ghost/ghost_vip.rsi
-      state: animated_ash
       color: "#fff8"
+      noRot: true
       layers:
       - state: animated_ash
         shader: unshaded
@@ -73,11 +68,10 @@
   components:
     - type: Sprite
       overrideContainerOcclusion: true # Ghosts always show up regardless of where they're contained.
-      noRot: true
       drawdepth: Ghosts
       sprite: Backmen/Mobs/Ghost/ghost_vip.rsi
-      state: animated_ice
       color: "#fff8"
+      noRot: true
       layers:
       - state: animated_ice
         shader: unshaded
@@ -87,11 +81,10 @@
   components:
     - type: Sprite
       overrideContainerOcclusion: true # Ghosts always show up regardless of where they're contained.
-      noRot: true
       drawdepth: Ghosts
       sprite: Backmen/Mobs/Ghost/ghost_vip.rsi
-      state: animated_superwhite
       color: "#fff8"
+      noRot: true
       layers:
       - state: animated_superwhite
         shader: unshaded
@@ -101,11 +94,10 @@
   components:
     - type: Sprite
       overrideContainerOcclusion: true # Ghosts always show up regardless of where they're contained.
-      noRot: true
       drawdepth: Ghosts
       sprite: Backmen/Mobs/Ghost/ghost_vip.rsi
-      state: animated_star
       color: "#fff8"
+      noRot: true
       layers:
       - state: animated_star
         shader: unshaded
@@ -115,11 +107,10 @@
   components:
     - type: Sprite
       overrideContainerOcclusion: true # Ghosts always show up regardless of where they're contained.
-      noRot: true
       drawdepth: Ghosts
       sprite: Backmen/Mobs/Ghost/ghost_vip.rsi
-      state: animated_faceless
       color: "#fff8"
+      noRot: true
       layers:
       - state: animated_faceless
         shader: unshaded
@@ -129,11 +120,10 @@
   components:
     - type: Sprite
       overrideContainerOcclusion: true # Ghosts always show up regardless of where they're contained.
-      noRot: true
       drawdepth: Ghosts
       sprite: Backmen/Mobs/Ghost/ghost_vip.rsi
-      state: animated_kaiju
       color: "#fff8"
+      noRot: true
       layers:
       - state: animated_kaiju
         shader: unshaded

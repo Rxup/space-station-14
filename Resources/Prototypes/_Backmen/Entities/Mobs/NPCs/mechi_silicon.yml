@@ -430,7 +430,7 @@
       - id: WeaponTaser9000
       - id: WeaponGrenadeLauncher9000
       - id: JawsOfLife
-      - id: WeaponFireExtinguisher9000
+      #- id: WeaponFireExtinguisher9000
       - id: WeaponGrenadeLauncher9000
       - id: WeaponTaser9000
   - type: Sprite

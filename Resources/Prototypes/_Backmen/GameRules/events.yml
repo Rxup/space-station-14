@@ -51,7 +51,7 @@
     minimumPlayers: 20
   - type: BlobSpawnRule
     carrierBlobProtos:
-    - MobMouseCancer
+    - SpawnPointGhostBlobRat
     playersPerCarrierBlob: 30
     maxCarrierBlob: 3
 
