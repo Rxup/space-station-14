@@ -22,7 +22,7 @@ jobs:
       run: |
         PR_TITLE=$(jq -r .pull_request.title $GITHUB_EVENT_PATH)
         PR_USER=$(jq -r .pull_request.user.login $GITHUB_EVENT_PATH)
-        
+
         JSON_PAYLOAD=$(jq -n --arg title "Принят PR: ${PR_TITLE}" \
                               --arg user "${PR_USER}" \
                               '{
@@ -39,8 +39,9 @@ jobs:
                                 }]
                               }')
 
-        echo "$JSON_PAYLOAD"
+        echo "JSON Payload: $JSON_PAYLOAD"
 
         curl -H "Content-Type: application/json" -d "$JSON_PAYLOAD" $DISCORD_WEBHOOK_URL
+
 
 
