@@ -31,14 +31,8 @@ public abstract class SharedCameraRecoilSystem : EntitySystem
 
     [Dependency] private readonly SharedEyeSystem _eye = default!;
     [Dependency] private readonly INetManager _net = default!;
-    [Dependency] private readonly SharedActionsSystem _actions = default!; // Backmen-Changes
 
-    // Backmen-Changes-Start
-    {
-        SubscribeLocalEvent<CameraFollowComponent, ComponentRemove>(OnCameraFollowRemove);
-        SubscribeLocalEvent<CameraFollowComponent, ComponentInit>(OnCameraFollowInit);
-    }
-    // Backmen-Changes-End
+
     public override void Initialize()
     {
         SubscribeLocalEvent<CameraRecoilComponent, GetEyeOffsetEvent>(OnCameraRecoilGetEyeOffset);
@@ -73,8 +67,6 @@ public abstract class SharedCameraRecoilSystem : EntitySystem
             if (magnitude <= 0.005f)
             {
                 recoil.CurrentKick = Vector2.Zero;
-                var offset = recoil.BaseOffset + recoil.CurrentKick + follow.Offset; // Backmen-Changes
-                _eye.SetOffset(uid, offset, eye); // Backmen-Changes
             }
             else // Continually restore camera to 0.
             {
@@ -90,7 +82,6 @@ public abstract class SharedCameraRecoilSystem : EntitySystem
                     y = 0;
 
                 recoil.CurrentKick = new Vector2(x, y);
-                var offset = recoil.BaseOffset + recoil.CurrentKick + follow.Offset; // Backmen-Changes
             }
 
             if (recoil.CurrentKick == recoil.LastKick)
@@ -103,17 +94,6 @@ public abstract class SharedCameraRecoilSystem : EntitySystem
         }
     }
 
-    // Backmen-Changes-Start
-    private void OnCameraFollowInit(EntityUid uid, CameraFollowComponent component, ComponentInit args)
-    {
-        _actionsSystem.AddAction(uid, ref component.ActionEntity, component.Action);
-    }
-
-    private void OnCameraFollowRemove(EntityUid uid, CameraFollowComponent component, ComponentRemove args)
-    {
-        _actionsSystem.RemoveAction(uid, component.ActionEntity);
-    }
-    // Backmen-Changes-End
     public override void Update(float frameTime)
     {
         if (_net.IsServer)

@@ -1,5 +1,6 @@
 ﻿using Content.Shared.Backmen.CameraFollow.Components;
 using Content.Shared.Backmen.FollowDistance.Components;
+using Content.Shared.Camera;
 using Content.Shared.Hands;
 
 namespace Content.Shared.Backmen.FollowDistance;
@@ -8,11 +9,38 @@ namespace Content.Shared.Backmen.FollowDistance;
 /// </summary>
 public sealed class FollowDistanceSystem : EntitySystem
 {
+    [Dependency] private readonly Actions.SharedActionsSystem _actionsSystem = default!; // Stalker-Changes
+    private EntityQuery<CameraRecoilComponent> _activeRecoil;
+
     public override void Initialize()
     {
         SubscribeLocalEvent<FollowDistanceComponent, HandSelectedEvent>(OnPickedUp);
         SubscribeLocalEvent<FollowDistanceComponent, HandDeselectedEvent>(OnDropped);
+        SubscribeLocalEvent<CameraFollowComponent, ComponentRemove>(OnCameraFollowRemove);
+        SubscribeLocalEvent<CameraFollowComponent, ComponentInit>(OnCameraFollowInit);
+
+        SubscribeLocalEvent<CameraFollowComponent, GetEyeOffsetEvent>(OnCameraRecoilGetEyeOffset);
+
+        _activeRecoil = GetEntityQuery<CameraRecoilComponent>();
     }
+
+    private void OnCameraRecoilGetEyeOffset(Entity<CameraFollowComponent> ent, ref GetEyeOffsetEvent arg)
+    {
+        if (!_activeRecoil.TryComp(ent, out var recoil))
+            return;
+
+        arg.Offset = recoil.BaseOffset + recoil.CurrentKick + ent.Comp.Offset; // Stalker-Changes
+    }
+
+    private void OnCameraFollowInit(EntityUid uid, CameraFollowComponent component, ComponentInit args) // Stalker-Changes-Start
+    {
+        _actionsSystem.AddAction(uid, ref component.ActionEntity, component.Action);
+    }
+
+    private void OnCameraFollowRemove(EntityUid uid, CameraFollowComponent component, ComponentRemove args)
+    {
+        _actionsSystem.RemoveAction(uid, component.ActionEntity);
+    } // Stalker-Changes-End
 
     private void OnPickedUp(EntityUid uid, FollowDistanceComponent followDistance, HandSelectedEvent args)
     {
