@@ -19,26 +19,31 @@ jobs:
         PR_STATE=$(jq -r '.action' $GITHUB_EVENT_PATH)
 
         if [ "$PR_STATE" == "opened" ]; then
-          EMBED_COLOR=65280  # зеленый
+          EMBED_COLOR=65280 
         elif [ "$PR_STATE" == "closed" ]; then
-          EMBED_COLOR=16711680  # красный
+          EMBED_COLOR=16711680
         elif [ "$PR_STATE" == "reopened" ]; then
-          EMBED_COLOR=16776960  # синий
+          EMBED_COLOR=16776960
         else
-          EMBED_COLOR=16777215  # белый
+          EMBED_COLOR=16777215 
         fi
 
-        PAYLOAD=$(jq -n --arg title "$PR_TITLE" --arg url "$PR_URL" --arg user "$PR_USER" --arg body "$PR_BODY" --argjson color "$EMBED_COLOR" '{
-          "embeds": [{
-            "title": $title,
-            "url": $url,
-            "author": {
-              "name": $user,
-              "url": "https://github.com/" + $user
-            },
-            "description": $body,
-            "color": $color
-          }]
-        }')
+        PAYLOAD=$(jq -n \
+          --arg title "$PR_TITLE" \
+          --arg url "$PR_URL" \
+          --arg user "$PR_USER" \
+          --arg body "$PR_BODY" \
+          --argjson color "$EMBED_COLOR" \
+          '{
+            "embeds": [{
+              "title": $title,
+              "url": $url,
+              "author": {
+                "name": $user
+              },
+              "description": $body,
+              "color": $color
+            }]
+          }')
 
-        curl -H "Content-Type: application/json" -d "$PAYLOAD" $DISCORD_WEBHOOK_URL
+        echo "$PAYLOAD" | curl -H "Content-Type: application/json" -d @- $DISCORD_WEBHOOK_URL
