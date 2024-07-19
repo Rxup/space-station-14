@@ -26,10 +26,10 @@ jobs:
         PR_MERGED_AT=$(jq -r .pull_request.merged_at $GITHUB_EVENT_PATH)
         PR_MERGED_AT_DATE=$(date -d "$PR_MERGED_AT" '+%Y-%m-%d %H:%M:%S')
 
-        TWEAKS=$(echo "$PR_BODY" | grep -oP '^-\s*tweak:\s*\K.*' | sed 's/^/🛠️ /')
-        ADDS=$(echo "$PR_BODY" | grep -oP '^-\s*add:\s*\K.*' | sed 's/^/➕ /')
-        FIXES=$(echo "$PR_BODY" | grep -oP '^-\s*fix:\s*\K.*' | sed 's/^/🔧 /')
-        REMOVES=$(echo "$PR_BODY" | grep -oP '^-\s*remove:\s*\K.*' | sed 's/^/❌ /')
+        TWEAKS=$(echo "$PR_BODY" | grep -oP '^-\s*tweak:.*' | sed 's/- //')
+        ADDS=$(echo "$PR_BODY" | grep -oP '^-\s*add:.*' | sed 's/- //')
+        FIXES=$(echo "$PR_BODY" | grep -oP '^-\s*fix:.*' | sed 's/- //')
+        REMOVES=$(echo "$PR_BODY" | grep -oP '^-\s*remove:.*' | sed 's/- //')
 
         CHANGES=""
         [ -n "$TWEAKS" ] && CHANGES="${CHANGES}\n🛠️ **Tweak:**\n${TWEAKS}"
@@ -37,42 +37,39 @@ jobs:
         [ -n "$FIXES" ] && CHANGES="${CHANGES}\n🔧 **Fix:**\n${FIXES}"
         [ -n "$REMOVES" ] && CHANGES="${CHANGES}\n❌ **Remove:**\n${REMOVES}"
 
-        JSON_PAYLOAD=$(jq -n \
-          --arg username 'Space-Cats | [Development]' \
-          --arg avatar_url 'https://media.discordapp.net/attachments/1250152873250132073/1263212035366326363/space-cats_logo_space_1.png?ex=669b63a2&is=669a1222&hm=a99c299e22f2a48b152b83b59069004ad94dc261dcc44de03564285729f8e586&=&format=webp&quality=lossless&width=115&height=115' \
-          --arg title "Принят PR: $PR_TITLE" \
-          --arg description "**Описание:**\n$PR_BODY\n\n**Изменения:**$CHANGES" \
-          --arg color 3066993 \
-          --arg timestamp "$PR_MERGED_AT" \
-          --arg footer "Merged at $PR_MERGED_AT_DATE" \
-          --arg status 'Merged' \
-          --arg author "$PR_USER" \
-          '{
-            username: $username,
-            avatar_url: $avatar_url,
-            embeds: [
-              {
-                title: $title,
-                description: $description,
-                color: ($color | tonumber),
-                timestamp: $timestamp,
-                footer: {
-                  text: $footer
-                },
-                fields: [
-                  {
-                    name: "Статус",
-                    value: $status,
-                    inline: true
-                  },
-                  {
-                    name: "Автор",
-                    value: $author,
-                    inline: true
-                  }
-                ]
-              }
-            ]
-          }')
+        JSON_PAYLOAD=$(jq -n --arg title "Принят PR: ${PR_TITLE}" \
+                              --arg user "${PR_USER}" \
+                              --arg body "${PR_BODY}" \
+                              --arg changes "${CHANGES}" \
+                              --arg merged_at "${PR_MERGED_AT}" \
+                              --arg merged_at_date "${PR_MERGED_AT_DATE}" \
+                              '{
+                                "username": "Space-Cats | [Development]",
+                                "avatar_url": "https://media.discordapp.net/attachments/1250152873250132073/1263212035366326363/space-cats_logo_space_1.png?ex=669b63a2&is=669a1222&hm=a99c299e22f2a48b152b83b59069004ad94dc261dcc44de03564285729f8e586&=&format=webp&quality=lossless&width=115&height=115",
+                                "embeds": [{
+                                  "title": $title,
+                                  "description": "**Описание:**\n\($body)\n\n**Изменения:**\($changes)",
+                                  "color": 3066993,
+                                  "timestamp": $merged_at,
+                                  "footer": {
+                                    "text": "Merged at \($merged_at_date)"
+                                  },
+                                  "fields": [
+                                    {
+                                      "name": "Статус",
+                                      "value": "Merged",
+                                      "inline": true
+                                    },
+                                    {
+                                      "name": "Автор",
+                                      "value": $user,
+                                      "inline": true
+                                    }
+                                  ]
+                                }]
+                              }')
 
-        curl -H "Content-Type: application/json" -d "$JSON_PAYLOAD" $DISCORD_WEBHOOK_UR
+        echo "$JSON_PAYLOAD"
+
+        curl -H "Content-Type: application/json" -d "$JSON_PAYLOAD" $DISCORD_WEBHOOK_URL
+
