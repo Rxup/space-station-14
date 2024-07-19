@@ -1,11 +1,11 @@
 using System.Net.Http;
 using System.Text;
 using System.Text.Json;
-using System.Threading.Tasks;
 using System.Text.RegularExpressions;
 using Content.Server.Discord;
 using Content.Shared.CCVar;
 using Robust.Shared.Configuration;
+using System.Threading.Tasks;
 
 namespace Content.Server._Cats.Discord;
 public sealed class BanWebhook
