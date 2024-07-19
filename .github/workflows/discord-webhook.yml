@@ -18,6 +18,7 @@ jobs:
         PR_MERGED=$(jq -r '.pull_request.merged' $GITHUB_EVENT_PATH)
         PR_MERGED_AT=$(jq -r '.pull_request.merged_at' $GITHUB_EVENT_PATH)
         PR_BASE_REF=$(jq -r '.pull_request.base.ref' $GITHUB_EVENT_PATH)
+        PR_MEDIA=$(jq -r '.pull_request.head.repo.owner.login' $GITHUB_EVENT_PATH)  # Используем поле для проверки медиа файлов
 
         if [ "$PR_MERGED" != "true" ] || [ "$PR_BASE_REF" != "master" ]; then
           echo "PR was not merged into master, skipping notification."
@@ -30,23 +31,24 @@ jobs:
           MERGED_TIME="Not available"
         fi
 
-        if [ "$PR_BODY" != "" ]; then
-          CHANGES=$(echo "$PR_BODY" | grep -E '^(add|remove|tweak|fix):' || echo "No change details found")
-        else
-          CHANGES="No change details found"
-        fi
+        CLEAN_BODY=$(echo "$PR_BODY" | sed -E '/<!--.*-->/d' | sed -E '/^(\*\*Медиа\*\*|^Медиа$)/d' | sed -E '/^\*\*Проверки\*\*/d')
+
+        CHANGES=$(echo "$CLEAN_BODY" | grep -E '^(add|remove|tweak|fix):.*' || echo "No change details found")
+
+        EMBED_COLOR=65280  # Зеленый, так как PR принят
 
         PAYLOAD=$(jq -n \
           --arg title "$PR_TITLE" \
-          --arg description "$PR_BODY" \
+          --arg description "$CLEAN_BODY" \
           --arg changes "$CHANGES" \
           --arg user "$PR_USER" \
           --arg merged_time "$MERGED_TIME" \
+          --argjson color "$EMBED_COLOR" \
           '{
             "embeds": [{
               "title": $title,
               "description": "\($description)\n\n**Changes**:\n$changes\n\n**Author**: $user\n**Merged At**: $merged_time",
-              "color": 65280  # Зеленый, так как PR принят
+              "color": $color
             }]
           }')
 
