@@ -12,13 +12,12 @@ jobs:
       env:
         DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
       run: |
+        # Извлечение данных
         PR_TITLE=$(jq -r '.pull_request.title' $GITHUB_EVENT_PATH)
         PR_BODY=$(jq -r '.pull_request.body' $GITHUB_EVENT_PATH)
-        PR_USER=$(jq -r '.pull_request.user.login' $GITHUB_EVENT_PATH)
         PR_MERGED=$(jq -r '.pull_request.merged' $GITHUB_EVENT_PATH)
         PR_MERGED_AT=$(jq -r '.pull_request.merged_at' $GITHUB_EVENT_PATH)
         PR_BASE_REF=$(jq -r '.pull_request.base.ref' $GITHUB_EVENT_PATH)
-        PR_MEDIA=$(jq -r '.pull_request.head.repo.owner.login' $GITHUB_EVENT_PATH)  # Используем поле для проверки медиа файлов
 
         if [ "$PR_MERGED" != "true" ] || [ "$PR_BASE_REF" != "master" ]; then
           echo "PR was not merged into master, skipping notification."
@@ -35,19 +34,21 @@ jobs:
 
         CHANGES=$(echo "$CLEAN_BODY" | grep -E '^(add|remove|tweak|fix):.*' || echo "No change details found")
 
+        echo "Title: $PR_TITLE"
+        echo "Description: $CLEAN_BODY"
+        echo "Changes: $CHANGES"
+
         EMBED_COLOR=65280
 
         PAYLOAD=$(jq -n \
           --arg title "$PR_TITLE" \
           --arg description "$CLEAN_BODY" \
           --arg changes "$CHANGES" \
-          --arg user "$PR_USER" \
-          --arg merged_time "$MERGED_TIME" \
           --argjson color "$EMBED_COLOR" \
           '{
             "embeds": [{
               "title": $title,
-              "description": "\($description)\n\n**Changes**:\n$changes\n\n**Author**: $user\n**Merged At**: $merged_time",
+              "description": "\($description)\n\n**Changes**:\n$changes",
               "color": $color
             }]
           }')
