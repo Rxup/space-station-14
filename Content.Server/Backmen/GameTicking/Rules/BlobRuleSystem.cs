@@ -79,7 +79,6 @@ public sealed class BlobRuleSystem : GameRuleSystem<BlobRuleComponent>
         }
         foreach (var blobTiles in blobCores)
         {
-            Log.Debug($"Checking blobs change states on station {blobTiles.Key}. Blob list: {blobCores.Values}");
             CheckChangeStage(blobTiles.Key, component, blobCores);
         }
     }
