@@ -1,0 +1,30 @@
+name: PR Notify
+
+on:
+  pull_request:
+    types: [closed]
+
+jobs:
+  discordNotification:
+    if: github.event.pull_request.merged == true
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Send Discord Notification
+      env:
+        DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
+      run: |
+        PR_TITLE=$(jq -r .pull_request.title $GITHUB_EVENT_PATH)
+        PR_USER=$(jq -r .pull_request.user.login $GITHUB_EVENT_PATH)
+        PR_URL=$(jq -r .pull_request.html_url $GITHUB_EVENT_PATH)
+        PR_BODY=$(jq -r .pull_request.body $GITHUB_EVENT_PATH)
+
+        curl -H "Content-Type: application/json" -d "{
+          \"username\": \"Space-Cats | [Development]\",
+          \"avatar_url\": \"https://media.discordapp.net/attachments/1250152873250132073/1263212035366326363/space-cats_logo_space_1.png?ex=669b63a2&is=669a1222&hm=a99c299e22f2a48b152b83b59069004ad94dc261dcc44de03564285729f8e586&=&format=webp&quality=lossless&width=115&height=115\",
+          \"embeds\": [{
+            \"title\": \"Принят PR\",
+            \"description\": \"**${PR_TITLE}**\n\n**Автор:** ${PR_USER}\n\n**Описание:**\n${PR_BODY}\",
+            \"color\": 3066993
+          }]
+        }" $DISCORD_WEBHOOK_URL
