@@ -36,7 +36,7 @@ jobs:
           \"avatar_url\": \"https://media.discordapp.net/attachments/1250152873250132073/1263212035366326363/space-cats_logo_space_1.png?ex=669b63a2&is=669a1222&hm=a99c299e22f2a48b152b83b59069004ad94dc261dcc44de03564285729f8e586&=&format=webp&quality=lossless&width=115&height=115\",
           \"embeds\": [{
             \"title\": \"Принят PR\",
-            \"description\": \"**${PR_TITLE}**\n\n**Автор:** ${PR_USER}\n\n**Описание:**\n${PR_BODY}\n\n**Изменения:**${CHANGES}\n\n**Дата слияния:** ${PR_MERGED_AT}\",
+            \"description\": \"**${PR_TITLE}**\n\n**Автор:** ${PR_USER}\n\n**Описание:**\n${PR_BODY}\n\n**Изменения:**${CHANGES}\n\n**Дата слияния:** ${PR_MERGED_AT}\n\n[Ссылка на PR](${PR_URL})\",
             \"color\": 3066993,
             \"fields\": [
               {
@@ -52,3 +52,4 @@ jobs:
             ]
           }]
         }" $DISCORD_WEBHOOK_URL
+
