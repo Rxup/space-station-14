@@ -1,7 +1,9 @@
-﻿using Content.Shared.Backmen.CameraFollow.Components;
+﻿using System.Numerics;
+using Content.Shared.Backmen.CameraFollow.Components;
 using Content.Shared.Backmen.FollowDistance.Components;
 using Content.Shared.Camera;
 using Content.Shared.Hands;
+using Robust.Shared.Network;
 
 namespace Content.Shared.Backmen.FollowDistance;
 /// <summary>
@@ -9,6 +11,8 @@ namespace Content.Shared.Backmen.FollowDistance;
 /// </summary>
 public sealed class FollowDistanceSystem : EntitySystem
 {
+    [Dependency] private readonly INetManager _net = default!;
+    [Dependency] private readonly SharedEyeSystem _eye = default!;
     [Dependency] private readonly Actions.SharedActionsSystem _actionsSystem = default!; // Stalker-Changes
     private EntityQuery<CameraRecoilComponent> _activeRecoil;
 
@@ -24,9 +28,30 @@ public sealed class FollowDistanceSystem : EntitySystem
         _activeRecoil = GetEntityQuery<CameraRecoilComponent>();
     }
 
+    public override void Update(float frameTime)
+    {
+        base.Update(frameTime);
+        if (_net.IsServer)
+            UpdateEyes(frameTime);
+    }
+
+    private void UpdateEyes(float frameTime)
+    {
+        var query = AllEntityQuery<CameraRecoilComponent, EyeComponent, CameraFollowComponent>();
+
+        while (query.MoveNext(out var uid, out var recoil, out var eye, out var follow))
+        {
+            if(!follow.Enabled)
+                continue;
+
+            var offset = recoil.BaseOffset + recoil.CurrentKick + follow.Offset;
+            _eye.SetOffset(uid, offset, eye);
+        }
+    }
+
     private void OnCameraRecoilGetEyeOffset(Entity<CameraFollowComponent> ent, ref GetEyeOffsetEvent arg)
     {
-        if (!_activeRecoil.TryComp(ent, out var recoil))
+        if (!ent.Comp.Enabled || !_activeRecoil.TryComp(ent, out var recoil))
             return;
 
         arg.Offset = recoil.BaseOffset + recoil.CurrentKick + ent.Comp.Offset; // Stalker-Changes
