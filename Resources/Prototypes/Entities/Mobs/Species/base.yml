@@ -224,6 +224,9 @@
     - CanPilot
     - FootstepSound
     - DoorBumpOpener
+  - type: CameraFollow # Backmen-Changes-End
+    backStrength: 20
+    defaultBackStrength: 20
 
 - type: entity
   save: false
