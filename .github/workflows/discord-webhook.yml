@@ -35,7 +35,7 @@ jobs:
 
         CHANGES=$(echo "$CLEAN_BODY" | grep -E '^(add|remove|tweak|fix):.*' || echo "No change details found")
 
-        EMBED_COLOR=65280  # Зеленый, так как PR принят
+        EMBED_COLOR=65280
 
         PAYLOAD=$(jq -n \
           --arg title "$PR_TITLE" \
