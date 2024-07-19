@@ -1,44 +1,58 @@
-name: Notify Discord
+name: Notify Discord on PR Merge
 
 on:
   pull_request:
-    types: [opened, closed, reopened]
+    types: [closed]
 
 jobs:
   notify-discord:
     runs-on: ubuntu-latest
     steps:
-    - name: Send notification to Discord
+    - name: Check if PR is merged and send notification to Discord
       env:
         DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
       run: |
+        # Получаем информацию о PR
         PR_TITLE=$(jq -r '.pull_request.title' $GITHUB_EVENT_PATH)
         PR_BODY=$(jq -r '.pull_request.body' $GITHUB_EVENT_PATH)
         PR_USER=$(jq -r '.pull_request.user.login' $GITHUB_EVENT_PATH)
-        PR_STATE=$(jq -r '.action' $GITHUB_EVENT_PATH)
+        PR_MERGED=$(jq -r '.pull_request.merged' $GITHUB_EVENT_PATH)
+        PR_MERGED_AT=$(jq -r '.pull_request.merged_at' $GITHUB_EVENT_PATH)
 
-        if [ "$PR_STATE" == "opened" ]; then
-          EMBED_COLOR=65280  # зеленый
-        elif [ "$PR_STATE" == "closed" ]; then
-          EMBED_COLOR=16711680  # красный
-        elif [ "$PR_STATE" == "reopened" ]; then
-          EMBED_COLOR=16776960  # синий
+        # Проверяем, что PR был принят
+        if [ "$PR_MERGED" != "true" ]; then
+          echo "PR was not merged, skipping notification."
+          exit 0
+        fi
+
+        # Определение времени
+        if [ "$PR_MERGED_AT" != "null" ]; then
+          MERGED_TIME=$(date -d "$PR_MERGED_AT" --utc +'%Y-%m-%dT%H:%M:%SZ')
         else
-          EMBED_COLOR=16777215  # белый
+          MERGED_TIME="Not available"
+        fi
+
+        # Определение цвета
+        EMBED_COLOR=65280  # зеленый, так как PR принят
+
+        # Формирование описания
+        if [ "$PR_BODY" != "" ]; then
+          CHANGES=$(echo "$PR_BODY" | grep -E '^(add|remove|tweak|fix):' || echo "No change details found")
+        else
+          CHANGES="No change details found"
         fi
 
         PAYLOAD=$(jq -n \
           --arg title "$PR_TITLE" \
+          --arg description "$PR_BODY" \
+          --arg changes "$CHANGES" \
           --arg user "$PR_USER" \
-          --arg body "$PR_BODY" \
+          --arg merged_time "$MERGED_TIME" \
           --argjson color "$EMBED_COLOR" \
           '{
             "embeds": [{
               "title": $title,
-              "author": {
-                "name": $user
-              },
-              "description": $body,
+              "description": "\($description)\n\n**Changes**:\n$changes\n\n**Author**: $user\n**Merged At**: $merged_time",
               "color": $color
             }]
           }')
