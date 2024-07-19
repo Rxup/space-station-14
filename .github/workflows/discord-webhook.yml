@@ -12,30 +12,25 @@ jobs:
       env:
         DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
       run: |
-        # Получаем информацию о PR
         PR_TITLE=$(jq -r '.pull_request.title' $GITHUB_EVENT_PATH)
         PR_BODY=$(jq -r '.pull_request.body' $GITHUB_EVENT_PATH)
         PR_USER=$(jq -r '.pull_request.user.login' $GITHUB_EVENT_PATH)
         PR_MERGED=$(jq -r '.pull_request.merged' $GITHUB_EVENT_PATH)
         PR_MERGED_AT=$(jq -r '.pull_request.merged_at' $GITHUB_EVENT_PATH)
 
-        # Проверяем, что PR был принят
         if [ "$PR_MERGED" != "true" ]; then
           echo "PR was not merged, skipping notification."
           exit 0
         fi
 
-        # Определение времени
         if [ "$PR_MERGED_AT" != "null" ]; then
           MERGED_TIME=$(date -d "$PR_MERGED_AT" --utc +'%Y-%m-%dT%H:%M:%SZ')
         else
           MERGED_TIME="Not available"
         fi
 
-        # Определение цвета
-        EMBED_COLOR=65280  # зеленый, так как PR принят
+        EMBED_COLOR=65280 
 
-        # Формирование описания
         if [ "$PR_BODY" != "" ]; then
           CHANGES=$(echo "$PR_BODY" | grep -E '^(add|remove|tweak|fix):' || echo "No change details found")
         else
