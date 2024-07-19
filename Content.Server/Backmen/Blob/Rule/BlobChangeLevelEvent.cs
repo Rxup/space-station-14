@@ -8,7 +8,7 @@ public sealed class BlobChangeLevelEvent : EntityEventArgs
     /// <summary>
     /// List of all cores from one station.
     /// </summary>
-    public List<Entity<BlobCoreComponent>>? BlobCore;
+    public HashSet<Entity<BlobCoreComponent>>? BlobCore;
     public EntityUid Station;
     public BlobStage Level;
 }
