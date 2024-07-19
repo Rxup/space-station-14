@@ -1,0 +1,60 @@
+name: PR Notify
+
+on:
+  pull_request:
+    types: [closed]
+
+jobs:
+  discordNotification:
+    if: github.event.pull_request.merged == true
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Send Discord Notification
+      env:
+        DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
+      run: |
+        PR_TITLE=$(jq -r .pull_request.title $GITHUB_EVENT_PATH)
+        PR_USER=$(jq -r .pull_request.user.login $GITHUB_EVENT_PATH)
+        PR_BODY=$(jq -r .pull_request.body $GITHUB_EVENT_PATH)
+        PR_MERGED_AT=$(jq -r .pull_request.merged_at $GITHUB_EVENT_PATH)
+        PR_MERGED_AT_DATE=$(date -d "$PR_MERGED_AT" '+%Y-%m-%d %H:%M:%S')
+
+        # Extract changes from PR body
+        TWEAKS=$(echo "$PR_BODY" | grep -oP '^-\s*tweak:.*' | sed 's/- //')
+        ADDS=$(echo "$PR_BODY" | grep -oP '^-\s*add:.*' | sed 's/- //')
+        FIXES=$(echo "$PR_BODY" | grep -oP '^-\s*fix:.*' | sed 's/- //')
+        REMOVES=$(echo "$PR_BODY" | grep -oP '^-\s*remove:.*' | sed 's/- //')
+
+        # Combine all changes into one string
+        CHANGES=""
+        [ -n "$TWEAKS" ] && CHANGES="${CHANGES}\n🛠️ **Tweak:**\n${TWEAKS}"
+        [ -n "$ADDS" ] && CHANGES="${CHANGES}\n➕ **Add:**\n${ADDS}"
+        [ -n "$FIXES" ] && CHANGES="${CHANGES}\n🔧 **Fix:**\n${FIXES}"
+        [ -n "$REMOVES" ] && CHANGES="${CHANGES}\n❌ **Remove:**\n${REMOVES}"
+
+        curl -H "Content-Type: application/json" -d "{
+          \"username\": \"Space-Cats | [Development]\",
+          \"avatar_url\": \"https://media.discordapp.net/attachments/1250152873250132073/1263212035366326363/space-cats_logo_space_1.png?ex=669b63a2&is=669a1222&hm=a99c299e22f2a48b152b83b59069004ad94dc261dcc44de03564285729f8e586&=&format=webp&quality=lossless&width=115&height=115\",
+          \"embeds\": [{
+            \"title\": \"Принят PR: ${PR_TITLE}\",
+            \"description\": \"**Описание:**\n${PR_BODY}\n\n**Изменения:**${CHANGES}\",
+            \"color\": 3066993,
+            \"timestamp\": \"${PR_MERGED_AT}\",
+            \"footer\": {
+              \"text\": \"Merged at ${PR_MERGED_AT_DATE}\"
+            },
+            \"fields\": [
+              {
+                \"name\": \"Статус\",
+                \"value\": \"Merged\",
+                \"inline\": true
+              },
+              {
+                \"name\": \"Автор\",
+                \"value\": \"${PR_USER}\",
+                \"inline\": true
+              }
+            ]
+          }]
+        }" $DISCORD_WEBHOOK_URL
