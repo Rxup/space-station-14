@@ -1,4 +1,4 @@
-name: Notify Discord on PR Merge
+name: Notify Discord on PR Merge to Master
 
 on:
   pull_request:
@@ -8,7 +8,7 @@ jobs:
   notify-discord:
     runs-on: ubuntu-latest
     steps:
-    - name: Check if PR is merged and send notification to Discord
+    - name: Check if PR is merged into master and send notification to Discord
       env:
         DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
       run: |
@@ -17,9 +17,10 @@ jobs:
         PR_USER=$(jq -r '.pull_request.user.login' $GITHUB_EVENT_PATH)
         PR_MERGED=$(jq -r '.pull_request.merged' $GITHUB_EVENT_PATH)
         PR_MERGED_AT=$(jq -r '.pull_request.merged_at' $GITHUB_EVENT_PATH)
+        PR_BASE_REF=$(jq -r '.pull_request.base.ref' $GITHUB_EVENT_PATH)
 
-        if [ "$PR_MERGED" != "true" ]; then
-          echo "PR was not merged, skipping notification."
+        if [ "$PR_MERGED" != "true" ] || [ "$PR_BASE_REF" != "master" ]; then
+          echo "PR was not merged into master, skipping notification."
           exit 0
         fi
 
@@ -28,8 +29,6 @@ jobs:
         else
           MERGED_TIME="Not available"
         fi
-
-        EMBED_COLOR=65280 
 
         if [ "$PR_BODY" != "" ]; then
           CHANGES=$(echo "$PR_BODY" | grep -E '^(add|remove|tweak|fix):' || echo "No change details found")
@@ -43,12 +42,11 @@ jobs:
           --arg changes "$CHANGES" \
           --arg user "$PR_USER" \
           --arg merged_time "$MERGED_TIME" \
-          --argjson color "$EMBED_COLOR" \
           '{
             "embeds": [{
               "title": $title,
               "description": "\($description)\n\n**Changes**:\n$changes\n\n**Author**: $user\n**Merged At**: $merged_time",
-              "color": $color
+              "color": 65280
             }]
           }')
 
