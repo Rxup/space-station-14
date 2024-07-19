@@ -13,31 +13,28 @@ jobs:
         DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
       run: |
         PR_TITLE=$(jq -r '.pull_request.title' $GITHUB_EVENT_PATH)
-        PR_URL=$(jq -r '.pull_request.html_url' $GITHUB_EVENT_PATH)
-        PR_USER=$(jq -r '.pull_request.user.login' $GITHUB_EVENT_PATH)
         PR_BODY=$(jq -r '.pull_request.body' $GITHUB_EVENT_PATH)
+        PR_USER=$(jq -r '.pull_request.user.login' $GITHUB_EVENT_PATH)
         PR_STATE=$(jq -r '.action' $GITHUB_EVENT_PATH)
 
         if [ "$PR_STATE" == "opened" ]; then
-          EMBED_COLOR=65280 
+          EMBED_COLOR=65280  # зеленый
         elif [ "$PR_STATE" == "closed" ]; then
-          EMBED_COLOR=16711680
+          EMBED_COLOR=16711680  # красный
         elif [ "$PR_STATE" == "reopened" ]; then
-          EMBED_COLOR=16776960
+          EMBED_COLOR=16776960  # синий
         else
-          EMBED_COLOR=16777215 
+          EMBED_COLOR=16777215  # белый
         fi
 
         PAYLOAD=$(jq -n \
           --arg title "$PR_TITLE" \
-          --arg url "$PR_URL" \
           --arg user "$PR_USER" \
           --arg body "$PR_BODY" \
           --argjson color "$EMBED_COLOR" \
           '{
             "embeds": [{
               "title": $title,
-              "url": $url,
               "author": {
                 "name": $user
               },
