@@ -23,26 +23,19 @@ jobs:
         PR_TITLE=$(jq -r .pull_request.title $GITHUB_EVENT_PATH)
         PR_USER=$(jq -r .pull_request.user.login $GITHUB_EVENT_PATH)
 
-        JSON_PAYLOAD=$(cat <<EOF
-        {
+        curl -H "Content-Type: application/json" -d '{
           "username": "GitHub Actions",
           "embeds": [{
-            "title": "Принят PR: ${PR_TITLE}",
+            "title": "Принят PR: '"$PR_TITLE"'",
             "fields": [
               {
                 "name": "Автор",
-                "value": "${PR_USER}",
+                "value": "'"$PR_USER"'",
                 "inline": true
               }
             ]
           }]
-        }
-        EOF
-        )
-
-        echo "JSON Payload: $JSON_PAYLOAD"
-
-        curl -H "Content-Type: application/json" -d "$JSON_PAYLOAD" $DISCORD_WEBHOOK_URL
+        }' $DISCORD_WEBHOOK_URL
 
 
 
