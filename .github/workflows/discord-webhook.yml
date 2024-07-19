@@ -46,7 +46,7 @@ jobs:
             "embeds": [{
               "title": $title,
               "description": "\($description)\n\n**Changes**:\n$changes\n\n**Author**: $user\n**Merged At**: $merged_time",
-              "color": 65280
+              "color": 65280  # Зеленый, так как PR принят
             }]
           }')
 
