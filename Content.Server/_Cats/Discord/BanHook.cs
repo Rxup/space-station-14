@@ -13,7 +13,7 @@ public sealed class BanWebhook
 
     private ISawmill _sawmill = default!;
     private readonly HttpClient _httpClient = new();
-    private string _webhookUrl = string.Empty; // TODO: This shit had to be used in GenerateWebhook()
+    private string _webhookUrl = string.Empty;
     private string _footerIconUrl = string.Empty;
     private string _avatarUrl = string.Empty;
 
@@ -26,11 +26,11 @@ public sealed class BanWebhook
         _sawmill = IoCManager.Resolve<ILogManager>().GetSawmill("BAN");
     }
 
-    private async void OnWebhookChanged(string url)
+    private void OnWebhookChanged(string url)
     {
         _webhookUrl = url;
 
-        if (url == string.Empty)
+        if (string.IsNullOrEmpty(url))
             return;
 
         var match = Regex.Match(url, @"^https://discord\.com/api/webhooks/(\d+)/((?!.*/).*)$");
@@ -41,32 +41,42 @@ public sealed class BanWebhook
         }
     }
 
-    public async void GenerateWebhook(string admin, string user, string severity, uint? minutes, string reason)
+    public async Task GenerateWebhook(string admin, string user, string severity, uint? minutes, string reason)
     {
+        if (string.IsNullOrEmpty(_webhookUrl))
+        {
+            _sawmill.Error("Webhook URL is not set.");
+            return;
+        }
+
         var payload = GenerateBanPayload(admin, user, severity, minutes, reason);
-        var request = await _httpClient.PostAsync($"{_config.GetCVar(CCVars.DiscordBanWebhook)}?wait=true", // Idk why, but it doesn't set _webhookUrl xd
+        _sawmill.Info($"Sending webhook to {_webhookUrl}");
+
+        var request = await _httpClient.PostAsync($"{_webhookUrl}?wait=true",
             new StringContent(JsonSerializer.Serialize(payload), Encoding.UTF8, "application/json"));
 
         var content = await request.Content.ReadAsStringAsync();
 
         if (request.IsSuccessStatusCode)
-            return;
-
-        _sawmill.Log(LogLevel.Error, $"Discord returned bad status code when posting message (perhaps the message is too long?): {request.StatusCode}\nResponse: {content}");
+        {
+            _sawmill.Info("Webhook sent successfully.");
+        }
+        else
+        {
+            _sawmill.Log(LogLevel.Error, $"Discord returned bad status code when posting message: {request.StatusCode}\nResponse: {content}");
+        }
     }
+
     private WebhookPayload GenerateBanPayload(string admin, string user, string severity, uint? minutes, string reason)
     {
-        if (minutes == null)
-            return new WebhookPayload();
-
         var banType = Loc.GetString("ban-embed-perm");
         var timeNow = DateTime.Now.ToUniversalTime();
         var color = 0x6A00;
         var expires = string.Empty;
 
-        if (minutes != 0)
+        if (minutes.HasValue && minutes != 0)
         {
-            var expirationDate = DateTime.UtcNow.Add(TimeSpan.FromMinutes((double) minutes));
+            var expirationDate = DateTime.UtcNow.Add(TimeSpan.FromMinutes(minutes.Value));
             banType = Loc.GetString("ban-embed-temp", ("time", minutes));
             expires = $"**Истекает:** {expirationDate}\n";
             color = 0x513EA5;
@@ -77,10 +87,10 @@ public sealed class BanWebhook
             AvatarUrl = string.IsNullOrWhiteSpace(_avatarUrl) ? null : _avatarUrl,
             Embeds = new List<WebhookEmbed>
             {
-                new()
+                new WebhookEmbed
                 {
                     Color = color,
-                    Title = $"{banType}",
+                    Title = banType,
                     Footer = new WebhookEmbedFooter
                     {
                         Text = Loc.GetString("ban-embed-footer", ("severity", severity)),
@@ -94,10 +104,11 @@ public sealed class BanWebhook
                         expires +
                         $"\n" +
                         $"**Причина:** {reason}"
-                } // TODO: Learn how to use fucking webhooks
+                }
             },
         };
     }
+
     private void OnFooterIconChanged(string url)
     {
         _footerIconUrl = url;
