@@ -1,5 +1,6 @@
 ﻿using System.Numerics;
 using Content.Shared.Backmen.CameraFollow.Components;
+using Content.Shared.Backmen.CameraFollow.Events;
 using Content.Shared.Backmen.FollowDistance.Components;
 using Robust.Client.GameObjects;
 using Robust.Client.Graphics;
@@ -58,18 +59,25 @@ public sealed class CameraFollowSystem : EntitySystem
         var diff = new Vector2(mapPos.X, mapPos.Y) - playerPos;
 
         // Checks if player pointed his mouse on UI
-        if (mapPos.X == 0 && mapPos.Y == 0)
+        if (mapPos is { X: 0, Y: 0 })
             return;
 
+        var offset = followComponent.Offset;
         // If eye offset is higher than max distance lerp offset to max distance and apply "back strength"
         // TODO: Prob need to change the multiplication of lerpProgress to 4f, because this can cause the camera to jerk around
-        if (Math.Abs(eyeOffset.X) > Math.Abs(followComponent.MaxDistance.X) ||
-            Math.Abs(eyeOffset.Y) > Math.Abs(followComponent.MaxDistance.Y))
+
+
+        if (Math.Abs(eyeOffset.X) >= Math.Abs(followComponent.MaxDistance.X) ||
+            Math.Abs(eyeOffset.Y) >= Math.Abs(followComponent.MaxDistance.Y))
         {
-            followComponent.Offset = Vector2.Lerp(followComponent.Offset, followComponent.MaxDistance, lerpProgress * followComponent.BackStrength);
+            offset = Vector2.Lerp(offset, followComponent.MaxDistance, lerpProgress * followComponent.BackStrength);
         }
         // Just lerp to calculated offset position
-        followComponent.Offset = Vector2.Lerp(followComponent.Offset, diff, lerpProgress);
+        offset = Vector2.Lerp(offset, diff, lerpProgress);
 
+        RaisePredictiveEvent(new ChangeCamOffsetEvent
+        {
+            Offset = offset
+        });
     }
 }

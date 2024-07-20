@@ -1,5 +1,6 @@
 ﻿using System.Numerics;
 using Content.Shared.Backmen.CameraFollow.Components;
+using Content.Shared.Backmen.CameraFollow.Events;
 using Content.Shared.Backmen.FollowDistance.Components;
 using Content.Shared.Camera;
 using Content.Shared.Hands;
@@ -15,6 +16,8 @@ public sealed class FollowDistanceSystem : EntitySystem
     [Dependency] private readonly SharedEyeSystem _eye = default!;
     [Dependency] private readonly Actions.SharedActionsSystem _actionsSystem = default!; // Stalker-Changes
     private EntityQuery<CameraRecoilComponent> _activeRecoil;
+    private EntityQuery<EyeComponent> _activeEye;
+    private EntityQuery<CameraFollowComponent> _activeCamera;
 
     public override void Initialize()
     {
@@ -25,7 +28,19 @@ public sealed class FollowDistanceSystem : EntitySystem
 
         SubscribeLocalEvent<CameraFollowComponent, GetEyeOffsetEvent>(OnCameraRecoilGetEyeOffset);
 
+        SubscribeAllEvent<ChangeCamOffsetEvent>(OnChangeOffset);
+
         _activeRecoil = GetEntityQuery<CameraRecoilComponent>();
+        _activeEye = GetEntityQuery<EyeComponent>();
+        _activeCamera = GetEntityQuery<CameraFollowComponent>();
+    }
+
+    private void OnChangeOffset(ChangeCamOffsetEvent msg, EntitySessionEventArgs args)
+    {
+        var plr = args.SenderSession.AttachedEntity;
+        if(plr == null || !_activeCamera.TryComp(plr, out var cameraFollowComponent))
+            return;
+        cameraFollowComponent.Offset = msg.Offset;
     }
 
     public override void Update(float frameTime)
@@ -45,6 +60,12 @@ public sealed class FollowDistanceSystem : EntitySystem
                 continue;
 
             var offset = recoil.BaseOffset + recoil.CurrentKick + follow.Offset;
+            if (Math.Abs(follow.Offset.X) > Math.Abs(follow.MaxDistance.X) ||
+                Math.Abs(follow.Offset.Y) > Math.Abs(follow.MaxDistance.Y))
+            {
+                follow.Offset = Vector2.Lerp(offset, follow.MaxDistance, 0);
+                Dirty(uid,follow);
+            }
             _eye.SetOffset(uid, offset, eye);
         }
     }
@@ -69,25 +90,23 @@ public sealed class FollowDistanceSystem : EntitySystem
 
     private void OnPickedUp(EntityUid uid, FollowDistanceComponent followDistance, HandSelectedEvent args)
     {
-        if (!TryComp<CameraFollowComponent>(args.User, out var camfollow) && !HasComp<EyeComponent>(args.User))
-            return;
-        if (camfollow == null || !camfollow.Enabled)
+        if (!_activeCamera.TryComp(args.User, out var camfollow) || !camfollow.Enabled || !_activeEye.HasComp(args.User))
             return;
 
         camfollow.MaxDistance = followDistance.MaxDistance;
         camfollow.BackStrength = followDistance.BackStrength;
+        //camfollow.Enabled = true;
         Dirty(args.User, camfollow);
     }
 
     private void OnDropped(EntityUid uid, FollowDistanceComponent followDistance, HandDeselectedEvent args)
     {
-        if (!TryComp<CameraFollowComponent>(args.User, out var camfollow) && !HasComp<EyeComponent>(args.User))
-            return;
-        if (camfollow == null)
+        if (!_activeCamera.TryComp(args.User, out var camfollow) || !_activeEye.HasComp(args.User))
             return;
 
         camfollow.MaxDistance = camfollow.DefaultMaxDistance;
         camfollow.BackStrength = camfollow.DefaultBackStrength;
+        //camfollow.Enabled = false;
         Dirty(args.User, camfollow);
     }
 
