@@ -1,0 +1,55 @@
+name: Notify Discord on PR Merge or Revert
+
+on:
+  pull_request:
+    types: [closed]
+
+jobs:
+  notify-discord:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Check if PR is merged into master or is a revert and send notification to Discord
+      env:
+        DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
+      run: |
+        PR_TITLE=$(jq -r '.pull_request.title' $GITHUB_EVENT_PATH)
+        PR_BODY=$(jq -r '.pull_request.body' $GITHUB_EVENT_PATH)
+        PR_MERGED=$(jq -r '.pull_request.merged' $GITHUB_EVENT_PATH)
+        PR_MERGED_AT=$(jq -r '.pull_request.merged_at' $GITHUB_EVENT_PATH)
+        PR_BASE_REF=$(jq -r '.pull_request.base.ref' $GITHUB_EVENT_PATH)
+
+        if [ "$PR_MERGED" != "true" ] || [ "$PR_BASE_REF" != "master" ]; then
+          echo "PR was not merged into master, skipping notification."
+          exit 0
+        fi
+
+        if echo "$PR_TITLE" | grep -q "^Revert"; then
+          EMBED_COLOR=16711680  # Красный для откатов
+        else
+          EMBED_COLOR=65280  # Зеленый для обычных слияний
+        fi
+
+        if [ "$PR_MERGED_AT" != "null" ]; then
+          MERGED_TIME=$(date -d "$PR_MERGED_AT" --utc +'%Y-%m-%dT%H:%M:%SZ')
+        else
+          MERGED_TIME="Not available"
+        fi
+
+        CLEAN_BODY=$(echo "$PR_BODY" | sed -E '/<!--.*-->/d' | sed -E '/^(\*\*Медиа\*\*|^Медиа$)/d' | sed -E '/^\*\*Проверки\*\*/d')
+
+        CHANGES=$(echo "$CLEAN_BODY" | grep -E '^(add|remove|tweak|fix):.*' | sed 's/^ *- //' || echo "No change details found")
+
+        PAYLOAD=$(jq -n \
+          --arg title "$PR_TITLE" \
+          --arg description "$CLEAN_BODY" \
+          --arg changes "$CHANGES" \
+          --argjson color "$EMBED_COLOR" \
+          '{
+            "embeds": [{
+              "title": $title,
+              "description": "\($description)\n\n\($changes)",
+              "color": $color
+            }]
+          }')
+
+        echo "$PAYLOAD" | curl -H "Content-Type: application/json" -d @- $DISCORD_WEBHOOK_URL
