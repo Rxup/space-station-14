@@ -427,12 +427,12 @@ namespace Content.Server.Administration.Systems
 
             if (senderAdmin is not null && senderAdmin.Flags == AdminFlags.Adminhelp) // Mentor. Not full admin. That's why it's colored differently.
             {
-                bwoinkText = $"[color=purple]{senderSession.Name}[/color]";
+                bwoinkText = $"[color=purple]{senderSession.Name}[/color]: {escapedText}";
             }
             else if (senderAdmin is not null && senderAdmin.HasFlag(AdminFlags.Adminhelp))
             {
                 
-                bwoinkText = $"\\[{senderAdmin.Title}\\][color=red]{senderSession.Name}[/color]: {escapedText}";
+                bwoinkText = $"\\[{senderAdmin.Title}\\][color=red]{senderSession.Name}[/color]: {escapedText}"; 
             }
             else
             {
