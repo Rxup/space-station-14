@@ -7,7 +7,7 @@ using Content.Shared.CCVar;
 using Robust.Shared.Configuration;
 using System.Threading.Tasks;
 
-namespace Content.Server.Discord
+namespace Content.Server._Cats.Discord
 {
     public sealed class BanWebhook
     {
@@ -21,6 +21,7 @@ namespace Content.Server.Discord
 
         public void Initialize()
         {
+            Console.WriteLine("Initializing BanWebhook");
             _config.OnValueChanged(CCVars.DiscordBanWebhook, OnWebhookChanged, true);
             _config.OnValueChanged(CCVars.DiscordBanFooterIcon, OnFooterIconChanged, true);
             _config.OnValueChanged(CCVars.DiscordBanAvatar, OnAvatarChanged, true);
@@ -30,6 +31,7 @@ namespace Content.Server.Discord
 
         private void OnWebhookChanged(string url)
         {
+            Console.WriteLine($"Webhook URL changed: {url}");
             _webhookUrl = url;
 
             if (string.IsNullOrEmpty(url))
@@ -48,6 +50,8 @@ namespace Content.Server.Discord
 
         public async Task GenerateWebhook(string admin, string user, string severity, uint? minutes, string reason)
         {
+            Console.WriteLine("GenerateWebhook called");
+            _sawmill.Info("GenerateWebhook called");
             try
             {
                 if (string.IsNullOrEmpty(_webhookUrl))
@@ -59,25 +63,30 @@ namespace Content.Server.Discord
                 var payload = GenerateBanPayload(admin, user, severity, minutes, reason);
                 var payloadJson = JsonSerializer.Serialize(payload);
                 _sawmill.Info($"Payload JSON: {payloadJson}");
+                Console.WriteLine($"Payload JSON: {payloadJson}");
 
                 var request = await _httpClient.PostAsync($"{_webhookUrl}?wait=true",
                     new StringContent(payloadJson, Encoding.UTF8, "application/json"));
 
                 var content = await request.Content.ReadAsStringAsync();
                 _sawmill.Info($"Discord response: {content}");
+                Console.WriteLine($"Discord response: {content}");
 
                 if (request.IsSuccessStatusCode)
                 {
                     _sawmill.Info("Webhook sent successfully.");
+                    Console.WriteLine("Webhook sent successfully.");
                 }
                 else
                 {
                     _sawmill.Log(LogLevel.Error, $"Discord returned bad status code when posting message: {request.StatusCode}\nResponse: {content}");
+                    Console.WriteLine($"Discord returned bad status code when posting message: {request.StatusCode}\nResponse: {content}");
                 }
             }
             catch (Exception ex)
             {
                 _sawmill.Log(LogLevel.Error, $"Exception occurred while sending webhook: {ex.Message}\n{ex.StackTrace}");
+                Console.WriteLine($"Exception occurred while sending webhook: {ex.Message}\n{ex.StackTrace}");
             }
         }
 
@@ -97,6 +106,7 @@ namespace Content.Server.Discord
             }
 
             _sawmill.Info($"Generated ban payload for user: {user}, admin: {admin}, reason: {reason}");
+            Console.WriteLine($"Generated ban payload for user: {user}, admin: {admin}, reason: {reason}");
 
             return new WebhookPayload
             {
