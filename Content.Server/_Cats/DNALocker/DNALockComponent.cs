@@ -1,6 +1,6 @@
 using Robust.Shared.Audio;
 
-namespace Content.Server._Cats.DNALocker;
+namespace Content.Server.DNALocker;
 
 [RegisterComponent]
 public sealed partial class DNALockerComponent : Component
