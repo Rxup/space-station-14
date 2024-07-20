@@ -92,7 +92,7 @@ namespace Content.Server.Database
             return $"""
                    {loc.GetString("ban-banned-1")}
                    {loc.GetString("ban-banned-2", ("adminName", adminName))}
-                   {loc.GetString("ban-banned-3", ("reason", reason))}
+                   {loc.GetString("ban-banned-3", ("reason", Reason))}
                    {expires}
                    {loc.GetString("ban-banned-4")}
                    {loc.GetString("ban-banned-5")}
