@@ -3,10 +3,10 @@ name: Test Ban Webhook
 on:
   push:
     branches:
-      - ban_webhook
+      - ban_weebhook
   pull_request:
     branches:
-      - ban_webhook
+      - ban_weebhook
   schedule:
     - cron: '0 0 * * *'
 
