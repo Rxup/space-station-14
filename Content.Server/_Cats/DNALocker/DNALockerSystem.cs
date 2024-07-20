@@ -6,7 +6,7 @@ using Robust.Shared.Audio.Systems;
 using Content.Shared.Popups;
 using Content.Shared.Emag.Systems;
 
-namespace Content.Server_Cats.DNALocker;
+namespace Content.Server.DNALocker;
 
 public sealed partial class DNALockerSystem : EntitySystem
 {
