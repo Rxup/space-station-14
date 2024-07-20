@@ -2,13 +2,13 @@ name: Webhook Test
 
 on:
   schedule:
-    - cron: '0 0 * * *'  
+    - cron: '0 0 * * *'
   push:
     branches:
-      - ban_weebhook
+      - main
   pull_request:
     branches:
-      - ban_weebhook
+      - main
 
 jobs:
   test-webhook:
@@ -17,6 +17,8 @@ jobs:
     steps:
     - name: Checkout repository
       uses: actions/checkout@v2
+      with:
+        fetch-depth:
 
     - name: Setup .NET SDK
       uses: actions/setup-dotnet@v2
@@ -33,3 +35,4 @@ jobs:
       env:
         WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
       run: dotnet test --no-restore --verbosity normal
+
