@@ -414,7 +414,7 @@ namespace Content.Server.Administration.Systems
             }
             else if (senderAdmin is not null && senderAdmin.HasFlag(AdminFlags.Adminhelp))
             {
-                bwoinkText = $"\\[{senderAdmin.Title}\\][color=red]{senderSession.Name}[/color]: {escapedText}"; // сообщение админа
+                bwoinkText = $"\\[{senderAdmin.Title}\\] [color=red]{senderSession.Name}[/color]: {escapedText}"; // сообщение админа
             }
             else
             {
