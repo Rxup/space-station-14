@@ -1,4 +1,6 @@
-﻿using Content.Shared.Actions;
+﻿using System.Numerics;
+using Content.Shared.Actions;
+using Robust.Shared.Serialization;
 
 namespace Content.Shared.Backmen.CameraFollow.Events;
 
@@ -9,3 +11,8 @@ public sealed partial class ToggleCameraEvent : InstantActionEvent
 {
 }
 
+[Serializable, NetSerializable]
+public sealed partial class ChangeCamOffsetEvent : EntityEventArgs
+{
+    public Vector2 Offset = Vector2.Zero;
+}

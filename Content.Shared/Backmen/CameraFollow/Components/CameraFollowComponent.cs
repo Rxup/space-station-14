@@ -1,4 +1,5 @@
 using System.Numerics;
+using Content.Shared.Actions;
 using Content.Shared.Backmen.CameraFollow.EntitySystems;
 using Robust.Shared.GameStates;
 using Robust.Shared.Prototypes;
@@ -33,13 +34,13 @@ public sealed partial class CameraFollowComponent : Component
     [DataField("defaultBackStrength")]
     public float DefaultBackStrength = 10f;
 
-    [DataField("action", customTypeSerializer: typeof(PrototypeIdSerializer<EntityPrototype>))]
-    public string Action = "ActionToggleCamera";
+    [DataField("action")]
+    public EntProtoId<InstantActionComponent> Action = "ActionToggleCamera";
 
     // Action entity to remove it from player on component remove
-    [DataField("actionEntity")] public EntityUid? ActionEntity;
+    public EntityUid? ActionEntity;
 
     [DataField, AutoNetworkedField]
-    public bool Enabled = true;
+    public bool Enabled = false;
 
 }
