@@ -7,7 +7,7 @@ using Content.Shared.CCVar;
 using Robust.Shared.Configuration;
 using System.Threading.Tasks;
 
-namespace Content.Server._Cats.Discord
+namespace Content.Server.Discord
 {
     public sealed class BanWebhook
     {
