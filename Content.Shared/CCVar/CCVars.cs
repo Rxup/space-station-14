@@ -494,19 +494,37 @@ namespace Content.Shared.CCVar
         /// URL where all ban messages will be relayed
         /// </summary>
         public static readonly CVarDef<string> DiscordBanWebhook =
-             CVarDef.Create("discord.ban_webhook", "", CVar.SERVERONLY | CVar.CONFIDENTIAL);
+            CVarDef.Create("discord.ban_webhook", "", CVar.SERVERONLY | CVar.CONFIDENTIAL);
 
         /// <summary>
         /// The server icon to use in the Discord ban embed footer.
         /// </summary>
         public static readonly CVarDef<string> DiscordBanFooterIcon =
-             CVarDef.Create("discord.ban_footer_icon", string.Empty, CVar.SERVERONLY);
+            CVarDef.Create("discord.ban_footer_icon", string.Empty, CVar.SERVERONLY);
 
-         /// <summary>
-         /// The avatar to use for the webhook. Should be an URL.
-         /// </summary>
-         public static readonly CVarDef<string> DiscordBanAvatar =
-             CVarDef.Create("discord.ban_avatar", string.Empty, CVar.SERVERONLY);
+        /// <summary>
+        /// The avatar to use for the webhook. Should be an URL.
+        /// </summary>
+        public static readonly CVarDef<string> DiscordBanAvatar =
+            CVarDef.Create("discord.ban_avatar", string.Empty, CVar.SERVERONLY);
+
+        /// <summary>
+        /// URL where all ban messages will be relayed
+        /// </summary>
+        public static readonly CVarDef<string> DiscordBanWebhook =
+            CVarDef.Create("discord.ban_webhook", "", CVar.SERVERONLY | CVar.CONFIDENTIAL);
+
+        /// <summary>
+        /// The server icon to use in the Discord ban embed footer.
+        /// </summary>
+        public static readonly CVarDef<string> DiscordBanFooterIcon =
+            CVarDef.Create("discord.ban_footer_icon", string.Empty, CVar.SERVERONLY);
+
+        /// <summary>
+        /// The avatar to use for the webhook. Should be an URL.
+        /// </summary>
+        public static readonly CVarDef<string> DiscordBanAvatar =
+            CVarDef.Create("discord.ban_avatar", string.Empty, CVar.SERVERONLY);
 
         /*
          * Tips
