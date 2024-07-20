@@ -285,7 +285,7 @@ namespace Content.Server.Chat.Managers
             {
                 return;
             }
-            var senderName = !string.IsNullOrEmpty(senderAdmin.Title) ? $"\\[{senderAdmin.Title}\\]{player.Name}" : player.Name;
+            var senderName = !string.IsNullOrEmpty(senderAdmin.Title) ? $"\\[{senderAdmin.Title}\\] {player.Name}" : player.Name;
             var wrappedMessage = Loc.GetString("chat-manager-send-admin-chat-wrap-message",
                                             ("adminChannelName", Loc.GetString("chat-manager-admin-channel-name")),
                                             ("playerName", senderName), ("message", FormattedMessage.EscapeText(message)));
