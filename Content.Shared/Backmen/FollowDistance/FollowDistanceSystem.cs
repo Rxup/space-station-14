@@ -90,7 +90,7 @@ public sealed class FollowDistanceSystem : EntitySystem
 
     private void OnPickedUp(EntityUid uid, FollowDistanceComponent followDistance, HandSelectedEvent args)
     {
-        if (!_activeCamera.TryComp(args.User, out var camfollow) || !camfollow.Enabled || !_activeEye.HasComp(args.User))
+        if (!_activeCamera.TryComp(args.User, out var camfollow) || !_activeEye.HasComp(args.User))
             return;
 
         camfollow.MaxDistance = followDistance.MaxDistance;
