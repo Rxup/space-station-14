@@ -29,7 +29,7 @@ namespace Content.Server.Discord
             _sawmill = IoCManager.Resolve<ILogManager>().GetSawmill("BAN");
         }
 
-        private void OnWebhookChanged(string url)
+        private async void OnWebhookChanged(string url)
         {
             Console.WriteLine($"Webhook URL changed: {url}");
             _webhookUrl = url;
@@ -48,7 +48,7 @@ namespace Content.Server.Discord
             }
         }
 
-        public async Task GenerateWebhook(string admin, string user, string severity, uint? minutes, string reason)
+        public async void GenerateWebhook(string admin, string user, string severity, uint? minutes, string reason)
         {
             Console.WriteLine("GenerateWebhook called");
             _sawmill.Info("GenerateWebhook called");
@@ -57,6 +57,7 @@ namespace Content.Server.Discord
                 if (string.IsNullOrEmpty(_webhookUrl))
                 {
                     _sawmill.Error("Webhook URL is not set.");
+                    Console.WriteLine("Webhook URL is not set.");
                     return;
                 }
 
@@ -105,18 +106,18 @@ namespace Content.Server.Discord
                 color = 0x513EA5;
             }
 
-            _sawmill.Info($"Generated ban payload for user: {user}, admin: {admin}, reason: {reason}");
-            Console.WriteLine($"Generated ban payload for user: {user}, admin: {admin}, reason: {reason}");
+            _sawmill.Info($"Generated ban payload for user: {user}, admin: {admin}, severity: {severity}, minutes: {minutes}, reason: {reason}");
+            Console.WriteLine($"Generated ban payload for user: {user}, admin: {admin}, severity: {severity}, minutes: {minutes}, reason: {reason}");
 
             return new WebhookPayload
             {
                 AvatarUrl = string.IsNullOrWhiteSpace(_avatarUrl) ? null : _avatarUrl,
                 Embeds = new List<WebhookEmbed>
                 {
-                    new WebhookEmbed
+                    new()
                     {
                         Color = color,
-                        Title = banType,
+                        Title = $"{banType}",
                         Footer = new WebhookEmbedFooter
                         {
                             Text = Loc.GetString("ban-embed-footer", ("severity", severity)),
