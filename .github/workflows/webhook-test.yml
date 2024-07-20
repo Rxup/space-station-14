@@ -1,40 +1,37 @@
-name: Test Ban Webhook
+name: .NET Tests
 
 on:
   push:
     branches:
+      - main
       - ban_weebhook
   pull_request:
     branches:
+      - main
       - ban_weebhook
-  schedule:
-    - cron: '0 0 * * *'
 
 jobs:
-  test-webhook:
+  build:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout repository
-      uses: actions/checkout@v2
-      with:
-        fetch-depth: 0
+      - name: Checkout code
+        uses: actions/checkout@v3
 
-    - name: Setup .NET SDK
-      uses: actions/setup-dotnet@v2
-      with:
-        dotnet-version: '8.0.x'
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v3
+        with:
+          dotnet-version: '8.0.x'
 
-    - name: List directory
-      run: ls -R 
+      - name: Restore dependencies
+        run: dotnet restore
 
-    - name: Restore dependencies
-      run: dotnet restore
+      - name: Build
+        run: dotnet build --no-restore
 
-    - name: Build project
-      run: dotnet build --configuration Release --no-restore
+      - name: Run tests
+        run: dotnet test --no-build --verbosity normal
 
-    - name: Run tests
-      env:
-        WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
-      run: dotnet test --no-restore --verbosity normal
+      - name: Report coverage
+        if: success()
+        uses: codecov/codecov-action@v3
