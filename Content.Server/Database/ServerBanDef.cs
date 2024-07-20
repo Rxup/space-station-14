@@ -84,14 +84,11 @@ namespace Content.Server.Database
                     : loc.GetString("ban-banned-permanent");
             }
 
-            // Получаем значения переменных
             var adminName = GetUsername(BanningAdmin?.ToString());
             var reason = Reason;
 
-            // Отладочное сообщение для проверки значений переменных
             Console.WriteLine($"adminName: {adminName}, reason: {reason}");
 
-            // Передача переменных как кортежей
             return $"""
                    {loc.GetString("ban-banned-1")}
                    {loc.GetString("ban-banned-2", ("adminName", adminName))}
