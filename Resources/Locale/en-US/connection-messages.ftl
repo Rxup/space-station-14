@@ -31,8 +31,8 @@ ban-banned-permanent = This ban will only be removed via appeal.
 ban-banned-permanent-appeal = This ban will only be removed via appeal. You can appeal at {$link}
 ban-expires = This ban is for {$duration} minutes and will expire at {$time} UTC.
 ban-banned-1 = You, or another user of this computer or connection, are banned from playing here.
-ban-banned-2 = You were banned by: "{$adminName}"
-ban-banned-3 = The ban reason is: "{$reason}"
+ban-banned-2 = You were banned by: "{ $adminName }"
+ban-banned-3 = The ban reason is: "{ $reason }"
 ban-banned-4 = If you don't agree with the sanction, you can apeal it in our Discord: https://discord.gg/vYFHfrdQQC | SpaceCats
 ban-banned-5 = Attempts to circumvent this ban such as creating a new account will be logged.
 
