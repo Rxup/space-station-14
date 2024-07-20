@@ -1,14 +1,14 @@
-name: Webhook Test
+name: Test Ban Webhook
 
 on:
-  schedule:
-    - cron: '0 0 * * *'
   push:
     branches:
-      - main
+      - ban_webhook
   pull_request:
     branches:
-      - main
+      - ban_webhook
+  schedule:
+    - cron: '0 0 * * *'
 
 jobs:
   test-webhook:
@@ -18,12 +18,15 @@ jobs:
     - name: Checkout repository
       uses: actions/checkout@v2
       with:
-        fetch-depth:
+        fetch-depth: 0
 
     - name: Setup .NET SDK
       uses: actions/setup-dotnet@v2
       with:
         dotnet-version: '8.0.x'
+
+    - name: List directory
+      run: ls -R 
 
     - name: Restore dependencies
       run: dotnet restore
@@ -35,4 +38,3 @@ jobs:
       env:
         WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
       run: dotnet test --no-restore --verbosity normal
-
