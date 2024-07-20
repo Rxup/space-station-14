@@ -1,12 +1,13 @@
 using System.Collections.Immutable;
 using System.Net;
-using System.Runtime.CompilerServices;
+using System.Net.Http;
+using System.Text.Json;
 using Content.Shared.CCVar;
 using Content.Shared.Database;
 using Robust.Shared.Configuration;
 using Robust.Shared.Network;
-using System.Net.Http;
-using System.Text.Json;
+using Robust.Shared.Localization;
+using System;
 
 namespace Content.Server.Database
 {
@@ -83,16 +84,24 @@ namespace Content.Server.Database
                     : loc.GetString("ban-banned-permanent");
             }
 
+            // Получаем значения переменных
+            var adminName = GetUsername(BanningAdmin?.ToString());
+            var reason = Reason;
+
+            // Отладочное сообщение для проверки значений переменных
+            Console.WriteLine($"adminName: {adminName}, reason: {reason}");
+
+            // Передача переменных как кортежей
             return $"""
                    {loc.GetString("ban-banned-1")}
-                   {loc.GetString("ban-banned-2", ("adminName", GetUsername(BanningAdmin.ToString())))}
-                   {loc.GetString("ban-banned-3", ("reason", Reason))}
+                   {loc.GetString("ban-banned-2", ("adminName", adminName))}
+                   {loc.GetString("ban-banned-3", ("reason", reason))}
                    {expires}
                    {loc.GetString("ban-banned-4")}
                    {loc.GetString("ban-banned-5")}
                    """;
         }
-        
+
         static string GetUsername(string? userId)
         {
             if (userId == null)
@@ -112,7 +121,6 @@ namespace Content.Server.Database
                     var jsonObject = JsonDocument.Parse(jsonResponse).RootElement;
 
                     return jsonObject.GetProperty("userName").GetString() ?? "Unknown";
-
                 }
                 else
                 {
@@ -122,3 +130,4 @@ namespace Content.Server.Database
         }
     }
 }
+
