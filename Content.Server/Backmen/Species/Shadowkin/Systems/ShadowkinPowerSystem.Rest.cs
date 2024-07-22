@@ -4,6 +4,7 @@ using Content.Shared.Actions;
 using Content.Shared.Bed.Sleep;
 using Content.Shared.Cuffs.Components;
 using Content.Shared.Backmen.Species.Shadowkin.Components;
+using Content.Shared.Stunnable;
 using Robust.Shared.Prototypes;
 
 namespace Content.Server.Backmen.Species.Shadowkin.Systems;
@@ -60,8 +61,11 @@ public sealed class ShadowkinRestSystem : EntitySystem
         //     return;
 
         // Resting
-        if (!TryComp<SleepingComponent>(uid, out var sleepingComponent))
+        if (!TryComp<SleepingComponent>(args.Performer, out var sleepingComponent))
         {
+            if (HasComp<StunnedComponent>(args.Performer))
+                return;
+
             if(!_sleeping.TrySleeping(args.Performer))
                 return;
             // Sleepy time
