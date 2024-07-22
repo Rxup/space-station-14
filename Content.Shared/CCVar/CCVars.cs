@@ -460,9 +460,6 @@ namespace Content.Shared.CCVar
         public static readonly CVarDef<string> DiscordAHelpWebhook =
             CVarDef.Create("discord.ahelp_webhook", string.Empty, CVar.SERVERONLY | CVar.CONFIDENTIAL);
 
-        public static readonly CVarDef<string> DiscordBansWebhook =
-            CVarDef.Create("discord.bans_webhook", string.Empty, CVar.SERVERONLY | CVar.CONFIDENTIAL);
-
         /// <summary>
         /// The server icon to use in the Discord ahelp embed footer.
         /// Valid values are specified at https://discord.com/developers/docs/resources/channel#embed-object-embed-footer-structure.
