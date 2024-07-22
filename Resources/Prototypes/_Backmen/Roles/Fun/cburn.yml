@@ -18,7 +18,7 @@
   id: RXBZZMedic
   equipment:
     jumpsuit: ClothingUniformJumpsuitColorBlack
-    back: ClothingBackpackDuffelMilitary
+    back: ClothingBackpackDuffelRXBZZMedic
     shoes: ClothingShoesBootsMagArmy
     mask: ClothingMaskGasRXBZZ
     eyes: ClothingEyesHudMedical
@@ -27,31 +27,8 @@
     outerClothing: ClothingOuterHardsuitCBURN
     id: idcoinRXBZZMedic
     ears: ClothingHeadsetEarthGov
-    belt: ClothingBeltMedicalMarine
+    belt: ClothingBeltMedicalMarineRxbzz
     pocket2: ClothingMedicalPounchRXBZZFilled
-  storage:
-    back:
-    - ArmySetLoadouts
-    - MedkitAdvancedRXBZZ
-    - BoxFlare
-    - MedkitCombatFilled
-    - MedkitCombatFilled
-    - Defibrillator
-    belt:
-    - CombatMedipen
-    - CombatMedipen
-    - CombatMedipen
-    - CombatMedipen
-    - CombatMedipen
-    - CombatMedipen
-    - EmergencyMedipen
-    - EmergencyMedipen
-    - MedicatedSuture
-    - MedicatedSuture
-    - MedicatedSuture
-    - RegenerativeMesh
-    - RegenerativeMesh
-    - RegenerativeMesh
 
 - type: startingGear
   id: RXBZZFlamer
