@@ -11,12 +11,7 @@ namespace Content.Client.Backmen.Blob;
 
 public sealed class BlobbernautSystem : SharedBlobbernautSystem
 {
-    [Dependency] private readonly SharedPopupSystem _popup = default!;
-    protected override DamageSpecifier? TryChangeDamage(string msg, EntityUid ent, DamageSpecifier dmg)
-    {
-        _popup.PopupClient(Loc.GetString(msg), ent, ent, PopupType.LargeCaution);
-        return null;
-    }
+
 }
 
 public sealed class BlobbernautVisualizerSystem : VisualizerSystem<BlobbernautComponent>

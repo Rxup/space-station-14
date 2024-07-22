@@ -442,7 +442,7 @@ public sealed partial class ChatSystem : SharedChatSystem
             ("fontSize", speech.FontSize),
             ("message", FormattedMessage.EscapeText(message)));
 
-        SendInVoiceRange(ChatChannel.Local, message, wrappedMessage, source, range);
+        SendInVoiceRange(ChatChannel.Local, message, wrappedMessage, source, range, originalMessage: originalMessage);
 
         var ev = new EntitySpokeEvent(source, message, originalMessage, null, null);
         RaiseLocalEvent(source, ev, true);
@@ -693,7 +693,7 @@ public sealed partial class ChatSystem : SharedChatSystem
     /// <summary>
     ///     Sends a chat message to the given players in range of the source entity.
     /// </summary>
-    private void SendInVoiceRange(ChatChannel channel, string message, string wrappedMessage, EntityUid source, ChatTransmitRange range, NetUserId? author = null)
+    private void SendInVoiceRange(ChatChannel channel, string message, string wrappedMessage, EntityUid source, ChatTransmitRange range, NetUserId? author = null, string? originalMessage = null)
     {
         foreach (var (session, data) in GetRecipients(source, VoiceRange))
         {
@@ -701,7 +701,11 @@ public sealed partial class ChatSystem : SharedChatSystem
             if (entRange == MessageRangeCheckResult.Disallowed)
                 continue;
             var entHideChat = entRange == MessageRangeCheckResult.HideChat;
-            _chatManager.ChatMessageToOne(channel, message, wrappedMessage, source, entHideChat, session.Channel, author: author);
+            // start-backmen: lang
+            var ev = new Backmen.Blob.EntitySpeakPrivateTransformEvent(session, channel, source,message,wrappedMessage,originalMessage,author,data);
+            RaiseLocalEvent(source, ev, true);
+            _chatManager.ChatMessageToOne(ev.ChatChannel, ev.Message, ev.WrappedMessage, ev.Source, entHideChat, ev.TargetSession.Channel, author: ev.Author);
+            // end-backmen: lang
         }
 
         _replay.RecordServerMessage(new ChatMessage(channel, message, wrappedMessage, GetNetEntity(source), null, MessageRangeHideChatForReplay(range)));

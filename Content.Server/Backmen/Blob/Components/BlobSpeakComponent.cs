@@ -14,4 +14,7 @@ public sealed partial class BlobSpeakComponent : Component
 
     [DataField]
     public LocId Name = "speak-vv-blob";
+
+    [DataField]
+    public bool LongRange = true;
 }
