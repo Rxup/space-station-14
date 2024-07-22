@@ -20,7 +20,7 @@ public sealed class BanCommand : LocalizedCommands
     [Dependency] private readonly IPlayerManager _playerManager = default!;
     [Dependency] private readonly ILogManager _logManager = default!;
 
-    public override string Command => "ban"; #1
+    public override string Command => "ban";
 
     public override async void Execute(IConsoleShell shell, string argStr, string[] args)
     {
