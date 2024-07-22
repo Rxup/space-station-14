@@ -22,12 +22,17 @@ public sealed class BlobbernautVisualizerSystem : VisualizerSystem<BlobbernautCo
         SubscribeLocalEvent<BlobbernautComponent, AfterAutoHandleStateEvent>(OnBlobTileHandleState);
     }
 
+    private static readonly DamageStateVisualLayers[] Layers =
+    [
+        DamageStateVisualLayers.Base, DamageStateVisualLayers.BaseUnshaded,
+    ];
+
     private void UpdateAppearance(EntityUid id, BlobbernautComponent blobbernaut, AppearanceComponent? appearance = null, SpriteComponent? sprite = null)
     {
         if (!Resolve(id, ref appearance, ref sprite))
             return;
 
-        foreach (var key in new []{ DamageStateVisualLayers.Base, DamageStateVisualLayers.BaseUnshaded })
+        foreach (var key in Layers)
         {
             if (!sprite.LayerMapTryGet(key, out _))
                 continue;
