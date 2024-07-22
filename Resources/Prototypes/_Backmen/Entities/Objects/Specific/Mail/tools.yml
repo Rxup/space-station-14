@@ -7,6 +7,8 @@
     - type: Sprite
       sprite: Backmen/Clothing/Belt/mailbag.rsi
       state: icon
+    - type: Item
+      size: Ginormous
     - type: Clothing
       sprite: Backmen/Clothing/Belt/mailbag.rsi
       quickEquip: false
