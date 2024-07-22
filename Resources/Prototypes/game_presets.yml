@@ -24,6 +24,9 @@
     - RampingStationEventScheduler
     - WageScheduler #backmen: currency
     - GameRuleMeteorScheduler
+    - BlobGameMode # backmen: blob
+    - VampiresGameRule # backmen: vampire
+    - FleshCult # backmen: flesh cult
 
 - type: gamePreset
   id: Extended
