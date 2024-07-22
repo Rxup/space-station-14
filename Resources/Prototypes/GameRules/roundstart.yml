@@ -280,7 +280,7 @@
     - id: SolidWallRustingVariationPass
     - id: ReinforcedWallRustingVariationPass
     - id: BasicPuddleMessVariationPass
-      prob: 0.99
+      prob: 0.70
       orGroup: puddleMess
     - id: BloodbathPuddleMessVariationPass
       prob: 0.01
