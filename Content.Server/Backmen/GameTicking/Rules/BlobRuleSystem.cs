@@ -63,23 +63,17 @@ public sealed class BlobRuleSystem : GameRuleSystem<BlobRuleComponent>
         var blobCoreQuery = EntityQueryEnumerator<BlobCoreComponent, MetaDataComponent>();
         while (blobCoreQuery.MoveNext(out var ent, out var comp, out _))
         {
-            var blobHash = new HashSet<Entity<BlobCoreComponent>> { (ent, comp) };
-            if (TerminatingOrDeleted(ent))
+            if (TerminatingOrDeleted(ent) || !CheckBlobInStation(ent, out var stationUid))
             {
                 continue;
             }
-            if (!CheckBlobInStation(ent, out var stationUid))
-            {
-                continue;
-            }
-            if (!blobCores.TryAdd(stationUid.Value, blobHash))
-            {
-                blobCores[stationUid.Value].UnionWith(blobHash);
-            }
+
+            if(!blobCores.TryAdd(stationUid.Value, [(ent, comp)]))
+                blobCores[stationUid.Value].Add((ent, comp));
         }
-        foreach (var blobTiles in blobCores)
+        foreach (var (station, cores) in blobCores)
         {
-            CheckChangeStage(blobTiles.Key, component, blobCores);
+            CheckChangeStage(station, component, cores);
         }
     }
 
@@ -104,11 +98,10 @@ public sealed class BlobRuleSystem : GameRuleSystem<BlobRuleComponent>
     private void CheckChangeStage(
         Entity<StationBlobConfigComponent?> stationUid,
         BlobRuleComponent blobRuleComp,
-        Dictionary<EntityUid, HashSet<Entity<BlobCoreComponent>>> blobCoresDict)
+        HashSet<Entity<BlobCoreComponent>> blobCores)
     {
         Resolve(stationUid, ref stationUid.Comp, false);
 
-        var blobCores = blobCoresDict[stationUid];
         var blobTilesCount = blobCores.Sum(blobCore => blobCore.Comp.BlobTiles.Count);
 
         if (blobTilesCount >= (stationUid.Comp?.StageBegin ?? StationBlobConfigComponent.DefaultStageBegin)
