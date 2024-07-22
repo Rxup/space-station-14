@@ -15,17 +15,56 @@
     pocket2: ClothingMedicalPounchRXBZZFilled
 
 - type: startingGear
+  id: RXBZZMedic
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitColorBlack
+    back: ClothingBackpackDuffelMilitary
+    shoes: ClothingShoesBootsMagArmy
+    mask: ClothingMaskGasRXBZZ
+    eyes: ClothingEyesHudMedical
+    neck: CombatKnifeSpetsnaz
+    gloves: ClothingHandsGlovesCombat
+    outerClothing: ClothingOuterHardsuitCBURN
+    id: idcoinRXBZZMedic
+    ears: ClothingHeadsetEarthGov
+    belt: ClothingBeltMedicalMarine
+    pocket2: ClothingMedicalPounchRXBZZFilled
+  storage:
+    back:
+    - ArmySetLoadouts
+    - MedkitAdvancedRXBZZ
+    - BoxFlare
+    - MedkitCombatFilled
+    - MedkitCombatFilled
+    - Defibrillator
+    belt:
+    - CombatMedipen
+    - CombatMedipen
+    - CombatMedipen
+    - CombatMedipen
+    - CombatMedipen
+    - CombatMedipen
+    - EmergencyMedipen
+    - EmergencyMedipen
+    - MedicatedSuture
+    - MedicatedSuture
+    - MedicatedSuture
+    - RegenerativeMesh
+    - RegenerativeMesh
+    - RegenerativeMesh
+
+- type: startingGear
   id: RXBZZFlamer
   equipment:
     jumpsuit: ClothingUniformJumpsuitColorBlack
     shoes: ClothingShoesBootsMagArmy
     back: ClothingBackpackDuffelMilitary
     mask: ClothingMaskGasRXBZZ
-    eyes: ClothingEyesGlassesSecurity
+    eyes: ClothingEyesVision
     neck: CombatKnifeSpetsnaz
     gloves: ClothingHandsGlovesCombat
     outerClothing: ClothingOuterHardsuitCBURN
-    id: idcoinRXBZZ
+    id: idcoinRXBZZSpecialist
     ears: ClothingHeadsetEarthGov
     pocket2: ClothingMedicalPounchRXBZZFilled
   storage:

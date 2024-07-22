@@ -3893,6 +3893,7 @@
     thresholds:
     - trigger:
         !type:DamageTrigger
+        damageType: Blunt
         damage: 1
       behaviors:
       - !type:SpawnEntitiesBehavior
