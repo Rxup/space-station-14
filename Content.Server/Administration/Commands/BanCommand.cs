@@ -1,11 +1,18 @@
 using System.Linq;
+using System.Net.Http;
+using System.Text;
+using System.Text.Json;
 using Content.Server.Administration.Managers;
 using Content.Shared.Administration;
+using Content.Server.Database;
+using Content.Server.Discord;
+using Content.Server.GameTicking;
 using Content.Shared.CCVar;
 using Content.Shared.Database;
 using Robust.Server.Player;
 using Robust.Shared.Configuration;
 using Robust.Shared.Console;
+using Robust.Shared.Player;
 
 
 namespace Content.Server.Administration.Commands;
@@ -19,6 +26,8 @@ public sealed class BanCommand : LocalizedCommands
     [Dependency] private readonly IConfigurationManager _cfg = default!;
     [Dependency] private readonly IPlayerManager _playerManager = default!;
     [Dependency] private readonly ILogManager _logManager = default!;
+    [Dependency] private readonly IServerDbManager _dbManager = default!;
+    [Dependency] private readonly IEntitySystemManager _entitySystemManager = default!;
 
     public override string Command => "ban";
 
@@ -27,6 +36,23 @@ public sealed class BanCommand : LocalizedCommands
         string target;
         string reason;
         uint minutes;
+
+        var webhookUrl = _cfg.GetCVar(CCVars.DiscordBansWebhook);
+        var serverName = _cfg.GetCVar(CCVars.GameHostName);
+
+        serverName = serverName[..Math.Min(serverName.Length, 1500)];
+
+        var gameTicker = _entitySystemManager.GetEntitySystem<GameTicker>();
+        var round = gameTicker.RunLevel switch
+        {
+            GameRunLevel.PreRoundLobby => gameTicker.RoundId == 0
+                ? "pre-round lobby after server restart" // first round after server restart has ID == 0
+                : $"pre-round lobby for round {gameTicker.RoundId + 1}",
+            GameRunLevel.InRound => $"round {gameTicker.RoundId}",
+            GameRunLevel.PostRound => $"post-round {gameTicker.RoundId}",
+            _ => throw new ArgumentOutOfRangeException(nameof(gameTicker.RunLevel), $"{gameTicker.RunLevel} was not matched."),
+        };
+
         if (!Enum.TryParse(_cfg.GetCVar(CCVars.ServerBanDefaultSeverity), out NoteSeverity severity))
         {
             _logManager.GetSawmill("admin.server_ban")
@@ -91,6 +117,39 @@ public sealed class BanCommand : LocalizedCommands
         var targetHWid = located.LastHWId;
 
         _bans.CreateServerBan(targetUid, target, player?.UserId, null, targetHWid, minutes, severity, reason);
+
+        if (!string.IsNullOrEmpty(webhookUrl))
+        {
+            var banId = await _dbManager.GetLastServerBanId();
+
+            DateTimeOffset? expires = null;
+            if (minutes > 0)
+            {
+                expires = DateTimeOffset.Now + TimeSpan.FromMinutes(minutes);
+            }
+
+            var payload = new WebhookPayload
+            {
+                Username = "Это бан",
+                AvatarUrl = "",
+                Embeds = new List<WebhookEmbed>
+                {
+                    new WebhookEmbed
+                    {
+                        Color = 0xff0000,
+                        Description = GenerateBanDescription(banId, target, shell.Player, minutes, reason, expires),
+                        Footer = new WebhookEmbedFooter
+                        {
+                            Text = $"{serverName} ({round})"
+                        }
+                    }
+                }
+            };
+
+            await _httpClient.PostAsync($"{webhookUrl}?wait=true",
+                new StringContent(JsonSerializer.Serialize(payload), Encoding.UTF8, "application/json"));
+        }
+    
     }
 
     public override CompletionResult GetCompletion(IConsoleShell shell, string[] args)
@@ -133,5 +192,71 @@ public sealed class BanCommand : LocalizedCommands
         }
 
         return CompletionResult.Empty;
+    }
+
+    private string GenerateBanDescription(int banId, string target, ICommonSession? player, uint minutes, string reason, DateTimeOffset? expires)
+    {
+        var builder = new StringBuilder();
+
+        builder.AppendLine($"### **Бан | ID {banId}**");
+        builder.AppendLine($"**Нарушитель:** *{target}*");
+        builder.AppendLine($"**Причина:** {reason}");
+
+        var banDuration = TimeSpan.FromMinutes(minutes);
+
+        builder.Append($"**Длительность:** ");
+
+        if (expires != null)
+        {
+            builder.Append($"{banDuration.Days} {NumWord(banDuration.Days, "день", "дня", "дней")}, ");
+            builder.Append($"{banDuration.Hours} {NumWord(banDuration.Hours, "час", "часа", "часов")}, ");
+            builder.AppendLine($"{banDuration.Minutes} {NumWord(banDuration.Minutes, "минута", "минуты", "минут")}");
+
+        }
+        else
+        {
+            builder.AppendLine($"***Навсегда***");
+        }
+
+        if (expires != null)
+        {
+            builder.AppendLine($"**Дата снятия наказания:** {expires}");
+        }
+
+        builder.Append($"**Наказание выдал(-а):** ");
+
+        if (player != null)
+        {
+            builder.AppendLine($"*{player.Name}*");
+        }
+        else
+        {
+            builder.AppendLine($"***СИСТЕМА***");
+        }
+
+        return builder.ToString();
+    }
+
+    private string NumWord(int value, params string[] words)
+    {
+        value = Math.Abs(value) % 100;
+        var num = value % 10;
+
+        if (value > 10 && value < 20)
+        {
+            return words[2];
+        }
+
+        if (value > 1 && value < 5)
+        {
+            return words[1];
+        }
+
+        if (num == 1)
+        {
+            return words[0];
+        }
+
+        return words[2];
     }
 }
