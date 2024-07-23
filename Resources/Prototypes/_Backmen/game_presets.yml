@@ -5,9 +5,8 @@
   name: shipwrecked-title
   description: shipwrecked-description
   minPlayers: 1
-  maxPlayers: 40
-  showInVote: true
-  isMiniGame: true
+  showInVote: fasle
+  isMiniGame: false
   supportedMaps: ShipwreckedPool
   rules:
     - Shipwrecked
@@ -19,7 +18,8 @@
   - bloodsucker
   name: vampires-title
   description: vampires-description
-  showInVote: false
+  minPlayers: 5
+  showInVote: true
   rules:
   - VampiresGameRule
   - BasicStationEventScheduler
@@ -33,6 +33,7 @@
   - blab
   name: blob-title
   description: blob-description
+  minPlayers: 10
   showInVote: false
   rules:
   - BlobGameMode
@@ -48,7 +49,8 @@
   - fs
   name: flesh-cult-title
   description: flesh-cult-description
-  showInVote: false
+  minPlayers: 10
+  showInVote: true
   rules:
   - FleshCult
   - BasicStationEventScheduler
