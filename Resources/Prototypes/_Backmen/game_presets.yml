@@ -1,177 +1,193 @@
 - type: gamePreset
-  id: Survival
+  id: Shipwrecked
   alias:
-    - survival
-  name: survival-title
-  showInVote: false # secret
-  description: survival-description
-  rules:
-    - RampingStationEventScheduler
-  #  - WageScheduler #backmen: currency
-    - GameRuleMeteorScheduler
-    - BasicRoundstartVariation
-
-- type: gamePreset
-  id: AllAtOnce
-  name: all-at-once-title
-  description: all-at-once-description
+    - schiffbruch
+  name: shipwrecked-title
+  description: shipwrecked-description
+  minPlayers: 1
   showInVote: false
+  isMiniGame: false
+  supportedMaps: ShipwreckedPool
   rules:
-    - Nukeops
-    - Traitor
-    - Revolutionary
-    - Zombie
-    - RampingStationEventScheduler
-  #  - WageScheduler #backmen: currency
-    - GameRuleMeteorScheduler
-    - BlobGameMode # backmen: blob
-    - VampiresGameRule # backmen: vampire
-    - FleshCult # backmen: flesh cult
+    - Shipwrecked
 
 - type: gamePreset
-  id: Extended
+  id: Vampires
   alias:
-  - extended
-  - shittersafari
-  name: extended-title
-  showInVote: false #2boring2vote
-  description: extended-description
+  - vamp
+  - bloodsucker
+  name: vampires-title
+  description: vampires-description
+  minPlayers: 5
+  showInVote: true
   rules:
+  - VampiresGameRule
   - BasicStationEventScheduler
-#  - WageScheduler #backmen: currency
-  - GameRuleMeteorScheduler
-  - BasicRoundstartVariation
-
-- type: gamePreset
-  id: Greenshift
-  alias:
-  - greenshift
-  - shittersafarideluxeedition
-  name: greenshift-title
-  showInVote: false #4boring4vote
-  description: greenshift-description
-  rules:
-  - BasicRoundstartVariation
-#  - WageScheduler #backmen: currency
-  - GameRuleMeteorScheduler
-
-- type: gamePreset
-  id: Secret
-  alias:
-    - secret
-    - sekrit
-  name: secret-title
-  showInVote: true
-  description: secret-description
-  rules:
-    - Secret
-
-- type: gamePreset
-  id: SecretExtended #For Admin Use: Runs Extended but shows "Secret" in lobby.
-  alias:
-    - secretextended
-  name: secret-title
-  showInVote: false #Admin Use
-  description: secret-description
-  rules:
-    - BasicStationEventScheduler
   #  - WageScheduler #backmen: currency
-    - GameRuleMeteorScheduler
+  - SubGamemodesRule
+  - BasicRoundstartVariation
 
 - type: gamePreset
-  id: SecretGreenshift #For Admin Use: Runs Greenshift but shows "Secret" in lobby.
+  id: Blob
   alias:
-  - secretgreenshift
-  name: secret-title
-  showInVote: false #Admin Use
-  description: secret-description
-
-- type: gamePreset
-  id: Sandbox
-  alias:
-    - sandbox
-  name: sandbox-title
-  description: sandbox-description
-  showInVote: false # Not suitable for use without admin intervention, since entity spamming can quickly crash a server
-  maxPlayers: 5
-  rules:
-    - Sandbox
-
-- type: gamePreset
-  id: Traitor
-  alias:
-    - traitor
-  name: traitor-title
-  description: traitor-description
+  - blab
+  name: blob-title
+  description: blob-description
+  minPlayers: 10
   showInVote: false
   rules:
-    - Traitor
-    - SubGamemodesRule
-    - BasicStationEventScheduler
+  - BlobGameMode
+  - BasicStationEventScheduler
   #  - WageScheduler #backmen: currency
-    - GameRuleMeteorScheduler
-    - BasicRoundstartVariation
+  - BasicRoundstartVariation
+  - SubGamemodesRule
 
 - type: gamePreset
-  id: Deathmatch
+  id: FleshCult
   alias:
-    - deathmatch
-    - dm
-  name: death-match-title
-  description: death-match-description
-  maxPlayers: 15
+  - fleshcult
+  - fs
+  name: flesh-cult-title
+  description: flesh-cult-description
+  minPlayers: 10
   showInVote: true
-  isMiniGame: true
-  supportedMaps: DeathMatchMapPool
   rules:
-    - DeathMatch31
+  - FleshCult
+  - BasicStationEventScheduler
+  #  - WageScheduler #backmen: currency
+  - BasicRoundstartVariation
+  - SubGamemodesRule
 
 - type: gamePreset
-  id: Nukeops
+  id: FleshCultAndTraitor
+  alias:
+  - madness
+  - fleshcultandtraitor
+  name: flesh-cult-and-traitor-title
+  showInVote: false
+  description: flesh-cult-and-traitor-description
+  rules:
+  - FleshCult
+  - Traitor
+  - BasicStationEventScheduler
+  #  - WageScheduler #backmen: currency
+  - BasicRoundstartVariation
+
+- type: gamePreset
+  id: NukeopsFleshCult
   alias:
     - nukeops
-  name: nukeops-title
-  description: nukeops-description
-  showInVote: true
-  minPlayers: 15
+    - fleshcult
+  name: nukeops-fleshcult-title
+  description: nukeops-fleshcult-description
+  showInVote: false
   rules:
     - Nukeops
-    - SubGamemodesRule
+    - FleshCult
     - BasicStationEventScheduler
-  #  - WageScheduler #backmen: currency
-    - GameRuleMeteorScheduler
+    #  - WageScheduler #backmen: currency
+    - BasicRoundstartVariation
 
 - type: gamePreset
-  id: Revolutionary
+  id: RevolutionaryTraitor
   alias:
     - rev
     - revs
     - revolutionaries
-  name: rev-title
-  description: rev-description
+    - syndinukies
+  name: rev-traitor-title
+  description: rev-traitor-description
   showInVote: false
   rules:
     - Revolutionary
-    - SubGamemodesRule
     - BasicStationEventScheduler
-    - GameRuleMeteorScheduler
+    - Traitor
+    #  - WageScheduler #backmen: currency
     - BasicRoundstartVariation
-  #  - WageScheduler #backmen: currency
 
 - type: gamePreset
-  id: Zombie
+  id: RevolutionaryNukeops
+  alias:
+    - nukeops
+    - rev
+    - revs
+    - revolutionaries
+  name: rev-nukeops-title
+  description: rev-nukeops-description
+  showInVote: false
+  rules:
+    - Revolutionary
+    - BasicStationEventScheduler
+    - Nukeops
+    #  - WageScheduler #backmen: currency
+    - BasicRoundstartVariation
+
+- type: gamePreset
+  id: ZombieTraitor
   alias:
   - zombie
   - zombies
   - Zombies
   - zz14
   - zomber
-  name: zombie-title
-  description: zombie-description
+  - syndinukies
+  name: zombie-traitor-title
+  description: zombie-traitor-description
   showInVote: false
   rules:
   - Zombie
   - BasicStationEventScheduler
-#  - WageScheduler #backmen: currency
-  - GameRuleMeteorScheduler
+  #  - WageScheduler #backmen: currency
+  - Traitor
   - BasicRoundstartVariation
+
+- type: gamePreset
+  id: ZombieNukeops
+  alias:
+  - zombie
+  - zombies
+  - Zombies
+  - zz14
+  - zomber
+  - nukeops
+  name: zombie-nukeops-title
+  description: zombie-nukeops-description
+  showInVote: false
+  rules:
+  - Zombie
+  - BasicStationEventScheduler
+  #  - WageScheduler #backmen: currency
+  - Nukeops
+  - BasicRoundstartVariation
+
+- type: gamePreset
+  id: NukeopsFleshCultTraitor
+  alias:
+    - nukeops
+    - fleshcult
+    - syndinukies
+  name: nukeops-fleshcult-traitor-title
+  description: nukeops-fleshcult-traitor-description
+  showInVote: false
+  rules:
+    - Nukeops
+    - FleshCult
+    - BasicStationEventScheduler
+    #  - WageScheduler #backmen: currency
+    - Traitor
+    - BasicRoundstartVariation
+
+- type: gamePreset
+  id: SurvivalNukeops
+  alias:
+    - survival
+    - nukeops
+  name: survival-nukeops-title
+  showInVote: false
+  minPlayers: 40
+  description: survival-nukeops-description
+  rules:
+    - RampingStationEventScheduler
+    #  - WageScheduler #backmen: currency
+    - Nukeops
+    - BasicRoundstartVariation
