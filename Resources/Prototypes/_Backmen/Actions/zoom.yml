@@ -16,5 +16,5 @@
   components:
   - type: InstantAction
     checkCanInteract: false
-    icon: Backmen/Interface/Actions/aim_mode.rsi/aimmode.png
+    icon: Backmen/Interface/Actions/aim_mode/aimmode.png
     event: !type:ToggleCameraEvent
