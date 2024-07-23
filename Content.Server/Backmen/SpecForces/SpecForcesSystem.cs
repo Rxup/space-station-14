@@ -58,7 +58,7 @@ public sealed class SpecForcesSystem : EntitySystem
     }
 
     [ValidatePrototypeId<SpecForceTeamPrototype>]
-    private const string Rxbzz = "RXBZZ";
+    private const string Rxbzz = "RXBZZBlobDefault";
 
     private void OnBlobChange(BlobChangeLevelEvent ev)
     {
@@ -67,9 +67,13 @@ public sealed class SpecForcesSystem : EntitySystem
 
         var blobConfig = CompOrNull<StationBlobConfigComponent>(ev.Station);
         var specForceTeam = blobConfig?.SpecForceTeam ?? Rxbzz;
+        if (blobConfig?.SpecForceTeam == null)
+        {
+            Log.Info("Station doesn't have it's preferable SpecForceTeam in BlobConfig. Calling default squad...");
+        }
 
         if (!_prototypes.TryIndex(specForceTeam, out var prototype) ||
-            !CallOps(prototype.ID, "ДСО"))
+            !CallOps(prototype.ID, "ДСО", null, true))
         {
             Log.Error($"Failed to spawn {specForceTeam} SpecForce for the blob GameRule!");
         }
@@ -111,8 +115,9 @@ public sealed class SpecForcesSystem : EntitySystem
     /// <param name="protoId"> SpecForceTeamPrototype ID.</param>
     /// <param name="source"> Source of the call.</param>
     /// <param name="forceCountExtra"> How many extra SpecForces will be forced to spawn.</param>
+    /// <param name="forceCall"> If true, cooldown will be ignored.</param>
     /// <returns>Returns true if call was successful.</returns>
-    public bool CallOps(ProtoId<SpecForceTeamPrototype> protoId, string source = "", int? forceCountExtra = null)
+    public bool CallOps(ProtoId<SpecForceTeamPrototype> protoId, string source = "Unknown", int? forceCountExtra = null, bool forceCall = false)
     {
         if (!_callLock.TryEnterWriteLock(-1))
         {
@@ -130,7 +135,7 @@ public sealed class SpecForcesSystem : EntitySystem
             var currentTime = _gameTicker.RoundDuration();
 
 #if !DEBUG
-            if (LastUsedTime + DelayUsage > currentTime)
+            if (LastUsedTime + DelayUsage > currentTime && !forceCall)
             {
                 Log.Info("Tried to call SpecForce when it's on cooldown.");
                 return false;
@@ -145,8 +150,6 @@ public sealed class SpecForcesSystem : EntitySystem
                 return false;
             }
 
-            CalledEvents.Add(new SpecForcesHistory { Event = prototype.SpecForceName, RoundTime = currentTime, WhoCalled = source });
-
             var shuttle = SpawnShuttle(prototype.ShuttlePath);
             if (shuttle == null)
             {
@@ -158,6 +161,9 @@ public sealed class SpecForcesSystem : EntitySystem
 
             DispatchAnnouncement(prototype);
 
+            Log.Info($"Successfully called {prototype.ID} SpecForceTeam. Source: {source}");
+
+            CalledEvents.Add(new SpecForcesHistory { Event = prototype.SpecForceName, RoundTime = currentTime, WhoCalled = source });
             return true;
         }
         finally
