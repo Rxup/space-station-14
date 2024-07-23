@@ -26886,18 +26886,6 @@ entities:
       parent: 1668
     - type: AtmosPipeColor
       color: '#FF0000FF'
-  - uid: 6933
-    components:
-    - type: Transform
-      anchored: False
-      rot: -1.5707963267948966 rad
-      pos: -7.5,-1.5
-      parent: 1668
-    - type: AtmosPipeColor
-      color: '#FF0000FF'
-    - type: Physics
-      canCollide: True
-      bodyType: Dynamic
   - uid: 6934
     components:
     - type: Transform
