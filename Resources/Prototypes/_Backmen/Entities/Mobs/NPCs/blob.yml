@@ -117,7 +117,7 @@
       drawdepth: Mobs
       sprite: Backmen/Mobs/Aliens/blob.rsi
       state: blobpod
-    - type: GuideHelp 
+    - type: GuideHelp
       guides:
       - Blob
 
@@ -145,6 +145,7 @@
     - type: GhostTakeoverAvailable
     - type: Blobbernaut
     - type: BlobSpeak
+      longRange: false
     - type: Physics
     - type: InputMover
     - type: MobMover
@@ -212,7 +213,7 @@
       isToggle: true
       color: "#808080"
       playSoundOn: false
-    - type: GuideHelp 
+    - type: GuideHelp
       guides:
       - Blob
 
@@ -262,7 +263,7 @@
           layer:
             - BlobTileLayer
           density: 1000
-    - type: GuideHelp 
+    - type: GuideHelp
       guides:
       - Blob
 
