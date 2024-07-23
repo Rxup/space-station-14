@@ -5,7 +5,7 @@
   name: shipwrecked-title
   description: shipwrecked-description
   minPlayers: 1
-  showInVote: fasle
+  showInVote: false
   isMiniGame: false
   supportedMaps: ShipwreckedPool
   rules:
