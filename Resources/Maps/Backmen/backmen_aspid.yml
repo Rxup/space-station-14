@@ -107279,7 +107279,7 @@ entities:
       - SurveillanceCameraSupply
       nameSet: True
       id: Salvage
-- proto: SurveillanceCameraWirelessRouterBase
+- proto: SurveillanceCameraWirelessRouterConstructed
   entities:
   - uid: 13243
     components:

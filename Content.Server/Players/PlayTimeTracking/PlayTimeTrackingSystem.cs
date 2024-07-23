@@ -41,7 +41,6 @@ public sealed class PlayTimeTrackingSystem : EntitySystem
         _sponsorsManager = default!; // backmen: allRoles
 
     [Dependency] private readonly IAdminManager _adminManager = default!;
-    [Dependency] private readonly SharedRoleSystem _role = default!;
 
     public override void Initialize()
     {
