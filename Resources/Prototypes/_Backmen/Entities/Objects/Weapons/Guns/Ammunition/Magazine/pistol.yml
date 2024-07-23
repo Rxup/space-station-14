@@ -1,0 +1,175 @@
+- type: entity
+  id: MagazineMagnumPistolAP
+  name: pistol magazine (.50AE AP)
+  parent: MagazineMagnumPistol
+  components:
+  - type: BallisticAmmoProvider
+    mayTransfer: true
+    proto: CartridgeMagnumAP
+    whitelist:
+      tags:
+        - CartridgeMagnum
+
+- type: entity
+  id: MagazineMagnumPistol
+  name: pistol magazine (.50AE)
+  parent: BaseItem
+  components:
+  - type: Tag
+    tags:
+      - MagazineMagnumPistol
+  - type: BallisticAmmoProvider
+    mayTransfer: true
+    proto: CartridgeMagnum
+    whitelist:
+      tags:
+        - CartridgeMagnum
+    capacity: 9
+  - type: Item
+    size: Small
+  - type: ContainerContainer
+    containers:
+      ballistic-ammo: !type:Container
+  - type: Sprite
+    sprite: Backmen/Objects/Weapons/Gunsx64/Magazines/Magnum/magnum_pistol_mag.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: MagazineVisuals
+    magState: mag
+    steps: 6
+    zeroVisible: false
+  - type: Appearance
+
+- type: entity
+  id: MagazinePistol345
+  name: pistol magazine (.345 magnum)
+  parent: MagazinePistol
+  components:
+  - type: Tag
+    tags:
+      - MagazinePistolEGov
+      - MagazinePistol
+  - type: BallisticAmmoProvider
+    proto: CartridgeMagnum345
+    mayTransfer: true
+    whitelist:
+      tags:
+        - CartridgeMagnum345
+    capacity: 9
+  - type: Item
+    size: Small
+  - type: Sprite
+    netsync: false
+    sprite: Backmen/Objects/Weapons/Gunsx64/Magazines/Pistol/divet.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: MagazineVisuals
+    magState: mag
+    steps: 2
+    zeroVisible: false
+  - type: Appearance
+
+- type: entity
+  id: MagazinePistolBoxSubMachineGun
+  name: SMG box magazine (.9×19mm parabellum)
+  parent: BaseItem
+  components:
+  - type: Tag
+    tags:
+      - MagazinePistolBoxSubMachineGun
+  - type: BallisticAmmoProvider
+    mayTransfer: true
+    proto: CartridgePistol
+    whitelist:
+      tags:
+        - CartridgePistol
+    capacity: 45
+  - type: Item
+    size: Small
+  - type: ContainerContainer
+    containers:
+      ballistic-ammo: !type:Container
+  - type: Sprite
+    sprite: Backmen/Objects/Weapons/Gunsx64/Magazines/Pistol/submachinegun_boxmag.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: MagazineVisuals
+    magState: mag
+    steps: 2
+    zeroVisible: false
+  - type: Appearance
+
+- type: entity
+  id: MagazinePistolDrumSubMachineGun
+  name: SMG Drum magazine (.9×19mm parabellum)
+  parent: BaseItem
+  components:
+  - type: Tag
+    tags:
+      - MagazinePistolDrumSubMachineGun
+  - type: BallisticAmmoProvider
+    mayTransfer: true
+    proto: CartridgePistol
+    whitelist:
+      tags:
+        - CartridgePistol
+    capacity: 71
+  - type: Item
+    size: Small
+  - type: ContainerContainer
+    containers:
+      ballistic-ammo: !type:Container
+  - type: Sprite
+    sprite: Backmen/Objects/Weapons/Gunsx64/Magazines/Pistol/submachinegun_drummag.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: MagazineVisuals
+    magState: mag
+    steps: 2
+    zeroVisible: false
+  - type: Appearance
+
+- type: entity
+  id: MagazinePistolTopSubMachineGun
+  name: SMG top mounted magazine (.9×19mm parabellum)
+  parent: BaseItem
+  components:
+  - type: Tag
+    tags:
+      - MagazinePistolTopSubMachineGun
+  - type: BallisticAmmoProvider
+    mayTransfer: true
+    proto: CartridgePistol
+    whitelist:
+      tags:
+        - CartridgePistol
+    capacity: 50
+  - type: Item
+    size: Small
+  - type: ContainerContainer
+    containers:
+      ballistic-ammo: !type:Container
+  - type: Sprite
+    sprite: Backmen/Objects/Weapons/Gunsx64/Magazines/Pistol/submachinegun_top_moumted_mag.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: MagazineVisuals
+    magState: mag
+    steps: 6
+    zeroVisible: false
+  - type: Appearance

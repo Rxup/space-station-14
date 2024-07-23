@@ -1,0 +1,160 @@
+- type: entity
+  id: BulletMagnum345
+  name: 345 magnum bullet
+  parent: BaseBullet
+  noSpawn: true
+  components:
+  - type: Sprite
+    sprite: Backmen/Effects/muzzle/divet.rsi
+    layers:
+    - state: projectiles_divet
+      shader: unshaded
+  - type: Ammo
+  - type: Projectile
+    damage:
+      types:
+        Piercing: 30
+    soundHit:
+      path: /Audio/Weapons/Guns/Hits/bullet_hit.ogg
+  - type: Tag
+    tags:
+      - BulletMagnum345
+
+- type: entity
+  id: PelletShotgunSoulbreaker
+  name: pellet (.50 soulbreaker)
+  noSpawn: true
+  parent: BaseBulletPractice
+  components:
+    - type: Sprite
+      sprite: Objects/Weapons/Guns/Projectiles/projectiles2.rsi
+      state: buckshot
+    - type: Projectile
+      damage:
+        types:
+          Blunt: 1
+    - type: SolutionContainerManager
+      solutions:
+        ammo:
+          maxVol: 15
+    - type: RefillableSolution
+      solution: ammo
+    - type: DrainableSolution
+      solution: ammo
+    - type: SolutionInjectOnProjectileHit
+      transferAmount: 15
+      blockSlots: NONE #tranquillizer darts shouldn't be blocked by a mask
+      solution: ammo
+    - type: InjectableSolution
+      solution: ammo
+    - type: GuideHelp
+      guides:
+        - Psionics
+
+- type: entity
+  noSpawn: true
+  parent: BaseBulletTrigger
+  id: PelletShotgunRocket
+  name: bullet (бронебойно-разрывной)
+  components:
+  - type: Projectile
+    ignoreResistances: true
+    damage:
+      types:
+        Piercing: 12
+  - type: ExplodeOnTrigger
+  - type: Explosive
+    explosionType: Default
+    maxIntensity: 1
+    intensitySlope: 1
+    totalIntensity: 10
+    maxTileBreak: 0
+    tileBreakScale: 0
+    canCreateVacuum: false
+
+- type: entity
+  noSpawn: true
+  parent: BaseBullet
+  id: BulletHeavy62
+  name: bullet (.62 rifle)
+  components:
+  - type: Projectile
+    damage:
+      types:
+        Piercing: 39
+
+- type: entity
+  noSpawn: true
+  parent: BaseBulletTrigger
+  id: BulletRocket20
+  name: bullet (рельсотрон)
+  components:
+  - type: Projectile
+    damage:
+      types:
+        Piercing: 12
+  - type: ExplodeOnTrigger
+  - type: Explosive
+    explosionType: Default
+    maxIntensity: 3
+    intensitySlope: 1
+    totalIntensity: 1
+    maxTileBreak: 0
+    tileBreakScale: 0
+    canCreateVacuum: false
+
+- type: entity
+  noSpawn: true
+  parent: BaseBullet
+  id: BulletLight762
+  name: bullet (7,62 rifle)
+  components:
+  - type: Projectile
+    damage:
+      types:
+        Piercing: 39
+
+- type: entity
+  id: BulletGrenadeTearGas
+  name: tear gas grenade
+  parent: BaseBulletTrigger
+  noSpawn: true
+  components:
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Projectiles/projectiles2.rsi
+    layers:
+      - state: grenade
+  - type: Projectile
+    deleteOnCollide: false
+    damage:
+      types:
+        Blunt: 1
+    soundHit:
+      path: /Audio/Effects/gen_hit.ogg
+  - type: SmokeOnTrigger
+    duration: 10
+    spreadAmount: 30
+    solution:
+      reagents:
+      - ReagentId: TearGas
+        Quantity: 50
+
+- type: entity
+  id: BulletGrenadeNonletal
+  name: non letal grenade
+  parent: BaseBulletTrigger
+  noSpawn: true
+  components:
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Projectiles/projectiles2.rsi
+    layers:
+      - state: grenade
+  - type: FlashOnTrigger
+    range: 7
+  - type: SpawnOnTrigger
+    proto: GrenadeFlashEffect
+  - type: ActiveTimerTrigger
+    timeRemaining: 0.3
+  - type: DeleteOnTrigger
+  - type: StaminaDamageOnCollide
+    damage: 80

@@ -225,7 +225,7 @@
     - FootstepSound
     - DoorBumpOpener
   - type: CameraFollow # Backmen-Changes-End
-    backStrength: 20
+    backStrength: 50
     defaultBackStrength: 20
 
 - type: entity

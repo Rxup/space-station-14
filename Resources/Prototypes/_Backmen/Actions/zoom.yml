@@ -16,5 +16,5 @@
   components:
   - type: InstantAction
     checkCanInteract: false
-    icon: Backmen/Interface/VerbIcons/telegnosis.png
+    icon: Backmen/Interface/Actions/aim_mode.rsi/aimmode.png
     event: !type:ToggleCameraEvent
