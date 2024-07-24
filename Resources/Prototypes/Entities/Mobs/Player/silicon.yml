@@ -63,15 +63,7 @@
     channels:
     - Binary
     - Common
-  - type: SurveillanceCamera
-    networkSet: true
   - type: DoAfter
-  - type: Eye
-  - type: WiredNetworkConnection
-  - type: DeviceNetworkRequiresPower
-  - type: Electrified
-    enabled: true
-    usesApcPower: false
   - type: ComplexInteraction
   - type: Examiner
   - type: Puller
