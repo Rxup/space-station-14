@@ -102,18 +102,7 @@ public sealed partial class BlobToCoreActionEvent : InstantActionEvent
 
 }
 
-public sealed partial class BlobToNodeActionEvent : InstantActionEvent
-{
-
-}
-
-public sealed partial class BlobHelpActionEvent : InstantActionEvent
-{
-
-}
-
 public sealed partial class BlobSwapChemActionEvent : InstantActionEvent
 {
 
 }
-

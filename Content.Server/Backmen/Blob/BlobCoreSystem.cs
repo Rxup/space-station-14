@@ -19,7 +19,6 @@ using Content.Shared.FixedPoint;
 using Content.Shared.Objectives.Components;
 using Content.Shared.Popups;
 using Content.Shared.Weapons.Melee;
-using Robust.Server.GameObjects;
 using Robust.Shared.Map;
 using Robust.Shared.Map.Components;
 using Robust.Shared.Network;
@@ -40,7 +39,7 @@ public sealed class BlobCoreSystem : SharedBlobCoreSystem
     [Dependency] private readonly RoundEndSystem _roundEndSystem = default!;
     [Dependency] private readonly MetaDataSystem _metaDataSystem = default!;
     [Dependency] private readonly ActionsSystem _action = default!;
-    [Dependency] private readonly MapSystem _map = default!;
+    [Dependency] private readonly EntityLookupSystem _lookup = default!;
 
     private EntityQuery<BlobTileComponent> _tile;
     private EntityQuery<BlobFactoryComponent> _factory;
@@ -55,7 +54,6 @@ public sealed class BlobCoreSystem : SharedBlobCoreSystem
 
         SubscribeLocalEvent<BlobCoreComponent, PlayerAttachedEvent>(OnPlayerAttached);
         SubscribeLocalEvent<BlobCoreComponent, EntityTerminatingEvent>(OnTerminating);
-
 
         SubscribeLocalEvent<BlobCaptureConditionComponent, ObjectiveGetProgressEvent>(OnBlobCaptureProgress);
         SubscribeLocalEvent<BlobCaptureConditionComponent, ObjectiveAfterAssignEvent>(OnBlobCaptureInfo);
@@ -78,7 +76,7 @@ public sealed class BlobCoreSystem : SharedBlobCoreSystem
 
     private void OnBlobCaptureInfoAdd(Entity<BlobCaptureConditionComponent> ent, ref ObjectiveAssignedEvent args)
     {
-        if (args.Mind?.OwnedEntity == null)
+        if (args.Mind.OwnedEntity == null)
         {
             args.Cancelled = true;
             return;
@@ -115,7 +113,7 @@ public sealed class BlobCoreSystem : SharedBlobCoreSystem
             return;
         }
 
-        if (args.Mind?.OwnedEntity == null)
+        if (args.Mind.OwnedEntity == null)
         {
             args.Progress = 0;
             return;
@@ -128,7 +126,7 @@ public sealed class BlobCoreSystem : SharedBlobCoreSystem
             return;
         }
 
-        args.Progress = (float) blobCoreComponent.BlobTiles.Count / (float) component.Target;
+        args.Progress = blobCoreComponent.BlobTiles.Count / component.Target;
     }
     #endregion
 
@@ -160,10 +158,8 @@ public sealed class BlobCoreSystem : SharedBlobCoreSystem
         return !ev.Cancelled;
     }
 
-    [ValidatePrototypeId<EntityPrototype>] private const string ActionHelpBlob = "ActionHelpBlob";
     [ValidatePrototypeId<EntityPrototype>] private const string ActionSwapBlobChem = "ActionSwapBlobChem";
     [ValidatePrototypeId<EntityPrototype>] private const string ActionTeleportBlobToCore = "ActionTeleportBlobToCore";
-    [ValidatePrototypeId<EntityPrototype>] private const string ActionTeleportBlobToNode = "ActionTeleportBlobToNode";
     [ValidatePrototypeId<EntityPrototype>] private const string ActionCreateBlobFactory = "ActionCreateBlobFactory";
     [ValidatePrototypeId<EntityPrototype>] private const string ActionCreateBlobResource = "ActionCreateBlobResource";
     [ValidatePrototypeId<EntityPrototype>] private const string ActionCreateBlobNode = "ActionCreateBlobNode";
@@ -186,10 +182,8 @@ public sealed class BlobCoreSystem : SharedBlobCoreSystem
 
         ChangeChem(uid, component.DefaultChem, component);
 
-        _action.AddAction(uid, ref component.ActionHelpBlob, ActionHelpBlob);
         _action.AddAction(uid, ref component.ActionSwapBlobChem, ActionSwapBlobChem);
         _action.AddAction(uid, ref component.ActionTeleportBlobToCore, ActionTeleportBlobToCore);
-        _action.AddAction(uid, ref component.ActionTeleportBlobToNode, ActionTeleportBlobToNode);
         _action.AddAction(uid, ref component.ActionCreateBlobFactory, ActionCreateBlobFactory);
         _action.AddAction(uid, ref component.ActionCreateBlobResource, ActionCreateBlobResource);
         _action.AddAction(uid, ref component.ActionCreateBlobNode, ActionCreateBlobNode);
@@ -235,15 +229,6 @@ public sealed class BlobCoreSystem : SharedBlobCoreSystem
 
                     ChangeBlobEntChem(blobFactoryComponent.Blobbernaut.Value, oldChem, newChem);
                 }
-/*
-                foreach (var compBlobPod in blobFactoryComponent.BlobPods)
-                {
-                    if (TryComp<SmokeOnTriggerComponent>(compBlobPod, out var smokeOnTriggerComponent))
-                    {
-                        smokeOnTriggerComponent.SmokeColor = component.ChemСolors[newChem];
-                    }
-                }
-                */
             }
 
             ChangeBlobEntChem(blobTile, oldChem, newChem);
@@ -320,8 +305,14 @@ public sealed class BlobCoreSystem : SharedBlobCoreSystem
         }
     }
 
-    public bool TransformBlobTile(EntityUid? oldTileUid, EntityUid coreTileUid, string newBlobTileProto,
-        EntityCoordinates coordinates, BlobCoreComponent? blobCore = null, bool returnCost = true,
+    public bool TransformBlobTile(
+        EntityUid? oldTileUid,
+        EntityUid coreTileUid,
+        EntityUid? nearNodeUid,
+        string newBlobTileProto,
+        EntityCoordinates coordinates,
+        BlobCoreComponent? blobCore = null,
+        bool returnCost = true,
         FixedPoint2? transformCost = null)
     {
         if (!Resolve(coreTileUid, ref blobCore))
@@ -331,7 +322,22 @@ public sealed class BlobCoreSystem : SharedBlobCoreSystem
             QueueDel(oldTileUid.Value);
             blobCore.BlobTiles.Remove(oldTileUid.Value);
         }
+
         var tileBlob = EntityManager.SpawnEntity(newBlobTileProto, coordinates);
+        var nodeComp = CompOrNull<BlobNodeComponent>(nearNodeUid);
+
+        if (nodeComp != null)
+        {
+            nodeComp.ConnectedTiles.Add(tileBlob);
+        }
+        else
+        {
+            if (!HasComp<BlobNodeComponent>(tileBlob))
+            {
+                Log.Error("Can't connect blob tile with node because node is null!");
+                return false;
+            }
+        }
 
         if (_tile.TryGetComponent(tileBlob, out var blobTileComponent))
         {
@@ -394,29 +400,36 @@ public sealed class BlobCoreSystem : SharedBlobCoreSystem
         }
 
         ChangeBlobPoint(coreUid, -abilityCost, component);
-
         return true;
     }
 
-    public bool CheckNearNode(EntityUid observer, EntityCoordinates coords, Entity<MapGridComponent> grid, BlobCoreComponent core)
+    /// <summary>
+    /// Gets the nearest Blob node from some EntityCoords.
+    /// </summary>
+    /// <param name="coords">The EntityCoordinates to check from.</param>
+    /// <param name="radius">Radius to check from coords.</param>
+    /// <returns>Nearest blob node, null if wasn't founded.</returns>
+    public EntityUid? GetNearNode(
+        EntityCoordinates coords,
+        float radius = 3f)
     {
-        var radius = 3f;
-
-        var innerTiles = _map.GetLocalTilesIntersecting(grid,grid,
-            new Box2(coords.Position + new Vector2(-radius, -radius), coords.Position + new Vector2(radius, radius)), false).ToArray();
-
         var queryNode = GetEntityQuery<BlobNodeComponent>();
-        var queryCore = GetEntityQuery<BlobCoreComponent>();
-        foreach (var tileRef in innerTiles)
+        var nearestDistance = float.MaxValue;
+        EntityUid? nearestEntityUid = null;
+
+        foreach (var lookupUid in _lookup.GetEntitiesInRange(coords, radius))
         {
-            foreach (var ent in _map.GetAnchoredEntities(grid,grid,tileRef.GridIndices))
-            {
-                if (queryNode.HasComponent(ent) || queryCore.HasComponent(ent))
-                    return true;
-            }
+            if (!queryNode.HasComponent(lookupUid))
+                continue;
+            var tileCords = Transform(lookupUid).Coordinates;
+            var distance = Vector2.Distance(coords.Position, tileCords.Position);
+
+            if (!(distance < nearestDistance))
+                continue;
+            nearestDistance = distance;
+            nearestEntityUid = lookupUid;
         }
 
-        _popup.PopupCoordinates(Loc.GetString("blob-target-nearby-not-node"), coords, observer, PopupType.Large);
-        return false;
+        return nearestDistance > radius ? null : nearestEntityUid;
     }
 }

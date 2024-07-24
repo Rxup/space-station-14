@@ -102,6 +102,9 @@ public sealed partial class BlobCoreComponent : Component
     [ViewVariables(VVAccess.ReadOnly), DataField("currentChem")]
     public BlobChemType CurrentChem = BlobChemType.ReactiveSpines;
 
+    [ViewVariables(VVAccess.ReadWrite), DataField("resourceBlobsTotal")]
+    public int ResourceBlobsTotal;
+
     [ViewVariables(VVAccess.ReadWrite), DataField("factoryRadiusLimit")]
     public float FactoryRadiusLimit = 6f;
 
@@ -110,6 +113,9 @@ public sealed partial class BlobCoreComponent : Component
 
     [ViewVariables(VVAccess.ReadWrite), DataField("nodeRadiusLimit")]
     public float NodeRadiusLimit = 4f;
+
+    [ViewVariables(VVAccess.ReadWrite), DataField("tilesRadiusLimit")]
+    public float TilesRadiusLimit = 6f;
 
     [ViewVariables(VVAccess.ReadWrite), DataField("attackCost")]
     public FixedPoint2 AttackCost = 2;
@@ -136,10 +142,10 @@ public sealed partial class BlobCoreComponent : Component
     public FixedPoint2 ReflectiveBlobCost = 15;
 
     [ViewVariables(VVAccess.ReadWrite), DataField("splitCoreCost")]
-    public FixedPoint2 SplitCoreCost = 100;
+    public FixedPoint2 SplitCoreCost = 200;
 
     [ViewVariables(VVAccess.ReadWrite), DataField("swapCoreCost")]
-    public FixedPoint2 SwapCoreCost = 80;
+    public FixedPoint2 SwapCoreCost = 160;
 
     [ViewVariables(VVAccess.ReadWrite), DataField("swapChemCost")]
     public FixedPoint2 SwapChemCost = 40;
@@ -186,14 +192,10 @@ public sealed partial class BlobCoreComponent : Component
     [ViewVariables(VVAccess.ReadWrite)]
     public FixedPoint2 Points = 0;
 
-    [DataField("actionHelpBlob")]
-    public EntityUid? ActionHelpBlob = null;
     [DataField("actionSwapBlobChem")]
     public EntityUid? ActionSwapBlobChem = null;
     [DataField("actionTeleportBlobToCore")]
     public EntityUid? ActionTeleportBlobToCore = null;
-    [DataField("actionTeleportBlobToNode")]
-    public EntityUid? ActionTeleportBlobToNode = null;
     [DataField("actionCreateBlobFactory")]
     public EntityUid? ActionCreateBlobFactory = null;
     [DataField("actionCreateBlobResource")]

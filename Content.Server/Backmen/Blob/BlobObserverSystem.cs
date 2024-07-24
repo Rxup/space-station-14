@@ -1,15 +1,10 @@
 using System.Linq;
 using System.Numerics;
 using Content.Server.Actions;
-using Content.Server.Atmos.Components;
-using Content.Server.Atmos.EntitySystems;
 using Content.Server.Backmen.Blob.Components;
 using Content.Server.Backmen.Blob.Roles;
 using Content.Server.Backmen.GameTicking.Rules.Components;
 using Content.Server.Chat.Managers;
-using Content.Server.Destructible;
-using Content.Server.Emp;
-using Content.Server.Explosion.EntitySystems;
 using Content.Server.Hands.Systems;
 using Content.Server.Mind;
 using Content.Server.Roles;
@@ -18,26 +13,17 @@ using Content.Shared.Alert;
 using Content.Shared.Backmen.Blob;
 using Content.Shared.Backmen.Blob.Components;
 using Content.Shared.Coordinates.Helpers;
-using Content.Shared.Damage;
 using Content.Shared.Hands.Components;
-using Content.Shared.Interaction;
-using Content.Shared.Item;
 using Content.Shared.Mind;
-using Content.Shared.Mobs.Components;
 using Content.Shared.Popups;
-using Content.Shared.SubFloor;
-using Robust.Server.Audio;
 using Robust.Server.GameObjects;
 using Robust.Server.Player;
-using Robust.Shared.Audio;
 using Robust.Shared.CPUJob.JobQueues.Queues;
 using Robust.Shared.Map;
 using Robust.Shared.Map.Components;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
-using Robust.Shared.Timing;
-using Robust.Shared.Utility;
 
 namespace Content.Server.Backmen.Blob;
 
@@ -82,8 +68,6 @@ public sealed class BlobObserverSystem : SharedBlobObserverSystem
         SubscribeLocalEvent<BlobCoreComponent, BlobCreateNodeActionEvent>(OnCreateNode);
         SubscribeLocalEvent<BlobCoreComponent, BlobCreateBlobbernautActionEvent>(OnCreateBlobbernaut);
         SubscribeLocalEvent<BlobCoreComponent, BlobToCoreActionEvent>(OnBlobToCore);
-        SubscribeLocalEvent<BlobCoreComponent, BlobToNodeActionEvent>(OnBlobToNode);
-        SubscribeLocalEvent<BlobCoreComponent, BlobHelpActionEvent>(OnBlobHelp);
         SubscribeLocalEvent<BlobCoreComponent, BlobSwapChemActionEvent>(OnBlobSwapChem);
         SubscribeLocalEvent<BlobCoreComponent, BlobSwapCoreActionEvent>(OnSwapCore);
         SubscribeLocalEvent<BlobCoreComponent, BlobSplitCoreActionEvent>(OnSplitCore);
@@ -112,7 +96,6 @@ public sealed class BlobObserverSystem : SharedBlobObserverSystem
         if (!_hands.TryPickup(ent, ent.Comp.VirtualItem, "BlobHand", false, false, false))
         {
             QueueDel(ent);
-            return;
         }
     }
 
@@ -157,24 +140,12 @@ public sealed class BlobObserverSystem : SharedBlobObserverSystem
             }
         }
 
-        //_mindSystem.SetUserId(mindId, args.UserId);
         if (!isNewMind)
         {
-            /*var obj = mind.AllObjectives.ToArray();
-            for (var i = 0; i < obj.Length; i++)
-            {
-                _mindSystem.TryRemoveObjective(mindId, mind, i);
-            }
-            _metaDataSystem.SetEntityName(observer,"Blob player");
-            if (_roleSystem.MindHasRole<JobComponent>(mindId))
-            {
-
-            }*/
             var name = mind.Session?.Name ?? "???";
             _mindSystem.WipeMind(mindId, mind);
             mindId = _mindSystem.CreateMind(args.UserId, $"Blob Player ({name})");
             mind = Comp<MindComponent>(mindId);
-            isNewMind = true;
         }
 
         _roleSystem.MindAddRole(mindId, new BlobRoleComponent{ PrototypeId = core.AntagBlobPrototypeId });
@@ -194,28 +165,6 @@ public sealed class BlobObserverSystem : SharedBlobObserverSystem
         }
 
         UpdateUi(observer, core);
-
-        //RemComp<ActionsComponent>(observer);
-        /*
-        if (isNewMind)
-        {
-            _mindSystem.TransferTo(mindId, observer, true, mind: mind);
-        }
-        Timer.Spawn(1_000, () =>
-        {
-            _mindSystem.TransferTo(mindId, null, true, mind: mind);
-
-            Timer.Spawn(1_000, () =>
-            {
-                _mindSystem.TransferTo(mindId, observer, true, mind: mind);
-                if (_actorSystem.TryGetActorFromUserId(args.UserId, out var session, out _))
-                {
-                    _actorSystem.Attach(observer, session, true);
-                }
-                UpdateUi(observer, blobObserverComponent);
-            });
-        });
-        */
     }
 
     private void UpdateActions(ICommonSession playerSession, EntityUid uid, BlobObserverComponent? component = null)
@@ -231,19 +180,19 @@ public sealed class BlobObserverSystem : SharedBlobObserverSystem
             return;
         }
 
-        _action.GrantActions(uid, new []
+        _action.GrantActions(uid,
+            new []
         {
-            coreComponent.ActionHelpBlob!.Value,
             coreComponent.ActionSwapBlobChem!.Value,
             coreComponent.ActionTeleportBlobToCore!.Value,
-            coreComponent.ActionTeleportBlobToNode!.Value,
             coreComponent.ActionCreateBlobFactory!.Value,
             coreComponent.ActionCreateBlobResource!.Value,
             coreComponent.ActionCreateBlobNode!.Value,
             coreComponent.ActionCreateBlobbernaut!.Value,
             coreComponent.ActionSplitBlobCore!.Value,
             coreComponent.ActionSwapBlobCore!.Value
-        }, component.Core.Value);
+        },
+            component.Core.Value);
 
         _viewSubscriberSystem.AddViewSubscriber(component.Core.Value, playerSession); // GrantActions require keep in pvs
     }
@@ -260,7 +209,8 @@ public sealed class BlobObserverSystem : SharedBlobObserverSystem
         }
     }
 
-    private void OnBlobSwapChem(EntityUid uid, BlobCoreComponent blobCoreComponent,
+    private void OnBlobSwapChem(EntityUid uid,
+        BlobCoreComponent blobCoreComponent,
         BlobSwapChemActionEvent args)
     {
         if (!TryComp<BlobObserverComponent>(args.Performer, out var observerComponent))
@@ -278,7 +228,9 @@ public sealed class BlobObserverSystem : SharedBlobObserverSystem
         if (component.SelectedChemId == args.SelectedId)
             return;
 
-        if (!_blobCoreSystem.TryUseAbility(uid, component.Core.Value, blobCoreComponent,
+        if (!_blobCoreSystem.TryUseAbility(uid,
+                component.Core.Value,
+                blobCoreComponent,
                 blobCoreComponent.SwapChemCost))
             return;
 
@@ -366,14 +318,8 @@ public sealed class BlobObserverSystem : SharedBlobObserverSystem
         return (nearestEntityUid, nearestDistance);
     }
 
-    private void OnBlobHelp(EntityUid uid, BlobCoreComponent blobCoreComponent,
-        BlobHelpActionEvent args)
-    {
-        _popup.PopupEntity(Loc.GetString("blob-help"), args.Performer, args.Performer, PopupType.Large);
-        args.Handled = true;
-    }
-
-    private void OnSplitCore(EntityUid uid, BlobCoreComponent blobCoreComponent,
+    private void OnSplitCore(EntityUid uid,
+        BlobCoreComponent blobCoreComponent,
         BlobSplitCoreActionEvent args)
     {
         if (args.Handled)
@@ -391,8 +337,10 @@ public sealed class BlobObserverSystem : SharedBlobObserverSystem
         {
             return;
         }
-        var centerTile = _mapSystem.GetLocalTilesIntersecting(gridUid.Value, grid,
-            new Box2(args.Target.Position, args.Target.Position)).ToArray();
+        var centerTile = _mapSystem.GetLocalTilesIntersecting(gridUid.Value,
+            grid,
+            new Box2(args.Target.Position, args.Target.Position))
+            .ToArray();
 
         EntityUid? blobTile = null;
 
@@ -414,7 +362,9 @@ public sealed class BlobObserverSystem : SharedBlobObserverSystem
             return;
         }
 
-        if (!_blobCoreSystem.TryUseAbility(args.Performer, uid, blobCoreComponent,
+        if (!_blobCoreSystem.TryUseAbility(args.Performer,
+                uid,
+                blobCoreComponent,
                 blobCoreComponent.SplitCoreCost))
         {
             args.Handled = true;
@@ -426,12 +376,15 @@ public sealed class BlobObserverSystem : SharedBlobObserverSystem
         blobCoreComponent.CanSplit = false;
         if (TryComp<BlobCoreComponent>(newCore, out var newBlobCoreComponent))
             newBlobCoreComponent.CanSplit = false;
+        if (TryComp<BlobNodeComponent>(newCore, out var newBlobNodeComponent))
+            newBlobNodeComponent.ConnectedTiles = blobNodeComponent.ConnectedTiles;
 
         args.Handled = true;
     }
 
 
-    private void OnSwapCore(EntityUid uid, BlobCoreComponent blobCoreComponent,
+    private void OnSwapCore(EntityUid uid,
+        BlobCoreComponent blobCoreComponent,
         BlobSwapCoreActionEvent args)
     {
         if (args.Handled)
@@ -444,8 +397,10 @@ public sealed class BlobObserverSystem : SharedBlobObserverSystem
             return;
         }
 
-        var centerTile = _mapSystem.GetLocalTilesIntersecting(gridUid.Value, grid,
-            new Box2(args.Target.Position, args.Target.Position)).ToArray();
+        var centerTile = _mapSystem.GetLocalTilesIntersecting(gridUid.Value,
+            grid,
+            new Box2(args.Target.Position, args.Target.Position))
+            .ToArray();
 
         EntityUid? blobTile = null;
 
@@ -474,6 +429,15 @@ public sealed class BlobObserverSystem : SharedBlobObserverSystem
             return;
         }
 
+        // Swap BlobNode components of core and node.
+        /*var nodeNodeComp = EnsureComp<BlobNodeComponent>(blobTile.Value);
+        var coreNodeComp = EnsureComp<BlobNodeComponent>(uid);
+        RemComp<BlobNodeComponent>(blobTile.Value);
+        RemComp<BlobNodeComponent>(uid);
+        AddComp(blobTile.Value, coreNodeComp);
+        AddComp(uid, nodeNodeComp);*/
+
+        // Swap positions of blob's core and node.
         var nodePos = Transform(blobTile.Value).Coordinates;
         var corePos = Transform(uid).Coordinates;
         _transform.SetCoordinates(uid, nodePos.SnapToGrid());
@@ -491,33 +455,8 @@ public sealed class BlobObserverSystem : SharedBlobObserverSystem
         args.Handled = true;
     }
 
-    private void OnBlobToNode(EntityUid uid, BlobCoreComponent blobCoreComponent,
-        BlobToNodeActionEvent args)
-    {
-        if (args.Handled)
-            return;
-
-        var blobNodes = new List<EntityUid>();
-
-        var blobNodeQuery = EntityQueryEnumerator<BlobNodeComponent, BlobTileComponent>();
-        while (blobNodeQuery.MoveNext(out var ent, out var node, out var tile))
-        {
-            if (tile.Core == uid && !HasComp<BlobCoreComponent>(ent))
-                blobNodes.Add(ent);
-        }
-
-        if (blobNodes.Count == 0)
-        {
-            _popup.PopupEntity(Loc.GetString("blob-not-have-nodes"), args.Performer, args.Performer, PopupType.Large);
-            args.Handled = true;
-            return;
-        }
-
-        _transform.SetCoordinates(args.Performer, Transform(_random.Pick(blobNodes)).Coordinates);
-        args.Handled = true;
-    }
-
-    private void OnCreateBlobbernaut(EntityUid uid, BlobCoreComponent blobCoreComponent,
+    private void OnCreateBlobbernaut(EntityUid uid,
+        BlobCoreComponent blobCoreComponent,
         BlobCreateBlobbernautActionEvent args)
     {
         if (args.Handled)
@@ -530,8 +469,10 @@ public sealed class BlobObserverSystem : SharedBlobObserverSystem
             return;
         }
 
-        var centerTile = _mapSystem.GetLocalTilesIntersecting(gridUid.Value, grid,
-            new Box2(args.Target.Position, args.Target.Position)).ToArray();
+        var centerTile = _mapSystem.GetLocalTilesIntersecting(gridUid.Value,
+                grid,
+            new Box2(args.Target.Position, args.Target.Position))
+            .ToArray();
 
         EntityUid? blobTile = null;
 
@@ -572,7 +513,8 @@ public sealed class BlobObserverSystem : SharedBlobObserverSystem
         args.Handled = true;
     }
 
-    private void OnBlobToCore(EntityUid uid, BlobCoreComponent blobCoreComponent,
+    private void OnBlobToCore(EntityUid uid,
+        BlobCoreComponent blobCoreComponent,
         BlobToCoreActionEvent args)
     {
         if (args.Handled)
@@ -581,7 +523,8 @@ public sealed class BlobObserverSystem : SharedBlobObserverSystem
         _transform.SetCoordinates(args.Performer, Transform(uid).Coordinates);
     }
 
-    private void OnCreateNode(EntityUid uid, BlobCoreComponent blobCoreComponent,
+    private void OnCreateNode(EntityUid uid,
+        BlobCoreComponent blobCoreComponent,
         BlobCreateNodeActionEvent args)
     {
         if (args.Handled)
@@ -594,26 +537,30 @@ public sealed class BlobObserverSystem : SharedBlobObserverSystem
             return;
         }
 
-        var centerTile = _mapSystem.GetLocalTilesIntersecting(gridUid.Value, grid,
-            new Box2(args.Target.Position, args.Target.Position)).ToArray();
+        var centerTile = _mapSystem.GetLocalTilesIntersecting(gridUid.Value,
+                grid,
+            new Box2(args.Target.Position, args.Target.Position))
+            .ToArray();
 
         var blobTileType = BlobTileType.None;
         EntityUid? blobTile = null;
+        EntityUid? blobTileCore = null;
 
-        foreach (var tileRef in centerTile)
+        foreach (var tileref in centerTile)
         {
-            foreach (var ent in _mapSystem.GetAnchoredEntities(gridUid.Value, grid, tileRef.GridIndices))
+            foreach (var ent in _mapSystem.GetAnchoredEntities(gridUid.Value, grid, tileref.GridIndices))
             {
                 if (!_tileQuery.TryGetComponent(ent, out var blobTileComponent))
                     continue;
                 blobTileType = blobTileComponent.BlobTileType;
                 blobTile = ent;
+                blobTileCore = blobTileComponent.Core;
                 break;
             }
         }
 
         if (blobTileType is not BlobTileType.Normal ||
-            blobTile == null)
+            blobTile == null || blobTileCore == null)
         {
             _popup.PopupEntity(Loc.GetString("blob-target-normal-blob-invalid"), uid, uid, PopupType.Large);
             return;
@@ -625,8 +572,11 @@ public sealed class BlobObserverSystem : SharedBlobObserverSystem
 
         var radius = blobCoreComponent.NodeRadiusLimit;
 
-        var innerTiles = _mapSystem.GetLocalTilesIntersecting(gridUid.Value, grid,
-            new Box2(localPos + new Vector2(-radius, -radius), localPos + new Vector2(radius, radius)), false).ToArray();
+        var innerTiles = _mapSystem.GetLocalTilesIntersecting(gridUid.Value,
+            grid,
+            new Box2(localPos + new Vector2(-radius, -radius), localPos + new Vector2(radius, radius)),
+            false)
+            .ToArray();
 
         foreach (var tileRef in innerTiles)
         {
@@ -644,6 +594,7 @@ public sealed class BlobObserverSystem : SharedBlobObserverSystem
 
         if (!_blobCoreSystem.TransformBlobTile(blobTile.Value,
                 uid,
+                null,
                 blobCoreComponent.NodeBlobTile,
                 args.Target,
                 blobCoreComponent,
@@ -653,7 +604,8 @@ public sealed class BlobObserverSystem : SharedBlobObserverSystem
         args.Handled = true;
     }
 
-    private void OnCreateResource(EntityUid uid, BlobCoreComponent blobCoreComponent,
+    private void OnCreateResource(EntityUid uid,
+        BlobCoreComponent blobCoreComponent,
         BlobCreateResourceActionEvent args)
     {
         if (args.Handled)
@@ -666,11 +618,14 @@ public sealed class BlobObserverSystem : SharedBlobObserverSystem
             return;
         }
 
-        var centerTile = _mapSystem.GetLocalTilesIntersecting(gridUid.Value, grid,
-            new Box2(args.Target.Position, args.Target.Position)).ToArray();
+        var centerTile = _mapSystem.GetLocalTilesIntersecting(gridUid.Value,
+                grid,
+                new Box2(args.Target.Position, args.Target.Position))
+            .ToArray();
 
         var blobTileType = BlobTileType.None;
         EntityUid? blobTile = null;
+        EntityUid? blobTileCore = null;
 
         foreach (var tileref in centerTile)
         {
@@ -680,12 +635,13 @@ public sealed class BlobObserverSystem : SharedBlobObserverSystem
                     continue;
                 blobTileType = blobTileComponent.BlobTileType;
                 blobTile = ent;
+                blobTileCore = blobTileComponent.Core;
                 break;
             }
         }
 
         if (blobTileType is not BlobTileType.Normal ||
-            blobTile == null)
+            blobTile == null || blobTileCore == null)
         {
             _popup.PopupEntity(Loc.GetString("blob-target-normal-blob-invalid"), uid, uid, PopupType.Large);
             return;
@@ -697,8 +653,11 @@ public sealed class BlobObserverSystem : SharedBlobObserverSystem
 
         var radius = blobCoreComponent.ResourceRadiusLimit;
 
-        var innerTiles = _mapSystem.GetLocalTilesIntersecting(gridUid.Value, grid,
-            new Box2(localPos + new Vector2(-radius, -radius), localPos + new Vector2(radius, radius)), false).ToArray();
+        var innerTiles = _mapSystem.GetLocalTilesIntersecting(gridUid.Value,
+                grid,
+                new Box2(localPos + new Vector2(-radius, -radius), localPos + new Vector2(radius, radius)),
+                false)
+            .ToArray();
 
         foreach (var tileRef in innerTiles)
         {
@@ -711,8 +670,12 @@ public sealed class BlobObserverSystem : SharedBlobObserverSystem
             }
         }
 
-        if (!_blobCoreSystem.CheckNearNode(args.Performer, xform.Coordinates, (gridUid.Value,grid), blobCoreComponent))
+        var nearNode = _blobCoreSystem.GetNearNode(xform.Coordinates);
+        if (nearNode == null)
+        {
+            _popup.PopupCoordinates(Loc.GetString("blob-target-nearby-not-node"), xform.Coordinates, args.Performer, PopupType.Large);
             return;
+        }
 
         if (!_blobCoreSystem.TryUseAbility(args.Performer,
                 uid,
@@ -722,11 +685,17 @@ public sealed class BlobObserverSystem : SharedBlobObserverSystem
 
         if (!_blobCoreSystem.TransformBlobTile(blobTile.Value,
                 uid,
+                nearNode.Value,
                 blobCoreComponent.ResourceBlobTile,
                 args.Target,
                 blobCoreComponent,
                 transformCost: blobCoreComponent.ResourceBlobCost))
             return;
+
+        if (blobCoreComponent.ResourceBlobsTotal > 2)
+            blobCoreComponent.ResourceBlobCost += 10;
+
+        blobCoreComponent.ResourceBlobsTotal++;
 
         args.Handled = true;
     }
@@ -743,26 +712,30 @@ public sealed class BlobObserverSystem : SharedBlobObserverSystem
             return;
         }
 
-        var centerTile = _mapSystem.GetLocalTilesIntersecting(gridUid.Value, grid,
-            new Box2(args.Target.Position, args.Target.Position)).ToArray();
+        var centerTile = _mapSystem.GetLocalTilesIntersecting(gridUid.Value,
+            grid,
+            new Box2(args.Target.Position, args.Target.Position))
+            .ToArray();
 
         var blobTileType = BlobTileType.None;
         EntityUid? blobTile = null;
+        EntityUid? blobTileCore = null;
 
-        foreach (var tileRef in centerTile)
+        foreach (var tileref in centerTile)
         {
-            foreach (var ent in _mapSystem.GetAnchoredEntities(gridUid.Value, grid, tileRef.GridIndices))
+            foreach (var ent in _mapSystem.GetAnchoredEntities(gridUid.Value, grid, tileref.GridIndices))
             {
                 if (!_tileQuery.TryGetComponent(ent, out var blobTileComponent))
                     continue;
                 blobTileType = blobTileComponent.BlobTileType;
                 blobTile = ent;
+                blobTileCore = blobTileComponent.Core;
                 break;
             }
         }
 
         if (blobTileType is not BlobTileType.Normal ||
-            blobTile == null)
+            blobTile == null || blobTileCore == null)
         {
             _popup.PopupEntity(Loc.GetString("blob-target-normal-blob-invalid"), uid, uid, PopupType.Large);
             return;
@@ -774,8 +747,11 @@ public sealed class BlobObserverSystem : SharedBlobObserverSystem
 
         var radius = blobCoreComponent.FactoryRadiusLimit;
 
-        var innerTiles = _mapSystem.GetLocalTilesIntersecting(gridUid.Value, grid,
-            new Box2(localPos + new Vector2(-radius, -radius), localPos + new Vector2(radius, radius)), false).ToArray();
+        var innerTiles = _mapSystem.GetLocalTilesIntersecting(gridUid.Value,
+                grid,
+            new Box2(localPos + new Vector2(-radius, -radius), localPos + new Vector2(radius, radius)),
+            false)
+            .ToArray();
 
         foreach (var tileRef in innerTiles)
         {
@@ -788,10 +764,16 @@ public sealed class BlobObserverSystem : SharedBlobObserverSystem
             }
         }
 
-        if (!_blobCoreSystem.CheckNearNode(args.Performer, xform.Coordinates, (gridUid.Value,grid), blobCoreComponent))
+        var nearNode = _blobCoreSystem.GetNearNode(xform.Coordinates);
+        if (nearNode == null)
+        {
+            _popup.PopupCoordinates(Loc.GetString("blob-target-nearby-not-node"), xform.Coordinates, args.Performer, PopupType.Large);
             return;
+        }
 
-        if (!_blobCoreSystem.TryUseAbility(args.Performer, uid, blobCoreComponent,
+        if (!_blobCoreSystem.TryUseAbility(args.Performer,
+                uid,
+                blobCoreComponent,
                 blobCoreComponent.FactoryBlobCost))
         {
             args.Handled = true;
@@ -800,6 +782,7 @@ public sealed class BlobObserverSystem : SharedBlobObserverSystem
 
         if (!_blobCoreSystem.TransformBlobTile(null,
                 uid,
+                nearNode,
                 blobCoreComponent.FactoryBlobTile,
                 args.Target,
                 blobCoreComponent,

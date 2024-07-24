@@ -1,4 +1,4 @@
-namespace Content.Server.Backmen.Blob.Components;
+namespace Content.Shared.Backmen.Blob.Components;
 
 [RegisterComponent]
 public sealed partial class BlobNodeComponent : Component
@@ -10,6 +10,12 @@ public sealed partial class BlobNodeComponent : Component
     public float PulseRadius = 3f;
 
     public TimeSpan NextPulse = TimeSpan.Zero;
+
+    /// <summary>
+    /// All tiles that are connected to that blob node.
+    /// </summary>
+    [ViewVariables(VVAccess.ReadWrite)]
+    public HashSet<EntityUid> ConnectedTiles = [];
 }
 
 public sealed class BlobTileGetPulseEvent : EntityEventArgs

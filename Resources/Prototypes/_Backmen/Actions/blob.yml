@@ -96,30 +96,6 @@
       useDelay: 0.5
 
 - type: entity
-  id: ActionTeleportBlobToNode
-  name: blob-teleport-to-node-action-name
-  description: blob-teleport-to-node-action-desc
-  components:
-    - type: InstantAction
-      icon:
-        sprite: Backmen/Interface/Actions/blob.rsi
-        state: blobToNode
-      event: !type:BlobToNodeActionEvent
-      useDelay: 0.5
-
-- type: entity
-  id: ActionHelpBlob
-  name: blob-help-action-name
-  description: blob-help-action-desc
-  components:
-    - type: InstantAction
-      icon:
-        sprite: Backmen/Interface/Actions/blob.rsi
-        state: blobHelp
-      event: !type:BlobHelpActionEvent
-      useDelay: 0.5
-
-- type: entity
   id: ActionSwapBlobChem
   name: blob-swap-chem-action-name
   description: blob-swap-chem-action-desc

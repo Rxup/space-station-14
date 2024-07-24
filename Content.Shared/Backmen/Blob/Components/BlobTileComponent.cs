@@ -14,6 +14,9 @@ public sealed partial class BlobTileComponent : Component
     [ViewVariables(VVAccess.ReadOnly), AutoNetworkedField]
     public EntityUid? Core = default!;
 
+    [ViewVariables(VVAccess.ReadOnly), AutoNetworkedField]
+    public EntityUid? Node = default!;
+
     [ViewVariables(VVAccess.ReadOnly)]
     public bool ReturnCost = true;
 
@@ -39,7 +42,7 @@ public sealed partial class BlobTileComponent : Component
     {
         DamageDict = new Dictionary<string, FixedPoint2>
         {
-            { "Heat", 100 },
+            { "Heat", 25 },
         }
     };
 }
@@ -52,6 +55,7 @@ public enum BlobTileType : byte
     Reflective,
     Resource,
     Storage,
+    Turret,
     Node,
     Factory,
     Core,
