@@ -1329,8 +1329,7 @@
     - FireThrowerBall
   - type: TimedDespawn
     lifetime: 5
-  - type: EmbeddableProjectile
-    offset: 0.15,0.15
+  - type: LandAtCursor
   - type: ThrowingAngle
     angle: 0
   - type: DamageOtherOnHit

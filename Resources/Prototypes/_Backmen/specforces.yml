@@ -115,6 +115,7 @@
   guaranteedSpawn:
     - id: SpawnMobHumanRXBZZLeader
     - id: SpawnMobHumanRXBZZFlamer
+    - id: SpawnMobHumanRXBZZMedic
   specForceSpawn:
     - id: SpawnMobHumanRXBZZ
 
@@ -133,6 +134,7 @@
   guaranteedSpawn:
     - id: SpawnMobHumanRXBZZBlobLeader
     - id: SpawnMobHumanRXBZZFlamer
+    - id: SpawnMobHumanRXBZZMedic
     - id: SpawnMobHumanRXBZZ
       amount: 4
 
@@ -141,7 +143,9 @@
   parent: BaseRXBZZ
   guaranteedSpawn:
     - id: SpawnMobHumanRXBZZBlobLeader
+    - id: SpawnMobHumanRXBZZMedic
+      amount: 2
     - id: SpawnMobHumanRXBZZFlamer
       amount: 2
     - id: SpawnMobHumanRXBZZ
-      amount: 5
+      amount: 4
