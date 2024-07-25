@@ -3882,7 +3882,6 @@
     netsync: false
     layers:
     - state: blastwave
-  - type: DeleteOnTrigger
   - type: DamageOnLand
     damage:
       types:
@@ -3914,17 +3913,15 @@
         - HighImpassable
         restitution: 0.3  # fite me
         friction: 0.2
-      fire:
+      ignition:
         hard: false
         density: 7
         shape:
           !type:PhysShapeAabb
            bounds: "-0.4,-0.4,0.4,0.4"
-        layer:
-        - MidImpassable
         mask:
         - BlobImpassable
-        - MidImpassable
+        - BulletImpassable
   - type: PointLight
     enabled: true
     color: "#FF8080"
@@ -3941,7 +3938,6 @@
   - type: IgniteOnCollide
     fireStacks: 1
     count: 100
-    fixtureId: fire
   - type: IgnitionSource
     temperature: 700
     ignited: true
