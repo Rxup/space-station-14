@@ -130,15 +130,22 @@ public sealed class BlobCoreActionSystem : EntitySystem
                 mobTile.GridIndices.Offset(Direction.North),
                 mobTile.GridIndices.Offset(Direction.South)
             };
-            var nearTile = mobAdjacentTiles.Select(indices=> _mapSystem.GetAnchoredEntities(gridUid.Value, grid, indices)
+
+            EntityUid? nearTile = null;
+            foreach (var indices in mobAdjacentTiles)
+            {
+                var uid = _mapSystem.GetAnchoredEntities(gridUid.Value, grid, indices)
                     .Where(_tileQuery.HasComponent)
-                    .FirstOrNull())
-                    .FirstOrDefault(x => x != null);
+                    .FirstOrNull();
 
-            if (nearTile == null || _tileQuery.GetComponent(nearTile.Value).Core == null)
-                return;
+                if (uid == null || CompOrNull<BlobTileComponent>(uid)?.Core == null)
+                    continue;
 
-            if (HasComp<DestructibleComponent>(target) && !HasComp<ItemComponent>(target) && !HasComp<SubFloorHideComponent>(target))
+                nearTile = uid;
+                break;
+            }
+
+            if (nearTile != null && HasComp<DestructibleComponent>(target) && !HasComp<ItemComponent>(target) && !HasComp<SubFloorHideComponent>(target))
             {
                 BlobTargetAttack(core, nearTile.Value, target.Value);
                 return;
@@ -193,11 +200,21 @@ public sealed class BlobCoreActionSystem : EntitySystem
             targetTile.GridIndices.Offset(Direction.South)
         };
 
-        var fromTile = adjacentTiles
-            .Select(indices=>_mapSystem.GetAnchoredEntities(gridUid.Value, grid, indices).FirstOrNull(_tileQuery.HasComponent))
-            .FirstOrDefault(x => x!=null);
+        EntityUid? fromTile = null;
+        foreach (var indices in adjacentTiles)
+        {
+            var uid = _mapSystem.GetAnchoredEntities(gridUid.Value, grid, indices)
+                .Where(_tileQuery.HasComponent)
+                .FirstOrNull();
 
-        if (fromTile == null || _tileQuery.GetComponent(fromTile.Value).Core == null)
+            if (uid == null || CompOrNull<BlobTileComponent>(uid)?.Core == null)
+                continue;
+
+            fromTile = uid;
+            break;
+        }
+
+        if (fromTile == null)
             return;
 
         var cost = core.Comp.NormalBlobCost;

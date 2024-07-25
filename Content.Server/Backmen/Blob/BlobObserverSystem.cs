@@ -375,9 +375,14 @@ public sealed class BlobObserverSystem : SharedBlobObserverSystem
         var newCore = EntityManager.SpawnEntity(blobCoreComponent.CoreBlobTile, args.Target);
         blobCoreComponent.CanSplit = false;
         if (TryComp<BlobCoreComponent>(newCore, out var newBlobCoreComponent))
+        {
             newBlobCoreComponent.CanSplit = false;
+            newBlobCoreComponent.BlobTiles = blobNodeComponent.ConnectedTiles;
+        }
         if (TryComp<BlobNodeComponent>(newCore, out var newBlobNodeComponent))
+        {
             newBlobNodeComponent.ConnectedTiles = blobNodeComponent.ConnectedTiles;
+        }
 
         args.Handled = true;
     }
