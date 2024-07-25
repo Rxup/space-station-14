@@ -20,6 +20,7 @@ using Content.Server.Backmen.GameTicking.Rules.Components;
 using Content.Server.Ghost.Roles.Components;
 using Content.Server.RandomMetadata;
 using Content.Shared.Backmen.CCVar;
+using Content.Shared.Ghost.Roles.Components;
 using Robust.Shared.Configuration;
 using Robust.Shared.Serialization.Manager;
 
