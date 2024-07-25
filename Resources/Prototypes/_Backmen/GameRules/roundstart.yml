@@ -15,8 +15,8 @@
   noSpawn: true
   components:
   - type: GameRule
-#    minPlayers: 10 
-    minPlayers: 15  #cats
+#    minPlayers: 15 
+    minPlayers: 10  #cats
   - type: BlobGameRule
 
 - type: entity
