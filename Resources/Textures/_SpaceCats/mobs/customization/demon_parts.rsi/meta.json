@@ -1,6 +1,7 @@
 {
   "version": 1,
   "license": "CC-BY-SA-3.0",
+  "copyright": "taken from https://github.com/fospas/space-station-15/blob/master/Resources/Textures/_Meowstation/Mobs/customization/demon_parts.rsi/meta.json, d_tail, d_tail_big_arrow modified by hiucko (github)",
   "size": {
     "x": 32,
     "y": 32
