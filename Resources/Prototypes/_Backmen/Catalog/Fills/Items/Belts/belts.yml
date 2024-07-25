@@ -309,6 +309,22 @@
 
 - type: entity
   noSpawn: true
+  parent: ClothingBeltMedicalMarine
+  id: ClothingBeltMedicalMarineRxbzz
+  components:
+    - type: StorageFill
+      contents:
+        - id: CombatMedipen
+          amount: 6
+        - id: EmergencyMedipen
+          amount: 2
+        - id: MedicatedSuture
+          amount: 3
+        - id: RegenerativeMesh
+          amount: 3
+
+- type: entity
+  noSpawn: true
   parent: ClothingBeltAmmo
   id: ClothingBeltERTWebbingSecurityTay39Filled
   components:

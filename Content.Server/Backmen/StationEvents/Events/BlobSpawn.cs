@@ -10,6 +10,7 @@ using Robust.Shared.Random;
 using Content.Server.StationEvents.Events;
 using Content.Shared.Backmen.Blob.Components;
 using Content.Shared.GameTicking.Components;
+using Content.Shared.Station.Components;
 using Robust.Server.Player;
 
 namespace Content.Server.Backmen.StationEvents.Events;

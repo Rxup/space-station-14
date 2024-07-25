@@ -173,6 +173,20 @@
 - type: entity
   noSpawn: true
   parent: ClothingBackpackDuffelMilitary
+  id: ClothingBackpackDuffelRXBZZMedic
+  components:
+    - type: StorageFill
+      contents:
+        - id: ArmySetLoadouts
+        - id: MedkitAdvancedRXBZZ
+        - id: BoxFlare
+        - id: MedkitCombatFilled
+        - id: MedkitCombatFilled
+        - id: Defibrillator
+
+- type: entity
+  noSpawn: true
+  parent: ClothingBackpackDuffelMilitary
   id: ClothingBackpackDuffelRockets
   components:
     - type: StorageFill

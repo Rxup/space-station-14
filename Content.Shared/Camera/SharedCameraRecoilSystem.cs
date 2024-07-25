@@ -1,4 +1,5 @@
 using System.Numerics;
+using Content.Shared.Backmen.CameraFollow.Components;
 using JetBrains.Annotations;
 using Robust.Shared.Network;
 using Robust.Shared.Serialization;
@@ -30,6 +31,7 @@ public abstract class SharedCameraRecoilSystem : EntitySystem
 
     [Dependency] private readonly SharedEyeSystem _eye = default!;
     [Dependency] private readonly INetManager _net = default!;
+
 
     public override void Initialize()
     {

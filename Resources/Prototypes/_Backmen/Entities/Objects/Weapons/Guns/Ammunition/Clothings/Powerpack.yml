@@ -1,0 +1,49 @@
+- type: entity
+  id: BasePowerpackRifle
+  name: "powerpack (5.56)"
+  parent: BaseItem
+  abstract: true
+  components:
+  - type: Tag
+    tags:
+      - PowerpackRifle
+  - type: Item
+    size: HeavyMachineGun
+  - type: Clothing
+    slots: BACK
+    sprite: Backmen/Clothing/Back/Powerpacks/backpack.rsi
+    equipDelay: 10
+    unequipDelay: 10
+  - type: BallisticAmmoProvider
+    mayTransfer: true
+    capacity: 5000
+  - type: ClothingSpeedModifier
+    walkModifier: 0.6
+    sprintModifier: 0.6
+  - type: ContainerContainer
+    containers:
+      ballistic-ammo: !type:Container
+  - type: Sprite
+    sprite: Backmen/Clothing/Back/Powerpacks/backpack.rsi
+    layers:
+    - state: mag-0
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: MagazineVisuals
+    magState: mag
+    steps: 2
+    zeroVisible: false
+  - type: Appearance
+
+# Fills
+- type: entity
+  id: PowerpackRifle
+  name: "powerpack (5.56)"
+  parent: BasePowerpackRifle
+  components:
+  - type: BallisticAmmoProvider
+    proto: CartridgeMinigun
+    whitelist:
+      tags:
+        - CartridgeHeavyRifle
