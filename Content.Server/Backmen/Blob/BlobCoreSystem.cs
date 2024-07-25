@@ -309,7 +309,7 @@ public sealed class BlobCoreSystem : SharedBlobCoreSystem
     public bool TransformBlobTile(
         EntityUid? oldTileUid,
         EntityUid coreTileUid,
-        EntityUid? nearNodeUid,
+        Entity<BlobNodeComponent>? nearNode,
         string newBlobTileProto,
         EntityCoordinates coordinates,
         BlobCoreComponent? blobCore = null,
@@ -318,6 +318,7 @@ public sealed class BlobCoreSystem : SharedBlobCoreSystem
     {
         if (!Resolve(coreTileUid, ref blobCore))
             return false;
+
         if (oldTileUid != null)
         {
             QueueDel(oldTileUid.Value);
@@ -325,20 +326,7 @@ public sealed class BlobCoreSystem : SharedBlobCoreSystem
         }
 
         var tileBlob = EntityManager.SpawnEntity(newBlobTileProto, coordinates);
-        var nodeComp = CompOrNull<BlobNodeComponent>(nearNodeUid);
-
-        if (nodeComp != null)
-        {
-            nodeComp.ConnectedTiles.Add(tileBlob);
-        }
-        else
-        {
-            if (!HasComp<BlobNodeComponent>(tileBlob))
-            {
-                Log.Error("Can't connect blob tile with node because node is null!");
-                return false;
-            }
-        }
+        nearNode?.Comp.ConnectedTiles.Add(tileBlob);
 
         if (_tile.TryGetComponent(tileBlob, out var blobTileComponent))
         {
@@ -409,28 +397,34 @@ public sealed class BlobCoreSystem : SharedBlobCoreSystem
     /// </summary>
     /// <param name="coords">The EntityCoordinates to check from.</param>
     /// <param name="radius">Radius to check from coords.</param>
-    /// <returns>Nearest blob node, null if wasn't founded.</returns>
-    public EntityUid? GetNearNode(
+    /// <returns>Nearest blob node with it's component, null if wasn't founded.</returns>
+    public Entity<BlobNodeComponent>? GetNearNode(
         EntityCoordinates coords,
         float radius = 3f)
     {
         var queryNode = GetEntityQuery<BlobNodeComponent>();
         var nearestDistance = float.MaxValue;
+        var nodeComponent = new BlobNodeComponent();
         EntityUid? nearestEntityUid = null;
 
         foreach (var lookupUid in _lookup.GetEntitiesInRange(coords, radius))
         {
-            if (!queryNode.HasComponent(lookupUid))
+            if (!queryNode.TryComp(lookupUid, out var nodeComp))
                 continue;
             var tileCords = Transform(lookupUid).Coordinates;
             var distance = Vector2.Distance(coords.Position, tileCords.Position);
 
             if (!(distance < nearestDistance))
                 continue;
+
             nearestDistance = distance;
             nearestEntityUid = lookupUid;
+            nodeComponent = nodeComp;
         }
 
-        return nearestDistance > radius ? null : nearestEntityUid;
+        if (nearestEntityUid == null)
+            return null;
+
+        return nearestDistance > radius ? null : (nearestEntityUid.Value, nodeComponent);
     }
 }
