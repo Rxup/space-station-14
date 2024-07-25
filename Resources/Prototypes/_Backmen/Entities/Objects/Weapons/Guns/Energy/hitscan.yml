@@ -1,181 +1,159 @@
 - type: entity
-  name: EarthGov laser carbine
-  description: A Earth Government standard issue laser carbine, use by army and police. Thanks to the short barrel it has better maneuverability in narrow spaces.
-  parent: BaseWeaponPowerCell
-  id: WeaponLaserCarabinCell
-  suffix: Rifle
+  name: X-01 multiphase energy gun
+  parent: BaseWeaponBatterySmall
+  id: WeaponMultiphaseEnergyGun
+  description: Nanotrasen's first attempt to remake the Antique Laser Gun. Has more firing modes on offer but lacks the ability to self-recharge.
   components:
   - type: Sprite
-    sprite: Backmen/Objects/Weapons/Gunsx64/Battery/EG-C/big.rsi
+    sprite: Backmen/Objects/Weapons/Guns/Energy/x01.rsi
     layers:
     - state: base
       map: ["enum.GunVisualLayers.Base"]
-    - state: mag-unshaded-2
+    - state: mag-unshaded-4
       map: ["enum.GunVisualLayers.MagUnshaded"]
       shader: unshaded
   - type: Clothing
-    sprite: Backmen/Objects/Weapons/Gunsx64/Battery/EG-C/tiny.rsi
-    quickEquip: false
-    slots:
-    - Back
-    - suitStorage
+    sprite: Backmen/Objects/Weapons/Guns/Energy/x01.rsi
+  - type: Gun
+    projectileSpeed: 75
   - type: Item
-    sprite: Backmen/Objects/Weapons/Gunsx64/Battery/EG-C/tiny.rsi
-    size: Large
+    size: SmallNormal
+  - type: ProjectileBatteryAmmoProvider
+    proto: X01Attack
+    fireCost: 100
+  - type: BatteryWeaponFireModes
+    fireModes:
+    - proto: X01Attack
+      fireCost: 100
+    - proto: BulletDisabler
+      fireCost: 75
+  - type: Battery
+    maxCharge: 1200
+    startingCharge: 1200
+  - type: MagazineVisuals
+    magState: mag
+    steps: 5
+    zeroVisible: true
+  - type: Appearance
+  - type: StaticPrice
+    price: 5750
+
+- type: entity
+  name: лазерная пуля
+  id: X01Attack
+  parent: EmitterBolt
+  noSpawn: true
+  components:
+  - type: Sprite
+    sprite: Backmen/Objects/Weapons/Guns/Energy/x01.rsi
+    layers:
+    - state: redtrac
+      shader: unshaded
+  - type: Projectile
+    damage:
+      types:
+        Heat: 22
+
+- type: entity
+  name: 45MW.TRG
+  parent: BaseWeaponBatterySmall
+  id: WeaponDominatorNT
+  description: Nanotrasen's first attempt to remake the Antique Laser Gun. Has more firing modes on offer but lacks the ability to self-recharge.
+  components:
+  - type: Sprite
+    sprite: Backmen/Objects/Weapons/Gunsx64/Battery/Dominator.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-unshaded-0
+      map: ["enum.GunVisualLayers.MagUnshaded"]
+      shader: unshaded
+  - type: Clothing
+    sprite: Backmen/Objects/Weapons/Gunsx64/Battery/Dominator.rsi
+  - type: Gun
+    fireRate: 2
+    projectileSpeed: 75
+    selectedMode: SemiAuto
+    availableModes:
+    - SemiAuto
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/laser.ogg
+  - type: Item
+    size: SmallNormal
+  - type: ProjectileBatteryAmmoProvider
+    proto: X01Attack
+    fireCost: 200
+  - type: BatteryWeaponFireModes
+    fireModes:
+    - proto: X01Attack
+      fireCost: 200
+    - proto: BulletDisabler
+      fireCost: 100
+  - type: Battery
+    maxCharge: 2400
+    startingCharge: 2400
+  - type: MagazineVisuals
+    magState: mag
+    steps: 1
+    zeroVisible: true
+  - type: Appearance
+  - type: StaticPrice
+    price: 60000
+
+- type: entity
+  name: 45MW.TRG Super
+  parent: WeaponDominatorNT
+  id: WeaponDisablerSuper
+  components:
+  - type: BatteryWeaponFireModes
+    fireModes:
+    - proto: X01Attack
+      fireCost: 10
+    - proto: BulletDisabler
+      fireCost: 10
+
+- type: entity
+  name: SWS Motorized Pulse Rifle
+  parent: BaseWeaponRifle
+  id: WeaponRifleSWS
+  description: The Pulse Rifle is the standard-issue service rifle of the Earth Defense Force and is also common among corporate security officers.
+  components:
+  - type: Sprite
+    sprite: Backmen/Objects/Weapons/Gunsx64/Battery/Pulse/sws/big.rsi
+    state: base
+  - type: Item
+    sprite: Backmen/Objects/Weapons/Gunsx64/Battery/Pulse/sws/tiny.rsi
+    size: Huge
+  - type: Clothing
+    sprite: Backmen/Objects/Weapons/Gunsx64/Battery/Pulse/sws/tiny.rsi
   - type: GunWieldBonus
-    minAngle: -6
+    minAngle: -23
     maxAngle: -44
   - type: Gun
-    minAngle: 7
+    minAngle: 24
     maxAngle: 45
-    fireRate: 5
-    selectedMode: SemiAuto
-    availableModes:
-    - SemiAuto
-    - FullAuto
+    fireRate: 8
     soundGunshot:
-      path: /Audio/Weapons/Guns64/EG-C/shot.ogg
-  - type: MagazineVisuals
-    magState: mag
-    steps: 3
-    zeroVisible: true
+      path: /Audio/Backmen/Weapons/Energy/giperperdesh.ogg
+      params:
+        volume: -1
   - type: ItemSlots
     slots:
       gun_magazine:
         name: Magazine
-        startingItem: EnergyMag
-        insertSound: /Audio/Weapons/Guns/MagIn/batrifle_magin.ogg
-        ejectSound: /Audio/Weapons/Guns/MagOut/batrifle_magout.ogg
+        startingItem: MagazinePulseRifleSWS
+        insertSound: /Audio/Weapons/Guns/MagIn/kinetic_reload.ogg
+        ejectSound: /Audio/Weapons/Guns/MagOut/lmg_magout.ogg
+        priority: 2
         whitelist:
           tags:
-            - EnergyMag
-  - type: Wieldable
-  - type: UseDelay
-    delay: 0.5
-
-- type: entity
-  name: EarthGov heavy laser rifle
-  parent: BaseWeaponPowerCell
-  id: WeaponEarthGovLaserSniperCell
-  suffix: Винтовка
-  description: A Earth Government heavy sniper rifle for a extended combat situation.
-  components:
-  - type: Sprite
-    sprite: Backmen/Objects/Weapons/Gunsx64/Battery/EG-S/big.rsi
-    layers:
-    - state: base
-      map: ["enum.GunVisualLayers.Base"]
-    - state: mag-unshaded-2
-      map: ["enum.GunVisualLayers.MagUnshaded"]
-      shader: unshaded
-  - type: Clothing
-    sprite: Backmen/Objects/Weapons/Gunsx64/Battery/EG-S/tiny.rsi
-    quickEquip: false
-    slots:
-    - Back
-    - suitStorage
-  - type: Item
-    sprite: Backmen/Objects/Weapons/Gunsx64/Battery/EG-S/tiny.rsi
-  - type: GunRequiresWield
-  - type: ClothingSpeedModifier
-    walkModifier: 1
-    sprintModifier: 0.8
-  - type: HeldSpeedModifier
-  - type: Gun
-    minAngle: 1
-    maxAngle: 10
-    fireRate: 1.5
-    selectedMode: SemiAuto
-    availableModes:
-    - SemiAuto
-    soundGunshot:
-      path: /Audio/Weapons/Guns64/EG-R/shot.ogg
-  - type: MagazineVisuals
-    magState: mag
-    steps: 3
-    zeroVisible: true
-  - type: ItemSlots
-    slots:
-      gun_magazine:
-        name: Magazine
-        startingItem: BigEnergyMag
-        insertSound: /Audio/Weapons/Guns/MagIn/batrifle_magin.ogg
-        ejectSound: /Audio/Weapons/Guns/MagOut/batrifle_magout.ogg
-        whitelist:
-          tags:
-            - BigEnergyMag
-  - type: Wieldable
-  - type: UseDelay
-    delay: 2.5
-
-- type: Tag
-  id: EnergyMag
-
-- type: entity
-  id: EnergyMag
-  name: energy magazine
-  description: Standart EarthGov type of energys magazines.
-  parent: BasePowerCell
-  components:
-  - type: Battery
-    maxCharge: 1000
-    startingCharge: 1000
-  - type: HitscanBatteryAmmoProvider
-    proto: RedLaser
-    fireCost: 50
-  - type: Tag
-    tags:
-      - EnergyMag
-  - type: Item
-    size: Small
-    sprite: Backmen/test/base/rsi/Textures/wahastaff/lasgunMag.rsi
-  - type: Sprite
-    netsync: false
-    sprite: Backmen/test/base/rsi/Textures/wahastaff/lasgunMag.rsi
-    layers:
-    - state: base
-      map: ["enum.GunVisualLayers.Base"]
-    - state: mag-1
-      map: ["enum.GunVisualLayers.Mag"]
-      shader: unshaded
-  - type: MagazineVisuals
-    magState: mag
-    steps: 2
-    zeroVisible: false
+            - MagazinePulseRifleSWS
+  - type: ChamberMagazineAmmoProvider
+    boltClosed: null
+  - type: MagazineAmmoProvider
+  - type: ContainerContainer
+    containers:
+      gun_magazine: !type:ContainerSlot
+      gun_chamber: !type:ContainerSlot
   - type: Appearance
-
-- type: Tag
-  id: BigEnergyMag
-
-- type: entity
-  id: BigEnergyMag
-  name: big energy magazine
-  description: Standart EarthGov type of energys magazines.
-  parent: BasePowerCell
-  components:
-  - type: Battery
-    maxCharge: 1500
-    startingCharge: 1500
-  - type: HitscanBatteryAmmoProvider
-    proto: RedHeavyLaser
-    fireCost: 100
-  - type: Tag
-    tags:
-      - BigEnergyMag
-  - type: Item
-    size: Small
-    sprite: Backmen/test/base/rsi/Textures/wahastaff/lasgunMag.rsi
-  - type: Sprite
-    netsync: false
-    sprite: Backmen/test/base/rsi/Textures/wahastaff/lasgunMag.rsi
-    layers:
-    - state: base
-      map: ["enum.GunVisualLayers.Base"]
-    - state: mag-1
-      map: ["enum.GunVisualLayers.Mag"]
-      shader: unshaded
-  - type: MagazineVisuals
-    magState: mag
-    steps: 2
-    zeroVisible: false
-  - type: Appearance
+  - type: Wieldable

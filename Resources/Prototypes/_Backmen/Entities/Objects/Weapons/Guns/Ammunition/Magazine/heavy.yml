@@ -1,0 +1,131 @@
+- type: entity
+  id: BaseMagazineHeavyRifle50
+  name: "magazine (.50 BMG)"
+  parent: BaseItem
+  abstract: true
+  components:
+  - type: Tag
+    tags:
+      - MagazineHeavyRifle
+  - type: Item
+    size: Normal
+  - type: BallisticAmmoProvider
+    mayTransfer: true
+    capacity: 200
+    whitelist:
+      tags:
+        - CartridgeAntiMateriel
+  - type: ContainerContainer
+    containers:
+      ballistic-ammo: !type:Container
+  - type: Sprite
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: MagazineVisuals
+    magState: mag
+    steps: 2
+    zeroVisible: false
+  - type: Appearance
+
+- type: entity
+  id: MagazineHeavyRifleMaDeuse
+  name: "magazine (.50 BMG)"
+  parent: BaseMagazineHeavyRifle50
+  components:
+  - type: BallisticAmmoProvider
+    proto: CartridgeAntiMateriel
+  - type: Sprite
+    sprite: Backmen/Objects/Weapons/Gunsx64/Magazines/Heavy/v41.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+
+- type: entity
+  id: MagazineHeavyRifleV41
+  name: "magazine (.20 rifle)"
+  parent: BaseMagazineHeavyRifle50
+  components:
+  - type: BallisticAmmoProvider
+    proto: CartridgeRifle
+    capacity: 200
+    whitelist:
+      tags:
+        - CartridgeRifle
+  - type: Sprite
+    sprite: Backmen/Objects/Weapons/Gunsx64/Magazines/Heavy/v41.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+
+- type: entity
+  id: MagazineHeavyMachineGunDrum
+  name: Drum magazine (.25 caseless)
+  parent: BaseItem
+  components:
+  - type: Tag
+    tags:
+      - MagazineHeavyMachineGunDrum
+  - type: BallisticAmmoProvider
+    mayTransfer: true
+    proto: CartridgeCaselessRifle
+    whitelist:
+      tags:
+        - CartridgeCaselessRifle
+    capacity: 200
+  - type: Item
+    size: Huge
+  - type: ContainerContainer
+    containers:
+      ballistic-ammo: !type:Container
+  - type: Sprite
+    sprite: Backmen/Objects/Weapons/Gunsx64/Magazines/Heavy/mg42.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: MagazineVisuals
+    magState: mag
+    steps: 2
+    zeroVisible: false
+  - type: Appearance
+
+- type: entity
+  id: MagazineLightMachineGunDrum
+  name: Drum magazine (.20 винтовочный)
+  parent: BaseItem
+  components:
+  - type: Tag
+    tags:
+      - MagazineLightMachineGunDrum
+  - type: BallisticAmmoProvider
+    mayTransfer: true
+    proto: CartridgeRifle
+    whitelist:
+      tags:
+        - CartridgeRifle
+    capacity: 250
+  - type: Item
+    size: Small
+  - type: ContainerContainer
+    containers:
+      ballistic-ammo: !type:Container
+  - type: Sprite
+    sprite: Backmen/Objects/Weapons/Gunsx64/Magazines/Heavy/mg60.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: MagazineVisuals
+    magState: mag
+    steps: 2
+    zeroVisible: false
+  - type: Appearance
