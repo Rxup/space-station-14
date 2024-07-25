@@ -378,6 +378,7 @@ public sealed class BlobObserverSystem : SharedBlobObserverSystem
         {
             newBlobCoreComponent.CanSplit = false;
             newBlobCoreComponent.BlobTiles = blobNodeComponent.ConnectedTiles;
+            newBlobCoreComponent.BlobTiles.Add(newCore);
         }
         if (TryComp<BlobNodeComponent>(newCore, out var newBlobNodeComponent))
         {
@@ -386,7 +387,6 @@ public sealed class BlobObserverSystem : SharedBlobObserverSystem
 
         args.Handled = true;
     }
-
 
     private void OnSwapCore(EntityUid uid,
         BlobCoreComponent blobCoreComponent,
@@ -434,13 +434,15 @@ public sealed class BlobObserverSystem : SharedBlobObserverSystem
             return;
         }
 
-        // Swap BlobNode components of core and node.
-        /*var nodeNodeComp = EnsureComp<BlobNodeComponent>(blobTile.Value);
+        // Get core's and node's BlobNodeComponent
+        var nodeNodeComp = EnsureComp<BlobNodeComponent>(blobTile.Value);
         var coreNodeComp = EnsureComp<BlobNodeComponent>(uid);
-        RemComp<BlobNodeComponent>(blobTile.Value);
-        RemComp<BlobNodeComponent>(uid);
-        AddComp(blobTile.Value, coreNodeComp);
-        AddComp(uid, nodeNodeComp);*/
+        // Swap HashSets
+        var nodeNodeTiles = coreNodeComp.ConnectedTiles;
+        var coreNodeTiles = nodeNodeComp.ConnectedTiles;
+        // Add HashSets through hash vars
+        nodeNodeComp.ConnectedTiles = nodeNodeTiles;
+        coreNodeComp.ConnectedTiles = coreNodeTiles;
 
         // Swap positions of blob's core and node.
         var nodePos = Transform(blobTile.Value).Coordinates;

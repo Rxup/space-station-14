@@ -110,12 +110,8 @@ public sealed class BlobCoreActionSystem : EntitySystem
             !HasComp<BlobMobComponent>(args.Target))
         {
             // This allows blob to attack dead blob tiles.
-            if (_tileQuery.HasComponent(args.Target))
-            {
-                var tileComp = _tileQuery.GetComponent(args.Target.Value);
-                if (tileComp.Core != null)
-                    return;
-            }
+            if (_tileQuery.TryComp(args.Target.Value, out var tileComp) && tileComp.Core != null)
+                return;
 
             var target = args.Target;
 
