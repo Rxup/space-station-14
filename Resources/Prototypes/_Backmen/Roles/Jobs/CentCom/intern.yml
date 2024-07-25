@@ -14,13 +14,16 @@
   requirements:
     - !type:DepartmentTimeRequirement
       department: Engineering
-      time: 108000
+#      time: 108000
+      time: 23000    #cats
     - !type:DepartmentTimeRequirement
       department: Medical
-      time: 108000
+#      time: 108000
+      time: 23000   #cats
     - !type:DepartmentTimeRequirement
       department: Civilian
-      time: 108000
+#      time: 108000
+      time: 23000   #cats
   access:
     - CentralCommand
     - Service
