@@ -8,7 +8,7 @@
 
 - type: entity
   id: BaseCartridgeRifleHeavy
-  name: cartridge (.62 rifle)
+  name: патон (.62 винтовочный)
   parent: BaseCartridge
   abstract: true
   components:
@@ -31,7 +31,7 @@
 
 - type: entity
   id: CartridgeRifleHeavy
-  name: cartridge (.62 rifle)
+  name: патрон (.62 винтовочный)
   parent: BaseCartridgeRifleHeavy
   components:
   - type: Sprite
@@ -68,7 +68,7 @@
 
 - type: entity
   id: CartridgeRifleRocket20
-  name: cartridge (рельсотрон)
+  name: патрон (рельсотрон)
   parent: BaseCartridgeRifleRocket20
   components:
   - type: Sprite
@@ -82,7 +82,7 @@
 
 - type: entity
   id: BaseCartridgeRifleLightSniper
-  name: cartridge (7,62 rifle)
+  name: патрон (.7,62 винтовочный)
   parent: BaseCartridge
   abstract: true
   components:
@@ -105,7 +105,7 @@
 
 - type: entity
   id: CartridgeRifleLight762
-  name: cartridge (7,62 rifle)
+  name: патрон (.7,62 винтовочный)
   parent: BaseCartridgeRifleLightSniper
   components:
   - type: Sprite

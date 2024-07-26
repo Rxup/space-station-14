@@ -1,6 +1,6 @@
 - type: entity
   id: BasePowerpackRifle
-  name: "powerpack (5.56)"
+  name: силовой агрегат (5.56)
   parent: BaseItem
   abstract: true
   components:
@@ -39,7 +39,7 @@
 # Fills
 - type: entity
   id: PowerpackRifle
-  name: "powerpack (5.56)"
+  name: силовой агрегат (5.56)
   parent: BasePowerpackRifle
   components:
   - type: BallisticAmmoProvider
