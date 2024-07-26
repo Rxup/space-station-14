@@ -122,7 +122,7 @@
       sprite: Backmen/Clothing/Uniforms/Costume/gakuran.rsi
     - type: Clothing
       sprite: Backmen/Clothing/Uniforms/Costume/gakuran.rsi
-      femaleMask: NoMask
+      #femaleMask: NoMask
 
 - type: entity
   parent: ClothingUniformSkirtBase
@@ -189,7 +189,7 @@
     sprite: Backmen/Clothing/Uniforms/Costume/kimono-green.rsi
   - type: Clothing
     sprite: Backmen/Clothing/Uniforms/Costume/kimono-green.rsi
-    
+
 - type: entity
   parent: ClothingUniformSkirtBase
   id: ClothingUniformKendoHakama

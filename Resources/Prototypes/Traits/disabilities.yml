@@ -49,19 +49,6 @@
       durationOfIncident: 10, 30
 
 - type: trait
-  id: Pacifist
-  name: trait-pacifist-name
-  blacklist:
-    components:
-      - BSSDrone #backmen: bssdrone
-      - StationAI # backmen: AI
-      - BorgChassis
-  description: trait-pacifist-desc
-  category: Disabilities
-  components:
-    - type: Pacified
-
-- type: trait
   id: Unrevivable
   name: trait-unrevivable-name
   description: trait-unrevivable-desc
@@ -88,20 +75,6 @@
     - type: Muted
 
 - type: trait
-  id: LightweightDrunk
-  name: trait-lightweight-name
-  description: trait-lightweight-desc
-  category: Disabilities
-  blacklist:
-    components:
-    - BSSDrone #backmen: bssdrone
-    - StationAI # backmen: AI
-    - BorgChassis
-  components:
-    - type: LightweightDrunk
-      boozeStrengthMultiplier: 2
-
-- type: trait
   id: Paracusia
   name: trait-paracusia-name
   description: trait-paracusia-desc
@@ -118,31 +91,3 @@
       maxSoundDistance: 7
       sounds:
         collection: Paracusia
-
-#- type: trait
-#  id: WheelchairBound
-#  name: trait-wheelchair-bound-name
-#  description: trait-wheelchair-bound-desc
-#  blacklist:
-#    components:
-#      - Felinid
-#      - BSSDrone #backmen: bssdrone
-#      - StationAI # backmen: AI
-#      - BorgChassis
-#  components:
-#    - type: BuckleOnMapInit
-#      prototype: VehicleWheelchair
-#    - type: LegsParalyzed
-
-- type: trait
-  id: Snoring
-  name: trait-snoring-name
-  description: trait-snoring-desc
-  category: Disabilities
-  blacklist:
-    components:
-    - BSSDrone #backmen: bssdrone
-    - StationAI # backmen: AI
-    - BorgChassis
-  components:
-    - type: Snoring
