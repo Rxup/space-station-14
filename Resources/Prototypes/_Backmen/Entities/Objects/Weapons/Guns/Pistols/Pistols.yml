@@ -133,7 +133,7 @@
   parent: BaseWeaponPistol
   id: WeaponPistolDEagle
   suffix: Пистолет
-  description: "Магнум" с патронником калибра .50AE, который обладает серьезной отдачей. На этом пистолете выгравировано - Мир благодаря превосходной огневой мощи
+  description: Магнум с патронником калибра .50AE, который обладает серьезной отдачей. На этом пистолете выгравировано - Мир благодаря превосходной огневой мощи.
   components:
   - type: Sprite
     sprite: Backmen/Objects/Weapons/Gunsx64/Pistols/deagle/big.rsi
