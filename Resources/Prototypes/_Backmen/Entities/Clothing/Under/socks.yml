@@ -228,9 +228,7 @@
   parent: ClothingUnderSocksBase
   id: ClothingUnderChristmas_thigh
   name: рождественские колготки до бедра
-  description: Пара весёлых колготок до бедра, идеально подходящих для создания праздничного настро
-
-ения от колен до бедер.
+  description: Пара весёлых колготок до бедра, идеально подходящих для создания праздничного настроения от колен до бедер.
   suffix: Носки
   components:
     - type: Sprite
