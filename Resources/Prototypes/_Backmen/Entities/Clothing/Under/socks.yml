@@ -1,4 +1,19 @@
 - type: entity
+  abstract: true
+  description: Знаете ли вы, что эти вещи бывают разных цветов??
+  parent: Clothing
+  id: ClothingUnderSocksBase
+  components:
+    - type: Clothing
+      slots:
+        - SOCKS
+    - type: Sprite
+      # noRot: true
+      state: icon
+    - type: TemperatureProtection
+      coefficient: 0.90
+
+- type: entity
   parent: ClothingUnderSocksBase
   id: ClothingUnderAssBlastUSA_knee
   name: колготки с американским флагом
