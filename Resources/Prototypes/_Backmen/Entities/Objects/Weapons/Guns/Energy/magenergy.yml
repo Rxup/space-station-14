@@ -1,6 +1,6 @@
 - type: entity
   name: EarthGov laser carbine
-  description: A Earth Government standard issue laser carbine, use by army and police. Thanks to the short barrel it has better maneuverability in narrow spaces.
+  description: Стандартный лазерный карабин правительства Земли, используемый армией и полицией. Благодаря короткому стволу он обладает лучшей маневренностью в узких пространствах.
   parent: BaseWeaponPowerCell
   id: WeaponLaserCarabinCell
   suffix: Rifle
@@ -58,7 +58,7 @@
   parent: BaseWeaponPowerCell
   id: WeaponEarthGovLaserSniperCell
   suffix: Винтовка
-  description: A Earth Government heavy sniper rifle for a extended combat situation.
+  description: Тяжелая снайперская винтовка правительства Земли для длительных боевых действий.
   components:
   - type: Sprite
     sprite: Backmen/Objects/Weapons/Gunsx64/Battery/EG-S/big.rsi
@@ -116,7 +116,7 @@
 - type: entity
   id: EnergyMag
   name: energy magazine
-  description: Standart EarthGov type of energys magazines.
+  description: Стандартные энергетические магазины земного типа.
   parent: BasePowerCell
   components:
   - type: Battery
@@ -152,7 +152,7 @@
 - type: entity
   id: BigEnergyMag
   name: big energy magazine
-  description: Standart EarthGov type of energys magazines.
+  description: Стандартные энергетические магазины земного типа.
   parent: BasePowerCell
   components:
   - type: Battery

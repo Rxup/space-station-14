@@ -3,7 +3,7 @@
   parent: BaseWeaponLightMachineGun
   id: WeaponLightMachineGunRPD
   suffix: Пулемёт
-  description: A cheap and robust machinegun, sometimes better known as an 'RPD'. Despite lacking attachment points beyond its underbarrel, remains a popular product on the black market with its cheap cost, high capacity and higher than usual caliber rounds.
+  description: Дешевый и надежный ручной пулемет, иногда более известный как "РПД". Несмотря на отсутствие точек крепления за днищем ствола, он остается популярным продуктом на черном рынке благодаря низкой стоимости, большой емкости и патронам более высокого калибра, чем обычно.
   components:
   - type: Sprite
     sprite: Backmen/Objects/Weapons/Gunsx64/LMGs/rpd/big.rsi
@@ -72,7 +72,7 @@
   parent: BaseWeaponLightMachineGun
   id: WeaponLightMachineGunMG60
   suffix: Пулемёт
-  description: The Raummetall MG-60 general purpose machinegun is the EarthGov Army's current standard GPMG. Though usually seen mounted on vehicles, it is sometimes used by infantry to hold chokepoints or suppress enemies, or in rare cases for marching fire.
+  description: Пулемет общего назначения Raummetall MG-60 является текущим стандартом вооружения армии правительства Земли. Хотя его обычно можно увидеть установленным на транспортных средствах, иногда он используется пехотой для удержания контрольных точек или подавления врагов, а в редких случаях - для ведения огня на марше.
   components:
   - type: Sprite
     sprite: Backmen/Objects/Weapons/Gunsx64/LMGs/t42/big.rsi
@@ -141,7 +141,7 @@
   parent: BaseWeaponRifle
   id: WeaponRifleM41
   suffix: Пулемёт
-  description: The M-41 is a large man portable machine, allowing for sustained, accurate suppressive firepower at the cost of mobility and handling. Commonly seen where their preferred tactics of fast, mobile aggression is ill suited.
+  description: M-41 - это крупногабаритный переносной пулемет, обеспечивающий устойчивую и точную огневую мощь за счет мобильности и управляемости. Часто встречается там, где их предпочтительная тактика быстрой и мобильной агрессии не подходит.
   components:
   - type: Sprite
     sprite: Backmen/Objects/Weapons/Gunsx64/LMGs/v41/big.rsi
