@@ -237,9 +237,7 @@
       sprite: Backmen/Clothing/Under/underpants.rsi
       clothingVisuals:
         underpants:
-         
-
- - state: panties_assblastusa
+          - state: panties_assblastusa
 
 - type: entity
   parent: ClothingUnderPantsBase
