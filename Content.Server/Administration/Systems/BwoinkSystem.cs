@@ -6,11 +6,9 @@ using System.Text.Json.Nodes;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using Content.Server.Administration.Managers;
-using Content.Server.Backmen.Administration.Bwoink.Gpt;
 using Content.Server.Afk;
 using Content.Server.Discord;
 using Content.Server.GameTicking;
-using Content.Server.Players.RateLimiting;
 using Content.Shared.Administration;
 using Content.Shared.CCVar;
 using Content.Shared.Mind;
@@ -23,14 +21,15 @@ using Robust.Shared.Network;
 using Robust.Shared.Player;
 using Robust.Shared.Timing;
 using Robust.Shared.Utility;
+using Robust.Shared.Console;
+using Content.Server.Administration.Commands;
+
 
 namespace Content.Server.Administration.Systems
 {
     [UsedImplicitly]
-    public sealed partial class BwoinkSystem : SharedBwoinkSystem
+    public sealed class BwoinkSystem : SharedBwoinkSystem
     {
-        private const string RateLimitKey = "AdminHelp";
-
         [Dependency] private readonly IPlayerManager _playerManager = default!;
         [Dependency] private readonly IAdminManager _adminManager = default!;
         [Dependency] private readonly IConfigurationManager _config = default!;
@@ -39,10 +38,6 @@ namespace Content.Server.Administration.Systems
         [Dependency] private readonly GameTicker _gameTicker = default!;
         [Dependency] private readonly SharedMindSystem _minds = default!;
         [Dependency] private readonly IAfkManager _afkManager = default!;
-        [Dependency] private readonly PlayerRateLimitManager _rateLimit = default!;
-
-        [GeneratedRegex(@"^https://discord\.com/api/webhooks/(\d+)/((?!.*/).*)$")]
-        private static partial Regex DiscordRegex();
 
         private ISawmill _sawmill = default!;
         private readonly HttpClient _httpClient = new();
@@ -74,33 +69,17 @@ namespace Content.Server.Administration.Systems
         public override void Initialize()
         {
             base.Initialize();
-            Subs.CVar(_config, CCVars.DiscordAHelpWebhook, OnWebhookChanged, true);
-            Subs.CVar(_config, CCVars.DiscordAHelpFooterIcon, OnFooterIconChanged, true);
-            Subs.CVar(_config, CCVars.DiscordAHelpAvatar, OnAvatarChanged, true);
-            Subs.CVar(_config, CVars.GameHostName, OnServerNameChanged, true);
-            Subs.CVar(_config, CCVars.AdminAhelpOverrideClientName, OnOverrideChanged, true);
+            _config.OnValueChanged(CCVars.DiscordAHelpWebhook, OnWebhookChanged, true);
+            _config.OnValueChanged(CCVars.DiscordAHelpFooterIcon, OnFooterIconChanged, true);
+            _config.OnValueChanged(CCVars.DiscordAHelpAvatar, OnAvatarChanged, true);
+            _config.OnValueChanged(CVars.GameHostName, OnServerNameChanged, true);
+            _config.OnValueChanged(CCVars.AdminAhelpOverrideClientName, OnOverrideChanged, true);
             _sawmill = IoCManager.Resolve<ILogManager>().GetSawmill("AHELP");
-            _maxAdditionalChars = GenerateAHelpMessage("", "", true, _gameTicker.RoundDuration().ToString("hh\\:mm\\:ss"), _gameTicker.RunLevel, playedSound: false).Length;
+            _maxAdditionalChars = GenerateAHelpMessage("", "", true, _gameTicker.RoundDuration().ToString("hh\\:mm\\:ss"), _gameTicker.RunLevel).Length;
             _playerManager.PlayerStatusChanged += OnPlayerStatusChanged;
 
             SubscribeLocalEvent<GameRunLevelChangedEvent>(OnGameRunLevelChanged);
             SubscribeNetworkEvent<BwoinkClientTypingUpdated>(OnClientTypingUpdated);
-
-            _rateLimit.Register(
-                RateLimitKey,
-                new RateLimitRegistration
-                {
-                    CVarLimitPeriodLength = CCVars.AhelpRateLimitPeriod,
-                    CVarLimitCount = CCVars.AhelpRateLimitCount,
-                    PlayerLimitedAction = PlayerRateLimitedAction
-                });
-        }
-
-        private void PlayerRateLimitedAction(ICommonSession obj)
-        {
-            RaiseNetworkEvent(
-                new BwoinkTextMessage(obj.UserId, default, Loc.GetString("bwoink-system-rate-limited"), playSound: false),
-                obj.Channel);
         }
 
         private void OnOverrideChanged(string obj)
@@ -171,6 +150,15 @@ namespace Content.Server.Administration.Systems
             _serverName = obj;
         }
 
+        public override void Shutdown()
+        {
+            base.Shutdown();
+            _config.UnsubValueChanged(CCVars.DiscordAHelpWebhook, OnWebhookChanged);
+            _config.UnsubValueChanged(CCVars.DiscordAHelpFooterIcon, OnFooterIconChanged);
+            _config.UnsubValueChanged(CVars.GameHostName, OnServerNameChanged);
+            _config.UnsubValueChanged(CCVars.AdminAhelpOverrideClientName, OnOverrideChanged);
+        }
+
         private async void OnWebhookChanged(string url)
         {
             _webhookUrl = url;
@@ -181,7 +169,7 @@ namespace Content.Server.Administration.Systems
                 return;
 
             // Basic sanity check and capturing webhook ID and token
-            var match = DiscordRegex().Match(url);
+            var match = Regex.Match(url, @"^https://discord\.com/api/webhooks/(\d+)/((?!.*/).*)$");
 
             if (!match.Success)
             {
@@ -416,31 +404,24 @@ namespace Content.Server.Administration.Systems
                 return;
             }
 
-            if (_rateLimit.CountAction(eventArgs.SenderSession, RateLimitKey) != RateLimitStatus.Allowed)
-                return;
-
             var escapedText = FormattedMessage.EscapeText(message.Text);
 
             string bwoinkText;
 
             if (senderAdmin is not null && senderAdmin.Flags == AdminFlags.Adminhelp) // Mentor. Not full admin. That's why it's colored differently.
             {
-                bwoinkText = $"[color=purple]{senderSession.Name}[/color]";
+                bwoinkText = $"[color=purple]{senderSession.Name}[/color]: {escapedText}";
             }
             else if (senderAdmin is not null && senderAdmin.HasFlag(AdminFlags.Adminhelp))
             {
-                bwoinkText = $"[color=red]{senderSession.Name}[/color]";
+                bwoinkText = $"\\[{senderAdmin.Title}\\] [color=red]{senderSession.Name}[/color]: {escapedText}"; // сообщение админа
             }
             else
             {
-                bwoinkText = $"{senderSession.Name}";
+                bwoinkText = $"{senderSession.Name}: {escapedText}";
             }
 
-            bwoinkText = $"{(message.PlaySound ? "" : "(S) ")}{bwoinkText}: {escapedText}";
-
-            // If it's not an admin / admin chooses to keep the sound then play it.
-            var playSound = !senderAHelpAdmin || message.PlaySound;
-            var msg = new BwoinkTextMessage(message.UserId, senderSession.UserId, bwoinkText, playSound: playSound);
+            var msg = new BwoinkTextMessage(message.UserId, senderSession.UserId, bwoinkText);
 
             LogBwoink(msg);
 
@@ -464,20 +445,18 @@ namespace Content.Server.Administration.Systems
                         // Doing the same thing as above, but with the override name. Theres probably a better way to do this.
                         if (senderAdmin is not null && senderAdmin.Flags == AdminFlags.Adminhelp) // Mentor. Not full admin. That's why it's colored differently.
                         {
-                            overrideMsgText = $"[color=purple]{_overrideClientName}[/color]";
+                            overrideMsgText = $"[color=purple]{_overrideClientName}[/color]: {escapedText}";
                         }
                         else if (senderAdmin is not null && senderAdmin.HasFlag(AdminFlags.Adminhelp))
                         {
-                            overrideMsgText = $"[color=red]{_overrideClientName}[/color]";
+                            overrideMsgText = $"[color=red]{_overrideClientName}[/color]: {escapedText}";
                         }
                         else
                         {
-                            overrideMsgText = $"{senderSession.Name}"; // Not an admin, name is not overridden.
+                            overrideMsgText = $"{senderSession.Name}: {escapedText}"; // Not an admin, name is not overridden.
                         }
 
-                        overrideMsgText = $"{(message.PlaySound ? "" : "(S) ")}{overrideMsgText}: {escapedText}";
-
-                        RaiseNetworkEvent(new BwoinkTextMessage(message.UserId, senderSession.UserId, overrideMsgText, playSound: playSound), session.Channel);
+                        RaiseNetworkEvent(new BwoinkTextMessage(message.UserId, senderSession.UserId, overrideMsgText), session.Channel);
                     }
                     else
                         RaiseNetworkEvent(msg, session.Channel);
@@ -498,10 +477,8 @@ namespace Content.Server.Administration.Systems
                     str = str[..(DescriptionMax - _maxAdditionalChars - unameLength)];
                 }
                 var nonAfkAdmins = GetNonAfkAdmins();
-                _messageQueues[msg.UserId].Enqueue(GenerateAHelpMessage(senderSession.Name, str, !personalChannel, _gameTicker.RoundDuration().ToString("hh\\:mm\\:ss"), _gameTicker.RunLevel, playedSound: playSound, noReceivers: nonAfkAdmins.Count == 0));
+                _messageQueues[msg.UserId].Enqueue(GenerateAHelpMessage(senderSession.Name, str, !personalChannel, _gameTicker.RoundDuration().ToString("hh\\:mm\\:ss"), _gameTicker.RunLevel, nonAfkAdmins.Count == 0));
             }
-
-            EntityManager.SystemOrNull<GptAhelpSystem>()?.AddUserMessage(message.UserId, personalChannel, escapedText); // backmen: gpt
 
             if (admins.Count != 0 || sendsWebhook)
                 return;
@@ -528,7 +505,7 @@ namespace Content.Server.Administration.Systems
                 .ToList();
         }
 
-        private static string GenerateAHelpMessage(string username, string message, bool admin, string roundTime, GameRunLevel roundState, bool playedSound, bool noReceivers = false)
+        private static string GenerateAHelpMessage(string username, string message, bool admin, string roundTime, GameRunLevel roundState, bool noReceivers = false)
         {
             var stringbuilder = new StringBuilder();
 
@@ -541,12 +518,9 @@ namespace Content.Server.Administration.Systems
 
             if(roundTime != string.Empty && roundState == GameRunLevel.InRound)
                 stringbuilder.Append($" **{roundTime}**");
-            if (!playedSound)
-                stringbuilder.Append(" **(S)**");
             stringbuilder.Append($" **{username}:** ");
             stringbuilder.Append(message);
             return stringbuilder.ToString();
         }
     }
 }
-
