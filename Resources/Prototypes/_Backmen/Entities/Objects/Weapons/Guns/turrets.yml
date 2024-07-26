@@ -11,7 +11,7 @@
   parent: BaseStructure
   id: WeaponTurretBaseLaser
   name: laser turret
-  description: Automatic turret of laser destruction, with a self-charging battery inside.
+  description: Автоматическая турель лазерного поражения с самозарядной батареей внутри.
   abstract: true
   components:
     - type: Clickable
