@@ -1,6 +1,6 @@
 - type: entity
   abstract: true
-  description: Пусть ваши интимные места будут в полном уюте!.
+  description: Keep your private parts all cozy!
   parent: Clothing
   id: ClothingUnderPantsBase
   components:
@@ -16,9 +16,8 @@
 - type: entity
   parent: ClothingUnderPantsBase
   id: ClothingUnderbee_shorts
-  name: шорты с пчелами
-  description: Пара шорт с пчелами, отличный выбор для летнего дня.
-  suffix: Трусы
+  name: bee shorts
+  description: "A pair of bee shorts, the buzz-worthy choice for a summer day."
   components:
     - type: Sprite
       sprite: Backmen/Clothing/Under/underpants.rsi
@@ -32,9 +31,8 @@
 - type: entity
   parent: ClothingUnderPantsBase
   id: ClothingUnderboxer_briefs
-  name: боксеры
-  description: Пара боксеров, идеальное сочетание комфорта и поддержки.
-  suffix: Трусы
+  name: boxer briefs
+  description: "A pair of boxer briefs, the perfect blend of comfort and support."
   components:
     - type: Sprite
       sprite: Backmen/Clothing/Under/underpants.rsi
@@ -48,9 +46,8 @@
 - type: entity
   parent: ClothingUnderPantsBase
   id: ClothingUnderboxers_assblastusa
-  name: боксеры с американским флагом
-  description: Пара боксеров с американским флагом, демонстрирующих вашу патриотическую натуру со звездами и полосами.
-  suffix: Трусы
+  name: american flag boxers
+  description: "A pair of American Flag boxers, showing off your patriotic spirit with stars and stripes."
   components:
     - type: Sprite
       sprite: Backmen/Clothing/Under/underpants.rsi
@@ -64,9 +61,8 @@
 - type: entity
   parent: ClothingUnderPantsBase
   id: ClothingUnderboxers_commie
-  name: боксеры с коммунистической символикой
-  description: Пара боксеров с коммунистическим дизайном, для тех, кто хочет выразить свои политические взгляды.
-  suffix: Трусы
+  name: commie boxers
+  description: "A pair of Commie boxers, making a political statement in your pants."
   components:
     - type: Sprite
       sprite: Backmen/Clothing/Under/underpants.rsi
@@ -80,9 +76,8 @@
 - type: entity
   parent: ClothingUnderPantsBase
   id: ClothingUnderboxers_heart
-  name: боксеры с сердцем
-  description: Пара боксеров с рисунком сердца, романтический жест для вашей второй половинки.
-  suffix: Трусы
+  name: heart boxers
+  description: "A pair of Heart boxers, a love letter to your significant other written on your underwear."
   components:
     - type: Sprite
       sprite: Backmen/Clothing/Under/underpants.rsi
@@ -96,9 +91,8 @@
 - type: entity
   parent: ClothingUnderPantsBase
   id: ClothingUnderboxers_striped
-  name: боксеры в полоску
-  description: Пара боксеров с классическим узором в полоску.
-  suffix: Трусы
+  name: striped boxers
+  description: "A pair of Striped boxers, featuring a classic pattern."
   components:
     - type: Sprite
       sprite: Backmen/Clothing/Under/underpants.rsi
@@ -112,9 +106,8 @@
 - type: entity
   parent: ClothingUnderPantsBase
   id: ClothingUnderboxers_uk
-  name: боксеры с флагом Великобритании
-  description: Пара боксеров с флагом Великобритании, демонстрирующих вашу британскую принадлежность со стилем.
-  suffix: Трусы
+  name: union jack boxers
+  description: "A pair of Union Jack boxers, representing your British heritage with style."
   components:
     - type: Sprite
       sprite: Backmen/Clothing/Under/underpants.rsi
@@ -128,9 +121,8 @@
 - type: entity
   parent: ClothingUnderPantsBase
   id: ClothingUnderboxers
-  name: боксеры
-  description: Пара классических боксеров, такие же удобные, как у деда.
-  suffix: Трусы
+  name: boxers
+  description: "A pair of classic boxers, just as comfy as grandpa's."
   components:
     - type: Sprite
       sprite: Backmen/Clothing/Under/underpants.rsi
@@ -144,9 +136,8 @@
 - type: entity
   parent: ClothingUnderPantsBase
   id: ClothingUnderbriefs
-  name: трусы
-  description: Пара трусов, для тех, кто хочет, чтобы все было плотно и удобно.
-  suffix: Трусы
+  name: briefs
+  description: "A pair of briefs, for those who want a snug fit in all the right places."
   components:
     - type: Sprite
       sprite: Backmen/Clothing/Under/underpants.rsi
@@ -160,7 +151,7 @@
 # - type: entity
 #   parent: ClothingUnderPantsBase
 #   id: ClothingUnderfishnet_lower
-#   name: сетчатое нижнее белье
+#   name: fishnet lower underwear
 #   components:
 #     - type: Sprite
 #       sprite: Backmen/Clothing/Under/underpants.rsi
@@ -174,9 +165,8 @@
 - type: entity
   parent: ClothingUnderPantsBase
   id: ClothingUnderjockstrap
-  name: бандаж
-  description: Бандаж, для спортивных и авантюрных личностей.
-  suffix: Трусы
+  name: jockstrap
+  description: "A jockstrap, for the sporty and adventurous type."
   components:
     - type: Sprite
       sprite: Backmen/Clothing/Under/underpants.rsi
@@ -192,9 +182,8 @@
 - type: entity
   parent: ClothingUnderPantsBase
   id: ClothingUnderljonb
-  name: длинные термобелье
-  description: Пара длинных термобелья, чтобы оставаться в тепле в этих классических длинных трусах.
-  suffix: Трусы
+  name: long john pants
+  description: "A pair of Long John pants, to stay warm in these classic long underwear."
   components:
     - type: Sprite
       sprite: Backmen/Clothing/Under/underpants.rsi
@@ -210,9 +199,8 @@
 - type: entity
   parent: ClothingUnderPantsBase
   id: ClothingUnderpanties_alt
-  name: трусики
-  description: Пара обычных трусиков, добротные и традиционные.
-  suffix: Трусы
+  name: panties
+  description: "A pair of regular panties, good old fashioned."
   components:
     - type: Sprite
       sprite: Backmen/Clothing/Under/underpants.rsi
@@ -226,9 +214,8 @@
 - type: entity
   parent: ClothingUnderPantsBase
   id: ClothingUnderpanties_assblastusa
-  name: трусики с американским флагом
-  description: Пара трусиков с американским флагом, демонстрирующих любовь к красному, белому и синему.
-  suffix: Трусы
+  name: american flag panties
+  description: "A pair of American Flag panties, showing love for the red, white, and blue."
   components:
     - type: Sprite
       sprite: Backmen/Clothing/Under/underpants.rsi
@@ -242,9 +229,8 @@
 - type: entity
   parent: ClothingUnderPantsBase
   id: ClothingUnderpanties_bee-kini
-  name: трусики-бекин
-  description: Пара трусиков-бекин, создающих эффект пчелиного принта.
-  suffix: Трусы
+  name: bee-kini panties
+  description: "A pair of Bee-Kini panties, getting a buzz going with the bee-print design."
   components:
     - type: Sprite
       sprite: Backmen/Clothing/Under/underpants.rsi
@@ -260,9 +246,8 @@
 - type: entity
   parent: ClothingUnderPantsBase
   id: ClothingUnderpanties_commie
-  name: трусики с коммунистической символикой
-  description: Пара трусиков с коммунистическим дизайном, для тех, кто хочет выразить свои политические взгляды.
-  suffix: Трусы
+  name: commie panties
+  description: "A pair of Commie panties, for the rebellious and daring, with a commie-themed design."
   components:
     - type: Sprite
       sprite: Backmen/Clothing/Under/underpants.rsi
@@ -276,7 +261,7 @@
 # - type: entity
 #   parent: ClothingUnderPantsBase
 #   id: ClothingUnderpanties_kinky
-#   name: экстравагантные трусики
+#   name: kinky panties
 #   components:
 #     - type: Sprite
 #       sprite: Backmen/Clothing/Under/underpants.rsi
@@ -290,9 +275,8 @@
 - type: entity
   parent: ClothingUnderPantsBase
   id: ClothingUnderpanties_neko
-  name: трусики-непо
-  description: Пара трусиков с дизайном неко для любителей кошек.
-  suffix: Трусы
+  name: neko panties
+  description: "A pair of Neko panties, for the cat-lover, featuring a cute neko-print design."
   components:
     - type: Sprite
       sprite: Backmen/Clothing/Under/underpants.rsi
@@ -306,9 +290,8 @@
 - type: entity
   parent: ClothingUnderPantsBase
   id: ClothingUnderpanties_slim
-  name: узкие трусики
-  description: Пара узких трусиков, для минималистов, с узким и комфортным кроем.
-  suffix: Трусы
+  name: slim panties
+  description: "A pair of Slim panties, for the minimalist, with a slim and comfortable fit."
   components:
     - type: Sprite
       sprite: Backmen/Clothing/Under/underpants.rsi
@@ -322,9 +305,8 @@
 - type: entity
   parent: ClothingUnderPantsBase
   id: ClothingUnderpanties_swimming
-  name: купальные трусики
-  description: Пара купальных трусиков, идеально подходящих для плавания.
-  suffix: Трусы
+  name: swimming panties
+  description: "A pair of Swimming panties, hitting the pool in style."
   components:
     - type: Sprite
       sprite: Backmen/Clothing/Under/underpants.rsi
@@ -338,7 +320,7 @@
 # - type: entity
 #   parent: ClothingUnderPantsBase
 #   id: ClothingUnderpanties_thin
-#   name: тонкие трусики
+#   name: thin panties
 #   components:
 #     - type: Sprite
 #       sprite: Backmen/Clothing/Under/underpants.rsi
@@ -352,9 +334,8 @@
 - type: entity
   parent: ClothingUnderPantsBase
   id: ClothingUnderpanties_uk
-  name: трусики с флагом Великобритании
-  description: Пара трусиков с флагом Великобритании, демонстрирующих любовь к Великобритании.
-  suffix: Трусы
+  name: union jack panties
+  description: "A pair of Union Jack panties, showing love for the UK with the union jack design."
   components:
     - type: Sprite
       sprite: Backmen/Clothing/Under/underpants.rsi
@@ -368,9 +349,8 @@
 - type: entity
   parent: ClothingUnderPantsBase
   id: ClothingUnderpanties
-  name: трусики
-  description: Пара обычных трусиков, добротные и традиционные.
-  suffix: Трусы
+  name: panties
+  description: "A pair of regular panties, good old fashioned."
   components:
     - type: Sprite
       sprite: Backmen/Clothing/Under/underpants.rsi
@@ -384,7 +364,7 @@
 # - type: entity
 #   parent: ClothingUnderPantsBase
 #   id: ClothingUnderpantyhose_ripped
-#   name: порванные колготки
+#   name: ripped pantyhose
 #   components:
 #     - type: Sprite
 #       sprite: Backmen/Clothing/Under/underpants.rsi
@@ -398,9 +378,8 @@
 - type: entity
   parent: ClothingUnderPantsBase
   id: ClothingUnderpantyhose
-  name: колготки
-  description: Пара колготок, для тех, кто хочет выглядеть как человекоподобный паук.
-  suffix: Трусы   # что... Это трусы или носки я не пойму.
+  name: pantyhose
+  description: "A pair of pantyhose, for when you want to look like a human-sized spider."
   components:
     - type: Sprite
       sprite: Backmen/Clothing/Under/underpants.rsi
@@ -414,9 +393,8 @@
 - type: entity
   parent: ClothingUnderPantsBase
   id: ClothingUnderstriped_panties
-  name: полосатые трусики
-  description: Пара полосатых трусиков, создающих модное заявление... там внизу.
-  suffix: Трусы
+  name: striped panties
+  description: "A pair of Striped panties, making a fashion statement... down there."
   components:
     - type: Sprite
       sprite: Backmen/Clothing/Under/underpants.rsi
@@ -430,7 +408,7 @@
 # - type: entity
 #   parent: ClothingUnderPantsBase
 #   id: ClothingUnderthong_babydoll
-#   name: стринги-бэбидолл
+#   name: thong babydoll
 #   components:
 #     - type: Sprite
 #       sprite: Backmen/Clothing/Under/underpants.rsi
@@ -444,9 +422,7 @@
 - type: entity
   parent: ClothingUnderPantsBase
   id: ClothingUnderthong
-  name: стринги
-  description: Пара стрингов.
-  suffix: Трусы
+  name: thong
   components:
     - type: Sprite
       sprite: Backmen/Clothing/Under/underpants.rsi
