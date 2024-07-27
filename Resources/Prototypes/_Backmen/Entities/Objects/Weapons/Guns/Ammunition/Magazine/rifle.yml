@@ -1,7 +1,7 @@
 - type: entity
   id: MagazineLightRifleAI
   noSpawn: true
-  name: магазин (.30 калибра)
+  name: "magazine (.30 rifle)"
   parent: BaseMagazineLightRifle
   components:
   - type: BallisticAmmoProvider
@@ -10,7 +10,7 @@
 
 - type: entity
   id: MagazineRiflePan
-  name: дисковый магазин (.20 винтовочные)
+  name: "дисковый магазин (.20 винтовочные)"
   parent: BaseMagazineRifle
   components:
   - type: BallisticAmmoProvider
@@ -21,7 +21,7 @@
 
 - type: entity
   id: MagazineRifleFire
-  name: магазин (.20 винтовочно-зажигательные)
+  name: "магазин (.20 винтовочно-зажигательные)"
   parent: BaseMagazineRifle
   components:
   - type: BallisticAmmoProvider
@@ -35,8 +35,8 @@
 
 - type: entity
   id: MagazineAntiMaterielRifleSR
-  name: винтовочный магазин (.60 анти-материальный)
-  description: Стандартный земной тип тяжелых магазинов.
+  name: rifle magazine (.60 anti-material)
+  description: Standart EarthGov type of heavy magazines.
   parent: BaseItem
   components:
   - type: Tag
@@ -71,8 +71,8 @@
 
 - type: entity
   id: MagazineHeavyRifleBR64
-  name: винтовочный магазин (.62 винтовочный)
-  description: Стандартный земной тип тяжелых магазинов.
+  name: rifle magazine (.62 rifle)
+  description: Standart EarthGov type of heavy magazines.
   parent: BaseItem
   components:
   - type: Tag
@@ -107,8 +107,8 @@
 
 - type: entity
   id: MagazineRifleRocket20
-  name: винтовочный магазин (рельсотрон)
-  description: Стандартный земной тип тяжелых магазинов.
+  name: rifle magazine (рельсотрон)
+  description: Standart EarthGov type of heavy magazines.
   parent: BaseItem
   components:
   - type: Tag
@@ -143,8 +143,8 @@
 
 - type: entity
   id: MagazineRifleLightSniper
-  name: винтовочный магазин (.7,62 мм)
-  description: Стандартные тяжелые магазины типа USSP.
+  name: rifle magazine (7,62 rifle)
+  description: Standart USSP type of heavy magazines.
   parent: BaseItem
   components:
   - type: Tag

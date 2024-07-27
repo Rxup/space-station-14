@@ -1,7 +1,7 @@
 - type: entity
   parent: BaseCartridge
   id: CartridgeAntitank
-  name: Патрон (.14,5 противотанковый)
+  name: Cartridge (14.5 Anti-Tank)
   components:
   - type: Tag
     tags:

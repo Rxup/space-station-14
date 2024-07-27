@@ -1,6 +1,6 @@
 - type: entity
   id: BaseMagazineHeavyRifle50
-  name: магазин (.50 BMG)
+  name: "magazine (.50 BMG)"
   parent: BaseItem
   abstract: true
   components:
@@ -32,7 +32,7 @@
 
 - type: entity
   id: MagazineHeavyRifleMaDeuse
-  name: магазин (.50 BMG)
+  name: "magazine (.50 BMG)"
   parent: BaseMagazineHeavyRifle50
   components:
   - type: BallisticAmmoProvider
@@ -47,7 +47,7 @@
 
 - type: entity
   id: MagazineHeavyRifleV41
-  name: магазин (20-го калибра)
+  name: "magazine (.20 rifle)"
   parent: BaseMagazineHeavyRifle50
   components:
   - type: BallisticAmmoProvider
@@ -66,7 +66,7 @@
 
 - type: entity
   id: MagazineHeavyMachineGunDrum
-  name: Барабанный магазин (.25 калибр без гильзы)
+  name: Drum magazine (.25 caseless)
   parent: BaseItem
   components:
   - type: Tag
@@ -99,7 +99,7 @@
 
 - type: entity
   id: MagazineLightMachineGunDrum
-  name: Барабанный магазин (.20 калибр винтовочный)
+  name: Drum magazine (.20 винтовочный)
   parent: BaseItem
   components:
   - type: Tag

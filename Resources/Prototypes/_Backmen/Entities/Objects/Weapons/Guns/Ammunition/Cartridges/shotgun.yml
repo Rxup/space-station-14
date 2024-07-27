@@ -1,6 +1,6 @@
 - type: entity
   id: ShellSoulbreaker
-  name: оружейный патрон (.50 душеразрушитель)
+  name: shell (.50 soulbreaker)
   parent: BaseShellShotgun
   components:
   - type: Sprite
@@ -24,7 +24,7 @@
 
 - type: entity
   id: ShellShotgunMagnum12
-  name: оружейный патрон (.12 "Магнум")
+  name: shell (.12 gauge magnum)
   parent: BaseShellShotgun
   components:
   - type: Sprite
@@ -46,7 +46,7 @@
 
 - type: entity
   id: ShellShotgunFRAG12
-  name: оружейный патрон (.12 осколочный FRAG 12)
+  name: shell (.12 gauge FRAG 12)
   parent: BaseShellShotgun
   components:
   - type: Sprite
