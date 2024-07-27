@@ -4,7 +4,7 @@
 - type: entity
   id: MagazinePulseRifleSWS
   name: pulse rifle magazine
-  description: Стандартные импульсные зарядного земного типа
+  description: Standart EarthGov type of impulse magazines
   parent: BaseItem
   components:
   - type: Tag

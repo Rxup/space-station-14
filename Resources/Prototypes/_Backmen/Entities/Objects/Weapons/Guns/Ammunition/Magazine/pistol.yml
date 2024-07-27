@@ -1,6 +1,6 @@
 - type: entity
   id: MagazineMagnumPistolAP
-  name: пистолетный магазин (.50AE AP)
+  name: pistol magazine (.50AE AP)
   parent: MagazineMagnumPistol
   components:
   - type: BallisticAmmoProvider
@@ -12,7 +12,7 @@
 
 - type: entity
   id: MagazineMagnumPistol
-  name: пистолетный магазин (.50AE AP)
+  name: pistol magazine (.50AE)
   parent: BaseItem
   components:
   - type: Tag
@@ -45,7 +45,7 @@
 
 - type: entity
   id: MagazinePistol345
-  name: пистолетный магазин (.345 "магнум")
+  name: pistol magazine (.345 magnum)
   parent: MagazinePistol
   components:
   - type: Tag
@@ -77,7 +77,7 @@
 
 - type: entity
   id: MagazinePistolBoxSubMachineGun
-  name: Коробчатый магазин SMG (парабеллум.9×19 мм)
+  name: SMG box magazine (.9×19mm parabellum)
   parent: BaseItem
   components:
   - type: Tag
@@ -110,7 +110,7 @@
 
 - type: entity
   id: MagazinePistolDrumSubMachineGun
-  name: Барабанный магазин SMG (.9×19 мм parabellum)
+  name: SMG Drum magazine (.9×19mm parabellum)
   parent: BaseItem
   components:
   - type: Tag
@@ -143,7 +143,7 @@
 
 - type: entity
   id: MagazinePistolTopSubMachineGun
-  name: Магазин SMG с верхним креплением (парабеллум.9×19 мм)
+  name: SMG top mounted magazine (.9×19mm parabellum)
   parent: BaseItem
   components:
   - type: Tag

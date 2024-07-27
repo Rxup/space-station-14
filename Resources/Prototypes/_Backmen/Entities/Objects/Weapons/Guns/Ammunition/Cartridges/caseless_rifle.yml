@@ -1,6 +1,6 @@
 - type: entity
   id: BaseCartridgeCaselessRifle
-  name: патрон (винтовочный .25 калибра)
+  name: cartridge (.25 rifle)
   parent: BaseCartridge
   abstract: true
   components:
@@ -23,7 +23,7 @@
 
 - type: entity
   id: CartridgeCaselessRifle
-  name: патрон (.25 калибр без гильзы)
+  name: cartridge (.25 caseless)
   parent: BaseCartridgeCaselessRifle
   components:
   - type: CartridgeAmmo
@@ -31,7 +31,7 @@
 
 - type: entity
   id: CartridgeCaselessRiflePractice
-  name: патрон (.25 калибр практичный без гильз)
+  name: cartridge (.25 caseless practice)
   parent: BaseCartridgeCaselessRifle
   components:
   - type: CartridgeAmmo

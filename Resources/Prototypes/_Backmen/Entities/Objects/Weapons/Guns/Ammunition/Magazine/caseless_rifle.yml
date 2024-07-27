@@ -1,6 +1,6 @@
 - type: entity
   id: BaseMagazineUniversalCaselessRifle
-  name: Universal magazine (.25 caseless)
+  name: "Universal magazine (.25 caseless)"
   parent: BaseMagazineCaselessRifle
   abstract: true
   components:
@@ -32,7 +32,7 @@
 
 - type: entity
   id: MagazineUniversalCaselessRifle
-  name: Универсальный магазин (.25 калибр без корпуса)
+  name: "Universal magazine (.25 caseless)"
   parent: BaseMagazineUniversalCaselessRifle
   components:
   - type: BallisticAmmoProvider
@@ -51,7 +51,7 @@
 
 - type: entity
   id: MagazineUniversalCaselessRiflePractice
-  name: Универсальный магазин (.25 калибр без гильз)
+  name: "Universal magazine (.25 caseless practice)"
   parent: BaseMagazineUniversalCaselessRifle
   components:
   - type: BallisticAmmoProvider
@@ -70,7 +70,7 @@
 
 - type: entity
   id: MagazineUniversalCaselessRifleRubber
-  name: Универсальный магазин (.25 калибр без гильз)
+  name: "Universal magazine (.25 caseless rubber)"
   parent: BaseMagazineUniversalCaselessRifle
   components:
   - type: BallisticAmmoProvider

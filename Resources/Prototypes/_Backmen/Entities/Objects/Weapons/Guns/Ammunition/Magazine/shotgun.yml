@@ -1,6 +1,6 @@
 - type: entity
   id: MagazineShotgunMagnum12
-  name: барабан для боеприпасов (.12 калибра "Магнум")
+  name: ammo drum (.12 gauge magnum)
   parent: BaseMagazineShotgun
   components:
   - type: BallisticAmmoProvider
@@ -15,7 +15,7 @@
 
 - type: entity
   id: MagazineShotgunFRAG12
-  name: барабан с боеприпасами (.12, 12Frag)
+  name: ammo drum (.12 gauge FRAG 12)
   parent: BaseMagazineShotgun
   components:
   - type: BallisticAmmoProvider
