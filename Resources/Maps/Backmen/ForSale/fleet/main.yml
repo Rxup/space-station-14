@@ -1839,18 +1839,6 @@ entities:
       rot: 1.5707963267948966 rad
       pos: 18.478676,2.0756702
       parent: 1
-- proto: BookPassionsP1
-  entities:
-  - uid: 3381
-    components:
-    - type: Transform
-      pos: 11.363488,17.587635
-      parent: 1
-  - uid: 3382
-    components:
-    - type: Transform
-      pos: 6.754113,25.114868
-      parent: 1
 - proto: BookSecretDocuments
   entities:
   - uid: 2736

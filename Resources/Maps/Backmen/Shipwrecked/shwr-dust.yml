@@ -656,13 +656,6 @@ entities:
     - type: Transform
       pos: 5.3100786,-7.5786185
       parent: 2
-- proto: BookPassionsP1
-  entities:
-  - uid: 675
-    components:
-    - type: Transform
-      pos: 9.669454,-7.453619
-      parent: 2
 - proto: BookRandom
   entities:
   - uid: 866
