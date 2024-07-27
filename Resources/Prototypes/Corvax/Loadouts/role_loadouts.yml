@@ -9,15 +9,13 @@
   - Trinkets
   - Medals #backmen
   - GroupSpeciesBreathTool
-      #cats sponsor
-  - Sponsor-cloak
-  - Sponsor-сoat
-  - Sponsor-hats
-  - Sponsor-eyes
-  - Sponsor-boots
-  - Sponsor-mask
-  - Sponsor-uniform
-  #cats sponsor
+  - sponsorcloak
+  - sponsorсoat
+  - sponsorhats
+  - sponsoreyes
+  - sponsorboots
+  - sponsormask
+  - Sponsoruniform
 
 - type: roleLoadout
   id: JobPilot
@@ -31,12 +29,10 @@
   - Survival
   - Trinkets
   - GroupSpeciesBreathTool
-      #cats sponsor
-  - Sponsor-cloak
-  - Sponsor-сoat
-  - Sponsor-hats
-  - Sponsor-eyes
-  - Sponsor-boots
-  - Sponsor-mask
-  - Sponsor-uniform
-  #cats sponsor
+  - sponsorcloak
+  - sponsorсoat
+  - sponsorhats
+  - sponsoreyes
+  - sponsorboots
+  - sponsormask
+  - Sponsoruniform

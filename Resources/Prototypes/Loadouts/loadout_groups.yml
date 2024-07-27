@@ -1360,7 +1360,7 @@
 
 
 - type: loadoutGroup
-  id: Sponsor-cloak
+  id: sponsorcloak
   name: loadout-group-sponsor-cloak
   minLimit: 0
   maxLimit: 1
@@ -1379,7 +1379,7 @@
   - ClothingCloakAtmosian
 
 - type: loadoutGroup
-  id: Sponsor-сoat
+  id: sponsorсoat
   name: loadout-group-sponsor-cloaks
   minLimit: 0
   maxLimit: 1
@@ -1396,7 +1396,7 @@
   - ClothingOuterCoatBlackVi
 
 - type: loadoutGroup
-  id: Sponsor-hats
+  id: sponsorhats
   name: loadout-group-sponsor-hats
   minLimit: 0
   maxLimit: 1
@@ -1411,7 +1411,7 @@
   - ClothingHeadHelmetKendoMen
 
 - type: loadoutGroup
-  id: Sponsor-eyes
+  id: sponsoreyes
   name: loadout-group-sponsor-eyes
   minLimit: 0
   maxLimit: 1
@@ -1425,7 +1425,7 @@
   - ClothingEyesGlassesGarOrange
 
 - type: loadoutGroup
-  id: Sponsor-boots
+  id: sponsorboots
   name: loadout-group-sponsor-boots
   minLimit: 0
   maxLimit: 1
@@ -1444,7 +1444,7 @@
   - ClothingShoesBootsNedoSpetsnaz
 
 - type: loadoutGroup
-  id: Sponsor-mask
+  id: sponsormask
   name: loadout-group-sponsor-mask
   minLimit: 0
   maxLimit: 1
@@ -1467,7 +1467,7 @@
   - ClothingMaskSkull
 
 - type: loadoutGroup
-  id: Sponsor-uniform
+  id: sponsoruniform
   name: loadout-group-sponsor-uniform
   minLimit: 0
   maxLimit: 1
