@@ -1,6 +1,6 @@
 - type: entity
   id: BaseCartridgeMagnum345
-  name: cartridge (.345 magnum)
+  name: патрон (.345 "магнум")
   parent: BaseCartridge
   abstract: true
   components:
@@ -23,7 +23,7 @@
 
 - type: entity
   id: CartridgeMagnum345
-  name: cartridge (.345 magnum)
+  name: патрон (.345 "магнум")
   parent: BaseCartridgeMagnum345
   components:
   - type: Sprite

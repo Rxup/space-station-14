@@ -1,6 +1,6 @@
 - type: entity
   id: GrenadeTearGas
-  name: tear gas grenade
+  name: граната со слезоточивым газом
   parent: BaseGrenade
   components:
   - type: CartridgeAmmo
@@ -17,7 +17,7 @@
 
 - type: entity
   id: GrenadeNonletal
-  name: non letal grenade
+  name: нелетальная граната
   parent: BaseGrenade
   components:
   - type: CartridgeAmmo
