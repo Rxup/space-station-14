@@ -21,7 +21,7 @@
         orGroup: BookPool
       # - id: BookPassionsP1
       #  prob: 0.05
-        orGroup: BookPool
+      #  orGroup: BookPool
       - id: BookPaperworkP1
         prob: 0.05
         orGroup: BookPool
@@ -55,9 +55,9 @@
       - id: BookPaperworkP5
         prob: 0.05
         orGroup: BookPool
-      - id: BookPassionsP2
-        prob: 0.05
-        orGroup: BookPool
+      #- id: BookPassionsP2
+      #  prob: 0.05
+      #  orGroup: BookPool
       - id: BookPaperworkP6
         prob: 0.05
         orGroup: BookPool
