@@ -15,16 +15,20 @@
   requirements:
     - !type:RoleTimeRequirement
       role: JobCentralCommandAssistant
-      time: 21600
+#      time: 21600
+      time: 9000   #cats
     - !type:DepartmentTimeRequirement
       department: CentCom
-      time: 43200
+#      time: 43200
+      time: 12000  #cats
     - !type:RoleTimeRequirement
       role: JobHeadOfSecurity
-      time: 18000
+#      time: 18000
+      time: 9000   #cats
     - !type:RoleTimeRequirement
       role: JobCentralCommandSecOfficer
-      time: 18000
+#      time: 18000
+      time: 9000  #cats
   access:
     - CentralCommand
     - CCSecurity

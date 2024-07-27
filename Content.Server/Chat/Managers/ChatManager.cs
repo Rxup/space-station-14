@@ -280,9 +280,15 @@ namespace Content.Server.Chat.Managers
             }
 
             var clients = _adminManager.ActiveAdmins.Select(p => p.Channel);
+            var senderAdmin = _adminManager.GetAdminData(player);
+            if (senderAdmin == null)
+            {
+                return;
+            }
+            var senderName = !string.IsNullOrEmpty(senderAdmin.Title) ? $"\\[{senderAdmin.Title}\\] {player.Name}" : player.Name;
             var wrappedMessage = Loc.GetString("chat-manager-send-admin-chat-wrap-message",
                                             ("adminChannelName", Loc.GetString("chat-manager-admin-channel-name")),
-                                            ("playerName", player.Name), ("message", FormattedMessage.EscapeText(message)));
+                                            ("playerName", senderName), ("message", FormattedMessage.EscapeText(message)));
 
             foreach (var client in clients)
             {

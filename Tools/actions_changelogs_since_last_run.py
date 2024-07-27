@@ -15,7 +15,7 @@ from typing import Any, Iterable
 GITHUB_API_URL    = os.environ.get("GITHUB_API_URL", "https://api.github.com")
 GITHUB_REPOSITORY = os.environ["GITHUB_REPOSITORY"]
 GITHUB_RUN        = os.environ["GITHUB_RUN_ID"]
-GITHUB_TOKEN      = os.environ["GITHUB_TOKEN"]
+CHAN_TOKEN      = os.environ["CHAN_TOKEN"]
 
 # https://discord.com/developers/docs/resources/webhook
 DISCORD_SPLIT_LIMIT = 2000
@@ -37,7 +37,7 @@ def main():
         return
 
     session = requests.Session()
-    session.headers["Authorization"]        = f"Bearer {GITHUB_TOKEN}"
+    session.headers["Authorization"]        = f"Bearer {CHAN_TOKEN}"
     session.headers["Accept"]               = "Accept: application/vnd.github+json"
     session.headers["X-GitHub-Api-Version"] = "2022-11-28"
 
