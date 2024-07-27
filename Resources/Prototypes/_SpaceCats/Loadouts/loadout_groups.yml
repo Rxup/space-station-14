@@ -20,7 +20,7 @@
 
 - type: loadoutGroup
   id: Sponsor-сoat
-  name: loadout-group-sponsor-сoat
+  name: loadout-group-sponsor-сoats
   minLimit: 0
   maxLimit: 1
   loadouts:
