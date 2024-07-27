@@ -1357,3 +1357,139 @@
   hidden: true
   loadouts:
   - LoadoutSpeciesBreathToolSecurity
+
+
+- type: loadoutGroup
+  id: Sponsor-cloak
+  name: loadout-group-sponsor-cloak
+  minLimit: 0
+  maxLimit: 1
+  loadouts:
+  - ClothingNeckCloakWhiteCloak
+  - ClothingNeckCloakGreenMantie
+  - ClothingNeckCloakTGMCCloak
+  - ClothingNeckCloakPoncho
+  - ClothingNeckCloakBlackCloak
+  - ClothingNeckCloakSanabi
+  - ClothingNeckCloakTGMCwhite
+  - ClothingNeckCloakROE
+  - ClothingNeckCloakPirate
+  - ClothingNeckCloakVoid
+  - ClothingNeckCloakmeibe
+  - ClothingCloakAtmosian
+
+- type: loadoutGroup
+  id: Sponsor-сoat
+  name: loadout-group-sponsor-cloaks
+  minLimit: 0
+  maxLimit: 1
+  loadouts:
+  - ClothingOuterCoatBlackdmc
+  - ClothingOuterCoatBluedm
+  - ClothingOuterCoatDesertdmc
+  - ClothingOuterCoatGolddmc
+  - ClothingOuterCoatPurpledmc
+  - ClothingOuterCoatReddmc
+  - ClothingOuterCoatSnowdmc
+  - ClothingOuterCoatNT
+  - ClothingOuterCoatJacket
+  - ClothingOuterCoatBlackVi
+
+- type: loadoutGroup
+  id: Sponsor-hats
+  name: loadout-group-sponsor-hats
+  minLimit: 0
+  maxLimit: 1
+  loadouts:
+  - ClothingHeadHatTony
+  - ClothingHeadHatRichter
+  - ClothingHeadHatRasmu
+  - ClothingHeadHatJake
+  - ClothingHeadHatAlex
+  - ClothingHeadHatMVDBeret
+  - ClothingHeadHatMVDOfficerCap
+  - ClothingHeadHelmetKendoMen
+
+- type: loadoutGroup
+  id: Sponsor-eyes
+  name: loadout-group-sponsor-eyes
+  minLimit: 0
+  maxLimit: 1
+  loadouts:
+  - ClothingEyesSalesman
+  - ClothingEyesGlassesJamjar
+  - ClothingEyesGlasses
+  - ClothingEyesGlassesJensen
+  - ClothingEyesGlassesChemical
+  - ClothingEyesGlassesGar
+  - ClothingEyesGlassesGarOrange
+
+- type: loadoutGroup
+  id: Sponsor-boots
+  name: loadout-group-sponsor-boots
+  minLimit: 0
+  maxLimit: 1
+  loadouts:
+  - ClothingShoesBootsWinterSci
+  - ClothingShoesBootsWinterEngi
+  - ClothingShoesBootsWinterMed
+  - ClothingShoesBootsWinterCargo
+  - ClothingShoesBootsWinterWeb
+  - ClothingShoesBootsBerrci
+  - ClothingShoesBootsCowboyWhite
+  - ClothingShoesBootsCowboyBlack
+  - ClothingShoesHighheelBoots
+  - ClothingShoesSnakeskinBoots
+  - ClothingShoesBootsWinter
+  - ClothingShoesBootsNedoSpetsnaz
+
+- type: loadoutGroup
+  id: Sponsor-mask
+  name: loadout-group-sponsor-mask
+  minLimit: 0
+  maxLimit: 1
+  loadouts:
+  - ClothingWolfMask
+  - ClothingDallasMask
+  - ClothingJokermask
+  - ClothingHoxtonMask
+  - ClothingChainsMask
+  - ClothingAnonMas
+  - ClothingMaskBee
+  - ClothingMaskKitsune
+  - ClothingGermanGasMask
+  - ClothingMaskBandGrey
+  - ClothingMaskBandBlack
+  - ClothingMaskNeckGaiter
+  - ClothingMaskBal
+  - ClothingMaskBandRed
+  - ClothingMaskNeckGaiterRed
+  - ClothingMaskSkull
+
+- type: loadoutGroup
+  id: Sponsor-uniform
+  name: loadout-group-sponsor-uniform
+  minLimit: 0
+  maxLimit: 1
+  loadouts:
+  - ClothingUniformJumpsuitEgovOfficer
+  - ClothingUniformJumpsuitEgov
+  - ClothingUniformEGovOfficer
+  - ClothingUniformJumpsuitbiker
+  - ClothingUniformJumpsuitRichard
+  - ClothingUniformJumpsuitEgovOfficerALT
+  - ClothingUniformJumpsuitCamo
+  - ClothingUniformJumpsuitcannonieruniform
+  - ClothingUniformJumpsuitNavalUniform
+  - ClothingUniformJumpsuitMVDInspector
+  - ClothingUniformJumpsuitstutmanuniform
+  - ClothingUniformJumpsuitCloth
+  - ClothingUniformJumpsuitHawaiBlack
+  - ClothingUniformJumpsuitSWAT
+  - ClothingUniformJumpsuitSuitSssp
+  - ClothingUniformJumpsuitWorkerViF
+  - ClothingUniformJumpsuitVergil
+  - ClothingUniformJumpsuitJeester
+  - ClothingUniformJumpskirtSchool
+  - ClothingUniformJumpskirtOfLife
+  - ClothingUniformJumpskirtElegantMaid
