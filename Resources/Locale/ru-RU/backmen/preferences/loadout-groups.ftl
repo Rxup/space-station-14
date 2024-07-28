@@ -11,6 +11,3 @@ loadout-group-brigmedic-mask = Маска бригмедика
 
 # Misc
 loadout-group-medals = Медали
-loadout-group-shirt = Грудь
-loadout-group-sock = Носки
-loadout-group-pants = Трусы
