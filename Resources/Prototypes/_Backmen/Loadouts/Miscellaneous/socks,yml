@@ -1,0 +1,11 @@
+- type: loadout
+  id: ClothingUnderSocks_knee
+  equipment: ClothingUnderSocks_knee
+
+- type: loadout
+  id: ClothingUnderSocks_norm
+  equipment: ClothingUnderSocks_norm
+
+- type: loadout
+  id: ClothingUnderSocks_thigh
+  equipment: ClothingUnderSocks_thigh

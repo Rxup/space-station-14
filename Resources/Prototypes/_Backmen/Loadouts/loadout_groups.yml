@@ -25,6 +25,32 @@
   - BKCCCargoSatchel
   - BKCCCargoDuffel
 
+- type: loadoutGroup
+  id: Shirt
+  name: loadout-group-shirt
+  loadouts:
+  - ClothingUnderbabydoll
+  - ClothingUnderundershirt
+  - ClothingUndercowboyshirt_white
+  - ClothingUndercowboyshirt_whites
+  - ClothingUndershortsleeve
+  
+- type: loadoutGroup
+  id: Socks
+  name: loadout-group-sock
+  loadouts:
+  - ClothingUnderSocks_knee
+  - ClothingUnderSocks_norm
+  - ClothingUnderSocks_thigh
+
+- type: loadoutGroup
+  id: Underpants
+  name: loadout-group-pants
+  loadouts:
+  - ClothingUnderljonb
+  - ClothingUnderpanties_swimming
+  - ClothingUnderpanties
+
 # Operator
 #- type: loadoutGroup
 #  id: BKCCOperatorGavnaJumpsuit

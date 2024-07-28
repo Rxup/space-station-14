@@ -1,0 +1,19 @@
+- type: loadout
+  id: ClothingUnderbabydoll
+  equipment: ClothingUnderbabydoll
+
+- type: loadout
+  id: ClothingUnderundershirt
+  equipment: ClothingUnderundershirt
+
+- type: loadout
+  id: ClothingUndercowboyshirt_white
+  equipment: ClothingUndercowboyshirt_white
+
+- type: loadout
+  id: ClothingUndercowboyshirt_whites
+  equipment: ClothingUndercowboyshirt_whites
+
+- type: loadout
+  id: ClothingUndershortsleeve
+  equipment: ClothingUndershortsleeve
