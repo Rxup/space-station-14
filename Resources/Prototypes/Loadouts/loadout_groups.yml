@@ -1865,97 +1865,61 @@
   id: ClothingShoesBootsWinterSci
   equipment:
     shoes: ClothingShoesBootsWinterSci
-    effects:
-  - !type:GroupLoadoutEffect
-    proto: Sponsor
 
 - type: startingGear
   id: ClothingShoesBootsWinterEngi
   equipment:
     shoes: ClothingShoesBootsWinterEngi
-    effects:
-  - !type:GroupLoadoutEffect
-    proto: Sponsor
 
 - type: startingGear
   id: ClothingShoesBootsWinterMed
   equipment:
     shoes: ClothingShoesBootsWinterMed
-    effects:
-  - !type:GroupLoadoutEffect
-    proto: Sponsor
 
 - type: startingGear
   id: ClothingShoesBootsWinterCargo
   equipment:
     shoes: ClothingShoesBootsWinterCargo
-    effects:
-  - !type:GroupLoadoutEffect
-    proto: Sponsor
 
 - type: startingGear
   id: ClothingShoesBootsWinterWeb
   equipment:
     shoes: ClothingShoesBootsWinterWeb
-    effects:
-  - !type:GroupLoadoutEffect
-    proto: Sponsor
 
 - type: startingGear
   id: ClothingShoesBootsBerrci
   equipment:
     shoes: ClothingShoesBootsBerrci
-    effects:
-  - !type:GroupLoadoutEffect
-    proto: Sponsor
 
 - type: startingGear
   id: ClothingShoesBootsCowboyWhite
   equipment:
     shoes: ClothingShoesBootsCowboyWhite
-    effects:
-  - !type:GroupLoadoutEffect
-    proto: Sponsor
 
 - type: startingGear
   id: ClothingShoesBootsCowboyBlack
   equipment:
     shoes: ClothingShoesBootsCowboyBlack
-    effects:
-  - !type:GroupLoadoutEffect
-    proto: Sponsor
 
 - type: startingGear
   id: ClothingShoesHighheelBoots
   equipment:
     shoes: ClothingShoesHighheelBoots
-    effects:
-  - !type:GroupLoadoutEffect
-    proto: Sponsor
 
 - type: startingGear
   id: ClothingShoesSnakeskinBoots
   equipment:
     shoes: ClothingShoesSnakeskinBoots
-    effects:
-  - !type:GroupLoadoutEffect
-    proto: Sponsor
 
 - type: startingGear
   id: ClothingShoesBootsWinter
   equipment:
     shoes: ClothingShoesBootsWinter
-    effects:
-  - !type:GroupLoadoutEffect
-    proto: Sponsor
 
 - type: startingGear
   id: ClothingShoesBootsNedoSpetsnaz
   equipment:
     shoes: ClothingShoesBootsNedoSpetsnaz
-    effects:
-  - !type:GroupLoadoutEffect
-    proto: Sponsor
 
 - type: loadout
   id: ClothingShoesBootsWinterSci
