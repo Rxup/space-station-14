@@ -24,6 +24,9 @@
     ears: ClothingHeadsetService
     pocket1: d10Dice
     pocket2: HandLabeler # for making named bestsellers
+    underpants: ClothingUnderpanties_alt #backmen
+    undershirt: ClothingUnderundershirt #backmen
+    socks: ClothingUnderSocks_norm  #backmen
   storage:
     back:
     - BookRandom

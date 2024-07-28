@@ -64,6 +64,9 @@
     ears: ClothingHeadsetAltCentCom
     pocket1: CyberPen
     pocket2: BoxFolderSecretBlack
+    underpants: ClothingUnderpanties_alt #backmen
+    undershirt: ClothingUnderundershirt #backmen
+    socks: ClothingUnderSocks_norm  #backmen
   #innerClothingSkirt: ClothingUniformJumpskirtCentcomOfficer
 
 - type: entity

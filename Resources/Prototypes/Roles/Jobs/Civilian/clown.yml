@@ -42,6 +42,9 @@
     pocket2: ClownRecorder
     id: ClownPDA
     ears: ClothingHeadsetService
+    underpants: ClothingUnderpanties_alt #backmen
+    undershirt: ClothingUnderundershirt #backmen
+    socks: ClothingUnderSocks_norm  #backmen
   storage:
     back:
     - RubberStampClown

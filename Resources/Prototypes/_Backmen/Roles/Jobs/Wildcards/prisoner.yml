@@ -23,4 +23,7 @@
     shoes: ClothingShoesColorBlack
     id: PrisonerPDA
     ears: ClothingHeadsetGrey
+    underpants: ClothingUnderpanties_alt #backmen
+    undershirt: ClothingUnderundershirt #backmen
+    socks: ClothingUnderSocks_norm  #backmen
   #innerClothingSkirt: ClothingUniformJumpsuitPrisoner

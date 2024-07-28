@@ -47,6 +47,9 @@
   equipment:
     id: RnDPDA
     ears: ClothingHeadsetRD
+    underpants: ClothingUnderpanties_alt #backmen
+    undershirt: ClothingUnderundershirt #backmen
+    socks: ClothingUnderSocks_norm  #backmen
   storage:
     back:
     - Flash

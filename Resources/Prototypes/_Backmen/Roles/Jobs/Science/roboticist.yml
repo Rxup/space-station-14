@@ -30,6 +30,9 @@
     outerClothing: ClothingOuterCoatRnd
     id: RoboticistPDA
     ears: ClothingHeadsetScience
+    underpants: ClothingUnderpanties_alt #backmen
+    undershirt: ClothingUnderundershirt #backmen
+    socks: ClothingUnderSocks_norm  #backmen
   #innerClothingSkirt: ClothingUniformJumpskirtRoboticist
   #satchel: ClothingBackpackSatchelScienceFilled
   #duffelbag: ClothingBackpackDuffelScienceFilled
