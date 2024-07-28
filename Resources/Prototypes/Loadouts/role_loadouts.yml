@@ -31,7 +31,6 @@
   - Survival
   - Trinkets
   - GroupSpeciesBreathTool
-  
 
 # Civilian
 - type: roleLoadout
@@ -51,7 +50,6 @@
   - Survival
   - Trinkets
   - GroupSpeciesBreathTool
-  
 
 - type: roleLoadout
   id: JobBartender
@@ -68,7 +66,6 @@
   - Survival
   - Trinkets
   - GroupSpeciesBreathTool
-  
 
 - type: roleLoadout
   id: JobServiceWorker
@@ -83,7 +80,6 @@
   - Survival
   - Trinkets
   - GroupSpeciesBreathTool
-  
 
 - type: roleLoadout
   id: JobChef
@@ -101,7 +97,6 @@
   - Survival
   - Trinkets
   - GroupSpeciesBreathTool
-  
 
 - type: roleLoadout
   id: JobLibrarian
@@ -116,7 +111,6 @@
   - Survival
   - Trinkets
   - GroupSpeciesBreathTool
-  
 
 - type: roleLoadout
   id: JobLawyer
@@ -131,7 +125,6 @@
   - Inventory # Corvax-Loadouts
   - Trinkets
   - GroupSpeciesBreathTool
-  
 
 - type: roleLoadout
   id: JobChaplain
@@ -149,7 +142,6 @@
   - Inventory # Corvax-Loadouts
   - Trinkets
   - GroupSpeciesBreathTool
-  
 
 - type: roleLoadout
   id: JobJanitor
@@ -167,7 +159,6 @@
   - Medals #backmen
   - JanitorPlunger
   - GroupSpeciesBreathTool
-  
 
 - type: roleLoadout
   id: JobBotanist
@@ -183,7 +174,6 @@
   - Survival
   - Trinkets
   - GroupSpeciesBreathTool
-  
 
 - type: roleLoadout
   id: JobClown
@@ -199,7 +189,6 @@
   - Medals #backmen
   - SurvivalClown
   - Trinkets
-  
 
 - type: roleLoadout
   id: JobMime
@@ -214,7 +203,6 @@
   - Glasses
   - Medals #backmen
   - Trinkets
-  
 
 - type: roleLoadout
   id: JobMusician
@@ -230,7 +218,6 @@
   - Medals #backmen
   - Instruments
   - GroupSpeciesBreathTool
-  
 
 # Cargo
 - type: roleLoadout
@@ -249,7 +236,6 @@
   - Survival
   - Trinkets
   - GroupSpeciesBreathTool
-  
 
 - type: roleLoadout
   id: JobCargoTechnician
@@ -266,7 +252,6 @@
   - Survival
   - Trinkets
   - GroupSpeciesBreathTool
-  
 
 - type: roleLoadout
   id: JobSalvageSpecialist
@@ -281,7 +266,6 @@
   - Survival
   - Trinkets
   - GroupSpeciesBreathTool
-  
 
 # Engineering
 - type: roleLoadout
@@ -299,7 +283,6 @@
   - SurvivalExtended
   - Trinkets
   - GroupSpeciesBreathTool
-  
 
 - type: roleLoadout
   id: JobTechnicalAssistant
@@ -313,7 +296,6 @@
   - SurvivalExtended
   - Trinkets
   - GroupSpeciesBreathTool
-  
 
 - type: roleLoadout
   id: JobStationEngineer
@@ -331,7 +313,6 @@
   - SurvivalExtended
   - Trinkets
   - GroupSpeciesBreathTool
-  
 
 - type: roleLoadout
   id: JobAtmosphericTechnician
@@ -346,7 +327,6 @@
   - SurvivalExtended
   - Trinkets
   - GroupSpeciesBreathTool
-  
 
 # Science
 - type: roleLoadout
@@ -366,7 +346,6 @@
   - Survival
   - Trinkets
   - GroupSpeciesBreathTool
-  
 
 - type: roleLoadout
   id: JobScientist
@@ -386,7 +365,6 @@
   - Survival
   - Trinkets
   - GroupSpeciesBreathTool
-  
 
 - type: roleLoadout
   id: JobResearchAssistant
@@ -400,7 +378,6 @@
   - Survival
   - Trinkets
   - GroupSpeciesBreathTool
-  
 
 # Security
 - type: roleLoadout
@@ -420,7 +397,6 @@
   - SurvivalSecurity
   - Trinkets
   - GroupSpeciesBreathToolSecurity
-  
 
 - type: roleLoadout
   id: JobWarden
@@ -438,7 +414,6 @@
   - SurvivalSecurity
   - Trinkets
   - GroupSpeciesBreathToolSecurity
-  
 
 - type: roleLoadout
   id: JobSecurityOfficer
@@ -456,7 +431,6 @@
   - Medals #backmen
   - Trinkets
   - GroupSpeciesBreathToolSecurity
-  
 
 - type: roleLoadout
   id: JobDetective
@@ -474,7 +448,6 @@
   - SurvivalSecurity
   - Trinkets
   - GroupSpeciesBreathToolSecurity
-  
 
 - type: roleLoadout
   id: JobSecurityCadet
@@ -485,7 +458,6 @@
   - Medals #backmen
   - Trinkets
   - GroupSpeciesBreathToolSecurity
-  
 
 # Medical
 - type: roleLoadout
@@ -506,7 +478,6 @@
   - SurvivalMedical
   - Trinkets
   - GroupSpeciesBreathToolMedical
-  
 
 - type: roleLoadout
   id: JobMedicalDoctor
@@ -526,7 +497,6 @@
   - SurvivalMedical
   - Trinkets
   - GroupSpeciesBreathToolMedical
-  
 
 - type: roleLoadout
   id: JobMedicalIntern
@@ -540,7 +510,6 @@
   - SurvivalMedical
   - Trinkets
   - GroupSpeciesBreathToolMedical
-  
 
 - type: roleLoadout
   id: JobChemist
@@ -557,7 +526,6 @@
   - SurvivalMedical
   - Trinkets
   - GroupSpeciesBreathToolMedical
-  
 
 - type: roleLoadout
   id: JobParamedic
@@ -576,7 +544,6 @@
   - SurvivalMedical
   - Trinkets
   - GroupSpeciesBreathToolMedical
-  
 
 # Wildcards
 - type: roleLoadout
@@ -589,7 +556,6 @@
   - Medals #backmen
   - Trinkets
   - GroupSpeciesBreathTool
-  
 
 - type: roleLoadout
   id: JobReporter
@@ -603,7 +569,6 @@
   - Survival
   - Trinkets
   - GroupSpeciesBreathTool
-  
 
 - type: roleLoadout
   id: JobPsychologist
@@ -618,7 +583,6 @@
   - Survival
   - Trinkets
   - GroupSpeciesBreathTool
-  
 
 - type: roleLoadout
   id: JobBoxer
@@ -633,7 +597,6 @@
   - Survival
   - Trinkets
   - GroupSpeciesBreathTool
-  
 
 # These loadouts are used for non-crew spawns, like off-station antags and event mobs
 # They will be used without player configuration, thus they will only ever apply what is forced by MinLimit
