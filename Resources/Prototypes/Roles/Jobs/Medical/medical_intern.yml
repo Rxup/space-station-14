@@ -30,9 +30,6 @@
     ears: ClothingHeadsetMedical
     belt: ClothingBeltMedicalFilled
     pocket2: BookMedicalReferenceBook
-    underpants: ClothingUnderpanties_alt #backmen
-    undershirt: ClothingUnderundershirt #backmen
-    socks: ClothingUnderSocks_norm  #backmen
   #storage:
     #back:
     #- Stuff

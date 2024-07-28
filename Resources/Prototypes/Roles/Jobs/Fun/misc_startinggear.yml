@@ -31,9 +31,6 @@
     pocket1: EnergySword
     pocket2: EnergyShield
     belt: ClothingBeltMilitaryWebbingMedFilled
-    underpants: ClothingUnderpanties_alt #backmen
-    undershirt: ClothingUnderundershirt #backmen
-    socks: ClothingUnderSocks_norm  #backmen
   storage:
     back:
     - BoxSurvivalEngineering
@@ -59,9 +56,6 @@
     gloves: ClothingHandsGlovesColorBlack
     id: SyndiPDA
     ears: ClothingHeadsetAltSyndicate
-    underpants: ClothingUnderpanties_alt #backmen
-    undershirt: ClothingUnderundershirt #backmen
-    socks: ClothingUnderSocks_norm  #backmen
 
 # Syndicate Footsoldier Gear - No Headset
 - type: startingGear
@@ -75,9 +69,6 @@
     back: ClothingBackpack
     shoes: ClothingShoesBootsCombat
     id: SyndiPDA
-    underpants: ClothingUnderpanties_alt #backmen
-    undershirt: ClothingUnderundershirt #backmen
-    socks: ClothingUnderSocks_norm  #backmen
   storage:
     back:
     - BoxSurvival
@@ -88,9 +79,6 @@
   parent: SyndicateFootsoldierGearRuin
   equipment:
     ears: ClothingHeadsetAltSyndicate
-    underpants: ClothingUnderpanties_alt #backmen
-    undershirt: ClothingUnderundershirt #backmen
-    socks: ClothingUnderSocks_norm  #backmen
 
 # Nanotrasen Paramilitary Unit Gear
 - type: startingGear
@@ -105,9 +93,6 @@
     outerClothing: ClothingOuterArmorBasicSlim
     ears: ClothingHeadsetSecurity
     gloves: ClothingHandsGlovesCombat
-    underpants: ClothingUnderpanties_alt #backmen
-    undershirt: ClothingUnderundershirt #backmen
-    socks: ClothingUnderSocks_norm  #backmen
   storage:
     back:
     - BoxSurvivalSecurity
@@ -131,9 +116,6 @@
     pocket2: WeaponLaserGun
     suitstorage: OxygenTankFilled
     belt: ClothingBeltBandolier
-    underpants: ClothingUnderpanties_alt #backmen
-    undershirt: ClothingUnderundershirt #backmen
-    socks: ClothingUnderSocks_norm  #backmen
   storage:
     back:
     - BoxSurvivalEngineering
@@ -165,9 +147,6 @@
     shoes: ClothingShoesBootsJack
     ears: ClothingHeadsetGrey
     gloves: ClothingHandsGlovesFingerless
-    underpants: ClothingUnderpanties_alt #backmen
-    undershirt: ClothingUnderundershirt #backmen
-    socks: ClothingUnderSocks_norm  #backmen
   inhand:
     - WeaponMeleeToolboxRobust
 
@@ -187,9 +166,6 @@
     ears: ClothingHeadsetBrigmedic
     mask: ClothingMaskBreathMedicalSecurity
     belt: ClothingBeltMedicalFilled
-    underpants: ClothingUnderpanties_alt #backmen
-    undershirt: ClothingUnderundershirt #backmen
-    socks: ClothingUnderSocks_norm  #backmen
 
 # Aghost
 - type: startingGear
@@ -233,9 +209,6 @@
     mask: ClothingMaskClownBanana
     pocket1: BikeHorn
     pocket2: ClownRecorder
-    underpants: ClothingUnderpanties_alt #backmen
-    undershirt: ClothingUnderundershirt #backmen
-    socks: ClothingUnderSocks_norm  #backmen
 
 # Passenger but without the ID, bag, or headset
 - type: startingGear
@@ -268,9 +241,6 @@
     back: ClothingBackpackCargo
     ears: ClothingHeadsetCargo
     pocket1: AppraisalTool
-    underpants: ClothingUnderpanties_alt #backmen
-    undershirt: ClothingUnderundershirt #backmen
-    socks: ClothingUnderSocks_norm  #backmen
 
 - type: startingGear
   id: LostCargoTechGearCoat
@@ -283,9 +253,6 @@
     ears: ClothingHeadsetCargo
     pocket1: AppraisalTool
     outerClothing: ClothingOuterWinterCargo
-    underpants: ClothingUnderpanties_alt #backmen
-    undershirt: ClothingUnderundershirt #backmen
-    socks: ClothingUnderSocks_norm  #backmen
 
 #Traveling Chef
 - type: startingGear
@@ -297,9 +264,6 @@
     back: ClothingBackpackSatchel
     ears: ClothingHeadsetService
     belt: ClothingBeltChef
-    underpants: ClothingUnderpanties_alt #backmen
-    undershirt: ClothingUnderundershirt #backmen
-    socks: ClothingUnderSocks_norm  #backmen
 
 #CMO Disaster Victim
 - type: startingGear
@@ -314,9 +278,6 @@
     ears: ClothingHeadsetCMO
     belt: ClothingBeltMedical
     outerClothing: ClothingOuterCoatLabCmo
-    underpants: ClothingUnderpanties_alt #backmen
-    undershirt: ClothingUnderundershirt #backmen
-    socks: ClothingUnderSocks_norm  #backmen
 
 - type: startingGear
   id: DisasterVictimCMOAlt
@@ -330,9 +291,6 @@
     ears: ClothingHeadsetCMO
     belt: ClothingBeltMedical
     outerClothing: ClothingOuterCoatLabCmo
-    underpants: ClothingUnderpanties_alt #backmen
-    undershirt: ClothingUnderundershirt #backmen
-    socks: ClothingUnderSocks_norm  #backmen
 
 #Captain Disaster Victim
 - type: startingGear
@@ -348,9 +306,6 @@
     back: ClothingBackpackCaptain
     ears: ClothingHeadsetAltCommand
     outerClothing: ClothingOuterArmorCaptainCarapace
-    underpants: ClothingUnderpanties_alt #backmen
-    undershirt: ClothingUnderundershirt #backmen
-    socks: ClothingUnderSocks_norm  #backmen
 
 - type: startingGear
   id: DisasterVictimCaptainAlt
@@ -365,9 +320,6 @@
     back: ClothingBackpackSatchelCaptain
     ears: ClothingHeadsetAltCommand
     outerClothing: ClothingOuterArmorCaptainCarapace
-    underpants: ClothingUnderpanties_alt #backmen
-    undershirt: ClothingUnderundershirt #backmen
-    socks: ClothingUnderSocks_norm  #backmen
 
 #RD Disaster Victim
 - type: startingGear
@@ -381,9 +333,6 @@
     back: ClothingBackpackScience
     ears: ClothingHeadsetRD
     outerClothing: ClothingOuterCoatRD
-    underpants: ClothingUnderpanties_alt #backmen
-    undershirt: ClothingUnderundershirt #backmen
-    socks: ClothingUnderSocks_norm  #backmen
 
 - type: startingGear
   id: DisasterVictimRDAlt
@@ -396,6 +345,3 @@
     back: ClothingBackpackSatchelScience
     ears: ClothingHeadsetRD
     outerClothing: ClothingOuterCoatRD
-    underpants: ClothingUnderpanties_alt #backmen
-    undershirt: ClothingUnderundershirt #backmen
-    socks: ClothingUnderSocks_norm  #backmen

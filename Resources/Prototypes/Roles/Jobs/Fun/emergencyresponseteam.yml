@@ -30,9 +30,6 @@
     belt: ClothingBeltSecurityFilled
     pocket1: WeaponPistolN1984
     pocket2: FlashlightSeclite
-    underpants: ClothingUnderpanties_alt #backmen
-    undershirt: ClothingUnderundershirt #backmen
-    socks: ClothingUnderSocks_norm  #backmen
   storage:
     back:
     - BoxSurvivalEngineering
@@ -60,9 +57,6 @@
     belt: ClothingBeltSecurityFilled
     pocket1: WeaponPistolN1984
     pocket2: FlashlightSeclite
-    underpants: ClothingUnderpanties_alt #backmen
-    undershirt: ClothingUnderundershirt #backmen
-    socks: ClothingUnderSocks_norm  #backmen
   storage:
     back:
     - BoxSurvivalEngineering
@@ -90,9 +84,6 @@
     belt: ClothingBeltSecurityFilled
     pocket1: MagazineRifle
     pocket2: MagazineRifle
-    underpants: ClothingUnderpanties_alt #backmen
-    undershirt: ClothingUnderundershirt #backmen
-    socks: ClothingUnderSocks_norm  #backmen
   inhand:
     - AirTankFilled
   storage:
@@ -141,9 +132,6 @@
     belt: ClothingBeltStorageWaistbag
     pocket1: Flare
     pocket2: DrinkWaterBottleFull
-    underpants: ClothingUnderpanties_alt #backmen
-    undershirt: ClothingUnderundershirt #backmen
-    socks: ClothingUnderSocks_norm  #backmen
   storage:
     back:
     - BoxSurvivalEngineering
@@ -177,9 +165,6 @@
     belt: ClothingBeltStorageWaistbag
     pocket1: Flare
     pocket2: DrinkWaterBottleFull
-    underpants: ClothingUnderpanties_alt #backmen
-    undershirt: ClothingUnderundershirt #backmen
-    socks: ClothingUnderSocks_norm  #backmen
   storage:
     back:
     - BoxSurvivalEngineering
@@ -227,9 +212,6 @@
     belt: ClothingBeltChiefEngineerFilled
     pocket1: Flare
     pocket2: GasAnalyzer
-    underpants: ClothingUnderpanties_alt #backmen
-    undershirt: ClothingUnderundershirt #backmen
-    socks: ClothingUnderSocks_norm  #backmen
   storage:
     back:
     - BoxSurvivalEngineering
@@ -260,9 +242,6 @@
     belt: ClothingBeltChiefEngineerFilled
     pocket1: Flare
     pocket2: GasAnalyzer
-    underpants: ClothingUnderpanties_alt #backmen
-    undershirt: ClothingUnderundershirt #backmen
-    socks: ClothingUnderSocks_norm  #backmen
   storage:
     back:
     - BoxSurvivalEngineering
@@ -308,9 +287,6 @@
     belt: ClothingBeltSecurityFilled
     pocket1: WeaponPistolG22
     pocket2: FlashlightSeclite
-    underpants: ClothingUnderpanties_alt #backmen
-    undershirt: ClothingUnderundershirt #backmen
-    socks: ClothingUnderSocks_norm  #backmen
   storage:
     back:
     - BoxSurvivalEngineering
@@ -337,9 +313,6 @@
     belt: ClothingBeltSecurityFilled
     pocket1: WeaponPistolG22
     pocket2: FlashlightSeclite
-    underpants: ClothingUnderpanties_alt #backmen
-    undershirt: ClothingUnderundershirt #backmen
-    socks: ClothingUnderSocks_norm  #backmen
   storage:
     back:
     - BoxSurvivalEngineering
@@ -366,9 +339,6 @@
     belt: ClothingBeltSecurityFilled
     pocket1: MagazineRifle
     pocket2: MagazineRifle
-    underpants: ClothingUnderpanties_alt #backmen
-    undershirt: ClothingUnderundershirt #backmen
-    socks: ClothingUnderSocks_norm  #backmen
   inhand:
     - AirTankFilled
   storage:
@@ -411,9 +381,6 @@
     ears: ClothingHeadsetAltCentCom
     belt: ClothingBeltMedicalFilled
     pocket1: Flare
-    underpants: ClothingUnderpanties_alt #backmen
-    undershirt: ClothingUnderundershirt #backmen
-    socks: ClothingUnderSocks_norm  #backmen
   storage:
     back:
     - BoxSurvivalMedical # Is this actually supposed to be Medical? All other ERT has Extended
@@ -439,9 +406,6 @@
     ears: ClothingHeadsetAltCentCom
     belt: ClothingBeltMedicalFilled
     pocket1: Flare
-    underpants: ClothingUnderpanties_alt #backmen
-    undershirt: ClothingUnderundershirt #backmen
-    socks: ClothingUnderSocks_norm  #backmen
   storage:
     back:
     - BoxSurvivalMedical # Is this actually supposed to be Medical? All other ERT has Extended
@@ -481,9 +445,6 @@
     ears: ClothingHeadsetAltCentCom
     belt: ClothingBeltJanitorFilled
     pocket1: Flare
-    underpants: ClothingUnderpanties_alt #backmen
-    undershirt: ClothingUnderundershirt #backmen
-    socks: ClothingUnderSocks_norm  #backmen
   storage:
     back:
     - BoxSurvivalEngineering
@@ -508,9 +469,6 @@
     ears: ClothingHeadsetAltCentCom
     belt: ClothingBeltJanitorFilled
     pocket1: Flare
-    underpants: ClothingUnderpanties_alt #backmen
-    undershirt: ClothingUnderundershirt #backmen
-    socks: ClothingUnderSocks_norm  #backmen
   storage:
     back:
     - BoxSurvivalEngineering

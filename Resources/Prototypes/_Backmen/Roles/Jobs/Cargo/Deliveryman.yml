@@ -31,9 +31,6 @@
     ears: ClothingHeadsetService
     pocket1: Eftpos
     pocket2: FoodBoxPizzaFilled
-    underpants: ClothingUnderpanties_alt #backmen
-    undershirt: ClothingUnderundershirt #backmen
-    socks: ClothingUnderSocks_norm  #backmen
   #innerClothingSkirt: ClothingUniformJumpsuitDeliverygirl
   #satchel: ClothingBackpackSatchelFilled
   #duffelbag: ClothingBackpackDuffelFilled

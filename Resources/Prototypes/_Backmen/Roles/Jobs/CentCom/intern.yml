@@ -57,9 +57,6 @@
     shoes: ClothingShoesColorBlack
     id: CentcomInternPDABackmen
     ears: ClothingHeadsetCentCom
-    underpants: ClothingUnderpanties_alt #backmen
-    undershirt: ClothingUnderundershirt #backmen
-    socks: ClothingUnderSocks_norm  #backmen
 
 - type: startingGear
   id: CentComInternGearArmed # POWER IN QUANTITY!
@@ -76,9 +73,6 @@
     pocket1: MedicatedSuture
     pocket2: MagazineBoxLightRifle
     outerClothing: ClothingOuterArmorBasic
-    underpants: ClothingUnderpanties_alt #backmen
-    undershirt: ClothingUnderundershirt #backmen
-    socks: ClothingUnderSocks_norm  #backmen
 
 - type: entity
   parent: BasePDA

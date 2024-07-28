@@ -51,9 +51,6 @@
     ears: ClothingHeadsetQM
     belt: BoxFolderClipboard
     pocket1: AppraisalTool
-    underpants: ClothingUnderpanties_commie #backmen
-    undershirt: ClothingUnderundershirt #backmen
-    socks: ClothingUnderSocks_norm  #backmen
   storage:
     back:
     - Flash

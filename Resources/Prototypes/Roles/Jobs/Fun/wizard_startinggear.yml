@@ -8,9 +8,6 @@
     shoes: ClothingShoesWizard
     id: PassengerPDA
     ears: ClothingHeadsetService
-    underpants: ClothingUnderpanties_alt #backmen
-    undershirt: ClothingUnderundershirt #backmen
-    socks: ClothingUnderSocks_norm  #backmen
   storage:
     back:
     - BoxSurvival
@@ -22,9 +19,6 @@
     jumpsuit: ClothingUniformJumpsuitColorRed
     head: ClothingHeadHatRedwizard
     outerClothing: ClothingOuterWizardRed
-    underpants: ClothingUnderpanties_alt #backmen
-    undershirt: ClothingUnderundershirt #backmen
-    socks: ClothingUnderSocks_norm  #backmen
 
 - type: startingGear
   id: WizardVioletGear
@@ -33,15 +27,9 @@
     jumpsuit: ClothingUniformJumpsuitColorPurple
     head: ClothingHeadHatVioletwizard
     outerClothing: ClothingOuterWizardViolet
-    underpants: ClothingUnderpanties_alt #backmen
-    undershirt: ClothingUnderundershirt #backmen
-    socks: ClothingUnderSocks_norm  #backmen
 
 - type: startingGear
   id: WizardHardsuitGear
   parent: WizardVioletGear
   equipment:
     outerClothing: ClothingOuterHardsuitWizard
-    underpants: ClothingUnderpanties_alt #backmen
-    undershirt: ClothingUnderundershirt #backmen
-    socks: ClothingUnderSocks_norm  #backmen

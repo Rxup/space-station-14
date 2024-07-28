@@ -76,9 +76,6 @@
     ears: ClothingHeadsetCentComCC
     belt: ClothingBeltSecuritySuper
     pocket2: MagazinePistol
-    underpants: ClothingUnderpanties_alt #backmen
-    undershirt: ClothingUnderundershirt #backmen
-    socks: ClothingUnderSocks_norm  #backmen
 
 - type: entity
   parent: OrdenPDA

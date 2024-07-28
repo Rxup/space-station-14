@@ -33,9 +33,6 @@
     belt: ClothingBeltUtilityEngineering
     ears: ClothingHeadsetEngineering
     pocket2: BookEngineersHandbook
-    underpants: ClothingUnderpanties_alt #backmen
-    undershirt: ClothingUnderundershirt #backmen
-    socks: ClothingUnderSocks_norm  #backmen
   #storage:
     #back:
     #- Stuff

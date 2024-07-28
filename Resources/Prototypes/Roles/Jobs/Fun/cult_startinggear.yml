@@ -24,9 +24,6 @@
     shoes: ClothingShoesColorRed
     id: PassengerPDA
     ears: ClothingHeadsetService
-    underpants: ClothingUnderpanties_alt #backmen
-    undershirt: ClothingUnderundershirt #backmen
-    socks: ClothingUnderSocks_norm  #backmen
   storage:
     back:
     - BoxSurvival

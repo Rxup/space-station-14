@@ -29,9 +29,6 @@
     id: ResearchAssistantPDA
     ears: ClothingHeadsetScience
     pocket2: BookScientistsGuidebook
-    underpants: ClothingUnderpanties_alt #backmen
-    undershirt: ClothingUnderundershirt #backmen
-    socks: ClothingUnderSocks_norm  #backmen
   #storage:
     #back:
     #- Stuff
