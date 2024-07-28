@@ -7,9 +7,6 @@
   - Trinkets
   - Medals #backmen
   - Inventory # Corvax-Loadouts
-  - Shirt #backmen
-  - Socks #backmen
-  - Underpants #backmen
 
 - type: roleLoadout
   id: JobBrigmedic
@@ -23,6 +20,3 @@
   - Trinkets
   - Medals #backmen
   - Inventory # Corvax-Loadouts
-  - Shirt #backmen
-  - Socks #backmen
-  - Underpants #backmen

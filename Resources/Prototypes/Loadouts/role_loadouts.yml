@@ -14,9 +14,6 @@
   - Survival
   - Trinkets
   - GroupSpeciesBreathTool
-  - Shirt #backmen
-  - Socks #backmen
-  - Underpants #backmen
 
 - type: roleLoadout
   id: JobHeadOfPersonnel
@@ -34,9 +31,7 @@
   - Survival
   - Trinkets
   - GroupSpeciesBreathTool
-  - Shirt #backmen
-  - Socks #backmen
-  - Underpants #backmen
+  
 
 # Civilian
 - type: roleLoadout
@@ -56,9 +51,7 @@
   - Survival
   - Trinkets
   - GroupSpeciesBreathTool
-  - Shirt #backmen
-  - Socks #backmen
-  - Underpants #backmen
+  
 
 - type: roleLoadout
   id: JobBartender
@@ -75,9 +68,7 @@
   - Survival
   - Trinkets
   - GroupSpeciesBreathTool
-  - Shirt #backmen
-  - Socks #backmen
-  - Underpants #backmen
+  
 
 - type: roleLoadout
   id: JobServiceWorker
@@ -92,9 +83,7 @@
   - Survival
   - Trinkets
   - GroupSpeciesBreathTool
-  - Shirt #backmen
-  - Socks #backmen
-  - Underpants #backmen
+  
 
 - type: roleLoadout
   id: JobChef
@@ -112,9 +101,7 @@
   - Survival
   - Trinkets
   - GroupSpeciesBreathTool
-  - Shirt #backmen
-  - Socks #backmen
-  - Underpants #backmen
+  
 
 - type: roleLoadout
   id: JobLibrarian
@@ -129,9 +116,7 @@
   - Survival
   - Trinkets
   - GroupSpeciesBreathTool
-  - Shirt #backmen
-  - Socks #backmen
-  - Underpants #backmen
+  
 
 - type: roleLoadout
   id: JobLawyer
@@ -146,9 +131,7 @@
   - Inventory # Corvax-Loadouts
   - Trinkets
   - GroupSpeciesBreathTool
-  - Shirt #backmen
-  - Socks #backmen
-  - Underpants #backmen
+  
 
 - type: roleLoadout
   id: JobChaplain
@@ -166,9 +149,7 @@
   - Inventory # Corvax-Loadouts
   - Trinkets
   - GroupSpeciesBreathTool
-  - Shirt #backmen
-  - Socks #backmen
-  - Underpants #backmen
+  
 
 - type: roleLoadout
   id: JobJanitor
@@ -186,9 +167,7 @@
   - Medals #backmen
   - JanitorPlunger
   - GroupSpeciesBreathTool
-  - Shirt #backmen
-  - Socks #backmen
-  - Underpants #backmen
+  
 
 - type: roleLoadout
   id: JobBotanist
@@ -204,9 +183,7 @@
   - Survival
   - Trinkets
   - GroupSpeciesBreathTool
-  - Shirt #backmen
-  - Socks #backmen
-  - Underpants #backmen
+  
 
 - type: roleLoadout
   id: JobClown
@@ -222,9 +199,7 @@
   - Medals #backmen
   - SurvivalClown
   - Trinkets
-  - Shirt #backmen
-  - Socks #backmen
-  - Underpants #backmen
+  
 
 - type: roleLoadout
   id: JobMime
@@ -239,9 +214,7 @@
   - Glasses
   - Medals #backmen
   - Trinkets
-  - Shirt #backmen
-  - Socks #backmen
-  - Underpants #backmen
+  
 
 - type: roleLoadout
   id: JobMusician
@@ -257,9 +230,7 @@
   - Medals #backmen
   - Instruments
   - GroupSpeciesBreathTool
-  - Shirt #backmen
-  - Socks #backmen
-  - Underpants #backmen
+  
 
 # Cargo
 - type: roleLoadout
@@ -278,9 +249,7 @@
   - Survival
   - Trinkets
   - GroupSpeciesBreathTool
-  - Shirt #backmen
-  - Socks #backmen
-  - Underpants #backmen
+  
 
 - type: roleLoadout
   id: JobCargoTechnician
@@ -297,9 +266,7 @@
   - Survival
   - Trinkets
   - GroupSpeciesBreathTool
-  - Shirt #backmen
-  - Socks #backmen
-  - Underpants #backmen
+  
 
 - type: roleLoadout
   id: JobSalvageSpecialist
@@ -314,9 +281,7 @@
   - Survival
   - Trinkets
   - GroupSpeciesBreathTool
-  - Shirt #backmen
-  - Socks #backmen
-  - Underpants #backmen
+  
 
 # Engineering
 - type: roleLoadout
@@ -334,9 +299,7 @@
   - SurvivalExtended
   - Trinkets
   - GroupSpeciesBreathTool
-  - Shirt #backmen
-  - Socks #backmen
-  - Underpants #backmen
+  
 
 - type: roleLoadout
   id: JobTechnicalAssistant
@@ -350,9 +313,7 @@
   - SurvivalExtended
   - Trinkets
   - GroupSpeciesBreathTool
-  - Shirt #backmen
-  - Socks #backmen
-  - Underpants #backmen
+  
 
 - type: roleLoadout
   id: JobStationEngineer
@@ -370,9 +331,7 @@
   - SurvivalExtended
   - Trinkets
   - GroupSpeciesBreathTool
-  - Shirt #backmen
-  - Socks #backmen
-  - Underpants #backmen
+  
 
 - type: roleLoadout
   id: JobAtmosphericTechnician
@@ -387,9 +346,7 @@
   - SurvivalExtended
   - Trinkets
   - GroupSpeciesBreathTool
-  - Shirt #backmen
-  - Socks #backmen
-  - Underpants #backmen
+  
 
 # Science
 - type: roleLoadout
@@ -409,9 +366,7 @@
   - Survival
   - Trinkets
   - GroupSpeciesBreathTool
-  - Shirt #backmen
-  - Socks #backmen
-  - Underpants #backmen
+  
 
 - type: roleLoadout
   id: JobScientist
@@ -431,9 +386,7 @@
   - Survival
   - Trinkets
   - GroupSpeciesBreathTool
-  - Shirt #backmen
-  - Socks #backmen
-  - Underpants #backmen
+  
 
 - type: roleLoadout
   id: JobResearchAssistant
@@ -447,9 +400,7 @@
   - Survival
   - Trinkets
   - GroupSpeciesBreathTool
-  - Shirt #backmen
-  - Socks #backmen
-  - Underpants #backmen
+  
 
 # Security
 - type: roleLoadout
@@ -469,9 +420,7 @@
   - SurvivalSecurity
   - Trinkets
   - GroupSpeciesBreathToolSecurity
-  - Shirt #backmen
-  - Socks #backmen
-  - Underpants #backmen
+  
 
 - type: roleLoadout
   id: JobWarden
@@ -489,9 +438,7 @@
   - SurvivalSecurity
   - Trinkets
   - GroupSpeciesBreathToolSecurity
-  - Shirt #backmen
-  - Socks #backmen
-  - Underpants #backmen
+  
 
 - type: roleLoadout
   id: JobSecurityOfficer
@@ -509,9 +456,7 @@
   - Medals #backmen
   - Trinkets
   - GroupSpeciesBreathToolSecurity
-  - Shirt #backmen
-  - Socks #backmen
-  - Underpants #backmen
+  
 
 - type: roleLoadout
   id: JobDetective
@@ -529,9 +474,7 @@
   - SurvivalSecurity
   - Trinkets
   - GroupSpeciesBreathToolSecurity
-  - Shirt #backmen
-  - Socks #backmen
-  - Underpants #backmen
+  
 
 - type: roleLoadout
   id: JobSecurityCadet
@@ -542,9 +485,7 @@
   - Medals #backmen
   - Trinkets
   - GroupSpeciesBreathToolSecurity
-  - Shirt #backmen
-  - Socks #backmen
-  - Underpants #backmen
+  
 
 # Medical
 - type: roleLoadout
@@ -565,9 +506,7 @@
   - SurvivalMedical
   - Trinkets
   - GroupSpeciesBreathToolMedical
-  - Shirt #backmen
-  - Socks #backmen
-  - Underpants #backmen
+  
 
 - type: roleLoadout
   id: JobMedicalDoctor
@@ -587,9 +526,7 @@
   - SurvivalMedical
   - Trinkets
   - GroupSpeciesBreathToolMedical
-  - Shirt #backmen
-  - Socks #backmen
-  - Underpants #backmen
+  
 
 - type: roleLoadout
   id: JobMedicalIntern
@@ -603,9 +540,7 @@
   - SurvivalMedical
   - Trinkets
   - GroupSpeciesBreathToolMedical
-  - Shirt #backmen
-  - Socks #backmen
-  - Underpants #backmen
+  
 
 - type: roleLoadout
   id: JobChemist
@@ -622,9 +557,7 @@
   - SurvivalMedical
   - Trinkets
   - GroupSpeciesBreathToolMedical
-  - Shirt #backmen
-  - Socks #backmen
-  - Underpants #backmen
+  
 
 - type: roleLoadout
   id: JobParamedic
@@ -643,9 +576,7 @@
   - SurvivalMedical
   - Trinkets
   - GroupSpeciesBreathToolMedical
-  - Shirt #backmen
-  - Socks #backmen
-  - Underpants #backmen
+  
 
 # Wildcards
 - type: roleLoadout
@@ -658,9 +589,7 @@
   - Medals #backmen
   - Trinkets
   - GroupSpeciesBreathTool
-  - Shirt #backmen
-  - Socks #backmen
-  - Underpants #backmen
+  
 
 - type: roleLoadout
   id: JobReporter
@@ -674,9 +603,7 @@
   - Survival
   - Trinkets
   - GroupSpeciesBreathTool
-  - Shirt #backmen
-  - Socks #backmen
-  - Underpants #backmen
+  
 
 - type: roleLoadout
   id: JobPsychologist
@@ -691,9 +618,7 @@
   - Survival
   - Trinkets
   - GroupSpeciesBreathTool
-  - Shirt #backmen
-  - Socks #backmen
-  - Underpants #backmen
+  
 
 - type: roleLoadout
   id: JobBoxer
@@ -708,9 +633,7 @@
   - Survival
   - Trinkets
   - GroupSpeciesBreathTool
-  - Shirt #backmen
-  - Socks #backmen
-  - Underpants #backmen
+  
 
 # These loadouts are used for non-crew spawns, like off-station antags and event mobs
 # They will be used without player configuration, thus they will only ever apply what is forced by MinLimit
