@@ -1917,11 +1917,6 @@
     jumpsuit: ClothingUniformJumpskirtSchool
 
 - type: startingGear
-  id: ClothingUniformJumpskirtOfLife
-  equipment:
-    jumpsuit: ClothingUniformJumpskirtOfLife
-
-- type: startingGear
   id: ClothingUniformJumpskirtElegantMaid
   equipment:
     jumpsuit: ClothingUniformJumpskirtElegantMaid
