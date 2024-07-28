@@ -29,6 +29,9 @@
     id: AtmosPDA
     belt: ClothingBeltUtilityEngineering
     ears: ClothingHeadsetEngineering
+    underpants: ClothingUnderpanties_alt #backmen
+    undershirt: ClothingUnderundershirt #backmen
+    socks: ClothingUnderSocks_norm  #backmen
   #storage:
     #back:
     #- Stuff

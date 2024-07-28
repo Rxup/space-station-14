@@ -13,4 +13,7 @@
   id: HoloClownGear
   equipment:
     pocket1: BikeHorn
+    underpants: ClothingUnderpanties_alt #backmen
+    undershirt: ClothingUnderundershirt #backmen
+    socks: ClothingUnderSocks_norm  #backmen
 

@@ -79,6 +79,9 @@
     gloves: ClothingHandsGlovesHop
     ears: ClothingHeadsetAltCommand
     belt: BoxFolderClipboard
+    underpants: ClothingUnderpanties_commie #backmen
+    undershirt: ClothingUnderundershirt #backmen
+    socks: ClothingUnderSocks_norm  #backmen
   storage:
     back:
     - Flash

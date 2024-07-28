@@ -27,6 +27,9 @@
     id: BotanistPDA
     ears: ClothingHeadsetService
     belt: ClothingBeltPlantFilled
+    underpants: ClothingUnderpanties_alt #backmen
+    undershirt: ClothingUnderundershirt #backmen
+    socks: ClothingUnderSocks_norm  #backmen
   #storage:
     #back:
     #- Stuff

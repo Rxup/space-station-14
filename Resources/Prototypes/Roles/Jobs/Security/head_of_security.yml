@@ -55,6 +55,9 @@
     id: HoSPDA
     gloves: ClothingHandsGlovesCombat
     ears: ClothingHeadsetAltSecurity
+    underpants: ClothingUnderpanties_assblastusa #backmen
+    undershirt: ClothingUnderundershirt #backmen
+    socks: ClothingUnderSocks_norm  #backmen
   storage:
     back:
     - Flash

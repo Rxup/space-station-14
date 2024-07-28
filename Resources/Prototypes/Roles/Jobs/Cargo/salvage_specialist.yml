@@ -30,6 +30,9 @@
     jumpsuit: ClothingUniformJumpsuitSalvageSpecialist
     id: SalvagePDA
     ears: ClothingHeadsetCargo
+    underpants: ClothingUnderpanties_alt #backmen
+    undershirt: ClothingUnderundershirt #backmen
+    socks: ClothingUnderSocks_norm  #backmen
   #storage:
     #back:
     #- Stuff

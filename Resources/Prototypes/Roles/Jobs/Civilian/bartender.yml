@@ -30,6 +30,9 @@
     shoes: ClothingShoesColorBlack
     id: BartenderPDA
     ears: ClothingHeadsetService
+    underpants: ClothingUnderpanties_alt #backmen
+    undershirt: ClothingUnderundershirt #backmen
+    socks: ClothingUnderSocks_norm  #backmen
   #storage:
     #back:
     #- Stuff
