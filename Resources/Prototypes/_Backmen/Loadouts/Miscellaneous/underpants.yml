@@ -9,3 +9,18 @@
 - type: loadout
   id: ClothingUnderpanties
   equipment: ClothingUnderpanties
+
+- type: startingGear
+  id: ClothingUnderljonb
+  equipment:
+    underpants: ClothingUnderljonb
+
+- type: startingGear
+  id: ClothingUnderpanties_swimming
+  equipment:
+    underpants: ClothingUnderpanties_swimming
+
+- type: startingGear
+  id: ClothingUnderpanties
+  equipment:
+    underpants: ClothingUnderpanties

@@ -17,3 +17,28 @@
 - type: loadout
   id: ClothingUndershortsleeve
   equipment: ClothingUndershortsleeve
+
+- type: startingGear
+  id: ClothingUnderbabydoll
+  equipment:
+    undershirt: ClothingUnderbabydoll
+
+- type: startingGear
+  id: ClothingUnderundershirt
+  equipment:
+    undershirt: ClothingUnderundershirt
+
+- type: startingGear
+  id: ClothingUndercowboyshirt_white
+  equipment:
+    undershirt: ClothingUndercowboyshirt_white
+
+- type: startingGear
+  id: ClothingUndercowboyshirt_whites
+  equipment:
+    undershirt: ClothingUndercowboyshirt_whites
+
+- type: startingGear
+  id: ClothingUndershortsleeve
+  equipment:
+    undershirt: ClothingUndershortsleeve
