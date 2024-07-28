@@ -1529,7 +1529,7 @@
   maxLimit: 1
   loadouts:
   - ClothingOuterCoatBlackdmc
-  - ClothingOuterCoatBluedm
+  - ClothingOuterCoatBluedmc
   - ClothingOuterCoatDesertdmc
   - ClothingOuterCoatGolddmc
   - ClothingOuterCoatPurpledmc
@@ -1537,7 +1537,7 @@
   - ClothingOuterCoatSnowdmc
   - ClothingOuterCoatNT
   - ClothingOuterCoatJacket
-  - ClothingOuterCoatBlackVi
+  - ClothingOuterCoatBlackViF
 
 - type: startingGear
   id: ClothingOuterCoatBlackdmc
@@ -1545,9 +1545,9 @@
     outerClothing: ClothingOuterCoatBlackdmc
 
 - type: startingGear
-  id: ClothingOuterCoatBluedm
+  id: ClothingOuterCoatBluedmc
   equipment:
-    outerClothing: ClothingOuterCoatBluedm
+    outerClothing: ClothingOuterCoatBluedmc
 
 - type: startingGear
   id: ClothingOuterCoatDesertdmc
@@ -1585,9 +1585,9 @@
     outerClothing: ClothingOuterCoatJacket
 
 - type: startingGear
-  id: ClothingOuterCoatBlackVi
+  id: ClothingOuterCoatBlackViF
   equipment:
-    outerClothing: ClothingOuterCoatBlackVi
+    outerClothing: ClothingOuterCoatBlackViF
 
 - type: loadout
   id: ClothingOuterCoatBlackdmc
@@ -1597,8 +1597,8 @@
     proto: Sponsor
 
 - type: loadout
-  id: ClothingOuterCoatBluedm
-  equipment: ClothingOuterCoatBluedm
+  id: ClothingOuterCoatBluedmc
+  equipment: ClothingOuterCoatBluedmc
   effects:
   - !type:GroupLoadoutEffect
     proto: Sponsor
@@ -1653,8 +1653,8 @@
     proto: Sponsor
 
 - type: loadout
-  id: ClothingOuterCoatBlackVi
-  equipment: ClothingOuterCoatBlackVi
+  id: ClothingOuterCoatBlackViF
+  equipment: ClothingOuterCoatBlackViF
   effects:
   - !type:GroupLoadoutEffect
     proto: Sponsor
@@ -1667,7 +1667,7 @@
   loadouts:
   - ClothingHeadHatTony
   - ClothingHeadHatRichter
-  - ClothingHeadHatRasmu
+  - ClothingHeadHatRasmus
   - ClothingHeadHatJake
   - ClothingHeadHatAlex
   - ClothingHeadHatMVDBeret
@@ -1685,9 +1685,9 @@
     head: ClothingHeadHatRichter
 
 - type: startingGear
-  id: ClothingHeadHatRasmu
+  id: ClothingHeadHatRasmus
   equipment:
-    head: ClothingHeadHatRasmu
+    head: ClothingHeadHatRasmus
 
 - type: startingGear
   id: ClothingHeadHatJake
@@ -1729,8 +1729,8 @@
     proto: Sponsor
 
 - type: loadout
-  id: ClothingHeadHatRasmu
-  equipment: ClothingHeadHatRasmu
+  id: ClothingHeadHatRasmus
+  equipment: ClothingHeadHatRasmus
   effects:
   - !type:GroupLoadoutEffect
     proto: Sponsor
@@ -2016,7 +2016,7 @@
   - ClothingJokermask
   - ClothingHoxtonMask
   - ClothingChainsMask
-  - ClothingAnonMas
+  - ClothingAnonMask
   - ClothingMaskBee
   - ClothingMaskKitsune
   - ClothingGermanGasMask
@@ -2054,9 +2054,9 @@
     mask: ClothingChainsMask
 
 - type: startingGear
-  id: ClothingAnonMas
+  id: ClothingAnonMask
   equipment:
-    mask: ClothingAnonMas
+    mask: ClothingAnonMask
 
 - type: startingGear
   id: ClothingMaskBee
@@ -2144,8 +2144,8 @@
     proto: Sponsor
 
 - type: loadout
-  id: ClothingAnonMas
-  equipment: ClothingAnonMas
+  id: ClothingAnonMask
+  equipment: ClothingAnonMask
   effects:
   - !type:GroupLoadoutEffect
     proto: Sponsor
@@ -2249,6 +2249,16 @@
   - ClothingUniformJumpskirtElegantMaid
 
 - type: startingGear
+  id: ClothingUniformJumpsuitCloth
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitCloth
+
+- type: startingGear
+  id: ClothingUniformJumpsuitCamo
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitCamo
+
+- type: startingGear
   id: ClothingUniformJumpsuitEgovOfficer
   equipment:
     jumpsuit: ClothingUniformJumpsuitEgovOfficer
@@ -2341,6 +2351,20 @@
 - type: loadout
   id: ClothingUniformJumpsuitEgovOfficer
   equipment: ClothingUniformJumpsuitEgovOfficer
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: Sponsor
+
+- type: loadout
+  id: ClothingUniformJumpsuitCloth
+  equipment: ClothingUniformJumpsuitCloth
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: Sponsor
+
+- type: loadout
+  id: ClothingUniformJumpsuitCamo
+  equipment: ClothingUniformJumpsuitCamo
   effects:
   - !type:GroupLoadoutEffect
     proto: Sponsor
@@ -2445,7 +2469,7 @@
 
 - type: loadout
   id: ClothingUniformJumpsuitJeester
-  equipment: lothingUniformJumpsuitJeester
+  equipment: ClothingUniformJumpsuitJeester
   effects:
   - !type:GroupLoadoutEffect
     proto: Sponsor
