@@ -1,5 +1,2 @@
-# Overall play time, across all roles.
-# This tracker must exist, it is used directly by PlayTimeTrackingManager
-# Костыльная спонсорка.
 - type: playTimeTracker
   id: Sponsor
