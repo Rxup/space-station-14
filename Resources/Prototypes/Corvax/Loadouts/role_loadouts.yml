@@ -9,6 +9,13 @@
   - Trinkets
   - Medals #backmen
   - GroupSpeciesBreathTool
+  - sponsorcloak
+  - sponsorсoat
+  - sponsorhats
+  - sponsoreyes
+  - sponsorboots
+  - sponsormask
+  - sponsoruniform
 
 - type: roleLoadout
   id: JobPilot
@@ -22,3 +29,10 @@
   - Survival
   - Trinkets
   - GroupSpeciesBreathTool
+  - sponsorcloak
+  - sponsorсoat
+  - sponsorhats
+  - sponsoreyes
+  - sponsorboots
+  - sponsormask
+  - sponsoruniform

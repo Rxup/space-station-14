@@ -14,6 +14,13 @@
   - Survival
   - Trinkets
   - GroupSpeciesBreathTool
+  - sponsorcloak
+  - sponsorсoat
+  - sponsorhats
+  - sponsoreyes
+  - sponsorboots
+  - sponsormask
+  - sponsoruniform
 
 - type: roleLoadout
   id: JobHeadOfPersonnel
@@ -31,6 +38,13 @@
   - Survival
   - Trinkets
   - GroupSpeciesBreathTool
+  - sponsorcloak
+  - sponsorсoat
+  - sponsorhats
+  - sponsoreyes
+  - sponsorboots
+  - sponsormask
+  - sponsoruniform
 
 # Civilian
 - type: roleLoadout
@@ -50,6 +64,13 @@
   - Survival
   - Trinkets
   - GroupSpeciesBreathTool
+  - sponsorcloak
+  - sponsorсoat
+  - sponsorhats
+  - sponsoreyes
+  - sponsorboots
+  - sponsormask
+  - sponsoruniform
 
 - type: roleLoadout
   id: JobBartender
@@ -66,6 +87,13 @@
   - Survival
   - Trinkets
   - GroupSpeciesBreathTool
+  - sponsorcloak
+  - sponsorсoat
+  - sponsorhats
+  - sponsoreyes
+  - sponsorboots
+  - sponsormask
+  - sponsoruniform
 
 - type: roleLoadout
   id: JobServiceWorker
@@ -80,6 +108,13 @@
   - Survival
   - Trinkets
   - GroupSpeciesBreathTool
+  - sponsorcloak
+  - sponsorсoat
+  - sponsorhats
+  - sponsoreyes
+  - sponsorboots
+  - sponsormask
+  - sponsoruniform
 
 - type: roleLoadout
   id: JobChef
@@ -97,6 +132,13 @@
   - Survival
   - Trinkets
   - GroupSpeciesBreathTool
+  - sponsorcloak
+  - sponsorсoat
+  - sponsorhats
+  - sponsoreyes
+  - sponsorboots
+  - sponsormask
+  - sponsoruniform
 
 - type: roleLoadout
   id: JobLibrarian
@@ -111,6 +153,13 @@
   - Survival
   - Trinkets
   - GroupSpeciesBreathTool
+  - sponsorcloak
+  - sponsorсoat
+  - sponsorhats
+  - sponsoreyes
+  - sponsorboots
+  - sponsormask
+  - sponsoruniform
 
 - type: roleLoadout
   id: JobLawyer
@@ -125,6 +174,13 @@
   - Inventory # Corvax-Loadouts
   - Trinkets
   - GroupSpeciesBreathTool
+  - sponsorcloak
+  - sponsorсoat
+  - sponsorhats
+  - sponsoreyes
+  - sponsorboots
+  - sponsormask
+  - sponsoruniform
 
 - type: roleLoadout
   id: JobChaplain
@@ -142,6 +198,13 @@
   - Inventory # Corvax-Loadouts
   - Trinkets
   - GroupSpeciesBreathTool
+  - sponsorcloak
+  - sponsorсoat
+  - sponsorhats
+  - sponsoreyes
+  - sponsorboots
+  - sponsormask
+  - sponsoruniform
 
 - type: roleLoadout
   id: JobJanitor
@@ -159,6 +222,13 @@
   - Medals #backmen
   - JanitorPlunger
   - GroupSpeciesBreathTool
+  - sponsorcloak
+  - sponsorсoat
+  - sponsorhats
+  - sponsoreyes
+  - sponsorboots
+  - sponsormask
+  - sponsoruniform
 
 - type: roleLoadout
   id: JobBotanist
@@ -174,6 +244,13 @@
   - Survival
   - Trinkets
   - GroupSpeciesBreathTool
+  - sponsorcloak
+  - sponsorсoat
+  - sponsorhats
+  - sponsoreyes
+  - sponsorboots
+  - sponsormask
+  - sponsoruniform
 
 - type: roleLoadout
   id: JobClown
@@ -189,6 +266,13 @@
   - Medals #backmen
   - SurvivalClown
   - Trinkets
+  - sponsorcloak
+  - sponsorсoat
+  - sponsorhats
+  - sponsoreyes
+  - sponsorboots
+  - sponsormask
+  - sponsoruniform
 
 - type: roleLoadout
   id: JobMime
@@ -203,6 +287,13 @@
   - Glasses
   - Medals #backmen
   - Trinkets
+  - sponsorcloak
+  - sponsorсoat
+  - sponsorhats
+  - sponsoreyes
+  - sponsorboots
+  - sponsormask
+  - sponsoruniform
 
 - type: roleLoadout
   id: JobMusician
@@ -218,6 +309,13 @@
   - Medals #backmen
   - Instruments
   - GroupSpeciesBreathTool
+  - sponsorcloak
+  - sponsorсoat
+  - sponsorhats
+  - sponsoreyes
+  - sponsorboots
+  - sponsormask
+  - sponsoruniform
 
 # Cargo
 - type: roleLoadout
@@ -236,6 +334,13 @@
   - Survival
   - Trinkets
   - GroupSpeciesBreathTool
+  - sponsorcloak
+  - sponsorсoat
+  - sponsorhats
+  - sponsoreyes
+  - sponsorboots
+  - sponsormask
+  - sponsoruniform
 
 - type: roleLoadout
   id: JobCargoTechnician
@@ -252,6 +357,13 @@
   - Survival
   - Trinkets
   - GroupSpeciesBreathTool
+  - sponsorcloak
+  - sponsorсoat
+  - sponsorhats
+  - sponsoreyes
+  - sponsorboots
+  - sponsormask
+  - sponsoruniform
 
 - type: roleLoadout
   id: JobSalvageSpecialist
@@ -266,6 +378,13 @@
   - Survival
   - Trinkets
   - GroupSpeciesBreathTool
+  - sponsorcloak
+  - sponsorсoat
+  - sponsorhats
+  - sponsoreyes
+  - sponsorboots
+  - sponsormask
+  - sponsoruniform
 
 # Engineering
 - type: roleLoadout
@@ -283,6 +402,13 @@
   - SurvivalExtended
   - Trinkets
   - GroupSpeciesBreathTool
+  - sponsorcloak
+  - sponsorсoat
+  - sponsorhats
+  - sponsoreyes
+  - sponsorboots
+  - sponsormask
+  - sponsoruniform
 
 - type: roleLoadout
   id: JobTechnicalAssistant
@@ -296,6 +422,13 @@
   - SurvivalExtended
   - Trinkets
   - GroupSpeciesBreathTool
+  - sponsorcloak
+  - sponsorсoat
+  - sponsorhats
+  - sponsoreyes
+  - sponsorboots
+  - sponsormask
+  - sponsoruniform
 
 - type: roleLoadout
   id: JobStationEngineer
@@ -313,6 +446,13 @@
   - SurvivalExtended
   - Trinkets
   - GroupSpeciesBreathTool
+  - sponsorcloak
+  - sponsorсoat
+  - sponsorhats
+  - sponsoreyes
+  - sponsorboots
+  - sponsormask
+  - sponsoruniform
 
 - type: roleLoadout
   id: JobAtmosphericTechnician
@@ -327,6 +467,13 @@
   - SurvivalExtended
   - Trinkets
   - GroupSpeciesBreathTool
+  - sponsorcloak
+  - sponsorсoat
+  - sponsorhats
+  - sponsoreyes
+  - sponsorboots
+  - sponsormask
+  - sponsoruniform
 
 # Science
 - type: roleLoadout
@@ -346,6 +493,13 @@
   - Survival
   - Trinkets
   - GroupSpeciesBreathTool
+  - sponsorcloak
+  - sponsorсoat
+  - sponsorhats
+  - sponsoreyes
+  - sponsorboots
+  - sponsormask
+  - sponsoruniform
 
 - type: roleLoadout
   id: JobScientist
@@ -365,6 +519,13 @@
   - Survival
   - Trinkets
   - GroupSpeciesBreathTool
+  - sponsorcloak
+  - sponsorсoat
+  - sponsorhats
+  - sponsoreyes
+  - sponsorboots
+  - sponsormask
+  - sponsoruniform
 
 - type: roleLoadout
   id: JobResearchAssistant
@@ -378,6 +539,13 @@
   - Survival
   - Trinkets
   - GroupSpeciesBreathTool
+  - sponsorcloak
+  - sponsorсoat
+  - sponsorhats
+  - sponsoreyes
+  - sponsorboots
+  - sponsormask
+  - sponsoruniform
 
 # Security
 - type: roleLoadout
@@ -397,6 +565,13 @@
   - SurvivalSecurity
   - Trinkets
   - GroupSpeciesBreathToolSecurity
+  - sponsorcloak
+  - sponsorсoat
+  - sponsorhats
+  - sponsoreyes
+  - sponsorboots
+  - sponsormask
+  - sponsoruniform
 
 - type: roleLoadout
   id: JobWarden
@@ -414,6 +589,13 @@
   - SurvivalSecurity
   - Trinkets
   - GroupSpeciesBreathToolSecurity
+  - sponsorcloak
+  - sponsorсoat
+  - sponsorhats
+  - sponsoreyes
+  - sponsorboots
+  - sponsormask
+  - sponsoruniform
 
 - type: roleLoadout
   id: JobSecurityOfficer
@@ -431,6 +613,13 @@
   - Medals #backmen
   - Trinkets
   - GroupSpeciesBreathToolSecurity
+  - sponsorcloak
+  - sponsorсoat
+  - sponsorhats
+  - sponsoreyes
+  - sponsorboots
+  - sponsormask
+  - sponsoruniform
 
 - type: roleLoadout
   id: JobDetective
@@ -448,6 +637,13 @@
   - SurvivalSecurity
   - Trinkets
   - GroupSpeciesBreathToolSecurity
+  - sponsorcloak
+  - sponsorсoat
+  - sponsorhats
+  - sponsoreyes
+  - sponsorboots
+  - sponsormask
+  - sponsoruniform
 
 - type: roleLoadout
   id: JobSecurityCadet
@@ -458,6 +654,13 @@
   - Medals #backmen
   - Trinkets
   - GroupSpeciesBreathToolSecurity
+  - sponsorcloak
+  - sponsorсoat
+  - sponsorhats
+  - sponsoreyes
+  - sponsorboots
+  - sponsormask
+  - sponsoruniform
 
 # Medical
 - type: roleLoadout
@@ -478,6 +681,13 @@
   - SurvivalMedical
   - Trinkets
   - GroupSpeciesBreathToolMedical
+  - sponsorcloak
+  - sponsorсoat
+  - sponsorhats
+  - sponsoreyes
+  - sponsorboots
+  - sponsormask
+  - sponsoruniform
 
 - type: roleLoadout
   id: JobMedicalDoctor
@@ -497,6 +707,13 @@
   - SurvivalMedical
   - Trinkets
   - GroupSpeciesBreathToolMedical
+  - sponsorcloak
+  - sponsorсoat
+  - sponsorhats
+  - sponsoreyes
+  - sponsorboots
+  - sponsormask
+  - sponsoruniform
 
 - type: roleLoadout
   id: JobMedicalIntern
@@ -510,6 +727,13 @@
   - SurvivalMedical
   - Trinkets
   - GroupSpeciesBreathToolMedical
+  - sponsorcloak
+  - sponsorсoat
+  - sponsorhats
+  - sponsoreyes
+  - sponsorboots
+  - sponsormask
+  - sponsoruniform
 
 - type: roleLoadout
   id: JobChemist
@@ -526,6 +750,13 @@
   - SurvivalMedical
   - Trinkets
   - GroupSpeciesBreathToolMedical
+  - sponsorcloak
+  - sponsorсoat
+  - sponsorhats
+  - sponsoreyes
+  - sponsorboots
+  - sponsormask
+  - sponsoruniform
 
 - type: roleLoadout
   id: JobParamedic
@@ -544,6 +775,13 @@
   - SurvivalMedical
   - Trinkets
   - GroupSpeciesBreathToolMedical
+  - sponsorcloak
+  - sponsorсoat
+  - sponsorhats
+  - sponsoreyes
+  - sponsorboots
+  - sponsormask
+  - sponsoruniform
 
 # Wildcards
 - type: roleLoadout
@@ -569,6 +807,13 @@
   - Survival
   - Trinkets
   - GroupSpeciesBreathTool
+  - sponsorcloak
+  - sponsorсoat
+  - sponsorhats
+  - sponsoreyes
+  - sponsorboots
+  - sponsormask
+  - sponsoruniform
 
 - type: roleLoadout
   id: JobPsychologist
@@ -583,6 +828,13 @@
   - Survival
   - Trinkets
   - GroupSpeciesBreathTool
+  - sponsorcloak
+  - sponsorсoat
+  - sponsorhats
+  - sponsoreyes
+  - sponsorboots
+  - sponsormask
+  - sponsoruniform
 
 - type: roleLoadout
   id: JobBoxer
@@ -597,6 +849,13 @@
   - Survival
   - Trinkets
   - GroupSpeciesBreathTool
+  - sponsorcloak
+  - sponsorсoat
+  - sponsorhats
+  - sponsoreyes
+  - sponsorboots
+  - sponsormask
+  - sponsoruniform
 
 # These loadouts are used for non-crew spawns, like off-station antags and event mobs
 # They will be used without player configuration, thus they will only ever apply what is forced by MinLimit
