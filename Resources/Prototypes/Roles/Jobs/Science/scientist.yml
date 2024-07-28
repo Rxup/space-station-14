@@ -24,9 +24,6 @@
   id: ScientistGear
   equipment:
     ears: ClothingHeadsetScience
-    underpants: ClothingUnderpanties_alt #backmen
-    undershirt: ClothingUnderundershirt #backmen
-    socks: ClothingUnderSocks_norm  #backmen
   #storage:
     #back:
     #- Stuff

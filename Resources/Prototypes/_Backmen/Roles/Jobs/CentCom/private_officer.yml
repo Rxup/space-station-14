@@ -61,9 +61,6 @@
     ears: ClothingHeadsetCentComCC
     belt: ClothingBeltSecuritySuper
     pocket1: WeaponPistolMk58
-    underpants: ClothingUnderpanties_alt #backmen
-    undershirt: ClothingUnderundershirt #backmen
-    socks: ClothingUnderSocks_norm  #backmen
   #innerClothingSkirt: ClothingUniformJumpskirtSec
   #satchel: ClothingBackpackSatchelSecurityFilled
   #duffelbag: ClothingBackpackDuffelSecurityFilled

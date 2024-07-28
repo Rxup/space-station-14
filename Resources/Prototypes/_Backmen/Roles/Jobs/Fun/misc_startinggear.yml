@@ -12,9 +12,6 @@
     ears: ClothingHeadsetUEG
     mask: ClothingMaskGasMerc
     neck: ClothingNeckCloakUEG
-    underpants: ClothingUnderpanties_alt #backmen
-    undershirt: ClothingUnderundershirt #backmen
-    socks: ClothingUnderSocks_norm  #backmen
 
 #UEG officer
 - type: startingGear
@@ -30,9 +27,6 @@
     id: UEGoffIDCard
     ears: ClothingHeadsetUEGofficer
     mask: ClothingMaskGasMerc
-    underpants: ClothingUnderpanties_alt #backmen
-    undershirt: ClothingUnderundershirt #backmen
-    socks: ClothingUnderSocks_norm  #backmen
 
 - type: startingGear
   id: ChronoLegionnaireGear
@@ -44,6 +38,3 @@
     id: ChronoGavnaIDCard
     eyes: ClothingEyesGlassesSunglasses
     gloves: ClothingHandsChronoLegionnaire
-    underpants: ClothingUnderpanties_alt #backmen
-    undershirt: ClothingUnderundershirt #backmen
-    socks: ClothingUnderSocks_norm  #backmen

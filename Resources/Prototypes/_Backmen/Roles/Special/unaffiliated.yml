@@ -7,9 +7,6 @@
     jumpsuit: ClothingUniformJumpsuitChaplain
     belt: Bible
     shoes: ClothingShoesColorBlack
-    underpants: ClothingUnderpanties_alt #backmen
-    undershirt: ClothingUnderundershirt #backmen
-    socks: ClothingUnderSocks_norm  #backmen
   #innerClothingSkirt: ClothingUniformJumpskirtChaplain
 
 - type: startingGear
@@ -19,9 +16,6 @@
     head: ClothingHeadHatChef
     shoes: ClothingShoesColorBlack
     outerClothing: ClothingOuterApronChef
-    underpants: ClothingUnderpanties_alt #backmen
-    undershirt: ClothingUnderundershirt #backmen
-    socks: ClothingUnderSocks_norm  #backmen
   #innerClothingSkirt: ClothingUniformJumpskirtChef
 
 - type: startingGear
@@ -32,9 +26,6 @@
     outerClothing: ClothingOuterCoatLab
     neck: ClothingNeckStethoscope
     belt: ClothingBeltMedicalFilled
-    underpants: ClothingUnderpanties_alt #backmen
-    undershirt: ClothingUnderundershirt #backmen
-    socks: ClothingUnderSocks_norm  #backmen
   #innerClothingSkirt: ClothingUniformJumpskirtMedicalDoctor
 
 - type: startingGear
@@ -44,9 +35,6 @@
     shoes: ClothingShoesGaloshes
     head: ClothingHeadHatPurplesoft
     belt: ClothingBeltJanitorFilled
-    underpants: ClothingUnderpanties_alt #backmen
-    undershirt: ClothingUnderundershirt #backmen
-    socks: ClothingUnderSocks_norm  #backmen
   #innerClothingSkirt: ClothingUniformJumpskirtJanitor
 
 - type: startingGear
@@ -54,9 +42,6 @@
   equipment:
     jumpsuit: ClothingUniformJumpsuitLawyerBlack
     shoes: ClothingShoesBootsLaceup
-    underpants: ClothingUnderpanties_alt #backmen
-    undershirt: ClothingUnderundershirt #backmen
-    socks: ClothingUnderSocks_norm  #backmen
   #inhand:
   #  - BriefcaseBrownFilled
   #innerClothingSkirt: ClothingUniformJumpskirtLawyerBlack
@@ -68,9 +53,6 @@
     jumpsuit: ClothingUniformMailCarrier
     shoes: ClothingShoesColorBlack
     belt: MailBag
-    underpants: ClothingUnderpanties_alt #backmen
-    undershirt: ClothingUnderundershirt #backmen
-    socks: ClothingUnderSocks_norm  #backmen
   #innerClothingSkirt: ClothingUniformSkirtMailCarrier
 
 - type: startingGear
@@ -78,8 +60,5 @@
   equipment:
     jumpsuit: ClothingUniformJumpsuitPsychologist
     shoes: ClothingShoesLeather
-    underpants: ClothingUnderpanties_alt #backmen
-    undershirt: ClothingUnderundershirt #backmen
-    socks: ClothingUnderSocks_norm  #backmen
   #innerClothingSkirt: ClothingUniformJumpsuitPsychologist
 
