@@ -1521,6 +1521,9 @@
   - ClothingHeadHatMVDBeret
   - ClothingHeadHatMVDOfficerCap
   - ClothingHeadHelmetKendoMen
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: SeniorOfficer
 
 - type: startingGear
   id: ClothingHeadHatTony
@@ -1574,6 +1577,9 @@
   - ClothingEyesGlassesChemical
   - ClothingEyesGlassesGar
   - ClothingEyesGlassesGarOrange
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: SeniorOfficer
 
 - type: startingGear
   id: ClothingEyesSalesman
@@ -1623,6 +1629,9 @@
   - ClothingShoesSnakeskinBoots
   - ClothingShoesBootsWinter
   - ClothingShoesBootsNedoSpetsnaz
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: SeniorOfficer
 
 - type: startingGear
   id: ClothingShoesBootsWinterSci
@@ -1706,6 +1715,9 @@
   - ClothingMaskBandRed
   - ClothingMaskNeckGaiterRed
   - ClothingMaskSkull
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: SeniorOfficer
   
 
 - type: startingGear
@@ -1815,6 +1827,9 @@
   - ClothingUniformJumpskirtSchool
   - ClothingUniformJumpskirtOfLife
   - ClothingUniformJumpskirtElegantMaid
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: Sponsor
 
 - type: startingGear
   id: ClothingUniformJumpsuitEgovOfficer
