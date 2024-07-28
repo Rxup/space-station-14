@@ -1706,6 +1706,7 @@
   - ClothingMaskBandRed
   - ClothingMaskNeckGaiterRed
   - ClothingMaskSkull
+  
 
 - type: startingGear
   id: ClothingWolfMask
