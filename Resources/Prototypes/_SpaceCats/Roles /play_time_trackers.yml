@@ -3,13 +3,3 @@
 # Костыльная спонсорка.
 - type: playTimeTracker
   id: Sponsor
-
-﻿- type: job
-  id: Sponsor
-  name: job-name-brigmedic
-  description: job-description-brigmedic
-  playTimeTracker: Sponsor
-  requirements:
-    - !type:DepartmentTimeRequirement
-      department: Medical
-      time: 18000
