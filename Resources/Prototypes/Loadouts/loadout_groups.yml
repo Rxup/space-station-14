@@ -1776,17 +1776,11 @@
   minLimit: 0
   maxLimit: 1
   loadouts:
-  - ClothingEyesSalesman
   - ClothingEyesGlassesJamjar
   - ClothingEyesGlassesJensen
   - ClothingEyesGlassesChemical
   - ClothingEyesGlassesGar
   - ClothingEyesGlassesGarOrange
-
-- type: startingGear
-  id: ClothingEyesSalesman
-  equipment:
-    eyes: ClothingEyesSalesman
 
 - type: startingGear
   id: ClothingEyesGlassesJamjar
@@ -1812,13 +1806,6 @@
   id: ClothingEyesGlassesGarOrange
   equipment:
     eyes: ClothingEyesGlassesGarOrange
-
-- type: loadout
-  id: ClothingEyesSalesman
-  equipment: ClothingEyesSalesman
-  effects:
-  - !type:GroupLoadoutEffect
-    proto: Sponsor
 
 - type: loadout
   id: ClothingEyesGlassesJamjar
