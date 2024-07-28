@@ -1378,6 +1378,68 @@
   - ClothingNeckCloakmeibe
   - ClothingCloakAtmosian
 
+- type: startingGear
+  id: ClothingNeckCloakWhiteCloak
+  equipment:
+    neck: ClothingNeckCloakWhiteCloak
+
+- type: startingGear
+  id: ClothingNeckCloakGreenMantie
+  equipment:
+    neck: ClothingNeckCloakGreenMantie
+
+- type: startingGear
+  id: ClothingNeckCloakTGMCCloak
+  equipment:
+    neck: ClothingNeckCloakTGMCCloak
+
+- type: startingGear
+  id: ClothingNeckCloakPoncho
+  equipment:
+    neck: ClothingNeckCloakPoncho
+
+- type: startingGear
+  id: ClothingNeckCloakBlackCloak
+  equipment:
+    neck: ClothingNeckCloakBlackCloak
+
+- type: startingGear
+  id: ClothingNeckCloakSanabi
+  equipment:
+    neck: ClothingNeckCloakSanabi
+
+- type: startingGear
+  id: ClothingNeckCloakTGMCwhite
+  equipment:
+    neck: ClothingNeckCloakTGMCwhite
+
+- type: startingGear
+  id: ClothingNeckCloakROE
+  equipment:
+    neck: ClothingNeckCloakROE
+
+- type: startingGear
+  id: ClothingNeckCloakPirate
+  equipment:
+    neck: ClothingNeckCloakPirate
+
+- type: startingGear
+  id: ClothingNeckCloakVoid
+  equipment:
+    neck: ClothingNeckCloakVoid
+
+- type: startingGear
+  id: ClothingNeckCloakmeibe
+  equipment:
+    neck: ClothingNeckCloakmeibe
+
+- type: startingGear
+  id: ClothingCloakAtmosian
+  equipment:
+    neck: ClothingCloakAtmosian
+
+
+
 - type: loadoutGroup
   id: sponsorсoat
   name: loadout-group-sponsor-cloaks
@@ -1395,6 +1457,56 @@
   - ClothingOuterCoatJacket
   - ClothingOuterCoatBlackVi
 
+- type: startingGear
+  id: ClothingOuterCoatBlackdmc
+  equipment:
+    outerClothing: ClothingOuterCoatBlackdmc
+
+- type: startingGear
+  id: ClothingOuterCoatBluedm
+  equipment:
+    outerClothing: ClothingOuterCoatBluedm
+
+- type: startingGear
+  id: ClothingOuterCoatDesertdmc
+  equipment:
+    outerClothing: ClothingOuterCoatDesertdmc
+
+- type: startingGear
+  id: ClothingOuterCoatGolddmc
+  equipment:
+    outerClothing: ClothingOuterCoatGolddmc
+
+- type: startingGear
+  id: ClothingOuterCoatPurpledmc
+  equipment:
+    outerClothing: ClothingOuterCoatPurpledmc
+
+- type: startingGear
+  id: ClothingOuterCoatReddmc
+  equipment:
+    outerClothing: ClothingOuterCoatReddmc
+
+- type: startingGear
+  id: ClothingOuterCoatSnowdmc
+  equipment:
+    outerClothing: ClothingOuterCoatSnowdmc
+
+- type: startingGear
+  id: ClothingOuterCoatNT
+  equipment:
+    outerClothing: ClothingOuterCoatNT
+
+- type: startingGear
+  id: ClothingOuterCoatJacket
+  equipment:
+    outerClothing: ClothingOuterCoatJacket
+
+- type: startingGear
+  id: ClothingOuterCoatBlackVi
+  equipment:
+    outerClothing: ClothingOuterCoatBlackVi
+
 - type: loadoutGroup
   id: sponsorhats
   name: loadout-group-sponsor-hats
@@ -1410,6 +1522,46 @@
   - ClothingHeadHatMVDOfficerCap
   - ClothingHeadHelmetKendoMen
 
+- type: startingGear
+  id: ClothingHeadHatTony
+  equipment:
+    head: ClothingHeadHatTony
+
+- type: startingGear
+  id: ClothingHeadHatRichter
+  equipment:
+    head: ClothingHeadHatRichter
+
+- type: startingGear
+  id: ClothingHeadHatRasmu
+  equipment:
+    head: ClothingHeadHatRasmu
+
+- type: startingGear
+  id: ClothingHeadHatJake
+  equipment:
+    head: ClothingHeadHatJake
+
+- type: startingGear
+  id: ClothingHeadHatAlex
+  equipment:
+    head: ClothingHeadHatAlex
+
+- type: startingGear
+  id: ClothingHeadHatMVDBeret
+  equipment:
+    head: ClothingHeadHatMVDBeret
+
+- type: startingGear
+  id: ClothingHeadHatMVDOfficerCap
+  equipment:
+    head: ClothingHeadHatMVDOfficerCap
+
+- type: startingGear
+  id: ClothingHeadHelmetKendoMen
+  equipment:
+    head: ClothingHeadHelmetKendoMen
+
 - type: loadoutGroup
   id: sponsoreyes
   name: loadout-group-sponsor-eyes
@@ -1418,11 +1570,40 @@
   loadouts:
   - ClothingEyesSalesman
   - ClothingEyesGlassesJamjar
-  - ClothingEyesGlasses
   - ClothingEyesGlassesJensen
   - ClothingEyesGlassesChemical
   - ClothingEyesGlassesGar
   - ClothingEyesGlassesGarOrange
+
+- type: startingGear
+  id: ClothingEyesSalesman
+  equipment:
+    eyes: ClothingEyesSalesman
+
+- type: startingGear
+  id: ClothingEyesGlassesJamjar
+  equipment:
+    eyes: ClothingEyesGlassesJamjar
+
+- type: startingGear
+  id: ClothingEyesGlassesJensen
+  equipment:
+    eyes: ClothingEyesGlassesJensen
+
+- type: startingGear
+  id: ClothingEyesGlassesChemical
+  equipment:
+    eyes: ClothingEyesGlassesChemical
+
+- type: startingGear
+  id: ClothingEyesGlassesGar
+  equipment:
+    eyes: ClothingEyesGlassesGar
+
+- type: startingGear
+  id: ClothingEyesGlassesGarOrange
+  equipment:
+    eyes: ClothingEyesGlassesGarOrange
 
 - type: loadoutGroup
   id: sponsorboots
@@ -1442,6 +1623,66 @@
   - ClothingShoesSnakeskinBoots
   - ClothingShoesBootsWinter
   - ClothingShoesBootsNedoSpetsnaz
+
+- type: startingGear
+  id: ClothingShoesBootsWinterSci
+  equipment:
+    shoes: ClothingShoesBootsWinterSci
+
+- type: startingGear
+  id: ClothingShoesBootsWinterEngi
+  equipment:
+    shoes: ClothingShoesBootsWinterEngi
+
+- type: startingGear
+  id: ClothingShoesBootsWinterMed
+  equipment:
+    shoes: ClothingShoesBootsWinterMed
+
+- type: startingGear
+  id: ClothingShoesBootsWinterCargo
+  equipment:
+    shoes: ClothingShoesBootsWinterCargo
+
+- type: startingGear
+  id: ClothingShoesBootsWinterWeb
+  equipment:
+    shoes: ClothingShoesBootsWinterWeb
+
+- type: startingGear
+  id: ClothingShoesBootsBerrci
+  equipment:
+    shoes: ClothingShoesBootsBerrci
+
+- type: startingGear
+  id: ClothingShoesBootsCowboyWhite
+  equipment:
+    shoes: ClothingShoesBootsCowboyWhite
+
+- type: startingGear
+  id: ClothingShoesBootsCowboyBlack
+  equipment:
+    shoes: ClothingShoesBootsCowboyBlack
+
+- type: startingGear
+  id: ClothingShoesHighheelBoots
+  equipment:
+    shoes: ClothingShoesHighheelBoots
+
+- type: startingGear
+  id: ClothingShoesSnakeskinBoots
+  equipment:
+    shoes: ClothingShoesSnakeskinBoots
+
+- type: startingGear
+  id: ClothingShoesBootsWinter
+  equipment:
+    shoes: ClothingShoesBootsWinter
+
+- type: startingGear
+  id: ClothingShoesBootsNedoSpetsnaz
+  equipment:
+    shoes: ClothingShoesBootsNedoSpetsnaz
 
 - type: loadoutGroup
   id: sponsormask
@@ -1465,6 +1706,91 @@
   - ClothingMaskBandRed
   - ClothingMaskNeckGaiterRed
   - ClothingMaskSkull
+
+- type: startingGear
+  id: ClothingWolfMask
+  equipment:
+    mask: ClothingWolfMask
+
+- type: startingGear
+  id: ClothingDallasMask
+  equipment:
+    mask: ClothingDallasMask
+
+- type: startingGear
+  id: ClothingJokermask
+  equipment:
+    mask: ClothingJokermask
+
+- type: startingGear
+  id: ClothingHoxtonMask
+  equipment:
+    mask: ClothingHoxtonMask
+
+- type: startingGear
+  id: ClothingChainsMask
+  equipment:
+    mask: ClothingChainsMask
+
+- type: startingGear
+  id: ClothingAnonMas
+  equipment:
+    mask: ClothingAnonMas
+
+- type: startingGear
+  id: ClothingMaskBee
+  equipment:
+    mask: ClothingMaskBee
+
+- type: startingGear
+  id: ClothingMaskKitsune
+  equipment:
+    mask: ClothingMaskKitsune
+
+- type: startingGear
+  id: ClothingGermanGasMask
+  equipment:
+    mask: ClothingGermanGasMask
+
+- type: startingGear
+  id:  ClothingGermanGasMask
+  equipment:
+    mask:  ClothingGermanGasMask
+
+- type: startingGear
+  id: ClothingMaskBandGrey
+  equipment:
+    mask: ClothingMaskBandGrey
+
+- type: startingGear
+  id: ClothingMaskBandBlack
+  equipment:
+    mask: ClothingMaskBandBlack
+
+- type: startingGear
+  id: ClothingMaskNeckGaiter
+  equipment:
+    mask: ClothingMaskNeckGaiter
+
+- type: startingGear
+  id: ClothingMaskBal
+  equipment:
+    mask: ClothingMaskBal
+
+- type: startingGear
+  id: ClothingMaskBandRed
+  equipment:
+    mask: ClothingMaskBandRed
+
+- type: startingGear
+  id: ClothingMaskNeckGaiterRed
+  equipment:
+    mask: ClothingMaskNeckGaiterRed
+
+- type: startingGear
+  id: ClothingMaskSkull
+  equipment:
+    mask: ClothingMaskSkull
 
 - type: loadoutGroup
   id: sponsoruniform
@@ -1493,3 +1819,98 @@
   - ClothingUniformJumpskirtSchool
   - ClothingUniformJumpskirtOfLife
   - ClothingUniformJumpskirtElegantMaid
+
+- type: startingGear
+  id: ClothingUniformJumpsuitEgovOfficer
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitEgovOfficer
+
+- type: startingGear
+  id: ClothingUniformJumpsuitEgov
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitEgov
+
+- type: startingGear
+  id: ClothingUniformEGovOfficer
+  equipment:
+    jumpsuit: ClothingUniformEGovOfficer
+
+- type: startingGear
+  id: ClothingUniformJumpsuitbiker
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitbiker
+
+- type: startingGear
+  id: ClothingUniformJumpsuitRichard
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitRichard
+
+- type: startingGear
+  id: ClothingUniformJumpsuitEgovOfficerALT
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitEgovOfficerALT
+
+- type: startingGear
+  id: ClothingUniformJumpsuitcannonieruniform
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitcannonieruniform
+
+- type: startingGear
+  id: ClothingUniformJumpsuitNavalUniform
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitNavalUniform
+
+- type: startingGear
+  id: ClothingUniformJumpsuitMVDInspector
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitMVDInspector
+
+- type: startingGear
+  id: ClothingUniformJumpsuitstutmanuniform
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitstutmanuniform
+
+- type: startingGear
+  id: ClothingUniformJumpsuitHawaiBlack
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitHawaiBlack
+
+- type: startingGear
+  id: ClothingUniformJumpsuitSWAT
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitSWAT
+
+- type: startingGear
+  id: ClothingUniformJumpsuitSuitSssp
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitSuitSssp
+
+- type: startingGear
+  id: ClothingUniformJumpsuitWorkerViF
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitWorkerViF
+
+- type: startingGear
+  id: ClothingUniformJumpsuitVergil
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitVergil
+
+- type: startingGear
+  id: ClothingUniformJumpsuitJeester
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitJeester
+
+- type: startingGear
+  id: ClothingUniformJumpskirtSchool
+  equipment:
+    jumpsuit: ClothingUniformJumpskirtSchool
+
+- type: startingGear
+  id: ClothingUniformJumpskirtOfLife
+  equipment:
+    jumpsuit: ClothingUniformJumpskirtOfLife
+
+- type: startingGear
+  id: ClothingUniformJumpskirtElegantMaid
+  equipment:
+    jumpsuit: ClothingUniformJumpskirtElegantMaid
