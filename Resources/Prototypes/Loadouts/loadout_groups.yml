@@ -1753,11 +1753,6 @@
     mask: ClothingGermanGasMask
 
 - type: startingGear
-  id:  ClothingGermanGasMask
-  equipment:
-    mask:  ClothingGermanGasMask
-
-- type: startingGear
   id: ClothingMaskBandGrey
   equipment:
     mask: ClothingMaskBandGrey
@@ -1914,3 +1909,14 @@
   id: ClothingUniformJumpskirtElegantMaid
   equipment:
     jumpsuit: ClothingUniformJumpskirtElegantMaid
+    
+
+
+- type: loadoutEffectGroup
+  id: Sponsor
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:RoleTimeRequirement
+      role: Sponsor
+      time: 10
