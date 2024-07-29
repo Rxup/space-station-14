@@ -30,7 +30,7 @@
 - type: startingGear
   id: ClothingUnderbra_binder
   equipment:
-    UNDERSHIRT: ClothingUnderbra_binder
+    undershirt: ClothingUnderbra_binder
 #---------------------------------------
 - type: loadout
   id: ClothingUnderbra_alt
@@ -39,7 +39,7 @@
 - type: startingGear
   id: ClothingUnderbra_alt
   equipment:
-    UNDERSHIRT: ClothingUnderbra_alt
+    undershirt: ClothingUnderbra_alt
 #---------------------------------------
 - type: loadout
   id: ClothingUnderbra
@@ -48,7 +48,7 @@
 - type: startingGear
   id: ClothingUnderbra
   equipment:
-    UNDERSHIRT: ClothingUnderbra
+    undershirt: ClothingUnderbra
 #---------------------------------------
 - type: loadout
   id: ClothingUnderljont
@@ -57,7 +57,7 @@
 - type: startingGear
   id: ClothingUnderljont
   equipment:
-    UNDERSHIRT: ClothingUnderljont
+    undershirt: ClothingUnderljont
 #---------------------------------------
 - type: loadout
   id: ClothingUnderlover
@@ -66,7 +66,7 @@
 - type: startingGear
   id: ClothingUnderlover
   equipment:
-    UNDERSHIRT: ClothingUnderlover
+    undershirt: ClothingUnderlover
 #---------------------------------------
 - type: loadout
   id: ClothingUndertank_midriff
@@ -75,7 +75,7 @@
 - type: startingGear
   id: ClothingUndertank_midriff
   equipment:
-    UNDERSHIRT: ClothingUndertank_midriff
+    undershirt: ClothingUndertank_midriff
 #---------------------------------------
 - type: loadout
   id: ClothingUndertank_midriff_alt
@@ -84,7 +84,7 @@
 - type: startingGear
   id: ClothingUndertank_midriff_alt
   equipment:
-    UNDERSHIRT: ClothingUndertank_midriff_alt
+    undershirt: ClothingUndertank_midriff_alt
 #---------------------------------------
 - type: loadout
   id: ClothingUndershirt_nano
@@ -93,7 +93,7 @@
 - type: startingGear
   id: ClothingUndershirt_nano
   equipment:
-    UNDERSHIRT: ClothingUndershirt_nano
+    undershirt: ClothingUndershirt_nano
 #---------------------------------------
 - type: loadout
   id: ClothingUnderilovent
@@ -102,7 +102,7 @@
 - type: startingGear
   id: ClothingUnderilovent
   equipment:
-    UNDERSHIRT: ClothingUnderilovent
+    undershirt: ClothingUnderilovent
 #---------------------------------------
 - type: loadout
   id: ClothingUnderbowlinga
@@ -111,7 +111,7 @@
 - type: startingGear
   id: ClothingUnderbowlinga
   equipment:
-    UNDERSHIRT: ClothingUnderbowlinga
+    undershirt: ClothingUnderbowlinga
 #---------------------------------------
 - type: loadout
   id: ClothingUnderpolo
@@ -120,7 +120,7 @@
 - type: startingGear
   id: ClothingUnderpolo
   equipment:
-    UNDERSHIRT: ClothingUnderpolo
+    undershirt: ClothingUnderpolo
 #---------------------------------------
 - type: loadout
   id: ClothingUndergreenshirtsport
@@ -129,7 +129,7 @@
 - type: startingGear
   id: ClothingUndergreenshirtsport
   equipment:
-    UNDERSHIRT: ClothingUndergreenshirtsport
+    undershirt: ClothingUndergreenshirtsport
 #---------------------------------------
 - type: loadout
   id: ClothingUnderbra_binder_strapless
@@ -138,7 +138,7 @@
 - type: startingGear
   id: ClothingUnderbra_binder_strapless
   equipment:
-    UNDERSHIRT: ClothingUnderbra_binder_strapless
+    undershirt: ClothingUnderbra_binder_strapless
 #---------------------------------------
 - type: loadout
   id: ClothingUnderbra_strapless_alt
@@ -147,7 +147,7 @@
 - type: startingGear
   id: ClothingUnderbra_strapless_alt
   equipment:
-    UNDERSHIRT: ClothingUnderbra_strapless_alt
+    undershirt: ClothingUnderbra_strapless_alt
 #---------------------------------------
 - type: loadout
   id: ClothingUndershortsleeve
@@ -156,7 +156,7 @@
 - type: startingGear
   id: ClothingUndershortsleeve
   equipment:
-    UNDERSHIRT: ClothingUndershortsleeve
+    undershirt: ClothingUndershortsleeve
 #---------------------------------------
 - type: loadout
   id: ClothingUndertubetop
@@ -165,7 +165,7 @@
 - type: startingGear
   id: ClothingUndertubetop
   equipment:
-    UNDERSHIRT: ClothingUndertubetop
+    undershirt: ClothingUndertubetop
     
 #---------------------------------------#
 #---------------------------------------#
@@ -195,7 +195,7 @@
 - type: startingGear
   id: ClothingUnderboxer_briefs
   equipment:
-    UNDERPANTS: ClothingUnderboxer_briefs
+    underpants: ClothingUnderboxer_briefs
 #---------------------------------------
 - type: loadout
   id: ClothingUnderbriefs
@@ -204,7 +204,7 @@
 - type: startingGear
   id: ClothingUnderbriefs
   equipment:
-    UNDERPANTS: ClothingUnderbriefs
+    underpants: ClothingUnderbriefs
 #---------------------------------------
 - type: loadout
   id: ClothingUnderboxers_heart
@@ -213,7 +213,7 @@
 - type: startingGear
   id: ClothingUnderboxers_heart
   equipment:
-    UNDERPANTS: ClothingUnderboxers_heart
+    underpants: ClothingUnderboxers_heart
 #---------------------------------------
 - type: loadout
   id: ClothingUnderljonb
@@ -222,7 +222,7 @@
 - type: startingGear
   id: ClothingUnderljonb
   equipment:
-    UNDERPANTS: ClothingUnderljonb
+    underpants: ClothingUnderljonb
 #---------------------------------------
 - type: loadout
   id: ClothingUnderjockstrap
@@ -231,7 +231,7 @@
 - type: startingGear
   id: ClothingUnderjockstrap
   equipment:
-    UNDERPANTS: ClothingUnderjockstrap
+    underpants: ClothingUnderjockstrap
 #---------------------------------------
 - type: loadout
   id: ClothingUnderpanties
@@ -240,7 +240,7 @@
 - type: startingGear
   id: ClothingUnderpanties
   equipment:
-    UNDERPANTS: ClothingUnderpanties
+    underpants: ClothingUnderpanties
 #---------------------------------------
 - type: loadout
   id: ClothingUnderpantyhose
@@ -249,7 +249,7 @@
 - type: startingGear
   id: ClothingUnderpantyhose
   equipment:
-    UNDERPANTS: ClothingUnderpantyhose
+    underpants: ClothingUnderpantyhose
     
 #---------------------------------------#
 #---------------------------------------#
@@ -277,7 +277,7 @@
 - type: startingGear
   id: ClothingUnderSocks_knee
   equipment:
-    SOCKS: ClothingUnderSocks_knee
+    socks: ClothingUnderSocks_knee
 #---------------------------------------
 - type: loadout
   id: ClothingUnderSocks_norm
@@ -286,7 +286,7 @@
 - type: startingGear
   id: ClothingUnderSocks_norm
   equipment:
-    SOCKS: ClothingUnderSocks_norm
+    socks: ClothingUnderSocks_norm
 #---------------------------------------
 - type: loadout
   id: ClothingUnderSocks_short
@@ -295,7 +295,7 @@
 - type: startingGear
   id: ClothingUnderSocks_short
   equipment:
-    SOCKS: ClothingUnderSocks_short
+    socks: ClothingUnderSocks_short
 #---------------------------------------
 - type: loadout
   id: ClothingUnderThin_knee
@@ -304,7 +304,7 @@
 - type: startingGear
   id: ClothingUnderThin_knee
   equipment:
-    SOCKS: ClothingUnderThin_knee
+    socks: ClothingUnderThin_knee
 #---------------------------------------
 - type: loadout
   id: ClothingUnderThin_thigh
@@ -313,7 +313,7 @@
 - type: startingGear
   id: ClothingUnderThin_thigh
   equipment:
-    SOCKS: ClothingUnderThin_thigh
+    socks: ClothingUnderThin_thigh
 #---------------------------------------
 - type: loadout
   id: ClothingUnderGarter
@@ -322,7 +322,7 @@
 - type: startingGear
   id: ClothingUnderGarter
   equipment:
-    SOCKS: ClothingUnderGarter
+    socks: ClothingUnderGarter
 #---------------------------------------
 - type: loadout
   id: ClothingUnderSocks_thigh
@@ -331,4 +331,4 @@
 - type: startingGear
   id: ClothingUnderSocks_thigh
   equipment:
-    SOCKS: ClothingUnderSocks_thigh
+    socks: ClothingUnderSocks_thigh
