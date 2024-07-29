@@ -8,7 +8,7 @@
       components:
       - TraitorRole
   - type: Objective
-    issuer: objective-issuer-Interdyne-Pharmaceutics
+    issuer: issuer-Interdyne-Pharmaceutics
   - type: ObjectiveBlacklistRequirement
     blacklist:
       tags:
