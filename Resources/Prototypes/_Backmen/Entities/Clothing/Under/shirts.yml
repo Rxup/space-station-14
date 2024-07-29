@@ -10,6 +10,15 @@
     - type: Sprite
       # noRot: true
       state: icon
+    - type: Food
+      requiresSpecialDigestion: true
+    - type: SolutionContainerManager
+      solutions:
+        food:
+          maxVol: 10
+          reagents:
+          - ReagentId: Fiber
+            Quantity: 10
     - type: TemperatureProtection
       coefficient: 0.75
 
