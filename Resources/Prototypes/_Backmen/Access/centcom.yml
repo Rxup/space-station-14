@@ -12,7 +12,7 @@
 
 - type: accessLevel
   id: CCAdmiral
-  name: ЦК Адмирал
+  name: ЦК НШЦК
 
 - type: accessGroup
   id: CentCom
