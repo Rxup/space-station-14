@@ -1,7 +1,7 @@
 - type: entity
   id: SpawnPointBKCCAdmiral
   parent: SpawnPointBKCCAssistant
-  name: ЦК Адмирал
+  name: ЦК НШЦК
   components:
     - type: SpawnPoint
       job_id: BKCCAdmiral

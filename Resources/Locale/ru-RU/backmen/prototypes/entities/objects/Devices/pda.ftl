@@ -28,7 +28,7 @@ ent-CentcomInternPDABackmen = КПК Ассистента ЦК
 ent-IDCardCentComIntern = Id карта Ассистента ЦК
     .desc = { ent-CentcomIDCardDeathsquad.desc }
 
-ent-CCAdmiralPDA = КПК адмирала НТ
+ent-CCAdmiralPDA = КПК НШЦК НТ
     .desc = { ent-CentcomPDABackmen.desc }
-ent-IDCardCentComAdmiral = Id карта Адмирала ЦК
+ent-IDCardCentComAdmiral = Id карта НШЦК ЦК
     .desc = { ent-CentcomIDCardDeathsquad.desc }
