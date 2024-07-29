@@ -3,6 +3,9 @@
   id: JobCaptain
   groups:
   - Inventory # Corvax-Loadouts
+  - Werx #backmen
+  - Niz #backmen
+  - Socks #backmen
   - CaptainHead
   - CaptainNeck
   - CaptainJumpsuit
@@ -26,6 +29,9 @@
   id: JobHeadOfPersonnel
   groups:
   - Inventory # Corvax-Loadouts
+  - Werx #backmen
+  - Niz #backmen
+  - Socks #backmen
   - GroupTankHarness
   - HoPHead
   - HoPNeck
@@ -51,6 +57,9 @@
   id: JobPassenger
   groups:
   - Inventory # Corvax-Loadouts
+  - Werx #backmen
+  - Niz #backmen
+  - Socks #backmen
   - GroupTankHarness
   - PassengerJumpsuit
   - CommonBackpack
@@ -76,6 +85,9 @@
   id: JobBartender
   groups:
   - Inventory # Corvax-Loadouts
+  - Werx #backmen
+  - Niz #backmen
+  - Socks #backmen
   - GroupTankHarness
   - BartenderHead
   - BartenderJumpsuit
@@ -99,6 +111,9 @@
   id: JobServiceWorker
   groups:
   - Inventory # Corvax-Loadouts
+  - Werx #backmen
+  - Niz #backmen
+  - Socks #backmen
   - GroupTankHarness
   - BartenderJumpsuit
   - CommonBackpack
@@ -120,6 +135,9 @@
   id: JobChef
   groups:
   - Inventory # Corvax-Loadouts
+  - Werx #backmen
+  - Niz #backmen
+  - Socks #backmen
   - GroupTankHarness
   - ChefHead
   - ChefMask
@@ -144,6 +162,9 @@
   id: JobLibrarian
   groups:
   - Inventory # Corvax-Loadouts
+  - Werx #backmen
+  - Niz #backmen
+  - Socks #backmen
   - GroupTankHarness
   - LibrarianJumpsuit
   - CommonBackpack
@@ -165,6 +186,9 @@
   id: JobLawyer
   groups:
   - Inventory # Corvax-Loadouts
+  - Werx #backmen
+  - Niz #backmen
+  - Socks #backmen
   - GroupTankHarness
   - LawyerNeck
   - LawyerJumpsuit
@@ -186,6 +210,9 @@
   id: JobChaplain
   groups:
   - Inventory # Corvax-Loadouts
+  - Werx #backmen
+  - Niz #backmen
+  - Socks #backmen
   - GroupTankHarness
   - ChaplainHead
   - ChaplainMask
@@ -210,6 +237,9 @@
   id: JobJanitor
   groups:
   - Inventory # Corvax-Loadouts
+  - Werx #backmen
+  - Niz #backmen
+  - Socks #backmen
   - GroupTankHarness
   - JanitorHead
   - JanitorJumpsuit
@@ -234,6 +264,9 @@
   id: JobBotanist
   groups:
   - Inventory # Corvax-Loadouts
+  - Werx #backmen
+  - Niz #backmen
+  - Socks #backmen
   - GroupTankHarness
   - BotanistHead
   - BotanistJumpsuit
@@ -256,6 +289,9 @@
   id: JobClown
   groups:
   - Inventory # Corvax-Loadouts
+  - Werx #backmen
+  - Niz #backmen
+  - Socks #backmen
   - GroupTankHarness
   - ClownHead
   - ClownJumpsuit
@@ -278,6 +314,9 @@
   id: JobMime
   groups:
   - Inventory # Corvax-Loadouts
+  - Werx #backmen
+  - Niz #backmen
+  - Socks #backmen
   - GroupTankHarness
   - MimeHead
   - MimeMask
@@ -299,6 +338,9 @@
   id: JobMusician
   groups:
   - Inventory # Corvax-Loadouts
+  - Werx #backmen
+  - Niz #backmen
+  - Socks #backmen
   - GroupTankHarness
   - MusicianJumpsuit
   - CommonBackpack
@@ -322,6 +364,9 @@
   id: JobQuartermaster
   groups:
   - Inventory # Corvax-Loadouts
+  - Werx #backmen
+  - Niz #backmen
+  - Socks #backmen
   - GroupTankHarness
   - QuartermasterHead
   - QuartermasterNeck
@@ -346,6 +391,9 @@
   id: JobCargoTechnician
   groups:
   - Inventory # Corvax-Loadouts
+  - Werx #backmen
+  - Niz #backmen
+  - Socks #backmen
   - GroupTankHarness
   - CargoTechnicianHead
   - CargoTechnicianJumpsuit
@@ -369,6 +417,9 @@
   id: JobSalvageSpecialist
   groups:
   - Inventory # Corvax-Loadouts
+  - Werx #backmen
+  - Niz #backmen
+  - Socks #backmen
   - GroupTankHarness
   - SalvageSpecialistBackpack
   - SalvageSpecialistOuterClothing
@@ -391,6 +442,9 @@
   id: JobChiefEngineer
   groups:
   - Inventory # Corvax-Loadouts
+  - Werx #backmen
+  - Niz #backmen
+  - Socks #backmen
   - GroupTankHarness
   - ChiefEngineerHead
   - ChiefEngineerJumpsuit
@@ -414,6 +468,9 @@
   id: JobTechnicalAssistant
   groups:
   - Inventory # Corvax-Loadouts
+  - Werx #backmen
+  - Niz #backmen
+  - Socks #backmen
   - GroupTankHarness
   - TechnicalAssistantJumpsuit
   - StationEngineerBackpack
@@ -434,6 +491,9 @@
   id: JobStationEngineer
   groups:
   - Inventory # Corvax-Loadouts
+  - Werx #backmen
+  - Niz #backmen
+  - Socks #backmen
   - GroupTankHarness
   - StationEngineerHead
   - StationEngineerJumpsuit
@@ -458,6 +518,9 @@
   id: JobAtmosphericTechnician
   groups:
   - Inventory # Corvax-Loadouts
+  - Werx #backmen
+  - Niz #backmen
+  - Socks #backmen
   - GroupTankHarness
   - AtmosphericTechnicianJumpsuit
   - AtmosphericTechnicianBackpack
@@ -480,6 +543,9 @@
   id: JobResearchDirector
   groups:
   - Inventory # Corvax-Loadouts
+  - Werx #backmen
+  - Niz #backmen
+  - Socks #backmen
   - GroupTankHarness
   - ResearchDirectorHead
   - ResearchDirectorNeck
@@ -505,6 +571,9 @@
   id: JobScientist
   groups:
   - Inventory # Corvax-Loadouts
+  - Werx #backmen
+  - Niz #backmen
+  - Socks #backmen
   - GroupTankHarness
   - ScientistHead
   - ScientistNeck
@@ -531,6 +600,9 @@
   id: JobResearchAssistant
   groups:
   - Inventory # Corvax-Loadouts
+  - Werx #backmen
+  - Niz #backmen
+  - Socks #backmen
   - GroupTankHarness
   - ResearchAssistantJumpsuit
   - ScientistBackpack
@@ -552,6 +624,9 @@
   id: JobHeadOfSecurity
   groups:
   - Inventory # Corvax-Loadouts
+  - Werx #backmen
+  - Niz #backmen
+  - Socks #backmen
   - HeadofSecurityHead
   - HeadofSecurityNeck
   - HeadofSecurityJumpsuit
@@ -577,6 +652,9 @@
   id: JobWarden
   groups:
   - Inventory # Corvax-Loadouts
+  - Werx #backmen
+  - Niz #backmen
+  - Socks #backmen
   - WardenHead
   - WardenJumpsuit
   - SecurityBackpack
@@ -601,6 +679,9 @@
   id: JobSecurityOfficer
   groups:
   - Inventory # Corvax-Loadouts
+  - Werx #backmen
+  - Niz #backmen
+  - Socks #backmen
   - SecurityHead
   - SecurityJumpsuit
   - SecurityBackpack
@@ -625,6 +706,9 @@
   id: JobDetective
   groups:
   - Inventory # Corvax-Loadouts
+  - Werx #backmen
+  - Niz #backmen
+  - Socks #backmen
   - GroupTankHarness
   - DetectiveHead
   - DetectiveNeck
@@ -649,6 +733,9 @@
   id: JobSecurityCadet
   groups:
   - Inventory # Corvax-Loadouts
+  - Werx #backmen
+  - Niz #backmen
+  - Socks #backmen
   - SecurityCadetJumpsuit
   - SecurityBackpack
   - Medals #backmen
@@ -667,6 +754,9 @@
   id: JobChiefMedicalOfficer
   groups:
   - Inventory # Corvax-Loadouts
+  - Werx #backmen
+  - Niz #backmen
+  - Socks #backmen
   - GroupTankHarness
   - ChiefMedicalOfficerHead
   - MedicalMask
@@ -693,6 +783,9 @@
   id: JobMedicalDoctor
   groups:
   - Inventory # Corvax-Loadouts
+  - Werx #backmen
+  - Niz #backmen
+  - Socks #backmen
   - GroupTankHarness
   - MedicalDoctorHead
   - MedicalMask
@@ -719,6 +812,9 @@
   id: JobMedicalIntern
   groups:
   - Inventory # Corvax-Loadouts
+  - Werx #backmen
+  - Niz #backmen
+  - Socks #backmen
   - GroupTankHarness
   - MedicalInternJumpsuit
   - MedicalBackpack
@@ -739,6 +835,9 @@
   id: JobChemist
   groups:
   - Inventory # Corvax-Loadouts
+  - Werx #backmen
+  - Niz #backmen
+  - Socks #backmen
   - GroupTankHarness
   - MedicalMask
   - ChemistJumpsuit
@@ -762,6 +861,9 @@
   id: JobParamedic
   groups:
   - Inventory # Corvax-Loadouts
+  - Werx #backmen
+  - Niz #backmen
+  - Socks #backmen
   - GroupTankHarness
   - ParamedicHead
   - MedicalMask
@@ -788,6 +890,9 @@
   id: JobZookeeper
   groups:
   - Inventory # Corvax-Loadouts
+  - Werx #backmen
+  - Niz #backmen
+  - Socks #backmen
   - GroupTankHarness
   - CommonBackpack
   - Glasses
@@ -799,6 +904,9 @@
   id: JobReporter
   groups:
   - Inventory # Corvax-Loadouts
+  - Werx #backmen
+  - Niz #backmen
+  - Socks #backmen
   - GroupTankHarness
   - ReporterJumpsuit
   - CommonBackpack
@@ -818,8 +926,11 @@
 - type: roleLoadout
   id: JobPsychologist
   groups:
-  - PsychologistJumpsuit #backmen
   - Inventory # Corvax-Loadouts
+  - Werx #backmen
+  - Niz #backmen
+  - Socks #backmen
+  - PsychologistJumpsuit #backmen
   - GroupTankHarness
   - MedicalBackpack
   - Glasses
@@ -840,6 +951,9 @@
   id: JobBoxer
   groups:
   - Inventory # Corvax-Loadouts
+  - Werx #backmen
+  - Niz #backmen
+  - Socks #backmen
   - GroupTankHarness
   - BoxerJumpsuit
   - BoxerGloves
