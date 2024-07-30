@@ -124598,14 +124598,6 @@ entities:
     - type: Transform
       pos: 22.5,6.5
       parent: 60
-- proto: SignTheater
-  entities:
-  - uid: 24271
-    components:
-    - type: Transform
-      rot: 3.141592653589793 rad
-      pos: 18.5,-20.5
-      parent: 60
 - proto: SignToolStorage
   entities:
   - uid: 6315
