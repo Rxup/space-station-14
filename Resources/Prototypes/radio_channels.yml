@@ -97,7 +97,7 @@
   longRange: true
 
 - type: radioChannel
-  id: Hivemind
+  id: Hiveminds
   name: chat-radio-hivemind
   keycode: 'g'
   frequency: 19840
