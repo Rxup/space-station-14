@@ -7,13 +7,6 @@
   - Trinkets
   - Medals #backmen
   - Inventory # Corvax-Loadouts
-  - sponsorcloak
-  - sponsorсoat
-  - sponsorhats
-  - sponsoreyes
-  - sponsorboots
-  - sponsormask
-  - sponsoruniform
 
 - type: roleLoadout
   id: JobBrigmedic
@@ -30,10 +23,3 @@
   - Trinkets
   - Medals #backmen
   - Inventory # Corvax-Loadouts
-  - sponsorcloak
-  - sponsorсoat
-  - sponsorhats
-  - sponsoreyes
-  - sponsorboots
-  - sponsormask
-  - sponsoruniform
