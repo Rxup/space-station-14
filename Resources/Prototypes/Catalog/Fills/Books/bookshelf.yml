@@ -19,9 +19,6 @@
       - id: BookDetectiveP3
         prob: 0.0
         orGroup: BookPool
-      - id: BookPassionsP1
-        prob: 0.0
-        orGroup: BookPool
       - id: BookPaperworkP1
         prob: 0.0
         orGroup: BookPool
@@ -53,9 +50,6 @@
         prob: 0.0
         orGroup: BookPool
       - id: BookPaperworkP5
-        prob: 0.0
-        orGroup: BookPool
-      - id: BookPassionsP2
         prob: 0.0
         orGroup: BookPool
       - id: BookPaperworkP6
