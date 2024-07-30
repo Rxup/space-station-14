@@ -2,7 +2,7 @@
   name: BaseWeaponRifle
   parent: BaseItem
   id: BaseWeaponEnergyRifle
-  description: A rooty tooty point and shooty.
+  description: Коренастый, зубастый и меткий.
   abstract: true
   components:
   - type: Sprite
@@ -52,7 +52,7 @@
   name: AP-12 NT
   parent: BaseWeaponEnergyRifle
   id: WeaponPulseRifleAP12
-  description: The AP Motorized Pulse Rifle is a military-grade, rapid-fire assault rifle with large magazine ammunition capacity. The Pulse Rifle is the standard-issue service rifle of the Earth Special Force.
+  description: AP Motorized Pulse Rifle - это скорострельная штурмовая винтовка военного образца с большим количеством патронов в магазине. Импульсная винтовка - это стандартная служебная винтовка спецназа Земли.
   components:
   - type: Sprite
     sprite: Backmen/Objects/Weapons/Gunsx64/Battery/Pulse/ap12/big.rsi
@@ -97,7 +97,7 @@
   name: XM LongRifle
   parent: BaseWeaponEnergyRifle
   id: WeaponPulseRifleXMLG
-  description: The XM Motorized Pulse Long Rifle is a military-grade, assault rifle with large magazine ammunition capacity. The Long Pulse Rifle is the standard-issue service rifle of the Earth Special Force.
+  description: Длинноствольная винтовка XM Motorized Pulse - это штурмовая винтовка военного образца с большим магазином боеприпасов. Длинноствольная импульсная винтовка является стандартной служебной винтовкой спецназа Земли.
   components:
   - type: Sprite
     sprite: Backmen/Objects/Weapons/Gunsx64/Battery/Pulse/xmlg/big.rsi
@@ -142,7 +142,7 @@
   name: Hell Hammer
   parent: BaseWeaponEnergyRifle
   id: WeaponPulseShotgunHellHammer
-  description: The Auto Impulse shotgun, used motorizeded firing mechanism. The Pulse Shotgun is the standard-issue service shotgun of the Earth Special Force.
+  description: Автоматическое импульсное ружье, использующее моторизованный ударно-спусковой механизм. Импульсное ружье - это стандартное служебное ружье Земного спецназа.
   components:
   - type: Sprite
     sprite: Backmen/Objects/Weapons/Gunsx64/Battery/Pulse/hellhamer/big.rsi
@@ -185,7 +185,7 @@
   name: Triton Mark 3
   parent: BaseWeaponEnergyRifle
   id: WeaponPulseSMGTritonM3
-  description: The AP Motorized Pulse SMP is a military-grade, rapid-fire assault rifle with large magazine ammunition capacity. The Pulse SMG is the standard-issue service rifle of the Earth Special Force.
+  description: AP Motorized Pulse SMP - это скорострельная штурмовая винтовка военного образца с большим магазином боеприпасов. Pulse SMG - это стандартная служебная винтовка Земного спецназа.
   components:
   - type: Sprite
     sprite: Backmen/Objects/Weapons/Gunsx64/Battery/Pulse/smpg/big.rsi

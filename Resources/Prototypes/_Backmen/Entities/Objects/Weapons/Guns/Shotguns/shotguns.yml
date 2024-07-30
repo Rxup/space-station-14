@@ -3,7 +3,7 @@
   parent: BaseWeaponShotgun
   id: WeaponShotgun39
   suffix: Дробовик
-  description: The Earth Armories XM1014 combat shotgun is a semi automatic shotgun used by breachers and pointmen within the Earth Army squads. Uses .50 shotgun shells.
+  description: Боевое ружье Earth Armories XM1014 - это полуавтоматическое ружье, используемое нарушителями и стрелками в подразделениях армии Земли. В нем используются патроны 50-го калибра.
   components:
   - type: Sprite
     sprite: Backmen/Objects/Weapons/Gunsx64/Shotguns/sh-39/big.rsi
@@ -39,7 +39,7 @@
   parent: WeaponShotgunBulldog
   id: WeaponShotgunZauer
   suffix: Дробовик
-  description: It's a magazine-fed shotgun designed for close quarters combat. Uses .50 shotgun shells.
+  description: Это магазинный дробовик, предназначенный для ближнего боя. В нем используются патроны 50-го калибра.
   components:
   - type: Sprite
     sprite: Backmen/Objects/Weapons/Gunsx64/Shotguns/zauer/big.rsi
@@ -65,7 +65,7 @@
   parent: WeaponShotgunBulldog
   id: WeaponShotgunAA12
   suffix: Дробовик
-  description: It's a magazine-fed shotgun designed for close quarters combat. Uses .12 gauge shotgun shells.
+  description: Это магазинный дробовик, предназначенный для ближнего боя. В нем используются патроны для дробовика 12-го калибра.
   components:
   - type: Sprite
     sprite: Backmen/Objects/Weapons/Gunsx64/Shotguns/aa12/big.rsi
@@ -102,7 +102,7 @@
   parent: BaseWeaponShotgun
   id: WeaponShotgunPaladin12
   suffix: Дробовик
-  description: A nine-round pump action shotgun. A shotgun used for hunting, home defence and police work, many versions of it exist and are used by just about anyone.
+  description: Помповое ружье с девятью патронами. Это ружье используется для охоты, защиты дома и работы в полиции, существует множество его модификаций, которыми пользуются практически все.
   components:
   - type: Sprite
     sprite: Backmen/Objects/Weapons/Gunsx64/Shotguns/paladin-12/big.rsi
@@ -133,7 +133,7 @@
   parent: BaseWeaponShotgun
   id: WeaponShotguntrenchgun4034
   suffix: Дробовик
-  description: A six-round pump action shotgun. A shotgun used for hunting, home defence and police work, many versions of it exist and are used by just about anyone.
+  description: Помповое ружье с шестью патронами. Это ружье используется для охоты, защиты дома и работы в полиции, существует множество его модификаций, которыми пользуются практически все.
   components:
   - type: Sprite
     sprite: Backmen/Objects/Weapons/Gunsx64/Shotguns/l-4034/big.rsi
@@ -163,7 +163,7 @@
   parent: BaseWeaponShotgun
   id: WeaponShotgun12
   suffix: Дробовик
-  description: The Earth Armories Spas-12 is the shotgun used by the EarthGov Marine Corps. It's used as a close quarters tool when someone wants something more suited for close range than most people, or as an odd sidearm on your back for emergencies. Uses 50 gauge shells.
+  description: Earth Armories Spas-12 - это дробовик, используемый Корпусом морской пехоты правительства Земли. Он используется в качестве оружия ближнего боя, когда кому-то нужно что-то более подходящее для стрельбы на близком расстоянии, чем большинству людей, или в качестве дополнительного оружия за спиной на случай чрезвычайных ситуаций. Использует снаряды 50-го калибра.
   components:
   - type: Sprite
     sprite: Backmen/Objects/Weapons/Gunsx64/Shotguns/spas-16/big.rsi

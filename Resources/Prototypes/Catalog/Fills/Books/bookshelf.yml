@@ -11,55 +11,49 @@
         maxAmount: 6
   #start-backmen-books
       - id: BookDetectiveP1
-        prob: 0.1
+        prob: 0.0001
         orGroup: BookPool
       - id: BookDetectiveP2
-        prob: 0.1
+        prob: 0.0001
         orGroup: BookPool
       - id: BookDetectiveP3
-        prob: 0.1
-        orGroup: BookPool
-      - id: BookPassionsP1
-        prob: 0.05
+        prob: 0.0001
         orGroup: BookPool
       - id: BookPaperworkP1
-        prob: 0.05
+        prob: 0.0001
         orGroup: BookPool
       - id: BookPaperworkP2
-        prob: 0.05
+        prob: 0.0001
         orGroup: BookPool
       - id: BookToolboxes
-        prob: 0.1
+        prob: 0.0001
         orGroup: BookPool
       - id: BookSelf
-        prob: 0.05
+        prob: 0.0001
         orGroup: BookPool
       - id: BookKPCS
-        prob: 0.1
+        prob: 0.0001
         orGroup: BookPool
       - id: BookMimBobo
-        prob: 0.1
+        prob: 0.0001
         orGroup: BookPool
       - id: BookBloodMoney
-        prob: 0.05
+        prob: 0.0001
         orGroup: BookPool
       - id: BookIanAndHamlet
-        prob: 0.1
+        prob: 0.0001
         orGroup: BookPool
       - id: BookPaperworkP3
-        prob: 0.05
+        prob: 0.00010
         orGroup: BookPool
       - id: BookPaperworkP4
-        prob: 0.05
+        prob: 0.0001
         orGroup: BookPool
       - id: BookPaperworkP5
-        prob: 0.05
-        orGroup: BookPool
-      - id: BookPassionsP2
-        prob: 0.05
+        prob: 0.0001
         orGroup: BookPool
       - id: BookPaperworkP6
-        prob: 0.05
+        prob: 0.0001
         orGroup: BookPool
   #end-backmen-books
       - id: BookSpaceEncyclopedia

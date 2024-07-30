@@ -93,7 +93,8 @@
   id: Nukeops
   components:
   - type: GameRule
-    minPlayers: 20
+#    minPlayers: 20
+    minPlayers: 10   #cats
   - type: LoadMapRule
     mapPath: /Maps/Nonstations/nukieplanet.yml
   - type: AntagSelection
@@ -228,7 +229,8 @@
   parent: BaseGameRule
   components:
   - type: GameRule
-    minPlayers: 20
+#    minPlayers: 20
+    minPlayers: 10   #cats
     delay:
       min: 600
       max: 900
@@ -280,8 +282,29 @@
     - id: SolidWallRustingVariationPass
     - id: ReinforcedWallRustingVariationPass
     - id: BasicPuddleMessVariationPass
-      prob: 0.99
+      prob: 0.70
       orGroup: puddleMess
     - id: BloodbathPuddleMessVariationPass
       prob: 0.01
       orGroup: puddleMess
+
+- type: entity
+  parent: BaseGameRule
+  id: Changeling
+  components:
+  - type: ChangelingRule
+  - type: GameRule
+    minPlayers: 10
+    delay:
+      min: 30
+      max: 60
+  - type: AntagSelection
+    agentName: changeling-roundend-name
+    definitions:
+    - prefRoles: [ Changeling ]
+      max: 8
+      playerRatio: 10
+      lateJoinAdditional: true
+      mindComponents:
+      - type: ChangelingRole
+        prototype: Changeling

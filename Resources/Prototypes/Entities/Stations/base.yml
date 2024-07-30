@@ -65,11 +65,11 @@
           stationGrid: false
           paths:
           - /Maps/Ruins/chunked_tcomms.yml
-          - /Maps/Ruins/biodome_satellite.yml
-          - /Maps/Ruins/derelict.yml
-          - /Maps/Ruins/djstation.yml
-          - /Maps/Ruins/empty_flagship.yml
-          - /Maps/Ruins/old_ai_sat.yml
+        #   - /Maps/Ruins/biodome_satellite.yml
+        #   - /Maps/Ruins/derelict.yml
+        #   - /Maps/Ruins/djstation.yml
+        #   - /Maps/Ruins/empty_flagship.yml
+        #   - /Maps/Ruins/old_ai_sat.yml
           - /Maps/Ruins/syndicate_dropship.yml
           - /Maps/Ruins/whiteship_ancient.yml
           - /Maps/Ruins/whiteship_bluespacejumper.yml

@@ -23,7 +23,7 @@
   parent: BaseItem
   id: WeaponflamethrowerSG
   suffix: Огнемёт
-  description: The M-60 is a large man portable machine, allowing for sustained, accurate suppressive firepower at the cost of mobility and handling. Commonly seen where their preferred tactics of fast, mobile aggression is ill suited.
+  description: M-60 - это крупногабаритный переносной пулемет, обеспечивающий устойчивую и точную огневую мощь за счет мобильности и управляемости. Часто встречается там, где их предпочтительная тактика быстрой и мобильной агрессии не подходит.
   components:
   - type: Sprite
     sprite: Backmen/Objects/Weapons/Gunsx64/Flamethrowers/M6/big.rsi
@@ -129,7 +129,7 @@
   parent: BaseWeaponRifle
   id: FirethrowerGun
   suffix: Огнемёт
-  description: Nomadov's jet flamethrower, an amazing thing, on the weapon there is an inscription "Death to the enemies of mankind!"
+  description: Реактивный огнемет Номадова, удивительная вещь, на оружии есть надпись "Смерть врагам человечества!"
   components:
   - type: Sprite
     sprite: Backmen/Objects/Weapons/Gunsx64/Flamethrowers/M6/big.rsi

@@ -1,4 +1,4 @@
-ent-SpawnPointBKCCAdmiral = ЦК Адмирал
+ent-SpawnPointBKCCAdmiral = ЦК НШЦК
     .desc = { ent-SpawnPointBKCCAssistant.desc }
 ent-SpawnPointBKCCOfficial = ЦК Представитель
     .desc = { ent-SpawnPointBKCCAssistant.desc }

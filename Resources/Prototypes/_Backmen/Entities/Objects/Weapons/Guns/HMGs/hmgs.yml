@@ -3,7 +3,7 @@
   parent: BaseWeaponRifle
   id: WeaponRifleMaDeuce
   suffix: Дебаг
-  description: The M-60 is a large man portable machine, allowing for sustained, accurate suppressive firepower at the cost of mobility and handling. Commonly seen where their preferred tactics of fast, mobile aggression is ill suited.
+  description: M-60 - это крупногабаритный переносной пулемет, обеспечивающий устойчивую и точную огневую мощь за счет мобильности и управляемости. Часто встречается там, где их предпочтительная тактика быстрой и мобильной агрессии не подходит.
   components:
   - type: Sprite
     sprite: Backmen/Objects/Weapons/Gunsx64/LMGs/madeuce/big.rsi
@@ -117,7 +117,7 @@
   parent: BaseItem
   id: WeaponMinigun100
   suffix: Пулемёт
-  description: A six barreled rotary machine gun, The ultimate in man-portable firepower, capable of laying down high velocity armor piercing rounds this thing will no doubt pack a punch.. If you don't kill all your friends with it, you can use the stablizing system of the Powerpack to fire aimed fire, but you'll move incredibly slowly.
+  description: Шестиствольный роторный пулемет, непревзойденная переносная огневая мощь, способный выпускать высокоскоростные бронебойные снаряды, - эта штука, без сомнения, нанесет сокрушительный удар.. Если вы не убьете им всех своих друзей, вы можете использовать стабилизирующую систему Powerpack для ведения прицельного огня, но при этом вы будете двигаться невероятно медленно.
   components:
   - type: Sprite
     sprite: Backmen/Objects/Weapons/Gunsx64/LMGs/minigun/big.rsi

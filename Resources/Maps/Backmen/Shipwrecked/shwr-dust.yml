@@ -642,27 +642,6 @@ entities:
     - type: Transform
       pos: 1.4555857,2.3939943
       parent: 2
-- proto: BookPaperworkP1
-  entities:
-  - uid: 637
-    components:
-    - type: Transform
-      pos: 5.2319536,-7.5004935
-      parent: 2
-- proto: BookPaperworkP2
-  entities:
-  - uid: 636
-    components:
-    - type: Transform
-      pos: 5.3100786,-7.5786185
-      parent: 2
-- proto: BookPassionsP1
-  entities:
-  - uid: 675
-    components:
-    - type: Transform
-      pos: 9.669454,-7.453619
-      parent: 2
 - proto: BookRandom
   entities:
   - uid: 866

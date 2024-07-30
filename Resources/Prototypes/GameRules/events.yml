@@ -354,21 +354,21 @@
     lightBreakChancePerSecond: 0.0003
     doorToggleChancePerSecond: 0.001
 
-- type: entity
-  id: VentClog
-  parent: BaseStationEventLongDelay
-  components:
-  - type: StationEvent
-    startAnnouncement: station-event-vent-clog-start-announcement
-    startAudio:
-      path: /Audio/Announcements/ventclog.ogg # Corvax-Announcements
-      params:
-        volume: -4
-    earliestStart: 15
-    minimumPlayers: 15
-    weight: 5
-    duration: 60
-  - type: VentClogRule
+#- type: entity
+#  id: VentClog
+#  parent: BaseStationEventLongDelay
+#  components:
+#  - type: StationEvent
+#    startAnnouncement: station-event-vent-clog-start-announcement
+#    startAudio:
+#      path: /Audio/Announcements/ventclog.ogg # Corvax-Announcements
+#      params:
+#        volume: -4
+#    earliestStart: 15
+#    minimumPlayers: 15
+#    weight: 5
+#    duration: 60
+#  - type: VentClogRule
 
 - type: entity
   id: SlimesSpawn
