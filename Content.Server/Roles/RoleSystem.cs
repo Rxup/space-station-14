@@ -23,6 +23,7 @@ public sealed class RoleSystem : SharedRoleSystem
         SubscribeAntagEvents<SubvertedSiliconRoleComponent>();
         SubscribeAntagEvents<TraitorRoleComponent>();
         SubscribeAntagEvents<ZombieRoleComponent>();
+        SubscribeAntagEvents<ChangelingRoleComponent>();
 
         //start-backmen: antag
         SubscribeAntagEvents<BlobRoleComponent>();
