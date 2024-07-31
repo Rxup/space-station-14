@@ -9,6 +9,7 @@ using Content.Server.Hands.Systems;
 using Content.Server.Mind;
 using Content.Server.Roles;
 using Content.Shared.ActionBlocker;
+using Content.Shared.Actions;
 using Content.Shared.Alert;
 using Content.Shared.Backmen.Blob;
 using Content.Shared.Backmen.Blob.Components;
@@ -23,7 +24,6 @@ using Robust.Shared.Map;
 using Robust.Shared.Map.Components;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
-using Robust.Shared.Random;
 
 namespace Content.Server.Backmen.Blob;
 
@@ -32,7 +32,6 @@ public sealed class BlobObserverSystem : SharedBlobObserverSystem
     [Dependency] private readonly ActionsSystem _action = default!;
     [Dependency] private readonly BlobCoreSystem _blobCoreSystem = default!;
     [Dependency] private readonly SharedPopupSystem _popup = default!;
-    [Dependency] private readonly IRobustRandom _random = default!;
     [Dependency] private readonly SharedTransformSystem _transform = default!;
     [Dependency] private readonly EntityLookupSystem _lookup = default!;
     [Dependency] private readonly ActionBlockerSystem _blocker = default!;
@@ -71,6 +70,7 @@ public sealed class BlobObserverSystem : SharedBlobObserverSystem
         SubscribeLocalEvent<BlobCoreComponent, BlobSwapChemActionEvent>(OnBlobSwapChem);
         SubscribeLocalEvent<BlobCoreComponent, BlobSwapCoreActionEvent>(OnSwapCore);
         SubscribeLocalEvent<BlobCoreComponent, BlobSplitCoreActionEvent>(OnSplitCore);
+        SubscribeLocalEvent<BlobCoreComponent, BlobDowngradeActionEvent>(OnDowngrade);
 
         SubscribeLocalEvent<BlobObserverComponent, MoveEvent>(OnMoveEvent);
         SubscribeLocalEvent<BlobObserverComponent, BlobChemSwapPrototypeSelectedMessage>(OnChemSelected);
@@ -122,7 +122,7 @@ public sealed class BlobObserverSystem : SharedBlobObserverSystem
             return;
         }
 
-        blobObserverComponent.Core = blobCoreUid;
+        blobObserverComponent.Core = (blobCoreUid, core);
         Dirty(observer,blobObserverComponent);
 
 
@@ -331,7 +331,7 @@ public sealed class BlobObserverSystem : SharedBlobObserverSystem
             return;
         }
 
-        var gridUid = args.Target.GetGridUid(EntityManager);
+        var gridUid = _transform.GetGrid(args.Target);
 
         if (!TryComp<MapGridComponent>(gridUid, out var grid))
         {
@@ -379,6 +379,9 @@ public sealed class BlobObserverSystem : SharedBlobObserverSystem
             newBlobCoreComponent.CanSplit = false;
             newBlobCoreComponent.BlobTiles = blobNodeComponent.ConnectedTiles;
             newBlobCoreComponent.BlobTiles.Add(newCore);
+
+            TryComp<BlobNodeComponent>(uid, out var nodeComp);
+            nodeComp?.ConnectedTiles.Add(uid);
         }
         if (TryComp<BlobNodeComponent>(newCore, out var newBlobNodeComponent))
         {
@@ -395,7 +398,7 @@ public sealed class BlobObserverSystem : SharedBlobObserverSystem
         if (args.Handled)
             return;
 
-        var gridUid = args.Target.GetGridUid(EntityManager);
+        var gridUid = _transform.GetGrid(args.Target);
 
         if (!TryComp<MapGridComponent>(gridUid, out var grid))
         {
@@ -427,7 +430,9 @@ public sealed class BlobObserverSystem : SharedBlobObserverSystem
             return;
         }
 
-        if (!_blobCoreSystem.TryUseAbility(args.Performer, uid, blobCoreComponent,
+        if (!_blobCoreSystem.TryUseAbility(args.Performer,
+                uid,
+                blobCoreComponent,
                 blobCoreComponent.SwapCoreCost))
         {
             args.Handled = true;
@@ -469,30 +474,8 @@ public sealed class BlobObserverSystem : SharedBlobObserverSystem
         if (args.Handled)
             return;
 
-        var gridUid = args.Target.GetGridUid(EntityManager);
-
-        if (!TryComp<MapGridComponent>(gridUid, out var grid))
-        {
+        if (!TryGetTargetBlobTile(args, out var blobTile))
             return;
-        }
-
-        var centerTile = _mapSystem.GetLocalTilesIntersecting(gridUid.Value,
-                grid,
-            new Box2(args.Target.Position, args.Target.Position))
-            .ToArray();
-
-        EntityUid? blobTile = null;
-
-        foreach (var tileRef in centerTile)
-        {
-            foreach (var ent in _mapSystem.GetAnchoredEntities(gridUid.Value, grid, tileRef.GridIndices))
-            {
-                if (!HasComp<BlobFactoryComponent>(ent))
-                    continue;
-                blobTile = ent;
-                break;
-            }
-        }
 
         if (blobTile == null || !TryComp<BlobFactoryComponent>(blobTile, out var blobFactoryComponent))
         {
@@ -530,6 +513,41 @@ public sealed class BlobObserverSystem : SharedBlobObserverSystem
         _transform.SetCoordinates(args.Performer, Transform(uid).Coordinates);
     }
 
+    private bool TryGetTargetBlobTile(
+        WorldTargetActionEvent args,
+        out Entity<BlobTileComponent>? blobTile)
+    {
+        blobTile = null;
+
+        var gridUid = _transform.GetGrid(args.Target);
+
+        if (!TryComp<MapGridComponent>(gridUid, out var gridComp))
+        {
+            return false;
+        }
+
+        Entity<MapGridComponent> grid = (gridUid.Value, gridComp);
+
+        var centerTile = _mapSystem.GetLocalTilesIntersecting(grid,
+                grid,
+                new Box2(args.Target.Position, args.Target.Position))
+            .ToArray();
+
+        foreach (var tileRef in centerTile)
+        {
+            foreach (var ent in _mapSystem.GetAnchoredEntities(grid, grid, tileRef.GridIndices))
+            {
+                if (!_tileQuery.TryGetComponent(ent, out var blobTileComponent))
+                    continue;
+
+                blobTile = (ent, blobTileComponent);
+                return true;
+            }
+        }
+
+        return false;
+    }
+
     private void OnCreateNode(EntityUid uid,
         BlobCoreComponent blobCoreComponent,
         BlobCreateNodeActionEvent args)
@@ -537,74 +555,35 @@ public sealed class BlobObserverSystem : SharedBlobObserverSystem
         if (args.Handled)
             return;
 
-        var gridUid = args.Target.GetGridUid(EntityManager);
-
-        if (!TryComp<MapGridComponent>(gridUid, out var grid))
-        {
+        if (!TryGetTargetBlobTile(args, out var blobTile))
             return;
-        }
 
-        var centerTile = _mapSystem.GetLocalTilesIntersecting(gridUid.Value,
-                grid,
-            new Box2(args.Target.Position, args.Target.Position))
-            .ToArray();
-
-        var blobTileType = BlobTileType.None;
-        EntityUid? blobTile = null;
-        EntityUid? blobTileCore = null;
-
-        foreach (var tileref in centerTile)
-        {
-            foreach (var ent in _mapSystem.GetAnchoredEntities(gridUid.Value, grid, tileref.GridIndices))
-            {
-                if (!_tileQuery.TryGetComponent(ent, out var blobTileComponent))
-                    continue;
-                blobTileType = blobTileComponent.BlobTileType;
-                blobTile = ent;
-                blobTileCore = blobTileComponent.Core;
-                break;
-            }
-        }
-
-        if (blobTileType is not BlobTileType.Normal ||
-            blobTile == null || blobTileCore == null)
-        {
-            _popup.PopupEntity(Loc.GetString("blob-target-normal-blob-invalid"), uid, uid, PopupType.Large);
+        if (blobTile == null)
             return;
-        }
 
         var xform = Transform(blobTile.Value);
 
-        var localPos = xform.Coordinates.Position;
-
-        var radius = blobCoreComponent.NodeRadiusLimit;
-
-        var innerTiles = _mapSystem.GetLocalTilesIntersecting(gridUid.Value,
-            grid,
-            new Box2(localPos + new Vector2(-radius, -radius), localPos + new Vector2(radius, radius)),
-            false)
-            .ToArray();
-
-        foreach (var tileRef in innerTiles)
+        if (blobTile.Value.Comp.BlobTileType is not BlobTileType.Normal || blobTile.Value.Comp.Core == null)
         {
-            foreach (var ent in _mapSystem.GetAnchoredEntities(gridUid.Value, grid, tileRef.GridIndices))
-            {
-                if (!HasComp<BlobNodeComponent>(ent))
-                    continue;
-                _popup.PopupEntity(Loc.GetString("blob-target-close-to-node"), uid, uid, PopupType.Large);
-                return;
-            }
+            _popup.PopupCoordinates(Loc.GetString("blob-target-normal-blob-invalid"), xform.Coordinates, args.Performer, PopupType.Large);
+            return;
+        }
+
+        if (_blobCoreSystem.GetNearNode(Transform(blobTile.Value).Coordinates, blobCoreComponent.NodeRadiusLimit) != null)
+        {
+            _popup.PopupCoordinates(Loc.GetString("blob-target-close-to-node"), xform.Coordinates, args.Performer, PopupType.Large);
+            return;
         }
 
         if (!_blobCoreSystem.TryUseAbility(args.Performer, uid, blobCoreComponent, blobCoreComponent.NodeBlobCost))
             return;
 
-        if (!_blobCoreSystem.TransformBlobTile(blobTile.Value,
-                uid,
+        if (!_blobCoreSystem.TransformBlobTile(
+                blobTile.Value,
+                (uid, blobCoreComponent),
                 null,
                 blobCoreComponent.NodeBlobTile,
                 args.Target,
-                blobCoreComponent,
                 transformCost: blobCoreComponent.NodeBlobCost))
             return;
 
@@ -618,69 +597,31 @@ public sealed class BlobObserverSystem : SharedBlobObserverSystem
         if (args.Handled)
             return;
 
-        var gridUid = args.Target.GetGridUid(EntityManager);
-
-        if (!TryComp<MapGridComponent>(gridUid, out var grid))
-        {
+        if (!TryGetTargetBlobTile(args, out var blobTile))
             return;
-        }
 
-        var centerTile = _mapSystem.GetLocalTilesIntersecting(gridUid.Value,
-                grid,
-                new Box2(args.Target.Position, args.Target.Position))
-            .ToArray();
-
-        var blobTileType = BlobTileType.None;
-        EntityUid? blobTile = null;
-        EntityUid? blobTileCore = null;
-
-        foreach (var tileref in centerTile)
-        {
-            foreach (var ent in _mapSystem.GetAnchoredEntities(gridUid.Value, grid, tileref.GridIndices))
-            {
-                if (!_tileQuery.TryGetComponent(ent, out var blobTileComponent))
-                    continue;
-                blobTileType = blobTileComponent.BlobTileType;
-                blobTile = ent;
-                blobTileCore = blobTileComponent.Core;
-                break;
-            }
-        }
-
-        if (blobTileType is not BlobTileType.Normal ||
-            blobTile == null || blobTileCore == null)
-        {
-            _popup.PopupEntity(Loc.GetString("blob-target-normal-blob-invalid"), uid, uid, PopupType.Large);
+        if (blobTile == null)
             return;
-        }
 
         var xform = Transform(blobTile.Value);
 
-        var localPos = xform.Coordinates.Position;
-
-        var radius = blobCoreComponent.ResourceRadiusLimit;
-
-        var innerTiles = _mapSystem.GetLocalTilesIntersecting(gridUid.Value,
-                grid,
-                new Box2(localPos + new Vector2(-radius, -radius), localPos + new Vector2(radius, radius)),
-                false)
-            .ToArray();
-
-        foreach (var tileRef in innerTiles)
+        if (blobTile.Value.Comp.BlobTileType is not BlobTileType.Normal || blobTile.Value.Comp.Core == null)
         {
-            foreach (var ent in _mapSystem.GetAnchoredEntities(gridUid.Value, grid, tileRef.GridIndices))
-            {
-                if (!HasComp<BlobResourceComponent>(ent) || HasComp<BlobCoreComponent>(ent))
-                    continue;
-                _popup.PopupEntity(Loc.GetString("blob-target-close-to-resource"), uid, uid, PopupType.Large);
-                return;
-            }
+            _popup.PopupCoordinates(Loc.GetString("blob-target-normal-blob-invalid"), xform.Coordinates, args.Performer, PopupType.Large);
+            return;
         }
 
         var nearNode = _blobCoreSystem.GetNearNode(xform.Coordinates);
+
         if (nearNode == null)
         {
             _popup.PopupCoordinates(Loc.GetString("blob-target-nearby-not-node"), xform.Coordinates, args.Performer, PopupType.Large);
+            return;
+        }
+
+        if (nearNode.Value.Comp.ResourceBlob != null)
+        {
+            _popup.PopupCoordinates(Loc.GetString("blob-target-already-connected"), xform.Coordinates, args.Performer, PopupType.Large);
             return;
         }
 
@@ -690,12 +631,12 @@ public sealed class BlobObserverSystem : SharedBlobObserverSystem
                 blobCoreComponent.ResourceBlobCost))
             return;
 
-        if (!_blobCoreSystem.TransformBlobTile(blobTile.Value,
-                uid,
+        if (!_blobCoreSystem.TransformBlobTile(
+                blobTile.Value,
+                blobTile.Value.Comp.Core.Value,
                 nearNode.Value,
                 blobCoreComponent.ResourceBlobTile,
                 args.Target,
-                blobCoreComponent,
                 transformCost: blobCoreComponent.ResourceBlobCost))
             return;
 
@@ -712,69 +653,30 @@ public sealed class BlobObserverSystem : SharedBlobObserverSystem
         if (args.Handled)
             return;
 
-        var gridUid = args.Target.GetGridUid(EntityManager);
-
-        if (!TryComp<MapGridComponent>(gridUid, out var grid))
-        {
+        if (!TryGetTargetBlobTile(args, out var blobTile))
             return;
-        }
 
-        var centerTile = _mapSystem.GetLocalTilesIntersecting(gridUid.Value,
-            grid,
-            new Box2(args.Target.Position, args.Target.Position))
-            .ToArray();
-
-        var blobTileType = BlobTileType.None;
-        EntityUid? blobTile = null;
-        EntityUid? blobTileCore = null;
-
-        foreach (var tileref in centerTile)
-        {
-            foreach (var ent in _mapSystem.GetAnchoredEntities(gridUid.Value, grid, tileref.GridIndices))
-            {
-                if (!_tileQuery.TryGetComponent(ent, out var blobTileComponent))
-                    continue;
-                blobTileType = blobTileComponent.BlobTileType;
-                blobTile = ent;
-                blobTileCore = blobTileComponent.Core;
-                break;
-            }
-        }
-
-        if (blobTileType is not BlobTileType.Normal ||
-            blobTile == null || blobTileCore == null)
-        {
-            _popup.PopupEntity(Loc.GetString("blob-target-normal-blob-invalid"), uid, uid, PopupType.Large);
+        if (blobTile == null)
             return;
-        }
 
         var xform = Transform(blobTile.Value);
+        var nearNode = _blobCoreSystem.GetNearNode(xform.Coordinates);
 
-        var localPos = xform.Coordinates.Position;
-
-        var radius = blobCoreComponent.FactoryRadiusLimit;
-
-        var innerTiles = _mapSystem.GetLocalTilesIntersecting(gridUid.Value,
-                grid,
-            new Box2(localPos + new Vector2(-radius, -radius), localPos + new Vector2(radius, radius)),
-            false)
-            .ToArray();
-
-        foreach (var tileRef in innerTiles)
+        if (blobTile.Value.Comp.BlobTileType is not BlobTileType.Normal || blobTile.Value.Comp.Core == null)
         {
-            foreach (var ent in _mapSystem.GetAnchoredEntities(gridUid.Value, grid, tileRef.GridIndices))
-            {
-                if (!HasComp<BlobFactoryComponent>(ent))
-                    continue;
-                _popup.PopupEntity(Loc.GetString("Слишком близко к другой фабрике"), args.Performer, args.Performer, PopupType.Large);
-                return;
-            }
+            _popup.PopupCoordinates(Loc.GetString("blob-target-normal-blob-invalid"), xform.Coordinates, args.Performer, PopupType.Large);
+            return;
         }
 
-        var nearNode = _blobCoreSystem.GetNearNode(xform.Coordinates);
         if (nearNode == null)
         {
             _popup.PopupCoordinates(Loc.GetString("blob-target-nearby-not-node"), xform.Coordinates, args.Performer, PopupType.Large);
+            return;
+        }
+
+        if (nearNode.Value.Comp.FactoryBlob != null)
+        {
+            _popup.PopupCoordinates(Loc.GetString("blob-target-already-connected"), xform.Coordinates, args.Performer, PopupType.Large);
             return;
         }
 
@@ -788,12 +690,47 @@ public sealed class BlobObserverSystem : SharedBlobObserverSystem
         }
 
         if (!_blobCoreSystem.TransformBlobTile(null,
-                uid,
+                (uid, blobCoreComponent),
                 nearNode,
                 blobCoreComponent.FactoryBlobTile,
                 args.Target,
-                blobCoreComponent,
                 transformCost: blobCoreComponent.FactoryBlobCost))
+            return;
+
+        args.Handled = true;
+    }
+
+    private void OnDowngrade(EntityUid uid, BlobCoreComponent component, BlobDowngradeActionEvent args)
+    {
+        if (args.Handled)
+            return;
+
+        if (!TryGetTargetBlobTile(args, out var blobTile))
+            return;
+
+        if (blobTile == null)
+            return;
+
+        var xform = Transform(blobTile.Value);
+
+        if (blobTile.Value.Comp.BlobTileType is not BlobTileType.Normal || blobTile.Value.Comp.Core == null)
+        {
+            _popup.PopupCoordinates(Loc.GetString("blob-target-normal-blob-invalid"), xform.Coordinates, args.Performer, PopupType.Large);
+            return;
+        }
+
+        var nearNode = _blobCoreSystem.GetNearNode(xform.Coordinates);
+        var blobCore = blobTile.Value.Comp.Core.Value;
+
+        if (!_blobCoreSystem.RemoveBlobTile(blobTile.Value, blobCore, blobCore.Comp))
+            return;
+
+        if (!_blobCoreSystem.TransformBlobTile(null,
+                blobCore,
+                nearNode,
+                blobCore.Comp.NormalBlobTile,
+                args.Target,
+                transformCost: blobCore.Comp.NormalBlobCost))
             return;
 
         args.Handled = true;

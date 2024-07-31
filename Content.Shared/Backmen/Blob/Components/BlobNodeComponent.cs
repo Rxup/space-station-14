@@ -16,6 +16,12 @@ public sealed partial class BlobNodeComponent : Component
     /// </summary>
     [ViewVariables(VVAccess.ReadWrite)]
     public HashSet<EntityUid> ConnectedTiles = [];
+
+    [ViewVariables(VVAccess.ReadWrite)]
+    public EntityUid? ResourceBlob { get; set; }
+
+    [ViewVariables(VVAccess.ReadWrite)]
+    public EntityUid? FactoryBlob { get; set; }
 }
 
 public sealed class BlobTileGetPulseEvent : EntityEventArgs
@@ -23,6 +29,4 @@ public sealed class BlobTileGetPulseEvent : EntityEventArgs
     public bool Explain { get; set; }
 }
 
-public sealed class BlobMobGetPulseEvent : EntityEventArgs
-{
-}
+public sealed class BlobMobGetPulseEvent : EntityEventArgs;

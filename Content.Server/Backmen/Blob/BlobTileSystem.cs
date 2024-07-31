@@ -48,7 +48,11 @@ public sealed class BlobTileSystem : SharedBlobTileSystem
         if (component.Core == null || TerminatingOrDeleted(component.Core.Value) ||
             !_blobCoreQuery.TryComp(component.Core.Value, out var blobCoreComponent))
             return;
+
         blobCoreComponent.BlobTiles.Remove(uid);
+
+        if (TryComp<BlobNodeComponent>(uid, out var nodeComp))
+            nodeComp.ConnectedTiles.Remove(uid);
     }
 
     private void OnFlashAttempt(EntityUid uid, BlobTileComponent component, FlashAttemptEvent args)
@@ -76,18 +80,18 @@ public sealed class BlobTileSystem : SharedBlobTileSystem
         if (component.BlobTileType != BlobTileType.Node)
             return;
 
-        var nodeComp = CompOrNull<BlobNodeComponent>(uid);
-        if (nodeComp?.ConnectedTiles == null)
+        if (!TryComp<BlobNodeComponent>(uid, out var nodeComp))
             return;
 
         foreach (var blobTile in nodeComp.ConnectedTiles)
         {
-            var blobTileComponent = CompOrNull<BlobTileComponent>(blobTile);
-            if (blobTileComponent == null)
+            if (!TryComp<BlobTileComponent>(blobTile, out var blobTileComponent))
                 continue;
 
-            var blobCoreComp = Comp<BlobCoreComponent>(blobTileComponent.Core!.Value);
+            var blobCoreComp = blobTileComponent.Core!.Value.Comp;
+
             blobCoreComp.BlobTiles.Remove(blobTile);
+            nodeComp?.ConnectedTiles.Remove(uid);
 
             blobTileComponent.Core = null;
             blobTileComponent.Color = Color.White;
@@ -252,7 +256,6 @@ public sealed class BlobTileSystem : SharedBlobTileSystem
                     nearNode,
                     blobCoreComponent.NormalBlobTile,
                     location,
-                    blobCoreComponent,
                     false))
                 return;
         }
@@ -276,12 +279,12 @@ public sealed class BlobTileSystem : SharedBlobTileSystem
                 if (!_blobCoreSystem.TryUseAbility(user, coreUid, core, core.StrongBlobCost))
                     return;
 
-                _blobCoreSystem.TransformBlobTile(target,
-                    coreUid,
+                _blobCoreSystem.TransformBlobTile(
+                    (target, tile),
+                    (coreUid, core),
                     nearNode,
                     core.StrongBlobTile,
                     xform.Coordinates,
-                    core,
                     transformCost: core.StrongBlobCost);
                 break;
 
@@ -289,12 +292,12 @@ public sealed class BlobTileSystem : SharedBlobTileSystem
                 if (!_blobCoreSystem.TryUseAbility(user, coreUid, core, core.ReflectiveBlobCost))
                     return;
 
-                _blobCoreSystem.TransformBlobTile(target,
-                    coreUid,
+                _blobCoreSystem.TransformBlobTile(
+                    (target, tile),
+                    (coreUid, core),
                     nearNode,
                     core.ReflectiveBlobTile,
                     xform.Coordinates,
-                    core,
                     transformCost: core.ReflectiveBlobCost);
                 break;
         }

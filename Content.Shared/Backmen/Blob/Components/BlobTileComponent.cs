@@ -12,10 +12,10 @@ public sealed partial class BlobTileComponent : Component
     public Color Color = Color.White;
 
     [ViewVariables(VVAccess.ReadOnly), AutoNetworkedField]
-    public EntityUid? Core = default!;
+    public Entity<BlobCoreComponent>? Core = default!;
 
     [ViewVariables(VVAccess.ReadOnly), AutoNetworkedField]
-    public EntityUid? Node = default!;
+    public Entity<BlobNodeComponent>? Node = default!;
 
     [ViewVariables(VVAccess.ReadOnly)]
     public bool ReturnCost = true;

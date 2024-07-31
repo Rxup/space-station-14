@@ -116,3 +116,17 @@
         sprite: Backmen/Interface/Actions/blob.rsi
         state: blobToCore
       event: !type:TransformToBlobActionEvent
+
+- type: entity
+  id: ActionDowngradeBlob
+  name: blob-downgrade-action-name
+  description: blob-swap-chem-action-desc
+  components:
+    - type: WorldTargetAction
+      icon:
+        sprite: Backmen/Interface/Actions/blob.rsi
+        state: blobDowngrade
+      event: !type:BlobDowngradeActionEvent
+      itemIconStyle: BigAction
+      range: 200
+      useDelay: 0.5

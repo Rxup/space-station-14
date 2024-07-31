@@ -82,7 +82,7 @@ public sealed class BlobCoreSystem : SharedBlobCoreSystem
             return;
         }
         if (!TryComp<BlobObserverComponent>(args.Mind.OwnedEntity, out var blobObserverComponent)
-            || !TryComp<BlobCoreComponent>(blobObserverComponent.Core, out var blobCoreComponent))
+            || !TryComp<BlobCoreComponent>(blobObserverComponent.Core, out _))
         {
             args.Cancelled = true;
             return;
@@ -141,8 +141,6 @@ public sealed class BlobCoreSystem : SharedBlobCoreSystem
 
     public bool CreateBlobObserver(EntityUid blobCoreUid, NetUserId userId, BlobCoreComponent? core = null)
     {
-        var xform = Transform(blobCoreUid);
-
         if (!Resolve(blobCoreUid, ref core))
             return false;
 
@@ -166,6 +164,7 @@ public sealed class BlobCoreSystem : SharedBlobCoreSystem
     [ValidatePrototypeId<EntityPrototype>] private const string ActionCreateBlobbernaut = "ActionCreateBlobbernaut";
     [ValidatePrototypeId<EntityPrototype>] private const string ActionSplitBlobCore = "ActionSplitBlobCore";
     [ValidatePrototypeId<EntityPrototype>] private const string ActionSwapBlobCore = "ActionSwapBlobCore";
+    [ValidatePrototypeId<EntityPrototype>] private const string ActionDowngradeBlob = "ActionDowngradeBlob";
 
     private void OnStartup(EntityUid uid, BlobCoreComponent component, ComponentStartup args)
     {
@@ -173,12 +172,15 @@ public sealed class BlobCoreSystem : SharedBlobCoreSystem
 
         if (_tile.TryGetComponent(uid, out var blobTileComponent))
         {
-            blobTileComponent.Core = uid;
+            blobTileComponent.Core = (uid, component);
             blobTileComponent.Color = component.ChemСolors[component.CurrentChem];
             Dirty(uid, blobTileComponent);
         }
 
+        TryComp<BlobNodeComponent>(uid, out var nodeComp);
+
         component.BlobTiles.Add(uid);
+        nodeComp?.ConnectedTiles.Add(uid);
 
         ChangeChem(uid, component.DefaultChem, component);
 
@@ -190,6 +192,7 @@ public sealed class BlobCoreSystem : SharedBlobCoreSystem
         _action.AddAction(uid, ref component.ActionCreateBlobbernaut, ActionCreateBlobbernaut);
         _action.AddAction(uid, ref component.ActionSplitBlobCore, ActionSplitBlobCore);
         _action.AddAction(uid, ref component.ActionSwapBlobCore, ActionSwapBlobCore);
+        _action.AddAction(uid, ref component.ActionDowngradeBlob, ActionDowngradeBlob);
     }
 
     public void ChangeChem(EntityUid uid, BlobChemType newChem, BlobCoreComponent? component = null)
@@ -255,7 +258,7 @@ public sealed class BlobCoreSystem : SharedBlobCoreSystem
         var stationUid = _stationSystem.GetOwningStation(uid);
         var blobCoreQuery = EntityQueryEnumerator<BlobCoreComponent>();
         var isAllDie = 0;
-        while (blobCoreQuery.MoveNext(out var ent, out var comp))
+        while (blobCoreQuery.MoveNext(out var ent, out _))
         {
             if (TerminatingOrDeleted(ent))
             {
@@ -272,7 +275,7 @@ public sealed class BlobCoreSystem : SharedBlobCoreSystem
                 if (blobRuleComp.Stage == BlobStage.Critical ||
                     blobRuleComp.Stage == BlobStage.Begin)
                 {
-                    _alertLevelSystem.SetLevel(stationUid!.Value, "green", true, true, true, false);
+                    _alertLevelSystem.SetLevel(stationUid!.Value, "green", true, true, true);
                     _roundEndSystem.CancelRoundEndCountdown(null, false);
                     blobRuleComp.Stage = BlobStage.Default;
                 }
@@ -307,49 +310,63 @@ public sealed class BlobCoreSystem : SharedBlobCoreSystem
     }
 
     public bool TransformBlobTile(
-        EntityUid? oldTileUid,
-        EntityUid coreTileUid,
+        Entity<BlobTileComponent>? oldTileUid,
+        Entity<BlobCoreComponent> blobCore,
         Entity<BlobNodeComponent>? nearNode,
         string newBlobTileProto,
         EntityCoordinates coordinates,
-        BlobCoreComponent? blobCore = null,
         bool returnCost = true,
         FixedPoint2? transformCost = null)
     {
-        if (!Resolve(coreTileUid, ref blobCore))
-            return false;
-
         if (oldTileUid != null)
         {
             QueueDel(oldTileUid.Value);
-            blobCore.BlobTiles.Remove(oldTileUid.Value);
+            blobCore.Comp.BlobTiles.Remove(oldTileUid.Value);
+            nearNode?.Comp.ConnectedTiles.Remove(oldTileUid.Value);
+
+            if (oldTileUid.Value.Comp.Core == blobCore)
+                return false;
         }
 
         var tileBlob = EntityManager.SpawnEntity(newBlobTileProto, coordinates);
-        nearNode?.Comp.ConnectedTiles.Add(tileBlob);
 
         if (_tile.TryGetComponent(tileBlob, out var blobTileComponent))
         {
             blobTileComponent.ReturnCost = returnCost;
-            blobTileComponent.Core = coreTileUid;
-            blobTileComponent.Color = blobCore.ChemСolors[blobCore.CurrentChem];
+            blobTileComponent.Core = blobCore;
+            blobTileComponent.Color = blobCore.Comp.ChemСolors[blobCore.Comp.CurrentChem];
+
+            if (nearNode != null)
+            {
+                switch (blobTileComponent.BlobTileType)
+                {
+                    case BlobTileType.Resource:
+                        nearNode.Value.Comp.ResourceBlob = tileBlob;
+                        break;
+                    case BlobTileType.Factory:
+                        nearNode.Value.Comp.FactoryBlob = tileBlob;
+                        break;
+                }
+            }
+
             Dirty(tileBlob, blobTileComponent);
 
             var explosionResistance = EnsureComp<ExplosionResistanceComponent>(tileBlob);
 
-            if (blobCore.CurrentChem == BlobChemType.ExplosiveLattice)
+            if (blobCore.Comp.CurrentChem == BlobChemType.ExplosiveLattice)
             {
                 _explosionSystem.SetExplosionResistance(tileBlob, 0f, explosionResistance);
             }
         }
-        if (blobCore.Observer != null && transformCost != null)
+        if (blobCore.Comp.Observer != null && transformCost != null)
         {
             _popup.PopupEntity(Loc.GetString("blob-spent-resource", ("point", transformCost)),
                 tileBlob,
-                blobCore.Observer.Value,
+                blobCore.Comp.Observer.Value,
                 PopupType.LargeCaution);
         }
-        blobCore.BlobTiles.Add(tileBlob);
+        blobCore.Comp.BlobTiles.Add(tileBlob);
+        nearNode?.Comp.ConnectedTiles.Add(tileBlob);
         return true;
     }
 
@@ -360,6 +377,9 @@ public sealed class BlobCoreSystem : SharedBlobCoreSystem
 
         QueueDel(tileUid);
         blobCore.BlobTiles.Remove(tileUid);
+
+        if (TryComp<BlobNodeComponent>(tileUid, out var nodeComp))
+            nodeComp.ConnectedTiles.Remove(tileUid);
 
         return true;
     }

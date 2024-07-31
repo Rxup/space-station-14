@@ -234,7 +234,6 @@ public sealed class BlobCoreActionSystem : EntitySystem
             node,
             core.Comp.NormalBlobTile,
             location,
-            core,
             transformCost: cost);
     }
 
