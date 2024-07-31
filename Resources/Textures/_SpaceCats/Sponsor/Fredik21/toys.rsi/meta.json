@@ -1,0 +1,43 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-4.0",
+  "copyright": "null",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "sponsor_avrelia"
+    },
+    {
+      "name": "sponsor_esmira"
+    },
+    {
+      "name": "sponsor_fredik"
+    },
+    {
+      "name": "sponsor_fredik-inhand-left",
+      "directions": 4
+    },
+    {
+      "name": "sponsor_fredik-inhand-right",
+      "directions": 4
+    },
+    {
+      "name": "sponsor_grapel"
+    },
+    {
+      "name": "sponsor_kraht"
+    },
+    {
+      "name": "sponsor_sheyla"
+    },
+    {
+      "name": "sponsor_sakka"
+    },
+    {
+      "name": "sponsor_laura"
+    }
+  ]
+}

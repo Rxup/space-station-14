@@ -1,0 +1,55 @@
+- type: entity
+  parent: BasePlushie
+  id: PlushieEsmira
+  name: плюшевая Эсмира Котова
+  description: Очень любит когда её тискают.
+  suffix: Спонсор, Fredik21
+  components:
+  - type: Sprite
+    sprite: _SpaceCats/Sponsor/Fredik21/toys.rsi
+    state: sponsor_esmira
+  - type: EmitSoundOnUse
+    sound:
+      collection: FelinidMeows
+  - type: EmitSoundOnActivate
+    sound:
+      collection: FelinidMeows
+  - type: EmitSoundOnCollide
+    sound:
+      collection: FelinidMeows
+  - type: EmitSoundOnLand
+    sound:
+      collection: ToyFall
+  - type: EmitSoundOnTrigger
+    sound:
+      collection: FelinidMeows
+  - sponsorOnly: true # Cats
+
+- type: entity
+  parent: BasePlushie
+  id: PlushieFredik
+  name: плюшевая игрушка Эсмиры Котовой
+  description: Очень любит когда её тискают.
+  suffix: Спонсор, Fredik21
+  components:
+  - type: Sprite
+    sprite: _SpaceCats/Sponsor/Fredik21/toys.rsi
+    state: sponsor_fredik
+  - type: Item
+    heldPrefix: sponsor_fredik
+  - type: EmitSoundOnUse
+    sound:
+      collection: FelinidMeows
+  - type: EmitSoundOnActivate
+    sound:
+      collection: FelinidMeows
+  - type: EmitSoundOnCollide
+    sound:
+      collection: FelinidMeows
+  - type: EmitSoundOnLand
+    sound:
+      collection: ToyFall
+  - type: EmitSoundOnTrigger
+    sound:
+      collection: FelinidMeows
+  - sponsorOnly: true # Cats
