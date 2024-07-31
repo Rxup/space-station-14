@@ -1,7 +1,7 @@
 - type: entity
   parent: ClothingUnderSocksBase
   id: ClothingUnderSocksCoderBlue
-  name: голубые носки Эсмиры
+  name: голубые носки эсмиры
   suffix: Спонсор, Fredik21
   sponsorOnly: true # Cats
   description: Раньше это были розовые носки, но Эсмира пролила на них голубую краску. Теперь это голубые носки.
@@ -14,7 +14,7 @@
 - type: entity
   parent: ClothingUniformSkirtBase
   id: ClothingUniformJumpskirtEsmira
-  name: юбка-Комбинезон Эсмиры
+  name: юбка-комбинезон эсмиры
   suffix: Спонсор, Fredik21
   sponsorOnly: true # Cats
   description: юбка которую носит Эсмира. Мне страшно думать от куда вы его взяли...
@@ -27,7 +27,7 @@
 - type: entity
   parent: ClothingHeadBase
   id: ClothingHeadHatHairflowerEsmira
-  name: Головной убор Эсмиры
+  name: головной убор эсмиры
   suffix: Спонсор, Fredik21
   sponsorOnly: true # Cats
   description: Обычный цветок с головным убором
@@ -41,9 +41,36 @@
   parent: ClothingNeckBase
   id: ClothingNeckEsmira
   suffix: Спонсор, Fredik21
-  name: Плащ с игрушкой Эсмиры
+  name: плащ с игрушкой эсмиры
   sponsorOnly: true # Cats
   description: Мы ведь друзья... так ведь?...
   components:
   - type: Sprite
     sprite: _SpaceCats/Sponsor/Fredik21/toy.rsi
+
+# нижняя одежда
+- type: entity
+  description: НАКОНЕЦ ТО?!
+  name: трусы эсмиры
+  parent: ClothingUnderPantsBase
+  id: ClothingUnderPantsEsmira
+  suffix: Спонсор, Fredik21
+  sponsorOnly: true # Cats
+  components:
+  - type: Sprite
+    sprite: _SpaceCats/Sponsor/Fredik21/pants.rsi
+  - type: Clothing
+    sprite: _SpaceCats/Sponsor/Fredik21/pants.rsi
+
+- type: entity
+  description: Верни позязя владельцу~
+  name: топик эсмиры
+  parent: ClothingUnderShirtBase
+  id: ClothingUnderShirtEsmira
+  suffix: Спонсор, Fredik21
+  sponsorOnly: true # Cats
+  components:
+  - type: Sprite
+    sprite: _SpaceCats/Sponsor/Fredik21/brassierer.rsi
+  - type: Clothing
+    sprite: _SpaceCats/Sponsor/Fredik21/brassierer.rsi

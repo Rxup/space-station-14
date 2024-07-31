@@ -42,23 +42,22 @@
     neck:
     - ClothingNeckEsmira
 
-# игрушки
 - type: loadout
-  id: PlushieEsmira
-  equipment: PlushieEsmira
+  id: ClothingUnderPantsEsmira
+  equipment: ClothingUnderPantsEsmira
 
 - type: startingGear
-  id: PlushieEsmira
+  id: ClothingUnderPantsEsmira
   storage:
-    back:
-    - PlushieEsmira
+    underpants:
+    - ClothingUnderPantsEsmira
 
 - type: loadout
-  id: PlushieFredik
-  equipment: PlushieFredik
+  id: ClothingUnderShirtEsmira
+  equipment: ClothingUnderShirtEsmira
 
 - type: startingGear
-  id: PlushieFredik
+  id: ClothingUnderShirtEsmira
   storage:
-    back:
-    - PlushieFredik
+    undershirt:
+    - ClothingUnderShirtEsmira
