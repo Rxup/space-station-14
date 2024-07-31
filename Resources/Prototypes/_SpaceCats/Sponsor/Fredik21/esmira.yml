@@ -3,7 +3,6 @@
   id: ClothingUnderSocksCoderBlue
   name: голубые носки эсмиры
   suffix: Спонсор, Fredik21
-  sponsorOnly: true # Cats
   description: Раньше это были розовые носки, но Эсмира пролила на них голубую краску. Теперь это голубые носки.
   components:
   - type: Sprite
@@ -16,7 +15,6 @@
   id: ClothingUniformJumpskirtEsmira
   name: юбка-комбинезон эсмиры
   suffix: Спонсор, Fredik21
-  sponsorOnly: true # Cats
   description: юбка которую носит Эсмира. Мне страшно думать от куда вы его взяли...
   components:
   - type: Sprite
@@ -29,7 +27,6 @@
   id: ClothingHeadHatHairflowerEsmira
   name: головной убор эсмиры
   suffix: Спонсор, Fredik21
-  sponsorOnly: true # Cats
   description: Обычный цветок с головным убором
   components:
   - type: Sprite
@@ -55,7 +52,6 @@
   parent: ClothingUnderPantsBase
   id: ClothingUnderPantsEsmira
   suffix: Спонсор, Fredik21
-  sponsorOnly: true # Cats
   components:
   - type: Sprite
     sprite: _SpaceCats/Sponsor/Fredik21/pants.rsi
@@ -68,7 +64,6 @@
   parent: ClothingUnderShirtBase
   id: ClothingUnderShirtEsmira
   suffix: Спонсор, Fredik21
-  sponsorOnly: true # Cats
   components:
   - type: Sprite
     sprite: _SpaceCats/Sponsor/Fredik21/brassierer.rsi
