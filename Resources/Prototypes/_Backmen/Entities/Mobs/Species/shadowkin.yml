@@ -5,6 +5,7 @@
   name: Urist McFloof
   abstract: true
   components:
+  - type: Absorbable
   - type: HumanoidAppearance
     eyeColor: '#ffffff'
     species: Shadowkin

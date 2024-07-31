@@ -4,6 +4,7 @@
   id: MobOniBase
   abstract: true
   components:
+  - type: Absorbable
   - type: Speech
     speechSounds: Baritone
   - type: HumanoidAppearance

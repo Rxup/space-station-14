@@ -5,6 +5,7 @@
   id: BaseMobHumanoidFox
   abstract: true
   components:
+  - type: Absorbable
   - type: HumanoidAppearance
     species: HumanoidFoxes
   - type: Icon
