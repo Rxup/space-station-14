@@ -3,6 +3,7 @@
   id: PlushieEsmira
   name: плюшевая Эсмира Котова
   description: Очень любит когда её тискают.
+  sponsorOnly: true # Cats
   suffix: Спонсор, Fredik21
   components:
   - type: Sprite
@@ -23,13 +24,13 @@
   - type: EmitSoundOnTrigger
     sound:
       collection: FelinidMeows
-  - sponsorOnly: true # Cats
 
 - type: entity
   parent: BasePlushie
   id: PlushieFredik
   name: плюшевая игрушка Эсмиры Котовой
   description: Очень любит когда её тискают.
+  sponsorOnly: true # Cats
   suffix: Спонсор, Fredik21
   components:
   - type: Sprite
@@ -52,4 +53,3 @@
   - type: EmitSoundOnTrigger
     sound:
       collection: FelinidMeows
-  - sponsorOnly: true # Cats
