@@ -50,7 +50,7 @@
 - type: startingGear
   id: PlushieEsmira
   storage:
-    neck:
+    back:
     - PlushieEsmira
 
 - type: loadout
