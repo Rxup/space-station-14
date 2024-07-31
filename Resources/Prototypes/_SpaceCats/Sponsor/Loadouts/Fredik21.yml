@@ -1,0 +1,63 @@
+#носок
+- type: loadout
+  id: ClothingUnderSocksCoderBlue
+  equipment: ClothingUnderSocksCoderBlue
+
+- type: startingGear
+  id: ClothingUnderSocksCoderBlue
+  storage:
+    socks:
+    - ClothingUnderSocksCoderBlue
+
+#комбинезон
+- type: loadout
+  id: ClothingUniformJumpskirtEsmira
+  equipment: ClothingUniformJumpskirtEsmira
+
+- type: startingGear
+  id: ClothingUniformJumpskirtEsmira
+  storage:
+    jumpsuit:
+    - ClothingUniformJumpskirtEsmira
+
+# шляпа
+- type: loadout
+  id: ClothingHeadHatHairflowerEsmira
+  equipment: ClothingHeadHatHairflowerEsmira
+
+- type: startingGear
+  id: ClothingHeadHatHairflowerEsmira
+  storage:
+    head:
+    - ClothingHeadHatHairflowerEsmira
+
+# плащ
+- type: loadout
+  id: ClothingNeckEsmira
+  equipment: ClothingNeckEsmira
+
+- type: startingGear
+  id: ClothingNeckEsmira
+  storage:
+    neck:
+    - ClothingNeckEsmira
+
+- type: loadout
+  id: ClothingUnderPantsEsmira
+  equipment: ClothingUnderPantsEsmira
+
+- type: startingGear
+  id: ClothingUnderPantsEsmira
+  storage:
+    underpants:
+    - ClothingUnderPantsEsmira
+
+- type: loadout
+  id: ClothingUnderShirtEsmira
+  equipment: ClothingUnderShirtEsmira
+
+- type: startingGear
+  id: ClothingUnderShirtEsmira
+  storage:
+    undershirt:
+    - ClothingUnderShirtEsmira
