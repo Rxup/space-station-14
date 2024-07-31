@@ -39,7 +39,6 @@
   id: ClothingNeckEsmira
   suffix: Спонсор, Fredik21
   name: плащ с игрушкой эсмиры
-  sponsorOnly: true # Cats
   description: Мы ведь друзья... так ведь?...
   components:
   - type: Sprite
