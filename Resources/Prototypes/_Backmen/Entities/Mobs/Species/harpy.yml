@@ -5,6 +5,7 @@
   id: MobHarpyBase
   abstract: true
   components:
+    - type: Absorbable
     - type: HarpySinger
     - type: Instrument
       allowPercussion: false
