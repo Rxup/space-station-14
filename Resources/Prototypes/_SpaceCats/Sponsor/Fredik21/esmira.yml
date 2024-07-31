@@ -1,5 +1,5 @@
 - type: entity
-  parent: ClothingShoesBaseClothingUnderSocksBase
+  parent: ClothingUnderSocksBase
   id: ClothingUnderSocksCoderBlue
   name: голубые носки Эсмиры
   suffix: Спонсор, Fredik21
