@@ -34,7 +34,7 @@
   suffix: Спонсор, Fredik21
   components:
   - type: Sprite
-    sprite: _SpaceCats/Sponsor/Fredik21/toys.rsi
+    sprite: _SpaceCats/Sponsor/Fredik21/toy.rsi
     state: sponsor_fredik
   - type: Item
     heldPrefix: sponsor_fredik
