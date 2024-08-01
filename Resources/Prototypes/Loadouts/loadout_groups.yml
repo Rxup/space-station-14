@@ -869,7 +869,7 @@
   - RoboticistLabCoat
   - RoboticistWintercoat
   - SeniorResearcherLabCoat
-  - ClothingOuterWinterSeniorResearcher  # cats
+  - ClothingOuterWinterSeniorResearcher
 
 - type: loadoutGroup
   id: ScientistShoes
