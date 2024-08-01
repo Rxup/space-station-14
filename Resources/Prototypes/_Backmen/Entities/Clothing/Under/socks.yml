@@ -29,7 +29,7 @@
   name: american flag knee-highs
   description: "A pair of American Flag knee-highs, perfect for showing off your patriotic side."
   components:
-    - type: Sprite
+    - type: SpriteClothingUnderSocksBase
       sprite: Backmen/Clothing/Under/socks.rsi
       state: assblastusa_knee-ICON
     - type: Clothing
