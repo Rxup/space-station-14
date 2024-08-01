@@ -63,12 +63,3 @@
   id: ChemistWintercoat
   equipment:
     outerClothing: ClothingOuterWinterChem
-
-- type: loadout
-  id: ClothingOuterWinterSeniorPhysician
-  equipment: ClothingOuterWinterSeniorPhysician  # cats
-
-- type: startingGear
-  id: ClothingOuterWinterSeniorPhysician
-  equipment:
-    outerClothing: ClothingOuterWinterSeniorPhysician  #cats
