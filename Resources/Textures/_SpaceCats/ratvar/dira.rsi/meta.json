@@ -8,7 +8,7 @@
   },
   "states": [
     {
-      "name": "Spatial Gateway",
+      "name": "SpatialGateway",
       "delays": [
         [
           0.060000002,
