@@ -58,6 +58,15 @@
   equipment:
     head: ClothingHeadHatBeretEngineering
 
+- type: loadout
+  id: ClothingHeadHatBeretChiefEngineering
+  equipment: ClothingHeadHatBeretChiefEngineering   # cats 
+
+- type: startingGear
+  id: ClothingHeadHatBeretChiefEngineering
+  equipment:
+    head: ClothingHeadHatBeretChiefEngineering   # cats
+
 # Jumpsuit
 - type: loadout
   id: StationEngineerJumpsuit
@@ -156,6 +165,15 @@
   id: StationEngineerWintercoat
   equipment:
     outerClothing: ClothingOuterWinterEngi
+
+- type: loadout
+  id: ClothingOuterWinterSeniorEngineer
+  equipment: ClothingOuterWinterSeniorEngineer   # cats
+
+- type: startingGear
+  id: ClothingOuterWinterSeniorEngineer
+  equipment:
+    outerClothing: ClothingOuterWinterSeniorEngineer  # cats
   
 # Shoes
 - type: loadout

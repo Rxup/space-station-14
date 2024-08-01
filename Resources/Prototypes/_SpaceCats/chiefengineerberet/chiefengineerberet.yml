@@ -1,0 +1,16 @@
+#Берет старшего инженера
+- type: entity
+  parent: ClothingHeadBase
+  id: ClothingHeadHatBeretChiefEngineering
+  name: берет старшего инженера
+  description: Белый берет с эмблемой инженерного отдела. Для старших инженеров, которые предпочитают стиль безопасности.
+  components:
+  - type: Sprite
+    sprite: _SpaceCats/chiefengineerberet.rsi
+  - type: Clothing
+    sprite: _SpaceCats/chiefengineerberet.rsi
+  - type: Tag
+    tags:
+    - ClothMade
+    - HamsterWearable
+    - WhitelistChameleon
