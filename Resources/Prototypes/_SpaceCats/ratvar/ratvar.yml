@@ -387,14 +387,6 @@
     Steel: 1500
 
 - type: latheRecipe
-  id: ToolboxElectricalTurretAltarratvara
-  result: ToolboxElectricalTurretAltarratvara
-  category: Tools
-  completetime: 10
-  materials:
-    Steel: 1500
-
-- type: latheRecipe
   id: ToolboxElectricalTurretMaiakratvara
   result: ToolboxElectricalTurretMaiakratvara
   category: Tools
@@ -435,7 +427,6 @@
     - SpearRatvar
     - ToolboxElectricalTurretKuznaratvara
     - ToolboxElectricalTurretMaiakratvara
-    - ToolboxElectricalTurretAltarratvara
     - Ratvarmech
     - Molotratvare
     - ClothingHeadHelmetBasicRatvar
@@ -458,22 +449,6 @@
   - type: Icon
     sprite: _SpaceCats/ratvar/pilon.rsi
     state: ClockworkObelisk
-
-- type: entity
-  id: AltarRatvar
-  parent: AltarNanotrasen
-  name: Алтарь Ратвара
-  suffix: Ратвар
-  components:
-  - type: Sprite
-    sprite: _SpaceCats/ratvar/dira.rsi
-    state: SpatialGateway
-  - type: Icon
-    sprite: _SpaceCats/ratvar/dira.rsi
-    state: SpatialGateway
-  - type: Construction
-    graph: Seat
-    node: AltarRatvar
 
 - type: entity
   name: Кузня в виде ящика для инструментов
@@ -501,37 +476,6 @@
           - !type:SpawnEntitiesBehavior
             spawn:
               RavtvarWorShop:
-                min: 1
-                max: 1
-  - type: StaticPrice
-    price: 1350
-
-- type: entity
-  name: Алтарь в виде ящика для инструментов
-  suffix: Ратвар
-  parent: ToolboxElectrical
-  id: ToolboxElectricalTurretAltarratvara
-  description: Просто ударьте его!
-  components:
-  - type: Damageable
-    damageContainer: Inorganic
-  - type: Destructible
-    thresholds:
-      - trigger:
-          !type:DamageTrigger
-          damage: 100
-        behaviors:
-          - !type:DoActsBehavior
-            acts: [ "Destruction" ]
-      - trigger:
-          !type:DamageTrigger
-          damage: 1
-        behaviors:
-          - !type:DoActsBehavior
-            acts: [ "Destruction" ]
-          - !type:SpawnEntitiesBehavior
-            spawn:
-              AltarRatvar:
                 min: 1
                 max: 1
   - type: StaticPrice
