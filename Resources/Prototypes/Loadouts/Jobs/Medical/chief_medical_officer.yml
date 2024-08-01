@@ -92,12 +92,3 @@
   equipment:
     outerClothing: ClothingOuterWinterCMO
 
-- type: loadout
-  id: ClothingOuterWinterSeniorPhysician
-  equipment: ClothingOuterWinterSeniorPhysician  # cats
-
-- type: startingGear
-  id: ClothingOuterWinterSeniorPhysician
-  equipment:
-    outerClothing: ClothingOuterWinterSeniorPhysician  #cats
-

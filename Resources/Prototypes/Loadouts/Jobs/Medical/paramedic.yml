@@ -55,15 +55,6 @@
   equipment:
     outerClothing: ClothingOuterWinterPara
 
-- type: loadout
-  id: ClothingOuterWinterSeniorPhysician
-  equipment: ClothingOuterWinterSeniorPhysician  # cats
-
-- type: startingGear
-  id: ClothingOuterWinterSeniorPhysician
-  equipment:
-    outerClothing: ClothingOuterWinterSeniorPhysician  #cats 
-
 # Shoes
 - type: loadout
   id: BlueShoes

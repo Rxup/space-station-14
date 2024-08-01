@@ -64,15 +64,6 @@
   equipment:
     outerClothing: ClothingOuterWinterAtmos
 
-- type: loadout
-  id: ClothingOuterWinterSeniorEngineer
-  equipment: ClothingOuterWinterSeniorEngineer   # cats
-
-- type: startingGear
-  id: ClothingOuterWinterSeniorEngineer
-  equipment:
-    outerClothing: ClothingOuterWinterSeniorEngineer  # cats
-
 # Shoes
 - type: loadout
   id: WhiteShoes

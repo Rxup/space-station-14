@@ -165,15 +165,6 @@
   id: StationEngineerWintercoat
   equipment:
     outerClothing: ClothingOuterWinterEngi
-
-- type: loadout
-  id: ClothingOuterWinterSeniorEngineer
-  equipment: ClothingOuterWinterSeniorEngineer   # cats
-
-- type: startingGear
-  id: ClothingOuterWinterSeniorEngineer
-  equipment:
-    outerClothing: ClothingOuterWinterSeniorEngineer  # cats
   
 # Shoes
 - type: loadout
