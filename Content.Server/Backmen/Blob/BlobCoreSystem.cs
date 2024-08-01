@@ -19,6 +19,7 @@ using Content.Shared.FixedPoint;
 using Content.Shared.Objectives.Components;
 using Content.Shared.Popups;
 using Content.Shared.Weapons.Melee;
+using Robust.Server.GameObjects;
 using Robust.Shared.Map;
 using Robust.Shared.Map.Components;
 using Robust.Shared.Network;
@@ -40,6 +41,7 @@ public sealed class BlobCoreSystem : SharedBlobCoreSystem
     [Dependency] private readonly MetaDataSystem _metaDataSystem = default!;
     [Dependency] private readonly ActionsSystem _action = default!;
     [Dependency] private readonly EntityLookupSystem _lookup = default!;
+    [Dependency] private readonly MapSystem _map = default!;
 
     private EntityQuery<BlobTileComponent> _tile;
     private EntityQuery<BlobFactoryComponent> _factory;
@@ -320,12 +322,12 @@ public sealed class BlobCoreSystem : SharedBlobCoreSystem
     {
         if (oldTileUid != null)
         {
+            if (oldTileUid.Value.Comp.Core != blobCore)
+                return false;
+
             QueueDel(oldTileUid.Value);
             blobCore.Comp.BlobTiles.Remove(oldTileUid.Value);
             nearNode?.Comp.ConnectedTiles.Remove(oldTileUid.Value);
-
-            if (oldTileUid.Value.Comp.Core == blobCore)
-                return false;
         }
 
         var tileBlob = EntityManager.SpawnEntity(newBlobTileProto, coordinates);
@@ -422,29 +424,44 @@ public sealed class BlobCoreSystem : SharedBlobCoreSystem
         EntityCoordinates coords,
         float radius = 3f)
     {
+        var gridUid = coords.GetGridUid(EntityManager)!.Value;
         var queryNode = GetEntityQuery<BlobNodeComponent>();
-        var nearestDistance = float.MaxValue;
-        var nodeComponent = new BlobNodeComponent();
-        EntityUid? nearestEntityUid = null;
 
-        foreach (var lookupUid in _lookup.GetEntitiesInRange(coords, radius))
+        if (!TryComp<MapGridComponent>(gridUid, out var grid))
         {
-            if (!queryNode.TryComp(lookupUid, out var nodeComp))
-                continue;
-            var tileCords = Transform(lookupUid).Coordinates;
-            var distance = Vector2.Distance(coords.Position, tileCords.Position);
-
-            if (!(distance < nearestDistance))
-                continue;
-
-            nearestDistance = distance;
-            nearestEntityUid = lookupUid;
-            nodeComponent = nodeComp;
+            return null;
         }
 
-        if (nearestEntityUid == null)
-            return null;
+        var nearestDistance = float.MaxValue;
+        var nodeComponent = new BlobNodeComponent();
+        var nearestEntityUid = EntityUid.Invalid;
 
-        return nearestDistance > radius ? null : (nearestEntityUid.Value, nodeComponent);
+        var innerTiles = _map.GetLocalTilesIntersecting(
+                gridUid,
+                grid,
+                new Box2(coords.Position + new Vector2(-radius, -radius),
+                    coords.Position + new Vector2(radius, radius)),
+                false)
+            .ToArray();
+
+        foreach (var tileRef in innerTiles)
+        {
+            foreach (var ent in _map.GetAnchoredEntities(gridUid, grid, tileRef.GridIndices))
+            {
+                if (!queryNode.TryComp(ent, out var nodeComp))
+                    continue;
+                var tileCords = Transform(ent).Coordinates;
+                var distance = Vector2.Distance(coords.Position, tileCords.Position);
+
+                if (!(distance < nearestDistance))
+                    continue;
+
+                nearestDistance = distance;
+                nearestEntityUid = ent;
+                nodeComponent = nodeComp;
+            }
+        }
+
+        return nearestDistance > radius ? null : (nearestEntityUid, nodeComponent);
     }
 }
