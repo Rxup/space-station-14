@@ -7,8 +7,14 @@
   components:
   - type: Sprite
     sprite: _SpaceCats/Sponsor/Fredik21/blue.rsi
+    state: icon
   - type: Clothing
     sprite: _SpaceCats/Sponsor/Fredik21/blue.rsi
+    clothingVisuals:
+      socks:
+        - state: equipped-FEET
+  - type: TemperatureProtection
+      coefficient: 0.85
 
 - type: entity
   parent: ClothingUniformSkirtBase
@@ -54,8 +60,12 @@
   components:
   - type: Sprite
     sprite: _SpaceCats/Sponsor/Fredik21/pants.rsi
+    state: icon
   - type: Clothing
     sprite: _SpaceCats/Sponsor/Fredik21/pants.rsi
+    clothingVisuals:
+      underpants:
+        - state: equipped-INNERCLOTHING
 
 - type: entity
   description: Верни позязя владельцу~
@@ -66,5 +76,9 @@
   components:
   - type: Sprite
     sprite: _SpaceCats/Sponsor/Fredik21/brassierer.rsi
+    state: icon
   - type: Clothing
     sprite: _SpaceCats/Sponsor/Fredik21/brassierer.rsi
+    clothingVisuals:
+      undershirt:
+        - state: equipped-INNERCLOTHING
