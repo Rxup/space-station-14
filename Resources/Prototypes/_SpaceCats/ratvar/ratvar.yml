@@ -371,14 +371,6 @@
     Steel: 200
 
 - type: latheRecipe
-  id: ClockworkShield
-  result: ClockworkShield
-  category: Tools
-  completetime: 4
-  materials:
-    Steel: 200
-
-- type: latheRecipe
   id: ToolboxElectricalTurretKuznaratvara
   result: ToolboxElectricalTurretKuznaratvara
   category: Tools
@@ -434,7 +426,6 @@
     - KirasaRatvar
     - Odealoratvar
     - GusenisiRatvar
-    - ClockworkShield
     - ClothingEyesGlassesSecurityRatvar
 
 - type: entity
