@@ -6,8 +6,7 @@
 - type: startingGear
   id: ClothingUnderSocksCoderBlue
   equipment:
-    socks:
-    - ClothingUnderSocksCoderBlue
+    socks: ClothingUnderSocksCoderBlue
 
 #комбинезон
 - type: loadout
@@ -17,8 +16,7 @@
 - type: startingGear
   id: ClothingUniformJumpskirtEsmira
   equipment:
-    jumpsuit:
-    - ClothingUniformJumpskirtEsmira
+    jumpsuit: ClothingUniformJumpskirtEsmira
 
 # шляпа
 - type: loadout
@@ -28,8 +26,7 @@
 - type: startingGear
   id: ClothingHeadHatHairflowerEsmira
   equipment:
-    head:
-    - ClothingHeadHatHairflowerEsmira
+    head: ClothingHeadHatHairflowerEsmira
 
 # плащ
 - type: loadout
@@ -39,8 +36,7 @@
 - type: startingGear
   id: ClothingNeckEsmira
   equipment:
-    neck:
-    - ClothingNeckEsmira
+    neck: ClothingNeckEsmira
 
 # трусы 
 - type: loadout
@@ -50,8 +46,7 @@
 - type: startingGear
   id: ClothingUnderPantsEsmira
   equipment:
-    underpants:
-    - ClothingUnderPantsEsmira
+    underpants: ClothingUnderPantsEsmira
 
 
 # лифчик
@@ -62,5 +57,4 @@
 - type: startingGear
   id: ClothingUnderShirtEsmira
   equipment:
-    undershirt:
-    - ClothingUnderShirtEsmira
+    undershirt: ClothingUnderShirtEsmira
