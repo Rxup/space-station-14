@@ -7,22 +7,6 @@
   longRange: true
 
 - type: entity
-  parent: EncryptionKey
-  id: EncryptionKeyRatvart
-  name: Ключ шифрование Ратвара
-  suffix: Ратвар
-  description: общение с культистами? ЕСЛИ ВЫ НЕ КУЛЬТИСТ НЕ ОБЩАЙТЕСЬ В ЭТОМ КАНАЛЕ! А ТО ДЯДЯ ФРЕДИК ДАСТ ВАМ ПИЗДЫ!!!
-  components:
-  - type: EncryptionKey
-    channels:
-    - Ratvar
-    defaultChannel: k%2*5
-  - type: Sprite
-    layers:
-    - state: crypt_red
-    - state: synd_label
-
-- type: entity
   parent: ClothingOuterStorageBase
   id: Odealoratvar
   suffix: Ратвар
@@ -208,10 +192,6 @@
     solution: melee
   - type: RefillableSolution
     solution: melee
-  - type: InjectableSolution
-    solution: melee
-    fixtureId: "throw-fixture"
-    blockSlots: NONE
   - type: SolutionTransfer
     maxTransferAmount: 2
   - type: Wieldable
@@ -407,38 +387,6 @@
     Steel: 200
 
 - type: latheRecipe
-  id: KoncstructMoroder
-  result: KoncstructMoroder
-  category: Tools
-  completetime: 30
-  materials:
-    Steel: 6000
-
-- type: latheRecipe
-  id: EmagRatvar
-  result: EmagRatvar
-  category: Tools
-  completetime: 5
-  materials:
-    Steel: 200
-
-- type: latheRecipe
-  id: FlashRatvar
-  result: FlashRatvar
-  category: Tools
-  completetime: 5
-  materials:
-    Steel: 200
-
-- type: latheRecipe
-  id: MedicatedSutureRatvar
-  result: MedicatedSutureRatvar
-  category: Tools
-  completetime: 5
-  materials:
-    Steel: 300
-
-- type: latheRecipe
   id: ToolboxElectricalTurretKuznaratvara
   result: ToolboxElectricalTurretKuznaratvara
   category: Tools
@@ -507,10 +455,6 @@
     - Odealoratvar
     - GusenisiRatvar
     - ClockworkShield
-    - KoncstructMoroder
-    - EmagRatvar
-    - FlashRatvar
-    - MedicatedSutureRatvar
     - ClothingEyesGlassesSecurityRatvar
 
 - type: entity
