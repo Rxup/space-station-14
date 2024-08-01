@@ -8,6 +8,15 @@
   equipment:
     head: ClothingHeadHatParamedicsoft
 
+- type: loadout
+  id: ClothingHeadHatParamedicBeret
+  equipment: ClothingHeadHatParamedicBeret  # cats
+
+- type: startingGear
+  id: ClothingHeadHatParamedicBeret
+  equipment:
+    head: ClothingHeadHatParamedicBeret   # cats
+
 # Jumpsuit
 - type: loadout
   id: ParamedicJumpsuit
