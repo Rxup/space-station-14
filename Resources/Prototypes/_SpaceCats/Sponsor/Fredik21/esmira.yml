@@ -13,8 +13,6 @@
     clothingVisuals:
       socks:
         - state: equipped-FEET
-  - type: TemperatureProtection
-      coefficient: 0.85
 
 - type: entity
   parent: ClothingUniformSkirtBase
