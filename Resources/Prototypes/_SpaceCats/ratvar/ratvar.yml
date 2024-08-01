@@ -522,10 +522,10 @@
   components:
   - type: Sprite
     sprite: _SpaceCats/ratvar/pilon.rsi
-    state: Clockwork Obelisk
+    state: ClockworkObelisk
   - type: Icon
     sprite: _SpaceCats/ratvar/pilon.rsi
-    state: Clockwork Obelisk
+    state: ClockworkObelisk
 
 - type: entity
   id: AltarRatvar
@@ -535,10 +535,10 @@
   components:
   - type: Sprite
     sprite: _SpaceCats/ratvar/dira.rsi
-    state: Spatial Gateway
+    state: SpatialGateway
   - type: Icon
     sprite: _SpaceCats/ratvar/dira.rsi
-    state: Spatial Gateway
+    state: SpatialGateway
   - type: Construction
     graph: Seat
     node: AltarRatvar
