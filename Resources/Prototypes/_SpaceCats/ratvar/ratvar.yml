@@ -132,7 +132,6 @@
   - type: Clothing
     sprite: _SpaceCats/ratvar/ocki.rsi
   - type: FlashImmunity
-  - type: ShowSecurityIcons
   - type: EyeProtection
     protectionTime: 5
   - type: Tag
