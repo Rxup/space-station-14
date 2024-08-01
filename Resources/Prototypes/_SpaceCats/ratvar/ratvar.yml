@@ -1,11 +1,3 @@
-- type: radioChannel
-  id: Ratvar
-  name: Ратвар
-  keycode: "ч"
-  frequency: 1459
-  color: "#FFA500"
-  longRange: true
-
 - type: entity
   parent: ClothingOuterStorageBase
   id: Odealoratvar
@@ -429,10 +421,7 @@
     - state: ratvaranvil
       map: ["enum.MaterialStorageVisualLayers.Inserting"]
     - state: ratvaranvil
-      map: ["enum.WiresVisualLayers.MaintenancePanel"]
-  - type: Wires
-    boardName: wires-board-name-protolathe
-    layoutId: Protolathe
+      map: ["enum.WiresVisualLayers.MaintenancePanel"]e
   - type: MaterialStorage
     whitelist:
       tags:
