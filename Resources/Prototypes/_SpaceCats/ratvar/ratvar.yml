@@ -421,7 +421,7 @@
     - state: ratvaranvil
       map: ["enum.MaterialStorageVisualLayers.Inserting"]
     - state: ratvaranvil
-      map: ["enum.WiresVisualLayers.MaintenancePanel"]e
+      map: ["enum.WiresVisualLayers.MaintenancePanel"]
   - type: MaterialStorage
     whitelist:
       tags:
