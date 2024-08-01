@@ -17,7 +17,7 @@
 - type: startingGear
   id: ClothingUniformJumpskirtEsmira
   equipment:
-    innerclothing:
+    jumpsuit:
     - ClothingUniformJumpskirtEsmira
 
 # шляпа
