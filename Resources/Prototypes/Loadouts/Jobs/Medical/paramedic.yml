@@ -9,11 +9,11 @@
     head: ClothingHeadHatParamedicsoft
 
 - type: loadout
-  id: ParamedicHead
+  id: ClothingHeadHatParamedicBeret
   equipment: ClothingHeadHatParamedicBeret  # cats
 
 - type: startingGear
-  id: ParamedicHead
+  id: ClothingHeadHatParamedicBeret
   equipment:
     head: ClothingHeadHatParamedicBeret   # cats
 
