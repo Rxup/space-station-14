@@ -21,7 +21,7 @@ public sealed partial class BlobObserverComponent : Component
     [ViewVariables(VVAccess.ReadOnly)]
     public bool IsProcessingMoveEvent;
 
-    [ViewVariables(VVAccess.ReadOnly),AutoNetworkedField]
+    [ViewVariables(VVAccess.ReadOnly)]
     public Entity<BlobCoreComponent>? Core = default!;
 
     [ViewVariables(VVAccess.ReadOnly)]

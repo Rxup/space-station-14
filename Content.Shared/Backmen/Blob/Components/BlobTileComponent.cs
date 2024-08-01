@@ -5,17 +5,17 @@ using Robust.Shared.GameStates;
 
 namespace Content.Shared.Backmen.Blob.Components;
 
-[RegisterComponent, NetworkedComponent, AutoGenerateComponentState(true)]
+[RegisterComponent, NetworkedComponent, AutoGenerateComponentState(true), Serializable]
 public sealed partial class BlobTileComponent : Component
 {
     [DataField("color"), AutoNetworkedField]
     public Color Color = Color.White;
 
-    [ViewVariables(VVAccess.ReadOnly), AutoNetworkedField]
-    public Entity<BlobCoreComponent>? Core = default!;
+    [ViewVariables(VVAccess.ReadOnly)]
+    public Entity<BlobCoreComponent>? Core;
 
-    [ViewVariables(VVAccess.ReadOnly), AutoNetworkedField]
-    public Entity<BlobNodeComponent>? Node = default!;
+    [ViewVariables(VVAccess.ReadOnly)]
+    public Entity<BlobNodeComponent>? Node;
 
     [ViewVariables(VVAccess.ReadOnly)]
     public bool ReturnCost = true;
