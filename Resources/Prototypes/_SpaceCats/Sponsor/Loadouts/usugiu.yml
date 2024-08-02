@@ -1,14 +1,5 @@
 # куртка
 - type: loadout
-  id: ClothingOuterCoatJacketUsugiu
-  equipment: ClothingOuterCoatJacketUsugiu
-
-- type: startingGear
-  id: ClothingOuterCoatJacketUsugiu
-  equipment:
-    outerClothing: ClothingOuterCoatJacketUsugiu
-
-- type: loadout
   id: ClothingOuterCoatBlackedmcSponsor
   equipment: ClothingOuterCoatBlackedmcSponsor
 
@@ -16,6 +7,15 @@
   id: ClothingOuterCoatBlackedmcSponsor
   equipment:
     outerClothing: ClothingOuterCoatBlackedmcSponsor
+
+- type: loadout
+  id: ClothingOuterCoatJensen
+  equipment: ClothingOuterCoatJensen
+
+- type: startingGear
+  id: ClothingOuterCoatJensen
+  equipment:
+    outerClothing: ClothingOuterCoatJensen
 
 # маска
 - type: loadout

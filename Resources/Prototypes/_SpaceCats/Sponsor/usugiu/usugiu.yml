@@ -10,17 +10,6 @@
   - type: Clothing
     sprite: _SpaceCats/Sponsor/usugiu/mad_ask.rsi
 
-- type: entity #backmen 
-  parent: ClothingOuterWinterCoat
-  id: ClothingOuterCoatJacketUsugiu
-  name: кожанный джакет
-  description: Осталось прожить три дня, три...
-  components:
-  - type: Sprite
-    sprite: _SpaceCats/Sponsor/usugiu/leathercoat.rsi
-  - type: Clothing
-    sprite: _SpaceCats/Sponsor/usugiu/leathercoat.rsi
-
 ## Убрать резисты
 - type: entity #backmen 
   parent: ClothingOuterBase
