@@ -32,7 +32,7 @@
   components:
     - type: StationArrivals
 
- - type: entity
+- type: entity
   id: BaseStationGateway
   abstract: true
   components:
