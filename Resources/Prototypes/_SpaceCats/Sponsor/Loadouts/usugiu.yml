@@ -19,13 +19,13 @@
 
 # маска
 - type: loadout
-  id: ClothingUsugiuMask
-  equipment: ClothingUsugiuMask
+  id: ClothingMaskTGMCwhite
+  equipment: ClothingMaskTGMCwhite
 
 - type: startingGear
-  id: ClothingUsugiuMask
+  id: ClothingMaskTGMCwhite
   equipment:
-    mask: ClothingUsugiuMask
+    mask: ClothingMaskTGMCwhite
 
 - type: loadout
   id: ClothingMaskBal
