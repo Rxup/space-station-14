@@ -32,11 +32,11 @@
   components:
     - type: StationArrivals
 
-- type: entity
-  id: BaseStationGateway
-  abstract: true
-  components:
-    - type: GatewayGenerator
+# - type: entity
+#  id: BaseStationGateway
+#  abstract: true
+#  components:
+#    - type: GatewayGenerator
 
 - type: entity
   id: BaseStationShuttles
