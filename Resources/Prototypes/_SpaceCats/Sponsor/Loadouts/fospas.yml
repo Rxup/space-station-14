@@ -1,0 +1,51 @@
+# плащ
+- type: loadout
+  id: ClothingNeckCloakSanabi
+  equipment: ClothingNeckCloakSanabi
+
+- type: startingGear
+  id: ClothingNeckCloakSanabi
+  equipment:
+    neck: ClothingNeckCloakSanabi
+
+- type: loadout
+  id: ClothingNeckHorrific
+  equipment: ClothingNeckHorrific
+
+- type: startingGear
+  id: ClothingNeckHorrific
+  equipment:
+    neck: ClothingNeckHorrific
+
+## Убрать резисты
+- type: entity #backmen 
+  parent: ClothingOuterBase
+  id: ClothingOuterCoatPurpledmcSponsor
+  name: фиолетова плащ-куртка
+  description: Порой люди хуже демонов.
+  suffix: Спонсор, без резистов
+  components:
+  - type: Sprite
+    sprite: Backmen/Clothing/OuterClothing/Coats/purple.rsi
+  - type: Clothing
+    sprite: Backmen/Clothing/OuterClothing/Coats/purple.rsi
+
+# куртка
+- type: loadout
+  id: ClothingOuterCoatPurpledmcSponsor
+  equipment: ClothingOuterCoatPurpledmcSponsor
+
+- type: startingGear
+  id: ClothingOuterCoatPurpledmcSponsor
+  equipment:
+    outerClothing: ClothingOuterCoatPurpledmcSponsor
+
+# глаза  
+- type: loadout
+  id: ClothingEyesGlassesChemical
+  equipment: ClothingEyesGlassesChemical
+
+- type: startingGear
+  id: ClothingEyesGlassesChemical
+  equipment:
+    eyes: CClothingEyesGlassesChemical
