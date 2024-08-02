@@ -48,10 +48,10 @@
 
 # Ботинки
 - type: loadout
-  id: ClothingShoesBootsJackSponsor
+  id: ClothingShoesBootsJack
   equipment: ClothingShoesBootsJack
 
 - type: startingGear
-  id: ClothingShoesBootsJackSponsor
+  id: ClothingShoesBootsJack
   equipment:
     shoes: ClothingShoesBootsJack
