@@ -48,4 +48,4 @@
 - type: startingGear
   id: ClothingEyesGlassesChemical
   equipment:
-    eyes: CClothingEyesGlassesChemical
+    eyes: ClothingEyesGlassesChemical
