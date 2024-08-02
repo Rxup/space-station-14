@@ -6,9 +6,9 @@
   suffix: Спонсор, Usugiu
   components:
   - type: Sprite
-    sprite: _SpaceCats/Sponsor/usugiu/mad_mask.rsi
+    sprite: _SpaceCats/Sponsor/usugiu/madmask.rsi
   - type: Clothing
-    sprite: _SpaceCats/Sponsor/usugiu/mad_mask.rsi
+    sprite: _SpaceCats/Sponsor/usugiu/mad_ask.rsi
 
 - type: entity #backmen 
   parent: ClothingOuterWinterCoat
