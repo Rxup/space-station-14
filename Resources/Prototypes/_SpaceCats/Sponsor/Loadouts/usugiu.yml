@@ -1,0 +1,57 @@
+# куртка
+- type: loadout
+  id: ClothingOuterCoatJacketUsugiu
+  equipment: ClothingOuterCoatJacketUsugiu
+
+- type: startingGear
+  id: ClothingOuterCoatJacketUsugiu
+  equipment:
+    outerClothing: ClothingOuterCoatJacketUsugiu
+
+- type: loadout
+  id: ClothingOuterCoatBlackedmcSponsor
+  equipment: ClothingOuterCoatBlackedmcSponsor
+
+- type: startingGear
+  id: ClothingOuterCoatBlackedmcSponsor
+  equipment:
+    outerClothing: ClothingOuterCoatBlackedmcSponsor
+
+# маска
+- type: loadout
+  id: ClothingUsugiuMask
+  equipment: ClothingUsugiuMask
+
+- type: startingGear
+  id: ClothingUsugiuMask
+  equipment:
+    mask: ClothingUsugiuMask
+
+- type: loadout
+  id: ClothingMaskBal
+  equipment: ClothingMaskBal
+
+- type: startingGear
+  id: ClothingMaskBal
+  equipment:
+    mask: ClothingMaskBal
+
+# Комбинезон
+- type: loadout
+  id: ClothingUniformJumpsuitSWAT
+  equipment: ClothingUniformJumpsuitSWAT
+
+- type: startingGear
+  id: ClothingUniformJumpsuitSWAT
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitSWAT
+
+# Ботинки
+- type: loadout
+  id: ClothingShoesBootsJackSponsor
+  equipment: ClothingShoesBootsJack
+
+- type: startingGear
+  id: ClothingShoesBootsJackSponsor
+  equipment:
+    shoes: ClothingShoesBootsJack

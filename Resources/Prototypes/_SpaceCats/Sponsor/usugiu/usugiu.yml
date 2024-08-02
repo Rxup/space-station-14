@@ -1,0 +1,35 @@
+- type: entity
+  parent: ClothingMaskBase
+  id: ClothingUsugiuMask
+  name: страшная маска
+  description: Аэ?
+  suffix: Спонсор, Usugiu
+  components:
+  - type: Sprite
+    sprite: _SpaceCats/Sponsor/usugiu/mad_mask.rsi
+  - type: Clothing
+    sprite: _SpaceCats/Sponsor/usugiu/mad_mask.rsi
+
+- type: entity #backmen 
+  parent: ClothingOuterWinterCoat
+  id: ClothingOuterCoatJacketUsugiu
+  name: кожанный джакет
+  description: Осталось прожить три дня, три...
+  components:
+  - type: Sprite
+    sprite: _SpaceCats/Sponsor/usugiu/leathercoat.rsi
+  - type: Clothing
+    sprite: _SpaceCats/Sponsor/usugiu/leathercoat.rsi
+
+## Убрать резисты
+- type: entity #backmen 
+  parent: ClothingOuterBase
+  id: ClothingOuterCoatBlackedmcSponsor
+  name: чёрный плащ-куртка
+  description: Каждая потеря остается потерей, сколько бы их ни было до этого.
+  suffix: Спонсор, без резистов
+  components:
+  - type: Sprite
+    sprite: Backmen/Clothing/OuterClothing/Coats/black.rsi
+  - type: Clothing
+    sprite: Backmen/Clothing/OuterClothing/Coats/black.rsi
