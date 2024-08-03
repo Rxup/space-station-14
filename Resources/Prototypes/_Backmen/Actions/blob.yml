@@ -120,7 +120,7 @@
 - type: entity
   id: ActionDowngradeBlob
   name: blob-downgrade-action-name
-  description: blob-swap-chem-action-desc
+  description: blob-downgrade-action-desc
   components:
     - type: WorldTargetAction
       icon:

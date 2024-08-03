@@ -2,6 +2,7 @@
 blob-target-normal-blob-invalid = Неподходящий тип блоба, необходимо выбрать нормального блоба.
 blob-target-factory-blob-invalid = Неподходящий тип блоба, необходимо выбрать фабрику.
 blob-target-node-blob-invalid = Неподходящий тип блоба, необходимо выбрать узел.
+blob-target-not-normal-blob-invalid = Неподходящий тип блоба, необходимо выбрать любого НЕ обычного блоба.
 blob-target-close-to-resource = Слишком близко к другому ресурсному тайлу.
 blob-target-nearby-not-node = Рядом нету узла или ядра.
 blob-target-close-to-node = Слишком близко к другому узлу.
@@ -76,6 +77,8 @@ blob-create-node-action-name = Создать блоб узел (50)
 blob-create-node-action-desc =
     Превращает выбраного нормального блоба в блоб узел.
     Узел будет активировать эфекты других блобов, лечить и расширяться в пределах своего действия уничтожая стены и создавая нормальные блобы.
+blob-downgrade-action-name = Сбросить блоба (0)
+blob-downgrade-action-desc = Превращает выбранную клетку обратно в обычного блоба для установки других видов клеток.
 blob-help-action-name = Помощь
 blob-help-action-desc = Получите базовую информацию по игра за блоба.
 blob-swap-chem-action-name = Сменить химикат блоба (40)
