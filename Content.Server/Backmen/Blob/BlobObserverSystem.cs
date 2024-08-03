@@ -38,6 +38,7 @@ public sealed class BlobObserverSystem : SharedBlobObserverSystem
     [Dependency] private readonly UserInterfaceSystem _uiSystem = default!;
     [Dependency] private readonly MindSystem _mindSystem = default!;
     [Dependency] private readonly IPlayerManager _playerManager = default!;
+    [Dependency] private readonly IMapManager _mapMan = default!;
     [Dependency] private readonly RoleSystem _roleSystem = default!;
     [Dependency] private readonly AlertsSystem _alerts = default!;
     [Dependency] private readonly IChatManager _chatManager = default!;
@@ -190,7 +191,8 @@ public sealed class BlobObserverSystem : SharedBlobObserverSystem
             coreComponent.ActionCreateBlobNode!.Value,
             coreComponent.ActionCreateBlobbernaut!.Value,
             coreComponent.ActionSplitBlobCore!.Value,
-            coreComponent.ActionSwapBlobCore!.Value
+            coreComponent.ActionSwapBlobCore!.Value,
+            coreComponent.ActionDowngradeBlob!.Value,
         },
             component.Core.Value);
 
@@ -689,7 +691,8 @@ public sealed class BlobObserverSystem : SharedBlobObserverSystem
             return;
         }
 
-        if (!_blobCoreSystem.TransformBlobTile(null,
+        if (!_blobCoreSystem.TransformBlobTile(
+                blobTile,
                 (uid, blobCoreComponent),
                 nearNode,
                 blobCoreComponent.FactoryBlobTile,
@@ -713,9 +716,9 @@ public sealed class BlobObserverSystem : SharedBlobObserverSystem
 
         var xform = Transform(blobTile.Value);
 
-        if (blobTile.Value.Comp.BlobTileType is not BlobTileType.Normal || blobTile.Value.Comp.Core == null)
+        if (blobTile.Value.Comp.BlobTileType is BlobTileType.Normal || blobTile.Value.Comp.Core == null)
         {
-            _popup.PopupCoordinates(Loc.GetString("blob-target-normal-blob-invalid"), xform.Coordinates, args.Performer, PopupType.Large);
+            _popup.PopupCoordinates(Loc.GetString("blob-target-not-normal-blob-invalid"), xform.Coordinates, args.Performer, PopupType.Large);
             return;
         }
 
@@ -725,11 +728,12 @@ public sealed class BlobObserverSystem : SharedBlobObserverSystem
         if (!_blobCoreSystem.RemoveBlobTile(blobTile.Value, blobCore, blobCore.Comp))
             return;
 
-        if (!_blobCoreSystem.TransformBlobTile(null,
+        if (!_blobCoreSystem.TransformBlobTile(
+                blobTile,
                 blobCore,
                 nearNode,
                 blobCore.Comp.NormalBlobTile,
-                args.Target,
+                xform.Coordinates.AlignWithClosestGridTile(entityManager: EntityManager, mapManager: _mapMan),
                 transformCost: blobCore.Comp.NormalBlobCost))
             return;
 
