@@ -120,7 +120,7 @@ public sealed class CharacterUIController : UIController, IOnStateEntered<Gamepl
             _window.Memory.RemoveAllChildren();
             foreach (var (groupId, conditions) in objectives)
             {
-                if (groupId != "SpaceBank")
+                if (groupId != "objective-issuer-SpaceBank")
                 {
                     continue;
                 }
@@ -132,7 +132,7 @@ public sealed class CharacterUIController : UIController, IOnStateEntered<Gamepl
 
 
                 var objectiveText = new FormattedMessage();
-                objectiveText.TryAddMarkup(Loc.GetString($"objective-issuer-{groupId}"), out _); // backmen: locale
+                objectiveText.TryAddMarkup(Loc.GetString(groupId), out _); // backmen: locale
 
                 var objectiveLabel = new RichTextLabel
                 {
@@ -168,7 +168,7 @@ public sealed class CharacterUIController : UIController, IOnStateEntered<Gamepl
         foreach (var (groupId, conditions) in objectives)
         {
             // start backmen: currency
-            if (groupId == "SpaceBank")
+            if (groupId == "objective-issuer-SpaceBank")
             {
                 continue;
             }
@@ -182,7 +182,7 @@ public sealed class CharacterUIController : UIController, IOnStateEntered<Gamepl
 
 
             var objectiveText = new FormattedMessage();
-            objectiveText.TryAddMarkup(Loc.GetString($"issuer-{groupId}"), out _); // backmen: locale
+            objectiveText.TryAddMarkup(Loc.GetString(groupId), out _); // backmen: locale
 
             var objectiveLabel = new RichTextLabel
             {
