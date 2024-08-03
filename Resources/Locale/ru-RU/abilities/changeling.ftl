@@ -9,7 +9,7 @@ changeling-absorb-fail-incapacitated = Вы не можете поглотить
 changeling-absorb-fail-absorbed = Вы уже поглотили это.
 changeling-absorb-fail-unabsorbable = Цель не подлежит поглощению.
 changeling-absorb-end-self = Поглощен еще один органик. Вы эволюционируете.
-changeling-absorb-end-self-ling = Поглощен еще один ченджлинг. Вы эволюционируете быстрее.
+changeling-absorb-end-self-ling = Поглощен еще один генокрад. Вы эволюционируете быстрее.
 changeling-absorb-onexamine = [color=red]Тело ощущается пустым.[/color]
 
 changeling-transform-cycle = Переключено на ДНК {$target}.

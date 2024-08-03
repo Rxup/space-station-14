@@ -1,7 +1,8 @@
-using Content.Server.Objectives.Components;
+using Content.Server.Backmen.Objectives.Components;
+using Content.Server.Objectives.Systems;
 using Content.Shared.Objectives.Components;
 
-namespace Content.Server.Objectives.Systems;
+namespace Content.Server.Backmen.Objectives.Systems;
 
 public sealed partial class ChangelingObjectiveSystem : EntitySystem
 {

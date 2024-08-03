@@ -4,12 +4,14 @@ using Robust.Shared.Audio;
 using Robust.Shared.GameStates;
 using Robust.Shared.Prototypes;
 
-namespace Content.Shared.Changeling;
+namespace Content.Shared.Backmen.Changeling.Components;
 
 [RegisterComponent, NetworkedComponent]
 [AutoGenerateComponentState]
 public sealed partial class ChangelingComponent : Component
 {
+    public override bool SendOnlyToOwner => true;
+
     #region Prototypes
 
     [DataField] public List<SoundSpecifier?> SoundPool = new()
@@ -31,7 +33,7 @@ public sealed partial class ChangelingComponent : Component
         "ActionChangelingTransformCycle",
         "ActionChangelingTransform",
         "ActionEnterStasis",
-        "ActionExitStasis"
+        "ActionExitStasis",
     };
 
     /// <summary>
@@ -49,25 +51,28 @@ public sealed partial class ChangelingComponent : Component
 
     public bool IsInLesserForm = false;
 
+    [ViewVariables(VVAccess.ReadWrite)]
+    public float VomitAmount { get; set; }= 15f;
+
 
     public Dictionary<string, EntityUid?> Equipment = new();
 
     /// <summary>
     ///     Amount of biomass changeling currently has.
     /// </summary>
-    [DataField, AutoNetworkedField]
+    [DataField]
     public float Biomass = 30f;
 
     /// <summary>
     ///     Maximum amount of biomass a changeling can have.
     /// </summary>
-    [DataField, AutoNetworkedField]
+    [DataField]
     public float MaxBiomass = 30f;
 
     /// <summary>
     ///     How much biomass should be removed per cycle.
     /// </summary>
-    [DataField, AutoNetworkedField]
+    [DataField]
     public float BiomassDrain = 1f;
 
     /// <summary>
@@ -85,7 +90,7 @@ public sealed partial class ChangelingComponent : Component
     /// <summary>
     ///     Bonus chemicals regeneration. In case
     /// </summary>
-    [DataField, AutoNetworkedField]
+    [DataField]
     public float BonusChemicalRegen = 0f;
 
     /// <summary>
@@ -123,10 +128,13 @@ public sealed partial class ChangelingComponent : Component
     public int TotalStolenDNA = 0;
 
     [ViewVariables(VVAccess.ReadOnly)]
-    public TransformData? CurrentForm;
+    public TransformData CurrentForm;
 
     [ViewVariables(VVAccess.ReadOnly)]
-    public TransformData? SelectedForm;
+    public TransformData SelectedForm;
+
+    [ViewVariables(VVAccess.ReadWrite), AutoNetworkedField]
+    public bool IsTransponder = false;
 }
 
 [DataDefinition]
@@ -142,7 +150,7 @@ public sealed partial class TransformData
     ///     Entity's fingerprint, if it exists.
     /// </summary>
     [DataField]
-    public string? Fingerprint;
+    public string Fingerprint;
 
     /// <summary>
     ///     Entity's DNA.

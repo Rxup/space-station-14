@@ -1,7 +1,7 @@
 using Content.Shared.Actions;
 using Robust.Shared.GameStates;
 
-namespace Content.Shared.Changeling;
+namespace Content.Shared.Backmen.Changeling;
 
 [RegisterComponent, NetworkedComponent]
 public sealed partial class ChangelingActionComponent : Component

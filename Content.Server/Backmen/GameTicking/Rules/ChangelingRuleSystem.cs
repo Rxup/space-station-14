@@ -1,9 +1,7 @@
 using Content.Server.Antag;
-using Content.Server.GameTicking.Rules.Components;
 using Content.Server.Mind;
 using Content.Server.Objectives;
 using Content.Server.Roles;
-using Content.Shared.Changeling;
 using Content.Shared.NPC.Prototypes;
 using Content.Shared.NPC.Systems;
 using Content.Shared.Roles;
@@ -12,8 +10,12 @@ using Content.Shared.Store.Components;
 using Robust.Shared.Audio;
 using Robust.Shared.Prototypes;
 using System.Text;
+using Content.Server.Backmen.GameTicking.Rules.Components;
+using Content.Server.GameTicking.Rules;
+using Content.Shared.Backmen.Changeling.Components;
+using Content.Shared.Mind.Components;
 
-namespace Content.Server.GameTicking.Rules;
+namespace Content.Server.Backmen.GameTicking.Rules;
 
 public sealed partial class ChangelingRuleSystem : GameRuleSystem<ChangelingRuleComponent>
 {
@@ -51,8 +53,9 @@ public sealed partial class ChangelingRuleSystem : GameRuleSystem<ChangelingRule
             return false;
 
         // briefing
-        if (TryComp<MetaDataComponent>(target, out var metaData))
+        if (!TerminatingOrDeleted(target))
         {
+            var metaData = MetaData(target);
             var briefing = Loc.GetString("changeling-role-greeting", ("name", metaData?.EntityName ?? "Unknown"));
             var briefingShort = Loc.GetString("changeling-role-greeting-short", ("name", metaData?.EntityName ?? "Unknown"));
 
@@ -88,12 +91,10 @@ public sealed partial class ChangelingRuleSystem : GameRuleSystem<ChangelingRule
         var mostAbsorbed = 0f;
         var mostStolen = 0f;
 
-        foreach (var ling in EntityQuery<ChangelingComponent>())
+        var query = EntityQueryEnumerator<ChangelingComponent, MetaDataComponent, MindContainerComponent>();
+        while (query.MoveNext(out var owner, out var ling, out var metaData, out var mindContainer))
         {
-            if (!_mind.TryGetMind(ling.Owner, out var mindId, out var mind))
-                continue;
-
-            if (!TryComp<MetaDataComponent>(ling.Owner, out var metaData))
+            if (!_mind.TryGetMind(owner, out var mindId, out var mind, mindContainer))
                 continue;
 
             if (ling.TotalAbsorbedEntities > mostAbsorbed)

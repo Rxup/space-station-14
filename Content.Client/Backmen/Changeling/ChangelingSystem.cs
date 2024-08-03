@@ -1,10 +1,10 @@
 using Content.Client.Alerts;
 using Content.Client.UserInterface.Systems.Alerts.Controls;
-using Content.Shared.Changeling;
+using Content.Shared.Backmen.Changeling.Components;
 using Content.Shared.StatusIcon.Components;
 using Robust.Shared.Prototypes;
 
-namespace Content.Client.Changeling;
+namespace Content.Client.Backmen.Changeling;
 
 public sealed partial class ChangelingSystem : EntitySystem
 {
@@ -30,7 +30,7 @@ public sealed partial class ChangelingSystem : EntitySystem
 
     private void GetChanglingIcon(Entity<ChangelingComponent> ent, ref GetStatusIconsEvent args)
     {
-        if (HasComp<HivemindComponent>(ent) && _prototype.TryIndex(ent.Comp.StatusIcon, out var iconPrototype))
+        if (ent.Comp.IsTransponder && _prototype.TryIndex(ent.Comp.StatusIcon, out var iconPrototype))
             args.StatusIcons.Add(iconPrototype);
     }
 }

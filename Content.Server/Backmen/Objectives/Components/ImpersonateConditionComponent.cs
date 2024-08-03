@@ -1,6 +1,6 @@
-using Content.Server.Objectives.Systems;
+using Content.Server.Backmen.Objectives.Systems;
 
-namespace Content.Server.Objectives.Components;
+namespace Content.Server.Backmen.Objectives.Components;
 
 /// <summary>
 /// Requires that you have the same identity a target for a certain length of time before the round ends.
@@ -26,4 +26,6 @@ public sealed partial class ImpersonateConditionComponent : Component
     public EntityUid? MindId;
 
     public bool Completed = false;
+
+    public float Accumulator = 0f;
 }

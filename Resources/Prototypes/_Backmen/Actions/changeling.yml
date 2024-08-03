@@ -3,14 +3,14 @@
 # starting
 - type: entity
   id: ActionEvolutionMenu
-  name: Open evolution menu
-  description: Opens the evolution menu.
+  name: Открыть меню эволюции
+  description: Открывает меню эволюции.
   noSpawn: true
   components:
   - type: InstantAction
     itemIconStyle: NoItem
     icon:
-      sprite: Changeling/changeling_abilities.rsi
+      sprite: Backmen/Changeling/changeling_abilities.rsi
       state: evolution_menu
     event: !type:OpenEvolutionMenuEvent {}
   - type: ChangelingAction
@@ -19,8 +19,8 @@
 
 - type: entity
   id: ActionAbsorbDNA
-  name: Absorb DNA
-  description: Absorb the target's DNA, husking them in the process. Costs 25 chemicals.
+  name: Поглотить ДНК
+  description: Впитывает ДНК жертвы, очищая ее от шелухи. Стоимость 25 химикатов.
   noSpawn: true
   components:
   - type: EntityTargetAction
@@ -32,7 +32,7 @@
     interactOnMiss: false
     itemIconStyle: NoItem
     icon:
-      sprite: Changeling/changeling_abilities.rsi
+      sprite: Backmen/Changeling/changeling_abilities.rsi
       state: absorb_dna
     event: !type:AbsorbDNAEvent {}
   - type: ChangelingAction
@@ -42,8 +42,8 @@
 
 - type: entity
   id: ActionStingExtractDNA
-  name: Extract DNA sting
-  description: Steal your target's genetic information. Costs 25 chemicals.
+  name: Извлечь жало ДНК
+  description: Укради генетическую информацию своей жертвы. Стоит 25 химикатов.
   noSpawn: true
   components:
   - type: EntityTargetAction
@@ -54,7 +54,7 @@
     interactOnMiss: false
     itemIconStyle: NoItem
     icon:
-      sprite: Changeling/changeling_abilities.rsi
+      sprite: Backmen/Changeling/changeling_abilities.rsi
       state: sting_extractdna
     event: !type:StingExtractDNAEvent {}
   - type: ChangelingAction
@@ -63,14 +63,14 @@
 
 - type: entity
   id: ActionChangelingTransformCycle
-  name: Cycle DNA
-  description: Cycle your available DNA.
+  name: Цикл ДНК
+  description: Циклируйте доступные цепочки ДНК.
   noSpawn: true
   components:
   - type: InstantAction
     itemIconStyle: NoItem
     icon:
-      sprite: Changeling/changeling_abilities.rsi
+      sprite: Backmen/Changeling/changeling_abilities.rsi
       state: transform_cycle
     event: !type:ChangelingTransformCycleEvent {}
   - type: ChangelingAction
@@ -79,15 +79,15 @@
 
 - type: entity
   id: ActionChangelingTransform
-  name: Transform
-  description: Transform into another humanoid. Doesn't come with clothes. Costs 5 chemicals.
+  name: Перевоплотиться
+  description: Трансформироваться в другого гуманоида. Не входит в комплект одежды. Стоит 5 химикатов.
   noSpawn: true
   components:
   - type: InstantAction
     useDelay: 5
     itemIconStyle: NoItem
     icon:
-      sprite: Changeling/changeling_abilities.rsi
+      sprite: Backmen/Changeling/changeling_abilities.rsi
       state: transform
     event: !type:ChangelingTransformEvent {}
   - type: ChangelingAction
@@ -96,8 +96,8 @@
 
 - type: entity
   id: ActionEnterStasis
-  name: Enter regenerative stasis
-  description: Fake your death and start regenerating. Drains all your chemicals. Consumes biomass.
+  name: Войти в регенеративный стазис
+  description: Инсценируйте свою смерть и начните регенерировать. Истощает все ваши химические вещества. Потребляет биомассу.
   noSpawn: true
   components:
   - type: InstantAction
@@ -105,7 +105,7 @@
     checkConsciousness: false
     itemIconStyle: NoItem
     icon:
-      sprite: Changeling/changeling_abilities.rsi
+      sprite: Backmen/Changeling/changeling_abilities.rsi
       state: stasis_enter
     event: !type:EnterStasisEvent {}
   - type: ChangelingAction
@@ -114,8 +114,8 @@
 
 - type: entity
   id: ActionExitStasis
-  name: Exit stasis
-  description: Rise from the dead with full health. Costs 60 chemicals.
+  name: Выйти из стазиса
+  description: Восстаньте из мертвых с полным здоровьем. Стоит 60 химикатов.
   noSpawn: true
   components:
   - type: InstantAction
@@ -123,7 +123,7 @@
     checkConsciousness: false
     itemIconStyle: NoItem
     icon:
-      sprite: Changeling/changeling_abilities.rsi
+      sprite: Backmen/Changeling/changeling_abilities.rsi
       state: stasis_exit
     event: !type:ExitStasisEvent {}
   - type: ChangelingAction
@@ -133,15 +133,15 @@
 # combat
 - type: entity
   id: ActionToggleArmblade
-  name: Toggle Arm Blade
-  description: Reform one of your arms into a strong blade, composed of bone and flesh. Retract on secondary use. Costs 15 chemicals.
+  name: Нож с поворотным рычагом
+  description: Превратите одну из своих рук в прочный клинок, состоящий из костей и плоти. Убирайте при повторном использовании. Стоит 15 химикатов.
   noSpawn: true
   components:
   - type: InstantAction
     useDelay: 2
     itemIconStyle: NoItem
     icon:
-      sprite: Changeling/changeling_abilities.rsi
+      sprite: Backmen/Changeling/changeling_abilities.rsi
       state: armblade
     event: !type:ToggleArmbladeEvent {}
   - type: ChangelingAction
@@ -149,15 +149,15 @@
 
 - type: entity
   id: ActionCreateBoneShard
-  name: Form Bone Shard
-  description: Break off shards of your bone and shape them into a throwing star. Costs 15 chemicals.
+  name: Сформировать осколок кости
+  description: Отломите кусочки кости и сформуйте из них метательную звездочку. Стоимость - 15 химикатов.
   noSpawn: true
   components:
   - type: InstantAction
     useDelay: 1
     itemIconStyle: NoItem
     icon:
-      sprite: Changeling/changeling_abilities.rsi
+      sprite: Backmen/Changeling/changeling_abilities.rsi
       state: bone_shard
     event: !type:CreateBoneShardEvent {}
   - type: ChangelingAction
@@ -165,15 +165,15 @@
 
 - type: entity
   id: ActionToggleChitinousArmor
-  name: Toggle Armor
-  description: Inflate your body into an all-consuming chitinous mass of armor. Costs 25 chemicals.
+  name: Переключить броню
+  description: Превратите свое тело во всепоглощающую хитиновую броню. Стоит 25 химикатов.
   noSpawn: true
   components:
   - type: InstantAction
     useDelay: 2
     itemIconStyle: NoItem
     icon:
-      sprite: Changeling/changeling_abilities.rsi
+      sprite: Backmen/Changeling/changeling_abilities.rsi
       state: chitinous_armor
     event: !type:ToggleChitinousArmorEvent {}
   - type: ChangelingAction
@@ -182,15 +182,15 @@
 
 - type: entity
   id: ActionToggleOrganicShield
-  name: Form Shield
-  description: Reform one of your arms into a large, fleshy shield. Costs 20 chemicals.
+  name: Форма щита
+  description: Превратите одну из своих рук в большой мясистый щит. Стоит 20 химикатов.
   noSpawn: true
   components:
   - type: InstantAction
     useDelay: 2
     itemIconStyle: NoItem
     icon:
-      sprite: Changeling/changeling_abilities.rsi
+      sprite: Backmen/Changeling/changeling_abilities.rsi
       state: organic_shield
     event: !type:ToggleOrganicShieldEvent {}
   - type: ChangelingAction
@@ -199,15 +199,15 @@
 
 - type: entity
   id: ActionShriekDissonant
-  name: Dissonant Shriek
-  description: Emit an EMP blast, with just your voice. Costs 30 chemicals.
+  name: Диссонирующий вопль
+  description: Произведите электромагнитный взрыв одним только своим голосом. Стоимость - 30 химикатов.
   noSpawn: true
   components:
   - type: InstantAction
     useDelay: 10
     itemIconStyle: NoItem
     icon:
-      sprite: Changeling/changeling_abilities.rsi
+      sprite: Backmen/Changeling/changeling_abilities.rsi
       state: shriek_dissonant
     event: !type:ShriekDissonantEvent {}
   - type: ChangelingAction
@@ -217,15 +217,15 @@
 
 - type: entity
   id: ActionShriekResonant
-  name: Resonant Shriek
-  description: Disorient people and break lights, with just your voice. Costs 30 chemicals.
+  name: Оглушительный вопль
+  description: Дезориентируйте людей и выключайте свет одним только своим голосом. Стоимость 30 химикатов.
   noSpawn: true
   components:
   - type: InstantAction
     useDelay: 10
     itemIconStyle: NoItem
     icon:
-      sprite: Changeling/changeling_abilities.rsi
+      sprite: Backmen/Changeling/changeling_abilities.rsi
       state: shriek_resonant
     event: !type:ShriekResonantEvent {}
   - type: ChangelingAction
@@ -235,15 +235,15 @@
 
 - type: entity
   id: ActionToggleStrainedMuscles
-  name: Strain Muscles
-  description: Move at extremely fast speeds. Deals stamina damage.
+  name: Напрячь мышцы
+  description: Передвигается с чрезвычайно высокой скоростью. Наносит урон выносливостью.
   noSpawn: true
   components:
   - type: InstantAction
     useDelay: 1
     itemIconStyle: NoItem
     icon:
-      sprite: Changeling/changeling_abilities.rsi
+      sprite: Backmen/Changeling/changeling_abilities.rsi
       state: strained_muscles
     event: !type:ToggleStrainedMusclesEvent {}
   - type: ChangelingAction
@@ -253,8 +253,8 @@
 # stings
 - type: entity
   id: ActionStingBlind
-  name: Blind Sting
-  description: Silently sting your target, blinding them for a short time and rendering them near sighted. Costs 35 chemicals.
+  name: Слепое жало
+  description: Бесшумно поражайте цель, ослепляя ее на короткое время и делая близорукой. Стоимость 35 химикатов.
   noSpawn: true
   components:
   - type: EntityTargetAction
@@ -265,7 +265,7 @@
     interactOnMiss: false
     itemIconStyle: NoItem
     icon:
-      sprite: Changeling/changeling_abilities.rsi
+      sprite: Backmen/Changeling/changeling_abilities.rsi
       state: sting_blind
     event: !type:StingBlindEvent {}
   - type: ChangelingAction
@@ -274,8 +274,8 @@
 
 - type: entity
   id: ActionStingCryo
-  name: Cryogenic Sting
-  description: Silently sting your target, constantly slowing and freezing them. Costs 35 chemicals.
+  name: Криогенный укус
+  description: Бесшумно жалите свою цель, постоянно замедляя и замораживая ее. Стоит 35 химикатов.
   noSpawn: true
   components:
   - type: EntityTargetAction
@@ -286,7 +286,7 @@
     interactOnMiss: false
     itemIconStyle: NoItem
     icon:
-      sprite: Changeling/changeling_abilities.rsi
+      sprite: Backmen/Changeling/changeling_abilities.rsi
       state: sting_cryo
     event: !type:StingCryoEvent {}
   - type: ChangelingAction
@@ -295,8 +295,8 @@
 
 - type: entity
   id: ActionStingLethargic
-  name: Lethargic Sting
-  description: Silently inject a cocktail of anesthetics into the target. Costs 35 chemicals.
+  name: Вялое жжение
+  description: Бесшумно впрысните в цель коктейль из анестетиков. Стоимость 35 химикатов.
   noSpawn: true
   components:
   - type: EntityTargetAction
@@ -307,7 +307,7 @@
     interactOnMiss: false
     itemIconStyle: NoItem
     icon:
-      sprite: Changeling/changeling_abilities.rsi
+      sprite: Backmen/Changeling/changeling_abilities.rsi
       state: sting_lethargic
     event: !type:StingLethargicEvent {}
   - type: ChangelingAction
@@ -316,8 +316,8 @@
 
 - type: entity
   id: ActionStingMute
-  name: Mute Sting
-  description: Silently sting your target, completely silencing them for a short time. Costs 35 chemicals.
+  name: Немое жало
+  description: Бесшумно поражайте цель, полностью заставляя ее замолчать на короткое время. Стоит 35 химикатов.
   noSpawn: true
   components:
   - type: EntityTargetAction
@@ -328,7 +328,7 @@
     interactOnMiss: false
     itemIconStyle: NoItem
     icon:
-      sprite: Changeling/changeling_abilities.rsi
+      sprite: Backmen/Changeling/changeling_abilities.rsi
       state: sting_mute
     event: !type:StingMuteEvent {}
   - type: ChangelingAction
@@ -337,8 +337,8 @@
 
 - type: entity
   id: ActionStingFakeArmblade
-  name: Fake Armblade Sting
-  description: Silently sting your target, making them grow a dull armblade for a short time. Costs 50 chemicals.
+  name: Поддельный укус клинка в руку
+  description: Бесшумно ужалите свою жертву, заставляя ее на короткое время отрастить тупое лезвие на руке. Стоит 50 химикатов.
   noSpawn: true
   components:
   - type: EntityTargetAction
@@ -349,7 +349,7 @@
     interactOnMiss: false
     itemIconStyle: NoItem
     icon:
-      sprite: Changeling/changeling_abilities.rsi
+      sprite: Backmen/Changeling/changeling_abilities.rsi
       state: sting_armblade
     event: !type:StingFakeArmbladeEvent {}
   - type: ChangelingAction
@@ -358,8 +358,8 @@
 
 - type: entity
   id: ActionStingTransform
-  name: Transformation Sting
-  description: Silently sting your target, transforming them into a person of your choosing. Costs 75 chemicals.
+  name: Жало трансформации
+  description: Незаметно ужалите свою жертву, превратив ее в человека по вашему выбору. Стоимость 75 химикатов.
   noSpawn: true
   components:
   - type: EntityTargetAction
@@ -370,7 +370,7 @@
     interactOnMiss: false
     itemIconStyle: NoItem
     icon:
-      sprite: Changeling/changeling_abilities.rsi
+      sprite: Backmen/Changeling/changeling_abilities.rsi
       state: sting_transform
     event: !type:StingTransformEvent {}
   - type: ChangelingAction
@@ -380,8 +380,8 @@
 # utility
 - type: entity
   id: ActionAnatomicPanacea
-  name: Anatomic Panacea
-  description: Cure yourself of diseases, disabilities, radiation, toxins, drunkedness and brain damage. Costs 30 chemicals.
+  name: Анатомическая панацея
+  description: Вылечите себя от болезней, инвалидности, радиации, токсинов, пьянства и повреждений мозга. Стоимость - 30 химических веществ.
   noSpawn: true
   components:
   - type: InstantAction
@@ -390,7 +390,7 @@
     checkConsciousness: false
     itemIconStyle: NoItem
     icon:
-      sprite: Changeling/changeling_abilities.rsi
+      sprite: Backmen/Changeling/changeling_abilities.rsi
       state: anatomic_panacea
     event: !type:ActionAnatomicPanaceaEvent {}
   - type: ChangelingAction
@@ -399,15 +399,15 @@
 
 - type: entity
   id: ActionAugmentedEyesight
-  name: Augmented Eyesight
-  description: Toggle flash protection.
+  name: Улучшенное зрение
+  description: Включите защиту от вспышки.
   noSpawn: true
   components:
   - type: InstantAction
     checkCanInteract: false
     itemIconStyle: NoItem
     icon:
-      sprite: Changeling/changeling_abilities.rsi
+      sprite: Backmen/Changeling/changeling_abilities.rsi
       state: augmented_eyesight
     event: !type:ActionAugmentedEyesightEvent {}
   - type: ChangelingAction
@@ -415,8 +415,8 @@
 
 - type: entity
   id: ActionBiodegrade
-  name: Biodegrade
-  description: Vomit a caustic substance onto any restraints, or someone's face. Costs 30 chemicals.
+  name: Биологически разлагается
+  description: Вырвите едкое вещество на какие-либо приспособления или кому-либо в лицо. Стоимость 30 химикатов.
   noSpawn: true
   components:
   - type: InstantAction
@@ -424,7 +424,7 @@
     checkCanInteract: false
     itemIconStyle: NoItem
     icon:
-      sprite: Changeling/changeling_abilities.rsi
+      sprite: Backmen/Changeling/changeling_abilities.rsi
       state: biodegrade
     event: !type:ActionBiodegradeEvent {}
   - type: ChangelingAction
@@ -432,8 +432,8 @@
 
 - type: entity
   id: ActionChameleonSkin
-  name: Chameleon Skin
-  description: Slowly blend in with the environment. Costs 25 chemicals.
+  name: Кожа хамелеона
+  description: Постепенно сливается с окружающей средой. Стоимость 25 химикатов.
   noSpawn: true
   components:
   - type: InstantAction
@@ -442,7 +442,7 @@
     checkConsciousness: false
     itemIconStyle: NoItem
     icon:
-      sprite: Changeling/changeling_abilities.rsi
+      sprite: Backmen/Changeling/changeling_abilities.rsi
       state: chameleon_skin
     event: !type:ActionChameleonSkinEvent {}
   - type: ChangelingAction
@@ -450,8 +450,8 @@
 
 - type: entity
   id: ActionEphedrineOverdose
-  name: Ephedrine Overdose
-  description: Inject some stimulants into yourself. Costs 30 chemicals.
+  name: Передозировка эфедрина
+  description: Впрысните в себя несколько стимуляторов. Стоит 30 химикатов.
   noSpawn: true
   components:
   - type: InstantAction
@@ -460,7 +460,7 @@
     checkConsciousness: false
     itemIconStyle: NoItem
     icon:
-      sprite: Changeling/changeling_abilities.rsi
+      sprite: Backmen/Changeling/changeling_abilities.rsi
       state: epinephrine_overdose
     event: !type:ActionEphedrineOverdoseEvent {}
   - type: ChangelingAction
@@ -469,8 +469,8 @@
 
 - type: entity
   id: ActionFleshmend
-  name: Fleshmend
-  description: Rapidly heal yourself. Costs 35 chemicals.
+  name: Исправление плоти
+  description: Быстро вылечите себя. Стоимость 35 химикатов.
   noSpawn: true
   components:
   - type: InstantAction
@@ -478,7 +478,7 @@
     checkCanInteract: false
     itemIconStyle: NoItem
     icon:
-      sprite: Changeling/changeling_abilities.rsi
+      sprite: Backmen/Changeling/changeling_abilities.rsi
       state: fleshmend
     event: !type:ActionFleshmendEvent {}
   - type: ChangelingAction
@@ -487,8 +487,8 @@
 
 - type: entity
   id: ActionToggleLesserForm
-  name: Lesser Form
-  description: Abandon your current form and transform into a monkey. Costs 20 chemicals.
+  name: Меньшая форма
+  description: Откажитесь от своего нынешнего облика и превратитесь в обезьяну. Стоит 20 химикатов.
   noSpawn: true
   components:
   - type: InstantAction
@@ -496,7 +496,7 @@
     checkCanInteract: false
     itemIconStyle: NoItem
     icon:
-      sprite: Changeling/changeling_abilities.rsi
+      sprite: Backmen/Changeling/changeling_abilities.rsi
       state: lesser_form
     event: !type:ActionLesserFormEvent {}
   - type: ChangelingAction
@@ -504,15 +504,15 @@
 
 - type: entity
   id: ActionToggleSpacesuit
-  name: Toggle Space Suit
-  description: Make your body space proof. Costs 20 chemicals.
+  name: Переключающий космический костюм
+  description: Сделайте так, чтобы ваше тело не занимало много места. Стоит 20 химикатов.
   noSpawn: true
   components:
   - type: InstantAction
     useDelay: 2
     itemIconStyle: NoItem
     icon:
-      sprite: Changeling/changeling_abilities.rsi
+      sprite: Backmen/Changeling/changeling_abilities.rsi
       state: space_adaptation
     event: !type:ActionSpacesuitEvent {}
   - type: ChangelingAction
@@ -520,8 +520,8 @@
 
 - type: entity
   id: ActionHivemindAccess
-  name: Hivemind Access
-  description: Tune your chemical receptors for hivemind communication.
+  name: Доступ к разуму улья
+  description: Настройте свои химические рецепторы на общение с разумом улья.
   noSpawn: true
   components:
   - type: InstantAction
@@ -529,7 +529,7 @@
     checkConsciousness: false
     itemIconStyle: NoItem
     icon:
-      sprite: Changeling/changeling_abilities.rsi
+      sprite: Backmen/Changeling/changeling_abilities.rsi
       state: hivemind_access
     event: !type:ActionHivemindAccessEvent {}
   - type: ChangelingAction

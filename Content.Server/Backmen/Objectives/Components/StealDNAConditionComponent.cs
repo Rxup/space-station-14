@@ -1,7 +1,7 @@
-using Content.Server.Changeling;
-using Content.Server.Objectives.Systems;
+using Content.Server.Backmen.Changeling;
+using Content.Server.Backmen.Objectives.Systems;
 
-namespace Content.Server.Objectives.Components;
+namespace Content.Server.Backmen.Objectives.Components;
 
 [RegisterComponent, Access(typeof(ChangelingObjectiveSystem), typeof(ChangelingSystem))]
 public sealed partial class StealDNAConditionComponent : Component

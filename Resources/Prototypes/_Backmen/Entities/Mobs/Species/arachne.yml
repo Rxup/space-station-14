@@ -82,7 +82,6 @@
         sprite: "Effects/creampie.rsi"
         state: "creampie_human"
         visible: false
-  - type: Absorbable
   - type: HumanoidAppearance
     species: ArachneClassic
   - type: Fixtures

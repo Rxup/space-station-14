@@ -23,11 +23,6 @@
   text: "/ServerInfo/Guidebook/Antagonist/Nuclear Operatives.xml"
 
 - type: guideEntry
-  id: Changelings
-  name: guide-entry-changelings
-  text: "/ServerInfo/Guidebook/Antagonist/Changelings.xml"
-
-- type: guideEntry
   id: Zombies
   name: guide-entry-zombies
   text: "/ServerInfo/Guidebook/Antagonist/Zombies.xml"

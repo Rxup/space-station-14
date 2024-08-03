@@ -5,5 +5,5 @@
   noSpawn: true
   components:
     - type: Sprite
-      sprite: Changeling/Guidebook/guidebook_changeling.rsi
+      sprite: Backmen/Changeling/Guidebook/guidebook_changeling.rsi
       state: icon

@@ -19,7 +19,7 @@
   components:
   - type: Objective
     icon:
-      sprite: Changeling/changeling_abilities.rsi
+      sprite: Backmen/Changeling/changeling_abilities.rsi
       state: stasis_exit
 
 - type: entity

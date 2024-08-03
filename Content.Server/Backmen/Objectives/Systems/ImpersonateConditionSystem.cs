@@ -1,10 +1,11 @@
-using Content.Server.Objectives.Components;
+using Content.Server.Backmen.Objectives.Components;
+using Content.Server.Objectives.Systems;
 using Content.Server.Shuttles.Systems;
 using Content.Shared.Cuffs.Components;
 using Content.Shared.Mind;
 using Content.Shared.Objectives.Components;
 
-namespace Content.Server.Objectives.Systems;
+namespace Content.Server.Backmen.Objectives.Systems;
 
 /// <summary>
 ///     Handles escaping on the shuttle while being another person detection.
@@ -14,35 +15,46 @@ public sealed class ImpersonateConditionSystem : EntitySystem
     [Dependency] private readonly TargetObjectiveSystem _target = default!;
     [Dependency] private readonly EmergencyShuttleSystem _emergencyShuttle = default!;
     [Dependency] private readonly SharedMindSystem _mind = default!;
+    [Dependency] private readonly MetaDataSystem _metaData = default!;
+
+    private EntityQuery<MindComponent> _mindQuery;
+    private EntityQuery<MetaDataComponent> _metadataQuery;
 
     public override void Initialize()
     {
         base.Initialize();
 
+        _mindQuery = GetEntityQuery<MindComponent>();
+        _metadataQuery = GetEntityQuery<MetaDataComponent>();
+
         SubscribeLocalEvent<ImpersonateConditionComponent, ObjectiveAfterAssignEvent>(OnAfterAssign);
         SubscribeLocalEvent<ImpersonateConditionComponent, ObjectiveGetProgressEvent>(OnGetProgress);
     }
 
-    public override void Update(float frameTime)
-    {
-        base.Update(frameTime);
-
-        var query = EntityQueryEnumerator<ImpersonateConditionComponent>();
-        while (query.MoveNext(out var uid, out var comp))
-        {
-            if (comp.Name == null || comp.MindId == null)
-                continue;
-
-            if (!TryComp<MindComponent>(comp.MindId, out var mind) || mind.OwnedEntity == null)
-                continue;
-            if (!TryComp<MetaDataComponent>(mind.CurrentEntity, out var metaData))
-                continue;
-
-            if (metaData.EntityName == comp.Name)
-                comp.Completed = true;
-            else comp.Completed = false;
-        }
-    }
+    // public override void Update(float frameTime)
+    // {
+    //     base.Update(frameTime);
+    //
+    //     var query = EntityQueryEnumerator<ImpersonateConditionComponent>();
+    //     while (query.MoveNext(out var uid, out var comp))
+    //     {
+    //         if (comp.Name == null || comp.MindId == null)
+    //             continue;
+    //
+    //         comp.Accumulator+= frameTime;
+    //         if (comp.Accumulator < 10f)
+    //             continue;
+    //
+    //         if (!_mindQuery.TryComp(comp.MindId, out var mind) || mind.OwnedEntity == null)
+    //             continue;
+    //         if (!_metadataQuery.TryComp(mind.CurrentEntity, out var metaData))
+    //             continue;
+    //
+    //         _metaData.SetEntityName(uid, comp.Name);
+    //         comp.Completed = true;
+    //         // comp.Completed = metaData.EntityName == comp.Name;
+    //     }
+    // }
 
     private void OnAfterAssign(EntityUid uid, ImpersonateConditionComponent comp, ref ObjectiveAfterAssignEvent args)
     {

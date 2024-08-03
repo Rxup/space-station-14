@@ -5,7 +5,6 @@ using Content.Server.Popups;
 using Content.Server.Store.Systems;
 using Content.Server.Zombies;
 using Content.Shared.Alert;
-using Content.Shared.Changeling;
 using Content.Shared.Chemistry.Components;
 using Content.Shared.Cuffs.Components;
 using Content.Shared.FixedPoint;
@@ -55,8 +54,14 @@ using Content.Shared.Mobs.Components;
 using Content.Server.Stunnable;
 using Content.Shared.Jittering;
 using System.Linq;
+using Content.Server.Backmen.Objectives.Components;
+using Content.Shared.Backmen.Changeling;
+using Content.Shared.Backmen.Changeling.Components;
+using Content.Shared.Corvax.TTS;
+using Content.Shared.NameModifier.EntitySystems;
+using Robust.Shared.Utility;
 
-namespace Content.Server.Changeling;
+namespace Content.Server.Backmen.Changeling;
 
 public sealed partial class ChangelingSystem : EntitySystem
 {
@@ -130,10 +135,9 @@ public sealed partial class ChangelingSystem : EntitySystem
         if (!_timing.IsFirstTimePredicted)
             return;
 
-        foreach (var comp in EntityManager.EntityQuery<ChangelingComponent>())
+        var query = EntityQueryEnumerator<ChangelingComponent>();
+        while (query.MoveNext(out var uid, out var comp))
         {
-            var uid = comp.Owner;
-
             if (_timing.CurTime < comp.UpdateTimer)
                 continue;
 
@@ -142,6 +146,7 @@ public sealed partial class ChangelingSystem : EntitySystem
             Cycle(uid, comp);
         }
     }
+
     public void Cycle(EntityUid uid, ChangelingComponent comp)
     {
         UpdateChemicals(uid, comp);
@@ -165,6 +170,7 @@ public sealed partial class ChangelingSystem : EntitySystem
         Dirty(uid, comp);
         _alerts.ShowAlert(uid, "ChangelingChemicals");
     }
+
     private void UpdateBiomass(EntityUid uid, ChangelingComponent comp, float? amount = null)
     {
         comp.Biomass += amount ?? -1;
@@ -172,11 +178,14 @@ public sealed partial class ChangelingSystem : EntitySystem
         Dirty(uid, comp);
         _alerts.ShowAlert(uid, "ChangelingBiomass");
 
-        var random = (int) _rand.Next(1, 3);
+        var random = _rand.Next(1, 3);
 
         if (comp.Biomass <= 0)
-            // game over, man
+        {
             _damage.TryChangeDamage(uid, new DamageSpecifier(_proto.Index(AbsorbedDamageGroup), 50), true);
+            return;
+        }
+
 
         if (comp.Biomass <= comp.MaxBiomass / 10)
         {
@@ -184,8 +193,10 @@ public sealed partial class ChangelingSystem : EntitySystem
             comp.BonusChemicalRegen = 3f;
             _popup.PopupEntity(Loc.GetString("popup-changeling-biomass-deficit-high"), uid, uid, PopupType.LargeCaution);
             _jitter.DoJitter(uid, TimeSpan.FromSeconds(comp.BiomassUpdateCooldown), true, amplitude: 5, frequency: 10);
+            return;
         }
-        else if (comp.Biomass <= comp.MaxBiomass / 3)
+
+        if (comp.Biomass <= comp.MaxBiomass / 3)
         {
             // vomit blood
             if (random == 1)
@@ -195,9 +206,8 @@ public sealed partial class ChangelingSystem : EntitySystem
 
                 var solution = new Solution();
 
-                var vomitAmount = 15f;
-                _blood.TryModifyBloodLevel(uid, -vomitAmount);
-                solution.AddReagent("Blood", vomitAmount);
+                _blood.TryModifyBloodLevel(uid, -comp.VomitAmount);
+                solution.AddReagent("Blood", comp.VomitAmount);
 
                 _puddle.TrySplashSpillAt(uid, Transform(uid).Coordinates, solution, out _);
 
@@ -210,14 +220,19 @@ public sealed partial class ChangelingSystem : EntitySystem
                 _popup.PopupEntity(Loc.GetString("popup-changeling-biomass-deficit-medium"), uid, uid, PopupType.MediumCaution);
                 _jitter.DoJitter(uid, TimeSpan.FromSeconds(.5f), true, amplitude: 5, frequency: 10);
             }
+            return;
         }
-        else if (comp.Biomass <= comp.MaxBiomass / 2 && random == 3)
+
+        if (comp.Biomass <= comp.MaxBiomass / 2 && random == 3)
         {
             if (random == 1)
                 _popup.PopupEntity(Loc.GetString("popup-changeling-biomass-deficit-low"), uid, uid, PopupType.SmallCaution);
+            return;
         }
-        else comp.BonusChemicalRegen = 0f;
+
+        comp.BonusChemicalRegen = 0f;
     }
+
     private void UpdateAbilities(EntityUid uid, ChangelingComponent comp)
     {
         if (comp.StrainedMusclesActive)
@@ -237,11 +252,12 @@ public sealed partial class ChangelingSystem : EntitySystem
         var sound = comp.SoundPool.ToArray()[rand];
         _audio.PlayPvs(sound, uid, AudioParams.Default.WithVolume(-3f));
     }
+
     public void DoScreech(EntityUid uid, ChangelingComponent comp)
     {
         _audio.PlayPvs(comp.ShriekSound, uid);
 
-        var center = Transform(uid).MapPosition;
+        var center = _transform.GetMapCoordinates(uid);
         var gamers = Filter.Empty();
         gamers.AddInRange(center, comp.ShriekPower, _player, EntityManager);
 
@@ -250,7 +266,7 @@ public sealed partial class ChangelingSystem : EntitySystem
             if (gamer.AttachedEntity == null)
                 continue;
 
-            var pos = Transform(gamer.AttachedEntity!.Value).WorldPosition;
+            var pos = _transform.GetWorldPosition(gamer.AttachedEntity!.Value);
             var delta = center.Position - pos;
 
             if (delta.EqualsApprox(Vector2.Zero))
@@ -266,7 +282,7 @@ public sealed partial class ChangelingSystem : EntitySystem
     public bool IsIncapacitated(EntityUid uid)
     {
         if (_mobState.IsIncapacitated(uid)
-        || (TryComp<CuffableComponent>(uid, out var cuffs) && cuffs.CuffedHandCount > 0))
+        || TryComp<CuffableComponent>(uid, out var cuffs) && cuffs.CuffedHandCount > 0)
             return true;
 
         return false;
@@ -312,6 +328,7 @@ public sealed partial class ChangelingSystem : EntitySystem
 
         return true;
     }
+
     public bool TrySting(EntityUid uid, ChangelingComponent comp, EntityTargetActionEvent action, bool overrideMessage = false)
     {
         if (!TryUseAbility(uid, comp, action))
@@ -336,6 +353,7 @@ public sealed partial class ChangelingSystem : EntitySystem
             _popup.PopupEntity(Loc.GetString("changeling-sting", ("target", Identity.Entity(target, EntityManager))), uid, uid);
         return true;
     }
+
     public bool TryInjectReagents(EntityUid uid, List<(string, FixedPoint2)> reagents)
     {
         var solution = new Solution();
@@ -350,6 +368,7 @@ public sealed partial class ChangelingSystem : EntitySystem
 
         return true;
     }
+
     public bool TryReagentSting(EntityUid uid, ChangelingComponent comp, EntityTargetActionEvent action, List<(string, FixedPoint2)> reagents)
     {
         var target = action.Target;
@@ -361,6 +380,7 @@ public sealed partial class ChangelingSystem : EntitySystem
 
         return true;
     }
+
     public bool TryToggleItem(EntityUid uid, EntProtoId proto, ChangelingComponent comp, string? clothingSlot = null)
     {
         if (!comp.Equipment.TryGetValue(proto.Id, out var item) && item == null)
@@ -414,7 +434,8 @@ public sealed partial class ChangelingSystem : EntitySystem
 
         if (comp.AbsorbedDNA.Count >= comp.MaxAbsorbedDNA)
             _popup.PopupEntity(Loc.GetString("changeling-sting-extract-max"), uid, uid);
-        else comp.AbsorbedDNA.Add(data);
+        else
+            comp.AbsorbedDNA.Add(data);
 
         if (countObjective
         && _mind.TryGetMind(uid, out var mindId, out var mind)
@@ -431,7 +452,7 @@ public sealed partial class ChangelingSystem : EntitySystem
     private ChangelingComponent? CopyChangelingComponent(EntityUid target, ChangelingComponent comp)
     {
         var newComp = EnsureComp<ChangelingComponent>(target);
-        newComp.AbsorbedDNA = comp.AbsorbedDNA;
+        newComp.AbsorbedDNA = comp.AbsorbedDNA.ShallowClone();
         newComp.AbsorbedDNAIndex = comp.AbsorbedDNAIndex;
 
         newComp.Chemicals = comp.Chemicals;
@@ -448,6 +469,7 @@ public sealed partial class ChangelingSystem : EntitySystem
 
         return comp;
     }
+
     private EntityUid? TransformEntity(EntityUid uid, TransformData? data = null, EntProtoId? protoId = null, ChangelingComponent? comp = null, bool persistentDna = false)
     {
         EntProtoId? pid = null;
@@ -460,7 +482,8 @@ public sealed partial class ChangelingSystem : EntitySystem
         }
         else if (protoId != null)
             pid = protoId;
-        else return null;
+        else
+            return null;
 
         var config = new PolymorphConfiguration()
         {
@@ -469,8 +492,9 @@ public sealed partial class ChangelingSystem : EntitySystem
             Forced = true,
             Inventory = PolymorphInventoryChange.Transfer,
             RevertOnCrit = false,
-            RevertOnDeath = false
+            RevertOnDeath = false,
         };
+
         var newUid = _polymorph.PolymorphEntity(uid, config);
 
         if (newUid == null)
@@ -478,10 +502,16 @@ public sealed partial class ChangelingSystem : EntitySystem
 
         var newEnt = newUid.Value;
 
+        if (TryComp<TTSComponent>(uid, out var oldTts))
+        {
+            EnsureComp<TTSComponent>(newEnt).VoicePrototypeId = oldTts.VoicePrototypeId;
+        }
+
         if (data != null)
         {
             Comp<FingerprintComponent>(newEnt).Fingerprint = data.Fingerprint;
-            Comp<DnaComponent>(newEnt).DNA = data.DNA;
+            if (data.DNA != null)
+                Comp<DnaComponent>(newEnt).DNA = data.DNA;
             _humanoid.CloneAppearance(data.Appearance.Owner, newEnt);
             _metaData.SetEntityName(newEnt, data.Name);
             var message = Loc.GetString("changeling-transform-finish", ("target", data.Name));
@@ -517,6 +547,7 @@ public sealed partial class ChangelingSystem : EntitySystem
 
         return newUid;
     }
+
     public bool TryTransform(EntityUid target, ChangelingComponent comp, bool sting = false, bool persistentDna = false)
     {
         if (HasComp<AbsorbedComponent>(target))
@@ -540,9 +571,9 @@ public sealed partial class ChangelingSystem : EntitySystem
 
         var locName = Identity.Entity(target, EntityManager);
         EntityUid? newUid = null;
-        if (sting)
-            newUid = TransformEntity(target, data: data, persistentDna: persistentDna);
-        else newUid = TransformEntity(target, data: data, comp: comp, persistentDna: persistentDna);
+        newUid = sting
+            ? TransformEntity(target, data: data, persistentDna: persistentDna)
+            : TransformEntity(target, data: data, comp: comp, persistentDna: persistentDna);
 
         if (newUid != null)
         {
