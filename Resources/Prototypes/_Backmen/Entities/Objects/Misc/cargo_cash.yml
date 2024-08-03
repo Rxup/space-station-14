@@ -61,6 +61,28 @@
 
 - type: entity
   parent: CargoCash
+  id: CargoCash1000
+  suffix: 1000
+  components:
+  - type: Icon
+    sprite: Objects/Economy/cash.rsi
+    state: cash_1000
+  - type: Stack
+    count: 1000
+
+- type: entity
+  parent: CargoCash
+  id: CargoCash2500
+  suffix: 2500
+  components:
+  - type: Icon
+    sprite: Objects/Economy/cash.rsi
+    state: cash_1000
+  - type: Stack
+    count: 2500
+
+- type: entity
+  parent: CargoCash
   id: CargoCash5000
   suffix: 5000
   components:
@@ -72,14 +94,14 @@
 
 - type: entity
   parent: CargoCash
-  id: CargoCash30000
-  suffix: 30000
+  id: CargoCash10000
+  suffix: 10000
   components:
   - type: Icon
     sprite: Objects/Economy/cash.rsi
     state: cash_1000
   - type: Stack
-    count: 30000
+    count: 10000
 
 - type: entity
   parent: CargoCash
@@ -91,3 +113,14 @@
     state: cash_1000
   - type: Stack
     count: 20000
+
+- type: entity
+  parent: CargoCash
+  id: CargoCash30000
+  suffix: 30000
+  components:
+  - type: Icon
+    sprite: Objects/Economy/cash.rsi
+    state: cash_1000
+  - type: Stack
+    count: 30000
