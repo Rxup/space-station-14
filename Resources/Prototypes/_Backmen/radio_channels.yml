@@ -86,10 +86,19 @@
   color: "#727273"
   longRange: true
 
+
 - type: radioChannel
   id: Hivemind
   name: bkm-radio-Hivemind
   keycode: 'у'
   frequency: 8888
   color: "#800080"
+  longRange: true
+
+- type: radioChannel
+  id: Changeling
+  name: chat-radio-hivemind
+  keycode: 'г'
+  frequency: 19840
+  color: "#e36b00"
   longRange: true

@@ -233,6 +233,7 @@
   id: BaseMobSpeciesOrganic
   abstract: true
   components:
+  - type: Absorbable # Changeling
   - type: DiseaseCarrier # backmen
   - type: Barotrauma
     damage:
@@ -344,6 +345,7 @@
   - type: Body
     prototype: Human
     requiredLegs: 2
+  - type: Absorbable # Changeling
   - type: UserInterface
     interfaces:
       enum.HumanoidMarkingModifierKey.Key: # sure, this can go here too
