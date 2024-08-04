@@ -1,3 +1,0 @@
-popup-changeling-biomass-deficit-low = Ваша кожа зудит.
-popup-changeling-biomass-deficit-medium = Нужно найти источник пищи...
-popup-changeling-biomass-deficit-high = Нужно поесть... СЕЙЧАС!!

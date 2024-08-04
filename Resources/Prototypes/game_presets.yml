@@ -27,7 +27,6 @@
     - BlobGameMode # backmen: blob
     - VampiresGameRule # backmen: vampire
     - FleshCult # backmen: flesh cult
-    - Changeling
 
 - type: gamePreset
   id: Extended
@@ -176,35 +175,3 @@
   #  - WageScheduler #backmen: currency
   - GameRuleMeteorScheduler
   - BasicRoundstartVariation
-
-- type: gamePreset
-  id: Changeling
-  alias:
-    - ling
-    - lings
-    - changeling
-  name: changeling-gamemode-title
-  description: changeling-gamemode-description
-  showInVote: false
-  rules:
-    - Changeling
-    - SubGamemodesRule
-    - BasicStationEventScheduler
-    - GameRuleMeteorScheduler
-    - BasicRoundstartVariation
-
-- type: gamePreset
-  id: Traitorling
-  alias:
-    - lingtraitor
-    - traitorling
-  name: secret-title
-  description: secret-description
-  showInVote: false
-  rules:
-    - Changeling
-    - Traitor
-    - SubGamemodesRule
-    - BasicStationEventScheduler
-    - GameRuleMeteorScheduler
-    - BasicRoundstartVariation
