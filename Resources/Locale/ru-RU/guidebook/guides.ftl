@@ -15,6 +15,7 @@ guide-entry-singularity = Сингулярный двигатель / Тесла
 guide-entry-teg = Термоэлектрический генератор (ТЭГ)
 guide-entry-rtg = РИТЭГ
 guide-entry-science = Научный отдел
+guide-entry-changelings = Ченджлинги
 guide-entry-radio = Радиосвязь
 guide-entry-machine-upgrading = Улучшение оборудования
 guide-entry-cargo = Отдел снабжения

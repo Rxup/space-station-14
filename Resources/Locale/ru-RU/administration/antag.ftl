@@ -19,3 +19,5 @@ admin-verb-text-make-pirate = Сделать пиратом
 admin-verb-make-head-rev = Превратите цель в Лидера Революции.
 admin-verb-text-make-head-rev = Сделать Главой революции
 admin-verb-text-make-thief = Сделать вором
+admin-verb-text-make-changeling = Сделать ченджлингом
+admin-verb-make-changeling = Превратить цель в ченджлинг.
