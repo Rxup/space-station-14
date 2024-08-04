@@ -4,7 +4,6 @@
   id: BaseMobSlimePerson
   abstract: true
   components:
-  - type: Absorbable
   - type: Hunger
   - type: Thirst
   - type: Icon
@@ -35,8 +34,6 @@
         type: HumanoidMarkingModifierBoundUserInterface
       enum.StrippingUiKey.Key:
         type: StrippableBoundUserInterface
-      enum.StoreUiKey.Key:
-        type: StoreBoundUserInterface
   # to prevent bag open/honk spam
   - type: UseDelay
     delay: 0.5

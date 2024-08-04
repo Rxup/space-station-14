@@ -4,7 +4,6 @@
   text: "/ServerInfo/Guidebook/Antagonist/Antagonists.xml"
   children:
   - Traitors
-  - Changelings
   - NuclearOperatives
   - Zombies
   - Revolutionaries
@@ -21,11 +20,6 @@
   id: NuclearOperatives
   name: guide-entry-nuclear-operatives
   text: "/ServerInfo/Guidebook/Antagonist/Nuclear Operatives.xml"
-
-- type: guideEntry
-  id: Changelings
-  name: guide-entry-changelings
-  text: "/ServerInfo/Guidebook/Antagonist/Changelings.xml"
 
 - type: guideEntry
   id: Zombies
