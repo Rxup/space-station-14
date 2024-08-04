@@ -65,3 +65,17 @@
   icon:
     sprite: /Textures/Backmen/Interface/Misc/svs_icon.rsi
     state: team_b
+
+- type: statusIcon
+  id: HivemindFaction
+  priority: 11
+  showTo:
+    components:
+    - ShowAntagIcons
+    - Hivemind
+  icon:
+    sprite: /Textures/Interface/Misc/job_icons.rsi
+    state: Changeling
+
+
+

@@ -28,5 +28,5 @@ roles-antag-thief-name = Вор
 roles-antag-thief-objective = Пополните свою личную коллекцию имуществом Nanotrasen, не прибегая к насилию.
 roles-antag-dragon-name = Космический дракон
 roles-antag-dragon-objective = Создайте армию карпов для захвата квадранта.
-roles-antag-changeling-name = Ченджлинг
+roles-antag-changeling-name = Генокрад
 roles-antag-changeling-description = Используйте свои способности к изменению формы для выполнения своих целей.
