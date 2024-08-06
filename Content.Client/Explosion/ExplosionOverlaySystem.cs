@@ -20,7 +20,6 @@ public sealed class ExplosionOverlaySystem : EntitySystem
     [Dependency] private readonly IOverlayManager _overlayMan = default!;
     [Dependency] private readonly SharedPointLightSystem _lights = default!;
     [Dependency] private readonly IMapManager _mapMan = default!;
-    [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
 
     public override void Initialize()
     {
@@ -29,7 +28,7 @@ public sealed class ExplosionOverlaySystem : EntitySystem
         SubscribeLocalEvent<ExplosionVisualsComponent, ComponentInit>(OnExplosionInit);
         SubscribeLocalEvent<ExplosionVisualsComponent, ComponentRemove>(OnCompRemove);
         SubscribeLocalEvent<ExplosionVisualsComponent, ComponentHandleState>(OnExplosionHandleState);
-        _overlayMan.AddOverlay(new ExplosionOverlay(_appearance));
+        _overlayMan.AddOverlay(new ExplosionOverlay());
     }
 
     private void OnExplosionHandleState(EntityUid uid, ExplosionVisualsComponent component, ref ComponentHandleState args)

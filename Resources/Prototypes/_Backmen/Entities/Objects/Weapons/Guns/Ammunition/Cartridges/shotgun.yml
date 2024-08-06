@@ -9,7 +9,7 @@
         map: [ "enum.AmmoVisualLayers.Base" ]
   - type: CartridgeAmmo
     proto: PelletShotgunSoulbreaker
-    #count: 1
+    count: 1
   - type: ChemicalAmmo
   - type: SolutionContainerManager
     solutions:
@@ -34,8 +34,8 @@
         map: [ "enum.AmmoVisualLayers.Base" ]
   - type: CartridgeAmmo
     proto: PelletShotgun
-    #count: 10
-    #spread: 16
+    count: 10
+    spread: 16
     soundEject:
       collection: ShellEject
   - type: EmitSoundOnLand
@@ -56,8 +56,8 @@
         map: [ "enum.AmmoVisualLayers.Base" ]
   - type: CartridgeAmmo
     proto: PelletShotgunRocket
-    #count: 1
-    #spread: 1
+    count: 1
+    spread: 1
     soundEject:
       collection: ShellEject
   - type: SpentAmmoVisuals

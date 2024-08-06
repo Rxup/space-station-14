@@ -165,7 +165,10 @@ namespace Content.Shared.Interaction
                 return;
             }
 
-            if (uiComp.RequireHands && !_handsQuery.HasComp(ev.Actor))
+            if (!uiComp.RequireHands)
+                return;
+
+            if (!_handsQuery.TryComp(ev.Actor, out var hands) || hands.Hands.Count == 0)
                 ev.Cancel();
         }
 
@@ -1172,7 +1175,7 @@ namespace Content.Shared.Interaction
         /// </summary>
         public bool CanAccessViaStorage(EntityUid user, EntityUid target)
         {
-            if (!_containerSystem.TryGetContainingContainer((target, null, null), out var container))
+            if (!_containerSystem.TryGetContainingContainer(target, out var container))
                 return false;
 
             return CanAccessViaStorage(user, target, container);
@@ -1198,7 +1201,7 @@ namespace Content.Shared.Interaction
             if (Deleted(target))
                 return false;
 
-            if (!_containerSystem.TryGetContainingContainer((target, null, null), out var container))
+            if (!_containerSystem.TryGetContainingContainer(target, out var container))
                 return false;
 
             var wearer = container.Owner;

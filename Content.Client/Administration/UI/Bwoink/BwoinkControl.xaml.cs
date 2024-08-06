@@ -92,18 +92,12 @@ namespace Content.Client.Administration.UI.Bwoink
                 if (a.IsPinned != b.IsPinned)
                     return a.IsPinned ? -1 : 1;
 
-                // First, sort by unread. Any chat with unread messages appears first.
-
+                // First, sort by unread. Any chat with unread messages appears first. We just sort based on unread
+                // status, not number of unread messages, so that more recent unread messages take priority.
                 var aUnread = ach.Unread > 0;
                 var bUnread = bch.Unread > 0;
                 if (aUnread != bUnread)
                     return aUnread ? -1 : 1;
-
-                // Sort by recent messages during the current round.
-                var aRecent = a.ActiveThisRound && ach.LastMessage != DateTime.MinValue;
-                var bRecent = b.ActiveThisRound && bch.LastMessage != DateTime.MinValue;
-                if (aRecent != bRecent)
-                    return aRecent ? -1 : 1;
 
                 // Next, sort by connection status. Any disconnected players are grouped towards the end.
                 if (a.Connected != b.Connected)
@@ -114,14 +108,11 @@ namespace Content.Client.Administration.UI.Bwoink
                 {
                     var aNewPlayer = a.OverallPlaytime <= TimeSpan.FromMinutes(_cfg.GetCVar(CCVars.NewPlayerThreshold));
                     var bNewPlayer = b.OverallPlaytime <= TimeSpan.FromMinutes(_cfg.GetCVar(CCVars.NewPlayerThreshold));
-
                     if (aNewPlayer != bNewPlayer)
                         return aNewPlayer ? -1 : 1;
-
                     if (a.Antag != b.Antag)
                         return a.Antag ? -1 : 1;
                 }
-
                 // Sort disconnected players by participation in the round
                 if (!a.Connected && !b.Connected)
                 {
@@ -132,7 +123,6 @@ namespace Content.Client.Administration.UI.Bwoink
                 // Finally, sort by the most recent message.
                 return bch.LastMessage.CompareTo(ach.LastMessage);
             };
-
 
             Bans.OnPressed += _ =>
             {
@@ -305,7 +295,7 @@ namespace Content.Client.Administration.UI.Bwoink
                     player.IsPinned = pinnedPlayer.IsPinned;
                 }
             }
-
+            
             UpdateButtons();
         }
     }

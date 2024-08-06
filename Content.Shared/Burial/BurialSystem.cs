@@ -160,7 +160,7 @@ public sealed class BurialSystem : EntitySystem
     {
         // We track a separate doAfter here, as we want someone with a shovel to
         // be able to come along and help someone trying to claw their way out
-        if (_doAfterSystem.IsRunning(component.HandDiggingDoAfter))
+        if (component.HandDiggingDoAfter != null)
             return;
 
         if (!_actionBlocker.CanMove(args.Entity))
@@ -178,7 +178,7 @@ public sealed class BurialSystem : EntitySystem
         if (component.Stream == null)
             component.Stream = _audioSystem.PlayPredicted(component.DigSound, uid, args.Entity)?.Entity;
 
-        if (!_doAfterSystem.TryStartDoAfter(doAfterEventArgs, out component.HandDiggingDoAfter))
+        if (!_doAfterSystem.TryStartDoAfter(doAfterEventArgs))
         {
             _audioSystem.Stop(component.Stream);
             return;

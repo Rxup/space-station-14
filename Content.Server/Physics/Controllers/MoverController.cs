@@ -30,26 +30,26 @@ namespace Content.Server.Physics.Controllers
             SubscribeLocalEvent<InputMoverComponent, PlayerDetachedEvent>(OnPlayerDetached);
         }
 
-        private void OnRelayPlayerAttached(Entity<RelayInputMoverComponent> entity, ref PlayerAttachedEvent args)
+        private void OnRelayPlayerAttached(EntityUid uid, RelayInputMoverComponent component, PlayerAttachedEvent args)
         {
-            if (MoverQuery.TryGetComponent(entity.Comp.RelayEntity, out var inputMover))
-                SetMoveInput((entity.Owner, inputMover), MoveButtons.None);
+            if (MoverQuery.TryGetComponent(component.RelayEntity, out var inputMover))
+                SetMoveInput(inputMover, MoveButtons.None);
         }
 
-        private void OnRelayPlayerDetached(Entity<RelayInputMoverComponent> entity, ref PlayerDetachedEvent args)
+        private void OnRelayPlayerDetached(EntityUid uid, RelayInputMoverComponent component, PlayerDetachedEvent args)
         {
-            if (MoverQuery.TryGetComponent(entity.Comp.RelayEntity, out var inputMover))
-                SetMoveInput((entity.Owner, inputMover), MoveButtons.None);
+            if (MoverQuery.TryGetComponent(component.RelayEntity, out var inputMover))
+                SetMoveInput(inputMover, MoveButtons.None);
         }
 
-        private void OnPlayerAttached(Entity<InputMoverComponent> entity, ref PlayerAttachedEvent args)
+        private void OnPlayerAttached(EntityUid uid, InputMoverComponent component, PlayerAttachedEvent args)
         {
-            SetMoveInput(entity, MoveButtons.None);
+            SetMoveInput(component, MoveButtons.None);
         }
 
-        private void OnPlayerDetached(Entity<InputMoverComponent> entity, ref PlayerDetachedEvent args)
+        private void OnPlayerDetached(EntityUid uid, InputMoverComponent component, PlayerDetachedEvent args)
         {
-            SetMoveInput(entity, MoveButtons.None);
+            SetMoveInput(component, MoveButtons.None);
         }
 
         protected override bool CanSound()

@@ -1141,8 +1141,8 @@
   - type: CartridgeAmmo
     deleteOnSpawn: true
     proto: XenoSpitBullet
-    #count: 4
-    #spread: 12
+    count: 4
+    spread: 12
 
 - type: entity
   id: XenoSpitBullet

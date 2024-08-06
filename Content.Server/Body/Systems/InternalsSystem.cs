@@ -72,9 +72,6 @@ public sealed class InternalsSystem : EntitySystem
         if (!args.CanAccess || !args.CanInteract || args.Hands is null)
             return;
 
-        if (!AreInternalsWorking(ent) && ent.Comp.BreathTools.Count == 0)
-            return;
-
         var user = args.User;
 
         InteractionVerb verb = new()

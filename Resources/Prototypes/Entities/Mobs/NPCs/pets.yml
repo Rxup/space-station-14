@@ -123,8 +123,6 @@
     tags:
     - CannotSuicide
     - VimPilot
-  - type: StealTarget
-    stealGroup: AnimalNamedCat
 
 - type: entity
   name: Exception
@@ -143,8 +141,6 @@
     tags:
     - CannotSuicide
     - VimPilot
-  - type: StealTarget
-    stealGroup: AnimalNamedCat
 
 - type: entity
   name: Floppa
@@ -170,8 +166,6 @@
     tags:
     - CannotSuicide
     - VimPilot
-  - type: StealTarget
-    stealGroup: AnimalNamedCat
 
 - type: entity
   name: Bandito
@@ -243,7 +237,7 @@
     - CannotSuicide
     - VimPilot
   - type: StealTarget
-    stealGroup: AnimalNamedCat
+    stealGroup: AnimalBingus
 
 - type: entity
   name: McGriff

@@ -12,14 +12,14 @@ public abstract partial class SharedMoverController
         SubscribeLocalEvent<RelayInputMoverComponent, AfterAutoHandleStateEvent>(OnAfterRelayState);
     }
 
-    private void OnAfterRelayTargetState(Entity<MovementRelayTargetComponent> entity, ref AfterAutoHandleStateEvent args)
+    private void OnAfterRelayTargetState(EntityUid uid, MovementRelayTargetComponent component, ref AfterAutoHandleStateEvent args)
     {
-        Physics.UpdateIsPredicted(entity.Owner);
+        Physics.UpdateIsPredicted(uid);
     }
 
-    private void OnAfterRelayState(Entity<RelayInputMoverComponent> entity, ref AfterAutoHandleStateEvent args)
+    private void OnAfterRelayState(EntityUid uid, RelayInputMoverComponent component, ref AfterAutoHandleStateEvent args)
     {
-        Physics.UpdateIsPredicted(entity.Owner);
+        Physics.UpdateIsPredicted(uid);
     }
 
     /// <summary>
@@ -61,30 +61,30 @@ public abstract partial class SharedMoverController
         Dirty(relayEntity, targetComp);
     }
 
-    private void OnRelayShutdown(Entity<RelayInputMoverComponent> entity, ref ComponentShutdown args)
+    private void OnRelayShutdown(EntityUid uid, RelayInputMoverComponent component, ComponentShutdown args)
     {
-        Physics.UpdateIsPredicted(entity.Owner);
-        Physics.UpdateIsPredicted(entity.Comp.RelayEntity);
+        Physics.UpdateIsPredicted(uid);
+        Physics.UpdateIsPredicted(component.RelayEntity);
 
-        if (TryComp<InputMoverComponent>(entity.Comp.RelayEntity, out var inputMover))
-            SetMoveInput((entity.Comp.RelayEntity, inputMover), MoveButtons.None);
+        if (TryComp<InputMoverComponent>(component.RelayEntity, out var inputMover))
+            SetMoveInput(inputMover, MoveButtons.None);
 
         if (Timing.ApplyingState)
             return;
 
-        if (TryComp(entity.Comp.RelayEntity, out MovementRelayTargetComponent? target) && target.LifeStage <= ComponentLifeStage.Running)
-            RemComp(entity.Comp.RelayEntity, target);
+        if (TryComp(component.RelayEntity, out MovementRelayTargetComponent? target) && target.LifeStage <= ComponentLifeStage.Running)
+            RemComp(component.RelayEntity, target);
     }
 
-    private void OnTargetRelayShutdown(Entity<MovementRelayTargetComponent> entity, ref ComponentShutdown args)
+    private void OnTargetRelayShutdown(EntityUid uid, MovementRelayTargetComponent component, ComponentShutdown args)
     {
-        Physics.UpdateIsPredicted(entity.Owner);
-        Physics.UpdateIsPredicted(entity.Comp.Source);
+        Physics.UpdateIsPredicted(uid);
+        Physics.UpdateIsPredicted(component.Source);
 
         if (Timing.ApplyingState)
             return;
 
-        if (TryComp(entity.Comp.Source, out RelayInputMoverComponent? relay) && relay.LifeStage <= ComponentLifeStage.Running)
-            RemComp(entity.Comp.Source, relay);
+        if (TryComp(component.Source, out RelayInputMoverComponent? relay) && relay.LifeStage <= ComponentLifeStage.Running)
+            RemComp(component.Source, relay);
     }
 }

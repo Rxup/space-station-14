@@ -1,5 +1,4 @@
 ﻿using System.Linq;
-using Content.Shared.Lathe;
 using Content.Shared.Research.Components;
 using Content.Shared.Research.Prototypes;
 using JetBrains.Annotations;
@@ -13,7 +12,6 @@ public abstract class SharedResearchSystem : EntitySystem
 {
     [Dependency] protected readonly IPrototypeManager PrototypeManager = default!;
     [Dependency] private readonly IRobustRandom _random = default!;
-    [Dependency] private readonly SharedLatheSystem _lathe = default!;
 
     public override void Initialize()
     {
@@ -187,7 +185,7 @@ public abstract class SharedResearchSystem : EntitySystem
             var recipeProto = PrototypeManager.Index(recipe);
             description.PushNewline();
             description.AddMarkup(Loc.GetString("research-console-unlocks-list-entry",
-                ("name", _lathe.GetRecipeName(recipeProto))));
+                ("name",recipeProto.Name)));
         }
         foreach (var generic in technology.GenericUnlocks)
         {

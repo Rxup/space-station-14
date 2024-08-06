@@ -27,8 +27,6 @@
     - Pacified
     - SeeAll
     - Flashed
-    - RadiationProtection
-    - Drowsiness
   - type: Buckle
   - type: StandingState
   - type: Tag
@@ -104,12 +102,10 @@
       - TemporaryBlindness
       - Pacified
       - StaminaModifier
-      - PsionicsDisabled #backmen?
-      - PsionicallyInsulated #backmen?
-      - SeeAll #backmen?
+      - PsionicsDisabled
+      - PsionicallyInsulated
+      - SeeAll
       - Flashed
-      - RadiationProtection
-      - Drowsiness
   - type: Bloodstream
     bloodMaxVolume: 150
   - type: MobPrice
