@@ -401,7 +401,7 @@
       baseWalkSpeed: 0
       baseSprintSpeed: 0
     - type: Physics
-      bodyType: Dynamic
+      bodyType: Static
     - type: Fixtures
       fixtures:
         fix1:
