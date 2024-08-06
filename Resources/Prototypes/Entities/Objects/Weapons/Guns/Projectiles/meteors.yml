@@ -39,11 +39,8 @@
     damageContainer: Inorganic
   - type: Explosive
     explosionType: Default
-    intensitySlope: 2
+    intensitySlope: 4
     maxIntensity: 100
-    maxTileBreak: 1
-    tileBreakScale: 2
-
 
 - type: entity
   parent: BaseMeteor
@@ -102,7 +99,7 @@
         - Impassable
         - BulletImpassable
   - type: Explosive
-    totalIntensity: 50
+    totalIntensity: 100
   - type: Destructible
     thresholds:
     - trigger:
@@ -115,11 +112,6 @@
         sound:
           collection: MetalBreak
       - !type:ExplodeBehavior
-      - !type:WeightedSpawnEntityBehavior
-        weightedEntityTable: "MeteorSpawnAsteroidWallTable"
-        minSpawn: 2
-        maxSpawn: 4
-        spawnAfter: 0.5
 
 - type: entity
   parent: BaseMeteor
@@ -142,7 +134,7 @@
         - Impassable
         - BulletImpassable
   - type: Explosive
-    totalIntensity: 100
+    totalIntensity: 200
   - type: Destructible
     thresholds:
     - trigger:
@@ -155,12 +147,6 @@
         sound:
           collection: MetalBreak
       - !type:ExplodeBehavior
-      - !type:WeightedSpawnEntityBehavior
-        weightedEntityTable: "MeteorSpawnAsteroidWallTable"
-        spawnOffset: 2
-        minSpawn: 3
-        maxSpawn: 6
-        spawnAfter: 0.5
 
 - type: entity
   parent: BaseMeteor
@@ -170,7 +156,7 @@
   - type: Sprite
     state: big
   - type: Explosive
-    totalIntensity: 150
+    totalIntensity: 300
   - type: Destructible
     thresholds:
     - trigger:
@@ -183,12 +169,6 @@
         sound:
           collection: MetalBreak
       - !type:ExplodeBehavior
-      - !type:WeightedSpawnEntityBehavior
-        weightedEntityTable: "MeteorSpawnAsteroidWallTable"
-        spawnOffset: 3
-        minSpawn: 5
-        maxSpawn: 8
-        spawnAfter: 0.5
 
 - type: entity
   parent: BaseMeteor

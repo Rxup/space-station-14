@@ -71,7 +71,7 @@
     contents:
       - id: SyringePhalanximine
       - id: RadAutoInjector
-      - id: PillCanisterPotassiumIodide
+      - id: EmergencyMedipen
       - id: PillCanisterHyronalin
 
 - type: entity

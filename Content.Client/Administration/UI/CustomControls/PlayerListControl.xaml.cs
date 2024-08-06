@@ -22,6 +22,7 @@ public sealed partial class PlayerListControl : BoxContainer
     private readonly IEntityManager _entManager;
     private readonly IUserInterfaceManager _uiManager;
 
+
     private PlayerInfo? _selectedPlayer;
 
     private List<PlayerInfo> _playerList = new();
@@ -118,6 +119,7 @@ public sealed partial class PlayerListControl : BoxContainer
 
     public void PopulateList(IReadOnlyList<PlayerInfo>? players = null)
     {
+
         // Maintain existing pin statuses
         var pinnedPlayers = _playerList.Where(p => p.IsPinned).ToDictionary(p => p.SessionId);
 
@@ -133,7 +135,7 @@ public sealed partial class PlayerListControl : BoxContainer
                 player.IsPinned = pinnedPlayer.IsPinned;
             }
         }
-
+        
         if (_selectedPlayer != null && !_playerList.Contains(_selectedPlayer))
             _selectedPlayer = null;
 

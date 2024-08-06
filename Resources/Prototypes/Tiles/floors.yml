@@ -67,7 +67,7 @@
   deconstructTools: [ Prying ]
   footstepSounds:
     collection: FootstepFloor
-  itemDrop: FloorTileItemSteelMini
+  itemDrop: FloorTileItemSteel
   heatCapacity: 10000
 
 - type: tile
@@ -85,7 +85,7 @@
   deconstructTools: [ Prying ]
   footstepSounds:
     collection: FootstepFloor
-  itemDrop: FloorTileItemSteelPavement
+  itemDrop: FloorTileItemSteel
   heatCapacity: 10000
 
 - type: tile
@@ -103,7 +103,7 @@
   deconstructTools: [ Prying ]
   footstepSounds:
     collection: FootstepFloor
-  itemDrop: FloorTileItemSteelDiagonal
+  itemDrop: FloorTileItemSteel
   heatCapacity: 10000
 
 - type: tile
@@ -115,7 +115,7 @@
   deconstructTools: [ Prying ]
   footstepSounds:
     collection: FootstepFloor
-  itemDrop: FloorTileItemSteelOffset
+  itemDrop: FloorTileItemSteel
   heatCapacity: 10000
 
 - type: tile
@@ -133,7 +133,7 @@
   deconstructTools: [ Prying ]
   footstepSounds:
     collection: FootstepTile
-  itemDrop: FloorTileItemSteelMono
+  itemDrop: FloorTileItemSteel
   heatCapacity: 10000
 
 - type: tile
@@ -151,7 +151,7 @@
   deconstructTools: [ Prying ]
   footstepSounds:
     collection: FootstepTile
-  itemDrop: FloorTileItemSteelPavementVertical
+  itemDrop: FloorTileItemSteel
   heatCapacity: 10000
 
 - type: tile
@@ -169,7 +169,7 @@
   deconstructTools: [ Prying ]
   footstepSounds:
     collection: FootstepTile
-  itemDrop: FloorTileItemSteelHerringbone
+  itemDrop: FloorTileItemSteel
   heatCapacity: 10000
 
 - type: tile
@@ -187,7 +187,7 @@
   deconstructTools: [ Prying ]
   footstepSounds:
     collection: FootstepTile
-  itemDrop: FloorTileItemSteelDiagonalMini
+  itemDrop: FloorTileItemSteel
   heatCapacity: 10000
 
 - type: tile
@@ -285,7 +285,7 @@
   deconstructTools: [ Prying ]
   footstepSounds:
     collection: FootstepTile
-  itemDrop: FloorTileItemWhiteMini
+  itemDrop: FloorTileItemWhite
   heatCapacity: 10000
 
 - type: tile
@@ -303,7 +303,7 @@
   deconstructTools: [ Prying ]
   footstepSounds:
     collection: FootstepTile
-  itemDrop: FloorTileItemWhitePavement
+  itemDrop: FloorTileItemWhite
   heatCapacity: 10000
 
 - type: tile
@@ -321,7 +321,7 @@
   deconstructTools: [ Prying ]
   footstepSounds:
     collection: FootstepTile
-  itemDrop: FloorTileItemWhiteDiagonal
+  itemDrop: FloorTileItemWhite
   heatCapacity: 10000
 
 - type: tile
@@ -333,7 +333,7 @@
   deconstructTools: [ Prying ]
   footstepSounds:
     collection: FootstepTile
-  itemDrop: FloorTileItemWhiteOffset
+  itemDrop: FloorTileItemWhite
   heatCapacity: 10000
 
 - type: tile
@@ -351,7 +351,7 @@
   deconstructTools: [ Prying ]
   footstepSounds:
     collection: FootstepTile
-  itemDrop: FloorTileItemWhiteMono
+  itemDrop: FloorTileItemWhite
   heatCapacity: 10000
 
 - type: tile
@@ -369,7 +369,7 @@
   deconstructTools: [ Prying ]
   footstepSounds:
     collection: FootstepTile
-  itemDrop: FloorTileItemWhitePavementVertical
+  itemDrop: FloorTileItemWhite
   heatCapacity: 10000
 
 - type: tile
@@ -387,7 +387,7 @@
   deconstructTools: [ Prying ]
   footstepSounds:
     collection: FootstepTile
-  itemDrop: FloorTileItemWhiteHerringbone
+  itemDrop: FloorTileItemWhite
   heatCapacity: 10000
 
 - type: tile
@@ -405,7 +405,7 @@
   deconstructTools: [ Prying ]
   footstepSounds:
     collection: FootstepTile
-  itemDrop: FloorTileItemWhiteDiagonalMini
+  itemDrop: FloorTileItemWhite
   heatCapacity: 10000
 
 - type: tile
@@ -459,7 +459,7 @@
   deconstructTools: [ Prying ]
   footstepSounds:
     collection: FootstepTile
-  itemDrop: FloorTileItemDarkMini
+  itemDrop: FloorTileItemDark
   heatCapacity: 10000
 
 - type: tile
@@ -477,7 +477,7 @@
   deconstructTools: [ Prying ]
   footstepSounds:
     collection: FootstepTile
-  itemDrop: FloorTileItemDarkPavement
+  itemDrop: FloorTileItemDark
   heatCapacity: 10000
 
 - type: tile
@@ -495,7 +495,7 @@
   deconstructTools: [ Prying ]
   footstepSounds:
     collection: FootstepTile
-  itemDrop: FloorTileItemDarkDiagonal
+  itemDrop: FloorTileItemDark
   heatCapacity: 10000
 
 - type: tile
@@ -507,7 +507,7 @@
   deconstructTools: [ Prying ]
   footstepSounds:
     collection: FootstepTile
-  itemDrop: FloorTileItemDarkOffset
+  itemDrop: FloorTileItemDark
   heatCapacity: 10000
 
 - type: tile
@@ -525,7 +525,7 @@
   deconstructTools: [ Prying ]
   footstepSounds:
     collection: FootstepTile
-  itemDrop: FloorTileItemDarkMono
+  itemDrop: FloorTileItemDark
   heatCapacity: 10000
 
 - type: tile
@@ -543,7 +543,7 @@
   deconstructTools: [ Prying ]
   footstepSounds:
     collection: FootstepTile
-  itemDrop: FloorTileItemDarkPavementVertical
+  itemDrop: FloorTileItemDark
   heatCapacity: 10000
 
 - type: tile
@@ -561,7 +561,7 @@
   deconstructTools: [ Prying ]
   footstepSounds:
     collection: FootstepTile
-  itemDrop: FloorTileItemDarkHerringbone
+  itemDrop: FloorTileItemDark
   heatCapacity: 10000
 
 - type: tile
@@ -579,7 +579,7 @@
   deconstructTools: [ Prying ]
   footstepSounds:
     collection: FootstepTile
-  itemDrop: FloorTileItemDarkDiagonalMini
+  itemDrop: FloorTileItemDark
   heatCapacity: 10000
 
 - type: tile
@@ -936,7 +936,7 @@
   deconstructTools: [ Prying ]
   footstepSounds:
     collection: FootstepTile
-  itemDrop: FloorTileItemConcreteMono
+  itemDrop: FloorTileItemConcrete
   heatCapacity: 10000
   weather: true
 
@@ -955,7 +955,7 @@
   deconstructTools: [ Prying ]
   footstepSounds:
     collection: FootstepTile
-  itemDrop: FloorTileItemConcreteSmooth
+  itemDrop: FloorTileItemConcrete
   heatCapacity: 10000
   weather: true
 
@@ -993,7 +993,7 @@
   deconstructTools: [ Prying ]
   footstepSounds:
     collection: FootstepTile
-  itemDrop: FloorTileItemGrayConcreteMono
+  itemDrop: FloorTileItemGrayConcrete
   heatCapacity: 10000
   weather: true
 
@@ -1012,7 +1012,7 @@
   deconstructTools: [ Prying ]
   footstepSounds:
     collection: FootstepTile
-  itemDrop: FloorTileItemGrayConcreteSmooth
+  itemDrop: FloorTileItemGrayConcrete
   heatCapacity: 10000
   weather: true
 
@@ -1050,7 +1050,7 @@
   deconstructTools: [ Prying ]
   footstepSounds:
     collection: FootstepTile
-  itemDrop: FloorTileItemOldConcreteMono
+  itemDrop: FloorTileItemOldConcrete
   heatCapacity: 10000
   weather: true
 
@@ -1069,7 +1069,7 @@
   deconstructTools: [ Prying ]
   footstepSounds:
     collection: FootstepTile
-  itemDrop: FloorTileItemOldConcreteSmooth
+  itemDrop: FloorTileItemOldConcrete
   heatCapacity: 10000
   weather: true
 

@@ -42,9 +42,8 @@ public abstract class SharedBlobPodSystem : EntitySystem
         if (ent.Comp.ZombifiedEntityUid == null || TerminatingOrDeleted(ent.Comp.ZombifiedEntityUid.Value) || !_inputQuery.TryComp(ent.Comp.ZombifiedEntityUid.Value, out var inputMoverComponent))
             return;
 
-        var inputMoverEntity = new Entity<InputMoverComponent>(EntityUid.FirstUid, inputMoverComponent);
-        var moveEvent = new MoveInputEvent(inputMoverEntity, args.OldMovement);
-        inputMoverComponent.HeldMoveButtons = args.OldMovement;
+        var moveEvent = new MoveInputEvent(ent.Comp.ZombifiedEntityUid.Value, inputMoverComponent, args.Component.HeldMoveButtons);
+        inputMoverComponent.HeldMoveButtons = args.Component.HeldMoveButtons;
         RaiseLocalEvent(ent.Comp.ZombifiedEntityUid.Value, ref moveEvent);
     }
 

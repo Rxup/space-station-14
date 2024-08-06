@@ -129,11 +129,11 @@ public sealed class BloodSuckerSystem : SharedBloodSuckerSystem
         //bloodSucker.InjectWhenSucc = true;
 
         {
-            var stomachs = _bodySystem.GetBodyOrganEntityComps<StomachComponent>(uid);// GetBodyOrganComponents<StomachComponent>(uid);
-            foreach (var organId in stomachs)
+            var stomachs = _bodySystem.GetBodyOrganComponents<StomachComponent>(uid);
+            foreach (var (comp, organ) in stomachs)
             {
-                _bodySystem.RemoveOrgan(organId);
-                QueueDel(organId);
+                _bodySystem.RemoveOrgan(organ.Owner, organ);
+                QueueDel(organ.Owner);
             }
         }
 
@@ -310,11 +310,11 @@ public sealed class BloodSuckerSystem : SharedBloodSuckerSystem
         var bloodstreamVolume = bloodstream.BloodSolution!.Value.Comp.Solution.Volume;
 
         // Does bloodsucker have a stomach?
-        var stomachList = _bodySystem.GetBodyOrganEntityComps<StomachComponent>(bloodsucker).FirstOrNull();
+        var stomachList = _bodySystem.GetBodyOrganComponents<StomachComponent>(bloodsucker).FirstOrNull();
         if (stomachList == null)
             return false;
 
-        if (!_solutionSystem.TryGetSolution(stomachList.Value.Comp1.Solution!.Value.Owner, StomachSystem.DefaultSolutionName, out var stomachSolution))
+        if (!_solutionSystem.TryGetSolution(stomachList.Value.Comp.Owner, StomachSystem.DefaultSolutionName, out var stomachSolution))
             return false;
 
         // Are we too full?
@@ -371,7 +371,7 @@ public sealed class BloodSuckerSystem : SharedBloodSuckerSystem
         // Make everything actually ingest.
         var temp = _solutionSystem.SplitSolution(bloodSolution, unitsToDrain);
         _reactiveSystem.DoEntityReaction(bloodsucker, temp, ReactionMethod.Ingestion);
-        _stomachSystem.TryTransferSolution(stomachList.Value.Comp1.Solution.Value.Owner, temp, stomachList.Value.Comp1);
+        _stomachSystem.TryTransferSolution(stomachList.Value.Comp.Owner, temp, stomachList.Value.Comp);
 
         // Add a little pierce
         DamageSpecifier damage = new();

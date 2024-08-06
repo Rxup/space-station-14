@@ -447,8 +447,6 @@
     tags:
     - Raw
     - Meat
-    - Trash
-    - Recyclable
   - type: Sprite
     state: rotten
   - type: SolutionContainerManager

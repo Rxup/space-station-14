@@ -323,7 +323,7 @@
     node: chair
 
 - type: entity
-  parent: [SeatBase, BaseDeployFoldable]
+  parent: [SeatBase, BaseFoldable]
   id: ChairFolding
   name: folding chair
   description: If you carry six of these you become the coolest kid at church.

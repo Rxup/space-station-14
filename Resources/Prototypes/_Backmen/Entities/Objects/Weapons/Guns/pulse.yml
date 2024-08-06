@@ -406,8 +406,8 @@
     - ShellShotgunPulse
   - type: CartridgeAmmo
     proto: PulseBullet
-    #count: 10
-    #spread: 15
+    count: 10
+    spread: 15
   - type: Sprite
     sprite: Backmen/Objects/Weapons/Gunsx64/Ammunition/Casings/battary.rsi
     layers:

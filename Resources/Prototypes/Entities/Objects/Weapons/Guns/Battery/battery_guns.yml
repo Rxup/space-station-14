@@ -448,7 +448,6 @@
     - type: GuideHelp
       guides:
       - Security
-      - Antagonists
 
 - type: entity
   name: disabler SMG

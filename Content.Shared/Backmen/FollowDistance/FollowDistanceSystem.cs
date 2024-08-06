@@ -24,7 +24,7 @@ public sealed class FollowDistanceSystem : EntitySystem
         SubscribeLocalEvent<FollowDistanceComponent, HandSelectedEvent>(OnPickedUp);
         SubscribeLocalEvent<FollowDistanceComponent, HandDeselectedEvent>(OnDropped);
         SubscribeLocalEvent<CameraFollowComponent, ComponentRemove>(OnCameraFollowRemove);
-        SubscribeLocalEvent<CameraFollowComponent, MapInitEvent>(OnCameraFollowInit);
+        SubscribeLocalEvent<CameraFollowComponent, ComponentInit>(OnCameraFollowInit);
 
         SubscribeLocalEvent<CameraFollowComponent, GetEyeOffsetEvent>(OnCameraRecoilGetEyeOffset);
 
@@ -78,15 +78,13 @@ public sealed class FollowDistanceSystem : EntitySystem
         arg.Offset = recoil.BaseOffset + recoil.CurrentKick + ent.Comp.Offset; // Stalker-Changes
     }
 
-    private void OnCameraFollowInit(EntityUid uid, CameraFollowComponent component, MapInitEvent args) // Stalker-Changes-Start
+    private void OnCameraFollowInit(EntityUid uid, CameraFollowComponent component, ComponentInit args) // Stalker-Changes-Start
     {
         _actionsSystem.AddAction(uid, ref component.ActionEntity, component.Action);
     }
 
     private void OnCameraFollowRemove(EntityUid uid, CameraFollowComponent component, ComponentRemove args)
     {
-        if(component.ActionEntity == null || TerminatingOrDeleted(component.ActionEntity))
-            return;
         _actionsSystem.RemoveAction(uid, component.ActionEntity);
     } // Stalker-Changes-End
 

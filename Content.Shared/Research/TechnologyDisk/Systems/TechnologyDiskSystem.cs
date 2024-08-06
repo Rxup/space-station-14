@@ -1,6 +1,5 @@
 using Content.Shared.Examine;
 using Content.Shared.Interaction;
-using Content.Shared.Lathe;
 using Content.Shared.Popups;
 using Content.Shared.Random.Helpers;
 using Content.Shared.Research.Components;
@@ -20,7 +19,6 @@ public sealed class TechnologyDiskSystem : EntitySystem
     [Dependency] private readonly IRobustRandom _random = default!;
     [Dependency] private readonly SharedPopupSystem _popup = default!;
     [Dependency] private readonly SharedResearchSystem _research = default!;
-    [Dependency] private readonly SharedLatheSystem _lathe = default!;
 
     public override void Initialize()
     {
@@ -85,7 +83,8 @@ public sealed class TechnologyDiskSystem : EntitySystem
         if (ent.Comp.Recipes != null && ent.Comp.Recipes.Count > 0)
         {
             var prototype = _protoMan.Index(ent.Comp.Recipes[0]);
-            message = Loc.GetString("tech-disk-examine", ("result", _lathe.GetRecipeName(prototype)));
+            var resultPrototype = _protoMan.Index<EntityPrototype>(prototype.Result);
+            message = Loc.GetString("tech-disk-examine", ("result", resultPrototype.Name));
 
             if (ent.Comp.Recipes.Count > 1) //idk how to do this well. sue me.
                 message += " " + Loc.GetString("tech-disk-examine-more");

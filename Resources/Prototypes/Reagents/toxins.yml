@@ -56,19 +56,18 @@
   metabolisms:
     Poison:
       effects:
-      - !type:Emote
-        emote: Yawn
-        showInChat: true
-        probability: 0.1
       - !type:MovespeedModifier
         walkSpeedModifier: 0.65
         sprintSpeedModifier: 0.65
       - !type:GenericStatusEffect
-        key: Drowsiness
-        component: Drowsiness
-        time: 4
-        type: Add
+        conditions:
+        - !type:ReagentThreshold
+          reagent: ChloralHydrate
+          min: 10
+        key: ForcedSleep
+        component: ForcedSleeping
         refresh: false
+        type: Add
       - !type:HealthChange
         conditions:
         - !type:ReagentThreshold
