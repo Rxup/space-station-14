@@ -630,7 +630,7 @@ namespace Content.Server.Administration.Systems
                         }
                         else if (senderAdmin is not null && senderAdmin.HasFlag(AdminFlags.Adminhelp))
                         {
-                            overrideMsgText = $"[color=purple]{adminPrefixWebhook}{_overrideClientName}[/color]";
+                            overrideMsgText = $"[color=red]{adminPrefixWebhook}{_overrideClientName}[/color]";
                         }
                         else
                         {
