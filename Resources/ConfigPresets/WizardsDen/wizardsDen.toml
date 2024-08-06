@@ -27,10 +27,6 @@ rules_file = "StandardRuleset"
 [net]
 max_connections = 1024
 
-[ahelp]
-admin_prefix = false
-admin_prefix_webhook = false
-
 [vote]
 restart_required_ratio = 0.7
 
