@@ -855,6 +855,7 @@
   parent: BaseComputer
   name: salvage expeditions computer
   description: Used to accept salvage missions, if you're tough enough.
+  suffix: Не работает, нагружает.
   components:
     - type: Sprite
       layers:
@@ -876,14 +877,14 @@
           computerLayerKeys:
             True: { visible: true, shader: unshaded }
             False: { visible: true }
-    - type: SalvageExpeditionConsole
-    - type: ActivatableUI
-      key: enum.SalvageConsoleUiKey.Expedition
-    - type: ActivatableUIRequiresPower
-    - type: UserInterface
-      interfaces:
-        enum.SalvageConsoleUiKey.Expedition:
-          type: SalvageExpeditionConsoleBoundUserInterface
+  #  - type: SalvageExpeditionConsole
+  #  - type: ActivatableUI
+  #    key: enum.SalvageConsoleUiKey.Expedition
+  #  - type: ActivatableUIRequiresPower
+  #  - type: UserInterface
+  #    interfaces:
+  #      enum.SalvageConsoleUiKey.Expedition:
+  #        type: SalvageExpeditionConsoleBoundUserInterface
     - type: Computer
       board: SalvageExpeditionsComputerCircuitboard
     - type: PointLight
