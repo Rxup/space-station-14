@@ -278,6 +278,7 @@
       - id: ClothingBeltUtilityFilled
       - id: RubberStampRd
       - id: BoxEncryptionKeyScience
+      - id: AnomalyPinpointer # cats
       - id: AntiPsychicKnife # backmen
       - id: ClothingHeadCage # backmen
       - id: FlatpackOracle # backmen
@@ -303,6 +304,7 @@
       - id: ClothingBeltUtilityFilled
       - id: RubberStampRd
       - id: BoxEncryptionKeyScience
+      - id: AnomalyPinpointer # cats
       - id: AntiPsychicKnife # backmen
       - id: ClothingHeadCage # backmen
       - id: FlatpackOracle # backmen
