@@ -280,14 +280,15 @@ public sealed class OracleSystem : EntitySystem
     public List<string> GetAllProtos()
     {
         var allTechs = _prototypeManager.EnumeratePrototypes<TechnologyPrototype>();
-        var allRecipes = new List<String>();
+        var allRecipes = new List<string>();
 
         foreach (var tech in allTechs)
         {
             foreach (var recipe in tech.RecipeUnlocks)
             {
-                var recipeProto = _prototypeManager.Index<LatheRecipePrototype>(recipe);
-                allRecipes.Add(recipeProto.Result);
+                var recipeProto = _prototypeManager.Index(recipe);
+                if (recipeProto.Result != null)
+                    allRecipes.Add(recipeProto.Result);
             }
         }
 

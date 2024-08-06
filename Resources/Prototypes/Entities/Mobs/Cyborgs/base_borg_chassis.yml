@@ -229,7 +229,8 @@
     voice: Borgs
   - type: GuideHelp
     guides:
-      - Cyborgs
+    - Cyborgs
+    - Robotics
   - type: StepTriggerImmune
 
 - type: entity
