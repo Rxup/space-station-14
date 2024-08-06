@@ -142,7 +142,6 @@
     - StaminaModifier
     - PsionicsDisabled
     - PsionicallyInsulated
-    reflectProb: 0
   - type: Body
     prototype: Human
     requiredLegs: 2
