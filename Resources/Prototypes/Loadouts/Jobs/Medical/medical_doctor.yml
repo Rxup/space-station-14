@@ -219,7 +219,7 @@
   id: SeniorPhysicianLabCoat
   equipment:
     outerClothing: ClothingOuterCoatLabSeniorPhysician
-
+    
 # Shoes
 - type: loadout
   id: MedicalWinterBoots

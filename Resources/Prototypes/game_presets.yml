@@ -7,7 +7,7 @@
   description: survival-description
   rules:
     - RampingStationEventScheduler
-    - WageScheduler #backmen: currency
+    #  - WageScheduler #backmen: currency
     - GameRuleMeteorScheduler
     - BasicRoundstartVariation
 
@@ -22,7 +22,7 @@
     - Revolutionary
     - Zombie
     - RampingStationEventScheduler
-    - WageScheduler #backmen: currency
+    #  - WageScheduler #backmen: currency
     - GameRuleMeteorScheduler
     - BlobGameMode # backmen: blob
     - VampiresGameRule # backmen: vampire
@@ -39,7 +39,7 @@
   description: extended-description
   rules:
   - BasicStationEventScheduler
-  - WageScheduler #backmen: currency
+  #  - WageScheduler #backmen: currency
   - GameRuleMeteorScheduler
   - BasicRoundstartVariation
 
@@ -53,7 +53,7 @@
   description: greenshift-description
   rules:
   - BasicRoundstartVariation
-  - WageScheduler #backmen: currency
+  #  - WageScheduler #backmen: currency
   - GameRuleMeteorScheduler
 
 - type: gamePreset
@@ -76,7 +76,7 @@
   description: secret-description
   rules:
     - BasicStationEventScheduler
-    - WageScheduler #backmen: currency
+    #  - WageScheduler #backmen: currency
     - GameRuleMeteorScheduler
 
 - type: gamePreset
@@ -109,7 +109,7 @@
     - Traitor
     - SubGamemodesRule
     - BasicStationEventScheduler
-    - WageScheduler #backmen: currency
+    #  - WageScheduler #backmen: currency
     - GameRuleMeteorScheduler
     - BasicRoundstartVariation
 
@@ -139,7 +139,7 @@
     - Nukeops
     - SubGamemodesRule
     - BasicStationEventScheduler
-    - WageScheduler #backmen: currency
+    #  - WageScheduler #backmen: currency
     - GameRuleMeteorScheduler
 
 - type: gamePreset
@@ -157,7 +157,7 @@
     - BasicStationEventScheduler
     - GameRuleMeteorScheduler
     - BasicRoundstartVariation
-    - WageScheduler #backmen: currency
+    #  - WageScheduler #backmen: currency
 
 - type: gamePreset
   id: Zombie
@@ -173,7 +173,7 @@
   rules:
   - Zombie
   - BasicStationEventScheduler
-  - WageScheduler #backmen: currency
+  #  - WageScheduler #backmen: currency
   - GameRuleMeteorScheduler
   - BasicRoundstartVariation
 

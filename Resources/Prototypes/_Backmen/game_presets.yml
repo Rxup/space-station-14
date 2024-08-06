@@ -5,9 +5,8 @@
   name: shipwrecked-title
   description: shipwrecked-description
   minPlayers: 1
-  maxPlayers: 40
-  showInVote: true
-  isMiniGame: true
+  showInVote: false
+  isMiniGame: false
   supportedMaps: ShipwreckedPool
   rules:
     - Shipwrecked
@@ -19,11 +18,12 @@
   - bloodsucker
   name: vampires-title
   description: vampires-description
-  showInVote: false
+  minPlayers: 5
+  showInVote: true
   rules:
   - VampiresGameRule
   - BasicStationEventScheduler
-  - WageScheduler #backmen: currency
+  #  - WageScheduler #backmen: currency
   - SubGamemodesRule
   - BasicRoundstartVariation
 
@@ -33,11 +33,12 @@
   - blab
   name: blob-title
   description: blob-description
+  minPlayers: 10
   showInVote: false
   rules:
   - BlobGameMode
   - BasicStationEventScheduler
-  - WageScheduler #backmen: currency
+  #  - WageScheduler #backmen: currency
   - BasicRoundstartVariation
   - SubGamemodesRule
 
@@ -48,11 +49,12 @@
   - fs
   name: flesh-cult-title
   description: flesh-cult-description
-  showInVote: false
+  minPlayers: 10
+  showInVote: true
   rules:
   - FleshCult
   - BasicStationEventScheduler
-  - WageScheduler #backmen: currency
+  #  - WageScheduler #backmen: currency
   - BasicRoundstartVariation
   - SubGamemodesRule
 
@@ -68,7 +70,7 @@
   - FleshCult
   - Traitor
   - BasicStationEventScheduler
-  - WageScheduler #backmen: currency
+  #  - WageScheduler #backmen: currency
   - BasicRoundstartVariation
 
 - type: gamePreset
@@ -83,7 +85,7 @@
     - Nukeops
     - FleshCult
     - BasicStationEventScheduler
-    - WageScheduler #backmen: currency
+    #  - WageScheduler #backmen: currency
     - BasicRoundstartVariation
 
 - type: gamePreset
@@ -100,7 +102,7 @@
     - Revolutionary
     - BasicStationEventScheduler
     - Traitor
-    - WageScheduler #backmen: currency
+    #  - WageScheduler #backmen: currency
     - BasicRoundstartVariation
 
 - type: gamePreset
@@ -117,7 +119,7 @@
     - Revolutionary
     - BasicStationEventScheduler
     - Nukeops
-    - WageScheduler #backmen: currency
+    #  - WageScheduler #backmen: currency
     - BasicRoundstartVariation
 
 - type: gamePreset
@@ -135,7 +137,7 @@
   rules:
   - Zombie
   - BasicStationEventScheduler
-  - WageScheduler #backmen: currency
+  #  - WageScheduler #backmen: currency
   - Traitor
   - BasicRoundstartVariation
 
@@ -154,7 +156,7 @@
   rules:
   - Zombie
   - BasicStationEventScheduler
-  - WageScheduler #backmen: currency
+  #  - WageScheduler #backmen: currency
   - Nukeops
   - BasicRoundstartVariation
 
@@ -171,7 +173,7 @@
     - Nukeops
     - FleshCult
     - BasicStationEventScheduler
-    - WageScheduler #backmen: currency
+    #  - WageScheduler #backmen: currency
     - Traitor
     - BasicRoundstartVariation
 
@@ -186,7 +188,7 @@
   description: survival-nukeops-description
   rules:
     - RampingStationEventScheduler
-    - WageScheduler #backmen: currency
+    #  - WageScheduler #backmen: currency
     - Nukeops
     - BasicRoundstartVariation
 

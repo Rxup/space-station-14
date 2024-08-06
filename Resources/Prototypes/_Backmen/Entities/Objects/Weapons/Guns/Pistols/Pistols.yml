@@ -30,7 +30,7 @@
   parent: BaseWeaponPistol
   id: WeaponPistolACP14
   suffix: Пистолет
-  description: The ACP-14, produced by Earth Armories. A reliable sidearm that loads 9x19mm.
+  description: ACP-14, произведенный компанией Earth Armories. Надежное ручное оружие калибра 9х19 мм.
   components:
   - type: Sprite
     sprite: Backmen/Objects/Weapons/Gunsx64/Pistols/acp14/big.rsi
@@ -81,7 +81,7 @@
   parent: BaseWeaponPistol
   id: WeaponPistolVP78
   suffix: Пистолет
-  description: The VP-78, produced by Markus Henday Inc. A massive, formidable automatic handgun chambered in 9x19mm rounds.
+  description: VP-78 производства Markus Henday Inc. Массивный, грозный автоматический пистолет с патронами 9х19 мм.
   components:
   - type: Sprite
     sprite: Backmen/Objects/Weapons/Gunsx64/Pistols/vp78/big.rsi
@@ -133,7 +133,7 @@
   parent: BaseWeaponPistol
   id: WeaponPistolDEagle
   suffix: Пистолет
-  description: A magnum chambered in .50AE that comes with a serious kick. This one is engraved, "Peace through superior firepower".
+  description: Магнум с патронником калибра .50AE, который обладает серьезной отдачей. На этом пистолете выгравировано - Мир благодаря превосходной огневой мощи.
   components:
   - type: Sprite
     sprite: Backmen/Objects/Weapons/Gunsx64/Pistols/deagle/big.rsi
@@ -184,7 +184,7 @@
   parent: BaseWeaponPistol
   id: WeaponPistolG22
   suffix: Пистолет
-  description: A popular police firearm in the modern day. Chambered in 9x19mm.
+  description: Популярное полицейское огнестрельное оружие в наши дни. Патрон 9х19 мм.
   components:
   - type: Sprite
     sprite: Backmen/Objects/Weapons/Gunsx64/Pistols/glock22/big.rsi
@@ -251,7 +251,7 @@
   parent: BaseWeaponPistol
   id: WeaponPistolHIB88M4
   suffix: Пистолет
-  description: An uncommon handgun used for self-defense but it is often used by terrorist organizations.
+  description: Необычный пистолет, используемый для самообороны, но часто используемый террористическими организациями.
   components:
   - type: Sprite
     sprite: Backmen/Objects/Weapons/Gunsx64/Pistols/hi_power_br/big.rsi
@@ -300,7 +300,7 @@
   parent: BaseWeaponPistol
   id: WeaponPistolG23
   suffix: Пистолет
-  description: A popular self-defense firearm in the modern day. Chambered in 9x19mm.
+  description: Популярное в наши дни огнестрельное оружие для самообороны. Патронник 9х19 мм.
   components:
   - type: Sprite
     sprite: Backmen/Objects/Weapons/Gunsx64/Pistols/service_pistol23/big.rsi
@@ -355,7 +355,7 @@
   parent: BaseWeaponPistol
   id: WeaponPistolM1911
   suffix: Пистолет
-  description: A M-1911 chambered in .35 An archaic weapon, yet its popular and extremely reliable mechanism provided a template for many semi-automatic pistols to come.
+  description: М-1911 с патронником 35-го калибра был архаичным оружием, но его популярный и чрезвычайно надежный механизм послужил образцом для многих будущих полуавтоматических пистолетов.
   components:
   - type: Sprite
     sprite: Backmen/Objects/Weapons/Gunsx64/Pistols/m1911/big.rsi
@@ -404,7 +404,7 @@
   name: Divet
   parent: BaseWeaponPistol
   id: WeaponPistolDivet
-  description: The Divet is a standard sidearm for police and security personnel of the Earth Goverment.
+  description: Дайвет - это стандартное оружие для полиции и сотрудников службы безопасности правительства Земли.
   components:
   - type: Sprite
     sprite: Backmen/Objects/Weapons/Gunsx64/Pistols/divet.rsi
