@@ -1,0 +1,42 @@
+# плащ
+- type: loadout
+  id: ClothingNeckCloakTGMCCloak
+  equipment: ClothingNeckCloakTGMCCloak
+
+- type: startingGear
+  id: ClothingNeckCloakTGMCCloak
+  equipment:
+    neck: ClothingNeckCloakTGMCCloak
+
+# куртка
+- type: loadout
+  id: ClothingOuterCoatBlackdmcSponsor
+  equipment: ClothingOuterCoatBlackdmcSponsor
+
+- type: startingGear
+  id: ClothingOuterCoatBlackdmcSponsor
+  equipment:
+    outerClothing: ClothingOuterCoatBlackdmcSponsor
+
+## Убрать резисты
+- type: entity #backmen 
+  parent: ClothingOuterBase
+  id: ClothingOuterCoatBlackdmcSponsor
+  name: чёрный плащ-куртка
+  description: Каждая потеря остается потерей, сколько бы их ни было до этого.
+  suffix: Спонсор, без резистов
+  components:
+  - type: Sprite
+    sprite: Backmen/Clothing/OuterClothing/Coats/black.rsi
+  - type: Clothing
+    sprite: Backmen/Clothing/OuterClothing/Coats/black.rsi
+
+# шапка
+- type: loadout
+  id: ClothingHeadHatMVDBeret
+  equipment: ClothingHeadHatMVDBeret
+
+- type: startingGear
+  id: ClothingHeadHatMVDBeret
+  equipment:
+    head: ClothingHeadHatMVDBeret
