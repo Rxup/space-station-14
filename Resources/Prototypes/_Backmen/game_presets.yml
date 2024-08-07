@@ -5,7 +5,7 @@
   name: shipwrecked-title
   description: shipwrecked-description
   minPlayers: 1
-  maxPlayers: 40
+  maxPlayers: 15
   showInVote: true
   isMiniGame: true
   supportedMaps: ShipwreckedPool
@@ -201,6 +201,7 @@
   description: changeling-gamemode-description
   showInVote: false
   rules:
+  - WageScheduler #backmen: currency
   - Changeling
   - SubGamemodesRule
   - BasicStationEventScheduler
@@ -216,6 +217,7 @@
   description: secret-description
   showInVote: false
   rules:
+  - WageScheduler #backmen: currency
   - Changeling
   - Traitor
   - SubGamemodesRule
