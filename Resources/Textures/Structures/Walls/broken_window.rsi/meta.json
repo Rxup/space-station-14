@@ -1,0 +1,46 @@
+{
+    "version": 1,
+    "license": "CLA",
+    "copyright": "Sprited by TheGypsyBaron https://github.com/SemkaGamez",
+    "size": {
+        "x": 32,
+        "y": 32
+    },
+    "states": [
+        {
+            "name": "full"
+        },
+        {
+            "name": "bwindow0",
+            "directions": 4
+        },
+        {
+            "name": "bwindow1",
+            "directions": 4
+        },
+        {
+            "name": "bwindow2",
+            "directions": 4
+        },
+        {
+            "name": "bwindow3",
+            "directions": 4
+        },
+        {
+            "name": "bwindow4",
+            "directions": 4
+        },
+        {
+            "name": "bwindow5",
+            "directions": 4
+        },
+        {
+            "name": "bwindow6",
+            "directions": 4
+        },
+        {
+            "name": "bwindow7",
+            "directions": 4
+        }
+    ]
+}
