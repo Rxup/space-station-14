@@ -20,12 +20,12 @@
       minimumPlayers: 15
     - type: FugitiveRule
 
-- type: entity
-  id: WageScheduler
-  parent: BaseGameRule
-  noSpawn: true
-  components:
-    - type: WageSchedulerRule
+#- type: entity
+#  id: WageScheduler
+#  parent: BaseGameRule
+#  noSpawn: true
+#  components:
+#    - type: WageSchedulerRule
 
 ## Regular station events
 - type: entity
@@ -48,7 +48,7 @@
     weight: 6.5
     duration: 1
     earliestStart: 50
-    minimumPlayers: 20
+    minimumPlayers: 10
     maxOccurrences: 1 # can only happen once per round
   - type: BlobSpawnRule
     carrierBlobProtos:
