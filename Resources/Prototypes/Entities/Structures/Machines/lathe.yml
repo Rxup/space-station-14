@@ -280,7 +280,7 @@
     - Dropper
     - ClothingEyesGlassesChemical
     dynamicRecipes:
-      - PowerDrill
+      - RnDPowerDrill
       - MiningDrill
       - AnomalyScanner
       - AnomalyLocator
@@ -334,7 +334,7 @@
       - ClothingBackpackSatchelHolding
       - ClothingBackpackDuffelHolding
       - WelderExperimental
-      - JawsOfLife
+      - RnDJawsOfLife  # cats
       - ClothingEyesGlassesChemical
       - CoreSilver
       #- QSI
