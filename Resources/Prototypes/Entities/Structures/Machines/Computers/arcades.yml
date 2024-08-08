@@ -20,6 +20,9 @@
       state: arcade
     - map: ["computerLayerScreen"]
       state: screen_invaders
+    - map: ["enum.WiresVisualLayers.MaintenancePanel"]
+      state: panel
+      visible: false
   - type: Icon
     sprite: Structures/Machines/arcade.rsi
     state: arcade

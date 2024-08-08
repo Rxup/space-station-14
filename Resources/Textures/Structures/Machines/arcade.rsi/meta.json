@@ -61,7 +61,11 @@
       "directions": 4
     },
     {
-      "name": "screen_spacevillain",
+      "name": "screen_spacevillian",
+      "directions": 4
+    },
+    {
+      "name": "panel",
       "directions": 4
     }
   ]
