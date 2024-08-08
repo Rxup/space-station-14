@@ -1,16 +1,25 @@
 {
   "version": 1,
   "license": "CC-BY-SA-3.0",
-  "copyright": "Taken from tgstation at commit https://github.com/tgstation/tgstation/blob/9c3494fd79e6bf8dc532300b9de4f688ff276ac9/icons/obj/machines/telecomms.dmi",
+  "copyright": "Taken from tgstation at https://github.com/tgstation/tgstation/blob/27d048f6cbe0b733ba86044ba1daa8ed369231ca/icons/obj/machines/telecomms.dmi modificated @CrimeMoot",
   "size": {
     "x": 32,
     "y": 32
   },
   "states": [
     {
+      "name": "icon"
+    },
+    {
       "name": "unlit",
       "delays": [
         [
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
           0.1,
           0.1,
           0.1,
@@ -25,10 +34,27 @@
       ]
     },
     {
-      "name": "icon"
-    },
-    {
-      "name": "panel"
+      "name": "panel",
+      "delays": [
+        [
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1
+        ]
+      ]
     }
   ]
 }
