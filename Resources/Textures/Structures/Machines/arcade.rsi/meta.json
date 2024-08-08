@@ -8,13 +8,16 @@
   },
   "states": [
     {
-      "name": "arcade"
+      "name": "arcade",
+      "directions": 4
     },
     {
-      "name": "arcade_broken"
+      "name": "arcade_broken",
+      "directions": 4
     },
     {
       "name": "screen_invaders",
+      "directions": 4,
       "delays": [
         [
           0.3,
@@ -54,10 +57,12 @@
       "name": "icon"
     },
     {
-      "name": "screen_blockgame"
+      "name": "screen_blockgame",
+      "directions": 4
     },
     {
-      "name": "screen_spacevillian"
+      "name": "screen_spacevillian",
+      "directions": 4
     }
   ]
 }
