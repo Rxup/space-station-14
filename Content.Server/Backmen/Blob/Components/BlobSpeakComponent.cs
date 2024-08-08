@@ -9,12 +9,18 @@ public sealed partial class BlobSpeakComponent : Component
     [DataField]
     public ProtoId<RadioChannelPrototype> Channel = "Hivemind";
 
+    /// <summary>
+    /// Hide entity name
+    /// </summary>
     [DataField]
     public bool OverrideName = true;
 
     [DataField]
     public LocId Name = "speak-vv-blob";
 
+    /// <summary>
+    /// Duplicate all your speak into radio channel
+    /// </summary>
     [DataField]
     public bool LongRange = true;
 }

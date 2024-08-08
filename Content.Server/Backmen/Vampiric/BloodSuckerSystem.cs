@@ -15,6 +15,8 @@ using Content.Server.DoAfter;
 using Content.Server.Forensics;
 using Content.Server.GameTicking;
 using Content.Server.Mind;
+using Content.Server.NPC.Components;
+using Content.Server.NPC.Systems;
 using Content.Server.Nutrition.Components;
 using Content.Server.Roles;
 using Content.Shared.Backmen.Vampiric.Components;
@@ -54,13 +56,15 @@ public sealed class BloodSuckerSystem : SharedBloodSuckerSystem
     [Dependency] private readonly BkmVampireLevelingSystem _leveling = default!;
     [Dependency] private readonly DamageableSystem _damageableSystem = default!;
     [Dependency] private readonly GameTicker _gameTicker = default!;
+    [Dependency] private readonly NPCRetaliationSystem _retaliationSystem = default!;
+    private EntityQuery<BloodSuckerComponent> _bsQuery;
 
     [ValidatePrototypeId<AntagPrototype>] private const string BloodsuckerAntagRole = "Bloodsucker";
 
     public override void Initialize()
     {
         base.Initialize();
-        SubscribeLocalEvent<BloodSuckerComponent, GetVerbsEvent<InnateVerb>>(AddSuccVerb);
+        SubscribeLocalEvent<GetVerbsEvent<AlternativeVerb>>(AddSuccVerb);
 
         SubscribeLocalEvent<BloodSuckedComponent, DamageChangedEvent>(OnDamageChanged);
         SubscribeLocalEvent<BloodSuckerComponent, BloodSuckDoAfterEvent>(OnDoAfter);
@@ -70,6 +74,8 @@ public sealed class BloodSuckerSystem : SharedBloodSuckerSystem
 
         SubscribeLocalEvent<BkmVampireComponent, PlayerAttachedEvent>(OnAttachedVampireMind);
         SubscribeLocalEvent<BkmVampireComponent, HealthBeingExaminedEvent>(OnVampireExamined);
+
+        _bsQuery = GetEntityQuery<BloodSuckerComponent>();
     }
 
     private void OnInitVmp(Entity<BkmVampireComponent> ent, ref MapInitEvent args)
@@ -83,7 +89,7 @@ public sealed class BloodSuckerSystem : SharedBloodSuckerSystem
             return;
 
         args.Message.PushNewline();
-        args.Message.AddMarkup(Loc.GetString("vampire-health-examine", ("target", ent.Owner)));
+        args.Message.TryAddMarkup(Loc.GetString("vampire-health-examine", ("target", ent.Owner)), out _);
     }
 
     private void OnAttachedVampireMind(Entity<BkmVampireComponent> ent, ref PlayerAttachedEvent args)
@@ -112,7 +118,7 @@ public sealed class BloodSuckerSystem : SharedBloodSuckerSystem
     public void ConvertToVampire(EntityUid uid)
     {
         if (
-            HasComp<BloodSuckerComponent>(uid) ||
+            _bsQuery.HasComp(uid) ||
             !TryComp<BodyComponent>(uid, out var bodyComponent) ||
             !TryComp<BodyPartComponent>(bodyComponent.RootContainer.ContainedEntity, out var bodyPartComponent)
             )
@@ -129,11 +135,11 @@ public sealed class BloodSuckerSystem : SharedBloodSuckerSystem
         //bloodSucker.InjectWhenSucc = true;
 
         {
-            var stomachs = _bodySystem.GetBodyOrganComponents<StomachComponent>(uid);
-            foreach (var (comp, organ) in stomachs)
+            var stomachs = _bodySystem.GetBodyOrganEntityComps<StomachComponent>(uid);// GetBodyOrganComponents<StomachComponent>(uid);
+            foreach (var organId in stomachs)
             {
-                _bodySystem.RemoveOrgan(organ.Owner, organ);
-                QueueDel(organ.Owner);
+                _bodySystem.RemoveOrgan(organId,organId);
+                QueueDel(organId);
             }
         }
 
@@ -178,38 +184,47 @@ public sealed class BloodSuckerSystem : SharedBloodSuckerSystem
             return; // have it
         }
 
-        _roleSystem.MindAddRole(mindId, new VampireRoleComponent()
-        {
-            PrototypeId = BloodsuckerAntagRole
-        }, mind, true);
+        _roleSystem.MindAddRole(mindId,
+            new VampireRoleComponent()
+            {
+                PrototypeId = BloodsuckerAntagRole
+            },
+            mind,
+            true);
 
         _mindSystem.TryAddObjective(mindId, mind, EscapeObjective);
         _mindSystem.TryAddObjective(mindId, mind, Objective1);
         _mindSystem.TryAddObjective(mindId, mind, Objective2);
     }
 
-    private void AddSuccVerb(EntityUid uid, BloodSuckerComponent component, GetVerbsEvent<InnateVerb> args)
+    private void AddSuccVerb(GetVerbsEvent<AlternativeVerb> ev)
     {
-        if (args.User == args.Target)
-            return;
-        if (component.WebRequired)
-            return; // handled elsewhere
-        if (!TryComp<BloodstreamComponent>(args.Target, out var bloodstream))
-            return;
-        if (!args.CanAccess)
+        if (
+            !ev.CanAccess ||
+            !ev.CanInteract ||
+            ev.User == ev.Target ||
+            IsClientSide(ev.Target) ||
+            !_bsQuery.TryComp(ev.User, out var component)
+            )
             return;
 
-        InnateVerb verb = new()
+        if (component.WebRequired)
+            return; // handled elsewhere
+
+        if (!TryComp<BloodstreamComponent>(ev.Target, out var bloodstream))
+            return;
+
+        AlternativeVerb verb = new()
         {
             Act = () =>
             {
-                StartSuccDoAfter(uid, args.Target, component, bloodstream); // start doafter
+                StartSuccDoAfter(ev.User, ev.Target, component, bloodstream); // start doafter
             },
             Text = Loc.GetString("action-name-suck-blood"),
             Icon = new SpriteSpecifier.Texture(new ("/Textures/Backmen/Icons/verbiconfangs.png")),
             Priority = 2
         };
-        args.Verbs.Add(verb);
+        ev.Verbs.Add(verb);
     }
 
     private void OnDamageChanged(EntityUid uid, BloodSuckedComponent component, DamageChangedEvent args)
@@ -282,6 +297,11 @@ public sealed class BloodSuckerSystem : SharedBloodSuckerSystem
         _popups.PopupEntity(Loc.GetString("bloodsucker-doafter-start-victim", ("sucker", bloodsucker)), victim, victim, Shared.Popups.PopupType.LargeCaution);
         _popups.PopupEntity(Loc.GetString("bloodsucker-doafter-start", ("target", victim)), victim, bloodsucker, Shared.Popups.PopupType.Medium);
 
+        if (TryComp<NPCRetaliationComponent>(victim, out var npcRetaliationComponent))
+        {
+            _retaliationSystem.TryRetaliate((victim, npcRetaliationComponent), bloodsucker);
+        }
+
         var ev = new BloodSuckDoAfterEvent();
         var args = new DoAfterArgs(EntityManager, bloodsucker, bloodSuckerComponent.SuccDelay, ev, bloodsucker, target: victim)
         {
@@ -296,7 +316,7 @@ public sealed class BloodSuckerSystem : SharedBloodSuckerSystem
     public bool TrySucc(EntityUid bloodsucker, EntityUid victim, BloodSuckerComponent? bloodsuckerComp = null, BloodstreamComponent? bloodstream = null)
     {
         // Is bloodsucker a bloodsucker?
-        if (!Resolve(bloodsucker, ref bloodsuckerComp))
+        if (!_bsQuery.Resolve(bloodsucker, ref bloodsuckerComp))
             return false;
 
         // Does victim have a bloodstream?
@@ -310,11 +330,11 @@ public sealed class BloodSuckerSystem : SharedBloodSuckerSystem
         var bloodstreamVolume = bloodstream.BloodSolution!.Value.Comp.Solution.Volume;
 
         // Does bloodsucker have a stomach?
-        var stomachList = _bodySystem.GetBodyOrganComponents<StomachComponent>(bloodsucker).FirstOrNull();
+        var stomachList = _bodySystem.GetBodyOrganEntityComps<StomachComponent>(bloodsucker).FirstOrNull();
         if (stomachList == null)
             return false;
 
-        if (!_solutionSystem.TryGetSolution(stomachList.Value.Comp.Owner, StomachSystem.DefaultSolutionName, out var stomachSolution))
+        if (!_solutionSystem.TryGetSolution(stomachList.Value.Owner, StomachSystem.DefaultSolutionName, out var stomachSolution))
             return false;
 
         // Are we too full?
@@ -371,13 +391,13 @@ public sealed class BloodSuckerSystem : SharedBloodSuckerSystem
         // Make everything actually ingest.
         var temp = _solutionSystem.SplitSolution(bloodSolution, unitsToDrain);
         _reactiveSystem.DoEntityReaction(bloodsucker, temp, ReactionMethod.Ingestion);
-        _stomachSystem.TryTransferSolution(stomachList.Value.Comp.Owner, temp, stomachList.Value.Comp);
+        _stomachSystem.TryTransferSolution(stomachList.Value.Owner, temp, stomachList.Value);
 
         // Add a little pierce
         DamageSpecifier damage = new();
         damage.DamageDict.Add("Piercing", 1); // Slowly accumulate enough to gib after like half an hour
 
-        _damageableSystem.TryChangeDamage(victim, damage, true, true);
+        _damageableSystem.TryChangeDamage(victim, damage, true, true, origin: bloodsucker);
 
         if (bloodsuckerComp.InjectWhenSucc && _solutionSystem.TryGetSolution(victim, bloodstream.ChemicalSolutionName, out var chemical))
         {

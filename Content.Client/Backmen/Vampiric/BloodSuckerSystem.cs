@@ -11,10 +11,13 @@ namespace Content.Client.Backmen.Vampiric;
 public sealed class BloodSuckerSystem : SharedBloodSuckerSystem
 {
     [Dependency] private readonly IPrototypeManager _prototype = default!;
+
+    private StatusIconPrototype _statusIconPrototype = default!;
     public override void Initialize()
     {
         base.Initialize();
 
+        _statusIconPrototype = _prototype.Index<StatusIconPrototype>(VampireFaction);
         SubscribeLocalEvent<BkmVampireComponent, GetStatusIconsEvent>(OnShowVampireIcon);
     }
 
@@ -23,6 +26,6 @@ public sealed class BloodSuckerSystem : SharedBloodSuckerSystem
 
     private void OnShowVampireIcon(Entity<BkmVampireComponent> ent, ref GetStatusIconsEvent args)
     {
-        args.StatusIcons.Add(_prototype.Index<StatusIconPrototype>(VampireFaction));
+        args.StatusIcons.Add(_statusIconPrototype);
     }
 }

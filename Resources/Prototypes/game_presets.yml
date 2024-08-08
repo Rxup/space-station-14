@@ -27,6 +27,7 @@
     - BlobGameMode # backmen: blob
     - VampiresGameRule # backmen: vampire
     - FleshCult # backmen: flesh cult
+    - Changeling
 
 - type: gamePreset
   id: Extended
@@ -175,3 +176,5 @@
   - WageScheduler #backmen: currency
   - GameRuleMeteorScheduler
   - BasicRoundstartVariation
+
+
