@@ -52,6 +52,12 @@
     },
     {
       "name": "icon"
+    },
+    {
+      "name": "screen_blockgame"
+    },
+    {
+      "name": "screen_spacevillian"
     }
   ]
 }
