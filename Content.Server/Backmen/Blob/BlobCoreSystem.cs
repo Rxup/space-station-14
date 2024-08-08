@@ -84,7 +84,7 @@ public sealed class BlobCoreSystem : SharedBlobCoreSystem
             return;
         }
         if (!TryComp<BlobObserverComponent>(args.Mind.OwnedEntity, out var blobObserverComponent)
-            || !TryComp<BlobCoreComponent>(blobObserverComponent.Core, out _))
+            || !HasComp<BlobCoreComponent>(blobObserverComponent.Core))
         {
             args.Cancelled = true;
             return;
@@ -115,7 +115,7 @@ public sealed class BlobCoreSystem : SharedBlobCoreSystem
             return;
         }
 
-        if (args.Mind.OwnedEntity == null)
+        if (args.Mind.OwnedEntity == null || TerminatingOrDeleted(args.Mind.OwnedEntity))
         {
             args.Progress = 0;
             return;
@@ -179,7 +179,7 @@ public sealed class BlobCoreSystem : SharedBlobCoreSystem
             Dirty(uid, blobTileComponent);
         }
 
-        TryComp<BlobNodeComponent>(uid, out var nodeComp);
+        var nodeComp = CompOrNull<BlobNodeComponent>(uid);
 
         component.BlobTiles.Add(uid);
         nodeComp?.ConnectedTiles.Add(uid);
