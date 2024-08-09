@@ -17,6 +17,12 @@
           Off: { state: oracle-0 }
         enum.RecyclerVisualLayers.Bloody:
           Off: { state: oracle-o0bld }
+  - type: SolutionContainerManager
+    solutions:
+      fountain:
+        maxVol: 200
+      output:
+        maxVol: 0
   - type: Fixtures
     fixtures:
       brrt:
