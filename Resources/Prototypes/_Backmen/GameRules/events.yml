@@ -117,9 +117,9 @@
   noSpawn: true
   components:
     - type: GlimmerEvent
-      minimumGlimmer: 900
-      glimmerBurnLower: 50
-      glimmerBurnUpper: 110
+      minimumGlimmer: 400
+      glimmerBurnLower: 20
+      glimmerBurnUpper: 70
     - type: MassMindSwapRule
 
 - type: entity

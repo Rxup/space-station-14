@@ -11,10 +11,8 @@ using Content.Shared.Mind;
 using Content.Shared.Rejuvenate;
 using Content.Shared.Whitelist;
 using Robust.Shared.Audio.Systems;
-using Robust.Shared.Containers;
 using Robust.Shared.GameStates;
 using Robust.Shared.Map;
-using Robust.Shared.Network;
 using Robust.Shared.Timing;
 using Robust.Shared.Utility;
 
@@ -466,7 +464,14 @@ public abstract class SharedActionsSystem : EntitySystem
 
     public bool ValidateEntityTarget(EntityUid user, EntityUid target, Entity<EntityTargetActionComponent> actionEnt)
     {
-        if (!ValidateEntityTargetBase(user, target, actionEnt))
+        var comp = actionEnt.Comp;
+        if (!ValidateEntityTargetBase(user,
+                target,
+                comp.Whitelist,
+                comp.CheckCanInteract,
+                comp.CanTargetSelf,
+                comp.CheckCanAccess,
+                comp.Range))
             return false;
 
         var ev = new ValidateActionEntityTargetEvent(user, target);
@@ -474,21 +479,27 @@ public abstract class SharedActionsSystem : EntitySystem
         return !ev.Cancelled;
     }
 
-    private bool ValidateEntityTargetBase(EntityUid user, EntityUid target, EntityTargetActionComponent action)
+    private bool ValidateEntityTargetBase(EntityUid user,
+        EntityUid? targetEntity,
+        EntityWhitelist? whitelist,
+        bool checkCanInteract,
+        bool canTargetSelf,
+        bool checkCanAccess,
+        float range)
     {
-        if (!target.IsValid() || Deleted(target))
+        if (targetEntity is not { } target || !target.IsValid() || Deleted(target))
             return false;
 
-        if (_whitelistSystem.IsWhitelistFail(action.Whitelist, target))
+        if (_whitelistSystem.IsWhitelistFail(whitelist, target))
             return false;
 
-        if (action.CheckCanInteract && !_actionBlockerSystem.CanInteract(user, target))
+        if (checkCanInteract && !_actionBlockerSystem.CanInteract(user, target))
             return false;
 
         if (user == target)
-            return action.CanTargetSelf;
+            return canTargetSelf;
 
-        if (!action.CheckCanAccess)
+        if (!checkCanAccess)
         {
             // even if we don't check for obstructions, we may still need to check the range.
             var xform = Transform(user);
@@ -497,19 +508,20 @@ public abstract class SharedActionsSystem : EntitySystem
             if (xform.MapID != targetXform.MapID)
                 return false;
 
-            if (action.Range <= 0)
+            if (range <= 0)
                 return true;
 
             var distance = (_transformSystem.GetWorldPosition(xform) - _transformSystem.GetWorldPosition(targetXform)).Length();
-            return distance <= action.Range;
+            return distance <= range;
         }
 
-        return _interactionSystem.InRangeAndAccessible(user, target, range: action.Range);
+        return _interactionSystem.InRangeAndAccessible(user, target, range: range);
     }
 
     public bool ValidateWorldTarget(EntityUid user, EntityCoordinates coords, Entity<WorldTargetActionComponent> action)
     {
-        if (!ValidateWorldTargetBase(user, coords, action))
+        var comp = action.Comp;
+        if (!ValidateWorldTargetBase(user, coords, comp.CheckCanInteract, comp.CheckCanAccess, comp.Range))
             return false;
 
         var ev = new ValidateActionWorldTargetEvent(user, coords);
@@ -517,12 +529,19 @@ public abstract class SharedActionsSystem : EntitySystem
         return !ev.Cancelled;
     }
 
-    private bool ValidateWorldTargetBase(EntityUid user, EntityCoordinates coords, WorldTargetActionComponent action)
+    private bool ValidateWorldTargetBase(EntityUid user,
+        EntityCoordinates? entityCoordinates,
+        bool checkCanInteract,
+        bool checkCanAccess,
+        float range)
     {
-        if (action.CheckCanInteract && !_actionBlockerSystem.CanInteract(user, null))
+        if (entityCoordinates is not { } coords)
             return false;
 
-        if (!action.CheckCanAccess)
+        if (checkCanInteract && !_actionBlockerSystem.CanInteract(user, null))
+            return false;
+
+        if (!checkCanAccess)
         {
             // even if we don't check for obstructions, we may still need to check the range.
             var xform = Transform(user);
@@ -530,13 +549,13 @@ public abstract class SharedActionsSystem : EntitySystem
             if (xform.MapID != coords.GetMapId(EntityManager))
                 return false;
 
-            if (action.Range <= 0)
+            if (range <= 0)
                 return true;
 
-            return _transformSystem.InRange(coords, Transform(user).Coordinates, action.Range);
+            return coords.InRange(EntityManager, _transformSystem, Transform(user).Coordinates, range);
         }
 
-        return _interactionSystem.InRangeUnobstructed(user, coords, range: action.Range);
+        return _interactionSystem.InRangeUnobstructed(user, coords, range: range);
     }
 
     public void PerformAction(EntityUid performer, ActionsComponent? component, EntityUid actionId, BaseActionComponent action, BaseActionEvent? actionEvent, TimeSpan curTime, bool predicted = true)
