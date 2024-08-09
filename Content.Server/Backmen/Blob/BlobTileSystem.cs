@@ -73,6 +73,18 @@ public sealed class BlobTileSystem : SharedBlobTileSystem
         {
             _empSystem.EmpPulse(_transform.GetMapCoordinates(uid), 3f, 50f, 3f);
         }
+
+        // If node was destroyed, we have to also kill all special blobs
+        if (component.BlobTileType != BlobTileType.Node)
+            return;
+
+        if (!TryComp<BlobNodeComponent>(uid, out var nodeComp))
+            return;
+
+        if (nodeComp.FactoryBlob != null)
+            _blobCoreSystem.TryKillBlobTile(nodeComp.FactoryBlob.Value);
+        if (nodeComp.ResourceBlob != null)
+            _blobCoreSystem.TryKillBlobTile(nodeComp.ResourceBlob.Value);
     }
 
     protected override void TryRemove(EntityUid target,
