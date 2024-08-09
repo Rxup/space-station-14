@@ -56,14 +56,16 @@ public sealed class BlobCarrierSystem : SharedBlobCarrierSystem
     private void OnStartup(EntityUid uid, BlobCarrierComponent component, MapInitEvent args)
     {
         _action.AddAction(uid, ref component.TransformToBlob, ActionTransformToBlob);
+        EnsureComp<BlobSpeakComponent>(uid).OverrideName = false;
+        
+        if (_mind.GetMind(uid) != null)
+            return;
 
         var ghostRole = EnsureComp<GhostRoleComponent>(uid);
         EnsureComp<GhostTakeoverAvailableComponent>(uid);
         ghostRole.RoleName = Loc.GetString("blob-carrier-role-name");
         ghostRole.RoleDescription = Loc.GetString("blob-carrier-role-desc");
         ghostRole.RoleRules = Loc.GetString("blob-carrier-role-rules");
-
-        EnsureComp<BlobSpeakComponent>(uid).OverrideName = false;
     }
 
     private void OnMobStateChanged(Entity<BlobCarrierComponent> uid, ref MobStateChangedEvent args)
