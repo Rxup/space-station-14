@@ -1,61 +1,20 @@
 {
   "version": 1,
   "license": "CC-BY-SA-3.0",
-  "copyright": "Taken from CEV-Eris at https://github.com/discordia-space/CEV-Eris/blob/47f71b3d32c95ee813c4d44ca729589f7c842670/icons/obj/doors/rapid_pdoor.dmi by modificated @CrimeMoot",
+  "copyright": "Taken from Aurora.3 at https://github.com/Aurorastation/Aurora.3/blob/99b4033ca597d3734832e5bc32ade6568a4ae138/icons/obj/doors/rapid_pdoor.dmi modificated by @CrimeMoot",
   "size": {
     "x": 32,
     "y": 32
   },
   "states": [
     {
-      "name": "closing",
-      "directions": 4,
-      "delays": [
-        [
-          0.1,
-          0.1,
-          0.1,
-          0.1,
-          0.1,
-          0.1,
-          0.1,
-          0.1
-        ],
-        [
-          0.1,
-          0.1,
-          0.1,
-          0.1,
-          0.1,
-          0.1,
-          0.1,
-          0.1
-        ],
-        [
-          0.1,
-          0.1,
-          0.1,
-          0.1,
-          0.1,
-          0.1,
-          0.1,
-          0.1
-        ],
-        [
-          0.1,
-          0.1,
-          0.1,
-          0.1,
-          0.1,
-          0.1,
-          0.1,
-          0.1
-        ]
-      ]
+      "name": "closed"
+    },
+    {
+      "name": "open"
     },
     {
       "name": "opening",
-      "directions": 4,
       "delays": [
         [
           0.1,
@@ -65,15 +24,6 @@
           0.1,
           0.1,
           0.1,
-          0.1
-        ],
-        [
-          0.1,
-          0.1,
-          0.1,
-          0.1,
-          0.1,
-          0.1,
           0.1,
           0.1
         ],
@@ -85,9 +35,22 @@
           0.1,
           0.1,
           0.1,
+          0.1,
           0.1
         ],
         [
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1
+        ],
+        [
+          0.1,
           0.1,
           0.1,
           0.1,
@@ -100,12 +63,53 @@
       ]
     },
     {
-      "name": "closed",
-      "directions": 4
-    },
-    {
-      "name": "open",
-      "directions": 4
+      "name": "closing",
+      "delays": [
+        [
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1
+        ],
+        [
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1
+        ],
+        [
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1
+        ],
+        [
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1
+        ]
+      ]
     },
     {
       "name": "frame",
