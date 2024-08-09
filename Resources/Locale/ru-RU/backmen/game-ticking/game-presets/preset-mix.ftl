@@ -39,3 +39,7 @@ nukeops-fleshcult-traitor-description = На станции ядерные оп�
 
 survival-nukeops-title = Выживание с ядерными оперативниками
 survival-nukeops-description = Постарайтесь выжить в сущем аду
+
+criminal-gamemode-title = Криминальный
+thief-extended-gamemode-title = Воры
+thief-extended-gamemode-description = Среди экипажа станции обнаружена высокая криминальная активность.
