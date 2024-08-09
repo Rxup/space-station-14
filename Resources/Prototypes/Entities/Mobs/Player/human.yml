@@ -18,6 +18,7 @@
       hair: HairBald
     - type: Loadout
       prototypes: [SyndicateOperativeGearExtremelyBasic]
+      roleLoadout: [ RoleSurvivalSyndicate ]
     - type: RandomMetadata
       nameSegments: # Corvax-MRP
       - names_first_male
@@ -32,10 +33,10 @@
   name: syndicate agent
   suffix: Human, Traitor
   components:
-    # make the player a traitor once its taken
-    - type: AutoTraitor
-      giveUplink: false
-      giveObjectives: false
+  # make the player a traitor once its taken
+  - type: AutoTraitor
+    giveUplink: false
+    giveObjectives: false
 
 - type: entity
   parent: MobHumanSyndicateAgent
@@ -44,6 +45,7 @@
   components:
   - type: Loadout
     prototypes: [SyndicateReinforcementMedic]
+    roleLoadout: [ RoleSurvivalSyndicate ]
 
 - type: entity
   parent: MobHumanSyndicateAgent
@@ -52,6 +54,7 @@
   components:
   - type: Loadout
     prototypes: [SyndicateReinforcementSpy]
+    roleLoadout: [ RoleSurvivalSyndicate ]
 
 - type: entity
   parent: MobHumanSyndicateAgent
@@ -60,19 +63,20 @@
   components:
   - type: Loadout
     prototypes: [SyndicateReinforcementThief]
+    roleLoadout: [ RoleSurvivalSyndicate ]
 
 - type: entity
   parent: MobHumanSyndicateAgentBase
   id: MobHumanSyndicateAgentNukeops # Reinforcement exclusive to nukeops uplink
   suffix: Human, NukeOps
   components:
-    - type: NukeOperative
-    - type: RandomMetadata
-      nameSegments:
-      - nukeops-role-operator
-      - SyndicateNamesNormal
-    - type: Loadout
-      prototypes: [SyndicateOperativeGearFullNoUplink]
+  - type: NukeOperative
+  - type: RandomMetadata
+    nameSegments:
+    - nukeops-role-operator
+    - SyndicateNamesNormal
+  - type: Loadout
+    prototypes: [SyndicateOperativeGearFullNoUplink]
 
 #Flesh Cultist
 - type: entity
@@ -112,8 +116,8 @@
   parent: MobHuman
   id: MobHumanNukeOp
   components:
-    - type: NukeOperative
-    - type: RandomHumanoidAppearance
+  - type: NukeOperative
+  - type: RandomHumanoidAppearance
 
 - type: entity
   categories: [ HideSpawnMenu ]
@@ -121,15 +125,16 @@
   id: MobHumanLoneNuclearOperative
   name: Lone Operative
   components:
-    - type: RandomHumanoidAppearance
-      randomizeName: false
-    - type: NukeOperative
-    - type: Loadout
-      prototypes: [SyndicateLoneOperativeGearFull]
-    - type: RandomMetadata
-      nameSegments:
-      - SyndicateNamesPrefix
-      - SyndicateNamesNormal
-    - type: NpcFactionMember
-      factions:
-      - Syndicate
+  - type: RandomHumanoidAppearance
+    randomizeName: false
+  - type: NukeOperative
+  - type: Loadout
+    prototypes: [SyndicateLoneOperativeGearFull]
+    roleLoadout: [ RoleSurvivalSyndicate ]
+  - type: RandomMetadata
+    nameSegments:
+    - SyndicateNamesPrefix
+    - SyndicateNamesNormal
+  - type: NpcFactionMember
+    factions:
+    - Syndicate

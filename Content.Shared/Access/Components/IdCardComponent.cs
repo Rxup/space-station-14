@@ -3,7 +3,7 @@ using Content.Shared.Backmen.Economy;
 using Content.Shared.PDA;
 using Content.Shared.StatusIcon;
 using Robust.Shared.GameStates;
-using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype;
+using Robust.Shared.Prototypes;
 
 namespace Content.Shared.Access.Components;
 
@@ -12,27 +12,27 @@ namespace Content.Shared.Access.Components;
 [Access(typeof(SharedIdCardSystem), typeof(SharedPdaSystem), typeof(SharedAgentIdCardSystem), Other = AccessPermissions.ReadWrite)]
 public sealed partial class IdCardComponent : Component
 {
-    [DataField("fullName"), ViewVariables(VVAccess.ReadWrite)]
+    [DataField]
     [AutoNetworkedField]
     // FIXME Friends
     public string? FullName;
 
-    [DataField("jobTitle")]
+    [DataField]
     [AutoNetworkedField]
-    [Access(typeof(SharedIdCardSystem), typeof(SharedPdaSystem), typeof(SharedAgentIdCardSystem), Other = AccessPermissions.ReadWrite), ViewVariables(VVAccess.ReadWrite)]
+    [Access(typeof(SharedIdCardSystem), typeof(SharedPdaSystem), typeof(SharedAgentIdCardSystem), Other = AccessPermissions.ReadWrite)]
     public string? JobTitle;
 
     /// <summary>
     /// The state of the job icon rsi.
     /// </summary>
-    [DataField("jobIcon", customTypeSerializer: typeof(PrototypeIdSerializer<StatusIconPrototype>))]
+    [DataField]
     [AutoNetworkedField]
-    public string JobIcon = "JobIconUnknown";
+    public ProtoId<JobIconPrototype> JobIcon = "JobIconUnknown";
 
     /// <summary>
     /// The unlocalized names of the departments associated with the job
     /// </summary>
-    [DataField("jobDepartments")]
+    [DataField]
     [AutoNetworkedField]
     public List<LocId> JobDepartments = new();
 
@@ -44,7 +44,7 @@ public sealed partial class IdCardComponent : Component
     /// <summary>
     /// Determines if accesses from this card should be logged by <see cref="AccessReaderComponent"/>
     /// </summary>
-    [DataField, ViewVariables(VVAccess.ReadWrite)]
+    [DataField]
     public bool BypassLogging;
 
     [DataField]
