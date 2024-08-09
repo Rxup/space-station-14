@@ -37,8 +37,7 @@ public sealed class GlimmerSystem : EntitySystem
     /// <param name="glimmer">What glimmer count to check. Uses the current glimmer by default.</param>
     public GlimmerTier GetGlimmerTier(int? glimmer = null)
     {
-        if (glimmer == null)
-            glimmer = Glimmer;
+        glimmer ??= Glimmer;
 
         return (glimmer) switch
         {

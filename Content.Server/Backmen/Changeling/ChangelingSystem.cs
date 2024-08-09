@@ -128,6 +128,12 @@ public sealed partial class ChangelingSystem : EntitySystem
         SubscribeAbilities();
     }
 
+    [ValidatePrototypeId<AlertPrototype>]
+    private const string ChangelingChemicals = "ChangelingChemicals";
+
+    [ValidatePrototypeId<AlertPrototype>]
+    private const string ChangelingBiomass = "ChangelingBiomass";
+
     public override void Update(float frameTime)
     {
         base.Update(frameTime);
@@ -168,7 +174,7 @@ public sealed partial class ChangelingSystem : EntitySystem
         chemicals += amount ?? 1 + comp.BonusChemicalRegen;
         comp.Chemicals = Math.Clamp(chemicals, 0, comp.MaxChemicals);
         Dirty(uid, comp);
-        _alerts.ShowAlert(uid, "ChangelingChemicals");
+        _alerts.ShowAlert(uid, ChangelingChemicals);
     }
 
     private void UpdateBiomass(EntityUid uid, ChangelingComponent comp, float? amount = null)
@@ -410,15 +416,18 @@ public sealed partial class ChangelingSystem : EntitySystem
 
     public bool TryStealDNA(EntityUid uid, EntityUid target, ChangelingComponent comp, bool countObjective = false)
     {
-        if (!TryComp<HumanoidAppearanceComponent>(target, out var appearance)
-        || !TryComp<MetaDataComponent>(target, out var metadata)
+        if (
+            TerminatingOrDeleted(target)
+        || !TryComp<HumanoidAppearanceComponent>(target, out var appearance)
         || !TryComp<DnaComponent>(target, out var dna)
         || !TryComp<FingerprintComponent>(target, out var fingerprint))
             return false;
 
+        var metadata = MetaData(target);
+
         foreach (var storedDNA in comp.AbsorbedDNA)
         {
-            if (storedDNA.DNA != null && storedDNA.DNA == dna.DNA)
+            if (!string.IsNullOrEmpty(storedDNA.DNA) && storedDNA.DNA == dna.DNA)
                 return false;
         }
 
@@ -426,7 +435,8 @@ public sealed partial class ChangelingSystem : EntitySystem
         {
             Name = metadata.EntityName,
             DNA = dna.DNA,
-            Appearance = appearance
+            Appearance = (target,appearance),
+            TTS = appearance.Voice
         };
 
         if (fingerprint.Fingerprint != null)
@@ -476,7 +486,7 @@ public sealed partial class ChangelingSystem : EntitySystem
 
         if (data != null)
         {
-            if (!_proto.TryIndex(data.Appearance.Species, out var species))
+            if (!_proto.TryIndex(data.Appearance.Comp.Species, out var species))
                 return null;
             pid = species.Prototype;
         }
@@ -502,9 +512,9 @@ public sealed partial class ChangelingSystem : EntitySystem
 
         var newEnt = newUid.Value;
 
-        if (TryComp<TTSComponent>(uid, out var oldTts))
+        if (!string.IsNullOrEmpty(data?.TTS))
         {
-            EnsureComp<TTSComponent>(newEnt).VoicePrototypeId = oldTts.VoicePrototypeId;
+            EnsureComp<TTSComponent>(newEnt).VoicePrototypeId = data.TTS;
         }
 
         if (data != null)
@@ -512,7 +522,7 @@ public sealed partial class ChangelingSystem : EntitySystem
             Comp<FingerprintComponent>(newEnt).Fingerprint = data.Fingerprint;
             if (data.DNA != null)
                 Comp<DnaComponent>(newEnt).DNA = data.DNA;
-            _humanoid.CloneAppearance(data.Appearance.Owner, newEnt);
+            _humanoid.CloneAppearance(data.Appearance, newEnt, data.Appearance);
             _metaData.SetEntityName(newEnt, data.Name);
             var message = Loc.GetString("changeling-transform-finish", ("target", data.Name));
             _popup.PopupEntity(message, newEnt, newEnt);

@@ -4,8 +4,10 @@ using Content.Server.Backmen.Psionics;
 using Content.Server.Backmen.StationEvents.Components;
 using Content.Server.Station.Components;
 using Content.Server.StationEvents.Events;
+using Content.Shared.Actions;
 using Content.Shared.Backmen.Abilities.Psionics;
 using Content.Shared.Backmen.Psionics.Components;
+using Content.Shared.Backmen.Psionics.Glimmer;
 using Content.Shared.GameTicking.Components;
 using Content.Shared.Mind;
 using Content.Shared.Mindshield.Components;
@@ -29,6 +31,8 @@ internal sealed class MassMindSwapRule : StationEventSystem<MassMindSwapRuleComp
     [Dependency] private readonly MindSwapPowerSystem _mindSwap = default!;
     [Dependency] private readonly SharedMindSystem _mindSystem = default!;
     [Dependency] private readonly SharedRoleSystem _roleSystem = default!;
+    [Dependency] private readonly SharedActionsSystem _actions = default!;
+    [Dependency] private readonly GlimmerSystem _glimmer = default!;
 
     private HashSet<MapId> GetStationEventMaps()
     {
@@ -62,10 +66,14 @@ internal sealed class MassMindSwapRule : StationEventSystem<MassMindSwapRuleComp
             var query = EntityQueryEnumerator<PotentialPsionicComponent, TransformComponent, MobStateComponent>();
             while (query.MoveNext(out var psion, out _, out var xform, out _))
             {
-                if (mindswaped.HasComponent(psion) || mindshild.HasComponent(psion) || psiIsulated.HasComponent(psion))
+                if (mindswaped.HasComponent(psion) || psiIsulated.HasComponent(psion))
                 {
                     continue;
                 }
+
+                // Глиммер пробивает MS при уровне выше Dangerous
+                if(_glimmer.GetGlimmerTier() < GlimmerTier.Dangerous && mindshild.HasComponent(psion))
+                    continue;
 
                 if (!_mobStateSystem.IsAlive(psion))
                     continue;
@@ -73,7 +81,7 @@ internal sealed class MassMindSwapRule : StationEventSystem<MassMindSwapRuleComp
                 if (!stationEvents.Contains(xform.MapID))
                     continue;
 
-                if (_mindSystem.TryGetMind(psion, out var mindId, out var mind) && _roleSystem.MindIsExclusiveAntagonist(mindId))
+                if (_mindSystem.TryGetMind(psion, out var mindId, out _) && _roleSystem.MindIsExclusiveAntagonist(mindId))
                     continue;
 
                 psionicPool.Add(psion);
@@ -100,6 +108,10 @@ internal sealed class MassMindSwapRule : StationEventSystem<MassMindSwapRuleComp
                 if(actor == other)
                     continue;
 
+                // не менять местами без людей вообще
+                if(!actorQuery.HasComp(actor) && !actorQuery.HasComp(other))
+                    continue;
+
                 if (mindswaped.HasComponent(other)) // skip if swapped
                 {
                     continue;
@@ -121,6 +133,12 @@ internal sealed class MassMindSwapRule : StationEventSystem<MassMindSwapRuleComp
                 if (!actorQuery.HasComponent(actor) || !actorQuery.HasComponent(other))
                 {
                     component.IsTemporary = true;
+
+                    if(TryComp<MindSwappedComponent>(actor, out var mindSwapped1Component))
+                        _actions.SetCooldown(mindSwapped1Component.MindSwapReturn, TimeSpan.FromMinutes(2));
+
+                    if(TryComp<MindSwappedComponent>(other, out var mindSwapped2Component))
+                        _actions.SetCooldown(mindSwapped2Component.MindSwapReturn, TimeSpan.FromMinutes(2));
                 }
                 if (!component.IsTemporary)
                 {
