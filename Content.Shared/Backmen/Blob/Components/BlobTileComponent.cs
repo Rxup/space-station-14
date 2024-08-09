@@ -1,5 +1,4 @@
-﻿using Content.Shared.Backmen.Blob;
-using Content.Shared.Damage;
+﻿using Content.Shared.Damage;
 using Content.Shared.FixedPoint;
 using Robust.Shared.GameStates;
 
@@ -13,9 +12,6 @@ public sealed partial class BlobTileComponent : Component
 
     [ViewVariables(VVAccess.ReadOnly)]
     public Entity<BlobCoreComponent>? Core;
-
-    [ViewVariables(VVAccess.ReadOnly)]
-    public Entity<BlobNodeComponent>? Node;
 
     [ViewVariables(VVAccess.ReadOnly)]
     public bool ReturnCost = true;

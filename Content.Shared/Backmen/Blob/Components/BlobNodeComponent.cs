@@ -4,18 +4,12 @@ namespace Content.Shared.Backmen.Blob.Components;
 public sealed partial class BlobNodeComponent : Component
 {
     [ViewVariables(VVAccess.ReadWrite), DataField("pulseFrequency")]
-    public float PulseFrequency = 4;
+    public float PulseFrequency = 4f;
 
     [ViewVariables(VVAccess.ReadWrite), DataField("pulseRadius")]
     public float PulseRadius = 3f;
 
     public TimeSpan NextPulse = TimeSpan.Zero;
-
-    /// <summary>
-    /// All tiles that are connected to that blob node.
-    /// </summary>
-    [ViewVariables(VVAccess.ReadWrite)]
-    public HashSet<EntityUid> ConnectedTiles = [];
 
     [ViewVariables(VVAccess.ReadWrite)]
     public EntityUid? ResourceBlob { get; set; }

@@ -32,6 +32,7 @@ public sealed class BlobCoreSystem : SharedBlobCoreSystem
 {
     [Dependency] private readonly AlertsSystem _alerts = default!;
     [Dependency] private readonly SharedPopupSystem _popup = default!;
+    [Dependency] private readonly SharedTransformSystem _transform = default!;
     [Dependency] private readonly GameTicker _gameTicker = default!;
     [Dependency] private readonly ExplosionSystem _explosionSystem = default!;
     [Dependency] private readonly DamageableSystem _damageable = default!;
@@ -40,13 +41,12 @@ public sealed class BlobCoreSystem : SharedBlobCoreSystem
     [Dependency] private readonly RoundEndSystem _roundEndSystem = default!;
     [Dependency] private readonly MetaDataSystem _metaDataSystem = default!;
     [Dependency] private readonly ActionsSystem _action = default!;
-    [Dependency] private readonly EntityLookupSystem _lookup = default!;
     [Dependency] private readonly MapSystem _map = default!;
 
     private EntityQuery<BlobTileComponent> _tile;
     private EntityQuery<BlobFactoryComponent> _factory;
+    private EntityQuery<BlobNodeComponent> _node;
 
-    [ValidatePrototypeId<EntityPrototype>] private const string BlobCaptureObjective = "BlobCaptureObjective";
     public override void Initialize()
     {
         base.Initialize();
@@ -64,6 +64,7 @@ public sealed class BlobCoreSystem : SharedBlobCoreSystem
 
         _tile = GetEntityQuery<BlobTileComponent>();
         _factory = GetEntityQuery<BlobFactoryComponent>();
+        _node = GetEntityQuery<BlobNodeComponent>();
     }
 
     private void OnTerminating(EntityUid uid, BlobCoreComponent component, ref EntityTerminatingEvent args)
@@ -179,10 +180,7 @@ public sealed class BlobCoreSystem : SharedBlobCoreSystem
             Dirty(uid, blobTileComponent);
         }
 
-        var nodeComp = CompOrNull<BlobNodeComponent>(uid);
-
         component.BlobTiles.Add(uid);
-        nodeComp?.ConnectedTiles.Add(uid);
 
         ChangeChem(uid, component.DefaultChem, component);
 
@@ -327,7 +325,6 @@ public sealed class BlobCoreSystem : SharedBlobCoreSystem
 
             QueueDel(oldTileUid.Value);
             blobCore.Comp.BlobTiles.Remove(oldTileUid.Value);
-            nearNode?.Comp.ConnectedTiles.Remove(oldTileUid.Value);
         }
 
         var tileBlob = EntityManager.SpawnEntity(newBlobTileProto, coordinates);
@@ -368,7 +365,6 @@ public sealed class BlobCoreSystem : SharedBlobCoreSystem
                 PopupType.LargeCaution);
         }
         blobCore.Comp.BlobTiles.Add(tileBlob);
-        nearNode?.Comp.ConnectedTiles.Add(tileBlob);
         return true;
     }
 
@@ -379,9 +375,6 @@ public sealed class BlobCoreSystem : SharedBlobCoreSystem
 
         QueueDel(tileUid);
         blobCore.BlobTiles.Remove(tileUid);
-
-        if (TryComp<BlobNodeComponent>(tileUid, out var nodeComp))
-            nodeComp.ConnectedTiles.Remove(tileUid);
 
         return true;
     }
@@ -424,13 +417,10 @@ public sealed class BlobCoreSystem : SharedBlobCoreSystem
         EntityCoordinates coords,
         float radius = 3f)
     {
-        var gridUid = coords.GetGridUid(EntityManager)!.Value;
-        var queryNode = GetEntityQuery<BlobNodeComponent>();
+        var gridUid = _transform.GetGrid(coords)!.Value;
 
         if (!TryComp<MapGridComponent>(gridUid, out var grid))
-        {
             return null;
-        }
 
         var nearestDistance = float.MaxValue;
         var nodeComponent = new BlobNodeComponent();
@@ -448,7 +438,7 @@ public sealed class BlobCoreSystem : SharedBlobCoreSystem
         {
             foreach (var ent in _map.GetAnchoredEntities(gridUid, grid, tileRef.GridIndices))
             {
-                if (!queryNode.TryComp(ent, out var nodeComp))
+                if (!_node.TryComp(ent, out var nodeComp))
                     continue;
                 var tileCords = Transform(ent).Coordinates;
                 var distance = Vector2.Distance(coords.Position, tileCords.Position);
