@@ -5,7 +5,7 @@
   name: shipwrecked-title
   description: shipwrecked-description
   minPlayers: 1
-  maxPlayers: 15
+  maxPlayers: 40
   showInVote: true
   isMiniGame: true
   supportedMaps: ShipwreckedPool
