@@ -1,18 +1,17 @@
-﻿using Content.Shared.Backmen.Blob;
-using Content.Shared.Damage;
+﻿using Content.Shared.Damage;
 using Content.Shared.FixedPoint;
 using Robust.Shared.GameStates;
 
 namespace Content.Shared.Backmen.Blob.Components;
 
-[RegisterComponent, NetworkedComponent, AutoGenerateComponentState(true)]
+[RegisterComponent, NetworkedComponent, AutoGenerateComponentState(true), Serializable]
 public sealed partial class BlobTileComponent : Component
 {
     [DataField("color"), AutoNetworkedField]
     public Color Color = Color.White;
 
-    [ViewVariables(VVAccess.ReadOnly), AutoNetworkedField]
-    public EntityUid? Core = default!;
+    [ViewVariables(VVAccess.ReadOnly)]
+    public Entity<BlobCoreComponent>? Core;
 
     [ViewVariables(VVAccess.ReadOnly)]
     public bool ReturnCost = true;
@@ -39,7 +38,7 @@ public sealed partial class BlobTileComponent : Component
     {
         DamageDict = new Dictionary<string, FixedPoint2>
         {
-            { "Heat", 100 },
+            { "Heat", 25 },
         }
     };
 }
@@ -52,6 +51,7 @@ public enum BlobTileType : byte
     Reflective,
     Resource,
     Storage,
+    Turret,
     Node,
     Factory,
     Core,

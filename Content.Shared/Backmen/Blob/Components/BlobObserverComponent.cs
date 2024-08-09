@@ -21,8 +21,8 @@ public sealed partial class BlobObserverComponent : Component
     [ViewVariables(VVAccess.ReadOnly)]
     public bool IsProcessingMoveEvent;
 
-    [ViewVariables(VVAccess.ReadOnly),AutoNetworkedField]
-    public EntityUid? Core = default!;
+    [ViewVariables(VVAccess.ReadOnly)]
+    public Entity<BlobCoreComponent>? Core = default!;
 
     [ViewVariables(VVAccess.ReadOnly)]
     public bool CanMove = true;
@@ -97,17 +97,12 @@ public sealed partial class BlobSwapCoreActionEvent : WorldTargetActionEvent
 
 }
 
+public sealed partial class BlobDowngradeActionEvent : WorldTargetActionEvent
+{
+
+}
+
 public sealed partial class BlobToCoreActionEvent : InstantActionEvent
-{
-
-}
-
-public sealed partial class BlobToNodeActionEvent : InstantActionEvent
-{
-
-}
-
-public sealed partial class BlobHelpActionEvent : InstantActionEvent
 {
 
 }
@@ -116,4 +111,3 @@ public sealed partial class BlobSwapChemActionEvent : InstantActionEvent
 {
 
 }
-
