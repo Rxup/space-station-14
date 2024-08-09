@@ -77,8 +77,8 @@
       types:
         Piercing: 5
         Blunt: 10
-  - type: ItemToggleDisarmMalus
-    activatedDisarmMalus: 0.6
+#  - type: ItemToggleDisarmMalus
+#    activatedDisarmMalus: 0.6
   - type: Item
     size: Huge
     sprite: Backmen/Objects/Weapons/Melee/chainsword.rsi
@@ -167,6 +167,7 @@
     radius: 2
     energy: 2
     color: cyan
+  - type: DisarmMalus
   - type: EnergySword
 #    litDamageBonus:
 #        types:
@@ -174,3 +175,29 @@
 #            Heat: 30
 #            Blunt: -4.5
 #    litDisarmMalus: 0.6
+
+- type: entity # Backmen
+  name: Ямато
+  parent: BaseItem
+  id: YamatoSabre
+  description: Личное оружие Вергилия, выкованное из тёмного сплава. Найдено в секторе "Бекман"
+  components:
+  - type: Sprite
+    sprite: Backmen/Objects/Weapons/Melee/yamato.rsi
+    state: icon
+  - type: MeleeWeapon
+    attackRate: 1
+    damage:
+      types:
+        Slash: 20
+    soundHit:
+      path: /Audio/Weapons/bladeslice.ogg
+  - type: Reflect
+    reflectProb: .1
+    spread: 90
+  - type: Item
+    sprite: Backmen/Objects/Weapons/Melee/yamato.rsi
+  - type: DisarmMalus
+  - type: Tag
+    tags:
+    - YamatoSabre

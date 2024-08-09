@@ -4,6 +4,7 @@
   - BaseMob
   - MobDamageable
   - MobCombat
+  - StripableInventoryBase
   id: BaseMobSpecies
   abstract: true
   components:
@@ -17,19 +18,13 @@
     - map: [ "enum.HumanoidVisualLayers.LArm" ]
     - map: [ "enum.HumanoidVisualLayers.RLeg" ]
     - map: [ "enum.HumanoidVisualLayers.LLeg" ]
-    - shader: StencilClear
-      sprite: Mobs/Species/Human/parts.rsi #PJB on stencil clear being on the left leg: "...this is 'fine'" -https://github.com/space-wizards/space-station-14/pull/12217#issuecomment-1291677115
-      # its fine, but its still very stupid that it has to be done like this instead of allowing sprites to just directly insert a stencil clear.
-      # sprite refactor when
-      state: l_leg
-    - shader: StencilMask
-      map: ["enum.HumanoidVisualLayers.StencilMask"]
-      sprite: Mobs/Customization/masking_helpers.rsi
-      state: unisex_full
-      visible: false
-    - map: ["jumpsuit"]
+#    - map: ["jumpsuit"]
     - map: ["enum.HumanoidVisualLayers.LFoot"]
     - map: ["enum.HumanoidVisualLayers.RFoot"]
+    - map: ["socks"] #backmen:underclothing
+    - map: ["underpants"] #backmen:underclothing
+    - map: ["undershirt"] #backmen:underclothing
+    - map: ["jumpsuit"]
     - map: ["enum.HumanoidVisualLayers.LHand"]
     - map: ["enum.HumanoidVisualLayers.RHand"]
     - map: [ "gloves" ]
@@ -144,9 +139,8 @@
     - PsionicallyInsulated
     - SeeAll
     - Flashed
-  - type: Reflect
-    enabled: false
-    reflectProb: 0
+    - RadiationProtection
+    - Drowsiness
   - type: Body
     prototype: Human
     requiredLegs: 2
@@ -155,8 +149,6 @@
   - type: Hands
   - type: ComplexInteraction
   - type: Internals
-  - type: Inventory
-  - type: InventorySlots
   - type: FloatingVisuals
   - type: Climbing
   - type: Cuffable
@@ -179,7 +171,6 @@
   - type: SleepEmitSound
   - type: SSDIndicator
   - type: StandingState
-  - type: Fingerprint
   - type: Dna
   - type: MindContainer
     showExamineInfo: true
@@ -194,7 +185,6 @@
     - NanoTrasen
   - type: CreamPied
   - type: Stripping
-  - type: Strippable
   - type: UserInterface
     interfaces:
       enum.VoiceMaskUIKey.Key:
@@ -229,6 +219,9 @@
     - CanPilot
     - FootstepSound
     - DoorBumpOpener
+  - type: CameraFollow # Backmen-Changes-End
+    backStrength: 50
+    defaultBackStrength: 20
 
 - type: entity
   save: false
@@ -241,6 +234,7 @@
   id: BaseMobSpeciesOrganic
   abstract: true
   components:
+  - type: Absorbable # Changeling
   - type: DiseaseCarrier # backmen
   - type: Barotrauma
     damage:
@@ -256,6 +250,7 @@
         Heat: -0.07
       groups:
         Brute: -0.07
+  - type: Fingerprint
   - type: Blindable
   # Other
   - type: Temperature
@@ -296,12 +291,11 @@
 - type: entity
   save: false
   id: BaseSpeciesDummy
+  parent: InventoryBase
   abstract: true
   components:
   - type: Hands
   - type: ComplexInteraction
-  - type: Inventory
-  - type: InventorySlots
   - type: ContainerContainer
   - type: Icon
     sprite: Mobs/Species/Human/parts.rsi
@@ -319,14 +313,6 @@
     - map: [ "enum.HumanoidVisualLayers.LArm" ]
     - map: [ "enum.HumanoidVisualLayers.RLeg" ]
     - map: [ "enum.HumanoidVisualLayers.LLeg" ]
-    - shader: StencilClear
-      sprite: Mobs/Species/Human/parts.rsi
-      state: l_leg
-    - shader: StencilMask
-      map: ["enum.HumanoidVisualLayers.StencilMask"]
-      sprite: Mobs/Customization/masking_helpers.rsi
-      state: unisex_full
-      visible: false
     - map: ["jumpsuit"]
     - map: ["enum.HumanoidVisualLayers.LFoot"]
     - map: ["enum.HumanoidVisualLayers.RFoot"]
@@ -361,6 +347,7 @@
   - type: Body
     prototype: Human
     requiredLegs: 2
+  - type: Absorbable # Changeling
   - type: UserInterface
     interfaces:
       enum.HumanoidMarkingModifierKey.Key: # sure, this can go here too

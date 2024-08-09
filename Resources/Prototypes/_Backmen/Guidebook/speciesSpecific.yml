@@ -3,35 +3,26 @@
 - type: guideEntry
   id: SpeciesArachne
   name: species-name-ArachneClassic
-  text: "/ServerInfo/Guidebook/Species/NyanoSpecies/Arachne.xml"
+  text: "/ServerInfo/_Backmen/Guidebook/Species/NyanoSpecies/Arachne.xml"
 
 - type: guideEntry
   id: SpeciesFelinid
   name: species-name-felinid
-  text: "/ServerInfo/Guidebook/Species/NyanoSpecies/Felinid.xml"
+  text: "/ServerInfo/_Backmen/Guidebook/Species/NyanoSpecies/Felinid.xml"
 
 - type: guideEntry
   id: SpeciesOni
   name: species-name-oni
-  text: "/ServerInfo/Guidebook/Species/NyanoSpecies/Oni.xml"
-
-# SimpleStation Species
-
-# - type: guideEntry
-#   id: SpeciesPlasmaman
-#   name: guide-entry-plasmaman
-#   text: "/ServerInfo/Guidebook/Species/SimpleStationSpecies/Plasmaman.xml"
-
-
+  text: "/ServerInfo/_Backmen/Guidebook/Species/NyanoSpecies/Oni.xml"
 
 - type: guideEntry
   id: SpeciesShadowkin
   name: species-name-shadowkin
-  text: "/ServerInfo/Guidebook/Species/SimpleStationSpecies/Shadowkin.xml"
+  text: "/ServerInfo/_Backmen/Guidebook/Species/SimpleStationSpecies/Shadowkin.xml"
   children:
   - SpeciesShadowkinLore
 
 - type: guideEntry
   id: SpeciesShadowkinLore
   name: guide-entry-shadowkin-lore
-  text: "/ServerInfo/Guidebook/Species/SimpleStationSpecies/Shadowkin.Lore.xml"
+  text: "/ServerInfo/_Backmen/Guidebook/Species/SimpleStationSpecies/Shadowkin.Lore.xml"

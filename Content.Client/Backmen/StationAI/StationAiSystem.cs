@@ -77,7 +77,7 @@ public sealed class StationAiSystem : SharedStationAISystem
         {
             if (eye.AiCore == null)
             {
-                args.Cancel();
+                args.Cancelled = true;
                 return;
             }
 
@@ -86,26 +86,26 @@ public sealed class StationAiSystem : SharedStationAISystem
 
         if (!core.Owner.Valid)
         {
-            args.Cancel();
+            args.Cancelled = true;
             return;
         }
 
         if (args.Target != null && Transform(core).GridUid != Transform(args.Target.Value).GridUid)
         {
-            args.Cancel();
+            args.Cancelled = true;
             return;
         }
 
 
         if (HasComp<ItemComponent>(args.Target))
         {
-            args.Cancel();
+            args.Cancelled = true;
             return;
         }
 
         if (HasComp<EntityStorageComponent>(args.Target))
         {
-            args.Cancel();
+            args.Cancelled = true;
             return;
         }
     }

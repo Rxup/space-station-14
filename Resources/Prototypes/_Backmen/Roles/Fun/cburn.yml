@@ -9,30 +9,45 @@
     neck: CombatKnifeSpetsnaz
     gloves: ClothingHandsGlovesCombat
     outerClothing: ClothingOuterHardsuitCBURN
-    suitstorage: WeaponPulseRifleXMLG
     id: idcoinRXBZZ
     ears: ClothingHeadsetEarthGov
     belt: WeaponAdvancedLaser
-    pocket1: ClothingPounchRXBZZFilled
+    pocket2: ClothingMedicalPounchRXBZZFilled
+
+- type: startingGear
+  id: RXBZZMedic
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitColorBlack
+    back: ClothingBackpackDuffelRXBZZMedic
+    shoes: ClothingShoesBootsMagArmy
+    mask: ClothingMaskGasRXBZZ
+    eyes: ClothingEyesHudMedical
+    neck: CombatKnifeSpetsnaz
+    gloves: ClothingHandsGlovesCombat
+    outerClothing: ClothingOuterHardsuitCBURN
+    id: idcoinRXBZZMedic
+    ears: ClothingHeadsetEarthGov
+    belt: ClothingBeltMedicalMarineRxbzz
     pocket2: ClothingMedicalPounchRXBZZFilled
 
 - type: startingGear
   id: RXBZZFlamer
   equipment:
     jumpsuit: ClothingUniformJumpsuitColorBlack
-    back: PowerpackFlame
     shoes: ClothingShoesBootsMagArmy
+    back: ClothingBackpackDuffelMilitary
     mask: ClothingMaskGasRXBZZ
-    eyes: ClothingEyesGlassesSecurity
+    eyes: ClothingEyesVision
     neck: CombatKnifeSpetsnaz
     gloves: ClothingHandsGlovesCombat
     outerClothing: ClothingOuterHardsuitCBURN
-    suitstorage: WeaponflamethrowerSG
-    id: idcoinRXBZZ
+    id: idcoinRXBZZSpecialist
     ears: ClothingHeadsetEarthGov
-    belt: ClothingBeltMilitaryWebbingFlamer
-    pocket1: ClothingPounchRXBZZSpecialistFilled
     pocket2: ClothingMedicalPounchRXBZZFilled
+  storage:
+    back:
+    - ArmySetLoadoutsSpecialist
+    - ArmySetLoadoutsSpecialistSecondary
 
 - type: startingGear
   id: RXBZZLeader
@@ -45,10 +60,18 @@
     neck: CombatKnifeSpetsnaz
     gloves: ClothingHandsGlovesCombat
     outerClothing: ClothingOuterHardsuitCBURNLeader
-    suitstorage: WeaponPulseRifleXMLG
     id: idcoinRXBZZSergant
     head: ClothingHeadHatERTLeaderBeret
     ears: ClothingHeadsetEarthGov
     belt: WeaponAdvancedLaser
-    pocket1: ClothingPounchRXBZZFilled
     pocket2: ClothingMedicalPounchRXBZZFilled
+
+- type: startingGear
+  id: RXBZZBlobLeader
+  parent: RXBZZLeader
+  storage:
+    back:
+    - NukeCodePaperStation
+    - PinpointerNuclear
+    - PinpointerNuclearBomb
+    - PaperOrderRXBZZ

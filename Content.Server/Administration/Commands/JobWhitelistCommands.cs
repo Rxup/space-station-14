@@ -9,7 +9,7 @@ using Robust.Shared.Prototypes;
 
 namespace Content.Server.Administration.Commands;
 
-[AdminCommand(AdminFlags.Ban)]
+[AdminCommand(AdminFlags.WhiteList)]
 public sealed class JobWhitelistAddCommand : LocalizedCommands
 {
     [Dependency] private readonly IServerDbManager _db = default!;
@@ -47,7 +47,7 @@ public sealed class JobWhitelistAddCommand : LocalizedCommands
             var isWhitelisted = await _db.IsJobWhitelisted(guid, job);
             if (isWhitelisted)
             {
-                shell.WriteLine(Loc.GetString("cmd-jobwhitelist-already-whitelisted",
+                shell.WriteLine(Loc.GetString("cmd-jobwhitelistadd-already-whitelisted",
                     ("player", player),
                     ("jobId", job.Id),
                     ("jobName", jobPrototype.LocalizedName)));
@@ -85,7 +85,7 @@ public sealed class JobWhitelistAddCommand : LocalizedCommands
     }
 }
 
-[AdminCommand(AdminFlags.Ban)]
+[AdminCommand(AdminFlags.WhiteList)]
 public sealed class GetJobWhitelistCommand : LocalizedCommands
 {
     [Dependency] private readonly IServerDbManager _db = default!;
@@ -137,7 +137,7 @@ public sealed class GetJobWhitelistCommand : LocalizedCommands
     }
 }
 
-[AdminCommand(AdminFlags.Ban)]
+[AdminCommand(AdminFlags.WhiteList)]
 public sealed class RemoveJobWhitelistCommand : LocalizedCommands
 {
     [Dependency] private readonly IServerDbManager _db = default!;

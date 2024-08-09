@@ -138,7 +138,7 @@
     - names_last_male
   - type: RandomHumanoidAppearance
     randomizeName: false
-  - type: InitialInfectedExempt
+  - type: AntagImmune
 
 
 # ERT Engineer
@@ -194,7 +194,7 @@
     - names_last_male
   - type: RandomHumanoidAppearance
     randomizeName: false
-  - type: InitialInfectedExempt
+  - type: AntagImmune
 
 # ERT Security
 - type: entity
@@ -246,7 +246,7 @@
     - names_last_male
   - type: RandomHumanoidAppearance
     randomizeName: false
-  - type: InitialInfectedExempt
+  - type: AntagImmune
 
 # ERT Medical
 - type: entity
@@ -301,7 +301,7 @@
     - names_last_male
   - type: RandomHumanoidAppearance
     randomizeName: false
-  - type: InitialInfectedExempt
+  - type: AntagImmune
 
 # ERT Junitor
 - type: entity
@@ -356,4 +356,4 @@
     - names_last_male
   - type: RandomHumanoidAppearance
     randomizeName: false
-  - type: InitialInfectedExempt
+  - type: AntagImmune

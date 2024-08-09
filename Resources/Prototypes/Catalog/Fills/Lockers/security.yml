@@ -24,6 +24,7 @@
         amount: 3
       - id: ClothingHeadCage # backmen
         amount: 2
+      - id: BookSpaceLaw
 
 - type: entity
   id: LockerWardenFilled
@@ -55,6 +56,7 @@
         amount: 3
       - id: ClothingHeadCage # backmen
         amount: 2
+      - id: BookSpaceLaw
 
 - type: entity
   id: LockerSecurityFilled
@@ -89,6 +91,8 @@
         amount: 2
       - id: HoloprojectorSecurity
         prob: 0.6
+      - id: BookSpaceLaw
+        prob: 0.5
 
 # backmen brigmedic's locker reworked
 - type: entity
@@ -152,6 +156,7 @@
       - id: RubberStampDetective
       - id: HoloprojectorSecurity
       - id: BoxEvidenceMarkers
+      - id: HandLabeler
 
 - type: entity
   id: ClosetBombFilled

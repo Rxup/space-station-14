@@ -49,6 +49,13 @@
 
 - type: statusIcon
   parent: JobIcon
+  id: JobIconMedic
+  icon:
+    sprite: /Textures/Backmen/Icons/jobicon.rsi
+    state: medic
+
+- type: statusIcon
+  parent: JobIcon
   id: JobIconCommander
   icon:
     sprite: /Textures/Backmen/Icons/jobicon.rsi

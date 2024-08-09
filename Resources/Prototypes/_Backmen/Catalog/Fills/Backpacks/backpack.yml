@@ -166,13 +166,53 @@
     - type: StorageFill
       contents:
         - id: MedkitAdvancedRXBZZ
-        - id: BoxShotgunIncendiary
-          amount: 1
-        - id: BoxLethalshot
-          amount: 2
         - id: WeaponDisabler
         - id: BoxFlare
-        - id: WeaponShotgun39Tactical
+        - id: ArmySetLoadouts
+
+- type: entity
+  noSpawn: true
+  parent: ClothingBackpackDuffelMilitary
+  id: ClothingBackpackDuffelRXBZZMedic
+  components:
+    - type: StorageFill
+      contents:
+        - id: ArmySetLoadouts
+        - id: MedkitAdvancedRXBZZ
+        - id: BoxFlare
+        - id: MedkitCombatFilled
+        - id: MedkitCombatFilled
+        - id: Defibrillator
+
+- type: entity
+  noSpawn: true
+  parent: ClothingBackpackDuffelMilitary
+  id: ClothingBackpackDuffelRockets
+  components:
+    - type: StorageFill
+      contents:
+        - id: CartridgeRocket
+          amount: 20
+
+- type: entity
+  noSpawn: true
+  parent: ClothingBackpackDuffelMilitary
+  id: ClothingBackpackDuffelMachingunFilled
+  components:
+    - type: StorageFill
+      contents:
+        - id: MagazineLightMachineGunDrum
+          amount: 6
+
+- type: entity
+  noSpawn: true
+  parent: ClothingBackpackDuffelMilitary
+  id: ClothingBackpackDuffelMachingunM41Filled
+  components:
+    - type: StorageFill
+      contents:
+        - id: MagazineHeavyRifleV41
+          amount: 6
 
 - type: entity
   name: продвинутая аптечка стимуляторов

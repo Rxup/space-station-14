@@ -25,11 +25,10 @@
       path: /Audio/Weapons/Guns/Gunshots/silenced.ogg
       params:
         volume: -2
-  - type: MechAssembly
-    requiredParts:
-      CanPilot: false
   - type: UseDelay
     delay: 0.7
+  - type: FollowDistance
+    backStrength: 4
 
 - type: entity
   name: M-28 Tactical
@@ -60,14 +59,13 @@
   - type: UseDelay
     delay: 0.3
   - type: UnpoweredFlashlight
-  - type: MechAssembly
-    requiredParts:
-      CanPilot: false
   - type: PointLight
     enabled: false
     mask: /Textures/Effects/LightMasks/cone.png
     autoRot: true
     radius: 8
+  - type: FollowDistance
+    backStrength: 3
 
 - type: entity
   name: G-36 Tactical
@@ -97,9 +95,6 @@
     angleIncrease: -7
   - type: UseDelay
     delay: 0.6
-  - type: MechAssembly
-    requiredParts:
-      CanPilot: false
   - type: UnpoweredFlashlight
   - type: PointLight
     enabled: false
@@ -138,9 +133,8 @@
     angleIncrease: -7
   - type: UseDelay
     delay: 0.2
-  - type: MechAssembly
-    requiredParts:
-      CanPilot: false
+  - type: FollowDistance
+    backStrength: 4
 
 - type: entity
   name: MP5 Tactical
@@ -176,9 +170,8 @@
     radius: 8
   - type: UseDelay
     delay: 0.2
-  - type: MechAssembly
-    requiredParts:
-      CanPilot: false
+  - type: FollowDistance
+    backStrength: 4
 
 - type: entity
   name: XM1014 Tactical
@@ -207,6 +200,110 @@
     mask: /Textures/Effects/LightMasks/cone.png
     autoRot: true
     radius: 8
-  - type: MechAssembly
-    requiredParts:
-      CanPilot: false
+  - type: FollowDistance
+    backStrength: 4
+
+- type: entity
+  name: AK74-U Tactical
+  parent: WeaponRifleAKSU
+  id: WeaponRifleAKSUTactical
+  suffix: Автомат Tactical
+  components:
+  - type: Sprite
+    sprite: Backmen/Objects/Weapons/Gunsx64/Rifles/aksu.rsi/bigsuper.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-0
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: Clothing
+    sprite: Backmen/Objects/Weapons/Gunsx64/Rifles/aksu.rsi/tinysuper.rsi
+  - type: Item
+    sprite: Backmen/Objects/Weapons/Gunsx64/Rifles/aksu.rsi/tinysuper.rsi
+    size: NormalLarge
+  - type: BkmGunWieldBonus
+    cameraRecoilScalar: -4.5
+  - type: GunWieldBonus
+    minAngle: -23
+    maxAngle: 0
+    angleIncrease: -4
+  - type: Gun
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/silenced.ogg
+      params:
+        volume: -3
+  - type: UseDelay
+    delay: 0.1
+  - type: FollowDistance
+    backStrength: 4
+
+- type: entity
+  name: P-90 Tactical
+  parent: WeaponSubMachineGunP90
+  id: WeaponSubMachineGunP90Tactical
+  suffix: Пистолет-пулемёт Tactical
+  components:
+  - type: Sprite
+    sprite: Backmen/Objects/Weapons/Gunsx64/SMGs/p90.rsi/bigsuper.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-0
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: Clothing
+    sprite: Backmen/Objects/Weapons/Gunsx64/SMGs/p90.rsi/tinysuper.rsi
+  - type: Item
+    sprite: Backmen/Objects/Weapons/Gunsx64/SMGs/p90.rsi/tinysuper.rsi
+  - type: BkmGunWieldBonus
+    cameraRecoilScalar: -4.5
+  - type: GunWieldBonus
+    minAngle: -22
+    maxAngle: 0
+    angleIncrease: -5
+  - type: Gun
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/silenced.ogg
+      params:
+        volume: -3
+  - type: UseDelay
+    delay: 0.1
+  - type: FollowDistance
+    backStrength: 4
+
+- type: entity
+  name: RPD Tactical
+  parent: WeaponLightMachineGunRPD
+  id: WeaponLightMachineGunRPDTactical
+  suffix: Пулемёт Tactical
+  description: A cheap and robust machinegun, sometimes better known as an 'RPD'. Despite lacking attachment points beyond its underbarrel, remains a popular product on the black market with its cheap cost, high capacity and higher than usual caliber rounds.
+  components:
+  - type: Sprite
+    sprite: Backmen/Objects/Weapons/Gunsx64/LMGs/rpd/bigsuper.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-0
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: Clothing
+    sprite: Backmen/Objects/Weapons/Gunsx64/LMGs/rpd/tinysuper.rsi
+  - type: Item
+    sprite: Backmen/Objects/Weapons/Gunsx64/LMGs/rpd/tinysuper.rsi
+  - type: BkmGunWieldBonus
+    cameraRecoilScalar: -4.5
+  - type: GunWieldBonus
+    minAngle: -30
+    maxAngle: -50
+    angleIncrease: -3
+  - type: Gun
+    minAngle: 34
+    maxAngle: 55
+    cameraRecoilScalar: 5
+    fireRate: 5
+    soundGunshot:
+      path: /Audio/Weapons/Guns64/Rifles/ak47.ogg
+  - type: UseDelay
+    delay: 0.9
+  - type: ClothingSpeedModifier
+    walkModifier: 1
+    sprintModifier: 0.9
+  - type: GunRequiresWield

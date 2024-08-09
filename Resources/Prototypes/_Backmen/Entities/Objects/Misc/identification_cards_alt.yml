@@ -36,6 +36,36 @@
 
 - type: entity
   parent: idcoin
+  id: idcoinRXBZZSpecialist
+  name: жетон РХБЗЗ
+  noSpawn: true
+  components:
+  - type: IdCard
+    jobTitle: Войска РХБЗЗ Sierra-6
+    fullName: Специалист
+    jobIcon: JobIconSpecialits
+  - type: Access
+    groups:
+    - EarthGovSpecialits
+    - AllAccess
+
+- type: entity
+  parent: idcoin
+  id: idcoinRXBZZMedic
+  name: жетон РХБЗЗ
+  noSpawn: true
+  components:
+  - type: IdCard
+    jobTitle: Войска РХБЗЗ Sierra-6
+    fullName: Медик
+    jobIcon: JobIconMedic
+  - type: Access
+    groups:
+    - EarthGovMedic
+    - AllAccess
+
+- type: entity
+  parent: idcoin
   id: idcoinRXBZZSergant
   name: жетон РХБЗЗ Лидер
   noSpawn: true
@@ -45,10 +75,8 @@
     fullName: Командир Отряда
     jobIcon: JobIconSergant
   - type: Access
-    tags:
-    - EarthGov
-    - EarthGovCommand
     groups:
+    - EarthGov
     - AllAccess
 
 - type: entity

@@ -4,8 +4,10 @@
   # If item is not in list it will go at the bottom (ties broken by alert type enum value)
   id: BaseAlertOrder
   order:
+    - alertType: ChangelingBiomass
     - category: Health
     - category: Stamina
+    - alertType: ChangelingChemicals
     - category: ShadowkinPower
     - alertType: SuitPower
     - category: Internals
@@ -25,7 +27,6 @@
     - category: Thirst
     - alertType: Magboots
     - alertType: Pacified
-    - alertType: Deflecting
 
 - type: entity
   id: AlertSpriteView
@@ -476,11 +477,3 @@
     state: critical
   name: Debug6
   description: Debug
-
-- type: alert
-  id: Deflecting
-  icons:
-  - sprite: /Textures/Interface/Alerts/deflecting.rsi
-    state: deflecting0
-  name: alerts-deflecting-name
-  description: alerts-deflecting-desc

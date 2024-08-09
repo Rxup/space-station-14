@@ -8,7 +8,7 @@
       components:
       - TraitorRole
   - type: Objective
-    issuer: Gorlex-Marauders
+    issuer: issuer-Gorlex-Marauders
   - type: ObjectiveBlacklistRequirement
     blacklist:
       tags:

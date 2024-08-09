@@ -1,5 +1,8 @@
 ﻿using System.Linq;
+using Content.Server.Backmen.Abilities.Felinid;
 using Content.Server.Backmen.StationEvents.Components;
+using Content.Server.Ghost.Roles.Events;
+using Content.Server.Nutrition.Components;
 using Content.Server.StationEvents.Components;
 using Content.Server.Station.Components;
 using Robust.Shared.Map;
@@ -7,6 +10,7 @@ using Robust.Shared.Random;
 using Content.Server.StationEvents.Events;
 using Content.Shared.Backmen.Blob.Components;
 using Content.Shared.GameTicking.Components;
+using Content.Shared.Station.Components;
 using Robust.Server.Player;
 
 namespace Content.Server.Backmen.StationEvents.Events;
@@ -16,7 +20,15 @@ public sealed class BlobSpawnRule : StationEventSystem<BlobSpawnRuleComponent>
     [Dependency] private readonly IRobustRandom _random = default!;
     [Dependency] private readonly IPlayerManager _playerSystem = default!;
 
-    protected override void Started(EntityUid uid, BlobSpawnRuleComponent component, GameRuleComponent gameRule,
+    public override void Initialize()
+    {
+        base.Initialize();
+        SubscribeLocalEvent<BlobCarrierComponent, GhostRoleSpawnerUsedEvent>(OnSpawned);
+    }
+
+    protected override void Started(EntityUid uid,
+        BlobSpawnRuleComponent component,
+        GameRuleComponent gameRule,
         GameRuleStartedEvent args)
     {
         base.Started(uid, component, gameRule, args);
@@ -41,7 +53,7 @@ public sealed class BlobSpawnRule : StationEventSystem<BlobSpawnRuleComponent>
 
         if (validLocations.Count == 0)
         {
-            Sawmill.Info("No find any valid spawn location for blob");
+            Sawmill.Warning("There was no valid spawn points for blob!");
             return;
         }
 
@@ -58,5 +70,18 @@ public sealed class BlobSpawnRule : StationEventSystem<BlobSpawnRuleComponent>
 
         // start blob rule incase it isn't, for the sweet greentext
         GameTicker.StartGameRule("Blob");
+    }
+
+    // Because GameRule spawns just a GhostRoleSpawner, we can't just remove components
+    // right away, and need to track the event when entity is spawned.
+    private void OnSpawned(EntityUid uid, BlobCarrierComponent component, GhostRoleSpawnerUsedEvent args)
+    {
+        var carrier = args.Spawned;
+        if (!TryComp<BlobCarrierComponent>(carrier, out _))
+            return;
+
+        // Blob doesn't spawn when blob carrier was eaten.
+        RemComp<FoodComponent>(carrier);
+        RemComp<FelinidFoodComponent>(carrier);
     }
 }

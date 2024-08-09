@@ -32,3 +32,147 @@
       map: ["enum.GunVisualLayers.Base"]
     - state: mag-1
       map: ["enum.GunVisualLayers.Mag"]
+
+- type: entity
+  id: MagazineAntiMaterielRifleSR
+  name: rifle magazine (.60 anti-material)
+  description: Standart EarthGov type of heavy magazines.
+  parent: BaseItem
+  components:
+  - type: Tag
+    tags:
+      - MagazineAntiMaterielRifle
+  - type: BallisticAmmoProvider
+    mayTransfer: true
+    capacity: 10
+    proto: CartridgeAntiMateriel
+    whitelist:
+      tags:
+        - CartridgeAntiMateriel
+  - type: ContainerContainer
+    containers:
+      ballistic-ammo: !type:Container
+  - type: Item
+    size: Small
+    sprite: Backmen/Objects/Weapons/Gunsx64/Magazines/Rifle/sr127_mag.rsi
+  - type: Sprite
+    netsync: false
+    sprite: Backmen/Objects/Weapons/Gunsx64/Magazines/Rifle/sr127_mag.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: MagazineVisuals
+    magState: mag
+    steps: 2
+    zeroVisible: false
+  - type: Appearance
+
+- type: entity
+  id: MagazineHeavyRifleBR64
+  name: rifle magazine (.62 rifle)
+  description: Standart EarthGov type of heavy magazines.
+  parent: BaseItem
+  components:
+  - type: Tag
+    tags:
+      - MagazineHeavyRifle62
+  - type: BallisticAmmoProvider
+    mayTransfer: true
+    capacity: 20
+    proto: CartridgeRifleHeavy
+    whitelist:
+      tags:
+        - CartridgeRifle62
+  - type: ContainerContainer
+    containers:
+      ballistic-ammo: !type:Container
+  - type: Item
+    size: Small
+    sprite: Backmen/Objects/Weapons/Gunsx64/Magazines/Rifle/m16_mag.rsi
+  - type: Sprite
+    netsync: false
+    sprite: Backmen/Objects/Weapons/Gunsx64/Magazines/Rifle/m16_mag.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: MagazineVisuals
+    magState: mag
+    steps: 2
+    zeroVisible: false
+  - type: Appearance
+
+- type: entity
+  id: MagazineRifleRocket20
+  name: rifle magazine (рельсотрон)
+  description: Standart EarthGov type of heavy magazines.
+  parent: BaseItem
+  components:
+  - type: Tag
+    tags:
+      - MagazineRifleRocket20
+  - type: BallisticAmmoProvider
+    mayTransfer: true
+    capacity: 40
+    proto: CartridgeRifleRocket20
+    whitelist:
+      tags:
+        - CartridgeRifleRocket20
+  - type: ContainerContainer
+    containers:
+      ballistic-ammo: !type:Container
+  - type: Item
+    size: Small
+    sprite: Backmen/Objects/Weapons/Gunsx64/Magazines/Rifle/v31_mag.rsi
+  - type: Sprite
+    netsync: false
+    sprite: Backmen/Objects/Weapons/Gunsx64/Magazines/Rifle/v31_mag.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: MagazineVisuals
+    magState: mag
+    steps: 2
+    zeroVisible: false
+  - type: Appearance
+
+- type: entity
+  id: MagazineRifleLightSniper
+  name: rifle magazine (7,62 rifle)
+  description: Standart USSP type of heavy magazines.
+  parent: BaseItem
+  components:
+  - type: Tag
+    tags:
+      - MagazineRifleLightSniper
+  - type: BallisticAmmoProvider
+    mayTransfer: true
+    capacity: 20
+    proto: CartridgeRifleLight762
+    whitelist:
+      tags:
+        - CartridgeRifle762
+  - type: ContainerContainer
+    containers:
+      ballistic-ammo: !type:Container
+  - type: Item
+    size: Small
+    sprite: Backmen/Objects/Weapons/Gunsx64/Magazines/Rifle/svd_mag.rsi
+  - type: Sprite
+    netsync: false
+    sprite: Backmen/Objects/Weapons/Gunsx64/Magazines/Rifle/svd_mag.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: MagazineVisuals
+    magState: mag
+    steps: 2
+    zeroVisible: false
+  - type: Appearance

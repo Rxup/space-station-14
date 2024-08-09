@@ -292,3 +292,101 @@
     slots:
     - Hair
     - Snout
+
+- type: entity # backmen
+  parent: ClothingHeadBase
+  id: ClothingHeadHelmetSWAT
+  name: шлем SWAT
+  description:  Шлем SWATа, способен выдержать выстрел оружия.
+  components:
+  - type: Sprite
+    sprite: Backmen/Clothing/Head/Helmets/helm.rsi
+  - type: Clothing
+    sprite: Backmen/Clothing/Head/Helmets/helm.rsi
+  - type: IngestionBlocker
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.60
+        Slash: 0.8
+        Piercing: 0.9
+        Heat: 0.80
+
+- type: entity # backmen
+  parent: ClothingHeadBase
+  id: ClothingHeadHelmetGreenMilee
+  name: шлем милитарист
+  description:  Шлем милитарист, способен выдержать выстрел оружия.
+  components:
+  - type: Sprite
+    sprite: Backmen/Clothing/Head/Helmets/helmetgrin.rsi
+  - type: Clothing
+    sprite: Backmen/Clothing/Head/Helmets/helmetgrin.rsi
+  - type: IngestionBlocker
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.40
+        Slash: 0.3
+        Piercing: 0.9
+        Heat: 0.60
+
+- type: entity # backmen
+  parent: ClothingHeadBase
+  id: ClothingHeadHelmetTGMCwhite
+  name: белый боевой шлем
+  description:  Белый боевой шлем, способен выдержать выстрел оружия.
+  components:
+  - type: Sprite
+    sprite: Backmen/Clothing/Head/Helmets/helmwhitetgmc.rsi
+  - type: Clothing
+    sprite: Backmen/Clothing/Head/Helmets/helmwhitetgmc.rsi
+  - type: IngestionBlocker
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.30
+        Slash: 0.3
+        Piercing: 0.9
+        Heat: 0.60
+
+- type: entity # backmen
+  parent: ClothingHeadBase
+  id: ClothingHeadHelmetTGMCwhiteMed
+  name: белый медицинский шлем
+  description:  Белый боевой-медицинский шлем, способен выдержать выстрел оружия.
+  components:
+  - type: Sprite
+    sprite: Backmen/Clothing/Head/Helmets/helm_medtgmc.rsi
+  - type: Clothing
+    sprite: Backmen/Clothing/Head/Helmets/helm_medtgmc.rsi
+  - type: IngestionBlocker
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.30
+        Slash: 0.3
+        Piercing: 0.9
+        Heat: 0.60
+
+# Changeling
+- type: entity
+  parent: ClothingHeadBase
+  id: ChangelingClothingHeadHelmet
+  name: chitinous helmet
+  description: An all-consuming chitinous mass of armor.
+  suffix: Unremoveable
+  components:
+  - type: Sprite
+    sprite: Backmen/Changeling/ling_armor_helmet.rsi
+  - type: Clothing
+    sprite: Backmen/Changeling/ling_armor_helmet.rsi
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.9
+        Slash: 0.9
+        Piercing: 0.9
+        Heat: 0.9
+  - type: Unremoveable
+

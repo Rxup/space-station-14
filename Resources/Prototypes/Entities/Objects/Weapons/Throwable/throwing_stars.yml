@@ -31,6 +31,7 @@
         friction: 0.2
   - type: EmbeddableProjectile
     sound: /Audio/Weapons/star_hit.ogg
+  - type: LandAtCursor
   - type: DamageOtherOnHit
     damage:
       types:
@@ -50,3 +51,5 @@
   # also limits the crew's use
   - type: TimedDespawn
     lifetime: 30
+
+

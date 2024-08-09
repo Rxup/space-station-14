@@ -72,7 +72,6 @@
       amount: 3
   - type: Strap
     position: Stand
-    rotation: 180
     buckleSound: !type:SoundPathSpecifier
       path: /Audio/Effects/plant_rustle.ogg
     unbuckleSound: !type:SoundPathSpecifier

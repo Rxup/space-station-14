@@ -31,16 +31,6 @@ public sealed class PeacefulRoundEndSystem : EntitySystem
             if (!session.AttachedEntity.HasValue) continue;
 
             var entityId = session.AttachedEntity.Value;
-            // start-backmen: specforce
-            if (HasComp<SpecForceComponent>(entityId))
-            {
-                continue;
-            }
-            if (HasComp<GhostComponent>(entityId))
-            {
-                continue;
-            }
-            // end-backmen: specforce
             if (HasComp<MindShieldComponent>(entityId))
             {
                 continue;

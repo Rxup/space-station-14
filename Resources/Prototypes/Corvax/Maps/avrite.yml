@@ -1,7 +1,9 @@
 - type: gameMap
   id: CorvaxAvrite
   mapName: 'Avrite Station'
-  mapPath: /Maps/corvax_avrit.yml
+  mapPath: /Maps/corvax_avrite.yml
+  maxRandomOffset: 0
+  randomRotation: false
   minPlayers: 40
   stations:
     Avrit:
@@ -12,38 +14,8 @@
           nameGenerator:
             !type:NanotrasenNameGenerator
             prefixCreator: 'SY'
-        - type: GridSpawn
-          groups:
-            trade:
-              addComponents:
-                - type: ProtectedGrid
-                - type: TradeStation
-              paths:
-                - /Maps/Shuttles/trading_outpost.yml
-            mining:
-              paths:
-              - /Maps/Shuttles/mining_corvaxavrit.yml
-            # Spawn last
-            ruins:
-              hide: true
-              nameGrid: true
-              minCount: 2
-              maxCount: 2
-              stationGrid: false
-              paths:
-              - /Maps/Ruins/biodome_satellite.yml
-              - /Maps/Ruins/derelict.yml
-              - /Maps/Ruins/djstation.yml
-              - /Maps/Ruins/old_ai_sat.yml
-              - /Maps/Ruins/relaystation.yml
-              - /Maps/Ruins/syndicate_dropship.yml
-              - /Maps/Ruins/whiteship_ancient.yml
-              - /Maps/Ruins/whiteship_bluespacejumper.yml
-        - type: StationRandomTransform
-          enableStationRotation: false
-          maxStationOffset: null
         - type: StationEmergencyShuttle
-          emergencyShuttlePath: /Maps/Shuttles/emergency_corvaxavrit.yml
+          emergencyShuttlePath: /Maps/Shuttles/emergency_corvaxavrite.yml
         - type: StationJobs
           availableJobs:
             # service
@@ -97,5 +69,12 @@
             Prisoner: [ 2, 2]
             SAI: [1, 1] # backmen-SAI
             Brigmedic: [ 0, 1 ] # backmen-Brigmedic
-            BKBPLATech: [0, 3] # backmen-BPLA-Silicons
-            BKBPLAMED: [0, 3] # backmen-BPLAMED-Silicons
+            #BKBPLATech: [0, 3] # backmen-BPLA-Silicons
+            #BKBPLAMED: [0, 3] # backmen-BPLAMED-Silicons
+        # backmen blob-config-start HUGE
+        - type: StationBlobConfig
+          stageBegin: 40
+          stageCritical: 450
+          stageTheEnd: 900
+          specForceTeam: RXBZZBlobBig
+        # backmen blob-config-end

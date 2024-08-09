@@ -2,6 +2,8 @@
   id: CorvaxAstra
   mapName: 'Astra Station'
   mapPath: /Maps/corvax_astra.yml
+  maxRandomOffset: 0
+  randomRotation: false
   minPlayers: 30
   stations:
     Astra:
@@ -14,9 +16,6 @@
             prefixCreator: 'MT'
         - type: StationEmergencyShuttle
           emergencyShuttlePath: /Maps/Shuttles/corvax_emergency.yml
-        - type: StationRandomTransform
-          enableStationRotation: false
-          maxStationOffset: null
         - type: StationJobs
           availableJobs:
             # service
@@ -69,8 +68,19 @@
             Prisoner: [ 3, 3]
             SAI: [1, 1] # backmen-SAI
             Brigmedic: [ 0, 1 ] # backmen-Brigmedic
-            BKBPLATech: [0, 3] # backmen-BPLA-Silicons
-            BKBPLAMED: [0, 3] # backmen-BPLAMED-Silicons
+            #BKBPLATech: [0, 3] # backmen-BPLA-Silicons
+            #BKBPLAMED: [0, 3] # backmen-BPLAMED-Silicons
 
 
 
+        - type: StationGoal
+          goals:
+          - Shuttle
+          - Singularity
+          - SolarPanels
+          - Artifacts
+          - Bank
+          - Zoo
+          - MiningOutpost
+          - Tesla
+          - VirusologyAmbusol

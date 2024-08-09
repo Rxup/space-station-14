@@ -9,9 +9,10 @@ issuer-Donk-Pocket-Corp = [color=DarkRed]Donk Pocket Corp[/color]
       Члены Waffle Corp должны быть убиты на месте; нам нужна месть за их последний налет на наши объекты.
 objective-issuer-Donk-Pocket-Corp = [color=DarkRed]Donk Pocket Corp[/color]
 
-issuer-Gorlex-Marauders = [color=Red]Gorlex Marauders[/color]
-      Убей всех
-objective-issuer-Gorlex-Marauders = [color=Red]Gorlex Marauders[/color]
+issuer-Gorlex-Marauders = [color=Red]Gorlex Confederation[/color]
+      Мы объявлены в ОПЗ как террористическая организация, нам наплевать на то, как нас будут освещать общественность.
+      Просто убейте всех, даже других агентов синдиката, мы не имеем союзных отношений с кем-то, кроме нас самих.
+objective-issuer-Gorlex-Marauders = [color=Red]Gorlex Confederation[/color]
 
 issuer-Interdyne-Pharmaceutics = [color=LightBlue]Interdyne Pharmaceutics[/color]
       Вы агент передовой корпорации, вашу личность не должны узнать, даже остальные члены Синдиката.
@@ -31,3 +32,5 @@ issuer-Waffle-Corporation = [color=Brown]Waffle Corporation[/color]
       При вашем раскрытии, мы используем все возможные силы да бы вытащить вас, не брезгуйте замарать руки.
       Убивайте остальных агентов синдиката. Кроме агентов MI13.
 objective-issuer-Waffle-Corporation = [color=Brown]Waffle Corporation[/color]
+
+objective-issuer-vamp = Совет Вампиров

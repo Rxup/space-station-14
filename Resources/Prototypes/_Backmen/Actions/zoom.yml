@@ -7,3 +7,14 @@
     useDelay: 10
     icon: Backmen/Interface/VerbIcons/telegnosis.png
     event: !type:OpticZoomEffectActionEvent
+
+- type: entity
+  id: ActionToggleCamera # Do not change me!
+  name: Переключить камеру
+  description: Переключает камеру следующую за мышкой.
+  noSpawn: true
+  components:
+  - type: InstantAction
+    checkCanInteract: false
+    icon: Backmen/Interface/Actions/aim_mode/aimmode.png
+    event: !type:ToggleCameraEvent

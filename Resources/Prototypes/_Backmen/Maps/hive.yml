@@ -67,6 +67,6 @@
             Deliveryman: [ 2, 2 ]
           #silicon
             SAI: [ 1, 1 ]
-            BKBPLATech: [0, 3]
-            BKBPLAMED: [0, 3]
+            #BKBPLATech: [0, 3]
+            #BKBPLAMED: [0, 3]
             Borg: [ 3, 3 ]

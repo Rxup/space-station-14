@@ -46,7 +46,8 @@ public sealed class SacrificialAltarSystem : EntitySystem
     {
         base.Initialize();
         SubscribeLocalEvent<SacrificialAltarComponent, GetVerbsEvent<AlternativeVerb>>(AddSacrificeVerb);
-        SubscribeLocalEvent<SacrificialAltarComponent, BuckleChangeEvent>(OnBuckleChanged);
+        SubscribeLocalEvent<SacrificialAltarComponent, StrapAttemptEvent>(OnStrappedEvent);
+        SubscribeLocalEvent<SacrificialAltarComponent, UnstrapAttemptEvent>(OnUnstrappedEvent);
         SubscribeLocalEvent<SacrificialAltarComponent, SacrificeDoAfterEvent>(OnDoAfter);
 
     }
@@ -81,13 +82,14 @@ public sealed class SacrificialAltarSystem : EntitySystem
         args.Verbs.Add(verb);
     }
 
-    private void OnBuckleChanged(EntityUid uid, SacrificialAltarComponent component, ref BuckleChangeEvent args)
+    private void OnUnstrappedEvent(EntityUid uid, SacrificialAltarComponent component, ref UnstrapAttemptEvent args)
     {
-        if (component.DoAfter != null)
-        {
-            _doAfterSystem.Cancel(component.DoAfter);
-            component.DoAfter = null;
-        }
+        args.Cancelled = true;
+    }
+
+    private void OnStrappedEvent(EntityUid uid, SacrificialAltarComponent component, ref StrapAttemptEvent args)
+    {
+        args.Cancelled = true;
     }
 
     private void OnDoAfter(EntityUid uid, SacrificialAltarComponent component, SacrificeDoAfterEvent args)

@@ -269,6 +269,7 @@
         - Radio
         - DiscreteHealthAnalyzer
         - SurgeryTool
+        - Dropper
       components:
         - Hypospray
         - Injector
@@ -343,6 +344,7 @@
         - Bottle
         - Syringe
         - CigPack
+        - Dropper
       components:
         - Seed
         - Smokable
@@ -535,7 +537,51 @@
           tags:
           - CaptainSabre
   - type: Appearance
+  
+- type: entity # backmen
+  parent: [ClothingBeltBase, ClothingSlotBase]
+  id: ClothingBeltYamato
+  name: Ножны Ямато
+  description: Ножны для Ямато. Найдено в секторе "Бекман"
+  components:
+  - type: Sprite
+    sprite: Backmen/Clothing/Belt/yamato.rsi
+    state: sheath
+  - type: Clothing
+    sprite: Backmen/Clothing/Belt/yamato.rsi
+  - type: Item
+    size: Ginormous
+  - type: ItemSlots
+    slots:
+      item:
+        name: Sabre
+        insertVerbText: sheath-insert-verb
+        ejectVerbText: sheath-eject-verb
+        insertSound: /Audio/Items/sheath.ogg
+        ejectSound: /Audio/Items/unsheath.ogg
+        whitelist:
+          tags:
+          - YamatoSabre
+  - type: ItemMapper
+    mapLayers:
+      sheath-sabre:
+        whitelist:
+          tags:
+          - YamatoSabre
+  - type: Appearance
+  
+- type: entity # backmen
+  id: ClothingBeltYamatoFilled
+  parent: ClothingBeltYamato
+  suffix: Filled
+  components:
+  - type: ContainerFill
+    containers:
+      item:
+      - YamatoSabre
 
+- type: Tag
+  id: YamatoSabre
 # Belts without visualizers
 
 - type: entity

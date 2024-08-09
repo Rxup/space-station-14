@@ -7,13 +7,16 @@
     - type: Sprite
       sprite: Backmen/Clothing/Belt/mailbag.rsi
       state: icon
+    - type: Item
+      size: Ginormous
     - type: Clothing
       sprite: Backmen/Clothing/Belt/mailbag.rsi
       quickEquip: false
       slots: [belt]
     - type: Storage
+      maxItemSize: Normal
       grid:
-      - 0,0,19,9
-      whitelist:
-        components:
-          - Mail
+      - 0,0,5,1
+      # whitelist:
+        # components:
+          # - Mail

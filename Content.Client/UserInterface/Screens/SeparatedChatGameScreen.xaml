@@ -23,7 +23,6 @@
             <BoxContainer Name="TopLeftContainer" Orientation="Vertical">
                 <actions:ActionsBar Name="Actions" Access="Protected" />
                 <BoxContainer Name="VoteMenu" Access="Public" Orientation="Vertical"/>
-                <BoxContainer Name="RollerMenu" Access="Public" Orientation="Vertical"/> <!-- backmen: GhostRoller -->
             </BoxContainer>
             <alerts:AlertsUI Name="Alerts" Access="Protected" />
         </LayoutContainer>

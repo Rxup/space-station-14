@@ -14,6 +14,7 @@
     makeSentient: true
     name: ghost-role-information-space-dragon-name
     description: ghost-role-information-space-dragon-description
+    rules: ghost-role-information-space-dragon-rules
     raffle:
       settings: default
   - type: GhostTakeoverAvailable
@@ -141,12 +142,12 @@
   - type: NightVision
     isToggle: true
     color: "#808080"
+    playSoundOn: false
 
 
 - type: entity
   parent: BaseMobDragon
   id: MobDragon
-  suffix: No role or objectives
   components:
   - type: Dragon
     spawnRiftAction: ActionSpawnRift
@@ -158,7 +159,7 @@
     - MinorAntagonists
 
 - type: entity
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   id: DragonsBreathGun
   name: dragon's lung
   description: For dragon's breathing
@@ -184,6 +185,7 @@
   components:
   - type: GhostRole
     description: ghost-role-information-space-dragon-dungeon-description
+    rules: ghost-role-information-space-dragon-dungeon-rules
     raffle:
       settings: default
   - type: SlowOnDamage

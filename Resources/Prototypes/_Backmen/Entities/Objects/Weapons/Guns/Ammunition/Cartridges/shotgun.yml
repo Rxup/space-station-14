@@ -9,7 +9,7 @@
         map: [ "enum.AmmoVisualLayers.Base" ]
   - type: CartridgeAmmo
     proto: PelletShotgunSoulbreaker
-    count: 1
+    #count: 1
   - type: ChemicalAmmo
   - type: SolutionContainerManager
     solutions:
@@ -21,3 +21,49 @@
     maxTransferAmount: 15
   - type: SpentAmmoVisuals
     state: "practice"
+
+- type: entity
+  id: ShellShotgunMagnum12
+  name: shell (.12 gauge magnum)
+  parent: BaseShellShotgun
+  components:
+  - type: Sprite
+    sprite: Backmen/Objects/Weapons/Gunsx64/Ammunition/Casings/shotgun_shell.rsi
+    layers:
+      - state: base
+        map: [ "enum.AmmoVisualLayers.Base" ]
+  - type: CartridgeAmmo
+    proto: PelletShotgun
+    #count: 10
+    #spread: 16
+    soundEject:
+      collection: ShellEject
+  - type: EmitSoundOnLand
+    sound:
+      collection: ShellLand
+      params:
+        volume: 1
+
+- type: entity
+  id: ShellShotgunFRAG12
+  name: shell (.12 gauge FRAG 12)
+  parent: BaseShellShotgun
+  components:
+  - type: Sprite
+    sprite: Backmen/Objects/Weapons/Gunsx64/Ammunition/Casings/shotgun_shell.rsi
+    layers:
+      - state: incendiary
+        map: [ "enum.AmmoVisualLayers.Base" ]
+  - type: CartridgeAmmo
+    proto: PelletShotgunRocket
+    #count: 1
+    #spread: 1
+    soundEject:
+      collection: ShellEject
+  - type: SpentAmmoVisuals
+    state: "incendiary"
+  - type: EmitSoundOnLand
+    sound:
+      collection: ShellLand
+      params:
+        volume: 1

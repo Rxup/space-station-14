@@ -3,7 +3,6 @@ using Content.Server.Administration.Logs;
 using Content.Server.EUI;
 using Content.Server.Ghost.Roles.Components;
 using Content.Server.Ghost.Roles.Events;
-using Content.Server.Ghost.Roles.Raffles;
 using Content.Shared.Ghost.Roles.Raffles;
 using Content.Server.Ghost.Roles.UI;
 using Content.Server.Mind.Commands;
@@ -32,6 +31,7 @@ using Robust.Shared.Utility;
 using Content.Server.Popups;
 using Content.Shared.Verbs;
 using Robust.Shared.Collections;
+using Content.Shared.Ghost.Roles.Components;
 
 namespace Content.Server.Ghost.Roles
 {
@@ -47,7 +47,6 @@ namespace Content.Server.Ghost.Roles
         [Dependency] private readonly TransformSystem _transform = default!;
         [Dependency] private readonly SharedMindSystem _mindSystem = default!;
         [Dependency] private readonly Backmen.RoleWhitelist.WhitelistSystem _roleWhitelist = default!; // backmen: whitelist
-        [Dependency] private readonly Backmen.Ghost.Roles.GhostRoleRollerSystem _roleRoller = default!; // backmen: ghost roller
         [Dependency] private readonly SharedRoleSystem _roleSystem = default!;
         [Dependency] private readonly IGameTiming _timing = default!;
         [Dependency] private readonly PopupSystem _popupSystem = default!;
@@ -84,6 +83,7 @@ namespace Content.Server.Ghost.Roles
             SubscribeLocalEvent<GhostRoleMobSpawnerComponent, TakeGhostRoleEvent>(OnSpawnerTakeRole);
             SubscribeLocalEvent<GhostTakeoverAvailableComponent, TakeGhostRoleEvent>(OnTakeoverTakeRole);
             SubscribeLocalEvent<GhostRoleMobSpawnerComponent, GetVerbsEvent<Verb>>(OnVerb);
+            SubscribeLocalEvent<GhostRoleMobSpawnerComponent, GhostRoleRadioMessage>(OnGhostRoleRadioMessage);
             _playerManager.PlayerStatusChanged += PlayerStatusChanged;
         }
 
@@ -311,7 +311,6 @@ namespace Content.Server.Ghost.Roles
                 return;
 
             _ghostRoles[role.Comp.Identifier = GetNextRoleIdentifier()] = role;
-            _roleRoller.RegisterGhostRole(role); // backmen: ghost roller
             UpdateAllEui();
         }
 
@@ -322,7 +321,6 @@ namespace Content.Server.Ghost.Roles
                 return;
 
             _ghostRoles.Remove(comp.Identifier);
-            _roleRoller.UnregisterGhostRole(role); // backmen: ghost roller
             if (TryComp(role.Owner, out GhostRoleRaffleComponent? raffle))
             {
                 // if a raffle is still running, get rid of it
@@ -482,11 +480,6 @@ namespace Content.Server.Ghost.Roles
             // end-backmen: whitelist
 
             var ev = new TakeGhostRoleEvent(player);
-            // start-backmen: ghost roller
-            _roleRoller.Takeover(role, ref ev);
-            if(ev.TookRole)
-                return false;
-            // end-backmen: ghost roller
             RaiseLocalEvent(role, ref ev);
 
             if (!ev.TookRole)
@@ -815,6 +808,21 @@ namespace Content.Server.Ghost.Roles
                 var msg = Loc.GetString("ghostrole-spawner-select", ("mode", verbText));
                 _popupSystem.PopupEntity(msg, uid, userUid.Value);
             }
+        }
+
+        public void OnGhostRoleRadioMessage(Entity<GhostRoleMobSpawnerComponent> entity, ref GhostRoleRadioMessage args)
+        {
+            if (!_prototype.TryIndex(args.ProtoId, out var ghostRoleProto))
+                return;
+
+            // if the prototype chosen isn't actually part of the selectable options, ignore it
+            foreach (var selectableProto in entity.Comp.SelectablePrototypes)
+            {
+                if (selectableProto == ghostRoleProto.EntityPrototype.Id)
+                    return;
+            }
+
+            SetMode(entity.Owner, ghostRoleProto, ghostRoleProto.Name, entity.Comp);
         }
     }
 

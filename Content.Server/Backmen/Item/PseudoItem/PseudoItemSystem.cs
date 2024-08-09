@@ -11,9 +11,13 @@ using Content.Server.Popups;
 using Content.Server.Resist;
 using Content.Shared.Backmen.Item;
 using Content.Shared.Backmen.Item.PseudoItem;
+using Content.Shared.Examine;
+using Content.Shared.Interaction.Events;
+using Content.Shared.Mobs;
 using Content.Shared.Popups;
 using Content.Shared.Resist;
 using Content.Shared.Storage;
+using Content.Shared.Throwing;
 using Robust.Server.GameObjects;
 using Robust.Shared.Containers;
 using Robust.Shared.Prototypes;
@@ -35,11 +39,33 @@ public sealed class PseudoItemSystem : SharedPseudoItemSystem
 
         SubscribeLocalEvent<PseudoItemComponent, EntGotRemovedFromContainerMessage>(OnEntRemoved);
         SubscribeLocalEvent<PseudoItemComponent, GettingPickedUpAttemptEvent>(OnGettingPickedUpAttempt);
-        SubscribeLocalEvent<PseudoItemComponent, DropAttemptEvent>(OnDropAttempt);
         SubscribeLocalEvent<PseudoItemComponent, PseudoItemInsertDoAfterEvent>(OnDoAfter);
 
         SubscribeLocalEvent<PseudoItemComponent, EscapeInventoryEvent>(OnEscape, before: new[]{ typeof(EscapeInventorySystem) });
+        SubscribeLocalEvent<PseudoItemComponent, MobStateChangedEvent>(OnMobStateChanged);
+        SubscribeLocalEvent<PseudoItemComponent, ExaminedEvent>(OnExamine);
     }
+
+    private void OnExamine(Entity<PseudoItemComponent> ent, ref ExaminedEvent args)
+    {
+        if (!args.IsInDetailsRange) // Out of range? No status.
+            return;
+
+        var str = ent.Comp.Active ? Loc.GetString("pseudoitem-contained") : Loc.GetString("pseudoitem-not-contained");
+        args.PushMarkup(str);
+    }
+
+    private void OnMobStateChanged(Entity<PseudoItemComponent> ent, ref MobStateChangedEvent args)
+    {
+        if(!ent.Comp.Active)
+            return;
+        if (args.NewMobState is MobState.Critical or MobState.Dead)
+        {
+            ClearState(ent);
+        }
+    }
+
+
 
     private void ClearState(EntityUid uid, PseudoItemComponent? component = null)
     {
@@ -52,6 +78,7 @@ public sealed class PseudoItemSystem : SharedPseudoItemSystem
     private void ClearState(Entity<PseudoItemComponent> uid)
     {
         uid.Comp.Active = false;
+        Dirty(uid, uid.Comp);
         RemComp<ItemComponent>(uid);
         RemComp<CanEscapeInventoryComponent>(uid);
         _transformSystem.AttachToGridOrMap(uid);
@@ -127,11 +154,6 @@ public sealed class PseudoItemSystem : SharedPseudoItemSystem
         args.Cancel();
     }
 
-    private void OnDropAttempt(EntityUid uid, PseudoItemComponent component, DropAttemptEvent args)
-    {
-        if (component.Active)
-            args.Cancel();
-    }
     private void OnDoAfter(EntityUid uid, PseudoItemComponent component, DoAfterEvent args)
     {
         if (args.Handled || args.Cancelled || args.Args.Used == null)

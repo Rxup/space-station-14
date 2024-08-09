@@ -49,12 +49,12 @@
     duration: 1
     earliestStart: 50
     minimumPlayers: 20
-    maxOccurrences: 2 # can only happen once per round
+    maxOccurrences: 1 # can only happen once per round
   - type: BlobSpawnRule
     carrierBlobProtos:
-    - MobMouseCancer
+    - SpawnPointGhostBlobRat
     playersPerCarrierBlob: 30
-    maxCarrierBlob: 3
+    maxCarrierBlob: 2
 
 - type: entity
   id: BluespaceGoat
@@ -117,9 +117,9 @@
   noSpawn: true
   components:
     - type: GlimmerEvent
-      minimumGlimmer: 900
-      glimmerBurnLower: 50
-      glimmerBurnUpper: 110
+      minimumGlimmer: 400
+      glimmerBurnLower: 20
+      glimmerBurnUpper: 70
     - type: MassMindSwapRule
 
 - type: entity

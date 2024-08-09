@@ -181,6 +181,88 @@
 
 - type: entity
   parent: ClothingPounchMTF
+  id: ClothingPounchRXBZZEnergyFilled
+  noSpawn: true
+  components:
+    - type: StorageFill
+      contents:
+        - id: EnergyMag
+          amount: 6
+
+- type: entity
+  parent: ClothingPounchMTF
+  id: ClothingPounchRXBZZBigEnergyFilled
+  noSpawn: true
+  components:
+    - type: StorageFill
+      contents:
+        - id: BigEnergyMag
+          amount: 6
+
+- type: entity
+  parent: ClothingPounchMTF
+  id: ClothingPounchRXBZZSRFilled
+  noSpawn: true
+  components:
+    - type: StorageFill
+      contents:
+        - id: MagazineAntiMaterielRifleSR
+          amount: 6
+
+- type: entity
+  parent: ClothingPounchMTF
+  id: ClothingPounchRXBZZPPFilled
+  noSpawn: true
+  components:
+    - type: StorageFill
+      contents:
+        - id: MagazinePistolSubMachineGun
+          amount: 6
+
+- type: entity
+  parent: ClothingPounchMTF
+  id: ClothingPounchRXBZZRifleFilled
+  noSpawn: true
+  components:
+    - type: StorageFill
+      contents:
+        - id: MagazineRifle
+          amount: 6
+
+- type: entity
+  parent: ClothingBeltMilitaryWebbing
+  id: ClothingBeltMilitaryWebbingRXBZZGrenadeFilled
+  noSpawn: true
+  components:
+    - type: StorageFill
+      contents:
+        - id: GrenadeFrag
+          amount: 4
+        - id: GrenadeBlast
+          amount: 4
+
+- type: entity
+  parent: ClothingBeltMilitaryWebbing
+  id: ClothingBeltMilitaryWebbingPistolFilled
+  noSpawn: true
+  components:
+    - type: StorageFill
+      contents:
+        - id: MagazinePistolHighCapacity
+          amount: 8
+
+- type: entity
+  parent: ClothingBeltMilitaryWebbing
+  id: ClothingBeltMilitaryWebbingDivetFilled
+  noSpawn: true
+  components:
+    - type: StorageFill
+      contents:
+        - id: MagazinePistol345
+          amount: 8
+
+- type: entity
+  parent: ClothingPounchMTF
   id: ClothingPounchRXBZZSpecialistFilled
   noSpawn: true
   components:
@@ -224,6 +306,22 @@
           amount: 2
         - id: CombatMedipen
           amount: 4
+
+- type: entity
+  noSpawn: true
+  parent: ClothingBeltMedicalMarine
+  id: ClothingBeltMedicalMarineRxbzz
+  components:
+    - type: StorageFill
+      contents:
+        - id: CombatMedipen
+          amount: 6
+        - id: EmergencyMedipen
+          amount: 2
+        - id: MedicatedSuture
+          amount: 3
+        - id: RegenerativeMesh
+          amount: 3
 
 - type: entity
   noSpawn: true

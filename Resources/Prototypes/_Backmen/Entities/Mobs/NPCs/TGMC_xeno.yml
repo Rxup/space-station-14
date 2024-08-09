@@ -1141,8 +1141,8 @@
   - type: CartridgeAmmo
     deleteOnSpawn: true
     proto: XenoSpitBullet
-    count: 4
-    spread: 12
+    #count: 4
+    #spread: 12
 
 - type: entity
   id: XenoSpitBullet
@@ -1329,8 +1329,7 @@
     - FireThrowerBall
   - type: TimedDespawn
     lifetime: 5
-  - type: EmbeddableProjectile
-    offset: 0.15,0.15
+  - type: LandAtCursor
   - type: ThrowingAngle
     angle: 0
   - type: DamageOtherOnHit

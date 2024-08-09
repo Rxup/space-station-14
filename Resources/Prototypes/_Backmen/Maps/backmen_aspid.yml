@@ -9,7 +9,7 @@
       stationProto: StandardNanotrasenStation
       components:
         - type: StationNameSetup
-          mapNameTemplate: '{0} NCS Aspid {1}'
+          mapNameTemplate: 'NCS Aspid {1}'
           nameGenerator:
             !type:NanotrasenNameGenerator
             prefixCreator: '14'
@@ -17,18 +17,18 @@
           emergencyShuttlePath: /Maps/Shuttles/emergency_courser.yml
         - type: GridSpawn
           groups:
-            trade:
+            trade: !type:GridSpawnGroup
               addComponents:
                 - type: ArrivalsProtectGrid
                 - type: ProtectedGrid
                 - type: TradeStation
               paths:
                 - /Maps/Shuttles/trading_outpost.yml
-            mining:
+            mining: !type:GridSpawnGroup
               paths:
               - /Maps/Backmen/Grids/discoverer.yml # backmen-aspid-salvage-shuttle
             # Spawn last
-            ruins:
+            ruins: !type:GridSpawnGroup
               hide: true
               nameGrid: true
               minCount: 2
@@ -39,7 +39,6 @@
               - /Maps/Ruins/derelict.yml
               - /Maps/Ruins/djstation.yml
               - /Maps/Ruins/old_ai_sat.yml
-              - /Maps/Ruins/relaystation.yml
               - /Maps/Ruins/whiteship_ancient.yml
               - /Maps/Ruins/whiteship_bluespacejumper.yml
         - type: StationJobs
@@ -89,7 +88,7 @@
             Musician: [ 1, 1 ]
             #backmen
             Brigmedic: [ 1, 1 ] # backmen-Brigmedic
-            BKBPLATech: [0, 3] # backmen-BPLA-Silicons
-            BKBPLAMED: [0, 3] # backmen-BPLAMED-Silicons
+            #BKBPLATech: [0, 3] # backmen-BPLA-Silicons
+            #BKBPLAMED: [0, 3] # backmen-BPLAMED-Silicons
             Prisoner: [ 2, 3]
             SAI: [1, 1] # backmen-SAI

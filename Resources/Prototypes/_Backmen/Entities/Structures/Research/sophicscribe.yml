@@ -13,6 +13,7 @@
       - state: sophia
       - map: ["enum.SolutionContainerLayers.Fill"]
   - type: SophicScribe
+  - type: Emoting
   - type: Speech
     speechSounds: Snake
   - type: IntrinsicRadioReceiver

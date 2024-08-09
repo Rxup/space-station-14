@@ -14,7 +14,7 @@
             prefixCreator: 'MT'
         - type: GridSpawn
           groups:
-            trade:
+            trade: !type:GridSpawnGroup
               addComponents:
                 - type: ProtectedGrid
                 - type: TradeStation
@@ -64,6 +64,17 @@
             CargoTechnician: [ 3, 3 ]
             # backmen
             SAI: [1, 1] # backmen-SAI
+        # backmen blob-config-start SMALL
+        - type: StationBlobConfig
+          stageBegin: 20
+          stageCritical: 300
+          stageTheEnd: 600
+        # backmen blob-config-end
+        - type: StationGoal
+          goals:
+            - Artifacts
+            - XenobiologyRepair
+            - VirusologyAmbusol
     Payback:
       stationProto: NanotrasenStationNoArrivals
       components:
@@ -74,7 +85,7 @@
             prefixCreator: 'MT'
         - type: GridSpawn
           groups:
-            trade:
+            trade: !type:GridSpawnGroup
               addComponents:
                 - type: ProtectedGrid
                 - type: TradeStation
@@ -122,6 +133,15 @@
             Prisoner: [ 3, 6]
             SAI: [1, 1] # backmen-SAI
             Brigmedic: [ 0, 1 ] # backmen-Brigmedic
+        # backmen blob-config-start SMALL
+        - type: StationBlobConfig
+          stageBegin: 20
+          stageCritical: 300
+          stageTheEnd: 600
+        # backmen blob-config-end
+        - type: StationGoal
+          goals:
+            - SectorSecurity
     Lumber:
       stationProto: NanotrasenStationNoArrivals
       components:
@@ -132,18 +152,18 @@
             prefixCreator: 'MT'
         - type: GridSpawn
           groups:
-            trade:
+            trade: !type:GridSpawnGroup
               addComponents:
                 - type: ProtectedGrid
                 - type: TradeStation
                 - type: ArrivalsProtectGrid
               paths:
                 - /Maps/Shuttles/trading_outpost.yml
-            mining:
+            mining: !type:GridSpawnGroup
               paths:
               - /Maps/Shuttles/corvax_mining.yml
             # Spawn last
-            ruins:
+            ruins: !type:GridSpawnGroup
               hide: true
               nameGrid: true
               minCount: 3
@@ -154,7 +174,6 @@
               - /Maps/Ruins/derelict.yml
               - /Maps/Ruins/djstation.yml
               - /Maps/Ruins/old_ai_sat.yml
-              - /Maps/Ruins/relaystation.yml
               - /Maps/Ruins/syndicate_dropship.yml
               - /Maps/Ruins/whiteship_ancient.yml
               - /Maps/Ruins/whiteship_bluespacejumper.yml
@@ -197,3 +216,17 @@
             CargoTechnician: [ 3, 4 ]
             # backmen
             SAI: [1, 1] # backmen-SAI
+        # backmen blob-config-start SMALL
+        - type: StationBlobConfig
+          stageBegin: 20
+          stageCritical: 300
+          stageTheEnd: 600
+        # backmen blob-config-end
+        - type: StationGoal
+          goals:
+            - Shuttle
+            - Singularity
+            - SolarPanels
+            - Zoo
+            - MiningOutpost
+            - Tesla

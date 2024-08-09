@@ -85,3 +85,25 @@
         - state: green
         - sprite: Mobs/Animals/bat.rsi
           state: bat
+
+- type: entity
+  id: SpawnPointGhostBlobRat
+  name: точка спавна мыши блоба
+  suffix: Блоб, роль призрак
+  parent: MarkerBase
+  components:
+    - type: GhostRoleMobSpawner
+      prototype: MobMouseCancer
+    - type: GhostRole
+      makeSentient: true
+      name: blob-carrier-role-name
+      description: blob-carrier-role-desc
+      rules: blob-carrier-role-rules
+      raffle:
+        settings: default
+    - type: Sprite
+      sprite: Markers/jobs.rsi
+      layers:
+        - state: green
+        - sprite: Mobs/Animals/bat.rsi
+          state: bat

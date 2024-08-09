@@ -3,7 +3,6 @@ flavor-complex-enthralling = enthralling
 flavor-complex-sublime = sublime
 flavor-complex-holy = heavenly
 flavor-base-seeds = seeds
-flavor-complex-cotton = like cotton
 flavor-complex-vanilla = like vanilla
 flavor-complex-soju = like bold, alcoholic rice
 flavor-complex-orangecreamcicle = like creamy, alcoholic orange juice

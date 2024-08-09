@@ -23,7 +23,7 @@ public sealed partial class BkmVampireComponent : Component
     public int SprintLevel = 0;
 
     public EntityUid? ActionNewVamp;
-    public ProtoId<EntityPrototype> NewVamp = "ActionConvertToVampier";
+    public EntProtoId NewVamp = "ActionConvertToVampier";
 
     public Dictionary<string, FixedPoint2> DNA = new();
 }

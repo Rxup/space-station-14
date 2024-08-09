@@ -35,7 +35,7 @@ internal sealed class FreeProberRule : StationEventSystem<FreeProberRuleComponen
 
         List<Entity<TransformComponent>> possibleSpawns = new();
 
-        var query = EntityQueryEnumerator<GlimmerSourceComponent,TransformComponent, MetaDataComponent>();
+        var query = EntityQueryEnumerator<GlimmerSourceComponent, TransformComponent, MetaDataComponent>();
         while (query.MoveNext(out var glimmerSource, out var glimmerSourceComponent, out var transformComponent, out var metaDataComponent))
         {
             // skip anomaly in templates
@@ -45,7 +45,10 @@ internal sealed class FreeProberRule : StationEventSystem<FreeProberRuleComponen
             var station = _stationSystem.GetOwningStation(glimmerSource, transformComponent);
 
             // skip spawn on salvages!
-            if (station == null || !HasComp<StationEventEligibleComponent>(station))
+            if (station == null ||
+                !HasComp<StationEventEligibleComponent>(station) ||
+                transformComponent.GridUid == null ||
+                !HasComp<BecomesStationComponent>(transformComponent.GridUid))
                 continue;
 
             if (glimmerSourceComponent is { AddToGlimmer: true, Active: true })
@@ -66,7 +69,10 @@ internal sealed class FreeProberRule : StationEventSystem<FreeProberRuleComponen
                 var station = _stationSystem.GetOwningStation(battery, transformComponent);
 
                 // skip spawn on salvages!
-                if (station == null || !HasComp<StationEventEligibleComponent>(station))
+                if (station == null ||
+                    !HasComp<StationEventEligibleComponent>(station) ||
+                    transformComponent.GridUid == null ||
+                    !HasComp<BecomesStationComponent>(transformComponent.GridUid))
                     continue;
 
                 possibleSpawns.Add((battery,transformComponent));

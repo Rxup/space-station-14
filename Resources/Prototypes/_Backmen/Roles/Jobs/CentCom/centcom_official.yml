@@ -35,7 +35,7 @@
             - CentralCommand
         - type: Psionic
         - type: DispelPower
-        - type: InitialInfectedExempt
+        - type: AntagImmune
   minBankBalance: 400
   maxBankBalance: 600
   wageDepartment: CentCom

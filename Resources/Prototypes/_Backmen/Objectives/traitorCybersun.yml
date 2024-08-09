@@ -8,7 +8,7 @@
       components:
       - TraitorRole
   - type: Objective
-    issuer: Cybersun-Industries
+    issuer: issuer-Cybersun-Industries
   - type: ObjectiveBlacklistRequirement
     blacklist:
       tags:

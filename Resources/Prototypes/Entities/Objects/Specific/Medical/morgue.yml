@@ -1,6 +1,6 @@
 - type: entity
   id: BodyBag
-  parent: BaseFoldable
+  parent: BaseDeployFoldable
   name: body bag
   description: A plastic bag designed for the storage and transportation of cadavers to stop body decomposition.
   components:
@@ -130,6 +130,7 @@
     solution: food
   - type: Extractable
     grindableSolutionName: food
+  - type: BkmSupermatterImmune
 
 - type: entity
   parent: Ash

@@ -110,8 +110,6 @@
     lowPressureMultiplier: 1000
   - type: TemperatureProtection
     coefficient: 0.01
-  - type: FireProtection
-    reduction: 0.75 # almost perfectly sealed, atmos firesuit is better
   - type: ClothingSpeedModifier
     walkModifier: 0.4
     sprintModifier: 0.6
@@ -139,6 +137,9 @@
     - WhitelistChameleon
   - type: ClothingRequiredStepTriggerImmune
     slots: WITHOUT_POCKET
+  - type: ClothingGrant
+    component:
+    - type: BkmSupermatterImmune
 
 - type: entity
   abstract: true

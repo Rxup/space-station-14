@@ -28,9 +28,9 @@
   description: Испытайте удачу и откройте свой лутбокс!
   components:
     - type: VendingMachine
-      pack: VendingLootboxInventory
-      dispenseOnHitChance: 0.01
-      dispenseOnHitThreshold: 50
+      pack: BoozeOMatInventory
+      dispenseOnHitChance: 0.00001
+      dispenseOnHitThreshold: 5000
       offState: off
       brokenState: broken
       normalState: normal-unshaded
@@ -725,3 +725,63 @@
     radius: 1.5
     energy: 1.6
     color: "#326e3f"
+
+- type: entity # backmen
+  parent: VendingMachine
+  id: VendingMachineBackmen
+  name: Торгомат ViF
+  suffix: backmen
+  components:
+  - type: Sprite
+    sprite: Backmen/Structures/Machines/VendingMachines/backmen.rsi
+    layers:
+    - state: "off"
+      map: ["enum.VendingMachineVisualLayers.Base"]
+    - state: "off"
+      map: ["enum.VendingMachineVisualLayers.BaseUnshaded"]
+      shader: unshaded
+    - state: panel
+      map: ["enum.WiresVisualLayers.MaintenancePanel"]
+  - type: VendingMachine
+    pack: backmenDrobeInventory
+    offState: off
+    brokenState: broken
+    normalState: normal
+    denyState: deny-unshaded
+
+- type: vendingMachineInventory
+  id: backmenDrobeInventory
+  startingInventory:
+    ClothingUniformJumpsuitVergil: 1 # backmen
+    ClothingUniformJumpsuitPants: 2 # backmen
+    ClothingOuterCoatBlackdmc: 1 # backmen
+    ClothingOuterCoatBluedmc: 1 # backmen
+    ClothingOuterCoatDesertdmc: 1 # backmen
+    ClothingOuterCoatGolddmc: 1 # backmen
+    ClothingOuterCoatPurpledmc: 1 # backmen
+    ClothingOuterCoatReddmc: 1 # backmen
+    ClothingOuterCoatSnowdmc: 1 # backmen
+    ClothingUniformJumpsuitJeester: 1 # backmen
+    ClothingHeadJeester: 1 # backmen
+    ClothingHeadHelmetGreenMilee: 2 # backmen
+    ClothingHeadHatBeretVet: 2 # backmen
+    ClothingNeckCloakPoncho: 2 # backmen
+    ClothingNeckCloakGreenMantie: 2 # backmen
+    ClothingUniformJumpsuitCamo: 3 # backmen
+    ClothingUniformJumpsuitCamoB: 3 # backmen
+    ClothingUniformJumpsuitSuitSssp: 3 # backmen
+    ClothingShoesBootsBerrci: 3 # backmen
+    ClothingUniformJumpsuitUnder: 2 # backmen
+    ClothingUniformJumpsuitCloth: 2 # backmen
+    ClothingOuterCoatNT: 2 # backmen
+    ClothingOuterCoatBlackViF: 2 # backmen
+    ClothingOuterCoatJacket: 2 # backmen
+    ClothingNeckCloakSanabi: 1 # backmen
+    #TGMCwhite
+    ClothingUniformJumpsuitTGMCwhite: 2 # backmen
+    ClothingHandsGlovesTGMCwhite: 2 # backmen
+    ClothingMaskTGMCwhite: 2 # backmen
+    ClothingHeadHelmetTGMCwhite: 2 # backmen
+    ClothingHeadHelmetTGMCwhiteMed: 2 # backmen
+    ClothingNeckCloakTGMCwhite: 2 # backmen
+    ClothingBeltTGMCwhite: 2 # backmen

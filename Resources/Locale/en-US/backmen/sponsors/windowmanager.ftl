@@ -10,7 +10,9 @@ sponsor-win-manager-ghost-tier02 = Ashen
 sponsor-win-manager-ghost-tier03 = Dark
 sponsor-win-manager-ghost-tier04 = Icy
 sponsor-win-manager-ghost-tier05 = Snow
-
+sponsor-win-manager-ghost-tier06 = Star
+sponsor-win-manager-ghost-tier07 = Faceless
+sponsor-win-manager-ghost-tier08 = Kaiju
 sponsor-win-manager-theme = Ghost Theme:
 
 sponsor-win-manager-tier-0 = Free

@@ -96,8 +96,18 @@ public enum LogType
     AtmosTemperatureChanged = 88,
     DeviceNetwork = 89,
     StoreRefund = 90,
-
+    /// <summary>
+    /// User was rate-limited for some spam action.
+    /// </summary>
+    /// <remarks>
+    /// This is a default value used by <c>PlayerRateLimitManager</c>, though users can use different log types.
+    /// </remarks>
+    RateLimited = 91,
+    /// <summary>
+    /// A player did an item-use interaction of an item they were holding onto another object.
+    /// </summary>
+    InteractUsing = 92,
     //backmen
     Transactions = 120,
-    Psionics = 121
+    Psionics = 121,
 }

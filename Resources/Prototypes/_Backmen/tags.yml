@@ -122,4 +122,10 @@
   id: NanoTrasen
 
 - type: Tag
-  id: TempleOfBloodMoon
+  id: MagazinePistolEGov
+
+- type: Tag
+  id: CartridgeMagnum345
+
+- type: Tag
+  id: BulletMagnum345

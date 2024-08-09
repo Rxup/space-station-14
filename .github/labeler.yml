@@ -5,8 +5,9 @@
 "Changes: Map":
 - changed-files:
   - any-glob-to-any-file:
-    - 'Resources/Maps/*.yml'
-    - 'Resources/Prototypes/Maps/*.yml'
+    - 'Resources/Maps/**/*.yml'
+    - 'Resources/Prototypes/Maps/**/*.yml'
+    - 'Resources/Prototypes/Corvax/Maps/**/*.yml'
 
 "Changes: UI":
 - changed-files:
@@ -15,6 +16,10 @@
 "Changes: Localization":
 - changed-files:
   - any-glob-to-any-file: 'Resources/Locale/**/*.ftl'
+
+"Changes: Shaders":
+- changed-files:
+  - any-glob-to-any-file: '**/*.swsl'
 
 "No C#":
 - changed-files:

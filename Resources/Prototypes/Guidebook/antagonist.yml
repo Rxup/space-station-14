@@ -4,11 +4,13 @@
   text: "/ServerInfo/Guidebook/Antagonist/Antagonists.xml"
   children:
   - Traitors
+  - Changelings
   - NuclearOperatives
   - Zombies
   - Revolutionaries
   - MinorAntagonists
   - SpaceNinja
+  - Blob # backmen
 
 - type: guideEntry
   id: Traitors

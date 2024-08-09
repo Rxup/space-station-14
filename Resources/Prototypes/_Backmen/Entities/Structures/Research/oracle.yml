@@ -97,6 +97,7 @@
       - map: ["enum.SolutionContainerLayers.Fill"]
         state: oracle-0
   - type: Oracle
+  - type: Emoting
   - type: Speech
     speechSounds: Tenor
   - type: Psionic

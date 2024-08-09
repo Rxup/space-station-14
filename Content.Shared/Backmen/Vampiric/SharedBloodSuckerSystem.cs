@@ -17,6 +17,6 @@ public abstract class SharedBloodSuckerSystem : EntitySystem
     private void OnHealthExamined(EntityUid uid, BloodSuckedComponent component, HealthBeingExaminedEvent args)
     {
         args.Message.PushNewline();
-        args.Message.AddMarkup(Loc.GetString("bloodsucked-health-examine", ("target", uid)));
+        args.Message.TryAddMarkup(Loc.GetString("bloodsucked-health-examine", ("target", uid)), out _);
     }
 }

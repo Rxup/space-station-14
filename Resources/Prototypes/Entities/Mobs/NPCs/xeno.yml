@@ -1,6 +1,6 @@
 # Hacky for the stress test so don't even consider adding to this
 - type: entity
-  name: Burrower
+  name: burrower
   id: MobXeno
   parent: SimpleSpaceMobBase
   description: They mostly come at night. Mostly.
@@ -21,15 +21,10 @@
         true
       NavSmash: !type:Bool
         true
-  - type: Tool
-    speedModifier: 1.5
-    qualities:
-      - Prying
   - type: Prying
-    pryPowered: !type:Bool
-        true
-    force: !type:Bool
-      true
+    pryPowered: true
+    force: true
+    speedModifier: 1.5
     useSound:
       path: /Audio/Items/crowbar.ogg
   - type: Reactive
@@ -131,9 +126,10 @@
   - type: NightVision
     isToggle: true
     color: "#808080"
+    playSoundOn: false
 
 - type: entity
-  name: Praetorian
+  name: praetorian
   parent: MobXeno
   id: MobXenoPraetorian
   components:
@@ -166,7 +162,7 @@
         - MobLayer
 
 - type: entity
-  name: Drone
+  name: drone
   parent: MobXeno
   id: MobXenoDrone
   components:
@@ -203,7 +199,7 @@
         - MobLayer
 
 - type: entity
-  name: Queen
+  name: queen
   parent: MobXeno
   id: MobXenoQueen
   components:
@@ -242,7 +238,7 @@
     - CannotSuicide
 
 - type: entity
-  name: Ravager
+  name: ravager
   parent: MobXeno
   id: MobXenoRavager
   components:
@@ -279,7 +275,7 @@
         - MobLayer
 
 - type: entity
-  name: Runner
+  name: runner
   parent: MobXeno
   id: MobXenoRunner
   components:
@@ -309,7 +305,7 @@
         - MobLayer
 
 - type: entity
-  name: Rouny
+  name: rouny
   parent: MobXenoRunner
   id: MobXenoRouny
   components:
@@ -324,7 +320,7 @@
       amount: 3
 
 - type: entity
-  name: Spitter
+  name: spitter
   parent: MobXeno
   id: MobXenoSpitter
   components:
@@ -390,6 +386,10 @@
         Base: dead_purple_snake
       Dead:
         Base: dead_purple_snake
+  - type: Butcherable
+    spawned:
+    - id: FoodMeatSnake
+      amount: 4
   - type: Grammar
     attributes:
       proper: true
@@ -456,5 +456,9 @@
         Base: dead_small_purple_snake
       Dead:
         Base: dead_small_purple_snake
+  - type: Butcherable
+    spawned:
+    - id: FoodMeatSnake
+      amount: 2
   - type: SolutionTransfer
     maxTransferAmount: 1

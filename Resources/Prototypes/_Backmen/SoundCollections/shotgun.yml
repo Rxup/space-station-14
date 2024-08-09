@@ -1,0 +1,6 @@
+- type: soundCollection
+  id: ShellLand
+  files:
+  - /Audio/Backmen/Weapons/ShotgunShell/shotgun_shell1.ogg
+  - /Audio/Backmen/Weapons/ShotgunShell/shotgun_shell2.ogg
+  - /Audio/Backmen/Weapons/ShotgunShell/shotgun_shell3.ogg

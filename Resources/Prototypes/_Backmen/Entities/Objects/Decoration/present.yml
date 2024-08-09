@@ -1,35 +1,35 @@
 ﻿- type: entity
-  id: PresentOracle
-  parent: [PresentBase, BaseItem]
-  name: маленький ящик пандоры
+  id: FlatpackOracle
+  parent: BaseFlatpack
+  name: пакет пандоры
   suffix: Оракул
   components:
-    - type: SpawnItemsOnUse
-      items:
-        - id: Oracle
-      sound:
-        path: /Audio/Effects/unwrap.ogg
+  - type: Sprite
+    layers:
+    - state: oracle
+  - type: Flatpack
+    entity: Oracle
 
 - type: entity
-  id: PresentSophie
-  parent: [PresentBase, BaseItem]
-  name: маленький ящик пандоры
+  id: FlatpackSophie
+  parent: BaseFlatpack
+  name: пакет пандоры
   suffix: София
   components:
-    - type: SpawnItemsOnUse
-      items:
-        - id: SophicScribe
-      sound:
-        path: /Audio/Effects/unwrap.ogg
+  - type: Sprite
+    layers:
+    - state: sophie
+  - type: Flatpack
+    entity: SophicScribe
 
 - type: entity
-  id: PresentMetempsychoticMachine
-  parent: [PresentBase, BaseItem]
-  name: маленький ящик пандоры
+  id: FlatpackMetempsychoticMachine
+  parent: BaseFlatpack
+  name: пакет пандоры
   suffix: КлонеркаСпешел
   components:
-  - type: SpawnItemsOnUse
-    items:
-    - id: MetempsychoticMachine
-    sound:
-      path: /Audio/Effects/unwrap.ogg
+  - type: Sprite
+    layers:
+    - state: ame-part
+  - type: Flatpack
+    entity: MetempsychoticMachine

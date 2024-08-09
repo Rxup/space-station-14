@@ -1,6 +1,7 @@
 ﻿using Content.Server.Backmen.Disease;
 using Content.Shared.Backmen.Disease;
 using Content.Shared.Chemistry.Reagent;
+using Content.Shared.EntityEffects;
 using JetBrains.Annotations;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype;
@@ -11,8 +12,10 @@ namespace Content.Server.Backmen.Chemistry.ReagentEffects;
 /// Default metabolism for medicine reagents.
 /// </summary>
 [UsedImplicitly]
-public sealed partial class ChemCauseDisease : ReagentEffect
+public sealed partial class ChemCauseDisease : EntityEffect
 {
+    public override bool ShouldLog => true;
+
     protected override string? ReagentEffectGuidebookText(IPrototypeManager prototype, IEntitySystemManager entSys)
         => Loc.GetString("reagent-effect-guidebook-chem-cause-disease", ("chance", Probability),
             ("disease", prototype.Index<DiseasePrototype>(Disease).Name));
@@ -30,11 +33,11 @@ public sealed partial class ChemCauseDisease : ReagentEffect
     [ViewVariables(VVAccess.ReadWrite)]
     public string Disease = default!;
 
-    public override void Effect(ReagentEffectArgs args)
+    public override void Effect(EntityEffectBaseArgs args)
     {
-        if (args.Scale != 1f)
+        if (args is EntityEffectReagentArgs reagentArgs && reagentArgs.Scale != 1f)
             return;
 
-        args.EntityManager.System<DiseaseSystem>().TryAddDisease(args.SolutionEntity, Disease);
+        args.EntityManager.System<DiseaseSystem>().TryAddDisease(args.TargetEntity, Disease);
     }
 }

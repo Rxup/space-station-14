@@ -28,9 +28,6 @@ public sealed partial class BlobbernautComponent : Component
     };
 
     [ViewVariables(VVAccess.ReadOnly)]
-    public bool IsDead = false;
-
-    [ViewVariables(VVAccess.ReadOnly)]
     [Access(Other = AccessPermissions.ReadWrite)]
     public EntityUid? Factory = default!;
 }

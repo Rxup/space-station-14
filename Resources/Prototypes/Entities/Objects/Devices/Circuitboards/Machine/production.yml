@@ -42,6 +42,22 @@
         GlassBeaker:
           amount: 2
           defaultPrototype: Beaker
+          
+- type: entity
+  id: ProtolatheCashMachineCircuitboard
+  parent: BaseMachineCircuitboard
+  name: принтер кредитов (машинная плата)
+  description: машина печатающая фальнишые кредиты.
+  components:
+    - type: MachineBoard
+      prototype: ProtolatheCash
+      stackRequirements:
+        MatterBin: 2
+        Manipulator: 2
+      tagRequirements:
+        GlassBeaker:
+          amount: 2
+          defaultPrototype: Beaker
 
 - type: entity
   parent: BaseMachineCircuitboard
@@ -1022,6 +1038,20 @@
       - MicrowaveMachineBoard
 
 - type: entity
+  id: SyndicateMicrowaveMachineCircuitboard
+  parent: BaseMachineCircuitboard
+  name: donk co. microwave machine board
+  components:
+    - type: Sprite
+      state: service
+    - type: MachineBoard
+      prototype: SyndicateMicrowave
+      stackRequirements:
+        Capacitor: 1
+        Glass: 2
+        Cable: 2
+
+- type: entity
   id: FatExtractorMachineCircuitboard
   parent: BaseMachineCircuitboard
   name: lipid extractor machine board
@@ -1239,3 +1269,16 @@
       Steel: 2
       Glass: 5
       Cable: 2
+
+- type: entity
+  parent: BaseMachineCircuitboard
+  id: CutterMachineCircuitboard
+  name: cutter machine board
+  components:
+  - type: MachineBoard
+    prototype: CutterMachine
+    stackRequirements:
+      Steel: 2
+      Capacitor: 1
+      Manipulator: 1
+      Cable: 1

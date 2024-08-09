@@ -293,3 +293,17 @@
     whitelist:
       tags:
         - ShellShotgun
+        
+- type: entity
+  parent: ClothingBeltMilitaryWebbing
+  id: ClothingBeltTGMCwhite
+  name: белая боевая разгрузка
+  description: Бронеразгрузка для ваших боеприпасов или иных нужных штучек для слежки.
+  components:
+  - type: Sprite
+    sprite: Backmen/Clothing/Belt/webbingtgmcwhite.rsi
+  - type: Clothing
+    sprite: Backmen/Clothing/Belt/webbingtgmcwhite.rsi
+
+        
+

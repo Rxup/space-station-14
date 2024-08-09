@@ -4,7 +4,7 @@
   id: BaseEvilTwinObjective
   components:
     - type: Objective
-      issuer: Злой Близнец
+      issuer: objective-issuer-evil-twin
       difficulty: 1
     - type: RoleRequirement
       roles:
@@ -46,8 +46,9 @@
   components:
     - type: Objective
       difficulty: 0
+      hideFromTotal: true
       unique: true
-      issuer: SpaceBank
+      issuer: objective-issuer-SpaceBank
       icon:
         sprite: Backmen/Objects/Tools/rimbank.rsi
         state: icon

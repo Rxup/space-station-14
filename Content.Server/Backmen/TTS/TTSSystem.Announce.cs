@@ -21,7 +21,16 @@ public sealed partial class TTSSystem
             return;
         }
 
-        var soundData = await GenerateTtsAnnouncement(args.Message, protoVoice.Speaker);
+        byte[]? soundData = null;
+        try
+        {
+            soundData = await GenerateTtsAnnouncement(args.Message, protoVoice.Speaker);
+
+        }
+        catch (Exception)
+        {
+            // skip!
+        }
         soundData ??= new byte[] { };
         RaiseNetworkEvent(new AnnounceTTSEvent(soundData, args.AnnouncementSound, args.AnnouncementSoundParams), args.Source);
     }

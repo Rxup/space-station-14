@@ -56,6 +56,7 @@
       - id: MedalCase
       - id: AntiPsychicKnife  # backmen
       - id: ClothingHeadCage # backmen
+      - id: HandheldReinforcementCentCom # backmen
       - id: ClothingHeadHatCapcap
 
 - type: entity
@@ -92,6 +93,7 @@
       # Corvax-Resprite-End
       - id: AntiPsychicKnife  # backmen
       - id: ClothingHeadCage # backmen
+      - id: HandheldReinforcementCentCom # backmen
 
 - type: entity
   id: LockerCaptainFilledNoLaser
@@ -117,6 +119,7 @@
       - id: RubberStampCaptain
       - id: JetpackCaptainFilled
       - id: MedalCase
+      - id: HandheldReinforcementCentCom # backmen
 
 - type: entity
   id: LockerHeadOfPersonnelFilled
@@ -277,8 +280,8 @@
       - id: BoxEncryptionKeyScience
       - id: AntiPsychicKnife # backmen
       - id: ClothingHeadCage # backmen
-      - id: PresentOracle # backmen
-      - id: PresentSophie # backmen
+      - id: FlatpackOracle # backmen
+      - id: FlatpackSophie # backmen
       - id: PonderingOrbTelepathic # backmen
       - id: ClothingHeadsetAltScience
       - id: EncryptionKeyBinary
@@ -302,8 +305,8 @@
       - id: BoxEncryptionKeyScience
       - id: AntiPsychicKnife # backmen
       - id: ClothingHeadCage # backmen
-      - id: PresentOracle # backmen
-      - id: PresentSophie # backmen
+      - id: FlatpackOracle # backmen
+      - id: FlatpackSophie # backmen
       - id: PonderingOrbTelepathic # backmen
       - id: ClothingHeadsetAltScience
       - id: EncryptionKeyBinary
@@ -349,6 +352,8 @@
       - id: AntiPsychicKnife # backmen
       - id: BookBusido # Corvax-Books
       - id: ClothingHeadCage # backmen
+      - id: BookBusido # Corvax-Books
+      - id: BookSpaceLaw
 
 - type: entity
   id: LockerHeadOfSecurityFilled
@@ -396,6 +401,7 @@
       - id: WeaponMultiphaseEnergyGun
       - id: AntiPsychicKnife # backmen
       - id: ClothingHeadCage # backmen
+      - id: BookSpaceLaw
 
 - type: entity
   id: LockerFreezerVaultFilled

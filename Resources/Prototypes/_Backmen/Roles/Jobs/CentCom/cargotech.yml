@@ -40,7 +40,7 @@
             - CentralCommand
         - type: PsionicBonusChance
           multiplier: 3
-        - type: InitialInfectedExempt
+        - type: AntagImmune
   minBankBalance: 200
   maxBankBalance: 300
   wageDepartment: CentCom

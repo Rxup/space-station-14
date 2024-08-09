@@ -233,13 +233,22 @@
     shoes: ClothingShoesBootsCombatFilled
 
 - type: loadout
+  id: JackBoots
+  equipment: JackBoots
+
+- type: startingGear
+  id: JackBoots
+  equipment:
+    shoes: ClothingShoesBootsJackFilled
+
+- type: loadout
   id: SecurityWinterBoots
   equipment: SecurityWinterBoots
 
 - type: startingGear
   id: SecurityWinterBoots
   equipment:
-    shoes: ClothingShoesBootsWinterSec
+    shoes: ClothingShoesBootsWinterSecFilled
 
 # PDA
 - type: loadout
@@ -323,6 +332,15 @@
   id: WeaponPistolDEagle
   equipment:
     pocket1: WeaponPistolDEagle
+
+- type: loadout
+  id: WeaponPistolM1911
+  equipment: WeaponPistolM1911
+
+- type: startingGear
+  id: WeaponPistolM1911
+  equipment:
+    pocket1: WeaponPistolM1911
 
 # Pocket 2 #Backmen
 
