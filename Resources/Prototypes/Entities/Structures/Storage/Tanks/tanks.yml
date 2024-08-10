@@ -12,10 +12,7 @@
   - type: Sprite
     sprite: Structures/Storage/tanks.rsi
     layers:
-      - state: fueltank-2
-      - state: fueltank-2-1
-        map: ["enum.SolutionContainerLayers.Fill"]
-        visible: false
+      - state: fueltank
   - type: Appearance
   - type: SolutionContainerVisuals
     maxFillLevels: 3
@@ -58,10 +55,7 @@
   - type: Sprite
     sprite: Structures/Storage/tanks.rsi
     layers:
-      - state: highfueltank-2
-      - state: highfueltank-2-1
-        map: ["enum.SolutionContainerLayers.Fill"]
-        visible: false
+      - state: highfueltank
   - type: SolutionContainerVisuals
     maxFillLevels: 7
     fillBaseName: highfueltank-2-
@@ -90,10 +84,7 @@
   - type: Sprite
     sprite: Structures/Storage/tanks.rsi
     layers:
-      - state: watertank-2
-      - state: watertank-2-1
-        map: ["enum.SolutionContainerLayers.Fill"]
-        visible: false
+      - state: watertank
   - type: Appearance
   - type: SolutionContainerVisuals
     maxFillLevels: 5
@@ -174,14 +165,10 @@
   - type: Sprite
     sprite: Structures/Storage/tanks.rsi
     layers:
-      - state: highwatertank-2
-      - state: highwatertank-2-1
-        map: ["enum.SolutionContainerLayers.Fill"]
-        visible: false
+      - state: highwatertank
   - type: Appearance
   - type: SolutionContainerVisuals
     maxFillLevels: 7
-    fillBaseName: highwatertank-2-
   - type: SolutionContainerManager
     solutions:
       tank:
@@ -206,13 +193,10 @@
     - type: Sprite
       sprite: Structures/Storage/tanks.rsi
       layers:
-        - state: generictank-1
-        - state: generictank-1-1 # Corvax-Resprite
-          map: ["enum.SolutionContainerLayers.Fill"]
+        - state: generictank
           visible: false
     - type: Appearance
     - type: SolutionContainerVisuals
       maxFillLevels: 5
-      fillBaseName: generictank-1- # Corvax-Resprite
     - type: ExaminableSolution
       solution: tank
