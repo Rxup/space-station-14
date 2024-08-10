@@ -51,13 +51,13 @@ jobs:
     - name: Run Content.Tests
       run: dotnet test --no-build --configuration DebugOpt Content.Tests/Content.Tests.csproj -- NUnit.ConsoleOut=0
 
-- name: Run Content.IntegrationTests
-  shell: pwsh
-  run: |
-    $env:DOTNET_gcServer=1
-    dotnet test --no-build --configuration DebugOpt Content.IntegrationTests/Content.IntegrationTests.csproj |
-    Select-String -NotMatch '\[ERRO\] system\.actions: Attempted to remove an action Переключить камеру' |
-    Select-String -NotMatch '\[ERRO\] entity: Caught exception while trying to recursively delete child entity'Audio
+    - name: Run Content.IntegrationTests
+      shell: pwsh
+      run: |
+        $env:DOTNET_gcServer=1
+        dotnet test --no-build --configuration DebugOpt Content.IntegrationTests/Content.IntegrationTests.csproj |
+        Select-String -NotMatch '\[ERRO\] system\.actions: Attempted to remove an action Переключить камеру' |
+        Select-String -NotMatch '\[ERRO\] entity: Caught exception while trying to recursively delete child entity'Audio
 
   ci-success:
     name: Build & Test Debug
