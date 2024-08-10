@@ -96,7 +96,7 @@
 #    minPlayers: 20
     minPlayers: 10   #cats
   - type: LoadMapRule
-    mapPath: /Maps/Nonstations/nukieplanet.yml
+    mapPath: /Maps/Backmen/Nonstations/nukieoutpost.yml # backmen nuke map
   - type: AntagSelection
     selectionTime: PrePlayerSpawn
     definitions:

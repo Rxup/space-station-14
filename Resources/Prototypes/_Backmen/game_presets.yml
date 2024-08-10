@@ -204,6 +204,7 @@
   showInVote: true
   minPlayers: 5
   rules:
+  - WageScheduler #backmen: currency
   - Changeling
   - SubGamemodesRule
   - BasicStationEventScheduler
@@ -219,9 +220,41 @@
   description: secret-description
   showInVote: false
   rules:
+  - WageScheduler #backmen: currency
   - Changeling
   - Traitor
   - SubGamemodesRule
   - BasicStationEventScheduler
   - GameRuleMeteorScheduler
+  - BasicRoundstartVariation
+
+- type: gamePreset
+  id: ExtendedThief
+  alias:
+  - vor
+  - thiefs
+  - thief
+  name: thief-extended-gamemode-title
+  description: thief-extended-gamemode-description
+  showInVote: false
+  rules:
+  - ExtendedThief
+  - BasicStationEventScheduler
+  - WageScheduler #backmen: currency
+  - BasicRoundstartVariation
+
+- type: gamePreset
+  id: Criminal
+  alias:
+  - criminal
+  - opg
+  name: criminal-gamemode-title
+  description: thief-extended-gamemode-description
+  showInVote: false
+  rules:
+  - Revolutionary
+  - ExtendedThief
+  - Traitor
+  - BasicStationEventScheduler
+  - WageScheduler #backmen: currency
   - BasicRoundstartVariation

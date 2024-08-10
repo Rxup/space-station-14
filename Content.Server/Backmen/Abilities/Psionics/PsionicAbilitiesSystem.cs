@@ -75,25 +75,24 @@ public sealed class PsionicAbilitiesSystem : EntitySystem
         AddComp<PsionicComponent>(uid);
 
         var newComponent = (Component) _componentFactory.GetComponent(powerComp);
-        newComponent.Owner = uid;
-
-        EntityManager.AddComponent(uid, newComponent);
+        AddComp(uid, newComponent);
     }
+
+    [ValidatePrototypeId<WeightedRandomPrototype>]
+    private const string RandomPsionicPowerPool = "RandomPsionicPowerPool";
 
     public void AddRandomPsionicPower(EntityUid uid)
     {
         AddComp<PsionicComponent>(uid);
 
-        if (!_prototypeManager.TryIndex<WeightedRandomPrototype>("RandomPsionicPowerPool", out var pool))
+        if (!_prototypeManager.TryIndex<WeightedRandomPrototype>(RandomPsionicPowerPool, out var pool))
         {
-            Logger.Error("Can't index the random psionic power pool!");
+            Log.Error("Can't index the random psionic power pool!");
             return;
         }
 
         // uh oh, stinky!
         var newComponent = (Component) _componentFactory.GetComponent(pool.Pick());
-        newComponent.Owner = uid;
-
         EntityManager.AddComponent(uid, newComponent);
 
         _glimmerSystem.Glimmer += _random.Next(1, 5);
@@ -107,9 +106,9 @@ public sealed class PsionicAbilitiesSystem : EntitySystem
         if (!psionic.Removable)
             return;
 
-        if (!_prototypeManager.TryIndex<WeightedRandomPrototype>("RandomPsionicPowerPool", out var pool))
+        if (!_prototypeManager.TryIndex<WeightedRandomPrototype>(RandomPsionicPowerPool, out var pool))
         {
-            Logger.Error("Can't index the random psionic power pool!");
+            Log.Error("Can't index the random psionic power pool!");
             return;
         }
 
@@ -126,6 +125,6 @@ public sealed class PsionicAbilitiesSystem : EntitySystem
         if(!noEffect)
             _statusEffectsSystem.TryAddStatusEffect(uid, "Stutter", TimeSpan.FromMinutes(5), false, "StutteringAccent");
 
-        RemComp<PsionicComponent>(uid);
+        RemCompDeferred<PsionicComponent>(uid);
     }
 }
