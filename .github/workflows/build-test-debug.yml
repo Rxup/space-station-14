@@ -52,9 +52,11 @@ jobs:
       run: dotnet test --no-build --configuration DebugOpt Content.Tests/Content.Tests.csproj -- NUnit.ConsoleOut=0
 
     - name: Run Content.IntegrationTests
+      shell: pwsh
       run: |
         $env:DOTNET_gcServer=1
-        dotnet test --no-build --configuration DebugOpt Content.IntegrationTests/Content.IntegrationTests.csproj | grep -v '\[ERRO\] system\.actions: Attempted to remove an action Переключить камеру' | grep -v '\[ERRO\] entity: Caught exception while trying to recursively delete child entity 'Audio
+        dotnet test --no-build --configuration DebugOpt Content.IntegrationTests/Content.IntegrationTests.csproj -- NUnit.ConsoleOut=0 NUnit.MapWarningTo=Failed
+        
   ci-success:
     name: Build & Test Debug
     needs:
