@@ -226,7 +226,7 @@
     state: frosted_window
 
 - type: entity
-  parent: WindowDirectional
+  parent: Window
   id: WindowDiagonal
   suffix: diagonal
   placement:
@@ -269,6 +269,3 @@
   - type: Construction
     graph: WindowDiagonal
     node: windowDiagonal
-
-
-
