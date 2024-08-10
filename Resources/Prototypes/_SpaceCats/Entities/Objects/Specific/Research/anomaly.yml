@@ -1,0 +1,19 @@
+- type: entity
+  parent: PinpointerBase
+  id: AnomalyPinpointer
+  name: M.A.F.
+  description: Manual Anomaly Finder. Shows where this freaking anomaly is. Amazing!
+  components:
+  - type: Sprite
+    sprite: Objects/Devices/pinpointer.rsi
+    layers:
+    - state: pinpointer-anomaly
+  - type: Icon
+    state: pinpointer-anomaly
+  - type: Pinpointer
+    component: Anomaly
+  - type: Tag
+    tags:
+    - HighRiskItem
+  - type: StealTarget
+    stealGroup: AnomalyPinpointer

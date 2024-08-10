@@ -1,0 +1,63 @@
+- type: entity
+  name: исследовательские челюсти жизни
+  parent: JawsOfLife
+  id: RnDJawsOfLife
+  description: Полезен для входа на станцию или в ее отделы.
+  components:
+  - type: Sprite
+    sprite: Objects/Tools/jaws_of_life.rsi
+    state: rnd_jaws_pry
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left
+      right:
+      - state: inhand-right
+    size: Normal
+  - type: Prying
+    speedModifier: 3.0
+  - type: MultipleTool
+    entries:
+      - behavior: Prying
+        sprite:
+          sprite: Objects/Tools/jaws_of_life.rsi
+          state: rnd_jaws_pry
+        useSound: /Audio/Items/jaws_pry.ogg
+        changeSound: /Audio/Items/change_jaws.ogg
+      - behavior: Cutting
+        sprite:
+          sprite: Objects/Tools/jaws_of_life.rsi
+          state: rnd_jaws_pry
+        useSound: /Audio/Items/jaws_cut.ogg
+        changeSound: /Audio/Items/change_jaws.ogg
+
+- type: entity
+  name: исследовательская дрель
+  parent: PowerDrill
+  id: RnDPowerDrill
+  description: Простая ручная дрель с электроприводом.
+  components:
+  - type: Sprite
+    sprite: Objects/Tools/drill.rsi
+    state: rnd_drill_screw
+    speedModifier: 1.5
+    useSound: /Audio/Items/drill_use.ogg
+  - type: MultipleTool
+    statusShowBehavior: true
+    entries:
+      - behavior: Screwing
+        sprite:
+          sprite: Objects/Tools/drill.rsi
+          state: rnd_drill_screw
+        useSound:
+          path: /Audio/Items/drill_use.ogg
+        changeSound:
+          path: /Audio/Items/change_drill.ogg
+      - behavior: Anchoring
+        sprite:
+          sprite: Objects/Tools/drill.rsi
+          state: rnd_drill_bolt
+        useSound:
+          path: /Audio/Items/drill_use.ogg
+        changeSound:
+          path: /Audio/Items/change_drill.ogg

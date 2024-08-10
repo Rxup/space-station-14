@@ -1,50 +1,26 @@
 {
   "version": 1,
   "license": "CC-BY-SA-3.0",
-  "copyright": "Taken from tgstation at commit https://github.com/tgstation/tgstation/commit/9c7d509354ee030300f63c701da63c17928c3b3b and modified by Swept",
+  "copyright": "Taken from CEV-Eris at https://github.com/discordia-space/CEV-Eris/blob/8b34cdc8aaaa1d69f8cf94467ee23a5a3a3fc31b/icons/obj/power.dmi by modificated @CrimeMoot",
   "size": {
     "x": 32,
     "y": 32
   },
   "states": [
     {
-      "name": "smes"
-    },
-		{
-      "name": "static"
-    },
-    {
-      "name": "smes-open"
-    },
-    {
-      "name": "smes-oc0"
-    },
-    {
-      "name": "smes-oc1",
+      "name": "smes",
       "delays": [
         [
-          0.5,
-          0.5
+          0.2,
+          0.2,
+          0.2,
+          0.2,
+          0.2
         ]
       ]
     },
     {
-      "name": "smes-oc2",
-      "delays": [
-        [
-          0.5,
-          0.5
-        ]
-      ]
-    },
-    {
-      "name": "smes-og1",
-      "delays": [
-        [
-          1,
-          1
-        ]
-      ]
+      "name": "smes-og1"
     },
     {
       "name": "smes-og2"
@@ -72,6 +48,33 @@
     },
     {
       "name": "smes-op2"
+    },
+    {
+      "name": "smes-oc1",
+      "delays": [
+        [
+          0.5,
+          0.5
+        ]
+      ]
+    },
+    {
+      "name": "smes-oc2",
+      "delays": [
+        [
+          0.5,
+          0.5
+        ]
+      ]
+    },
+    {
+      "name": "smes-oc0"
+    },
+    {
+      "name": "static"
+    },
+    {
+      "name": "smes-open"
     }
   ]
 }

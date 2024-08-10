@@ -107,8 +107,8 @@
     Plastic: 200
 
 - type: latheRecipe
-  id: PowerDrill
-  result: PowerDrill
+  id: RnDPowerDrill
+  result: RnDPowerDrill
   category: Tools
   completetime: 2
   materials:
@@ -216,8 +216,8 @@
     Plasma: 200
 
 - type: latheRecipe
-  id: JawsOfLife
-  result: JawsOfLife
+  id: RnDJawsOfLife
+  result: RnDJawsOfLife
   category: Tools
   completetime: 6
   materials:

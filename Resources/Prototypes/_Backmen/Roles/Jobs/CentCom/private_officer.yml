@@ -14,10 +14,12 @@
   requirements:
     - !type:DepartmentTimeRequirement
       department: Security
-      time: 108000
+#      time: 108000
+      time: 13000   #cats
     - !type:RoleTimeRequirement
       role: JobCentralCommandAssistant
-      time: 3600
+#      time: 3600
+      time: 1200   #cats
   access:
     - CentralCommand
     - CCSecurity

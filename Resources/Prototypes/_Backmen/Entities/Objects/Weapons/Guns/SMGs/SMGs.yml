@@ -3,7 +3,7 @@
   parent: BaseWeaponSubMachineGun
   id: WeaponSubMachineGunMP5
   suffix: Пистолет-пулемёт
-  description: The RivArms SMG-5 submachinegun, an update to a classic design. A light firearm capable of effective one-handed use that is ideal for close to medium range engagements.
+  description: Пистолет-пулемет RivArms SMG-5 - это обновление классического дизайна. Легкое огнестрельное оружие, которое можно эффективно использовать одной рукой и которое идеально подходит для боя на ближней и средней дистанции.
   components:
   - type: Sprite
     sprite: Backmen/Objects/Weapons/Gunsx64/SMGs/mp5/big.rsi
@@ -83,7 +83,7 @@
   parent: BaseWeaponSubMachineGun
   id: WeaponSubMachineGunMP7
   suffix: Пистолет-пулемёт
-  description: An archaic design going back hundreds of years, the SMG-7 was common in its day. Today it sees limited use as cheap computer-printed replicas or family heirlooms, though it somehow got into the hands of colonial rebels.
+  description: В свое время SMG-7, имеющий устаревший дизайн, насчитывающий сотни лет, был широко распространен. Сегодня он используется в качестве дешевых копий, напечатанных на компьютере, или семейных реликвий, хотя каким-то образом попал в руки колониальных повстанцев.
   components:
   - type: Sprite
     sprite: Backmen/Objects/Weapons/Gunsx64/SMGs/mp7/big.rsi
@@ -143,7 +143,7 @@
   parent: BaseWeaponSubMachineGun
   id: WeaponSubMachineGunVectorSpecial
   suffix: Пистолет-пулемёт
-  description: The Vector used by police special force.
+  description: Вектор, используемый полицейским спецназом.
   components:
   - type: Sprite
     sprite: Backmen/Objects/Weapons/Gunsx64/SMGs/vector/big.rsi
@@ -206,7 +206,7 @@
   parent: BaseWeaponSubMachineGun
   id: WeaponSubMachineGunSkorpion
   suffix: Пистолет-пулемёт
-  description: A robust, 20th century firearm that's a combination of pistol and submachinegun.
+  description: Надежное огнестрельное оружие 20-го века, представляющее собой комбинацию пистолета и автомата.
   components:
   - type: Sprite
     sprite: Backmen/Objects/Weapons/Gunsx64/SMGs/skorpion.rsi
@@ -255,7 +255,7 @@
   parent: BaseWeaponSubMachineGun
   id: WeaponSubMachineGunMP38
   suffix: Пистолет-пулемёт
-  description: The MP-38 is a old and cheap machinepistol used by rebels, it presents solid performance at longer ranges in a compact package, although suffers due to a slow rate of fire for its class.
+  description: MP-38 - это старый и дешевый пистолет-пулемет, используемый повстанцами, он обладает хорошей производительностью на больших дистанциях в компактном корпусе, хотя и страдает из-за низкой для своего класса скорострельности.
   components:
   - type: Sprite
     sprite: Backmen/Objects/Weapons/Gunsx64/SMGs/mp38/big.rsi
@@ -315,7 +315,7 @@
   parent: BaseWeaponSubMachineGun
   id: WeaponSubMachineGunUzi
   suffix: Пистолет-пулемёт
-  description: A cheap, reliable design and manufacture make this ubiquitous submachinegun useful despite the age. Put the fire selector to full auto for maximum firepower. Use two if you really want to go ham.
+  description: Недорогая, надежная конструкция и производство делают этот повсеместно используемый пистолет-пулемет полезным, несмотря на возраст. Установите переключатель огня в положение "авто" для достижения максимальной огневой мощи. Используйте два пистолета, если вы действительно хотите поразвлечься.
   components:
   - type: Sprite
     sprite: Backmen/Objects/Weapons/Gunsx64/SMGs/uzi.rsi
@@ -364,7 +364,7 @@
   parent: BaseWeaponSubMachineGun
   id: WeaponSubMachineGunPPSH41
   suffix: Пистолет-пулемёт
-  description: The PPSh-41 or /"Papasha/" is a USSP model submachinegun that many terrorist organizations had copied all over the years. Despite its small-hitting firepower, its reliablity, extreme longevity and high firepower rate proves useful for the hands of the user.
+  description: ППШ-41 или "Папаша" - это пистолет-пулемет модели USSP, который многие террористические организации копировали на протяжении многих лет. Несмотря на малую поражающую способность, его надежность, исключительная долговечность и высокая скорострельность оказываются полезными для рук пользователя.
   components:
   - type: Sprite
     sprite: Backmen/Objects/Weapons/Gunsx64/SMGs/ppsh41/big.rsi
@@ -426,7 +426,7 @@
   parent: BaseWeaponSubMachineGun
   id: WeaponSubMachineGunP90
   suffix: Пистолет-пулемёт
-  description: The P-90 is the EarthGov standard issue SMG. Its known for it's compact size and ease of use inside the field. It's usually carried by troops who want a lightweight firearm to rush with.
+  description: P-90 является стандартным стрелковым оружием правительства Земли. Он известен своими компактными размерами и простотой использования в полевых условиях. Его обычно носят военнослужащие, которым нужно легкое огнестрельное оружие для быстрой стрельбы.
   components:
   - type: Sprite
     sprite: Backmen/Objects/Weapons/Gunsx64/SMGs/p90.rsi
