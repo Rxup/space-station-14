@@ -193,7 +193,9 @@
     - type: Sprite
       sprite: Structures/Storage/tanks.rsi
       layers:
-        - state: generictank
+        - state: generictank-1
+        - state: generictank-1-1 # Corvax-Resprite
+          map: ["enum.SolutionContainerLayers.Fill"]
           visible: false
     - type: Appearance
     - type: SolutionContainerVisuals
