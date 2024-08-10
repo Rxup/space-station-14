@@ -38,7 +38,7 @@
   rules:
   - BlobGameMode
   - BasicStationEventScheduler
-  #  - WageScheduler #backmen: currency
+  #  -  #backmen: currency
   - BasicRoundstartVariation
   - SubGamemodesRule
 
@@ -54,7 +54,7 @@
   rules:
   - FleshCult
   - BasicStationEventScheduler
-  #  - WageScheduler #backmen: currency
+  #  -  #backmen: currency
   - BasicRoundstartVariation
   - SubGamemodesRule
 
@@ -70,7 +70,7 @@
   - FleshCult
   - Traitor
   - BasicStationEventScheduler
-  #  - WageScheduler #backmen: currency
+  #  -  #backmen: currency
   - BasicRoundstartVariation
 
 - type: gamePreset
@@ -85,7 +85,7 @@
     - Nukeops
     - FleshCult
     - BasicStationEventScheduler
-    #  - WageScheduler #backmen: currency
+    #  -  #backmen: currency
     - BasicRoundstartVariation
 
 - type: gamePreset
@@ -102,7 +102,7 @@
     - Revolutionary
     - BasicStationEventScheduler
     - Traitor
-    #  - WageScheduler #backmen: currency
+    #  -  #backmen: currency
     - BasicRoundstartVariation
 
 - type: gamePreset
@@ -119,7 +119,7 @@
     - Revolutionary
     - BasicStationEventScheduler
     - Nukeops
-    #  - WageScheduler #backmen: currency
+    #  -  #backmen: currency
     - BasicRoundstartVariation
 
 - type: gamePreset
@@ -137,7 +137,7 @@
   rules:
   - Zombie
   - BasicStationEventScheduler
-  #  - WageScheduler #backmen: currency
+  #  -  #backmen: currency
   - Traitor
   - BasicRoundstartVariation
 
@@ -156,7 +156,7 @@
   rules:
   - Zombie
   - BasicStationEventScheduler
-  #  - WageScheduler #backmen: currency
+  #  -  #backmen: currency
   - Nukeops
   - BasicRoundstartVariation
 
@@ -173,7 +173,7 @@
     - Nukeops
     - FleshCult
     - BasicStationEventScheduler
-    #  - WageScheduler #backmen: currency
+    #  -  #backmen: currency
     - Traitor
     - BasicRoundstartVariation
 
@@ -188,7 +188,7 @@
   description: survival-nukeops-description
   rules:
     - RampingStationEventScheduler
-    #  - WageScheduler #backmen: currency
+    #  -  #backmen: currency
     - Nukeops
     - BasicRoundstartVariation
 
@@ -204,7 +204,7 @@
   showInVote: true
   minPlayers: 5
   rules:
-  - WageScheduler #backmen: currency
+#  - WageScheduler #backmen: currency
   - Changeling
   - SubGamemodesRule
   - BasicStationEventScheduler
@@ -220,7 +220,7 @@
   description: secret-description
   showInVote: false
   rules:
-  - WageScheduler #backmen: currency
+#  - WageScheduler #backmen: currency
   - Changeling
   - Traitor
   - SubGamemodesRule
@@ -240,7 +240,7 @@
   rules:
   - ExtendedThief
   - BasicStationEventScheduler
-  - WageScheduler #backmen: currency
+#  - WageScheduler #backmen: currency
   - BasicRoundstartVariation
 
 - type: gamePreset
@@ -256,5 +256,5 @@
   - ExtendedThief
   - Traitor
   - BasicStationEventScheduler
-  - WageScheduler #backmen: currency
+#  - WageScheduler #backmen: currency
   - BasicRoundstartVariation
