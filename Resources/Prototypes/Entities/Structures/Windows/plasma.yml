@@ -31,10 +31,6 @@
           collection: WindowShatter
       - !type:SpawnEntitiesBehavior
         spawn:
-          BrokenWindow: #_SpaceCats
-            min: 1      #_SpaceCats
-            max: 1      #_SpaceCats
-
           ShardGlassPlasma:
             min: 1
             max: 2
