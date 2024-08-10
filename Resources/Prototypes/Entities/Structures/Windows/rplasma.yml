@@ -111,7 +111,7 @@
       - !type:DoActsBehavior
         acts: [ "Destruction" ]
   - type: StaticPrice
-    price: 66
+    price: 132
 
 - type: entity
   parent: PlasmaReinforcedWindowDirectional

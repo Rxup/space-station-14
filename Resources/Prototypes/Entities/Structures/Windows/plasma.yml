@@ -100,7 +100,7 @@
       - !type:DoActsBehavior
         acts: [ "Destruction" ]
   - type: StaticPrice
-    price: 30
+    price: 60
 
 - type: entity
   parent: PlasmaWindow

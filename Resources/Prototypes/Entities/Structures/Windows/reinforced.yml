@@ -136,7 +136,7 @@
       - !type:DoActsBehavior
         acts: [ "Destruction" ]
   - type: StaticPrice
-    price: 22
+    price: 44
 
 - type: entity
   parent: WindowReinforcedDirectional
