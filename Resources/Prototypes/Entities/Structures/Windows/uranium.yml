@@ -29,9 +29,12 @@
           collection: WindowShatter
       - !type:SpawnEntitiesBehavior
         spawn:
+          BrokenWindow: #_SpaceCats
+            min: 1      #_SpaceCats
+            max: 1      #_SpaceCats
           ShardGlassUranium:
             min: 1
-            max: 2
+            max: 3
       - !type:DoActsBehavior
         acts: [ "Destruction" ]
   - type: IconSmooth
@@ -97,7 +100,7 @@
     price: 40
 
 - type: entity
-  parent: UraniumWindow
+  parent: WindowDirectional
   id: UraniumWindowDiagonal
   suffix: diagonal
   placement:
