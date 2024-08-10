@@ -52,7 +52,7 @@
     damageOverlay:
       sprite: Structures/Windows/cracks.rsi
   - type: StaticPrice
-    price: 140
+    price: 100
   - type: RadiationBlocker
     resistance: 5
 
@@ -102,7 +102,7 @@
       - !type:DoActsBehavior
         acts: [ "Destruction" ]
   - type: StaticPrice
-    price: 140
+    price: 100
 
 - type: entity
   parent: WindowDirectional
