@@ -13,5 +13,5 @@ public sealed partial class PsionicBonusChanceComponent : Component
     /// It's here because AddComponentSpecial can't overwrite a component, and this is very role dependent.
     /// </summary>
     [DataField("warn")]
-    public bool Warn = true;
+    public bool Warn = false;
 }
