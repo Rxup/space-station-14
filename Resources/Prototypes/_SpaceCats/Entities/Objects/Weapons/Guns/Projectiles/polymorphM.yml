@@ -1,0 +1,37 @@
+# я понимаю что кидать все файлы в одну кучу очень очень плохо, но это для удобства и дальнейшего развития этой темы
+- type: polymorph
+  id: WizardForcedMoth
+  configuration:
+    entity: MobMoth
+    forced: true
+    inventory: Transfer
+    transferName: true
+    transferDamage: true
+    revertOnCrit: false
+    revertOnDeath: false
+
+- type: entity
+  id: ProjectilePolyboltMoth
+  parent: ProjectilePolyboltBase
+  name: Гены Нианов
+  description: Nooo, I don't wanna be Moth!
+  noSpawn: true
+  components:
+  - type: PolymorphOnCollide
+    polymorph: WizardForcedMoth
+    whitelist:
+      components:
+      - Body
+
+- type: entity
+  name: волшебная палочка полиморфа ниана!
+  parent: WeaponWandPolymorphBase
+  id: WeaponWandPolymorphMoth
+  description: На случай, когда вам срочно нужен крылья, а клоун выглядит как мотылёк!
+  components:
+  - type: BasicEntityAmmoProvider
+    proto: ProjectilePolyboltMoth
+    capacity: 1
+    count: 1
+
+
