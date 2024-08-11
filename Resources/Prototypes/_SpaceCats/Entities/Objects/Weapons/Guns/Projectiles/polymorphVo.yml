@@ -1,0 +1,37 @@
+# я понимаю что кидать все файлы в одну кучу очень очень плохо, но это для удобства и дальнейшего развития этой темы
+- type: polymorph
+  id: WizardForcedVox
+  configuration:
+    entity: MobVox
+    forced: true
+    inventory: Transfer
+    transferName: true
+    transferDamage: true
+    revertOnCrit: false
+    revertOnDeath: false
+
+- type: entity
+  id: ProjectilePolyboltVox
+  parent: ProjectilePolyboltBase
+  name: Гены Воксов
+  description: Nooo, I don't wanna be Vox!
+  noSpawn: true
+  components:
+  - type: PolymorphOnCollide
+    polymorph: WizardForcedVox
+    whitelist:
+      components:
+      - Body
+
+- type: entity
+  name: волшебная палочка полиморфа вокса
+  parent: WeaponWandPolymorphBase
+  id: WeaponWandPolymorphVox
+  description: На случай, когда вам срочно нужен пират, а клоун выглядит как чёрт!
+  components:
+  - type: BasicEntityAmmoProvider
+    proto: ProjectilePolyboltVox
+    capacity: 1
+    count: 1
+
+

@@ -1,0 +1,37 @@
+# я понимаю что кидать все файлы в одну кучу очень очень плохо, но это для удобства и дальнейшего развития этой темы
+- type: polymorph
+  id: WizardForcedOni
+  configuration:
+    entity: MobOni
+    forced: true
+    inventory: Transfer
+    transferName: true
+    transferDamage: true
+    revertOnCrit: false
+    revertOnDeath: false
+
+- type: entity
+  id: ProjectilePolyboltOni
+  parent: ProjectilePolyboltBase
+  name: Гены Они
+  description: Nooo, I don't wanna be Oni!
+  noSpawn: true
+  components:
+  - type: PolymorphOnCollide
+    polymorph: WizardForcedOni
+    whitelist:
+      components:
+      - Body
+
+- type: entity
+  name: волшебная палочка полиморфа óни
+  parent: WeaponWandPolymorphBase
+  id: WeaponWandPolymorphOni
+  description: На случай, когда вам срочно нужен громила, а клоун выглядит уж очень слабым.
+  components:
+  - type: BasicEntityAmmoProvider
+    proto: ProjectilePolyboltOni
+    capacity: 1
+    count: 1
+
+
