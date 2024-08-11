@@ -56,7 +56,7 @@
 
 - type: entity
   id: UraniumReinforcedWindowDirectional
-  parent: WindowDirectional
+  parent: ReinforcedUraniumWindow
   name: directional reinforced uranium window
   description: Don't smudge up the glass down there.
   placement:
