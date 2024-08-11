@@ -8,11 +8,11 @@
   },
   "states": [
     {
-      "name": "sleeper_1",
+      "name": "sleeper_0",
       "directions": 4
     },
     {
-      "name": "sleeper_0",
+      "name": "sleeper_1",
       "directions": 4
     }
   ]

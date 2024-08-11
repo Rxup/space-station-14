@@ -174,6 +174,7 @@
       - id: CigarCase
         prob: 0.15
       - id: DoorRemoteEngineering
+      - id: ClothingHeadHatBeretChiefEngineering #space cats
       - id: RubberStampCE
       - id: JetpackVoidFilled
       - id: ClothingHeadsetAltEngineering
@@ -201,6 +202,7 @@
         prob: 0.15
       - id: DoorRemoteEngineering
       - id: RubberStampCE
+      - id: ClothingHeadHatBeretChiefEngineering # space cats
       - id: ClothingHeadsetAltEngineering
       - id: BoxEncryptionKeyEngineering
       - id: AccessConfigurator
