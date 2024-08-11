@@ -237,7 +237,7 @@
       - id: ClothingHeadCage # backmen
       - id: MetempsychoticMachineCircuitboard # backmen
       - id: MaterialBiomass # backmen
-      - id: Gen_Guns 
+      - id: genguns 
 
 - type: entity
   id: LockerChiefMedicalOfficerFilled
@@ -264,7 +264,7 @@
       - id: ClothingHeadCage # backmen
       - id: MetempsychoticMachineCircuitboard # backmen
       - id: MaterialBiomass # backmen
-      - id: Gen_Guns
+      - id: genguns
 
 - type: entity
   id: LockerResearchDirectorFilledHardsuit
