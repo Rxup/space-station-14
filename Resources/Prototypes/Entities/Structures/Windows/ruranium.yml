@@ -101,7 +101,7 @@
         acts: [ "Destruction" ]
 
 - type: entity
-  parent: WindowDirectional
+  parent: UraniumReinforcedWindowDirectional
   id: ReinforcedUraniumWindowDiagonal
   suffix: diagonal
   placement:
