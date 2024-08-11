@@ -148,3 +148,5 @@
   - type: Construction
     graph: WindowDiagonal
     node: reinforcedUraniumWindowDiagonal
+  - type: StaticPrice
+    price: 100
