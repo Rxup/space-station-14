@@ -61,3 +61,61 @@
     - type: ContainerSpawnPoint
       containerId: storage
       spawnType: LateJoin
+
+- type: entity
+  parent: CryogenicSleepUnit
+  id: CryogenicSleepUnit
+  name: cryogenic sleep unit
+  description: A super-cooled container that keeps crewmates safe during space travel.
+  components:
+  - type: Sprite
+    noRot: true
+    sprite: Structures/cryostoragedark.rsi
+    layers:
+    - state: sleeper_0
+      map: ["base"]
+
+- type: entity
+  parent: CryogenicSleepUnit
+  id: CryogenicSleepUnit
+  name: cryogenic sleep unit
+  description: A super-cooled container that keeps crewmates safe during space travel.
+  components:
+  - type: Sprite
+    noRot: true
+    sprite: Structures/cryostoragemedical.rsi
+    layers:
+    - state: sleeper_0
+      map: ["base"]
+  - type: AccessReader
+    breakOnEmag: false
+    access: [ [ "Medical" ] ]
+
+- type: entity
+  parent: CryogenicSleepUnit
+  id: CryogenicSleepUnit
+  name: cryogenic sleep unit
+  description: A super-cooled container that keeps crewmates safe during space travel.
+  components:
+  - type: Sprite
+    noRot: true
+    sprite: Structures/cryostorageratvar.rsi
+    layers:
+    - state: sleeper_0
+      map: ["base"]
+
+- type: entity
+  parent: CryogenicSleepUnit
+  id: CryogenicSleepUnit
+  name: cryogenic sleep unit
+  description: A super-cooled container that keeps crewmates safe during space travel.
+  components:
+  - type: Sprite
+    noRot: true
+    sprite: Structures/cryostoragesyndicat.rsi
+    layers:
+    - state: sleeper_0
+      map: ["base"]
+  - type: AccessReader
+    breakOnEmag: false
+    access: [["NuclearOperative"]]
