@@ -54,19 +54,10 @@ jobs:
     - name: Run Content.IntegrationTests
       shell: pwsh
       run: |
-        $env:DOTNET_gcServer = "1"
-        $success = $false
-        while (-not $success) {
-          $result = dotnet test --no-build --configuration DebugOpt Content.IntegrationTests/Content.IntegrationTests.csproj -- NUnit.ConsoleOut=0 NUnit.MapWarningTo=Failed
-          if ($LASTEXITCODE -eq 0) {
-            $success = $true
-          } else {
-            Write-Host "Tests failed, retrying..."
-            Start-Sleep -Seconds 10 # Optional: wait before retrying
-          }
-        }
-
-    ci-success:
+        $env:DOTNET_gcServer=1
+        dotnet test --no-build --configuration DebugOpt Content.IntegrationTests/Content.IntegrationTests.csproj -- NUnit.ConsoleOut=0 NUnit.MapWarningTo=Failed
+        
+  ci-success:
     name: Build & Test Debug
     needs:
       - build
