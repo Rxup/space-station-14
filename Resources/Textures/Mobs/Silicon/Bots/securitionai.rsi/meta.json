@@ -8,11 +8,11 @@
   },
   "states": [
     {
-      "name": "medibot",
+      "name": "zoomba_sec",
       "directions": 4
     },
     {
-      "name": "medibot_l",
+      "name": "zoomba_sec_l",
       "directions": 4
     }
   ]
