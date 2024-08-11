@@ -1,0 +1,43 @@
+# я понимаю что кидать все файлы в одну кучу очень очень плохо, но это для удобства и дальнейшего развития этой темы
+- type: polymorph
+  id: WizardForcedSlimePerson
+  configuration:
+    entity: MobSlimePerson
+    forced: true
+    inventory: Transfer
+    transferName: true
+    transferDamage: true
+    revertOnCrit: false
+    revertOnDeath: false
+
+- type: entity
+  id: ProjectilePolyboltSlimePerson
+  parent: ProjectilePolyboltBase
+  name: Гены Слаймолюдов (не стабильные)
+  description: Nooo, I don't wanna be Vulpkanin!
+  noSpawn: true
+  components:
+  - type: PolymorphOnCollide
+    polymorph: WizardForcedSlimePerson
+    whitelist:
+      components:
+      - Body
+
+  - type: Projectile
+    damage:
+      types:
+          Cellular: 30
+
+
+- type: entity
+  name: волшебная палочка полиморфа Слаймо люда 
+  parent: WeaponWandPolymorphBase
+  id: WeaponWandPolymorphSlimePerson
+  description: На случай, когда вам срочно нужен слизь, а клоун выглядит как жижа!
+  components:
+  - type: BasicEntityAmmoProvider
+    proto: ProjectilePolyboltSlimePerson
+    capacity: 1
+    count: 1
+
+

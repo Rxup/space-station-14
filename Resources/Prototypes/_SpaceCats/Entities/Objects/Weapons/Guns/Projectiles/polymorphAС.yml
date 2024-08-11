@@ -1,0 +1,37 @@
+# я понимаю что кидать все файлы в одну кучу очень очень плохо, но это для удобства и дальнейшего развития этой темы
+- type: polymorph
+  id: WizardForcedArachneClassic
+  configuration:
+    entity: MobArachneClassic
+    forced: true
+    inventory: Transfer
+    transferName: true
+    transferDamage: true
+    revertOnCrit: false
+    revertOnDeath: false
+
+- type: entity
+  id: ProjectilePolyboltArachneClassic
+  parent: ProjectilePolyboltBase
+  name: Гены Арахнидов классических
+  description: Nooo, I don't wanna be ArachneClassic!
+  noSpawn: true
+  components:
+  - type: PolymorphOnCollide
+    polymorph: WizardForcedArachneClassic
+    whitelist:
+      components:
+      - Body
+
+- type: entity
+  name: волшебная палочка полиморфа арахнида классического
+  parent: WeaponWandPolymorphBase
+  id: WeaponWandPolymorphArachnidClassic
+  description: На случай, когда вам срочно нужена паутина, а клоун выглядит уж очень мерзко.
+  components:
+  - type: BasicEntityAmmoProvider
+    proto: ProjectilePolyboltArachneClassic
+    capacity: 1
+    count: 1
+
+
