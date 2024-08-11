@@ -54,6 +54,7 @@ jobs:
     - name: Run Content.IntegrationTests
       shell: pwsh
       run: |
+        $env:DOTNET_gcServer = "1"
         $success = $false
         while (-not $success) {
           $result = dotnet test --no-build --configuration DebugOpt Content.IntegrationTests/Content.IntegrationTests.csproj -- NUnit.ConsoleOut=0 NUnit.MapWarningTo=Failed
