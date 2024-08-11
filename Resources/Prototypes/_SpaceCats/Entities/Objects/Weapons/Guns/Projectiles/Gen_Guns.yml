@@ -1,9 +1,9 @@
 - type: entity
-  name: Генный манипулятор 
+  name: генный манипулятор 
   parent: BaseWeaponBatterySmall
   id: Gen_GunsAdmi
   description: Это устройство сделано в рамках программы сотрудничества НТ и государства безумных лун. Советую прочитать инструкцию.
-  suffix: Администраторам
+  suffix: Дебаг, Администраторам
   components:
   - type: Sprite
     sprite: _SpaceCats/Objects/Weapons/Guns/Misc/Gen_Guns.rsi
@@ -64,7 +64,7 @@
 
 
 - type: entity
-  name: Генный манипулятор  
+  name: генный манипулятор  
   parent: BaseWeaponBatterySmall
   id: Gen_Guns
   description: На наклейке с зади написано предупреждение (НЕ ИСПОЛЬЗОВАТЬ НА ОСОБЯХ ЖЕНСКОГО ПОЛА!). Из под крышки где предположительно должен быть аккумулятор вытекает что-то кислотное...
