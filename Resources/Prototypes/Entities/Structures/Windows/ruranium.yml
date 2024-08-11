@@ -28,9 +28,6 @@
           collection: WindowShatter
       - !type:SpawnEntitiesBehavior
         spawn:
-          BrokenWindow: #_SpaceCats
-            min: 1      #_SpaceCats
-            max: 1      #_SpaceCats
           ShardGlassUranium:
             min: 1
             max: 2
@@ -51,12 +48,14 @@
     trackAllDamage: true
     damageOverlay:
       sprite: Structures/Windows/cracks.rsi
+  - type: StaticPrice
+    price: 140
   - type: RadiationBlocker
     resistance: 5
 
 - type: entity
   id: UraniumReinforcedWindowDirectional
-  parent: ReinforcedUraniumWindow
+  parent: WindowDirectional
   name: directional reinforced uranium window
   description: Don't smudge up the glass down there.
   placement:
@@ -99,9 +98,11 @@
             max: 2
       - !type:DoActsBehavior
         acts: [ "Destruction" ]
+  - type: StaticPrice
+    price: 70
 
 - type: entity
-  parent: UraniumReinforcedWindowDirectional
+  parent: ReinforcedUraniumWindow
   id: ReinforcedUraniumWindowDiagonal
   suffix: diagonal
   placement:
