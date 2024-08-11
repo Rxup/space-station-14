@@ -237,7 +237,8 @@
       - id: ClothingHeadCage # backmen
       - id: MetempsychoticMachineCircuitboard # backmen
       - id: MaterialBiomass # backmen
-      - id: Gen_Guns # Space-Cats
+      - id: genguns 
+
 - type: entity
   id: LockerChiefMedicalOfficerFilled
   suffix: Filled
@@ -263,7 +264,8 @@
       - id: ClothingHeadCage # backmen
       - id: MetempsychoticMachineCircuitboard # backmen
       - id: MaterialBiomass # backmen
-      - id: Gen_Guns # Space-Cats
+      - id: genguns
+
 - type: entity
   id: LockerResearchDirectorFilledHardsuit
   suffix: Filled, Hardsuit
