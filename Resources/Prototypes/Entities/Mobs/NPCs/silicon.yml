@@ -211,7 +211,7 @@
     sprite: Mobs/Silicon/Bots/cleanbot.rsi
     layers:
       - state: cleanbot
-      - state: cleanbot_i
+      - state: cleanbot_l
   - type: Construction
     graph: CleanBot
     node: bot
