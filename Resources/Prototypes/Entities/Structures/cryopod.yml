@@ -64,7 +64,7 @@
 
 - type: entity
   parent: CryogenicSleepUnit
-  id: CryogenicSleepUnit
+  id: CryogenicSleepUnitdark
   name: cryogenic sleep unit
   description: A super-cooled container that keeps crewmates safe during space travel.
   components:
@@ -77,7 +77,7 @@
 
 - type: entity
   parent: CryogenicSleepUnit
-  id: CryogenicSleepUnit
+  id: CryogenicSleepUnitmedical
   name: cryogenic sleep unit
   description: A super-cooled container that keeps crewmates safe during space travel.
   components:
@@ -93,7 +93,7 @@
 
 - type: entity
   parent: CryogenicSleepUnit
-  id: CryogenicSleepUnit
+  id: CryogenicSleepUnitratvar
   name: cryogenic sleep unit
   description: A super-cooled container that keeps crewmates safe during space travel.
   components:
@@ -106,7 +106,7 @@
 
 - type: entity
   parent: CryogenicSleepUnit
-  id: CryogenicSleepUnit
+  id: CryogenicSleepUnityndicat
   name: cryogenic sleep unit
   description: A super-cooled container that keeps crewmates safe during space travel.
   components:
