@@ -184,15 +184,17 @@ public abstract class SharedMindSystem : EntitySystem
         // end-backmen: SAI
     }
 
+    /// <summary>
+    /// Checks to see if the user's mind prevents them from suicide
+    /// Handles the suicide event without killing the user if true
+    /// </summary>
     private void OnSuicide(EntityUid uid, MindContainerComponent component, SuicideEvent args)
     {
         if (args.Handled)
             return;
 
         if (TryComp(component.Mind, out MindComponent? mind) && mind.PreventSuicide)
-        {
-            args.BlockSuicideAttempt(true);
-        }
+            args.Handled = true;
     }
 
     public EntityUid? GetMind(EntityUid uid, MindContainerComponent? mind = null)

@@ -40,6 +40,7 @@ public sealed class FollowerSystem : EntitySystem
         SubscribeLocalEvent<FollowerComponent, PullStartedMessage>(OnPullStarted);
         SubscribeLocalEvent<FollowerComponent, EntityTerminatingEvent>(OnFollowerTerminating);
 
+        SubscribeLocalEvent<FollowedComponent, ComponentGetStateAttemptEvent>(OnFollowedAttempt);
         SubscribeLocalEvent<FollowerComponent, GotEquippedHandEvent>(OnGotEquippedHand);
         SubscribeLocalEvent<FollowedComponent, EntityTerminatingEvent>(OnFollowedTerminating);
         SubscribeLocalEvent<BeforeSaveEvent>(OnBeforeSave);
@@ -69,6 +70,21 @@ public sealed class FollowerSystem : EntitySystem
             return;
 
         component.Following = EnsureEntitySet<FollowedComponent>(state.Following, uid);
+    }
+
+    private void OnFollowedAttempt(Entity<FollowedComponent> ent, ref ComponentGetStateAttemptEvent args)
+    {
+        if (args.Cancelled)
+            return;
+
+        // Clientside VV stay losing
+        var playerEnt = args.Player?.AttachedEntity;
+
+        if (playerEnt == null ||
+            !ent.Comp.Following.Contains(playerEnt.Value) && !HasComp<GhostComponent>(playerEnt.Value))
+        {
+            args.Cancelled = true;
+        }
     }
 
     private void OnBeforeSave(BeforeSaveEvent ev)
