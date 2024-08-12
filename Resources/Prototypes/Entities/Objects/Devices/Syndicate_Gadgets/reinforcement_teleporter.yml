@@ -41,20 +41,20 @@
     - label: corvax-hidden-desc-ReinforcementRadioSyndicate-syndicate
       whitelistMind:
         components:
-          - TraitorRole
-          - NukeOperative
+        - TraitorRole
+        - NukeOperative
     - label: corvax-hidden-desc-ReinforcementRadio-engineering
       jobRequired:
-        - ChiefEngineer
-        - AtmosphericTechnician
-        - StationEngineer
-        - TechnicalAssistant
+      - ChiefEngineer
+      - AtmosphericTechnician
+      - StationEngineer
+      - TechnicalAssistant
     - label: corvax-hidden-desc-ReinforcementRadio-research
       jobRequired:
-        - ResearchAssistant
-        - ResearchDirector
-        - Scientist
-        - Borg
+      - ResearchAssistant
+      - ResearchDirector
+      - Scientist
+      - Borg
 # Corvax-HiddenDesc-End
 
 - type: entity

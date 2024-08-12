@@ -46,6 +46,7 @@
         settings: short
     - type: Loadout
       prototypes: [ DeathSquadGear ]
+      roleLoadout: [ RoleSurvivalEVA ]
     - type: RandomMetadata
       nameSegments:
         - NamesFirstMilitaryLeader
@@ -83,6 +84,7 @@
         settings: short
     - type: Loadout
       prototypes: [ ERTLeaderGear ]
+      roleLoadout: [ RoleSurvivalExtended ]
     - type: RandomMetadata
       nameSegments:
       - NamesFirstMilitaryLeader
@@ -113,6 +115,7 @@
         settings: short
     - type: Loadout
       prototypes: [ ERTLeaderGearEVA ]
+      roleLoadout: [ RoleSurvivalEVA ]
 
 - type: entity
   id: RandomHumanoidSpawnerERTLeaderEVALecter
@@ -135,6 +138,7 @@
         settings: short
     - type: Loadout
       prototypes: [ ERTLeaderGearEVALecter ]
+      roleLoadout: [ RoleSurvivalEVA ]
 
 ## ERT Chaplain
 
@@ -170,6 +174,7 @@
       - NamesLastMilitary
     - type: Loadout
       prototypes: [ ERTChaplainGear ]
+      roleLoadout: [ RoleSurvivalExtended ]
 
 - type: entity
   id: RandomHumanoidSpawnerERTChaplainEVA
@@ -195,6 +200,7 @@
         settings: short
     - type: Loadout
       prototypes: [ ERTChaplainGearEVA ]
+      roleLoadout: [ RoleSurvivalEVA ]
 
 ## ERT Janitor
 
@@ -231,6 +237,7 @@
       - NamesLastMilitary
     - type: Loadout
       prototypes: [ ERTJanitorGear ]
+      roleLoadout: [ RoleSurvivalExtended ]
 
 - type: entity
   id: RandomHumanoidSpawnerERTJanitorEVA
@@ -257,6 +264,7 @@
         settings: short
     - type: Loadout
       prototypes: [ ERTJanitorGearEVA ]
+      roleLoadout: [ RoleSurvivalEVA ]
 
 ## ERT Engineer
 
@@ -293,6 +301,7 @@
       - NamesLastMilitary
     - type: Loadout
       prototypes: [ ERTEngineerGear ]
+      roleLoadout: [ RoleSurvivalExtended ]
 
 - type: entity
   id: RandomHumanoidSpawnerERTEngineerEVA
@@ -319,6 +328,7 @@
         settings: short
     - type: Loadout
       prototypes: [ ERTEngineerGearEVA ]
+      roleLoadout: [ RoleSurvivalEVA ]
 
 ## ERT Security
 
@@ -357,6 +367,7 @@
       - NamesLastMilitary
     - type: Loadout
       prototypes: [ ERTSecurityGear ]
+      roleLoadout: [ RoleSurvivalExtended ]
 
 - type: entity
   id: RandomHumanoidSpawnerERTSecurityEVA
@@ -383,6 +394,7 @@
         settings: short
     - type: Loadout
       prototypes: [ ERTSecurityGearEVA ]
+      roleLoadout: [ RoleSurvivalEVA ]
 
 - type: entity
   id: RandomHumanoidSpawnerERTSecurityEVALecter
@@ -405,6 +417,7 @@
         settings: short
     - type: Loadout
       prototypes: [ ERTSecurityGearEVALecter ]
+      roleLoadout: [ RoleSurvivalEVA ]
 
 ## ERT Medic
 
@@ -441,6 +454,7 @@
       - NamesLastMilitary
     - type: Loadout
       prototypes: [ ERTMedicalGear ]
+      roleLoadout: [ RoleSurvivalExtended ]
 
 - type: entity
   id: RandomHumanoidSpawnerERTMedicalEVA
@@ -467,6 +481,7 @@
         settings: short
     - type: Loadout
       prototypes: [ ERTMedicalGearEVA ]
+      roleLoadout: [ RoleSurvivalEVA ]
 
 ## CBURN
 
@@ -490,6 +505,7 @@
   components:
     - type: Loadout
       prototypes: [CBURNGear]
+      roleLoadout: [ RoleSurvivalEVA ]
     - type: GhostRole
       name: ghost-role-information-cburn-agent-name
       description: ghost-role-information-cburn-agent-description
@@ -525,6 +541,7 @@
         settings: default
     - type: Loadout
       prototypes: [ CentcomGear ]
+      roleLoadout: [ RoleSurvivalStandard ]
 
 ## Syndicate
 
@@ -548,6 +565,7 @@
       randomizeName: false
     - type: Loadout
       prototypes: [SyndicateOperativeGearExtremelyBasic]
+      roleLoadout: [ RoleSurvivalSyndicate ]
 
 - type: entity
   id: RandomHumanoidSpawnerNukeOp
@@ -628,8 +646,6 @@
 - type: randomHumanoidSettings
   id: LostCargoTechnician
   parent: EventHumanoid
-  speciesBlacklist:
-  - Vox
   components:
     - type: GhostRole
       name: ghost-role-information-lost-cargo-technical-name
@@ -639,6 +655,8 @@
         settings: short
     - type: Loadout
       prototypes: [ LostCargoTechGearSuit, LostCargoTechGearCoat ]
+      roleLoadout: [ RoleSurvivalStandard ]
+
 
 # Clown troupe
 
@@ -681,8 +699,6 @@
   id: ClownTroupe
   parent: EventHumanoid
   randomizeName: false
-  speciesBlacklist:
-  - Vox
   components:
     - type: GhostRole
       name: ghost-role-information-clown-troupe-name
@@ -692,6 +708,7 @@
         settings: short
     - type: Loadout
       prototypes: [ ClownTroupe ]
+      roleLoadout: [ RoleSurvivalStandard ]
     - type: RandomMetadata
       nameSegments:
       - names_clown
@@ -703,6 +720,7 @@
   components:
     - type: Loadout
       prototypes: [ BananaClown ]
+      roleLoadout: [ RoleSurvivalStandard ]
 
 # Traveling exotic chef
 
@@ -733,8 +751,6 @@
 - type: randomHumanoidSettings
   id: TravelingChef
   parent: EventHumanoid
-  speciesBlacklist:
-  - Vox
   components:
     - type: GhostRole
       name: ghost-role-information-traveling-chef-name
@@ -744,6 +760,7 @@
         settings: short
     - type: Loadout
       prototypes: [ TravelingChef ]
+      roleLoadout: [ RoleSurvivalStandard ]
 
 # Disaster victim
 
@@ -795,8 +812,6 @@
 - type: randomHumanoidSettings
   id: DisasterVictimHead
   parent: EventHumanoidMindShielded
-  speciesBlacklist:
-  - Vox
   components:
     - type: GhostRole
       name: ghost-role-information-disaster-victim-name
@@ -811,6 +826,7 @@
   components:
     - type: Loadout
       prototypes: [ DisasterVictimRD, DisasterVictimRDAlt ]
+      roleLoadout: [ RoleSurvivalStandard ]
 
 - type: randomHumanoidSettings
   id: DisasterVictimCMO
@@ -818,6 +834,7 @@
   components:
     - type: Loadout
       prototypes: [ DisasterVictimCMO, DisasterVictimCMOAlt ]
+      roleLoadout: [ RoleSurvivalMedical ]
 
 - type: randomHumanoidSettings
   id: DisasterVictimCaptain
@@ -825,6 +842,7 @@
   components:
     - type: Loadout
       prototypes: [ DisasterVictimCaptain, DisasterVictimCaptainAlt ]
+      roleLoadout: [ RoleSurvivalStandard ]
 
 # Syndie Disaster Victim
 
@@ -855,8 +873,6 @@
 - type: randomHumanoidSettings
   id: SyndieDisasterVictim
   parent: EventHumanoid
-  speciesBlacklist:
-  - Vox
   components:
     - type: NpcFactionMember
       factions:
@@ -869,3 +885,4 @@
         settings: short
     - type: Loadout
       prototypes: [ SyndicateOperativeGearCivilian ]
+      roleLoadout: [ RoleSurvivalStandard ]
