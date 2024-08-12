@@ -156480,7 +156480,7 @@ entities:
     - type: Transform
       pos: 4.5,-29.5
       parent: 21002
-- proto: SolidSecretDoor
+- proto: WallSolid
   entities:
   - uid: 984
     components:
