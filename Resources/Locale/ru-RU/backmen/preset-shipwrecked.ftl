@@ -5,6 +5,7 @@ shipwrecked-description = Группа путешественников отпр
 shipwrecked-too-many-ready-players = Слишком много игроков было готово к игре! Количество готовых игроков { $readyPlayersCount } , но предел для этого режима { $maximumPlayers } .
 shipwrecked-no-one-ready = Нет готовых игроков! Невозможно начать игру с режимом Кораблекрушение.
 shipwrecked-shuttle-announcement = Анонс транспортного шаттла от { $sender }: { $message }
+department-Shipwrecked = мини игры
 department-Shipwrecked-description = Экипаж после кораблекрушения
 
 ## Round End

@@ -66,20 +66,12 @@
 
 - type: loadout
   id: WeaponRevolverMatebaNew
-  equipment: WeaponRevolverMatebaNew
-
-- type: startingGear
-  id: WeaponRevolverMatebaNew
   equipment:
     pocket1: WeaponRevolverMatebaNew
 
 # Pocket 2 #Backmen
 
 - type: loadout
-  id: SpeedLoaderMagnum
-  equipment: SpeedLoaderMagnum
-
-- type: startingGear
   id: SpeedLoaderMagnum
   equipment:
     pocket2: SpeedLoaderMagnum

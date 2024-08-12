@@ -134,6 +134,7 @@ public sealed partial class ExplosionSystem : SharedExplosionSystem
             return;
 
         component.DamageCoefficient = newCoefficient;
+        Dirty(entityUid, component);
     }
     // end-backmen: blob
 

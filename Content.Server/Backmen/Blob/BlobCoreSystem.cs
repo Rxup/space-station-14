@@ -15,6 +15,7 @@ using Content.Shared.Backmen.Blob;
 using Content.Shared.Backmen.Blob.Components;
 using Content.Shared.Damage;
 using Content.Shared.Destructible;
+using Content.Shared.Explosion.Components;
 using Content.Shared.FixedPoint;
 using Content.Shared.Objectives.Components;
 using Content.Shared.Popups;

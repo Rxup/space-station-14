@@ -139,7 +139,9 @@
 
 - type: loadout #Backmen
   id: ClothingNeckDonkPin
-  equipment: ClothingNeckDonkPin
+  storage:
+    back:
+    - ClothingNeckDonkPin
 
 - type: startingGear #Backmen
   id: ClothingNeckDonkPin
@@ -149,7 +151,9 @@
 
 - type: loadout #Backmen
   id: ClothingNeckDeForestPin
-  equipment: ClothingNeckDeForestPin
+  storage:
+    back:
+    - ClothingNeckDeForestPin
 
 - type: startingGear #Backmen
   id: ClothingNeckDeForestPin
@@ -159,7 +163,8 @@
 
 - type: loadout #Backmen
   id: ClothingNeckNakamuraPin
-  equipment: ClothingNeckNakamuraPin
+  equipment:
+    neck: ClothingNeckNakamuraPin
 
 - type: startingGear #Backmen
   id: ClothingNeckNakamuraPin
@@ -169,7 +174,9 @@
 
 - type: loadout #Backmen
   id: ClothingNeckLogistikaPin
-  equipment: ClothingNeckLogistikaPin
+  storage:
+    back:
+    - ClothingNeckLogistikaPin
 
 - type: startingGear #Backmen
   id: ClothingNeckLogistikaPin
@@ -179,7 +186,9 @@
 
 - type: loadout #Backmen
   id: ClothingNeckVitezstviPin
-  equipment: ClothingNeckVitezstviPin
+  storage:
+    back:
+    - ClothingNeckVitezstviPin
 
 - type: startingGear #Backmen
   id: ClothingNeckVitezstviPin
@@ -189,7 +198,9 @@
 
 - type: loadout #Backmen
   id: ClothingNeckNanoTrasenPin
-  equipment: ClothingNeckNanoTrasenPin
+  storage:
+    back:
+    - ClothingNeckNanoTrasenPin
 
 - type: startingGear #Backmen
   id: ClothingNeckNanoTrasenPin
@@ -199,7 +210,9 @@
 
 - type: loadout #Backmen
   id: ClothingNeckEarthPin
-  equipment: ClothingNeckEarthPin
+  storage:
+    back:
+    - ClothingNeckEarthPin
 
 - type: startingGear #Backmen
   id: ClothingNeckEarthPin
@@ -209,7 +222,8 @@
 
 - type: loadout #Backmen
   id: ClothingNeckUSSPPin
-  equipment: ClothingNeckUSSPPin
+  equipment:
+    back: ClothingNeckUSSPPin
 
 - type: startingGear #Backmen
   id: ClothingNeckUSSPPin
@@ -219,7 +233,9 @@
 
 - type: loadout #Backmen
   id: ClothingNeckSyndicakePin
-  equipment: ClothingNeckSyndicakePin
+  storage:
+    back:
+    - ClothingNeckSyndicakePin
 
 - type: startingGear #Backmen
   id: ClothingNeckSyndicakePin

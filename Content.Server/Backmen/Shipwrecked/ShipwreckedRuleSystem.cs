@@ -24,7 +24,6 @@ using Content.Server.GameTicking.Rules;
 using Content.Server.Ghost.Roles.Components;
 using Content.Server.Maps;
 using Content.Server.Mind;
-using Content.Server.Paper;
 using Content.Server.Parallax;
 using Content.Server.Popups;
 using Content.Server.Power.Components;
@@ -65,6 +64,7 @@ using Content.Shared.Maps;
 using Content.Shared.Mobs;
 using Content.Shared.Mobs.Systems;
 using Content.Shared.Movement.Components;
+using Content.Shared.Paper;
 using Content.Shared.Parallax;
 using Content.Shared.Parallax.Biomes;
 using Content.Shared.Physics;
@@ -1555,7 +1555,7 @@ public sealed class ShipwreckedRuleSystem : GameRuleSystem<ShipwreckedRuleCompon
         OpenAllRuleJobs(component);
     }
 
-    private EntityUid? SpawnManifest(EntityUid uid, ShipwreckedRuleComponent component)
+    private Entity<PaperComponent>? SpawnManifest(EntityUid uid, ShipwreckedRuleComponent component)
     {
         var consoleQuery = EntityQueryEnumerator<TransformComponent, ShuttleConsoleComponent>();
         while (consoleQuery.MoveNext(out var consoleUid, out var consoleXform, out _))
@@ -1563,7 +1563,9 @@ public sealed class ShipwreckedRuleSystem : GameRuleSystem<ShipwreckedRuleCompon
             if (consoleXform.GridUid != component.Shuttle)
                 continue;
 
-            return Spawn("PaperManifestPassenger", consoleXform.Coordinates);
+            var paper = Spawn("PaperManifestPassenger", consoleXform.Coordinates);
+
+            return (paper, EnsureComp<PaperComponent>(paper));
         }
 
         return null;
