@@ -837,6 +837,7 @@ public sealed class ShipwreckedRuleSystem : GameRuleSystem<ShipwreckedRuleCompon
             200f,
             5f,
             30f,
+            null,
             // Try not to break any tiles.
             // It's weird on planets.
             tileBreakScale: 0,
@@ -1137,6 +1138,7 @@ public sealed class ShipwreckedRuleSystem : GameRuleSystem<ShipwreckedRuleCompon
             200f,
             1f,
             100f,
+            null,
             // Try not to break any tiles.
             tileBreakScale: 0,
             maxTileBreak: 0,
@@ -1155,24 +1157,20 @@ public sealed class ShipwreckedRuleSystem : GameRuleSystem<ShipwreckedRuleCompon
         }
 
         // Fry the console.
-        var consoleQuery = EntityQueryEnumerator<TransformComponent, ShuttleConsoleComponent>();
-        while (consoleQuery.MoveNext(out var consoleUid, out var consoleXform, out _))
+        var consoleQuery = EntityQueryEnumerator<TransformComponent, DamageableComponent, ShuttleConsoleComponent>();
+        while (consoleQuery.MoveNext(out var consoleUid, out var consoleXform, out var damageableComponent, out _))
         {
             if (consoleXform.GridUid != component.Shuttle)
                 continue;
 
             var limit = _destructibleSystem.DestroyedAt(consoleUid);
 
-            // Here at Nyanotrasen, we have damage variance, so...
-            var damageVariance = _configurationManager.GetCVar(CCVars.DamageVariance);
-            limit *= 1f + damageVariance;
-
             var smash = new DamageSpecifier();
             smash.DamageDict.Add("Structural", limit);
-            _damageableSystem.TryChangeDamage(consoleUid, smash, ignoreResistances: true);
+            _damageableSystem.TryChangeDamage(consoleUid, smash, ignoreResistances: true, damageable: damageableComponent);
 
             // Break, because we're technically modifying the enumeration by destroying the console.
-            break;
+            //break;
         }
 
         var crashSound = new SoundPathSpecifier("/Audio/Nyanotrasen/Effects/crash_impact_metal.ogg");

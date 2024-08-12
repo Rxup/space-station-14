@@ -18,11 +18,11 @@ public sealed class FleshCultistSystem : EntitySystem
         SubscribeLocalEvent<FleshCultistComponent, GetStatusIconsEvent>(OnShowCultIcon);
     }
 
-    [ValidatePrototypeId<StatusIconPrototype>]
+    [ValidatePrototypeId<FactionIconPrototype>]
     private const string FleshcultistFaction = "FleshcultistFaction";
 
     private void OnShowCultIcon(Entity<FleshCultistComponent> ent, ref GetStatusIconsEvent args)
     {
-        args.StatusIcons.Add(_prototype.Index<StatusIconPrototype>(FleshcultistFaction));
+        args.StatusIcons.Add(_prototype.Index<FactionIconPrototype>(FleshcultistFaction));
     }
 }

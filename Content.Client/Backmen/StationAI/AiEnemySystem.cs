@@ -29,7 +29,7 @@ public sealed class AiEnemySystem : SharedAiEnemySystem
         //noop
     }
 
-    [ValidatePrototypeId<StatusIconPrototype>]
+    [ValidatePrototypeId<SecurityIconPrototype>]
     private const string AiEnemyStatus = "AiIconEnemyTarget";
     private void GetIcon(Entity<AIEnemyNTComponent> target, ref GetStatusIconsEvent args)
     {
@@ -37,6 +37,6 @@ public sealed class AiEnemySystem : SharedAiEnemySystem
 
         if (!EntityQuery.HasComp(ent) && !_ghostQuery.HasComp(ent))
             return;
-        args.StatusIcons.Add(_prototype.Index<StatusIconPrototype>(AiEnemyStatus));
+        args.StatusIcons.Add(_prototype.Index<FactionIconPrototype>(AiEnemyStatus));
     }
 }

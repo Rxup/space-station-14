@@ -50,7 +50,8 @@
     - id: SpaceCash1000
     - id: WeaponDisabler
     - id: Eftpos # backmen
-      amount: 3 # backmen
+    - id: Eftpos # backmen
+    - id: Eftpos # backmen
     # Corvax-Resprite-Start
     - id: ClothingHeadCaptainHat
     - id: ClothingOuterCoatCaptain

@@ -5,7 +5,8 @@
   abstract: true
   components:
   - type: Food
-    trash: Eggshells
+    trash:
+    - Eggshells
   - type: Sprite
     sprite: Backmen/Objects/Misc/eggspider.rsi
   - type: Item

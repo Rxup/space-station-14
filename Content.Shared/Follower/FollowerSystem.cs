@@ -45,10 +45,10 @@ public sealed class FollowerSystem : EntitySystem
         SubscribeLocalEvent<FollowedComponent, EntityTerminatingEvent>(OnFollowedTerminating);
         SubscribeLocalEvent<BeforeSaveEvent>(OnBeforeSave);
 
-        SubscribeLocalEvent<FollowedComponent, ComponentGetState>(OnFollowedGetState);
-        SubscribeLocalEvent<FollowedComponent, ComponentHandleState>(OnFollowedHandleState);
+        //SubscribeLocalEvent<FollowedComponent, ComponentGetState>(OnFollowedGetState);
+        //SubscribeLocalEvent<FollowedComponent, ComponentHandleState>(OnFollowedHandleState);
     }
-
+/*
     [Serializable, NetSerializable]
     private sealed class FollowedComponentState : ComponentState
     {
@@ -71,7 +71,7 @@ public sealed class FollowerSystem : EntitySystem
 
         component.Following = EnsureEntitySet<FollowedComponent>(state.Following, uid);
     }
-
+*/
     private void OnFollowedAttempt(Entity<FollowedComponent> ent, ref ComponentGetStateAttemptEvent args)
     {
         if (args.Cancelled)
