@@ -127,3 +127,16 @@
       layers:
       - state: animated_kaiju
         shader: unshaded
+
+- type: ghostTheme
+  id: tier09  # space cats
+  components:
+    - type: Sprite
+      noRot: true
+      overrideContainerOcclusion: true # Ghosts always show up regardless of where they're contained.
+      drawdepth: Ghosts
+      sprite: _SpaceCats/Mobs/Ghost/glist_ghost.rsi
+      color: "#fff8"
+      layers:
+      - state: animated
+        shader: unshaded
