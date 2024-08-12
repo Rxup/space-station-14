@@ -39,6 +39,7 @@
     - type: Sprite
       drawdepth: FloorObjects
       sprite: Structures/Piping/Atmospherics/vent.rsi
+      noRot: true
       layers:
         - sprite: Structures/Piping/Atmospherics/pipe.rsi
           state: pipeHalf
@@ -55,7 +56,7 @@
             In: { state: vent_in }
             Out: { state: vent_out }
             Welded: { state: vent_welded }
-            Lockout: { state: vent_lockout }
+            Lockout: { state: vent_in }
     - type: GasVentPump
     - type: Construction
       graph: GasUnary
@@ -80,11 +81,12 @@
     - type: Sprite
       drawdepth: FloorObjects
       sprite: Structures/Piping/Atmospherics/vent.rsi
+      noRot: true
       layers:
         - sprite: Structures/Piping/Atmospherics/pipe.rsi
           state: pipeHalf
           map: [ "enum.PipeVisualLayers.Pipe" ]
-        - state: vent_passive
+        - state: vent_off
           map: [ "enum.SubfloorLayers.FirstLayer" ]
     - type: Appearance
     - type: PipeColorVisuals
@@ -112,6 +114,7 @@
     - type: Sprite
       drawdepth: FloorObjects
       sprite: Structures/Piping/Atmospherics/scrubber.rsi
+      noRot: true
       layers:
         - sprite: Structures/Piping/Atmospherics/pipe.rsi
           state: pipeHalf
