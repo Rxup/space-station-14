@@ -1,0 +1,49 @@
+- type: entity
+  name: grappling gun
+  parent: WeaponGrapplingGun
+  id: WeaponBackmenGrapplingHook
+  components:
+    - type: GrapplingGun
+      reelRate: 7.5
+    - type: BasicEntityAmmoProvider
+      proto: GrapplingHookLavaland
+      capacity: 1
+    - type: Item
+      size: Normal
+    - type: Sprite
+      sprite: Backmen/Objects/Weapons/Guns/grappling_hook.rsi
+      layers:
+        - state: base
+        - state: base-unshaded
+          map: [ "shaded" ]
+          shader: shaded
+          visible: true
+    - type: GenericVisualizer
+      visuals:
+        enum.TetherVisualsStatus.Key:
+          shaded:
+            True: { state: base-unshaded }
+            False: { state: base-unshaded-off }
+
+- type: entity
+  id: GrapplingHookLavaland
+  name: grappling hook
+  parent: GrapplingHook
+  categories: [ HideSpawnMenu ]
+  components:
+    - type: Sprite
+      noRot: false
+      sprite: Backmen/Objects/Weapons/Guns/grappling_hook.rsi
+      layers:
+        - state: hook
+
+- type: entity
+  name: admin grappling gun
+  suffix: Admin
+  parent: WeaponBackmenGrapplingHook
+  id: WeaponBackmenGrapplingHookAdmin
+  components:
+    - type: GrapplingGun
+      reelRate: 15
+    - type: UseDelay
+      delay: 0.5
