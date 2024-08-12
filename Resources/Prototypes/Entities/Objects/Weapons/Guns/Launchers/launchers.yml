@@ -22,7 +22,7 @@
 
 - type: entity
   name: china lake
-  parent: [BaseWeaponLauncher, BaseGunWieldable]
+  parent: [BaseWeaponLauncher, BaseGunWieldable, BaseSyndicateContraband]
   id: WeaponLauncherChinaLake
   description: PLOOP
   noSpawn: true
@@ -362,7 +362,7 @@
   parent: WeaponLauncherMultipleRocket
   id: WeaponLauncherAdmemeMeteorLarge
   suffix: Admeme
-  description: It fires large meteors
+  description: It fires large meteors.
   components:
   - type: BallisticAmmoProvider
     whitelist:

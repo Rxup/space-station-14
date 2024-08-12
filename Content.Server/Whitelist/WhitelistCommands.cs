@@ -29,7 +29,7 @@ public sealed class AddWhitelistCommand : LocalizedCommands
         var loc = IoCManager.Resolve<IPlayerLocator>();
 
         var name = string.Join(' ', args).Trim();
-        var data = await loc.LookupIdByNameAsync(name);
+        var data = await loc.LookupIdByNameOrIdAsync(name);
         var wlSystem = IoCManager.Resolve<EntityManager>().System<Backmen.RoleWhitelist.WhitelistSystem>(); // backmen: whitelist
 
         if (data != null)

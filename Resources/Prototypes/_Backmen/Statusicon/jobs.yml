@@ -1,102 +1,102 @@
-- type: statusIcon
+- type: jobIcon
   parent: JobIcon
   id: JobIconDeathSquadron
   icon:
     sprite: /Textures/Backmen/Icons/jobicon.rsi
     state: DeathSquadron
 
-- type: statusIcon
+- type: jobIcon
   parent: JobIcon
   id: JobIconSergant
   icon:
     sprite: /Textures/Backmen/Icons/jobicon.rsi
     state: serg
 
-- type: statusIcon
+- type: jobIcon
   parent: JobIcon
   id: JobIconMarin
   icon:
     sprite: /Textures/Backmen/Icons/jobicon.rsi
     state: private
 
-- type: statusIcon
+- type: jobIcon
   parent: JobIcon
   id: JobIconEarth
   icon:
     sprite: /Textures/Backmen/Icons/jobicon.rsi
     state: Earth
 
-- type: statusIcon
+- type: jobIcon
   parent: JobIcon
   id: JobIconLeitenant
   icon:
     sprite: /Textures/Backmen/Icons/jobicon.rsi
     state: leitenant
 
-- type: statusIcon
+- type: jobIcon
   parent: JobIcon
   id: JobIconShtab
   icon:
     sprite: /Textures/Backmen/Icons/jobicon.rsi
     state: shtab
 
-- type: statusIcon
+- type: jobIcon
   parent: JobIcon
   id: JobIconSpecialits
   icon:
     sprite: /Textures/Backmen/Icons/jobicon.rsi
     state: smartgunner
 
-- type: statusIcon
+- type: jobIcon
   parent: JobIcon
   id: JobIconMedic
   icon:
     sprite: /Textures/Backmen/Icons/jobicon.rsi
     state: medic
 
-- type: statusIcon
+- type: jobIcon
   parent: JobIcon
   id: JobIconCommander
   icon:
     sprite: /Textures/Backmen/Icons/jobicon.rsi
     state: commander
 
-- type: statusIcon
+- type: jobIcon
   parent: JobIcon
   id: JobIconCommandeer
   icon:
     sprite: /Textures/Backmen/Icons/jobicon.rsi
     state: commandeer
 
-- type: statusIcon
+- type: jobIcon
   parent: JobIcon
   id: JobIconNanotrasenOSO
   icon:
     sprite: /Textures/Backmen/Icons/jobicon.rsi
     state: NanotrasenOSO
 
-- type: statusIcon
+- type: jobIcon
   parent: JobIcon
   id: JobIconNanotrasenSec
   icon:
     sprite: /Textures/Backmen/Icons/jobicon.rsi
     state: NanotrasenSec
 
-- type: statusIcon
+- type: jobIcon
   parent: JobIcon
   id: JobIconNanotrasenMed
   icon:
     sprite: /Textures/Backmen/Icons/jobicon.rsi
     state: NanotrasenMed
 
-- type: statusIcon
+- type: jobIcon
   parent: JobIcon
   id: JobIconNanotrasenEngi
   icon:
     sprite: /Textures/Backmen/Icons/jobicon.rsi
     state: NanotrasenEngi
 
-- type: statusIcon
+- type: jobIcon
   parent: JobIcon
   id: JobIconNanotrasenjanitor
   icon:

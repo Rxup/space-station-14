@@ -124,7 +124,7 @@
       - Screwdriver
       - Welder
       - Wrench
-      - Crowbar
+      - CrowbarGreen
       - Multitool
       - NetworkConfigurator
       - SprayPainter
@@ -282,6 +282,7 @@
     dynamicRecipes:
       - PowerDrill
       - MiningDrill
+      - MiningDrillDiamond
       - AnomalyScanner
       - AnomalyLocator
       - AnomalyLocatorWide
@@ -552,7 +553,7 @@
   id: ExosuitFabricator
   parent: BaseLatheLube
   name: exosuit fabricator
-  description: Creates parts for robotics and other mechanical needs
+  description: Creates parts for robotics and other mechanical needs.
   components:
   - type: Sprite
     sprite: Structures/Machines/exosuit_fabricator.rsi
@@ -666,7 +667,7 @@
 - type: entity
   id: Biofabricator
   parent: BaseLathe
-  name: biofabricator
+  name: biocube fabricator
   description: Produces animal cubes using biomass.
   components:
   - type: Sprite
@@ -675,16 +676,20 @@
     layers:
     - state: icon
       map: ["enum.LatheVisualLayers.IsRunning"]
+      color: "#ffaa99"
     - state: unlit
       shader: unshaded
       map: ["enum.PowerDeviceVisualLayers.Powered"]
+      color: "#ffaaaa"
     - state: inserting
       map: ["enum.MaterialStorageVisualLayers.Inserting"]
+      color: "#ffaaaa"
     - state: panel
       map: ["enum.WiresVisualLayers.MaintenancePanel"]
   - type: Machine
     board: BiofabricatorMachineCircuitboard
   - type: MaterialStorage
+    ignoreColor: true
     whitelist:
       tags:
         - Sheet
@@ -1090,7 +1095,7 @@
       - ClothingNeckMantleCMO
       - ClothingNeckMantleHOP
       - ClothingNeckMantleHOS
-      - ClothingNeckMantleHOSShoulder # Corvax-Resprite: Old mantle
+      #- ClothingNeckMantleHOSShoulder # Corvax-Resprite: Old mantle
       - ClothingNeckMantleRD
       - ClothingNeckMantleQM
       - ClothingOuterWinterMusician

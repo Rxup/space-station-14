@@ -14,19 +14,11 @@
 # Jumpsuit
 - type: loadout
   id: BKCCOpearotGavnaJumpsuit
-  equipment: BKCCOpearotGavnaJumpsuit
-
-- type: startingGear
-  id: BKCCOpearotGavnaJumpsuit
   equipment:
     jumpsuit: ClothingUniformJumpsuitCentcomVeryOfficial
 
 
 - type: loadout
-  id: BKCCOpearotGavnaJumpskirt
-  equipment: BKCCOpearotGavnaJumpskirt
-
-- type: startingGear
   id: BKCCOpearotGavnaJumpskirt
   equipment:
     innerClothingSkirt: ClothingUniformJumpskirttCentcomVeryOfficial
@@ -34,10 +26,6 @@
 
 # Neck
 - type: loadout
-  id: BKCCOpearotGavnaCloak
-  equipment: BKCCOpearotGavnaCloak
-
-- type: startingGear
   id: BKCCOpearotGavnaCloak
   equipment:
     neck: ClothingNeckCloakCap
@@ -47,19 +35,11 @@
 # Back
 - type: loadout
   id: BKCCOpearotGavnaBackpack
-  equipment: BKCCOpearotGavnaBackpack
-
-- type: startingGear
-  id: BKCCOpearotGavnaBackpack
   equipment:
     duffelbag: ClothingBackpackDuffel
 
 
 - type: loadout
-  id: BKCCOpearotGavnaSatchel
-  equipment: BKCCOpearotGavnaSatchel
-
-- type: startingGear
   id: BKCCOpearotGavnaSatchel
   equipment:
     satchel: ClothingBackpackSatchel

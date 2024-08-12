@@ -5,7 +5,7 @@
 #    sprite: Backmen/Interface/Misc/job_icons.rsi
 #    state: Prisoner
 
-- type: statusIcon
+- type: jobIcon
   parent: JobIcon
   id: JobIconStationAI
   icon:
