@@ -11,7 +11,6 @@
 - type: entity
   id: BriefcaseSyndieSniperBundleFilled
   parent: BriefcaseSyndie
-  noSpawn: true
   suffix: Syndicate, Sniper Bundle
   components:
   - type: Item

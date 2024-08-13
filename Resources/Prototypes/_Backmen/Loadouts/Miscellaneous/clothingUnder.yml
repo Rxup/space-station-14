@@ -25,154 +25,90 @@
 #---------------------------------------
 - type: loadout
   id: ClothingUnderbra_binder
-  equipment: ClothingUnderbra_binder
-
-- type: startingGear
-  id: ClothingUnderbra_binder
   equipment:
     undershirt: ClothingUnderbra_binder
 #---------------------------------------
 - type: loadout
-  id: ClothingUnderbra_alt
-  equipment: ClothingUnderbra_alt
-
-- type: startingGear
   id: ClothingUnderbra_alt
   equipment:
     undershirt: ClothingUnderbra_alt
 #---------------------------------------
 - type: loadout
   id: ClothingUnderbra
-  equipment: ClothingUnderbra
-
-- type: startingGear
-  id: ClothingUnderbra
   equipment:
     undershirt: ClothingUnderbra
 #---------------------------------------
 - type: loadout
-  id: ClothingUnderljont
-  equipment: ClothingUnderljont
-
-- type: startingGear
   id: ClothingUnderljont
   equipment:
     undershirt: ClothingUnderljont
 #---------------------------------------
 - type: loadout
   id: ClothingUnderlover
-  equipment: ClothingUnderlover
-
-- type: startingGear
-  id: ClothingUnderlover
   equipment:
     undershirt: ClothingUnderlover
 #---------------------------------------
 - type: loadout
-  id: ClothingUndertank_midriff
-  equipment: ClothingUndertank_midriff
-
-- type: startingGear
   id: ClothingUndertank_midriff
   equipment:
     undershirt: ClothingUndertank_midriff
 #---------------------------------------
 - type: loadout
   id: ClothingUndertank_midriff_alt
-  equipment: ClothingUndertank_midriff_alt
-
-- type: startingGear
-  id: ClothingUndertank_midriff_alt
   equipment:
     undershirt: ClothingUndertank_midriff_alt
 #---------------------------------------
 - type: loadout
-  id: ClothingUndershirt_nano
-  equipment: ClothingUndershirt_nano
-
-- type: startingGear
   id: ClothingUndershirt_nano
   equipment:
     undershirt: ClothingUndershirt_nano
 #---------------------------------------
 - type: loadout
   id: ClothingUnderilovent
-  equipment: ClothingUnderilovent
-
-- type: startingGear
-  id: ClothingUnderilovent
   equipment:
     undershirt: ClothingUnderilovent
 #---------------------------------------
 - type: loadout
-  id: ClothingUnderbowlinga
-  equipment: ClothingUnderbowlinga
-
-- type: startingGear
   id: ClothingUnderbowlinga
   equipment:
     undershirt: ClothingUnderbowlinga
 #---------------------------------------
 - type: loadout
   id: ClothingUnderpolo
-  equipment: ClothingUnderpolo
-
-- type: startingGear
-  id: ClothingUnderpolo
   equipment:
     undershirt: ClothingUnderpolo
 #---------------------------------------
 - type: loadout
-  id: ClothingUndergreenshirtsport
-  equipment: ClothingUndergreenshirtsport
-
-- type: startingGear
   id: ClothingUndergreenshirtsport
   equipment:
     undershirt: ClothingUndergreenshirtsport
 #---------------------------------------
 - type: loadout
   id: ClothingUnderbra_binder_strapless
-  equipment: ClothingUnderbra_binder_strapless
-
-- type: startingGear
-  id: ClothingUnderbra_binder_strapless
   equipment:
     undershirt: ClothingUnderbra_binder_strapless
 #---------------------------------------
 - type: loadout
-  id: ClothingUnderbra_strapless_alt
-  equipment: ClothingUnderbra_strapless_alt
-
-- type: startingGear
   id: ClothingUnderbra_strapless_alt
   equipment:
     undershirt: ClothingUnderbra_strapless_alt
 #---------------------------------------
 - type: loadout
   id: ClothingUndershortsleeve
-  equipment: ClothingUndershortsleeve
-
-- type: startingGear
-  id: ClothingUndershortsleeve
   equipment:
     undershirt: ClothingUndershortsleeve
 #---------------------------------------
 - type: loadout
   id: ClothingUndertubetop
-  equipment: ClothingUndertubetop
-
-- type: startingGear
-  id: ClothingUndertubetop
   equipment:
     undershirt: ClothingUndertubetop
-    
+
 #---------------------------------------#
 #---------------------------------------#
 #---------------------------------------#
 
 - type: loadoutGroup
-  id: Niz 
+  id: Niz
   name: loadout-group-niz
   minLimit: 0
   maxLimit: 1
@@ -190,67 +126,39 @@
 #---------------------------------------
 - type: loadout
   id: ClothingUnderboxer_briefs
-  equipment: ClothingUnderboxer_briefs
-
-- type: startingGear
-  id: ClothingUnderboxer_briefs
   equipment:
     underpants: ClothingUnderboxer_briefs
 #---------------------------------------
 - type: loadout
-  id: ClothingUnderbriefs
-  equipment: ClothingUnderbriefs
-
-- type: startingGear
   id: ClothingUnderbriefs
   equipment:
     underpants: ClothingUnderbriefs
 #---------------------------------------
 - type: loadout
   id: ClothingUnderboxers_heart
-  equipment: ClothingUnderboxers_heart
-
-- type: startingGear
-  id: ClothingUnderboxers_heart
   equipment:
     underpants: ClothingUnderboxers_heart
 #---------------------------------------
 - type: loadout
-  id: ClothingUnderljonb
-  equipment: ClothingUnderljonb
-
-- type: startingGear
   id: ClothingUnderljonb
   equipment:
     underpants: ClothingUnderljonb
 #---------------------------------------
 - type: loadout
   id: ClothingUnderjockstrap
-  equipment: ClothingUnderjockstrap
-
-- type: startingGear
-  id: ClothingUnderjockstrap
   equipment:
     underpants: ClothingUnderjockstrap
 #---------------------------------------
 - type: loadout
-  id: ClothingUnderpanties
-  equipment: ClothingUnderpanties
-
-- type: startingGear
   id: ClothingUnderpanties
   equipment:
     underpants: ClothingUnderpanties
 #---------------------------------------
 - type: loadout
   id: ClothingUnderpantyhose
-  equipment: ClothingUnderpantyhose
-
-- type: startingGear
-  id: ClothingUnderpantyhose
   equipment:
     underpants: ClothingUnderpantyhose
-    
+
 #---------------------------------------#
 #---------------------------------------#
 #---------------------------------------#
@@ -272,63 +180,35 @@
 #---------------------------------------
 - type: loadout
   id: ClothingUnderSocks_knee
-  equipment: ClothingUnderSocks_knee
-
-- type: startingGear
-  id: ClothingUnderSocks_knee
   equipment:
     socks: ClothingUnderSocks_knee
 #---------------------------------------
 - type: loadout
-  id: ClothingUnderSocks_norm
-  equipment: ClothingUnderSocks_norm
-
-- type: startingGear
   id: ClothingUnderSocks_norm
   equipment:
     socks: ClothingUnderSocks_norm
 #---------------------------------------
 - type: loadout
   id: ClothingUnderSocks_short
-  equipment: ClothingUnderSocks_short
-
-- type: startingGear
-  id: ClothingUnderSocks_short
   equipment:
     socks: ClothingUnderSocks_short
 #---------------------------------------
 - type: loadout
-  id: ClothingUnderThin_knee
-  equipment: ClothingUnderThin_knee
-
-- type: startingGear
   id: ClothingUnderThin_knee
   equipment:
     socks: ClothingUnderThin_knee
 #---------------------------------------
 - type: loadout
   id: ClothingUnderThin_thigh
-  equipment: ClothingUnderThin_thigh
-
-- type: startingGear
-  id: ClothingUnderThin_thigh
   equipment:
     socks: ClothingUnderThin_thigh
 #---------------------------------------
 - type: loadout
   id: ClothingUnderGarter
-  equipment: ClothingUnderGarter
-
-- type: startingGear
-  id: ClothingUnderGarter
   equipment:
     socks: ClothingUnderGarter
 #---------------------------------------
 - type: loadout
-  id: ClothingUnderSocks_thigh
-  equipment: ClothingUnderSocks_thigh
-
-- type: startingGear
   id: ClothingUnderSocks_thigh
   equipment:
     socks: ClothingUnderSocks_thigh

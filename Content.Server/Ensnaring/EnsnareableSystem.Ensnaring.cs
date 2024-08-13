@@ -29,7 +29,7 @@ public sealed partial class EnsnareableSystem
         SubscribeLocalEvent<EnsnaringComponent, StepTriggeredOffEvent>(OnStepTrigger);
         SubscribeLocalEvent<EnsnaringComponent, ThrowDoHitEvent>(OnThrowHit);
         SubscribeLocalEvent<EnsnaringComponent, AttemptPacifiedThrowEvent>(OnAttemptPacifiedThrow);
-        SubscribeLocalEvent<EnsnareableComponent, GetVerbsEvent<Verb>>(GetVerb); 
+        SubscribeLocalEvent<EnsnareableComponent, GetVerbsEvent<Verb>>(GetVerb);
     }
 
     private void GetVerb(Entity<EnsnareableComponent> ent, ref GetVerbsEvent<Verb> args)
@@ -62,6 +62,24 @@ public sealed partial class EnsnareableSystem
     private void OnAttemptPacifiedThrow(Entity<EnsnaringComponent> ent, ref AttemptPacifiedThrowEvent args)
     {
         args.Cancel("pacified-cannot-throw-snare");
+    }
+
+    private void OnRemoveEnsnareAlert(Entity<EnsnareableComponent> ent, ref RemoveEnsnareAlertEvent args)
+    {
+        if (args.Handled)
+            return;
+
+        foreach (var ensnare in ent.Comp.Container.ContainedEntities)
+        {
+            if (!TryComp<EnsnaringComponent>(ensnare, out var ensnaringComponent))
+                return;
+
+            TryFree(ent, ent, ensnare, ensnaringComponent);
+
+            args.Handled = true;
+            // Only one snare at a time.
+            break;
+        }
     }
 
     private void OnComponentRemove(EntityUid uid, EnsnaringComponent component, ComponentRemove args)
@@ -138,7 +156,7 @@ public sealed partial class EnsnareableSystem
     /// <param name="component">The ensnaring component</param>
     public void TryFree(EntityUid target, EntityUid user, EntityUid ensnare, EnsnaringComponent component)
     {
-        //Don't do anything if they don't have the ensnareable component.
+        // Don't do anything if they don't have the ensnareable component.
         if (!HasComp<EnsnareableComponent>(target))
             return;
 
@@ -150,7 +168,7 @@ public sealed partial class EnsnareableSystem
             BreakOnMove = breakOnMove,
             BreakOnDamage = false,
             NeedHand = true,
-            BlockDuplicate = true,
+            BreakOnDropItem = false,
         };
 
         if (!_doAfter.TryStartDoAfter(doAfterEventArgs))

@@ -16,20 +16,20 @@ public sealed class TeamMarkerSystem : EntitySystem
         SubscribeLocalEvent<SVSTeamMemberComponent, GetStatusIconsEvent>(OnGetTeamIcon);
     }
 
-    [ValidatePrototypeId<StatusIconPrototype>]
+    [ValidatePrototypeId<FactionIconPrototype>]
     private const string TeamA = "TeamAFaction";
-    [ValidatePrototypeId<StatusIconPrototype>]
+    [ValidatePrototypeId<FactionIconPrototype>]
     private const string TeamB = "TeamBFaction";
-    [ValidatePrototypeId<StatusIconPrototype>]
+    [ValidatePrototypeId<FactionIconPrototype>]
     private const string TeamNoTeam = "Team0Faction";
 
     private void OnGetTeamIcon(Entity<SVSTeamMemberComponent> ent, ref GetStatusIconsEvent args)
     {
         var status = ent.Comp.Team switch
         {
-            StationTeamMarker.TeamA => _prototype.Index<StatusIconPrototype>(TeamA),
-            StationTeamMarker.TeamB => _prototype.Index<StatusIconPrototype>(TeamB),
-            _ => _prototype.Index<StatusIconPrototype>(TeamNoTeam),
+            StationTeamMarker.TeamA => _prototype.Index<FactionIconPrototype>(TeamA),
+            StationTeamMarker.TeamB => _prototype.Index<FactionIconPrototype>(TeamB),
+            _ => _prototype.Index<FactionIconPrototype>(TeamNoTeam),
         };
         args.StatusIcons.Add(status);
     }

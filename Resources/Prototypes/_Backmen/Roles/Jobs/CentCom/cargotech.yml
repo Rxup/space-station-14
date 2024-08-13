@@ -50,7 +50,7 @@
   wageDepartment: CentCom
   wage: 50
 
-- type: statusIcon
+- type: jobIcon
   parent: JobIcon
   id: JobIconCCCargoTech
   icon:

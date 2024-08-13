@@ -1,18 +1,10 @@
 # куртка
 - type: loadout
   id: ClothingOuterCoatBlackedmcSponsor
-  equipment: ClothingOuterCoatBlackedmcSponsor
-
-- type: startingGear
-  id: ClothingOuterCoatBlackedmcSponsor
   equipment:
     outerClothing: ClothingOuterCoatBlackedmcSponsor
 
 - type: loadout
-  id: ClothingOuterCoatJensen
-  equipment: ClothingOuterCoatJensen
-
-- type: startingGear
   id: ClothingOuterCoatJensen
   equipment:
     outerClothing: ClothingOuterCoatJensen
@@ -20,18 +12,10 @@
 # маска
 - type: loadout
   id: ClothingMaskTGMCwhite
-  equipment: ClothingMaskTGMCwhite
-
-- type: startingGear
-  id: ClothingMaskTGMCwhite
   equipment:
     mask: ClothingMaskTGMCwhite
 
 - type: loadout
-  id: ClothingMaskBal
-  equipment: ClothingMaskBal
-
-- type: startingGear
   id: ClothingMaskBal
   equipment:
     mask: ClothingMaskBal
@@ -39,19 +23,11 @@
 # Комбинезон
 - type: loadout
   id: ClothingUniformJumpsuitSWAT
-  equipment: ClothingUniformJumpsuitSWAT
-
-- type: startingGear
-  id: ClothingUniformJumpsuitSWAT
   equipment:
     jumpsuit: ClothingUniformJumpsuitSWAT
 
 # Ботинки
 - type: loadout
-  id: ClothingShoesBootsJack
-  equipment: ClothingShoesBootsJack
-
-- type: startingGear
   id: ClothingShoesBootsJack
   equipment:
     shoes: ClothingShoesBootsJack

@@ -24,7 +24,6 @@ using Content.Server.GameTicking.Rules;
 using Content.Server.Ghost.Roles.Components;
 using Content.Server.Maps;
 using Content.Server.Mind;
-using Content.Server.Paper;
 using Content.Server.Parallax;
 using Content.Server.Popups;
 using Content.Server.Power.Components;
@@ -65,6 +64,7 @@ using Content.Shared.Maps;
 using Content.Shared.Mobs;
 using Content.Shared.Mobs.Systems;
 using Content.Shared.Movement.Components;
+using Content.Shared.Paper;
 using Content.Shared.Parallax;
 using Content.Shared.Parallax.Biomes;
 using Content.Shared.Physics;
@@ -837,6 +837,7 @@ public sealed class ShipwreckedRuleSystem : GameRuleSystem<ShipwreckedRuleCompon
             200f,
             5f,
             30f,
+            null,
             // Try not to break any tiles.
             // It's weird on planets.
             tileBreakScale: 0,
@@ -1137,6 +1138,7 @@ public sealed class ShipwreckedRuleSystem : GameRuleSystem<ShipwreckedRuleCompon
             200f,
             1f,
             100f,
+            null,
             // Try not to break any tiles.
             tileBreakScale: 0,
             maxTileBreak: 0,
@@ -1155,24 +1157,20 @@ public sealed class ShipwreckedRuleSystem : GameRuleSystem<ShipwreckedRuleCompon
         }
 
         // Fry the console.
-        var consoleQuery = EntityQueryEnumerator<TransformComponent, ShuttleConsoleComponent>();
-        while (consoleQuery.MoveNext(out var consoleUid, out var consoleXform, out _))
+        var consoleQuery = EntityQueryEnumerator<TransformComponent, DamageableComponent, ShuttleConsoleComponent>();
+        while (consoleQuery.MoveNext(out var consoleUid, out var consoleXform, out var damageableComponent, out _))
         {
             if (consoleXform.GridUid != component.Shuttle)
                 continue;
 
             var limit = _destructibleSystem.DestroyedAt(consoleUid);
 
-            // Here at Nyanotrasen, we have damage variance, so...
-            var damageVariance = _configurationManager.GetCVar(CCVars.DamageVariance);
-            limit *= 1f + damageVariance;
-
             var smash = new DamageSpecifier();
             smash.DamageDict.Add("Structural", limit);
-            _damageableSystem.TryChangeDamage(consoleUid, smash, ignoreResistances: true);
+            _damageableSystem.TryChangeDamage(consoleUid, smash, ignoreResistances: true, damageable: damageableComponent);
 
             // Break, because we're technically modifying the enumeration by destroying the console.
-            break;
+            //break;
         }
 
         var crashSound = new SoundPathSpecifier("/Audio/Nyanotrasen/Effects/crash_impact_metal.ogg");
@@ -1555,7 +1553,7 @@ public sealed class ShipwreckedRuleSystem : GameRuleSystem<ShipwreckedRuleCompon
         OpenAllRuleJobs(component);
     }
 
-    private EntityUid? SpawnManifest(EntityUid uid, ShipwreckedRuleComponent component)
+    private Entity<PaperComponent>? SpawnManifest(EntityUid uid, ShipwreckedRuleComponent component)
     {
         var consoleQuery = EntityQueryEnumerator<TransformComponent, ShuttleConsoleComponent>();
         while (consoleQuery.MoveNext(out var consoleUid, out var consoleXform, out _))
@@ -1563,7 +1561,9 @@ public sealed class ShipwreckedRuleSystem : GameRuleSystem<ShipwreckedRuleCompon
             if (consoleXform.GridUid != component.Shuttle)
                 continue;
 
-            return Spawn("PaperManifestPassenger", consoleXform.Coordinates);
+            var paper = Spawn("PaperManifestPassenger", consoleXform.Coordinates);
+
+            return (paper, EnsureComp<PaperComponent>(paper));
         }
 
         return null;
