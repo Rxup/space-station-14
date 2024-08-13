@@ -238,33 +238,6 @@
       - id: RCDAmmo
 
 - type: entity
-  id: LockerChiefEngineerFilledHardsuit
-  suffix: Filled, Hardsuit
-  parent: LockerChiefEngineer
-  components:
-  - type: StorageFill
-    contents:
-      - id: MedkitFilled
-      - id: ClothingHandsGlovesNitrile
-      - id: ClothingEyesHudMedical
-      - id: ClothingHeadsetAltMedical
-      - id: ClothingCloakCmo
-      - id: ClothingBackpackDuffelSurgeryFilled
-      - id: ClothingMaskSterile
-      - id: ClothingHeadHatBeretCmo
-      - id: ClothingOuterHardsuitMedical
-      - id: Hypospray
-      - id: HandheldCrewMonitor
-      - id: DoorRemoteMedical
-      - id: RubberStampCMO
-      - id: MedicalTechFabCircuitboard
-      - id: BoxEncryptionKeyMedical
-      - id: AntiPsychicKnife # backmen
-      - id: ClothingHeadCage # backmen
-      - id: MetempsychoticMachineCircuitboard # backmen
-      - id: MaterialBiomass # backmen
-
-- type: entity
   id: LockerChiefMedicalOfficerFilled
   suffix: Filled
   parent: LockerChiefMedicalOfficer
