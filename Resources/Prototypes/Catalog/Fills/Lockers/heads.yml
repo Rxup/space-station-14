@@ -262,7 +262,7 @@
       - id: ClothingHeadCage # backmen
       - id: MetempsychoticMachineCircuitboard # backmen
       - id: MaterialBiomass # backmen
-      - id: genguns
+      - id: genguns # cats
 
 - type: entity
   id: LockerChiefMedicalOfficerFilledHardsuit
@@ -288,6 +288,7 @@
       - id: PonderingOrbTelepathic # backmen
       - id: ClothingHeadsetAltScience
       - id: EncryptionKeyBinary
+      - id: genguns # cats
 
 - type: entity
   id: LockerResearchDirectorFilled
