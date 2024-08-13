@@ -1,5 +1,5 @@
 # куртка
-- type: sloadout
+- type: loadout
   id: ClothingOuterCoatBlackedmcSponsor
   equipment:
     outerClothing: ClothingOuterCoatBlackedmcSponsor
