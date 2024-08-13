@@ -685,6 +685,7 @@
   completetime: 4
   materials:
     Cloth: 300
+
 # Command winter coats
 - type: latheRecipe
   id: ClothingOuterWinterCap
@@ -757,14 +758,6 @@
   materials:
     Cloth: 500
     Durathread: 300
-# Mantles
-- type: latheRecipe
-  id: ClothingNeckMantleCap
-  result: ClothingNeckMantleCap
-  completetime: 2.8
-  materials:
-    Cloth: 200
-    Durathread: 150
 
 - type: latheRecipe
   id: ClothingNeckMantleCE
@@ -1000,6 +993,7 @@
   materials:
     Cloth: 500
     Durathread: 200
+
 # Hats
 - type: latheRecipe
   id: ClothingHeadHatCaptain
@@ -1182,6 +1176,7 @@
   completetime: 1
   materials:
     Cloth: 100
+
 # Ties
 - type: latheRecipe
   id: ClothingNeckTieRed
@@ -1203,6 +1198,7 @@
   completetime: 2
   materials:
     Cloth: 200
+
 # Scarfs
 - type: latheRecipe
   id: ClothingNeckScarfStripedGreen
@@ -1259,6 +1255,7 @@
   completetime: 2
   materials:
     Cloth: 200
+
 # Carpets
 - type: latheRecipe
   id: Carpet

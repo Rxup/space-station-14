@@ -137,8 +137,8 @@
 - type: entity
   parent: ClothingUniformBase
   id: ClothingUniformJumpsuitCentcomOfficial
-  name: CentCom officer's suit # Corvax-Resprite
-  description: It's a suit worn by CentCom's highest-tier Commanders. # Corvax-Resprite
+  name: CentComm officer's suit # Corvax-Resprite
+  description: It's a suit worn by CentComm's highest-tier Commanders. # Corvax-Resprite
   components:
   - type: Sprite
     sprite: Clothing/Uniforms/Jumpsuit/centcom_official.rsi
@@ -148,8 +148,8 @@
 - type: entity
   parent: ClothingUniformBase
   id: ClothingUniformJumpsuitCentcomOfficer
-  name: CentCom turtleneck suit # Corvax-Resprite
-  description: A casual, yet refined green turtleneck, used by CentCom Officials. It has a fragrance of aloe. # Corvax-Resprite
+  name: CentComm turtleneck suit # Corvax-Resprite
+  description: A casual, yet refined green turtleneck, used by CentComm Officials. It has a fragrance of aloe. # Corvax-Resprite
   components:
   - type: Sprite
     sprite: Clothing/Uniforms/Jumpsuit/centcom_officer.rsi

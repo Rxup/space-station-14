@@ -149,6 +149,17 @@
         - id: ClothingNeckTransPin
         - id: ClothingNeckAutismPin
         - id: ClothingNeckGoldAutismPin
+        # Corvax-Pins-Start
+        - id: ClothingNeckUSSPPin
+        - id: ClothingNeckDonkPin
+        - id: ClothingNeckEarthPin
+        - id: ClothingNeckLogistikaPin
+        - id: ClothingNeckDeForestPin
+        - id: ClothingNeckNakamuraPin
+        - id: ClothingNeckNanoTrasenPin
+        - id: ClothingNeckSyndicakePin
+        - id: ClothingNeckVitezstviPin
+        # Corvax-Pins-End
     # Rare Group
     - !type:GroupSelector
       weight: 2
@@ -242,6 +253,8 @@
           weight: 0.5
         - id: ClothingHandsGlovesColorYellow
           weight: 1
+        - id: ClothingHandsGlovesConducting
+          weight: 0.1
       # Uncommon Group
     - !type:GroupSelector
       weight: 23

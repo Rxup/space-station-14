@@ -75,6 +75,8 @@
   Radiation collectors require a tank full of gaseous plasma in order to operate.
   Continous radiation exposure will gradually convert the stored plasma into tritium, so replace depleted plasma tanks with fresh ones regularly to maintain a high power output.
 
+## Катушки и Заземлители Теслы
+
   <Box>
     <GuideEntityEmbed Entity="TeslaCoil"/>
     <GuideEntityEmbed Entity="TeslaGroundingRod"/>
@@ -85,6 +87,20 @@
   As the ball lightning zaps tesla coils, they will degrade from wear; make sure to [color=#a4885c]weld them[/color] every now and then to keep generating power.
 
   ## Turing on the Engines
+
+  [color=red]Do not[/color] turn the PA on unless all the other subsystems are working properly and there is enough power to start the engine.
+
+  Turn power on using the PA control computer. Set the strength to an appropiate level. The higher the output stength is set on PA control computer, the bigger the singularity will be.
+
+  Currently, the output power does not affect the ball lightning, beyond giving the ball lightning extra orbs around it.
+
+  The PA will now draw power from the power net and start firing particles at the generators.
+
+  <Box>
+    <GuideEntityEmbed Entity="ParticlesProjectile" Caption=""/>
+    <GuideEntityEmbed Entity="ParticlesProjectile"/>
+    <GuideEntityEmbed Entity="ParticlesProjectile" Caption=""/>
+  </Box>
 
   [color=red]Do not[/color] turn the PA on unless all the other subsystems are working properly and there is enough power to start the engine.
 

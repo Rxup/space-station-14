@@ -11,7 +11,7 @@
         - hope
     - type: Food
       trash:
-      - FoodPlate
+        - FoodPlate
     - type: Sprite
       sprite: Corvax/Objects/Consumable/Food/plate.rsi
       layers:
