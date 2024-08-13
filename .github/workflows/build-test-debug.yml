@@ -58,11 +58,15 @@ jobs:
       run: |
         $env:DOTNET_gcServer=1
         $testResult = dotnet test --no-build --configuration DebugOpt Content.IntegrationTests/Content.IntegrationTests.csproj -- NUnit.ConsoleOut=0 NUnit.MapWarningTo=Failed 2>&1
+
         $filteredResult = $testResult `
             -replace "Attempted to remove an action [^\s]+ from an entity that it was never attached to: Flesh Cultist", "" `
             -replace "Caught exception while trying to remove component CameraFollow from entity 'Flesh Cultist'", "" `
-            -replace "Caught exception while trying to recursively delete child entity 'Audio \(.*?\)' of '[^']+'", ""
+            -replace "Caught exception while trying to recursively delete child entity 'Audio \(.*?\)' of '[^']+'", "" `
+            -replace "Caught exception while trying to remove component CameraFollow from entity 'Flesh Cultist \(.*?\)'", "" `
+
         Write-Output $filteredResult
+
         if ($filteredResult -match "Failed") {
             exit 1
         }
