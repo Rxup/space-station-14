@@ -1,18 +1,10 @@
 # плащ
 - type: loadout
   id: ClothingNeckCloakSanabi
-  equipment: ClothingNeckCloakSanabi
-
-- type: startingGear
-  id: ClothingNeckCloakSanabi
   equipment:
     neck: ClothingNeckCloakSanabi
 
 - type: loadout
-  id: ClothingNeckHorrific
-  equipment: ClothingNeckHorrific
-
-- type: startingGear
   id: ClothingNeckHorrific
   equipment:
     neck: ClothingNeckHorrific
@@ -33,19 +25,11 @@
 # куртка
 - type: loadout
   id: ClothingOuterCoatPurpledmcSponsor
-  equipment: ClothingOuterCoatPurpledmcSponsor
-
-- type: startingGear
-  id: ClothingOuterCoatPurpledmcSponsor
   equipment:
     outerClothing: ClothingOuterCoatPurpledmcSponsor
 
 # глаза  
 - type: loadout
-  id: ClothingEyesGlassesChemical
-  equipment: ClothingEyesGlassesChemical
-
-- type: startingGear
   id: ClothingEyesGlassesChemical
   equipment:
     eyes: ClothingEyesGlassesChemical

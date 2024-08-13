@@ -1,19 +1,11 @@
 #носок
 - type: loadout
   id: ClothingUnderSocksCoderBlue
-  equipment: ClothingUnderSocksCoderBlue
-
-- type: startingGear
-  id: ClothingUnderSocksCoderBlue
   equipment:
     socks: ClothingUnderSocksCoderBlue
 
 #комбинезон
 - type: loadout
-  id: ClothingUniformJumpskirtEsmira
-  equipment: ClothingUniformJumpskirtEsmira
-
-- type: startingGear
   id: ClothingUniformJumpskirtEsmira
   equipment:
     jumpsuit: ClothingUniformJumpskirtEsmira
@@ -21,19 +13,11 @@
 # шляпа
 - type: loadout
   id: ClothingHeadHatHairflowerEsmira
-  equipment: ClothingHeadHatHairflowerEsmira
-
-- type: startingGear
-  id: ClothingHeadHatHairflowerEsmira
   equipment:
     head: ClothingHeadHatHairflowerEsmira
 
 # плащ
 - type: loadout
-  id: ClothingNeckEsmira
-  equipment: ClothingNeckEsmira
-
-- type: startingGear
   id: ClothingNeckEsmira
   equipment:
     neck: ClothingNeckEsmira
@@ -41,20 +25,12 @@
 # трусы 
 - type: loadout
   id: ClothingUnderPantsEsmira
-  equipment: ClothingUnderPantsEsmira
-
-- type: startingGear
-  id: ClothingUnderPantsEsmira
   equipment:
     underpants: ClothingUnderPantsEsmira
 
 
 # лифчик
 - type: loadout
-  id: ClothingUnderShirtEsmira
-  equipment: ClothingUnderShirtEsmira
-
-- type: startingGear
   id: ClothingUnderShirtEsmira
   equipment:
     undershirt: ClothingUnderShirtEsmira

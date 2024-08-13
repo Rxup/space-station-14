@@ -6,10 +6,6 @@
 
 - type: loadout
   id: ClothingHeadHatParamedicBeret
-  equipment: ClothingHeadHatParamedicBeret  # cats
-
-- type: startingGear
-  id: ClothingHeadHatParamedicBeret
   equipment:
     head: ClothingHeadHatParamedicBeret   # cats
 

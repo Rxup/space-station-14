@@ -37,10 +37,6 @@
 
 - type: loadout
   id: ClothingHeadHatBeretChiefEngineering
-  equipment: ClothingHeadHatBeretChiefEngineering   # cats 
-
-- type: startingGear
-  id: ClothingHeadHatBeretChiefEngineering
   equipment:
     head: ClothingHeadHatBeretChiefEngineering   # cats
 
@@ -74,10 +70,6 @@
     outerClothing: ClothingOuterWinterCE
 
 - type: loadout
-  id: ClothingOuterWinterSeniorEngineer
-  equipment: ClothingOuterWinterSeniorEngineer   #cats
-
-- type: startingGear
   id: ClothingOuterWinterSeniorEngineer
   equipment:
     outerClothing: ClothingOuterWinterSeniorEngineer  # cats
