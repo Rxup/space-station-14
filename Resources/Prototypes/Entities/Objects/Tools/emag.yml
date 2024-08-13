@@ -8,6 +8,7 @@
   - type: Emag
   - type: Sprite
     sprite: Objects/Tools/emag.rsi
+    scale: 0.8, 0.8
     state: icon
   - type: Item
     sprite: Objects/Tools/emag.rsi
