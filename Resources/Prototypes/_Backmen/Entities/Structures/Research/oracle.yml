@@ -9,7 +9,9 @@
   components:
   - type: Anchorable
     delay: 10000
-  - type: Emagged         
+  - type: DeviceLinkSink
+  - type: Emagged
+  - type: Destructible
   - type: GenericVisualizer
     visuals:
       enum.RecyclerVisuals.Bloody:
