@@ -899,21 +899,21 @@
       tags:
       - NukeOpsUplink
 
-- type: listing
-  id: UplinkReinforcementRadioSyndicate
-  name: uplink-reinforcement-radio-name
-  description: uplink-reinforcement-radio-traitor-desc
-  productEntity: ReinforcementRadioSyndicate
-  icon: { sprite: Objects/Devices/communication.rsi, state: old-radio-urist }
-  cost:
-    Telecrystal: 14
-  categories:
-  - UplinkAllies
-  conditions:
-  - !type:StoreWhitelistCondition
-    blacklist:
-      tags:
-      - NukeOpsUplink
+#- type: listing
+#  id: UplinkReinforcementRadioSyndicate
+#  name: uplink-reinforcement-radio-name
+#  description: uplink-reinforcement-radio-traitor-desc
+#  productEntity: ReinforcementRadioSyndicate
+#  icon: { sprite: Objects/Devices/communication.rsi, state: old-radio-urist }
+#  cost:
+#    Telecrystal: 14
+#  categories:
+#  - UplinkAllies
+#  conditions:
+#  - !type:StoreWhitelistCondition
+#    blacklist:
+#      tags:
+#      - NukeOpsUplink
 
 - type: listing
   id: UplinkReinforcementRadioSyndicateNukeops # Version for Nukeops that spawns another nuclear operative without the uplink.

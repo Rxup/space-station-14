@@ -1,16 +1,15 @@
-- type: gamePreset
-  id: Shipwrecked
-  alias:
-    - schiffbruch
-  name: shipwrecked-title
-  description: shipwrecked-description
-  minPlayers: 1
-  maxPlayers: 40
-  showInVote: true
-  isMiniGame: true
-  supportedMaps: ShipwreckedPool
-  rules:
-    - Shipwrecked
+#- type: gamePreset
+#  id: Shipwrecked
+#  alias:
+#    - schiffbruch
+#  name: shipwrecked-title
+#  description: shipwrecked-description
+#  minPlayers: 1
+#  showInVote: false
+#  isMiniGame: false
+#  supportedMaps: ShipwreckedPool
+#  rules:
+#    - Shipwrecked
 
 - type: gamePreset
   id: Vampires
@@ -19,11 +18,12 @@
   - bloodsucker
   name: vampires-title
   description: vampires-description
-  showInVote: false
+  minPlayers: 5
+  showInVote: true
   rules:
   - VampiresGameRule
   - BasicStationEventScheduler
-  - WageScheduler #backmen: currency
+  #  - WageScheduler #backmen: currency
   - SubGamemodesRule
   - BasicRoundstartVariation
 
@@ -33,11 +33,12 @@
   - blab
   name: blob-title
   description: blob-description
-  showInVote: false
+  minPlayers: 10
+  showInVote: true
   rules:
   - BlobGameMode
   - BasicStationEventScheduler
-  - WageScheduler #backmen: currency
+  #  -  #backmen: currency
   - BasicRoundstartVariation
   - SubGamemodesRule
 
@@ -48,11 +49,12 @@
   - fs
   name: flesh-cult-title
   description: flesh-cult-description
-  showInVote: false
+  minPlayers: 10
+  showInVote: true
   rules:
   - FleshCult
   - BasicStationEventScheduler
-  - WageScheduler #backmen: currency
+  #  -  #backmen: currency
   - BasicRoundstartVariation
   - SubGamemodesRule
 
@@ -68,7 +70,7 @@
   - FleshCult
   - Traitor
   - BasicStationEventScheduler
-  - WageScheduler #backmen: currency
+  #  -  #backmen: currency
   - BasicRoundstartVariation
 
 - type: gamePreset
@@ -83,7 +85,7 @@
     - Nukeops
     - FleshCult
     - BasicStationEventScheduler
-    - WageScheduler #backmen: currency
+    #  -  #backmen: currency
     - BasicRoundstartVariation
 
 - type: gamePreset
@@ -100,7 +102,7 @@
     - Revolutionary
     - BasicStationEventScheduler
     - Traitor
-    - WageScheduler #backmen: currency
+    #  -  #backmen: currency
     - BasicRoundstartVariation
 
 - type: gamePreset
@@ -117,7 +119,7 @@
     - Revolutionary
     - BasicStationEventScheduler
     - Nukeops
-    - WageScheduler #backmen: currency
+    #  -  #backmen: currency
     - BasicRoundstartVariation
 
 - type: gamePreset
@@ -135,7 +137,7 @@
   rules:
   - Zombie
   - BasicStationEventScheduler
-  - WageScheduler #backmen: currency
+  #  -  #backmen: currency
   - Traitor
   - BasicRoundstartVariation
 
@@ -154,7 +156,7 @@
   rules:
   - Zombie
   - BasicStationEventScheduler
-  - WageScheduler #backmen: currency
+  #  -  #backmen: currency
   - Nukeops
   - BasicRoundstartVariation
 
@@ -171,7 +173,7 @@
     - Nukeops
     - FleshCult
     - BasicStationEventScheduler
-    - WageScheduler #backmen: currency
+    #  -  #backmen: currency
     - Traitor
     - BasicRoundstartVariation
 
@@ -186,7 +188,7 @@
   description: survival-nukeops-description
   rules:
     - RampingStationEventScheduler
-    - WageScheduler #backmen: currency
+    #  -  #backmen: currency
     - Nukeops
     - BasicRoundstartVariation
 
@@ -199,9 +201,10 @@
   - changeling
   name: changeling-gamemode-title
   description: changeling-gamemode-description
-  showInVote: false
+  showInVote: true
+  minPlayers: 5
   rules:
-  - WageScheduler #backmen: currency
+#  - WageScheduler #backmen: currency
   - Changeling
   - SubGamemodesRule
   - BasicStationEventScheduler
@@ -217,7 +220,7 @@
   description: secret-description
   showInVote: false
   rules:
-  - WageScheduler #backmen: currency
+#  - WageScheduler #backmen: currency
   - Changeling
   - Traitor
   - SubGamemodesRule
@@ -237,7 +240,7 @@
   rules:
   - ExtendedThief
   - BasicStationEventScheduler
-  - WageScheduler #backmen: currency
+#  - WageScheduler #backmen: currency
   - BasicRoundstartVariation
 
 - type: gamePreset
@@ -253,5 +256,5 @@
   - ExtendedThief
   - Traitor
   - BasicStationEventScheduler
-  - WageScheduler #backmen: currency
+#  - WageScheduler #backmen: currency
   - BasicRoundstartVariation

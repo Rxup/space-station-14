@@ -3,11 +3,11 @@
   alias:
     - survival
   name: survival-title
-  showInVote: false # secret
+  showInVote: true # secret
   description: survival-description
   rules:
     - RampingStationEventScheduler
-    - WageScheduler #backmen: currency
+    #  - WageScheduler #backmen: currency
     - GameRuleMeteorScheduler
     - BasicRoundstartVariation
 
@@ -22,7 +22,7 @@
     - Revolutionary
     - Zombie
     - RampingStationEventScheduler
-    - WageScheduler #backmen: currency
+    #  - WageScheduler #backmen: currency
     - GameRuleMeteorScheduler
     - BlobGameMode # backmen: blob
     - VampiresGameRule # backmen: vampire
@@ -35,11 +35,11 @@
   - extended
   - shittersafari
   name: extended-title
-  showInVote: false #2boring2vote
+  showInVote: true #2boring2vote
   description: extended-description
   rules:
   - BasicStationEventScheduler
-  - WageScheduler #backmen: currency
+  #  - WageScheduler #backmen: currency
   - GameRuleMeteorScheduler
   - BasicRoundstartVariation
 
@@ -49,11 +49,11 @@
   - greenshift
   - shittersafarideluxeedition
   name: greenshift-title
-  showInVote: false #4boring4vote
+  showInVote: true #4boring4vote
   description: greenshift-description
   rules:
   - BasicRoundstartVariation
-  - WageScheduler #backmen: currency
+  #  - WageScheduler #backmen: currency
   - GameRuleMeteorScheduler
 
 - type: gamePreset
@@ -76,7 +76,7 @@
   description: secret-description
   rules:
     - BasicStationEventScheduler
-    - WageScheduler #backmen: currency
+    #  - WageScheduler #backmen: currency
     - GameRuleMeteorScheduler
 
 - type: gamePreset
@@ -93,7 +93,7 @@
     - sandbox
   name: sandbox-title
   description: sandbox-description
-  showInVote: false # Not suitable for use without admin intervention, since entity spamming can quickly crash a server
+  showInVote: true # Not suitable for use without admin intervention, since entity spamming can quickly crash a server
   maxPlayers: 5
   rules:
     - Sandbox
@@ -104,12 +104,13 @@
     - traitor
   name: traitor-title
   description: traitor-description
-  showInVote: false
+  showInVote: true
+  minPlayers: 6
   rules:
     - Traitor
     - SubGamemodesRule
     - BasicStationEventScheduler
-    - WageScheduler #backmen: currency
+    #  - WageScheduler #backmen: currency
     - GameRuleMeteorScheduler
     - BasicRoundstartVariation
 
@@ -121,8 +122,8 @@
   name: death-match-title
   description: death-match-description
   maxPlayers: 15
-  showInVote: true
-  isMiniGame: true
+  showInVote: false
+  isMiniGame: false
   supportedMaps: DeathMatchMapPool
   rules:
     - DeathMatch31
@@ -139,7 +140,7 @@
     - Nukeops
     - SubGamemodesRule
     - BasicStationEventScheduler
-    - WageScheduler #backmen: currency
+    #  - WageScheduler #backmen: currency
     - GameRuleMeteorScheduler
 
 - type: gamePreset
@@ -150,14 +151,15 @@
     - revolutionaries
   name: rev-title
   description: rev-description
-  showInVote: false
+  showInVote: true
+  minPlayers: 10
   rules:
     - Revolutionary
     - SubGamemodesRule
     - BasicStationEventScheduler
     - GameRuleMeteorScheduler
     - BasicRoundstartVariation
-    - WageScheduler #backmen: currency
+    #  - WageScheduler #backmen: currency
 
 - type: gamePreset
   id: Zombie
@@ -169,11 +171,12 @@
   - zomber
   name: zombie-title
   description: zombie-description
-  showInVote: false
+  showInVote: true
+  minPlayers: 10
   rules:
   - Zombie
   - BasicStationEventScheduler
-  - WageScheduler #backmen: currency
+  #  - WageScheduler #backmen: currency
   - GameRuleMeteorScheduler
   - BasicRoundstartVariation
 

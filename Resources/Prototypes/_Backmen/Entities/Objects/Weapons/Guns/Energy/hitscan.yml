@@ -2,7 +2,7 @@
   name: X-01 multiphase energy gun
   parent: BaseWeaponBatterySmall
   id: WeaponMultiphaseEnergyGun
-  description: Nanotrasen's first attempt to remake the Antique Laser Gun. Has more firing modes on offer but lacks the ability to self-recharge.
+  description: Первая попытка Nanotrasen переделать старинный лазерный пистолет. В нем доступно больше режимов стрельбы, но отсутствует возможность самозарядки.
   components:
   - type: Sprite
     sprite: Backmen/Objects/Weapons/Guns/Energy/x01.rsi
@@ -58,7 +58,7 @@
   name: 45MW.TRG
   parent: BaseWeaponBatterySmall
   id: WeaponDominatorNT
-  description: Nanotrasen's first attempt to remake the Antique Laser Gun. Has more firing modes on offer but lacks the ability to self-recharge.
+  description: Первая попытка компании Nanotrasen переделать старинный лазерный пистолет. Предлагается больше режимов стрельбы, но отсутствует возможность самозарядки.
   components:
   - type: Sprite
     sprite: Backmen/Objects/Weapons/Gunsx64/Battery/Dominator.rsi
@@ -116,7 +116,7 @@
   name: SWS Motorized Pulse Rifle
   parent: BaseWeaponRifle
   id: WeaponRifleSWS
-  description: The Pulse Rifle is the standard-issue service rifle of the Earth Defense Force and is also common among corporate security officers.
+  description: Импульсная винтовка является стандартной служебной винтовкой Сил обороны Земли, а также распространена среди сотрудников корпоративной службы безопасности.
   components:
   - type: Sprite
     sprite: Backmen/Objects/Weapons/Gunsx64/Battery/Pulse/sws/big.rsi

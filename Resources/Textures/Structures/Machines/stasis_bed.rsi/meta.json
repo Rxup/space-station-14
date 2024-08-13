@@ -1,12 +1,24 @@
 {
   "version": 1,
   "license": "CC-BY-SA-3.0",
-  "copyright": "Taken from tgstation at https://github.com/tgstation/tgstation/commit/40d89d11ea4a5cb81d61dc1018b46f4e7d32c62a",
+  "copyright": "Taken from Aurora.3 at https://github.com/Aurorastation/Aurora.3/blob/999be393d6459fd974cc47277f659a4844b92ce0/icons/obj/stasis_bed.dmi modificated by @CrimeMoot",
   "size": {
     "x": 32,
     "y": 32
   },
   "states": [
+    {
+      "name": "icon",
+      "directions": 4
+    },
+    {
+      "name": "unlit",
+      "directions": 4
+    },
+    {
+      "name": "panel",
+      "directions": 4
+    },
     {
       "name": "broken",
       "delays": [
@@ -19,18 +31,6 @@
           0.1
         ]
       ]
-    },
-    {
-      "name": "panel",
-      "directions": 4
-    },
-    {
-      "name": "unlit",
-      "directions": 4
-    },
-    {
-      "name": "icon",
-      "directions": 4
     }
   ]
 }

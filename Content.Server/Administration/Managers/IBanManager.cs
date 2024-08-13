@@ -12,6 +12,10 @@ namespace Content.Server.Administration.Managers;
 public interface IBanManager
 {
     public void Initialize();
+
+    // Define the event
+    event EventHandler<BanEventArgs.ServerBanEventArgs>? ServerBanCreated;
+    
     public void Restart();
 
     /// <summary>

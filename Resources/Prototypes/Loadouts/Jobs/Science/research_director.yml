@@ -53,3 +53,8 @@
   id: ResearchDirectorWintercoat
   equipment:
     outerClothing: ClothingOuterWinterRD
+
+- type: loadout
+  id: ClothingOuterWinterSeniorResearcher
+  equipment:
+    outerClothing: ClothingOuterWinterSeniorResearcher  # cats

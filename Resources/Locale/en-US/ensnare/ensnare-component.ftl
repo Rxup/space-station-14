@@ -2,4 +2,5 @@
 ensnare-component-try-free-complete = You successfully free yourself from the {$ensnare}!
 ensnare-component-try-free-fail = You fail to free yourself from the {$ensnare}!
 
-ensnare-component-try-free-other = You start removing the {$ensnare} caught on {$user}!
+ensnare-component-try-free-other = You're trying to free your legs. { $user } from { $ensnare }
+ensnare-component-try-free-verb = Try to free yourself

@@ -1,0 +1,39 @@
+- type: entity
+  id: BrokenWindow
+  parent: TableBase
+  name: Сломанное окно
+  description: Мне жаль инженера который будет это демонтировать...
+  components:
+
+  - type: Sprite
+    sprite: Structures/Walls/broken_window.rsi
+  - type: Icon
+    sprite: Structures/Walls/broken_window.rsi
+
+
+  - type: Climbable
+  - type: Bonkable
+    bonkDamage:
+      types:
+        Blunt: 4
+    bonkSound: !type:SoundCollectionSpecifier
+      collection: TrayHit
+
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 50
+      behaviors: #excess damage (nuke?). avoid computational cost of spawning entities.
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+    - trigger:
+        !type:DamageTrigger
+        damage: 50
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: GlassBreak
+
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
