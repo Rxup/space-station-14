@@ -55,14 +55,17 @@ jobs:
       shell: pwsh
       run: |
         $env:DOTNET_gcServer=1
-        dotnet test --no-build --configuration DebugOpt Content.IntegrationTests/Content.IntegrationTests.csproj -- NUnit.ConsoleOut=0 NUnit.MapWarningTo=Failed 2>&1 |
-        ForEach-Object {
-          if ($_ -notmatch "Attempted to remove an action [^\s]+ from an entity that it was never attached to: Flesh Cultist" -and
-              $_ -notmatch "Caught exception while trying to remove component CameraFollow from entity 'Flesh Cultist") {
-            Write-Output $_
-          }
+        $testResult = dotnet test --no-build --configuration DebugOpt Content.IntegrationTests/Content.IntegrationTests.csproj -- NUnit.ConsoleOut=0 NUnit.MapWarningTo=Failed 2>&1
+        $filteredResult = $testResult -replace "Attempted to remove an action [^\s]+ from an entity that it was never attached to: Flesh Cultist", ""
+        $filteredResult = $filteredResult -replace "Caught exception while trying to remove component CameraFollow from entity 'Flesh Cultist'", ""
+        Write-Output $filteredResult
+        if ($testResult -match "Failed") {
+            exit 1
         }
-        
+        else {
+            exit 0
+        }
+              
   ci-success:
     name: Build & Test Debug
     needs:
