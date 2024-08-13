@@ -46,16 +46,6 @@
     state: HeadRevolutionary
 
 - type: factionIcon
-  id: MindShieldIcon
-  priority: 2
-  locationPreference: Left # Corvax-TypingIndicator
-  layer: Mod
-  isShaded: true
-  icon:
-    sprite: /Textures/Interface/Misc/job_icons.rsi
-    state: MindShield
-
-- type: factionIcon
   id: SyndicateFaction
   priority: 0
   locationPreference: Right # Corvax-TypingIndicator

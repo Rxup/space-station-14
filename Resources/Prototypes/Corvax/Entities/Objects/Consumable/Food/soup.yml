@@ -9,7 +9,7 @@
         - meaty
     - type: Food
       trash:
-      - FoodBowlBig
+        - FoodBowlBig
       utensil:
         - Spoon
         - Fork

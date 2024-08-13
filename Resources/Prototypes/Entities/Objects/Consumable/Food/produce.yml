@@ -1816,7 +1816,7 @@
 
 - type: entity
   name: gatfruit
-  parent: FoodProduceBase
+  parent: [ FoodProduceBase, BaseSyndicateContraband ]
   id: FoodGatfruit
   description: A delicious, gun-shaped fruit with a thick wooden stem.
   components:
@@ -1842,7 +1842,14 @@
   - type: Tag
     tags:
     - Fruit # It's in the name
-# Corvax-HiddenDesc-Start
+  - type: FoodSequenceElement
+    entries:
+      burger:
+        name: food-sequence-burger-content-gatfruit
+        sprite:
+          sprite: Objects/Specific/Hydroponics/gatfruit.rsi
+          state: produce
+  # Corvax-HiddenDesc-Start
   - type: HiddenDescription
     entries:
     - label: corvax-hidden-desc-Gatfruit-syndicate
@@ -1854,14 +1861,7 @@
       jobRequired:
         - Botanist
         - Borg
-# Corvax-HiddenDesc-End
-  - type: FoodSequenceElement
-    entries:
-      burger:
-        name: food-sequence-burger-content-gatfruit
-        sprite:
-          sprite: Objects/Specific/Hydroponics/gatfruit.rsi
-          state: produce
+  # Corvax-HiddenDesc-End
 
 - type: entity
   name: rice bushel
