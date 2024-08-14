@@ -3,29 +3,29 @@
   id: SMESBasicnew
   suffix: Basic, 8MJ
   components:
-  - type: Sprite
-    sprite: _SpaceCats/Structures/Power/smesnew.rsi
-    snapCardinals: true
-    layers:
-      - state: smes
-      - map: ["enum.SmesVisualLayers.Charge"]
-        state: "smes-og1" # -og0 does not exist
-        shader: unshaded
-        visible: false
-      - map: ["enum.SmesVisualLayers.Input"]
-        state: "smes-oc0"
-        shader: unshaded
-      - map: ["enum.SmesVisualLayers.Output"]
-        state: "smes-op1"
-        shader: unshaded
-  - type: Battery
-    maxCharge: 8000000
-    startingCharge: 8000000
+    - type: Sprite
+      sprite: _SpaceCats/Structures/Power/smesnew.rsi
+      snapCardinals: true
+      layers:
+        - state: smes
+        - map: ["enum.SmesVisualLayers.Charge"]
+          state: "smes-og1" # -og0 does not exist
+          shader: unshaded
+          visible: false
+        - map: ["enum.SmesVisualLayers.Input"]
+          state: "smes-oc0"
+          shader: unshaded
+        - map: ["enum.SmesVisualLayers.Output"]
+          state: "smes-op1"
+          shader: unshaded
+    - type: Battery
+      maxCharge: 8000000
+      startingCharge: 8000000
 
 - type: entity
   parent: SMESBasicnew
   id: SMESBasicEmpty
   suffix: Empty
   components:
-  - type: Battery
-    startingCharge: 0
+    - type: Battery
+      startingCharge: 0
