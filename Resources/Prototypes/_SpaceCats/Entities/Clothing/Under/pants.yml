@@ -6,9 +6,9 @@
   components:
     - type: Sprite
       sprite: _SpaceCats/Clothing/Under/underpants.rsi
-      state: podguznik-ICON
+      state: diaper-ICON
     - type: Clothing
       sprite: _SpaceCats/Clothing/Under/underpants.rsi
       clothingVisuals:
         underpants:
-          - state: podguznik
+          - state: diaper

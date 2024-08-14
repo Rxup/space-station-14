@@ -118,7 +118,7 @@
   - ClothingUnderbriefs
   - ClothingUnderboxers_heart
   - ClothingUnderljonb
-#общ
+#общие
   - ClothingUnderDiaper #cats
 #жен
   - ClothingUnderjockstrap
@@ -131,7 +131,7 @@
   id: ClothingUnderDiaper
   equipment:
     underpants: ClothingUnderDiaper
-#cats loadout *end
+#cats loadout end
 #---------------------------------------
 - type: loadout
   id: ClothingUnderboxer_briefs

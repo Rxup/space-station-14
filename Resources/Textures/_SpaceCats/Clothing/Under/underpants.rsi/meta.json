@@ -8,10 +8,10 @@
     "copyright": "Modified from boxer briefs Taken from TGStation at commit https://github.com/tgstation/tgstation/commit/343ec403eb9941c4b4fc298bd0c686f2350d6917, by @hiucko (discord, github)",
     "states": [
         {
-            "name": "podguznik-ICON"
+            "name": "diaper-ICON"
         },
         {
-            "name": "podguznik",
+            "name": "diaper",
             "directions": 4
         }
     ]
