@@ -195,7 +195,7 @@
         shader: unshaded
 
 - type: ghostTheme
-  id: tier013  
+  id: tier014  
   components:
     - type: Sprite
       noRot: true
