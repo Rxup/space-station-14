@@ -24,7 +24,7 @@
 
 - type: entity
   parent: SMESBasicnew
-  id: SMESBasicEmpty
+  id: SMESBasicnewEmpty
   suffix: Empty
   components:
     - type: Battery
