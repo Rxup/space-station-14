@@ -128,8 +128,9 @@
       - state: animated_kaiju
         shader: unshaded
 
+############################ space cats gost
 - type: ghostTheme
-  id: tier09  # space cats
+  id: tier09  
   components:
     - type: Sprite
       noRot: true
@@ -139,4 +140,69 @@
       color: "#fff8"
       layers:
       - state: animated
+        shader: unshaded
+
+- type: ghostTheme
+  id: tier010  
+  components:
+    - type: Sprite
+      noRot: true
+      overrideContainerOcclusion: true # Ghosts always show up regardless of where they're contained.
+      drawdepth: Ghosts
+      sprite: _SpaceCats/Mobs/Ghost/ghost_dark.rsi
+      color: "#fff8"
+      layers:
+      - state: endr_animet
+        shader: unshaded
+
+- type: ghostTheme
+  id: tier011  
+  components:
+    - type: Sprite
+      noRot: true
+      overrideContainerOcclusion: true # Ghosts always show up regardless of where they're contained.
+      drawdepth: Ghosts
+      sprite: _SpaceCats/Mobs/Ghost/ghost_dark.rsi
+      color: "#fff8"
+      layers:
+      - state: Kotovasu
+        shader: unshaded
+
+- type: ghostTheme
+  id: tier012  
+  components:
+    - type: Sprite
+      noRot: true
+      overrideContainerOcclusion: true # Ghosts always show up regardless of where they're contained.
+      drawdepth: Ghosts
+      sprite: _SpaceCats/Mobs/Ghost/ghost_dark.rsi
+      color: "#fff8"
+      layers:
+      - state: kvasik
+        shader: unshaded
+
+- type: ghostTheme
+  id: tier013  
+  components:
+    - type: Sprite
+      noRot: true
+      overrideContainerOcclusion: true # Ghosts always show up regardless of where they're contained.
+      drawdepth: Ghosts
+      sprite: _SpaceCats/Mobs/Ghost/ghosts.rsi
+      color: "#fff8"
+      layers:
+      - state: endr_animet
+        shader: unshaded
+
+- type: ghostTheme
+  id: tier014  
+  components:
+    - type: Sprite
+      noRot: true
+      overrideContainerOcclusion: true # Ghosts always show up regardless of where they're contained.
+      drawdepth: Ghosts
+      sprite: _SpaceCats/Mobs/Ghost/ghosts.rsi
+      color: "#fff8"
+      layers:
+      - state: kidz
         shader: unshaded

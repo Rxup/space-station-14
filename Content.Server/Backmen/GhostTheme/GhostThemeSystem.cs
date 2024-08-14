@@ -50,6 +50,11 @@ public sealed class GhostThemeSystem : EntitySystem
                 items.Add("tier07");
                 items.Add("tier08");
                 items.Add("tier09");
+                items.Add("tier10");
+                items.Add("tier11");
+                items.Add("tier12");
+                items.Add("tier13");
+                items.Add("tier14");
             }
             if (!items.Contains(prefGhost))
             {
