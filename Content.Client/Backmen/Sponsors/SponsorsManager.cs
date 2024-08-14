@@ -58,6 +58,10 @@ public sealed class SponsorsManager : ISharedSponsorsManager
         Prototypes.Add("tier07");
         Prototypes.Add("tier08");
         Prototypes.Add("tier09");
+        Prototypes.Add("tier10");
+        Prototypes.Add("tier11");
+        Prototypes.Add("tier12");
+        Prototypes.Add("tier13");
 #endif
 
         if (message.Info == null)
