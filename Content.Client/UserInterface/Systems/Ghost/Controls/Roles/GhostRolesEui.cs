@@ -106,10 +106,11 @@ namespace Content.Client.UserInterface.Systems.Ghost.Controls.Roles
                     )
                 {
                     hasAccess = false;
-                    reason = FormattedMessage.FromMarkup(Loc.GetString("playtime-deny-reason-not-whitelisted"));
-                } else
+                    reason = FormattedMessage.FromMarkupOrThrow(Loc.GetString("playtime-deny-reason-not-whitelisted"));
+                }
+                else
                 //end-backmen: whitelist
-                if (!requirementsManager.CheckRoleTime(group.Key.Requirements, out reason))
+                if (!requirementsManager.CheckRoleRequirements(group.Key.Requirements, null, out reason))
                 {
                     hasAccess = false;
                 }

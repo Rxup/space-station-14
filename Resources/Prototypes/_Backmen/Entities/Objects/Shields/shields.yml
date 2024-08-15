@@ -1,0 +1,83 @@
+- type: entity
+  name: assault tower shield
+  parent: BaseShield
+  id: EgovShield
+  description: A shield that covers the wearer from head to toe, not everyone can lift this.
+  components:
+    - type: Sprite
+      sprite: Backmen/Objects/Weapons/Melee/shields.rsi
+      state: egov-icon
+    - type: Item
+      sprite: Backmen/Objects/Weapons/Melee/shields.rsi
+      size: Huge
+      heldPrefix: egov
+    - type: StaticPrice
+      price: 200
+    - type: Blocking
+      passiveBlockModifier:
+        coefficients:
+          Blunt: 0.7
+          Slash: 0.7
+          Piercing: 0.7
+          Heat: 0.7
+      activeBlockModifier:
+        coefficients:
+          Blunt: 0.5
+          Slash: 0.5
+          Piercing: 0.5
+          Heat: 0.5
+        flatReductions:
+          Blunt: 5
+          Slash: 5
+          Piercing: 5
+          Heat: 5
+    - type: Destructible
+      thresholds:
+        - trigger:
+            !type:DamageTrigger
+            damage: 190 #This is probably enough damage before it breaks
+          behaviors:
+            - !type:DoActsBehavior
+              acts: [ "Destruction" ]
+            - !type:PlaySoundBehavior
+              sound:
+                collection: MetalBreak
+            - !type:SpawnEntitiesBehavior
+              spawn:
+                SheetPlasteel1:
+                  min: 4
+                  max: 4
+
+# Changeling
+- type: entity
+  parent: BaseShield
+  id: ChangelingShield
+  name: oraganic shield
+  description: A large, fleshy shield.
+  suffix: Unremoveable
+  components:
+  - type: Unremoveable
+  - type: Sprite
+    sprite: Backmen/Changeling/shields.rsi
+    state: ling-icon
+  - type: Item
+    sprite: Backmen/Changeling/shields.rsi
+    heldPrefix: ling
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 60
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+    - trigger:
+        !type:DamageTrigger
+        damage: 50
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalBreak
+

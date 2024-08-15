@@ -12,7 +12,12 @@ using Content.Server.Fluids.EntitySystems;
 using Content.Shared.Backmen.Abilities.Psionics;
 using Content.Shared.Backmen.Psionics.Components;
 using Content.Shared.Backmen.Psionics.Glimmer;
+using Content.Shared.Body.Systems;
 using Content.Shared.Chemistry.EntitySystems;
+using Content.Shared.Interaction.Events;
+using Content.Shared.Materials;
+using Robust.Server.GameObjects;
+using Robust.Shared.Map;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Player;
@@ -28,14 +33,18 @@ public sealed class OracleSystem : EntitySystem
     [Dependency] private readonly SharedSolutionContainerSystem _solutionSystem = default!;
     [Dependency] private readonly GlimmerSystem _glimmerSystem = default!;
     [Dependency] private readonly PuddleSystem _puddleSystem = default!;
+    [Dependency] private readonly SharedBodySystem _body = default!;
+    [Dependency] private readonly AppearanceSystem _appearance = default!;
 
-    public readonly IReadOnlyList<string> RewardReagents = new[]
+
+    [ValidatePrototypeId<ReagentPrototype>]
+    public readonly IReadOnlyList<ProtoId<ReagentPrototype>> RewardReagents = new ProtoId<ReagentPrototype>[]
     {
-        "LotophagoiOil", "LotophagoiOil", "LotophagoiOil", "LotophagoiOil", "LotophagoiOil", "Wine", "Blood", "Ichor"
+        "LotophagoiOil", "LotophagoiOil", "LotophagoiOil", "LotophagoiOil", "LotophagoiOil", "Wine", "Blood", "Ichor", "FluorosulfuricAcid"
     };
 
     [ViewVariables(VVAccess.ReadWrite)]
-    public readonly IReadOnlyList<string> DemandMessages = new[]
+    public readonly IReadOnlyList<LocId> DemandMessages = new LocId[]
     {
         "oracle-demand-1",
         "oracle-demand-2",
@@ -51,7 +60,7 @@ public sealed class OracleSystem : EntitySystem
         "oracle-demand-12"
     };
 
-    public readonly IReadOnlyList<String> RejectMessages = new[]
+    public readonly IReadOnlyList<string> RejectMessages = new[]
     {
         "ἄγνοια",
         "υλικό",
@@ -60,7 +69,8 @@ public sealed class OracleSystem : EntitySystem
         "σάκλας"
     };
 
-    public readonly IReadOnlyList<String> BlacklistedProtos = new[]
+    [ValidatePrototypeId<EntityPrototype>]
+    public readonly IReadOnlyList<EntProtoId> BlacklistedProtos = new EntProtoId[]
     {
         "MobTomatoKiller",
         "Drone",
@@ -110,6 +120,15 @@ public sealed class OracleSystem : EntitySystem
         "MechEquipmentGrabber",
     };
 
+    [ValidatePrototypeId<EntityPrototype>]
+    private const string ResearchDisk5000 = "ResearchDisk5000";
+
+    [ValidatePrototypeId<EntityPrototype>]
+    private const string CrystalNormality = "CrystalNormality";
+
+    [ValidatePrototypeId<EntityPrototype>]
+    private const string MaterialBluespace1 = "MaterialBluespace1";
+
     public override void Update(float frameTime)
     {
         base.Update(frameTime);
@@ -121,7 +140,8 @@ public sealed class OracleSystem : EntitySystem
             if (oracle.BarkAccumulator >= oracle.BarkTime.TotalSeconds)
             {
                 oracle.BarkAccumulator = 0;
-                var message = Loc.GetString(_random.Pick(DemandMessages), ("item", oracle.DesiredPrototype.Name)).ToUpper();
+                var message = Loc.GetString(_random.Pick(DemandMessages), ("item", oracle.DesiredPrototype.Name))
+                    .ToUpper();
                 _chat.TrySendInGameICMessage(owner, message, InGameICChatType.Speak, false);
             }
 
@@ -132,12 +152,35 @@ public sealed class OracleSystem : EntitySystem
             }
         }
     }
+
     public override void Initialize()
     {
         base.Initialize();
         SubscribeLocalEvent<OracleComponent, ComponentInit>(OnInit);
         SubscribeLocalEvent<OracleComponent, InteractHandEvent>(OnInteractHand);
         SubscribeLocalEvent<OracleComponent, InteractUsingEvent>(OnInteractUsing);
+        SubscribeLocalEvent<OracleComponent, SuicideEvent>(OnSuicide);
+    }
+
+    private void OnSuicide(Entity<OracleComponent> ent, ref SuicideEvent args)
+    {
+        var xform = Transform(ent);
+        var spawnPos = new EntityCoordinates(xform.Coordinates.EntityId,
+            xform.Coordinates.Position + xform.LocalRotation.ToWorldVec());
+
+        Spawn(ResearchDisk5000, spawnPos);
+
+        DispenseLiquidReward(ent);
+
+        var i = _random.Next(1, 4);
+
+        while (i != 0)
+        {
+            EntityManager.SpawnEntity(CrystalNormality, spawnPos);
+            i--;
+        }
+
+        NextItem(ent.Comp);
     }
 
     private void OnInit(EntityUid uid, OracleComponent component, ComponentInit args)
@@ -156,21 +199,34 @@ public sealed class OracleSystem : EntitySystem
         var message = Loc.GetString("oracle-current-item", ("item", component.DesiredPrototype.Name));
 
         var messageWrap = Loc.GetString("chat-manager-send-telepathic-chat-wrap-message",
-            ("telepathicChannelName", Loc.GetString("chat-manager-telepathic-channel-name")), ("message", message));
+            ("telepathicChannelName", Loc.GetString("chat-manager-telepathic-channel-name")),
+            ("message", message));
 
         _chatManager.ChatMessageToOne(Shared.Chat.ChatChannel.Telepathic,
-            message, messageWrap, uid, false, actor.PlayerSession.Channel, Color.PaleVioletRed);
+            message,
+            messageWrap,
+            uid,
+            false,
+            actor.PlayerSession.Channel,
+            Color.PaleVioletRed);
 
         if (component.LastDesiredPrototype != null)
         {
             var message2 = Loc.GetString("oracle-previous-item", ("item", component.LastDesiredPrototype.Name));
             var messageWrap2 = Loc.GetString("chat-manager-send-telepathic-chat-wrap-message",
-                ("telepathicChannelName", Loc.GetString("chat-manager-telepathic-channel-name")), ("message", message2));
+                ("telepathicChannelName", Loc.GetString("chat-manager-telepathic-channel-name")),
+                ("message", message2));
 
             _chatManager.ChatMessageToOne(Shared.Chat.ChatChannel.Telepathic,
-                message2, messageWrap2, uid, false, actor.PlayerSession.Channel, Color.PaleVioletRed);
+                message2,
+                messageWrap2,
+                uid,
+                false,
+                actor.PlayerSession.Channel,
+                Color.PaleVioletRed);
         }
     }
+
     private void OnInteractUsing(EntityUid uid, OracleComponent component, InteractUsingEvent args)
     {
         if (HasComp<MobStateComponent>(args.Used))
@@ -186,7 +242,8 @@ public sealed class OracleSystem : EntitySystem
 
         var nextItem = true;
 
-        if (component.LastDesiredPrototype != null && CheckValidity(meta.EntityPrototype, component.LastDesiredPrototype))
+        if (component.LastDesiredPrototype != null &&
+            CheckValidity(meta.EntityPrototype, component.LastDesiredPrototype))
         {
             nextItem = false;
             validItem = true;
@@ -202,7 +259,7 @@ public sealed class OracleSystem : EntitySystem
 
         QueueDel(args.Used);
 
-        Spawn("ResearchDisk5000", Transform(args.User).Coordinates);
+        Spawn(ResearchDisk5000, Transform(args.User).Coordinates);
 
         DispenseLiquidReward(uid);
 
@@ -210,7 +267,7 @@ public sealed class OracleSystem : EntitySystem
 
         while (i != 0)
         {
-            EntityManager.SpawnEntity("MaterialBluespace1", Transform(args.User).Coordinates);
+            EntityManager.SpawnEntity(MaterialBluespace1, Transform(args.User).Coordinates);
             i--;
         }
 
@@ -228,14 +285,19 @@ public sealed class OracleSystem : EntitySystem
 
         return false;
     }
+
     private void DispenseLiquidReward(EntityUid uid)
     {
-        if (!_solutionSystem.TryGetSolution(uid, OracleComponent.SolutionName, out var fountainEnt, out var fountainSol))
+        if (!_solutionSystem.TryGetSolution(uid,
+                OracleComponent.SolutionName,
+                out var fountainEnt,
+                out var fountainSol))
             return;
 
         var allReagents = _prototypeManager.EnumeratePrototypes<ReagentPrototype>()
             .Where(x => !x.Abstract)
-            .Select(x => x.ID).ToList();
+            .Select(x => x.ID)
+            .ToList();
 
         var amount = 20 + _random.Next(1, 30) + (_glimmerSystem.Glimmer / 10f);
         amount = (float) Math.Round(amount);
@@ -276,22 +338,25 @@ public sealed class OracleSystem : EntitySystem
         return _random.Pick(GetAllProtos());
     }
 
-
     public List<string> GetAllProtos()
     {
         var allTechs = _prototypeManager.EnumeratePrototypes<TechnologyPrototype>();
-        var allRecipes = new List<String>();
+        var allRecipes = new List<string>();
 
         foreach (var tech in allTechs)
         {
             foreach (var recipe in tech.RecipeUnlocks)
             {
-                var recipeProto = _prototypeManager.Index<LatheRecipePrototype>(recipe);
-                allRecipes.Add(recipeProto.Result);
+                var recipeProto = _prototypeManager.Index(recipe);
+                if (recipeProto.Result != null)
+                    allRecipes.Add(recipeProto.Result);
             }
         }
 
-        var allPlants = _prototypeManager.EnumeratePrototypes<SeedPrototype>().Select(x => x.ProductPrototypes[0]).ToList();
+        var allPlants = _prototypeManager.EnumeratePrototypes<SeedPrototype>()
+            .Select(x => x.ProductPrototypes[0])
+            .Where( x=>!x.StartsWith("FloorTile"))
+            .ToList();
         var allProtos = allRecipes.Concat(allPlants).ToList();
         foreach (var proto in BlacklistedProtos)
         {
@@ -299,5 +364,35 @@ public sealed class OracleSystem : EntitySystem
         }
 
         return allProtos;
+    }
+
+    public bool GibBody(EntityUid uid, EntityUid item, OracleComponent? oracleComponent = null)
+    {
+        if (!Resolve(uid, ref oracleComponent, false))
+        {
+            return false;
+        }
+        _body.GibBody(item, false);
+        _appearance.SetData(uid, RecyclerVisuals.Bloody, true);
+
+        var xform = Transform(uid);
+        var spawnPos = new EntityCoordinates(xform.Coordinates.EntityId,
+            xform.Coordinates.Position + xform.LocalRotation.ToWorldVec());
+
+        Spawn(ResearchDisk5000, spawnPos);
+
+        DispenseLiquidReward(uid);
+
+        var i = _random.Next(1, 4);
+
+        while (i != 0)
+        {
+            EntityManager.SpawnEntity(CrystalNormality, spawnPos);
+            i--;
+        }
+
+        NextItem(oracleComponent);
+
+        return true;
     }
 }

@@ -1,4 +1,4 @@
-- type: statusIcon
+- type: factionIcon
   id: FleshcultistFaction
   priority: 5
   showTo:
@@ -10,7 +10,7 @@
     sprite: /Textures/Backmen/Interface/Misc/antag_icon.rsi
     state: flesh
 
-- type: statusIcon
+- type: factionIcon
   id: VampireFaction
   priority: 9
   showTo:
@@ -20,7 +20,7 @@
     sprite: /Textures/Backmen/Interface/Misc/antag_icon10x.rsi
     state: vampire
 
-- type: statusIcon
+- type: factionIcon
   id: BlobFaction
   priority: 10
   showTo:
@@ -36,7 +36,7 @@
 
 #svs
 
-- type: statusIcon
+- type: factionIcon
   id: Team0Faction
   priority: 5
   showTo:
@@ -46,7 +46,7 @@
     sprite: /Textures/Backmen/Interface/Misc/svs_icon.rsi
     state: team_0
 
-- type: statusIcon
+- type: factionIcon
   id: TeamAFaction
   priority: 5
   showTo:
@@ -56,7 +56,7 @@
     sprite: /Textures/Backmen/Interface/Misc/svs_icon.rsi
     state: team_a
 
-- type: statusIcon
+- type: factionIcon
   id: TeamBFaction
   priority: 5
   showTo:
@@ -65,3 +65,17 @@
   icon:
     sprite: /Textures/Backmen/Interface/Misc/svs_icon.rsi
     state: team_b
+
+- type: factionIcon
+  id: HivemindFaction
+  priority: 11
+  showTo:
+    components:
+    - ShowAntagIcons
+    - Hivemind
+  icon:
+    sprite: /Textures/Interface/Misc/job_icons.rsi
+    state: Changeling
+
+
+

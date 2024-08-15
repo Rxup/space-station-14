@@ -311,7 +311,7 @@
         Slash: 0.8
         Piercing: 0.9
         Heat: 0.80
-        
+
 - type: entity # backmen
   parent: ClothingHeadBase
   id: ClothingHeadHelmetGreenMilee
@@ -330,7 +330,7 @@
         Slash: 0.3
         Piercing: 0.9
         Heat: 0.60
-        
+
 - type: entity # backmen
   parent: ClothingHeadBase
   id: ClothingHeadHelmetTGMCwhite
@@ -349,7 +349,7 @@
         Slash: 0.3
         Piercing: 0.9
         Heat: 0.60
-        
+
 - type: entity # backmen
   parent: ClothingHeadBase
   id: ClothingHeadHelmetTGMCwhiteMed
@@ -368,3 +368,25 @@
         Slash: 0.3
         Piercing: 0.9
         Heat: 0.60
+
+# Changeling
+- type: entity
+  parent: ClothingHeadBase
+  id: ChangelingClothingHeadHelmet
+  name: chitinous helmet
+  description: An all-consuming chitinous mass of armor.
+  suffix: Unremoveable
+  components:
+  - type: Sprite
+    sprite: Backmen/Changeling/ling_armor_helmet.rsi
+  - type: Clothing
+    sprite: Backmen/Changeling/ling_armor_helmet.rsi
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.9
+        Slash: 0.9
+        Piercing: 0.9
+        Heat: 0.9
+  - type: Unremoveable
+

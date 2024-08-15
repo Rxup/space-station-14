@@ -292,12 +292,14 @@ public sealed class FugitiveSystem : EntitySystem
 
                 var report = GenerateFugiReport(owner);
 
-                _paperSystem.SetContent(paperEnt, report.ToMarkup(), paper);
-                _paperSystem.TryStamp(paperEnt, new StampDisplayInfo()
-                {
-                    StampedColor = Color.Red,
-                    StampedName = Loc.GetString("fugitive-announcement-GALPOL")
-                }, "paper_stamp-generic");
+                _paperSystem.SetContent((paperEnt,paper), report.ToMarkup());
+                _paperSystem.TryStamp((paperEnt,paper),
+                    new StampDisplayInfo()
+                    {
+                        StampedColor = Color.Red,
+                        StampedName = Loc.GetString("fugitive-announcement-GALPOL")
+                    },
+                    "paper_stamp-generic");
             }
 
             RemCompDeferred<FugitiveCountdownComponent>(owner);

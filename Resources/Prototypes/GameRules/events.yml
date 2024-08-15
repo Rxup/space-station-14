@@ -149,16 +149,12 @@
   components:
   - type: StationEvent
     weight: 6
-    duration: 1
+    duration: null
     earliestStart: 30
     reoccurrenceDelay: 20
     minimumPlayers: 30
   - type: SpaceSpawnRule
   - type: AntagLoadProfileRule
-    # Vox disabled until loadouts work on AntagSelection-based spawns
-    speciesOverride: Human
-    speciesOverrideBlacklist:
-    - Vox
   - type: AntagObjectives
     objectives:
     - StealResearchObjective
@@ -175,6 +171,8 @@
       max: 1
       pickPlayer: false
       startingGear: SpaceNinjaGear
+      roleLoadout:
+      - RoleSurvivalEVA
       briefing:
         text: ninja-role-greeting
         color: Green
@@ -455,6 +453,11 @@
       - type: ZombifyOnDeath
       - type: IncurableZombie
       - type: InitialInfected
+      # Corvax-Не знаю какой тег, морти поправь
+      - type: NpcFactionMember
+        addFriendlyFactions:
+        - Zombie
+      # Corvax
       mindComponents:
       - type: InitialInfectedRole
         prototype: InitialInfected
@@ -506,6 +509,7 @@
     startAudio:
       path: /Audio/Announcements/intercept.ogg
     duration: null # the rule has to last the whole round not 1 second
+    occursDuringRoundEnd: false
   - type: AlertLevelInterceptionRule
   - type: AntagSelection
     definitions:

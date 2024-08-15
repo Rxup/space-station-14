@@ -53,7 +53,8 @@
       - sweet
       - funny
   - type: Food
-    trash: FoodTinClownSoupcanTrash
+    trash:
+    - FoodTinClownSoupcanTrash
 
 - type: entity
   parent: FoodTinBaseTrash

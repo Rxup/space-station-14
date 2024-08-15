@@ -96,3 +96,56 @@
     - ShwrAdventurer
     - ShwrBig
     - shwrDust
+
+- type: entity
+  parent: BaseGameRule
+  id: Changeling
+  components:
+  - type: ChangelingRule
+  - type: GameRule
+    minPlayers: 10
+    delay:
+      min: 30
+      max: 60
+  - type: AntagSelection
+    agentName: changeling-roundend-name
+    definitions:
+    - prefRoles: [ Changeling ]
+      max: 8
+      playerRatio: 10
+      lateJoinAdditional: true
+      mindComponents:
+      - type: ChangelingRole
+        prototype: Changeling
+
+- type: entity
+  parent: BaseGameRule
+  id: ExtendedThief
+  components:
+  - type: ThiefRule
+  - type: AntagObjectives
+    objectives:
+    - EscapeThiefShuttleObjective
+  - type: AntagRandomObjectives
+    sets:
+    - groups: ThiefObjectiveGroups
+      maxPicks: 10
+    maxDifficulty: 2
+  - type: AntagSelection
+    agentName: thief-round-end-agent-name
+    definitions:
+    - prefRoles: [ Thief ]
+      max: 8
+      playerRatio: 10
+      blacklist:
+        components:
+        - AntagImmune
+      lateJoinAdditional: true
+      allowNonHumans: true
+      multiAntagSetting: NotExclusive
+      startingGear: ThiefGear
+      mindComponents:
+      - type: ThiefRole
+        prototype: Thief
+      briefing:
+        sound: "/Audio/Misc/thief_greeting.ogg"

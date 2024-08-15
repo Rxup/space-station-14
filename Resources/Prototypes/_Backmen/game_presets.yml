@@ -189,3 +189,69 @@
     - WageScheduler #backmen: currency
     - Nukeops
     - BasicRoundstartVariation
+
+
+- type: gamePreset
+  id: Changeling
+  alias:
+  - ling
+  - lings
+  - changeling
+  name: changeling-gamemode-title
+  description: changeling-gamemode-description
+  showInVote: false
+  rules:
+  - WageScheduler #backmen: currency
+  - Changeling
+  - SubGamemodesRule
+  - BasicStationEventScheduler
+  - GameRuleMeteorScheduler
+  - BasicRoundstartVariation
+
+- type: gamePreset
+  id: Traitorling
+  alias:
+  - lingtraitor
+  - traitorling
+  name: secret-title
+  description: secret-description
+  showInVote: false
+  rules:
+  - WageScheduler #backmen: currency
+  - Changeling
+  - Traitor
+  - SubGamemodesRule
+  - BasicStationEventScheduler
+  - GameRuleMeteorScheduler
+  - BasicRoundstartVariation
+
+- type: gamePreset
+  id: ExtendedThief
+  alias:
+  - vor
+  - thiefs
+  - thief
+  name: thief-extended-gamemode-title
+  description: thief-extended-gamemode-description
+  showInVote: false
+  rules:
+  - ExtendedThief
+  - BasicStationEventScheduler
+  - WageScheduler #backmen: currency
+  - BasicRoundstartVariation
+
+- type: gamePreset
+  id: Criminal
+  alias:
+  - criminal
+  - opg
+  name: criminal-gamemode-title
+  description: thief-extended-gamemode-description
+  showInVote: false
+  rules:
+  - Revolutionary
+  - ExtendedThief
+  - Traitor
+  - BasicStationEventScheduler
+  - WageScheduler #backmen: currency
+  - BasicRoundstartVariation

@@ -437,7 +437,6 @@
             - FlyingMobMask
           layer:
             - FlyingMobLayer
-    - type: GloveHeatResistance
     - type: Internals
     - type: TypingIndicator
       proto: robot
