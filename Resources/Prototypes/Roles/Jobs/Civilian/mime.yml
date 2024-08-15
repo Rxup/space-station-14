@@ -32,7 +32,7 @@
     shoes: ClothingShoesColorWhite
     pocket1: CrayonMime
     pocket2: Paper
-    id: MimePDA
+    pda: MimePDA
     ears: ClothingHeadsetService
   storage:
     back:

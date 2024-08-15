@@ -28,7 +28,7 @@
     shoes: ClothingShoesColorBlack
     eyes: ClothingEyesGlassesWelding
     outerClothing: ClothingOuterCoatRnd
-    id: RoboticistPDA
+    pda: RoboticistPDA
     ears: ClothingHeadsetScience
   #innerClothingSkirt: ClothingUniformJumpskirtRoboticist
   #satchel: ClothingBackpackSatchelScienceFilled

@@ -20,7 +20,7 @@
   id: ReporterGear
   equipment:
     shoes: ClothingShoesColorWhite
-    id: ReporterPDA
+    pda: ReporterPDA
     ears: ClothingHeadsetService
   #storage:
     #back:

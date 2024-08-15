@@ -72,7 +72,7 @@
     outerClothing: ClothingOuterArmorBasic
     suitstorage: WeaponPistolMk58
     head: ClothingHeadHatBeretHoSCentcom
-    id: CCOfficerPDA
+    pda: CCOfficerPDA
     ears: ClothingHeadsetCentComCC
     belt: ClothingBeltSecuritySuper
     pocket2: MagazinePistol

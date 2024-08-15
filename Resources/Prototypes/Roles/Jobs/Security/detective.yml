@@ -31,7 +31,7 @@
   id: DetectiveGear
   equipment:
     eyes: ClothingEyesGlassesSecurity
-    id: DetectivePDA
+    pda: DetectivePDA
     ears: ClothingHeadsetSecurity
     belt: ClothingBeltHolster
   storage:

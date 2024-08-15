@@ -1,7 +1,7 @@
 ﻿- type: startingGear
   id: CCCargo
   equipment:
-    id: CCCargoPDA
+    pda: CCCargoPDA
     ears: ClothingHeadsetCentCom
     pocket1: AppraisalTool
     shoes: ClothingShoesColorBlack

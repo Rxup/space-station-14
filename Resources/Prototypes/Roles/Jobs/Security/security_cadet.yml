@@ -36,7 +36,7 @@
   equipment:
     shoes: ClothingShoesBootsJackSec # Corvax-Resprite-MRP
     outerClothing: ClothingOuterArmorBasic
-    id: SecurityCadetPDA
+    pda: SecurityCadetPDA
     ears: ClothingHeadsetSecurity
     belt: ClothingBeltSecurityFilled
     pocket1: WeaponPistolMk58

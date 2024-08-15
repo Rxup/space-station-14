@@ -27,7 +27,7 @@
 - type: startingGear
   id: ParamedicGear
   equipment:
-    id: ParamedicPDA
+    pda: ParamedicPDA
     ears: ClothingHeadsetMedical
     belt: ClothingBeltMedicalEMTFilled
   storage:

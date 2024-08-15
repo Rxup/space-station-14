@@ -29,7 +29,7 @@
   id: TechnicalAssistantGear
   equipment:
     shoes: ClothingShoesBootsWork
-    id: TechnicalAssistantPDA
+    pda: TechnicalAssistantPDA
     belt: ClothingBeltUtilityEngineering
     ears: ClothingHeadsetEngineering
     pocket2: BookEngineersHandbook

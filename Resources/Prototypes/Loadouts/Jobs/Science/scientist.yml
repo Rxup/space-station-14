@@ -146,7 +146,7 @@
 - type: loadout
   id: ScientistPDA
   equipment:
-    id: SciencePDA
+    pda: SciencePDA
 
 - type: loadout
   id: SeniorResearcherPDA
@@ -154,4 +154,4 @@
   - !type:GroupLoadoutEffect
     proto: SeniorResearcher
   equipment:
-    id: SeniorResearcherPDA
+    pda: SeniorResearcherPDA

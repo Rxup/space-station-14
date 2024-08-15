@@ -54,7 +54,7 @@
   id: HoSGear
   equipment:
     eyes: ClothingEyesGlassesSecurity
-    id: HoSPDA
+    pda: HoSPDA
     gloves: ClothingHandsGlovesCombat
     ears: ClothingHeadsetAltSecurity
   storage:

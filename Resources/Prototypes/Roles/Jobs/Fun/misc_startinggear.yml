@@ -11,7 +11,7 @@
     outerClothing: ClothingOuterCoatGentle
     gloves: ClothingHandsGlovesFingerless
     shoes: ClothingShoesBootsJack
-    id: PassengerPDA
+    pda: PassengerPDA
     ears: ClothingHeadsetGrey
 
 #Deathsquad Outfit
@@ -26,7 +26,7 @@
     gloves: ClothingHandsGlovesCombat
     outerClothing: ClothingOuterHardsuitDeathsquad
     shoes: ClothingShoesBootsMagAdv
-    id: DeathsquadPDA
+    pda: DeathsquadPDA
     pocket1: EnergySword
     pocket2: EnergyShield
     belt: ClothingBeltMilitaryWebbingMedFilled
@@ -53,7 +53,7 @@
     back: ClothingBackpackDuffelSyndicate
     shoes: ClothingShoesBootsCombat
     gloves: ClothingHandsGlovesColorBlack
-    id: SyndiPDA
+    pda: SyndiPDA
     ears: ClothingHeadsetAltSyndicate
 
 # Syndicate Footsoldier Gear - No Headset
@@ -67,7 +67,7 @@
     gloves: ClothingHandsGlovesCombat
     back: ClothingBackpack
     shoes: ClothingShoesBootsCombat
-    id: SyndiPDA
+    pda: SyndiPDA
   storage:
     back:
     - BoxSurvival
@@ -110,7 +110,7 @@
     gloves: ClothingHandsGlovesCombat
     outerClothing: ClothingOuterHardsuitCBURN
     shoes: ClothingShoesBootsCombatFilled
-    id: CBURNPDA
+    pda: CBURNPDA
     pocket1: RadioHandheld
     pocket2: WeaponLaserGun
     belt: ClothingBeltBandolier
@@ -133,7 +133,7 @@
     head: ClothingHeadHatTophat
     ears: ClothingHeadsetService
     jumpsuit: ClothingUniformJumpsuitJacketMonkey
-    id: PunPunIDCard
+    pda: PunPunIDCard
 
 # DeathMatch Gear
 
@@ -159,7 +159,7 @@
     gloves: ClothingHandsGlovesNitrile
     eyes: ClothingEyesHudMedical
     head: ClothingHeadHatBeretBrigmedic
-    id: BrigmedicPDA
+    pda: BrigmedicPDA
     ears: ClothingHeadsetBrigmedic
     mask: ClothingMaskBreathMedicalSecurity
     belt: ClothingBeltMedicalFilled
@@ -220,7 +220,7 @@
   equipment:
     jumpsuit: ClothingUniformJumpsuitClown
     shoes: ClothingShoesClown
-    id: ClownPDA
+    pda: ClownPDA
     back: ClothingBackpackClown
     ears: ClothingHeadsetService
     mask: ClothingMaskClown
@@ -234,7 +234,7 @@
     jumpsuit: ClothingUniformJumpsuitCargo
     shoes: ClothingShoesColorBlack
     head: ClothingHeadHatCargosoft
-    id: CargoPDA
+    pda: CargoPDA
     back: ClothingBackpackCargo
     ears: ClothingHeadsetCargo
     pocket1: AppraisalTool
@@ -245,7 +245,7 @@
     jumpsuit: ClothingUniformJumpsuitCargo
     shoes: ClothingShoesBootsWinterCargo
     head: ClothingHeadHatCargosoft
-    id: CargoPDA
+    pda: CargoPDA
     back: ClothingBackpackDuffelCargo
     ears: ClothingHeadsetCargo
     pocket1: AppraisalTool
@@ -257,7 +257,7 @@
   equipment:
     jumpsuit: ClothingUniformJumpsuitChef
     shoes: ClothingShoesColorWhite
-    id: ChefPDA
+    pda: ChefPDA
     back: ClothingBackpackSatchel
     ears: ClothingHeadsetService
     belt: ClothingBeltChef
@@ -270,7 +270,7 @@
     shoes: ClothingShoesColorBrown
     head: ClothingHeadMirror
     neck: ClothingCloakCmo
-    id: CMOPDA
+    pda: CMOPDA
     back: ClothingBackpackMedical
     ears: ClothingHeadsetCMO
     belt: ClothingBeltMedical
@@ -283,7 +283,7 @@
     shoes: ClothingShoesColorBrown
     head: ClothingHeadHatBeretCmo
     neck: ClothingNeckMantleCMO
-    id: CMOPDA
+    pda: CMOPDA
     back: ClothingBackpackSatchelMedical
     ears: ClothingHeadsetCMO
     belt: ClothingBeltMedical
@@ -299,7 +299,7 @@
     gloves: ClothingHandsGlovesCaptain
     head: ClothingHeadHatCaptain
     neck: ClothingNeckCloakCap
-    id: CaptainPDA
+    pda: CaptainPDA
     back: ClothingBackpackCaptain
     ears: ClothingHeadsetAltCommand
     outerClothing: ClothingOuterArmorCaptainCarapace
@@ -313,7 +313,7 @@
     gloves: ClothingHandsGlovesCaptain
     head: ClothingHeadHatCapcap
     neck: ClothingNeckMantleCap
-    id: CaptainPDA
+    pda: CaptainPDA
     back: ClothingBackpackSatchelCaptain
     ears: ClothingHeadsetAltCommand
     outerClothing: ClothingOuterArmorCaptainCarapace
@@ -326,7 +326,7 @@
     shoes: ClothingShoesColorBrown
     head: ClothingHeadHatBeretRND
     neck: ClothingNeckCloakRd
-    id: RnDPDA
+    pda: RnDPDA
     back: ClothingBackpackScience
     ears: ClothingHeadsetRD
     outerClothing: ClothingOuterCoatRD
@@ -338,7 +338,7 @@
     shoes: ClothingShoesColorBrown
     head: ClothingHeadHatBeretRND
     neck: ClothingNeckMantleRD
-    id: RnDPDA
+    pda: RnDPDA
     back: ClothingBackpackSatchelScience
     ears: ClothingHeadsetRD
     outerClothing: ClothingOuterCoatRD

@@ -67,7 +67,7 @@
     shoes: ClothingShoesColorBlack
     eyes: ClothingEyesGlassesSunglasses
     neck: CombatKnifeSpetsnaz
-    id: CentcomInternPDABackmen
+    pda: CentcomInternPDABackmen
     ears: ClothingHeadsetCentCom
     gloves: ClothingHandsGlovesFingerless
     head: ClothingHeadHatCorpsoft

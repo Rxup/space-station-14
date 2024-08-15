@@ -27,7 +27,7 @@
     jumpsuit: ClothingUniformJumpsuitDeliveryman
     back: ClothingBackpack
     shoes: ClothingShoesColorBlack
-    id: DeliveryPDA
+    pda: DeliveryPDA
     ears: ClothingHeadsetService
     pocket1: Eftpos
     pocket2: FoodBoxPizzaFilled

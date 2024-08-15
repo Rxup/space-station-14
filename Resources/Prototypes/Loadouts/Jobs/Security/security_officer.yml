@@ -178,7 +178,7 @@
 - type: loadout
   id: SecurityPDA
   equipment:
-    id: SecurityPDA
+    pda: SecurityPDA
 
 - type: loadout
   id: SeniorOfficerPDA
@@ -186,7 +186,7 @@
   - !type:GroupLoadoutEffect
     proto: SeniorOfficer
   equipment:
-    id: SeniorOfficerPDA
+    pda: SeniorOfficerPDA
 
 # Pocket #Backmen
 - type: loadout

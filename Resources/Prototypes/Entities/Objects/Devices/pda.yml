@@ -54,7 +54,7 @@
   - type: Clothing
     quickEquip: false
     slots:
-    - idcard
+    - pda
     - Belt
   - type: UnpoweredFlashlight
   - type: ShadowkinLight

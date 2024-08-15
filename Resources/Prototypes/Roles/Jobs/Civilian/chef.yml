@@ -28,7 +28,7 @@
   id: ChefGear
   equipment:
     shoes: ClothingShoesColorBlack
-    id: ChefPDA
+    pda: ChefPDA
     ears: ClothingHeadsetService
     belt: ClothingBeltChefFilled
   #storage:

@@ -21,7 +21,7 @@
 - type: startingGear
   id: CargoTechGear
   equipment:
-    id: CargoPDA
+    pda: CargoPDA
     ears: ClothingHeadsetCargo
     pocket1: AppraisalTool
   #storage:

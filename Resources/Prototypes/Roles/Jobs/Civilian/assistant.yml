@@ -16,7 +16,7 @@
 - type: startingGear
   id: PassengerGear
   equipment:
-    id: PassengerPDA
+    pda: PassengerPDA
     ears: ClothingHeadsetGrey
   #storage:
     #back:

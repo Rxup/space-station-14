@@ -55,7 +55,7 @@
     shoes: ClothingShoesBootsLaceup
     eyes: ClothingEyesGlassesSunglasses
     gloves: ClothingHandsGlovesCaptain
-    id: CaptainPDA
+    pda: CaptainPDA
     ears: ClothingHeadsetAltCommand
   storage:
     back:

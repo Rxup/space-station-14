@@ -40,7 +40,7 @@
     mask: ClothingMaskClown
     pocket1: BikeHorn
     pocket2: ClownRecorder
-    id: ClownPDA
+    pda: ClownPDA
     ears: ClothingHeadsetService
   storage:
     back:

@@ -5,7 +5,7 @@
     back: ClothingBackpackCluwne
     shoes: ClothingShoesCluwne
     mask: ClothingMaskCluwne
-    id: CluwnePDA
+    pda: CluwnePDA
     gloves: ClothingHandsGlovesCluwne
     pocket1: CluwneHorn
 

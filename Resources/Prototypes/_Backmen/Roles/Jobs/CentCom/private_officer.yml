@@ -58,7 +58,7 @@
     eyes: ClothingEyesGlassesSecurity
     head: ClothingHeadHelmetBasic
     outerClothing: ClothingOuterVestArmorSec # Corvax-Resprite
-    id: CentComPrivateOfficerPDA
+    pda: CentComPrivateOfficerPDA
     ears: ClothingHeadsetCentComCC
     belt: ClothingBeltSecuritySuper
     pocket1: WeaponPistolMk58

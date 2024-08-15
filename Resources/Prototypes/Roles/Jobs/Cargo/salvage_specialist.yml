@@ -28,7 +28,7 @@
   id: SalvageSpecialistGear
   equipment:
     jumpsuit: ClothingUniformJumpsuitSalvageSpecialist
-    id: SalvagePDA
+    pda: SalvagePDA
     ears: ClothingHeadsetCargo
   #storage:
     #back:

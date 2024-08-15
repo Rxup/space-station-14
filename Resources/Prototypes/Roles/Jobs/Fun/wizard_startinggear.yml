@@ -6,7 +6,7 @@
     head: ClothingHeadHatWizard
     outerClothing: ClothingOuterWizard
     shoes: ClothingShoesWizard
-    id: PassengerPDA
+    pda: PassengerPDA
     ears: ClothingHeadsetService
   storage:
     back:

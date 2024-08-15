@@ -56,7 +56,7 @@
 - type: startingGear
   id: CMOGear
   equipment:
-    id: CMOPDA
+    pda: CMOPDA
     ears: ClothingHeadsetCMO
     belt: ClothingBeltMedicalFilled
   storage:

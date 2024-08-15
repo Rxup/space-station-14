@@ -21,6 +21,6 @@
   equipment:
     jumpsuit: ClothingUniformJumpsuitPrisoner
     shoes: ClothingShoesColorBlack
-    id: PrisonerPDA
+    pda: PrisonerPDA
     ears: ClothingHeadsetGrey
   #innerClothingSkirt: ClothingUniformJumpsuitPrisoner

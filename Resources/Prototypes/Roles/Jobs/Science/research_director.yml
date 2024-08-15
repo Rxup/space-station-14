@@ -47,7 +47,7 @@
 - type: startingGear
   id: ResearchDirectorGear
   equipment:
-    id: RnDPDA
+    pda: RnDPDA
     ears: ClothingHeadsetRD
   storage:
     back:

@@ -22,7 +22,7 @@
     jumpsuit: ClothingUniformJumpsuitSafari
     head: ClothingHeadSafari
     shoes: ClothingShoesColorWhite
-    id: ZookeeperPDA
+    pda: ZookeeperPDA
     ears: ClothingHeadsetService
   #storage:
     #back:

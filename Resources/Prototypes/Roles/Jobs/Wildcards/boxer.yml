@@ -17,7 +17,7 @@
 - type: startingGear
   id: BoxerGear
   equipment:
-    id: BoxerPDA
+    pda: BoxerPDA
     ears: ClothingHeadsetService
     shoes: ClothingShoesColorRed
     belt: ClothingBeltChampion
