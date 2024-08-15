@@ -12,6 +12,7 @@
   recipeUnlocks:
   - MiningDrill
   - MineralScannerEmpty
+  - WeaponPlasmaCutter # Goobstation
   - OreProcessorIndustrialMachineCircuitboard
   - ClothingMaskWeldingGas
   - ShipyardCircuitboard # backmen: salvage

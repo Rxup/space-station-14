@@ -3,6 +3,7 @@ using Content.Shared.Atmos;
 using Content.Shared.Parallax.Biomes;
 using Content.Shared.Parallax.Biomes.Markers;
 using Robust.Shared.Prototypes;
+using Robust.Shared.Utility;
 
 namespace Content.Shared._Lavaland.Procedural.Prototypes;
 
@@ -19,7 +20,7 @@ public sealed partial class LavalandMapPrototype : IPrototype
     [DataField] public string OutpostName = "Lavaland Outpost";
 
     [DataField]
-    public string OutpostPath = "";
+    public ResPath OutpostPath = new ResPath("");
 
     [DataField]
     public float RestrictedRange = 512f;

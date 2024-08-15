@@ -12,6 +12,7 @@ using Content.Shared.Shuttles.Systems;
 using Content.Shared.Timing;
 using Content.Shared.Whitelist;
 using Robust.Server.GameObjects;
+using Robust.Shared.EntitySerialization.Systems;
 using Robust.Shared.Map;
 using Robust.Shared.Map.Components;
 using Robust.Shared.Utility;
@@ -153,7 +154,7 @@ public sealed class DockingConsoleSystem : SharedDockingConsoleSystem
         _shuttle.FTLToDock(shuttle, Comp<ShuttleComponent>(shuttle), grid, priorityTag: docking.DockTag);
     }
 
-    private const string MiningShuttlePath = "/Maps/_Lavaland/mining.yml";
+    private readonly ResPath _miningShuttlePath = new ResPath("/Maps/_Lavaland/mining.yml");
 
     /// <summary>
     /// Load a new mining shuttle if it still doesn't exist
@@ -164,7 +165,7 @@ public sealed class DockingConsoleSystem : SharedDockingConsoleSystem
             return;
 
         _mapSystem.CreateMap(out var dummyMap);
-        _mapLoader.TryLoad(dummyMap, MiningShuttlePath, out _);
+        _mapLoader.TryLoadGrid(dummyMap, _miningShuttlePath, out _);
 
         // Find the target
         var targetMap = Transform(ent).MapID;
