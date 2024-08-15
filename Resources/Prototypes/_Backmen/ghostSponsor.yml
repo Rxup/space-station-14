@@ -143,7 +143,7 @@
         shader: unshaded
 
 - type: ghostTheme
-  id: tier010  
+  id: tier10  
   components:
     - type: Sprite
       noRot: true
@@ -156,7 +156,7 @@
         shader: unshaded
 
 - type: ghostTheme
-  id: tier011  
+  id: tier11  
   components:
     - type: Sprite
       noRot: true
@@ -169,7 +169,7 @@
         shader: unshaded
 
 - type: ghostTheme
-  id: tier012  
+  id: tier12  
   components:
     - type: Sprite
       noRot: true
@@ -182,7 +182,7 @@
         shader: unshaded
 
 - type: ghostTheme
-  id: tier013  
+  id: tier13  
   components:
     - type: Sprite
       noRot: true
@@ -195,7 +195,7 @@
         shader: unshaded
 
 - type: ghostTheme
-  id: tier014  
+  id: tier14  
   components:
     - type: Sprite
       noRot: true
