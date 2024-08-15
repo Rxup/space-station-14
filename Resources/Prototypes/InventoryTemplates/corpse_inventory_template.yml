@@ -79,7 +79,7 @@
      #start space cats: add_id_revork
     - name: pda
       slotTexture: pda
-      fullTextureName: pda
+      fullTextureName: template_small
       slotFlags: PDA
       slotGroup: SecondHotbar
       stripTime: 6
