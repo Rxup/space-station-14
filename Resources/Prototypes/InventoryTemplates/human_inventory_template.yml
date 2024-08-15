@@ -129,14 +129,14 @@
     #start space cats: add_id_revork
     - name: pda
       slotTexture: pda
-      fullTextureName: template_small
+      fullTextureName: PDA
       slotFlags: PDA
       slotGroup: SecondHotbar
       stripTime: 6
       uiWindowPos: 2,1
       strippingWindowPos: 2,4
       dependsOn: jumpsuit
-      displayName: PDA
+      displayName: Pda
     #end space cats: add_id_revork
     - name: belt
       slotTexture: belt
