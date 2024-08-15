@@ -99,6 +99,16 @@
       dependsOn: jumpsuit
       displayName: Pocket 2
       stripHidden: true
+    - name: id
+      slotTexture: id
+      fullTextureName: template_small
+      slotFlags: IDCARD
+      slotGroup: SecondHotbar
+      stripTime: 6
+      uiWindowPos: 2,1
+      strippingWindowPos: 2,4
+      dependsOn: jumpsuit
+      displayName: ID
     - name: suitstorage
       slotTexture: suit_storage
       slotFlags:   SUITSTORAGE
@@ -110,16 +120,18 @@
       dependsOnComponents:
       - type: AllowSuitStorage
       displayName: Suit Storage
-    - name: id
-      slotTexture: id
+     #start space cats: add_id_revork
+    - name: pda
+      slotTexture: pda
       fullTextureName: template_small
-      slotFlags: IDCARD
+      slotFlags: PDA
       slotGroup: SecondHotbar
       stripTime: 6
       uiWindowPos: 2,1
       strippingWindowPos: 2,4
       dependsOn: jumpsuit
-      displayName: ID
+      displayName: PDA
+    #end space cats: add_id_revork
     - name: belt
       slotTexture: belt
       fullTextureName: template_small

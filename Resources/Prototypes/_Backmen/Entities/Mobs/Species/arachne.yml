@@ -348,6 +348,18 @@
       strippingWindowPos: 2,5
       dependsOn: outerClothing
       displayName: Suit Storage
+    #start space cats: add_id_revork
+    - name: pda
+      slotTexture: pda
+      fullTextureName: template_small
+      slotFlags: PDA
+      slotGroup: SecondHotbar
+      stripTime: 6
+      uiWindowPos: 2,1
+      strippingWindowPos: 2,4
+      dependsOn: jumpsuit
+      displayName: PDA
+    #end space cats: add_id_revork
     - name: id
       slotTexture: id
       slotFlags: IDCARD
