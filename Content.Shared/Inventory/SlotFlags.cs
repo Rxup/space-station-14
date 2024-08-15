@@ -23,7 +23,7 @@ public enum SlotFlags
     GLOVES = 1 << 10,
     PDA = 1 << 11,  //space cats: add_id_revork
     POCKET = 1 << 12,
-    ID = 1 << 13,  //space cats: add_id_revork
+    IDCARD = 1 << 13,  //space cats: add_id_revork
     LEGS = 1 << 14,
     FEET = 1 << 15,
     SUITSTORAGE = 1 << 16,
