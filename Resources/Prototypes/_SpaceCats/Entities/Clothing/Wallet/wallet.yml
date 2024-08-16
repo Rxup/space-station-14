@@ -100,10 +100,6 @@
         whitelist:
           tags:
           - Idsyndie
-      id-syndie:
-        whitelist:
-          tags:
-          - Idsyndie
       id-syndiegold:
         whitelist:
           tags:
