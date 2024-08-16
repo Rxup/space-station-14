@@ -59,7 +59,7 @@
     eyes: ClothingEyesGlassesSunglasses
     gloves: ClothingHandsGlovesCentcomNaval
     outerClothing: ClothingOuterHardsuitCentcomCarporate
-    suitstorage: 
+    suitstorage: OxygenTankFilled
     id: Wallet # space cats add_id_revork
     pda: CentcomPDABackmen
     ears: ClothingHeadsetAltCentCom
