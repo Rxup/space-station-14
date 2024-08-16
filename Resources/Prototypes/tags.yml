@@ -776,8 +776,7 @@
 - type: Tag
   id: Ice
 
-#start space cats: add_id_revork
-- type: Tag
+- type: Tag   #start space cats: add_id_revork
   id: Idblank
 
 - type: Tag
@@ -844,6 +843,9 @@
   id: Idcargogold
 
 - type: Tag
+  id: Idgold
+
+- type: Tag
   id: Idgeneric
 
 - type: Tag
@@ -861,10 +863,9 @@
 - type: Tag
   id: Idsyndie
 
-- type: Tag
+- type: Tag  #end space cats: add_id_revork
   id: Idsyndiegold
 
-#end space cats: add_id_revork
 - type: Tag
   id: Igniter
 
