@@ -681,7 +681,7 @@
         - state: idmusician
     - type: PresetIdCard
       job: Musician
-    - type: Tag   Idciv
+    - type: Tag
       tags: 
       - Idciv
 
