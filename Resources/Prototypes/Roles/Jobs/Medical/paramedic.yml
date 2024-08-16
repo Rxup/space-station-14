@@ -30,6 +30,7 @@
     pda: ParamedicPDA
     ears: ClothingHeadsetMedical
     belt: ClothingBeltMedicalEMTFilled
+    id: Wallet # space cats add_id_revork
   storage:
     back:
     - EmergencyRollerBedSpawnFolded

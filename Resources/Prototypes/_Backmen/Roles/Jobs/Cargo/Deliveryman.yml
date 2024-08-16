@@ -29,6 +29,7 @@
     shoes: ClothingShoesColorBlack
     pda: DeliveryPDA
     ears: ClothingHeadsetService
+    id: Wallet # space cats add_id_revork
     pocket1: Eftpos
     pocket2: FoodBoxPizzaFilled
   #innerClothingSkirt: ClothingUniformJumpsuitDeliverygirl

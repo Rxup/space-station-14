@@ -49,6 +49,7 @@
   equipment:
     pda: RnDPDA
     ears: ClothingHeadsetRD
+    id: Wallet # space cats add_id_revork
   storage:
     back:
     - Flash

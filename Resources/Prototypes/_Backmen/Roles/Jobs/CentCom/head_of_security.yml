@@ -67,6 +67,7 @@
     shoes: ClothingShoesBootsNedoSpetsnaz
     mask: ClothingMaskGasSecurity
     neck: CombatKnifeSpetsnaz
+    id: Wallet # space cats add_id_revork
     eyes: ClothingEyesGlassesSecurity
     gloves: ClothingHandsGlovesCombat
     outerClothing: ClothingOuterArmorBasic

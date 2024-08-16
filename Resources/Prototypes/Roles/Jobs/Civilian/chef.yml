@@ -31,6 +31,7 @@
     pda: ChefPDA
     ears: ClothingHeadsetService
     belt: ClothingBeltChefFilled
+    id: Wallet # space cats add_id_revork
   #storage:
     #back:
     #- Stuff

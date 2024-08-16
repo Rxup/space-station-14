@@ -24,6 +24,7 @@
     shoes: ClothingShoesColorWhite
     pda: ZookeeperPDA
     ears: ClothingHeadsetService
+    id: Wallet # space cats add_id_revork
   #storage:
     #back:
     #- Stuff

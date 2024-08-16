@@ -27,6 +27,7 @@
     pda: BotanistPDA
     ears: ClothingHeadsetService
     belt: ClothingBeltPlantFilled
+    id: Wallet # space cats add_id_revork
   #storage:
     #back:
     #- Stuff

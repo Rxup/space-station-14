@@ -8,6 +8,7 @@
     shoes: ClothingShoesWizard
     pda: PassengerPDA
     ears: ClothingHeadsetService
+    id: Wallet # space cats add_id_revork
   storage:
     back:
     - BoxSurvival
@@ -19,6 +20,7 @@
     jumpsuit: ClothingUniformJumpsuitColorRed
     head: ClothingHeadHatRedwizard
     outerClothing: ClothingOuterWizardRed
+    id: Wallet # space cats add_id_revork
 
 - type: startingGear
   id: WizardVioletGear
@@ -27,9 +29,11 @@
     jumpsuit: ClothingUniformJumpsuitColorPurple
     head: ClothingHeadHatVioletwizard
     outerClothing: ClothingOuterWizardViolet
+    id: Wallet # space cats add_id_revork
 
 - type: startingGear
   id: WizardHardsuitGear
   parent: WizardVioletGear
   equipment:
     outerClothing: ClothingOuterHardsuitWizard
+    id: Wallet # space cats add_id_revork

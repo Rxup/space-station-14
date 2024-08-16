@@ -28,6 +28,7 @@
     pda: JanitorPDA
     ears: ClothingHeadsetService
     belt: ClothingBeltJanitorFilled
+    id: Wallet # space cats add_id_revork
   #storage:
     #back:
     #- Stuff
@@ -41,3 +42,4 @@
     head: ClothingHeadHatCatEars
     ears: ClothingHeadsetService
     belt: ClothingBeltJanitorFilled
+    id: Wallet # space cats add_id_revork

@@ -56,6 +56,7 @@
     back: ClothingBackpackSecurity
     shoes: ClothingShoesBootsJackSec # Corvax-Resprite
     eyes: ClothingEyesGlassesSecurity
+    id: Wallet # space cats add_id_revork
     head: ClothingHeadHelmetBasic
     outerClothing: ClothingOuterVestArmorSec # Corvax-Resprite
     pda: CentComPrivateOfficerPDA

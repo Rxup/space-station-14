@@ -42,6 +42,7 @@
     pocket2: ClownRecorder
     pda: ClownPDA
     ears: ClothingHeadsetService
+    id: Wallet # space cats add_id_revork
   storage:
     back:
     - RubberStampClown

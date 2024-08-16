@@ -30,6 +30,7 @@
     jumpsuit: ClothingUniformJumpsuitSalvageSpecialist
     pda: SalvagePDA
     ears: ClothingHeadsetCargo
+    id: Wallet # space cats add_id_revork
   #storage:
     #back:
     #- Stuff

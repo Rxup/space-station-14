@@ -24,6 +24,7 @@
     shoes: ClothingShoesLeather
     pda: PsychologistPDA
     ears: ClothingHeadsetMedical
+    id: Wallet # space cats add_id_revork
   storage:
     back:
 #    - BoxSurvivalMedical

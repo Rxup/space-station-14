@@ -24,6 +24,7 @@
     pda: CargoPDA
     ears: ClothingHeadsetCargo
     pocket1: AppraisalTool
+    id: Wallet # space cats add_id_revork
   #storage:
     #back:
     #- Stuff

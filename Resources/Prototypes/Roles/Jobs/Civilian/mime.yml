@@ -34,6 +34,7 @@
     pocket2: Paper
     pda: MimePDA
     ears: ClothingHeadsetService
+    id: Wallet # space cats add_id_revork
   storage:
     back:
     - RubberStampMime

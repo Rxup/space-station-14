@@ -168,8 +168,8 @@
     - type: PresetIdCard
       job: Warden
     - type: Tag
-    tags: 
-    - Idsec
+      tags: 
+      - Idsec
 
 - type: entity
   parent: IDCardStandard

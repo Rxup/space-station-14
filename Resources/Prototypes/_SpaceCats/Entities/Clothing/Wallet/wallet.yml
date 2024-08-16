@@ -1,6 +1,6 @@
 - type: entity
   parent: BaseStorageItem
-  id: wallet
+  id: Wallet
   name: персональный кошелёк
   description: Хранит то, что тебе пригодиться, чтоб не вывалилась
   components:

@@ -39,6 +39,7 @@
     pda: SecurityCadetPDA
     ears: ClothingHeadsetSecurity
     belt: ClothingBeltSecurityFilled
+    id: Wallet # space cats add_id_revork
     pocket1: WeaponPistolMk58
     pocket2: BookSpaceLaw # Corvax-HyperLink
   storage:

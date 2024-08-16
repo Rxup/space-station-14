@@ -29,6 +29,7 @@
     pda: ResearchAssistantPDA
     ears: ClothingHeadsetScience
     pocket2: BookScientistsGuidebook
+    id: Wallet # space cats add_id_revork
   #storage:
     #back:
     #- Stuff

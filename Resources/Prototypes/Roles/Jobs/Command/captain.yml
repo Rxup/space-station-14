@@ -57,6 +57,7 @@
     gloves: ClothingHandsGlovesCaptain
     pda: CaptainPDA
     ears: ClothingHeadsetAltCommand
+    id: Wallet # space cats add_id_revork
   storage:
     back:
     - Flash
