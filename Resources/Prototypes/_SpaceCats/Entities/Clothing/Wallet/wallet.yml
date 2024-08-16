@@ -21,9 +21,6 @@
     penSlot:
       startingItem: Pen
       priority: -1
-      whitelist:
-        tags:
-        - Write
     idSlot:
       name: access-id-card-component-default
       ejectSound: /Audio/Machines/id_swipe.ogg
