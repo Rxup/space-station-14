@@ -839,7 +839,7 @@
     job: Reporter
   - type: Tag
     tags: 
-    - Idcev
+    - Idciv
 
 - type: entity
   parent: IDCardStandard
@@ -854,7 +854,7 @@
     job: Boxer
   - type: Tag
     tags: 
-    - Idcev
+    - Idciv
 
 - type: entity
   parent: IDCardStandard
@@ -869,7 +869,7 @@
     job: Zookeeper
   - type: Tag
     tags: 
-    - Idcev
+    - Idciv
 
 - type: entity
   parent: IDCardStandard
