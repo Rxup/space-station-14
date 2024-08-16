@@ -776,6 +776,95 @@
 - type: Tag
   id: Ice
 
+#start space cats: add_id_revork
+- type: Tag
+  id: Idblank
+
+- type: Tag
+  id: Idcargo
+
+- type: Tag
+  id: Idcargogold
+
+- type: Tag
+  id: Idcentcom
+
+- type: Tag
+  id: Idcentcomgold
+
+- type: Tag
+  id: Idcentomnew
+
+- type: Tag
+  id: Idchangeling
+
+- type: Tag
+  id: Idciv
+
+- type: Tag
+  id: Idcivgold
+
+- type: Tag
+  id: Idcyan
+
+- type: Tag
+  id: Idcyangold
+
+- type: Tag
+  id: Ideng
+
+- type: Tag
+  id: Idenggold
+
+- type: Tag
+  id: Idgeneric
+
+- type: Tag
+  id: Idbgold
+
+- type: Tag
+  id: Idgreen
+
+- type: Tag
+  id: Idgreengold
+
+- type: Tag
+  id: Idmed
+
+- type: Tag
+  id: Idmedgold
+
+- type: Tag
+  id: Idpink
+
+- type: Tag
+  id: Idpinkgold
+
+- type: Tag
+  id: Idsci
+
+- type: Tag
+  id: Idscigold
+
+- type: Tag
+  id: Idsec
+
+- type: Tag
+  id: Idsecgold
+
+- type: Tag
+  id: Idsilver
+
+- type: Tag
+  id: Idsyndicate
+
+- type: Tag
+  id: Idsyndie
+
+- type: Tag
+  id: Idsyndiegold
+
+#end space cats: add_id_revork
 - type: Tag
   id: Igniter
 

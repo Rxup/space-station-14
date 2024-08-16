@@ -23,6 +23,7 @@
     tags:
     - DoorBumpOpener
     - WhitelistChameleon
+    - Idciv
   - type: StealTarget
     stealGroup: IDCard
 
@@ -39,6 +40,9 @@
     - state: idpassenger
   - type: PresetIdCard
     job: Passenger
+  - type: Tag
+    tags: 
+    - Idciv
 
 - type: entity
   parent: PassengerIDCard
@@ -51,6 +55,9 @@
     layers:
     - state: default
     - state: idintern-tech
+  - type: Tag
+    tags: 
+    - Ideng
 
 - type: entity
   parent: PassengerIDCard
@@ -63,6 +70,9 @@
     layers:
     - state: default
     - state: idintern-med
+  - type: Tag
+    tags: 
+    - Idmed
 
 - type: entity
   parent: PassengerIDCard
@@ -75,6 +85,9 @@
     layers:
     - state: default
     - state: idintern-sci
+  - type: Tag
+    tags: 
+    - Idsci
 
 - type: entity
   parent: PassengerIDCard
@@ -87,6 +100,9 @@
     layers:
     - state: default
     - state: idintern-cadet
+  - type: Tag
+    tags: 
+    - Idsec
 
 - type: entity
   parent: PassengerIDCard
@@ -99,6 +115,9 @@
     layers:
     - state: default
     - state: idintern-service
+  - type: Tag
+    tags: 
+    - Idcyan
 
 - type: entity
   parent: [IDCardStandard, BaseGrandTheftContraband]
@@ -118,6 +137,7 @@
     - DoorBumpOpener
     - WhitelistChameleon
     - HighRiskItem
+    - Idgold
   - type: StealTarget
     stealGroup: CaptainIDCard
 
@@ -132,6 +152,9 @@
     - state: idsecurityofficer
   - type: PresetIdCard
     job: SecurityOfficer
+  - type: Tag
+    tags: 
+    - Idsec
 
 - type: entity
   parent: IDCardStandard
@@ -144,6 +167,9 @@
         - state: idwarden
     - type: PresetIdCard
       job: Warden
+    - type: Tag
+    tags: 
+    - Idsec
 
 - type: entity
   parent: IDCardStandard
@@ -156,6 +182,9 @@
     - state: idstationengineer
   - type: PresetIdCard
     job: StationEngineer
+  - type: Tag
+    tags: 
+    - Ideng
 
 - type: entity
   parent: IDCardStandard
@@ -168,6 +197,9 @@
     - state: idmedicaldoctor
   - type: PresetIdCard
     job: MedicalDoctor
+  - type: Tag
+    tags: 
+    - Idmed
 
 - type: entity
   parent: IDCardStandard
@@ -180,6 +212,9 @@
     - state: idparamedic
   - type: PresetIdCard
     job: Paramedic
+  - type: Tag
+    tags: 
+    - Idmed
 
 - type: entity
   parent: IDCardStandard
@@ -192,6 +227,9 @@
     - state: idchemist
   - type: PresetIdCard
     job: Chemist
+  - type: Tag
+    tags: 
+    - Idmed
 
 - type: entity
   parent: IDCardStandard
@@ -204,6 +242,9 @@
     - state: idcargotechnician
   - type: PresetIdCard
     job: CargoTechnician
+  - type: Tag
+    tags: 
+    - Idblank
 
 - type: entity
   parent: IDCardStandard
@@ -216,6 +257,9 @@
     - state: idshaftminer
   - type: PresetIdCard
     job: SalvageSpecialist
+  - type: Tag
+    tags: 
+    - Idblank
 
 - type: entity
   parent: IDCardStandard
@@ -230,6 +274,9 @@
       heldPrefix: silver
     - type: PresetIdCard
       job: Quartermaster
+    - type: Tag
+    tags: 
+    - Idblank
 
 - type: entity
   parent: IDCardStandard
@@ -242,6 +289,9 @@
     - state: idscientist
   - type: PresetIdCard
     job: Scientist
+  - type: Tag
+    tags: 
+    - Idscigold
 
 - type: entity
   parent: IDCardStandard
@@ -254,6 +304,9 @@
     - state: idclown
   - type: PresetIdCard
     job: Clown
+  - type: Tag
+    tags: 
+    - Idpink
 
 - type: entity
   parent: IDCardStandard
@@ -265,7 +318,10 @@
     - state: default
     - state: idmime
   - type: PresetIdCard
-    job: Mime
+    job: 
+  - type: Tag
+    tags: 
+    - Idpink
 
 - type: entity
   parent: IDCardStandard
@@ -278,6 +334,9 @@
         - state: idchaplain
     - type: PresetIdCard
       job: Chaplain
+    - type: Tag
+    tags: 
+    - Idciv
 
 - type: entity
   parent: IDCardStandard
@@ -290,6 +349,9 @@
     - state: idjanitor
   - type: PresetIdCard
     job: Janitor
+  - type: Tag
+    tags: 
+    - Idciv
 
 - type: entity
   parent: IDCardStandard
@@ -302,6 +364,9 @@
     - state: idbartender
   - type: PresetIdCard
     job: Bartender
+  - type: Tag
+    tags: 
+    - Idciv
 
 - type: entity
   parent: IDCardStandard
@@ -315,6 +380,9 @@
     - type: PresetIdCard
       job: Bartender
       name: Pun Pun
+    - type: Tag
+    tags: 
+    - Idciv
 
 - type: entity
   parent: IDCardStandard
@@ -327,6 +395,9 @@
     - state: idcook
   - type: PresetIdCard
     job: Chef
+  - type: Tag
+    tags: 
+    - Idciv
 
 - type: entity
   parent: IDCardStandard
@@ -339,6 +410,9 @@
         - state: idbotanist
     - type: PresetIdCard
       job: Botanist
+    - type: Tag
+    tags: 
+    - Idciv
 
 - type: entity
   parent: IDCardStandard
@@ -351,6 +425,9 @@
         - state: idcurator
     - type: PresetIdCard
       job: Librarian
+    - type: Tag
+    tags: 
+    - Idciv
 
 - type: entity
   parent: IDCardStandard
@@ -363,6 +440,9 @@
         - state: idlawyer
     - type: PresetIdCard
       job: Lawyer
+    - type: Tag
+    tags: 
+    - Idciv
 
 - type: entity
   parent: IDCardStandard
@@ -377,6 +457,9 @@
     heldPrefix: silver
   - type: PresetIdCard
     job: HeadOfPersonnel
+  - type: Tag
+    tags: 
+    - Idsilver
 
 - type: entity
   parent: IDCardStandard
@@ -391,6 +474,9 @@
     heldPrefix: silver
   - type: PresetIdCard
     job: ChiefEngineer
+  - type: Tag
+    tags: 
+    - Idenggold
 
 - type: entity
   parent: IDCardStandard
@@ -405,6 +491,9 @@
     heldPrefix: silver
   - type: PresetIdCard
     job: ChiefMedicalOfficer
+  - type: Tag
+    tags: 
+    - Idmedgold
 
 - type: entity
   parent: IDCardStandard
@@ -419,6 +508,9 @@
     heldPrefix: silver
   - type: PresetIdCard
     job: ResearchDirector
+  - type: Tag
+    tags: 
+    - Idscigold
 
 - type: entity
   parent: IDCardStandard
@@ -433,6 +525,9 @@
     heldPrefix: silver
   - type: PresetIdCard
     job: HeadOfSecurity
+  - type: Tag
+    tags: 
+    - Idsecgold
 
 - type: entity
   parent: IDCardStandard
@@ -445,6 +540,9 @@
     - state: idbrigmedic
   - type: PresetIdCard
     job: Brigmedic
+  - type: Tag
+    tags: 
+    - Idsec
 
 - type: entity
   parent: IDCardStandard
@@ -465,6 +563,7 @@
     - AllAccess
     tags:
     - CentralCommand
+    - Idcentcom
 
 - type: entity
   parent: CentcomIDCard
@@ -565,6 +664,9 @@
   - type: Access
     tags:
     - Maintenance
+  - type: Tag
+    tags: 
+    - Idcentcomgold
 
 - type: entity
   parent: IDCardStandard
@@ -577,6 +679,9 @@
         - state: idmusician
     - type: PresetIdCard
       job: Musician
+    - type: Tag
+    tags: 
+    - Idmcev
 
 - type: entity
   parent: CentcomIDCard
@@ -590,6 +695,9 @@
     heldPrefix: blue
   - type: IdCard
     jobTitle: Centcomm Agent
+  - type: Tag
+    tags: 
+    - Idcentcomgold
 
 - type: entity
   name: passenger ID card
@@ -650,6 +758,7 @@
     - Maintenance
     - SyndicateAgent
     - NuclearOperative
+    - Idsyndie
 
 - type: entity
   parent: IDCardStandard
@@ -662,6 +771,9 @@
     - state: idatmospherictechnician
   - type: PresetIdCard
     job: AtmosphericTechnician
+  - type: Tag
+    tags: 
+    - Ideng
 
 - type: entity
   parent: IDCardStandard
@@ -675,6 +787,7 @@
     tags:
     - NuclearOperative
     - SyndicateAgent
+    - Idsyndie
 
 - type: entity
   parent: IDCardStandard
@@ -688,6 +801,7 @@
     tags:
     - NuclearOperative
     - SyndicateAgent
+    - Idsyndie
 
 - type: entity
   parent: IDCardStandard
@@ -700,6 +814,9 @@
     - state: idpsychologist
   - type: PresetIdCard
     job: Psychologist
+  - type: Tag
+    tags: 
+    - Idmed
 
 - type: entity
   parent: IDCardStandard
@@ -712,6 +829,9 @@
     - state: idreporter
   - type: PresetIdCard
     job: Reporter
+  - type: Tag
+    tags: 
+    - Idcev
 
 - type: entity
   parent: IDCardStandard
@@ -724,6 +844,9 @@
     - state: idboxer
   - type: PresetIdCard
     job: Boxer
+  - type: Tag
+    tags: 
+    - Idcev
 
 - type: entity
   parent: IDCardStandard
@@ -736,6 +859,9 @@
     - state: idzookeeper
   - type: PresetIdCard
     job: Zookeeper
+  - type: Tag
+    tags: 
+    - Idcev
 
 - type: entity
   parent: IDCardStandard
@@ -748,6 +874,9 @@
     - state: iddetective
   - type: PresetIdCard
     job: Detective
+  - type: Tag
+    tags: 
+    - Idsec
 
 - type: entity
   parent: CentcomIDCard
@@ -762,6 +891,9 @@
     heldPrefix: blue
   - type: IdCard
     jobTitle: Centcomm Quarantine Officer
+  - type: Tag
+    tags: 
+    - Idcentcomgold
 
 - type: entity
   parent: IDCardStandard
@@ -776,6 +908,9 @@
   - type: IdCard
     jobTitle: Cluwne
   - type: Unremoveable
+  - type: Tag
+    tags: 
+    - Idpink
 
 - type: entity
   parent: EngineeringIDCard
@@ -786,6 +921,9 @@
     layers:
     - state: default
     - state: idseniorengineer
+    - type: Tag
+    tags: 
+    - Ideng
 
 - type: entity
   parent: ResearchIDCard
@@ -796,6 +934,9 @@
     layers:
     - state: default
     - state: idseniorresearcher
+    - type: Tag
+    tags: 
+    - Idsci
 
 - type: entity
   parent: MedicalIDCard
@@ -806,6 +947,9 @@
     layers:
     - state: default
     - state: idseniorphysician
+  - type: Tag
+    tags: 
+    - Idmed
 
 - type: entity
   parent: SecurityIDCard
@@ -816,6 +960,9 @@
     layers:
     - state: default
     - state: idseniorofficer
+  - type: Tag
+    tags: 
+    - Idsec
 
 - type: entity
   parent: IDCardStandard
@@ -843,3 +990,4 @@
     - CentralCommand
     - NuclearOperative
     - SyndicateAgent
+    - Idsyndiegold
