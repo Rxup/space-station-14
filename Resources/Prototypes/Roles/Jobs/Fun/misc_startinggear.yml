@@ -169,7 +169,7 @@
   id: MobAghostGear
   equipment:
     back: ClothingBackpackSatchelHolding
-    id: AdminPDA
+    pda: AdminPDA
   storage:
     back:
     - GasAnalyzer
@@ -199,7 +199,7 @@
 - type: startingGear
   id: BananaClown
   equipment:
-    id: ClownPDA
+    pda: ClownPDA
     back: ClothingBackpackClown
     shoes: ClothingShoesClownBanana
     jumpsuit: ClothingUniformJumpsuitClownBanana

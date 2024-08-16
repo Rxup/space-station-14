@@ -18,6 +18,18 @@
       uiWindowPos: 2,2
       strippingWindowPos: 2,3
       displayName: ID
+    #start space cats: add_id_revork
+    - name: pda
+      slotTexture: pda
+      fullTextureName: template_small
+      slotFlags: PDA
+      slotGroup: SecondHotbar
+      stripTime: 6
+      uiWindowPos: 2,1
+      strippingWindowPos: 2,4
+      dependsOn: jumpsuit
+      displayName: Pda
+    #end space cats: add_id_revork
 
     # For drip reasons.
     - name: head
