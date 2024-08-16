@@ -72,6 +72,18 @@
         whitelist:
           tags:
           - Idmedgold
+      id-cargo:
+        whitelist:
+          tags:
+          - Idcargo
+      id-cargogold:
+        whitelist:
+          tags:
+          - Idcargogold
+      id-generic:
+        whitelist:
+          tags:
+          - Idgeneric
       id-secgold:
         whitelist:
           tags:

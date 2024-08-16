@@ -847,6 +847,15 @@
   id: Idscigold
 
 - type: Tag
+  id: Idcargo
+
+- type: Tag
+  id: Idcargogold
+
+- type: Tag
+  id: Idgeneric
+
+- type: Tag
   id: Idsec
 
 - type: Tag

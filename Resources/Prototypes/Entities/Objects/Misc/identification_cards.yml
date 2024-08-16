@@ -23,7 +23,7 @@
     tags:
     - DoorBumpOpener
     - WhitelistChameleon
-    - Idciv
+    - Idgeneric
   - type: StealTarget
     stealGroup: IDCard
 
@@ -42,7 +42,7 @@
     job: Passenger
   - type: Tag
     tags: 
-    - Idciv
+    - Idgeneric
 
 - type: entity
   parent: PassengerIDCard
@@ -244,7 +244,7 @@
     job: CargoTechnician
   - type: Tag
     tags: 
-    - Idblank
+    - Idcargo
 
 - type: entity
   parent: IDCardStandard
@@ -259,7 +259,7 @@
     job: SalvageSpecialist
   - type: Tag
     tags: 
-    - Idblank
+    - Idcargo
 
 - type: entity
   parent: IDCardStandard
@@ -276,7 +276,7 @@
       job: Quartermaster
     - type: Tag
     tags: 
-    - Idblank
+    - Idcargogold
 
 - type: entity
   parent: IDCardStandard
