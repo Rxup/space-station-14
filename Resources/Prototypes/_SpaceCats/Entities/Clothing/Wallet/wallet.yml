@@ -16,11 +16,6 @@
     context: "human"
   - type: Pda
     state: wallet-orange
-    paiSlot:
-      priority: -2
-    penSlot:
-      startingItem: Pen
-      priority: -1
     idSlot:
       name: access-id-card-component-default
       ejectSound: /Audio/Machines/id_swipe.ogg
@@ -29,7 +24,8 @@
     size: Small
   - type: ContainerContainer
     containers:
-      PDA-id: !type:ContainerSlot {}
+      storagebase: !type:Container
+        ents: []
   - type: Sprite
     state: wallet-orange
     sprite: _SpaceCats/Clothing/Wallet/wallet.rsi
