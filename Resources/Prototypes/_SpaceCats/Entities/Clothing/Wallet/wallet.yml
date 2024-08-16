@@ -14,6 +14,25 @@
     range: 500
   - type: Input
     context: "human"
+  - type: Pda
+    state: wallet-orange
+    paiSlot:
+      priority: -2
+    penSlot:
+      startingItem: Pen
+      priority: -1
+      whitelist:
+        tags:
+        - Write
+    idSlot:
+      name: access-id-card-component-default
+      ejectSound: /Audio/Machines/id_swipe.ogg
+      insertSound: /Audio/Machines/id_insert.ogg
+  - type: Item
+    size: Small
+  - type: ContainerContainer
+    containers:
+      PDA-id: !type:ContainerSlot {}
   - type: Sprite
     state: wallet-orange
     sprite: _SpaceCats/Clothing/Wallet/wallet.rsi
