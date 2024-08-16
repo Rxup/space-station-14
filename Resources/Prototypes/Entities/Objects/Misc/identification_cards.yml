@@ -667,8 +667,8 @@
     tags:
     - Maintenance
   - type: Tag
-      tags: 
-      - Idcentcomgold
+    tags: 
+    - Idcentcomgold
 
 - type: entity
   parent: IDCardStandard
