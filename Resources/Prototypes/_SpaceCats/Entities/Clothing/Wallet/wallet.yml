@@ -72,10 +72,6 @@
         whitelist:
           tags:
           - Idmedgold
-      id-scigold:
-        whitelist:
-          tags:
-          - Idscigold
       id-secgold:
         whitelist:
           tags:
