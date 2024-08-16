@@ -1,11 +1,10 @@
 - type: entity
   parent: BaseStorageItem
   id: Wallet
-  name: персональный кошелёк
+  name: personal wallet
   description: Хранит то, что тебе пригодиться, чтоб не вывалилась
   components:
   - type: Sprite
-    netsync: false
     state: wallet-orange
     sprite: _SpaceCats/Clothing/Wallet/wallet.rsi
   - type: Clothing
@@ -105,4 +104,3 @@
           tags:
           - Idsyndiegold
     sprite: _SpaceCats/Clothing/Wallet/wallet.rsi
-  - type: Appearance
