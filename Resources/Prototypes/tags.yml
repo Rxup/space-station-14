@@ -781,12 +781,6 @@
   id: Idblank
 
 - type: Tag
-  id: Idcargo
-
-- type: Tag
-  id: Idcargogold
-
-- type: Tag
   id: Idcentcom
 
 - type: Tag
@@ -815,9 +809,6 @@
 
 - type: Tag
   id: Idenggold
-
-- type: Tag
-  id: Idgeneric
 
 - type: Tag
   id: Idbgold
