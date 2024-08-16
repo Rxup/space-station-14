@@ -275,8 +275,8 @@
     - type: PresetIdCard
       job: Quartermaster
     - type: Tag
-    tags: 
-    - Idcargogold
+      tags: 
+      - Idcargogold
 
 - type: entity
   parent: IDCardStandard
@@ -335,8 +335,8 @@
     - type: PresetIdCard
       job: Chaplain
     - type: Tag
-    tags: 
-    - Idciv
+      tags: 
+      - Idciv
 
 - type: entity
   parent: IDCardStandard
@@ -381,8 +381,8 @@
       job: Bartender
       name: Pun Pun
     - type: Tag
-    tags: 
-    - Idciv
+      tags: 
+      - Idciv
 
 - type: entity
   parent: IDCardStandard
@@ -411,8 +411,8 @@
     - type: PresetIdCard
       job: Botanist
     - type: Tag
-    tags: 
-    - Idciv
+      tags: 
+      - Idciv
 
 - type: entity
   parent: IDCardStandard
@@ -426,8 +426,8 @@
     - type: PresetIdCard
       job: Librarian
     - type: Tag
-    tags: 
-    - Idciv
+      tags: 
+      - Idciv
 
 - type: entity
   parent: IDCardStandard
@@ -441,8 +441,8 @@
     - type: PresetIdCard
       job: Lawyer
     - type: Tag
-    tags: 
-    - Idciv
+      tags: 
+      - Idciv
 
 - type: entity
   parent: IDCardStandard
@@ -664,8 +664,6 @@
   - type: Access
     tags:
     - Maintenance
-  - type: Tag
-    tags: 
     - Idcentcomgold
 
 - type: entity
@@ -680,8 +678,8 @@
     - type: PresetIdCard
       job: Musician
     - type: Tag
-    tags: 
-    - Idmcev
+      tags: 
+      - Idmcev
 
 - type: entity
   parent: CentcomIDCard
