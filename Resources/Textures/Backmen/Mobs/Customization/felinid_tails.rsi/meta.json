@@ -1,7 +1,7 @@
 {
     "version": 1,
-    "copyright": "@Vordenburg",
-    "license": "CC-BY-SA-4.0",
+    "copyright": "@Vordenburg basic_bell, basic_bow, basic_tail_stripes_even, basic_tail_stripes_odd, basic_tail_tip | modificated by @inspector_jeleshka (Discord) tail | modificated by @foxselian (Discord foxselian), bigtail_wagging, bigtail_back_1, bigtail_left_2, bigtail_right_1, bigtail_right_2, bigtail_back_1, bigtail_back_2, bigtail_front_1, bigtail_front_2",
+    "license": "CC_BY_SA_4.0",
     "size": {
         "x": 32,
         "y": 32
@@ -144,6 +144,117 @@
             ]
         },
         {
+            "name": "fluffy_tail",
+            "directions": 4,
+            "delays": [
+                [
+                    0.2,
+                    0.2,
+                    0.2,
+                    0.2,
+                    0.2,
+                    0.2,
+                    0.2,
+                    0.2,
+                    0.2,
+                    0.2,
+                    0.2,
+                    0.2,
+                    0.2
+                ],
+                [
+                    0.2,
+                    0.2,
+                    0.2,
+                    0.2,
+                    0.2,
+                    0.2,
+                    0.2,
+                    0.2,
+                    0.2,
+                    0.2,
+                    0.2,
+                    0.2,
+                    0.2
+                ],
+                [
+                    0.2,
+                    0.2,
+                    0.2,
+                    0.2,
+                    0.2,
+                    0.2,
+                    0.2,
+                    0.2,
+                    0.2,
+                    0.2,
+                    0.2,
+                    0.2,
+                    0.2,
+                    0.2,
+                    0.2,
+                    0.2,
+                    0.2
+                ],
+                [
+                    0.2,
+                    0.2,
+                    0.2,
+                    0.2,
+                    0.2,
+                    0.2,
+                    0.2,
+                    0.2,
+                    0.2,
+                    0.2,
+                    0.2,
+                    0.2,
+                    0.2,
+                    0.2,
+                    0.2,
+                    0.2,
+                    0.2
+                ]
+            ]
+        },
+        {
+            "name": "bigtail_wagging",
+            "delays": [
+                [
+                    0.3,
+                    0.3
+                ]
+            ]
+        },
+        {
+            "name": "bigtail_left_1"
+        },
+        {
+            "name": "bigtail_left_2",
+            "directions": 4
+        },
+        {
+            "name": "bigtail_right_1"
+        },
+        {
+            "name": "bigtail_right_2",
+            "directions": 4
+        },
+        {
+            "name": "bigtail_back_1"
+        },
+        {
+            "name": "bigtail_back_2",
+            "directions": 4
+        },
+        {
+            "name": "bigtail_front_1"
+        },
+        {
+            "name": "bigtail_front_2",
+            "directions": 4
+        },
+        {
             "name": "basic_bell",
             "directions": 4,
             "delays": [
@@ -179,3 +290,4 @@
         }
     ]
 }
+
