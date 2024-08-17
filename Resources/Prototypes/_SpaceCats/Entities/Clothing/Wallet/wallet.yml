@@ -20,11 +20,6 @@
     deviceNetId: Wireless
     receiveFrequencyId: PDA
     prefix: device-address-prefix-console
-  - type: ContainerContainer
-    containers:
-      PDA-id: !type:ContainerSlot {}
-      storagebase: !type:Container
-        ents: []
   - type: WirelessNetworkConnection
     range: 500
   - type: Access
