@@ -5,6 +5,7 @@
   description: Хранит то, что тебе пригодиться, чтоб не вывалилась
   components:
   - type: Sprite
+    netsync: false
     state: wallet-orange
     sprite: _SpaceCats/Clothing/Wallet/wallet.rsi
   - type: Clothing
