@@ -28,9 +28,8 @@
   id: BartenderGear
   equipment:
     shoes: ClothingShoesColorBlack
-    pda: BartenderPDA
+    id: BartenderPDA
     ears: ClothingHeadsetService
-    id: Wallet # space cats add_id_revork
   #storage:
     #back:
     #- Stuff

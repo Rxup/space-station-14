@@ -49,11 +49,10 @@
 - type: startingGear
   id: QuartermasterGear
   equipment:
-    pda: QuartermasterPDA
+    id: QuartermasterPDA
     ears: ClothingHeadsetQM
     belt: BoxFolderClipboard
     pocket1: AppraisalTool
-    id: Wallet # space cats add_id_revork
   storage:
     back:
     - Flash

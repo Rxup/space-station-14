@@ -20,9 +20,6 @@
         "name": "ears"
       },
       {
-        "name": "pda"
-      },
-      {
         "name": "ears_headset"
       },
       {
@@ -61,7 +58,7 @@
       {
         "name": "mask"
       },
-	    {
+	  {
         "name": "neck"
       },
       {
@@ -83,7 +80,7 @@
         "name": "inventory"
       },
       {
-        "name": "id"
+        "name": "pda"
       },
       {
         "name": "web"

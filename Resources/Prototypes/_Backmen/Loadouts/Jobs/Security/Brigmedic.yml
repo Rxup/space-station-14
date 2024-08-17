@@ -4,7 +4,7 @@
     shoes: ClothingShoesBootsJackSec # Corvax-Resprite
     gloves: ClothingHandsGlovesNitrile
     eyes: ClothingEyesHudMedSec
-    pda: BrigmedicPDA
+    id: BrigmedicPDA
     belt: ClothingBeltMedicalFilled
 
 #Suit

@@ -67,13 +67,12 @@
     shoes: ClothingShoesBootsNedoSpetsnaz
     mask: ClothingMaskGasSecurity
     neck: CombatKnifeSpetsnaz
-    id: Wallet # space cats add_id_revork
     eyes: ClothingEyesGlassesSecurity
     gloves: ClothingHandsGlovesCombat
     outerClothing: ClothingOuterArmorBasic
     suitstorage: WeaponPistolMk58
     head: ClothingHeadHatBeretHoSCentcom
-    pda: CCOfficerPDA
+    id: CCOfficerPDA
     ears: ClothingHeadsetCentComCC
     belt: ClothingBeltSecuritySuper
     pocket2: MagazinePistol

@@ -60,8 +60,7 @@
     gloves: ClothingHandsGlovesCentcomNaval
     outerClothing: ClothingOuterHardsuitCentcomCarporate
     suitstorage: OxygenTankFilled
-    id: Wallet # space cats add_id_revork
-    pda: CentcomPDABackmen
+    id: CentcomPDABackmen
     ears: ClothingHeadsetAltCentCom
     pocket1: CyberPen
     pocket2: BoxFolderSecretBlack

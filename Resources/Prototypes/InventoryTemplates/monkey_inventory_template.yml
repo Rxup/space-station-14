@@ -27,18 +27,6 @@
     uiWindowPos: 1,0
     strippingWindowPos: 0,2
     displayName: Jumpsuit
-    #start space cats: add_id_revork
-  - name: pda
-    slotTexture: pda
-    fullTextureName: template_small
-    slotFlags: PDA
-    slotGroup: SecondHotbar
-    stripTime: 6
-    uiWindowPos: 2,1
-    strippingWindowPos: 2,4
-    dependsOn: jumpsuit
-    displayName: Pda
-    #end space cats: add_id_revork
   - name: id
     slotTexture: id
     fullTextureName: template_small

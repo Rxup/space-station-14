@@ -35,9 +35,8 @@
   id: WardenGear
   equipment:
     eyes: ClothingEyesGlassesSecurity
-    pda: WardenPDA
+    id: WardenPDA
     ears: ClothingHeadsetSecurity
-    id: Wallet # space cats add_id_revork
   storage:
     back:
     - Flash

@@ -16,9 +16,8 @@
 - type: startingGear
   id: PassengerGear
   equipment:
-    pda: PassengerPDA
+    id: PassengerPDA
     ears: ClothingHeadsetGrey
-    id: Wallet # space cats add_id_revork
   #storage:
     #back:
     #- Stuff

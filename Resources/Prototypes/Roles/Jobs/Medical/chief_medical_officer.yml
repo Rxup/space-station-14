@@ -56,10 +56,9 @@
 - type: startingGear
   id: CMOGear
   equipment:
-    pda: CMOPDA
+    id: CMOPDA
     ears: ClothingHeadsetCMO
     belt: ClothingBeltMedicalFilled
-    id: Wallet # space cats add_id_revork
   storage:
     back:
     - Flash

@@ -120,7 +120,7 @@
 - type: loadout
   id: StationEngineerPDA
   equipment:
-    pda: EngineerPDA
+    id: EngineerPDA
 
 - type: loadout
   id: SeniorEngineerPDA
@@ -128,4 +128,4 @@
   - !type:GroupLoadoutEffect
     proto: SeniorEngineering
   equipment:
-    pda: SeniorEngineerPDA
+    id: SeniorEngineerPDA

@@ -13,7 +13,7 @@
   id: ExplorerGear
   equipment:
     jumpsuit: ClothingUniformJumpsuitExplorer
-    pda: ExplorerIDCard
+    id: ExplorerIDCard
     shoes: ClothingShoesColorBlack
     pocket1: HandheldGPSBasic
     pocket2: RadioHandheld
