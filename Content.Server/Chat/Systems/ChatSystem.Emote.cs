@@ -76,28 +76,28 @@ public partial class ChatSystem
     /// <param name="nameOverride">The name to use for the speaking entity. Usually this should just be modified via <see cref="TransformSpeakerNameEvent"/>. If this is set, the event will not get raised.</param>
     /// <param name="forceEmote">Bypasses whitelist/blacklist/availibility checks for if the entity can use this emote</param>
     public void TryEmoteWithChat(
-        EntityUid source,
-        EmotePrototype emote,
-        ChatTransmitRange range = ChatTransmitRange.Normal,
-        bool hideLog = false,
-        string? nameOverride = null,
-        bool ignoreActionBlocker = false,
-        bool forceEmote = false
-        )
+       EntityUid source,
+       EmotePrototype emote,
+       ChatTransmitRange range = ChatTransmitRange.Normal,
+       bool hideLog = false,
+       string? nameOverride = null,
+       bool ignoreActionBlocker = false,
+       bool forceEmote = false
+       )
     {
-        if (!forceEmote && !AllowedToUseEmote(source, emote))
-            return;
+       if (!forceEmote && !AllowedToUseEmote(source, emote))
+           return;
 
-        // check if proto has valid message for chat
-        if (emote.ChatMessages.Count != 0)
-        {
-            // not all emotes are loc'd, but for the ones that are we pass in entity
-            var action = Loc.GetString(_random.Pick(emote.ChatMessages), ("entity", source));
-            SendEntityEmote(source, action, range, nameOverride, hideLog: hideLog, checkEmote: false, ignoreActionBlocker: ignoreActionBlocker);
-        }
+       if (emote.ChatMessages.Count != 0)
+       {
+           var action = Loc.GetString(_random.Pick(emote.ChatMessages), ("entity", source));
+        
+           action = $"<color=#FFC0CB>*{action}*</color>";
 
-        // do the rest of emote event logic here
-        TryEmoteWithoutChat(source, emote, ignoreActionBlocker);
+           SendEntityEmote(source, action, range, nameOverride, hideLog: hideLog, checkEmote: false, ignoreActionBlocker: ignoreActionBlocker);
+       }
+
+       TryEmoteWithoutChat(source, emote, ignoreActionBlocker);
     }
 
     /// <summary>
