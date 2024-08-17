@@ -43,6 +43,3 @@ marking-FelinidTailBasicWithBowAndBell-basic_tail_stripes_even = Полосат�
 marking-FelinidTailBasicWithBowAndBell-basic_tail_stripes_odd = Полосатый хвост с колокольчиком и бантиком (неровные)
 marking-FelinidTailBasicWithBowAndBell-basic_bow = Бантик
 marking-FelinidTailBasicWithBowAndBell-basic_bell = Колокольчик
-marking-FelinidFluffyTail = Пушистый хвост
-marking-FelinidElongatedTail = Удлиненный хвост
-marking-FelinidDemonicPointedTail = Демонический заостренный хвост
