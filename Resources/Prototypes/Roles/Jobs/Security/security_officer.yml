@@ -32,6 +32,7 @@
   id: SecurityOfficerGear
   equipment:
     eyes: ClothingEyesGlassesSecurity
+    id: Wallet # space cats add_id_revork
     ears: ClothingHeadsetSecurity
   storage:
     back:

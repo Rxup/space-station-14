@@ -1,0 +1,118 @@
+- type: entity
+  parent: BaseStorageItem
+  id: Wallet
+  name: персональный кошелёк
+  description: Хранит то, что тебе пригодится, чтобы не вывалилось.
+  components:
+  - type: Sprite
+    netsync: false
+    state: wallet-orange
+    sprite: _SpaceCats/Clothing/Wallet/wallet.rsi
+  - type: Clothing
+    slots:
+      - idcard
+      - Belt
+  - type: Item
+    size: Small
+  - type: StationRecordKeyStorage
+  - type: Access
+  - type: IdCard
+  - type: WirelessNetworkConnection
+    range: 500
+  - type: Tag
+    tags:
+    - DoorBumpOpener
+  - type: Input
+    context: "human"
+  - type: Storage
+    maxItemSize: Small
+    grid:
+    - 0,0,1,2
+  - type: ItemMapper
+    mapLayers:
+      id-civ:
+        whitelist:
+          tags:
+          - Idciv
+      id-eng:
+        whitelist:
+          tags:
+          - Ideng
+      id-med:
+        whitelist:
+          tags:
+          - Idmed
+      id-sci:
+        whitelist:
+          tags:
+          - Idsci
+      id-sec:
+        whitelist:
+          tags:
+          - Idsec
+      id-cyan:
+        whitelist:
+          tags:
+          - Idcyan
+      id-gold:
+        whitelist:
+          tags:
+          - Idgold
+      id-blank:
+        whitelist:
+          tags:
+          - Idblank
+      id-scigold:
+        whitelist:
+          tags:
+          - Idscigold
+      id-pink:
+        whitelist:
+          tags:
+          - Idpink
+      id-silver:
+        whitelist:
+          tags:
+          - Idsilver
+      id-enggold:
+        whitelist:
+          tags:
+          - Idenggold
+      id-medgold:
+        whitelist:
+          tags:
+          - Idmedgold
+      id-cargo:
+        whitelist:
+          tags:
+          - Idcargo
+      id-cargogold:
+        whitelist:
+          tags:
+          - Idcargogold
+      id-generic:
+        whitelist:
+          tags:
+          - Idgeneric
+      id-secgold:
+        whitelist:
+          tags:
+          - Idsecgold
+      id-centcom:
+        whitelist:
+          tags:
+          - Idcentcom
+      id-centcomgold:
+        whitelist:
+          tags:
+          - Idcentcomgold
+      id-syndie:
+        whitelist:
+          tags:
+          - Idsyndie
+      id-syndiegold:
+        whitelist:
+          tags:
+          - Idsyndiegold
+    sprite: _SpaceCats/Clothing/Wallet/wallet.rsi
+  - type: Appearance

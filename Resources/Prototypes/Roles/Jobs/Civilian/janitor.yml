@@ -25,9 +25,10 @@
   id: JanitorGear
   equipment:
     shoes: ClothingShoesGaloshes
-    id: JanitorPDA
+    pda: JanitorPDA
     ears: ClothingHeadsetService
     belt: ClothingBeltJanitorFilled
+    id: Wallet # space cats add_id_revork
   #storage:
     #back:
     #- Stuff
@@ -36,8 +37,9 @@
   id: JanitorMaidGear
   equipment:
     jumpsuit: ClothingUniformJumpskirtJanimaid
-    id: JanitorPDA
+    pda: JanitorPDA
     gloves: ClothingHandsGlovesJanitor
     head: ClothingHeadHatCatEars
     ears: ClothingHeadsetService
     belt: ClothingBeltJanitorFilled
+    id: Wallet # space cats add_id_revork

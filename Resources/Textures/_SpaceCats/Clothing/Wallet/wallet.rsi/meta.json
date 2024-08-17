@@ -1,0 +1,117 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "Taken from VOREStation at https://github.com/VOREStation/VOREStation/blob/868413c880ea5e7bb0196551593514c894c13202/icons/obj/wallet.dmi modificated by @CrimeMoot",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "wallet-orange"
+    },
+    {
+      "name": "wallet-white"
+    },
+    {
+      "name": "wallet-emp",
+      "delays": [
+        [
+          0.3,
+          0.4,
+          0.2,
+          0.4,
+          0.3,
+          0.5
+        ]
+      ]
+    },
+    {
+      "name": "id-generic"
+    },
+    {
+      "name": "id-gold"
+    },
+    {
+      "name": "id-silver"
+    },
+    {
+      "name": "id-centcom"
+    },
+    {
+      "name": "id-centcomgold"
+    },
+    {
+      "name": "id-centcomnew"
+    },
+    {
+      "name": "id-blank"
+    },
+    {
+      "name": "id-cargo"
+    },
+    {
+      "name": "id-cargogold"
+    },
+    {
+      "name": "id-civ"
+    },
+    {
+      "name": "id-civgold"
+    },
+    {
+      "name": "id-eng"
+    },
+    {
+      "name": "id-enggold"
+    },
+    {
+      "name": "id-sec"
+    },
+    {
+      "name": "id-secgold"
+    },
+    {
+      "name": "id-med"
+    },
+    {
+      "name": "id-medgold"
+    },
+    {
+      "name": "id-sci"
+    },
+    {
+      "name": "id-scigold"
+    },
+    {
+      "name": "id-cyan"
+    },
+    {
+      "name": "id-cyangold"
+    },
+    {
+      "name": "id-green"
+    },
+    {
+      "name": "id-greengold"
+    },
+    {
+      "name": "id-pink"
+    },
+    {
+      "name": "id-pinkgold"
+    },
+    {
+      "name": "id-changeling"
+    },
+    {
+      "name": "id-syndiegold"
+    },
+    {
+      "name": "id-syndicate"
+    },
+    {
+      "name": "id-syndie"
+    }
+  ]
+}

@@ -20,10 +20,11 @@
   id: LibrarianGear
   equipment:
     shoes: ClothingShoesBootsLaceup
-    id: LibrarianPDA
+    pda: LibrarianPDA
     ears: ClothingHeadsetService
     pocket1: d10Dice
     pocket2: HandLabeler # for making named bestsellers
+    id: Wallet # space cats add_id_revork
   storage:
     back:
     - BookRandom

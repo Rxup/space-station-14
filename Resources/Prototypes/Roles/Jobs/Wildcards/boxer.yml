@@ -17,10 +17,11 @@
 - type: startingGear
   id: BoxerGear
   equipment:
-    id: BoxerPDA
+    pda: BoxerPDA
     ears: ClothingHeadsetService
     shoes: ClothingShoesColorRed
     belt: ClothingBeltChampion
+    id: Wallet # space cats add_id_revork
   #storage:
     #back:
     #- Stuff

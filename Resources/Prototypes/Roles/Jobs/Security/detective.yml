@@ -31,9 +31,10 @@
   id: DetectiveGear
   equipment:
     eyes: ClothingEyesGlassesSecurity
-    id: DetectivePDA
+    pda: DetectivePDA
     ears: ClothingHeadsetSecurity
     belt: ClothingBeltHolster
+    id: Wallet # space cats add_id_revork
   storage:
     back:
     - Flash

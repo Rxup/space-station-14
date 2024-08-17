@@ -77,10 +77,11 @@
   id: HoPGear
   equipment:
     shoes: ClothingShoesColorBrown
-    id: HoPPDA
+    pda: HoPPDA
     gloves: ClothingHandsGlovesHop
     ears: ClothingHeadsetAltCommand
     belt: BoxFolderClipboard
+    id: Wallet # space cats add_id_revork
   storage:
     back:
     - Flash

@@ -26,9 +26,10 @@
   id: AtmosphericTechnicianGear
   equipment:
     eyes: ClothingEyesGlassesMeson
-    id: AtmosPDA
+    pda: AtmosPDA
     belt: ClothingBeltUtilityEngineering
     ears: ClothingHeadsetEngineering
+    id: Wallet # space cats add_id_revork
   #storage:
     #back:
     #- Stuff

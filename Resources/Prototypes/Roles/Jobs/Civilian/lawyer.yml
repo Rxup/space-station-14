@@ -26,8 +26,9 @@
   id: LawyerGear
   equipment:
     shoes: ClothingShoesBootsLaceup
-    id: LawyerPDA
+    pda: LawyerPDA
     ears: ClothingHeadsetSecurity
+    id: Wallet # space cats add_id_revork
   inhand:
     - BriefcaseBrownFilled
   storage:

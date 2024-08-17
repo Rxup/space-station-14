@@ -154,7 +154,7 @@
 - type: loadout
   id: MedicalDoctorPDA
   equipment:
-    id: MedicalPDA
+    pda: MedicalPDA
 
 - type: loadout
   id: SeniorPhysicianPDA
@@ -162,7 +162,7 @@
   - !type:GroupLoadoutEffect
     proto: SeniorPhysician
   equipment:
-    id: SeniorPhysicianPDA
+    pda: SeniorPhysicianPDA
 
 # Gloves
 - type: loadout

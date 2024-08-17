@@ -67,7 +67,8 @@
     shoes: ClothingShoesColorBlack
     eyes: ClothingEyesGlassesSunglasses
     neck: CombatKnifeSpetsnaz
-    id: CentcomInternPDABackmen
+    id: Wallet # space cats add_id_revork
+    pda: CentcomInternPDABackmen
     ears: ClothingHeadsetCentCom
     gloves: ClothingHandsGlovesFingerless
     head: ClothingHeadHatCorpsoft

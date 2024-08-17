@@ -25,8 +25,9 @@
   id: ServiceWorkerGear
   equipment:
     shoes: ClothingShoesColorBlack
-    id: ServiceWorkerPDA
+    pda: ServiceWorkerPDA
     ears: ClothingHeadsetService
+    id: Wallet # space cats add_id_revork
   #storage:
     #back:
     #- Stuff

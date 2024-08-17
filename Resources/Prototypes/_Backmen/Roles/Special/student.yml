@@ -19,7 +19,7 @@
   id: StudentGear
   equipment:
     jumpsuit: ClothingUniformSchoolGakuranBlack
-    id: StudentIDCard
+    pda: StudentIDCard
     shoes: ClothingShoesColorBlack
     back: ClothingBackpack
   #innerClothingSkirt: UniformSchoolgirlDusk

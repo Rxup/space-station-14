@@ -47,8 +47,9 @@
 - type: startingGear
   id: ResearchDirectorGear
   equipment:
-    id: RnDPDA
+    pda: RnDPDA
     ears: ClothingHeadsetRD
+    id: Wallet # space cats add_id_revork
   storage:
     back:
     - Flash

@@ -27,6 +27,7 @@
   equipment:
     ears: ClothingHeadsetMedical
     belt: ClothingBeltMedicalFilled
+    id: Wallet # space cats add_id_revork
   #storage:
     #back:
     #- Stuff
