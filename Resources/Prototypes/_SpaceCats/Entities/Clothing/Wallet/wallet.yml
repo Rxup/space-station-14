@@ -29,7 +29,6 @@
     - DoorBumpOpener
   - type: Input
     context: "human"
-  - type: Pda
   - type: Storage
     maxItemSize: Small
     grid:
