@@ -69,10 +69,7 @@ public sealed class BlobCoreSystem : SharedBlobCoreSystem
 
     private void OnTerminating(EntityUid uid, BlobCoreComponent component, ref EntityTerminatingEvent args)
     {
-        if (component.Observer != null && !TerminatingOrDeleted(component.Observer.Value) && !EntityManager.IsQueuedForDeletion(component.Observer.Value))
-        {
-            QueueDel(component.Observer.Value);
-        }
+        OnDestruction(uid, component, new DestructionEventArgs());
     }
 
     #region Objective
@@ -247,10 +244,12 @@ public sealed class BlobCoreSystem : SharedBlobCoreSystem
 
         foreach (var blobTile in component.BlobTiles)
         {
-            if (!TryKillBlobTile(blobTile))
-            {
-                Log.Warning($"Failed to kill blob tile {ToPrettyString(blobTile)}");
-            }
+            if (!_tile.TryGetComponent(blobTile, out var blobTileComponent))
+                continue;
+
+            blobTileComponent.Core = null;
+            blobTileComponent.Color = Color.White;
+            Dirty(blobTile, blobTileComponent);
         }
 
         var stationUid = _stationSystem.GetOwningStation(uid);
@@ -373,20 +372,6 @@ public sealed class BlobCoreSystem : SharedBlobCoreSystem
 
         QueueDel(tileUid);
         blobCore.BlobTiles.Remove(tileUid);
-
-        return true;
-    }
-
-    public bool TryKillBlobTile(EntityUid uid)
-    {
-        if (!_tile.TryGetComponent(uid, out var blobTileComponent) || blobTileComponent.Core == null)
-            return false;
-
-        blobTileComponent.Core.Value.Comp.BlobTiles.Remove(uid);
-
-        blobTileComponent.Core = null;
-        blobTileComponent.Color = Color.White;
-        Dirty(uid, blobTileComponent);
 
         return true;
     }

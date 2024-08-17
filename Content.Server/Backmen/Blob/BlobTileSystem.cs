@@ -46,11 +46,10 @@ public sealed class BlobTileSystem : SharedBlobTileSystem
     private void OnTerminate(EntityUid uid, BlobTileComponent component, EntityTerminatingEvent args)
     {
         if (component.Core == null ||
-            TerminatingOrDeleted(component.Core.Value) ||
-            !_blobCoreQuery.TryComp(component.Core.Value, out var blobCoreComponent))
+            TerminatingOrDeleted(component.Core.Value))
             return;
 
-        blobCoreComponent.BlobTiles.Remove(uid);
+        component.Core.Value.Comp.BlobTiles.Remove(uid);
     }
 
     private void OnFlashAttempt(EntityUid uid, BlobTileComponent component, FlashAttemptEvent args)
@@ -73,82 +72,67 @@ public sealed class BlobTileSystem : SharedBlobTileSystem
         {
             _empSystem.EmpPulse(_transform.GetMapCoordinates(uid), 3f, 50f, 3f);
         }
-
-        // If node was destroyed, we have to also kill all special blobs
-        if (component.BlobTileType != BlobTileType.Node)
-            return;
-
-        if (!TryComp<BlobNodeComponent>(uid, out var nodeComp))
-            return;
-
-        if (nodeComp.FactoryBlob != null)
-            _blobCoreSystem.TryKillBlobTile(nodeComp.FactoryBlob.Value);
-        if (nodeComp.ResourceBlob != null)
-            _blobCoreSystem.TryKillBlobTile(nodeComp.ResourceBlob.Value);
     }
 
-    protected override void TryRemove(EntityUid target,
-        EntityUid coreUid,
-        BlobTileComponent tile,
-        BlobCoreComponent core)
+    protected override void TryRemove(Entity<BlobTileComponent> target, Entity<BlobCoreComponent> core)
     {
         var xform = Transform(target);
-        if (!_blobCoreSystem.RemoveBlobTile(target, coreUid, core))
+        if (!_blobCoreSystem.RemoveBlobTile(target, core, core))
         {
             return;
         }
 
         FixedPoint2 returnCost = 0;
 
-        if (tile.ReturnCost)
+        if (target.Comp.ReturnCost)
         {
-            switch (tile.BlobTileType)
+            switch (target.Comp.BlobTileType)
             {
                 case BlobTileType.Normal:
                 {
-                    returnCost = core.NormalBlobCost * core.ReturnResourceOnRemove;
+                    returnCost = core.Comp.NormalBlobCost * core.Comp.ReturnResourceOnRemove;
                     break;
                 }
                 case BlobTileType.Strong:
                 {
-                    returnCost = core.StrongBlobCost * core.ReturnResourceOnRemove;
+                    returnCost = core.Comp.StrongBlobCost * core.Comp.ReturnResourceOnRemove;
                     break;
                 }
                 case BlobTileType.Factory:
                 {
-                    returnCost = core.FactoryBlobCost * core.ReturnResourceOnRemove;
+                    returnCost = core.Comp.FactoryBlobCost * core.Comp.ReturnResourceOnRemove;
                     break;
                 }
                 case BlobTileType.Resource:
                 {
-                    returnCost = core.ResourceBlobCost * core.ReturnResourceOnRemove;
+                    returnCost = core.Comp.ResourceBlobCost * core.Comp.ReturnResourceOnRemove;
                     break;
                 }
                 case BlobTileType.Reflective:
                 {
-                    returnCost = core.ReflectiveBlobCost * core.ReturnResourceOnRemove;
+                    returnCost = core.Comp.ReflectiveBlobCost * core.Comp.ReturnResourceOnRemove;
                     break;
                 }
                 case BlobTileType.Node:
                 {
-                    returnCost = core.NodeBlobCost * core.ReturnResourceOnRemove;
+                    returnCost = core.Comp.NodeBlobCost * core.Comp.ReturnResourceOnRemove;
                     break;
                 }
             }
         }
 
-        if (returnCost > 0)
-        {
-            if (_blobCoreQuery.TryComp(tile.Core, out var blobCoreComponent) && blobCoreComponent.Observer != null)
-            {
-                _popup.PopupCoordinates(Loc.GetString("blob-get-resource", ("point", returnCost)),
-                    xform.Coordinates,
-                    blobCoreComponent.Observer.Value,
-                    PopupType.LargeGreen);
-            }
+        if (returnCost <= 0)
+            return;
 
-            _blobCoreSystem.ChangeBlobPoint(coreUid, returnCost, core);
+        if (_blobCoreQuery.TryComp(target.Comp.Core, out var blobCoreComponent) && blobCoreComponent.Observer != null)
+        {
+            _popup.PopupCoordinates(Loc.GetString("blob-get-resource", ("point", returnCost)),
+                xform.Coordinates,
+                blobCoreComponent.Observer.Value,
+                PopupType.LargeGreen);
         }
+
+        _blobCoreSystem.ChangeBlobPoint(core, returnCost, core);
     }
 
     private void OnPulsed(EntityUid uid, BlobTileComponent component, BlobTileGetPulseEvent args)

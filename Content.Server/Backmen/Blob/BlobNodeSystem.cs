@@ -8,7 +8,6 @@ using Content.Shared.Destructible;
 using Robust.Server.GameObjects;
 using Robust.Shared.CPUJob.JobQueues;
 using Robust.Shared.CPUJob.JobQueues.Queues;
-using Robust.Shared.Map;
 using Robust.Shared.Map.Components;
 using Robust.Shared.Random;
 using Robust.Shared.Timing;
@@ -21,14 +20,17 @@ public sealed class BlobNodeSystem : EntitySystem
     [Dependency] private readonly MapSystem _map = default!;
     [Dependency] private readonly IRobustRandom _random = default!;
     [Dependency] private readonly IGameTiming _gameTiming = default!;
+    [Dependency] private readonly BlobCoreSystem _blobCoreSystem = default!;
 
     private EntityQuery<BlobTileComponent> _tileQuery;
 
     public override void Initialize()
     {
         base.Initialize();
-        _tileQuery = GetEntityQuery<BlobTileComponent>();
 
+        SubscribeLocalEvent<BlobNodeComponent, DestructionEventArgs>(OnDestruction);
+
+        _tileQuery = GetEntityQuery<BlobTileComponent>();
     }
 
     private const double PulseJobTime = 0.005;
@@ -65,6 +67,21 @@ public sealed class BlobNodeSystem : EntitySystem
         }
     }
 
+    private void OnDestruction(EntityUid uid, BlobNodeComponent component, DestructionEventArgs args)
+    {
+        if (!TryComp<BlobNodeComponent>(uid, out var nodeComp) ||
+            !TryComp<BlobTileComponent>(uid, out var tileComp) ||
+            tileComp.BlobTileType != BlobTileType.Node ||
+            tileComp.Core == null)
+            return;
+
+        var tiles = GetAllNodeChildren((uid, nodeComp));
+        foreach (var tile in tiles)
+        {
+            _blobCoreSystem.RemoveBlobTile(tile, tileComp.Core.Value);
+        }
+    }
+
     private void Pulse(Entity<BlobNodeComponent> ent)
     {
         if(TerminatingOrDeleted(ent) || !EntityManager.TransformQuery.TryComp(ent, out var xform))
@@ -82,7 +99,8 @@ public sealed class BlobNodeSystem : EntitySystem
         if (!_tileQuery.TryGetComponent(ent, out var blobTileComponent) || blobTileComponent.Core == null)
             return;
 
-        var innerTiles = _map.GetLocalTilesIntersecting(xform.GridUid.Value, grid,
+        var innerTiles = _map.GetLocalTilesIntersecting(xform.GridUid.Value,
+                grid,
             new Box2(localPos + new Vector2(-radius, -radius), localPos + new Vector2(radius, radius)),
             false)
             .ToArray();
@@ -111,6 +129,14 @@ public sealed class BlobNodeSystem : EntitySystem
             var ev = new BlobMobGetPulseEvent();
             RaiseLocalEvent(lookupUid, ev);
         }
+    }
+
+    private static IEnumerable<EntityUid> GetAllNodeChildren(Entity<BlobNodeComponent> ent)
+    {
+        if (ent.Comp.FactoryBlob != null)
+            yield return ent.Comp.FactoryBlob.Value;
+        if (ent.Comp.ResourceBlob != null)
+            yield return ent.Comp.ResourceBlob.Value;
     }
 
     public override void Update(float frameTime)
