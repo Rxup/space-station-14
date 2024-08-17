@@ -8,9 +8,8 @@
     neck: BedsheetCult
     outerClothing: ClothingOuterArmorCult
     shoes: ClothingShoesCult
-    pda: PassengerPDA
+    id: PassengerPDA
     ears: ClothingHeadsetService
-    id: Wallet # space cats add_id_revork
   storage:
     back:
     - BoxSurvival
@@ -23,9 +22,8 @@
     head: ClothingHeadHatHoodCulthood
     outerClothing: ClothingOuterRobesCult
     shoes: ClothingShoesColorRed
-    pda: PassengerPDA
+    id: PassengerPDA
     ears: ClothingHeadsetService
-    id: Wallet # space cats add_id_revork
   storage:
     back:
     - BoxSurvival

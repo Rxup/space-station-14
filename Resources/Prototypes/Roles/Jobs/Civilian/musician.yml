@@ -25,9 +25,8 @@
   equipment:
     eyes: ClothingEyesGlassesSunglasses
     shoes: ClothingShoesBootsLaceup
-    pda: MusicianPDA
+    id: MusicianPDA
     ears: ClothingHeadsetService
-    id: Wallet # space cats add_id_revork
   #storage:
     #back:
     #- Stuff

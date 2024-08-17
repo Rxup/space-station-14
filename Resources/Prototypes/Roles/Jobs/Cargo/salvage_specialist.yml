@@ -28,9 +28,8 @@
   id: SalvageSpecialistGear
   equipment:
     jumpsuit: ClothingUniformJumpsuitSalvageSpecialist
-    pda: SalvagePDA
+    id: SalvagePDA
     ears: ClothingHeadsetCargo
-    id: Wallet # space cats add_id_revork
   #storage:
     #back:
     #- Stuff

@@ -2,7 +2,7 @@
   id: OperatorGavna
   equipment:
     shoes: ClothingShoesBootsLaceup
-    pda: CCOperatorPDA
+    id: CCOperatorPDA
     ears: ClothingHeadsetCentCom
     pocket1: ClothingMaskGasCentcom
     jumpsuit: ClothingUniformJumpsuitCentcomVeryOfficial

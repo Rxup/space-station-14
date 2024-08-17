@@ -55,11 +55,10 @@
 - type: startingGear
   id: ChiefEngineerGear
   equipment:
-    pda: CEPDA
+    id: CEPDA
     eyes: ClothingEyesGlassesMeson
     ears: ClothingHeadsetCE
     belt: ClothingBeltUtilityEngineering
-    id: Wallet # space cats add_id_revork
   storage:
     back:
     - Flash

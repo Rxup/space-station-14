@@ -24,7 +24,6 @@
   id: ScientistGear
   equipment:
     ears: ClothingHeadsetScience
-    id: Wallet # space cats add_id_revork
   #storage:
     #back:
     #- Stuff

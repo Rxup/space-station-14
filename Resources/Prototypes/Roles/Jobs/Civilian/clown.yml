@@ -40,9 +40,8 @@
     mask: ClothingMaskClown
     pocket1: BikeHorn
     pocket2: ClownRecorder
-    pda: ClownPDA
+    id: ClownPDA
     ears: ClothingHeadsetService
-    id: Wallet # space cats add_id_revork
   storage:
     back:
     - RubberStampClown

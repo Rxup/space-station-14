@@ -20,9 +20,8 @@
   id: ReporterGear
   equipment:
     shoes: ClothingShoesColorWhite
-    pda: ReporterPDA
+    id: ReporterPDA
     ears: ClothingHeadsetService
-    id: Wallet # space cats add_id_revork
   #storage:
     #back:
     #- Stuff

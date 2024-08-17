@@ -43,11 +43,9 @@ public sealed class ClientClothingSystem : ClothingSystem
         {"belt", "BELT"},
         {"gloves", "HAND"},
         {"shoes", "FEET"},
-//        {"id", "IDCARD"}, //space cats: add_id_revork
-        {"pda", "PDA"}, //space cats: add_id_revork
+        {"id", "IDCARD"},
         {"pocket1", "POCKET1"},
         {"pocket2", "POCKET2"},
-        {"id", "IDCARD"}, //space cats: add_id_revork
         {"suitstorage", "SUITSTORAGE"},
         {"underpants", "UNDERPANTS"}, //backmen:underclothing
         {"undershirt", "UNDERSHIRT"}, //backmen:underclothing

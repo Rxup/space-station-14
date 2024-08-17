@@ -54,9 +54,8 @@
   id: HoSGear
   equipment:
     eyes: ClothingEyesGlassesSecurity
-    pda: HoSPDA
+    id: HoSPDA
     gloves: ClothingHandsGlovesCombat
-    id: Wallet # space cats add_id_revork
     ears: ClothingHeadsetAltSecurity
   storage:
     back:

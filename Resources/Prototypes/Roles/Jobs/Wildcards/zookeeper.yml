@@ -22,9 +22,8 @@
     jumpsuit: ClothingUniformJumpsuitSafari
     head: ClothingHeadSafari
     shoes: ClothingShoesColorWhite
-    pda: ZookeeperPDA
+    id: ZookeeperPDA
     ears: ClothingHeadsetService
-    id: Wallet # space cats add_id_revork
   #storage:
     #back:
     #- Stuff

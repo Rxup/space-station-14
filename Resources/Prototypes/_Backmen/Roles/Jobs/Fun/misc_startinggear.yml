@@ -8,7 +8,7 @@
     gloves: ClothingHandsGlovesCombat
     eyes: ClothingEyesGlassesSunglasses
     head: ClothingHeadCapCentcomBlack
-    pda: UEGrepIDCard
+    id: UEGrepIDCard
     ears: ClothingHeadsetUEG
     mask: ClothingMaskGasMerc
     neck: ClothingNeckCloakUEG
@@ -24,7 +24,7 @@
     gloves: ClothingHandsGlovesCombat
     eyes: ClothingEyesGlassesSecurity
     head: ClothingHeadHatERTLeaderBeret
-    pda: UEGoffIDCard
+    id: UEGoffIDCard
     ears: ClothingHeadsetUEGofficer
     mask: ClothingMaskGasMerc
 
@@ -35,6 +35,6 @@
     back: ClothingBackpackRIGChronoLegionnaire
     shoes: ChronoLegionnaireBoots
     outerClothing: ClothingOuterHardsuitChronoLegionnaire
-    pda: ChronoGavnaIDCard
+    id: ChronoGavnaIDCard
     eyes: ClothingEyesGlassesSunglasses
     gloves: ClothingHandsChronoLegionnaire

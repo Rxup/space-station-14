@@ -55,9 +55,8 @@
     shoes: ClothingShoesBootsLaceup
     eyes: ClothingEyesGlassesSunglasses
     gloves: ClothingHandsGlovesCaptain
-    pda: CaptainPDA
+    id: CaptainPDA
     ears: ClothingHeadsetAltCommand
-    id: Wallet # space cats add_id_revork
   storage:
     back:
     - Flash

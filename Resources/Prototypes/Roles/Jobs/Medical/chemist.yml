@@ -24,12 +24,11 @@
 - type: startingGear
   id: ChemistGear
   equipment:
-    pda: ChemistryPDA
+    id: ChemistryPDA
     ears: ClothingHeadsetMedical
     belt: ChemBag
     pocket1: HandLabeler
     eyes: ClothingEyesGlassesChemical
-    id: Wallet # space cats add_id_revork
   #storage:
     #back:
     #- Stuff

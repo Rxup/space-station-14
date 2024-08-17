@@ -13,6 +13,6 @@
   id: FreelancerGear
   equipment:
     jumpsuit: ClothingUniformTShirtKhakiPants
-    pda: FreelancerIDCard
+    id: FreelancerIDCard
     shoes: ClothingShoesBootsWork
     outerClothing: ClothingOuterWinterCoat

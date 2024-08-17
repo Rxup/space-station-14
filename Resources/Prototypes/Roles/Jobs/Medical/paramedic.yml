@@ -27,10 +27,9 @@
 - type: startingGear
   id: ParamedicGear
   equipment:
-    pda: ParamedicPDA
+    id: ParamedicPDA
     ears: ClothingHeadsetMedical
     belt: ClothingBeltMedicalEMTFilled
-    id: Wallet # space cats add_id_revork
   storage:
     back:
     - EmergencyRollerBedSpawnFolded

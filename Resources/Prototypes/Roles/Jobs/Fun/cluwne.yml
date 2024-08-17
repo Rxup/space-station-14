@@ -5,10 +5,9 @@
     back: ClothingBackpackCluwne
     shoes: ClothingShoesCluwne
     mask: ClothingMaskCluwne
-    pda: CluwnePDA
+    id: CluwnePDA
     gloves: ClothingHandsGlovesCluwne
     pocket1: CluwneHorn
-    id: Wallet # space cats add_id_revork
 
 - type: startingGear
   id: HoloClownGear

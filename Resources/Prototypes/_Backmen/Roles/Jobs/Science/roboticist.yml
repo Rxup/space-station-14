@@ -27,9 +27,8 @@
     back: ClothingBackpackScience
     shoes: ClothingShoesColorBlack
     eyes: ClothingEyesGlassesWelding
-    id: Wallet # space cats add_id_revork
     outerClothing: ClothingOuterCoatRnd
-    pda: RoboticistPDA
+    id: RoboticistPDA
     ears: ClothingHeadsetScience
   #innerClothingSkirt: ClothingUniformJumpskirtRoboticist
   #satchel: ClothingBackpackSatchelScienceFilled

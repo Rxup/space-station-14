@@ -21,15 +21,14 @@ public enum SlotFlags
     BACK = 1 << 8,
     BELT = 1 << 9,
     GLOVES = 1 << 10,
-    PDA = 1 << 11,  //space cats: add_id_revork
+    IDCARD = 1 << 11,
     POCKET = 1 << 12,
-    IDCARD = 1 << 13,  //space cats: add_id_revork
-    LEGS = 1 << 14,
-    FEET = 1 << 15,
-    SUITSTORAGE = 1 << 16,
-    UNDERPANTS = 1 << 17, //backmen:underclothing
-    UNDERSHIRT = 1 << 18, //backmen:underclothing
-    SOCKS = 1 << 19, //backmen:underclothing
+    LEGS = 1 << 13,
+    FEET = 1 << 14,
+    SUITSTORAGE = 1 << 15,
+    UNDERPANTS = 1 << 16, //backmen:underclothing
+    UNDERSHIRT = 1 << 17, //backmen:underclothing
+    SOCKS = 1 << 18, //backmen:underclothing
     All = ~NONE,
 
     WITHOUT_POCKET = All & ~POCKET

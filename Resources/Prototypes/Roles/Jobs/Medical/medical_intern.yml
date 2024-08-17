@@ -26,11 +26,10 @@
   id: MedicalInternGear
   equipment:
     shoes: ClothingShoesColorWhite
-    pda: MedicalInternPDA
+    id: MedicalInternPDA
     ears: ClothingHeadsetMedical
     belt: ClothingBeltMedicalFilled
     pocket2: BookMedicalReferenceBook
-    id: Wallet # space cats add_id_revork
   #storage:
     #back:
     #- Stuff

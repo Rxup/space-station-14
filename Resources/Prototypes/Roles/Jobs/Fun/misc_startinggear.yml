@@ -11,9 +11,8 @@
     outerClothing: ClothingOuterCoatGentle
     gloves: ClothingHandsGlovesFingerless
     shoes: ClothingShoesBootsJack
-    pda: PassengerPDA
+    id: PassengerPDA
     ears: ClothingHeadsetGrey
-    id: Wallet # space cats add_id_revork
 
 #Deathsquad Outfit
 - type: startingGear
@@ -27,11 +26,10 @@
     gloves: ClothingHandsGlovesCombat
     outerClothing: ClothingOuterHardsuitDeathsquad
     shoes: ClothingShoesBootsMagAdv
-    pda: DeathsquadPDA
+    id: DeathsquadPDA
     pocket1: EnergySword
     pocket2: EnergyShield
     belt: ClothingBeltMilitaryWebbingMedFilled
-    id: Wallet # space cats add_id_revork
   storage:
     back:
     - WeaponPulsePistol
@@ -55,9 +53,8 @@
     back: ClothingBackpackDuffelSyndicate
     shoes: ClothingShoesBootsCombat
     gloves: ClothingHandsGlovesColorBlack
-    pda: SyndiPDA
+    id: SyndiPDA
     ears: ClothingHeadsetAltSyndicate
-    id: Wallet # space cats add_id_revork
 
 # Syndicate Footsoldier Gear - No Headset
 - type: startingGear
@@ -70,8 +67,7 @@
     gloves: ClothingHandsGlovesCombat
     back: ClothingBackpack
     shoes: ClothingShoesBootsCombat
-    pda: SyndiPDA
-    id: Wallet # space cats add_id_revork
+    id: SyndiPDA
   storage:
     back:
     - BoxSurvival
@@ -96,7 +92,6 @@
     outerClothing: ClothingOuterArmorBasicSlim
     ears: ClothingHeadsetSecurity
     gloves: ClothingHandsGlovesCombat
-    id: Wallet # space cats add_id_revork
   storage:
     back:
     - BoxSurvivalSecurity
@@ -115,11 +110,10 @@
     gloves: ClothingHandsGlovesCombat
     outerClothing: ClothingOuterHardsuitCBURN
     shoes: ClothingShoesBootsCombatFilled
-    pda: CBURNPDA
+    id: CBURNPDA
     pocket1: RadioHandheld
     pocket2: WeaponLaserGun
     belt: ClothingBeltBandolier
-    id: Wallet # space cats add_id_revork
   storage:
     back:
     - WeaponShotgunDoubleBarreled
@@ -132,7 +126,6 @@
   id: BoxingKangarooGear
   equipment:
     gloves: ClothingHandsGlovesBoxingBlue
-    id: Wallet # space cats add_id_revork
 
 - type: startingGear
   id: MobMonkeyGear
@@ -140,8 +133,7 @@
     head: ClothingHeadHatTophat
     ears: ClothingHeadsetService
     jumpsuit: ClothingUniformJumpsuitJacketMonkey
-    pda: PunPunIDCard
-    id: Wallet # space cats add_id_revork
+    id: PunPunIDCard
 
 # DeathMatch Gear
 
@@ -152,7 +144,6 @@
     shoes: ClothingShoesBootsJack
     ears: ClothingHeadsetGrey
     gloves: ClothingHandsGlovesFingerless
-    id: Wallet # space cats add_id_revork
   inhand:
     - WeaponMeleeToolboxRobust
 
@@ -168,19 +159,17 @@
     gloves: ClothingHandsGlovesNitrile
     eyes: ClothingEyesHudMedical
     head: ClothingHeadHatBeretBrigmedic
-    pda: BrigmedicPDA
+    id: BrigmedicPDA
     ears: ClothingHeadsetBrigmedic
     mask: ClothingMaskBreathMedicalSecurity
     belt: ClothingBeltMedicalFilled
-    id: Wallet # space cats add_id_revork
 
 # Aghost
 - type: startingGear
   id: MobAghostGear
   equipment:
     back: ClothingBackpackSatchelHolding
-    pda: AdminPDA
-    id: Wallet # space cats add_id_revork
+    id: AdminPDA
   storage:
     back:
     - GasAnalyzer
@@ -195,7 +184,6 @@
     back: SpearBone
     head: ClothingHeadHatGladiator
     shoes: ClothingShoesCult
-    id: Wallet # space cats add_id_revork
 
 #Ash Walker
 - type: startingGear
@@ -206,20 +194,18 @@
     back: SpearBone
     head: ClothingHeadHelmetBone
     shoes: ClothingShoesCult
-    id: Wallet # space cats add_id_revork
 
 #Banana Clown
 - type: startingGear
   id: BananaClown
   equipment:
-    pda: ClownPDA
+    id: ClownPDA
     back: ClothingBackpackClown
     shoes: ClothingShoesClownBanana
     jumpsuit: ClothingUniformJumpsuitClownBanana
     mask: ClothingMaskClownBanana
     pocket1: BikeHorn
     pocket2: ClownRecorder
-    id: Wallet # space cats add_id_revork
 
 # Passenger but without the ID, bag, or headset
 - type: startingGear
@@ -227,7 +213,6 @@
   equipment:
     jumpsuit: ClothingUniformJumpsuitColorGrey
     shoes: ClothingShoesColorBlack
-    id: Wallet # space cats add_id_revork
 
 #Clown Troupe
 - type: startingGear
@@ -235,13 +220,12 @@
   equipment:
     jumpsuit: ClothingUniformJumpsuitClown
     shoes: ClothingShoesClown
-    pda: ClownPDA
+    id: ClownPDA
     back: ClothingBackpackClown
     ears: ClothingHeadsetService
     mask: ClothingMaskClown
     pocket1: BikeHorn
     pocket2: ClownRecorder
-    id: Wallet # space cats add_id_revork
 
 #Lost Cargo Tech
 - type: startingGear
@@ -250,11 +234,10 @@
     jumpsuit: ClothingUniformJumpsuitCargo
     shoes: ClothingShoesColorBlack
     head: ClothingHeadHatCargosoft
-    pda: CargoPDA
+    id: CargoPDA
     back: ClothingBackpackCargo
     ears: ClothingHeadsetCargo
     pocket1: AppraisalTool
-    id: Wallet # space cats add_id_revork
 
 - type: startingGear
   id: LostCargoTechGearCoat
@@ -262,12 +245,11 @@
     jumpsuit: ClothingUniformJumpsuitCargo
     shoes: ClothingShoesBootsWinterCargo
     head: ClothingHeadHatCargosoft
-    pda: CargoPDA
+    id: CargoPDA
     back: ClothingBackpackDuffelCargo
     ears: ClothingHeadsetCargo
     pocket1: AppraisalTool
     outerClothing: ClothingOuterWinterCargo
-    id: Wallet # space cats add_id_revork
 
 #Traveling Chef
 - type: startingGear
@@ -275,11 +257,10 @@
   equipment:
     jumpsuit: ClothingUniformJumpsuitChef
     shoes: ClothingShoesColorWhite
-    pda: ChefPDA
+    id: ChefPDA
     back: ClothingBackpackSatchel
     ears: ClothingHeadsetService
     belt: ClothingBeltChef
-    id: Wallet # space cats add_id_revork
 
 #CMO Disaster Victim
 - type: startingGear
@@ -289,12 +270,11 @@
     shoes: ClothingShoesColorBrown
     head: ClothingHeadMirror
     neck: ClothingCloakCmo
-    pda: CMOPDA
+    id: CMOPDA
     back: ClothingBackpackMedical
     ears: ClothingHeadsetCMO
     belt: ClothingBeltMedical
     outerClothing: ClothingOuterCoatLabCmo
-    id: Wallet # space cats add_id_revork
 
 - type: startingGear
   id: DisasterVictimCMOAlt
@@ -303,12 +283,11 @@
     shoes: ClothingShoesColorBrown
     head: ClothingHeadHatBeretCmo
     neck: ClothingNeckMantleCMO
-    pda: CMOPDA
+    id: CMOPDA
     back: ClothingBackpackSatchelMedical
     ears: ClothingHeadsetCMO
     belt: ClothingBeltMedical
     outerClothing: ClothingOuterCoatLabCmo
-    id: Wallet # space cats add_id_revork
 
 #Captain Disaster Victim
 - type: startingGear
@@ -320,11 +299,10 @@
     gloves: ClothingHandsGlovesCaptain
     head: ClothingHeadHatCaptain
     neck: ClothingNeckCloakCap
-    pda: CaptainPDA
+    id: CaptainPDA
     back: ClothingBackpackCaptain
     ears: ClothingHeadsetAltCommand
     outerClothing: ClothingOuterArmorCaptainCarapace
-    id: Wallet # space cats add_id_revork
 
 - type: startingGear
   id: DisasterVictimCaptainAlt
@@ -335,11 +313,10 @@
     gloves: ClothingHandsGlovesCaptain
     head: ClothingHeadHatCapcap
     neck: ClothingNeckMantleCap
-    pda: CaptainPDA
+    id: CaptainPDA
     back: ClothingBackpackSatchelCaptain
     ears: ClothingHeadsetAltCommand
     outerClothing: ClothingOuterArmorCaptainCarapace
-    id: Wallet # space cats add_id_revork
 
 #RD Disaster Victim
 - type: startingGear
@@ -349,11 +326,10 @@
     shoes: ClothingShoesColorBrown
     head: ClothingHeadHatBeretRND
     neck: ClothingNeckCloakRd
-    pda: RnDPDA
+    id: RnDPDA
     back: ClothingBackpackScience
     ears: ClothingHeadsetRD
     outerClothing: ClothingOuterCoatRD
-    id: Wallet # space cats add_id_revork
 
 - type: startingGear
   id: DisasterVictimRDAlt
@@ -362,8 +338,7 @@
     shoes: ClothingShoesColorBrown
     head: ClothingHeadHatBeretRND
     neck: ClothingNeckMantleRD
-    pda: RnDPDA
+    id: RnDPDA
     back: ClothingBackpackSatchelScience
     ears: ClothingHeadsetRD
     outerClothing: ClothingOuterCoatRD
-    id: Wallet # space cats add_id_revork

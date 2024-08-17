@@ -29,11 +29,10 @@
   id: TechnicalAssistantGear
   equipment:
     shoes: ClothingShoesBootsWork
-    pda: TechnicalAssistantPDA
+    id: TechnicalAssistantPDA
     belt: ClothingBeltUtilityEngineering
     ears: ClothingHeadsetEngineering
     pocket2: BookEngineersHandbook
-    id: Wallet # space cats add_id_revork
   #storage:
     #back:
     #- Stuff

@@ -9,7 +9,7 @@
     head: ClothingHeadHatCentcom
     outerClothing: ClothingOuterArmorCentcomCarapace
     suitstorage: OxygenTankFilled
-    pda: CentcomPDABackmen
+    id: CentcomPDABackmen
     ears: ClothingHeadsetAltCentCom
     pocket1: CyberPen
     pocket2: BoxFolderSecretBlack

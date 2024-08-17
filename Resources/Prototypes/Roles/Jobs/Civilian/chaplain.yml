@@ -24,9 +24,8 @@
   id: ChaplainGear
   equipment:
     shoes: ClothingShoesColorBlack
-    pda: ChaplainPDA
+    id: ChaplainPDA
     ears: ClothingHeadsetService
-    id: Wallet # space cats add_id_revork
   storage:
     back:
     - Bible
