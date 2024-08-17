@@ -24,8 +24,6 @@
     range: 500
   - type: Access
   - type: IdCard
-  - type: WirelessNetworkConnection
-    range: 500
   - type: Tag
     tags:
     - DoorBumpOpener
