@@ -105,4 +105,4 @@
           tags:
           - Idsyndiegold
     sprite: _SpaceCats/Clothing/Wallet/wallet.rsi
-    - type: Appearance
+      - type: Appearance
