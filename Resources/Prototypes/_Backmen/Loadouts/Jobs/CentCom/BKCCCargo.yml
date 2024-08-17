@@ -11,18 +11,10 @@
 # Jumpsuit
 - type: loadout
   id: BKCCCargoJumpsuit
-  equipment: BKCCCargoJumpsuit
-
-- type: startingGear
-  id: BKCCCargoJumpsuit
   equipment:
     jumpsuit: ClothingUniformJumpsuitCargo
 
 - type: loadout
-  id: BKCCCargoJumpskirtCargo
-  equipment: BKCCCargoJumpskirtCargo
-
-- type: startingGear
   id: BKCCCargoJumpskirtCargo
   equipment:
     innerClothingSkirt: ClothingUniformJumpskirtCargo
@@ -30,29 +22,17 @@
 # Neck
 - type: loadout
   id: BKCCCargoCloak
-  equipment: BKCCCargoCloak
-
-- type: startingGear
-  id: BKCCCargoCloak
   equipment:
     neck: ClothingNeckCloakCap
 
 
 - type: loadout
   id: BKCCCargoCloakFormal
-  equipment: BKCCCargoCloakFormal
-
-- type: startingGear
-  id: BKCCCargoCloakFormal
   equipment:
     neck: ClothingNeckCloakCapFormal
 
 
 - type: loadout
-  id: BKCCCargoMantle
-  equipment: BKCCCargoMantle
-
-- type: startingGear
   id: BKCCCargoMantle
   equipment:
     neck: ClothingNeckMantleCap
@@ -61,29 +41,17 @@
 # Back
 - type: loadout
   id: BKCCCargoBackpack
-  equipment: BKCCCargoBackpack
-
-- type: startingGear
-  id: BKCCCargoBackpack
   equipment:
     back: ClothingBackpack
 
 
 - type: loadout
   id: BKCCCargoSatchel
-  equipment: BKCCCargoSatchel
-
-- type: startingGear
-  id: BKCCCargoSatchel
   equipment:
     satchel: ClothingBackpackSatchel
 
 
 - type: loadout
-  id: BKCCCargoDuffel
-  equipment: BKCCCargoDuffel
-
-- type: startingGear
   id: BKCCCargoDuffel
   equipment:
     duffelbag: ClothingBackpackDuffel

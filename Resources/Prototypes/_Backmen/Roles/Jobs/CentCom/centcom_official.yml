@@ -41,7 +41,7 @@
   wageDepartment: CentCom
   wage: 75
 
-- type: statusIcon
+- type: jobIcon
   parent: JobIcon
   id: JobIconNT
   icon:

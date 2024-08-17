@@ -1,5 +1,6 @@
 - type: department
   id: CentCom
+  name: department-CentCom
   description: department-CentCom-description
   color: "#13db0f"
   primary: true
@@ -16,6 +17,7 @@
 
 - type: department
   id: Silicons
+  name: department-Silicons
   description: department-Silicons-description
   color: "#191e9e"
   primary: true

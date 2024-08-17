@@ -10,27 +10,15 @@
 #Suit
 - type: loadout
   id: ClothingUniformJumpsuitBrigmedic
-  equipment: ClothingUniformJumpsuitBrigmedic
-
-- type: startingGear
-  id: ClothingUniformJumpsuitBrigmedic
   equipment:
     jumpsuit: ClothingUniformJumpsuitBrigmedic
 
 - type: loadout
   id: ClothingUniformJumpskirtBrigmedic
-  equipment: ClothingUniformJumpskirtBrigmedic
-
-- type: startingGear
-  id: ClothingUniformJumpskirtBrigmedic
   equipment:
     jumpsuit: ClothingUniformJumpskirtBrigmedic
 
 - type: loadout
-  id: ClothingUniformJumpskirtOfLife
-  equipment: ClothingUniformJumpskirtOfLife
-
-- type: startingGear
   id: ClothingUniformJumpskirtOfLife
   equipment:
     jumpsuit: ClothingUniformJumpskirtOfLife
@@ -38,27 +26,15 @@
 #Back
 - type: loadout
   id: ClothingBackpackBrigmedic
-  equipment: ClothingBackpackBrigmedic
-
-- type: startingGear
-  id: ClothingBackpackBrigmedic
   equipment:
     back: ClothingBackpackBrigmedic
 
 - type: loadout
   id: ClothingBackpackSatchelBrigmedic
-  equipment: ClothingBackpackSatchelBrigmedic
-
-- type: startingGear
-  id: ClothingBackpackSatchelBrigmedic
   equipment:
     back: ClothingBackpackSatchelBrigmedic
 
 - type: loadout
-  id: ClothingBackpackDuffelBrigmedic
-  equipment: ClothingBackpackDuffelBrigmedic
-
-- type: startingGear
   id: ClothingBackpackDuffelBrigmedic
   equipment:
     back: ClothingBackpackDuffelBrigmedic
@@ -66,27 +42,15 @@
 #head
 - type: loadout
   id: ClothingHeadHatBeretBrigmedic
-  equipment: ClothingHeadHatBeretBrigmedic
-
-- type: startingGear
-  id: ClothingHeadHatBeretBrigmedic
   equipment:
     head: ClothingHeadHatBeretBrigmedic
 
 - type: loadout
   id: ClothingHeadHatBeretSecurityMedic
-  equipment: ClothingHeadHatBeretSecurityMedic
-
-- type: startingGear
-  id: ClothingHeadHatBeretSecurityMedic
   equipment:
     head: ClothingHeadHatBeretSecurityMedic
 
 - type: loadout
-  id: ClothingHeadHelmetSecurityMedic
-  equipment: ClothingHeadHelmetSecurityMedic
-
-- type: startingGear
   id: ClothingHeadHelmetSecurityMedic
   equipment:
     head: ClothingHeadHelmetSecurityMedic
@@ -94,36 +58,20 @@
 #outerClothing
 - type: loadout
   id: ClothingOuterVestArmorMedSec
-  equipment: ClothingOuterVestArmorMedSec
-
-- type: startingGear
-  id: ClothingOuterVestArmorMedSec
   equipment:
     outerClothing: ClothingOuterVestArmorMedSec
 
 - type: loadout
-  id: ClothingOuterCoatAMG
-  equipment: ClothingOuterCoatAMG
-
-- type: startingGear
   id: ClothingOuterCoatAMG
   equipment:
     outerClothing: ClothingOuterCoatAMG
 
 - type: loadout
   id: ClothingOuterVestSecurityMedic
-  equipment: ClothingOuterVestSecurityMedic
-
-- type: startingGear
-  id: ClothingOuterVestSecurityMedic
   equipment:
     outerClothing: ClothingOuterVestSecurityMedic
 
 - type: loadout
-  id: ClothingOuterCoatLabSecurityMedic
-  equipment: ClothingOuterCoatLabSecurityMedic
-
-- type: startingGear
   id: ClothingOuterCoatLabSecurityMedic
   equipment:
     outerClothing: ClothingOuterCoatLabSecurityMedic
@@ -131,18 +79,10 @@
 #ears
 - type: loadout
   id: ClothingHeadsetBrigmedic
-  equipment: ClothingHeadsetBrigmedic
-
-- type: startingGear
-  id: ClothingHeadsetBrigmedic
   equipment:
     ears: ClothingHeadsetBrigmedic
 
 - type: loadout
-  id: ClothingHeadsetAltBrigmedic
-  equipment: ClothingHeadsetAltBrigmedic
-
-- type: startingGear
   id: ClothingHeadsetAltBrigmedic
   equipment:
     ears: ClothingHeadsetAltBrigmedic
@@ -150,27 +90,15 @@
 #mask
 - type: loadout
   id: ClothingMaskBreathMedicalSecurity
-  equipment: ClothingMaskBreathMedicalSecurity
-
-- type: startingGear
-  id: ClothingMaskBreathMedicalSecurity
   equipment:
     mask: ClothingMaskBreathMedicalSecurity
 
 - type: loadout
   id: ClothingMaskSterile
-  equipment: ClothingMaskSterile
-
-- type: startingGear
-  id: ClothingMaskSterile
   equipment:
     mask: ClothingMaskSterile
 
 - type: loadout
-  id: ClothingMaskGasSecurity
-  equipment: ClothingMaskGasSecurity
-
-- type: startingGear
   id: ClothingMaskGasSecurity
   equipment:
     mask: ClothingMaskGasSecurity

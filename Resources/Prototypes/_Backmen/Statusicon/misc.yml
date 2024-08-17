@@ -1,4 +1,4 @@
-- type: statusIcon
+- type: securityIcon
   id: AiIconEnemyTarget
   priority: 5
 

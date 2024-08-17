@@ -2,20 +2,12 @@
 #Дрель
 - type: loadout
   id: PowerDrillBkm
-  equipment: PowerDrillBkm
-
-- type: startingGear
-  id: PowerDrillBkm
   storage:
     back:
     - PowerDrill
 
 #Анти-пси
 - type: loadout
-  id: AntiPsychicKnifeBkm
-  equipment: AntiPsychicKnifeBkm
-
-- type: startingGear
   id: AntiPsychicKnifeBkm
   storage:
     back:
@@ -26,19 +18,11 @@
 #БДСМ
 - type: loadout
   id: ClothingUniformJumpsuitGachiBkm
-  equipment: ClothingUniformJumpsuitGachiBkm
-
-- type: startingGear
-  id: ClothingUniformJumpsuitGachiBkm
   equipment:
     innerclothing: ClothingUniformJumpsuitGachi
 
 #Стартовый капитал
 - type: loadout
-  id: SpaceCash5000Bkm
-  equipment: SpaceCash5000Bkm
-
-- type: startingGear
   id: SpaceCash5000Bkm
   storage:
     back:
@@ -46,10 +30,6 @@
 
 #Человечина
 - type: loadout
-  id: ClothingOuterHardsuitLingBkm
-  equipment: ClothingOuterHardsuitLingBkm
-
-- type: startingGear
   id: ClothingOuterHardsuitLingBkm
   equipment:
     outerClothing: ClothingOuterHardsuitLing

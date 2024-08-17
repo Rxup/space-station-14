@@ -27,7 +27,7 @@
     - BlobGameMode # backmen: blob
     - VampiresGameRule # backmen: vampire
     - FleshCult # backmen: flesh cult
-    - Changeling
+    #- Changeling # backmen: changeling
 
 - type: gamePreset
   id: Extended

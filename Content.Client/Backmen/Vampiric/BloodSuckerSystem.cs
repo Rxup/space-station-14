@@ -17,11 +17,11 @@ public sealed class BloodSuckerSystem : SharedBloodSuckerSystem
     {
         base.Initialize();
 
-        _statusIconPrototype = _prototype.Index<StatusIconPrototype>(VampireFaction);
+        _statusIconPrototype = _prototype.Index<FactionIconPrototype>(VampireFaction);
         SubscribeLocalEvent<BkmVampireComponent, GetStatusIconsEvent>(OnShowVampireIcon);
     }
 
-    [ValidatePrototypeId<StatusIconPrototype>]
+    [ValidatePrototypeId<FactionIconPrototype>]
     private const string VampireFaction = "VampireFaction";
 
     private void OnShowVampireIcon(Entity<BkmVampireComponent> ent, ref GetStatusIconsEvent args)
