@@ -76,28 +76,28 @@ public partial class ChatSystem
     /// <param name="nameOverride">The name to use for the speaking entity. Usually this should just be modified via <see cref="TransformSpeakerNameEvent"/>. If this is set, the event will not get raised.</param>
     /// <param name="forceEmote">Bypasses whitelist/blacklist/availibility checks for if the entity can use this emote</param>
     public void TryEmoteWithChat(
-       EntityUid source,
-       EmotePrototype emote,
-       ChatTransmitRange range = ChatTransmitRange.Normal,
-       bool hideLog = false,
-       string? nameOverride = null,
-       bool ignoreActionBlocker = false,
-       bool forceEmote = false
-       )
+        EntityUid source,
+        EmotePrototype emote,
+        ChatTransmitRange range = ChatTransmitRange.Normal,
+        bool hideLog = false,
+        string? nameOverride = null,
+        bool ignoreActionBlocker = false,
+        bool forceEmote = false
+        )
     {
-       if (!forceEmote && !AllowedToUseEmote(source, emote))
-           return;
+        if (!forceEmote && !AllowedToUseEmote(source, emote))
+            return;
 
-       if (emote.ChatMessages.Count != 0)
-       {
-           var action = Loc.GetString(_random.Pick(emote.ChatMessages), ("entity", source));
+        if (emote.ChatMessages.Count != 0)
+        {
+            var action = Loc.GetString(_random.Pick(emote.ChatMessages), ("entity", source));
         
-           action = $"<color=#FFC0CB>*{action}*</color>";
+            action = $"<color=#FFC0CB>*{action}*</color>";
 
-           SendEntityEmote(source, action, range, nameOverride, hideLog: hideLog, checkEmote: false, ignoreActionBlocker: ignoreActionBlocker);
-       }
+            SendEntityEmote(source, action, range, nameOverride, hideLog: hideLog, checkEmote: false, ignoreActionBlocker: ignoreActionBlocker);
+        }
 
-       TryEmoteWithoutChat(source, emote, ignoreActionBlocker);
+        TryEmoteWithoutChat(source, emote, ignoreActionBlocker);
     }
 
     /// <summary>
