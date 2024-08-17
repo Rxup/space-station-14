@@ -92,7 +92,7 @@ public partial class ChatSystem
         {
             var action = Loc.GetString(_random.Pick(emote.ChatMessages), ("entity", source));
         
-            action = $"<color=#FFC0CB>*{action}*</color>";
+            action = $"<color=#FFC0CB><b>*{action}*</b></color>";
 
             SendEntityEmote(source, action, range, nameOverride, hideLog: hideLog, checkEmote: false, ignoreActionBlocker: ignoreActionBlocker);
         }
