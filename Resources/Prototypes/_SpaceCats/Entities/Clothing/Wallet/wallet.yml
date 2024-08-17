@@ -14,6 +14,7 @@
       - Belt
   - type: Item
     size: Small
+  - type: StationRecordKeyStorage
   - type: Storage
     maxItemSize: Small
     grid:
