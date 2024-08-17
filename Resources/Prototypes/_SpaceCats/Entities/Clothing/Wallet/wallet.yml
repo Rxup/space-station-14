@@ -15,15 +15,10 @@
   - type: Item
     size: Small
   - type: StationRecordKeyStorage
-  - type: ItemSlots
-  - type: DeviceNetwork
-    deviceNetId: Wireless
-    receiveFrequencyId: PDA
-    prefix: device-address-prefix-console
-  - type: WirelessNetworkConnection
-    range: 500
   - type: Access
   - type: IdCard
+  - type: WirelessNetworkConnection
+    range: 500
   - type: Tag
     tags:
     - DoorBumpOpener
@@ -32,7 +27,7 @@
   - type: Storage
     maxItemSize: Small
     grid:
-    - 0,0,1,1
+    - 0,0,1,2
   - type: ItemMapper
     mapLayers:
       id-civ:
