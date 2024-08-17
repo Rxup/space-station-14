@@ -88,15 +88,15 @@ public partial class ChatSystem
         if (!forceEmote && !AllowedToUseEmote(source, emote))
             return;
 
-        // check if proto has valid message for chat
         if (emote.ChatMessages.Count != 0)
         {
-            // not all emotes are loc'd, but for the ones that are we pass in entity
             var action = Loc.GetString(_random.Pick(emote.ChatMessages), ("entity", source));
+        
+            action = $"<color=#FFC0CB>*{action}*</color>";
+
             SendEntityEmote(source, action, range, nameOverride, hideLog: hideLog, checkEmote: false, ignoreActionBlocker: ignoreActionBlocker);
         }
 
-        // do the rest of emote event logic here
         TryEmoteWithoutChat(source, emote, ignoreActionBlocker);
     }
 
