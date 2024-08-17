@@ -2,7 +2,7 @@
   parent: BaseStorageItem
   id: Wallet
   name: personal wallet
-  description: Хранит то, что тебе пригодиться, чтоб не вывалилась
+  description: Хранит то, что тебе пригодится, чтобы не вывалилось.
   components:
   - type: Sprite
     netsync: false
@@ -105,4 +105,4 @@
           tags:
           - Idsyndiegold
     sprite: _SpaceCats/Clothing/Wallet/wallet.rsi
-      - type: Appearance
+  - type: Appearance
