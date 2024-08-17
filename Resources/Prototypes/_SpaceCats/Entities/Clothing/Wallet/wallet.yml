@@ -17,6 +17,13 @@
   - type: StationRecordKeyStorage
   - type: Access
   - type: IdCard
+  - type: WirelessNetworkConnection
+    range: 500
+  - type: Tag
+    tags:
+    - DoorBumpOpener
+  - type: Input
+    context: "human"
   - type: Storage
     maxItemSize: Small
     grid:
