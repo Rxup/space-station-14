@@ -4,28 +4,6 @@
   name: personal wallet
   description: Хранит то, что тебе пригодиться, чтоб не вывалилась
   components:
-  - type: ItemSlots
-  - type: Appearance
-  - type: Ringer
-  - type: DeviceNetwork
-    deviceNetId: Wireless
-    receiveFrequencyId: PDA
-  - type: WirelessNetworkConnection
-    range: 500
-  - type: Input
-    context: "human"
-  - type: Pda
-    state: wallet-orange
-    idSlot:
-      name: access-id-card-component-default
-      ejectSound: /Audio/Machines/id_swipe.ogg
-      insertSound: /Audio/Machines/id_insert.ogg
-  - type: Item
-    size: Small
-  - type: ContainerContainer
-    containers:
-      storagebase: !type:Container
-        ents: []
   - type: Sprite
     state: wallet-orange
     sprite: _SpaceCats/Clothing/Wallet/wallet.rsi
