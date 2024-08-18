@@ -7,7 +7,6 @@
   requireAdminNotify: true
   joinNotifyCrew: true
   whitelisted: true
-  weight: 20
   requirements:
     - !type:RoleTimeRequirement
       role: JobHeadOfSecurity
@@ -57,3 +56,4 @@
     gloves: ClothingHandsGlovesCombat
     ears: ClothingHeadsetAltCommand
     shoes: ClothingShoesBootsCombat
+    back: ClothingBackpackSatchelLeather
