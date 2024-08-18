@@ -39,7 +39,7 @@
   icon: "JobIconBlueShield"
   supervisors: job-supervisors-hoh
   accessGroups:
-    - AllAccess
+    - AllAccessWithOutHeads
   access:
     - CCOfficer
   #start-backmen: currency
