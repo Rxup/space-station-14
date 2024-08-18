@@ -1,0 +1,59 @@
+- type: job
+  id: BlueShield
+  name: job-name-blueshield
+  description: job-description-blueshield
+  playTimeTracker: JobBlueShield
+  canBeAntag: false
+  requireAdminNotify: true
+  joinNotifyCrew: true
+  whitelisted: true
+  weight: 20
+  requirements:
+    - !type:RoleTimeRequirement
+      role: JobHeadOfSecurity
+      time: 18000
+    - !type:DepartmentTimeRequirement
+      department: Medical
+      time: 14400
+    - !type:DepartmentTimeRequirement
+      department: Science
+      time: 14400
+    - !type:DepartmentTimeRequirement
+      department: Civilian
+      time: 14400
+    - !type:DepartmentTimeRequirement
+      department: Engineering
+      time: 14400
+    - !type:OverallPlaytimeRequirement
+      time: 86400
+  special:
+    - !type:AddImplantSpecial
+      implants: [ MindShieldImplant ]
+    - !type:AddComponentSpecial
+      components:
+        - type: CommandStaff
+        - type: NpcFactionMember
+          factions:
+            - CentralCommand
+        - type: AntagImmune
+  startingGear: BlueShieldGear
+  icon: "JobIconBlueShield"
+  supervisors: job-supervisors-hoh
+  accessGroups:
+    - AllAccess
+  access:
+    - CCOfficer
+  #start-backmen: currency
+  minBankBalance: 900
+  maxBankBalance: 1600
+  wageDepartment: CentCom
+  wage: 50
+  #end-backmen: currency
+
+- type: startingGear
+  id: BlueShieldGear
+  equipment:
+    id: BlueShieldPDA
+    gloves: ClothingHandsGlovesCombat
+    ears: ClothingHeadsetAltCommand
+    shoes: ClothingShoesBootsCombat

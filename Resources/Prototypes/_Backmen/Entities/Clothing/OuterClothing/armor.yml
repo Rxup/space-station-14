@@ -24,7 +24,7 @@
 - type: entity
   parent: ClothingOuterBaseLarge
   id: ClothingOuterArmorBlueshieldCarapace
-  name: "Бронежилет офицера Синего Щита"
+  name: "бронежилет офицера Синего Щита"
   description: "Бронежилет для защиты глав. Сделан из лучших материалов, что бы пережить даже взрыв ядерной бомбы! (Защита владельца не гарантирована)"
   components:
   - type: Sprite
@@ -66,7 +66,7 @@
   - type: GroupExamine
 
 - type: entity
-  parent: ClothingOuterBase
+  parent: [ClothingOuterBase, AllowSuitStorageClothing]
   id: ClothingOuterArmorKendoBogu
   name: bogu
   description: A set of armor used in Kendo. It covers the waist, torso, and hands.
@@ -105,7 +105,7 @@
     damageCoefficient: 0.80
 
 - type: entity
-  parent: ClothingOuterBase
+  parent: ClothingOuterArmorBasic
   id: ClothingOuterNavyVest
   name: navy vest
   description: A synthetic armor vest. This one has added ballistic plates.
@@ -123,7 +123,7 @@
         Heat: 0.8
 
 - type: entity
-  parent: ClothingOuterBase
+  parent: ClothingOuterArmorBasic
   id: ClothingOuterMVDVest
   name: tactical armor vest
   description: A synthetic armor vest. This one has added ballistic plates.
@@ -141,7 +141,7 @@
         Heat: 0.8
 
 - type: entity
-  parent: ClothingOuterBase
+  parent: ClothingOuterArmorBasic
   id: ClothingOuterXenonautenLight
   name: light shell armor
   description: A XN-L vest, also known as Xenonauten, a set vest with modular attachments made to work in many enviroments. This one seems to be a light variant.
@@ -158,10 +158,10 @@
         Piercing: 0.4
         Heat: 0.7
   - type: ExplosionResistance
-    damageCoefficient: 0.9
+    damageCoefficient: 0.8
 
 - type: entity
-  parent: ClothingOuterBase
+  parent: ClothingOuterArmorBasic
   id: ClothingOuterXenonautenMedium
   name: shell armor
   description: A XN-M vest, also known as Xenonauten, a set vest with modular attachments made to work in many enviroments. This one seems to be a medium variant.
@@ -178,7 +178,7 @@
         Piercing: 0.4
         Heat: 0.5
   - type: ExplosionResistance
-    damageCoefficient: 0.8
+    damageCoefficient: 0.7
   - type: Item
     size: Huge
   - type: ClothingSpeedModifier
@@ -186,7 +186,7 @@
     sprintModifier: 0.9
 
 - type: entity
-  parent: ClothingOuterBase
+  parent: ClothingOuterArmorBasic
   id: ClothingOuterXenonautenHeavy
   name: heavy shell armor
   description: A XN-H vest, also known as Xenonauten, a set vest with modular attachments made to work in many enviroments. This one seems to be a heavy variant.
@@ -203,7 +203,7 @@
         Piercing: 0.2
         Heat: 0.3
   - type: ExplosionResistance
-    damageCoefficient: 0.6
+    damageCoefficient: 0.5
   - type: Item
     size: Huge
   - type: ClothingSpeedModifier

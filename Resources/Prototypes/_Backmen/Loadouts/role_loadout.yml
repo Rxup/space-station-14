@@ -23,3 +23,18 @@
   - Trinkets
   - Medals #backmen
   - Inventory # Corvax-Loadouts
+
+- type: roleLoadout
+  id: JobBlueShield
+  groups:
+  - Medals #backmen
+  - ClothingUniformJumpsuitBlueShield
+  - ClothingHeadHatBlueShield
+  - ClothingOuterBlueShield
+  - EyeBlueShield
+  - Trinkets
+  - Medals #backmen
+  - Inventory # Corvax-Loadouts
+  - Werx #backmen
+  - Niz #backmen
+  - Socks #backmen

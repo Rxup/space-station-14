@@ -127,6 +127,14 @@
 
 - type: jobIcon
   parent: JobIcon
+  id: JobIconBlueShield
+  icon:
+    sprite: /Textures/backamen/Interface/Misc/job_icons.rsi
+    state: blueshield
+  jobName: job-name-BlueShield
+
+- type: jobIcon
+  parent: JobIcon
   id: JobIconChaplain
   icon:
     sprite: /Textures/Interface/Misc/job_icons.rsi
