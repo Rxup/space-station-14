@@ -21,8 +21,8 @@
     sprite: Backmen/Clothing/OuterClothing/Coats/ssspcoatbelov.rsi
 
 - type: entity
-  parent: ClothingOuterCoatSecurityOvercoat
-  id: [ClothingOuterCoatSecurityOfficerOvercoat, AllowSuitStorageClothing]
+  parent: [ClothingOuterCoatSecurityOvercoat, AllowSuitStorageClothing]
+  id: ClothingOuterCoatSecurityOfficerOvercoat
   name: шинель офицер СБ
   description: Легкобронированная кожаная шинель, предназначенная для повседневной носки офицерами. Имеет логотип компании Nanotrasen Security.
   components:
@@ -120,7 +120,7 @@
     sprite: Backmen/Clothing/OuterClothing/Coats/snow.rsi
 
 - type: entity #backmen
-  parent:  ClothingOuterStorageBase
+  parent: ClothingOuterStorageBase
   id: ClothingOuterCoatBlackViF
   name: Чёрный бомбер
   description: Удобный чёрный бомбер.
@@ -142,7 +142,7 @@
     sprite: Backmen/Clothing/OuterClothing/Coats/jacket.rsi
 
 - type: entity #backmen
-  parent:  ClothingOuterStorageBase
+  parent: ClothingOuterStorageBase
   id: ClothingOuterCoatNT
   name: Бомбер NT
   description: Удобный бомбер с эмблемой Nanotrasen.

@@ -44,6 +44,7 @@
   - ClothingHeadHatBeretBlueShield
   - ClothingHeadHatBlueShieldCap
   - ClothingHeadHatUshankaBlueShield
+  - ClothingHeadHelmetEGov
 
 - type: loadoutGroup
   id: ClothingOuterBlueShield
@@ -57,6 +58,7 @@
 - type: loadoutGroup
   id: EyeBlueShield
   name: loadout-group-BlueShield-eyes
+  minLimit: 0
   loadouts:
   - ClothingEyesGlassesBlueShield
   - ClothingEyeslensesBlueShield

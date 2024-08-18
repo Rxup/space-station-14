@@ -49,6 +49,6 @@
   description: Новейшие линзы с исскуственным интелектом, способным вычеслять яркость окружения и затемнять линзы, так же с внедремной системой HUD охраны.
   components:
   - type: Sprite
-    sprite: Backmen/Clothing/Eyes/Glasses/blueglasses.rsi
+    sprite: Backmen/Clothing/Eyes/Glasses/blueeyes.rsi
   - type: Clothing
-    sprite: Backmen/Clothing/Eyes/Glasses/blueglasses.rsi
+    sprite: Backmen/Clothing/Eyes/Glasses/blueeyes.rsi
