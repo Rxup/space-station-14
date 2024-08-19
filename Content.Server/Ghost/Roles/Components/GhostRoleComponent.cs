@@ -99,4 +99,11 @@ public sealed partial class GhostRoleComponent : Component
     [DataField("raffle")]
     [Access(typeof(GhostRoleSystem), Other = AccessPermissions.ReadWriteExecute)] // FIXME Friends
     public GhostRoleRaffleConfig? RaffleConfig { get; set; }
+
+    // start-backmen: whitelist
+    [ViewVariables(VVAccess.ReadWrite)]
+    [Access(typeof(GhostRoleSystem), Other = AccessPermissions.ReadWriteExecute)] // FIXME Friends
+    [DataField("whitelistRequired")]
+    public bool WhitelistRequired = false;
+    // end-backmen: whitelist
 }

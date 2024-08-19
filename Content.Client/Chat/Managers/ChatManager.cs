@@ -80,9 +80,11 @@ internal sealed class ChatManager : IChatManager
             default:
                 throw new ArgumentOutOfRangeException(nameof(channel), channel, null);
         }
-        public void UpdatePermissions()
-        {
-            PermissionsUpdated?.Invoke();
-        }
     }
+    // start-backmen: telepathic
+    public void UpdatePermissions()
+    {
+        PermissionsUpdated?.Invoke();
+    }
+    // end-backmen: telepathic
 }

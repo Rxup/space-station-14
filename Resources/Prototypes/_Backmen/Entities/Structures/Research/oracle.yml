@@ -12,15 +12,9 @@
   - type: DeviceLinkSink
   - type: Emagged
   - type: Destructible
-  - type: GenericVisualizer
-    visuals:
-      enum.RecyclerVisuals.Bloody:
-        enum.RecyclerVisualLayers.Bloody:
-          True: { visible: true }
-          False: { visible: false }
-      enum.ConveyorVisuals.State:
-        enum.RecyclerVisualLayers.Bloody:
-          Off: { state: oracle-o0bld }
+  - type: RecyclerVisuals
+    baseKey: oracle-o0
+    bloodyKey: bld
   - type: SolutionContainerManager
     solutions:
       fountain:
@@ -67,9 +61,6 @@
     - state: oracle-0
     - map: ["enum.RecyclerVisualLayers.Main"]
       state: oracle-0
-    - state: oracle-o0bld
-      map: ["enum.RecyclerVisualLayers.Bloody"]
-      visible: false
     - map: ["enum.SolutionContainerLayers.Fill"]
       state: oracle-0
   - type: MaterialReclaimer

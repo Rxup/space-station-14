@@ -52,7 +52,6 @@ public sealed class GhostRoleSystem : EntitySystem
     [Dependency] private readonly PopupSystem _popupSystem = default!;
     [Dependency] private readonly IPrototypeManager _prototype = default!;
 
-    [Dependency] private readonly IConfigurationManager _cfg = default!; // backmen: whitelist
     [Dependency] private readonly Backmen.RoleWhitelist.WhitelistSystem _roleWhitelist = default!; // backmen: whitelist
 
     private uint _nextRoleIdentifier;
@@ -477,6 +476,11 @@ public sealed class GhostRoleSystem : EntitySystem
     {
         if (!_ghostRoles.TryGetValue(identifier, out var role))
             return false;
+
+        // start-backmen: whitelist
+        if (role.Comp.WhitelistRequired && _cfg.GetCVar(Shared.Backmen.CCVar.CCVars.WhitelistRolesEnabled) && !_roleWhitelist.IsInWhitelist(player))
+            return false;
+        // end-backmen: whitelist
 
         var ev = new TakeGhostRoleEvent(player);
         RaiseLocalEvent(role, ref ev);
