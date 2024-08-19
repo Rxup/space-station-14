@@ -64,14 +64,10 @@ namespace Content.IntegrationTests.Tests
             "Fland",
             "Meta",
             "Packed",
-            "Cluster",
             "Omega",
             "Bagel",
-            "Origin",
             "CentComm",
             "Box",
-            "Europa",
-            "Saltern",
             "Core",
             "Marathon",
             "MeteorArena",
@@ -92,9 +88,11 @@ namespace Content.IntegrationTests.Tests
             "BargeVsShip",
             "no_madDelta",
             //end-backmen
+            "Saltern",
             "Reach",
             "Train",
-            "Oasis"
+            "Oasis",
+            "Cog"
         };
 
         /// <summary>
