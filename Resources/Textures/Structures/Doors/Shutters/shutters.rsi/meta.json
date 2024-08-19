@@ -9,15 +9,15 @@
   "states": [
     {
       "name": "closed",
-      "directions": 1
+      "directions": 4
     },
     {
       "name": "open",
-      "directions": 1
+      "directions": 4
     },
     {
       "name": "opening",
-      "directions": 1,
+      "directions": 4,
       "delays": [
         [
           0.3,
@@ -67,7 +67,7 @@
     },
     {
       "name": "closing",
-      "directions": 1,
+      "directions": 4,
       "delays": [
         [
           0.3,
@@ -117,7 +117,7 @@
     },
     {
       "name": "frame",
-      "directions": 1
+      "directions": 4
     }
   ]
 }
