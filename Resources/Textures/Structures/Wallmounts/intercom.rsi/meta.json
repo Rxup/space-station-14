@@ -20,23 +20,16 @@
             "directions": 4
         },
         {
+            "name": "speaker",
+            "directions": 4
+        },
+        {
             "name": "unshaded",
             "directions": 4
         },
         {
             "name": "panel",
             "directions": 4
-        },
-        {
-            "name": "speaker",
-            "delays": [
-              [
-                0.1,
-                0.3,
-                0.1,
-                0.1
-              ]
-            ]
-          }
-        ]
-      }
+        }
+    ]
+}
