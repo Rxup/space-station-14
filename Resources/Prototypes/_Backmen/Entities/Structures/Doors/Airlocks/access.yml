@@ -123,17 +123,28 @@
         board: [ DoorElectronicsCentCom ]
 
 - type: entity
-  parent: Airlock
-  id: AirlockBlueShield
-  suffix: Blue Shield
-  components:
-  - type: Sprite
-    sprite: Backmen/Structures/Doors/Airlocks/Airlock/blueshield.rsi
-
-- type: entity
   parent: AirlockBlueShield
   id: AirlockBlueShieldLocked
   suffix: Blue Shield, Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsCCOfficer ]
+
+- type: entity
+  parent: AirlockBlueShieldGlass
+  id: AirlockBlueShieldGlassLocked
+  suffix: Blue Shield, Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsCCOfficer ]
+
+#Windoor CC
+- type: entity
+  parent: WindoorSecureArmoryLocked
+  id: WindoorCCOfficerLocked
+  suffix: CentCom Officer, Locked
   components:
   - type: ContainerFill
     containers:
