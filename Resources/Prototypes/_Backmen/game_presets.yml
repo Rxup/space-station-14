@@ -26,6 +26,7 @@
   #  - WageScheduler #backmen: currency
   - SubGamemodesRule
   - BasicRoundstartVariation
+  - MeteorSwarmScheduler
 
 - type: gamePreset
   id: Blob
@@ -41,6 +42,7 @@
   #  -  #backmen: currency
   - BasicRoundstartVariation
   - SubGamemodesRule
+  - MeteorSwarmScheduler
 
 - type: gamePreset
   id: FleshCult
@@ -57,6 +59,7 @@
   #  -  #backmen: currency
   - BasicRoundstartVariation
   - SubGamemodesRule
+  - MeteorSwarmScheduler
 
 - type: gamePreset
   id: FleshCultAndTraitor
@@ -72,6 +75,7 @@
   - BasicStationEventScheduler
   #  -  #backmen: currency
   - BasicRoundstartVariation
+  - MeteorSwarmScheduler
 
 - type: gamePreset
   id: NukeopsFleshCult
@@ -87,6 +91,7 @@
     - BasicStationEventScheduler
     #  -  #backmen: currency
     - BasicRoundstartVariation
+    - MeteorSwarmScheduler
 
 - type: gamePreset
   id: RevolutionaryTraitor
@@ -104,6 +109,7 @@
     - Traitor
     #  -  #backmen: currency
     - BasicRoundstartVariation
+    - MeteorSwarmScheduler
 
 - type: gamePreset
   id: RevolutionaryNukeops
@@ -121,6 +127,7 @@
     - Nukeops
     #  -  #backmen: currency
     - BasicRoundstartVariation
+    - MeteorSwarmScheduler
 
 - type: gamePreset
   id: ZombieTraitor
@@ -140,6 +147,7 @@
   #  -  #backmen: currency
   - Traitor
   - BasicRoundstartVariation
+  - MeteorSwarmScheduler
 
 - type: gamePreset
   id: ZombieNukeops
@@ -159,6 +167,7 @@
   #  -  #backmen: currency
   - Nukeops
   - BasicRoundstartVariation
+  - MeteorSwarmScheduler
 
 - type: gamePreset
   id: NukeopsFleshCultTraitor
@@ -176,6 +185,7 @@
     #  -  #backmen: currency
     - Traitor
     - BasicRoundstartVariation
+    - MeteorSwarmScheduler
 
 - type: gamePreset
   id: SurvivalNukeops
@@ -191,6 +201,7 @@
     #  -  #backmen: currency
     - Nukeops
     - BasicRoundstartVariation
+    - MeteorSwarmScheduler
 
 
 - type: gamePreset
@@ -208,8 +219,8 @@
   - Changeling
   - SubGamemodesRule
   - BasicStationEventScheduler
-  - GameRuleMeteorScheduler
   - BasicRoundstartVariation
+  - MeteorSwarmScheduler
 
 - type: gamePreset
   id: Traitorling
@@ -225,8 +236,8 @@
   - Traitor
   - SubGamemodesRule
   - BasicStationEventScheduler
-  - GameRuleMeteorScheduler
   - BasicRoundstartVariation
+  - MeteorSwarmScheduler
 
 - type: gamePreset
   id: ExtendedThief
@@ -242,6 +253,7 @@
   - BasicStationEventScheduler
 #  - WageScheduler #backmen: currency
   - BasicRoundstartVariation
+  - MeteorSwarmScheduler
 
 - type: gamePreset
   id: Criminal
@@ -258,3 +270,4 @@
   - BasicStationEventScheduler
 #  - WageScheduler #backmen: currency
   - BasicRoundstartVariation
+  - MeteorSwarmScheduler
