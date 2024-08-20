@@ -1,7 +1,7 @@
 {
     "version": 1,
-    "license": "GNU AGPL v3",
-    "copyright": "Taken from TGStation",
+    "license": "CC-BY-SA-3.0",
+    "copyright": "Taken from tgstation",
     "size": {
         "x": 32,
         "y": 32
