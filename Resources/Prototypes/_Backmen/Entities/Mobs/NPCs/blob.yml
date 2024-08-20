@@ -385,7 +385,8 @@
         state: blob_core_glow
 #        shader: unshaded
       - state: blob_core_overlay
-
+  - type: WarpPoint
+    location: blob core
 
 - type: entity
   parent: CoreBlobTile

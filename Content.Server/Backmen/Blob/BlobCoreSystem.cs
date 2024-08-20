@@ -267,16 +267,17 @@ public sealed class BlobCoreSystem : SharedBlobCoreSystem
 
         if (isAllDie <= 1)
         {
-            var blobFactoryQuery = EntityQueryEnumerator<BlobRuleComponent>();
-            while (blobFactoryQuery.MoveNext(out _, out var blobRuleComp))
+            var blobRuleQuery = EntityQueryEnumerator<BlobRuleComponent>();
+            while (blobRuleQuery.MoveNext(out _, out var blobRuleComp))
             {
-                if (blobRuleComp.Stage != BlobStage.TheEnd ||
-                    blobRuleComp.Stage != BlobStage.Default)
-                {
-                    _alertLevelSystem.SetLevel(stationUid!.Value, "green", true, true, true);
-                    _roundEndSystem.CancelRoundEndCountdown(null, false);
-                    blobRuleComp.Stage = BlobStage.Default;
-                }
+                if (blobRuleComp.Stage == BlobStage.TheEnd ||
+                    blobRuleComp.Stage == BlobStage.Default ||
+                    stationUid == null)
+                    continue;
+
+                _alertLevelSystem.SetLevel(stationUid.Value, "green", true, true, true);
+                _roundEndSystem.CancelRoundEndCountdown(null, false);
+                blobRuleComp.Stage = BlobStage.Default;
             }
         }
         QueueDel(uid);
