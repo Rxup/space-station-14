@@ -127,6 +127,12 @@ public sealed class SpecForcesSystem : EntitySystem
         }
         try
         {
+            if (!_prototypes.TryIndex(protoId, out var prototype))
+            {
+                Log.Error("Wrong SpecForceTeamPrototype ID!");
+                return false;
+            }
+
             if (_gameTicker.RunLevel != GameRunLevel.InRound)
             {
                 Log.Warning("Can't call SpecForces while not in the round.");
@@ -145,12 +151,6 @@ public sealed class SpecForcesSystem : EntitySystem
 
             LastUsedTime = currentTime;
 
-            if (!_prototypes.TryIndex(protoId, out var prototype))
-            {
-                Log.Error("Wrong SpecForceTeamPrototype ID!");
-                return false;
-            }
-
             var shuttle = SpawnShuttle(prototype.ShuttlePath);
             if (shuttle == null)
             {
@@ -159,12 +159,12 @@ public sealed class SpecForcesSystem : EntitySystem
             }
 
             SpawnGhostRole(prototype, shuttle.Value, forceCountExtra);
-
             DispatchAnnouncement(prototype);
 
             Log.Info($"Successfully called {prototype.ID} SpecForceTeam. Source: {source}");
 
             CalledEvents.Add(new SpecForcesHistory { Event = prototype.SpecForceName, RoundTime = currentTime, WhoCalled = source });
+
             return true;
         }
         finally
