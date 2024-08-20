@@ -1,9 +1,0 @@
-using Robust.Shared.GameStates;
-
-namespace Content.Shared.Backmen.Abilities;
-
-[RegisterComponent]
-[NetworkedComponent]
-
-public sealed partial class DogVisionComponent : Component
-{}
