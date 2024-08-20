@@ -117921,7 +117921,7 @@ entities:
     - type: Transform
       pos: -22.5,55.5
       parent: 2
-- proto: SolidSecretDoor
+- proto: WallSolid
   entities:
   - uid: 2339
     components:

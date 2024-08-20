@@ -17,15 +17,15 @@
   - Maintenance
   - Service
   - Detective
-  special:
-  - !type:AddImplantSpecial
-    implants: [ MindShieldImplant ]
-  #start-backmen: currency
+    #start-backmen: currency
   minBankBalance: 150
   maxBankBalance: 250
   wageDepartment: Security
   wage: 50
   #end-backmen: currency
+  special:
+  - !type:AddImplantSpecial
+    implants: [ MindShieldImplant ]
 
 - type: startingGear
   id: DetectiveGear

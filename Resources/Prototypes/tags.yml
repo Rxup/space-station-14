@@ -1185,8 +1185,12 @@
 
 - type: Tag
   id: Soup
+  
 - type: Tag
   id: Spear
+
+- type: Tag
+  id: SpearRatvar
 
 - type: Tag
   id: SpeedLoaderCap

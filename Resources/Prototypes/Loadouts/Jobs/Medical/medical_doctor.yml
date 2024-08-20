@@ -143,7 +143,7 @@
     proto: SeniorPhysician
   equipment:
     outerClothing: ClothingOuterCoatLabSeniorPhysician
-
+    
 # Shoes
 - type: loadout
   id: MedicalWinterBoots

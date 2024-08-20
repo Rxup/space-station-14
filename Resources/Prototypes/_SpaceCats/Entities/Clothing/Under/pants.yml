@@ -1,0 +1,14 @@
+- type: entity
+  parent: ClothingUnderPantsBase
+  id: ClothingUnderDiaper
+  name: diaper
+  description: "A baby-like diaper."
+  components:
+    - type: Sprite
+      sprite: _SpaceCats/Clothing/Under/underpants.rsi
+      state: diaper-ICON
+    - type: Clothing
+      sprite: _SpaceCats/Clothing/Under/underpants.rsi
+      clothingVisuals:
+        underpants:
+          - state: diaper

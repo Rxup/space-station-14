@@ -7,6 +7,7 @@
   components:
   - type: Sprite
     sprite: Objects/Misc/id_cards.rsi
+    scale: 0.8, 0.8
   - type: Clothing
     slots:
     - idcard

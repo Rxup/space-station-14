@@ -15,13 +15,16 @@
   requirements:
     - !type:RoleTimeRequirement
       role: JobCentralCommandOperator
-      time: 21600
+#      time: 21600
+      time: 9000   # cats
     - !type:RoleTimeRequirement
       role: JobCentralCommandOfficial
-      time: 21600
+#      time: 21600
+      time: 12000   #cats
     - !type:DepartmentTimeRequirement
       department: CentCom
-      time: 31600
+#      time: 31600
+      time: 9000   #cats
   accessGroups:
     - AllAccess
     - CentCom
@@ -73,7 +76,7 @@
 - type: entity
   parent: CentcomIDCardDeathsquad
   id: IDCardCentComAdmiral
-  name: ID карта Адмирала ЦК
+  name: ID карта НШЦК ЦК
   components:
     - type: Sprite
       layers:
