@@ -52,7 +52,7 @@
   suffix: Filled
   components:
   - type: StaticPrice
-    price: 20
+    price: 30
   - type: StorageFill
     contents:
       - id: ClothingNeckLGBTPin
@@ -60,7 +60,7 @@
         orGroup: dressermainloot
         # Corvax-Pins-Start
       - id: ClothingNeckAtharaPin
-        prob: 0.06       
+        prob: 0.06
         orGroup: dressermainloot
       - id: ClothingNeckCorvaxPin
         prob: 0.06
@@ -70,7 +70,7 @@
         orGroup: dressermainloot
       - id: ClothingNeckElysiumPin
         prob: 0.06
-        orGroup: dressermainloot 
+        orGroup: dressermainloot
       - id: ClothingNeckMainPin
         prob: 0.06
         orGroup: dressermainloot
