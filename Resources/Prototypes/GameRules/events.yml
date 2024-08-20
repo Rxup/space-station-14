@@ -9,7 +9,7 @@
     - id: BureaucraticError
     - id: ClericalError
     - id: CockroachMigration
-    - id: GasLeak
+    # - id: GasLeak
     - id: IonStorm # its calm like 90% of the time smh
     - id: KudzuGrowth
     - id: MassHallucinations
@@ -20,7 +20,7 @@
     - id: SolarFlare
     - id: SpiderClownSpawn
     - id: SpiderSpawn
-    - id: VentClog
+    # - id: VentClog
 
 - type: entityTable
   id: BasicAntagEventsTable
