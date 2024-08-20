@@ -8,8 +8,6 @@
     sprite: Backmen/Clothing/Hands/Gloves/ordenhands.rsi
   - type: Clothing
     sprite: Backmen/Clothing/Hands/Gloves/ordenhands.rsi
-  - type: GloveHeatResistance
-    heatResistance: 1400
   - type: Insulated
   - type: Fiber
     fiberMaterial: fibers-durathread
@@ -61,8 +59,6 @@
   - type: Thieving
     stripTimeReduction: 1
     stealthy: true
-  - type: GloveHeatResistance
-    heatResistance: 1400
   - type: Insulated
 
 - type: entity
@@ -98,8 +94,6 @@
     sprite: Backmen/Clothing/Hands/Gloves/chronogloves.rsi
   - type: Clothing
     sprite: Backmen/Clothing/Hands/Gloves/chronogloves.rsi
-  - type: GloveHeatResistance
-    heatResistance: 1400
   - type: Insulated
   - type: FingerprintMask
   - type: DashAbility
@@ -143,6 +137,4 @@
   - type: Thieving
     stripTimeReduction: 1
     stealthy: true
-  - type: GloveHeatResistance
-    heatResistance: 1400
   - type: Insulated

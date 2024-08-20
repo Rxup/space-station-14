@@ -1,3 +1,4 @@
+using Content.Shared.Corvax.TTS;
 using Content.Shared.Humanoid;
 using Content.Shared.StatusIcon;
 using Robust.Shared.Audio;
@@ -60,13 +61,13 @@ public sealed partial class ChangelingComponent : Component
     /// <summary>
     ///     Amount of biomass changeling currently has.
     /// </summary>
-    [DataField]
+    [DataField, AutoNetworkedField]
     public float Biomass = 30f;
 
     /// <summary>
     ///     Maximum amount of biomass a changeling can have.
     /// </summary>
-    [DataField]
+    [DataField, AutoNetworkedField]
     public float MaxBiomass = 30f;
 
     /// <summary>
@@ -128,10 +129,10 @@ public sealed partial class ChangelingComponent : Component
     public int TotalStolenDNA = 0;
 
     [ViewVariables(VVAccess.ReadOnly)]
-    public TransformData CurrentForm;
+    public TransformData? CurrentForm;
 
     [ViewVariables(VVAccess.ReadOnly)]
-    public TransformData SelectedForm;
+    public TransformData? SelectedForm;
 
     [ViewVariables(VVAccess.ReadWrite), AutoNetworkedField]
     public bool IsTransponder = false;
@@ -158,9 +159,12 @@ public sealed partial class TransformData
     [DataField("dna")]
     public string DNA;
 
+    [DataField("tts")]
+    public ProtoId<TTSVoicePrototype> TTS;
+
     /// <summary>
     ///     Entity's humanoid appearance component.
     /// </summary>
     [ViewVariables(VVAccess.ReadOnly), NonSerialized]
-    public HumanoidAppearanceComponent Appearance;
+    public Entity<HumanoidAppearanceComponent> Appearance;
 }

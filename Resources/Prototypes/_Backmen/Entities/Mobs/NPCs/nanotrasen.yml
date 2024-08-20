@@ -279,7 +279,7 @@
     rootTask:
       task: NPCGuardRangedCompound
 
-- type: statusIcon
+- type: securityIcon
   id: DSOSecurity
   priority: 2
   locationPreference: Left
@@ -288,7 +288,7 @@
     sprite: /Textures/Backmen/Icons/jobicon.rsi
     state: NanotrasenSec
 
-- type: statusIcon
+- type: securityIcon
   id: NTSecurity
   priority: 2
   locationPreference: Left

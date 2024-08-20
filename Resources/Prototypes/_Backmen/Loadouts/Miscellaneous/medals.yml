@@ -80,126 +80,86 @@
 
 - type: loadout
   id: ClothingMedalIronStar
-  equipment: ClothingMedalIronStar
   effects:
   - !type:GroupLoadoutEffect
     proto: GreyTider+
-
-- type: startingGear
-  id: ClothingMedalIronStar
   storage:
     back:
     - ClothingMedalIronStar
 
 - type: loadout
   id: ClothingMedalIronSol
-  equipment: ClothingMedalIronSol
   effects:
   - !type:GroupLoadoutEffect
     proto: ExpeditionExpert
-
-- type: startingGear
-  id: ClothingMedalIronSol
   storage:
     back:
     - ClothingMedalIronSol
 
 - type: loadout
   id: ClothingMedalBronzesol
-  equipment: ClothingMedalBronzesol
   effects:
   - !type:GroupLoadoutEffect
     proto: GalaxyExplorer
-
-- type: startingGear
-  id: ClothingMedalBronzesol
   storage:
     back:
     - ClothingMedalBronzesol
 
 - type: loadout
   id: ClothingMedalSilversword
-  equipment: ClothingMedalSilversword
   effects:
   - !type:GroupLoadoutEffect
     proto: WarVeteran
-
-- type: startingGear
-  id: ClothingMedalSilversword
   storage:
     back:
     - ClothingMedalSilversword
 
 - type: loadout
   id: ClothingMedalSilversol
-  equipment: ClothingMedalSilversol
   effects:
   - !type:GroupLoadoutEffect
     proto: MedicalSpecialist
-
-- type: startingGear
-  id: ClothingMedalSilversol
   storage:
     back:
     - ClothingMedalSilversol
 
 - type: loadout
   id: ClothingMedalGoldenStar
-  equipment: ClothingMedalGoldenStar
   effects:
   - !type:GroupLoadoutEffect
     proto: FighterAce
-
-- type: startingGear
-  id: ClothingMedalGoldenStar
   storage:
     back:
     - ClothingMedalGoldenStar
 
 - type: loadout
   id: ClothingMedalGoldenSun
-  equipment: ClothingMedalGoldenSun
   effects:
   - !type:GroupLoadoutEffect
     proto: Sercive
-
-- type: startingGear
-  id: ClothingMedalGoldenSun
   storage:
     back:
     - ClothingMedalGoldenSun
 
 - type: loadout
   id: ClothingMedalGoldenCrest
-  equipment: ClothingMedalGoldenCrest
   effects:
   - !type:GroupLoadoutEffect
     proto: HeroOfUEG
-
-- type: startingGear
-  id: ClothingMedalGoldenCrest
   storage:
     back:
     - ClothingMedalGoldenCrest
 
 - type: loadout
   id: ClothingMedalGoldenSol
-  equipment: ClothingMedalGoldenSol
   effects:
   - !type:GroupLoadoutEffect
     proto: Command+
-
-- type: startingGear
-  id: ClothingMedalGoldenSol
   storage:
     back:
     - ClothingMedalGoldenSol
 
 - type: loadout
-  id: ClothingMedalPinPilot
-  equipment: ClothingMedalPinPilot
-
-- type: startingGear
   id: ClothingMedalPinPilot
   storage:
     back:
