@@ -91,6 +91,8 @@ namespace Content.IntegrationTests.Tests
             "Reach",
             "Train",
             "Oasis",
+            "Cluster",
+            "Europa",
             "Cog"
         };
 

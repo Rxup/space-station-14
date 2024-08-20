@@ -459,3 +459,48 @@
       map: ["enum.GunVisualLayers.Mag"]
   - type: Clothing
     sprite: Backmen/Objects/Weapons/Gunsx64/Pistols/prentor.rsi
+
+- type: entity
+  name: UCS
+  parent: BaseWeaponPistol
+  id: WeaponPistolUCS
+  description: UCS полу-автоматический пистолет компании "Interdyne", зарекомендовал себя как вторичное оружия наёмников, превосходит свои аналоги с Земли.
+  components:
+  - type: Sprite
+    sprite: Backmen/Objects/Weapons/Gunsx64/Pistols/ucs/big.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-0
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: Clothing
+    sprite: Backmen/Objects/Weapons/Gunsx64/Pistols/ucs/tiny.rsi
+  - type: Item
+    sprite: Backmen/Objects/Weapons/Gunsx64/Pistols/ucs/tiny.rsi
+  - type: ChamberMagazineAmmoProvider
+    autoEject: true
+    soundAutoEject: /Audio/Backmen/Misc/empty_alarm.ogg
+  - type: ItemSlots
+    slots:
+      gun_magazine:
+        name: Magazine
+        startingItem: MagazinePistolHighCapacity
+        insertSound: /Audio/Weapons/Guns64/SMGs/uzi_reload.ogg
+        ejectSound: /Audio/Weapons/Guns64/SMGs/uzi_unload.ogg
+        priority: 2
+        whitelist:
+          tags:
+            - MagazinePistol
+            - MagazinePistolHighCapacity
+      gun_chamber:
+        name: Chamber
+        priority: 1
+        whitelist:
+          tags:
+            - CartridgePistol
+  - type: Gun
+    fireRate: 6
+    cameraRecoilScalar: 0.5
+    soundEmpty: /Audio/Backmen/Misc/error.ogg
+    soundGunshot:
+      path: /Audio/Weapons/Guns64/SMGs/uzi.ogg

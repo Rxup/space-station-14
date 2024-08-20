@@ -21,5 +21,21 @@
   - ClothingEarBrigmedic
   - ClothingMaskBrigmedic
   - Trinkets
+  - SurvivalMedical
   - Medals #backmen
   - Inventory # Corvax-Loadouts
+
+- type: roleLoadout
+  id: JobBlueShield
+  groups:
+  - ClothingUniformJumpsuitBlueShield
+  - ClothingHeadHatBlueShield
+  - ClothingOuterBlueShield
+  - EyeBlueShield
+  - Trinkets
+  - Survival
+  - Medals #backmen
+  - Inventory # Corvax-Loadouts
+  - Werx #backmen
+  - Niz #backmen
+  - Socks #backmen

@@ -23,8 +23,8 @@
     maxAngle: 0
     angleIncrease: -3
   - type: Gun
-    angleDecay: 20
-    angleIncrease: 8
+    angleDecay: 25
+    angleIncrease: 6
     cameraRecoilScalar: 5
     minAngle: 24
     maxAngle: 45
@@ -104,7 +104,7 @@
     angleIncrease: -3
   - type: Gun
     angleDecay: 20
-    angleIncrease: 6
+    angleIncrease: 4
     cameraRecoilScalar: 5
     minAngle: 14
     maxAngle: 35
@@ -384,7 +384,7 @@
     maxAngle: 0
     angleIncrease: -5
   - type: Gun
-    angleDecay: 40
+    angleDecay: 65
     angleIncrease: 12
     cameraRecoilScalar: 5
     minAngle: 24

@@ -1,0 +1,10 @@
+- type: entity
+  parent: [ClothingNeckBase, BaseCommandContraband]
+  id: ClothingNeckMantleBlueShield
+  name: мантия Синего Щита
+  description: Мантия из меха синих львов, довольно красивый, но совершенно не держит тепло.
+  components:
+  - type: Sprite
+    sprite: Backmen/Clothing/Neck/Mantle/blueshield.rsi
+  - type: Clothing
+    sprite: Backmen/Clothing/Neck/Mantle/blueshield.rsi

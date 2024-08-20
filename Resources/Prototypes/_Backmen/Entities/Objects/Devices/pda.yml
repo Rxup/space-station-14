@@ -30,7 +30,7 @@
     - type: Icon
       sprite: Backmen/Objects/Devices/pda.rsi
       state: pda-orden
-      
+
 - type: entity
   parent: BasePDA
   id: DeliveryPDA
@@ -63,7 +63,7 @@
     - type: Icon
       sprite: Backmen/Objects/Devices/pda.rsi
       state: pda-Delivery
-      
+
 
 - type: entity
   parent: BasePDA
@@ -107,3 +107,34 @@
     - type: Icon
       sprite: Backmen/Objects/Devices/pda.rsi
       state: pda-Roboticist
+
+- type: entity
+  parent: BasePDA
+  id: BlueShieldPDA
+  name: Blue Shield PDA
+  description: Standart PDA of Blue Shield officers.
+  components:
+    - type: Sprite
+      sprite: Backmen/Objects/Devices/pda.rsi
+      layers:
+      - map: [ "enum.PdaVisualLayers.Base" ]
+      - state: "light_overlay"
+        map: [ "enum.PdaVisualLayers.Flashlight" ]
+        shader: "unshaded"
+        visible: false
+      - state: "id_overlay"
+        map: [ "enum.PdaVisualLayers.IdLight" ]
+        shader: "unshaded"
+        visible: false
+    - type: Pda
+      id: BlueShieldIDCard
+      state: pda-blue
+      penSlot:
+        startingItem: Pen
+        priority: -1
+        whitelist:
+          tags:
+          - Write
+    - type: Icon
+      sprite: Backmen/Objects/Devices/pda.rsi
+      state: pda-blue
