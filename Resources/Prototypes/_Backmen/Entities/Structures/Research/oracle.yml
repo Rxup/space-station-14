@@ -13,7 +13,7 @@
   - type: Emagged
   - type: Destructible
   - type: RecyclerVisuals
-    baseKey: oracle-o0
+    baseKey: oracle-
     bloodyKey: bld
   - type: SolutionContainerManager
     solutions:
