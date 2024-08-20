@@ -9,7 +9,7 @@
     - MeteorSwarmScheduler
     - RampingStationEventScheduler
 #    - WageScheduler #backmen: currency
-    - SpaceTrafficControlEventScheduler
+    # - SpaceTrafficControlEventScheduler
     - SpaceTrafficControlFriendlyEventScheduler
     - BasicRoundstartVariation
 
@@ -26,7 +26,7 @@
 #    - WageScheduler #backmen: currency
     - KesslerSyndromeScheduler
     - RampingStationEventScheduler
-    - SpaceTrafficControlEventScheduler
+    # - SpaceTrafficControlEventScheduler
     - BasicRoundstartVariation
 
 - type: gamePreset
@@ -48,7 +48,7 @@
     - VampiresGameRule # backmen: vampire
     - FleshCult # backmen: flesh cult
     #- Changeling # backmen: changeling
-    - SpaceTrafficControlEventScheduler
+    # - SpaceTrafficControlEventScheduler
     - BasicRoundstartVariation
     - MeteorSwarmScheduler
 
@@ -73,7 +73,7 @@
     - MeteorSwarmMildScheduler
     - MeteorSwarmScheduler
     - RampingStationEventScheduler
-    - SpaceTrafficControlEventScheduler
+    # - SpaceTrafficControlEventScheduler
     - SpaceTrafficControlFriendlyEventScheduler
     - BasicRoundstartVariation
 
@@ -89,7 +89,7 @@
   - BasicStationEventScheduler
 #  - WageScheduler #backmen: currency
   - MeteorSwarmScheduler
-  - SpaceTrafficControlEventScheduler
+  # - SpaceTrafficControlEventScheduler
   - BasicRoundstartVariation
 
 - type: gamePreset
@@ -127,7 +127,7 @@
     - BasicStationEventScheduler
 #   - WageScheduler #backmen: currency
     - MeteorSwarmScheduler
-    - SpaceTrafficControlEventScheduler
+    # - SpaceTrafficControlEventScheduler
     - BasicRoundstartVariation
 
 - type: gamePreset
@@ -168,7 +168,7 @@
     - BasicStationEventScheduler
 #   - WageScheduler #backmen: currency
     - MeteorSwarmScheduler
-    - SpaceTrafficControlEventScheduler
+    # - SpaceTrafficControlEventScheduler
     - BasicRoundstartVariation
 
 - type: gamePreset
@@ -199,7 +199,7 @@
     - BasicStationEventScheduler
 #   - WageScheduler #backmen: currency
     - MeteorSwarmScheduler
-    - SpaceTrafficControlEventScheduler
+    # - SpaceTrafficControlEventScheduler
     - BasicRoundstartVariation
 
 - type: gamePreset
@@ -217,7 +217,7 @@
     - SubGamemodesRule
     - BasicStationEventScheduler
     - MeteorSwarmScheduler
-    - SpaceTrafficControlEventScheduler
+    # - SpaceTrafficControlEventScheduler
     - BasicRoundstartVariation
  #  - WageScheduler #backmen: currency
 
@@ -238,7 +238,7 @@
   - BasicStationEventScheduler
 # - WageScheduler #backmen: currency
   - MeteorSwarmScheduler
-  - SpaceTrafficControlEventScheduler
+  # - SpaceTrafficControlEventScheduler
   - BasicRoundstartVariation
 
 - type: gamePreset
@@ -255,7 +255,7 @@
   - Zombie
   - BasicStationEventScheduler
   - KesslerSyndromeScheduler
-  - SpaceTrafficControlEventScheduler
+  # - SpaceTrafficControlEventScheduler
   - BasicRoundstartVariation
 
 
