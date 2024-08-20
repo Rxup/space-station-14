@@ -100,6 +100,15 @@
     Gold: 100
 
 - type: latheRecipe
+  id: ClothingBackpackElectropack
+  result: ClothingBackpackElectropack
+  completetime: 4
+  materials:
+    Steel: 500
+    Plastic: 250
+    Cloth: 500
+
+- type: latheRecipe
   id: ForensicPad
   result: ForensicPad
   completetime: 4
@@ -711,3 +720,11 @@
      Plastic: 1000
      Plasma: 500
      Glass: 500
+
+- type: latheRecipe
+  id: ClothingOuterStraightjacket
+  result: ClothingOuterStraightjacket
+  completetime: 4
+  materials:
+    Steel: 200
+    Cloth: 500

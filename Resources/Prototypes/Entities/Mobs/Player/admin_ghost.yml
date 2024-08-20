@@ -94,6 +94,10 @@
     prototypes: [ MobAghostGear ]
   - type: BypassInteractionChecks
   - type: BkmSupermatterImmune
+  # Corvax-Start
+  - type: MovementSpeedModifier
+    baseWalkSpeed: 30
+  # Corvax-End
 
 - type: entity
   id: ActionAGhostShowSolar
