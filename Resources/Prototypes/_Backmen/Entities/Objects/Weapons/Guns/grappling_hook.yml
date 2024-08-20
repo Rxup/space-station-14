@@ -4,7 +4,7 @@
   id: WeaponBackmenGrapplingHook
   components:
     - type: GrapplingGun
-      reelRate: 7.5
+      reelRate: 6.5
     - type: BasicEntityAmmoProvider
       proto: GrapplingHookLavaland
       capacity: 1
