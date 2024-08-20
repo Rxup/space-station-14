@@ -17,7 +17,7 @@ public sealed class PumpActionSystem : SharedPumpActionSystem
         if (!_input.TryGetKeyBinding(CMKeyFunctions.CMUniqueAction, out var bind))
             return;
 
-        args.PushMarkup($"[bold]Press your [color=cyan]unique action[/color] keybind (Spacebar by default) to pump before shooting.[/bold]", 1);
+        args.PushMarkup($"[bold]Нажми на [color=cyan]необычное взаимодействие[/color] (по стандарту "Пробел") чтобы зарядить перед выстрелом.[/bold]", 1);
     }
 
     protected override void OnAttemptShoot(Entity<PumpActionComponent> ent, ref AttemptShootEvent args)
@@ -27,8 +27,8 @@ public sealed class PumpActionSystem : SharedPumpActionSystem
         if (!ent.Comp.Pumped)
         {
             var message = _input.TryGetKeyBinding(CMKeyFunctions.CMUniqueAction, out var bind)
-                ? $"You need to pump the gun with {bind.GetKeyString()} first!"
-                : "You need to pump the gun first!";
+                ? $"Сначала тебе нужно зарядить это оружие с помощью {bind.GetKeyString()}!"
+                : "Сначала тебе нужно зарядить это оружие!";
             _popup.PopupClient(message, args.User, args.User);
         }
     }
