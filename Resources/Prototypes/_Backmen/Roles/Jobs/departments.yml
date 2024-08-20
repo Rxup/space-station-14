@@ -13,6 +13,7 @@
     - BKCCCargo
     - BKCCAssistant
     - BKCCAdmiral
+    - BlueShield
   accountNumber: 1350  #backmen: currency
 
 - type: department

@@ -360,3 +360,18 @@
         - id: GrenadeFlashBang
         - id: Handcuffs
         - id: Handcuffs
+
+- type: entity
+  name: пояс охраны спецсил
+  description: Может вмещать различное снаряжение службы безопасности, такое как наручники и вспышки.
+  parent: ClothingBeltSecurity
+  id: ClothingBeltSecurityCentComSecurity
+  components:
+    - type: StorageFill
+      contents:
+        - id: WeaponDominatorNT
+        - id: Stunbaton
+        - id: GrenadeFlashBang
+        - id: GrenadeFlashBang
+        - id: Handcuffs
+        - id: Handcuffs
