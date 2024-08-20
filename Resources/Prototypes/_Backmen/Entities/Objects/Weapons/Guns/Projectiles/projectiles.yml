@@ -92,7 +92,7 @@
   - type: Projectile
     damage:
       types:
-        Piercing: 12
+        Piercing: 4
   - type: ExplodeOnTrigger
   - type: Explosive
     explosionType: Default
