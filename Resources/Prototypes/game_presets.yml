@@ -10,7 +10,7 @@
     - RampingStationEventScheduler
 #    - WageScheduler #backmen: currency
     # - SpaceTrafficControlEventScheduler
-    - SpaceTrafficControlFriendlyEventScheduler
+    # - SpaceTrafficControlEventScheduler
     - BasicRoundstartVariation
 
 - type: gamePreset
@@ -74,7 +74,7 @@
     - MeteorSwarmScheduler
     - RampingStationEventScheduler
     # - SpaceTrafficControlEventScheduler
-    - SpaceTrafficControlFriendlyEventScheduler
+    # - SpaceTrafficControlEventScheduler
     - BasicRoundstartVariation
 
 - type: gamePreset
@@ -101,7 +101,7 @@
   showInVote: true #4boring4vote
   description: greenshift-description
   rules:
-  - SpaceTrafficControlFriendlyEventScheduler
+  # - SpaceTrafficControlEventScheduler
   - BasicRoundstartVariation
 #  - WageScheduler #backmen: currency
 
@@ -139,7 +139,7 @@
   description: secret-description
   rules:
 # - WageScheduler #backmen: currency
-  - SpaceTrafficControlFriendlyEventScheduler
+  # - SpaceTrafficControlEventScheduler
   - BasicRoundstartVariation
 
 - type: gamePreset
