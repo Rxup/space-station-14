@@ -71,7 +71,6 @@ namespace Content.IntegrationTests.Tests
             "Core",
             "Marathon",
             "MeteorArena",
-            "Atlas",
             //start-backmen
             "CentCommv2",
             "CentCommv3",
