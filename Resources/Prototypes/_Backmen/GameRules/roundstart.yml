@@ -94,12 +94,12 @@
         - 6: AfterCrash
         - 12: Sitrep
 
-#- type: gameMapPool
-#  id: ShipwreckedPool
-#  maps:
-#    - ShwrAdventurer
+- type: gameMapPool
+  id: ShipwreckedPool
+  maps:
+   - ShwrAdventurer
 #    - ShwrBig
-#    - shwrDust
+    - shwrDust
 
 - type: entity
   parent: BaseGameRule
