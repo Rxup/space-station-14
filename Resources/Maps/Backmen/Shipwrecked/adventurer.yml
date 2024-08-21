@@ -48,8 +48,8 @@ entities:
       fixtures: {}
     - type: OccluderTree
     - type: SpreaderGrid
-    - type: BecomesStation
-      id: ShwrAdventurer
+ #   - type: BecomesStation
+ #     id: ShwrAdventurer
     - type: Shuttle
     - type: GridPathfinding
     - type: Gravity
