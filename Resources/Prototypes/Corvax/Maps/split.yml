@@ -215,7 +215,7 @@
             SalvageSpecialist: [ 3, 3 ]
             CargoTechnician: [ 3, 4 ]
             # backmen
-#            SAI: [1, 1] # backmen-SAI
+            SAI: [1, 1] # backmen-SAI
         # backmen blob-config-start SMALL
         - type: StationBlobConfig
           stageBegin: 20
