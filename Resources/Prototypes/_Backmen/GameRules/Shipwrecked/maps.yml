@@ -15,7 +15,7 @@
             prefixCreator: 'N'
         - type: StationJobs
           availableJobs:
-            Freelancer: [-1,-1]
+#            Freelancer: [-1,-1]
 
 - type: gameMap
   id: ShwrBig
@@ -34,7 +34,7 @@
             prefixCreator: 'BM'
         - type: StationJobs
           availableJobs:
-            Freelancer: [-1,-1]
+#            Freelancer: [-1,-1]
 
 - type: gameMap
   id: shwrDust
@@ -52,4 +52,4 @@
             prefixCreator: 'BM'
         - type: StationJobs
           availableJobs:
-            Freelancer: [-1,-1]
+#            Freelancer: [-1,-1]
