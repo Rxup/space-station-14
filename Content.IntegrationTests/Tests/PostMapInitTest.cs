@@ -30,12 +30,13 @@ namespace Content.IntegrationTests.Tests
 
         private static readonly string[] NoSpawnMaps =
         {
+            "CentComm",
             "Dart"
         };
 
         private static readonly string[] Grids =
         {
-            //"/Maps/centcomm.yml",
+            "/Maps/centcomm.yml",
             "/Maps/Shuttles/cargo.yml",
             "/Maps/Shuttles/emergency.yml",
             "/Maps/Shuttles/infiltrator.yml",
@@ -59,41 +60,33 @@ namespace Content.IntegrationTests.Tests
             "CorvaxFrame",
             "CorvaxPearl",
             // Corvax-End
+            // Exodus-Start
+            "ExodusCluster",
+            "ExodusDelta",
+            "ExodusOmega",
+            "ExodusPacked",
+            "ExodusSaltern",
+            // Exodus-End
             "Dev",
             "TestTeg",
             "Fland",
             "Meta",
             "Packed",
+            "Cluster",
             "Omega",
             "Bagel",
+            "Origin",
             "CentComm",
             "Box",
+            "Europa",
+            "Saltern",
             "Core",
             "Marathon",
             "MeteorArena",
-            //start-backmen
-            "CentCommv2",
-            "CentCommv3",
-            "ShwrAdventurer",
-            "ShwrBig",
-            "shwrDust",
-            "BackmenTortuga",
-            "BackmenHive",
-            "BackmenCogmap",
-			"BackmenShoukou",
-			"BackmenAspid",
-			"BackmenKettle",
-			"BackmenRook",
-            "BargeVsShip",
-            "no_madDelta",
-            //end-backmen
-            "Saltern",
+            "Atlas",
             "Reach",
             "Train",
-            "Oasis",
-            "Cluster",
-            "Europa",
-            "Cog"
+            "Oasis"
         };
 
         /// <summary>
@@ -270,28 +263,37 @@ namespace Content.IntegrationTests.Tests
 
                         lateSpawns += GetCountLateSpawn<SpawnPointComponent>(gridUids, entManager);
                         lateSpawns += GetCountLateSpawn<ContainerSpawnPointComponent>(gridUids, entManager);
+                        
+                        // Output the number of latejoin spawn points found
+                        Console.WriteLine($"Late spawn points found on {mapProto}: {lateSpawns}");
 
                         Assert.That(lateSpawns, Is.GreaterThan(0), $"Found no latejoin spawn points on {mapProto}");
                     }
 
-                    // Test all availableJobs have spawnPoints
-                    // This is done inside gamemap test because loading the map takes ages and we already have it.
+                    // Test all available jobs have spawn points
+                    // This is done inside the gamemap test because loading the map takes ages and we already have it.
                     var comp = entManager.GetComponent<StationJobsComponent>(station);
-                    var jobs = new HashSet<ProtoId<JobPrototype>>(
-                        comp.SetupAvailableJobs
-                            .Where(x=>x.Value[0] > 0 || x.Value[0] == -1)
-                            .Select(x=>x.Key)
-                        .Where(x=>x != "Prisoner") // backmen: Fugitive
-                        .Where(x=>x != "SAI") // backmen: SAI
-                        .Where(x=>x != "Freelancer") // backmen: shipwrecked
-                    );
+                    var jobs = new HashSet<ProtoId<JobPrototype>>(comp.SetupAvailableJobs.Keys);
+
+                    // Output the available jobs and their count
+                    Console.WriteLine($"Available jobs on {mapProto}: {string.Join(", ", jobs)} (Total: {jobs.Count})");
 
                     var spawnPoints = entManager.EntityQuery<SpawnPointComponent>()
-                        .Where(x => x.SpawnType == SpawnPointType.Job)
+                        .Where(x => x.SpawnType == SpawnPointType.Job && x.Job.HasValue)
                         .Select(x => x.Job!.Value);
 
+                    // Output the jobs that have spawn points
+                    Console.WriteLine($"Jobs with spawn points on {mapProto}: {string.Join(", ", spawnPoints)}");
+
                     jobs.ExceptWith(spawnPoints);
-                    Assert.That(jobs, Is.Empty, $"There is no spawnpoints for {string.Join(", ", jobs)} on {mapProto}.");
+
+                    // If there are jobs without spawn points, output them
+                    if (jobs.Count > 0)
+                    {
+                        Console.WriteLine($"Jobs without spawn points on {mapProto}: {string.Join(", ", jobs)}");
+                    }
+
+                    Assert.That(jobs, Is.Empty, $"There are no spawn points for {string.Join(", ", jobs)} on {mapProto}.");
                 }
 
                 try
@@ -318,11 +320,16 @@ namespace Content.IntegrationTests.Tests
 #nullable enable
             while (queryPoint.MoveNext(out T? comp, out var xform))
             {
-                var spawner = (ISpawnPoint) comp;
+                // Check for null for both spawner and transform components
+                if (comp == null || xform == null)
+                    continue;
 
+                var spawner = (ISpawnPoint)comp;
+
+                // Validate the spawner and its type
                 if (spawner.SpawnType is not SpawnPointType.LateJoin
-                || xform.GridUid == null
-                || !gridUids.Contains(xform.GridUid.Value))
+                    || xform.GridUid == null
+                    || !gridUids.Contains(xform.GridUid.Value))
                 {
                     continue;
                 }
