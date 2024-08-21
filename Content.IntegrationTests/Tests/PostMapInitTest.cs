@@ -272,10 +272,8 @@ namespace Content.IntegrationTests.Tests
                         lateSpawns += GetCountLateSpawn<SpawnPointComponent>(gridUids, entManager);
                         lateSpawns += GetCountLateSpawn<ContainerSpawnPointComponent>(gridUids, entManager);
                         
-                        //start - Exodus   //2 0.08.2024-fix-poinstmaps-and-brigmed
                         // Output the number of latejoin spawn points found
                         Console.WriteLine($"Late spawn points found on {mapProto}: {lateSpawns}");
-                        //end - Exodus   //2 0.08.2024-fix-poinstmaps-and-brigmed
 
                         Assert.That(lateSpawns, Is.GreaterThan(0), $"Found no latejoin spawn points on {mapProto}");
                     }
@@ -285,13 +283,11 @@ namespace Content.IntegrationTests.Tests
                     var comp = entManager.GetComponent<StationJobsComponent>(station);
                     var jobs = new HashSet<ProtoId<JobPrototype>>(comp.SetupAvailableJobs.Keys);
 
-                    //start - Exodus   //2 0.08.2024-fix-poinstmaps-and-brigmed
                     // Output the available jobs and their count
                     Console.WriteLine($"Available jobs on {mapProto}: {string.Join(", ", jobs)} (Total: {jobs.Count})");
                     //end - Exodus   //2 0.08.2024-fix-poinstmaps-and-brigmed
 
                     var spawnPoints = entManager.EntityQuery<SpawnPointComponent>()
-                    //start - Exodus   //2 0.08.2024-fix-poinstmaps-and-brigmed
                         .Where(x => x.SpawnType == SpawnPointType.Job && x.Job.HasValue)
                         .Select(x => x.Job!.Value);
 
@@ -307,7 +303,6 @@ namespace Content.IntegrationTests.Tests
                     }
 
                     Assert.That(jobs, Is.Empty, $"There are no spawn points for {string.Join(", ", jobs)} on {mapProto}.");
-                    //end - Exodus   //2 0.08.2024-fix-poinstmaps-and-brigmed
                 }
 
                 try
@@ -334,13 +329,11 @@ namespace Content.IntegrationTests.Tests
 #nullable enable
             while (queryPoint.MoveNext(out T? comp, out var xform))
             {
-                //start - Exodus   //2 0.08.2024-fix-poinstmaps-and-brigmed
                 // Check for null for both spawner and transform components
                 if (comp == null || xform == null)
                     continue;
 
                 var spawner = (ISpawnPoint)comp;
-                //stop - Exodus   //2 0.08.2024-fix-poinstmaps-and-brigmed
 
                 // Validate the spawner and its type
                 if (spawner.SpawnType is not SpawnPointType.LateJoin
