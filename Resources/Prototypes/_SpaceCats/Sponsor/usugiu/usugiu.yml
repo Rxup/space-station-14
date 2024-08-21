@@ -2,7 +2,7 @@
 - type: entity #backmen 
   parent: ClothingOuterBase
   id: ClothingOuterCoatBlackedmcSponsor
-  name: чёрный плащ-куртка
+  name: чёрная плащ-куртка
   description: Каждая потеря остается потерей, сколько бы их ни было до этого.
   suffix: Спонсор, без резистов
   components:
