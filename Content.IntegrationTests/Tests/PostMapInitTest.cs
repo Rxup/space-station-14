@@ -67,7 +67,6 @@ namespace Content.IntegrationTests.Tests
             "Cluster",
             "Omega",
             "Bagel",
-            "Origin",
             "CentComm",
             "Box",
             "Europa",
@@ -75,8 +74,8 @@ namespace Content.IntegrationTests.Tests
             "Core",
             "Marathon",
             "MeteorArena",
-            "Atlas",
             //start-backmen
+            "Cog",
             "CentCommv2",
             "CentCommv3",
             "ShwrAdventurer",
