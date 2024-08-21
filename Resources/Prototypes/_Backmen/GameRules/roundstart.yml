@@ -97,8 +97,8 @@
 - type: gameMapPool
   id: ShipwreckedPool
   maps:
-   - ShwrAdventurer
-#    - ShwrBig
+    - ShwrAdventurer
+    - ShwrBig
     - shwrDust
 
 - type: entity
