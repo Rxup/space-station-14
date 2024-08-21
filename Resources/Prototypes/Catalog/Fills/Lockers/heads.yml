@@ -240,7 +240,7 @@
     - id: ClothingHeadCage # backmen
     - id: PrinterDocFlatpack # Corvax-Printer
     - id: FlatpackMetempsychoticMachine # backmen
-    - id: genguns # space cats
+#    - id: genguns # space cats
 
 # Hardsuit table, used for suit storage as well
 - type: entityTable
