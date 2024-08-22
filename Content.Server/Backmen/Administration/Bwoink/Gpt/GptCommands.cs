@@ -163,7 +163,7 @@ public sealed class GptCommands : EntitySystem
 
     private void IsPlayerAntag(EventGptFunctionCall ev)
     {
-        var character = JsonSerializer.Deserialize<GetIsAntagArgs>(ev.Msg.message.function_call?.arguments ?? "{}")?.character;
+        var character = ev.Msg.message.function_call?.DecodeArgs<GetIsAntagArgs>()?.character;
         if (string.IsNullOrWhiteSpace(character))
         {
             ev.History.Messages.Add(new GptMessageFunction(PlayerAntagInfoFn));
