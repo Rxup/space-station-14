@@ -1,4 +1,5 @@
 ﻿using System.Linq;
+using System.Net;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Text;
@@ -24,9 +25,16 @@ public sealed class GptAhelpSystem : EntitySystem
     [Dependency] private readonly IConsoleHost _console = default!;
     [Dependency] private readonly IPlayerManager _playerManager = default!;
     [Dependency] private readonly IAdminManager _adminManager = default!;
-    private readonly HttpClient _httpClient = new()
+    private readonly HttpClient _httpClient = new(
+        /*
+        new SocketsHttpHandler()
+        {
+            Proxy = new WebProxy("http://localhost:8888")
+        }*/
+        )
     {
-        Timeout = TimeSpan.FromMinutes(3)
+        Timeout = TimeSpan.FromMinutes(3),
+
     };
 
     private Dictionary<NetUserId, GptUserInfo> _history = new();
@@ -126,7 +134,7 @@ public sealed class GptAhelpSystem : EntitySystem
     private async Task<(GptResponseApi? responseApi, string? err)> SendApiRequest(GptUserInfo history)
     {
         var payload = new GptApiPacket(_apiModel, history.GetMessagesForApi(), _gptFunctions,0.8f);
-        var request = await _httpClient.PostAsync($"{_apiUrl}chat/completions",
+        var request = await _httpClient.PostAsync($"{_apiUrl + (_apiUrl.EndsWith("/")?"":"/")}chat/completions",
             new StringContent(JsonSerializer.Serialize(payload), Encoding.UTF8, "application/json"));
 
         var response = await request.Content.ReadAsStringAsync();
@@ -229,15 +237,19 @@ public sealed class GptAhelpSystem : EntitySystem
                 return;
             }
 
-            if (gptMsg.finish_reason == "function_call")
+            switch (gptMsg.finish_reason)
             {
-                await ProcessFunctionCall(shell, userId, history, gptMsg);
-                break;
-            }
-            else if (gptMsg.finish_reason == "stop")
-            {
-                await ProcessChatResponse(shell, userId, history, gptMsg);
-                break;
+                case "function_call":
+                    await ProcessFunctionCall(shell, userId, history, gptMsg);
+                    break;
+                case "blacklist":
+                case "length":
+                case "stop":
+                    await ProcessChatResponse(shell, userId, history, gptMsg);
+                    break;
+               default:
+                   Log.Error("Неподдерживаемый тип остановки: {0}", gptMsg.finish_reason);
+                   break;
             }
         }
     }

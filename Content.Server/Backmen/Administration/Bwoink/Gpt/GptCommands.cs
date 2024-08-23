@@ -143,7 +143,8 @@ public sealed class GptCommands : EntitySystem
             {
                 var admins = _adminManager.ActiveAdmins
                     .Where(p => _adminManager.GetAdminData(p)?.HasFlag(AdminFlags.Adminhelp) ?? false)
-                    .Select(x => x.Data.UserName).ToArray();
+                    .Select(x => new {x.Data.UserName, title = _adminManager.GetAdminData(x)?.Title})
+                    .ToArray();
                 ev.History.Messages.Add(new GptMessageFunction(fnName, new { admin = admins }));
                 ev.Handled = true;
                 break;
