@@ -1,0 +1,90 @@
+/// Maded by Gorox. Discord - smeshinka112
+using System.Numerics;
+using Content.Server.Backmen.XenoBiology.Components;
+using Content.Server.Backmen.XenoFood.Components;
+using Content.Shared.Mind;
+using Content.Shared.Mind.Components;
+using Robust.Shared.GameObjects;
+using Robust.Shared.Prototypes;
+using Robust.Shared.Random;
+using Content.Shared.Weapons.Melee.Events;
+using Robust.Shared.IoC;
+using Content.Shared.Polymorph.Systems;
+using Content.Server.Polymorph.Systems;
+using Content.Server.Polymorph.Components;
+using Robust.Server.GameObjects;
+
+namespace Content.Server.Backmen.XenoBiology.Systems;
+
+public sealed class XenoBiologySystem : EntitySystem
+{
+    [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
+    [Dependency] private readonly IRobustRandom _robustRandom = default!;
+    [Dependency] private readonly PolymorphSystem _polymorph = default!;
+    [Dependency] private readonly SharedMindSystem _mindSystem = default!;
+
+    public override void Initialize()
+    {
+        base.Initialize();
+        SubscribeLocalEvent<XenoBiologyComponent, MeleeHitEvent>(OnSlimeAttack);
+    }
+
+    private void OnSlimeAttack(EntityUid uid, XenoBiologyComponent component, ref MeleeHitEvent args)
+    {
+        var prototype = MetaData(uid).EntityPrototype?.ID;
+
+        foreach (var hitEntity in args.HitEntities)
+        {
+            if (EntityManager.HasComponent<XenoFoodComponent>(hitEntity))
+            {
+                // Слайм получает очки
+                component.Points += component.PointsPerAttack;
+
+
+                if (component.Points >= component.PointsThreshold)
+                {
+   
+                    // Проверка на наличие разума. Если есть, то вместо деления превращает энтити в заданный прототип
+                    if (TryComp<MindContainerComponent>(uid, out var mindContainer) && mindContainer.HasMind)
+                    {
+                       _polymorph.PolymorphEntity(uid, component.OnMind);
+                    }
+                    else
+
+                    // С шансом 30% мутирует при делении. Делится только когда атакует 
+                    if (_robustRandom.Prob(component.Mutationchance))
+                    {
+                        Spawn(component.Mutagen, Transform(uid).Coordinates);
+                    }
+                    else
+                    {
+                    // Иначе делится на исходный прототип (щиткод)
+                        Spawn(prototype, Transform(uid).Coordinates);
+                    }
+
+                    if (_robustRandom.Prob(component.Mutationchance))
+                    {
+                        Spawn(component.Mutagen, Transform(uid).Coordinates);
+                    }
+                    else
+                    {
+                        Spawn(prototype, Transform(uid).Coordinates);
+                    }
+
+                    if (_robustRandom.Prob(component.Mutationchance))
+                    {
+                        Spawn(component.Mutagen, Transform(uid).Coordinates);
+                    }
+                    else
+                    {
+                        Spawn(prototype, Transform(uid).Coordinates);
+                    }
+                    EntityManager.DeleteEntity(uid);
+
+                    return;
+                }
+                break;
+            }
+        }
+    }
+}
