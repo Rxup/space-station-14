@@ -615,20 +615,22 @@ public sealed partial class ChatSystem : SharedChatSystem
         var ent = Identity.Entity(source, EntityManager);
         string name = FormattedMessage.EscapeText(nameOverride ?? Name(ent));
 
-        // Emotes use Identity.Name, since it doesn't actually involve your voice at all.
+        // Apply formatting to the emote action: pink color, italic, and surrounded by `*`
+        string formattedAction = $"<color=magenta><i>**{FormattedMessage.RemoveMarkup(action)}**</i></color>";
+    
         var wrappedMessage = Loc.GetString("chat-manager-entity-me-wrap-message",
             ("entityName", name),
             ("entity", ent),
-            ("message", FormattedMessage.RemoveMarkup(action)));
+            ("message", formattedAction));
 
         if (checkEmote)
             TryEmoteChatInput(source, action);
         SendInVoiceRange(ChatChannel.Emotes, action, wrappedMessage, source, range, author);
         if (!hideLog)
             if (name != Name(source))
-                _adminLogger.Add(LogType.Chat, LogImpact.Low, $"Emote from {ToPrettyString(source):user} as {name}: {action}");
+                _adminLogger.Add(LogType.Chat, LogImpact.Low, $"Emote from {ToPrettyString(source):user} as {name}: {formattedAction}");
             else
-                _adminLogger.Add(LogType.Chat, LogImpact.Low, $"Emote from {ToPrettyString(source):user}: {action}");
+                _adminLogger.Add(LogType.Chat, LogImpact.Low, $"Emote from {ToPrettyString(source):user}: {formattedAction}");
     }
 
     // ReSharper disable once InconsistentNaming
@@ -1036,7 +1038,8 @@ public enum ChatTransmitRange : byte
 {
     /// Acts normal, ghosts can hear across the map, etc.
     Normal,
-    /// Normal but ghosts are still range-limited.
+    /// Normal but ghosts are still range-limited.if (checkEmote)
+            TryEmoteChatInput(source, action);
     GhostRangeLimit,
     /// Hidden from the chat window.
     HideChat,
