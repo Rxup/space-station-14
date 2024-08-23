@@ -1,3 +1,4 @@
+using System;
 using System.Linq;
 using System.Numerics;
 using System.Threading.Tasks;
@@ -6,9 +7,11 @@ using Content.Server.Atmos.Components;
 using Content.Server.Atmos.EntitySystems;
 using Content.Server.Decals;
 using Content.Server.Ghost.Roles.Components;
+using Content.Shared.Light.Components;
 using Content.Server.Shuttles.Events;
 using Content.Server.Shuttles.Systems;
 using Content.Shared.Atmos;
+using Content.Shared.CCVar;
 using Content.Shared.Decals;
 using Content.Shared.Gravity;
 using Content.Shared.Parallax.Biomes;
@@ -1004,6 +1007,13 @@ public sealed partial class BiomeSystem : SharedBiomeSystem
         gravity.Enabled = true;
         gravity.Inherent = true;
         Dirty(mapUid, gravity, metadata);
+
+        // Add dynamic light to the map, which i'll start at a random time.
+
+        var cycle = EnsureComp<LightCycleComponent>(mapUid);
+        cycle.InitialTime = new Random().Next(0, (int) cycle.CycleDuration);
+
+        Dirty(mapUid, cycle, metadata);
 
         // Day lighting
         // Daylight: #D8B059
