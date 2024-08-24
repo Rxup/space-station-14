@@ -82,7 +82,7 @@ public abstract partial class SharedGunSystem
                 return;
             }
         }
-        else if (component.Personable && user == null)
+        else if (component.Personable && user != null)
         {
             Popup(Loc.GetString("gun-unauthorized-user"), uid, user);
             return;

@@ -78,6 +78,7 @@
     - SemiAuto
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/laser.ogg
+    personable: true
   - type: Item
     size: SmallNormal
   - type: ProjectileBatteryAmmoProvider
@@ -90,15 +91,15 @@
     - proto: BulletDisabler
       fireCost: 100
   - type: Battery
-    maxCharge: 2400
-    startingCharge: 2400
+    maxCharge: 1200
+    startingCharge: 1200
   - type: MagazineVisuals
     magState: mag
     steps: 1
     zeroVisible: true
   - type: Appearance
   - type: StaticPrice
-    price: 60000
+    price: 1000
 
 - type: entity
   name: 45MW.TRG Super
