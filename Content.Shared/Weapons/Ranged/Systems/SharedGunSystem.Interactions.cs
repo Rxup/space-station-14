@@ -30,7 +30,6 @@ public abstract partial class SharedGunSystem
 
     private void OnAltVerb(EntityUid uid, GunComponent component, GetVerbsEvent<AlternativeVerb> args)
     {
-
         if (component.Personable)
         {
             AlternativeVerb verbPersonalize = new()
@@ -75,10 +74,24 @@ public abstract partial class SharedGunSystem
 
     private void SelectFire(EntityUid uid, GunComponent component, SelectiveFire fire, EntityUid? user = null)
     {
+        if (component.GunOwner != null)
+        {
+            if (component.GunOwner != user)
+            {
+                Popup(Loc.GetString("gun-already-personalized", ("owner", component.GunOwner)), uid, user);
+                return;
+            }
+        }
+        else if (component.Personable && user == null)
+        {
+            Popup(Loc.GetString("gun-unauthorized-user"), uid, user);
+            return;
+        }
+
         if (component.SelectedMode == fire)
             return;
 
-        DebugTools.Assert((component.AvailableModes  & fire) != 0x0);
+        DebugTools.Assert((component.AvailableModes & fire) != 0x0);
         component.SelectedMode = fire;
 
         if (!Paused(uid))
