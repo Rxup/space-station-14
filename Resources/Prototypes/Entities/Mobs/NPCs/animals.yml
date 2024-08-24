@@ -1259,9 +1259,6 @@
   - type: NpcFactionMember
     factions:
     - Passive
-  - type: HTN
-    rootTask:
-      task: SimpleHostileCompound
   - type: IdExaminable
   - type: Tag
     tags:
@@ -1276,6 +1273,7 @@
       methods: [ Touch ]
       effects:
       - !type:WashCreamPieReaction
+  - type: XenoFood
 
 
 
@@ -1390,11 +1388,6 @@
       path: /Audio/Animals/lizard_happy.ogg
     interactFailureSound:
       path: /Audio/Items/wirecutter.ogg
-  - type: MobThresholds
-    thresholds:
-      0: Alive
-      60: Critical
-      125: Dead
   - type: MovementSpeedModifier
     baseWalkSpeed: 3.5
     baseSprintSpeed: 5

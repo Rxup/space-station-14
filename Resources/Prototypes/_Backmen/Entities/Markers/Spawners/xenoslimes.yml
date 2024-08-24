@@ -1,0 +1,49 @@
+- type: entity
+  id: GreySlimeSpawn
+  name: slime spawn
+  parent: MarkerBase
+  components:
+  - type: Sprite
+    layers:
+      - state: red
+      - sprite: Mobs/Aliens/slimes.rsi
+        state: grey_adult_slime
+  - type: RandomSpawner
+    prototypes:
+      - MobAdultSlimesGrey
+    chance: 1
+
+- type: entity
+  id: RandomGreySlimeMutation
+  name: random grey slime mutatuion
+  parent: MarkerBase
+  noSpawn: true
+  components:
+  - type: Sprite
+    layers:
+      - state: red
+      - sprite: Mobs/Aliens/slimes.rsi
+        state: grey_adult_slime
+  - type: RandomSpawner
+    prototypes:
+      - MobAdultSlimesPurple
+      - MobAdultSlimesOrange
+      - MobAdultSlimesBlue
+    chance: 1
+
+- type: entity
+  id: RandomOrangeSlimeMutation
+  name: random orange slime mutatuion
+  parent: MarkerBase
+  noSpawn: true
+  components:
+  - type: Sprite
+    layers:
+      - state: red
+      - sprite: Mobs/Aliens/slimes.rsi
+        state: grey_adult_slime
+  - type: RandomSpawner
+    prototypes:
+      - MobAdultSlimesYellow
+      - MobAdultSlimesRed
+    chance: 1

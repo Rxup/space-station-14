@@ -1,0 +1,154 @@
+﻿- type: entity
+  parent: BaseItem
+  id: BaseSlimeExtract
+  abstract: true
+  name: extract smile
+  description: Slime extract.
+  components:
+  - type: Extractable
+    grindableSolutionName: food
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        reagents:
+        - ReagentId: Omnizine
+          Quantity: 5
+  - type: Item
+    size: Small
+  - type: StaticPrice
+    price: 250
+
+- type: entity
+  parent: BaseSlimeExtract
+  id: GreySlimeExtract
+  name: grey slime extract
+  description: Slime extract.
+  components:
+  - type: Sprite
+    sprite: Backmen/Objects/Specific/Xenobiology/extract.rsi
+    state: extract
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        reagents:
+        - ReagentId: GreyExtract
+          Quantity: 5
+
+- type: entity
+  parent: BaseSlimeExtract
+  id: GreenSlimeExtract
+  name: green slime extract
+  description: Slime extract.
+  components:
+  - type: Sprite
+    sprite: Backmen/Objects/Specific/Xenobiology/extract.rsi
+    state: extract
+    color: "#00FF00"
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        reagents:
+        - ReagentId: GreenExtract
+          Quantity: 5
+
+- type: entity
+  parent: BaseSlimeExtract
+  id: BlueSlimeExtract
+  name: blue slime extract
+  description: Slime extract.
+  components:
+  - type: Sprite
+    sprite: Backmen/Objects/Specific/Xenobiology/extract.rsi
+    state: extract
+    color: "#00FFFF"
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        reagents:
+        - ReagentId: BlueExtract
+          Quantity: 5
+
+- type: entity
+  parent: BaseSlimeExtract
+  id: YellowSlimeExtract
+  name: yellow slime extract
+  description: Slime extract.
+  components:
+  - type: Sprite
+    sprite: Backmen/Objects/Specific/Xenobiology/extract.rsi
+    state: extract
+    color: "#FFFF00"
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        reagents:
+        - ReagentId: YellowExtract
+          Quantity: 5
+
+- type: entity
+  parent: BaseSlimeExtract
+  id: PurpleSlimeExtract
+  name: purple slime extract
+  description: Slime extract.
+  components:
+  - type: Sprite
+    sprite: Backmen/Objects/Specific/Xenobiology/extract.rsi
+    state: extract
+    color: "#FF00FF"
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        reagents:
+        - ReagentId: PurpleExtract
+          Quantity: 5
+
+- type: entity
+  parent: BaseSlimeExtract
+  id: OrangeSlimeExtract
+  name: orange slime extract
+  description: Slime extract.
+  components:
+  - type: Sprite
+    sprite: Backmen/Objects/Specific/Xenobiology/extract.rsi
+    state: extract
+    color: "#FFA500"
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        reagents:
+        - ReagentId: OrangeExtract
+          Quantity: 5
+
+- type: entity
+  parent: BaseSlimeExtract
+  id: DarkBlueSlimeExtract
+  name: dark blue slime extract
+  description: Slime extract.
+  components:
+  - type: Sprite
+    sprite: Backmen/Objects/Specific/Xenobiology/extract.rsi
+    state: extract
+    color: "#0000FF"
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        reagents:
+        - ReagentId: DarkBlueExtract
+          Quantity: 5
+
+- type: entity
+  parent: BaseSlimeExtract
+  id: RedSlimeExtract
+  name: red slime extract
+  description: Slime extract.
+  components:
+  - type: Sprite
+    sprite: Backmen/Objects/Specific/Xenobiology/extract.rsi
+    state: extract
+    color: "#FF0000"
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        reagents:
+        - ReagentId: RedExtract
+          Quantity: 5

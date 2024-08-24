@@ -1,0 +1,76 @@
+﻿- type: entity
+  parent: BaseItem
+  id: BaseSlimePotion
+  abstract: true
+  name: slime potion
+  description: Slime potion.
+  components:
+  - type: Item
+    size: Small
+  - type: XenoPotion
+  - type: StaticPrice
+    price: 250
+ 
+- type: entity
+  parent: BasePowerCell
+  id: PowerCellSlime
+  name: slime power cell
+  description: A rechargeable slime cell.
+  components:
+  - type: Sprite
+    sprite: Backmen/Objects/Specific/Xenobiology/extract.rsi
+    state: extract
+    color: "#FFFF00"
+  - type: Battery
+    maxCharge: 1100
+    startingCharge: 1100
+  - type: BatterySelfRecharger
+    autoRecharge: true
+    autoRechargeRate: 6
+  - type: StaticPrice
+    price: 1000
+
+- type: entity
+  parent: BaseItem
+  id: SlimeLight
+  name: slime flash
+  description: Slime extract.
+  components:
+  - type: Sprite
+    sprite: Backmen/Objects/Specific/Xenobiology/extract.rsi
+    state: extract
+    color: "#FFFF00"
+  - type: Item
+    size: Small
+  - type: StaticPrice
+    price: 500
+  - type: PointLight
+    radius: 5
+    energy: 2.5
+    color: "#FFFF00"
+
+- type: entity
+  parent: BaseItem
+  id: SpeedSlimePotion
+  name: speed slime potion
+  description: Slime potion.
+  components:
+  - type: Sprite
+    sprite: Backmen/Objects/Specific/Xenobiology/potion.rsi
+    state: red
+  - type: XenoPotion
+    color: "#8B0000"
+    effect: "Speed"
+
+- type: entity
+  parent: BaseItem
+  id: PressureSlimePotion
+  name: pressure slime potion
+  description: Slime potion.
+  components:
+  - type: Sprite
+    sprite: Backmen/Objects/Specific/Xenobiology/potion.rsi
+    state: blue
+  - type: XenoPotion
+    color: "#0000FF"
+    effect: "Pressure"

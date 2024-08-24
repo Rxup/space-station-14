@@ -1,0 +1,63 @@
+- type: reagent
+  id: GreyExtract
+  name: reagent-name-slime-grey
+  desc: reagent-desc-slime-grey
+  physicalDesc: reagent-physical-desc-acidic
+  flavor: bitter
+  color: "#808080"
+
+- type: reagent
+  id: GreenExtract
+  name: reagent-name-slime-green
+  desc: reagent-desc-slime-green
+  physicalDesc: reagent-physical-desc-acidic
+  flavor: bitter
+  color: "#00FF00"
+
+- type: reagent
+  id: BlueExtract
+  name: reagent-name-slime-blue
+  desc: reagent-desc-slime-blue
+  physicalDesc: reagent-physical-desc-acidic
+  flavor: bitter
+  color: "#00FFFF"
+
+- type: reagent
+  id: YellowExtract
+  name: reagent-name-slime-yellow
+  desc: reagent-desc-slime-yellow
+  physicalDesc: reagent-physical-desc-acidic
+  flavor: bitter
+  color: "#FFFF00"
+
+- type: reagent
+  id: PurpleExtract
+  name: reagent-name-slime-purple
+  desc: reagent-desc-slime-purple
+  physicalDesc: reagent-physical-desc-acidic
+  flavor: bitter
+  color: "#FF00FF"
+
+- type: reagent
+  id: OrangeExtract
+  name: reagent-name-slime-orange
+  desc: reagent-desc-slime-orange
+  physicalDesc: reagent-physical-desc-acidic
+  flavor: bitter
+  color: "#FFA500"
+
+- type: reagent
+  id: DarkBlueExtract
+  name: reagent-name-slime-dark-blue
+  desc: reagent-desc-slime-dark-blue
+  physicalDesc: reagent-physical-desc-acidic
+  flavor: bitter
+  color: "#0000FF"
+
+- type: reagent
+  id: RedExtract
+  name: reagent-name-slime-red
+  desc: reagent-desc-slime-red
+  physicalDesc: reagent-physical-desc-acidic
+  flavor: bitter
+  color: "#FF0000"

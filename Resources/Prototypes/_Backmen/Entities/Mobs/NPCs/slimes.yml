@@ -1,0 +1,198 @@
+﻿# Good slimes
+
+- type: entity
+  name: grey slime
+  id: MobAdultSlimesGrey
+  parent: MobAdultSlimes
+  components:
+  - type: Sprite
+    layers:
+    - map: [ "enum.DamageStateVisualLayers.Base" ]
+      state: grey_adult_slime
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: grey_adult_slime
+      Dead:
+        Base: grey_adult_slime_dead
+  - type: Butcherable
+    spawned:
+    - id: FoodMeatSlime
+      amount: 1
+    - id: GreySlimeExtract
+      amount: 1
+  - type: XenoBiology
+    mutagen: RandomGreySlimeMutation
+
+- type: entity
+  name: orange slime
+  id: MobAdultSlimesOrange
+  parent: MobAdultSlimes
+  components:
+  - type: Sprite
+    layers:
+    - map: [ "enum.DamageStateVisualLayers.Base" ]
+      state: orange_adult_slime
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: orange_adult_slime
+      Dead:
+        Base: orange_adult_slime_dead
+  - type: Butcherable
+    spawned:
+    - id: FoodMeatSlime
+      amount: 1
+    - id: OrangeSlimeExtract
+      amount: 1
+  - type: XenoBiology
+    mutagen: RandomOrangeSlimeMutation
+
+- type: entity
+  name: purple slime
+  id: MobAdultSlimesPurple
+  parent: MobAdultSlimes
+  components:
+  - type: Sprite
+    layers:
+    - map: [ "enum.DamageStateVisualLayers.Base" ]
+      state: purple_adult_slime
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: purple_adult_slime
+      Dead:
+        Base: purple_adult_slime_dead
+  - type: Butcherable
+    spawned:
+    - id: FoodMeatSlime
+      amount: 1
+    - id: PurpleSlimeExtract
+      amount: 1
+  - type: XenoBiology
+    mutagen: MobAdultSlimesGreen
+
+- type: entity
+  name: red slime
+  id: MobAdultSlimesRed
+  parent: MobAdultSlimes
+  components:
+  - type: Sprite
+    layers:
+    - map: [ "enum.DamageStateVisualLayers.Base" ]
+      state: red_adult_slime
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: red_adult_slime
+      Dead:
+        Base: red_adult_slime_dead
+  - type: Butcherable
+    spawned:
+    - id: FoodMeatSlime
+      amount: 1
+    - id: RedSlimeExtract
+      amount: 1
+  - type: XenoBiology
+    mutagen: MobAdultSlimesRed
+
+- type: entity
+  name: dark blue slime
+  id: MobAdultSlimesDarkBlue
+  parent: MobAdultSlimes
+  components:
+  - type: Sprite
+    layers:
+    - map: [ "enum.DamageStateVisualLayers.Base" ]
+      state: dark_blue_adult_slime
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: dark_blue_adult_slime
+      Dead:
+        Base: dark_blue_slime_dead
+  - type: Butcherable
+    spawned:
+    - id: FoodMeatSlime
+      amount: 1
+    - id: DarkBlueSlimeExtract
+      amount: 1
+  - type: XenoBiology
+    mutagen: MobAdultSlimesDarkBlue
+
+# Angry slimes
+
+- type: entity
+  name: grey slime
+  parent: MobAdultSlimesGrey
+  id: MobAdultSlimesGreyAngry
+  suffix: Angry
+  components:
+    - type: NpcFactionMember
+      factions:
+        - SimpleHostile
+    - type: GhostRole
+      description: ghost-role-information-angry-slimes-description
+      rules: ghost-role-information-angry-slimes-rules
+      raffle:
+        settings: short
+
+- type: entity
+  name: orange slime
+  parent: MobAdultSlimesOrange
+  id: MobAdultSlimesOrangeAngry
+  suffix: Angry
+  components:
+    - type: NpcFactionMember
+      factions:
+        - SimpleHostile
+    - type: GhostRole
+      description: ghost-role-information-angry-slimes-description
+      rules: ghost-role-information-angry-slimes-rules
+      raffle:
+        settings: short
+
+- type: entity
+  name: purple slime
+  parent: MobAdultSlimesPurple
+  id: MobAdultSlimesPurpleAngry
+  suffix: Angry
+  components:
+    - type: NpcFactionMember
+      factions:
+        - SimpleHostile
+    - type: GhostRole
+      description: ghost-role-information-angry-slimes-description
+      rules: ghost-role-information-angry-slimes-rules
+      raffle:
+        settings: short
+
+- type: entity
+  name: red slime
+  parent: MobAdultSlimesRed
+  id: MobAdultSlimesRedAngry
+  suffix: Angry
+  components:
+    - type: NpcFactionMember
+      factions:
+        - SimpleHostile
+    - type: GhostRole
+      description: ghost-role-information-angry-slimes-description
+      rules: ghost-role-information-angry-slimes-rules
+      raffle:
+        settings: short
+
+- type: entity
+  name: dark blue slime
+  parent: MobAdultSlimesDarkBlue
+  id: MobAdultSlimesDarkBlueAngry
+  suffix: Angry
+  components:
+    - type: NpcFactionMember
+      factions:
+        - SimpleHostile
+    - type: GhostRole
+      description: ghost-role-information-angry-slimes-description
+      rules: ghost-role-information-angry-slimes-rules
+      raffle:
+        settings: short

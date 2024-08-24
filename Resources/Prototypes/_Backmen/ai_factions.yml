@@ -207,3 +207,10 @@
   - Zombie
   - Revolutionary
 
+- type: npcFaction
+  id: XenobioSlime
+  hostile:
+  - Passive
+  - Zombie
+  - Flesh
+  - Xeno
