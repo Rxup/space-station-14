@@ -62,6 +62,8 @@ public sealed class XenoBiologySystem : EntitySystem
                         Spawn(prototype, Transform(uid).Coordinates);
                     }
 
+                    // Ну тут уже щиткод идет
+
                     if (_robustRandom.Prob(component.Mutationchance))
                     {
                         Spawn(component.Mutagen, Transform(uid).Coordinates);
