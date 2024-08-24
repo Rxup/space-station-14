@@ -17,6 +17,7 @@ using Content.Shared.Popups;
 using Content.Shared.SubFloor;
 using Robust.Server.Audio;
 using Robust.Server.GameObjects;
+using Robust.Server.Physics;
 using Robust.Shared.Audio;
 using Robust.Shared.Configuration;
 using Robust.Shared.CPUJob.JobQueues;
@@ -45,6 +46,7 @@ public sealed class BlobCoreActionSystem : EntitySystem
     [Dependency] private readonly DamageableSystem _damageableSystem = default!;
     [Dependency] private readonly MapSystem _mapSystem = default!;
     [Dependency] private readonly EntityLookupSystem _lookup = default!;
+    //[Dependency] private readonly GridFixtureSystem _gridFixture = default!;
 
     private const double ActionJobTime = 0.005;
     private readonly JobQueue _actionJobQueue = new(ActionJobTime);
@@ -91,11 +93,11 @@ public sealed class BlobCoreActionSystem : EntitySystem
         if (TerminatingOrDeleted(observer) || TerminatingOrDeleted(core))
             return;
 
-        var gridUid = location.GetGridUid(EntityManager);
+        var gridUid = _transform.GetGrid(location);
         if (!HasComp<MapGridComponent>(gridUid))
         {
             location = location.AlignWithClosestGridTile();
-            gridUid = location.GetGridUid(EntityManager);
+            gridUid = _transform.GetGrid(location);
             if (!HasComp<MapGridComponent>(gridUid))
                 return;
         }
@@ -212,6 +214,55 @@ public sealed class BlobCoreActionSystem : EntitySystem
 
         if (fromTile == null)
             return;
+
+        // This code doesn't work.
+        // If you can debug this, please do and fix it.
+
+        /*var fromTile = adjacentTiles
+            .Select(indices=>_mapSystem.GetAnchoredEntities(gridUid.Value, grid, indices).FirstOrNull(_tileQuery.HasComponent))
+            .FirstOrDefault(x => x!=null);
+
+        if (fromTile == null)
+        {
+            var mapPos = _transform.ToMapCoordinates(location);
+            var adjacentPos = new[]
+            {
+                Direction.East,
+                Direction.West,
+                Direction.North,
+                Direction.South
+            };
+
+            var tiles = new HashSet<Entity<BlobTileComponent>>();
+            foreach (var dir in adjacentPos)
+            {
+                var pos = mapPos.Offset(dir.ToVec());
+                tiles.Clear();
+                _lookup.GetEntitiesIntersecting(pos.MapId,
+                    new Box2(pos.Position, pos.Position),
+                    tiles,
+                    LookupFlags.Static);
+                if (tiles.Count == 0)
+                    continue;
+                var tile = tiles.First();
+                var tilePos = Transform(tile);
+
+                if (tilePos.GridUid == gridUid || tilePos.GridUid == null ||
+                    !TryComp<MapGridComponent>(tilePos.GridUid, out var tileGrid))
+                    continue;
+
+                fromTile = tile;
+
+                var locPos = _mapSystem.WorldToLocal(tilePos.GridUid.Value,
+                    tileGrid,
+                    mapPos.Position + dir.GetOpposite().ToVec());
+
+                _gridFixture.Merge(tilePos.GridUid.Value,
+                    gridUid.Value,
+                    (Vector2i)locPos,
+                    Transform(gridUid.Value).LocalRotation);
+            }
+        }*/
 
         var cost = core.Comp.NormalBlobCost;
         if (targetTileEmpty)
