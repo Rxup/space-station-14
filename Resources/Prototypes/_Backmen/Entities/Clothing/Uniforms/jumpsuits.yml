@@ -610,7 +610,7 @@
     sprite: Backmen/Clothing/Uniforms/jumpsuit/biker.rsi
   - type: Clothing
     sprite: Backmen/Clothing/Uniforms/jumpsuit/biker.rsi
-    
+
 - type: entity
   parent: ClothingUniformBase
   id: ClothingUniformJumpsuitCenK # Backmen
@@ -621,7 +621,7 @@
     sprite: Backmen/Clothing/Uniforms/jumpsuit/uni.rsi
   - type: Clothing
     sprite: Backmen/Clothing/Uniforms/jumpsuit/uni.rsi
-    
+
 - type: entity
   parent: ClothingUniformBase
   id: ClothingUniformJumpsuitDecSerii # Backmen
@@ -632,7 +632,7 @@
     sprite: Backmen/Clothing/Uniforms/jumpsuit/dec.rsi
   - type: Clothing
     sprite: Backmen/Clothing/Uniforms/jumpsuit/dec.rsi
-    
+
 - type: entity
   parent: ClothingUniformBase
   id: ClothingUniformJumpsuitSWAT # Backmen
@@ -654,7 +654,7 @@
       sprite: Backmen/Clothing/Uniforms/jumpsuit/marine_suit.rsi
     - type: Clothing
       sprite: Backmen/Clothing/Uniforms/jumpsuit/marine_suit.rsi
-      
+
 - type: entity
   parent: ClothingUniformBase
   id: ClothingUniformJumpsuitPants # Backmen
@@ -665,8 +665,8 @@
     sprite: Backmen/Clothing/Uniforms/jumpsuit/pants.rsi
   - type: Clothing
     sprite: Backmen/Clothing/Uniforms/jumpsuit/pants.rsi
-    
-      
+
+
 - type: entity
   parent: ClothingUniformBase
   id: ClothingUniformJumpsuitVergil # Backmen
@@ -677,7 +677,7 @@
     sprite: Backmen/Clothing/Uniforms/jumpsuit/vergil.rsi
   - type: Clothing
     sprite: Backmen/Clothing/Uniforms/jumpsuit/vergil.rsi
-    
+
 - type: entity
   parent: ClothingUniformBase
   id: ClothingUniformJumpsuitJeester # Backmen
@@ -688,7 +688,7 @@
     sprite: Backmen/Clothing/Uniforms/jumpsuit/jeester.rsi
   - type: Clothing
     sprite: Backmen/Clothing/Uniforms/jumpsuit/jeester.rsi
-    
+
 - type: entity
   parent: ClothingUniformBase
   id: ClothingUniformJumpsuitdirF # Backmen
@@ -699,7 +699,7 @@
     sprite: Backmen/Clothing/Uniforms/jumpsuit/dirF.rsi
   - type: Clothing
     sprite: Backmen/Clothing/Uniforms/jumpsuit/dirF.rsi
-    
+
 - type: entity
   parent: ClothingUniformBase
   id: ClothingUniformJumpsuitWorkerViF # Backmen
@@ -710,7 +710,7 @@
     sprite: Backmen/Clothing/Uniforms/jumpsuit/worker.rsi
   - type: Clothing
     sprite: Backmen/Clothing/Uniforms/jumpsuit/worker.rsi
-    
+
 - type: entity
   parent: ClothingUniformBase
   id: ClothingUniformJumpsuitCamo # Backmen
@@ -721,7 +721,7 @@
     sprite: Backmen/Clothing/Uniforms/jumpsuit/camo.rsi
   - type: Clothing
     sprite: Backmen/Clothing/Uniforms/jumpsuit/camo.rsi
-    
+
 - type: entity
   parent: ClothingUniformBase
   id: ClothingUniformJumpsuitCamoB # Backmen
@@ -732,7 +732,7 @@
     sprite: Backmen/Clothing/Uniforms/jumpsuit/camo_b.rsi
   - type: Clothing
     sprite: Backmen/Clothing/Uniforms/jumpsuit/camo_b.rsi
-    
+
 - type: entity
   parent: ClothingUniformBase
   id: ClothingUniformJumpsuitUnder # Backmen
@@ -743,7 +743,7 @@
     sprite: Backmen/Clothing/Uniforms/jumpsuit/under.rsi
   - type: Clothing
     sprite: Backmen/Clothing/Uniforms/jumpsuit/under.rsi
-    
+
 - type: entity
   parent: ClothingUniformBase
   id: ClothingUniformJumpsuitCloth # Backmen
@@ -754,7 +754,7 @@
     sprite: Backmen/Clothing/Uniforms/jumpsuit/cloth.rsi
   - type: Clothing
     sprite: Backmen/Clothing/Uniforms/jumpsuit/cloth.rsi
-    
+
 - type: entity
   parent: ClothingUniformBase
   id: ClothingUniformJumpsuitTGMCwhite # Backmen
@@ -870,3 +870,23 @@
     sprite: Backmen/Clothing/Uniforms/jumpsuit/shtab.rsi
   - type: Clothing
     sprite: Backmen/Clothing/Uniforms/jumpsuit/shtab.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingJumpsuitBlueShield
+  name: комбинезон Синего Щита
+  components:
+  - type: Sprite
+    sprite: Backmen/Clothing/Uniforms/jumpsuit/bluesuit.rsi
+  - type: Clothing
+    sprite: Backmen/Clothing/Uniforms/jumpsuit/bluesuit.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformBlueShield
+  name: одежда Синего Щита
+  components:
+  - type: Sprite
+    sprite: Backmen/Clothing/Uniforms/jumpsuit/bluesuit-alt.rsi
+  - type: Clothing
+    sprite: Backmen/Clothing/Uniforms/jumpsuit/bluesuit-alt.rsi

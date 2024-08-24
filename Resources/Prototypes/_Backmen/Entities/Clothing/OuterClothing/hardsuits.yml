@@ -412,6 +412,22 @@
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetHardsuitChronoLegionnaire
 
+- type: entity
+  parent: ClothingOuterHardsuitSecurityRed
+  id: ClothingOuterHardsuitBlueShield
+  name: боевой скафандр Синего Щита
+  description: Модицифированный военный скафандр разведки ОПЗ, имеет литые тяжелые бронеплиты и гидро-экзоскелет, в разы увеличивает физические способности, а так же морской камуфляж, который позволяет прятаться в море.
+  components:
+  - type: Sprite
+    sprite: Backmen/Clothing/OuterClothing/Hardsuits/bluehardsuit.rsi
+  - type: Clothing
+    sprite: Backmen/Clothing/OuterClothing/Hardsuits/bluehardsuit.rsi
+  - type: ToggleableClothing
+    clothingPrototype: ClothingHeadHelmetHardsuitBlueShield
+  - type: ClothingSpeedModifier
+    walkModifier: 0.8
+    sprintModifier: 0.8
+
 # Changeling
 - type: entity
   parent: ClothingOuterBaseLarge

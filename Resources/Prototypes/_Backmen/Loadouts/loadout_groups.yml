@@ -25,6 +25,44 @@
   - BKCCCargoSatchel
   - BKCCCargoDuffel
 
+# Security
+
+# BlueShield
+- type: loadoutGroup
+  id: ClothingUniformJumpsuitBlueShield
+  name: loadout-group-blueshield-jumpsuit
+  loadouts:
+  - ClothingJumpsuitBlueShield
+  - ClothingUniformBlueShield
+  - ClothingSkirtBlueShield
+
+- type: loadoutGroup
+  id: ClothingHeadHatBlueShield
+  name: loadout-group-BlueShield-hat
+  minLimit: 0
+  loadouts:
+  - ClothingHeadHatBeretBlueShield
+  - ClothingHeadHatBlueShieldCap
+  - ClothingHeadHatUshankaBlueShield
+  - ClothingHeadHelmetEGov
+
+- type: loadoutGroup
+  id: ClothingOuterBlueShield
+  name: loadout-group-BlueShield-outer
+  loadouts:
+  - ClothingOuterNavyVest
+  - ClothingOuterXenonautenLight
+  - ClothingOuterCoatArmorBlueShield
+  - ClothingOuterCoatArmorBlueShieldAlt
+
+- type: loadoutGroup
+  id: EyeBlueShield
+  name: loadout-group-BlueShield-eyes
+  minLimit: 0
+  loadouts:
+  - ClothingEyesGlassesBlueShield
+  - ClothingEyeslensesBlueShield
+
 # Operator
 #- type: loadoutGroup
 #  id: BKCCOperatorGavnaJumpsuit

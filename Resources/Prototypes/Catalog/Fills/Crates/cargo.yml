@@ -17,28 +17,28 @@
   #never make a storage fill this large
   - type: StorageFill
     contents:
-    - id: SpaceCash1000000
+    - id: CargoCash1000000
       prob: 0.001
       orGroup: Money
-    - id: SpaceCash10000
+    - id: CargoCash10000
       prob: 0.01
       orGroup: Money
-    - id: SpaceCash5000
+    - id: CargoCash5000
       prob: 0.1
       orGroup: Money
-    - id: SpaceCash2500
+    - id: CargoCash2500
       prob: 0.4
       orGroup: Money
-    - id: SpaceCash500
+    - id: CargoCash500
       prob: 0.3
       orGroup: Money
-    - id: SpaceCash100
+    - id: CargoCash100
       prob: 0.1
       orGroup: Money
-    - id: SpaceCash10
+    - id: CargoCash10
       prob: 0.05
       orGroup: Money
-    - id: SpaceCash
+    - id: CargoCash
       prob: 0.01
       orGroup: Money
     #junk

@@ -18,6 +18,21 @@ public sealed class GptMessageChat : GptMessage
     }
 }
 
+public sealed class GptMessageCallFunction : GptMessage
+{
+    private readonly GptResponseApiChoiceMsg _msg;
+
+    public GptMessageCallFunction(GptResponseApiChoiceMsg msg)
+    {
+        _msg = msg;
+    }
+
+    public override object ToApi()
+    {
+        return new { role = GptUserDirection.assistant.ToString(), content = _msg.content ?? "", functions_state_id = _msg.functions_state_id, function_call = _msg.function_call };
+    }
+}
+
 public sealed class GptMessageFunction : GptMessage
 {
     public string Name { get; set; }
@@ -25,6 +40,7 @@ public sealed class GptMessageFunction : GptMessage
 
     public GptMessageFunction(string functionName, object functionResult)
     {
+        Role = GptUserDirection.function;
         Name = functionName;
         Message = JsonSerializer.Serialize(functionResult);
     }
@@ -37,6 +53,6 @@ public sealed class GptMessageFunction : GptMessage
 
     public override object ToApi()
     {
-        return new { role = GptUserDirection.system.ToString(), content = Message, name = Name };
+        return new { role = GptUserDirection.function.ToString(), content = Message, name = Name };
     }
 }

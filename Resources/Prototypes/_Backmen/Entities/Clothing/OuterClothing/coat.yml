@@ -21,7 +21,7 @@
     sprite: Backmen/Clothing/OuterClothing/Coats/ssspcoatbelov.rsi
 
 - type: entity
-  parent: ClothingOuterCoatSecurityOvercoat
+  parent: [ClothingOuterCoatSecurityOvercoat, AllowSuitStorageClothing]
   id: ClothingOuterCoatSecurityOfficerOvercoat
   name: шинель офицер СБ
   description: Легкобронированная кожаная шинель, предназначенная для повседневной носки офицерами. Имеет логотип компании Nanotrasen Security.
@@ -42,7 +42,7 @@
   - type: Clothing
     sprite: Clothing/OuterClothing/Coats/bomber.rsi
 
-- type: entity #backmen 
+- type: entity #backmen
   parent: ClothingOuterCoatSecurityOvercoat
   id: ClothingOuterCoatBlackdmc
   name: чёрный плащ-куртка
@@ -52,8 +52,8 @@
     sprite: Backmen/Clothing/OuterClothing/Coats/black.rsi
   - type: Clothing
     sprite: Backmen/Clothing/OuterClothing/Coats/black.rsi
-    
-- type: entity #backmen 
+
+- type: entity #backmen
   parent: ClothingOuterCoatSecurityOvercoat
   id: ClothingOuterCoatBluedmc
   name: синяя плащ-куртка
@@ -63,8 +63,8 @@
     sprite: Backmen/Clothing/OuterClothing/Coats/blue.rsi
   - type: Clothing
     sprite: Backmen/Clothing/OuterClothing/Coats/blue.rsi
-    
-- type: entity #backmen 
+
+- type: entity #backmen
   parent: ClothingOuterCoatSecurityOvercoat
   id: ClothingOuterCoatDesertdmc
   name: песочная плащ-куртка
@@ -74,8 +74,8 @@
     sprite: Backmen/Clothing/OuterClothing/Coats/desert.rsi
   - type: Clothing
     sprite: Backmen/Clothing/OuterClothing/Coats/desert.rsi
-    
-- type: entity #backmen 
+
+- type: entity #backmen
   parent: ClothingOuterCoatSecurityOvercoat
   id: ClothingOuterCoatGolddmc
   name: золотая плащ-куртка
@@ -85,8 +85,8 @@
     sprite: Backmen/Clothing/OuterClothing/Coats/gold.rsi
   - type: Clothing
     sprite: Backmen/Clothing/OuterClothing/Coats/gold.rsi
-    
-- type: entity #backmen 
+
+- type: entity #backmen
   parent: ClothingOuterCoatSecurityOvercoat
   id: ClothingOuterCoatPurpledmc
   name: фиолетова плащ-куртка
@@ -96,8 +96,8 @@
     sprite: Backmen/Clothing/OuterClothing/Coats/purple.rsi
   - type: Clothing
     sprite: Backmen/Clothing/OuterClothing/Coats/purple.rsi
-    
-- type: entity #backmen 
+
+- type: entity #backmen
   parent: ClothingOuterCoatSecurityOvercoat
   id: ClothingOuterCoatReddmc
   name: красная плащ-куртка
@@ -107,8 +107,8 @@
     sprite: Backmen/Clothing/OuterClothing/Coats/red.rsi
   - type: Clothing
     sprite: Backmen/Clothing/OuterClothing/Coats/red.rsi
-    
-- type: entity #backmen 
+
+- type: entity #backmen
   parent: ClothingOuterCoatSecurityOvercoat
   id: ClothingOuterCoatSnowdmc
   name: снежная плащ-куртка
@@ -118,9 +118,9 @@
     sprite: Backmen/Clothing/OuterClothing/Coats/snow.rsi
   - type: Clothing
     sprite: Backmen/Clothing/OuterClothing/Coats/snow.rsi
-    
-- type: entity #backmen 
-  parent:  ClothingOuterStorageBase
+
+- type: entity #backmen
+  parent: ClothingOuterStorageBase
   id: ClothingOuterCoatBlackViF
   name: Чёрный бомбер
   description: Удобный чёрный бомбер.
@@ -129,8 +129,8 @@
     sprite: Backmen/Clothing/OuterClothing/Coats/blackViF.rsi
   - type: Clothing
     sprite: Backmen/Clothing/OuterClothing/Coats/blackViF.rsi
-    
-- type: entity #backmen 
+
+- type: entity #backmen
   parent: ClothingOuterWinterCoat
   id: ClothingOuterCoatJacket
   name: Куртка милитарист
@@ -140,9 +140,9 @@
     sprite: Backmen/Clothing/OuterClothing/Coats/jacket.rsi
   - type: Clothing
     sprite: Backmen/Clothing/OuterClothing/Coats/jacket.rsi
-    
-- type: entity #backmen 
-  parent:  ClothingOuterStorageBase
+
+- type: entity #backmen
+  parent: ClothingOuterStorageBase
   id: ClothingOuterCoatNT
   name: Бомбер NT
   description: Удобный бомбер с эмблемой Nanotrasen.
@@ -151,3 +151,25 @@
     sprite: Backmen/Clothing/OuterClothing/Coats/NT.rsi
   - type: Clothing
     sprite: Backmen/Clothing/OuterClothing/Coats/NT.rsi
+
+- type: entity
+  parent: [ClothingOuterCoatHoSTrench, AllowSuitStorageClothing]
+  id: ClothingOuterCoatArmorBlueShield
+  name: броне-плащ Синего Щита
+  description: Бронированный кожанный плащ, предназначенная для повседневной носки офицерами. Имеет нашивки компании Blue Shield Security.
+  components:
+  - type: Sprite
+    sprite: Backmen/Clothing/OuterClothing/Coats/bluecoat.rsi
+  - type: Clothing
+    sprite: Backmen/Clothing/OuterClothing/Coats/bluecoat.rsi
+
+- type: entity
+  parent: ClothingOuterCoatArmorBlueShield
+  id: ClothingOuterCoatArmorBlueShieldAlt
+  name: броне-плащ Синего Щита
+  description: Бронированный кожанный плащ, предназначенная для повседневной носки офицерами. Имеет нашивки компании Blue Shield Security.
+  components:
+  - type: Sprite
+    sprite: Backmen/Clothing/OuterClothing/Coats/bluecoat-alt.rsi
+  - type: Clothing
+    sprite: Backmen/Clothing/OuterClothing/Coats/bluecoat-alt.rsi
