@@ -1,0 +1,26 @@
+ent-MobAdultSlimesGrey = серый слайм
+    .desc = Он так похож на желе. Интересно, каков он на вкус?
+ent-MobAdultSlimesOrange = оранжевый слайм
+    .desc = Он так похож на желе. Интересно, каков он на вкус?
+ent-MobAdultSlimesPurple = фиолетовый слайм
+    .desc = Он так похож на желе. Интересно, каков он на вкус?
+ent-MobAdultSlimesDarkBlue = тёмно-синий слайм
+    .desc = Он так похож на желе. Интересно, каков он на вкус?
+ent-MobAdultSlimesRed = красный слайм
+    .desc = Он так похож на желе. Интересно, каков он на вкус?
+
+ent-MobAdultSlimesGreyAngry = серый слайм
+    .desc = Он так похож на желе. Интересно, каков он на вкус?
+    .suffix = Злой
+ent-MobAdultSlimesOrangeAngry = оранжевый слайм
+    .desc = Он так похож на желе. Интересно, каков он на вкус?
+    .suffix = Злой
+ent-MobAdultSlimesPurpleAngry = фиолетовый слайм
+    .desc = Он так похож на желе. Интересно, каков он на вкус?
+    .suffix = Злой
+ent-MobAdultSlimesDarkBlueAngry = тёмно-синий слайм
+    .desc = Он так похож на желе. Интересно, каков он на вкус?
+    .suffix = Злой
+ent-MobAdultSlimesRedAngry = красный слайм
+    .desc = Он так похож на желе. Интересно, каков он на вкус?
+    .suffix = Злой
