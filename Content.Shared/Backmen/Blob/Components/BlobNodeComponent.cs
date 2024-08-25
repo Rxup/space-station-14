@@ -3,19 +3,22 @@ namespace Content.Shared.Backmen.Blob.Components;
 [RegisterComponent]
 public sealed partial class BlobNodeComponent : Component
 {
-    [ViewVariables(VVAccess.ReadWrite), DataField("pulseFrequency")]
+    [DataField]
     public float PulseFrequency = 4f;
 
-    [ViewVariables(VVAccess.ReadWrite), DataField("pulseRadius")]
+    [DataField]
     public float PulseRadius = 3f;
 
     public TimeSpan NextPulse = TimeSpan.Zero;
 
-    [ViewVariables(VVAccess.ReadWrite)]
-    public EntityUid? ResourceBlob { get; set; }
-
-    [ViewVariables(VVAccess.ReadWrite)]
-    public EntityUid? FactoryBlob { get; set; }
+    [DataField]
+    public Dictionary<BlobTileType, EntityUid?> ConnectedTiles = new()
+    {
+        {BlobTileType.Resource, null},
+        {BlobTileType.Factory, null},
+        {BlobTileType.Storage, null},
+        {BlobTileType.Turret, null},
+    };
 }
 
 public sealed class BlobTileGetPulseEvent : EntityEventArgs

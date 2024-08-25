@@ -364,14 +364,6 @@
   - type: ReplacementAccent
     accent: genericAggressive
   - type: BlobCore
-    resourceRadiusLimit: 4
-    attackCost: 4
-    factoryBlobCost: 80
-    normalBlobCost: 6
-    resourceBlobCost: 60
-    reflectiveBlobCost: 20
-    splitCoreCost: 200
-    swapCoreCost: 100
   - type: BlobNode
   - type: BlobResource
     pointsPerPulsed: 5

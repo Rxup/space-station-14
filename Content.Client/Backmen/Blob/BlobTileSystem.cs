@@ -8,9 +8,7 @@ namespace Content.Client.Backmen.Blob;
 
 public sealed class BlobTileSystem : SharedBlobTileSystem
 {
-    protected override void TryRemove(Entity<BlobTileComponent> target, Entity<BlobCoreComponent> core) { }
-
-    protected override void TryUpgrade(EntityUid target, EntityUid user, EntityUid coreUid, BlobTileComponent tile, BlobCoreComponent core) { }
+    protected override void TryUpgrade(Entity<BlobTileComponent> target, Entity<BlobCoreComponent> core) { }
 }
 
 public sealed class BlobTileVisualizerSystem : VisualizerSystem<BlobTileComponent>

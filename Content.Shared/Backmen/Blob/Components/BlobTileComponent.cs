@@ -7,19 +7,19 @@ namespace Content.Shared.Backmen.Blob.Components;
 [RegisterComponent, NetworkedComponent, AutoGenerateComponentState(true), Serializable]
 public sealed partial class BlobTileComponent : Component
 {
-    [DataField("color"), AutoNetworkedField]
+    [DataField, AutoNetworkedField]
     public Color Color = Color.White;
 
-    [ViewVariables(VVAccess.ReadOnly)]
+    [ViewVariables]
     public Entity<BlobCoreComponent>? Core;
 
-    [ViewVariables(VVAccess.ReadOnly)]
+    [ViewVariables]
     public bool ReturnCost = true;
 
-    [ViewVariables(VVAccess.ReadOnly), DataField("tileType")]
+    [DataField]
     public BlobTileType BlobTileType = BlobTileType.Normal;
 
-    [ViewVariables(VVAccess.ReadOnly), DataField("healthOfPulse")]
+    [DataField]
     public DamageSpecifier HealthOfPulse = new()
     {
         DamageDict = new Dictionary<string, FixedPoint2>
@@ -33,7 +33,7 @@ public sealed partial class BlobTileComponent : Component
         }
     };
 
-    [ViewVariables(VVAccess.ReadOnly), DataField("flashDamage")]
+    [DataField]
     public DamageSpecifier FlashDamage = new()
     {
         DamageDict = new Dictionary<string, FixedPoint2>

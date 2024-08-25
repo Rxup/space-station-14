@@ -75,10 +75,12 @@ public sealed class BlobNodeSystem : EntitySystem
             tileComp.Core == null)
             return;
 
-        var tiles = GetAllNodeChildren((uid, nodeComp));
-        foreach (var tile in tiles)
+        foreach (var tile in nodeComp.ConnectedTiles)
         {
-            _blobCoreSystem.RemoveBlobTile(tile, tileComp.Core.Value);
+            if (!TryComp<BlobTileComponent>(tile.Value, out var tileComponent))
+                continue;
+
+            _blobCoreSystem.RemoveTileWithReturnCost((tile.Value.Value, tileComponent), tileComp.Core.Value);
         }
     }
 
@@ -129,14 +131,6 @@ public sealed class BlobNodeSystem : EntitySystem
             var ev = new BlobMobGetPulseEvent();
             RaiseLocalEvent(lookupUid, ev);
         }
-    }
-
-    private static IEnumerable<EntityUid> GetAllNodeChildren(Entity<BlobNodeComponent> ent)
-    {
-        if (ent.Comp.FactoryBlob != null)
-            yield return ent.Comp.FactoryBlob.Value;
-        if (ent.Comp.ResourceBlob != null)
-            yield return ent.Comp.ResourceBlob.Value;
     }
 
     public override void Update(float frameTime)

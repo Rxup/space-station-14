@@ -19,9 +19,7 @@ public abstract class SharedBlobTileSystem : EntitySystem
         TransformQuery = GetEntityQuery<TransformComponent>();
     }
 
-    protected abstract void TryRemove(Entity<BlobTileComponent> target, Entity<BlobCoreComponent> core);
-
-    protected abstract void TryUpgrade(EntityUid target, EntityUid user, EntityUid coreUid, BlobTileComponent tile, BlobCoreComponent core);
+    protected abstract void TryUpgrade(Entity<BlobTileComponent> target, Entity<BlobCoreComponent> core);
 
     private void AddUpgradeVerb(EntityUid uid, BlobTileComponent component, GetVerbsEvent<AlternativeVerb> args)
     {
@@ -29,7 +27,8 @@ public abstract class SharedBlobTileSystem : EntitySystem
             return;
 
         if (ghostBlobComponent.Core == null ||
-            !CoreQuery.TryGetComponent(ghostBlobComponent.Core.Value, out var blobCoreComponent))
+            component.Core == null ||
+            !CoreQuery.HasComponent(ghostBlobComponent.Core.Value))
             return;
 
         if (TransformQuery.TryGetComponent(uid, out var transformComponent) && !transformComponent.Anchored)
@@ -44,7 +43,7 @@ public abstract class SharedBlobTileSystem : EntitySystem
 
         AlternativeVerb verb = new()
         {
-            Act = () => TryUpgrade(uid, args.User, ghostBlobComponent.Core.Value, component, blobCoreComponent),
+            Act = () => TryUpgrade((uid, component), component.Core.Value),
             Text = verbName
         };
         args.Verbs.Add(verb);

@@ -5,7 +5,6 @@ using Content.Server.AlertLevel;
 using Content.Server.Backmen.Blob.Components;
 using Content.Server.Backmen.GameTicking.Rules.Components;
 using Content.Server.Backmen.Objectives;
-using Content.Server.Explosion.Components;
 using Content.Server.Explosion.EntitySystems;
 using Content.Server.GameTicking;
 using Content.Server.RoundEnd;
@@ -25,7 +24,6 @@ using Robust.Shared.Map;
 using Robust.Shared.Map.Components;
 using Robust.Shared.Network;
 using Robust.Shared.Player;
-using Robust.Shared.Prototypes;
 
 namespace Content.Server.Backmen.Blob;
 
@@ -157,19 +155,9 @@ public sealed class BlobCoreSystem : SharedBlobCoreSystem
         return !ev.Cancelled;
     }
 
-    [ValidatePrototypeId<EntityPrototype>] private const string ActionSwapBlobChem = "ActionSwapBlobChem";
-    [ValidatePrototypeId<EntityPrototype>] private const string ActionTeleportBlobToCore = "ActionTeleportBlobToCore";
-    [ValidatePrototypeId<EntityPrototype>] private const string ActionCreateBlobFactory = "ActionCreateBlobFactory";
-    [ValidatePrototypeId<EntityPrototype>] private const string ActionCreateBlobResource = "ActionCreateBlobResource";
-    [ValidatePrototypeId<EntityPrototype>] private const string ActionCreateBlobNode = "ActionCreateBlobNode";
-    [ValidatePrototypeId<EntityPrototype>] private const string ActionCreateBlobbernaut = "ActionCreateBlobbernaut";
-    [ValidatePrototypeId<EntityPrototype>] private const string ActionSplitBlobCore = "ActionSplitBlobCore";
-    [ValidatePrototypeId<EntityPrototype>] private const string ActionSwapBlobCore = "ActionSwapBlobCore";
-    [ValidatePrototypeId<EntityPrototype>] private const string ActionDowngradeBlob = "ActionDowngradeBlob";
-
     private void OnStartup(EntityUid uid, BlobCoreComponent component, ComponentStartup args)
     {
-        ChangeBlobPoint(uid, 0, component);
+        ChangeBlobPoint((uid, component), 0);
 
         if (_tile.TryGetComponent(uid, out var blobTileComponent))
         {
@@ -182,15 +170,12 @@ public sealed class BlobCoreSystem : SharedBlobCoreSystem
 
         ChangeChem(uid, component.DefaultChem, component);
 
-        _action.AddAction(uid, ref component.ActionSwapBlobChem, ActionSwapBlobChem);
-        _action.AddAction(uid, ref component.ActionTeleportBlobToCore, ActionTeleportBlobToCore);
-        _action.AddAction(uid, ref component.ActionCreateBlobFactory, ActionCreateBlobFactory);
-        _action.AddAction(uid, ref component.ActionCreateBlobResource, ActionCreateBlobResource);
-        _action.AddAction(uid, ref component.ActionCreateBlobNode, ActionCreateBlobNode);
-        _action.AddAction(uid, ref component.ActionCreateBlobbernaut, ActionCreateBlobbernaut);
-        _action.AddAction(uid, ref component.ActionSplitBlobCore, ActionSplitBlobCore);
-        _action.AddAction(uid, ref component.ActionSwapBlobCore, ActionSwapBlobCore);
-        _action.AddAction(uid, ref component.ActionDowngradeBlob, ActionDowngradeBlob);
+        foreach (var action in component.Actions)
+        {
+            var actionUid = component.Actions[action.Key];
+            _action.AddAction(uid, ref actionUid, action.Key);
+            component.Actions[action.Key] = actionUid;
+        }
     }
 
     public void ChangeChem(EntityUid uid, BlobChemType newChem, BlobCoreComponent? component = null)
@@ -312,102 +297,133 @@ public sealed class BlobCoreSystem : SharedBlobCoreSystem
         Entity<BlobTileComponent>? oldTileUid,
         Entity<BlobCoreComponent> blobCore,
         Entity<BlobNodeComponent>? nearNode,
-        string newBlobTileProto,
-        EntityCoordinates coordinates,
-        bool returnCost = true,
-        FixedPoint2? transformCost = null)
+        BlobTileType newBlobTile,
+        EntityCoordinates coordinates)
     {
         if (oldTileUid != null)
         {
             if (oldTileUid.Value.Comp.Core != blobCore)
                 return false;
 
-            QueueDel(oldTileUid.Value);
-            blobCore.Comp.BlobTiles.Remove(oldTileUid.Value);
+            RemoveBlobTile(oldTileUid.Value, blobCore);
         }
 
-        var tileBlob = EntityManager.SpawnEntity(newBlobTileProto, coordinates);
+        var blobTileUid = EntityManager.SpawnEntity(blobCore.Comp.TilePrototypes[newBlobTile], coordinates);
 
-        if (_tile.TryGetComponent(tileBlob, out var blobTileComponent))
+        if (!_tile.TryGetComponent(blobTileUid, out var blobTileComp))
         {
-            blobTileComponent.ReturnCost = returnCost;
-            blobTileComponent.Core = blobCore;
-            blobTileComponent.Color = blobCore.Comp.ChemСolors[blobCore.Comp.CurrentChem];
-
-            if (nearNode != null)
-            {
-                switch (blobTileComponent.BlobTileType)
-                {
-                    case BlobTileType.Resource:
-                        nearNode.Value.Comp.ResourceBlob = tileBlob;
-                        break;
-                    case BlobTileType.Factory:
-                        nearNode.Value.Comp.FactoryBlob = tileBlob;
-                        break;
-                }
-            }
-
-            Dirty(tileBlob, blobTileComponent);
-
-            var explosionResistance = EnsureComp<ExplosionResistanceComponent>(tileBlob);
-
-            if (blobCore.Comp.CurrentChem == BlobChemType.ExplosiveLattice)
-            {
-                _explosionSystem.SetExplosionResistance(tileBlob, 0f, explosionResistance);
-            }
+            // Blob somehow spawned not a blob tile?
+            return false;
         }
-        if (blobCore.Comp.Observer != null && transformCost != null)
+
+        AddBlobTile((blobTileUid, blobTileComp), newBlobTile, blobCore);
+
+        // God please forgive me for this
+        if (nearNode != null && nearNode.Value.Comp.ConnectedTiles.ContainsKey(blobTileComp.BlobTileType))
+            nearNode.Value.Comp.ConnectedTiles[blobTileComp.BlobTileType] = blobTileUid;
+
+        Dirty(blobTileUid, blobTileComp);
+
+        var explosionResistance = EnsureComp<ExplosionResistanceComponent>(blobTileUid);
+
+        if (blobCore.Comp.CurrentChem == BlobChemType.ExplosiveLattice)
         {
-            _popup.PopupEntity(Loc.GetString("blob-spent-resource", ("point", transformCost)),
-                tileBlob,
-                blobCore.Comp.Observer.Value,
-                PopupType.LargeCaution);
+            _explosionSystem.SetExplosionResistance(blobTileUid, 0f, explosionResistance);
         }
-        blobCore.Comp.BlobTiles.Add(tileBlob);
+
         return true;
     }
 
-    public bool RemoveBlobTile(EntityUid tileUid, EntityUid coreTileUid, BlobCoreComponent? blobCore = null)
+    public void AddBlobTile(Entity<BlobTileComponent> tile, BlobTileType type, Entity<BlobCoreComponent> core)
     {
-        if (!Resolve(coreTileUid, ref blobCore))
-            return false;
+        var coreComp = core.Comp;
+        var tileComp = tile.Comp;
 
-        QueueDel(tileUid);
-        blobCore.BlobTiles.Remove(tileUid);
+        coreComp.BlobTiles.Add(tile);
+        tileComp.Color = coreComp.ChemСolors[coreComp.CurrentChem];
+        tileComp.Core = core;
+        tileComp.BlobTileType = type;
+    }
 
-        return true;
+    public void RemoveBlobTile(EntityUid tile, Entity<BlobCoreComponent> core)
+    {
+        QueueDel(tile);
+        core.Comp.BlobTiles.Remove(tile);
+    }
+
+    public void RemoveTileWithReturnCost(Entity<BlobTileComponent> target, Entity<BlobCoreComponent> core)
+    {
+        RemoveBlobTile(target, core);
+
+        FixedPoint2 returnCost = 0;
+        var tileComp = target.Comp;
+
+        if (target.Comp.ReturnCost)
+        {
+            returnCost = core.Comp.BlobTileCosts[tileComp.BlobTileType];
+        }
+
+        if (returnCost <= 0)
+            return;
+
+        if (core.Comp.Observer != null)
+        {
+            _popup.PopupCoordinates(Loc.GetString("blob-get-resource", ("point", returnCost)),
+                Transform(target).Coordinates,
+                core.Comp.Observer.Value,
+                PopupType.LargeGreen);
+        }
+
+        ChangeBlobPoint(core, returnCost);
     }
 
     [ValidatePrototypeId<AlertPrototype>]
     private const string BlobResource = "BlobResource";
 
-    public bool ChangeBlobPoint(EntityUid uid, FixedPoint2 amount, BlobCoreComponent? component = null)
+    public void ChangeBlobPoint(Entity<BlobCoreComponent> core, FixedPoint2 amount)
     {
-        if (!Resolve(uid, ref component))
-            return false;
+        core.Comp.Points += amount;
 
-        component.Points += amount;
-
-        if (component.Observer != null)
-            _alerts.ShowAlert(component.Observer.Value, BlobResource, (short) Math.Clamp(Math.Round(component.Points.Float() / 10f), 0, 16));
-
-        return true;
+        if (core.Comp.Observer != null)
+            _alerts.ShowAlert(core.Comp.Observer.Value, BlobResource, (short) Math.Clamp(Math.Round(core.Comp.Points.Float() / 10f), 0, 16));
     }
 
-    public bool TryUseAbility(EntityUid uid, EntityUid coreUid, BlobCoreComponent component, FixedPoint2 abilityCost)
+    public bool TryUseAbility(Entity<BlobCoreComponent> core, FixedPoint2 abilityCost, bool popupCursor = false)
     {
-        if (component.Points < abilityCost)
+        var comp = core.Comp;
+        var points = comp.Points;
+        var observer = core.Comp.Observer;
+
+        if (observer == null)
+            return false;
+
+        if (points < abilityCost)
         {
-            _popup.PopupEntity(Loc.GetString("blob-not-enough-resources"), uid, uid, PopupType.Large);
+            _popup.PopupEntity(Loc.GetString("blob-not-enough-resources", ("point", abilityCost - points)), observer.Value, PopupType.Large);
             return false;
         }
 
-        ChangeBlobPoint(coreUid, -abilityCost, component);
+        if (popupCursor)
+        {
+            _popup.PopupCursor(
+                Loc.GetString("blob-spent-resource", ("point", (short) Math.Clamp(Math.Round(abilityCost.Float() / 10f), 0, 16))),
+                observer.Value,
+                PopupType.LargeCaution);
+        }
+        else
+        {
+            _popup.PopupEntity(
+                Loc.GetString("blob-spent-resource", ("point", abilityCost.Value)),
+                observer.Value,
+                PopupType.LargeCaution);
+        }
+
+        ChangeBlobPoint(core, -abilityCost);
         return true;
     }
 
     /// <summary>
-    /// Gets the nearest Blob node from some EntityCoords.
+    /// Gets the nearest Blob node from some EntityCoordinates.
     /// </summary>
     /// <param name="coords">The EntityCoordinates to check from.</param>
     /// <param name="radius">Radius to check from coords.</param>

@@ -38,7 +38,6 @@ public sealed class BlobObserverSystem : SharedBlobObserverSystem
     [Dependency] private readonly UserInterfaceSystem _uiSystem = default!;
     [Dependency] private readonly MindSystem _mindSystem = default!;
     [Dependency] private readonly IPlayerManager _playerManager = default!;
-    [Dependency] private readonly IMapManager _mapMan = default!;
     [Dependency] private readonly ILogManager _logMan = default!;
     [Dependency] private readonly RoleSystem _roleSystem = default!;
     [Dependency] private readonly AlertsSystem _alerts = default!;
@@ -181,21 +180,14 @@ public sealed class BlobObserverSystem : SharedBlobObserverSystem
             return;
         }
 
-        _action.GrantActions(uid,
-            new []
+        HashSet<EntityUid> actions = [];
+        foreach (var action in coreComponent.Actions)
         {
-            coreComponent.ActionSwapBlobChem!.Value,
-            coreComponent.ActionTeleportBlobToCore!.Value,
-            coreComponent.ActionCreateBlobFactory!.Value,
-            coreComponent.ActionCreateBlobResource!.Value,
-            coreComponent.ActionCreateBlobNode!.Value,
-            coreComponent.ActionCreateBlobbernaut!.Value,
-            coreComponent.ActionSplitBlobCore!.Value,
-            coreComponent.ActionSwapBlobCore!.Value,
-            coreComponent.ActionDowngradeBlob!.Value,
-        },
-            component.Core.Value);
+            if (action.Value != null)
+                actions.Add(action.Value.Value);
+        }
 
+        _action.GrantActions(uid, actions, component.Core.Value);
         _viewSubscriberSystem.AddViewSubscriber(component.Core.Value, playerSession); // GrantActions require keep in pvs
     }
 
@@ -230,10 +222,7 @@ public sealed class BlobObserverSystem : SharedBlobObserverSystem
         if (component.SelectedChemId == args.SelectedId)
             return;
 
-        if (!_blobCoreSystem.TryUseAbility(uid,
-                component.Core.Value,
-                blobCoreComponent,
-                blobCoreComponent.SwapChemCost))
+        if (!_blobCoreSystem.TryUseAbility(component.Core.Value, blobCoreComponent.SwapChemCost))
             return;
 
         ChangeChem(uid, args.SelectedId, component);
@@ -364,10 +353,7 @@ public sealed class BlobObserverSystem : SharedBlobObserverSystem
             return;
         }
 
-        if (!_blobCoreSystem.TryUseAbility(args.Performer,
-                uid,
-                blobCoreComponent,
-                blobCoreComponent.SplitCoreCost))
+        if (!_blobCoreSystem.TryUseAbility((uid, blobCoreComponent), blobCoreComponent.SplitCoreCost))
         {
             args.Handled = true;
             return;
@@ -424,10 +410,7 @@ public sealed class BlobObserverSystem : SharedBlobObserverSystem
             return;
         }
 
-        if (!_blobCoreSystem.TryUseAbility(args.Performer,
-                uid,
-                blobCoreComponent,
-                blobCoreComponent.SwapCoreCost))
+        if (!_blobCoreSystem.TryUseAbility((uid, blobCoreComponent), blobCoreComponent.SwapCoreCost))
         {
             args.Handled = true;
             return;
@@ -473,7 +456,7 @@ public sealed class BlobObserverSystem : SharedBlobObserverSystem
             return;
         }
 
-        if (!_blobCoreSystem.TryUseAbility(args.Performer, uid, blobCoreComponent, blobCoreComponent.BlobbernautCost))
+        if (!_blobCoreSystem.TryUseAbility((uid, blobCoreComponent), blobCoreComponent.BlobbernautCost, true))
             return;
 
         var ev = new ProduceBlobbernautEvent();
@@ -532,6 +515,60 @@ public sealed class BlobObserverSystem : SharedBlobObserverSystem
         return false;
     }
 
+    private bool CheckValidBlobTile(
+        Entity<BlobTileComponent> tile,
+        [NotNullWhen(true)] Entity<BlobNodeComponent>? node,
+        BlobTileType newTile,
+        EntityUid performer)
+    {
+        var coords = Transform(tile).Coordinates;
+
+        if (node == null)
+        {
+            _popup.PopupCoordinates(Loc.GetString("blob-target-nearby-not-node"), coords, performer, PopupType.Large);
+            return false;
+        }
+
+        if (tile.Comp.BlobTileType is not BlobTileType.Normal || tile.Comp.Core == null)
+        {
+            _popup.PopupCoordinates(Loc.GetString("blob-target-normal-blob-invalid"), coords, performer, PopupType.Large);
+            return false;
+        }
+
+        foreach (var specialTile in node.Value.Comp.ConnectedTiles)
+        {
+            if (specialTile.Key != newTile || specialTile.Value == null)
+                continue;
+
+            _popup.PopupCoordinates(Loc.GetString("blob-target-already-connected"), coords, performer, PopupType.Large);
+            return false;
+        }
+
+        return true;
+    }
+
+    private bool TryTransformSpecialTile(Entity<BlobCoreComponent> blobCore, BlobTileType tileType, WorldTargetActionEvent args)
+    {
+        if (!TryGetTargetBlobTile(args, out var blobTile) || blobTile?.Comp.Core == null)
+            return false;
+
+        var coords = Transform(blobTile.Value).Coordinates;
+        var nearNode = _blobCoreSystem.GetNearNode(coords);
+
+        if (!CheckValidBlobTile(blobTile.Value, nearNode, tileType, args.Performer))
+            return false;
+
+        if (!_blobCoreSystem.TryUseAbility(blobCore, blobCore.Comp.BlobTileCosts[tileType], true))
+            return false;
+
+        return _blobCoreSystem.TransformBlobTile(
+            blobTile.Value,
+            blobTile.Value.Comp.Core.Value,
+            nearNode.Value,
+            tileType,
+            coords);
+    }
+
     private void OnCreateNode(EntityUid uid,
         BlobCoreComponent blobCoreComponent,
         BlobCreateNodeActionEvent args)
@@ -545,30 +582,29 @@ public sealed class BlobObserverSystem : SharedBlobObserverSystem
         if (blobTile == null)
             return;
 
-        var xform = Transform(blobTile.Value);
+        var coords = Transform(blobTile.Value).Coordinates;
 
         if (blobTile.Value.Comp.BlobTileType is not BlobTileType.Normal || blobTile.Value.Comp.Core == null)
         {
-            _popup.PopupCoordinates(Loc.GetString("blob-target-normal-blob-invalid"), xform.Coordinates, args.Performer, PopupType.Large);
+            _popup.PopupCoordinates(Loc.GetString("blob-target-normal-blob-invalid"), coords, args.Performer, PopupType.Large);
             return;
         }
 
         if (_blobCoreSystem.GetNearNode(Transform(blobTile.Value).Coordinates, blobCoreComponent.NodeRadiusLimit) != null)
         {
-            _popup.PopupCoordinates(Loc.GetString("blob-target-close-to-node"), xform.Coordinates, args.Performer, PopupType.Large);
+            _popup.PopupCoordinates(Loc.GetString("blob-target-close-to-node"), coords, args.Performer, PopupType.Large);
             return;
         }
 
-        if (!_blobCoreSystem.TryUseAbility(args.Performer, uid, blobCoreComponent, blobCoreComponent.NodeBlobCost))
+        if (!_blobCoreSystem.TryUseAbility((uid, blobCoreComponent), blobCoreComponent.BlobTileCosts[BlobTileType.Node], true))
             return;
 
         if (!_blobCoreSystem.TransformBlobTile(
                 blobTile.Value,
                 (uid, blobCoreComponent),
                 null,
-                blobCoreComponent.NodeBlobTile,
-                args.Target,
-                transformCost: blobCoreComponent.NodeBlobCost))
+                BlobTileType.Node,
+                coords))
             return;
 
         args.Handled = true;
@@ -581,51 +617,13 @@ public sealed class BlobObserverSystem : SharedBlobObserverSystem
         if (args.Handled)
             return;
 
-        if (!TryGetTargetBlobTile(args, out var blobTile))
-            return;
+        var tileType = BlobTileType.Resource;
 
-        if (blobTile == null)
-            return;
-
-        var xform = Transform(blobTile.Value);
-
-        if (blobTile.Value.Comp.BlobTileType is not BlobTileType.Normal || blobTile.Value.Comp.Core == null)
-        {
-            _popup.PopupCoordinates(Loc.GetString("blob-target-normal-blob-invalid"), xform.Coordinates, args.Performer, PopupType.Large);
-            return;
-        }
-
-        var nearNode = _blobCoreSystem.GetNearNode(xform.Coordinates);
-
-        if (nearNode == null)
-        {
-            _popup.PopupCoordinates(Loc.GetString("blob-target-nearby-not-node"), xform.Coordinates, args.Performer, PopupType.Large);
-            return;
-        }
-
-        if (nearNode.Value.Comp.ResourceBlob != null)
-        {
-            _popup.PopupCoordinates(Loc.GetString("blob-target-already-connected"), xform.Coordinates, args.Performer, PopupType.Large);
-            return;
-        }
-
-        if (!_blobCoreSystem.TryUseAbility(args.Performer,
-                uid,
-                blobCoreComponent,
-                blobCoreComponent.ResourceBlobCost))
-            return;
-
-        if (!_blobCoreSystem.TransformBlobTile(
-                blobTile.Value,
-                blobTile.Value.Comp.Core.Value,
-                nearNode.Value,
-                blobCoreComponent.ResourceBlobTile,
-                args.Target,
-                transformCost: blobCoreComponent.ResourceBlobCost))
+        if (!TryTransformSpecialTile((uid, blobCoreComponent), tileType, args))
             return;
 
         if (blobCoreComponent.ResourceBlobsTotal > 2)
-            blobCoreComponent.ResourceBlobCost += 10;
+            blobCoreComponent.BlobTileCosts[tileType] += 10;
 
         blobCoreComponent.ResourceBlobsTotal++;
 
@@ -637,49 +635,9 @@ public sealed class BlobObserverSystem : SharedBlobObserverSystem
         if (args.Handled)
             return;
 
-        if (!TryGetTargetBlobTile(args, out var blobTile))
-            return;
+        var tileType = BlobTileType.Factory;
 
-        if (blobTile == null)
-            return;
-
-        var xform = Transform(blobTile.Value);
-        var nearNode = _blobCoreSystem.GetNearNode(xform.Coordinates);
-
-        if (blobTile.Value.Comp.BlobTileType is not BlobTileType.Normal || blobTile.Value.Comp.Core == null)
-        {
-            _popup.PopupCoordinates(Loc.GetString("blob-target-normal-blob-invalid"), xform.Coordinates, args.Performer, PopupType.Large);
-            return;
-        }
-
-        if (nearNode == null)
-        {
-            _popup.PopupCoordinates(Loc.GetString("blob-target-nearby-not-node"), xform.Coordinates, args.Performer, PopupType.Large);
-            return;
-        }
-
-        if (nearNode.Value.Comp.FactoryBlob != null)
-        {
-            _popup.PopupCoordinates(Loc.GetString("blob-target-already-connected"), xform.Coordinates, args.Performer, PopupType.Large);
-            return;
-        }
-
-        if (!_blobCoreSystem.TryUseAbility(args.Performer,
-                uid,
-                blobCoreComponent,
-                blobCoreComponent.FactoryBlobCost))
-        {
-            args.Handled = true;
-            return;
-        }
-
-        if (!_blobCoreSystem.TransformBlobTile(
-                blobTile,
-                (uid, blobCoreComponent),
-                nearNode,
-                blobCoreComponent.FactoryBlobTile,
-                args.Target,
-                transformCost: blobCoreComponent.FactoryBlobCost))
+        if (!TryTransformSpecialTile((uid, blobCoreComponent), tileType, args))
             return;
 
         args.Handled = true;
@@ -690,33 +648,28 @@ public sealed class BlobObserverSystem : SharedBlobObserverSystem
         if (args.Handled)
             return;
 
-        if (!TryGetTargetBlobTile(args, out var blobTile))
+        if (!TryGetTargetBlobTile(args, out var blobTile) || blobTile == null)
             return;
 
-        if (blobTile == null)
-            return;
-
-        var xform = Transform(blobTile.Value);
+        var coords = Transform(blobTile.Value).Coordinates;
 
         if (blobTile.Value.Comp.BlobTileType is BlobTileType.Normal || blobTile.Value.Comp.Core == null)
         {
-            _popup.PopupCoordinates(Loc.GetString("blob-target-not-normal-blob-invalid"), xform.Coordinates, args.Performer, PopupType.Large);
+            _popup.PopupCoordinates(Loc.GetString("blob-target-not-normal-blob-invalid"), coords, args.Performer, PopupType.Large);
             return;
         }
 
-        var nearNode = _blobCoreSystem.GetNearNode(xform.Coordinates);
+        var nearNode = _blobCoreSystem.GetNearNode(coords);
         var blobCore = blobTile.Value.Comp.Core.Value;
 
-        if (!_blobCoreSystem.RemoveBlobTile(blobTile.Value, blobCore, blobCore.Comp))
-            return;
+        _blobCoreSystem.RemoveTileWithReturnCost(blobTile.Value, blobCore);
 
         if (!_blobCoreSystem.TransformBlobTile(
                 blobTile,
                 blobCore,
                 nearNode,
-                blobCore.Comp.NormalBlobTile,
-                xform.Coordinates.AlignWithClosestGridTile(entityManager: EntityManager, mapManager: _mapMan),
-                transformCost: blobCore.Comp.NormalBlobCost))
+                BlobTileType.Normal,
+                coords))
             return;
 
         args.Handled = true;

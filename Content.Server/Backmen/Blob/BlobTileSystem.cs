@@ -23,7 +23,6 @@ public sealed class BlobTileSystem : SharedBlobTileSystem
     [Dependency] private readonly DamageableSystem _damageableSystem = default!;
     [Dependency] private readonly BlobCoreSystem _blobCoreSystem = default!;
     [Dependency] private readonly AudioSystem _audioSystem = default!;
-    [Dependency] private readonly SharedPopupSystem _popup = default!;
     [Dependency] private readonly EmpSystem _empSystem = default!;
     [Dependency] private readonly MapSystem _mapSystem = default!;
     [Dependency] private readonly TransformSystem _transform = default!;
@@ -72,67 +71,6 @@ public sealed class BlobTileSystem : SharedBlobTileSystem
         {
             _empSystem.EmpPulse(_transform.GetMapCoordinates(uid), 3f, 50f, 3f);
         }
-    }
-
-    protected override void TryRemove(Entity<BlobTileComponent> target, Entity<BlobCoreComponent> core)
-    {
-        var xform = Transform(target);
-        if (!_blobCoreSystem.RemoveBlobTile(target, core, core))
-        {
-            return;
-        }
-
-        FixedPoint2 returnCost = 0;
-
-        if (target.Comp.ReturnCost)
-        {
-            switch (target.Comp.BlobTileType)
-            {
-                case BlobTileType.Normal:
-                {
-                    returnCost = core.Comp.NormalBlobCost * core.Comp.ReturnResourceOnRemove;
-                    break;
-                }
-                case BlobTileType.Strong:
-                {
-                    returnCost = core.Comp.StrongBlobCost * core.Comp.ReturnResourceOnRemove;
-                    break;
-                }
-                case BlobTileType.Factory:
-                {
-                    returnCost = core.Comp.FactoryBlobCost * core.Comp.ReturnResourceOnRemove;
-                    break;
-                }
-                case BlobTileType.Resource:
-                {
-                    returnCost = core.Comp.ResourceBlobCost * core.Comp.ReturnResourceOnRemove;
-                    break;
-                }
-                case BlobTileType.Reflective:
-                {
-                    returnCost = core.Comp.ReflectiveBlobCost * core.Comp.ReturnResourceOnRemove;
-                    break;
-                }
-                case BlobTileType.Node:
-                {
-                    returnCost = core.Comp.NodeBlobCost * core.Comp.ReturnResourceOnRemove;
-                    break;
-                }
-            }
-        }
-
-        if (returnCost <= 0)
-            return;
-
-        if (_blobCoreQuery.TryComp(target.Comp.Core, out var blobCoreComponent) && blobCoreComponent.Observer != null)
-        {
-            _popup.PopupCoordinates(Loc.GetString("blob-get-resource", ("point", returnCost)),
-                xform.Coordinates,
-                blobCoreComponent.Observer.Value,
-                PopupType.LargeGreen);
-        }
-
-        _blobCoreSystem.ChangeBlobPoint(core, returnCost, core);
     }
 
     private void OnPulsed(EntityUid uid, BlobTileComponent component, BlobTileGetPulseEvent args)
@@ -226,51 +164,50 @@ public sealed class BlobTileSystem : SharedBlobTileSystem
             if (_blobCoreSystem.TransformBlobTile(null,
                     blobTileComponent.Core.Value,
                     nearNode,
-                    blobCoreComponent.NormalBlobTile,
-                    location,
-                    false))
+                    BlobTileType.Normal,
+                    location))
                 return;
         }
     }
 
-    protected override void TryUpgrade(EntityUid target,
-        EntityUid user,
-        EntityUid coreUid,
-        BlobTileComponent tile,
-        BlobCoreComponent core)
+    protected override void TryUpgrade(Entity<BlobTileComponent> target, Entity<BlobCoreComponent> core)
     {
-        var xform = Transform(target);
+        var coords = Transform(target).Coordinates;
+        var coreComp = core.Comp;
+        FixedPoint2 cost;
 
-        var nearNode = _blobCoreSystem.GetNearNode(xform.Coordinates, core.TilesRadiusLimit);
+        var nearNode = _blobCoreSystem.GetNearNode(coords, core.Comp.TilesRadiusLimit);
         if (nearNode == null)
             return;
 
-        switch (tile.BlobTileType)
+        switch (target.Comp.BlobTileType)
         {
             case BlobTileType.Normal:
-                if (!_blobCoreSystem.TryUseAbility(user, coreUid, core, core.StrongBlobCost))
+                cost = coreComp.BlobTileCosts[BlobTileType.Strong];
+
+                if (!_blobCoreSystem.TryUseAbility(core, cost, true))
                     return;
 
                 _blobCoreSystem.TransformBlobTile(
-                    (target, tile),
-                    (coreUid, core),
+                    target,
+                    core,
                     nearNode,
-                    core.StrongBlobTile,
-                    xform.Coordinates,
-                    transformCost: core.StrongBlobCost);
+                    BlobTileType.Strong,
+                    coords);
                 break;
 
             case BlobTileType.Strong:
-                if (!_blobCoreSystem.TryUseAbility(user, coreUid, core, core.ReflectiveBlobCost))
+                cost = coreComp.BlobTileCosts[BlobTileType.Reflective];
+
+                if (!_blobCoreSystem.TryUseAbility(core, cost, true))
                     return;
 
                 _blobCoreSystem.TransformBlobTile(
-                    (target, tile),
-                    (coreUid, core),
+                    target,
+                    core,
                     nearNode,
-                    core.ReflectiveBlobTile,
-                    xform.Coordinates,
-                    transformCost: core.ReflectiveBlobCost);
+                    BlobTileType.Reflective,
+                    coords);
                 break;
         }
     }
