@@ -1,6 +1,5 @@
 using Content.Server.Backmen.StationAI.Systems;
 using Content.Server.Mind;
-using Content.Server.Power.Components;
 using Content.Server.Speech.Components;
 using Content.Server.SurveillanceCamera;
 using Content.Shared.Actions;
@@ -11,6 +10,7 @@ using Content.Shared.Mind;
 using Content.Shared.Mind.Components;
 using Robust.Shared.Prototypes;
 using Content.Shared.Mobs.Systems;
+using Content.Shared.Power;
 using Content.Shared.Random.Helpers;
 using Content.Shared.Silicons.Laws;
 using Content.Shared.Silicons.Laws.Components;

@@ -17,6 +17,7 @@ using Content.Shared.Destructible;
 using Content.Shared.Construction.Components;
 using Content.Shared.MassMedia.Components;
 using Content.Shared.MassMedia.Systems;
+using Content.Shared.Power;
 using Robust.Shared.Audio;
 using Robust.Shared.Random;
 using Robust.Shared.Physics.Components;
