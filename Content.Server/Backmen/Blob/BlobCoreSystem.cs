@@ -344,7 +344,7 @@ public sealed class BlobCoreSystem : EntitySystem
             return false;
         }
 
-        AddBlobTile((blobTileUid, blobTileComp), newBlobTile, blobCore);
+        AddBlobTile((blobTileUid, blobTileComp), blobCore);
 
         // God please forgive me for this
         if (nearNode != null && nearNode.Value.Comp.ConnectedTiles.ContainsKey(blobTileComp.BlobTileType))
@@ -362,7 +362,7 @@ public sealed class BlobCoreSystem : EntitySystem
         return true;
     }
 
-    public void AddBlobTile(Entity<BlobTileComponent> tile, BlobTileType type, Entity<BlobCoreComponent> core)
+    public void AddBlobTile(Entity<BlobTileComponent> tile, Entity<BlobCoreComponent> core)
     {
         var coreComp = core.Comp;
         var tileComp = tile.Comp;
@@ -370,7 +370,6 @@ public sealed class BlobCoreSystem : EntitySystem
         coreComp.BlobTiles.Add(tile);
         tileComp.Color = coreComp.ChemСolors[coreComp.CurrentChem];
         tileComp.Core = core;
-        tileComp.BlobTileType = type;
     }
 
     public void RemoveBlobTile(EntityUid tile, Entity<BlobCoreComponent> core)

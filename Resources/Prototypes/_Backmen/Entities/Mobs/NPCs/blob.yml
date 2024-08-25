@@ -286,7 +286,7 @@
       types:
         Heat: 1
   - type: BlobTile
-    tileType: Normal
+    blobTileType: Normal
   - type: Destructible
     thresholds:
       - trigger:
@@ -358,7 +358,7 @@
       - !type:DoActsBehavior
         acts: [ "Destruction" ]
   - type: BlobTile
-    tileType: Core
+    blobTileType: Core
   - type: BlobSpeak
     overrideName: false
   - type: ReplacementAccent
@@ -414,7 +414,7 @@
         types:
           Heat: 1
     - type: BlobTile
-      tileType: Factory
+      blobTileType: Factory
     - type: Destructible
       thresholds:
         - trigger:
@@ -453,7 +453,7 @@
         types:
           Heat: 1
     - type: BlobTile
-      tileType: Resource
+      blobTileType: Resource
     - type: Destructible
       thresholds:
         - trigger:
@@ -493,7 +493,7 @@
         types:
           Heat: 1
     - type: BlobTile
-      tileType: Node
+      blobTileType: Node
     - type: Destructible
       thresholds:
         - trigger:
@@ -523,7 +523,7 @@
   categories: [ HideSpawnMenu ]
   components:
     - type: BlobTile
-      tileType: Strong
+      blobTileType: Strong
     - type: Airtight
     - type: Destructible
       thresholds:
@@ -555,7 +555,7 @@
       damageContainer: Blob
       damageModifierSet: BlobReflective
     - type: BlobTile
-      tileType: Reflective
+      blobTileType: Reflective
     - type: Destructible
       thresholds:
         - trigger:
