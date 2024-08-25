@@ -27,7 +27,7 @@ using Robust.Shared.Player;
 
 namespace Content.Server.Backmen.Blob;
 
-public sealed class BlobCoreSystem : SharedBlobCoreSystem
+public sealed class BlobCoreSystem : EntitySystem
 {
     [Dependency] private readonly AlertsSystem _alerts = default!;
     [Dependency] private readonly SharedPopupSystem _popup = default!;
@@ -46,12 +46,16 @@ public sealed class BlobCoreSystem : SharedBlobCoreSystem
     private EntityQuery<BlobFactoryComponent> _factory;
     private EntityQuery<BlobNodeComponent> _node;
 
+    [ValidatePrototypeId<AlertPrototype>] private const string BlobHealth = "BlobHealth";
+    [ValidatePrototypeId<AlertPrototype>] private const string BlobResource = "BlobResource";
+
     public override void Initialize()
     {
         base.Initialize();
 
         SubscribeLocalEvent<BlobCoreComponent, ComponentStartup>(OnStartup);
         SubscribeLocalEvent<BlobCoreComponent, DestructionEventArgs>(OnDestruction);
+        SubscribeLocalEvent<BlobCoreComponent, DamageChangedEvent>(OnDamaged);
 
         SubscribeLocalEvent<BlobCoreComponent, PlayerAttachedEvent>(OnPlayerAttached);
         SubscribeLocalEvent<BlobCoreComponent, EntityTerminatingEvent>(OnTerminating);
@@ -136,6 +140,30 @@ public sealed class BlobCoreSystem : SharedBlobCoreSystem
             return;
 
         CreateBlobObserver(uid, args.Player.UserId, component);
+    }
+
+    private void OnDamaged(EntityUid uid, BlobCoreComponent component, DamageChangedEvent args)
+    {
+        UpdateAllAlerts((uid, component));
+    }
+
+    public void UpdateAllAlerts(Entity<BlobCoreComponent> core)
+    {
+        var component = core.Comp;
+
+        if (component.Observer == null)
+            return;
+
+        var pointsSeverity = (short)Math.Clamp(Math.Round(component.Points.Float() / 10f), 0, 51);
+        _alerts.ShowAlert(component.Observer.Value, BlobResource, pointsSeverity);
+
+        if (!TryComp<DamageableComponent>(core.Owner, out var damageComp))
+            return;
+
+        var currentHealth = component.CoreBlobTotalHealth - damageComp.TotalDamage;
+        var healthSeverity = (short) Math.Clamp(Math.Round(currentHealth.Float() / 20f), 0, 20);
+
+        _alerts.ShowAlert(component.Observer.Value, BlobHealth, healthSeverity);
     }
 
     public bool CreateBlobObserver(EntityUid blobCoreUid, NetUserId userId, BlobCoreComponent? core = null)
@@ -377,15 +405,10 @@ public sealed class BlobCoreSystem : SharedBlobCoreSystem
         ChangeBlobPoint(core, returnCost);
     }
 
-    [ValidatePrototypeId<AlertPrototype>]
-    private const string BlobResource = "BlobResource";
-
     public void ChangeBlobPoint(Entity<BlobCoreComponent> core, FixedPoint2 amount)
     {
         core.Comp.Points += amount;
-
-        if (core.Comp.Observer != null)
-            _alerts.ShowAlert(core.Comp.Observer.Value, BlobResource, (short) Math.Clamp(Math.Round(core.Comp.Points.Float() / 10f), 0, 16));
+        UpdateAllAlerts(core);
     }
 
     public bool TryUseAbility(Entity<BlobCoreComponent> core, FixedPoint2 abilityCost, bool popupCursor = false)
@@ -399,21 +422,21 @@ public sealed class BlobCoreSystem : SharedBlobCoreSystem
 
         if (points < abilityCost)
         {
-            _popup.PopupEntity(Loc.GetString("blob-not-enough-resources", ("point", abilityCost - points)), observer.Value, PopupType.Large);
+            _popup.PopupEntity(Loc.GetString("blob-not-enough-resources", ("point", abilityCost.Int() - points)), observer.Value, PopupType.Large);
             return false;
         }
 
         if (popupCursor)
         {
             _popup.PopupCursor(
-                Loc.GetString("blob-spent-resource", ("point", (short) Math.Clamp(Math.Round(abilityCost.Float() / 10f), 0, 16))),
+                Loc.GetString("blob-spent-resource", ("point", abilityCost.Int())),
                 observer.Value,
                 PopupType.LargeCaution);
         }
         else
         {
             _popup.PopupEntity(
-                Loc.GetString("blob-spent-resource", ("point", abilityCost.Value)),
+                Loc.GetString("blob-spent-resource", ("point", abilityCost.Int())),
                 observer.Value,
                 PopupType.LargeCaution);
         }

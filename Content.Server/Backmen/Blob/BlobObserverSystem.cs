@@ -1,3 +1,4 @@
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Numerics;
 using Content.Server.Actions;
@@ -194,7 +195,9 @@ public sealed class BlobObserverSystem : SharedBlobObserverSystem
     private void OnPlayerAttached(EntityUid uid, BlobObserverComponent component, PlayerAttachedEvent args)
     {
         UpdateActions(args.Player, uid, component);
+        _blobCoreSystem.UpdateAllAlerts(component.Core!.Value);
     }
+
     private void OnPlayerDetached(EntityUid uid, BlobObserverComponent component, PlayerDetachedEvent args)
     {
         if (component.Core.HasValue && !TerminatingOrDeleted(component.Core.Value))
