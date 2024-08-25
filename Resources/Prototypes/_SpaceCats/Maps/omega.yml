@@ -52,7 +52,7 @@
             #supply
             Quartermaster: [ 1, 1 ]
 #            Paramedic: [ 0, 1 ] # backmen-Paramedic
-#            Brigmedic: [ 0, 1 ] # backmen-Brigmedic
+            Brigmedic: [ 0, 1 ] # backmen-Brigmedic
             SalvageSpecialist: [ 2, 2 ]
             CargoTechnician: [ 2, 2 ]
             #civilian
@@ -63,6 +63,7 @@
 #            BKBPLATech: [0, 3] # backmen-BPLA-Silicons
 #            BKBPLAMED: [0, 3] # backmen-BPLAMED-Silicons
             Borg: [ 2, 2 ]
+            BlueShield: [1, 1] # backmen-BlueShield
 #            Deliveryman: [ 0, 1 ]
 #            Prisoner: [ 2, 3]
             SAI: [1, 1] # backmen-SAI
