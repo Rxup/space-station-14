@@ -2078,7 +2078,6 @@ entities:
         tags:
         - Syndicate
     - type: Map
-      mapPaused: True
     - type: PhysicsMap
     - type: GridTree
     - type: MovedGrids
