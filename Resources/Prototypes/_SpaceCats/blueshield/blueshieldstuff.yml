@@ -37,7 +37,7 @@
 
 #Бронежилет ОСЩ
 - type: entity
-  parent: ClothingOuterArmorBasic
+  parent: ClothingOuterArmorBlueshieldCarapace
   id: ClothingOuterVestArmorBlueshields
   name: бронежилет офицера синего щита
   description: Тяжелый бронежилет III типа, который в незначительной степени защищает владельца от традиционного огнестрельного оружия и взрывчатых веществ.
