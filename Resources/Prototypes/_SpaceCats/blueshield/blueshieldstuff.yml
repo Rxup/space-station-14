@@ -1,31 +1,30 @@
-#Берет ОСЩ
 - type: entity
   parent: ClothingHeadBase
   id: ClothingHeadHatBeretBlueshield
-  name: берет синего щита
-  description: Синий берет из дюраткани со значком из золота, обозначающим его владельца как офицера синего щита.
+  name: берет офицера синего щита
+  description: Берет, изготовленный из мягкой ткани и имеющий значек в виду щита.
   components:
   - type: Sprite
-    sprite: _SpaceCats/blueshield/blueshieldberet.rsi
+    sprite: _SpaceCats\blueshield\blueshield-beret.rsi
   - type: Clothing
-    sprite: _SpaceCats/blueshield/blueshieldberet.rsi
+    sprite: _SpaceCats\blueshield\blueshield-beret.rsi
   - type: Tag
     tags:
     - ClothMade
     - HamsterWearable
     - WhitelistChameleon
 
-#Брониплащ ОСЩ
+#бомбер ОСЩ
 - type: entity
-  parent: ClothingOuterArmorBasic
+  parent: ClothingOuterStorageFoldableBase
   id: ClothingOuterCoatBlueshield
-  name: бронеплащ синего щита
-  description: Вариация плаща с элементами бронежилета. Выглядит странно, но вашему сердечку ничего не угрожает.
+  name: бомбер офицера синего щита
+  description: Неероятно удобный бомбер для защитника глав станции, усиленный специальным сплавом для дополнительной защиты и придания стиля тем, у кого внушительный вид.
   components:
   - type: Sprite
-    sprite: _SpaceCats/blueshield/blueshieldcoat.rsi
+    sprite: _SpaceCats\blueshield\blueshield-coat.rsi
   - type: Clothing
-    sprite: _SpaceCats/blueshield/blueshieldcoat.rsi
+    sprite: _SpaceCats\blueshield\blueshield-coat.rsi
   - type: Armor
     modifiers:
       coefficients:
@@ -35,30 +34,44 @@
         Heat: 0.7
   - type: ExplosionResistance
     damageCoefficient: 0.9
+      
+- type: entity
+  parent: [ClothingOuterStorageFoldableBaseOpened, ClothingOuterCoatBlueshield]
+  id: ClothingOuterCoatBlueshieldOpened
+  name: бронебомбер офицера синего щита
 
-#Бронижелет ОСЩ
+#Бронежилет ОСЩ
 - type: entity
   parent: ClothingOuterArmorBasic
   id: ClothingOuterVestArmorBlueshield
-  name: бронежелет синего щита
-  description: Бронированный жилет синего щита, с карманами для мелочёвки.
+  name: бронежилет офицера синего щита
+  description: Тяжелый бронежилет III типа, который в незначительной степени защищает владельца от традиционного огнестрельного оружия и взрывчатых веществ.
   components:
     - type: Sprite
-      sprite: _SpaceCats/blueshield/blueshieldarmor.rsi
+      sprite: _SpaceCats\blueshield\blueshield-armor.rsi
     - type: Clothing
-      sprite: _SpaceCats/blueshield/blueshieldarmor.rsi
+      sprite: _SpaceCats\blueshield\blueshield-armor.rsi
+    - type: Armor
+      modifiers:
+        coefficients:
+        Blunt: 0.7
+        Slash: 0.7
+        Piercing: 0.7
+        Heat: 0.7
+  - type: ExplosionResistance
+    damageCoefficient: 0.9
 
 #Зимняя бронекуртка ОСЩ
 - type: entity
   parent: [ClothingOuterArmorWarden, ClothingOuterWinterCoatToggleable]
   id: ClothingOuterWinterBlueshield
-  name: зимняя бронекуртка синего щита
-  description: Прочная, утилитарная зимняя куртка, предназначенная для защиты синего щита от любых угроз, связанных с охраной и переохлаждением.
+  name: зимняя бронекуртка офицерасинего щита
+  description: Зимняя куртка, усиленная специальным сплавом для дополнительной защиты и придания стиля тем, у кого внушительный вид.
   components:
   - type: Sprite
-    sprite: _SpaceCats/blueshield/blueshieldwinterarmorcoat.rsi
+    sprite: _SpaceCats\blueshield\blueshield-winter-armor-coat.rsi
   - type: Clothing
-    sprite: _SpaceCats/blueshield/blueshieldwinterarmorcoat.rsi
+    sprite: _SpaceCats\blueshield\blueshield-winter-armor-coat.rsi
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHatHoodWinterBlueshield
 
@@ -67,24 +80,24 @@
   parent: ClothingHeadHatHoodWinterBase
   id: ClothingHeadHatHoodWinterBlueshield
   noSpawn: true
-  name: капюшон куртки синего щита
+  name: капюшон куртки офицера синего щита
   components:
   - type: Sprite
-    sprite: _SpaceCats/blueshield/hoodblueshield.rsi
+    sprite: _SpaceCats\blueshield\hood-blueshield.rsi
   - type: Clothing
-    sprite: _SpaceCats/blueshield/hoodblueshield.rsi
+    sprite: _SpaceCats\blueshield\hood-blueshield.rsi
 
 #Противогаз ОСЩ
 - type: entity
   parent: ClothingMaskGasSyndicate
   id: ClothingMaskGasBlueshield
-  name: противогаз синего щита
-  description: Элитный противогаз синего щита.
+  name: противогаз офицера синего щита
+  description: Элитрый противгаз оперативника ОПЗ.
   components:
   - type: Sprite
-    sprite: _SpaceCats/blueshield/blueshieldmask.rsi
+    sprite: _SpaceCats\blueshield\blueshield-mask.rsi
   - type: Clothing
-    sprite: _SpaceCats/blueshield/blueshieldmask.rsi
+    sprite: _SpaceCats\blueshield\blueshield-mask.rsi
   - type: Tag
     tags:
     - WhitelistChameleon
@@ -94,14 +107,82 @@
     - Snout
     hideOnToggle: true
 
-#Шлем ОСЩ
+#Скафандр ОСЩ
 - type: entity
-  parent: ClothingHeadHelmetBasic
-  id: ClothingHeadHelmetBlueshield
-  name: шлем синего щита
-  description: Атмосферный шлем, который носят синие щиты Nanotrasen. Имеет синий фонарь.
+  parent: [ClothingOuterHardsuitBase, BaseCommandContraband]
+  id: ClothingOuterHardsuitBlueShield
+  name: скафандр офицера синего щита
+  description: Специальный костюм, защищающий от воздействия опасных сред с низким давлением. Имеет дополнительный слой брони.
   components:
   - type: Sprite
-    sprite: _SpaceCats/blueshield/blueshieldhelmet.rsi
+    sprite: _SpaceCats\blueshield\blueshild-hardsuit.rsi
   - type: Clothing
-    sprite: _SpaceCats/blueshield/blueshieldhelmet.rsi
+    sprite: _SpaceCats\blueshield\blueshild-hardsuit.rsi
+  - type: PressureProtection
+    highPressureMultiplier: 0.45
+    lowPressureMultiplier: 1000
+  - type: ExplosionResistance
+    damageCoefficient: 0.6
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.6
+        Slash: 0.5
+        Piercing: 0.5
+        Radiation: 0.5
+        Caustic: 0.6
+        Stun: 0.5
+  - type: ClothingSpeedModifier
+    walkModifier: 0.8
+    sprintModifier: 0.8
+  - type: HeldSpeedModifier
+  - type: ToggleableClothing
+    clothingPrototype: ClothingHeadHatHardhatBlueshield
+
+#Шлем скафандр ОСЩ
+- type: entity
+  parent: ClothingHeadHatHardhatBase
+  id: ClothingHeadHatHardhatBlueshield
+  name: шлем скафандр офицера синего щита
+  description: 
+  components:
+  - type: Sprite
+    sprite: _SpaceCats\blueshield\blueshield-hardsuit-helmet.rsi
+  - type: Clothing
+    sprite: _SpaceCats\blueshield\blueshield-hardsuit-helmet.rsi
+
+#Комбинезон ОСЩ
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformJumpsuitBlueshield
+  name: костюм офицера синего щита
+  description: Тот, кто носит это, говорит о деле.
+  components:
+  - type: Sprite
+    sprite: _SpaceCats\blueshield\blueshild-jumpsuit.rsi
+  - type: Clothing
+    sprite: _SpaceCats\blueshield\blueshild-jumpsuit.rsi
+
+#Юбка ОСЩ
+- type: entity
+  parent: ClothingUniformSkirtBase
+  id: ClothingUniformJumpskirtBlueshield
+  name: платье офицера синего щита
+  description: Тот, кто носит это, говорит о деле.
+  components:
+  - type: Sprite
+    sprite: _SpaceCats\blueshield\blueshield-jumpskirt.rsi
+  - type: Clothing
+    sprite: _SpaceCats\blueshield\blueshield-jumpskirt.rsi
+
+#Плащ ОСЩ
+- type: entity
+  parent: [ClothingNeckBase, BaseCommandContraband]
+  id: ClothingNeckCloakBlueshield
+  name: плащ офицера синего щита
+  description: Величественный черный плащ, символизирующий офицера синего щита.
+  components:
+  - type: Sprite
+    sprite: _SpaceCats\blueshield\blueshield-cloack.rsi
+  - type: StealTarget
+    stealGroup: HeadCloak
