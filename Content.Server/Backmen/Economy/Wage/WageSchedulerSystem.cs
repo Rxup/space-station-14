@@ -20,8 +20,8 @@ public sealed partial class WageSchedulerRuleComponent : Component
 
 public sealed class WageSchedulerSystem : GameRuleSystem<WageSchedulerRuleComponent>
 {
-    [Dependency] private readonly IChatManager _chatManager = default!;
-    public override string Prototype => "WageScheduler";
+    //[Dependency] private readonly IChatManager _chatManager = default!;
+    //public override string Prototype => "WageScheduler";
     [Dependency] private readonly WageManagerSystem _wageManagerSystem = default!;
 
 
@@ -29,7 +29,7 @@ public sealed class WageSchedulerSystem : GameRuleSystem<WageSchedulerRuleCompon
     protected override void Started(EntityUid uid, WageSchedulerRuleComponent component, GameRuleComponent gameRule,
         GameRuleStartedEvent args)
     {
-        _chatManager.DispatchServerAnnouncement(Loc.GetString("rule-wage-announcement"));
+        //_chatManager.DispatchServerAnnouncement(Loc.GetString("rule-wage-announcement"));
     }
     protected override void Ended(EntityUid uid, WageSchedulerRuleComponent component, GameRuleComponent gameRule, GameRuleEndedEvent args)
     {
