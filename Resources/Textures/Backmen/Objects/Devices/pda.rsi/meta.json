@@ -39,15 +39,7 @@
       "name": "pda-Delivery"
     },
     {
-      "name": "pda-blue",
-      "delays": [
-        [
-          0.4,
-          0.4,
-          0.4,
-          0.4
-        ]
-      ]
+      "name": "pda-blue"
     },
 	{
 	  "name": "pda-Roboticist",
