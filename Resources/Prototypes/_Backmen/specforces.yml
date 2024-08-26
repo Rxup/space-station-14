@@ -60,7 +60,7 @@
 - type: specForceTeam
   id: ERTAlpha
   specForceName: spec-forces-system-alpha-name
-  shuttlePath: Maps/Backmen/Shuttles/SpecForces/NT-CC-Specnaz-013.yml
+  shuttlePath: Maps/Backmen/Shuttles/SpecForces/NTSF-Palm-AL1
   spawnMarker: MarkerSpecforce
   announcementText: spec-forces-system-ertcall-annonce
   announcementTitle: spec-forces-system-ertAlpha-title
@@ -100,7 +100,7 @@
 - type: specForceTeam
   id: ERTTay
   specForceName: spec-forces-system-tay-name
-  shuttlePath: Maps/Backmen/Shuttles/SpecForces/NTMH-Medivak-TH39.yml
+  shuttlePath: Maps/Backmen/Shuttles/SpecForces/NT-QRF-TH39.yml
   spawnMarker: MarkerSpecforce
   announcementText: spec-forces-system-ertcall-annonce
   announcementTitle: spec-forces-system-ertTay-title
