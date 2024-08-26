@@ -1851,14 +1851,6 @@ entities:
     - type: Transform
       pos: 6.754113,25.114868
       parent: 1
-- proto: BookSecretDocuments
-  entities:
-  - uid: 2736
-    components:
-    - type: Transform
-      rot: 3.141592653589793 rad
-      pos: 3.5324936,22.568695
-      parent: 1
 - proto: BookSecurity
   entities:
   - uid: 3377
