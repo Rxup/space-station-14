@@ -26,8 +26,9 @@
   noSpawn: true
   components:
     - type: WageSchedulerRule
-      weight: 2
+      weight: 20
       earliestStart: 20
+      reoccurrenceDelay: 20
 
 ## Regular station events
 - type: entity
