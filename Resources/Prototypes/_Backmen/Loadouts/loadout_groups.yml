@@ -35,6 +35,15 @@
   - ClothingJumpsuitBlueShield
   - ClothingUniformBlueShield
   - ClothingSkirtBlueShield
+  - ClothingUniformJumpsuitBlueshields # cats
+  - ClothingUniformJumpskirtBlueshields # cats
+
+- type: loadoutGroup
+  id: ClothingNeckBlueShield
+  name: loadout-group-captain-neck
+  minLimit: 0
+  loadouts:
+  - ClothingNeckCloakBlueshields
 
 - type: loadoutGroup
   id: ClothingHeadHatBlueShield
@@ -45,6 +54,7 @@
   - ClothingHeadHatBlueShieldCap
   - ClothingHeadHatUshankaBlueShield
   - ClothingHeadHelmetEGov
+  - ClothingHeadHatBeretBlueshields # cats
 
 - type: loadoutGroup
   id: ClothingOuterBlueShield
@@ -54,6 +64,9 @@
   - ClothingOuterXenonautenLight
   - ClothingOuterCoatArmorBlueShield
   - ClothingOuterCoatArmorBlueShieldAlt
+  - ClothingOuterCoatBlueshields # cats
+  - ClothingOuterVestArmorBlueshields # cats 
+  - ClothingOuterWinterBlueshields # cats
 
 - type: loadoutGroup
   id: EyeBlueShield
