@@ -29,6 +29,7 @@ public sealed class BlobNodeSystem : EntitySystem
         base.Initialize();
 
         SubscribeLocalEvent<BlobNodeComponent, DestructionEventArgs>(OnDestruction);
+        SubscribeLocalEvent<BlobNodeComponent, EntityTerminatingEvent>(OnTerminating);
 
         _tileQuery = GetEntityQuery<BlobTileComponent>();
     }
@@ -65,6 +66,11 @@ public sealed class BlobNodeSystem : EntitySystem
             _system.Pulse(_ent);
             return null;
         }
+    }
+
+    private void OnTerminating(EntityUid uid, BlobNodeComponent component, ref EntityTerminatingEvent args)
+    {
+        OnDestruction(uid, component, new DestructionEventArgs());
     }
 
     private void OnDestruction(EntityUid uid, BlobNodeComponent component, DestructionEventArgs args)

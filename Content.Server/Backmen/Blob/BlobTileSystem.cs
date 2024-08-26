@@ -9,7 +9,6 @@ using Content.Shared.Backmen.Blob.Components;
 using Content.Shared.Damage;
 using Content.Shared.Destructible;
 using Content.Shared.FixedPoint;
-using Content.Shared.Popups;
 using Robust.Server.Audio;
 using Robust.Server.GameObjects;
 using Robust.Shared.Audio;
@@ -185,7 +184,7 @@ public sealed class BlobTileSystem : SharedBlobTileSystem
             case BlobTileType.Normal:
                 cost = coreComp.BlobTileCosts[BlobTileType.Strong];
 
-                if (!_blobCoreSystem.TryUseAbility(core, cost, true))
+                if (!_blobCoreSystem.TryUseAbility(core, cost, coords))
                     return;
 
                 _blobCoreSystem.TransformBlobTile(
@@ -199,7 +198,7 @@ public sealed class BlobTileSystem : SharedBlobTileSystem
             case BlobTileType.Strong:
                 cost = coreComp.BlobTileCosts[BlobTileType.Reflective];
 
-                if (!_blobCoreSystem.TryUseAbility(core, cost, true))
+                if (!_blobCoreSystem.TryUseAbility(core, cost, coords))
                     return;
 
                 _blobCoreSystem.TransformBlobTile(

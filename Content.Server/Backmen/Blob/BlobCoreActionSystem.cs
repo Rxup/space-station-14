@@ -7,6 +7,7 @@ using Content.Server.Backmen.Blob.Components;
 using Content.Server.Destructible;
 using Content.Server.Emp;
 using Content.Server.Explosion.EntitySystems;
+using Content.Server.Popups;
 using Content.Shared.Backmen.Blob.Components;
 using Content.Shared.Backmen.CCVar;
 using Content.Shared.Damage;
@@ -30,8 +31,8 @@ namespace Content.Server.Backmen.Blob;
 
 public sealed class BlobCoreActionSystem : EntitySystem
 {
+    [Dependency] private readonly PopupSystem _popup = default!;
     [Dependency] private readonly IConfigurationManager _cfg = default!;
-    [Dependency] private readonly SharedPopupSystem _popup = default!;
     [Dependency] private readonly IRobustRandom _random = default!;
     [Dependency] private readonly BlobCoreSystem _blobCoreSystem = default!;
     [Dependency] private readonly ExplosionSystem _explosionSystem = default!;
@@ -118,10 +119,6 @@ public sealed class BlobCoreActionSystem : EntitySystem
         }
         #endregion
 
-        var node = _blobCoreSystem.GetNearNode(location, core.Comp.TilesRadiusLimit);
-        if (node == null)
-            return;
-
         var targetTile = _mapSystem.GetTileRef(gridUid.Value, grid, location);
 
         var targetTileEmpty = false;
@@ -138,7 +135,12 @@ public sealed class BlobCoreActionSystem : EntitySystem
             return;
         }
 
-        if (fromTile == null)
+        var node = _blobCoreSystem.GetNearNode(location, core.Comp.TilesRadiusLimit);
+
+        if (fromTile != null && node == null)
+            _popup.PopupCoordinates(Loc.GetString("blob-target-nearby-not-node"), location, args.User, PopupType.Large);
+
+        if (fromTile == null || node == null)
             return;
 
         // This code doesn't work.
@@ -189,14 +191,14 @@ public sealed class BlobCoreActionSystem : EntitySystem
         var cost = core.Comp.BlobTileCosts[BlobTileType.Normal];
         if (targetTileEmpty)
         {
-            cost *= 3;
+            cost *= 2.5f;
 
             var plating = _tileDefinitionManager["Plating"];
             var platingTile = new Tile(plating.TileId);
             _mapSystem.SetTile(gridUid.Value, grid, location, platingTile);
         }
 
-        if (!_blobCoreSystem.TryUseAbility(core, cost, true))
+        if (!_blobCoreSystem.TryUseAbility(core, cost, location))
             return;
 
         _blobCoreSystem.TransformBlobTile(null,
@@ -239,7 +241,7 @@ public sealed class BlobCoreActionSystem : EntitySystem
         if (ent.Comp.Observer == null)
             return;
 
-        if (!_blobCoreSystem.TryUseAbility(ent, ent.Comp.AttackCost, true))
+        if (!_blobCoreSystem.TryUseAbility(ent, ent.Comp.AttackCost, Transform(target).Coordinates))
             return;
 
         _damageableSystem.TryChangeDamage(target, ent.Comp.ChemDamageDict[ent.Comp.CurrentChem]);

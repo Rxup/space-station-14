@@ -175,20 +175,13 @@ public sealed class BlobObserverSystem : SharedBlobObserverSystem
             return;
         }
 
-        if (component.Core == null || TerminatingOrDeleted(component.Core.Value) || !TryComp<BlobCoreComponent>(component.Core.Value, out var coreComponent))
+        if (component.Core == null || TerminatingOrDeleted(component.Core.Value))
         {
             _logger.Error("Не возможно найти ядро для обсервера!");
             return;
         }
 
-        HashSet<EntityUid> actions = [];
-        foreach (var action in coreComponent.Actions)
-        {
-            if (action.Value != null)
-                actions.Add(action.Value.Value);
-        }
-
-        _action.GrantActions(uid, actions, component.Core.Value);
+        _action.GrantActions(uid, component.Core.Value.Comp.Actions, component.Core.Value);
         _viewSubscriberSystem.AddViewSubscriber(component.Core.Value, playerSession); // GrantActions require keep in pvs
     }
 
@@ -434,6 +427,16 @@ public sealed class BlobObserverSystem : SharedBlobObserverSystem
         {
             _transform.AnchorEntity(blobTile.Value, xformNode);
         }
+
+        // And then swap their BlobNodeComponents, so they will work properly.
+        var nodeNodeComp = Comp<BlobNodeComponent>(blobTile.Value);
+        var coreNodeComp = Comp<BlobNodeComponent>(uid);
+        var nodeTiles = nodeNodeComp.ConnectedTiles;
+        var coreTiles = coreNodeComp.ConnectedTiles;
+        // Swap them here
+        nodeNodeComp.ConnectedTiles = coreTiles;
+        coreNodeComp.ConnectedTiles = nodeTiles;
+
         args.Handled = true;
     }
 
@@ -459,7 +462,7 @@ public sealed class BlobObserverSystem : SharedBlobObserverSystem
             return;
         }
 
-        if (!_blobCoreSystem.TryUseAbility((uid, blobCoreComponent), blobCoreComponent.BlobbernautCost, true))
+        if (!_blobCoreSystem.TryUseAbility((uid, blobCoreComponent), blobCoreComponent.BlobbernautCost, args.Target.AlignWithClosestGridTile()))
             return;
 
         var ev = new ProduceBlobbernautEvent();
@@ -540,7 +543,7 @@ public sealed class BlobObserverSystem : SharedBlobObserverSystem
 
         foreach (var specialTile in node.Value.Comp.ConnectedTiles)
         {
-            if (specialTile.Key != newTile || specialTile.Value == null)
+            if (specialTile.Key != newTile || specialTile.Value == null || TerminatingOrDeleted(specialTile.Value.Value))
                 continue;
 
             _popup.PopupCoordinates(Loc.GetString("blob-target-already-connected"), coords, performer, PopupType.Large);
@@ -561,7 +564,7 @@ public sealed class BlobObserverSystem : SharedBlobObserverSystem
         if (!CheckValidBlobTile(blobTile.Value, nearNode, tileType, args.Performer))
             return false;
 
-        if (!_blobCoreSystem.TryUseAbility(blobCore, blobCore.Comp.BlobTileCosts[tileType], true))
+        if (!_blobCoreSystem.TryUseAbility(blobCore, blobCore.Comp.BlobTileCosts[tileType], args.Target.AlignWithClosestGridTile()))
             return false;
 
         return _blobCoreSystem.TransformBlobTile(
@@ -599,7 +602,7 @@ public sealed class BlobObserverSystem : SharedBlobObserverSystem
             return;
         }
 
-        if (!_blobCoreSystem.TryUseAbility((uid, blobCoreComponent), blobCoreComponent.BlobTileCosts[BlobTileType.Node], true))
+        if (!_blobCoreSystem.TryUseAbility((uid, blobCoreComponent), blobCoreComponent.BlobTileCosts[BlobTileType.Node], args.Target.AlignWithClosestGridTile()))
             return;
 
         if (!_blobCoreSystem.TransformBlobTile(
@@ -620,15 +623,8 @@ public sealed class BlobObserverSystem : SharedBlobObserverSystem
         if (args.Handled)
             return;
 
-        var tileType = BlobTileType.Resource;
-
-        if (!TryTransformSpecialTile((uid, blobCoreComponent), tileType, args))
+        if (!TryTransformSpecialTile((uid, blobCoreComponent), BlobTileType.Resource, args))
             return;
-
-        if (blobCoreComponent.ResourceBlobsTotal > 2)
-            blobCoreComponent.BlobTileCosts[tileType] += 10;
-
-        blobCoreComponent.ResourceBlobsTotal++;
 
         args.Handled = true;
     }
@@ -638,9 +634,7 @@ public sealed class BlobObserverSystem : SharedBlobObserverSystem
         if (args.Handled)
             return;
 
-        var tileType = BlobTileType.Factory;
-
-        if (!TryTransformSpecialTile((uid, blobCoreComponent), tileType, args))
+        if (!TryTransformSpecialTile((uid, blobCoreComponent), BlobTileType.Factory, args))
             return;
 
         args.Handled = true;

@@ -364,6 +364,16 @@
   - type: ReplacementAccent
     accent: genericAggressive
   - type: BlobCore
+    actionPrototypes:
+      - ActionSwapBlobChem
+      - ActionTeleportBlobToCore
+      - ActionCreateBlobFactory
+      - ActionCreateBlobResource
+      - ActionCreateBlobNode
+      - ActionCreateBlobbernaut
+      - ActionSplitBlobCore
+      - ActionSwapBlobCore
+      - ActionDowngradeBlob
   - type: BlobNode
   - type: BlobResource
     pointsPerPulsed: 5
@@ -688,7 +698,7 @@
       drawdepth: Ghosts
     - type: MovementSpeedModifier
       baseSprintSpeed: 8
-      baseWalkSpeed: 5
+      baseWalkSpeed: 15
     - type: MovementIgnoreGravity
     - type: Tag
       tags:

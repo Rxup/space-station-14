@@ -154,9 +154,11 @@ public sealed class BlobCoreSystem : EntitySystem
         if (component.Observer == null)
             return;
 
+        // This one for points
         var pointsSeverity = (short)Math.Clamp(Math.Round(component.Points.Float() / 10f), 0, 51);
         _alerts.ShowAlert(component.Observer.Value, BlobResource, pointsSeverity);
 
+        // And this one for health.
         if (!TryComp<DamageableComponent>(core.Owner, out var damageComp))
             return;
 
@@ -187,23 +189,27 @@ public sealed class BlobCoreSystem : EntitySystem
     {
         ChangeBlobPoint((uid, component), 0);
 
-        if (_tile.TryGetComponent(uid, out var blobTileComponent))
+        if (!_tile.TryGetComponent(uid, out var blobTileComponent))
         {
-            blobTileComponent.Core = (uid, component);
-            blobTileComponent.Color = component.ChemСolors[component.CurrentChem];
-            Dirty(uid, blobTileComponent);
+            return;
         }
 
-        component.BlobTiles.Add(uid);
+        blobTileComponent.Core = (uid, component);
+        blobTileComponent.Color = component.ChemСolors[component.CurrentChem];
+        Dirty(uid, blobTileComponent);
+
+        AddBlobTile((uid, blobTileComponent), (uid, component));
+
+        foreach (var action in component.ActionPrototypes)
+        {
+            EntityUid? actionUid = null;
+            _action.AddAction(uid, ref actionUid, action);
+
+            if (actionUid != null)
+                component.Actions.Add(actionUid.Value);
+        }
 
         ChangeChem(uid, component.DefaultChem, component);
-
-        foreach (var action in component.Actions)
-        {
-            var actionUid = component.Actions[action.Key];
-            _action.AddAction(uid, ref actionUid, action.Key);
-            component.Actions[action.Key] = actionUid;
-        }
     }
 
     public void ChangeChem(EntityUid uid, BlobChemType newChem, BlobCoreComponent? component = null)
@@ -393,15 +399,15 @@ public sealed class BlobCoreSystem : EntitySystem
         if (returnCost <= 0)
             return;
 
-        if (core.Comp.Observer != null)
-        {
-            _popup.PopupCoordinates(Loc.GetString("blob-get-resource", ("point", returnCost)),
-                Transform(target).Coordinates,
-                core.Comp.Observer.Value,
-                PopupType.LargeGreen);
-        }
-
         ChangeBlobPoint(core, returnCost);
+
+        if (core.Comp.Observer == null)
+            return;
+
+        _popup.PopupCoordinates(Loc.GetString("blob-get-resource", ("point", returnCost)),
+            Transform(target).Coordinates,
+            core.Comp.Observer.Value,
+            PopupType.LargeGreen);
     }
 
     public void ChangeBlobPoint(Entity<BlobCoreComponent> core, FixedPoint2 amount)
@@ -410,7 +416,13 @@ public sealed class BlobCoreSystem : EntitySystem
         UpdateAllAlerts(core);
     }
 
-    public bool TryUseAbility(Entity<BlobCoreComponent> core, FixedPoint2 abilityCost, bool popupCursor = false)
+    /// <summary>
+    /// Writes off points for some blob core and creates popup on observer or specified coordinates.
+    /// </summary>
+    /// <param name="core">Blob core that is going to lose points.</param>
+    /// <param name="abilityCost">Cost of the ability.</param>
+    /// <param name="coordinates">If not null, coordinates for popup to appear.</param>
+    public bool TryUseAbility(Entity<BlobCoreComponent> core, FixedPoint2 abilityCost, EntityCoordinates? coordinates = null)
     {
         var comp = core.Comp;
         var points = comp.Points;
@@ -425,20 +437,13 @@ public sealed class BlobCoreSystem : EntitySystem
             return false;
         }
 
-        if (popupCursor)
-        {
-            _popup.PopupCursor(
-                Loc.GetString("blob-spent-resource", ("point", abilityCost.Int())),
-                observer.Value,
-                PopupType.LargeCaution);
-        }
-        else
-        {
-            _popup.PopupEntity(
-                Loc.GetString("blob-spent-resource", ("point", abilityCost.Int())),
-                observer.Value,
-                PopupType.LargeCaution);
-        }
+        coordinates ??= Transform(observer.Value).Coordinates;
+
+        _popup.PopupCoordinates(
+            Loc.GetString("blob-spent-resource", ("point", abilityCost.Int())),
+            coordinates.Value,
+            observer.Value,
+            PopupType.LargeCaution);
 
         ChangeBlobPoint(core, -abilityCost);
         return true;

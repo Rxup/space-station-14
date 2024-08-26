@@ -19,6 +19,9 @@ public sealed partial class BlobCoreComponent : Component
     [ViewVariables(VVAccess.ReadOnly)]
     public HashSet<EntityUid> BlobTiles = [];
 
+    [ViewVariables(VVAccess.ReadOnly)]
+    public List<EntityUid> Actions = [];
+
     public TimeSpan NextAction = TimeSpan.Zero;
 
     #endregion
@@ -33,9 +36,6 @@ public sealed partial class BlobCoreComponent : Component
 
     [ViewVariables]
     public float AttackRate = 0.8f;
-
-    [ViewVariables]
-    public float ReturnResourceOnRemove = 0.3f;
 
     [ViewVariables]
     public bool CanSplit = true;
@@ -129,12 +129,6 @@ public sealed partial class BlobCoreComponent : Component
     public int ResourceBlobsTotal;
 
     [DataField]
-    public FixedPoint2 ResourceBlobCostRise = 10;
-
-    [DataField]
-    public int ResourceBlobStartRise = 2;
-
-    [DataField]
     public FixedPoint2 AttackCost = 4;
 
     [DataField]
@@ -167,12 +161,6 @@ public sealed partial class BlobCoreComponent : Component
     #region Blob Ranges
 
     [DataField]
-    public float FactoryRadiusLimit = 6f;
-
-    [DataField]
-    public float ResourceRadiusLimit = 3f;
-
-    [DataField]
     public float NodeRadiusLimit = 4f;
 
     [DataField]
@@ -196,18 +184,8 @@ public sealed partial class BlobCoreComponent : Component
         {BlobTileType.Core, "CoreBlobTileGhostRole"},
     };
 
-    public Dictionary<ProtoId<EntityPrototype>, EntityUid?> Actions = new()
-    {
-        {"ActionSwapBlobChem", null},
-        {"ActionTeleportBlobToCore", null},
-        {"ActionCreateBlobFactory", null},
-        {"ActionCreateBlobResource", null},
-        {"ActionCreateBlobNode", null},
-        {"ActionCreateBlobbernaut", null},
-        {"ActionSplitBlobCore", null},
-        {"ActionSwapBlobCore", null},
-        {"ActionDowngradeBlob", null},
-    };
+    [DataField(required: true)]
+    public List<ProtoId<EntityPrototype>> ActionPrototypes = [];
 
     [DataField]
     public string CoreBlobTile = "CoreBlobTileGhostRole";

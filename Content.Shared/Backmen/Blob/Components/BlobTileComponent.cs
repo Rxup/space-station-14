@@ -13,10 +13,10 @@ public sealed partial class BlobTileComponent : Component
     [ViewVariables]
     public Entity<BlobCoreComponent>? Core;
 
-    [ViewVariables]
+    [DataField]
     public bool ReturnCost = true;
 
-    [DataField]
+    [DataField(required: true)]
     public BlobTileType BlobTileType = BlobTileType.Normal;
 
     [DataField]
