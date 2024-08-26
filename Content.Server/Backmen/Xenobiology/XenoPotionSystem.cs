@@ -38,10 +38,13 @@ public sealed class XenoPotionSystem : EntitySystem
       if (args.Target != null && component.Effect == "Speed" && !EntityManager.HasComponent<XenoPotionEffectedComponent>(args.Target.Value))
       {
 
-         if (args.Target != null && EntityManager.HasComponent<ClothingSpeedModifierComponent>(args.Target.Value))
+         if (args.Target != null && TryComp<ClothingSpeedModifierComponent>(args.Target.Value, out var speedComp))
          {
             var meta = MetaData(args.Target.Value);
             var name = meta.EntityName;
+
+            if (speedComp.SprintModifier > 1.0)
+            return;
 
             EnsureComp<XenoPotionEffectedComponent>(args.Target.Value, out XenoPotionEffectedComponent? color);
 

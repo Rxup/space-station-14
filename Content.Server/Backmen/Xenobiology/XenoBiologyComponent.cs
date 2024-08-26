@@ -1,18 +1,23 @@
 /// Maded by Gorox. Discord - smeshinka112
 using Content.Server.Backmen.XenoBiology.Systems;
 using Robust.Shared.Prototypes;
+using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom;
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype.List;
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype;
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype.Dictionary;
 
 namespace Content.Server.Backmen.XenoBiology.Components;
 
-[RegisterComponent]
+[RegisterComponent, AutoGenerateComponentPause]
 public sealed partial class XenoBiologyComponent : Component
 {
+    [DataField(customTypeSerializer: typeof(TimeOffsetSerializer))]
+    [AutoPausedField]
+    public TimeSpan NextUpdate = TimeSpan.Zero;
+
     /// Начальное количество очков для деления
     [DataField("points"), ViewVariables(VVAccess.ReadWrite)]
-    public int Points = 0;
+    public int Points = 100;
 
     /// Сколько очков получает существо при атаке
     [DataField("pointsPerAttack"), ViewVariables(VVAccess.ReadWrite)]
