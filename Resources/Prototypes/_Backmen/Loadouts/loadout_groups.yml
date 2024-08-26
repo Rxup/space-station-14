@@ -44,6 +44,7 @@
   minLimit: 0
   loadouts:
   - ClothingNeckCloakBlueshields
+  - ClothingNeckMantleBlueShield
 
 - type: loadoutGroup
   id: ClothingHeadHatBlueShield

@@ -47,3 +47,8 @@
   id: ClothingNeckCloakBlueshields
   equipment:
     neck: ClothingNeckCloakBlueshields
+
+- type: loadout
+  id: ClothingNeckMantleBlueShield
+  equipment:
+    neck: ClothingNeckMantleBlueShield
