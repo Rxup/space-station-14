@@ -40,28 +40,22 @@ public sealed class XenoBiologySystem : EntitySystem
                 // Слайм получает очки
                 component.Points += component.PointsPerAttack;
                 break;
+            }
+        }
+    }
 
+    public override void Update(float frameTime)
+    {
+        var xenoQuery = EntityQueryEnumerator<XenoBiologyComponent, TransformComponent>();
+        while (xenoQuery.MoveNext(out var uid, out var component, out var transform))
+        {
+            var prototype = MetaData(uid).EntityPrototype?.ID;
 
-                if (component.Points >= component.PointsThreshold)
-                {
+            if (component.Points >= component.PointsThreshold)
+            {
    
-                    // Проверка на наличие разума. Если есть, то вместо деления превращает энтити в заданный прототип
-                    if (TryComp<MindContainerComponent>(uid, out var mindContainer) && mindContainer.HasMind)
-                    {
-                       _polymorph.PolymorphEntity(uid, component.OnMind);
-                    }
-                    else
-
-                    // С шансом 30% мутирует при делении. Делится только когда атакует 
-                    if (_robustRandom.Prob(component.Mutationchance))
-                    {
-                        Spawn(component.Mutagen, Transform(uid).Coordinates);
-                    }
-                    else
-                    {
-                    // Иначе делится на исходный прототип (щиткод)
-                        Spawn(prototype, Transform(uid).Coordinates);
-                    }
+                // Проверка на наличие разума. Если есть, то вместо деления превращает энтити в заданный прототип
+                if (TryComp<MindContainerComponent>(uid, out var mindContainer) && mindContainer.HasMind)
                 {
                     _polymorph.PolymorphEntity(uid, component.OnMind);
                 }
