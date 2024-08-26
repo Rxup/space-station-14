@@ -1289,16 +1289,18 @@ entities:
       parent: 407
 - proto: AirlockAtmosphericsGlassLocked
   entities:
-  - uid: 1561
+  - uid: 1240
     components:
     - type: Transform
+      rot: 1.5707963267948966 rad
       pos: 3.5,-12.5
       parent: 407
 - proto: AirlockAtmosphericsLocked
   entities:
-  - uid: 1562
+  - uid: 1242
     components:
     - type: Transform
+      rot: 1.5707963267948966 rad
       pos: 1.5,-12.5
       parent: 407
 - proto: AirlockBrigGlassLocked
@@ -1331,23 +1333,26 @@ entities:
       parent: 407
 - proto: AirlockChemistryLocked
   entities:
-  - uid: 1641
+  - uid: 1243
     components:
     - type: Transform
+      rot: 1.5707963267948966 rad
       pos: 9.5,0.5
       parent: 407
 - proto: AirlockCommandGlassLocked
   entities:
-  - uid: 1881
+  - uid: 1561
     components:
     - type: Transform
+      rot: 1.5707963267948966 rad
       pos: 20.5,0.5
       parent: 407
 - proto: AirlockEngineeringLocked
   entities:
-  - uid: 1786
+  - uid: 1562
     components:
     - type: Transform
+      rot: 1.5707963267948966 rad
       pos: -15.5,0.5
       parent: 407
 - proto: AirlockExternalGlass
@@ -1359,24 +1364,18 @@ entities:
       parent: 407
 - proto: AirlockExternalGlassAtmosphericsLocked
   entities:
-  - uid: 1242
+  - uid: 1572
     components:
     - type: Transform
+      rot: 1.5707963267948966 rad
       pos: 9.5,-11.5
       parent: 407
-    - type: DeviceLinkSource
-      linkedPorts:
-        1243:
-        - DoorStatus: DoorBolt
-  - uid: 1243
+  - uid: 1573
     components:
     - type: Transform
+      rot: 1.5707963267948966 rad
       pos: 12.5,-11.5
       parent: 407
-    - type: DeviceLinkSource
-      linkedPorts:
-        1242:
-        - DoorStatus: DoorBolt
 - proto: AirlockExternalGlassCargoLocked
   entities:
   - uid: 1246
@@ -1449,24 +1448,28 @@ entities:
     - type: Transform
       pos: 8.5,6.5
       parent: 407
-  - uid: 1572
-    components:
-    - type: Transform
-      pos: 1.5,0.5
-      parent: 407
-  - uid: 1573
-    components:
-    - type: Transform
-      pos: -2.5,-0.5
-      parent: 407
   - uid: 1574
     components:
     - type: Transform
-      pos: -2.5,0.5
+      rot: 1.5707963267948966 rad
+      pos: 1.5,0.5
       parent: 407
   - uid: 1575
     components:
     - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: -2.5,-0.5
+      parent: 407
+  - uid: 1577
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: -2.5,0.5
+      parent: 407
+  - uid: 1578
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
       pos: -2.5,1.5
       parent: 407
 - proto: AirlockGlassShuttle
@@ -1479,16 +1482,18 @@ entities:
       parent: 407
 - proto: AirlockJanitorLocked
   entities:
-  - uid: 1673
+  - uid: 1641
     components:
     - type: Transform
+      rot: 1.5707963267948966 rad
       pos: -2.5,-7.5
       parent: 407
 - proto: AirlockMaintLocked
   entities:
-  - uid: 1240
+  - uid: 1673
     components:
     - type: Transform
+      rot: 1.5707963267948966 rad
       pos: 1.5,-6.5
       parent: 407
 - proto: AirlockMaintMedLocked
@@ -1543,14 +1548,16 @@ entities:
     - type: Transform
       pos: -7.5,2.5
       parent: 407
-  - uid: 1577
+  - uid: 1786
     components:
     - type: Transform
+      rot: 1.5707963267948966 rad
       pos: -11.5,4.5
       parent: 407
-  - uid: 1578
+  - uid: 1830
     components:
     - type: Transform
+      rot: 1.5707963267948966 rad
       pos: -6.5,4.5
       parent: 407
 - proto: APCBasic
@@ -9762,13 +9769,6 @@ entities:
     components:
     - type: Transform
       pos: 8.5,-8.5
-      parent: 407
-- proto: MaterialReclaimer
-  entities:
-  - uid: 1830
-    components:
-    - type: Transform
-      pos: 10.5,-8.5
       parent: 407
 - proto: MedicalBed
   entities:
