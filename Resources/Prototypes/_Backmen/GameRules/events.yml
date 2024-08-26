@@ -20,12 +20,12 @@
       minimumPlayers: 15
     - type: FugitiveRule
 
-#- type: entity
-#  id: WageScheduler
-#  parent: BaseGameRule
-#  noSpawn: true
-#  components:
-#    - type: WageSchedulerRule
+- type: entity
+  id: WageScheduler
+  parent: BaseGameRule
+  noSpawn: true
+  components:
+    - type: WageSchedulerRule
 
 ## Regular station events
 - type: entity
