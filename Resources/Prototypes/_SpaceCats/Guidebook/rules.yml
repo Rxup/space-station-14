@@ -1,0 +1,207 @@
+- type: guideEntry
+  id: SpaceCatsRuleset
+  name: Правила сервера
+  priority: 0
+  ruleEntry: true
+  text: "/Prototypes/_SpaceCats/Guidebook/ServerRules/CatsRuleset.xml"
+  children:
+  - CatsRule0
+  - CatsRule01
+  - CatsRule1
+  - CatsRule11
+  - CatsRule12
+  - CatsRule2
+  - CatsRule21
+  - CatsRule22
+  - CatsRule3
+  - CatsRule31
+  - CatsRule32
+  - CatsRule4
+  - CatsRule5
+  - CatsRule51
+  - CatsRule6
+  - CatsRule7
+  - CatsRule71
+  - CatsRule8
+  - CatsRule9
+  - CatsRule91
+  - CatsRule100
+  - CatsRule101
+  - CatsRule102
+  - CatsRule111
+  - CatsRule112
+
+- type: guideEntry
+  id: CatsRule0
+  name: Правило 0
+  priority: 1
+  ruleEntry: true
+  text: "/Prototypes/_SpaceCats/Guidebook/ServerRules/Rule0.xml"
+
+- type: guideEntry
+  id: CatsRule01
+  name: Правило 0.1
+  priority: 2
+  ruleEntry: true
+  text: "/Prototypes/_SpaceCats/Guidebook/ServerRules/Rule0_1.xml"
+
+- type: guideEntry
+  id: CatsRule10
+  name: Правило 1.0
+  priority: 3
+  ruleEntry: true
+  text: "/Prototypes/_SpaceCats/Guidebook/ServerRules/Rule1.xml"
+
+- type: guideEntry
+  id: CatsRule11
+  name: Правило 1.1
+  priority: 4
+  ruleEntry: true
+  text: "/Prototypes/_SpaceCats/Guidebook/ServerRules/Rule1_1.xml"
+
+- type: guideEntry
+  id: CatsRule12
+  name: Правило 1.2
+  priority: 5
+  ruleEntry: true
+  text: "/Prototypes/_SpaceCats/Guidebook/ServerRules/Rule1_2.xml"
+
+- type: guideEntry
+  id: CatsRule2
+  name: Правило 2
+  priority: 6
+  ruleEntry: true
+  text: "/Prototypes/_SpaceCats/Guidebook/ServerRules/Rule2.xml"
+
+- type: guideEntry
+  id: CatsRule21
+  name: Правило 2.1
+  priority: 7
+  ruleEntry: true
+  text: "/Prototypes/_SpaceCats/Guidebook/ServerRules/Rule2_1.xml"
+
+- type: guideEntry
+  id: CatsRule22
+  name: Правило 2.2
+  priority: 8
+  ruleEntry: true
+  text: "/Prototypes/_SpaceCats/Guidebook/ServerRules/Rule2_2.xml"
+
+- type: guideEntry
+  id: CatsRule3
+  name: Правило 3
+  priority: 9
+  ruleEntry: true
+  text: "/Prototypes/_SpaceCats/Guidebook/ServerRules/Rule3.xml"
+
+- type: guideEntry
+  id: CatsRule31
+  name: Правило 3.1
+  priority: 9
+  ruleEntry: true
+  text: "/Prototypes/_SpaceCats/Guidebook/ServerRules/Rule3_1.xml"
+
+- type: guideEntry
+  id: CatsRule32
+  name: Правило 3.2
+  priority: 10
+  ruleEntry: true
+  text: "/Prototypes/_SpaceCats/Guidebook/ServerRules/Rule3_2.xml"
+
+- type: guideEntry
+  id: CatsRule4
+  name: Правило 4
+  priority: 11
+  ruleEntry: true
+  text: "/Prototypes/_SpaceCats/Guidebook/ServerRules/Rule4.xml"
+
+- type: guideEntry
+  id: CatsRule5
+  name: Правило 5
+  priority: 12
+  ruleEntry: true
+  text: "/Prototypes/_SpaceCats/Guidebook/ServerRules/Rule5.xml"
+
+- type: guideEntry
+  id: CatsRule51
+  name: Правило 5.1
+  priority: 13
+  ruleEntry: true
+  text: "/Prototypes/_SpaceCats/Guidebook/ServerRules/Rule5_1.xml"
+
+- type: guideEntry
+  id: CatsRule6
+  name: Правило 6
+  priority: 14
+  ruleEntry: true
+  text: "/Prototypes/_SpaceCats/Guidebook/ServerRules/Rule6.xml"
+
+- type: guideEntry
+  id: CatsRule7
+  name: Правило 7
+  priority: 15
+  ruleEntry: true
+  text: "/Prototypes/_SpaceCats/Guidebook/ServerRules/Rule7.xml"
+
+- type: guideEntry
+  id: CatsRule71
+  name: Правило 7.1
+  priority: 16
+  ruleEntry: true
+  text: "/Prototypes/_SpaceCats/Guidebook/ServerRules/Rule7_1.xml"
+
+- type: guideEntry
+  id: CatsRule8
+  name: Правило 8
+  priority: 17
+  ruleEntry: true
+  text: "/Prototypes/_SpaceCats/Guidebook/ServerRules/Rule8.xml"
+
+- type: guideEntry
+  id: CatsRule9
+  name: Правило 9
+  priority: 18
+  ruleEntry: true
+  text: "/Prototypes/_SpaceCats/Guidebook/ServerRules/Rule9.xml"
+
+- type: guideEntry
+  id: CatsRule91
+  name: Правило 9.1
+  priority: 19
+  ruleEntry: true
+  text: "/Prototypes/_SpaceCats/Guidebook/ServerRules/Rule9_1.xml"
+
+- type: guideEntry
+  id: CatsRule100
+  name: Правило 10
+  priority: 20
+  ruleEntry: true
+  text: "/Prototypes/_SpaceCats/Guidebook/ServerRules/Rule10.xml"
+
+- type: guideEntry
+  id: CatsRule101
+  name: Правило 10.1
+  priority: 21
+  ruleEntry: true
+  text: "/Prototypes/_SpaceCats/Guidebook/ServerRules/Rule10_1.xml"
+
+- type: guideEntry
+  id: CatsRule102
+  name: Правило 10.2
+  priority: 22
+  ruleEntry: true
+  text: "/Prototypes/_SpaceCats/Guidebook/ServerRules/Rule10_2.xml"
+
+- type: guideEntry
+  id: CatsRule111
+  name: Правило 11
+  priority: 23
+  ruleEntry: true
+  text: "/Prototypes/_SpaceCats/Guidebook/ServerRules/Rule11.xml"
+
+- type: guideEntry
+  id: CatsRule112
+  name: Правило 12
+  priority: 24
+  ruleEntry: true
+  text: "/Prototypes/_SpaceCats/Guidebook/ServerRules/Rule12.xml"
