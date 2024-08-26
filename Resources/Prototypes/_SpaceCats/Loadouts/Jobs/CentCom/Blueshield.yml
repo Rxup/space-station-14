@@ -28,11 +28,6 @@
     outerClothing: ClothingOuterCoatBlueshields
 
 - type: loadout
-  id: ClothingOuterVestArmorBlueshields
-  equipment:
-    outerClothing: ClothingOuterVestArmorBlueshields
-
-- type: loadout
   id: ClothingOuterWinterBlueshields
   equipment:
     outerClothing: ClothingOuterWinterBlueshields
