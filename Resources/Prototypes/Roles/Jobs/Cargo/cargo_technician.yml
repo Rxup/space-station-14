@@ -12,7 +12,7 @@
   extendedAccess:
   - Salvage
   #start-backmen: currency
-  minBankBalance: 150
+  minBankBalance: 100
   maxBankBalance: 250
   wageDepartment: Cargo
   wage: 50

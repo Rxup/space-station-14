@@ -24,10 +24,10 @@
   - External
   - Cryogenics
   #start-backmen: currency
-  minBankBalance: 150
+  minBankBalance: 100
   maxBankBalance: 250
   wageDepartment: Security
-  wage: 25
+  wage: 50
   #end-backmen: currency
   special:
   - !type:AddImplantSpecial

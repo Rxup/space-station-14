@@ -24,10 +24,10 @@
   - Detective
   - Cryogenics
   #start-backmen: currency
-  minBankBalance: 150
-  maxBankBalance: 250
+  minBankBalance: 360
+  maxBankBalance: 600
   wageDepartment: Security
-  wage: 50
+  wage: 120
   #end-backmen: currency
   special:
   - !type:AddImplantSpecial

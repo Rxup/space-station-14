@@ -31,10 +31,10 @@
   - Brig
   - Cryogenics
   #start-backmen: currency
-  minBankBalance: 150
-  maxBankBalance: 250
+  minBankBalance: 300
+  maxBankBalance: 500
   wageDepartment: Cargo
-  wage: 50
+  wage: 150
   #end-backmen: currency
   special:
   - !type:AddImplantSpecial
