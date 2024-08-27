@@ -83,7 +83,7 @@
 
 #Скафандр ОСЩ
 - type: entity
-  parent: [ClothingOuterHardsuitBlueShield, BaseCommandContraband]
+  parent: [ClothingOuterHardsuitBase, BaseCommandContraband]
   id: ClothingOuterHardsuitBlueShields
   name: скафандр офицера синего щита
   description: Специальный костюм, защищающий от воздействия опасных сред с низким давлением. Имеет дополнительный слой брони.
@@ -92,6 +92,9 @@
     sprite: _SpaceCats/blueshield/blueshild-hardsuit.rsi
   - type: Clothing
     sprite: _SpaceCats/blueshield/blueshild-hardsuit.rsi
+  - type: PressureProtection
+    highPressureMultiplier: 0.45
+    lowPressureMultiplier: 1000
   - type: ExplosionResistance
     damageCoefficient: 0.6
   - type: Armor
