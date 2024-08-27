@@ -47,3 +47,13 @@
   id: ClothingNeckMantleBlueShield
   equipment:
     neck: ClothingNeckMantleBlueShield
+
+- type: startingGear
+  id: ClothingNeckMantleBlueShield
+  equipment:
+    neck: ClothingNeckMantleBlueShield
+
+- type: startingGear
+  id: ClothingNeckCloakBlueshields
+  equipment:
+    neck: ClothingNeckCloakBlueshields
