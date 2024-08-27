@@ -37,33 +37,16 @@ public sealed class BlobNodeSystem : EntitySystem
     private const double PulseJobTime = 0.005;
     private readonly JobQueue _pulseJobQueue = new(PulseJobTime);
 
-    public sealed class BlobPulse : Job<object>
+    public sealed class BlobPulse(
+        BlobNodeSystem system,
+        Entity<BlobNodeComponent> ent,
+        double maxTime,
+        CancellationToken cancellation = default)
+        : Job<object>(maxTime, cancellation)
     {
-        private readonly BlobNodeSystem _system;
-        private readonly Entity<BlobNodeComponent> _ent;
-
-        public BlobPulse(BlobNodeSystem system,
-            Entity<BlobNodeComponent> ent,
-            double maxTime,
-            CancellationToken cancellation = default) : base(maxTime, cancellation)
-        {
-            _system = system;
-            _ent = ent;
-        }
-
-        public BlobPulse(BlobNodeSystem system,
-            Entity<BlobNodeComponent> ent,
-            double maxTime,
-            IStopwatch stopwatch,
-            CancellationToken cancellation = default) : base(maxTime, stopwatch, cancellation)
-        {
-            _system = system;
-            _ent = ent;
-        }
-
         protected override async Task<object?> Process()
         {
-            _system.Pulse(_ent);
+            system.Pulse(ent);
             return null;
         }
     }
@@ -92,7 +75,7 @@ public sealed class BlobNodeSystem : EntitySystem
 
     private void Pulse(Entity<BlobNodeComponent> ent)
     {
-        if(TerminatingOrDeleted(ent) || !EntityManager.TransformQuery.TryComp(ent, out var xform))
+        if (TerminatingOrDeleted(ent) || !EntityManager.TransformQuery.TryComp(ent, out var xform))
             return;
 
         var radius = ent.Comp.PulseRadius;
@@ -120,7 +103,7 @@ public sealed class BlobNodeSystem : EntitySystem
         {
             foreach (var tile in _map.GetAnchoredEntities(xform.GridUid.Value, grid, tileRef.GridIndices))
             {
-                if (!_tileQuery.HasComp(tile))
+                if (!_tileQuery.TryGetComponent(tile, out var tileComp))
                     continue;
 
                 var ev = new BlobTileGetPulseEvent
@@ -130,6 +113,15 @@ public sealed class BlobNodeSystem : EntitySystem
                 RaiseLocalEvent(tile, ev);
                 explain = false;
             }
+        }
+
+        foreach (var special in ent.Comp.ConnectedTiles)
+        {
+            if (special.Value == null || TerminatingOrDeleted(special.Value))
+                continue;
+
+            var ev = new BlobSpecialGetPulseEvent();
+            RaiseLocalEvent(special.Value.Value, ev);
         }
 
         foreach (var lookupUid in _lookup.GetEntitiesInRange<BlobMobComponent>(xform.Coordinates, radius))
@@ -145,15 +137,15 @@ public sealed class BlobNodeSystem : EntitySystem
 
         _pulseJobQueue.Process();
 
-        var blobFactoryQuery = EntityQueryEnumerator<BlobNodeComponent>();
-        while (blobFactoryQuery.MoveNext(out var ent, out var comp))
+        var blobNodeQuery = EntityQueryEnumerator<BlobNodeComponent>();
+        while (blobNodeQuery.MoveNext(out var ent, out var comp))
         {
             if (_gameTiming.CurTime < comp.NextPulse)
                 continue;
 
             if (_tileQuery.TryGetComponent(ent, out var blobTileComponent) && blobTileComponent.Core != null)
             {
-                _pulseJobQueue.EnqueueJob(new BlobPulse(this,(ent, comp),PulseJobTime));
+                _pulseJobQueue.EnqueueJob(new BlobPulse(this,(ent, comp), PulseJobTime));
             }
 
             comp.NextPulse = _gameTiming.CurTime + TimeSpan.FromSeconds(comp.PulseFrequency);

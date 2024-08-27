@@ -14,6 +14,7 @@ public sealed partial class BlobNodeComponent : Component
     [DataField]
     public Dictionary<BlobTileType, EntityUid?> ConnectedTiles = new()
     {
+        {BlobTileType.Node, null}, // Convenient for events.
         {BlobTileType.Resource, null},
         {BlobTileType.Factory, null},
         {BlobTileType.Storage, null},
@@ -27,3 +28,8 @@ public sealed class BlobTileGetPulseEvent : EntityEventArgs
 }
 
 public sealed class BlobMobGetPulseEvent : EntityEventArgs;
+
+/// <summary>
+/// Event raised on all special tiles of Blob Node on pulse.
+/// </summary>
+public sealed class BlobSpecialGetPulseEvent : EntityEventArgs;

@@ -15,16 +15,18 @@ public sealed class BlobResourceSystem : EntitySystem
     {
         base.Initialize();
 
-        SubscribeLocalEvent<BlobResourceComponent, BlobTileGetPulseEvent>(OnPulsed);
+        SubscribeLocalEvent<BlobResourceComponent, BlobSpecialGetPulseEvent>(OnPulsed);
     }
 
-    private void OnPulsed(EntityUid uid, BlobResourceComponent component, BlobTileGetPulseEvent args)
+    private void OnPulsed(EntityUid uid, BlobResourceComponent component,BlobSpecialGetPulseEvent args)
     {
         if (!TryComp<BlobTileComponent>(uid, out var blobTileComponent) || blobTileComponent.Core == null)
             return;
+
         if (!TryComp<BlobCoreComponent>(blobTileComponent.Core, out var blobCoreComponent) ||
             blobCoreComponent.Observer == null)
             return;
+
         _popup.PopupEntity(Loc.GetString("blob-get-resource", ("point", component.PointsPerPulsed)),
             uid,
             blobCoreComponent.Observer.Value,

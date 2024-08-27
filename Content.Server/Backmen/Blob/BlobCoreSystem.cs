@@ -187,18 +187,20 @@ public sealed class BlobCoreSystem : EntitySystem
 
     private void OnStartup(EntityUid uid, BlobCoreComponent component, ComponentStartup args)
     {
-        ChangeBlobPoint((uid, component), 0);
+        UpdateAllAlerts((uid, component));
 
         if (!_tile.TryGetComponent(uid, out var blobTileComponent))
         {
             return;
         }
 
-        blobTileComponent.Core = (uid, component);
-        blobTileComponent.Color = component.ChemСolors[component.CurrentChem];
-        Dirty(uid, blobTileComponent);
+        if (!TryComp<BlobNodeComponent>(uid, out var nodeComponent))
+        {
+            return;
+        }
 
-        AddBlobTile((uid, blobTileComponent), (uid, component));
+        AddBlobTile((uid, blobTileComponent), (uid, component), nodeComponent);
+        nodeComponent.ConnectedTiles[BlobTileType.Node] = uid;
 
         foreach (var action in component.ActionPrototypes)
         {
@@ -350,11 +352,7 @@ public sealed class BlobCoreSystem : EntitySystem
             return false;
         }
 
-        AddBlobTile((blobTileUid, blobTileComp), blobCore);
-
-        // God please forgive me for this
-        if (nearNode != null && nearNode.Value.Comp.ConnectedTiles.ContainsKey(blobTileComp.BlobTileType))
-            nearNode.Value.Comp.ConnectedTiles[blobTileComp.BlobTileType] = blobTileUid;
+        AddBlobTile((blobTileUid, blobTileComp), blobCore, nearNode);
 
         Dirty(blobTileUid, blobTileComp);
 
@@ -368,20 +366,41 @@ public sealed class BlobCoreSystem : EntitySystem
         return true;
     }
 
-    public void AddBlobTile(Entity<BlobTileComponent> tile, Entity<BlobCoreComponent> core)
+    /// <summary>
+    /// Adds BlobTile to blob core and node, if specified.
+    /// </summary>
+    /// <param name="tile">Entity of the blob tile.</param>
+    /// <param name="core">Entity of the blob core.</param>
+    /// <param name="node">If not null, tries to connect tile to the node by checking if their BlobTileType is presented in dictionary.</param>
+    public void AddBlobTile(Entity<BlobTileComponent> tile,
+        Entity<BlobCoreComponent> core,
+        BlobNodeComponent? node = null)
     {
         var coreComp = core.Comp;
         var tileComp = tile.Comp;
 
         coreComp.BlobTiles.Add(tile);
+
         tileComp.Color = coreComp.ChemСolors[coreComp.CurrentChem];
         tileComp.Core = core;
+        Dirty(tile, tileComp);
+
+        if (node == null)
+            return;
+
+        if (node.ConnectedTiles.ContainsKey(tile.Comp.BlobTileType))
+            node.ConnectedTiles[tile.Comp.BlobTileType] = tile;
     }
 
     public void RemoveBlobTile(EntityUid tile, Entity<BlobCoreComponent> core)
     {
         QueueDel(tile);
         core.Comp.BlobTiles.Remove(tile);
+    }
+
+    public void TryConnectTileToNode(Entity<BlobTileComponent> tile, BlobNodeComponent node)
+    {
+
     }
 
     public void RemoveTileWithReturnCost(Entity<BlobTileComponent> target, Entity<BlobCoreComponent> core)
