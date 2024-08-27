@@ -13,9 +13,9 @@
           category: FacialHair
         - !type:SkinColoring
   sprites:
-  - sprite: _SpaceCats\Mobs\Customization\Human\fox_parts.rsi
+  - sprite: _SpaceCats/Mobs/Customization/Human/fox_parts.rsi
     state: tail_fox_wag_stripes_prime
-  - sprite: _SpaceCats\Mobs\Customization\Human\fox_parts.rsi
+  - sprite: _SpaceCats/Mobs/Customization/Human/fox_parts.rsi
     state: tail_fox_wag_stripes_second
-  - sprite: _SpaceCats\Mobs\Customization\Human\fox_parts.rsi
+  - sprite: _SpaceCats/Mobs/Customization/Human/fox_parts.rsi
     state: tail_fox_wag_stripes_third
