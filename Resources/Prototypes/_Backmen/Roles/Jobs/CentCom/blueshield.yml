@@ -59,6 +59,6 @@
     ears: ClothingHeadsetAltCommand
     shoes: ClothingShoesBootsCombat
     back: ClothingBackpackSatchelLeather
-    neck: CombatKnifeSpetsnaz
     belt: ClothingBeltSecurityCentComSecurity
     pocket1: WeaponPistolUCS
+    pocket2: CombatKnifeSpetsnaz
