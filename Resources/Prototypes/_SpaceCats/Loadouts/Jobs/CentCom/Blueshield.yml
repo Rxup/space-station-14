@@ -32,11 +32,6 @@
   equipment:
     outerClothing: ClothingOuterWinterBlueshields
 
-- type: loadout
-  id: ClothingOuterHardsuitBlueShields
-  equipment:
-    outerClothing: ClothingOuterHardsuitBlueShields
-
 #cloak
 - type: loadout
   id: ClothingNeckCloakBlueshields
