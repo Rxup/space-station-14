@@ -1,5 +1,7 @@
 using System.Linq;
 using System.Numerics;
+using System.Threading;
+using System.Threading.Tasks;
 using Content.Server.Actions;
 using Content.Server.AlertLevel;
 using Content.Server.Backmen.Blob.Components;
@@ -20,6 +22,8 @@ using Content.Shared.Objectives.Components;
 using Content.Shared.Popups;
 using Content.Shared.Weapons.Melee;
 using Robust.Server.GameObjects;
+using Robust.Shared.CPUJob.JobQueues;
+using Robust.Shared.CPUJob.JobQueues.Queues;
 using Robust.Shared.Map;
 using Robust.Shared.Map.Components;
 using Robust.Shared.Network;
@@ -70,10 +74,86 @@ public sealed class BlobCoreSystem : EntitySystem
         _node = GetEntityQuery<BlobNodeComponent>();
     }
 
+    private const double KillCoreJobTime = 0.1;
+    private readonly JobQueue _killCoreJobQueue = new(KillCoreJobTime);
+
+    public sealed class KillBlobCore(
+        BlobCoreSystem system,
+        EntityUid? station,
+        Entity<BlobCoreComponent> ent,
+        double maxTime,
+        CancellationToken cancellation = default)
+        : Job<object>(maxTime, cancellation)
+    {
+        protected override async Task<object?> Process()
+        {
+            system.DestroyBlobCore(ent, station);
+            return null;
+        }
+    }
+
+    #region Events
+
+    public override void Update(float frameTime)
+    {
+        base.Update(frameTime);
+        _killCoreJobQueue.Process();
+    }
+
+    private void OnStartup(EntityUid uid, BlobCoreComponent component, ComponentStartup args)
+    {
+        UpdateAllAlerts((uid, component));
+
+        if (!_tile.TryGetComponent(uid, out var blobTileComponent))
+        {
+            return;
+        }
+
+        if (!TryComp<BlobNodeComponent>(uid, out var nodeComponent))
+        {
+            return;
+        }
+
+        AddBlobTile((uid, blobTileComponent), (uid, component), nodeComponent);
+        nodeComponent.ConnectedTiles[BlobTileType.Node] = uid;
+
+        foreach (var action in component.ActionPrototypes)
+        {
+            EntityUid? actionUid = null;
+            _action.AddAction(uid, ref actionUid, action);
+
+            if (actionUid != null)
+                component.Actions.Add(actionUid.Value);
+        }
+
+        ChangeChem(uid, component.DefaultChem, component);
+    }
+
     private void OnTerminating(EntityUid uid, BlobCoreComponent component, ref EntityTerminatingEvent args)
     {
-        OnDestruction(uid, component, new DestructionEventArgs());
+        CreateKillBlobCoreJob((uid, component));
     }
+
+    private void OnDestruction(EntityUid uid, BlobCoreComponent component, DestructionEventArgs args)
+    {
+        CreateKillBlobCoreJob((uid, component));
+    }
+
+    private void OnPlayerAttached(EntityUid uid, BlobCoreComponent component, PlayerAttachedEvent args)
+    {
+        var xform = Transform(uid);
+        if (!HasComp<MapGridComponent>(xform.GridUid))
+            return;
+
+        CreateBlobObserver(uid, args.Player.UserId, component);
+    }
+
+    private void OnDamaged(EntityUid uid, BlobCoreComponent component, DamageChangedEvent args)
+    {
+        UpdateAllAlerts((uid, component));
+    }
+
+    #endregion
 
     #region Objective
 
@@ -133,20 +213,6 @@ public sealed class BlobCoreSystem : EntitySystem
     }
     #endregion
 
-    private void OnPlayerAttached(EntityUid uid, BlobCoreComponent component, PlayerAttachedEvent args)
-    {
-        var xform = Transform(uid);
-        if (!HasComp<MapGridComponent>(xform.GridUid))
-            return;
-
-        CreateBlobObserver(uid, args.Player.UserId, component);
-    }
-
-    private void OnDamaged(EntityUid uid, BlobCoreComponent component, DamageChangedEvent args)
-    {
-        UpdateAllAlerts((uid, component));
-    }
-
     public void UpdateAllAlerts(Entity<BlobCoreComponent> core)
     {
         var component = core.Comp;
@@ -183,35 +249,6 @@ public sealed class BlobCoreSystem : EntitySystem
         RaiseLocalEvent(blobCoreUid, ev, true);
 
         return !ev.Cancelled;
-    }
-
-    private void OnStartup(EntityUid uid, BlobCoreComponent component, ComponentStartup args)
-    {
-        UpdateAllAlerts((uid, component));
-
-        if (!_tile.TryGetComponent(uid, out var blobTileComponent))
-        {
-            return;
-        }
-
-        if (!TryComp<BlobNodeComponent>(uid, out var nodeComponent))
-        {
-            return;
-        }
-
-        AddBlobTile((uid, blobTileComponent), (uid, component), nodeComponent);
-        nodeComponent.ConnectedTiles[BlobTileType.Node] = uid;
-
-        foreach (var action in component.ActionPrototypes)
-        {
-            EntityUid? actionUid = null;
-            _action.AddAction(uid, ref actionUid, action);
-
-            if (actionUid != null)
-                component.Actions.Add(actionUid.Value);
-        }
-
-        ChangeChem(uid, component.DefaultChem, component);
     }
 
     public void ChangeChem(EntityUid uid, BlobChemType newChem, BlobCoreComponent? component = null)
@@ -255,53 +292,6 @@ public sealed class BlobCoreSystem : EntitySystem
 
             ChangeBlobEntChem(blobTile, oldChem, newChem);
         }
-    }
-
-    private void OnDestruction(EntityUid uid, BlobCoreComponent component, DestructionEventArgs args)
-    {
-        if (component.Observer != null)
-        {
-            QueueDel(component.Observer.Value);
-        }
-
-        foreach (var blobTile in component.BlobTiles)
-        {
-            if (!_tile.TryGetComponent(blobTile, out var blobTileComponent))
-                continue;
-
-            blobTileComponent.Core = null;
-            blobTileComponent.Color = Color.White;
-            Dirty(blobTile, blobTileComponent);
-        }
-
-        var stationUid = _stationSystem.GetOwningStation(uid);
-        var blobCoreQuery = EntityQueryEnumerator<BlobCoreComponent>();
-        var isAllDie = 0;
-        while (blobCoreQuery.MoveNext(out var ent, out _))
-        {
-            if (TerminatingOrDeleted(ent))
-            {
-                continue;
-            }
-            isAllDie++;
-        }
-
-        if (isAllDie <= 1)
-        {
-            var blobRuleQuery = EntityQueryEnumerator<BlobRuleComponent>();
-            while (blobRuleQuery.MoveNext(out _, out var blobRuleComp))
-            {
-                if (blobRuleComp.Stage == BlobStage.TheEnd ||
-                    blobRuleComp.Stage == BlobStage.Default ||
-                    stationUid == null)
-                    continue;
-
-                _alertLevelSystem.SetLevel(stationUid.Value, "green", true, true, true);
-                _roundEndSystem.CancelRoundEndCountdown(null, false);
-                blobRuleComp.Stage = BlobStage.Default;
-            }
-        }
-        QueueDel(uid);
     }
 
     private void ChangeBlobEntChem(EntityUid uid, BlobChemType oldChem, BlobChemType newChem)
@@ -398,9 +388,60 @@ public sealed class BlobCoreSystem : EntitySystem
         core.Comp.BlobTiles.Remove(tile);
     }
 
-    public void TryConnectTileToNode(Entity<BlobTileComponent> tile, BlobNodeComponent node)
+    private void DestroyBlobCore(Entity<BlobCoreComponent> core, EntityUid? stationUid)
     {
+        var uid = core.Owner;
+        var component = core.Comp;
 
+        if (component.Observer != null)
+        {
+            QueueDel(component.Observer.Value);
+        }
+
+        foreach (var blobTile in component.BlobTiles)
+        {
+            if (!_tile.TryGetComponent(blobTile, out var blobTileComponent))
+                continue;
+
+            blobTileComponent.Core = null;
+            blobTileComponent.Color = Color.White;
+            Dirty(blobTile, blobTileComponent);
+        }
+
+        var blobCoreQuery = EntityQueryEnumerator<BlobCoreComponent>();
+        var isAllDie = 0;
+        while (blobCoreQuery.MoveNext(out var ent, out _))
+        {
+            if (TerminatingOrDeleted(ent))
+            {
+                continue;
+            }
+            isAllDie++;
+        }
+
+        if (isAllDie <= 1)
+        {
+            var blobRuleQuery = EntityQueryEnumerator<BlobRuleComponent>();
+            while (blobRuleQuery.MoveNext(out _, out var blobRuleComp))
+            {
+                if (blobRuleComp.Stage == BlobStage.TheEnd ||
+                    blobRuleComp.Stage == BlobStage.Default ||
+                    stationUid == null)
+                    continue;
+
+                _alertLevelSystem.SetLevel(stationUid.Value, "green", true, true, true);
+                _roundEndSystem.CancelRoundEndCountdown(null, false);
+                blobRuleComp.Stage = BlobStage.Default;
+            }
+        }
+        QueueDel(uid);
+    }
+
+    private void CreateKillBlobCoreJob(Entity<BlobCoreComponent> core)
+    {
+        var station = _stationSystem.GetOwningStation(core);
+        var job = new KillBlobCore(this, station, core, KillCoreJobTime);
+        _killCoreJobQueue.EnqueueJob(job);
     }
 
     public void RemoveTileWithReturnCost(Entity<BlobTileComponent> target, Entity<BlobCoreComponent> core)

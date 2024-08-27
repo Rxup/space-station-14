@@ -13,31 +13,32 @@ public sealed partial class BlobCoreComponent : Component
 {
     #region Live Data
 
-    [ViewVariables(VVAccess.ReadOnly)]
+    [ViewVariables]
     public EntityUid? Observer = default!;
 
-    [ViewVariables(VVAccess.ReadOnly)]
+    [ViewVariables]
     public HashSet<EntityUid> BlobTiles = [];
 
-    [ViewVariables(VVAccess.ReadOnly)]
+    [ViewVariables]
     public List<EntityUid> Actions = [];
 
+    [ViewVariables]
     public TimeSpan NextAction = TimeSpan.Zero;
 
     #endregion
 
     #region Balance
 
-    [ViewVariables]
+    [DataField]
     public FixedPoint2 Points = 0;
 
-    [ViewVariables]
+    [DataField]
     public FixedPoint2 CoreBlobTotalHealth = 400;
 
-    [ViewVariables]
+    [DataField]
     public float AttackRate = 0.8f;
 
-    [ViewVariables]
+    [DataField]
     public bool CanSplit = true;
 
     #endregion
@@ -105,7 +106,7 @@ public sealed partial class BlobCoreComponent : Component
 
     #region Blob Chems
 
-    [ViewVariables(VVAccess.ReadOnly)]
+    [ViewVariables]
     public readonly Dictionary<BlobChemType, Color> ChemСolors = new()
     {
         {BlobChemType.ReactiveSpines, Color.FromHex("#637b19")},
@@ -115,10 +116,10 @@ public sealed partial class BlobCoreComponent : Component
         {BlobChemType.ElectromagneticWeb, Color.FromHex("#0d7777")},
     };
 
-    [ViewVariables(VVAccess.ReadOnly), DataField("defaultChem")]
+    [DataField]
     public BlobChemType DefaultChem = BlobChemType.ReactiveSpines;
 
-    [ViewVariables(VVAccess.ReadOnly), DataField("currentChem")]
+    [DataField]
     public BlobChemType CurrentChem = BlobChemType.ReactiveSpines;
 
     #endregion

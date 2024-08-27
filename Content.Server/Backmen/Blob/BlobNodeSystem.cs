@@ -58,13 +58,12 @@ public sealed class BlobNodeSystem : EntitySystem
 
     private void OnDestruction(EntityUid uid, BlobNodeComponent component, DestructionEventArgs args)
     {
-        if (!TryComp<BlobNodeComponent>(uid, out var nodeComp) ||
-            !TryComp<BlobTileComponent>(uid, out var tileComp) ||
+        if (!TryComp<BlobTileComponent>(uid, out var tileComp) ||
             tileComp.BlobTileType != BlobTileType.Node ||
             tileComp.Core == null)
             return;
 
-        foreach (var tile in nodeComp.ConnectedTiles)
+        foreach (var tile in component.ConnectedTiles)
         {
             if (!TryComp<BlobTileComponent>(tile.Value, out var tileComponent))
                 continue;
