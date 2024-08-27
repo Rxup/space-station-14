@@ -147,6 +147,7 @@ public sealed class BlobFactorySystem : EntitySystem
             component.Accumulator++;
             return;
         }
+
         var pod = Spawn(component.Pod, xform.Coordinates);
         component.BlobPods.Add(pod);
         var blobPod = EnsureComp<BlobPodComponent>(pod);
@@ -155,5 +156,6 @@ public sealed class BlobFactorySystem : EntitySystem
 
         //smokeOnTrigger.SmokeColor = blobCoreComponent.ChemСolors[blobCoreComponent.CurrentChem];
         component.SpawnedCount += 1;
+        component.Accumulator = 0;
     }
 }

@@ -17,7 +17,7 @@ public sealed partial class BlobTileComponent : Component
     public bool ReturnCost = true;
 
     [DataField(required: true)]
-    public BlobTileType BlobTileType = BlobTileType.Normal;
+    public BlobTileType BlobTileType = BlobTileType.None;
 
     [DataField]
     public DamageSpecifier HealthOfPulse = new()
