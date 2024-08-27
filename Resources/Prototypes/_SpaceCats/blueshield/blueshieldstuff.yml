@@ -81,47 +81,6 @@
     - Snout
     hideOnToggle: true
 
-#Скафандр ОСЩ
-- type: entity
-  parent: [ClothingOuterHardsuitBlueShield, BaseCommandContraband]
-  id: ClothingOuterHardsuitBlueShields
-  name: скафандр офицера синего щита
-  description: Специальный костюм, защищающий от воздействия опасных сред с низким давлением. Имеет дополнительный слой брони.
-  components:
-  - type: Sprite
-    sprite: _SpaceCats/blueshield/blueshild-hardsuit.rsi
-  - type: Clothing
-    sprite: _SpaceCats/blueshield/blueshild-hardsuit.rsi
-  - type: ExplosionResistance
-    damageCoefficient: 0.6
-  - type: Armor
-    modifiers:
-      coefficients:
-        Blunt: 0.6
-        Slash: 0.5
-        Piercing: 0.5
-        Radiation: 0.5
-        Caustic: 0.6
-        Stun: 0.5
-  - type: ClothingSpeedModifier
-    walkModifier: 0.8
-    sprintModifier: 0.8
-  - type: HeldSpeedModifier
-  - type: ToggleableClothing
-    clothingPrototype: ClothingHeadHatHardhatBlueshields
-
-#Шлем скафандр ОСЩ
-- type: entity
-  parent: ClothingHeadHatHardhatBase
-  id: ClothingHeadHatHardhatBlueshields
-  name: шлем скафандр офицера синего щита
-  description: 
-  components:
-  - type: Sprite
-    sprite: _SpaceCats/blueshield/blueshield-hardsuit-helmet.rsi
-  - type: Clothing
-    sprite: _SpaceCats/blueshield/blueshield-hardsuit-helmet.rsi
-
 #Комбинезон ОСЩ
 - type: entity
   parent: ClothingUniformBase
