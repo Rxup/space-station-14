@@ -13,6 +13,8 @@
   joinNotifyCrew: true
   whitelisted: true
   requirements:
+    - !type:AgeRequirement
+      requiredAge: 30 # cats
     - !type:DepartmentTimeRequirement
       department: CentCom
       time: 1
@@ -26,8 +28,6 @@
   special:
     - !type:AddImplantSpecial
       implants: [ MindShieldImplant ]
-    - !type:AgeRequirement
-      requiredAge: 30 # cats
     - !type:AddComponentSpecial
       components:
         - type: SpecForce
