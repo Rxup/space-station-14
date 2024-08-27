@@ -26,7 +26,7 @@
 #      time: 31600
       time: 9000   #cats
     - !type:AgeRequirement
-      requiredAge: 30 # cats
+      requiredAge: 21 # cats
   accessGroups:
     - AllAccess
     - CentCom

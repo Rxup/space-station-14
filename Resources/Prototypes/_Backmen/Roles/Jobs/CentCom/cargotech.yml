@@ -26,7 +26,7 @@
 #      time: 43200
       time: 12000   #cats
     - !type:AgeRequirement
-      requiredAge: 30 # cats
+      requiredAge: 21 # cats
   access:
     - CentralCommand
     - CCCargo

@@ -14,7 +14,7 @@
   whitelisted: true
   requirements:
     - !type:AgeRequirement
-      requiredAge: 30 # cats
+      requiredAge: 21 # cats
     - !type:DepartmentTimeRequirement
       department: CentCom
       time: 1
