@@ -25,11 +25,11 @@
       time: 14400
     - !type:OverallPlaytimeRequirement
       time: 86400
+    - !type:AgeRequirement
+      requiredAge: 30 # cats
   special:
     - !type:AddImplantSpecial
       implants: [ MindShieldImplant ]
-    - !type:AgeRequirement
-      requiredAge: 30 # cats
     - !type:AddComponentSpecial
       components:
         - type: CommandStaff
