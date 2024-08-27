@@ -39,5 +39,4 @@
         - id: ClothingOuterNavyVest
         - id: ClothingOuterXenonautenLight
         - id: ClothingOuterCoatArmorBlueShield
-#        - id: ClothingOuterHardsuitBlueShield
-        - id: ClothingOuterHardsuitBlueShields #cats
+        - id: ClothingOuterHardsuitBlueShield
