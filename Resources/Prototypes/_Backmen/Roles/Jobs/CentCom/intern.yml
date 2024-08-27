@@ -21,6 +21,8 @@
       department: Medical
 #      time: 108000
       time: 23000   #cats
+    - !type:AgeRequirement
+      requiredAge: 30 # cats
     - !type:DepartmentTimeRequirement
       department: Civilian
 #      time: 108000

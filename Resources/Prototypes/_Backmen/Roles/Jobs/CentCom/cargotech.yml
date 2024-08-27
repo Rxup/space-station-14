@@ -25,6 +25,8 @@
       department: CentCom
 #      time: 43200
       time: 12000   #cats
+    - !type:AgeRequirement
+      requiredAge: 30 # cats
   access:
     - CentralCommand
     - CCCargo

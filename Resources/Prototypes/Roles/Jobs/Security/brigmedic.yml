@@ -10,6 +10,8 @@
     - !type:DepartmentTimeRequirement
       department: Security
       time: 7200
+    - !type:AgeRequirement
+      requiredAge: 30 # cats
   startingGear: BrigmedicGear
   icon: "JobIconBrigmedic"
   supervisors: job-supervisors-hos

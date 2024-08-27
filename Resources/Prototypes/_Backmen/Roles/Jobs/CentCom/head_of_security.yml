@@ -22,6 +22,8 @@
 #      time: 43200
       time: 12000  #cats
     - !type:RoleTimeRequirement
+    - !type:AgeRequirement
+      requiredAge: 30 # cats
       role: JobHeadOfSecurity
 #      time: 18000
       time: 9000   #cats

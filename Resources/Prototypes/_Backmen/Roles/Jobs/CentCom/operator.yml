@@ -21,6 +21,8 @@
       department: CentCom
 #      time: 14400
       time: 5000    #cats
+    - !type:AgeRequirement
+      requiredAge: 30 # cats
     - !type:DepartmentTimeRequirement
       department: Silicons
 #      time: 6000

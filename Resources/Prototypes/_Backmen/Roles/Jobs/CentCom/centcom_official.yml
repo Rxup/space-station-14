@@ -26,6 +26,8 @@
   special:
     - !type:AddImplantSpecial
       implants: [ MindShieldImplant ]
+    - !type:AgeRequirement
+      requiredAge: 30 # cats
     - !type:AddComponentSpecial
       components:
         - type: SpecForce
