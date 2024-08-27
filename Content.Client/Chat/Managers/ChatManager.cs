@@ -46,7 +46,7 @@ internal sealed class ChatManager : IChatManager
                 break;
 
             case ChatSelectChannel.Emotes:
-                _consoleHost.ExecuteCommand($"me \"[color=blue]{CommandParsing.Escape(str)}[/color]\"");
+                _consoleHost.ExecuteCommand($"me \"{CommandParsing.Escape(str)}\"");
                 break;
 
             case ChatSelectChannel.Dead:
