@@ -46,7 +46,7 @@ internal sealed class ChatManager : IChatManager
                 break;
 
             case ChatSelectChannel.Emotes:
-                _consoleHost.ExecuteCommand($"me \"{CommandParsing.Escape(str)}\"");
+                _consoleHost.ExecuteCommand($"me \"[color=blue]{CommandParsing.Escape(str)}[/color]\"");
                 break;
 
             case ChatSelectChannel.Dead:
@@ -70,7 +70,6 @@ internal sealed class ChatManager : IChatManager
                 break;
 
             // start-backmen: telepathic
-
             case ChatSelectChannel.Telepathic:
                 _consoleHost.ExecuteCommand($"tsay \"{CommandParsing.Escape(str)}\"");
                 break;
@@ -81,6 +80,7 @@ internal sealed class ChatManager : IChatManager
                 throw new ArgumentOutOfRangeException(nameof(channel), channel, null);
         }
     }
+    
     // start-backmen: telepathic
     public void UpdatePermissions()
     {
