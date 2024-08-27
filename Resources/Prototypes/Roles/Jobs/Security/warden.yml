@@ -8,7 +8,7 @@
       department: Security
       time: 108000 #50 hrs # Corvax-RoleTime
     - !type:AgeRequirement
-      requiredAge: 30 # cats
+      requiredAge: 25 # cats
   startingGear: WardenGear
   icon: "JobIconWarden"
   requireAdminNotify: true
