@@ -17,6 +17,8 @@
       department: Security
 #      time: 108000
       time: 13000   #cats
+    - !type:AgeRequirement
+      requiredAge: 30 # cats
     - !type:RoleTimeRequirement
       role: JobCentralCommandAssistant
 #      time: 3600

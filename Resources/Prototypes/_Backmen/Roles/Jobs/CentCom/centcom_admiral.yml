@@ -25,6 +25,8 @@
       department: CentCom
 #      time: 31600
       time: 9000   #cats
+    - !type:AgeRequirement
+      requiredAge: 30 # cats
   accessGroups:
     - AllAccess
     - CentCom
