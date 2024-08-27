@@ -11,7 +11,7 @@
       time: 72000 #20 hrs # Corvax-RoleTime
       inverted: true # stop playing intern if you're good at security!
     - !type:AgeRequirement
-      requiredAge: 30 # cats
+      requiredAge: 21 # cats
   startingGear: SecurityCadetGear
   icon: "JobIconSecurityCadet"
   supervisors: job-supervisors-security
