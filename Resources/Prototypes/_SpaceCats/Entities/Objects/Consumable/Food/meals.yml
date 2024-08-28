@@ -11,7 +11,7 @@
       - salty
       - peppery
   - type: Sprite
-    sprite: _NF/Objects/Consumable/Food/dragonomelette.rsi
+    sprite: _SpaceCats/Objects/Consumable/Food/dragonomelette.rsi
     state: icon
   - type: SolutionContainerManager
     solutions:

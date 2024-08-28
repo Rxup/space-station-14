@@ -69,7 +69,7 @@
     - enum.DamageStateVisualLayers.Base:
         alive: Rainbow
   - type: Sprite
-    sprite: _NF/Mobs/Pets/baby_dragon.rsi
+    sprite: _SpaceCats/Mobs/Pets/baby_dragon.rsi
     noRot: true
     layers:
     - map: [ "enum.DamageStateVisualLayers.Base" ]
