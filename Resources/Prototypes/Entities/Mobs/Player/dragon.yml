@@ -164,9 +164,6 @@
   - type: ActionGun
     action: ActionDragonsBreath
     gunProto: DragonsBreathGun
-  - type: ActionGun # baby dragon
-    action: ActionDragonsBreath # baby dragon
-    gunProto: DragonsBreathGun # baby dragon
   - type: GuideHelp
     guides:
     - MinorAntagonists
