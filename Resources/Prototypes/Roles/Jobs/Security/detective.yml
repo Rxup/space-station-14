@@ -20,10 +20,10 @@
   - Service
   - Detective
     #start-backmen: currency
-  minBankBalance: 150
-  maxBankBalance: 250
+  minBankBalance: 200
+  maxBankBalance: 300
   wageDepartment: Security
-  wage: 50
+  wage: 100
   #end-backmen: currency
   special:
   - !type:AddImplantSpecial

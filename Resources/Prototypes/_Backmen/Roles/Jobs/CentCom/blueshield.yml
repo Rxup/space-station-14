@@ -48,7 +48,7 @@
   minBankBalance: 900
   maxBankBalance: 1600
   wageDepartment: CentCom
-  wage: 50
+  wage: 200
   #end-backmen: currency
 
 - type: startingGear
