@@ -17,7 +17,6 @@
   weight: -10
   roles:
   - Bartender
-  - Borg
   - Botanist
   - Boxer
   - Chaplain
@@ -111,6 +110,15 @@
   accountNumber: 1321  #backmen: currency
 
 - type: department
+  id: Silicon
+  name: department-Silicon
+  description: department-Silicon-description
+  color: "#D381C9"
+  roles:
+  - Borg
+  - StationAi
+
+- type: department
   id: Specific
   name: department-Specific
   description: department-Specific-description
@@ -122,7 +130,6 @@
   - Zookeeper
   - Psychologist
   - Prisoner #backmen
-  - SAI #backmen
   - Pilot # Corvax-Pilot
   accountNumber: 1322  #backmen: currency
   primary: false

@@ -19,12 +19,12 @@
   - Maintenance
   - Service
   - Detective
-    #start-backmen: currency
+  - Cryogenics
+  - External
   minBankBalance: 200
   maxBankBalance: 300
   wageDepartment: Security
   wage: 100
-  #end-backmen: currency
   special:
   - !type:AddImplantSpecial
     implants: [ MindShieldImplant ]

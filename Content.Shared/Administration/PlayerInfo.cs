@@ -14,8 +14,7 @@ public sealed record PlayerInfo(
     NetUserId SessionId,
     bool Connected,
     bool ActiveThisRound,
-    TimeSpan? OverallPlaytime,
-    NetEntity? NetEntityOwn // backmen: SAI display visited mind
+    TimeSpan? OverallPlaytime
     )
 {
     private string? _playtimeString;

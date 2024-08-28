@@ -65,7 +65,7 @@
             SalvageSpecialist: [ 3, 4 ]
             Deliveryman: [ 2, 2 ]
           #silicon
-            SAI: [ 1, 1 ]
+            StationAi: [ 1, 0 ]
             #BKBPLATech: [0, 3]
             #BKBPLAMED: [0, 3]
             Borg: [ 3, 3 ]

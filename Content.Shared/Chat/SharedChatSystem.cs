@@ -255,7 +255,7 @@ public abstract class SharedChatSystem : EntitySystem
         rawmsg = Regex.Replace(rawmsg, "(?i)(" + targetString + ")(?-i)(?![^[]*])", $"[{tag}={tagParameter}]$1[/{tag}]");
         return rawmsg;
     }
-  
+
     public static string GetStringInsideTag(ChatMessage message, string tag)
     {
         var rawmsg = message.WrappedMessage;

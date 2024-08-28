@@ -184,7 +184,7 @@ public sealed class ReinforcementSystem : SharedReinforcementSystem
                 Loc.GetString("job-greet-station-name", ("stationName", metaData.EntityName)));
         }
 
-        var ev = new PlayerSpawnCompleteEvent(mob, args.Player, args.Proto.Job, true, 0, station.Value, character);
+        var ev = new PlayerSpawnCompleteEvent(mob, args.Player, args.Proto.Job, true, true, 0, station.Value, character);
         RaiseLocalEvent(ev);
 
         EnsureComp<GhostRoleComponent>(ent).Taken = true;

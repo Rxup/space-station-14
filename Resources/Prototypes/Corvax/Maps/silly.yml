@@ -94,8 +94,8 @@
             SalvageSpecialist: [ 3, 3 ]
             CargoTechnician: [ 3, 3 ]
             # backmen
-#            Brigmedic: [ 0, 1 ] # backmen-Brigmedic 
-#            SAI: [1, 1] # backmen-SAI
+#            Brigmedic: [ 0, 1 ] # backmen-Brigmedic
+#            
             #BKBPLATech: [ 0, 1 ] # backmen-BPLA-Silicons
             #BKBPLAMED: [ 0, 1 ] # backmen-BPLAMED-Silicons
 #           Deliveryman: [ 0, 1 ]

@@ -12,7 +12,7 @@
       - id: ClothingMaskMime
       - id: ClothingShoesColorWhite
       - id: ClothingHeadHatBeret
-      - id: ClothingBeltSuspenders
+      - id: ClothingBeltSuspendersRed
       - id: ClothingHandsGlovesLatex
       - id: MimePDA
       - id: ClothingHeadsetService

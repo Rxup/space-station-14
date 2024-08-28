@@ -175,6 +175,7 @@ public sealed class EvilTwinSystem : EntitySystem
                                 targetSession,
                                 currentJob?.Prototype,
                                 false,
+                                true,
                                 0,
                                 station.Value,
                                 pref));

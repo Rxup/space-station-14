@@ -53,6 +53,25 @@
 
 ---
 
+## GptChat
+
+### chat.openai.com
+TODO
+
+### GigaChat
+
+```toml
+[gpt]
+enabled = true
+api = "https://gigachat.devices.sberbank.ru/api/v1/"
+model = "GigaChat"
+token = ""
+giga_token = "ВСТАВИТЬ СЮДА СЕКРЕТНЫЙ КЛЮЧ"
+```
+[Получить секретный ключ тут](https://developers.sber.ru/portal/products/gigachat-api)
+
+токен запрашивается автоматически по секретному ключу и автоматически обновляется
+
 ## Лицензия
 Весь код репозитория лицензирован под [AGPLv3](https://github.com/Rxup/space-station-14/blob/master/LICENSE-AGPLv3.TXT).
 

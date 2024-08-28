@@ -230,11 +230,12 @@ entities:
       currentReceiving: 15106.935
       currentSupply: 15107
       supplyRampPosition: 0.064453125
-- proto: AtmosDeviceFanTiny
+- proto: AtmosDeviceFanDirectional
   entities:
   - uid: 6
     components:
     - type: Transform
+      rot: 1.5707963267948966 rad
       pos: -3.5,-1.5
       parent: 325
 - proto: Bed
@@ -265,9 +266,6 @@ entities:
           occludes: True
           ents:
           - 331
-    - type: DeviceLinkSink
-      links:
-      - 205
   - uid: 191
     components:
     - type: Transform
@@ -280,9 +278,6 @@ entities:
           occludes: True
           ents:
           - 332
-    - type: DeviceLinkSink
-      links:
-      - 205
   - uid: 192
     components:
     - type: Transform
@@ -295,9 +290,6 @@ entities:
           occludes: True
           ents:
           - 333
-    - type: DeviceLinkSink
-      links:
-      - 205
   - uid: 193
     components:
     - type: Transform
@@ -310,9 +302,6 @@ entities:
           occludes: True
           ents:
           - 334
-    - type: DeviceLinkSink
-      links:
-      - 205
   - uid: 196
     components:
     - type: Transform
@@ -325,9 +314,6 @@ entities:
           occludes: True
           ents:
           - 337
-    - type: DeviceLinkSink
-      links:
-      - 205
   - uid: 198
     components:
     - type: Transform
@@ -340,9 +326,6 @@ entities:
           occludes: True
           ents:
           - 339
-    - type: DeviceLinkSink
-      links:
-      - 205
   - uid: 199
     components:
     - type: Transform
@@ -355,9 +338,6 @@ entities:
           occludes: True
           ents:
           - 340
-    - type: DeviceLinkSink
-      links:
-      - 205
   - uid: 200
     components:
     - type: Transform
@@ -370,9 +350,6 @@ entities:
           occludes: True
           ents:
           - 341
-    - type: DeviceLinkSink
-      links:
-      - 205
   - uid: 201
     components:
     - type: Transform
@@ -385,9 +362,6 @@ entities:
           occludes: True
           ents:
           - 342
-    - type: DeviceLinkSink
-      links:
-      - 205
   - uid: 202
     components:
     - type: Transform
@@ -400,9 +374,6 @@ entities:
           occludes: True
           ents:
           - 343
-    - type: DeviceLinkSink
-      links:
-      - 205
 - proto: BoxMRE
   entities:
   - uid: 320

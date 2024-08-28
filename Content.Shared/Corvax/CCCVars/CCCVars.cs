@@ -67,6 +67,18 @@ public sealed class CCCVars
     public static readonly CVarDef<float> TTSAnnounceVolume =
         CVarDef.Create("tts.announce_volume", 0f, CVar.CLIENTONLY | CVar.ARCHIVE);
 
+    /// Tts rate limit values are accounted in periods of this size (seconds).
+    /// After the period has passed, the count resets.
+    /// </summary>
+    public static readonly CVarDef<int> TTSRateLimitPeriod =
+        CVarDef.Create("tts.rate_limit_period", 2, CVar.SERVERONLY);
+
+    /// <summary>
+    /// How many tts preview messages are allowed in a single rate limit period.
+    /// </summary>
+    public static readonly CVarDef<int> TTSRateLimitCount =
+        CVarDef.Create("tts.rate_limit_count", 3, CVar.SERVERONLY);
+
     /*
      * Peaceful Round End
      */

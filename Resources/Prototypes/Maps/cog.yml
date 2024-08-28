@@ -75,4 +75,3 @@
             BKBPLAMED: [0, 3] # backmen-BPLAMED-Silicons
             Deliveryman: [ 0, 1 ] # backmen-delivery
             Prisoner: [ 3, 3] # backmen-Prisoner
-            SAI: [1, 1] # backmen-SAI
