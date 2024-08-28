@@ -20,8 +20,6 @@
         reagents:
         - ReagentId: Nutriment
           Quantity: 15
-        - ReagentId: Flavorol
-          Quantity: 10
         - ReagentId: Ichor
           Quantity: 12
   - type: Tag
