@@ -5,10 +5,10 @@
   description: How many did you kill just to get one of these eggs.
   components:
   - type: Sprite
-    sprite: _NF/Objects/Consumable/Food/dragon_egg.rsi
+    sprite: _SpaceCats/Objects/Consumable/Food/dragon_egg.rsi
     state: icon
   - type: Item
-    sprite: _NF/Objects/Consumable/Food/dragon_egg.rsi
+    sprite: _SpaceCats/Objects/Consumable/Food/dragon_egg.rsi
     size: Large
   - type: MultiHandedItem
   - type: DamageOnHighSpeedImpact
