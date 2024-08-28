@@ -60,7 +60,7 @@
 - type: specForceTeam
   id: ERTAlpha
   specForceName: spec-forces-system-alpha-name
-  shuttlePath: Maps/Backmen/Shuttles/SpecForces/NTSF-Palm-AL1
+  shuttlePath: Maps/Backmen/Shuttles/SpecForces/NTSF-Palm-AL1.yml
   spawnMarker: MarkerSpecforce
   announcementText: spec-forces-system-ertcall-annonce
   announcementTitle: spec-forces-system-ertAlpha-title
