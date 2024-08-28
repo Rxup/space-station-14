@@ -12,7 +12,7 @@
       map: ["enum.LockVisualLayers.Lock"]
       shader: unshaded
   - type: AccessReader
-    access: [["Security"]]
+    access: [["Armory"]]
   - type: Lock
     locked: true
 
@@ -30,7 +30,7 @@
       map: ["enum.LockVisualLayers.Lock"]
       shader: unshaded
   - type: AccessReader
-    access: [["Security"]]
+    access: [["Armory"]]
   - type: Lock
     locked: true
 
@@ -47,7 +47,7 @@
       map: ["enum.LockVisualLayers.Lock"]
       shader: unshaded
   - type: AccessReader
-    access: [["Security"]]
+    access: [["Armory"]]
   - type: Lock
     locked: true
 
@@ -65,7 +65,7 @@
       map: ["enum.LockVisualLayers.Lock"]
       shader: unshaded
   - type: AccessReader
-    access: [["Security"]]
+    access: [["Armory"]]
   - type: Lock
     locked: true
 
@@ -82,7 +82,7 @@
       map: ["enum.LockVisualLayers.Lock"]
       shader: unshaded
   - type: AccessReader
-    access: [["Security"]]
+    access: [["Armory"]]
   - type: Lock
     locked: true
 
@@ -100,6 +100,6 @@
       map: ["enum.LockVisualLayers.Lock"]
       shader: unshaded
   - type: AccessReader
-    access: [["Security"]]
+    access: [["Armory"]]
   - type: Lock
     locked: true
