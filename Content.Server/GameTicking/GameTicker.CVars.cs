@@ -72,7 +72,6 @@ namespace Content.Server.GameTicking
                     DiscordRoundEndRole = null;
                 }
             }, true);
-
             Subs.CVar(_configurationManager, CCVars.RoundEndSoundCollection, value => RoundEndSoundCollection = value, true);
 #if EXCEPTION_TOLERANCE
             Subs.CVar(_configurationManager, CCVars.RoundStartFailShutdownCount, value => RoundStartFailShutdownCount = value, true);
