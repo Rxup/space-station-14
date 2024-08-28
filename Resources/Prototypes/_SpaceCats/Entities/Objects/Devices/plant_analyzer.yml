@@ -1,8 +1,8 @@
 - type: entity
-  name: plant analyzer
+  name: анализатор растений
   parent: BaseItem
   id: PlantAnalyzerUnpowered
-  description: A handheld device that allows you to scan seeds and plants to get detailed information about their genes.
+  description: Портативное устройство, которое позволяет сканировать семена и растения, чтобы получить подробную информацию об их генах.
   components:
   - type: Sprite
     sprite: _SpaceCats/Objects/Devices/plant_analyzer.rsi
