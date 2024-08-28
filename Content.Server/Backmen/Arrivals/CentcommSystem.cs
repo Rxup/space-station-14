@@ -260,7 +260,7 @@ public sealed class CentcommSystem : EntitySystem
                 LoadMap = false
             }, "Central Command").FirstOrNull(HasComp<BecomesStationComponent>);
 
-        _metaDataSystem.SetEntityName(_mapManager.GetMapEntityId(CentComMap), "CentCom");
+        _metaDataSystem.SetEntityName(_mapManager.GetMapEntityId(CentComMap), Loc.GetString("map-name-centcomm"));
 
         if (ent != null)
         {
