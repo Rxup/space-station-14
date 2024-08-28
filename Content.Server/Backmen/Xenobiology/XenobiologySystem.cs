@@ -39,7 +39,7 @@ public sealed class XenoBiologySystem : EntitySystem
         {
             if (EntityManager.HasComponent<XenoFoodComponent>(hitEntity))
             {
-                if (!_mobState.IsIncapacitated(hitEntity))
+                if (_mobState.IsIncapacitated(hitEntity))
                 return;
 
                 // Слайм получает очки
