@@ -77,10 +77,11 @@
             SalvageSpecialist: [ 2, 3 ]
             CargoTechnician: [ 2, 2 ]
             # backmen
-            Prisoner: [ 3, 3]
-            Brigmedic: [ 0, 1 ] # backmen-Brigmedic
-            #BKBPLATech: [0, 3] # backmen-BPLA-Silicons
-            #BKBPLAMED: [0, 3] # backmen-BPLAMED-Silicons
+#            Prisoner: [ 3, 3]
+            SAI: [1, 1] # backmen-SAI
+#            Brigmedic: [ 0, 1 ] # backmen-Brigmedic
+#            BKBPLATech: [0, 3] # backmen-BPLA-Silicons
+#            BKBPLAMED: [0, 3] # backmen-BPLAMED-Silicons
 
 
 

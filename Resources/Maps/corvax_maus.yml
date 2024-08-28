@@ -104860,7 +104860,7 @@ entities:
     - type: Transform
       pos: -117.5,-38.5
       parent: 2
-- proto: SolidSecretDoor
+- proto: WallSolid
   entities:
   - uid: 595
     components:

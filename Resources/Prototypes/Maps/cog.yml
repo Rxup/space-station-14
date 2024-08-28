@@ -2,7 +2,7 @@
   id: Cog
   mapName: 'Cog'
   mapPath: /Maps/cog.yml
-  minPlayers: 35
+  minPlayers: 15
   maxPlayers: 70 #big map
   stations:
     Cog:
@@ -71,7 +71,7 @@
             Reporter: [ 1, 1 ]
             # backmen
             Brigmedic: [ 0, 1 ] # backmen-Brigmedic
-            #BKBPLATech: [0, 3] # backmen-BPLA-Silicons
-            #BKBPLAMED: [0, 3] # backmen-BPLAMED-Silicons
+            BKBPLATech: [0, 3] # backmen-BPLA-Silicons
+            BKBPLAMED: [0, 3] # backmen-BPLAMED-Silicons
             Deliveryman: [ 0, 1 ] # backmen-delivery
             Prisoner: [ 3, 3] # backmen-Prisoner

@@ -59,11 +59,12 @@
             Musician: [ 1, 1 ]
             Borg: [ 1 , 1 ]
             # backmen
-            Brigmedic: [ 0, 1 ] # backmen-Brigmedic
+#            Brigmedic: [ 0, 1 ] # backmen-Brigmedic
+#            SAI: [1, 1] # backmen-SAI
             #BKBPLATech: [ 0, 1 ] # backmen-BPLA-Silicons
             #BKBPLAMED: [ 0, 1 ] # backmen-BPLAMED-Silicons
-            Deliveryman: [ 0, 1 ]
-            Prisoner: [ 2, 3 ]
+#            Deliveryman: [ 0, 1 ]
+#            Prisoner: [ 2, 3 ]
         # backmen blob-config-start SMALL+
         - type: StationBlobConfig
           stageBegin: 25

@@ -63,6 +63,7 @@
             SalvageSpecialist: [ 1, 1 ]
             CargoTechnician: [ 3, 3 ]
             # backmen
+#         SAI: [1, 1] # backmen-SAI
         # backmen blob-config-start SMALL
         - type: StationBlobConfig
           stageBegin: 20
@@ -130,6 +131,7 @@
             CargoTechnician: [ 2, 3 ]
             # backmen
             Prisoner: [ 3, 6]
+#            SAI: [1, 1] # backmen-SAI
             Brigmedic: [ 0, 1 ] # backmen-Brigmedic
         # backmen blob-config-start SMALL
         - type: StationBlobConfig
@@ -213,6 +215,7 @@
             SalvageSpecialist: [ 3, 3 ]
             CargoTechnician: [ 3, 4 ]
             # backmen
+#            SAI: [1, 1] # backmen-SAI
         # backmen blob-config-start SMALL
         - type: StationBlobConfig
           stageBegin: 20

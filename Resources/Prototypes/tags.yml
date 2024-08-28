@@ -1193,6 +1193,9 @@
   id: Spear
 
 - type: Tag
+  id: SpearRatvar
+
+- type: Tag
   id: SpeedLoaderCap
 
 - type: Tag
