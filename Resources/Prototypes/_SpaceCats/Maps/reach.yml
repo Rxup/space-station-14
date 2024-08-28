@@ -31,6 +31,7 @@
             AtmosphericTechnician: [ 1, 1 ]
             StationEngineer: [ 1, 2 ]
             Passenger: [ -1, -1 ]
+            StationAi: [ 1, 0 ]
         # backmen blob-config-start LOW
         - type: StationBlobConfig
           stageBegin: 15

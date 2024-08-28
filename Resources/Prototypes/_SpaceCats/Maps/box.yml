@@ -62,10 +62,11 @@
             Musician: [ 1, 1 ]
             # backmen
             BlueShield: [1, 1] # backmen-BlueShield
+            StationAi: [ 1, 0 ]
 #            BKBPLATech: [0, 3] # backmen-BPLA-Silicons
 #            BKBPLAMED: [0, 3] # backmen-BPLAMED-Silicons
 #            Deliveryman: [ 0, 1 ] # backmen-Deliveryman
 #            Prisoner: [ 2, 2] # backmen-Prisoner
-            SAI: [1, 1] # backmen-SAI
+            
             Brigmedic: [ 0, 1 ] # backmen-Brigmedic
 
