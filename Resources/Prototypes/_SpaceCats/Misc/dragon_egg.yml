@@ -1,8 +1,8 @@
 - type: entity
   parent: FoodEggBase
   id: DragonEgg
-  name: dragon egg
-  description: How many did you kill just to get one of these eggs.
+  name: яйцо дракона
+  description: Скольких ты убил только для того, чтобы заполучить одно из этих яиц?
   components:
   - type: Sprite
     sprite: _SpaceCats/Objects/Consumable/Food/dragon_egg.rsi
@@ -67,9 +67,6 @@
   - type: Sprite
     sprite: _SpaceCats/Effects/dragonspawn.rsi
     state: dragon
-  - type: EmitSoundOnSpawn
-    sound:
-      path: /Audio/Nyanotrasen/shogi_piece_clack.ogg
   - type: Fixtures
     fixtures:
       portalFixture:

@@ -3,8 +3,8 @@
   - SimpleSpaceMobBase
   - FlyingMobBase
   id: MobDragonPet
-  name: baby space dragon
-  description: Even a flying leviathan starts off small and from an egg.
+  name: детёныш дракона
+  description: Даже летающий левиафан начинается с малого и с яйца.
   components:
   - type: Body
     prototype: Animal
@@ -154,8 +154,8 @@
 - type: entity
   noSpawn: true
   id: BabyDragonsSparkGun
-  name: baby dragon's spark
-  description: For dragon's breathing
+  name: искра маленького дракона
+  description: Для дыхания дракона
   components:
   - type: RechargeBasicEntityAmmo
     rechargeCooldown: 120
