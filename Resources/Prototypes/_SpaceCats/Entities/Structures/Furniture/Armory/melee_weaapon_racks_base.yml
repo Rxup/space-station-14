@@ -102,9 +102,8 @@
     layers:
     - state: base_generic_meleerack_wallmounted
     - state: locked
-      map: [ locked ]
-    - state: unlocked
-      map: [ unlocked ]
+      map: ["enum.LockVisualLayers.Lock"]
+      shader: unshaded
   - type: Appearance
   - type: EntityStorageVisuals
   - type: Construction

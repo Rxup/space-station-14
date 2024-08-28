@@ -12,9 +12,8 @@
     layers:
     - state: base_generic_gunrack
     - state: locked
-      map: [ locked ]
-    - state: unlocked
-      map: [ unlocked ]
+      map: ["enum.LockVisualLayers.Lock"]
+      shader: unshaded
   - type: Appearance
   - type: EntityStorageVisuals
   - type: AccessReader
@@ -150,9 +149,8 @@
     layers:
     - state: base_generic_gunrack_wallmounted
     - state: locked
-      map: [ locked ]
-    - state: unlocked
-      map: [ unlocked ]
+      map: ["enum.LockVisualLayers.Lock"]
+      shader: unshaded
   - type: Appearance
   - type: EntityStorageVisuals
   - type: Construction
