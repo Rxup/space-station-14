@@ -83,16 +83,16 @@
     size: SmallNormal
   - type: ProjectileBatteryAmmoProvider
     proto: X01Attack
-    fireCost: 200
+    fireCost: 100
   - type: BatteryWeaponFireModes
     fireModes:
     - proto: X01Attack
-      fireCost: 200
-    - proto: BulletDisabler
       fireCost: 100
+    - proto: BulletDisabler
+      fireCost: 50
   - type: Battery
-    maxCharge: 1200
-    startingCharge: 1200
+    maxCharge: 600
+    startingCharge: 600
   - type: MagazineVisuals
     magState: mag
     steps: 1
