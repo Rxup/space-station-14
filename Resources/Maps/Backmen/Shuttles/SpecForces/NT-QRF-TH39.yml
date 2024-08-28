@@ -343,10 +343,11 @@ entities:
       parent: 1
     - type: DeviceList
       devices:
-      - 177
-      - 175
-      - 174
-      - 173
+      - 12
+      - 9
+      - 10
+      - 13
+      - 14
 - proto: AirCanister
   entities:
   - uid: 152
@@ -356,29 +357,29 @@ entities:
       parent: 1
 - proto: AirlockExternalShuttleLocked
   entities:
-  - uid: 7
+  - uid: 176
     components:
     - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: 4.5,3.5
+      rot: -1.5707963267948966 rad
+      pos: -3.5,3.5
       parent: 1
-  - uid: 8
-    components:
-    - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: 4.5,1.5
-      parent: 1
-  - uid: 9
+  - uid: 177
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: -3.5,1.5
       parent: 1
-  - uid: 10
+  - uid: 212
     components:
     - type: Transform
-      rot: -1.5707963267948966 rad
-      pos: -3.5,3.5
+      rot: 1.5707963267948966 rad
+      pos: 4.5,3.5
+      parent: 1
+  - uid: 213
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: 4.5,1.5
       parent: 1
 - proto: AirlockMaintMTFLocked
   entities:
@@ -404,29 +405,29 @@ entities:
       parent: 1
 - proto: AtmosDeviceFanTiny
   entities:
-  - uid: 12
+  - uid: 15
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: -3.5,3.5
       parent: 1
-  - uid: 13
+  - uid: 173
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: -3.5,1.5
       parent: 1
-  - uid: 14
-    components:
-    - type: Transform
-      rot: -1.5707963267948966 rad
-      pos: 4.5,1.5
-      parent: 1
-  - uid: 15
+  - uid: 174
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: 4.5,3.5
+      parent: 1
+  - uid: 175
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: 4.5,1.5
       parent: 1
 - proto: BannerNanotrasen
   entities:
@@ -1250,16 +1251,17 @@ entities:
       parent: 1
 - proto: DefibrillatorCabinetFilled
   entities:
-  - uid: 154
-    components:
-    - type: Transform
-      pos: 3.5,0.5
-      parent: 1
-  - uid: 335
+  - uid: 215
     components:
     - type: Transform
       rot: 3.141592653589793 rad
-      pos: 3.5,-3.5
+      pos: -1.5,-3.5
+      parent: 1
+  - uid: 247
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 2.5,-3.5
       parent: 1
 - proto: EmergencyRollerBedSpawnFolded
   entities:
@@ -1408,54 +1410,49 @@ entities:
       parent: 1
 - proto: GasVentScrubber
   entities:
-  - uid: 173
-    components:
-    - type: Transform
-      rot: -1.5707963267948966 rad
-      pos: 1.5,6.5
-      parent: 1
-    - type: DeviceNetwork
-      configurators:
-      - invalid
-      deviceLists:
-      - 2
-  - uid: 174
-    components:
-    - type: Transform
-      rot: -1.5707963267948966 rad
-      pos: 1.5,2.5
-      parent: 1
-    - type: DeviceNetwork
-      configurators:
-      - invalid
-      deviceLists:
-      - 2
-  - uid: 175
+  - uid: 9
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: 1.5,-1.5
       parent: 1
     - type: DeviceNetwork
-      configurators:
-      - invalid
       deviceLists:
       - 2
-  - uid: 176
+  - uid: 10
     components:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: -1.5,-1.5
       parent: 1
-  - uid: 177
+    - type: DeviceNetwork
+      deviceLists:
+      - 2
+  - uid: 12
     components:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: 0.5,-5.5
       parent: 1
     - type: DeviceNetwork
-      configurators:
-      - invalid
+      deviceLists:
+      - 2
+  - uid: 13
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: 1.5,2.5
+      parent: 1
+    - type: DeviceNetwork
+      deviceLists:
+      - 2
+  - uid: 14
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: 1.5,6.5
+      parent: 1
+    - type: DeviceNetwork
       deviceLists:
       - 2
 - proto: GeneratorBasic15kW
@@ -1589,35 +1586,41 @@ entities:
       parent: 1
 - proto: MarkerSpecforce
   entities:
+  - uid: 154
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: -0.5,3.5
+      parent: 1
+  - uid: 214
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: -1.5,3.5
+      parent: 1
+  - uid: 317
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 1.5,3.5
+      parent: 1
   - uid: 320
     components:
     - type: Transform
-      pos: -0.5,3.5
+      rot: 3.141592653589793 rad
+      pos: 2.5,3.5
       parent: 1
   - uid: 321
     components:
     - type: Transform
-      pos: -1.5,3.5
-      parent: 1
-  - uid: 325
-    components:
-    - type: Transform
-      pos: 1.5,3.5
-      parent: 1
-  - uid: 331
-    components:
-    - type: Transform
-      pos: 2.5,3.5
-      parent: 1
-  - uid: 336
-    components:
-    - type: Transform
-      pos: -1.5,1.5
-      parent: 1
-  - uid: 337
-    components:
-    - type: Transform
+      rot: 3.141592653589793 rad
       pos: 2.5,1.5
+      parent: 1
+  - uid: 323
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: -1.5,1.5
       parent: 1
 - proto: MedicalBed
   entities:
@@ -1692,34 +1695,6 @@ entities:
       parent: 1
 - proto: Poweredlight
   entities:
-  - uid: 212
-    components:
-    - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: -2.5,-1.5
-      parent: 1
-  - uid: 213
-    components:
-    - type: Transform
-      rot: -1.5707963267948966 rad
-      pos: 3.5,-1.5
-      parent: 1
-  - uid: 214
-    components:
-    - type: Transform
-      pos: -0.5,3.5
-      parent: 1
-  - uid: 215
-    components:
-    - type: Transform
-      pos: 1.5,3.5
-      parent: 1
-  - uid: 323
-    components:
-    - type: Transform
-      rot: 3.141592653589793 rad
-      pos: 1.5,5.5
-      parent: 1
   - uid: 343
     components:
     - type: Transform
@@ -1987,16 +1962,22 @@ entities:
       parent: 1
 - proto: Thruster
   entities:
+  - uid: 7
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: 4.5,-4.5
+      parent: 1
+  - uid: 8
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: -3.5,-4.5
+      parent: 1
   - uid: 222
     components:
     - type: Transform
       pos: -2.5,10.5
-      parent: 1
-  - uid: 247
-    components:
-    - type: Transform
-      rot: 3.141592653589793 rad
-      pos: 4.5,-4.5
       parent: 1
   - uid: 264
     components:
@@ -2026,12 +2007,6 @@ entities:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: 4.5,9.5
-      parent: 1
-  - uid: 317
-    components:
-    - type: Transform
-      rot: 3.141592653589793 rad
-      pos: -3.5,-4.5
       parent: 1
 - proto: VendingMachineChemicals
   entities:
