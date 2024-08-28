@@ -51,7 +51,6 @@
       - Ghost
       - PsionicInvisibility
       - DarkSwapInvisibility
-      - AIEye
   - type: Input
     context: "ghost"
   - type: Examiner

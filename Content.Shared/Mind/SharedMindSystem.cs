@@ -154,19 +154,10 @@ public abstract class SharedMindSystem : EntitySystem
 
         var dead = _mobState.IsDead(uid);
 
-        // start-backmen: SAI
         var mind = CompOrNull<MindComponent>(mindContainer.Mind);
-
-        var remoteMind = CompOrNull<VisitingMindComponent>(uid);
-        if (remoteMind != null)
-        {
-            mind = CompOrNull<MindComponent>(remoteMind.MindId);
-        }
 
         var hasUserId = mind?.UserId;
         var hasSession = mind?.Session;
-
-        // end-backmen: SAI
 
         if (dead && hasUserId == null)
             args.PushMarkup($"[color=mediumpurple]{Loc.GetString("comp-mind-examined-dead-and-irrecoverable", ("ent", uid))}[/color]");
@@ -178,10 +169,6 @@ public abstract class SharedMindSystem : EntitySystem
             args.PushMarkup($"[color=mediumpurple]{Loc.GetString("comp-mind-examined-catatonic", ("ent", uid))}[/color]");
         else if (hasSession == null)
             args.PushMarkup($"[color=yellow]{Loc.GetString("comp-mind-examined-ssd", ("ent", uid))}[/color]");
-
-        // start-backmen: SAI
-        if(remoteMind != null) args.PushMarkup($"[color=red]{Loc.GetString("comp-mind-examined-remote-controlled")}[/color]");
-        // end-backmen: SAI
     }
 
     /// <summary>

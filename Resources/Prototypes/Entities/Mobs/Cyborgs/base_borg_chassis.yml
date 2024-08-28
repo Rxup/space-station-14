@@ -278,7 +278,6 @@
   - type: NpcFactionMember
     factions:
     - NanoTrasen
-  - type: BorgAINT
   - type: Access
     enabled: false
     groups:

@@ -503,6 +503,7 @@ namespace Content.Server.Ghost
                 _adminLogger.Add(LogType.Mind, $"{EntityManager.ToPrettyString(playerEntity.Value):player} is attempting to ghost via command");
 
             var handleEv = new GhostAttemptHandleEvent(mind, canReturnGlobal);
+            handleEv.ViaCommand = viaCommand; // backmen
             RaiseLocalEvent(handleEv);
 
             // Something else has handled the ghost attempt for us! We return its result.
@@ -588,5 +589,6 @@ namespace Content.Server.Ghost
         public MindComponent Mind { get; } = mind;
         public bool CanReturnGlobal { get; } = canReturnGlobal;
         public bool Result { get; set; }
+        public bool ViaCommand { get; set; } // backmen
     }
 }

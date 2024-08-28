@@ -12,6 +12,9 @@
   icon: JobIconStationAi
   supervisors: job-supervisors-rd
   jobEntity: StationAiBrain
+  # start-backmen
+  startingGear: RobotGear # for char preview only
+  # end-backmen
 
 - type: job
   id: Borg
@@ -25,3 +28,6 @@
   icon: JobIconBorg
   supervisors: job-supervisors-rd
   jobEntity: PlayerBorgGeneric
+  # start-backmen
+  startingGear: RobotGear # for char preview only
+  # end-backmen

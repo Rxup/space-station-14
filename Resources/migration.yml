@@ -204,9 +204,6 @@ WeaponRevolverMateba: WeaponRevolverMatebaNew
 WeaponSniperMosin: WeaponSniperMosinNew
 WeaponShotgunBulldog: WeaponShotgunZauer
 
-# 2023-11-11 Backmen: AI
-ToyAi: SpawnPointStationAI
-
 # 2023-11-26
 WeaponSniperHristov: WeaponRifleSR127
 MagazineBoxAntiMateriel: MagazineAntiMaterielRifleSR
@@ -338,9 +335,6 @@ YellowOxygenTankFilled: OxygenTankFilled
 # 2024-01-30 Backmen
 AirlockHatch: AirlockHatchBasik
 AirlockHatchMaintenance: AirlockHatchMaint
-
-# 2024-02-18
-WeaponTurretSyndicateBroken: WeaponTurretLaserNanoTrasenAI
 
 # 2024-02-12
 FoodDonutBlumpkin: FoodDonutBluePumpkin
@@ -557,3 +551,6 @@ ClothingBeltSuspenders: ClothingBeltSuspendersRed
 
 # 2024-08-19
 ClothingNeckShockCollar: ClothingBackpackElectropack
+
+# 2024-08-28 backmen
+SpawnPointStationAI: PlayerStationAi

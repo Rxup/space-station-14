@@ -80,13 +80,12 @@ namespace Content.IntegrationTests.Tests
             "shwrDust",
             "BackmenTortuga",
             "BackmenHive",
-            "BackmenCogmap",
 			"BackmenShoukou",
 			"BackmenAspid",
 			"BackmenKettle",
 			"BackmenRook",
             "BargeVsShip",
-            "no_madDelta",
+            "BackmenDelta",
             //end-backmen
             "Saltern",
             "Reach",
@@ -281,7 +280,6 @@ namespace Content.IntegrationTests.Tests
                             .Where(x=>x.Value[0] > 0 || x.Value[0] == -1)
                             .Select(x=>x.Key)
                         .Where(x=>x != "Prisoner") // backmen: Fugitive
-                        .Where(x=>x != "SAI") // backmen: SAI
                         .Where(x=>x != "Freelancer") // backmen: shipwrecked
                     );
 
