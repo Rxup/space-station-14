@@ -61,7 +61,6 @@
             # backmen
             Brigmedic: [ 0, 1 ] # backmen-Brigmedic
             BlueShield: [1, 1] # backmen-BlueShield
-            StationAi: [ 1, 0 ]
             #BKBPLATech: [ 0, 1 ] # backmen-BPLA-Silicons
             #BKBPLAMED: [ 0, 1 ] # backmen-BPLAMED-Silicons
 #            Deliveryman: [ 0, 1 ]
