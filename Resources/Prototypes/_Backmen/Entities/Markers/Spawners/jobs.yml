@@ -305,20 +305,6 @@
 #      - state: martialartist
 
 - type: entity
-  id: SpawnPointStationAI
-  parent: SpawnPointJobBase
-  name: station AI
-  components:
-  - type: SpawnPoint
-    job_id: SAI
-  - type: Sprite
-    layers:
-    - state: green
-    - state: ai
-    - state: jobicon
-      sprite: Backmen/Markers/jobs.rsi
-
-- type: entity
   id: SpawnPointShipAI
   parent: SpawnPointJobBase
   name: ship AI
@@ -331,7 +317,6 @@
     - state: ai
     - state: jobicon
       sprite: Backmen/Markers/jobs.rsi
-
 
 - type: entity
   id: SpawnFreelancer

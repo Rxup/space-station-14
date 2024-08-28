@@ -33,7 +33,7 @@
       - type: StationTeamMarker
         team: TeamA
         goal:
-        - AICoreShip
+        - StationAiBrain
         - ComputerShipyardTeamA
         requireJobs:
         - Captain
@@ -58,7 +58,7 @@
       - type: StationTeamMarker
         team: TeamB
         goal:
-        - AICoreShip
+        - StationAiBrain
         - ComputerShipyardTeamB
         requireJobs:
         - Captain

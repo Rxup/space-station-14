@@ -11,12 +11,11 @@ using Content.Shared.Backmen.Shipyard.Prototypes;
 using Content.Shared.Access.Systems;
 using Content.Shared.Backmen.Shipyard.Components;
 using Content.Shared.Backmen.Shipyard;
-using Content.Shared.Backmen.StationAI;
 using Robust.Server.GameObjects;
 using Robust.Shared.Prototypes;
 using Content.Shared.Radio;
+using Content.Shared.Silicons.Borgs.Components;
 using Robust.Shared.Audio.Systems;
-using Robust.Shared.Player;
 
 namespace Content.Server.Backmen.Shipyard.Systems;
 
@@ -57,7 +56,7 @@ public sealed class ShipyardConsoleSystem : SharedShipyardSystem
             return;
         }
 
-        if (!HasComp<StationAIComponent>(player) && !_access.IsAllowed(player, uid))
+        if (!HasComp<BorgChassisComponent>(player) && !_access.IsAllowed(player, uid))
         {
             ConsolePopup(args.Actor, Loc.GetString("comms-console-permission-denied"));
             PlayDenySound(uid, component);

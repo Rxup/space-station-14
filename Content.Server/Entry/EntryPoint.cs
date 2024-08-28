@@ -169,6 +169,7 @@ namespace Content.Server.Entry
                 // start-backmen: IoC
                 IoCManager.Resolve<Content.Corvax.Interfaces.Server.IServerJoinQueueManager>().PostInitialize();
                 // end-backmen: IoC
+                IoCManager.Resolve<IConnectionManager>().PostInit();
             }
         }
 

@@ -133,6 +133,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Roslyn", "Roslyn", "{7844DA
 		RobustToolbox\Robust.Roslyn.Shared\Robust.Roslyn.Shared.props = RobustToolbox\Robust.Roslyn.Shared\Robust.Roslyn.Shared.props
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Robust.Xaml", "RobustToolbox\Robust.Xaml\Robust.Xaml.csproj", "{A66FBDFA-53FB-4E8E-9339-6496EC5DE126}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -444,6 +446,14 @@ Global
 		{83F510FE-9B50-4D96-AFAB-CC13998D6AFE}.Release|Any CPU.Build.0 = Release|Any CPU
 		{83F510FE-9B50-4D96-AFAB-CC13998D6AFE}.Tools|Any CPU.ActiveCfg = Tools|Any CPU
 		{83F510FE-9B50-4D96-AFAB-CC13998D6AFE}.Tools|Any CPU.Build.0 = Tools|Any CPU
+		{A66FBDFA-53FB-4E8E-9339-6496EC5DE126}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A66FBDFA-53FB-4E8E-9339-6496EC5DE126}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A66FBDFA-53FB-4E8E-9339-6496EC5DE126}.DebugOpt|Any CPU.ActiveCfg = Debug|Any CPU
+		{A66FBDFA-53FB-4E8E-9339-6496EC5DE126}.DebugOpt|Any CPU.Build.0 = Debug|Any CPU
+		{A66FBDFA-53FB-4E8E-9339-6496EC5DE126}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A66FBDFA-53FB-4E8E-9339-6496EC5DE126}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A66FBDFA-53FB-4E8E-9339-6496EC5DE126}.Tools|Any CPU.ActiveCfg = Debug|Any CPU
+		{A66FBDFA-53FB-4E8E-9339-6496EC5DE126}.Tools|Any CPU.Build.0 = Debug|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -479,6 +489,7 @@ Global
 		{07CA34A1-1D37-4771-A2E3-495A1044AE0B} = {83B4CBBA-547A-42F0-A7CD-8A67D93196CE}
 		{6FBF108E-5CB5-47DE-8D7E-B496ABA9E3E2} = {83B4CBBA-547A-42F0-A7CD-8A67D93196CE}
 		{83F510FE-9B50-4D96-AFAB-CC13998D6AFE} = {83B4CBBA-547A-42F0-A7CD-8A67D93196CE}
+		{A66FBDFA-53FB-4E8E-9339-6496EC5DE126} = {83B4CBBA-547A-42F0-A7CD-8A67D93196CE}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {AA37ED9F-F8D6-468E-A101-658AD605B09A}

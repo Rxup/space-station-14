@@ -9,13 +9,11 @@ using Content.Server.DeviceNetwork.Systems;
 using Content.Server.Interaction;
 using Content.Server.Popups;
 using Content.Server.RoundEnd;
-using Content.Server.Screens;
 using Content.Server.Screens.Components;
 using Content.Server.Shuttles.Systems;
 using Content.Server.Station.Systems;
 using Content.Shared.Access.Components;
 using Content.Shared.Access.Systems;
-using Content.Shared.Backmen.StationAI;
 using Content.Shared.CCVar;
 using Content.Shared.Chat;
 using Content.Shared.Communications;
@@ -184,10 +182,6 @@ namespace Content.Server.Communications
 
         private bool CanUse(EntityUid user, EntityUid console)
         {
-            // This shouldn't technically be possible because of BUI but don't trust client.
-            if (!_interaction.InRangeUnobstructed(console, user))
-                return false;
-
             if (TryComp<AccessReaderComponent>(console, out var accessReaderComponent) && !HasComp<EmaggedComponent>(console))
             {
                 return _accessReaderSystem.IsAllowed(user, console, accessReaderComponent);
@@ -266,7 +260,6 @@ namespace Content.Server.Communications
                 // User does not have an id and is a borg, so use the borg's name
                 if (
                     HasComp<BorgChassisComponent>(mob)
-                    || HasComp<StationAIComponent>(mob) // backmen: sai
                     )
                 {
                     author = Name(mob).Trim();
