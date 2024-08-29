@@ -99,38 +99,12 @@
     sprite: _SpaceCats/Structures/Doors/Airlocks/Standard/syndicate.rsi
 
 - type: entity
-  parent: AirlockDoobleCargo
-  id: AirlockDoobleMining
-  suffix: Mining(Salvage)
-  components:
-  - type: Sprite
-    sprite: _SpaceCats/Structures/Doors/Airlocks/Standard/mining.rsi
-  - type: Wires
-    layoutId: AirlockCargo
-
-- type: entity
   parent: AirlockDoobleCommand # if you get centcom door somehow it counts as command, also inherit panel
   id: AirlockDoobleCentralCommand
   suffix: Central Command
   components:
   - type: Sprite
     sprite: _SpaceCats/Structures/Doors/Airlocks/Standard/centcomm.rsi
-
-- type: entity
-  parent: AirlockDooble
-  id: AirlockDoobleHatch
-  name: airtight hatch
-  components:
-  - type: Sprite
-    sprite: _SpaceCats/Structures/Doors/Airlocks/Standard/hatch.rsi
-
-- type: entity
-  parent: AirlockDooble
-  id: AirlockDoobleHatchMaintenance
-  name: maintenance hatch
-  components:
-  - type: Sprite
-    sprite: _SpaceCats/Structures/Doors/Airlocks/Standard/hatch_maint.rsi
 
 # Glass
 - type: entity
@@ -231,14 +205,6 @@
   components:
   - type: Sprite
     sprite: _SpaceCats/Structures/Doors/Airlocks/Glass/syndicate.rsi
-
-- type: entity
-  parent: AirlockDoobleCargoGlass
-  id: AirlockDoobleMiningGlass
-  suffix: Mining(Salvage)
-  components:
-  - type: Sprite
-    sprite: _SpaceCats/Structures/Doors/Airlocks/Glass/mining.rsi
 
 - type: entity
   parent: AirlockDoobleCommandGlass # see standard
