@@ -1,0 +1,179 @@
+- type: entity
+  parent: AirlockAtmospherics
+  id: AirlockAtmosphericsLocked
+  suffix: Atmospherics, Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsAtmospherics ]
+
+- type: entity
+  parent: AirlockAtmosphericsGlass
+  id: AirlockAtmosphericsGlassLocked
+  suffix: Atmospherics, Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsAtmospherics ]
+
+- type: entity
+  parent: AirlockCargoGlass
+  id: AirlockCargoGlassLocked
+  suffix: Cargo, Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsCargo ]
+
+- type: entity
+  parent: AirlockCargo
+  id: AirlockCargoLocked
+  suffix: Cargo, Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsCargo ]
+
+- type: entity
+  parent: AirlockCentralCommand
+  id: AirlockCentralCommandLocked
+  suffix: Central Command, Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsCentralCommand ]
+
+- type: entity
+  parent: AirlockCentralCommandGlass
+  id: AirlockCentralCommandGlassLocked
+  suffix: Central Command, Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsCentralCommand ]
+
+- type: entity
+  parent: AirlockChemistry
+  id: AirlockChemistryLocked
+  suffix: Chemistry, Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsChemistry ]
+
+- type: entity
+  parent: AirlockChemistryGlass
+  id: AirlockChemistryGlassLocked
+  suffix: Chemistry, Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsChemistry ]
+
+- type: entity
+  parent: AirlockCommand
+  id: AirlockCommandLocked
+  suffix: Command, Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsCommand ]
+
+- type: entity
+  parent: AirlockCommandGlass
+  id: AirlockCommandGlassLocked
+  suffix: Command, Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsCommand ]
+
+- type: entity
+  parent: AirlockEngineering
+  id: AirlockEngineeringLocked
+  suffix: Engineering, Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsEngineering ]
+
+- type: entity
+  parent: AirlockEngineeringGlass
+  id: AirlockEngineeringGlassLocked
+  suffix: Engineering, Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsEngineering ]
+
+- type: entity
+  parent: AirlockMedical
+  id: AirlockMedicalLocked
+  suffix: Medical, Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsMedical ]
+
+- type: entity
+  parent: AirlockMedicalGlass
+  id: AirlockMedicalGlassLocked
+  suffix: Medical, Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsMedical ]
+
+- type: entity
+  parent: AirlockSecurity
+  id: AirlockSecurityLocked
+  suffix: Security, Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsSecurity ]
+
+- type: entity
+  parent: AirlockSecurityGlass
+  id: AirlockSecurityGlassLocked
+  suffix: Security, Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsSecurity ]
+
+- type: entity
+  parent: AirlockSyndicateGlass
+  id: AirlockSyndicateGlassLocked
+  suffix: Syndicate, Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsSyndicateAgent ]
+
+- type: entity
+  parent: AirlockSyndicate
+  id: AirlockSyndicateLocked
+  suffix: Syndicate, Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsSyndicateAgent ]
+
+- type: entity
+  parent: AirlockVirology
+  id: AirlockVirologyLocked
+  suffix: Virology, Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsMedical ]
+
+- type: entity
+  parent: AirlockVirologyGlass
+  id: AirlockVirologyGlassLocked
+  suffix: Virology, Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsMedical ]
