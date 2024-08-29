@@ -52,6 +52,8 @@
       path: /Audio/Effects/hit_kick.ogg
   - type: Stamina
     critThreshold: 85
+  - type: TypingIndicator
+    proto: felinid  # cats
   - type: PseudoItem
   - type: Vocal
     sounds:
