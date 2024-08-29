@@ -11,7 +11,7 @@
           "/Audio/Weapons/smash.ogg"
   - type: InteractionOutline
   - type: Sprite
-    sprite: _SpaceCats/Structures/Doors/Airlocks/Standart/basic.rsi
+    sprite: _SpaceCats/Structures/Doors/Airlocks/Standard/basic.rsi
     offset: 0.5,0
     layers:
     - state: closed
