@@ -4,11 +4,6 @@
   name: airlock
   description: It opens, it closes, and maybe crushes you.
   components:
-  - type: MeleeSound
-    soundGroups:
-      Brute:
-        path:
-          "/Audio/Effects/glass_hit.ogg"
   - type: Sprite
     sprite: _SpaceCats/Structures/Doors/Airlocks/Standard/basic.rsi
     snapCardinals: false
@@ -32,11 +27,6 @@
   parent: AirlockDooble
   name: glass airlock
   components:
-  - type: MeleeSound
-    soundGroups:
-      Brute:
-        path:
-          "/Audio/Effects/glass_hit.ogg"
   - type: Sprite
     sprite: _SpaceCats/Structures/Doors/Airlocks/Glass/basic.rsi
     snapCardinals: false
