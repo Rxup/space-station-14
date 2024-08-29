@@ -114,7 +114,7 @@
   suffix: Central Command
   components:
   - type: Sprite
-    sprite: _SpaceCats/Structures/Doors/Airlocks/Standard/centcomm.rsi
+    sprite: _SpaceCats/Structures/Doors/Airlocks/Standart/centcomm.rsi
 
 - type: entity
   parent: AirlockDooble
