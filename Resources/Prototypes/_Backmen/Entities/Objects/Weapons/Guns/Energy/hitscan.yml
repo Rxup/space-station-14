@@ -81,6 +81,9 @@
     personable: true
   - type: Item
     size: SmallNormal
+    shape:
+    - 0,0,1,0
+    - 1,1,1,1
   - type: ProjectileBatteryAmmoProvider
     proto: X01Attack
     fireCost: 100
