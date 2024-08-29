@@ -1695,6 +1695,34 @@ entities:
       parent: 1
 - proto: Poweredlight
   entities:
+  - uid: 325
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 1.5,5.5
+      parent: 1
+  - uid: 331
+    components:
+    - type: Transform
+      pos: -0.5,3.5
+      parent: 1
+  - uid: 335
+    components:
+    - type: Transform
+      pos: 1.5,3.5
+      parent: 1
+  - uid: 336
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: 3.5,-1.5
+      parent: 1
+  - uid: 337
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: -2.5,-1.5
+      parent: 1
   - uid: 343
     components:
     - type: Transform
