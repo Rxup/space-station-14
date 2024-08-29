@@ -3,6 +3,7 @@
   typingState: default0
   idleState: default3 # Corvax-TypingIndicator
 
+
 - type: typingIndicator
   id: robot
   typingState: robot0
