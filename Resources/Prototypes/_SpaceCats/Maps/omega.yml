@@ -63,7 +63,7 @@
 #            BKBPLATech: [0, 3] # backmen-BPLA-Silicons
 #            BKBPLAMED: [0, 3] # backmen-BPLAMED-Silicons
             Borg: [ 2, 2 ]
-            StationAi: [ 1, 0 ]
+            StationAi: [ 1, 1 ]
 #            Deliveryman: [ 0, 1 ]
 #            Prisoner: [ 2, 3]
             
