@@ -1,6 +1,6 @@
 ﻿- type: entity
   id: CrewMonitoringServer
-  parent: BaseMachinePowered
+  parent: [BaseMachinePowered, ConstructibleMachine]
   name: crew monitoring server
   description: Receives and relays the status of all active suit sensors on the station.
   components:
@@ -28,6 +28,8 @@
         - machine_parts
     - type: Machine
       board: CrewMonitoringServerMachineCircuitboard
+    - type: ApcPowerReceiver
+      powerLoad: 200
     - type: ContainerContainer
       containers:
         machine_board: !type:Container
@@ -42,6 +44,8 @@
     - type: WirelessNetworkConnection
       range: 500
     - type: StationLimitedNetwork
+    - type: WiresPanel
+    - type: WiresVisuals
     - type: ApcPowerReceiver
       powerLoad: 200
     - type: ExtensionCableReceiver
