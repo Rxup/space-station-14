@@ -34,14 +34,12 @@
     baseLayer: base
     layerStates:
     - rods
+    - rods_1
     - rods_2
-    - rods_3
-    - rods_4
-    - rods_5
   - type: Sprite
-    state: rods_5
+    state: rods_2
     layers:
-    - state: rods_5
+    - state: rods_2
       map: ["base"]
   - type: Item
     size: Normal
