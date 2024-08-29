@@ -11,7 +11,7 @@
 
 - type: entity
   parent: AirlockDoobleEngineering
-  id: AirlockAtmospherics
+  id: AirlockDoobleAtmospherics
   suffix: Atmospherics
   components:
   - type: Sprite
