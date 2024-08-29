@@ -179,7 +179,7 @@
       sprite: Backmen/Clothing/Head/Hats/seccap.rsi
     - type: Clothing
       sprite: Backmen/Clothing/Head/Hats/seccap.rsi
-      
+
 - type: entity
   parent: ClothingHeadBase
   id: ClothingHeadHatBeretVet
@@ -190,7 +190,7 @@
       sprite: Backmen/Clothing/Head/Hats/beretvet.rsi
     - type: Clothing
       sprite: Backmen/Clothing/Head/Hats/beretvet.rsi
-      
+
 - type: entity
   parent: ClothingHeadBase
   id: ClothingHeadHatChapa
@@ -390,7 +390,7 @@
     sprite: Backmen/Clothing/Head/Masks/balaclawa.rsi
   - type: Clothing
     sprite: Backmen/Clothing/Head/Masks/balaclawa.rsi
-    
+
 - type: entity # backmen
   parent: ClothingHeadBase
   id: ClothingHeadJeester
@@ -401,7 +401,7 @@
     sprite: Backmen/Clothing/Head/Hats/jeester.rsi
   - type: Clothing
     sprite: Backmen/Clothing/Head/Hats/jeester.rsi
-    
+
 - type: entity # backmen
   parent: ClothingHeadBase
   id: ClothingHeadPlet
@@ -412,3 +412,36 @@
     sprite: Backmen/Clothing/Head/Hats/hatfriz.rsi
   - type: Clothing
     sprite: Backmen/Clothing/Head/Hats/hatfriz.rsi
+
+- type: entity
+  parent: ClothingHeadBase
+  id: ClothingHeadHatBeretBlueShield
+  name: берет Синего Щита
+  description: Берет офицеров Синего Щита, внушает чувство лживой безопасности.
+  components:
+  - type: Sprite
+    sprite: Backmen/Clothing/Head/Hats/blueberet.rsi
+  - type: Clothing
+    sprite: Backmen/Clothing/Head/Hats/blueberet.rsi
+
+- type: entity
+  parent: ClothingHeadBase
+  id: ClothingHeadHatBlueShieldCap
+  name: фуражка Синего Щита
+  description: Фуражка офицера Синего Щита, имеет эмблему Blue Shield Security.
+  components:
+  - type: Sprite
+    sprite: Backmen/Clothing/Head/Hats/bluecap.rsi
+  - type: Clothing
+    sprite: Backmen/Clothing/Head/Hats/bluecap.rsi
+
+- type: entity
+  parent: ClothingHeadBase
+  id: ClothingHeadHatUshankaBlueShield
+  name: ушанка Синего Щита
+  description: Довольно старая ушанка флота СССП, переделанная под нужды офицеров Синего Щита (Добавлена их эмблема).
+  components:
+  - type: Sprite
+    sprite: Backmen/Clothing/Head/Hats/blueushanka.rsi
+  - type: Clothing
+    sprite: Backmen/Clothing/Head/Hats/blueushanka.rsi

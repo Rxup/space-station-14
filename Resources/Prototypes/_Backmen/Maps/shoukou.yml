@@ -61,7 +61,7 @@
             SalvageSpecialist: [ 2, 4 ]
             CargoTechnician: [ 2, 3 ]
           #silicon
-            SAI: [ 1, 1 ]
+            StationAi: [ 1, 0 ]
             #BKBPLATech: [0, 2]
             #BKBPLAMED: [0, 2]
             Borg: [ 3, 3 ]

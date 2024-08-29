@@ -14,3 +14,9 @@ loadout-group-medals = Медали
 loadout-group-werx = Нижняя, вверх
 loadout-group-niz = Нижняя,низ
 loadout-group-socks = Нижняя, ноги
+
+# CentCom
+loadout-group-blueshield-jumpsuit = Одежда
+loadout-group-BlueShield-hat = Головной убор
+loadout-group-BlueShield-outer = Верхняя одежда
+loadout-group-BlueShield-eyes = Очки

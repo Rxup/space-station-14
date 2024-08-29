@@ -133,6 +133,20 @@
       - state: roboticist
       - state: jobicon
 
+- type: entity
+  id: SpawnPointBlueShield
+  parent: SpawnPointJobBase
+  name: BlueShield
+  components:
+  - type: SpawnPoint
+    job_id: BlueShield
+  - type: Sprite
+    sprite: Backmen/Markers/jobs.rsi
+    layers:
+      - state: green
+      - state: blueshield
+      - state: jobicon
+
 #- type: entity
 #  id: SpawnPointGladiator
 #  parent: SpawnPointJobBase
@@ -291,20 +305,6 @@
 #      - state: martialartist
 
 - type: entity
-  id: SpawnPointStationAI
-  parent: SpawnPointJobBase
-  name: station AI
-  components:
-  - type: SpawnPoint
-    job_id: SAI
-  - type: Sprite
-    layers:
-    - state: green
-    - state: ai
-    - state: jobicon
-      sprite: Backmen/Markers/jobs.rsi
-
-- type: entity
   id: SpawnPointShipAI
   parent: SpawnPointJobBase
   name: ship AI
@@ -317,7 +317,6 @@
     - state: ai
     - state: jobicon
       sprite: Backmen/Markers/jobs.rsi
-
 
 - type: entity
   id: SpawnFreelancer

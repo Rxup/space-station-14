@@ -1,3 +1,4 @@
+using Content.Shared.Backmen.Input;
 using Content.Shared.Input;
 using Robust.Shared.Input;
 
@@ -123,6 +124,16 @@ namespace Content.Client.Input
             common.AddFunction(ContentKeyFunctions.OpenDecalSpawnWindow);
             common.AddFunction(ContentKeyFunctions.OpenAdminMenu);
             common.AddFunction(ContentKeyFunctions.OpenGuidebook);
+
+
+            CMFunctions(contexts);
+        }
+
+        private static void CMFunctions(IInputContextContainer contexts)
+        {
+            var human = contexts.GetContext("human");
+            human.AddFunction(CMKeyFunctions.CMUniqueAction);
         }
     }
 }
+

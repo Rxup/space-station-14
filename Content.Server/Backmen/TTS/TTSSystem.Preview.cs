@@ -1,4 +1,5 @@
-﻿using Content.Shared.Backmen.TTS;
+﻿using Content.Server.Players.RateLimiting;
+using Content.Shared.Backmen.TTS;
 using Content.Shared.Corvax.TTS;
 using Robust.Shared.Player;
 using Robust.Shared.Random;
@@ -31,19 +32,14 @@ public sealed partial class TTSSystem
     /// Вообще не понимаю на какой хрен позволять пользователяем ддосить сервер ттса да и еще своим любым текстом -_-
     /// </summary>
     /// <param name="ev"></param>
-    private async void OnRequestGlobalTTS(RequestGlobalTTSEvent ev, EntitySessionEventArgs args)
+    private async void OnRequestPreviewTTS(RequestPreviewTTSEvent ev, EntitySessionEventArgs args)
     {
         if (!_isEnabled ||
             !_prototypeManager.TryIndex<TTSVoicePrototype>(ev.VoiceId, out var protoVoice))
             return;
 
-        if (ev.Text != VoiceRequestType.Preview)
-        {
-            return;
-        }
-
         var txt = _robustRandom.Pick(_sampleText);
-        var cacheId = GetCacheId(protoVoice, $"{ev.Text.ToString()}-{_sampleText.IndexOf(txt)}");
+        var cacheId = GetCacheId(protoVoice, $"{VoiceRequestType.Preview.ToString()}-{_sampleText.IndexOf(txt)}");
 
         var cached = await GetFromCache(cacheId);
         if (cached != null)
@@ -51,6 +47,9 @@ public sealed partial class TTSSystem
             RaiseNetworkEvent(new PlayTTSEvent(cached), Filter.SinglePlayer(args.SenderSession));
             return;
         }
+
+        if (HandleRateLimit(args.SenderSession) != RateLimitStatus.Allowed)
+            return;
 
         var soundData = await GenerateTTS(txt, protoVoice.Speaker);
         if (soundData is null)

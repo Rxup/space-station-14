@@ -13,6 +13,7 @@
     - BKCCCargo
     - BKCCAssistant
     - BKCCAdmiral
+    - BlueShield
   accountNumber: 1350  #backmen: currency
 
 - type: department
@@ -25,5 +26,4 @@
   roles:
     - BKBPLATech
     - BKBPLAMED
-    - SAI
   accountNumber: 1351  #backmen: currency

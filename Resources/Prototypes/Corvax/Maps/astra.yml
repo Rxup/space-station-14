@@ -66,7 +66,6 @@
             CargoTechnician: [ 4, 5 ]
             # backmen
             Prisoner: [ 3, 3]
-            SAI: [1, 1] # backmen-SAI
             Brigmedic: [ 0, 1 ] # backmen-Brigmedic
             #BKBPLATech: [0, 3] # backmen-BPLA-Silicons
             #BKBPLAMED: [0, 3] # backmen-BPLAMED-Silicons

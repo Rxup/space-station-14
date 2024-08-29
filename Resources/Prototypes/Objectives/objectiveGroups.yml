@@ -6,15 +6,15 @@
     TraitorObjectiveGroupKillSyndicateFactions: 1
     TraitorObjectiveGroupStateSyndicateFactions: 1
     TraitorObjectiveGroupSocialSyndicateFactions: 1
-
+    TraitorObjectiveGroupNukieDisk: 1  #Corvax
 - type: weightedRandom
   id: TraitorObjectiveGroupSteal
   weights:
     CaptainIDStealObjective: 1
     CMOHyposprayStealObjective: 1
     CMOCrewMonitorStealObjective: 1
+    #NukeDiskStealObjective: 1 #Corvax
     RDHardsuitStealObjective: 1
-    NukeDiskStealObjective: 1
     MagbootsStealObjective: 1
     CorgiMeatStealObjective: 1
     ClipboardStealObjective: 1
@@ -22,7 +22,7 @@
     HosGunStealObjective: 0.5
     CaptainJetpackStealObjective: 0.5
     HandTeleporterStealObjective: 0.5
-    SecretDocumentsStealObjective: 0.5
+    EnergyShotgunStealObjective: 0.5
 
 - type: weightedRandom
   id: TraitorObjectiveGroupKill
@@ -74,7 +74,6 @@
     ForensicScannerStealObjective: 1                    #sec
     FlippoEngravedLighterStealObjective: 0.5
     ClothingHeadHatWardenStealObjective: 1
-    ClothingNeckShockCollarStealObjective: 1
     ClothingOuterHardsuitVoidParamedStealObjective: 1   #med
     MedicalTechFabCircuitboardStealObjective: 1
     ClothingHeadsetAltMedicalStealObjective: 1

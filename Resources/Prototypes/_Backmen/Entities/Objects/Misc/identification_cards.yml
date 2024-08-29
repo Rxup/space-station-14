@@ -549,3 +549,16 @@
     - MTFLeader
     - AllAccess
     - CentCom
+
+- type: entity
+  parent: IDCardStandard
+  id: BlueShieldIDCard
+  name: Blue Shield ID Card
+  components:
+    - type: Sprite
+      layers:
+        - state: default
+        - sprite: Backmen/Objects/Misc/id_cards.rsi
+          state: idblueshield
+    - type: PresetIdCard
+      job: BlueShield
