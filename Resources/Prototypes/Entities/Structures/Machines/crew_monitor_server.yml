@@ -46,8 +46,6 @@
     - type: StationLimitedNetwork
     - type: WiresPanel
     - type: WiresVisuals
-    - type: ApcPowerReceiver
-      powerLoad: 200
     - type: ExtensionCableReceiver
     - type: Destructible
       thresholds:
