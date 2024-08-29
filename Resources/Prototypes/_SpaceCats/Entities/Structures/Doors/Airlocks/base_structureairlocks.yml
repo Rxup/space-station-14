@@ -10,7 +10,7 @@
         path:
           "/Audio/Effects/glass_hit.ogg"
   - type: Sprite
-    sprite: _Sunrise/Structures/Doors/Airlocks/Glass/double_glass_airlock.rsi
+    sprite: _SpaceCats/Structures/Doors/Airlocks/Standard/basic.rsi
     snapCardinals: false
     offset: 0.5,0
   - type: Fixtures
@@ -38,7 +38,7 @@
         path:
           "/Audio/Effects/glass_hit.ogg"
   - type: Sprite
-    sprite: _Sunrise/Structures/Doors/Airlocks/Glass/double_glass_airlock.rsi
+    sprite: _SpaceCats/Structures/Doors/Airlocks/Glass/basic.rsi.rsi
     snapCardinals: false
     offset: 0.5,0
   - type: Fixtures
