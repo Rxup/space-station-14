@@ -53,7 +53,7 @@
   - type: Stamina
     critThreshold: 85
   - type: TypingIndicator
-    proto: felinid  # cats
+    proto: felinid
   - type: PseudoItem
   - type: Vocal
     sounds:
