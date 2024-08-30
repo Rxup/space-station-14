@@ -177,6 +177,8 @@
     radius: 2
     energy: 2
     color: "#aea5f6"
+  - type: StaticPrice
+    price: 500
 
 - type: rcd
   id: SwarmWallRCD
