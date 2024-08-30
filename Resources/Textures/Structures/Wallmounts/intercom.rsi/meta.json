@@ -1,35 +1,37 @@
 {
-    "version": 1,
-    "size": {
-        "x": 32,
-        "y": 32
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "Taken from fulpstation at https://github.com/fulpstation/fulpstation/blob/9bd86e85b54491c68a01f2b44eb9c3e09dd1ae05/icons/obj/machines/wallmounts.dmi",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "build"
     },
-    "license": "CC-BY-SA-3.0",
-    "copyright": "Taken from https://github.com/Skyrat-SS13/Skyrat-tg/blob/6e7197f550aac62a165c0a8c6b0835de19342623/modular_skyrat/modules/aesthetics/intercom/icons/intercom.dmi & build state from DenLemp#2965",
-    "states": [
-        {
-            "name": "base",
-            "directions": 4
-        },
-        {
-            "name": "broadcasting",
-            "directions": 4
-        },
-        {
-            "name": "build",
-            "directions": 4
-        },
-        {
-            "name": "speaker",
-            "directions": 4
-        },
-        {
-            "name": "unshaded",
-            "directions": 4
-        },
-        {
-            "name": "panel",
-            "directions": 4
-        }
-    ]
+    {
+      "name": "base"
+    },
+    {
+      "name": "broadcasting"
+    },
+    {
+      "name": "unshaded"
+    },
+    {
+      "name": "speaker",
+      "delays": [
+        [
+          0.1,
+          0.3,
+          0.1,
+          0.1
+        ]
+      ]
+    },
+    {
+      "name": "panel"
+    }
+  ]
 }

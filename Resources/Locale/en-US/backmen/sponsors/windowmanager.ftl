@@ -13,6 +13,12 @@ sponsor-win-manager-ghost-tier05 = Snow
 sponsor-win-manager-ghost-tier06 = Star
 sponsor-win-manager-ghost-tier07 = Faceless
 sponsor-win-manager-ghost-tier08 = Kaiju
+sponsor-win-manager-ghost-tier09 = Kosher Worm
+sponsor-win-manager-ghost-tier10 = 10
+sponsor-win-manager-ghost-tier11 = 11
+sponsor-win-manager-ghost-tier12 = 12
+sponsor-win-manager-ghost-tier13 = 13
+sponsor-win-manager-ghost-tier14 = 14
 sponsor-win-manager-theme = Ghost Theme:
 
 sponsor-win-manager-tier-0 = Free

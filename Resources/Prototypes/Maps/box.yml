@@ -2,7 +2,7 @@
   id: Box
   mapName: 'Box Station'
   mapPath: /Maps/box.yml
-  minPlayers: 50
+  minPlayers: 0
   stations:
     Boxstation:
       stationProto: StandardNanotrasenStation
@@ -61,9 +61,10 @@
             Mime: [ 1, 1 ]
             Musician: [ 1, 1 ]
             # backmen
-            #BKBPLATech: [0, 3] # backmen-BPLA-Silicons
-            #BKBPLAMED: [0, 3] # backmen-BPLAMED-Silicons
-            Deliveryman: [ 0, 1 ] # backmen-Deliveryman
-            Prisoner: [ 2, 2] # backmen-Prisoner
-            Brigmedic: [ 0, 1 ] # backmen-Brigmedic
+#            BKBPLATech: [0, 3] # backmen-BPLA-Silicons
+#            BKBPLAMED: [0, 3] # backmen-BPLAMED-Silicons
+#            Deliveryman: [ 0, 1 ] # backmen-Deliveryman
+#            Prisoner: [ 2, 2] # backmen-Prisoner
+            
+#            Brigmedic: [ 0, 1 ] # backmen-Brigmedic
 

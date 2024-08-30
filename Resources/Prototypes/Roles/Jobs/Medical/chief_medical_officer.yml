@@ -18,7 +18,7 @@
 #    - !type:OverallPlaytimeRequirement
 #      time: 144000 #40 hrs
     - !type:AgeRequirement
-      requiredAge: 21
+      requiredAge: 21 # cats
   weight: 10
   startingGear: CMOGear
   icon: "JobIconChiefMedicalOfficer"
@@ -34,10 +34,10 @@
   - Brig
   - Cryogenics
   #start-backmen: currency
-  minBankBalance: 400
-  maxBankBalance: 600
+  minBankBalance: 600
+  maxBankBalance: 800
   wageDepartment: Command
-  wage: 100
+  wage: 200
   #end-backmen: currency
   special:
   - !type:AddComponentSpecial

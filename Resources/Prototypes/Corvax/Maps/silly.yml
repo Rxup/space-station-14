@@ -94,11 +94,12 @@
             SalvageSpecialist: [ 3, 3 ]
             CargoTechnician: [ 3, 3 ]
             # backmen
-            Brigmedic: [ 0, 1 ] # backmen-Brigmedic
+#            Brigmedic: [ 0, 1 ] # backmen-Brigmedic
+#            
             #BKBPLATech: [ 0, 1 ] # backmen-BPLA-Silicons
             #BKBPLAMED: [ 0, 1 ] # backmen-BPLAMED-Silicons
-            Deliveryman: [ 0, 1 ]
-            Prisoner: [ 1, 2 ]
+#           Deliveryman: [ 0, 1 ]
+#            Prisoner: [ 1, 2 ]
         - type: StationGoal
           goals:
           - SolarPanels

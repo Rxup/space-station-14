@@ -1,0 +1,36 @@
+- type: polymorph
+  id: WizardForcedArachnid
+  configuration:
+    entity: MobArachnid
+    forced: true
+    inventory: Transfer
+    transferName: true
+    transferDamage: true
+    revertOnCrit: false
+    revertOnDeath: false
+
+- type: entity
+  id: ProjectilePolyboltArachnid
+  parent: ProjectilePolyboltBase
+  name: Гены Арахнидов
+  description: Nooo, I don't wanna be Arachnid!
+  noSpawn: true
+  components:
+  - type: PolymorphOnCollide
+    polymorph: WizardForcedArachnid
+    whitelist:
+      components:
+      - Body
+
+- type: entity
+  name: волшебная палочка полиморфа арахнида
+  parent: WeaponWandPolymorphBase
+  id: WeaponWandPolymorphArachnid
+  description: На случай, когда вам срочно нужена паутина, а клоун выглядит уж очень мерзко.
+  components:
+  - type: BasicEntityAmmoProvider
+    proto: ProjectilePolyboltArachnid
+    capacity: 1
+    count: 1
+
+
