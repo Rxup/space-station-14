@@ -14,8 +14,8 @@
     difficulty: 1
     #unique: false
     icon:
-      sprite: Nyanotrasen/Icons/psi.rsi
-      state: psi
+      sprite: Backmen/Clothing/Head/Hats/tinfoil.rsi
+      state: icon
   - type: ObjectiveBlacklistRequirement
     blacklist:
       components:
@@ -25,8 +25,8 @@
 - type: entity
   id: BecomeGolemObjective
   parent: BaseTraitorObjective
-  name: objective-condition-become-golem-title
-  description: objective-condition-become-golem-description.
+  name: Get golemized
+  description: We'd like to understand more of the golemization process. Become a golem, survive, and we'll debrief you.
   components:
   # - type: NotJobsRequirement
     # jobs:
@@ -38,7 +38,7 @@
     difficulty: 1
     #unique: false
     icon:
-      sprite: Nyanotrasen/Mobs/Species/Golem/cult.rsi
+      sprite: Backmen/Mobs/Species/Golem/cult.rsi
       state: full
   - type: ObjectiveBlacklistRequirement
     blacklist:
