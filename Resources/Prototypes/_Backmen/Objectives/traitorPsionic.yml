@@ -7,13 +7,15 @@
   - type: NotJobsRequirement
     jobs:
       - Mime
-      - ForensicMantis
+      - ResearchDirector
+      - ResearchAssistant
+      - Scientist
   - type: Objective
     difficulty: 1
     #unique: false
     icon:
       sprite: Nyanotrasen/Icons/psi.rsi
-     state: psi
+      state: psi
   - type: ObjectiveBlacklistRequirement
     blacklist:
       components:
@@ -26,8 +28,12 @@
   name: objective-condition-become-golem-title
   description: objective-condition-become-golem-description.
   components:
-  - type: NotJobRequirement
-    job: Chaplain
+  - type: NotJobsRequirement
+    jobs:
+      - ResearchDirector
+      - ResearchAssistant
+      - Scientist
+      - Chaplain
   - type: Objective
     difficulty: 1
     #unique: false
