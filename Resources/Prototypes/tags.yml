@@ -937,6 +937,9 @@
   id: ModularReceiver
 
 - type: Tag
+  id: ModuleSwarmer
+
+- type: Tag
   id: MonkeyCube
 
 - type: Tag
