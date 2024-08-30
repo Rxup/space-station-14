@@ -1,44 +1,44 @@
 - type: entity
-id: BecomePsionicObjective
- parent: BaseTraitorObjective
- name: Become psionic
- description: We need you to acquire psionics and keep them until your mission is complete.
- components:
- - type: NotJobsRequirement
-   jobs:
-     - Mime
-     - ForensicMantis
- - type: Objective
-   difficulty: 1
-   #unique: false
-   icon:
-     sprite: Nyanotrasen/Icons/psi.rsi
-    state: psi
- - type: ObjectiveBlacklistRequirement
-   blacklist:
-     components:
-     - BecomeGolemCondition
- - type: BecomePsionicCondition
+  id: BecomePsionicObjective
+  parent: BaseTraitorObjective
+  name: Become psionic
+  description: We need you to acquire psionics and keep them until your mission is complete.
+  components:
+  - type: NotJobsRequirement
+    jobs:
+      - Mime
+      - ForensicMantis
+  - type: Objective
+    difficulty: 1
+    #unique: false
+    icon:
+      sprite: Nyanotrasen/Icons/psi.rsi
+     state: psi
+  - type: ObjectiveBlacklistRequirement
+    blacklist:
+      components:
+      - BecomeGolemCondition
+  - type: BecomePsionicCondition
 
 - type: entity
- id: BecomeGolemObjective
- parent: BaseTraitorObjective
- name: objective-condition-become-golem-title
- description: objective-condition-become-golem-description.
- components:
- - type: NotJobRequirement
-   job: Chaplain
- - type: Objective
-   difficulty: 1
-   #unique: false
-   icon:
-     sprite: Nyanotrasen/Mobs/Species/Golem/cult.rsi
-     state: full
- - type: ObjectiveBlacklistRequirement
-   blacklist:
-     components:
-     - BecomePsionicCondition
- - type: BecomeGolemCondition
+  id: BecomeGolemObjective
+  parent: BaseTraitorObjective
+  name: objective-condition-become-golem-title
+  description: objective-condition-become-golem-description.
+  components:
+  - type: NotJobRequirement
+    job: Chaplain
+  - type: Objective
+    difficulty: 1
+    #unique: false
+    icon:
+      sprite: Nyanotrasen/Mobs/Species/Golem/cult.rsi
+      state: full
+  - type: ObjectiveBlacklistRequirement
+    blacklist:
+      components:
+      - BecomePsionicCondition
+  - type: BecomeGolemCondition
 
 - type: entity
   id: RaiseGlimmerObjective
