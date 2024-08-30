@@ -1,10 +1,10 @@
-using Content.Shared.Backmen.Soul;
 using Robust.Shared.Audio;
+using Robust.Shared.GameStates;
 
-namespace Content.Server.Backmen.Soul;
+namespace Content.Shared.Backmen.Soul;
 
-[RegisterComponent]
-public sealed partial class GolemComponent : SharedGolemComponent
+[RegisterComponent, NetworkedComponent]
+public partial class GolemComponent : Component
 {
     // we use these to config stuff via UI before installation
     [ViewVariables(VVAccess.ReadWrite)]
@@ -14,4 +14,6 @@ public sealed partial class GolemComponent : SharedGolemComponent
 
     [DataField("deathSound")]
     public SoundSpecifier DeathSound { get; set; } = new SoundPathSpecifier("/Audio/Effects/Lightning/lightningbolt.ogg");
+
+
 }

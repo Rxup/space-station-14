@@ -19,9 +19,8 @@
   description: Contains a soul. Placeholder sprite.
   components:
   - type: Sprite
-    sprite: Backmen/Objects/Materials/materials.rsi
-    state: bluespace
-    color: purple
+    sprite: Backmen/Objects/Misc/crystals.rsi
+    state: purple_soul
   - type: Speech
   - type: Psionic
   - type: SoulCrystal
@@ -34,3 +33,7 @@
           Quantity: 50
   - type: Extractable
     grindableSolutionName: ectoplasm
+  - type: PointLight
+    radius: 1.3
+    energy: 7.0
+    color: "#9932CC"

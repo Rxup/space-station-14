@@ -1,6 +1,8 @@
-namespace Content.Server.Backmen.Soul;
+﻿using Robust.Shared.GameStates;
 
-[RegisterComponent]
+namespace Content.Shared.Backmen.Soul;
+
+[RegisterComponent,NetworkedComponent]
 public sealed partial class SoulCrystalComponent : Component
 {
     /// <summary>

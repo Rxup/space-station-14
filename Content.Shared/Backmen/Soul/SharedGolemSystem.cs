@@ -1,34 +1,35 @@
-using Robust.Shared.Containers;
-using Content.Shared.Weapons.Ranged.Components;
-using Content.Shared.Weapons.Ranged.Systems;
+using Content.Shared.Examine;
+using Content.Shared.Popups;
+using Content.Shared.Weapons.Ranged.Events;
 
 namespace Content.Shared.Backmen.Soul;
 
 public abstract class SharedGolemSystem : EntitySystem
 {
+    [Dependency] protected readonly SharedPopupSystem Popup = default!;
+    [Dependency] private readonly SharedPointLightSystem _pointLight = default!;
+
     public override void Initialize()
     {
         base.Initialize();
 
         // I can think of better ways to handle this, but they require API changes upstream.
-        SubscribeLocalEvent<GunHeldByGolemComponent, AttemptShootEvent>(OnAttemptShoot);
+        SubscribeLocalEvent<GolemComponent, ShotAttemptedEvent>(OnAttemptShoot);
+        SubscribeLocalEvent<SoulCrystalComponent, ExaminedEvent>(OnExamined);
     }
 
-    protected void SharedOnEntInserted(EntInsertedIntoContainerMessage args)
+    private void OnExamined(Entity<SoulCrystalComponent> ent, ref ExaminedEvent args)
     {
-        if (HasComp<GunComponent>(args.Entity))
-            AddComp<GunHeldByGolemComponent>(args.Entity);
+        if(!args.IsInDetailsRange)
+            return;
+        if(!_pointLight.TryGetLight(ent, out var light))
+            return;
+        args.PushText(light.Enabled ? Loc.GetString("golem-soul-have") : Loc.GetString("golem-soul-no-have"));
     }
 
-    protected void SharedOnEntRemoved(EntRemovedFromContainerMessage args)
+    private void OnAttemptShoot(EntityUid uid, GolemComponent component, ref ShotAttemptedEvent args)
     {
-        if (HasComp<GunComponent>(args.Entity))
-            RemComp<GunHeldByGolemComponent>(args.Entity);
-    }
-
-    private void OnAttemptShoot(EntityUid uid, GunHeldByGolemComponent component, ref AttemptShootEvent args)
-    {
-        args.Cancelled = true;
-        args.Message = Loc.GetString("golem-no-using-guns-popup");
+        Popup.PopupClient(Loc.GetString("golem-no-using-guns-popup"), uid, uid);
+        args.Cancel();
     }
 }

@@ -172,7 +172,7 @@ public sealed class MindSwapPowerSystem : EntitySystem
         _actions.AddAction(uid, ref component.MindSwapReturn, ActionMindSwapReturn);
     }
 
-    public bool Swap(EntityUid performer, EntityUid target, bool end = false)
+    public bool Swap(EntityUid performer, EntityUid target, bool end = false, bool force = false)
     {
         if (performer == target)
         {
@@ -202,7 +202,7 @@ public sealed class MindSwapPowerSystem : EntitySystem
                 return false;
             }
 */
-            if (HasComp<MindShieldComponent>(target))
+            if (HasComp<MindShieldComponent>(target) && !force)
             {
                 _popupSystem.PopupCursor("Ошибка! Ваша цель имеет защиту разума!", performer);
                 return false;
