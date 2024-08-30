@@ -29,7 +29,7 @@
 - type: radioChannel
   id: Swarm
   name: Рой
-  keycode: 'ы' 
+  keycode: 'р' 
   frequency: 000
   color: "#aea5f6"
   longRange: true
