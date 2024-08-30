@@ -229,7 +229,7 @@
     selectedMode: SemiAuto
     fireRate: 3
     soundGunshot:
-      path: /Audio/_SpaceCats/Swarmers/SwarmShot.ogg
+      path: /Audio/_Cats/Swarmers/SwarmShot.ogg
   - type: ProjectileBatteryAmmoProvider
     proto: SwarmShotBullet
     fireCost: 66.66
@@ -252,9 +252,6 @@
       types:
         Shock: 8
         Structural: 30
-    ignoreWhitelist:
-     tags:
-     - Swarmer
   - type: Sprite
     sprite: _SpaceCats/Swarmers/TOOLS/Swarmer_laser_gun.rsi
     layers:
@@ -376,14 +373,14 @@
       angleDecay: 16
       fireRate: 6
       soundGunshot:
-        path: /Audio/_SpaceCats/Swarmers/SwarmShot.ogg
+        path: /Audio/_Cats/Swarmers/SwarmShot.ogg
       selectedMode: FullAuto
     - type: HTN
       rootTask:
         task: TurretCompound
       blackboard:
         SoundTargetInLOS: !type:SoundPathSpecifier
-          path: /Audio/_SpaceCats/Swarmers/SwarmTurret.ogg
+          path: /Audio/_Cats/Swarmers/SwarmTurret.ogg
     - type: Damageable
       damageContainer: Inorganic
       damageModifierSet: SwarmArm

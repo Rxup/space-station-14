@@ -30,7 +30,7 @@
   id: Swarm
   name: Рой
   keycode: 'р' 
-  frequency: 000
+  frequency: 7373
   color: "#aea5f6"
   longRange: true
 
@@ -105,7 +105,7 @@
     - Dead
   - type: EmitSoundOnTrigger
     sound:
-      path: /Audio/_SpaceCats/Swarmers/SwarmerDead.ogg
+      path: /Audio/_Cats/Swarmers/SwarmerDead.ogg
       params:
         volume: -2
   - type: TypingIndicator
