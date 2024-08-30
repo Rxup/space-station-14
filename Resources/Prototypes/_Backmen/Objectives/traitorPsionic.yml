@@ -4,12 +4,12 @@
   name: Become psionic
   description: We need you to acquire psionics and keep them until your mission is complete.
   components:
-  - type: NotJobsRequirement
-    jobs:
-      - Mime
-      - ResearchDirector
-      - ResearchAssistant
-      - Scientist
+  # - type: NotJobsRequirement
+    # jobs:
+      # - Mime
+      # - ResearchDirector
+      # - ResearchAssistant
+      # - Scientist
   - type: Objective
     difficulty: 1
     #unique: false
@@ -28,12 +28,12 @@
   name: objective-condition-become-golem-title
   description: objective-condition-become-golem-description.
   components:
-  - type: NotJobsRequirement
-    jobs:
-      - ResearchDirector
-      - ResearchAssistant
-      - Scientist
-      - Chaplain
+  # - type: NotJobsRequirement
+    # jobs:
+      # - ResearchDirector
+      # - ResearchAssistant
+      # - Scientist
+      # - Chaplain
   - type: Objective
     difficulty: 1
     #unique: false
