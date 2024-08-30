@@ -8,6 +8,15 @@
     - id: BlobSpawn
     - id: BluespaceGoat
     - id: SpiderSpiderVampireSpawn
+    - id: NoosphericZap
+    - id: NoosphericFry
+    - id: PsionicCatGotYourTongue
+    - id: MassMindSwap
+    - id: GlimmerWispSpawn
+    - id: FreeProberEarly
+    - id: FreeProber
+    - id: GlimmerRandomSentience
+    - id: GlimmerRevenantSpawn
 
 - type: entity
   id: EvilTwinSpawn
