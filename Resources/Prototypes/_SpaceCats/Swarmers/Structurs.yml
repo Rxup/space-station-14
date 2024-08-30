@@ -15,7 +15,7 @@
     lifetime: 2.3
   - type: EmitSoundOnSpawn
     sound: 
-      path: /Audio/_borkroman/Swarmers/EffectSpawn.ogg
+      path: /Audio/_Cats/Swarmers/EffectSpawn.ogg
 
 - type: accessLevel
   id: SwarmerAccess
@@ -70,11 +70,11 @@
       types:
         Blunt: 80
     openSound:
-      path: /Audio/_borkroman/Swarmers/SwarmDoor_Open.ogg
+      path: /Audio/_Cats/Swarmers/SwarmDoor_Open.ogg
     closeSound:
-      path: /Audio/_borkroman/Swarmers/SwarmDoor_Closed.ogg
+      path: /Audio/_Cats/Swarmers/SwarmDoor_Closed.ogg
     denySound:
-      path: /Audio/_borkroman/Swarmers/swarmDoor_Deny.ogg
+      path: /Audio/_Cats/Swarmers/swarmDoor_Deny.ogg
   - type: Airlock
     openUnlitVisible: true 
   - type: NavMapDoor
@@ -329,7 +329,7 @@
     volume: 5
     range: 5
     sound:
-      path: /Audio/_borkroman/Swarmers/BiomassMashine.ogg
+      path: /Audio/_Cats/Swarmers/BiomassMashine.ogg
   - type: ApcPowerReceiver
     powerLoad: 0
   - type: Destructible
@@ -399,7 +399,7 @@
       fix1:
         hard: false
         density: 7
-        hape:
+        shape:
           !type:PhysShapeAabb
           bounds: "-0.5,-0.5,0.5,0.5"
         layer:

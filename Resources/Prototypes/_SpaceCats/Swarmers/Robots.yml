@@ -168,8 +168,6 @@
     - FootstepSound
     - EmagImmune
     - Swarmer 
-  - type: TTS
-    voice: sentrybot 
   - type: Construction
     node: cyborg
   - type: Inventory
