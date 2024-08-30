@@ -18,6 +18,7 @@ using Content.Server.Body.Systems;
 using Content.Shared.Backmen.Abilities.Psionics;
 using Content.Shared.Backmen.Chapel;
 using Content.Shared.Backmen.Psionics.Glimmer;
+using Content.Shared.Backmen.Soul;
 using Content.Shared.Players;
 using Robust.Server.Audio;
 using Robust.Shared.Prototypes;
@@ -134,7 +135,7 @@ public sealed class SacrificialAltarSystem : EntitySystem
             _mindSystem.TransferTo(mindId, trap);
 
             if (TryComp<SoulCrystalComponent>(trap, out var crystalComponent))
-                crystalComponent.TrueName = MetaData(args.Args.Target.Value).EntityName;
+                crystalComponent.TrueName = Name(args.Args.Target.Value);
 
             _metaDataSystem.SetEntityName(trap, Loc.GetString("soul-entity-name", ("trapped", args.Args.Target)));
             _metaDataSystem.SetEntityDescription(trap, Loc.GetString("soul-entity-name", ("trapped", args.Args.Target)));
@@ -142,7 +143,7 @@ public sealed class SacrificialAltarSystem : EntitySystem
 
         if (TryComp<BodyComponent>(args.Args.Target, out var body))
         {
-            _bodySystem.GibBody(args.Args.Target.Value, true, body, false);
+            _bodySystem.GibBody(args.Args.Target.Value, false, body, false);
         }
         else
         {

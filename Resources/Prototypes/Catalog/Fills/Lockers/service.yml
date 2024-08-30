@@ -54,7 +54,7 @@
       - id: DrinkMilkCarton
         amount: 2
       - id: AntiPsychicKnife # backmen
-      - id: ClothingHeadCage # backmen
+        prob: 0.05
       - id: DrinkSoyMilkCarton
 
 - type: entity
@@ -81,8 +81,6 @@
         amount: 2
       - id: Plunger
         amount: 2
-      - id: AntiPsychicKnife # backmen
-      - id: ClothingHeadCage # backmen
 
 - type: entity
   id: ClosetLegalFilled
@@ -118,8 +116,6 @@
       - id: ClothingUniformOveralls
       - id: ClothingHeadHatTrucker
         prob: 0.1
-      - id: AntiPsychicKnife # backmen
-      - id: ClothingHeadCage # backmen
 
 - type: entity
   id: LockerBotanistLoot
