@@ -4,12 +4,15 @@
 - type: htnCompound
   id: WispCombatCompound
   branches:
-    - tasks:
-        - !type:HTNCompoundTask
-          task: WispRangedCombatCompound
-    - tasks:
-        - !type:HTNCompoundTask
-          task: DrainPsionicCompound
+  - tasks:
+    - !type:HTNCompoundTask
+      task: RangedCombatCompound
+  - tasks:
+    - !type:HTNCompoundTask
+      task: DrainPsionicCompound
+#  - tasks:
+#    - !type:HTNCompoundTask
+#      task: IdleCompound
 
 - type: htnCompound
   id: WispRangedCombatCompound
@@ -55,21 +58,18 @@
 - type: htnCompound
   id: DrainPsionicCompound
   branches:
-    - tasks:
-        - !type:HTNPrimitiveTask
-          operator: !type:PickDrainTargetOperator
-            targetKey: MovementTarget
-            drainKey: DrainTarget
-            rangeKey: IdleRange
-
-        - !type:HTNPrimitiveTask
-          operator: !type:MoveToOperator
-            pathfindInPlanning: false
-            targetKey: MovementTarget
-
-        - !type:HTNPrimitiveTask
-          operator: !type:DrainOperator
-            drainKey: DrainTarget
+  - tasks:
+    - !type:HTNPrimitiveTask
+      operator: !type:PickDrainTargetOperator
+        targetKey: TargetCoordinates
+        drainKey: DrainTarget
+        rangeKey: IdleRange
+    - !type:HTNPrimitiveTask
+      operator: !type:MoveToOperator
+        pathfindInPlanning: false
+    - !type:HTNPrimitiveTask
+      operator: !type:DrainOperator
+        drainKey: DrainTarget
 
 - type: htnCompound
   id: NPCGuardRangedCompound
