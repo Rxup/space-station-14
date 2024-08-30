@@ -41,6 +41,8 @@
     key: enum.LatheUiKey.Key
   - type: Lathe
   - type: ActivatableUIRequiresPower
+  - type: MaterialStorage
+    storageLimit: 9000
   - type: UserInterface
     interfaces:
       enum.LatheUiKey.Key:
