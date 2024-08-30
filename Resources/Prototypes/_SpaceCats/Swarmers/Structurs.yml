@@ -296,7 +296,7 @@
 - type: rcd
   id: FloorSwarmerEntityLightRCD
   category: WallsAndFlooring
-  sprite: _SpaceCats/Swarmers/STRUCTURES/Swarm_Tiel.rsi/1.png
+  sprite: _SpaceCats/Swarmers/STRUCTURES/Swarm_Tiel.rsi/full-1.png
   mode: ConstructObject
   prototype: FloorSwarmerEntityLight
   cost: 1
