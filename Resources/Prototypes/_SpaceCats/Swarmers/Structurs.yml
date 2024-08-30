@@ -1,0 +1,541 @@
+- type: entity
+  parent: EffectRCDBase
+  id: EffectSwarmConstruct
+  noSpawn: true
+  components:
+  - type: Sprite
+    sprite: _SpaceCats/Swarmers/TOOLS/Swarmer_rcd.rsi
+    state: SwarmConstruct1
+    shader: unshaded
+  - type: PointLight
+    radius: 2
+    energy: 2
+    color: "#aea5f6"
+  - type: TimedDespawn
+    lifetime: 2.3
+  - type: EmitSoundOnSpawn
+    sound: 
+      path: /Audio/_borkroman/Swarmers/EffectSpawn.ogg
+
+- type: accessLevel
+  id: SwarmerAccess
+  name: S.W.A.R.M.
+
+#Дверь Свармеров
+- type: entity
+  id: SwarmDoor
+  parent: BaseStructure
+  name: Шлюз из S.W.A.R.M стали
+  suffix: BORK (Swarmer)
+  description: Невероятно прочная дверь.
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: Tag
+    tags:
+      - EmagImmune
+      - Structure
+  - type: InteractionOutline
+  - type: Sprite
+    sprite: _SpaceCats/Swarmers/STRUCTURES/Swarm_Door.rsi
+    layers:
+    - state: closed
+      map: ["enum.DoorVisualLayers.Base"]
+    - state: closed_unlit
+      map: ["enum.DoorVisualLayers.BaseUnlit"]
+    - state: welded
+      map: ["enum.WeldableLayers.BaseWelded"]
+    - state: bolted_unlit
+      map: ["enum.DoorVisualLayers.BaseBolted"]
+    - state: emergency_unlit
+      map: ["enum.DoorVisualLayers.BaseEmergencyAccess"]
+    - state: panel_open
+      map: ["enum.WiresVisualLayers.MaintenancePanel"]
+  - type: AnimationPlayer
+  - type: Physics
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.49,-0.49,0.49,0.49" 
+        density: 100
+        mask:
+        - FullTileMask
+        layer:
+        - WallLayer
+  - type: DoorBolt
+  - type: Door
+    crushDamage:
+      types:
+        Blunt: 80
+    openSound:
+      path: /Audio/_borkroman/Swarmers/SwarmDoor_Open.ogg
+    closeSound:
+      path: /Audio/_borkroman/Swarmers/SwarmDoor_Closed.ogg
+    denySound:
+      path: /Audio/_borkroman/Swarmers/swarmDoor_Deny.ogg
+  - type: Airlock
+    openUnlitVisible: true 
+  - type: NavMapDoor
+  - type: AccessReader
+    access: [["SwarmerAccess"]]
+  - type: Appearance
+  - type: WiresVisuals
+  - type: ApcPowerReceiver
+    powerLoad: 0
+  - type: ExtensionCableReceiver
+  - type: Electrified
+    enabled: false
+    usesApcPower: true
+  - type: Airtight
+  - type: Occluder
+  - type: Damageable
+    damageContainer: StructuralInorganic
+    damageModifierSet: StructuralMetallic
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 500
+      behaviors:
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          SheetSWARMSteel1:
+            min: 1
+            max: 3
+          SheetSWARMGlass1:
+            min: 1
+            max: 2
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalSlam
+  - type: IconSmooth
+    key: walls
+    mode: NoSprite
+  - type: PointLight
+    radius: 2
+    energy: 2
+    color: "#aea5f6"
+
+- type: rcd
+  id: SwarmDoorRCD
+  category: WallsAndFlooring
+  sprite: _SpaceCats/Swarmers/STRUCTURES/Swarm_Door.rsi/closed.png
+  mode: ConstructObject
+  prototype: SwarmDoor
+  cost: 4
+  delay: 1.2
+  collisionMask: FullTileMask
+  rotation: Fixed
+  fx: EffectSwarmConstruct
+
+# Стена свармеров
+- type: entity
+  parent: BaseWall
+  id: SwarmWall
+  suffix: BORK (Swarmer)
+  description: Невероятно прочная стена.
+  name: Стена из S.W.A.R.M стали
+  components:
+  - type: Tag
+    tags:
+      - Wall
+  - type: IconSmooth
+    key: walls
+    base: swarm
+  - type: Sprite
+    sprite: _SpaceCats/Swarmers/STRUCTURES/Swarm_wall.rsi
+    layers:
+    - state: full
+  - type: Icon
+    sprite: _SpaceCats/Swarmers/STRUCTURES/Swarm_wall.rsi
+    layers:
+    - state: full
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 500
+      behaviors:
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          SheetSWARMSteel1:
+            min: 1
+            max: 3
+          SheetSWARMGlass1:
+            min: 1
+            max: 2
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalSlam
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+  - type: PointLight
+    radius: 2
+    energy: 2
+    color: "#aea5f6"
+
+- type: rcd
+  id: SwarmWallRCD
+  category: WallsAndFlooring
+  sprite: _SpaceCats/Swarmers/STRUCTURES/Swarm_wall.rsi/full.png
+  mode: ConstructObject
+  prototype: SwarmWall
+  cost: 2
+  delay: 1.2
+  collisionMask: FullTileMask
+  rotation: Fixed
+  fx: EffectSwarmConstruct
+
+#пол свармеров
+- type: entity
+  id: FloorSwarmerEntity
+  name: S.W.A.R.M покрытие
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: AmbientSound
+    enabled: false
+    volume: -8
+    range: 8
+    sound:
+      path: /Audio/Ambience/Objects/drain.ogg
+  - type: Drain
+  - type: DumpableSolution
+    solution: drainBuffer
+  - type: Appearance
+  - type: SolutionContainerVisuals
+    maxFillLevels: 1
+    fillBaseName: fill-
+    solutionName: drainBuffer
+  - type: SolutionContainerManager
+    solutions:
+      drainBuffer:
+        maxVol: 1000
+  - type: DrainableSolution
+    solution: drainBuffer
+  - type: Clickable
+  - type: Sprite
+    sprite: _SpaceCats/Swarmers/STRUCTURES/Swarm_Tiel.rsi
+    drawdepth: FloorTiles
+    layers:
+      - state: Swarm
+  - type: Transform
+    anchored: true
+  - type: FootstepModifier
+    footstepSoundCollection:
+      collection: FootstepHull
+  - type: Damageable
+    damageContainer: Inorganic
+    damageModifierSet: Metallic
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 500
+      behaviors:
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          SheetSWARMSteel1:
+            min: 1
+            max: 1
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalSlam
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+
+- type: rcd
+  id: FloorSwarmerEntityRCD
+  category: WallsAndFlooring
+  sprite: _SpaceCats/Swarmers/STRUCTURES/Swarm_Tiel.rsi/Swarm.png
+  mode: ConstructObject
+  prototype: FloorSwarmerEntity
+  cost: 1
+  delay: 1.2
+  collisionMask: FullTileMask
+  fx: EffectSwarmConstruct
+
+- type: entity
+  id: FloorSwarmerEntityLight
+  parent: FloorSwarmerEntity
+  components:
+  - type: PointLight
+    radius: 2
+    energy: 2
+    color: "#aea5f6"
+  - type: Clickable
+  - type: Sprite
+    sprite: _SpaceCats/Swarmers/STRUCTURES/Swarm_Tiel.rsi
+    drawdepth: FloorTiles
+    layers:
+      - state: Swarm_Light
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 500
+      behaviors:
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          SheetSWARMSteel1:
+            min: 1
+            max: 1
+          SheetSWARMGlass1:
+            min: 1
+            max: 1
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalSlam
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+
+- type: rcd
+  id: FloorSwarmerEntityLightRCD
+  category: WallsAndFlooring
+  sprite: _SpaceCats/Swarmers/STRUCTURES/Swarm_Tiel.rsi/1.png
+  mode: ConstructObject
+  prototype: FloorSwarmerEntityLight
+  cost: 1
+  delay: 1.2
+  collisionMask: FullTileMask
+  fx: EffectSwarmConstruct
+
+#Измельчитель массы
+- type: entity
+  id: SwarmMassShredder
+  parent: BaseMachinePowered
+  name: Измельчитель массы
+  description: Лучше не заглядывать во внутрь.
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: Transform
+    noRot: true
+  - type: Sprite
+    sprite: _SpaceCats/Swarmers/STRUCTURES/SwarmBiol_Factory.rsi
+    layers:
+    - state: icon
+    snapCardinals: true
+  - type: BiomassReclaimer
+    safetyEnabled: false
+  - type: Climbable
+    delay: 7
+  - type: AmbientSound
+    enabled: false
+    volume: 5
+    range: 5
+    sound:
+      path: /Audio/_borkroman/Swarmers/BiomassMashine.ogg
+  - type: ApcPowerReceiver
+    powerLoad: 0
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 500
+      behaviors:
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          SheetSWARMSteel1:
+            min: 1
+            max: 3
+          SheetSWARMGlass1:
+            min: 1
+            max: 2
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalSlam
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+  - type: PointLight
+    radius: 2
+    energy: 2
+    color: "#aea5f6"
+
+- type: rcd
+  id: SwarmMassShredderRCD
+  category: Electrical
+  sprite: _SpaceCats/Swarmers/STRUCTURES/SwarmBiol_Factory.rsi/icon.png
+  mode: ConstructObject
+  prototype: SwarmMassShredder
+  cost: 16
+  delay: 1.2
+  collisionMask: FullTileMask
+  fx: EffectSwarmConstruct
+
+#S.W.A.R.M голобарьер
+- type: entity
+  id: SwarmHoloBarrier
+  parent: HolosignWetFloor
+  name: S.W.A.R.M голобарьер
+  description: энергетический барьер, замедляющий всё кроме свармеров.
+  components:
+  - type: Clickable
+  - type: ContainmentField
+    throwForce: 0
+  - type: SpeedModifierContacts
+    walkSpeedModifier: 0.10
+    sprintSpeedModifier: 0.10
+    ignoreWhitelist:
+     tags:
+     - Swarmer
+  - type: PointLight
+    radius: 2
+    energy: 2
+    color: "#aea5f6"
+  - type: Physics
+    bodyType: Static
+    canCollide: true
+  - type: Sprite
+    sprite: _SpaceCats/Swarmers/STRUCTURES/Swarmer_barrier.rsi
+    drawdepth: Overdoors
+    state: barrier
+  - type: Fixtures
+    fixtures:
+      fix1:
+        hard: false
+        density: 7
+        hape:
+          !type:PhysShapeAabb
+          bounds: "-0.5,-0.5,0.5,0.5"
+        layer:
+        - MidImpassable
+  - type: TimedDespawn
+    lifetime: 180
+  - type: Airtight
+    noAirWhenFullyAirBlocked: false
+  - type: Destructible
+    thresholds:
+      - trigger:
+          !type:DamageTrigger
+          damage: 60
+        behaviors:
+          - !type:DoActsBehavior
+            acts: [ "Destruction" ]
+
+- type: rcd
+  id: SwarmHoloBarrierRCD
+  category: WallsAndFlooring
+  sprite: _SpaceCats/Swarmers/STRUCTURES/Swarmer_barrier.rsi/icon.png
+  mode: ConstructObject
+  prototype: SwarmHoloBarrier
+  cost: 1
+  delay: 1.2
+  collisionMask: FullTileMask
+  fx: EffectSwarmConstruct
+
+#Станция зарядки S.W.A.R.M батарей
+- type: entity
+  parent: BaseMachinePowered
+  id: SwarmCellCharger
+  name: Станция зарядки S.W.A.R.M батарей
+  description: Стационарная станция зарядки батарей, прямо внутри корпуса!
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: ApcPowerReceiver
+    powerLoad: 0
+  - type: PointLight
+    radius: 2
+    energy: 2
+    color: "#aea5f6"
+  - type: Appearance
+  - type: Sprite
+    snapCardinals: true
+    sprite: _SpaceCats/Swarmers/STRUCTURES/Swarm_charger.rsi
+    layers:
+      - state: borgcharger-u1
+        map: ["base"]
+      - state: borgcharger0
+        map: ["enum.PowerDeviceVisualLayers.Powered"]
+        shader: "unshaded"
+      - state: borgcharger1
+        map: ["charged"]
+        shader: "unshaded"
+        visible: false
+  - type: Charger
+    chargeRate: 50
+    slotId: entity_storage
+    whitelist:
+     tags:
+     - Swarmer
+  - type: GenericVisualizer
+    visuals:
+      enum.StorageVisuals.Open:
+        base:
+          True: { state: borgcharger-u0 }
+          False: { state: borgcharger-u1 }
+        enum.PowerDeviceVisualLayers.Powered:
+          True: { state: borgcharger0 }
+          False: { state: borgcharger2 }
+        charged:
+          True: { visible: false }
+          False: { visible: true }
+      enum.PowerDeviceVisuals.Powered:
+        enum.PowerDeviceVisualLayers.Powered:
+          True: { visible: true }
+          False: { visible: false }
+        charged:
+          True: { visible: true }
+          False: { visible: false }
+      enum.CellVisual.Light:
+        charged:
+          Off: { visible: false }
+          Empty: { visible: false }
+          Charging:
+            visible: true
+            state: borgcharger3
+          Charged:
+            visible: true
+            state: borgcharger1
+  - type: EntityStorage
+    capacity: 1
+    whitelist:
+     tags:
+     - Swarmer
+  - type: ContainerContainer
+    containers:
+      entity_storage: !type:Container
+      machine_board: !type:Container
+      machine_parts: !type:Container
+  - type: Transform
+    anchored: true
+    noRot: true
+  - type: Anchorable
+    delay: 1
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 500
+      behaviors:
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          SheetSWARMSteel1:
+            min: 1
+            max: 3
+          SheetSWARMGlass1:
+            min: 1
+            max: 2
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalSlam
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+
+- type: rcd
+  id: SwarmCellChargerRCD
+  category: Electrical
+  sprite: _SpaceCats/Swarmers/STRUCTURES/Swarm_charger.rsi/borgcharger-u1.png
+  mode: ConstructObject
+  prototype: SwarmCellCharger
+  cost: 12
+  delay: 1.2
+  collisionMask: FullTileMask
+  rotation: Fixed
+  fx: EffectSwarmConstruct
+
