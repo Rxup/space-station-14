@@ -56,7 +56,7 @@
     difficulty: 2.5
     #unique: false
     icon:
-      sprite: Nyanotrasen/Icons/psi.rsi
+      sprite: Backmen/Icons/psi.rsi
       state: psi
   - type: RaiseGlimmerCondition
     target: 500
