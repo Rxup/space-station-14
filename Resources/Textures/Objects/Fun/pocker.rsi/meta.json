@@ -1,0 +1,29 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "Semka",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "full_box"
+    },
+    {
+      "name": "empty_box"
+    },
+    {
+      "name": "green"
+    },
+    {
+      "name": "blue"
+    },
+    {
+      "name": "yellow"
+    },
+    {
+      "name": "red"
+    }
+  ]
+}
