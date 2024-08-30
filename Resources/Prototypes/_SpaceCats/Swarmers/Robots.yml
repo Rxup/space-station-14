@@ -28,7 +28,7 @@
 #Радио Свармеров
 - type: radioChannel
   id: Swarm
-  name: Рой
+  name: cats-radio-swar
   keycode: 'р' 
   frequency: 7373
   color: "#aea5f6"
