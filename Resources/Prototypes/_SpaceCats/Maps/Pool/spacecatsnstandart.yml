@@ -1,0 +1,9 @@
+- type: gameMapPool
+  id: SpaceCatsDefaultMapPool
+  maps:
+  - BagelSC
+  - BoxSC
+  - ClusterSC
+  - OmegaSC
+  - PackedSC
+  - ReachSC

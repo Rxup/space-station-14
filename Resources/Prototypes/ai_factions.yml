@@ -72,6 +72,24 @@
   - CentralCommand
 
 - type: npcFaction
+  id: Diona
+  hostile:
+  - NanoTrasen
+  - Syndicate
+  - Passive
+  - PetsNT
+  - Zombie
+  - Blob
+  - Flesh
+  - Revolutionary
+  - SuperZloy
+  - Spanish
+  - Britan
+  - SpecialForce
+  - CombineForce
+  - CentralCommand
+
+- type: npcFaction
   id: SimpleNeutral
 
 - type: npcFaction

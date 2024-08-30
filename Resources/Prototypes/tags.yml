@@ -286,6 +286,9 @@
   id: Carpet
 
 - type: Tag
+  id: Card
+
+- type: Tag
   id: CarpetBlack
 
 - type: Tag
@@ -937,6 +940,9 @@
   id: ModularReceiver
 
 - type: Tag
+  id: ModuleSwarmer
+
+- type: Tag
   id: MonkeyCube
 
 - type: Tag
@@ -1069,6 +1075,9 @@
   id: Powerdrill
 
 - type: Tag
+  id: PockerChips
+
+- type: Tag
   id: PrisonUniform
 
 - type: Tag
@@ -1196,6 +1205,9 @@
   id: Spear
 
 - type: Tag
+  id: SpearRatvar
+
+- type: Tag
   id: SpeedLoaderCap
 
 - type: Tag
@@ -1245,6 +1257,15 @@
 
 - type: Tag
   id: SurveillanceCameraMonitorCircuitboard
+
+- type: Tag
+  id: SwarmerSuperCell
+
+- type: Tag
+  id: Swarmer
+
+- type: Tag
+  id: SwarmerAcces
 
 - type: Tag
   id: Syndicate

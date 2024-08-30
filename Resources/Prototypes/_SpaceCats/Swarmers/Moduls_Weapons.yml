@@ -1,0 +1,426 @@
+#Супер батарея свармеров
+- type: entity
+  id: SwarmerSuperCell
+  name: S.W.A.R.M батарея 
+  description: Невероятно мощная батарея.
+  suffix: BORK (Swarmer)
+  parent: BasePowerCell
+  components:
+  - type: Sprite
+    sprite: _SpaceCats/Swarmers/MOB-MODULS/SwarmerSuperCell.rsi
+    layers:
+    - map: [ "enum.PowerCellVisualLayers.Base" ]
+      state: SwarmerSuperCell
+    - map: [ "enum.PowerCellVisualLayers.Unshaded" ]
+      state: o2
+      shader: unshaded
+  - type: Item
+    size: Ginormous
+  - type: SolutionContainerManager
+    solutions:
+      battery:
+        maxVol: 15
+  - type: Extractable
+    juiceSolution:
+      reagents:
+        - ReagentId: Radium
+          Quantity: 15
+  - type: Tag
+    tags:
+      - SwarmerSuperCell
+  - type: ClothingSpeedModifier
+    walkModifier: 0.8
+    sprintModifier: 0.8
+  - type: HeldSpeedModifier
+  - type: Battery
+    maxCharge: 2500
+    startingCharge: 2500
+
+#Карта Идентификации Свармера
+- type: jobIcon
+  parent: JobIcon
+  id: JobIconSwarmerUnit
+  icon:
+    sprite: _SpaceCats/Swarmers/MOB-MODULS/Icons.rsi
+    state: SwarmUnit
+  jobName: U.N.I.T. 
+
+- type: entity
+  parent: IDCardStandard
+  id: SwarmIdentificationCard
+  name: Карта Идентификации
+  components:
+  - type: Access
+    tags:
+    - SwarmerAccess
+  - type: Unremoveable
+  - type: Sprite
+    sprite: _SpaceCats/Swarmers/MOB-MODULS/SwarmerModul.rsi
+    layers:
+    - state: SwarmCard
+  - type: IdCard
+    jobTitle: U.N.I.T. 
+    jobIcon: JobIconSwarmerUnit
+
+- type: entity
+  id: BaseModuleSwarmer
+  parent: BaseBorgModule
+  abstract: true
+  components:
+  - type: Tag
+    tags:
+    - ModuleSwarmer
+
+- type: entity
+  id: ModuleSwarmerMein
+  parent: [ BaseModuleSwarmer, BaseProviderBorgModule ]
+  description: Главный модуль свармеров
+  suffix: BORK (Swarmer)
+  name: Инструментальный S.W.A.R.M модуль 
+  components:
+  - type: Sprite
+    sprite: _SpaceCats/Swarmers/MOB-MODULS/SwarmerModul.rsi
+    layers:
+    - state: Swarmer
+    - state: Tool-icon
+  - type: ItemBorgModule
+    items:
+    - SwarmTool
+    - WelderSwarmer
+    - SwarmDeveloper
+
+- type: entity
+  id: ModuleSwarmerCombat
+  parent: [ BaseModuleSwarmer, BaseProviderBorgModule ]
+  description: Боевой модуль свармеров
+  suffix: BORK (Swarmer)
+  name: Боевой  S.W.A.R.M модуль 
+  components:
+  - type: Sprite
+    sprite: _SpaceCats/Swarmers/MOB-MODULS/SwarmerModul.rsi
+    layers:
+    - state: Swarmer
+    - state: Combat-icon
+  - type: ItemBorgModule
+    items:
+    - WeaponLaserSwarmer
+    - SwarmPortalGenerator
+
+#S.W.A.R.M.Тул
+- type: entity
+  name: S.W.A.R.M.Тул
+  parent: Omnitool
+  id: SwarmTool
+  noSpawn: true
+  description: Лучше и быстрее.
+  components:
+  - type: Sprite
+    sprite: _SpaceCats/Swarmers/TOOLS/Swarmer_omnitool.rsi
+    state: omnitool-screwing
+  - type: Item
+    sprite: _SpaceCats/Swarmers/TOOLS/Swarmer_omnitool.rsi
+    size: Normal
+  - type: Tag
+    tags:
+    - Multitool
+  - type: Prying
+    enabled: false
+  - type: Tool
+    qualities:
+      - Screwing
+    speedModifier: 3
+    useSound: /Audio/Items/drill_use.ogg
+  - type: ToolTileCompatible
+  - type: MultipleTool
+    statusShowBehavior: true
+    entries:
+      - behavior: Screwing
+        sprite:
+          sprite: _SpaceCats/Swarmers/TOOLS/Swarmer_omnitool.rsi
+          state: omnitool-screwing
+        useSound:
+          path: /Audio/Items/drill_use.ogg
+        changeSound:
+          path: /Audio/Items/change_drill.ogg
+      - behavior: Prying
+        sprite:
+          sprite: _SpaceCats/Swarmers/TOOLS/Swarmer_omnitool.rsi
+          state: omnitool-prying
+        useSound:
+          path: /Audio/Items/jaws_pry.ogg
+        changeSound:
+          path: /Audio/Items/change_drill.ogg
+      - behavior: Anchoring
+        sprite:
+          sprite: _SpaceCats/Swarmers/TOOLS/Swarmer_omnitool.rsi
+          state: omnitool-wrenching
+        useSound:
+          path: /Audio/Items/ratchet.ogg
+        changeSound:
+          path: /Audio/Items/change_drill.ogg
+      - behavior: Cutting
+        sprite:
+          sprite: _SpaceCats/Swarmers/TOOLS/Swarmer_omnitool.rsi
+          state: omnitool-snipping
+        useSound:
+          path: /Audio/Items/jaws_cut.ogg
+        changeSound:
+          path: /Audio/Items/change_drill.ogg
+      - behavior: Pulsing
+        sprite:
+          sprite: _SpaceCats/Swarmers/TOOLS/Swarmer_omnitool.rsi
+          state: omnitool-pulsing
+        changeSound:
+          path: /Audio/Items/change_drill.ogg
+
+#S.W.A.R.M. Сварка
+- type: entity
+  name: S.W.A.R.M. Сварка
+  noSpawn: true
+  parent: WelderExperimental
+  id: WelderSwarmer
+  description: Способен самостоятельно вырабатывать топливо и менее вредный для глаз.
+  components:
+  - type: Tool
+    speedModifier: 3
+  - type: Sprite
+    sprite: _SpaceCats/Swarmers/TOOLS/Swarmer_welder.rsi
+  - type: Item
+    sprite: _SpaceCats/Swarmers/TOOLS/Swarmer_welder.rsi
+  - type: SolutionContainerManager
+    solutions:
+      Welder:
+        reagents:
+        - ReagentId: WeldingFuel
+          Quantity: 500
+        maxVol: 500
+  - type: PointLight
+    enabled: false
+    radius: 1.5
+    color: "#aea5f6"
+  - type: SolutionRegeneration
+    solution: Welder
+    generated:
+      reagents:
+      - ReagentId: WeldingFuel
+        Quantity: 2
+
+#S.W.A.R.M. пушка
+- type: entity
+  name: Встроенное S.W.A.R.M. оружие
+  noSpawn: true
+  parent: BaseWeaponBatterySmall
+  id: WeaponLaserSwarmer
+  description: Продвинутое оружие способное к самоподзарядке.
+  components:
+  - type: Sprite
+    sprite: _SpaceCats/Swarmers/TOOLS/Swarmer_laser_gun.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-unshaded-4
+      map: ["enum.GunVisualLayers.MagUnshaded"]
+      shader: unshaded
+  - type: Gun
+    selectedMode: SemiAuto
+    fireRate: 3
+    soundGunshot:
+      path: /Audio/_Cats/Swarmers/SwarmShot.ogg
+  - type: ProjectileBatteryAmmoProvider
+    proto: SwarmShotBullet
+    fireCost: 66.66
+  - type: BatterySelfRecharger
+    autoRecharge: true
+    autoRechargeRate: 40
+  - type: MagazineVisuals
+    magState: mag
+    steps: 5
+    zeroVisible: false
+
+- type: entity
+  id: SwarmShotBullet
+  noSpawn: true
+  name: Блюспейс выстрел
+  parent: BaseBullet
+  components:
+  - type: Projectile
+    damage:
+      types:
+        Shock: 8
+        Structural: 30
+  - type: Sprite
+    sprite: _SpaceCats/Swarmers/TOOLS/Swarmer_laser_gun.rsi
+    layers:
+    - state: Swarmer_Bullet
+      shader: unshaded
+  - type: PointLight
+    enabled: true
+    color: "#aea5f6"
+    radius: 1.5
+    energy: 2
+
+#S.W.A.R.M. фабрикатор
+- type: entity
+  id: SwarmDeveloper
+  parent: RCD
+  name: S.W.A.R.M. фабрикатор
+  description: Встроенный фабрикатор для быстрой постройки.
+  components:
+  - type: Sprite
+    sprite: _SpaceCats/Swarmers/TOOLS/Swarmer_rcd.rsi
+    state: icon
+  - type: LimitedCharges
+    maxCharges: 20
+    charges: 20
+  - type: AutoRecharge
+    rechargeDuration: 10
+  - type: RCD
+    availablePrototypes:
+    - SwarmWallRCD
+    - FloorSwarmerEntityRCD
+    - FloorSwarmerEntityLightRCD
+    - SwarmMassShredderRCD
+    - SwarmDoorRCD
+    - SwarmResourcesFactoryRCD
+    - SwarmUnitsFactoryRCD
+    - SwarmHoloBarrierRCD
+    - SwarmCellChargerRCD
+    - WeaponSwarmTurretRCD
+
+#Генератор порталов
+- type: entity
+  id: SwarmPortal
+  name: блюспейс портал
+  description: явно не на 5 минут.
+  parent: BasePortal
+  components:
+  - type: Sprite
+    noRot: true
+    sprite: _SpaceCats/Swarmers/STRUCTURES/Swarm_portal.rsi
+    color: "#aea5f6"
+    layers:
+    - state: portal-Swarm
+  - type: PointLight
+    color: "#aea5f6"
+    radius: 2
+    energy: 2
+    netsync: false
+  - type: Damageable
+    damageContainer: StructuralInorganic
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 30
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+
+- type: entity
+  id: SwarmPortalGenerator
+  parent: BaseItem
+  name: Генератор порталов
+  description: 
+  components:
+  - type: Sprite
+    sprite: _SpaceCats/Swarmers/MOB-MODULS/SwarmerModul.rsi
+    layers:
+    - state: PortalGenerator
+  - type: HandTeleporter
+    firstPortalPrototype: SwarmPortal
+    secondPortalPrototype: SwarmPortal
+  - type: Tag
+    tags:
+    - HighRiskItem
+  - type: StealTarget
+    stealGroup: HandTeleporter
+
+#Защитная S.W.A.R.M. турель
+- type: entity
+  name: Защитная S.W.A.R.M. турель
+  description: Автоматизированная система защиты периметра.
+  parent: BaseWeaponTurret
+  id: WeaponSwarmTurret
+  components:
+    - type: Tag
+      tags:
+      - Swarmer
+      - Structure
+    - type: PointLight
+      enabled: true
+      color: "#aea5f6"
+      radius: 1.5
+      energy: 2
+    - type: NpcFactionMember
+      factions:
+        - Syndicate
+    - type: Sprite
+      sprite: _SpaceCats/Swarmers/MOB-MODULS/Robots/Swarmer_Turret.rsi
+      noRot: true
+      layers:
+        - state: Turret
+    - type: BallisticAmmoProvider
+      proto: SwarmTurretShotBullet
+      capacity: 5000
+    - type: Gun
+      minAngle: 5
+      maxAngle: 20
+      angleIncrease: 4
+      angleDecay: 16
+      fireRate: 6
+      soundGunshot:
+        path: /Audio/_Cats/Swarmers/SwarmShot.ogg
+      selectedMode: FullAuto
+    - type: HTN
+      rootTask:
+        task: TurretCompound
+      blackboard:
+        SoundTargetInLOS: !type:SoundPathSpecifier
+          path: /Audio/_Cats/Swarmers/SwarmTurret.ogg
+    - type: Damageable
+      damageContainer: Inorganic
+      damageModifierSet: SwarmArm
+    - type: Destructible
+      thresholds:
+      - trigger:
+          !type:DamageTrigger
+          damage: 50
+        behaviors:
+        - !type:DoActsBehavior
+          acts: ["Destruction"]
+        - !type:SpawnEntitiesBehavior
+          spawn:
+            SheetSWARMSteel1:
+              min: 1
+              max: 3
+            SheetSWARMGlass1:
+              min: 1
+              max: 2
+        - !type:PlaySoundBehavior
+          sound:
+            collection: MetalSlam
+
+- type: rcd
+  id: WeaponSwarmTurretRCD
+  category: WallsAndFlooring
+  sprite: _SpaceCats/Swarmers/MOB-MODULS/Robots/Swarmer_Turret.rsi/icon.png
+  mode: ConstructObject
+  prototype: WeaponSwarmTurret
+  cost: 15
+  delay: 1.2
+  collisionMask: FullTileMask
+  fx: EffectSwarmConstruct
+
+- type: entity
+  id: SwarmTurretShotBullet
+  noSpawn: true
+  name: Редспейс выстрел
+  parent: SwarmShotBullet
+  components:
+  - type: Projectile
+    damage:
+      types:
+        Shock: 3
+
+
+

@@ -1,0 +1,12 @@
+## Убрать резисты
+- type: entity #backmen 
+  parent: ClothingOuterBase
+  id: ClothingOuterCoatBlackedmcSponsor
+  name: чёрная плащ-куртка
+  description: Каждая потеря остается потерей, сколько бы их ни было до этого.
+  suffix: Спонсор, без резистов
+  components:
+  - type: Sprite
+    sprite: Backmen/Clothing/OuterClothing/Coats/black.rsi
+  - type: Clothing
+    sprite: Backmen/Clothing/OuterClothing/Coats/black.rsi

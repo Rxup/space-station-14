@@ -10,6 +10,8 @@
       department: Security
       time: 72000 #20 hrs # Corvax-RoleTime
       inverted: true # stop playing intern if you're good at security!
+    - !type:AgeRequirement
+      requiredAge: 21 # cats
   startingGear: SecurityCadetGear
   icon: "JobIconSecurityCadet"
   supervisors: job-supervisors-security
@@ -22,10 +24,10 @@
   - External
   - Cryogenics
   #start-backmen: currency
-  minBankBalance: 150
+  minBankBalance: 100
   maxBankBalance: 250
   wageDepartment: Security
-  wage: 25
+  wage: 50
   #end-backmen: currency
   special:
   - !type:AddImplantSpecial

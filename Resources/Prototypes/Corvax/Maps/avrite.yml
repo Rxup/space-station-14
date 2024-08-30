@@ -66,10 +66,11 @@
             CargoTechnician: [ 4, 5 ]
             Boxer: [ 2, 2 ]
             # backmen
-            Prisoner: [ 2, 2]
-            Brigmedic: [ 0, 1 ] # backmen-Brigmedic
-            #BKBPLATech: [0, 3] # backmen-BPLA-Silicons
-            #BKBPLAMED: [0, 3] # backmen-BPLAMED-Silicons
+#            Prisoner: [ 2, 2]  #no jobs point
+            
+#            Brigmedic: [ 0, 1 ] # backmen-Brigmedic  #no jobs point
+#            BKBPLATech: [0, 3] # backmen-BPLA-Silicons  #no jobs point
+#            BKBPLAMED: [0, 3] # backmen-BPLAMED-Silicons  #no jobs point
         # backmen blob-config-start HUGE
         - type: StationBlobConfig
           stageBegin: 40

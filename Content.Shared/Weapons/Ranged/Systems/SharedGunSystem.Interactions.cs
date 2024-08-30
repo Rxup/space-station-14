@@ -30,6 +30,17 @@ public abstract partial class SharedGunSystem
 
     private void OnAltVerb(EntityUid uid, GunComponent component, GetVerbsEvent<AlternativeVerb> args)
     {
+        if (component.Personable)
+        {
+            AlternativeVerb verbPersonalize = new()
+            {
+                Act = () => MakeWeaponPersonal(uid, component, args.User),
+                Text = Loc.GetString("gun-personalize-verb"),
+                Icon = new SpriteSpecifier.Texture(new("/Textures/Interface/VerbIcons/fold.svg.192dpi.png")),
+            };
+            args.Verbs.Add(verbPersonalize);
+        }
+
         if (!args.CanAccess || !args.CanInteract || component.SelectedMode == component.AvailableModes)
             return;
 
@@ -63,10 +74,24 @@ public abstract partial class SharedGunSystem
 
     private void SelectFire(EntityUid uid, GunComponent component, SelectiveFire fire, EntityUid? user = null)
     {
+        if (component.GunOwner != null)
+        {
+            if (component.GunOwner != user)
+            {
+                Popup(Loc.GetString("gun-already-personalized", ("owner", component.GunOwner)), uid, user);
+                return;
+            }
+        }
+        else if (component.Personable && user != null)
+        {
+            Popup(Loc.GetString("gun-unauthorized-user"), uid, user);
+            return;
+        }
+
         if (component.SelectedMode == fire)
             return;
 
-        DebugTools.Assert((component.AvailableModes  & fire) != 0x0);
+        DebugTools.Assert((component.AvailableModes & fire) != 0x0);
         component.SelectedMode = fire;
 
         if (!Paused(uid))
@@ -82,6 +107,21 @@ public abstract partial class SharedGunSystem
 
         Audio.PlayPredicted(component.SoundMode, uid, user);
         Popup(Loc.GetString("gun-selected-mode", ("mode", GetLocSelector(fire))), uid, user);
+        Dirty(uid, component);
+    }
+
+    /// <summary>
+    /// ADT, modern. This method makes weapon personal, making everyone except user not able to shoot with it.
+    /// </summary>
+    /// <param name="uid"></param>
+    /// <param name="component"></param>
+    /// <param name="user"></param>
+    private void MakeWeaponPersonal(EntityUid uid, GunComponent component, EntityUid? user = null)
+    {
+        if(component.GunOwner != null)
+            return;
+        component.GunOwner = user;
+        Popup(Loc.GetString("gun-was-personalized"), uid, user);
         Dirty(uid, component);
     }
 

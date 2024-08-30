@@ -1,0 +1,218 @@
+#Atmospherics
+- type: entity
+  parent: AirlockAssembly
+  id: AirlockAssemblyDoobleAtmospherics
+  suffix: Atmospherics
+  components:
+  - type: Sprite
+    sprite: _SpaceCats/Structures/Doors/Airlocks/Standard/atmospherics.rsi
+    state: "assembly"
+
+- type: entity
+  parent: AirlockAssembly
+  id: AirlockAssemblyDoobleAtmosphericsGlass
+  suffix: Atmospherics, Glass
+  components:
+  - type: Sprite
+    sprite: _SpaceCats/Structures/Doors/Airlocks/Glass/atmospherics.rsi
+    state: "assembly"
+
+#Cargo
+- type: entity
+  parent: AirlockAssembly
+  id: AirlockAssemblyDoobleCargo
+  suffix: Cargo
+  components:
+  - type: Sprite
+    sprite: _SpaceCats/Structures/Doors/Airlocks/Standard/cargo.rsi
+    state: "assembly"
+
+- type: entity
+  parent: AirlockAssembly
+  id: AirlockAssemblyDoobleCargoGlass
+  suffix: Cargo, Glass
+  components:
+  - type: Sprite
+    sprite: _SpaceCats/Structures/Doors/Airlocks/Glass/cargo.rsi
+    state: "assembly"
+
+#Command
+- type: entity
+  parent: AirlockAssembly
+  id: AirlockAssemblyDoobleCommand
+  suffix: Command
+  components:
+  - type: Sprite
+    sprite: _SpaceCats/Structures/Doors/Airlocks/Standard/command.rsi
+    state: "assembly"
+
+- type: entity
+  parent: AirlockAssembly
+  id: AirlockAssemblyDoobleCommandGlass
+  suffix: Command, Glass
+  components:
+  - type: Sprite
+    sprite: _SpaceCats/Structures/Doors/Airlocks/Glass/command.rsi
+    state: "assembly"
+
+#Engineering
+- type: entity
+  parent: AirlockAssembly
+  id: AirlockAssemblyDoobleEngineering
+  suffix: Engineering
+  components:
+  - type: Sprite
+    sprite: _SpaceCats/Structures/Doors/Airlocks/Standard/engineering.rsi
+    state: "assembly"
+
+- type: entity
+  parent: AirlockAssembly
+  id: AirlockAssemblyDoobleEngineeringGlass
+  suffix: Engineering, Glass
+  components:
+  - type: Sprite
+    sprite: _SpaceCats/Structures/Doors/Airlocks/Glass/engineering.rsi
+    state: "assembly"
+
+#Public (Glass Airlock)
+- type: entity
+  parent: AirlockAssembly
+  id: AirlockAssemblyDoobleGlass
+  suffix: Glass
+  components:
+  - type: Sprite
+    sprite: _SpaceCats/Structures/Doors/Airlocks/Glass/glass.rsi
+    state: "assembly"
+
+#Maintenance
+- type: entity
+  parent: AirlockAssembly
+  id: AirlockAssemblyDoobleMaintenance
+  suffix: Maintenance
+  components:
+  - type: Sprite
+    sprite: _SpaceCats/Structures/Doors/Airlocks/Standard/maint.rsi
+    state: "assembly"
+
+- type: entity
+  parent: AirlockAssembly
+  id: AirlockAssemblyDoobleMaintenanceGlass
+  suffix: Maintenance, Glass
+  components:
+  - type: Sprite
+    sprite: _SpaceCats/Structures/Doors/Airlocks/Glass/maint.rsi
+    state: "assembly"
+
+#Medical
+- type: entity
+  parent: AirlockAssembly
+  id: AirlockAssemblyDoobleMedical
+  suffix: Medical
+  components:
+  - type: Sprite
+    sprite: _SpaceCats/Structures/Doors/Airlocks/Standard/medical.rsi
+    state: "assembly"
+
+- type: entity
+  parent: AirlockAssembly
+  id: AirlockAssemblyDoobleMedicalGlass
+  suffix: Medical, Glass
+  components:
+  - type: Sprite
+    sprite: _SpaceCats/Structures/Doors/Airlocks/Glass/medical.rsi
+    state: "assembly"
+
+#Science
+- type: entity
+  parent: AirlockAssembly
+  id: AirlockAssemblyDoobleScience
+  suffix: Science
+  components:
+  - type: Sprite
+    sprite: _SpaceCats/Structures/Doors/Airlocks/Standard/science.rsi
+    state: "assembly"
+
+- type: entity
+  parent: AirlockAssembly
+  id: AirlockAssemblyDoobleScienceGlass
+  suffix: Science, Glass
+  components:
+  - type: Sprite
+    sprite: _SpaceCats/Structures/Doors/Airlocks/Glass/science.rsi
+    state: "assembly"
+
+#Security
+- type: entity
+  parent: AirlockAssembly
+  id: AirlockAssemblyDoobleSecurity
+  suffix: Security
+  components:
+  - type: Sprite
+    sprite: _SpaceCats/Structures/Doors/Airlocks/Standard/security.rsi
+    state: "assembly"
+
+- type: entity
+  parent: AirlockAssembly
+  id: AirlockAssemblyDoobleSecurityGlass
+  suffix: Security, Glass
+  components:
+  - type: Sprite
+    sprite: _SpaceCats/Structures/Doors/Airlocks/Glass/security.rsi
+    state: "assembly"
+
+#Virology
+- type: entity
+  parent: AirlockAssembly
+  id: AirlockAssemblyDoobleVirology
+  suffix: Virology
+  components:
+  - type: Sprite
+    sprite: _SpaceCats/Structures/Doors/Airlocks/Standard/virology.rsi
+    state: "assembly"
+
+- type: entity
+  parent: AirlockAssembly
+  id: AirlockAssemblyDoobleVirologyGlass
+  suffix: Virology, Glass
+  components:
+  - type: Sprite
+    sprite: _SpaceCats/Structures/Doors/Airlocks/Glass/virology.rsi
+    state: "assembly"
+
+#CentralCommand
+- type: entity
+  parent: AirlockAssembly
+  id: AirlockAssemblyDoobleCentralCommand
+  suffix: CentralCommand
+  components:
+  - type: Sprite
+    sprite: _SpaceCats/Structures/Doors/Airlocks/Standard/centcomm.rsi
+    state: "assembly"
+
+- type: entity
+  parent: AirlockAssembly
+  id: AirlockAssemblyDoobleCentralCommandGlass
+  suffix: CentralCommand, Glass
+  components:
+  - type: Sprite
+    sprite: _SpaceCats/Structures/Doors/Airlocks/Glass/centcomm.rsi
+    state: "assembly"
+
+#Syndicate
+- type: entity
+  parent: AirlockAssembly
+  id: AirlockAssemblyDoobleSyndicate
+  suffix: Syndicate
+  components:
+  - type: Sprite
+    sprite: _SpaceCats/Structures/Doors/Airlocks/Standard/syndicate.rsi
+    state: "assembly"
+
+- type: entity
+  parent: AirlockAssembly
+  id: AirlockAssemblyDoobleSyndicateGlass
+  suffix: Syndicate, Glass
+  components:
+  - type: Sprite
+    sprite: _SpaceCats/Structures/Doors/Airlocks/Glass/syndicate.rsi
+    state: "assembly"
