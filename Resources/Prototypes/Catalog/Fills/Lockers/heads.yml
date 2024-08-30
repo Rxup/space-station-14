@@ -60,6 +60,7 @@
     - id: AntiPsychicKnife  # backmen
     - id: ClothingHeadCage # backmen
     - id: HandheldReinforcementCentCom # backmen
+    - id: ClothingEyesGlassesCommand
 
 # No laser table + Laser table
 - type: entityTable
@@ -146,6 +147,7 @@
     - id: ClothingHeadCage # backmen
     - id: ClothingOuterCoatHOP # Corvax-Resprite
     - id: PrinterDocFlatpack # Corvax-Printer
+    - id: ClothingEyesHudCommand
 
 - type: entity
   id: LockerHeadOfPersonnelFilled
