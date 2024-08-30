@@ -1250,7 +1250,13 @@
   id: SurveillanceCameraMonitorCircuitboard
 
 - type: Tag
-  id: SwarmerSuperCell 
+  id: SwarmerSuperCell
+
+- type: Tag
+  id: Swarmer
+
+- type: Tag
+  id: SwarmerAcces
 
 - type: Tag
   id: Syndicate

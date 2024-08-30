@@ -62,10 +62,6 @@
     jobTitle: U.N.I.T. 
     jobIcon: JobIconSwarmerUnit
 
-#Модуль Свармера
-- type: Tag
-  id: ModuleSwarmer
-
 - type: entity
   id: BaseModuleSwarmer
   parent: BaseBorgModule
