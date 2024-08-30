@@ -19,7 +19,7 @@
     size: Normal
   - type: Storage
     grid:
-    - 0,0,3,0
+    - 3,2,3,2
     whitelist:
       tags:
       - PockerChips
