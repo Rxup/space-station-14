@@ -73,7 +73,7 @@
     - state: icon
       map: ["enum.LatheVisualLayers.IsRunning"]
   - type: Lathe
-    producingSound: Audio/_Cats/Swarmers/SwarmFactoryMaterials.ogg
+    producingSound: /Audio/_Cats/Swarmers/SwarmFactoryMaterials.ogg
     idleState: icon
     runningState: building
     staticRecipes:
@@ -114,7 +114,7 @@
     - state: icon
       map: ["enum.LatheVisualLayers.IsRunning"]
   - type: Lathe
-    producingSound: Audio/_Cats/Swarmers/SwarmFactoryUnits.ogg
+    producingSound: /Audio/_Cats/Swarmers/SwarmFactoryUnits.ogg
     idleState: icon
     runningState: building
     staticRecipes:
