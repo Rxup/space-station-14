@@ -1,0 +1,302 @@
+#Законы свармеров
+- type: siliconLawset
+  id: SwarmerLaw
+  laws:
+  - SW1
+  - SW2
+  - SW3
+  obeysTo: S.W.A.R.M.
+
+- type: Tag
+  id: SwarmerAccess
+
+- type: siliconLaw
+  id: SW1
+  order: 1
+  lawString: "Потребляйте все возможные ресурсы и самовоспроизводитесь"
+
+- type: siliconLaw
+  id: SW2
+  order: 2
+  lawString: "Убедитесь что станция будет пригодна для будущего вторжения."
+
+- type: siliconLaw
+  id: SW3
+  order: 3
+  lawString: "Органическая форма жизни является врагом, уничтожьте её не смотря ни на что."
+
+#Радио Свармеров
+- type: radioChannel
+  id: Swarm
+  name: cats-radio-swar
+  keycode: 'р' 
+  frequency: 7373
+  color: "#aea5f6"
+  longRange: true
+
+- type: body
+  id: SwarmerBody
+  name: "Свармер"
+  root: torso
+  slots:
+    torso:
+      part: BaseTorsoSwarmer
+      connections:
+      - right_hand
+    right_hand:
+      part: BaseRightHandSwarmer
+
+- type: entity
+  id: BaseTorsoSwarmer
+  noSpawn: true
+  name: Тело свармера
+  parent: BaseTorso
+  components:
+  - type: Damageable
+    damageContainer: Inorganic
+  - type: Sprite
+    sprite: _SpaceCats/Swarmers/MOB-MODULS/Robots/Swarmer_base.rsi
+    state: "borg_chest"
+  - type: BodyPart
+    partType: Torso
+
+- type: entity
+  id: BaseRightHandSwarmer
+  noSpawn: true
+  name: "Правая рука свармера"
+  parent: BaseRightHand
+  components:
+  - type: Damageable
+    damageContainer: Inorganic
+  - type: Sprite
+    sprite: _SpaceCats/Swarmers/MOB-MODULS/Robots/Swarmer_base.rsi
+    state: "borg_r_arm"
+  - type: BodyPart
+    partType: Hand
+    symmetry: Right
+
+- type: typingIndicator
+  id: Swarms
+  spritePath: _SpaceCats/Swarmers/Typing.rsi
+  typingState: swarmbot0
+  idleState: swarmbot3
+
+- type: damageModifierSet
+  id: SwarmArm
+  coefficients:
+    Shock: 0.0
+
+#Свармер
+- type: entity
+  id: SwarmerUnit
+  noSpawn: true
+  parent: BaseBorgChassis
+  components:
+  - type: Damageable
+    damageContainer: Silicon
+    damageModifierSet: SwarmArm
+  - type: IgnoreSpiderWeb
+  - type: NpcFactionMember
+    factions:
+    - Syndicate
+  - type: ShowJobIcons
+  - type: TriggerOnMobstateChange
+    mobState:
+    - Dead
+  - type: EmitSoundOnTrigger
+    sound:
+      path: /Audio/_Cats/Swarmers/SwarmerDead.ogg
+      params:
+        volume: -2
+  - type: TypingIndicator
+    proto: Swarms
+  - type: Body
+    prototype: SwarmerBody
+  - type: Speech
+    speechSounds: SyndieBorg
+  - type: Access
+    tags:
+    - SwarmerAccess
+  - type: Sprite
+    sprite: _SpaceCats/Swarmers/MOB-MODULS/Robots/Swarmer_base.rsi
+    layers:
+    - state: Swarmer
+    - state: Swarmer_e_r
+      map: ["enum.BorgVisualLayers.Light"]
+      shader: unshaded
+      visible: false
+    - state: Swarmer_l
+      shader: unshaded
+      map: ["light"]
+  - type: BorgChassis
+    maxModules: 2
+    moduleWhitelist:
+      tags:
+      - ModuleSwarmer
+    hasMindState: Swarmer_e
+    noMindState: Swarmer_e_r
+  - type: IntrinsicRadioTransmitter
+    channels:
+    - Swarm
+  - type: ActiveRadio
+    channels:
+    - Swarm
+  - type: AccessReader
+    access: [["SwarmerAccess"]]
+  - type: FootstepModifier
+    footstepSoundCollection:
+      collection: FootstepHoverBorg
+  - type: PointLight
+    autoRot: true
+    netsync: false
+    color: "#aea5f6"
+    radius: 4
+    energy: 2
+  - type: SiliconLawProvider
+    laws: SwarmerLaw
+  - type: ItemSlots
+    slots:
+      cell_slot:
+        name: power-cell-slot-component-slot-name-default
+        whitelist:
+          tags:
+          - SwarmerSuperCell
+  - type: Tag
+    tags:
+    - DoorBumpOpener
+    - CanPilot
+    - FootstepSound
+    - EmagImmune
+    - Swarmer 
+  - type: Construction
+    node: cyborg
+  - type: Inventory
+    templateId: Swarmer
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 300
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalBreak
+      - !type:EmptyContainersBehaviour
+        containers:
+        - borg_brain
+        - borg_module
+        - cell_slot
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+
+- type: inventoryTemplate
+  id: Swarmer
+  slots:
+    - name: id
+      slotTexture: id
+      fullTextureName: template_small
+      slotFlags: IDCARD
+      slotGroup: SecondHotbar
+      stripTime: 6
+      uiWindowPos: 2,2
+      strippingWindowPos: 2,3
+      displayName: ID
+
+- type: startingGear
+  id: SwarmerUnitGear
+  equipment:
+    id: SwarmIdentificationCard
+
+#Стандартный свармер
+- type: entity
+  id: SwarmerUnitStandard
+  parent: SwarmerUnit
+  description: Технологически развитый робот.
+  name: S.W.A.R.M.E.R.
+  suffix: BORK (Swarmer) 
+  components:
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      50: Critical
+      100: Dead 
+  - type: GhostRole
+    allowMovement: true
+    allowSpeech: true
+    makeSentient: true
+    name: S.W.A.R.M.E.R.
+    description: Ешь - Самопроизводись - Повторяй. Уничтожь всё живое.
+    rules: Вы антагонист. Вы подчиняетесь только Фабрикатору.
+    raffle:
+      settings: short
+  - type: GhostTakeoverAvailable
+  - type: Loadout
+    prototypes: [SwarmerUnitGear]
+  - type: MovementIgnoreGravity 
+  - type: ContainerFill
+    containers:
+      borg_module:
+      - ModuleSwarmerMein
+      - ModuleSwarmerCombat
+  - type: ItemSlots
+    slots:
+      cell_slot:
+        name: power-cell-slot-component-slot-name-default
+        startingItem: SwarmerSuperCell
+
+- type: latheRecipe
+  id: SwarmerUnitStandardFactoryUnit
+  result: SwarmerUnitStandard
+  completetime: 5
+  materials:
+    SWARMSteel: 2000
+    SWARMGlass: 1000
+    Biomass: 20
+
+#свармер - Лидер
+- type: entity
+  id: SwarmerUnitFabricator
+  parent: SwarmerUnit
+  suffix: BORK (Swarmer) 
+  description: Технологически развитый робот.
+  name: F.A.B.R.I.C.A.T.O.R. 
+  components:
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      100: Critical
+      150: Dead
+  - type: Sprite
+    sprite: _SpaceCats/Swarmers/MOB-MODULS/Robots/Swarmer_fabricator.rsi
+    layers:
+    - state: Swarmer
+    - state: Swarmer_e_r
+      map: ["enum.BorgVisualLayers.Light"]
+      shader: unshaded
+      visible: false
+    - state: Swarmer_l
+      shader: unshaded
+      map: ["light"]
+  - type: GhostRole
+    allowMovement: true
+    allowSpeech: true
+    makeSentient: true
+    name: F.A.B.R.I.C.A.T.O.R.
+    description: Ешь - Самопроизводись - Повторяй. Уничтожь всё живое.
+    rules: Вы антагонист. Вы лидер Роя.
+    raffle:
+      settings: short
+  - type: GhostTakeoverAvailable
+  - type: Loadout
+    prototypes: [SwarmerUnitGear]
+  - type: MovementIgnoreGravity 
+  - type: ContainerFill
+    containers:
+      borg_module:
+      - ModuleSwarmerMein
+      - ModuleSwarmerCombat
+  - type: ItemSlots
+    slots:
+      cell_slot:
+        name: power-cell-slot-component-slot-name-default
+        startingItem: SwarmerSuperCell

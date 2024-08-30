@@ -937,6 +937,9 @@
   id: ModularReceiver
 
 - type: Tag
+  id: ModuleSwarmer
+
+- type: Tag
   id: MonkeyCube
 
 - type: Tag
@@ -1248,6 +1251,15 @@
 
 - type: Tag
   id: SurveillanceCameraMonitorCircuitboard
+
+- type: Tag
+  id: SwarmerSuperCell
+
+- type: Tag
+  id: Swarmer
+
+- type: Tag
+  id: SwarmerAcces
 
 - type: Tag
   id: Syndicate
