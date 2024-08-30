@@ -1,0 +1,27 @@
+- type: stack
+  id: GreenPockerChip
+  name: фишки для покера
+  spawn: GreenPockerChip
+  maxCount: 50
+  itemSize: 2
+
+- type: stack
+  id: BluePockerChip
+  name: фишки для покера
+  spawn: BluePockerChip
+  maxCount: 25
+  itemSize: 2
+
+- type: stack
+  id: YellowPockerChip
+  name: фишки для покера
+  spawn: YellowPockerChip
+  maxCount: 20
+  itemSize: 2
+
+- type: stack
+  id: RedPockerChip
+  name: фишки для покера
+  spawn: RedPockerChip
+  maxCount: 10
+  itemSize: 2

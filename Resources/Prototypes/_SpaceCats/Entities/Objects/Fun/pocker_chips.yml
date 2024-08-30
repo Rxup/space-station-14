@@ -1,0 +1,67 @@
+- type: entity
+  parent: BaseItem
+  id: GreenPockerChip
+  name: фишка для покера
+  components:
+  - type: Item
+    size: Tiny
+  - type: Sprite
+    sprite: Objects/Fun/pocker.rsi
+    state: green
+  - type: Tag
+    tags:
+    - PockerChips
+  - type: Stack
+    count: 1
+    stackType: GreenPockerChip
+
+- type: entity
+  parent: BaseItem
+  id: BluePockerChip
+  name: фишка для покера
+  components:
+  - type: Item
+    size: Tiny
+  - type: Sprite
+    sprite: Objects/Fun/pocker.rsi
+    state: blue
+  - type: Tag
+    tags:
+    - PockerChips
+  - type: Stack
+    count: 1
+    stackType: BluePockerChip
+
+- type: entity
+  parent: BaseItem
+  id: YellowPockerChip
+  name: фишка для покера
+  components:
+  - type: Item
+    size: Tiny
+  - type: Sprite
+    sprite: Objects/Fun/pocker.rsi
+    state: yellow
+  - type: Tag
+    tags:
+    - PockerChips
+  - type: Stack
+    count: 1
+    stackType: YellowPockerChip
+
+- type: entity
+  parent: BaseItem
+  id: RedPockerChip
+  name: фишка для покера
+  components:
+  - type: Item
+    size: Tiny
+  - type: Sprite
+    sprite: Objects/Fun/pocker.rsi
+    state: red
+  - type: Tag
+    tags:
+    - PockerChips
+  - type: Stack
+    count: 1
+    stackType: RedPockerChip

@@ -1,0 +1,25 @@
+- type: entity
+  parent: BaseStorageItem
+  id: PockerChipsBox
+  name: коробка фишек для покера
+  components:
+  - type: StorageFill
+    contents:
+      - id: GreenPockerChip
+        amount: 15
+      - id: BluePockerChip
+        amount: 5
+      - id: YellowPockerChip
+        amount: 3
+      - id: RedPockerChip
+  - type: Sprite
+    sprite: Objects/Fun/pocker.rsi
+    state: full_box
+  - type: Item
+    size: Normal
+  - type: Storage
+    grid:
+    - 0,0,3,0
+    whitelist:
+      tags:
+      - PockerChips
