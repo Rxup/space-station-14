@@ -115,10 +115,10 @@
     - SwarmWallRCD
     - FloorSwarmerEntityRCD
     - FloorSwarmerEntityLightRCD
-    - SwarmMassShredderRCD
     - SwarmDoorRCD
     - SwarmResourcesFactoryRCD
     - SwarmUnitsFactoryRCD
     - SwarmHoloBarrierRCD
     - SwarmCellChargerRCD
     - WeaponSwarmTurretRCD
+    - Deconstruct
