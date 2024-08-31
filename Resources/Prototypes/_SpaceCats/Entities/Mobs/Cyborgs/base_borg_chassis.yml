@@ -53,7 +53,7 @@
     channels:
     - Swarm
   - type: TriggerOnMobstateChange
-      mobState:
+    mobState:
       - Dead
   - type: Rattle
     radioChannel: "Swarm"
