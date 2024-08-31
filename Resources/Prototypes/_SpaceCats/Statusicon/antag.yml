@@ -1,23 +1,15 @@
 - type: statusIcon
   id: SwarmFaction
-  priority: 13
-  showTo:
-    components:
-      - ShowAntagIcons
+  priority: 0
   locationPreference: Right
-  layer: Mod
   icon:
     sprite: /Textures/_SpaceCats/Interface/Misc/job_icons.rsi
     state: SwarmUnit
 
 - type: statusIcon
   id: SwarmComanderFaction
-  priority: 12
-  showTo:
-    components:
-      - ShowAntagIcons
+  priority: 0
   locationPreference: Right
-  layer: Mod
   icon:
     sprite: /Textures/_SpaceCats/Interface/Misc/job_icons.rsi
     state: JobIconSwarmerUnitHead
