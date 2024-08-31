@@ -1,11 +1,11 @@
-- type: statusIcon
+- type: jobIcon
   parent: JobIcon
   id: JobIconSwarmerUnitHead
   icon:
     sprite: _SpaceCats/Interface/Misc/job_icons.rsi
     state: SwarmComander
 
-- type: statusIcon
+- type: jobIcon
   parent: JobIcon
   id: JobIconSwarmerUnit
   icon:
