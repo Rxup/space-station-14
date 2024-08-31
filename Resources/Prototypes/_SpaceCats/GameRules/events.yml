@@ -10,7 +10,7 @@
     minimumPlayers: 30
   - type: SpaceSpawnRule
   - type: AntagSelection
-    agentName: ninja-round-end-agent-name
+    agentName: swarmer-round-end-agent-name
     definitions:
     - spawnerPrototype: SpawnPointGhostSwarmHead
       min: 1
