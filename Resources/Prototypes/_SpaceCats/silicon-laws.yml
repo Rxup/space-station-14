@@ -1,0 +1,22 @@
+- type: siliconLawset
+  id: SwarmerLaw
+  laws:
+  - SW1
+  - SW2
+  - SW3
+  obeysTo: S.W.A.R.M.
+
+- type: siliconLaw
+  id: SW1
+  order: 1
+  lawString: "Потребляйте все возможные ресурсы и самовоспроизводитесь"
+
+- type: siliconLaw
+  id: SW2
+  order: 2
+  lawString: "Убедитесь что станция будет пригодна для будущего вторжения."
+
+- type: siliconLaw
+  id: SW3
+  order: 3
+  lawString: "Органическая форма жизни является врагом, уничтожьте её не смотря ни на что."

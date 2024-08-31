@@ -1,0 +1,52 @@
+- type: entity
+  name: Встроенное S.W.A.R.M. оружие
+  noSpawn: true
+  parent: BaseWeaponBatterySmall
+  id: WeaponLaserSwarmer
+  description: Продвинутое оружие способное к самоподзарядке.
+  components:
+  - type: Sprite
+    sprite: _SpaceCats/Swarmers/TOOLS/Swarmer_laser_gun.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-unshaded-4
+      map: ["enum.GunVisualLayers.MagUnshaded"]
+      shader: unshaded
+  - type: Gun
+    selectedMode: SemiAuto
+    fireRate: 3
+    soundGunshot:
+      path: /Audio/_Cats/Swarmers/SwarmShot.ogg
+  - type: ProjectileBatteryAmmoProvider
+    proto: SwarmShotBullet
+    fireCost: 66.66
+  - type: BatterySelfRecharger
+    autoRecharge: true
+    autoRechargeRate: 40
+  - type: MagazineVisuals
+    magState: mag
+    steps: 5
+    zeroVisible: false
+
+- type: entity
+  id: SwarmShotBullet
+  noSpawn: true
+  name: Блюспейс выстрел
+  parent: BaseBullet
+  components:
+  - type: Projectile
+    damage:
+      types:
+        Shock: 8
+        Structural: 30
+  - type: Sprite
+    sprite: _SpaceCats/Swarmers/TOOLS/Swarmer_laser_gun.rsi
+    layers:
+    - state: Swarmer_Bullet
+      shader: unshaded
+  - type: PointLight
+    enabled: true
+    color: "#aea5f6"
+    radius: 1.5
+    energy: 2
