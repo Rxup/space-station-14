@@ -7,6 +7,9 @@
     damageContainer: Silicon
     damageModifierSet: SwarmArm
   - type: IgnoreSpiderWeb
+  - type: AutoImplant
+    implants:
+    - TrackingImplantSwarm
   - type: NpcFactionMember
     factions:
     - Swarmers
