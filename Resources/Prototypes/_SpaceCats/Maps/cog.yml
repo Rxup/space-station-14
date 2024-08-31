@@ -71,8 +71,8 @@
             Reporter: [ 1, 1 ]
             # backmen
             BlueShield: [1, 1] # backmen-BlueShield
-            Brigmedic: [ 0, 1 ] # backmen-Brigmedic
-            StationAi: [ 1, 1 ]
+            Brigmedic: [ 1, 1 ] # backmen-Brigmedic
+            StationAi: [ 1, 0 ]
 #            BKBPLATech: [0, 3] # backmen-BPLA-Silicons
 #            BKBPLAMED: [0, 3] # backmen-BPLAMED-Silicons
 #            Deliveryman: [ 0, 1 ] # backmen-delivery
