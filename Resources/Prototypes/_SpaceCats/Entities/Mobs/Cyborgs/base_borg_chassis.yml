@@ -7,6 +7,7 @@
     damageContainer: Silicon
     damageModifierSet: SwarmArm
   - type: IgnoreSpiderWeb
+  - type: ShowJobIcons
   - type: AutoImplant
     implants:
     - TrackingImplantSwarm
@@ -176,7 +177,7 @@
       settings: short
   - type: GhostTakeoverAvailable
   - type: Loadout
-    prototypes: [SwarmerUnitGear]
+    prototypes: [SwarmerUnitGearHead]
   - type: MovementIgnoreGravity 
   - type: ContainerFill
     containers:

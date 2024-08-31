@@ -1,7 +1,15 @@
 - type: jobIcon
   parent: JobIcon
+  id: JobIconSwarmerUnitHead
+  icon:
+    sprite: _SpaceCats/Interface/Misc/job_icons.rsi/SwarmUnit.png
+    state: SwarmComander
+  jobName: U.N.I.T.
+
+- type: jobIcon
+  parent: JobIcon
   id: JobIconSwarmerUnit
   icon:
-    sprite: _SpaceCats/Swarmers/MOB-MODULS/Icons.rsi
+    sprite: _SpaceCats/Interface/Misc/job_icons.rsi/SwarmUnit.png
     state: SwarmUnit
   jobName: U.N.I.T.

@@ -15,3 +15,8 @@
   id: SwarmerUnitGear
   equipment:
     id: SwarmIdentificationCard
+
+- type: startingGear
+  id: SwarmerUnitGearHead
+  equipment:
+    id: SwarmIdentificationCardHead
