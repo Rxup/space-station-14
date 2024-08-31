@@ -9,9 +9,7 @@
   "states": [
     {
       "name": "SwarmUnit"
-    }
-  ],
-  "states": [
+    },
     {
       "name": "SwarmComander"
     }
