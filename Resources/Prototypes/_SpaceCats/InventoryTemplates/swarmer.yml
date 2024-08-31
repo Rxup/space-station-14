@@ -20,3 +20,5 @@
   id: SwarmerUnitGearHead
   equipment:
     id: SwarmIdentificationCardHead
+  inhand:
+    - PinpointerStation

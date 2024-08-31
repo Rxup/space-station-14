@@ -7,7 +7,6 @@
     damageContainer: Silicon
     damageModifierSet: SwarmArm
   - type: IgnoreSpiderWeb
-  - type: ShowJobIcons
   - type: AutoImplant
     implants:
     - TrackingImplantSwarm
