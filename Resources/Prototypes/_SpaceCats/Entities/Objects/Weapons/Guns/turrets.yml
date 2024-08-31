@@ -4,6 +4,9 @@
   parent: BaseWeaponTurret
   id: WeaponSwarmTurret
   components:
+    - type: NPCRetaliation
+      attackMemoryLength: 300
+    - type: FactionException
     - type: Tag
       tags:
       - Swarmer
@@ -15,7 +18,7 @@
       energy: 2
     - type: NpcFactionMember
       factions:
-        - Syndicate
+        - Swarmers
     - type: Sprite
       sprite: _SpaceCats/Swarmers/MOB-MODULS/Robots/Swarmer_Turret.rsi
       noRot: true

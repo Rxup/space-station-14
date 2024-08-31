@@ -115,7 +115,6 @@
     - SwarmWallRCD
     - FloorSwarmerEntityRCD
     - FloorSwarmerEntityLightRCD
-    - SwarmMassShredderRCD
     - SwarmDoorRCD
     - SwarmResourcesFactoryRCD
     - SwarmUnitsFactoryRCD

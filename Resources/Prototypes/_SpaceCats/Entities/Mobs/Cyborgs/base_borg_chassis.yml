@@ -9,7 +9,7 @@
   - type: IgnoreSpiderWeb
   - type: NpcFactionMember
     factions:
-    - Syndicate
+    - Swarmers
   - type: ShowJobIcons
   - type: TriggerOnMobstateChange
     mobState:
@@ -117,8 +117,8 @@
     allowSpeech: true
     makeSentient: true
     name: S.W.A.R.M.E.R.
-    description: Ешь - Самопроизводись - Повторяй. Уничтожь всё живое.
-    rules: Вы антагонист. Вы подчиняетесь только Фабрикатору.
+    description: Разбирай - Самопроизводись - Повторяй.
+    rules: Ваша задача - разобрать и переработать все структуры на вашем пути. Не атакуйте экипаж без причины. Вы подчиняетесь только Фабрикатору.
     raffle:
       settings: short
   - type: GhostTakeoverAvailable
@@ -164,8 +164,8 @@
     allowSpeech: true
     makeSentient: true
     name: F.A.B.R.I.C.A.T.O.R.
-    description: Ешь - Самопроизводись - Повторяй. Уничтожь всё живое.
-    rules: Вы антагонист. Вы лидер Роя.
+    description: Разбирай - Самопроизводись - Повторяй.
+    rules: Ваша задача - разобрать и переработать все структуры на вашем пути. Не атакуйте экипаж без причины. Вы лидер Роя.
     raffle:
       settings: short
   - type: GhostTakeoverAvailable
