@@ -54,31 +54,13 @@ public sealed class StationSpawningSystem : SharedStationSpawningSystem
     [Dependency] private readonly PdaSystem _pdaSystem = default!;
     [Dependency] private readonly SharedAccessSystem _accessSystem = default!;
 
-    [Dependency] private readonly Backmen.Fugitive.FugitiveSystem _fugitiveSystem = default!; //backmen: job non-standart spawnpoint
-
     private bool _randomizeCharacters;
-
-    private Dictionary<SpawnPriorityPreference, Action<PlayerSpawningEvent>> _spawnerCallbacks = new();
 
     /// <inheritdoc/>
     public override void Initialize()
     {
         base.Initialize();
         Subs.CVar(_configurationManager, CCVars.ICRandomCharacters, e => _randomizeCharacters = e, true);
-
-        _spawnerCallbacks = new Dictionary<SpawnPriorityPreference, Action<PlayerSpawningEvent>>()
-        {
-            { SpawnPriorityPreference.Arrivals, _arrivalsSystem.HandlePlayerSpawning },
-            {
-                SpawnPriorityPreference.Cryosleep, ev =>
-                {
-                    if (_arrivalsSystem.Forced)
-                        _arrivalsSystem.HandlePlayerSpawning(ev);
-                    else
-                        _containerSpawnPointSystem.HandlePlayerSpawning(ev);
-                }
-            }
-        };
     }
 
     /// <summary>
@@ -100,35 +82,7 @@ public sealed class StationSpawningSystem : SharedStationSpawningSystem
 
         var ev = new PlayerSpawningEvent(job, profile, station);
 
-        _fugitiveSystem.HandlePlayerSpawning(ev); //backmen: job non-standart spawnpoint
-
-        if (station != null && profile != null)
-        {
-            // Try to call the character's preferred spawner first.
-            if (_spawnerCallbacks.TryGetValue(profile.SpawnPriority, out var preferredSpawner))
-            {
-                preferredSpawner(ev);
-
-                foreach (var (key, remainingSpawner) in _spawnerCallbacks)
-                {
-                    if (key == profile.SpawnPriority)
-                        continue;
-
-                    remainingSpawner(ev);
-                }
-            }
-            else
-            {
-                // Call all of them in the typical order.
-                foreach (var typicalSpawner in _spawnerCallbacks.Values)
-                {
-                    typicalSpawner(ev);
-                }
-            }
-        }
-
         RaiseLocalEvent(ev);
-
         DebugTools.Assert(ev.SpawnResult is { Valid: true } or null);
 
         return ev.SpawnResult;

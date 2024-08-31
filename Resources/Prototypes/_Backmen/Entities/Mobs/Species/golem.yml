@@ -6,6 +6,9 @@
   description: Искусственная конструкция, имитирующая жизнь. У этого еще не установлен кристалл души.
   components:
   - type: ComplexInteraction
+  - type: ActionGrant
+    actions:
+    - ActionViewLaws
   - type: Sprite
     noRot: true
     drawdepth: Mobs

@@ -58,13 +58,13 @@ public sealed class GolemSystem : SharedGolemSystem
 
     private void OnGetLaws(EntityUid uid, GolemComponent component, ref GetSiliconLawsEvent args)
     {
-        if (args.Handled || component.Master == null)
+        if (args.Handled)
             return;
 
         // Add the first emag law
         args.Laws.Laws.Add(new SiliconLaw
         {
-            LawString = Loc.GetString("law-golem-1", ("name", component.Master)),
+            LawString = Loc.GetString("law-golem-1", ("name", component.Master ?? "----")),
             Order = 1
         });
 
@@ -91,7 +91,7 @@ public sealed class GolemSystem : SharedGolemSystem
         if (!TryComp<GolemComponent>(args.Target, out var golem))
             return;
 
-        if (HasComp<ActorComponent>(args.Target))
+        if (!(HasComp<ActorComponent>(args.Target) || Prototype(args.User)?.ID == AdminObserver))
             return;
 
         if (!TryComp<ActorComponent>(args.User, out var userActor))
@@ -142,6 +142,9 @@ public sealed class GolemSystem : SharedGolemSystem
         DirtyEntity(uid);
     }
 
+    [ValidatePrototypeId<EntityPrototype>]
+    private const string Ash = "Ash";
+
     private void OnMobStateChanged(EntityUid uid, GolemComponent component, MobStateChangedEvent args)
     {
         if (args.NewMobState != MobState.Dead)
@@ -151,7 +154,7 @@ public sealed class GolemSystem : SharedGolemSystem
         var ev = new DispelledEvent();
         RaiseLocalEvent(uid, ev, false);
 
-        Spawn("Ash", Transform(uid).Coordinates);
+        Spawn(Ash, Transform(uid).Coordinates);
         _audioSystem.PlayPvs(component.DeathSound, uid);
     }
 
@@ -163,10 +166,10 @@ public sealed class GolemSystem : SharedGolemSystem
         if (!TryComp<ItemSlotsComponent>(uid, out var slots))
             return;
 
-        if (!TryComp<ActorComponent>(component.PotentialCrystal, out var actor))
-            return;
+        //if (!TryComp<ActorComponent>(component.PotentialCrystal, out var actor))
+        //    return;
 
-        if (!_mindSystem.TryGetMind(component.PotentialCrystal.Value, out var mindId, out var mind))
+        if (!_mindSystem.TryGetMind(component.PotentialCrystal.Value, out var mindId, out var mind) || mind.Session == null)
             return;
 
         if (!_slotsSystem.TryGetSlot(uid, CrystalSlot, out var crystalSlot, slots)) // does it not have a crystal slot?
@@ -217,7 +220,7 @@ public sealed class GolemSystem : SharedGolemSystem
         //component.Master = null;
         component.GolemName = null;
         DirtyEntity(uid);
-        Dirty(uid, component);
+        //Dirty(uid, component);
     }
 
     private void OnNameChanged(EntityUid uid, GolemComponent golemComponent, GolemNameChangedMessage args)
