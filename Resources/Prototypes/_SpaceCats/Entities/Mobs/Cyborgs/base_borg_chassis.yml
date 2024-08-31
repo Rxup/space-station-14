@@ -65,6 +65,7 @@
     color: "#aea5f6"
     radius: 4
     energy: 2
+  - type: PNV
   - type: SiliconLawProvider
     laws: SwarmerLaw
   - type: ItemSlots
