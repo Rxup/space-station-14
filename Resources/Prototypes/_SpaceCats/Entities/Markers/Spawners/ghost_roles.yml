@@ -5,9 +5,9 @@
   parent: MarkerBase
   components:
   - type: GhostRole
-    name: ghost-role-information-rat-king-name
-    description: ghost-role-information-rat-king-description
-    rules: ghost-role-information-freeagent-rules
+    name: F.A.B.R.I.C.A.T.O.R.
+    description: Разбирай - Самопроизводись - Повторяй.
+    rules: Ваша задача - разобрать и переработать все структуры на вашем пути. Не атакуйте экипаж без причины. Вы лидер Роя.
     raffle:
       settings: default
   - type: GhostRoleMobSpawner
