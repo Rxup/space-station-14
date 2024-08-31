@@ -1,0 +1,46 @@
+- type: entity
+  id: SwarmPortal
+  name: блюспейс портал
+  description: явно не на 5 минут.
+  parent: BasePortal
+  components:
+  - type: Sprite
+    noRot: true
+    sprite: _SpaceCats/Swarmers/STRUCTURES/Swarm_portal.rsi
+    color: "#aea5f6"
+    layers:
+    - state: portal-Swarm
+  - type: PointLight
+    color: "#aea5f6"
+    radius: 2
+    energy: 2
+    netsync: false
+  - type: Damageable
+    damageContainer: StructuralInorganic
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 30
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+
+- type: entity
+  id: SwarmPortalGenerator
+  parent: BaseItem
+  name: Генератор порталов
+  description: 
+  components:
+  - type: Sprite
+    sprite: _SpaceCats/Swarmers/MOB-MODULS/SwarmerModul.rsi
+    layers:
+    - state: PortalGenerator
+  - type: HandTeleporter
+    firstPortalPrototype: SwarmPortal
+    secondPortalPrototype: SwarmPortal
+  - type: Tag
+    tags:
+    - HighRiskItem
+  - type: StealTarget
+    stealGroup: HandTeleporter

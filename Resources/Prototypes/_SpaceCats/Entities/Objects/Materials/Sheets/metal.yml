@@ -1,0 +1,58 @@
+- type: entity
+  parent: SheetMetalBase
+  description: Чёрный нано-металл, используемый для конструкции Свармеров.
+  id: SheetSWARMSteel
+  name: S.W.A.R.M. сталь
+  suffix: Full
+  components:
+  - type: PhysicalComposition
+    materialComposition:
+      SWARMSteel: 100
+  - type: Material
+  - type: Stack
+    stackType: SWARMSteel
+    baseLayer: base
+    layerStates:
+    - SwarmSteel
+    - SwarmSteel2
+    - SwarmSteel3
+  - type: Sprite
+    sprite: _SpaceCats/Swarmers/Swarm_Materials.rsi
+    state: SwarmSteel3
+    layers:
+    - state: SwarmSteel3
+      map: ["base"]
+  - type: Item
+  - type: Appearance
+
+- type: entity
+  parent: SheetSWARMSteel
+  noSpawn: true
+  id: SheetSWARMSteel10
+  suffix: 10
+  components:
+  - type: Sprite
+    sprite: _SpaceCats/Swarmers/Swarm_Materials.rsi
+    state: SwarmSteel
+  - type: Stack
+    stackType: SWARMSteel
+    count: 10
+
+- type: entity
+  parent: SheetSWARMSteel
+  noSpawn: true
+  id: SheetSWARMSteel1
+  components:
+  - type: Sprite
+    sprite: _SpaceCats/Swarmers/Swarm_Materials.rsi
+    state: SwarmSteel
+  - type: Stack
+    stackType: SWARMSteel
+    count: 1
+
+- type: material
+  id: SWARMSteel
+  stackEntity: SheetSWARMSteel1
+  name: S.W.A.R.M. сталь
+  icon: { sprite: _SpaceCats/Swarmers/Swarm_Materials.rsi, state: SwarmSteel }
+  price: 1

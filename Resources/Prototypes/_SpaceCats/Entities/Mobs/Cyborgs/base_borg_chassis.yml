@@ -1,92 +1,3 @@
-#Законы свармеров
-- type: siliconLawset
-  id: SwarmerLaw
-  laws:
-  - SW1
-  - SW2
-  - SW3
-  obeysTo: S.W.A.R.M.
-
-- type: Tag
-  id: SwarmerAccess
-
-- type: siliconLaw
-  id: SW1
-  order: 1
-  lawString: "Потребляйте все возможные ресурсы и самовоспроизводитесь"
-
-- type: siliconLaw
-  id: SW2
-  order: 2
-  lawString: "Убедитесь что станция будет пригодна для будущего вторжения."
-
-- type: siliconLaw
-  id: SW3
-  order: 3
-  lawString: "Органическая форма жизни является врагом, уничтожьте её не смотря ни на что."
-
-#Радио Свармеров
-- type: radioChannel
-  id: Swarm
-  name: cats-radio-swar
-  keycode: 'р' 
-  frequency: 7373
-  color: "#aea5f6"
-  longRange: true
-
-- type: body
-  id: SwarmerBody
-  name: "Свармер"
-  root: torso
-  slots:
-    torso:
-      part: BaseTorsoSwarmer
-      connections:
-      - right_hand
-    right_hand:
-      part: BaseRightHandSwarmer
-
-- type: entity
-  id: BaseTorsoSwarmer
-  noSpawn: true
-  name: Тело свармера
-  parent: BaseTorso
-  components:
-  - type: Damageable
-    damageContainer: Inorganic
-  - type: Sprite
-    sprite: _SpaceCats/Swarmers/MOB-MODULS/Robots/Swarmer_base.rsi
-    state: "borg_chest"
-  - type: BodyPart
-    partType: Torso
-
-- type: entity
-  id: BaseRightHandSwarmer
-  noSpawn: true
-  name: "Правая рука свармера"
-  parent: BaseRightHand
-  components:
-  - type: Damageable
-    damageContainer: Inorganic
-  - type: Sprite
-    sprite: _SpaceCats/Swarmers/MOB-MODULS/Robots/Swarmer_base.rsi
-    state: "borg_r_arm"
-  - type: BodyPart
-    partType: Hand
-    symmetry: Right
-
-- type: typingIndicator
-  id: Swarms
-  spritePath: _SpaceCats/Swarmers/Typing.rsi
-  typingState: swarmbot0
-  idleState: swarmbot3
-
-- type: damageModifierSet
-  id: SwarmArm
-  coefficients:
-    Shock: 0.0
-
-#Свармер
 - type: entity
   id: SwarmerUnit
   noSpawn: true
@@ -189,25 +100,6 @@
       - !type:DoActsBehavior
         acts: [ "Destruction" ]
 
-- type: inventoryTemplate
-  id: Swarmer
-  slots:
-    - name: id
-      slotTexture: id
-      fullTextureName: template_small
-      slotFlags: IDCARD
-      slotGroup: SecondHotbar
-      stripTime: 6
-      uiWindowPos: 2,2
-      strippingWindowPos: 2,3
-      displayName: ID
-
-- type: startingGear
-  id: SwarmerUnitGear
-  equipment:
-    id: SwarmIdentificationCard
-
-#Стандартный свармер
 - type: entity
   id: SwarmerUnitStandard
   parent: SwarmerUnit
@@ -244,16 +136,6 @@
         name: power-cell-slot-component-slot-name-default
         startingItem: SwarmerSuperCell
 
-- type: latheRecipe
-  id: SwarmerUnitStandardFactoryUnit
-  result: SwarmerUnitStandard
-  completetime: 5
-  materials:
-    SWARMSteel: 2000
-    SWARMGlass: 1000
-    Biomass: 20
-
-#свармер - Лидер
 - type: entity
   id: SwarmerUnitFabricator
   parent: SwarmerUnit

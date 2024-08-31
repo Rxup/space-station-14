@@ -1,0 +1,97 @@
+- type: entity
+  parent: BaseMachinePowered
+  id: SwarmCellCharger
+  name: Станция зарядки S.W.A.R.M батарей
+  description: Стационарная станция зарядки батарей, прямо внутри корпуса!
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: ApcPowerReceiver
+    powerLoad: 0
+  - type: PointLight
+    radius: 2
+    energy: 2
+    color: "#aea5f6"
+  - type: Appearance
+  - type: Sprite
+    snapCardinals: true
+    sprite: _SpaceCats/Swarmers/STRUCTURES/Swarm_charger.rsi
+    layers:
+      - state: borgcharger-u1
+        map: ["base"]
+      - state: borgcharger0
+        map: ["enum.PowerDeviceVisualLayers.Powered"]
+        shader: "unshaded"
+      - state: borgcharger1
+        map: ["charged"]
+        shader: "unshaded"
+        visible: false
+  - type: Charger
+    chargeRate: 50
+    slotId: entity_storage
+    whitelist:
+     tags:
+     - Swarmer
+  - type: GenericVisualizer
+    visuals:
+      enum.StorageVisuals.Open:
+        base:
+          True: { state: borgcharger-u0 }
+          False: { state: borgcharger-u1 }
+        enum.PowerDeviceVisualLayers.Powered:
+          True: { state: borgcharger0 }
+          False: { state: borgcharger2 }
+        charged:
+          True: { visible: false }
+          False: { visible: true }
+      enum.PowerDeviceVisuals.Powered:
+        enum.PowerDeviceVisualLayers.Powered:
+          True: { visible: true }
+          False: { visible: false }
+        charged:
+          True: { visible: true }
+          False: { visible: false }
+      enum.CellVisual.Light:
+        charged:
+          Off: { visible: false }
+          Empty: { visible: false }
+          Charging:
+            visible: true
+            state: borgcharger3
+          Charged:
+            visible: true
+            state: borgcharger1
+  - type: EntityStorage
+    capacity: 1
+    whitelist:
+     tags:
+     - Swarmer
+  - type: ContainerContainer
+    containers:
+      entity_storage: !type:Container
+      machine_board: !type:Container
+      machine_parts: !type:Container
+  - type: Transform
+    anchored: true
+    noRot: true
+  - type: Anchorable
+    delay: 1
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 500
+      behaviors:
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          SheetSWARMSteel1:
+            min: 1
+            max: 3
+          SheetSWARMGlass1:
+            min: 1
+            max: 2
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalSlam
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]

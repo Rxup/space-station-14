@@ -57,7 +57,6 @@
     energy: 2
     color: "#aea5f6"
 
-#Переработчик материалов
 - type: entity
   parent: BaseSwarmerFactory
   id: SwarmResourcesFactory
@@ -86,19 +85,6 @@
       - SWARMGlassFactoryPlasmaGlass
       - SWARMGlassFactoryReinforcedPlasmaGlass
 
-- type: rcd
-  id: SwarmResourcesFactoryRCD
-  category: Electrical
-  sprite: _SpaceCats/Swarmers/STRUCTURES/SwarmSteel_Factory.rsi/icon.png
-  mode: ConstructObject
-  prototype: SwarmResourcesFactory
-  cost: 10
-  delay: 1.2
-  collisionMask: FullTileMask
-  rotation: Fixed
-  fx: EffectSwarmConstruct
-
-#Фабрика Свармеров
 - type: entity
   parent: BaseSwarmerFactory
   id: SwarmUnitsFactory
@@ -119,15 +105,3 @@
     runningState: building
     staticRecipes:
       - SwarmerUnitStandardFactoryUnit
-
-- type: rcd
-  id: SwarmUnitsFactoryRCD
-  category: Electrical
-  sprite: _SpaceCats/Swarmers/STRUCTURES/Swarmer_Factory.rsi/icon.png
-  mode: ConstructObject
-  prototype: SwarmUnitsFactory
-  cost: 12
-  delay: 1.2
-  collisionMask: FullTileMask
-  rotation: Fixed
-  fx: EffectSwarmConstruct
