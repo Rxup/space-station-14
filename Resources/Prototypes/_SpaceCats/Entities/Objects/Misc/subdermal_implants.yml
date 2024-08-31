@@ -9,11 +9,6 @@
       whitelist:
         components:
         - MobState # admeme implanting a chair with tracking implant needs to give the chair mobstate so it can die first
-    - type: SuitSensor
-      randomMode: false
-      controlsLocked: true
-      mode: SensorCords
-      activationContainer: "implant"
     - type: DeviceNetwork
       deviceNetId: Wireless
       transmitFrequencyId: SuitSensor
