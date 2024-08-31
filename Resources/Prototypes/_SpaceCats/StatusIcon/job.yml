@@ -1,4 +1,4 @@
-- type: jobIcon
+- type: statusIcon
   parent: JobIcon
   id: JobIconSwarmerUnitHead
   icon:
@@ -6,7 +6,7 @@
     state: SwarmComander
   jobName: U.N.I.T.
 
-- type: jobIcon
+- type: statusIcon
   parent: JobIcon
   id: JobIconSwarmerUnit
   icon:
