@@ -3,3 +3,9 @@
   typingState: felinid0
   idleState: felinid0
   offset: 0, 0.2 # 0625
+
+- type: typingIndicator
+  id: Swarms
+  spritePath: _SpaceCats/Swarmers/Typing.rsi
+  typingState: swarmbot0
+  idleState: swarmbot3
