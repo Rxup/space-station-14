@@ -4,7 +4,6 @@
   icon:
     sprite: _SpaceCats/Interface/Misc/job_icons.rsi
     state: SwarmComander
-  jobName: U.N.I.T.
 
 - type: statusIcon
   parent: JobIcon
@@ -12,4 +11,3 @@
   icon:
     sprite: _SpaceCats/Interface/Misc/job_icons.rsi
     state: SwarmUnit
-  jobName: U.N.I.T.
