@@ -52,6 +52,11 @@
   - type: ActiveRadio
     channels:
     - Swarm
+  - type: TriggerOnMobstateChange
+      mobState:
+      - Dead
+  - type: Rattle
+    radioChannel: "Swarm"
   - type: AccessReader
     access: [["SwarmerAccess"]]
   - type: FootstepModifier
