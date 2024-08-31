@@ -96,6 +96,7 @@
       - ReagentId: WeldingFuel
         Quantity: 2
 
+- type: entity
   id: SwarmDeveloper
   parent: RCD
   name: S.W.A.R.M. фабрикатор
