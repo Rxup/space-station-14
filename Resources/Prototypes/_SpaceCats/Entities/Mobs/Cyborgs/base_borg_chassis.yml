@@ -49,6 +49,13 @@
       - ModuleSwarmer
     hasMindState: Swarmer_e
     noMindState: Swarmer_e_r
+  - type: Clumsy
+      clumsyDamage:
+        types:
+          Blunt: 5
+          Piercing: 4
+        groups:
+          Burn: 3
   - type: NightVision
     isToggle: true
   - type: Rattle
