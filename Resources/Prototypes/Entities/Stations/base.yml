@@ -53,9 +53,6 @@
             - type: TradeStation
           paths:
             - /Maps/Shuttles/trading_outpost.yml
-        mining: !type:GridSpawnGroup
-          paths:
-          - /Maps/Backmen/Grids/pts.yml # backmen-salvage-shuttle
         # Spawn last
         ruins: !type:GridSpawnGroup
           hide: true

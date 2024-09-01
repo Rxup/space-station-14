@@ -1,28 +1,6 @@
 ﻿- type: htnCompound
   id: BehemothFoodCompound
   branches:
-  - preconditions:
-    - !type:BuckledPrecondition
-      isBuckled: true
-    tasks:
-    - !type:HTNPrimitiveTask
-      operator: !type:UnbuckleOperator
-        shutdownState: TaskFinished
-
-  - preconditions:
-    - !type:InContainerPrecondition
-      isInContainer: true
-    tasks:
-    - !type:HTNCompoundTask
-      task: EscapeCompound
-
-  - preconditions:
-    - !type:PulledPrecondition
-      isPulled: true
-    tasks:
-    - !type:HTNPrimitiveTask
-      operator: !type:UnPullOperator
-        shutdownState: TaskFinished
   # Picks a nearby food, moves into range, then eats it and waits the idle time.
   - tasks:
     - !type:HTNPrimitiveTask

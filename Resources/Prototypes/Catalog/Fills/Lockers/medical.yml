@@ -50,7 +50,6 @@
       - id: ClothingHandsGlovesLatex
       - id: ClothingHeadsetMedical
       - id: ClothingEyesHudMedical
-      - id: ClothingBeltMedical
       - id: ClothingHeadHatSurgcapGreen
         prob: 0.1
         orGroup: Surgcaps
@@ -70,8 +69,8 @@
         prob: 0.05
         orGroup: Surgshrubs
       - id: ClothingMaskSterile
-      - id: AntiPsychicKnife # backmen
       - id: ClothingHeadCage # backmen
+        prob: 0.5
 
 - type: entity
   parent: LockerWallMedical
@@ -86,7 +85,6 @@
       - id: ClothingHandsGlovesLatex
       - id: ClothingHeadsetMedical
       - id: ClothingEyesHudMedical
-      - id: ClothingBeltMedical
       - id: ClothingHeadHatSurgcapGreen
         prob: 0.1
         orGroup: Surgcaps
