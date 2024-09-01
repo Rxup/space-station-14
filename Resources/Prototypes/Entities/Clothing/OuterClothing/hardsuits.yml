@@ -453,6 +453,7 @@
   - type: HeldSpeedModifier
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetHardsuitSecurityRed
+  - type: NTHud
 
 #Luxury Mining Hardsuit
 - type: entity
@@ -800,6 +801,7 @@
     sprite: Clothing/OuterClothing/Hardsuits/ERTSuits/ertleader.rsi
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetHardsuitERTLeader
+  - type: NTHud
 
 #ERT Chaplain Hardsuit
 - type: entity
@@ -814,6 +816,7 @@
     sprite: Clothing/OuterClothing/Hardsuits/ERTSuits/ertchaplain.rsi
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetHardsuitERTChaplain
+  - type: NTHud
 
 #ERT Engineer Hardsuit
 - type: entity
@@ -829,6 +832,7 @@
     sprite: Clothing/OuterClothing/Hardsuits/ERTSuits/ertengineer.rsi
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetHardsuitERTEngineer
+  - type: NTHud
 
 #ERT Medic Hardsuit
 - type: entity
@@ -843,6 +847,7 @@
     sprite: Clothing/OuterClothing/Hardsuits/ERTSuits/ertmedical.rsi
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetHardsuitERTMedical
+  - type: NTHud
 
 #ERT Security Hardsuit
 - type: entity
@@ -861,6 +866,7 @@
     tags:
     - Hardsuit
     - WhitelistChameleon
+  - type: NTHud
 
 #ERT Janitor Hardsuit
 - type: entity
@@ -912,6 +918,7 @@
   - type: HeldSpeedModifier
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetHardsuitDeathsquad
+  - type: NTHud
 
 #CBURN Hardsuit
 - type: entity

@@ -116,3 +116,63 @@
     sprite: _SpaceCats/blueshield/blueshield-cloack.rsi
   - type: StealTarget
     stealGroup: HeadCloak
+
+#Сверхтяжёлый бронекостюм(если будут делать механику с выбором скафандра)
+- type: entity
+  parent: [ClothingOuterHardsuitSecurity, BaseCommandContraband]
+  id: ClothingOuterHardsuitNTJugg
+  name: Сверхтяжёлый бронескафандр "Аколит" #чтооо пасхалко?!?!
+  description: Сверхтяжёлая броня,собранная для специальных сил NT. Включает в себя множество комбинаций различных типов защиты,а так - же прибор ночного видения. Для частичного ниввелирования веса был интегрирован экзоскелет.
+  components:
+  - type: Sprite
+    sprite:  _SpaceCats/Clothing/OuterClothing/Hardsuits/NTSO.rsi
+  - type: Clothing
+    sprite: _SpaceCats/Clothing/OuterClothing/Hardsuits/NTSO.rsi
+  - type: PressureProtection
+    highPressureMultiplier: 0.1
+    lowPressureMultiplier: 1000
+  - type: ExplosionResistance
+    damageCoefficient: 0.3
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.3 #70%
+        Slash: 0.3 #70%
+        Piercing: 0.4 #60%
+        Caustic: 0.3 #70%
+        Stun: 0.25 #75%
+  - type: ClothingSpeedModifier
+    walkModifier: 0.70
+    sprintModifier: 0.70
+  - type: HeldSpeedModifier
+  - type: ToggleableClothing
+    clothingPrototype: ClothingHeadHelmetHardsuitNTJugg
+
+- type: entity
+  id: NTHud # для адских руин геймплея антагов по типу аврелии на гсб <3
+  components:
+  - type: ShowJobIcons
+  - type: ShowMindShieldIcons
+  - type: ShowCriminalRecordIcons
+  - type: ShowHealthBars
+    damageContainers:
+    - Biological
+
+- type: entity
+  parent: [ClothingHeadHardsuitBase, BaseCommandContraband]
+  id: ClothingHeadHelmetHardsuitNTJugg
+  name: Шлем бронескафандра "Аколит"
+  description: Прочный и довольно громоздкий шлем, с интегрированным NTHud и прибором ночного видения.
+  components:
+  - type: Sprite
+    sprite: _SpaceCats/Clothing/Head/Hardsuit/NTSO.rsi
+  - type: Clothing
+    sprite: _SpaceCats/Clothing/Head/Hardsuits/NTSO.rsi
+  - type: PressureProtection
+    highPressureMultiplier: 0.5
+    lowPressureMultiplier: 1000
+  - type: FlashImmunity
+  - type: NTHud
+  - type: UseDelay
+    delay: 5
+  - type: PNV

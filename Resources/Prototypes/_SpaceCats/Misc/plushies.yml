@@ -1,0 +1,18 @@
+- type: entity
+  parent: BasePlushie
+  id: PlushieLolyItsMyLife
+  name: плюшевая Элина Сазонова
+  description: Пахнет похотью и котятами. Милашка.
+  components:
+  - type: Sprite
+    sprite: _SpaceCats/Objects/Misc/loly.rsi
+    state: plushie_elina
+  - type: EmitSoundOnUse
+    sound:
+      path: Audio/Animals/cat_meow.ogg
+  - type: EmitSoundOnLand
+    sound:
+      path: Audio/Animals/cat_meow.ogg
+  - type: MeleeWeapon
+    soundHit:
+      path: Audio/Animals/cat_meow.ogg
