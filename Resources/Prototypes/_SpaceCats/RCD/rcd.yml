@@ -65,7 +65,9 @@
   prototype: FloorSwarmerEntity
   cost: 1
   delay: 1.2
-  collisionMask: FullTileMask
+  collisionMask: InteractImpassable
+  rules:
+    - CanBuildOnEmptyTile
   fx: EffectSwarmConstruct
 
 - type: rcd
@@ -76,7 +78,9 @@
   prototype: FloorSwarmerEntityLight
   cost: 1
   delay: 1.2
-  collisionMask: FullTileMask
+  collisionMask: InteractImpassable
+  rules:
+    - CanBuildOnEmptyTile
   fx: EffectSwarmConstruct
 
 - type: rcd
