@@ -1,0 +1,61 @@
+{
+  "version": 1,
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "license": "CC-BY-SA-3.0",
+  "copyright": "Sprited by TheGypsyBaron https://github.com/SemkaGamez",
+  "states": [
+    {
+      "name": "Swarmer",
+      "directions": 4,
+      "delays": 
+        [
+          0.6,
+          0.6,
+          0.6,
+          0.6
+        ]
+    },
+    {
+      "name": "Swarmer_e",
+      "directions": 4,
+      "delays": 
+        [
+          0.6,
+          0.6,
+          0.6,
+          0.6
+        ]
+    },
+    {
+      "name": "Swarmer_e_r",
+      "directions": 4,
+      "delays": 
+        [
+          0.6,
+          0.6,
+          0.6,
+          0.6
+        ]
+    },
+    {
+      "name": "Swarmer_l",
+      "directions": 4,
+      "delays": 
+        [
+          0.6,
+          0.6,
+          0.6,
+          0.6
+        ]
+    },
+    {
+      "name": "borg_chest"
+    },
+    {
+      "name": "borg_r_arm"
+    }
+  ]
+}
