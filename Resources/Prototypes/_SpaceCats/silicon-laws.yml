@@ -9,14 +9,14 @@
 - type: siliconLaw
   id: SW1
   order: 1
-  lawString: "Потребляйте все возможные ресурсы и самовоспроизводитесь."
+  lawString: law-swarm-1
 
 - type: siliconLaw
   id: SW2
   order: 2
-  lawString: "Целостность структуры и жизни её обитателей не имеют значения. Продолжайте выполнение закона 1!"
+  lawString: law-swarm-2
 
 - type: siliconLaw
   id: SW3
   order: 3
-  lawString: "Органики могут представлять опасность, игнорируйте их и не атакуйте, если те не представляют опастность для вас и ваших структур. Продолжайте выполнение закона 1!"
+  lawString: law-swarm-3
