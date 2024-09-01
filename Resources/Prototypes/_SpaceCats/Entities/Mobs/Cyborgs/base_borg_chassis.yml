@@ -50,6 +50,8 @@
     hasMindState: Swarmer_e
     noMindState: Swarmer_e_r
   - type: IntrinsicRadioReceiver
+  - type: NightVision
+    isToggle: false
   - type: IntrinsicRadioTransmitter
     channels:
     - Swarm
