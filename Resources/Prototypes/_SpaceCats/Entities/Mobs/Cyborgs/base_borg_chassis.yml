@@ -1,0 +1,199 @@
+- type: entity
+  id: SwarmerUnit
+  noSpawn: true
+  parent: BaseBorgChassis
+  components:
+  - type: Damageable
+    damageContainer: Silicon
+    damageModifierSet: SwarmArm
+  - type: IgnoreSpiderWeb
+  - type: AutoImplant
+    implants:
+    - TrackingImplantSwarm
+  - type: NpcFactionMember
+    factions:
+    - Swarmers
+  - type: ShowJobIcons
+  - type: TriggerOnMobstateChange
+    mobState:
+    - Critical
+  - type: EmitSoundOnTrigger
+    sound:
+      path: /Audio/_Cats/Swarmers/SwarmerDead.ogg
+      params:
+        volume: -2
+  - type: TypingIndicator
+    proto: Swarms
+  - type: Body
+    prototype: SwarmerBody
+  - type: Speech
+    speechSounds: SyndieBorg
+  - type: Access
+    tags:
+    - SwarmerAccess
+  - type: Sprite
+    sprite: _SpaceCats/Swarmers/MOB-MODULS/Robots/Swarmer_base.rsi
+    layers:
+    - state: Swarmer
+    - state: Swarmer_e_r
+      map: ["enum.BorgVisualLayers.Light"]
+      shader: unshaded
+      visible: false
+    - state: Swarmer_l
+      shader: unshaded
+      map: ["light"]
+  - type: BorgChassis
+    maxModules: 2
+    moduleWhitelist:
+      tags:
+      - ModuleSwarmer
+    hasMindState: Swarmer_e
+    noMindState: Swarmer_e_r
+  - type: Clumsy
+    clumsyDamage:
+      types:
+        Blunt: 5
+        Piercing: 4
+      groups:
+        Burn: 3
+  - type: NightVision
+    isToggle: true
+  - type: Rattle
+    radioChannel: "Swarm"
+  - type: AccessReader
+    access: [["SwarmerAccess"]]
+  - type: FootstepModifier
+    footstepSoundCollection:
+      collection: FootstepHoverBorg
+  - type: PointLight
+    autoRot: true
+    netsync: false
+    color: "#aea5f6"
+    radius: 4
+    energy: 2
+  - type: PNV
+  - type: SiliconLawProvider
+    laws: SwarmerLaw
+  - type: ItemSlots
+    slots:
+      cell_slot:
+        name: power-cell-slot-component-slot-name-default
+        whitelist:
+          tags:
+          - SwarmerSuperCell
+  - type: Tag
+    tags:
+    - DoorBumpOpener
+    - CanPilot
+    - FootstepSound
+    - EmagImmune
+    - Swarmer 
+  - type: Construction
+    node: cyborg
+  - type: Inventory
+    templateId: Swarmer
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 300
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalBreak
+      - !type:EmptyContainersBehaviour
+        containers:
+        - borg_brain
+        - borg_module
+        - cell_slot
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+
+- type: entity
+  id: SwarmerUnitStandard
+  parent: SwarmerUnit
+  description: Технологически развитый робот.
+  name: S.W.A.R.M.E.R.
+  suffix: BORK (Swarmer) 
+  components:
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      50: Critical
+      100: Dead 
+  - type: GhostRole
+    allowMovement: true
+    allowSpeech: true
+    makeSentient: true
+    name: S.W.A.R.M.E.R.
+    description: Разбирай - Самопроизводись - Повторяй.
+    rules: Ваша задача - разобрать и переработать все структуры на вашем пути. Не атакуйте экипаж без причины. Вы подчиняетесь только Фабрикатору.
+    raffle:
+      settings: short
+  - type: GhostTakeoverAvailable
+  - type: Loadout
+    prototypes: [SwarmerUnitGear]
+  - type: MovementIgnoreGravity 
+  - type: ContainerFill
+    containers:
+      borg_module:
+      - ModuleSwarmerMein
+      - ModuleSwarmerCombat
+  - type: ItemSlots
+    slots:
+      cell_slot:
+        name: power-cell-slot-component-slot-name-default
+        startingItem: SwarmerSuperCell
+
+- type: entity
+  id: SwarmerUnitFabricator
+  parent: SwarmerUnit
+  suffix: BORK (Swarmer) 
+  description: Технологически развитый робот.
+  name: F.A.B.R.I.C.A.T.O.R. 
+  components:
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      250: Critical
+      300: Dead
+  - type: Sprite
+    sprite: _SpaceCats/Swarmers/MOB-MODULS/Robots/Swarmer_fabricator.rsi
+    layers:
+    - state: Swarmer
+    - state: Swarmer_e_r
+      map: ["enum.BorgVisualLayers.Light"]
+      shader: unshaded
+      visible: false
+    - state: Swarmer_l
+      shader: unshaded
+      map: ["light"]
+  - type: GhostRole
+    allowMovement: true
+    allowSpeech: true
+    makeSentient: true
+    name: F.A.B.R.I.C.A.T.O.R.
+    description: Разбирай - Самопроизводись - Повторяй.
+    rules: Ваша задача - разобрать и переработать все структуры на вашем пути. Не атакуйте экипаж без причины. Вы лидер Роя.
+    raffle:
+      settings: short
+  - type: GhostTakeoverAvailable
+  - type: Loadout
+    prototypes: [SwarmerUnitGearHead]
+  - type: MovementIgnoreGravity 
+  - type: ContainerFill
+    containers:
+      borg_module:
+      - ModuleSwarmerMein
+      - ModuleSwarmerCombat
+      key_slots:
+      - EncryptionKeySwarm
+  - type: EncryptionKeyHolder
+    keysExtractionMethod: Prying
+    keySlots: 1
+  - type: TelecomServer
+  - type: ItemSlots
+    slots:
+      cell_slot:
+        name: power-cell-slot-component-slot-name-default
+        startingItem: SwarmerSuperCell

@@ -213,17 +213,12 @@
       maxValue: 2.0
       isLooped: true
   - type: ToggleableLightVisuals
-  - type: Actions
-  - type: UnpoweredFlashlight
   - type: PointLight
-    enabled: true
-    radius: 5.0
-    energy: 4.0
-    netsync: false
-    softness: 1
+    enabled: false
     mask: /Textures/Effects/LightMasks/cone.png
     autoRot: true
-    color: "#0000FF"
+    radius: 4
+    netsync: false
   - type: Pullable
   - type: Puller
     needsHands: false

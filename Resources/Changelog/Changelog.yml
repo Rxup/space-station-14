@@ -1,4 +1,93 @@
 ﻿Entries:
+- author: ShadowCommander
+  changes:
+  - message: Added a red light to firelocks when their warning lights are active.
+    type: Add
+  - message: Firelocks no longer require power to show warning lights.
+    type: Tweak
+  id: 6747
+  time: '2024-06-15T15:17:16.0000000+00:00'
+  url: https://github.com/space-wizards/space-station-14/pull/29024
+- author: Ian321
+  changes:
+  - message: Donk co. microwaves now have their own machine board.
+    type: Fix
+  id: 6748
+  time: '2024-06-15T15:44:56.0000000+00:00'
+  url: https://github.com/space-wizards/space-station-14/pull/29037
+- author: BombasterDS
+  changes:
+  - message: Added craftable mannequin that you can hang clothing on!
+    type: Add
+  id: 6749
+  time: '2024-06-15T17:50:55.0000000+00:00'
+  url: https://github.com/space-wizards/space-station-14/pull/29004
+- author: notafet
+  changes:
+  - message: The TEG must now be operated at higher temperatures to generate power.
+    type: Tweak
+  id: 6750
+  time: '2024-06-15T21:05:57.0000000+00:00'
+  url: https://github.com/space-wizards/space-station-14/pull/29050
+- author: lzk228
+  changes:
+  - message: Fixed ability for mime to not choose any mask.
+    type: Fix
+  id: 6751
+  time: '2024-06-15T21:32:49.0000000+00:00'
+  url: https://github.com/space-wizards/space-station-14/pull/29056
+- author: FunTust
+  changes:
+  - message: Fixed hair disappearing when hats are tucked away in a pocket.
+    type: Fix
+  id: 6752
+  time: '2024-06-15T21:42:13.0000000+00:00'
+  url: https://github.com/space-wizards/space-station-14/pull/28949
+- author: Cojoke-dot
+  changes:
+  - message: You can now find Jackboots in the security load-outs
+    type: Add
+  - message: The Sec drobe no longer has a Cowboy hat or boots
+    type: Remove
+  id: 6753
+  time: '2024-06-15T22:38:29.0000000+00:00'
+  url: https://github.com/space-wizards/space-station-14/pull/29018
+- author: Keer-Sar
+  changes:
+  - message: Fixed a spelling error in the cargo bounty for lungs.
+    type: Fix
+  id: 6754
+  time: '2024-06-16T00:24:29.0000000+00:00'
+  url: https://github.com/space-wizards/space-station-14/pull/29064
+- author: Keer-Sar
+  changes:
+  - message: Non-humanoids' names are now capitalized when inserting materials into
+      machines.
+    type: Fix
+  id: 6755
+  time: '2024-06-16T02:06:12.0000000+00:00'
+  url: https://github.com/space-wizards/space-station-14/pull/29071
+- author: EmoGarbage404
+  changes:
+  - message: Magboots no longer work when off-grid.
+    type: Fix
+  id: 6756
+  time: '2024-06-16T03:38:18.0000000+00:00'
+  url: https://github.com/space-wizards/space-station-14/pull/29034
+- author: deltanedas
+  changes:
+  - message: Tarantulas now use Mechanotoxin, a venom that slows you down over time.
+    type: Tweak
+  id: 6757
+  time: '2024-06-16T11:26:59.0000000+00:00'
+  url: https://github.com/space-wizards/space-station-14/pull/29066
+- author: Cojoke-dot
+  changes:
+  - message: Musicians can now select instruments in their loadout
+    type: Add
+  id: 6758
+  time: '2024-06-16T11:27:35.0000000+00:00'
+  url: https://github.com/space-wizards/space-station-14/pull/29059
 - author: ElectroJr
   changes:
   - message: Fixed pianos, office chairs & other objects not rotating while being

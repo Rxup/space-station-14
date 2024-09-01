@@ -1,0 +1,30 @@
+- type: entity
+  parent: ClothingHeadset
+  id: ClothingHeadsetSwarm
+  name: S.W.A.R.M сигнал
+  description: Позволяет выслушать частоты S.W.A.R.M
+  components:
+  - type: ContainerFill
+    containers:
+      key_slots:
+      - EncryptionKeySwarm
+  - type: Unremoveable
+  - type: Sprite
+    sprite: Clothing/Ears/Headsets/freelance.rsi
+  - type: Clothing
+    sprite: Clothing/Ears/Headsets/freelance.rsi
+
+- type: entity
+  parent: EncryptionKey
+  id: EncryptionKeySwarm
+  name: common encryption key
+  description: An encryption key used by anyone.
+  components:
+  - type: EncryptionKey
+    channels:
+    - Swarm
+    defaultChannel: Swarm
+  - type: Sprite
+    layers:
+    - state: crypt_gray
+    - state: common_label

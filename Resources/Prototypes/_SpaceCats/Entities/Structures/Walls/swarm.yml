@@ -1,0 +1,46 @@
+- type: entity
+  parent: BaseWall
+  id: SwarmWall
+  suffix: BORK (Swarmer)
+  description: Невероятно прочная стена.
+  name: Стена из S.W.A.R.M стали
+  components:
+  - type: Tag
+    tags:
+      - Wall
+  - type: IconSmooth
+    key: walls
+    base: swarm
+  - type: Sprite
+    sprite: _SpaceCats/Swarmers/STRUCTURES/Swarm_wall.rsi
+    layers:
+    - state: full
+  - type: Icon
+    sprite: _SpaceCats/Swarmers/STRUCTURES/Swarm_wall.rsi
+    layers:
+    - state: full
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 500
+      behaviors:
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          SheetSWARMSteel1:
+            min: 1
+            max: 3
+          SheetSWARMGlass1:
+            min: 1
+            max: 2
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalSlam
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+  - type: PointLight
+    radius: 2
+    energy: 2
+    color: "#aea5f6"
+  - type: StaticPrice
+    price: 500

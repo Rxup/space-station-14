@@ -40,8 +40,6 @@ public sealed partial class BanManager : IBanManager, IPostInjectInit
     [Dependency] private readonly ITaskManager _taskManager = default!;
     [Dependency] private readonly UserDbDataManager _userDbData = default!;
 
-    public event EventHandler<BanEventArgs.ServerBanEventArgs>? ServerBanCreated;
-
     private ISawmill _sawmill = default!;
 
     public const string SawmillId = "admin.bans";
@@ -199,25 +197,43 @@ public sealed partial class BanManager : IBanManager, IPostInjectInit
         _sawmill.Info(logMessage);
         _chat.SendAdminAlert(logMessage);
 
-        // If we're not banning a player we don't care about disconnecting people
-        if (target == null)
-            return;
-
-        // Is the player connected?
-        if (!_playerManager.TryGetSessionById(target.Value, out var targetPlayer))
-            return;
-        // If they are, kick them
-        var message = banDef.FormatBanMessage(_cfg, _localizationManager);
-        targetPlayer.Channel.Disconnect(message);
-
-        OnServerBanCreated(new BanEventArgs.ServerBanEventArgs(target, targetUsername, banningAdmin, addressRange, hwid, minutes, severity, reason));
-
+        KickMatchingConnectedPlayers(banDef, "newly placed ban");
     }
 
-    private void OnServerBanCreated(BanEventArgs.ServerBanEventArgs e)
+    private void KickMatchingConnectedPlayers(ServerBanDef def, string source)
     {
-        ServerBanCreated?.Invoke(this, e);
+        foreach (var player in _playerManager.Sessions)
+        {
+            if (BanMatchesPlayer(player, def))
+            {
+                KickForBanDef(player, def);
+                _sawmill.Info($"Kicked player {player.Name} ({player.UserId}) through {source}");
+            }
+        }
     }
+
+    private bool BanMatchesPlayer(ICommonSession player, ServerBanDef ban)
+    {
+        var playerInfo = new BanMatcher.PlayerInfo
+        {
+            UserId = player.UserId,
+            Address = player.Channel.RemoteEndPoint.Address,
+            HWId = player.Channel.UserData.HWId,
+            // It's possible for the player to not have cached data loading yet due to coincidental timing.
+            // If this is the case, we assume they have all flags to avoid false-positives.
+            ExemptFlags = _cachedBanExemptions.GetValueOrDefault(player, ServerBanExemptFlags.All),
+            IsNewPlayer = false,
+        };
+
+        return BanMatcher.BanMatches(ban, playerInfo);
+    }
+
+    private void KickForBanDef(ICommonSession player, ServerBanDef def)
+    {
+        var message = def.FormatBanMessage(_cfg, _localizationManager);
+        player.Channel.Disconnect(message);
+    }
+
     #endregion
 
     #region Job Bans

@@ -1,0 +1,44 @@
+- type: inventoryTemplate
+  id: Swarmer
+  slots:
+    - name: id
+      slotTexture: id
+      fullTextureName: template_small
+      slotFlags: IDCARD
+      slotGroup: SecondHotbar
+      stripTime: 6
+      uiWindowPos: 2,2
+      strippingWindowPos: 2,3
+      displayName: ID
+    - name: ears
+      slotTexture: ears
+      slotFlags: EARS
+      stripTime: 3
+      uiWindowPos: 2,2
+      strippingWindowPos: 2,0
+      displayName: Ears
+    - name: pocket1
+      slotTexture: pocket
+      fullTextureName: template_small
+      slotFlags: POCKET
+      slotGroup: MainHotbar
+      stripTime: 3
+      uiWindowPos: 0,3
+      strippingWindowPos: 0,4
+      dependsOn: jumpsuit
+      displayName: Pocket 1
+      stripHidden: true
+
+- type: startingGear
+  id: SwarmerUnitGear
+  equipment:
+    id: SwarmIdentificationCard
+    ears: ClothingHeadsetSwarm
+    pocket1: PinpointerStationSwarm
+
+- type: startingGear
+  id: SwarmerUnitGearHead
+  equipment:
+    id: SwarmIdentificationCardHead
+    ears: ClothingHeadsetSwarm
+    pocket1: PinpointerStationSwarm

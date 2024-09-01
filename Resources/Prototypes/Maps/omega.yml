@@ -65,7 +65,7 @@
             Borg: [ 2, 2 ]
 #            Deliveryman: [ 0, 1 ]
 #            Prisoner: [ 2, 3]
-            SAI: [1, 1] # backmen-SAI
+            
         # backmen blob-config-start SMALL+
         - type: StationBlobConfig
           stageBegin: 25

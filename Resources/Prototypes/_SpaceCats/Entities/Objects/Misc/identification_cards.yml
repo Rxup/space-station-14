@@ -1,0 +1,33 @@
+- type: entity
+  parent: IDCardStandard
+  id: SwarmIdentificationCard
+  name: Карта Идентификации S.W.A.R.M
+  components:
+  - type: Access
+    tags:
+    - SwarmerAccess
+  - type: Unremoveable
+  - type: Sprite
+    sprite: _SpaceCats/Swarmers/MOB-MODULS/SwarmerModul.rsi
+    layers:
+    - state: SwarmCard
+  - type: IdCard
+    jobTitle: U.N.I.T. 
+    jobIcon: JobIconSwarmerUnit
+
+- type: entity
+  parent: SwarmIdentificationCard
+  id: SwarmIdentificationCardHead
+  name: Карта Идентификации S.W.A.R.M лидера
+  components:
+  - type: Access
+    tags:
+    - SwarmerAccess
+  - type: Unremoveable
+  - type: Sprite
+    sprite: _SpaceCats/Swarmers/MOB-MODULS/SwarmerModul.rsi
+    layers:
+    - state: SwarmCard
+  - type: IdCard
+    jobTitle: U.N.I.T. 
+    jobIcon: JobIconSwarmerUnitHead
