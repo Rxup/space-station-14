@@ -16,3 +16,22 @@
   - type: MeleeWeapon
     soundHit:
       path: Audio/Animals/cat_meow.ogg
+
+- type: entity
+  parent: BasePlushie
+  id: PlushieAcolyte16
+  name: плюшевый Тэнчу Рикимару
+  description: Пахнет сигаретами марки Nomads. На рукаве правой руки пришита бирка с надписью "НУ КАКОЙ ТЕБЕ МК58, АНРОБУСТ ,Я ТВОЮ КУКЛУ СЕЙЧАС СО СТЕЧКИНА УБЬЮ"
+  components:
+  - type: Sprite
+    sprite: _SpaceCats/Objects/Misc/tenchu.rsi
+    state: plushie_tenchu
+  - type: EmitSoundOnUse
+    sound:
+      path: Audio/Animals/cringe.ogg
+  - type: EmitSoundOnLand
+    sound:
+      path: Audio/Animals/cringe.ogg
+  - type: MeleeWeapon
+    soundHit:
+      path: Audio/Animals/cringe.ogg
