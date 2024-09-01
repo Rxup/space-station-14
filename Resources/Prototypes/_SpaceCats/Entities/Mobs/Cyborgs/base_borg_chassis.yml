@@ -51,7 +51,7 @@
     noMindState: Swarmer_e_r
   - type: IntrinsicRadioReceiver
   - type: NightVision
-    isToggle: false
+    isToggle: true
   - type: IntrinsicRadioTransmitter
     channels:
     - Swarm
@@ -60,9 +60,6 @@
     - Swarm
   - type: Rattle
     radioChannel: "Swarm"
-  - type: Psionic
-    channel: Swarm
-    channelColor: "#aea5f6"
   - type: AccessReader
     access: [["SwarmerAccess"]]
   - type: FootstepModifier
