@@ -134,12 +134,6 @@
     raffle:
       settings: short
   - type: GhostTakeoverAvailable
-  - type: statusIcon
-    parent: JobIcon
-    id: JobSwarm
-    icon:
-      sprite: /Textures/_SpaceCats/Interface/Misc/job_icons.rsi
-      state: SwarmUnit
   - type: Loadout
     prototypes: [SwarmerUnitGear]
   - type: MovementIgnoreGravity 
@@ -177,12 +171,6 @@
     - state: Swarmer_l
       shader: unshaded
       map: ["light"]
-  - type: statusIcon
-    parent: JobIcon
-    id: JobSwarmHead
-    icon:
-      sprite: /Textures/_SpaceCats/Interface/Misc/job_icons.rsi
-      state: SwarmComander
   - type: GhostRole
     allowMovement: true
     allowSpeech: true
