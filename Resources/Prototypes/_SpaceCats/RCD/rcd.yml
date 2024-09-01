@@ -80,17 +80,6 @@
   fx: EffectSwarmConstruct
 
 - type: rcd
-  id: SwarmMassShredderRCD
-  category: Electrical
-  sprite: _SpaceCats/Swarmers/STRUCTURES/SwarmBiol_Factory.rsi/icon.png
-  mode: ConstructObject
-  prototype: SwarmMassShredder
-  cost: 16
-  delay: 1.2
-  collisionMask: FullTileMask
-  fx: EffectSwarmConstruct
-
-- type: rcd
   id: SwarmHoloBarrierRCD
   category: WallsAndFlooring
   sprite: _SpaceCats/Swarmers/STRUCTURES/Swarmer_barrier.rsi/icon.png

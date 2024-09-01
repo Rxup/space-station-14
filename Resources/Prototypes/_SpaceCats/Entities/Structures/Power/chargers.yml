@@ -22,7 +22,7 @@
       - state: borgcharger0
         map: ["enum.PowerDeviceVisualLayers.Powered"]
         shader: "unshaded"
-      - state: borgcharger1
+      - state: borgcharger0
         map: ["charged"]
         shader: "unshaded"
         visible: false
@@ -40,7 +40,7 @@
           False: { state: borgcharger-u1 }
         enum.PowerDeviceVisualLayers.Powered:
           True: { state: borgcharger0 }
-          False: { state: borgcharger2 }
+          False: { state: borgcharger0 }
         charged:
           True: { visible: false }
           False: { visible: true }
@@ -57,10 +57,10 @@
           Empty: { visible: false }
           Charging:
             visible: true
-            state: borgcharger3
+            state: borgcharger0
           Charged:
             visible: true
-            state: borgcharger1
+            state: borgcharger0
   - type: EntityStorage
     capacity: 1
     whitelist:

@@ -1,0 +1,13 @@
+- type: npcFaction
+  id: Swarmers
+  hostile:
+  - NanoTrasen
+  - SimpleNeutral
+  - SimpleHostile
+  - Syndicate
+  - Passive
+  - PetsNT
+  - Revolutionary
+  - Xeno
+  - Zombie
+  - Dragon
