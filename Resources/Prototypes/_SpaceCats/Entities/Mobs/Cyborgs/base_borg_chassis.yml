@@ -49,15 +49,8 @@
       - ModuleSwarmer
     hasMindState: Swarmer_e
     noMindState: Swarmer_e_r
-  - type: IntrinsicRadioReceiver
   - type: NightVision
     isToggle: true
-  - type: IntrinsicRadioTransmitter
-    channels:
-    - Swarm
-  - type: ActiveRadio
-    channels:
-    - Swarm
   - type: Rattle
     radioChannel: "Swarm"
   - type: AccessReader
