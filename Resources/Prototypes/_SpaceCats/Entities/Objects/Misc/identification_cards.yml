@@ -42,7 +42,6 @@
   priority: 2
   locationPreference: Left
   layer: Mod
-  isShaded: true
   icon:
     sprite: /Textures/_SpaceCats/Interface/Misc/job_icons.rsi
     state: SwarmBase
@@ -52,7 +51,6 @@
   priority: 2
   locationPreference: Left
   layer: Mod
-  isShaded: true
   icon:
     sprite: /Textures/_SpaceCats/Interface/Misc/job_icons.rsi
     state: SwarmFabricator
@@ -62,7 +60,6 @@
   priority: 2
   locationPreference: Left
   layer: Mod
-  isShaded: true
   icon:
     sprite: /Textures/_SpaceCats/Interface/Misc/job_icons.rsi
     state: SwarmShooter
