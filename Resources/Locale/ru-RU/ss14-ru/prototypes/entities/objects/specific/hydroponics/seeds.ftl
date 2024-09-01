@@ -129,3 +129,5 @@ ent-RealCapfruitSeeds = пакет семян (пистофрукт)
 ent-FakeCapfruitSeeds = { ent-RealCapfruitSeeds }
     .suffix = Боевой
     .desc = { ent-RealCapfruitSeeds.desc }
+ent-CherrySeeds = пакет семян (вишня)
+    .desc = { ent-SeedBase.desc }

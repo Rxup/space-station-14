@@ -137,9 +137,6 @@
       - AirTank
       - GasAnalyzer
       - UtilityBelt
-      - Fulton
-      - FultonBeacon
-      - Paper
       - Pickaxe
       - ModularReceiver
       - AppraisalTool
@@ -198,8 +195,6 @@
       - BorgChargerCircuitboard
       - WeaponCapacitorRechargerCircuitboard
       - AntiPsychicKnifeRecipe
-      - Ring
-      - SapphireRing
       - HandheldStationMap
       - ClothingHeadHatWelding
       - WetFloorSign
@@ -361,9 +356,6 @@
       - FauxTileAstroIce
       - FauxTileAstroSnow
       - OreBagOfHolding
-      - Ring
-      - SapphireRing
-      - GoldenRing
       - DeviceQuantumSpinInverter
   - type: EmagLatheRecipes
     emagDynamicRecipes:
@@ -465,6 +457,7 @@
     - SodaDispenserMachineCircuitboard
     - SpaceHeaterMachineCircuitBoard
     - CutterMachineCircuitboard
+    - StationAnchorCircuitboard
     dynamicRecipes:
       - ThermomachineFreezerMachineCircuitBoard
       - HellfireFreezerMachineCircuitBoard
@@ -512,8 +505,6 @@
       - PortableGeneratorPacmanMachineCircuitboard
       - PortableGeneratorSuperPacmanMachineCircuitboard
       - PortableGeneratorJrPacmanMachineCircuitboard
-      - WallmountGeneratorElectronics
-      - WallmountGeneratorAPUElectronics
       - WallmountSubstationElectronics
       - PowerCageRechargerCircuitboard
       - EmitterCircuitboard
