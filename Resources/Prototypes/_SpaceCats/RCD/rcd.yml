@@ -28,7 +28,7 @@
   sprite: _SpaceCats/Swarmers/MOB-MODULS/Robots/Swarmer_Turret.rsi/icon.png
   mode: ConstructObject
   prototype: WeaponSwarmTurret
-  cost: 15
+  cost: 20
   delay: 1.2
   collisionMask: FullTileMask
   fx: EffectSwarmConstruct
@@ -65,7 +65,9 @@
   prototype: FloorSwarmerEntity
   cost: 1
   delay: 1.2
-  collisionMask: FullTileMask
+  collisionMask: InteractImpassable
+  rules:
+    - CanBuildOnEmptyTile
   fx: EffectSwarmConstruct
 
 - type: rcd
@@ -76,7 +78,9 @@
   prototype: FloorSwarmerEntityLight
   cost: 1
   delay: 1.2
-  collisionMask: FullTileMask
+  collisionMask: InteractImpassable
+  rules:
+    - CanBuildOnEmptyTile
   fx: EffectSwarmConstruct
 
 - type: rcd
@@ -100,4 +104,14 @@
   delay: 1.2
   collisionMask: FullTileMask
   rotation: Fixed
+  fx: EffectSwarmConstruct
+
+- type: rcd
+  id: DeconstructSwarm
+  name: rcd-component-deconstruct
+  category: Main
+  sprite: /Textures/Interface/Radial/RCD/deconstruct.png
+  mode: Deconstruct
+  prototype: EffectRCDDeconstructPreview
+  rotation: Camera
   fx: EffectSwarmConstruct

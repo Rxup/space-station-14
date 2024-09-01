@@ -18,6 +18,7 @@
     fireRate: 3
     soundGunshot:
       path: /Audio/_Cats/Swarmers/SwarmShot.ogg
+    clumsyProof: true
   - type: ProjectileBatteryAmmoProvider
     proto: SwarmShotBullet
     fireCost: 66.66
@@ -28,6 +29,7 @@
     magState: mag
     steps: 5
     zeroVisible: false
+    
 
 - type: entity
   id: SwarmShotBullet

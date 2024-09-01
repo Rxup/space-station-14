@@ -49,6 +49,13 @@
       - ModuleSwarmer
     hasMindState: Swarmer_e
     noMindState: Swarmer_e_r
+  - type: Clumsy
+    clumsyDamage:
+      types:
+        Blunt: 5
+        Piercing: 4
+      groups:
+        Burn: 3
   - type: NightVision
     isToggle: true
   - type: Rattle
@@ -148,8 +155,8 @@
   - type: MobThresholds
     thresholds:
       0: Alive
-      100: Critical
-      150: Dead
+      250: Critical
+      300: Dead
   - type: Sprite
     sprite: _SpaceCats/Swarmers/MOB-MODULS/Robots/Swarmer_fabricator.rsi
     layers:
@@ -179,6 +186,14 @@
       borg_module:
       - ModuleSwarmerMein
       - ModuleSwarmerCombat
+  - type: EncryptionKeyHolder
+    keysExtractionMethod: Prying
+    keySlots: 1
+  - type: TelecomServer
+  - type: ContainerFill
+    containers:
+      key_slots:
+      - EncryptionKeySwarm
   - type: ItemSlots
     slots:
       cell_slot:
