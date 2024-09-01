@@ -1,0 +1,116 @@
+- type: entity
+  parent: ClothingHandsBase
+  id: ClothingStandardRing
+  name: silver ring
+  description: Repainted steel ring.
+  components:
+  - type: Sprite
+    sprite: Backmen/Clothing/Hands/Rings/rings.rsi
+    state: silverring
+  - type: Clothing
+    sprite: Backmen/Clothing/Hands/Rings/rings.rsi
+    equippedPrefix: silver
+  - type: Item
+    size: Tiny
+  - type: StaticPrice
+    price: 1
+
+- type: entity
+  parent: ClothingStandardRing
+  id: ClothingSilverSapphireRing
+  name: ring with sapphire
+  description: Cheap replica of a sapphire made of glass.
+  components:
+  - type: Sprite
+    layers:
+    - state: silverring_frame
+    - state: sapphire
+  - type: StaticPrice
+    price: 5
+
+- type: entity
+  parent: ClothingStandardRing
+  id: ClothingGoldRing
+  name: golden ring
+  description: Ring made of a real gold!
+  components:
+  - type: Sprite
+    layers:
+    - state: goldring
+  - type: Clothing
+    equippedPrefix: gold
+  - type: StaticPrice
+    price: 500
+
+- type: entity
+  parent: ClothingStandardRing
+  id: ClothingGoldRubyRing
+  name: golden ring with ruby
+  description: Golden ring with ruby!
+  components:
+  - type: Sprite
+    layers:
+    - state: goldring_frame
+    - state: ruby
+  - type: Clothing
+    equippedPrefix: gold
+  - type: StaticPrice
+    price: 10000
+
+- type: entity
+  parent: ClothingStandardRing
+  id: ClothingGlowingGoldRing
+  name: shiny golden ring
+  description: A ring made from ultra-rare gold materials.
+  components:
+  - type: Sprite
+    layers:
+    - state: goldring
+    - state: gold-glowing
+      shader: unshaded
+  - type: Clothing
+    clothingVisuals:
+      gloves:
+      - state: gold-equipped-HAND
+      - state: gold-glowing-equipped-HAND
+        shader: unshaded
+  - type: StaticPrice
+    price: 20000
+
+- type: entity
+  parent: ClothingGlowingGoldRing
+  id: ClothingGlowingGoldRubyRing
+  name: shiny golden ring with ruby
+  description: A ring made from ultra-rare gold materials and a rare space ruby!
+  components:
+  - type: Sprite
+    layers:
+    - state: goldring_frame
+    - state: goldframed-glowing
+      shader: unshaded
+    - state: ruby
+    - state: ruby-glowing
+      shader: unshaded
+  - type: StaticPrice
+    price: 90000
+
+- type: entity
+  parent: ClothingStandardRing
+  id: ClothingGlowingSilverSapphireRing
+  name: shiny silver ring with sapphire
+  description: Simple silver ring and a rare space sapphire!
+  components:
+  - type: Sprite
+    layers:
+    - state: silverring_frame
+    - state: sapphire
+      shader: unshaded
+    - state: sapphire-glowing
+      shader: unshaded
+  - type: Clothing
+    clothingVisuals:
+      gloves:
+      - state: silver-equipped-HAND
+        shader: unshaded
+  - type: StaticPrice
+    price: 12000
