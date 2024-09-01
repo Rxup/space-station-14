@@ -4,7 +4,7 @@
   name: Карта Идентификации S.W.A.R.M
   components:
   - type: Sprite
-    sprite: _SpaceCats/Interface/Misc/job_icons.rsi
+    sprite: _SpaceCats/Swarmers/MOB-MODULS/SwarmerModul.rsi
     layers:
     - state: SwarmCard
   - type: Access
@@ -19,7 +19,7 @@
   name: Карта Идентификации S.W.A.R.M лидера
   components:
   - type: Sprite
-    sprite: _SpaceCats/Interface/Misc/job_icons.rsi
+    sprite: _SpaceCats/Swarmers/MOB-MODULS/SwarmerModul.rsi
     layers:
     - state: SwarmCard
   - type: Access
