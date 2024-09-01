@@ -23,11 +23,11 @@
   equipment:
     id: SwarmIdentificationCard
     ears: ClothingHeadsetSwarm
+    neck: PinpointerStationSwarmHead
 
 - type: startingGear
   id: SwarmerUnitGearHead
   equipment:
     id: SwarmIdentificationCardHead
     ears: ClothingHeadsetSwarm
-  inhand:
-    - PinpointerStation
+    neck: PinpointerStationSwarm
