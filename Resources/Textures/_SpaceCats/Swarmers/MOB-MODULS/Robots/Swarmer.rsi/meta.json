@@ -10,52 +10,52 @@
     {
       "name": "Swarmer",
       "directions": 4,
-      "delays": 
-        [
-          0.6,
-          0.6,
-          0.6,
-          0.6
-        ]
+      "delays": [
+        0.6,
+        0.6,
+        0.6,
+        0.6
+      ]
     },
     {
       "name": "Swarmer_e",
       "directions": 4,
-      "delays": 
-        [
-          0.6,
-          0.6,
-          0.6,
-          0.6
-        ]
+      "delays": [
+        0.6,
+        0.6,
+        0.6,
+        0.6
+      ]
     },
     {
       "name": "Swarmer_e_r",
       "directions": 4,
-      "delays": 
-        [
-          0.6,
-          0.6,
-          0.6,
-          0.6
-        ]
+      "delays": [
+        0.6,
+        0.6,
+        0.6,
+        0.6
+      ]
     },
     {
       "name": "Swarmer_l",
       "directions": 4,
-      "delays": 
-        [
-          0.6,
-          0.6,
-          0.6,
-          0.6
-        ]
+      "delays": [
+        0.6,
+        0.6,
+        0.6,
+        0.6
+      ]
     },
     {
-      "name": "borg_chest"
+      "name": "borg_chest",
+      "directions": 1,
+      "delays": [0.0]
     },
     {
-      "name": "borg_r_arm"
+      "name": "borg_r_arm",
+      "directions": 1,
+      "delays": [0.0]
     }
   ]
 }
