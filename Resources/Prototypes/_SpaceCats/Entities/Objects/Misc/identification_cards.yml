@@ -46,14 +46,17 @@
 - type: job
   id: SwarmBase
   icon: SwarmBase
+  playTimeTracker: JobBorg 
 
 - type: job
   id: SwarmFabricator
   icon: SwarmFabricator
+  playTimeTracker: JobBorg
 
 - type: job
   id: SwarmShooter
   icon: SwarmShooter
+  playTimeTracker: JobBorg
 
 - type: jobIcon
   parent: JobIcon
