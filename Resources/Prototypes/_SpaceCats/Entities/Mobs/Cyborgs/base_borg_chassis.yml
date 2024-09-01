@@ -6,6 +6,8 @@
   - type: Damageable
     damageContainer: Silicon
     damageModifierSet: SwarmArm
+  - type: FlashImmunity
+  - type: ShowMindShieldIcons
   - type: IgnoreSpiderWeb
   - type: AutoImplant
     implants:
@@ -13,7 +15,6 @@
   - type: NpcFactionMember
     factions:
     - Swarmers
-  - type: ShowJobIcons
   - type: TriggerOnMobstateChange
     mobState:
     - Critical
@@ -116,6 +117,8 @@
   name: S.W.A.R.M.E.R.
   suffix: BORK (Swarmer) 
   components:
+  - type: Sprite
+    sprite: _SpaceCats/Swarmers/MOB-MODULS/Robots/Swarmer.rsi
   - type: MobThresholds
     thresholds:
       0: Alive
@@ -144,6 +147,8 @@
       cell_slot:
         name: power-cell-slot-component-slot-name-default
         startingItem: SwarmerSuperCell
+  - type: MindShield
+    mindShieldStatusIcon: SwarmBase
 
 - type: entity
   id: SwarmerUnitFabricator
@@ -179,7 +184,7 @@
       settings: short
   - type: GhostTakeoverAvailable
   - type: Loadout
-    prototypes: [SwarmerUnitGearHead]
+    prototypes: [SwarmerUnitGearFabricator]
   - type: MovementIgnoreGravity 
   - type: ContainerFill
     containers:
@@ -197,3 +202,45 @@
       cell_slot:
         name: power-cell-slot-component-slot-name-default
         startingItem: SwarmerSuperCell
+  - type: MindShield
+    mindShieldStatusIcon: SwarmFabricator
+
+- type: entity
+  id: SwarmerUnitShooter
+  parent: SwarmerUnit
+  description: Технологически развитый робот.
+  name: S.W.A.R.M.E.R.
+  suffix: BORK (Swarmer) 
+  components:
+  - type: Sprite
+    sprite: _SpaceCats/Swarmers/MOB-MODULS/Robots/Swarmer_base.rsi
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      50: Critical
+      100: Dead 
+  - type: GhostRole
+    allowMovement: true
+    allowSpeech: true
+    makeSentient: true
+    name: S.W.A.R.M.E.R.
+    description: Разбирай - Самопроизводись - Повторяй.
+    rules: Ваша задача - разобрать и переработать все структуры на вашем пути. Не атакуйте экипаж без причины. Вы подчиняетесь только Фабрикатору.
+    raffle:
+      settings: short
+  - type: GhostTakeoverAvailable
+  - type: Loadout
+    prototypes: [SwarmerUnitGearShooter]
+  - type: MovementIgnoreGravity 
+  - type: ContainerFill
+    containers:
+      borg_module:
+      - ModuleSwarmerMein
+      - ModuleSwarmerCombat
+  - type: ItemSlots
+    slots:
+      cell_slot:
+        name: power-cell-slot-component-slot-name-default
+        startingItem: SwarmerSuperCell
+  - type: MindShield
+    mindShieldStatusIcon: SwarmShooter

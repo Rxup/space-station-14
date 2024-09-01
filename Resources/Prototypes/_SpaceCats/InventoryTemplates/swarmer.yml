@@ -37,8 +37,15 @@
     pocket1: PinpointerStationSwarm
 
 - type: startingGear
-  id: SwarmerUnitGearHead
+  id: SwarmerUnitGearFabricator
   equipment:
-    id: SwarmIdentificationCardHead
+    id: SwarmIdentificationCardFabricator
+    ears: ClothingHeadsetSwarm
+    pocket1: PinpointerStationSwarm
+
+- type: startingGear
+  id: SwarmerUnitGearShooter
+  equipment:
+    id: SwarmIdentificationShooter
     ears: ClothingHeadsetSwarm
     pocket1: PinpointerStationSwarm
