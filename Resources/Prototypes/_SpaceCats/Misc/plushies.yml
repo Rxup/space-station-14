@@ -9,13 +9,13 @@
     state: plushie_elina
   - type: EmitSoundOnUse
     sound:
-      path: Audio/Animals/cat_meow.ogg
+      path: Resourses/Audio/Animals/cat_meow.ogg
   - type: EmitSoundOnLand
     sound:
-      path: Audio/Animals/cat_meow.ogg
+      path: Resourses/Audio/Animals/cat_meow.ogg
   - type: MeleeWeapon
     soundHit:
-      path: Audio/Animals/cat_meow.ogg
+      path: Resourses/Audio/Animals/cat_meow.ogg
 
 - type: entity
   parent: BasePlushie
@@ -28,10 +28,10 @@
     state: plushie_tenchu
   - type: EmitSoundOnUse
     sound:
-      path: Audio/Animals/cringe.ogg
+      path: Resourses/Audio/Animals/cringe.ogg
   - type: EmitSoundOnLand
     sound:
-      path: Audio/Animals/cringe.ogg
+      path: Resourses/Audio/Animals/cringe.ogg
   - type: MeleeWeapon
     soundHit:
-      path: Audio/Animals/cringe.ogg
+      path: Resourses/Audio/Animals/cringe.ogg
