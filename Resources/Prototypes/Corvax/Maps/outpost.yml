@@ -46,7 +46,6 @@
             ResearchDirector: [ 1, 1 ]
             Scientist: [ 3, 3 ]
             ResearchAssistant: [ 3, 3 ]
-            Borg: [ 1, 1 ]
             #security
             HeadOfSecurity: [ 1, 1 ]
             Warden: [ 1, 1 ]
@@ -68,6 +67,8 @@
             Brigmedic: [ 0, 1 ] # backmen-Brigmedic
             #BKBPLATech: [0, 3] # backmen-BPLA-Silicons
             #BKBPLAMED: [0, 3] # backmen-BPLAMED-Silicons
+            #silicon
+            Borg: [ 1, 1 ]
         # backmen blob-config-start SMALL+
         - type: StationBlobConfig
           stageBegin: 25

@@ -30,8 +30,8 @@ namespace Content.Server.Connection
     public interface IConnectionManager
     {
         void Initialize();
-        Task<bool> HavePrivilegedJoin(NetUserId userId); // Corvax-Queue
         void PostInit();
+        Task<bool> HavePrivilegedJoin(NetUserId userId); // Corvax-Queue
 
         /// <summary>
         /// Temporarily allow a user to bypass regular connection requirements.
