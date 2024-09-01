@@ -10,8 +10,6 @@
   - type: Access
     tags:
     - SwarmerAccess
-  - type: PresetIdCard
-    job: SwarmShooter
 
 - type: entity
   parent: IDCardStandard
@@ -25,8 +23,6 @@
   - type: Access
     tags:
     - SwarmerAccess
-  - type: PresetIdCard
-    job: SwarmFabricator
 
 - type: entity
   parent: IDCardStandard
