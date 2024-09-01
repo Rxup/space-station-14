@@ -10,46 +10,50 @@
     {
       "name": "Swarmer",
       "directions": 4,
-      "delays": 
+      "delays": [
         [
           0.6,
           0.6,
           0.6,
           0.6
         ]
+      ]
     },
     {
       "name": "Swarmer_e",
       "directions": 4,
-      "delays": 
+      "delays": [
         [
           0.6,
           0.6,
           0.6,
           0.6
         ]
+      ]
     },
     {
       "name": "Swarmer_e_r",
       "directions": 4,
-      "delays": 
+      "delays": [
         [
           0.6,
           0.6,
           0.6,
           0.6
         ]
+      ]
     },
     {
       "name": "Swarmer_l",
       "directions": 4,
-      "delays": 
+      "delays": [
         [
           0.6,
           0.6,
           0.6,
           0.6
         ]
+      ]
     },
     {
       "name": "borg_chest"
