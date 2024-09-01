@@ -15,7 +15,6 @@
   - type: NpcFactionMember
     factions:
     - Swarmers
-  - type: ShowJobIcons
   - type: TriggerOnMobstateChange
     mobState:
     - Critical
