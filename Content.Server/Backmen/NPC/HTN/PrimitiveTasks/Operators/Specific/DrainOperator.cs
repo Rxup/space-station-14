@@ -13,10 +13,13 @@ public sealed partial class DrainOperator : HTNOperator
     [DataField("drainKey")]
     public string DrainKey = string.Empty;
 
+    private EntityQuery<GlimmerWispComponent> _wispQuery;
+
     public override void Initialize(IEntitySystemManager sysManager)
     {
         base.Initialize(sysManager);
         _wispSystem = sysManager.GetEntitySystem<GlimmerWispSystem>();
+        _wispQuery = _entManager.GetEntityQuery<GlimmerWispComponent>();
     }
 
     public override HTNOperatorStatus Update(NPCBlackboard blackboard, float frameTime)
@@ -27,13 +30,15 @@ public sealed partial class DrainOperator : HTNOperator
         if (!target.IsValid() || _entManager.Deleted(target))
             return HTNOperatorStatus.Failed;
 
-        if (!_entManager.TryGetComponent<GlimmerWispComponent>(owner, out var wisp))
+        if (!_wispQuery.TryComp(owner, out var wispComp))
             return HTNOperatorStatus.Failed;
 
-        if (wisp.IsDraining)
+        Entity<GlimmerWispComponent> wisp = (owner, wispComp);
+
+        if (_wispSystem.IsDraining(wisp))
             return HTNOperatorStatus.Continuing;
 
-        if (wisp.DrainTarget == null)
+        if (wispComp.DrainTarget == null)
         {
             if (_wispSystem.NPCStartLifedrain(owner, target, wisp))
                 return HTNOperatorStatus.Continuing;
@@ -41,7 +46,7 @@ public sealed partial class DrainOperator : HTNOperator
                 return HTNOperatorStatus.Failed;
         }
 
-        wisp.DrainTarget = null;
+        _wispSystem.CancelDrain(wisp);
         return HTNOperatorStatus.Finished;
     }
 }
