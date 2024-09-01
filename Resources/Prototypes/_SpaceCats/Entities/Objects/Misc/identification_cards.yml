@@ -13,7 +13,7 @@
     - state: SwarmCard
   - type: IdCard
     jobTitle: U.N.I.T. 
-    jobIcon: JobSwarm
+    jobIcon: JobIconSwarmerUnit
 
 - type: entity
   parent: SwarmIdentificationCard
@@ -30,4 +30,4 @@
     - state: SwarmCard
   - type: IdCard
     jobTitle: U.N.I.T. 
-    jobIcon: JobSwarmHead
+    jobIcon: JobIconSwarmerUnitHead
