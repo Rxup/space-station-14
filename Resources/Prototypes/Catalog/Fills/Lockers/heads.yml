@@ -386,8 +386,6 @@
     containers:
       entity_storage: !type:NestedSelector
         tableId: LockerFillHeadOfSecurityNoHardsuit
-  - id: PlushieAcolyte16 # пасхалко
-      prob: 0.66
 
 # No hardsuit + Hardsuit locker
 - type: entity
@@ -403,8 +401,6 @@
           tableId: LockerFillHeadOfSecurityNoHardsuit
         - !type:NestedSelector
           tableId: FillHeadOfSecurityHardsuit
-  - id: PlushieAcolyte16 # пасхалко
-      prob: 0.66
 
 - type: entity
   id: LockerFreezerVaultFilled
