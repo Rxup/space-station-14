@@ -121,7 +121,7 @@
 - type: entity
   parent: [ClothingOuterHardsuitSecurity, BaseCommandContraband]
   id: ClothingOuterHardsuitNTJugg
-  name: Сверхтяжёлый бронескафандр "Аколит" #чтооо пасхалко?!?!
+  name: cверхтяжёлый бронескафандр "Аколит" # чтооо пасхалко?!?!
   description: Сверхтяжёлая броня,собранная для специальных сил NT. Включает в себя множество комбинаций различных типов защиты,а так - же прибор ночного видения. Для частичного ниввелирования веса был интегрирован экзоскелет.
   components:
   - type: Sprite
@@ -151,7 +151,7 @@
 - type: entity
   parent: [ClothingHeadHardsuitBase, BaseCommandContraband]
   id: ClothingHeadHelmetHardsuitNTJugg
-  name: Шлем бронескафандра "Аколит"
+  name: шлем бронескафандра "Аколит"
   description: Прочный и довольно громоздкий шлем, с интегрированным NTHud и прибором ночного видения.
   components:
   - type: Sprite
