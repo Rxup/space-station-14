@@ -15,7 +15,7 @@
       path: /Audio/Animals/cat_meow.ogg
   - type: MeleeWeapon
     soundHit:
-      path: Resources/Audio/Animals/cat_meow.ogg
+      path: /Audio/Animals/cat_meow.ogg
 
 - type: entity
   parent: BasePlushie
