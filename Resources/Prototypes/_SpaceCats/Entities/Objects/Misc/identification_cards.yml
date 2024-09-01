@@ -40,41 +40,30 @@
   - type: Access
     tags:
     - SwarmerAccess
-  - type: PresetIdCard
-    job: SwarmBase
 
-- type: job
+- type: statusIcon
   id: SwarmBase
-  icon: SwarmBase
-  playTimeTracker: JobBorgSwarm
-
-- type: job
-  id: SwarmFabricator
-  icon: SwarmFabricator
-  playTimeTracker: JobBorgSwarmFabrick
-
-- type: job
-  id: SwarmShooter
-  icon: SwarmShooter
-  playTimeTracker: JobBorgSwarmShooter
-
-- type: jobIcon
-  parent: JobIcon
-  id: SwarmBase
+  priority: 2
+  locationPreference: Left
+  layer: Mod
   icon:
     sprite: /Textures/_SpaceCats/Interface/Misc/job_icons.rsi
     state: SwarmBase
 
-- type: jobIcon
-  parent: JobIcon
+- type: statusIcon
   id: SwarmFabricator
+  priority: 2
+  locationPreference: Left
+  layer: Mod
   icon:
     sprite: /Textures/_SpaceCats/Interface/Misc/job_icons.rsi
     state: SwarmFabricator
 
-- type: jobIcon
-  parent: JobIcon
+- type: statusIcon
   id: SwarmShooter
+  priority: 2
+  locationPreference: Left
+  layer: Mod
   icon:
     sprite: /Textures/_SpaceCats/Interface/Misc/job_icons.rsi
     state: SwarmShooter
