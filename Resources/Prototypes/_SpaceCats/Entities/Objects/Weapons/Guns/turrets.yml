@@ -11,11 +11,6 @@
       tags:
       - Swarmer
       - Structure
-    - type: PointLight
-      enabled: true
-      color: "#aea5f6"
-      radius: 1.5
-      energy: 2
     - type: NpcFactionMember
       factions:
         - Swarmers
@@ -49,7 +44,7 @@
       thresholds:
       - trigger:
           !type:DamageTrigger
-          damage: 50
+          damage: 200
         behaviors:
         - !type:DoActsBehavior
           acts: ["Destruction"]
@@ -74,4 +69,4 @@
   - type: Projectile
     damage:
       types:
-        Shock: 3
+        Shock: 5
