@@ -19,25 +19,3 @@
   - type: Pinpointer
     component: ResearchServer
     targetName: the station
-
-- type: entity
-  parent: PinpointerBase
-  name: S.W.A.R.M навигатор конструктора
-  description: Наши владеления не могут жить без лидера, наши данные показывают где он находиться
-  id: PinpointerStationSwarmHead
-  suffix: Station
-  components:
-  - type: Sprite
-    layers:
-    - state: pinpointer-station
-      map: ["enum.PinpointerLayers.Base"]
-    - state: pinonnull
-      map: ["enum.PinpointerLayers.Screen"]
-      shader: unshaded
-      visible: false
-  - type: Icon
-    state: pinpointer-station
-  - type: Unremoveable
-  - type: Pinpointer
-    component: SwarmerUnitFabricator
-    targetName: F.A.B.R.I.C.A.T.O.R.
