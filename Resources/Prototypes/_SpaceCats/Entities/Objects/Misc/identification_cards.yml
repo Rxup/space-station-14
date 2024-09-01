@@ -27,3 +27,25 @@
     - SwarmerAccess
   - type: PresetIdCard
     job: SwarmComander
+
+- type: job
+  id: SwarmComander
+  icon: JobIconNanotrasen
+
+- type: job
+  id: SwarmUnit
+  icon: SwarmUnit
+
+- type: statusIcon
+  parent: JobIcon
+  id: SwarmUnit
+  icon:
+    sprite: /Textures/_SpaceCats/Interface/Misc/job_icons.rsi
+    state: SwarmUnit
+
+- type: statusIcon
+  parent: JobIcon
+  id: SwarmComander
+  icon:
+    sprite: /Textures/_SpaceCats/Interface/Misc/job_icons.rsi
+    state: SwarmComander
