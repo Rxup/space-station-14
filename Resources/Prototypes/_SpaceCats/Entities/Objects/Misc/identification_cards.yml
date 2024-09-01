@@ -1,5 +1,35 @@
 - type: entity
   parent: IDCardStandard
+  id: SwarmIdentificationShooter
+  name: Карта Идентификации S.W.A.R.M стрелка
+  components:
+  - type: Sprite
+    sprite: _SpaceCats/Swarmers/MOB-MODULS/SwarmerModul.rsi
+    layers:
+    - state: SwarmCard
+  - type: Access
+    tags:
+    - SwarmerAccess
+  - type: PresetIdCard
+    job: SwarmShooter
+
+- type: entity
+  parent: IDCardStandard
+  id: SwarmIdentificationCardFabricator
+  name: Карта Идентификации S.W.A.R.M фабрикатора
+  components:
+  - type: Sprite
+    sprite: _SpaceCats/Swarmers/MOB-MODULS/SwarmerModul.rsi
+    layers:
+    - state: SwarmCard
+  - type: Access
+    tags:
+    - SwarmerAccess
+  - type: PresetIdCard
+    job: SwarmFabricator
+
+- type: entity
+  parent: IDCardStandard
   id: SwarmIdentificationCard
   name: Карта Идентификации S.W.A.R.M
   components:
@@ -11,41 +41,37 @@
     tags:
     - SwarmerAccess
   - type: PresetIdCard
-    job: SwarmUnit
-
-- type: entity
-  parent: IDCardStandard
-  id: SwarmIdentificationCardHead
-  name: Карта Идентификации S.W.A.R.M лидера
-  components:
-  - type: Sprite
-    sprite: _SpaceCats/Swarmers/MOB-MODULS/SwarmerModul.rsi
-    layers:
-    - state: SwarmCard
-  - type: Access
-    tags:
-    - SwarmerAccess
-  - type: PresetIdCard
-    job: SwarmComander
+    job: SwarmBase
 
 - type: job
-  id: SwarmComander
-  icon: JobIconNanotrasen
+  id: SwarmBase
+  icon: SwarmBase
 
 - type: job
-  id: SwarmUnit
-  icon: SwarmUnit
+  id: SwarmFabricator
+  icon: SwarmFabricator
+
+- type: job
+  id: SwarmShooter
+  icon: SwarmShooter
 
 - type: jobIcon
   parent: JobIcon
-  id: SwarmUnit
+  id: SwarmBase
   icon:
     sprite: /Textures/_SpaceCats/Interface/Misc/job_icons.rsi
-    state: SwarmUnit
+    state: SwarmBase
 
 - type: jobIcon
   parent: JobIcon
-  id: SwarmComander
+  id: SwarmFabricator
   icon:
     sprite: /Textures/_SpaceCats/Interface/Misc/job_icons.rsi
-    state: SwarmComander
+    state: SwarmFabricator
+
+- type: jobIcon
+  parent: JobIcon
+  id: SwarmShooter
+  icon:
+    sprite: /Textures/_SpaceCats/Interface/Misc/job_icons.rsi
+    state: SwarmShooter

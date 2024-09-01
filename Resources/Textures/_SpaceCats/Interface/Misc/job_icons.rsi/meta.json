@@ -8,10 +8,15 @@
   },
   "states": [
     {
-      "name": "SwarmUnit"
+      "name": "SwarmBase"
     },
+
     {
-      "name": "SwarmComander"
+      "name": "SwarmFabricator"
+    },
+  
+    {
+    "name": "SwarmShooter"
     }
   ]
 }
