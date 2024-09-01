@@ -195,8 +195,6 @@
       - BorgChargerCircuitboard
       - WeaponCapacitorRechargerCircuitboard
       - AntiPsychicKnifeRecipe
-      - Ring
-      - SapphireRing
       - HandheldStationMap
       - ClothingHeadHatWelding
       - WetFloorSign
@@ -358,9 +356,6 @@
       - FauxTileAstroIce
       - FauxTileAstroSnow
       - OreBagOfHolding
-      - Ring
-      - SapphireRing
-      - GoldenRing
       - DeviceQuantumSpinInverter
   - type: EmagLatheRecipes
     emagDynamicRecipes:
