@@ -125,7 +125,7 @@
   description: Сверхтяжёлая броня,собранная для специальных сил NT. Включает в себя множество комбинаций различных типов защиты,а так - же прибор ночного видения. Для частичного ниввелирования веса был интегрирован экзоскелет.
   components:
   - type: Sprite
-    sprite:  _SpaceCats/Clothing/OuterClothing/Hardsuits/NTSO.rsi
+    sprite: _SpaceCats/Clothing/OuterClothing/Hardsuits/NTSO.rsi
   - type: Clothing
     sprite: _SpaceCats/Clothing/OuterClothing/Hardsuits/NTSO.rsi
   - type: PressureProtection
@@ -165,7 +165,7 @@
   description: Прочный и довольно громоздкий шлем, с интегрированным NTHud и прибором ночного видения.
   components:
   - type: Sprite
-    sprite: _SpaceCats/Clothing/Head/Hardsuit/NTSO.rsi
+    sprite: _SpaceCats/Clothing/Head/Hardsuits/NTSO.rsi
   - type: Clothing
     sprite: _SpaceCats/Clothing/Head/Hardsuits/NTSO.rsi
   - type: PressureProtection
