@@ -186,14 +186,12 @@
       borg_module:
       - ModuleSwarmerMein
       - ModuleSwarmerCombat
+      key_slots:
+      - EncryptionKeySwarm
   - type: EncryptionKeyHolder
     keysExtractionMethod: Prying
     keySlots: 1
   - type: TelecomServer
-  - type: ContainerFill
-    containers:
-      key_slots:
-      - EncryptionKeySwarm
   - type: ItemSlots
     slots:
       cell_slot:
