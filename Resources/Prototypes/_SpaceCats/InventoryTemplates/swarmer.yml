@@ -10,15 +10,24 @@
       uiWindowPos: 2,2
       strippingWindowPos: 2,3
       displayName: ID
+    - name: ears
+      slotTexture: ears
+      slotFlags: EARS
+      stripTime: 3
+      uiWindowPos: 2,2
+      strippingWindowPos: 2,0
+      displayName: Ears
 
 - type: startingGear
   id: SwarmerUnitGear
   equipment:
     id: SwarmIdentificationCard
+    ears: ClothingHeadsetSwarm
 
 - type: startingGear
   id: SwarmerUnitGearHead
   equipment:
     id: SwarmIdentificationCardHead
+    ears: ClothingHeadsetSwarm
   inhand:
     - PinpointerStation
