@@ -37,7 +37,7 @@
     tags:
     - SwarmerAccess
 
-- type: statusIcon
+- type: securityIcon
   id: SwarmBase
   priority: 2
   locationPreference: Left
@@ -47,7 +47,7 @@
     sprite: /Textures/_SpaceCats/Interface/Misc/job_icons.rsi
     state: SwarmBase
 
-- type: statusIcon
+- type: securityIcon
   id: SwarmFabricator
   priority: 2
   locationPreference: Left
@@ -57,7 +57,7 @@
     sprite: /Textures/_SpaceCats/Interface/Misc/job_icons.rsi
     state: SwarmFabricator
 
-- type: statusIcon
+- type: securityIcon
   id: SwarmShooter
   priority: 2
   locationPreference: Left
