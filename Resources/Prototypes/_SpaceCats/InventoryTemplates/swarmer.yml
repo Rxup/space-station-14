@@ -34,7 +34,7 @@
   equipment:
     id: SwarmIdentificationCard
     ears: ClothingHeadsetSwarm
-    pocket1: PinpointerStationSwarmHead
+    pocket1: PinpointerStationSwarm
 
 - type: startingGear
   id: SwarmerUnitGearHead

@@ -1,21 +1,21 @@
 - type: latheRecipe
   id: SWARMSteelFactorySteel
   result: SheetSWARMSteel10
-  completetime: 5
+  completetime: 15
   materials:
     Steel: 1000
 
 - type: latheRecipe
   id: SWARMSteelFactoryPlaSteel
   result: SheetSWARMSteel10
-  completetime: 5
+  completetime: 15
   materials:
     Plasteel: 500
 
 - type: latheRecipe
   id: SWARMSteelFactoryCombo
   result: SheetSWARMSteel10
-  completetime: 5
+  completetime: 15
   materials:
     Plasteel: 200
     Steel: 500
@@ -23,7 +23,7 @@
 - type: latheRecipe
   id: SWARMGlassFactoryGlass
   result: SheetSWARMGlass10
-  completetime: 5
+  completetime: 15
   materials:
     Glass: 1000
     SWARMSteel: 200
@@ -31,7 +31,7 @@
 - type: latheRecipe
   id: SWARMGlassFactorySWARMSteel
   result: SheetSWARMGlass10
-  completetime: 5
+  completetime: 15
   materials:
     Glass: 500
     SWARMSteel: 700
@@ -39,7 +39,7 @@
 - type: latheRecipe
   id: SWARMGlassFactoryReinforcedGlass
   result: SheetSWARMGlass10
-  completetime: 5
+  completetime: 15
   materials:
     ReinforcedGlass: 500
     SWARMSteel: 200
@@ -47,7 +47,7 @@
 - type: latheRecipe
   id: SWARMGlassFactoryPlasmaGlass
   result: SheetSWARMGlass10
-  completetime: 5
+  completetime: 15
   materials:
     PlasmaGlass: 500
     SWARMSteel: 100
@@ -55,7 +55,7 @@
 - type: latheRecipe
   id: SWARMGlassFactoryReinforcedPlasmaGlass
   result: SheetSWARMGlass10
-  completetime: 5
+  completetime: 15
   materials:
     ReinforcedPlasmaGlass: 200
     SWARMSteel: 100
@@ -63,7 +63,7 @@
 - type: latheRecipe
   id: SwarmerUnitStandardFactoryUnit
   result: SwarmerUnitStandard
-  completetime: 5
+  completetime: 80
   materials:
     SWARMSteel: 2000
-    SWARMGlass: 1000
+    SWARMGlass: 2000
