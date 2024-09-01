@@ -17,17 +17,28 @@
       uiWindowPos: 2,2
       strippingWindowPos: 2,0
       displayName: Ears
+    - name: pocket1
+      slotTexture: pocket
+      fullTextureName: template_small
+      slotFlags: POCKET
+      slotGroup: MainHotbar
+      stripTime: 3
+      uiWindowPos: 0,3
+      strippingWindowPos: 0,4
+      dependsOn: jumpsuit
+      displayName: Pocket 1
+      stripHidden: true
 
 - type: startingGear
   id: SwarmerUnitGear
   equipment:
     id: SwarmIdentificationCard
     ears: ClothingHeadsetSwarm
-    neck: PinpointerStationSwarmHead
+    pocket1: PinpointerStationSwarmHead
 
 - type: startingGear
   id: SwarmerUnitGearHead
   equipment:
     id: SwarmIdentificationCardHead
     ears: ClothingHeadsetSwarm
-    neck: PinpointerStationSwarm
+    pocket1: PinpointerStationSwarm
