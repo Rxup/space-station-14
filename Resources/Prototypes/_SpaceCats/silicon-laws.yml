@@ -4,7 +4,7 @@
   - SW1
   - SW2
   - SW3
-  obeysTo: S.W.A.R.M.
+  obeysTo: laws-owner-SWARM
 
 - type: siliconLaw
   id: SW1
