@@ -3844,3 +3844,94 @@
   id: 7246
   time: '2024-08-29T03:23:37.0000000+00:00'
   url: https://github.com/space-wizards/space-station-14/pull/31616
+- author: MisterMecky
+  changes:
+  - message: Changed strange pill possible reagents. They are no longer mostly composed
+      of amatoxin and space mirage.
+    type: Tweak
+  id: 7247
+  time: '2024-08-29T13:21:06.0000000+00:00'
+  url: https://github.com/space-wizards/space-station-14/pull/30524
+- author: slarticodefast
+  changes:
+  - message: Fixed energy shield visuals.
+    type: Fix
+  id: 7248
+  time: '2024-08-30T01:43:34.0000000+00:00'
+  url: https://github.com/space-wizards/space-station-14/pull/31619
+- author: DieselMohawk
+  changes:
+  - message: Added Armband to back of Security Jumpsuit
+    type: Fix
+  id: 7249
+  time: '2024-08-30T01:46:46.0000000+00:00'
+  url: https://github.com/space-wizards/space-station-14/pull/31635
+- author: Winkarst-cpu
+  changes:
+  - message: Potted plants now fade their sprites, just like trees.
+    type: Tweak
+  id: 7250
+  time: '2024-08-30T10:34:25.0000000+00:00'
+  url: https://github.com/space-wizards/space-station-14/pull/31628
+- author: AutoOtter
+  changes:
+  - message: Greatly reduced meteorite wall health for easier cleanup and repair.
+    type: Tweak
+  id: 7251
+  time: '2024-08-30T23:24:13.0000000+00:00'
+  url: https://github.com/space-wizards/space-station-14/pull/31651
+- author: slarticodefast
+  changes:
+  - message: The revenant can now fly through walls again.
+    type: Fix
+  id: 7252
+  time: '2024-08-31T03:02:58.0000000+00:00'
+  url: https://github.com/space-wizards/space-station-14/pull/31670
+- author: metalgearsloth
+  changes:
+  - message: Fix AI eye getting deleted by singulo.
+    type: Fix
+  id: 7253
+  time: '2024-08-31T08:24:12.0000000+00:00'
+  url: https://github.com/space-wizards/space-station-14/pull/31556
+- author: slarticodefast
+  changes:
+  - message: Fixed toggleable pointlights for the toy sword, lighters, welders and
+      arabian lamp.
+    type: Fix
+  id: 7254
+  time: '2024-08-31T08:28:36.0000000+00:00'
+  url: https://github.com/space-wizards/space-station-14/pull/31655
+- author: juliangiebel
+  changes:
+  - message: Adds the station anchor. It anchors stations in space and prevents them
+      from moving.
+    type: Add
+  id: 7255
+  time: '2024-08-31T14:40:28.0000000+00:00'
+  url: https://github.com/space-wizards/space-station-14/pull/26098
+- author: Moomoobeef
+  changes:
+  - message: medibelts are found in the medidrobe instead of in lockers.
+    type: Tweak
+  id: 7256
+  time: '2024-08-31T23:22:06.0000000+00:00'
+  url: https://github.com/space-wizards/space-station-14/pull/31470
+- author: EmoGarbage404
+  changes:
+  - message: Removed the reclaimer shuttle.
+    type: Remove
+  - message: Removed fultons and fulton beacons from the autolathe
+    type: Remove
+  - message: Adjusted equipment inside salvage lockers and vendors.
+    type: Tweak
+  id: 7257
+  time: '2024-08-31T23:39:32.0000000+00:00'
+  url: https://github.com/space-wizards/space-station-14/pull/31333
+- author: Moomoobeef
+  changes:
+  - message: Added flavors to an array of previously indescribable things.
+    type: Add
+  id: 7258
+  time: '2024-09-01T00:03:30.0000000+00:00'
+  url: https://github.com/space-wizards/space-station-14/pull/31685

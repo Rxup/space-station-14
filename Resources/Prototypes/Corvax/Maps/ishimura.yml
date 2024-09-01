@@ -52,7 +52,6 @@
             ResearchDirector: [ 1, 1 ]
             Scientist: [ 4, 4 ]
             ResearchAssistant: [ 3, 3 ]
-            Borg: [ 2, 3 ]
             # security
             HeadOfSecurity: [ 1, 1 ]
             Warden: [ 1, 1 ]
@@ -65,8 +64,9 @@
             SalvageSpecialist: [ 3, 3 ]
             CargoTechnician: [ 3, 3 ]
             # backmen
-#            Prisoner: [ 3, 3]
-            
-#            Brigmedic: [ 0, 1 ] # backmen-Brigmedic
-#            BKBPLATech: [0, 3] # backmen-BPLA-Silicons
-#            BKBPLAMED: [0, 3] # backmen-BPLAMED-Silicons
+            Prisoner: [ 3, 3]
+            Brigmedic: [ 0, 1 ] # backmen-Brigmedic
+            #BKBPLATech: [0, 3] # backmen-BPLA-Silicons
+            #BKBPLAMED: [0, 3] # backmen-BPLAMED-Silicons
+            #silicon
+            Borg: [ 2, 3 ]

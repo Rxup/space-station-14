@@ -16,7 +16,6 @@
     - id: RubberStampApproved
     - id: RubberStampDenied
     - id: RubberStampQm
-    - id: SalvageShuttleConsoleCircuitboard
     - id: PrinterDocFlatpack # Corvax-Printer
 
 - type: entity
@@ -50,8 +49,7 @@
     - id: RubberStampCaptain
     - id: SpaceCash1000
     - id: WeaponDisabler
-    - id: Eftpos # backmen
-    - id: Eftpos # backmen
+    - id: ClothingEyesGlassesCommand
     - id: Eftpos # backmen
     # Corvax-Resprite-Start
     - id: ClothingHeadCaptainHat

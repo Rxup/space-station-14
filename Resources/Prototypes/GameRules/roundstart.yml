@@ -323,8 +323,8 @@
 #      tableId: SpaceTrafficControlTable
 
 #- type: entity
-#  id: SpaceTrafficControlFriendlyEventScheduler 
-#  parent: BaseGameRule                  
+#  id: SpaceTrafficControlFriendlyEventScheduler
+#  parent: BaseGameRule
 #  components:
 #  - type: BasicStationEventScheduler
 #    minimumTimeUntilFirstEvent: 1200 # 20 mins
