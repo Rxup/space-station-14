@@ -106,8 +106,8 @@
     sprite: _SpaceCats/Swarmers/TOOLS/Swarmer_rcd.rsi
     state: icon
   - type: LimitedCharges
-    maxCharges: 20
-    charges: 20
+    maxCharges: 40
+    charges: 40
   - type: AutoRecharge
     rechargeDuration: 10
   - type: RCD
@@ -121,4 +121,4 @@
     - SwarmHoloBarrierRCD
     - SwarmCellChargerRCD
     - WeaponSwarmTurretRCD
-    - Deconstruct
+    - DeconstructSwarm
