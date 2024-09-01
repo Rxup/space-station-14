@@ -36,12 +36,12 @@
   parent: JobIcon
   id: JobSwarmHead
   icon:
-    sprite: Textures/_SpaceCats/Interface/Misc/job_icons.rsi
+    sprite: /Textures/_SpaceCats/Interface/Misc/job_icons.rsi
     state: SwarmComander
 
 - type: statusIcon
   parent: JobIcon
   id: JobSwarm
   icon:
-    sprite: Textures/_SpaceCats/Interface/Misc/job_icons.rsi
+    sprite: /Textures/_SpaceCats/Interface/Misc/job_icons.rsi
     state: SwarmUnit
