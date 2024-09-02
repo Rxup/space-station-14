@@ -1,0 +1,65 @@
+- type: entity
+  name: оружейный кейс
+  parent: ToolboxBase
+  id: WeaponCaseLong
+  description: Усиленный чехол для хранения длинноствольного оружия и аксессуаров.
+  suffix: Long
+  components:
+  - type: Sprite
+    sprite: _SpaceCats/Objects/Storage/Cases/guncaselong.rsi
+    layers:
+    - map: [ base ]
+      state: icon
+    - state: unshaded
+      shader: unshaded
+  - type: Item
+    sprite: _NF/Objects/Storage/Cases/guncaselong.rsi
+  - type: GenericVisualizer
+    visuals:
+      enum.StorageVisuals.Open:
+        base:
+          True: { state: icon-open }
+          False: { state: icon }
+  - type: Storage
+    maxItemSize: Huge
+    grid:
+    - 0,0,4,3
+    whitelist:
+      components:
+      - Gun
+      - BallisticAmmoProvider
+      - Projectile
+      - CartridgeAmmo
+      - PowerCell
+      - MeleeWeapon
+      tags:
+      - Cartridge
+
+- type: entity
+  name: оружейный кейс
+  parent: WeaponCaseLong
+  id: WeaponCaseHeavy
+  description: Усиленный корпус для хранения тяжелого вооружения.
+  suffix: Heavy
+  components:
+  - type: MultiHandedItem
+  - type: Sprite
+    sprite: _SpaceCats/Objects/Tools/guncaseheavy.rsi
+  - type: Item
+    size: Ginormous
+    sprite: _SpaceCats/Objects/Tools/guncaseheavy.rsi
+  - type: Storage
+    maxItemSize: Ginormous
+    grid:
+    - 0,0,7,3
+    whitelist:
+      components:
+      - Gun
+      - BallisticAmmoProvider
+      - Projectile
+      - CartridgeAmmo
+      - PowerCell
+      - MeleeWeapon
+      - Armor
+      tags:
+      - Cartridge
