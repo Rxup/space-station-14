@@ -16,6 +16,7 @@
   - type: NpcFactionMember
     factions:
     - SimpleHostile
+    - Diona
   - type: MovementIgnoreGravity
   - type: MovementSpeedModifier
     baseWalkSpeed: 3.5

@@ -1,0 +1,46 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "made by borkroman",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "full"
+    },
+    {
+      "name": "swarm0",
+      "directions": 4
+    },
+    {
+      "name": "swarm1",
+      "directions": 4
+    },
+    {
+      "name": "swarm2",
+      "directions": 4
+    },
+    {
+      "name": "swarm3",
+      "directions": 4
+    },
+    {
+      "name": "swarm4",
+      "directions": 4
+    },
+    {
+      "name": "swarm5",
+      "directions": 4
+    },
+    {
+      "name": "swarm6",
+      "directions": 4
+    },
+    {
+      "name": "swarm7",
+      "directions": 4
+    }
+  ]
+}

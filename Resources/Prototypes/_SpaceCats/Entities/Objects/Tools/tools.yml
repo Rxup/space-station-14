@@ -1,0 +1,124 @@
+- type: entity
+  name: S.W.A.R.M.Тул
+  parent: Omnitool
+  id: SwarmTool
+  noSpawn: true
+  description: Лучше и быстрее.
+  components:
+  - type: Sprite
+    sprite: _SpaceCats/Swarmers/TOOLS/Swarmer_omnitool.rsi
+    state: omnitool-screwing
+  - type: Item
+    sprite: _SpaceCats/Swarmers/TOOLS/Swarmer_omnitool.rsi
+    size: Normal
+  - type: Tag
+    tags:
+    - Multitool
+  - type: Prying
+    enabled: false
+  - type: Tool
+    qualities:
+      - Screwing
+    speedModifier: 3
+    useSound: /Audio/Items/drill_use.ogg
+  - type: ToolTileCompatible
+  - type: MultipleTool
+    statusShowBehavior: true
+    entries:
+      - behavior: Screwing
+        sprite:
+          sprite: _SpaceCats/Swarmers/TOOLS/Swarmer_omnitool.rsi
+          state: omnitool-screwing
+        useSound:
+          path: /Audio/Items/drill_use.ogg
+        changeSound:
+          path: /Audio/Items/change_drill.ogg
+      - behavior: Prying
+        sprite:
+          sprite: _SpaceCats/Swarmers/TOOLS/Swarmer_omnitool.rsi
+          state: omnitool-prying
+        useSound:
+          path: /Audio/Items/jaws_pry.ogg
+        changeSound:
+          path: /Audio/Items/change_drill.ogg
+      - behavior: Anchoring
+        sprite:
+          sprite: _SpaceCats/Swarmers/TOOLS/Swarmer_omnitool.rsi
+          state: omnitool-wrenching
+        useSound:
+          path: /Audio/Items/ratchet.ogg
+        changeSound:
+          path: /Audio/Items/change_drill.ogg
+      - behavior: Cutting
+        sprite:
+          sprite: _SpaceCats/Swarmers/TOOLS/Swarmer_omnitool.rsi
+          state: omnitool-snipping
+        useSound:
+          path: /Audio/Items/jaws_cut.ogg
+        changeSound:
+          path: /Audio/Items/change_drill.ogg
+      - behavior: Pulsing
+        sprite:
+          sprite: _SpaceCats/Swarmers/TOOLS/Swarmer_omnitool.rsi
+          state: omnitool-pulsing
+        changeSound:
+          path: /Audio/Items/change_drill.ogg
+
+#S.W.A.R.M. Сварка
+- type: entity
+  name: S.W.A.R.M. Сварка
+  noSpawn: true
+  parent: WelderExperimental
+  id: WelderSwarmer
+  description: Способен самостоятельно вырабатывать топливо и менее вредный для глаз.
+  components:
+  - type: Tool
+    speedModifier: 3
+  - type: Sprite
+    sprite: _SpaceCats/Swarmers/TOOLS/Swarmer_welder.rsi
+  - type: Item
+    sprite: _SpaceCats/Swarmers/TOOLS/Swarmer_welder.rsi
+  - type: SolutionContainerManager
+    solutions:
+      Welder:
+        reagents:
+        - ReagentId: WeldingFuel
+          Quantity: 500
+        maxVol: 500
+  - type: PointLight
+    enabled: false
+    radius: 1.5
+    color: "#aea5f6"
+  - type: SolutionRegeneration
+    solution: Welder
+    generated:
+      reagents:
+      - ReagentId: WeldingFuel
+        Quantity: 2
+
+- type: entity
+  id: SwarmDeveloper
+  parent: RCD
+  name: S.W.A.R.M. фабрикатор
+  description: Встроенный фабрикатор для быстрой постройки.
+  components:
+  - type: Sprite
+    sprite: _SpaceCats/Swarmers/TOOLS/Swarmer_rcd.rsi
+    state: icon
+  - type: LimitedCharges
+    maxCharges: 40
+    charges: 40
+  - type: AutoRecharge
+    rechargeDuration: 10
+  - type: RCD
+    availablePrototypes:
+    - SwarmWallRCD
+    - FloorSwarmerEntityRCD
+    - FloorSwarmerEntityLightRCD
+    - SwarmDoorRCD
+    - SwarmResourcesFactoryRCD
+    - SwarmUnitsFactoryRCD
+    - SwarmHoloBarrierRCD
+    - SwarmCellChargerRCD
+    - WeaponSwarmTurretRCD
+    - DeconstructSwarm

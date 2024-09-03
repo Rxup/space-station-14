@@ -12,10 +12,6 @@ namespace Content.Server.Administration.Managers;
 public interface IBanManager
 {
     public void Initialize();
-
-    // Define the event
-    event EventHandler<BanEventArgs.ServerBanEventArgs>? ServerBanCreated;
-    
     public void Restart();
 
     /// <summary>
@@ -63,3 +59,4 @@ public interface IBanManager
     /// <param name="pSession">Player's session</param>
     public void SendRoleBans(ICommonSession pSession);
 }
+

@@ -64,5 +64,5 @@
             Brigmedic: [ 1, 1 ] # backmen-Brigmedic
             BKBPLATech: [0, 3] # backmen-BPLA-Silicons
             BKBPLAMED: [0, 3] # backmen-BPLAMED-Silicons
-            SAI: [1, 1] # backmen-SAI
+            
             Prisoner: [ 2, 3]
