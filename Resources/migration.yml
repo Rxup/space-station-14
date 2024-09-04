@@ -555,3 +555,14 @@ ClothingNeckShockCollar: ClothingBackpackElectropack
 # 2024-08-28 backmen
 SpawnPointStationAI: PlayerStationAi
 WeaponTurretLaserNanoTrasenAI: WeaponTurretSyndicateBroken
+
+# 2024-08-22
+ComputerShuttleSalvage: null
+SalvageShuttleConsoleCircuitboard: null
+SalvageShuttleCircuitboardStealObjective: null
+
+# 2024-08-28
+ClothingBackpackDuffelSyndicateCostumeCentcom: null
+ClothingHeadsetAltCentComFake: null
+CentcomPDAFake: null
+CentcomIDCardSyndie: null

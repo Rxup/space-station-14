@@ -59,6 +59,7 @@ namespace Content.IntegrationTests.Tests
             "CorvaxTerra",
             "CorvaxFrame",
             "CorvaxPearl",
+            "CorvaxTushkan",
             // Corvax-End
             "Dev",
             "TestTeg",
@@ -284,14 +285,14 @@ namespace Content.IntegrationTests.Tests
                     );
 
                     var spawnPoints = entManager.EntityQuery<SpawnPointComponent>()
-                        .Where(x => x.SpawnType == SpawnPointType.Job)
-                        .Select(x => x.Job!.Value);
+                        .Where(x => x.SpawnType == SpawnPointType.Job && x.Job != null)
+                        .Select(x => x.Job.Value);
 
                     jobs.ExceptWith(spawnPoints);
 
                     spawnPoints = entManager.EntityQuery<ContainerSpawnPointComponent>()
-                        .Where(x => x.SpawnType == SpawnPointType.Job)
-                        .Select(x => x.Job!.Value);
+                        .Where(x => x.SpawnType is SpawnPointType.Job or SpawnPointType.Unset && x.Job != null)
+                        .Select(x => x.Job.Value);
 
                     jobs.ExceptWith(spawnPoints);
 

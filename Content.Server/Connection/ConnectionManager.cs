@@ -1,11 +1,7 @@
 using System.Collections.Immutable;
 using System.Linq;
-using System.Text.Json.Nodes;
 using System.Threading.Tasks;
-using Content.Server.Connection.Whitelist;
-using Content.Server.Connection.Whitelist.Conditions;
 using System.Runtime.InteropServices;
-using System.Threading.Tasks;
 using Content.Corvax.Interfaces.Server;
 using Content.Corvax.Interfaces.Shared;
 using Content.Server.Chat.Managers;
@@ -33,8 +29,8 @@ namespace Content.Server.Connection
     public interface IConnectionManager
     {
         void Initialize();
-        Task<bool> HavePrivilegedJoin(NetUserId userId); // Corvax-Queue
         void PostInit();
+        Task<bool> HavePrivilegedJoin(NetUserId userId); // Corvax-Queue
 
         /// <summary>
         /// Temporarily allow a user to bypass regular connection requirements.
