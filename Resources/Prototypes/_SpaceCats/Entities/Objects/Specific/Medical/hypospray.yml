@@ -1,0 +1,23 @@
+- type: entity
+  parent: BaseItem
+  id: HolyHypo
+  name: золотая Игла
+  description: Этот гипоспрей, известный как 'Игла' вручается священникам, доказавшим свою преданность в охоте на демонические сущности и защиту невинных. Наполненный освящённой эссенцией, он способен не только лечить раны, но и временно ослаблять демонические силы, очищая тело и душу от тёмного влияния
+  components:
+  - type: Sprite
+    sprite: _SpaceCats/Objects/Specific/Medical/hypospray.rsi
+    state: hypo
+  - type: Item
+    sprite: _SpaceCats/Objects/Specific/Medical/hypospray.rsi
+  - type: SolutionContainerManager
+    solutions:
+      hypospray:
+        maxVol: 15
+  - type: RefillableSolution
+    solution: hypospray
+  - type: ExaminableSolution
+    solution: hypospray
+  - type: Hypospray
+    onlyAffectsMobs: false
+  - type: UseDelay
+    delay: 0.5
