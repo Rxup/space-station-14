@@ -23,6 +23,13 @@
   - type: ClothingSpeedModifier
       walkModifier: 1.05
       sprintModifier: 1.05
+  - type: StatusEffects
+    allowed:
+      - Muted
+      - ForcedSleep
+      - Pacified
+      - PsionicsDisabled
+      - PsionicallyInsulated
   - type: Tag
     tags:
       - Medal
