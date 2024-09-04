@@ -25,7 +25,4 @@
     quickEquip: false
     slots:
     - suitstorage
-  - type: Tag
-    tags:
-    - CaptainSabre
   - type: DisarmMalus
