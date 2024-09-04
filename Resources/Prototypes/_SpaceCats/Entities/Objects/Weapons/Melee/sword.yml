@@ -5,7 +5,7 @@
   description: Эта священная сабля, известная как 'Светоносный Клинок', вручается священникам, отличившимся в борьбе с демоническими существами. С её лезвием, вырезанным из мистического металла и закалённым молитвами, она излучает свет, способный разрубать тьму и очищать от нечисти. 'Светоносный Клинок' олицетворяет стойкость и священную ярость в битве за свет против зла.
   components:
   - type: Sprite
-    sprite: _SpaceCats/Objects/Weapons/Melee/holy_sabre.rsi
+    sprite: _SpaceCats/Objects/Weapons/Melee/holysabre.rsi
   - type: MeleeWeapon
     attackRate: 1.5
     damage:
@@ -19,9 +19,9 @@
     reflectProb: .1
     spread: 90
   - type: Item
-    sprite: _SpaceCats/Objects/Weapons/Melee/holy_sabre.rsi
+    sprite: _SpaceCats/Objects/Weapons/Melee/holysabre.rsi
   - type: Clothing
-    sprite: _SpaceCats/Objects/Weapons/Melee/holy_sabre.rsi
+    sprite: _SpaceCats/Objects/Weapons/Melee/holysabre.rsi
     quickEquip: false
     slots:
     - suitstorage
