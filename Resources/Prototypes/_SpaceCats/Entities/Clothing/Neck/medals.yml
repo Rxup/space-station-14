@@ -18,7 +18,7 @@
           Slash: 0.9
           Piercing: 0.9
           Heat: 0.9
-          Holy: 1
+          Holy: 2
   # Сила божья даёт ему скорость
   - type: ClothingSpeedModifier
       walkModifier: 1.05
