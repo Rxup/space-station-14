@@ -1,0 +1,13 @@
+- type: entity
+  parent: ClothingNeckBase
+  id: ClothingNeckHolyMedal
+  name: печать света
+  description: Эта древняя медаль, инкрустированная символом священного пламени, даруется тем священникам, которые проявили доблесть в битве против демонических сущностей и иных тварей тьмы. Печать Света испускает мощное очищающее излучение, ослабляющее силы тьмы и защищающее своего носителя от их пагубного влияния.
+  components:
+  - type: Sprite
+    sprite: _SpaceCats/Clothing/Neck/Medals/holyhunters.rsi
+  - type: Clothing
+    sprite: _SpaceCats/Clothing/Neck/Medals/holyhunters.rsi
+  - type: Tag
+    tags:
+      - Medal
