@@ -15,10 +15,6 @@
     modifiers:
       coefficients:
         Holy: -1
-  # Сила божья даёт ему скорость
-  - type: ClothingSpeedModifier
-    walkModifier: 1.05
-    sprintModifier: 1.05
   - type: StatusEffects
     allowed:
     - Muted
