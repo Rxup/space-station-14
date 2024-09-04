@@ -10,11 +10,6 @@
     sprite: _SpaceCats/Clothing/Neck/Medals/holyhunters.rsi
   - type: Unremoveable
   - type: HeadCage
-  # Сила божья даёт ему жить
-  - type: Armor
-    modifiers:
-      coefficients:
-        Holy: -1
   - type: StatusEffects
     allowed:
     - Muted
