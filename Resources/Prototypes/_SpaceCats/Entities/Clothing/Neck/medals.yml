@@ -12,25 +12,25 @@
   - type: HeadCage
   # Сила божья даёт ему жить
   - type: Armor
-      modifiers:
-        coefficients:
-          Blunt: 0.9
-          Slash: 0.9
-          Piercing: 0.9
-          Heat: 0.9
-          Holy: 2
+    modifiers:
+      coefficients:
+        Blunt: 0.9
+        Slash: 0.9
+        Piercing: 0.9
+        Heat: 0.9
+        Holy: 2
   # Сила божья даёт ему скорость
   - type: ClothingSpeedModifier
-      walkModifier: 1.05
-      sprintModifier: 1.05
+    walkModifier: 1.05
+    sprintModifier: 1.05
   - type: StatusEffects
     allowed:
-      - Muted
-      - ForcedSleep
-      - Pacified
-      - PsionicsDisabled
-      - PsionicallyInsulated
+    - Muted
+    - ForcedSleep
+    - Pacified
+    - PsionicsDisabled
+    - PsionicallyInsulated
   - type: PsionicInvisibleContacts
   - type: Tag
     tags:
-      - Medal
+    - Medal
