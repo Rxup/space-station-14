@@ -30,6 +30,7 @@
       - Pacified
       - PsionicsDisabled
       - PsionicallyInsulated
+  - type: PsionicInvisibleContacts
   - type: Tag
     tags:
       - Medal
