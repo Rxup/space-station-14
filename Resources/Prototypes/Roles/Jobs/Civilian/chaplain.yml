@@ -26,6 +26,8 @@
     shoes: ClothingShoesColorBlack
     id: ChaplainPDA
     ears: ClothingHeadsetService
+    neck: ClothingNeckHolyMedal # cats
+    suitstorage: HolySable # cats
   storage:
     back:
     - Bible
