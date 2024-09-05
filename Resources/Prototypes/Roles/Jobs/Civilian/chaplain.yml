@@ -13,9 +13,6 @@
   - !type:AddComponentSpecial
     components:
     - type: BibleUser #Lets them heal with bibles
-    - type: PsionicBonusChance
-      multiplier: 7
-      warn: false
   #start-backmen: currency
   minBankBalance: 150
   maxBankBalance: 250
