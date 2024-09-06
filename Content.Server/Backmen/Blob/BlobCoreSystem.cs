@@ -180,6 +180,9 @@ public sealed class BlobCoreSystem : SharedBlobCoreSystem
 
     private void OnStartup(EntityUid uid, BlobCoreComponent component, ComponentStartup args)
     {
+        var store = EnsureComp<StoreComponent>(uid);
+        store.CurrencyWhitelist.Add(BlobMoney);
+
         ChangeBlobPoint(uid, 0, component);
 
         if (_tile.TryGetComponent(uid, out var blobTileComponent))

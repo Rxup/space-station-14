@@ -35,7 +35,7 @@ public sealed partial class StoreSystem
             _audio.PlayPvs(vendComponent.SoundVend, uid);
         }
     }
-    private bool HandleBankTransaction(EntityUid uid, StoreComponent component, StoreBuyListingMessage msg, ListingData listing)
+    private bool HandleBankTransaction(EntityUid uid, StoreComponent component, StoreBuyListingMessage msg, ListingDataWithCostModifiers listing)
     {
         if (!TryComp<BuyStoreBankComponent>(uid, out var storeBank))
         {

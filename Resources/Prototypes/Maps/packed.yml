@@ -57,7 +57,9 @@
             Clown: [ 1, 1 ]
             Mime: [ 1, 1 ]
             Musician: [ 1, 1 ]
-            Borg: [ 1 , 1 ]
+            #silicon
+            StationAi: [ 1, 1 ]
+            Borg: [ 1, 1 ]
             # backmen
             Brigmedic: [ 0, 1 ] # backmen-Brigmedic
             #BKBPLATech: [ 0, 1 ] # backmen-BPLA-Silicons
