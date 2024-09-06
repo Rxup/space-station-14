@@ -1,5 +1,6 @@
 using System.Linq;
 using System.Numerics;
+using System.Threading;
 using Content.Server.Actions;
 using Content.Server.AlertLevel;
 using Content.Server.Backmen.Blob.Components;
@@ -10,6 +11,8 @@ using Content.Server.Explosion.EntitySystems;
 using Content.Server.GameTicking;
 using Content.Server.RoundEnd;
 using Content.Server.Station.Systems;
+using Content.Server.Store.Components;
+using Content.Server.Store.Systems;
 using Content.Shared.Alert;
 using Content.Shared.Backmen.Blob;
 using Content.Shared.Backmen.Blob.Components;
@@ -19,6 +22,8 @@ using Content.Shared.Explosion.Components;
 using Content.Shared.FixedPoint;
 using Content.Shared.Objectives.Components;
 using Content.Shared.Popups;
+using Content.Shared.Store;
+using Content.Shared.Store.Components;
 using Content.Shared.Weapons.Melee;
 using Robust.Server.GameObjects;
 using Robust.Shared.Map;
@@ -42,6 +47,7 @@ public sealed class BlobCoreSystem : SharedBlobCoreSystem
     [Dependency] private readonly MetaDataSystem _metaDataSystem = default!;
     [Dependency] private readonly ActionsSystem _action = default!;
     [Dependency] private readonly MapSystem _map = default!;
+    [Dependency] private readonly StoreSystem _storeSystem = default!;
 
     private EntityQuery<BlobTileComponent> _tile;
     private EntityQuery<BlobFactoryComponent> _factory;
@@ -373,30 +379,53 @@ public sealed class BlobCoreSystem : SharedBlobCoreSystem
     [ValidatePrototypeId<AlertPrototype>]
     private const string BlobResource = "BlobResource";
 
-    public bool ChangeBlobPoint(EntityUid uid, FixedPoint2 amount, BlobCoreComponent? component = null)
+    [ValidatePrototypeId<CurrencyPrototype>]
+    private const string BlobMoney = "BlobPoint";
+
+    private readonly ReaderWriterLockSlim _pointsChange = new();
+
+    public bool ChangeBlobPoint(EntityUid uid, FixedPoint2 amount, BlobCoreComponent? component = null, StoreComponent? store = null)
     {
-        if (!Resolve(uid, ref component))
+        if (!Resolve(uid, ref component) || !Resolve(uid, ref store))
             return false;
 
-        component.Points += amount;
+        if (_pointsChange.TryEnterWriteLock(1000))
+        {
+            if (_storeSystem.TryAddCurrency(new Dictionary<string, FixedPoint2>
+                    {
+                        { BlobMoney, amount }
+                    },
+                    uid,
+                    store))
+            {
+                var pt = store.Balance.GetValueOrDefault(BlobMoney);
 
-        if (component.Observer != null)
-            _alerts.ShowAlert(component.Observer.Value, BlobResource, (short) Math.Clamp(Math.Round(component.Points.Float() / 10f), 0, 16));
+                if (component.Observer != null)
+                    _alerts.ShowAlert(component.Observer.Value, BlobResource, (short) Math.Clamp(Math.Round(pt.Float() / 10f), 0, 16));
 
-        return true;
+                _pointsChange.ExitWriteLock();
+                return true;
+            }
+            _pointsChange.ExitWriteLock();
+            return false;
+        }
+
+        return false;
     }
 
-    public bool TryUseAbility(EntityUid uid, EntityUid coreUid, BlobCoreComponent component, FixedPoint2 abilityCost)
+    public bool TryUseAbility(EntityUid uid, EntityUid coreUid, BlobCoreComponent component, FixedPoint2 abilityCost, StoreComponent? store = null)
     {
-        if (component.Points < abilityCost)
+        if (!Resolve(coreUid, ref store))
+            return false;
+
+        var pt = store.Balance.GetValueOrDefault(BlobMoney);
+        if (pt < abilityCost)
         {
             _popup.PopupEntity(Loc.GetString("blob-not-enough-resources"), uid, uid, PopupType.Large);
             return false;
         }
 
-        ChangeBlobPoint(coreUid, -abilityCost, component);
-
-        return true;
+        return ChangeBlobPoint(coreUid, -abilityCost, component, store);
     }
 
     public bool CheckNearNode(EntityUid observer, EntityCoordinates coords, Entity<MapGridComponent> grid, BlobCoreComponent core)
