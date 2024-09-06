@@ -78,5 +78,4 @@ public sealed class LegsParalyzedSystem : EntitySystem
     {
         args.Cancelled = true;
     }
-    }
 }
