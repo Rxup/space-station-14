@@ -17,8 +17,7 @@ public sealed partial class RequireParentListingCondition : ListingCondition
         if (!args.StoreEntity.HasValue)
             return false;
 
-        var parent = args.EntityManager.EnsureComponent<StoreComponent>(args.StoreEntity.Value)
-            .Listings.FirstOrDefault(x => x.ID == ParentId);
+        var parent = args.EntityManager.EnsureComponent<StoreComponent>(args.StoreEntity.Value).FullListingsCatalog.FirstOrDefault(x => x.ID == ParentId);
 
         if (parent == null)
             return false;

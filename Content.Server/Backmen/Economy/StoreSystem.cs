@@ -46,7 +46,7 @@ public sealed partial class StoreSystem
             return false;
 
         //check that we have enough money
-        foreach (var currency in listing.Cost)
+        foreach (var currency in listing.OriginalCost)
         {
             if (!component.Balance.TryGetValue(currency.Key, out var balance)) // || balance < currency.Value
             {
