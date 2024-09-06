@@ -1,6 +1,4 @@
 ﻿Entries:
-<<<<<<< HEAD
-=======
 - author: ShadowCommander
   changes:
   - message: Added a red light to firelocks when their warning lights are active.
@@ -362,7 +360,6 @@
   id: 6794
   time: '2024-06-20T14:19:22.0000000+00:00'
   url: https://github.com/space-wizards/space-station-14/pull/29210
->>>>>>> master
 - author: MilenVolf
   changes:
   - message: Stasis bed can be toggled on or off!
