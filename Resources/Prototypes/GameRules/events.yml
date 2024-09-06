@@ -508,15 +508,9 @@
   parent: BaseGameRule
   components:
   - type: StationEvent
-<<<<<<< HEAD
-    earliestStart: 90
-    minimumPlayers: 40
-    weight: 1 # Zombies was happening basically every single survival round, so now it's super rare
-=======
     earliestStart: 50
     minimumPlayers: 10
     weight: 2
->>>>>>> master
     duration: 1
   - type: ZombieRule
   - type: AntagSelection
