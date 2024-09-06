@@ -197,6 +197,7 @@ namespace Content.Shared.Popups
         /// </summary>
         Large,
         LargeCaution,
-        LargeGreen
+
+        LargeGreen // backmen: blob
     }
 }
