@@ -131,7 +131,7 @@ public sealed partial class StoreMenu : DefaultWindow
         if (!listing.Categories.Contains(CurrentCategory))
             return;
 
-        var hasBalance = listing.CanBuyWith(Balance);
+        var hasBalance = listing.CanBuyWith(Balance) || CanBuyFromBank;
 
         var spriteSys = _entityManager.EntitySysManager.GetEntitySystem<SpriteSystem>();
 

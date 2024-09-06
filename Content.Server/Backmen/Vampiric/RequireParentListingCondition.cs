@@ -1,12 +1,12 @@
 ﻿using System.Linq;
-using Content.Server.Store.Components;
-using Content.Server.Store.Systems;
 using Content.Shared.Store;
 using Content.Shared.Store.Components;
+using JetBrains.Annotations;
 using Robust.Shared.Prototypes;
 
 namespace Content.Server.Backmen.Vampiric;
 
+[MeansImplicitUse]
 public sealed partial class RequireParentListingCondition : ListingCondition
 {
     [DataField("parent", required: true)]
@@ -14,10 +14,10 @@ public sealed partial class RequireParentListingCondition : ListingCondition
 
     public override bool Condition(ListingConditionArgs args)
     {
-        if (!args.StoreEntity.HasValue)
-            return false;
-
-        var parent = args.EntityManager.EnsureComponent<StoreComponent>(args.StoreEntity.Value).FullListingsCatalog.FirstOrDefault(x => x.ID == ParentId);
+        var parent = args.EntityManager
+            .GetComponentOrNull<StoreComponent>(args.StoreEntity)
+            ?.FullListingsCatalog
+            .FirstOrDefault(x => ParentId == x.ID);
 
         if (parent == null)
             return false;

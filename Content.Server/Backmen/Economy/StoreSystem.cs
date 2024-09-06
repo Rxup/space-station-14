@@ -35,7 +35,7 @@ public sealed partial class StoreSystem
             _audio.PlayPvs(vendComponent.SoundVend, uid);
         }
     }
-    private bool HandleBankTransaction(EntityUid uid, StoreComponent component, StoreBuyListingMessage msg, ListingData listing)
+    private bool HandleBankTransaction(EntityUid uid, StoreComponent component, StoreBuyListingMessage msg, ListingDataWithCostModifiers listing)
     {
         if (!TryComp<BuyStoreBankComponent>(uid, out var storeBank))
         {
@@ -46,7 +46,7 @@ public sealed partial class StoreSystem
             return false;
 
         //check that we have enough money
-        foreach (var currency in listing.OriginalCost)
+        foreach (var currency in listing.Cost)
         {
             if (!component.Balance.TryGetValue(currency.Key, out var balance)) // || balance < currency.Value
             {
