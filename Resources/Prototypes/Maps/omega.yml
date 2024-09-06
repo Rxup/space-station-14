@@ -60,19 +60,13 @@
             Clown: [ 1, 1 ]
             Mime: [ 1, 1 ]
             Musician: [ 1, 1 ]
-<<<<<<< HEAD
             #silicon
             StationAi: [ 1, 1 ]
             #BKBPLATech: [0, 3] # backmen-BPLA-Silicons
             #BKBPLAMED: [0, 3] # backmen-BPLAMED-Silicons
-=======
-#            BKBPLATech: [0, 3] # backmen-BPLA-Silicons
-#            BKBPLAMED: [0, 3] # backmen-BPLAMED-Silicons
->>>>>>> master
             Borg: [ 2, 2 ]
-#            Deliveryman: [ 0, 1 ]
-#            Prisoner: [ 2, 3]
-            
+           Deliveryman: [ 0, 1 ]
+           Prisoner: [ 2, 3]     
         # backmen blob-config-start SMALL+
         - type: StationBlobConfig
           stageBegin: 25
