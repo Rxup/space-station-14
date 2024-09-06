@@ -10,6 +10,8 @@
     - !type:DepartmentTimeRequirement
       department: Security
       time: 7200
+    - !type:AgeRequirement
+      requiredAge: 21 # cats
   startingGear: BrigmedicGear
   icon: "JobIconBrigmedic"
   supervisors: job-supervisors-hos
@@ -21,10 +23,10 @@
     - Maintenance
     - External
   #start-backmen: currency
-  minBankBalance: 150
-  maxBankBalance: 250
+  minBankBalance: 200
+  maxBankBalance: 400
   wageDepartment: Security
-  wage: 50
+  wage: 100
   #end-backmen: currency
   special:
     - !type:AddComponentSpecial

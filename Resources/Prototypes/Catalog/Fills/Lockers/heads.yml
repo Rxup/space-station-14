@@ -170,6 +170,7 @@
     - id: ClothingEyesGlassesMeson
     - id: ClothingHandsGlovesColorYellow
     - id: ClothingHeadsetAltEngineering
+    - id: ClothingHeadHatBeretChiefEngineering
     - id: DoorRemoteEngineering
     - id: RCD
     - id: RCDAmmo
@@ -239,6 +240,7 @@
     - id: ClothingHeadCage # backmen
     - id: PrinterDocFlatpack # Corvax-Printer
     - id: FlatpackMetempsychoticMachine # backmen
+#    - id: genguns # space cats
 
 # Hardsuit table, used for suit storage as well
 - type: entityTable
@@ -295,6 +297,7 @@
     - id: PrinterDocFlatpack # Corvax-Printer
     - id: FlatpackOracle # backmen
     - id: FlatpackSophie # backmen
+    - id: AnomalyPinpointer # cats
 
 # Hardsuit table, used for suit storage as well
 - type: entityTable
@@ -356,7 +359,8 @@
     - id: ClothingHeadCage # backmen
     - id: PrinterDocFlatpack # Corvax-Printer
     - id: ClothingHeadHatCapHoS # Corvax-SecFashion
-      prob: 0.5
+    - id: PlushieAcolyte16 # пасхалко
+      prob: 0.66
     - id: ClothingOuterCoatHoSGreatcoat # Corvax-Resprite
     - id: BookBusido # Corvax-Books
 

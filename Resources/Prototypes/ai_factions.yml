@@ -15,6 +15,7 @@
     - SpecialForce
     - CombineForce
     - CentralCommand
+    - Swarmers
 
 - type: npcFaction
   id: NanoTrasen
@@ -31,6 +32,7 @@
   - Britan
   - SpecialForce
   - CombineForce
+  - Swarmers
 
 - type: npcFaction
   id: Mouse
@@ -52,6 +54,7 @@
   - SuperZloy
   - SpecialForce
   - CombineForce
+  - Swarmers
 
 - type: npcFaction
   id: SimpleHostile
@@ -70,6 +73,26 @@
   - SpecialForce
   - CombineForce
   - CentralCommand
+  - Swarmers
+
+- type: npcFaction
+  id: Diona
+  hostile:
+  - NanoTrasen
+  - Syndicate
+  - Passive
+  - PetsNT
+  - Zombie
+  - Blob
+  - Flesh
+  - Revolutionary
+  - SuperZloy
+  - Spanish
+  - Britan
+  - SpecialForce
+  - CombineForce
+  - CentralCommand
+  - Swarmers
 
 - type: npcFaction
   id: SimpleNeutral
@@ -89,6 +112,7 @@
   - SpecialForce
   - CombineForce
   - CentralCommand
+  - Swarmers
 
 - type: npcFaction
   id: Xeno
@@ -107,6 +131,7 @@
   - SpecialForce
   - CombineForce
   - CentralCommand
+  - Swarmers
 
 - type: npcFaction
   id: Zombie
@@ -126,6 +151,7 @@
   - SpecialForce
   - CombineForce
   - CentralCommand
+  - Swarmers
 
 - type: npcFaction
   id: Revolutionary
@@ -142,3 +168,4 @@
   - SpecialForce
   - CombineForce
   - CentralCommand
+  - Swarmers

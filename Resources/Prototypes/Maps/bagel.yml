@@ -2,8 +2,7 @@
   id: Bagel
   mapName: 'Bagel Station'
   mapPath: /Maps/bagel.yml
-  minPlayers: 35
-  maxPlayers: 70
+  minPlayers: 10
   stations:
     Bagel:
       stationProto: StandardNanotrasenStation
@@ -38,7 +37,7 @@
             ChiefMedicalOfficer: [ 1, 1 ]
             Chemist: [ 2, 2 ]
             MedicalDoctor: [ 3, 3 ]
-            Paramedic: [ 1, 1 ]
+#            Paramedic: [ 1, 1 ]
             MedicalIntern: [ 4, 4 ]
             #science
             ResearchDirector: [ 1, 1 ]

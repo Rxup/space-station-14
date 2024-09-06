@@ -154,7 +154,7 @@ namespace Content.Shared.CCVar
         ///     The preset for the game to fall back to if the selected preset could not be used, and fallback is enabled.
         /// </summary>
         public static readonly CVarDef<string>
-            GameLobbyFallbackPreset = CVarDef.Create("game.fallbackpreset", "Traitor,Extended", CVar.ARCHIVE);
+            GameLobbyFallbackPreset = CVarDef.Create("game.fallbackpreset", "Secret", CVar.ARCHIVE);
 
         /// <summary>
         ///     Controls if people can win the game in Suspicion or Deathmatch.
@@ -469,6 +469,24 @@ namespace Content.Shared.CCVar
         /// </summary>
         public static readonly CVarDef<string> DiscordRoundEndRoleWebhook =
             CVarDef.Create("discord.round_end_role", string.Empty, CVar.SERVERONLY);
+
+        /// <summary>
+        /// URL where all ban messages will be relayed
+        /// </summary>
+        public static readonly CVarDef<string> DiscordBanWebhook =
+            CVarDef.Create("discord.ban_webhook", "", CVar.SERVERONLY | CVar.CONFIDENTIAL);
+
+        /// <summary>
+        /// The server icon to use in the Discord ban embed footer.
+        /// </summary>
+        public static readonly CVarDef<string> DiscordBanFooterIcon =
+            CVarDef.Create("discord.ban_footer_icon", string.Empty, CVar.SERVERONLY);
+
+        /// <summary>
+        /// The avatar to use for the webhook. Should be an URL.
+        /// </summary>
+        public static readonly CVarDef<string> DiscordBanAvatar =
+            CVarDef.Create("discord.ban_avatar", string.Empty, CVar.SERVERONLY);
 
         /*
          * Tips
@@ -917,7 +935,7 @@ namespace Content.Shared.CCVar
         /// <seealso cref="AdminUseCustomNamesAdminRank"/>
         /// <seealso cref="AhelpAdminPrefixWebhook"/>
         public static readonly CVarDef<bool> AhelpAdminPrefix =
-            CVarDef.Create("ahelp.admin_prefix", false, CVar.SERVERONLY);
+            CVarDef.Create("ahelp.admin_prefix", true, CVar.SERVERONLY);
 
         /// <summary>
         /// Should the administrator's position be displayed in the webhook.
@@ -926,7 +944,7 @@ namespace Content.Shared.CCVar
         /// <seealso cref="AdminUseCustomNamesAdminRank"/>
         /// <seealso cref="AhelpAdminPrefix"/>
         public static readonly CVarDef<bool> AhelpAdminPrefixWebhook =
-            CVarDef.Create("ahelp.admin_prefix_webhook", false, CVar.SERVERONLY);
+            CVarDef.Create("ahelp.admin_prefix_webhook", true, CVar.SERVERONLY);
 
         /*
          * Explosions
@@ -1767,7 +1785,8 @@ namespace Content.Shared.CCVar
             CVarDef.Create("chat.max_message_length", 1000, CVar.SERVER | CVar.REPLICATED);
 
         public static readonly CVarDef<int> ChatMaxAnnouncementLength =
-            CVarDef.Create("chat.max_announcement_length", 256, CVar.SERVER | CVar.REPLICATED);
+        //    CVarDef.Create("chat.max_announcement_length", 256, CVar.SERVER | CVar.REPLICATED);    cats
+            CVarDef.Create("chat.max_announcement_length", 512, CVar.SERVER | CVar.REPLICATED);
 
         public static readonly CVarDef<bool> ChatSanitizerEnabled =
             CVarDef.Create("chat.chat_sanitizer_enabled", true, CVar.SERVERONLY);

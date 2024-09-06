@@ -93,7 +93,8 @@
   id: Nukeops
   components:
   - type: GameRule
-    minPlayers: 20
+#    minPlayers: 20
+    minPlayers: 10   #cats
   - type: LoadMapRule
     mapPath: /Maps/Backmen/Nonstations/nukieoutpost.yml # backmen nuke map
   - type: AntagSelection
@@ -234,7 +235,8 @@
   parent: BaseGameRule
   components:
   - type: GameRule
-    minPlayers: 20
+#    minPlayers: 20
+    minPlayers: 10   #cats
     delay:
       min: 600
       max: 900
@@ -281,16 +283,16 @@
       - !type:NestedSelector
         tableId: BasicBackmenEventsTable # backmen events
         
-- type: entityTable
-  id: SpaceTrafficControlTable
-  table: !type:AllSelector # we need to pass a list of rules, since rules have further restrictions to consider via StationEventComp
-    children:
-      - !type:NestedSelector
-        tableId: UnknownShuttlesFriendlyTable
-      - !type:NestedSelector
-        tableId: UnknownShuttlesFreelanceTable
-      - !type:NestedSelector
-        tableId: UnknownShuttlesHostileTable
+#- type: entityTable
+#  id: SpaceTrafficControlTable
+#  table: !type:AllSelector # we need to pass a list of rules, since rules have further restrictions to consider via StationEventComp
+#    children:
+#      - !type:NestedSelector
+#        tableId: UnknownShuttlesFriendlyTable
+#      - !type:NestedSelector
+#        tableId: UnknownShuttlesFreelanceTable
+#      - !type:NestedSelector
+#        tableId: UnknownShuttlesHostileTable
 
 - type: entity
   id: BasicStationEventScheduler
@@ -308,29 +310,29 @@
     scheduledGameRules: !type:NestedSelector
       tableId: BasicGameRulesTable
 
-- type: entity
-  id: SpaceTrafficControlEventScheduler # iff we make a selector for EntityTables that can respect StationEventComp restrictions, or somehow impliment them otherwise in said tables,
-  parent: BaseGameRule                  # we can remerge this with the other schedulers, but it will silently fail due to that limitation without a separate scheduler to balance atm.
-  components:
-  - type: BasicStationEventScheduler
-    minimumTimeUntilFirstEvent: 1200 # 20 mins
-    minMaxEventTiming:
-      min: 600 # 10 mins
-      max: 1800 # 30 mins
-    scheduledGameRules: !type:NestedSelector
-      tableId: SpaceTrafficControlTable
+#- type: entity
+#  id: SpaceTrafficControlEventScheduler # iff we make a selector for EntityTables that can respect StationEventComp restrictions, or somehow impliment them otherwise in said tables,
+#  parent: BaseGameRule                  # we can remerge this with the other schedulers, but it will silently fail due to that limitation without a separate scheduler to balance atm.
+#  components:
+#  - type: BasicStationEventScheduler
+#    minimumTimeUntilFirstEvent: 1200 # 20 mins
+#    minMaxEventTiming:
+#      min: 600 # 10 mins
+#      max: 1800 # 30 mins
+#    scheduledGameRules: !type:NestedSelector
+#      tableId: SpaceTrafficControlTable
 
-- type: entity
-  id: SpaceTrafficControlFriendlyEventScheduler 
-  parent: BaseGameRule                  
-  components:
-  - type: BasicStationEventScheduler
-    minimumTimeUntilFirstEvent: 1200 # 20 mins
-    minMaxEventTiming:
-      min: 600 # 10 mins
-      max: 1800 # 30 mins
-    scheduledGameRules: !type:NestedSelector
-      tableId: UnknownShuttlesFriendlyTable
+#- type: entity
+#  id: SpaceTrafficControlFriendlyEventScheduler
+#  parent: BaseGameRule
+#  components:
+#  - type: BasicStationEventScheduler
+#    minimumTimeUntilFirstEvent: 1200 # 20 mins
+#    minMaxEventTiming:
+#      min: 600 # 10 mins
+#      max: 1800 # 30 mins
+#    scheduledGameRules: !type:NestedSelector
+#      tableId: UnknownShuttlesFriendlyTable
 
 # variation passes
 - type: entity
@@ -344,7 +346,7 @@
     - id: SolidWallRustingVariationPass
     - id: ReinforcedWallRustingVariationPass
     - id: BasicPuddleMessVariationPass
-      prob: 0.99
+      prob: 0.70
       orGroup: puddleMess
     - id: BloodbathPuddleMessVariationPass
       prob: 0.01

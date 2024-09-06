@@ -60,6 +60,7 @@
             Clown: [ 1, 1 ]
             Mime: [ 1, 1 ]
             Musician: [ 1, 1 ]
+<<<<<<< HEAD
             Brigmedic: [ 0, 1 ] # backmen-Brigmedic
             #BKBPLATech: [0, 3] # backmen-BPLA-Silicons
             #BKBPLAMED: [0, 3] # backmen-BPLAMED-Silicons
@@ -68,6 +69,14 @@
             #silicon
             StationAi: [ 1, 1 ]
             Borg: [ 2, 2 ]
+=======
+#            Brigmedic: [ 0, 1 ] # backmen-Brigmedic
+#            BKBPLATech: [0, 3] # backmen-BPLA-Silicons
+#            BKBPLAMED: [0, 3] # backmen-BPLAMED-Silicons
+#            Deliveryman: [ 0, 1 ]
+#            Prisoner: [ 2, 3]
+            
+>>>>>>> master
         # backmen blob-config-start HUGE
         - type: StationBlobConfig
           stageBegin: 40

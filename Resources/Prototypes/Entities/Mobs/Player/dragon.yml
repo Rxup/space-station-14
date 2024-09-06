@@ -210,6 +210,9 @@
     spawned:
     - id: FoodMeatDragon
       amount: 1
+    - id: DragonEgg # baby dragon
+      amount: 1 # baby dragon
+      prob: 0.3 # baby dragon
   - type: MeleeWeapon
     damage:
       groups:
