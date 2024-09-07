@@ -1,4 +1,5 @@
 using System.Linq;
+using System.Text;
 using Content.Client.Actions;
 using Content.Client.Message;
 using Content.Shared.FixedPoint;
@@ -22,7 +23,7 @@ public sealed partial class StoreMenu : DefaultWindow
     private StoreWithdrawWindow? _withdrawWindow;
 
     public event EventHandler<string>? SearchTextUpdated;
-    public event Action<BaseButton.ButtonEventArgs, ListingData>? OnListingButtonPressed;
+    public event Action<BaseButton.ButtonEventArgs, ListingDataWithCostModifiers>? OnListingButtonPressed;
     public event Action<BaseButton.ButtonEventArgs, string>? OnCategoryButtonPressed;
     public event Action<BaseButton.ButtonEventArgs, string, int>? OnWithdrawAttempt;
     public event Action<BaseButton.ButtonEventArgs>? OnRefundAttempt;
@@ -30,7 +31,7 @@ public sealed partial class StoreMenu : DefaultWindow
     public Dictionary<ProtoId<CurrencyPrototype>, FixedPoint2> Balance = new();
     public string CurrentCategory = string.Empty;
 
-    private List<ListingData> _cachedListings = new();
+    private List<ListingDataWithCostModifiers> _cachedListings = new();
 
     public StoreMenu()
     {
@@ -77,15 +78,17 @@ public sealed partial class StoreMenu : DefaultWindow
         WithdrawButton.Disabled = disabled;
     }
 
-    public void UpdateListing(List<ListingData> listings)
+    public void UpdateListing(List<ListingDataWithCostModifiers> listings)
     {
         _cachedListings = listings;
+
         UpdateListing();
     }
 
     public void UpdateListing()
     {
-        var sorted = _cachedListings.OrderBy(l => l.Priority).ThenBy(l => l.Cost.Values.Sum());
+        var sorted = _cachedListings.OrderBy(l => l.Priority)
+                                    .ThenBy(l => l.Cost.Values.Sum());
 
         // should probably chunk these out instead. to-do if this clogs the internet tubes.
         // maybe read clients prototypes instead?
@@ -123,13 +126,12 @@ public sealed partial class StoreMenu : DefaultWindow
         OnRefundAttempt?.Invoke(args);
     }
 
-    private void AddListingGui(ListingData listing)
+    private void AddListingGui(ListingDataWithCostModifiers listing)
     {
         if (!listing.Categories.Contains(CurrentCategory))
             return;
 
-        var listingPrice = listing.Cost;
-        var hasBalance = HasListingPrice(Balance, listingPrice);
+        var hasBalance = listing.CanBuyWith(Balance) || CanBuyFromBank;
 
         var spriteSys = _entityManager.EntitySysManager.GetEntitySystem<SpriteSystem>();
 
@@ -152,7 +154,10 @@ public sealed partial class StoreMenu : DefaultWindow
             }
         }
 
-        var newListing = new StoreListingControl(listing, GetListingPriceString(listing), hasBalance, texture);
+        var listingInStock = GetListingPriceString(listing);
+        var discount = GetDiscountString(listing);
+
+        var newListing = new StoreListingControl(listing, listingInStock, discount, hasBalance, texture);
         newListing.StoreItemBuyButton.OnButtonDown += args
             => OnListingButtonPressed?.Invoke(args, listing);
 
@@ -172,9 +177,10 @@ public sealed partial class StoreMenu : DefaultWindow
         return true;
     }
 
-    public string GetListingPriceString(ListingData listing)
+    private string GetListingPriceString(ListingDataWithCostModifiers listing)
     {
         var text = string.Empty;
+
         if (listing.Cost.Count < 1)
             text = Loc.GetString("store-currency-free");
         else
@@ -182,12 +188,64 @@ public sealed partial class StoreMenu : DefaultWindow
             foreach (var (type, amount) in listing.Cost)
             {
                 var currency = _prototypeManager.Index(type);
-                text += Loc.GetString("store-ui-price-display", ("amount", amount),
-                    ("currency", Loc.GetString(currency.DisplayName, ("amount", amount))));
+
+                text += Loc.GetString(
+                    "store-ui-price-display",
+                    ("amount", amount),
+                    ("currency", Loc.GetString(currency.DisplayName, ("amount", amount)))
+                );
             }
         }
 
         return text.TrimEnd();
+    }
+
+    private string GetDiscountString(ListingDataWithCostModifiers listingDataWithCostModifiers)
+    {
+        string discountMessage;
+
+        if (!listingDataWithCostModifiers.IsCostModified)
+        {
+            return string.Empty;
+        }
+
+        var relativeModifiersSummary = listingDataWithCostModifiers.GetModifiersSummaryRelative();
+        if (relativeModifiersSummary.Count > 1)
+        {
+            var sb = new StringBuilder();
+            sb.Append('(');
+            foreach (var (currency, amount) in relativeModifiersSummary)
+            {
+                var currencyPrototype = _prototypeManager.Index(currency);
+                if (sb.Length != 0)
+                {
+                    sb.Append(", ");
+                }
+                var currentDiscountMessage = Loc.GetString(
+                    "store-ui-discount-display-with-currency",
+                    ("amount", amount.ToString("P0")),
+                    ("currency", Loc.GetString(currencyPrototype.DisplayName))
+                );
+                sb.Append(currentDiscountMessage);
+            }
+
+            sb.Append(')');
+            discountMessage = sb.ToString();
+        }
+        else
+        {
+            // if cost was modified - it should have diff relatively to original cost in 1 or more currency
+            // ReSharper disable once GenericEnumeratorNotDisposed Dictionary enumerator doesn't require dispose
+            var enumerator = relativeModifiersSummary.GetEnumerator();
+            enumerator.MoveNext();
+            var amount = enumerator.Current.Value;
+            discountMessage = Loc.GetString(
+                "store-ui-discount-display",
+                ("amount", (amount.ToString("P0")))
+            );
+        }
+
+        return discountMessage;
     }
 
     private void ClearListings()
@@ -195,7 +253,7 @@ public sealed partial class StoreMenu : DefaultWindow
         StoreListingsContainer.Children.Clear();
     }
 
-    public void PopulateStoreCategoryButtons(HashSet<ListingData> listings)
+    public void PopulateStoreCategoryButtons(HashSet<ListingDataWithCostModifiers> listings)
     {
         var allCategories = new List<StoreCategoryPrototype>();
         foreach (var listing in listings)
