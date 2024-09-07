@@ -84,6 +84,11 @@
   idleState: vulp3 # SpaceCats-TypingIndicator
 
 - type: typingIndicator
+  id: skeleton
+  typingState: skeleton0
+  idleState: skeleton3 # SpaceCats-TypingIndicator
+
+- type: typingIndicator
   id: Swarms
   spritePath: _SpaceCats/Swarmers/Typing.rsi
   typingState: swarmbot0 # SpaceCats-TypingIndicator
