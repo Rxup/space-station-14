@@ -1,0 +1,95 @@
+- type: entity
+  abstract: true
+  parent: AirSensorBase
+  id: AirSensorSupermatterBase
+  suffix: Supermatter
+  components:
+  - type: AtmosMonitor
+    temperatureThresholdId: supermatterTemperature
+    pressureThresholdId: supermatterPressure
+    gasThresholdPrototypes:
+      Oxygen: supermatterOxygen
+      Nitrogen: supermatterNitrogen
+      CarbonDioxide: supermatterCO2
+      Plasma: supermatterPlasma
+      Tritium: danger # Cooking probably started
+      WaterVapor: danger # Don't trust this guy, it looks harmless, but exploded many supa matas before.
+      Ammonia: ignore # Don't care about someone who's rotting in the chamber.
+      NitrousOxide: ignore # Leftovers of Frezon probably
+      Frezon: ignore # It's only helps supermatter
+
+- type: entity
+  parent: [AirSensorSupermatterBase, AirSensor]
+  id: AirSensorSupermatter
+
+- type: entity
+  parent: [AirSensorSupermatterBase, GasVentPump]
+  id: GasVentPumpSupermatter
+  components:     
+  - type: GasVentPump
+    pressureLockoutOverride: true # Even if pressure is low we always fill the gas.
+
+- type: entity
+  parent: [AirSensorSupermatterBase, GasVentScrubber]
+  id: GasVentScrubberSupermatter
+  components:
+  - type: GasVentScrubber
+    wideNet: true # This will also filter a tile with supermatter, pretty useful.
+    transferRate: 40 # Not too much so pressure will be OK
+    filterGases: # Filter all gases at once to filter out hot nitrogen for economy
+    - Nitrogen
+    - Oxygen
+    - CarbonDioxide
+    - Plasma
+    - Tritium
+    - WaterVapor
+    - Ammonia
+    - NitrousOxide
+    - Frezon
+
+- type: entity
+  parent: AirAlarmVox
+  id: AirAlarmSupermatter
+  suffix: Supermatter
+
+- type: alarmThreshold
+  id: supermatterTemperature
+  upperBound: !type:AlarmThresholdSetting
+    threshold: 373.15 # Burning temperature
+  upperWarnAround: !type:AlarmThresholdSetting
+    threshold: 0.9 # ~ 298,5 K, even the room temperature can be dangerous.
+
+- type: alarmThreshold
+  id: supermatterPressure
+  upperBound: !type:AlarmThresholdSetting
+    threshold: 700 # High pressure is either made with a lot of warm gas, or a lot of buring plasma, both is bad for supa mata.
+  upperWarnAround: !type:AlarmThresholdSetting
+    threshold: 0.5
+
+- type: alarmThreshold
+  id: supermatterNitrogen
+  lowerBound: !type:AlarmThresholdSetting
+    threshold: 0.6 # danger below 60% nitrogen
+  lowerWarnAround: !type:AlarmThresholdSetting
+    threshold: 1.333 # warning below 80%
+
+- type: alarmThreshold
+  id: supermatterOxygen
+  upperBound: !type:AlarmThresholdSetting
+    threshold: 0.4 # 40%
+  upperWarnAround: !type:AlarmThresholdSetting
+    threshold: 0.6
+
+- type: alarmThreshold
+  id: supermatterPlasma
+  upperBound: !type:AlarmThresholdSetting
+    threshold: 0.01 # 1%, lightable beyond this concentration
+  upperWarnAround: !type:AlarmThresholdSetting
+    threshold: 0.5 # 0.5%
+
+- type: alarmThreshold
+  id: supermatterCO2
+  upperBound: !type:AlarmThresholdSetting
+    threshold: 0.5 # You can put in carbon oxide safely until 50% to make supermatter more active.
+  upperWarnAround: !type:AlarmThresholdSetting
+    threshold: 0.6
