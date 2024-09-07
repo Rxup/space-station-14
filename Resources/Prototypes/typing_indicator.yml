@@ -1,7 +1,7 @@
 ﻿- type: typingIndicator
   id: default
-  typingState: default0
-  idleState: default3 # SpaceCats-TypingIndicator
+  typingState: people0
+  idleState: people3 # SpaceCats-TypingIndicator
 
 - type: typingIndicator
   id: robot
