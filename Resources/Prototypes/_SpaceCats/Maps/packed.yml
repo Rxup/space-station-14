@@ -3,7 +3,6 @@
   mapName: 'Packed'
   mapPath: /Maps/SpaceCats/PackedSC.yml
   minPlayers: 0
-  maxPlayers: 35
   stations:
     Packed:
       stationProto: StandardNanotrasenStation
@@ -61,10 +60,11 @@
             # backmen
             Brigmedic: [ 1, 1 ] # backmen-Brigmedic
             BlueShield: [1, 1] # backmen-BlueShield
+            StationAi: [ 1, 1 ]
             #BKBPLATech: [ 0, 1 ] # backmen-BPLA-Silicons
             #BKBPLAMED: [ 0, 1 ] # backmen-BPLAMED-Silicons
 #            Deliveryman: [ 0, 1 ]
-#            Prisoner: [ 2, 3 ]
+            Prisoner: [ 2, 2 ]
         # backmen blob-config-start SMALL+
         - type: StationBlobConfig
           stageBegin: 25
