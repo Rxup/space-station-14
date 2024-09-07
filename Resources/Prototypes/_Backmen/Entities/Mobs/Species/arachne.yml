@@ -104,6 +104,8 @@
     damageModifierSet: HalfSpirit
   - type: Speech
     speechSounds: Alto
+  - type: TypingIndicator
+    proto: spider
   - type: DamageOnHighSpeedImpact
     damage:
       types:
