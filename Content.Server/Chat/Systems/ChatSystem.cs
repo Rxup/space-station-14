@@ -594,7 +594,7 @@ public sealed partial class ChatSystem : SharedChatSystem
         string action,
         ChatTransmitRange range,
         string? nameOverride,
-       bool hideLog = false,
+        bool hideLog = false,
         bool checkEmote = true,
         bool ignoreActionBlocker = false,
         NetUserId? author = null
@@ -603,62 +603,24 @@ public sealed partial class ChatSystem : SharedChatSystem
         if (!_actionBlocker.CanEmote(source) && !ignoreActionBlocker)
             return;
 
-        // Get the entity's name (if no override is provided).
+        // get the entity's apparent name (if no override provided).
         var ent = Identity.Entity(source, EntityManager);
         string name = FormattedMessage.EscapeText(nameOverride ?? Name(ent));
 
-        // Format the entity's name as gray.
-        string grayName = $"<color=gray>{name}</color>";
-    
-        // Format the action text: pink by default, gray for text within quotes.
-        string coloredAction = FormatActionText(action);
-    
-        // Prepare the wrapped message with color formatting.
+        // Emotes use Identity.Name, since it doesn't actually involve your voice at all.
         var wrappedMessage = Loc.GetString("chat-manager-entity-me-wrap-message",
-            ("entityName", grayName),
+            ("entityName", name),
             ("entity", ent),
-            ("message", coloredAction));
+            ("message", FormattedMessage.RemoveMarkupOrThrow(action)));
 
         if (checkEmote)
             TryEmoteChatInput(source, action);
-        SendInVoiceRange(ChatChannel.Emotes, coloredAction, wrappedMessage, source, range, author);
-        
+        SendInVoiceRange(ChatChannel.Emotes, action, wrappedMessage, source, range, author);
         if (!hideLog)
             if (name != Name(source))
-                _adminLogger.Add(LogType.Chat, LogImpact.Low, $"Emote from {ToPrettyString(source):user} as {grayName}: {coloredAction}");
+                _adminLogger.Add(LogType.Chat, LogImpact.Low, $"Emote from {ToPrettyString(source):user} as {name}: {action}");
             else
-                _adminLogger.Add(LogType.Chat, LogImpact.Low, $"Emote from {ToPrettyString(source):user}: {coloredAction}");
-    }
-
-    private string FormatActionText(string action)
-    {
-        // Split the action text by quotes.
-        var parts = action.Split('"');
-        
-        // Variable to store the formatted result.
-        var formattedAction = new StringBuilder();
-    
-        // Flag to track whether the current part is within quotes.
-        bool inQuotes = false;
-
-        foreach (var part in parts)
-        {
-            if (inQuotes)
-            {
-                // If inside quotes, format the text as gray.
-                formattedAction.Append($"<color=gray>\"{part}\"</color>");
-            }
-            else
-            {
-                // If outside quotes, format the text as pink.
-                formattedAction.Append($"<color=pink>{part}</color>");
-            }
-    
-            // Toggle the flag after processing each part.
-            inQuotes = !inQuotes;
-        }
-    
-        return formattedAction.ToString();
+                _adminLogger.Add(LogType.Chat, LogImpact.Low, $"Emote from {ToPrettyString(source):user}: {action}");
     }
 
     // ReSharper disable once InconsistentNaming
