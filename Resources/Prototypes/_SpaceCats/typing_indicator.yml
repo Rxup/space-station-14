@@ -32,6 +32,12 @@
   idleState: vulp3
 
 - type: typingIndicator
+  id: lizards
+  spritePath: _SpaceCats/Typing.rsi
+  typingState: lizard0
+  idleState: lizard3
+
+- type: typingIndicator
   id: Swarms
   spritePath: _SpaceCats/Swarmers/Typing.rsi
   typingState: swarmbot0

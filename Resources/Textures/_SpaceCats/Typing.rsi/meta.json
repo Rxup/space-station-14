@@ -8,6 +8,38 @@
     },
     "states": [
         {
+            "name": "lizard0",
+            "delays": [
+                [
+                    0.3,
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.1,
+                    1,
+                    0.1,
+                    0.1
+                ]
+            ]
+        },
+        {
+            "name": "lizard1"
+        },
+        {
+            "name": "lizard2"
+        },
+        {
+            "name": "lizard3",
+            "delays": [
+                [
+                    0.3,
+                    0.3,
+                    0.3,
+                    0.4
+                ]
+            ]
+        },
+        {
             "name": "vulp0",
             "delays": [
                 [
@@ -23,10 +55,10 @@
             ]
         },
         {
-            "name": "vulp1"
+            "name": "vulp2"
         },
         {
-            "name": "vulp2"
+            "name": "vulp1"
         },
         {
             "name": "vulp3",
