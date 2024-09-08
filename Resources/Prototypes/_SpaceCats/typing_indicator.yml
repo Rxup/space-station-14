@@ -1,7 +1,8 @@
 - type: typingIndicator
   id: felinid
+  spritePath: _SpaceCats/Typing.rsi
   typingState: felinid0
-  idleState: felinid0
+  idleState: felinid3
   offset: 0, 0.2 # 0625
 
 - type: typingIndicator
