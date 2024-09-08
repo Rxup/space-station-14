@@ -26,16 +26,16 @@
   idleState: skeleton3
 
 - type: typingIndicator
-  id: vulp
-  spritePath: _SpaceCats/Typing.rsi
-  typingState: vulp0
-  idleState: vulp3
-
-- type: typingIndicator
   id: lizards
   spritePath: _SpaceCats/Typing.rsi
   typingState: lizard0
   idleState: lizard3
+
+- type: typingIndicator
+  id: people
+  spritePath: _SpaceCats/Typing.rsi
+  typingState: people0
+  idleState: people3
 
 - type: typingIndicator
   id: Swarms
