@@ -8,6 +8,41 @@
     },
     "states": [
         {
+            "name": "skeleton0",
+            "delays": [
+                [
+                    0.3,
+                    0.3,
+                    0.3,
+                    0.4,
+                    0.3,
+                    0.3,
+                    0.3,
+                    0.4,
+                    0.4
+                ]
+            ]
+        },
+        {
+            "name": "skeleton1"
+        
+        },
+        {
+            "name": "skeleton2"
+        },
+        {
+            "name": "skeleton3",
+            "delays": [
+                [
+                    0.3,
+                    0.3,
+                    0.3,
+                    0.4
+                    
+                ]
+            ]
+        },
+        {
             "name": "shadow0",
             "delays": [
                 [

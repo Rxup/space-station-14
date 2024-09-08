@@ -20,6 +20,12 @@
   offset: 0, 0.2
 
 - type: typingIndicator
+  id: skeleton
+  spritePath: _SpaceCats/Typing.rsi
+  typingState: skeleton0
+  idleState: skeleton3
+
+- type: typingIndicator
   id: Swarms
   spritePath: _SpaceCats/Swarmers/Typing.rsi
   typingState: swarmbot0
