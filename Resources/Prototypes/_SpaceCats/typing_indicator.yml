@@ -6,6 +6,13 @@
   offset: 0, 0.2 # 0625
 
 - type: typingIndicator
+  id: dwarf
+  spritePath: _SpaceCats/Typing.rsi
+  typingState: dwarf0
+  idleState: dwarf3
+  offset: 0, 0.2 # 0625
+
+- type: typingIndicator
   id: Swarms
   spritePath: _SpaceCats/Swarmers/Typing.rsi
   typingState: swarmbot0
