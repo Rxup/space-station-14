@@ -102,6 +102,8 @@
   - type: Damageable
     damageContainer: HalfSpirit
     damageModifierSet: HalfSpirit
+  - type: TypingIndicator
+    proto: spiders
   - type: Speech
     speechSounds: Alto
   - type: DamageOnHighSpeedImpact
