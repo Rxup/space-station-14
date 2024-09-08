@@ -661,6 +661,29 @@ public sealed partial class ChatSystem : SharedChatSystem
         return formattedAction.ToString();
     }
 
+    // ReSharper disable once InconsistentNaming
+    private void SendLOOC(EntityUid source, ICommonSession player, string message, bool hideChat)
+    {
+        var name = FormattedMessage.EscapeText(Identity.Name(source, EntityManager));
+
+        if (_adminManager.IsAdmin(player))
+        {
+            if (!_adminLoocEnabled) return;
+        }
+        else if (!_loocEnabled) return;
+
+        // If crit player LOOC is disabled, don't send the message at all.
+        if (!_critLoocEnabled && _mobStateSystem.IsCritical(source))
+            return;
+
+        var wrappedMessage = Loc.GetString("chat-manager-entity-looc-wrap-message",
+            ("entityName", name),
+            ("message", FormattedMessage.EscapeText(message)));
+
+        SendInVoiceRange(ChatChannel.LOOC, message, wrappedMessage, source, hideChat ? ChatTransmitRange.HideChat : ChatTransmitRange.Normal, player.UserId);
+        _adminLogger.Add(LogType.Chat, LogImpact.Low, $"LOOC from {player:Player}: {message}");
+    }
+
     private void SendDeadChat(EntityUid source, ICommonSession player, string message, bool hideChat)
     {
         var clients = GetDeadChatClients();
