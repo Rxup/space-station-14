@@ -11,6 +11,8 @@ using Content.Server.Explosion.EntitySystems;
 using Content.Server.GameTicking;
 using Content.Server.RoundEnd;
 using Content.Server.Station.Systems;
+using Content.Server.Store.Components;
+using Content.Server.Store.Systems;
 using Content.Shared.Alert;
 using Content.Shared.Backmen.Blob;
 using Content.Shared.Backmen.Blob.Components;
@@ -20,6 +22,8 @@ using Content.Shared.Explosion.Components;
 using Content.Shared.FixedPoint;
 using Content.Shared.Objectives.Components;
 using Content.Shared.Popups;
+using Content.Shared.Store;
+using Content.Shared.Store.Components;
 using Content.Shared.Weapons.Melee;
 using Robust.Server.GameObjects;
 using Robust.Shared.CPUJob.JobQueues;
@@ -45,6 +49,7 @@ public sealed class BlobCoreSystem : EntitySystem
     [Dependency] private readonly MetaDataSystem _metaDataSystem = default!;
     [Dependency] private readonly ActionsSystem _action = default!;
     [Dependency] private readonly MapSystem _map = default!;
+    [Dependency] private readonly StoreSystem _storeSystem = default!;
 
     private EntityQuery<BlobTileComponent> _tile;
     private EntityQuery<BlobFactoryComponent> _factory;
@@ -102,8 +107,6 @@ public sealed class BlobCoreSystem : EntitySystem
 
     private void OnStartup(EntityUid uid, BlobCoreComponent component, ComponentStartup args)
     {
-        UpdateAllAlerts((uid, component));
-
         if (!_tile.TryGetComponent(uid, out var blobTileComponent))
         {
             return;
@@ -116,6 +119,11 @@ public sealed class BlobCoreSystem : EntitySystem
 
         AddBlobTile((uid, blobTileComponent), (uid, component), nodeComponent);
         nodeComponent.ConnectedTiles[BlobTileType.Node] = uid;
+
+        var store = EnsureComp<StoreComponent>(uid);
+        store.CurrencyWhitelist.Add(BlobMoney);
+
+        UpdateAllAlerts((uid, component));
 
         foreach (var action in component.ActionPrototypes)
         {
@@ -470,10 +478,36 @@ public sealed class BlobCoreSystem : EntitySystem
             PopupType.LargeGreen);
     }
 
-    public void ChangeBlobPoint(Entity<BlobCoreComponent> core, FixedPoint2 amount)
+    [ValidatePrototypeId<CurrencyPrototype>]
+    private const string BlobMoney = "BlobPoint";
+
+    private readonly ReaderWriterLockSlim _pointsChange = new();
+
+    public bool ChangeBlobPoint(EntityUid uid, FixedPoint2 amount, BlobCoreComponent? component = null, StoreComponent? store = null)
     {
-        core.Comp.Points += amount;
-        UpdateAllAlerts(core);
+        if (!Resolve(uid, ref component) || !Resolve(uid, ref store))
+            return false;
+
+        if (_pointsChange.TryEnterWriteLock(1000))
+        {
+            if (_storeSystem.TryAddCurrency(new Dictionary<string, FixedPoint2>
+                    {
+                        { BlobMoney, amount }
+                    },
+                    uid,
+                    store))
+            {
+                var pt = store.Balance.GetValueOrDefault(BlobMoney);
+                UpdateAllAlerts(core);
+
+                _pointsChange.ExitWriteLock();
+                return true;
+            }
+            _pointsChange.ExitWriteLock();
+            return false;
+        }
+
+        return false;
     }
 
     /// <summary>
@@ -505,7 +539,7 @@ public sealed class BlobCoreSystem : EntitySystem
             observer.Value,
             PopupType.LargeCaution);
 
-        ChangeBlobPoint(core, -abilityCost);
+        ChangeBlobPoint(core, -abilityCost, store);
         return true;
     }
 

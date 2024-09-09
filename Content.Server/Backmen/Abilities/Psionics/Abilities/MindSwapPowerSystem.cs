@@ -9,6 +9,7 @@ using Content.Server.Mind;
 using Content.Shared.Mobs.Systems;
 using Content.Server.Popups;
 using Content.Server.GameTicking;
+using Content.Server.Ghost;
 using Content.Shared.Backmen.Abilities.Psionics;
 using Content.Shared.Backmen.Blob;
 using Content.Shared.Backmen.Blob.Components;
@@ -171,7 +172,7 @@ public sealed class MindSwapPowerSystem : EntitySystem
         _actions.AddAction(uid, ref component.MindSwapReturn, ActionMindSwapReturn);
     }
 
-    public bool Swap(EntityUid performer, EntityUid target, bool end = false)
+    public bool Swap(EntityUid performer, EntityUid target, bool end = false, bool force = false)
     {
         if (performer == target)
         {
@@ -201,7 +202,7 @@ public sealed class MindSwapPowerSystem : EntitySystem
                 return false;
             }
 */
-            if (HasComp<MindShieldComponent>(target))
+            if (HasComp<MindShieldComponent>(target) && !force)
             {
                 _popupSystem.PopupCursor("Ошибка! Ваша цель имеет защиту разума!", performer);
                 return false;

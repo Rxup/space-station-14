@@ -72,6 +72,9 @@
   - type: ActivatableUI
     key: enum.BorgUiKey.Key
   - type: SiliconLawBound
+  - type: ActionGrant
+    actions:
+    - ActionViewLaws
   - type: EmagSiliconLaw
     stunTime: 5
   - type: SiliconLawProvider
@@ -275,7 +278,6 @@
   - type: NpcFactionMember
     factions:
     - NanoTrasen
-  - type: BorgAINT
   - type: Access
     enabled: false
     groups:

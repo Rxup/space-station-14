@@ -328,7 +328,10 @@
 #        mask:
 #          - BlobTileMask
 
-
+- type: currency
+  id: BlobPoint
+  displayName: store-currency-display-blob-points
+  canWithdraw: false
 
 - type: entity
   parent: BaseBlob
@@ -363,6 +366,9 @@
     overrideName: false
   - type: ReplacementAccent
     accent: genericAggressive
+  - type: Store
+    currencyWhitelist:
+    - BlobPoint
   - type: BlobCore
     actionPrototypes:
       - ActionSwapBlobChem

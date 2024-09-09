@@ -10,20 +10,26 @@ public sealed class BlobResourceSystem : EntitySystem
 {
     [Dependency] private readonly BlobCoreSystem _blobCoreSystem = default!;
     [Dependency] private readonly SharedPopupSystem _popup = default!;
+    private EntityQuery<BlobTileComponent> _blobTile;
+    private EntityQuery<BlobCoreComponent> _blobCore;
 
     public override void Initialize()
     {
         base.Initialize();
 
         SubscribeLocalEvent<BlobResourceComponent, BlobSpecialGetPulseEvent>(OnPulsed);
+        SubscribeLocalEvent<BlobResourceComponent, BlobTileGetPulseEvent>(OnPulsed);
+
+        _blobTile = this.GetEntityQuery<BlobTileComponent>();
+        _blobCore = this.GetEntityQuery<BlobCoreComponent>();
     }
 
     private void OnPulsed(EntityUid uid, BlobResourceComponent component,BlobSpecialGetPulseEvent args)
     {
-        if (!TryComp<BlobTileComponent>(uid, out var blobTileComponent) || blobTileComponent.Core == null)
+        if (!_blobTile.TryComp(uid, out var blobTileComponent) || blobTileComponent.Core == null)
             return;
 
-        if (!TryComp<BlobCoreComponent>(blobTileComponent.Core, out var blobCoreComponent) ||
+        if (!_blobCore.TryComp(blobTileComponent.Core, out var blobCoreComponent) ||
             blobCoreComponent.Observer == null)
             return;
 
@@ -39,6 +45,12 @@ public sealed class BlobResourceSystem : EntitySystem
             points += 1;
         }
 
-        _blobCoreSystem.ChangeBlobPoint(blobTileComponent.Core.Value, points);
+        if (_blobCoreSystem.ChangeBlobPoint(blobTileComponent.Core.Value, points))
+        {
+            _popup.PopupEntity(Loc.GetString("blob-get-resource", ("point", points)),
+                uid,
+                blobCoreComponent.Observer.Value,
+                PopupType.LargeGreen);
+        }
     }
 }

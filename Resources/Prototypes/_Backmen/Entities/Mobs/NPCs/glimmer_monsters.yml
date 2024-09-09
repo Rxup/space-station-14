@@ -14,6 +14,9 @@
       - state: willowisp
         shader: unshaded
   - type: GlimmerWisp
+    whitelist:
+      components:
+      - Psionic
   - type: DoAfter
   - type: Psionic
     removable: false
