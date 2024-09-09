@@ -25,7 +25,8 @@
         Caustic: 0.75
         Stun: 0.4
   - type: TemperatureProtection
-    coefficient: 0.001
+    heatingCoefficient: 0.001
+    coolingCoefficient: 0.001
   - type: ExplosionResistance
     damageCoefficient: 0.2
   - type: ToggleableClothing
@@ -58,7 +59,8 @@
         Caustic: 0.15
         Stun: 0.15
   - type: TemperatureProtection
-    coefficient: 0.01
+    heatingCoefficient: 0.001
+    coolingCoefficient: 0.001
   - type: ExplosionResistance
     damageCoefficient: 0.1
   - type: ToggleableClothing
@@ -91,7 +93,8 @@
         Caustic: 0.85
         Stun: 0.65
   - type: TemperatureProtection
-    coefficient: 0.01
+    heatingCoefficient: 0.01
+    coolingCoefficient: 0.01
   - type: ExplosionResistance
     damageCoefficient: 0.1
   - type: ToggleableClothing
@@ -394,7 +397,8 @@
     highPressureMultiplier: 0.02
     lowPressureMultiplier: 1000
   - type: TemperatureProtection
-    coefficient: 0.001
+    heatingCoefficient: 0.001
+    coolingCoefficient: 0.001
   - type: ExplosionResistance
     damageCoefficient: 0.2
   - type: Armor
@@ -444,7 +448,8 @@
     highPressureMultiplier: 0.225
     lowPressureMultiplier: 1000
   - type: TemperatureProtection
-    coefficient: 0.01
+    heatingCoefficient: 0.001
+    coolingCoefficient: 0.001
   - type: ExplosionResistance
     damageCoefficient: 0.2
   - type: Armor
