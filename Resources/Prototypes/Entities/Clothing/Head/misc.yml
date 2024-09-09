@@ -36,7 +36,7 @@
     sprite: Clothing/Head/Misc/chickenhead.rsi
   - type: IngestionBlocker
   - type: IdentityBlocker
-- type: DropOnSlip
+  - type: DropOnSlip
     chance: 50
 
 - type: entity
