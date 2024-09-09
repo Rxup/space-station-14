@@ -31,6 +31,8 @@ using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Utility;
+using Content.Shared.Roles;
+using Content.Shared.Roles.Jobs;
 
 namespace Content.Server.Station.Systems;
 
@@ -51,6 +53,7 @@ public sealed class StationSpawningSystem : SharedStationSpawningSystem
     [Dependency] private readonly MetaDataSystem _metaSystem = default!;
     [Dependency] private readonly PdaSystem _pdaSystem = default!;
     [Dependency] private readonly SharedAccessSystem _accessSystem = default!;
+    [Dependency] private readonly SharedJobSystem _jobSystem = default!;
 
     private bool _randomizeCharacters;
 
