@@ -1,60 +1,4 @@
 ﻿Entries:
-- author: Emisse
-  changes:
-  - message: atmos, elite syndie, and deathsquad hardsuits are now the only fireproof
-      suits
-    type: Tweak
-  id: 6815
-  time: '2024-06-24T22:03:05.0000000+00:00'
-  url: https://github.com/space-wizards/space-station-14/pull/29416
-- author: Bhijn and Myr
-  changes:
-  - message: The colors of the LEDs on the heater and freezer thermomachines has been
-      changed from red/green (respectively) to orange/cyan (respectively). In laymen's
-      terms, this makes thermomachines far more reasonably differentiable for those
-      with colorblindness.
-    type: Tweak
-  id: 6816
-  time: '2024-06-24T22:40:20.0000000+00:00'
-  url: https://github.com/space-wizards/space-station-14/pull/29397
-- author: Elysium206
-  changes:
-  - message: Increased Security Riot shields durability significantly and makes actively
-      blocking better
-    type: Tweak
-  id: 6817
-  time: '2024-06-25T03:56:46.0000000+00:00'
-  url: https://github.com/space-wizards/space-station-14/pull/29239
-- author: Tayrtahn
-  changes:
-  - message: Fixed space ninja's starting with their internals disabled.
-    type: Fix
-  id: 6818
-  time: '2024-06-25T06:28:48.0000000+00:00'
-  url: https://github.com/space-wizards/space-station-14/pull/29213
-- author: PJB3005
-  changes:
-  - message: Low pressure damage now does only 1/4th as much damage. This is a band-aid
-      until better mechanics exists for the crew to deal with breaches of various
-      kinds.
-    type: Remove
-  id: 6819
-  time: '2024-06-26T00:48:26.0000000+00:00'
-  url: https://github.com/space-wizards/space-station-14/pull/29478
-- author: lzk228
-  changes:
-  - message: Blood now has less satiation.
-    type: Tweak
-  id: 6820
-  time: '2024-06-26T02:27:11.0000000+00:00'
-  url: https://github.com/space-wizards/space-station-14/pull/29433
-- author: Veritable-Calamity
-  changes:
-  - message: Moldy food can now be collected in the Janitors' trash bags.
-    type: Fix
-  id: 6821
-  time: '2024-06-26T03:26:59.0000000+00:00'
-  url: https://github.com/space-wizards/space-station-14/pull/29380
 - author: Plykiya
   changes:
   - message: You can now interact with magic mirrors.
@@ -3868,3 +3812,59 @@
   id: 7314
   time: '2024-09-08T10:21:55.0000000+00:00'
   url: https://github.com/space-wizards/space-station-14/pull/31957
+- author: Killerqu00
+  changes:
+  - message: Seclite is now restricted to security.
+    type: Tweak
+  - message: Handcuffs are now restricted to security and command.
+    type: Tweak
+  - message: Trench whistle is now minor contraband.
+    type: Tweak
+  id: 7315
+  time: '2024-09-08T12:06:01.0000000+00:00'
+  url: https://github.com/space-wizards/space-station-14/pull/31956
+- author: Psychpsyo
+  changes:
+  - message: The random sentience event should now actually happen again.
+    type: Fix
+  id: 7316
+  time: '2024-09-08T12:10:50.0000000+00:00'
+  url: https://github.com/space-wizards/space-station-14/pull/31953
+- author: Beck Thompson
+  changes:
+  - message: Gold and silver rings now give a small amount of materials when scrapped.
+    type: Tweak
+  id: 7317
+  time: '2024-09-08T16:10:05.0000000+00:00'
+  url: https://github.com/space-wizards/space-station-14/pull/31847
+- author: K-Dynamic
+  changes:
+  - message: added missing missing resistance values for directional plasma and uranium
+      windows
+    type: Fix
+  id: 7318
+  time: '2024-09-08T18:08:06.0000000+00:00'
+  url: https://github.com/space-wizards/space-station-14/pull/31975
+- author: qwerltaz
+  changes:
+  - message: Power cables on the ground are now offset and do not obscure each other
+      or pipes beneath.
+    type: Tweak
+  id: 7319
+  time: '2024-09-09T10:00:18.0000000+00:00'
+  url: https://github.com/space-wizards/space-station-14/pull/32000
+- author: ArtisticRoomba
+  changes:
+  - message: Budget insulated gloves now leave behind yellow frayed insulative fibers
+      instead of yellow insulative fibers. Detectives, rejoice!
+    type: Tweak
+  id: 7320
+  time: '2024-09-09T10:30:25.0000000+00:00'
+  url: https://github.com/space-wizards/space-station-14/pull/31886
+- author: slarticodefast
+  changes:
+  - message: Revenants or other mobs without hands can no longer spill jugs.
+    type: Fix
+  id: 7321
+  time: '2024-09-09T11:02:15.0000000+00:00'
+  url: https://github.com/space-wizards/space-station-14/pull/31438
