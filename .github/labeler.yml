@@ -25,3 +25,40 @@
 - changed-files:
   # Equiv to any-glob-to-all as long as this has one matcher. If ALL changed files are not C# files, then apply label.
   - all-globs-to-all-files: "!**/*.cs"
+
+"Changes: C#":
+  - "**/*.cs"
+
+"Changes: Config":
+  - "**/*.toml"
+  - "**/*.config"
+  - "*.json"
+  - ".github/*.yml"
+  - ".github/*.json"
+  - ".vscode/*.json"
+  - ".editorconfig"
+
+"Changes: Documentation":
+  - "**/*.xml"
+  - "**/*.md"
+
+"Changes: Localization":
+- 'Resources/Locale/**/*.ftl'
+
+"Changes: Map":
+  - "Resources/Maps/**/*.yml"
+  - "Resources/Prototypes/Maps/**/*.yml"
+
+"Changes: Sprite":
+  - "**/*.rsi/*.png"
+  - "**/*.rsi/*.json"
+
+"Changes: UI":
+  - "**/*.xaml*"
+
+"Changes: YML":
+  - any: ["**/*.yml"]
+    all: ["!Resources/Maps/**/*.yml", "!Resources/Prototypes/Maps/**/*.yml"]
+
+"Changes: Workflow":
+  - ".github/workflows/*.yml"
