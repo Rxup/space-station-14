@@ -24,7 +24,6 @@ public sealed class IdCardSystem : SharedIdCardSystem
     public override void Initialize()
     {
         base.Initialize();
-
         SubscribeLocalEvent<IdCardComponent, BeingMicrowavedEvent>(OnMicrowaved);
     }
 
@@ -45,8 +44,7 @@ public sealed class IdCardSystem : SharedIdCardSystem
                 {
                     _popupSystem.PopupCoordinates(Loc.GetString("id-card-component-microwave-burnt", ("id", uid)),
                      transformComponent.Coordinates, PopupType.Medium);
-                    EntityManager.SpawnEntity("FoodBadRecipe",
-                        transformComponent.Coordinates);
+                    EntityManager.SpawnEntity("FoodBadRecipe", transformComponent.Coordinates);
                 }
                 _adminLogger.Add(LogType.Action, LogImpact.Medium,
                     $"{ToPrettyString(args.Microwave)} burnt {ToPrettyString(uid):entity}");
@@ -54,7 +52,7 @@ public sealed class IdCardSystem : SharedIdCardSystem
                 return;
             }
 
-            //Explode if the microwave can't handle it
+            // Explode if the microwave can't handle it
             if (!micro.CanMicrowaveIdsSafely)
             {
                 _microwave.Explode((args.Microwave, micro));
@@ -84,37 +82,36 @@ public sealed class IdCardSystem : SharedIdCardSystem
             Dirty(uid, access);
 
             _adminLogger.Add(LogType.Action, LogImpact.Medium,
-                    $"{ToPrettyString(args.Microwave)} added {random.ID} access to {ToPrettyString(uid):entity}");
-
+                $"{ToPrettyString(args.Microwave)} added {random.ID} access to {ToPrettyString(uid):entity}");
         }
+    }
 
-            /// <summary>
-            /// Attempts to change the full name of a card.
-            /// Returns true/false.
-            /// </summary>
-            /// <remarks>
-            /// If provided with a player's EntityUid to the player parameter, adds the change to the admin logs.
-            /// </remarks>
-            public bool TryChangeColor(EntityUid uid, Color? color, IdCardComponent? id = null, EntityUid? player = null)
-            {
-                if (!Resolve(uid, ref id))
-                    return false;
+    /// <summary>
+    /// Attempts to change the color of an ID card.
+    /// Returns true/false.
+    /// </summary>
+    /// <remarks>
+    /// If provided with a player's EntityUid, logs the change to the admin logs.
+    /// </remarks>
+    public bool TryChangeColor(EntityUid uid, Color? color, IdCardComponent? id = null, EntityUid? player = null)
+    {
+        if (!Resolve(uid, ref id))
+            return false;
 
-                if (color is null)
-                    return false;
+        if (color is null)
+            return false;
 
-                if (id.JobColor == color.Value)
-                    return true;
-                
-                id.JobColor = color.Value;
-                Dirty(id);
+        if (id.JobColor == color.Value)
+            return true;
 
-                if (player != null)
-                {
-                    _adminLogger.Add(LogType.Identity, LogImpact.Low,
-                        $"{ToPrettyString(player.Value):player} has changed the color of {ToPrettyString(uid):entity} to {color} ");
-                }
-                return true;
-            }
+        id.JobColor = color.Value;
+        Dirty(id);
+
+        if (player != null)
+        {
+            _adminLogger.Add(LogType.Identity, LogImpact.Low,
+                $"{ToPrettyString(player.Value):player} changed the color of {ToPrettyString(uid):entity} to {color} ");
+        }
+        return true;
     }
 }
