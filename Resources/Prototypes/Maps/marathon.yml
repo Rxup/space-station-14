@@ -64,13 +64,8 @@
 #            Brigmedic: [ 0, 1 ] # backmen-Brigmedic
             #BKBPLATech: [ 0, 3 ] # backmen-BPLA-Silicons
             #BKBPLAMED: [ 0, 3 ] # backmen-BPLAMED-Silicons
-<<<<<<< HEAD
             Deliveryman: [ 0, 1 ]
             Prisoner: [ 2, 3 ]
             #silicon
             StationAi: [ 1, 1 ]
             Borg: [ 2, 2 ]
-=======
-#            Deliveryman: [ 0, 1 ]
-#            Prisoner: [ 2, 3 ]
->>>>>>> master

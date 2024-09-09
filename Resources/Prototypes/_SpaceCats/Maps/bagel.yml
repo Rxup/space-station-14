@@ -62,9 +62,9 @@
             Reporter: [ 2, 2 ]
             BlueShield: [1, 1] # backmen-BlueShield
             Brigmedic: [ 1, 1 ] # backmen-Brigmedic
-            StationAi: [ 1, 0 ]
+            StationAi: [ 1, 1 ]
 #            BKBPLATech: [0, 3] # backmen-BPLA-Silicons
 #            BKBPLAMED: [0, 3] # backmen-BPLAMED-Silicons
 #            Deliveryman: [ 0, 1 ]
-#            Prisoner: [ 2, 3]
+            Prisoner: [ 2, 2]
             
