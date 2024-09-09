@@ -105054,16 +105054,6 @@ entities:
     - type: Transform
       pos: -7.5,-71.5
       parent: 1
-<<<<<<< HEAD
-- proto: WallSolid
-  entities:
-  - uid: 13488
-    components:
-    - type: Transform
-      pos: -13.5,68.5
-      parent: 1
-=======
->>>>>>> 1f52841c89b5c60a0c43388b323bc0f37ac9dae2
 - proto: SpaceCash
   entities:
   - uid: 9948
