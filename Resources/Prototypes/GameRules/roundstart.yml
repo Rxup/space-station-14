@@ -282,6 +282,7 @@
         tableId: CargoGiftsTable
       - !type:NestedSelector
         tableId: BasicBackmenEventsTable # backmen events
+<<<<<<< HEAD
         
 #- type: entityTable
 #  id: SpaceTrafficControlTable
@@ -293,6 +294,23 @@
 #        tableId: UnknownShuttlesFreelanceTable
 #      - !type:NestedSelector
 #        tableId: UnknownShuttlesHostileTable
+=======
+      - !type:NestedSelector
+        tableId: CalmPestEventsTable
+      - !type:NestedSelector
+        tableId: SpicyPestEventsTable
+
+- type: entityTable
+  id: SpaceTrafficControlTable
+  table: !type:AllSelector # we need to pass a list of rules, since rules have further restrictions to consider via StationEventComp
+    children:
+      - !type:NestedSelector
+        tableId: UnknownShuttlesFriendlyTable
+      - !type:NestedSelector
+        tableId: UnknownShuttlesFreelanceTable
+      - !type:NestedSelector
+        tableId: UnknownShuttlesHostileTable
+>>>>>>> 1f52841c89b5c60a0c43388b323bc0f37ac9dae2
 
 - type: entity
   id: BasicStationEventScheduler
