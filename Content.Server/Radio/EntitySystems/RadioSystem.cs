@@ -3,6 +3,7 @@ using Content.Server.Chat.Systems;
 using Content.Server.Power.Components;
 using Content.Server.Radio.Components;
 using Content.Server.VoiceMask;
+using Content.Shared.Access.Systems;
 using Content.Shared.Chat;
 using Content.Shared.Database;
 using Content.Shared.Radio;
@@ -26,6 +27,7 @@ public sealed class RadioSystem : EntitySystem
     [Dependency] private readonly INetManager _netMan = default!;
     [Dependency] private readonly IReplayRecordingManager _replay = default!;
     [Dependency] private readonly IAdminLogManager _adminLogger = default!;
+    [Dependency] private readonly SharedIdCardSystem _cardSystem = default!;
     [Dependency] private readonly IPrototypeManager _prototype = default!;
     [Dependency] private readonly IRobustRandom _random = default!;
     [Dependency] private readonly ChatSystem _chat = default!;
@@ -83,6 +85,21 @@ public sealed class RadioSystem : EntitySystem
             : MetaData(messageSource).EntityName;
 
         name = FormattedMessage.EscapeText(name);
+
+        if (_cardSystem.TryFindIdCard(messageSource, out var idCard))
+		{
+			var color = idCard.Comp.JobColor;
+			var job = idCard.Comp.JobTitle;
+
+			if (job is not null)
+				name = Loc.GetString("chat-radio-format-name-by-title", 
+					("jobTitle", job[0].ToString().ToUpper() + job.Substring(1)), 
+					("name", name));
+
+			name = Loc.GetString("chat-radio-format-name-by-color", 
+				("jobColor", color.ToHex()), 
+				("name", name));
+		}
 
         SpeechVerbPrototype speech;
         if (mask != null
