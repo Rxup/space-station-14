@@ -1,5 +1,4 @@
 using Content.Shared.Damage;
-using Content.Shared.Explosion;
 using Content.Shared.FixedPoint;
 using Content.Shared.Roles;
 using Robust.Shared.Audio;
@@ -30,9 +29,6 @@ public sealed partial class BlobCoreComponent : Component
     #endregion
 
     #region Balance
-
-    [DataField]
-    public FixedPoint2 Points = 0;
 
     [DataField]
     public FixedPoint2 CoreBlobTotalHealth = 400;

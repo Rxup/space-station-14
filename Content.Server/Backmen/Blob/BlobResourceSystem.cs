@@ -18,7 +18,6 @@ public sealed class BlobResourceSystem : EntitySystem
         base.Initialize();
 
         SubscribeLocalEvent<BlobResourceComponent, BlobSpecialGetPulseEvent>(OnPulsed);
-        SubscribeLocalEvent<BlobResourceComponent, BlobTileGetPulseEvent>(OnPulsed);
 
         _blobTile = this.GetEntityQuery<BlobTileComponent>();
         _blobCore = this.GetEntityQuery<BlobCoreComponent>();
@@ -47,7 +46,7 @@ public sealed class BlobResourceSystem : EntitySystem
 
         if (_blobCoreSystem.ChangeBlobPoint(blobTileComponent.Core.Value, points))
         {
-            _popup.PopupEntity(Loc.GetString("blob-get-resource", ("point", points)),
+            _popup.PopupClient(Loc.GetString("blob-get-resource", ("point", points)),
                 uid,
                 blobCoreComponent.Observer.Value,
                 PopupType.LargeGreen);

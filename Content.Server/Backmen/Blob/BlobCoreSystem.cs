@@ -11,7 +11,6 @@ using Content.Server.Explosion.EntitySystems;
 using Content.Server.GameTicking;
 using Content.Server.RoundEnd;
 using Content.Server.Station.Systems;
-using Content.Server.Store.Components;
 using Content.Server.Store.Systems;
 using Content.Shared.Alert;
 using Content.Shared.Backmen.Blob;
@@ -55,8 +54,14 @@ public sealed class BlobCoreSystem : EntitySystem
     private EntityQuery<BlobFactoryComponent> _factory;
     private EntityQuery<BlobNodeComponent> _node;
 
-    [ValidatePrototypeId<AlertPrototype>] private const string BlobHealth = "BlobHealth";
-    [ValidatePrototypeId<AlertPrototype>] private const string BlobResource = "BlobResource";
+    [ValidatePrototypeId<AlertPrototype>]
+    private const string BlobHealth = "BlobHealth";
+    [ValidatePrototypeId<AlertPrototype>]
+    private const string BlobResource = "BlobResource";
+    [ValidatePrototypeId<CurrencyPrototype>]
+    private const string BlobMoney = "BlobPoint";
+
+    private readonly ReaderWriterLockSlim _pointsChange = new();
 
     public override void Initialize()
     {
@@ -221,15 +226,19 @@ public sealed class BlobCoreSystem : EntitySystem
     }
     #endregion
 
-    public void UpdateAllAlerts(Entity<BlobCoreComponent> core)
+    public void UpdateAllAlerts(Entity<BlobCoreComponent> core, StoreComponent? store = null)
     {
+        if (!Resolve(core, ref store))
+            return;
+
         var component = core.Comp;
 
         if (component.Observer == null)
             return;
 
         // This one for points
-        var pointsSeverity = (short)Math.Clamp(Math.Round(component.Points.Float() / 10f), 0, 51);
+        var pt = store.Balance.GetValueOrDefault(BlobMoney);
+        var pointsSeverity = (short) Math.Clamp(Math.Round(pt.Float() / 10f), 0, 51);
         _alerts.ShowAlert(component.Observer.Value, BlobResource, pointsSeverity);
 
         // And this one for health.
@@ -478,35 +487,28 @@ public sealed class BlobCoreSystem : EntitySystem
             PopupType.LargeGreen);
     }
 
-    [ValidatePrototypeId<CurrencyPrototype>]
-    private const string BlobMoney = "BlobPoint";
-
-    private readonly ReaderWriterLockSlim _pointsChange = new();
-
-    public bool ChangeBlobPoint(EntityUid uid, FixedPoint2 amount, BlobCoreComponent? component = null, StoreComponent? store = null)
+    public bool ChangeBlobPoint(Entity<BlobCoreComponent> core, FixedPoint2 amount, StoreComponent? store = null)
     {
-        if (!Resolve(uid, ref component) || !Resolve(uid, ref store))
+        if (!Resolve(core, ref store))
             return false;
 
-        if (_pointsChange.TryEnterWriteLock(1000))
+        if (!_pointsChange.TryEnterWriteLock(1000))
+            return false;
+
+        if (_storeSystem.TryAddCurrency(new Dictionary<string, FixedPoint2>
+                {
+                    { BlobMoney, amount }
+                },
+                core,
+                store))
         {
-            if (_storeSystem.TryAddCurrency(new Dictionary<string, FixedPoint2>
-                    {
-                        { BlobMoney, amount }
-                    },
-                    uid,
-                    store))
-            {
-                var pt = store.Balance.GetValueOrDefault(BlobMoney);
-                UpdateAllAlerts(core);
+            UpdateAllAlerts(core);
 
-                _pointsChange.ExitWriteLock();
-                return true;
-            }
             _pointsChange.ExitWriteLock();
-            return false;
+            return true;
         }
 
+        _pointsChange.ExitWriteLock();
         return false;
     }
 
@@ -516,18 +518,25 @@ public sealed class BlobCoreSystem : EntitySystem
     /// <param name="core">Blob core that is going to lose points.</param>
     /// <param name="abilityCost">Cost of the ability.</param>
     /// <param name="coordinates">If not null, coordinates for popup to appear.</param>
-    public bool TryUseAbility(Entity<BlobCoreComponent> core, FixedPoint2 abilityCost, EntityCoordinates? coordinates = null)
+    /// <param name="store">StoreComponent</param>
+    public bool TryUseAbility(Entity<BlobCoreComponent> core, FixedPoint2 abilityCost, EntityCoordinates? coordinates = null, StoreComponent? store = null)
     {
-        var comp = core.Comp;
-        var points = comp.Points;
+        if (!Resolve(core, ref store))
+            return false;
+
         var observer = core.Comp.Observer;
+        var money = store.Balance.GetValueOrDefault(BlobMoney);
 
         if (observer == null)
             return false;
 
-        if (points < abilityCost)
+        if (money < abilityCost)
         {
-            _popup.PopupEntity(Loc.GetString("blob-not-enough-resources", ("point", abilityCost.Int() - points)), observer.Value, PopupType.Large);
+            _popup.PopupEntity(Loc.GetString(
+                "blob-not-enough-resources",
+                ("point", abilityCost.Int() - money.Int())),
+                observer.Value,
+                PopupType.Large);
             return false;
         }
 
@@ -539,7 +548,7 @@ public sealed class BlobCoreSystem : EntitySystem
             observer.Value,
             PopupType.LargeCaution);
 
-        ChangeBlobPoint(core, -abilityCost, store);
+        ChangeBlobPoint(core, -abilityCost);
         return true;
     }
 

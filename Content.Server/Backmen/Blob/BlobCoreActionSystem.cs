@@ -269,8 +269,7 @@ public sealed class BlobCoreActionSystem : EntitySystem
             }
         }
 
-        ent.Comp.NextAction =
-            _gameTiming.CurTime + TimeSpan.FromSeconds(ent.Comp.AttackRate.Float());
+        ent.Comp.NextAction = _gameTiming.CurTime + TimeSpan.FromSeconds(ent.Comp.AttackRate);
         _audioSystem.PlayPvs(ent.Comp.AttackSound, from, AudioParams.Default);
     }
 
