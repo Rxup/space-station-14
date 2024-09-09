@@ -20,7 +20,7 @@
           - ReagentId: Fiber
             Quantity: 10
     - type: TemperatureProtection
-      coefficient: 0.90
+      heatingCoefficient: 0.90
 
 
 - type: entity
@@ -38,7 +38,7 @@
         socks:
           - state: assblastusa_knee
     - type: TemperatureProtection
-      coefficient: 0.85
+      heatingCoefficient: 0.85
 
 - type: entity
   parent: ClothingUnderSocksBase
@@ -55,7 +55,7 @@
         socks:
           - state: assblastusa_thigh
     - type: TemperatureProtection
-      coefficient: 0.80
+      heatingCoefficient: 0.80
 
 - type: entity
   parent: ClothingUnderSocksBase
@@ -72,7 +72,7 @@
         socks:
           - state: bee_knee
     - type: TemperatureProtection
-      coefficient: 0.85
+      heatingCoefficient: 0.85
 
 - type: entity
   parent: ClothingUnderSocksBase
@@ -104,7 +104,7 @@
         socks:
           - state: bee_thigh
     - type: TemperatureProtection
-      coefficient: 0.80
+      heatingCoefficient: 0.85
 
 - type: entity
   parent: ClothingUnderSocksBase
@@ -121,7 +121,7 @@
         socks:
           - state: candycaneg_knee
     - type: TemperatureProtection
-      coefficient: 0.85
+      heatingCoefficient: 0.85
 
 - type: entity
   parent: ClothingUnderSocksBase
@@ -153,7 +153,7 @@
         socks:
           - state: candycaneg_thigh
     - type: TemperatureProtection
-      coefficient: 0.80
+      heatingCoefficient: 0.85
 
 - type: entity
   parent: ClothingUnderSocksBase
@@ -170,7 +170,7 @@
         socks:
           - state: candycaner_knee
     - type: TemperatureProtection
-      coefficient: 0.85
+      heatingCoefficient: 0.85
 
 - type: entity
   parent: ClothingUnderSocksBase
@@ -202,7 +202,7 @@
         socks:
           - state: candycaner_thigh
     - type: TemperatureProtection
-      coefficient: 0.80
+      heatingCoefficient: 0.85
 
 - type: entity
   parent: ClothingUnderSocksBase
@@ -219,7 +219,7 @@
         socks:
           - state: christmas_knee
     - type: TemperatureProtection
-      coefficient: 0.85
+      heatingCoefficient: 0.85
 
 - type: entity
   parent: ClothingUnderSocksBase
@@ -251,7 +251,7 @@
         socks:
           - state: christmas_thigh
     - type: TemperatureProtection
-      coefficient: 0.80
+      heatingCoefficient: 0.85
 
 - type: entity
   parent: ClothingUnderSocksBase
@@ -268,7 +268,7 @@
         socks:
           - state: commie_knee
     - type: TemperatureProtection
-      coefficient: 0.85
+      heatingCoefficient: 0.85
 
 - type: entity
   parent: ClothingUnderSocksBase
@@ -285,7 +285,7 @@
         socks:
           - state: commie_thigh
     - type: TemperatureProtection
-      coefficient: 0.80
+      heatingCoefficient: 0.85
 
 # - type: entity
 #   parent: ClothingUnderSocksBase
@@ -316,7 +316,7 @@
         socks:
           - state: garter
     - type: TemperatureProtection
-      coefficient: 0.80
+      heatingCoefficient: 0.85
 
 - type: entity
   parent: ClothingUnderSocksBase
@@ -333,7 +333,7 @@
         socks:
           - state: rainbow_knee
     - type: TemperatureProtection
-      coefficient: 0.85
+      heatingCoefficient: 0.85
 
 - type: entity
   parent: ClothingUnderSocksBase
@@ -350,7 +350,7 @@
         socks:
           - state: rainbow_thigh
     - type: TemperatureProtection
-      coefficient: 0.80
+      heatingCoefficient: 0.85
 
 - type: entity
   parent: ClothingUnderSocksBase
@@ -368,7 +368,7 @@
         socks:
           - state: socks_knee
     - type: TemperatureProtection
-      coefficient: 0.85
+      heatingCoefficient: 0.85
             # color: "#FF0000FF" #WOOOOO
 
 - type: entity
@@ -403,7 +403,7 @@
         socks:
           - state: socks_short
     - type: TemperatureProtection
-      coefficient: 0.95
+      heatingCoefficient: 0.95
 
 - type: entity
   parent: ClothingUnderSocksBase
@@ -421,7 +421,7 @@
         socks:
           - state: socks_thigh
     - type: TemperatureProtection
-      coefficient: 0.80
+      heatingCoefficient: 0.85
 
 - type: entity
   parent: ClothingUnderSocksBase
@@ -438,7 +438,7 @@
         socks:
           - state: stockings_blue
     - type: TemperatureProtection
-      coefficient: 0.80
+      heatingCoefficient: 0.85
 
 - type: entity
   parent: ClothingUnderSocksBase
@@ -455,7 +455,7 @@
         socks:
           - state: stockings_cyan
     - type: TemperatureProtection
-      coefficient: 0.80
+      heatingCoefficient: 0.85
 
 - type: entity
   parent: ClothingUnderSocksBase
@@ -472,7 +472,7 @@
         socks:
           - state: stockings_dpink
     - type: TemperatureProtection
-      coefficient: 0.80
+      heatingCoefficient: 0.85
 
 - type: entity
   parent: ClothingUnderSocksBase
@@ -489,7 +489,7 @@
         socks:
           - state: stockings_green
     - type: TemperatureProtection
-      coefficient: 0.80
+      heatingCoefficient: 0.85
 
 - type: entity
   parent: ClothingUnderSocksBase
@@ -507,7 +507,7 @@
         socks:
           - state: stockings_lpink
     - type: TemperatureProtection
-      coefficient: 0.80
+      heatingCoefficient: 0.85
 
 - type: entity
   parent: ClothingUnderSocksBase
@@ -524,7 +524,7 @@
         socks:
           - state: stockings_orange
     - type: TemperatureProtection
-      coefficient: 0.80
+      heatingCoefficient: 0.85
 
 - type: entity
   parent: ClothingUnderSocksBase
@@ -541,7 +541,7 @@
         socks:
           - state: stockings_purple
     - type: TemperatureProtection
-      coefficient: 0.80
+      heatingCoefficient: 0.85
 
 - type: entity
   parent: ClothingUnderSocksBase
@@ -558,7 +558,7 @@
         socks:
           - state: stockings_yellow
     - type: TemperatureProtection
-      coefficient: 0.80
+      heatingCoefficient: 0.85
 
 - type: entity
   parent: ClothingUnderSocksBase
@@ -576,7 +576,7 @@
         socks:
           - state: striped_knee
     - type: TemperatureProtection
-      coefficient: 0.85
+      heatingCoefficient: 0.85
 
 - type: entity
   parent: ClothingUnderSocksBase
@@ -594,7 +594,7 @@
         socks:
           - state: striped_thigh
     - type: TemperatureProtection
-      coefficient: 0.80
+      heatingCoefficient: 0.85
 
 - type: entity
   parent: ClothingUnderSocksBase
@@ -611,7 +611,7 @@
         socks:
           - state: thin_knee
     - type: TemperatureProtection
-      coefficient: 0.85
+      heatingCoefficient: 0.85
 
 - type: entity
   parent: ClothingUnderSocksBase
@@ -628,7 +628,7 @@
         socks:
           - state: thin_thigh
     - type: TemperatureProtection
-      coefficient: 0.80
+      heatingCoefficient: 0.85
 
 - type: entity
   parent: ClothingUnderSocksBase
@@ -645,7 +645,7 @@
         socks:
           - state: uk_knee
     - type: TemperatureProtection
-      coefficient: 0.85
+      heatingCoefficient: 0.85
 
 - type: entity
   parent: ClothingUnderSocksBase
@@ -662,4 +662,4 @@
         socks:
           - state: uk_thigh
     - type: TemperatureProtection
-      coefficient: 0.80
+      heatingCoefficient: 0.85
