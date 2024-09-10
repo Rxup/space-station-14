@@ -3,6 +3,13 @@
   parent: BaseStructure
   components:
   - type: BkmCapturePoint
+  - type: DeviceLinkSource
+    ports:
+    - OutputTeamA
+    - OutputTeamB
+    lastSignals:
+      OutputTeamA: false
+      OutputTeamB: false
   - type: Sprite
     sprite: Backmen/Teams/CTP/greenbox.rsi
     layers:
@@ -58,6 +65,13 @@
   id: ControlPointCTPTeamA
   parent: baseControlPointCTPNeutral
   components:
+  - type: DeviceLinkSource
+    ports:
+    - OutputTeamA
+    - OutputTeamB
+    lastSignals:
+      OutputTeamA: true
+      OutputTeamB: false
   - type: BkmCapturePoint
     team: TeamA
   - type: Icon
@@ -67,7 +81,27 @@
   id: ControlPointCTPTeamB
   parent: baseControlPointCTPNeutral
   components:
+  - type: DeviceLinkSource
+    ports:
+    - OutputTeamA
+    - OutputTeamB
+    lastSignals:
+      OutputTeamA: false
+      OutputTeamB: true
   - type: BkmCapturePoint
     team: TeamB
   - type: Icon
     state: captured_by_b
+
+
+- type: sourcePort
+  id: OutputTeamA
+  name: signal-port-name-logic-output-team-a
+  description: signal-port-description-logic-output-team-a
+  defaultLinks: [ Input, Trigger ]
+
+- type: sourcePort
+  id: OutputTeamB
+  name: signal-port-name-logic-output-team-b
+  description: signal-port-description-logic-output-team-b
+  defaultLinks: [ Input, Trigger ]

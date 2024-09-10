@@ -1,4 +1,5 @@
 ﻿using System.Linq;
+using Content.Server.DeviceLinking.Systems;
 using Content.Server.DeviceNetwork.Components;
 using Content.Server.DeviceNetwork.Systems;
 using Content.Shared.Backmen.Teams;
@@ -19,6 +20,7 @@ namespace Content.Server.Backmen.Teams.CapturePoint;
 
 public sealed class CapturePointSystem : SharedCapturePointSystem
 {
+    [Dependency] private readonly DeviceLinkSystem _deviceLink = default!;
     [Dependency] private readonly SharedPopupSystem _popupSystem = default!;
     [Dependency] private readonly AppearanceSystem _appearanceSystem = default!;
     [Dependency] private readonly MobStateSystem _mobStateSystem = default!;
@@ -46,6 +48,23 @@ public sealed class CapturePointSystem : SharedCapturePointSystem
     private void OnCaptureDone(Entity<BkmCapturePointComponent> ent, ref BkmCaptureDoneEvent args)
     {
         _popupSystem.PopupEntity(Loc.GetString("bkm-ctp-captured-"+args.Team), ent, PopupType.LargeCaution);
+        _deviceLink.EnsureSourcePorts(ent, ent.Comp.OutputPortTeamA, ent.Comp.OutputPortTeamB);
+
+        if (args.Team == StationTeamMarker.TeamA)
+        {
+            _deviceLink.SendSignal(ent, ent.Comp.OutputPortTeamA, true);
+            _deviceLink.SendSignal(ent, ent.Comp.OutputPortTeamB, false);
+        }
+        else if (args.Team == StationTeamMarker.TeamB)
+        {
+            _deviceLink.SendSignal(ent, ent.Comp.OutputPortTeamA, false);
+            _deviceLink.SendSignal(ent, ent.Comp.OutputPortTeamB, true);
+        }
+        else
+        {
+            _deviceLink.SendSignal(ent, ent.Comp.OutputPortTeamA, false);
+            _deviceLink.SendSignal(ent, ent.Comp.OutputPortTeamB, false);
+        }
     }
 
     private void OnChangeStatus(Entity<BkmCapturePointComponent> ent, ref BkmCaptureChangeStatusEvent args)
@@ -61,9 +80,11 @@ public sealed class CapturePointSystem : SharedCapturePointSystem
 
         if ((ent.Comp.Team == StationTeamMarker.TeamA || ent.Comp.Team == StationTeamMarker.TeamB) && ent.Comp.CaptureCurrent <= 0)
         {
-            // convert to teamA
+            // convert to neutral
             ent.Comp.Team = StationTeamMarker.Neutral;
             ent.Comp.CaptureCurrent = ent.Comp.CaptureMax - ent.Comp.CaptureTick;
+            _deviceLink.SendSignal(ent, ent.Comp.OutputPortTeamA, false);
+            _deviceLink.SendSignal(ent, ent.Comp.OutputPortTeamB, false);
             Dirty(ent);
         }
 
@@ -78,15 +99,6 @@ public sealed class CapturePointSystem : SharedCapturePointSystem
         if (args.Team == ent.Comp.Team && ent.Comp.CaptureCurrent >= ent.Comp.CaptureMax)
         {
             RaiseLocalEvent(ent, new BkmCaptureDoneEvent(args.Team), true);
-        }
-
-        if (TryComp<DeviceNetworkComponent>(ent, out var netComp))
-        {
-            var payload = new NetworkPayload
-            {
-                ["change-flag"] = ent.Comp.Team,
-            };
-            _deviceNetSystem.QueuePacket(ent, null, payload, netComp.TransmitFrequency);
         }
     }
 

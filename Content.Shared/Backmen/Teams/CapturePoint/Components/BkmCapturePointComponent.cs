@@ -1,5 +1,7 @@
-﻿using Content.Shared.FixedPoint;
+﻿using Content.Shared.DeviceLinking;
+using Content.Shared.FixedPoint;
 using Robust.Shared.GameStates;
+using Robust.Shared.Prototypes;
 
 namespace Content.Shared.Backmen.Teams.CapturePoint.Components;
 
@@ -25,4 +27,13 @@ public sealed partial class BkmCapturePointComponent : Component
 
     public HashSet<EntityUid> CapturedEntities = new();
     public float Acc = 0;
+
+    /// <summary>
+    /// Name of the output port.
+    /// </summary>
+    [DataField, ViewVariables(VVAccess.ReadWrite)]
+    public ProtoId<SourcePortPrototype> OutputPortTeamA = "OutputTeamA";
+
+    [DataField, ViewVariables(VVAccess.ReadWrite)]
+    public ProtoId<SourcePortPrototype> OutputPortTeamB = "OutputTeamB";
 }
