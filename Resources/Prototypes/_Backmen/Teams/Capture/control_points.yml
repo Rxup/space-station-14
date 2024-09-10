@@ -37,7 +37,7 @@
       enum.BkmCPTVisualState.TeamNeutralToA:
         TeamNeutralToA:
           True: { visible: true }
-          False: { visible: false }:
+          False: { visible: false }
       enum.BkmCPTVisualState.TeamNeutralToB:
         TeamNeutralToB:
           True: { visible: true }
