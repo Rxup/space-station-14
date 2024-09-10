@@ -1,11 +1,12 @@
-﻿using Content.Shared.Backmen.ShipVsShip;
+﻿using Content.Shared.Backmen.Teams;
+using Content.Shared.Backmen.Teams.Components;
 using Content.Shared.StatusIcon;
 using Content.Shared.StatusIcon.Components;
 using Robust.Shared.Prototypes;
 
-namespace Content.Client.Backmen.ShipVsShip;
+namespace Content.Client.Backmen.Teams;
 
-public sealed class TeamMarkerSystem : EntitySystem
+public sealed class TdmTeamSystem : SharedTdmTeamSystem
 {
     [Dependency] private readonly IPrototypeManager _prototype = default!;
 
@@ -13,7 +14,12 @@ public sealed class TeamMarkerSystem : EntitySystem
     {
         base.Initialize();
 
-        SubscribeLocalEvent<SVSTeamMemberComponent, GetStatusIconsEvent>(OnGetTeamIcon);
+        SubscribeLocalEvent<TdmMemberComponent, GetStatusIconsEvent>(OnGetTeamIcon);
+    }
+
+    protected override void SetTeam(Entity<TdmMemberComponent?> target, StationTeamMarker team)
+    {
+        // do nothing on client
     }
 
     [ValidatePrototypeId<FactionIconPrototype>]
@@ -23,7 +29,7 @@ public sealed class TeamMarkerSystem : EntitySystem
     [ValidatePrototypeId<FactionIconPrototype>]
     private const string TeamNoTeam = "Team0Faction";
 
-    private void OnGetTeamIcon(Entity<SVSTeamMemberComponent> ent, ref GetStatusIconsEvent args)
+    private void OnGetTeamIcon(Entity<TdmMemberComponent> ent, ref GetStatusIconsEvent args)
     {
         var status = ent.Comp.Team switch
         {

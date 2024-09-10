@@ -1,0 +1,73 @@
+- type: entity
+  id: baseControlPointCTPNeutral
+  parent: BaseStructure
+  components:
+  - type: BkmCapturePoint
+  - type: Sprite
+    sprite: Backmen/Teams/CTP/greenbox.rsi
+    layers:
+    - state: captured_by_n
+      map: ["TeamNeutral"]
+    - state: captured_by_a
+      map: ["TeamA"]
+    - state: captured_by_b
+      map: ["TeamB"]
+    - state: n_capturing_by_a
+      map: ["TeamNeutralToA"]
+    - state: n_capturing_by_b
+      map: ["TeamNeutralToB"]
+    - state: a_capturing_by_b
+      map: ["TeamAToNeutral"]
+    - state: b_capturing_by_a
+      map: ["TeamBToNeutral"]
+  - type: GenericVisualizer
+    visuals:
+      enum.BkmCPTVisualState.TeamNeutral:
+        TeamNeutral:
+          True: { visible: true }
+          False: { visible: false }
+      enum.BkmCPTVisualState.TeamA:
+        TeamA:
+          True: { visible: true }
+          False: { visible: false }
+      enum.BkmCPTVisualState.TeamB:
+        TeamA:
+          True: { visible: true }
+          False: { visible: false }
+      enum.BkmCPTVisualState.TeamNeutralToA:
+        TeamNeutralToA:
+          True: { visible: true }
+          False: { visible: false }:
+      enum.BkmCPTVisualState.TeamNeutralToB:
+        TeamNeutralToB:
+          True: { visible: true }
+          False: { visible: false }
+      enum.BkmCPTVisualState.TeamBToNeutral:
+        TeamBToNeutral:
+          True: { visible: true }
+          False: { visible: false }
+      enum.BkmCPTVisualState.TeamAToNeutral:
+        TeamAToNeutral:
+          True: { visible: true }
+          False: { visible: false }
+  - type: Icon
+    sprite: Backmen/Teams/CTP/greenbox.rsi
+    state: captured_by_n
+
+- type: entity
+  id: ControlPointCTPTeamA
+  parent: baseControlPointCTPNeutral
+  components:
+  - type: BkmCapturePoint
+    team: TeamA
+  - type: Icon
+    state: captured_by_a
+
+- type: entity
+  id: ControlPointCTPTeamB
+  parent: baseControlPointCTPNeutral
+  components:
+  - type: BkmCapturePoint
+    team: TeamB
+  - type: Icon
+    state: captured_by_b

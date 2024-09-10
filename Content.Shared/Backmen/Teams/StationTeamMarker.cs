@@ -1,4 +1,4 @@
-﻿namespace Content.Shared.Backmen.ShipVsShip;
+﻿namespace Content.Shared.Backmen.Teams;
 
 public enum StationTeamMarker
 {
