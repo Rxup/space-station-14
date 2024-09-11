@@ -1,4 +1,4 @@
-﻿using Content.Shared.Backmen.ShipVsShip;
+﻿using Content.Shared.Backmen.Teams;
 using Content.Shared.Roles;
 using Robust.Shared.Prototypes;
 
