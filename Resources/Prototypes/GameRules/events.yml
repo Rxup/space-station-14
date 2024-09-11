@@ -121,10 +121,6 @@
     weight: 7
     duration: 1
     minimumPlayers: 15
-    endAudio:
-      path: /Audio/Announcements/power_on.ogg
-      params:
-        volume: -4
   - type: BreakerFlipRule
 
 - type: entity
