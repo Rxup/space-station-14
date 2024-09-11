@@ -3,6 +3,7 @@
   parent: BaseStructure
   components:
   - type: BkmCapturePoint
+  - type: Appearance
   - type: DeviceLinkSource
     ports:
     - OutputTeamA
