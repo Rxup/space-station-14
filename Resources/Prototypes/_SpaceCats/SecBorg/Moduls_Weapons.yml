@@ -75,9 +75,6 @@
     damage:
       types:
         Heat: 12
-    ignoreWhitelist:
-     tags:
-     - Swarmer
   - type: Sprite
     sprite: _SpaceCats/SecBorg/Borg_laser_gun.rsi
     layers:
