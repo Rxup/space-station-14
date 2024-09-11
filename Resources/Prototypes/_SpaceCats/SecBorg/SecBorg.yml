@@ -96,8 +96,6 @@
     interactFailureString: petting-failure-engineer-cyborg
     interactSuccessSound:
       path: /Audio/Ambience/Objects/periodic_beep.ogg
-  - type: TTS
-    voice: sentrybot
   - type: ShowCriminalRecordIcons
   - type: StationAiVision
   - type: FlashImmunity
