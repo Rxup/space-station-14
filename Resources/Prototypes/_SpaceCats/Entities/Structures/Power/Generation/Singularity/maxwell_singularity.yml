@@ -67,7 +67,7 @@
     follow: true
     location: singularity
   - type: Sprite
-    sprite: SpaceCats/Structures/Power/Generation/Singularity/singularity_1-maxwell.rsi
+    sprite: _SpaceCats/Structures/Power/Generation/Singularity/singularity_1-maxwell.rsi
     shader: unshaded
     layers:
     - map: [ "VisualLevel" ]
@@ -77,26 +77,26 @@
       enum.SingularityAppearanceKeys.Singularity:
         VisualLevel:
           1:
-            sprite: SpaceCats/Structures/Power/Generation/Singularity/singularity_1-maxwell.rsi
+            sprite: _SpaceCats/Structures/Power/Generation/Singularity/singularity_1-maxwell.rsi
             state: maxwell
             scale: 1.0,1.0
           2:
-            sprite: SpaceCats/Structures/Power/Generation/Singularity/singularity_1-maxwell.rsi
+            sprite: _SpaceCats/Structures/Power/Generation/Singularity/singularity_1-maxwell.rsi
             state: maxwell
             scale: 1.0,1.0
           3:
-            sprite: SpaceCats/Structures/Power/Generation/Singularity/singularity_1-maxwell.rsi
+            sprite: _SpaceCats/Structures/Power/Generation/Singularity/singularity_1-maxwell.rsi
             state: maxwell
             scale: 1.0,1.0
           4:
-            sprite: SpaceCats/Structures/Power/Generation/Singularity/singularity_1-maxwell.rsi
+            sprite: _SpaceCats/Structures/Power/Generation/Singularity/singularity_1-maxwell.rsi
             state: maxwell
             scale: 1.0,1.0
           5:
-            sprite: SpaceCats/Structures/Power/Generation/Singularity/singularity_1-maxwell.rsi
+            sprite: _SpaceCats/Structures/Power/Generation/Singularity/singularity_1-maxwell.rsi
             state: maxwell
             scale: 1.5,1.5
           6:
-            sprite: SpaceCats/Structures/Power/Generation/Singularity/singularity_1-maxwell.rsi
+            sprite: _SpaceCats/Structures/Power/Generation/Singularity/singularity_1-maxwell.rsi
             state: maxwell
             scale: .9,.9
