@@ -53,6 +53,7 @@
     tags:
       - AirAlarm
   - type: AtmosDevice
+  - type: StationAiWhitelist
   - type: AirAlarm
   - type: AtmosAlertsDevice
     group: AirAlarm
