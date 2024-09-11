@@ -16,7 +16,7 @@
       sprite: Markers/jobs.rsi
       layers:
         - state: green
-        - sprite: Backmen/Mobs/Aliens/blob.rsi
+        - sprite: Backmen/Mobs/Aliens/Blob/blob.rsi
           state: blob_nuke_overlay
 
 
@@ -43,7 +43,7 @@
       damageModifierSet: BlobMob
     - type: Clothing
       quickEquip: false
-      sprite: Backmen/Mobs/Aliens/blob.rsi
+      sprite: Backmen/Mobs/Aliens/Blob/blob_mobs.rsi
       equippedPrefix: blobPod
       slots:
         - HEAD
@@ -115,7 +115,7 @@
       baseSprintSpeed: 4
     - type: Sprite
       drawdepth: Mobs
-      sprite: Backmen/Mobs/Aliens/blob.rsi
+      sprite: Backmen/Mobs/Aliens/Blob/blob_mobs.rsi
       state: blobpod
     - type: GuideHelp
       guides:
@@ -201,7 +201,7 @@
       baseWalkSpeed: 2.5
       baseSprintSpeed: 3
     - type: Sprite
-      sprite: Backmen/Mobs/Aliens/blob.rsi
+      sprite: Backmen/Mobs/Aliens/Blob/blob_mobs.rsi
       drawdepth: Mobs
       layers:
         - map: [ "enum.DamageStateVisualLayers.Base" ]
@@ -296,7 +296,7 @@
           - !type:DoActsBehavior
             acts: [ "Destruction" ]
   - type: Sprite
-    sprite: Backmen/Mobs/Aliens/blob.rsi
+    sprite: Backmen/Mobs/Aliens/Blob/blob.rsi
     drawdepth: BlobTiles
     layers:
       - map: [ "enum.DamageStateVisualLayers.Base" ]
@@ -384,7 +384,7 @@
   - type: BlobResource
     pointsPerPulsed: 5
   - type: Sprite
-    sprite: Backmen/Mobs/Aliens/blob.rsi
+    sprite: Backmen/Mobs/Aliens/Blob/blob.rsi
     drawdepth: BlobTiles
     layers:
       - map: [ "enum.DamageStateVisualLayers.Base" ]
@@ -441,15 +441,14 @@
               acts: [ "Destruction" ]
     - type: BlobFactory
     - type: Sprite
-      sprite: Backmen/Mobs/Aliens/blob.rsi
+      sprite: Backmen/Mobs/Aliens/Blob/blob.rsi
       drawdepth: BlobTiles
       layers:
         - map: [ "enum.DamageStateVisualLayers.Base" ]
-          state: blob_factory
+          state: blob_special
         - map: [ "enum.DamageStateVisualLayers.BaseUnshaded" ]
-          state: blob_factory_glow
+          state: blob_glow_special
 #          shader: unshaded
-
 
 - type: entity
   parent: BaseBlob
@@ -480,15 +479,15 @@
               acts: [ "Destruction" ]
     - type: BlobResource
     - type: Sprite
-      sprite: Backmen/Mobs/Aliens/blob.rsi
+      sprite: Backmen/Mobs/Aliens/Blob/blob.rsi
       drawdepth: BlobTiles
       layers:
         - map: [ "enum.DamageStateVisualLayers.Base" ]
-          state: blob_resource
+          state: blob_special
         - map: [ "enum.DamageStateVisualLayers.BaseUnshaded" ]
-          state: blob_resource_glow
+          state: blob_glow_special
 #          shader: unshaded
-
+        - state: blob_resource_overlay
 
 - type: entity
   parent: BaseBlob
@@ -520,7 +519,7 @@
               acts: [ "Destruction" ]
     - type: BlobNode
     - type: Sprite
-      sprite: Backmen/Mobs/Aliens/blob.rsi
+      sprite: Backmen/Mobs/Aliens/Blob/blob.rsi
       drawdepth: BlobTiles
       layers:
         - map: [ "enum.DamageStateVisualLayers.Base" ]
@@ -550,7 +549,7 @@
             - !type:DoActsBehavior
               acts: [ "Destruction" ]
     - type: Sprite
-      sprite: Backmen/Mobs/Aliens/blob.rsi
+      sprite: Backmen/Mobs/Aliens/Blob/blob.rsi
       drawdepth: BlobTiles
       layers:
         - map: [ "enum.DamageStateVisualLayers.Base" ]
@@ -558,7 +557,6 @@
         - map: [ "enum.DamageStateVisualLayers.BaseUnshaded" ]
           state: blob_glow
 #          shader: unshaded
-
 
 - type: entity
   parent: BaseBlob
@@ -587,51 +585,14 @@
         - Energy
     - type: Airtight
     - type: Sprite
-      sprite: Backmen/Mobs/Aliens/blob.rsi
+      sprite: Backmen/Mobs/Aliens/Blob/blob.rsi
       drawdepth: BlobTiles
       layers:
         - map: [ "enum.DamageStateVisualLayers.Base" ]
           state: blob_shield
-#        - map: [ "enum.DamageStateVisualLayers.BaseUnshaded" ]
-#          state: blob_shield_damaged
-#          shader: unshaded
-
-
-#- type: entity
-#  parent: BaseStructure
-#  id: BlobBorder
-#  name: debug wall
-#  categories: [ HideSpawnMenu ]
-#  suffix: DONTMAP
-#  placement:
-#    mode: SnapgridCenter
-#    snap:
-#      - Wall
-#  components:
-#    - type: BlobBorder
-#    - type: Fixtures
-#      fixtures:
-#        fix1:
-#          shape:
-#            !type:PhysShapeAabb
-#            bounds: "-0.5,-0.5,0.5,0.5"
-#          mask:
-#            - BlobGhostImpassable
-#          layer:
-#            - BlobGhostImpassable
-#    - type: PlacementReplacement
-#      key: walls
-#    - type: Visibility
-#      layer: 5
-#    - type: Sprite
-#      drawdepth: Walls
-#      sprite: Structures/Walls/debug.rsi
-#    - type: Icon
-#      state: full
-#      sprite: Structures/Walls/debug.rsi
-#    - type: IconSmooth
-#      key: walls
-#      base: debug
+        - map: [ "enum.DamageStateVisualLayers.BaseUnshaded" ]
+          state: blob_shield_damaged
+          shader: unshaded
 
 - type: entity
   id: MobObserverBlobController
@@ -687,8 +648,6 @@
             !type:PhysShapeCircle
             radius: 0.35
           density: 15
-          mask:
-            - GhostImpassable
     - type: InputMover
     - type: Appearance
     - type: Eye
@@ -697,7 +656,7 @@
     - type: Examiner
       skipChecks: true
     - type: Sprite
-      sprite: Backmen/Mobs/Aliens/blob.rsi
+      sprite: Backmen/Mobs/Aliens/Blob/blob_mobs.rsi
       color: "#fc8403"
       state: marker
       noRot: true
@@ -708,4 +667,4 @@
     - type: MovementIgnoreGravity
     - type: Tag
       tags:
-        - BypassInteractionRangeChecks
+      - BypassInteractionRangeChecks
