@@ -224,7 +224,6 @@
       examinableAddress: true
     - type: WiredNetworkConnection
     - type: PowerSwitch
-    - type: StationAiWhitelist
 
 - type: entity
   parent: BaseGasThermoMachine

@@ -22,7 +22,6 @@
         !type:PipeNode
         nodeGroupID: Pipe
         pipeDirection: South
-  - type: StationAiWhitelist
 
 - type: entity
   parent: GasBinaryBase
