@@ -6,21 +6,18 @@ using Content.Server.GameTicking;
 using Content.Server.GameTicking.Rules;
 using Content.Server.Maps;
 using Content.Server.RoundEnd;
-using Content.Server.Shuttles.Components;
 using Content.Server.Shuttles.Events;
 using Content.Server.Shuttles.Systems;
 using Content.Server.Spawners.Components;
 using Content.Server.Station.Components;
 using Content.Server.Station.Systems;
-using Content.Shared.Backmen.ShipVsShip;
-using Content.Shared.Clothing.Components;
+using Content.Shared.Backmen.Teams;
+using Content.Shared.Backmen.Teams.Components;
 using Content.Shared.Destructible;
 using Content.Shared.GameTicking;
 using Content.Shared.GameTicking.Components;
 using Content.Shared.Mind;
 using Content.Shared.Mobs;
-using Content.Shared.Players;
-using Content.Shared.Random.Helpers;
 using Content.Shared.Roles;
 using Content.Shared.Roles.Jobs;
 using Content.Shared.Shuttles.Components;
@@ -48,6 +45,7 @@ public sealed class ShipVsShipGame : GameRuleSystem<ShipVsShipGameComponent>
     [Dependency] private readonly RoundEndSystem _endSystem = default!;
     [Dependency] private readonly IGameTiming _gameTiming = default!;
     [Dependency] private readonly SharedTransformSystem _transform = default!;
+    [Dependency] private readonly SharedTdmTeamSystem _teamSystem = default!;
 
     public override void Initialize()
     {
@@ -72,9 +70,7 @@ public sealed class ShipVsShipGame : GameRuleSystem<ShipVsShipGameComponent>
 
     private void SetFlag(EntityUid ent, StationTeamMarker team)
     {
-        var teamFlag = EnsureComp<SVSTeamMemberComponent>(ent);
-        teamFlag.Team = team;
-        Dirty(ent, teamFlag);
+        _teamSystem.SetFaction(ent, team);
     }
 
     private void OnAfterSpawning(PlayerSpawnCompleteEvent ev)
