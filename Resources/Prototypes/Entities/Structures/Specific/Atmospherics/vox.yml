@@ -4,6 +4,7 @@
   id: AirSensorVoxBase
   suffix: Vox Atmosphere
   components:
+  - type: StationAiWhitelist
   - type: AtmosMonitor
     gasThresholdPrototypes:
       Oxygen: voxOxygen
