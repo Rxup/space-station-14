@@ -1,0 +1,122 @@
+- type: Tag
+  id: SecModul
+
+- type: entity
+  id: BaseModuleSec
+  parent: BaseBorgModule
+  abstract: true
+  components:
+  - type: Tag
+    tags:
+    - SecModul
+
+- type: entity
+  id: ModuleSec
+  parent: [ BaseModuleSec, BaseProviderBorgModule ]
+  description: Всё для вас и вашей безопасности.
+  name: Охранный модуль киборга
+  components:
+  - type: Sprite
+    sprite: _SpaceCats/SecBorg/modul.rsi
+    layers:
+    - state: SecModul
+    - state: SecModul-icon
+  - type: ItemBorgModule
+    items:
+    - FlashSecBorg
+    - StunbatonSecBorg
+    - WeaponLaserSecBorg
+
+#Усмиритель
+- type: entity
+  name: Усмиритель MK-2
+  noSpawn: false
+  parent: BaseWeaponBatterySmall
+  id: WeaponLaserSecBorg
+  description: Для особо буйных.
+  components:
+  - type: Sprite
+    sprite: _SpaceCats/SecBorg/Borg_laser_gun.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-unshaded-4
+      map: ["enum.GunVisualLayers.MagUnshaded"]
+      shader: unshaded
+  - type: Gun
+    selectedMode: SemiAuto
+    fireRate: 3
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/taser2.ogg
+  - type: ProjectileBatteryAmmoProvider
+    proto: BulletDisabler
+    fireCost: 100
+  - type: BatteryWeaponFireModes
+    fireModes:
+    - proto: BulletDisabler
+      fireCost: 100
+    - proto: BorgLethalBullet
+      fireCost: 100
+  - type: BatterySelfRecharger
+    autoRecharge: true
+    autoRechargeRate: 20
+  - type: MagazineVisuals
+    magState: mag
+    steps: 5
+    zeroVisible: false
+
+- type: entity
+  id: BorgLethalBullet
+  noSpawn: true
+  name: летальный заряд
+  parent: BaseBullet
+  components:
+  - type: Projectile
+    damage:
+      types:
+        Heat: 12
+  - type: Sprite
+    sprite: _SpaceCats/SecBorg/Borg_laser_gun.rsi
+    layers:
+    - state: OmniLetal
+      shader: unshaded
+  - type: PointLight
+    enabled: true
+    color: "#ff4052"
+    radius: 1.5
+    energy: 2
+
+#Дубинка-шокер киборга
+- type: entity
+  name: дубинка-шокер киборга
+  parent: Stunbaton
+  id: StunbatonSecBorg
+  description: Электрошоковая дубинка для выведения людей из строя. 
+  noSpawn: false
+  components:
+  - type: BatterySelfRecharger
+    autoRecharge: true
+    autoRechargeRate: 10
+
+#Вспышка киборга
+- type: entity
+  name: вспышка киборга
+  parent: Flash
+  id: FlashSecBorg
+  description: Сверхяркая вспышка со спусковым механизмом.
+  noSpawn: false
+  components:
+  - type: Sprite
+    sprite: Objects/Weapons/Melee/flash.rsi
+    layers:
+    - state: burnt
+      map: [ "enum.FlashVisuals.BaseLayer" ]
+    - state: flashing
+      map: [ "enum.FlashVisuals.LightLayer" ]
+      visible: false
+      shader: unshaded
+  - type: LimitedCharges
+    maxCharges: 10
+    charges: 10
+  - type: AutoRecharge
+    rechargeDuration: 30
