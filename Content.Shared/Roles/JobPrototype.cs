@@ -1,4 +1,5 @@
 using Content.Shared.Access;
+using Content.Shared.Backmen.Reinforcement;
 using Content.Shared.FixedPoint;
 using Content.Shared.Guidebook;
 using Content.Shared.Players.PlayTimeTracking;
@@ -48,7 +49,7 @@ namespace Content.Shared.Roles
         /// <summary>
         ///     Requirements for the job.
         /// </summary>
-        [DataField, Access(typeof(SharedRoleSystem), Other = AccessPermissions.None)]
+        [DataField, Access(typeof(SharedRoleSystem), typeof(SharedReinforcementSystem), Other = AccessPermissions.None)] // backmen access
         public HashSet<JobRequirement>? Requirements;
 
         /// <summary>
