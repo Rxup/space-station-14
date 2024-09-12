@@ -10,6 +10,9 @@
     state: icon
   - type: Item
     size: Normal
+  - type: LeavesFootprints
+    footprintDecal: BootLeft
+    footprintDecalAlternative: BootRight
   - type: Food
     requiresSpecialDigestion: true
   - type: SolutionContainerManager

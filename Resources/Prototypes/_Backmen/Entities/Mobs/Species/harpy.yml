@@ -105,6 +105,9 @@
       damage:
         types:
           Piercing: 5
+    - type: LeavesFootprints
+      footprintDecal: FootLeft
+      footprintDecalAlternative: FootRight
     - type: Speech
       speechSounds: Alto
     - type: Vocal
