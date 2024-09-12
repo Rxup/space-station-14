@@ -4,9 +4,6 @@
   suffix: Specforce
   parent: MarkerBase
   components:
-    - type: GhostRole
-      raffle:
-        settings: default
     - type: SpawnPoint
     - type: Sprite
       sprite: Markers/jobs.rsi
