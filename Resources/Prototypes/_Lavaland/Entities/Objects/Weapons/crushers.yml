@@ -115,8 +115,7 @@
     sprite: _Lavaland/Objects/Weapons/Crushers/crusher_hammer-inhands.rsi
   - type: MeleeThrowOnHit
     speed: 5
-    lifetime: 0.5
-  - type: FlipOnHit
+  #- type: FlipOnHit # TODO: портировать кувырки...
   - type: GunRequiresWield
   - type: Wieldable
   - type: MeleeRequiresWield

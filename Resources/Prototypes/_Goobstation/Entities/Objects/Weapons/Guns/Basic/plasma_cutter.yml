@@ -27,4 +27,6 @@
     proto: BulletPlasmaCutter
     fireCost: 200
   - type: Appearance
+  - type: Multishot
+    spreadMultiplier: 1.2
 

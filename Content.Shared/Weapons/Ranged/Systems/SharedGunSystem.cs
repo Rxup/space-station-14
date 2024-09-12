@@ -90,6 +90,7 @@ public abstract partial class SharedGunSystem : EntitySystem
         InitializeClothing();
         InitializeContainer();
         InitializeSolution();
+        InitializeMultishot(); // Goobstation
 
         // Interactions
         SubscribeLocalEvent<GunComponent, GetVerbsEvent<AlternativeVerb>>(OnAltVerb);
@@ -399,6 +400,9 @@ public abstract partial class SharedGunSystem : EntitySystem
             if (_gravity.IsWeightless(user, userPhysics))
                 CauseImpulse(fromCoordinates, toCoordinates.Value, user, userPhysics);
         }
+
+        Dirty(gunUid, gun);
+        UpdateAmmoCount(gunUid); //GoobStation - Multishot
     }
 
     public void Shoot(

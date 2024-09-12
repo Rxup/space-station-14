@@ -14,5 +14,5 @@ public sealed partial class LavalandRuinPrototype : IPrototype
     [DataField] public string Name = "Unknown Ruin";
 
     [DataField(required: true)]
-    public ResPath Path { get; }
+    public ResPath Path;
 }

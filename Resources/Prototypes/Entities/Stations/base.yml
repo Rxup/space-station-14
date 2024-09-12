@@ -53,7 +53,6 @@
             - type: TradeStation
           paths:
             - /Maps/Shuttles/trading_outpost.yml
-          nameDataset: TradeStationNames
         # Spawn last
         ruins: !type:GridSpawnGroup
           hide: true
