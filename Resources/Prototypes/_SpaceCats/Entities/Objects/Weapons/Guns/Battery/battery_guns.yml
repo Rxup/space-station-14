@@ -40,7 +40,7 @@
   - type: Projectile
     damage:
       types:
-        Shock: 8
+        Heat: 10
         Structural: 60
   - type: Sprite
     sprite: _SpaceCats/Swarmers/TOOLS/Swarmer_laser_gun.rsi
