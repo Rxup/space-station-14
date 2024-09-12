@@ -69,4 +69,4 @@
   - type: Projectile
     damage:
       types:
-        Shock: 5
+        Heat: 7
