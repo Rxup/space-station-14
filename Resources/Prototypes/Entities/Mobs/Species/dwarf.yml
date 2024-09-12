@@ -65,6 +65,9 @@
           32:
             sprite: Mobs/Species/Human/displacement.rsi
             state: jumpsuit-female
+  - type: LeavesFootprints
+    footprintDecal: FootLeft
+    footprintDecalAlternative: FootRight
 
 - type: entity
   parent: BaseSpeciesDummy
