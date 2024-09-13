@@ -102,6 +102,7 @@
   - type: Spillable
     solution: beaker
   - type: DnaSubstanceTrace
+  - type: EmitSoundOnPickup
     sound:
       path: /Audio/_Cats/Items/Handling/beaker_pickup.ogg
       params:
