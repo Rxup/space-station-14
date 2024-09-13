@@ -23,7 +23,7 @@ public sealed partial class BkmCapturePointComponent : Component
 
 
     [DataField("captureZone")]
-    public FixedPoint2 ZoneRange = 20;
+    public FixedPoint2 ZoneRange = 5;
 
     public HashSet<EntityUid> CapturedEntities = new();
     public float Acc = 0;

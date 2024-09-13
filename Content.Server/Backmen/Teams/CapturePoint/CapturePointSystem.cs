@@ -24,7 +24,6 @@ public sealed class CapturePointSystem : SharedCapturePointSystem
     [Dependency] private readonly SharedPopupSystem _popupSystem = default!;
     [Dependency] private readonly AppearanceSystem _appearanceSystem = default!;
     [Dependency] private readonly MobStateSystem _mobStateSystem = default!;
-    [Dependency] private readonly DeviceNetworkSystem _deviceNetSystem = default!;
     private EntityQuery<ActorComponent> _actorQuery;
     private EntityQuery<TdmMemberComponent> _teamQuery;
     private EntityQuery<MobStateComponent> _mobStateQuery;
@@ -38,24 +37,21 @@ public sealed class CapturePointSystem : SharedCapturePointSystem
         SubscribeLocalEvent<BkmCapturePointComponent, BkmCapturePointChangeEvent>(OnCaptureChange);
         SubscribeLocalEvent<BkmCapturePointComponent, ComponentStartup>(OnStartup);
         SubscribeLocalEvent<BkmCapturePointComponent, BkmCaptureChangeStatusEvent>(OnChangeStatus);
-        SubscribeLocalEvent<BkmCapturePointComponent,BkmCaptureDoneEvent>(OnCaptureDone);
+        SubscribeLocalEvent<BkmCapturePointComponent, BkmCaptureDoneEvent>(OnCaptureDone);
 
         _actorQuery = GetEntityQuery<ActorComponent>();
         _teamQuery = GetEntityQuery<TdmMemberComponent>();
         _mobStateQuery = GetEntityQuery<MobStateComponent>();
     }
 
-    private void OnCaptureDone(Entity<BkmCapturePointComponent> ent, ref BkmCaptureDoneEvent args)
+    public override void UpdateSignals(Entity<BkmCapturePointComponent> ent)
     {
-        _popupSystem.PopupEntity(Loc.GetString("bkm-ctp-captured-"+args.Team), ent, PopupType.LargeCaution);
-        _deviceLink.EnsureSourcePorts(ent, ent.Comp.OutputPortTeamA, ent.Comp.OutputPortTeamB);
-
-        if (args.Team == StationTeamMarker.TeamA)
+        if (ent.Comp.Team == StationTeamMarker.TeamA)
         {
             _deviceLink.SendSignal(ent, ent.Comp.OutputPortTeamA, true);
             _deviceLink.SendSignal(ent, ent.Comp.OutputPortTeamB, false);
         }
-        else if (args.Team == StationTeamMarker.TeamB)
+        else if (ent.Comp.Team == StationTeamMarker.TeamB)
         {
             _deviceLink.SendSignal(ent, ent.Comp.OutputPortTeamA, false);
             _deviceLink.SendSignal(ent, ent.Comp.OutputPortTeamB, true);
@@ -65,6 +61,12 @@ public sealed class CapturePointSystem : SharedCapturePointSystem
             _deviceLink.SendSignal(ent, ent.Comp.OutputPortTeamA, false);
             _deviceLink.SendSignal(ent, ent.Comp.OutputPortTeamB, false);
         }
+    }
+
+    private void OnCaptureDone(Entity<BkmCapturePointComponent> ent, ref BkmCaptureDoneEvent args)
+    {
+        _popupSystem.PopupEntity(Loc.GetString("bkm-ctp-captured-"+args.Team), ent, PopupType.LargeCaution);
+        UpdateSignals(ent);
     }
 
     private void OnChangeStatus(Entity<BkmCapturePointComponent> ent, ref BkmCaptureChangeStatusEvent args)
@@ -200,11 +202,15 @@ public sealed class CapturePointSystem : SharedCapturePointSystem
 
     private void OnCaptureExit(Entity<BkmCapturePointComponent> ent, ref EndCollideEvent args)
     {
+        if(args.OurFixtureId != CtpFixture)
+            return;
         ent.Comp.CapturedEntities.Remove(args.OtherEntity);
     }
 
     private void OnCaptureEnter(Entity<BkmCapturePointComponent> ent, ref StartCollideEvent args)
     {
+        if(args.OurFixtureId != CtpFixture)
+            return;
         var plr = args.OtherEntity;
         if (!_actorQuery.HasComp(plr) || !_teamQuery.HasComp(plr) || !_mobStateQuery.HasComp(plr))
         {

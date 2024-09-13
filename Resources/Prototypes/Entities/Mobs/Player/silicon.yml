@@ -463,7 +463,7 @@
   - type: Pullable
   - type: StandingState
   - type: Alerts
-  - type: ClothingRequiredStepTriggerImmune
+  - type: ProtectedFromStepTriggers
     slots: WITHOUT_POCKET
 
 - type: entity
@@ -579,7 +579,7 @@
     softness: 1
     mask: /Textures/Effects/LightMasks/cone.png
     autoRot: true
-  - type: ClothingRequiredStepTriggerImmune
+  - type: ProtectedFromStepTriggers
     slots: WITHOUT_POCKET
   - type: Tag
     tags:

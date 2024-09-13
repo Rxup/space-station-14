@@ -471,8 +471,8 @@
     - state: idcentcom
   - type: Item
     heldPrefix: blue
-  - type: PresetIdCard
-    job: CentralCommandOfficial
+#  - type: PresetIdCard
+#    job: CentralCommandOfficial
 
 - type: entity
   parent: IDCardStandard
