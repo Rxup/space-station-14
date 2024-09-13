@@ -257,18 +257,17 @@ public sealed class CentcommSystem : EntitySystem
 
         _metaDataSystem.SetEntityName(_mapManager.GetMapEntityId(CentComMap), Loc.GetString("map-name-centcomm"));
 
-        if (ent != null)
-        {
-            CentComGrid = ent.Value;
-            if (_shuttle.TryAddFTLDestination(CentComMap, true, out var ftl))
-            {
-                DisableFtl((CentComMapUid,ftl));
-            }
-        }
-        else
+        if (ent == null)
         {
             Log.Warning("No CentComm map found, skipping setup.");
             return;
+        }
+
+        CentComGrid = ent.Value;
+        if (_shuttle.TryAddFTLDestination(CentComMap, true, false, false, out var ftl))
+        {
+            ftl.RequireCoordinateDisk = false;
+            DisableFtl((CentComMapUid, ftl));
         }
 
         var q = EntityQueryEnumerator<StationCentcommComponent>();
@@ -283,16 +282,28 @@ public sealed class CentcommSystem : EntitySystem
     // ReSharper disable once MemberCanBePrivate.Global
     public void DisableFtl(Entity<FTLDestinationComponent?> ent)
     {
+        if(!Resolve(ent, ref ent.Comp))
+            return;
+
         var d = new EntityWhitelist
         {
             RequireAll = false,
             Components = new[] { "AllowFtlToCentCom" }
         };
+
+        ent.Comp.RequireCoordinateDisk = false;
+        ent.Comp.BeaconsOnly = false;
+
         _shuttle.SetFTLWhitelist(ent, d);
     }
 
     public void EnableFtl(Entity<FTLDestinationComponent?> ent)
     {
+        if(!Resolve(ent, ref ent.Comp))
+            return;
+        ent.Comp.RequireCoordinateDisk = false;
+        ent.Comp.BeaconsOnly = false;
+
         _shuttle.SetFTLWhitelist(ent, null);
     }
 

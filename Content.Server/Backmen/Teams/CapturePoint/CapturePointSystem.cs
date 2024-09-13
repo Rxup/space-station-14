@@ -109,6 +109,7 @@ public sealed class CapturePointSystem : SharedCapturePointSystem
         ent.Comp.CaptureCurrent = ent.Comp.CaptureMax;
         var appearance = EnsureComp<AppearanceComponent>(ent);
         UpdateAppearance(ent, true, appearance);
+        _deviceLink.EnsureSourcePorts(ent, ent.Comp.OutputPortTeamA, ent.Comp.OutputPortTeamB);
         Dirty(ent);
     }
 
