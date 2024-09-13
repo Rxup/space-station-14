@@ -5,6 +5,8 @@ using Content.Shared.Inventory.Events;
 using Content.Shared.Radio;
 using Content.Shared.Radio.Components;
 using Content.Shared.Radio.EntitySystems;
+using Robust.Shared.Audio;
+using Robust.Shared.Audio.Systems;
 using Robust.Shared.Network;
 using Robust.Shared.Player;
 
@@ -14,6 +16,7 @@ public sealed class HeadsetSystem : SharedHeadsetSystem
 {
     [Dependency] private readonly INetManager _netMan = default!;
     [Dependency] private readonly RadioSystem _radio = default!;
+    [Dependency] private readonly SharedAudioSystem _audio = default!; // sound cats
 
     public override void Initialize()
     {
@@ -53,6 +56,8 @@ public sealed class HeadsetSystem : SharedHeadsetSystem
             && keys.Channels.Contains(args.Channel.ID))
         {
             _radio.SendRadioMessage(uid, args.Message, args.Channel, component.Headset);
+            _audio.PlayEntity(new SoundPathSpecifier("/Audio/_Cats/Radio/common.ogg"), Filter.Pvs(uid), uid, true);
+
             args.Channel = null; // prevent duplicate messages from other listeners.
         }
     }
