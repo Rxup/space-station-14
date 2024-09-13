@@ -2,7 +2,6 @@
   id: Captain
   name: job-name-captain
   description: job-description-captain
-  color: "#FFD700"
   playTimeTracker: JobCaptain
   requirements:
     - !type:DepartmentTimeRequirement

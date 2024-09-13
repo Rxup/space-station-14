@@ -458,7 +458,7 @@
   - type: Item
     heldPrefix: blue
   - type: IdCard
-    jobTitle: Офицер ЦентКом
+    jobTitle: Central Commander
     jobIcon: JobIconNanotrasen
   - type: Access
     groups:
@@ -757,7 +757,6 @@
     - state: idcluwne
   - type: IdCard
     jobTitle: Cluwne
-    jobColor: "#AA0000"
   - type: Unremoveable
 
 - type: entity

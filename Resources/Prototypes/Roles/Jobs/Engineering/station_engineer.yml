@@ -2,7 +2,6 @@
   id: StationEngineer
   name: job-name-engineer
   description: job-description-engineer
-  color: "#EFB341"
   playTimeTracker: JobStationEngineer
   requirements:
     - !type:DepartmentTimeRequirement
