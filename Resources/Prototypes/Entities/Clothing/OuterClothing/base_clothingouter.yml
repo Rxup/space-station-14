@@ -137,7 +137,7 @@
     - FullBodyOuter
     - Hardsuit
     - WhitelistChameleon
-  - type: ClothingRequiredStepTriggerImmune
+  - type: ProtectedFromStepTriggers
     slots: WITHOUT_POCKET
   - type: ClothingGrant
     component:
@@ -169,8 +169,7 @@
   - type: Tag
     tags:
       - FullBodyOuter
-  - type: ClothingRequiredStepTriggerImmune
-    slots: WITHOUT_POCKET
+  - type: ProtectedFromStepTriggers
   - type: DamageOnInteractProtection
     damageProtection:
       flatReductions:

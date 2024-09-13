@@ -118,7 +118,7 @@
     tags:
     - CanPilot
     - DoorBumpOpener
-  - type: ClothingRequiredStepTriggerImmune
+  - type: ProtectedFromStepTriggers
     slots: WITHOUT_POCKET
   - type: Bloodstream
     bloodReagent: DemonsBlood

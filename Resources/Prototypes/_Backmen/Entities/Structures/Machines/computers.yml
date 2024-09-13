@@ -15,6 +15,7 @@
         type: ShipyardConsoleBoundUserInterface
   - type: Computer
     board: ShipyardComputerCircuitboard
+  - type: StationAiWhitelist
   - type: PointLight
     radius: 1.5
     energy: 1.6

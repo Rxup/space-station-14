@@ -142,6 +142,7 @@
     - Flashed
     - RadiationProtection
     - Drowsiness
+    - Adrenaline
   - type: Body
     prototype: Human
     requiredLegs: 2

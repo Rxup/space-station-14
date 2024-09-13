@@ -26,8 +26,7 @@
     - FullBodyOuter
     - Hardsuit
     - WhitelistChameleon
-  - type: ClothingRequiredStepTriggerImmune
-    slots: WITHOUT_POCKET
+  - type: ProtectedFromStepTriggers
 
 - type: entity
   parent: ClothingOuterSuitBomb
@@ -72,8 +71,7 @@
   - type: Tag
     tags:
       - FullBodyOuter
-  - type: ClothingRequiredStepTriggerImmune
-    slots: WITHOUT_POCKET
+  - type: ProtectedFromStepTriggers
 
 - type: entity
   parent: [ClothingOuterBaseLarge, AllowSuitStorageClothing]
@@ -107,8 +105,7 @@
   - type: Tag
     tags:
       - FullBodyOuter
-  - type: ClothingRequiredStepTriggerImmune
-    slots: WITHOUT_POCKET
+  - type: ProtectedFromStepTriggers
 
 - type: entity
   parent: [ClothingOuterBaseLarge, GeigerCounterClothing, AllowSuitStorageClothing]
@@ -135,8 +132,7 @@
   - type: ContainerContainer
     containers:
       toggleable-clothing: !type:ContainerSlot {}
-  - type: ClothingRequiredStepTriggerImmune
-    slots: WITHOUT_POCKET
+  - type: ProtectedFromStepTriggers
 
 - type: entity
   parent: [ClothingOuterBaseLarge, AllowSuitStorageClothing, BaseToggleClothing, BaseMajorContraband]
@@ -211,8 +207,7 @@
   - type: Tag
     tags:
       - FullBodyOuter
-  - type: ClothingRequiredStepTriggerImmune
-    slots: WITHOUT_POCKET
+  - type: ProtectedFromStepTriggers
 
 - type: entity
   parent: ClothingOuterBase
@@ -255,8 +250,7 @@
   - type: ContainerContainer
     containers:
       toggleable-clothing: !type:ContainerSlot {}
-  - type: ClothingRequiredStepTriggerImmune
-    slots: WITHOUT_POCKET
+  - type: ProtectedFromStepTriggers
 
 - type: entity
   parent: ClothingOuterBase
@@ -278,8 +272,7 @@
   - type: Construction
     graph: ClothingOuterSuitIan
     node: suit
-  - type: ClothingRequiredStepTriggerImmune
-    slots: WITHOUT_POCKET
+  - type: ProtectedFromStepTriggers
 
 - type: entity
   parent: ClothingOuterBase
