@@ -15,6 +15,18 @@
       "name": "onestar",
       "directions": 8
     },
+      {
+          "name": "team_a",
+          "directions": 8
+      },
+      {
+          "name": "team_b",
+          "directions": 8
+      },
+      {
+          "name": "black",
+          "directions": 8
+      },
     {
       "name": "stand"
     }

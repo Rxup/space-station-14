@@ -1,0 +1,41 @@
+﻿- type: entity
+  parent: WeaponTurretBaseLaser
+  id: WeaponTurretLaserTeamA
+  suffix: TeamA
+  components:
+  - type: Sprite
+    sprite: Backmen/Objects/Weapons/Guns/Turrets/laser.rsi
+    layers:
+    - state: stand
+    - state: team_a
+  - type: NpcFactionMember
+    factions:
+    - TeamA
+
+- type: entity
+  parent: WeaponTurretBaseLaser
+  id: WeaponTurretLaserTeamB
+  suffix: TeamA
+  components:
+  - type: Sprite
+    sprite: Backmen/Objects/Weapons/Guns/Turrets/laser.rsi
+    layers:
+    - state: stand
+    - state: team_b
+  - type: NpcFactionMember
+    factions:
+    - TeamB
+
+- type: entity
+  parent: WeaponTurretBaseLaser
+  id: WeaponTurretLaserTeamNeutral
+  suffix: Team Neutral
+  components:
+  - type: Sprite
+    sprite: Backmen/Objects/Weapons/Guns/Turrets/laser.rsi
+    layers:
+    - state: stand
+    - state: black
+  - type: NpcFactionMember
+    factions:
+    - Team0

@@ -1,0 +1,16 @@
+﻿
+- type: npcFaction
+  id: TeamA
+  hostile:
+  - TeamB
+
+- type: npcFaction
+  id: TeamB
+  hostile:
+  - TeamA
+
+- type: npcFaction
+  id: Team0 # neutral
+  hostile:
+  - TeamB
+  - TeamA

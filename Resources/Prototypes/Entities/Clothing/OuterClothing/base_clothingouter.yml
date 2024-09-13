@@ -109,7 +109,8 @@
     highPressureMultiplier: 0.3
     lowPressureMultiplier: 1000
   - type: TemperatureProtection
-    coefficient: 0.01
+    heatingCoefficient: 0.01
+    coolingCoefficient: 0.01
   - type: ClothingSpeedModifier
     walkModifier: 0.4
     sprintModifier: 0.6
@@ -135,7 +136,7 @@
     - FullBodyOuter
     - Hardsuit
     - WhitelistChameleon
-  - type: ClothingRequiredStepTriggerImmune
+  - type: ProtectedFromStepTriggers
     slots: WITHOUT_POCKET
   - type: ClothingGrant
     component:
@@ -156,7 +157,8 @@
     highPressureMultiplier: 0.6
     lowPressureMultiplier: 1000
   - type: TemperatureProtection
-    coefficient: 0.01 # Not complete protection from fire
+    heatingCoefficient: 0.01 # Not complete protection from fire
+    coolingCoefficient: 0.01
   - type: ClothingSpeedModifier
     walkModifier: 0.8
     sprintModifier: 0.8
@@ -166,8 +168,7 @@
   - type: Tag
     tags:
       - FullBodyOuter
-  - type: ClothingRequiredStepTriggerImmune
-    slots: WITHOUT_POCKET
+  - type: ProtectedFromStepTriggers
   - type: DamageOnInteractProtection
     damageProtection:
       flatReductions:
