@@ -9,7 +9,7 @@ using Robust.Shared.Audio.Systems;
 using Robust.Shared.Physics.Components;
 using Robust.Shared.Timing;
 
-namespace Content.Shared.Clothing.Systems;
+namespace Content.Shared.Clothing.Systems; // EinsteinEngines CODE
 
 public sealed class EmitsSoundOnMoveSystem : EntitySystem
 {

@@ -12,7 +12,7 @@
       rarePrototypes:
         - FoamBlade
         - PlushieGhost
-        - PlushieAbductorAgent
+        - PlushieAbductorAgent # EE
       rareChance: 0.03
       prototypes:
         - PlushieBee

@@ -2,7 +2,7 @@ using Robust.Shared.Audio;
 using Robust.Shared.GameStates;
 using Robust.Shared.Map;
 
-namespace Content.Shared.Clothing.Components;
+namespace Content.Shared.Clothing.Components; // EinsteinEngines CODE
 
 /// <summary>
 ///   Indicates that the clothing entity emits sound when it moves.
