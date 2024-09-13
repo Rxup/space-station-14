@@ -683,6 +683,7 @@
   loadouts:
   - ChiefEngineerHead
   - ChiefEngineerBeret
+  - ClothingHeadHatBeretChiefEngineering  # cats
 
 - type: loadoutGroup
   id: ChiefEngineerJumpsuit
@@ -707,6 +708,7 @@
   minLimit: 0
   loadouts:
   - ChiefEngineerWintercoat
+  - ClothingOuterWinterSeniorEngineer  # cats
 
 - type: loadoutGroup
   id: ChiefEngineerShoes
@@ -729,6 +731,7 @@
   - StationEngineerHardhatYellow
   - StationEngineerHardhatOrange
   - StationEngineerHardhatRed
+  - ClothingHeadHatBeretChiefEngineering  # cats
   - SeniorEngineerBeret
 
 - type: loadoutGroup
@@ -756,6 +759,7 @@
   loadouts:
   - StationEngineerOuterVest
   - StationEngineerWintercoat
+  - ClothingOuterWinterSeniorEngineer # cats
 
 - type: loadoutGroup
   id: StationEngineerShoes
@@ -785,6 +789,7 @@
   minLimit: 0
   loadouts:
   - AtmosphericTechnicianWintercoat
+  - ClothingOuterWinterSeniorEngineer # cats
 
 - type: loadoutGroup
   id: AtmosphericTechnicianBackpack
@@ -845,6 +850,7 @@
   loadouts:
   - ResearchDirectorLabCoat
   - ResearchDirectorWintercoat
+  - ClothingOuterWinterSeniorResearcher  # cats
 
 - type: loadoutGroup
   id: ResearchDirectorShoes
@@ -899,6 +905,7 @@
   - RoboticistLabCoat
   - RoboticistWintercoat
   - SeniorResearcherLabCoat
+  - ClothingOuterWinterSeniorResearcher
 
 - type: loadoutGroup
   id: ScientistShoes
@@ -969,6 +976,7 @@
   loadouts:
   - HeadofSecurityCoat
   - HeadofSecurityWinterCoat
+  - ClothingOuterWinterSeniorOfficer # cats
 
 - type: loadoutGroup #Backmen
   id: SecurityOfficerPocket
@@ -1012,6 +1020,7 @@
   loadouts:
   - WardenCoat
   - WardenArmoredWinterCoat
+  - ClothingOuterWinterSeniorOfficer # cats
 
 - type: loadoutGroup
   id: SecurityHead
@@ -1059,6 +1068,7 @@
   - ClothingOuterCoatSecurityOvercoat #Backmen
   - ClothingOuterCoatSecurityOfficerOvercoat #Backmen
   - SecurityOfficerWintercoat
+  - ClothingOuterWinterSeniorOfficer # cats
 
 - type: loadoutGroup
   id: SecurityShoes
@@ -1183,6 +1193,7 @@
   loadouts:
   - ChiefMedicalOfficerLabCoat
   - ChiefMedicalOfficerWintercoat
+  - ClothingOuterWinterSeniorPhysician  # cats
 
 - type: loadoutGroup
   id: ChiefMedicalOfficerNeck
@@ -1232,6 +1243,7 @@
   - RegularLabCoat
   - MedicalDoctorWintercoat
   - SeniorPhysicianLabCoat
+  - ClothingOuterWinterSeniorPhysician  # cats
 
 - type: loadoutGroup
   id: MedicalBackpack
@@ -1292,6 +1304,7 @@
   - RegularLabCoat
   - ChemistLabCoat
   - ChemistWintercoat
+  - ClothingOuterWinterSeniorPhysician  # cats
 
 - type: loadoutGroup
   id: ChemistBackpack
@@ -1307,6 +1320,7 @@
   minLimit: 0
   loadouts:
   - ParamedicHead
+  - ClothingHeadHatParamedicBeret   # cats
 
 - type: loadoutGroup
   id: ParamedicJumpsuit
@@ -1322,6 +1336,7 @@
   loadouts:
   - ParamedicWindbreaker
   - ParamedicWintercoat
+  - ClothingOuterWinterSeniorPhysician  # cats 
 
 - type: loadoutGroup
   id: ParamedicShoes

@@ -18,6 +18,8 @@
     - state: icon_flipped
       map: ["foldedLayer"]
       visible: false
+    - type: DropOnSlip
+      chance: 20
       
 - type: entity
   parent: ClothingHeadHeadHatBaseFlippable

@@ -15,10 +15,15 @@
     requiredLegs: 2
   - type: Inventory
     speciesId: digi
+  - type: LeavesFootprints
+    footprintDecal: FootLeft
+    footprintDecalAlternative: FootRight
   - type: ContentEye
     targetZoom: "1.125, 1.125"
     maxZoom: "1.125, 1.125"
   - type: GrowlingAccent
+  - type: TypingIndicator
+    proto: vulp
   - type: MeleeWeapon
     animation: WeaponArcClaw
     soundHit:

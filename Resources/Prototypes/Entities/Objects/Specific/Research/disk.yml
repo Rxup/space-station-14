@@ -11,6 +11,15 @@
   - type: GuideHelp
     guides:
     - Science
+  - type: EmitSoundOnPickup
+    sound:
+      path: /Audio/_Cats/Items/Handling/disk_pickup.ogg
+  - type: EmitSoundOnDrop
+    sound:
+      path: /Audio/_Cats/Items/Handling/disk_drop.ogg
+  - type: EmitSoundOnLand
+    sound:
+      path: /Audio/_Cats/Items/Handling/disk_drop.ogg
 
 - type: entity
   parent: ResearchDisk

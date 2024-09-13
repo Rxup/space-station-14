@@ -2,7 +2,7 @@
   name: Saber of the Leader of the Red Orden
   parent: BaseItem
   id: OrdenSabre
-  description: Unusual saber. Instead of a blade, this weapon uses the teeth of a space dragon, which cut and cling to the victim's flesh, tearing open wounds. Nightmare weapon.
+  description: Необычная сабля. Вместо клинка в этом оружии используются зубы космического дракона, которые режут и впиваются в плоть жертвы, разрывая открытые раны. Кошмарное оружие.
   components:
   - type: Sharp
   - type: Sprite
@@ -25,7 +25,7 @@
   name: chainsword
   parent: BaseItem
   id: Chainsword
-  description: The chainsword is the preferred close combat melee weapon of many of the military forces of the Imperium of Man.
+  description: Цепной меч является предпочтительным оружием ближнего боя многих вооруженных сил Империума Людей.
   components:
   - type: ItemToggleActiveSound
     activeSound:

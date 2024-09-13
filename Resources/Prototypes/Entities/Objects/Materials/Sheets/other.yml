@@ -60,6 +60,15 @@
         reagents:
         - ReagentId: Cellulose
           Quantity: 3
+  - type: EmitSoundOnPickup
+    sound:
+      path: /Audio/_Cats/Items/Handling/paper_pickup.ogg
+  - type: EmitSoundOnDrop
+    sound:
+      path: /Audio/_Cats/Items/Handling/paper_drop.ogg
+  - type: EmitSoundOnLand
+    sound:
+      path: /Audio/_Cats/Items/Handling/paper_drop.ogg
 
 
 - type: entity
@@ -172,6 +181,15 @@
         - ReagentId: Phosphorus
           Quantity: 5
         canReact: false
+  - type: EmitSoundOnPickup
+    sound:
+      path: /Audio/_Cats/Items/Handling/plastic_pickup.ogg
+  - type: EmitSoundOnDrop
+    sound:
+      path: /Audio/_Cats/Items/Handling/plastic_drop.ogg
+  - type: EmitSoundOnLand
+    sound:
+      path: /Audio/_Cats/Items/Handling/plastic_drop.ogg
 
 - type: entity
   parent: SheetPlastic

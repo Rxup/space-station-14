@@ -1,0 +1,37 @@
+- type: polymorph
+  id: WizardForcedFelinid
+  configuration:
+    entity: MobFelinid
+    forced: true
+    inventory: Transfer
+    transferName: true
+    transferDamage: true
+    revertOnCrit: false
+    revertOnDeath: false
+
+- type: entity
+  id: ProjectilePolyboltFelinid
+  parent: ProjectilePolyboltBase
+  name: Гены Фелинидов
+  description: Nooo, I don't wanna be Felinid!
+  noSpawn: true
+  components:
+  - type: PolymorphOnCollide
+    polymorph: WizardForcedFelinid
+    whitelist:
+      components:
+      - Body
+
+- type: entity
+  name: волшебная палочка полиморфа фелинида
+  parent: WeaponWandPolymorphBase
+  id: WeaponWandPolymorphFelinid
+  description: На случай, когда вам срочно нужена рабыня, а клоун выглядит уж очень красивым.
+  components:
+  - type: BasicEntityAmmoProvider
+    proto: ProjectilePolyboltFelinid
+    capacity: 1
+    count: 1
+
+
+

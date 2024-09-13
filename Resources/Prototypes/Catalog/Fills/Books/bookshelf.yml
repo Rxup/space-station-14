@@ -63,7 +63,7 @@
       - id: BookDetectiveP1
       - id: BookDetectiveP2
       - id: BookDetectiveP3
-      - id: BookPassionsP1
+#      - id: BookPassionsP1
       - id: BookPaperworkP1
       - id: BookPaperworkP2
       - id: BookToolboxes
@@ -75,7 +75,7 @@
       - id: BookPaperworkP3
       - id: BookPaperworkP4
       - id: BookPaperworkP5
-      - id: BookPassionsP2
+#      - id: BookPassionsP2
       - id: BookPaperworkP6
   #end-backmen-books
     # Corvax-Lore-Start

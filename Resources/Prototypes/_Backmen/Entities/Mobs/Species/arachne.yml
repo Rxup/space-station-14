@@ -102,6 +102,8 @@
   - type: Damageable
     damageContainer: HalfSpirit
     damageModifierSet: HalfSpirit
+  - type: TypingIndicator
+    proto: spiders
   - type: Speech
     speechSounds: Alto
   - type: DamageOnHighSpeedImpact
@@ -146,6 +148,9 @@
     normalState: Generic_mob_burning
     alternateState: arachne_standing
     fireStackAlternateState: 3
+  - type: LeavesFootprints
+    footprintDecal: FootLeft
+    footprintDecalAlternative: FootRight
   - type: Dna
     dna: "ABRAXAS"
   - type: Spider

@@ -212,6 +212,9 @@
         - MobMask
         layer:
         - MobLayer
+  - type: LeavesFootprints
+    footprintDecal: 4LegsLeft
+    footprintDecalAlternative: 4LegsRight
   - type: Inventory
     speciesId: cat
     templateId: pet
@@ -269,6 +272,9 @@
         - MobMask
         layer:
         - MobLayer
+  - type: LeavesFootprints
+    footprintDecal: 4LegsLeft
+    footprintDecalAlternative: 4LegsRight
   - type: Inventory
     speciesId: puppy
     templateId: pet
@@ -362,6 +368,9 @@
         - MobMask
         layer:
         - MobLayer
+  - type: LeavesFootprints
+    footprintDecal: 4LegsLeft
+    footprintDecalAlternative: 4LegsRight
   - type: Inventory
     speciesId: dog
     templateId: pet
@@ -758,8 +767,6 @@
     attributes:
       proper: true
       gender: female
-  - type: TTS # Corvax-TTS
-    voice: Npc3
 
 - type: entity
   name: Pun Pun

@@ -21,6 +21,7 @@ ui-options-general-cursor = Курсор
 ui-options-general-speech = Речь
 ui-options-general-storage = Инвентарь
 ui-options-general-accessibility = Доступность
+ui-options-function-toggle-crawling = Переключить режим ползания
 
 ## Audio menu
 

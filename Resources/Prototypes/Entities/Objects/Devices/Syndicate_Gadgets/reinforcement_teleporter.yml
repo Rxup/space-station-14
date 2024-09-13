@@ -16,6 +16,7 @@
   - type: ActivatableUI
     key: enum.GhostRoleRadioUiKey.Key
 
+<<<<<<< HEAD
 - type: entity
   parent: ReinforcementRadio
   id: ReinforcementRadioSyndicate
@@ -35,26 +36,47 @@
     sound: /Audio/Effects/Emotes/parp1.ogg
   - type: UseDelay
     delay: 300
+=======
+#- type: entity
+#  parent: ReinforcementRadio
+#  id: ReinforcementRadioSyndicate
+#  name: syndicate reinforcement radio
+#  description: Call in a syndicate agent of questionable quality, instantly!
+#  components:
+#  - type: GhostRole
+#    name: ghost-role-information-syndicate-reinforcement-spy-name
+#    description: ghost-role-information-syndicate-reinforcement-description
+#    rules: ghost-role-information-syndicate-reinforcement-rules
+#    raffle:
+#      settings: default
+#  - type: GhostRoleMobSpawner
+#    prototype: MobHumanSyndicateAgentSpy
+#    selectablePrototypes: ["SyndicateAgentMedic", "SyndicateAgentSpy", "SyndicateAgentThief"]
+#  - type: EmitSoundOnUse
+#    sound: /Audio/Effects/Emotes/parp1.ogg
+#  - type: UseDelay
+#    delay: 300
+>>>>>>> master
 # Corvax-HiddenDesc-Start
-  - type: HiddenDescription
-    entries:
-    - label: corvax-hidden-desc-ReinforcementRadioSyndicate-syndicate
-      whitelistMind:
-        components:
-        - TraitorRole
-        - NukeOperative
-    - label: corvax-hidden-desc-ReinforcementRadio-engineering
-      jobRequired:
-      - ChiefEngineer
-      - AtmosphericTechnician
-      - StationEngineer
-      - TechnicalAssistant
-    - label: corvax-hidden-desc-ReinforcementRadio-research
-      jobRequired:
-      - ResearchAssistant
-      - ResearchDirector
-      - Scientist
-      - Borg
+#  - type: HiddenDescription
+#    entries:
+#    - label: corvax-hidden-desc-ReinforcementRadioSyndicate-syndicate
+#      whitelistMind:
+#        components:
+#          - TraitorRole
+#          - NukeOperative
+#    - label: corvax-hidden-desc-ReinforcementRadio-engineering
+#      jobRequired:
+#        - ChiefEngineer
+#        - AtmosphericTechnician
+#        - StationEngineer
+#        - TechnicalAssistant
+#    - label: corvax-hidden-desc-ReinforcementRadio-research
+#      jobRequired:
+#        - ResearchAssistant
+#        - ResearchDirector
+#        - Scientist
+#        - Borg
 # Corvax-HiddenDesc-End
 
 - type: entity

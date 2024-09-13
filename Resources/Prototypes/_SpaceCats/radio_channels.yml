@@ -1,0 +1,7 @@
+- type: radioChannel
+  id: Swarm
+  name: cats-radio-swar
+  keycode: 'р' 
+  frequency: 3232
+  color: "#aea5f6"
+  longRange: true

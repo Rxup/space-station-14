@@ -26,22 +26,27 @@
         state: lowhealth3
         map: [ "health_alert" ]
         visible: false
+        shader: unshaded
       - sprite: Structures/Hydroponics/overlays.rsi
         state: lowwater3
         map: [ "water_alert" ]
         visible: false
+        shader: unshaded
       - sprite: Structures/Hydroponics/overlays.rsi
         state: lownutri3
         map: [ "nutri_alert" ]
         visible: false
+        shader: unshaded
       - sprite: Structures/Hydroponics/overlays.rsi
         state: alert3
         map: [ "undefined_alert" ]
         visible: false
+        shader: unshaded
       - sprite: Structures/Hydroponics/overlays.rsi
         state: harvest3
         map: [ "harvest_alert" ]
         visible: false
+        shader: unshaded
   - type: Appearance
   - type: GenericVisualizer
     visuals:

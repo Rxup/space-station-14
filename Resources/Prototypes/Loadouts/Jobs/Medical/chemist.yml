@@ -36,3 +36,7 @@
   equipment:
     outerClothing: ClothingOuterWinterChem
 
+- type: loadout
+  id: ClothingOuterWinterSeniorPhysician
+  equipment:
+    outerClothing: ClothingOuterWinterSeniorPhysician  #cats

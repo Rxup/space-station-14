@@ -1,0 +1,82 @@
+- type: entity
+  parent: ClothingUnderSocksBase
+  id: ClothingUnderSocksCoderBlue
+  name: голубые носки эсмиры
+  suffix: Спонсор, Fredik21
+  description: Раньше это были розовые носки, но Эсмира пролила на них голубую краску. Теперь это голубые носки.
+  components:
+  - type: Sprite
+    sprite: _SpaceCats/Sponsor/Fredik21/blue.rsi
+    state: icon
+  - type: Clothing
+    sprite: _SpaceCats/Sponsor/Fredik21/blue.rsi
+    clothingVisuals:
+      socks:
+        - state: equipped-FEET
+
+- type: entity
+  parent: ClothingUniformSkirtBase
+  id: ClothingUniformJumpskirtEsmira
+  name: юбка-комбинезон эсмиры
+  suffix: Спонсор, Fredik21
+  description: юбка которую носит Эсмира. Мне страшно думать от куда вы его взяли...
+  components:
+  - type: Sprite
+    sprite: _SpaceCats/Sponsor/Fredik21/kost.rsi
+  - type: Clothing
+    sprite: _SpaceCats/Sponsor/Fredik21/kost.rsi
+
+- type: entity
+  parent: ClothingHeadBase
+  id: ClothingHeadHatHairflowerEsmira
+  name: головной убор эсмиры
+  suffix: Спонсор, Fredik21
+  description: Обычный цветок с головным убором
+  components:
+  - type: Sprite
+    sprite: _SpaceCats/Sponsor/Fredik21/vve.rsi
+  - type: Clothing
+    sprite: _SpaceCats/Sponsor/Fredik21/vve.rsi
+
+- type: entity
+  parent: ClothingNeckBase
+  id: ClothingNeckEsmira
+  suffix: Спонсор, Fredik21
+  name: плащ с игрушкой эсмиры
+  description: Мы ведь друзья... так ведь?...
+  components:
+  - type: Sprite
+    sprite: _SpaceCats/Sponsor/Fredik21/toy.rsi
+
+# нижняя одежда
+- type: entity
+  description: НАКОНЕЦ ТО?!
+  name: трусы эсмиры
+  parent: ClothingUnderPantsBase
+  id: ClothingUnderPantsEsmira
+  suffix: Спонсор, Fredik21
+  components:
+  - type: Sprite
+    sprite: _SpaceCats/Sponsor/Fredik21/pants.rsi
+    state: icon
+  - type: Clothing
+    sprite: _SpaceCats/Sponsor/Fredik21/pants.rsi
+    clothingVisuals:
+      underpants:
+        - state: equipped-INNERCLOTHING
+
+- type: entity
+  description: Верни позязя владельцу~
+  name: топик эсмиры
+  parent: ClothingUnderShirtBase
+  id: ClothingUnderShirtEsmira
+  suffix: Спонсор, Fredik21
+  components:
+  - type: Sprite
+    sprite: _SpaceCats/Sponsor/Fredik21/brassierer.rsi
+    state: icon
+  - type: Clothing
+    sprite: _SpaceCats/Sponsor/Fredik21/brassierer.rsi
+    clothingVisuals:
+      undershirt:
+        - state: equipped-INNERCLOTHING

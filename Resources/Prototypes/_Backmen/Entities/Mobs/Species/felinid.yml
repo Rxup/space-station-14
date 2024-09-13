@@ -21,6 +21,9 @@
         - MobMask
         layer:
         - MobLayer
+  - type: LeavesFootprints
+    footprintDecal: FootLeft
+    footprintDecalAlternative: FootRight
   - type: Body
     prototype: Felinid
   - type: Damageable
@@ -44,6 +47,8 @@
     stripTimeReduction: 1
   - type: Speech
     speechSounds: Alto
+  - type: TypingIndicator
+    proto: felinid
   - type: DamageOnHighSpeedImpact
     damage:
       types:

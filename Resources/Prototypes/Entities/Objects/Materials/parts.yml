@@ -68,6 +68,9 @@
           Quantity: 4.5
         - ReagentId: Carbon
           Quantity: 0.5
+  - type: EmitSoundOnPickup
+    sound:
+      path: /Audio/_Cats/Items/Handling/iron_rod_pickup.ogg
 
 - type: entity
   parent: PartRodMetal

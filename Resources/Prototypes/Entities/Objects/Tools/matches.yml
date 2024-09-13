@@ -102,3 +102,9 @@
     tags:
     - Trash
   - type: SpaceGarbage
+  - type: EmitSoundOnPickup
+    sound:
+      path: /Audio/_Cats/Items/Handling/matchbox_pickup.ogg
+  - type: EmitSoundOnDrop
+    sound:
+      path: /Audio/_Cats/Items/Handling/matchbox_drop.ogg

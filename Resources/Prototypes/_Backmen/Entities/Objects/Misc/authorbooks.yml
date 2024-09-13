@@ -37,18 +37,18 @@
     - type: Paper
       content: book-text-detective-p3
 
-- type: entity
-  parent: BookBase
-  id: BookPassionsP1
-  name: Passions in the SS
-  description: The story of the passions in the SS (only 18+)
-  components:
-    - type: Sprite
-      sprite: Objects/Misc/books_backmen.rsi
-      layers:
-        - state: Passions_in_the_SB
-    - type: Paper
-      content: book-text-Passions-p1
+#- type: entity
+#  parent: BookBase
+#  id: BookPassionsP1
+#  name: Passions in the SS
+#  description: The story of the passions in the SS (only 18+)
+#  components:
+#    - type: Sprite
+#      sprite: Objects/Misc/books_backmen.rsi
+#     layers:
+#        - state: Passions_in_the_SB
+#    - type: Paper
+#      content: book-text-Passions-p1
 
 - type: entity
   parent: BookBase
@@ -206,15 +206,15 @@
     - type: Paper
       content: book-text-paperwork-p6
 
-- type: entity
-  parent: BookBase
-  id: BookPassionsP2
-  name: Passions in the SS 2
-  description: Another one story of the passions in the SS (only 18+)
-  components:
-    - type: Sprite
-      sprite: Objects/Misc/books_backmen.rsi
-      layers:
-        - state: Passions_in_the_SB
-    - type: Paper
-      content: book-text-Passions-p2
+#- type: entity
+#  parent: BookBase
+#  id: BookPassionsP2
+#  name: Passions in the SS 2
+#  description: Another one story of the passions in the SS (only 18+)
+#  components:
+#    - type: Sprite
+#     sprite: Objects/Misc/books_backmen.rsi
+#      layers:
+#        - state: Passions_in_the_SB
+#    - type: Paper
+#      content: book-text-Passions-p2

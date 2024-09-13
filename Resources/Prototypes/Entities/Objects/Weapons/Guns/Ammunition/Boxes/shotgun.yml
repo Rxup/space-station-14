@@ -22,6 +22,15 @@
         tags:
         - ShellShotgun
       capacity: 16
+    - type: EmitSoundOnPickup
+      sound:
+        path: /Audio/_Cats/Items/Handling/ammobox_pickup.ogg
+    - type: EmitSoundOnDrop
+      sound:
+        path: /Audio/_Cats/Items/Handling/ammobox_drop.ogg
+    - type: EmitSoundOnLand
+      sound:
+        path: /Audio/_Cats/Items/Handling/ammobox_drop.ogg
 
 # Shotgun Shells
 - type: entity

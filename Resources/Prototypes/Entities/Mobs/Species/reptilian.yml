@@ -32,7 +32,7 @@
     speechSounds: Lizard
     speechVerb: Reptilian
   - type: TypingIndicator
-    proto: lizard
+    proto: lizards
   - type: Vocal
     sounds:
       Male: MaleReptilian
@@ -74,6 +74,9 @@
           32:
             sprite: Mobs/Species/Human/displacement.rsi
             state: jumpsuit-female
+  - type: LeavesFootprints
+    footprintDecal: ClawLeft
+    footprintDecalAlternative: ClawRight
 
 
 - type: entity

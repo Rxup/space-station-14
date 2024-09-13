@@ -6,25 +6,6 @@
   ruleEntry: true
   text: "/ServerInfo/Corvax/Guidebook/ServerRules/MrpRuleset.xml"
   children:
-  - CorvaxRule0
-  - CorvaxRule1
-  - CorvaxRule2
-  - CorvaxRule3
-  - CorvaxRule31
-  - CorvaxRule32
-  - CorvaxRule33
-  - CorvaxRule34
-  - CorvaxRule35
-  - CorvaxRule36
-  - CorvaxRule37
-  - CorvaxRule38
-  - CorvaxRule39
-  - CorvaxRule4
-  - CorvaxRule6
-  - CorvaxRule7
-  - CorvaxRule8
-  - CorvaxRule9
-  - CorvaxRule10
   - CorvaxPunishmentTypes
 
 - type: guideEntry

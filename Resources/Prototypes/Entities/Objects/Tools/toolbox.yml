@@ -7,6 +7,12 @@
     layers:
       - map: [ base ]
         state: icon
+  - type: EmitSoundOnPickup
+    sound:
+      path: /Audio/_Cats/Items/Handling/toolbox_pickup.ogg
+  - type: EmitSoundOnDrop
+    sound:
+      path: /Audio/_Cats/Items/Handling/toolbox_drop.ogg
   - type: EmitSoundOnLand
     sound:
       path: /Audio/Items/toolbox_drop.ogg
@@ -25,12 +31,6 @@
   - type: Tag
     tags:
     - Toolbox
-  - type: GenericVisualizer
-    visuals:
-      enum.StorageVisuals.Open:
-        base:
-          True: { state: icon-open }
-          False: { state: icon }
   - type: Appearance
 
 - type: entity
