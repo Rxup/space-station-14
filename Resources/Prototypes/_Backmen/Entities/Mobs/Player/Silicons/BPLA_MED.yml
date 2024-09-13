@@ -184,5 +184,5 @@
     tags:
       - CannotSuicide
   - type: SpecForce
-  - type: ClothingRequiredStepTriggerImmune
+  - type: ProtectedFromStepTriggers
     slots: WITHOUT_POCKET

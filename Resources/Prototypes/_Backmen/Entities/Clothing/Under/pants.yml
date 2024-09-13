@@ -20,7 +20,7 @@
           - ReagentId: Fiber
             Quantity: 10    
     - type: TemperatureProtection
-      coefficient: 0.80
+      heatingCoefficient: 0.8
 
 - type: entity
   parent: ClothingUnderPantsBase
@@ -186,7 +186,7 @@
         underpants:
           - state: jockstrap
     - type: TemperatureProtection
-      coefficient: 0.98
+      heatingCoefficient: 0.98
 
 - type: entity
   parent: ClothingUnderPantsBase
@@ -203,7 +203,7 @@
         underpants:
           - state: ljonb
     - type: TemperatureProtection
-      coefficient: 0.70
+      heatingCoefficient: 0.8
 
 - type: entity
   parent: ClothingUnderPantsBase
@@ -250,7 +250,7 @@
         underpants:
           - state: panties_bee-kini
     - type: TemperatureProtection
-      coefficient: 0.85
+      heatingCoefficient: 0.85
 
 - type: entity
   parent: ClothingUnderPantsBase

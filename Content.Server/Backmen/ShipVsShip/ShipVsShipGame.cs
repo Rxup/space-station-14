@@ -6,25 +6,23 @@ using Content.Server.GameTicking;
 using Content.Server.GameTicking.Rules;
 using Content.Server.Maps;
 using Content.Server.RoundEnd;
-using Content.Server.Shuttles.Components;
 using Content.Server.Shuttles.Events;
 using Content.Server.Shuttles.Systems;
 using Content.Server.Spawners.Components;
 using Content.Server.Station.Components;
 using Content.Server.Station.Systems;
-using Content.Shared.Backmen.ShipVsShip;
-using Content.Shared.Clothing.Components;
+using Content.Shared.Backmen.Teams;
+using Content.Shared.Backmen.Teams.Components;
 using Content.Shared.Destructible;
 using Content.Shared.GameTicking;
 using Content.Shared.GameTicking.Components;
 using Content.Shared.Mind;
 using Content.Shared.Mobs;
-using Content.Shared.Players;
-using Content.Shared.Random.Helpers;
 using Content.Shared.Roles;
 using Content.Shared.Roles.Jobs;
 using Content.Shared.Shuttles.Components;
 using Content.Shared.Timing;
+using Robust.Server.Containers;
 using Robust.Shared.Network;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
@@ -48,6 +46,8 @@ public sealed class ShipVsShipGame : GameRuleSystem<ShipVsShipGameComponent>
     [Dependency] private readonly RoundEndSystem _endSystem = default!;
     [Dependency] private readonly IGameTiming _gameTiming = default!;
     [Dependency] private readonly SharedTransformSystem _transform = default!;
+    [Dependency] private readonly SharedTdmTeamSystem _teamSystem = default!;
+    [Dependency] private readonly ContainerSystem _container = default!;
 
     public override void Initialize()
     {
@@ -72,18 +72,52 @@ public sealed class ShipVsShipGame : GameRuleSystem<ShipVsShipGameComponent>
 
     private void SetFlag(EntityUid ent, StationTeamMarker team)
     {
-        var teamFlag = EnsureComp<SVSTeamMemberComponent>(ent);
-        teamFlag.Team = team;
-        Dirty(ent, teamFlag);
+        _teamSystem.SetFaction((ent,EnsureComp<TdmMemberComponent>(ent)), team);
+    }
+
+    [ValidatePrototypeId<EntityPrototype>]
+    private const string PlayerStationAi = "PlayerStationAi";
+    [ValidatePrototypeId<EntityPrototype>]
+    private const string StationAiBrain = "StationAiBrain";
+    private EntityUid FixStationAi(EntityUid mob)
+    {
+        if(Prototype(mob)?.ID != StationAiBrain)
+            return mob;
+
+        var xform = Transform(mob);
+        var uid = SpawnAtPosition(PlayerStationAi, xform.Coordinates);
+
+        var spawnPoint = EnsureComp<ContainerSpawnPointComponent>(uid);
+
+
+        if (!_container.TryGetContainer(uid, spawnPoint.ContainerId, out var container))
+        {
+            QueueDel(uid);
+            return mob;
+        }
+        if (!_container.Insert(mob, container))
+        {
+            QueueDel(uid);
+            return mob;
+        }
+
+        return uid;
     }
 
     private void OnAfterSpawning(PlayerSpawnCompleteEvent ev)
     {
+        var mobEntity = ev.Mob;
         var activeRules = QueryActiveRules();
 
         while (activeRules.MoveNext(out _, out var rule, out _))
         {
-            var xform = Transform(ev.Mob);
+            if (rule.Players.Count == 0)
+            {
+                rule.Players.TryAdd(StationTeamMarker.TeamA, []);
+                rule.Players.TryAdd(StationTeamMarker.TeamB, []);
+            }
+
+            var xform = Transform(mobEntity);
             var team = rule.Players.FirstOrNull(x => x.Value.Contains(ev.Player.UserId))?.Key;
 
             if (team == null)
@@ -93,11 +127,10 @@ public sealed class ShipVsShipGame : GameRuleSystem<ShipVsShipGameComponent>
                 rule.Players[team.Value].Add(ev.Player.UserId);
             }
 
+            Log.Info($"Validate player spawning station {mobEntity:entity} on {xform.GridUid:entity} (team: {team})");
 
-            Log.Info($"Validate player spawning station {ev.Mob:entity} on {xform.GridUid:entity} (team: {team})");
 
-
-            SetFlag(ev.Mob, team.Value);
+            SetFlag(mobEntity, team.Value);
             if (!TryComp<StationDataComponent>(rule.Team[team.Value], out var stationDataComponent) ||
                 !rule.Team.ContainsKey(team.Value))
                 continue;
@@ -105,7 +138,7 @@ public sealed class ShipVsShipGame : GameRuleSystem<ShipVsShipGameComponent>
             var stationGrids = stationDataComponent.Grids;
             if (xform.GridUid == null || stationGrids.Contains(xform.GridUid.Value))
             {
-                return;
+                break;
             }
             var latejoin = (from s in EntityQuery<SpawnPointComponent, TransformComponent>()
                 where s.Item1.SpawnType == SpawnPointType.LateJoin && s.Item2.GridUid.HasValue && stationGrids.Contains(s.Item2.GridUid.Value)
@@ -113,14 +146,15 @@ public sealed class ShipVsShipGame : GameRuleSystem<ShipVsShipGameComponent>
             if (latejoin.Count == 0)
             {
                 Log.Error($"not found late join for {team}");
-                return;
+                break;
             }
 
             var point = RobustRandom.Pick(latejoin);
-            _transform.SetCoordinates(ev.Mob, point);
-            Log.Warning($"Invalid spawning station {ev.Mob:entity} on {xform.GridUid:entity} (team: {team}) do fixing, new grid = {point.EntityId:entity}");
-
+            _transform.SetCoordinates(mobEntity, point);
+            Log.Warning($"Invalid spawning station {mobEntity:entity} on {xform.GridUid:entity} (team: {team}) do fixing, new grid = {point.EntityId:entity}");
         }
+
+        FixStationAi(mobEntity);
     }
 
     private void CanUseArrivals(CanHandleWithArrival ev)

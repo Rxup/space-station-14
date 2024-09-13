@@ -1032,6 +1032,7 @@
   - SecurityHat
   - ClothingHeadHatCapSec #Backmen
   - ClothingHeadHatPilotkaSec #Backmen
+  - TrooperHat
 
 - type: loadoutGroup
   id: SecurityJumpsuit
@@ -1041,6 +1042,7 @@
   - SecurityJumpskirt
   - SeniorOfficerJumpsuit
   - SeniorOfficerJumpskirt
+  - TrooperUniform
 
 - type: loadoutGroup
   id: SecurityBackpack

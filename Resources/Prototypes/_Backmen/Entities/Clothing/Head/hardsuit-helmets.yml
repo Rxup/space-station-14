@@ -62,7 +62,8 @@
         Heat: 0.2
         Radiation: 0.5
   - type: TemperatureProtection
-    coefficient: 0.005
+    heatingCoefficient: 0.005
+    coolingCoefficient: 0.005
 
 # carporate hardsuit
 - type: entity
@@ -278,4 +279,3 @@
     highPressureMultiplier: 0.225
     lowPressureMultiplier: 1000
   - type: Unremoveable
-

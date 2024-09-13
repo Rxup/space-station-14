@@ -282,7 +282,7 @@
         tableId: CargoGiftsTable
       - !type:NestedSelector
         tableId: BasicBackmenEventsTable # backmen events
-        
+
 #- type: entityTable
 #  id: SpaceTrafficControlTable
 #  table: !type:AllSelector # we need to pass a list of rules, since rules have further restrictions to consider via StationEventComp

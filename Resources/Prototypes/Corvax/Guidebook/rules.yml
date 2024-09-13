@@ -1,3 +1,4 @@
+# Default rules
 - type: guideEntry
   id: CorvaxRuleset
   name: Правила сервера

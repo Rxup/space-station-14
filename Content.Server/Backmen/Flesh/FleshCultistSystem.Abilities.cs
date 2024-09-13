@@ -2,7 +2,6 @@
 using System.Numerics;
 using Content.Server.Chemistry.Containers.EntitySystems;
 using Content.Server.Construction.Components;
-using Content.Server.Coordinates.Helpers;
 using Content.Server.Cuffs;
 using Content.Server.Salvage.Expeditions;
 using Content.Server.Station.Components;
@@ -13,6 +12,7 @@ using Content.Shared.Cuffs.Components;
 using Content.Shared.Backmen.Flesh;
 using Content.Shared.Cargo.Components;
 using Content.Shared.Chemistry.EntitySystems;
+using Content.Shared.Coordinates.Helpers;
 using Content.Shared.Hands.Components;
 using Content.Shared.Hands.EntitySystems;
 using Content.Shared.Inventory;

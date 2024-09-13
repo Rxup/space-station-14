@@ -1,3 +1,6 @@
+using Content.Shared.Backmen.Blob.Components;
+using Robust.Shared.Prototypes;
+
 namespace Content.Server.Backmen.Blob.Components;
 
 [RegisterComponent]
@@ -13,10 +16,10 @@ public sealed partial class BlobFactoryComponent : Component
     public float SpawnRate = 10;
 
     [DataField("blobSporeId"), ViewVariables(VVAccess.ReadWrite)]
-    public string Pod = "MobBlobPod";
+    public EntProtoId<BlobMobComponent> Pod = "MobBlobPod";
 
     [DataField("blobbernautId"), ViewVariables(VVAccess.ReadWrite)]
-    public string BlobbernautId = "MobBlobBlobbernaut";
+    public EntProtoId<BlobbernautComponent> BlobbernautId = "MobBlobBlobbernaut";
 
     [ViewVariables(VVAccess.ReadOnly)]
     public EntityUid? Blobbernaut = default!;
