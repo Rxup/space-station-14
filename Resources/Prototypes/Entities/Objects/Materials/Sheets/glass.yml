@@ -48,6 +48,15 @@
     solutions:
       glass:
         canReact: false
+  - type: EmitSoundOnPickup
+    sound:
+      path: /Audio/_Cats/Items/Handling/glass_pickup.ogg
+  - type: EmitSoundOnDrop
+    sound:
+      path: /Audio/_Cats/Items/Handling/glass_drop.ogg
+  - type: EmitSoundOnLand
+    sound:
+      path: /Audio/_Cats/Items/Handling/glass_drop.ogg
 
 - type: entity
   parent: SheetGlassBase
