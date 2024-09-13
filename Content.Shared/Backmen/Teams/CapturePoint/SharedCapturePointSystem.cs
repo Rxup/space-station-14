@@ -23,6 +23,11 @@ public abstract class SharedCapturePointSystem : EntitySystem
         SubscribeLocalEvent<BkmCapturePointComponent, ExaminedEvent>(OnCptExamine);
     }
 
+    public virtual void UpdateSignals(Entity<BkmCapturePointComponent> ent)
+    {
+
+    }
+
     private void OnCptExamine(Entity<BkmCapturePointComponent> ent, ref ExaminedEvent args)
     {
         if (ent.Comp.CaptureCurrent >= ent.Comp.CaptureMax)
@@ -33,8 +38,9 @@ public abstract class SharedCapturePointSystem : EntitySystem
         {
             args.PushText(Loc.GetString("bkm-cpt-capturing",("team",ent.Comp.Team), ("pr", ent.Comp.CaptureCurrent / ent.Comp.CaptureMax * 100f)));
         }
-
     }
+
+    protected const string CtpFixture = "cpt-fix";
 
     private void OnMapInit(Entity<BkmCapturePointComponent> ent, ref MapInitEvent args)
     {
@@ -45,11 +51,13 @@ public abstract class SharedCapturePointSystem : EntitySystem
         _fixtures.TryCreateFixture(
             ent,
             cShape,
-            "fix1",
+            CtpFixture,
             collisionLayer: (int) (CollisionGroup.HighImpassable | CollisionGroup.Impassable |
                                    CollisionGroup.LowImpassable),
             hard: false,
             body: boundaryPhysics);
         _physics.WakeBody(ent, body: boundaryPhysics);
+
+        UpdateSignals(ent);
     }
 }
