@@ -2220,5 +2220,16 @@ namespace Content.Shared.CCVar
         /// </summary>
         public static readonly CVarDef<bool> DebugPow3rDisableParallel =
             CVarDef.Create("debug.pow3r_disable_parallel", true, CVar.SERVERONLY);
+
+        /*
+         * Ghost Respawn
+         */
+
+        public static readonly CVarDef<float> GhostRespawnTime =
+            CVarDef.Create("ghost.respawn_time", 10f, CVar.SERVERONLY);
+
+        public static readonly CVarDef<int> GhostRespawnMaxPlayers =
+            CVarDef.Create("ghost.respawn_max_players", 40, CVar.SERVERONLY);
+
     }
 }
