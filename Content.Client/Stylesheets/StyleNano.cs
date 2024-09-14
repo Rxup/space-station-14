@@ -475,7 +475,7 @@ namespace Content.Client.Stylesheets
                 Mode = StyleBoxTexture.StretchMode.Tile
             };
 
-            var lobbyBackgroundTex = resCache.GetTexture("/Textures/_Cats/Interface/Nano/lobby.png");
+            var lobbyBackgroundTex = resCache.GetTexture("/Textures/_SpaceCats/Interface/Nano/lobby.png");
             var lobbyBackground = new StyleBoxTexture
             {
                 Texture = lobbyBackgroundTex,
@@ -486,7 +486,7 @@ namespace Content.Client.Stylesheets
             lobbyBackground.SetExpandMargin(StyleBox.Margin.All, -4);
             lobbyBackground.SetContentMarginOverride(StyleBox.Margin.All, 8);
 
-            var panelBackgroundTex = resCache.GetTexture("/Textures/_Cats/Interface/Nano/panel.png");
+            var panelBackgroundTex = resCache.GetTexture("/Textures/_SpaceCats/Interface/Nano/panel.png");
             var panelBackground = new StyleBoxTexture
             {
                 Texture = panelBackgroundTex,
