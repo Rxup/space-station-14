@@ -1,6 +1,6 @@
 # Backmen&Ataraxia
 
-<p style='text-align: center;'><img alt="ASF" src="https://raw.githubusercontent.com/Rxup/space-station-14/master/Resources/Textures/Logo/commune.png" width="512px" /></p>
+<p style='text-align: center;'><img alt="Backmen&Ataraxia" src="https://raw.githubusercontent.com/Rxup/space-station-14/Resources/Textures/Logo/commune.png" width="512px" /></p>
 
 ---
 
