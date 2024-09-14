@@ -114,7 +114,7 @@ namespace Content.Server.Ghost
         private void OnGhostReturnToRoundRequest(GhostReturnToRoundRequest msg, EntitySessionEventArgs args)
         {
             var cfg = IoCManager.Resolve<IConfigurationManager>();
-            var maxPlayers = cfg.GetCVar(CVars.GhostRespawnMaxPlayers);
+            var maxPlayers = cfg.GetCVar(CCVars.GhostRespawnMaxPlayers);
             if (_playerManager.PlayerCount >= (int)maxPlayers)
             {
                 var message = Loc.GetString("ghost-respawn-max-players", ("players", maxPlayers));
@@ -147,7 +147,7 @@ namespace Content.Server.Ghost
                 return;
             }
 
-            var timeUntilRespawn = (double) cfg.GetCVar(CVars.GhostRespawnTime);
+            var timeUntilRespawn = (double) cfg.GetCVar(CCVars.GhostRespawnTime);
             var timePast = (_gameTiming.CurTime - deathTime).TotalMinutes;
             if (timePast >= timeUntilRespawn)
             {
