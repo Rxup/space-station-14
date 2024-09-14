@@ -61,15 +61,6 @@
     price: 500
   - type: UseDelay
     delay: 1
-  - type: EmitSoundOnPickup
-    sound:
-      path: /Audio/_Cats/Items/Handling/gun_pickup.ogg
-  - type: EmitSoundOnDrop
-    sound:
-      path: /Audio/_Cats/Items/Handling/gun_drop.ogg
-  - type: EmitSoundOnLand
-    sound:
-      path: /Audio/_Cats/Items/Handling/gun_drop.ogg
 
 - type: entity
   name: L6 SAW

@@ -68,12 +68,3 @@
   - type: Construction
     graph: makeshiftstunprod
     node: msstunprod
-  - type: EmitSoundOnPickup
-    sound:
-      path: /Audio/_Cats/Items/Handling/stun_baton_pickup.ogg
-  - type: EmitSoundOnDrop
-    sound:
-      path: /Audio/_Cats/Items/Handling/stun_baton_drop.ogg
-  - type: EmitSoundOnLand
-    sound:
-      path: /Audio/_Cats/Items/Handling/stun_baton_drop.ogg

@@ -19,21 +19,6 @@
     state: rpg
   - type: StaticPrice
     price: 20
-  - type: EmitSoundOnPickup
-    sound:
-      path: /Audio/_Cats/Items/Handling/grenade_pickup.ogg
-      params:
-        volume: -1
-  - type: EmitSoundOnDrop
-    sound:
-      path: /Audio/_Cats/Items/Handling/grenade_drop.ogg
-      params:
-        volume: -1
-  - type: EmitSoundOnLand
-    sound:
-      path: /Audio/_Cats/Items/Handling/grenade_drop.ogg
-      params:
-        volume: -1
 
 - type: entity
   id: CartridgeRocketSlow
@@ -54,15 +39,6 @@
       state: frag
     - type: StaticPrice
       price: 20
-    - type: EmitSoundOnPickup
-      sound:
-        path: /Audio/_Cats/Items/Handling/grenade_pickup.ogg
-    - type: EmitSoundOnDrop
-      sound:
-        path: /Audio/_Cats/Items/Handling/grenade_drop.ogg
-    - type: EmitSoundOnLand
-      sound:
-        path: /Audio/_Cats/Items/Handling/grenade_drop.ogg
 
 # Grenades
 
@@ -78,21 +54,6 @@
   - type: Item
     size: Small
   - type: Sprite
-  - type: EmitSoundOnPickup
-    sound:
-      path: /Audio/_Cats/Items/Handling/grenade_pickup.ogg
-      params:
-        volume: -1
-  - type: EmitSoundOnDrop
-    sound:
-      path: /Audio/_Cats/Items/Handling/grenade_drop.ogg
-      params:
-        volume: -1
-  - type: EmitSoundOnLand
-    sound:
-      path: /Audio/_Cats/Items/Handling/grenade_drop.ogg
-      params:
-        volume: -1
 
 - type: entity
   id: GrenadeBaton

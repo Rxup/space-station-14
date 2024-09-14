@@ -20,15 +20,6 @@
   - type: StaticPrice
     price: 500
   # No chamber because HMG may want its own
-  - type: EmitSoundOnPickup
-    sound:
-      path: /Audio/_Cats/Items/Handling/gun_pickup.ogg
-  - type: EmitSoundOnDrop
-    sound:
-      path: /Audio/_Cats/Items/Handling/gun_drop.ogg
-  - type: EmitSoundOnLand
-    sound:
-      path: /Audio/_Cats/Items/Handling/gun_drop.ogg
 
 - type: entity
   name: minigun

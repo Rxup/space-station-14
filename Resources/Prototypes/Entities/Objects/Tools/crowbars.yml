@@ -4,12 +4,6 @@
   id: BaseCrowbar
   abstract: true
   components:
-  - type: EmitSoundOnPickup
-    sound:
-      path: /Audio/_Cats/Items/Handling/crowbar_pickup.ogg
-  - type: EmitSoundOnDrop
-    sound:
-      path: /Audio/_Cats/Items/Handling/crowbar_drop.ogg
   - type: EmitSoundOnLand
     sound:
       path: /Audio/Items/crowbar_drop.ogg

@@ -48,15 +48,6 @@
       Steel: 185
   - type: StaticPrice
     price: 30
-  - type: EmitSoundOnPickup
-    sound:
-      path: /Audio/_Cats/Items/Handling/gas_tank_pickup.ogg
-  - type: EmitSoundOnDrop
-    sound:
-      path: /Audio/_Cats/Items/Handling/gas_tank_drop.ogg
-  - type: EmitSoundOnLand
-    sound:
-      path: /Audio/_Cats/Items/Handling/gas_tank_drop.ogg
 
 - type: entity
   abstract: true

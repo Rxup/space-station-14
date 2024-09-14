@@ -102,21 +102,6 @@
   - type: Spillable
     solution: beaker
   - type: DnaSubstanceTrace
-  - type: EmitSoundOnPickup
-    sound:
-      path: /Audio/_Cats/Items/Handling/beaker_pickup.ogg
-      params:
-        volume: -1
-  - type: EmitSoundOnDrop
-    sound:
-      path: /Audio/_Cats/Items/Handling/beaker_drop.ogg
-      params:
-        volume: -1
-  - type: EmitSoundOnLand
-    sound:
-      path: /Audio/_Cats/Items/Handling/beaker_drop.ogg
-      params:
-        volume: -1
 
 - type: entity
   id: VestineChemistryVial

@@ -29,15 +29,6 @@
     - Antagonists
   - type: UseDelay
     delay: 3
-  - type: EmitSoundOnPickup
-    sound:
-      path: /Audio/_Cats/Items/Handling/handcuffs_pickup.ogg
-  - type: EmitSoundOnDrop
-    sound:
-      path: /Audio/_Cats/Items/Handling/handcuffs_drop.ogg
-  - type: EmitSoundOnLand
-    sound:
-      path: /Audio/_Cats/Items/Handling/handcuffs_drop.ogg
 
 - type: entity
   name: makeshift handcuffs

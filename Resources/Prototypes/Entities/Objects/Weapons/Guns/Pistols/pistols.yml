@@ -67,15 +67,6 @@
   - type: Appearance
   - type: StaticPrice
     price: 500
-  - type: EmitSoundOnPickup
-    sound:
-      path: /Audio/_Cats/Items/Handling/gun_pickup.ogg
-  - type: EmitSoundOnDrop
-    sound:
-      path: /Audio/_Cats/Items/Handling/gun_drop.ogg
-  - type: EmitSoundOnLand
-    sound:
-      path: /Audio/_Cats/Items/Handling/gun_drop.ogg
 
 - type: entity
   name: viper
