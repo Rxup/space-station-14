@@ -1,0 +1,131 @@
+- type: marking
+  id: SnakeTeilsBig
+  bodyPart: Tail
+  markingCategory: Tail
+  followSkinColor: true
+  forcedColoring: true
+  speciesRestriction: [Zerah]
+  sprites:
+  - sprite: _borkroman/Snake/Customs.rsi/Teils48x48.rsi
+    state: Snake_teile_big
+
+- type: marking
+  id: SnakeHornBack
+  bodyPart: HeadTop
+  markingCategory: HeadTop
+  followSkinColor: true
+  forcedColoring: true
+  speciesRestriction: [Zerah]
+  sprites:
+  - sprite: _borkroman/Snake/Customs.rsi/Cust.rsi
+    state: horn_back
+
+- type: marking
+  id: SnakeHornBig
+  bodyPart: HeadTop
+  markingCategory: HeadTop
+  followSkinColor: true
+  forcedColoring: true
+  speciesRestriction: [Zerah]
+  sprites:
+  - sprite: _borkroman/Snake/Customs.rsi/Cust.rsi
+    state: horn_big
+
+- type: marking
+  id: SnakeHornDown
+  bodyPart: HeadTop
+  markingCategory: HeadTop
+  followSkinColor: true
+  forcedColoring: true
+  speciesRestriction: [Zerah]
+  sprites:
+  - sprite: _borkroman/Snake/Customs.rsi/Cust.rsi
+    state: horn_down
+
+- type: marking
+  id: SnakeHornTrio
+  bodyPart: HeadTop
+  markingCategory: HeadTop
+  followSkinColor: true
+  forcedColoring: true
+  speciesRestriction: [Zerah]
+  sprites:
+  - sprite: _borkroman/Snake/Customs.rsi/Cust.rsi
+    state: horn_trio
+
+- type: marking
+  id: SnakeHornUp
+  bodyPart: HeadTop
+  markingCategory: HeadTop
+  followSkinColor: true
+  forcedColoring: true
+  speciesRestriction: [Zerah]
+  sprites:
+  - sprite: _borkroman/Snake/Customs.rsi/Cust.rsi
+    state: horn_up
+
+- type: marking
+  id: SnakeCollar1
+  bodyPart: HeadSide
+  markingCategory: HeadSide
+  followSkinColor: true
+  forcedColoring: true
+  speciesRestriction: [Zerah]
+  sprites:
+  - sprite: _borkroman/Snake/Customs.rsi/Cust.rsi
+    state: collar1
+
+- type: marking
+  id: SnakeCollar2
+  bodyPart: HeadSide
+  markingCategory: HeadSide
+  followSkinColor: true
+  forcedColoring: true
+  speciesRestriction: [Zerah]
+  sprites:
+  - sprite: _borkroman/Snake/Customs.rsi/Cust.rsi
+    state: collar2
+
+- type: marking
+  id: SnakeEars
+  bodyPart: HeadSide
+  markingCategory: HeadSide
+  followSkinColor: true
+  forcedColoring: true
+  speciesRestriction: [Zerah]
+  sprites:
+  - sprite: _borkroman/Snake/Customs.rsi/Cust.rsi
+    state: ears
+
+- type: marking
+  id: SnakeGargona
+  bodyPart: HeadSide
+  markingCategory: HeadSide
+  followSkinColor: true
+  forcedColoring: true
+  speciesRestriction: [Zerah]
+  sprites:
+  - sprite: _borkroman/Snake/Customs.rsi/Cust.rsi
+    state: gargona
+
+- type: marking
+  id: SnakeViper
+  bodyPart: HeadSide
+  markingCategory: HeadSide
+  followSkinColor: true
+  forcedColoring: true
+  speciesRestriction: [Zerah]
+  sprites:
+  - sprite: _borkroman/Snake/Customs.rsi/Cust.rsi
+    state: viper
+
+- type: marking
+  id: SnakeBody
+  bodyPart: Chest
+  markingCategory: Chest
+  speciesRestriction: [Zerah]
+  sprites:
+  - sprite: _borkroman/Snake/Customs.rsi/Cust.rsi
+    state: body
+
+

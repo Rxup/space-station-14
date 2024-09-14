@@ -1,0 +1,53 @@
+﻿- type: soundCollection
+  id: SnakeStep
+  files:
+  - /Audio/_borkroman/Snake/ZerahStep1.ogg
+  - /Audio/_borkroman/Snake/ZerahStep2.ogg
+  - /Audio/_borkroman/Snake/ZerahStep3.ogg
+  - /Audio/_borkroman/Snake/ZerahStep4.ogg
+
+- type: soundCollection
+  id: SnakeScream
+  files:
+  - /Audio/_borkroman/Snake/ZerahScream1.ogg
+  - /Audio/_borkroman/Snake/ZerahScream2.ogg
+  - /Audio/_borkroman/Snake/ZerahScream3.ogg
+
+- type: soundCollection
+  id: SnakeLaugh
+  files:
+  - /Audio/_borkroman/Snake/ZerahHaha1.ogg
+  - /Audio/_borkroman/Snake/ZerahHaha1.ogg
+
+- type: speechSounds
+  id: SnakeSpeach
+  saySound:
+    path: /Audio/_borkroman/Snake/ZerahSpeach2.ogg
+  askSound:
+    path: /Audio/_borkroman/Snake/ZerahSpeach1.ogg
+  exclaimSound:
+    path: /Audio/_borkroman/Snake/ZerahSpeach3.ogg
+
+- type: emoteSounds
+  id: UnSexZerah
+  params:
+    variation: 0.125
+  sounds:
+    Snore:
+      collection: SnakeSpeach
+    Scream:
+      collection: SnakeScream
+    Laugh:
+      collection: SnakeLaugh
+    Honk:
+      collection: BikeHorn
+    Whistle:
+      collection: Whistles
+    Weh:
+      collection: Weh
+    Gasp:
+      collection: MaleGasp
+    DefaultDeathgasp:
+      path: /Audio/_borkroman/Snake/ZerahDead.ogg
+      params:
+        volume: 4
