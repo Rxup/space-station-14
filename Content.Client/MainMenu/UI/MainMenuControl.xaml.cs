@@ -19,6 +19,8 @@ public sealed partial class MainMenuControl : Control
 
         LayoutContainer.SetAnchorPreset(VBox, LayoutContainer.LayoutPreset.Center);
         LayoutContainer.SetGrowHorizontal(VBox, LayoutContainer.GrowDirection.Both);
+        LayoutContainer.SetMarginRight(VBox, -25);
+        LayoutContainer.SetMarginTop(VBox, 30);
         LayoutContainer.SetGrowVertical(VBox, LayoutContainer.GrowDirection.Both);
 
         var currentUserName = configMan.GetCVar(CVars.PlayerName);
