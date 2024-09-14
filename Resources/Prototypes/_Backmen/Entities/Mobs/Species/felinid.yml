@@ -21,9 +21,6 @@
         - MobMask
         layer:
         - MobLayer
-  - type: LeavesFootprints
-    footprintDecal: FootLeft
-    footprintDecalAlternative: FootRight
   - type: Body
     prototype: Felinid
   - type: Damageable
