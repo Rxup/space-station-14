@@ -2046,3 +2046,15 @@
     whitelist:
     - Chef
     - Mime
+
+# space cats
+- type: listing
+  id: UplinkTeleporter
+  name: uplink-syndicate-teleporter-name
+  description: uplink-syndicate-teleporter-desc
+  icon: { sprite: /Textures/_SpaceCats/Objects/Devices/syndicate_teleporter.rsi, state: icon }
+  productEntity: SyndicateTeleporter
+  cost:
+    Telecrystal: 12
+  categories:
+  - UplinkDisruption
