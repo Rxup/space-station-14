@@ -1,13 +1,13 @@
 ﻿<Control xmlns="https://spacestation14.io"
          xmlns:clog="clr-namespace:Content.Client.Changelog">
 
-    <TextureRect Access="Public" TexturePath="/Textures/Ohio/ohfuck.png" VerticalExpand="True" HorizontalExpand="True" Name="Background" Stretch="KeepAspectCovered"/>
+    <TextureRect Access="Public" TexturePath="/Textures/Interface/ohfuck.png" VerticalExpand="True" HorizontalExpand="True" Name="Background" Stretch="KeepAspectCovered"/>
 
     <LayoutContainer>
 
         <BoxContainer Name="VBox" Orientation="Vertical" StyleIdentifier="MainMenuBox" MinWidth="300" >
 
-            <Label Name="Title" Text="Ataraxia" Align="Center" />
+            <Label Name="Title" Text="Backmen and Ataraxia" Align="Center" />
 
             <Control MinSize="0 4" />
 
