@@ -124,7 +124,7 @@ namespace Content.Server.Ghost
                     wrappedMessage,
                     default,
                     false,
-                    args.SenderSession.ConnectedClient,
+                    args.SenderSession.Channel,
                     Color.Red);
                 return;
             }
@@ -141,7 +141,7 @@ namespace Content.Server.Ghost
                     wrappedMessage,
                     default,
                     false,
-                    args.SenderSession.ConnectedClient,
+                    args.SenderSession.Channel,
                     Color.Red);
                 _deathTime[userId] = _gameTiming.CurTime;
                 return;
@@ -161,7 +161,7 @@ namespace Content.Server.Ghost
 
                 _adminLogger.Add(LogType.Mind,
                     LogImpact.Extreme,
-                    $"{args.SenderSession.ConnectedClient.UserName} вернулся в лобби посредством гост респавна.");
+                    $"{args.SenderSession.Channel.UserName} вернулся в лобби посредством гост респавна.");
 
                 var message = Loc.GetString("ghost-respawn-window-rules-footer");
                 var wrappedMessage = Loc.GetString("chat-manager-server-wrap-message", ("message", message));
@@ -170,7 +170,7 @@ namespace Content.Server.Ghost
                     wrappedMessage,
                     default,
                     false,
-                    args.SenderSession.ConnectedClient,
+                    args.SenderSession.Channel,
                     Color.Red);
 
             }
@@ -183,7 +183,7 @@ namespace Content.Server.Ghost
                     wrappedMessage,
                     default,
                     false,
-                    args.SenderSession.ConnectedClient,
+                    args.SenderSession.Channel,
                     Color.Red);
             }
         }
