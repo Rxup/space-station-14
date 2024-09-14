@@ -2221,15 +2221,5 @@ namespace Content.Shared.CCVar
         public static readonly CVarDef<bool> DebugPow3rDisableParallel =
             CVarDef.Create("debug.pow3r_disable_parallel", true, CVar.SERVERONLY);
 
-        /*
-         * Ghost Respawn
-         */
-
-        public static readonly CVarDef<float> GhostRespawnTime =
-            CVarDef.Create("ghost.respawn_time", 15f, CVar.SERVERONLY);
-
-        public static readonly CVarDef<int> GhostRespawnMaxPlayers =
-            CVarDef.Create("ghost.respawn_max_players", 40, CVar.SERVERONLY);
-
     }
 }

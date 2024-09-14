@@ -34,16 +34,11 @@ using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
 using System.Linq;
 using System.Numerics;
-using Content.Shared.GameTicking;
-using Robust.Shared;
-using Robust.Shared.Network;
-using Content.Server.Ghost;
 
 namespace Content.Server.Ghost
 {
     public sealed class GhostSystem : SharedGhostSystem
     {
-        [Dependency] private readonly GhostSystem _ghostSystem = default!;
         [Dependency] private readonly SharedActionsSystem _actions = default!;
         [Dependency] private readonly SharedEyeSystem _eye = default!;
         [Dependency] private readonly FollowerSystem _followerSystem = default!;
@@ -101,93 +96,6 @@ namespace Content.Server.Ghost
 
             SubscribeLocalEvent<RoundEndTextAppendEvent>(_ => MakeVisible(true));
             SubscribeLocalEvent<ToggleGhostVisibilityToAllEvent>(OnToggleGhostVisibilityToAll);
-
-            SubscribeLocalEvent<RoundRestartCleanupEvent>(ResetDeathTimes);
-            SubscribeNetworkEvent<GhostReturnToRoundRequest>(OnGhostReturnToRoundRequest);
-
-        }
-
-        public readonly Dictionary<NetUserId, TimeSpan> _deathTime = new();
-         private void ResetDeathTimes(RoundRestartCleanupEvent ev)
-        {
-            _deathTime.Clear();
-        }
-
-        private void OnGhostReturnToRoundRequest(GhostReturnToRoundRequest msg, EntitySessionEventArgs args)
-        {
-            var cfg = IoCManager.Resolve<IConfigurationManager>();
-            var maxPlayers = cfg.GetCVar(CCVars.GhostRespawnMaxPlayers);
-            if (_playerManager.PlayerCount >= maxPlayers)
-            {
-                var message = Loc.GetString("ghost-respawn-max-players", ("players", maxPlayers));
-                var wrappedMessage = Loc.GetString("chat-manager-server-wrap-message", ("message", message));
-                _chatManager.ChatMessageToOne(Shared.Chat.ChatChannel.Server,
-                    message,
-                    wrappedMessage,
-                    default,
-                    false,
-                    args.SenderSession.Channel,
-                    Color.Red);
-                return;
-            }
-
-            var userId = args.SenderSession.UserId;
-            if (userId == null)
-                return;
-            if (!_deathTime.TryGetValue(userId, out var deathTime))
-            {
-                var message = Loc.GetString("ghost-respawn-bug");
-                var wrappedMessage = Loc.GetString("chat-manager-server-wrap-message", ("message", message));
-                _chatManager.ChatMessageToOne(Shared.Chat.ChatChannel.Server,
-                    message,
-                    wrappedMessage,
-                    default,
-                    false,
-                    args.SenderSession.Channel,
-                    Color.Red);
-                _deathTime[userId] = _gameTiming.CurTime;
-                return;
-            }
-
-            var timeUntilRespawn = (double) cfg.GetCVar(CCVars.GhostRespawnTime);
-            var timePast = (_gameTiming.CurTime - deathTime).TotalMinutes;
-            if (timePast >= timeUntilRespawn)
-            {
-                var ticker = Get<GameTicker>();
-                var playerMgr = IoCManager.Resolve<IPlayerManager>();
-                playerMgr.TryGetSessionById(userId, out var targetPlayer);
-
-                if (targetPlayer != null)
-                    ticker.Respawn(targetPlayer);
-                _deathTime.Remove(userId);
-
-                _adminLogger.Add(LogType.Mind,
-                    LogImpact.Extreme,
-                    $"{args.SenderSession.Channel.UserName} вернулся в лобби посредством гост респавна.");
-
-                var message = Loc.GetString("ghost-respawn-window-rules-footer");
-                var wrappedMessage = Loc.GetString("chat-manager-server-wrap-message", ("message", message));
-                _chatManager.ChatMessageToOne(Shared.Chat.ChatChannel.Server,
-                    message,
-                    wrappedMessage,
-                    default,
-                    false,
-                    args.SenderSession.Channel,
-                    Color.Red);
-
-            }
-            else
-            {
-                var message = Loc.GetString("ghost-respawn-time-left", ("time", (int) (timeUntilRespawn - timePast)));
-                var wrappedMessage = Loc.GetString("chat-manager-server-wrap-message", ("message", message));
-                _chatManager.ChatMessageToOne(Shared.Chat.ChatChannel.Server,
-                    message,
-                    wrappedMessage,
-                    default,
-                    false,
-                    args.SenderSession.Channel,
-                    Color.Red);
-            }
         }
 
         private void OnGhostHearingAction(EntityUid uid, GhostComponent component, ToggleGhostHearingActionEvent args)
@@ -671,13 +579,8 @@ namespace Content.Server.Ghost
 
             if (ghost == null)
                 return false;
-            else
-                _mind.TransferTo(mindId, ghost, mind: mind);
 
-            var player = mind.Session;
-            var userId = player!.UserId;
-            if (!_ghostSystem._deathTime.TryGetValue(userId, out _))
-                _ghostSystem._deathTime[userId] = _gameTiming.CurTime;
+            EntityManager.SystemOrNull<Backmen.Ghost.GhostReJoinSystem>()?.AttachGhost(ghost, mind.Session); // backmen: ReturnToRound
 
             return true;
         }
