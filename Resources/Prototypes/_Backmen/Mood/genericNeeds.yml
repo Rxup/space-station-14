@@ -53,8 +53,13 @@
   category: "Health"
 
 - type: moodEffect
-  id: HealthSevereDamage
+  id: HealthOkayDamage
   moodChange: -7
+  category: "Health"
+
+- type: moodEffect
+  id: HealthSevereDamage
+  moodChange: -12
   category: "Health"
 
 - type: moodEffect

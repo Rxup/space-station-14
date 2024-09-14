@@ -84,6 +84,12 @@
         - !type:GenericStatusEffect
           key: SlurredSpeech
           component: TelepathicRepeater
+        - !type:ChemAddMoodlet
+          moodPrototype: LotoTranscendence
+          conditions:
+          - !type:ReagentThreshold
+            reagent: LotophagoiOil
+            min: 6
 
 - type: reagent
   id: SoulbreakerToxin

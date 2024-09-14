@@ -1,0 +1,9 @@
+- type: guideEntry
+  id: SpecialActions
+  name: guide-entry-special-actions
+  text: "/ServerInfo/_Backmen/Guidebook/Controls/SpecialActions.xml"
+
+- type: guideEntry
+  id: Mood
+  name: guide-entry-mood
+  text: "/ServerInfo/_Backmen/Guidebook/Controls/Mood.xml"
