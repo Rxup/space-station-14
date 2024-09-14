@@ -152,6 +152,12 @@ namespace Content.Client.Options.UI.Tabs
                 KeybindsContainer.AddChild(newCheckBox);
             }
 
+            void HandleToggleAutoGetUp(BaseButton.ButtonToggledEventArgs args) // WD EDIT
+            {
+                _cfg.SetCVar(CCVars.AutoGetUp, args.Pressed);
+                _cfg.SaveToFile();
+            }
+
             AddHeader("ui-options-header-rmc");
             AddButton(CMKeyFunctions.CMUniqueAction);
 
