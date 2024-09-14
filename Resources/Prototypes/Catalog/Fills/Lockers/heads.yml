@@ -18,6 +18,8 @@
     - id: RubberStampDenied
     - id: RubberStampQm
     - id: PrinterDocFlatpack # Corvax-Printer
+    - id: PlushieLolyItsMyLife
+      prob: 0.66
 
 - type: entity
   id: LockerQuarterMasterFilled
