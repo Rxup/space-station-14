@@ -587,3 +587,6 @@ binds:
 - function: CMUniqueAction
   type: State
   key: Space
+- function: ToggleStanding # Ataraxia-edit
+  type: State
+  key: R

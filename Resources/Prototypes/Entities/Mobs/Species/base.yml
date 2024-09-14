@@ -225,6 +225,7 @@
   - type: CameraFollow # Backmen-Changes-End
     backStrength: 50
     defaultBackStrength: 20
+  - type: LayingDown
 
 - type: entity
   save: false
