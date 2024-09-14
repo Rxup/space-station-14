@@ -1,7 +1,7 @@
 - type: entity
   id: BaseMagazineGrenade
   name: grenade cartridge
-  parent: BaseItem
+  parent: [ BaseItem, BaseRestrictedContraband ]
   abstract: true
   components:
   - type: Tag
@@ -38,6 +38,21 @@
     steps: 5
     zeroVisible: false
   - type: Appearance
+  - type: EmitSoundOnPickup
+    sound:
+      path: /Audio/_Cats/Items/Handling/ammobox_pickup.ogg
+      params:
+        volume: -1
+  - type: EmitSoundOnDrop
+    sound:
+      path: /Audio/_Cats/Items/Handling/ammobox_drop.ogg
+      params:
+        volume: -1
+  - type: EmitSoundOnLand
+    sound:
+      path: /Audio/_Cats/Items/Handling/ammobox_drop.ogg
+      params:
+        volume: -1
 
 - type: entity
   id: MagazineGrenadeEmpty
@@ -45,7 +60,7 @@
   parent: BaseMagazineGrenade
   components:
   - type: BallisticAmmoProvider
-    
+
 - type: entity
   id: MagazineGrenadeFrag
   name: frag grenade cartridge

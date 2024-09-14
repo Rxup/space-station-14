@@ -79,6 +79,15 @@
             - Multitool
     sprite: Clothing/Belt/belt_overlay.rsi
   - type: Appearance
+  - type: EmitSoundOnPickup
+    sound:
+      path: /Audio/_Cats/Items/Handling/toolbelt_pickup.ogg
+  - type: EmitSoundOnDrop
+    sound:
+      path: /Audio/_Cats/Items/Handling/toolbelt_drop.ogg
+  - type: EmitSoundOnLand
+    sound:
+      path: /Audio/_Cats/Items/Handling/toolbelt_drop.ogg
 
 - type: entity
   parent: ClothingBeltStorageBase
@@ -665,7 +674,7 @@
     sprite: Clothing/Belt/securitywebbing.rsi
 
 - type: entity
-  parent: ClothingBeltStorageBase
+  parent: [ ClothingBeltStorageBase, BaseSecurityCargoContraband ]
   id: ClothingBeltMercWebbing
   name: mercenary webbing
   description: Ideal for storing everything from ammo to weapons and combat essentials.

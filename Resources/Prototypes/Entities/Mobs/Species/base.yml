@@ -142,6 +142,7 @@
     - Flashed
     - RadiationProtection
     - Drowsiness
+    - Adrenaline
   - type: Body
     prototype: Human
     requiredLegs: 2
@@ -221,6 +222,7 @@
     - CanPilot
     - FootstepSound
     - DoorBumpOpener
+  - type: Crawler
   - type: CameraFollow # Backmen-Changes-End
     backStrength: 50
     defaultBackStrength: 20

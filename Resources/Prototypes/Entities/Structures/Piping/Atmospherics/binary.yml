@@ -22,6 +22,7 @@
         !type:PipeNode
         nodeGroupID: Pipe
         pipeDirection: South
+  - type: StationAiWhitelist
 
 - type: entity
   parent: GasBinaryBase
@@ -197,6 +198,7 @@
   placement:
     mode: SnapgridCenter
   components:
+  - type: StationAiWhitelist
   - type: Sprite
     sprite: Structures/Piping/Atmospherics/pump.rsi
     layers:

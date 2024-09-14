@@ -26,6 +26,7 @@
     - category: Hunger
     - category: Thirst
     - alertType: Magboots
+    - alertType: Crawling
     - alertType: Pacified
 
 - type: entity
@@ -216,6 +217,15 @@
   description: alerts-health-desc
   minSeverity: 0
   maxSeverity: 4
+
+- type: alert
+  id: Crawling
+  icons:
+  - sprite: /Textures/Interface/Alerts/crawling.rsi
+    state: icon
+  clickEvent: !type:CrawlingAlertEvent
+  name: alerts-crawling-name
+  description: alerts-crawling-desc
 
 - type: alert
   id: BorgCrit
@@ -429,6 +439,14 @@
     state: icon
   name: alerts-pacified-name
   description: alerts-pacified-desc
+
+- type: alert
+  id: Adrenaline
+  icons:
+  - sprite: Mobs/Species/Human/organs.rsi
+    state: heart-on
+  name: alerts-adrenaline-name
+  description: alerts-adrenaline-desc
 
 - type: alert
   id: Debug1

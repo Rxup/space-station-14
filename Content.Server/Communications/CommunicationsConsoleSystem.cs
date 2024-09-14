@@ -1,9 +1,6 @@
-using System.Globalization;
-using Content.Server.Access.Systems;
 using Content.Server.Administration.Logs;
 using Content.Server.AlertLevel;
 using Content.Server.Chat.Systems;
-using Content.Server.DeviceNetwork;
 using Content.Server.DeviceNetwork.Components;
 using Content.Server.DeviceNetwork.Systems;
 using Content.Server.Interaction;
@@ -20,8 +17,8 @@ using Content.Shared.Communications;
 using Content.Shared.Database;
 using Content.Shared.DeviceNetwork;
 using Content.Shared.Emag.Components;
+using Content.Shared.IdentityManagement;
 using Content.Shared.Popups;
-using Content.Shared.Silicons.Borgs.Components;
 using Robust.Server.GameObjects;
 using Robust.Shared.Configuration;
 
@@ -34,7 +31,6 @@ namespace Content.Server.Communications
         [Dependency] private readonly ChatSystem _chatSystem = default!;
         [Dependency] private readonly DeviceNetworkSystem _deviceNetworkSystem = default!;
         [Dependency] private readonly EmergencyShuttleSystem _emergency = default!;
-        [Dependency] private readonly IdCardSystem _idCardSystem = default!;
         [Dependency] private readonly PopupSystem _popupSystem = default!;
         [Dependency] private readonly RoundEndSystem _roundEndSystem = default!;
         [Dependency] private readonly StationSystem _stationSystem = default!;
@@ -251,7 +247,7 @@ namespace Content.Server.Communications
                 }
 
                 // User has an id
-                if (_idCardSystem.TryFindIdCard(mob, out var id))
+                /*if (_idCardSystem.TryFindIdCard(mob, out var id))
                 {
                     author = $"{id.Comp.FullName} ({CultureInfo.CurrentCulture.TextInfo.ToTitleCase(id.Comp.JobTitle ?? string.Empty)})".Trim();
                 }
@@ -262,7 +258,10 @@ namespace Content.Server.Communications
                     )
                 {
                     author = Name(mob).Trim();
-                }
+                }*/
+                var tryGetIdentityShortInfoEvent = new TryGetIdentityShortInfoEvent(uid, mob);
+                RaiseLocalEvent(tryGetIdentityShortInfoEvent);
+                author = tryGetIdentityShortInfoEvent.Title;
             }
 
             comp.AnnouncementCooldownRemaining = comp.Delay;

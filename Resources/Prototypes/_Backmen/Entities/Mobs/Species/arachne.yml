@@ -102,6 +102,8 @@
   - type: Damageable
     damageContainer: HalfSpirit
     damageModifierSet: HalfSpirit
+  - type: TypingIndicator
+    proto: spiders
   - type: Speech
     speechSounds: Alto
   - type: DamageOnHighSpeedImpact
@@ -116,7 +118,7 @@
     tags:
     - CanPilot
     - DoorBumpOpener
-  - type: ClothingRequiredStepTriggerImmune
+  - type: ProtectedFromStepTriggers
     slots: WITHOUT_POCKET
   - type: Bloodstream
     bloodReagent: DemonsBlood

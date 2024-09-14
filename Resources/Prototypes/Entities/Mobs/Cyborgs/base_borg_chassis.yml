@@ -235,7 +235,7 @@
     guides:
     - Cyborgs
     - Robotics
-  - type: StepTriggerImmune
+  - type: ProtectedFromStepTriggers
   - type: DamageOnInteractProtection
     damageProtection:
       flatReductions:
@@ -286,6 +286,7 @@
     access: [["Command"], ["Research"]]
   - type: ShowJobIcons
   - type: ShowMindShieldIcons
+  - type: StationAiVision
 
 - type: entity
   id: BaseBorgChassisSyndicate

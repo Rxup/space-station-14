@@ -186,7 +186,7 @@ binds:
   mod1: Alt
 - function: OpenCharacterMenu
   type: State
-  key: C
+  key: U
 - function: OpenEmotesMenu
   type: State
   key: Y
@@ -584,6 +584,9 @@ binds:
   type: State
   key: MouseRight
   canFocus: true
+- function: ToggleCrawling
+  type: State
+  key: C
 - function: CMUniqueAction
   type: State
   key: Space

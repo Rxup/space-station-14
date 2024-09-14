@@ -321,6 +321,13 @@ public sealed class SurveillanceCameraSystem : EntitySystem
         {
             AddActiveViewer(camera, player, monitor, component);
         }
+
+        // Add monitor without viewers
+        if (players.Count == 0 && monitor != null)
+        {
+            component.ActiveMonitors.Add(monitor.Value);
+            UpdateVisuals(camera, component);
+        }
     }
 
     // Switch the set of active viewers from one camera to another.
@@ -350,12 +357,11 @@ public sealed class SurveillanceCameraSystem : EntitySystem
     public void RemoveActiveViewer(EntityUid camera, EntityUid player, EntityUid? monitor = null, SurveillanceCameraComponent? component = null, ActorComponent? actor = null)
     {
         if (!Resolve(camera, ref component))
-        {
             return;
-        }
 
-        if(Resolve(player, ref actor, false))
+        if (Resolve(player, ref actor))
             _viewSubscriberSystem.RemoveViewSubscriber(camera, actor.PlayerSession);
+
         component.ActiveViewers.Remove(player);
 
         if (monitor != null)
@@ -376,6 +382,13 @@ public sealed class SurveillanceCameraSystem : EntitySystem
         foreach (var player in players)
         {
             RemoveActiveViewer(camera, player, monitor, component);
+        }
+
+        // Even if not removing any viewers, remove the monitor
+        if (players.Count == 0 && monitor != null)
+        {
+            component.ActiveMonitors.Remove(monitor.Value);
+            UpdateVisuals(camera, component);
         }
     }
 

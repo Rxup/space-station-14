@@ -2,8 +2,7 @@
   id: BackmenAspid
   mapName: 'NCS Aspid'
   mapPath: /Maps/Backmen/backmen_aspid.yml
-  minPlayers: 20
-  maxPlayers: 60
+  minPlayers: 0
   stations:
     Aspid:
       stationProto: StandardNanotrasenStation

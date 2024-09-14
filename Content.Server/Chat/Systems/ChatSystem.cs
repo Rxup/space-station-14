@@ -344,7 +344,8 @@ public sealed partial class ChatSystem : SharedChatSystem
             if (sender == Loc.GetString("admin-announce-announcer-default"))
                 announcementSound = new SoundPathSpecifier(CentComAnnouncementSound); // Corvax-Announcements: Support custom alert sound from admin panel
             announcementSound ??= new SoundPathSpecifier(DefaultAnnouncementSound);
-            var announcementFilename = announcementSound.GetSound();
+
+            var announcementFilename = _audio.GetSound(announcementSound);
             var announcementEv = new AnnouncementSpokeEvent(Filter.Broadcast(), announcementFilename, announcementSound?.Params ?? AudioParams.Default.WithVolume(-2f), message);
             RaiseLocalEvent(announcementEv);
         }
@@ -417,7 +418,7 @@ public sealed partial class ChatSystem : SharedChatSystem
         if (announcementSound != null || playDefaultSound) // Corvax-TTS
         {
             announcementSound ??= new SoundPathSpecifier(DefaultAnnouncementSound);
-            var announcementEv = new AnnouncementSpokeEvent(filter, announcementSound.GetSound(), AudioParams.Default.WithVolume(-2f), message);
+            var announcementEv = new AnnouncementSpokeEvent(filter, _audio.GetSound(announcementSound), AudioParams.Default.WithVolume(-2f), message);
             RaiseLocalEvent(announcementEv);
         }
 
