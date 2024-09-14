@@ -179,7 +179,6 @@ namespace Content.Client.Ghost
         public void ToggleGhostVisibility(bool? visibility = null)
         {
             GhostVisibility = visibility ?? !GhostVisibility;
-            GhostVisibility = !GhostVisibility;
         }
 
         public void ReturnToRound()

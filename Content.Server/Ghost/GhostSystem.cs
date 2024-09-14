@@ -37,11 +37,13 @@ using System.Numerics;
 using Content.Shared.GameTicking;
 using Robust.Shared;
 using Robust.Shared.Network;
+using Content.Server.Ghost;
 
 namespace Content.Server.Ghost
 {
     public sealed class GhostSystem : SharedGhostSystem
     {
+        [Dependency] private readonly GhostSystem _ghostSystem = default!;
         [Dependency] private readonly SharedActionsSystem _actions = default!;
         [Dependency] private readonly SharedEyeSystem _eye = default!;
         [Dependency] private readonly FollowerSystem _followerSystem = default!;
@@ -115,7 +117,7 @@ namespace Content.Server.Ghost
         {
             var cfg = IoCManager.Resolve<IConfigurationManager>();
             var maxPlayers = cfg.GetCVar(CCVars.GhostRespawnMaxPlayers);
-            if (_playerManager.PlayerCount >= (int)maxPlayers)
+            if (_playerManager.PlayerCount >= maxPlayers)
             {
                 var message = Loc.GetString("ghost-respawn-max-players", ("players", maxPlayers));
                 var wrappedMessage = Loc.GetString("chat-manager-server-wrap-message", ("message", message));
@@ -669,6 +671,13 @@ namespace Content.Server.Ghost
 
             if (ghost == null)
                 return false;
+            else
+                _mind.TransferTo(mindId, ghost, mind: mind);
+
+            var player = mind.Session;
+            var userId = player!.UserId;
+            if (!_ghostSystem._deathTime.TryGetValue(userId, out _))
+                _ghostSystem._deathTime[userId] = _gameTiming.CurTime;
 
             return true;
         }
