@@ -48,6 +48,7 @@
     sprite: Structures/Storage/suit_storage.rsi
     layers:
     - state: base
+    - state: security
     - state: door
       map: ["enum.StorageVisualLayers.Door"]
     - state: welded
@@ -56,7 +57,6 @@
     - state: locked
       map: ["enum.LockVisualLayers.Lock"]
       shader: unshaded
-    - state: security
   - type: StorageFill
     contents:
         - id: OxygenTankFilled
@@ -75,6 +75,7 @@
     sprite: Structures/Storage/suit_storage.rsi
     layers:
     - state: base
+    - state: syndicate
     - state: door
       map: ["enum.StorageVisualLayers.Door"]
     - state: welded
@@ -83,7 +84,6 @@
     - state: locked
       map: ["enum.LockVisualLayers.Lock"]
       shader: unshaded
-    - state: syndicate
   - type: StorageFill
     contents:
         - id: OxygenTankFilled
@@ -102,6 +102,7 @@
     sprite: Structures/Storage/suit_storage.rsi
     layers:
     - state: base
+    - state: syndicate
     - state: door
       map: ["enum.StorageVisualLayers.Door"]
     - state: welded
@@ -110,7 +111,6 @@
     - state: locked
       map: ["enum.LockVisualLayers.Lock"]
       shader: unshaded
-    - state: syndicate
   - type: StorageFill
     contents:
         - id: OxygenTankFilled
@@ -154,6 +154,7 @@
     sprite: Structures/Storage/suit_storage.rsi
     layers:
     - state: base
+    - state: engi
     - state: door
       map: ["enum.StorageVisualLayers.Door"]
     - state: welded
@@ -162,7 +163,6 @@
     - state: locked
       map: ["enum.LockVisualLayers.Lock"]
       shader: unshaded
-    - state: engi
   - type: StorageFill
     contents:
         - id: OxygenTankFilled
@@ -183,6 +183,7 @@
     sprite: Structures/Storage/suit_storage.rsi
     layers:
     - state: base
+    - state: engi
     - state: door
       map: ["enum.StorageVisualLayers.Door"]
     - state: welded
@@ -191,7 +192,6 @@
     - state: locked
       map: ["enum.LockVisualLayers.Lock"]
       shader: unshaded
-    - state: engi
   - type: StorageFill
     contents:
         - id: OxygenTankFilled
@@ -211,6 +211,7 @@
     sprite: Structures/Storage/suit_storage.rsi
     layers:
     - state: base
+    - state: security
     - state: door
       map: ["enum.StorageVisualLayers.Door"]
     - state: welded
@@ -219,7 +220,6 @@
     - state: locked
       map: ["enum.LockVisualLayers.Lock"]
       shader: unshaded
-    - state: security
   - type: StorageFill
     contents:
         - id: OxygenTankFilled
@@ -239,6 +239,7 @@
     sprite: Structures/Storage/suit_storage.rsi
     layers:
     - state: base
+    - state: command
     - state: door
       map: ["enum.StorageVisualLayers.Door"]
     - state: welded
@@ -247,7 +248,6 @@
     - state: locked
       map: ["enum.LockVisualLayers.Lock"]
       shader: unshaded
-    - state: command
   - type: EntityTableContainerFill
     containers:
       entity_storage: !type:NestedSelector
@@ -266,6 +266,7 @@
     sprite: Structures/Storage/suit_storage.rsi
     layers:
     - state: base
+    - state: command
     - state: door
       map: ["enum.StorageVisualLayers.Door"]
     - state: welded
@@ -274,7 +275,6 @@
     - state: locked
       map: ["enum.LockVisualLayers.Lock"]
       shader: unshaded
-    - state: command
   - type: EntityTableContainerFill
     containers:
       entity_storage: !type:NestedSelector
@@ -293,6 +293,7 @@
     sprite: Structures/Storage/suit_storage.rsi
     layers:
     - state: base
+    - state: command
     - state: door
       map: ["enum.StorageVisualLayers.Door"]
     - state: welded
@@ -301,7 +302,6 @@
     - state: locked
       map: ["enum.LockVisualLayers.Lock"]
       shader: unshaded
-    - state: command
   - type: EntityTableContainerFill
     containers:
       entity_storage: !type:NestedSelector
@@ -320,6 +320,7 @@
     sprite: Structures/Storage/suit_storage.rsi
     layers:
     - state: base
+    - state: command
     - state: door
       map: ["enum.StorageVisualLayers.Door"]
     - state: welded
@@ -328,7 +329,6 @@
     - state: locked
       map: ["enum.LockVisualLayers.Lock"]
       shader: unshaded
-    - state: command
   - type: EntityTableContainerFill
     containers:
       entity_storage: !type:NestedSelector
@@ -347,6 +347,7 @@
     sprite: Structures/Storage/suit_storage.rsi
     layers:
     - state: base
+    - state: security
     - state: door
       map: ["enum.StorageVisualLayers.Door"]
     - state: welded
@@ -355,7 +356,6 @@
     - state: locked
       map: ["enum.LockVisualLayers.Lock"]
       shader: unshaded
-    - state: security
   - type: StorageFill
     contents:
         - id: OxygenTankFilled
@@ -375,6 +375,7 @@
     sprite: Structures/Storage/suit_storage.rsi
     layers:
     - state: base
+    - state: command
     - state: door
       map: ["enum.StorageVisualLayers.Door"]
     - state: welded
@@ -383,7 +384,6 @@
     - state: locked
       map: ["enum.LockVisualLayers.Lock"]
       shader: unshaded
-    - state: command
   - type: EntityTableContainerFill
     containers:
       entity_storage: !type:NestedSelector
@@ -402,6 +402,7 @@
     sprite: Structures/Storage/suit_storage.rsi
     layers:
     - state: base
+    - state: cargo
     - state: door
       map: ["enum.StorageVisualLayers.Door"]
     - state: welded
@@ -410,7 +411,6 @@
     - state: locked
       map: ["enum.LockVisualLayers.Lock"]
       shader: unshaded
-    - state: cargo
   - type: EntityTableContainerFill
     containers:
       entity_storage: !type:NestedSelector
@@ -429,6 +429,7 @@
     sprite: Structures/Storage/suit_storage.rsi
     layers:
     - state: base
+    - state: syndicate
     - state: door
       map: ["enum.StorageVisualLayers.Door"]
     - state: welded
@@ -437,7 +438,6 @@
     - state: locked
       map: ["enum.LockVisualLayers.Lock"]
       shader: unshaded
-    - state: syndicate
   - type: StorageFill
     contents:
         - id: OxygenTankFilled
@@ -456,6 +456,7 @@
     sprite: Structures/Storage/suit_storage.rsi
     layers:
     - state: base
+    - state: syndicate
     - state: door
       map: ["enum.StorageVisualLayers.Door"]
     - state: welded
@@ -464,7 +465,6 @@
     - state: locked
       map: ["enum.LockVisualLayers.Lock"]
       shader: unshaded
-    - state: syndicate
   - type: StorageFill
     contents:
         - id: OxygenTankFilled
@@ -482,6 +482,7 @@
     sprite: Structures/Storage/suit_storage.rsi
     layers:
     - state: base
+    - state: scientists
     - state: door
       map: ["enum.StorageVisualLayers.Door"]
     - state: welded
@@ -490,7 +491,6 @@
     - state: locked
       map: ["enum.LockVisualLayers.Lock"]
       shader: unshaded
-    - state: scientists
   - type: StorageFill
     contents:
         - id: OxygenTankFilled
