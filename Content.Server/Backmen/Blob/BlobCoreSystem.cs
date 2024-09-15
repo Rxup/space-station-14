@@ -9,7 +9,6 @@ using Content.Server.Backmen.GameTicking.Rules.Components;
 using Content.Server.Backmen.Objectives;
 using Content.Server.Explosion.EntitySystems;
 using Content.Server.GameTicking;
-using Content.Server.Objectives.Systems;
 using Content.Server.RoundEnd;
 using Content.Server.Station.Systems;
 using Content.Server.Store.Systems;
@@ -50,7 +49,6 @@ public sealed class BlobCoreSystem : EntitySystem
     [Dependency] private readonly ActionsSystem _action = default!;
     [Dependency] private readonly MapSystem _map = default!;
     [Dependency] private readonly StoreSystem _storeSystem = default!;
-    [Dependency] private readonly NumberObjectiveSystem _number = default!;
 
     private EntityQuery<BlobTileComponent> _tile;
     private EntityQuery<BlobFactoryComponent> _factory;
