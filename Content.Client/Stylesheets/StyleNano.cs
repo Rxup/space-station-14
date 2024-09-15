@@ -95,7 +95,7 @@ namespace Content.Client.Stylesheets
         public static readonly Color ConcerningOrangeFore = Color.FromHex("#A5762F");
         public static readonly Color DangerousRedFore = Color.FromHex("#BB3232");
         public static readonly Color DisabledFore = Color.FromHex("#5A5A5A");
-
+        
         // WD EDIT
         public static readonly Color ButtonColorDefault = Color.FromHex("#29282f");
         public static readonly Color ButtonColorDefaultRed = Color.FromHex("#992327");
@@ -383,38 +383,17 @@ namespace Content.Client.Stylesheets
             actionSearchBox.SetPatchMargin(StyleBox.Margin.All, 3);
             actionSearchBox.SetContentMarginOverride(StyleBox.Margin.Horizontal, 5);
 
-            var tabContainerPanelTex = resCache.GetTexture("/Textures/Interface/Nano/tabcontainer_panel.png");
+            var tabContainerPanelTex = resCache.GetTexture("/Textures/_White/Interface/Nano/lobby.png"); // WD EDIT
             var tabContainerPanel = new StyleBoxTexture
             {
                 Texture = tabContainerPanelTex,
-                // WD-EDIT start
-                Mode = StyleBoxTexture.StretchMode.Tile
-                // WD-EDIT end
             };
-            tabContainerPanel.SetPatchMargin(StyleBox.Margin.All, 3);
-            // WD-EDIT start
-            tabContainerPanel.SetExpandMargin(StyleBox.Margin.All, -3);
-            // WD-EDIT end
+            tabContainerPanel.SetPatchMargin(StyleBox.Margin.All, 2);
 
-            var tabContainerBoxActive = new StyleBoxTexture
-            {
-                Texture = resCache.GetTexture("/Textures/Interface/Nano/button.svg.96dpi.png"),
-                Modulate = ButtonColorDefault
-            };
-            tabContainerBoxActive.SetPatchMargin(StyleBox.Margin.All, 10);
-            tabContainerBoxActive.SetPadding(StyleBox.Margin.All, 1);
-            tabContainerBoxActive.SetContentMarginOverride(StyleBox.Margin.Vertical, 2);
-            tabContainerBoxActive.SetContentMarginOverride(StyleBox.Margin.Horizontal, 14);
-
-            var tabContainerBoxInactive = new StyleBoxTexture
-            {
-                Texture = resCache.GetTexture("/Textures/Interface/Nano/button.svg.96dpi.png"),
-                Modulate = ButtonColorPressed
-            };
-            tabContainerBoxInactive.SetPatchMargin(StyleBox.Margin.All, 10);
-            tabContainerBoxInactive.SetPadding(StyleBox.Margin.All, 1);
-            tabContainerBoxInactive.SetContentMarginOverride(StyleBox.Margin.Vertical, 2);
-            tabContainerBoxInactive.SetContentMarginOverride(StyleBox.Margin.Horizontal, 14);
+            var tabContainerBoxActive = new StyleBoxFlat { BackgroundColor = new Color(64, 64, 64) };
+            tabContainerBoxActive.SetContentMarginOverride(StyleBox.Margin.Horizontal, 5);
+            var tabContainerBoxInactive = new StyleBoxFlat { BackgroundColor = new Color(32, 32, 32) };
+            tabContainerBoxInactive.SetContentMarginOverride(StyleBox.Margin.Horizontal, 5);
 
             var progressBarBackground = new StyleBoxFlat
             {
