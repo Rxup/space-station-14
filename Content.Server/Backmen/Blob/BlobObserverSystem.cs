@@ -1,4 +1,3 @@
-using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Numerics;
 using Content.Server.Actions;
@@ -353,7 +352,7 @@ public sealed class BlobObserverSystem : SharedBlobObserverSystem
         }
 
         QueueDel(blobTile.Value);
-        var newCore = EntityManager.SpawnEntity(blobCoreComponent.CoreBlobTile, args.Target);
+        var newCore = EntityManager.SpawnEntity(blobCoreComponent.TilePrototypes[BlobTileType.Core], args.Target);
 
         blobCoreComponent.CanSplit = false;
         _action.RemoveAction(args.Action);
@@ -524,36 +523,40 @@ public sealed class BlobObserverSystem : SharedBlobObserverSystem
     private bool CheckValidBlobTile(
         Entity<BlobTileComponent> tile,
         Entity<BlobNodeComponent>? node,
-        BlobTileType newTile,
-        BlobTileType checkTile,
-        EntityUid performer)
+        BlobTransformTileActionEvent args)
     {
         var coords = Transform(tile).Coordinates;
 
-        if (tile.Comp.Core == null || tile.Comp.BlobTileType == newTile)
+        var newTile = args.TileType;
+        var checkTile = args.TransformFrom;
+        var performer = args.Performer;
+
+        if (tile.Comp.Core == null || tile.Comp.BlobTileType == newTile || tile.Comp.BlobTileType == BlobTileType.Core)
         {
             _popup.PopupCoordinates(Loc.GetString("blob-target-normal-blob-invalid"), coords, performer, PopupType.Large);
             return false;
         }
 
+        var core = tile.Comp.Core.Value;
+
         if (checkTile == BlobTileType.Invalid)
             return true;
 
-        if (node == null)
+        if (newTile == BlobTileType.Node)
         {
-            if (newTile == BlobTileType.Node)
+            if (_blobCoreSystem.GetNearNode(coords, core.Comp.NodeRadiusLimit) == null)
                 return true;
 
+            _popup.PopupCoordinates(Loc.GetString("blob-target-close-to-node"), coords, performer, PopupType.Large);
+            return false;
+        }
+
+        if (node == null)
+        {
             _popup.PopupCoordinates(Loc.GetString("blob-target-nearby-not-node"),
                 coords,
                 performer,
                 PopupType.Large);
-            return false;
-        }
-
-        if (newTile == BlobTileType.Node)
-        {
-            _popup.PopupCoordinates(Loc.GetString("blob-target-close-to-node"), coords, performer, PopupType.Large);
             return false;
         }
 
@@ -563,41 +566,33 @@ public sealed class BlobObserverSystem : SharedBlobObserverSystem
             return false;
         }
 
-        foreach (var specialTile in node.Value.Comp.ConnectedTiles)
-        {
-            if (specialTile.Key != newTile || specialTile.Value == null ||
-                TerminatingOrDeleted(specialTile.Value.Value))
-                continue;
+        var connectedTile = node.Value.Comp.ConnectedTiles[newTile];
+        if (connectedTile == null || TerminatingOrDeleted(connectedTile))
+            return true;
 
-            _popup.PopupCoordinates(Loc.GetString("blob-target-already-connected"),
-                coords,
-                performer,
-                PopupType.Large);
-            return false;
-        }
-
-        return true;
+        _popup.PopupCoordinates(Loc.GetString("blob-target-already-connected"),
+            coords,
+            performer,
+            PopupType.Large);
+        return false;
     }
 
-    private bool TryTransformSpecialTile(
-        Entity<BlobCoreComponent> blobCore,
-        BlobTileType tileType,
-        BlobTileType checkTile,
-        WorldTargetActionEvent args)
+    private void TryTransformSpecialTile(Entity<BlobCoreComponent> blobCore, BlobTransformTileActionEvent args)
     {
         if (!TryGetTargetBlobTile(args, out var blobTile) || blobTile?.Comp.Core == null)
-            return false;
+            return;
 
         var coords = Transform(blobTile.Value).Coordinates;
+        var tileType = args.TileType;
         var nearNode = _blobCoreSystem.GetNearNode(coords);
 
-        if (!CheckValidBlobTile(blobTile.Value, nearNode, tileType, checkTile, args.Performer))
-            return false;
+        if (!CheckValidBlobTile(blobTile.Value, nearNode, args))
+            return;
 
         if (!_blobCoreSystem.TryUseAbility(blobCore, blobCore.Comp.BlobTileCosts[tileType], coords))
-            return false;
+            return;
 
-        return _blobCoreSystem.TransformBlobTile(
+        _blobCoreSystem.TransformBlobTile(
             blobTile,
             blobTile.Value.Comp.Core.Value,
             nearNode,
@@ -607,12 +602,6 @@ public sealed class BlobObserverSystem : SharedBlobObserverSystem
 
     private void OnTileTransform(EntityUid uid, BlobCoreComponent blobCoreComponent, BlobTransformTileActionEvent args)
     {
-        if (args.Handled)
-            return;
-
-        if (!TryTransformSpecialTile((uid, blobCoreComponent), args.TileType, args.TransformFrom, args))
-            return;
-
-        args.Handled = true;
+        TryTransformSpecialTile((uid, blobCoreComponent), args);
     }
 }

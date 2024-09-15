@@ -136,6 +136,8 @@ public sealed partial class BlobCoreComponent : Component
     [DataField]
     public Dictionary<BlobTileType, FixedPoint2> BlobTileCosts = new()
     {
+        {BlobTileType.Core, 0},
+        {BlobTileType.Invalid, 0},
         {BlobTileType.Resource, 60},
         {BlobTileType.Factory, 80},
         {BlobTileType.Node, 50},
