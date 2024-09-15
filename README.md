@@ -1,5 +1,3 @@
-# Backmen&Ataraxia
-
 [<img src="https://imagizer.imageshack.com/img923/7392/pIWR7b.png" alt="ASF" width="989" align="center">](https://github.com/Rxup/space-station-14)
 
 ---
@@ -17,7 +15,7 @@ Space Station 14 - это ремейк SS13, который работает н�
 **Discord Server**<br>В космосе вас никто не услышит.
 
 [<img src="https://imagizer.imageshack.com/img922/4959/8KTh9r.png" alt="Wiki" width="150" align="left">](https://wiki.backmen.ru)
-**Wiki**<br>Что за блобы и с чем их едят?.
+**Wiki**<br>Что за блобы и с чем их едят?
 
 ## Сборка
 
@@ -54,10 +52,10 @@ enabled = true
 api = "https://gigachat.devices.sberbank.ru/api/v1/"
 model = "GigaChat"
 token = ""
-giga_token = ["ВСТАВИТЬ СЮДА СЕКРЕТНЫЙ КЛЮЧ"](https://developers.sber.ru/portal/products/gigachat-api)
-```
+giga_token = "ВСТАВИТЬ СЮДА СЕКРЕТНЫЙ КЛЮЧ"
 
-токен запрашивается автоматически по секретному ключу и автоматически обновляется.
+[Токен](https://developers.sber.ru/portal/products/gigachat-api)
+ запрашивается автоматически по секретному ключу и автоматически обновляется.
 
 ---
 
@@ -67,7 +65,7 @@ giga_token = ["ВСТАВИТЬ СЮДА СЕКРЕТНЫЙ КЛЮЧ"](https://d
 См. [LICENSE-AGPLv3](./LICENSE-AGPLv3.txt).
 
 Содержимое, добавленное в этот репозиторий до коммита 254687f3d1d1a02aa9dba61d7c114c73dc8e4754 (`17 June 2024 12:00:00 UTC`) распространяется по лицензии MIT, если не указано иное.
-См. [LICENSE-MIT](./LICENSE-MIT.txt).
+См. [LICENSE-MIT](./LICENSE-MIT.TXT).
 
 Большинство ресурсов лицензировано под [CC-BY-SA 3.0](https://creativecommons.org/licenses/by-sa/3.0/), если не указано иное. Лицензия и авторские права на ресурсах указаны в файле метаданных.
 [Example](./Resources/Textures/Objects/Tools/crowbar.rsi/meta.json).
