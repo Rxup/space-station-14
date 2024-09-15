@@ -1,0 +1,22 @@
+﻿<DefaultWindow xmlns="https://spacestation14.io"
+               xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+               Title="{Loc ghost-respawn-window-title}">
+    <BoxContainer Orientation="Vertical" SeparationOverride="4" MinWidth="150">
+        <BoxContainer Orientation="Horizontal">
+            <Label Text="{Loc 'ghost-respawn-window-station-select'}" />
+            <Label Text=" " />
+            <OptionButton Name="StationSelect" VerticalExpand="True"  Margin ="0 4" />
+        </BoxContainer>
+        <BoxContainer Orientation="Horizontal">
+            <Label Text="{Loc 'ghost-respawn-window-character-select'}" />
+            <Label Text=" " />
+            <OptionButton Name="CharacterSelect" VerticalExpand="True"  Margin ="0 4" />
+            <SpriteView Name="CharacterView" Scale="5 5"/>
+        </BoxContainer>
+        <Button Name="UseSelectedCharacter"
+                Text="{Loc 'ghost-respawn-window-character-use-character'}" />
+        <Button Name="UseRandomCharacter"
+                Text="{Loc 'ghost-respawn-window-character-use-character-random'}" />
+        <RichTextLabel Text="{Loc 'ghost-respawn-window-rules-footer'}" MaxWidth="400"></RichTextLabel>
+    </BoxContainer>
+</DefaultWindow>
