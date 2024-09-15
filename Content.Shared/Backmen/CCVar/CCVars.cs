@@ -161,4 +161,13 @@ public sealed class CCVars
     public static readonly CVarDef<int> SpecForceDelay =
         CVarDef.Create("specforce.delay", 2, CVar.SERVERONLY);
 
+    /*
+     * Ghost Respawn
+     */
+
+    public static readonly CVarDef<float> GhostRespawnTime =
+        CVarDef.Create("ghost.respawn_time", 15f, CVar.SERVER | CVar.REPLICATED);
+
+    public static readonly CVarDef<int> GhostRespawnMaxPlayers =
+        CVarDef.Create("ghost.respawn_max_players", 40, CVar.SERVERONLY);
 }
