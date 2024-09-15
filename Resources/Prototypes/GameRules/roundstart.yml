@@ -3,6 +3,7 @@
   abstract: true
   components:
   - type: GameRule
+  - type: Immersive # Ataraxia
 
 - type: entity
   parent: BaseGameRule
