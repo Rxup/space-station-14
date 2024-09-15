@@ -679,6 +679,8 @@ namespace Content.Server.Ghost
             if (!_ghostSystem._deathTime.TryGetValue(userId, out _))
                 _ghostSystem._deathTime[userId] = _gameTiming.CurTime;
 
+            EntityManager.SystemOrNull<Backmen.Ghost.GhostReJoinSystem>()?.AttachGhost(ghost, mind.Session); // backmen: ReturnToRound
+
             return true;
         }
     }

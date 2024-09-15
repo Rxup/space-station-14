@@ -2222,21 +2222,10 @@ namespace Content.Shared.CCVar
             CVarDef.Create("debug.pow3r_disable_parallel", true, CVar.SERVERONLY);
 
         /*
-         * Ghost Respawn - ataraxia
-         */
-
-        public static readonly CVarDef<float> GhostRespawnTime =
-            CVarDef.Create("ghost.respawn_time", 15f, CVar.SERVERONLY);
-
-        public static readonly CVarDef<int> GhostRespawnMaxPlayers =
-            CVarDef.Create("ghost.respawn_max_players", 40, CVar.SERVERONLY);
-
-        /*
          * Bind Standing - Ataraxia
          */
 
         public static readonly CVarDef<bool> AutoGetUp =
             CVarDef.Create("white.auto_get_up", true, CVar.CLIENT | CVar.ARCHIVE | CVar.REPLICATED);
-
     }
 }
