@@ -14,3 +14,9 @@ revenant-soul-finish-harvest = { CAPITALIZE($target) } падает на зем�
 revenant-user-interface-title = Магазин способностей
 revenant-user-interface-essence-amount = [color=plum]{ $amount }[/color] украденной эссенции
 revenant-user-interface-cost = { $price } эссенции
+
+item-jump-into-pocket = {$name} прыгает в ваш карман!
+item-jump-into-hands = {$name} прыгает вам в руки!
+revenant-animate-item-animate = {$name} становится агрессивным!
+revenant-animate-item-inanimate = {$name} становится безжизненным.
+

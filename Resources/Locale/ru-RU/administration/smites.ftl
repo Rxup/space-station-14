@@ -16,6 +16,9 @@ admin-smite-lung-removal-self = Вы не можете вдохнуть!
 
 ## Smite names
 
+
+admin-trick-make-animate-description = Оживите предмет и сделайте его враждебным на 60 секунд.
+admin-trick-make-inanimate-description = Сделайте анимированный предмет неодушевленным.
 admin-smite-explode-name = Взрыв
 admin-smite-chess-dimension-name = Шахматное измерение
 admin-smite-set-alight-name = Воспламенить

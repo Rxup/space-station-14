@@ -207,6 +207,29 @@ public sealed partial class RevenantComponent : Component
     public EntityWhitelist? MalfunctionBlacklist;
     #endregion
 
+    #region Animate
+    [ViewVariables(VVAccess.ReadWrite), DataField]
+    public FixedPoint2 AnimateCost = 50;
+
+    /// <summary>
+    /// How long an item should be animated for
+    /// </summary>
+    [ViewVariables(VVAccess.ReadWrite), DataField]
+    public TimeSpan AnimateTime = TimeSpan.FromSeconds(15);
+
+    [ViewVariables(VVAccess.ReadWrite), DataField]
+    public Vector2 AnimateDebuffs = new(3, 8);
+
+    public const float DefaultAnimateWalkSpeed = 1.5f;
+    public const float DefaultAnimateSprintSpeed = 3.5f;
+
+    [ViewVariables(VVAccess.ReadWrite), DataField]
+    public float AnimateWalkSpeed = DefaultAnimateWalkSpeed;
+
+    [ViewVariables(VVAccess.ReadWrite), DataField]
+    public float AnimateSprintSpeed = DefaultAnimateSprintSpeed;
+    #endregion
+
     [DataField]
     public ProtoId<AlertPrototype> EssenceAlert = "Essence";
 
