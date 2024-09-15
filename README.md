@@ -53,6 +53,7 @@ api = "https://gigachat.devices.sberbank.ru/api/v1/"
 model = "GigaChat"
 token = ""
 giga_token = "ВСТАВИТЬ СЮДА СЕКРЕТНЫЙ КЛЮЧ"
+```
 
 [Токен](https://developers.sber.ru/portal/products/gigachat-api)
  запрашивается автоматически по секретному ключу и автоматически обновляется.
