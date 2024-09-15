@@ -18,46 +18,38 @@ public sealed partial class BlobObserverControllerComponent : Component
 [RegisterComponent, NetworkedComponent, AutoGenerateComponentState(false)]
 public sealed partial class BlobObserverComponent : Component
 {
-    [ViewVariables(VVAccess.ReadOnly)]
+    [ViewVariables]
     public bool IsProcessingMoveEvent;
 
-    [ViewVariables(VVAccess.ReadOnly)]
+    [ViewVariables]
     public Entity<BlobCoreComponent>? Core = default!;
 
-    [ViewVariables(VVAccess.ReadOnly)]
+    [ViewVariables]
     public bool CanMove = true;
 
-    [ViewVariables(VVAccess.ReadOnly), AutoNetworkedField]
+    [ViewVariables, AutoNetworkedField]
     public BlobChemType SelectedChemId = BlobChemType.ReactiveSpines;
 
     public override bool SendOnlyToOwner => true;
 
-    [ViewVariables(VVAccess.ReadOnly), AutoNetworkedField]
+    [ViewVariables, AutoNetworkedField]
     public EntityUid VirtualItem = EntityUid.Invalid;
 }
 
 [Serializable, NetSerializable]
-public sealed class BlobChemSwapBoundUserInterfaceState : BoundUserInterfaceState
+public sealed class BlobChemSwapBoundUserInterfaceState(
+    Dictionary<BlobChemType, Color> chemList,
+    BlobChemType selectedId)
+    : BoundUserInterfaceState
 {
-    public readonly Dictionary<BlobChemType, Color> ChemList;
-    public readonly BlobChemType SelectedChem;
-
-    public BlobChemSwapBoundUserInterfaceState(Dictionary<BlobChemType, Color> chemList, BlobChemType selectedId)
-    {
-        ChemList = chemList;
-        SelectedChem = selectedId;
-    }
+    public readonly Dictionary<BlobChemType, Color> ChemList = chemList;
+    public readonly BlobChemType SelectedChem = selectedId;
 }
 
 [Serializable, NetSerializable]
-public sealed class BlobChemSwapPrototypeSelectedMessage : BoundUserInterfaceMessage
+public sealed class BlobChemSwapPrototypeSelectedMessage(BlobChemType selectedId) : BoundUserInterfaceMessage
 {
-    public readonly BlobChemType SelectedId;
-
-    public BlobChemSwapPrototypeSelectedMessage(BlobChemType selectedId)
-    {
-        SelectedId = selectedId;
-    }
+    public readonly BlobChemType SelectedId = selectedId;
 }
 
 [Serializable, NetSerializable]
@@ -66,20 +58,20 @@ public enum BlobChemSwapUiKey : byte
     Key
 }
 
-
-public sealed partial class BlobCreateFactoryActionEvent : WorldTargetActionEvent
+public sealed partial class BlobTransformTileActionEvent : WorldTargetActionEvent
 {
+    /// <summary>
+    /// Type of tile that can be transformed.
+    /// Will be ignored if equals to Invalid.
+    /// </summary>
+    [DataField]
+    public BlobTileType TransformFrom = BlobTileType.Normal;
 
-}
-
-public sealed partial class BlobCreateResourceActionEvent : WorldTargetActionEvent
-{
-
-}
-
-public sealed partial class BlobCreateNodeActionEvent : WorldTargetActionEvent
-{
-
+    /// <summary>
+    /// Type of the resulting tile.
+    /// </summary>
+    [DataField]
+    public BlobTileType TileType = BlobTileType.Invalid;
 }
 
 public sealed partial class BlobCreateBlobbernautActionEvent : WorldTargetActionEvent
@@ -93,11 +85,6 @@ public sealed partial class BlobSplitCoreActionEvent : WorldTargetActionEvent
 }
 
 public sealed partial class BlobSwapCoreActionEvent : WorldTargetActionEvent
-{
-
-}
-
-public sealed partial class BlobDowngradeActionEvent : WorldTargetActionEvent
 {
 
 }

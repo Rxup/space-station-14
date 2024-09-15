@@ -19,8 +19,8 @@ public sealed class BlobResourceSystem : EntitySystem
 
         SubscribeLocalEvent<BlobResourceComponent, BlobSpecialGetPulseEvent>(OnPulsed);
 
-        _blobTile = this.GetEntityQuery<BlobTileComponent>();
-        _blobCore = this.GetEntityQuery<BlobCoreComponent>();
+        _blobTile = GetEntityQuery<BlobTileComponent>();
+        _blobCore = GetEntityQuery<BlobCoreComponent>();
     }
 
     private void OnPulsed(EntityUid uid, BlobResourceComponent component,BlobSpecialGetPulseEvent args)

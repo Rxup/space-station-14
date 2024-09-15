@@ -84,7 +84,7 @@ public sealed class BlobCoreSystem : EntitySystem
         _node = GetEntityQuery<BlobNodeComponent>();
     }
 
-    private const double KillCoreJobTime = 0.1;
+    private const double KillCoreJobTime = 0.5;
     private readonly JobQueue _killCoreJobQueue = new(KillCoreJobTime);
 
     public sealed class KillBlobCore(
@@ -117,18 +117,19 @@ public sealed class BlobCoreSystem : EntitySystem
             return;
         }
 
-        if (!TryComp<BlobNodeComponent>(uid, out var nodeComponent))
+        if (!_node.TryGetComponent(uid, out var nodeComponent))
         {
             return;
         }
 
-        AddBlobTile((uid, blobTileComponent), (uid, component), nodeComponent);
+        ConnectBlobTile((uid, blobTileComponent), (uid, component), nodeComponent);
         nodeComponent.ConnectedTiles[BlobTileType.Node] = uid;
 
         var store = EnsureComp<StoreComponent>(uid);
         store.CurrencyWhitelist.Add(BlobMoney);
 
         UpdateAllAlerts((uid, component));
+        ChangeChem(uid, component.DefaultChem, component);
 
         foreach (var action in component.ActionPrototypes)
         {
@@ -138,8 +139,6 @@ public sealed class BlobCoreSystem : EntitySystem
             if (actionUid != null)
                 component.Actions.Add(actionUid.Value);
         }
-
-        ChangeChem(uid, component.DefaultChem, component);
     }
 
     private void OnTerminating(EntityUid uid, BlobCoreComponent component, ref EntityTerminatingEvent args)
@@ -276,7 +275,6 @@ public sealed class BlobCoreSystem : EntitySystem
         if (newChem == component.CurrentChem)
             return;
 
-        var oldChem = component.CurrentChem;
         component.CurrentChem = newChem;
         foreach (var blobTile in component.BlobTiles)
         {
@@ -286,49 +284,41 @@ public sealed class BlobCoreSystem : EntitySystem
             blobTileComponent.Color = component.ChemСolors[newChem];
             Dirty(blobTile, blobTileComponent);
 
-            if (_factory.TryGetComponent(blobTile, out var blobFactoryComponent))
+            ChangeBlobEntChem(blobTile, newChem);
+
+            if (!_factory.TryGetComponent(blobTile, out var blobFactoryComponent))
+                continue;
+
+            if (!TryComp<BlobbernautComponent>(blobFactoryComponent.Blobbernaut, out var blobbernautComponent))
+                continue;
+
+            blobbernautComponent.Color = component.ChemСolors[newChem];
+            Dirty(blobFactoryComponent.Blobbernaut.Value, blobbernautComponent);
+
+            if (TryComp<MeleeWeaponComponent>(blobFactoryComponent.Blobbernaut, out var meleeWeaponComponent))
             {
-                if (TryComp<BlobbernautComponent>(blobFactoryComponent.Blobbernaut, out var blobbernautComponent))
+                var blobbernautDamage = new DamageSpecifier();
+                foreach (var keyValuePair in component.ChemDamageDict[component.CurrentChem].DamageDict)
                 {
-                    blobbernautComponent.Color = component.ChemСolors[newChem];
-                    Dirty(blobFactoryComponent.Blobbernaut.Value, blobbernautComponent);
-
-                    if (TryComp<MeleeWeaponComponent>(blobFactoryComponent.Blobbernaut, out var meleeWeaponComponent))
-                    {
-                        var blobbernautDamage = new DamageSpecifier();
-                        foreach (var keyValuePair in component.ChemDamageDict[component.CurrentChem].DamageDict)
-                        {
-                            blobbernautDamage.DamageDict.Add(keyValuePair.Key, keyValuePair.Value * 0.8f);
-                        }
-                        meleeWeaponComponent.Damage = blobbernautDamage;
-                    }
-
-                    ChangeBlobEntChem(blobFactoryComponent.Blobbernaut.Value, oldChem, newChem);
+                    blobbernautDamage.DamageDict.Add(keyValuePair.Key, keyValuePair.Value * 0.8f);
                 }
+                meleeWeaponComponent.Damage = blobbernautDamage;
             }
 
-            ChangeBlobEntChem(blobTile, oldChem, newChem);
+            ChangeBlobEntChem(blobFactoryComponent.Blobbernaut.Value, newChem);
         }
     }
 
-    private void ChangeBlobEntChem(EntityUid uid, BlobChemType oldChem, BlobChemType newChem)
+    private void ChangeBlobEntChem(EntityUid uid, BlobChemType newChem)
     {
-        var explosionResistance = EnsureComp<ExplosionResistanceComponent>(uid);
-        if (oldChem == BlobChemType.ExplosiveLattice)
-        {
-            _explosionSystem.SetExplosionResistance(uid, 0.3f, explosionResistance);
-        }
         switch (newChem)
         {
             case BlobChemType.ExplosiveLattice:
                 _damageable.SetDamageModifierSetId(uid, "ExplosiveLatticeBlob");
-                _explosionSystem.SetExplosionResistance(uid, 0f, explosionResistance);
+                _explosionSystem.SetExplosionResistance(uid, 0f, EnsureComp<ExplosionResistanceComponent>(uid));
                 break;
             case BlobChemType.ElectromagneticWeb:
                 _damageable.SetDamageModifierSetId(uid, "ElectromagneticWebBlob");
-                break;
-            case BlobChemType.ReactiveSpines:
-                _damageable.SetDamageModifierSetId(uid, "ReactiveSpinesBlob");
                 break;
             default:
                 _damageable.SetDamageModifierSetId(uid, "BaseBlob");
@@ -336,6 +326,16 @@ public sealed class BlobCoreSystem : EntitySystem
         }
     }
 
+    /// <summary>
+    /// Transforms one blob tile in another type or creates a new one from scratch.
+    /// </summary>
+    /// <param name="oldTileUid">Uid of the ols tile that's going to get deleted.</param>
+    /// <param name="blobCore">Blob core that preformed the transformation.</param>
+    /// <param name="nearNode">Node will be used in ConnectBlobTile method.</param>
+    /// <param name="newBlobTile">Type of a new blob tile.</param>
+    /// <param name="coordinates">Coordinates of a new tile.</param>
+    /// <seealso cref="ConnectBlobTile"/>
+    /// <seealso cref="BlobCoreComponent"/>
     public bool TransformBlobTile(
         Entity<BlobTileComponent>? oldTileUid,
         Entity<BlobCoreComponent> blobCore,
@@ -351,7 +351,8 @@ public sealed class BlobCoreSystem : EntitySystem
             RemoveBlobTile(oldTileUid.Value, blobCore);
         }
 
-        var blobTileUid = EntityManager.SpawnEntity(blobCore.Comp.TilePrototypes[newBlobTile], coordinates);
+        var blobCoreComp = blobCore.Comp;
+        var blobTileUid = EntityManager.SpawnEntity(blobCoreComp.TilePrototypes[newBlobTile], coordinates);
 
         if (!_tile.TryGetComponent(blobTileUid, out var blobTileComp))
         {
@@ -359,16 +360,13 @@ public sealed class BlobCoreSystem : EntitySystem
             return false;
         }
 
-        AddBlobTile((blobTileUid, blobTileComp), blobCore, nearNode);
+        blobCoreComp.AllTileCounts.TryAdd(blobTileComp.BlobTileType, 0);
+        blobCoreComp.AllTileCounts[blobTileComp.BlobTileType]++;
+
+        ConnectBlobTile((blobTileUid, blobTileComp), blobCore, nearNode);
+        ChangeBlobEntChem(blobTileUid, blobCoreComp.CurrentChem);
 
         Dirty(blobTileUid, blobTileComp);
-
-        var explosionResistance = EnsureComp<ExplosionResistanceComponent>(blobTileUid);
-
-        if (blobCore.Comp.CurrentChem == BlobChemType.ExplosiveLattice)
-        {
-            _explosionSystem.SetExplosionResistance(blobTileUid, 0f, explosionResistance);
-        }
 
         return true;
     }
@@ -379,7 +377,8 @@ public sealed class BlobCoreSystem : EntitySystem
     /// <param name="tile">Entity of the blob tile.</param>
     /// <param name="core">Entity of the blob core.</param>
     /// <param name="node">If not null, tries to connect tile to the node by checking if their BlobTileType is presented in dictionary.</param>
-    public void AddBlobTile(Entity<BlobTileComponent> tile,
+    public void ConnectBlobTile(
+        Entity<BlobTileComponent> tile,
         Entity<BlobCoreComponent> core,
         BlobNodeComponent? node = null)
     {
@@ -399,10 +398,11 @@ public sealed class BlobCoreSystem : EntitySystem
             node.ConnectedTiles[tile.Comp.BlobTileType] = tile;
     }
 
-    public void RemoveBlobTile(EntityUid tile, Entity<BlobCoreComponent> core)
+    public void RemoveBlobTile(Entity<BlobTileComponent> tile, Entity<BlobCoreComponent> core)
     {
         QueueDel(tile);
         core.Comp.BlobTiles.Remove(tile);
+        core.Comp.AllTileCounts[tile.Comp.BlobTileType]--;
     }
 
     private void DestroyBlobCore(Entity<BlobCoreComponent> core, EntityUid? stationUid)
@@ -410,10 +410,7 @@ public sealed class BlobCoreSystem : EntitySystem
         var uid = core.Owner;
         var component = core.Comp;
 
-        if (component.Observer != null)
-        {
-            QueueDel(component.Observer.Value);
-        }
+        QueueDel(component.Observer);
 
         foreach (var blobTile in component.BlobTiles)
         {
@@ -451,6 +448,7 @@ public sealed class BlobCoreSystem : EntitySystem
                 blobRuleComp.Stage = BlobStage.Default;
             }
         }
+
         QueueDel(uid);
     }
 

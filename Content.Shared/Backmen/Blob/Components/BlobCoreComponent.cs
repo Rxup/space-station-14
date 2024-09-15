@@ -26,6 +26,9 @@ public sealed partial class BlobCoreComponent : Component
     [ViewVariables]
     public TimeSpan NextAction = TimeSpan.Zero;
 
+    [ViewVariables]
+    public Dictionary<BlobTileType, int> AllTileCounts = [];
+
     #endregion
 
     #region Balance
@@ -160,10 +163,10 @@ public sealed partial class BlobCoreComponent : Component
     #region Blob Ranges
 
     [DataField]
-    public float NodeRadiusLimit = 4f;
+    public float NodeRadiusLimit = 5f;
 
     [DataField]
-    public float TilesRadiusLimit = 7f;
+    public float TilesRadiusLimit = 8f;
 
     #endregion
 

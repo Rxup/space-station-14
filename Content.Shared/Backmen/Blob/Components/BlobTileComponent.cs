@@ -17,7 +17,7 @@ public sealed partial class BlobTileComponent : Component
     public bool ReturnCost = true;
 
     [DataField(required: true)]
-    public BlobTileType BlobTileType = BlobTileType.None;
+    public BlobTileType BlobTileType = BlobTileType.Invalid;
 
     [DataField]
     public DamageSpecifier HealthOfPulse = new()
@@ -55,5 +55,5 @@ public enum BlobTileType : byte
     Node,
     Factory,
     Core,
-    None,
+    Invalid,
 }

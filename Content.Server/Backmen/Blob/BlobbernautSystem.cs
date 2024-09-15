@@ -68,15 +68,15 @@ public sealed class BlobbernautSystem : SharedBlobbernautSystem
 
             var xform = Transform(ent);
 
-            if (xform.GridUid == null || !TryComp<MapGridComponent>(xform.GridUid.Value, out var grid))
+            if (xform.GridUid == null)
                 continue;
 
             var mapPos = _transform.ToMapCoordinates(xform.Coordinates);
 
             _entitySet.Clear();
-            _entityLookupSystem.GetEntitiesInRange(mapPos.MapId, mapPos.Position, 1f, _entitySet, LookupFlags.All);
+            _entityLookupSystem.GetEntitiesInRange(mapPos.MapId, mapPos.Position, 1f, _entitySet);
 
-            if(_entitySet.Any())
+            if(_entitySet.Count != 0)
                 continue;
 
             TryChangeDamage("blobberaut-not-on-blob-tile", ent, comp.Damage);
