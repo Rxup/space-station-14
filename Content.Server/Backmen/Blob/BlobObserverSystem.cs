@@ -153,13 +153,13 @@ public sealed class BlobObserverSystem : SharedBlobObserverSystem
         var blobRule = EntityQuery<BlobRuleComponent>().FirstOrDefault();
         blobRule?.Blobs.Add((mindId,mind));
 
-        _mindSystem.TryAddObjective(mindId, mind, BlobCaptureObjective);
-
         _mindSystem.TransferTo(mindId, observer, true, mind: mind);
         if (_actorSystem.TryGetSessionById(args.UserId, out var session))
         {
             _actorSystem.SetAttachedEntity(session, observer, true);
         }
+
+        _mindSystem.TryAddObjective(mindId, mind, BlobCaptureObjective);
 
         UpdateUi(observer, core);
     }

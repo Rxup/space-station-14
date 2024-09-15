@@ -9,6 +9,7 @@ using Content.Server.Backmen.GameTicking.Rules.Components;
 using Content.Server.Backmen.Objectives;
 using Content.Server.Explosion.EntitySystems;
 using Content.Server.GameTicking;
+using Content.Server.Objectives.Systems;
 using Content.Server.RoundEnd;
 using Content.Server.Station.Systems;
 using Content.Server.Store.Systems;
@@ -49,6 +50,7 @@ public sealed class BlobCoreSystem : EntitySystem
     [Dependency] private readonly ActionsSystem _action = default!;
     [Dependency] private readonly MapSystem _map = default!;
     [Dependency] private readonly StoreSystem _storeSystem = default!;
+    [Dependency] private readonly NumberObjectiveSystem _number = default!;
 
     private EntityQuery<BlobTileComponent> _tile;
     private EntityQuery<BlobFactoryComponent> _factory;
@@ -201,19 +203,6 @@ public sealed class BlobCoreSystem : EntitySystem
 
     private void OnBlobCaptureProgress(EntityUid uid, BlobCaptureConditionComponent component, ref ObjectiveGetProgressEvent args)
     {
-        // prevent divide-by-zero
-        if (component.Target == 0)
-        {
-            args.Progress = 1;
-            return;
-        }
-
-        if (args.Mind.OwnedEntity == null || TerminatingOrDeleted(args.Mind.OwnedEntity))
-        {
-            args.Progress = 0;
-            return;
-        }
-
         if (!TryComp<BlobObserverComponent>(args.Mind.OwnedEntity, out var blobObserverComponent)
             || !TryComp<BlobCoreComponent>(blobObserverComponent.Core, out var blobCoreComponent))
         {
@@ -221,7 +210,13 @@ public sealed class BlobCoreSystem : EntitySystem
             return;
         }
 
-        args.Progress = blobCoreComponent.BlobTiles.Count / component.Target;
+        var target = component.Target;
+        args.Progress = 0;
+
+        if (target != 0)
+            args.Progress = MathF.Min((float) blobCoreComponent.BlobTiles.Count / target, 1f);
+        else
+            args.Progress = 1f;
     }
     #endregion
 
