@@ -95,7 +95,7 @@ namespace Content.Client.Stylesheets
         public static readonly Color ConcerningOrangeFore = Color.FromHex("#A5762F");
         public static readonly Color DangerousRedFore = Color.FromHex("#BB3232");
         public static readonly Color DisabledFore = Color.FromHex("#5A5A5A");
-
+        
         // WD EDIT
         public static readonly Color ButtonColorDefault = Color.FromHex("#29282f");
         public static readonly Color ButtonColorDefaultRed = Color.FromHex("#992327");
@@ -104,6 +104,7 @@ namespace Content.Client.Stylesheets
         public static readonly Color ButtonColorPressed = Color.FromHex("#0f0f0f");
         public static readonly Color ButtonColorDisabled = Color.FromHex("#0f0f0f");
         // WD EDIT
+
 
         public static readonly Color ButtonColorCautionDefault = Color.FromHex("#ab3232");
         public static readonly Color ButtonColorCautionHovered = Color.FromHex("#cf2f2f");
@@ -1430,7 +1431,7 @@ namespace Content.Client.Stylesheets
                 Element<PanelContainer>().Class(ClassLowDivider)
                     .Prop(PanelContainer.StylePropertyPanel, new StyleBoxFlat
                     {
-                        BackgroundColor = Color.FromHex("#444"),
+                        BackgroundColor = Color.FromHex("#25252A"),
                         ContentMarginLeftOverride = 2,
                         ContentMarginBottomOverride = 2
                     }),
