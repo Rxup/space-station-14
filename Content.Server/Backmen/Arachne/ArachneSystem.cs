@@ -34,18 +34,19 @@ using Robust.Shared.Containers;
 using Robust.Shared.Map;
 using Robust.Shared.Utility;
 using Robust.Server.Console;
+using Robust.Shared.Map.Components;
 using static Content.Shared.Examine.ExamineSystemShared;
 
 namespace Content.Server.Backmen.Arachne;
 
 public sealed class ArachneSystem : EntitySystem
 {
-    [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
+    [Dependency] private readonly EntityLookupSystem _lookup = default!;
+    [Dependency] private readonly SharedTransformSystem _transform = default!;
     [Dependency] private readonly SharedActionsSystem _actions = default!;
     [Dependency] private readonly HungerSystem _hungerSystem = default!;
     [Dependency] private readonly ThirstSystem _thirstSystem = default!;
     [Dependency] private readonly PopupSystem _popupSystem = default!;
-    [Dependency] private readonly IMapManager _mapManager = default!;
     [Dependency] private readonly DoAfterSystem _doAfter = default!;
     [Dependency] private readonly BuckleSystem _buckleSystem = default!;
     [Dependency] private readonly ItemSlotsSystem _itemSlots = default!;
@@ -236,13 +237,15 @@ public sealed class ArachneSystem : EntitySystem
         }
 
         var coords = args.Target;
-        if (!_mapManager.TryGetGrid(coords.GetGridUid(EntityManager), out var grid))
+
+        if (!HasComp<MapGridComponent>(_transform.GetGrid(coords)))
         {
             _popupSystem.PopupEntity(Loc.GetString("action-name-spin-web-space"), args.Performer, args.Performer, Shared.Popups.PopupType.MediumCaution);
             return;
         }
 
-        foreach (var entity in coords.GetEntitiesInTile())
+
+        foreach (var entity in _lookup.GetEntitiesIntersecting(coords))
         {
             PhysicsComponent? physics = null; // We use this to check if it's impassable
             if ((HasComp<WebComponent>(entity)) || // Is there already a web there?

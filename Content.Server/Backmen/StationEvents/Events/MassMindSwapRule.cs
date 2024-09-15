@@ -125,7 +125,7 @@ internal sealed class MassMindSwapRule : StationEventSystem<MassMindSwapRuleComp
                     if(gridA != gridB)
                         continue;
                 }
-                if (!_mindSwap.Swap(actor, other))
+                if (!_mindSwap.Swap(actor, other, force: true))
                 {
                     continue;
                 }

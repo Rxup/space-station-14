@@ -127,21 +127,6 @@
     - SimpleHostile
 
 - type: entity
-  parent: WeaponTurretBaseLaser
-  id: WeaponTurretLaserNanoTrasenAI
-  suffix: under sAI
-  components:
-  - type: BorgAINT
-  - type: Sprite
-    sprite: Backmen/Objects/Weapons/Guns/Turrets/laser.rsi
-    layers:
-      - state: stand
-      - state: nanotrasen
-  - type: NpcFactionMember
-    factions:
-    - AiTurret
-
-- type: entity
   parent: BaseWeaponTurret
   id: WeaponTurretSpetsnaz
   suffix: SpecialForce

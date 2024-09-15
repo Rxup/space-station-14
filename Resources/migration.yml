@@ -204,9 +204,6 @@ WeaponRevolverMateba: WeaponRevolverMatebaNew
 WeaponSniperMosin: WeaponSniperMosinNew
 WeaponShotgunBulldog: WeaponShotgunZauer
 
-# 2023-11-11 Backmen: AI
-ToyAi: SpawnPointStationAI
-
 # 2023-11-26
 WeaponSniperHristov: WeaponRifleSR127
 MagazineBoxAntiMateriel: MagazineAntiMaterielRifleSR
@@ -338,9 +335,6 @@ YellowOxygenTankFilled: OxygenTankFilled
 # 2024-01-30 Backmen
 AirlockHatch: AirlockHatchBasik
 AirlockHatchMaintenance: AirlockHatchMaint
-
-# 2024-02-18
-WeaponTurretSyndicateBroken: WeaponTurretLaserNanoTrasenAI
 
 # 2024-02-12
 FoodDonutBlumpkin: FoodDonutBluePumpkin
@@ -495,8 +489,13 @@ DoorRemoteFirefight: null
 # 2024-06-03
 AirlockServiceCaptainLocked: AirlockCaptainLocked
 
-# fix ishimura test
-ClothingBackpackSatchelClownFilled: ClothingBackpackSatchelClown
+#2024-06-05
+DisasterVictimSpawner: CommandVisitorSpawner
+LostCargoTechnicianSpawner: VisitorCargoTechnicianSpawner
+ClownTroupeSpawner: VisitorClownSpawner
+TravelingChefSpawner: VisitorChefSpawner
+SyndieDisasterVictimSpawner: SyndieVisitorSpawner
+
 # 2024-06-15
 ClothingOuterCoatInspector: ClothingOuterCoatJensen
 
@@ -551,3 +550,34 @@ FoodMeatSnakeKebab: FoodKebabSkewer
 FoodMeatHawaiianKebab: FoodKebabSkewer
 FoodMeatKebab: FoodKebabSkewer
 FoodMeatFiestaKebab: FoodKebabSkewer
+
+#2024-08-14
+ClothingBeltSuspenders: ClothingBeltSuspendersRed
+
+# 2024-08-19
+ClothingNeckShockCollar: ClothingBackpackElectropack
+
+# 2024-08-28 backmen
+SpawnPointStationAI: PlayerStationAi
+WeaponTurretLaserNanoTrasenAI: WeaponTurretSyndicateBroken
+
+# 2024-08-22
+ComputerShuttleSalvage: null
+SalvageShuttleConsoleCircuitboard: null
+SalvageShuttleCircuitboardStealObjective: null
+
+# 2024-08-28
+ClothingBackpackDuffelSyndicateCostumeCentcom: null
+ClothingHeadsetAltCentComFake: null
+CentcomPDAFake: null
+CentcomIDCardSyndie: null
+
+# 2024-09-06
+AntimovCircuitBoard: null
+OverlordCircuitBoard: null
+
+# 2024-09-08
+HatBase: null
+
+# 2024-09-13 backmen
+PlastitanedWindow: PlastitaniumWindow

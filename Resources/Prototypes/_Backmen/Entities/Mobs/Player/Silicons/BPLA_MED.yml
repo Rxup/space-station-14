@@ -61,7 +61,6 @@
   - type: NameIdentifier
     group: BSSDroneMED
   - type: MetaData
-  - type: BorgAINT
   - type: IntrinsicRadioReceiver
   - type: IntrinsicRadioTransmitter
     channels:
@@ -185,5 +184,5 @@
     tags:
       - CannotSuicide
   - type: SpecForce
-  - type: ClothingRequiredStepTriggerImmune
+  - type: ProtectedFromStepTriggers
     slots: WITHOUT_POCKET

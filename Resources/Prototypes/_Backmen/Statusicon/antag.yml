@@ -41,7 +41,8 @@
   priority: 5
   showTo:
     components:
-    - SVSTeamMember
+    - TdmMember
+    - StationAiVision
   icon:
     sprite: /Textures/Backmen/Interface/Misc/svs_icon.rsi
     state: team_0
@@ -51,7 +52,8 @@
   priority: 5
   showTo:
     components:
-    - SVSTeamMember
+    - TdmMember
+    - StationAiVision
   icon:
     sprite: /Textures/Backmen/Interface/Misc/svs_icon.rsi
     state: team_a
@@ -61,7 +63,8 @@
   priority: 5
   showTo:
     components:
-    - SVSTeamMember
+    - TdmMember
+    - StationAiVision
   icon:
     sprite: /Textures/Backmen/Interface/Misc/svs_icon.rsi
     state: team_b

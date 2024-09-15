@@ -6,6 +6,9 @@
   description: Искусственная конструкция, имитирующая жизнь. У этого еще не установлен кристалл души.
   components:
   - type: ComplexInteraction
+  - type: ActionGrant
+    actions:
+    - ActionViewLaws
   - type: Sprite
     noRot: true
     drawdepth: Mobs
@@ -84,7 +87,7 @@
     tags:
     - CanPilot
     - DoorBumpOpener
-  - type: ClothingRequiredStepTriggerImmune
+  - type: ProtectedFromStepTriggers
     slots: WITHOUT_POCKET
   - type: Reactive
     groups:
@@ -226,6 +229,8 @@
   - type: Alerts
   - type: Actions
   - type: Eye
+  - type: ContentEye
+    maxZoom: 0.8, 0.8
   - type: CameraRecoil
   - type: Examiner
   - type: CanHostGuardian

@@ -31,7 +31,6 @@
       - id: WelderExperimental
   - type: Inventory
     templateId: drone
-  - type: BorgAINT
   - type: InventorySlots
   - type: Strippable
   - type: UserInterface
@@ -147,6 +146,6 @@
     tags:
       - CannotSuicide
   - type: SpecForce
-  - type: ClothingRequiredStepTriggerImmune
+  - type: ProtectedFromStepTriggers
     slots: WITHOUT_POCKET
 

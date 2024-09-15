@@ -44,7 +44,6 @@
             ResearchDirector: [ 1, 1 ]
             Scientist: [ 5, 5 ]
             ResearchAssistant: [ 6, 6 ]
-            Borg: [ 2, 2 ]
             #security
             HeadOfSecurity: [ 1, 1 ]
             Warden: [ 1, 1 ]
@@ -66,7 +65,9 @@
             #BKBPLAMED: [0, 3] # backmen-BPLAMED-Silicons
             Deliveryman: [ 0, 1 ]
             Prisoner: [ 2, 3]
-            SAI: [1, 1] # backmen-SAI
+            #silicon
+            StationAi: [ 1, 1 ]
+            Borg: [ 2, 2 ]
         # backmen blob-config-start HUGE
         - type: StationBlobConfig
           stageBegin: 40

@@ -20,12 +20,12 @@
       - id: ClothingOuterHardsuitWarden
       - id: HoloprojectorSecurity
       - id: ClothingEyesHudSecurity
-      - id: AntiPsychicKnife # backmen
-        amount: 3
       - id: ClothingHeadCage # backmen
         amount: 2
       - id: BookSpaceLaw
-      - id: ClothingNeckShockCollar
+      - id: ClothingHeadHatCapWardenAlt # Corvax-SecFashion
+      - id: ClothingOuterCoatWardenAlt # Corvax-SecFashion
+      - id: ClothingBackpackElectropack
         amount: 2
       - id: RemoteSignaller
         amount: 2
@@ -56,12 +56,10 @@
       - id: DoorRemoteArmory
       - id: HoloprojectorSecurity
       - id: ClothingEyesHudSecurity
-      - id: AntiPsychicKnife # backmen
-        amount: 3
       - id: ClothingHeadCage # backmen
         amount: 2
       - id: BookSpaceLaw
-      - id: ClothingNeckShockCollar
+      - id: ClothingBackpackElectropack
         amount: 2
       - id: RemoteSignaller
         amount: 2
@@ -93,10 +91,6 @@
       - id: ClothingOuterCoatSecurityOvercoat # Corvax-SecFashion
         prob: 0.2
       - id: ClothingEyesHudSecurity
-      - id: AntiPsychicKnife # backmen
-        amount: 3
-      - id: ClothingHeadCage # backmen
-        amount: 2
       - id: HoloprojectorSecurity
         prob: 0.6
       - id: BookSpaceLaw
@@ -133,7 +127,6 @@
         prob: 0.4
       - id: MedkitBurnFilled
         prob: 0.4
-      - id: AntiPsychicKnife # backmen
       - id: ClothingHeadCage # backmen
       - id: ClothingHeadsetAltBrigmedic # backmen
 
@@ -157,10 +150,8 @@
       - id: DrinkDetFlask
       - id: ClothingHandsGlovesForensic
       - id: BookBusido # Corvax-Books
-      - id: AntiPsychicKnife # backmen
-        amount: 3
       - id: ClothingHeadCage # backmen
-        amount: 2
+        amount: 1
       - id: RubberStampDetective
       - id: HoloprojectorSecurity
       - id: BoxEvidenceMarkers
@@ -192,10 +183,6 @@
     contents:
     - id: WeaponDisabler
       amount: 5
-    - id: AntiPsychicKnife # backmen
-      amount: 3
-    - id: ClothingHeadCage # backmen
-      amount: 2
 
 - type: entity
   parent: [GunSafe, BaseRestrictedContraband]

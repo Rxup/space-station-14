@@ -12,6 +12,7 @@ using Content.Shared.Humanoid;
 using Content.Server.Speech;
 using Content.Server.Mind;
 using Content.Shared.Backmen.Psionics.Events;
+using Content.Shared.Mind.Components;
 using Content.Shared.Silicons.Laws;
 using Content.Shared.Silicons.Laws.Components;
 using Robust.Server.Audio;
@@ -36,6 +37,7 @@ public sealed class GolemSystem : SharedGolemSystem
     [Dependency] private readonly MindSystem _mindSystem = default!;
     [Dependency] private readonly UserInterfaceSystem _userInterfaceSystem = default!;
     [Dependency] private readonly MetaDataSystem _metaDataSystem = default!;
+    [Dependency] private readonly SharedPointLightSystem _lightSystem = default!;
 
     private const string CrystalSlot = "crystal_slot";
 
@@ -43,8 +45,12 @@ public sealed class GolemSystem : SharedGolemSystem
     {
         base.Initialize();
 
-        SubscribeLocalEvent<GolemComponent, EntInsertedIntoContainerMessage>(OnEntInserted);
-        SubscribeLocalEvent<GolemComponent, EntRemovedFromContainerMessage>(OnEntRemoved);
+        SubscribeLocalEvent<SoulCrystalComponent, MindAddedMessage>(OnGetMind);
+        SubscribeLocalEvent<SoulCrystalComponent, MindRemovedMessage>(OnRemMind);
+        SubscribeLocalEvent<SoulCrystalComponent, MapInitEvent>(OnSoulInit);
+
+        SubscribeLocalEvent<SoulCrystalComponent, EntInsertedIntoContainerMessage>(OnEntInserted);
+        SubscribeLocalEvent<SoulCrystalComponent, EntRemovedFromContainerMessage>(OnEntRemoved);
 
         SubscribeLocalEvent<SoulCrystalComponent, AfterInteractEvent>(OnAfterInteract);
         SubscribeLocalEvent<GolemComponent, DispelledEvent>(OnDispelled);
@@ -56,29 +62,56 @@ public sealed class GolemSystem : SharedGolemSystem
         SubscribeLocalEvent<GolemComponent, GetSiliconLawsEvent>(OnGetLaws); // TODO: Deduplicate
     }
 
+    private void OnRemMind(Entity<SoulCrystalComponent> ent, ref MindRemovedMessage args)
+    {
+        if(!TryComp<PointLightComponent>(ent, out var lightComp))
+            return;
+        _lightSystem.SetEnabled(ent, false, lightComp);
+    }
+
+    private void OnSoulInit(Entity<SoulCrystalComponent> ent, ref MapInitEvent args)
+    {
+        if(!TryComp<PointLightComponent>(ent, out var lightComp))
+            return;
+        _lightSystem.SetEnabled(ent, false, lightComp);
+    }
+
+    private void OnGetMind(Entity<SoulCrystalComponent> ent, ref MindAddedMessage args)
+    {
+        if(!TryComp<PointLightComponent>(ent, out var lightComp))
+            return;
+        _lightSystem.SetEnabled(ent, true, lightComp);
+    }
+
     private void OnGetLaws(EntityUid uid, GolemComponent component, ref GetSiliconLawsEvent args)
     {
-        if (args.Handled || component.Master == null)
+        if (args.Handled)
             return;
 
         // Add the first emag law
         args.Laws.Laws.Add(new SiliconLaw
         {
-            LawString = Loc.GetString("law-golem-1", ("name", component.Master)),
+            LawString = Loc.GetString("law-golem-1", ("name", component.Master ?? "----")),
             Order = 1
         });
 
         args.Handled = true;
     }
 
-    private void OnEntInserted(EntityUid uid, SharedGolemComponent component, EntInsertedIntoContainerMessage args)
+    private void OnEntInserted(EntityUid uid, SoulCrystalComponent component, EntInsertedIntoContainerMessage args)
     {
-        SharedOnEntInserted(args);
+        if(!TryComp<GolemComponent>(args.Entity, out var golemComponent))
+            return;
+
+        RemCompDeferred<GhostTakeoverAvailableComponent>(uid);
     }
 
-    private void OnEntRemoved(EntityUid uid, SharedGolemComponent component, EntRemovedFromContainerMessage args)
+    private void OnEntRemoved(EntityUid uid, SoulCrystalComponent component, EntRemovedFromContainerMessage args)
     {
-        SharedOnEntRemoved(args);
+        if(!TryComp<GolemComponent>(args.Entity, out var golemComponent))
+            return;
+
+        EnsureComp<GhostTakeoverAvailableComponent>(uid);
     }
 
     [ValidatePrototypeId<EntityPrototype>]
@@ -91,10 +124,7 @@ public sealed class GolemSystem : SharedGolemSystem
         if (!TryComp<GolemComponent>(args.Target, out var golem))
             return;
 
-        if (HasComp<ActorComponent>(args.Target))
-            return;
-
-        if (!TryComp<ActorComponent>(args.User, out var userActor))
+        if (_slotsSystem.GetItemOrNull(args.Target.Value, CrystalSlot) != null)
             return;
 
         if (!(HasComp<HumanoidAppearanceComponent>(args.User) || Prototype(args.User)?.ID == AdminObserver))
@@ -110,7 +140,7 @@ public sealed class GolemSystem : SharedGolemSystem
             golemName = _robustRandom.Pick(names.Values);
 
         golem.GolemName = golemName;
-        golem.Master = MetaData(args.User).EntityName;
+        golem.Master = Name(args.User);
 
         var state = new GolemBoundUserInterfaceState(golem.GolemName, golem.Master);
         _userInterfaceSystem.SetUiState(args.Target.Value, GolemUiKey.Key, state);
@@ -142,6 +172,9 @@ public sealed class GolemSystem : SharedGolemSystem
         DirtyEntity(uid);
     }
 
+    [ValidatePrototypeId<EntityPrototype>]
+    private const string Ash = "Ash";
+
     private void OnMobStateChanged(EntityUid uid, GolemComponent component, MobStateChangedEvent args)
     {
         if (args.NewMobState != MobState.Dead)
@@ -151,7 +184,7 @@ public sealed class GolemSystem : SharedGolemSystem
         var ev = new DispelledEvent();
         RaiseLocalEvent(uid, ev, false);
 
-        Spawn("Ash", Transform(uid).Coordinates);
+        Spawn(Ash, Transform(uid).Coordinates);
         _audioSystem.PlayPvs(component.DeathSound, uid);
     }
 
@@ -163,10 +196,7 @@ public sealed class GolemSystem : SharedGolemSystem
         if (!TryComp<ItemSlotsComponent>(uid, out var slots))
             return;
 
-        if (!TryComp<ActorComponent>(component.PotentialCrystal, out var actor))
-            return;
-
-        if (!_mindSystem.TryGetMind(component.PotentialCrystal.Value, out var mindId, out var mind))
+        if (!_mindSystem.TryGetMind(component.PotentialCrystal.Value, out var mindId, out var mind) || mind.Session == null)
             return;
 
         if (!_slotsSystem.TryGetSlot(uid, CrystalSlot, out var crystalSlot, slots)) // does it not have a crystal slot?
@@ -185,7 +215,7 @@ public sealed class GolemSystem : SharedGolemSystem
 
         _uiSystem.CloseUis(uid);
 
-        RemComp<GhostTakeoverAvailableComponent>(component.PotentialCrystal.Value);
+        //RemComp<GhostTakeoverAvailableComponent>(component.PotentialCrystal.Value);
 
         if (!string.IsNullOrEmpty(component.GolemName))
         {
@@ -199,7 +229,6 @@ public sealed class GolemSystem : SharedGolemSystem
             }
         }
         _metaDataSystem.SetEntityDescription(uid, Loc.GetString("golem-installed-desc"));
-
 
         if (string.IsNullOrEmpty(component.Master))
         {

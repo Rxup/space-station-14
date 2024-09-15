@@ -1,0 +1,19 @@
+- type: job
+  id: SAIShip
+  name: job-name-sai-ship
+  description: job-description-sai-ship
+  playTimeTracker: JobSAIShip
+  requirements:
+  - !type:OverallPlaytimeRequirement
+    time: 86400
+  weight: 30
+  icon: JobIconStationAI
+  supervisors: "all crew"
+  accessGroups:
+  - AllAccess
+  canBeAntag: false
+  jobEntity: StationAiBrain
+  startingGear: RobotGear # for char preview only
+  alwaysUseSpawner: true
+  #canHaveTraits: false
+  joinNotifyCrew: true

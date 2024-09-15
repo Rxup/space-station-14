@@ -34,8 +34,10 @@ using Content.Shared.Physics;
 using Content.Shared.Radio.Components;
 using Content.Shared.Random;
 using Content.Shared.Roles.Jobs;
+using Content.Shared.Silicons.StationAi;
 using Content.Shared.Wall;
 using Robust.Server.Audio;
+using Robust.Server.Containers;
 using Robust.Server.GameObjects;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
@@ -75,8 +77,6 @@ public sealed class FugitiveSystem : EntitySystem
     [Dependency] private readonly ObjectivesSystem _objectivesSystem = default!;
     [Dependency] private readonly RandomHelperSystem _randomHelper = default!;
     [Dependency] private readonly ExamineSystem _examine = default!;
-    [Dependency] private readonly AnchorableSystem _anchorable = default!;
-    [Dependency] private readonly MapSystem _mapSystem = default!;
 
     public override void Initialize()
     {
@@ -84,15 +84,17 @@ public sealed class FugitiveSystem : EntitySystem
         SubscribeLocalEvent<FugitiveComponent, GhostRoleSpawnerUsedEvent>(OnSpawned);
         SubscribeLocalEvent<FugitiveComponent, MindAddedMessage>(OnMindAdded);
         SubscribeLocalEvent<RoundEndTextAppendEvent>(OnRoundEnd);
+        SubscribeLocalEvent<PlayerSpawningEvent>(HandlePlayerSpawning,
+            before: new []
+            {
+                typeof(ContainerSpawnPointSystem),
+                typeof(SpawnPointSystem),
+                typeof(ArrivalsSystem)
+            });
     }
 
     [ValidatePrototypeId<JobPrototype>]
     private const string JobPrisoner = "Prisoner";
-
-    [ValidatePrototypeId<JobPrototype>]
-    private const string JobSAI = "SAI";
-
-    private static readonly int SpawnDirections = 4;
 
     public void HandlePlayerSpawning(PlayerSpawningEvent args)
     {
@@ -100,16 +102,15 @@ public sealed class FugitiveSystem : EntitySystem
             return;
 
         if (!(args.Job?.Prototype != null &&
-              _prototypeManager.TryIndex<JobPrototype>(args.Job!.Prototype!, out var jobInfo) &&
+              _prototypeManager.TryIndex(args.Job!.Prototype!, out var jobInfo) &&
               jobInfo.AlwaysUseSpawner))
         {
             return;
         }
 
-        var possiblePositions = new List<EntityCoordinates>();
+        var possiblePositions = new List<(EntityCoordinates, EntityUid?)>();
         {
             var points = EntityQueryEnumerator<SpawnPointComponent, TransformComponent>();
-
 
             while (points.MoveNext(out var uid, out var spawnPoint, out var xform))
             {
@@ -122,7 +123,7 @@ public sealed class FugitiveSystem : EntitySystem
                 if (spawnPoint.SpawnType == SpawnPointType.Job &&
                     (args.Job == null || spawnPoint.Job == args.Job.Prototype))
                 {
-                    possiblePositions.Add(xform.Coordinates);
+                    possiblePositions.Add((xform.Coordinates, uid));
                 }
             }
         }
@@ -149,58 +150,12 @@ public sealed class FugitiveSystem : EntitySystem
                 {
                     if (HasComp<WallMountComponent>(uid))
                     {
-                        possiblePositions.Add(
-                            xform.Coordinates.WithPosition(xform.LocalPosition +
-                                                           xform.LocalRotation.ToWorldVec() * 1f));
+                        var pos = xform.Coordinates.WithPosition((xform.LocalPosition + xform.LocalRotation.ToWorldVec() * 1f));
+                        possiblePositions.Add((pos, null));
                         continue;
                     }
 
-                    possiblePositions.Add(xform.Coordinates);
-                }
-            }
-        }
-
-        #endregion
-
-        #region SAI
-
-        if (possiblePositions.Count == 0 && args.Job?.Prototype == JobSAI)
-        {
-            var points = EntityQueryEnumerator<TelecomServerComponent, TransformComponent, MetaDataComponent>();
-
-            while (points.MoveNext(out var uid, out _, out var xform, out var spawnPoint))
-            {
-                if (args.Station != null && _stationSystem.GetOwningStation(uid, xform) != args.Station)
-                    continue;
-
-                if(xform.GridUid == null)
-                    continue;
-
-                if(HasComp<CargoShuttleComponent>(xform.GridUid) || HasComp<SalvageShuttleComponent>(xform.GridUid))
-                    continue;
-
-                if(!TryComp<MapGridComponent>(xform.GridUid, out var grid))
-                    continue;
-
-                var tileIndices = _mapSystem.TileIndicesFor(xform.GridUid.Value, grid, xform.Coordinates);
-
-                for (var i = 0; i < SpawnDirections; i++)
-                {
-                    var direction = (DirectionFlag) (1 << i);
-                    var offsetIndices = tileIndices.Offset(direction.AsDir());
-
-                    var offsetMobTile = _mapSystem.GetTileRef(xform.GridUid.Value, grid, offsetIndices);
-
-                    if(offsetMobTile.Tile.IsEmpty)
-                        continue;
-
-                    // This doesn't check against the prober's mask/layer, because it hasn't spawned yet...
-                    if (!_anchorable.TileFree(grid, offsetIndices, (int)CollisionGroup.WallLayer, (int)CollisionGroup.MachineMask))
-                        continue;
-
-                    possiblePositions.Add(
-                        _mapSystem.GridTileToLocal(xform.GridUid.Value, grid, offsetIndices)
-                    );
+                    possiblePositions.Add((xform.Coordinates, null));
                 }
             }
         }
@@ -218,7 +173,7 @@ public sealed class FugitiveSystem : EntitySystem
         var spawnLoc = _random.Pick(possiblePositions);
 
         args.SpawnResult = _stationSpawning.SpawnPlayerMob(
-            spawnLoc,
+            spawnLoc.Item1,
             args.Job,
             args.HumanoidCharacterProfile,
             args.Station);

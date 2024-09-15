@@ -1,32 +1,34 @@
 using Content.Shared.Damage;
+using Content.Shared.Explosion;
 using Content.Shared.FixedPoint;
 using Content.Shared.Roles;
 using Robust.Shared.Audio;
+using Robust.Shared.GameStates;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization;
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype;
 
 namespace Content.Shared.Backmen.Blob.Components;
 
-[RegisterComponent]
+[RegisterComponent,NetworkedComponent,AutoGenerateComponentState]
 public sealed partial class BlobCoreComponent : Component
 {
-    [DataField("antagBlobPrototypeId", customTypeSerializer: typeof(PrototypeIdSerializer<AntagPrototype>))]
-    public string AntagBlobPrototypeId = "Blob";
+    [DataField("antagBlobPrototypeId")]
+    public ProtoId<AntagPrototype> AntagBlobPrototypeId = "Blob";
 
-    [ViewVariables(VVAccess.ReadWrite), DataField("attackRate")]
-    public float AttackRate = 0.8f;
+    [ViewVariables(VVAccess.ReadWrite), DataField("attackRate"), AutoNetworkedField]
+    public FixedPoint2 AttackRate = 0.8f;
 
-    [ViewVariables(VVAccess.ReadWrite), DataField("returnResourceOnRemove")]
-    public float ReturnResourceOnRemove = 0.3f;
+    [ViewVariables(VVAccess.ReadWrite), DataField("returnResourceOnRemove"), AutoNetworkedField]
+    public FixedPoint2 ReturnResourceOnRemove = 0.3f;
 
-    [ViewVariables(VVAccess.ReadWrite), DataField("canSplit")]
+    [ViewVariables(VVAccess.ReadWrite), DataField("canSplit"), AutoNetworkedField]
     public bool CanSplit = true;
 
-    [DataField("attackSound")]
+    [DataField("attackSound"), AutoNetworkedField]
     public SoundSpecifier AttackSound = new SoundPathSpecifier("/Audio/Animals/Blob/blobattack.ogg");
 
-    [ViewVariables(VVAccess.ReadWrite)]
+    [ViewVariables(VVAccess.ReadWrite), AutoNetworkedField]
     public Dictionary<BlobChemType, DamageSpecifier> ChemDamageDict { get; set; } = new()
     {
         {
@@ -93,98 +95,96 @@ public sealed partial class BlobCoreComponent : Component
         {BlobChemType.ElectromagneticWeb, Color.FromHex("#0d7777")},
     };
 
-    [ViewVariables(VVAccess.ReadOnly), DataField("blobExplosive")]
-    public string BlobExplosive = "Blob";
+    [ViewVariables(VVAccess.ReadOnly), DataField("blobExplosive"), AutoNetworkedField]
+    public ProtoId<ExplosionPrototype> BlobExplosive = "Blob";
 
-    [ViewVariables(VVAccess.ReadOnly), DataField("defaultChem")]
+    [ViewVariables(VVAccess.ReadOnly), DataField("defaultChem"), AutoNetworkedField]
     public BlobChemType DefaultChem = BlobChemType.ReactiveSpines;
 
-    [ViewVariables(VVAccess.ReadOnly), DataField("currentChem")]
+    [ViewVariables(VVAccess.ReadOnly), DataField("currentChem"), AutoNetworkedField]
     public BlobChemType CurrentChem = BlobChemType.ReactiveSpines;
 
-    [ViewVariables(VVAccess.ReadWrite), DataField("factoryRadiusLimit")]
+    [ViewVariables(VVAccess.ReadWrite), DataField("factoryRadiusLimit"), AutoNetworkedField]
     public float FactoryRadiusLimit = 6f;
 
-    [ViewVariables(VVAccess.ReadWrite), DataField("resourceRadiusLimit")]
+    [ViewVariables(VVAccess.ReadWrite), DataField("resourceRadiusLimit"), AutoNetworkedField]
     public float ResourceRadiusLimit = 3f;
 
-    [ViewVariables(VVAccess.ReadWrite), DataField("nodeRadiusLimit")]
+    [ViewVariables(VVAccess.ReadWrite), DataField("nodeRadiusLimit"), AutoNetworkedField]
     public float NodeRadiusLimit = 4f;
 
-    [ViewVariables(VVAccess.ReadWrite), DataField("attackCost")]
+    [ViewVariables(VVAccess.ReadWrite), DataField("attackCost"), AutoNetworkedField]
     public FixedPoint2 AttackCost = 2;
 
-    [ViewVariables(VVAccess.ReadWrite), DataField("factoryBlobCost")]
+    [ViewVariables(VVAccess.ReadWrite), DataField("factoryBlobCost"), AutoNetworkedField]
     public FixedPoint2 FactoryBlobCost = 60;
 
-    [ViewVariables(VVAccess.ReadWrite), DataField("normalBlobCost")]
+    [ViewVariables(VVAccess.ReadWrite), DataField("normalBlobCost"), AutoNetworkedField]
     public FixedPoint2 NormalBlobCost = 4;
 
-    [ViewVariables(VVAccess.ReadWrite), DataField("resourceBlobCost")]
+    [ViewVariables(VVAccess.ReadWrite), DataField("resourceBlobCost"), AutoNetworkedField]
     public FixedPoint2 ResourceBlobCost = 40;
 
-    [ViewVariables(VVAccess.ReadWrite), DataField("nodeBlobCost")]
+    [ViewVariables(VVAccess.ReadWrite), DataField("nodeBlobCost"), AutoNetworkedField]
     public FixedPoint2 NodeBlobCost = 50;
 
-    [ViewVariables(VVAccess.ReadWrite), DataField("blobbernautCost")]
+    [ViewVariables(VVAccess.ReadWrite), DataField("blobbernautCost"), AutoNetworkedField]
     public FixedPoint2 BlobbernautCost = 60;
 
-    [ViewVariables(VVAccess.ReadWrite), DataField("strongBlobCost")]
+    [ViewVariables(VVAccess.ReadWrite), DataField("strongBlobCost"), AutoNetworkedField]
     public FixedPoint2 StrongBlobCost = 15;
 
-    [ViewVariables(VVAccess.ReadWrite), DataField("reflectiveBlobCost")]
+    [ViewVariables(VVAccess.ReadWrite), DataField("reflectiveBlobCost"), AutoNetworkedField]
     public FixedPoint2 ReflectiveBlobCost = 15;
 
-    [ViewVariables(VVAccess.ReadWrite), DataField("splitCoreCost")]
+    [ViewVariables(VVAccess.ReadWrite), DataField("splitCoreCost"), AutoNetworkedField]
     public FixedPoint2 SplitCoreCost = 100;
 
-    [ViewVariables(VVAccess.ReadWrite), DataField("swapCoreCost")]
+    [ViewVariables(VVAccess.ReadWrite), DataField("swapCoreCost"), AutoNetworkedField]
     public FixedPoint2 SwapCoreCost = 80;
 
-    [ViewVariables(VVAccess.ReadWrite), DataField("swapChemCost")]
+    [ViewVariables(VVAccess.ReadWrite), DataField("swapChemCost"), AutoNetworkedField]
     public FixedPoint2 SwapChemCost = 40;
 
-    [ViewVariables(VVAccess.ReadWrite), DataField("reflectiveBlobTile")]
-    public string ReflectiveBlobTile = "ReflectiveBlobTile";
+    [ViewVariables(VVAccess.ReadWrite), DataField("reflectiveBlobTile"), AutoNetworkedField]
+    public EntProtoId<BlobTileComponent> ReflectiveBlobTile = "ReflectiveBlobTile";
 
-    [ViewVariables(VVAccess.ReadWrite), DataField("strongBlobTile")]
-    public string StrongBlobTile = "StrongBlobTile";
+    [ViewVariables(VVAccess.ReadWrite), DataField("strongBlobTile"), AutoNetworkedField]
+    public EntProtoId<BlobTileComponent> StrongBlobTile = "StrongBlobTile";
 
-    [ViewVariables(VVAccess.ReadWrite), DataField("normalBlobTile")]
-    public string NormalBlobTile = "NormalBlobTile";
+    [ViewVariables(VVAccess.ReadWrite), DataField("normalBlobTile"), AutoNetworkedField]
+    public EntProtoId<BlobTileComponent> NormalBlobTile = "NormalBlobTile";
 
-    [ViewVariables(VVAccess.ReadWrite), DataField("factoryBlobTile")]
-    public string FactoryBlobTile = "FactoryBlobTile";
+    [ViewVariables(VVAccess.ReadWrite), DataField("factoryBlobTile"), AutoNetworkedField]
+    public EntProtoId FactoryBlobTile = "FactoryBlobTile";
 
-    [ViewVariables(VVAccess.ReadWrite), DataField("resourceBlobTile")]
-    public string ResourceBlobTile = "ResourceBlobTile";
+    [ViewVariables(VVAccess.ReadWrite), DataField("resourceBlobTile"), AutoNetworkedField]
+    public EntProtoId<BlobTileComponent> ResourceBlobTile = "ResourceBlobTile";
 
-    [ViewVariables(VVAccess.ReadWrite), DataField("nodeBlobTile")]
+    [ViewVariables(VVAccess.ReadWrite), DataField("nodeBlobTile"), AutoNetworkedField]
     public string NodeBlobTile = "NodeBlobTile";
 
-    [ViewVariables(VVAccess.ReadWrite), DataField("coreBlobTile")]
+    [ViewVariables(VVAccess.ReadWrite), DataField("coreBlobTile"), AutoNetworkedField]
     public string CoreBlobTile = "CoreBlobTileGhostRole";
 
-    [ViewVariables(VVAccess.ReadWrite), DataField("coreBlobTotalHealth")]
+    [ViewVariables(VVAccess.ReadWrite), DataField("coreBlobTotalHealth"), AutoNetworkedField]
     public FixedPoint2 CoreBlobTotalHealth = 400;
 
     [ViewVariables(VVAccess.ReadWrite),
-     DataField("ghostPrototype", customTypeSerializer: typeof(PrototypeIdSerializer<EntityPrototype>))]
+     DataField("ghostPrototype", customTypeSerializer: typeof(PrototypeIdSerializer<EntityPrototype>)), AutoNetworkedField]
     public string ObserverBlobPrototype = "MobObserverBlob";
 
-    [DataField("greetSoundNotification")]
+    [DataField("greetSoundNotification"), AutoNetworkedField]
     public SoundSpecifier GreetSoundNotification = new SoundPathSpecifier("/Audio/Effects/clang.ogg");
 
-    [ViewVariables(VVAccess.ReadOnly)]
+    [ViewVariables(VVAccess.ReadOnly), AutoNetworkedField]
     public EntityUid? Observer = default!;
 
     [ViewVariables(VVAccess.ReadOnly)]
     public HashSet<EntityUid> BlobTiles = new();
 
+    [AutoNetworkedField]
     public TimeSpan NextAction = TimeSpan.Zero;
-
-    [ViewVariables(VVAccess.ReadWrite)]
-    public FixedPoint2 Points = 0;
 
     [DataField("actionHelpBlob")]
     public EntityUid? ActionHelpBlob = null;
