@@ -83,7 +83,7 @@
     - state: locked
       map: ["enum.LockVisualLayers.Lock"]
       shader: unshaded
-     - state: syndicate
+    - state: syndicate
   - type: StorageFill
     contents:
         - id: OxygenTankFilled
