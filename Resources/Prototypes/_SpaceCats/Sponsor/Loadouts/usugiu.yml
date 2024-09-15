@@ -1,0 +1,33 @@
+# куртка
+- type: loadout
+  id: ClothingOuterCoatBlackedmcSponsor
+  equipment:
+    outerClothing: ClothingOuterCoatBlackedmcSponsor
+
+- type: loadout
+  id: ClothingOuterCoatJensen
+  equipment:
+    outerClothing: ClothingOuterCoatJensen
+
+# маска
+- type: loadout
+  id: ClothingMaskTGMCwhite
+  equipment:
+    mask: ClothingMaskTGMCwhite
+
+- type: loadout
+  id: ClothingMaskBal
+  equipment:
+    mask: ClothingMaskBal
+
+# Комбинезон
+- type: loadout
+  id: ClothingUniformJumpsuitSWAT
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitSWAT
+
+# Ботинки
+- type: loadout
+  id: ClothingShoesBootsJack
+  equipment:
+    shoes: ClothingShoesBootsJack

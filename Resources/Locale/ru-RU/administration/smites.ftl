@@ -16,6 +16,9 @@ admin-smite-lung-removal-self = Вы не можете вдохнуть!
 
 ## Smite names
 
+
+admin-trick-make-animate-description = Оживите предмет и сделайте его враждебным на 60 секунд.
+admin-trick-make-inanimate-description = Сделайте анимированный предмет неодушевленным.
 admin-smite-explode-name = Взрыв
 admin-smite-chess-dimension-name = Шахматное измерение
 admin-smite-set-alight-name = Воспламенить
@@ -81,6 +84,9 @@ admin-smite-buffering-description = Вызывает у цели случайн�
 admin-smite-become-instrument-description = Превращает цель в суперсинтезатор. И всё.
 admin-smite-remove-gravity-description = Наделяет цель антигравитацией.
 admin-smite-reptilian-species-swap-description = Меняет расу на Унатха. Пригодится для тех, кто ведёт себя как космический расист.
+admin-smite-dwarf-species-swap-description = Меняет расу на Дварфа. Пиво в комплект не входит.
+admin-smite-vox-species-swap-description = Меняет расу на Вокса. Лучше чем Вульпа, хуже чем Унатх.
+admin-smite-skilet-species-swap-description = Меняет расу на Скелета. Шутки про кости в комплект прилагаются.
 admin-smite-locker-stuff-description = Помещает цель в (заваренный) шкафчик.
 admin-smite-headstand-description = Переворачивает спрайт по вертикали.
 admin-smite-become-mouse-description = Цель станет мышью. Скуик.

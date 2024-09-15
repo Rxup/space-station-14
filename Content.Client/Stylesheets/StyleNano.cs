@@ -96,12 +96,12 @@ namespace Content.Client.Stylesheets
         public static readonly Color DangerousRedFore = Color.FromHex("#BB3232");
         public static readonly Color DisabledFore = Color.FromHex("#5A5A5A");
 
-        public static readonly Color ButtonColorDefault = Color.FromHex("#464966");
-        public static readonly Color ButtonColorDefaultRed = Color.FromHex("#D43B3B");
-        public static readonly Color ButtonColorHovered = Color.FromHex("#575b7f");
-        public static readonly Color ButtonColorHoveredRed = Color.FromHex("#DF6B6B");
-        public static readonly Color ButtonColorPressed = Color.FromHex("#3e6c45");
-        public static readonly Color ButtonColorDisabled = Color.FromHex("#30313c");
+        public static readonly Color ButtonColorDefault = Color.FromHex("#29282f");
+        public static readonly Color ButtonColorDefaultRed = Color.FromHex("#992327");
+        public static readonly Color ButtonColorHovered = Color.FromHex("#3f3d48");
+        public static readonly Color ButtonColorHoveredRed = Color.FromHex("#4D5D53");
+        public static readonly Color ButtonColorPressed = Color.FromHex("#0f0f0f");
+        public static readonly Color ButtonColorDisabled = Color.FromHex("#0f0f0f");
 
         public static readonly Color ButtonColorCautionDefault = Color.FromHex("#ab3232");
         public static readonly Color ButtonColorCautionHovered = Color.FromHex("#cf2f2f");
@@ -144,6 +144,8 @@ namespace Content.Client.Stylesheets
 
         //Background
         public const string StyleClassBackgroundBaseDark = "PanelBackgroundBaseDark";
+        public const string StyleClassLobbyBackground = "LobbyBackground";
+        public const string StyleClassPanelBackground = "PanelBackground";
 
         //Buttons
         public const string StyleClassCrossButtonRed = "CrossButtonRed";
@@ -473,6 +475,28 @@ namespace Content.Client.Stylesheets
                 Mode = StyleBoxTexture.StretchMode.Tile
             };
 
+            var lobbyBackgroundTex = resCache.GetTexture("/Textures/_SpaceCats/Interface/Nano/lobby.png");
+            var lobbyBackground = new StyleBoxTexture
+            {
+                Texture = lobbyBackgroundTex,
+                Mode = StyleBoxTexture.StretchMode.Tile
+            };
+
+            lobbyBackground.SetPatchMargin(StyleBox.Margin.All, 24);
+            lobbyBackground.SetExpandMargin(StyleBox.Margin.All, -4);
+            lobbyBackground.SetContentMarginOverride(StyleBox.Margin.All, 8);
+
+            var panelBackgroundTex = resCache.GetTexture("/Textures/_SpaceCats/Interface/Nano/panel.png");
+            var panelBackground = new StyleBoxTexture
+            {
+                Texture = panelBackgroundTex,
+                Mode = StyleBoxTexture.StretchMode.Tile
+            };
+
+            panelBackground.SetPatchMargin(StyleBox.Margin.All, 6);
+            panelBackground.SetExpandMargin(StyleBox.Margin.All, -2);
+
+
             // Slider
             var sliderOutlineTex = resCache.GetTexture("/Textures/Interface/Nano/slider_outline.svg.96dpi.png");
             var sliderFillTex = resCache.GetTexture("/Textures/Interface/Nano/slider_fill.svg.96dpi.png");
@@ -693,6 +717,20 @@ namespace Content.Client.Stylesheets
                     new[]
                     {
                         new StyleProperty("font-color", Color.FromHex("#E5E5E581")),
+                    }),
+
+                new StyleRule(
+                    new SelectorElement(null, new[] {StyleClassLobbyBackground}, null, null),
+                    new[]
+                    {
+                        new StyleProperty(PanelContainer.StylePropertyPanel, lobbyBackground),
+                    }),
+
+                new StyleRule(
+                    new SelectorElement(null, new[] {StyleClassPanelBackground}, null, null),
+                    new[]
+                    {
+                        new StyleProperty(PanelContainer.StylePropertyPanel, panelBackground),
                     }),
 
                 // Context Menu window

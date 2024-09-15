@@ -11,13 +11,18 @@
   weight: 1
   requireAdminNotify: true
   joinNotifyCrew: true
+  whitelisted: true
   requirements:
     - !type:DepartmentTimeRequirement
       department: Security
-      time: 108000
+#      time: 108000
+      time: 13000   #cats
+    - !type:AgeRequirement
+      requiredAge: 21 # cats
     - !type:RoleTimeRequirement
       role: JobCentralCommandAssistant
-      time: 3600
+#      time: 3600
+      time: 1200   #cats
   access:
     - CentralCommand
     - CCSecurity

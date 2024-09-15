@@ -1,0 +1,36 @@
+#носок
+- type: loadout
+  id: ClothingUnderSocksCoderBlue
+  equipment:
+    socks: ClothingUnderSocksCoderBlue
+
+#комбинезон
+- type: loadout
+  id: ClothingUniformJumpskirtEsmira
+  equipment:
+    jumpsuit: ClothingUniformJumpskirtEsmira
+
+# шляпа
+- type: loadout
+  id: ClothingHeadHatHairflowerEsmira
+  equipment:
+    head: ClothingHeadHatHairflowerEsmira
+
+# плащ
+- type: loadout
+  id: ClothingNeckEsmira
+  equipment:
+    neck: ClothingNeckEsmira
+
+# трусы 
+- type: loadout
+  id: ClothingUnderPantsEsmira
+  equipment:
+    underpants: ClothingUnderPantsEsmira
+
+
+# лифчик
+- type: loadout
+  id: ClothingUnderShirtEsmira
+  equipment:
+    undershirt: ClothingUnderShirtEsmira

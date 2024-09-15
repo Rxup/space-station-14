@@ -211,7 +211,9 @@
   components:
   - type: Sprite
     sprite: Mobs/Silicon/Bots/cleanbot.rsi
-    state: cleanbot
+    layers:
+      - state: cleanbot
+      - state: cleanbot_l
   - type: Construction
     graph: CleanBot
     node: bot
@@ -281,7 +283,9 @@
         quantity: 25
   - type: Sprite
     sprite: Mobs/Silicon/Bots/medibot.rsi
-    state: medibot
+    layers:
+      - state: medibot
+      - state: medibot_l
   - type: HTN
     rootTask:
       task: MedibotCompound
@@ -399,3 +403,53 @@
     - Binary
     - Common
     - Supply
+
+# space cats 
+
+- type: entity
+  parent: MobSiliconBase
+  id: MobAIBot
+  name: secur AAI
+  description: посследователь закона
+  components:
+    - type: Sprite
+      sprite: Mobs/Silicon/Bots/securitionai.rsi
+      layers:
+        - state: zoomba_sec
+        - state: zoomba_sec_l
+    - type: BatterySelfRecharger
+      autoRecharge: true
+      autoRechargeRate: 80
+    - type: Gun
+      fireRate: 1
+      selectedMode: FullAuto
+      availableModes:
+        - FullAuto
+      soundGunshot: /Audio/Weapons/Guns/Gunshots/laser.ogg
+    - type: HitscanBatteryAmmoProvider
+      proto: RedHeavyLaser
+      fireCost: 200
+    - type: Battery
+      maxCharge: 2000
+      startingCharge: 2000
+    - type: HTN
+      rootTask:
+        task: TurretCompound
+      blackboard:
+        RotateSpeed: !type:Single
+          3.141
+        SoundTargetInLOS: !type:SoundPathSpecifier
+          path: /Audio/Effects/double_beep.ogg
+    - type: InteractionPopup
+      interactDelay: 0.2
+      successChance: 0.8
+      interactSuccessString: petting-success-generic
+      interactFailureString: petting-failure-generic
+      interactSuccessSound:
+        path: /Audio/Effects/double_beep.ogg
+    - type: CombatMode
+      toggleMouseRotator: false
+    - type: Damageable
+      damageContainer: Inorganic
+    - type: Input
+      context: "human"

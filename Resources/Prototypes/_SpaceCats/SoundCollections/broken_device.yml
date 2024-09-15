@@ -1,0 +1,14 @@
+- type: soundCollection
+  id: BrokenDevice
+  files:
+  - /Audio/_Cats/Effects/teleport.ogg
+
+- type: soundCollection
+  id: ShortCircuit
+  files:
+  - /Audio/_Cats/Effects/zap.ogg
+
+- type: soundCollection
+  id: Alarm
+  files:
+  - /Audio/_Cats/Effects/emergency-pager-sound.ogg

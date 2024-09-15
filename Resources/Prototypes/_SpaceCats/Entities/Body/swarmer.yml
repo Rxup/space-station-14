@@ -1,0 +1,11 @@
+- type: body
+  id: SwarmerBody
+  name: "Свармер"
+  root: torso
+  slots:
+    torso:
+      part: BaseTorsoSwarmer
+      connections:
+      - right_hand
+    right_hand:
+      part: BaseRightHandSwarmer

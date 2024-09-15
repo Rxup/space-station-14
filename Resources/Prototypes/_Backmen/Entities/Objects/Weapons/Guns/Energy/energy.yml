@@ -3,7 +3,7 @@
   parent: BaseWeaponBattery
   id: WeaponEarthGovLaserRifle
   suffix: Винтовка
-  description: A Earth Government standard issue laser rifle, use by army and police.
+  description: Стандартная лазерная винтовка земного правительства, используемая армией и полицией.
   components:
   - type: Sprite
     sprite: Backmen/Objects/Weapons/Gunsx64/Battery/EG-R/big.rsi
@@ -50,7 +50,7 @@
   parent: BaseWeaponBattery
   id: WeaponEarthGovLaserMG
   suffix: Пулемёт
-  description: A Earth Government standard issue laser machine gun, use by army. Heavy and deadly.
+  description: Стандартный лазерный пулемет земного правительства, используемый армией. Тяжелый и смертоносный.
   components:
   - type: Sprite
     sprite: Backmen/Objects/Weapons/Gunsx64/Battery/EG-MG/big.rsi
@@ -101,7 +101,7 @@
   parent: BaseWeaponBattery
   id: WeaponEarthGovLaserCarbine
   suffix: Пистолет-пулемёт
-  description: A Earth Government standard issue laser carbine, use by army and police. Thanks to the short barrel it has better maneuverability in narrow spaces.
+  description: Стандартный лазерный карабин правительства Земли, используемый армией и полицией. Благодаря короткому стволу он обладает лучшей маневренностью в узких пространствах.
   components:
   - type: Sprite
     sprite: Backmen/Objects/Weapons/Gunsx64/Battery/EG-C/big.rsi
@@ -149,7 +149,7 @@
   parent: BaseWeaponBatterySmall
   id: WeaponEarthGovLaserPistol
   suffix: Пистолет
-  description: A Earth Government standard issue laser pistol, use by army and police.
+  description: Стандартный лазерный пистолет земного правительства, используемый армией и полицией.
   components:
   - type: Gun
     cameraRecoilScalar: 0.5
@@ -177,7 +177,7 @@
   parent: BaseWeaponBattery
   id: WeaponEarthGovLaserSniper
   suffix: Винтовка
-  description: A Earth Government heavy sniper rifle for a extended combat situation.
+  description: Тяжелая снайперская винтовка правительства Земли для длительных боевых действий.
   components:
   - type: Sprite
     sprite: Backmen/Objects/Weapons/Gunsx64/Battery/EG-S/big.rsi
@@ -226,7 +226,7 @@
   parent: BaseWeaponBattery
   id: WeaponEarthGovXRay
   suffix: Винтовка
-  description: A Earth Government Experemental x-ray weapon, it looks like it emits radiation.
+  description: Экспериментальное рентгеновское оружие земного правительства, похоже, оно испускает радиацию.
   components:
   - type: Sprite
     sprite: Backmen/Objects/Weapons/Gunsx64/Battery/EGE-XR/big.rsi

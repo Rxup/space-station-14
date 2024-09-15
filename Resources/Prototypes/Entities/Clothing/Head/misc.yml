@@ -8,6 +8,8 @@
     sprite: Clothing/Head/Misc/bunny.rsi
   - type: Clothing
     sprite: Clothing/Head/Misc/bunny.rsi
+  - type: DropOnSlip
+    chance: 50
 
 - type: entity
   parent: ClothingHeadBase
@@ -19,6 +21,8 @@
     sprite: Clothing/Head/Misc/cake.rsi
   - type: Clothing
     sprite: Clothing/Head/Misc/cake.rsi
+  - type: DropOnSlip
+    chance: 50
 
 - type: entity
   parent: ClothingHeadBase
@@ -32,6 +36,8 @@
     sprite: Clothing/Head/Misc/chickenhead.rsi
   - type: IngestionBlocker
   - type: IdentityBlocker
+  - type: DropOnSlip
+    chance: 50
 
 - type: entity
   parent: ClothingHeadBase
@@ -49,6 +55,8 @@
   - type: Construction
     graph: flowerwreath
     node: flowerwreath
+  - type: DropOnSlip
+    chance: 50
 
 - type: entity
   parent: ClothingHeadLightBase
@@ -74,6 +82,8 @@
     slots:
       cell_slot:
         name: power-cell-slot-component-slot-name-default
+  - type: DropOnSlip
+    chance: 50
 
 - type: entity
   parent: ClothingHeadBase
@@ -85,6 +95,8 @@
     sprite: Clothing/Head/Misc/pwig.rsi
   - type: Clothing
     sprite: Clothing/Head/Misc/pwig.rsi
+  - type: DropOnSlip
+    chance: 50
 
 - type: entity
   parent: ClothingHeadBase
@@ -96,6 +108,8 @@
     sprite: Clothing/Head/Misc/head_mirror.rsi
   - type: Clothing
     sprite: Clothing/Head/Misc/head_mirror.rsi
+  - type: DropOnSlip
+    chance: 50
 
 - type: entity
   parent: ClothingHeadBase
@@ -109,6 +123,8 @@
     sprite: Clothing/Head/Misc/richard.rsi
   - type: IngestionBlocker
   - type: IdentityBlocker
+  - type: DropOnSlip
+    chance: 50
 
 - type: entity
   parent: ClothingHeadBase
@@ -122,6 +138,8 @@
     sprite: Clothing/Head/Misc/skubhead.rsi
   - type: IngestionBlocker
   - type: IdentityBlocker
+  - type: DropOnSlip
+    chance: 50
 
 - type: entity
   parent: ClothingHeadBase
@@ -137,6 +155,8 @@
     tags:
     - HamsterWearable
     - WhitelistChameleon
+  - type: DropOnSlip
+    chance: 50
 
 - type: entity
   parent: ClothingHeadBase
@@ -155,6 +175,8 @@
       Plastic: 100
   - type: StaticPrice
     price: 25
+  - type: DropOnSlip
+    chance: 50
 
 - type: entity
   parent: ClothingHeadBase
@@ -170,6 +192,8 @@
     price: 3000
   - type: AddAccentClothing
     accent: MobsterAccent
+  - type: DropOnSlip
+    chance: 50
 
 - type: entity
   parent: [ ClothingHeadBase, BaseSyndicateContraband ]
@@ -186,6 +210,8 @@
     sprite: Clothing/Head/Hats/catears.rsi
   - type: AddAccentClothing
     accent: OwOAccent
+  - type: DropOnSlip
+    chance: 50
 
 - type: entity
   parent: [ClothingHeadHatCatEars, BaseToggleClothing]
@@ -207,6 +233,8 @@
     sprite: Clothing/Head/Hats/catears.rsi
   - type: AddAccentClothing
     accent: OwOAccent
+  - type: DropOnSlip
+    chance: 50
 
 - type: entity
   categories: [ Actions, HideSpawnMenu ]
@@ -230,6 +258,8 @@
     sprite: Clothing/Head/Hats/dogears.rsi
   - type: AddAccentClothing
     accent: BarkAccent
+  - type: DropOnSlip
+    chance: 50
 
 - type: entity
   parent: ClothingHeadBase
@@ -243,6 +273,8 @@
     sprite: Clothing/Head/Misc/squiddy.rsi
   - type: IngestionBlocker
   - type: IdentityBlocker
+  - type: DropOnSlip
+    chance: 50
 
 - type: entity
   parent: ClothingHeadBase
@@ -254,6 +286,8 @@
     sprite: Clothing/Head/Misc/red_racoon.rsi
   - type: Clothing
     sprite: Clothing/Head/Misc/red_racoon.rsi
+  - type: DropOnSlip
+    chance: 50
 
 - type: entity
   parent: Clothing

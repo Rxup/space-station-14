@@ -18,6 +18,13 @@ cmd-playtime_addrole-arg-user = <user name>
 cmd-playtime_addrole-arg-role = <role>
 cmd-playtime_addrole-arg-minutes = <minutes>
 cmd-playtime_addrole-error-args = Ожидается ровно три аргумента
+# - playtime_adddepartment
+cmd-playtime_adddepartment-desc = Добавляет указанное число минут к времени игрока в определённом отделе
+cmd-playtime_adddepartment-help = Использование: { $command } <user name> <department> <minutes>
+cmd-playtime_adddepartment-error-args = Ожидается ровно три аргумента
+cmd-playtime_adddepartment-parse-department-fail = Неизвестный отдел '{ $department }'
+cmd-playtime_adddepartment-succeed = Игровое время для { $username } / \'{ $role }\' увеличено на { TOSTRING($time, "dddd\\:hh\\:mm") }.
+cmd-playtime_addrole-arg-department = <department>
 # - playtime_getoverall
 cmd-playtime_getoverall-desc = Получить общее игровое время игрока в минутах
 cmd-playtime_getoverall-help = Использование: { $command } <user name>
