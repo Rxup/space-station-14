@@ -7,7 +7,7 @@ public sealed partial class BlobNodeComponent : Component
     public float PulseFrequency = 4f;
 
     [DataField]
-    public float PulseRadius = 3f;
+    public float PulseRadius = 4f;
 
     public TimeSpan NextPulse = TimeSpan.Zero;
 

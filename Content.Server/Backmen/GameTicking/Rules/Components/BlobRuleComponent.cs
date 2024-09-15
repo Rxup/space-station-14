@@ -11,7 +11,7 @@ public sealed partial class BlobRuleComponent : Component
 
     public BlobStage Stage = BlobStage.Default;
 
-    [DataField("alertAodio")]
+    [DataField]
     public SoundSpecifier? AlertAudio = new SoundPathSpecifier("/Audio/Announcements/attention.ogg");
 
     public float Accumulator = 0f;
@@ -22,7 +22,6 @@ public enum BlobStage : byte
 {
     Default,
     Begin,
-    Medium,
     Critical,
-    TheEnd
+    TheEnd,
 }

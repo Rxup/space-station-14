@@ -1,17 +1,13 @@
 # Popups
-blob-target-normal-blob-invalid = Неподходящий тип блоба, необходимо выбрать нормального блоба.
+blob-target-normal-blob-invalid = Неподходящий тип блоба.
 blob-target-factory-blob-invalid = Неподходящий тип блоба, необходимо выбрать фабрику.
 blob-target-node-blob-invalid = Неподходящий тип блоба, необходимо выбрать узел.
-blob-target-not-normal-blob-invalid = Неподходящий тип блоба, необходимо выбрать любого НЕ обычного блоба.
-blob-target-close-to-resource = Слишком близко к другому ресурсному тайлу.
 blob-target-nearby-not-node = Рядом нету узла или ядра.
 blob-target-close-to-node = Слишком близко к другому узлу.
 blob-target-already-produce-blobbernaut = Данная фабрика уже произвела блоббернаута.
 blob-target-already-connected = К узлу уже привязан блоб данного типа.
 blob-cant-split = Вы не можете разделить ядро.
 blob-not-enough-resources = Не хватает { $point } ресурсов для действия.
-blob-help = Вам поможет только бог.
-blob-swap-chem = В разработке.
 blob-mob-attack-blob = Вы не можете атаковать блоба.
 blob-get-resource = +{ $point }
 blob-spent-resource = -{ $point }
@@ -67,9 +63,9 @@ blob-create-resource-action-name = Создать ресурсный блоб (6
 blob-create-resource-action-desc = Превращает выбраного нормального блоба в ресурсного блоба который будет производить ресурсы если рядом есть узлы или ядро.
 blob-produce-blobbernaut-action-name = Произвести блоббернаута на фабрике (60)
 blob-produce-blobbernaut-action-desc = Производит на выбраной фабрике единожды блоббернаута который будет получать урон вне тайлов блоба и лечиться рядом с узлами.
-blob-split-core-action-name = Разделить ядро (200)
+blob-split-core-action-name = Разделить ядро (400)
 blob-split-core-action-desc = Единоразово позволяет превратить выбраный узел в самостоятельное ядро которое будет развиваться независимо от вас.
-blob-swap-core-action-name = Переместить ядро (100)
+blob-swap-core-action-name = Переместить ядро (200)
 blob-swap-core-action-desc = Производит рокировку вашего ядра с выбраным узлом.
 blob-teleport-to-core-action-name = Телепортироваться к ядру
 blob-teleport-to-core-action-desc = Телепортирует вашу камеру к вашему ядру.
@@ -79,10 +75,10 @@ blob-create-node-action-desc =
     Узел будет активировать эфекты других блобов, лечить и расширяться в пределах своего действия уничтожая стены и создавая нормальные блобы.
 blob-downgrade-action-name = Сбросить блоба (0)
 blob-downgrade-action-desc = Превращает выбранную клетку обратно в обычного блоба для установки других видов клеток.
-blob-swap-chem-action-name = Сменить химикат блоба (40)
-blob-swap-chem-action-desc = Позволяет вам сменить текущий химикат на один из 4 случайных.
+blob-swap-chem-action-name = Сменить химикат блоба (70)
+blob-swap-chem-action-desc = Позволяет вам сменить текущий химикат на один из 4 выбранных.
 blob-carrier-transform-to-blob-action-name = Превратиться в блоба
-blob-carrier-transform-to-blob-action-desc = Мгновенно разрывает ваше тело и создает ядро блоба. Учтите что если под вами не будет тайлов - вы просто исчезнете.
+blob-carrier-transform-to-blob-action-desc = Мгновенно разрывает ваше тело и создает ядро блоба. Учтите что если под вами не будет тайлов - вы исчезнете.
 
 # Ghost role
 blob-carrier-role-name = Носитель блоба
