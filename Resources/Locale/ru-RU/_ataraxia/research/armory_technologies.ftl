@@ -1,0 +1,10 @@
+ataraxia-research-technology-anomaly-harnessing = Военизированные аномалии
+ataraxia-research-technology-draconic-ammunition = Поджигающие боеприпасы
+ataraxia-research-technology-nonlethal-ammunition = Нелетальные боеприпасы
+ataraxia-research-technology-uranium-ammunition = Урановые боеприпасы
+ataraxia-research-technology-explosive = Взрывные средства
+ataraxia-research-technology-combat-laser = Боевые лазеры
+ataraxia-research-technology-combat-laser-advanced = Продвинутые боевые лазеры
+ataraxia-research-technology-combat-laser-concentrated = Концентрированные боевые лазеры
+ataraxia-research-technology-combat-laser-wave-harnessing = Волновые боевые лазеры
+ataraxia-research-technology-combat-laser-experimental = Экспериментальные боевые лазеры

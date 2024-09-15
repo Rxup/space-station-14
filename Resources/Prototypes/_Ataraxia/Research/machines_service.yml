@@ -1,0 +1,43 @@
+- type: technology
+  id: HydroponicsMachines
+  name: ataraxia-research-technology-hydroponics-machines
+  icon:
+    sprite: Structures/Machines/seed_extractor.rsi
+    state: seedextractor
+  discipline: HydroponicsMachines
+  tier: 1
+  cost: 5000
+  recipeUnlocks:
+  - SeedExtractorMachineCircuitboard
+  - HydroponicsTrayMachineCircuitboard
+  - ReagentGrinderIndustrialMachineCircuitboard
+
+- type: technology
+  id: EntertainmentAdvancedMachines
+  name: ataraxia-research-technology-entertainment-advanced-machines
+  icon:
+    sprite: Structures/Machines/computers.rsi
+    state: television
+  discipline: EntertainmentAdvancedMachines
+  tier: 1
+  cost: 7500
+  recipeUnlocks:
+    - ComputerTelevisionCircuitboard
+    - DawInstrumentMachineCircuitboard
+    - MassMediaCircuitboard
+    - ShipyardCircuitboard
+    - JukeboxCircuitBoard
+
+- type: technology
+  id: MeatManipulationMachine
+  name: ataraxia-research-technology-meat-manipulation-machine
+  icon:
+    sprite: Structures/Machines/fat_sucker.rsi
+    state: display
+  discipline: MeatManipulationMachine
+  tier: 1
+  cost: 7500
+  recipeUnlocks:
+  - FatExtractorMachineCircuitboard
+  - BiofabricatorMachineCircuitboard
+  - BiomassReclaimerMachineCircuitboard

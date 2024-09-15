@@ -1,0 +1,89 @@
+- type: techDiscipline
+  id: AnomalyCoreHarnessing
+  name: ataraxia-research-discipline-armory
+  color: "#dc373b"
+  icon:
+    sprite: _Ataraxia/Interface/Misc/research_disciplines.rsi
+    state: weapon
+  tierPrerequisites:
+    1: 0
+
+- type: techDiscipline
+  id: DraconicAmmunition
+  name: ataraxia-research-discipline-armory
+  color: "#dc373b"
+  icon:
+    sprite: _Ataraxia/Interface/Misc/research_disciplines.rsi
+    state: weapon
+  tierPrerequisites:
+    1: 0
+
+- type: techDiscipline
+  id: NonlethalAmmunition
+  name: ataraxia-research-discipline-armory
+  color: "#dc373b"
+  icon:
+    sprite: _Ataraxia/Interface/Misc/research_disciplines.rsi
+    state: weapon
+  tierPrerequisites:
+    1: 0
+
+- type: techDiscipline
+  id: UraniumAmmunition
+  name: ataraxia-research-discipline-armory
+  color: "#dc373b"
+  icon:
+    sprite: _Ataraxia/Interface/Misc/research_disciplines.rsi
+    state: weapon
+  tierPrerequisites:
+    1: 0
+
+- type: techDiscipline
+  id: Explosive
+  name: ataraxia-research-discipline-armory
+  color: "#dc373b"
+  icon:
+    sprite: _Ataraxia/Interface/Misc/research_disciplines.rsi
+    state: weapon
+  tierPrerequisites:
+    1: 0
+
+- type: techDiscipline
+  id: CombatLaser
+  name: ataraxia-research-discipline-armory
+  color: "#dc373b"
+  icon:
+    sprite: _Ataraxia/Interface/Misc/research_disciplines.rsi
+    state: weapon
+  tierPrerequisites:
+    1: 0
+
+- type: techDiscipline
+  id: CombatLaserConcentrated
+  name: ataraxia-research-discipline-armory
+  color: "#dc373b"
+  icon:
+    sprite: _Ataraxia/Interface/Misc/research_disciplines.rsi
+    state: weapon
+  tierPrerequisites:
+    1: 0
+
+- type: techDiscipline
+  id: CombatLaserWaveHarnessing
+  name: ataraxia-research-discipline-armory
+  color: "#dc373b"
+  icon:
+    sprite: _Ataraxia/Interface/Misc/research_disciplines.rsi
+    state: weapon
+  tierPrerequisites:
+    1: 0
+
+- type: techDiscipline
+  id: CombatLaserExperimental
+  name: ataraxia-research-discipline-armory
+  color: "#dc373b"
+  icon:
+    sprite: _Ataraxia/Interface/Misc/research_disciplines.rsi
+    state: weapon
+  tierPrerequisites:
+    1: 0

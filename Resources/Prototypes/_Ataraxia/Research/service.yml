@@ -1,0 +1,119 @@
+- type: technology
+  id: EntertainmentAdvanced
+  name: ataraxia-research-technology-entertainment-advanced
+  icon:
+    sprite: Objects/Fun/Instruments/h_synthesizer.rsi
+    state: icon
+  discipline: EntertainmentAdvanced
+  tier: 1
+  cost: 3500
+  recipeUnlocks:
+    - SynthesizerInstrument
+
+- type: technology
+  id: FauxAstroTiles
+  name: ataraxia-research-technology-faux-astro-tiles
+  icon:
+    sprite: Objects/Tiles/tile.rsi
+    state: astroice
+  discipline: FauxAstroTiles
+  tier: 1
+  cost: 5000
+  recipeUnlocks:
+  - FauxTileAstroGrass
+  - FauxTileMowedAstroGrass
+  - FauxTileJungleAstroGrass
+  - FauxTileAstroIce
+  - FauxTileAstroSnow
+
+- type: technology
+  id: CleaningAdvanced
+  name: ataraxia-research-technology-cleaning-advanced
+  icon:
+    sprite: Objects/Specific/Janitorial/advmop.rsi
+    state: advmop
+  discipline: CleaningAdvanced
+  tier: 1
+  cost: 10000
+  recipeUnlocks:
+  - AdvMopItem
+  - MegaSprayBottle
+
+- type: technology
+  id: SprayAdvanced
+  name: ataraxia-research-technology-spray-advanced
+  icon:
+    sprite: Objects/Weapons/Guns/Basic/spraynozzle.rsi
+    state: icon
+  discipline: SprayAdvanced
+  tier: 1
+  cost: 10000
+  recipeUnlocks:
+  - WeaponSprayNozzle
+  - ClothingBackpackWaterTank
+  technologyPrerequisites:
+  - CleaningAdvanced
+
+- type: technology
+  id: TranslationDevice
+  name: ataraxia-research-technology-translation-device
+  icon:
+    sprite: Objects/Devices/translator.rsi
+    state: icon
+  discipline: TranslationDevice
+  tier: 1
+  cost: 10000
+  recipeUnlocks:
+  - BasicGalaticCommonTranslatorImplanter
+
+- type: technology
+  id: TranslationImplanter
+  name: ataraxia-research-technology-translation-implanter
+  icon:
+    sprite: Objects/Specific/Medical/implanter.rsi
+    state: implanter0
+  discipline: TranslationImplanter
+  tier: 1
+  cost: 7500
+  recipeUnlocks:
+  - BasicGalaticCommonTranslatorImplanter
+  technologyPrerequisites:
+  - TranslationDevice
+
+- type: technology
+  id: TranslationDeviceAdvanced
+  name: ataraxia-research-technology-translation-device-advanced
+  icon:
+    sprite: Objects/Devices/translator.rsi
+    state: icon
+  discipline: TranslationDevice
+  tier: 1
+  cost: 12000
+  recipeUnlocks:
+  - XenoTranslator
+  - AnimalTranslator
+  technologyPrerequisites:
+  - CleaningAdvanced
+
+- type: technology
+  id: TranslationImplanterAdvanced
+  name: ataraxia-research-technology-translation-implanter-advanced
+  icon:
+    sprite: Objects/Specific/Medical/implanter.rsi
+    state: implanter0
+  discipline: TranslationImplanter
+  tier: 1
+  cost: 15000
+  recipeUnlocks:
+  - MofficTranslatorImplanter
+  - AdvancedGalaticCommonTranslatorImplanter
+  - BubblishTranslatorImplanter
+  - NekomimeticTranslatorImplanter
+  - DraconicTranslatorImplanter
+  - CanilunztTranslatorImplanter
+  - SolCommonTranslatorImplanter
+  - RootSpeakTranslatorImplanter
+  technologyPrerequisites:
+  - TranslationDevice
+  - TranslationImplanter
+  - TranslationDeviceAdvanced

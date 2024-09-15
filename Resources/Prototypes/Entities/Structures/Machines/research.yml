@@ -1,5 +1,6 @@
 ﻿- type: entity
-  id: ResearchAndDevelopmentServer
+  id: BaseResearchAndDevelopmentServer # Ataraxia-EDIT | RND research
+  abstract: true # Ataraxia
   parent: [ BaseMachinePowered, ConstructibleMachine ]
   name: R&D server
   description: Contains the collective knowledge of the station's scientists. Destroying it would send them back to the stone age. You don't want that do you?
@@ -13,12 +14,7 @@
         map: ["enum.WiresVisualLayers.MaintenancePanel"]
   - type: ResearchServer
   - type: DiseaseServer
-  - type: TechnologyDatabase
-    supportedDisciplines:
-    - Industrial
-    - Arsenal
-    - Experimental
-    - CivilianServices
+  - type: TechnologyDatabase # Ataraxia-EDIT
   - type: ApcPowerReceiver
     powerLoad: 200
   - type: ExtensionCableReceiver
@@ -58,6 +54,92 @@
   - type: GuideHelp
     guides:
     - Science
+
+- type: entity # Ataraxia | RND research
+  parent: BaseResearchAndDevelopmentServer
+  id: ResearchAndDevelopmentServer
+  components:
+  - type: TechnologyDatabase
+    supportedDisciplines:
+# <-- ENGINEERING -->
+    - Powercells
+    - EngineeringDevices
+    - AtmosphericDevices
+    - EngineeringAdvancedTools
+    - AtmosphericTools
+    - PowerGeneration
+    - EngineeringMachines
+    - MechanicalCompressionMachines
+    - AtmosphericMachines
+# <-- SCIENTIFIC -->
+    - RNDPinpointers
+    - GravityManipulation
+    - QuantumLeaping
+    - BluespaceStorage
+    - AnomalousResearchMachines
+    - XenoArcheologyMachines
+    - AlternativeResearchMachines
+    - AbnormalArtifactManipulationMachines
+# <-- ROBOTICS -->
+    - Robotics
+    - CritterMech
+    - HONKMech
+    - RipleyAPLUMech
+    - MechanizedTreatmentModules
+    - GrapplingModules
+    - SpaceScanningModules
+    - AdvancedToolsModules
+    - HydroponicsModules
+    - EntertainmentAdvancedModules
+    - SalvageEquipmentModules
+    - RoboticCleanlinessModules
+    - XenoArcheologyModules
+    - RoboticsMachines
+# <-- SECURITY -->
+    - RiotControl
+    - GripsGloves
+# <-- WEAPON -->
+    - AnomalyCoreHarnessing
+    - DraconicAmmunition
+    - NonlethalAmmunition
+    - UraniumAmmunition
+    - Explosive
+    - CombatLaser
+    - CombatLaserConcentrated
+    - CombatLaserWaveHarnessing
+    - CombatLaserExperimental
+# <-- SERVICE -->
+    - Hydroponics
+    - EntertainmentAdvanced
+    - EntertainmentAdvancedMachines
+    - MeatManipulationMachine
+    - FauxAstroTiles
+    - CleaningAdvanced
+    - SprayAdvanced
+# <-- SHAFT -->
+    - SalvageWeapons
+    - SalvageEquipment
+    - Grappling
+    - SpaceScanning
+    - SalvageWeaponsMachines
+    - SalvageEquipmentMachines
+    - SpaceScanningMachines
+# <-- CARGO -->
+    - BluespaceCargoTransportMachines
+# <-- MEDICAL -->
+    - BiochemicalStasis
+    - BiochemicalStasisMachines
+    - CrewMonitoring
+    - BodyBags
+    - Chemistry
+# <-- EQUIPMENT -->
+    - MagneticBoots
+    - QuantumMagneticBoots
+# <-- SHUTTLE -->
+    - ShuttleWeapon
+    - Shuttlecraft
+# <-- TELECOMMUNICATIONS -->
+    - AudioVisualCommunicationMachines
 
 - type: entity
   id: BaseResearchAndDevelopmentPointSource

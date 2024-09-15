@@ -528,6 +528,7 @@
       - TelecomServerCircuitboard
       - MassMediaCircuitboard
       - ShipyardCircuitboard # backmen
+      - SalvageExpeditionsComputerCircuitboard # Ataraxia
       - ReagentGrinderIndustrialMachineCircuitboard
       - JukeboxCircuitBoard
   - type: EmagLatheRecipes
@@ -965,6 +966,7 @@
       - SyringeBluespace
       - SyringeCryostasis
       - BluespacePillCanister # Backmen
+      - HandheldCrewMonitor # Ataraxia
   - type: Machine
     board: MedicalTechFabCircuitboard
   - type: StealTarget
