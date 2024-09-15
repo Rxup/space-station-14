@@ -29,10 +29,6 @@ public sealed partial class BlobCarrierComponent : Component
      DataField("corePrototype", customTypeSerializer: typeof(PrototypeIdSerializer<EntityPrototype>))]
     public string CoreBlobPrototype = "CoreBlobTile";
 
-    [ViewVariables(VVAccess.ReadWrite),
-     DataField("coreBlobGhostRolePrototype", customTypeSerializer: typeof(PrototypeIdSerializer<EntityPrototype>))]
-    public string CoreBlobGhostRolePrototype = "CoreBlobTileGhostRole";
-
     public EntityUid? TransformToBlob = null;
 }
 

@@ -181,16 +181,13 @@ public sealed partial class BlobCoreComponent : Component
         {BlobTileType.Reflective, "ReflectiveBlobTile"},
         {BlobTileType.Strong, "StrongBlobTile"},
         {BlobTileType.Normal, "NormalBlobTile"},
-        //{BlobTileType.Storage, ""},
+        //{BlobTileType.Storage, "StorageBlobTile"},
         //{BlobTileType.Turret, ""},
-        {BlobTileType.Core, "CoreBlobTileGhostRole"},
+        {BlobTileType.Core, "CoreBlobTile"},
     };
 
     [DataField(required: true)]
     public List<ProtoId<EntityPrototype>> ActionPrototypes = [];
-
-    [DataField]
-    public string CoreBlobTile = "CoreBlobTileGhostRole";
 
     [DataField]
     public string BlobExplosive = "Blob";

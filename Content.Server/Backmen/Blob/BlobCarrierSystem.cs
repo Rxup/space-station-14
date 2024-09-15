@@ -91,7 +91,7 @@ public sealed class BlobCarrierSystem : SharedBlobCarrierSystem
         }
         else
         {
-            Spawn(ent.Comp.CoreBlobGhostRolePrototype, xform.Coordinates);
+            Spawn(ent.Comp.CoreBlobPrototype, xform.Coordinates);
         }
 
         _bodySystem.GibBody(ent);
