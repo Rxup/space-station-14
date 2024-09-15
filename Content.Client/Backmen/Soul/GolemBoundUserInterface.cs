@@ -1,5 +1,6 @@
 ﻿using Content.Shared.Backmen.Soul;
 using JetBrains.Annotations;
+using Robust.Client.UserInterface;
 
 namespace Content.Client.Backmen.Soul;
 
@@ -19,13 +20,10 @@ public sealed class GolemBoundUserInterface : BoundUserInterface
     {
         base.Open();
 
-        _window = new GolemWindow();
+        _window = this.CreateWindow<GolemWindow>();
         if (State != null)
             UpdateState(State);
 
-        _window.OpenCentered();
-
-        _window.OnClose += Close;
         _window.OnNameEntered += OnNameChanged;
         _window.OnMasterEntered += OnMasterChanged;
         _window.OnInstallButtonPressed += _ =>
@@ -58,15 +56,5 @@ public sealed class GolemBoundUserInterface : BoundUserInterface
 
         _window.SetCurrentName(cast.Name);
         _window.SetCurrentMaster(cast.MasterName);
-    }
-
-    protected override void Dispose(bool disposing)
-    {
-        base.Dispose(disposing);
-
-        if (!disposing)
-            return;
-
-        _window?.Dispose();
     }
 }
