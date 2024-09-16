@@ -111,15 +111,6 @@
       - id: PrizeTicket30
         prob: 0.80
         orGroup: Prize
-      - id: PlushieMothRandom
-        prob: 0.80
-        orGroup: Prize
-      - id: PlushieMothMusician
-        prob: 0.80
-        orGroup: Prize
-      - id: PlushieMothBartender
-        prob: 0.80
-        orGroup: Prize
       - id: PlushieBee
         prob: 0.80
         orGroup: Prize

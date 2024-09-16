@@ -256,18 +256,18 @@
   - type: Sprite
     sprite: _EinsteinEngines/Objects/Fun/toys.rsi
     state: plushie_vulp
-  - type: EmitSoundOnUse
-    sound:
-      path: /Audio/DeltaV/Voice/Vulpkanin/dog_bark1.ogg
-  - type: EmitSoundOnLand
-    sound:
-      path: /Audio/DeltaV/Voice/Vulpkanin/dog_bark1.ogg
-  - type: EmitSoundOnActivate
-    sound:
-      path: /Audio/DeltaV/Voice/Vulpkanin/dog_bark1.ogg
-  - type: MeleeWeapon
-    soundHit:
-      path: /Audio/DeltaV/Voice/Vulpkanin/dog_bark1.ogg
+#  - type: EmitSoundOnUse # Ataraxia-REMOVE | Dont have barks - TODO: Get barks
+#    sound:
+#      path: /Audio/DeltaV/Voice/Vulpkanin/dog_bark1.ogg
+#  - type: EmitSoundOnLand
+#    sound:
+#      path: /Audio/DeltaV/Voice/Vulpkanin/dog_bark1.ogg
+#  - type: EmitSoundOnActivate
+#    sound:
+#      path: /Audio/DeltaV/Voice/Vulpkanin/dog_bark1.ogg
+#  - type: MeleeWeapon
+#    soundHit:
+#      path: /Audio/DeltaV/Voice/Vulpkanin/dog_bark1.ogg
 
 - type: entity
   parent: PlushieVulp

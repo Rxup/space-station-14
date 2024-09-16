@@ -7,30 +7,6 @@
     PrizeTicket: 30
 
 - type: latheRecipe
-  id: PlushieMothRandom
-  result: PlushieMothRandom
-  applyMaterialDiscount: false
-  completetime: 0.1
-  materials:
-    PrizeTicket: 50
-
-- type: latheRecipe
-  id: PlushieMothMusician
-  result: PlushieMothMusician
-  applyMaterialDiscount: false
-  completetime: 0.1
-  materials:
-    PrizeTicket: 50
-
-- type: latheRecipe
-  id: PlushieMothBartender
-  result: PlushieMothBartender
-  applyMaterialDiscount: false
-  completetime: 0.1
-  materials:
-    PrizeTicket: 50
-
-- type: latheRecipe
   id: PlushieBee
   result: PlushieBee
   applyMaterialDiscount: false
