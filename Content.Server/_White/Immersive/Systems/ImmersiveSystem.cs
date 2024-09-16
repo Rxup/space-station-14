@@ -1,15 +1,18 @@
 ﻿using System.Numerics;
 using Content.Server._White.Immersive.Components;
 using Content.Server.GameTicking;
-using Content.Server.GameTicking.Components;
+using Content.Server.GameTicking.Rules;
+using Content.Server.GameTicking.Rules.Components;
 using Content.Shared._White.Telescope;
 using Content.Shared.Humanoid;
+using Content.Shared.GameTicking.Components;
 using Content.Shared.Movement.Components;
 using Content.Shared.Movement.Systems;
+using Robust.Shared.GameObjects;
 
 namespace Content.Server._White.Immersive;
 
-public sealed class Immersive : AspectSystem<ImmersiveComponent>
+public sealed class ImmersiveSystem : GameRuleSystem<ImmersiveComponent>
 {
 
     [Dependency] private readonly SharedContentEyeSystem _eye = default!;
@@ -21,8 +24,7 @@ public sealed class Immersive : AspectSystem<ImmersiveComponent>
         SubscribeLocalEvent<PlayerSpawnCompleteEvent>(OnPlayerSpawn);
     }
 
-    protected override void Started(EntityUid uid, ImmersiveComponent component, GameRuleComponent gameRule,
-        GameRuleStartedEvent args)
+    protected override void Started(EntityUid uid, ImmersiveComponent component, GameRuleComponent gameRule, GameRuleStartedEvent args)
     {
         base.Started(uid, component, gameRule, args);
 

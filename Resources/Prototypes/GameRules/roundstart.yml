@@ -3,7 +3,6 @@
   abstract: true
   components:
   - type: GameRule
-  - type: Immersive # Ataraxia
 
 - type: entity
   parent: BaseGameRule
@@ -344,6 +343,7 @@
   components:
   - type: RoundstartStationVariationRule
     rules:
+    - id: ImmersiveRule # Ataraxia
     - id: BasicPoweredLightVariationPass
     - id: BasicTrashVariationPass
     - id: SolidWallRustingVariationPass

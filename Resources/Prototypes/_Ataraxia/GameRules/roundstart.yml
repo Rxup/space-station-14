@@ -1,0 +1,5 @@
+- type: entity
+  id: ImmersiveRule
+  parent: BaseGameRule
+  components:
+  - type: Immersive
