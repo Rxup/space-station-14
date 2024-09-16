@@ -1,20 +1,4 @@
 - type: entity
-  parent: ClothingUnderSocksBase
-  id: ClothingUnderSocksCoderBlue
-  name: голубые носки эсмиры
-  suffix: Спонсор, Fredik21
-  description: Раньше это были розовые носки, но Эсмира пролила на них голубую краску. Теперь это голубые носки.
-  components:
-  - type: Sprite
-    sprite: _SpaceCats/Sponsor/Fredik21/blue.rsi
-    state: icon
-  - type: Clothing
-    sprite: _SpaceCats/Sponsor/Fredik21/blue.rsi
-    clothingVisuals:
-      socks:
-        - state: equipped-FEET
-
-- type: entity
   parent: ClothingUniformSkirtBase
   id: ClothingUniformJumpskirtEsmira
   name: юбка-комбинезон эсмиры
@@ -47,36 +31,3 @@
   components:
   - type: Sprite
     sprite: _SpaceCats/Sponsor/Fredik21/toy.rsi
-
-# нижняя одежда
-- type: entity
-  description: НАКОНЕЦ ТО?!
-  name: трусы эсмиры
-  parent: ClothingUnderPantsBase
-  id: ClothingUnderPantsEsmira
-  suffix: Спонсор, Fredik21
-  components:
-  - type: Sprite
-    sprite: _SpaceCats/Sponsor/Fredik21/pants.rsi
-    state: icon
-  - type: Clothing
-    sprite: _SpaceCats/Sponsor/Fredik21/pants.rsi
-    clothingVisuals:
-      underpants:
-        - state: equipped-INNERCLOTHING
-
-- type: entity
-  description: Верни позязя владельцу~
-  name: топик эсмиры
-  parent: ClothingUnderShirtBase
-  id: ClothingUnderShirtEsmira
-  suffix: Спонсор, Fredik21
-  components:
-  - type: Sprite
-    sprite: _SpaceCats/Sponsor/Fredik21/brassierer.rsi
-    state: icon
-  - type: Clothing
-    sprite: _SpaceCats/Sponsor/Fredik21/brassierer.rsi
-    clothingVisuals:
-      undershirt:
-        - state: equipped-INNERCLOTHING

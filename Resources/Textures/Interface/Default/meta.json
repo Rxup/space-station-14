@@ -8,7 +8,7 @@
   "copyright": "Made for the Imperial Space community, authors'es discord nickname: phoenix_7002, thx, PORT spacecats",  
   "states": [
       {
-        "name": "back"
+        "name": "back",
       },
       {
         "name": "belt"
