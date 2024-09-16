@@ -1,0 +1,23 @@
+- type: entity
+  parent: OrganHumanStomach
+  id: OrganAnthroAnimalStomach
+  noSpawn: true
+  components:
+  - type: Metabolizer
+    metabolizerTypes: [ AnthroAnimal ]
+
+- type: entity
+  parent: OrganHumanLiver
+  id: OrganAnthroAnimalLiver
+  noSpawn: true
+  components:
+  - type: Metabolizer
+    metabolizerTypes: [ AnthroAnimal ]
+
+- type: entity
+  parent: OrganHumanHeart
+  id: OrganAnthroAnimalHeart
+  noSpawn: true
+  components:
+  - type: Metabolizer
+    metabolizerTypes: [ AnthroAnimal ]
