@@ -5,6 +5,7 @@ using Content.Shared.Mobs.Systems;
 using Content.Shared.Movement.Systems;
 using Content.Shared.Standing;
 using Content.Shared.Stunnable;
+using Robust.Shared.Containers;
 using Robust.Shared.Input.Binding;
 using Robust.Shared.Player;
 using Robust.Shared.Serialization;
@@ -17,6 +18,8 @@ public abstract class SharedLayingDownSystem : EntitySystem
     [Dependency] private readonly StandingStateSystem _standing = default!;
     [Dependency] private readonly SharedDoAfterSystem _doAfter = default!;
     [Dependency] private readonly SharedGravitySystem _gravity = default!;
+    [Dependency] private readonly ISharedPlayerManager _playerManager = default!;
+    [Dependency] private readonly SharedContainerSystem _container = default!;
 
     public override void Initialize()
     {
@@ -31,10 +34,22 @@ public abstract class SharedLayingDownSystem : EntitySystem
         SubscribeLocalEvent<LayingDownComponent, EntParentChangedMessage>(OnParentChanged);
     }
 
+    protected abstract bool GetAutoGetUp(Entity<LayingDownComponent> ent, ICommonSession session);
+
+    public void TryProcessAutoGetUp(Entity<LayingDownComponent> ent)
+    {
+        var autoUp = false;
+        if (_playerManager.TryGetSessionByEntity(ent, out var player))
+        {
+            autoUp = GetAutoGetUp(ent, session: player);
+        }
+        if (autoUp && !_container.IsEntityInContainer(ent))
+            TryStandUp(ent, ent);
+    }
+
     public override void Shutdown()
     {
         base.Shutdown();
-
         CommandBinds.Unregister<SharedLayingDownSystem>();
     }
 
@@ -48,6 +63,11 @@ public abstract class SharedLayingDownSystem : EntitySystem
         }
 
         RaiseNetworkEvent(new ChangeLayingDownEvent());
+    }
+
+    public virtual void AutoGetUp(Entity<LayingDownComponent> ent)
+    {
+
     }
 
     private void OnChangeState(ChangeLayingDownEvent ev, EntitySessionEventArgs args)
@@ -67,7 +87,8 @@ public abstract class SharedLayingDownSystem : EntitySystem
             return;
         }
 
-        RaiseNetworkEvent(new CheckAutoGetUpEvent(GetNetEntity(uid)));
+        //RaiseNetworkEvent(new CheckAutoGetUpEvent(GetNetEntity(uid)));
+        AutoGetUp((uid,layingDown));
 
         if (HasComp<KnockedDownComponent>(uid) || !_mobState.IsAlive(uid))
             return;

@@ -152,11 +152,13 @@ namespace Content.Client.Options.UI.Tabs
                 KeybindsContainer.AddChild(newCheckBox);
             }
 
+            // start-backmen: Laying System
             void HandleToggleAutoGetUp(BaseButton.ButtonToggledEventArgs args) // WD EDIT
             {
-                _cfg.SetCVar(CCVars.AutoGetUp, args.Pressed);
+                _cfg.SetCVar(Shared.Backmen.CCVar.CCVars.AutoGetUp, args.Pressed);
                 _cfg.SaveToFile();
             }
+            // end-backmen: Laying System
 
             AddHeader("ui-options-header-rmc");
             AddButton(CMKeyFunctions.CMUniqueAction);
@@ -171,6 +173,7 @@ namespace Content.Client.Options.UI.Tabs
             AddButton(EngineKeyFunctions.MoveRight);
             AddButton(EngineKeyFunctions.Walk);
             AddCheckBox("ui-options-hotkey-toggle-walk", _cfg.GetCVar(CCVars.ToggleWalk), HandleToggleWalk);
+            AddCheckBox("ui-options-hotkey-auto-up", _cfg.GetCVar(Shared.Backmen.CCVar.CCVars.AutoGetUp), HandleToggleAutoGetUp); // backmen: Laying System
             InitToggleWalk();
 
             AddHeader("ui-options-header-camera");
@@ -194,7 +197,7 @@ namespace Content.Client.Options.UI.Tabs
             AddButton(ContentKeyFunctions.MoveStoredItem);
             AddButton(ContentKeyFunctions.RotateStoredItem);
             AddButton(ContentKeyFunctions.SaveItemLocation);
-            AddButton(ContentKeyFunctions.ToggleStanding); // ataraxia
+            AddButton(ContentKeyFunctions.ToggleStanding); // backmen: Laying System
 
             AddHeader("ui-options-header-interaction-adv");
             AddButton(ContentKeyFunctions.SmartEquipBackpack);

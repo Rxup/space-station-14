@@ -2221,11 +2221,5 @@ namespace Content.Shared.CCVar
         public static readonly CVarDef<bool> DebugPow3rDisableParallel =
             CVarDef.Create("debug.pow3r_disable_parallel", true, CVar.SERVERONLY);
 
-        /*
-         * Bind Standing - Ataraxia
-         */
-
-        public static readonly CVarDef<bool> AutoGetUp =
-            CVarDef.Create("white.auto_get_up", true, CVar.CLIENT | CVar.ARCHIVE | CVar.REPLICATED);
     }
 }

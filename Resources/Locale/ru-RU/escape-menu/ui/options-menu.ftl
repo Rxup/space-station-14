@@ -94,7 +94,6 @@ ui-options-parallax-low-quality = Низкокачественный парал�
 ui-options-fps-counter = Показать счётчик FPS
 ui-options-vp-width = Ширина окна игры:
 ui-options-hud-layout = Тип HUD:
-ui-options-function-auto-get-up = Автоматически вставать при падении
 ## Controls menu
 
 ui-options-binds-reset-all = Сбросить ВСЕ привязки
