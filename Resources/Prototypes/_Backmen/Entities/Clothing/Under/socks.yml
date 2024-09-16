@@ -663,3 +663,4 @@
           - state: uk_thigh
     - type: TemperatureProtection
       heatingCoefficient: 0.85
+
