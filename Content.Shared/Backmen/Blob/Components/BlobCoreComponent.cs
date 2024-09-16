@@ -40,6 +40,9 @@ public sealed partial class BlobCoreComponent : Component
     public float AttackRate = 0.8f;
 
     [DataField]
+    public float GrowRate = 0.4f;
+
+    [DataField]
     public bool CanSplit = true;
 
     #endregion

@@ -206,6 +206,8 @@ public sealed class BlobCoreActionSystem : EntitySystem
             node,
             BlobTileType.Normal,
             location);
+
+        core.Comp.NextAction = _gameTiming.CurTime + TimeSpan.FromSeconds(core.Comp.GrowRate);
     }
 
     private EntityUid? FindNearBlobTile(EntityCoordinates coords, Entity<MapGridComponent> grid)
@@ -288,8 +290,6 @@ public sealed class BlobCoreActionSystem : EntitySystem
         var location = args.ClickLocation;
         if (!location.IsValid(EntityManager))
             return;
-
-        blobCoreComponent.NextAction = _gameTiming.CurTime + TimeSpan.FromMilliseconds(333); // GCD?
 
         args.Handled = true;
 

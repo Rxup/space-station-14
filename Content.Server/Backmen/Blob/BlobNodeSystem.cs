@@ -30,6 +30,7 @@ public sealed class BlobNodeSystem : EntitySystem
 
         SubscribeLocalEvent<BlobNodeComponent, DestructionEventArgs>(OnDestruction);
         SubscribeLocalEvent<BlobNodeComponent, EntityTerminatingEvent>(OnTerminating);
+        SubscribeLocalEvent<BlobNodeComponent, ComponentStartup>(OnStartup);
 
         _tileQuery = GetEntityQuery<BlobTileComponent>();
     }
@@ -70,6 +71,11 @@ public sealed class BlobNodeSystem : EntitySystem
 
             _blobCoreSystem.RemoveTileWithReturnCost((tile.Value.Value, tileComponent), tileComp.Core.Value);
         }
+    }
+
+    private void OnStartup(EntityUid uid, BlobNodeComponent component, ComponentStartup args)
+    {
+        component.ConnectedTiles[BlobTileType.Node] = uid;
     }
 
     private void Pulse(Entity<BlobNodeComponent> ent)

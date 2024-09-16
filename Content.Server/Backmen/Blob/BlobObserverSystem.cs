@@ -214,7 +214,7 @@ public sealed class BlobObserverSystem : SharedBlobObserverSystem
         if (component.SelectedChemId == args.SelectedId)
             return;
 
-        if (ChangeChem(uid, args.SelectedId, component))
+        if (!ChangeChem(uid, args.SelectedId, component))
             return;
 
         _blobCoreSystem.TryUseAbility(component.Core.Value, blobCoreComponent.SwapChemCost);
@@ -435,6 +435,9 @@ public sealed class BlobObserverSystem : SharedBlobObserverSystem
         // Swap them here
         nodeNodeComp.ConnectedTiles = coreTiles;
         coreNodeComp.ConnectedTiles = nodeTiles;
+        // Reassign Node fields to make it work better.
+        nodeNodeComp.ConnectedTiles[BlobTileType.Node] = blobTile;
+        coreNodeComp.ConnectedTiles[BlobTileType.Node] = uid;
 
         args.Handled = true;
     }
