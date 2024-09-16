@@ -534,6 +534,10 @@ LogicGate: LogicGateOr
 MaterialReclaimer: null
 MaterialReclaimerMachineCircuitboard: null
 
+# 2024-06-08 | EE toys migration
+CrateFunPlushie: CrateFunToyBox
+CrateFunLizardPlushieBulk: CrateFunToyBox
+
 # 2024-08-11
 FoodTacoBeef: FoodTacoShell
 FoodTacoChicken: FoodTacoShell
