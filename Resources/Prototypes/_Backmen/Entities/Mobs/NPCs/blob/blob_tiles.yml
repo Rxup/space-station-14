@@ -293,7 +293,7 @@
       drawdepth: BlobTiles
       layers:
         - map: [ "enum.DamageStateVisualLayers.Base" ]
-          state: blob_glow
+          state: blob_shield
         - map: [ "enum.DamageStateVisualLayers.BaseUnshaded" ]
           state: blob_glow
 #          shader: unshaded

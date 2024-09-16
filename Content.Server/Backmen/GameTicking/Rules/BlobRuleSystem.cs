@@ -100,9 +100,7 @@ public sealed class BlobRuleSystem : GameRuleSystem<BlobRuleComponent>
         BlobRuleComponent blobRuleComp,
         HashSet<Entity<BlobCoreComponent>> blobCores)
     {
-        Resolve(stationUid, ref stationUid.Comp, false);
-        var stationName = MetaData(stationUid).EntityName;
-
+        var stationName = Name(stationUid);
         var blobTilesCount = blobCores.Sum(blobCore => blobCore.Comp.BlobTiles.Count);
 
         if (blobTilesCount >= (stationUid.Comp?.StageBegin ?? StationBlobConfigComponent.DefaultStageBegin)
@@ -128,6 +126,7 @@ public sealed class BlobRuleSystem : GameRuleSystem<BlobRuleComponent>
                     true,
                     BlobDetectAudio,
                     Color.Red);
+
                 _alertLevelSystem.SetLevel(stationUid, StationSigma, true, true, true, true);
 
                 RaiseLocalEvent(stationUid,
@@ -180,7 +179,10 @@ public sealed class BlobRuleSystem : GameRuleSystem<BlobRuleComponent>
         }
     }
 
-    protected override void AppendRoundEndText(EntityUid uid, BlobRuleComponent blob, GameRuleComponent gameRule,
+    protected override void AppendRoundEndText(
+        EntityUid uid,
+        BlobRuleComponent blob,
+        GameRuleComponent gameRule,
         ref RoundEndTextAppendEvent ev)
     {
         if (blob.Blobs.Count < 1)
@@ -204,7 +206,8 @@ public sealed class BlobRuleSystem : GameRuleSystem<BlobRuleComponent>
                         result += "\n" + Loc.GetString("blob-user-was-a-blob", ("user", username));
                     else
                     {
-                        result += "\n" + Loc.GetString("blob-user-was-a-blob-named", ("user", username),
+                        result += "\n" + Loc.GetString("blob-user-was-a-blob-named",
+                            ("user", username),
                             ("name", name));
                     }
                 }
@@ -224,7 +227,8 @@ public sealed class BlobRuleSystem : GameRuleSystem<BlobRuleComponent>
                 else
                 {
                     result += "\n" + Loc.GetString("blob-user-was-a-blob-with-objectives-named",
-                        ("user", username), ("name", name));
+                        ("user", username),
+                        ("name", name));
                 }
             }
             else if (name != null)

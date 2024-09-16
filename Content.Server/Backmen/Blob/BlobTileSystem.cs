@@ -74,11 +74,12 @@ public sealed class BlobTileSystem : SharedBlobTileSystem
 
     private void OnPulsed(EntityUid uid, BlobTileComponent component, BlobTileGetPulseEvent args)
     {
-        if (!TryComp<BlobTileComponent>(uid, out var blobTileComponent) || blobTileComponent.Core == null ||
-            !_blobCoreQuery.TryComp(blobTileComponent.Core.Value, out var blobCoreComponent))
+        if (component.Core == null)
             return;
 
-        if (blobCoreComponent.CurrentChem == BlobChemType.RegenerativeMateria)
+        var core = component.Core.Value;
+
+        if (core.Comp.CurrentChem == BlobChemType.RegenerativeMateria)
         {
             var healCore = new DamageSpecifier();
             foreach (var keyValuePair in component.HealthOfPulse.DamageDict)
@@ -103,7 +104,7 @@ public sealed class BlobTileSystem : SharedBlobTileSystem
             return;
         }
 
-        var nearNode = _blobCoreSystem.GetNearNode(xform.Coordinates, blobCoreComponent.TilesRadiusLimit);
+        var nearNode = _blobCoreSystem.GetNearNode(xform.Coordinates, core.Comp.TilesRadiusLimit);
 
         if (nearNode == null)
             return;
@@ -140,8 +141,8 @@ public sealed class BlobTileSystem : SharedBlobTileSystem
             {
                 if (!HasComp<DestructibleComponent>(ent) || !HasComp<ConstructionComponent>(ent))
                     continue;
-                _damageableSystem.TryChangeDamage(ent, blobCoreComponent.ChemDamageDict[blobCoreComponent.CurrentChem]);
-                _audioSystem.PlayPvs(blobCoreComponent.AttackSound, uid, AudioParams.Default);
+                _damageableSystem.TryChangeDamage(ent, core.Comp.ChemDamageDict[core.Comp.CurrentChem]);
+                _audioSystem.PlayPvs(core.Comp.AttackSound, uid, AudioParams.Default);
                 args.Explain = true;
                 return;
             }
@@ -161,7 +162,7 @@ public sealed class BlobTileSystem : SharedBlobTileSystem
             var location = _mapSystem.ToCoordinates(xform.GridUid.Value, innerTile.GridIndices, grid);
 
             if (_blobCoreSystem.TransformBlobTile(null,
-                    blobTileComponent.Core.Value,
+                    core,
                     nearNode,
                     BlobTileType.Normal,
                     location))
