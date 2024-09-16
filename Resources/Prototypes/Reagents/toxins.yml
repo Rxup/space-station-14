@@ -458,6 +458,8 @@
           min: 1
         - !type:OrganType
           type: Animal # Applying damage to the mobs with lower metabolism capabilities
+        - !type:OrganType # Ataraxia
+          type: AnthroAnimal
         damage:
           types:
             Poison: 0.4
@@ -468,6 +470,8 @@
             min: 3
           - !type:OrganType
             type: Animal
+          - !type:OrganType # Ataraxia
+            type: AnthroAnimal
 
 - type: reagent
   id: Amatoxin
@@ -534,6 +538,9 @@
           - !type:OrganType
             type: Animal
             shouldHave: false
+          - !type:OrganType # Ataraxia
+            type: AnthroAnimal
+            shouldHave: false
         type: Local
         visualType: MediumCaution
         messages: [ "generic-reagent-effect-sick" ]
@@ -549,14 +556,22 @@
         - !type:OrganType
           type: Animal
           shouldHave: false
-        damage:
+        - !type:OrganType # Ataraxia
+          type: AnthroAnimal
+          shouldHave: true
+        damage: # Ataraxia-EDIT
           types:
-            Poison: 1
+            Blunt: -0.5
+            Piercing: -0.5
+            Heat: -0.2
       - !type:AdjustReagent
         conditions:
         - !type:OrganType
           type: Animal
           shouldHave: true
+        - !type:OrganType # Ataraxia
+          type: AnthroAnimal
+          shouldHave: false
         reagent: Protein
         amount: 0.5
 
@@ -578,6 +593,8 @@
           min: 1
         - !type:OrganType
           type: Animal
+        - !type:OrganType # Ataraxia
+          type: AnthroAnimal
         damage:
           types:
             Poison: 0.06
@@ -621,6 +638,8 @@
           min: 1
         - !type:OrganType
           type: Animal
+        - !type:OrganType # Ataraxia
+          type: AnthroAnimal
         damage:
           types:
             Poison: 0.06

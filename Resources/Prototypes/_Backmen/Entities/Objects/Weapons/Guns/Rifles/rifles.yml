@@ -538,8 +538,7 @@
   - type: Wieldable
   - type: UseDelay
     delay: 1.5
-  - type: FollowDistance
-    backStrength: 4
+  - type: Telescope # Ataraxia
 
 - type: entity
   name: BR-64
@@ -603,8 +602,7 @@
   - type: Wieldable
   - type: UseDelay
     delay: 1.3
-  - type: FollowDistance
-    backStrength: 3.5
+  - type: Telescope # Ataraxia
 
 - type: entity
   name: V-31 assault rifle
@@ -801,8 +799,7 @@
   - type: Wieldable
   - type: UseDelay
     delay: 1
-  - type: FollowDistance
-    backStrength: 2
+  - type: Telescope # Ataraxia
 
 - type: entity
   name: SCARAB
