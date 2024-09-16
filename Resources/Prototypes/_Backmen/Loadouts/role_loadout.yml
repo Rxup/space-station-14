@@ -11,9 +11,6 @@
 - type: roleLoadout
   id: JobBrigmedic
   groups:
-  - Werx #backmen
-  - Niz #backmen
-  - Socks #backmen
   - ClothingUniformJumpsuitBrigmedic
   - ClothingBackpackBrigmedic
   - ClothingHeadHatBrigmedic
