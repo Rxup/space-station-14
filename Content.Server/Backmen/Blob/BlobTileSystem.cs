@@ -83,7 +83,7 @@ public sealed class BlobTileSystem : SharedBlobTileSystem
             var healCore = new DamageSpecifier();
             foreach (var keyValuePair in component.HealthOfPulse.DamageDict)
             {
-                healCore.DamageDict.Add(keyValuePair.Key, keyValuePair.Value * 10);
+                healCore.DamageDict.Add(keyValuePair.Key, keyValuePair.Value * 5);
             }
 
             _damageableSystem.TryChangeDamage(uid, healCore);

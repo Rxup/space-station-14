@@ -38,7 +38,7 @@ public sealed partial class BlobTileComponent : Component
     {
         DamageDict = new Dictionary<string, FixedPoint2>
         {
-            { "Heat", 25 },
+            { "Heat", 24 },
         }
     };
 }
