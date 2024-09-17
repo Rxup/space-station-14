@@ -1,3 +1,8 @@
+ent-BaseMobSpecialSlimes = базовый слайм
+    .desc = Он так похож на желе. Интересно, каков он на вкус?
+ent-MobSpecialSlimes = базовый слайм
+    .desc = Он так похож на желе. Интересно, каков он на вкус?
+
 ent-MobSpecialSlimesAdamantine = адамантиновый слайм
     .desc = { ent-MobAdultSlimes.desc }
 ent-MobSpecialSlimesBlack = чёрный слайм
