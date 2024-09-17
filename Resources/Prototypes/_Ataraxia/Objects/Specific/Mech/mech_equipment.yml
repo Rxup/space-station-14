@@ -10,15 +10,14 @@
     tags:
     - Pickaxe
   - type: MeleeWeapon
-    heavyAttackStaminaCost: 0
     autoAttack: true
     angle: 0
+    attackRate: 3.5
     wideAnimationRotation: -90
     soundHit:
       path: "/Audio/Items/drill_hit.ogg"
-    attackRate: 3.5
     damage:
       groups:
-        Brute: 3
+        Brute: 5
       types:
-        Structural: 12
+        Structural: 15

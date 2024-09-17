@@ -4,7 +4,7 @@
   icon:
     sprite: Structures/Wallmounts/camera.rsi
     state: cameracase
-  discipline: AudioVisualCommunication
+  discipline: AudioVisualCommunicationMachines
   tier: 1
   cost: 5000
   recipeUnlocks:

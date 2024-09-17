@@ -8,3 +8,4 @@ ataraxia-research-technology-combat-laser-advanced = Продвинутые бо
 ataraxia-research-technology-combat-laser-concentrated = Концентрированные боевые лазеры
 ataraxia-research-technology-combat-laser-wave-harnessing = Волновые боевые лазеры
 ataraxia-research-technology-combat-laser-experimental = Экспериментальные боевые лазеры
+ataraxia-research-technology-war-crimes = Военные приступления

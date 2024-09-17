@@ -37,9 +37,11 @@
   icon:
     sprite: Clothing/Back/Backpacks/electropack.rsi
     state: icon
-  discipline: Arsenal
+  discipline: WarCrimes
   tier: 1
   cost: 5000
   recipeUnlocks:
   - ClothingBackpackElectropack
   - WeaponParticleDecelerator
+  technologyPrerequisites:
+  - RiotControlAdvanced
