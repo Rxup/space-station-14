@@ -318,10 +318,6 @@ public sealed class GhostReJoinSystem : SharedGhostReJoinSystem
     {
         _deathTime.Clear();
         _usedInRound.Clear();
-        foreach (var (_,joinEui) in _eUi)
-        {
-            _euiManager.CloseEui(joinEui);
-        }
         _eUi.Clear();
     }
 

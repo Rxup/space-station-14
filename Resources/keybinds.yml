@@ -584,7 +584,8 @@ binds:
   type: State
   key: MouseRight
   canFocus: true
-- function: CMUniqueAction
+  #WD EDIT
+- function: LookUp
   type: State
   key: Space
 - function: ToggleStanding # Ataraxia-edit

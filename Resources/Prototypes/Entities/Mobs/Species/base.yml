@@ -222,10 +222,7 @@
     - CanPilot
     - FootstepSound
     - DoorBumpOpener
-  - type: CameraFollow # Backmen-Changes-End
-    backStrength: 50
-    defaultBackStrength: 20
-  - type: LayingDown
+  - type: LayingDown # backmen: LayingDown
 
 - type: entity
   save: false
