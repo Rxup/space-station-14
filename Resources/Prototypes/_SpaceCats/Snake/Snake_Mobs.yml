@@ -14,6 +14,7 @@
   components:
   - type: Devourer
     devourAction: ActionDevourZerah
+    soundDevour: /Audio/_Cats/Snake/ZerahEat.ogg
     foodPreference: All
     shouldStoreDevoured: true
     chemical: UncookedAnimalProteins
