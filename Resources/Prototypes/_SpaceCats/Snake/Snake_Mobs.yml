@@ -40,8 +40,6 @@
     solution: melee
     transferAmount: 5
   - type: NoSlip
-  - type: PermanentBlindness
-    blindness: 3
   - type: FootstepModifier
     footstepSoundCollection:
       collection: SnakeStep
