@@ -6,7 +6,7 @@
   forcedColoring: true
   speciesRestriction: [Zerah]
   sprites:
-  - sprite: _borkroman/Snake/parts.rsi
+  - sprite: _SpaceCats/Snake/parts.rsi
     state: Head+
 
 - type: marking
@@ -17,7 +17,7 @@
   markingCategory: Tail
   speciesRestriction: [Zerah]
   sprites:
-  - sprite: _borkroman/Snake/parts.rsi
+  - sprite: _SpaceCats/Snake/parts.rsi
     state: Teil_base
 
 - type: species
@@ -82,65 +82,65 @@
 - type: humanoidBaseSprite
   id: MobSnakeEyes
   baseSprite:
-    sprite: _borkroman/Snake/parts.rsi
+    sprite: _SpaceCats/Snake/parts.rsi
     state: eyes
 
 - type: humanoidBaseSprite
   id: MobSnakeHead
   baseSprite:
-    sprite: _borkroman/Snake/parts.rsi
+    sprite: _SpaceCats/Snake/parts.rsi
     state: head_m
 
 - type: humanoidBaseSprite
   id: MobSnakeHeadMale
   baseSprite:
-    sprite: _borkroman/Snake/parts.rsi
+    sprite: _SpaceCats/Snake/parts.rsi
     state: head_m
 
 - type: humanoidBaseSprite
   id: MobSnakeHeadFemale
   baseSprite:
-    sprite: _borkroman/Snake/parts.rsi
+    sprite: _SpaceCats/Snake/parts.rsi
     state: head_f
 
 - type: humanoidBaseSprite
   id: MobSnakeTorso
   baseSprite:
-    sprite: _borkroman/Snake/parts.rsi
+    sprite: _SpaceCats/Snake/parts.rsi
     state: torso_m
 
 - type: humanoidBaseSprite
   id: MobSnakeTorsoMale
   baseSprite:
-    sprite: _borkroman/Snake/parts.rsi
+    sprite: _SpaceCats/Snake/parts.rsi
     state: torso_m
 
 - type: humanoidBaseSprite
   id: MobSnakeTorsoFemale
   baseSprite:
-    sprite: _borkroman/Snake/parts.rsi
+    sprite: _SpaceCats/Snake/parts.rsi
     state: torso_f
 
 - type: humanoidBaseSprite
   id: MobSnakeLArm
   baseSprite:
-    sprite: _borkroman/Snake/parts.rsi
+    sprite: _SpaceCats/Snake/parts.rsi
     state: l_arm
 
 - type: humanoidBaseSprite
   id: MobSnakeLHand
   baseSprite:
-    sprite: _borkroman/Snake/parts.rsi
+    sprite: _SpaceCats/Snake/parts.rsi
     state: l_hand
 
 - type: humanoidBaseSprite
   id: MobSnakeRArm
   baseSprite:
-    sprite: _borkroman/Snake/parts.rsi
+    sprite: _SpaceCats/Snake/parts.rsi
     state: r_arm
 
 - type: humanoidBaseSprite
   id: MobSnakeRHand
   baseSprite:
-    sprite: _borkroman/Snake/parts.rsi
+    sprite: _SpaceCats/Snake/parts.rsi
     state: r_hand

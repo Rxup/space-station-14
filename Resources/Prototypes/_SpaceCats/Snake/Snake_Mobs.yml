@@ -14,7 +14,7 @@
   components:
   - type: Devourer
     devourAction: ActionDevourZerah
-    soundDevour: /Audio/_borkroman/Snake/ZerahEat.ogg
+    soundDevour: _Cats/Snake/ZerahEat.ogg
     foodPreference: All
     shouldStoreDevoured: true
     chemical: UncookedAnimalProteins
@@ -109,7 +109,7 @@
       Starving: 10
       Dead: 0
   - type: Icon 
-    sprite: _borkroman/Snake/parts.rsi
+    sprite: _SpaceCats/Snake/parts.rsi
     state: full
   - type: Thirst
     thresholds:
@@ -137,23 +137,23 @@
       jumpsuit:
         sizeMaps:
           32:
-            sprite: _borkroman/Snake/Desp.rsi
+            sprite: _SpaceCats/Snake/Desp.rsi
             state: desp_f
       outerClothing:
         sizeMaps:
           32:
-            sprite: _borkroman/Snake/Desp.rsi
+            sprite: _SpaceCats/Snake/Desp.rsi
             state: desp_f
     maleDisplacements:
       jumpsuit:
         sizeMaps:
           32:
-            sprite: _borkroman/Snake/Desp.rsi
+            sprite: _SpaceCats/Snake/Desp.rsi
             state: desp_m
       outerClothing:
         sizeMaps:
           32:
-            sprite: _borkroman/Snake/Desp.rsi
+            sprite: _SpaceCats/Snake/Desp.rsi
             state: desp_m
 
 - type: entity
@@ -170,23 +170,23 @@
       jumpsuit:
         sizeMaps:
           32:
-            sprite: _borkroman/Snake/Desp.rsi
+            sprite: _SpaceCats/Snake/Desp.rsi
             state: desp_f
       outerClothing:
         sizeMaps:
           32:
-            sprite: _borkroman/Snake/Desp.rsi
+            sprite: _SpaceCats/Snake/Desp.rsi
             state: desp_f
     maleDisplacements:
       jumpsuit:
         sizeMaps:
           32:
-            sprite: _borkroman/Snake/Desp.rsi
+            sprite: _SpaceCats/Snake/Desp.rsi
             state: desp_m
       outerClothing:
         sizeMaps:
           32:
-            sprite: _borkroman/Snake/Desp.rsi
+            sprite: _SpaceCats/Snake/Desp.rsi
             state: desp_m
 
 #Инвентарь

@@ -6,7 +6,7 @@
   forcedColoring: true
   speciesRestriction: [PigMan]
   sprites:
-  - sprite: _borkroman/PigMan/parts.rsi
+  - sprite: _SpaceCats/PigMan/parts.rsi
     state: nose_base
 
 - type: marking
@@ -17,7 +17,7 @@
   forcedColoring: true
   speciesRestriction: [PigMan]
   sprites:
-  - sprite: _borkroman/PigMan/parts.rsi
+  - sprite: _SpaceCats/PigMan/parts.rsi
     state: ears_base
 
 - type: species
@@ -86,89 +86,89 @@
 - type: humanoidBaseSprite
   id: MobPigManEyes
   baseSprite:
-    sprite: _borkroman/PigMan/parts.rsi
+    sprite: _SpaceCats/PigMan/parts.rsi
     state: eyes
 
 - type: humanoidBaseSprite
   id: MobPigManHead
   baseSprite:
-    sprite: _borkroman/PigMan/parts.rsi
+    sprite: _SpaceCats/PigMan/parts.rsi
     state: head_m
 
 - type: humanoidBaseSprite
   id: MobPigManHeadMale
   baseSprite:
-    sprite: _borkroman/PigMan/parts.rsi
+    sprite: _SpaceCats/PigMan/parts.rsi
     state: head_m
 
 - type: humanoidBaseSprite
   id: MobPigManHeadFemale
   baseSprite:
-    sprite: _borkroman/PigMan/parts.rsi
+    sprite: _SpaceCats/PigMan/parts.rsi
     state: head_f
 
 - type: humanoidBaseSprite
   id: MobPigManTorso
   baseSprite:
-    sprite: _borkroman/PigMan/parts.rsi
+    sprite: _SpaceCats/PigMan/parts.rsi
     state: torso_m
 
 - type: humanoidBaseSprite
   id: MobPigManTorsoMale
   baseSprite:
-    sprite: _borkroman/PigMan/parts.rsi
+    sprite: _SpaceCats/PigMan/parts.rsi
     state: torso_m
 
 - type: humanoidBaseSprite
   id: MobPigManTorsoFemale
   baseSprite:
-    sprite: _borkroman/PigMan/parts.rsi
+    sprite: _SpaceCats/PigMan/parts.rsi
     state: torso_f
 
 - type: humanoidBaseSprite
   id: MobPigManLLeg
   baseSprite:
-    sprite: _borkroman/PigMan/parts.rsi
+    sprite: _SpaceCats/PigMan/parts.rsi
     state: l_leg
 
 - type: humanoidBaseSprite
   id: MobPigManLArm
   baseSprite:
-    sprite: _borkroman/PigMan/parts.rsi
+    sprite: _SpaceCats/PigMan/parts.rsi
     state: l_arm
 
 - type: humanoidBaseSprite
   id: MobPigManLHand
   baseSprite:
-    sprite: _borkroman/PigMan/parts.rsi
+    sprite: _SpaceCats/PigMan/parts.rsi
     state: l_hand
 
 - type: humanoidBaseSprite
   id: MobPigManRLeg
   baseSprite:
-    sprite: _borkroman/PigMan/parts.rsi
+    sprite: _SpaceCats/PigMan/parts.rsi
     state: r_leg
 
 - type: humanoidBaseSprite
   id: MobPigManRArm
   baseSprite:
-    sprite: _borkroman/PigMan/parts.rsi
+    sprite: _SpaceCats/PigMan/parts.rsi
     state: r_arm
 
 - type: humanoidBaseSprite
   id: MobPigManRHand
   baseSprite:
-    sprite: _borkroman/PigMan/parts.rsi
+    sprite: _SpaceCats/PigMan/parts.rsi
     state: r_hand
 
 - type: humanoidBaseSprite
   id: MobPigManRFood
   baseSprite:
-    sprite: _borkroman/PigMan/parts.rsi
+    sprite: _SpaceCats/PigMan/parts.rsi
     state: r_foot
 
 - type: humanoidBaseSprite
   id: MobPigManLFood
   baseSprite:
-    sprite: _borkroman/PigMan/parts.rsi
+    sprite: _SpaceCats/PigMan/parts.rsi
     state: l_foot

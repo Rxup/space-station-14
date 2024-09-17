@@ -1,32 +1,32 @@
 ﻿- type: soundCollection
   id: SnakeStep
   files:
-  - /Audio/_borkroman/Snake/ZerahStep1.ogg
-  - /Audio/_borkroman/Snake/ZerahStep2.ogg
-  - /Audio/_borkroman/Snake/ZerahStep3.ogg
-  - /Audio/_borkroman/Snake/ZerahStep4.ogg
+  - /Audio/_Cats/Snake/ZerahStep1.ogg
+  - /Audio/_Cats/Snake/ZerahStep2.ogg
+  - /Audio/_Cats/Snake/ZerahStep3.ogg
+  - /Audio/_Cats/Snake/ZerahStep4.ogg
 
 - type: soundCollection
   id: SnakeScream
   files:
-  - /Audio/_borkroman/Snake/ZerahScream1.ogg
-  - /Audio/_borkroman/Snake/ZerahScream2.ogg
-  - /Audio/_borkroman/Snake/ZerahScream3.ogg
+  - /Audio/_Cats/Snake/ZerahScream1.ogg
+  - /Audio/_Cats/Snake/ZerahScream2.ogg
+  - /Audio/_Cats/Snake/ZerahScream3.ogg
 
 - type: soundCollection
   id: SnakeLaugh
   files:
-  - /Audio/_borkroman/Snake/ZerahHaha1.ogg
-  - /Audio/_borkroman/Snake/ZerahHaha1.ogg
+  - /Audio/_Cats/Snake/ZerahHaha1.ogg
+  - /Audio/_Cats/Snake/ZerahHaha1.ogg
 
 - type: speechSounds
   id: SnakeSpeach
   saySound:
-    path: /Audio/_borkroman/Snake/ZerahSpeach2.ogg
+    path: /Audio/_Cats/Snake/ZerahSpeach2.ogg
   askSound:
-    path: /Audio/_borkroman/Snake/ZerahSpeach1.ogg
+    path: /Audio/_Cats/Snake/ZerahSpeach1.ogg
   exclaimSound:
-    path: /Audio/_borkroman/Snake/ZerahSpeach3.ogg
+    path: /Audio/_Cats/Snake/ZerahSpeach3.ogg
 
 - type: emoteSounds
   id: UnSexZerah
@@ -48,6 +48,6 @@
     Gasp:
       collection: MaleGasp
     DefaultDeathgasp:
-      path: /Audio/_borkroman/Snake/ZerahDead.ogg
+      path: /Audio/_Cats/Snake/ZerahDead.ogg
       params:
         volume: 4

@@ -192,7 +192,7 @@
   abstract: true
   components:
   - type: Sprite
-    sprite: _borkroman/Snake/parts.rsi
+    sprite: _SpaceCats/Snake/parts.rsi
   - type: Extractable
     juiceSolution:
       reagents:
@@ -205,7 +205,7 @@
   parent: [PartSnake, BaseTorso]
   components:
   - type: Sprite
-    sprite: _borkroman/Snake/parts.rsi
+    sprite: _SpaceCats/Snake/parts.rsi
     state: "torso_m"
   - type: Extractable
     juiceSolution:
@@ -219,7 +219,7 @@
   parent: [PartSnake, BaseHead]
   components:
   - type: Sprite
-    sprite: _borkroman/Snake/parts.rsi
+    sprite: _SpaceCats/Snake/parts.rsi
     state: "head_m"
   - type: Extractable
     juiceSolution:
@@ -233,7 +233,7 @@
   parent: [PartSnake, BaseLeftArm]
   components:
   - type: Sprite
-    sprite: _borkroman/Snake/parts.rsi
+    sprite: _SpaceCats/Snake/parts.rsi
     state: "l_arm"
 
 - type: entity
@@ -242,7 +242,7 @@
   parent: [PartSnake, BaseRightArm]
   components:
   - type: Sprite
-    sprite: _borkroman/Snake/parts.rsi
+    sprite: _SpaceCats/Snake/parts.rsi
     state: "r_arm"
 
 - type: entity
@@ -251,7 +251,7 @@
   parent: [PartSnake, BaseLeftHand]
   components:
   - type: Sprite
-    sprite: _borkroman/Snake/parts.rsi
+    sprite: _SpaceCats/Snake/parts.rsi
     state: "l_hand"
 
 - type: entity
@@ -260,5 +260,5 @@
   parent: [PartSnake, BaseRightHand]
   components:
   - type: Sprite
-    sprite: _borkroman/Snake/parts.rsi
+    sprite: _SpaceCats/Snake/parts.rsi
     state: "r_hand"

@@ -6,7 +6,7 @@
   forcedColoring: true
   speciesRestriction: [Zerah]
   sprites:
-  - sprite: _borkroman/Snake/Customs.rsi/Teils48x48.rsi
+  - sprite: _SpaceCats/Snake/Customs.rsi/Teils48x48.rsi
     state: Snake_teile_big
 
 - type: marking
@@ -17,7 +17,7 @@
   forcedColoring: true
   speciesRestriction: [Zerah]
   sprites:
-  - sprite: _borkroman/Snake/Customs.rsi/Cust.rsi
+  - sprite: _SpaceCats/Snake/Customs.rsi/Cust.rsi
     state: horn_back
 
 - type: marking
@@ -28,7 +28,7 @@
   forcedColoring: true
   speciesRestriction: [Zerah]
   sprites:
-  - sprite: _borkroman/Snake/Customs.rsi/Cust.rsi
+  - sprite: _SpaceCats/Snake/Customs.rsi/Cust.rsi
     state: horn_big
 
 - type: marking
@@ -39,7 +39,7 @@
   forcedColoring: true
   speciesRestriction: [Zerah]
   sprites:
-  - sprite: _borkroman/Snake/Customs.rsi/Cust.rsi
+  - sprite: _SpaceCats/Snake/Customs.rsi/Cust.rsi
     state: horn_down
 
 - type: marking
@@ -50,7 +50,7 @@
   forcedColoring: true
   speciesRestriction: [Zerah]
   sprites:
-  - sprite: _borkroman/Snake/Customs.rsi/Cust.rsi
+  - sprite: _SpaceCats/Snake/Customs.rsi/Cust.rsi
     state: horn_trio
 
 - type: marking
@@ -61,7 +61,7 @@
   forcedColoring: true
   speciesRestriction: [Zerah]
   sprites:
-  - sprite: _borkroman/Snake/Customs.rsi/Cust.rsi
+  - sprite: _SpaceCats/Snake/Customs.rsi/Cust.rsi
     state: horn_up
 
 - type: marking
@@ -72,7 +72,7 @@
   forcedColoring: true
   speciesRestriction: [Zerah]
   sprites:
-  - sprite: _borkroman/Snake/Customs.rsi/Cust.rsi
+  - sprite: _SpaceCats/Snake/Customs.rsi/Cust.rsi
     state: collar1
 
 - type: marking
@@ -83,7 +83,7 @@
   forcedColoring: true
   speciesRestriction: [Zerah]
   sprites:
-  - sprite: _borkroman/Snake/Customs.rsi/Cust.rsi
+  - sprite: _SpaceCats/Snake/Customs.rsi/Cust.rsi
     state: collar2
 
 - type: marking
@@ -94,7 +94,7 @@
   forcedColoring: true
   speciesRestriction: [Zerah]
   sprites:
-  - sprite: _borkroman/Snake/Customs.rsi/Cust.rsi
+  - sprite: _SpaceCats/Snake/Customs.rsi/Cust.rsi
     state: ears
 
 - type: marking
@@ -105,7 +105,7 @@
   forcedColoring: true
   speciesRestriction: [Zerah]
   sprites:
-  - sprite: _borkroman/Snake/Customs.rsi/Cust.rsi
+  - sprite: _SpaceCats/Snake/Customs.rsi/Cust.rsi
     state: gargona
 
 - type: marking
@@ -116,7 +116,7 @@
   forcedColoring: true
   speciesRestriction: [Zerah]
   sprites:
-  - sprite: _borkroman/Snake/Customs.rsi/Cust.rsi
+  - sprite: _SpaceCats/Snake/Customs.rsi/Cust.rsi
     state: viper
 
 - type: marking
@@ -125,7 +125,7 @@
   markingCategory: Chest
   speciesRestriction: [Zerah]
   sprites:
-  - sprite: _borkroman/Snake/Customs.rsi/Cust.rsi
+  - sprite: _SpaceCats/Snake/Customs.rsi/Cust.rsi
     state: body
 
 
