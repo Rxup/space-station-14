@@ -63,8 +63,6 @@
     supportedDisciplines:
 # <-- ENGINEERING -->
     - Powercells
-    - EngineeringDevices
-    - AtmosphericDevices
     - EngineeringAdvancedTools
     - AtmosphericTools
     - PowerGeneration
@@ -72,14 +70,17 @@
     - MechanicalCompressionMachines
     - AtmosphericMachines
 # <-- SCIENTIFIC -->
-    - RNDPinpointers
     - GravityManipulation
     - QuantumLeaping
     - BluespaceStorage
+    - PsionicCountermeasures # Backmen
+    - Teleportation # Backmen
+    - AnomalousResearch
     - AnomalousResearchMachines
     - XenoArcheologyMachines
     - AlternativeResearchMachines
     - AbnormalArtifactManipulationMachines
+    - MetempsychosisMachines # Backmen
 # <-- ROBOTICS -->
     - Robotics
     - CritterMech
@@ -97,11 +98,10 @@
     - RoboticsMachines
 # <-- SECURITY -->
     - RiotControl
-    - GripsGloves
-# <-- WEAPON -->
+    - WarCrimes
+# <-- ARMORY -->
     - AnomalyCoreHarnessing
     - DraconicAmmunition
-    - NonlethalAmmunition
     - UraniumAmmunition
     - Explosive
     - CombatLaser
@@ -109,13 +109,13 @@
     - CombatLaserWaveHarnessing
     - CombatLaserExperimental
 # <-- SERVICE -->
-    - Hydroponics
     - EntertainmentAdvanced
     - EntertainmentAdvancedMachines
-    - MeatManipulationMachine
     - FauxAstroTiles
     - CleaningAdvanced
     - SprayAdvanced
+    - HydroponicsMachines
+    - MeatManipulationMachine
 # <-- SHAFT -->
     - SalvageWeapons
     - SalvageEquipment
@@ -127,10 +127,9 @@
 # <-- CARGO -->
     - BluespaceCargoTransportMachines
 # <-- MEDICAL -->
+    - CrewMonitoring
     - BiochemicalStasis
     - BiochemicalStasisMachines
-    - CrewMonitoring
-    - BodyBags
     - Chemistry
 # <-- EQUIPMENT -->
     - MagneticBoots

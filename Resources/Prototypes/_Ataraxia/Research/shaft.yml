@@ -14,7 +14,8 @@
   id: SalvageEquipment
   name: ataraxia-research-technology-salvage-equipment
   icon:
-    sprite: Ataraxia/Objects/Weapons/Guns/Battery/plasma_cutter.rsi
+    sprite: Objects/Weapons/Guns/Basic/kinetic_accelerator.rsi # Filler
+#    sprite: Ataraxia/Objects/Weapons/Guns/Battery/plasma_cutter.rsi # TODO: Port plasma cutter
     state: icon
   discipline: SalvageEquipment
   tier: 1
@@ -29,7 +30,8 @@
   id: SalvageEquipmentAdvanced
   name: ataraxia-research-technology-salvage-equipment-advanced
   icon:
-    sprite: Ataraxia/Objects/Weapons/Guns/Battery/plasma_cutter_advanced.rsi
+    sprite: Objects/Weapons/Guns/Basic/kinetic_accelerator.rsi # Filler
+#    sprite: Ataraxia/Objects/Weapons/Guns/Battery/plasma_cutter.rsi # TODO: Port plasma cutter
     state: icon
   discipline: SalvageEquipment
   tier: 1

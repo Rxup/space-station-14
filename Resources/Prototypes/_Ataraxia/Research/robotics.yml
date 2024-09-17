@@ -178,7 +178,7 @@
   cost: 10000
   recipeUnlocks:
   - BorgModuleMining
-#  - MechEquipmentDrill # Ataraxia: IDK Rider just dont wonna see prototype
+  - MechEquipmentDrill
   technologyPrerequisites:
   - Robotics
   - SalvageEquipment
