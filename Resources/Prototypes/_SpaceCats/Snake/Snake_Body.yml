@@ -1,10 +1,10 @@
 ﻿
 - type: reagent
   id: ZerahPoison
-  name: Яд зераха
+  name: reagent-name-shake-toxin
   group: Toxins
-  desc: Довольно опасный токсин, обладающий непредсказуемым эффектом.
-  physicalDesc: токсичное
+  desc: reagent-desc-shake-toxin
+  physicalDesc: reagent-physical-desc-shake
   color: "#fafa96"
   metabolisms:
     Narcotic:
@@ -120,7 +120,7 @@
 
 - type: metabolizerType
   id: Zerah
-  name: Зерах
+  name: reagent-name-metabolisms
 
 - type: entity
   id: OrganZerahHeart
@@ -180,7 +180,7 @@
 - type: reagent
   id: ZerahBlood
   parent: Blood
-  name: Кровь зераха
+  name: reagent-name-shake-blood
   group: Biological
   flavor: metallic
   color: "#e1b52e"
