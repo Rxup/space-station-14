@@ -307,6 +307,7 @@
       - id: BeachBall
       - id: RubberPig
       - id: ClothingShoesSkates
+      - id: RubberChicken
 
 - type: entity
   id: CrateFunBikeHornImplants
