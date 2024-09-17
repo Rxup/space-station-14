@@ -39,7 +39,6 @@ public sealed class CameraRecoilSystem : SharedCameraRecoilSystem
 
         recoil *= _intensity;
 
-
         // Use really bad math to "dampen" kicks when we're already kicked.
         var existing = component.CurrentKick.Length();
         var dampen = existing / KickMagnitudeMax;
