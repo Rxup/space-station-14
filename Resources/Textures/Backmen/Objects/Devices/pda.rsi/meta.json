@@ -14,10 +14,10 @@
       "name": "pda-centcomcargo",
       "delays": [
         [
-          1.2,
-          1.2,
-          1.2,
-          1.2
+          0.4,
+          0.4,
+          0.4,
+          0.4
         ]
       ]
     },
@@ -25,10 +25,10 @@
       "name": "pda-centcomsec",
       "delays": [
         [
-          1.2,
-          1.2,
-          1.2,
-          1.2
+          0.4,
+          0.4,
+          0.4,
+          0.4
         ]
       ]
     },
@@ -39,10 +39,26 @@
       "name": "pda-Delivery"
     },
     {
-      "name": "pda-blue"
+      "name": "pda-blue",
+      "delays": [
+        [
+          0.4,
+          0.4,
+          0.4,
+          0.4
+        ]
+      ]
     },
 	{
-	  "name": "pda-Roboticist"
+	  "name": "pda-Roboticist",
+    "delays": [
+      [
+        0.4,
+        0.4,
+        0.4,
+        0.4
+      ]
+    ]
 	},
     {
       "name": "equipped-BELT",

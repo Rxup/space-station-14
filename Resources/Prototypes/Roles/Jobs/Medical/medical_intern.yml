@@ -16,7 +16,7 @@
   - Medical
   - Maintenance
   #start-backmen: currency
-  minBankBalance: 150
+  minBankBalance: 100
   maxBankBalance: 250
   wageDepartment: Medical
   wage: 25

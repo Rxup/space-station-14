@@ -1,0 +1,65 @@
+- type: entity
+  parent: IDCardStandard
+  id: SwarmIdentificationShooter
+  name: Карта Идентификации S.W.A.R.M стрелка
+  components:
+  - type: Sprite
+    sprite: _SpaceCats/Swarmers/MOB-MODULS/SwarmerModul.rsi
+    layers:
+    - state: SwarmCard
+  - type: Access
+    tags:
+    - SwarmerAccess
+
+- type: entity
+  parent: IDCardStandard
+  id: SwarmIdentificationCardFabricator
+  name: Карта Идентификации S.W.A.R.M фабрикатора
+  components:
+  - type: Sprite
+    sprite: _SpaceCats/Swarmers/MOB-MODULS/SwarmerModul.rsi
+    layers:
+    - state: SwarmCard
+  - type: Access
+    tags:
+    - SwarmerAccess
+
+- type: entity
+  parent: IDCardStandard
+  id: SwarmIdentificationCard
+  name: Карта Идентификации S.W.A.R.M
+  components:
+  - type: Sprite
+    sprite: _SpaceCats/Swarmers/MOB-MODULS/SwarmerModul.rsi
+    layers:
+    - state: SwarmCard
+  - type: Access
+    tags:
+    - SwarmerAccess
+
+- type: securityIcon
+  id: SwarmBase
+  priority: 2
+  locationPreference: Left
+  layer: Mod
+  icon:
+    sprite: /Textures/_SpaceCats/Interface/Misc/job_icons.rsi
+    state: SwarmBase
+
+- type: securityIcon
+  id: SwarmFabricator
+  priority: 2
+  locationPreference: Left
+  layer: Mod
+  icon:
+    sprite: /Textures/_SpaceCats/Interface/Misc/job_icons.rsi
+    state: SwarmFabricator
+
+- type: securityIcon
+  id: SwarmShooter
+  priority: 2
+  locationPreference: Left
+  layer: Mod
+  icon:
+    sprite: /Textures/_SpaceCats/Interface/Misc/job_icons.rsi
+    state: SwarmShooter

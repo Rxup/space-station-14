@@ -1,0 +1,72 @@
+- type: entity
+  name: Защитная S.W.A.R.M. турель
+  description: Автоматизированная система защиты периметра.
+  parent: BaseWeaponTurret
+  id: WeaponSwarmTurret
+  components:
+    - type: NPCRetaliation
+      attackMemoryLength: 300
+    - type: FactionException
+    - type: Tag
+      tags:
+      - Swarmer
+      - Structure
+    - type: NpcFactionMember
+      factions:
+        - Swarmers
+    - type: Sprite
+      sprite: _SpaceCats/Swarmers/MOB-MODULS/Robots/Swarmer_Turret.rsi
+      noRot: true
+      layers:
+        - state: Turret
+    - type: BallisticAmmoProvider
+      proto: SwarmTurretShotBullet
+      capacity: 5000
+    - type: Gun
+      minAngle: 5
+      maxAngle: 20
+      angleIncrease: 4
+      angleDecay: 16
+      fireRate: 6
+      soundGunshot:
+        path: /Audio/_Cats/Swarmers/SwarmShot.ogg
+      selectedMode: FullAuto
+    - type: HTN
+      rootTask:
+        task: TurretCompound
+      blackboard:
+        SoundTargetInLOS: !type:SoundPathSpecifier
+          path: /Audio/_Cats/Swarmers/SwarmTurret.ogg
+    - type: Damageable
+      damageContainer: Inorganic
+      damageModifierSet: SwarmArm
+    - type: Destructible
+      thresholds:
+      - trigger:
+          !type:DamageTrigger
+          damage: 150
+        behaviors:
+        - !type:DoActsBehavior
+          acts: ["Destruction"]
+        - !type:SpawnEntitiesBehavior
+          spawn:
+            SheetSWARMSteel1:
+              min: 1
+              max: 3
+            SheetSWARMGlass1:
+              min: 1
+              max: 2
+        - !type:PlaySoundBehavior
+          sound:
+            collection: MetalSlam
+
+- type: entity
+  id: SwarmTurretShotBullet
+  noSpawn: true
+  name: Редспейс выстрел
+  parent: SwarmShotBullet
+  components:
+  - type: Projectile
+    damage:
+      types:
+        Heat: 7

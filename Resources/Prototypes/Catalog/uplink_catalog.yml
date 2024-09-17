@@ -1072,24 +1072,21 @@
       tags:
       - NukeOpsUplink
 
-- type: listing
-  id: UplinkReinforcementRadioSyndicate
-  name: uplink-reinforcement-radio-name
-  description: uplink-reinforcement-radio-traitor-desc
-  productEntity: ReinforcementRadioSyndicate
-  icon: { sprite: Objects/Devices/communication.rsi, state: old-radio-urist }
-  discountCategory: usualDiscounts
-  discountDownTo:
-    Telecrystal: 7
-  cost:
-    Telecrystal: 14
-  categories:
-  - UplinkAllies
-  conditions:
-  - !type:StoreWhitelistCondition
-    blacklist:
-      tags:
-      - NukeOpsUplink
+#- type: listing
+#  id: UplinkReinforcementRadioSyndicate
+#  name: uplink-reinforcement-radio-name
+#  description: uplink-reinforcement-radio-traitor-desc
+#  productEntity: ReinforcementRadioSyndicate
+#  icon: { sprite: Objects/Devices/communication.rsi, state: old-radio-urist }
+#  cost:
+#    Telecrystal: 14
+#  categories:
+#  - UplinkAllies
+#  conditions:
+#  - !type:StoreWhitelistCondition
+#    blacklist:
+#      tags:
+#      - NukeOpsUplink
 
 - type: listing
   id: UplinkReinforcementRadioSyndicateNukeops # Version for Nukeops that spawns another nuclear operative without the uplink.
@@ -2049,3 +2046,15 @@
     whitelist:
     - Chef
     - Mime
+
+# space cats
+- type: listing
+  id: UplinkTeleporter
+  name: uplink-syndicate-teleporter-name
+  description: uplink-syndicate-teleporter-desc
+  icon: { sprite: /Textures/_SpaceCats/Objects/Devices/syndicate_teleporter.rsi, state: icon }
+  productEntity: SyndicateTeleporter
+  cost:
+    Telecrystal: 12
+  categories:
+  - UplinkDisruption

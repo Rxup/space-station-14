@@ -1,0 +1,37 @@
+- type: polymorph
+  id: WizardForcedHarpy
+  configuration:
+    entity: MobHarpy
+    forced: true
+    inventory: Transfer
+    transferName: true
+    transferDamage: true
+    revertOnCrit: false
+    revertOnDeath: false
+
+- type: entity
+  id: ProjectilePolyboltHarpy
+  parent: ProjectilePolyboltBase
+  name: Гены Гарпий
+  description: Nooo, I don't wanna be Harpy!
+  noSpawn: true
+  components:
+  - type: PolymorphOnCollide
+    polymorph: WizardForcedHarpy
+    whitelist:
+      components:
+      - Body
+
+- type: entity
+  name: волшебная палочка полиморфа гарпия
+  parent: WeaponWandPolymorphBase
+  id: WeaponWandPolymorphHarpy
+  description: На случай, когда вам срочно нужена артист, а клоун выглядит уж очень круто.
+  components:
+  - type: BasicEntityAmmoProvider
+    proto: ProjectilePolyboltHarpy
+    capacity: 1
+    count: 1
+
+
+

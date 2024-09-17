@@ -14,7 +14,7 @@
   minBankBalance: 250
   maxBankBalance: 350
   wageDepartment: Engineering
-  wage: 50
+  wage: 100
   #end-backmen: currency
   access:
   - Maintenance

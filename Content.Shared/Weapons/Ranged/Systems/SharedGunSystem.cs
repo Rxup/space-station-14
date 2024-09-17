@@ -11,6 +11,7 @@ using Content.Shared.Examine;
 using Content.Shared.Gravity;
 using Content.Shared.Hands;
 using Content.Shared.Hands.Components;
+using Content.Shared.Mobs.Components;
 using Content.Shared.Popups;
 using Content.Shared.Projectiles;
 using Content.Shared.Tag;
@@ -237,6 +238,12 @@ public abstract partial class SharedGunSystem : EntitySystem
         if (gun.FireRateModified <= 0f ||
             !_actionBlockerSystem.CanAttack(user))
             return;
+
+        if (gun.Personable)
+        {
+            if (gun.GunOwner?.Id != user.Id)
+                return;
+        }
 
         var toCoordinates = gun.ShootCoordinates;
 

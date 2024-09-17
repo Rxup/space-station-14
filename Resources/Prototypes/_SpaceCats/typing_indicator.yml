@@ -1,0 +1,62 @@
+- type: typingIndicator
+  id: felinid
+  spritePath: _SpaceCats/Typing.rsi
+  typingState: felinid0
+  idleState: felinid3
+  offset: 0, 0.2
+
+- type: typingIndicator
+  id: dwarf
+  spritePath: _SpaceCats/Typing.rsi
+  typingState: dwarf0
+  idleState: dwarf3
+  offset: 0, 0.2
+
+- type: typingIndicator
+  id: shadow
+  spritePath: _SpaceCats/Typing.rsi
+  typingState: shadow0
+  idleState: shadow3
+  offset: 0, 0.2
+
+- type: typingIndicator
+  id: skeleton
+  spritePath: _SpaceCats/Typing.rsi
+  typingState: skeleton0
+  idleState: skeleton3
+
+- type: typingIndicator
+  id: vulp
+  spritePath: _SpaceCats/Typing.rsi
+  typingState: vulp0
+  idleState: vulp3
+
+- type: typingIndicator
+  id: spiders
+  spritePath: _SpaceCats/Typing.rsi
+  typingState: spider0
+  idleState: spider3
+
+- type: typingIndicator
+  id: lizards
+  spritePath: _SpaceCats/Typing.rsi
+  typingState: lizard0
+  idleState: lizard3
+
+- type: typingIndicator
+  id: people
+  spritePath: _SpaceCats/Typing.rsi
+  typingState: people0
+  idleState: people3
+
+- type: typingIndicator
+  id: voxs
+  spritePath: _SpaceCats/Typing.rsi
+  typingState: vox0
+  idleState: vox3
+
+- type: typingIndicator
+  id: Swarms
+  spritePath: _SpaceCats/Swarmers/Typing.rsi
+  typingState: swarmbot0
+  idleState: swarmbot3

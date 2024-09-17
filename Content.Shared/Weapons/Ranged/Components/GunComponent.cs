@@ -232,6 +232,12 @@ public sealed partial class GunComponent : Component
     /// </summary>
     [DataField]
     public bool ClumsyProof = false;
+
+    [DataField("personable"), ViewVariables(VVAccess.ReadWrite)]
+    public bool Personable = false;
+
+    //[DataField("gunOwner"), ViewVariables(VVAccess.ReadWrite)]
+    public EntityUid? GunOwner = null;
 }
 
 [Flags]

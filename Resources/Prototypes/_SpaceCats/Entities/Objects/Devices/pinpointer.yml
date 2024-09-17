@@ -1,0 +1,21 @@
+- type: entity
+  parent: PinpointerBase
+  name: S.W.A.R.M навигатор ближайщей станции
+  description: Для нашего конструкторат требуется подходящее место, она указывается на навигаторе
+  id: PinpointerStationSwarm
+  suffix: Station
+  components:
+  - type: Sprite
+    layers:
+    - state: pinpointer-station
+      map: ["enum.PinpointerLayers.Base"]
+    - state: pinonnull
+      map: ["enum.PinpointerLayers.Screen"]
+      shader: unshaded
+      visible: false
+  - type: Icon
+    state: pinpointer-station
+  - type: Unremoveable
+  - type: Pinpointer
+    component: ResearchServer
+    targetName: the station
