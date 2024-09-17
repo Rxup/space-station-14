@@ -33,8 +33,6 @@
   params:
     variation: 0.125
   sounds:
-    Snore:
-      collection: SnakeSpeach
     Scream:
       collection: SnakeScream
     Laugh:
