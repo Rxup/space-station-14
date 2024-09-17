@@ -12,6 +12,7 @@
   id: BaseMobZerah
   name: Урист макЗмий
   components:
+  - type: Absorbable # chainling
   - type: Devourer
     devourAction: ActionDevourZerah
     soundDevour: /Audio/_Cats/Snake/ZerahEat.ogg
