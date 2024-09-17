@@ -358,6 +358,64 @@
         Base: rainbow_adult_slime
       Dead:
         Base: rainbow_adult_slime_dead
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      200: Dead
+  - type: FootstepModifier
+    footstepSoundCollection:
+      path: /Audio/Effects/Footsteps/slime1.ogg
+      params:
+        volume: -6
+  - type: Tag
+    tags:
+    - FootstepSound
+    - DoorBumpOpener
+    - CannotSuicide
+    - VimPilot
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: rainbow_baby_slime
+        BaseUnshaded: aslime-_3
+      Dead:
+        Base: rainbow_baby_slime_dead
+  - type: Butcherable
+    spawned:
+    - id: FoodMeatSlime
+      amount: 1
+    - id: MaterialSmileExtract
+      amount: 1
+  - type: Damageable
+    damageModifierSet: SlimePet
+  - type: Bloodstream
+    bloodlossHealDamage:
+      types:
+        Bloodloss:
+          -0.8
+  - type: Temperature
+    heatDamageThreshold: 800
+    coldDamageThreshold: 0
+  - type: MeleeWeapon
+    damage:
+      types:
+        Blunt: 1
+        Caustic: 1
+  - type: MultiHandedItem
+  - type: Item
+    size: Huge
+  - type: SentienceTarget
+    flavorKind: station-event-random-sentience-flavor-slime
+  - type: MobPrice
+    price: 3000 # it is a truly valuable creature
+  - type: GhostRole
+    name: ghost-role-information-smile-name
+    description: ghost-role-information-smile-description
+    rules: ghost-role-information-nonantagonist-rules
+  - type: Grammar
+    attributes:
+      proper: true
+      gender: female
 
 - type: entity
   name: red abult slime
@@ -400,6 +458,470 @@
   id: MobSpecialSlimesYellow
   parent: MobAdultSlimes
   components:
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: yellow_adult_slime
+      Dead:
+        Base: yellow_adult_slime_dead
+
+# Angry slime
+
+- type: entity
+  name: adamantine slime
+  id: MobSpecialSlimesAdamantineAngry
+  parent: MobAdultSlimes
+  suffix: Angry
+  components:
+  - type: NpcFactionMember
+    factions:
+      - SimpleHostile
+  - type: GhostRole
+    description: ghost-role-information-angry-slimes-description
+    rules: ghost-role-information-angry-slimes-rules
+    raffle:
+      settings: short
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: adamantine_adult_slime
+      Dead:
+        Base: adamantine_adult_slime_dead
+
+- type: entity
+  name: black slime
+  id: MobSpecialSlimesBlackAngry
+  parent: MobAdultSlimes
+  suffix: Angry
+  components:
+  - type: NpcFactionMember
+    factions:
+      - SimpleHostile
+  - type: GhostRole
+    description: ghost-role-information-angry-slimes-description
+    rules: ghost-role-information-angry-slimes-rules
+    raffle:
+      settings: short
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: black_adult_slime
+      Dead:
+        Base: black_adult_slime_dead
+
+- type: entity
+  name: blue slime
+  id: MobSpecialSlimesBlueAngry
+  parent: MobAdultSlimes
+  suffix: Angry
+  components:
+  - type: NpcFactionMember
+    factions:
+      - SimpleHostile
+  - type: GhostRole
+    description: ghost-role-information-angry-slimes-description
+    rules: ghost-role-information-angry-slimes-rules
+    raffle:
+      settings: short
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: blue_adult_slime
+      Dead:
+        Base: blue_adult_slime_dead
+
+- type: entity
+  name: bluespace slime
+  id: MobSpecialSlimesBluespaceAngry
+  parent: MobAdultSlimes
+  suffix: Angry
+  components:
+  - type: NpcFactionMember
+    factions:
+      - SimpleHostile
+  - type: GhostRole
+    description: ghost-role-information-angry-slimes-description
+    rules: ghost-role-information-angry-slimes-rules
+    raffle:
+      settings: short
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: bluespace_adult_slime
+      Dead:
+        Base: bluespace_adult_slime_dead
+
+- type: entity
+  name: cerulean slime
+  id: MobSpecialSlimesCeruleanAngry
+  parent: MobAdultSlimes
+  suffix: Angry
+  components:
+  - type: NpcFactionMember
+    factions:
+      - SimpleHostile
+  - type: GhostRole
+    description: ghost-role-information-angry-slimes-description
+    rules: ghost-role-information-angry-slimes-rules
+    raffle:
+      settings: short
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: cerulean_adult_slime
+      Dead:
+        Base: cerulean_adult_slime_dead
+
+- type: entity
+  name: dark blue slime
+  id: MobSpecialSlimesDarkblueAngry
+  parent: MobAdultSlimes
+  suffix: Angry
+  components:
+  - type: NpcFactionMember
+    factions:
+      - SimpleHostile
+  - type: GhostRole
+    description: ghost-role-information-angry-slimes-description
+    rules: ghost-role-information-angry-slimes-rules
+    raffle:
+      settings: short
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: dark_blue_adult_slime
+      Dead:
+        Base: dark_blue_adult_slime_dead
+
+- type: entity
+  name: dark puple slime
+  id: MobSpecialSlimesDarkpupleAngry
+  parent: MobAdultSlimes
+  suffix: Angry
+  components:
+  - type: NpcFactionMember
+    factions:
+      - SimpleHostile
+  - type: GhostRole
+    description: ghost-role-information-angry-slimes-description
+    rules: ghost-role-information-angry-slimes-rules
+    raffle:
+      settings: short
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: dark_purple_adult_slime
+      Dead:
+        Base: dark_purple_adult_slime_dead
+
+- type: entity
+  name: dark adult slime
+  id: MobSpecialSlimesDarkadultAngry
+  parent: MobAdultSlimes
+  suffix: Angry
+  components:
+  - type: NpcFactionMember
+    factions:
+      - SimpleHostile
+  - type: GhostRole
+    description: ghost-role-information-angry-slimes-description
+    rules: ghost-role-information-angry-slimes-rules
+    raffle:
+      settings: short
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: gold_adult_slime
+      Dead:
+        Base: gold_adult_slime_dead
+
+- type: entity
+  name: green slime
+  id: MobSpecialSlimesGreenAngry
+  parent: MobAdultSlimes
+  suffix: Angry
+  components:
+  - type: NpcFactionMember
+    factions:
+      - SimpleHostile
+  - type: GhostRole
+    description: ghost-role-information-angry-slimes-description
+    rules: ghost-role-information-angry-slimes-rules
+    raffle:
+      settings: short
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: green_adult_slime
+      Dead:
+        Base: green_adult_slime_dead
+
+- type: entity
+  name: grey abult slime
+  id: MobSpecialSlimesGreyabultAngry
+  parent: MobAdultSlimes
+  suffix: Angry
+  components:
+  - type: NpcFactionMember
+    factions:
+      - SimpleHostile
+  - type: GhostRole
+    description: ghost-role-information-angry-slimes-description
+    rules: ghost-role-information-angry-slimes-rules
+    raffle:
+      settings: short
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: grey_adult_slime
+      Dead:
+        Base: grey_adult_slime_dead
+
+- type: entity
+  name: light pink slime
+  id: MobSpecialSlimesLightpingAngry
+  parent: MobAdultSlimes
+  suffix: Angry
+  components:
+  - type: NpcFactionMember
+    factions:
+      - SimpleHostile
+  - type: GhostRole
+    description: ghost-role-information-angry-slimes-description
+    rules: ghost-role-information-angry-slimes-rules
+    raffle:
+      settings: short
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: light_pink_adult_slime
+      Dead:
+        Base: light_pink_adult_slime_dead
+
+- type: entity
+  name: metal abult slime
+  id: MobSpecialSlimesMetalabultAngry
+  parent: MobAdultSlimes
+  suffix: Angry
+  components:
+  - type: NpcFactionMember
+    factions:
+      - SimpleHostile
+  - type: GhostRole
+    description: ghost-role-information-angry-slimes-description
+    rules: ghost-role-information-angry-slimes-rules
+    raffle:
+      settings: short
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: metal_adult_slime
+      Dead:
+        Base: metal_adult_slime_dead
+
+- type: entity
+  name: oil slime
+  id: MobSpecialSlimesOilAngry
+  parent: MobAdultSlimes
+  suffix: Angry
+  components:
+  - type: NpcFactionMember
+    factions:
+      - SimpleHostile
+  - type: GhostRole
+    description: ghost-role-information-angry-slimes-description
+    rules: ghost-role-information-angry-slimes-rules
+    raffle:
+      settings: short
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: oil_adult_slime
+      Dead:
+        Base: oil_adult_slime_dead
+
+- type: entity
+  name: orange abult slime
+  id: MobSpecialSlimesOrangeabultAngry
+  parent: MobAdultSlimes
+  suffix: Angry
+  components:
+  - type: NpcFactionMember
+    factions:
+      - SimpleHostile
+  - type: GhostRole
+    description: ghost-role-information-angry-slimes-description
+    rules: ghost-role-information-angry-slimes-rules
+    raffle:
+      settings: short
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: orange_adult_slime
+      Dead:
+        Base: orange_adult_slime_dead
+
+- type: entity
+  name: pink slime
+  id: MobSpecialSlimesPinkAngry
+  parent: MobAdultSlimes
+  suffix: Angry
+  components:
+  - type: NpcFactionMember
+    factions:
+      - SimpleHostile
+  - type: GhostRole
+    description: ghost-role-information-angry-slimes-description
+    rules: ghost-role-information-angry-slimes-rules
+    raffle:
+      settings: short
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: pink_adult_slime
+      Dead:
+        Base: pink_adult_slime_dead
+
+- type: entity
+  name: purple slime
+  id: MobSpecialSlimesPurpleAngry
+  parent: MobAdultSlimes
+  suffix: Angry
+  components:
+  - type: NpcFactionMember
+    factions:
+      - SimpleHostile
+  - type: GhostRole
+    description: ghost-role-information-angry-slimes-description
+    rules: ghost-role-information-angry-slimes-rules
+    raffle:
+      settings: short
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: purple_adult_slime
+      Dead:
+        Base: purple_adult_slime_dead
+
+- type: entity
+  name: pyrite abult slime
+  id: MobSpecialSlimesPyriteabultAngry
+  parent: MobAdultSlimes
+  suffix: Angry
+  components:
+  - type: NpcFactionMember
+    factions:
+      - SimpleHostile
+  - type: GhostRole
+    description: ghost-role-information-angry-slimes-description
+    rules: ghost-role-information-angry-slimes-rules
+    raffle:
+      settings: short
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: pyrite_adult_slime
+      Dead:
+        Base: pyrite_adult_slime_dead
+
+- type: entity
+  name: rainbow abult slime
+  id: MobSpecialSlimesRainbowabultAngry
+  parent: MobAdultSlimes
+  suffix: Angry
+  components:
+  - type: NpcFactionMember
+    factions:
+      - SimpleHostile
+  - type: GhostRole
+    description: ghost-role-information-angry-slimes-description
+    rules: ghost-role-information-angry-slimes-rules
+    raffle:
+      settings: short
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: rainbow_adult_slime
+      Dead:
+        Base: rainbow_adult_slime_dead
+
+- type: entity
+  name: red abult slime
+  id: MobSpecialSlimesRedabultAngry
+  parent: MobAdultSlimes
+  suffix: Angry
+  components:
+  - type: NpcFactionMember
+    factions:
+      - SimpleHostile
+  - type: GhostRole
+    description: ghost-role-information-angry-slimes-description
+    rules: ghost-role-information-angry-slimes-rules
+    raffle:
+      settings: short
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: red_adult_slime
+      Dead:
+        Base: red_adult_slime_dead
+
+- type: entity
+  name: sepia abult slime
+  id: MobSpecialSlimesSepiaAngry
+  parent: MobAdultSlimes
+  suffix: Angry
+  components:
+  - type: NpcFactionMember
+    factions:
+      - SimpleHostile
+  - type: GhostRole
+    description: ghost-role-information-angry-slimes-description
+    rules: ghost-role-information-angry-slimes-rules
+    raffle:
+      settings: short
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: sepia_adult_slime
+      Dead:
+        Base: sepia_adult_slime_dead
+
+- type: entity
+  name: silver abult slime
+  id: MobSpecialSlimesSilverAngry
+  parent: MobAdultSlimes
+  suffix: Angry
+  components:
+  - type: NpcFactionMember
+    factions:
+      - SimpleHostile
+  - type: GhostRole
+    description: ghost-role-information-angry-slimes-description
+    rules: ghost-role-information-angry-slimes-rules
+    raffle:
+      settings: short
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: silver_adult_slime
+      Dead:
+        Base: silver_adult_slime_dead
+
+- type: entity
+  name: yellow abult slime
+  id: MobSpecialSlimesYellowAngry
+  parent: MobAdultSlimes
+  suffix: Angry
+  components:
+  - type: NpcFactionMember
+    factions:
+      - SimpleHostile
+  - type: GhostRole
+    description: ghost-role-information-angry-slimes-description
+    rules: ghost-role-information-angry-slimes-rules
+    raffle:
+      settings: short
   - type: DamageStateVisuals
     states:
       Alive:
