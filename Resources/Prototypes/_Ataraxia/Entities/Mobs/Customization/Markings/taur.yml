@@ -1,0 +1,163 @@
+- type: marking
+  id: TaurCanine
+  bodyPart: Tail
+  markingCategory: Tail
+  speciesRestriction: [Anthropomorph]
+  sprites:
+    - sprite: _Ataraxia/Mobs/Customization/taur.rsi
+      state: taur_canine
+    - sprite: _Ataraxia/Mobs/Customization/taur.rsi
+      state: taur_canine_overlay
+
+- type: marking
+  id: TaurCow
+  bodyPart: Tail
+  markingCategory: Tail
+  speciesRestriction: [Anthropomorph]
+  sprites:
+    - sprite: _Ataraxia/Mobs/Customization/taur.rsi
+      state: taur_cow
+
+- type: marking
+  id: TaurDeer
+  bodyPart: Tail
+  markingCategory: Tail
+  speciesRestriction: [Anthropomorph, Human]
+  sprites:
+    - sprite: _Ataraxia/Mobs/Customization/taur.rsi
+      state: taur_deer
+    - sprite: _Ataraxia/Mobs/Customization/taur.rsi
+      state: taur_deer_overlay
+
+- type: marking
+  id: TaurDrake
+  bodyPart: Tail
+  markingCategory: Tail
+  speciesRestriction: [Anthropomorph, Reptilian]
+  sprites:
+    - sprite: _Ataraxia/Mobs/Customization/taur.rsi
+      state: taur_drake
+    - sprite: _Ataraxia/Mobs/Customization/taur.rsi
+      state: taur_drake_overlay
+
+- type: marking
+  id: TaurSpider
+  bodyPart: Tail
+  markingCategory: Tail
+  speciesRestriction: [Anthropomorph, Human]
+  sprites:
+    - sprite: _Ataraxia/Mobs/Customization/taur.rsi
+      state: taur_drider
+
+- type: marking
+  id: TaurEevee
+  bodyPart: Tail
+  markingCategory: Tail
+  speciesRestriction: [Anthropomorph]
+  sprites:
+    - sprite: _Ataraxia/Mobs/Customization/taur.rsi
+      state: taur_eevee
+    - sprite: _Ataraxia/Mobs/Customization/taur.rsi
+      state: taur_eevee_overlay
+
+- type: marking
+  id: TaurFeline
+  bodyPart: Tail
+  markingCategory: Tail
+  speciesRestriction: [Anthropomorph]
+  sprites:
+    - sprite: _Ataraxia/Mobs/Customization/taur.rsi
+      state: taur_feline
+    - sprite: _Ataraxia/Mobs/Customization/taur.rsi
+      state: taur_feline_overlay
+
+- type: marking
+  id: TaurHorse
+  bodyPart: Tail
+  markingCategory: Tail
+  speciesRestriction: [Anthropomorph, Human]
+  sprites:
+    - sprite: _Ataraxia/Mobs/Customization/taur.rsi
+      state: taur_horse
+    - sprite: _Ataraxia/Mobs/Customization/taur.rsi
+      state: taur_horse_overlay_1
+    - sprite: _Ataraxia/Mobs/Customization/taur.rsi
+      state: taur_horse_overlay_2
+    - sprite: _Ataraxia/Mobs/Customization/taur.rsi
+      state: taur_horse_overlay_3
+
+- type: marking
+  id: TaurSynthLizard
+  bodyPart: Tail
+  markingCategory: Tail
+  speciesRestriction: [Anthropomorph, Reptilian]
+  sprites:
+    - sprite: _Ataraxia/Mobs/Customization/taur.rsi
+      state: taur_lizard
+    - sprite: _Ataraxia/Mobs/Customization/taur.rsi
+      state: taur_lizard_overlay_1
+    - sprite: _Ataraxia/Mobs/Customization/taur.rsi
+      state: taur_lizard_overlay_2
+
+- type: marking
+  id: TaurNaga
+  bodyPart: Tail
+  markingCategory: Tail
+  speciesRestriction: [Anthropomorph, Reptilian, Human]
+  sprites:
+    - sprite: _Ataraxia/Mobs/Customization/taur.rsi
+      state: taur_naga
+    - sprite: _Ataraxia/Mobs/Customization/taur.rsi
+      state: taur_naga_overlay_1
+    - sprite: _Ataraxia/Mobs/Customization/taur.rsi
+      state: taur_naga_overlay_2
+
+- type: marking
+  id: TaurOtie
+  bodyPart: Tail
+  markingCategory: Tail
+  speciesRestriction: [Anthropomorph]
+  sprites:
+    - sprite: _Ataraxia/Mobs/Customization/taur.rsi
+      state: taur_otie
+    - sprite: _Ataraxia/Mobs/Customization/taur.rsi
+      state: taur_otie_overlay_1
+    - sprite: _Ataraxia/Mobs/Customization/taur.rsi
+      state: taur_otie_overlay_2
+    - sprite: _Ataraxia/Mobs/Customization/taur.rsi
+      state: taur_otie_overlay_3
+
+- type: marking
+  id: TaurPede
+  bodyPart: Tail
+  markingCategory: Tail
+  speciesRestriction: [Anthropomorph]
+  sprites:
+    - sprite: _Ataraxia/Mobs/Customization/taur.rsi
+      state: taur_pede
+    - sprite: _Ataraxia/Mobs/Customization/taur.rsi
+      state: taur_pede_overlay_1
+    - sprite: _Ataraxia/Mobs/Customization/taur.rsi
+      state: taur_pede_overlay_2
+
+- type: marking
+  id: TaurTentacle
+  bodyPart: Tail
+  markingCategory: Tail
+  speciesRestriction: [Anthropomorph, Human]
+  sprites:
+    - sprite: _Ataraxia/Mobs/Customization/taur.rsi
+      state: taur_tentacle
+
+- type: marking
+  id: TaurSynthWolf
+  bodyPart: Tail
+  markingCategory: Tail
+  speciesRestriction: [Anthropomorph]
+  sprites:
+    - sprite: _Ataraxia/Mobs/Customization/taur.rsi
+      state: taur_wolf
+    - sprite: _Ataraxia/Mobs/Customization/taur.rsi
+      state: taur_wolf_overlay_1
+    - sprite: _Ataraxia/Mobs/Customization/taur.rsi
+      state: taur_wolf_overlay_2

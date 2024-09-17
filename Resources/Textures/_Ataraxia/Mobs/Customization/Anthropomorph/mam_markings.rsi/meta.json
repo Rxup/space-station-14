@@ -1,0 +1,299 @@
+{
+  "version": 1,
+  "license": "CC BY-NC-SA 4.0",
+  "copyright": "Edited, sprited, resprited and reshaded by PuroSlavKing (Github)",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "absarms_chest",
+      "directions": 4
+    },
+    {
+      "name": "absbelly_chest",
+      "directions": 4
+    },
+    {
+      "name": "bee_chest",
+      "directions": 4
+    },
+    {
+      "name": "avian_l_leg_digi",
+      "directions": 4
+    },
+    {
+      "name": "avian_r_leg_digi",
+      "directions": 4
+    },
+    {
+      "name": "chemlight_chest",
+      "directions": 4
+    },
+    {
+      "name": "chemlight_chest_overlay",
+      "directions": 4
+    },
+    {
+      "name": "chemlight_l_hand",
+      "directions": 4
+    },
+    {
+      "name": "chemlight_l_hand_overlay",
+      "directions": 4
+    },
+    {
+      "name": "chemlight_l_leg_digi",
+      "directions": 4
+    },
+    {
+      "name": "chemlight_r_hand",
+      "directions": 4
+    },
+    {
+      "name": "chemlight_r_hand_overlay",
+      "directions": 4
+    },
+    {
+      "name": "chemlight_r_leg_digi",
+      "directions": 4
+    },
+    {
+      "name": "deoxys_l_leg",
+      "directions": 4
+    },
+    {
+      "name": "deoxys_r_leg",
+      "directions": 4
+    },
+    {
+      "name": "easternd_chest",
+      "directions": 4
+    },
+    {
+      "name": "easternd_l_leg",
+      "directions": 4
+    },
+    {
+      "name": "easternd_r_leg",
+      "directions": 4
+    },
+    {
+      "name": "floof_chest",
+      "directions": 4
+    },
+    {
+      "name": "gloss_chest_v1",
+      "directions": 4
+    },
+    {
+      "name": "gloss_chest_v2",
+      "directions": 4
+    },
+    {
+      "name": "kogti",
+      "directions": 4
+    },
+    {
+      "name": "moth_chest",
+      "directions": 4
+    },
+    {
+      "name": "noodledragon_chest",
+      "directions": 4
+    },
+    {
+      "name": "noodledragon_chest_dots",
+      "directions": 4
+    },
+    {
+      "name": "pigeon_chest",
+      "directions": 4
+    },
+    {
+      "name": "raccalt_chest",
+      "directions": 4
+    },
+    {
+      "name": "shrike_chest",
+      "directions": 4
+    },
+    {
+      "name": "sloog_chest",
+      "directions": 4
+    },
+    {
+      "name": "bat_chest",
+      "directions": 4
+    },
+    {
+      "name": "bat_chest_overlay",
+      "directions": 4
+    },
+    {
+      "name": "bovine_chest",
+      "directions": 4
+    },
+    {
+      "name": "corgi_chest",
+      "directions": 4
+    },
+    {
+      "name": "corvid_chest",
+      "directions": 4
+    },
+    {
+      "name": "dalmation_chest",
+      "directions": 4
+    },
+    {
+      "name": "deer_chest",
+      "directions": 4
+    },
+    {
+      "name": "dog_chest",
+      "directions": 4
+    },
+    {
+      "name": "dog_chest_overlay",
+      "directions": 4
+    },
+    {
+      "name": "eevee_chest",
+      "directions": 4
+    },
+    {
+      "name": "female_template",
+      "directions": 4
+    },
+    {
+      "name": "fennec_chest",
+      "directions": 4
+    },
+    {
+      "name": "fox_chest",
+      "directions": 4
+    },
+    {
+      "name": "hawk_chest",
+      "directions": 4
+    },
+    {
+      "name": "husky_chest",
+      "directions": 4
+    },
+    {
+      "name": "hyena_chest",
+      "directions": 4
+    },
+    {
+      "name": "hyena_chest_overlay",
+      "directions": 4
+    },
+    {
+      "name": "ltiger_chest",
+      "directions": 4
+    },
+    {
+      "name": "orca_chest",
+      "directions": 4
+    },
+    {
+      "name": "otie_chest",
+      "directions": 4
+    },
+    {
+      "name": "otie_chest_overlay",
+      "directions": 4
+    },
+    {
+      "name": "otter_chest",
+      "directions": 4
+    },
+    {
+      "name": "panther_chest",
+      "directions": 4
+    },
+    {
+      "name": "panther_head",
+      "directions": 4
+    },
+    {
+      "name": "panther_l_hand",
+      "directions": 4
+    },
+    {
+      "name": "panther_l_leg",
+      "directions": 4
+    },
+    {
+      "name": "panther_r_hand",
+      "directions": 4
+    },
+    {
+      "name": "panther_r_leg",
+      "directions": 4
+    },
+    {
+      "name": "possum_chest",
+      "directions": 4
+    },
+    {
+      "name": "raccoon_chest",
+      "directions": 4
+    },
+    {
+      "name": "redpanda_chest",
+      "directions": 4
+    },
+    {
+      "name": "sabresune_chest",
+      "directions": 4
+    },
+    {
+      "name": "sergal_chest",
+      "directions": 4
+    },
+    {
+      "name": "shark_chest",
+      "directions": 4
+    },
+    {
+      "name": "shepherd_chest",
+      "directions": 4
+    },
+    {
+      "name": "shepherd_chest_overlay",
+      "directions": 4
+    },
+    {
+      "name": "skunk_chest",
+      "directions": 4
+    },
+    {
+      "name": "tajaran_chest",
+      "directions": 4
+    },
+    {
+      "name": "tiger_chest",
+      "directions": 4
+    },
+    {
+      "name": "tiger_chest_overlay",
+      "directions": 4
+    },
+    {
+      "name": "wolf_chest",
+      "directions": 4
+    },
+    {
+      "name": "wolf_chest_overlay",
+      "directions": 4
+    },
+    {
+      "name": "sloog_chest_overlay",
+      "directions": 4
+    }
+  ]
+}

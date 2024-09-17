@@ -1,0 +1,43 @@
+{
+  "version": 1,
+  "license": "CC BY-NC-SA 4.0",
+  "copyright": "Edited, resprited and reshaded by PuroSlavKing (Github)",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "ipc_antenna_synth",
+      "directions": 4
+    },
+    {
+      "name": "ipc_antenna_synth_curled",
+      "directions": 4
+    },
+    {
+      "name": "ipc_antenna_synth_horns",
+      "directions": 4
+    },
+    {
+      "name": "ipc_antenna_synth_horns_overlay",
+      "directions": 4
+    },
+    {
+      "name": "ipc_antenna_synth_sharp",
+      "directions": 4
+    },
+    {
+      "name": "ipc_antenna_synth_sharp_overlay",
+      "directions": 4
+    },
+    {
+      "name": "ipc_antenna_synth_short",
+      "directions": 4
+    },
+    {
+      "name": "ipc_antenna_synth_thick",
+      "directions": 4
+    }
+  ]
+}
