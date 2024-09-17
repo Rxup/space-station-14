@@ -1,0 +1,408 @@
+- type: entity
+  name: basic slime
+  id: BaseMobSpecialSlimes
+  parent: [ SimpleMobBase, MobCombat ]
+  abstract: true
+  description: It looks so much like jelly. I wonder what it tastes like?
+  components:
+  - type: Sprite
+    drawdepth: Mobs
+    sprite: _SpaceCats/Mobs/Aliens/slimes.rsi
+    layers:
+    - map: [ "enum.DamageStateVisualLayers.Base" ]
+      state: grey_adult_slime
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.30
+        density: 80
+        mask:
+        - MobMask
+        layer:
+        - MobLayer
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      120: Dead
+  - type: MovementSpeedModifier
+    baseWalkSpeed: 2
+    baseSprintSpeed: 4
+  - type: FootstepModifier
+    footstepSoundCollection:
+      path: /Audio/Effects/Footsteps/slime1.ogg
+      params:
+        volume: 3
+  - type: Tag
+    tags:
+    - FootstepSound
+    - DoorBumpOpener
+  - type: Butcherable
+    butcheringType: Knife
+    spawned:
+    - id: FoodMeatSlime
+      amount: 2
+  - type: Respirator
+    damage:
+      types:
+        Asphyxiation: 0.2
+    damageRecovery:
+      types:
+        Asphyxiation: -1.0
+    maxSaturation: 15
+  - type: Damageable
+    damageContainer: Biological
+    damageModifierSet: Slime
+  - type: Bloodstream
+    bloodReagent: Slime
+    bloodlossDamage:
+      types:
+        Bloodloss:
+          0.5
+    bloodlossHealDamage:
+      types:
+        Bloodloss:
+          -0.25
+  - type: Barotrauma
+    damage:
+      types:
+        Blunt: 0.45
+  - type: Reactive
+    groups:
+      Flammable: [ Touch ]
+      Extinguish: [ Touch ]
+    reactions:
+    - reagents: [ Water, SpaceCleaner ]
+      methods: [ Touch ]
+      effects:
+      - !type:WashCreamPieReaction
+    - reagents: [ Water ]
+      methods: [ Touch ]
+      effects:
+      - !type:HealthChange
+        scaleByQuantity: true
+        damage:
+          types:
+            Heat: 0.15
+      - !type:PopupMessage
+        type: Local
+        messages: [ "slime-hurt-by-water-popup" ]
+        probability: 0.25
+  - type: Body
+    prototype: Slimes
+    requiredLegs: 1
+  - type: MeleeWeapon
+    altDisarm: false
+    soundHit:
+        path: /Audio/Weapons/punch3.ogg
+    angle: 0
+    animation: WeaponArcPunch
+    damage:
+      types:
+        Blunt: 6
+        Structural: 4
+        Caustic: 4
+  - type: InteractionPopup
+    successChance: 0.5
+    interactSuccessString: petting-success-slimes
+    interactFailureString: petting-failure-generic
+  - type: Speech
+    speechVerb: Slime
+    speechSounds: Slime
+  - type: TypingIndicator
+    proto: slime
+
+- type: entity
+  name: basic slime
+  id: MobSpecialSlimes
+  parent: BaseMobSpecialSlimes
+  abstract: true
+  description: It looks so much like jelly. I wonder what it tastes like?
+  components:
+  - type: ReplacementAccent
+    accent: slimes
+  - type: GhostTakeoverAvailable
+  - type: GhostRole
+    makeSentient: true
+    name: ghost-role-information-slimes-name
+    description: ghost-role-information-slimes-description
+    rules: ghost-role-information-nonantagonist-rules
+    raffle:
+      settings: short
+  - type: Speech
+    speechVerb: Slime
+    speechSounds: Slime
+    allowedEmotes: ['Squish']
+  - type: TypingIndicator
+    proto: slime
+  - type: NpcFactionMember
+    factions:
+    - SimpleNeutral
+  - type: HTN
+    rootTask:
+      task: SimpleHostileCompound
+
+- type: entity
+  name: adamantine slime
+  id: MobSpecialSlimesAdamantine
+  parent: MobAdultSlimes
+  components:
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: adamantine_adult_slime
+      Dead:
+        Base: adamantine_adult_slime_dead
+
+- type: entity
+  name: black slime
+  id: MobSpecialSlimesBlack
+  parent: MobAdultSlimes
+  components:
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: black_adult_slime
+      Dead:
+        Base: black_adult_slime_dead
+
+- type: entity
+  name: blue slime
+  id: MobSpecialSlimesBlue
+  parent: MobAdultSlimes
+  components:
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: blue_adult_slime
+      Dead:
+        Base: blue_adult_slime_dead
+
+- type: entity
+  name: bluespace slime
+  id: MobSpecialSlimesBluespace
+  parent: MobAdultSlimes
+  components:
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: bluespace_adult_slime
+      Dead:
+        Base: bluespace_adult_slime_dead
+
+- type: entity
+  name: cerulean slime
+  id: MobSpecialSlimesCerulean
+  parent: MobAdultSlimes
+  components:
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: cerulean_adult_slime
+      Dead:
+        Base: cerulean_adult_slime_dead
+
+- type: entity
+  name: dark blue slime
+  id: MobSpecialSlimesDarkblue
+  parent: MobAdultSlimes
+  components:
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: dark_blue_adult_slime
+      Dead:
+        Base: dark_blue_adult_slime_dead
+
+- type: entity
+  name: dark puple slime
+  id: MobSpecialSlimesDarkpuple
+  parent: MobAdultSlimes
+  components:
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: dark_purple_adult_slime
+      Dead:
+        Base: dark_purple_adult_slime_dead
+
+- type: entity
+  name: dark adult slime
+  id: MobSpecialSlimesDarkadult
+  parent: MobAdultSlimes
+  components:
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: gold_adult_slime
+      Dead:
+        Base: gold_adult_slime_dead
+
+- type: entity
+  name: green slime
+  id: MobSpecialSlimesGreen
+  parent: MobAdultSlimes
+  components:
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: green_adult_slime
+      Dead:
+        Base: green_adult_slime_dead
+
+- type: entity
+  name: grey abult slime
+  id: MobSpecialSlimesGreyabult
+  parent: MobAdultSlimes
+  components:
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: grey_adult_slime
+      Dead:
+        Base: grey_adult_slime_dead
+
+- type: entity
+  name: light pink slime
+  id: MobSpecialSlimesLightping
+  parent: MobAdultSlimes
+  components:
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: light_pink_adult_slime
+      Dead:
+        Base: light_pink_adult_slime_dead
+
+- type: entity
+  name: metal abult slime
+  id: MobSpecialSlimesMetalabult
+  parent: MobAdultSlimes
+  components:
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: metal_adult_slime
+      Dead:
+        Base: metal_adult_slime_dead
+
+- type: entity
+  name: oil slime
+  id: MobSpecialSlimesOil
+  parent: MobAdultSlimes
+  components:
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: oil_adult_slime
+      Dead:
+        Base: oil_adult_slime_dead
+
+- type: entity
+  name: orange abult slime
+  id: MobSpecialSlimesOrangeabult
+  parent: MobAdultSlimes
+  components:
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: orange_adult_slime
+      Dead:
+        Base: orange_adult_slime_dead
+
+- type: entity
+  name: pink slime
+  id: MobSpecialSlimesPink
+  parent: MobAdultSlimes
+  components:
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: pink_adult_slime
+      Dead:
+        Base: pink_adult_slime_dead
+
+- type: entity
+  name: purple slime
+  id: MobSpecialSlimesPurple
+  parent: MobAdultSlimes
+  components:
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: purple_adult_slime
+      Dead:
+        Base: purple_adult_slime_dead
+
+- type: entity
+  name: pyrite abult slime
+  id: MobSpecialSlimesPyriteabult
+  parent: MobAdultSlimes
+  components:
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: pyrite_adult_slime
+      Dead:
+        Base: pyrite_adult_slime_dead
+
+- type: entity
+  name: rainbow abult slime
+  id: MobSpecialSlimesRainbowabult
+  parent: MobAdultSlimes
+  components:
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: rainbow_adult_slime
+      Dead:
+        Base: rainbow_adult_slime_dead
+
+- type: entity
+  name: red abult slime
+  id: MobSpecialSlimesRedabult
+  parent: MobAdultSlimes
+  components:
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: red_adult_slime
+      Dead:
+        Base: red_adult_slime_dead
+
+- type: entity
+  name: sepia abult slime
+  id: MobSpecialSlimesSepia
+  parent: MobAdultSlimes
+  components:
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: sepia_adult_slime
+      Dead:
+        Base: sepia_adult_slime_dead
+
+- type: entity
+  name: silver abult slime
+  id: MobSpecialSlimesSilver
+  parent: MobAdultSlimes
+  components:
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: silver_adult_slime
+      Dead:
+        Base: silver_adult_slime_dead
+
+- type: entity
+  name: yellow abult slime
+  id: MobSpecialSlimesYellow
+  parent: MobAdultSlimes
+  components:
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: yellow_adult_slime
+      Dead:
+        Base: yellow_adult_slime_dead
