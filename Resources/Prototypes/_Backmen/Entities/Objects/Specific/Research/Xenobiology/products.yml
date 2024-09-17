@@ -1,17 +1,4 @@
 ﻿- type: entity
-  parent: BaseItem
-  id: BaseSlimePotion
-  abstract: true
-  name: slime potion
-  description: Slime potion.
-  components:
-  - type: Item
-    size: Small
-  - type: XenoPotion
-  - type: StaticPrice
-    price: 250
- 
-- type: entity
   parent: BasePowerCell
   id: PowerCellSlime
   name: slime power cell
@@ -50,27 +37,28 @@
     color: "#FFFF00"
 
 - type: entity
-  parent: BaseItem
+  parent: RedSlimePotion
   id: SpeedSlimePotion
   name: speed slime potion
-  description: Slime potion.
   components:
-  - type: Sprite
-    sprite: Backmen/Objects/Specific/Xenobiology/potion.rsi
-    state: red
   - type: XenoPotion
     color: "#8B0000"
     effect: "Speed"
 
 - type: entity
-  parent: BaseItem
+  parent: BlueSlimePotion
   id: PressureSlimePotion
   name: pressure slime potion
-  description: Slime potion.
   components:
-  - type: Sprite
-    sprite: Backmen/Objects/Specific/Xenobiology/potion.rsi
-    state: blue
+  - type: XenoPotion
+    color: "#0000FF"
+    effect: "Pressure"
+
+- type: entity
+  parent: YellowSlimePotion
+  id: StabilizerSlimePotion
+  name: stabilizer slime potion
+  components:
   - type: XenoPotion
     color: "#0000FF"
     effect: "Pressure"

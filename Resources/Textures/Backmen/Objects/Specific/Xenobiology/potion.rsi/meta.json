@@ -1,17 +1,44 @@
 {
   "version": 1,
   "license": "CC-BY-SA-3.0",
-  "copyright": "Taked from TG station https://github.com/tgstation/tgstation/blob/master/icons/obj/science/slimecrossing.dmi",
+  "copyright": "Taked from https://github.com/BlueMoon-Labs/MOLOT-BlueMoon-Station/blob/master/icons/obj/chemical.dmi | Edited by PuroSlavKing (Github)",
   "size": {
     "x": 32,
     "y": 32
   },
   "states": [
     {
+      "name": "blue"
+    },
+    {
+      "name": "silver"
+    },
+    {
+      "name": "cyan"
+    },
+    {
+      "name": "green"
+    },
+    {
       "name": "red"
     },
     {
-      "name": "blue"
+      "name": "lightpink"
+    },
+    {
+      "name": "grey"
+    },
+    {
+      "name": "yellow"
+    },
+    {
+      "name": "pink"
+    },
+    {
+      "name": "orange"
+    },
+    {
+      "name": "purple"
     }
   ]
 }

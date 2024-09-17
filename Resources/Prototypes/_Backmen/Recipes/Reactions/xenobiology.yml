@@ -105,7 +105,7 @@
     Blood:
       amount: 5
   products:
-    SlimeStabilizer: 1
+    StabilizerSlimePotion: 1
 
 - type: reaction
   id: BlueExtractWater
