@@ -23,7 +23,7 @@
 - type: species
   id: Zerah
   name: Зерах
-  roundStart: false
+  roundStart: true
   prototype: MobZerah
   sprites: MobZerahSprites
   markingLimits: MobZerahMarkingLimits
