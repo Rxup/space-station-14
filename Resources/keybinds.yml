@@ -186,7 +186,7 @@ binds:
   mod1: Alt
 - function: OpenCharacterMenu
   type: State
-  key: C
+  key: U
 - function: OpenEmotesMenu
   type: State
   key: Y
@@ -590,4 +590,4 @@ binds:
   key: Space
 - function: ToggleStanding # Ataraxia-edit
   type: State
-  key: R
+  key: C
