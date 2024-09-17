@@ -373,13 +373,6 @@
     - DoorBumpOpener
     - CannotSuicide
     - VimPilot
-  - type: DamageStateVisuals
-    states:
-      Alive:
-        Base: rainbow_baby_slime
-        BaseUnshaded: aslime-_3
-      Dead:
-        Base: rainbow_baby_slime_dead
   - type: Butcherable
     spawned:
     - id: FoodMeatSlime
