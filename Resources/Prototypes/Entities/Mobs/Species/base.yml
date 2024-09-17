@@ -228,6 +228,7 @@
     - CanPilot
     - FootstepSound
     - DoorBumpOpener
+  - type: LayingDown # backmen: LayingDown
 
 - type: entity
   save: false
