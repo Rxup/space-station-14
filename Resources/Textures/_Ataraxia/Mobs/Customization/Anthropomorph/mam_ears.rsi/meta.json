@@ -1,0 +1,255 @@
+{
+  "version": 1,
+  "license": "CC BY-NC-SA 4.0",
+  "copyright": "Edited, resprited and reshaded by PuroSlavKing (Github)",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "ears_avali",
+      "directions": 4
+    },
+    {
+      "name": "ears_avali_overlay",
+      "directions": 4
+    },
+    {
+      "name": "ears_axolotl",
+      "directions": 4
+    },
+    {
+      "name": "ears_bat",
+      "directions": 4
+    },
+    {
+      "name": "ears_bear",
+      "directions": 4
+    },
+    {
+      "name": "ears_bigwolf",
+      "directions": 4
+    },
+    {
+      "name": "ears_bigwolf_overlay",
+      "directions": 4
+    },
+    {
+      "name": "ears_bunny",
+      "directions": 4
+    },
+    {
+      "name": "ears_bunny_overlay",
+      "directions": 4
+    },
+    {
+      "name": "ears_bunny_ADJ",
+      "directions": 4
+    },
+    {
+      "name": "ears_bunny2",
+      "directions": 4
+    },
+    {
+      "name": "ears_bunnyalt",
+      "directions": 4
+    },
+    {
+      "name": "ears_catbig",
+      "directions": 4
+    },
+    {
+      "name": "ears_catbig_overlay",
+      "directions": 4
+    },
+    {
+      "name": "ears_catnormal",
+      "directions": 4
+    },
+    {
+      "name": "ears_chemlight",
+      "directions": 4
+    },
+    {
+      "name": "ears_chemlight_overlay_1",
+      "directions": 4
+    },
+    {
+      "name": "ears_chemlight_overlay_2",
+      "directions": 4
+    },
+    {
+      "name": "ears_cow",
+      "directions": 4
+    },
+    {
+      "name": "ears_deer",
+      "directions": 4
+    },
+    {
+      "name": "ears_easternd",
+      "directions": 4
+    },
+    {
+      "name": "ears_easternd_overlay_1",
+      "directions": 4
+    },
+    {
+      "name": "ears_easternd_overlay_2",
+      "directions": 4
+    },
+    {
+      "name": "ears_eevee",
+      "directions": 4
+    },
+    {
+      "name": "ears_elephant",
+      "directions": 4
+    },
+    {
+      "name": "ears_elf",
+      "directions": 4
+    },
+    {
+      "name": "ears_fennec",
+      "directions": 4
+    },
+    {
+      "name": "ears_fish",
+      "directions": 4
+    },
+    {
+      "name": "ears_foldedback",
+      "directions": 4
+    },
+    {
+      "name": "ears_fox",
+      "directions": 4
+    },
+    {
+      "name": "ears_goat",
+      "directions": 4
+    },
+    {
+      "name": "ears_goathorns",
+      "directions": 4
+    },
+    {
+      "name": "ears_gret",
+      "directions": 4
+    },
+    {
+      "name": "ears_hawk",
+      "directions": 4
+    },
+    {
+      "name": "ears_horn1",
+      "directions": 4
+    },
+    {
+      "name": "ears_jackal",
+      "directions": 4
+    },
+    {
+      "name": "ears_jellyfish",
+      "directions": 4
+    },
+    {
+      "name": "ears_kangaroo",
+      "directions": 4
+    },
+    {
+      "name": "ears_moth",
+      "directions": 4
+    },
+    {
+      "name": "ears_mouse",
+      "directions": 4
+    },
+    {
+      "name": "ears_murid",
+      "directions": 4
+    },
+    {
+      "name": "ears_noodledragon",
+      "directions": 4
+    },
+    {
+      "name": "ears_noodledragon_overlay",
+      "directions": 4
+    },
+    {
+      "name": "ears_otie",
+      "directions": 4
+    },
+    {
+      "name": "ears_pede",
+      "directions": 4
+    },
+    {
+      "name": "ears_plumeant",
+      "directions": 4
+    },
+    {
+      "name": "ears_pointy",
+      "directions": 4
+    },
+    {
+      "name": "ears_possum",
+      "directions": 4
+    },
+    {
+      "name": "ears_rabbit",
+      "directions": 4
+    },
+    {
+      "name": "ears_rabbitalt",
+      "directions": 4
+    },
+    {
+      "name": "ears_rabbitalt_overlay_1",
+      "directions": 4
+    },
+    {
+      "name": "ears_rabbitalt_overlay_2",
+      "directions": 4
+    },
+    {
+      "name": "ears_renamon",
+      "directions": 4
+    },
+    {
+      "name": "ears_renamon_overlay",
+      "directions": 4
+    },
+    {
+      "name": "ears_roundant",
+      "directions": 4
+    },
+    {
+      "name": "ears_sergal",
+      "directions": 4
+    },
+    {
+      "name": "ears_sergal_overlay",
+      "directions": 4
+    },
+    {
+      "name": "ears_shadekin",
+      "directions": 4
+    },
+    {
+      "name": "ears_thinant",
+      "directions": 4
+    },
+    {
+      "name": "ears_wolf",
+      "directions": 4
+    },
+    {
+      "name": "horns_guilmon",
+      "directions": 4
+    }
+  ]
+}

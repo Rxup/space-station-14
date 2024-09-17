@@ -68,6 +68,25 @@
   - type: Wagging
   - type: Inventory
     speciesId: reptilian
+    displacements:
+      jumpsuit: # Ataraxia
+        sizeMaps:
+          32:
+            sprite: _Ataraxia/Mobs/Species/displacement.rsi
+            state: jumpsuit
+
+      outerClothing: # Ataraxia
+        sizeMaps:
+          32:
+            sprite: _Ataraxia/Mobs/Species/displacement.rsi
+            state: jumpsuit
+
+      shoes: # Ataraxia
+        sizeMaps:
+          32:
+            sprite: _Ataraxia/Mobs/Species/displacement.rsi
+            state: shoes
+
     femaleDisplacements:
       jumpsuit:
         sizeMaps:

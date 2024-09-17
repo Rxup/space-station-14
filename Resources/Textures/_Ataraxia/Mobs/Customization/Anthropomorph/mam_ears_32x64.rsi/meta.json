@@ -1,0 +1,63 @@
+{
+  "version": 1,
+  "license": "CC BY-NC-SA 4.0",
+  "copyright": "Edited, resprited and reshaded by PuroSlavKing (Github)",
+  "size": {
+    "x": 32,
+    "y": 64
+  },
+  "states": [
+    {
+      "name": "ears_bnnuy",
+      "directions": 4
+    },
+    {
+      "name": "ears_bnnuy_overlay_1",
+      "directions": 4
+    },
+    {
+      "name": "ears_bnnuy_overlay_2",
+      "directions": 4
+    },
+    {
+      "name": "ears_bnnuy2",
+      "directions": 4
+    },
+    {
+      "name": "ears_bnnuy2_overlay_1",
+      "directions": 4
+    },
+    {
+      "name": "ears_bnnuy2_overlay_2",
+      "directions": 4
+    },
+    {
+      "name": "ears_bunnytall",
+      "directions": 4
+    },
+    {
+      "name": "ears_bunnytall_overlay",
+      "directions": 4
+    },
+    {
+      "name": "ears_jackalope",
+      "directions": 4
+    },
+    {
+      "name": "ears_sandfox",
+      "directions": 4
+    },
+    {
+      "name": "ears_sandfox_overlay",
+      "directions": 4
+    },
+    {
+      "name": "ears_shadekinround",
+      "directions": 4
+    },
+    {
+      "name": "ears_shadekinround_overlay",
+      "directions": 4
+    }
+  ]
+}

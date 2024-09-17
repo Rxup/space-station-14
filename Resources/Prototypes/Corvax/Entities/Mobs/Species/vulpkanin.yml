@@ -31,6 +31,25 @@
     requiredLegs: 2
   - type: Inventory
     speciesId: reptilian # whyyy
+    displacements:
+      jumpsuit: # Ataraxia
+        sizeMaps:
+          32:
+            sprite: _Ataraxia/Mobs/Species/displacement.rsi
+            state: jumpsuit
+
+      outerClothing: # Ataraxia
+        sizeMaps:
+          32:
+            sprite: _Ataraxia/Mobs/Species/displacement.rsi
+            state: jumpsuit
+
+      shoes: # Ataraxia
+        sizeMaps:
+          32:
+            sprite: _Ataraxia/Mobs/Species/displacement.rsi
+            state: shoes
+
   - type: ContentEye
     targetZoom: "1.125, 1.125"
     maxZoom: "1.125, 1.125"

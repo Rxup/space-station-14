@@ -1,0 +1,75 @@
+{
+  "version": 1,
+  "license": "CC BY-NC-SA 4.0",
+  "copyright": "Edited, resprited and reshaded by PuroSlavKing (Github)",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "insect_wings_angelmoth",
+      "directions": 4
+    },
+    {
+      "name": "insect_wings_aspen",
+      "directions": 4
+    },
+    {
+      "name": "insect_wings_beetle",
+      "directions": 4
+    },
+    {
+      "name": "insect_wings_delirious",
+      "directions": 4
+    },
+    {
+      "name": "insect_wings_delta",
+      "directions": 4
+    },
+    {
+      "name": "insect_wings_dragonalt",
+      "directions": 4
+    },
+    {
+      "name": "insect_wings_dreamhead",
+      "directions": 4
+    },
+    {
+      "name": "insect_wings_insect",
+      "directions": 4
+    },
+    {
+      "name": "insect_wings_minibat",
+      "directions": 4
+    },
+    {
+      "name": "insect_wings_minifeather",
+      "directions": 4
+    },
+    {
+      "name": "insect_wings_straight",
+      "directions": 4
+    },
+    {
+      "name": "insect_wings_swept",
+      "directions": 4
+    },
+    {
+      "name": "insect_wings_sylveon_bow",
+      "directions": 4
+    },
+    {
+      "name": "insect_wings_tinybat",
+      "directions": 4
+    },
+    {
+      "name": "insect_wings_tinyfeather",
+      "directions": 4
+    },
+    {
+      "name": "insect_wings_variable",
+      "directions": 4
+    }
+  ]
+}

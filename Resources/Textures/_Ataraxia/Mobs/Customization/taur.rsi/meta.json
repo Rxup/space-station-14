@@ -1,0 +1,143 @@
+{
+  "version": 1,
+  "license": "CC BY-NC-SA 4.0",
+  "copyright": "Taken from https://github.com/BlueMoon-Labs/MOLOT-BlueMoon-Station/blob/master/modular_citadel/icons/mob/mataur.dmi | Edited, resprited and reshaded by PuroSlavKing (Github)",
+  "size": {
+    "x": 64,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "taur_canine",
+      "directions": 4
+    },
+    {
+      "name": "taur_canine_overlay",
+      "directions": 4
+    },
+    {
+      "name": "taur_cow",
+      "directions": 4
+    },
+    {
+      "name": "taur_deer",
+      "directions": 4
+    },
+    {
+      "name": "taur_deer_overlay",
+      "directions": 4
+    },
+    {
+      "name": "taur_drake",
+      "directions": 4
+    },
+    {
+      "name": "taur_drake_overlay",
+      "directions": 4
+    },
+    {
+      "name": "taur_drider",
+      "directions": 4
+    },
+    {
+      "name": "taur_eevee",
+      "directions": 4
+    },
+    {
+      "name": "taur_eevee_overlay",
+      "directions": 4
+    },
+    {
+      "name": "taur_feline",
+      "directions": 4
+    },
+    {
+      "name": "taur_feline_overlay",
+      "directions": 4
+    },
+    {
+      "name": "taur_horse",
+      "directions": 4
+    },
+    {
+      "name": "taur_horse_overlay_1",
+      "directions": 4
+    },
+    {
+      "name": "taur_horse_overlay_2",
+      "directions": 4
+    },
+    {
+      "name": "taur_horse_overlay_3",
+      "directions": 4
+    },
+    {
+      "name": "taur_lizard",
+      "directions": 4
+    },
+    {
+      "name": "taur_lizard_overlay_1",
+      "directions": 4
+    },
+    {
+      "name": "taur_lizard_overlay_2",
+      "directions": 4
+    },
+    {
+      "name": "taur_naga",
+      "directions": 4
+    },
+    {
+      "name": "taur_naga_overlay_1",
+      "directions": 4
+    },
+    {
+      "name": "taur_naga_overlay_2",
+      "directions": 4
+    },
+    {
+      "name": "taur_otie",
+      "directions": 4
+    },
+    {
+      "name": "taur_otie_overlay_1",
+      "directions": 4
+    },
+    {
+      "name": "taur_otie_overlay_2",
+      "directions": 4
+    },
+    {
+      "name": "taur_otie_overlay_3",
+      "directions": 4
+    },
+    {
+      "name": "taur_pede",
+      "directions": 4
+    },
+    {
+      "name": "taur_pede_overlay_1",
+      "directions": 4
+    },
+    {
+      "name": "taur_pede_overlay_2",
+      "directions": 4
+    },
+    {
+      "name": "taur_tentacle",
+      "directions": 4
+    },
+    {
+      "name": "taur_wolf",
+      "directions": 4
+    },
+    {
+      "name": "taur_wolf_overlay_1",
+      "directions": 4
+    },
+    {
+      "name": "taur_wolf_overlay_2",
+      "directions": 4
+    }
+  ]
+}
