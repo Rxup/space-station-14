@@ -1,0 +1,20 @@
+- type: entity
+  id: SpawnPointGhostSwarmHead
+  name: ghost role spawn point
+  suffix: S.W.A.R.M
+  parent: MarkerBase
+  components:
+  - type: GhostRole
+    name: F.A.B.R.I.C.A.T.O.R.
+    description: Разбирай - Самопроизводись - Повторяй.
+    rules: Ваша задача - разобрать и переработать все структуры на вашем пути. Не атакуйте экипаж без причины. Вы лидер Роя.
+    raffle:
+      settings: default
+  - type: GhostRoleMobSpawner
+    prototype: SwarmerUnitFabricator
+  - type: Sprite
+    sprite: Markers/jobs.rsi
+    layers:
+      - state: green
+      - sprite: _SpaceCats/Swarmers/MOB-MODULS/Robots/Swarmer_fabricator.rsi
+        state: Swarmer

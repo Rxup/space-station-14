@@ -1,0 +1,94 @@
+- type: entity
+  parent: BaseStorageItem
+  id: CardBox
+  name: коробка игральных карт
+  components:
+  - type: StorageFill
+    contents:
+      - id: CqGCard
+      - id: CaGCard
+      - id: CjGCard
+      - id: CkGCard
+      - id: C2GCard
+      - id: C3GCard
+      - id: C4GCard
+      - id: C5GCard
+      - id: C6GCard
+      - id: C7GCard
+      - id: C8GCard
+      - id: C9GCard
+      - id: C10GCard
+      - id: CardHolder
+      - id: PqGCard
+      - id: PaGCard
+      - id: PjGCard
+      - id: PkGCard
+      - id: P2GCard
+      - id: P3GCard
+      - id: P4GCard
+      - id: P5GCard
+      - id: P6GCard
+      - id: P7GCard
+      - id: P8GCard
+      - id: P9GCard
+      - id: P10GCard
+      - id: CardHolder
+      - id: BqGCard
+      - id: BaGCard
+      - id: BjGCard
+      - id: BkGCard
+      - id: B2GCard
+      - id: B3GCard
+      - id: B4GCard
+      - id: B5GCard
+      - id: B6GCard
+      - id: B7GCard
+      - id: B8GCard
+      - id: B9GCard
+      - id: B10GCard
+      - id: CardHolder
+      - id: KqGCard
+      - id: KaGCard
+      - id: KjGCard
+      - id: KkGCard
+      - id: K2GCard
+      - id: K3GCard
+      - id: K4GCard
+      - id: K5GCard
+      - id: K6GCard
+      - id: K7GCard
+      - id: K8GCard
+      - id: K9GCard
+      - id: K10GCard
+      - id: CardHolder
+  - type: Sprite
+    sprite: Objects/Fun/cards.rsi
+    state: card_box
+  - type: Item
+    size: Small
+  - type: Storage
+    grid:
+    - 0,0,13,3
+    whitelist:
+      tags:
+      - Card
+
+- type: entity
+  parent: BaseStorageItem
+  id: CardHolder
+  name: держатель для карт
+  components:
+  - type: Sprite
+    sprite: Objects/Fun/cards.rsi
+    state: card_holder
+  - type: Item
+    size: Tiny
+  - type: Tag
+    tags:
+    - Card
+  - type: Storage
+    grid:
+    - 0,0,12,0
+    whitelist:
+      tags:
+      - Card

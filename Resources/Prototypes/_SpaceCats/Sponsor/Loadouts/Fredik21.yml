@@ -1,0 +1,17 @@
+#комбинезон
+- type: loadout
+  id: ClothingUniformJumpskirtEsmira
+  equipment:
+    jumpsuit: ClothingUniformJumpskirtEsmira
+
+# шляпа
+- type: loadout
+  id: ClothingHeadHatHairflowerEsmira
+  equipment:
+    head: ClothingHeadHatHairflowerEsmira
+
+# плащ
+- type: loadout
+  id: ClothingNeckEsmira
+  equipment:
+    neck: ClothingNeckEsmira

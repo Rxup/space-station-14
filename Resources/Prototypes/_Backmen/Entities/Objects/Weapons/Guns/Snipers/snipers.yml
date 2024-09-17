@@ -3,7 +3,7 @@
   parent: BaseWeaponRifle
   id: WeaponRifleDragunov
   suffix: Винтовка
-  description: A semiautomatic sniper rifle, famed for it's marksmanship, and is built from the ground up for it.
+  description: Полуавтоматическая снайперская винтовка, известная своей меткостью и созданная специально для нее.
   components:
   - type: Sprite
     sprite: Backmen/Objects/Weapons/Gunsx64/Snipers/dragunov/big.rsi
@@ -75,7 +75,7 @@
   parent: BaseWeaponRifle
   id: WeaponRifleSR127
   suffix: Винтовка
-  description: The Bauer SR-127 is the standard issue bolt action rifle used by the United Earth Gov. Known for its long range accuracy and use by marksmen despite its age and lack of IFF. It has an irremoveable scope. Uses .60 anti-material magazines."
+  description: Bauer SR-127 - это стандартная винтовка с затвором, используемая правительством Соединенных Штатов Америки. Она известна своей точностью стрельбы на дальних дистанциях и используется стрелками, несмотря на свой возраст и отсутствие прицельного приспособления. Она имеет несъемный оптический прицел. Использует патроны 60-го калибра для защиты от материалов.
   components:
   - type: Sprite
     sprite: Backmen/Objects/Weapons/Gunsx64/Snipers/snl177/big.rsi
@@ -140,7 +140,7 @@
   parent: BaseWeaponSniper
   id: WeaponSniperMosinNew
   suffix: Винтовка
-  description: A weapon for hunting, or endless trench warfare. Uses .30 rifle ammo.
+  description: Оружие для охоты или бесконечной позиционной войны. Использует винтовочные патроны 30-го калибра.
   components:
   - type: Sprite
     sprite: Backmen/Objects/Weapons/Gunsx64/Snipers/mosin/big.rsi
@@ -161,7 +161,7 @@
   parent: BaseWeaponSniper
   id: WeaponSniperGarand
   suffix: Винтовка
-  description: The Carlford-1 is a remastered classic made by Carlford Armories, made to fit in the modern day. Most of the noticeable differences are minor rail modifications, other than that. It is a faithful recreation with the trademark ping sound and all.
+  description: Carlford-1 - это обновленная классическая модель, изготовленная Carlford Armories и адаптированная к современным условиям. Большинство заметных отличий - это незначительные модификации рельсов, не считая этого. Это верное воспроизведение с фирменным звуком "пинг" и всем прочим.
   components:
   - type: Sprite
     sprite: Backmen/Objects/Weapons/Gunsx64/Snipers/garand/big.rsi
@@ -186,7 +186,7 @@
   parent: BaseWeaponSniper
   id: WeaponSniperMosinAI
   noSpawn: true
-  description: A weapon for hunting, or endless trench warfare. Uses .30 rifle ammo.
+  description: Оружие для охоты или бесконечной позиционной войны. Использует винтовочные патроны 30-го калибра.
   components:
   - type: Sprite
     sprite: Backmen/Objects/Weapons/Gunsx64/Snipers/mosin/big.rsi
@@ -207,7 +207,7 @@
   parent: BaseWeaponSniper
   id: WeaponSniperMosinAISniper
   noSpawn: true
-  description: A weapon for hunting, or endless trench warfare. Uses .30 rifle ammo.
+  description: Оружие для охоты или бесконечной позиционной войны. Использует винтовочные патроны 30-го калибра.
   components:
   - type: Sprite
     sprite: Backmen/Objects/Weapons/Gunsx64/Snipers/mosin/big.rsi
@@ -225,7 +225,7 @@
   name: PTRD-M
   parent: BaseWeaponSniper
   id: WeaponSniperPtrd-m
-  description: Dragunov portable anti-tank rifle. It fires analog armor-piercing projectiles of 14.5 mm caliber. Uses anti-tank ammunition
+  description: Переносное противотанковое ружье Драгунова. Стреляет аналоговыми бронебойными снарядами калибра 14,5 мм. Использует противотанковые боеприпасы
   components:
   - type: Wieldable
   - type: GunRequiresWield

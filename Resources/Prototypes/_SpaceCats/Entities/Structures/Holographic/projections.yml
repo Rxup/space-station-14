@@ -1,0 +1,48 @@
+- type: entity
+  id: SwarmHoloBarrier
+  parent: HolosignWetFloor
+  name: S.W.A.R.M голобарьер
+  description: энергетический барьер, замедляющий всё кроме свармеров.
+  components:
+  - type: Clickable
+  - type: ContainmentField
+    throwForce: 0
+  - type: SpeedModifierContacts
+    walkSpeedModifier: 0.10
+    sprintSpeedModifier: 0.10
+    ignoreWhitelist:
+     tags:
+     - Swarmer
+  - type: PointLight
+    radius: 2
+    energy: 2
+    color: "#aea5f6"
+  - type: Physics
+    bodyType: Static
+    canCollide: true
+  - type: Sprite
+    sprite: _SpaceCats/Swarmers/STRUCTURES/Swarmer_barrier.rsi
+    drawdepth: Overdoors
+    state: barrier
+  - type: Fixtures
+    fixtures:
+      fix1:
+        hard: false
+        density: 7
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.5,-0.5,0.5,0.5"
+        layer:
+        - MidImpassable
+  - type: TimedDespawn
+    lifetime: 180
+  - type: Airtight
+    noAirWhenFullyAirBlocked: false
+  - type: Destructible
+    thresholds:
+      - trigger:
+          !type:DamageTrigger
+          damage: 60
+        behaviors:
+          - !type:DoActsBehavior
+            acts: [ "Destruction" ]

@@ -94,6 +94,10 @@
   - type: BodyEmotes
     soundsId: DionaBodyEmotes
   - type: Pacified # Corvax-DionaPacifist
+  - type: NpcFactionMember
+    factions:
+      - NanoTrasen
+      - Diona
   - type: IgnoreKudzu
   - type: IgniteOnHeatDamage
     fireStacks: 1
