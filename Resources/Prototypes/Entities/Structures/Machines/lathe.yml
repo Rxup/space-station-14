@@ -352,6 +352,7 @@
       - HandTeleporter1
       - BluespacePillCanister # Backmen
       - MechEquipmentDrill # Ataraxia
+      - WeaponGrapplingGun # Ataraxia
       - FauxTileAstroGrass
       - FauxTileMowedAstroGrass
       - FauxTileJungleAstroGrass
