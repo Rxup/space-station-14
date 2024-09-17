@@ -296,11 +296,3 @@
     # stealGroup: NukeDisk
     # owner: objective-condition-steal-station
 # Corvax-MRP-End
-
-- type: entity
-  parent: BaseCaptainObjective
-  id: HoSGunStealObjective
-  components:
-  - type: StealCondition
-    stealGroup: WeaponMultiphaseEnergyGun
-    owner: job-name-hos
