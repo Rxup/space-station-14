@@ -1,6 +1,6 @@
 - type: technology
   id: MetempsychosisMachines
-  name: backmen-research-technology-metempsychosis
+  name: backmen-research-technology-metempsychosis-machines
   icon:
     sprite: Backmen/Structures/Machines/metempsychotic.rsi
     state: pod_0
