@@ -100,6 +100,8 @@ public sealed class BlobRuleSystem : GameRuleSystem<BlobRuleComponent>
         BlobRuleComponent blobRuleComp,
         HashSet<Entity<BlobCoreComponent>> blobCores)
     {
+        Resolve(stationUid, ref stationUid.Comp, false);
+
         var stationName = Name(stationUid);
         var blobTilesCount = blobCores.Sum(blobCore => blobCore.Comp.BlobTiles.Count);
 

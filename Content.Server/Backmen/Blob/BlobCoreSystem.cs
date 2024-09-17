@@ -123,7 +123,6 @@ public sealed class BlobCoreSystem : EntitySystem
         }
 
         ConnectBlobTile((uid, blobTileComponent), (uid, component), nodeComponent);
-        nodeComponent.ConnectedTiles[BlobTileType.Node] = uid;
 
         var store = EnsureComp<StoreComponent>(uid);
         store.CurrencyWhitelist.Add(BlobMoney);

@@ -428,16 +428,13 @@ public sealed class BlobObserverSystem : SharedBlobObserverSystem
         }
 
         // And then swap their BlobNodeComponents, so they will work properly.
-        var nodeNodeComp = Comp<BlobNodeComponent>(blobTile.Value);
-        var coreNodeComp = Comp<BlobNodeComponent>(uid);
+        var nodeNodeComp = EnsureComp<BlobNodeComponent>(blobTile.Value);
+        var coreNodeComp = EnsureComp<BlobNodeComponent>(uid);
         var nodeTiles = nodeNodeComp.ConnectedTiles;
         var coreTiles = coreNodeComp.ConnectedTiles;
         // Swap them here
         nodeNodeComp.ConnectedTiles = coreTiles;
         coreNodeComp.ConnectedTiles = nodeTiles;
-        // Reassign Node fields to make it work better.
-        nodeNodeComp.ConnectedTiles[BlobTileType.Node] = blobTile;
-        coreNodeComp.ConnectedTiles[BlobTileType.Node] = uid;
 
         args.Handled = true;
     }
@@ -545,6 +542,7 @@ public sealed class BlobObserverSystem : SharedBlobObserverSystem
         if (checkTile == BlobTileType.Invalid)
             return true;
 
+        // Handle node spawn
         if (newTile == BlobTileType.Node)
         {
             if (_blobCoreSystem.GetNearNode(coords, core.Comp.NodeRadiusLimit) == null)

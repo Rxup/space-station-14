@@ -30,7 +30,6 @@ public sealed class BlobNodeSystem : EntitySystem
 
         SubscribeLocalEvent<BlobNodeComponent, DestructionEventArgs>(OnDestruction);
         SubscribeLocalEvent<BlobNodeComponent, EntityTerminatingEvent>(OnTerminating);
-        SubscribeLocalEvent<BlobNodeComponent, ComponentStartup>(OnStartup);
 
         _tileQuery = GetEntityQuery<BlobTileComponent>();
     }
@@ -73,11 +72,6 @@ public sealed class BlobNodeSystem : EntitySystem
         }
     }
 
-    private void OnStartup(EntityUid uid, BlobNodeComponent component, ComponentStartup args)
-    {
-        component.ConnectedTiles[BlobTileType.Node] = uid;
-    }
-
     private void Pulse(Entity<BlobNodeComponent> ent)
     {
         if (TerminatingOrDeleted(ent) || !EntityManager.TransformQuery.TryComp(ent, out var xform))
@@ -108,7 +102,7 @@ public sealed class BlobNodeSystem : EntitySystem
         {
             foreach (var tile in _map.GetAnchoredEntities(xform.GridUid.Value, grid, tileRef.GridIndices))
             {
-                if (!_tileQuery.TryGetComponent(tile, out var tileComp))
+                if (!_tileQuery.HasComponent(tile))
                     continue;
 
                 var ev = new BlobTileGetPulseEvent
@@ -128,6 +122,10 @@ public sealed class BlobNodeSystem : EntitySystem
             var ev = new BlobSpecialGetPulseEvent();
             RaiseLocalEvent(special.Value.Value, ev);
         }
+
+        // Also raise special pulse on itself.
+        // This will help Blob Core work properly
+        RaiseLocalEvent(ent, new BlobSpecialGetPulseEvent());
 
         foreach (var lookupUid in _lookup.GetEntitiesInRange<BlobMobComponent>(xform.Coordinates, radius))
         {
