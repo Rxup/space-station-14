@@ -186,7 +186,7 @@ binds:
   mod1: Alt
 - function: OpenCharacterMenu
   type: State
-  key: U
+  key: C
 - function: OpenEmotesMenu
   type: State
   key: Y
@@ -587,6 +587,3 @@ binds:
 - function: LookUp
   type: State
   key: Space
-- function: ToggleCrawling
-  type: State
-  key: C

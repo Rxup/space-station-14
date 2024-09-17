@@ -23,7 +23,6 @@ ui-options-general-cursor = Cursor
 ui-options-general-speech = Speech
 ui-options-general-storage = Storage
 ui-options-general-accessibility = Accessibility
-ui-options-function-toggle-crawling = Toggle crawling
 
 ## Audio menu
 
