@@ -27,8 +27,7 @@
         volume: -2
   - type: UseDelay
     delay: 0.7
-  - type: FollowDistance
-    backStrength: 4
+  - type: Telescope # Ataraxia
 
 - type: entity
   name: M-28 Tactical
@@ -64,8 +63,7 @@
     mask: /Textures/Effects/LightMasks/cone.png
     autoRot: true
     radius: 8
-  - type: FollowDistance
-    backStrength: 3
+  - type: Telescope # Ataraxia
 
 - type: entity
   name: G-36 Tactical
@@ -133,8 +131,7 @@
     angleIncrease: -7
   - type: UseDelay
     delay: 0.2
-  - type: FollowDistance
-    backStrength: 4
+  - type: Telescope # Ataraxia
 
 - type: entity
   name: MP5 Tactical
@@ -170,8 +167,7 @@
     radius: 8
   - type: UseDelay
     delay: 0.2
-  - type: FollowDistance
-    backStrength: 4
+  - type: Telescope # Ataraxia
 
 - type: entity
   name: XM1014 Tactical
@@ -200,8 +196,7 @@
     mask: /Textures/Effects/LightMasks/cone.png
     autoRot: true
     radius: 8
-  - type: FollowDistance
-    backStrength: 4
+  - type: Telescope # Ataraxia
 
 - type: entity
   name: AK74-U Tactical
@@ -234,8 +229,7 @@
         volume: -3
   - type: UseDelay
     delay: 0.1
-  - type: FollowDistance
-    backStrength: 4
+  - type: Telescope # Ataraxia
 
 - type: entity
   name: P-90 Tactical
@@ -267,8 +261,7 @@
         volume: -3
   - type: UseDelay
     delay: 0.1
-  - type: FollowDistance
-    backStrength: 4
+  - type: Telescope # Ataraxia
 
 - type: entity
   name: RPD Tactical

@@ -584,9 +584,9 @@ binds:
   type: State
   key: MouseRight
   canFocus: true
+- function: LookUp
+  type: State
+  key: Space
 - function: ToggleCrawling
   type: State
   key: C
-- function: CMUniqueAction
-  type: State
-  key: Space
