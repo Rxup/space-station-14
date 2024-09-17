@@ -71,13 +71,6 @@
     state: base
 
 - type: stealTargetGroup
-  id: WeaponMultiphaseEnergyGun
-  name: X-01 multiphase energy gun
-  sprite:
-    sprite: Backmen/Objects/Weapons/Guns/Energy/x01.rsi
-    state: base
-
-- type: stealTargetGroup
   id: NukeDisk
   name: steal-target-groups-nuke-disk
   sprite:
