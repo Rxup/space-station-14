@@ -170,4 +170,12 @@ public sealed class CCVars
 
     public static readonly CVarDef<int> GhostRespawnMaxPlayers =
         CVarDef.Create("ghost.respawn_max_players", 40, CVar.SERVERONLY);
+
+
+    /*
+     * Bind Standing - Ataraxia
+     */
+
+    public static readonly CVarDef<bool> AutoGetUp =
+        CVarDef.Create("laying.auto_get_up", true, CVar.CLIENT | CVar.ARCHIVE | CVar.REPLICATED);
 }
