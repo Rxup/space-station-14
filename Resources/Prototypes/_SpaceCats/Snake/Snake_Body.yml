@@ -15,7 +15,7 @@
         probability: 0.1
         conditions:
         - !type:ReagentThreshold
-          mix: 5
+          max: 5
         - !type:OrganType
           type: Zerah
           shouldHave: false
@@ -25,7 +25,7 @@
         probability: 0.1
         conditions:
         - !type:ReagentThreshold
-          mix: 5
+          max: 5
         - !type:OrganType
           type: Zerah
           shouldHave: false
@@ -53,7 +53,7 @@
         probability: 0.2
         conditions:
         - !type:ReagentThreshold
-          mix: 5
+          max: 5
         - !type:OrganType
           type: Zerah
           shouldHave: false
