@@ -109,7 +109,7 @@ public sealed class EconomySystem : EntitySystem
                 Dirty(card);
                 Dirty(bankAccount.Value);
                 var msg = $"Новый счет в банке №{bankAccount.Value.Comp.AccountNumber}, пин-код {bankAccount.Value.Comp.AccountPin}";
-                _chatManager.ChatMessageToOne(ChatChannel.Admin, msg, msg, EntityUid.FirstUid, false, actor.PlayerSession.ConnectedClient);
+                _chatManager.ChatMessageToOne(ChatChannel.Admin, msg, msg, EntityUid.FirstUid, false, actor.PlayerSession.Channel);
             };
             verb.Impact = LogImpact.Low;
             args.Verbs.Add(verb);
@@ -127,7 +127,7 @@ public sealed class EconomySystem : EntitySystem
             verb.Act = () =>
             {
                 var msg = $"Cчет в банке: №{account.Value.Comp.AccountNumber}, пин-код {account.Value.Comp.AccountPin}, баланс {account.Value.Comp.Balance}";
-                _chatManager.ChatMessageToOne(ChatChannel.Admin, msg, msg, EntityUid.FirstUid, false, actor.PlayerSession.ConnectedClient);
+                _chatManager.ChatMessageToOne(ChatChannel.Admin, msg, msg, EntityUid.FirstUid, false, actor.PlayerSession.Channel);
             };
             verb.Impact = LogImpact.Low;
             args.Verbs.Add(verb);

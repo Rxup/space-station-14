@@ -56,9 +56,11 @@ namespace Content.Shared.Input
         public static readonly BoundKeyFunction TakeScreenshotNoUI = "TakeScreenshotNoUI";
         public static readonly BoundKeyFunction ToggleFullscreen = "ToggleFullscreen";
         public static readonly BoundKeyFunction Point = "Point";
+        public static readonly BoundKeyFunction ToggleStanding = "ToggleStanding"; //Ataraxia
         public static readonly BoundKeyFunction ZoomOut = "ZoomOut";
         public static readonly BoundKeyFunction ZoomIn = "ZoomIn";
         public static readonly BoundKeyFunction ResetZoom = "ResetZoom";
+        public static readonly BoundKeyFunction LookUp = "LookUp"; // WD EDIT
 
         public static readonly BoundKeyFunction ArcadeUp = "ArcadeUp";
         public static readonly BoundKeyFunction ArcadeDown = "ArcadeDown";

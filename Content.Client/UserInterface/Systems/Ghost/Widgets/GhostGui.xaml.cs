@@ -15,6 +15,9 @@ public sealed partial class GhostGui : UIWidget
     public event Action? ReturnToBodyPressed;
     public event Action? GhostRolesPressed;
 
+    public event Action? ReturnToRoundPressed;
+
+
     public GhostGui()
     {
         RobustXamlLoader.Load(this);
@@ -26,6 +29,7 @@ public sealed partial class GhostGui : UIWidget
         GhostWarpButton.OnPressed += _ => RequestWarpsPressed?.Invoke();
         ReturnToBodyButton.OnPressed += _ => ReturnToBodyPressed?.Invoke();
         GhostRolesButton.OnPressed += _ => GhostRolesPressed?.Invoke();
+        ReturnToRound.OnPressed += _ => ReturnToRoundPressed?.Invoke();
     }
 
     public void Hide()

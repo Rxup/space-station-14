@@ -63,13 +63,13 @@ public sealed class NyanoChatSystem : EntitySystem
         return Filter.Empty()
             .AddWhereAttachedEntity(IsEligibleForTelepathy)
             .Recipients
-            .Select(p => p.ConnectedClient);
+            .Select(p => p.Channel);
     }
 
     private IEnumerable<INetChannel> GetAdminClients()
     {
         return _adminManager.ActiveAdmins
-            .Select(p => p.ConnectedClient);
+            .Select(p => p.Channel);
     }
 
     private List<INetChannel> GetDreamers(IEnumerable<INetChannel> removeList)
@@ -77,7 +77,7 @@ public sealed class NyanoChatSystem : EntitySystem
         var filtered = Filter.Empty()
             .AddWhereAttachedEntity(entity => HasComp<SleepingComponent>(entity) || HasComp<SeeingRainbowsComponent>(entity) && !HasComp<PsionicsDisabledComponent>(entity) && !HasComp<PsionicInsulationComponent>(entity))
             .Recipients
-            .Select(p => p.ConnectedClient);
+            .Select(p => p.Channel);
 
         var filteredList = filtered.ToList();
 

@@ -38,10 +38,29 @@
   accountNumber: 1316 #backmen: currency
 
 - type: department
+  id: CentralCommand
+  name: department-CentralCommand
+  description: department-CentralCommand-description
+  color: "#0c344d"
+  roles:
+  #- CentralCommandOfficial
+  - CBURN
+  - ERTLeader
+  - ERTChaplain
+  - ERTJanitor
+  - ERTMedical
+  - ERTSecurity
+  - ERTEngineer
+  - DeathSquad
+  editorHidden: true
+  weight: 120
+
+- type: department
   id: Command
   name: department-Command
   description: department-Command-description
   color: "#334E6D"
+  accountNumber: 1317 #backmen: currency
   roles:
   - Captain
   - IAA # Corvax-IAA
@@ -51,7 +70,15 @@
   - HeadOfSecurity
   - ResearchDirector
   - Quartermaster
-  accountNumber: 1317 #backmen: currency
+  #- CentralCommandOfficial
+  - CBURN
+  - ERTLeader
+  - ERTChaplain
+  - ERTJanitor
+  - ERTMedical
+  - ERTSecurity
+  - ERTEngineer
+  - DeathSquad
   primary: false
   weight: 100
 

@@ -32,4 +32,5 @@
       - BackmenVendingMachineStarkist
       - BackmenVendingMachineSpaceUp
       - BackmenVendingLootBox
+      - PrizeCounter # Ataraxia
     chance: 1

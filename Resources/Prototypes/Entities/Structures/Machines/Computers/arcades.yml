@@ -71,65 +71,16 @@
   - type: SpaceVillainArcade
     rewardMinAmount: 0
     rewardMaxAmount: 0
-    possibleRewards:
-    - ToyMouse
-    - ToyAi
-    - ToyNuke
-    - ToyGriffin
-    - ToyHonk
-    - ToyIan
-    - ToyMarauder
-    - ToyMauler
-    - ToyGygax
-    - ToyOdysseus
-    - ToyOwlman
-    - ToyDeathRipley
-    - ToyPhazon
-    - ToyFireRipley
-    - ToyReticence
-    - ToyRipley
-    - ToySeraph
-    - ToyDurand
-    - ToySkeleton
-    - FoamCrossbow
-    - RevolverCapGun
-    - PlushieHampter
-    - PlushieLizard
-    - PlushieAtmosian
-    - PlushieSpaceLizard
-    - PlushieNuke
-    - PlushieCarp
-    - PlushieMagicarp
-    - PlushieHolocarp
-    - PlushieRainbowCarp
-    - PlushieRatvar
-    - PlushieNar
-    - PlushieSnake
-    - PlushieArachind
-    - Basketball
-    - Football
-    - PlushieRouny
-    - PlushieBee
-    - PlushieSlime
-    - BalloonNT
-    - BalloonCorgi
-    - ToySword
-    - CrayonBox
-    - BoxDonkSoftBox
-    - BoxCartridgeCap
-    - HarmonicaInstrument
-    - OcarinaInstrument
-    - RecorderInstrument
-    - GunpetInstrument
-    - BirdToyInstrument
-    - PlushieXeno
-    - BeachBall
-    - PlushieMoth
-    - PlushieHampter
-    - PlushiePenguin
-    - PlushieHuman
-    - ClothingHeadHatCowboyRed
-    - Whistle
+    possibleRewards: # EE toys EDIT
+    - PrizeBall
+    - PrizeTicket10
+    - PrizeTicket10
+    - PrizeTicket10
+    - PrizeTicket10
+    - PrizeTicket10
+    - PrizeTicket30
+    - PrizeTicket30
+    - PrizeTicket60
   - type: WiresPanel
   - type: Wires
     layoutId: Arcade
@@ -137,6 +88,7 @@
   - type: ActivatableUI
     key: enum.SpaceVillainArcadeUiKey.Key
   - type: ActivatableUIRequiresPower
+  - type: StationAiWhitelist
   - type: UserInterface
     interfaces:
       enum.SpaceVillainArcadeUiKey.Key:
@@ -181,6 +133,7 @@
   - type: ActivatableUI
     key: enum.BlockGameUiKey.Key
   - type: ActivatableUIRequiresPower
+  - type: StationAiWhitelist
   - type: UserInterface
     interfaces:
       enum.BlockGameUiKey.Key:
