@@ -130,9 +130,6 @@
     equipmentWhitelist:
       tags:
       - ExoMech
-    equipmentWhitelist:
-      tags:
-      - ExoMech
     pilotWhitelist:
       components:
         - HumanoidAppearance
