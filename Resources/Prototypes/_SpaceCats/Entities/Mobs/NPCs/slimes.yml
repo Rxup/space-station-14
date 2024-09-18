@@ -310,7 +310,7 @@
   components:
   - type: Butcherable
     spawned:
-    - id: lightpingextract
+    - id: lightpinkextract
       amount: 1
   - type: DamageStateVisuals
     states:
@@ -533,7 +533,7 @@
   components:
   - type: Butcherable
     spawned:
-    - id: yelloweextract
+    - id: yellowextract
       amount: 1
   - type: DamageStateVisuals
     states:
