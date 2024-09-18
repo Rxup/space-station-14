@@ -98,7 +98,9 @@ public sealed class CombatModeSystem : SharedCombatModeSystem
             _overlayManager.RemoveOverlay<CombatModeIndicatorsOverlay>();
         }
 
- // Ataraxia START
+    }
+
+    // Ataraxia START
     private void UpdateCombatModeIndicator(EntityUid uid, CombatModeComponent comp, ref GetStatusIconsEvent _)
     {
         if (!TryComp<SpriteComponent>(uid, out var sprite))
