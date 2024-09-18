@@ -47,7 +47,7 @@ ent-ClothingBackpackDuffelSyndicateMedical = { ent-ClothingBackpackDuffelSyndica
 # Corvax-HiddenDesc-End
 ent-ClothingBackpackDuffelSyndicateMedicalBundle = { ent-ClothingBackpackDuffelSyndicateMedical }
     .desc = { ent-ClothingBackpackDuffelSyndicateMedical.desc }
-ent-ClothingBackpackDuffelHolding = бездонный вещмешок
+ent-ClothingBackpackDuffelHolding = блюспейс вещмешок
     .desc = Вещмешок, открывающийся в локальный карман блюспейса.
 ent-ClothingBackpackDuffelCBURN = вещмешок отряда РХБЗЗ
     .desc = Вещмешок, содержащий различное оборудование для сдерживания биологической угрозы.
