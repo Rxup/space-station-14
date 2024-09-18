@@ -165,6 +165,7 @@ marking-AnthropomorphHeadSkullDogAlt-snout_extra_skulldogALT = Основной 
 
 # РОГА
 
+marking-AnthropomorphHeadSideDragonLong = Рога дракона, рожки (Длинный)
 marking-AnthropomorphHeadSideGuilmon = Рога гилмона, рожки
 marking-AnthropomorphHeadSideGoatHorns = Козьи рога, рожки
 marking-AnthropomorphHeadSideHornRound = Закруглённые, рожки
@@ -175,6 +176,7 @@ marking-AnthropomorphHeadSideAvali = Авали, уши
 marking-AnthropomorphHeadSideAxolotl = Аксолотль, уши
 marking-AnthropomorphHeadSideBat = Летучая мышь, уши
 marking-AnthropomorphHeadSideBear = Медведь, уши
+marking-AnthropomorphHeadSideVulp = Вульпа, уши
 marking-AnthropomorphHeadSideBigWolf = Волк, уши (Большой)
 marking-AnthropomorphHeadSideEBunny = Кролик, уши (Маленький, Вывернутый)
 marking-AnthropomorphHeadSideBunny = Кролик, уши (Большой)
@@ -276,6 +278,8 @@ marking-AnthropomorphTailSwallow = Заострённые перья, хвост
 marking-AnthropomorphTailMaw = Челюсть, хвост
 marking-AnthropomorphTailTentacle = Тентакли, хвост
 marking-AnthropomorphTailWolf = Волк, хвост
+marking-AnthropomorphTailWolfAlt = Волк, хвост (Альтернативный)
+marking-AnthropomorphTailVulp = Вульпа, хвост
 
 # ГРУДЬ 
 
@@ -324,6 +328,7 @@ marking-AnthropomorphChestSkunk = Скунс, грудь
 marking-AnthropomorphChestSloog = Руни, грудь
 marking-AnthropomorphChestTajaran = Таяр, грудь
 marking-AnthropomorphChestTiger = Тигр, грудь
+marking-AnthropomorphChestVulp = Вульпа, грудь
 marking-AnthropomorphChestWolf = Волк, грудь
 marking-AnthropomorphChestSynthLizardLight = Синтетический ящер, грудь (Обычный)
 marking-AnthropomorphChestSynthLizardCutes = Синтетический ящер, грудь (Отрезки)
@@ -363,6 +368,7 @@ marking-AnthropomorphRArmPanther = Пантера, рука (Правый)
 
 # НОГИ
 
+#marking-PawSocks = Носки на лапах
 marking-AnthropomorphLLegChemlight = Химический, нога (Левый)
 marking-AnthropomorphRLegChemlight = Химический, нога (Правый)
 marking-AnthropomorphLLegDeoxys = Диоксис, нога (Левый)

@@ -8,6 +8,10 @@
   },
   "states": [
     {
+        "name": "pawsocks",
+        "directions": 4
+    },
+    {
       "name": "absarms_chest",
       "directions": 4
     },
@@ -281,6 +285,10 @@
     },
     {
       "name": "tiger_chest_overlay",
+      "directions": 4
+    },
+    {
+      "name": "vulp_chest",
       "directions": 4
     },
     {

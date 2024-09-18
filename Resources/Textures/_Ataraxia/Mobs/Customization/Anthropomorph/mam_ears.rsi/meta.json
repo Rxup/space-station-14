@@ -28,6 +28,14 @@
       "directions": 4
     },
     {
+      "name": "ears_vulp",
+      "directions": 4
+    },
+    {
+      "name": "ears_vulp_overlay",
+      "directions": 4
+    },
+    {
       "name": "ears_bigwolf",
       "directions": 4
     },
@@ -125,6 +133,10 @@
     },
     {
       "name": "ears_fox",
+      "directions": 4
+    },
+    {
+      "name": "ears_fox_overlay",
       "directions": 4
     },
     {
@@ -245,6 +257,10 @@
     },
     {
       "name": "ears_wolf",
+      "directions": 4
+    },
+    {
+      "name": "horns_dragonlong",
       "directions": 4
     },
     {
