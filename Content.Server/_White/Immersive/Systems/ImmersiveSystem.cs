@@ -24,6 +24,21 @@ public sealed class ImmersiveSystem : GameRuleSystem<ImmersiveComponent>
         SubscribeLocalEvent<PlayerSpawnCompleteEvent>(OnPlayerSpawn);
     }
 
+    protected override void Added(EntityUid uid, ImmersiveComponent component, GameRuleComponent gameRule, GameRuleAddedEvent args)
+    {
+        base.Added(uid, component, gameRule, args);
+
+        var q = QueryActiveRules();
+        while (q.MoveNext(out var owner, out var activeGameRuleComponent, out var comp, out var gameRuleComponent))
+        {
+            if (owner != uid)
+            {
+                GameTicker.EndGameRule(uid); // должен быть уникальным!
+                return;
+            }
+        }
+    }
+
     protected override void Started(EntityUid uid, ImmersiveComponent component, GameRuleComponent gameRule, GameRuleStartedEvent args)
     {
         base.Started(uid, component, gameRule, args);
@@ -33,31 +48,28 @@ public sealed class ImmersiveSystem : GameRuleSystem<ImmersiveComponent>
 
     private void OnStarted(ImmersiveComponent component)
     {
-        var humans = EntityQuery<HumanoidAppearanceComponent>();
+        var humans = EntityQueryEnumerator<HumanoidAppearanceComponent, ContentEyeComponent>();
 
-        foreach (var human in humans)
+        while (humans.MoveNext(out var entity, out _, out var eye))
         {
-            var entity = human.Owner;
-
-            if (!HasComp<ContentEyeComponent>(entity))
-                continue;
-
-            SetEyeZoom(entity, component.EyeModifier);
+            SetEyeZoom((entity, eye), component.EyeModifier);
             AddTelescope(entity, component.TelescopeDivisor, component.TelescopeLerpAmount);
         }
     }
 
-    private void SetEyeZoom(EntityUid human, float modifier)
+    private void SetEyeZoom(Entity<ContentEyeComponent?> human, float modifier)
     {
-        _eye.SetMaxZoom(human, new Vector2(modifier));
-        _eye.SetZoom(human, new Vector2(modifier));
+        if(!Resolve(human, ref human.Comp))
+            return;
+
+        var vec = new Vector2(modifier);
+        _eye.SetMaxZoom(human, vec, human.Comp);
+        _eye.SetZoom(human, vec, eye: human.Comp);
     }
 
     private void AddTelescope(EntityUid human, float divisor, float lerpAmount)
     {
-        var telescope = EnsureComp<TelescopeComponent>(human);
-
-        _telescope.SetParameters((human, telescope), divisor, lerpAmount);
+        _telescope.SetParameters((human, EnsureComp<TelescopeComponent>(human)), divisor, lerpAmount);
     }
 
     private void OnPlayerSpawn(PlayerSpawnCompleteEvent ev)
@@ -65,15 +77,11 @@ public sealed class ImmersiveSystem : GameRuleSystem<ImmersiveComponent>
         if (!HasComp<ContentEyeComponent>(ev.Mob))
             return;
 
-        var query = EntityQueryEnumerator<ImmersiveComponent, GameRuleComponent>();
-        while (query.MoveNext(out var ruleEntity, out var Immersive, out var gameRule))
-        {
-            if (!GameTicker.IsGameRuleAdded(ruleEntity, gameRule))
-                continue;
+        if(!QueryActiveRules().MoveNext(out _, out var immersive, out _))
+            return;
 
-            SetEyeZoom(ev.Mob, Immersive.EyeModifier);
-            AddTelescope(ev.Mob, Immersive.TelescopeDivisor, Immersive.TelescopeLerpAmount);
-        }
+        SetEyeZoom(ev.Mob, immersive.EyeModifier);
+        AddTelescope(ev.Mob, immersive.TelescopeDivisor, immersive.TelescopeLerpAmount);
     }
 
 
@@ -81,18 +89,11 @@ public sealed class ImmersiveSystem : GameRuleSystem<ImmersiveComponent>
     {
         base.Ended(uid, component, gameRule, args);
 
-        var humans = EntityQuery<HumanoidAppearanceComponent>();
-
-        foreach (var human in humans)
+        var humans = EntityQueryEnumerator<HumanoidAppearanceComponent, ContentEyeComponent>();
+        while (humans.MoveNext(out var entity, out _, out var eye))
         {
-            var entity = human.Owner;
-
-            if (!HasComp<ContentEyeComponent>(entity))
-                continue;
-
-            SetEyeZoom(entity, 1f);
-
-            RemComp<TelescopeComponent>(entity);
+            SetEyeZoom((entity,eye), 1f);
+            RemCompDeferred<TelescopeComponent>(entity);
         }
     }
 }
