@@ -23,7 +23,7 @@ public sealed partial class BloodsuckerRuleComponent : Component
         "ArachneClassic",
         "Vulpkanin",
         "Arachnid",
-        "Moth",
+        "Moth"
     };
 
     [DataField]
