@@ -132,91 +132,135 @@
 
 # Tier 2
 
-#- type: technology
-#  id: ConcentratedLaserWeaponry
-#  name: research-technology-concentrated-laser-weaponry
-#  icon:
-#    sprite: Objects/Weapons/Guns/Battery/laser_cannon.rsi
-#    state: icon
-#  discipline: Arsenal
-#  tier: 2
-#  cost: 10000
-#  recipeUnlocks:
-#  - WeaponLaserCannon
+- type: technology
+  id: ConcentratedLaserWeaponry
+  name: research-technology-concentrated-laser-weaponry
+  icon:
+    sprite: Objects/Weapons/Guns/Battery/laser_cannon.rsi
+    state: icon
+  discipline: Arsenal
+  tier: 2
+  cost: 10000
+  recipeUnlocks:
+  - WeaponLaserCannon
 
-#- type: technology
-#  id: WaveParticleHarnessing
-#  name: research-technology-wave-particle-harnessing
-#  icon:
-#    sprite: Objects/Weapons/Guns/Battery/xray.rsi
-#    state: icon
-#  discipline: Arsenal
-#  tier: 2
-#  cost: 10000
-#  recipeUnlocks:
-#  - WeaponXrayCannon
+- type: technology
+  id: WaveParticleHarnessing
+  name: research-technology-wave-particle-harnessing
+  icon:
+    sprite: Objects/Weapons/Guns/Battery/xray.rsi
+    state: icon
+  discipline: Arsenal
+  tier: 2
+  cost: 10000
+  recipeUnlocks:
+  - WeaponXrayCannon
 
-#- type: technology
-#  id: BasicShuttleArmament
-#  name: research-technology-basic-shuttle-armament
-#  icon:
-#    sprite: Structures/Power/cage_recharger.rsi
-#    state: full
-#  discipline: Arsenal
-#  tier: 2
-#  cost: 10500
-#  recipeUnlocks:
-#  - PowerCageRechargerCircuitboard
-#  - PowerCageSmall
-#  - PowerCageMedium
-#  - MagazineGrenadeEmpty
-#  - GrenadeFlash
-#  - GrenadeBlast
-#  - ShuttleGunSvalinnMachineGunCircuitboard
-#  - ShuttleGunPerforatorCircuitboard
-#  - ShuttleGunFriendshipCircuitboard
-#  technologyPrerequisites:
-#  - SalvageWeapons
+- type: technology
+  id: BasicShuttleArmament
+  name: research-technology-basic-shuttle-armament
+  icon:
+    sprite: Structures/Power/cage_recharger.rsi
+    state: full
+  discipline: Arsenal
+  tier: 2
+  cost: 10500
+  recipeUnlocks:
+  - PowerCageRechargerCircuitboard
+  - PowerCageSmall
+  - PowerCageMedium
+  - MagazineGrenadeEmpty
+  - GrenadeFlash
+  - GrenadeBlast
+  - ShuttleGunSvalinnMachineGunCircuitboard
+  - ShuttleGunPerforatorCircuitboard
+  - ShuttleGunFriendshipCircuitboard
+  technologyPrerequisites:
+  - SalvageWeapons
 
 # Tier 3
 
-#- type: technology
-#  id: PortableMicrofusionWeaponry
-#  name: research-technology-portable-microfusion-weaponry
-#  icon:
-#    sprite: Objects/Weapons/Guns/Battery/advancedlasergun.rsi
-#    state: icon
-#  discipline: Arsenal
-#  tier: 3
-#  cost: 15000
-#  recipeUnlocks:
-#  - WeaponAdvancedLaser
-#  - PortableRecharger
+- type: technology
+  id: PortableMicrofusionWeaponry
+  name: research-technology-portable-microfusion-weaponry
+  icon:
+    sprite: Objects/Weapons/Guns/Battery/advancedlasergun.rsi
+    state: icon
+  discipline: Arsenal
+  tier: 3
+  cost: 15000
+  recipeUnlocks:
+  - WeaponAdvancedLaser
+  - PortableRecharger
 
-#- type: technology
-#  id: ExperimentalBatteryAmmo
-#  name: research-technology-experimental-battery-ammo
-#  icon:
-#    sprite: Objects/Weapons/Guns/Battery/svalinn.rsi
-#    state: icon
-#  discipline: Arsenal
-#  tier: 3
-#  cost: 15000
-#  recipeUnlocks:
-#  - WeaponLaserSvalinn
+- type: technology
+  id: ExperimentalBatteryAmmo
+  name: research-technology-experimental-battery-ammo
+  icon:
+    sprite: Objects/Weapons/Guns/Battery/svalinn.rsi
+    state: icon
+  discipline: Arsenal
+  tier: 3
+  cost: 15000
+  recipeUnlocks:
+  - WeaponLaserSvalinn
 
-#- type: technology
-#  id: AdvancedShuttleWeapon
-#  name: research-technology-advanced-shuttle-weapon
-#  icon:
-#    sprite: Objects/Weapons/Guns/Ammunition/Magazine/Grenade/grenade_cartridge.rsi
-#    state: icon
-#  discipline: Arsenal
-#  tier: 3
-#  cost: 15000
-#  recipeUnlocks:
-#  - GrenadeEMP
-#  - PowerCageHigh
-#  - ShuttleGunDusterCircuitboard
-#  technologyPrerequisites:
-#  - BasicShuttleArmament
+- type: technology
+  id: AdvancedShuttleWeapon
+  name: research-technology-advanced-shuttle-weapon
+  icon:
+    sprite: Objects/Weapons/Guns/Ammunition/Magazine/Grenade/grenade_cartridge.rsi
+    state: icon
+  discipline: Arsenal
+  tier: 3
+  cost: 15000
+  recipeUnlocks:
+  - GrenadeEMP
+  - PowerCageHigh
+  - ShuttleGunDusterCircuitboard
+  technologyPrerequisites:
+  - BasicShuttleArmament
+
+- type: technology
+  id: MilitaryMachinery
+  name: research-technology-military-machinery
+  icon:
+    sprite: Objects/Specific/Mech/mecha.rsi
+    state: gygax
+  discipline: Arsenal
+  tier: 2
+  cost: 10000
+  recipeUnlocks:
+  - GygaxHarness
+  - GygaxLArm
+  - GygaxRArm
+  - GygaxLLeg
+  - GygaxRLeg
+  - GygaxCentralElectronics
+  - GygaxPeripheralsElectronics
+  - MechLaserWeapon
+  - MechScattershotWeapon
+
+- type: technology
+  id: ModernCombatMechs
+  name: research-technology-modern-combat-mechs
+  icon:
+    sprite: Objects/Specific/Mech/mecha.rsi
+    state: durand
+  discipline: Arsenal
+  tier: 3
+  cost: 18000
+  recipeUnlocks:
+  - DurandHarness
+  - DurandLArm
+  - DurandRArm
+  - DurandLLeg
+  - DurandRLeg
+  - DurandCentralElectronics
+  - DurandPeripheralsElectronics
+  - MechSolarisLaserWeapon
+  - MechHadesWeapon
+  - MechMssileWeapon
+  - MechTeslaWeapon
+  technologyPrerequisites:
+  - MilitaryMachinery
