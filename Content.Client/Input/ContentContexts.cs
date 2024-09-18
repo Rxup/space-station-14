@@ -85,8 +85,9 @@ namespace Content.Client.Input
             human.AddFunction(ContentKeyFunctions.Arcade1);
             human.AddFunction(ContentKeyFunctions.Arcade2);
             human.AddFunction(ContentKeyFunctions.Arcade3);
+            human.AddFunction(ContentKeyFunctions.ToggleStanding); // Ataraxia
             human.AddFunction(ContentKeyFunctions.LookUp); // WD EDIT
-            human.AddFunction(ContentKeyFunctions.ToggleCrawling);
+            human.AddFunction(CMKeyFunctions.CMUniqueAction); // backmen
 
             // actions should be common (for ghosts, mobs, etc)
             common.AddFunction(ContentKeyFunctions.OpenActionsMenu);
@@ -126,15 +127,6 @@ namespace Content.Client.Input
             common.AddFunction(ContentKeyFunctions.OpenDecalSpawnWindow);
             common.AddFunction(ContentKeyFunctions.OpenAdminMenu);
             common.AddFunction(ContentKeyFunctions.OpenGuidebook);
-
-
-            CMFunctions(contexts);
-        }
-
-        private static void CMFunctions(IInputContextContainer contexts)
-        {
-            var human = contexts.GetContext("human");
-            human.AddFunction(CMKeyFunctions.CMUniqueAction);
         }
     }
 }

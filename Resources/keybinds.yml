@@ -587,6 +587,6 @@ binds:
 - function: LookUp
   type: State
   key: Space
-- function: ToggleCrawling
+- function: ToggleStanding # Ataraxia-edit
   type: State
   key: C
