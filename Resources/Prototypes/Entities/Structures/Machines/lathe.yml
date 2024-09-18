@@ -503,7 +503,7 @@
       - GygaxCentralElectronics # mech cats
       - GygaxPeripheralsElectronics # mech cats
       - DurandCentralElectronics # mech cats
-      - DurandPeripheralsElectroni # mech cats
+      - DurandPeripheralsElectronics # mech cats
       - HonkerCentralElectronics # mech cats
       - HonkerPeripheralsElectronics
       - HonkerTargetingElectronics
