@@ -26,9 +26,6 @@
       "name": "blue_baby_slime_dead"
     },
     {
-      "name": "blue_baby_slime_dead-nocore"
-    },
-    {
       "name": "dark_blue_adult_slime",
       "delays": [
         [
@@ -45,9 +42,6 @@
     },
     {
       "name": "dark_blue_baby_slime_dead"
-    },
-    {
-      "name": "dark_blue_baby_slime_dead-nocore"
     },
     {
       "name": "green_adult_slime",
@@ -68,9 +62,6 @@
       "name": "green_baby_slime_dead"
     },
     {
-      "name": "green_baby_slime_dead-nocore"
-    },
-    {
       "name": "grey_adult_slime",
       "delays": [
         [
@@ -87,9 +78,6 @@
     },
     {
       "name": "grey_baby_slime_dead"
-    },
-    {
-      "name": "grey_baby_slime_dead-nocore"
     },
     {
       "name": "purple_adult_slime",
@@ -110,9 +98,6 @@
       "name": "purple_baby_slime_dead"
     },
     {
-      "name": "purple_baby_slime_dead-nocore"
-    },
-    {
       "name": "orange_adult_slime",
       "delays": [
         [
@@ -129,9 +114,6 @@
     },
     {
       "name": "orange_baby_slime_dead"
-    },
-    {
-      "name": "orange_baby_slime_dead-nocore"
     },
     {
       "name": "pink_adult_slime",
@@ -152,9 +134,6 @@
       "name": "pink_baby_slime_dead"
     },
     {
-      "name": "pink_baby_slime_dead-nocore"
-    },
-    {
       "name": "dark_purple_adult_slime",
       "delays": [
         [
@@ -171,9 +150,6 @@
     },
     {
       "name": "dark_purple_baby_slime_dead"
-    },
-    {
-      "name": "dark_purple_baby_slime_dead-nocore"
     },
     {
       "name": "red_adult_slime",
@@ -194,9 +170,6 @@
       "name": "red_baby_slime_dead"
     },
     {
-      "name": "red_baby_slime_dead-nocore"
-    },
-    {
       "name": "yellow_adult_slime",
       "delays": [
         [
@@ -213,9 +186,6 @@
     },
     {
       "name": "yellow_baby_slime_dead"
-    },
-    {
-      "name": "yellow_baby_slime_dead-nocore"
     },
     {
       "name": "gold_adult_slime",
@@ -236,9 +206,6 @@
       "name": "gold_baby_slime_dead"
     },
     {
-      "name": "gold_baby_slime_dead-nocore"
-    },
-    {
       "name": "metal_adult_slime",
       "delays": [
         [
@@ -255,9 +222,6 @@
     },
     {
       "name": "metal_baby_slime_dead"
-    },
-    {
-      "name": "metal_baby_slime_dead-nocore"
     },
     {
       "name": "silver_adult_slime",
@@ -278,9 +242,6 @@
       "name": "silver_baby_slime_dead"
     },
     {
-      "name": "silver_baby_slime_dead-nocore"
-    },
-    {
       "name": "light_pink_adult_slime",
       "delays": [
         [
@@ -297,9 +258,6 @@
     },
     {
       "name": "light_pink_baby_slime_dead"
-    },
-    {
-      "name": "light_pink_baby_slime_dead-nocore"
     },
     {
       "name": "black_adult_slime",
@@ -320,9 +278,6 @@
       "name": "black_baby_slime_dead"
     },
     {
-      "name": "black_baby_slime_dead-nocore"
-    },
-    {
       "name": "rainbow_adult_slime",
       "delays": [
         [
@@ -339,9 +294,6 @@
     },
     {
       "name": "rainbow_baby_slime_dead"
-    },
-    {
-      "name": "rainbow_baby_slime_dead-nocore"
     },
     {
       "name": "adamantine_adult_slime",
@@ -362,9 +314,6 @@
       "name": "adamantine_baby_slime_dead"
     },
     {
-      "name": "adamantine_baby_slime_dead-nocore"
-    },
-    {
       "name": "oil_adult_slime",
       "delays": [
         [
@@ -381,9 +330,6 @@
     },
     {
       "name": "oil_baby_slime_dead"
-    },
-    {
-      "name": "oil_baby_slime_dead-nocore"
     },
     {
       "name": "bluespace_adult_slime",
@@ -404,9 +350,6 @@
       "name": "bluespace_baby_slime_dead"
     },
     {
-      "name": "bluespace_baby_slime_dead-nocore"
-    },
-    {
       "name": "pyrite_adult_slime",
       "delays": [
         [
@@ -423,9 +366,6 @@
     },
     {
       "name": "pyrite_baby_slime_dead"
-    },
-    {
-      "name": "pyrite_baby_slime_dead-nocore"
     },
     {
       "name": "sepia_adult_slime",
@@ -446,9 +386,6 @@
       "name": "sepia_baby_slime_dead"
     },
     {
-      "name": "sepia_baby_slime_dead-nocore"
-    },
-    {
       "name": "cerulean_adult_slime",
       "delays": [
         [
@@ -465,9 +402,6 @@
     },
     {
       "name": "cerulean_baby_slime_dead"
-    },
-    {
-      "name": "cerulean_baby_slime_dead-nocore"
     }
   ]
 }
