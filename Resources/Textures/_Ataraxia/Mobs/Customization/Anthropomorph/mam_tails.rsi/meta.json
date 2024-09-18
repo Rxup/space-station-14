@@ -290,6 +290,14 @@
     {
       "name": "tail_wolf",
       "directions": 4
+    },
+    {
+      "name": "tail_wolf_alt",
+      "directions": 4
+    },
+    {
+      "name": "tail_vulp",
+      "directions": 4
     }
   ]
 }

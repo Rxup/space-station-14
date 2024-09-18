@@ -1,4 +1,4 @@
-# МОРДА
+# SNOUT | МОРДА
 
 - type: marking
   id: AnthropomorphShoutBeaktiny
@@ -564,7 +564,7 @@
   - sprite: _Ataraxia/Mobs/Customization/Anthropomorph/mam_snouts.rsi
     state: snout_wolf
 
-# ГОЛОВА
+# HEAD | ГОЛОВА
 
 - type: marking
   id: AnthropomorphHeadBug
@@ -640,7 +640,16 @@
   - sprite: _Ataraxia/Mobs/Customization/Anthropomorph/mam_snouts.rsi
     state: snout_extra_skulldogALT
 
-# РОГА
+# HORNS | РОГА
+
+- type: marking
+  id: AnthropomorphHeadSideDragonLong
+  bodyPart: HeadTop
+  markingCategory: HeadTop
+  speciesRestriction: [Anthropomorph, Reptilian]
+  sprites:
+  - sprite: _Ataraxia/Mobs/Customization/Anthropomorph/mam_ears.rsi
+    state: horns_dragonlong
 
 - type: marking
   id: AnthropomorphHeadSideGuilmon
@@ -669,7 +678,7 @@
   - sprite: _Ataraxia/Mobs/Customization/Anthropomorph/mam_ears.rsi
     state: ears_horn1
 
-# УШИ
+# EARS | УШИ
 
 - type: marking
   id: AnthropomorphHeadSideAvali
@@ -708,6 +717,17 @@
   sprites:
   - sprite: _Ataraxia/Mobs/Customization/Anthropomorph/mam_ears.rsi
     state: ears_bear
+
+- type: marking
+  id: AnthropomorphHeadSideVulp
+  bodyPart: HeadSide
+  markingCategory: HeadSide
+  speciesRestriction: [Anthropomorph, Felinid, Human]
+  sprites:
+  - sprite: _Ataraxia/Mobs/Customization/Anthropomorph/mam_ears.rsi
+    state: ears_vulp
+  - sprite: _Ataraxia/Mobs/Customization/Anthropomorph/mam_ears.rsi
+    state: ears_vulp_overlay
 
 - type: marking
   id: AnthropomorphHeadSideBigWolf
@@ -884,6 +904,8 @@
   sprites:
   - sprite: _Ataraxia/Mobs/Customization/Anthropomorph/mam_ears.rsi
     state: ears_fox
+  - sprite: _Ataraxia/Mobs/Customization/Anthropomorph/mam_ears.rsi
+    state: ears_fox_overlay
 
 - type: marking
   id: AnthropomorphHeadSideGoat
@@ -1170,7 +1192,7 @@
 #  - sprite: _Ataraxia/Mobs/Customization/Anthropomorph/mam_ears_32x64.rsi
 #    state: ears_shadekinround_overlay
 
-# ХВОСТ
+# TAILS | ХВОСТ
 
 - type: marking
   id: AnthropomorphTailMouse
@@ -1428,7 +1450,7 @@
   id: AnthropomorphTailKisune
   bodyPart: Tail
   markingCategory: Tail
-#  sponsorOnly: true # Ataraxia-DeSponsor
+#  sponsorOnly: true
   speciesRestriction: [Anthropomorph, Felinid, Human]
   sprites:
   - sprite: _Ataraxia/Mobs/Customization/Anthropomorph/mam_tails.rsi
@@ -1438,7 +1460,7 @@
   id: AnthropomorphTailLunasune
   bodyPart: Tail
   markingCategory: Tail
-#  sponsorOnly: true # Ataraxia-DeSponsor
+#  sponsorOnly: true
   speciesRestriction: [Anthropomorph, Felinid, Human]
   sprites:
   - sprite: _Ataraxia/Mobs/Customization/Anthropomorph/mam_tails.rsi
@@ -1448,7 +1470,7 @@
   id: AnthropomorphTailSabresune
   bodyPart: Tail
   markingCategory: Tail
-#  sponsorOnly: true # Ataraxia-DeSponsor
+#  sponsorOnly: true
   speciesRestriction: [Anthropomorph, Felinid, Human]
   sprites:
   - sprite: _Ataraxia/Mobs/Customization/Anthropomorph/mam_tails.rsi
@@ -1630,7 +1652,7 @@
   id: AnthropomorphTailSuccubus
   bodyPart: Tail
   markingCategory: Tail
-#  sponsorOnly: true # Ataraxia-DeSponsor
+#  sponsorOnly: true
   speciesRestriction: [Anthropomorph, Felinid, Dwarf, Human]
   sprites:
   - sprite: _Ataraxia/Mobs/Customization/Anthropomorph/mam_tails.rsi
@@ -1674,7 +1696,25 @@
   - sprite: _Ataraxia/Mobs/Customization/Anthropomorph/mam_tails.rsi
     state: tail_wolf
 
-# ГРУДЬ 
+- type: marking
+  id: AnthropomorphTailWolfAlt
+  bodyPart: Tail
+  markingCategory: Tail
+  speciesRestriction: [Anthropomorph, Felinid]
+  sprites:
+  - sprite: _Ataraxia/Mobs/Customization/Anthropomorph/mam_tails.rsi
+    state: tail_wolf_alt
+
+- type: marking
+  id: AnthropomorphTailVulp
+  bodyPart: Tail
+  markingCategory: Tail
+  speciesRestriction: [Anthropomorph, Felinid]
+  sprites:
+  - sprite: _Ataraxia/Mobs/Customization/Anthropomorph/mam_tails.rsi
+    state: tail_vulp
+
+# CHEST | ГРУДЬ 
 
 - type: marking
   id: AnthropomorphChestAbsarms
@@ -2100,6 +2140,15 @@
     state: tiger_chest_overlay
 
 - type: marking
+  id: AnthropomorphChestVulp
+  bodyPart: Chest
+  markingCategory: Chest
+  speciesRestriction: [Anthropomorph]
+  sprites:
+  - sprite: _Ataraxia/Mobs/Customization/Anthropomorph/mam_markings.rsi
+    state: vulp_chest
+
+- type: marking
   id: AnthropomorphChestWolf
   bodyPart: Chest
   markingCategory: Chest
@@ -2148,7 +2197,7 @@
   - sprite: _Ataraxia/Mobs/Customization/Anthropomorph/synthliz_body_markings.rsi
     state: synthlizsplates_chest
 
-# ОВЕРЛЕЙ
+# OVERLAY | ОВЕРЛЕЙ
 
 - type: marking
   id: AnthropomorphNeckOverlayInsectFluffFlat
@@ -2341,7 +2390,7 @@
   - sprite: _Ataraxia/Mobs/Customization/Anthropomorph/wings.rsi
     state: insect_wings_variable
 
-# РУКИ
+# ARMS | РУКИ
 
 - type: marking
   id: AnthropomorphLArmChemlight
@@ -2383,7 +2432,16 @@
   - sprite: _Ataraxia/Mobs/Customization/Anthropomorph/mam_markings.rsi
     state: panther_r_hand
 
-# НОГИ
+# LEGS | НОГИ
+
+- type: marking
+  id: PawSocks
+  markingCategory: Overlay
+  bodyPart: RFoot
+  speciesRestriction: [Anthropomorph, Reptilian]
+  sprites:
+    - sprite: _Ataraxia/Mobs/Customization/Anthropomorph/mam_markings.rsi
+      state: pawsocks
 
 #- type: marking
 #  id: AnthropomorphLLegChemlight
