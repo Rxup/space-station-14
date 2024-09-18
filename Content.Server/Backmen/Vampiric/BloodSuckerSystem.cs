@@ -371,7 +371,7 @@ public sealed class BloodSuckerSystem : SharedBloodSuckerSystem
 
                         (1 * (vpm.Tier + 1)) // 1 * (Тир + 1) * коэффицент
 
-                        * BloodPrice((bloodsucker, bkmVampireComponent), victim, unitsToDrain * 3),
+                        * BloodPrice((bloodsucker, bkmVampireComponent), victim, unitsToDrain * 3)
 
                         , "укус");
                     doNotify = false;
