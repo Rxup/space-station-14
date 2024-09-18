@@ -148,6 +148,10 @@
   id: MobSpecialSlimesAdamantine
   parent: MobSpecialSlimes
   components:
+  - type: Butcherable
+    spawned:
+    - id: adamantineextract
+      amount: 1
   - type: DamageStateVisuals
     states:
       Alive:
@@ -160,6 +164,10 @@
   id: MobSpecialSlimesBlack
   parent: MobSpecialSlimes
   components:
+  - type: Butcherable
+    spawned:
+    - id: blackextract
+      amount: 1
   - type: DamageStateVisuals
     states:
       Alive:
@@ -172,6 +180,10 @@
   id: MobSpecialSlimesBlue
   parent: MobSpecialSlimes
   components:
+  - type: Butcherable
+    spawned:
+    - id: blueextract
+      amount: 1
   - type: DamageStateVisuals
     states:
       Alive:
@@ -184,6 +196,10 @@
   id: MobSpecialSlimesBluespace
   parent: MobSpecialSlimes
   components:
+  - type: Butcherable
+    spawned:
+    - id: bluespaceextract
+      amount: 1
   - type: DamageStateVisuals
     states:
       Alive:
@@ -196,6 +212,10 @@
   id: MobSpecialSlimesCerulean
   parent: MobSpecialSlimes
   components:
+  - type: Butcherable
+    spawned:
+    - id: ceruleaneextract
+      amount: 1
   - type: DamageStateVisuals
     states:
       Alive:
@@ -208,6 +228,10 @@
   id: MobSpecialSlimesDarkblue
   parent: MobSpecialSlimes
   components:
+  - type: Butcherable
+    spawned:
+    - id: darkblueextract
+      amount: 1
   - type: DamageStateVisuals
     states:
       Alive:
@@ -220,6 +244,10 @@
   id: MobSpecialSlimesDarkpuple
   parent: MobSpecialSlimes
   components:
+  - type: Butcherable
+    spawned:
+    - id: darkpurpleextract
+      amount: 1
   - type: DamageStateVisuals
     states:
       Alive:
@@ -228,10 +256,14 @@
         Base: dark_purple_adult_slime_dead
 
 - type: entity
-  name: dark adult slime
+  name: gold adult slime
   id: MobSpecialSlimesDarkadult
   parent: MobSpecialSlimes
   components:
+  - type: Butcherable
+    spawned:
+    - id: goldextract
+      amount: 1
   - type: DamageStateVisuals
     states:
       Alive:
@@ -244,6 +276,10 @@
   id: MobSpecialSlimesGreen
   parent: MobSpecialSlimes
   components:
+  - type: Butcherable
+    spawned:
+    - id: greenextract
+      amount: 1
   - type: DamageStateVisuals
     states:
       Alive:
@@ -256,6 +292,10 @@
   id: MobSpecialSlimesGreyabult
   parent: MobSpecialSlimes
   components:
+  - type: Butcherable
+    spawned:
+    - id: greyextract
+      amount: 1
   - type: DamageStateVisuals
     states:
       Alive:
@@ -268,6 +308,10 @@
   id: MobSpecialSlimesLightping
   parent: MobSpecialSlimes
   components:
+  - type: Butcherable
+    spawned:
+    - id: lightpingextract
+      amount: 1
   - type: DamageStateVisuals
     states:
       Alive:
@@ -280,6 +324,10 @@
   id: MobSpecialSlimesMetalabult
   parent: MobSpecialSlimes
   components:
+  - type: Butcherable
+    spawned:
+    - id: metalextract
+      amount: 1
   - type: DamageStateVisuals
     states:
       Alive:
@@ -292,6 +340,10 @@
   id: MobSpecialSlimesOil
   parent: MobSpecialSlimes
   components:
+  - type: Butcherable
+    spawned:
+    - id: oilextract
+      amount: 1
   - type: DamageStateVisuals
     states:
       Alive:
@@ -304,6 +356,10 @@
   id: MobSpecialSlimesOrangeabult
   parent: MobSpecialSlimes
   components:
+  - type: Butcherable
+    spawned:
+    - id: orangeextract
+      amount: 1
   - type: DamageStateVisuals
     states:
       Alive:
@@ -316,6 +372,10 @@
   id: MobSpecialSlimesPink
   parent: MobSpecialSlimes
   components:
+  - type: Butcherable
+    spawned:
+    - id: pinkextract
+      amount: 1
   - type: DamageStateVisuals
     states:
       Alive:
@@ -328,6 +388,10 @@
   id: MobSpecialSlimesPurple
   parent: MobSpecialSlimes
   components:
+  - type: Butcherable
+    spawned:
+    - id: purpleextract
+      amount: 1
   - type: DamageStateVisuals
     states:
       Alive:
@@ -340,6 +404,10 @@
   id: MobSpecialSlimesPyriteabult
   parent: MobSpecialSlimes
   components:
+  - type: Butcherable
+    spawned:
+    - id: pyriteextract
+      amount: 1
   - type: DamageStateVisuals
     states:
       Alive:
@@ -415,6 +483,10 @@
   id: MobSpecialSlimesRedabult
   parent: MobSpecialSlimes
   components:
+  - type: Butcherable
+    spawned:
+    - id: redextract
+      amount: 1
   - type: DamageStateVisuals
     states:
       Alive:
@@ -427,6 +499,10 @@
   id: MobSpecialSlimesSepia
   parent: MobSpecialSlimes
   components:
+  - type: Butcherable
+    spawned:
+    - id: sepiaextract
+      amount: 1
   - type: DamageStateVisuals
     states:
       Alive:
@@ -439,6 +515,10 @@
   id: MobSpecialSlimesSilver
   parent: MobSpecialSlimes
   components:
+  - type: Butcherable
+    spawned:
+    - id: silverextract
+      amount: 1
   - type: DamageStateVisuals
     states:
       Alive:
@@ -451,6 +531,10 @@
   id: MobSpecialSlimesYellow
   parent: MobSpecialSlimes
   components:
+  - type: Butcherable
+    spawned:
+    - id: yelloweextract
+      amount: 1
   - type: DamageStateVisuals
     states:
       Alive:
@@ -463,7 +547,7 @@
 - type: entity
   name: adamantine slime
   id: MobSpecialSlimesAdamantineAngry
-  parent: MobSpecialSlimes
+  parent: MobSpecialSlimesAdamantine
   suffix: Angry
   components:
   - type: NpcFactionMember
@@ -484,7 +568,7 @@
 - type: entity
   name: black slime
   id: MobSpecialSlimesBlackAngry
-  parent: MobSpecialSlimes
+  parent: MobSpecialSlimesBlack
   suffix: Angry
   components:
   - type: NpcFactionMember
@@ -505,7 +589,7 @@
 - type: entity
   name: blue slime
   id: MobSpecialSlimesBlueAngry
-  parent: MobSpecialSlimes
+  parent: MobSpecialSlimesBlue
   suffix: Angry
   components:
   - type: NpcFactionMember
@@ -526,7 +610,7 @@
 - type: entity
   name: bluespace slime
   id: MobSpecialSlimesBluespaceAngry
-  parent: MobSpecialSlimes
+  parent: MobSpecialSlimesBluespace
   suffix: Angry
   components:
   - type: NpcFactionMember
@@ -547,7 +631,7 @@
 - type: entity
   name: cerulean slime
   id: MobSpecialSlimesCeruleanAngry
-  parent: MobSpecialSlimes
+  parent: MobSpecialSlimesCerulean
   suffix: Angry
   components:
   - type: NpcFactionMember
@@ -568,7 +652,7 @@
 - type: entity
   name: dark blue slime
   id: MobSpecialSlimesDarkblueAngry
-  parent: MobSpecialSlimes
+  parent: MobSpecialSlimesDarkblue
   suffix: Angry
   components:
   - type: NpcFactionMember
@@ -589,7 +673,7 @@
 - type: entity
   name: dark puple slime
   id: MobSpecialSlimesDarkpupleAngry
-  parent: MobSpecialSlimes
+  parent: MobSpecialSlimesDarkpuple
   suffix: Angry
   components:
   - type: NpcFactionMember
@@ -608,9 +692,9 @@
         Base: dark_purple_adult_slime_dead
 
 - type: entity
-  name: dark adult slime
+  name: gold adult slime
   id: MobSpecialSlimesDarkadultAngry
-  parent: MobSpecialSlimes
+  parent: MobSpecialSlimesDarkadult
   suffix: Angry
   components:
   - type: NpcFactionMember
@@ -631,7 +715,7 @@
 - type: entity
   name: green slime
   id: MobSpecialSlimesGreenAngry
-  parent: MobSpecialSlimes
+  parent: MobSpecialSlimesGreen
   suffix: Angry
   components:
   - type: NpcFactionMember
@@ -652,7 +736,7 @@
 - type: entity
   name: grey abult slime
   id: MobSpecialSlimesGreyabultAngry
-  parent: MobSpecialSlimes
+  parent: MobSpecialSlimesGreyabult
   suffix: Angry
   components:
   - type: NpcFactionMember
@@ -673,7 +757,7 @@
 - type: entity
   name: light pink slime
   id: MobSpecialSlimesLightpingAngry
-  parent: MobSpecialSlimes
+  parent: MobSpecialSlimesLightping
   suffix: Angry
   components:
   - type: NpcFactionMember
@@ -694,7 +778,7 @@
 - type: entity
   name: metal abult slime
   id: MobSpecialSlimesMetalabultAngry
-  parent: MobSpecialSlimes
+  parent: MobSpecialSlimesMetalabult
   suffix: Angry
   components:
   - type: NpcFactionMember
@@ -715,7 +799,7 @@
 - type: entity
   name: oil slime
   id: MobSpecialSlimesOilAngry
-  parent: MobSpecialSlimes
+  parent: MobSpecialSlimesOil
   suffix: Angry
   components:
   - type: NpcFactionMember
@@ -736,7 +820,7 @@
 - type: entity
   name: orange abult slime
   id: MobSpecialSlimesOrangeabultAngry
-  parent: MobSpecialSlimes
+  parent: MobSpecialSlimesOrangeabult
   suffix: Angry
   components:
   - type: NpcFactionMember
@@ -757,7 +841,7 @@
 - type: entity
   name: pink slime
   id: MobSpecialSlimesPinkAngry
-  parent: MobSpecialSlimes
+  parent: MobSpecialSlimesPink
   suffix: Angry
   components:
   - type: NpcFactionMember
@@ -778,7 +862,7 @@
 - type: entity
   name: purple slime
   id: MobSpecialSlimesPurpleAngry
-  parent: MobSpecialSlimes
+  parent: MobSpecialSlimesPurple
   suffix: Angry
   components:
   - type: NpcFactionMember
@@ -799,7 +883,7 @@
 - type: entity
   name: pyrite abult slime
   id: MobSpecialSlimesPyriteabultAngry
-  parent: MobSpecialSlimes
+  parent: MobSpecialSlimesPyriteabult
   suffix: Angry
   components:
   - type: NpcFactionMember
@@ -820,7 +904,7 @@
 - type: entity
   name: rainbow abult slime
   id: MobSpecialSlimesRainbowabultAngry
-  parent: MobSpecialSlimes
+  parent: MobSpecialSlimesRainbowabult
   suffix: Angry
   components:
   - type: NpcFactionMember
@@ -841,7 +925,7 @@
 - type: entity
   name: red abult slime
   id: MobSpecialSlimesRedabultAngry
-  parent: MobSpecialSlimes
+  parent: MobSpecialSlimesRedabult
   suffix: Angry
   components:
   - type: NpcFactionMember
@@ -862,7 +946,7 @@
 - type: entity
   name: sepia abult slime
   id: MobSpecialSlimesSepiaAngry
-  parent: MobSpecialSlimes
+  parent: MobSpecialSlimesSepia
   suffix: Angry
   components:
   - type: NpcFactionMember
@@ -883,7 +967,7 @@
 - type: entity
   name: silver abult slime
   id: MobSpecialSlimesSilverAngry
-  parent: MobSpecialSlimes
+  parent: MobSpecialSlimesSilve
   suffix: Angry
   components:
   - type: NpcFactionMember
@@ -904,7 +988,7 @@
 - type: entity
   name: yellow abult slime
   id: MobSpecialSlimesYellowAngry
-  parent: MobSpecialSlimes
+  parent: MobSpecialSlimesYellow
   suffix: Angry
   components:
   - type: NpcFactionMember
