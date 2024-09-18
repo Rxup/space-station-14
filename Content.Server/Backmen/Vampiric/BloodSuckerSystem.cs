@@ -338,7 +338,7 @@ public sealed class BloodSuckerSystem : SharedBloodSuckerSystem
             return false;
 
         // Are we too full?
-        var unitsToDrain = Math.Min(bloodstreamVolume.Float(),bloodsuckerComp.UnitsToSucc);
+        var unitsToDrain = Math.Min(bloodstreamVolume.Float(), bloodsuckerComp.UnitsToSucc * 3); 
 
         var stomachAvailableVolume = stomachSolution.Value.Comp.Solution.AvailableVolume;
 
@@ -371,7 +371,7 @@ public sealed class BloodSuckerSystem : SharedBloodSuckerSystem
 
                         (1 * (vpm.Tier + 1)) // 1 * (Тир + 1) * коэффицент
 
-                        * BloodPrice((bloodsucker,bkmVampireComponent), victim, unitsToDrain)
+                        * BloodPrice((bloodsucker, bkmVampireComponent), victim, unitsToDrain * 3),
 
                         , "укус");
                     doNotify = false;
