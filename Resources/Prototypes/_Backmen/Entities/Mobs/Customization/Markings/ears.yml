@@ -1,0 +1,19 @@
+- type: marking
+  id: EarsShadowkin
+  bodyPart: HeadTop
+  markingCategory: HeadTop
+  speciesRestriction: [Shadowkin]
+  sprites:
+    - sprite: Backmen/Mobs/Customization/ears.rsi
+      state: shadowkin
+
+- type: marking
+  id: EarsShadowkinStriped
+  bodyPart: HeadTop
+  markingCategory: HeadTop
+  speciesRestriction: [Shadowkin]
+  sprites:
+    - sprite: Backmen/Mobs/Customization/ears.rsi
+      state: shadowkin
+    - sprite: Backmen/Mobs/Customization/ears.rsi
+      state: shadowkin_stripes
