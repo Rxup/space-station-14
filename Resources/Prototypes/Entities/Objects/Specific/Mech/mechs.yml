@@ -127,6 +127,9 @@
     openState: ripley-open
     brokenState: ripley-broken
     mechToPilotDamageMultiplier: 0.75
+    equipmentWhitelist:
+      tags:
+      - ExoMech
     pilotWhitelist:
       components:
         - HumanoidAppearance
@@ -294,6 +297,208 @@
 - type: entity
   parent: MechVim
   id: MechVimBattery
+  suffix: Battery
+  components:
+  - type: ContainerFill
+    containers:
+      mech-battery-slot:
+      - PowerCellHigh
+
+# Combat Mechs
+
+- type: entity
+  parent: BaseMech
+  id: MechMarauder
+  name: Marauder
+  description: Versatile and lightly armored, the Ripley is useful for almost any heavy work scenario. The "APLU" stands for Autonomous Power Loading Unit.
+  components:
+  - type: Sprite
+    drawdepth: Mobs
+    noRot: true
+    sprite: Objects/Specific/Mech/mecha.rsi
+    layers:
+    - map: [ "enum.MechVisualLayers.Base" ]
+      state: marauder
+  - type: Mech
+    baseState: marauder
+    openState: marauder-open
+    brokenState: marauder-broken
+    airtight: true
+    maxIntegrity: 500
+    mechToPilotDamageMultiplier: 0.35
+    equipmentWhitelist:
+      tags:
+      - CombatMech
+  - type: MeleeWeapon
+    hidden: true
+    attackRate: 0.70
+    damage:
+      types:
+        Blunt: 50
+        Structural: 55
+  - type: Damageable
+    damageContainer: Inorganic
+    damageModifierSet: FireResStrongMetallic
+  - type: MovementSpeedModifier
+    baseWalkSpeed: 1.0
+    baseSprintSpeed: 1.0
+  - type: FootstepModifier
+    footstepSoundCollection:
+      path: /Audio/Mecha/sound_mecha_powerloader_step.ogg
+
+- type: entity
+  parent: MechMarauder
+  id: MechMarauderBattery
+  suffix: Battery
+  components:
+  - type: ContainerFill
+    containers:
+      mech-battery-slot:
+      - PowerCellHigh
+
+- type: entity
+  parent: BaseMech
+  id: MechMauler
+  name: Mauler
+  description: Versatile and lightly armored, the Ripley is useful for almost any heavy work scenario. The "APLU" stands for Autonomous Power Loading Unit.
+  components:
+  - type: Sprite
+    drawdepth: Mobs
+    noRot: true
+    sprite: Objects/Specific/Mech/mecha.rsi
+    layers:
+    - map: [ "enum.MechVisualLayers.Base" ]
+      state: mauler
+  - type: Mech
+    baseState: mauler
+    openState: mauler-open
+    brokenState: mauler-broken
+    airtight: true
+    maxIntegrity: 500
+    mechToPilotDamageMultiplier: 0.35
+    equipmentWhitelist:
+      tags:
+      - CombatMech
+  - type: MeleeWeapon
+    hidden: true
+    attackRate: 0.70
+    damage:
+      types:
+        Blunt: 50
+        Structural: 55
+  - type: Damageable
+    damageContainer: Inorganic
+    damageModifierSet: FireResStrongMetallic
+  - type: MovementSpeedModifier
+    baseWalkSpeed: 1.0
+    baseSprintSpeed: 1.0
+  - type: FootstepModifier
+    footstepSoundCollection:
+      path: /Audio/Mecha/sound_mecha_powerloader_step.ogg
+
+- type: entity
+  parent: MechMauler
+  id: MechMaulerBattery
+  suffix: Battery
+  components:
+  - type: ContainerFill
+    containers:
+      mech-battery-slot:
+      - PowerCellHigh
+
+- type: entity
+  parent: BaseMech
+  id: MechGygax
+  name: Gygax
+  description: Versatile and lightly armored, the Ripley is useful for almost any heavy work scenario. The "APLU" stands for Autonomous Power Loading Unit.
+  components:
+  - type: Sprite
+    drawdepth: Mobs
+    noRot: true
+    sprite: Objects/Specific/Mech/mecha.rsi
+    layers:
+    - map: [ "enum.MechVisualLayers.Base" ]
+      state: gygax
+  - type: Mech
+    baseState: gygax
+    openState: gygax-open
+    brokenState: gygax-broken
+    airtight: true
+    maxIntegrity: 250
+    mechToPilotDamageMultiplier: 0.35
+    equipmentWhitelist:
+      tags:
+      - CombatMech
+  - type: MeleeWeapon
+    hidden: true
+    attackRate: 1
+    damage:
+      types:
+        Blunt: 20
+        Structural: 25
+  - type: Damageable
+    damageContainer: Inorganic
+    damageModifierSet: FireResStrongMetallic
+  - type: MovementSpeedModifier
+    baseWalkSpeed: 2.25
+    baseSprintSpeed: 4.6
+  - type: FootstepModifier
+    footstepSoundCollection:
+      path: /Audio/Mecha/sound_mecha_powerloader_step.ogg
+
+- type: entity
+  parent: MechGygax
+  id: MechGygaxBattery
+  suffix: Battery
+  components:
+  - type: ContainerFill
+    containers:
+      mech-battery-slot:
+      - PowerCellHigh
+
+- type: entity
+  parent: BaseMech
+  id: MechDurand
+  name: Durand
+  description: Versatile and lightly armored, the Ripley is useful for almost any heavy work scenario. The "APLU" stands for Autonomous Power Loading Unit.
+  components:
+  - type: Sprite
+    drawdepth: Mobs
+    noRot: true
+    sprite: Objects/Specific/Mech/mecha.rsi
+    layers:
+    - map: [ "enum.MechVisualLayers.Base" ]
+      state: durand
+  - type: Mech
+    baseState: durand
+    openState: durand-open
+    brokenState: durand-broken
+    airtight: true
+    maxIntegrity: 400
+    mechToPilotDamageMultiplier: 0.35
+    equipmentWhitelist:
+      tags:
+      - CombatMech
+  - type: MeleeWeapon
+    hidden: true
+    attackRate: 0.70
+    damage:
+      types:
+        Blunt: 40
+        Structural: 45
+  - type: Damageable
+    damageContainer: Inorganic
+    damageModifierSet: FireResStrongMetallic
+  - type: MovementSpeedModifier
+    baseWalkSpeed: 2.25
+    baseSprintSpeed: 2.6
+  - type: FootstepModifier
+    footstepSoundCollection:
+      path: /Audio/Mecha/sound_mecha_powerloader_step.ogg
+
+- type: entity
+  parent: MechDurand
+  id: MechDurandBattery
   suffix: Battery
   components:
   - type: ContainerFill
