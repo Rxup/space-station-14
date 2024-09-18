@@ -967,7 +967,7 @@
 - type: entity
   name: silver abult slime
   id: MobSpecialSlimesSilverAngry
-  parent: MobSpecialSlimesSilve
+  parent: MobSpecialSlimesSilver
   suffix: Angry
   components:
   - type: NpcFactionMember
