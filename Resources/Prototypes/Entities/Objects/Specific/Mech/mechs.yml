@@ -338,7 +338,7 @@
         Structural: 55
   - type: Damageable
     damageContainer: Inorganic
-    damageModifierSet: FireResStrongMetallic
+    damageModifierSet: Metallic
   - type: MovementSpeedModifier
     baseWalkSpeed: 1.0
     baseSprintSpeed: 1.0
@@ -388,7 +388,7 @@
         Structural: 55
   - type: Damageable
     damageContainer: Inorganic
-    damageModifierSet: FireResStrongMetallic
+    damageModifierSet: Metallic
   - type: MovementSpeedModifier
     baseWalkSpeed: 1.0
     baseSprintSpeed: 1.0
@@ -438,7 +438,7 @@
         Structural: 25
   - type: Damageable
     damageContainer: Inorganic
-    damageModifierSet: FireResStrongMetallic
+    damageModifierSet: Metallic
   - type: MovementSpeedModifier
     baseWalkSpeed: 2.25
     baseSprintSpeed: 4.6
@@ -488,7 +488,7 @@
         Structural: 45
   - type: Damageable
     damageContainer: Inorganic
-    damageModifierSet: FireResStrongMetallic
+    damageModifierSet: Metallic
   - type: MovementSpeedModifier
     baseWalkSpeed: 2.25
     baseSprintSpeed: 2.6
