@@ -73,12 +73,12 @@ giga_token = "ВСТАВИТЬ СЮДА СЕКРЕТНЫЙ КЛЮЧ"
 токен запрашивается автоматически по секретному ключу и автоматически обновляется
 
 ## Лицензия
-Весь код репозитория лицензирован под [AGPLv3](https://github.com/Rxup/space-station-14/blob/master/LICENSE-AGPLv3.TXT).
 
-Большинство ассетов лицензированы под [CC-BY-SA 3.0](https://creativecommons.org/licenses/by-sa/3.0/), если не указано иное. Ассеты имеют свою лицензию и авторские права в файле метаданных. [Пример](https://github.com/space-syndicate/space-station-14/blob/master/Resources/Textures/Objects/Tools/crowbar.rsi/meta.json).
+Содержимое, добавленное в этот репозиторий после коммита 254687f3d1d1a02aa9dba61d7c114c73dc8e4754 (`17 June 2024 12:00:00 UTC`), распространяется по лицензии GNU Affero General Public License версии 3.0, если не указано иное.
+См. [LICENSE-AGPLv3](./LICENSE-AGPLv3.txt).
 
-Обратите внимание, что некоторые ассеты лицензированы на некоммерческой основе [CC-BY-NC-SA 3.0](https://creativecommons.org/licenses/by-nc-sa/3.0/) или аналогичной некоммерческой лицензией, и их необходимо удалить, если вы хотите использовать этот проект в коммерческих целях.
-
+Содержимое, добавленное в этот репозиторий до коммита 254687f3d1d1a02aa9dba61d7c114c73dc8e4754 (`17 June 2024 12:00:00 UTC`) распространяется по лицензии MIT, если не указано иное.
+См. [LICENSE-MIT](./LICENSE-MIT.TXT).
 ---
 
 <p align="center">
