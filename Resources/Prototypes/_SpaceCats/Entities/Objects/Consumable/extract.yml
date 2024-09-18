@@ -1,0 +1,256 @@
+- type: entity
+  parent: FoodBase
+  id: BaseExtract
+  name: base extract
+  abstract: true
+  description: It's a real panacea. But at what cost?
+  components:
+  - type: Extractable
+    grindableSolutionName: food
+  - type: FlavorProfile
+    flavors:
+      - sweet
+  - type: Sprite
+    sprite: _SpaceCats/Mobs/Aliens/extract.rsi
+    state: grey_slime_extract
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        reagents:
+        - ReagentId: Iron
+          Quantity: 10
+  - type: StaticPrice
+    price: 100
+  - type: Tag
+    tags:
+    - Extract
+
+- type: entity
+  parent: BaseExtract
+  id: adamantineextract
+  name: adamantine extract
+  description: It's a real panacea. But at what cost?
+  components:
+  - type: Sprite
+    sprite: _SpaceCats/Mobs/Aliens/extract.rsi
+    state: adamantine_slime_extract
+
+- type: entity
+  parent: BaseExtract
+  id: blackextract
+  name: black extract
+  description: It's a real panacea. But at what cost?
+  components:
+  - type: Sprite
+    sprite: _SpaceCats/Mobs/Aliens/extract.rsi
+    state: black_slime_extract
+
+- type: entity
+  parent: BaseExtract
+  id: blueextract
+  name: blue extract
+  description: It's a real panacea. But at what cost?
+  components:
+  - type: Sprite
+    sprite: _SpaceCats/Mobs/Aliens/extract.rsi
+    state: blue_slime_extract
+
+- type: entity
+  parent: BaseExtract
+  id: bluespaceextract
+  name: bluespace extract
+  description: It's a real panacea. But at what cost?
+  components:
+  - type: Sprite
+    sprite: _SpaceCats/Mobs/Aliens/extract.rsi
+    state: bluespace_slime_extract
+
+- type: entity
+  parent: BaseExtract
+  id: ceruleaneextract
+  name: cerulean extract
+  description: It's a real panacea. But at what cost?
+  components:
+  - type: Sprite
+    sprite: _SpaceCats/Mobs/Aliens/extract.rsi
+    state: cerulean_slime_extract
+
+- type: entity
+  parent: BaseExtract
+  id: darkblueextract
+  name: dark blue extract
+  description: It's a real panacea. But at what cost?
+  components:
+  - type: Sprite
+    sprite: _SpaceCats/Mobs/Aliens/extract.rsi
+    state: dark_blue_slime_extract
+
+- type: entity
+  parent: BaseExtract
+  id: darkpurpleextract
+  name: dark purple extract
+  description: It's a real panacea. But at what cost?
+  components:
+  - type: Sprite
+    sprite: _SpaceCats/Mobs/Aliens/extract.rsi
+    state: dark_purple_slime_extract
+
+- type: entity
+  parent: BaseExtract
+  id: goldextract
+  name: gold extract
+  description: It's a real panacea. But at what cost?
+  components:
+  - type: Sprite
+    sprite: _SpaceCats/Mobs/Aliens/extract.rsi
+    state: gold_slime_extract
+
+- type: entity
+  parent: BaseExtract
+  id: greenextract
+  name: green extract
+  description: It's a real panacea. But at what cost?
+  components:
+  - type: Sprite
+    sprite: _SpaceCats/Mobs/Aliens/extract.rsi
+    state: green_slime_extract
+
+- type: entity
+  parent: BaseExtract
+  id: greyextract
+  name: grey extract
+  description: It's a real panacea. But at what cost?
+  components:
+  - type: Sprite
+    sprite: _SpaceCats/Mobs/Aliens/extract.rsi
+    state: grey_slime_extract
+
+- type: entity
+  parent: BaseExtract
+  id: lightpinkextract
+  name: light pink extract
+  description: It's a real panacea. But at what cost?
+  components:
+  - type: Sprite
+    sprite: _SpaceCats/Mobs/Aliens/extract.rsi
+    state: light_pink_slime_extract
+
+- type: entity
+  parent: BaseExtract
+  id: metalextract
+  name: metal extract
+  description: It's a real panacea. But at what cost?
+  components:
+  - type: Sprite
+    sprite: _SpaceCats/Mobs/Aliens/extract.rsi
+    state: metal_slime_extract
+
+- type: entity
+  parent: BaseExtract
+  id: oilextract
+  name: oil extract
+  description: It's a real panacea. But at what cost?
+  components:
+  - type: Sprite
+    sprite: _SpaceCats/Mobs/Aliens/extract.rsi
+    state: oil_slime_extract
+
+- type: entity
+  parent: BaseExtract
+  id: orangeextract
+  name: orange extract
+  description: It's a real panacea. But at what cost?
+  components:
+  - type: Sprite
+    sprite: _SpaceCats/Mobs/Aliens/extract.rsi
+    state: orange_slime_extract
+
+- type: entity
+  parent: BaseExtract
+  id: pinkextract
+  name: pink extract
+  description: It's a real panacea. But at what cost?
+  components:
+  - type: Sprite
+    sprite: _SpaceCats/Mobs/Aliens/extract.rsi
+    state: pink_slime_extract
+
+- type: entity
+  parent: BaseExtract
+  id: platiumextract
+  name: platium extract
+  description: It's a real panacea. But at what cost?
+  components:
+  - type: Sprite
+    sprite: _SpaceCats/Mobs/Aliens/extract.rsi
+    state: platinum_slime_extract
+
+- type: entity
+  parent: BaseExtract
+  id: purpleextract
+  name: purple extract
+  description: It's a real panacea. But at what cost?
+  components:
+  - type: Sprite
+    sprite: _SpaceCats/Mobs/Aliens/extract.rsi
+    state: purple_slime_extract
+
+- type: entity
+  parent: BaseExtract
+  id: pyriteextract
+  name: pyrite extract
+  description: It's a real panacea. But at what cost?
+  components:
+  - type: Sprite
+    sprite: _SpaceCats/Mobs/Aliens/extract.rsi
+    state: pyrite_slime_extract
+
+- type: entity
+  parent: BaseExtract
+  id: rainbowextract
+  name: rainbow extract
+  description: It's a real panacea. But at what cost?
+  components:
+  - type: Sprite
+    sprite: _SpaceCats/Mobs/Aliens/extract.rsi
+    state: rainbow_slime_extract
+
+- type: entity
+  parent: BaseExtract
+  id: redextract
+  name: red extract
+  description: It's a real panacea. But at what cost?
+  components:
+  - type: Sprite
+    sprite: _SpaceCats/Mobs/Aliens/extract.rsi
+    state: red_slime_extract
+
+- type: entity
+  parent: BaseExtract
+  id: sepiaextract
+  name: sepia extract
+  description: It's a real panacea. But at what cost?
+  components:
+  - type: Sprite
+    sprite: _SpaceCats/Mobs/Aliens/extract.rsi
+    state: sepia_slime_extract
+
+- type: entity
+  parent: BaseExtract
+  id: silverextract
+  name: silver extract
+  description: It's a real panacea. But at what cost?
+  components:
+  - type: Sprite
+    sprite: _SpaceCats/Mobs/Aliens/extract.rsi
+    state: silver_slime_extract
+
+- type: entity
+  parent: BaseExtract
+  id: yellowextract
+  name: yellow extract
+  description: It's a real panacea. But at what cost?
+  components:
+  - type: Sprite
+    sprite: _SpaceCats/Mobs/Aliens/extract.rsi
+    state: yellow_slime_extract
