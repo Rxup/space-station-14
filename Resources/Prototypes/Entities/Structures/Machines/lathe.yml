@@ -670,7 +670,7 @@
     - GygaxLLeg # mech cats
     - GygaxRLeg # mech cats
     - DurandHarness # mech cats
-    - DurandLArm# mech cats
+    - DurandLArm # mech cats
     - DurandRArm # mech cats
     - DurandLLeg # mech cats
     - DurandRLeg # mech cats
@@ -678,7 +678,7 @@
     - MechScattershotWeapon # mech cats
     - MechSolarisLaserWeapon # mech cats
     - MechHadesWeapon # mech cats
-    - MechMssileWeapon# mech cats
+    - MechMssileWeapon # mech cats
     - MechTeslaWeapon # mech cats
   - type: MaterialStorage
     whitelist:
