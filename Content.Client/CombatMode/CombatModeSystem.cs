@@ -1,3 +1,4 @@
+using System;
 using Content.Client.Hands.Systems;
 using Content.Client.NPC.HTN;
 using Content.Shared.CCVar;
@@ -6,6 +7,12 @@ using Robust.Client.Graphics;
 using Robust.Client.Input;
 using Robust.Client.Player;
 using Robust.Shared.Configuration;
+using Robust.Client.GameObjects;
+using Content.Shared.StatusIcon.Components;
+using Content.Client.Actions;
+using System.Numerics;
+using Robust.Shared.GameObjects;
+using Robust.Shared.Utility;
 
 namespace Content.Client.CombatMode;
 
@@ -27,7 +34,7 @@ public sealed class CombatModeSystem : SharedCombatModeSystem
         base.Initialize();
 
         SubscribeLocalEvent<CombatModeComponent, AfterAutoHandleStateEvent>(OnHandleState);
-
+        SubscribeLocalEvent<CombatModeComponent, GetStatusIconsEvent>(UpdateCombatModeIndicator); // Ataraxia
         Subs.CVar(_cfg, CCVars.CombatModeIndicatorsPointShow, OnShowCombatIndicatorsChanged, true);
     }
 
@@ -90,5 +97,27 @@ public sealed class CombatModeSystem : SharedCombatModeSystem
         {
             _overlayManager.RemoveOverlay<CombatModeIndicatorsOverlay>();
         }
-    }
+
+ // Ataraxia START
+    private void UpdateCombatModeIndicator(EntityUid uid, CombatModeComponent comp, ref GetStatusIconsEvent _)
+    {
+        if (!TryComp<SpriteComponent>(uid, out var sprite))
+            return;
+
+        if (comp.IsInCombatMode)
+        {
+            if (!sprite.LayerMapTryGet("combat_mode_indicator", out var layer))
+            {
+                layer = sprite.AddLayer(new SpriteSpecifier.Rsi(new ResPath("_Ataraxia/Effects/combat_mode.rsi"), "combat_mode"));
+                sprite.LayerMapSet("combat_mode_indicator", layer);
+            }
+        }
+        else
+        {
+            if (sprite.LayerMapTryGet("combat_mode_indicator", out var layerToRemove))
+            {
+                sprite.RemoveLayer(layerToRemove);
+            }
+        }
+    } // Ataraxia END
 }
