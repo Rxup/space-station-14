@@ -455,7 +455,7 @@ namespace Content.Server.GameTicking
 
         private const int EmbedLimit = 2000;
 
-        private string[] GenerateRoundEndSummary(string gamemodeTitle, string roundEndText, RoundEndMessageEvent.RoundEndPlayerInfo[] playerInfoArray)
+        private string GenerateRoundEndSummary(string gamemodeTitle, string roundEndText, RoundEndMessageEvent.RoundEndPlayerInfo[] playerInfoArray)
         {
             var roundEndTextMarkdown = ConvertBBCodeToMarkdown(roundEndText);
             var stringBuilder = new System.Text.StringBuilder();
