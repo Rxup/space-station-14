@@ -130,19 +130,6 @@
 
 - type: entity
   parent: BookBase
-  id: BookPaperworkP4
-  name: Paperwork
-  description: Another book from the pile about bureaucrats (part 4)
-  components:
-    - type: Sprite
-      sprite: Objects/Misc/books_backmen.rsi
-      layers:
-        - state: paperwork_4
-    - type: Paper
-      content: book-text-paperwork-p4
-
-- type: entity
-  parent: BookBase
   id: BookPaperworkP5
   name: Paperwork
   description: Another book from the pile about bureaucrats (part 5)
