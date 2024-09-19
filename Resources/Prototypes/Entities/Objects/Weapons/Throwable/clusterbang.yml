@@ -36,6 +36,8 @@
   - type: TimerTriggerVisuals
     primingSound:
       path: /Audio/Effects/countdown.ogg
+  - type: SpawnOnTrigger # Ataraxia
+    proto: ExplosionEffectGrenadeShockWave
   - type: GenericVisualizer
     visuals:
       enum.Trigger.TriggerVisuals.VisualState:
@@ -71,6 +73,8 @@
         volume: 5
     initialBeepDelay: 0
     beepInterval: 0.5
+  - type: SpawnOnTrigger # Ataraxia
+    proto: ExplosionEffectGrenadeShockWave
   - type: EmitSoundOnTrigger
     sound:
       path: "/Audio/Machines/door_lock_off.ogg"
