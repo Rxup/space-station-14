@@ -1,0 +1,215 @@
+
+- type: entity
+  parent: AirlockDooble
+  id: AirlockDoobleEngineering
+  suffix: Engineering
+  components:
+  - type: Sprite
+    sprite: _SpaceCats/Structures/Doors/Airlocks/Standard/engineering.rsi
+  - type: Wires
+    layoutId: AirlockEngineering
+
+- type: entity
+  parent: AirlockDoobleEngineering
+  id: AirlockDoobleAtmospherics
+  suffix: Atmospherics
+  components:
+  - type: Sprite
+    sprite: _SpaceCats/Structures/Doors/Airlocks/Standard/atmospherics.rsi
+
+- type: entity
+  parent: AirlockDooble
+  id: AirlockDoobleCargo
+  suffix: Cargo
+  components:
+  - type: Sprite
+    sprite: _SpaceCats/Structures/Doors/Airlocks/Standard/cargo.rsi
+  - type: Wires
+    layoutId: AirlockCargo
+
+- type: entity
+  parent: AirlockDooble
+  id: AirlockDoobleMedical
+  suffix: Medical
+  components:
+  - type: Sprite
+    sprite: _SpaceCats/Structures/Doors/Airlocks/Standard/medical.rsi
+  - type: Wires
+    layoutId: AirlockMedical
+
+- type: entity
+  parent: AirlockDoobleMedical
+  id: AirlockDoobleVirology
+  suffix: Virology
+  components:
+  - type: Sprite
+    sprite: _SpaceCats/Structures/Doors/Airlocks/Standard/virology.rsi
+
+- type: entity
+  parent: AirlockDoobleMedical
+  id: AirlockDoobleChemistry
+  suffix: Chemistry
+
+- type: entity
+  parent: AirlockDooble
+  id: AirlockDoobleScience
+  suffix: Science
+  components:
+  - type: Sprite
+    sprite: _SpaceCats/Structures/Doors/Airlocks/Standard/science.rsi
+  - type: Wires
+    layoutId: AirlockScience
+
+- type: entity
+  parent: AirlockDooble
+  id: AirlockDoobleCommand
+  suffix: Command
+  components:
+  - type: Sprite
+    sprite: _SpaceCats/Structures/Doors/Airlocks/Standard/command.rsi
+  - type: WiresPanelSecurity
+    securityLevel: medSecurity
+  - type: Wires
+    layoutId: AirlockCommand
+
+- type: entity
+  parent: AirlockDooble
+  id: AirlockDoobleSecurity
+  suffix: Security
+  components:
+  - type: Sprite
+    sprite: _SpaceCats/Structures/Doors/Airlocks/Standard/security.rsi
+  - type: Wires
+    layoutId: AirlockSecurity
+
+- type: entity
+  parent: AirlockDooble
+  id: AirlockDoobleMaint
+  name: maintenance access
+  components:
+  - type: Sprite
+    sprite: _SpaceCats/Structures/Doors/Airlocks/Standard/maint.rsi
+
+- type: entity
+  parent: AirlockDoobleSecurity # if you get syndie door somehow it counts as sec
+  id: AirlockDoobleSyndicate
+  suffix: Syndicate
+  components:
+  - type: Sprite
+    sprite: _SpaceCats/Structures/Doors/Airlocks/Standard/syndicate.rsi
+
+- type: entity
+  parent: AirlockDoobleCommand # if you get centcom door somehow it counts as command, also inherit panel
+  id: AirlockDoobleCentralCommand
+  suffix: Central Command
+  components:
+  - type: Sprite
+    sprite: _SpaceCats/Structures/Doors/Airlocks/Standard/centcomm.rsi
+
+# Glass
+- type: entity
+  parent: AirlockDoobleGlass
+  id: AirlockDoobleEngineeringGlass
+  suffix: Engineering
+  components:
+  - type: Sprite
+    sprite: _SpaceCats/Structures/Doors/Airlocks/Glass/engineering.rsi
+  - type: Wires
+    layoutId: AirlockEngineering
+
+- type: entity
+  parent: AirlockDoobleGlass
+  id: AirlockDoobleMaintGlass
+  suffix: Maintenance
+  components:
+  - type: Sprite
+    sprite: _SpaceCats/Structures/Doors/Airlocks/Glass/maint.rsi
+
+- type: entity
+  parent: AirlockDoobleEngineeringGlass
+  id: AirlockDoobleAtmosphericsGlass
+  suffix: Atmospherics
+  components:
+  - type: Sprite
+    sprite: _SpaceCats/Structures/Doors/Airlocks/Glass/atmospherics.rsi
+
+- type: entity
+  parent: AirlockDoobleGlass
+  id: AirlockDoobleCargoGlass
+  suffix: Cargo
+  components:
+  - type: Sprite
+    sprite: _SpaceCats/Structures/Doors/Airlocks/Glass/cargo.rsi
+  - type: Wires
+    layoutId: AirlockCargo
+
+- type: entity
+  parent: AirlockDoobleGlass
+  id: AirlockDoobleMedicalGlass
+  suffix: Medical
+  components:
+  - type: Sprite
+    sprite: _SpaceCats/Structures/Doors/Airlocks/Glass/medical.rsi
+  - type: Wires
+    layoutId: AirlockMedical
+
+- type: entity
+  parent: AirlockDoobleMedicalGlass
+  id: AirlockDoobleChemistryGlass
+  suffix: Chemistry
+
+- type: entity
+  parent: AirlockDoobleMedicalGlass
+  id: AirlockDoobleVirologyGlass
+  suffix: Virology
+  components:
+  - type: Sprite
+    sprite: _SpaceCats/Structures/Doors/Airlocks/Glass/virology.rsi
+
+- type: entity
+  parent: AirlockDoobleGlass
+  id: AirlockDoobleScienceGlass
+  suffix: Science
+  components:
+  - type: Sprite
+    sprite: _SpaceCats/Structures/Doors/Airlocks/Glass/science.rsi
+  - type: Wires
+    layoutId: AirlockScience
+
+- type: entity
+  parent: AirlockDoobleGlass
+  id: AirlockDoobleCommandGlass
+  suffix: Command
+  components:
+  - type: Sprite
+    sprite: _SpaceCats/Structures/Doors/Airlocks/Glass/command.rsi
+  - type: WiresPanelSecurity
+    securityLevel: medSecurity
+  - type: Wires
+    layoutId: AirlockCommand
+
+- type: entity
+  parent: AirlockDoobleGlass
+  id: AirlockDoobleSecurityGlass
+  suffix: Security
+  components:
+  - type: Sprite
+    sprite: _SpaceCats/Structures/Doors/Airlocks/Glass/security.rsi
+  - type: Wires
+    layoutId: AirlockSecurity
+
+- type: entity
+  parent: AirlockDoobleSecurityGlass # see standard
+  id: AirlockDoobleSyndicateGlass
+  suffix: Syndicate
+  components:
+  - type: Sprite
+    sprite: _SpaceCats/Structures/Doors/Airlocks/Glass/syndicate.rsi
+
+- type: entity
+  parent: AirlockDoobleCommandGlass # see standard
+  id: AirlockDoobleCentralCommandGlass
+  suffix: Central Command
+  components:
+  - type: Sprite
+    sprite: _SpaceCats/Structures/Doors/Airlocks/Glass/centcomm.rsi

@@ -792,7 +792,7 @@ public sealed class ChatUIController : UIController
 
         // we need to handle selected channel
         // and prefix-channel separately..
-        var allowedChannels = ChatSelectChannel.Local | ChatSelectChannel.Whisper;
+        var allowedChannels = ChatSelectChannel.Local | ChatSelectChannel.Whisper | ChatSelectChannel.Radio;
         if ((chatBox.SelectedChannel & allowedChannels) == ChatSelectChannel.None)
             return;
 

@@ -1,0 +1,22 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "Sprited By TheGypsyBaron",
+  "size": {
+    "x": 8,
+    "y": 8
+  },
+  "states": [
+    {
+      "name": "SwarmBase"
+    },
+
+    {
+      "name": "SwarmFabricator"
+    },
+  
+    {
+    "name": "SwarmShooter"
+    }
+  ]
+}

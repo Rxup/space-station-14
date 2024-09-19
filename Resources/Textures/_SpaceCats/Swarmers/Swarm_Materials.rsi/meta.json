@@ -1,0 +1,32 @@
+{
+  "version": 1,
+  "license": "CC-BY-NC-SA-3.0",
+  "copyright": "made by borkroman",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "SwarmGlass"
+    },
+    {
+      "name": "SwarmGlass2"
+    },
+    {
+      "name": "SwarmGlass3"
+    },
+    {
+      "name": "SwarmSteel"
+    },
+    {
+      "name": "SwarmSteel2"
+    },
+    {
+      "name": "SwarmSteel3"
+    },
+    {
+      "name": "RedSpaseCore"
+    }
+  ]
+}

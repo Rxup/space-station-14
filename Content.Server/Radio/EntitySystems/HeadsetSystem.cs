@@ -53,6 +53,7 @@ public sealed class HeadsetSystem : SharedHeadsetSystem
             && keys.Channels.Contains(args.Channel.ID))
         {
             _radio.SendRadioMessage(uid, args.Message, args.Channel, component.Headset);
+
             args.Channel = null; // prevent duplicate messages from other listeners.
         }
     }

@@ -1,0 +1,43 @@
+- type: entity
+  id: BaseModuleSwarmer
+  parent: BaseBorgModule
+  abstract: true
+  components:
+  - type: Tag
+    tags:
+    - ModuleSwarmer
+
+- type: entity
+  id: ModuleSwarmerMein
+  parent: [ BaseModuleSwarmer, BaseProviderBorgModule ]
+  description: Главный модуль свармеров
+  suffix: BORK (Swarmer)
+  name: Инструментальный S.W.A.R.M модуль 
+  components:
+  - type: Sprite
+    sprite: _SpaceCats/Swarmers/MOB-MODULS/SwarmerModul.rsi
+    layers:
+    - state: Swarmer
+    - state: Tool-icon
+  - type: ItemBorgModule
+    items:
+    - SwarmTool
+    - WelderSwarmer
+    - SwarmDeveloper
+
+- type: entity
+  id: ModuleSwarmerCombat
+  parent: [ BaseModuleSwarmer, BaseProviderBorgModule ]
+  description: Боевой модуль свармеров
+  suffix: BORK (Swarmer)
+  name: Боевой  S.W.A.R.M модуль 
+  components:
+  - type: Sprite
+    sprite: _SpaceCats/Swarmers/MOB-MODULS/SwarmerModul.rsi
+    layers:
+    - state: Swarmer
+    - state: Combat-icon
+  - type: ItemBorgModule
+    items:
+    - WeaponLaserSwarmer
+    - SwarmPortalGenerator

@@ -152,7 +152,7 @@ namespace Content.Server.Flash
             }
         }
 
-        public void FlashArea(Entity<FlashComponent?> source, EntityUid? user, float range, float duration, float slowTo = 0.8f, bool displayPopup = false, float probability = 1f, SoundSpecifier? sound = null)
+        public void FlashArea(Entity<FlashComponent?> source, EntityUid? user, float range, float duration, float slowTo = 0.8f, bool displayPopup = false, float probability = 1f, SoundSpecifier? sound = null, bool stun = false, float stunDuration = 1f) // cats stun-meta
         {
             var transform = Transform(source);
             var mapPosition = _transform.GetMapCoordinates(transform);
@@ -174,7 +174,7 @@ namespace Content.Server.Flash
                     continue;
 
                 // They shouldn't have flash removed in between right?
-                Flash(entity, user, source, duration, slowTo, displayPopup);
+                Flash(entity, user, source, duration, slowTo, displayPopup, melee: stun, stunDuration: TimeSpan.FromSeconds(stunDuration)); // cats stan-meta
             }
 
             _audio.PlayPvs(sound, source, AudioParams.Default.WithVolume(1f).WithMaxDistance(3f));

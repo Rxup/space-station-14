@@ -3,7 +3,7 @@
   parent: BaseWeaponLauncher
   id: WeaponLauncherGL70
   suffix: Гранатомёт
-  description: The GL-70 is the standard grenade launcher used by the Earth Army for area denial and big explosions.
+  description: GL-70 - это стандартный гранатомет, используемый армией Земли для поражения местности и проведения мощных взрывов.
   components:
   - type: Sprite
     sprite: Backmen/Objects/Weapons/Gunsx64/Launchers/gl-64/big.rsi
@@ -47,7 +47,7 @@
   parent: BaseWeaponPistol
   id: WeaponLauncherM81
   suffix: Гранатомёт
-  description: A lightweight single-shot grenade launcher used by the UEG for area blockades and large explosions or riot police units.
+  description: Легкий однозарядный гранатомет, используемый UEG для блокады территорий и проведения крупных взрывов, а также подразделениями спецназа.
   components:
   - type: Sprite
     sprite: Backmen/Objects/Weapons/Gunsx64/Launchers/m81.rsi
@@ -80,7 +80,7 @@
   parent: BaseWeaponLauncher
   id: WeaponLauncherRL5
   suffix: Ракетомёт
-  description: The RL-5 is the primary anti-armor used around the galaxy. Used to take out light-tanks and enemy structures, the RL-5 rocket launcher is a dangerous weapon with a variety of combat uses.
+  description: RL-5 - это основное средство защиты от брони, используемое по всей галактике. Ракетная установка RL-5, используемая для уничтожения легких танков и сооружений противника, представляет собой опасное оружие, имеющее множество боевых применений.
   components:
   - type: Sprite
     sprite: Backmen/Objects/Weapons/Gunsx64/Launchers/rpg/big.rsi

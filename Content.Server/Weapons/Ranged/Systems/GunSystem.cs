@@ -3,6 +3,7 @@ using System.Numerics;
 using Content.Server.Cargo.Systems;
 using Content.Server.Interaction;
 using Content.Server.Power.EntitySystems;
+using Content.Server.Mech.Equipment.Components;
 using Content.Server.Stunnable;
 using Content.Server.Weapons.Ranged.Components;
 using Content.Shared.Damage;
@@ -150,8 +151,9 @@ public sealed partial class GunSystem : SharedGunSystem
 
                     // Something like ballistic might want to leave it in the container still
                     if (!cartridge.DeleteOnSpawn && !Containers.IsEntityInContainer(ent!.Value))
+                    {
                         EjectCartridge(ent.Value, angle);
-
+                    }
                     Dirty(ent!.Value, cartridge);
                     break;
                 // Ammo shoots itself
