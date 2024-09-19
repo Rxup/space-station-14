@@ -1,0 +1,6 @@
+- type: entity
+  id: ExplosionEffectGrenadeShockWave
+  components:
+  - type: TimedDespawn
+    lifetime: 0.5
+  - type: RMCExplosionShockWave
