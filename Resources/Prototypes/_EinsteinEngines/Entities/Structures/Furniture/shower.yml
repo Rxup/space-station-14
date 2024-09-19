@@ -1,6 +1,6 @@
 - type: entity
-  name: shower
   id: Shower
+  name: shower
   description: A shower, complete with bluespace water.
   placement:
     mode: SnapgridCenter
@@ -8,7 +8,7 @@
     - Wallmount
   components:
     - type: Sprite
-      sprite: Structures/Furniture/shower.rsi
+      sprite: _EinsteinEngines/Structures/Furniture/shower.rsi
       drawdepth: WallMountedItems
       layers:
       - state: shower
@@ -24,11 +24,11 @@
       canCollide: false
     - type: InteractionOutline
     - type: Damageable
+      damageContainer: StructuralInorganic
+      damageModifierSet: StructuralMetallic
     - type: Construction
       graph: Shower
       node: shower
-      damageContainer: Inorganic
-      damageModifierSet: Metallic
     - type: Destructible
       thresholds:
       - trigger:
@@ -43,4 +43,3 @@
           ShowerVisualState.Off:
             On: { state: shower_on }
             Off: { state: shower }
-
