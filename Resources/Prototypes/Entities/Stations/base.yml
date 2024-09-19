@@ -53,9 +53,11 @@
             - type: TradeStation
           paths:
             - /Maps/Shuttles/trading_outpost.yml
+        # backmen mining start
         mining: !type:GridSpawnGroup
           paths:
           - /Maps/Shuttles/mining.yml
+        # backmen mining end
         # Spawn last
         ruins: !type:GridSpawnGroup
           hide: true

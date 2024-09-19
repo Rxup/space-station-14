@@ -137,8 +137,8 @@
       - AirTank
       - GasAnalyzer
       - UtilityBelt
-      - Fulton
-      - FultonBeacon
+      - Fulton # backmen
+      - FultonBeacon # backmen
       - Pickaxe
       - ModularReceiver
       - AppraisalTool

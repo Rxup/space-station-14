@@ -17,7 +17,7 @@
     - id: RubberStampApproved
     - id: RubberStampDenied
     - id: RubberStampQm
-    - id: SalvageShuttleConsoleCircuitboard
+    - id: SalvageShuttleConsoleCircuitboard # backmen
     - id: PrinterDocFlatpack # Corvax-Printer
 
 - type: entity
