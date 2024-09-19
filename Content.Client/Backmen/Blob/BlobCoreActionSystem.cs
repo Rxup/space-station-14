@@ -4,12 +4,11 @@ using Content.Shared.Backmen.Blob;
 using Robust.Client.Audio;
 using Robust.Shared.Prototypes;
 
-namespace Content.Client.Backmen;
+namespace Content.Client.Backmen.Blob;
 
 public sealed class BlobCoreActionSystem : SharedBlobCoreActionSystem
 {
     [Dependency] private readonly MeleeWeaponSystem _meleeWeaponSystem = default!;
-    [Dependency] private readonly SharedTransformSystem _transform = default!;
 
     public override void Initialize()
     {
@@ -23,10 +22,9 @@ public sealed class BlobCoreActionSystem : SharedBlobCoreActionSystem
 
     private void OnBlobAttack(BlobAttackEvent ev)
     {
-        var user = GetEntity(ev.BlobEntity);
-        if(!user.IsValid())
+        if(!TryGetEntity(ev.BlobEntity, out var user))
             return;
 
-        _meleeWeaponSystem.DoLunge(user, user, Angle.Zero, ev.Position, Animation, false);
+        _meleeWeaponSystem.DoLunge(user.Value, user.Value, Angle.Zero, ev.Position, Animation, false);
     }
 }

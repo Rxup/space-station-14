@@ -5,10 +5,13 @@ using System.Threading.Tasks;
 using Content.Server.Backmen.Blob.Components;
 using Content.Shared.Backmen.Blob.Components;
 using Content.Shared.Destructible;
+using Content.Shared.Mobs.Components;
+using Content.Shared.Mobs.Systems;
 using Robust.Server.GameObjects;
 using Robust.Shared.CPUJob.JobQueues;
 using Robust.Shared.CPUJob.JobQueues.Queues;
 using Robust.Shared.Map.Components;
+using Robust.Shared.Player;
 using Robust.Shared.Random;
 using Robust.Shared.Timing;
 
@@ -19,8 +22,8 @@ public sealed class BlobNodeSystem : EntitySystem
     [Dependency] private readonly EntityLookupSystem _lookup = default!;
     [Dependency] private readonly MapSystem _map = default!;
     [Dependency] private readonly IRobustRandom _random = default!;
-    [Dependency] private readonly IGameTiming _gameTiming = default!;
     [Dependency] private readonly BlobCoreSystem _blobCoreSystem = default!;
+    [Dependency] private readonly MobStateSystem _mob = default!;
 
     private EntityQuery<BlobTileComponent> _tileQuery;
 
@@ -45,10 +48,16 @@ public sealed class BlobNodeSystem : EntitySystem
             RaiseLocalEvent(special, evSpecial);
         }
 
-        var evMob = new BlobMobGetPulseEvent();
         foreach (var lookupUid in _lookup.GetEntitiesInRange<BlobMobComponent>(xform.Coordinates, ent.Comp.PulseRadius))
         {
+            if(_mob.IsDead(lookupUid))
+                continue;
+            var evMob = new BlobMobGetPulseEvent
+            {
+                BlobEntity = GetNetEntity(lookupUid),
+            };
             RaiseLocalEvent(lookupUid, evMob);
+            RaiseNetworkEvent(evMob, Filter.Pvs(lookupUid));
         }
     }
 
@@ -152,18 +161,21 @@ public sealed class BlobNodeSystem : EntitySystem
 
         _pulseJobQueue.Process();
 
-        var blobNodeQuery = EntityQueryEnumerator<BlobNodeComponent>();
-        while (blobNodeQuery.MoveNext(out var ent, out var comp))
+        var blobNodeQuery = EntityQueryEnumerator<BlobNodeComponent, BlobTileComponent>();
+        while (blobNodeQuery.MoveNext(out var ent, out var comp, out var blobTileComponent))
         {
-            if (_gameTiming.CurTime < comp.NextPulse)
+            comp.NextPulse += frameTime;
+            if (comp.PulseFrequency > comp.NextPulse)
                 continue;
 
-            if (_tileQuery.TryGetComponent(ent, out var blobTileComponent) && blobTileComponent.Core != null)
-            {
-                _pulseJobQueue.EnqueueJob(new BlobPulse(this,(ent, comp), PulseJobTime));
-            }
+            comp.NextPulse -= comp.PulseFrequency;
 
-            comp.NextPulse = _gameTiming.CurTime + TimeSpan.FromSeconds(comp.PulseFrequency);
+            if (blobTileComponent.Core == null)
+            {
+                QueueDel(ent);
+                continue;
+            }
+            _pulseJobQueue.EnqueueJob(new BlobPulse(this,(ent, comp), PulseJobTime));
         }
     }
 }

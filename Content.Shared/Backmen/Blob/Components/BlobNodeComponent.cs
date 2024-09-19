@@ -1,4 +1,5 @@
 using Robust.Shared.GameStates;
+using Robust.Shared.Serialization;
 
 namespace Content.Shared.Backmen.Blob.Components;
 
@@ -11,7 +12,7 @@ public sealed partial class BlobNodeComponent : Component
     [DataField]
     public float PulseRadius = 4f;
 
-    public TimeSpan NextPulse = TimeSpan.Zero;
+    public float NextPulse = 0;
 
     [ViewVariables(VVAccess.ReadOnly), AutoNetworkedField]
     public EntityUid? BlobResource = null;
@@ -30,7 +31,11 @@ public sealed class BlobTileGetPulseEvent : HandledEntityEventArgs
 
 }
 
-public sealed class BlobMobGetPulseEvent : EntityEventArgs;
+[Serializable, NetSerializable]
+public sealed partial class BlobMobGetPulseEvent : EntityEventArgs
+{
+    public NetEntity BlobEntity { get; set; }
+}
 
 /// <summary>
 /// Event raised on all special tiles of Blob Node on pulse.

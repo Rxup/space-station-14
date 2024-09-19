@@ -13,6 +13,7 @@ using Robust.Server.Audio;
 using Robust.Server.GameObjects;
 using Robust.Shared.Audio;
 using Robust.Shared.Map.Components;
+using Robust.Shared.Player;
 using Robust.Shared.Random;
 
 namespace Content.Server.Backmen.Blob;
@@ -43,11 +44,10 @@ public sealed class BlobTileSystem : SharedBlobTileSystem
 
     private void OnTerminate(EntityUid uid, BlobTileComponent component, EntityTerminatingEvent args)
     {
-        if (component.Core == null ||
-            TerminatingOrDeleted(component.Core.Value))
+        if (TerminatingOrDeleted(component.Core))
             return;
 
-        component.Core.Value.Comp.BlobTiles.Remove(uid);
+        component.Core!.Value.Comp.BlobTiles.Remove(uid);
     }
 
     private void OnFlashAttempt(EntityUid uid, BlobTileComponent component, FlashAttemptEvent args)
@@ -63,7 +63,10 @@ public sealed class BlobTileSystem : SharedBlobTileSystem
 
     private void OnDestruction(EntityUid uid, BlobTileComponent component, DestructionEventArgs args)
     {
-        if (component.Core == null || !_blobCoreQuery.TryComp(component.Core.Value, out var blobCoreComponent))
+        if (
+            TerminatingOrDeleted(component.Core) ||
+            !_blobCoreQuery.TryComp(component.Core, out var blobCoreComponent)
+            )
             return;
 
         if (blobCoreComponent.CurrentChem == BlobChemType.ElectromagneticWeb)
@@ -141,6 +144,8 @@ public sealed class BlobTileSystem : SharedBlobTileSystem
             {
                 if (!HasComp<DestructibleComponent>(ent) || !HasComp<ConstructionComponent>(ent))
                     continue;
+
+                DoLunge(uid, ent);
                 _damageableSystem.TryChangeDamage(ent, core.Comp.ChemDamageDict[core.Comp.CurrentChem]);
                 _audioSystem.PlayPvs(core.Comp.AttackSound, uid, AudioParams.Default);
                 args.Handled = true;
@@ -451,5 +456,17 @@ public sealed class BlobTileSystem : SharedBlobTileSystem
             BlobTileType.Resource => node.Comp.BlobResource == null || TerminatingOrDeleted(node.Comp.BlobResource),
             _ => false
         };
+    }
+
+    public void DoLunge(EntityUid from, EntityUid target)
+    {
+        if(!TransformQuery.TryComp(from, out var userXform))
+            return;
+
+        var targetPos = _transform.GetWorldPosition(target);
+        var localPos = Vector2.Transform(targetPos, _transform.GetInvWorldMatrix(userXform));
+        localPos = userXform.LocalRotation.RotateVec(localPos);
+
+        RaiseNetworkEvent(new BlobAttackEvent(GetNetEntity(from), GetNetEntity(target), localPos), Filter.Pvs(from));
     }
 }

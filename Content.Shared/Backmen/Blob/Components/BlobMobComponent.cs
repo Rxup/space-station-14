@@ -1,9 +1,10 @@
 using Content.Shared.Damage;
 using Content.Shared.FixedPoint;
+using Robust.Shared.GameStates;
 
-namespace Content.Server.Backmen.Blob.Components;
+namespace Content.Shared.Backmen.Blob.Components;
 
-[RegisterComponent]
+[RegisterComponent, NetworkedComponent]
 public sealed partial class BlobMobComponent : Component
 {
     [ViewVariables(VVAccess.ReadOnly), DataField("healthOfPulse")]

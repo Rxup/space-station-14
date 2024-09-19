@@ -48,6 +48,7 @@ public sealed class BlobCoreActionSystem : SharedBlobCoreActionSystem
     [Dependency] private readonly DamageableSystem _damageableSystem = default!;
     [Dependency] private readonly MapSystem _mapSystem = default!;
     [Dependency] private readonly IMapManager _mapManager = default!;
+    [Dependency] private readonly BlobTileSystem _blobTileSystem = default!;
     //[Dependency] private readonly GridFixtureSystem _gridFixture = default!;
 
     private const double ActionJobTime = 0.005;
@@ -252,6 +253,7 @@ public sealed class BlobCoreActionSystem : SharedBlobCoreActionSystem
         if (!_blobCoreSystem.TryUseAbility(ent, ent.Comp.AttackCost, Transform(target).Coordinates))
             return;
 
+        _blobTileSystem.DoLunge(from, target);
         _damageableSystem.TryChangeDamage(target, ent.Comp.ChemDamageDict[ent.Comp.CurrentChem]);
 
         switch (ent.Comp.CurrentChem)
@@ -278,14 +280,6 @@ public sealed class BlobCoreActionSystem : SharedBlobCoreActionSystem
         }
 
         ent.Comp.NextAction = _gameTiming.CurTime + TimeSpan.FromSeconds(Math.Abs(ent.Comp.AttackRate));
-
-        var userXform = Transform(from);
-
-        var targetPos = _transform.GetWorldPosition(target);
-        var localPos = Vector2.Transform(targetPos, _transform.GetInvWorldMatrix(userXform));
-        localPos = userXform.LocalRotation.RotateVec(localPos);
-
-        RaiseNetworkEvent(new BlobAttackEvent(GetNetEntity(from), GetNetEntity(target), localPos), Filter.Pvs(from));
         _audioSystem.PlayPvs(ent.Comp.AttackSound, from, AudioParams.Default);
     }
 
