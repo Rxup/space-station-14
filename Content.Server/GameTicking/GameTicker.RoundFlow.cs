@@ -453,8 +453,6 @@ namespace Content.Server.GameTicking
             return text;
         }
 
-        private const int EmbedLimit = 2000;
-
         private string GenerateRoundEndSummary(string gamemodeTitle, string roundEndText, RoundEndMessageEvent.RoundEndPlayerInfo[] playerInfoArray)
         {
             var roundEndTextMarkdown = ConvertBBCodeToMarkdown(roundEndText);
@@ -479,40 +477,15 @@ namespace Content.Server.GameTicking
 
             int totalPlayers = groupedPlayers.Count;
 
-            stringBuilder.AppendLine("```sql");
-            stringBuilder.AppendLine($"Всего было игроков: {totalPlayers}\n");
-            stringBuilder.AppendLine("Игроки:\n");
+            stringBuilder.AppendLine($"**Всего было игроков**: {totalPlayers}\n");
+            stringBuilder.AppendLine($"**Игроки**:\n");
 
             foreach (var playerInfo in groupedPlayers)
             {
-                stringBuilder.AppendLine($"{playerInfo.PlayerOOCName} '{playerInfo.PlayerICName}' в роли: {playerInfo.Roles}");
+                stringBuilder.AppendLine($"*{playerInfo.PlayerOOCName}* '**{playerInfo.PlayerICName}**' в роли: {playerInfo.Roles}");
             }
 
-            stringBuilder.AppendLine("```");
-        
-            return SplitIntoEmbeds(stringBuilder.ToString());
-        }
-        
-        private string[] SplitIntoEmbeds(string fullText)
-        {
-            var embeds = new List<string>();
-        
-            while (fullText.Length > EmbedLimit)
-            {
-                int splitIndex = fullText.LastIndexOf('\n', EmbedLimit);
-                if (splitIndex == -1) splitIndex = EmbedLimit;
-        
-                embeds.Add(fullText.Substring(0, splitIndex));
-        
-                fullText = fullText.Substring(splitIndex).TrimStart();
-            }
-        
-            if (fullText.Length > 0)
-            {
-                embeds.Add(fullText);
-            }
-        
-            return embeds.ToArray();
+            return stringBuilder.ToString();
         }
 
         private async void SendRoundEndDiscordMessage(string roundEndSummary)
