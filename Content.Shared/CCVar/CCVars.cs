@@ -1754,7 +1754,7 @@ namespace Content.Shared.CCVar
         /// Goes from 0 (no recoil at all) to 1 (regular amounts of recoil)
         /// </summary>
         public static readonly CVarDef<float> ScreenShakeIntensity =
-            CVarDef.Create("accessibility.screen_shake_intensity", 1f, CVar.CLIENTONLY | CVar.ARCHIVE);
+            CVarDef.Create("accessibility.screen_shake_intensity", 0f, CVar.CLIENTONLY | CVar.ARCHIVE);
 
         /// <summary>
         /// A generic toggle for various visual effects that are color sensitive.
