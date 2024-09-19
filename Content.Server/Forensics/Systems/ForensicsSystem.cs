@@ -31,7 +31,7 @@ namespace Content.Server.Forensics
         public override void Initialize()
         {
             SubscribeLocalEvent<FingerprintComponent, ContactInteractionEvent>(OnInteract);
-            SubscribeLocalEvent<FiberComponent, MapInitEvent>(OnFiberInit);
+            SubscribeLocalEvent<FiberComponent, MapInitEvent>(OnFiberInit); // Delta-V
             SubscribeLocalEvent<FingerprintComponent, MapInitEvent>(OnFingerprintInit);
             SubscribeLocalEvent<DnaComponent, MapInitEvent>(OnDNAInit);
 
@@ -63,7 +63,7 @@ namespace Content.Server.Forensics
             ApplyEvidence(uid, args.Other);
         }
 
-        private void OnFiberInit(EntityUid uid, FiberComponent component, MapInitEvent args)
+        private void OnFiberInit(EntityUid uid, FiberComponent component, MapInitEvent args) // Delta-V
         {
             component.Fiberprint = GenerateFingerprint(length: 7);
         }
@@ -265,9 +265,9 @@ namespace Content.Server.Forensics
                 targetComp.Residues.Add(string.IsNullOrEmpty(residue.ResidueColor) ? Loc.GetString("forensic-residue", ("adjective", residue.ResidueAdjective)) : Loc.GetString("forensic-residue-colored", ("color", residue.ResidueColor), ("adjective", residue.ResidueAdjective)));
         }
 
-        public string GenerateFingerprint(int length = 16)
+        public string GenerateFingerprint(int length = 16) // Delta-V EDIT
         {
-            var fingerprint = new byte[Math.Clamp(length, 0, 255)];
+            var fingerprint = new byte[Math.Clamp(length, 0, 255)]; // Delta-V EDIT
             _random.NextBytes(fingerprint);
             return Convert.ToHexString(fingerprint);
         }
@@ -294,12 +294,12 @@ namespace Content.Server.Forensics
             if (_inventory.TryGetSlotEntity(user, "gloves", out var gloves))
             {
                 if (TryComp<FiberComponent>(gloves, out var fiber) && !string.IsNullOrEmpty(fiber.FiberMaterial))
-                {
+                { // Delta-V EDIT START
                     var fiberLocale = string.IsNullOrEmpty(fiber.FiberColor)
                         ? Loc.GetString("forensic-fibers", ("material", fiber.FiberMaterial))
                         : Loc.GetString("forensic-fibers-colored", ("color", fiber.FiberColor), ("material", fiber.FiberMaterial));
                     component.Fibers.Add(fiberLocale + " ; " + fiber.Fiberprint);
-                }
+                } // Delta-V EDIT END
 
                 if (HasComp<FingerprintMaskComponent>(gloves))
                     return;
