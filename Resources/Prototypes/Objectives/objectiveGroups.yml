@@ -6,20 +6,20 @@
     TraitorObjectiveGroupKillSyndicateFactions: 1
     TraitorObjectiveGroupStateSyndicateFactions: 1
     TraitorObjectiveGroupSocialSyndicateFactions: 1
-    TraitorObjectiveGroupNukieDisk: 1  #Corvax
+    #TraitorObjectiveGroupNukieDisk: 1  #Corvax
+
 - type: weightedRandom
   id: TraitorObjectiveGroupSteal
   weights:
     CaptainIDStealObjective: 1
     CMOHyposprayStealObjective: 1
     CMOCrewMonitorStealObjective: 1
-    #NukeDiskStealObjective: 1 #Corvax
+    NukeDiskStealObjective: 1 #Corvax
     RDHardsuitStealObjective: 1
     MagbootsStealObjective: 1
     CorgiMeatStealObjective: 1
     ClipboardStealObjective: 1
     CaptainGunStealObjective: 0.5
-    HosGunStealObjective: 0.5
     CaptainJetpackStealObjective: 0.5
     HandTeleporterStealObjective: 0.5
     EnergyShotgunStealObjective: 0.5

@@ -18,6 +18,10 @@
         conditions:
         - !type:OrganType
           type: Animal
+      - !type:Oxygenate # Ataraxia
+        conditions:
+        - !type:OrganType
+          type: AnthroAnimal
       - !type:Oxygenate
         conditions:
         - !type:OrganType
