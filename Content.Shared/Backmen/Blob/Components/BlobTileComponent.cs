@@ -46,14 +46,16 @@ public sealed partial class BlobTileComponent : Component
 [Serializable]
 public enum BlobTileType : byte
 {
+    Invalid, // invalid default value 0
     Normal,
     Strong,
     Reflective,
     Resource,
+    /*
     Storage,
     Turret,
+    */
     Node,
     Factory,
     Core,
-    Invalid,
 }

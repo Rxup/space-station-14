@@ -94,7 +94,7 @@ public sealed class BlobTileSystem : SharedBlobTileSystem
             _damageableSystem.TryChangeDamage(uid, component.HealthOfPulse);
         }
 
-        if (!args.Explain)
+        if (!args.Handled)
             return;
 
         var xform = Transform(uid);
@@ -143,7 +143,7 @@ public sealed class BlobTileSystem : SharedBlobTileSystem
                     continue;
                 _damageableSystem.TryChangeDamage(ent, core.Comp.ChemDamageDict[core.Comp.CurrentChem]);
                 _audioSystem.PlayPvs(core.Comp.AttackSound, uid, AudioParams.Default);
-                args.Explain = true;
+                args.Handled = true;
                 return;
             }
 
@@ -435,4 +435,21 @@ public sealed class BlobTileSystem : SharedBlobTileSystem
     //         EntityManager.SpawnEntity(component.BlobBorder, xform.Coordinates);
     //     }
     // }
+    public void SwapSpecials(Entity<BlobNodeComponent> from, Entity<BlobNodeComponent> to)
+    {
+        (from.Comp.BlobFactory, to.Comp.BlobFactory) = (to.Comp.BlobFactory, from.Comp.BlobFactory);
+        (from.Comp.BlobResource, to.Comp.BlobResource) = (to.Comp.BlobResource, from.Comp.BlobResource);
+        Dirty(from);
+        Dirty(to);
+    }
+
+    public bool IsEmptySpecial(Entity<BlobNodeComponent> node, BlobTileType tile)
+    {
+        return tile switch
+        {
+            BlobTileType.Factory => node.Comp.BlobFactory == null || TerminatingOrDeleted(node.Comp.BlobFactory),
+            BlobTileType.Resource => node.Comp.BlobResource == null || TerminatingOrDeleted(node.Comp.BlobResource),
+            _ => false
+        };
+    }
 }

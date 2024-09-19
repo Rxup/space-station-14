@@ -1,4 +1,5 @@
 ﻿using System.Linq;
+using System.Numerics;
 using System.Threading;
 using System.Threading.Tasks;
 using Content.Server.Atmos.Components;
@@ -8,6 +9,7 @@ using Content.Server.Destructible;
 using Content.Server.Emp;
 using Content.Server.Explosion.EntitySystems;
 using Content.Server.Popups;
+using Content.Shared.Backmen.Blob;
 using Content.Shared.Backmen.Blob.Components;
 using Content.Shared.Backmen.CCVar;
 using Content.Shared.Damage;
@@ -23,13 +25,14 @@ using Robust.Shared.CPUJob.JobQueues;
 using Robust.Shared.CPUJob.JobQueues.Queues;
 using Robust.Shared.Map;
 using Robust.Shared.Map.Components;
+using Robust.Shared.Player;
 using Robust.Shared.Random;
 using Robust.Shared.Timing;
 using Robust.Shared.Utility;
 
 namespace Content.Server.Backmen.Blob;
 
-public sealed class BlobCoreActionSystem : EntitySystem
+public sealed class BlobCoreActionSystem : SharedBlobCoreActionSystem
 {
     [Dependency] private readonly PopupSystem _popup = default!;
     [Dependency] private readonly IConfigurationManager _cfg = default!;
@@ -44,6 +47,7 @@ public sealed class BlobCoreActionSystem : EntitySystem
     [Dependency] private readonly SharedTransformSystem _transform = default!;
     [Dependency] private readonly DamageableSystem _damageableSystem = default!;
     [Dependency] private readonly MapSystem _mapSystem = default!;
+    [Dependency] private readonly IMapManager _mapManager = default!;
     //[Dependency] private readonly GridFixtureSystem _gridFixture = default!;
 
     private const double ActionJobTime = 0.005;
@@ -51,6 +55,7 @@ public sealed class BlobCoreActionSystem : EntitySystem
 
     private bool _canGrowInSpace = true;
     private EntityQuery<BlobTileComponent> _tileQuery;
+    private EntityQuery<BlobCoreComponent> _blobCoreQuery;
 
     public override void Initialize()
     {
@@ -61,6 +66,7 @@ public sealed class BlobCoreActionSystem : EntitySystem
 
         Subs.CVar(_cfg, CCVars.BlobCanGrowInSpace, value => _canGrowInSpace = value, true);
         _tileQuery = GetEntityQuery<BlobTileComponent>();
+        _blobCoreQuery = GetEntityQuery<BlobCoreComponent>();
     }
 
     public override void Update(float frameTime)
@@ -90,7 +96,7 @@ public sealed class BlobCoreActionSystem : EntitySystem
         if (TerminatingOrDeleted(observer) || TerminatingOrDeleted(core))
             return;
 
-        var location = args.ClickLocation.AlignWithClosestGridTile();
+        var location = args.ClickLocation.AlignWithClosestGridTile(entityManager: EntityManager, mapManager: _mapManager);
 
         if (!location.IsValid(EntityManager))
             return;
@@ -207,7 +213,7 @@ public sealed class BlobCoreActionSystem : EntitySystem
             BlobTileType.Normal,
             location);
 
-        core.Comp.NextAction = _gameTiming.CurTime + TimeSpan.FromSeconds(core.Comp.GrowRate);
+        core.Comp.NextAction = _gameTiming.CurTime + TimeSpan.FromSeconds(Math.Abs(core.Comp.GrowRate));
     }
 
     private EntityUid? FindNearBlobTile(EntityCoordinates coords, Entity<MapGridComponent> grid)
@@ -229,7 +235,7 @@ public sealed class BlobCoreActionSystem : EntitySystem
                 .FirstOrNull();
 
             // Don't count dead tiles
-            if (uid == null || Comp<BlobTileComponent>(uid.Value).Core == null)
+            if (uid == null || _tileQuery.Comp(uid.Value).Core == null)
                 continue;
 
             return uid;
@@ -271,17 +277,26 @@ public sealed class BlobCoreActionSystem : EntitySystem
             }
         }
 
-        ent.Comp.NextAction = _gameTiming.CurTime + TimeSpan.FromSeconds(ent.Comp.AttackRate);
+        ent.Comp.NextAction = _gameTiming.CurTime + TimeSpan.FromSeconds(Math.Abs(ent.Comp.AttackRate));
+
+        var userXform = Transform(from);
+
+        var targetPos = _transform.GetWorldPosition(target);
+        var localPos = Vector2.Transform(targetPos, _transform.GetInvWorldMatrix(userXform));
+        localPos = userXform.LocalRotation.RotateVec(localPos);
+
+        RaiseNetworkEvent(new BlobAttackEvent(GetNetEntity(from), GetNetEntity(target), localPos), Filter.Pvs(from));
         _audioSystem.PlayPvs(ent.Comp.AttackSound, from, AudioParams.Default);
     }
 
+    private static readonly TimeSpan GCd = TimeSpan.FromMilliseconds(333); // GCD?
     private void OnInteract(EntityUid uid, BlobObserverComponent observerComponent, AfterInteractEvent args)
     {
         if (args.Target == args.User)
             return;
 
         if (observerComponent.Core == null ||
-            !TryComp<BlobCoreComponent>(observerComponent.Core.Value, out var blobCoreComponent))
+            !_blobCoreQuery.TryComp(observerComponent.Core.Value, out var blobCoreComponent))
             return;
 
         if (_gameTiming.CurTime < blobCoreComponent.NextAction)
@@ -292,6 +307,7 @@ public sealed class BlobCoreActionSystem : EntitySystem
             return;
 
         args.Handled = true;
+        blobCoreComponent.NextAction = _gameTiming.CurTime + GCd;
 
         _actionJobQueue.EnqueueJob(new BlobMouseActionProcess(
             (uid,observerComponent),

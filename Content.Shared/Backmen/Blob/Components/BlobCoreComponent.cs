@@ -1,4 +1,5 @@
 using Content.Shared.Damage;
+using Content.Shared.Explosion;
 using Content.Shared.FixedPoint;
 using Content.Shared.Roles;
 using Robust.Shared.Audio;
@@ -26,9 +27,6 @@ public sealed partial class BlobCoreComponent : Component
     [ViewVariables]
     public TimeSpan NextAction = TimeSpan.Zero;
 
-    [ViewVariables]
-    public Dictionary<BlobTileType, int> AllTileCounts = [];
-
     #endregion
 
     #region Balance
@@ -37,10 +35,10 @@ public sealed partial class BlobCoreComponent : Component
     public FixedPoint2 CoreBlobTotalHealth = 400;
 
     [DataField]
-    public float AttackRate = 0.8f;
+    public float AttackRate = 0.5f;
 
     [DataField]
-    public float GrowRate = 0.4f;
+    public float GrowRate = 0.1f;
 
     [DataField]
     public bool CanSplit = true;
@@ -50,7 +48,7 @@ public sealed partial class BlobCoreComponent : Component
     #region Damage Specifiers
 
     [ViewVariables(VVAccess.ReadWrite), AutoNetworkedField]
-    public Dictionary<BlobChemType, DamageSpecifier> ChemDamageDict { get; set; } = new()
+    public BlobChemDamage ChemDamageDict { get; set; } = new()
     {
         {
             BlobChemType.BlazingOil, new DamageSpecifier()
@@ -111,7 +109,7 @@ public sealed partial class BlobCoreComponent : Component
     #region Blob Chems
 
     [ViewVariables]
-    public readonly Dictionary<BlobChemType, Color> ChemСolors = new()
+    public readonly BlobChemColors ChemСolors = new()
     {
         {BlobChemType.ReactiveSpines, Color.FromHex("#637b19")},
         {BlobChemType.BlazingOil, Color.FromHex("#937000")},
@@ -137,7 +135,7 @@ public sealed partial class BlobCoreComponent : Component
     public FixedPoint2 AttackCost = 4;
 
     [DataField]
-    public Dictionary<BlobTileType, FixedPoint2> BlobTileCosts = new()
+    public BlobTileCosts BlobTileCosts = new()
     {
         {BlobTileType.Core, 0},
         {BlobTileType.Invalid, 0},
@@ -147,8 +145,9 @@ public sealed partial class BlobCoreComponent : Component
         {BlobTileType.Reflective, 15},
         {BlobTileType.Strong, 15},
         {BlobTileType.Normal, 6},
+        /*
         {BlobTileType.Storage, 50},
-        {BlobTileType.Turret, 75},
+        {BlobTileType.Turret, 75},*/
     };
 
     [DataField]
@@ -178,7 +177,7 @@ public sealed partial class BlobCoreComponent : Component
     #region Prototypes
 
     [DataField]
-    public Dictionary<BlobTileType, ProtoId<EntityPrototype>> TilePrototypes = new()
+    public BlobTileProto TilePrototypes = new()
     {
         {BlobTileType.Resource, "ResourceBlobTile"},
         {BlobTileType.Factory, "FactoryBlobTile"},
@@ -186,6 +185,7 @@ public sealed partial class BlobCoreComponent : Component
         {BlobTileType.Reflective, "ReflectiveBlobTile"},
         {BlobTileType.Strong, "StrongBlobTile"},
         {BlobTileType.Normal, "NormalBlobTile"},
+        {BlobTileType.Invalid, "NormalBlobTile"}, // wtf
         //{BlobTileType.Storage, "StorageBlobTile"},
         //{BlobTileType.Turret, ""},
         {BlobTileType.Core, "CoreBlobTile"},
@@ -195,13 +195,13 @@ public sealed partial class BlobCoreComponent : Component
     public List<ProtoId<EntityPrototype>> ActionPrototypes = [];
 
     [DataField]
-    public string BlobExplosive = "Blob";
+    public ProtoId<ExplosionPrototype> BlobExplosive = "Blob";
 
-    [DataField(customTypeSerializer: typeof(PrototypeIdSerializer<EntityPrototype>))]
-    public string ObserverBlobPrototype = "MobObserverBlob";
+    [DataField]
+    public EntProtoId<BlobObserverComponent> ObserverBlobPrototype = "MobObserverBlob";
 
-    [DataField(customTypeSerializer: typeof(PrototypeIdSerializer<AntagPrototype>))]
-    public string AntagBlobPrototypeId = "Blob";
+    [DataField]
+    public ProtoId<AntagPrototype> AntagBlobPrototypeId = "Blob";
 
     #endregion
 

@@ -18,12 +18,13 @@ public sealed class BlobResourceSystem : EntitySystem
         base.Initialize();
 
         SubscribeLocalEvent<BlobResourceComponent, BlobSpecialGetPulseEvent>(OnPulsed);
+        SubscribeLocalEvent<BlobResourceComponent, BlobNodePulseEvent>(OnPulsed);
 
         _blobTile = GetEntityQuery<BlobTileComponent>();
         _blobCore = GetEntityQuery<BlobCoreComponent>();
     }
 
-    private void OnPulsed(EntityUid uid, BlobResourceComponent component,BlobSpecialGetPulseEvent args)
+    private void OnPulsed<T>(EntityUid uid, BlobResourceComponent component, T args)
     {
         if (!_blobTile.TryComp(uid, out var blobTileComponent) || blobTileComponent.Core == null)
             return;

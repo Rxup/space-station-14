@@ -1,6 +1,8 @@
+using Robust.Shared.GameStates;
+
 namespace Content.Shared.Backmen.Blob.Components;
 
-[RegisterComponent]
+[RegisterComponent, NetworkedComponent, AutoGenerateComponentState]
 public sealed partial class BlobNodeComponent : Component
 {
     [DataField]
@@ -11,19 +13,21 @@ public sealed partial class BlobNodeComponent : Component
 
     public TimeSpan NextPulse = TimeSpan.Zero;
 
-    [DataField]
-    public Dictionary<BlobTileType, EntityUid?> ConnectedTiles = new()
-    {
-        {BlobTileType.Resource, null},
-        {BlobTileType.Factory, null},
-        {BlobTileType.Storage, null},
-        {BlobTileType.Turret, null},
-    };
+    [ViewVariables(VVAccess.ReadOnly), AutoNetworkedField]
+    public EntityUid? BlobResource = null;
+    [ViewVariables(VVAccess.ReadOnly), AutoNetworkedField]
+    public EntityUid? BlobFactory = null;
+    /*
+    [ViewVariables(VVAccess.ReadOnly), AutoNetworkedField]
+    public EntityUid? BlobStorage = null;
+    [ViewVariables(VVAccess.ReadOnly), AutoNetworkedField]
+    public EntityUid? BlobTurret = null;
+    */
 }
 
-public sealed class BlobTileGetPulseEvent : EntityEventArgs
+public sealed class BlobTileGetPulseEvent : HandledEntityEventArgs
 {
-    public bool Explain { get; set; }
+
 }
 
 public sealed class BlobMobGetPulseEvent : EntityEventArgs;
@@ -32,3 +36,4 @@ public sealed class BlobMobGetPulseEvent : EntityEventArgs;
 /// Event raised on all special tiles of Blob Node on pulse.
 /// </summary>
 public sealed class BlobSpecialGetPulseEvent : EntityEventArgs;
+public sealed class BlobNodePulseEvent : EntityEventArgs;

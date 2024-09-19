@@ -46,6 +46,7 @@ public sealed class BlobObserverSystem : SharedBlobObserverSystem
     [Dependency] private readonly ViewSubscriberSystem _viewSubscriberSystem = default!;
     [Dependency] private readonly MapSystem _mapSystem = default!;
     [Dependency] private readonly HandsSystem _hands = default!;
+    [Dependency] private readonly BlobTileSystem _blobTileSystem = default!;
 
     private EntityQuery<BlobTileComponent> _tileQuery;
 
@@ -352,7 +353,7 @@ public sealed class BlobObserverSystem : SharedBlobObserverSystem
         }
 
         QueueDel(blobTile.Value);
-        var newCore = EntityManager.SpawnEntity(blobCoreComponent.TilePrototypes[BlobTileType.Core], args.Target);
+        var newCore = Spawn(blobCoreComponent.TilePrototypes[BlobTileType.Core], args.Target);
 
         blobCoreComponent.CanSplit = false;
         _action.RemoveAction(args.Action);
@@ -428,13 +429,10 @@ public sealed class BlobObserverSystem : SharedBlobObserverSystem
         }
 
         // And then swap their BlobNodeComponents, so they will work properly.
-        var nodeNodeComp = EnsureComp<BlobNodeComponent>(blobTile.Value);
-        var coreNodeComp = EnsureComp<BlobNodeComponent>(uid);
-        var nodeTiles = nodeNodeComp.ConnectedTiles;
-        var coreTiles = coreNodeComp.ConnectedTiles;
-        // Swap them here
-        nodeNodeComp.ConnectedTiles = coreTiles;
-        coreNodeComp.ConnectedTiles = nodeTiles;
+
+        _blobTileSystem.SwapSpecials(
+            (blobTile.Value, EnsureComp<BlobNodeComponent>(blobTile.Value)),
+            (uid, EnsureComp<BlobNodeComponent>(uid)));
 
         args.Handled = true;
     }
@@ -567,8 +565,7 @@ public sealed class BlobObserverSystem : SharedBlobObserverSystem
             return false;
         }
 
-        var connectedTile = node.Value.Comp.ConnectedTiles[newTile];
-        if (connectedTile == null || TerminatingOrDeleted(connectedTile))
+        if (_blobTileSystem.IsEmptySpecial(node.Value, newTile))
             return true;
 
         _popup.PopupCoordinates(Loc.GetString("blob-target-already-connected"),

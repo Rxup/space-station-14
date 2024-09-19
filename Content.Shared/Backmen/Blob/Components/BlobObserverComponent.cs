@@ -38,11 +38,11 @@ public sealed partial class BlobObserverComponent : Component
 
 [Serializable, NetSerializable]
 public sealed class BlobChemSwapBoundUserInterfaceState(
-    Dictionary<BlobChemType, Color> chemList,
+    BlobChemColors chemList,
     BlobChemType selectedId)
     : BoundUserInterfaceState
 {
-    public readonly Dictionary<BlobChemType, Color> ChemList = chemList;
+    public readonly BlobChemColors ChemList = chemList;
     public readonly BlobChemType SelectedChem = selectedId;
 }
 

@@ -30,8 +30,26 @@ public sealed class BlobNodeSystem : EntitySystem
 
         SubscribeLocalEvent<BlobNodeComponent, DestructionEventArgs>(OnDestruction);
         SubscribeLocalEvent<BlobNodeComponent, EntityTerminatingEvent>(OnTerminating);
+        SubscribeLocalEvent<BlobNodeComponent, BlobNodePulseEvent>(OnNodePulse);
 
         _tileQuery = GetEntityQuery<BlobTileComponent>();
+    }
+
+    private void OnNodePulse(Entity<BlobNodeComponent> ent, ref BlobNodePulseEvent args)
+    {
+        var xform = Transform(ent);
+
+        var evSpecial = new BlobSpecialGetPulseEvent();
+        foreach (var special in GetSpecialBlobsTiles(ent))
+        {
+            RaiseLocalEvent(special, evSpecial);
+        }
+
+        var evMob = new BlobMobGetPulseEvent();
+        foreach (var lookupUid in _lookup.GetEntitiesInRange<BlobMobComponent>(xform.Coordinates, ent.Comp.PulseRadius))
+        {
+            RaiseLocalEvent(lookupUid, evMob);
+        }
     }
 
     private const double PulseJobTime = 0.005;
@@ -56,6 +74,19 @@ public sealed class BlobNodeSystem : EntitySystem
         OnDestruction(uid, component, new DestructionEventArgs());
     }
 
+    private IEnumerable<Entity<BlobTileComponent>> GetSpecialBlobsTiles(BlobNodeComponent component)
+    {
+        if (!TerminatingOrDeleted(component.BlobFactory) && _tileQuery.TryComp(component.BlobFactory, out var tileFactoryComponent))
+        {
+
+            yield return (component.BlobFactory.Value, tileFactoryComponent);
+        }
+        if (!TerminatingOrDeleted(component.BlobResource) && _tileQuery.TryComp(component.BlobResource, out var tileResourceComponent))
+        {
+            yield return (component.BlobResource.Value, tileResourceComponent);
+        }
+    }
+
     private void OnDestruction(EntityUid uid, BlobNodeComponent component, DestructionEventArgs args)
     {
         if (!TryComp<BlobTileComponent>(uid, out var tileComp) ||
@@ -63,12 +94,10 @@ public sealed class BlobNodeSystem : EntitySystem
             tileComp.Core == null)
             return;
 
-        foreach (var tile in component.ConnectedTiles)
+        foreach (var tile in GetSpecialBlobsTiles(component))
         {
-            if (!TryComp<BlobTileComponent>(tile.Value, out var tileComponent))
-                continue;
-
-            _blobCoreSystem.RemoveTileWithReturnCost((tile.Value.Value, tileComponent), tileComp.Core.Value);
+            tile.Comp.ReturnCost = false;
+            _blobCoreSystem.RemoveTileWithReturnCost(tile, tile.Comp.Core!.Value);
         }
     }
 
@@ -107,31 +136,14 @@ public sealed class BlobNodeSystem : EntitySystem
 
                 var ev = new BlobTileGetPulseEvent
                 {
-                    Explain = explain
+                    Handled = explain
                 };
                 RaiseLocalEvent(tile, ev);
-                explain = false;
+                explain = false; // WTF?
             }
         }
 
-        foreach (var special in ent.Comp.ConnectedTiles)
-        {
-            if (special.Value == null || TerminatingOrDeleted(special.Value))
-                continue;
-
-            var ev = new BlobSpecialGetPulseEvent();
-            RaiseLocalEvent(special.Value.Value, ev);
-        }
-
-        // Also raise special pulse on itself.
-        // This will help Blob Core work properly
-        RaiseLocalEvent(ent, new BlobSpecialGetPulseEvent());
-
-        foreach (var lookupUid in _lookup.GetEntitiesInRange<BlobMobComponent>(xform.Coordinates, radius))
-        {
-            var ev = new BlobMobGetPulseEvent();
-            RaiseLocalEvent(lookupUid, ev);
-        }
+        RaiseLocalEvent(ent, new BlobNodePulseEvent());
     }
 
     public override void Update(float frameTime)

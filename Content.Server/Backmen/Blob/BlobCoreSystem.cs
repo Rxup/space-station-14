@@ -122,7 +122,7 @@ public sealed class BlobCoreSystem : EntitySystem
             return;
         }
 
-        ConnectBlobTile((uid, blobTileComponent), (uid, component), nodeComponent);
+        ConnectBlobTile((uid, blobTileComponent), (uid, component), (uid, nodeComponent));
 
         var store = EnsureComp<StoreComponent>(uid);
         store.CurrencyWhitelist.Add(BlobMoney);
@@ -352,9 +352,6 @@ public sealed class BlobCoreSystem : EntitySystem
             return false;
         }
 
-        blobCoreComp.AllTileCounts.TryAdd(blobTileComp.BlobTileType, 0);
-        blobCoreComp.AllTileCounts[blobTileComp.BlobTileType]++;
-
         ConnectBlobTile((blobTileUid, blobTileComp), blobCore, nearNode);
         ChangeBlobEntChem(blobTileUid, blobCoreComp.CurrentChem);
 
@@ -372,7 +369,7 @@ public sealed class BlobCoreSystem : EntitySystem
     public void ConnectBlobTile(
         Entity<BlobTileComponent> tile,
         Entity<BlobCoreComponent> core,
-        BlobNodeComponent? node = null)
+        Entity<BlobNodeComponent>? node)
     {
         var coreComp = core.Comp;
         var tileComp = tile.Comp;
@@ -386,15 +383,23 @@ public sealed class BlobCoreSystem : EntitySystem
         if (node == null)
             return;
 
-        if (node.ConnectedTiles.ContainsKey(tile.Comp.BlobTileType))
-            node.ConnectedTiles[tile.Comp.BlobTileType] = tile;
+        switch (tile.Comp.BlobTileType)
+        {
+            case BlobTileType.Factory:
+                node.Value.Comp.BlobFactory = tile;
+                Dirty(node.Value);
+                break;
+            case BlobTileType.Resource:
+                node.Value.Comp.BlobResource = tile;
+                Dirty(node.Value);
+                break;
+        }
     }
 
     public void RemoveBlobTile(Entity<BlobTileComponent> tile, Entity<BlobCoreComponent> core)
     {
         QueueDel(tile);
         core.Comp.BlobTiles.Remove(tile);
-        core.Comp.AllTileCounts[tile.Comp.BlobTileType]--;
     }
 
     private void DestroyBlobCore(Entity<BlobCoreComponent> core, EntityUid? stationUid)
