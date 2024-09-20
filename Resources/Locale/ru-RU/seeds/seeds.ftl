@@ -4,6 +4,9 @@ seeds-noun-spores = спор
 # Seeds
 seeds-wheat-name = пшеница
 seeds-wheat-display-name = стебли пшеницы
+seeds-cucumber-name = огурец
+seeds-noun-seeds = огуречность
+seeds-cucumber-display-name = поляна огурцов
 seeds-oat-name = овёс
 seeds-oat-display-name = стебли овса
 seeds-banana-name = банан

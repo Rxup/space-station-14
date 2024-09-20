@@ -1,0 +1,26 @@
+- type: entity
+  name: cucumber
+  parent: FoodProduceBase
+  id: FoodCucumber
+  description: A fragrant plant with soothing properties.
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 20 ##I'm pretty sure this has to match the total of 100 potency yields
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 10
+        - ReagentId: Vitamin
+          Quantity: 5
+        - ReagentId: Allicin
+          Quantity: 5
+  - type: Sprite
+    sprite: _SpaceCats/Objects/Specific/Hydroponics/cucumber.rsi
+  - type: Produce
+    seedId: cucumber
+  - type: Extractable
+    grindableSolutionName: food
+  - type: Tag
+    tags:
+    - Vegetable
