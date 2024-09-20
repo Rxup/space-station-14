@@ -7,8 +7,6 @@ github="https://github.com/Rxup/space-station-14"
 appeal="https://backmen.ru/discord"
 
 [shuttle]
-cargo = true
-emergency_enabled = true
 arrivals = true
 #arrivals_map = "/Maps/Misc/kosmoport.yml"
 #arrivals_map = "/Maps/Backmen/Etc/terminal.yml"
@@ -55,29 +53,12 @@ time=30
 time=9999999.0
 #time=1200.0
 
-[traitor]
-min_players=5
-max_traitors=6
-players_per_traitor=10
-max_picks=30
-max_difficulty=10
-
-
-[zombie]
-min_players=20
-max_initial_infected=6
-players_per_infected=10
-
-[pirates]
-min_players=30
-max_pirates=15
-players_per_pirate=5
-
 [admin]
 announce_login=false
 announce_logout=false
 see_own_notes = true
 new_player_threshold = 600
+alert.min_players_sharing_connection = 2
 
 
 [adminlogs]
@@ -85,8 +66,6 @@ server_name="main"
 
 [events]
 enabled=true
-ramping_average_chaos=20.0
-ramping_average_end_time=240.0
 
 [server]
 rules_file="RulesBackmen"
