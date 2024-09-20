@@ -44,7 +44,7 @@
   id: TaurSpider
   bodyPart: Tail
   markingCategory: Tail
-  speciesRestriction: [Anthropomorph, Human]
+  speciesRestriction: [Anthropomorph, Human, Arachnid]
   sprites:
     - sprite: _Ataraxia/Mobs/Customization/taur.rsi
       state: taur_drider

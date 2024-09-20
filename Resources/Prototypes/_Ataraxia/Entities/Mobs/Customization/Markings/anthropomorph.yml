@@ -1434,7 +1434,7 @@
     state: tail_husky_overlay
 
 - type: marking
-  id: AnthropomorphTailInsect
+  id: AnthropomorphTailInsected
   bodyPart: Tail
   markingCategory: Tail
   speciesRestriction: [Anthropomorph]
