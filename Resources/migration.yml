@@ -585,3 +585,16 @@ HatBase: null
 
 # 2024-09-13 backmen
 PlastitanedWindow: PlastitaniumWindow
+
+# 2024-09-20 backmen
+HeadVulpkanin: HeadHuman
+TorsoVulpkanin: TorsoHuman
+LeftArmVulpkanin: LeftArmHuman
+RightArmVulpkanin: RightArmHuman
+LeftHandVulpkanin: LeftHandHuman
+RightHandVulpkanin: RightHandHuman
+LeftLegVulpkanin: LeftLegHuman
+RightLegVulpkanin: RightLegHuman
+LeftFootVulpkanin: LeftFootHuman
+RightFootVulpkanin: RightFootHuman
+FoodBakedVulpkaninPlate: RandomFoodMeal
