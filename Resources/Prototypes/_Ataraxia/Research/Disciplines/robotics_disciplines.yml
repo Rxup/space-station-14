@@ -1,0 +1,139 @@
+- type: techDiscipline
+  id: Robotics
+  name: ataraxia-research-discipline-robotics
+  color: "#4B0082"
+  icon:
+    sprite: _Ataraxia/Interface/Misc/research_disciplines.rsi
+    state: robotics
+  tierPrerequisites:
+    1: 0
+
+- type: techDiscipline
+  id: CritterMech
+  name: ataraxia-research-discipline-robotics
+  color: "#4B0082"
+  icon:
+    sprite: _Ataraxia/Interface/Misc/research_disciplines.rsi
+    state: robotics
+  tierPrerequisites:
+    1: 0
+
+- type: techDiscipline
+  id: HONKMech
+  name: ataraxia-research-discipline-robotics
+  color: "#4B0082"
+  icon:
+    sprite: _Ataraxia/Interface/Misc/research_disciplines.rsi
+    state: robotics
+  tierPrerequisites:
+    1: 0
+
+- type: techDiscipline
+  id: RipleyAPLUMech
+  name: ataraxia-research-discipline-robotics
+  color: "#4B0082"
+  icon:
+    sprite: _Ataraxia/Interface/Misc/research_disciplines.rsi
+    state: robotics
+  tierPrerequisites:
+    1: 0
+
+- type: techDiscipline
+  id: MechanizedTreatmentModules
+  name: ataraxia-research-discipline-robotics
+  color: "#4B0082"
+  icon:
+    sprite: _Ataraxia/Interface/Misc/research_disciplines.rsi
+    state: robotics
+  tierPrerequisites:
+    1: 0
+
+- type: techDiscipline
+  id: GrapplingModules
+  name: ataraxia-research-discipline-robotics
+  color: "#4B0082"
+  icon:
+    sprite: _Ataraxia/Interface/Misc/research_disciplines.rsi
+    state: robotics
+  tierPrerequisites:
+    1: 0
+
+- type: techDiscipline
+  id: SpaceScanningModules
+  name: ataraxia-research-discipline-robotics
+  color: "#4B0082"
+  icon:
+    sprite: _Ataraxia/Interface/Misc/research_disciplines.rsi
+    state: robotics
+  tierPrerequisites:
+    1: 0
+
+- type: techDiscipline
+  id: AdvancedToolsModules
+  name: ataraxia-research-discipline-robotics
+  color: "#4B0082"
+  icon:
+    sprite: _Ataraxia/Interface/Misc/research_disciplines.rsi
+    state: robotics
+  tierPrerequisites:
+    1: 0
+
+- type: techDiscipline
+  id: HydroponicsModules
+  name: ataraxia-research-discipline-robotics
+  color: "#4B0082"
+  icon:
+    sprite: _Ataraxia/Interface/Misc/research_disciplines.rsi
+    state: robotics
+  tierPrerequisites:
+    1: 0
+
+- type: techDiscipline
+  id: EntertainmentAdvancedModules
+  name: ataraxia-research-discipline-robotics
+  color: "#4B0082"
+  icon:
+    sprite: _Ataraxia/Interface/Misc/research_disciplines.rsi
+    state: robotics
+  tierPrerequisites:
+    1: 0
+
+- type: techDiscipline
+  id: SalvageEquipmentModules
+  name: ataraxia-research-discipline-robotics
+  color: "#4B0082"
+  icon:
+    sprite: _Ataraxia/Interface/Misc/research_disciplines.rsi
+    state: robotics
+  tierPrerequisites:
+    1: 0
+
+- type: techDiscipline
+  id: RoboticCleanlinessModules
+  name: ataraxia-research-discipline-robotics
+  color: "#4B0082"
+  icon:
+    sprite: _Ataraxia/Interface/Misc/research_disciplines.rsi
+    state: robotics
+  tierPrerequisites:
+    1: 0
+
+- type: techDiscipline
+  id: XenoArcheologyModules
+  name: ataraxia-research-discipline-robotics
+  color: "#4B0082"
+  icon:
+    sprite: _Ataraxia/Interface/Misc/research_disciplines.rsi
+    state: robotics
+  tierPrerequisites:
+    1: 0
+
+- type: techDiscipline
+  id: RoboticsMachines
+  name: ataraxia-research-discipline-robotics
+  color: "#4B0082"
+  icon:
+    sprite: _Ataraxia/Interface/Misc/research_disciplines.rsi
+    state: robotics
+  tierPrerequisites:
+    1: 0

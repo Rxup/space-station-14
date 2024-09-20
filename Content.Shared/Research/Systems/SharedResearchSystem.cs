@@ -73,8 +73,9 @@ public abstract class SharedResearchSystem : EntitySystem
         if (!component.SupportedDisciplines.Contains(tech.Discipline))
             return false;
 
-        if (tech.Tier > disciplineTiers[tech.Discipline])
-            return false;
+// ATARAXIA-REMOVE
+//        if (tech.Tier > disciplineTiers[tech.Discipline])
+//            return false;
 
         if (component.UnlockedTechnologies.Contains(tech.ID))
             return false;
@@ -150,7 +151,7 @@ public abstract class SharedResearchSystem : EntitySystem
         TechnologyPrototype technology,
         bool includeCost = true,
         bool includeTier = true,
-        bool includePrereqs = false,
+        bool includePrereqs = true, // ATARAXIA-EDIT | KEEP TRUE!
         TechDisciplinePrototype? disciplinePrototype = null)
     {
         var description = new FormattedMessage();
@@ -158,7 +159,7 @@ public abstract class SharedResearchSystem : EntitySystem
         {
             disciplinePrototype ??= PrototypeManager.Index(technology.Discipline);
             description.AddMarkupOrThrow(Loc.GetString("research-console-tier-discipline-info",
-                ("tier", technology.Tier), ("color", disciplinePrototype.Color), ("discipline", Loc.GetString(disciplinePrototype.Name))));
+                ("color", disciplinePrototype.Color), ("discipline", Loc.GetString(disciplinePrototype.Name)))); // ATARAXIA-EDIT
             description.PushNewline();
         }
 
