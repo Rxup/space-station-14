@@ -691,7 +691,7 @@ namespace Content.Shared.CCVar
             CVarDef.Create("hud.theme", 0, CVar.ARCHIVE | CVar.CLIENTONLY);
 
         public static readonly CVarDef<bool> HudHeldItemShow =
-            CVarDef.Create("hud.held_item_show", true, CVar.ARCHIVE | CVar.CLIENTONLY);
+            CVarDef.Create("hud.held_item_show", false, CVar.ARCHIVE | CVar.CLIENTONLY);
 
         public static readonly CVarDef<bool> CombatModeIndicatorsPointShow =
             CVarDef.Create("hud.combat_mode_indicators_point_show", true, CVar.ARCHIVE | CVar.CLIENTONLY);
