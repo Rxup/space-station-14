@@ -38,6 +38,10 @@ arrivals = true
 #arrivals_map = "/Maps/Backmen/Etc/terminal.yml"
 #arrivals_map = "/Maps/Misc/terminal.yml"
 arrivals_returns = true
+auto_call_time = 150
+auto_call_extension_time = 70
+emergency_dock_time = 280
+emergency_authorize_time = 30
 emergency_early_launch_allowed = true
 #arrivals_planet = false
 
@@ -54,12 +58,6 @@ show_ooc_patron_color = false
 
 [looc]
 enabled_crit = true
-
-[emergency]
-emergency_dock_time = 280
-emergency_authorize_time = 30
-auto_call_time = 150
-auto_call_extension_time = 70
 
 [biomass]
 easy_mode = false
