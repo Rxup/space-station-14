@@ -1,0 +1,69 @@
+- type: techDiscipline
+  id: SalvageWeapons
+  name: ataraxia-research-discipline-shaft
+  color: "#ffe2b7"
+  icon:
+    sprite: _Ataraxia/Interface/Misc/research_disciplines.rsi
+    state: shaft
+  tierPrerequisites:
+    1: 0
+
+- type: techDiscipline
+  id: SalvageEquipment
+  name: ataraxia-research-discipline-shaft
+  color: "#ffe2b7"
+  icon:
+    sprite: _Ataraxia/Interface/Misc/research_disciplines.rsi
+    state: shaft
+  tierPrerequisites:
+    1: 0
+
+- type: techDiscipline
+  id: Grappling
+  name: ataraxia-research-discipline-shaft
+  color: "#ffe2b7"
+  icon:
+    sprite: _Ataraxia/Interface/Misc/research_disciplines.rsi
+    state: shaft
+  tierPrerequisites:
+    1: 0
+
+- type: techDiscipline
+  id: SpaceScanning
+  name: ataraxia-research-discipline-shaft
+  color: "#ffe2b7"
+  icon:
+    sprite: _Ataraxia/Interface/Misc/research_disciplines.rsi
+    state: shaft
+  tierPrerequisites:
+    1: 0
+
+- type: techDiscipline
+  id: SalvageWeaponsMachines
+  name: ataraxia-research-discipline-shaft
+  color: "#ffe2b7"
+  icon:
+    sprite: _Ataraxia/Interface/Misc/research_disciplines.rsi
+    state: shaft
+  tierPrerequisites:
+    1: 0
+
+- type: techDiscipline
+  id: SalvageEquipmentMachines
+  name: ataraxia-research-discipline-shaft
+  color: "#ffe2b7"
+  icon:
+    sprite: _Ataraxia/Interface/Misc/research_disciplines.rsi
+    state: shaft
+  tierPrerequisites:
+    1: 0
+
+- type: techDiscipline
+  id: SpaceScanningMachines
+  name: ataraxia-research-discipline-shaft
+  color: "#ffe2b7"
+  icon:
+    sprite: _Ataraxia/Interface/Misc/research_disciplines.rsi
+    state: shaft
+  tierPrerequisites:
+    1: 0

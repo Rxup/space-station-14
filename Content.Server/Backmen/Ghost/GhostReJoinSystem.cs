@@ -260,7 +260,7 @@ public sealed class GhostReJoinSystem : SharedGhostReJoinSystem
     [AnyCommand]
     private void ReturnToRoundCommand(IConsoleShell shell, string argstr, string[] args)
     {
-        if (shell.Player?.AttachedEntity is not { } entity || !TryComp<GhostComponent>(entity, out var ghostComponent))
+        if (shell.Player?.AttachedEntity is not { } ghost || !TryComp<GhostComponent>(ghost, out var ghostComponent))
         {
             shell.WriteError("This command can only be ran by a player with an attached entity.");
             return;
@@ -282,6 +282,12 @@ public sealed class GhostReJoinSystem : SharedGhostReJoinSystem
             deathTime = ghostComponent.TimeOfDeath;
         }
 
+        if (deathTime != ghostComponent.TimeOfDeath)
+        {
+            _ghostSystem.SetTimeOfDeath(ghost, deathTime, ghostComponent);
+            Dirty(ghost, ghostComponent);
+        }
+
         var timeOffset = _gameTiming.CurTime - deathTime;
 
         if (timeOffset >= _ghostRespawnTime)
@@ -291,21 +297,10 @@ public sealed class GhostReJoinSystem : SharedGhostReJoinSystem
                 _euiManager.CloseEui(_eUi[userId]);
                 _eUi.Remove(userId);
             }
-            _eUi.Add(userId, new GhostReJoinEui(this, (entity, ghostComponent)));
+            _eUi.Add(userId, new GhostReJoinEui(this, (ghost, ghostComponent)));
             _euiManager.OpenEui(_eUi[userId], shell.Player);
             _eUi[userId].StateDirty();
-            /*
-            _deathTime.Remove(userId);
 
-            _adminLogger.Add(LogType.Mind,
-                LogImpact.Extreme,
-                $"{shell.Player.Channel.UserName} вернулся в лобби посредством гост респавна.");
-
-            SendChatMsg(shell.Player,
-                Loc.GetString("ghost-respawn-window-rules-footer")
-            );
-            _gameTicker.Respawn(shell.Player);
-            */
             return;
         }
 
@@ -337,7 +332,7 @@ public sealed class GhostReJoinSystem : SharedGhostReJoinSystem
             Color.Red);
     }
 
-    public void AttachGhost(EntityUid? ghost, ICommonSession? mindSession)
+    public void AttachGhost(EntityUid ghost, ICommonSession? mindSession)
     {
         if(mindSession == null)
             return;
@@ -349,8 +344,8 @@ public sealed class GhostReJoinSystem : SharedGhostReJoinSystem
 
         if (TryComp<GhostComponent>(ghost, out var ghostComponent))
         {
-            _ghostSystem.SetTimeOfDeath(ghost.Value, _deathTime[mindSession.UserId], ghostComponent);
-            Dirty(ghost.Value, ghostComponent);
+            _ghostSystem.SetTimeOfDeath(ghost, _deathTime[mindSession.UserId], ghostComponent);
+            Dirty(ghost, ghostComponent);
         }
     }
 }

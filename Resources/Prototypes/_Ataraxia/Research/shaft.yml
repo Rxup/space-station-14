@@ -1,0 +1,69 @@
+- type: technology
+  id: SalvageWeapons
+  name: ataraxia-research-technology-salvage-weapons
+  icon:
+    sprite: Objects/Weapons/Guns/Basic/kinetic_accelerator.rsi
+    state: icon
+  discipline: SalvageWeapons
+  tier: 1
+  cost: 3500
+  recipeUnlocks:
+  - WeaponProtoKineticAccelerator
+
+- type: technology
+  id: SalvageEquipment
+  name: ataraxia-research-technology-salvage-equipment
+  icon:
+    sprite: Objects/Weapons/Guns/Basic/kinetic_accelerator.rsi # Filler
+#    sprite: Ataraxia/Objects/Weapons/Guns/Battery/plasma_cutter.rsi # TODO: Port plasma cutter
+    state: icon
+  discipline: SalvageEquipment
+  tier: 1
+  cost: 7500
+  recipeUnlocks:
+  - MiningDrill
+  - MineralScannerEmpty
+  - ClothingMaskWeldingGas
+#  - WeaponPlasmaCutter # Because need port
+
+- type: technology
+  id: SalvageEquipmentAdvanced
+  name: ataraxia-research-technology-salvage-equipment-advanced
+  icon:
+    sprite: Objects/Weapons/Guns/Basic/kinetic_accelerator.rsi # Filler
+#    sprite: Ataraxia/Objects/Weapons/Guns/Battery/plasma_cutter.rsi # TODO: Port plasma cutter
+    state: icon
+  discipline: SalvageEquipment
+  tier: 1
+  cost: 7500
+  recipeUnlocks:
+#  - WeaponPlasmaCutterAdvanced # Because need port
+  - OreBagOfHolding
+  - AdvancedMineralScannerEmpty
+  - MiningDrillDiamond
+  technologyPrerequisites:
+  - SalvageEquipment
+
+- type: technology
+  id: Grappling
+  name: ataraxia-research-technology-grappling
+  icon:
+    sprite: Objects/Weapons/Guns/Launchers/grappling_gun.rsi
+    state: base
+  discipline: Grappling
+  tier: 1
+  cost: 5000
+  recipeUnlocks:
+  - WeaponGrapplingGun
+
+- type: technology
+  id: SpaceScanning
+  name: ataraxia-research-technology-space-scanning
+  icon:
+    sprite: Objects/Tools/handheld_mass_scanner.rsi
+    state: icon
+  discipline: SpaceScanning
+  tier: 1
+  cost: 7500
+  recipeUnlocks:
+  - HandHeldMassScanner

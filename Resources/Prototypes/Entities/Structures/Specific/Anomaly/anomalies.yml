@@ -6,6 +6,7 @@
   components:
   - type: GlimmerSource
   - type: Anomaly
+    offset: 0, 0.15
     pulseSound:
       collection: RadiationPulse
       params:

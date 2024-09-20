@@ -44,11 +44,11 @@ holiday-name-friendship-day = Дня дружбы
 holiday-name-beer-day = Дня пива
 holiday-name-talk-like-a-pirate-day = Дня «Говори как пират»
 holiday-name-programmers-day = Дня программиста
-holiday-name-bisexual-pride-day = Дня празднования бисексуальности
+holiday-name-bisexual-pride-day = Дня львов
 holiday-name-stupid-questions-day = Дня глупых вопросов
 holiday-name-animals-day = Дня защиты животных
 holiday-name-smiling-day = Дня улыбки
-holiday-name-lesbian-day = Дня осведомлённости о лесбиянках
+holiday-name-lesbian-day = Дня осведомлённости о Ти-Джули
 holiday-name-canadian-thanksgiving = Дня благодарения в Канаде
 holiday-name-spirit-day = Дня сильных духом
 holiday-name-halloween = Хэллоуина
@@ -57,7 +57,7 @@ holiday-name-armistice-day = Дня перемирия
 holiday-name-kindness-day = Дня доброты
 holiday-name-life-day = Дня жизни у вуки
 holiday-name-flowers-day = Дня цветов
-holiday-name-transgender-remembrance-day = Дня памяти трансгендерных людей
+holiday-name-transgender-remembrance-day = Дня памяти второй мировой войны
 holiday-name-saying-hello-day = Дня приветствий
 holiday-name-thanksgiving = Дня благодарения в США
 holiday-name-sinterklaas = Синтерклааса
@@ -68,8 +68,8 @@ holiday-name-christmas = католического Рождества
 holiday-name-festive-season = наступающего Нового года
 holiday-name-boxing-day = Дня подарков
 holiday-name-friday-thirteenth = Дня неприятностей
-holiday-name-national-coming-out-day = Национального дня каминг-аута
-holiday-name-pride-month = Месяца гордости
+holiday-name-national-coming-out-day = Дня ящеров
+holiday-name-pride-month = Месяца лучших игроков сервера
 
 ## Custom congrats
 

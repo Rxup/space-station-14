@@ -1,0 +1,66 @@
+- type: technology
+  id: CrewMonitoring
+  name: ataraxia-research-technology-crew-monitoring
+  icon:
+    sprite: Objects/Specific/Medical/handheldcrewmonitor.rsi
+    state: scanner
+  discipline: CrewMonitoring
+  tier: 1
+  cost: 10000
+  recipeUnlocks:
+  - HandheldCrewMonitor
+
+- type: technology
+  id: BiochemicalStasis
+  name: ataraxia-research-technology-biochemical-stasis
+  icon:
+    sprite: Objects/Specific/Chemistry/beaker_cryostasis.rsi
+    state: beakernoreact
+  discipline: BiochemicalStasis
+  tier: 1
+  cost: 7500
+  recipeUnlocks:
+  - CryostasisBeaker
+  - SyringeCryostasis
+
+#- type: technology # Because need port
+#  id: BodyBags
+#  name: ataraxia-research-technology-bodybags
+#  icon:
+#    sprite: Ataraxia/Objects/Specific/Medical/nanotrasen.rsi
+#    state: ntbag_folded
+#  discipline: BodyBags
+#  tier: 1
+#  cost: 5000
+#  recipeUnlocks:
+#  - NTBodyBag
+#  - PrisonerBodyBag
+#  - RadiationBodyBag
+
+#- type: technology # Because need port
+#  id: BodyBagsBluespace
+#  name: ataraxia-research-technology-bodybags-bluespace
+#  icon:
+#    sprite: Ataraxia/Objects/Specific/Medical/bluespace.rsi
+#    state: bluespacebag_folded
+#  discipline: BodyBags
+#  tier: 1
+#  cost: 8000
+#  recipeUnlocks:
+#  - BluespaceBodyBag
+#  technologyPrerequisites:
+#  - BodyBags
+
+- type: technology
+  id: ChemistryBluespace
+  name: ataraxia-research-technology-chemistry-bluespace
+  icon:
+    sprite: Objects/Specific/Chemistry/beaker_bluespace.rsi
+    state: beakerbluespace
+  discipline: Chemistry
+  tier: 1 # ATARAXIA TODO: BASE CHEMISTRY
+  cost: 10000
+  recipeUnlocks:
+  - BluespaceBeaker
+  - SyringeBluespace
+  - BluespacePillCanister # backmen

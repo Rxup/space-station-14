@@ -1,7 +1,7 @@
 ent-BookBase = книга
     .desc = Книга в твёрдом переплёте.
 ent-BaseGuidebook = { ent-BaseItem }
-    .suffix = guidebook
+    .suffix = Гайдбук
     .desc = { ent-BaseItem.desc }
 ent-BookSpaceEncyclopedia = Космическая энциклопедия
     .desc = Энциклопедия, содержащая все знания мира. Автор неизвестен.
@@ -27,7 +27,7 @@ ent-BookMedicalReferenceBook = Медицинский справочник
     .desc = Справочник по медицинскому делу, написанный престарелым врачом. Почерк едва различим.
 ent-BookHowToSurvive = Как выжить
     .desc = По иронии судьбы автор этой книги умер.
-ent-BookSpaceLaw = Корпоративный закон
+ent-BookSpaceLaw = Космический закон
     .desc = Набор правил Nanotrasen для поддержания закона и порядка на своих космических станциях.
 ent-BookChemicalCompendium = Химпендиум
     .desc = Исчерпывающее руководство о химическом синтезе, написанное каким-то пожилым скелетом профессора.

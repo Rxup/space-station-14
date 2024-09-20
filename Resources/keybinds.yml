@@ -253,10 +253,10 @@ binds:
   mod1: Shift
 - function: OpenBackpack
   type: State
-  key: V
+  key: U # Ataraxia-EDIT
 - function: OpenBelt
   type: State
-  key: V
+  key: U # Ataraxia-EDIT
   mod1: Shift
 - function: ShowDebugConsole
   type: State
@@ -584,7 +584,9 @@ binds:
   type: State
   key: MouseRight
   canFocus: true
-  #WD EDIT
-- function: LookUp
+- function: LookUp # WD
   type: State
   key: Space
+- function: ToggleStanding # Ataraxia
+  type: State
+  key: V
