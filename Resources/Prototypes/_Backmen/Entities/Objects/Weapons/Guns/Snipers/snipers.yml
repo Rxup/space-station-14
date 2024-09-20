@@ -16,8 +16,6 @@
     sprite: Backmen/Objects/Weapons/Gunsx64/Snipers/dragunov/tiny.rsi
   - type: Item
     sprite: Backmen/Objects/Weapons/Gunsx64/Snipers/dragunov/tiny.rsi
-  - type: BkmGunWieldBonus
-    cameraRecoilScalar: -5
   - type: GunWieldBonus
     minAngle: -23
     maxAngle: -44
@@ -91,8 +89,6 @@
   - type: GunWieldBonus
     minAngle: -23
     maxAngle: -43
-  - type: BkmGunWieldBonus
-    cameraRecoilScalar: -1
   - type: Gun
     fireRate: 1
     cameraRecoilScalar: 6

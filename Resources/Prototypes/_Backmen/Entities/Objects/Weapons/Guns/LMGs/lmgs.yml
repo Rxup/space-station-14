@@ -16,8 +16,6 @@
     sprite: Backmen/Objects/Weapons/Gunsx64/LMGs/rpd/tiny.rsi
   - type: Item
     sprite: Backmen/Objects/Weapons/Gunsx64/LMGs/rpd/tiny.rsi
-  - type: BkmGunWieldBonus
-    cameraRecoilScalar: -4
   - type: GunWieldBonus
     minAngle: -30
     maxAngle: -50
@@ -85,8 +83,6 @@
     sprite: Backmen/Objects/Weapons/Gunsx64/LMGs/t42/tiny.rsi
   - type: Item
     sprite: Backmen/Objects/Weapons/Gunsx64/LMGs/t42/tiny.rsi
-  - type: BkmGunWieldBonus
-    cameraRecoilScalar: -4
   - type: GunWieldBonus
     minAngle: -30
     maxAngle: -50
