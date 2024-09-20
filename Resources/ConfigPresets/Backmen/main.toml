@@ -41,7 +41,7 @@ arrivals_returns = true
 #arrivals_planet = false
 
 [salvage]
-expedition_cooldown = 300f
+expedition_cooldown = 300
 
 [ic]
 restricted_names = true
@@ -56,8 +56,8 @@ enabled_crit = true
 
 [emergency]
 emergency_early_launch_allowed = true
-emergency_dock_time = 280f
-emergency_authorize_time = 30f
+emergency_dock_time = 280
+emergency_authorize_time = 30
 auto_call_time = 150
 auto_call_extension_time = 70
 
