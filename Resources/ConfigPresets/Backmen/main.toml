@@ -23,6 +23,7 @@ defaultpreset="secret"
 lobbyenabled = true
 cryo_sleep_rejoining = true
 lobbyduration=300
+contraband_examine = false
 
 [infolinks]
 website="https://backmen.ru"
@@ -30,9 +31,6 @@ discord="https://discord.gg/B7gWj7hB8b"
 wiki="http://wiki.backmen.ru"
 github="https://github.com/Rxup/space-station-14"
 appeal="https://backmen.ru/discord"
-
-[game]
-contraband_examine = false
 
 [shuttle]
 arrivals = true
