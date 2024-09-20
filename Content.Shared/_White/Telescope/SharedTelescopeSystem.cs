@@ -99,8 +99,11 @@ public abstract class SharedTelescopeSystem : EntitySystem
         }
     }
 
-    public void SetParameters(Entity<TelescopeComponent> ent, float? divisor = null, float? lerpAmount = null)
+    public void SetParameters(Entity<TelescopeComponent?> ent, float? divisor = null, float? lerpAmount = null)
     {
+        if(!Resolve(ent, ref ent.Comp))
+            return;
+
         var telescope = ent.Comp;
 
         telescope.Divisor = divisor ?? telescope.Divisor;
