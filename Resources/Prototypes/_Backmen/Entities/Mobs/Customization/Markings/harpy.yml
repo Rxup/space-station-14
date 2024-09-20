@@ -5,7 +5,7 @@
   id: HarpyWingDefault
   bodyPart: RArm
   markingCategory: Arms
-  speciesRestriction: [Anthropomorph, Harpy]
+  speciesRestriction: [Harpy]
   coloring:
     default:
       type:
@@ -22,7 +22,7 @@
   id: HarpyEarsDefault
   bodyPart: Head
   markingCategory: HeadTop
-  speciesRestriction: [Anthropomorph, Harpy]
+  speciesRestriction: [Harpy]
   coloring:
     default:
       type:
@@ -39,7 +39,7 @@
   id: HarpyTailPhoenix
   bodyPart: Tail
   markingCategory: Tail
-  speciesRestriction: [Anthropomorph, Harpy]
+  speciesRestriction: [Harpy]
   coloring:
     default:
       type:
@@ -56,7 +56,7 @@
   id: HarpyTailRooster
   bodyPart: Tail
   markingCategory: Tail
-  speciesRestriction: [Anthropomorph, Harpy]
+  speciesRestriction: [Harpy]
   sprites:
     - sprite: Backmen/Mobs/Customization/Harpy/harpy_tails.rsi
       state: rooster_tail
@@ -65,7 +65,7 @@
   id: HarpyWing2Tone
   bodyPart: RArm
   markingCategory: Arms
-  speciesRestriction: [Anthropomorph, Harpy]
+  speciesRestriction: [Harpy]
   sprites:
     - sprite: Backmen/Mobs/Customization/Harpy/harpy_wings.rsi
       state: harpy2tone1
@@ -76,7 +76,7 @@
   id: HarpyWing3Tone
   bodyPart: RArm
   markingCategory: Arms
-  speciesRestriction: [Anthropomorph, Harpy]
+  speciesRestriction: [Harpy]
   sprites:
     - sprite: Backmen/Mobs/Customization/Harpy/harpy_wings.rsi
       state: harpy3tone1
@@ -89,7 +89,7 @@
   id: HarpyWingSpeckled
   bodyPart: RArm
   markingCategory: Arms
-  speciesRestriction: [Anthropomorph, Harpy]
+  speciesRestriction: [Harpy]
   sprites:
     - sprite: Backmen/Mobs/Customization/Harpy/harpy_wings.rsi
       state: harpyspeckled1
@@ -100,7 +100,7 @@
   id: HarpyWingUndertone
   bodyPart: RArm
   markingCategory: Arms
-  speciesRestriction: [Anthropomorph, Harpy]
+  speciesRestriction: [Harpy]
   sprites:
     - sprite: Backmen/Mobs/Customization/Harpy/harpy_wings.rsi
       state: harpyundertone1
@@ -111,7 +111,7 @@
   id: HarpyWingTips
   bodyPart: RArm
   markingCategory: Arms
-  speciesRestriction: [Anthropomorph, Harpy]
+  speciesRestriction: [Harpy]
   sprites:
     - sprite: Backmen/Mobs/Customization/Harpy/harpy_wings.rsi
       state: harpywingtip1
