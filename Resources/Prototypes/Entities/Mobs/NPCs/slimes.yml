@@ -7,7 +7,7 @@
   components:
   - type: Sprite
     drawdepth: Mobs
-    sprite: Mobs/Aliens/slimes.rsi
+    sprite: Backmen/Mobs/Aliens/slimes.rsi # Backmen-EDIT
     layers:
     - map: [ "enum.DamageStateVisualLayers.Base" ]
       state: blue_adult_slime

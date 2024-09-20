@@ -6,7 +6,7 @@
   - type: Sprite
     layers:
       - state: red
-      - sprite: Mobs/Aliens/slimes.rsi
+      - sprite: Backmen/Mobs/Aliens/slimes.rsi
         state: grey_adult_slime
   - type: RandomSpawner
     prototypes:
@@ -22,7 +22,7 @@
   - type: Sprite
     layers:
       - state: red
-      - sprite: Mobs/Aliens/slimes.rsi
+      - sprite: Backmen/Mobs/Aliens/slimes.rsi
         state: grey_adult_slime
   - type: RandomSpawner
     prototypes:
@@ -40,7 +40,7 @@
   - type: Sprite
     layers:
       - state: red
-      - sprite: Mobs/Aliens/slimes.rsi
+      - sprite: Backmen/Mobs/Aliens/slimes.rsi
         state: grey_adult_slime
   - type: RandomSpawner
     prototypes:

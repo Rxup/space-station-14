@@ -693,6 +693,7 @@
   description: This masterpiece has gone through thousands of experiments. But it is the sweetest creature in the world. Smile Slime!
   components:
   - type: Sprite
+    sprite: Mobs/Aliens/slimes.rsi # Backmen-EDIT
     layers:
     - map: [ "enum.DamageStateVisualLayers.Base" ]
       state: rainbow_baby_slime

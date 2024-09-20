@@ -20,30 +20,6 @@
       "name": "blue_adult_slime_dead"
     },
     {
-      "name": "red_adult_slime",
-      "delays": [
-        [
-          0.3,
-          0.3
-        ]
-      ]
-    },
-    {
-      "name": "red_adult_slime_dead"
-    },
-    {
-      "name": "dark_blue_adult_slime",
-      "delays": [
-        [
-          0.3,
-          0.3
-        ]
-      ]
-    },
-    {
-      "name": "dark_blue_adult_slime_dead"
-    },
-    {
       "name": "green_adult_slime",
       "delays": [
         [
@@ -63,60 +39,11 @@
           0.3
         ]
       ]
-	},
-	{
+    },
+    {
       "name": "yellow_adult_slime_dead"
     },
-
     {
-      "name": "grey_adult_slime",
-      "delays": [
-        [
-          0.3,
-          0.3
-        ]
-      ]
-    },
-    {
-      "name": "grey_adult_slime_dead"
-    },
-    {
-      "name": "white_adult_slime",
-      "delays": [
-        [
-          0.3,
-          0.3
-        ]
-      ]
-    },
-    {
-      "name": "white_adult_slime_dead"
-    },
-    {
-      "name": "purple_adult_slime",
-      "delays": [
-        [
-          0.3,
-          0.3
-        ]
-      ]
-    },
-    {
-      "name": "purple_adult_slime_dead"
-    },
-    {
-      "name": "orange_adult_slime",
-      "delays": [
-        [
-          0.3,
-          0.3
-        ]
-      ]
-    },
-    {
-      "name": "orange_adult_slime_dead"
-    },
-	{
       "name": "aslime-_3",
       "directions": 4
     },
