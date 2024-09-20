@@ -2,7 +2,7 @@
   id: EarsShadowkin
   bodyPart: HeadTop
   markingCategory: HeadTop
-  speciesRestriction: [Shadowkin]
+  speciesRestriction: [Anthropomorph, Shadowkin]
   sprites:
     - sprite: Backmen/Mobs/Customization/ears.rsi
       state: shadowkin
@@ -11,7 +11,7 @@
   id: EarsShadowkinStriped
   bodyPart: HeadTop
   markingCategory: HeadTop
-  speciesRestriction: [Shadowkin]
+  speciesRestriction: [Anthropomorph, Shadowkin]
   sprites:
     - sprite: Backmen/Mobs/Customization/ears.rsi
       state: shadowkin

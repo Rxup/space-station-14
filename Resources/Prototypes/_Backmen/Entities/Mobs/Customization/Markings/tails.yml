@@ -2,7 +2,7 @@
   id: TailShadowkin
   bodyPart: Tail
   markingCategory: Tail
-  speciesRestriction: [Shadowkin]
+  speciesRestriction: [Anthropomorph, Shadowkin]
   sprites:
     - sprite: Backmen/Mobs/Customization/tails64x32.rsi
       state: shadowkin
@@ -11,7 +11,7 @@
   id: TailShadowkinBig
   bodyPart: Tail
   markingCategory: Tail
-  speciesRestriction: [Shadowkin]
+  speciesRestriction: [Anthropomorph, Shadowkin]
   sprites:
     - sprite: Backmen/Mobs/Customization/tails64x32.rsi
       state: shadowkin_big
@@ -20,7 +20,7 @@
   id: TailShadowkinBigFluff
   bodyPart: Tail
   markingCategory: Tail
-  speciesRestriction: [Shadowkin]
+  speciesRestriction: [Anthropomorph, Shadowkin]
   sprites:
     - sprite: Backmen/Mobs/Customization/tails64x32.rsi
       state: shadowkin_big_fluff
@@ -29,7 +29,7 @@
   id: TailShadowkinShorter
   bodyPart: Tail
   markingCategory: Tail
-  speciesRestriction: [Shadowkin]
+  speciesRestriction: [Anthropomorph, Shadowkin]
   sprites:
     - sprite: Backmen/Mobs/Customization/tails32x32.rsi
       state: shadowkin_shorter
@@ -38,7 +38,7 @@
   id: TailShadowkinMedium
   bodyPart: Tail
   markingCategory: Tail
-  speciesRestriction: [Shadowkin]
+  speciesRestriction: [Anthropomorph, Shadowkin]
   sprites:
     - sprite: Backmen/Mobs/Customization/tails32x32.rsi
       state: shadowkin_medium

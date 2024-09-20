@@ -22,7 +22,7 @@
   id: AnthropomorphShoutBigmandible
   bodyPart: Snout
   markingCategory: Snout
-  speciesRestriction: [Anthropomorph]
+  speciesRestriction: [Anthropomorph, Arachnid]
   sprites:
   - sprite: _Ataraxia/Mobs/Customization/Anthropomorph/mam_snouts.rsi
     state: snout_bigmandible
@@ -472,7 +472,7 @@
   id: AnthropomorphShoutSmallMandible
   bodyPart: Snout
   markingCategory: Snout
-  speciesRestriction: [Anthropomorph]
+  speciesRestriction: [Anthropomorph, Arachnid]
   sprites:
   - sprite: _Ataraxia/Mobs/Customization/Anthropomorph/mam_snouts.rsi
     state: snout_smallmandible
@@ -1097,14 +1097,14 @@
   - sprite: _Ataraxia/Mobs/Customization/Anthropomorph/mam_ears.rsi
     state: ears_sergal_overlay
 
-- type: marking
-  id: AnthropomorphHeadSideShadekin
-  bodyPart: HeadSide
-  markingCategory: HeadSide
-  speciesRestriction: [Anthropomorph]
-  sprites:
-  - sprite: _Ataraxia/Mobs/Customization/Anthropomorph/mam_ears.rsi
-    state: ears_shadekin
+#- type: marking # Because used backmen marking
+#  id: AnthropomorphHeadSideShadekin
+#  bodyPart: HeadSide
+#  markingCategory: HeadSide
+#  speciesRestriction: [Anthropomorph]
+#  sprites:
+#  - sprite: _Ataraxia/Mobs/Customization/Anthropomorph/mam_ears.rsi
+#    state: ears_shadekin
 
 - type: marking
   id: AnthropomorphHeadSideThinant
@@ -1233,10 +1233,10 @@
     state: tail_bear
 
 - type: marking
-  id: AnthropomorphTailBee
+  id: AnthropomorphTailInsect
   bodyPart: Tail
   markingCategory: Tail
-  speciesRestriction: [Anthropomorph, Felinid]
+  speciesRestriction: [Anthropomorph, Felinid, Arachnid]
   sprites:
   - sprite: _Ataraxia/Mobs/Customization/Anthropomorph/mam_tails.rsi
     state: tail_bee
@@ -1246,7 +1246,7 @@
     state: tail_bee_overlay_2
 
 - type: marking
-  id: AnthropomorphTailBeeJalo
+  id: AnthropomorphTailInsectJalo
   bodyPart: Tail
   markingCategory: Tail
   speciesRestriction: [Anthropomorph, Felinid]
@@ -1565,23 +1565,23 @@
   - sprite: _Ataraxia/Mobs/Customization/Anthropomorph/mam_tails.rsi
     state: tail_sergal
 
-- type: marking
-  id: AnthropomorphTailShadekin
-  bodyPart: Tail
-  markingCategory: Tail
-  speciesRestriction: [Anthropomorph]
-  sprites:
-  - sprite: _Ataraxia/Mobs/Customization/Anthropomorph/mam_tails.rsi
-    state: tail_shadekin
+#- type: marking # Because used backmen marking
+#  id: AnthropomorphTailShadekin
+#  bodyPart: Tail
+#  markingCategory: Tail
+#  speciesRestriction: [Anthropomorph]
+#  sprites:
+#  - sprite: _Ataraxia/Mobs/Customization/Anthropomorph/mam_tails.rsi
+#    state: tail_shadekin
 
-- type: marking
-  id: AnthropomorphTailShadekingShort
-  bodyPart: Tail
-  markingCategory: Tail
-  speciesRestriction: [Anthropomorph]
-  sprites:
-  - sprite: _Ataraxia/Mobs/Customization/Anthropomorph/mam_tails.rsi
-    state: tail_shadekinshort
+#- type: marking # Because used backmen marking
+#  id: AnthropomorphTailShadekingShort
+#  bodyPart: Tail
+#  markingCategory: Tail
+#  speciesRestriction: [Anthropomorph]
+#  sprites:
+#  - sprite: _Ataraxia/Mobs/Customization/Anthropomorph/mam_tails.rsi
+#    state: tail_shadekinshort
 
 - type: marking
   id: AnthropomorphTailShark
