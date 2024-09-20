@@ -1,0 +1,92 @@
+[game]
+hostname = "🌆 Backmen [TTS]"
+desc = """
+               🌌✨ 𝗕𝗮𝗰𝗸𝗺𝗲𝗻 & 𝗔𝘁𝗮𝗿𝗮𝘅𝗶𝗮 ✨🌌
+              🌆 Место для ваших историй! 🌆
+═══════════════════════════════════════════════
+  🗣️  TTS: Поддерживает множество различных голосов.
+  🤯  Культ плоти: Уникальный культ, расширяющий возможности для игры.
+  🌬️  Блоб: Превратись в сгусток массы и уничтожь станцию 28 способами.
+  😎  Опенсурс: Любой может вложить свой вклад!
+═══════════════════════════════════════════════
+"""
+map_pool = "DefaultMapPool"
+maxplayers = 100
+soft_max_players = 30
+map_rotation = true
+fallbackpreset = "Traitor,Extended"
+lobbyenabled = true
+role_timers = true
+
+[game]
+contraband_examine = false
+diagonalmovement = true
+
+[tips]
+tips.enabled = false
+
+[salvage]
+expedition_cooldown = 300f
+
+[ic]
+flavor_text = true
+punctuation = true
+
+[ooc]
+enable_during_round = true
+show_ooc_patron_color = false
+
+[looc]
+enabled_crit = true
+
+[emergency]
+emergency_early_launch_allowed = true
+emergency_dock_time = 280f
+emergency_authorize_time = 30f
+auto_call_time = 150
+auto_call_extension_time = 70
+
+[biomass]
+easy_mode = false
+
+[chat]
+max_message_length = 5000
+max_announcement_length = 1200
+
+[atmos]
+space_wind = false
+space_wind_max_velocity = 22.0
+monstermos_rip_tiles = false
+
+[shuttle]
+arrivals_map = "/Maps/Misc/corvax_terminal.yml"
+emergency = true
+arrivals = true
+
+[gpt]
+enabled = false
+
+[queue]
+enabled = false
+
+[discord auth]
+auth.enabled = false
+
+[glimmer]
+enabled = true
+
+[tts]
+token = ""
+api_url = ""
+
+[infolinks]
+discord = "https://discord.gg/ss-14-backmen-ru-1053200453829132298"
+github = "https://github.com/Rxup/space-station-14"
+wiki = "https://wiki.backmen.ru"
+
+[vote]
+restart_required_ratio = 0.85
+same_type_timeout = 300.0
+timerrestart = 30
+preset_enabled = false
+restart_enabled = false
