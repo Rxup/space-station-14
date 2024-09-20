@@ -11,10 +11,10 @@
       "name": "stage-1"
     },
     {
-	  "name": "produce"
+	    "name": "produce"
     },
     {
-	  "name": "seed"
+	    "name": "seed"
 	  },
     {
       "name": "stage-2"
@@ -32,7 +32,7 @@
       "name": "harvest"
     },
     {
-      "name": "cucumber-dead"
+      "name": "dead"
     }
   ]
 }
