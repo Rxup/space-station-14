@@ -38,6 +38,7 @@ arrivals = true
 #arrivals_map = "/Maps/Backmen/Etc/terminal.yml"
 #arrivals_map = "/Maps/Misc/terminal.yml"
 arrivals_returns = true
+emergency_early_launch_allowed = true
 #arrivals_planet = false
 
 [salvage]
@@ -55,7 +56,6 @@ show_ooc_patron_color = false
 enabled_crit = true
 
 [emergency]
-emergency_early_launch_allowed = true
 emergency_dock_time = 280
 emergency_authorize_time = 30
 auto_call_time = 150
