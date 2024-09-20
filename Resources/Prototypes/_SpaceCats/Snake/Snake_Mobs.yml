@@ -40,11 +40,11 @@
     solution: melee
     transferAmount: 5
   - type: NoSlip
-  - type: FootstepModifier
-    footstepSoundCollection:
-      collection: SnakeStep
-      params:
-        volume: -1
+#  - type: FootstepModifier
+#    footstepSoundCollection:
+#      collection: SnakeStep
+#      params:
+#        volume: -1
   - type: Fixtures
     fixtures: 
       fix1:
