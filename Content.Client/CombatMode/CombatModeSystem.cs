@@ -28,7 +28,7 @@ public sealed class CombatModeSystem : SharedCombatModeSystem
     /// Raised whenever combat mode changes.
     /// </summary>
     public event Action<bool>? LocalPlayerCombatModeUpdated;
-    private EntityQuery<SpriteComponent> _spriteQuery;
+    private EntityQuery<SpriteComponent> _spriteQuery; // Ataraxia
 
     public override void Initialize()
     {
@@ -38,7 +38,7 @@ public sealed class CombatModeSystem : SharedCombatModeSystem
         SubscribeLocalEvent<CombatModeComponent, GetStatusIconsEvent>(UpdateCombatModeIndicator); // Ataraxia
         Subs.CVar(_cfg, CCVars.CombatModeIndicatorsPointShow, OnShowCombatIndicatorsChanged, true);
 
-        _spriteQuery = GetEntityQuery<SpriteComponent>();
+        _spriteQuery = GetEntityQuery<SpriteComponent>(); // Ataraxia
     }
 
     private void OnHandleState(EntityUid uid, CombatModeComponent component, ref AfterAutoHandleStateEvent args)
