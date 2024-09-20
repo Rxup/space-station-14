@@ -1,0 +1,9 @@
+- type: techDiscipline
+  id: AudioVisualCommunicationMachines
+  name: ataraxia-research-discipline-telecommunications
+  color: "#7ecd48"
+  icon:
+    sprite: _Ataraxia/Interface/Misc/research_disciplines.rsi
+    state: engineering
+  tierPrerequisites:
+    1: 0
