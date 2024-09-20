@@ -1,0 +1,9 @@
+- type: techDiscipline
+  id: BluespaceCargoTransportMachines
+  name: ataraxia-research-discipline-cargo
+  color: "#ffe2b7"
+  icon:
+    sprite: _Ataraxia/Interface/Misc/research_disciplines.rsi
+    state: cargo
+  tierPrerequisites:
+    1: 0
