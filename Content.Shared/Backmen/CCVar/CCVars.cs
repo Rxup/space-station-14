@@ -170,4 +170,11 @@ public sealed class CCVars
 
     public static readonly CVarDef<int> GhostRespawnMaxPlayers =
         CVarDef.Create("ghost.respawn_max_players", 40, CVar.SERVERONLY);
+
+    /*
+     *
+     */
+
+    public static readonly CVarDef<bool> ImmersiveEnabled =
+        CVarDef.Create("immersive.enabled", true, CVar.SERVERONLY);
 }

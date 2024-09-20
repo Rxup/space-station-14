@@ -325,8 +325,8 @@
       tableId: SpaceTrafficControlTable
 
 - type: entity
-  id: SpaceTrafficControlFriendlyEventScheduler 
-  parent: BaseGameRule                  
+  id: SpaceTrafficControlFriendlyEventScheduler
+  parent: BaseGameRule
   components:
   - type: BasicStationEventScheduler
     minimumTimeUntilFirstEvent: 1200 # 20 mins
@@ -343,7 +343,6 @@
   components:
   - type: RoundstartStationVariationRule
     rules:
-    - id: ImmersiveRule # Ataraxia
     - id: BasicPoweredLightVariationPass
     - id: BasicTrashVariationPass
     - id: SolidWallRustingVariationPass
