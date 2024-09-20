@@ -1,0 +1,12 @@
+- files: [emergency-pager-sound.ogg]
+  copyright: '"https://www.freesoundslibrary.com/'
+  license: "CC-BY-4.0"
+  source: https://www.freesoundslibrary.com/emergency-pager-sound/
+
+- files: [teleport.ogg, zap.ogg]
+  copyright: '"https://pixabay.com/'
+  license: "Pixabay"
+  source: https://pixabay.com/en/sound-effects/teleport-90137/
+
+
+

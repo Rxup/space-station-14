@@ -203,6 +203,8 @@
   - type: HideLayerClothing
     slots:
     - Snout
+  - type: DropOnSlip
+    chance: 5
 
 - type: entity
   parent: ClothingMaskClownBase

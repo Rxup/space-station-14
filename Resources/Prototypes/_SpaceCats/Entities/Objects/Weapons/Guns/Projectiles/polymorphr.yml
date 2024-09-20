@@ -1,0 +1,36 @@
+- type: polymorph
+  id: WizardForcedReptilian
+  configuration:
+    entity: MobReptilian
+    forced: true
+    inventory: Transfer
+    transferName: true
+    transferDamage: true
+    revertOnCrit: false
+    revertOnDeath: false
+
+- type: entity
+  id: ProjectilePolyboltReptilian
+  parent: ProjectilePolyboltBase
+  name: Гены Унатхов
+  description: Nooo, I don't wanna be Reptilian !
+  noSpawn: true
+  components:
+  - type: PolymorphOnCollide
+    polymorph: WizardForcedReptilian
+    whitelist:
+      components:
+      - Body
+
+- type: entity
+  name: волшебная палочка полиморфа унатха!
+  parent: WeaponWandPolymorphBase
+  id: WeaponWandPolymorphReptilian
+  description: На случай, когда вам срочно нужен громила, а клоун вас достал!!
+  components:
+  - type: BasicEntityAmmoProvider
+    proto: ProjectilePolyboltReptilian
+    capacity: 1
+    count: 1
+
+

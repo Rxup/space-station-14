@@ -42,6 +42,8 @@
       Female: FemaleVulpkanin
       Unsexed: MaleVulpkanin
   - type: GrowlingAccent
+  - type: TypingIndicator
+    proto: vulp
   - type: MeleeWeapon
     animation: WeaponArcClaw
     soundHit:

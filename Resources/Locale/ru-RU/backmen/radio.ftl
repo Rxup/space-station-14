@@ -10,6 +10,7 @@ bkm-radio-group7 = Группа 7
 bkm-radio-group8 = Группа 8
 bkm-radio-group9 = Группа 9
 
+cats-radio-swar = Рой
 
 
 bkm-radio-csh = CSH

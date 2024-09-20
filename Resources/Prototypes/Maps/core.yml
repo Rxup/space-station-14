@@ -63,12 +63,9 @@
             Musician: [ 1, 1 ]
             Boxer: [ 2, 2 ]
             Reporter: [ 2, 2 ]
-            # silicon
-            StationAi: [ 1, 1 ]
-            Borg: [ 2, 2 ]
-            #backmen
-            Brigmedic: [ 0, 1 ] # backmen-Brigmedic
-            #BKBPLATech: [0, 3] # backmen-BPLA-Silicons
-            #BKBPLAMED: [0, 3] # backmen-BPLAMED-Silicons
-            Deliveryman: [ 0, 1 ]
-            Prisoner: [ 2, 2]
+            #bckmen
+#            Brigmedic: [ 0, 1 ] # backmen-Brigmedic
+#            BKBPLATech: [0, 3] # backmen-BPLA-Silicons
+#            BKBPLAMED: [0, 3] # backmen-BPLAMED-Silicons
+#            Deliveryman: [ 0, 1 ]
+#            Prisoner: [ 2, 2]

@@ -15,13 +15,18 @@
   requirements:
     - !type:RoleTimeRequirement
       role: JobCentralCommandAssistant
-      time: 7200
+#      time: 7200
+      time: 3000    #cats
     - !type:DepartmentTimeRequirement
       department: CentCom
-      time: 14400
+#      time: 14400
+      time: 5000    #cats
+    - !type:AgeRequirement
+      requiredAge: 21 # cats
     - !type:DepartmentTimeRequirement
       department: Silicons
-      time: 6000
+#      time: 6000
+      time: 2000   #cats
   access:
     - CCCargo
     - CCSecurity
