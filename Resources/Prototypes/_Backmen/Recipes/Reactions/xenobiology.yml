@@ -104,8 +104,9 @@
       amount: 5
     Blood:
       amount: 5
-  products:
-    StabilizerSlimePotion: 1
+  effects:
+    - !type:CreateEntityReactionEffect
+      entity: StabilizerSlimePotion
 
 - type: reaction
   id: BlueExtractWater
