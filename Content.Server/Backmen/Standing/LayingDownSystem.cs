@@ -2,6 +2,7 @@ using Content.Shared.Backmen.Standing;
 using Content.Shared.Backmen.Standing;
 using Robust.Shared.Configuration;
 using Content.Shared.Backmen.CCVar;
+using Content.Shared.Standing;
 using Robust.Shared.Player;
 
 namespace Content.Server.Standing;
@@ -17,10 +18,7 @@ public sealed class LayingDownSystem : SharedLayingDownSystem
         SubscribeNetworkEvent<CheckAutoGetUpEvent>(OnCheckAutoGetUp);
     }
 
-    protected override bool GetAutoGetUp(Entity<LayingDownComponent> ent, ICommonSession session)
-    {
-        throw new NotImplementedException();
-    }
+
 
     private void OnCheckAutoGetUp(CheckAutoGetUpEvent ev, EntitySessionEventArgs args)
     {

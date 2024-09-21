@@ -10,6 +10,7 @@ using LayingDownComponent = Content.Shared.Backmen.Standing.LayingDownComponent;
 using Content.Shared.Backmen.Standing;
 using Robust.Shared.Player;
 
+
 namespace Content.Client.Backmen.Standing;
 
 public sealed class LayingDownSystem : SharedLayingDownSystem
@@ -19,6 +20,7 @@ public sealed class LayingDownSystem : SharedLayingDownSystem
     [Dependency] private readonly Shared.Standing.StandingStateSystem _standing = default!;
     [Dependency] private readonly AnimationPlayerSystem _animation = default!;
     [Dependency] private readonly SharedBuckleSystem _buckle = default!;
+
 
     public override void Initialize()
     {
@@ -31,10 +33,8 @@ public sealed class LayingDownSystem : SharedLayingDownSystem
         SubscribeNetworkEvent<CheckAutoGetUpEvent>(OnCheckAutoGetUp);
     }
 
-    protected override bool GetAutoGetUp(Entity<LayingDownComponent> ent, ICommonSession session)
-    {
-        throw new NotImplementedException();
-    }
+
+
 
     private void OnMovementInput(EntityUid uid, LayingDownComponent component, MoveEvent args)
     {
