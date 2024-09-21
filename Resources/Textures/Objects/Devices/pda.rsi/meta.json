@@ -23,6 +23,12 @@
       "directions": 4
     },
     {
+      "name": "insert_overlay"
+    },
+    {
+      "name": "light_overlay"
+    },
+    {
       "name": "pda"
     },
     {
@@ -199,28 +205,6 @@
     {
       "name": "equipped-IDCARD",
       "directions": 4
-    },
-    {
-      "name": "pda_overlay",
-      "delays": [
-        [
-          0.4,
-          0.4,
-          0.4,
-          0.4
-        ]
-      ]
-    },
-    {
-      "name": "pda_overlay_syndi",
-      "delays": [
-        [
-          0.4,
-          0.4,
-          0.4,
-          0.4
-        ]
-      ]
     }
   ]
 }
