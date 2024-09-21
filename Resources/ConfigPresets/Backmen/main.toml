@@ -53,7 +53,6 @@ restricted_names = true
 flavor_text = true
 
 [ooc]
-enable_during_round = true
 show_ooc_patron_color = false
 
 [looc]
@@ -61,10 +60,6 @@ enabled_crit = true
 
 [biomass]
 easy_mode = false
-
-[chat]
-max_message_length = 5000
-max_announcement_length = 1200
 
 [atmos]
 space_wind = true
