@@ -52,7 +52,7 @@
   icon:
     sprite: Objects/Specific/Mech/mecha.rsi
     state: gygax
-  discipline: WarCrimes
+  discipline: MilitaryGygax
   tier: 3
   cost: 10000
   recipeUnlocks:
@@ -76,7 +76,7 @@
   icon:
     sprite: Objects/Specific/Mech/mecha.rsi
     state: durand
-  discipline: WarCrimes
+  discipline: ModernCombatMechs
   tier: 3
   cost: 18000
   recipeUnlocks:
