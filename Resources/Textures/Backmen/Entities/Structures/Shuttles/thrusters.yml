@@ -1,0 +1,108 @@
+- type: entity
+  id: BigThruster
+  parent: Thruster
+  name: big thruster
+  description: A thruster that allows a shuttle to move.
+  components:
+    - type: Thruster
+      thrust: 300
+      burnShape:
+        - 0.4,0.5
+        - -0.4,2.2
+        - -0.6,2.2
+        - -1.4,0.5
+      damage:
+        types:
+          Heat: 150
+    - type: Fixtures
+      fixtures:
+        fix1:
+          shape:
+            !type:PhysShapeAabb
+            bounds: "-1.45,-1.45,0.45,0.45"
+          density: 60
+          mask:
+          - MachineMask
+          layer:
+          - MachineLayer
+    - type: Sprite
+      sprite: Backmen/Structures/Shuttles/thruster_big.rsi
+      offset: -0.5,-0.5
+      layers:
+      - state: base
+        map: ["enum.ThrusterVisualLayers.Base"]
+      - state: thrust
+        map: ["enum.ThrusterVisualLayers.ThrustOn"]
+        shader: unshaded
+        visible: false
+      - state: thrust_burn_unshaded
+        map: ["enum.ThrusterVisualLayers.ThrustingUnshaded"]
+        shader: unshaded
+        visible: false
+        offset: 0, 2
+
+- type: entity
+  id: BigGreenThruster
+  parent: BigThruster
+  name: big thruster
+  description: A thruster that allows a shuttle to move.
+  components:
+   - type: Sprite
+      sprite: Backmen/Structures/Shuttles/thruster_big.rsi
+      offset: -0.5,-0.5
+      layers:
+      - state: green
+        map: ["enum.ThrusterVisualLayers.Base"]
+      - state: thrust
+        map: ["enum.ThrusterVisualLayers.ThrustOn"]
+        shader: unshaded
+        visible: false
+      - state: thrust_burn_unshaded
+        map: ["enum.ThrusterVisualLayers.ThrustingUnshaded"]
+        shader: unshaded
+        visible: false
+        offset: 0, 2
+
+- type: entity
+  id: BigRedThruster
+  parent: BigThruster
+  name: big thruster
+  description: A thruster that allows a shuttle to move.
+  components:
+   - type: Sprite
+      sprite: Backmen/Structures/Shuttles/thruster_big.rsi
+      offset: -0.5,-0.5
+      layers:
+      - state: red
+        map: ["enum.ThrusterVisualLayers.Base"]
+      - state: thrust
+        map: ["enum.ThrusterVisualLayers.ThrustOn"]
+        shader: unshaded
+        visible: false
+      - state: thrust_burn_unshaded
+        map: ["enum.ThrusterVisualLayers.ThrustingUnshaded"]
+        shader: unshaded
+        visible: false
+        offset: 0, 2
+
+- type: entity
+  id: BigRndThruster
+  parent: BigThruster
+  name: big thruster
+  description: A thruster that allows a shuttle to move.
+  components:
+   - type: Sprite
+      sprite: Backmen/Structures/Shuttles/thruster_big.rsi
+      offset: -0.5,-0.5
+      layers:
+      - state: rnd
+        map: ["enum.ThrusterVisualLayers.Base"]
+      - state: thrust
+        map: ["enum.ThrusterVisualLayers.ThrustOn"]
+        shader: unshaded
+        visible: false
+      - state: thrust_burn_unshaded
+        map: ["enum.ThrusterVisualLayers.ThrustingUnshaded"]
+        shader: unshaded
+        visible: false
+        offset: 0, 2
