@@ -24,6 +24,10 @@
   - type: FlavorProfile
     flavors:
       - people
+  - type: Tag # goob edit
+    tags:
+    - Meat
+    - Organ
 
 - type: entity
   id: OrganDionaBrain
@@ -54,6 +58,11 @@
         reagents:
         - ReagentId: GreyMatter
           Quantity: 5
+  - type: Tag # goob edit
+    tags:
+    - Meat
+    - Organ
+    - Brain
 
 - type: entity
   id: OrganDionaEyes
@@ -108,6 +117,11 @@
   - type: Item
     size: Small
     heldPrefix: stomach
+  - type: Tag # goob edit
+    tags:
+    - Meat
+    - Organ
+    - Stomach
 
 - type: entity
   id: OrganDionaLungs
@@ -141,6 +155,11 @@
       Lung:
         maxVol: 100
         canReact: False
+  - type: Tag # goob edit
+    tags:
+    - Meat
+    - Organ
+    - Lungs
 
 # Organs that turn into nymphs on removal
 - type: entity
@@ -154,6 +173,11 @@
   - type: Nymph # This will make the organs turn into a nymph when they're removed.
     entityPrototype: OrganDionaNymphBrain
     transferMind: true
+  - type: Tag # goob edit
+    tags:
+    - Meat
+    - Organ
+    - Brain
 
 - type: entity
   id: OrganDionaStomachNymph
@@ -164,6 +188,11 @@
   components:
   - type: Nymph
     entityPrototype: OrganDionaNymphStomach
+  - type: Tag # goob edit
+    tags:
+    - Meat
+    - Organ
+    - Stomach
 
 - type: entity
   id: OrganDionaLungsNymph
@@ -174,6 +203,11 @@
   components:
   - type: Nymph
     entityPrototype: OrganDionaNymphLungs
+  - type: Tag # goob edit
+    tags:
+    - Meat
+    - Organ
+    - Lungs
 
 # Nymphs that the organs will turn into
 - type: entity

@@ -324,3 +324,30 @@
         - AntagImmune
       mindRoles:
       - MindRoleXenoAgent
+
+- type: entity
+  abstract: true
+  parent: BaseGameRule
+  id: BaseHereticRule
+  components:
+  - type: HereticRule
+  - type: AntagSelection
+
+- type: entity
+  parent: BaseHereticRule
+  id: HereticGameRule
+  components:
+  - type: GameRule
+    minPlayers: 25
+  - type: AntagSelection
+    definitions:
+    - prefRoles: [ Heretic ]
+      max: 8
+      playerRatio: 15
+      blacklist:
+        components:
+        - AntagImmune
+        - BibleUser
+      lateJoinAdditional: true
+      mindRoles:
+      - Heretic
