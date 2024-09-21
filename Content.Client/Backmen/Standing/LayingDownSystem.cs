@@ -1,13 +1,14 @@
-using Content.Shared.Backmen.CCVar;
 using Content.Shared.Backmen.Standing;
 using Content.Shared.Buckle;
 using Content.Shared.Rotation;
 using Content.Shared.Standing;
 using Robust.Client.GameObjects;
 using Robust.Client.Graphics;
-using Robust.Shared.Configuration;
-using Robust.Shared.Player;
 using Robust.Shared.Timing;
+using DrawDepth = Content.Shared.DrawDepth.DrawDepth;
+using LayingDownComponent = Content.Shared.Backmen.Standing.LayingDownComponent;
+using Content.Shared.Backmen.Standing;
+using Robust.Shared.Player;
 
 namespace Content.Client.Backmen.Standing;
 
@@ -15,92 +16,74 @@ public sealed class LayingDownSystem : SharedLayingDownSystem
 {
     [Dependency] private readonly IGameTiming _timing = default!;
     [Dependency] private readonly IEyeManager _eyeManager = default!;
-    [Dependency] private readonly StandingStateSystem _standing = default!;
+    [Dependency] private readonly Shared.Standing.StandingStateSystem _standing = default!;
     [Dependency] private readonly AnimationPlayerSystem _animation = default!;
     [Dependency] private readonly SharedBuckleSystem _buckle = default!;
-    [Dependency] private readonly IConfigurationManager _cfg = default!;
-    [Dependency] private readonly SharedTransformSystem _transform = default!;
 
     public override void Initialize()
     {
         base.Initialize();
 
         SubscribeLocalEvent<LayingDownComponent, MoveEvent>(OnMovementInput);
+        SubscribeNetworkEvent<DrawDownedEvent>(OnDowned);
+        SubscribeLocalEvent<LayingDownComponent, StoodEvent>(OnStood);
 
-        _cfg.OnValueChanged(CCVars.AutoGetUp, b => _autoGetUp = b, true);
-
-        //SubscribeNetworkEvent<CheckAutoGetUpEvent>(OnCheckAutoGetUp);
+        SubscribeNetworkEvent<CheckAutoGetUpEvent>(OnCheckAutoGetUp);
     }
-
-    private bool _autoGetUp;
 
     protected override bool GetAutoGetUp(Entity<LayingDownComponent> ent, ICommonSession session)
     {
-        return _autoGetUp;
+        throw new NotImplementedException();
     }
 
     private void OnMovementInput(EntityUid uid, LayingDownComponent component, MoveEvent args)
     {
-        if (!_timing.IsFirstTimePredicted)
-            return;
-
-        if (!_standing.IsDown(uid))
-            return;
-
-        if (_buckle.IsBuckled(uid))
-            return;
-
-        if (_animation.HasRunningAnimation(uid, "rotate"))
-            return;
-
-        if(TerminatingOrDeleted(uid))
-            return;
-
-        var transform = Transform(uid);
-
-        if (!TryComp<SpriteComponent>(uid, out var sprite)
+        if (!_timing.IsFirstTimePredicted
+            || !_standing.IsDown(uid)
+            || _buckle.IsBuckled(uid)
+            || _animation.HasRunningAnimation(uid, "rotate")
+            || !TryComp<TransformComponent>(uid, out var transform)
+            || !TryComp<SpriteComponent>(uid, out var sprite)
             || !TryComp<RotationVisualsComponent>(uid, out var rotationVisuals))
-        {
             return;
-        }
 
-        ProcessVisuals((uid, transform, sprite, rotationVisuals));
-    }
-
-    private void ProcessVisuals(Entity<TransformComponent, SpriteComponent?, RotationVisualsComponent> entity)
-    {
-        var rotation = entity.Comp1.LocalRotation + (_eyeManager.CurrentEye.Rotation - (entity.Comp1.LocalRotation - _transform.GetWorldRotation(entity.Comp1)));
+        var rotation = transform.LocalRotation +
+                       (_eyeManager.CurrentEye.Rotation - (transform.LocalRotation - transform.WorldRotation));
 
         if (rotation.GetDir() is Direction.SouthEast or Direction.East or Direction.NorthEast or Direction.North)
         {
-            entity.Comp3.HorizontalRotation = Angle.FromDegrees(270);
-            if(entity.Comp2 != null)
-                entity.Comp2.Rotation = Angle.FromDegrees(270);
+            rotationVisuals.HorizontalRotation = Angle.FromDegrees(270);
+            sprite.Rotation = Angle.FromDegrees(270);
             return;
         }
 
-        entity.Comp3.HorizontalRotation = Angle.FromDegrees(90);
-        if(entity.Comp2 != null)
-            entity.Comp2.Rotation = Angle.FromDegrees(90);
+        rotationVisuals.HorizontalRotation = Angle.FromDegrees(90);
+        sprite.Rotation = Angle.FromDegrees(90);
     }
 
-    public override void AutoGetUp(Entity<LayingDownComponent> ent)
+    private void OnDowned(DrawDownedEvent args)
     {
-        if (!_timing.IsFirstTimePredicted)
+        var uid = GetEntity(args.Uid);
+
+        if (!TryComp<SpriteComponent>(uid, out var sprite)
+            || !TryComp<LayingDownComponent>(uid, out var component))
             return;
 
-        if(TerminatingOrDeleted(ent))
-            return;
+        if (!component.OriginalDrawDepth.HasValue)
+            component.OriginalDrawDepth = sprite.DrawDepth;
 
-        var transform = Transform(ent);
-
-        if (!TryComp<RotationVisualsComponent>(ent, out var rotationVisuals))
-            return;
-
-        ProcessVisuals((ent.Owner, transform, null, rotationVisuals));
+        sprite.DrawDepth = (int)DrawDepth.SmallMobs;
     }
 
-    /*
+    private void OnStood(EntityUid uid, LayingDownComponent component, StoodEvent args)
+    {
+        if (!TryComp<SpriteComponent>(uid, out var sprite)
+            || !component.OriginalDrawDepth.HasValue)
+            return;
+
+        sprite.DrawDepth = component.OriginalDrawDepth.Value;
+    }
+
     private void OnCheckAutoGetUp(CheckAutoGetUpEvent ev, EntitySessionEventArgs args)
     {
         if (!_timing.IsFirstTimePredicted)
@@ -108,10 +91,12 @@ public sealed class LayingDownSystem : SharedLayingDownSystem
 
         var uid = GetEntity(ev.User);
 
-        if (!TryComp<TransformComponent>(uid, out var transform) || !TryComp<RotationVisualsComponent>(uid, out var rotationVisuals))
+        if (!TryComp<TransformComponent>(uid, out var transform) ||
+            !TryComp<RotationVisualsComponent>(uid, out var rotationVisuals))
             return;
 
-        var rotation = transform.LocalRotation + (_eyeManager.CurrentEye.Rotation - (transform.LocalRotation - transform.WorldRotation));
+        var rotation = transform.LocalRotation +
+                       (_eyeManager.CurrentEye.Rotation - (transform.LocalRotation - transform.WorldRotation));
 
         if (rotation.GetDir() is Direction.SouthEast or Direction.East or Direction.NorthEast or Direction.North)
         {
@@ -120,5 +105,5 @@ public sealed class LayingDownSystem : SharedLayingDownSystem
         }
 
         rotationVisuals.HorizontalRotation = Angle.FromDegrees(90);
-    }*/
+    }
 }
