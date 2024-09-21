@@ -171,12 +171,6 @@ public sealed class CCVars
     public static readonly CVarDef<int> GhostRespawnMaxPlayers =
         CVarDef.Create("ghost.respawn_max_players", 40, CVar.SERVERONLY);
 
-    /*
-     * Immersive
-     */
-
-    public static readonly CVarDef<bool> ImmersiveEnabled =
-        CVarDef.Create("immersive.enabled", true, CVar.SERVERONLY);
 
     /*
      * Bind Standing - Ataraxia
@@ -184,5 +178,4 @@ public sealed class CCVars
 
     public static readonly CVarDef<bool> AutoGetUp =
         CVarDef.Create("laying.auto_get_up", true, CVar.CLIENT | CVar.ARCHIVE | CVar.REPLICATED);
-
 }
