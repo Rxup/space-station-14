@@ -1,7 +1,7 @@
 {
   "version": 1,
   "copyright": "especially for the Space Cats server; Sprited by TheGypsyBaron https://github.com/SemkaGamez",
-  "license": "CLA",
+  "license": "CLA-BY-SA-3.0",
   "size": {
     "x": 32,
     "y": 32
@@ -30,115 +30,87 @@
     },
     {
       "name": "pda"
-      
     },
     {
       "name": "pda-atmos"
-      
     },
     {
-      "name": "pda-bartender"
-      
+      "name": "pda-bartender"    
     },
     {
       "name": "pda-boxer"
-      
     },
     {
-      "name": "pda-captain"
-      
+      "name": "pda-captain"     
     },
     {
-      "name": "pda-cargo"
-      
+      "name": "pda-cargo"     
     },
     {
-      "name": "pda-ce"
-      
+      "name": "pda-ce"     
     },
     {
-      "name": "pda-chaplain"
-      
+      "name": "pda-chaplain"      
     },
     {
-      "name": "pda-chemistry"
-      
+      "name": "pda-chemistry"     
     },
     {
-      "name": "pda-clear"
-      
+      "name": "pda-clear"     
     },
     {
       "name": "pda-clown"
-      
     },
     {
-      "name": "pda-cmo"
-      
+      "name": "pda-cmo"     
     },
     {
       "name": "pda-cook"
-      
     },
     {
-      "name": "pda-detective"
-      
+      "name": "pda-detective"    
     },
     {
-      "name": "pda-engineer"
-      
+      "name": "pda-engineer"   
     },
     {
-      "name": "pda-genetics"
-      
+      "name": "pda-genetics"   
     },
     {
-      "name": "pda-hop"
-      
+      "name": "pda-hop"     
     },
     {
-      "name": "pda-hos"
-      
+      "name": "pda-hos"     
     },
     {
-      "name": "pda-hydro"
-      
+      "name": "pda-hydro"    
     },
     {
-      "name": "pda-janitor"
-      
+      "name": "pda-janitor"     
     },
     {
-      "name": "pda-lawyer"
-      
+      "name": "pda-lawyer"     
     },
     {
-      "name": "pda-library"
-      
+      "name": "pda-library"     
     },
     {
-      "name": "pda-medical"
-      
+      "name": "pda-medical"    
     },
     {
       "name": "pda-paramedic"
-      
     },
     {
       "name": "pda-mime"
-      
     },
     {
-      "name": "pda-miner"
-      
+      "name": "pda-miner" 
     },
     {
-      "name": "pda-pirate"
-      
+      "name": "pda-pirate" 
     },
     {
-      "name": "pda-qm"
-      
+      "name": "pda-qm"  
     },
     {
       "name": "pda-r",
@@ -159,100 +131,76 @@
       ]
     },
     {
-      "name": "pda-rd"
-      
+      "name": "pda-rd"     
     },
     {
-      "name": "pda-roboticist"
-      
+      "name": "pda-roboticist"   
     },
     {
-      "name": "pda-science"
-      
+      "name": "pda-science"    
     },
     {
-      "name": "pda-security"
-      
+      "name": "pda-security"     
     },
     {
-      "name": "pda-brigmedic"
-      
+      "name": "pda-brigmedic"    
     },
     {
-      "name": "pda-syndi"
-      
+      "name": "pda-syndi"     
     },
     {
-      "name": "pda-syndi-agent"
-      
+      "name": "pda-syndi-agent"     
     },
     {
-      "name": "pda-centcom"
-    
+      "name": "pda-centcom"    
     },
     {
-      "name": "pda-virology"
-      
+      "name": "pda-virology"     
     },
     {
-      "name": "pda-warden"
-      
+      "name": "pda-warden"     
     },
     {
-      "name": "pda-musician"
-      
+      "name": "pda-musician"      
     },
     {
-      "name": "pda-reporter"
-      
+      "name": "pda-reporter"    
     },
     {
-      "name": "pda-interncadet"
-      
+      "name": "pda-interncadet"     
     },
     {
-      "name": "pda-internmed"
-      
+      "name": "pda-internmed"     
     },
     {
-      "name": "pda-internsci"
-      
+      "name": "pda-internsci"     
     },
     {
-      "name": "pda-internservice"
-      
+      "name": "pda-internservice"     
     },
     {
       "name": "pda-interntech"
-      
     },
     {
-      "name": "pda-zookeeper"
-      
+      "name": "pda-zookeeper"     
     },
     {
-      "name": "pda-ert"
-    
+      "name": "pda-ert"   
     },
     {
-      "name": "pda-cluwne"
-      
+      "name": "pda-cluwne"    
     },
     {
       "name": "pda-seniorengineer"
-      
     },
     {
-      "name": "pda-seniorresearcher"
-      
+      "name": "pda-seniorresearcher"     
     },
     {
-      "name": "pda-seniorphysician"
-      
+      "name": "pda-seniorphysician"     
     },
     {
-      "name": "pda-seniorofficer"
-      
+      "name": "pda-seniorofficer" 
     },
     {
       "name": "equipped-IDCARD",
