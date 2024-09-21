@@ -23,33 +23,33 @@
   - CryostasisBeaker
   - SyringeCryostasis
 
-#- type: technology # Because need port
-#  id: BodyBags
-#  name: ataraxia-research-technology-bodybags
-#  icon:
-#    sprite: Ataraxia/Objects/Specific/Medical/nanotrasen.rsi
-#    state: ntbag_folded
-#  discipline: BodyBags
-#  tier: 1
-#  cost: 5000
-#  recipeUnlocks:
-#  - NTBodyBag
-#  - PrisonerBodyBag
-#  - RadiationBodyBag
+- type: technology
+  id: BodyBags
+  name: ataraxia-research-technology-bodybags
+  icon:
+    sprite: _Ataraxia/Objects/Specific/Medical/BodyBags/nanotrasen.rsi
+    state: ntbag_folded
+  discipline: BodyBags
+  tier: 1
+  cost: 5000
+  recipeUnlocks:
+  - NTBodyBag
+  - PrisonerBodyBag
+  - RadiationBodyBag
 
-#- type: technology # Because need port
-#  id: BodyBagsBluespace
-#  name: ataraxia-research-technology-bodybags-bluespace
-#  icon:
-#    sprite: Ataraxia/Objects/Specific/Medical/bluespace.rsi
-#    state: bluespacebag_folded
-#  discipline: BodyBags
-#  tier: 1
-#  cost: 8000
-#  recipeUnlocks:
-#  - BluespaceBodyBag
-#  technologyPrerequisites:
-#  - BodyBags
+- type: technology
+  id: BodyBagsBluespace
+  name: ataraxia-research-technology-bodybags-bluespace
+  icon:
+    sprite: _Ataraxia/Objects/Specific/Medical/BodyBags/bluespace.rsi
+    state: bluespacebag_folded
+  discipline: BodyBags
+  tier: 1
+  cost: 8000
+  recipeUnlocks:
+  - BluespaceBodyBag
+  technologyPrerequisites:
+  - BodyBags
 
 - type: technology
   id: ChemistryBluespace

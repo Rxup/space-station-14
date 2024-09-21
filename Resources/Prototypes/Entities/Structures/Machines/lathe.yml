@@ -960,6 +960,10 @@
       - Hemostat
       - ClothingEyesGlassesChemical
       - WhiteCane
+      - BluespaceBodyBag # Ataraxia
+      - NTBodyBag # Ataraxia
+      - PrisonerBodyBag # Ataraxia
+      - RadiationBodyBag # Ataraxia
     dynamicRecipes:
       - ChemicalPayload
       - CryostasisBeaker
@@ -969,6 +973,7 @@
       - SyringeCryostasis
       - BluespacePillCanister # Backmen
       - HandheldCrewMonitor # Ataraxia
+      - SyndicateBodyBag # Ataraxia
   - type: Machine
     board: MedicalTechFabCircuitboard
   - type: StealTarget
