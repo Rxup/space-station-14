@@ -57,24 +57,3 @@
   cost: 5200
   category: cargoproduct-category-name-armory
   group: market
-
-  # Снайперский РИГ
-- type: cargoProduct
-  id: CloakerHardsuit
-  icon:
-    sprite: _SpaceCats/Clothing/Head/Hardsuits/cloaker.rsi
-    state: icon
-  product: CrateCloakerHardsuit
-  cost: 50000
-  category: cargoproduct-category-name-armory
-  group: market
-
-- type: entity
-  id: CrateCloakerHardsuit
-  parent: [ CrateWeaponSecure, BaseRestrictedContraband ]
-  name: ящик скафандра снайпера ОПЗ
-  description: Содержит специальный скафандр сил ОПЗ с маскировочной сетью. Дорогой!
-  components:
-  - type: StorageFill
-    contents:
-      - id: CloakerHardsuit
