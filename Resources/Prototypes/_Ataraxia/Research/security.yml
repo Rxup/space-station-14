@@ -53,8 +53,8 @@
     sprite: Objects/Specific/Mech/mecha.rsi
     state: gygax
   discipline: MilitaryGygax
-  tier: 3
-  cost: 10000
+  tier: 1
+  cost: 15000
   recipeUnlocks:
   - GygaxHarness
   - GygaxLArm
@@ -77,8 +77,8 @@
     sprite: Objects/Specific/Mech/mecha.rsi
     state: durand
   discipline: ModernCombatMechs
-  tier: 3
-  cost: 18000
+  tier: 1
+  cost: 20000
   recipeUnlocks:
   - DurandHarness
   - DurandLArm
