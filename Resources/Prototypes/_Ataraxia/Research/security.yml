@@ -45,3 +45,51 @@
   - WeaponParticleDecelerator
   technologyPrerequisites:
   - RiotControlAdvanced
+
+- type: technology
+  id: MilitaryGygax
+  name: research-technology-military-machinery
+  icon:
+    sprite: Objects/Specific/Mech/mecha.rsi
+    state: gygax
+  discipline: Arsenal
+  tier: 3
+  cost: 10000
+  recipeUnlocks:
+  - GygaxHarness
+  - GygaxLArm
+  - GygaxRArm
+  - GygaxLLeg
+  - GygaxRLeg
+  - GygaxCentralElectronics
+  - GygaxPeripheralsElectronics
+  - MechLaserWeapon
+  - MechScattershotWeapon
+  technologyPrerequisites:
+  - RiotControlAdvanced
+  - RoboticsMachines
+  - PortableFission
+
+- type: technology
+  id: ModernCombatMechs
+  name: research-technology-modern-combat-mechs
+  icon:
+    sprite: Objects/Specific/Mech/mecha.rsi
+    state: durand
+  discipline: Arsenal
+  tier: 3
+  cost: 18000
+  recipeUnlocks:
+  - DurandHarness
+  - DurandLArm
+  - DurandRArm
+  - DurandLLeg
+  - DurandRLeg
+  - DurandCentralElectronics
+  - DurandPeripheralsElectronics
+  - MechSolarisLaserWeapon
+  - MechHadesWeapon
+  - MechMssileWeapon
+  - MechTeslaWeapon
+  technologyPrerequisites:
+  - MilitaryGygax
