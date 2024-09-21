@@ -97,7 +97,7 @@
 
 - type: alert #Ataraxia
   id: Offer
-  onClick: !type:AcceptOffer  { }
+  onClick: !type:AcceptOfferAlertEvent  { }
   icons:
   - sprite: /Textures/Interface/Alerts/offer_item.rsi
     state: offer_item

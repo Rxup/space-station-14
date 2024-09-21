@@ -2221,9 +2221,5 @@ namespace Content.Shared.CCVar
         public static readonly CVarDef<bool> DebugPow3rDisableParallel =
             CVarDef.Create("debug.pow3r_disable_parallel", true, CVar.SERVERONLY);
 
-         // ataraxia edit start
-        public static readonly CVarDef<bool> OfferModeIndicatorsPointShow =
-            CVarDef.Create("hud.offer_mode_indicators_point_show", true, CVar.ARCHIVE | CVar.CLIENTONLY);
-        // ataraxia edit end
     }
 }

@@ -1,11 +1,10 @@
-using Content.Shared.CCVar;
-using Content.Shared.OfferItem;
+using Content.Shared.Backmen.OfferItem;
 using Robust.Client.Graphics;
 using Robust.Client.Input;
 using Robust.Client.Player;
 using Robust.Shared.Configuration;
 
-namespace Content.Client.OfferItem;
+namespace Content.Client.Backmen.OfferItem;
 
 public sealed class OfferItemSystem : SharedOfferItemSystem
 {
@@ -17,12 +16,15 @@ public sealed class OfferItemSystem : SharedOfferItemSystem
 
     public override void Initialize()
     {
-        Subs.CVar(_cfg, CCVars.OfferModeIndicatorsPointShow, OnShowOfferIndicatorsChanged, true);
+        base.Initialize();
+        Subs.CVar(_cfg, Shared.Backmen.CCVar.CCVars.OfferModeIndicatorsPointShow, OnShowOfferIndicatorsChanged, true);
     }
+
+
+
     public override void Shutdown()
     {
         _overlayManager.RemoveOverlay<OfferItemIndicatorsOverlay>();
-
         base.Shutdown();
     }
 

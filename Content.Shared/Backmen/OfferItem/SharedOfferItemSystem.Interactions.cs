@@ -1,16 +1,15 @@
-using Content.Shared.Popups;
 using Content.Shared.ActionBlocker;
-using Content.Shared.Input;
 using Content.Shared.Hands.Components;
+using Content.Shared.Input;
+using Content.Shared.Popups;
 using Robust.Shared.Input.Binding;
 using Robust.Shared.Player;
 
-namespace Content.Shared.OfferItem;
+namespace Content.Shared.Backmen.OfferItem;
 
 public abstract partial class SharedOfferItemSystem
 {
     [Dependency] private readonly ActionBlockerSystem _actionBlocker = default!;
-    [Dependency] private readonly SharedPopupSystem _popup = default!;
 
     private void InitializeInteractions()
     {

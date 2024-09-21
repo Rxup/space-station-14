@@ -1,12 +1,19 @@
-using Content.Shared.Interaction;
-using Content.Shared.IdentityManagement;
+using Content.Shared.Alert;
+using Content.Shared.Backmen.Alert.Click;
 using Content.Shared.Hands.Components;
+using Content.Shared.Hands.EntitySystems;
+using Content.Shared.IdentityManagement;
+using Content.Shared.Interaction;
+using Content.Shared.Popups;
+using Robust.Shared.Player;
 
-namespace Content.Shared.OfferItem;
+namespace Content.Shared.Backmen.OfferItem;
 
 public abstract partial class SharedOfferItemSystem : EntitySystem
 {
     [Dependency] private readonly SharedTransformSystem _transform = default!;
+    [Dependency] private readonly SharedHandsSystem _hands = default!;
+    [Dependency] private readonly SharedPopupSystem _popup = default!;
 
     public override void Initialize()
     {
@@ -14,6 +21,62 @@ public abstract partial class SharedOfferItemSystem : EntitySystem
         SubscribeLocalEvent<OfferItemComponent, MoveEvent>(OnMove);
 
         InitializeInteractions();
+
+        SubscribeAllEvent<AcceptOfferAlertEvent>(OnClickAlertEvent);
+    }
+
+    [ValidatePrototypeId<AlertPrototype>]
+    protected const string OfferAlert = "Offer";
+    private void OnClickAlertEvent(AcceptOfferAlertEvent ev)
+    {
+        if(ev.Handled)
+            return;
+        if (ev.AlertId != OfferAlert)
+        {
+            return;
+        }
+
+        if (!TryComp<OfferItemComponent>(ev.User, out var itemComponent))
+        {
+            return;
+        }
+        ev.Handled = true;
+
+        Receive(ev.User, itemComponent);
+    }
+    /// <summary>
+    /// Accepting the offer and receive item
+    /// </summary>
+    public void Receive(EntityUid uid, OfferItemComponent? component = null)
+    {
+        if (!Resolve(uid, ref component) ||
+            !TryComp<OfferItemComponent>(component.Target, out var offerItem) ||
+            offerItem.Hand == null ||
+            component.Target == null ||
+            !TryComp<HandsComponent>(uid, out var hands))
+            return;
+
+        if (offerItem.Item != null)
+        {
+            if (!_hands.TryPickup(uid, offerItem.Item.Value, handsComp: hands))
+            {
+                _popup.PopupEntity(Loc.GetString("offer-item-full-hand"), uid, uid);
+                return;
+            }
+
+            _popup.PopupEntity(Loc.GetString("offer-item-give",
+                ("item", Identity.Entity(offerItem.Item.Value, EntityManager)),
+                ("target", Identity.Entity(uid, EntityManager))), component.Target.Value, component.Target.Value);
+            _popup.PopupEntity(Loc.GetString("offer-item-give-other",
+                    ("user", Identity.Entity(component.Target.Value, EntityManager)),
+                    ("item", Identity.Entity(offerItem.Item.Value, EntityManager)),
+                    ("target", Identity.Entity(uid, EntityManager)))
+                , component.Target.Value, Filter.PvsExcept(component.Target.Value, entityManager: EntityManager), true);
+        }
+
+        offerItem.Item = null;
+        Dirty(uid,offerItem);
+        UnReceive(uid, component, offerItem);
     }
 
     private void SetInReceiveMode(EntityUid uid, OfferItemComponent component, AfterInteractUsingEvent args)
@@ -49,8 +112,10 @@ public abstract partial class SharedOfferItemSystem : EntitySystem
     private void OnMove(EntityUid uid, OfferItemComponent component, MoveEvent args)
     {
         if (component.Target == null ||
-            args.NewPosition.InRange(EntityManager, _transform,
-                Transform(component.Target.Value).Coordinates, component.MaxOfferDistance))
+            _transform.InRange(args.NewPosition,
+                Transform(component.Target.Value).Coordinates,
+                component.MaxOfferDistance)
+            )
             return;
 
         UnOffer(uid, component);
