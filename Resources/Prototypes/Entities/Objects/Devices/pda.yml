@@ -18,8 +18,6 @@
       map: [ "enum.PdaVisualLayers.IdLight" ]
       shader: "unshaded"
       visible: false
-    - state: "pda-overlay"
-      shader: "unshaded"
   - type: Icon
     sprite: Objects/Devices/pda.rsi
     state: pda
@@ -818,20 +816,6 @@
   name: syndicate PDA
   description: Ok, time to be a productive member of- oh cool I'm a bad guy time to kill people!
   components:
-  - type: Sprite
-    sprite: Objects/Devices/pda.rsi
-    layers:
-    - map: [ "enum.PdaVisualLayers.Base" ]
-    - state: "light_overlay"
-      map: [ "enum.PdaVisualLayers.Flashlight" ]
-      shader: "unshaded"
-      visible: false
-    - state: "id_overlay"
-      map: [ "enum.PdaVisualLayers.IdLight" ]
-      shader: "unshaded"
-      visible: false
-    - state: "pda-overlay_syndi"
-      shader: "unshaded"
   - type: Pda
     id: SyndicateIDCard
     state: pda-syndi
