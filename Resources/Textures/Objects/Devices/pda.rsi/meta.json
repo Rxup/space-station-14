@@ -1,7 +1,7 @@
 {
   "version": 1,
   "copyright": "especially for the Space Cats server; Sprited by TheGypsyBaron https://github.com/SemkaGamez",
-  "license": "CLA-BY-SA-3.0",
+  "license": "CLA",
   "size": {
     "x": 32,
     "y": 32
@@ -205,6 +205,12 @@
     {
       "name": "equipped-IDCARD",
       "directions": 4
+    },
+    {
+      "name": "pda_overlay"
+    },
+    {
+      "name": "pda_overlay_syndi"
     }
   ]
 }
