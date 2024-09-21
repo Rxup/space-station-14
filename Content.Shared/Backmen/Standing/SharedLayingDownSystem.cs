@@ -38,11 +38,9 @@ public abstract class SharedLayingDownSystem : EntitySystem
 
     public void TryProcessAutoGetUp(Entity<LayingDownComponent> ent)
     {
-        var autoUp = false;
-        if (_playerManager.TryGetSessionByEntity(ent, out var player))
-        {
-            autoUp = GetAutoGetUp(ent, session: player);
-        }
+        var autoUp = !_playerManager.TryGetSessionByEntity(ent, out var player) ||
+                     GetAutoGetUp(ent, session: player);
+
         if (autoUp && !_container.IsEntityInContainer(ent))
             TryStandUp(ent, ent);
     }
