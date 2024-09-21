@@ -28,10 +28,10 @@ public sealed class ImmersiveSystem : EntitySystem
     public float EyeModifier = 0.9f;
 
     [ViewVariables(VVAccess.ReadWrite)]
-    public float TelescopeDivisor = 0.25f;
+    public float TelescopeDivisor = 0.1f;
 
     [ViewVariables(VVAccess.ReadWrite)]
-    public float TelescopeLerpAmount = 0.15f;
+    public float TelescopeLerpAmount = 0.95f;
 
     public override void Initialize()
     {
