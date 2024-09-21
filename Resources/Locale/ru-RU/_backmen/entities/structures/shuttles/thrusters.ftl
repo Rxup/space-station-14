@@ -1,23 +1,23 @@
 ent-BigThruster = большой ракетный двигатель
     .desc = { ent-Thruster.desc }
 
-ent-BigGreenThruster = большой ракетный двигатель
+ent-BigGreenThruster = { ent-BigThruster }
     .desc = { ent-Thruster.desc }
 
-ent-BigRedThruster = большой ракетный двигатель
+ent-BigRedThruster = { ent-BigThruster }
     .desc = { ent-Thruster.desc }
 
-ent-BigRndThruster = большой ракетный двигатель
+ent-BigRndThruster = { ent-BigThruster }
     .desc = { ent-Thruster.desc }
 
 ent-LargeThruster = огромный ракетный двигатель
     .desc = { ent-Thruster.desc }
 
-ent-LargeGreenThruster = огромный ракетный двигатель
+ent-LargeGreenThruster = { ent-LargeThruster }
     .desc = { ent-Thruster.desc }
 
-ent-LageRedThruster = огромный ракетный двигатель
+ent-LageRedThruster = { ent-LargeThruster }
     .desc = { ent-Thruster.desc }
 
-ent-LargeRndThruster = огромный ракетный двигатель
+ent-LargeRndThruster = { ent-LargeThruster }
     .desc = { ent-Thruster.desc }

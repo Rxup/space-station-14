@@ -14,6 +14,25 @@
       damage:
         types:
           Heat: 150
+    - type: Destructible
+      thresholds:
+      - trigger:
+          !type:DamageTrigger
+          damage: 600
+        behaviors:
+          - !type:DoActsBehavior
+            acts: ["Destruction"]
+      - trigger:
+          !type:DamageTrigger
+          damage: 200
+        behaviors:
+          - !type:DoActsBehavior
+            acts: ["Destruction"]
+          - !type:PlaySoundBehavior
+            sound:
+              collection: MetalBreak
+          - !type:ChangeConstructionNodeBehavior
+            node: machineFrame
     - type: Fixtures
       fixtures:
         fix1:
@@ -123,6 +142,25 @@
       damage:
         types:
           Heat: 500
+    - type: Destructible
+      thresholds:
+      - trigger:
+          !type:DamageTrigger
+          damage: 900
+        behaviors:
+          - !type:DoActsBehavior
+            acts: ["Destruction"]
+      - trigger:
+          !type:DamageTrigger
+          damage: 300
+        behaviors:
+          - !type:DoActsBehavior
+            acts: ["Destruction"]
+          - !type:PlaySoundBehavior
+            sound:
+              collection: MetalBreak
+          - !type:ChangeConstructionNodeBehavior
+            node: machineFrame
     - type: Fixtures
       fixtures:
         fix1:
