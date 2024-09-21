@@ -108,6 +108,8 @@
 # <-- SECURITY -->
     - RiotControl
     - WarCrimes
+    - MilitaryGygax
+    - ModernCombatMechs
 # <-- ARMORY -->
     - AnomalyCoreHarnessing
     - DraconicAmmunition
