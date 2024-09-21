@@ -37,17 +37,15 @@
   description: all-at-once-description
   showInVote: false
   rules:
-    - Nukeops
+    - WageScheduler #backmen: currency
+    - VampiresGameRule # backmen: vampire
+    - FleshCult # backmen: flesh cult
+    #- Changeling # backmen: changeling
     - Traitor
     - Revolutionary
     - Zombie
     - KesslerSyndromeScheduler
     - RampingStationEventScheduler
-    - WageScheduler #backmen: currency
-    - BlobGameMode # backmen: blob
-    - VampiresGameRule # backmen: vampire
-    - FleshCult # backmen: flesh cult
-    #- Changeling # backmen: changeling
     - SpaceTrafficControlEventScheduler
     - BasicRoundstartVariation
     - MeteorSwarmScheduler
@@ -64,6 +62,10 @@
   showInVote: false #Please god dont do this
   rules:
     - WageScheduler #backmen: currency
+    - BlobGameMode # backmen: blob
+    - VampiresGameRule # backmen: vampire
+    - FleshCult # backmen: flesh cult
+    #- Changeling # backmen: changeling
     - Nukeops
     - Traitor
     - Revolutionary
