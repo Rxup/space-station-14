@@ -4,8 +4,8 @@ using Content.Shared.Gravity;
 using Content.Shared.Input;
 using Content.Shared.Mobs.Systems;
 using Content.Shared.Movement.Systems;
+using Content.Shared.Standing;
 using Content.Shared.Stunnable;
-using Robust.Shared.Containers;
 using Robust.Shared.Input.Binding;
 using Robust.Shared.Player;
 using Robust.Shared.Serialization;
@@ -16,9 +16,6 @@ public abstract class SharedLayingDownSystem : EntitySystem
     [Dependency] private readonly StandingStateSystem _standing = default!;
     [Dependency] private readonly SharedDoAfterSystem _doAfter = default!;
     [Dependency] private readonly SharedGravitySystem _gravity = default!;
-    [Dependency] private readonly ISharedPlayerManager _playerManager = default!;
-    [Dependency] private readonly SharedContainerSystem _container = default!;
-
     public override void Initialize()
     {
         CommandBinds.Builder
@@ -29,20 +26,6 @@ public abstract class SharedLayingDownSystem : EntitySystem
         SubscribeLocalEvent<LayingDownComponent, RefreshMovementSpeedModifiersEvent>(OnRefreshMovementSpeed);
         SubscribeLocalEvent<LayingDownComponent, EntParentChangedMessage>(OnParentChanged);
     }
-
-    protected abstract bool GetAutoGetUp(Entity<LayingDownComponent> ent, ICommonSession session);
-
-    public void TryProcessAutoGetUp(Entity<LayingDownComponent> ent)
-    {
-        var autoUp = false;
-        if (_playerManager.TryGetSessionByEntity(ent, out var player))
-        {
-            autoUp = GetAutoGetUp(ent, session: player);
-        }
-        if (autoUp && !_container.IsEntityInContainer(ent))
-            TryStandUp(ent, ent);
-    }
-
     public override void Shutdown()
     {
         base.Shutdown();
@@ -51,7 +34,6 @@ public abstract class SharedLayingDownSystem : EntitySystem
 
     private void ToggleStanding(ICommonSession? session)
     {
-        if (session?.AttachedEntity == null)
         if (session is not { AttachedEntity: { Valid: true } uid } _
             || !Exists(uid)
             || !HasComp<LayingDownComponent>(session.AttachedEntity)
@@ -59,12 +41,6 @@ public abstract class SharedLayingDownSystem : EntitySystem
             return;
         RaiseNetworkEvent(new ChangeLayingDownEvent());
     }
-
-    public virtual void AutoGetUp(Entity<LayingDownComponent> ent)
-    {
-
-    }
-
     private void OnChangeState(ChangeLayingDownEvent ev, EntitySessionEventArgs args)
     {
         if (!args.SenderSession.AttachedEntity.HasValue)
@@ -76,9 +52,6 @@ public abstract class SharedLayingDownSystem : EntitySystem
         if (!TryComp(uid, out StandingStateComponent? standing)
             || !TryComp(uid, out LayingDownComponent? layingDown))
             return;
-        AutoGetUp((uid,layingDown));
-
-        if (HasComp<KnockedDownComponent>(uid) || !_mobState.IsAlive(uid))
         RaiseNetworkEvent(new CheckAutoGetUpEvent(GetNetEntity(uid)));
         if (HasComp<KnockedDownComponent>(uid)
             || !_mobState.IsAlive(uid))
