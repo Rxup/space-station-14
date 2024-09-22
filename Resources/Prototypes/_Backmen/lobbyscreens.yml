@@ -29,3 +29,15 @@
 - type: animatedLobbyScreen
   id: VangoghLobbyScreen
   path: /Textures/_White/LobbyScreens/vangogh.rsi
+
+- type: animatedLobbyScreen
+  id: HoleLobbyScreen
+  path: /Textures/_White/LobbyScreens/Hole.rsi
+
+- type: animatedLobbyScreen
+  id: GachiLobbyScreen
+  path: /Textures/_White/LobbyScreens/Gachi.rsi
+
+- type: animatedLobbyScreen
+  id: BochiLobbyScreen
+  path: /Textures/_White/LobbyScreens/Bochi.rsi
