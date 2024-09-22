@@ -81,10 +81,7 @@ public sealed partial class LobbyUIController : UIController, IOnStateEntered<Lo
 
     private LobbyCharacterPreviewPanel? GetLobbyPreview()
     {
-        if (_stateManager.CurrentState is LobbyState lobby)
-        {
-            return lobby.Lobby?.CharacterPreview;
-        }
+
 
         return null;
     }

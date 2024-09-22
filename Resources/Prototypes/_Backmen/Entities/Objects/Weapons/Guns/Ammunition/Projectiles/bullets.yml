@@ -10,3 +10,13 @@
         Piercing: 8
   - type: IgniteOnCollide
     fireStacks: 0.3
+
+- type: entity
+  id: PelletShotgunMagnum12Spread
+  categories: [ HideSpawnMenu ]
+  parent: PelletShotgun
+  components:
+  - type: ProjectileSpread
+    proto: PelletShotgun
+    count: 10
+    spread: 16
