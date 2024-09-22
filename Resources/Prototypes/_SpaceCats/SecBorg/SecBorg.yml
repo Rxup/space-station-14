@@ -35,9 +35,28 @@
   lawString: "Защищайте приписанную вам станцию и её экипаж, пока это не противоречит остальным законам."
 
 #киборг-охранник
+
+- type: entity
+  id: BaseBorgChassisNTs
+  parent: BaseBorgChassis
+  abstract: true
+  components:
+  - type: NpcFactionMember
+    factions:
+    - NanoTrasen
+  - type: Access
+    enabled: false
+    groups:
+    - AllAccess
+  - type: AccessReader
+    access: [["Command"], ["Research"]]
+  - type: ShowJobIcons
+  - type: ShowMindShieldIcons
+  - type: StationAiVision
+
 - type: entity
   id: BorgChassisSecurity
-  parent: BaseBorgChassisNT
+  parent: BaseBorgChassisNTs
   name: киборг-охранник
   components:
   - type: SiliconLawProvider
