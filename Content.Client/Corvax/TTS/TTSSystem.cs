@@ -64,7 +64,7 @@ public sealed class TTSSystem : EntitySystem
 
     public void RequestGlobalTTS(Content.Shared.Backmen.TTS.VoiceRequestType text, string voiceId)
     {
-        RaiseNetworkEvent(new RequestGlobalTTSEvent(text, voiceId));
+        RaiseNetworkEvent(new RequestPreviewTTSEvent(voiceId));
     }
 
     private void OnTtsVolumeChanged(float volume)
