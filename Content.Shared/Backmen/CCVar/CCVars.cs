@@ -161,4 +161,30 @@ public sealed class CCVars
     public static readonly CVarDef<int> SpecForceDelay =
         CVarDef.Create("specforce.delay", 2, CVar.SERVERONLY);
 
+    /*
+     * Ghost Respawn
+     */
+
+    public static readonly CVarDef<float> GhostRespawnTime =
+        CVarDef.Create("ghost.respawn_time", 15f, CVar.SERVER | CVar.REPLICATED);
+
+    public static readonly CVarDef<int> GhostRespawnMaxPlayers =
+        CVarDef.Create("ghost.respawn_max_players", 40, CVar.SERVERONLY);
+
+    /*
+     * Immersive
+     */
+
+    public static readonly CVarDef<bool> ImmersiveEnabled =
+        CVarDef.Create("immersive.enabled", true, CVar.SERVERONLY);
+
+    /*
+     * Bind Standing - Ataraxia
+     */
+
+    public static readonly CVarDef<bool> AutoGetUp =
+        CVarDef.Create("laying.auto_get_up", true, CVar.CLIENT | CVar.ARCHIVE | CVar.REPLICATED);
+    
+    public static readonly CVarDef<bool> OfferModeIndicatorsPointShow =
+        CVarDef.Create("hud.offer_mode_indicators_point_show", true, CVar.ARCHIVE | CVar.CLIENTONLY);
 }

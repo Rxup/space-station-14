@@ -1,0 +1,10 @@
+- type: latheRecipe
+  id: MechEquipmentDrill
+  icon:
+     sprite: Objects/Specific/Mech/mecha_equipment.rsi
+     state: mecha_drill
+  result: MechEquipmentDrill
+  completetime: 10
+  materials:
+    Steel: 720
+    Glass: 250

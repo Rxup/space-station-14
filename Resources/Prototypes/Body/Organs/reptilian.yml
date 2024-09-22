@@ -3,15 +3,15 @@
   parent: OrganAnimalStomach
   categories: [ HideSpawnMenu ]
   components:
-  - type: Stomach
-    specialDigestible:
-      tags:
-      - Fruit
-      - ReptilianFood
-      - Meat
-      - Pill
-      - Crayon
-      - Paper
+  - type: Stomach # Ataraxia-REMOVE
+#    specialDigestible:
+#      tags:
+#      - Fruit
+#      - ReptilianFood
+#      - Meat
+#      - Pill
+#      - Crayon
+#      - Paper
   - type: SolutionContainerManager
     solutions:
       stomach:

@@ -124,7 +124,6 @@
   components:
   - type: ItemToggle
     onUse: false
-  - type: ItemTogglePointLight
   - type: HealthAnalyzer
     scanDelay: 1
     scanningEndSound:

@@ -19,6 +19,8 @@
     CMOHyposprayStealObjectiveInterdyne: 1
     MedicalTechFabCircuitboardStealObjectiveInterdyne: 1
     CorgiMeatStealObjectiveInterdyne: 1
+    #Gorlex
+    NukeDiskStealObjectiveGorlex: 0.05
 
 - type: weightedRandom
   id: TraitorObjectiveGroupKillSyndicateFactions
@@ -48,7 +50,7 @@
     #Interdyne
     EscapeShuttleObjectiveInterdyne: 1
     #Gorlex
-    HijackShuttleObjectiveGorlex: 0.02
+    HijackShuttleObjectiveGorlex: 0.05
 
 - type: weightedRandom
   id: TraitorObjectiveGroupSocialSyndicateFactions

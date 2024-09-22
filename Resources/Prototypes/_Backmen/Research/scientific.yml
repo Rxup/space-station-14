@@ -1,0 +1,33 @@
+﻿- type: technology
+  id: PsionicCountermeasures
+  name: backmen-research-technology-psionic-countermeasures
+  icon:
+    sprite: /Textures/Objects/Devices/hand_teleporter.rsi
+    state: icon
+  discipline: PsionicCountermeasures
+  tier: 1
+  cost: 7500
+  recipeUnlocks:
+    - ClothingHeadHelmetInsulated
+    - InsulativeHeadcage
+    - ShellSoulbreaker
+  technologyPrerequisites:
+  - AnomalousResearch
+
+- type: technology
+  id: Teleportation
+  name: backmen-research-technology-teleportation
+  icon:
+    sprite: /Textures/Objects/Devices/hand_teleporter.rsi
+    state: icon
+  discipline: Teleportation
+  tier: 1
+  cost: 15000
+  recipeUnlocks:
+    - CoreSilver
+    - HandTeleporter1
+#    - QSI
+  technologyPrerequisites:
+  - GravityManipulation
+  - QuantumLeaping
+  - AnomalousResearch

@@ -1,0 +1,42 @@
+- type: technology
+  id: SalvageWeaponsMachines
+  name: ataraxia-research-technology-salvage-weapons-machines
+  icon:
+    sprite: Objects/Weapons/Guns/Shuttles/kinetic.rsi
+    state: ptk-800
+  discipline: SalvageWeaponsMachines
+  tier: 1
+  cost: 5000
+  recipeUnlocks:
+  - ShuttleGunKineticCircuitboard
+  technologyPrerequisites:
+  - SalvageWeapons
+
+- type: technology
+  id: SalvageEquipmentMachines
+  name: ataraxia-research-technology-salvage-equipment-machines
+  icon:
+    sprite: Structures/Machines/ore_processor_industrial.rsi
+    state: inserting
+  discipline: SalvageEquipmentMachines
+  tier: 1
+  cost: 5000
+  recipeUnlocks:
+  - OreProcessorIndustrialMachineCircuitboard
+  - SalvageExpeditionsComputerCircuitboard # DeltaV
+  technologyPrerequisites:
+  - SalvageEquipment
+
+- type: technology
+  id: SpaceScanningMachines
+  name: ataraxia-research-technology-space-scanning-machines
+  icon:
+    sprite: Objects/Tools/handheld_mass_scanner.rsi
+    state: icon
+  discipline: SpaceScanningMachines
+  tier: 1
+  cost: 5000
+  recipeUnlocks:
+  - RadarConsoleCircuitboard
+  technologyPrerequisites:
+  - SpaceScanning

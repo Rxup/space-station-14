@@ -1,5 +1,4 @@
 using System.Numerics;
-using Content.Shared.Backmen.CameraFollow.Components;
 using JetBrains.Annotations;
 using Robust.Shared.Network;
 using Robust.Shared.Serialization;
