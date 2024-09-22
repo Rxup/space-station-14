@@ -95,7 +95,7 @@ namespace Content.Client.Stylesheets
         public static readonly Color ConcerningOrangeFore = Color.FromHex("#A5762F");
         public static readonly Color DangerousRedFore = Color.FromHex("#BB3232");
         public static readonly Color DisabledFore = Color.FromHex("#5A5A5A");
-        
+
         // WD EDIT
         public static readonly Color ButtonColorDefault = Color.FromHex("#29282f");
         public static readonly Color ButtonColorDefaultRed = Color.FromHex("#992327");
@@ -509,7 +509,7 @@ namespace Content.Client.Stylesheets
             var sliderFillBox = new StyleBoxTexture
             {
                 Texture = sliderFillTex,
-                Modulate = Color.FromHex("#3E6C45")
+                Modulate = Color.FromHex("#663399")
             };
 
             var sliderBackBox = new StyleBoxTexture
