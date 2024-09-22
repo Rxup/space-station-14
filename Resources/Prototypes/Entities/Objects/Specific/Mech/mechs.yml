@@ -1,13 +1,34 @@
 - type: entity
-  id: BaseMech
+  id: BaseMechs
   save: false
   abstract: true
   components:
+  - type: BorgTransponder
+  - type: DeviceNetwork
+    deviceNetId: Wireless
+    receiveFrequencyId: CyborgControl
+    transmitFrequencyId: RoboticsConsole
+    savableAddress: false
+  - type: OnUseTimerTrigger
+    delay: 10
+    examinable: false
+    beepSound:
+      path: /Audio/Effects/Cargo/buzz_two.ogg
+      params:
+        volume: -4
+  - type: AutomatedTimer
+  - type: ExplodeOnTrigger
+  - type: Explosive
+    explosionType: Minibomb
+    deleteAfterExplosion: false
+    totalIntensity: 30
+    intensitySlope: 20
+    maxIntensity: 20
+    canCreateVacuum: false
   - type: MobMover
   - type: Mech
   - type: MechAir
   - type: AirFilter
-    # everything except oxygen and nitrogen
     gases:
     - CarbonDioxide
     - Plasma
