@@ -6,6 +6,7 @@ using Content.Shared.IdentityManagement;
 using Content.Shared.Interaction;
 using Content.Shared.Popups;
 using Robust.Shared.Player;
+using Robust.Shared.Timing;
 
 namespace Content.Shared.Backmen.OfferItem;
 
@@ -14,6 +15,7 @@ public abstract partial class SharedOfferItemSystem : EntitySystem
     [Dependency] private readonly SharedTransformSystem _transform = default!;
     [Dependency] private readonly SharedHandsSystem _hands = default!;
     [Dependency] private readonly SharedPopupSystem _popup = default!;
+    [Dependency] private readonly IGameTiming _timing = default!;
 
     public override void Initialize()
     {
@@ -22,65 +24,69 @@ public abstract partial class SharedOfferItemSystem : EntitySystem
 
         InitializeInteractions();
 
-        SubscribeAllEvent<AcceptOfferAlertEvent>(OnClickAlertEvent);
+        SubscribeLocalEvent<OfferItemComponent,AcceptOfferAlertEvent>(OnClickAlertEvent);
     }
 
     [ValidatePrototypeId<AlertPrototype>]
     protected const string OfferAlert = "Offer";
-    private void OnClickAlertEvent(AcceptOfferAlertEvent ev)
+    private void OnClickAlertEvent(Entity<OfferItemComponent> ent, ref AcceptOfferAlertEvent ev)
     {
         if(ev.Handled)
             return;
-        if (ev.AlertId != OfferAlert)
-        {
-            return;
-        }
 
-        if (!TryComp<OfferItemComponent>(ev.User, out var itemComponent))
-        {
+        if (ev.AlertId != OfferAlert)
             return;
-        }
+
         ev.Handled = true;
 
-        Receive(ev.User, itemComponent);
+        Receive(ent!);
     }
     /// <summary>
     /// Accepting the offer and receive item
     /// </summary>
-    public void Receive(EntityUid uid, OfferItemComponent? component = null)
+    public void Receive(Entity<OfferItemComponent?> ent)
     {
-        if (!Resolve(uid, ref component) ||
-            !TryComp<OfferItemComponent>(component.Target, out var offerItem) ||
+        if (!_timing.IsFirstTimePredicted)
+            return;
+
+        if (!Resolve(ent, ref ent.Comp) ||
+            !TryComp<OfferItemComponent>(ent.Comp.Target, out var offerItem) ||
             offerItem.Hand == null ||
-            component.Target == null ||
-            !TryComp<HandsComponent>(uid, out var hands))
+            ent.Comp.Target == null ||
+            !TryComp<HandsComponent>(ent, out var hands))
             return;
 
         if (offerItem.Item != null)
         {
-            if (!_hands.TryPickup(uid, offerItem.Item.Value, handsComp: hands))
+            if (!_hands.TryPickup(ent, offerItem.Item.Value, handsComp: hands))
             {
-                _popup.PopupEntity(Loc.GetString("offer-item-full-hand"), uid, uid);
+                _popup.PopupClient(Loc.GetString("offer-item-full-hand"), ent, ent);
                 return;
             }
 
-            _popup.PopupEntity(Loc.GetString("offer-item-give",
+            var pvs = Filter.PvsExcept(ent.Comp.Target.Value, entityManager: EntityManager);
+                //.RemoveWhereAttachedEntity(x => x == ent.Owner);
+
+            _popup.PopupClient(Loc.GetString("offer-item-give",
                 ("item", Identity.Entity(offerItem.Item.Value, EntityManager)),
-                ("target", Identity.Entity(uid, EntityManager))), component.Target.Value, component.Target.Value);
+                ("target", Identity.Entity(ent, EntityManager))), ent.Comp.Target.Value, ent.Comp.Target.Value);
             _popup.PopupEntity(Loc.GetString("offer-item-give-other",
-                    ("user", Identity.Entity(component.Target.Value, EntityManager)),
+                    ("user", Identity.Entity(ent.Comp.Target.Value, EntityManager)),
                     ("item", Identity.Entity(offerItem.Item.Value, EntityManager)),
-                    ("target", Identity.Entity(uid, EntityManager)))
-                , component.Target.Value, Filter.PvsExcept(component.Target.Value, entityManager: EntityManager), true);
+                    ("target", Identity.Entity(ent, EntityManager)))
+                , ent.Comp.Target.Value, pvs, true);
         }
 
         offerItem.Item = null;
-        Dirty(uid,offerItem);
-        UnReceive(uid, component, offerItem);
+        Dirty(ent);
+        UnReceive(ent, ent, offerItem);
     }
 
     private void SetInReceiveMode(EntityUid uid, OfferItemComponent component, AfterInteractUsingEvent args)
     {
+        if (!_timing.IsFirstTimePredicted)
+            return;
+
         if (!TryComp<OfferItemComponent>(args.User, out var offerItem))
             return;
 
@@ -101,10 +107,10 @@ public abstract partial class SharedOfferItemSystem : EntitySystem
         if (offerItem.Item == null)
             return;
 
-        _popup.PopupEntity(Loc.GetString("offer-item-try-give",
+        _popup.PopupPredicted(Loc.GetString("offer-item-try-give",
             ("item", Identity.Entity(offerItem.Item.Value, EntityManager)),
             ("target", Identity.Entity(uid, EntityManager))), component.Target.Value, component.Target.Value);
-        _popup.PopupEntity(Loc.GetString("offer-item-try-give-target",
+        _popup.PopupClient(Loc.GetString("offer-item-try-give-target",
             ("user", Identity.Entity(component.Target.Value, EntityManager)),
             ("item", Identity.Entity(offerItem.Item.Value, EntityManager))), component.Target.Value, uid);
     }
@@ -126,16 +132,18 @@ public abstract partial class SharedOfferItemSystem : EntitySystem
     /// </summary>
     protected void UnOffer(EntityUid uid, OfferItemComponent component)
     {
-        if (!TryComp<HandsComponent>(uid, out var hands) || hands.ActiveHand == null)
+        if (!_timing.IsFirstTimePredicted)
             return;
 
+        if (!TryComp<HandsComponent>(uid, out var hands) || hands.ActiveHand == null)
+            return;
 
         if (TryComp<OfferItemComponent>(component.Target, out var offerItem) && component.Target != null)
         {
 
             if (component.Item != null)
             {
-                _popup.PopupEntity(Loc.GetString("offer-item-no-give",
+                _popup.PopupClient(Loc.GetString("offer-item-no-give",
                     ("item", Identity.Entity(component.Item.Value, EntityManager)),
                     ("target", Identity.Entity(component.Target.Value, EntityManager))), uid, uid);
                 _popup.PopupEntity(Loc.GetString("offer-item-no-give-target",
@@ -145,7 +153,7 @@ public abstract partial class SharedOfferItemSystem : EntitySystem
 
             else if (offerItem.Item != null)
             {
-                _popup.PopupEntity(Loc.GetString("offer-item-no-give",
+                _popup.PopupClient(Loc.GetString("offer-item-no-give",
                     ("item", Identity.Entity(offerItem.Item.Value, EntityManager)),
                     ("target", Identity.Entity(uid, EntityManager))), component.Target.Value, component.Target.Value);
                 _popup.PopupEntity(Loc.GetString("offer-item-no-give-target",
@@ -189,7 +197,7 @@ public abstract partial class SharedOfferItemSystem : EntitySystem
 
         if (offerItem.Item != null)
         {
-            _popup.PopupEntity(Loc.GetString("offer-item-no-give",
+            _popup.PopupClient(Loc.GetString("offer-item-no-give",
                 ("item", Identity.Entity(offerItem.Item.Value, EntityManager)),
                 ("target", Identity.Entity(uid, EntityManager))), component.Target.Value, component.Target.Value);
             _popup.PopupEntity(Loc.GetString("offer-item-no-give-target",

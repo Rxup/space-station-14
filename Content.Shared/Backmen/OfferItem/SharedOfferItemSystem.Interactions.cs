@@ -27,6 +27,9 @@ public abstract partial class SharedOfferItemSystem
 
     private void SetInOfferMode(ICommonSession? session)
     {
+        if (!_timing.IsFirstTimePredicted)
+            return;
+
         if (session is not { } playerSession)
             return;
 
