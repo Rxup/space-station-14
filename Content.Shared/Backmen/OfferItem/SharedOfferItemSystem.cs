@@ -19,7 +19,7 @@ public abstract partial class SharedOfferItemSystem : EntitySystem
 
     public override void Initialize()
     {
-        SubscribeLocalEvent<OfferItemComponent, AfterInteractUsingEvent>(SetInReceiveMode);
+        SubscribeLocalEvent<OfferItemComponent, InteractUsingEvent>(SetInReceiveMode);
         SubscribeLocalEvent<OfferItemComponent, MoveEvent>(OnMove);
 
         InitializeInteractions();
@@ -64,17 +64,15 @@ public abstract partial class SharedOfferItemSystem : EntitySystem
                 return;
             }
 
-            var pvs = Filter.PvsExcept(ent.Comp.Target.Value, entityManager: EntityManager);
-                //.RemoveWhereAttachedEntity(x => x == ent.Owner);
-
             _popup.PopupClient(Loc.GetString("offer-item-give",
                 ("item", Identity.Entity(offerItem.Item.Value, EntityManager)),
                 ("target", Identity.Entity(ent, EntityManager))), ent.Comp.Target.Value, ent.Comp.Target.Value);
-            _popup.PopupEntity(Loc.GetString("offer-item-give-other",
+
+            _popup.PopupPredicted(Loc.GetString("offer-item-give-other",
                     ("user", Identity.Entity(ent.Comp.Target.Value, EntityManager)),
                     ("item", Identity.Entity(offerItem.Item.Value, EntityManager)),
                     ("target", Identity.Entity(ent, EntityManager)))
-                , ent.Comp.Target.Value, pvs, true);
+                , ent.Comp.Target.Value, ent);
         }
 
         offerItem.Item = null;
@@ -82,15 +80,12 @@ public abstract partial class SharedOfferItemSystem : EntitySystem
         UnReceive(ent, ent, offerItem);
     }
 
-    private void SetInReceiveMode(EntityUid uid, OfferItemComponent component, AfterInteractUsingEvent args)
+    private void SetInReceiveMode(EntityUid uid, OfferItemComponent component, InteractUsingEvent args)
     {
-        if (!_timing.IsFirstTimePredicted)
-            return;
-
         if (!TryComp<OfferItemComponent>(args.User, out var offerItem))
             return;
 
-        if (args.User == uid || component.IsInReceiveMode ||
+        if (args.User == uid || component.IsInReceiveMode || !offerItem.IsInOfferMode ||
             (offerItem.IsInReceiveMode && offerItem.Target != uid))
             return;
 
@@ -113,6 +108,8 @@ public abstract partial class SharedOfferItemSystem : EntitySystem
         _popup.PopupClient(Loc.GetString("offer-item-try-give-target",
             ("user", Identity.Entity(component.Target.Value, EntityManager)),
             ("item", Identity.Entity(offerItem.Item.Value, EntityManager))), component.Target.Value, uid);
+
+        args.Handled = true;
     }
 
     private void OnMove(EntityUid uid, OfferItemComponent component, MoveEvent args)
@@ -132,9 +129,6 @@ public abstract partial class SharedOfferItemSystem : EntitySystem
     /// </summary>
     protected void UnOffer(EntityUid uid, OfferItemComponent component)
     {
-        if (!_timing.IsFirstTimePredicted)
-            return;
-
         if (!TryComp<HandsComponent>(uid, out var hands) || hands.ActiveHand == null)
             return;
 
@@ -143,22 +137,29 @@ public abstract partial class SharedOfferItemSystem : EntitySystem
 
             if (component.Item != null)
             {
-                _popup.PopupClient(Loc.GetString("offer-item-no-give",
-                    ("item", Identity.Entity(component.Item.Value, EntityManager)),
-                    ("target", Identity.Entity(component.Target.Value, EntityManager))), uid, uid);
-                _popup.PopupEntity(Loc.GetString("offer-item-no-give-target",
-                    ("user", Identity.Entity(uid, EntityManager)),
-                    ("item", Identity.Entity(component.Item.Value, EntityManager))), uid, component.Target.Value);
+                if (!_timing.IsFirstTimePredicted)
+                {
+                    _popup.PopupClient(Loc.GetString("offer-item-no-give",
+                        ("item", Identity.Entity(component.Item.Value, EntityManager)),
+                        ("target", Identity.Entity(component.Target.Value, EntityManager))), uid, uid);
+                    _popup.PopupEntity(Loc.GetString("offer-item-no-give-target",
+                        ("user", Identity.Entity(uid, EntityManager)),
+                        ("item", Identity.Entity(component.Item.Value, EntityManager))), uid, component.Target.Value);
+                }
+
             }
 
             else if (offerItem.Item != null)
             {
-                _popup.PopupClient(Loc.GetString("offer-item-no-give",
-                    ("item", Identity.Entity(offerItem.Item.Value, EntityManager)),
-                    ("target", Identity.Entity(uid, EntityManager))), component.Target.Value, component.Target.Value);
-                _popup.PopupEntity(Loc.GetString("offer-item-no-give-target",
-                    ("user", Identity.Entity(component.Target.Value, EntityManager)),
-                    ("item", Identity.Entity(offerItem.Item.Value, EntityManager))), component.Target.Value, uid);
+                if (!_timing.IsFirstTimePredicted)
+                {
+                    _popup.PopupClient(Loc.GetString("offer-item-no-give",
+                        ("item", Identity.Entity(offerItem.Item.Value, EntityManager)),
+                        ("target", Identity.Entity(uid, EntityManager))), component.Target.Value, component.Target.Value);
+                    _popup.PopupEntity(Loc.GetString("offer-item-no-give-target",
+                        ("user", Identity.Entity(component.Target.Value, EntityManager)),
+                        ("item", Identity.Entity(offerItem.Item.Value, EntityManager))), component.Target.Value, uid);
+                }
             }
 
             offerItem.IsInOfferMode = false;
