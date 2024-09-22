@@ -1,5 +1,5 @@
 - type: entity
-  id: BaseMechs
+  id: BaseMech
   save: false
   abstract: true
   components:
