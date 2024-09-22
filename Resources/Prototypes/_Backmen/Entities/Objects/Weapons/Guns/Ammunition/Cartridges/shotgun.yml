@@ -33,9 +33,7 @@
       - state: base
         map: [ "enum.AmmoVisualLayers.Base" ]
   - type: CartridgeAmmo
-    proto: PelletShotgun
-    #count: 10
-    #spread: 16
+    proto: PelletShotgunMagnum12Spread
     soundEject:
       collection: ShellEject
   - type: EmitSoundOnLand
@@ -56,8 +54,6 @@
         map: [ "enum.AmmoVisualLayers.Base" ]
   - type: CartridgeAmmo
     proto: PelletShotgunRocket
-    #count: 1
-    #spread: 1
     soundEject:
       collection: ShellEject
   - type: SpentAmmoVisuals

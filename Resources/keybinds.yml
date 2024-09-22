@@ -584,7 +584,10 @@ binds:
   type: State
   key: MouseRight
   canFocus: true
-- function: LookUp
+- function: CMUniqueAction #RMC-14
+  type: State
+  key: Space
+- function: LookUp # WD
   type: State
   key: Space
 - function: ToggleStanding # Ataraxia
