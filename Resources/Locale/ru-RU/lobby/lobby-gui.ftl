@@ -6,3 +6,6 @@ ui-lobby-observe-button = Наблюдать
 ui-lobby-ready-up-button = Готовность
 ui-lobby-online-players-block = Текущие игроки
 ui-lobby-server-info-block = Серверная информация
+ui-lobby-changelog-button = Список изменений
+ui-lobby-changelog = Список изменений:
+ui-lobby-changelog-not-found = Не удалось загрузить список изменений
