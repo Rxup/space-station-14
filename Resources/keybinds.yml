@@ -590,3 +590,6 @@ binds:
 - function: ToggleStanding # Ataraxia
   type: State
   key: V
+- function: OfferItem # Ataraxia
+  type: State
+  key: F
