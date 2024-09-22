@@ -1,0 +1,36 @@
+- type: entity
+  id: SwarmerSuperCell
+  name: S.W.A.R.M батарея 
+  description: Невероятно мощная батарея.
+  suffix: BORK (Swarmer)
+  parent: BasePowerCell
+  components:
+  - type: Sprite
+    sprite: _SpaceCats/Swarmers/MOB-MODULS/SwarmerSuperCell.rsi
+    layers:
+    - map: [ "enum.PowerCellVisualLayers.Base" ]
+      state: SwarmerSuperCell
+    - map: [ "enum.PowerCellVisualLayers.Unshaded" ]
+      state: o2
+      shader: unshaded
+  - type: Item
+    size: Ginormous
+  - type: SolutionContainerManager
+    solutions:
+      battery:
+        maxVol: 15
+  - type: Extractable
+    juiceSolution:
+      reagents:
+        - ReagentId: Radium
+          Quantity: 15
+  - type: Tag
+    tags:
+      - SwarmerSuperCell
+  - type: ClothingSpeedModifier
+    walkModifier: 0.8
+    sprintModifier: 0.8
+  - type: HeldSpeedModifier
+  - type: Battery
+    maxCharge: 2500
+    startingCharge: 2500

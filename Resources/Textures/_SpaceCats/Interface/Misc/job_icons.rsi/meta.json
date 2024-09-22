@@ -1,0 +1,22 @@
+{
+  "version": 1,
+  "license": "CLA",
+  "copyright": "Sprited by TheGypsyBaron https://github.com/SemkaGamez, especially for the Space Cats server",
+  "size": {
+    "x": 8,
+    "y": 8
+  },
+  "states": [
+    {
+      "name": "SwarmBase"
+    },
+
+    {
+      "name": "SwarmFabricator"
+    },
+  
+    {
+    "name": "SwarmShooter"
+    }
+  ]
+}

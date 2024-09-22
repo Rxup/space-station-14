@@ -1,0 +1,54 @@
+#Suit
+- type: loadout
+  id: ClothingUniformJumpsuitBlueshields
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitBlueshields
+
+- type: loadout
+  id: ClothingUniformJumpskirtBlueshields
+  equipment:
+    jumpsuit: ClothingUniformJumpskirtBlueshields
+
+#mask
+- type: loadout
+  id: ClothingMaskGasBlueshields
+  equipment:
+    mask: ClothingMaskGasBlueshields
+
+#Head
+- type: loadout
+  id: ClothingHeadHatBeretBlueshields
+  equipment:
+    head: ClothingHeadHatBeretBlueshields
+
+#outerClothing
+- type: loadout
+  id: ClothingOuterCoatBlueshields
+  equipment:
+    outerClothing: ClothingOuterCoatBlueshields
+
+- type: loadout
+  id: ClothingOuterWinterBlueshields
+  equipment:
+    outerClothing: ClothingOuterWinterBlueshields
+
+#cloak
+- type: loadout
+  id: ClothingNeckCloakBlueshields
+  equipment:
+    neck: ClothingNeckCloakBlueshields
+
+- type: loadout
+  id: ClothingNeckMantleBlueShield
+  equipment:
+    neck: ClothingNeckMantleBlueShield
+
+- type: startingGear
+  id: ClothingNeckMantleBlueShield
+  equipment:
+    neck: ClothingNeckMantleBlueShield
+
+- type: startingGear
+  id: ClothingNeckCloakBlueshields
+  equipment:
+    neck: ClothingNeckCloakBlueshields

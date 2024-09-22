@@ -186,7 +186,7 @@ binds:
   mod1: Alt
 - function: OpenCharacterMenu
   type: State
-  key: C
+  key: U
 - function: OpenEmotesMenu
   type: State
   key: Y
@@ -584,12 +584,12 @@ binds:
   type: State
   key: MouseRight
   canFocus: true
-- function: LookUp # WD
+- function: LookUp
   type: State
   key: Space
 - function: ToggleStanding # Ataraxia
   type: State
-  key: V
+  key: C
 - function: OfferItem # Ataraxia
   type: State
   key: F

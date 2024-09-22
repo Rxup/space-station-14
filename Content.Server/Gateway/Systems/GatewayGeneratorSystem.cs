@@ -82,11 +82,11 @@ public sealed class GatewayGeneratorSystem : EntitySystem
             return;
 
         generator.NextUnlock = TimeSpan.FromMinutes(5);
-
-        for (var i = 0; i < 3; i++)
-        {
-            GenerateDestination(uid, generator);
-        }
+    // disable planet generator
+    //    for (var i = 0; i < 3; i++)
+    //    {
+    //        GenerateDestination(uid, generator);
+    //    }
     }
 
     private void GenerateDestination(EntityUid uid, GatewayGeneratorComponent? generator = null)

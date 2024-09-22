@@ -1,0 +1,209 @@
+- type: entity
+  id: BaseMechLaserWeapon
+  parent: BaseMechEquipment
+  abstract: true
+  components:
+  - type: Sprite
+  - type: Gun
+    fireRate: 2
+    selectedMode: FullAuto
+    availableModes:
+      - FullAuto
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/laser.ogg
+  - type: Battery
+    maxCharge: 5
+    startingCharge: 5
+  - type: Appearance
+  - type: StaticPrice
+    price: 500
+  - type: Tag
+    tags:
+    - CombatMech
+
+- type: entity
+  id: BaseMechProjectileGun
+  parent: BaseMechEquipment
+  abstract: true
+  components:
+    - type: Sprite
+      sprite: Objects/Weapons/Guns/Battery/disabler.rsi # TODO: put actual sprite
+      layers:
+        - state: base
+          map: ["enum.GunVisualLayers.Base"]
+    - type: Gun
+      fireRate: 1
+      selectedMode: FullAuto
+      availableModes:
+        - FullAuto
+      soundGunshot:
+        path: /Audio/Weapons/Guns/Gunshots/taser2.ogg # TODO: change to a more intimidating sound
+    - type: ProjectileBatteryAmmoProvider
+      proto: EmitterBolt
+      fireCost: 16 # I would think a laser pulse would be less energy expenssive than a full beam
+    - type: Appearance
+    - type: Battery
+      maxCharge: 17
+      startingCharge: 17
+    - type: Tag
+      tags:
+      - CombatMech
+
+- type: entity
+  name: CH-PS "Immolator" Laser
+  parent: BaseMechLaserWeapon
+  id: MechLaserWeapon
+  description: A weapon using light amplified by the stimulated emission of radiation.
+  components:
+  - type: Sprite
+    sprite: Objects/Specific/Mech/mecha_equipment.rsi
+    layers:
+    - state: mecha_laser
+      map: ["enum.GunVisualLayers.Base"]
+  - type: HitscanBatteryAmmoProvider
+    proto: RedMediumLaser
+    fireCost: 5
+  - type: Appearance
+
+- type: entity
+  name: CH-LC "Solaris" Laser Cannon 
+  parent: BaseMechLaserWeapon
+  id: MechSolarisLaserWeapon
+  description: A weapon using light amplified by the stimulated emission of radiation.
+  components:
+  - type: Sprite
+    sprite: Objects/Specific/Mech/mecha_equipment.rsi
+    layers:
+    - state: mecha_laser
+      map: ["enum.GunVisualLayers.Base"]
+  - type: Gun
+    fireRate: 1
+    selectedMode: FullAuto
+    availableModes:
+      - FullAuto
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/laser.ogg
+  - type: HitscanBatteryAmmoProvider
+    proto: RedHeavyLaser
+    fireCost: 9
+  - type: Battery
+    maxCharge: 10
+    startingCharge: 10
+  - type: Appearance
+
+- type: entity
+  id: MechScattershotWeapon
+  parent: BaseMechProjectileGun
+  name: LBX AC 10 "Scattershot"
+  components:
+    - type: Sprite
+      sprite: Objects/Specific/Mech/mecha_equipment.rsi # TODO: put actual sprite
+      layers:
+        - state: mecha_scatter
+          map: ["enum.GunVisualLayers.Base"]
+    - type: Gun
+      minAngle: 2
+      maxAngle: 6
+      angleIncrease: 2
+      angleDecay: 8
+      fireRate: 3
+      selectedMode: FullAuto
+      availableModes:
+        - FullAuto
+      soundGunshot:
+        path: /Audio/Weapons/Guns/Gunshots/lmg.ogg
+    - type: ProjectileBatteryAmmoProvider
+      proto: BulletPistol
+      fireCost: 14
+    - type: Appearance
+    - type: Tag
+      tags:
+      - CombatMech
+
+- type: entity
+  id: MechHadesWeapon
+  parent: BaseMechProjectileGun
+  name: FNX-99 "Hades" Carbine 
+  components:
+    - type: Sprite
+      sprite: Objects/Specific/Mech/mecha_equipment.rsi # TODO: put actual sprite
+      layers:
+        - state: mecha_carbine
+          map: ["enum.GunVisualLayers.Base"]
+    - type: Gun
+      minAngle: 4
+      maxAngle: 6
+      angleIncrease: 3
+      angleDecay: 8
+      fireRate: 3
+      selectedMode: FullAuto
+      availableModes:
+        - FullAuto
+      soundGunshot:
+        path: /Audio/Weapons/Guns/Gunshots/lmg.ogg
+    - type: ProjectileBatteryAmmoProvider
+      proto: BulletPistolIncendiary
+      fireCost: 16
+    - type: Battery
+      maxCharge: 17
+      startingCharge: 17
+    - type: Appearance
+    - type: Tag
+      tags:
+      - CombatMech
+
+- type: entity
+  id: MechMssileWeapon
+  parent: BaseMechProjectileGun
+  name: BRM-6 Missile Rack 
+  components:
+    - type: Sprite
+      sprite: Objects/Specific/Mech/mecha_equipment.rsi # TODO: put actual sprite
+      layers:
+        - state: mecha_missilerack_six
+          map: ["enum.GunVisualLayers.Base"]
+    - type: Gun
+      fireRate: 0.5
+      selectedMode: FullAuto
+      availableModes:
+        - FullAuto
+      soundGunshot:
+        path: /Audio/Weapons/Guns/Gunshots/rpgfire.ogg
+    - type: ProjectileBatteryAmmoProvider
+      proto: BulletWeakRocket
+      fireCost: 19
+    - type: Battery
+      maxCharge: 20
+      startingCharge: 20
+    - type: Appearance
+    - type: Tag
+      tags:
+      - CombatMech
+
+- type: entity
+  id: MechTeslaWeapon
+  parent: BaseMechProjectileGun
+  name: MKI Tesla Cannon 
+  components:
+    - type: Sprite
+      sprite: Objects/Specific/Mech/mecha_equipment.rsi # TODO: put actual sprite
+      layers:
+        - state: mecha_ion
+          map: ["enum.GunVisualLayers.Base"]
+    - type: Gun
+      fireRate: 0.5
+      selectedMode: FullAuto
+      availableModes:
+        - FullAuto
+      soundGunshot:
+        path: /Audio/Weapons/Guns/Misc/selector.ogg
+    - type: ProjectileBatteryAmmoProvider
+      proto: TeslaGunBullet
+      fireCost: 19
+    - type: Battery
+      maxCharge: 20
+      startingCharge: 20
+    - type: Appearance
+    - type: Tag
+      tags:
+      - CombatMech

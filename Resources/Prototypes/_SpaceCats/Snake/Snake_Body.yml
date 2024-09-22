@@ -1,0 +1,264 @@
+﻿
+- type: reagent
+  id: ZerahPoison
+  name: reagent-name-shake-toxin
+  group: Toxins
+  desc: reagent-desc-shake-toxin
+  physicalDesc: reagent-physical-desc-shake
+  color: "#fafa96"
+  metabolisms:
+    Narcotic:
+      effects:
+      - !type:Emote
+        emote: Laugh
+        showInChat: true
+        probability: 0.1
+        conditions:
+        - !type:ReagentThreshold
+          max: 5
+        - !type:OrganType
+          type: Zerah
+          shouldHave: false
+      - !type:Emote
+        emote: Yawn
+        showInChat: true
+        probability: 0.1
+        conditions:
+        - !type:ReagentThreshold
+          max: 5
+        - !type:OrganType
+          type: Zerah
+          shouldHave: false
+      - !type:Emote
+        emote: Crying
+        showInChat: true
+        probability: 0.1
+        conditions:
+        - !type:ReagentThreshold
+          min: 5
+        - !type:OrganType
+          type: Zerah
+          shouldHave: false
+      - !type:PopupMessage 
+        type: Local
+        visualType: Medium
+        messages:
+        - "Вам становится грустно."
+        - "Вам резко хочется плакать."
+        - "Ваше настроение поднимается."
+        - "Вам хочется смеяться."
+        - "Вас насыщает радость."
+        - "Вы чувствуете лёгкую сонливость."
+        - "Вам хочется спать."
+        probability: 0.2
+        conditions:
+        - !type:ReagentThreshold
+          max: 5
+        - !type:OrganType
+          type: Zerah
+          shouldHave: false
+      - !type:GenericStatusEffect
+        key: SeeingRainbows
+        component: SeeingRainbows
+        type: Add
+        time: 5
+        refresh: false
+        conditions:
+        - !type:OrganType
+          type: Zerah
+          shouldHave: false
+      - !type:MovespeedModifier
+        walkSpeedModifier: 0.9
+        sprintSpeedModifier: 0.9
+        conditions:
+        - !type:OrganType
+          type: Zerah
+          shouldHave: false
+      - !type:HealthChange
+        conditions:
+        - !type:OrganType
+          type: Zerah
+          shouldHave: false
+        - !type:ReagentThreshold
+          min: 50
+          max: 100
+        damage:
+          types:
+            Poison: 0.5
+
+#Тело Зераха
+- type: entity
+  id: OrganZerahLungs
+  parent: OrganHumanLungs
+  name: Лёгкие зераха
+  description: Фильтрует азот из атмосферы, который затем поступает в кровоток для использования в качестве переносчика электронов
+  components:
+  - type: Lung
+    alert: LowNitrogen
+  - type: Metabolizer
+    removeEmpty: true
+    solutionOnBody: false
+    solution: "Lung"
+    metabolizerTypes: [ Slime ]
+    groups:
+    - id: Gas
+      rateModifier: 100.0
+  - type: SolutionContainerManager
+    solutions:
+      organ:
+        reagents:
+        - ReagentId: ZerahBlood
+          Quantity: 10
+      Lung:
+        maxVol: 100.0
+        canReact: false
+      food:
+        maxVol: 5
+        reagents:
+        - ReagentId: UncookedAnimalProteins
+          Quantity: 5
+
+- type: metabolizerType
+  id: Zerah
+  name: reagent-name-metabolisms
+
+- type: entity
+  id: OrganZerahHeart
+  parent: BaseAnimalOrgan
+  name: Сердце зераха
+  description: тук тук
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    state: heart-on
+  - type: Organ
+  - type: Metabolizer
+    maxReagents: 2
+    metabolizerTypes: [ Zerah ]
+    groups:
+    - id: Medicine
+    - id: Poison
+    - id: Narcotic
+
+
+- type: body
+  name: "Зерах"
+  id: ZerahSnake
+  root: torso
+  slots:
+    head:
+      part: HeadSnake
+      connections:
+      - torso
+      organs:
+        brain: OrganHumanBrain
+        eyes: OrganHumanEyes
+    torso:
+      part: TorsoSnake
+      connections:
+      - right arm
+      - left arm
+      organs:
+        heart: OrganZerahHeart
+        lungs: OrganZerahLungs
+        stomach: OrganReptilianStomach
+        liver: OrganAnimalLiver
+        kidneys: OrganHumanKidneys
+    right arm:
+      part: RightArmSnake
+      connections:
+      - right hand
+    left arm:
+      part: LeftArmSnake
+      connections:
+      - left hand
+    right hand:
+      part: RightHandSnake
+    left hand:
+      part: LeftHandSnake
+
+- type: reagent
+  id: ZerahBlood
+  parent: Blood
+  name: reagent-name-shake-blood
+  group: Biological
+  flavor: metallic
+  color: "#e1b52e"
+
+- type: entity
+  id: PartSnake
+  parent: [BaseItem, BasePart]
+  name: "human body part"
+  abstract: true
+  components:
+  - type: Sprite
+    sprite: _SpaceCats/Snake/parts.rsi
+  - type: Extractable
+    juiceSolution:
+      reagents:
+      - ReagentId: ZerahBlood
+        Quantity: 10
+
+- type: entity
+  id: TorsoSnake
+  name: "human torso"
+  parent: [PartSnake, BaseTorso]
+  components:
+  - type: Sprite
+    sprite: _SpaceCats/Snake/parts.rsi
+    state: "torso_m"
+  - type: Extractable
+    juiceSolution:
+      reagents:
+      - ReagentId: ZerahBlood
+        Quantity: 20
+
+- type: entity
+  id: HeadSnake
+  name: "human head"
+  parent: [PartSnake, BaseHead]
+  components:
+  - type: Sprite
+    sprite: _SpaceCats/Snake/parts.rsi
+    state: "head_m"
+  - type: Extractable
+    juiceSolution:
+      reagents:
+      - ReagentId: ZerahBlood
+        Quantity: 10
+
+- type: entity
+  id: LeftArmSnake
+  name: "left human arm"
+  parent: [PartSnake, BaseLeftArm]
+  components:
+  - type: Sprite
+    sprite: _SpaceCats/Snake/parts.rsi
+    state: "l_arm"
+
+- type: entity
+  id: RightArmSnake
+  name: "right human arm"
+  parent: [PartSnake, BaseRightArm]
+  components:
+  - type: Sprite
+    sprite: _SpaceCats/Snake/parts.rsi
+    state: "r_arm"
+
+- type: entity
+  id: LeftHandSnake
+  name: "left human hand"
+  parent: [PartSnake, BaseLeftHand]
+  components:
+  - type: Sprite
+    sprite: _SpaceCats/Snake/parts.rsi
+    state: "l_hand"
+
+- type: entity
+  id: RightHandSnake
+  name: "right human hand"
+  parent: [PartSnake, BaseRightHand]
+  components:
+  - type: Sprite
+    sprite: _SpaceCats/Snake/parts.rsi
+    state: "r_hand"
