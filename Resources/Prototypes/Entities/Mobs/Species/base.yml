@@ -252,6 +252,7 @@
   components:
   - type: Absorbable # Changeling
   # - type: DiseaseCarrier # backmen
+  - type: OfferItem # Erida
   - type: Targeting # backmen: surgery
   - type: Barotrauma
     damage:

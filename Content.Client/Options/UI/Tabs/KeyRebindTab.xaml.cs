@@ -209,6 +209,7 @@ namespace Content.Client.Options.UI.Tabs
             AddButton(ContentKeyFunctions.ToggleStanding); // backmen: Laying System
             AddButton(ContentKeyFunctions.LookUp); // BACKMEN EDIT
             AddCheckBox("ui-options-function-hold-look-up", _cfg.GetCVar(BackmenCCvars.CCVars.HoldLookUp), HandleHoldLookUp); // WD EDIT
+            AddButton(ContentKeyFunctions.OfferItem); // Erida
 
             AddHeader("ui-options-header-interaction-adv");
             AddButton(ContentKeyFunctions.SmartEquipBackpack);

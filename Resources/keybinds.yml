@@ -624,4 +624,7 @@ binds:
 - function: TargetRightLeg
   type: State
   key: NumpadNum1
+- function: OfferItem # Erida
+  type: State
+  key: F
 # backmen keybinds-end

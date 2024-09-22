@@ -89,6 +89,7 @@ namespace Content.Client.Input
             human.AddFunction(ContentKeyFunctions.ToggleStanding); // Ataraxia
             human.AddFunction(ContentKeyFunctions.LookUp); // BACKMEN EDIT
             human.AddFunction(CMKeyFunctions.CMUniqueAction); // BACKMEN EDIT
+            human.AddFunction(ContentKeyFunctions.OfferItem); // Erida
             human.AddFunction(ContentKeyFunctions.TargetHead);
             human.AddFunction(ContentKeyFunctions.TargetTorso);
             human.AddFunction(ContentKeyFunctions.TargetLeftArm);
