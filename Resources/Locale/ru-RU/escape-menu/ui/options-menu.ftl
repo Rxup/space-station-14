@@ -259,3 +259,5 @@ ui-options-colorblind-friendly = Режим для дальтоников
 ui-options-reduced-motion = Снижение интенсивности визуальных эффектов
 ui-options-chat-window-opacity = Прозрачность окна чата
 ui-options-screen-shake-intensity = Интенсивность дрожания экрана
+ui-options-show-offer-mode-indicators = показывать индикатор передачи предмета
+ui-options-function-offer-item = Передать что-либо
