@@ -60849,7 +60849,7 @@ entities:
       parent: 2
 - proto: MedkitCombatFilled
   entities:
-  - uid: 9359
+  - uid: 93598
     components:
     - type: Transform
       pos: 63.555206,-11.384237
