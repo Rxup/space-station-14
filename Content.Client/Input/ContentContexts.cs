@@ -88,6 +88,7 @@ namespace Content.Client.Input
             human.AddFunction(ContentKeyFunctions.ToggleStanding); // Ataraxia
             human.AddFunction(ContentKeyFunctions.LookUp); // WD EDIT
             human.AddFunction(CMKeyFunctions.CMUniqueAction); // backmen
+            human.AddFunction(ContentKeyFunctions.OfferItem); // Ataraxia
 
             // actions should be common (for ghosts, mobs, etc)
             common.AddFunction(ContentKeyFunctions.OpenActionsMenu);
