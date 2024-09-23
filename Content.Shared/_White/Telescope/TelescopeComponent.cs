@@ -6,10 +6,10 @@ namespace Content.Shared._White.Telescope;
 public sealed partial class TelescopeComponent : Component
 {
     [DataField, ViewVariables(VVAccess.ReadWrite), AutoNetworkedField]
-    public float Divisor = 0.1f;
+    public float Divisor = 0.15f;
 
     [DataField, ViewVariables(VVAccess.ReadWrite), AutoNetworkedField]
-    public float LerpAmount = 0.1f;
+    public float LerpAmount = 0.95f;
 
     [ViewVariables]
     public EntityUid? LastEntity;
