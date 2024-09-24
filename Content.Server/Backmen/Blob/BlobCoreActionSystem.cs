@@ -214,7 +214,7 @@ public sealed class BlobCoreActionSystem : SharedBlobCoreActionSystem
             BlobTileType.Normal,
             location);
 
-        core.Comp.NextAction = _gameTiming.CurTime + TimeSpan.FromSeconds(Math.Abs(core.Comp.GrowRate));
+        core.Comp.NextAction = _gameTiming.CurTime + GCd + TimeSpan.FromSeconds(Math.Abs(core.Comp.GrowRate));
     }
 
     private EntityUid? FindNearBlobTile(EntityCoordinates coords, Entity<MapGridComponent> grid)
@@ -279,11 +279,11 @@ public sealed class BlobCoreActionSystem : SharedBlobCoreActionSystem
             }
         }
 
-        ent.Comp.NextAction = _gameTiming.CurTime + TimeSpan.FromSeconds(Math.Abs(ent.Comp.AttackRate));
+        ent.Comp.NextAction = _gameTiming.CurTime + GCd + TimeSpan.FromSeconds(Math.Abs(ent.Comp.AttackRate));
         _audioSystem.PlayPvs(ent.Comp.AttackSound, from, AudioParams.Default);
     }
 
-    private static readonly TimeSpan GCd = TimeSpan.FromMilliseconds(300); // GCD?
+    private static readonly TimeSpan GCd = TimeSpan.FromMilliseconds(333); // GCD?
     private void OnInteract(EntityUid uid, BlobObserverComponent observerComponent, AfterInteractEvent args)
     {
         if (args.Target == args.User)
