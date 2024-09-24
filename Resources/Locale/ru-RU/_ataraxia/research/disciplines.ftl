@@ -1,0 +1,12 @@
+ataraxia-research-discipline-cargo = Снабжение
+ataraxia-research-discipline-engineering = Инженерия
+ataraxia-research-discipline-equipment = Снаряжение
+ataraxia-research-discipline-medical = Медицина
+ataraxia-research-discipline-robotics = Робототехника
+ataraxia-research-discipline-scientific = Научное
+ataraxia-research-discipline-security = Безопасность
+ataraxia-research-discipline-service = Сервис
+ataraxia-research-discipline-shaft = Шахта
+ataraxia-research-discipline-shuttle = Шаттл
+ataraxia-research-discipline-telecommunications = Телекоммуникация
+ataraxia-research-discipline-armory = Вооружение

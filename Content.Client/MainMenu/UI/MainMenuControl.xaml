@@ -1,47 +1,38 @@
 ﻿<Control xmlns="https://spacestation14.io"
-         xmlns:pllax="clr-namespace:Content.Client.Parallax"
          xmlns:clog="clr-namespace:Content.Client.Changelog">
-    <pllax:ParallaxControl />
-    <BoxContainer Name="VBox"
-                  Orientation="Vertical"
-                  HorizontalAlignment="Center"
-                  VerticalAlignment="Center"
-                  HorizontalExpand="True"
-                  VerticalExpand="True"
-                  StyleIdentifier="mainMenuVBox"
-                  SeparationOverride="3">
-        <TextureRect Name="Logo"
-                     Stretch="KeepCentered"/>
-        <GridContainer Columns="2">
-            <Label Text="{Loc 'main-menu-username-label'}" />
-            <LineEdit Name="UsernameBox"
-                      Access="Public"
-                      PlaceHolder="{Loc 'main-menu-username-text'}"
-                      HorizontalExpand="True" />
-            <Label Text="{Loc 'main-menu-address-label'}"/>
-            <LineEdit Name="AddressBox"
-                      Access="Public"
-                      Text="localhost"
-                      PlaceHolder="server address:port"
-                      HorizontalExpand="True" />
-        </GridContainer>
-        <Button Name="DirectConnectButton"
-                Access="Public"
-                Text="{Loc 'main-menu-direct-connect-button'}"
-                TextAlign="Center"
-                StyleIdentifier="mainMenu"/>
-        <Button Name="OptionsButton"
-                Access="Public"
-                Text="{Loc 'main-menu-options-button'}"
-                TextAlign="Center"
-                StyleIdentifier="mainMenu"/>
-        <Button Name="QuitButton"
-                Access="Public"
-                Text="{Loc 'main-menu-quit-button'}"
-                TextAlign="Center"
-                StyleIdentifier="mainMenu"/>
-        <clog:ChangelogButton
-            Name="ChangelogButton"
-            Access="Public"/>
-    </BoxContainer>
+
+    <TextureRect Access="Public" TexturePath="/Textures/Interface/ohfuck.png" VerticalExpand="True" HorizontalExpand="True" Name="Background" Stretch="KeepAspectCovered"/>
+
+    <LayoutContainer>
+
+        <BoxContainer Name="VBox" Orientation="Vertical" StyleIdentifier="MainMenuBox" MinWidth="300" >
+
+            <Label Name="Title" Text="Backmen and Ataraxia" Align="Center" />
+
+            <Control MinSize="0 4" />
+
+            <BoxContainer Orientation="Horizontal" SeparationOverride="4">
+
+                <LineEdit Name="UsernameBox" Access="Public" PlaceHolder="{Loc 'main-menu-username-text'}" HorizontalExpand="True" />
+
+            </BoxContainer>
+
+            <Control MinSize="0 2" />
+
+            <LineEdit Name="AddressBox" Access="Public" Text="localhost" PlaceHolder="server address:port" HorizontalExpand="True" />
+
+            <Control MinSize="0 2" />
+
+            <Button Name="DirectConnectButton" Access="Public" Text="{Loc 'main-menu-direct-connect-button'}" TextAlign="Center" />
+
+            <Button Name="OptionsButton" Access="Public" Text="{Loc 'main-menu-options-button'}" TextAlign="Center" />
+
+            <clog:ChangelogButton Name="ChangelogButton" Access="Public" />
+
+            <Button Name="QuitButton" Access="Public" Text="{Loc 'main-menu-quit-button'}" TextAlign="Center" />
+
+        </BoxContainer>
+
+    </LayoutContainer>
+
 </Control>

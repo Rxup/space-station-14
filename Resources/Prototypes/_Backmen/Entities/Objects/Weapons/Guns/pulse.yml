@@ -405,14 +405,23 @@
     tags:
     - ShellShotgunPulse
   - type: CartridgeAmmo
-    proto: PulseBullet
-    #count: 10
-    #spread: 15
+    proto: PulseBulletSpread
   - type: Sprite
     sprite: Backmen/Objects/Weapons/Gunsx64/Ammunition/Casings/battary.rsi
     layers:
       - state: base
         map: [ "enum.AmmoVisualLayers.Base" ]
+
+- type: entity
+  id: PulseBulletSpread
+  name: pulse bullet
+  parent: PulseBullet
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: ProjectileSpread
+    proto: PelletShotgun
+    count: 12
+    spread: 15
 
 - type: Tag
   id: MagazinePulseSubMachinePistol

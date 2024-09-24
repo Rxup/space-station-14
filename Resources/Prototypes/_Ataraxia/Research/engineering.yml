@@ -1,0 +1,75 @@
+- type: technology
+  id: AdvancedPowercells
+  name: ataraxia-research-technology-advanced-powercells
+  icon:
+    sprite: Objects/Power/power_cells.rsi
+    state: high
+  discipline: Powercells
+  tier: 1
+  cost: 7500
+  recipeUnlocks:
+  - PowerCellHigh
+
+- type: technology
+  id: PortableFission
+  name: ataraxia-research-technology-portable-fission
+  icon:
+    sprite: Objects/Power/power_cells.rsi
+    state: microreactor
+  discipline: Powercells
+  tier: 1
+  cost: 10000
+  recipeUnlocks:
+  - PowerCellMicroreactor
+  technologyPrerequisites:
+  - AdvancedPowercells
+
+#- type: technology # Because need port
+#  id: EngineeringDevices
+#  name: ataraxia-research-technology-engineering-devices
+#  icon:
+#    sprite: Objects/Tools/rcd.rsi
+#    state: icon
+#  discipline: EngineeringDevices
+#  tier: 1
+#  cost: 10000
+#  recipeUnlocks:
+#  - RCDRecipe
+
+#- type: technology # Because need port
+#  id: AtmosphericDevices
+#  name: ataraxia-research-technology-atmospheric-devices
+#  icon:
+#    sprite: White/Items/Tools/rpd.rsi
+#    state: icon
+#  discipline: AtmosphericDevices
+#  tier: 1
+#  cost: 7500
+#  recipeUnlocks:
+#  - RapidPipeDispenserRecipe
+
+- type: technology
+  id: EngineeringAdvancedTools
+  name: ataraxia-research-engineering-advanced-tools
+  icon:
+    sprite: Objects/Tools/welder_experimental.rsi
+    state: icon
+  discipline: EngineeringAdvancedTools
+  tier: 1
+  cost: 10000
+  recipeUnlocks:
+    - WelderExperimental
+    - PowerDrill
+    - JawsOfLife
+
+- type: technology
+  id: AtmosphericTools
+  name: ataraxia-research-technology-atmospheric-tools
+  icon:
+    sprite: Objects/Devices/Holoprojectors/atmos.rsi
+    state: icon
+  discipline: AtmosphericTools
+  tier: 1
+  cost: 7500
+  recipeUnlocks:
+  - HolofanProjector
