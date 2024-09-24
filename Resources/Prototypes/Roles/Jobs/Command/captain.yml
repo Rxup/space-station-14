@@ -12,14 +12,10 @@
       time: 72000 #20 hrs # Corvax-RoleTime
     - !type:DepartmentTimeRequirement
       department: Security
-      time: 72000 #20 hrs # Corvax-RoleTime
-#    - !type:DepartmentTimeRequirement
-#      department: Command
-#      time: 54000 # 15 hours
-    - !type:OverallPlaytimeRequirement
-      time: 504000 #140 hrs # Corvax-RoleTime
-    - !type:AgeRequirement
-      requiredAge: 21
+      time: 54000 # 15 hours
+    - !type:DepartmentTimeRequirement
+      department: Command
+      time: 54000 # 15 hours
   weight: 20
   startingGear: CaptainGear
   icon: "JobIconCaptain"
