@@ -5,5 +5,6 @@ namespace Content.Server.Backmen.Objectives;
 [RegisterComponent]
 public sealed partial class BlobCaptureConditionComponent : Component
 {
-    [DataField("target")] public int Target { get; set; } = StationBlobConfigComponent.DefaultStageEnd;
+    [DataField]
+    public int Target { get; set; } = StationBlobConfigComponent.DefaultStageEnd;
 }
