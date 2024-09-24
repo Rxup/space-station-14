@@ -12,6 +12,7 @@ using Content.Server.GameTicking;
 using Content.Server.RoundEnd;
 using Content.Server.Station.Systems;
 using Content.Server.Store.Systems;
+using Content.Shared.Actions;
 using Content.Shared.Alert;
 using Content.Shared.Backmen.Blob;
 using Content.Shared.Backmen.Blob.Components;
@@ -47,8 +48,9 @@ public sealed class BlobCoreSystem : EntitySystem
     [Dependency] private readonly RoundEndSystem _roundEndSystem = default!;
     [Dependency] private readonly MetaDataSystem _metaDataSystem = default!;
     [Dependency] private readonly ActionsSystem _action = default!;
-    [Dependency] private readonly MapSystem _map = default!;
+    [Dependency] private readonly MapSystem _mapSystem = default!;
     [Dependency] private readonly StoreSystem _storeSystem = default!;
+    [Dependency] private readonly BlobTileSystem _blobTile = default!;
 
     private EntityQuery<BlobTileComponent> _tile;
     private EntityQuery<BlobFactoryComponent> _factory;
@@ -70,10 +72,10 @@ public sealed class BlobCoreSystem : EntitySystem
         SubscribeLocalEvent<BlobCoreComponent, ComponentStartup>(OnStartup);
         SubscribeLocalEvent<BlobCoreComponent, DestructionEventArgs>(OnDestruction);
         SubscribeLocalEvent<BlobCoreComponent, DamageChangedEvent>(OnDamaged);
+        SubscribeLocalEvent<BlobCoreComponent, EntityTerminatingEvent>(OnTerminating);
+        SubscribeLocalEvent<BlobCoreComponent, BlobTransformTileActionEvent>(OnTileTransform);
 
         SubscribeLocalEvent<BlobCoreComponent, PlayerAttachedEvent>(OnPlayerAttached);
-        SubscribeLocalEvent<BlobCoreComponent, EntityTerminatingEvent>(OnTerminating);
-
         SubscribeLocalEvent<BlobCaptureConditionComponent, ObjectiveGetProgressEvent>(OnBlobCaptureProgress);
         SubscribeLocalEvent<BlobCaptureConditionComponent, ObjectiveAfterAssignEvent>(OnBlobCaptureInfo);
         SubscribeLocalEvent<BlobCaptureConditionComponent, ObjectiveAssignedEvent>(OnBlobCaptureInfoAdd);
@@ -162,6 +164,11 @@ public sealed class BlobCoreSystem : EntitySystem
     private void OnDamaged(EntityUid uid, BlobCoreComponent component, DamageChangedEvent args)
     {
         UpdateAllAlerts((uid, component));
+    }
+
+    private void OnTileTransform(EntityUid uid, BlobCoreComponent blobCoreComponent, BlobTransformTileActionEvent args)
+    {
+        TransformSpecialTile((uid, blobCoreComponent), args);
     }
 
     #endregion
@@ -322,7 +329,7 @@ public sealed class BlobCoreSystem : EntitySystem
     /// Transforms one blob tile in another type or creates a new one from scratch.
     /// </summary>
     /// <param name="oldTileUid">Uid of the ols tile that's going to get deleted.</param>
-    /// <param name="blobCore">Blob core that preformed the transformation.</param>
+    /// <param name="blobCore">Blob core that preformed the transformation. Make sure it isn't came from the BlobTileComponent of the target!</param>
     /// <param name="nearNode">Node will be used in ConnectBlobTile method.</param>
     /// <param name="newBlobTile">Type of a new blob tile.</param>
     /// <param name="coordinates">Coordinates of a new tile.</param>
@@ -394,6 +401,120 @@ public sealed class BlobCoreSystem : EntitySystem
                 Dirty(node.Value);
                 break;
         }
+    }
+
+    public bool TryGetTargetBlobTile(WorldTargetActionEvent args, out Entity<BlobTileComponent>? blobTile)
+    {
+        blobTile = null;
+
+        var gridUid = _transform.GetGrid(args.Target);
+
+        if (!TryComp<MapGridComponent>(gridUid, out var gridComp))
+        {
+            return false;
+        }
+
+        Entity<MapGridComponent> grid = (gridUid.Value, gridComp);
+
+        var centerTile = _mapSystem.GetLocalTilesIntersecting(grid,
+                grid,
+                new Box2(args.Target.Position, args.Target.Position))
+            .ToArray();
+
+        foreach (var tileRef in centerTile)
+        {
+            foreach (var ent in _mapSystem.GetAnchoredEntities(grid, grid, tileRef.GridIndices))
+            {
+                if (!_tile.TryGetComponent(ent, out var blobTileComponent))
+                    continue;
+
+                blobTile = (ent, blobTileComponent);
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    public bool CheckValidBlobTile(
+        Entity<BlobTileComponent> tile,
+        Entity<BlobNodeComponent>? node,
+        bool requireNode,
+        BlobTransformTileActionEvent args)
+    {
+        var coords = Transform(tile).Coordinates;
+
+        var newTile = args.TileType;
+        var checkTile = args.TransformFrom;
+        var performer = args.Performer;
+
+        if (tile.Comp.Core == null ||
+            tile.Comp.BlobTileType == newTile ||
+            tile.Comp.BlobTileType == BlobTileType.Core ||
+            tile.Comp.BlobTileType != checkTile)
+        {
+            _popup.PopupCoordinates(Loc.GetString("blob-target-normal-blob-invalid"), coords, performer, PopupType.Large);
+            return false;
+        }
+
+        var core = tile.Comp.Core.Value;
+
+        if (checkTile == BlobTileType.Invalid)
+            return true;
+
+        // Handle node spawn
+        if (newTile == BlobTileType.Node)
+        {
+            if (GetNearNode(coords, core.Comp.NodeRadiusLimit) == null)
+                return true;
+
+            _popup.PopupCoordinates(Loc.GetString("blob-target-close-to-node"), coords, performer, PopupType.Large);
+            return false;
+        }
+
+        if (!requireNode)
+            return true;
+
+        if (node == null)
+        {
+            _popup.PopupCoordinates(Loc.GetString("blob-target-nearby-not-node"),
+                coords,
+                performer,
+                PopupType.Large);
+            return false;
+        }
+
+        if (_blobTile.IsEmptySpecial(node.Value, newTile))
+            return true;
+
+        _popup.PopupCoordinates(Loc.GetString("blob-target-already-connected"),
+            coords,
+            performer,
+            PopupType.Large);
+        return false;
+    }
+
+    public void TransformSpecialTile(Entity<BlobCoreComponent> blobCore, BlobTransformTileActionEvent args)
+    {
+        if (!TryGetTargetBlobTile(args, out var blobTile) || blobTile?.Comp.Core == null)
+            return;
+
+        var coords = Transform(blobTile.Value).Coordinates;
+        var tileType = args.TileType;
+        var nearNode = GetNearNode(coords);
+
+        if (!CheckValidBlobTile(blobTile.Value, nearNode, args.RequireNode, args))
+            return;
+
+        if (!TryUseAbility(blobCore, blobCore.Comp.BlobTileCosts[tileType], coords))
+            return;
+
+        TransformBlobTile(
+            blobTile,
+            blobCore,
+            nearNode,
+            tileType,
+            coords);
     }
 
     public void RemoveBlobTile(Entity<BlobTileComponent> tile, Entity<BlobCoreComponent> core)
@@ -566,7 +687,7 @@ public sealed class BlobCoreSystem : EntitySystem
         var nodeComponent = new BlobNodeComponent();
         var nearestEntityUid = EntityUid.Invalid;
 
-        var innerTiles = _map.GetLocalTilesIntersecting(
+        var innerTiles = _mapSystem.GetLocalTilesIntersecting(
                 gridUid,
                 grid,
                 new Box2(coords.Position + new Vector2(-radius, -radius),
@@ -576,7 +697,7 @@ public sealed class BlobCoreSystem : EntitySystem
 
         foreach (var tileRef in innerTiles)
         {
-            foreach (var ent in _map.GetAnchoredEntities(gridUid, grid, tileRef.GridIndices))
+            foreach (var ent in _mapSystem.GetAnchoredEntities(gridUid, grid, tileRef.GridIndices))
             {
                 if (!_node.TryComp(ent, out var nodeComp))
                     continue;

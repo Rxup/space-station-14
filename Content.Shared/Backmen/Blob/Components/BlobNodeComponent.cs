@@ -2,7 +2,9 @@ using Robust.Shared.GameStates;
 using Robust.Shared.Serialization;
 
 namespace Content.Shared.Backmen.Blob.Components;
-
+/// <remarks>
+/// To add a new special blob tile you will need to change code in BlobNodeSystem and BlobTypedStorage.
+/// </remarks>
 [RegisterComponent, NetworkedComponent, AutoGenerateComponentState]
 public sealed partial class BlobNodeComponent : Component
 {
@@ -41,4 +43,8 @@ public sealed partial class BlobMobGetPulseEvent : EntityEventArgs
 /// Event raised on all special tiles of Blob Node on pulse.
 /// </summary>
 public sealed class BlobSpecialGetPulseEvent : EntityEventArgs;
+
+/// <summary>
+/// Event
+/// </summary>
 public sealed class BlobNodePulseEvent : EntityEventArgs;

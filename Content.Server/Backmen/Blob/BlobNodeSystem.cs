@@ -2,10 +2,8 @@ using System.Linq;
 using System.Numerics;
 using System.Threading;
 using System.Threading.Tasks;
-using Content.Server.Backmen.Blob.Components;
 using Content.Shared.Backmen.Blob.Components;
 using Content.Shared.Destructible;
-using Content.Shared.Mobs.Components;
 using Content.Shared.Mobs.Systems;
 using Robust.Server.GameObjects;
 using Robust.Shared.CPUJob.JobQueues;
@@ -13,7 +11,6 @@ using Robust.Shared.CPUJob.JobQueues.Queues;
 using Robust.Shared.Map.Components;
 using Robust.Shared.Player;
 using Robust.Shared.Random;
-using Robust.Shared.Timing;
 
 namespace Content.Server.Backmen.Blob;
 
@@ -87,7 +84,6 @@ public sealed class BlobNodeSystem : EntitySystem
     {
         if (!TerminatingOrDeleted(component.BlobFactory) && _tileQuery.TryComp(component.BlobFactory, out var tileFactoryComponent))
         {
-
             yield return (component.BlobFactory.Value, tileFactoryComponent);
         }
         if (!TerminatingOrDeleted(component.BlobResource) && _tileQuery.TryComp(component.BlobResource, out var tileResourceComponent))

@@ -283,7 +283,7 @@ public sealed class BlobCoreActionSystem : SharedBlobCoreActionSystem
         _audioSystem.PlayPvs(ent.Comp.AttackSound, from, AudioParams.Default);
     }
 
-    private static readonly TimeSpan GCd = TimeSpan.FromMilliseconds(333); // GCD?
+    private static readonly TimeSpan GCd = TimeSpan.FromMilliseconds(300); // GCD?
     private void OnInteract(EntityUid uid, BlobObserverComponent observerComponent, AfterInteractEvent args)
     {
         if (args.Target == args.User)

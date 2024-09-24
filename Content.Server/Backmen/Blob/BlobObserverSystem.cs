@@ -40,7 +40,6 @@ public sealed class BlobObserverSystem : SharedBlobObserverSystem
     [Dependency] private readonly IPlayerManager _playerManager = default!;
     [Dependency] private readonly ILogManager _logMan = default!;
     [Dependency] private readonly RoleSystem _roleSystem = default!;
-    [Dependency] private readonly AlertsSystem _alerts = default!;
     [Dependency] private readonly IChatManager _chatManager = default!;
     [Dependency] private readonly ISharedPlayerManager _actorSystem = default!;
     [Dependency] private readonly ViewSubscriberSystem _viewSubscriberSystem = default!;
@@ -68,7 +67,6 @@ public sealed class BlobObserverSystem : SharedBlobObserverSystem
         SubscribeLocalEvent<BlobObserverComponent, PlayerAttachedEvent>(OnPlayerAttached, before: [typeof(ActionsSystem)]);
         SubscribeLocalEvent<BlobObserverComponent, PlayerDetachedEvent>(OnPlayerDetached, before: [typeof(ActionsSystem)]);
 
-        SubscribeLocalEvent<BlobCoreComponent, BlobTransformTileActionEvent>(OnTileTransform);
         SubscribeLocalEvent<BlobCoreComponent, BlobCreateBlobbernautActionEvent>(OnCreateBlobbernaut);
         SubscribeLocalEvent<BlobCoreComponent, BlobToCoreActionEvent>(OnBlobToCore);
         SubscribeLocalEvent<BlobCoreComponent, BlobSwapChemActionEvent>(OnBlobSwapChem);
@@ -148,8 +146,6 @@ public sealed class BlobObserverSystem : SharedBlobObserverSystem
 
         _roleSystem.MindAddRole(mindId, new BlobRoleComponent{ PrototypeId = core.AntagBlobPrototypeId });
         SendBlobBriefing(mindId);
-
-        _alerts.ShowAlert(observer, BlobHealth, (short) Math.Clamp(Math.Round(core.CoreBlobTotalHealth.Float() / 10f), 0, 20));
 
         var blobRule = EntityQuery<BlobRuleComponent>().FirstOrDefault();
         blobRule?.Blobs.Add((mindId,mind));
@@ -444,7 +440,7 @@ public sealed class BlobObserverSystem : SharedBlobObserverSystem
         if (args.Handled)
             return;
 
-        if (!TryGetTargetBlobTile(args, out var blobTile))
+        if (!_blobCoreSystem.TryGetTargetBlobTile(args, out var blobTile))
             return;
 
         if (blobTile == null || !TryComp<BlobFactoryComponent>(blobTile, out var blobFactoryComponent))
@@ -481,125 +477,5 @@ public sealed class BlobObserverSystem : SharedBlobObserverSystem
             return;
 
         _transform.SetCoordinates(args.Performer, Transform(uid).Coordinates);
-    }
-
-    private bool TryGetTargetBlobTile(
-        WorldTargetActionEvent args,
-        out Entity<BlobTileComponent>? blobTile)
-    {
-        blobTile = null;
-
-        var gridUid = _transform.GetGrid(args.Target);
-
-        if (!TryComp<MapGridComponent>(gridUid, out var gridComp))
-        {
-            return false;
-        }
-
-        Entity<MapGridComponent> grid = (gridUid.Value, gridComp);
-
-        var centerTile = _mapSystem.GetLocalTilesIntersecting(grid,
-                grid,
-                new Box2(args.Target.Position, args.Target.Position))
-            .ToArray();
-
-        foreach (var tileRef in centerTile)
-        {
-            foreach (var ent in _mapSystem.GetAnchoredEntities(grid, grid, tileRef.GridIndices))
-            {
-                if (!_tileQuery.TryGetComponent(ent, out var blobTileComponent))
-                    continue;
-
-                blobTile = (ent, blobTileComponent);
-                return true;
-            }
-        }
-
-        return false;
-    }
-
-    private bool CheckValidBlobTile(
-        Entity<BlobTileComponent> tile,
-        Entity<BlobNodeComponent>? node,
-        BlobTransformTileActionEvent args)
-    {
-        var coords = Transform(tile).Coordinates;
-
-        var newTile = args.TileType;
-        var checkTile = args.TransformFrom;
-        var performer = args.Performer;
-
-        if (tile.Comp.Core == null || tile.Comp.BlobTileType == newTile || tile.Comp.BlobTileType == BlobTileType.Core)
-        {
-            _popup.PopupCoordinates(Loc.GetString("blob-target-normal-blob-invalid"), coords, performer, PopupType.Large);
-            return false;
-        }
-
-        var core = tile.Comp.Core.Value;
-
-        if (checkTile == BlobTileType.Invalid)
-            return true;
-
-        // Handle node spawn
-        if (newTile == BlobTileType.Node)
-        {
-            if (_blobCoreSystem.GetNearNode(coords, core.Comp.NodeRadiusLimit) == null)
-                return true;
-
-            _popup.PopupCoordinates(Loc.GetString("blob-target-close-to-node"), coords, performer, PopupType.Large);
-            return false;
-        }
-
-        if (node == null)
-        {
-            _popup.PopupCoordinates(Loc.GetString("blob-target-nearby-not-node"),
-                coords,
-                performer,
-                PopupType.Large);
-            return false;
-        }
-
-        if (tile.Comp.BlobTileType != checkTile)
-        {
-            _popup.PopupCoordinates(Loc.GetString("blob-target-normal-blob-invalid"), coords, performer, PopupType.Large);
-            return false;
-        }
-
-        if (_blobTileSystem.IsEmptySpecial(node.Value, newTile))
-            return true;
-
-        _popup.PopupCoordinates(Loc.GetString("blob-target-already-connected"),
-            coords,
-            performer,
-            PopupType.Large);
-        return false;
-    }
-
-    private void TryTransformSpecialTile(Entity<BlobCoreComponent> blobCore, BlobTransformTileActionEvent args)
-    {
-        if (!TryGetTargetBlobTile(args, out var blobTile) || blobTile?.Comp.Core == null)
-            return;
-
-        var coords = Transform(blobTile.Value).Coordinates;
-        var tileType = args.TileType;
-        var nearNode = _blobCoreSystem.GetNearNode(coords);
-
-        if (!CheckValidBlobTile(blobTile.Value, nearNode, args))
-            return;
-
-        if (!_blobCoreSystem.TryUseAbility(blobCore, blobCore.Comp.BlobTileCosts[tileType], coords))
-            return;
-
-        _blobCoreSystem.TransformBlobTile(
-            blobTile,
-            blobTile.Value.Comp.Core.Value,
-            nearNode,
-            tileType,
-            coords);
-    }
-
-    private void OnTileTransform(EntityUid uid, BlobCoreComponent blobCoreComponent, BlobTransformTileActionEvent args)
-    {
-        TryTransformSpecialTile((uid, blobCoreComponent), args);
     }
 }

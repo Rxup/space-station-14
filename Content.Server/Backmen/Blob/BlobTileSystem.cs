@@ -1,3 +1,4 @@
+using System.Diagnostics;
 using System.Linq;
 using System.Numerics;
 using Content.Server.Construction.Components;
@@ -175,46 +176,32 @@ public sealed class BlobTileSystem : SharedBlobTileSystem
         }
     }
 
-    protected override void TryUpgrade(Entity<BlobTileComponent> target, Entity<BlobCoreComponent> core)
+    protected override void TryUpgrade(Entity<BlobTileComponent> target, Entity<BlobCoreComponent> core, EntityUid observer)
     {
         var coords = Transform(target).Coordinates;
-        var coreComp = core.Comp;
-        FixedPoint2 cost;
+
+        if (target.Comp.BlobTileType == BlobTileType.Reflective)
+            return;
 
         var nearNode = _blobCoreSystem.GetNearNode(coords, core.Comp.TilesRadiusLimit);
         if (nearNode == null)
             return;
 
-        switch (target.Comp.BlobTileType)
+        var ev = new BlobTransformTileActionEvent(
+            performer: observer,
+            target: coords,
+            transformFrom: target.Comp.BlobTileType,
+            tileType: BlobTileType.Invalid,
+            requireNode: false);
+
+        ev.TileType = ev.TransformFrom switch
         {
-            case BlobTileType.Normal:
-                cost = coreComp.BlobTileCosts[BlobTileType.Strong];
+            BlobTileType.Normal => BlobTileType.Strong,
+            BlobTileType.Strong => BlobTileType.Reflective,
+            _ => BlobTileType.Invalid
+        };
 
-                if (!_blobCoreSystem.TryUseAbility(core, cost, coords))
-                    return;
-
-                _blobCoreSystem.TransformBlobTile(
-                    target,
-                    core,
-                    nearNode,
-                    BlobTileType.Strong,
-                    coords);
-                break;
-
-            case BlobTileType.Strong:
-                cost = coreComp.BlobTileCosts[BlobTileType.Reflective];
-
-                if (!_blobCoreSystem.TryUseAbility(core, cost, coords))
-                    return;
-
-                _blobCoreSystem.TransformBlobTile(
-                    target,
-                    core,
-                    nearNode,
-                    BlobTileType.Reflective,
-                    coords);
-                break;
-        }
+        RaiseLocalEvent(core, ev);
     }
 
     /* This work very bad.

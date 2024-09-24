@@ -4,6 +4,7 @@ using Content.Shared.Damage;
 using Content.Shared.FixedPoint;
 using Content.Shared.StatusIcon;
 using Robust.Shared.GameStates;
+using Robust.Shared.Map;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization;
 
@@ -72,6 +73,21 @@ public sealed partial class BlobTransformTileActionEvent : WorldTargetActionEven
     /// </summary>
     [DataField]
     public BlobTileType TileType = BlobTileType.Invalid;
+
+    /// <summary>
+    /// Does this tile requires node nearby.
+    /// </summary>
+    [DataField]
+    public bool RequireNode = true;
+
+    public BlobTransformTileActionEvent(EntityUid performer, EntityCoordinates target, BlobTileType transformFrom, BlobTileType tileType, bool requireNode) : this()
+    {
+        Performer = performer;
+        Target = target;
+        TransformFrom = transformFrom;
+        TileType = tileType;
+        RequireNode = requireNode;
+    }
 }
 
 public sealed partial class BlobCreateBlobbernautActionEvent : WorldTargetActionEvent

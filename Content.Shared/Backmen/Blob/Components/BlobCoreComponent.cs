@@ -27,6 +27,9 @@ public sealed partial class BlobCoreComponent : Component
     [ViewVariables]
     public TimeSpan NextAction = TimeSpan.Zero;
 
+    [ViewVariables]
+    public BlobChemType CurrentChem = BlobChemType.ReactiveSpines;
+
     #endregion
 
     #region Balance
@@ -35,10 +38,10 @@ public sealed partial class BlobCoreComponent : Component
     public FixedPoint2 CoreBlobTotalHealth = 400;
 
     [DataField]
-    public float AttackRate = 0.5f;
+    public float AttackRate = 0.6f;
 
     [DataField]
-    public float GrowRate = 0.1f;
+    public float GrowRate = 0.4f;
 
     [DataField]
     public bool CanSplit = true;
@@ -121,9 +124,6 @@ public sealed partial class BlobCoreComponent : Component
     [DataField]
     public BlobChemType DefaultChem = BlobChemType.ReactiveSpines;
 
-    [DataField]
-    public BlobChemType CurrentChem = BlobChemType.ReactiveSpines;
-
     #endregion
 
     #region Blob Costs
@@ -170,7 +170,7 @@ public sealed partial class BlobCoreComponent : Component
     public float NodeRadiusLimit = 5f;
 
     [DataField]
-    public float TilesRadiusLimit = 8f;
+    public float TilesRadiusLimit = 9f;
 
     #endregion
 
@@ -187,7 +187,7 @@ public sealed partial class BlobCoreComponent : Component
         {BlobTileType.Normal, "NormalBlobTile"},
         {BlobTileType.Invalid, "NormalBlobTile"}, // wtf
         //{BlobTileType.Storage, "StorageBlobTile"},
-        //{BlobTileType.Turret, ""},
+        //{BlobTileType.Turret, "TurretBlobTile"},
         {BlobTileType.Core, "CoreBlobTile"},
     };
 
