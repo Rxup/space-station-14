@@ -203,9 +203,9 @@
   rules:
     - Nukeops
     - SubGamemodesRule
-    - BasicStationEventScheduler
+    - CalmStationEventScheduler #backmen: calm-scheduler
     - WageScheduler #backmen: currency
-    - MeteorSwarmScheduler
+    - CalmMeteorSwarmScheduler #backmen: calm-scheduler
     - SpaceTrafficControlEventScheduler
     - BasicRoundstartVariation
 
