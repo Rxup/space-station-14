@@ -293,6 +293,6 @@
   - MeteorSwarmMildScheduler
   - MeteorSwarmScheduler
   - RampingStationEventScheduler
-  - SpaceTrafficControlEventScheduler
-  - SpaceTrafficControlFriendlyEventScheduler
+  #- SpaceTrafficControlEventScheduler
+  #- SpaceTrafficControlFriendlyEventScheduler
   - MeteorSwarmScheduler
