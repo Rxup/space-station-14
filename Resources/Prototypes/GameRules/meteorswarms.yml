@@ -178,7 +178,7 @@
       MeteorMedium: 4
       MeteorLarge: 4
 
- - type: entity
+- type: entity
   parent: GameRuleMeteorSwarm
   id: GameRuleUristSwarm
   components:
