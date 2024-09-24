@@ -3,6 +3,7 @@ using Content.Server.Speech.Components;
 using Content.Shared.EntityEffects;
 using Content.Shared.Mind.Components;
 using Robust.Shared.Prototypes;
+using Content.Shared.Humanoid; // Cats
 
 namespace Content.Server.EntityEffects.Effects;
 
@@ -30,6 +31,14 @@ public sealed partial class MakeSentient : EntityEffect
 
         // Don't add a ghost role to things that already have ghost roles
         if (entityManager.TryGetComponent(uid, out GhostRoleComponent? ghostRole))
+        {
+            return;
+        }
+
+        // repeatedly cloning themselves and using cognizine on their bodies.
+        // HumanoidAppearanceComponent is common to all player species, and is also used for the
+        // Ripley pilot whitelist, so there's a precedent for using it for this kind of check.
+        if (entityManager.HasComponent<HumanoidAppearanceComponent>(uid))
         {
             return;
         }

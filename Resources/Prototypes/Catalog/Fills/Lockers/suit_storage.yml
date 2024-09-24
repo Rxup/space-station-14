@@ -43,6 +43,20 @@
   parent: SuitStorageBase
   suffix: Prisoner EVA
   components:
+  - type: Sprite
+    noRot: true
+    sprite: Structures/Storage/suit_storage.rsi
+    layers:
+    - state: base
+    - state: door
+      map: ["enum.StorageVisualLayers.Door"]
+    - state: welded
+      visible: false
+      map: ["enum.WeldableLayers.BaseWelded"]
+    - state: locked
+      map: ["enum.LockVisualLayers.Lock"]
+      shader: unshaded
+    - state: security
   - type: StorageFill
     contents:
         - id: OxygenTankFilled
@@ -56,6 +70,20 @@
   parent: SuitStorageBase
   suffix: Syndicate EVA
   components:
+  - type: Sprite
+    noRot: true
+    sprite: Structures/Storage/suit_storage.rsi
+    layers:
+    - state: base
+    - state: door
+      map: ["enum.StorageVisualLayers.Door"]
+    - state: welded
+      visible: false
+      map: ["enum.WeldableLayers.BaseWelded"]
+    - state: locked
+      map: ["enum.LockVisualLayers.Lock"]
+      shader: unshaded
+    - state: syndicate
   - type: StorageFill
     contents:
         - id: OxygenTankFilled
@@ -69,6 +97,20 @@
   parent: SuitStorageBase
   suffix: Pirate EVA
   components:
+  - type: Sprite
+    noRot: true
+    sprite: Structures/Storage/suit_storage.rsi
+    layers:
+    - state: base
+    - state: door
+      map: ["enum.StorageVisualLayers.Door"]
+    - state: welded
+      visible: false
+      map: ["enum.WeldableLayers.BaseWelded"]
+    - state: locked
+      map: ["enum.LockVisualLayers.Lock"]
+      shader: unshaded
+    - state: syndicate
   - type: StorageFill
     contents:
         - id: OxygenTankFilled
@@ -107,6 +149,20 @@
   parent: SuitStorageBase
   suffix: Station Engineer
   components:
+  - type: Sprite
+    noRot: true
+    sprite: Structures/Storage/suit_storage.rsi
+    layers:
+    - state: base
+    - state: door
+      map: ["enum.StorageVisualLayers.Door"]
+    - state: welded
+      visible: false
+      map: ["enum.WeldableLayers.BaseWelded"]
+    - state: locked
+      map: ["enum.LockVisualLayers.Lock"]
+      shader: unshaded
+    - state: engi
   - type: StorageFill
     contents:
         - id: OxygenTankFilled
@@ -122,6 +178,20 @@
   parent: SuitStorageBase
   suffix: Atmospheric Technician
   components:
+  - type: Sprite
+    noRot: true
+    sprite: Structures/Storage/suit_storage.rsi
+    layers:
+    - state: base
+    - state: door
+      map: ["enum.StorageVisualLayers.Door"]
+    - state: welded
+      visible: false
+      map: ["enum.WeldableLayers.BaseWelded"]
+    - state: locked
+      map: ["enum.LockVisualLayers.Lock"]
+      shader: unshaded
+    - state: engi
   - type: StorageFill
     contents:
         - id: OxygenTankFilled
@@ -136,6 +206,20 @@
   parent: SuitStorageBase
   suffix: Security
   components:
+  - type: Sprite
+    noRot: true
+    sprite: Structures/Storage/suit_storage.rsi
+    layers:
+    - state: base
+    - state: door
+      map: ["enum.StorageVisualLayers.Door"]
+    - state: welded
+      visible: false
+      map: ["enum.WeldableLayers.BaseWelded"]
+    - state: locked
+      map: ["enum.LockVisualLayers.Lock"]
+      shader: unshaded
+    - state: security
   - type: StorageFill
     contents:
         - id: OxygenTankFilled
@@ -150,6 +234,20 @@
   parent: SuitStorageBase
   suffix: Chief Engineer
   components:
+  - type: Sprite
+    noRot: true
+    sprite: Structures/Storage/suit_storage.rsi
+    layers:
+    - state: base
+    - state: door
+      map: ["enum.StorageVisualLayers.Door"]
+    - state: welded
+      visible: false
+      map: ["enum.WeldableLayers.BaseWelded"]
+    - state: locked
+      map: ["enum.LockVisualLayers.Lock"]
+      shader: unshaded
+    - state: command
   - type: EntityTableContainerFill
     containers:
       entity_storage: !type:NestedSelector
@@ -163,6 +261,20 @@
   parent: SuitStorageBase
   suffix: Chief Medical Officer
   components:
+  - type: Sprite
+    noRot: true
+    sprite: Structures/Storage/suit_storage.rsi
+    layers:
+    - state: base
+    - state: door
+      map: ["enum.StorageVisualLayers.Door"]
+    - state: welded
+      visible: false
+      map: ["enum.WeldableLayers.BaseWelded"]
+    - state: locked
+      map: ["enum.LockVisualLayers.Lock"]
+      shader: unshaded
+    - state: command
   - type: EntityTableContainerFill
     containers:
       entity_storage: !type:NestedSelector
@@ -176,6 +288,20 @@
   parent: SuitStorageBase
   suffix: Research Director
   components:
+  - type: Sprite
+    noRot: true
+    sprite: Structures/Storage/suit_storage.rsi
+    layers:
+    - state: base
+    - state: door
+      map: ["enum.StorageVisualLayers.Door"]
+    - state: welded
+      visible: false
+      map: ["enum.WeldableLayers.BaseWelded"]
+    - state: locked
+      map: ["enum.LockVisualLayers.Lock"]
+      shader: unshaded
+    - state: command
   - type: EntityTableContainerFill
     containers:
       entity_storage: !type:NestedSelector
@@ -189,6 +315,20 @@
   parent: SuitStorageBase
   suffix: Head of Security
   components:
+  - type: Sprite
+    noRot: true
+    sprite: Structures/Storage/suit_storage.rsi
+    layers:
+    - state: base
+    - state: door
+      map: ["enum.StorageVisualLayers.Door"]
+    - state: welded
+      visible: false
+      map: ["enum.WeldableLayers.BaseWelded"]
+    - state: locked
+      map: ["enum.LockVisualLayers.Lock"]
+      shader: unshaded
+    - state: command
   - type: EntityTableContainerFill
     containers:
       entity_storage: !type:NestedSelector
@@ -202,6 +342,20 @@
   parent: SuitStorageBase
   suffix: Warden
   components:
+  - type: Sprite
+    noRot: true
+    sprite: Structures/Storage/suit_storage.rsi
+    layers:
+    - state: base
+    - state: door
+      map: ["enum.StorageVisualLayers.Door"]
+    - state: welded
+      visible: false
+      map: ["enum.WeldableLayers.BaseWelded"]
+    - state: locked
+      map: ["enum.LockVisualLayers.Lock"]
+      shader: unshaded
+    - state: security
   - type: StorageFill
     contents:
         - id: OxygenTankFilled
@@ -216,6 +370,20 @@
   parent: SuitStorageBase
   suffix: Captain
   components:
+  - type: Sprite
+    noRot: true
+    sprite: Structures/Storage/suit_storage.rsi
+    layers:
+    - state: base
+    - state: door
+      map: ["enum.StorageVisualLayers.Door"]
+    - state: welded
+      visible: false
+      map: ["enum.WeldableLayers.BaseWelded"]
+    - state: locked
+      map: ["enum.LockVisualLayers.Lock"]
+      shader: unshaded
+    - state: command
   - type: EntityTableContainerFill
     containers:
       entity_storage: !type:NestedSelector
@@ -229,6 +397,20 @@
   parent: SuitStorageBase
   suffix: Salvage
   components:
+  - type: Sprite
+    noRot: true
+    sprite: Structures/Storage/suit_storage.rsi
+    layers:
+    - state: base
+    - state: door
+      map: ["enum.StorageVisualLayers.Door"]
+    - state: welded
+      visible: false
+      map: ["enum.WeldableLayers.BaseWelded"]
+    - state: locked
+      map: ["enum.LockVisualLayers.Lock"]
+      shader: unshaded
+    - state: cargo
   - type: EntityTableContainerFill
     containers:
       entity_storage: !type:NestedSelector
@@ -242,6 +424,20 @@
   parent: SuitStorageBase
   suffix: Syndicate Hardsuit
   components:
+  - type: Sprite
+    noRot: true
+    sprite: Structures/Storage/suit_storage.rsi
+    layers:
+    - state: base
+    - state: door
+      map: ["enum.StorageVisualLayers.Door"]
+    - state: welded
+      visible: false
+      map: ["enum.WeldableLayers.BaseWelded"]
+    - state: locked
+      map: ["enum.LockVisualLayers.Lock"]
+      shader: unshaded
+    - state: syndicate
   - type: StorageFill
     contents:
         - id: OxygenTankFilled
@@ -255,6 +451,20 @@
   parent: SuitStorageBase
   suffix: Pirate Captain
   components:
+  - type: Sprite
+    noRot: true
+    sprite: Structures/Storage/suit_storage.rsi
+    layers:
+    - state: base
+    - state: door
+      map: ["enum.StorageVisualLayers.Door"]
+    - state: welded
+      visible: false
+      map: ["enum.WeldableLayers.BaseWelded"]
+    - state: locked
+      map: ["enum.LockVisualLayers.Lock"]
+      shader: unshaded
+    - state: syndicate
   - type: StorageFill
     contents:
         - id: OxygenTankFilled
@@ -267,6 +477,20 @@
   parent: SuitStorageBase
   suffix: Wizard
   components:
+  - type: Sprite
+    noRot: true
+    sprite: Structures/Storage/suit_storage.rsi
+    layers:
+    - state: base
+    - state: door
+      map: ["enum.StorageVisualLayers.Door"]
+    - state: welded
+      visible: false
+      map: ["enum.WeldableLayers.BaseWelded"]
+    - state: locked
+      map: ["enum.LockVisualLayers.Lock"]
+      shader: unshaded
+    - state: scientists
   - type: StorageFill
     contents:
         - id: OxygenTankFilled

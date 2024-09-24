@@ -18,7 +18,7 @@
     speechVerb: Vox
     speechSounds: Vox
   - type: TypingIndicator
-    proto: vox
+    proto: vulp
   - type: Vocal
     sounds:
       Male: UnisexVox

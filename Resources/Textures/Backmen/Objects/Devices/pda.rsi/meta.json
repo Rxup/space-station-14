@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "license": "CC-BY-SA-3.0",
-  "copyright": "Backmen.ru @GTTEDMI#3009 / ccsec, cccargo by kirillcas (github)",
+  "copyright": "especially for the Space Cats server; Sprited by TheGypsyBaron https://github.com/SemkaGamez",
+  "license": "CLA-BY-SA-3.0",
   "size": {
     "x": 32,
     "y": 32
@@ -14,10 +14,10 @@
       "name": "pda-centcomcargo",
       "delays": [
         [
-          1.2,
-          1.2,
-          1.2,
-          1.2
+          0.4,
+          0.4,
+          0.4,
+          0.4
         ]
       ]
     },
@@ -25,10 +25,10 @@
       "name": "pda-centcomsec",
       "delays": [
         [
-          1.2,
-          1.2,
-          1.2,
-          1.2
+          0.4,
+          0.4,
+          0.4,
+          0.4
         ]
       ]
     },
@@ -39,10 +39,26 @@
       "name": "pda-Delivery"
     },
     {
-      "name": "pda-blue"
+      "name": "pda-blue",
+      "delays": [
+        [
+          0.4,
+          0.4,
+          0.4,
+          0.4
+        ]
+      ]
     },
 	{
-	  "name": "pda-Roboticist"
+	  "name": "pda-Roboticist",
+    "delays": [
+      [
+        0.4,
+        0.4,
+        0.4,
+        0.4
+      ]
+    ]
 	},
     {
       "name": "equipped-BELT",

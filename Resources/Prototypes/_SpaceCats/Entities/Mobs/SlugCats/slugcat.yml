@@ -1,0 +1,151 @@
+- type: entity
+  name: слизне кот
+  parent: SimpleMobBase
+  id: MobSlugCatCreek
+  description: Удивительное существо, похожее на кошку и слизняка одновременно. Но это не слизняк, это совсем другое существо. Гордость ксенобиологии. Очень подвижные и умные, они родом с планеты с опасной средой обитания. Обожают копья.
+  components:
+  - type: Sprite
+    drawdepth: Mobs
+    sprite: _SpaceCats/Mobs/Animals/slug-cat.rsi
+    layers:
+    - map: ["enum.DamageStateVisualLayers.Base"]
+      state: creek
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.35
+        density: 15
+        mask:
+        - MobMask
+        layer:
+        - MobLayer
+  - type: Tag
+    tags:
+    - DoorBumpOpener
+  - type: Appearance
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: creek
+      Dead:
+        Base: dead-creek
+  - type: Butcherable
+    spawned:
+    - id: FoodMeat
+      amount: 1
+#insert ur resting component here
+  - type: InteractionPopup
+    successChance: 0.8
+    interactSuccessString: petting-success-cat
+    interactFailureString: petting-failure-generic
+    interactSuccessSpawn: EffectHearts
+#    interactSuccessSound:
+#     path: /Audio/Animals/cat_meow.ogg
+#    interactFailureSound:
+#      path: /Audio/Animals/cat_hiss.ogg
+  - type: Speech
+    speechSounds: Cat
+    speechVerb: SmallMob
+  - type: ReplacementAccent
+    accent: cat
+  - type: Grammar
+    attributes:
+      gender: epicene
+  - type: MobPrice
+    price: 200
+  - type: SentienceTarget
+    flavorKind: station-event-random-sentience-flavor-organic
+  - type: NpcFactionMember
+    factions:
+    - Passive
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      40: Dead
+  - type: MeleeWeapon
+    damage:
+      types:
+        Blunt: 2.5
+
+- type: entity
+  name: слизне кот
+  parent: MobSlugCatCreek
+  id: MobSlugCatHoly
+  components:
+  - type: Sprite
+    layers:
+    - map: ["enum.DamageStateVisualLayers.Base"]
+      state: holy
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: holy
+      Dead:
+        Base: dead-holy
+
+
+- type: entity
+  name: слизне кот
+  parent: MobSlugCatCreek
+  id: MobSlugCatMonk
+  components:
+  - type: Sprite
+    layers:
+    - map: ["enum.DamageStateVisualLayers.Base"]
+      state: monk
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: monk
+      Dead:
+        Base: dead-monk
+
+- type: entity
+  name: слизне кот
+  parent: MobSlugCatCreek
+  id: MobSlugCatSonfariel
+  components:
+  - type: Sprite
+    layers:
+    - map: ["enum.DamageStateVisualLayers.Base"]
+      state: sonfariel
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: sonfariel
+      Dead:
+        Base: dead-sonfariel
+
+- type: entity
+  name: слизне кот
+  parent: MobSlugCatCreek
+  id: MobSlugCatSpearMaster
+  components:
+  - type: Sprite
+    layers:
+    - map: ["enum.DamageStateVisualLayers.Base"]
+      state: spear-master
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: spear-master
+      Dead:
+        Base: dead-spear-master
+
+- type: entity
+  name: слизне кот
+  parent: MobSlugCatCreek
+  id: MobSlugCatTechnician
+  components:
+  - type: Sprite
+    layers:
+    - map: ["enum.DamageStateVisualLayers.Base"]
+      state: technician
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: technician
+      Dead:
+        Base: dead-technician

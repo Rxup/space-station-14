@@ -465,7 +465,7 @@ public sealed partial class LobbyUIController : UIController, IOnStateEntered<Lo
 
         _humanoid.LoadProfile(dummyEnt, humanoid);
 
-        if (humanoid != null)
+        if (humanoid != null && jobClothes)
         {
             job ??= GetPreferredJob(humanoid);
             GiveDummyJobClothes(dummyEnt, humanoid, job);
@@ -473,16 +473,6 @@ public sealed partial class LobbyUIController : UIController, IOnStateEntered<Lo
             if (_prototypeManager.HasIndex<RoleLoadoutPrototype>(LoadoutSystem.GetJobPrototype(job.ID)))
             {
                 var loadout = humanoid.GetLoadoutOrDefault(LoadoutSystem.GetJobPrototype(job.ID), _playerManager.LocalSession, humanoid.Species, EntityManager, _prototypeManager);
-                //backmen-clothing: start
-                if (!jobClothes)
-                {
-                    HashSet<string> groupsToShow = ["Werx", "Niz", "Socks"];
-                    foreach (var loadoutsKey in loadout.SelectedLoadouts.Keys.Where(loadoutsKey => !groupsToShow.Contains(loadoutsKey)))
-                    {
-                        loadout.SelectedLoadouts.Remove(loadoutsKey);
-                    }
-                }
-                //backmen-clothing: end
                 GiveDummyLoadout(dummyEnt, loadout);
             }
         }
