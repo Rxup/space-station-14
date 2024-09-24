@@ -57,7 +57,7 @@
   - WageScheduler #backmen: currency
   - BasicRoundstartVariation
   - SubGamemodesRule
-  - CalmSwarmScheduler
+  - CalmMeteorSwarmScheduler
 
 - type: gamePreset
   id: FleshCultAndTraitor
