@@ -1,4 +1,4 @@
- Event Tables
+ # Event Tables
 
 - type: entityTable
   id: MeteorSwarmDustEventsTable
