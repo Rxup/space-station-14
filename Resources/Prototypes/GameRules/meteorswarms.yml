@@ -49,7 +49,7 @@
     AsteroidRockUranium: 0.5
     AsteroidRockBananium: 0.5
 
- Event Schedulers
+ # Event Schedulers
 
 - type: entity
   parent: BaseGameRule
@@ -86,7 +86,7 @@
     scheduledGameRules: !type:NestedSelector
       tableId: BasicMeteorSwarmEventsTable
 
- Game Rules
+# Game Rules
 
 - type: entity
   parent: BaseGameRule
