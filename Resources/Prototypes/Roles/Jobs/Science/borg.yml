@@ -6,9 +6,6 @@
   playTimeTracker: JobStationAi
   requirements:
   - !type:RoleTimeRequirement
-    role: JobBorg
-    time: 1200 
-  - !type:RoleTimeRequirement
     role: JobCargoBorg
     time: 1200
   - !type:RoleTimeRequirement
