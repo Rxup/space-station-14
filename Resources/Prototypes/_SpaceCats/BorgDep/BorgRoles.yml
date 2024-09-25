@@ -3,7 +3,7 @@
   parent: JobIcon
   id: JobIconCargoBorg
   icon:
-    sprite: sprite: _SpaceCats/Borgs/BorgIcons.rsi
+    sprite: _SpaceCats/Borgs/BorgIcons.rsi
     state: CargoBorg
   jobName: киборг-шахтёр
 
@@ -38,7 +38,7 @@
   parent: JobIcon
   id: JobIconSecurityBorg
   icon:
-    sprite: sprite: _SpaceCats/Borgs/BorgIcons.rsi
+    sprite: _SpaceCats/Borgs/BorgIcons.rsi
     state: SecurityBorg
   jobName: киборг-безопасности
 
@@ -67,7 +67,7 @@
   parent: JobIcon
   id: JobIconEngenerBorg
   icon:
-    sprite: sprite: _SpaceCats/Borgs/BorgIcons.rsi
+    sprite: _SpaceCats/Borgs/BorgIcons.rsi
     state: EngenerBorg
   jobName: киборг-инженер
 
@@ -99,7 +99,7 @@
   parent: JobIcon
   id: JobIconJanitorBorg
   icon:
-    sprite: sprite: _SpaceCats/Borgs/BorgIcons.rsi
+    sprite: _SpaceCats/Borgs/BorgIcons.rsi
     state: JanitorBorg
   jobName: киборг-уборщик
 
@@ -134,7 +134,7 @@
   parent: JobIcon
   id: JobIconMedIcalBorg
   icon:
-    sprite: sprite: _SpaceCats/Borgs/BorgIcons.rsi
+    sprite: _SpaceCats/Borgs/BorgIcons.rsi
     state: MedIcalBorg
   jobName: киборг-доктор
 
@@ -166,7 +166,7 @@
   parent: JobIcon
   id: JobIconServiceBorg
   icon:
-    sprite: sprite: _SpaceCats/Borgs/BorgIcons.rsi
+    sprite: _SpaceCats/Borgs/BorgIcons.rsi
     state: ServiceBorg
   jobName: киборг-официант
 
