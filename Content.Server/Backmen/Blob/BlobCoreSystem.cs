@@ -159,7 +159,7 @@ public sealed class BlobCoreSystem : EntitySystem
         if (!HasComp<MapGridComponent>(xform.GridUid))
             return;
 
-        if (TerminatingOrDeleted(component.Observer))
+        if (!TerminatingOrDeleted(component.Observer))
             return;
 
         CreateBlobObserver(uid, args.Player.UserId, component);
