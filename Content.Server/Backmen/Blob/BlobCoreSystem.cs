@@ -155,7 +155,11 @@ public sealed class BlobCoreSystem : EntitySystem
     private void OnPlayerAttached(EntityUid uid, BlobCoreComponent component, PlayerAttachedEvent args)
     {
         var xform = Transform(uid);
+
         if (!HasComp<MapGridComponent>(xform.GridUid))
+            return;
+
+        if (!TerminatingOrDeleted(component.Observer))
             return;
 
         CreateBlobObserver(uid, args.Player.UserId, component);
