@@ -7,7 +7,7 @@ using Robust.Shared.Serialization;
 namespace Content.Shared.Backmen.Blob;
 
 #region BlobChemTypedStorage
-[Serializable, NetSerializable]
+[DataDefinition, Serializable, NetSerializable]
 public abstract partial class BlobChemTypedStorage<T> : IEnumerable
 {
     [DataField]
