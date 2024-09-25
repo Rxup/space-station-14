@@ -108,7 +108,7 @@ public sealed class IdCardSystem : SharedIdCardSystem
             return true;
 
         id.JobColor = color.Value;
-        Dirty(id);
+        Dirty<IdCardComponent>(id);
 
         if (player != null)
         {
