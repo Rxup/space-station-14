@@ -2,6 +2,7 @@
   id: HeadOfPersonnel
   name: job-name-hop
   description: job-description-hop
+  color: "#334E6D"
   playTimeTracker: JobHeadOfPersonnel
   requirements:
     - !type:DepartmentTimeRequirement
