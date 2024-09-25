@@ -153,7 +153,7 @@ public sealed class CCVars
         CVarDef.Create("blob.players_per", 20, CVar.SERVERONLY);
 
     public static readonly CVarDef<bool> BlobCanGrowInSpace =
-        CVarDef.Create("blob.grow_space", true, CVar.REPLICATED);
+        CVarDef.Create("blob.grow_space", true, CVar.SERVER);
 
     /*
      * SpecForces

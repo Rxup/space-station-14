@@ -7,11 +7,9 @@ using Content.Shared.Backmen.Blob;
 using Content.Shared.Backmen.Blob.Components;
 using Content.Shared.Mind.Components;
 using Content.Shared.Mobs;
-using Content.Shared.Popups;
-using Robust.Shared.Map;
 using Robust.Shared.Map.Components;
+using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
-using Robust.Shared.Timing;
 
 namespace Content.Server.Backmen.Blob;
 
@@ -56,14 +54,16 @@ public sealed class BlobCarrierSystem : SharedBlobCarrierSystem
     private void OnStartup(EntityUid uid, BlobCarrierComponent component, MapInitEvent args)
     {
         _action.AddAction(uid, ref component.TransformToBlob, ActionTransformToBlob);
+        EnsureComp<BlobSpeakComponent>(uid).OverrideName = false;
+
+        if (HasComp<ActorComponent>(uid))
+            return;
 
         var ghostRole = EnsureComp<GhostRoleComponent>(uid);
         EnsureComp<GhostTakeoverAvailableComponent>(uid);
         ghostRole.RoleName = Loc.GetString("blob-carrier-role-name");
         ghostRole.RoleDescription = Loc.GetString("blob-carrier-role-desc");
         ghostRole.RoleRules = Loc.GetString("blob-carrier-role-rules");
-
-        EnsureComp<BlobSpeakComponent>(uid).OverrideName = false;
     }
 
     private void OnMobStateChanged(Entity<BlobCarrierComponent> uid, ref MobStateChangedEvent args)
@@ -91,7 +91,7 @@ public sealed class BlobCarrierSystem : SharedBlobCarrierSystem
         }
         else
         {
-            Spawn(ent.Comp.CoreBlobGhostRolePrototype, xform.Coordinates);
+            Spawn(ent.Comp.CoreBlobPrototype, xform.Coordinates);
         }
 
         _bodySystem.GibBody(ent);

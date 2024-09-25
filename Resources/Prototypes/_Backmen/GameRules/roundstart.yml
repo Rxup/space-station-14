@@ -134,13 +134,16 @@
     sets:
     - groups: ThiefObjectiveGroups
       maxPicks: 10
-    maxDifficulty: 2
+    - groups: ThiefBigObjectiveGroups
+      prob: 0.4
+      maxPicks: 2
+    maxDifficulty: 3.5
   - type: AntagSelection
     agentName: thief-round-end-agent-name
     definitions:
     - prefRoles: [ Thief ]
-      max: 8
-      playerRatio: 10
+      max: 10
+      playerRatio: 7
       blacklist:
         components:
         - AntagImmune
@@ -148,6 +151,8 @@
       allowNonHumans: true
       multiAntagSetting: NotExclusive
       startingGear: ThiefGear
+#      components: # Corvax-MRP
+#      - type: Pacified
       mindComponents:
       - type: ThiefRole
         prototype: Thief
