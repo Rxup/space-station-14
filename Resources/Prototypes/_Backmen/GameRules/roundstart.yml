@@ -179,6 +179,8 @@
       tableId: CalmPestEventsTable
     - !type:NestedSelector
       tableId: SpicyPestEventsTable
+    - !type:NestedSelector
+      tableId: CalmBackmenEventsTable
     - id: ClosetSkeleton
     - id: NinjaSpawn
     - id: RevenantSpawn
