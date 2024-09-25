@@ -46,7 +46,7 @@
   id: JobSecurityBorg
 
 - type: job
-  id: EngenerBorg
+  id: SecurityBorg
   name: киборг-безопасности
   description: job-description-borg
   playTimeTracker: JobSecurityBorg
