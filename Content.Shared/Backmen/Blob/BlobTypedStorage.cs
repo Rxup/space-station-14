@@ -7,7 +7,6 @@ using Robust.Shared.Prototypes;
 namespace Content.Shared.Backmen.Blob;
 
 #region BlobTypedStorage
-[DataDefinition]
 public abstract partial class BlobTypedStorage<T> : IEnumerable<KeyValuePair<BlobTileType, T>>
 {
     [DataField]
