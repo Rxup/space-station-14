@@ -88,4 +88,33 @@ public sealed class IdCardSystem : SharedIdCardSystem
 
         }
     }
+
+    /// <summary>
+    /// Attempts to change the color of an ID card.
+    /// Returns true/false.
+    /// </summary>
+    /// <remarks>
+    /// If provided with a player's EntityUid, logs the change to the admin logs.
+    /// </remarks>
+    public bool TryChangeColor(EntityUid uid, Color? color, IdCardComponent? id = null, EntityUid? player = null)
+    {
+        if (!Resolve(uid, ref id))
+            return false;
+
+        if (color is null)
+            return false;
+
+        if (id.JobColor == color.Value)
+            return true;
+
+        id.JobColor = color.Value;
+        Dirty(id);
+
+        if (player != null)
+        {
+            _adminLogger.Add(LogType.Identity, LogImpact.Low,
+                $"{ToPrettyString(player.Value):player} changed the color of {ToPrettyString(uid):entity} to {color} ");
+        }
+        return true;
+    }
 }
