@@ -329,6 +329,9 @@
     equipmentWhitelist:
       tags:
       - CombatMech
+    pilotWhitelist:
+      components:
+        - HumanoidAppearance
   - type: MeleeWeapon
     hidden: true
     attackRate: 0.70
@@ -379,6 +382,9 @@
     equipmentWhitelist:
       tags:
       - CombatMech
+    pilotWhitelist:
+      components:
+        - HumanoidAppearance
   - type: MeleeWeapon
     hidden: true
     attackRate: 0.70
@@ -429,6 +435,9 @@
     equipmentWhitelist:
       tags:
       - CombatMech
+    pilotWhitelist:
+      components:
+        - HumanoidAppearance
   - type: MeleeWeapon
     hidden: true
     attackRate: 1
@@ -479,6 +488,9 @@
     equipmentWhitelist:
       tags:
       - CombatMech
+    pilotWhitelist:
+      components:
+        - HumanoidAppearance
   - type: MeleeWeapon
     hidden: true
     attackRate: 0.70
