@@ -26,7 +26,7 @@ public class WhiteLobbyTextButton : TextureButton
     {
         IoCManager.InjectDependencies(this);
 
-        _font = new VectorFont(_resourceCache.GetResource<FontResource>("/Fonts/_White/Bedstead/Bedstead.otf"), 15);
+        _font = new VectorFont(_resourceCache.GetResource<FontResource>("/Fonts/Bedstead/Bedstead.otf"), 15);
     }
 
     private void RebuildTexture()
