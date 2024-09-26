@@ -1,0 +1,19 @@
+- type: techDiscipline
+  id: CircuitBoardAI
+  name: ataraxia-research-discipline-scientific
+  color: "#9932CC"
+  icon:
+    sprite: _Ataraxia/Interface/Misc/research_disciplines.rsi
+    state: scientific
+  tierPrerequisites:
+    1: 0
+
+- type: techDiscipline
+  id: Intellicard
+  name: ataraxia-research-discipline-scientific
+  color: "#9932CC"
+  icon:
+    sprite: _Ataraxia/Interface/Misc/research_disciplines.rsi
+    state: scientific
+  tierPrerequisites:
+    1: 0

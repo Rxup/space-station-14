@@ -90,6 +90,8 @@
     - AlternativeResearchMachines
     - AbnormalArtifactManipulationMachines
     - MetempsychosisMachines # Backmen
+    - CircuitBoardAI # Cats
+    - Intellicard # Cats
 # <-- ROBOTICS -->
     - Robotics
     - CritterMech
