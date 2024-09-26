@@ -1,6 +1,6 @@
 - type: entity
   id: BorgChassisGeneric
-  parent: BaseBorgChassisNT
+  parent: BaseBorgChassisNTs
   components:
   - type: Sprite
     layers:
@@ -45,7 +45,7 @@
 
 - type: entity
   id: BorgChassisMining
-  parent: BaseBorgChassisNT
+  parent: BaseBorgChassisNTs
   name: salvage cyborg
   components:
   - type: Sprite
@@ -113,7 +113,7 @@
 
 - type: entity
   id: BorgChassisEngineer
-  parent: BaseBorgChassisNT
+  parent: BaseBorgChassisNTs
   name: engineer cyborg
   components:
   - type: Sprite
@@ -173,7 +173,7 @@
 
 - type: entity
   id: BorgChassisJanitor
-  parent: BaseBorgChassisNT
+  parent: BaseBorgChassisNTs
   name: janitor cyborg
   components:
   - type: Sprite
@@ -241,7 +241,7 @@
 
 - type: entity
   id: BorgChassisMedical
-  parent: [BaseBorgChassisNT, ShowMedicalIcons]
+  parent: [BaseBorgChassisNTs, ShowMedicalIcons]
   name: medical cyborg
   components:
   - type: Sprite
@@ -315,7 +315,7 @@
 
 - type: entity
   id: BorgChassisService
-  parent: BaseBorgChassisNT
+  parent: BaseBorgChassisNTs
   name: service cyborg
   components:
   - type: Sprite
