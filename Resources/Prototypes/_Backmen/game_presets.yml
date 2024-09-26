@@ -288,10 +288,8 @@
   - BasicRoundstartVariation
   # Oh my god.
   - KesslerSyndromeScheduler
-  - KesslerSyndromeScheduler
-  - KesslerSyndromeScheduler
   # - MeteorSwarmMildScheduler
   # - MeteorSwarmScheduler
   - RampingStationEventScheduler
-  - SpaceTrafficControlEventScheduler
-  - SpaceTrafficControlFriendlyEventScheduler
+  #- SpaceTrafficControlEventScheduler
+  #- SpaceTrafficControlFriendlyEventScheduler
