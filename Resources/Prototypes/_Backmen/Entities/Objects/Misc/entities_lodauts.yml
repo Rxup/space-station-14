@@ -216,3 +216,61 @@
   content:
   - WeaponPistolDivet
   - ClothingBeltMilitaryWebbingDivetFilled
+#Брикейс
+- type: entity
+  id: BlueShieldSetLoadouts
+  name: Кейс Офицера СЩ
+  description: Здесь лежит снаряжение которое подготовило для вас ДСО. Хотелось бы все самое лучшее.
+  parent: BaseItem
+  components:
+  - type: Sprite
+    sprite: Corvax/Back/Duffels/military.rsi
+    state: icon
+  - type: Item
+    size: Normal
+  - type: ThiefUndeterminedBackpack
+    possibleSets:
+    - Heal-Set1
+    - Heal-Set2
+    - Heal-Set3
+  - type: ActivatableUI
+    key: enum.ThiefBackpackUIKey.Key
+  - type: UserInterface
+    interfaces:
+      enum.ThiefBackpackUIKey.Key:
+        type: ThiefBackpackBoundUserInterface
+  
+
+- type: thiefBackpackSet
+  id: Heal-Set1
+  name: Набор медикаментов
+  description: В набор входит боевая аптечка и набор для лечения ожогов.
+  sprite:
+    sprite: Objects/Specific/Medical/firstaidkits.rsi
+    state: burnkit
+  content:
+  - MedkitCombatFilled
+  - MedkitBurnFilled
+
+- type: thiefBackpackSet
+  id: Heal-Set2
+  name: Набор медикаментов
+  description: В набор входит боевая аптечка и набор для лечения токсинов.
+  sprite:
+    sprite: Objects/Specific/Medical/firstaidkits.rsi
+    state: toxinkit
+  content:
+  - MedkitCombatFilled
+  - MedkitToxinFilled
+
+- type: thiefBackpackSet
+  id: Heal-Set3
+  name: Набор медикаментов
+  description: В набор входит боевая аптечка и набор для лечения кислородного голодания
+  sprite:
+    sprite: Objects/Specific/Medical/firstaidkits.rsi
+    state: o2kit
+  content:
+  - MedkitCombatFilled
+  - MedkitOxygenFilled
+#брифкейс
