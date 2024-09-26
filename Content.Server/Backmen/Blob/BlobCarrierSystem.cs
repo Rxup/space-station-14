@@ -1,6 +1,7 @@
 ﻿using Content.Server.Actions;
 using Content.Server.Backmen.Blob.Components;
 using Content.Server.Body.Systems;
+using Content.Server.Ghost.Roles;
 using Content.Server.Ghost.Roles.Components;
 using Content.Server.Mind;
 using Content.Shared.Backmen.Blob;
@@ -17,6 +18,7 @@ public sealed class BlobCarrierSystem : SharedBlobCarrierSystem
 {
     [Dependency] private readonly BlobCoreSystem _blobCoreSystem = default!;
     [Dependency] private readonly MindSystem _mind = default!;
+    [Dependency] private readonly GhostRoleSystem _ghost = default!;
     [Dependency] private readonly BodySystem _bodySystem = default!;
     [Dependency] private readonly ActionsSystem _action = default!;
 
@@ -83,6 +85,10 @@ public sealed class BlobCarrierSystem : SharedBlobCarrierSystem
         if (_mind.TryGetMind(ent, out _, out var mind) && mind.UserId != null)
         {
             var core = Spawn(ent.Comp.CoreBlobPrototype, xform.Coordinates);
+            var ghostRoleComp = EnsureComp<GhostRoleComponent>(core);
+
+            // Unfortunately we have to manually turn this off so we don't need to make more prototypes.
+            _ghost.UnregisterGhostRole((core, ghostRoleComp));
 
             if (!TryComp<BlobCoreComponent>(core, out var blobCoreComponent))
                 return;

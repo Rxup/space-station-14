@@ -18,6 +18,23 @@
     - id: GlimmerRandomSentience
     - id: GlimmerRevenantSpawn
 
+- type: entityTable
+  id: CalmBackmenEventsTable
+  table: !type:AllSelector # we need to pass a list of rules, since rules have further restrictions to consider via StationEventComp
+    children:
+    - id: EvilTwinSpawn
+    - id: FugitiveSpawn
+    - id: NoosphericStorm
+    - id: BluespaceGoat
+    - id: SpiderSpiderVampireSpawn
+    - id: NoosphericZap
+    - id: NoosphericFry
+    - id: GlimmerWispSpawn
+    - id: FreeProberEarly
+    - id: FreeProber
+    - id: GlimmerRandomSentience
+    - id: GlimmerRevenantSpawn
+
 - type: entity
   id: EvilTwinSpawn
   parent: BaseGameRule
@@ -65,7 +82,7 @@
   noSpawn: true
   components:
   - type: StationEvent
-    weight: 6.5
+    weight: 15
     duration: 1
     earliestStart: 50
     minimumPlayers: 10

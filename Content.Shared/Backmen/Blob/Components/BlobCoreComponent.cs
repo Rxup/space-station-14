@@ -38,10 +38,10 @@ public sealed partial class BlobCoreComponent : Component
     public FixedPoint2 CoreBlobTotalHealth = 400;
 
     [DataField]
-    public float AttackRate = 0.6f;
+    public float AttackRate = 0.3f;
 
     [DataField]
-    public float GrowRate = 0.4f;
+    public float GrowRate = 0.1f;
 
     [DataField]
     public bool CanSplit = true;
