@@ -105,3 +105,15 @@
     Plastic: 250
     Gold: 50
     Plasma: 50
+
+- type: latheRecipe
+  id: Intellicard
+  result: Intellicard
+  category: Robotics
+  completetime: 3
+  materials:
+    Steel: 300
+    Glass: 300
+    Plastic: 150
+    Gold: 50
+    Plasma: 50

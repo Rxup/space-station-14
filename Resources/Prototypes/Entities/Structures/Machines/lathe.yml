@@ -288,6 +288,7 @@
     - Dropper
     - ClothingEyesGlassesChemical
     dynamicRecipes:
+      - Intellicard
       - RnDPowerDrill
       - MiningDrill
       - MiningDrillDiamond
