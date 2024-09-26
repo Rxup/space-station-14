@@ -92,6 +92,7 @@
     - MetempsychosisMachines # Backmen
     - CircuitBoardAI # Cats
     - Intellicard # Cats
+    - CustomLawCircuitBoard # Cats
 # <-- ROBOTICS -->
     - Robotics
     - CritterMech
