@@ -1,0 +1,13 @@
+- type: entity
+  id: CustomLawCircuitBoard
+  parent: BaseElectronics
+  name: custom ai law circuit board
+  description: An electronics board containing a lawset.
+  components:
+  - type: Sprite
+    sprite: Objects/Misc/module.rsi
+    state: cpuboard_adv
+  - type: SiliconLawBound
+  - type: CustomAiLawBoard
+  - type: SiliconLawProvider
+    laws: NTDefault
