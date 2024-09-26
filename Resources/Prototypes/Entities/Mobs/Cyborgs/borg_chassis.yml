@@ -17,7 +17,15 @@
     maxModules: 6
     moduleWhitelist:
       tags:
+      - BorgModuleCargo
+      - BorgModuleJanitor
+      - BorgModuleEngineering
+      - BorgModuleSyndicate
       - BorgModuleGeneric
+      - BorgModuleSyndicateAssault
+      - BorgModuleService
+      - BorgModuleMedical
+      - SecModul
     hasMindState: robot_e
     noMindState: robot_e_r
   - type: BorgTransponder
@@ -60,11 +68,18 @@
       movement:
         state: miner
   - type: BorgChassis
-    maxModules: 4
+    maxModules: 5
     moduleWhitelist:
       tags:
-      - BorgModuleGeneric
       - BorgModuleCargo
+      - BorgModuleJanitor
+      - BorgModuleEngineering
+      - BorgModuleSyndicate
+      - BorgModuleGeneric
+      - BorgModuleSyndicateAssault
+      - BorgModuleService
+      - BorgModuleMedical
+      - SecModul
     hasMindState: miner_e
     noMindState: miner_e_r
   - type: BorgTransponder
@@ -113,11 +128,18 @@
       map: ["light"]
       visible: false
   - type: BorgChassis
-    maxModules: 4
+    maxModules: 5
     moduleWhitelist:
       tags:
-      - BorgModuleGeneric
+      - BorgModuleCargo
+      - BorgModuleJanitor
       - BorgModuleEngineering
+      - BorgModuleSyndicate
+      - BorgModuleGeneric
+      - BorgModuleSyndicateAssault
+      - BorgModuleService
+      - BorgModuleMedical
+      - SecModul
     hasMindState: engineer_e
     noMindState: engineer_e_r
   - type: BorgTransponder
@@ -174,11 +196,18 @@
       movement:
         state: janitor
   - type: BorgChassis
-    maxModules: 4
+    maxModules: 5
     moduleWhitelist:
       tags:
-      - BorgModuleGeneric
+      - BorgModuleCargo
       - BorgModuleJanitor
+      - BorgModuleEngineering
+      - BorgModuleSyndicate
+      - BorgModuleGeneric
+      - BorgModuleSyndicateAssault
+      - BorgModuleService
+      - BorgModuleMedical
+      - SecModul
     hasMindState: janitor_e
     noMindState: janitor_e_r
   - type: BorgTransponder
@@ -235,11 +264,18 @@
       movement:
         state: medical
   - type: BorgChassis
-    maxModules: 4
+    maxModules: 5
     moduleWhitelist:
       tags:
+      - BorgModuleCargo
+      - BorgModuleJanitor
+      - BorgModuleEngineering
+      - BorgModuleSyndicate
       - BorgModuleGeneric
+      - BorgModuleSyndicateAssault
+      - BorgModuleService
       - BorgModuleMedical
+      - SecModul
     hasMindState: medical_e
     noMindState: medical_e_r
   - type: BorgTransponder
@@ -294,11 +330,18 @@
       map: ["light"]
       visible: false
   - type: BorgChassis
-    maxModules: 4
+    maxModules: 5
     moduleWhitelist:
       tags:
+      - BorgModuleCargo
+      - BorgModuleJanitor
+      - BorgModuleEngineering
+      - BorgModuleSyndicate
       - BorgModuleGeneric
+      - BorgModuleSyndicateAssault
       - BorgModuleService
+      - BorgModuleMedical
+      - SecModul
     hasMindState: service_e
     noMindState: service_e_r
   - type: BorgTransponder
@@ -348,12 +391,18 @@
           map: ["light"]
           visible: false
     - type: BorgChassis
-      maxModules: 3
+      maxModules: 5
       moduleWhitelist:
         tags:
-          - BorgModuleGeneric
+          - BorgModuleCargo
+          - BorgModuleJanitor
+          - BorgModuleEngineering
           - BorgModuleSyndicate
+          - BorgModuleGeneric
           - BorgModuleSyndicateAssault
+          - BorgModuleService
+          - BorgModuleMedical
+          - SecModul
       hasMindState: synd_sec_e
       noMindState: synd_sec
     - type: Construction
@@ -382,12 +431,18 @@
           map: ["light"]
           visible: false
     - type: BorgChassis
-      maxModules: 3
+      maxModules: 5
       moduleWhitelist:
         tags:
-          - BorgModuleGeneric
-          - BorgModuleMedical
+          - BorgModuleCargo
+          - BorgModuleJanitor
+          - BorgModuleEngineering
           - BorgModuleSyndicate
+          - BorgModuleGeneric
+          - BorgModuleSyndicateAssault
+          - BorgModuleService
+          - BorgModuleMedical
+          - SecModul
       hasMindState: synd_medical_e
       noMindState: synd_medical
     - type: Construction
@@ -425,12 +480,18 @@
           map: ["light"]
           visible: false
     - type: BorgChassis
-      maxModules: 3
+      maxModules: 5
       moduleWhitelist:
         tags:
-          - BorgModuleGeneric
+          - BorgModuleCargo
+          - BorgModuleJanitor
           - BorgModuleEngineering
           - BorgModuleSyndicate
+          - BorgModuleGeneric
+          - BorgModuleSyndicateAssault
+          - BorgModuleService
+          - BorgModuleMedical
+          - SecModul
       hasMindState: synd_engi_e
       noMindState: synd_engi
     - type: Construction
