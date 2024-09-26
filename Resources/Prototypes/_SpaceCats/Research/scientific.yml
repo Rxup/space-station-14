@@ -1,0 +1,48 @@
+- type: technology
+  id: CircuitBoardAI
+  name: cats-research-technology-circuitboardai
+  icon:
+    sprite: Objects/Misc/module.rsi
+    state: std_mod
+  discipline: CircuitBoardAI
+  tier: 1
+  cost: 15000
+  recipeUnlocks:
+    - AsimovCircuitBoard
+    - CorporateCircuitBoard
+    - NTDefaultCircuitBoard
+    - CommandmentCircuitBoard
+    - PaladinCircuitBoard
+    - StationEfficiencyCircuitBoard
+    - LiveLetLiveCircuitBoard
+    - RobocopCircuitBoard
+  technologyPrerequisites:
+    - Intellicard
+
+
+- type: technology
+  id: Intellicard
+  name: cats-research-technology-intellicard
+  icon:
+    sprite: Objects/Devices/ai_card.rsi
+    state: base
+  discipline: Intellicard
+  tier: 1
+  cost: 7500
+  recipeUnlocks:
+    - Intellicard
+
+- type: technology
+  id: CustomLawCircuitBoard
+  name: cats-research-technology-customlawcircuitboard
+  icon:
+    sprite: Objects/Misc/module.rsi
+    state: std_mod
+  discipline: CustomLawCircuitBoard
+  tier: 1
+  cost: 15000
+  recipeUnlocks:
+    - CustomLawCircuitBoard
+  technologyPrerequisites:
+    - Intellicard
+    - CircuitBoardAI

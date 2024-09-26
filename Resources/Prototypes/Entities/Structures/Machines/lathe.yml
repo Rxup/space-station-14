@@ -288,6 +288,7 @@
     - Dropper
     - ClothingEyesGlassesChemical
     dynamicRecipes:
+      - Intellicard
       - RnDPowerDrill
       - MiningDrill
       - MiningDrillDiamond
@@ -462,8 +463,18 @@
     - SpaceHeaterMachineCircuitBoard
     - CutterMachineCircuitboard
     - StationAnchorCircuitboard
+    - CustomLawCircuitBoard
     - SalvageMagnetMachineCircuitboard
     dynamicRecipes:
+      - CustomLawCircuitBoard # cats
+      - AsimovCircuitBoard
+      - CorporateCircuitBoard
+      - NTDefaultCircuitBoard
+      - CommandmentCircuitBoard
+      - PaladinCircuitBoard
+      - StationEfficiencyCircuitBoard
+      - LiveLetLiveCircuitBoard
+      - RobocopCircuitBoard
       - ThermomachineFreezerMachineCircuitBoard
       - HellfireFreezerMachineCircuitBoard
       - PortableScrubberMachineCircuitBoard

@@ -74,10 +74,17 @@
       map: ["light"]
       visible: false
   - type: BorgChassis
-    maxModules: 4
+    maxModules: 5
     moduleWhitelist:
       tags:
+      - BorgModuleCargo
+      - BorgModuleJanitor
+      - BorgModuleEngineering
+      - BorgModuleSyndicate
       - BorgModuleGeneric
+      - BorgModuleSyndicateAssault
+      - BorgModuleService
+      - BorgModuleMedical
       - SecModul
     hasMindState: sec_e
     noMindState: sec_e_r

@@ -95,7 +95,7 @@
         # anyway it's just a quality of life thing.
         showEnts: True
 
-# Boards
+# Boardss
 - type: entity
   id: AsimovCircuitBoard
   parent: BaseElectronics

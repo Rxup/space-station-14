@@ -18,12 +18,9 @@
   requirements:
     - !type:DepartmentTimeRequirement
       department: Cargo
-      time: 10800 
+      time: 6800 
     - !type:RoleTimeRequirement
       role: JobSalvageSpecialist
-      time: 3600
-    - !type:RoleTimeRequirement
-      role: JobBorg
       time: 3600
     - !type:DepartmentTimeRequirement
       department: Science
@@ -51,9 +48,6 @@
   description: job-description-borg
   playTimeTracker: JobSecurityBorg
   requirements:
-    - !type:RoleTimeRequirement
-      role: JobBorg
-      time: 3600
     - !type:DepartmentTimeRequirement
       department: Security
       time: 3600
@@ -82,10 +76,7 @@
   requirements:
     - !type:DepartmentTimeRequirement
       department: Engineering
-      time: 10800 
-    - !type:RoleTimeRequirement
-      role: JobBorg
-      time: 3600
+      time: 6800 
     - !type:DepartmentTimeRequirement
       department: Science
       time: 3600
@@ -114,12 +105,9 @@
   requirements:
     - !type:DepartmentTimeRequirement
       department: Civilian
-      time: 10800 
+      time: 6800 
     - !type:RoleTimeRequirement
       role: JobJanitor
-      time: 3600
-    - !type:RoleTimeRequirement
-      role: JobBorg
       time: 3600
     - !type:DepartmentTimeRequirement
       department: Science
@@ -149,10 +137,7 @@
   requirements:
     - !type:DepartmentTimeRequirement
       department: Medical
-      time: 10800 
-    - !type:RoleTimeRequirement
-      role: JobBorg
-      time: 3600
+      time: 6300 
     - !type:DepartmentTimeRequirement
       department: Science
       time: 3600
@@ -181,10 +166,7 @@
   requirements:
     - !type:DepartmentTimeRequirement
       department: Civilian
-      time: 10800 
-    - !type:RoleTimeRequirement
-      role: JobBorg
-      time: 3600
+      time: 6800 
     - !type:DepartmentTimeRequirement
       department: Science
       time: 3600
