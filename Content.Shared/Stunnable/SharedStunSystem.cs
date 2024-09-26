@@ -20,6 +20,8 @@ using Robust.Shared.Physics.Components;
 using Robust.Shared.Physics.Events;
 using Robust.Shared.Physics.Systems;
 using Content.Shared.Backmen.Standing;
+using Content.Shared.Movement.Components;
+
 namespace Content.Shared.Stunnable;
 
 public abstract class SharedStunSystem : EntitySystem

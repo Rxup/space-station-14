@@ -119,8 +119,8 @@ public sealed class GlimmerWispSystem : EntitySystem
             return;
         }
 
-        _popups.PopupEntity(Loc.GetString("life-drain-second-end", ("wisp", uid)), args.Args.Target.Value, args.Args.Target.Value, Shared.Popups.PopupType.LargeCaution);
-        _popups.PopupEntity(Loc.GetString("life-drain-third-end", ("wisp", uid), ("target", args.Args.Target.Value)), args.Args.Target.Value, Filter.PvsExcept(args.Args.Target.Value), true, Shared.Popups.PopupType.LargeCaution);
+        _popups.PopupEntity(Loc.GetString("life-drain-second-end", ("drainer", uid)), args.Args.Target.Value, args.Args.Target.Value, Shared.Popups.PopupType.LargeCaution);
+        _popups.PopupEntity(Loc.GetString("life-drain-third-end", ("drainer", uid), ("target", args.Args.Target.Value)), args.Args.Target.Value, Filter.PvsExcept(args.Args.Target.Value), true, Shared.Popups.PopupType.LargeCaution);
 
         var rejEv = new RejuvenateEvent();
         RaiseLocalEvent(uid, rejEv);
@@ -151,8 +151,8 @@ public sealed class GlimmerWispSystem : EntitySystem
             return false;
 
 
-        _popups.PopupEntity(Loc.GetString("life-drain-second-start", ("wisp", uid)), target, target, Shared.Popups.PopupType.LargeCaution);
-        _popups.PopupEntity(Loc.GetString("life-drain-third-start", ("wisp", uid), ("target", target)), target, Filter.PvsExcept(target), true, Shared.Popups.PopupType.LargeCaution);
+        _popups.PopupEntity(Loc.GetString("life-drain-second-start", ("drainer", uid)), target, target, Shared.Popups.PopupType.LargeCaution);
+        _popups.PopupEntity(Loc.GetString("life-drain-third-start", ("drainer", uid), ("target", target)), target, Filter.PvsExcept(target), true, Shared.Popups.PopupType.LargeCaution);
 
         component.DrainStingStream = _audioSystem.PlayPvs(component.DrainSoundPath, target);
         component.IsDraining = true;

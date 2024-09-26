@@ -11,6 +11,9 @@ public sealed partial class LayingDownComponent : Component
 
     [DataField, AutoNetworkedField, ViewVariables(VVAccess.ReadWrite)]
     public float SpeedModify { get; set; } = 0.4f;
+
+    [DataField, AutoNetworkedField]
+    public int? OriginalDrawDepth { get; set; }
 }
 [Serializable, NetSerializable]
 public sealed class ChangeLayingDownEvent : CancellableEntityEventArgs;
@@ -22,3 +25,8 @@ public sealed class CheckAutoGetUpEvent(NetEntity user) : CancellableEntityEvent
     public NetEntity User = user;
 }
 */
+[Serializable, NetSerializable]
+public sealed class DrawDownedEvent(NetEntity uid) : EntityEventArgs
+{
+    public NetEntity Uid = uid;
+}
