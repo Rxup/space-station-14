@@ -1,0 +1,36 @@
+- type: polymorph
+  id: WizardForcedDiona
+  configuration:
+    entity: MobDiona
+    forced: true
+    inventory: Transfer
+    transferName: true
+    transferDamage: true
+    revertOnCrit: false
+    revertOnDeath: false
+
+- type: entity
+  id: ProjectilePolyboltDiona
+  parent: ProjectilePolyboltBase
+  name: Гены Дионов
+  description: Nooo, I don't wanna be Diona!
+  noSpawn: true
+  components:
+  - type: PolymorphOnCollide
+    polymorph: WizardForcedDiona
+    whitelist:
+      components:
+      - Body
+
+- type: entity
+  name: волшебная палочка полиморфа диона.
+  parent: WeaponWandPolymorphBase
+  id: WeaponWandPolymorphDiona
+  description: На случай, когда вам срочно нужен деревья, а клоун выглядит уж очень похож на овощ.
+  components:
+  - type: BasicEntityAmmoProvider
+    proto: ProjectilePolyboltDiona
+    capacity: 1
+    count: 1
+
+

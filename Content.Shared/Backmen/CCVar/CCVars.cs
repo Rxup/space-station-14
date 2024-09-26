@@ -176,7 +176,7 @@ public sealed class CCVars
      */
 
     public static readonly CVarDef<bool> ImmersiveEnabled =
-        CVarDef.Create("immersive.enabled", true, CVar.SERVERONLY);
+        CVarDef.Create("immersive.enabled", false, CVar.SERVERONLY);
 
     /*
      * Bind Standing - Ataraxia

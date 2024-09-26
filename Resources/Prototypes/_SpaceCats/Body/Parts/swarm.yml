@@ -1,0 +1,33 @@
+- type: entity
+  id: BaseTorsoSwarmer
+  noSpawn: true
+  name: Тело свармера
+  parent: BaseTorso
+  components:
+  - type: Damageable
+    damageContainer: Inorganic
+  - type: Sprite
+    sprite: _SpaceCats/Swarmers/MOB-MODULS/Robots/Swarmer_base.rsi
+    state: "borg_chest"
+  - type: BodyPart
+    partType: Torso
+
+- type: entity
+  id: BaseRightHandSwarmer
+  noSpawn: true
+  name: "Правая рука свармера"
+  parent: BaseRightHand
+  components:
+  - type: Damageable
+    damageContainer: Inorganic
+  - type: Sprite
+    sprite: _SpaceCats/Swarmers/MOB-MODULS/Robots/Swarmer_base.rsi
+    state: "borg_r_arm"
+  - type: BodyPart
+    partType: Hand
+    symmetry: Right
+
+- type: damageModifierSet
+  id: SwarmArm
+  coefficients:
+    Shock: 0.0

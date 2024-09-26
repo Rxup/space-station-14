@@ -2,7 +2,7 @@
   parent: SmokeGrenade
   id: BloodsuckerGrenade
   name: vampire gas grenade
-  description: vampire club... join?
+  description: вампирский клуб... вступаешь?
   components:
   - type: Sprite
     sprite: Objects/Weapons/Grenades/tear_gas.rsi
@@ -77,7 +77,7 @@
   parent: SmokeGrenade
   id: AntiPsiGrenade
   name: anti-psi gas grenade
-  description: did you hate magic brain?
+  description: ты ненавидел волшебный мозг?
   components:
   - type: Sprite
     sprite: Objects/Weapons/Grenades/tear_gas.rsi

@@ -1,0 +1,194 @@
+#CargoBorg
+- type: jobIcon
+  parent: JobIcon
+  id: JobIconCargoBorg
+  icon:
+    sprite: _SpaceCats/Borgs/BorgIcons.rsi
+    state: CargoBorg
+  jobName: киборг-шахтёр
+
+- type: playTimeTracker
+  id: JobCargoBorg
+
+- type: job
+  id: CargoBorg
+  name: киборг-шахтёр
+  description: job-description-borg
+  playTimeTracker: JobCargoBorg
+  requirements:
+    - !type:DepartmentTimeRequirement
+      department: Cargo
+      time: 10800 
+    - !type:RoleTimeRequirement
+      role: JobSalvageSpecialist
+      time: 3600
+    - !type:RoleTimeRequirement
+      role: JobBorg
+      time: 3600
+    - !type:DepartmentTimeRequirement
+      department: Science
+      time: 3600
+  canBeAntag: false
+  icon: JobIconCargoBorg
+  supervisors: job-supervisors-rd
+  jobEntity: PlayerBorgMining
+
+#SecurityBorg
+- type: jobIcon
+  parent: JobIcon
+  id: JobIconSecurityBorg
+  icon:
+    sprite: _SpaceCats/Borgs/BorgIcons.rsi
+    state: SecurityBorg
+  jobName: киборг-безопасности
+
+- type: playTimeTracker
+  id: JobSecurityBorg
+
+- type: job
+  id: SecurityBorg
+  name: киборг-безопасности
+  description: job-description-borg
+  playTimeTracker: JobSecurityBorg
+  requirements:
+    - !type:RoleTimeRequirement
+      role: JobBorg
+      time: 3600
+    - !type:DepartmentTimeRequirement
+      department: Security
+      time: 3600
+  canBeAntag: false
+  icon: JobIconSecurityBorg
+  supervisors: job-supervisors-rd
+  jobEntity: PlayerBorgChassisSecurity
+
+#EngenerBorg
+- type: jobIcon
+  parent: JobIcon
+  id: JobIconEngenerBorg
+  icon:
+    sprite: _SpaceCats/Borgs/BorgIcons.rsi
+    state: EngenerBorg
+  jobName: киборг-инженер
+
+- type: playTimeTracker
+  id: JobEngenerBorg
+
+- type: job
+  id: EngenerBorg
+  name: киборг-инженер
+  description: job-description-borg
+  playTimeTracker: JobEngenerBorg
+  requirements:
+    - !type:DepartmentTimeRequirement
+      department: Engineering
+      time: 10800 
+    - !type:RoleTimeRequirement
+      role: JobBorg
+      time: 3600
+    - !type:DepartmentTimeRequirement
+      department: Science
+      time: 3600
+  canBeAntag: false
+  icon: JobIconEngenerBorg
+  supervisors: job-supervisors-rd
+  jobEntity: PlayerBorgEngineer
+
+#JanitorBorg
+- type: jobIcon
+  parent: JobIcon
+  id: JobIconJanitorBorg
+  icon:
+    sprite: _SpaceCats/Borgs/BorgIcons.rsi
+    state: JanitorBorg
+  jobName: киборг-уборщик
+
+- type: playTimeTracker
+  id: JobJanitorBorg
+
+- type: job
+  id: JanitorBorg
+  name: киборг-уборщик
+  description: job-description-borg
+  playTimeTracker: JobJanitorBorg
+  requirements:
+    - !type:DepartmentTimeRequirement
+      department: Civilian
+      time: 10800 
+    - !type:RoleTimeRequirement
+      role: JobJanitor
+      time: 3600
+    - !type:RoleTimeRequirement
+      role: JobBorg
+      time: 3600
+    - !type:DepartmentTimeRequirement
+      department: Science
+      time: 3600
+  canBeAntag: false
+  icon: JobIconJanitorBorg
+  supervisors: job-supervisors-rd
+  jobEntity: PlayerBorgJanitor
+
+#MedIcalBorg
+- type: jobIcon
+  parent: JobIcon
+  id: JobIconMedIcalBorg
+  icon:
+    sprite: _SpaceCats/Borgs/BorgIcons.rsi
+    state: MedIcalBorg
+  jobName: киборг-доктор
+
+- type: playTimeTracker
+  id: JobMedIcalBorg
+
+- type: job
+  id: MedIcalBorg
+  name: киборг-доктор
+  description: job-description-borg
+  playTimeTracker: JobMedIcalBorg
+  requirements:
+    - !type:DepartmentTimeRequirement
+      department: Medical
+      time: 10800 
+    - !type:RoleTimeRequirement
+      role: JobBorg
+      time: 3600
+    - !type:DepartmentTimeRequirement
+      department: Science
+      time: 3600
+  canBeAntag: false
+  icon: JobIconMedIcalBorg
+  supervisors: job-supervisors-rd
+  jobEntity: PlayerBorgMedical
+
+#ServiceBorg
+- type: jobIcon
+  parent: JobIcon
+  id: JobIconServiceBorg
+  icon:
+    sprite: _SpaceCats/Borgs/BorgIcons.rsi
+    state: ServiceBorg
+  jobName: киборг-официант
+
+- type: playTimeTracker
+  id: JobServiceBorg
+
+- type: job
+  id: ServiceBorg
+  name: киборг-официант
+  description: job-description-borg
+  playTimeTracker: JobServiceBorg
+  requirements:
+    - !type:DepartmentTimeRequirement
+      department: Civilian
+      time: 10800 
+    - !type:RoleTimeRequirement
+      role: JobBorg
+      time: 3600
+    - !type:DepartmentTimeRequirement
+      department: Science
+      time: 3600
+  canBeAntag: false
+  icon: JobIconServiceBorg
+  supervisors: job-supervisors-rd
+  jobEntity: PlayerBorgService

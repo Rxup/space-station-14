@@ -29,12 +29,7 @@ public sealed class CameraRecoilSystem : SharedCameraRecoilSystem
         KickCamera(GetEntity(ev.NetEntity), ev.Recoil);
     }
 
-    public override void KickCamera(
-        EntityUid uid,
-        Vector2 recoil,
-        CameraRecoilComponent? component = null,
-        float? kickMagnitudeMax = null // backmen: KickMagnitudeMax
-        )
+    public override void KickCamera(EntityUid uid, Vector2 recoil, CameraRecoilComponent? component = null)
     {
         if (_intensity == 0)
             return;
@@ -44,15 +39,13 @@ public sealed class CameraRecoilSystem : SharedCameraRecoilSystem
 
         recoil *= _intensity;
 
-        kickMagnitudeMax = kickMagnitudeMax ?? KickMagnitudeMax; // backmen: KickMagnitudeMax
-
         // Use really bad math to "dampen" kicks when we're already kicked.
         var existing = component.CurrentKick.Length();
-        var dampen = existing / kickMagnitudeMax.Value; // backmen: KickMagnitudeMax
+        var dampen = existing / KickMagnitudeMax;
         component.CurrentKick += recoil * (1 - dampen);
 
-        if (component.CurrentKick.Length() > kickMagnitudeMax.Value) // backmen: KickMagnitudeMax
-            component.CurrentKick = component.CurrentKick.Normalized() * kickMagnitudeMax.Value; // backmen: KickMagnitudeMax
+        if (component.CurrentKick.Length() > KickMagnitudeMax)
+            component.CurrentKick = component.CurrentKick.Normalized() * KickMagnitudeMax;
 
         component.LastKickTime = 0;
     }

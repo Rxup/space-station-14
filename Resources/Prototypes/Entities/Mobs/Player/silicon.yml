@@ -373,6 +373,11 @@
     tags:
     - HideContextMenu
     - StationAi
+  - type: HighlightWordsInChat
+    highlightWords:
+      '#e00':
+      - hl-words-ai-1
+      - hl-words-ai-2
 
 # Hologram projection that the AI's eye tracks.
 - type: entity

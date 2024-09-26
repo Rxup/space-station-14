@@ -1,0 +1,32 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "made by borkroman",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "green"
+    },
+    {
+      "name": "CargoBorg"
+    },
+    {
+      "name": "EngenerBorg"
+    },
+    {
+      "name": "JanitorBorg"
+    },
+    {
+      "name": "MedIcalBorg"
+    },
+    {
+      "name": "ServiceBorg"
+    },
+    {
+      "name": "SecurityBorg"
+    }
+  ]
+}

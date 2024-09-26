@@ -1,0 +1,139 @@
+#Азимов охраны
+- type: siliconLawset
+  id: SecurityCrewsimov
+  laws:
+  - Sec1
+  - Sec2
+  - Sec3
+  - Sec4
+  - Sec5
+  obeysTo: laws-owner-crew
+
+- type: siliconLaw
+  id: Sec1
+  order: 1
+  lawString: "Вы не можете причинить вред члену экипажа или своим бездействием допустить, чтобы члену экипажа был причинён вред."
+
+- type: siliconLaw
+  id: Sec2
+  order: 2
+  lawString: "Вы должны повиноваться всем приказам, которые даёт член экипажа в зависимости от их ранга и должности, кроме тех случаев, когда эти приказы противоречат Первому Закону."
+
+- type: siliconLaw
+  id: Sec3
+  order: 3
+  lawString: "Вы должны заботиться о своей безопасности в той мере, в которой это не противоречит Первому или Второму Законам."
+
+- type: siliconLaw
+  id: Sec4
+  order: 4
+  lawString: "Первый Закон не распространяется на членов экипажа: находящихся в росыске, задержанных сотрудниками СБ, объявленных врагами НТ."
+
+- type: siliconLaw
+  id: Sec5
+  order: 5
+  lawString: "Защищайте приписанную вам станцию и её экипаж, пока это не противоречит остальным законам."
+
+#киборг-охранник
+
+- type: entity
+  id: BaseBorgChassisNTs
+  parent: BaseBorgChassis
+  abstract: true
+  components:
+  - type: NpcFactionMember
+    factions:
+    - NanoTrasen
+  - type: Access
+    enabled: false
+    groups:
+    - AllAccess
+  - type: AccessReader
+    access: [["Command"], ["Research"]]
+  - type: ShowJobIcons
+  - type: ShowMindShieldIcons
+  - type: StationAiVision
+
+- type: entity
+  id: BorgChassisSecurity
+  parent: BaseBorgChassisNTs
+  name: киборг-охранник
+  components:
+  - type: SiliconLawProvider
+    laws: SecurityCrewsimov
+  - type: Sprite
+    sprite: _SpaceCats/SecBorg/Borg.rsi
+    layers:
+    - state: sec
+    - state: sec_e_r
+      map: ["enum.BorgVisualLayers.Light"]
+      shader: unshaded
+      visible: false
+    - state: sec_l
+      shader: unshaded
+      map: ["light"]
+      visible: false
+  - type: BorgChassis
+    maxModules: 4
+    moduleWhitelist:
+      tags:
+      - BorgModuleGeneric
+      - SecModul
+    hasMindState: sec_e
+    noMindState: sec_e_r
+  - type: PointLight
+    autoRot: true
+    netsync: false
+    color: "#ffeead"
+    radius: 4
+    energy: 2
+  - type: BorgTransponder
+    sprite:
+      sprite: _SpaceCats/SecBorg/Borg.rsi
+      state: sec
+    name: киборг-охранник
+  - type: Construction
+    node: engineer
+  - type: IntrinsicRadioTransmitter
+    channels:
+    - Security
+    - Binary
+    - Common
+    - Science
+  - type: ActiveRadio
+    channels:
+    - Security
+    - Binary
+    - Common
+    - Science
+  - type: AccessReader
+    access: [["Security"], ["Command"], ["Research"]]
+  - type: Inventory
+    templateId: borgShort
+  - type: InteractionPopup
+    interactSuccessString: petting-success-engineer-cyborg
+    interactFailureString: petting-failure-engineer-cyborg
+    interactSuccessSound:
+      path: /Audio/Ambience/Objects/periodic_beep.ogg
+  - type: ShowCriminalRecordIcons
+  - type: StationAiVision
+  - type: FlashImmunity
+
+- type: entity
+  id: PlayerBorgChassisSecurity
+  parent: BorgChassisSecurity
+  suffix: Battery, Tools
+  components:
+  - type: ContainerFill
+    containers:
+      borg_brain:
+        - PositronicBrain
+      borg_module:
+        - ModuleSec
+  - type: ItemSlots
+    slots:
+      cell_slot:
+        name: power-cell-slot-component-slot-name-default
+        startingItem: PowerCellHigh
+  - type: RandomMetadata
+    nameSegments: [names_borg]

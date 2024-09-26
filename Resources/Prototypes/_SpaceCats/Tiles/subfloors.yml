@@ -1,0 +1,35 @@
+- type: tile
+  id: FloorFullBlackSub
+  name: чёрное покрытие #снаружи помещений. герметичен. показывает над собой провода. видны погодные условия.
+  sprite: /Textures/_SpaceCats/Tiles/fullblack.png
+  baseTurf: Plating
+  isSubfloor: true
+  weather: true
+  footstepSounds:
+    collection: FootstepPlating
+  friction: 0.3
+  heatCapacity: 10000
+
+- type: tile
+  id: FloorFullWhiteSub
+  name: белое покрытие
+  sprite: /Textures/_SpaceCats/Tiles/fullwhite.png
+  baseTurf: Plating
+  isSubfloor: true
+  weather: true
+  footstepSounds:
+    collection: FootstepPlating
+  friction: 0.3
+  heatCapacity: 10000
+
+- type: tile
+  id: FloorTransparentSub
+  name: прозрачное покрытие
+  sprite: /Textures/_SpaceCats/Tiles/transparent.png
+  baseTurf: Plating
+  isSubfloor: true
+  weather: true
+  footstepSounds:
+    collection: FootstepPlating
+  friction: 0.3
+  heatCapacity: 10000

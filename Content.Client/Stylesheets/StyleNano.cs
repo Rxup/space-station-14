@@ -723,6 +723,20 @@ namespace Content.Client.Stylesheets
                         new StyleProperty("font-color", Color.FromHex("#E5E5E581")),
                     }),
 
+                new StyleRule(
+                    new SelectorElement(null, new[] {StyleClassLobbyBackground}, null, null),
+                    new[]
+                    {
+                        new StyleProperty(PanelContainer.StylePropertyPanel, lobbyBackground),
+                    }),
+
+                new StyleRule(
+                    new SelectorElement(null, new[] {StyleClassPanelBackground}, null, null),
+                    new[]
+                    {
+                        new StyleProperty(PanelContainer.StylePropertyPanel, panelBackground),
+                    }),
+
                 // Context Menu window
                 Element<PanelContainer>().Class(ContextMenuPopup.StyleClassContextMenuPopup)
                     .Prop(PanelContainer.StylePropertyPanel, contextMenuBackground),

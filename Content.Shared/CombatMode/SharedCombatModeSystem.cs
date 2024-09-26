@@ -1,12 +1,8 @@
 using Content.Shared.Actions;
-using Content.Shared.CombatMode;
 using Content.Shared.Mind;
 using Content.Shared.MouseRotator;
 using Content.Shared.Movement.Components;
 using Content.Shared.Popups;
-using Robust.Shared.Audio; // Ataraxia
-using Robust.Shared.Audio.Systems; // Ataraxia
-using Robust.Shared.GameObjects; // Ataraxia
 using Robust.Shared.Network;
 using Robust.Shared.Timing;
 
@@ -19,7 +15,6 @@ public abstract class SharedCombatModeSystem : EntitySystem
     [Dependency] private   readonly SharedActionsSystem _actionsSystem = default!;
     [Dependency] private   readonly SharedPopupSystem _popup = default!;
     [Dependency] private   readonly SharedMindSystem  _mind = default!;
-    [Dependency] private   readonly SharedAudioSystem _audio = default!; // Ataraxia
 
     public override void Initialize()
     {
@@ -57,13 +52,9 @@ public abstract class SharedCombatModeSystem : EntitySystem
         if (!_netMan.IsClient || !Timing.IsFirstTimePredicted)
             return;
 
-        // Ataraxia START
-        _audio.PlayPvs(component.IsInCombatMode ? "/Audio/_Ataraxia/Effects/CombatMode/on.ogg" : "/Audio/_Ataraxia/Effects/CombatMode/off.ogg", uid);
-
-//        var msg = component.IsInCombatMode ? "action-popup-combat-enabled" : "action-popup-combat-disabled";
-//        _popup.PopupEntity(Loc.GetString(msg), args.Performer, args.Performer);
+        var msg = component.IsInCombatMode ? "action-popup-combat-enabled" : "action-popup-combat-disabled";
+        _popup.PopupEntity(Loc.GetString(msg), args.Performer, args.Performer);
     }
-        // Ataraxia END
 
     public void SetCanDisarm(EntityUid entity, bool canDisarm, CombatModeComponent? component = null)
     {

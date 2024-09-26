@@ -44,6 +44,8 @@
     stripTimeReduction: 1
   - type: Speech
     speechSounds: Alto
+  - type: TypingIndicator
+    proto: felinid
   - type: DamageOnHighSpeedImpact
     damage:
       types:

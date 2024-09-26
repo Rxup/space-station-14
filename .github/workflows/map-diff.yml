@@ -1,0 +1,50 @@
+name: Map Diff Checker
+
+on:
+  pull_request:
+    paths:
+      - 'Resources/Maps/**/*.yml' 
+
+jobs:
+  check-map-diff:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v3
+
+    - name: Identify changed and deleted map files
+      id: map_diff
+      run: |
+        git fetch origin
+        git diff --name-status origin/${{ github.base_ref }} -- Resources/Maps/**/*.yml > map_changes.txt
+        
+        if grep -qE '^[AMDR]\s+Resources/Maps/.*\.yml' map_changes.txt; then
+          echo "maps_changed=true" >> $GITHUB_ENV
+        else
+          echo "maps_changed=false" >> $GITHUB_ENV
+        fi
+
+    - name: Display map changes
+      if: env.maps_changed == 'true'
+      run: |
+        echo "### Измененные карты:" > map_changes_summary.txt
+        while IFS=$'\t' read -r status file_path; do
+          map_file=$(basename "$file_path")
+          author=$(git log -1 --pretty=format:'%an' "$file_path")
+
+          case "$status" in
+            A) change_type="Добавлена карта" ;;
+            M) change_type="Изменена карта" ;;
+            D) change_type="Удалена карта" ;;
+            R*) change_type="Переименована карта" ;;
+          esac
+
+          echo "- **$map_file** — $change_type, редактировал @${author}" >> map_changes_summary.txt
+        done < <(grep -E '^[AMDR]\s+Resources/Maps/.*\.yml' map_changes.txt)
+
+    - name: Create PR comment
+      if: env.maps_changed == 'true'
+      uses: marocchino/sticky-pull-request-comment@v2
+      with:
+        path: map_changes_summary.txt

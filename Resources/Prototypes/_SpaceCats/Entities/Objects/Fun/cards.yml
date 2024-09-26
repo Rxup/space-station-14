@@ -1,0 +1,1351 @@
+- type: entity
+  parent: BaseItem
+  id: CqGCard
+  name: игральная карта
+  components:
+  - type: Item
+    size: Tiny
+  - type: Sprite
+    sprite: Objects/Fun/cards.rsi
+    layers:
+    - state: Cq
+      map: ["base"]
+  - type: Tag
+    tags:
+    - Card
+  - type: Appearance
+  - type: FlipCard
+  - type: GenericVisualizer
+    visuals:
+      enum.CardsVisual.Visual:
+        base:
+          Normal:
+            state: Cq
+          Flipped:
+            state: Bg
+
+- type: entity
+  parent: BaseItem
+  id: CaGCard
+  name: игральная карта
+  components:
+  - type: Item
+    size: Tiny
+  - type: Sprite
+    sprite: Objects/Fun/cards.rsi
+    layers:
+    - state: Ca
+      map: ["base"]
+  - type: Tag
+    tags:
+    - Card
+  - type: Appearance
+  - type: FlipCard
+  - type: GenericVisualizer
+    visuals:
+      enum.CardsVisual.Visual:
+        base:
+          Normal:
+            state: Ca
+          Flipped:
+            state: Bg
+
+- type: entity
+  parent: BaseItem
+  id: CjGCard
+  name: игральная карта
+  components:
+  - type: Item
+    size: Tiny
+  - type: Sprite
+    sprite: Objects/Fun/cards.rsi
+    layers:
+    - state: Cj
+      map: ["base"]
+  - type: Tag
+    tags:
+    - Card
+  - type: Appearance
+  - type: FlipCard
+  - type: GenericVisualizer
+    visuals:
+      enum.CardsVisual.Visual:
+        base:
+          Normal:
+            state: Cj
+          Flipped:
+            state: Bg
+
+- type: entity
+  parent: BaseItem
+  id: CkGCard
+  name: игральная карта
+  components:
+  - type: Item
+    size: Tiny
+  - type: Sprite
+    sprite: Objects/Fun/cards.rsi
+    layers:
+    - state: Ck
+      map: ["base"]
+  - type: Tag
+    tags:
+    - Card
+  - type: Appearance
+  - type: FlipCard
+  - type: GenericVisualizer
+    visuals:
+      enum.CardsVisual.Visual:
+        base:
+          Normal:
+            state: Ck
+          Flipped:
+            state: Bg
+
+- type: entity
+  parent: BaseItem
+  id: C2GCard
+  name: игральная карта
+  components:
+  - type: Item
+    size: Tiny
+  - type: Sprite
+    sprite: Objects/Fun/cards.rsi
+    layers:
+    - state: C2
+      map: ["base"]
+  - type: Tag
+    tags:
+    - Card
+  - type: Appearance
+  - type: FlipCard
+  - type: GenericVisualizer
+    visuals:
+      enum.CardsVisual.Visual:
+        base:
+          Normal:
+            state: C2
+          Flipped:
+            state: Bg
+
+- type: entity
+  parent: BaseItem
+  id: C3GCard
+  name: игральная карта
+  components:
+  - type: Item
+    size: Tiny
+  - type: Sprite
+    sprite: Objects/Fun/cards.rsi
+    layers:
+    - state: C3
+      map: ["base"]
+  - type: Tag
+    tags:
+    - Card
+  - type: Appearance
+  - type: FlipCard
+  - type: GenericVisualizer
+    visuals:
+      enum.CardsVisual.Visual:
+        base:
+          Normal:
+            state: C3
+          Flipped:
+            state: Bg
+
+- type: entity
+  parent: BaseItem
+  id: C4GCard
+  name: игральная карта
+  components:
+  - type: Item
+    size: Tiny
+  - type: Sprite
+    sprite: Objects/Fun/cards.rsi
+    layers:
+    - state: C4
+      map: ["base"]
+  - type: Tag
+    tags:
+    - Card
+  - type: Appearance
+  - type: FlipCard
+  - type: GenericVisualizer
+    visuals:
+      enum.CardsVisual.Visual:
+        base:
+          Normal:
+            state: C4
+          Flipped:
+            state: Bg
+
+- type: entity
+  parent: BaseItem
+  id: C5GCard
+  name: игральная карта
+  components:
+  - type: Item
+    size: Tiny
+  - type: Sprite
+    sprite: Objects/Fun/cards.rsi
+    layers:
+    - state: C5
+      map: ["base"]
+  - type: Tag
+    tags:
+    - Card
+  - type: Appearance
+  - type: FlipCard
+  - type: GenericVisualizer
+    visuals:
+      enum.CardsVisual.Visual:
+        base:
+          Normal:
+            state: C5
+          Flipped:
+            state: Bg
+
+- type: entity
+  parent: BaseItem
+  id: C6GCard
+  name: игральная карта
+  components:
+  - type: Item
+    size: Tiny
+  - type: Sprite
+    sprite: Objects/Fun/cards.rsi
+    layers:
+    - state: C6
+      map: ["base"]
+  - type: Tag
+    tags:
+    - Card
+  - type: Appearance
+  - type: FlipCard
+  - type: GenericVisualizer
+    visuals:
+      enum.CardsVisual.Visual:
+        base:
+          Normal:
+            state: C6
+          Flipped:
+            state: Bg
+
+- type: entity
+  parent: BaseItem
+  id: C7GCard
+  name: игральная карта
+  components:
+  - type: Item
+    size: Tiny
+  - type: Sprite
+    sprite: Objects/Fun/cards.rsi
+    layers:
+    - state: C7
+      map: ["base"]
+  - type: Tag
+    tags:
+    - Card
+  - type: Appearance
+  - type: FlipCard
+  - type: GenericVisualizer
+    visuals:
+      enum.CardsVisual.Visual:
+        base:
+          Normal:
+            state: C7
+          Flipped:
+            state: Bg
+
+- type: entity
+  parent: BaseItem
+  id: C8GCard
+  name: игральная карта
+  components:
+  - type: Item
+    size: Tiny
+  - type: Sprite
+    sprite: Objects/Fun/cards.rsi
+    layers:
+    - state: C8
+      map: ["base"]
+  - type: Tag
+    tags:
+    - Card
+  - type: Appearance
+  - type: FlipCard
+  - type: GenericVisualizer
+    visuals:
+      enum.CardsVisual.Visual:
+        base:
+          Normal:
+            state: C8
+          Flipped:
+            state: Bg
+
+- type: entity
+  parent: BaseItem
+  id: C9GCard
+  name: игральная карта
+  components:
+  - type: Item
+    size: Tiny
+  - type: Sprite
+    sprite: Objects/Fun/cards.rsi
+    layers:
+    - state: C9
+      map: ["base"]
+  - type: Tag
+    tags:
+    - Card
+  - type: Appearance
+  - type: FlipCard
+  - type: GenericVisualizer
+    visuals:
+      enum.CardsVisual.Visual:
+        base:
+          Normal:
+            state: C9
+          Flipped:
+            state: Bg
+
+- type: entity
+  parent: BaseItem
+  id: C10GCard
+  name: игральная карта
+  components:
+  - type: Item
+    size: Tiny
+  - type: Sprite
+    sprite: Objects/Fun/cards.rsi
+    layers:
+    - state: C10
+      map: ["base"]
+  - type: Tag
+    tags:
+    - Card
+  - type: Appearance
+  - type: FlipCard
+  - type: GenericVisualizer
+    visuals:
+      enum.CardsVisual.Visual:
+        base:
+          Normal:
+            state: C10
+          Flipped:
+            state: Bg
+
+- type: entity
+  parent: BaseItem
+  id: BqGCard
+  name: игральная карта
+  components:
+  - type: Item
+    size: Tiny
+  - type: Sprite
+    sprite: Objects/Fun/cards.rsi
+    layers:
+    - state: Bq
+      map: ["base"]
+  - type: Tag
+    tags:
+    - Card
+  - type: Appearance
+  - type: FlipCard
+  - type: GenericVisualizer
+    visuals:
+      enum.CardsVisual.Visual:
+        base:
+          Normal:
+            state: Bq
+          Flipped:
+            state: Bg
+
+- type: entity
+  parent: BaseItem
+  id: BaGCard
+  name: игральная карта
+  components:
+  - type: Item
+    size: Tiny
+  - type: Sprite
+    sprite: Objects/Fun/cards.rsi
+    layers:
+    - state: Ba
+      map: ["base"]
+  - type: Tag
+    tags:
+    - Card
+  - type: Appearance
+  - type: FlipCard
+  - type: GenericVisualizer
+    visuals:
+      enum.CardsVisual.Visual:
+        base:
+          Normal:
+            state: Ba
+          Flipped:
+            state: Bg
+
+- type: entity
+  parent: BaseItem
+  id: BjGCard
+  name: игральная карта
+  components:
+  - type: Item
+    size: Tiny
+  - type: Sprite
+    sprite: Objects/Fun/cards.rsi
+    layers:
+    - state: Bj
+      map: ["base"]
+  - type: Tag
+    tags:
+    - Card
+  - type: Appearance
+  - type: FlipCard
+  - type: GenericVisualizer
+    visuals:
+      enum.CardsVisual.Visual:
+        base:
+          Normal:
+            state: Bj
+          Flipped:
+            state: Bg
+
+- type: entity
+  parent: BaseItem
+  id: BkGCard
+  name: игральная карта
+  components:
+  - type: Item
+    size: Tiny
+  - type: Sprite
+    sprite: Objects/Fun/cards.rsi
+    layers:
+    - state: Bk
+      map: ["base"]
+  - type: Tag
+    tags:
+    - Card
+  - type: Appearance
+  - type: FlipCard
+  - type: GenericVisualizer
+    visuals:
+      enum.CardsVisual.Visual:
+        base:
+          Normal:
+            state: Bk
+          Flipped:
+            state: Bg
+
+- type: entity
+  parent: BaseItem
+  id: B2GCard
+  name: игральная карта
+  components:
+  - type: Item
+    size: Tiny
+  - type: Sprite
+    sprite: Objects/Fun/cards.rsi
+    layers:
+    - state: B2
+      map: ["base"]
+  - type: Tag
+    tags:
+    - Card
+  - type: Appearance
+  - type: FlipCard
+  - type: GenericVisualizer
+    visuals:
+      enum.CardsVisual.Visual:
+        base:
+          Normal:
+            state: B2
+          Flipped:
+            state: Bg
+
+- type: entity
+  parent: BaseItem
+  id: B3GCard
+  name: игральная карта
+  components:
+  - type: Item
+    size: Tiny
+  - type: Sprite
+    sprite: Objects/Fun/cards.rsi
+    layers:
+    - state: B3
+      map: ["base"]
+  - type: Tag
+    tags:
+    - Card
+  - type: Appearance
+  - type: FlipCard
+  - type: GenericVisualizer
+    visuals:
+      enum.CardsVisual.Visual:
+        base:
+          Normal:
+            state: B3
+          Flipped:
+            state: Bg
+
+- type: entity
+  parent: BaseItem
+  id: B4GCard
+  name: игральная карта
+  components:
+  - type: Item
+    size: Tiny
+  - type: Sprite
+    sprite: Objects/Fun/cards.rsi
+    layers:
+    - state: B4
+      map: ["base"]
+  - type: Tag
+    tags:
+    - Card
+  - type: Appearance
+  - type: FlipCard
+  - type: GenericVisualizer
+    visuals:
+      enum.CardsVisual.Visual:
+        base:
+          Normal:
+            state: B4
+          Flipped:
+            state: Bg
+
+- type: entity
+  parent: BaseItem
+  id: B5GCard
+  name: игральная карта
+  components:
+  - type: Item
+    size: Tiny
+  - type: Sprite
+    sprite: Objects/Fun/cards.rsi
+    layers:
+    - state: B5
+      map: ["base"]
+  - type: Tag
+    tags:
+    - Card
+  - type: Appearance
+  - type: FlipCard
+  - type: GenericVisualizer
+    visuals:
+      enum.CardsVisual.Visual:
+        base:
+          Normal:
+            state: B5
+          Flipped:
+            state: Bg
+
+- type: entity
+  parent: BaseItem
+  id: B6GCard
+  name: игральная карта
+  components:
+  - type: Item
+    size: Tiny
+  - type: Sprite
+    sprite: Objects/Fun/cards.rsi
+    layers:
+    - state: B6
+      map: ["base"]
+  - type: Tag
+    tags:
+    - Card
+  - type: Appearance
+  - type: FlipCard
+  - type: GenericVisualizer
+    visuals:
+      enum.CardsVisual.Visual:
+        base:
+          Normal:
+            state: B6
+          Flipped:
+            state: Bg
+
+- type: entity
+  parent: BaseItem
+  id: B7GCard
+  name: игральная карта
+  components:
+  - type: Item
+    size: Tiny
+  - type: Sprite
+    sprite: Objects/Fun/cards.rsi
+    layers:
+    - state: B7
+      map: ["base"]
+  - type: Tag
+    tags:
+    - Card
+  - type: Appearance
+  - type: FlipCard
+  - type: GenericVisualizer
+    visuals:
+      enum.CardsVisual.Visual:
+        base:
+          Normal:
+            state: B7
+          Flipped:
+            state: Bg
+
+- type: entity
+  parent: BaseItem
+  id: B8GCard
+  name: игральная карта
+  components:
+  - type: Item
+    size: Tiny
+  - type: Sprite
+    sprite: Objects/Fun/cards.rsi
+    layers:
+    - state: B8
+      map: ["base"]
+  - type: Tag
+    tags:
+    - Card
+  - type: Appearance
+  - type: FlipCard
+  - type: GenericVisualizer
+    visuals:
+      enum.CardsVisual.Visual:
+        base:
+          Normal:
+            state: B8
+          Flipped:
+            state: Bg
+
+- type: entity
+  parent: BaseItem
+  id: B9GCard
+  name: игральная карта
+  components:
+  - type: Item
+    size: Tiny
+  - type: Sprite
+    sprite: Objects/Fun/cards.rsi
+    layers:
+    - state: B9
+      map: ["base"]
+  - type: Tag
+    tags:
+    - Card
+  - type: Appearance
+  - type: FlipCard
+  - type: GenericVisualizer
+    visuals:
+      enum.CardsVisual.Visual:
+        base:
+          Normal:
+            state: B9
+          Flipped:
+            state: Bg
+
+- type: entity
+  parent: BaseItem
+  id: B10GCard
+  name: игральная карта
+  components:
+  - type: Item
+    size: Tiny
+  - type: Sprite
+    sprite: Objects/Fun/cards.rsi
+    layers:
+    - state: B10
+      map: ["base"]
+  - type: Tag
+    tags:
+    - Card
+  - type: Appearance
+  - type: FlipCard
+  - type: GenericVisualizer
+    visuals:
+      enum.CardsVisual.Visual:
+        base:
+          Normal:
+            state: B10
+          Flipped:
+            state: Bg
+
+- type: entity
+  parent: BaseItem
+  id: PqGCard
+  name: игральная карта
+  components:
+  - type: Item
+    size: Tiny
+  - type: Sprite
+    sprite: Objects/Fun/cards.rsi
+    layers:
+    - state: Pq
+      map: ["base"]
+  - type: Tag
+    tags:
+    - Card
+  - type: Appearance
+  - type: FlipCard
+  - type: GenericVisualizer
+    visuals:
+      enum.CardsVisual.Visual:
+        base:
+          Normal:
+            state: Pq
+          Flipped:
+            state: Bg
+
+- type: entity
+  parent: BaseItem
+  id: PaGCard
+  name: игральная карта
+  components:
+  - type: Item
+    size: Tiny
+  - type: Sprite
+    sprite: Objects/Fun/cards.rsi
+    layers:
+    - state: Pa
+      map: ["base"]
+  - type: Tag
+    tags:
+    - Card
+  - type: Appearance
+  - type: FlipCard
+  - type: GenericVisualizer
+    visuals:
+      enum.CardsVisual.Visual:
+        base:
+          Normal:
+            state: Pa
+          Flipped:
+            state: Bg
+
+- type: entity
+  parent: BaseItem
+  id: PjGCard
+  name: игральная карта
+  components:
+  - type: Item
+    size: Tiny
+  - type: Sprite
+    sprite: Objects/Fun/cards.rsi
+    layers:
+    - state: Pj
+      map: ["base"]
+  - type: Tag
+    tags:
+    - Card
+  - type: Appearance
+  - type: FlipCard
+  - type: GenericVisualizer
+    visuals:
+      enum.CardsVisual.Visual:
+        base:
+          Normal:
+            state: Pj
+          Flipped:
+            state: Bg
+
+- type: entity
+  parent: BaseItem
+  id: PkGCard
+  name: игральная карта
+  components:
+  - type: Item
+    size: Tiny
+  - type: Sprite
+    sprite: Objects/Fun/cards.rsi
+    layers:
+    - state: Pk
+      map: ["base"]
+  - type: Tag
+    tags:
+    - Card
+  - type: Appearance
+  - type: FlipCard
+  - type: GenericVisualizer
+    visuals:
+      enum.CardsVisual.Visual:
+        base:
+          Normal:
+            state: Pk
+          Flipped:
+            state: Bg
+
+- type: entity
+  parent: BaseItem
+  id: P2GCard
+  name: игральная карта
+  components:
+  - type: Item
+    size: Tiny
+  - type: Sprite
+    sprite: Objects/Fun/cards.rsi
+    layers:
+    - state: P2
+      map: ["base"]
+  - type: Tag
+    tags:
+    - Card
+  - type: Appearance
+  - type: FlipCard
+  - type: GenericVisualizer
+    visuals:
+      enum.CardsVisual.Visual:
+        base:
+          Normal:
+            state: P2
+          Flipped:
+            state: Bg
+
+- type: entity
+  parent: BaseItem
+  id: P3GCard
+  name: игральная карта
+  components:
+  - type: Item
+    size: Tiny
+  - type: Sprite
+    sprite: Objects/Fun/cards.rsi
+    layers:
+    - state: P3
+      map: ["base"]
+  - type: Tag
+    tags:
+    - Card
+  - type: Appearance
+  - type: FlipCard
+  - type: GenericVisualizer
+    visuals:
+      enum.CardsVisual.Visual:
+        base:
+          Normal:
+            state: P3
+          Flipped:
+            state: Bg
+
+- type: entity
+  parent: BaseItem
+  id: P4GCard
+  name: игральная карта
+  components:
+  - type: Item
+    size: Tiny
+  - type: Sprite
+    sprite: Objects/Fun/cards.rsi
+    layers:
+    - state: P4
+      map: ["base"]
+  - type: Tag
+    tags:
+    - Card
+  - type: Appearance
+  - type: FlipCard
+  - type: GenericVisualizer
+    visuals:
+      enum.CardsVisual.Visual:
+        base:
+          Normal:
+            state: P4
+          Flipped:
+            state: Bg
+
+- type: entity
+  parent: BaseItem
+  id: P5GCard
+  name: игральная карта
+  components:
+  - type: Item
+    size: Tiny
+  - type: Sprite
+    sprite: Objects/Fun/cards.rsi
+    layers:
+    - state: P5
+      map: ["base"]
+  - type: Tag
+    tags:
+    - Card
+  - type: Appearance
+  - type: FlipCard
+  - type: GenericVisualizer
+    visuals:
+      enum.CardsVisual.Visual:
+        base:
+          Normal:
+            state: P5
+          Flipped:
+            state: Bg
+
+- type: entity
+  parent: BaseItem
+  id: P6GCard
+  name: игральная карта
+  components:
+  - type: Item
+    size: Tiny
+  - type: Sprite
+    sprite: Objects/Fun/cards.rsi
+    layers:
+    - state: P6
+      map: ["base"]
+  - type: Tag
+    tags:
+    - Card
+  - type: Appearance
+  - type: FlipCard
+  - type: GenericVisualizer
+    visuals:
+      enum.CardsVisual.Visual:
+        base:
+          Normal:
+            state: P6
+          Flipped:
+            state: Bg
+
+- type: entity
+  parent: BaseItem
+  id: P7GCard
+  name: игральная карта
+  components:
+  - type: Item
+    size: Tiny
+  - type: Sprite
+    sprite: Objects/Fun/cards.rsi
+    layers:
+    - state: P7
+      map: ["base"]
+  - type: Tag
+    tags:
+    - Card
+  - type: Appearance
+  - type: FlipCard
+  - type: GenericVisualizer
+    visuals:
+      enum.CardsVisual.Visual:
+        base:
+          Normal:
+            state: P7
+          Flipped:
+            state: Bg
+
+- type: entity
+  parent: BaseItem
+  id: P8GCard
+  name: игральная карта
+  components:
+  - type: Item
+    size: Tiny
+  - type: Sprite
+    sprite: Objects/Fun/cards.rsi
+    layers:
+    - state: P8
+      map: ["base"]
+  - type: Tag
+    tags:
+    - Card
+  - type: Appearance
+  - type: FlipCard
+  - type: GenericVisualizer
+    visuals:
+      enum.CardsVisual.Visual:
+        base:
+          Normal:
+            state: P8
+          Flipped:
+            state: Bg
+
+- type: entity
+  parent: BaseItem
+  id: P9GCard
+  name: игральная карта
+  components:
+  - type: Item
+    size: Tiny
+  - type: Sprite
+    sprite: Objects/Fun/cards.rsi
+    layers:
+    - state: P9
+      map: ["base"]
+  - type: Tag
+    tags:
+    - Card
+  - type: Appearance
+  - type: FlipCard
+  - type: GenericVisualizer
+    visuals:
+      enum.CardsVisual.Visual:
+        base:
+          Normal:
+            state: P9
+          Flipped:
+            state: Bg
+
+- type: entity
+  parent: BaseItem
+  id: P10GCard
+  name: игральная карта
+  components:
+  - type: Item
+    size: Tiny
+  - type: Sprite
+    sprite: Objects/Fun/cards.rsi
+    layers:
+    - state: P10
+      map: ["base"]
+  - type: Tag
+    tags:
+    - Card
+  - type: Appearance
+  - type: FlipCard
+  - type: GenericVisualizer
+    visuals:
+      enum.CardsVisual.Visual:
+        base:
+          Normal:
+            state: P10
+          Flipped:
+            state: Bg
+
+- type: entity
+  parent: BaseItem
+  id: KqGCard
+  name: игральная карта
+  components:
+  - type: Item
+    size: Tiny
+  - type: Sprite
+    sprite: Objects/Fun/cards.rsi
+    layers:
+    - state: Kq
+      map: ["base"]
+  - type: Tag
+    tags:
+    - Card
+  - type: Appearance
+  - type: FlipCard
+  - type: GenericVisualizer
+    visuals:
+      enum.CardsVisual.Visual:
+        base:
+          Normal:
+            state: Kq
+          Flipped:
+            state: Bg
+
+- type: entity
+  parent: BaseItem
+  id: KaGCard
+  name: игральная карта
+  components:
+  - type: Item
+    size: Tiny
+  - type: Sprite
+    sprite: Objects/Fun/cards.rsi
+    layers:
+    - state: Ka
+      map: ["base"]
+  - type: Tag
+    tags:
+    - Card
+  - type: Appearance
+  - type: FlipCard
+  - type: GenericVisualizer
+    visuals:
+      enum.CardsVisual.Visual:
+        base:
+          Normal:
+            state: Ka
+          Flipped:
+            state: Bg
+
+- type: entity
+  parent: BaseItem
+  id: KjGCard
+  name: игральная карта
+  components:
+  - type: Item
+    size: Tiny
+  - type: Sprite
+    sprite: Objects/Fun/cards.rsi
+    layers:
+    - state: Kj
+      map: ["base"]
+  - type: Tag
+    tags:
+    - Card
+  - type: Appearance
+  - type: FlipCard
+  - type: GenericVisualizer
+    visuals:
+      enum.CardsVisual.Visual:
+        base:
+          Normal:
+            state: Kj
+          Flipped:
+            state: Bg
+
+- type: entity
+  parent: BaseItem
+  id: KkGCard
+  name: игральная карта
+  components:
+  - type: Item
+    size: Tiny
+  - type: Sprite
+    sprite: Objects/Fun/cards.rsi
+    layers:
+    - state: Kk
+      map: ["base"]
+  - type: Tag
+    tags:
+    - Card
+  - type: Appearance
+  - type: FlipCard
+  - type: GenericVisualizer
+    visuals:
+      enum.CardsVisual.Visual:
+        base:
+          Normal:
+            state: Kk
+          Flipped:
+            state: Bg
+
+- type: entity
+  parent: BaseItem
+  id: K2GCard
+  name: игральная карта
+  components:
+  - type: Item
+    size: Tiny
+  - type: Sprite
+    sprite: Objects/Fun/cards.rsi
+    layers:
+    - state: K2
+      map: ["base"]
+  - type: Tag
+    tags:
+    - Card
+  - type: Appearance
+  - type: FlipCard
+  - type: GenericVisualizer
+    visuals:
+      enum.CardsVisual.Visual:
+        base:
+          Normal:
+            state: K2
+          Flipped:
+            state: Bg
+
+- type: entity
+  parent: BaseItem
+  id: K3GCard
+  name: игральная карта
+  components:
+  - type: Item
+    size: Tiny
+  - type: Sprite
+    sprite: Objects/Fun/cards.rsi
+    layers:
+    - state: K3
+      map: ["base"]
+  - type: Tag
+    tags:
+    - Card
+  - type: Appearance
+  - type: FlipCard
+  - type: GenericVisualizer
+    visuals:
+      enum.CardsVisual.Visual:
+        base:
+          Normal:
+            state: K3
+          Flipped:
+            state: Bg
+
+- type: entity
+  parent: BaseItem
+  id: K4GCard
+  name: игральная карта
+  components:
+  - type: Item
+    size: Tiny
+  - type: Sprite
+    sprite: Objects/Fun/cards.rsi
+    layers:
+    - state: K4
+      map: ["base"]
+  - type: Tag
+    tags:
+    - Card
+  - type: Appearance
+  - type: FlipCard
+  - type: GenericVisualizer
+    visuals:
+      enum.CardsVisual.Visual:
+        base:
+          Normal:
+            state: K4
+          Flipped:
+            state: Bg
+
+- type: entity
+  parent: BaseItem
+  id: K5GCard
+  name: игральная карта
+  components:
+  - type: Item
+    size: Tiny
+  - type: Sprite
+    sprite: Objects/Fun/cards.rsi
+    layers:
+    - state: K5
+      map: ["base"]
+  - type: Tag
+    tags:
+    - Card
+  - type: Appearance
+  - type: FlipCard
+  - type: GenericVisualizer
+    visuals:
+      enum.CardsVisual.Visual:
+        base:
+          Normal:
+            state: K5
+          Flipped:
+            state: Bg
+
+- type: entity
+  parent: BaseItem
+  id: K6GCard
+  name: игральная карта
+  components:
+  - type: Item
+    size: Tiny
+  - type: Sprite
+    sprite: Objects/Fun/cards.rsi
+    layers:
+    - state: K6
+      map: ["base"]
+  - type: Tag
+    tags:
+    - Card
+  - type: Appearance
+  - type: FlipCard
+  - type: GenericVisualizer
+    visuals:
+      enum.CardsVisual.Visual:
+        base:
+          Normal:
+            state: K6
+          Flipped:
+            state: Bg
+
+- type: entity
+  parent: BaseItem
+  id: K7GCard
+  name: игральная карта
+  components:
+  - type: Item
+    size: Tiny
+  - type: Sprite
+    sprite: Objects/Fun/cards.rsi
+    layers:
+    - state: K7
+      map: ["base"]
+  - type: Tag
+    tags:
+    - Card
+  - type: Appearance
+  - type: FlipCard
+  - type: GenericVisualizer
+    visuals:
+      enum.CardsVisual.Visual:
+        base:
+          Normal:
+            state: K7
+          Flipped:
+            state: Bg
+
+- type: entity
+  parent: BaseItem
+  id: K8GCard
+  name: игральная карта
+  components:
+  - type: Item
+    size: Tiny
+  - type: Sprite
+    sprite: Objects/Fun/cards.rsi
+    layers:
+    - state: K8
+      map: ["base"]
+  - type: Tag
+    tags:
+    - Card
+  - type: Appearance
+  - type: FlipCard
+  - type: GenericVisualizer
+    visuals:
+      enum.CardsVisual.Visual:
+        base:
+          Normal:
+            state: K8
+          Flipped:
+            state: Bg
+
+- type: entity
+  parent: BaseItem
+  id: K9GCard
+  name: игральная карта
+  components:
+  - type: Item
+    size: Tiny
+  - type: Sprite
+    sprite: Objects/Fun/cards.rsi
+    layers:
+    - state: K9
+      map: ["base"]
+  - type: Tag
+    tags:
+    - Card
+  - type: Appearance
+  - type: FlipCard
+  - type: GenericVisualizer
+    visuals:
+      enum.CardsVisual.Visual:
+        base:
+          Normal:
+            state: K9
+          Flipped:
+            state: Bg
+
+- type: entity
+  parent: BaseItem
+  id: K10GCard
+  name: игральная карта
+  components:
+  - type: Item
+    size: Tiny
+  - type: Sprite
+    sprite: Objects/Fun/cards.rsi
+    layers:
+    - state: K10
+      map: ["base"]
+  - type: Tag
+    tags:
+    - Card
+  - type: Appearance
+  - type: FlipCard
+  - type: GenericVisualizer
+    visuals:
+      enum.CardsVisual.Visual:
+        base:
+          Normal:
+            state: K10
+          Flipped:
+            state: Bg
