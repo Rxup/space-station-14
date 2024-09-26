@@ -8,10 +8,8 @@
   - type: Sprite
     layers:
     - state: green
-    - sprite: Mobs/Silicon/chassis.rsi
-      state: robot
-    - sprite: Mobs/Silicon/chassis.rsi
-      state: robot_e
+    - sprite: _SpaceCats/Borgs/BorgSpawner.rsi
+      state: CargoBorg
 
 - type: entity
   id: SpawnPointEngenerBorg
@@ -23,10 +21,8 @@
   - type: Sprite
     layers:
     - state: green
-    - sprite: Mobs/Silicon/chassis.rsi
-      state: robot
-    - sprite: Mobs/Silicon/chassis.rsi
-      state: robot_e
+    - sprite: _SpaceCats/Borgs/BorgSpawner.rsi
+      state: EngenerBorg
 
 - type: entity
   id: SpawnPointJanitorBorg
@@ -38,11 +34,9 @@
   - type: Sprite
     layers:
     - state: green
-    - sprite: Mobs/Silicon/chassis.rsi
-      state: robot
-    - sprite: Mobs/Silicon/chassis.rsi
-      state: robot_e
-
+    - sprite: _SpaceCats/Borgs/BorgSpawner.rsi
+      state: JanitorBorg
+  
 - type: entity
   id: SpawnPointMedIcalBorg
   parent: SpawnPointJobBase
@@ -53,10 +47,8 @@
   - type: Sprite
     layers:
     - state: green
-    - sprite: Mobs/Silicon/chassis.rsi
-      state: robot
-    - sprite: Mobs/Silicon/chassis.rsi
-      state: robot_e
+    - sprite: _SpaceCats/Borgs/BorgSpawner.rsi
+      state: MedIcalBorg
 
 - type: entity
   id: SpawnPointServiceBorg
@@ -68,10 +60,8 @@
   - type: Sprite
     layers:
     - state: green
-    - sprite: Mobs/Silicon/chassis.rsi
-      state: robot
-    - sprite: Mobs/Silicon/chassis.rsi
-      state: robot_e
+    - sprite: _SpaceCats/Borgs/BorgSpawner.rsi
+      state: SecurityBorg
 
 - type: entity
   id: SpawnPointSecurityBorg
@@ -83,7 +73,5 @@
   - type: Sprite
     layers:
     - state: green
-    - sprite: Mobs/Silicon/chassis.rsi
-      state: robot
-    - sprite: Mobs/Silicon/chassis.rsi
-      state: robot_e
+    - sprite: _SpaceCats/Borgs/BorgSpawner.rsi
+      state: ServiceBorg
