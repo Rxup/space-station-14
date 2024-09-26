@@ -47,7 +47,7 @@
             EngenerBorg: [ 1, 1]
             JanitorBorg: [ 1, 1]
             MedIcalBorg: [ 1, 1]
-            ServiceBorg: [ 1, 1]
+            ServiceBorg: [ 0, 1]
             SecurityBorg: [ 1, 1]
             #security
             HeadOfSecurity: [ 1, 1 ]
