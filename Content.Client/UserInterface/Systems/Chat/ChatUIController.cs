@@ -866,7 +866,10 @@ public sealed class ChatUIController : UIController
             {
                 foreach (var locString in locStrings)
                 {
-                    msg.WrappedMessage = SharedChatSystem.InjectTagAroundString(msg, Loc.GetString(locString), "color", color);
+                    var message = Loc.GetString(locString);
+                    if (SharedChatSystem.MessageTextContains(msg, message)) {
+                        msg.WrappedMessage = SharedChatSystem.InjectTagAroundString(msg, message, "color", color);
+                    }
                 }
             }
         }
