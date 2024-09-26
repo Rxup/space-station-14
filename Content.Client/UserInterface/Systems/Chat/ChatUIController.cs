@@ -17,6 +17,7 @@ using Content.Client.UserInterface.Screens;
 using Content.Client.UserInterface.Systems.Chat.Widgets;
 using Content.Client.UserInterface.Systems.Gameplay;
 using Content.Shared.Administration;
+using Content.Shared._Cats.UI.Chat;
 using Content.Shared.CCVar;
 using Content.Shared.Chat;
 using Content.Shared.Damage.ForceSay;
@@ -853,6 +854,23 @@ public sealed class ChatUIController : UIController
                 }
             }
         }
+
+        // start-cats
+        if (
+            (msg.Channel == ChatChannel.Radio || msg.Channel == ChatChannel.Local || msg.Channel == ChatChannel.Whisper)
+            && _player.LocalEntity != null
+            && _ent.TryGetComponent<HighlightWordsInChatComponent>(_player.LocalEntity.Value, out var hlWords)
+        )
+        {
+            foreach (var (color, locStrings) in hlWords.HighlightWords)
+            {
+                foreach (var locString in locStrings)
+                {
+                    msg.WrappedMessage = SharedChatSystem.InjectTagAroundString(msg, Loc.GetString(locString), "color", color);
+                }
+            }
+        }
+        // end-cats
 
         // Log all incoming chat to repopulate when filter is un-toggled
         if (!msg.HideChat)
