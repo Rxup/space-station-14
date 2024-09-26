@@ -38,11 +38,11 @@
   showInVote: true
   rules:
   - BlobGameMode
-  - CalmStationEventScheduler
+  - BasicStationEventScheduler
   - WageScheduler #backmen: currency
   - BasicRoundstartVariation
   - SubGamemodesRule
-  - CalmMeteorSwarmScheduler
+  - MeteorSwarmScheduler
 
 - type: gamePreset
   id: FleshCult
@@ -55,11 +55,11 @@
   showInVote: true
   rules:
   - FleshCult
-  - CalmStationEventScheduler
+  - BasicStationEventScheduler
   - WageScheduler #backmen: currency
   - BasicRoundstartVariation
   - SubGamemodesRule
-  - CalmMeteorSwarmScheduler
+  - MeteorSwarmScheduler
 
 - type: gamePreset
   id: FleshCultAndTraitor
@@ -293,14 +293,5 @@
   - MeteorSwarmMildScheduler
   - MeteorSwarmScheduler
   - RampingStationEventScheduler
-
-- type: gamePreset
-  id: Calm
-  name: calm-title
-  showInVote: true
-  description: calm-description
-  rules:
-  - CalmStationEventScheduler
-  - WageScheduler #backmen: currency
-  - CalmMeteorSwarmScheduler
-  - BasicRoundstartVariation
+  - SpaceTrafficControlEventScheduler
+  - SpaceTrafficControlFriendlyEventScheduler
