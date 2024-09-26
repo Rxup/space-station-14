@@ -43,12 +43,12 @@
             Scientist: [ 3, 3 ]
             ResearchAssistant: [ 2, 2 ]
             #borgs
-            CargoBorg: [ 0, 2]
-            EngenerBorg: [ 0, 2]
-            JanitorBorg: [ 0, 2]
-            MedIcalBorg: [ 0, 2]
-            ServiceBorg: [ 0, 2]
-            SecurityBorg: [ 0, 2]
+            CargoBorg: [ 1, 1]
+            EngenerBorg: [ 1, 1]
+            JanitorBorg: [ 1, 1]
+            MedIcalBorg: [ 1, 1]
+            ServiceBorg: [ 1, 1]
+            SecurityBorg: [ 1, 1]
             #security
             HeadOfSecurity: [ 1, 1 ]
             Warden: [ 1, 1 ]
