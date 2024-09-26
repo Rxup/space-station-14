@@ -1,4 +1,5 @@
 using Content.Server.Backmen.Blob.Components;
+using Content.Server.Popups;
 using Content.Shared.Backmen.Blob;
 using Content.Shared.Backmen.Blob.Components;
 using Content.Shared.Backmen.Blob.NPC.BlobPod;
@@ -16,7 +17,7 @@ namespace Content.Server.Backmen.Blob;
 
 public sealed class BlobFactorySystem : EntitySystem
 {
-    [Dependency] private readonly IGameTiming _gameTiming = default!;
+    [Dependency] private readonly PopupSystem _popup = default!;
     [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
 
 
@@ -24,7 +25,7 @@ public sealed class BlobFactorySystem : EntitySystem
     {
         base.Initialize();
 
-        SubscribeLocalEvent<BlobFactoryComponent, BlobTileGetPulseEvent>(OnPulsed);
+        SubscribeLocalEvent<BlobFactoryComponent, BlobSpecialGetPulseEvent>(OnPulsed);
         SubscribeLocalEvent<BlobFactoryComponent, ProduceBlobbernautEvent>(OnProduceBlobbernaut);
         SubscribeLocalEvent<BlobFactoryComponent, DestructionEventArgs>(OnDestruction);
 
@@ -128,7 +129,7 @@ public sealed class BlobFactorySystem : EntitySystem
         }
     }
 
-    private void OnPulsed(EntityUid uid, BlobFactoryComponent component, BlobTileGetPulseEvent args)
+    private void OnPulsed(EntityUid uid, BlobFactoryComponent component, BlobSpecialGetPulseEvent args)
     {
         if (!TryComp<BlobTileComponent>(uid, out var blobTileComponent) || blobTileComponent.Core == null)
             return;
@@ -139,10 +140,14 @@ public sealed class BlobFactorySystem : EntitySystem
         if (component.SpawnedCount >= component.SpawnLimit)
             return;
 
-        if (_gameTiming.CurTime < component.NextSpawn)
-            return;
-
         var xform = Transform(uid);
+
+        if (component.Accumulator < component.AccumulateToSpawn)
+        {
+            component.Accumulator++;
+            return;
+        }
+
         var pod = Spawn(component.Pod, xform.Coordinates);
         component.BlobPods.Add(pod);
         var blobPod = EnsureComp<BlobPodComponent>(pod);
@@ -151,7 +156,6 @@ public sealed class BlobFactorySystem : EntitySystem
 
         //smokeOnTrigger.SmokeColor = blobCoreComponent.ChemСolors[blobCoreComponent.CurrentChem];
         component.SpawnedCount += 1;
-        component.NextSpawn = _gameTiming.CurTime + TimeSpan.FromSeconds(component.SpawnRate);
+        component.Accumulator = 0;
     }
-
 }
