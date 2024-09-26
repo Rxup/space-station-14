@@ -1,0 +1,89 @@
+- type: entity
+  id: SpawnPointCargoBorg
+  parent: SpawnPointJobBase
+  name: Cargo borg spawn
+  components:
+  - type: SpawnPoint
+    job_id: CargoBorg
+  - type: Sprite
+    layers:
+    - state: green
+    - sprite: Mobs/Silicon/chassis.rsi
+      state: robot
+    - sprite: Mobs/Silicon/chassis.rsi
+      state: robot_e
+
+- type: entity
+  id: SpawnPointEngenerBorg
+  parent: SpawnPointJobBase
+  name: Engener borg spawn
+  components:
+  - type: SpawnPoint
+    job_id: EngenerBorg
+  - type: Sprite
+    layers:
+    - state: green
+    - sprite: Mobs/Silicon/chassis.rsi
+      state: robot
+    - sprite: Mobs/Silicon/chassis.rsi
+      state: robot_e
+
+- type: entity
+  id: SpawnPointJanitorBorg
+  parent: SpawnPointJobBase
+  name: Janitor borg spawn
+  components:
+  - type: SpawnPoint
+    job_id: JanitorBorg
+  - type: Sprite
+    layers:
+    - state: green
+    - sprite: Mobs/Silicon/chassis.rsi
+      state: robot
+    - sprite: Mobs/Silicon/chassis.rsi
+      state: robot_e
+
+- type: entity
+  id: SpawnPointMedIcalBorg
+  parent: SpawnPointJobBase
+  name: MedIcal borg spawn
+  components:
+  - type: SpawnPoint
+    job_id: MedIcalBorg
+  - type: Sprite
+    layers:
+    - state: green
+    - sprite: Mobs/Silicon/chassis.rsi
+      state: robot
+    - sprite: Mobs/Silicon/chassis.rsi
+      state: robot_e
+
+- type: entity
+  id: SpawnPointServiceBorg
+  parent: SpawnPointJobBase
+  name: Service borg spawn
+  components:
+  - type: SpawnPoint
+    job_id: ServiceBorg
+  - type: Sprite
+    layers:
+    - state: green
+    - sprite: Mobs/Silicon/chassis.rsi
+      state: robot
+    - sprite: Mobs/Silicon/chassis.rsi
+      state: robot_e
+
+- type: entity
+  id: SpawnPointSecurityBorg
+  parent: SpawnPointJobBase
+  name: Security borg spawn
+  components:
+  - type: SpawnPoint
+    job_id: SecurityBorg
+  - type: Sprite
+    layers:
+    - state: green
+    - sprite: Mobs/Silicon/chassis.rsi
+      state: robot
+    - sprite: Mobs/Silicon/chassis.rsi
+      state: robot_e
