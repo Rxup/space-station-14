@@ -1,6 +1,7 @@
 ﻿using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Text;
+using System.Random;
 using Content.Server.Mind;
 using Content.Server.Ghost.Roles.Events;
 using Content.Server.Objectives;
@@ -176,9 +177,9 @@ public sealed class FugitiveSystem : EntitySystem
 
         if (args.Job?.Prototype == JobPrisoner && _random.Prob(
 #if DEBUG
-                1
+                1f
 #else
-                0.5
+                0.5f
 #endif
             )
            )
