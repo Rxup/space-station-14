@@ -58,7 +58,7 @@
   id: DoorRemoteAIOpenClose
   name: ai door remote
   description: Opens or closes a door.
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
   - type: Sprite
     layers:
@@ -75,7 +75,7 @@
   id: DoorRemoteAIToggleBolts
   name: ai door remote
   description: Bolts a door.
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
   - type: Sprite
     layers:
@@ -92,7 +92,7 @@
   id: DoorRemoteAIToggleEmergencyAccess
   name: ai door remote
   description: Toggles emergency access on a door.
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
   - type: Sprite
     layers:

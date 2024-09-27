@@ -32,6 +32,9 @@
   id: JobPrisoner
 
 - type: playTimeTracker
+  id: JobPrisonerSuperPsi
+
+- type: playTimeTracker
   id: JobFugitive
 
 - type: playTimeTracker

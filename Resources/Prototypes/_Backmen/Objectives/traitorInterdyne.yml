@@ -27,7 +27,7 @@
   id: Interdyne
 
 - type: entity
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   parent: [BaseTraitorObjectiveInterdyne, BaseLivingObjective]
   id: EscapeShuttleObjectiveInterdyne
   name: Улететь на Центком живым и свободным.
@@ -55,7 +55,7 @@
 # kill
 
 - type: entity
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   parent: [BaseTraitorObjectiveInterdyne, BaseKillObjective]
   id: KillRandomPersonObjectiveInterdyne
   description: Do it however you like, just make sure they don't make it to centcom.
@@ -68,7 +68,7 @@
   - type: PickRandomPerson
 
 - type: entity
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   parent: [BaseTraitorObjectiveInterdyne, BaseKillObjective]
   id: KillRandomHeadObjectiveInterdyne
   description: We need this head gone and you probably know why. Good luck, agent.
@@ -97,7 +97,7 @@
     owner: job-name-cmo
 
 - type: entity
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   parent: BaseCMOStealObjectiveInterdyne
   id: CMOHyposprayStealObjectiveInterdyne
   components:
@@ -105,7 +105,7 @@
     stealGroup: Hypospray
 
 - type: entity
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   parent: BaseCMOStealObjectiveInterdyne
   id: MedicalTechFabCircuitboardStealObjectiveInterdyne
   components:
@@ -117,7 +117,7 @@
 ## hop
 
 - type: entity
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   parent: BaseTraitorStealObjectiveInterdyne
   id: CorgiMeatStealObjectiveInterdyne
   components:

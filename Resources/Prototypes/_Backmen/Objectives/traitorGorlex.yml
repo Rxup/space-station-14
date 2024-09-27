@@ -27,7 +27,7 @@
   id: Gorlex
 
 - type: entity
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   parent: [BaseTraitorObjectiveGorlex, BaseLivingObjective]
   id: HijackShuttleObjectiveGorlex
   name: Завладейте эвакуационным шаттлом
@@ -43,7 +43,7 @@
 # steal
 
 - type: entity
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   parent: [BaseTraitorObjectiveGorlex, BaseStealObjective]
   id: NukeDiskStealObjectiveGorlex
   components:
@@ -63,7 +63,7 @@
 # kill
 
 - type: entity
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   parent: [BaseTraitorObjectiveGorlex, BaseKillObjective]
   id: KillRandomPersonObjectiveGorlex
   description: Убить...
@@ -78,7 +78,7 @@
     requireDead: true
 
 - type: entity
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   parent: [BaseTraitorObjectiveGorlex, BaseKillObjective]
   id: KillRandomHeadObjectiveGorlex
   description: Он должен умереть...

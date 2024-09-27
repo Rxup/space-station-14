@@ -153,6 +153,7 @@
   id: UristMcNars
   parent: MobHuman
   components:
+    - type: AutoPsi # backmen: SuperPsi
     - type: GhostTakeoverAvailable
     - type: GhostRole
       name: Urist McNars

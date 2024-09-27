@@ -1,7 +1,7 @@
 - type: entity
   id: BFGBullet
   name: снаряд BSG
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   parent: BaseBullet
   components:
   - type: Sprite

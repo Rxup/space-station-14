@@ -1,7 +1,7 @@
 ﻿- type: entity
   parent: BaseObjective
   id: CreateFleshHeartObjective
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   name: objective-condition-create-flesh-heart-title
   description: objective-condition-create-flesh-heart-description
   components:
@@ -18,7 +18,7 @@
 - type: entity
   parent: BaseObjective
   id: FleshCultistSurvivalObjective
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   name: objective-condition-flesh-cultist-survival-title
   description: objective-condition-flesh-cultist-survival-description
   components:
