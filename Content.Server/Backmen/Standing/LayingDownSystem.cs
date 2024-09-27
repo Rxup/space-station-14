@@ -30,10 +30,12 @@ public sealed class LayingDownSystem : SharedLayingDownSystem // WD EDIT
         if (rotation.GetDir() is Direction.SouthEast or Direction.East or Direction.NorthEast or Direction.North)
         {
             rotationVisualsComp.HorizontalRotation = Angle.FromDegrees(270);
+            Dirty(ent, rotationVisualsComp);
             return;
         }
 
         rotationVisualsComp.HorizontalRotation = Angle.FromDegrees(90);
+        Dirty(ent, rotationVisualsComp);
     }
 
     protected override bool GetAutoGetUp(Entity<LayingDownComponent> ent, ICommonSession session)

@@ -17,6 +17,12 @@ public sealed partial class BkmSupermatterComponent
     [DataField("delamSound")]
     public SoundSpecifier DelamSound = new SoundPathSpecifier("/Audio/Backmen/Supermatter/delamming.ogg");
 
+    [DataField]
+    public SoundSpecifier CalmSound = new SoundPathSpecifier("/Audio/Backmen/Supermatter/calm.ogg");
+
+    [DataField]
+    public SoundSpecifier CurrentSoundLoop = new SoundPathSpecifier("/Audio/Backmen/Supermatter/calm.ogg");
+
     [DataField("delamAlarm")]
     public SoundSpecifier DelamAlarm = new SoundPathSpecifier("/Audio/Machines/alarm.ogg");
 }

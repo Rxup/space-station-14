@@ -153,9 +153,12 @@
       coefficients:
         Piercing: 2.25
   - type: MeleeWeapon
+    altDisarm: false
     hidden: true
-    angle: 0
     animation: WeaponArcBite
+    wideAnimation: WeaponArcBite
+    angle: 90
+    range: 1.5
     damage:
       types:
         Piercing: 8
