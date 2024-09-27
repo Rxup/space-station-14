@@ -2,6 +2,7 @@ using Content.Shared.DoAfter;
 using Content.Shared.Gravity;
 using Content.Shared.Input;
 using Content.Shared.Mobs.Systems;
+using Content.Shared.Movement.Components;
 using Content.Shared.Movement.Systems;
 using Content.Shared.Standing;
 using Content.Shared.Stunnable;
@@ -80,16 +81,17 @@ public abstract class SharedLayingDownSystem : EntitySystem
         //   return;
 
         if (!TryComp(uid, out StandingStateComponent? standing) ||
-            !TryComp(uid, out LayingDownComponent? layingDown))
+            !TryComp(uid, out LayingDownComponent? layingDown) ||
+            !TryComp<InputMoverComponent>(uid, out var inputMover))
         {
             return;
         }
 
+        if (HasComp<KnockedDownComponent>(uid) || !_mobState.IsAlive(uid) || !inputMover.CanMove)
+            return;
+
         //RaiseNetworkEvent(new CheckAutoGetUpEvent(GetNetEntity(uid)));
         AutoGetUp((uid,layingDown));
-
-        if (HasComp<KnockedDownComponent>(uid) || !_mobState.IsAlive(uid))
-            return;
 
         if (_standing.IsDown(uid, standing))
             TryStandUp(uid, layingDown, standing);
