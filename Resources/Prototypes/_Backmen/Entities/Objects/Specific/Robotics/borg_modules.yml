@@ -1,5 +1,5 @@
 ﻿- type: entity
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   parent: ClothingBackpackSatchel
   id: ClothingBackpackSatchelBorgs
   name: Borg backpack

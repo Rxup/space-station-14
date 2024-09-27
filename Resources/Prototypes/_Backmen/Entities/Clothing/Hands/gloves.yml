@@ -103,7 +103,7 @@
   id: ActionPhaseDash
   name: phase dash
   description: Teleport to anywhere you can see.
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
   - type: WorldTargetAction
     icon:

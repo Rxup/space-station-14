@@ -282,6 +282,7 @@
 
 # Corvax-MRP-Start: Make nuke disk objective separate
 # - type: entity
+  # categories: [ HideSpawnMenu ]
   # parent: BaseCaptainObjective
   # id: NukeDiskStealObjective
   # components:

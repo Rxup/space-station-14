@@ -288,7 +288,7 @@
   id: XenoLayEgg
   name: Отложить яйцо ксеноморфа
   description: Пригодится в любом гнезде.
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
   - type: InstantAction
     icon: { sprite: Backmen/test/base/rsi/Textures/Misc/Egg.rsi, state: icon }
@@ -723,7 +723,7 @@
   id: ActionHunterInvisibility
   name: action-name-psionic-invisibility
   description: action-description-psionic-invisibility
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
     - type: InstantAction
       useDelay: 30
@@ -1136,7 +1136,7 @@
 - type: entity
   id: XenoSpitBullet4
   parent: XenoSpitBullet
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
   - type: CartridgeAmmo
     deleteOnSpawn: true
@@ -1148,7 +1148,7 @@
   id: XenoSpitBullet
   name: плевок ксено
   parent: BulletDisablerPractice
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
   - type: Sprite
     sprite: Objects/Weapons/Guns/Projectiles/magic.rsi
@@ -1235,7 +1235,7 @@
   id: GasXenoSpitBullet
   name: газовый плевок ксено
   parent: BaseBulletTrigger
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
   - type: Sprite
     sprite: Objects/Weapons/Guns/Projectiles/magic.rsi
@@ -1262,7 +1262,7 @@
   id: XenoGas
   name: smoke
   parent: Smoke
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
   - type: SolutionContainerManager
     solutions:
@@ -1279,7 +1279,7 @@
   id: FireXenoSpitBullet
   name: плевок ксено
   parent: FoodInjectableBase
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
   - type: Sprite
     sprite: Objects/Weapons/Guns/Projectiles/magic.rsi
@@ -1417,7 +1417,7 @@
   id: XenoSpitHealingBullet
   name: феромоны ксено
   parent: BulletDisablerPractice
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
   - type: Sprite
     sprite: Objects/Weapons/Guns/Projectiles/magic.rsi
@@ -1485,7 +1485,7 @@
   id: XenoWeedsAction
   name: Корни
   description: Взращивает липкие корни
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
   - type: InstantAction
     icon: Backmen/test/base/rsi/Textures/Structures/xeno/weeds.rsi/full.png
@@ -1856,7 +1856,7 @@
 
 - type: entity
   id: ActionToLarva
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
   - type: InstantAction
     event: !type:PolymorphActionEvent

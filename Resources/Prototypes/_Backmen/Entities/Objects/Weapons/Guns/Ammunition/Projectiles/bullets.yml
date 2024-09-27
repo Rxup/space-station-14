@@ -2,7 +2,7 @@
   id: BulletFire
   name: огненная пуля
   parent: BaseBullet
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
   - type: Projectile
     damage:

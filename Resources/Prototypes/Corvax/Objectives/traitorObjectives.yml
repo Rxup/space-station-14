@@ -1,4 +1,5 @@
 - type: entity
+  categories: [ HideSpawnMenu ]
   parent: [BaseTraitorObjective, BaseLivingObjective]
   id: HijackShuttleObjective
   name: Hijack emergency shuttle
@@ -12,6 +13,7 @@
     - type: HijackShuttleCondition
 
 - type: entity
+  categories: [ HideSpawnMenu ]
   parent: BaseCaptainObjective
   id: NukeDiskStealObjective
   components:

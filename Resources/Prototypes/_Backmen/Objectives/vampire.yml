@@ -1,5 +1,5 @@
 - type: entity
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   parent: BaseBloodsuckerObjective
   id: BloodsuckerDrinkObjective
   name: BloodsuckerDrink
@@ -14,7 +14,7 @@
     max: 800
 
 - type: entity
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   parent: BaseBloodsuckerObjective
   id: BloodsuckerConvertObjective
   name: BloodsuckerConvert
@@ -29,7 +29,7 @@
     perPlayers: 10
 
 - type: entity
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   parent: BaseBloodsuckerObjective
   id: EscapeShuttleObjectiveBloodsucker
   name: Сбегите в Центком живым и свободным.

@@ -14,7 +14,7 @@
 
 - type: entity
   id: SpawnSpecforce
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   abstract: true
   name: спавнер спецсил
   suffix: Specforce
@@ -30,7 +30,7 @@
 - type: entity
   id: SpawnMobHumanERTLeaderEVAV2_1
   parent: SpawnSpecforce
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   name: ОБР Лидер
   suffix: спавнер спецсил
   components:
@@ -40,7 +40,7 @@
 - type: entity
   id: SpawnMobHumanERTSecurityEVAV2_1
   parent: SpawnSpecforce
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   name: ОБР Охрана
   suffix: спавнер спецсил
   components:
@@ -50,7 +50,7 @@
 - type: entity
   id: SpawnMobHumanERTEngineerEVAV2_1
   parent: SpawnSpecforce
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   name: ОБР Инж
   suffix: спавнер спецсил
   components:
@@ -60,7 +60,7 @@
 - type: entity
   id: SpawnMobHumanERTJunitorEVAV2_1
   parent: SpawnSpecforce
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   name: ОБР Уборщик
   suffix: спавнер спецсил
   components:
@@ -70,7 +70,7 @@
 - type: entity
   id: SpawnMobHumanERTMedicalEVAV2_1
   parent: SpawnSpecforce
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   name: ОБР Медик
   suffix: спавнер спецсил
   components:
@@ -80,7 +80,7 @@
 - type: entity
   id: SpawnMobHumanSFOfficer
   parent: SpawnSpecforce
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   name: РХБЗЗ ОСО
   suffix: спавнер спецсил
   components:
@@ -90,7 +90,7 @@
 - type: entity
   id: SpawnMobHumanRXBZZ
   parent: SpawnSpecforce
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   name: РХБЗЗ Опер
   suffix: спавнер спецсил
   components:
@@ -100,7 +100,7 @@
 - type: entity
   id: SpawnMobHumanRXBZZLeader
   parent: SpawnSpecforce
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   name: РХБЗЗ лидер
   suffix: спавнер спецсил
   components:
@@ -110,7 +110,7 @@
 - type: entity
   id: SpawnMobHumanRXBZZBlobLeader
   parent: SpawnSpecforce
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   name: РХБЗЗ лидер
   suffix: спавнер спецсил
   components:
@@ -120,7 +120,7 @@
 - type: entity
   id: SpawnMobHumanRXBZZFlamer
   parent: SpawnSpecforce
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   name: РХБЗЗ специалист
   suffix: спавнер спецсил
   components:
@@ -130,7 +130,7 @@
 - type: entity
   id: SpawnMobHumanRXBZZMedic
   parent: SpawnSpecforce
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   name: РХБЗЗ специалист
   suffix: спавнер спецсил
   components:
@@ -140,7 +140,7 @@
 - type: entity
   id: SpawnMobHumanERTOperativeAlpha1
   parent: SpawnSpecforce
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   name: Альфа лидер
   suffix: спавнер спецсил
   components:
@@ -150,7 +150,7 @@
 - type: entity
   id: SpawnMobHumanERTLeaderAlpha1
   parent: SpawnSpecforce
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   name: Альфа Опер
   suffix: спавнер спецсил
   components:
@@ -160,7 +160,7 @@
 - type: entity
   id: SpawnMobHumanSpecialReAgentCOM
   parent: SpawnSpecforce
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   name: Спецназ лидер
   suffix: спавнер спецсил
   components:
@@ -170,7 +170,7 @@
 - type: entity
   id: SpawnMobHumanSpecialReAgent
   parent: SpawnSpecforce
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   name: Спецназ опер
   suffix: спавнер спецсил
   components:
@@ -180,7 +180,7 @@
 - type: entity
   id: SpawnMobHumanERTLeaderEpsilon
   parent: SpawnSpecforce
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   name: ОБР Лидер
   suffix: спавнер спецсил
   components:
@@ -190,7 +190,7 @@
 - type: entity
   id: SpawnMobHumanERTSecurityEpsilon
   parent: SpawnSpecforce
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   name: ОБР Охрана
   suffix: спавнер спецсил
   components:
@@ -200,7 +200,7 @@
 - type: entity
   id: SpawnMobHumanERTEngineerEpsilon
   parent: SpawnSpecforce
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   name: ОБР Инж
   suffix: спавнер спецсил
   components:
@@ -210,7 +210,7 @@
 - type: entity
   id: SpawnMobHumanERTJanitorEpsilon
   parent: SpawnSpecforce
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   name: ОБР Уборщик
   suffix: спавнер спецсил
   components:
@@ -220,7 +220,7 @@
 - type: entity
   id: SpawnMobHumanERTMedicalEpsilon
   parent: SpawnSpecforce
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   name: ОБР Медик
   suffix: спавнер спецсил
   components:
@@ -230,7 +230,7 @@
 - type: entity
   id: SpawnMobHumanERTLeaderTay39
   parent: SpawnSpecforce
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   name: Тау лидер
   suffix: спавнер спецсил
   components:
@@ -240,7 +240,7 @@
 - type: entity
   id: SpawnMobHumanERTMedicTay39
   parent: SpawnSpecforce
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   name: Тау медик
   suffix: спавнер спецсил
   components:
@@ -250,7 +250,7 @@
 - type: entity
   id: SpawnMobHumanERTSecurityTay39
   parent: SpawnSpecforce
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   name: Тау опер
   suffix: спавнер спецсил
   components:
