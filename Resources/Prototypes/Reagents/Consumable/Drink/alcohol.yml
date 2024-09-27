@@ -869,10 +869,10 @@
         factor: 2
       - !type:SatiateHunger
         factor: -2
-          conditions:
-            - !type:OrganType
-              type: Vampiric
-              shouldHave: false
+        conditions:
+          - !type:OrganType
+            type: Vampiric
+            shouldHave: false
       - !type:AdjustReagent
         reagent: Ethanol
         amount: 0.05

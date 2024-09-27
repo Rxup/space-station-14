@@ -111,7 +111,7 @@ public sealed class BlobMobSystem : SharedBlobMobSystem
         {
             return;
         }
-        args.Name = Loc.GetString(ent.Comp.Name);
+        args.VoiceName = Loc.GetString(ent.Comp.Name);
     }
 
     private void OnSpokeCan(Entity<BlobSpeakComponent> ent, ref SpeakAttemptEvent args)
