@@ -1,0 +1,51 @@
+{
+  "version": 1,
+  "license": "CC BY-NC-SA 4.0",
+  "copyright": "Edited, resprited and reshaded by PuroSlavKing (Github)",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "snout_acrador_1",
+      "directions": 4
+    },
+    {
+      "name": "snout_acrador_1_overlay",
+      "directions": 4
+    },
+    {
+      "name": "snout_acrador_2",
+      "directions": 4
+    },
+    {
+      "name": "snout_acrador_2_overlay",
+      "directions": 4
+    },
+    {
+      "name": "snout_acrador_3",
+      "directions": 4
+    },
+    {
+      "name": "snout_acrador_3_overlay",
+      "directions": 4
+    },
+    {
+      "name": "snout_acrador_4",
+      "directions": 4
+    },
+    {
+      "name": "snout_acrador_4_overlay",
+      "directions": 4
+    },
+    {
+      "name": "snout_acrador_5",
+      "directions": 4
+    },
+    {
+      "name": "snout_acrador_5_overlay",
+      "directions": 4
+    }
+  ]
+}

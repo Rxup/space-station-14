@@ -1,0 +1,19 @@
+{
+  "version": 1,
+  "license": "CC BY-NC-SA 4.0",
+  "copyright": "Edited, resprited and reshaded by PuroSlavKing (Github)",
+  "size": {
+    "x": 64,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "horns_sloogbobbers_HORNS",
+      "directions": 4
+    },
+    {
+      "name": "horns_sloogbobbers_HORNS_overlay",
+      "directions": 4
+    }
+  ]
+}

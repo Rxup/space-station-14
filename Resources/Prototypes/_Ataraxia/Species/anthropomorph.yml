@@ -1,0 +1,181 @@
+- type: species
+  id: Anthropomorph
+  name: species-name-anthropomorph
+  roundStart: true
+  prototype: MobAnthropomorph
+  sprites: MobAnthropomorphSprites
+  defaultSkinTone: "#f5aaff"
+  markingLimits: MobAnthropomorphMarkingLimits
+  dollPrototype: MobAnthropomorphDummy 
+  skinColoration: Hues
+  maleFirstNames: names_arachnid_first
+  femaleFirstNames: names_arachnid_first
+  naming: FirstDashFirst
+
+- type: speciesBaseSprites
+  id: MobAnthropomorphSprites
+  sprites:
+    Head: MobAnthropomorphHead
+    Hair: MobHumanoidAnyMarking
+    Snout: MobHumanoidAnyMarking
+    Chest: MobAnthropomorphTorso
+    HeadTop: MobHumanoidAnyMarking
+    HeadSide: MobHumanoidAnyMarking
+    Tail: MobHumanoidAnyMarking
+    Eyes: MobHumanoidEyes
+    LArm: MobAnthropomorphLArm
+    RArm: MobAnthropomorphRArm
+    LHand: MobAnthropomorphLHand
+    RHand: MobAnthropomorphRHand
+    LLeg: MobAnthropomorphLLegDigi # Ataraxia-Digitigrade
+    RLeg: MobAnthropomorphRLegDigi # Ataraxia-Digitigrade
+    LFoot: MobAnthropomorphLFootDigi # Ataraxia-Digitigrade
+    RFoot: MobAnthropomorphRFootDigi # Ataraxia-Digitigrade
+
+- type: markingPoints
+  id: MobAnthropomorphMarkingLimits
+  #onlyWhitelisted: true
+  points:
+    Hair:
+      points: 1
+      required: false
+    Tail:
+      points: 1
+      required: false
+#      defaultMarkings: [ AnthropomorphTailDataShark ]
+    Snout:
+      points: 1
+      required: false
+#      defaultMarkings: [ AnthropomorphShoutShark ]
+    Head:
+      points: 1
+      required: false
+    HeadTop:
+      points: 2
+      required: false
+    HeadSide:
+      points: 2
+      required: false
+#      defaultMarkings: [ AnthropomorphHeadSideFoldedBack ]
+    Chest:
+      points: 3
+      required: false
+    Legs:
+      points: 4
+      required: false
+    Arms:
+      points: 4
+      required: false
+    Overlay:
+      points: 1
+      required: false
+    
+- type: humanoidBaseSprite
+  id: MobAnthropomorphHead
+  baseSprite:
+    sprite: _Ataraxia/Mobs/Species/Anthropomorph/parts.rsi
+    state: head_m
+
+- type: humanoidBaseSprite
+  id: MobAnthropomorphHeadMale
+  baseSprite:
+    sprite: _Ataraxia/Mobs/Species/Anthropomorph/parts.rsi
+    state: head_m
+
+- type: humanoidBaseSprite
+  id: MobAnthropomorphHeadFemale
+  baseSprite:
+    sprite: _Ataraxia/Mobs/Species/Anthropomorph/parts.rsi
+    state: head_f
+
+- type: humanoidBaseSprite
+  id: MobAnthropomorphTorso
+  baseSprite:
+    sprite: _Ataraxia/Mobs/Species/Anthropomorph/parts.rsi
+    state: torso_m
+
+- type: humanoidBaseSprite
+  id: MobAnthropomorphTorsoMale
+  baseSprite:
+    sprite: _Ataraxia/Mobs/Species/Anthropomorph/parts.rsi
+    state: torso_m
+
+- type: humanoidBaseSprite
+  id: MobAnthropomorphTorsoFemale
+  baseSprite:
+    sprite: _Ataraxia/Mobs/Species/Anthropomorph/parts.rsi
+    state: torso_f
+
+- type: humanoidBaseSprite
+  id: MobAnthropomorphLLeg
+  baseSprite:
+    sprite: _Ataraxia/Mobs/Species/Anthropomorph/parts.rsi
+    state: l_leg
+
+- type: humanoidBaseSprite
+  id: MobAnthropomorphLHand
+  baseSprite:
+    sprite: _Ataraxia/Mobs/Species/Anthropomorph/parts.rsi
+    state: l_hand
+
+- type: humanoidBaseSprite
+  id: MobAnthropomorphLArm
+  baseSprite:
+    sprite: _Ataraxia/Mobs/Species/Anthropomorph/parts.rsi
+    state: l_arm
+
+- type: humanoidBaseSprite
+  id: MobAnthropomorphLFoot
+  baseSprite:
+    sprite: _Ataraxia/Mobs/Species/Anthropomorph/parts.rsi
+    state: l_foot
+
+- type: humanoidBaseSprite
+  id: MobAnthropomorphRLeg
+  baseSprite:
+    sprite: _Ataraxia/Mobs/Species/Anthropomorph/parts.rsi
+    state: r_leg
+
+- type: humanoidBaseSprite
+  id: MobAnthropomorphRHand
+  baseSprite:
+    sprite: _Ataraxia/Mobs/Species/Anthropomorph/parts.rsi
+    state: r_hand
+
+- type: humanoidBaseSprite
+  id: MobAnthropomorphRArm
+  baseSprite:
+    sprite: _Ataraxia/Mobs/Species/Anthropomorph/parts.rsi
+    state: r_arm
+
+- type: humanoidBaseSprite
+  id: MobAnthropomorphRFoot
+  baseSprite:
+    sprite: _Ataraxia/Mobs/Species/Anthropomorph/parts.rsi
+    state: r_foot
+
+# DIGI-LEGS
+
+- type: humanoidBaseSprite
+  id: MobAnthropomorphLLegDigi
+  baseSprite:
+    sprite: _Ataraxia/Mobs/Species/Anthropomorph/parts.rsi
+    state: l_leg_digi
+
+- type: humanoidBaseSprite
+  id: MobAnthropomorphLFootDigi
+  baseSprite:
+    sprite: _Ataraxia/Mobs/Species/Anthropomorph/parts.rsi
+    state: l_foot_digi
+
+- type: humanoidBaseSprite
+  id: MobAnthropomorphRLegDigi
+  baseSprite:
+    sprite: _Ataraxia/Mobs/Species/Anthropomorph/parts.rsi
+    state: r_leg_digi
+
+- type: humanoidBaseSprite
+  id: MobAnthropomorphRFootDigi
+  baseSprite:
+    sprite: _Ataraxia/Mobs/Species/Anthropomorph/parts.rsi
+    state: r_foot_digi

@@ -16,7 +16,7 @@ public sealed partial class BloodsuckerRuleComponent : Component
         "Dwarf",
         "Oni",
         "Vox",
-        "HumanoidFoxes",
+        "Anthropomorph", // Ataraxia
         "Harpy"
     };
 

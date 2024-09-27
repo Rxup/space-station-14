@@ -592,3 +592,16 @@ BookPassionsP2: null
 BookPaperworkP1: null
 BookPaperworkP2: null
 BookPaperworkP4: null
+
+# 2024-09-20 backmen
+HeadVulpkanin: HeadHuman
+TorsoVulpkanin: TorsoHuman
+LeftArmVulpkanin: LeftArmHuman
+RightArmVulpkanin: RightArmHuman
+LeftHandVulpkanin: LeftHandHuman
+RightHandVulpkanin: RightHandHuman
+LeftLegVulpkanin: LeftLegHuman
+RightLegVulpkanin: RightLegHuman
+LeftFootVulpkanin: LeftFootHuman
+RightFootVulpkanin: RightFootHuman
+FoodBakedVulpkaninPlate: RandomFoodMeal

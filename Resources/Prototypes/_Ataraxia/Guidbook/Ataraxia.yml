@@ -1,0 +1,6 @@
+- type: guideEntry
+  id: Ataraxia
+  name: guide-entry-ataraxia
+  text: "/ServerInfo/_Ataraxia/Guidebook/Ataraxia.xml"
+  children:
+  - AtaraxiaSpecies

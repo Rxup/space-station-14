@@ -1,0 +1,385 @@
+{
+  "version": 1,
+  "license": "CC BY-NC-SA 4.0",
+  "copyright": "Edited, resprited and reshaded by PuroSlavKing (Github)",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "snout_beaktiny",
+      "directions": 4
+    },
+    {
+      "name": "snout_bigbeak",
+      "directions": 4
+    },
+    {
+      "name": "snout_bigmandible",
+      "directions": 4
+    },
+    {
+      "name": "snout_bird",
+      "directions": 4
+    },
+    {
+      "name": "snout_bird_overlay_1",
+      "directions": 4
+    },
+    {
+      "name": "snout_bird_overlay_2",
+      "directions": 4
+    },
+    {
+      "name": "snout_bovine",
+      "directions": 4
+    },
+    {
+      "name": "snout_bovine_overlay",
+      "directions": 4
+    },
+    {
+      "name": "snout_bug",
+      "directions": 4
+    },
+    {
+      "name": "snout_bug_overlay",
+      "directions": 4
+    },
+    {
+      "name": "snout_chemlight",
+      "directions": 4
+    },
+    {
+      "name": "snout_chemlight_overlay",
+      "directions": 4
+    },
+    {
+      "name": "snout_corvidbeak",
+      "directions": 4
+    },
+    {
+      "name": "snout_deer",
+      "directions": 4
+    },
+    {
+      "name": "snout_duck",
+      "directions": 4
+    },
+    {
+      "name": "snout_easterndnw",
+      "directions": 4
+    },
+    {
+      "name": "snout_easterndnw_overlay",
+      "directions": 4
+    },
+    {
+      "name": "snout_easterndnw_usiki",
+      "directions": 4
+    },
+    {
+      "name": "snout_elephant",
+      "directions": 4
+    },
+    {
+      "name": "snout_extra_haydeemedical",
+      "directions": 4
+    },
+    {
+      "name": "snout_extra_magus",
+      "directions": 4
+    },
+    {
+      "name": "snout_extra_skulldog",
+      "directions": 4
+    },
+    {
+      "name": "snout_extra_skulldogALT",
+      "directions": 4
+    },
+    {
+      "name": "snout_fox",
+      "directions": 4
+    },
+    {
+      "name": "snout_fox_overlay",
+      "directions": 4
+    },
+    {
+      "name": "snout_goose",
+      "directions": 4
+    },
+    {
+      "name": "snout_guilmon",
+      "directions": 4
+    },
+    {
+      "name": "snout_hanubus",
+      "directions": 4
+    },
+    {
+      "name": "snout_hanubus_overlay",
+      "directions": 4
+    },
+    {
+      "name": "snout_hhorse",
+      "directions": 4
+    },
+    {
+      "name": "snout_hhorse_overlay",
+      "directions": 4
+    },
+    {
+      "name": "snout_hjackal",
+      "directions": 4
+    },
+    {
+      "name": "snout_hjackal_overlay",
+      "directions": 4
+    },
+    {
+      "name": "snout_hpanda",
+      "directions": 4
+    },
+    {
+      "name": "snout_hpanda_overlay",
+      "directions": 4
+    },
+    {
+      "name": "snout_hshark",
+      "directions": 4
+    },
+    {
+      "name": "snout_hshark_overlay",
+      "directions": 4
+    },
+    {
+      "name": "snout_hspots",
+      "directions": 4
+    },
+
+    {
+      "name": "snout_hspots_overlay",
+      "directions": 4
+    },
+    {
+      "name": "snout_husky",
+      "directions": 4
+    },
+    {
+      "name": "snout_huskyalt",
+      "directions": 4
+    },
+    {
+      "name": "snout_hzebra",
+      "directions": 4
+    },
+    {
+      "name": "snout_hzebra_overlay",
+      "directions": 4
+    },
+    {
+      "name": "snout_lcanid",
+      "directions": 4
+    },
+    {
+      "name": "snout_lcanid_overlay",
+      "directions": 4
+    },
+    {
+      "name": "snout_magus",
+      "directions": 4
+    },
+    {
+      "name": "snout_magus_overlay",
+      "directions": 4
+    },
+    {
+      "name": "snout_noodle",
+      "directions": 4
+    },
+    {
+      "name": "snout_noodle_overlay_1",
+      "directions": 4
+    },
+
+    {
+      "name": "snout_noodle_overlay_2",
+      "directions": 4
+    },
+    {
+      "name": "snout_orca",
+      "directions": 4
+    },
+    {
+      "name": "snout_orca_overlay",
+      "directions": 4
+    },
+    {
+      "name": "snout_otie",
+      "directions": 4
+    },
+    {
+      "name": "snout_owl",
+      "directions": 4
+    },
+    {
+      "name": "snout_pede",
+      "directions": 4
+    },
+    {
+      "name": "snout_pede_overlay",
+      "directions": 4
+    },
+    {
+      "name": "snout_proboscis",
+      "directions": 4
+    },
+    {
+      "name": "snout_rabbit",
+      "directions": 4
+    },
+    {
+      "name": "snout_renamon",
+      "directions": 4
+    },
+    {
+      "name": "snout_renamon_overlay",
+      "directions": 4
+    },
+    {
+      "name": "snout_rhino",
+      "directions": 4
+    },
+    {
+      "name": "snout_rhino_overlay_1",
+      "directions": 4
+    },
+    {
+      "name": "snout_rhino_overlay_2",
+      "directions": 4
+    },
+    {
+      "name": "snout_rhinobeetle",
+      "directions": 4
+    },
+    {
+      "name": "snout_rodent",
+      "directions": 4
+    },
+    {
+      "name": "snout_rodentthick",
+      "directions": 4
+    },
+    {
+      "name": "snout_round",
+      "directions": 4
+    },
+    {
+      "name": "snout_roundlight",
+      "directions": 4
+    },
+    {
+      "name": "snout_roundlight_overlay",
+      "directions": 4
+    },
+    {
+      "name": "snout_scanid",
+      "directions": 4
+    },
+    {
+      "name": "snout_scarab",
+      "directions": 4
+    },
+    {
+      "name": "snout_sergal",
+      "directions": 4
+    },
+    {
+      "name": "snout_sergal_overlay",
+      "directions": 4
+    },
+    {
+      "name": "snout_shark",
+      "directions": 4
+    },
+    {
+      "name": "snout_sharp",
+      "directions": 4
+    },
+    {
+      "name": "snout_sharplight",
+      "directions": 4
+    },
+    {
+      "name": "snout_short",
+      "directions": 4
+    },
+    {
+      "name": "snout_short_overlay",
+      "directions": 4
+    },
+    {
+      "name": "snout_skullbird",
+      "directions": 4
+    },
+    {
+      "name": "snout_sloog",
+      "directions": 4
+    },
+    {
+      "name": "snout_smallmandible",
+      "directions": 4
+    },
+    {
+      "name": "snout_snub",
+      "directions": 4
+    },
+    {
+      "name": "snout_snub_overlay",
+      "directions": 4
+    },
+    {
+      "name": "snout_spider",
+      "directions": 4
+    },
+    {
+      "name": "snout_stubby",
+      "directions": 4
+    },
+    {
+      "name": "snout_tajaran",
+      "directions": 4
+    },
+    {
+      "name": "snout_tarantula",
+      "directions": 4
+    },
+    {
+      "name": "snout_toucan",
+      "directions": 4
+    },
+    {
+      "name": "snout_vulp",
+      "directions": 4
+    },
+    {
+      "name": "snout_wah",
+      "directions": 4
+    },
+    {
+      "name": "snout_wah_overlay_1",
+      "directions": 4
+    },
+    {
+      "name": "snout_wah_overlay_2",
+      "directions": 4
+    },
+    {
+      "name": "snout_wolf",
+      "directions": 4
+    }
+  ]
+}

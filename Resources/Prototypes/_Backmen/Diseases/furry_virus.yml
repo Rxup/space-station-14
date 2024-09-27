@@ -65,7 +65,7 @@
       stages:
         - 1
     - !type:DiseasePolymorph
-      polymorphId: BFoxMorph
+      polymorphId: BAnthropomorphMorph # Ataraxia-EDIT
       polymorphMessage: disease-polymorph
       polymorphRandomAppereance: true
       polymorphSound:
