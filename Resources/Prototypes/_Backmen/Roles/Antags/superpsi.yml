@@ -49,7 +49,6 @@
       playerRatio: 30
       spawnerPrototype: SpawnerUristMcNars
       multiAntagSetting: None
-      selectionsComplete: true
       startingGear: PrisonerGear
       pickPlayer: false
       lateJoinAdditional: false
@@ -61,6 +60,7 @@
 
 - type: entity
   id: SpawnerUristMcNars
+  categories: [ HideSpawnMenu ]
   parent: BaseAntagSpawner
   components:
   - type: GhostRole

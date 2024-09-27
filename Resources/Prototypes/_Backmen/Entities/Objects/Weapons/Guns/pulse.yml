@@ -230,7 +230,7 @@
 
 - type: entity
   id: MuzzlePulseEffect
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
   - type: TimedDespawn
     lifetime: 0.4
@@ -250,7 +250,7 @@
 
 - type: entity
   id: BulletPulseEffect
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
   - type: TimedDespawn
     lifetime: 0.25
@@ -271,7 +271,7 @@
   id: PulseBullet
   name: pulse bullet
   parent: BaseBullet
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
   - type: Sprite
     sprite: Backmen/Objects/Weapons/Gunsx64/Effects/muzzle/pulse.rsi

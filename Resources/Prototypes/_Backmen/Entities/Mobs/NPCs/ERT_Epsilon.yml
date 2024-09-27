@@ -17,7 +17,7 @@
 
 # ERT Engineer
 - type: entity
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   name: Еpsilon - 11 инженер ОБР
   parent: MobHumanERTEngineerEVAV3
   suffix: МТФ Egg
@@ -34,7 +34,7 @@
 
 # ERT Security
 - type: entity
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   name: Еpsilon - 11 офицер безопасности ОБР
   parent: MobHumanERTSecurityEVAV3
   suffix: МТФ Egg
@@ -51,7 +51,7 @@
 
 # ERT Medical
 - type: entity
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   name: Еpsilon - 11 медик ОБР
   parent: MobHumanERTMedicalEVAV3
   suffix: МТФ Egg
@@ -68,7 +68,7 @@
 
 # ERT Junitor
 - type: entity
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   name: Еpsilon - 11 уборщик ОБР
   parent: MobHumanERTJunitorEVAV3
   suffix: МТФ Egg

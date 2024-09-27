@@ -38,7 +38,7 @@
 - type: entity
   id: EvilTwinSpawn
   parent: BaseGameRule
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
   - type: StationEvent
     weight: 10
@@ -49,7 +49,7 @@
 - type: entity
   id: FugitiveSpawn
   parent: BaseGameRule
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
     - type: StationEvent
       weight: 2
@@ -60,7 +60,7 @@
 - type: entity
   id: WageScheduler
   parent: BaseGameRule
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
     - type: WageSchedulerRule
 
@@ -68,7 +68,7 @@
 - type: entity
   id: NoosphericStorm
   parent: BaseGameRule
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
     - type: StationEvent
       startAnnouncement: station-event-noospheric-storm-announcement
@@ -79,7 +79,7 @@
 - type: entity
   id: BlobSpawn
   parent: BaseGameRule
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
   - type: StationEvent
     weight: 15
@@ -96,7 +96,7 @@
 - type: entity
   id: BluespaceGoat
   parent: BaseGameRule
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
   - type: StationEvent
     weight: 5
@@ -108,7 +108,7 @@
 - type: entity
   id: BaseGlimmerEvent
   parent: BaseGameRule
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   abstract: true
   components:
     - type: StationEvent
@@ -120,7 +120,7 @@
 - type: entity
   id: NoosphericZap
   parent: BaseGlimmerEvent
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
     - type: GlimmerEvent
     - type: NoosphericZapRule
@@ -128,7 +128,7 @@
 - type: entity
   id: NoosphericFry
   parent: BaseGlimmerEvent
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
     - type: GlimmerEvent
       minimumGlimmer: 300
@@ -139,7 +139,7 @@
 - type: entity
   id: PsionicCatGotYourTongue
   parent: BaseGlimmerEvent
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
     - type: GlimmerEvent
       minimumGlimmer: 200
@@ -151,7 +151,7 @@
 - type: entity
   id: MassMindSwap
   parent: BaseGlimmerEvent
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
     - type: GlimmerEvent
       minimumGlimmer: 400
@@ -162,7 +162,7 @@
 - type: entity
   id: GlimmerWispSpawn
   parent: BaseGlimmerEvent
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
     - type: GlimmerEvent
       minimumGlimmer: 300
@@ -173,7 +173,7 @@
 - type: entity
   id: FreeProberEarly
   parent: BaseGlimmerEvent
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
   - type: GlimmerEvent
     minimumGlimmer: 0
@@ -186,7 +186,7 @@
 - type: entity
   id: FreeProber
   parent: BaseGlimmerEvent
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
     - type: GlimmerEvent
       minimumGlimmer: 300
@@ -198,7 +198,7 @@
 - type: entity
   id: GlimmerRandomSentience
   parent: BaseGlimmerEvent
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
     - type: GlimmerEvent
       minimumGlimmer: 300
@@ -209,7 +209,7 @@
 - type: entity
   id: GlimmerRevenantSpawn
   parent: BaseGlimmerEvent
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
     - type: GlimmerEvent
       minimumGlimmer: 500
@@ -220,7 +220,7 @@
 - type: entity
   id: SpiderSpiderVampireSpawn
   parent: BaseGameRule
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
     - type: StationEvent
       startAnnouncement: station-event-vent-creatures-start-announcement

@@ -1,7 +1,7 @@
 ﻿# Construction Frame
 
 - type: entity
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   id: ATMFrame
   name: atm frame
   description: A construction frame for a atm.
@@ -24,7 +24,7 @@
       arc: 360
 
 - type: entity
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   id: ATMFrameWired
   name: atm frame
   description: A construction frame for a atm.

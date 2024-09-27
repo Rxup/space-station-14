@@ -2,7 +2,7 @@
   name:  РХБЗЗ Base
   parent: MobHuman
   id: MobHumanRXBZZBase
-  noSpawn: True
+  categories: [ HideSpawnMenu ]
   components:
   - type: GhostTakeoverAvailable
   - type: AutoImplant

@@ -24,7 +24,7 @@
   - type: EscapeShuttleCondition
 
 - type: entity
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   parent: [ BaseSuperPsiObjective, BaseLivingObjective ]
   id: HijackSuperPsiShuttleObjective
   name: Hijack emergency shuttle

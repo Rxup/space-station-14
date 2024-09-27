@@ -32,7 +32,7 @@
 
 
 - type: entity
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   parent: MarkerBase
   id: ReinforcementSpawner
 
