@@ -5,7 +5,6 @@ roles-antag-superpsi-name = Супер психопат
 roles-antag-superpsi-objective = Чёрный властелин(твоё второе 'я')
 objective-issuer-superpsi = [color=#746694]Психопат[/color]
 objective-condition-superpsi-description = МНЕ ЭТО НУЖНО
-objective-condition-superpsi-description2 = Украдите указанную вещь. Она вам нужна. Неважно зачем. Просто нужна. Нужна....зачем?...(ваше злое 'я' считает, что эта вещь очень пригодится в будущем)
 superpsi-round-end-agent-name = Психопат
 guide-entry-superpsi = Психопат
 
@@ -21,3 +20,7 @@ ent-FireAxeStealSuperPsiObjective = { ent-BaseThiefStealObjective }
     .desc = { objective-condition-superpsi-description }
 ent-ClothingHeadsetAltMedicalStealSuperPsiObjective = { ent-BaseThiefStealObjective }
     .desc = { objective-condition-superpsi-description }
+
+ghost-role-information-superpsi-name = Заключённый психопат
+ghost-role-information-superpsi-description = Украдите указанную вещь, убейте цель. Оно вам нужно. Неважно зачем. Просто нужно. Нужно....зачем?...(ваше злое 'я' считает, что это очень пригодится вам в будущем)
+ghost-role-information-rules-superpsi = В этой роли вы должны добавить щепотку хаоса. Его степень зависит от вашей интерпретации целей.
