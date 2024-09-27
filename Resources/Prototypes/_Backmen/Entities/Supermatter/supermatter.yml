@@ -45,8 +45,6 @@
   - type: Transform
     anchored: true
     noRot: true
-  - type: CollisionWake
-    enabled: false
   - type: Clickable
   - type: InteractionOutline
   - type: Sprite

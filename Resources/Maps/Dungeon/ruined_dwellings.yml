@@ -2303,7 +2303,7 @@ entities:
     - type: Transform
       pos: 8.5,22.5
       parent: 1
-- proto: SpaceCash10
+- proto: FakeSpaceCash10
   entities:
   - uid: 130
     components:
