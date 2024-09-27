@@ -1,0 +1,56 @@
+- type: job
+  id: PrisonerSuperPsi
+  name: job-name-prisoner
+  description: job-description-prisoner
+  playTimeTracker: JobPrisonerSuperPsi
+  startingGear: PrisonerGear
+  alwaysUseSpawner: true
+  canBeAntag: false
+  whitelisted: true
+  jobEntity: UristMcNars
+  icon: JobIconPrisoner
+  supervisors: job-supervisors-security
+  requirements:
+  - !type:OverallPlaytimeRequirement
+    time: 3600
+  special:
+  - !type:AddImplantSpecial
+    implants: [ TrackingImplant ]
+
+
+- type: antag
+  id: SuperPsi
+  name: roles-antag-superpsi-name
+  antagonist: true
+  setPreference: false
+  objective: roles-antag-superpsi-objective
+  guides: [ superpsi ]
+
+- type: entity
+  parent: BaseGameRule
+  id: SuperPsiRule
+  components:
+  - type: AntagObjectives
+    objectives:
+    - EscapeSuperPsiShuttleObjective
+    - HijackSuperPsiShuttleObjective
+    - KillRandomPersonSuperPsiObjective
+    - KillRandomPersonSuperPsiObjective
+    - KillRandomPersonSuperPsiObjective
+    - KillRandomPersonSuperPsiObjective
+    - KillRandomHeadSuperPsiObjective
+    - FireAxeStealSuperPsiObjective
+    - ClothingHeadsetAltMedicalStealSuperPsiObjective
+  - type: AntagSelection
+    agentName: superpsi-round-end-agent-name
+    definitions:
+    - allowNonHumans: true
+      multiAntagSetting: None
+      startingGear: PrisonerGear
+      pickPlayer: false
+      lateJoinAdditional: false
+      mindComponents:
+      - type: SuperPsiRole
+        prototype: SuperPsi
+      briefing:
+        sound: "/Audio/Misc/thief_greeting.ogg"
