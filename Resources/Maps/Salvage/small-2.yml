@@ -479,7 +479,7 @@ entities:
     - type: Transform
       pos: -2.5,1.5
       parent: 55
-- proto: SpaceCash
+- proto: FakeSpaceCash
   entities:
   - uid: 130
     components:
@@ -606,7 +606,7 @@ entities:
     - type: Transform
       pos: 6.031243,4.50317
       parent: 55
-- proto: SpaceCash1000
+- proto: FakeSpaceCash1000
   entities:
   - uid: 155
     components:

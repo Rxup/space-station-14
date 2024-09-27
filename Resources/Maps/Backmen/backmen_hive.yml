@@ -138397,7 +138397,7 @@ entities:
       rot: 3.141592653589793 rad
       pos: 42.361298,-42.496124
       parent: 1
-- proto: SpaceCash1000
+- proto: FakeSpaceCash1000
   entities:
   - uid: 9571
     components:
