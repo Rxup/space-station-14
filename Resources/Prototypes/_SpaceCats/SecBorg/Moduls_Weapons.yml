@@ -50,16 +50,16 @@
       path: /Audio/Weapons/Guns/Gunshots/taser2.ogg
   - type: ProjectileBatteryAmmoProvider
     proto: BulletDisabler
-    fireCost: 100
+    fireCost: 60
   - type: BatteryWeaponFireModes
     fireModes:
     - proto: BulletDisabler
-      fireCost: 100
+      fireCost: 60
     - proto: BorgLethalBullet
-      fireCost: 100
+      fireCost: 60
   - type: BatterySelfRecharger
     autoRecharge: true
-    autoRechargeRate: 20
+    autoRechargeRate: 30
   - type: MagazineVisuals
     magState: mag
     steps: 5
@@ -74,7 +74,7 @@
   - type: Projectile
     damage:
       types:
-        Heat: 12
+        Heat: 18
   - type: Sprite
     sprite: _SpaceCats/SecBorg/Borg_laser_gun.rsi
     layers:
