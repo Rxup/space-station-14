@@ -1131,6 +1131,7 @@
   loadouts:
   - DetectiveArmorVest
   - DetectiveCoat
+  - DetectiveCoatGrey
 
 - type: loadoutGroup #Backmen
   id: DetectiveRevolver

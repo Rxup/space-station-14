@@ -31,7 +31,7 @@
   name: lightning
   id: Lightning_Backmen
   parent: BaseLightning_Backmen
-  noSpawn: false
+  categories: [ ]
   components:
     - type: Lightning
       canArc: true
@@ -40,7 +40,7 @@
   name: spooky lightning
   id: LightningRevenant_Backmen
   parent: BaseLightning_Backmen
-  noSpawn: false
+  categories: [ ]
   components:
     - type: Sprite
       sprite: /Textures/Effects/lightning.rsi
@@ -64,7 +64,7 @@
   name: charged lightning
   id: ChargedLightning_Backmen
   parent: BaseLightning_Backmen
-  noSpawn: false
+  categories: [ ]
   components:
     - type: Sprite
       sprite: /Textures/Effects/lightning.rsi
@@ -83,7 +83,7 @@
   name: supercharged lightning
   id: SuperchargedLightning_Backmen
   parent: ChargedLightning_Backmen
-  noSpawn: false
+  categories: [ ]
   components:
     - type: Sprite
       sprite: /Textures/Effects/lightning.rsi
@@ -109,7 +109,7 @@
   name: hypercharged lightning
   id: HyperchargedLightning_Backmen
   parent: ChargedLightning_Backmen
-  noSpawn: false
+  categories: [ ]
   components:
     - type: Sprite
       sprite: /Textures/Effects/lightning.rsi

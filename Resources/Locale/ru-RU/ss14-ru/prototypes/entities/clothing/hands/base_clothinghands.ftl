@@ -9,4 +9,4 @@ ent-RingBase = { ent-BaseItem }
 ent-GoldRingBase = { "" }
     .desc = { "" }
 ent-SilverRingBase = серебряное кольцо
-    .desc = Выглядит чуть менее ценным, чем золотое.
+    .desc = Выглядит немного дешевле золотого.
