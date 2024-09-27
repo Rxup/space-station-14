@@ -1,7 +1,6 @@
 ﻿using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Text;
-using System.Random;
 using Content.Server.Mind;
 using Content.Server.Ghost.Roles.Events;
 using Content.Server.Objectives;
