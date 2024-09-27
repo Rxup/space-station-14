@@ -5,17 +5,16 @@ public partial class BkmSupermatterComponent
     /// <summary>
     /// The point at which we delamm
     /// </summary>
-    [ViewVariables(VVAccess.ReadOnly)]
+    [ViewVariables(VVAccess.ReadOnly), AutoNetworkedField]
     [DataField("explosionPoint")]
     public int ExplosionPoint = 900;
+
+    [ViewVariables(VVAccess.ReadOnly)]
+    public DelamType PreferredDelamType = DelamType.Explosion;
 
     //Are we delamming?
     [ViewVariables(VVAccess.ReadOnly)]
     public bool Delamming = false;
-
-    //it's the final countdown
-    [ViewVariables(VVAccess.ReadOnly)]
-    public bool FinalCountdown = false;
 
     //Explosion totalIntensity value
     [ViewVariables(VVAccess.ReadOnly)]
