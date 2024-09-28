@@ -970,6 +970,13 @@
       - SyringeCryostasis
       - BluespacePillCanister # Backmen
       - HandheldCrewMonitor # Ataraxia
+      - BluespaceBodyBag # Ataraxia
+      - NTBodyBag # Ataraxia
+      - PrisonerBodyBag # Ataraxia
+      - RadiationBodyBag # Ataraxia
+  - type: EmagLatheRecipes
+    emagDynamicRecipes:
+      - SyndicateBodyBag # Ataraxia
   - type: Machine
     board: MedicalTechFabCircuitboard
   - type: StealTarget

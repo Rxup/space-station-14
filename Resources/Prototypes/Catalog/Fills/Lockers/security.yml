@@ -25,6 +25,7 @@
       - id: BookSpaceLaw
       - id: ClothingHeadHatCapWardenAlt # Corvax-SecFashion
       - id: ClothingOuterCoatWardenAlt # Corvax-SecFashion
+      - id: BoxBodyBagPrisoner # Ataraxia
       - id: ClothingBackpackElectropack
         amount: 2
       - id: RemoteSignaller
@@ -59,6 +60,7 @@
       - id: ClothingHeadCage # backmen
         amount: 2
       - id: BookSpaceLaw
+      - id: BoxBodyBagPrisoner # Ataraxia
       - id: ClothingBackpackElectropack
         amount: 2
       - id: RemoteSignaller
@@ -127,6 +129,7 @@
         prob: 0.4
       - id: MedkitBurnFilled
         prob: 0.4
+      - id: BoxBodyBagPrisoner # Ataraxia
       - id: ClothingHeadCage # backmen
       - id: ClothingHeadsetAltBrigmedic # backmen
 
