@@ -1,6 +1,7 @@
 ﻿using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Text;
+using Content.Server.Backmen.Antag.SuperPsi;
 using Content.Server.Mind;
 using Content.Server.Ghost.Roles.Events;
 using Content.Server.Objectives;
@@ -94,9 +95,6 @@ public sealed class FugitiveSystem : EntitySystem
             });
     }
 
-    [ValidatePrototypeId<JobPrototype>]
-    private const string JobPrisoner = "Prisoner";
-
     public void HandlePlayerSpawning(PlayerSpawningEvent args)
     {
         if (args.SpawnResult != null)
@@ -129,41 +127,6 @@ public sealed class FugitiveSystem : EntitySystem
             }
         }
 
-        // auto points
-
-        #region Prisoner
-
-        if (possiblePositions.Count == 0 && args.Job?.Prototype == JobPrisoner)
-        {
-            var points = EntityQueryEnumerator<EntityStorageComponent, TransformComponent, MetaDataComponent>();
-
-            while (points.MoveNext(out var uid, out _, out var xform, out var spawnPoint))
-            {
-                if (args.Station != null && _stationSystem.GetOwningStation(uid, xform) != args.Station)
-                    continue;
-
-                if (xform.GridUid == null)
-                    continue;
-                if (HasComp<CargoShuttleComponent>(xform.GridUid) || HasComp<SalvageShuttleComponent>(xform.GridUid))
-                    continue;
-
-                if (spawnPoint.EntityPrototype?.ID is "WardrobePrison" or "WardrobePrisonFilled" or "ClosetWallOrange")
-                {
-                    if (HasComp<WallMountComponent>(uid))
-                    {
-                        var pos = xform.Coordinates.WithPosition((xform.LocalPosition +
-                                                                  xform.LocalRotation.ToWorldVec() * 1f));
-                        possiblePositions.Add((pos, null));
-                        continue;
-                    }
-
-                    possiblePositions.Add((xform.Coordinates, null));
-                }
-            }
-        }
-
-        #endregion
-
         if (possiblePositions.Count == 0)
         {
             Log.Warning("No spawn points were available! MakeFugitive");
@@ -174,41 +137,12 @@ public sealed class FugitiveSystem : EntitySystem
 
         var spawnLoc = _random.Pick(possiblePositions);
 
-        if (args.Job?.Prototype == JobPrisoner && _random.Prob(
-#if DEBUG
-                1f
-#else
-                0.5f
-#endif
-            )
-           )
-        {
-            args.SpawnResult = SpawnSuperPsi(
-                spawnLoc.Item1,
-                args.Job,
-                args.HumanoidCharacterProfile,
-                args.Station);
-            return;
-        }
-
         args.SpawnResult = _stationSpawning.SpawnPlayerMob(
             spawnLoc.Item1,
             args.Job,
             args.HumanoidCharacterProfile,
             args.Station);
     }
-
-    [ValidatePrototypeId<JobPrototype>]
-    private const string JobPrisonerSuperPsi = "PrisonerSuperPsi";
-    private EntityUid? SpawnSuperPsi(EntityCoordinates coordinates, JobComponent? job, HumanoidCharacterProfile? profile, EntityUid? station, EntityUid? entity = null)
-    {
-        job = new JobComponent()
-        {
-            Prototype = JobPrisonerSuperPsi,
-        };
-        return _stationSpawning.SpawnPlayerMob(coordinates, job, profile, station);
-    }
-
 
     public bool MakeFugitive([NotNullWhen(true)] out EntityUid? fugitive, bool forceHuman = false)
     {
