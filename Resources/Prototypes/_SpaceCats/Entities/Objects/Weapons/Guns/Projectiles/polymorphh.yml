@@ -11,9 +11,9 @@
 - type: entity
   id: ProjectilePolyboltHuman
   parent: ProjectilePolyboltBase
-  name: Гены Человека 
+  name: Гены Человека
   description: Nooo, I don't wanna be Human!
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
   - type: PolymorphOnCollide
     polymorph: WizardForcedHuman

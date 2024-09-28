@@ -27,7 +27,7 @@
 
 - type: entity
   parent: SheetSWARMGlass
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   id: SheetSWARMGlass10
   suffix: 10
   components:
@@ -41,7 +41,7 @@
 - type: entity
   parent: SheetSWARMGlass
   id: SheetSWARMGlass1
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   suffix: Single
   components:
   - type: Sprite

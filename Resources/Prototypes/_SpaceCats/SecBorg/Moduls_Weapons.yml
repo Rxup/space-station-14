@@ -67,7 +67,7 @@
 
 - type: entity
   id: BorgLethalBullet
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   name: летальный заряд
   parent: BaseBullet
   components:
@@ -91,7 +91,7 @@
   name: дубинка-шокер киборга
   parent: Stunbaton
   id: StunbatonSecBorg
-  description: Электрошоковая дубинка для выведения людей из строя. 
+  description: Электрошоковая дубинка для выведения людей из строя.
   noSpawn: false
   components:
   - type: BatterySelfRecharger

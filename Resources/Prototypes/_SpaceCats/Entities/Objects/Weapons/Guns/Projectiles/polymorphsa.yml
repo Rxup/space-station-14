@@ -14,7 +14,7 @@
   parent: ProjectilePolyboltBase
   name: Гены Шадовников
   description: Nooo, I don't wanna be Shadowkin!
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
   - type: PolymorphOnCollide
     polymorph: WizardForcedShadowkin

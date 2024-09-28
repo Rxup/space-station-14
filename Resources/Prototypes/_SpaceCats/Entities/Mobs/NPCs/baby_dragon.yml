@@ -152,7 +152,7 @@
     gunProto: BabyDragonsSparkGun
 
 - type: entity
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   id: BabyDragonsSparkGun
   name: искра маленького дракона
   description: Для дыхания дракона
