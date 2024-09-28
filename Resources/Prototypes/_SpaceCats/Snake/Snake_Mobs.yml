@@ -46,7 +46,7 @@
       params:
         volume: -100
   - type: Fixtures
-    fixtures: 
+    fixtures:
       fix1:
         shape:
           !type:PhysShapeCircle
@@ -87,11 +87,11 @@
     heatDamageThreshold: 423.15
     coldDamageThreshold: 303.15
     currentTemperature: 310.15
-    coldDamage: 
+    coldDamage:
       types:
         Cold : 1.5
     specificHeat: 42
-    heatDamage: 
+    heatDamage:
       types:
         Heat : 1.5
   - type: Damageable
@@ -107,7 +107,7 @@
       Peckish: 20
       Starving: 10
       Dead: 0
-  - type: Icon 
+  - type: Icon
     sprite: _SpaceCats/Snake/parts.rsi
     state: full
   - type: Thirst
@@ -310,7 +310,7 @@
   id: ActionDevourZerah
   name: "[color=red]Поглотить[/color]"
   description: Другие точно не оценят ваш поступок.
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
   - type: EntityTargetAction
     icon: { sprite : Interface/Actions/devour.rsi, state: icon }

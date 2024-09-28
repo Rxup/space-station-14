@@ -16,7 +16,7 @@
       - BlobRole
 
 - type: entity
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   parent: BaseBlobObjective
   id: BlobCaptureObjective
   components:

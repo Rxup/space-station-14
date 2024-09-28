@@ -427,7 +427,7 @@ entities:
     - type: Transform
       pos: 9.5,8.5
       parent: 10
-- proto: SpaceCash10000
+- proto: FakeSpaceCash10000
   entities:
   - uid: 460
     components:

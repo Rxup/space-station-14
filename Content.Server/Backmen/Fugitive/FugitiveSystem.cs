@@ -31,6 +31,7 @@ using Content.Shared.Mind.Components;
 using Content.Shared.Objectives.Components;
 using Content.Shared.Paper;
 using Content.Shared.Physics;
+using Content.Shared.Preferences;
 using Content.Shared.Radio.Components;
 using Content.Shared.Random;
 using Content.Shared.Roles.Jobs;
@@ -85,7 +86,7 @@ public sealed class FugitiveSystem : EntitySystem
         SubscribeLocalEvent<FugitiveComponent, MindAddedMessage>(OnMindAdded);
         SubscribeLocalEvent<RoundEndTextAppendEvent>(OnRoundEnd);
         SubscribeLocalEvent<PlayerSpawningEvent>(HandlePlayerSpawning,
-            before: new []
+            before: new[]
             {
                 typeof(ContainerSpawnPointSystem),
                 typeof(SpawnPointSystem),
@@ -116,9 +117,9 @@ public sealed class FugitiveSystem : EntitySystem
             {
                 if (args.Station != null && _stationSystem.GetOwningStation(uid, xform) != args.Station)
                     continue;
-                if(xform.GridUid == null)
+                if (xform.GridUid == null)
                     continue;
-                if(HasComp<CargoShuttleComponent>(xform.GridUid) || HasComp<SalvageShuttleComponent>(xform.GridUid))
+                if (HasComp<CargoShuttleComponent>(xform.GridUid) || HasComp<SalvageShuttleComponent>(xform.GridUid))
                     continue;
                 if (spawnPoint.SpawnType == SpawnPointType.Job &&
                     (args.Job == null || spawnPoint.Job == args.Job.Prototype))
@@ -141,16 +142,17 @@ public sealed class FugitiveSystem : EntitySystem
                 if (args.Station != null && _stationSystem.GetOwningStation(uid, xform) != args.Station)
                     continue;
 
-                if(xform.GridUid == null)
+                if (xform.GridUid == null)
                     continue;
-                if(HasComp<CargoShuttleComponent>(xform.GridUid) || HasComp<SalvageShuttleComponent>(xform.GridUid))
+                if (HasComp<CargoShuttleComponent>(xform.GridUid) || HasComp<SalvageShuttleComponent>(xform.GridUid))
                     continue;
 
                 if (spawnPoint.EntityPrototype?.ID is "WardrobePrison" or "WardrobePrisonFilled" or "ClosetWallOrange")
                 {
                     if (HasComp<WallMountComponent>(uid))
                     {
-                        var pos = xform.Coordinates.WithPosition((xform.LocalPosition + xform.LocalRotation.ToWorldVec() * 1f));
+                        var pos = xform.Coordinates.WithPosition((xform.LocalPosition +
+                                                                  xform.LocalRotation.ToWorldVec() * 1f));
                         possiblePositions.Add((pos, null));
                         continue;
                     }
@@ -172,12 +174,41 @@ public sealed class FugitiveSystem : EntitySystem
 
         var spawnLoc = _random.Pick(possiblePositions);
 
+        if (args.Job?.Prototype == JobPrisoner && _random.Prob(
+#if DEBUG
+                1f
+#else
+                0.5f
+#endif
+            )
+           )
+        {
+            args.SpawnResult = SpawnSuperPsi(
+                spawnLoc.Item1,
+                args.Job,
+                args.HumanoidCharacterProfile,
+                args.Station);
+            return;
+        }
+
         args.SpawnResult = _stationSpawning.SpawnPlayerMob(
             spawnLoc.Item1,
             args.Job,
             args.HumanoidCharacterProfile,
             args.Station);
     }
+
+    [ValidatePrototypeId<JobPrototype>]
+    private const string JobPrisonerSuperPsi = "PrisonerSuperPsi";
+    private EntityUid? SpawnSuperPsi(EntityCoordinates coordinates, JobComponent? job, HumanoidCharacterProfile? profile, EntityUid? station, EntityUid? entity = null)
+    {
+        job = new JobComponent()
+        {
+            Prototype = JobPrisonerSuperPsi,
+        };
+        return _stationSpawning.SpawnPlayerMob(coordinates, job, profile, station);
+    }
+
 
     public bool MakeFugitive([NotNullWhen(true)] out EntityUid? fugitive, bool forceHuman = false)
     {
@@ -230,7 +261,8 @@ public sealed class FugitiveSystem : EntitySystem
             }
 
             _chat.DispatchGlobalAnnouncement(Loc.GetString("station-event-fugitive-hunt-announcement"),
-                sender: Loc.GetString("fugitive-announcement-GALPOL"), colorOverride: Color.Yellow);
+                sender: Loc.GetString("fugitive-announcement-GALPOL"),
+                colorOverride: Color.Yellow);
 
             var q2 = EntityQueryEnumerator<CommunicationsConsoleComponent>();
             while (q2.MoveNext(out var consoleOwner, out var console))
@@ -247,8 +279,8 @@ public sealed class FugitiveSystem : EntitySystem
 
                 var report = GenerateFugiReport(owner);
 
-                _paperSystem.SetContent((paperEnt,paper), report.ToMarkup());
-                _paperSystem.TryStamp((paperEnt,paper),
+                _paperSystem.SetContent((paperEnt, paper), report.ToMarkup());
+                _paperSystem.TryStamp((paperEnt, paper),
                     new StampDisplayInfo()
                     {
                         StampedColor = Color.Red,
@@ -271,9 +303,12 @@ public sealed class FugitiveSystem : EntitySystem
         if (TryComp<FugitiveCountdownComponent>(uid, out var cd))
             cd.AnnounceTime = _timing.CurTime + cd.AnnounceCD;
 
-        _popupSystem.PopupEntity(Loc.GetString("fugitive-spawn", ("name", uid)), uid,
-            Filter.Pvs(uid).RemoveWhereAttachedEntity(entity =>
-                !_examine.InRangeUnOccluded(uid, entity, ExamineRange, null)), true,
+        _popupSystem.PopupEntity(Loc.GetString("fugitive-spawn", ("name", uid)),
+            uid,
+            Filter.Pvs(uid)
+                .RemoveWhereAttachedEntity(entity =>
+                    !_examine.InRangeUnOccluded(uid, entity, ExamineRange, null)),
+            true,
             Shared.Popups.PopupType.LargeCaution);
 
         _stun.TryParalyze(uid, TimeSpan.FromSeconds(2), false);
@@ -298,10 +333,13 @@ public sealed class FugitiveSystem : EntitySystem
 
         component.FirstMindAdded = true;
 
-        _roleSystem.MindAddRole(mindId, new FugitiveRoleComponent
-        {
-            PrototypeId = FugitiveAntagRole
-        }, mind, true);
+        _roleSystem.MindAddRole(mindId,
+            new FugitiveRoleComponent
+            {
+                PrototypeId = FugitiveAntagRole
+            },
+            mind,
+            true);
 
         _mindSystem.TryAddObjective(mindId, mind, EscapeObjective);
 
@@ -312,10 +350,13 @@ public sealed class FugitiveSystem : EntitySystem
                 _roleSystem.MindRemoveRole<JobComponent>(mindId);
             }
 
-            _roleSystem.MindAddRole(mindId, new JobComponent
-            {
-                Prototype = FugitiveRole
-            }, mind, true);
+            _roleSystem.MindAddRole(mindId,
+                new JobComponent
+                {
+                    Prototype = FugitiveRole
+                },
+                mind,
+                true);
         }
 
         // workaround seperate shitcode moment
@@ -356,7 +397,8 @@ public sealed class FugitiveSystem : EntitySystem
                         result.AppendLine(Loc.GetString("fugitive-user-was-a-fugitive", ("user", username)));
                     else
                     {
-                        result.AppendLine(Loc.GetString("fugitive-user-was-a-fugitive-named", ("user", username),
+                        result.AppendLine(Loc.GetString("fugitive-user-was-a-fugitive-named",
+                            ("user", username),
                             ("name", name)));
                     }
                 }
@@ -376,18 +418,20 @@ public sealed class FugitiveSystem : EntitySystem
                 else
                 {
                     result.AppendLine(Loc.GetString("fugitive-user-was-a-fugitive-with-objectives-named",
-                        ("user", username), ("name", name)));
+                        ("user", username),
+                        ("name", name)));
                 }
             }
             else if (name != null)
                 result.AppendLine(Loc.GetString("fugitive-was-a-fugitive-with-objectives-named", ("name", name)));
 
-            foreach (var objectiveGroup in objectives.Select(x=>(Entity<ObjectiveComponent>)(x, Comp<ObjectiveComponent>(x)))
+            foreach (var objectiveGroup in objectives
+                         .Select(x => (Entity<ObjectiveComponent>)(x, Comp<ObjectiveComponent>(x)))
                          .GroupBy(o => o.Comp.LocIssuer))
             {
                 foreach (var objective in objectiveGroup)
                 {
-                    if(objective.Comp.HideFromTotal)
+                    if (objective.Comp.HideFromTotal)
                         continue;
 
                     var info = _objectivesSystem.GetInfo(objective, mindId, mind);
@@ -410,7 +454,7 @@ public sealed class FugitiveSystem : EntitySystem
                         result.AppendLine("- " + Loc.GetString(
                             "traitor-objective-condition-fail",
                             ("condition", objectiveTitle),
-                            ("progress", (int) (progress * 100)),
+                            ("progress", (int)(progress * 100)),
                             ("markupColor", "red")
                         ));
                     }

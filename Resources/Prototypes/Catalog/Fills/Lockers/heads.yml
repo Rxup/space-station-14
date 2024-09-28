@@ -18,6 +18,7 @@
     - id: RubberStampDenied
     - id: RubberStampQm
     - id: PrinterDocFlatpack # Corvax-Printer
+    - id: AstroNavCartridge
     - id: PlushieLolyItsMyLife
       prob: 0.66
 
@@ -365,6 +366,7 @@
       prob: 0.66
     - id: ClothingOuterCoatHoSGreatcoat # Corvax-Resprite
     - id: BookBusido # Corvax-Books
+    - id: WantedListCartridge
 
 # Hardsuit table, used for suit storage as well
 - type: entityTable

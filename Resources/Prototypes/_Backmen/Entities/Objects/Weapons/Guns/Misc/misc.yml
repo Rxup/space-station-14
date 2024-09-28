@@ -112,7 +112,7 @@
   id: BulletNail
   name: nail
   parent: BaseBullet
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
   - type: Sprite
     sprite: Backmen/test/base/rsi/Textures/Effects/muzzle/divet.rsi
@@ -135,8 +135,8 @@
   id: TeslaAmmoEnergyBall
   parent: TeslaMiniEnergyBall
   name: mini ball lightning
-  description: Детеныш в клетке с разрушительной энергией. Не так опасно, но все же не стоит трогать его голыми руками.
-  noSpawn: true
+  description: The cub of a destructive energy cage. Not as dangerous, but still not worth touching with bare hands.
+  categories: [ HideSpawnMenu ]
   components:
   - type: TimedDespawn
     lifetime: 15

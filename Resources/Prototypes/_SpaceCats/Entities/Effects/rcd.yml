@@ -1,7 +1,7 @@
 - type: entity
   parent: EffectRCDBase
   id: EffectSwarmConstruct
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
   - type: Sprite
     sprite: _SpaceCats/Swarmers/TOOLS/Swarmer_rcd.rsi
@@ -14,5 +14,5 @@
   - type: TimedDespawn
     lifetime: 2.3
   - type: EmitSoundOnSpawn
-    sound: 
+    sound:
       path: /Audio/_Cats/Swarmers/EffectSpawn.ogg

@@ -647,7 +647,7 @@
     delay: 1.3
 
 - type: entity
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   parent: WeaponAKMSRifle
   id: WeaponAKMSRifleAI
   components:

@@ -62,7 +62,7 @@
 
 - type: entity
   id: SwarmTurretShotBullet
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   name: Редспейс выстрел
   parent: SwarmShotBullet
   components:

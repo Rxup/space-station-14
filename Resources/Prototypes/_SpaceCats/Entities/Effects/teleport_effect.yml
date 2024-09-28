@@ -1,6 +1,6 @@
 - type: entity
   id: TeleportEffect
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
   - type: TimedDespawn
     lifetime: 0.4

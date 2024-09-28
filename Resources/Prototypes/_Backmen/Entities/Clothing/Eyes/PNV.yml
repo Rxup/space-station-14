@@ -27,7 +27,7 @@
   id: NVToggleAction
   name: Переключение ПНВ
   description: Переключает ваше ПНВ
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
   - type: InstantAction
     useDelay: 2.5
@@ -40,7 +40,7 @@
   id: SwitchNightVision
   name: Переключение ночного зрения
   description: Переключает ночное зрение
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
   - type: InstantAction
     useDelay: 2.5
