@@ -97,7 +97,6 @@
     - type: DeleteOnTrigger
     - type: FlashOnTrigger
       range: 6
-      stun: true # cats stun-meta
     - type: EmitSoundOnTrigger
       sound:
         path: "/Audio/Effects/flash_bang.ogg"
