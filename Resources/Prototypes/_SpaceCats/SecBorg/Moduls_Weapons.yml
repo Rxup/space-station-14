@@ -30,7 +30,7 @@
 #Усмиритель
 - type: entity
   name: Усмиритель MK-2
-  noSpawn: false
+  categories: [ HideSpawnMenu ]
   parent: BaseWeaponBatterySmall
   id: WeaponLaserSecBorg
   description: Для особо буйных.
@@ -92,7 +92,7 @@
   parent: Stunbaton
   id: StunbatonSecBorg
   description: Электрошоковая дубинка для выведения людей из строя.
-  noSpawn: false
+  categories: [ HideSpawnMenu ]
   components:
   - type: BatterySelfRecharger
     autoRecharge: true
@@ -104,7 +104,7 @@
   parent: Flash
   id: FlashSecBorg
   description: Сверхяркая вспышка со спусковым механизмом.
-  noSpawn: false
+  categories: [ HideSpawnMenu ]
   components:
   - type: Sprite
     sprite: Objects/Weapons/Melee/flash.rsi
