@@ -4,6 +4,7 @@ using Content.Server.Backmen.EvilTwin;
 using Content.Server.GameTicking;
 using System.IO;
 using Content.Server.Access.Systems;
+using Content.Server.Backmen.Antag;
 using Content.Server.Forensics;
 using Content.Server.GameTicking;
 using Content.Shared.Access.Components;
@@ -58,6 +59,10 @@ public sealed class StationRecordsSystem : SharedStationRecordsSystem
 
         // start-backmen: evil tween
         if (HasComp<EvilTwinComponent>(args.Mob))
+        {
+            return;
+        }
+        if (HasComp<AutoPsiComponent>(args.Mob))
         {
             return;
         }
