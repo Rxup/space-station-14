@@ -88799,7 +88799,7 @@ entities:
     - type: Transform
       pos: 4.5,-235.5
       parent: 2
-- proto: SolidSecretDoor
+- proto: WallSolid
   entities:
   - uid: 13290
     components:

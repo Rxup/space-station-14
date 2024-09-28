@@ -7,7 +7,7 @@
 
         <BoxContainer Name="VBox" Orientation="Vertical" StyleIdentifier="MainMenuBox" MinWidth="300" >
 
-            <Label Name="Title" Text="Backmen and Ataraxia" Align="Center" />
+            <Label Name="Title" Text="Space Cats and 1984" Align="Center" />
 
             <Control MinSize="0 4" />
 

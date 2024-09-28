@@ -6,12 +6,21 @@
   description: Contains the collective knowledge of the station's scientists. Destroying it would send them back to the stone age. You don't want that do you?
   components:
   - type: Sprite
-    sprite: Structures/Machines/server.rsi
+    sprite: _SpaceCats/Structures/Machines/rendsearcserver.rsi
+    snapCardinals: true
     layers:
-      - state: server
-      - state: variant-research
-      - state: server_o
-        map: ["enum.WiresVisualLayers.MaintenancePanel"]
+    - state: icon
+    - state: unlit
+      shader: unshaded
+      map: ["enum.PowerDeviceVisualLayers.Powered"]
+    - state: panel
+      map: ["enum.WiresVisualLayers.MaintenancePanel"]
+    - type: GenericVisualizer
+      visuals:
+        enum.PowerDeviceVisuals.Powered:
+          enum.PowerDeviceVisualLayers.Powered:
+            True: { visible: true }
+            False: { visible: false }
   - type: ResearchServer
   - type: DiseaseServer
   - type: TechnologyDatabase # Ataraxia-EDIT
@@ -81,6 +90,9 @@
     - AlternativeResearchMachines
     - AbnormalArtifactManipulationMachines
     - MetempsychosisMachines # Backmen
+    - CircuitBoardAI # Cats
+    - Intellicard # Cats
+    - CustomLawCircuitBoard # Cats
 # <-- ROBOTICS -->
     - Robotics
     - CritterMech
@@ -99,6 +111,8 @@
 # <-- SECURITY -->
     - RiotControl
     - WarCrimes
+    - MilitaryGygax
+    - ModernCombatMechs
 # <-- ARMORY -->
     - AnomalyCoreHarnessing
     - DraconicAmmunition

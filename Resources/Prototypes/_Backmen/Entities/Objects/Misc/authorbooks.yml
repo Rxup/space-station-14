@@ -39,6 +39,32 @@
 
 - type: entity
   parent: BookBase
+  id: BookPaperworkP1
+  name: Paperwork
+  description: Another book from the pile about bureaucrats (part 1)
+  components:
+    - type: Sprite
+      sprite: Objects/Misc/books_backmen.rsi
+      layers:
+        - state: paperwork_1
+    - type: Paper
+      content: book-text-paperwork-p1
+
+- type: entity
+  parent: BookBase
+  id: BookPaperworkP2
+  name: Paperwork
+  description: Another book from the pile about bureaucrats (part 2)
+  components:
+    - type: Sprite
+      sprite: Objects/Misc/books_backmen.rsi
+      layers:
+        - state: paperwork_2
+    - type: Paper
+      content: book-text-paperwork-p2
+
+- type: entity
+  parent: BookBase
   id: BookToolboxes
   name: Битва на тулбоксах
   description: Откуда это?
@@ -153,3 +179,4 @@
         - state: paperwork_6
     - type: Paper
       content: book-text-paperwork-p6
+

@@ -1,50 +1,64 @@
-[<img src="https://imagizer.imageshack.com/img923/7392/pIWR7b.png" alt="ASF" width="989" align="center">](https://github.com/Rxup/space-station-14)
+<p align="center">
+  <img alt="Space Station 14" width="650" src="https://raw.githubusercontent.com/space-wizards/asset-dump/de329a7898bb716b9d5ba9a0cd07f38e61f1ed05/github-logo.svg" />
+</p>
+
+<h1 align="center">Space Station 14</h1>
+
+<div align="center">
+  
+  [![Discord](https://img.shields.io/discord/1203769510599856138?label=Join%20our%20Discord&logo=discord&logoColor=white&style=for-the-badge)](https://discord.gg/vYFHfrdQQC)
+  [![Wiki](https://img.shields.io/badge/Wiki-Explore%20Our%20Wiki-blue?style=for-the-badge)](https://wiki.backmen.ru/)
+  [![Steam](https://img.shields.io/badge/Steam-Play%20on%20Steam-blue?style=for-the-badge)](https://store.steampowered.com/app/1255460/Space_Station_14/)
+  [![Client](https://img.shields.io/badge/Download-Client-blue?style=for-the-badge)](https://spacestation14.io/about/nightlies/)
+  [![GitHub](https://img.shields.io/github/stars/fospas/space-cats-14?style=for-the-badge&logo=github)](https://github.com/fospas/Space-Cats-14)
+
+</div>
+
+<p align="center">
+  <img src="https://img.shields.io/github/commit-activity/y/fospas/space-cats-14?style=flat-square" alt="GitHub commit activity">
+  <img src="https://img.shields.io/github/issues/fospas/space-cats-14?style=flat-square" alt="GitHub Issues">
+  <img src="https://img.shields.io/github/issues-pr-closed/fospas/space-cats-14?style=flat-square" alt="GitHub Closed PRs">
+</p>
 
 ---
 
-Backmen&Ataraxia - это форк [Space Wizards](https://github.com/space-wizards/space-station-14), ориентирующийся на идеи [СтароTG](https://github.com/tgstation/tgstation) и [Shiptest](https://github.com/shiptest-ss13/Shiptest) из Space Station 13, включая в это свои собственные идеи.
+## О проекте
 
-Space Station 14 - это ремейк SS13, который работает на собственном движке [Robust Toolbox](https://github.com/space-wizards/Robust-Toolbox), написанном на C#.
+**Space Station 14** — это захватывающая ролевая игра, вдохновлённая культовой Space Station 13. Окунитесь в атмосферу космической станции, где каждое действие может привести к неожиданным последствиям. Наш проект предлагает уникальный геймплей, поддерживаемый сообществом, и стремится объединить лучших игроков и разработчиков в одном месте.
 
-## Ссылки
+Проект работает на движке [Robust Toolbox](https://github.com/space-wizards/RobustToolbox), написанном на C#.
 
-[<img src="https://i.imgur.com/XiS9QP5.png" alt="ASF" width="150" align="left">](https://github.com/AtaraxiaSpaceFoundation)
-**Ataraxia Space Foundation**<br>Специализируемся на разработке этого билда.
+---
 
-[<img src="https://i.imgur.com/xMzKtYK.png" alt="Discord" width="150" align="left">](https://discord.gg/ss-14-backmen-ru-1053200453829132298)
-**Discord Server**<br>В космосе вас никто не услышит.
+<p align="center">
+ <b>Активность проекта</b>
+</p>
+<p align="center">
+  <b>Следите за динамикой нашего проекта и вовлечённостью сообщества:</b>
+</p>
 
-[<img src="https://imagizer.imageshack.com/img922/4959/8KTh9r.png" alt="Wiki" width="150" align="left">](https://wiki.backmen.ru)
-**Wiki**<br>Что за блобы и с чем их едят?
+<div align="center">
 
-## Сборка
+![Активность PR](https://repobeats.axiom.co/api/embed/bfbb0130fb698817adaef33b649905a040ee3c43.svg "Repobeats analytics image")
 
-Следуйте гайду от [Space Wizards](https://docs.spacestation14.com/en/general-development/setup/setting-up-a-development-environment.html) по настройке рабочей среды, но учитывайте, что репозитории отличаются друг от друга и некоторые вещи могут отличаться.
-Ниже перечислены скрипты и методы облегчающие работу с билдом.
+</div>
 
-### Windows
+---
 
-> 1. Склонируйте данный репозиторий.
-> 2. Запустите `git submodule update --init --recursive` в командной строке, чтобы скачать движок игры.
-> 3. Запускайте `Scripts/bat/buildAllDebug.bat` после любых изменений в коде проекта.
-> 4. Запустите `Scripts/bat/runQuickAll.bat`, чтобы запустить клиент и сервер.
-> 5. Подключитесь к локальному серверу и играйте.
+## Участники проекта
 
-### Linux
+Проект невозможен без усилий всех участников. Вот те, кто внёс наибольший вклад:
 
-> 1. Склонируйте данный репозиторий.
-> 2. Запустите `git submodule update --init --recursive` в командной строке, чтобы скачать движок игры.
-> 3. Запускайте `Scripts/sh/buildAllDebug.sh` после любых изменений в коде проекта.
-> 4. Запустите `Scripts/sh/runQuickAll.sh`, чтобы запустить клиент и сервер.
-> 5. Подключитесь к локальному серверу и играйте.
-
-### MacOS
-
-> Предположительно, также, как и на Линуксе, сами разберётесь.
+[![Участники](https://contrib.rocks/image?repo=fospas/space-cats-14)](https://github.com/space-exodus/space-station-14/graphs/contributors)
 
 ---
 
 ## GptChat
+
+### chat.openai.com
+TODO
+
+### GigaChat
 
 ```toml
 [gpt]
@@ -54,11 +68,9 @@ model = "GigaChat"
 token = ""
 giga_token = "ВСТАВИТЬ СЮДА СЕКРЕТНЫЙ КЛЮЧ"
 ```
+[Получить секретный ключ тут](https://developers.sber.ru/portal/products/gigachat-api)
 
-[Токен](https://developers.sber.ru/portal/products/gigachat-api)
- запрашивается автоматически по секретному ключу и автоматически обновляется.
-
----
+токен запрашивается автоматически по секретному ключу и автоматически обновляется
 
 ## Лицензия
 
@@ -67,8 +79,3 @@ giga_token = "ВСТАВИТЬ СЮДА СЕКРЕТНЫЙ КЛЮЧ"
 
 Содержимое, добавленное в этот репозиторий до коммита 254687f3d1d1a02aa9dba61d7c114c73dc8e4754 (`17 June 2024 12:00:00 UTC`) распространяется по лицензии MIT, если не указано иное.
 См. [LICENSE-MIT](./LICENSE-MIT.TXT).
-
-Большинство ресурсов лицензировано под [CC-BY-SA 3.0](https://creativecommons.org/licenses/by-sa/3.0/), если не указано иное. Лицензия и авторские права на ресурсах указаны в файле метаданных.
-[Example](./Resources/Textures/Objects/Tools/crowbar.rsi/meta.json).
-
-Обратите внимание, что некоторые активы лицензированы под некоммерческой [CC-BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/) или аналогичной некоммерческой лицензией и должны быть удалены, если вы хотите использовать этот проект в коммерческих целях.

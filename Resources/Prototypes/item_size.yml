@@ -1,10 +1,18 @@
 # Items that can be held completely in one's hand.
 - type: itemSize
   id: Tiny
-  weight: 1
+  weight: 0
   name: item-component-size-Tiny
   defaultShape:
   - 0,0,0,0
+
+# kards
+- type: itemSize
+  id: SmallToo
+  weight: 1
+  name: item-component-size-Small
+  defaultShape:
+  - 0,0,0,1
 
 # Items that can fit inside of a standard pocket.
 - type: itemSize

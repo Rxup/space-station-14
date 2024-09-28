@@ -2,7 +2,7 @@
   name: 711-MarkCL Rivet Gun
   parent: BaseWeaponPistol
   id: WeaponPistolRivet
-  description: The 711-MarkCL Rivet Gun is the latest refinement from Timson Tools' long line of friendly tools. Useful for rapid repairs at a distance!
+  description: Заклепочный пистолет 711-MarkCL - это последнее усовершенствование в длинной линейке удобных инструментов Timson Tools. Пригодится для быстрого ремонта на расстоянии!
   components:
   - type: Sprite
     sprite: Backmen/Objects/Weapons/Gunsx64/Misc/rivet.rsi

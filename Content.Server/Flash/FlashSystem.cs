@@ -174,7 +174,7 @@ namespace Content.Server.Flash
                     continue;
 
                 // They shouldn't have flash removed in between right?
-                Flash(entity, user, source, duration, slowTo, displayPopup);
+                Flash(entity, user, source, duration, slowTo, displayPopup, melee: stun, stunDuration: TimeSpan.FromSeconds(stunDuration)); // cats stan-meta
             }
 
             _audio.PlayPvs(sound, source, AudioParams.Default.WithVolume(1f).WithMaxDistance(3f));

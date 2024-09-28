@@ -13,6 +13,7 @@
           state: icon
 
 - type: entity
+  categories: [ HideSpawnMenu, Spawner ]
   id: SpawnSpecforce
   categories: [ HideSpawnMenu ]
   abstract: true
@@ -28,6 +29,7 @@
           state: icon
 
 - type: entity
+  categories: [ HideSpawnMenu, Spawner ]
   id: SpawnMobHumanERTLeaderEVAV2_1
   parent: SpawnSpecforce
   categories: [ HideSpawnMenu ]
@@ -38,6 +40,7 @@
       prototype: MobHumanERTLeaderEVAV2_1
 
 - type: entity
+  categories: [ HideSpawnMenu, Spawner ]
   id: SpawnMobHumanERTSecurityEVAV2_1
   parent: SpawnSpecforce
   categories: [ HideSpawnMenu ]
@@ -48,6 +51,7 @@
       prototype: MobHumanERTSecurityEVAV2_1
 
 - type: entity
+  categories: [ HideSpawnMenu, Spawner ]
   id: SpawnMobHumanERTEngineerEVAV2_1
   parent: SpawnSpecforce
   categories: [ HideSpawnMenu ]
@@ -58,6 +62,7 @@
       prototype: MobHumanERTEngineerEVAV2_1
 
 - type: entity
+  categories: [ HideSpawnMenu, Spawner ]
   id: SpawnMobHumanERTJunitorEVAV2_1
   parent: SpawnSpecforce
   categories: [ HideSpawnMenu ]
@@ -68,6 +73,7 @@
       prototype: MobHumanERTJunitorEVAV2_1
 
 - type: entity
+  categories: [ HideSpawnMenu, Spawner ]
   id: SpawnMobHumanERTMedicalEVAV2_1
   parent: SpawnSpecforce
   categories: [ HideSpawnMenu ]
@@ -78,6 +84,7 @@
       prototype: MobHumanERTMedicalEVAV2_1
 
 - type: entity
+  categories: [ HideSpawnMenu, Spawner ]
   id: SpawnMobHumanSFOfficer
   parent: SpawnSpecforce
   categories: [ HideSpawnMenu ]
@@ -88,6 +95,7 @@
       prototype: MobHumanSFOfficer
 
 - type: entity
+  categories: [ HideSpawnMenu, Spawner ]
   id: SpawnMobHumanRXBZZ
   parent: SpawnSpecforce
   categories: [ HideSpawnMenu ]
@@ -98,6 +106,7 @@
       prototype: MobHumanRXBZZ
 
 - type: entity
+  categories: [ HideSpawnMenu, Spawner ]
   id: SpawnMobHumanRXBZZLeader
   parent: SpawnSpecforce
   categories: [ HideSpawnMenu ]
@@ -108,6 +117,7 @@
       prototype: MobHumanRXBZZLeader
 
 - type: entity
+  categories: [ HideSpawnMenu, Spawner ]
   id: SpawnMobHumanRXBZZBlobLeader
   parent: SpawnSpecforce
   categories: [ HideSpawnMenu ]
@@ -118,6 +128,7 @@
       prototype: MobHumanRXBZZBlobLeader
 
 - type: entity
+  categories: [ HideSpawnMenu, Spawner ]
   id: SpawnMobHumanRXBZZFlamer
   parent: SpawnSpecforce
   categories: [ HideSpawnMenu ]
@@ -128,6 +139,7 @@
       prototype: MobHumanRXBZZFlamer
 
 - type: entity
+  categories: [ HideSpawnMenu, Spawner ]
   id: SpawnMobHumanRXBZZMedic
   parent: SpawnSpecforce
   categories: [ HideSpawnMenu ]
@@ -138,6 +150,7 @@
       prototype: MobHumanRXBZZMedic
 
 - type: entity
+  categories: [ HideSpawnMenu, Spawner ]
   id: SpawnMobHumanERTOperativeAlpha1
   parent: SpawnSpecforce
   categories: [ HideSpawnMenu ]
@@ -148,6 +161,7 @@
       prototype: MobHumanERTOperativeAlpha1
 
 - type: entity
+  categories: [ HideSpawnMenu, Spawner ]
   id: SpawnMobHumanERTLeaderAlpha1
   parent: SpawnSpecforce
   categories: [ HideSpawnMenu ]
@@ -158,6 +172,7 @@
       prototype: MobHumanERTLeaderAlpha1
 
 - type: entity
+  categories: [ HideSpawnMenu, Spawner ]
   id: SpawnMobHumanSpecialReAgentCOM
   parent: SpawnSpecforce
   categories: [ HideSpawnMenu ]
@@ -168,6 +183,7 @@
       prototype: MobHumanSpecialReAgentCOM
 
 - type: entity
+  categories: [ HideSpawnMenu, Spawner ]
   id: SpawnMobHumanSpecialReAgent
   parent: SpawnSpecforce
   categories: [ HideSpawnMenu ]
@@ -178,6 +194,7 @@
       prototype: MobHumanSpecialReAgent
 
 - type: entity
+  categories: [ HideSpawnMenu, Spawner ]
   id: SpawnMobHumanERTLeaderEpsilon
   parent: SpawnSpecforce
   categories: [ HideSpawnMenu ]
@@ -188,6 +205,7 @@
       prototype: MobHumanERTLeaderReadyV3
 
 - type: entity
+  categories: [ HideSpawnMenu, Spawner ]
   id: SpawnMobHumanERTSecurityEpsilon
   parent: SpawnSpecforce
   categories: [ HideSpawnMenu ]
@@ -198,6 +216,7 @@
       prototype: MobHumanERTSecurityReadyV3
 
 - type: entity
+  categories: [ HideSpawnMenu, Spawner ]
   id: SpawnMobHumanERTEngineerEpsilon
   parent: SpawnSpecforce
   categories: [ HideSpawnMenu ]
@@ -208,6 +227,7 @@
       prototype: MobHumanERTEngineerReadyV3
 
 - type: entity
+  categories: [ HideSpawnMenu, Spawner ]
   id: SpawnMobHumanERTJanitorEpsilon
   parent: SpawnSpecforce
   categories: [ HideSpawnMenu ]
@@ -218,6 +238,7 @@
       prototype: MobHumanERTJunitorEggV3
 
 - type: entity
+  categories: [ HideSpawnMenu, Spawner ]
   id: SpawnMobHumanERTMedicalEpsilon
   parent: SpawnSpecforce
   categories: [ HideSpawnMenu ]
@@ -228,6 +249,7 @@
       prototype: MobHumanERTMedicalReadyV3
 
 - type: entity
+  categories: [ HideSpawnMenu, Spawner ]
   id: SpawnMobHumanERTLeaderTay39
   parent: SpawnSpecforce
   categories: [ HideSpawnMenu ]
@@ -238,6 +260,7 @@
       prototype: MobHumanERTLeaderTay39
 
 - type: entity
+  categories: [ HideSpawnMenu, Spawner ]
   id: SpawnMobHumanERTMedicTay39
   parent: SpawnSpecforce
   categories: [ HideSpawnMenu ]
@@ -248,6 +271,7 @@
       prototype: MobHumanERTMedicTay39
 
 - type: entity
+  categories: [ HideSpawnMenu, Spawner ]
   id: SpawnMobHumanERTSecurityTay39
   parent: SpawnSpecforce
   categories: [ HideSpawnMenu ]
