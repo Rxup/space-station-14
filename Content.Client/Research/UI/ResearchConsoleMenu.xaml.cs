@@ -48,7 +48,6 @@ public sealed partial class ResearchConsoleMenu : FancyWindow
         Entity = entity;
     }
 
-    // ATARAXIA-EDIT START
     public void UpdatePanels(ResearchConsoleBoundInterfaceState state)
     {
         TechnologyCardsContainer.Children.Clear();
@@ -59,37 +58,85 @@ public sealed partial class ResearchConsoleMenu : FancyWindow
         if (!_entity.TryGetComponent(Entity, out TechnologyDatabaseComponent? database))
             return;
 
+        // i can't figure out the spacing so here you go
+        TechnologyCardsContainer.AddChild(new Control
+        {
+            MinHeight = 10
+        });
+
         var hasAccess = _player.LocalEntity is not { } local ||
                         !_entity.TryGetComponent<AccessReaderComponent>(Entity, out var access) ||
                         _accessReader.IsAllowed(local, Entity, access);
-
-        var techList = database.CurrentTechnologyCards.ToList();
-
-        for (int i = 0; i < techList.Count; i++)
+        foreach (var techId in database.CurrentTechnologyCards)
         {
-            var tech = _prototype.Index<TechnologyPrototype>(techList[i]);
-            var cardControl = new TechnologyCardControl(tech, _prototype, _sprite,
-                _research.GetTechnologyDescription(tech, includeTier: false),
-                state.Points, hasAccess);
-
-            var currentIndex = techList[i];
-
-            cardControl.OnPressed += () => OnTechnologyCardPressed?.Invoke(currentIndex);
-
-            if (i % 2 == 0)
-            {
-                var rowContainer = new BoxContainer { Orientation = BoxContainer.LayoutOrientation.Horizontal };
-                TechnologyCardsContainer.AddChild(rowContainer);
-                rowContainer.AddChild(cardControl);
-            }
-            else
-            {
-                (TechnologyCardsContainer.Children.Last() as BoxContainer)?.AddChild(cardControl);
-            }
+            var tech = _prototype.Index<TechnologyPrototype>(techId);
+            var cardControl = new TechnologyCardControl(tech, _prototype, _sprite, _research.GetTechnologyDescription(tech, includeTier: false), state.Points, hasAccess);
+            cardControl.OnPressed += () => OnTechnologyCardPressed?.Invoke(techId);
+            TechnologyCardsContainer.AddChild(cardControl);
         }
 
         var unlockedTech = database.UnlockedTechnologies.Select(x => _prototype.Index<TechnologyPrototype>(x));
         SyncTechnologyList(UnlockedCardsContainer, unlockedTech);
+    }
+
+    public void UpdateInformationPanel(ResearchConsoleBoundInterfaceState state)
+    {
+        var amountMsg = new FormattedMessage();
+        amountMsg.AddMarkupOrThrow(Loc.GetString("research-console-menu-research-points-text",
+            ("points", state.Points)));
+        ResearchAmountLabel.SetMessage(amountMsg);
+
+        if (!_entity.TryGetComponent(Entity, out TechnologyDatabaseComponent? database))
+            return;
+
+        var disciplineText = Loc.GetString("research-discipline-none");
+        var disciplineColor = Color.Gray;
+        if (database.MainDiscipline != null)
+        {
+            var discipline = _prototype.Index<TechDisciplinePrototype>(database.MainDiscipline);
+            disciplineText = Loc.GetString(discipline.Name);
+            disciplineColor = discipline.Color;
+        }
+
+        var msg = new FormattedMessage();
+        msg.AddMarkupOrThrow(Loc.GetString("research-console-menu-main-discipline",
+            ("name", disciplineText), ("color", disciplineColor)));
+        MainDisciplineLabel.SetMessage(msg);
+
+        TierDisplayContainer.Children.Clear();
+        foreach (var disciplineId in database.SupportedDisciplines)
+        {
+            var discipline = _prototype.Index<TechDisciplinePrototype>(disciplineId);
+            var tier = _research.GetHighestDisciplineTier(database, discipline);
+
+            // don't show tiers with no available tech
+            if (tier == 0)
+                continue;
+
+            // i'm building the small-ass control here to spare me some mild annoyance in making a new file
+            var texture = new TextureRect
+            {
+                TextureScale = new Vector2( 2, 2 ),
+                VerticalAlignment = VAlignment.Center
+            };
+            var label = new RichTextLabel();
+            texture.Texture = _sprite.Frame0(discipline.Icon);
+            label.SetMessage(Loc.GetString("research-console-tier-info-small", ("tier", tier)));
+
+            var control = new BoxContainer
+            {
+                Children =
+                {
+                    texture,
+                    label,
+                    new Control
+                    {
+                        MinWidth = 10
+                    }
+                }
+            };
+            TierDisplayContainer.AddChild(control);
+        }
     }
 
     /// <summary>
@@ -98,25 +145,15 @@ public sealed partial class ResearchConsoleMenu : FancyWindow
     /// </summary>
     /// <param name="container">The container which contains the UI cards</param>
     /// <param name="technologies">The current set of technologies for which there should be cards</param>
-    public void UpdateInformationPanel(ResearchConsoleBoundInterfaceState state)
-    {
-        var amountMsg = new FormattedMessage();
-        amountMsg.AddMarkup(Loc.GetString("research-console-menu-research-points-text", ("points", state.Points)));
-        ResearchAmountLabel.SetMessage(amountMsg);
-
-        if (!_entity.TryGetComponent(Entity, out TechnologyDatabaseComponent? database))
-            return;
-    }
-
     private void SyncTechnologyList(BoxContainer container, IEnumerable<TechnologyPrototype> technologies)
     {
         // For the cards which already exist, build a map from technology prototype to the UI card
         var currentTechControls = new Dictionary<TechnologyPrototype, Control>();
         foreach (var child in container.Children)
         {
-            if (child is MiniTechnologyCardControl miniCard)
+            if (child is MiniTechnologyCardControl)
             {
-                currentTechControls.Add(miniCard.Technology, child);
+                currentTechControls.Add((child as MiniTechnologyCardControl)!.Technology, child);
             }
         }
 
@@ -141,5 +178,6 @@ public sealed partial class ResearchConsoleMenu : FancyWindow
         {
             container.Children.Remove(techControl);
         }
-    }    // ATARAXIA-EDIT END
+    }
 }
+
