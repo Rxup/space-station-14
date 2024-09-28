@@ -280,12 +280,10 @@
     rules: Выполняйте различные приказы, ваша задача будет варьироваться от задач центрального командования.
   - type: InnateTool
     tools:
-      - id: WeaponLightMachineGunL69000
       - id: WeaponShotgunEnforcer9000
       - id: WeaponXrayCannon9000
       - id: SyndicateJawsOfLife
       - id: WeaponLauncherMultipleRocket9000
-      - id: WeaponLightMachineGunL69000
   - type: Sprite
     drawdepth: Mobs
     netsync: false
@@ -491,7 +489,6 @@
       - id: JawsOfLife
       - id: DedSquadronGavnaIDCardMarauder
       - id: WeaponLauncherMultipleRocket9000
-      - id: WeaponAS2Ultra9000
   - type: Sprite
     drawdepth: Mobs
     netsync: false
