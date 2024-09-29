@@ -10,6 +10,7 @@ using Robust.Shared.Audio.Systems;
 using Robust.Shared.Configuration;
 using Robust.Shared.Physics;
 using Robust.Shared.Physics.Systems;
+using Robust.Shared.Player;
 
 namespace Content.Shared.Standing;
 
@@ -72,7 +73,7 @@ public sealed class StandingStateSystem : EntitySystem
 
         // Raising this event will lower the entity's draw depth to the same as a small mob.
         if (_config.GetCVar(CCVars.CrawlUnderTables))
-            RaiseNetworkEvent(new DrawDownedEvent(GetNetEntity(uid)));
+            RaiseNetworkEvent(new DrawDownedEvent(GetNetEntity(uid)), Filter.Pvs(uid));
 
         // Seemed like the best place to put it
         _appearance.SetData(uid, RotationVisuals.RotationState, RotationState.Horizontal, appearance);

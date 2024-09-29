@@ -1,6 +1,7 @@
 using Content.Shared.Backmen.CCVar;
 using Content.Shared.Backmen.Standing;
 using Content.Shared.Rotation;
+using Content.Shared.Standing;
 using Robust.Shared.Configuration;
 using Robust.Shared.Player;
 
@@ -16,6 +17,13 @@ public sealed class LayingDownSystem : SharedLayingDownSystem // WD EDIT
         base.Initialize();
 
         //SubscribeNetworkEvent<CheckAutoGetUpEvent>(OnCheckAutoGetUp);
+        SubscribeLocalEvent<LayingDownComponent, StoodEvent>(OnStoodEvent);
+    }
+
+    private void OnStoodEvent(Entity<LayingDownComponent> ent, ref StoodEvent args)
+    {
+        if (_cfg.GetCVar(CCVars.CrawlUnderTables))
+            RaiseNetworkEvent(new DrawUpEvent(GetNetEntity(ent)), Filter.Pvs(ent).RemovePlayerByAttachedEntity(ent));
     }
 
     public override void AutoGetUp(Entity<LayingDownComponent> ent)
