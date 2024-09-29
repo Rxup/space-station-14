@@ -1,0 +1,105 @@
+# Security
+- type: entity
+  id: WeaponRackSecurity
+  parent: WeaponRackBase
+  suffix: Security
+  components:
+  - type: Sprite
+    sprite: _SpaceCats/Structures/Furniture/Armory/gun_racks.rsi
+    layers:
+    - state: base_generic_gunrack
+    - state: locked
+      map: ["enum.LockVisualLayers.Lock"]
+      shader: unshaded
+  - type: AccessReader
+    access: [["Armory"]]
+  - type: Lock
+    locked: true
+
+- type: entity
+  id: WeaponRackWallmountedSecurity
+  parent: WeaponRackWallmountedBase
+  suffix: Security, Wallmount
+  components:
+  - type: Sprite
+    drawdepth: WallMountedItems
+    sprite: _SpaceCats/Structures/Furniture/Armory/gun_racks.rsi
+    layers:
+    - state: base_generic_gunrack_wallmounted
+    - state: locked
+      map: ["enum.LockVisualLayers.Lock"]
+      shader: unshaded
+  - type: AccessReader
+    access: [["Armory"]]
+  - type: Lock
+    locked: true
+
+- type: entity
+  id: WeaponRackMeleeSecurity
+  parent: WeaponRackMeleeBase
+  suffix: Security
+  components:
+  - type: Sprite
+    sprite: _SpaceCats/Structures/Furniture/Armory/melee_weapon_racks.rsi
+    layers:
+    - state: base_generic_meleerack
+    - state: locked
+      map: ["enum.LockVisualLayers.Lock"]
+      shader: unshaded
+  - type: AccessReader
+    access: [["Armory"]]
+  - type: Lock
+    locked: true
+
+- type: entity
+  id: WeaponRackMeleeWallmountedSecurity
+  parent: WeaponRackMeleeWallmountedBase
+  suffix: Security, Wallmount
+  components:
+  - type: Sprite
+    drawdepth: WallMountedItems
+    sprite: _SpaceCats/Structures/Furniture/Armory/melee_weapon_racks.rsi
+    layers:
+    - state: base_generic_meleerack_wallmounted
+    - state: locked
+      map: ["enum.LockVisualLayers.Lock"]
+      shader: unshaded
+  - type: AccessReader
+    access: [["Armory"]]
+  - type: Lock
+    locked: true
+
+- type: entity
+  id: WeaponRackPistolBaseSecurity
+  parent: WeaponRackPistolBase
+  suffix: Security
+  components:
+  - type: Sprite
+    sprite: _SpaceCats/Structures/Furniture/Armory/pistol_racks.rsi
+    layers:
+    - state: base_generic_pistolrack
+    - state: locked
+      map: ["enum.LockVisualLayers.Lock"]
+      shader: unshaded
+  - type: AccessReader
+    access: [["Armory"]]
+  - type: Lock
+    locked: true
+
+- type: entity
+  id: WeaponRackPistolWallmountedSecurity
+  parent: WeaponRackPistolWallmountedBase
+  suffix: Security, Wallmount
+  components:
+  - type: Sprite
+    drawdepth: WallMountedItems
+    sprite: _SpaceCats/Structures/Furniture/Armory/pistol_racks.rsi
+    layers:
+    - state: base_generic_pistolrack_wallmounted
+    - state: locked
+      map: ["enum.LockVisualLayers.Lock"]
+      shader: unshaded
+  - type: AccessReader
+    access: [["Armory"]]
+  - type: Lock
+    locked: true

@@ -1,0 +1,38 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "Taken from tgstation at https://github.com/tgstation/tgstation/blob/6323ee68d9c893bd096b17a86470695038826143/icons/obj/service/hydroponics/growing_vegetables.dmi",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "stage-1"
+    },
+    {
+	    "name": "produce"
+    },
+    {
+	    "name": "seed"
+	  },
+    {
+      "name": "stage-2"
+    },
+    {
+      "name": "stage-3"
+    },
+    {
+      "name": "stage-4"
+    },
+    {
+      "name": "stage-5"
+    },
+    {
+      "name": "harvest"
+    },
+    {
+      "name": "dead"
+    }
+  ]
+}

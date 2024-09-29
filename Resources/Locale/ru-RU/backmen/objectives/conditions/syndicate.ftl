@@ -33,4 +33,4 @@ issuer-Waffle-Corporation = [color=Brown]Waffle Corporation[/color]
       Убивайте остальных агентов синдиката. Кроме агентов MI13.
 objective-issuer-Waffle-Corporation = [color=Brown]Waffle Corporation[/color]
 
-objective-issuer-vamp = Совет Вампиров
+objective-issuer-vamp = objective-issuer-vamp

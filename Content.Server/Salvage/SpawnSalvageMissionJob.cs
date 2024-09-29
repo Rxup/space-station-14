@@ -33,6 +33,8 @@ using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Timing;
 using Robust.Shared.Utility;
+using Content.Shared.Light.Components;
+using Robust.Shared.Configuration;
 using Content.Server.Shuttles.Components;
 
 namespace Content.Server.Salvage;
@@ -41,6 +43,7 @@ public sealed class SpawnSalvageMissionJob : Job<bool>
 {
     private readonly IEntityManager _entManager;
     private readonly IGameTiming _timing;
+    private readonly IConfigurationManager _configurationManager;
     private readonly IMapManager _mapManager;
     private readonly IPrototypeManager _prototypeManager;
     private readonly AnchorableSystem _anchorable;
@@ -60,6 +63,7 @@ public sealed class SpawnSalvageMissionJob : Job<bool>
         double maxTime,
         IEntityManager entManager,
         IGameTiming timing,
+        IConfigurationManager configurationManager,
         ILogManager logManager,
         IMapManager mapManager,
         IPrototypeManager protoManager,
@@ -76,6 +80,7 @@ public sealed class SpawnSalvageMissionJob : Job<bool>
     {
         _entManager = entManager;
         _timing = timing;
+        _configurationManager = configurationManager;
         _mapManager = mapManager;
         _prototypeManager = protoManager;
         _anchorable = anchorable;
@@ -149,9 +154,20 @@ public sealed class SpawnSalvageMissionJob : Job<bool>
 
             if (mission.Color != null)
             {
+
+                // Add dynamic light to the map.
+
+                var cycle = _entManager.EnsureComponent<LightCycleComponent>(mapUid);
+                cycle.InitialTime = (int) ((mission.InitialHour / 24) * cycle.CycleDuration);
+                cycle.MinLightLevel = mission.MinLight;
+                cycle.ClipLight = mission.MaxLight;
+                _entManager.Dirty(mapUid, cycle, metadata);
+
                 var lighting = _entManager.EnsureComponent<MapLightComponent>(mapUid);
                 lighting.AmbientLightColor = mission.Color.Value;
                 _entManager.Dirty(mapUid, lighting);
+
+                Console.WriteLine(mapUid);
             }
         }
 

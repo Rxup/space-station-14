@@ -13,6 +13,8 @@
     damage:
       types:
         Blunt: 7
+  - type: DropOnSlip
+    chance: 30
 
 - type: entity
   parent: ClothingEyesBase

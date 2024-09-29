@@ -2,6 +2,7 @@
   id: ResearchDirector
   name: job-name-rd
   description: job-description-rd
+  color: "#D381C9"
   playTimeTracker: JobResearchDirector
   requirements:
     - !type:DepartmentTimeRequirement
@@ -10,7 +11,7 @@
 #    - !type:OverallPlaytimeRequirement
 #      time: 144000 #40 hrs
     - !type:AgeRequirement
-      requiredAge: 21
+      requiredAge: 21 # cats
   weight: 10
   startingGear: ResearchDirectorGear
   icon: "JobIconResearchDirector"
@@ -28,7 +29,7 @@
   minBankBalance: 400
   maxBankBalance: 600
   wageDepartment: Command
-  wage: 100
+  wage: 150
   #end-backmen: currency
   special:
   - !type:AddComponentSpecial

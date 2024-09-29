@@ -1,4 +1,5 @@
-﻿using System.Text;
+﻿using System.Linq;
+using System.Text;
 using Content.Server.Administration.Managers;
 using Content.Server.Afk;
 using Content.Shared.Administration;
@@ -29,13 +30,10 @@ public sealed class AdminWhoCommand : IConsoleCommand
             seeStealth = playerData != null && playerData.CanStealth();
         }
 
-        var sb = new StringBuilder();
-        var first = true;
+        var adminList = new List<string>();
         foreach (var admin in adminMgr.ActiveAdmins)
         {
-            if (!first)
-                sb.Append('\n');
-            first = false;
+           var sb = new StringBuilder(); 
 
             var adminData = adminMgr.GetAdminData(admin)!;
             DebugTools.AssertNotNull(adminData);
@@ -55,8 +53,10 @@ public sealed class AdminWhoCommand : IConsoleCommand
                 if (afk.IsAfk(admin))
                     sb.Append(" [AFK]");
             }
+
+            adminList.Add(sb.ToString());
         }
 
-        shell.WriteLine(sb.ToString());
+        shell.WriteLine(string.Join(Environment.NewLine, adminList));
     }
 }

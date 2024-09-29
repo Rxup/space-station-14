@@ -2,7 +2,7 @@
   name: shinai
   parent: BaseItem
   id: Shinai
-  description: A bamboo sword, commonly used in kendo. Made some time after the realization that wooden swords hurt a lot.
+  description: Бамбуковый меч, обычно используемый в кендо. Создан спустя некоторое время после осознания того, что деревянные мечи причиняют много боли.
   components:
   - type: Sprite
     sprite: Backmen/Objects/Weapons/Melee/shinai.rsi

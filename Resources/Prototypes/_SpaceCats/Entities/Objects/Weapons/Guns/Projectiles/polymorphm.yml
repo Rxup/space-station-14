@@ -1,0 +1,36 @@
+- type: polymorph
+  id: WizardForcedMoth
+  configuration:
+    entity: MobMoth
+    forced: true
+    inventory: Transfer
+    transferName: true
+    transferDamage: true
+    revertOnCrit: false
+    revertOnDeath: false
+
+- type: entity
+  id: ProjectilePolyboltMoth
+  parent: ProjectilePolyboltBase
+  name: Гены Нианов
+  description: Nooo, I don't wanna be Moth!
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: PolymorphOnCollide
+    polymorph: WizardForcedMoth
+    whitelist:
+      components:
+      - Body
+
+- type: entity
+  name: волшебная палочка полиморфа ниана!
+  parent: WeaponWandPolymorphBase
+  id: WeaponWandPolymorphMoth
+  description: На случай, когда вам срочно нужен крылья, а клоун выглядит как мотылёк!
+  components:
+  - type: BasicEntityAmmoProvider
+    proto: ProjectilePolyboltMoth
+    capacity: 1
+    count: 1
+
+
