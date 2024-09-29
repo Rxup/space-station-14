@@ -11,6 +11,7 @@ public sealed class LayingDownSystem : SharedLayingDownSystem // WD EDIT
 {
     [Dependency] private readonly INetConfigurationManager _cfg = default!;
     [Dependency] private readonly SharedTransformSystem _transform = default!;
+    [Dependency] private readonly IConfigurationManager _config = default!;
 
     public override void Initialize()
     {
@@ -18,11 +19,24 @@ public sealed class LayingDownSystem : SharedLayingDownSystem // WD EDIT
 
         //SubscribeNetworkEvent<CheckAutoGetUpEvent>(OnCheckAutoGetUp);
         SubscribeLocalEvent<LayingDownComponent, StoodEvent>(OnStoodEvent);
+        SubscribeLocalEvent<LayingDownComponent, DownedEvent>(OnDownedEvent);
+
+        Subs.CVar(_config, CCVars.CrawlUnderTables, b => _crawlUnderTables = b, true);
+
+    }
+
+    private bool _crawlUnderTables = false;
+
+    private void OnDownedEvent(Entity<LayingDownComponent> ent, ref DownedEvent args)
+    {
+        // Raising this event will lower the entity's draw depth to the same as a small mob.
+        if (_crawlUnderTables)
+            RaiseNetworkEvent(new DrawDownedEvent(GetNetEntity(ent)), Filter.Pvs(ent));
     }
 
     private void OnStoodEvent(Entity<LayingDownComponent> ent, ref StoodEvent args)
     {
-        if (_cfg.GetCVar(CCVars.CrawlUnderTables))
+        if (_crawlUnderTables)
             RaiseNetworkEvent(new DrawUpEvent(GetNetEntity(ent)), Filter.Pvs(ent).RemovePlayerByAttachedEntity(ent));
     }
 
