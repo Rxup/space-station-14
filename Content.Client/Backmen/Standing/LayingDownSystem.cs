@@ -27,6 +27,7 @@ public sealed class LayingDownSystem : SharedLayingDownSystem
 
         SubscribeLocalEvent<LayingDownComponent, MoveEvent>(OnMovementInput);
         SubscribeNetworkEvent<DrawDownedEvent>(OnDowned);
+        SubscribeNetworkEvent<DrawUpEvent>(OnUp);
         SubscribeLocalEvent<LayingDownComponent, StoodEvent>(OnStood);
 
         _cfg.OnValueChanged(CCVars.AutoGetUp, b => _autoGetUp = b, true);
@@ -34,9 +35,23 @@ public sealed class LayingDownSystem : SharedLayingDownSystem
         //SubscribeNetworkEvent<CheckAutoGetUpEvent>(OnCheckAutoGetUp);
     }
 
+    private void OnUp(DrawUpEvent args)
+    {
+        if(!TryGetEntity(args.Uid, out var uid))
+            return;
+
+        if (!TryComp<SpriteComponent>(uid, out var sprite)
+            || !TryComp<LayingDownComponent>(uid, out var component)
+            || !component.OriginalDrawDepth.HasValue)
+            return;
+
+        sprite.DrawDepth = component.OriginalDrawDepth.Value;
+    }
+
     private void OnDowned(DrawDownedEvent args)
     {
-        var uid = GetEntity(args.Uid);
+        if(!TryGetEntity(args.Uid, out var uid))
+            return;
 
         if (!TryComp<SpriteComponent>(uid, out var sprite)
             || !TryComp<LayingDownComponent>(uid, out var component))

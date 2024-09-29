@@ -30,3 +30,8 @@ public sealed class DrawDownedEvent(NetEntity uid) : EntityEventArgs
 {
     public NetEntity Uid = uid;
 }
+[Serializable, NetSerializable]
+public sealed class DrawUpEvent(NetEntity uid) : EntityEventArgs
+{
+    public NetEntity Uid = uid;
+}
