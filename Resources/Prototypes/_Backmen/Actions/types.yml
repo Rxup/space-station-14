@@ -55,8 +55,8 @@
 
 - type: entity
   id: ActionPsionicInvisibilityNars
-  name: action-name-psionic-invisibility-nars
-  description: action-description-psionic-invisibility-nars
+  name: action-name-psionic-invisibility
+  description: action-description-psionic-invisibility
   components:
   - type: InstantAction
     useDelay: 30
