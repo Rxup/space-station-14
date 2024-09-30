@@ -166,6 +166,13 @@
         disableEject: true
   - type: Inventory
     templateId: Synth
+  - type: Respirator
+    damage:
+      types:
+        Asphyxiation: 2.0
+    damageRecovery:
+      types:
+        Asphyxiation: -1.0
 
 - type: entity
   parent: BaseSpeciesDummy

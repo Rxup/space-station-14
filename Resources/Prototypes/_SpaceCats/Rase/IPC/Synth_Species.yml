@@ -4,7 +4,6 @@
   roundStart: true
   prototype: MobSynth
   sprites: MobSynthSprites
-  sponsorOnly: true # cats
   markingLimits: MobSynthMarkingLimits
   dollPrototype: MobSynthDummy
   skinColoration: Hues
