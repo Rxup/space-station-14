@@ -97,7 +97,7 @@
     thresholds:
     - trigger:
         !type:DamageTrigger
-        damage: 1000
+        damage: 500
       behaviors:
       - !type:GibBehavior { }
       - !type:PlaySoundBehavior
@@ -117,7 +117,6 @@
       Unsexed: SynthEmote
   - type: FireVisuals
     alternateState: Standing
-  - type: FlashImmunity
   - type: FootstepModifier
     footstepSoundCollection:
       collection: SynthStepCollection
@@ -168,8 +167,6 @@
     heatDamageThreshold: 423
     coldDamageThreshold: 0
   - type: PressureImmunity
-  - type: Respirator #It just works?
-    minSaturation: 5.0
 
 - type: entity
   parent: BaseSpeciesDummy
