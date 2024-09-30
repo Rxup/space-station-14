@@ -132,8 +132,6 @@
         Blunt: -10
         Slash: -10
         Piercing: -10
-        Heat: -10
-        Shock: -10
     allowSelfRepair: true
   - type: IntrinsicRadioReceiver
   - type: IntrinsicRadioTransmitter
