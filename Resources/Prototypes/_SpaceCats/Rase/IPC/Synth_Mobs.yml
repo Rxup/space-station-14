@@ -135,6 +135,7 @@
         Heat: -10
         Shock: -10
     allowSelfRepair: true
+  - type: IntrinsicRadioReceiver
   - type: IntrinsicRadioTransmitter
     channels:
       - Trio
