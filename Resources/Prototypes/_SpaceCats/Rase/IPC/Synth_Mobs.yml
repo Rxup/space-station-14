@@ -1,7 +1,7 @@
 #Троичный
 - type: radioChannel
   id: Trio
-  name: Троичный
+  name: radio-channel-synth
   keycode: '+'
   frequency: 123
   color: "#4df9ef"
@@ -148,10 +148,6 @@
     damageProtection:
       flatReductions:
         Heat: 10
-  - type: ItemToggle
-    activated: true
-    onUse: true
-    toggleLight: true
   - type: AccessToggle
   - type: PowerCellDraw
     drawRate: 0.6
@@ -176,7 +172,7 @@
 - type: entity
   parent: BaseSpeciesDummy
   id: MobSynthDummy
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
     - type: HumanoidAppearance
       species: Synth
