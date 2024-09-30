@@ -126,7 +126,7 @@
   - type: TypingIndicator
     proto: robot
   - type: Repairable
-    doAfterDelay: 5
+    doAfterDelay: 13
     damage:
       types:
         Blunt: -10
