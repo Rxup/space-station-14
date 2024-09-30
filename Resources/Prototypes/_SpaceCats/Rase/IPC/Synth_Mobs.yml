@@ -1,12 +1,3 @@
-#Троичный
-- type: radioChannel
-  id: Trio
-  name: radio-channel-synth
-  keycode: '+'
-  frequency: 123
-  color: "#4df9ef"
-  longRange: true
-
 #Смерть
 - type: emote
   id: SynthDeathgasp
@@ -152,10 +143,10 @@
   - type: IntrinsicRadioReceiver
   - type: IntrinsicRadioTransmitter
     channels:
-      - Trio
+      - Binary
   - type: ActiveRadio
     channels:
-      - Trio
+      - Binary
   - type: DamageOnInteractProtection
     damageProtection:
       flatReductions:
