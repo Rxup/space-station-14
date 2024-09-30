@@ -54,16 +54,6 @@
       event: !type:PsionicInvisibilityPowerActionEvent
 
 - type: entity
-  id: ActionPsionicInvisibilityNars
-  name: action-name-psionic-invisibility
-  description: action-description-psionic-invisibility
-  components:
-  - type: InstantAction
-    useDelay: 30
-    icon: Backmen/Interface/VerbIcons/psionic_invisibility.png
-    event: !type:PsionicInvisibilityPowerActionEvent
-
-- type: entity
   id: ActionPsionicInvisibilityOff
   name: action-description-psionic-invisibility-off
   description: action-description-psionic-invisibility

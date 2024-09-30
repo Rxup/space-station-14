@@ -196,7 +196,6 @@
     - type: MindSwapPower
     - type: NoosphericZapPower
     - type: PsionicInvisibilityPower
-      actionPsionicInvisibility: ActionPsionicInvisibilityNars
       stunSecond: 0
     - type: PsionicRegenerationPower
     - type: PyrokinesisPower
