@@ -32,6 +32,9 @@
   - type: MovementSpeedModifier
     baseSprintSpeed: 4
     baseWalkSpeed : 2
+  - type: FlashImmunity
+  - type: SolutionScanner
+  - type: EyeProtection
   - type: ActionGrant
     actions:
     - ActionShowJobIcons
