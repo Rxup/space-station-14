@@ -1,9 +1,10 @@
 - type: species
   id: Synth
   name: КПБ
-  roundStart: false
+  roundStart: true
   prototype: MobSynth
   sprites: MobSynthSprites
+  sponsorOnly: true # cats
   markingLimits: MobSynthMarkingLimits
   dollPrototype: MobSynthDummy
   skinColoration: Hues
