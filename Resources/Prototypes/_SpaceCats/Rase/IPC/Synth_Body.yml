@@ -28,10 +28,10 @@
   - type: IntrinsicRadioReceiver
   - type: IntrinsicRadioTransmitter
     channels:
-      - Trio
+      - Binary
   - type: ActiveRadio
     channels:
-      - Trio
+      - Binary
 
 
 #Тело КПБ

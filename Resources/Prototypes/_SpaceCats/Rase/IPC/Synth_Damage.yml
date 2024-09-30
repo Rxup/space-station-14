@@ -9,9 +9,13 @@
 - type: damageModifierSet
   id: Synth
   coefficients:
-    Blunt: 0.93
-    Slash: 0.93
-    Piercing: 0.93
-    Heat: 0.93
-    Shock: 1.3
+    Blunt: 0.40 # на 40% меньше урона
+    Slash: 0.40 # на 40% меньше урона
+    Piercing: 0.40 # на 40% меньше урона
+    Heat: 1.4 # на 40% больше урона
+    Shock: 1.4 # на 40% больше урона
+    # полный иммунитет к урону ниже.
     Cold: 0.0
+    Caustic: 0.0
+    Poison: 0.0
+    Cellular: 0.0
