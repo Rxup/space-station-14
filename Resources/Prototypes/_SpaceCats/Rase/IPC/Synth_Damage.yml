@@ -1,0 +1,17 @@
+- type: damageContainer
+  id: Synth
+  supportedGroups:
+  - Brute
+  supportedTypes:
+  - Heat
+  - Shock
+
+- type: damageModifierSet
+  id: Synth
+  coefficients:
+    Blunt: 0.93
+    Slash: 0.93
+    Piercing: 0.93
+    Heat: 0.93
+    Shock: 1.3
+    Cold: 0.0
