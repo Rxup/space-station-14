@@ -32,6 +32,9 @@
   - type: MovementSpeedModifier
     baseSprintSpeed: 4
     baseWalkSpeed : 2
+  - type: ActionGrant
+    actions:
+    - ActionShowJobIcons
   - type: ApcPowerReceiver
     powerLoad: 0
   - type: Fixtures
