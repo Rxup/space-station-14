@@ -1,7 +1,6 @@
 #Face
 - type: marking
   id: SynthAltron
-  name: КПБ, морда (Альтрон)
   bodyPart: Snout
   markingCategory: Snout
   speciesRestriction: [Synth]
@@ -11,7 +10,6 @@
 
 - type: marking
   id: SynthBigEyes
-  name: КПБ, морда (Большие глаза)
   bodyPart: Snout
   markingCategory: Snout
   speciesRestriction: [Synth]
@@ -21,7 +19,6 @@
 
 - type: marking
   id: SynthCyclops
-  name: КПБ, морда (Циклоп)
   bodyPart: Snout
   markingCategory: Snout
   speciesRestriction: [Synth]
@@ -32,7 +29,6 @@
     state: Cyclops-unshaded
 
 - type: marking
-  name: КПБ, морда (Двойной Циклоп)
   id: SynthDoubleCyclops
   bodyPart: Snout
   markingCategory: Snout
@@ -45,7 +41,6 @@
 
 - type: marking
   id: SynthEyes
-  name: КПБ, морда (Глаза)
   bodyPart: Snout
   markingCategory: Snout
   speciesRestriction: [Synth]
@@ -57,7 +52,6 @@
 
 - type: marking
   id: SynthLens
-  name: КПБ, морда (Линза)
   bodyPart: Snout
   markingCategory: Snout
   speciesRestriction: [Synth]
@@ -69,7 +63,6 @@
 
 - type: marking
   id: SynthScreen
-  name: КПБ, морда (Экран)
   bodyPart: Snout
   markingCategory: Snout
   speciesRestriction: [Synth]
@@ -81,7 +74,6 @@
 
 - type: marking
   id: SynthScreenFase
-  name: КПБ, морда (Экран с лицом)
   bodyPart: Snout
   markingCategory: Snout
   speciesRestriction: [Synth]
@@ -91,7 +83,6 @@
 
 - type: marking
   id: SynthSpider
-  name: КПБ, морда (Паук)
   bodyPart: Snout
   markingCategory: Snout
   speciesRestriction: [Synth]
@@ -103,7 +94,6 @@
 
 - type: marking
   id: SynthVisor
-  name: КПБ, морда (Визор)
   bodyPart: Snout
   markingCategory: Snout
   speciesRestriction: [Synth]
@@ -116,7 +106,6 @@
 #Head
 - type: marking
   id: SynthAntennaCurves
-  name: КПБ, Голова (Кривые Антенны)
   bodyPart: HeadTop
   markingCategory: HeadTop
   speciesRestriction: [Synth]
@@ -126,7 +115,6 @@
 
 - type: marking
   id: SynthAntennaLetf
-  name: КПБ, Голова (Антенна слева)
   bodyPart: HeadTop
   markingCategory: HeadTop
   speciesRestriction: [Synth]
@@ -138,7 +126,6 @@
 
 - type: marking
   id: SynthAntennas
-  name: КПБ, Голова (Антенны)
   bodyPart: HeadTop
   markingCategory: HeadTop
   speciesRestriction: [Synth]
@@ -148,7 +135,6 @@
 
 - type: marking
   id: SynthWires
-  name: КПБ, Голова (Провода)
   bodyPart: HeadTop
   markingCategory: HeadTop
   speciesRestriction: [Synth]
