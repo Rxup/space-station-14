@@ -21,12 +21,26 @@
   id: MobSynth
 
 - type: entity
+  save: false
+  parent:
+  - MobBloodstream
+  - MobRespirator
+  - MobAtmosStandard
+  - MobFlammable
+  - BaseMobSpecies
+  id: BaseMobSpeciesSynt
+  abstract: true
+  components:
+  - type: FireVisuals
+    alternateState: Standing
+
+- type: entity
   abstract: true
   save: false
   name: Урист макКПБ
   parent:
   - MobFlammable
-  - BaseMobSpecies
+  - BaseMobSpeciesSynt # шит код пиздец
   id: BaseMobSynth
   components:
   - type: MovementSpeedModifier
