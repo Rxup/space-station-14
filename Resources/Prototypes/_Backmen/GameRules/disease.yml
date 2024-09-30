@@ -1,7 +1,7 @@
 ﻿- type: entity
   id: DiseaseOutbreak
   parent: BaseGameRule
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
   - type: StationEvent
     weight: 8

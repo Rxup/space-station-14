@@ -30,7 +30,7 @@
 #Усмиритель
 - type: entity
   name: Усмиритель MK-2
-  noSpawn: false
+  categories: [ HideSpawnMenu ]
   parent: BaseWeaponBatterySmall
   id: WeaponLaserSecBorg
   description: Для особо буйных.
@@ -50,16 +50,16 @@
       path: /Audio/Weapons/Guns/Gunshots/taser2.ogg
   - type: ProjectileBatteryAmmoProvider
     proto: BulletDisabler
-    fireCost: 100
+    fireCost: 60
   - type: BatteryWeaponFireModes
     fireModes:
     - proto: BulletDisabler
-      fireCost: 100
+      fireCost: 60
     - proto: BorgLethalBullet
-      fireCost: 100
+      fireCost: 60
   - type: BatterySelfRecharger
     autoRecharge: true
-    autoRechargeRate: 20
+    autoRechargeRate: 30
   - type: MagazineVisuals
     magState: mag
     steps: 5
@@ -67,14 +67,14 @@
 
 - type: entity
   id: BorgLethalBullet
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   name: летальный заряд
   parent: BaseBullet
   components:
   - type: Projectile
     damage:
       types:
-        Heat: 12
+        Heat: 18
   - type: Sprite
     sprite: _SpaceCats/SecBorg/Borg_laser_gun.rsi
     layers:
@@ -91,8 +91,8 @@
   name: дубинка-шокер киборга
   parent: Stunbaton
   id: StunbatonSecBorg
-  description: Электрошоковая дубинка для выведения людей из строя. 
-  noSpawn: false
+  description: Электрошоковая дубинка для выведения людей из строя.
+  categories: [ HideSpawnMenu ]
   components:
   - type: BatterySelfRecharger
     autoRecharge: true
@@ -104,7 +104,7 @@
   parent: Flash
   id: FlashSecBorg
   description: Сверхяркая вспышка со спусковым механизмом.
-  noSpawn: false
+  categories: [ HideSpawnMenu ]
   components:
   - type: Sprite
     sprite: Objects/Weapons/Melee/flash.rsi

@@ -1,6 +1,6 @@
 - type: entity
   name: Встроенное S.W.A.R.M. оружие
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   parent: BaseWeaponBatterySmall
   id: WeaponLaserSwarmer
   description: Продвинутое оружие способное к самоподзарядке.
@@ -29,11 +29,11 @@
     magState: mag
     steps: 5
     zeroVisible: false
-    
+
 
 - type: entity
   id: SwarmShotBullet
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   name: Блюспейс выстрел
   parent: BaseBullet
   components:

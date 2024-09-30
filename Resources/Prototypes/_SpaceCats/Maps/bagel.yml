@@ -42,7 +42,13 @@
             ResearchDirector: [ 1, 1 ]
             Scientist: [ 5, 5 ]
             ResearchAssistant: [ 4, 4 ]
-            Borg: [ 2, 2 ]
+            #borgs
+            CargoBorg: [ 1, 2]
+            EngenerBorg: [ 1, 2]
+            JanitorBorg: [ 1, 2]
+            MedIcalBorg: [ 1, 2]
+            ServiceBorg: [ 0, 2]
+            SecurityBorg: [ 1, 2]
             #security
             HeadOfSecurity: [ 1, 1 ]
             Warden: [ 1, 1 ]

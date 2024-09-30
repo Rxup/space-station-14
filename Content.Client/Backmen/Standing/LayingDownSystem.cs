@@ -26,10 +26,49 @@ public sealed class LayingDownSystem : SharedLayingDownSystem
         base.Initialize();
 
         SubscribeLocalEvent<LayingDownComponent, MoveEvent>(OnMovementInput);
+        SubscribeNetworkEvent<DrawDownedEvent>(OnDowned);
+        SubscribeNetworkEvent<DrawUpEvent>(OnUp);
+        SubscribeLocalEvent<LayingDownComponent, StoodEvent>(OnStood);
 
         _cfg.OnValueChanged(CCVars.AutoGetUp, b => _autoGetUp = b, true);
 
         //SubscribeNetworkEvent<CheckAutoGetUpEvent>(OnCheckAutoGetUp);
+    }
+
+    private void OnUp(DrawUpEvent args)
+    {
+        if(!TryGetEntity(args.Uid, out var uid))
+            return;
+
+        if (!TryComp<SpriteComponent>(uid, out var sprite)
+            || !TryComp<LayingDownComponent>(uid, out var component)
+            || !component.OriginalDrawDepth.HasValue)
+            return;
+
+        sprite.DrawDepth = component.OriginalDrawDepth.Value;
+    }
+
+    private void OnDowned(DrawDownedEvent args)
+    {
+        if(!TryGetEntity(args.Uid, out var uid))
+            return;
+
+        if (!TryComp<SpriteComponent>(uid, out var sprite)
+            || !TryComp<LayingDownComponent>(uid, out var component))
+            return;
+
+        if (!component.OriginalDrawDepth.HasValue)
+            component.OriginalDrawDepth = sprite.DrawDepth;
+
+        sprite.DrawDepth = (int) Content.Shared.DrawDepth.DrawDepth.SmallMobs;
+    }
+
+    private void OnStood(EntityUid uid, LayingDownComponent component, StoodEvent args)
+    {
+        if (!TryComp<SpriteComponent>(uid, out var sprite)
+            || !component.OriginalDrawDepth.HasValue)
+            return;
+        sprite.DrawDepth = component.OriginalDrawDepth.Value;
     }
 
     private bool _autoGetUp;

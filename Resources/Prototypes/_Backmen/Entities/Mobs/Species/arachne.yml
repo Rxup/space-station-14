@@ -172,7 +172,7 @@
   name: ArachneClassic Dummy
   parent: MobHumanDummy
   id: MobArachneClassicDummy
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   description: A dummy ArachneClassic meant to be used in character setup.
   components:
   - type: Sprite

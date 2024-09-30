@@ -25,7 +25,7 @@
   id: Cybersan
 
 - type: entity
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   parent: [BaseTraitorObjectiveCybersan, BaseLivingObjective]
   id: EscapeShuttleObjectiveCybersan
   name: Улететь на Центком живым и свободным.
@@ -65,7 +65,7 @@
     owner: job-name-cmo
 
 - type: entity
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   parent: BaseCMOStealObjectiveCybersan
   id: CMOHyposprayStealObjectiveCybersan
   components:
@@ -73,7 +73,7 @@
     stealGroup: Hypospray
 
 - type: entity
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   parent: BaseCMOStealObjectiveCybersan
   id: CMOCrewMonitorStealObjectiveCybersan
   components:
@@ -93,7 +93,7 @@
     owner: job-name-rd
 
 - type: entity
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   parent: BaseRDStealObjectiveCybersan
   id: RDHardsuitStealObjectiveCybersan
   components:
@@ -101,7 +101,7 @@
     stealGroup: ClothingOuterHardsuitRd
 
 - type: entity
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   parent: BaseRDStealObjectiveCybersan
   id: HandTeleporterStealObjectiveCybersan
   components:
@@ -111,7 +111,7 @@
 ## ce
 
 - type: entity
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   parent: BaseTraitorStealObjectiveCybersan
   id: MagbootsStealObjectiveCybersan
   components:
@@ -134,7 +134,7 @@
     job: Captain
 
 - type: entity
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   parent: BaseCaptainObjectiveCybersan
   id: CaptainGunStealObjectiveCybersan
   components:

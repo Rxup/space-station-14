@@ -54,11 +54,11 @@ public partial class BkmSupermatterComponent
     public float DelamTimerAccumulator;
 
     /// <summary>
-    /// updates delam
+    ///     Time until delam
     /// </summary>
-    [ViewVariables(VVAccess.ReadOnly)]
-    [DataField("finalCountdownTime")]
-    public int FinalCountdownTime = 30;
+    [ViewVariables(VVAccess.ReadWrite)]
+    [DataField]
+    public float DelamTimer = 120f;
 
     /// <summary>
     ///  The message timer
@@ -77,4 +77,10 @@ public partial class BkmSupermatterComponent
     /// </summary>
     [ViewVariables(VVAccess.ReadOnly)]
     public float AtmosUpdateTimer = 1f;
+
+    [DataField]
+    public float ZapAccumulator = 0f;
+
+    [DataField]
+    public float ZapTimer = 10f;
 }

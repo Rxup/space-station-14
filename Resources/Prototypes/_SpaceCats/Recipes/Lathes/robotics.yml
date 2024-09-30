@@ -1,0 +1,119 @@
+- type: latheRecipe
+  id: CustomLawCircuitBoard
+  result: CustomLawCircuitBoard
+  category: Robotics
+  completetime: 3
+  materials:
+    Steel: 500
+    Glass: 500
+    Plastic: 250
+    Gold: 50
+    Plasma: 50
+
+- type: latheRecipe
+  id: AsimovCircuitBoard
+  result: AsimovCircuitBoard
+  category: Robotics
+  completetime: 3
+  materials:
+    Steel: 500
+    Glass: 500
+    Plastic: 250
+    Gold: 50
+    Plasma: 50
+
+- type: latheRecipe
+  id: CorporateCircuitBoard
+  result: CorporateCircuitBoard
+  category: Robotics
+  completetime: 3
+  materials:
+    Steel: 500
+    Glass: 500
+    Plastic: 250
+    Gold: 50
+    Plasma: 50
+
+- type: latheRecipe
+  id: NTDefaultCircuitBoard
+  result: NTDefaultCircuitBoard
+  category: Robotics
+  completetime: 3
+  materials:
+    Steel: 500
+    Glass: 500
+    Plastic: 250
+    Gold: 50
+    Plasma: 50
+
+- type: latheRecipe
+  id: CommandmentCircuitBoard
+  result: CommandmentCircuitBoard
+  category: Robotics
+  completetime: 3
+  materials:
+    Steel: 500
+    Glass: 500
+    Plastic: 250
+    Gold: 50
+    Plasma: 50
+
+- type: latheRecipe
+  id: PaladinCircuitBoard
+  result: PaladinCircuitBoard
+  category: Robotics
+  completetime: 3
+  materials:
+    Steel: 500
+    Glass: 500
+    Plastic: 250
+    Gold: 50
+    Plasma: 50
+
+- type: latheRecipe
+  id: StationEfficiencyCircuitBoard
+  result: StationEfficiencyCircuitBoard
+  category: Robotics
+  completetime: 3
+  materials:
+    Steel: 500
+    Glass: 500
+    Plastic: 250
+    Gold: 50
+    Plasma: 50
+
+- type: latheRecipe
+  id: LiveLetLiveCircuitBoard
+  result: LiveLetLiveCircuitBoard
+  category: Robotics
+  completetime: 3
+  materials:
+    Steel: 500
+    Glass: 500
+    Plastic: 250
+    Gold: 50
+    Plasma: 50
+
+- type: latheRecipe
+  id: RobocopCircuitBoard
+  result: RobocopCircuitBoard
+  category: Robotics
+  completetime: 3
+  materials:
+    Steel: 500
+    Glass: 500
+    Plastic: 250
+    Gold: 50
+    Plasma: 50
+
+- type: latheRecipe
+  id: Intellicard
+  result: Intellicard
+  category: Robotics
+  completetime: 3
+  materials:
+    Steel: 300
+    Glass: 300
+    Plastic: 150
+    Gold: 50
+    Plasma: 50

@@ -82,3 +82,8 @@
   id: WeaponRevolverInspector
   equipment:
     belt: WeaponRevolverInspector
+    
+- type: loadout
+  id: DetectiveCoatGrey
+  equipment:
+    outerClothing: ClothingOuterCoatDetectiveLoadoutGrey

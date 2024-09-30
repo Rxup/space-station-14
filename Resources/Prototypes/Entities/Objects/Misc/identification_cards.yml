@@ -478,7 +478,7 @@
 - type: entity
   parent: IDCardStandard
   id: ERTLeaderIDCard
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   name: ERT leader ID card
   components:
   - type: Sprite
@@ -493,7 +493,7 @@
 - type: entity
   parent: IDCardStandard
   id: ERTChaplainIDCard
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   name: ERT chaplain ID card
   components:
   - type: Sprite
@@ -508,7 +508,7 @@
 - type: entity
   parent: IDCardStandard
   id: ERTEngineerIDCard
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   name: ERT engineer ID card
   components:
   - type: Sprite
@@ -521,7 +521,7 @@
 - type: entity
   parent: IDCardStandard
   id: ERTJanitorIDCard
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   name: ERT janitor ID card
   components:
   - type: Sprite
@@ -534,7 +534,7 @@
 - type: entity
   parent: IDCardStandard
   id: ERTMedicIDCard
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   name: ERT medic ID card
   components:
   - type: Sprite
@@ -547,7 +547,7 @@
 - type: entity
   parent: IDCardStandard
   id: ERTSecurityIDCard
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   name: ERT security ID card
   components:
   - type: Sprite

@@ -27,7 +27,7 @@
 
 - type: entity
   parent: SheetSWARMSteel
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   id: SheetSWARMSteel10
   suffix: 10
   components:
@@ -40,7 +40,7 @@
 
 - type: entity
   parent: SheetSWARMSteel
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   id: SheetSWARMSteel1
   components:
   - type: Sprite

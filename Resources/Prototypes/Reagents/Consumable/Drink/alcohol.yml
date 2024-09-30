@@ -865,26 +865,24 @@
   metabolisms:
     Drink:
       effects:
-        - !type:SatiateThirst
-          factor: 2
-        - !type:SatiateHunger
-          factor: -2
-          conditions:
-            - !type:OrganType
-              type: Vampiric
-              shouldHave: false
-        - !type:AdjustReagent
-          reagent: Ethanol
-          amount: 0.05
-    Medicine:
-      effects:
-        - !type:HealthChange
-          damage:
-            groups:
-              Burn: -1
-              Brute: -1
-              Airloss: -1
-              Toxin: -1
+      - !type:SatiateThirst
+        factor: 2
+      - !type:SatiateHunger
+        factor: -2
+        conditions:
+          - !type:OrganType
+            type: Vampiric
+            shouldHave: false
+      - !type:AdjustReagent
+        reagent: Ethanol
+        amount: 0.05
+      - !type:HealthChange
+        damage:
+          groups:
+            Burn: -1
+            Brute: -1
+            Airloss: -1
+            Toxin: -1
 
 - type: reagent
   id: DriestMartini

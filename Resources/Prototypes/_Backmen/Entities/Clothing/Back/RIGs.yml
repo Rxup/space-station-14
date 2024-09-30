@@ -152,7 +152,7 @@
   id: ActionToggleSuitInvisiblePower
   name: Включить маскировку
   description: Включает маскировку в местности, вас не видно от слова совсем.
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
   - type: InstantAction
     itemIconStyle: BigAction

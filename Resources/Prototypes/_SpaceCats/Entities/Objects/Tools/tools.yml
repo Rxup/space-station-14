@@ -2,7 +2,7 @@
   name: S.W.A.R.M.Тул
   parent: Omnitool
   id: SwarmTool
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   description: Лучше и быстрее.
   components:
   - type: Sprite
@@ -67,7 +67,7 @@
 #S.W.A.R.M. Сварка
 - type: entity
   name: S.W.A.R.M. Сварка
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   parent: WelderExperimental
   id: WelderSwarmer
   description: Способен самостоятельно вырабатывать топливо и менее вредный для глаз.

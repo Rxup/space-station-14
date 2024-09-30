@@ -41370,7 +41370,7 @@ entities:
       pos: 25.5,28.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -3188.8286
+      secondsUntilStateChange: -3335.9543
       state: Closing
   - uid: 6330
     components:
@@ -71097,6 +71097,13 @@ entities:
     - type: Transform
       pos: 33.5,40.5
       parent: 2
+- proto: SpawnPointCargoBorg
+  entities:
+  - uid: 14000
+    components:
+    - type: Transform
+      pos: 9.5,19.5
+      parent: 2
 - proto: SpawnPointCargoTechnician
   entities:
   - uid: 10955
@@ -71168,6 +71175,13 @@ entities:
     - type: Transform
       pos: 42.5,19.5
       parent: 2
+- proto: SpawnPointEngenerBorg
+  entities:
+  - uid: 13999
+    components:
+    - type: Transform
+      pos: 25.5,-33.5
+      parent: 2
 - proto: SpawnPointHeadOfPersonnel
   entities:
   - uid: 10966
@@ -71188,6 +71202,13 @@ entities:
     components:
     - type: Transform
       pos: 5.5,-4.5
+      parent: 2
+- proto: SpawnPointJanitorBorg
+  entities:
+  - uid: 13997
+    components:
+    - type: Transform
+      pos: 6.5,-5.5
       parent: 2
 - proto: SpawnPointLatejoin
   entities:
@@ -71229,6 +71250,13 @@ entities:
     components:
     - type: Transform
       pos: 9.5,3.5
+      parent: 2
+- proto: SpawnPointMedIcalBorg
+  entities:
+  - uid: 13996
+    components:
+    - type: Transform
+      pos: 73.5,4.5
       parent: 2
 - proto: SpawnPointMedicalDoctor
   entities:
@@ -71386,6 +71414,13 @@ entities:
     - type: Transform
       pos: 55.5,24.5
       parent: 2
+- proto: SpawnPointSecurityBorg
+  entities:
+  - uid: 13998
+    components:
+    - type: Transform
+      pos: 34.5,17.5
+      parent: 2
 - proto: SpawnPointSecurityCadet
   entities:
   - uid: 11002
@@ -71414,6 +71449,13 @@ entities:
     components:
     - type: Transform
       pos: 37.5,18.5
+      parent: 2
+- proto: SpawnPointServiceBorg
+  entities:
+  - uid: 13995
+    components:
+    - type: Transform
+      pos: 38.5,-7.5
       parent: 2
 - proto: SpawnPointServiceWorker
   entities:

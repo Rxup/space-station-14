@@ -1,0 +1,144 @@
+- type: species
+  id: Synth
+  name: КПБ
+  roundStart: true
+  prototype: MobSynth
+  sprites: MobSynthSprites
+  markingLimits: MobSynthMarkingLimits
+  dollPrototype: MobSynthDummy
+  skinColoration: Hues
+  defaultSkinTone: "#ebebeb"
+  youngAge: 25
+  oldAge: 25000
+  maxAge: 45000
+  sexes:
+    - Unsexed
+  maleFirstNames: NamesSynth
+  femaleFirstNames: NamesSynth
+  naming: First
+
+- type: markingPoints
+  id: MobSynthMarkingLimits
+  onlyWhitelisted: true
+  points:
+    Head:
+      points: 1
+      required: false
+    HeadTop:
+      points: 1
+      required: true
+      defaultMarkings: [ SynthAntennas ]
+    Snout:
+      points: 1
+      required: true
+      defaultMarkings: [ SynthScreen ]
+    Chest:
+      points: 1
+      required: false
+    Legs:
+      points: 4
+      required: false
+    Arms:
+      points: 4
+      required: false
+
+- type: speciesBaseSprites
+  id: MobSynthSprites
+  sprites:
+    Snout: MobHumanoidAnyMarking
+    HeadTop: MobHumanoidAnyMarking
+    HeadSide: MobHumanoidAnyMarking
+    Head: MobSynthHead
+    Chest: MobSynthTorso
+    LArm: MobSynthLArm
+    RArm: MobSynthRArm
+    LHand: MobSynthLHand
+    RHand: MobSynthRHand
+    LLeg: MobSynthLLeg
+    RLeg: MobSynthRLeg
+    LFoot: MobSynthLFood
+    RFoot: MobSynthRFood
+
+- type: humanoidBaseSprite
+  id: MobSynthHead
+  baseSprite:
+    sprite: _SpaceCats/IPC/parts.rsi
+    state: head_m
+
+- type: humanoidBaseSprite
+  id: MobSynthHeadMale
+  baseSprite:
+    sprite: _SpaceCats/IPC/parts.rsi
+    state: head_m
+
+- type: humanoidBaseSprite
+  id: MobSynthHeadFemale
+  baseSprite:
+    sprite: _SpaceCats/IPC/parts.rsi
+    state: head_f
+
+- type: humanoidBaseSprite
+  id: MobSynthTorso
+  baseSprite:
+    sprite: _SpaceCats/IPC/parts.rsi
+    state: torso_m
+
+- type: humanoidBaseSprite
+  id: MobSynthTorsoMale
+  baseSprite:
+    sprite: _SpaceCats/IPC/parts.rsi
+    state: torso_m
+
+- type: humanoidBaseSprite
+  id: MobSynthTorsoFemale
+  baseSprite:
+    sprite: _SpaceCats/IPC/parts.rsi
+    state: torso_f
+
+- type: humanoidBaseSprite
+  id: MobSynthLLeg
+  baseSprite:
+    sprite: _SpaceCats/IPC/parts.rsi
+    state: l_leg
+
+- type: humanoidBaseSprite
+  id: MobSynthLArm
+  baseSprite:
+    sprite: _SpaceCats/IPC/parts.rsi
+    state: l_arm
+
+- type: humanoidBaseSprite
+  id: MobSynthLHand
+  baseSprite:
+    sprite: _SpaceCats/IPC/parts.rsi
+    state: l_hand
+
+- type: humanoidBaseSprite
+  id: MobSynthRLeg
+  baseSprite:
+    sprite: _SpaceCats/IPC/parts.rsi
+    state: r_leg
+
+- type: humanoidBaseSprite
+  id: MobSynthRArm
+  baseSprite:
+    sprite: _SpaceCats/IPC/parts.rsi
+    state: r_arm
+
+- type: humanoidBaseSprite
+  id: MobSynthRHand
+  baseSprite:
+    sprite: _SpaceCats/IPC/parts.rsi
+    state: r_hand
+
+- type: humanoidBaseSprite
+  id: MobSynthRFood
+  baseSprite:
+    sprite: _SpaceCats/IPC/parts.rsi
+    state: r_foot
+
+- type: humanoidBaseSprite
+  id: MobSynthLFood
+  baseSprite:
+    sprite: _SpaceCats/IPC/parts.rsi
+    state: l_foot

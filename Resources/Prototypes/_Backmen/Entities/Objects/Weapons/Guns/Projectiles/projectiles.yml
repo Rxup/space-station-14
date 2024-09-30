@@ -2,7 +2,7 @@
   id: BulletMagnum345
   name: 345 magnum bullet
   parent: BaseBullet
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
   - type: Sprite
     sprite: Backmen/Effects/muzzle/divet.rsi
@@ -23,7 +23,7 @@
 - type: entity
   id: PelletShotgunSoulbreaker
   name: pellet (.50 soulbreaker)
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   parent: BaseBulletPractice
   components:
     - type: Sprite
@@ -52,7 +52,7 @@
         - Psionics
 
 - type: entity
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   parent: BaseBulletTrigger
   id: PelletShotgunRocket
   name: bullet (бронебойно-разрывной)
@@ -73,7 +73,7 @@
     canCreateVacuum: false
 
 - type: entity
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   parent: BaseBullet
   id: BulletHeavy62
   name: bullet (.62 rifle)
@@ -84,7 +84,7 @@
         Piercing: 39
 
 - type: entity
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   parent: BaseBulletTrigger
   id: BulletRocket20
   name: bullet (рельсотрон)
@@ -104,7 +104,7 @@
     canCreateVacuum: false
 
 - type: entity
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   parent: BaseBullet
   id: BulletLight762
   name: bullet (7,62 rifle)
@@ -118,7 +118,7 @@
   id: BulletGrenadeTearGas
   name: tear gas grenade
   parent: BaseBulletTrigger
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
   - type: Sprite
     sprite: Objects/Weapons/Guns/Projectiles/projectiles2.rsi
@@ -143,7 +143,7 @@
   id: BulletGrenadeNonletal
   name: non letal grenade
   parent: BaseBulletTrigger
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
   - type: Sprite
     sprite: Objects/Weapons/Guns/Projectiles/projectiles2.rsi

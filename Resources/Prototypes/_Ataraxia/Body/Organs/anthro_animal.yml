@@ -1,7 +1,7 @@
 - type: entity
   parent: OrganHumanStomach
   id: OrganAnthroAnimalStomach
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
   - type: Metabolizer
     metabolizerTypes: [ AnthroAnimal ]
@@ -9,7 +9,7 @@
 - type: entity
   parent: OrganHumanLiver
   id: OrganAnthroAnimalLiver
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
   - type: Metabolizer
     metabolizerTypes: [ AnthroAnimal ]
@@ -17,7 +17,7 @@
 - type: entity
   parent: OrganHumanHeart
   id: OrganAnthroAnimalHeart
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
   - type: Metabolizer
     metabolizerTypes: [ AnthroAnimal ]

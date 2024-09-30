@@ -26,7 +26,7 @@
   - WageScheduler #backmen: currency
   - SubGamemodesRule
   - BasicRoundstartVariation
-  - MeteorSwarmScheduler
+  # - MeteorSwarmScheduler
 
 - type: gamePreset
   id: Blob
@@ -39,10 +39,10 @@
   rules:
   - BlobGameMode
   - BasicStationEventScheduler
-  #  -  #backmen: currency
+  - WageScheduler #backmen: currency
   - BasicRoundstartVariation
   - SubGamemodesRule
-  - MeteorSwarmScheduler
+  # - MeteorSwarmScheduler
 
 - type: gamePreset
   id: FleshCult
@@ -56,10 +56,10 @@
   rules:
   - FleshCult
   - BasicStationEventScheduler
-  #  -  #backmen: currency
+  - WageScheduler #backmen: currency
   - BasicRoundstartVariation
   - SubGamemodesRule
-  - MeteorSwarmScheduler
+  # - MeteorSwarmScheduler
 
 - type: gamePreset
   id: FleshCultAndTraitor
@@ -75,7 +75,7 @@
   - BasicStationEventScheduler
   #  -  #backmen: currency
   - BasicRoundstartVariation
-  - MeteorSwarmScheduler
+  # - MeteorSwarmScheduler
 
 - type: gamePreset
   id: NukeopsFleshCult
@@ -91,7 +91,7 @@
     - BasicStationEventScheduler
     #  -  #backmen: currency
     - BasicRoundstartVariation
-    - MeteorSwarmScheduler
+    # - MeteorSwarmScheduler
 
 - type: gamePreset
   id: RevolutionaryTraitor
@@ -109,7 +109,7 @@
     - Traitor
     #  -  #backmen: currency
     - BasicRoundstartVariation
-    - MeteorSwarmScheduler
+    # - MeteorSwarmScheduler
 
 - type: gamePreset
   id: RevolutionaryNukeops
@@ -127,7 +127,7 @@
     - Nukeops
     #  -  #backmen: currency
     - BasicRoundstartVariation
-    - MeteorSwarmScheduler
+    # - MeteorSwarmScheduler
 
 - type: gamePreset
   id: ZombieTraitor
@@ -147,7 +147,7 @@
   #  -  #backmen: currency
   - Traitor
   - BasicRoundstartVariation
-  - MeteorSwarmScheduler
+  # - MeteorSwarmScheduler
 
 - type: gamePreset
   id: ZombieNukeops
@@ -167,7 +167,7 @@
   #  -  #backmen: currency
   - Nukeops
   - BasicRoundstartVariation
-  - MeteorSwarmScheduler
+  # - MeteorSwarmScheduler
 
 - type: gamePreset
   id: NukeopsFleshCultTraitor
@@ -185,7 +185,7 @@
     #  -  #backmen: currency
     - Traitor
     - BasicRoundstartVariation
-    - MeteorSwarmScheduler
+    # - MeteorSwarmScheduler
 
 - type: gamePreset
   id: SurvivalNukeops
@@ -201,7 +201,7 @@
     #  -  #backmen: currency
     - Nukeops
     - BasicRoundstartVariation
-    - MeteorSwarmScheduler
+    # - MeteorSwarmScheduler
 
 
 - type: gamePreset
@@ -220,7 +220,7 @@
   - SubGamemodesRule
   - BasicStationEventScheduler
   - BasicRoundstartVariation
-  - MeteorSwarmScheduler
+  # - MeteorSwarmScheduler
 
 - type: gamePreset
   id: Traitorling
@@ -237,7 +237,7 @@
   - SubGamemodesRule
   - BasicStationEventScheduler
   - BasicRoundstartVariation
-  - MeteorSwarmScheduler
+  # - MeteorSwarmScheduler
 
 - type: gamePreset
   id: ExtendedThief
@@ -253,7 +253,7 @@
   - BasicStationEventScheduler
   - WageScheduler #backmen: currency
   - BasicRoundstartVariation
-  - MeteorSwarmScheduler
+  # - MeteorSwarmScheduler
 
 - type: gamePreset
   id: Criminal
@@ -270,7 +270,7 @@
   - BasicStationEventScheduler
   - WageScheduler #backmen: currency
   - BasicRoundstartVariation
-  - MeteorSwarmScheduler
+  # - MeteorSwarmScheduler
 
 - type: gamePreset
   id: SuperKessler
@@ -288,11 +288,8 @@
   - BasicRoundstartVariation
   # Oh my god.
   - KesslerSyndromeScheduler
-  - KesslerSyndromeScheduler
-  - KesslerSyndromeScheduler
-  - MeteorSwarmMildScheduler
-  - MeteorSwarmScheduler
+  # - MeteorSwarmMildScheduler
+  # - MeteorSwarmScheduler
   - RampingStationEventScheduler
   #- SpaceTrafficControlEventScheduler
   #- SpaceTrafficControlFriendlyEventScheduler
-  - MeteorSwarmScheduler

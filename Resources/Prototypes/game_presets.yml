@@ -6,7 +6,7 @@
   showInVote: true # secret
   description: survival-description
   rules:
-    - MeteorSwarmScheduler
+    #- MeteorSwarmScheduler
     - RampingStationEventScheduler
     - WageScheduler #backmen: currency
     # - SpaceTrafficControlEventScheduler
@@ -56,7 +56,7 @@
     #- Changeling # backmen: changeling
     # - SpaceTrafficControlEventScheduler
     - BasicRoundstartVariation
-    - MeteorSwarmScheduler
+    #- MeteorSwarmScheduler
 
 - type: gamePreset
   id: AllerAtOnce
@@ -83,8 +83,8 @@
     - Zombie
     - BasicStationEventScheduler
     - KesslerSyndromeScheduler
-    - MeteorSwarmMildScheduler
-    - MeteorSwarmScheduler
+  #  - MeteorSwarmMildScheduler
+  #  #- MeteorSwarmScheduler
     - RampingStationEventScheduler
     # - SpaceTrafficControlEventScheduler
     - BasicRoundstartVariation
@@ -100,7 +100,7 @@
   rules:
   - BasicStationEventScheduler
   - WageScheduler #backmen: currency
-  - MeteorSwarmScheduler
+  #- MeteorSwarmScheduler
   # - SpaceTrafficControlEventScheduler
   - BasicRoundstartVariation
 
@@ -138,7 +138,7 @@
   rules:
     - BasicStationEventScheduler
     - WageScheduler #backmen: currency
-    - MeteorSwarmScheduler
+    #- MeteorSwarmScheduler
     # - SpaceTrafficControlEventScheduler
     - BasicRoundstartVariation
 
@@ -179,7 +179,7 @@
     - SubGamemodesRule
     - BasicStationEventScheduler
     - WageScheduler #backmen: currency
-    - MeteorSwarmScheduler
+    #- MeteorSwarmScheduler
     # - SpaceTrafficControlEventScheduler
     - BasicRoundstartVariation
 
@@ -210,8 +210,8 @@
     - SubGamemodesRule
     - BasicStationEventScheduler
     - WageScheduler #backmen: currency
-    - MeteorSwarmScheduler
-    # - SpaceTrafficControlEventScheduler
+   # - CalmMeteorSwarmScheduler #backmen: calm-scheduler
+   # - SpaceTrafficControlEventScheduler
     - BasicRoundstartVariation
 
 - type: gamePreset
@@ -228,7 +228,7 @@
     - Revolutionary
     - SubGamemodesRule
     - BasicStationEventScheduler
-    - MeteorSwarmScheduler
+    #- MeteorSwarmScheduler
     # - SpaceTrafficControlEventScheduler
     - BasicRoundstartVariation
     - WageScheduler #backmen: currency
@@ -249,7 +249,7 @@
   - Zombie
   - BasicStationEventScheduler
   - WageScheduler #backmen: currency
-  - MeteorSwarmScheduler
+  #- MeteorSwarmScheduler
   # - SpaceTrafficControlEventScheduler
   - BasicRoundstartVariation
 

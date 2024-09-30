@@ -14,7 +14,7 @@
   parent: ProjectilePolyboltBase
   name: Гены Они
   description: Nooo, I don't wanna be Oni!
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
   - type: PolymorphOnCollide
     polymorph: WizardForcedOni

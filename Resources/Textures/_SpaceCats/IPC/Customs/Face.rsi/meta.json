@@ -1,0 +1,79 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "made by borkroman",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "Altron-unshaded",
+      "directions": 4
+    },
+    {
+      "name": "Bigeyes-unshaded",
+      "directions": 4
+    },
+    {
+      "name": "Cyclops",
+      "directions": 4
+    },
+    {
+      "name": "Cyclops-unshaded",
+      "directions": 4
+    },
+    {
+      "name": "DoubleCyclops",
+      "directions": 4
+    },
+    {
+      "name": "DoubleCyclops-unshaded",
+      "directions": 4
+    },
+    {
+      "name": "eyes",
+      "directions": 4
+    },
+    {
+      "name": "eyes-unshaded",
+      "directions": 4
+    },
+    {
+      "name": "lens",
+      "directions": 4
+    },
+    {
+      "name": "lens-unshaded",
+      "directions": 4
+    },
+    {
+      "name": "screen",
+      "directions": 4
+    },
+    {
+      "name": "screen-unshaded",
+      "directions": 4
+    },
+    {
+      "name": "screenFase",
+      "directions": 4
+    },
+    {
+      "name": "Spider",
+      "directions": 4
+    },
+    {
+      "name": "Spider-unshaded",
+      "directions": 4
+    },
+    {
+      "name": "Visor",
+      "directions": 4
+    },
+    {
+      "name": "Visor-unshaded",
+      "directions": 4
+    }
+  ]
+}
