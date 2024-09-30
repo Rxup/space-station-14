@@ -52,6 +52,17 @@
           - MobMask
         layer:
           - MobLayer
+  - type: Bloodstream
+    bloodReagent: Oil
+    bloodMaxVolume: 300
+    bloodlossDamage:
+      types:
+        Bloodloss:
+          0.5
+    bloodlossHealDamage:
+      types:
+        Bloodloss:
+          -1
   - type: Deathgasp
     prototype: SynthDeathgasp
   - type: MeleeWeapon
