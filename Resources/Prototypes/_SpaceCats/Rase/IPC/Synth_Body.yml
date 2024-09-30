@@ -26,8 +26,6 @@
     - Alive
   - type: Appearance
   - type: IntrinsicRadioReceiver
-    channels:
-      - Trio
   - type: IntrinsicRadioTransmitter
     channels:
       - Trio
