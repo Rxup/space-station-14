@@ -122,7 +122,7 @@
     footstepSoundCollection:
       collection: SynthStepCollection
       params:
-        volume: -1
+        volume: -3
   - type: TypingIndicator
     proto: robot
   - type: Repairable
@@ -166,13 +166,8 @@
         disableEject: true
   - type: Inventory
     templateId: Synth
-  - type: Respirator
-    damage:
-      types:
-        Asphyxiation: 2.0
-    damageRecovery:
-      types:
-        Asphyxiation: -1.0
+  - type: Respirator #It just works?
+    minSaturation: 5.0
 
 - type: entity
   parent: BaseSpeciesDummy
