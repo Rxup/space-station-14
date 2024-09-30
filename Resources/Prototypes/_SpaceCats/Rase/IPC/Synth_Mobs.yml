@@ -159,6 +159,7 @@
         whitelist:
           tags:
           - PowerCellSynth
+          - PowerCell
         startingItem: PowerCellSynth
         disableEject: true
   - type: Inventory
