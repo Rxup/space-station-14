@@ -1,0 +1,160 @@
+#Face
+- type: marking
+  id: SynthAltron
+  name: КПБ, морда (Альтрон)
+  bodyPart: Snout
+  markingCategory: Snout
+  speciesRestriction: [Synth]
+  sprites:
+  - sprite: _SpaceCats/IPC/Customs/Face.rsi
+    state: Altron-unshaded
+
+- type: marking
+  id: SynthBigEyes
+  name: КПБ, морда (Большие глаза)
+  bodyPart: Snout
+  markingCategory: Snout
+  speciesRestriction: [Synth]
+  sprites:
+  - sprite: _SpaceCats/IPC/Customs/Face.rsi
+    state: Bigeyes-unshaded
+
+- type: marking
+  id: SynthCyclops
+  name: КПБ, морда (Циклоп)
+  bodyPart: Snout
+  markingCategory: Snout
+  speciesRestriction: [Synth]
+  sprites:
+  - sprite: _SpaceCats/IPC/Customs/Face.rsi
+    state: Cyclops
+  - sprite: _SpaceCats/IPC/Customs/Face.rsi
+    state: Cyclops-unshaded
+
+- type: marking
+  name: КПБ, морда (Двойной Циклоп)
+  id: SynthDoubleCyclops
+  bodyPart: Snout
+  markingCategory: Snout
+  speciesRestriction: [Synth]
+  sprites:
+  - sprite: _SpaceCats/IPC/Customs/Face.rsi
+    state: DoubleCyclops
+  - sprite: _SpaceCats/IPC/Customs/Face.rsi
+    state:  DoubleCyclops-unshaded
+
+- type: marking
+  id: SynthEyes
+  name: КПБ, морда (Глаза)
+  bodyPart: Snout
+  markingCategory: Snout
+  speciesRestriction: [Synth]
+  sprites:
+  - sprite: _SpaceCats/IPC/Customs/Face.rsi
+    state: eyes
+  - sprite: _SpaceCats/IPC/Customs/Face.rsi
+    state:  eyes-unshaded
+
+- type: marking
+  id: SynthLens
+  name: КПБ, морда (Линза)
+  bodyPart: Snout
+  markingCategory: Snout
+  speciesRestriction: [Synth]
+  sprites:
+  - sprite: _SpaceCats/IPC/Customs/Face.rsi
+    state: lens
+  - sprite: _SpaceCats/IPC/Customs/Face.rsi
+    state:  lens-unshaded
+
+- type: marking
+  id: SynthScreen
+  name: КПБ, морда (Экран)
+  bodyPart: Snout
+  markingCategory: Snout
+  speciesRestriction: [Synth]
+  sprites:
+  - sprite: _SpaceCats/IPC/Customs/Face.rsi
+    state: screen
+  - sprite: _SpaceCats/IPC/Customs/Face.rsi
+    state: screen-unshaded
+
+- type: marking
+  id: SynthScreenFase
+  name: КПБ, морда (Экран с лицом)
+  bodyPart: Snout
+  markingCategory: Snout
+  speciesRestriction: [Synth]
+  sprites:
+  - sprite: _SpaceCats/IPC/Customs/Face.rsi
+    state: screenFase
+
+- type: marking
+  id: SynthSpider
+  name: КПБ, морда (Паук)
+  bodyPart: Snout
+  markingCategory: Snout
+  speciesRestriction: [Synth]
+  sprites:
+  - sprite: _SpaceCats/IPC/Customs/Face.rsi
+    state: Spider
+  - sprite: _SpaceCats/IPC/Customs/Face.rsi
+    state: Spider-unshaded
+
+- type: marking
+  id: SynthVisor
+  name: КПБ, морда (Визор)
+  bodyPart: Snout
+  markingCategory: Snout
+  speciesRestriction: [Synth]
+  sprites:
+  - sprite: _SpaceCats/IPC/Customs/Face.rsi
+    state: Visor
+  - sprite: _SpaceCats/IPC/Customs/Face.rsi
+    state: Visor-unshaded
+
+#Head
+- type: marking
+  id: SynthAntennaCurves
+  name: КПБ, Голова (Кривые Антенны)
+  bodyPart: HeadTop
+  markingCategory: HeadTop
+  speciesRestriction: [Synth]
+  sprites:
+  - sprite: _SpaceCats/IPC/Customs/Head.rsi
+    state: AntennaCurves
+
+- type: marking
+  id: SynthAntennaLetf
+  name: КПБ, Голова (Антенна слева)
+  bodyPart: HeadTop
+  markingCategory: HeadTop
+  speciesRestriction: [Synth]
+  sprites:
+  - sprite: _SpaceCats/IPC/Customs/Head.rsi
+    state: antennaLetf
+  - sprite: _SpaceCats/IPC/Customs/Head.rsi
+    state: antennaLetf-unshaded
+
+- type: marking
+  id: SynthAntennas
+  name: КПБ, Голова (Антенны)
+  bodyPart: HeadTop
+  markingCategory: HeadTop
+  speciesRestriction: [Synth]
+  sprites:
+  - sprite: _SpaceCats/IPC/Customs/Head.rsi
+    state: antennas
+
+- type: marking
+  id: SynthWires
+  name: КПБ, Голова (Провода)
+  bodyPart: HeadTop
+  markingCategory: HeadTop
+  speciesRestriction: [Synth]
+  sprites:
+  - sprite: _SpaceCats/IPC/Customs/Head.rsi
+    state: wires
+
+
+
