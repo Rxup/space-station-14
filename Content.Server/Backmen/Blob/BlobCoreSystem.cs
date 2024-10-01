@@ -20,7 +20,6 @@ using Content.Shared.Damage;
 using Content.Shared.Destructible;
 using Content.Shared.Explosion.Components;
 using Content.Shared.FixedPoint;
-using Content.Shared.GameTicking.Components;
 using Content.Shared.Objectives.Components;
 using Content.Shared.Popups;
 using Content.Shared.Store;
@@ -558,8 +557,8 @@ public sealed class BlobCoreSystem : EntitySystem
 
         if (isAllDie < 1)
         {
-            var blobRuleQuery = EntityQueryEnumerator<BlobRuleComponent, GameRuleComponent>();
-            while (blobRuleQuery.MoveNext(out var blobRule, out var blobRuleComp, out var gameRule))
+            var blobRuleQuery = EntityQueryEnumerator<BlobRuleComponent>();
+            while (blobRuleQuery.MoveNext(out _, out var blobRuleComp))
             {
                 if (blobRuleComp.Stage == BlobStage.TheEnd ||
                     blobRuleComp.Stage == BlobStage.Default ||
@@ -569,7 +568,6 @@ public sealed class BlobCoreSystem : EntitySystem
                 _alertLevelSystem.SetLevel(stationUid.Value, "green", true, true, true);
                 _roundEndSystem.CancelRoundEndCountdown(null, false);
                 blobRuleComp.Stage = BlobStage.Default;
-                _gameTicker.EndGameRule(blobRule, gameRule);
             }
         }
 
