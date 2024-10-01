@@ -4,6 +4,15 @@
   id: MobOniBase
   abstract: true
   components:
+  - type: LanguageSpeaker
+    currentLanguage: TauCetiBasic
+  - type: LanguageKnowledge #backmen: languages
+    speaks:
+    - TauCetiBasic
+    - Nekomimetic
+    understands:
+    - TauCetiBasic
+    - Nekomimetic
   - type: Speech
     speechSounds: Baritone
   - type: HumanoidAppearance

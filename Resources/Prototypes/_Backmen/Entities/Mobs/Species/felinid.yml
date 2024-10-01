@@ -5,6 +5,15 @@
   id: MobFelinidBase
   abstract: true
   components:
+  - type: LanguageSpeaker
+    currentLanguage: TauCetiBasic
+  - type: LanguageKnowledge #backmen: languages
+    speaks:
+    - TauCetiBasic
+    - Nekomimetic
+    understands:
+    - TauCetiBasic
+    - Nekomimetic
   - type: Sprite
     scale: 0.8, 0.8
   - type: HumanoidAppearance

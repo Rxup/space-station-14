@@ -5,6 +5,15 @@
   id: MobHarpyBase
   abstract: true
   components:
+    - type: LanguageSpeaker
+      currentLanguage: TauCetiBasic
+    - type: LanguageKnowledge #backmen: languages
+      speaks:
+      - TauCetiBasic
+      - Garpy
+      understands:
+      - TauCetiBasic
+      - Garpy
     - type: HarpySinger
     - type: Instrument
       allowPercussion: false
