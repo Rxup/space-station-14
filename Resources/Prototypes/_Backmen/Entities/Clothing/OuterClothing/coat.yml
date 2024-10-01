@@ -89,7 +89,7 @@
 - type: entity #backmen
   parent: ClothingOuterCoatSecurityOvercoat
   id: ClothingOuterCoatPurpledmc
-  name: фиолетова плащ-куртка
+  name: фиолетовая плащ-куртка
   description: Порой люди хуже демонов.
   components:
   - type: Sprite

@@ -13,8 +13,8 @@
           state: icon
 
 - type: entity
+  categories: [ HideSpawnMenu, Spawner ]
   id: SpawnSpecforce
-  categories: [ HideSpawnMenu ]
   abstract: true
   name: спавнер спецсил
   suffix: Specforce
@@ -28,9 +28,9 @@
           state: icon
 
 - type: entity
+  categories: [ HideSpawnMenu, Spawner ]
   id: SpawnMobHumanERTLeaderEVAV2_1
   parent: SpawnSpecforce
-  categories: [ HideSpawnMenu ]
   name: ОБР Лидер
   suffix: спавнер спецсил
   components:
@@ -38,9 +38,9 @@
       prototype: MobHumanERTLeaderEVAV2_1
 
 - type: entity
+  categories: [ HideSpawnMenu, Spawner ]
   id: SpawnMobHumanERTSecurityEVAV2_1
   parent: SpawnSpecforce
-  categories: [ HideSpawnMenu ]
   name: ОБР Охрана
   suffix: спавнер спецсил
   components:
@@ -48,9 +48,9 @@
       prototype: MobHumanERTSecurityEVAV2_1
 
 - type: entity
+  categories: [ HideSpawnMenu, Spawner ]
   id: SpawnMobHumanERTEngineerEVAV2_1
   parent: SpawnSpecforce
-  categories: [ HideSpawnMenu ]
   name: ОБР Инж
   suffix: спавнер спецсил
   components:
@@ -58,9 +58,9 @@
       prototype: MobHumanERTEngineerEVAV2_1
 
 - type: entity
+  categories: [ HideSpawnMenu, Spawner ]
   id: SpawnMobHumanERTJunitorEVAV2_1
   parent: SpawnSpecforce
-  categories: [ HideSpawnMenu ]
   name: ОБР Уборщик
   suffix: спавнер спецсил
   components:
@@ -68,9 +68,9 @@
       prototype: MobHumanERTJunitorEVAV2_1
 
 - type: entity
+  categories: [ HideSpawnMenu, Spawner ]
   id: SpawnMobHumanERTMedicalEVAV2_1
   parent: SpawnSpecforce
-  categories: [ HideSpawnMenu ]
   name: ОБР Медик
   suffix: спавнер спецсил
   components:
@@ -78,9 +78,9 @@
       prototype: MobHumanERTMedicalEVAV2_1
 
 - type: entity
+  categories: [ HideSpawnMenu, Spawner ]
   id: SpawnMobHumanSFOfficer
   parent: SpawnSpecforce
-  categories: [ HideSpawnMenu ]
   name: РХБЗЗ ОСО
   suffix: спавнер спецсил
   components:
@@ -88,9 +88,9 @@
       prototype: MobHumanSFOfficer
 
 - type: entity
+  categories: [ HideSpawnMenu, Spawner ]
   id: SpawnMobHumanRXBZZ
   parent: SpawnSpecforce
-  categories: [ HideSpawnMenu ]
   name: РХБЗЗ Опер
   suffix: спавнер спецсил
   components:
@@ -98,9 +98,9 @@
       prototype: MobHumanRXBZZ
 
 - type: entity
+  categories: [ HideSpawnMenu, Spawner ]
   id: SpawnMobHumanRXBZZLeader
   parent: SpawnSpecforce
-  categories: [ HideSpawnMenu ]
   name: РХБЗЗ лидер
   suffix: спавнер спецсил
   components:
@@ -108,9 +108,9 @@
       prototype: MobHumanRXBZZLeader
 
 - type: entity
+  categories: [ HideSpawnMenu, Spawner ]
   id: SpawnMobHumanRXBZZBlobLeader
   parent: SpawnSpecforce
-  categories: [ HideSpawnMenu ]
   name: РХБЗЗ лидер
   suffix: спавнер спецсил
   components:
@@ -118,9 +118,9 @@
       prototype: MobHumanRXBZZBlobLeader
 
 - type: entity
+  categories: [ HideSpawnMenu, Spawner ]
   id: SpawnMobHumanRXBZZFlamer
   parent: SpawnSpecforce
-  categories: [ HideSpawnMenu ]
   name: РХБЗЗ специалист
   suffix: спавнер спецсил
   components:
@@ -128,9 +128,9 @@
       prototype: MobHumanRXBZZFlamer
 
 - type: entity
+  categories: [ HideSpawnMenu, Spawner ]
   id: SpawnMobHumanRXBZZMedic
   parent: SpawnSpecforce
-  categories: [ HideSpawnMenu ]
   name: РХБЗЗ специалист
   suffix: спавнер спецсил
   components:
@@ -138,9 +138,9 @@
       prototype: MobHumanRXBZZMedic
 
 - type: entity
+  categories: [ HideSpawnMenu, Spawner ]
   id: SpawnMobHumanERTOperativeAlpha1
   parent: SpawnSpecforce
-  categories: [ HideSpawnMenu ]
   name: Альфа лидер
   suffix: спавнер спецсил
   components:
@@ -148,9 +148,9 @@
       prototype: MobHumanERTOperativeAlpha1
 
 - type: entity
+  categories: [ HideSpawnMenu, Spawner ]
   id: SpawnMobHumanERTLeaderAlpha1
   parent: SpawnSpecforce
-  categories: [ HideSpawnMenu ]
   name: Альфа Опер
   suffix: спавнер спецсил
   components:
@@ -158,9 +158,9 @@
       prototype: MobHumanERTLeaderAlpha1
 
 - type: entity
+  categories: [ HideSpawnMenu, Spawner ]
   id: SpawnMobHumanSpecialReAgentCOM
   parent: SpawnSpecforce
-  categories: [ HideSpawnMenu ]
   name: Спецназ лидер
   suffix: спавнер спецсил
   components:
@@ -168,9 +168,9 @@
       prototype: MobHumanSpecialReAgentCOM
 
 - type: entity
+  categories: [ HideSpawnMenu, Spawner ]
   id: SpawnMobHumanSpecialReAgent
   parent: SpawnSpecforce
-  categories: [ HideSpawnMenu ]
   name: Спецназ опер
   suffix: спавнер спецсил
   components:
@@ -178,9 +178,9 @@
       prototype: MobHumanSpecialReAgent
 
 - type: entity
+  categories: [ HideSpawnMenu, Spawner ]
   id: SpawnMobHumanERTLeaderEpsilon
   parent: SpawnSpecforce
-  categories: [ HideSpawnMenu ]
   name: ОБР Лидер
   suffix: спавнер спецсил
   components:
@@ -188,9 +188,9 @@
       prototype: MobHumanERTLeaderReadyV3
 
 - type: entity
+  categories: [ HideSpawnMenu, Spawner ]
   id: SpawnMobHumanERTSecurityEpsilon
   parent: SpawnSpecforce
-  categories: [ HideSpawnMenu ]
   name: ОБР Охрана
   suffix: спавнер спецсил
   components:
@@ -198,9 +198,9 @@
       prototype: MobHumanERTSecurityReadyV3
 
 - type: entity
+  categories: [ HideSpawnMenu, Spawner ]
   id: SpawnMobHumanERTEngineerEpsilon
   parent: SpawnSpecforce
-  categories: [ HideSpawnMenu ]
   name: ОБР Инж
   suffix: спавнер спецсил
   components:
@@ -208,9 +208,9 @@
       prototype: MobHumanERTEngineerReadyV3
 
 - type: entity
+  categories: [ HideSpawnMenu, Spawner ]
   id: SpawnMobHumanERTJanitorEpsilon
   parent: SpawnSpecforce
-  categories: [ HideSpawnMenu ]
   name: ОБР Уборщик
   suffix: спавнер спецсил
   components:
@@ -218,9 +218,9 @@
       prototype: MobHumanERTJunitorEggV3
 
 - type: entity
+  categories: [ HideSpawnMenu, Spawner ]
   id: SpawnMobHumanERTMedicalEpsilon
   parent: SpawnSpecforce
-  categories: [ HideSpawnMenu ]
   name: ОБР Медик
   suffix: спавнер спецсил
   components:
@@ -228,9 +228,9 @@
       prototype: MobHumanERTMedicalReadyV3
 
 - type: entity
+  categories: [ HideSpawnMenu, Spawner ]
   id: SpawnMobHumanERTLeaderTay39
   parent: SpawnSpecforce
-  categories: [ HideSpawnMenu ]
   name: Тау лидер
   suffix: спавнер спецсил
   components:
@@ -238,9 +238,9 @@
       prototype: MobHumanERTLeaderTay39
 
 - type: entity
+  categories: [ HideSpawnMenu, Spawner ]
   id: SpawnMobHumanERTMedicTay39
   parent: SpawnSpecforce
-  categories: [ HideSpawnMenu ]
   name: Тау медик
   suffix: спавнер спецсил
   components:
@@ -248,9 +248,9 @@
       prototype: MobHumanERTMedicTay39
 
 - type: entity
+  categories: [ HideSpawnMenu, Spawner ]
   id: SpawnMobHumanERTSecurityTay39
   parent: SpawnSpecforce
-  categories: [ HideSpawnMenu ]
   name: Тау опер
   suffix: спавнер спецсил
   components:

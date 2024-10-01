@@ -1,0 +1,123 @@
+- type: tile
+  id: FloorFullBlack
+  name: чёрный пол #внутри помещений, герметичен. скрывает под собой провода. не видны погодные условия.
+  sprite: /Textures/_SpaceCats/Tiles/fullblack.png
+  baseTurf: Plating
+  isSubfloor: false
+  deconstructTools: [ Prying ]
+  footstepSounds:
+    collection: FootstepFloor
+  heatCapacity: 10000
+
+- type: tile
+  id: FloorFullWhite
+  name: белый пол
+  sprite: /Textures/_SpaceCats/Tiles/fullwhite.png
+  baseTurf: Plating
+  isSubfloor: false
+  deconstructTools: [ Prying ]
+  footstepSounds:
+    collection: FootstepFloor
+  heatCapacity: 10000
+
+- type: tile
+  id: FloorTransparent
+  name: прозрачный пол
+  sprite: /Textures/_SpaceCats/Tiles/transparent.png
+  baseTurf: Plating
+  isSubfloor: false
+  deconstructTools: [ Prying ]
+  footstepSounds:
+    collection: FootstepFloor
+  heatCapacity: 10000
+
+- type: entity
+  id: FloorSwarmerEntity
+  name: S.W.A.R.M покрытие
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: AmbientSound
+    enabled: false
+    volume: -8
+    range: 8
+    sound:
+      path: /Audio/Ambience/Objects/drain.ogg
+  - type: Drain
+  - type: DumpableSolution
+    solution: drainBuffer
+  - type: Appearance
+  - type: SolutionContainerVisuals
+    maxFillLevels: 1
+    fillBaseName: fill-
+    solutionName: drainBuffer
+  - type: SolutionContainerManager
+    solutions:
+      drainBuffer:
+        maxVol: 1000
+  - type: DrainableSolution
+    solution: drainBuffer
+  - type: Clickable
+  - type: Sprite
+    sprite: _SpaceCats/Swarmers/STRUCTURES/Swarm_Tiel.rsi
+    drawdepth: FloorTiles
+    layers:
+      - state: Swarm
+  - type: Transform
+    anchored: true
+  - type: FootstepModifier
+    footstepSoundCollection:
+      collection: FootstepHull
+  - type: Damageable
+    damageContainer: Inorganic
+    damageModifierSet: Metallic
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 500
+      behaviors:
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          SheetSWARMSteel1:
+            min: 1
+            max: 1
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalSlam
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+
+- type: entity
+  id: FloorSwarmerEntityLight
+  parent: FloorSwarmerEntity
+  components:
+  - type: PointLight
+    radius: 2
+    energy: 2
+    color: "#aea5f6"
+  - type: Clickable
+  - type: Sprite
+    sprite: _SpaceCats/Swarmers/STRUCTURES/Swarm_Tiel.rsi
+    drawdepth: FloorTiles
+    layers:
+      - state: Swarm_Light
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 500
+      behaviors:
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          SheetSWARMSteel1:
+            min: 1
+            max: 1
+          SheetSWARMGlass1:
+            min: 1
+            max: 1
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalSlam
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]

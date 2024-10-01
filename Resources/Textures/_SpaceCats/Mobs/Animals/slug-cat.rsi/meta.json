@@ -1,0 +1,89 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "Made by #boctonskuitea (discord), AdventureTimeSS14, commit 6896f93d73c741a8d9f7f321007cf177f09a12ef",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "icon-creek"
+    },
+    {
+      "name": "icon-holy"
+    },
+    {
+      "name": "icon-monk"
+    },
+    {
+      "name": "icon-sonfariel"
+    },
+    {
+      "name": "icon-spear-master"
+    },
+    {
+      "name": "icon-technician"
+    },
+    {
+      "name": "creek-rest"
+    },
+    {
+      "name": "holy-rest"
+    },
+    {
+      "name": "monk-rest"
+    },
+    {
+      "name": "sonfariel-rest"
+    },
+    {
+      "name": "spear-master-rest"
+    },
+    {
+      "name": "technician-rest"
+    },
+    {
+      "name": "creek",
+      "directions": 4
+    },
+    {
+      "name": "holy",
+      "directions": 4
+    },
+    {
+      "name": "monk",
+      "directions": 4
+    },
+    {
+      "name": "sonfariel",
+      "directions": 4
+    },
+    {
+      "name": "spear-master",
+      "directions": 4
+    },
+    {
+      "name": "technician",
+      "directions": 4
+    },
+    {
+      "name": "dead-creek"
+    },
+    {
+      "name": "dead-holy"
+    },
+    {
+      "name": "dead-monk"
+    },
+    {
+      "name": "dead-sonfariel"
+    },
+    {
+      "name": "dead-spear-master"
+    },
+    {
+      "name": "dead-technician"
+    }
+  ]
+}

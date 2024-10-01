@@ -1,0 +1,52 @@
+- type: entity
+  parent: SheetGlassBase
+  id: SheetSWARMGlass
+  description: Сверхпрочное стекло на основе S.W.A.R.M. стали.
+  name: S.W.A.R.M. Стекло
+  suffix: Full
+  components:
+  - type: PhysicalComposition
+    materialComposition:
+      SWARMGlass: 100
+  - type: Material
+  - type: Stack
+    stackType: SWARMGlass
+    baseLayer: base
+    layerStates:
+    - SwarmGlass
+    - SwarmGlass2
+    - SwarmGlass3
+  - type: Sprite
+    sprite: _SpaceCats/Swarmers/Swarm_Materials.rsi
+    state: SwarmGlass3
+    layers:
+    - state: SwarmGlass3
+      map: ["base"]
+  - type: Item
+  - type: Appearance
+
+- type: entity
+  parent: SheetSWARMGlass
+  categories: [ HideSpawnMenu ]
+  id: SheetSWARMGlass10
+  suffix: 10
+  components:
+  - type: Sprite
+    sprite: _SpaceCats/Swarmers/Swarm_Materials.rsi
+    state: SwarmGlass
+  - type: Stack
+    stackType: SWARMGlass
+    count: 10
+
+- type: entity
+  parent: SheetSWARMGlass
+  id: SheetSWARMGlass1
+  categories: [ HideSpawnMenu ]
+  suffix: Single
+  components:
+  - type: Sprite
+    sprite: _SpaceCats/Swarmers/Swarm_Materials.rsi
+    state: SwarmGlass
+  - type: Stack
+    stackType: SWARMGlass
+    count: 1

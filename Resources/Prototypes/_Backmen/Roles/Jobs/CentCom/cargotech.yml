@@ -11,16 +11,22 @@
   weight: 1
   requireAdminNotify: true
   joinNotifyCrew: true
+  whitelisted: true
   requirements:
     - !type:DepartmentTimeRequirement
       department: Cargo
-      time: 126000
+#      time: 12600
+      time: 60600   #cats
     - !type:RoleTimeRequirement
       role: JobCentralCommandAssistant
-      time: 21600
+#      time: 21600
+      time: 6000   #cats
     - !type:DepartmentTimeRequirement
       department: CentCom
-      time: 43200
+#      time: 43200
+      time: 12000   #cats
+    - !type:AgeRequirement
+      requiredAge: 21 # cats
   access:
     - CentralCommand
     - CCCargo

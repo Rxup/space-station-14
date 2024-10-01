@@ -1,0 +1,319 @@
+
+- type: entity
+  save: false
+  name: Урист макЗмий
+  parent: BaseMobZerah
+  id: MobZerah
+
+- type: entity
+  abstract: true
+  save: false
+  parent: BaseMobSpeciesOrganic
+  id: BaseMobZerah
+  name: Урист макЗмий
+  components:
+  - type: Absorbable # chainling
+  - type: Devourer
+    devourAction: ActionDevourZerah
+    soundDevour: /Audio/_Cats/Snake/ZerahEat.ogg
+    foodPreference: All
+    shouldStoreDevoured: true
+    chemical: UncookedAnimalProteins
+    healRate: 30
+    devourTime: 15
+    whitelist:
+      components:
+      - MobState
+  - type: SolutionContainerManager
+    solutions:
+      melee:
+        reagents:
+        - ReagentId: ZerahPoison
+          Quantity: 100
+  - type: SolutionRegeneration
+    solution: melee
+    generated:
+      reagents:
+      - ReagentId: ZerahPoison
+        Quantity: 0.5
+  - type: MeleeChemicalInjector
+    solution: melee
+    transferAmount: 5
+  - type: NoSlip
+  - type: FootstepModifier
+    footstepSoundCollection:
+      collection: SnakeStep
+      params:
+        volume: -100
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.35
+        density: 120
+        restitution: 0.0
+        mask:
+        - MobMask
+        layer:
+        - MobLayer
+  - type: MeleeWeapon
+    soundHit:
+      collection: AlienClaw
+    angle: 30
+    animation: WeaponArcClaw
+    damage:
+      types:
+        Slash: 5
+  - type: Puller
+    needsHands: false
+  - type: LizardAccent
+  - type: DamageVisuals
+    damageOverlayGroups:
+      Brute:
+        sprite: Mobs/Effects/brute_damage.rsi
+        color: "#e1b52e"
+  - type: Bloodstream
+    bloodReagent: ZerahBlood
+  - type: Vocal
+    sounds:
+      Male: UnSexZerah
+      Female: UnSexZerah
+      Unsexed: UnSexZerah
+  - type: Speech
+    speechSounds: SnakeSpeach
+    speechVerb: Reptilian
+  - type: Temperature
+    heatDamageThreshold: 423.15
+    coldDamageThreshold: 303.15
+    currentTemperature: 310.15
+    coldDamage:
+      types:
+        Cold : 1.5
+    specificHeat: 42
+    heatDamage:
+      types:
+        Heat : 1.5
+  - type: Damageable
+    damageContainer: Biological
+    damageModifierSet: Scale
+  - type: Body
+    prototype: ZerahSnake
+  - type: Hunger
+    baseDecayRate: 0.0333
+    thresholds:
+      Overfed: 150
+      Okay: 75
+      Peckish: 20
+      Starving: 10
+      Dead: 0
+  - type: Icon
+    sprite: _SpaceCats/Snake/parts.rsi
+    state: full
+  - type: Thirst
+    thresholds:
+      OverHydrated: 600
+      Okay: 300
+      Thirsty: 200
+      Parched: 100
+      Dead: 0
+    baseDecayRate: 0.04
+  - type: Butcherable
+    butcheringType: Spike
+    spawned:
+    - id: FoodMeatLizard
+      amount: 5
+  - type: HumanoidAppearance
+    species: Zerah
+    hideLayersOnEquip:
+    - HeadTop
+    - Snout
+    - HeadSide
+  - type: Inventory
+    templateId: Zerah
+    speciesId: Zerah
+    femaleDisplacements:
+      jumpsuit:
+        sizeMaps:
+          32:
+            sprite: _SpaceCats/Snake/Desp.rsi
+            state: desp_f
+      outerClothing:
+        sizeMaps:
+          32:
+            sprite: _SpaceCats/Snake/Desp.rsi
+            state: desp_f
+    maleDisplacements:
+      jumpsuit:
+        sizeMaps:
+          32:
+            sprite: _SpaceCats/Snake/Desp.rsi
+            state: desp_m
+      outerClothing:
+        sizeMaps:
+          32:
+            sprite: _SpaceCats/Snake/Desp.rsi
+            state: desp_m
+
+- type: entity
+  parent: BaseSpeciesDummy
+  id: MobZerahDummy
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: HumanoidAppearance
+    species: Zerah
+  - type: Inventory
+    templateId: Zerah
+    speciesId: Zerah
+    femaleDisplacements:
+      jumpsuit:
+        sizeMaps:
+          32:
+            sprite: _SpaceCats/Snake/Desp.rsi
+            state: desp_f
+      outerClothing:
+        sizeMaps:
+          32:
+            sprite: _SpaceCats/Snake/Desp.rsi
+            state: desp_f
+    maleDisplacements:
+      jumpsuit:
+        sizeMaps:
+          32:
+            sprite: _SpaceCats/Snake/Desp.rsi
+            state: desp_m
+      outerClothing:
+        sizeMaps:
+          32:
+            sprite: _SpaceCats/Snake/Desp.rsi
+            state: desp_m
+
+#Инвентарь
+- type: inventoryTemplate
+  id: Zerah
+  slots:
+    - name: jumpsuit
+      slotTexture: uniform
+      slotFlags: INNERCLOTHING
+      stripTime: 6
+      uiWindowPos: 0,1
+      strippingWindowPos: 0,2
+      displayName: Jumpsuit
+    - name: outerClothing
+      slotTexture: suit
+      slotFlags: OUTERCLOTHING
+      stripTime: 6
+      uiWindowPos: 1,1
+      strippingWindowPos: 1,2
+      displayName: Suit
+    - name: gloves
+      slotTexture: gloves
+      slotFlags: GLOVES
+      uiWindowPos: 2,1
+      strippingWindowPos: 2,2
+      displayName: Gloves
+    - name: neck
+      slotTexture: neck
+      slotFlags: NECK
+      uiWindowPos: 0,2
+      strippingWindowPos: 0,1
+      displayName: Neck
+    - name: mask
+      slotTexture: mask
+      slotFlags: MASK
+      uiWindowPos: 1,2
+      strippingWindowPos: 1,1
+      displayName: Mask
+    - name: eyes
+      slotTexture: glasses
+      slotFlags: EYES
+      stripTime: 3
+      uiWindowPos: 0,3
+      strippingWindowPos: 0,0
+      displayName: Eyes
+    - name: ears
+      slotTexture: ears
+      slotFlags: EARS
+      stripTime: 3
+      uiWindowPos: 2,2
+      strippingWindowPos: 2,0
+      displayName: Ears
+    - name: head
+      slotTexture: head
+      slotFlags: HEAD
+      uiWindowPos: 1,3
+      strippingWindowPos: 1,0
+      displayName: Head
+    - name: pocket1
+      slotTexture: pocket
+      fullTextureName: template_small
+      slotFlags: POCKET
+      slotGroup: MainHotbar
+      stripTime: 3
+      uiWindowPos: 0,3
+      strippingWindowPos: 0,4
+      dependsOn: jumpsuit
+      displayName: Pocket 1
+      stripHidden: true
+    - name: pocket2
+      slotTexture: pocket
+      fullTextureName: template_small
+      slotFlags: POCKET
+      slotGroup: MainHotbar
+      stripTime: 3
+      uiWindowPos: 2,3
+      strippingWindowPos: 1,4
+      dependsOn: jumpsuit
+      displayName: Pocket 2
+      stripHidden: true
+    - name: suitstorage
+      slotTexture: suit_storage
+      slotFlags:   SUITSTORAGE
+      slotGroup: MainHotbar
+      stripTime: 3
+      uiWindowPos: 2,0
+      strippingWindowPos: 2,5
+      dependsOn: outerClothing
+      dependsOnComponents:
+      - type: AllowSuitStorage
+      displayName: Suit Storage
+    - name: id
+      slotTexture: id
+      fullTextureName: template_small
+      slotFlags: IDCARD
+      slotGroup: SecondHotbar
+      stripTime: 6
+      uiWindowPos: 2,1
+      strippingWindowPos: 2,4
+      dependsOn: jumpsuit
+      displayName: ID
+    - name: belt
+      slotTexture: belt
+      fullTextureName: template_small
+      slotFlags: BELT
+      slotGroup: SecondHotbar
+      stripTime: 6
+      uiWindowPos: 3,1
+      strippingWindowPos: 1,5
+      displayName: Belt
+    - name: back
+      slotTexture: back
+      fullTextureName: template_small
+      slotFlags: BACK
+      slotGroup: SecondHotbar
+      stripTime: 6
+      uiWindowPos: 3,0
+      strippingWindowPos: 0,5
+      displayName: Back
+
+- type: entity
+  id: ActionDevourZerah
+  name: "[color=red]Поглотить[/color]"
+  description: Другие точно не оценят ваш поступок.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: EntityTargetAction
+    icon: { sprite : Interface/Actions/devour.rsi, state: icon }
+    iconOn: { sprite : Interface/Actions/devour.rsi, state: icon-on }
+    event: !type:DevourActionEvent
+    priority: 1

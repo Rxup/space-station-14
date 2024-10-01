@@ -20,6 +20,8 @@
       types:
         Heat: 1.5 # burn more
   - type: MobState
+  - type: TypingIndicator
+    proto: shadow
   - type: MobThresholds
     thresholds: # Weak
       0: Alive

@@ -97,6 +97,10 @@
     - GROUPS_8
     - GROUPS_9
     - GROUPS_0
+    - Binary
+    - Flesh
+    - Freelance
+    - Swarm
     globalReceive: true
   - type: Tag
     tags:

@@ -28,7 +28,7 @@
     - WhitelistChameleon
 
 - type: entity
-  parent: ClothingEyesGlassesSecurity
+  parent: [ClothingEyesGlassesSecurity, ShowMedicalIcons]
   id: ClothingEyesGlassesBlueShield
   name: очки Синего Щита
   description: Улучшенный солнце защитные очки с охранной системой HUD.
@@ -43,7 +43,7 @@
     - WhitelistChameleon
 
 - type: entity
-  parent: ClothingEyesGlassesSecurity
+  parent: [ClothingEyesGlassesSecurity, ShowMedicalIcons]
   id: ClothingEyeslensesBlueShield
   name: линзы Синего Щита
   description: Новейшие линзы с исскуственным интелектом, способным вычеслять яркость окружения и затемнять линзы, так же с внедремной системой HUD охраны.

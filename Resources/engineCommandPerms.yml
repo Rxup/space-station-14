@@ -76,6 +76,7 @@
   - loadgrid
   - loadmap
   - pausemap
+  - mapping
   - querymappaused
   - rmgrid
   - rmmap

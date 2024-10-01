@@ -101,7 +101,7 @@ namespace Content.Server.Connection
                     var utc = expireTime.ToUniversalTime();
                     expires = Loc.GetString("ban-expires", ("duration", duration.TotalMinutes.ToString("N0")), ("time", utc.ToString("f")));
                 }
-                var reason = Loc.GetString("ban-banned-1") + "\n" + Loc.GetString("ban-banned-2", ("reason", this.Reason)) + "\n" + expires;;
+                var reason = Loc.GetString("ban-banned-1") + "\n" + Loc.GetString("ban-banned-2", ("adminName", this.adminName)) + "\n" + Loc.GetString("ban-banned-3", ("reason", this.Reason)) + "\n" + expires;;
                 return NetApproval.Deny(reason);
             }
 

@@ -19,6 +19,8 @@
   - type: Damageable
     damageContainer: Biological
     damageModifierSet: Skeleton
+  - type: TypingIndicator
+    proto: skeleton
   - type: DamageVisuals
     damageOverlayGroups:
       Brute:
