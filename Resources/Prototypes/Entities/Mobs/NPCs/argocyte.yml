@@ -17,7 +17,9 @@
   - type: SolutionContainerManager
 #  - type: ReplacementAccent
 #    accent: xeno
-  - type: LanguageSpeaker #backmen: languages
+  - type: LanguageSpeaker
+    currentLanguage: TauCetiBasic
+  - type: LanguageKnowledge #backmen: languages
     speaks:
     - SpaceMob
     - Argocyte

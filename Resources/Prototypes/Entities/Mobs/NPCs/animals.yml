@@ -53,7 +53,9 @@
     bloodMaxVolume: 50
 #  - type: ReplacementAccent
 #    accent: mouse
-  - type: LanguageSpeaker #backmen: languages
+  - type: LanguageSpeaker
+    currentLanguage: TauCetiBasic
+  - type: LanguageKnowledge #backmen: languages
     speaks:
     - Mouse
     understands:
@@ -236,7 +238,9 @@
     - id: FoodEgg
 #  - type: ReplacementAccent
 #    accent: chicken
-  - type: LanguageSpeaker #backmen: languages
+  - type: LanguageSpeaker
+    currentLanguage: TauCetiBasic
+  - type: LanguageKnowledge #backmen: languages
     speaks:
     - Chicken
     understands:
@@ -533,7 +537,9 @@
     grindableSolutionName: food
 #  - type: ReplacementAccent
 #    accent: mothroach
-  - type: LanguageSpeaker #backmen: languages
+  - type: LanguageSpeaker
+    currentLanguage: TauCetiBasic
+  - type: LanguageKnowledge #backmen: languages
     speaks:
     - Moffic
     understands:
@@ -678,7 +684,9 @@
     - id: FoodEgg
 #  - type: ReplacementAccent
 #    accent: duck
-  - type: LanguageSpeaker #backmen: languages
+  - type: LanguageSpeaker
+    currentLanguage: TauCetiBasic
+  - type: LanguageKnowledge #backmen: languages
     speaks:
     - Duck
     understands:
@@ -933,7 +941,9 @@
       path: /Audio/Voice/Arachnid/arachnid_chitter.ogg
 #  - type: ReplacementAccent
 #    accent: crab
-  - type: LanguageSpeaker #backmen: languages
+  - type: LanguageSpeaker
+    currentLanguage: TauCetiBasic
+  - type: LanguageKnowledge #backmen: languages
     speaks:
     - Crab
     understands:
@@ -1196,7 +1206,9 @@
     templateId: kangaroo
 #  - type: ReplacementAccent
 #    accent: kangaroo
-  - type: LanguageSpeaker #backmen: languages
+  - type: LanguageSpeaker
+    currentLanguage: TauCetiBasic
+  - type: LanguageKnowledge #backmen: languages
     speaks:
     - SpaceMob
     - Kangaroo
@@ -1477,7 +1489,9 @@
   - type: LizardAccent
 #  - type: ReplacementAccent
 #    accent: kobold
-  - type: LanguageSpeaker #backmen: languages
+  - type: LanguageSpeaker
+    currentLanguage: TauCetiBasic
+  - type: LanguageKnowledge #backmen: languages
     speaks:
     - Cobold
     understands:
@@ -1761,7 +1775,9 @@
       amount: 1
 #  - type: ReplacementAccent
 #    accent: mouse
-  - type: LanguageSpeaker #backmen: languages
+  - type: LanguageSpeaker
+    currentLanguage: TauCetiBasic
+  - type: LanguageKnowledge #backmen: languages
     speaks:
     - Mouse
     understands:
@@ -2471,7 +2487,9 @@
       groups:
         Brute: -0.07
         Burn: -0.07
-  - type: LanguageSpeaker #backmen: languages
+  - type: LanguageSpeaker
+    currentLanguage: TauCetiBasic
+  - type: LanguageKnowledge #backmen: languages
     speaks:
     - Spider
     - SpaceMob
@@ -2809,12 +2827,14 @@
       amount: 2
 #  - type: ReplacementAccent
 #    accent: dog
-  - type: LanguageSpeaker #backmen: languages
+  - type: LanguageSpeaker
+    currentLanguage: TauCetiBasic
+  - type: LanguageKnowledge #backmen: languages
     speaks:
     - Dog
     understands:
     - Dog
-    - GalacticCommon
+    - TauCetiBasic
   - type: InteractionPopup
     interactSuccessString: petting-success-dog
     interactFailureString: petting-failure-generic
@@ -2964,12 +2984,14 @@
       amount: 3
 #  - type: ReplacementAccent
 #    accent: cat
-  - type: LanguageSpeaker #backmen: languages
+  - type: LanguageSpeaker
+    currentLanguage: TauCetiBasic
+  - type: LanguageKnowledge #backmen: languages
     speaks:
     - Cat
     understands:
     - Cat
-    - GalacticCommon
+    - TauCetiBasic
   - type: InteractionPopup
     successChance: 0.7
     interactSuccessString: petting-success-cat
@@ -3360,12 +3382,14 @@
       amount: 1
 #  - type: ReplacementAccent
 #    accent: mouse
-  - type: LanguageSpeaker #backmen: languages
+  - type: LanguageSpeaker
+    currentLanguage: TauCetiBasic
+  - type: LanguageKnowledge #backmen: languages
     speaks:
     - Mouse
     understands:
     - Mouse
-    - GalacticCommon
+    - TauCetiBasic
   - type: Tag
     tags:
     - VimPilot
@@ -3473,12 +3497,14 @@
       path: /Audio/Animals/pig_oink.ogg
 #  - type: ReplacementAccent
 #    accent: pig
-  - type: LanguageSpeaker #backmen: languages
+  - type: LanguageSpeaker
+    currentLanguage: TauCetiBasic
+  - type: LanguageKnowledge #backmen: languages
     speaks:
     - Pig
     understands:
     - Pig
-    - GalacticCommon
+    - TauCetiBasic
   - type: SentienceTarget
     flavorKind: station-event-random-sentience-flavor-organic
   - type: NpcFactionMember

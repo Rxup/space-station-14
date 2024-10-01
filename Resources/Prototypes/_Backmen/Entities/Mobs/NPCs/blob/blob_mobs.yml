@@ -50,6 +50,8 @@
 #    - type: ReplacementAccent
 #      accent: genericAggressive
     - type: LanguageSpeaker
+      currentLanguage: TauCetiBasic
+    - type: LanguageKnowledge #backmen: languages
       speaks:
       - Blob
       understands:
@@ -137,12 +139,14 @@
 #    - type: ReplacementAccent
 #      accent: genericAggressive
     - type: LanguageSpeaker
+      currentLanguage: TauCetiBasic
+    - type: LanguageKnowledge #backmen: languages
       speaks:
       - Blob
       understands:
       - Blob
       - Xeno
-      - GalacticCommon
+      - TauCetiBasic
     - type: CombatMode
     - type: HTN
       rootTask:
@@ -224,12 +228,14 @@
 #    - type: ReplacementAccent
 #      accent: genericAggressive
     - type: LanguageSpeaker
+      currentLanguage: TauCetiBasic
+    - type: LanguageKnowledge #backmen: languages
       speaks:
       - Blob
       understands:
       - Blob
       - Xeno
-      - GalacticCommon
+      - TauCetiBasic
     - type: Hands
       showInHands: true
     - type: BlobObserver

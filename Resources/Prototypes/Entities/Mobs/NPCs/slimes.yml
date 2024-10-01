@@ -112,7 +112,9 @@
     speechSounds: Slime
   - type: TypingIndicator
     proto: slime
-  - type: LanguageSpeaker #backmen: languages
+  - type: LanguageSpeaker
+    currentLanguage: TauCetiBasic
+  - type: LanguageKnowledge #backmen: languages
     speaks:
     - Slime
     understands:
@@ -127,7 +129,9 @@
   components:
 #  - type: ReplacementAccent
 #    accent: slimes
-  - type: LanguageSpeaker #backmen: languages
+  - type: LanguageSpeaker
+    currentLanguage: TauCetiBasic
+  - type: LanguageKnowledge #backmen: languages
     speaks:
     - Slime
     understands:

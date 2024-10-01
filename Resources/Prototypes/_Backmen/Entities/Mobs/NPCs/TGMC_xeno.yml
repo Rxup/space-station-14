@@ -52,6 +52,8 @@
 #  - type: ReplacementAccent
 #    accent: xeno
   - type: LanguageSpeaker
+    currentLanguage: TauCetiBasic
+  - type: LanguageKnowledge #backmen: languages
     speaks:
     - Xeno
     understands:

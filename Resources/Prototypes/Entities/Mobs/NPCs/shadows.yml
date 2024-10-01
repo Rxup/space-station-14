@@ -52,12 +52,14 @@
   - type: Physics
 #  - type: ReplacementAccent
 #    accent: cat
-  - type: LanguageSpeaker #backmen: languages
+  - type: LanguageSpeaker
+    currentLanguage: TauCetiBasic
+  - type: LanguageKnowledge #backmen: languages
     speaks:
     - Cat
     understands:
     - Cat
-    - GalacticCommon
+    - TauCetiBasic
   - type: InteractionPopup
     successChance: 0.01 # you cant pet shadow cat... almost
     interactSuccessString: petting-success-cat

@@ -53,9 +53,7 @@ public sealed class TranslatorImplantSystem : EntitySystem
             _language.UpdateEntityLanguages(implantee);
     }
 
-    private void OnDetermineLanguages(EntityUid uid,
-        ImplantedComponent component,
-        ref DetermineEntityLanguagesEvent args)
+    private void OnDetermineLanguages(EntityUid uid, ImplantedComponent component, ref DetermineEntityLanguagesEvent args)
     {
         // TODO: might wanna find a better solution, i just can't come up with something viable
         foreach (var implant in component.ImplantContainer.ContainedEntities)

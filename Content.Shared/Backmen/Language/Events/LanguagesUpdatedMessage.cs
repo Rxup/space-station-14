@@ -1,3 +1,4 @@
+using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization;
 
 namespace Content.Shared.Backmen.Language.Events;
@@ -7,9 +8,9 @@ namespace Content.Shared.Backmen.Language.Events;
 ///     The client should in turn update its HUD and relevant systems.
 /// </summary>
 [Serializable, NetSerializable]
-public sealed class LanguagesUpdatedMessage(string currentLanguage, List<string> spoken, List<string> understood) : EntityEventArgs
+public sealed class LanguagesUpdatedMessage(ProtoId<LanguagePrototype> currentLanguage, List<ProtoId<LanguagePrototype>> spoken, List<ProtoId<LanguagePrototype>> understood) : EntityEventArgs
 {
-    public string CurrentLanguage = currentLanguage;
-    public List<string> Spoken = spoken;
-    public List<string> Understood = understood;
+    public ProtoId<LanguagePrototype> CurrentLanguage = currentLanguage;
+    public List<ProtoId<LanguagePrototype>> Spoken = spoken;
+    public List<ProtoId<LanguagePrototype>> Understood = understood;
 }

@@ -240,13 +240,15 @@
     damageProtection:
       flatReductions:
         Heat: 10 # capable of touching light bulbs and stoves without feeling pain!
-  - type: LanguageSpeaker #backmen: languages
+  - type: LanguageSpeaker
+    currentLanguage: TauCetiBasic
+  - type: LanguageKnowledge #backmen: languages
     speaks:
     - Binary
-    - GalacticCommon
+    - TauCetiBasic
     understands:
     - Binary
-    - GalacticCommon
+    - TauCetiBasic
 
 - type: entity
   abstract: true

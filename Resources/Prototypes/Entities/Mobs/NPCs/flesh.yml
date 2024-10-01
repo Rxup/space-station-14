@@ -59,7 +59,9 @@
         Slash: 6
 #  - type: ReplacementAccent
 #    accent: genericAggressive
-  - type: LanguageSpeaker #backmen: languages
+  - type: LanguageSpeaker
+    currentLanguage: TauCetiBasic
+  - type: LanguageKnowledge #backmen: languages
     speaks:
     - Flesh
     - SpaceMob
@@ -264,7 +266,9 @@
         Slash: 6
 #  - type: ReplacementAccent
 #    accent: genericAggressive
-  - type: LanguageSpeaker #backmen: languages
+  - type: LanguageSpeaker
+    currentLanguage: TauCetiBasic
+  - type: LanguageKnowledge #backmen: languages
     speaks:
     - Flesh
     - SpaceMob

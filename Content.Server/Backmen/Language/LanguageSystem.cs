@@ -3,6 +3,7 @@ using Content.Server.Backmen.Language.Events;
 using Content.Shared.Backmen.Language;
 using Content.Shared.Backmen.Language.Components;
 using Content.Shared.Backmen.Language.Systems;
+using Robust.Shared.Prototypes;
 using UniversalLanguageSpeakerComponent = Content.Shared.Backmen.Language.Components.UniversalLanguageSpeakerComponent;
 
 namespace Content.Server.Backmen.Language;
@@ -70,7 +71,7 @@ public sealed partial class LanguageSystem : SharedLanguageSystem
     ///     Returns the list of languages this entity can speak.
     /// </summary>
     /// <remarks>Typically, checking <see cref="LanguageSpeakerComponent.SpokenLanguages"/> is sufficient.</remarks>
-    public List<string> GetSpokenLanguages(EntityUid uid)
+    public List<ProtoId<LanguagePrototype>> GetSpokenLanguages(EntityUid uid)
     {
         if (!TryComp<LanguageSpeakerComponent>(uid, out var component))
             return [];
@@ -82,7 +83,7 @@ public sealed partial class LanguageSystem : SharedLanguageSystem
     ///     Returns the list of languages this entity can understand.
     /// </summary>
     /// <remarks>Typically, checking <see cref="LanguageSpeakerComponent.UnderstoodLanguages"/> is sufficient.</remarks>
-    public List<string> GetUnderstoodLanguages(EntityUid uid)
+    public List<ProtoId<LanguagePrototype>> GetUnderstoodLanguages(EntityUid uid)
     {
         if (!TryComp<LanguageSpeakerComponent>(uid, out var component))
             return [];
@@ -153,7 +154,7 @@ public sealed partial class LanguageSystem : SharedLanguageSystem
         if (!Resolve(entity, ref comp))
             return false;
 
-        if (!comp.SpokenLanguages.Contains(comp.CurrentLanguage))
+        if (!comp.SpokenLanguages.Contains(comp.CurrentLanguage ?? ""))
         {
             comp.CurrentLanguage = comp.SpokenLanguages.FirstOrDefault(UniversalPrototype);
             RaiseLocalEvent(entity, new LanguagesUpdateEvent());
@@ -176,10 +177,14 @@ public sealed partial class LanguageSystem : SharedLanguageSystem
         if (TryComp<LanguageKnowledgeComponent>(entity, out var knowledge))
         {
             foreach (var spoken in knowledge.SpokenLanguages)
+            {
                 ev.SpokenLanguages.Add(spoken);
+            }
 
             foreach (var understood in knowledge.UnderstoodLanguages)
+            {
                 ev.UnderstoodLanguages.Add(understood);
+            }
         }
 
         RaiseLocalEvent(entity, ref ev);

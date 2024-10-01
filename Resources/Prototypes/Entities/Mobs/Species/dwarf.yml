@@ -49,11 +49,15 @@
       Unsexed: UnisexDwarf
   - type: ReplacementAccent
     accent: dwarf
-  - type: LanguageSpeaker #backmen: languages
+  - type: LanguageSpeaker
+    currentLanguage: TauCetiBasic
+  - type: LanguageKnowledge #backmen: languages
     speaks:
-    - GalacticCommon
+    - TauCetiBasic
+    - SolCommon
     understands:
-    - GalacticCommon
+    - TauCetiBasic
+    - SolCommon
   - type: Speech
     speechSounds: Bass
   - type: HumanoidAppearance

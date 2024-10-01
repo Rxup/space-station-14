@@ -116,11 +116,13 @@
     proto: robot
   - type: Speech
     speechVerb: Robotic
-  - type: LanguageSpeaker #backmen: languages
+  - type: LanguageSpeaker
+    currentLanguage: TauCetiBasic
+  - type: LanguageKnowledge #backmen: languages
     speaks:
-    - GalacticCommon
+    - TauCetiBasic
     understands:
-    - GalacticCommon
+    - TauCetiBasic
 
 - type: entity
   parent: BasePDA

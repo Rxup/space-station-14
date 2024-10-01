@@ -120,11 +120,13 @@
 #  - type: ReplacementAccent
 #    accent: silicon
   - type: LanguageSpeaker
+    currentLanguage: TauCetiBasic
+  - type: LanguageKnowledge #backmen: languages
     speaks:
     - Binary
     understands:
     - Binary
-    - GalacticCommon
+    - TauCetiBasic
   - type: IntrinsicRadioReceiver
   - type: IntrinsicRadioTransmitter
     channels:

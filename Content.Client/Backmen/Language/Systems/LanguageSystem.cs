@@ -2,6 +2,7 @@ using Content.Shared.Backmen.Language;
 using Content.Shared.Backmen.Language.Events;
 using Content.Shared.Backmen.Language.Systems;
 using Robust.Client;
+using Robust.Shared.Prototypes;
 
 namespace Content.Client.Backmen.Language.Systems;
 
@@ -19,15 +20,15 @@ public sealed class LanguageSystem : SharedLanguageSystem
     /// <summary>
     ///   The current language of the entity currently possessed by the player.
     /// </summary>
-    public string CurrentLanguage { get; private set; } = default!;
+    public ProtoId<LanguagePrototype> CurrentLanguage { get; private set; } = default!;
     /// <summary>
     ///   The list of languages the currently possessed entity can speak.
     /// </summary>
-    public List<string> SpokenLanguages { get; private set; } = new();
+    public List<ProtoId<LanguagePrototype>> SpokenLanguages { get; private set; } = new();
     /// <summary>
     ///   The list of languages the currently possessed entity can understand.
     /// </summary>
-    public List<string> UnderstoodLanguages { get; private set; } = new();
+    public List<ProtoId<LanguagePrototype>> UnderstoodLanguages { get; private set; } = new();
 
     public event EventHandler<LanguagesUpdatedMessage>? OnLanguagesChanged;
 

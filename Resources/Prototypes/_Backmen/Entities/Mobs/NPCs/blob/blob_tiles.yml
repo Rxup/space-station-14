@@ -115,12 +115,14 @@
 #  - type: ReplacementAccent
 #    accent: genericAggressive
   - type: LanguageSpeaker
+    currentLanguage: TauCetiBasic
+  - type: LanguageKnowledge #backmen: languages
     speaks:
     - Blob
     understands:
     - Blob
     - Xeno
-    - GalacticCommon
+    - TauCetiBasic
   - type: Store
     currencyWhitelist:
     - BlobPoint

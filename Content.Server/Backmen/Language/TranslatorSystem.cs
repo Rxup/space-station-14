@@ -33,12 +33,10 @@ public sealed class TranslatorSystem : SharedTranslatorSystem
         SubscribeLocalEvent<HandheldTranslatorComponent, PowerCellSlotEmptyEvent>(OnPowerCellSlotEmpty);
     }
 
-    private void OnDetermineLanguages(EntityUid uid,
-        IntrinsicTranslatorComponent component,
-        DetermineEntityLanguagesEvent ev)
+    private void OnDetermineLanguages(EntityUid uid, IntrinsicTranslatorComponent component, DetermineEntityLanguagesEvent ev)
     {
         if (!component.Enabled
-            || component.LifeStage >= ComponentLifeStage.Removing
+            || TerminatingOrDeleted(uid)
             || !TryComp<LanguageKnowledgeComponent>(uid, out var knowledge)
             || !_powerCell.HasActivatableCharge(uid))
             return;
@@ -46,9 +44,7 @@ public sealed class TranslatorSystem : SharedTranslatorSystem
         CopyLanguages(component, ev, knowledge);
     }
 
-    private void OnProxyDetermineLanguages(EntityUid uid,
-        HoldsTranslatorComponent component,
-        DetermineEntityLanguagesEvent ev)
+    private void OnProxyDetermineLanguages(EntityUid uid, HoldsTranslatorComponent component, DetermineEntityLanguagesEvent ev)
     {
         if (!TryComp<LanguageKnowledgeComponent>(uid, out var knowledge))
             return;
@@ -151,9 +147,7 @@ public sealed class TranslatorSystem : SharedTranslatorSystem
             _language.UpdateEntityLanguages(holderCont.Owner);
     }
 
-    private void CopyLanguages(BaseTranslatorComponent from,
-        DetermineEntityLanguagesEvent to,
-        LanguageKnowledgeComponent knowledge)
+    private void CopyLanguages(BaseTranslatorComponent from, DetermineEntityLanguagesEvent to, LanguageKnowledgeComponent knowledge)
     {
         var addSpoken =
             CheckLanguagesMatch(from.RequiredLanguages, knowledge.SpokenLanguages, from.RequiresAllLanguages);

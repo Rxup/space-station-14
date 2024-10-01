@@ -70,6 +70,15 @@
     canShuttle: false
     title: comms-console-announcement-title-station-ai
     color: "#2ed2fd"
+  - type: LanguageSpeaker
+    currentLanguage: TauCetiBasic
+  - type: LanguageKnowledge #backmen: languages
+    speaks:
+    - Binary
+    - TauCetiBasic
+    understands:
+    - Binary
+    - TauCetiBasic
 
 
 # Ai
@@ -474,13 +483,15 @@
   - type: Alerts
   - type: ProtectedFromStepTriggers
     slots: WITHOUT_POCKET
-  - type: LanguageSpeaker #backmen: languages
+  - type: LanguageSpeaker
+    currentLanguage: TauCetiBasic
+  - type: LanguageKnowledge #backmen: languages
     speaks:
     - Binary
-    - GalacticCommon
+    - TauCetiBasic
     understands:
     - Binary
-    - GalacticCommon
+    - TauCetiBasic
 
 - type: entity
   name: drone

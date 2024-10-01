@@ -78,7 +78,9 @@
         - DoorBumpOpener
 #    - type: ReplacementAccent
 #      accent: genericAggressive
-    - type: LanguageSpeaker #backmen: languages
+    - type: LanguageSpeaker
+      currentLanguage: TauCetiBasic
+    - type: LanguageKnowledge #backmen: languages
       speaks:
       - SpaceMob
       - Carp

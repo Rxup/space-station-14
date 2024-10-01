@@ -3,6 +3,7 @@ using Content.Shared.Administration;
 using Content.Shared.Backmen.Language;
 using Content.Shared.Backmen.Language.Components;
 using Content.Shared.Backmen.Language.Systems;
+using Robust.Shared.Prototypes;
 using Robust.Shared.Toolshed;
 using Robust.Shared.Toolshed.Syntax;
 using Robust.Shared.Toolshed.TypeParsers;
@@ -56,20 +57,20 @@ public sealed class AdminLanguageCommand : ToolshedCommand
             EnsureComp<LanguageSpeakerComponent>(input);
         }
 
-        // We execute this branch even in case of universal so that it gets removed if it was added manually to the LanguageKnowledge
+        // We execute this branch even in case of universal so that it gets removed if it was added manually to the LanguageSpeaker
         Languages.RemoveLanguage(input, language, removeSpeak, removeUnderstand);
 
         return input;
     }
 
     [CommandImplementation("lsspoken")]
-    public IEnumerable<string> ListSpoken([PipedArgument] EntityUid input)
+    public IEnumerable<ProtoId<LanguagePrototype>> ListSpoken([PipedArgument] EntityUid input)
     {
         return Languages.GetSpokenLanguages(input);
     }
 
     [CommandImplementation("lsunderstood")]
-    public IEnumerable<string> ListUnderstood([PipedArgument] EntityUid input)
+    public IEnumerable<ProtoId<LanguagePrototype>> ListUnderstood([PipedArgument] EntityUid input)
     {
         return Languages.GetUnderstoodLanguages(input);
     }

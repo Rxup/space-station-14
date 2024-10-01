@@ -70,7 +70,7 @@ public sealed partial class LanguageSystem
     {
         var message = !Resolve(uid, ref component, logMissing: false)
             ? new LanguagesUpdatedMessage(UniversalPrototype, [UniversalPrototype], [UniversalPrototype])
-            : new LanguagesUpdatedMessage(component.CurrentLanguage,
+            : new LanguagesUpdatedMessage(component.CurrentLanguage ?? "",
                 component.SpokenLanguages,
                 component.UnderstoodLanguages);
 

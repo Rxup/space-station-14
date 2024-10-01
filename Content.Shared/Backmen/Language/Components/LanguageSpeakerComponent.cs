@@ -1,3 +1,5 @@
+using Robust.Shared.Prototypes;
+
 namespace Content.Shared.Backmen.Language;
 
 // TODO: either move all language speaker-related components to server side, or make everything else shared.
@@ -17,18 +19,16 @@ public sealed partial class LanguageSpeakerComponent : Component
     ///     The current language the entity uses when speaking.
     ///     Other listeners will hear the entity speak in this language.
     /// </summary>
-    [DataField]
-    public string CurrentLanguage = ""; // The language system will override it on init
+    [DataField, ViewVariables(VVAccess.ReadOnly)]
+    public ProtoId<LanguagePrototype>? CurrentLanguage; // The language system will override it on init
 
     /// <summary>
     ///     List of languages this entity can speak at the current moment.
     /// </summary>
-    [DataField("speaks")]
-    public List<string> SpokenLanguages = [];
+    public List<ProtoId<LanguagePrototype>> SpokenLanguages = [];
 
     /// <summary>
     ///     List of languages this entity can understand at the current moment.
     /// </summary>
-    [DataField("understands")]
-    public List<string> UnderstoodLanguages = [];
+    public List<ProtoId<LanguagePrototype>> UnderstoodLanguages = [];
 }
