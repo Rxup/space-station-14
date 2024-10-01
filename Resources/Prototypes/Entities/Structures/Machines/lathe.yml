@@ -359,6 +359,26 @@
       - FauxTileAstroSnow
       - OreBagOfHolding
       - DeviceQuantumSpinInverter
+# start-backmen: languages
+      - CanilunztTranslator
+      - BubblishTranslator
+      - NekomimeticTranslator
+      - DraconicTranslator
+      - SolCommonTranslator
+      - RootSpeakTranslator
+      - XenoTranslator
+      - BasicGalaticCommonTranslatorImplanter
+      - AdvancedGalaticCommonTranslatorImplanter
+      - BubblishTranslatorImplanter
+      - NekomimeticTranslatorImplanter
+      - DraconicTranslatorImplanter
+      - CanilunztTranslatorImplanter
+      - SolCommonTranslatorImplanter
+      - RootSpeakTranslatorImplanter
+      - AnimalTranslator
+      - MofficTranslatorImplanter
+      - MofficTranslator
+# end-backmen: languages
   - type: EmagLatheRecipes
     emagDynamicRecipes:
       - BoxBeanbag
