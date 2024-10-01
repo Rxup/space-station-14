@@ -140,12 +140,6 @@ public sealed class BlobCoreSystem : EntitySystem
             if (actionUid != null)
                 component.Actions.Add(actionUid.Value);
         }
-
-        var blobRule = EntityQuery<BlobRuleComponent>().FirstOrDefault();
-        if (blobRule == null)
-        {
-            _gameTicker.StartGameRule("Blob", out _);
-        }
     }
 
     private void OnTerminating(EntityUid uid, BlobCoreComponent component, ref EntityTerminatingEvent args)
@@ -263,6 +257,12 @@ public sealed class BlobCoreSystem : EntitySystem
     {
         if (!Resolve(blobCoreUid, ref core))
             return false;
+
+        var blobRule = EntityQuery<BlobRuleComponent>().FirstOrDefault();
+        if (blobRule == null)
+        {
+            _gameTicker.StartGameRule("Blob", out _);
+        }
 
         var ev = new CreateBlobObserverEvent(userId);
         RaiseLocalEvent(blobCoreUid, ev, true);
