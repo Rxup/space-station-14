@@ -58,16 +58,16 @@ public sealed class PsionicInvisibilitySystem : EntitySystem
         if (TryComp<NpcFactionMemberComponent>(uid, out var npcFactionMemberComponent))
         {
             Entity<NpcFactionMemberComponent?> ent = (uid, npcFactionMemberComponent);
-            if (_npcFactonSystem.IsMember(ent, "PsionicInterloper"))
+            if (_npcFactonSystem.IsMember(ent, PsionicInterloper))
             {
-                component.SuppressedFactions.Add("PsionicInterloper");
-                _npcFactonSystem.RemoveFaction(ent, "PsionicInterloper");
+                component.SuppressedFactions.Add(PsionicInterloper);
+                _npcFactonSystem.RemoveFaction(ent, PsionicInterloper);
             }
 
-            if (_npcFactonSystem.IsMember(ent, "GlimmerMonster"))
+            if (_npcFactonSystem.IsMember(ent, GlimmerMonster))
             {
-                component.SuppressedFactions.Add("GlimmerMonster");
-                _npcFactonSystem.RemoveFaction(ent, "GlimmerMonster");
+                component.SuppressedFactions.Add(GlimmerMonster);
+                _npcFactonSystem.RemoveFaction(ent, GlimmerMonster);
             }
         }
 

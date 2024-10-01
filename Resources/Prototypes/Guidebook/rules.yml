@@ -389,7 +389,7 @@
   id: SpaceLaw
   name: guide-entry-rules-space-law
   priority: 1
-  text: "/ServerInfo/Guidebook/ServerRules/SpaceLaw/SpaceLaw.xml"
+  text: "/ServerInfo/_Backmen/Guidebook/ServerRules/SpaceLaw/SpaceLawBackmen.xml"
   children:
   - SpaceLawCrimeList
 
@@ -397,7 +397,7 @@
   id: SpaceLawCrimeList
   name: guide-entry-rules-sl-crime-list
   priority: 5
-  text: "/ServerInfo/Guidebook/ServerRules/SpaceLaw/SLCrimeList.xml"
+  text: "/ServerInfo/_Backmen/Guidebook/ServerRules/SpaceLaw/SLCrimeListBackmen.xml"
 
 - type: guideEntry
   id: BanTypes

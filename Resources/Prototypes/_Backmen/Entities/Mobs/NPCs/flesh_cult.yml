@@ -48,8 +48,16 @@
       damage:
         types:
           Slash: 3
-    - type: ReplacementAccent
-      accent: genericAggressive
+#    - type: ReplacementAccent
+#      accent: genericAggressive
+    - type: LanguageSpeaker
+      currentLanguage: TauCetiBasic
+    - type: LanguageKnowledge #backmen: languages
+      speaks:
+      - Flesh
+      understands:
+      - Flesh
+      - TauCetiBasic
     - type: Armor
       modifiers:
         coefficients:

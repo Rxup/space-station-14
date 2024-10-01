@@ -164,8 +164,16 @@
         base:
           Off: { state: shell }
           On: { state: drone }
-  - type: ReplacementAccent
-    accent: silicon
+#  - type: ReplacementAccent
+#    accent: silicon
+  - type: LanguageSpeaker
+    currentLanguage: TauCetiBasic
+  - type: LanguageKnowledge #backmen: languages
+    speaks:
+    - Binary
+    understands:
+    - Binary
+    - TauCetiBasic
   - type: TTS
     voice: TrainingRobot
   - type: ZombieImmune

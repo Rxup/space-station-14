@@ -130,8 +130,8 @@ public sealed class ZombieBlobSystem : EntitySystem
         _faction.AddFaction(uid, "Blob");
         component.OldFactions = oldFactions;
 
-        var accent = EnsureComp<ReplacementAccentComponent>(uid);
-        accent.Accent = "genericAggressive";
+        //var accent = EnsureComp<ReplacementAccentComponent>(uid);
+        //accent.Accent = "genericAggressive";
 
         _tagSystem.AddTag(uid, "BlobMob");
 

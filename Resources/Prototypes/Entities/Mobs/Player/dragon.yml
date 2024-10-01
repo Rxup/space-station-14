@@ -156,6 +156,15 @@
     isToggle: true
     color: "#808080"
     playSoundOn: false
+  - type: LanguageSpeaker
+    currentLanguage: Carp
+  - type: LanguageKnowledge #backmen: languages
+    speaks:
+    - Carp
+    - Dragon
+    understands:
+    - Carp
+    - Dragon
 
 
 - type: entity

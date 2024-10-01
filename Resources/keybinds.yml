@@ -186,7 +186,12 @@ binds:
   mod1: Alt
 - function: OpenCharacterMenu
   type: State
-  key: U
+  key: C
+#start - backmen: languages
+- function: OpenLanguageMenu
+  type: State
+  key: L
+#end - backmen: languages
 - function: OpenEmotesMenu
   type: State
   key: Y
@@ -592,7 +597,7 @@ binds:
   key: Space
 - function: ToggleStanding # Ataraxia
   type: State
-  key: C
+  key: R
 - function: OfferItem # Ataraxia
   type: State
   key: F

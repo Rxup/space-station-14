@@ -656,6 +656,7 @@ public sealed class BlobCoreSystem : EntitySystem
                 "blob-not-enough-resources",
                 ("point", abilityCost.Int() - money.Int())),
                 observer.Value,
+                observer.Value,
                 PopupType.Large);
             return false;
         }

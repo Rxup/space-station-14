@@ -116,6 +116,13 @@
     proto: robot
   - type: Speech
     speechVerb: Robotic
+  - type: LanguageSpeaker
+    currentLanguage: TauCetiBasic
+  - type: LanguageKnowledge #backmen: languages
+    speaks:
+    - TauCetiBasic
+    understands:
+    - TauCetiBasic
 
 - type: entity
   parent: BasePDA

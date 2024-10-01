@@ -1,4 +1,5 @@
 using Content.Server.Backmen.Objectives.Systems;
+using Content.Server.Objectives.Components;
 
 namespace Content.Server.Backmen.Objectives.Components;
 

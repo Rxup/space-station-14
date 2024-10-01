@@ -118,6 +118,15 @@
           32:
             sprite: Mobs/Species/Human/displacement.rsi
             state: jumpsuit-female
+  - type: LanguageSpeaker
+    currentLanguage: TauCetiBasic
+  - type: LanguageKnowledge #backmen: languages
+    speaks:
+    - TauCetiBasic
+    - Slime
+    understands:
+    - TauCetiBasic
+    - Slime
 
 - type: entity
   parent: MobHumanDummy

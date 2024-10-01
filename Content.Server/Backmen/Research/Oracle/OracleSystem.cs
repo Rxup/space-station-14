@@ -10,6 +10,7 @@ using Content.Server.Botany;
 using Content.Server.Chemistry.Containers.EntitySystems;
 using Content.Server.Fluids.EntitySystems;
 using Content.Shared.Backmen.Abilities.Psionics;
+using Content.Shared.Backmen.Chat;
 using Content.Shared.Backmen.Psionics.Components;
 using Content.Shared.Backmen.Psionics.Glimmer;
 using Content.Shared.Body.Systems;
