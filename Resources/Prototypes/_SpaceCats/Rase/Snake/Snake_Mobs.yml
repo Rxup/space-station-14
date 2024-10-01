@@ -154,6 +154,15 @@
           32:
             sprite: _SpaceCats/Snake/Desp.rsi
             state: desp_m
+  - type: LanguageSpeaker
+    currentLanguage: TauCetiBasic
+  - type: LanguageKnowledge #backmen: languages
+    speaks:
+    - TauCetiBasic
+    - Dragon
+    understands:
+    - TauCetiBasic
+    - Dragon
 
 - type: entity
   parent: BaseSpeciesDummy
