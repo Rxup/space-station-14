@@ -460,7 +460,7 @@ public sealed partial class ChatSystem : SharedChatSystem
             return;
 
         // The original message
-        var message = TransformSpeech(source, FormattedMessage.RemoveMarkup(originalMessage), language);
+        var message = TransformSpeech(source, originalMessage, language);
 
         if (message.Length == 0)
             return;
@@ -997,7 +997,7 @@ private void SendEntityWhisper(
             ("verb", Loc.GetString(verbId)),
             ("fontType", language.SpeechOverride.FontId ?? speech.FontId),
             ("fontSize", language.SpeechOverride.FontSize ?? speech.FontSize),
-            ("message", message));
+            ("message", FormattedMessage.EscapeText(message)));
     }
 
     private bool CheckAttachedGrids(EntityUid source, EntityUid receiver)
