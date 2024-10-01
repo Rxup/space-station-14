@@ -1,5 +1,7 @@
 using System.Numerics;
 using Content.Server.Backmen.Blob.Components;
+using Content.Server.Backmen.Language;
+using Content.Server.Backmen.Language.Events;
 using Content.Server.Chat.Systems;
 using Content.Server.Explosion.EntitySystems;
 using Content.Server.Fluids.EntitySystems;
@@ -9,6 +11,7 @@ using Content.Server.Radio.EntitySystems;
 using Content.Shared.Backmen.Blob;
 using Content.Shared.Backmen.Blob.Chemistry;
 using Content.Shared.Backmen.Blob.Components;
+using Content.Shared.Backmen.Language;
 using Content.Shared.Chat;
 using Content.Shared.Chemistry.Components;
 using Content.Shared.Damage;
@@ -26,37 +29,10 @@ using Robust.Shared.Utility;
 
 namespace Content.Server.Backmen.Blob;
 
-public sealed class EntitySpeakPrivateTransformEvent(
-    ICommonSession targetSession,
-    ChatChannel chatChannel,
-    EntityUid source,
-    string message,
-    string wrappedMessage,
-    string? originalMessage,
-    NetUserId? author,
-    ChatSystem.ICChatRecipientData data)
-    : EntityEventArgs
-{
-    public ICommonSession TargetSession { get; } = targetSession;
-    public ChatChannel ChatChannel { get; set; } = chatChannel;
-    public EntityUid Source { get; } = source;
-    public string Message { get; set; } = message;
-    public string WrappedMessage { get; set; } = wrappedMessage;
-    public string? OriginalMessage { get; } = originalMessage;
-    public NetUserId? Author { get; } = author;
-    public ChatSystem.ICChatRecipientData Data { get; } = data;
-}
-
 public sealed class BlobMobSystem : SharedBlobMobSystem
 {
+    [Dependency] private readonly LanguageSystem _language = default!;
     [Dependency] private readonly DamageableSystem _damageableSystem = default!;
-
-    [Dependency] private readonly SharedChatSystem _chatSystem = default!;
-    //[Dependency] private readonly SmokeSystem _smokeSystem = default!;
-    //[Dependency] private readonly SharedAudioSystem _audioSystem = default!;
-
-    [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
-    [Dependency] private readonly RadioSystem _radioSystem = default!;
     private EntityQuery<BlobSpeakComponent> _activeBSpeak;
 
     public override void Initialize()
@@ -65,8 +41,7 @@ public sealed class BlobMobSystem : SharedBlobMobSystem
 
         SubscribeLocalEvent<BlobMobComponent, BlobMobGetPulseEvent>(OnPulsed);
 
-        SubscribeLocalEvent<BlobSpeakComponent, EntitySpokeEvent>(OnSpoke, before: new []{ typeof(RadioSystem) });
-        SubscribeLocalEvent<BlobSpeakComponent, EntitySpeakPrivateTransformEvent>(OnPrivateEncode);
+        SubscribeLocalEvent<BlobSpeakComponent, DetermineEntityLanguagesEvent>(OnLanguageApply);
         SubscribeLocalEvent<BlobSpeakComponent, ComponentStartup>(OnSpokeAdd);
         SubscribeLocalEvent<BlobSpeakComponent, ComponentShutdown>(OnSpokeRemove);
         SubscribeLocalEvent<BlobSpeakComponent, TransformSpeakerNameEvent>(OnSpokeName);
@@ -76,33 +51,16 @@ public sealed class BlobMobSystem : SharedBlobMobSystem
         _activeBSpeak = GetEntityQuery<BlobSpeakComponent>();
     }
 
-    private void OnPrivateEncode(Entity<BlobSpeakComponent> ent, ref EntitySpeakPrivateTransformEvent args)
+    private void OnLanguageApply(Entity<BlobSpeakComponent> ent, ref DetermineEntityLanguagesEvent args)
     {
-        var target = args.TargetSession.AttachedEntity;
-        if(target == null)
+        if(ent.Comp.LifeStage == ComponentLifeStage.Removing ||
+           ent.Comp.LifeStage == ComponentLifeStage.Stopping ||
+           ent.Comp.LifeStage == ComponentLifeStage.Stopped)
             return;
-
-        BlobSpeakComponent? blobSpeakComponent = null;
-        if (!(args.Data.Observer || _activeBSpeak.TryComp(target, out blobSpeakComponent)) || args.OriginalMessage == null)
-            return; // no possible
-
-        if (blobSpeakComponent != null && ent.Comp.Channel != blobSpeakComponent.Channel)
-            return; // wrong race!
-
-        var speech = _chatSystem.GetSpeechVerb(ent, args.OriginalMessage);
-
-        var channel = _prototypeManager.Index(ent.Comp.Channel);
-
-        // todo: bypass encoding!
-        var wrappedMessage = Loc.GetString(speech.Bold ? "chat-manager-entity-say-bold-wrap-message" : "chat-manager-entity-say-wrap-message",
-            ("entityName", Name(ent)),
-            ("verb", Loc.GetString(ent.Comp.Name)),
-            ("fontType", speech.FontId),
-            ("fontSize", speech.FontSize),
-            ("message", $"[color={ channel.Color.ToHex() }]{ FormattedMessage.EscapeText(args.OriginalMessage) }[/color]"));
-
-        args.WrappedMessage = wrappedMessage;
-        args.Message = args.OriginalMessage;
+        
+        args.SpokenLanguages.Clear();
+        args.SpokenLanguages.Add(ent.Comp.Language);
+        args.UnderstoodLanguages.Add(ent.Comp.Language);
     }
 
     private void OnSpokeName(Entity<BlobSpeakComponent> ent, ref TransformSpeakerNameEvent args)
@@ -127,48 +85,19 @@ public sealed class BlobMobSystem : SharedBlobMobSystem
     {
         if(TerminatingOrDeleted(ent))
             return;
-        var radio = EnsureComp<ActiveRadioComponent>(ent);
-        radio.Channels.Remove(ent.Comp.Channel);
-        var snd = EnsureComp<IntrinsicRadioTransmitterComponent>(ent);
-        snd.Channels.Remove(ent.Comp.Channel);
+
+        _language.UpdateEntityLanguages(ent);
     }
 
     private void OnSpokeAdd(Entity<BlobSpeakComponent> ent, ref ComponentStartup args)
     {
         if(TerminatingOrDeleted(ent))
             return;
-        EnsureComp<IntrinsicRadioReceiverComponent>(ent);
-        var radio = EnsureComp<ActiveRadioComponent>(ent);
-        radio.Channels.Add(ent.Comp.Channel);
-        var snd = EnsureComp<IntrinsicRadioTransmitterComponent>(ent);
-        snd.Channels.Add(ent.Comp.Channel);
+
+        var component = EnsureComp<LanguageSpeakerComponent>(ent);
+        component.CurrentLanguage = ent.Comp.Language;
+        _language.UpdateEntityLanguages(ent);
     }
-
-
-    private void OnSpoke(Entity<BlobSpeakComponent> ent, ref EntitySpokeEvent args)
-    {
-        if (args.Channel == null)
-            args.Channel = _prototypeManager.Index(ent.Comp.Channel);
-
-        if (!TryComp<IntrinsicRadioTransmitterComponent>(ent, out var component) ||
-            !component.Channels.Contains(args.Channel.ID) ||
-            args.Channel.ID != ent.Comp.Channel)
-        {
-            return;
-        }
-
-        if (TryComp<BlobObserverComponent>(ent, out var blobObserverComponent) && blobObserverComponent.Core.HasValue)
-        {
-            _radioSystem.SendRadioMessage(blobObserverComponent.Core.Value, args.OriginalMessage, args.Channel, blobObserverComponent.Core.Value);
-        }
-        else if(ent.Comp.LongRange)
-        {
-            _radioSystem.SendRadioMessage(ent, args.OriginalMessage, args.Channel, ent);
-        }
-
-        args.Channel = null; // prevent duplicate messages from other listeners.
-    }
-
 
     private void OnPulsed(EntityUid uid, BlobMobComponent component, BlobMobGetPulseEvent args)
     {

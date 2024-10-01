@@ -1,8 +1,8 @@
 language-Universal-name = Universal
 language-Universal-description = What are you?
 
-language-Bubblish-name = Bubblish
-language-Bubblish-description = The language of Slimes. Being a mixture of bubbling noises and pops it's very difficult to speak for humans without the use of mechanical aids.
+language-Slime-name = Bubblish
+language-Slime-description = The language of Slimes. Being a mixture of bubbling noises and pops it's very difficult to speak for humans without the use of mechanical aids.
 
 language-RootSpeak-name = Rootspeak
 language-RootSpeak-description = The strange whistling-style language spoken by the Diona.
@@ -10,8 +10,8 @@ language-RootSpeak-description = The strange whistling-style language spoken by 
 language-Nekomimetic-name = Nekomimetic
 language-Nekomimetic-description = To the casual observer, this language is an incomprehensible mess of broken Japanese. To the Felinids and Oni, it's somehow comprehensible.
 
-language-Draconic-name = Draconic
-language-Draconic-description = The common language of lizard-people, composed of sibilant hisses and rattles.
+language-Dragon-name = Draconic
+language-Dragon-description = The common language of lizard-people, composed of sibilant hisses and rattles.
 
 language-SolCommon-name = Sol common
 language-SolCommon-description =
@@ -105,3 +105,24 @@ language-Kobold-description = Hiss!
 
 language-Hissing-name = Hissing
 language-Hissing-description = Hiss!
+
+language-Carp-name = Капский
+language-Carp-description = КАРП!
+
+language-Flesh-name = Плоть
+language-Flesh-description = Наречиие которое понимает плоть
+
+language-SpaceMob-name = SpaceMob
+language-SpaceMob-description = SpaceMob!
+
+language-Snake-name = Snake
+language-Snake-description = Snake!
+
+language-Argocyte-name = Argocyte
+language-Argocyte-description = Argocyte!
+
+language-Blob-name = Блоб
+language-Blob-description = Блоб! Блаб!
+
+language-Bear-name = Bear
+language-Bear-description = Bear?! ROAR!!!

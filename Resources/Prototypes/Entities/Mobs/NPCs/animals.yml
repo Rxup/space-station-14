@@ -1493,9 +1493,9 @@
     currentLanguage: TauCetiBasic
   - type: LanguageKnowledge #backmen: languages
     speaks:
-    - Cobold
+    - Kobold
     understands:
-    - Cobold
+    - Kobold
   - type: Speech
     speechSounds: Lizard
     speechVerb: Reptilian

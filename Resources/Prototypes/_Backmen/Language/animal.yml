@@ -153,7 +153,7 @@
     - ык
 
 - type: language
-  id: Cobold
+  id: Kobold
   obfuscation:
     !type:SyllableObfuscation
     minSyllables: 2
