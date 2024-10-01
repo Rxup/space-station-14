@@ -20,14 +20,12 @@ public sealed class AdminLanguageCommand : ToolshedCommand
     public EntityUid AddLanguage(
         [CommandInvocationContext] IInvocationContext ctx,
         [PipedArgument] EntityUid input,
-        [CommandArgument] ValueRef<string, Prototype<LanguagePrototype>> @ref,
-        [CommandArgument] bool canSpeak = true,
-        [CommandArgument] bool canUnderstand = true
+        [CommandArgument] Prototype<LanguagePrototype> prototype,
+        [CommandArgument] bool? canSpeak = true,
+        [CommandArgument] bool? canUnderstand = true
     )
     {
-        var language = @ref.Evaluate(ctx)!;
-
-        if (language == SharedLanguageSystem.UniversalPrototype)
+        if (prototype.Id == SharedLanguageSystem.UniversalPrototype)
         {
             EnsureComp<UniversalLanguageSpeakerComponent>(input);
             Languages.UpdateEntityLanguages(input);
@@ -35,7 +33,7 @@ public sealed class AdminLanguageCommand : ToolshedCommand
         else
         {
             EnsureComp<LanguageSpeakerComponent>(input);
-            Languages.AddLanguage(input, language, canSpeak, canUnderstand);
+            Languages.AddLanguage(input, prototype.Id, canSpeak ?? true, canUnderstand ?? true);
         }
 
         return input;
@@ -45,20 +43,19 @@ public sealed class AdminLanguageCommand : ToolshedCommand
     public EntityUid RemoveLanguage(
         [CommandInvocationContext] IInvocationContext ctx,
         [PipedArgument] EntityUid input,
-        [CommandArgument] ValueRef<string, Prototype<LanguagePrototype>> @ref,
-        [CommandArgument] bool removeSpeak = true,
-        [CommandArgument] bool removeUnderstand = true
+        [CommandArgument] Prototype<LanguagePrototype> prototype,
+        [CommandArgument] bool? removeSpeak = true,
+        [CommandArgument] bool? removeUnderstand = true
     )
     {
-        var language = @ref.Evaluate(ctx)!;
-        if (language == SharedLanguageSystem.UniversalPrototype && HasComp<UniversalLanguageSpeakerComponent>(input))
+        if (prototype.Id == SharedLanguageSystem.UniversalPrototype && HasComp<UniversalLanguageSpeakerComponent>(input))
         {
             RemComp<UniversalLanguageSpeakerComponent>(input);
             EnsureComp<LanguageSpeakerComponent>(input);
         }
 
         // We execute this branch even in case of universal so that it gets removed if it was added manually to the LanguageSpeaker
-        Languages.RemoveLanguage(input, language, removeSpeak, removeUnderstand);
+        Languages.RemoveLanguage(input, prototype.Id, removeSpeak ?? true, removeUnderstand ?? true);
 
         return input;
     }
