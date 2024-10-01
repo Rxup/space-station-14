@@ -1,137 +1,137 @@
-language-Universal-name = Universal
-language-Universal-description = What are you?
+language-Universal-name = Универсальный
+language-Universal-description = Кто ты?
 
-language-Slime-name = Bubblish
-language-Slime-description = The language of Slimes. Being a mixture of bubbling noises and pops it's very difficult to speak for humans without the use of mechanical aids.
+language-Slime-name = Пузырчатый
+language-Slime-description = Язык слаймов. Смесь пузырьков и хлопков, очень сложен для произношения людьми без использования механических приспособлений.
 
-language-RootSpeak-name = Rootspeak
-language-RootSpeak-description = The strange whistling-style language spoken by the Diona.
+language-RootSpeak-name = Корнесловие
+language-RootSpeak-description = Странный свистящий язык, на котором говорят Дионы.
 
-language-Nekomimetic-name = Nekomimetic
-language-Nekomimetic-description = To the casual observer, this language is an incomprehensible mess of broken Japanese. To the Felinids and Oni, it's somehow comprehensible.
+language-Nekomimetic-name = Нэкомиметик
+language-Nekomimetic-description = Для обычного наблюдателя этот язык кажется непонятной мешаниной из ломаного японского. Однако для Фелинидов и Онии это как-то понятно.
 
-language-Dragon-name = Draconic
-language-Dragon-description = The common language of lizard-people, composed of sibilant hisses and rattles.
+language-Dragon-name = Драконий
+language-Dragon-description = Общий язык ящеролюдей, состоящий из шипящих и гремящих звуков.
 
-language-SolCommon-name = Sol common
+language-SolCommon-name = Сол Коммон
 language-SolCommon-description =
-    With its roots in Mandarin Chinese - Common evolved as the official language of the Sol Alliance - with officials working to tie it together with a common tongue.
-    It's spoken by state officials - taught in schools - and spoken by those who either feel a sense of national pride in the Alliance or otherwise fell sway to the culture.
+    Происходит из мандаринского китайского — Коммон эволюционировал как официальный язык Солнечного Альянса — с целью создания общего языка.
+    Его используют государственные чиновники, преподают в школах, а также говорят те, кто либо испытывает национальную гордость за Альянс, либо поддался влиянию его культуры.
 
-language-TauCetiBasic-name = Tau-Ceti Basic
+language-TauCetiBasic-name = Тау-Сети
 language-TauCetiBasic-description =
-    A spiritual successor of Esperanto, established in 2404 in Tau Ceti by Ceti intellectuals.
-    Its unique, fully customized alphabet and structure allow it to be spoken even by most alien species.
-    It's the official language of Tau Ceti and has growing traction in diplomatic circles and Universalists across human space.
+    Духовный наследник эсперанто, созданный в 2404 году в Тау Сети интеллектуалами. 
+    Его уникальный, полностью кастомный алфавит и структура позволяют говорить на нем большинству инопланетных видов.
+    Это официальный язык Тау Сети и он набирает популярность в дипломатических кругах и среди универсалистов во всем человечестве.
 
-language-Tradeband-name = Tradeband
+language-Tradeband-name = Трейдбэнд
 language-Tradeband-description =
-    Descended from latin and romance languages of old Earth - Tradeband remains the main tongue of the upper class of humanity.
-    The language sounds elegant and well structured to most ears. It remains in popular use with traders - diplomats - and those seeking to hold onto a piece of a romantic past.
+    Происходящий от латинских и романских языков древней Земли — Трейдбэнд остается основным языком высшего класса человечества.
+    Для большинства людей этот язык звучит элегантно и структурированно. Он по-прежнему популярен среди торговцев, дипломатов и тех, кто хочет сохранить частичку романтического прошлого.
 
-language-Freespeak-name = Freespeak
+language-Freespeak-name = Свободноречие
 language-Freespeak-description =
-    A language of renegades and frontiersmen descending from various languages from Earth-- like Hindi,
-    combined into a multi-rooted jumble that sounds incoherent or even barbarian to non-native speakers.
-    This language is the only common cultural identity for humans in the frontier. Speaking this language in itself boldly declares the speaker a free spirit.
-    It is often called 'Gutter' by Alliance citizens.
+    Язык ренегатов и пограничников, происходящий от различных языков Земли, таких как хинди,
+    смешанный в многокорневую смесь, которая звучит неразборчиво или даже варварски для неносителей.
+    Этот язык — единственная общая культурная идентичность для людей на границе. Само его использование заявляет о независимом духе говорящего.
+    Граждане Альянса часто называют его «Гадким» (Gutter).
 
-language-Elyran-name = Elyran Standard
+language-Elyran-name = Элиранский
 language-Elyran-description =
-    Elyran Standard is the official tongue of the Republic of Elyra. Constructed using elements of Farsi - Arabic - and Turkish.
-    Influence from all three of these languages can be seen throughout its grammar and vocabulary.
+    Элиранский стандарт — официальный язык Республики Элира. Построен с использованием элементов персидского, арабского и турецкого языков.
+    Влияние всех трех языков видно в его грамматике и лексике.
 
-language-Canilunzt-name = Canilunzt
+language-Canilunzt-name = Канилунцт
 language-Canilunzt-description =
-    The guttural language spoken and utilized by the inhabitants of the Vazzend system,
-    composed of growls, barks, yaps, and heavy utilization of ears and tail movements. Vulpkanin speak this language with ease.
+    Гортанный язык, на котором говорят и используют обитатели системы Ваззенд,
+    состоящий из рычаний, лая, визгов и активного использования движений ушей и хвоста. Вулпканин говорит на этом языке с легкостью.
 
-language-Moffic-name = Moffic
-language-Moffic-description = The language of the mothpeople borders on complete unintelligibility.
+language-Moffic-name = Моффик
+language-Moffic-description = Язык мотолюдей, граничащий с полной непонятностью.
 
-language-RobotTalk-name = RobotTalk
-language-RobotTalk-description = A language consisting of harsh binary chirps, whistles, hisses, and whines. Organic tongues cannot speak it without aid from special translators.
+language-RobotTalk-name = Роботговор
+language-RobotTalk-description = Язык, состоящий из резких двоичных звуков, свистов, шипений и визгов. Органические существа не могут говорить на нем без помощи специальных переводчиков.
 
-language-Sign-name = Tau-Ceti Basic Sign Language
-language-Sign-description = TCB-SL for short, this sign language is prevalent among mute and deaf people.
+language-Sign-name = Жестовый язык Тау-Сети
+language-Sign-description = Жестовый язык Тау-Сети Бэйсик, сокращенно ТСБЖ, распространен среди глухих и немых людей.
 
-language-ValyrianStandard-name = Valyrian Standard
+language-ValyrianStandard-name = Валирийский
 language-ValyrianStandard-description =
-    A language descended from eastern european languages of old earth - Valyrian Standard is the commonly spoken tongue of Harpies brought up on their homeworld of Valyrian 4b
-    It is rarely spoken outside of the worlds of its native speakers, and has in modern times been supplanted by the 'Conlangs of the Sol Alliance.
-    Its speakers are those who wish to uphold the traditions and beliefs of ancient peoples from before the colonial era.
+    Язык, происходящий из восточноевропейских языков древней Земли — Валирийский Стандарт является общим языком Гарпий, выросших на их родной планете Валирий 4b.
+    Вне миров его носителей он используется редко, а в наше время его заменили «искусственные языки» Солнечного Альянса.
+    Его носители — те, кто хочет сохранить традиции и верования древних народов до колониальной эры.
 
-language-Cat-name = Cat
-language-Cat-description = Meow
+language-Cat-name = Кошачий
+language-Cat-description = Мяу
 
-language-Dog-name = Dog
-language-Dog-description = Bark!
+language-Dog-name = Собачий
+language-Dog-description = Гав!
 
-language-Fox-name = Fox
-language-Fox-description = Yeeps!
+language-Fox-name = Лисьий
+language-Fox-description = Визг!
 
-language-Xeno-name = Xeno
-language-Xeno-description = Sssss!
+language-Xeno-name = Ксено
+language-Xeno-description = Шшш!
 
-language-Monkey-name = Monkey
-language-Monkey-description = oooook!
+language-Monkey-name = Обезьяний
+language-Monkey-description = Уууу!
 
-language-Mouse-name = Mouse
-language-Mouse-description = Squeeek!
+language-Mouse-name = Мышиный
+language-Mouse-description = Писк!
 
-language-Chicken-name = Chicken
-language-Chicken-description = Coot!
+language-Chicken-name = Куринный
+language-Chicken-description = Куд!
 
-language-Duck-name = Duck
-language-Duck-description = Quack!
+language-Duck-name = Утиный
+language-Duck-description = Кря!
 
-language-Cow-name = Cow
-language-Cow-description = Moooo!
+language-Cow-name = Коровий
+language-Cow-description = Му!
 
-language-Sheep-name = Sheep
-language-Sheep-description = Baaah!
+language-Sheep-name = Овечий
+language-Sheep-description = Бее!
 
-language-Kangaroo-name = Kangaroo
-language-Kangaroo-description = Chuu!
+language-Kangaroo-name = Кенгуриный
+language-Kangaroo-description = Чу!
 
-language-Pig-name = Pig
-language-Pig-description = Oink!
+language-Pig-name = Свинячий
+language-Pig-description = Хрю!
 
-language-Crab-name = Crab
-language-Crab-description = Click!
+language-Crab-name = Крабий
+language-Crab-description = Щелк!
 
-language-Kobold-name = Kobold
-language-Kobold-description = Hiss!
+language-Kobold-name = Кобольдский
+language-Kobold-description = Шипение!
 
-language-Hissing-name = Hissing
-language-Hissing-description = Hiss!
+language-Hissing-name = Шипящий
+language-Hissing-description = Шипение!
 
 language-Carp-name = Капский
 language-Carp-description = КАРП!
 
-language-Flesh-name = Плоть
-language-Flesh-description = Наречиие которое понимает плоть
+language-Flesh-name = Плотский
+language-Flesh-description = Язык, понятный плоти.
 
-language-SpaceMob-name = SpaceMob
-language-SpaceMob-description = SpaceMob!
+language-SpaceMob-name = СпейсМоб
+language-SpaceMob-description = СпейсМоб!
 
-language-Snake-name = Snake
-language-Snake-description = Snake!
+language-Snake-name = Змеиный
+language-Snake-description = Змея!
 
-language-Argocyte-name = Argocyte
-language-Argocyte-description = Argocyte!
+language-Argocyte-name = Аргоцит
+language-Argocyte-description = Аргоцит!
 
 language-Blob-name = Блоб
 language-Blob-description = Блоб! Блаб!
 
-language-Bear-name = Bear
-language-Bear-description = Bear?! ROAR!!!
+language-Bear-name = Медвежий
+language-Bear-description = Медведь?! РЫЧАНИЕ!!!
 
 language-Binary-name = Двоичный
-language-Binary-description = Для общения с боргами
+language-Binary-description = Для общения с боргами.
 
-language-Garpy-name = Valyrian Standard
-language-Garpy-description = ValyrianStandard
+language-Garpy-name = Валирийский
+language-Garpy-description = Валирийский
 
-language-Spider-name = Spider
+language-Spider-name = Паучий
 language-Spider-description = _
