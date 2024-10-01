@@ -5,6 +5,15 @@
   id: BaseMobVulpkanin
   abstract: true
   components:
+  - type: LanguageSpeaker
+    currentLanguage: TauCetiBasic
+  - type: LanguageKnowledge #backmen: languages
+    speaks:
+    - TauCetiBasic
+    - Dog
+    understands:
+    - TauCetiBasic
+    - Dog
   - type: HumanoidAppearance
     species: Vulpkanin
   - type: Hunger # on 1.5x more

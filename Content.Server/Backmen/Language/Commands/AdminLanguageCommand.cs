@@ -21,8 +21,8 @@ public sealed class AdminLanguageCommand : ToolshedCommand
         [CommandInvocationContext] IInvocationContext ctx,
         [PipedArgument] EntityUid input,
         [CommandArgument] Prototype<LanguagePrototype> prototype,
-        [CommandArgument] bool? canSpeak = true,
-        [CommandArgument] bool? canUnderstand = true
+        [CommandArgument] bool canSpeak = true,
+        [CommandArgument] bool canUnderstand = true
     )
     {
         if (prototype.Id == SharedLanguageSystem.UniversalPrototype)
@@ -33,7 +33,7 @@ public sealed class AdminLanguageCommand : ToolshedCommand
         else
         {
             EnsureComp<LanguageSpeakerComponent>(input);
-            Languages.AddLanguage(input, prototype.Id, canSpeak ?? true, canUnderstand ?? true);
+            Languages.AddLanguage(input, prototype.Id, canSpeak, canUnderstand);
         }
 
         return input;
@@ -44,8 +44,8 @@ public sealed class AdminLanguageCommand : ToolshedCommand
         [CommandInvocationContext] IInvocationContext ctx,
         [PipedArgument] EntityUid input,
         [CommandArgument] Prototype<LanguagePrototype> prototype,
-        [CommandArgument] bool? removeSpeak = true,
-        [CommandArgument] bool? removeUnderstand = true
+        [CommandArgument] bool removeSpeak = true,
+        [CommandArgument] bool removeUnderstand = true
     )
     {
         if (prototype.Id == SharedLanguageSystem.UniversalPrototype && HasComp<UniversalLanguageSpeakerComponent>(input))
@@ -55,7 +55,7 @@ public sealed class AdminLanguageCommand : ToolshedCommand
         }
 
         // We execute this branch even in case of universal so that it gets removed if it was added manually to the LanguageSpeaker
-        Languages.RemoveLanguage(input, prototype.Id, removeSpeak ?? true, removeUnderstand ?? true);
+        Languages.RemoveLanguage(input, prototype.Id, removeSpeak, removeUnderstand);
 
         return input;
     }
