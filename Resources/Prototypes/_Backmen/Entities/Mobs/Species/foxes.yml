@@ -5,6 +5,15 @@
   id: BaseMobHumanoidFox
   abstract: true
   components:
+  - type: LanguageSpeaker
+    currentLanguage: TauCetiBasic
+  - type: LanguageKnowledge #backmen: languages
+    speaks:
+    - TauCetiBasic
+    - Dog
+    understands:
+    - TauCetiBasic
+    - Dog
   - type: HumanoidAppearance
     species: HumanoidFoxes
   - type: Icon
