@@ -4,6 +4,7 @@
   id: Blob
   speech:
     fontId: Monospace
+    color: "#800080"
   obfuscation:
     !type:SyllableObfuscation
     minSyllables: 1

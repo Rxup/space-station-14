@@ -53,11 +53,12 @@ public sealed class BlobMobSystem : SharedBlobMobSystem
 
     private void OnLanguageApply(Entity<BlobSpeakComponent> ent, ref DetermineEntityLanguagesEvent args)
     {
-        if(ent.Comp.LifeStage == ComponentLifeStage.Removing ||
-           ent.Comp.LifeStage == ComponentLifeStage.Stopping ||
-           ent.Comp.LifeStage == ComponentLifeStage.Stopped)
+        if(ent.Comp.LifeStage is
+           ComponentLifeStage.Removing
+           or ComponentLifeStage.Stopping
+           or ComponentLifeStage.Stopped)
             return;
-        
+
         args.SpokenLanguages.Clear();
         args.SpokenLanguages.Add(ent.Comp.Language);
         args.UnderstoodLanguages.Add(ent.Comp.Language);
