@@ -136,8 +136,6 @@
     nameSegments:
     - NamesSGTs
     - names_last_male
-  - type: RandomHumanoidAppearance
-    randomizeName: false
   - type: AntagImmune
 
 
@@ -192,8 +190,6 @@
     nameSegments:
     - NamesCPLs
     - names_last_male
-  - type: RandomHumanoidAppearance
-    randomizeName: false
   - type: AntagImmune
 
 # ERT Security
@@ -244,8 +240,6 @@
     nameSegments:
     - NamesPVTs
     - names_last_male
-  - type: RandomHumanoidAppearance
-    randomizeName: false
   - type: AntagImmune
 
 # ERT Medical
@@ -299,8 +293,6 @@
     nameSegments:
     - NamesCPLs
     - names_last_male
-  - type: RandomHumanoidAppearance
-    randomizeName: false
   - type: AntagImmune
 
 # ERT Junitor
@@ -354,6 +346,4 @@
     nameSegments:
     - NamesPVTs
     - names_last_male
-  - type: RandomHumanoidAppearance
-    randomizeName: false
   - type: AntagImmune

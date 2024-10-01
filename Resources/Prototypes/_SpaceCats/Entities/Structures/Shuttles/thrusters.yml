@@ -1,0 +1,85 @@
+- type: entity
+  id: BigThruster
+  parent: Thruster
+  name: big thruster
+  description: A thruster that allows a shuttle to move.
+  components:
+    - type: Thruster
+      thrust: 300
+      burnShape:
+        - 0.4,0.5
+        - -0.4,2.2
+        - -0.6,2.2
+        - -1.4,0.5
+      damage:
+        types:
+          Heat: 150
+    - type: Fixtures
+      fixtures:
+        fix1:
+          shape:
+            !type:PhysShapeAabb
+            bounds: "-1.45,-1.45,0.45,0.45"
+          density: 60
+          mask:
+          - MachineMask
+          layer:
+          - MachineLayer
+    - type: Sprite
+      sprite: _SpaceCats/Structures/Shuttles/thruster_big.rsi
+      offset: -0.5,-0.5
+      layers:
+      - state: base
+        map: ["enum.ThrusterVisualLayers.Base"]
+      - state: thrust
+        map: ["enum.ThrusterVisualLayers.ThrustOn"]
+        shader: unshaded
+        visible: false
+      - state: thrust_burn_unshaded
+        map: ["enum.ThrusterVisualLayers.ThrustingUnshaded"]
+        shader: unshaded
+        visible: false
+        offset: 0, 2
+
+- type: entity
+  id: LargeThruster
+  parent: Thruster
+  name: large thruster
+  description: A thruster that allows a shuttle to move.
+  components:
+    - type: Thruster
+      thrust: 700
+      burnShape:
+        - 1.4,0.5
+        - -0.3,3.2
+        - 0.3,3.2
+        - -1.4,0.5
+      damage:
+        types:
+          Heat: 500
+    - type: Fixtures
+      fixtures:
+        fix1:
+          shape:
+            !type:PhysShapeAabb
+            bounds: "-1.45,-2.45,1.45,0.45"
+          density: 60
+          mask:
+          - MachineMask
+          layer:
+          - MachineLayer
+    - type: Sprite
+      sprite: _SpaceCats/Structures/Shuttles/thruster_large.rsi
+      offset: 0,-1
+      layers:
+      - state: base
+        map: ["enum.ThrusterVisualLayers.Base"]
+      - state: thrust
+        map: ["enum.ThrusterVisualLayers.ThrustOn"]
+        shader: unshaded
+        visible: false
+      - state: thrust_burn_unshaded
+        map: ["enum.ThrusterVisualLayers.ThrustingUnshaded"]
+        shader: unshaded
+        visible: false
+        offset: 0, 3

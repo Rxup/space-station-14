@@ -1,0 +1,36 @@
+- type: polymorph
+  id: WizardForcedVulpkanin
+  configuration:
+    entity: MobVulpkanin
+    forced: true
+    inventory: Transfer
+    transferName: true
+    transferDamage: true
+    revertOnCrit: false
+    revertOnDeath: false
+
+- type: entity
+  id: ProjectilePolyboltVulpkanin
+  parent: ProjectilePolyboltBase
+  name: Гены Вульп
+  description: Nooo, I don't wanna be Vulpkanin!
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: PolymorphOnCollide
+    polymorph: WizardForcedVulpkanin
+    whitelist:
+      components:
+      - Body
+
+- type: entity
+  name: волшебная палочка полиморфа вульпы
+  parent: WeaponWandPolymorphBase
+  id: WeaponWandPolymorphVulpkanin
+  description: На случай, когда вам срочно нужен сторож, а клоун выглядит как пёс!
+  components:
+  - type: BasicEntityAmmoProvider
+    proto: ProjectilePolyboltVulpkanin
+    capacity: 1
+    count: 1
+
+

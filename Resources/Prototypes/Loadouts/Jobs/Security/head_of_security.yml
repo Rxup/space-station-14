@@ -80,6 +80,11 @@
   equipment:
     outerClothing: ClothingOuterWinterHoS
 
+- type: loadout
+  id: ClothingOuterWinterSeniorOfficer
+  equipment:
+    outerClothing: ClothingOuterWinterSeniorOfficer  # cats
+
 # Pocket #Backmen
 
 - type: loadout

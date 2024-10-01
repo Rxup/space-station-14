@@ -18,23 +18,6 @@
     - id: GlimmerRandomSentience
     - id: GlimmerRevenantSpawn
 
-- type: entityTable
-  id: CalmBackmenEventsTable
-  table: !type:AllSelector # we need to pass a list of rules, since rules have further restrictions to consider via StationEventComp
-    children:
-    - id: EvilTwinSpawn
-    - id: FugitiveSpawn
-    - id: NoosphericStorm
-    - id: BluespaceGoat
-    - id: SpiderSpiderVampireSpawn
-    - id: NoosphericZap
-    - id: NoosphericFry
-    - id: GlimmerWispSpawn
-    - id: FreeProberEarly
-    - id: FreeProber
-    - id: GlimmerRandomSentience
-    - id: GlimmerRevenantSpawn
-
 - type: entity
   id: EvilTwinSpawn
   parent: BaseGameRule
@@ -82,11 +65,11 @@
   categories: [ HideSpawnMenu ]
   components:
   - type: StationEvent
-    weight: 15
+    weight: 6.5
     duration: 1
     earliestStart: 50
-    minimumPlayers: 20
-    maxOccurrences: 2 # can only happen once per round
+    minimumPlayers: 10
+    maxOccurrences: 1 # can only happen once per round
   - type: BlobSpawnRule
     carrierBlobProtos:
     - SpawnPointGhostBlobRat

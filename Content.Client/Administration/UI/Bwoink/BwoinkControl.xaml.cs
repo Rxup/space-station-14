@@ -92,6 +92,7 @@ namespace Content.Client.Administration.UI.Bwoink
                     return a.IsPinned ? -1 : 1;
 
                 // First, sort by unread. Any chat with unread messages appears first.
+
                 var aUnread = ach.Unread > 0;
                 var bUnread = bch.Unread > 0;
                 if (aUnread != bUnread)

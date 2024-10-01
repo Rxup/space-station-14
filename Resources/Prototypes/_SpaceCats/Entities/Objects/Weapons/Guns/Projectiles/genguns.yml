@@ -1,0 +1,126 @@
+- type: entity
+  name: генный манипулятор 
+  parent: BaseWeaponBatterySmall
+  id: gengunsAdmi
+  description: Это устройство сделано в рамках программы сотрудничества НТ и государства безумных лун. Советую прочитать инструкцию.
+  suffix: Дебаг, Администраторам
+  components:
+  - type: Sprite
+    sprite: _SpaceCats/Objects/Weapons/Guns/Misc/Gen_Guns.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-unshaded-4
+      map: ["enum.GunVisualLayers.MagUnshaded"]
+      shader: unshaded
+  - type: Clothing
+    sprite: _SpaceCats/Objects/Weapons/Guns/Misc/Gen_Guns.rsi
+  - type: Gun
+    projectileSpeed: 75
+  - type: Item
+    size: SmallNormal
+  - type: ProjectileBatteryAmmoProvider
+    proto: ProjectilePolyboltArachnid
+    fireCost: 100
+  - type: BatteryWeaponFireModes
+    fireModes:
+    - proto: ProjectilePolyboltArachnid
+      fireCost: 100
+    - proto: ProjectilePolyboltFelinid
+      fireCost: 100
+    - proto: ProjectilePolyboltHuman
+      fireCost: 100
+    - proto: ProjectilePolyboltReptilian
+      fireCost: 100
+    - proto: ProjectilePolyboltOni
+      fireCost: 100
+    - proto: ProjectilePolyboltDiona
+      fireCost: 100
+    - proto: ProjectilePolyboltVulpkanin
+      fireCost: 100
+    - proto: ProjectilePolyboltMoth
+      fireCost: 100
+    - proto: ProjectilePolyboltSlimePerson
+      fireCost: 100
+    - proto: ProjectilePolyboltArachneClassic
+      fireCost: 100
+    - proto: ProjectilePolyboltHarpy
+      fireCost: 100
+    - proto: ProjectilePolyboltShadowkin
+      fireCost: 100
+    - proto: ProjectilePolyboltVox
+      fireCost: 100
+  - type: Battery
+    maxCharge: 90000
+    startingCharge: 90000
+  - type: MagazineVisuals
+    magState: mag
+    steps: 5
+    zeroVisible: true
+  - type: Appearance
+  - type: StaticPrice
+    price: 90000
+
+
+
+- type: entity
+  name: генный манипулятор  
+  parent: BaseWeaponBatterySmall
+  id: genguns
+  description: На наклейке с зади написано предупреждение (НЕ ИСПОЛЬЗОВАТЬ НА ОСОБЯХ ЖЕНСКОГО ПОЛА!). Из под крышки где предположительно должен быть аккумулятор вытекает что-то кислотное...
+  components:
+  - type: Sprite
+    sprite: _SpaceCats/Objects/Weapons/Guns/Misc/Gen_Guns.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-unshaded-4
+      map: ["enum.GunVisualLayers.MagUnshaded"]
+      shader: unshaded
+  - type: Clothing
+    sprite: _SpaceCats/Objects/Weapons/Guns/Misc/Gen_Guns.rsi
+  - type: Gun
+    projectileSpeed: 75
+  - type: Item
+    size: SmallNormal
+  - type: ProjectileBatteryAmmoProvider
+    proto: ProjectilePolyboltArachnid
+    fireCost: 1000000
+  - type: BatteryWeaponFireModes
+    fireModes:
+    - proto: ProjectilePolyboltArachnid
+      fireCost: 100000000
+    - proto: ProjectilePolyboltFelinid
+      fireCost: 100000000
+    - proto: ProjectilePolyboltHuman
+      fireCost: 100000000
+    - proto: ProjectilePolyboltReptilian
+      fireCost: 100000000
+    - proto: ProjectilePolyboltOni
+      fireCost: 100000000
+    - proto: ProjectilePolyboltDiona
+      fireCost: 100000000
+    - proto: ProjectilePolyboltVulpkanin
+      fireCost: 100000000
+    - proto: ProjectilePolyboltMoth
+      fireCost: 100000000
+    - proto: ProjectilePolyboltSlimePerson
+      fireCost: 100000000
+    - proto: ProjectilePolyboltArachneClassic
+      fireCost: 100000000
+    - proto: ProjectilePolyboltHarpy
+      fireCost: 100000000
+    - proto: ProjectilePolyboltShadowkin
+      fireCost: 100000000
+    - proto: ProjectilePolyboltVox
+      fireCost: 100000000
+  - type: Battery
+    maxCharge: 1000000
+    startingCharge: 1000000
+  - type: MagazineVisuals
+    magState: mag
+    steps: 5
+    zeroVisible: true
+  - type: Appearance
+  - type: StaticPrice
+    price: 1000000

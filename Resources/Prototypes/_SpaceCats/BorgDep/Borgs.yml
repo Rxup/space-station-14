@@ -1,0 +1,104 @@
+- type: entity
+  id: PlayerBorgMining
+  parent: BorgChassisMining
+  suffix: Battery, Tools
+  components:
+  - type: ContainerFill
+    containers:
+      borg_brain:
+      - PositronicBrain
+      borg_module:
+      - BorgModuleMining
+      - BorgModuleAppraisal
+      - BorgModuleGPS
+  - type: ItemSlots
+    slots:
+      cell_slot:
+        name: power-cell-slot-component-slot-name-default
+        startingItem: PowerCellMedium
+  - type: RandomMetadata
+    nameSegments: [names_borg]
+
+- type: entity
+  id: PlayerBorgEngineer
+  parent: BorgChassisEngineer
+  suffix: Battery, Tools
+  components:
+  - type: ContainerFill
+    containers:
+      borg_brain:
+      - PositronicBrain
+      borg_module:
+      - BorgModuleTool
+      - BorgModuleCable
+      - BorgModuleConstruction
+  - type: ItemSlots
+    slots:
+      cell_slot:
+        name: power-cell-slot-component-slot-name-default
+        startingItem: PowerCellMedium
+  - type: RandomMetadata
+    nameSegments: [names_borg]
+
+- type: entity
+  id: PlayerBorgJanitor
+  parent: BorgChassisJanitor
+  suffix: Battery, Tools
+  components:
+  - type: ContainerFill
+    containers:
+      borg_brain:
+      - PositronicBrain
+      borg_module:
+      - BorgModuleCleaning
+      - BorgModuleLightReplacer
+      - BorgModuleFireExtinguisher
+  - type: ItemSlots
+    slots:
+      cell_slot:
+        name: power-cell-slot-component-slot-name-default
+        startingItem: PowerCellMedium
+  - type: RandomMetadata
+    nameSegments: [names_borg]
+
+- type: entity
+  id: PlayerBorgMedical
+  parent: BorgChassisMedical
+  suffix: Battery, Tools
+  components:
+  - type: ContainerFill
+    containers:
+      borg_brain:
+      - PositronicBrain
+      borg_module:
+      - BorgModuleDiagnosis
+      - BorgModuleTreatment
+      - BorgModuleDefibrillator
+  - type: ItemSlots
+    slots:
+      cell_slot:
+        name: power-cell-slot-component-slot-name-default
+        startingItem: PowerCellMedium
+  - type: RandomMetadata
+    nameSegments: [names_borg]
+
+- type: entity
+  id: PlayerBorgService
+  parent: BorgChassisService
+  suffix: Battery, Tools
+  components:
+  - type: ContainerFill
+    containers:
+      borg_brain:
+      - PositronicBrain
+      borg_module:
+      - BorgModuleService
+      - BorgModuleMusique
+      - BorgModuleHarvesting
+  - type: ItemSlots
+    slots:
+      cell_slot:
+        name: power-cell-slot-component-slot-name-default
+        startingItem: PowerCellMedium
+  - type: RandomMetadata
+    nameSegments: [names_borg]

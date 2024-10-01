@@ -3,7 +3,7 @@
   parent: BaseWeaponRifle
   id: WeaponAKMSRifle
   suffix: Автомат
-  description: An iconic weapon of war. Uses 7.62x39 ammo.
+  description: Культовое боевое оружие. Использует патроны калибра 7,62х39 мм.
   components:
   - type: Sprite
     sprite: Backmen/Objects/Weapons/Gunsx64/Rifles/akms/big.rsi
@@ -16,8 +16,6 @@
     sprite: Backmen/Objects/Weapons/Gunsx64/Rifles/akms/tiny.rsi
   - type: Item
     sprite: Backmen/Objects/Weapons/Gunsx64/Rifles/akms/tiny.rsi
-  - type: BkmGunWieldBonus
-    cameraRecoilScalar: -3.5
   - type: GunWieldBonus
     minAngle: -23
     maxAngle: 0
@@ -71,7 +69,7 @@
   parent: BaseWeaponRifle
   id: WeaponRifleAKSU
   suffix: Автомат
-  description: An iconic weapon of war. Uses 7.62x39 ammo.
+  description: Культовое боевое оружие. Использует патроны калибра 7,62х39 мм.
   components:
   - type: Sprite
     sprite: Backmen/Objects/Weapons/Gunsx64/Rifles/aksu.rsi
@@ -85,8 +83,6 @@
   - type: Item
     sprite: Backmen/Objects/Weapons/Gunsx64/Rifles/aksu.rsi
     size: NormalLarge
-  - type: BkmGunWieldBonus
-    cameraRecoilScalar: -3
   - type: GunWieldBonus
     minAngle: -23
     maxAngle: 0
@@ -140,7 +136,7 @@
   parent: BaseWeaponRifle
   id: WeaponRifleAR18
   suffix: Автомат
-  description: The H&K AR-18 carbine is one of the standard rifles used by EarthGov army. It's commonly used by people who prefer greater mobility in combat, like scouts and other light infantry.
+  description: Карабин H&K AR-18 является одной из стандартных винтовок, используемых армией правительства Земли. Его обычно используют люди, предпочитающие большую мобильность в бою, например, разведчики и другая легкая пехота.
   components:
   - type: Sprite
     sprite: Backmen/Objects/Weapons/Gunsx64/Rifles/ar18/big.rsi
@@ -153,8 +149,6 @@
     sprite: Backmen/Objects/Weapons/Gunsx64/Rifles/ar18/tiny.rsi
   - type: Item
     sprite: Backmen/Objects/Weapons/Gunsx64/Rifles/ar18/tiny.rsi
-  - type: BkmGunWieldBonus
-    cameraRecoilScalar: -4
   - type: GunWieldBonus
     minAngle: -23
     maxAngle: 0
@@ -205,7 +199,7 @@
   parent: BaseWeaponRifle
   id: WeaponRifleG36
   suffix: Автомат
-  description: The H&K G-36 assault rifle used to be the EarthGov army standard issue rifle.
+  description: Штурмовая винтовка H&K G-36 раньше была стандартной винтовкой армии Земного правительства.
   components:
   - type: Sprite
     sprite: Backmen/Objects/Weapons/Gunsx64/Rifles/g36/big.rsi
@@ -218,8 +212,6 @@
     sprite: Backmen/Objects/Weapons/Gunsx64/Rifles/g36/tiny.rsi
   - type: Item
     sprite: Backmen/Objects/Weapons/Gunsx64/Rifles/g36/tiny.rsi
-  - type: BkmGunWieldBonus
-    cameraRecoilScalar: -4
   - type: GunWieldBonus
     minAngle: -23
     maxAngle: 0
@@ -269,7 +261,7 @@
   parent: BaseWeaponRifle
   id: WeaponRifleM28
   suffix: Автомат
-  description: The M-28 assault rifle used to be the EarthGov army standard issue rifle.
+  description: Штурмовая винтовка М-28 раньше была стандартной винтовкой армии Земного правительства.
   components:
   - type: Sprite
     sprite: Backmen/Objects/Weapons/Gunsx64/Rifles/m28/big.rsi
@@ -282,8 +274,6 @@
     sprite: Backmen/Objects/Weapons/Gunsx64/Rifles/m28/tiny.rsi
   - type: Item
     sprite: Backmen/Objects/Weapons/Gunsx64/Rifles/m28/tiny.rsi
-  - type: BkmGunWieldBonus
-    cameraRecoilScalar: -4
   - type: GunWieldBonus
     minAngle: -23
     maxAngle: 0
@@ -349,7 +339,7 @@
   parent: BaseWeaponRifle
   id: WeaponRifleSTG44
   suffix: Автомат
-  description: A certified classic, this design was hailed as the first successful assault rifle concept, generally termed a 'storm rifle'. Has a higher than usual firerate for it's class.
+  description: Признанная классической, эта модель была названа первой успешной концепцией штурмовой винтовки, которую обычно называют "штурмовой винтовкой". Имеет более высокую, чем обычно, скорость стрельбы для своего класса.
   components:
   - type: Sprite
     sprite: Backmen/Objects/Weapons/Gunsx64/Rifles/stg44/big.rsi
@@ -362,8 +352,6 @@
     sprite: Backmen/Objects/Weapons/Gunsx64/Rifles/stg44/tiny.rsi
   - type: Item
     sprite: Backmen/Objects/Weapons/Gunsx64/Rifles/stg44/tiny.rsi
-  - type: BkmGunWieldBonus
-    cameraRecoilScalar: -4
   - type: GunWieldBonus
     minAngle: -23
     maxAngle: 0
@@ -413,7 +401,7 @@
   parent: BaseWeaponRifle
   id: WeaponRifleM16A4
   suffix: Автомат
-  description: A light, versatile assault rifle. The 4th generation in the M16 platform, this FN variant has added automatic fire selection and retains relevance among mercenaries and militias thanks to its high customizability. it is incredibly good at rapid burst fire, but must be paced correctly."
+  description: Легкая, универсальная штурмовая винтовка. Это 4-е поколение на платформе M16, в этот вариант FN добавлен автоматический выбор огня, и он сохраняет свою актуальность среди наемников и ополченцев благодаря высокой настраиваемости. он невероятно хорош при стрельбе быстрыми очередями, но его необходимо правильно подбирать.
   components:
   - type: Sprite
     sprite: Backmen/Objects/Weapons/Gunsx64/Rifles/m16/big.rsi
@@ -426,8 +414,6 @@
     sprite: Backmen/Objects/Weapons/Gunsx64/Rifles/m16/tiny.rsi
   - type: Item
     sprite: Backmen/Objects/Weapons/Gunsx64/Rifles/m16/tiny.rsi
-  - type: BkmGunWieldBonus
-    cameraRecoilScalar: -4
   - type: GunWieldBonus
     minAngle: -23
     maxAngle: 0
@@ -476,7 +462,7 @@
   parent: BaseWeaponRifle
   id: WeaponRifleFamas
   suffix: Автомат
-  description: A light, versatile assault rifle."
+  description: Легкая, универсальная штурмовая винтовка.
   components:
   - type: Sprite
     sprite: Backmen/Objects/Weapons/Gunsx64/Rifles/famas/big.rsi
@@ -489,8 +475,6 @@
     sprite: Backmen/Objects/Weapons/Gunsx64/Rifles/famas/tiny.rsi
   - type: Item
     sprite: Backmen/Objects/Weapons/Gunsx64/Rifles/famas/tiny.rsi
-  - type: BkmGunWieldBonus
-    cameraRecoilScalar: -4
   - type: GunWieldBonus
     minAngle: -23
     maxAngle: 0
@@ -545,7 +529,7 @@
   parent: BaseWeaponRifle
   id: WeaponRifleBR64
   suffix: Винтовка
-  description: The San Cristo Arms BR-64 is the Marine Corps main battle rifle. It is known for its consistent ability to perform well at most ranges, and close range stopping power. It is mostly used by people who prefer a bigger round than the average.
+  description: San Cristo Arms BR-64 - это основная боевая винтовка Корпуса морской пехоты. Она известна своей стабильной эффективностью на большинстве дистанций и убойной силой на близком расстоянии. В основном ее используют люди, предпочитающие патроны большего калибра, чем обычные.
   components:
   - type: Sprite
     sprite: Backmen/Objects/Weapons/Gunsx64/Rifles/br-64/big.rsi
@@ -558,8 +542,6 @@
     sprite: Backmen/Objects/Weapons/Gunsx64/Rifles/br-64/tiny.rsi
   - type: Item
     sprite: Backmen/Objects/Weapons/Gunsx64/Rifles/br-64/tiny.rsi
-  - type: BkmGunWieldBonus
-    cameraRecoilScalar: -4
   - type: GunWieldBonus
     minAngle: -23
     maxAngle: -43
@@ -609,7 +591,7 @@
   parent: BaseWeaponRifle
   id: WeaponRifleV31
   suffix: Винтовка
-  description: The V-31 was the primary rifle of the Sons of Mars until the introduction of more advanced energy weapons. Nevertheless the V-31 continues to see common use due to it's comparative ease of production and maintenance, and due to the inbuilt low velocity railgun designed for so called 'micro' grenades. Has good handling due to its compact bullpup design, and is generally effective at all ranges.
+  description: V-31 была основной винтовкой "Сынов Марса" до появления более совершенного энергетического оружия. Тем не менее, V-31 продолжает широко использоваться благодаря сравнительной простоте производства и обслуживания, а также благодаря встроенному низкоскоростному рельсотрону, предназначенному для так называемых "микро" гранат. Обладает хорошей управляемостью благодаря компактной конструкции "буллпап" и, как правило, эффективен на всех дистанциях.
   components:
   - type: Sprite
     sprite: Backmen/Objects/Weapons/Gunsx64/Rifles/v31/big.rsi
@@ -622,8 +604,6 @@
     sprite: Backmen/Objects/Weapons/Gunsx64/Rifles/v31/tiny.rsi
   - type: Item
     sprite: Backmen/Objects/Weapons/Gunsx64/Rifles/v31/tiny.rsi
-  - type: BkmGunWieldBonus
-    cameraRecoilScalar: -4
   - type: GunWieldBonus
     minAngle: -23
     maxAngle: 0
@@ -746,7 +726,7 @@
   parent: BaseWeaponRifle
   id: WeaponRifleAUG
   suffix: Автомат
-  description: A bullpup rifle used as a reserve assault rifle for the UEG. It has a built-in handguard and sight for increased accuracy and reduced recoil. Chambered for .25 rifle cartridge.
+  description: Винтовка буллпап, используемая в качестве резервной штурмовой винтовки для UEG. Она имеет встроенное цевье и прицел для повышения точности и уменьшения отдачи. Патронник рассчитан на винтовочный патрон 25-го калибра.
   components:
   - type: Sprite
     sprite: Backmen/Objects/Weapons/Gunsx64/Rifles/aug/big.rsi
@@ -759,8 +739,6 @@
     sprite: Backmen/Objects/Weapons/Gunsx64/Rifles/aug/tiny.rsi
   - type: Item
     sprite: Backmen/Objects/Weapons/Gunsx64/Rifles/aug/tiny.rsi
-  - type: BkmGunWieldBonus
-    cameraRecoilScalar: -4.5
   - type: GunWieldBonus
     minAngle: -23
     maxAngle: 0
@@ -806,7 +784,7 @@
   parent: BaseWeaponRifle
   id: WeaponRifleSCARAB
   suffix: Автомат
-  description: The Mk.21 Superior Combat Assault Rifle is a light specialized scout rifle, mostly used by light infantry and scouts. It's designed to be useable at all ranges by being very adaptable to different situations due.
+  description: Штурмовая винтовка Mk.21 Superior Combat - это легкая специализированная разведывательная винтовка, используемая в основном легкой пехотой и скаутами. Она разработана для использования на любых дистанциях благодаря высокой степени адаптации к различным ситуациям.
   components:
   - type: Sprite
     sprite: Backmen/Objects/Weapons/Gunsx64/Rifles/scar/big.rsi
@@ -819,8 +797,6 @@
     sprite: Backmen/Objects/Weapons/Gunsx64/Rifles/scar/tiny.rsi
   - type: Item
     sprite: Backmen/Objects/Weapons/Gunsx64/Rifles/scar/tiny.rsi
-  - type: BkmGunWieldBonus
-    cameraRecoilScalar: -4
   - type: GunWieldBonus
     minAngle: -23
     maxAngle: 0
@@ -883,8 +859,6 @@
     sprite: Backmen/Objects/Weapons/Gunsx64/Rifles/utap-mark1/tiny.rsi
   - type: Item
     sprite: Backmen/Objects/Weapons/Gunsx64/Rifles/utap-mark1/tiny.rsi
-  - type: BkmGunWieldBonus
-    cameraRecoilScalar: -4.5
   - type: GunWieldBonus
     minAngle: -23
     maxAngle: 0

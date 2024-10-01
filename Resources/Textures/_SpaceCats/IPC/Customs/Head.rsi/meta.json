@@ -1,0 +1,31 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "made by borkroman",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "AntennaCurves",
+      "directions": 4
+    },
+    {
+      "name": "antennaLetf",
+      "directions": 4
+    },
+    {
+      "name": "antennaLetf-unshaded",
+      "directions": 4
+    },
+    {
+      "name": "antennas",
+      "directions": 4
+    },
+    {
+      "name": "wires",
+      "directions": 4
+    }
+  ]
+}

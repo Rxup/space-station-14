@@ -43,6 +43,12 @@ namespace Content.Shared.Roles
         [DataField("description")]
         public string? Description { get; private set; }
 
+        /// <summary>
+		///     A color representing this job to use for text.
+		/// </summary>
+		[DataField("color")]
+		public Color? Color { get; private set; }
+
         [ViewVariables(VVAccess.ReadOnly)]
         public string? LocalizedDescription => Description is null ? null : Loc.GetString(Description);
 

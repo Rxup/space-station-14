@@ -14,10 +14,10 @@
     components:
     - type: BibleUser #Lets them heal with bibles
   #start-backmen: currency
-  minBankBalance: 150
-  maxBankBalance: 250
+  minBankBalance: 166
+  maxBankBalance: 266
   wageDepartment: Civilian
-  wage: 50
+  wage: 66
   #end-backmen: currency
 
 - type: startingGear
@@ -26,6 +26,11 @@
     shoes: ClothingShoesColorBlack
     id: ChaplainPDA
     ears: ClothingHeadsetService
+    neck: ClothingNeckHolyMedal # cats
+    suitstorage: HolySable # cats
+    outerClothing: ClothingWitchHunter # cats
+    head: ClothingWhitsHunter # cats
+    eyes: ClothingEyesEyepatch # cats
   storage:
     back:
     - Bible

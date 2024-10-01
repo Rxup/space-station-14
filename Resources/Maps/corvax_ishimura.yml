@@ -158029,7 +158029,7 @@ entities:
     - type: Transform
       pos: 12.5,-42.5
       parent: 2
-- proto: SolidSecretDoor
+- proto: WallSolid
   entities:
   - uid: 18872
     components:

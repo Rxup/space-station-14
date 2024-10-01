@@ -34,3 +34,14 @@
   - type: GuideHelp
     guides: [ Singularity, Power ]
 
+- type: entity
+  id: SingularityGeneratorMaxwell
+  parent: SingularityGenerator
+  name: gravitational singularity generator
+  suffix: Admin
+  description: An Odd Device which produces a Gravitational Singularity when set up.
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: SingularityGenerator
+    spawnId: MaxwellSingularity

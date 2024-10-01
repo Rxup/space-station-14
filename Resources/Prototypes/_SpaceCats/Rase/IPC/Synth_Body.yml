@@ -1,0 +1,213 @@
+﻿#Мозг КПБ
+- type: entity
+  id: SynthPosiBrain
+  name: Позитронный мозг КПБ
+  parent: BaseItem
+  components:
+  - type: Sprite
+    sprite: _SpaceCats/IPC/Organs.rsi
+    layers:
+    - state: brain
+    - state: brain-unshaded
+      shader: unshaded
+  - type: Organ
+  - type: Brain
+  - type: Input
+    context: human
+  - type: BlockMovement
+  - type: Examiner
+  - type: BorgBrain
+  - type: TypingIndicator
+    proto: robot
+  - type: Speech
+    speechSounds: Pai
+  - type: MobState
+    allowedStates:
+    - Alive
+  - type: Appearance
+  - type: IntrinsicRadioReceiver
+  - type: IntrinsicRadioTransmitter
+    channels:
+      - Binary
+  - type: ActiveRadio
+    channels:
+      - Binary
+
+
+#Тело КПБ
+- type: body
+  name: "Synth"
+  id: Synth
+  root: torso
+  slots:
+    head:
+      part: HeadSynth
+      connections:
+      - torso
+    torso:
+      part: TorsoSynth
+      connections:
+      - right arm
+      - left arm
+      - right leg
+      - left leg
+      organs:
+        brain: SynthPosiBrain
+    right arm:
+      part: RightArmSynth
+      connections:
+      - right hand
+    left arm:
+      part: LeftArmSynth
+      connections:
+      - left hand
+    right hand:
+      part: RightHandSynth
+    left hand:
+      part: LeftHandSynth
+    right leg:
+      part: RightLegSynth
+    left leg:
+      part: LeftLegSynth
+
+#Части КПБ
+- type: entity
+  id: PartSynth
+  parent: BaseItem
+  name: "Synth body part"
+  abstract: true
+  components:
+  - type: Damageable
+    damageContainer: Inorganic
+  - type: BodyPart
+  - type: ContainerContainer
+    containers:
+      bodypart: !type:Container
+        ents: []
+  - type: StaticPrice
+    price: 500
+  - type: Tag
+    tags:
+      - Trash
+  - type: Sprite
+    sprite: _SpaceCats/IPC/parts.rsi
+
+- type: entity
+  id: TorsoSynth
+  name: "Корпус КПБ"
+  parent: PartSynth
+  components:
+  - type: Sprite
+    state: "torso_m"
+  - type: BodyPart
+    partType: Torso
+
+- type: entity
+  id: HeadSynth
+  name: "Голова КПБ"
+  parent: PartSynth
+  components:
+  - type: Sprite
+    state: "head_m"
+  - type: BodyPart
+    partType: Head
+    vital: true
+  - type: Input
+    context: "ghost"
+  - type: Tag
+    tags:
+      - Head
+
+- type: entity
+  id: LeftArmSynth
+  name: "left synth arm"
+  parent: PartSynth
+  components:
+  - type: Sprite
+    state: "l_arm"
+  - type: BodyPart
+    partType: Arm
+    symmetry: Left
+
+- type: entity
+  id: RightArmSynth
+  name: "right synth arm"
+  parent: PartSynth
+  components:
+  - type: Sprite
+    state: "r_arm"
+  - type: BodyPart
+    partType: Arm
+    symmetry: Right
+
+- type: entity
+  id: LeftHandSynth
+  name: "left synth hand"
+  parent: PartSynth
+  components:
+  - type: Sprite
+    state: "l_hand"
+  - type: BodyPart
+    partType: Hand
+    symmetry: Left
+
+- type: entity
+  id: RightHandSynth
+  name: "right synth hand"
+  parent: PartSynth
+  components:
+  - type: Sprite
+    state: "r_hand"
+  - type: BodyPart
+    partType: Hand
+    symmetry: Right
+
+- type: entity
+  id: LeftLegSynth
+  name: "left synth leg"
+  parent: PartSynth
+  components:
+  - type: Sprite
+    state: "l_leg"
+  - type: BodyPart
+    partType: Leg
+    symmetry: Left
+  - type: MovementBodyPart
+    walkSpeed : 3.5
+    sprintSpeed : 4.5
+
+- type: entity
+  id: RightLegSynth
+  name: "right synth leg"
+  parent: PartSynth
+  components:
+  - type: Sprite
+    state: "r_leg"
+  - type: BodyPart
+    partType: Leg
+    symmetry: Right
+  - type: MovementBodyPart
+    walkSpeed : 3.5
+    sprintSpeed : 4.5
+
+- type: entity
+  id: LeftFootSynth
+  name: "left synth foot"
+  parent: PartSynth
+  components:
+  - type: Sprite
+    state: "l_foot"
+  - type: BodyPart
+    partType: Foot
+    symmetry: Left
+
+- type: entity
+  id: RightFootSynth
+  name: "right synth foot"
+  parent: PartSynth
+  components:
+  - type: Sprite
+    state: "r_foot"
+  - type: BodyPart
+    partType: Foot
+    symmetry: Right

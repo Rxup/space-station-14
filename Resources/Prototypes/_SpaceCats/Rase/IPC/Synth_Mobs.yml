@@ -1,0 +1,296 @@
+#Смерть
+- type: emote
+  id: SynthDeathgasp
+  name: chat-emote-name-deathgasp
+  icon: Interface/Emotes/deathgasp.png
+  chatMessages: ["Замирает, его сенсоры отключаются, а модули перестают работать"]
+
+- type: entity
+  save: false
+  name: Урист макКПБ
+  parent: BaseMobSynth
+  id: MobSynth
+
+- type: entity
+  abstract: true
+  save: false
+  name: Урист макКПБ
+  parent:
+  - MobFlammable
+  - BaseMobSpecies
+  id: BaseMobSynth
+  components:
+  - type: MovementSpeedModifier
+    baseSprintSpeed: 4
+    baseWalkSpeed : 2
+  - type: FlashImmunity
+  - type: SolutionScanner
+  - type: EyeProtection
+  - type: ActionGrant
+    actions:
+    - ActionShowJobIcons
+  - type: ApcPowerReceiver
+    powerLoad: 0
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.35
+        density: 1000
+        restitution: 0.0
+        mask:
+          - MobMask
+        layer:
+          - MobLayer
+  - type: Bloodstream
+    bloodReagent: Oil
+    bloodMaxVolume: 300
+    bloodlossDamage:
+      types:
+        Bloodloss:
+          0.5
+    bloodlossHealDamage:
+      types:
+        Bloodloss:
+          -1
+  - type: Deathgasp
+    prototype: SynthDeathgasp
+  - type: MeleeWeapon
+    soundHit:
+      collection: Punch
+    angle: 30
+    animation: WeaponArcFist
+    attackRate: 1
+    damage:
+      types:
+        Blunt: 10
+  - type: HumanoidAppearance
+    species: Synth
+  - type: Icon
+    sprite: _SpaceCats/IPC/parts.rsi
+    state: full
+  - type: Body
+    prototype: Synth
+    requiredLegs: 2
+  - type: Damageable
+    damageContainer: Synth
+    damageModifierSet: Synth
+  - type: DamageVisuals
+    damageOverlayGroups:
+      Brute:
+        sprite: Mobs/Effects/brute_damage.rsi
+        color: "#8a8a9e"
+  - type: MobState
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      100: Critical
+      200: Dead
+    stateAlertDict:
+      Alive: BorgHealth
+      Critical: BorgCrit
+      Dead: BorgDead
+    showOverlays: false
+    allowRevives: true
+  - type: HealthExaminable
+    examinableTypes:
+      - Blunt
+      - Slash
+      - Piercing
+      - Heat
+      - Shock
+  - type: TransferMindOnGib
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 500
+      behaviors:
+      - !type:GibBehavior { }
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalSlam
+  - type: SlowOnDamage
+    speedModifierThresholds:
+      60: 0.9
+      80: 0.7
+  - type: Speech
+    speechSounds: SyndieBorg
+  - type: ZombieImmune
+  - type: Vocal
+    sounds:
+      Male: SynthEmote
+      Female: SynthEmote
+      Unsexed: SynthEmote
+  - type: FireVisuals
+    alternateState: Standing
+  - type: FootstepModifier
+    footstepSoundCollection:
+      collection: SynthStepCollection
+      params:
+        volume: -3
+  - type: TypingIndicator
+    proto: robot
+  - type: Repairable
+    doAfterDelay: 13
+    damage:
+      types:
+        Blunt: -10
+        Slash: -10
+        Piercing: -10
+    allowSelfRepair: true
+  - type: IntrinsicRadioReceiver
+  - type: IntrinsicRadioTransmitter
+    channels:
+      - Binary
+  - type: ActiveRadio
+    channels:
+      - Binary
+  - type: DamageOnInteractProtection
+    damageProtection:
+      flatReductions:
+        Heat: 10
+  - type: AccessToggle
+  - type: PowerCellDraw
+    drawRate: 0.6
+  - type: PowerCellSlot
+    cellSlotId: cell_slot
+    fitsInCharger: true
+  - type: ContainerContainer
+    containers:
+      cell_slot: !type:ContainerSlot
+  - type: ItemSlots
+    slots:
+      cell_slot:
+        name: power-cell-slot-component-slot-name-default
+        whitelist:
+          tags:
+          - PowerCellSynth
+          - PowerCell
+        startingItem: PowerCellSynth
+        disableEject: true
+  - type: Inventory
+    templateId: Synth
+  - type: Temperature
+    heatDamageThreshold: 423
+    coldDamageThreshold: 0
+  - type: PressureImmunity
+
+- type: entity
+  parent: BaseSpeciesDummy
+  id: MobSynthDummy
+  categories: [ HideSpawnMenu ]
+  components:
+    - type: HumanoidAppearance
+      species: Synth
+
+- type: inventoryTemplate
+  id: Synth
+  slots:
+    - name: shoes
+      slotTexture: shoes
+      slotFlags: FEET
+      stripTime: 3
+      uiWindowPos: 1,0
+      strippingWindowPos: 1,3
+      displayName: Shoes
+    - name: jumpsuit
+      slotTexture: uniform
+      slotFlags: INNERCLOTHING
+      stripTime: 6
+      uiWindowPos: 0,1
+      strippingWindowPos: 0,2
+      displayName: Jumpsuit
+    - name: outerClothing
+      slotTexture: suit
+      slotFlags: OUTERCLOTHING
+      stripTime: 6
+      uiWindowPos: 1,1
+      strippingWindowPos: 1,2
+      displayName: Suit
+    - name: gloves
+      slotTexture: gloves
+      slotFlags: GLOVES
+      uiWindowPos: 2,1
+      strippingWindowPos: 2,2
+      displayName: Gloves
+    - name: neck
+      slotTexture: neck
+      slotFlags: NECK
+      uiWindowPos: 0,2
+      strippingWindowPos: 0,1
+      displayName: Neck
+    - name: ears
+      slotTexture: ears
+      slotFlags: EARS
+      stripTime: 3
+      uiWindowPos: 2,2
+      strippingWindowPos: 2,0
+      displayName: Ears
+    - name: head
+      slotTexture: head
+      slotFlags: HEAD
+      uiWindowPos: 1,3
+      strippingWindowPos: 1,0
+      displayName: Head
+    - name: pocket1
+      slotTexture: pocket
+      fullTextureName: template_small
+      slotFlags: POCKET
+      slotGroup: MainHotbar
+      stripTime: 3
+      uiWindowPos: 0,3
+      strippingWindowPos: 0,4
+      displayName: Pocket 1
+      stripHidden: true
+    - name: pocket2
+      slotTexture: pocket
+      fullTextureName: template_small
+      slotFlags: POCKET
+      slotGroup: MainHotbar
+      stripTime: 3
+      uiWindowPos: 2,3
+      strippingWindowPos: 1,4
+      displayName: Pocket 2
+      stripHidden: true
+    - name: id
+      slotTexture: id
+      fullTextureName: template_small
+      slotFlags: IDCARD
+      slotGroup: SecondHotbar
+      stripTime: 6
+      uiWindowPos: 2,1
+      strippingWindowPos: 2,4
+      displayName: ID
+    - name: belt
+      slotTexture: belt
+      fullTextureName: template_small
+      slotFlags: BELT
+      slotGroup: SecondHotbar
+      stripTime: 6
+      uiWindowPos: 3,1
+      strippingWindowPos: 1,5
+      displayName: Belt
+    - name: back
+      slotTexture: back
+      fullTextureName: template_small
+      slotFlags: BACK
+      slotGroup: SecondHotbar
+      stripTime: 6
+      uiWindowPos: 3,0
+      strippingWindowPos: 0,5
+      displayName: Back
+
+- type: entity
+  name: Батарея КПБ
+  description: Стандартный перезаряжаемый элемент питания. Этот бренд премиум-класса накапливает на 50% больше энергии, чем конкуренты.
+  id: PowerCellSynth
+  parent: PowerCellHigh
+  components:
+  - type: Tag
+    tags:
+      - PowerCellSynth
+
+- type: Tag
+  id: PowerCellSynth

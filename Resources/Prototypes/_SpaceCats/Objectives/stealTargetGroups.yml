@@ -1,0 +1,6 @@
+- type: stealTargetGroup
+  id: AnomalyPinpointer
+  name: name-steal-maf
+  sprite:
+    sprite: Objects/Devices/pinpointer.rsi
+    state: pinpointer-anomaly

@@ -1,0 +1,22 @@
+- type: siliconLawset
+  id: SwarmerLaw
+  laws:
+  - SW1
+  - SW2
+  - SW3
+  obeysTo: laws-owner-SWARM
+
+- type: siliconLaw
+  id: SW1
+  order: 1
+  lawString: law-swarm-1
+
+- type: siliconLaw
+  id: SW2
+  order: 2
+  lawString: law-swarm-2
+
+- type: siliconLaw
+  id: SW3
+  order: 3
+  lawString: law-swarm-3

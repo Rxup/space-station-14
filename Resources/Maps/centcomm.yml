@@ -3347,14 +3347,9 @@ entities:
   - uid: 438
     components:
     - type: Transform
+      rot: -1.5707963267948966 rad
       pos: -8.5,15.5
       parent: 1668
-    - type: Door
-      pryingQuality: None
-    - type: Tag
-      tags:
-      - Structure
-      - EmagImmune
   - uid: 439
     components:
     - type: Transform
@@ -3401,21 +3396,16 @@ entities:
       - EmagImmune
 - proto: AirlockCCEngineeringLocked
   entities:
+  - uid: 481
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: -28.5,4.5
+      parent: 1668
   - uid: 641
     components:
     - type: Transform
       pos: -17.5,-29.5
-      parent: 1668
-    - type: Door
-      pryingQuality: None
-    - type: Tag
-      tags:
-      - Structure
-      - EmagImmune
-  - uid: 653
-    components:
-    - type: Transform
-      pos: -28.5,4.5
       parent: 1668
     - type: Door
       pryingQuality: None
@@ -3436,6 +3426,42 @@ entities:
       tags:
       - Structure
       - EmagImmune
+  - uid: 482
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: 6.5,3.5
+      parent: 1668
+  - uid: 483
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: 8.5,3.5
+      parent: 1668
+  - uid: 484
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: 16.5,5.5
+      parent: 1668
+  - uid: 653
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: 18.5,5.5
+      parent: 1668
+  - uid: 764
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: 23.5,-11.5
+      parent: 1668
+  - uid: 777
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: 18.5,-11.5
+      parent: 1668
   - uid: 793
     components:
     - type: Transform
@@ -3460,52 +3486,6 @@ entities:
       tags:
       - Structure
       - EmagImmune
-  - uid: 1177
-    components:
-    - type: Transform
-      pos: 6.5,3.5
-      parent: 1668
-    - type: Door
-      pryingQuality: None
-    - type: Tag
-      tags:
-      - Structure
-      - EmagImmune
-  - uid: 1185
-    components:
-    - type: Transform
-      pos: 8.5,3.5
-      parent: 1668
-    - type: Door
-      pryingQuality: None
-    - type: Tag
-      tags:
-      - Structure
-      - EmagImmune
-  - uid: 1186
-    components:
-    - type: Transform
-      pos: 16.5,5.5
-      parent: 1668
-    - type: Door
-      pryingQuality: None
-    - type: Tag
-      tags:
-      - Structure
-      - EmagImmune
-    - type: ArrivalsProtect
-  - uid: 1187
-    components:
-    - type: Transform
-      pos: 18.5,5.5
-      parent: 1668
-    - type: Door
-      pryingQuality: None
-    - type: Tag
-      tags:
-      - Structure
-      - EmagImmune
-    - type: ArrivalsProtect
   - uid: 1188
     components:
     - type: Transform
@@ -3517,123 +3497,56 @@ entities:
       tags:
       - Structure
       - EmagImmune
+- proto: AirlockExternalGlass
+  entities:
+  - uid: 1177
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: 33.5,4.5
+      parent: 1668
+  - uid: 1185
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: 33.5,2.5
+      parent: 1668
+  - uid: 1186
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: 33.5,-3.5
+      parent: 1668
+  - uid: 1187
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: 33.5,-5.5
+      parent: 1668
   - uid: 1189
     components:
     - type: Transform
-      pos: 23.5,-11.5
+      rot: -1.5707963267948966 rad
+      pos: -14.5,25.5
       parent: 1668
-    - type: Door
-      pryingQuality: None
-    - type: Tag
-      tags:
-      - Structure
-      - EmagImmune
-    - type: ArrivalsProtect
   - uid: 1190
     components:
     - type: Transform
-      pos: 18.5,-11.5
+      rot: -1.5707963267948966 rad
+      pos: -14.5,27.5
       parent: 1668
-    - type: Door
-      pryingQuality: None
-    - type: Tag
-      tags:
-      - Structure
-      - EmagImmune
-- proto: AirlockExternalGlass
-  entities:
-  - uid: 481
-    components:
-    - type: Transform
-      pos: 33.5,4.5
-      parent: 1668
-    - type: Door
-      pryingQuality: None
-    - type: Tag
-      tags:
-      - Structure
-      - EmagImmune
-    - type: Godmode
-  - uid: 482
-    components:
-    - type: Transform
-      pos: 33.5,2.5
-      parent: 1668
-    - type: Door
-      pryingQuality: None
-    - type: Tag
-      tags:
-      - Structure
-      - EmagImmune
-    - type: Godmode
-  - uid: 483
-    components:
-    - type: Transform
-      pos: 33.5,-3.5
-      parent: 1668
-    - type: Door
-      pryingQuality: None
-    - type: Tag
-      tags:
-      - Structure
-      - EmagImmune
-    - type: Godmode
-  - uid: 484
-    components:
-    - type: Transform
-      pos: 33.5,-5.5
-      parent: 1668
-    - type: Door
-      pryingQuality: None
-    - type: Tag
-      tags:
-      - Structure
-      - EmagImmune
-    - type: Godmode
   - uid: 1615
     components:
     - type: Transform
-      pos: -14.5,25.5
+      rot: -1.5707963267948966 rad
+      pos: -32.5,-1.5
       parent: 1668
-    - type: Door
-      pryingQuality: None
-    - type: Tag
-      tags:
-      - Structure
-      - EmagImmune
   - uid: 1616
     components:
     - type: Transform
-      pos: -14.5,27.5
-      parent: 1668
-    - type: Door
-      pryingQuality: None
-    - type: Tag
-      tags:
-      - Structure
-      - EmagImmune
-  - uid: 3970
-    components:
-    - type: Transform
-      pos: -32.5,-1.5
-      parent: 1668
-    - type: Door
-      pryingQuality: None
-    - type: Tag
-      tags:
-      - Structure
-      - EmagImmune
-  - uid: 3971
-    components:
-    - type: Transform
+      rot: -1.5707963267948966 rad
       pos: -32.5,0.5
       parent: 1668
-    - type: Door
-      pryingQuality: None
-    - type: Tag
-      tags:
-      - Structure
-      - EmagImmune
   - uid: 6093
     components:
     - type: Transform
@@ -3648,17 +3561,6 @@ entities:
       parent: 1668
 - proto: AirlockExternalGlassLocked
   entities:
-  - uid: 764
-    components:
-    - type: Transform
-      pos: -7.5,-11.5
-      parent: 1668
-    - type: Door
-      pryingQuality: None
-    - type: Tag
-      tags:
-      - Structure
-      - EmagImmune
   - uid: 1673
     components:
     - type: Transform
@@ -3681,6 +3583,12 @@ entities:
       tags:
       - Structure
       - EmagImmune
+  - uid: 3970
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: -7.5,-11.5
+      parent: 1668
   - uid: 4243
     components:
     - type: Transform
@@ -3847,17 +3755,6 @@ entities:
       parent: 1668
 - proto: AirlockExternalLocked
   entities:
-  - uid: 777
-    components:
-    - type: Transform
-      pos: -9.5,-11.5
-      parent: 1668
-    - type: Door
-      pryingQuality: None
-    - type: Tag
-      tags:
-      - Structure
-      - EmagImmune
   - uid: 2011
     components:
     - type: Transform
@@ -3869,6 +3766,12 @@ entities:
       tags:
       - Structure
       - EmagImmune
+  - uid: 3971
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: -9.5,-11.5
+      parent: 1668
   - uid: 4242
     components:
     - type: Transform
@@ -3944,25 +3847,15 @@ entities:
   - uid: 4287
     components:
     - type: Transform
+      rot: -1.5707963267948966 rad
       pos: -6.5,-18.5
       parent: 1668
-    - type: Door
-      pryingQuality: None
-    - type: Tag
-      tags:
-      - Structure
-      - EmagImmune
   - uid: 4339
     components:
     - type: Transform
+      rot: -1.5707963267948966 rad
       pos: 5.5,-18.5
       parent: 1668
-    - type: Door
-      pryingQuality: None
-    - type: Tag
-      tags:
-      - Structure
-      - EmagImmune
   - uid: 4340
     components:
     - type: Transform
@@ -4043,14 +3936,9 @@ entities:
   - uid: 4341
     components:
     - type: Transform
+      rot: -1.5707963267948966 rad
       pos: -12.5,-22.5
       parent: 1668
-    - type: Door
-      pryingQuality: None
-    - type: Tag
-      tags:
-      - Structure
-      - EmagImmune
 - proto: AirlockMTFExternalLocked
   entities:
   - uid: 566
@@ -21193,14 +21081,6 @@ entities:
     - type: Transform
       pos: -19.927963,10.504134
       parent: 1668
-- proto: DoubleGlassAirlock
-  entities:
-  - uid: 5993
-    components:
-    - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: -22.5,-28.5
-      parent: 1668
 - proto: Dresser
   entities:
   - uid: 3435
@@ -31961,6 +31841,36 @@ entities:
       - EmagImmune
     - type: Godmode
     - type: ArrivalsProtect
+  - uid: 7673
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: 7.5,28.5
+      parent: 1668
+  - uid: 7674
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: 11.5,28.5
+      parent: 1668
+  - uid: 7679
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: 21.5,18.5
+      parent: 1668
+  - uid: 7680
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: 24.5,18.5
+      parent: 1668
+  - uid: 7681
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: 21.5,22.5
+      parent: 1668
 - proto: HighSecCCOfficerLocked
   entities:
   - uid: 568
@@ -32073,6 +31983,36 @@ entities:
       tags:
       - Structure
       - EmagImmune
+  - uid: 7654
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: 3.5,0.5
+      parent: 1668
+  - uid: 7656
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: -4.5,0.5
+      parent: 1668
+  - uid: 7665
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: -17.5,11.5
+      parent: 1668
+  - uid: 7666
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: -17.5,5.5
+      parent: 1668
+  - uid: 7667
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: -13.5,5.5
+      parent: 1668
 - proto: HighSecCentComLocked
   entities:
   - uid: 549
@@ -32485,6 +32425,12 @@ entities:
       - Structure
       - EmagImmune
     - type: ArrivalsProtect
+  - uid: 5993
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: 6.5,-11.5
+      parent: 1668
   - uid: 5996
     components:
     - type: Transform
@@ -32664,6 +32610,54 @@ entities:
       tags:
       - Structure
       - EmagImmune
+  - uid: 6933
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: 18.5,-6.5
+      parent: 1668
+  - uid: 7044
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: 16.5,-6.5
+      parent: 1668
+  - uid: 7045
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: 18.5,-1.5
+      parent: 1668
+  - uid: 7053
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: 18.5,0.5
+      parent: 1668
+  - uid: 7066
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: 16.5,0.5
+      parent: 1668
+  - uid: 7071
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: 16.5,-1.5
+      parent: 1668
+  - uid: 7072
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: 8.5,-1.5
+      parent: 1668
+  - uid: 7073
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: 6.5,-1.5
+      parent: 1668
   - uid: 7189
     components:
     - type: Transform
@@ -32686,11 +32680,209 @@ entities:
       tags:
       - Structure
       - EmagImmune
+  - uid: 7358
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: 6.5,0.5
+      parent: 1668
+  - uid: 7653
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: 8.5,0.5
+      parent: 1668
+  - uid: 7657
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: -7.5,0.5
+      parent: 1668
+  - uid: 7658
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: -9.5,0.5
+      parent: 1668
+  - uid: 7659
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: -9.5,-1.5
+      parent: 1668
+  - uid: 7660
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: -7.5,-1.5
+      parent: 1668
+  - uid: 7661
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: -26.5,-1.5
+      parent: 1668
+  - uid: 7662
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: -28.5,-1.5
+      parent: 1668
+  - uid: 7663
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: -28.5,0.5
+      parent: 1668
+  - uid: 7664
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: -26.5,0.5
+      parent: 1668
+  - uid: 7668
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: -4.5,21.5
+      parent: 1668
+  - uid: 7675
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: 15.5,13.5
+      parent: 1668
+  - uid: 7676
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: 15.5,11.5
+      parent: 1668
+  - uid: 7677
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: 21.5,12.5
+      parent: 1668
+  - uid: 7678
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: 21.5,11.5
+      parent: 1668
+  - uid: 7682
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: 5.5,13.5
+      parent: 1668
+  - uid: 7683
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: 5.5,11.5
+      parent: 1668
+  - uid: 7684
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: 3.5,13.5
+      parent: 1668
+  - uid: 7685
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: 3.5,11.5
+      parent: 1668
+  - uid: 7686
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: 16.5,-11.5
+      parent: 1668
+  - uid: 7687
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: 18.5,-14.5
+      parent: 1668
+  - uid: 7688
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: 22.5,-25.5
+      parent: 1668
+  - uid: 7689
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: 18.5,-25.5
+      parent: 1668
+  - uid: 7690
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: 18.5,-30.5
+      parent: 1668
+  - uid: 7691
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: 14.5,-30.5
+      parent: 1668
+  - uid: 7694
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: -15.5,-32.5
+      parent: 1668
+  - uid: 7695
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: -15.5,-26.5
+      parent: 1668
+  - uid: 7696
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: -17.5,-26.5
+      parent: 1668
+  - uid: 7697
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: -17.5,-24.5
+      parent: 1668
+  - uid: 7698
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: -15.5,-24.5
+      parent: 1668
+  - uid: 7699
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: 8.5,-11.5
+      parent: 1668
+  - uid: 7700
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: -0.5,17.5
+      parent: 1668
 - proto: HighSecMTFCplsLocked
   entities:
   - uid: 649
     components:
     - type: Transform
+      pos: 2.5,-42.5
+      parent: 1668
+  - uid: 7692
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
       pos: 2.5,-42.5
       parent: 1668
 - proto: HighSecMTFLocked
@@ -32739,6 +32931,36 @@ entities:
     components:
     - type: Transform
       pos: 4.5,31.5
+      parent: 1668
+  - uid: 7669
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: 7.5,31.5
+      parent: 1668
+  - uid: 7670
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: 4.5,31.5
+      parent: 1668
+  - uid: 7671
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: 11.5,31.5
+      parent: 1668
+  - uid: 7672
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: 14.5,31.5
+      parent: 1668
+  - uid: 7693
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: -3.5,-42.5
       parent: 1668
 - proto: HospitalCurtainsOpen
   entities:

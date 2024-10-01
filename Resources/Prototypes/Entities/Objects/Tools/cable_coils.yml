@@ -29,6 +29,17 @@
   - type: PhysicalComposition
     materialComposition:
       Steel: 15
+  - type: Healing
+    damageContainers:
+      - Synth
+    damage:
+      types:
+        Heat: -5
+        Shock: -5
+    healingBeginSound:
+      path: "/Audio/Items/Medical/brutepack_begin.ogg"
+    healingEndSound:
+      path: "/Audio/Items/Medical/brutepack_end.ogg"
 
 - type: entity
   id: CableHVStack
