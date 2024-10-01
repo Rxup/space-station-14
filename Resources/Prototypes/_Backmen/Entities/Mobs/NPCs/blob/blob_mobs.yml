@@ -47,10 +47,8 @@
         task: BlobPodCompound
     - type: BlobMob
     - type: BlobSpeak
-#    - type: ReplacementAccent
-#      accent: genericAggressive
     - type: LanguageSpeaker
-      currentLanguage: TauCetiBasic
+      currentLanguage: Blob
     - type: LanguageKnowledge #backmen: languages
       speaks:
       - Blob
@@ -130,8 +128,6 @@
         settings: default
     - type: GhostTakeoverAvailable
     - type: Blobbernaut
-    - type: BlobSpeak
-      longRange: false
     - type: Physics
     - type: InputMover
     - type: MobMover
@@ -139,7 +135,7 @@
 #    - type: ReplacementAccent
 #      accent: genericAggressive
     - type: LanguageSpeaker
-      currentLanguage: TauCetiBasic
+      currentLanguage: Blob
     - type: LanguageKnowledge #backmen: languages
       speaks:
       - Blob
@@ -228,7 +224,7 @@
 #    - type: ReplacementAccent
 #      accent: genericAggressive
     - type: LanguageSpeaker
-      currentLanguage: TauCetiBasic
+      currentLanguage: Blob
     - type: LanguageKnowledge #backmen: languages
       speaks:
       - Blob
@@ -239,8 +235,6 @@
     - type: Hands
       showInHands: true
     - type: BlobObserver
-    - type: BlobSpeak
-      overrideName: false
     - type: Visibility
       layer: 2
     - type: ContentEye

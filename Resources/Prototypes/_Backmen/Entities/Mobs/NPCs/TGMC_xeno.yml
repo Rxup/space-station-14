@@ -46,13 +46,8 @@
   - type: Polymorphable
   - type: Buckle
   - type: Insulated
-  - type: BlobSpeak
-    name: speak-vv-xeno
-    channel: Hivemind
-#  - type: ReplacementAccent
-#    accent: xeno
   - type: LanguageSpeaker
-    currentLanguage: TauCetiBasic
+    currentLanguage: Xeno
   - type: LanguageKnowledge #backmen: languages
     speaks:
     - Xeno

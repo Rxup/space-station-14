@@ -1,6 +1,6 @@
 # Translator that doesn't need power to work
 - type: entity
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   id: TranslatorUnpowered
   parent: BaseItem
   name: translator
@@ -32,7 +32,7 @@
 
 # Base translator that uses a power cell. Starts with an empty slot.
 - type: entity
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   id: TranslatorPoweredBase
   parent: [ TranslatorUnpowered, PowerCellSlotMediumItem ]
   components:
@@ -45,14 +45,14 @@
 
 # Normal translator with medium power cell in it
 - type: entity
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   id: Translator
   parent: [ PowerCellSlotMediumItem, TranslatorPoweredBase ]
   suffix: Powered
 
 # Normal translator with a high power cell and special appearance
 - type: entity
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   id: TranslatorForeigner
   parent: [ PowerCellSlotHighItem, TranslatorPoweredBase ]
   name: foreigner's translator
@@ -85,13 +85,13 @@
   - type: HandheldTranslator
     spoken:
     - TauCetiBasic
-    - Bubblish
+    - Slime
     understood:
     - TauCetiBasic
-    - Bubblish
+    - Slime
     requires:
     - TauCetiBasic
-    - Bubblish
+    - Slime
 
 - type: entity
   id: NekomimeticTranslator
@@ -119,13 +119,13 @@
   - type: HandheldTranslator
     spoken:
     - TauCetiBasic
-    - Draconic
+    - Dragon
     understood:
     - TauCetiBasic
-    - Draconic
+    - Dragon
     requires:
     - TauCetiBasic
-    - Draconic
+    - Dragon
 
 - type: entity
   id: SolCommonTranslator
@@ -215,7 +215,7 @@
     - Pig
     - Crab
     - Kobold
-    - Hissing
+    - Xeno
     requires:
     - TauCetiBasic
     setLanguageOnInteract: false
@@ -229,10 +229,10 @@
   - type: HandheldTranslator
     spoken:
     - TauCetiBasic
-    - ValyrianStandard
+    - Garpy
     understood:
     - TauCetiBasic
-    - ValyrianStandard
+    - Garpy
     requires:
     - TauCetiBasic
-    - ValyrianStandard
+    - Garpy
