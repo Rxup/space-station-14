@@ -47,8 +47,13 @@
         task: BlobPodCompound
     - type: BlobMob
     - type: BlobSpeak
-    - type: ReplacementAccent
-      accent: genericAggressive
+    - type: LanguageSpeaker
+      currentLanguage: Blob
+    - type: LanguageKnowledge #backmen: languages
+      speaks:
+      - Blob
+      understands:
+      - Blob
     - type: CombatMode
     - type: NpcFactionMember
       factions:
@@ -123,14 +128,21 @@
         settings: default
     - type: GhostTakeoverAvailable
     - type: Blobbernaut
-    - type: BlobSpeak
-      longRange: false
     - type: Physics
     - type: InputMover
     - type: MobMover
     - type: BlobMob
-    - type: ReplacementAccent
-      accent: genericAggressive
+#    - type: ReplacementAccent
+#      accent: genericAggressive
+    - type: LanguageSpeaker
+      currentLanguage: Blob
+    - type: LanguageKnowledge #backmen: languages
+      speaks:
+      - Blob
+      understands:
+      - Blob
+      - Xeno
+      - TauCetiBasic
     - type: CombatMode
     - type: HTN
       rootTask:
@@ -209,13 +221,20 @@
           type: BlobChemSwapBoundUserInterface
     - type: Actions
     - type: Alerts
-    - type: ReplacementAccent
-      accent: genericAggressive
+#    - type: ReplacementAccent
+#      accent: genericAggressive
+    - type: LanguageSpeaker
+      currentLanguage: Blob
+    - type: LanguageKnowledge #backmen: languages
+      speaks:
+      - Blob
+      understands:
+      - Blob
+      - Xeno
+      - TauCetiBasic
     - type: Hands
       showInHands: true
     - type: BlobObserver
-    - type: BlobSpeak
-      overrideName: false
     - type: Visibility
       layer: 2
     - type: ContentEye

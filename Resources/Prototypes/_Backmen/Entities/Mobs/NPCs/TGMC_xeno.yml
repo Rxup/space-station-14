@@ -46,11 +46,13 @@
   - type: Polymorphable
   - type: Buckle
   - type: Insulated
-  - type: BlobSpeak
-    name: speak-vv-xeno
-    channel: Hivemind
-  - type: ReplacementAccent
-    accent: xeno
+  - type: LanguageSpeaker
+    currentLanguage: Xeno
+  - type: LanguageKnowledge #backmen: languages
+    speaks:
+    - Xeno
+    understands:
+    - Xeno
   - type: TTS
     voice: Xenia
   - type: Hands

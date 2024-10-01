@@ -13,6 +13,7 @@ using Content.Server.Station.Systems;
 using Content.Shared.Atmos;
 using Content.Shared.Audio;
 using Content.Shared.Backmen.CCVar;
+using Content.Shared.Backmen.Chat;
 using Content.Shared.Backmen.Supermatter;
 using Content.Shared.Backmen.Supermatter.Components;
 using Content.Shared.Explosion.Components;

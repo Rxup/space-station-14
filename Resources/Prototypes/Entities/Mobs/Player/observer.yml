@@ -61,10 +61,9 @@
   - type: IntrinsicRadioReceiver
   - type: ActiveRadio
     channels:
-    - Binary
     - Common
-    - Command
     - CentCom
+    - Command
     - Engineering
     - Medical
     - Science
@@ -72,7 +71,22 @@
     - Service
     - Supply
     - Syndicate
+    - Handheld
+    - Binary
+    - Freelance
     - CSH
+    - Fleet
+    - Flesh
+    - UEG
+    - AID
+    - AIMALF
+    - CentComOBR
+    - CentComOBREPS11
+    - CentComOBRSR6
+    - Rebels
+    - CentComDeath
+    - Hivemind
+    - Changeling
     - GROUPS_1
     - GROUPS_2
     - GROUPS_3
@@ -83,13 +97,11 @@
     - GROUPS_8
     - GROUPS_9
     - GROUPS_0
-    - Binary
-    - Flesh
-    - Freelance
     globalReceive: true
   - type: Tag
     tags:
     - BypassInteractionRangeChecks
+  - type: UniversalLanguageSpeaker #backmen: languages
 
 - type: entity
   id: ActionGhostBoo

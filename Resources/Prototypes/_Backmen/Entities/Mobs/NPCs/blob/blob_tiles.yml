@@ -110,10 +110,15 @@
         acts: [ "Destruction" ]
   - type: BlobTile
     blobTileType: Core
-  - type: BlobSpeak
-    overrideName: false
-  - type: ReplacementAccent
-    accent: genericAggressive
+  - type: LanguageSpeaker
+    currentLanguage: Blob
+  - type: LanguageKnowledge #backmen: languages
+    speaks:
+    - Blob
+    understands:
+    - Blob
+    - Xeno
+    - TauCetiBasic
   - type: Store
     currencyWhitelist:
     - BlobPoint
