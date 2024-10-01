@@ -122,8 +122,13 @@
           groups:
             Brute: -2
             Burn: -2
-  - type: ReplacementAccent
-    accent: tomatoKiller
+#  - type: ReplacementAccent
+#    accent: tomatoKiller
+  - type: LanguageSpeaker #backmen: languages
+    speaks:
+    - SpaceMob
+    understands:
+    - SpaceMob
   - type: Item
   - type: NpcFactionMember
     factions:

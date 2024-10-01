@@ -57,8 +57,15 @@
     damage:
       types:
         Slash: 6
-  - type: ReplacementAccent
-    accent: genericAggressive
+#  - type: ReplacementAccent
+#    accent: genericAggressive
+  - type: LanguageSpeaker #backmen: languages
+    speaks:
+    - Flesh
+    - SpaceMob
+    understands:
+    - Flesh
+    - SpaceMob
 
 - type: entity
   parent: BaseMobFlesh
@@ -255,8 +262,15 @@
     damage:
       types:
         Slash: 6
-  - type: ReplacementAccent
-    accent: genericAggressive
+#  - type: ReplacementAccent
+#    accent: genericAggressive
+  - type: LanguageSpeaker #backmen: languages
+    speaks:
+    - Flesh
+    - SpaceMob
+    understands:
+    - Flesh
+    - SpaceMob
   - type: SalvageMobRestrictions
 
 - type: entity

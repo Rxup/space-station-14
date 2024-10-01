@@ -49,8 +49,13 @@
   - type: BlobSpeak
     name: speak-vv-xeno
     channel: Hivemind
-  - type: ReplacementAccent
-    accent: xeno
+#  - type: ReplacementAccent
+#    accent: xeno
+  - type: LanguageSpeaker
+    speaks:
+    - Xeno
+    understands:
+    - Xeno
   - type: TTS
     voice: Xenia
   - type: Hands

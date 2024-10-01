@@ -5,6 +5,7 @@ using Content.Server.Players.RateLimiting;
 using Content.Shared.Corvax.CCCVars;
 using Content.Shared.Corvax.TTS;
 using Content.Shared.GameTicking;
+using Content.Shared.Radio;
 using Robust.Shared.Configuration;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
@@ -28,11 +29,11 @@ public sealed partial class TTSSystem : EntitySystem
         _cfg.OnValueChanged(CCCVars.TTSAnnounceVoiceId, v => _voiceId = v, true); // TTS-Announce SS220
 
         SubscribeLocalEvent<TransformSpeechEvent>(OnTransformSpeech);
-        SubscribeLocalEvent<TTSComponent, EntitySpokeEvent>(OnEntitySpoke);
         SubscribeLocalEvent<RoundRestartCleanupEvent>(OnRoundRestartCleanup);
 
         SubscribeLocalEvent<AnnouncementSpokeEvent>(OnAnnouncementSpoke); // TTS-Announce SS220
         SubscribeNetworkEvent<RequestPreviewTTSEvent>(OnRequestPreviewTTS);
+        SubscribeLocalEvent<TTSComponent, EntitySpokeLanguageEvent>(OnEntitySpoke);
 
         RegisterRateLimits();
     }
@@ -42,7 +43,7 @@ public sealed partial class TTSSystem : EntitySystem
         _ttsManager.ResetCache();
     }
 
-    private async void OnEntitySpoke(EntityUid uid, TTSComponent component, EntitySpokeEvent args)
+    private async void OnEntitySpoke(EntityUid uid, TTSComponent component, EntitySpokeLanguageEvent args)
     {
         var voiceId = component.VoicePrototypeId;
         if (!_isEnabled ||
@@ -70,7 +71,7 @@ public sealed partial class TTSSystem : EntitySystem
     {
         var soundData = await GenerateTTS(message, speaker);
         if (soundData is null) return;
-        RaiseNetworkEvent(new PlayTTSEvent(soundData, GetNetEntity(uid)), Filter.Pvs(uid));
+        RaiseNetworkEvent(new PlayTTSEvent(soundData, GetNetEntity(uid)), Filter.Entities(uid));
     }
 
     private async void HandleWhisper(EntityUid uid, string message, string obfMessage, string speaker)
@@ -115,6 +116,31 @@ public sealed partial class TTSSystem : EntitySystem
         var textSsml = ToSsmlText(textSanitized, ssmlTraits);
 
         return await _ttsManager.ConvertTextToSpeech(speaker, textSsml);
+    }
+}
+
+public sealed class EntitySpokeLanguageEvent: EntityEventArgs
+{
+    public readonly ICommonSession Listener;
+    public readonly EntityUid Source;
+    public readonly string Message;
+    public readonly string OriginalMessage;
+    public readonly string? ObfuscatedMessage; // not null if this was a whisper
+
+    /// <summary>
+    ///     If the entity was trying to speak into a radio, this was the channel they were trying to access. If a radio
+    ///     message gets sent on this channel, this should be set to null to prevent duplicate messages.
+    /// </summary>
+    public RadioChannelPrototype? Channel;
+
+    public EntitySpokeLanguageEvent(ICommonSession listener, EntityUid source, string message, string originalMessage, RadioChannelPrototype? channel, string? obfuscatedMessage)
+    {
+        Listener = listener;
+        Source = source;
+        Message = message;
+        OriginalMessage = originalMessage; // Corvax-TTS: Spec symbol sanitize
+        Channel = channel;
+        ObfuscatedMessage = obfuscatedMessage;
     }
 }
 

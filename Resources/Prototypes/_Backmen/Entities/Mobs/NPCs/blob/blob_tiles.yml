@@ -112,8 +112,15 @@
     blobTileType: Core
   - type: BlobSpeak
     overrideName: false
-  - type: ReplacementAccent
-    accent: genericAggressive
+#  - type: ReplacementAccent
+#    accent: genericAggressive
+  - type: LanguageSpeaker
+    speaks:
+    - Blob
+    understands:
+    - Blob
+    - Xeno
+    - GalacticCommon
   - type: Store
     currencyWhitelist:
     - BlobPoint

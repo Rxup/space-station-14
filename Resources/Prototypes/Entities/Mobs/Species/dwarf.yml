@@ -49,6 +49,11 @@
       Unsexed: UnisexDwarf
   - type: ReplacementAccent
     accent: dwarf
+  - type: LanguageSpeaker #backmen: languages
+    speaks:
+    - GalacticCommon
+    understands:
+    - GalacticCommon
   - type: Speech
     speechSounds: Bass
   - type: HumanoidAppearance

@@ -116,6 +116,11 @@
     proto: robot
   - type: Speech
     speechVerb: Robotic
+  - type: LanguageSpeaker #backmen: languages
+    speaks:
+    - GalacticCommon
+    understands:
+    - GalacticCommon
 
 - type: entity
   parent: BasePDA

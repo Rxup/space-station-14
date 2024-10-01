@@ -474,6 +474,13 @@
   - type: Alerts
   - type: ProtectedFromStepTriggers
     slots: WITHOUT_POCKET
+  - type: LanguageSpeaker #backmen: languages
+    speaks:
+    - Binary
+    - GalacticCommon
+    understands:
+    - Binary
+    - GalacticCommon
 
 - type: entity
   name: drone
@@ -573,8 +580,8 @@
         base:
           Off: { state: shell }
           On: { state: drone }
-  - type: ReplacementAccent
-    accent: silicon
+#  - type: ReplacementAccent
+#    accent: silicon
   - type: TTS
     voice: Npc3
   - type: Repairable

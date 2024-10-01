@@ -112,6 +112,11 @@
     speechSounds: Slime
   - type: TypingIndicator
     proto: slime
+  - type: LanguageSpeaker #backmen: languages
+    speaks:
+    - Slime
+    understands:
+    - Slime
 
 - type: entity
   name: basic slime
@@ -120,8 +125,13 @@
   abstract: true
   description: It looks so much like jelly. I wonder what it tastes like?
   components:
-  - type: ReplacementAccent
-    accent: slimes
+#  - type: ReplacementAccent
+#    accent: slimes
+  - type: LanguageSpeaker #backmen: languages
+    speaks:
+    - Slime
+    understands:
+    - Slime
   - type: GhostTakeoverAvailable
   - type: GhostRole
     makeSentient: true

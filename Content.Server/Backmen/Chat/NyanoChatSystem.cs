@@ -13,6 +13,7 @@ using Robust.Shared.Network;
 using Robust.Shared.Player;
 using Robust.Shared.Random;
 using System.Linq;
+using Content.Shared.Backmen.Chat;
 using Content.Shared.Backmen.Psionics.Glimmer;
 
 namespace Content.Server.Backmen.Chat;

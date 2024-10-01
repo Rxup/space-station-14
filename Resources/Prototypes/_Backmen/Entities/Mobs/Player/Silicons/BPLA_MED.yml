@@ -164,8 +164,14 @@
         base:
           Off: { state: shell }
           On: { state: drone }
-  - type: ReplacementAccent
-    accent: silicon
+#  - type: ReplacementAccent
+#    accent: silicon
+  - type: LanguageSpeaker
+    speaks:
+    - Binary
+    understands:
+    - Binary
+    - GalacticCommon
   - type: TTS
     voice: TrainingRobot
   - type: ZombieImmune

@@ -48,8 +48,14 @@
       damage:
         types:
           Slash: 3
-    - type: ReplacementAccent
-      accent: genericAggressive
+#    - type: ReplacementAccent
+#      accent: genericAggressive
+    - type: LanguageSpeaker
+      speaks:
+      - Flesh
+      understands:
+      - Flesh
+      - GalacticCommon
     - type: Armor
       modifiers:
         coefficients:

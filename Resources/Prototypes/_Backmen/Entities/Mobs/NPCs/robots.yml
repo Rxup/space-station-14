@@ -66,8 +66,14 @@
         - MalfunctioningRobot
     - type: Appearance
     - type: CombatMode
-    - type: ReplacementAccent
-      accent: silicon
+#    - type: ReplacementAccent
+#      accent: silicon
+    - type: LanguageSpeaker
+      speaks:
+      - Binary
+      understands:
+      - Binary
+      - GalacticCommon
     - type: UnpoweredFlashlight
     - type: PointLight
       enabled: true

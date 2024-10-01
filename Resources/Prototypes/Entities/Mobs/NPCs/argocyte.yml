@@ -15,8 +15,15 @@
   - type: Sprite
     sprite: Mobs/Aliens/Argocyte/argocyte_common.rsi
   - type: SolutionContainerManager
-  - type: ReplacementAccent
-    accent: xeno
+#  - type: ReplacementAccent
+#    accent: xeno
+  - type: LanguageSpeaker #backmen: languages
+    speaks:
+    - SpaceMob
+    - Argocyte
+    understands:
+    - SpaceMob
+    - Argocyte
   - type: Bloodstream
     bloodReagent: FerrochromicAcid
     bloodMaxVolume: 75 #we don't want the map to become pools of blood
