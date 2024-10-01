@@ -20,6 +20,7 @@ using Content.Shared.Damage;
 using Content.Shared.Destructible;
 using Content.Shared.Explosion.Components;
 using Content.Shared.FixedPoint;
+using Content.Shared.GameTicking.Components;
 using Content.Shared.Objectives.Components;
 using Content.Shared.Popups;
 using Content.Shared.Store;
@@ -140,6 +141,12 @@ public sealed class BlobCoreSystem : EntitySystem
             if (actionUid != null)
                 component.Actions.Add(actionUid.Value);
         }
+
+        var blobRule = EntityQuery<BlobRuleComponent>().FirstOrDefault();
+        if (blobRule == null)
+        {
+            _gameTicker.StartGameRule("Blob", out _);
+        }
     }
 
     private void OnTerminating(EntityUid uid, BlobCoreComponent component, ref EntityTerminatingEvent args)
@@ -258,12 +265,6 @@ public sealed class BlobCoreSystem : EntitySystem
         if (!Resolve(blobCoreUid, ref core))
             return false;
 
-        var blobRule = EntityQuery<BlobRuleComponent>().FirstOrDefault();
-
-        if (blobRule == null)
-        {
-            _gameTicker.StartGameRule("Blob", out _);
-        }
         var ev = new CreateBlobObserverEvent(userId);
         RaiseLocalEvent(blobCoreUid, ev, true);
 
@@ -555,10 +556,10 @@ public sealed class BlobCoreSystem : EntitySystem
             isAllDie++;
         }
 
-        if (isAllDie <= 1)
+        if (isAllDie < 1)
         {
-            var blobRuleQuery = EntityQueryEnumerator<BlobRuleComponent>();
-            while (blobRuleQuery.MoveNext(out _, out var blobRuleComp))
+            var blobRuleQuery = EntityQueryEnumerator<BlobRuleComponent, GameRuleComponent>();
+            while (blobRuleQuery.MoveNext(out var blobRule, out var blobRuleComp, out var gameRule))
             {
                 if (blobRuleComp.Stage == BlobStage.TheEnd ||
                     blobRuleComp.Stage == BlobStage.Default ||
@@ -568,6 +569,7 @@ public sealed class BlobCoreSystem : EntitySystem
                 _alertLevelSystem.SetLevel(stationUid.Value, "green", true, true, true);
                 _roundEndSystem.CancelRoundEndCountdown(null, false);
                 blobRuleComp.Stage = BlobStage.Default;
+                _gameTicker.EndGameRule(blobRule, gameRule);
             }
         }
 
