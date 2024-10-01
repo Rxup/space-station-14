@@ -126,3 +126,12 @@ language-Blob-description = Блоб! Блаб!
 
 language-Bear-name = Bear
 language-Bear-description = Bear?! ROAR!!!
+
+language-Binary-name = Двоичный
+language-Binary-description = Для общения с боргами
+
+language-Garpy-name = Valyrian Standard
+language-Garpy-description = ValyrianStandard
+
+language-Spider-name = Spider
+language-Spider-description = _
