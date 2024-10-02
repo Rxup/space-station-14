@@ -16,15 +16,26 @@
       temperatureThresholdId: stationTemperature
       pressureThresholdId: stationPressure
       gasThresholdPrototypes:
-        Oxygen: stationOxygen
-        Nitrogen: ignore
-        CarbonDioxide: stationCO2
-        Plasma: stationPlasma
-        Tritium: stationTritium
-        WaterVapor: stationWaterVapor
-        Ammonia: stationAmmonia
-        NitrousOxide: stationNO
-        Frezon: danger
+          Oxygen: stationOxygen
+          Nitrogen: ignore
+          CarbonDioxide: stationCO2
+          Plasma: stationPlasma # everything below is usually bad
+          Tritium: danger
+          WaterVapor: stationWaterVapor
+          Ammonia: stationAmmonia
+          NitrousOxide: stationNO
+          Frezon: danger
+          BZ: danger
+          Pluoxium: unwanted
+          Hydrogen: danger
+          Nitrium: unwanted
+          Healium: danger
+          HyperNoblium: unwanted
+          ProtoNitrate: danger
+          Zauker: danger
+          Halon: danger
+          Helium: unwanted
+          AntiNoblium: danger
     - type: Tag
       tags:
         - AirSensor
