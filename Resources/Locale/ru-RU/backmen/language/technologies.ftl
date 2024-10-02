@@ -1,2 +1,2 @@
-research-technology-basic-translation = Basic Translation
-research-technology-advanced-translation = Advanced Translation
+research-technology-basic-translation = переводчик
+research-technology-advanced-translation = продвинутый переводчик

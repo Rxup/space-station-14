@@ -1,28 +1,28 @@
-language-Universal-name = Universal
-language-Universal-description = What are you?
+language-Universal-name = межгалактический
+language-Universal-description = как ты бро?
 
-language-Slime-name = Bubblish
-language-Slime-description = The language of Slimes. Being a mixture of bubbling noises and pops it's very difficult to speak for humans without the use of mechanical aids.
+language-Slime-name = баблиш
+language-Slime-description = Язык слаймов. Поскольку он представляет собой смесь булькающих звуков и хлопков, людям очень трудно говорить на нем без использования механических приспособлений.
 
-language-RootSpeak-name = Rootspeak
-language-RootSpeak-description = The strange whistling-style language spoken by the Diona.
+language-RootSpeak-name = Язык корней
+language-RootSpeak-description = Странный свистящий язык, на котором говорят Дионы.
 
-language-Nekomimetic-name = Nekomimetic
-language-Nekomimetic-description = To the casual observer, this language is an incomprehensible mess of broken Japanese. To the Felinids and Oni, it's somehow comprehensible.
+language-Nekomimetic-name = Некомиметический
+language-Nekomimetic-description = Для стороннего наблюдателя этот язык - непонятная смесь ломаного японского. Для фелиноидов и они он каким-то образом понятен.
 
-language-Dragon-name = Draconic
-language-Dragon-description = The common language of lizard-people, composed of sibilant hisses and rattles.
+language-Dragon-name = драконический
+language-Dragon-description = Общий язык Унатхов, состоящий из свистящего шипения и трещоток.
 
-language-SolCommon-name = Sol common
+language-SolCommon-name = Язык Солнечной системы
 language-SolCommon-description =
-    With its roots in Mandarin Chinese - Common evolved as the official language of the Sol Alliance - with officials working to tie it together with a common tongue.
-    It's spoken by state officials - taught in schools - and spoken by those who either feel a sense of national pride in the Alliance or otherwise fell sway to the culture.
+    Китайский, основанный на мандаринском диалекте, стал официальным языком Солнечной системы, и официальные лица работают над тем, чтобы объединить его с общим языком.
+     На нем говорят государственные чиновники, его преподают в школах, а также те, кто либо испытывает чувство национальной гордости за Североатлантический союз, либо каким-либо иным образом приобщился к его культуре.
 
-language-TauCetiBasic-name = Tau-Ceti Basic
+language-TauCetiBasic-name = Базовый уровень Тау-Кита
 language-TauCetiBasic-description =
     A spiritual successor of Esperanto, established in 2404 in Tau Ceti by Ceti intellectuals.
-    Its unique, fully customized alphabet and structure allow it to be spoken even by most alien species.
-    It's the official language of Tau Ceti and has growing traction in diplomatic circles and Universalists across human space.
+        Its unique, fully customized alphabet and structure allow it to be spoken even by most alien species.
+        It's the official language of Tau Ceti and has growing traction in diplomatic circles and Universalists across human space.
 
 language-Tradeband-name = Tradeband
 language-Tradeband-description =
@@ -124,8 +124,8 @@ language-Argocyte-description = Argocyte!
 language-Blob-name = Блоб
 language-Blob-description = Блоб! Блаб!
 
-language-Bear-name = Bear
-language-Bear-description = Bear?! ROAR!!!
+language-Bear-name = медвежий
+language-Bear-description = медведь?! ГООООООЛ!!!
 
 language-Binary-name = Двоичный
 language-Binary-description = Для общения с боргами
