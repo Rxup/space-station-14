@@ -3,8 +3,8 @@
   path: /Fonts/RubikBubbles.ttf
 
 - type: font
-  id: Manga
-  path: /Fonts/Mangat.ttf
+  id: Troubleside
+  path: /Fonts/Troubleside.ttf
 
 - type: font
   id: Ebbe
