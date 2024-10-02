@@ -259,11 +259,11 @@ public sealed class BlobCoreSystem : EntitySystem
             return false;
 
         var blobRule = EntityQuery<BlobRuleComponent>().FirstOrDefault();
-
         if (blobRule == null)
         {
             _gameTicker.StartGameRule("Blob", out _);
         }
+
         var ev = new CreateBlobObserverEvent(userId);
         RaiseLocalEvent(blobCoreUid, ev, true);
 
@@ -555,7 +555,7 @@ public sealed class BlobCoreSystem : EntitySystem
             isAllDie++;
         }
 
-        if (isAllDie <= 1)
+        if (isAllDie < 1)
         {
             var blobRuleQuery = EntityQueryEnumerator<BlobRuleComponent>();
             while (blobRuleQuery.MoveNext(out _, out var blobRuleComp))

@@ -236,3 +236,54 @@
     requires:
     - TauCetiBasic
     - Garpy
+
+- type: entity
+  id: ShadokinTranslator
+  parent: [ TranslatorPoweredBase ]
+  name: Shadokin translator
+  description: Translates speech between Shadokin and Tau-Ceti Basic. For talking to Shadowkin!
+  components:
+  - type: HandheldTranslator
+    spoken:
+    - TauCetiBasic
+    - Shadokin
+    understood:
+    - TauCetiBasic
+    - Shadokin
+    requires:
+    - TauCetiBasic
+    - Shadokin
+
+- type: entity
+  id: DwarvenTranslator
+  parent: [ TranslatorPoweredBase ]
+  name: Dwarven translator
+  description: Translates speech between Dwarven and Tau-Ceti Basic. For talking to Dwarfs!
+  components:
+  - type: HandheldTranslator
+    spoken:
+    - TauCetiBasic
+    - Dwarven
+    understood:
+    - TauCetiBasic
+    - Dwarven
+    requires:
+    - TauCetiBasic
+    - Dwarven
+
+- type: entity
+  id: ElvishTranslator
+  parent: [ TranslatorPoweredBase ]
+  name: Elvish translator
+  description: Translates speech between Elvish and Tau-Ceti Basic. For talking to Elfs!
+  components:
+  - type: HandheldTranslator
+    spoken:
+    - TauCetiBasic
+    - Elvish
+    understood:
+    - TauCetiBasic
+    - Elvish
+    requires:
+    - TauCetiBasic
+    - Elvish

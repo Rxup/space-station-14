@@ -83,3 +83,27 @@
   components:
   - type: Implanter
     implant: ValyrianStandardTranslatorImplant
+
+- type: entity
+  id: ShadokinStandardTranslatorImplanter
+  parent: [ BaseTranslatorImplanter ]
+  name: Shadokin standard translator implant
+  components:
+  - type: Implanter
+    implant: ShadokinStandardTranslatorImplant
+
+- type: entity
+  id: DwarvenStandardTranslatorImplanter
+  parent: [ BaseTranslatorImplanter ]
+  name: Dwarven standard translator implant
+  components:
+  - type: Implanter
+    implant: DwarvenStandardTranslatorImplant
+
+- type: entity
+  id: ElvishStandardTranslatorImplanter
+  parent: [ BaseTranslatorImplanter ]
+  name: Elvish standard translator implant
+  components:
+  - type: Implanter
+    implant: ElvishStandardTranslatorImplant

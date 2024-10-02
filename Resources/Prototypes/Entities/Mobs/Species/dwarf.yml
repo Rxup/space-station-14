@@ -5,6 +5,15 @@
   id: BaseMobDwarf
   abstract: true
   components:
+  - type: LanguageSpeaker
+    currentLanguage: TauCetiBasic
+  - type: LanguageKnowledge #backmen: languages
+    speaks:
+    - TauCetiBasic
+    - Dwarven
+    understands:
+    - TauCetiBasic
+    - Dwarven
   - type: Hunger
   - type: Thirst
   - type: Icon
@@ -51,15 +60,6 @@
       Unsexed: UnisexDwarf
   - type: ReplacementAccent
     accent: dwarf
-  - type: LanguageSpeaker
-    currentLanguage: TauCetiBasic
-  - type: LanguageKnowledge #backmen: languages
-    speaks:
-    - TauCetiBasic
-    - SolCommon
-    understands:
-    - TauCetiBasic
-    - SolCommon
   - type: Speech
     speechSounds: Bass
   - type: HumanoidAppearance

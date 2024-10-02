@@ -1,0 +1,48 @@
+﻿- type: language
+  id: Shadokin
+  speech:
+    color: "#5c4d8d"  # A dark purple for a shadowy vibe
+  obfuscation:
+    !type:SyllableObfuscation
+    minSyllables: 1
+    maxSyllables: 4
+    replacement:
+    - мра
+    - нук
+    - шен
+    - раг
+    - рум
+    - кри
+    - зу
+    - вар
+    - ах
+    - нум
+    - хул
+    - шрак
+    - бар
+    - тив
+    - во
+    - мос
+    - рей
+    - трин
+    - гн
+    - сас
+    - клат
+    - ит
+    - рук
+    - ман
+    - ой
+    - на
+    - зак
+    - тиш
+    - гель
+    - ума
+    - ред
+    - фаг
+    - кик
+    - шор
+    - экс
+    - воль
+    - жук
+    - лур
+    - квет

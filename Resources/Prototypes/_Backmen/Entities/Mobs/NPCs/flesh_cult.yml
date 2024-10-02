@@ -5,6 +5,8 @@
   description: A shambling mass of flesh, animated through anomalous energy.
   abstract: true
   components:
+    - type: TTS
+      voice: Npc1
     - type: HTN
       rootTask:
         task: SimpleHostileCompound
@@ -51,7 +53,7 @@
 #    - type: ReplacementAccent
 #      accent: genericAggressive
     - type: LanguageSpeaker
-      currentLanguage: TauCetiBasic
+      currentLanguage: Flesh
     - type: LanguageKnowledge #backmen: languages
       speaks:
       - Flesh
