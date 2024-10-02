@@ -1188,6 +1188,7 @@
     understands:
     - TauCetiBasic
     - Kangaroo
+    - SpaceMob
   - type: MovementSpeedModifier
     baseWalkSpeed: 3.5
     baseSprintSpeed: 4.5
@@ -1214,15 +1215,6 @@
     templateId: kangaroo
 #  - type: ReplacementAccent
 #    accent: kangaroo
-  - type: LanguageSpeaker
-    currentLanguage: TauCetiBasic
-  - type: LanguageKnowledge #backmen: languages
-    speaks:
-    - SpaceMob
-    - Kangaroo
-    understands:
-    - SpaceMob
-    - Kangaroo
   - type: Butcherable
     spawned:
     - id: FoodMeat
@@ -2410,6 +2402,8 @@
     understands:
     - TauCetiBasic
     - Spider
+    - SpaceMob
+    - Xeno
   - type: Sprite
     drawdepth: Mobs
     layers:
@@ -2528,15 +2522,6 @@
       groups:
         Brute: -0.07
         Burn: -0.07
-  - type: LanguageSpeaker
-    currentLanguage: TauCetiBasic
-  - type: LanguageKnowledge #backmen: languages
-    speaks:
-    - Spider
-    - SpaceMob
-    understands:
-    - Spider
-    - SpaceMob
 
 - type: entity
   name: tarantula

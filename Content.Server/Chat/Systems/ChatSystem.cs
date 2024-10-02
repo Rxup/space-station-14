@@ -493,7 +493,7 @@ public sealed partial class ChatSystem : SharedChatSystem
 
         SendInVoiceRange(ChatChannel.Local, name, message, wrappedMessage, obfuscated, wrappedObfuscated, source, range, languageOverride: language);
 
-        var ev = new EntitySpokeEvent(source, message, originalMessage, null, obfuscated);
+        var ev = new EntitySpokeEvent(source, message, originalMessage, null, null, language);
         RaiseLocalEvent(source, ev, true);
 
         // To avoid logging any messages sent by entities that are not players, like vendors, cloning, etc.
@@ -557,15 +557,17 @@ private void SendEntityWhisper(
 
         var languageObfuscatedMessage = SanitizeInGameICMessage(source, _language.ObfuscateSpeech(message, language), out var emoteStr, true, _configurationManager.GetCVar(CCVars.ChatPunctuation), (!CultureInfo.CurrentCulture.IsNeutralCulture && CultureInfo.CurrentCulture.Parent.Name == "en") || (CultureInfo.CurrentCulture.IsNeutralCulture && CultureInfo.CurrentCulture.Name == "en"));
 
-        var wrappedMessage = Loc.GetString("chat-manager-entity-whisper-wrap-message",
-            ("entityName", name), ("message", FormattedMessage.EscapeText(message)));
+        var wrappedMessage = WrapWhisperMessage(source,
+            "chat-manager-entity-whisper-wrap-message",
+            nameIdentity,
+            message,
+            language);
 
-        var wrappedobfuscatedMessage = Loc.GetString("chat-manager-entity-whisper-wrap-message",
-            ("entityName", nameIdentity), ("message", FormattedMessage.EscapeText(obfuscatedMessage)));
-
-        var wrappedUnknownMessage = Loc.GetString("chat-manager-entity-whisper-unknown-wrap-message",
-            ("message", FormattedMessage.EscapeText(obfuscatedMessage)));
-
+        var wrappedUnknownMessage = WrapWhisperMessage(source,
+            "chat-manager-entity-whisper-unknown-wrap-message",
+            nameIdentity,
+            message,
+            language);
 
         var orgMsg = new HashSet<ICommonSession>();
         var obsMsg = new HashSet<ICommonSession>();
@@ -621,7 +623,7 @@ private void SendEntityWhisper(
                 obfuscatedMessage,
                 languageObfuscatedMessage),
             true);
-        var ev = new EntitySpokeEvent(source, message, originalMessage, channel, obfuscatedMessage);
+        var ev = new EntitySpokeEvent(source, message, originalMessage, channel, obfuscatedMessage, language);
         RaiseLocalEvent(source, ev, true);
         if (!hideLog)
             if (originalMessage == message)
@@ -1140,6 +1142,7 @@ public sealed class EntitySpokeEvent : EntityEventArgs
     public readonly string Message;
     public readonly string OriginalMessage;
     public readonly string? ObfuscatedMessage; // not null if this was a whisper
+    public readonly LanguagePrototype? Language;
 
     /// <summary>
     ///     If the entity was trying to speak into a radio, this was the channel they were trying to access. If a radio
@@ -1147,13 +1150,14 @@ public sealed class EntitySpokeEvent : EntityEventArgs
     /// </summary>
     public RadioChannelPrototype? Channel;
 
-    public EntitySpokeEvent(EntityUid source, string message, string originalMessage, RadioChannelPrototype? channel, string? obfuscatedMessage)
+    public EntitySpokeEvent(EntityUid source, string message, string originalMessage, RadioChannelPrototype? channel = null, string? obfuscatedMessage = null, LanguagePrototype? language = null)
     {
         Source = source;
         Message = message;
         OriginalMessage = originalMessage; // Corvax-TTS: Spec symbol sanitize
         Channel = channel;
         ObfuscatedMessage = obfuscatedMessage;
+        Language = language;
     }
 }
 
