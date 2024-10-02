@@ -188,3 +188,91 @@
     Gold: 50
     Plasma: 50
     Silver: 5
+
+- type: latheRecipe
+  id: ValyrianStandardTranslator
+  result: ValyrianStandardTranslator
+  completetime: 2
+  materials:
+    Steel: 200
+    Plastic: 50
+    Gold: 50
+    Plasma: 50
+    Silver: 5
+
+- type: latheRecipe
+  id: ShadokinTranslator
+  result: ShadokinTranslator
+  completetime: 2
+  materials:
+    Steel: 200
+    Plastic: 50
+    Gold: 50
+    Plasma: 50
+    Silver: 5
+
+- type: latheRecipe
+  id: DwarvenTranslator
+  result: DwarvenTranslator
+  completetime: 2
+  materials:
+    Steel: 200
+    Plastic: 50
+    Gold: 50
+    Plasma: 50
+    Silver: 5
+
+- type: latheRecipe
+  id: ElvishTranslator
+  result: ElvishTranslator
+  completetime: 2
+  materials:
+    Steel: 200
+    Plastic: 50
+    Gold: 50
+    Plasma: 50
+    Silver: 5
+
+- type: latheRecipe
+  id: ValyrianStandardTranslatorImplanter
+  result: ValyrianStandardTranslatorImplanter
+  completetime: 2
+  materials:
+    Steel: 500
+    Glass: 500
+    Plastic: 100
+    Gold: 50
+    Silver: 50
+
+- type: latheRecipe
+  id: ShadokinStandardTranslatorImplanter
+  result: ShadokinStandardTranslatorImplanter
+  completetime: 2
+  materials:
+    Steel: 500
+    Glass: 500
+    Plastic: 100
+    Gold: 50
+    Silver: 50
+
+- type: latheRecipe
+  id: DwarvenStandardTranslatorImplanter
+  result: DwarvenStandardTranslatorImplanter
+  completetime: 2
+  materials:
+    Steel: 500
+    Glass: 500
+    Plastic: 100
+    Gold: 50
+    Silver: 50
+
+- type: latheRecipe
+  id: ElvishStandardTranslatorImplanter
+  result: ElvishStandardTranslatorImplanter
+  completetime: 2
+  materials:
+    Steel: 500
+    Glass: 500
+    Plastic: 100
+    Gold: 50
+    Silver: 50
