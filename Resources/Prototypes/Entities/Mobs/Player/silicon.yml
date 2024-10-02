@@ -2,7 +2,7 @@
 - type: entity
   id: AiHeld
   description: Components added / removed from an entity that gets inserted into an AI core.
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
   - type: IntrinsicRadioReceiver
   - type: IntrinsicRadioTransmitter
@@ -70,6 +70,15 @@
     canShuttle: false
     title: comms-console-announcement-title-station-ai
     color: "#2ed2fd"
+  - type: LanguageSpeaker
+    currentLanguage: TauCetiBasic
+  - type: LanguageKnowledge #backmen: languages
+    speaks:
+    - Binary
+    - TauCetiBasic
+    understands:
+    - Binary
+    - TauCetiBasic
 
 
 # Ai
@@ -341,7 +350,7 @@
 - type: entity
   id: StationAiBrain
   parent: PositronicBrain
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   suffix: DO NOT MAP
   components:
   - type: Sprite
@@ -382,7 +391,7 @@
   id: StationAiHolo
   name: AI eye
   description: The AI's viewer.
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   suffix: DO NOT MAP
   components:
   - type: NoFTL
@@ -474,6 +483,15 @@
   - type: Alerts
   - type: ProtectedFromStepTriggers
     slots: WITHOUT_POCKET
+  - type: LanguageSpeaker
+    currentLanguage: TauCetiBasic
+  - type: LanguageKnowledge #backmen: languages
+    speaks:
+    - Binary
+    - TauCetiBasic
+    understands:
+    - Binary
+    - TauCetiBasic
 
 - type: entity
   name: drone
@@ -573,8 +591,8 @@
         base:
           Off: { state: shell }
           On: { state: drone }
-  - type: ReplacementAccent
-    accent: silicon
+#  - type: ReplacementAccent
+#    accent: silicon
   - type: TTS
     voice: Npc3
   - type: Repairable
@@ -725,7 +743,7 @@
     - type: GhostRole
       name: ghost-role-information-syndicate-cyborg-assault-name
       description: ghost-role-information-syndicate-cyborg-description
-      rules: ghost-role-information-rules-default-silicon
+      rules: ghost-role-information-silicon-rules
       raffle:
         settings: default
     - type: GhostTakeoverAvailable
@@ -758,7 +776,7 @@
     - type: GhostRole
       name: ghost-role-information-syndicate-cyborg-saboteur-name
       description: ghost-role-information-syndicate-cyborg-description
-      rules: ghost-role-information-rules-default-silicon
+      rules: ghost-role-information-silicon-rules
       raffle:
         settings: default
     - type: GhostTakeoverAvailable

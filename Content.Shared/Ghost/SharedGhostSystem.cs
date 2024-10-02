@@ -43,6 +43,7 @@ namespace Content.Shared.Ghost
                 return;
 
             component.TimeOfDeath = value;
+            Dirty(uid, component); // backmen
         }
 
         public void SetCanReturnToBody(EntityUid uid, bool value, GhostComponent? component = null)

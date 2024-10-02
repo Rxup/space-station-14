@@ -187,6 +187,11 @@ binds:
 - function: OpenCharacterMenu
   type: State
   key: C
+#start - backmen: languages
+- function: OpenLanguageMenu
+  type: State
+  key: L
+#end - backmen: languages
 - function: OpenEmotesMenu
   type: State
   key: Y
@@ -584,6 +589,9 @@ binds:
   type: State
   key: MouseRight
   canFocus: true
+- function: CMUniqueAction #RMC-14
+  type: State
+  key: Space
 - function: LookUp # WD
   type: State
   key: Space

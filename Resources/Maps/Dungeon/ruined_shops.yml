@@ -2376,7 +2376,7 @@ entities:
     - type: Transform
       pos: 63.5,7.5
       parent: 1
-- proto: SpaceCash10
+- proto: FakeSpaceCash10
   entities:
   - uid: 133
     components:
@@ -2408,7 +2408,7 @@ entities:
     - type: Transform
       pos: 5.34398,-5.649653
       parent: 1
-- proto: SpaceCash100
+- proto: FakeSpaceCash100
   entities:
   - uid: 239
     components:

@@ -1,0 +1,17 @@
+- type: language
+  id: Bear
+  speech:
+    fontId: Monospace
+  obfuscation:
+    !type:SyllableObfuscation
+    minSyllables: 1
+    maxSyllables: 3
+    replacement:
+    - гррр
+    - уууф
+    - гуг-гуг
+    - брум-брум
+    - ррррр
+    - хрум-хрум
+    - мррр
+    - хм-мм

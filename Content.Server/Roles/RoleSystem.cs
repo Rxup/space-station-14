@@ -32,7 +32,8 @@ public sealed class RoleSystem : SharedRoleSystem
         SubscribeAntagEvents<FugitiveRoleComponent>();
         SubscribeAntagEvents<FleshCultistRoleComponent>();
         SubscribeAntagEvents<VampireRoleComponent>();
-        SubscribeAntagEvents<ChangelingRoleComponent>(); //Changelings
+        SubscribeAntagEvents<ChangelingRoleComponent>();
+        SubscribeAntagEvents<SuperPsiRoleComponent>();
         //end-backmen: antag
         SubscribeAntagEvents<ThiefRoleComponent>();
     }

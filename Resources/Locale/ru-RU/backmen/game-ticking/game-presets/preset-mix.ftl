@@ -43,3 +43,9 @@ survival-nukeops-description = Постарайтесь выжить в суще
 criminal-gamemode-title = Криминальный
 thief-extended-gamemode-title = Воры
 thief-extended-gamemode-description = Среди экипажа станции обнаружена высокая криминальная активность.
+
+super-kessler-gamemode-title = Болезнь Кесслера
+super-kessler-gamemode-description = *! ! !  Обнаружен рой метеоритов прямо по курсу станции. Приготовьтесь к столкновению*
+
+calm-gamemode-title = Спокойный
+calm-gamemode-description = Одна из довольно спокойных смен за последнее время, ничего плохого ведь не случиться?

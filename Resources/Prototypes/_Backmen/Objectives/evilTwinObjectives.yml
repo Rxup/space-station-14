@@ -12,7 +12,7 @@
           - EvilTwinRole
 
 - type: entity
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   parent: [BaseEvilTwinObjective, BaseKillObjective]
   id: KillObjectiveEvilTwin
   name: Убить оригинал и заменить!
@@ -26,7 +26,7 @@
     - type: PickEvilTwinPerson
 
 - type: entity
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   parent: [BaseEvilTwinObjective, BaseLivingObjective]
   id: EscapeShuttleObjectiveEvilTwin
   name: Выживите до конца смены и улетите в Центком живым и свободным.
@@ -40,7 +40,7 @@
     - type: EscapeShuttleCondition
 
 - type: entity
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   parent: BaseObjective
   id: BankNote
   components:

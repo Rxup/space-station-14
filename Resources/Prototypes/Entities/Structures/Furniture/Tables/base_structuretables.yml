@@ -38,6 +38,7 @@
   - type: FootstepModifier
     footstepSoundCollection:
       collection: FootstepHull
+  - type: RequireProjectileTarget
 
 - type: entity
   id: CounterBase

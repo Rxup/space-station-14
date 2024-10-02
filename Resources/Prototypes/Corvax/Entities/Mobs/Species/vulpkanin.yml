@@ -5,6 +5,15 @@
   id: BaseMobVulpkanin
   abstract: true
   components:
+  - type: LanguageSpeaker
+    currentLanguage: TauCetiBasic
+  - type: LanguageKnowledge #backmen: languages
+    speaks:
+    - TauCetiBasic
+    - Dog
+    understands:
+    - TauCetiBasic
+    - Dog
   - type: HumanoidAppearance
     species: Vulpkanin
   - type: Hunger # on 1.5x more
@@ -66,7 +75,7 @@
   name: Urist McHands
   parent: MobHumanDummy
   id: MobVulpkaninDummy
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   description: A dummy vulpkanin meant to be used in character setup.
   components:
   - type: HumanoidAppearance

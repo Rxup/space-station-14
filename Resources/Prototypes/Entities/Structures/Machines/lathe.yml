@@ -199,7 +199,8 @@
       - ClothingHeadHatWelding
       - WetFloorSign
       - ClothingHeadHatCone
-
+      - FreezerElectronics
+      - Flare
   - type: EmagLatheRecipes
     emagStaticRecipes:
       - BoxLethalshot
@@ -351,8 +352,6 @@
       - InsulativeHeadcage
       - HandTeleporter1
       - BluespacePillCanister # Backmen
-      - MechEquipmentDrill # Ataraxia
-      - WeaponGrapplingGun # Ataraxia
       - FauxTileAstroGrass
       - FauxTileMowedAstroGrass
       - FauxTileJungleAstroGrass
@@ -360,6 +359,26 @@
       - FauxTileAstroSnow
       - OreBagOfHolding
       - DeviceQuantumSpinInverter
+# start-backmen: languages
+      - CanilunztTranslator
+      - BubblishTranslator
+      - NekomimeticTranslator
+      - DraconicTranslator
+      - SolCommonTranslator
+      - RootSpeakTranslator
+      - XenoTranslator
+      - BasicGalaticCommonTranslatorImplanter
+      - AdvancedGalaticCommonTranslatorImplanter
+      - BubblishTranslatorImplanter
+      - NekomimeticTranslatorImplanter
+      - DraconicTranslatorImplanter
+      - CanilunztTranslatorImplanter
+      - SolCommonTranslatorImplanter
+      - RootSpeakTranslatorImplanter
+      - AnimalTranslator
+      - MofficTranslatorImplanter
+      - MofficTranslator
+# end-backmen: languages
   - type: EmagLatheRecipes
     emagDynamicRecipes:
       - BoxBeanbag
@@ -530,7 +549,6 @@
       - TelecomServerCircuitboard
       - MassMediaCircuitboard
       - ShipyardCircuitboard # backmen
-      - SalvageExpeditionsComputerCircuitboard # Ataraxia
       - ReagentGrinderIndustrialMachineCircuitboard
       - JukeboxCircuitBoard
   - type: EmagLatheRecipes
@@ -968,7 +986,6 @@
       - SyringeBluespace
       - SyringeCryostasis
       - BluespacePillCanister # Backmen
-      - HandheldCrewMonitor # Ataraxia
   - type: Machine
     board: MedicalTechFabCircuitboard
   - type: StealTarget

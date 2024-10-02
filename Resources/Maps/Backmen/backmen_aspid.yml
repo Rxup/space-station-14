@@ -105121,7 +105121,7 @@ entities:
     - type: Transform
       pos: -29.653055,53.73977
       parent: 1
-- proto: SpaceCash500
+- proto: FakeSpaceCash500
   entities:
   - uid: 7083
     components:

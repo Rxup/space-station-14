@@ -68,6 +68,13 @@
   - type: MobPrice
     price: 1000 # Living critters are valuable in space.
   - type: Perishable
+  - type: LanguageSpeaker
+    currentLanguage: TauCetiBasic
+  - type: LanguageKnowledge #backmen: languages
+    speaks:
+    - SpaceMob
+    understands:
+    - SpaceMob
 
 - type: entity
   parent:

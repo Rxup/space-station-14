@@ -17,19 +17,26 @@ public sealed class BlobResourceSystem : EntitySystem
     {
         base.Initialize();
 
-        SubscribeLocalEvent<BlobResourceComponent, BlobTileGetPulseEvent>(OnPulsed);
+        SubscribeLocalEvent<BlobResourceComponent, BlobSpecialGetPulseEvent>(OnPulsed);
+        SubscribeLocalEvent<BlobResourceComponent, BlobNodePulseEvent>(OnPulsed);
 
-        _blobTile = this.GetEntityQuery<BlobTileComponent>();
-        _blobCore = this.GetEntityQuery<BlobCoreComponent>();
+        _blobTile = GetEntityQuery<BlobTileComponent>();
+        _blobCore = GetEntityQuery<BlobCoreComponent>();
     }
 
-    private void OnPulsed(EntityUid uid, BlobResourceComponent component, BlobTileGetPulseEvent args)
+    private void OnPulsed<T>(EntityUid uid, BlobResourceComponent component, T args)
     {
         if (!_blobTile.TryComp(uid, out var blobTileComponent) || blobTileComponent.Core == null)
             return;
+
         if (!_blobCore.TryComp(blobTileComponent.Core, out var blobCoreComponent) ||
             blobCoreComponent.Observer == null)
             return;
+
+        _popup.PopupEntity(Loc.GetString("blob-get-resource", ("point", component.PointsPerPulsed)),
+            uid,
+            blobCoreComponent.Observer.Value,
+            PopupType.LargeGreen);
 
         var points = component.PointsPerPulsed;
 
@@ -40,7 +47,7 @@ public sealed class BlobResourceSystem : EntitySystem
 
         if (_blobCoreSystem.ChangeBlobPoint(blobTileComponent.Core.Value, points))
         {
-            _popup.PopupEntity(Loc.GetString("blob-get-resource", ("point", points)),
+            _popup.PopupClient(Loc.GetString("blob-get-resource", ("point", points)),
                 uid,
                 blobCoreComponent.Observer.Value,
                 PopupType.LargeGreen);

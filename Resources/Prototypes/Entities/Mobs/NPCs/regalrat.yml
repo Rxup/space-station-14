@@ -124,6 +124,7 @@
       gender: male
   - type: TTS # Corvax-TTS
     voice: Npc1
+  - type: Sharp
 
 - type: entity
   id: MobRatKingBuff

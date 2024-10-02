@@ -13,6 +13,7 @@ using Content.Server.Chat.TypingIndicator;
 using Content.Server.Backmen.NPC.Prototypes;
 using Content.Server.NPC.Systems;
 using Content.Server.Speech;
+using Content.Shared.Backmen.Chat;
 using Content.Shared.Chat.TypingIndicator;
 using Content.Shared.Interaction;
 using Robust.Server.Audio;

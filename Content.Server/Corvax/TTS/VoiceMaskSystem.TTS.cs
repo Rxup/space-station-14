@@ -23,20 +23,20 @@ public partial class VoiceMaskSystem
 
         _popupSystem.PopupEntity(Loc.GetString("voice-mask-voice-popup-success"), uid);
 
-        TrySetLastKnownVoice(uid, message.Voice);
+        // TrySetLastKnownVoice(uid, message.Voice);
 
-        UpdateUI(uid, component);
+        UpdateUI((uid, component));
     }
 
-    private void TrySetLastKnownVoice(EntityUid maskWearer, string? voiceId)
-    {
-        if (!HasComp<VoiceMaskComponent>(maskWearer)
-            || !_inventory.TryGetSlotEntity(maskWearer, MaskSlot, out var maskEntity)
-            || !TryComp<VoiceMaskerComponent>(maskEntity, out var maskComp))
-        {
-            return;
-        }
-
-        maskComp.LastSetVoice = voiceId;
-    }
+    // private void TrySetLastKnownVoice(EntityUid maskWearer, string? voiceId)
+    // {
+    //     if (!HasComp<VoiceMaskComponent>(maskWearer)
+    //         || ! _inventory.TryGetSlotEntity(maskWearer, MaskSlot, out var maskEntity)
+    //         || !TryComp<VoiceMaskerComponent>(maskEntity, out var maskComp))
+    //     {
+    //         return;
+    //     }
+    //
+    //     maskComp.LastSetVoice = voiceId;
+    // }
 }

@@ -37,11 +37,11 @@
   showInVote: false
   rules:
   - BlobGameMode
-  - BasicStationEventScheduler
+  - CalmStationEventScheduler
   - WageScheduler #backmen: currency
   - BasicRoundstartVariation
   - SubGamemodesRule
-  - MeteorSwarmScheduler
+  - CalmMeteorSwarmScheduler
 
 - type: gamePreset
   id: FleshCult
@@ -53,11 +53,11 @@
   showInVote: false
   rules:
   - FleshCult
-  - BasicStationEventScheduler
+  - CalmStationEventScheduler
   - WageScheduler #backmen: currency
   - BasicRoundstartVariation
   - SubGamemodesRule
-  - MeteorSwarmScheduler
+  - CalmMeteorSwarmScheduler
 
 - type: gamePreset
   id: FleshCultAndTraitor
@@ -268,3 +268,38 @@
   - WageScheduler #backmen: currency
   - BasicRoundstartVariation
   - MeteorSwarmScheduler
+
+- type: gamePreset
+  id: SuperKessler
+  alias:
+  - supermeteor
+  - bombit
+  - superkessler
+  - superkesler
+  name: super-kessler-gamemode-title
+  description: super-kessler-gamemode-description
+  showInVote: false
+  rules:
+  - BasicStationEventScheduler
+  - WageScheduler #backmen: currency
+  - BasicRoundstartVariation
+  # Oh my god.
+  - KesslerSyndromeScheduler
+  - KesslerSyndromeScheduler
+  - KesslerSyndromeScheduler
+  - MeteorSwarmMildScheduler
+  - MeteorSwarmScheduler
+  - RampingStationEventScheduler
+  - SpaceTrafficControlEventScheduler
+  - SpaceTrafficControlFriendlyEventScheduler
+
+- type: gamePreset
+  id: Calm
+  name: calm-title
+  showInVote: true
+  description: calm-description
+  rules:
+  - CalmStationEventScheduler
+  - WageScheduler #backmen: currency
+  - CalmMeteorSwarmScheduler
+  - BasicRoundstartVariation

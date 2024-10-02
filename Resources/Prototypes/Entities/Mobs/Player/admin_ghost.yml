@@ -28,13 +28,7 @@
     prototype: Aghost
   - type: Access
     groups:
-    - AllAccess
-    - CentCom
-    - MTFLeader
-    tags:
-    - NuclearOperative
-    - SyndicateAgent
-    - CentralCommand
+    - AdminAllAccess
   - type: UserInterface
     interfaces:
       enum.SolarControlConsoleUiKey.Key:

@@ -83,4 +83,22 @@ public partial class BkmSupermatterComponent
     [ViewVariables(VVAccess.ReadOnly)]
     [DataField("maxspaceexposureDamage")]
     public float MaxSpaceExposureDamage = 2;
+
+    /// <summary>
+    ///     The point at which we should start sending radio messages about the damage.
+    /// </summary>
+    [DataField]
+    public float DamageWarningThreshold = 50;
+
+    /// <summary>
+    ///     The point at which we start sending station announcements about the damage.
+    /// </summary>
+    [DataField]
+    public float DamageEmergencyThreshold = 500;
+
+    /// <summary>
+    ///     The point at which the SM begins delaminating.
+    /// </summary>
+    [DataField]
+    public int DamageDelaminationPoint = 900;
 }

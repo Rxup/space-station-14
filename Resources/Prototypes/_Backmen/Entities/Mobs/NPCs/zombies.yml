@@ -141,7 +141,7 @@
 # It's just easier to have a separate entity do the trigger.
 - type: entity
   id: ZombieSurpriseDetector
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
     - type: ZombieWakeupOnTrigger
     - type: Transform
