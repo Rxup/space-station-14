@@ -10,9 +10,10 @@
   - type: LanguageKnowledge #backmen: languages
     speaks:
     - TauCetiBasic
-    - Dog
+    - Canilunzt
     understands:
     - TauCetiBasic
+    - Canilunzt
     - Dog
   - type: HumanoidAppearance
     species: Vulpkanin

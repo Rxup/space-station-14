@@ -59,7 +59,7 @@ public sealed class BlobCarrierSystem : SharedBlobCarrierSystem
 
     private void OnRemove(Entity<BlobCarrierComponent> ent, ref ComponentRemove args)
     {
-        _language.UpdateEntityLanguages(ent);
+        _language.UpdateEntityLanguages(ent.Owner);
     }
 
     private void OnMindAdded(EntityUid uid, BlobCarrierComponent component, MindAddedMessage args)

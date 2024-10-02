@@ -1,6 +1,7 @@
 ﻿using System.Linq;
 using Content.Server.Actions;
 using Content.Server.Atmos.Components;
+using Content.Server.Backmen.Language;
 using Content.Server.Body.Components;
 using Content.Server.Body.Systems;
 using Content.Server.Chemistry.Containers.EntitySystems;
@@ -24,6 +25,7 @@ using Content.Shared.DoAfter;
 using Content.Shared.Electrocution;
 using Content.Shared.FixedPoint;
 using Content.Shared.Backmen.Flesh;
+using Content.Shared.Backmen.Language;
 using Content.Shared.Chemistry.EntitySystems;
 using Content.Shared.Cloning;
 using Content.Shared.Fluids.Components;
@@ -75,12 +77,17 @@ public sealed partial class FleshCultistSystem : EntitySystem
     [Dependency] private readonly IPrototypeManager _prototype = default!;
     [Dependency] private readonly SharedTransformSystem _transformSystem = default!;
     [Dependency] private readonly SharedContainerSystem _container = default!;
+    [Dependency] private readonly LanguageSystem _language = default!;
 
+    [ValidatePrototypeId<LanguagePrototype>]
+    private const string FleshLang = "Flesh";
 
     public override void Initialize()
     {
         base.Initialize();
 
+
+        SubscribeLocalEvent<FleshCultistComponent, DetermineEntityLanguagesEvent>(OnGetLanguage);
         SubscribeLocalEvent<FleshCultistComponent, MapInitEvent>(OnStartup);
         SubscribeLocalEvent<FleshCultistComponent, FleshCultistShopActionEvent>(OnShop);
         SubscribeLocalEvent<FleshCultistComponent, FleshCultistInsulatedImmunityMutationEvent>(OnInsulatedImmunityMutation);
@@ -95,6 +102,12 @@ public sealed partial class FleshCultistSystem : EntitySystem
         SubscribeLocalEvent<FleshCultistComponent, CloningEvent>(OnCultistCloning);
 
         InitializeAbilities();
+    }
+
+    private void OnGetLanguage(Entity<FleshCultistComponent> ent, ref DetermineEntityLanguagesEvent args)
+    {
+        args.UnderstoodLanguages.Add(FleshLang);
+        args.SpokenLanguages.Add(FleshLang);
     }
 
     private void OnCultistCloning(EntityUid uid, FleshCultistComponent component, ref CloningEvent args)
@@ -222,6 +235,8 @@ public sealed partial class FleshCultistSystem : EntitySystem
         _action.AddAction(uid, ref component.FleshCultistShop, FleshCultistShop);
         _action.AddAction(uid, ref component.FleshCultistDevour, FleshCultistDevour);
         _action.AddAction(uid, ref component.FleshCultistAbsorbBloodPool, FleshCultistAbsorbBloodPool);
+
+        _language.UpdateEntityLanguages(uid);
     }
 
     private void OnInsulatedImmunityMutation(EntityUid uid, FleshCultistComponent component,

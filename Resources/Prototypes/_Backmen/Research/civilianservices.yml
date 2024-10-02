@@ -16,6 +16,10 @@
   - RootSpeakTranslator
   - BasicGalaticCommonTranslatorImplanter
   - MofficTranslator
+  - ElvishTranslator
+  - DwarvenTranslator
+  - ShadokinTranslator
+  - ValyrianStandardTranslator
 
 - type: technology
   id: AdvancedTranslation
@@ -37,3 +41,8 @@
   - RootSpeakTranslatorImplanter
   - AnimalTranslator
   - MofficTranslatorImplanter
+  - ElvishStandardTranslatorImplanter
+  - DwarvenStandardTranslatorImplanter
+  - ShadokinStandardTranslatorImplanter
+  - ValyrianStandardTranslatorImplanter
+

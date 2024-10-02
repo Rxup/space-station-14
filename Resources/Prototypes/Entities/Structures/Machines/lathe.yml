@@ -378,7 +378,15 @@
       - AnimalTranslator
       - MofficTranslatorImplanter
       - MofficTranslator
-# end-backmen: languages
+      - ElvishTranslator
+      - DwarvenTranslator
+      - ShadokinTranslator
+      - ValyrianStandardTranslator
+      - ElvishStandardTranslatorImplanter
+      - DwarvenStandardTranslatorImplanter
+      - ShadokinStandardTranslatorImplanter
+      - ValyrianStandardTranslatorImplanter
+  # end-backmen: languages
   - type: EmagLatheRecipes
     emagDynamicRecipes:
       - BoxBeanbag

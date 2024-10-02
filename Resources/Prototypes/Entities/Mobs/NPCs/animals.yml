@@ -1180,6 +1180,15 @@
   id: MobKangaroo
   description: A large marsupial herbivore. It has powerful hind legs, with nails that resemble long claws.
   components:
+  - type: LanguageSpeaker
+    currentLanguage: Kangaroo
+  - type: LanguageKnowledge #backmen: languages
+    speaks:
+    - Kangaroo
+    understands:
+    - TauCetiBasic
+    - Kangaroo
+    - SpaceMob
   - type: MovementSpeedModifier
     baseWalkSpeed: 3.5
     baseSprintSpeed: 4.5
@@ -1206,15 +1215,6 @@
     templateId: kangaroo
 #  - type: ReplacementAccent
 #    accent: kangaroo
-  - type: LanguageSpeaker
-    currentLanguage: TauCetiBasic
-  - type: LanguageKnowledge #backmen: languages
-    speaks:
-    - SpaceMob
-    - Kangaroo
-    understands:
-    - SpaceMob
-    - Kangaroo
   - type: Butcherable
     spawned:
     - id: FoodMeat
@@ -1285,6 +1285,14 @@
   description: The genetic bipedal ancestor of... Uh... Something. Yeah, there's definitely something on the station that descended from whatever this is.
   abstract: true
   components:
+  - type: LanguageSpeaker
+    currentLanguage: Monkey
+  - type: LanguageKnowledge #backmen: languages
+    speaks:
+    - Monkey
+    understands:
+    - TauCetiBasic
+    - Monkey
   - type: DiseaseCarrier
   - type: CombatMode
   - type: Inventory
@@ -1408,7 +1416,6 @@
   - type: Speech
     speechSounds: Monkey
     speechVerb: Monkey
-  - type: MonkeyAccent
   - type: SentienceTarget
     flavorKind: station-event-random-sentience-flavor-primate
   - type: AlwaysRevolutionaryConvertible
@@ -1495,6 +1502,7 @@
     speaks:
     - Kobold
     understands:
+    - TauCetiBasic
     - Kobold
   - type: Speech
     speechSounds: Lizard
@@ -1781,6 +1789,7 @@
     speaks:
     - Mouse
     understands:
+    - TauCetiBasic
     - Mouse
   - type: Tag
     tags:
@@ -1969,6 +1978,14 @@
   id: MobLizard
   description: A harmless dragon.
   components:
+  - type: LanguageSpeaker
+    currentLanguage: Dragon
+  - type: LanguageKnowledge #backmen: languages
+    speaks:
+    - Dragon
+    understands:
+    - TauCetiBasic
+    - Dragon
   - type: MovementSpeedModifier
     baseWalkSpeed: 2
     baseSprintSpeed: 3
@@ -2320,6 +2337,14 @@
   id: MobSnake
   description: Hissss! Bites aren't poisonous.
   components:
+  - type: LanguageSpeaker
+    currentLanguage: Dragon
+  - type: LanguageKnowledge #backmen: languages
+    speaks:
+    - Dragon
+    understands:
+    - TauCetiBasic
+    - Dragon
   - type: Sprite
     drawdepth: Mobs
     layers:
@@ -2369,6 +2394,16 @@
   id: MobGiantSpider
   description: Widely recognized to be the literal worst thing in existence.
   components:
+  - type: LanguageSpeaker
+    currentLanguage: Spider
+  - type: LanguageKnowledge #backmen: languages
+    speaks:
+    - Spider
+    understands:
+    - TauCetiBasic
+    - Spider
+    - SpaceMob
+    - Xeno
   - type: Sprite
     drawdepth: Mobs
     layers:
@@ -2487,15 +2522,6 @@
       groups:
         Brute: -0.07
         Burn: -0.07
-  - type: LanguageSpeaker
-    currentLanguage: TauCetiBasic
-  - type: LanguageKnowledge #backmen: languages
-    speaks:
-    - Spider
-    - SpaceMob
-    understands:
-    - Spider
-    - SpaceMob
 
 - type: entity
   name: tarantula
@@ -2712,6 +2738,14 @@
   id: MobFox
   description: They're a fox.
   components:
+  - type: LanguageSpeaker
+    currentLanguage: Dog
+  - type: LanguageKnowledge #backmen: languages
+    speaks:
+    - Dog
+    understands:
+    - TauCetiBasic
+    - Dog
   - type: Sprite
     drawdepth: Mobs
     sprite: Mobs/Animals/fox.rsi
@@ -2828,7 +2862,7 @@
 #  - type: ReplacementAccent
 #    accent: dog
   - type: LanguageSpeaker
-    currentLanguage: TauCetiBasic
+    currentLanguage: Dog
   - type: LanguageKnowledge #backmen: languages
     speaks:
     - Dog
@@ -2985,7 +3019,7 @@
 #  - type: ReplacementAccent
 #    accent: cat
   - type: LanguageSpeaker
-    currentLanguage: TauCetiBasic
+    currentLanguage: Cat
   - type: LanguageKnowledge #backmen: languages
     speaks:
     - Cat
@@ -3383,7 +3417,7 @@
 #  - type: ReplacementAccent
 #    accent: mouse
   - type: LanguageSpeaker
-    currentLanguage: TauCetiBasic
+    currentLanguage: Mouse
   - type: LanguageKnowledge #backmen: languages
     speaks:
     - Mouse
@@ -3498,7 +3532,7 @@
 #  - type: ReplacementAccent
 #    accent: pig
   - type: LanguageSpeaker
-    currentLanguage: TauCetiBasic
+    currentLanguage: Pig
   - type: LanguageKnowledge #backmen: languages
     speaks:
     - Pig
@@ -3520,6 +3554,15 @@
   id: MobDionaNymph
   description: It's like a cat, only.... branch-ier.
   components:
+  - type: LanguageSpeaker
+    currentLanguage: RootSpeak
+  - type: LanguageKnowledge #backmen: languages
+    speaks:
+    - RootSpeak
+    - TauCetiBasic
+    understands:
+    - TauCetiBasic
+    - RootSpeak
   - type: Sprite
     drawdepth: Mobs
     layers:
@@ -3593,5 +3636,11 @@
   id: MobDionaNymphAccent # No talky. For non-brain & wild nymphs
   suffix: Accent
   components:
-  - type: ReplacementAccent
-    accent: nymph
+  - type: LanguageSpeaker
+    currentLanguage: RootSpeak
+  - type: LanguageKnowledge #backmen: languages
+    speaks:
+    - RootSpeak
+    understands:
+    - TauCetiBasic
+    - RootSpeak

@@ -87,7 +87,7 @@ public sealed class BlobMobSystem : SharedBlobMobSystem
         if(TerminatingOrDeleted(ent))
             return;
 
-        _language.UpdateEntityLanguages(ent);
+        _language.UpdateEntityLanguages(ent.Owner);
     }
 
     private void OnSpokeAdd(Entity<BlobSpeakComponent> ent, ref ComponentStartup args)
@@ -97,7 +97,7 @@ public sealed class BlobMobSystem : SharedBlobMobSystem
 
         var component = EnsureComp<LanguageSpeakerComponent>(ent);
         component.CurrentLanguage = ent.Comp.Language;
-        _language.UpdateEntityLanguages(ent);
+        _language.UpdateEntityLanguages(ent.Owner);
     }
 
     private void OnPulsed(EntityUid uid, BlobMobComponent component, BlobMobGetPulseEvent args)

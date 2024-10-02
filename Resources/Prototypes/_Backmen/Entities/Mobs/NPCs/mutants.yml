@@ -76,6 +76,15 @@
   id: MobGiantSpiderVampire
   description: The 'dream-eater' spider, rumored to be one of the potential genetic sources for arachne.
   components:
+  - type: LanguageSpeaker
+    currentLanguage: Spider
+  - type: LanguageKnowledge #backmen: languages
+    speaks:
+    - Spider
+    understands:
+    - TauCetiBasic
+    - Spider
+    - Xeno
   - type: Sprite
     drawdepth: Mobs
     layers:
@@ -110,14 +119,6 @@
   - type: CombatMode
 #  - type: ReplacementAccent
 #    accent: xeno
-  - type: LanguageSpeaker
-    currentLanguage: TauCetiBasic
-  - type: LanguageKnowledge #backmen: languages
-    speaks:
-    - Spider
-    understands:
-    - Spider
-    - Xeno
   - type: InteractionPopup
     successChance: 0.5
     interactSuccessString: petting-success-tarantula

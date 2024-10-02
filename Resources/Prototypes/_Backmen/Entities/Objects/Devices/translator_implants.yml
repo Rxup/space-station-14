@@ -141,3 +141,48 @@
     - Garpy
     requires:
     - TauCetiBasic
+
+- type: entity
+  parent: BaseSubdermalImplant
+  id: DwarvenStandardTranslatorImplant
+  name: Dwarven standard translator implant
+  description: An implant giving the ability to understand and speak Dwarven Standard.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: TranslatorImplant
+    understood:
+    - Dwarven
+    spoken:
+    - Dwarven
+    requires:
+    - TauCetiBasic
+
+- type: entity
+  parent: BaseSubdermalImplant
+  id: ShadokinStandardTranslatorImplant
+  name: Shadowkin standard translator implant
+  description: An implant giving the ability to understand and speak Shadowkin Standard.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: TranslatorImplant
+    understood:
+    - Shadokin
+    spoken:
+    - Shadokin
+    requires:
+    - TauCetiBasic
+
+- type: entity
+  parent: BaseSubdermalImplant
+  id: ElvishStandardTranslatorImplant
+  name: Elvish standard translator implant
+  description: An implant giving the ability to understand and speak Elvish Standard.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: TranslatorImplant
+    understood:
+    - Elvish
+    spoken:
+    - Elvish
+    requires:
+    - TauCetiBasic
