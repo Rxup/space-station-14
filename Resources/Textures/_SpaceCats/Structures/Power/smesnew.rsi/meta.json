@@ -1,0 +1,53 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "Taken from RU-TerraGov-Marine-Corps at https://github.com/Cosmic-Overlord/RU-TerraGov-Marine-Corps/blob/75ece18de47ffb031ecf4a03323e749f74824b24/icons/obj/power.dmi modificated by @CrimeMoot",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "smes-op1"
+    },
+    {
+      "name": "smes-og1"
+    },
+    {
+      "name": "smes-og2"
+    },
+    {
+      "name": "smes-og3"
+    },
+    {
+      "name": "smes-og4"
+    },
+    {
+      "name": "smes-og5"
+    },
+    {
+      "name": "smes-op0"
+    },
+    {
+      "name": "smes-oc2"
+    },
+    {
+      "name": "smes-oc1"
+    },
+    {
+      "name": "smes-oc0"
+    },
+    {
+      "name": "smes"
+    },
+    {
+      "name": "smes-open"
+    },
+    {
+      "name": "static"
+    },
+    {
+      "name": "smes-op2"
+    }
+  ]
+}

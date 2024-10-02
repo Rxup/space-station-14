@@ -19,7 +19,7 @@
   - External
   #start-backmen: currency
   minBankBalance: 150
-  maxBankBalance: 250
+  maxBankBalance: 300
   wageDepartment: Cargo
   wage: 50
   #end-backmen: currency

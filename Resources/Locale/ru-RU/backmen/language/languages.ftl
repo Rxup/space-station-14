@@ -61,65 +61,65 @@ language-Garpy-description =
         Он редко используется за пределами миров его носителей и в современное время был вытеснен «КОНЯМИ Соларного альянса».
         Его носители — это те, кто хочет сохранить традиции и верования древних народов до колониальной эры.
 
-language-Cat-name = Cat
-language-Cat-description = Meow
+language-Cat-name = Кошачий
+language-Cat-description = Мяу
 
-language-Dog-name = Dog
-language-Dog-description = Bark!
+language-Dog-name = Собачий
+language-Dog-description = Гав!
 
-language-Fox-name = Fox
-language-Fox-description = Yeeps!
+language-Fox-name = Лисьий
+language-Fox-description = Визг!
 
-language-Xeno-name = Xeno
-language-Xeno-description = Sssss!
+language-Xeno-name = Ксено
+language-Xeno-description = Шшш!
 
-language-Monkey-name = Monkey
-language-Monkey-description = oooook!
+language-Monkey-name = Обезьяний
+language-Monkey-description = Уууу!
 
-language-Mouse-name = Mouse
-language-Mouse-description = Squeeek!
+language-Mouse-name = Мышиный
+language-Mouse-description = Писк!
 
-language-Chicken-name = Chicken
-language-Chicken-description = Coot!
+language-Chicken-name = Куринный
+language-Chicken-description = Куд!
 
-language-Duck-name = Duck
-language-Duck-description = Quack!
+language-Duck-name = Утиный
+language-Duck-description = Кря!
 
-language-Cow-name = Cow
-language-Cow-description = Moooo!
+language-Cow-name = Коровий
+language-Cow-description = Му!
 
-language-Sheep-name = Sheep
-language-Sheep-description = Baaah!
+language-Sheep-name = Овечий
+language-Sheep-description = Бее!
 
-language-Kangaroo-name = Kangaroo
-language-Kangaroo-description = Chuu!
+language-Kangaroo-name = Кенгуриный
+language-Kangaroo-description = Чу!
 
-language-Pig-name = Pig
-language-Pig-description = Oink!
+language-Pig-name = Свинячий
+language-Pig-description = Хрю!
 
-language-Crab-name = Crab
-language-Crab-description = Click!
+language-Crab-name = Крабий
+language-Crab-description = Щелк!
 
-language-Kobold-name = Kobold
-language-Kobold-description = Hiss!
+language-Kobold-name = Кобольдский
+language-Kobold-description = Шипение!
 
-language-Hissing-name = Hissing
-language-Hissing-description = Hiss!
+language-Hissing-name = Шипящий
+language-Hissing-description = Шипение!
 
 language-Carp-name = Капский
 language-Carp-description = КАРП!
 
-language-Flesh-name = Плоть
-language-Flesh-description = Наречиие которое понимает плоть
+language-Flesh-name = Плотский
+language-Flesh-description = Язык, понятный плоти.
 
-language-SpaceMob-name = SpaceMob
-language-SpaceMob-description = SpaceMob!
+language-SpaceMob-name = СпейсМоб
+language-SpaceMob-description = СпейсМоб!
 
-language-Snake-name = Snake
-language-Snake-description = Snake!
+language-Snake-name = Змеиный
+language-Snake-description = Змея!
 
-language-Argocyte-name = Argocyte
-language-Argocyte-description = Argocyte!
+language-Argocyte-name = Аргоцит
+language-Argocyte-description = Аргоцит!
 
 language-Blob-name = Блоб
 language-Blob-description = Блоб! Блаб!
@@ -127,7 +127,13 @@ language-Blob-description = Блоб! Блаб!
 language-Bear-name = медвежий
 language-Bear-description = медведь?! ГООООООЛ!!!
 
-language-Spider-name = Spider
+language-Binary-name = Двоичный
+language-Binary-description = Для общения с боргами.
+
+language-Garpy-name = Валирийский
+language-Garpy-description = Валирийский
+
+language-Spider-name = Паучий
 language-Spider-description = _
 
 language-Shadokin-name = Язык Шадокинов

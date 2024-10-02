@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "license": "CC-BY-SA-3.0",
-  "copyright": "Taken from TauCetiClassic at commit https://github.com/TauCetiStation/TauCetiClassic/commit/fca7f2a0f9154c0c6c4efc2f8f58441fb9b34759",
+  "license": "CLA",
+  "copyright": "Sprited by TheGypsyBaron https://github.com/SemkaGamez, especially for the Space Cats server",
   "size": {
     "x": 32,
     "y": 32
@@ -75,6 +75,10 @@
       "name": "emag-unlit",
       "delays": [
         [
+          0.5,
+          0.5,
+          0.5,
+          0.5,
           0.5,
           0.5
         ]

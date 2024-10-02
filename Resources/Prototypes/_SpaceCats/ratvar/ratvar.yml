@@ -1,0 +1,504 @@
+- type: entity
+  parent: ClothingOuterStorageBase
+  id: Odealoratvar
+  suffix: Ратвар
+  name: Одеяние праведников
+  description: Ничем не примечательные одеяния. Могут помочь скрыть ваши руки при возвышении. Защита от угроз заблудших 40 мили, 30 от пуль, 40 от лазеров, 20 от дизейблеров.
+  components:
+    - type: Sprite
+      sprite: _SpaceCats/ratvar/odeiaslo.rsi
+    - type: Clothing
+      sprite: _SpaceCats/ratvar/odeiaslo.rsi
+    - type: Armor
+      modifiers:
+        coefficients:
+          Blunt: 0.7
+          Slash: 0.7
+          Piercing: 0.4
+          Heat: 0.7
+
+- type: entity
+  parent: ClothingOuterStorageBase
+  id: KirasaRatvar
+  name: Кираса
+  suffix: Ратвар
+  description: Броня, что защищает от огня. По базовым характеристикам больше чем у робы.
+  components:
+    - type: Sprite
+      sprite: _SpaceCats/ratvar/kirasa.rsi
+    - type: Clothing
+      sprite: _SpaceCats/ratvar/kirasa.rsi
+    - type: Armor
+      modifiers:
+        coefficients:
+          Blunt: 0.6
+          Slash: 0.6
+          Piercing: 0.6
+          Heat: 0.6
+
+- type: entity
+  parent: ClothingHandsGlovesColorBlack
+  id: RucavisiRatvar
+  name: Рукавицы
+  suffix: Ратвар
+  description: Тяжелые перчатки с защитой
+  components:
+  - type: Sprite
+    sprite: _SpaceCats/ratvar/rucavisi.rsi
+  - type: Clothing
+    sprite: _SpaceCats/ratvar/rucavisi.rsi
+  - type: Insulated
+  - type: Fiber
+    fiberMaterial: fibers-insulative
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.9
+        Slash: 0.9
+        Piercing: 0.9
+        Heat: 0.9
+
+- type: entity
+  parent: ClothingShoesBaseButcherable
+  id: GusenisiRatvar
+  name: Гусеницы
+  suffix: Ратвар
+  description: Тяжелые сапоги.
+  components:
+  - type: Sprite
+    sprite: _SpaceCats/ratvar/botinki.rsi
+  - type: Clothing
+    sprite: _SpaceCats/ratvar/botinki.rsi
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.9
+        Slash: 0.9
+        Piercing: 0.9
+        Heat: 0.9
+
+- type: entity
+  parent: ClothingHeadBase
+  id: ClothingHeadHelmetBasicRatvar
+  name: Шлем
+  suffix: Ратвар
+  description: Огнеупорный шлем с защитой
+  components:
+  - type: Sprite
+    sprite: _SpaceCats/ratvar/slem.rsi
+  - type: Clothing
+    sprite: _SpaceCats/ratvar/slem.rsi
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.9
+        Slash: 0.9
+        Piercing: 0.9
+        Heat: 0.9
+
+- type: entity
+  parent: ClothingEyesBase
+  id: ClothingEyesGlassesSecurityRatvar
+  name: Очки вершителя
+  suffix: Ратвар
+  description: Надёжные очки, при взгляде на которые вспоминается странное чувство греха.
+  components:
+  - type: Sprite
+    sprite: _SpaceCats/ratvar/ocki.rsi
+  - type: Clothing
+    sprite: _SpaceCats/ratvar/ocki.rsi
+  - type: FlashImmunity
+  - type: EyeProtection
+    protectionTime: 5
+  - type: Tag
+    tags:
+    - HamsterWearable
+    - WhitelistChameleon
+  - type: GuideHelp
+    guides:
+    - Security
+
+- type: entity
+  name: Копьё Ратвара
+  parent: BaseItem
+  id: SpearRatvar
+  suffix: Ратвар
+  description: Метательное оружие наносящее 20 урона
+  components:
+  - type: EmbeddableProjectile
+    offset: 0.15,0.15
+  - type: ThrowingAngle
+    angle: 225
+  - type: Tag
+    tags:
+    - SpearRatvar
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape: !type:PolygonShape
+          vertices:
+            - -0.40,-0.30
+            - -0.30,-0.40
+            - 0.40,0.30
+            - 0.30,0.40
+        density: 20
+        mask:
+        - ItemMask
+        restitution: 0.3
+        friction: 0.2
+  - type: Sharp
+  - type: Sprite
+    sprite: _SpaceCats/ratvar/kope.rsi
+    layers:
+    - state: spear
+    - state: spear1
+      map: ["enum.SolutionContainerLayers.Fill"]
+      visible: false
+  - type: MeleeWeapon
+    wideAnimationRotation: -135
+    damage:
+      types:
+        Piercing: 20
+    angle: 0
+    animation: WeaponArcThrust
+    soundHit:
+      path: /Audio/Weapons/bladeslice.ogg
+  - type: DamageOtherOnHit
+    damage:
+      types:
+        Piercing: 35
+  - type: Item
+    size: Normal
+  - type: Clothing
+    quickEquip: false
+    slots:
+    - back
+  - type: Construction
+    graph: Spear
+    node: spear
+  - type: SolutionContainerManager
+    solutions:
+      melee:
+        maxVol: 2
+  - type: MeleeChemicalInjector
+    solution: melee
+  - type: RefillableSolution
+    solution: melee
+  - type: SolutionTransfer
+    maxTransferAmount: 2
+  - type: Wieldable
+  - type: IncreaseDamageOnWield
+    damage:
+      types:
+        Piercing: 4
+  - type: Damageable
+    damageContainer: Inorganic
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 30 #excess damage avoids cost of spawning entities.
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+    - trigger:
+        !type:DamageTrigger
+        damage: 20
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: GlassBreak
+          params:
+            volume: -4
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          PartRodMetal1:
+            min: 1
+            max: 1
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+  - type: DamageOnLand
+    damage:
+      types:
+        Blunt: 5
+  - type: UseDelay
+  - type: Appearance
+  - type: SolutionContainerVisuals
+    maxFillLevels: 1
+    fillBaseName: spear
+
+- type: entity
+  name: Нержавеющий меч
+  parent: BaseItem
+  id: Ratvarmech
+  suffix: Ратвар
+  description: Острый меч на 20 урона
+  components:
+  - type: Sharp
+  - type: Sprite
+    sprite: _SpaceCats/ratvar/mech.rsi
+    state: icon
+  - type: MeleeWeapon
+    wideAnimationRotation: -135
+    attackRate: 1.5
+    damage:
+      types:
+        Slash: 20
+  - type: Item
+    size: Normal
+  - type: Clothing
+    sprite: _SpaceCats/ratvar/mech.rsi
+    slots:
+    - back
+  - type: DisarmMalus
+
+- type: entity
+  name: Заводной молот
+  parent: BaseItem
+  id: Molotratvare
+  suffix: Ратвар
+  description: ЛОМАТЬ ЗАБЛУДШИХ!!!
+  components:
+  - type: Tag
+    tags:
+    - FireAxe
+  - type: Sharp
+  - type: Sprite
+    sprite: _SpaceCats/ratvar/molot.rsi
+    state: icon
+  - type: MeleeWeapon
+    wideAnimationRotation: 135
+    swingLeft: true
+    attackRate: 0.75
+    damage:
+      types:
+        # axes are kinda like sharp hammers, you know?
+        Blunt: 15
+        Slash: 3
+        Structural: 10
+  - type: Wieldable
+  - type: IncreaseDamageOnWield
+    damage:
+      types:
+        Slash: 20
+        Structural: 40
+  - type: Item
+    size: Huge
+  - type: Clothing
+    sprite: Objects/Weapons/Melee/fireaxe.rsi
+    quickEquip: false
+    slots:
+    - back
+  - type: Tool
+    qualities:
+      - Prying
+  - type: Prying
+  - type: UseDelay
+    delay: 1
+  - type: IgniteOnMeleeHit
+    fireStacks: -4
+
+- type: latheRecipe
+  id: SpearRatvar
+  result: SpearRatvar
+  category: Tools
+  completetime: 10
+  materials:
+    Steel: 850
+
+- type: latheRecipe
+  id: Ratvarmech
+  result: Ratvarmech
+  category: Tools
+  completetime: 4
+  materials:
+    Steel: 425
+
+- type: latheRecipe
+  id: Molotratvare
+  result: Molotratvare
+  category: Tools
+  completetime: 10
+  materials:
+    Steel: 850
+
+- type: latheRecipe
+  id: ClothingEyesGlassesSecurityRatvar
+  result: ClothingEyesGlassesSecurityRatvar
+  category: Tools
+  completetime: 5
+  materials:
+    Steel: 106
+
+- type: latheRecipe
+  id: ClothingHeadHelmetBasicRatvar
+  result: ClothingHeadHelmetBasicRatvar
+  category: Tools
+  completetime: 5
+  materials:
+    Steel: 212
+
+- type: latheRecipe
+  id: RucavisiRatvar
+  result: RucavisiRatvar
+  category: Tools
+  completetime: 5
+  materials:
+    Steel: 300
+
+- type: latheRecipe
+  id: KirasaRatvar
+  result: KirasaRatvar
+  category: Tools
+  completetime: 20
+  materials:
+    Steel: 1700
+
+- type: latheRecipe
+  id: Odealoratvar
+  result: Odealoratvar
+  category: Tools
+  completetime: 3
+  materials:
+    Steel: 200
+
+- type: latheRecipe
+  id: GusenisiRatvar
+  result: GusenisiRatvar
+  category: Tools
+  completetime: 5
+  materials:
+    Steel: 200
+
+- type: latheRecipe
+  id: ToolboxElectricalTurretKuznaratvara
+  result: ToolboxElectricalTurretKuznaratvara
+  category: Tools
+  completetime: 10
+  materials:
+    Steel: 1500
+
+- type: latheRecipe
+  id: ToolboxElectricalTurretMaiakratvara
+  result: ToolboxElectricalTurretMaiakratvara
+  category: Tools
+  completetime: 20
+  materials:
+    Steel: 3000
+
+- type: entity
+  id: RavtvarWorShop
+  parent: BaseLathe
+  name: Кузня Ратвара
+  suffix: Ратвар
+  description: Нужен для создания вооружения.
+  components:
+  - type: Sprite
+    sprite: _SpaceCats/ratvar/kyzna.rsi
+    snapCardinals: true
+    layers:
+    - state: ratvaranvil
+      map: ["enum.LatheVisualLayers.IsRunning"]
+    - state: ratvaranvil
+      shader: unshaded
+      map: ["enum.PowerDeviceVisualLayers.Powered"]
+    - state: ratvaranvil
+      map: ["enum.MaterialStorageVisualLayers.Inserting"]
+    - state: ratvaranvil
+      map: ["enum.WiresVisualLayers.MaintenancePanel"]
+  - type: MaterialStorage
+    whitelist:
+      tags:
+        - Sheet
+        - RawMaterial
+        - Ingot
+  - type: Lathe
+    idleState: ratvaranvil
+    runningState: ratvaranvil
+    staticRecipes:
+    - SpearRatvar
+    - ToolboxElectricalTurretKuznaratvara
+    - ToolboxElectricalTurretMaiakratvara
+    - Ratvarmech
+    - Molotratvare
+    - ClothingHeadHelmetBasicRatvar
+    - RucavisiRatvar
+    - KirasaRatvar
+    - Odealoratvar
+    - GusenisiRatvar
+    - ClothingEyesGlassesSecurityRatvar
+
+- type: entity
+  id: MaiakVesnik
+  parent: AltarNanotrasen
+  name: Маяк Вестника
+  suffix: Ратвар
+  components:
+  - type: Sprite
+    sprite: _SpaceCats/ratvar/pilon.rsi
+    state: ClockworkObelisk
+  - type: Icon
+    sprite: _SpaceCats/ratvar/pilon.rsi
+    state: ClockworkObelisk
+
+- type: entity
+  name: Кузня в виде ящика для инструментов
+  suffix: Ратвар
+  parent: ToolboxElectrical
+  id: ToolboxElectricalTurretKuznaratvara
+  description: Просто ударьте его!
+  components:
+  - type: Damageable
+    damageContainer: Inorganic
+  - type: Destructible
+    thresholds:
+      - trigger:
+          !type:DamageTrigger
+          damage: 100
+        behaviors:
+          - !type:DoActsBehavior
+            acts: [ "Destruction" ]
+      - trigger:
+          !type:DamageTrigger
+          damage: 1
+        behaviors:
+          - !type:DoActsBehavior
+            acts: [ "Destruction" ]
+          - !type:SpawnEntitiesBehavior
+            spawn:
+              RavtvarWorShop:
+                min: 1
+                max: 1
+  - type: StaticPrice
+    price: 1350
+
+- type: entity
+  name: Маяк в виде ящика для инструментов
+  suffix: Ратвар
+  parent: ToolboxElectrical
+  id: ToolboxElectricalTurretMaiakratvara
+  description: Просто ударьте его!
+  components:
+  - type: Damageable
+    damageContainer: Inorganic
+  - type: Destructible
+    thresholds:
+      - trigger:
+          !type:DamageTrigger
+          damage: 100
+        behaviors:
+          - !type:DoActsBehavior
+            acts: [ "Destruction" ]
+      - trigger:
+          !type:DamageTrigger
+          damage: 1
+        behaviors:
+          - !type:DoActsBehavior
+            acts: [ "Destruction" ]
+          - !type:SpawnEntitiesBehavior
+            spawn:
+              MaiakVesnik:
+                min: 1
+                max: 1
+  - type: StaticPrice
+    price: 1350

@@ -2,6 +2,7 @@
   id: HeadOfPersonnel
   name: job-name-hop
   description: job-description-hop
+  color: "#334E6D"
   playTimeTracker: JobHeadOfPersonnel
   requirements:
     - !type:DepartmentTimeRequirement
@@ -19,7 +20,7 @@
     - !type:OverallPlaytimeRequirement
       time: 180000 #50 hrs # Corvax-RoleTime
     - !type:AgeRequirement
-      requiredAge: 21
+      requiredAge: 21 # cats
   weight: 20
   startingGear: HoPGear
   icon: "JobIconHeadOfPersonnel"
@@ -54,10 +55,10 @@
   - Atmospherics
   - Medical
   #start-backmen: currency
-  minBankBalance: 400
-  maxBankBalance: 600
+  minBankBalance: 500
+  maxBankBalance: 750
   wageDepartment: Command
-  wage: 100
+  wage: 250
   #end-backmen: currency
   special:
     - !type:AddComponentSpecial

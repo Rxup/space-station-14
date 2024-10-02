@@ -28,7 +28,7 @@ public sealed partial class DrainComponent : Component
 
     /// <summary>
     /// Does this drain automatically absorb surrouding puddles? Or is it a drain designed to empty
-    /// solutions in it manually? 
+    /// solutions in it manually?
     /// </summary>
     [DataField]
     public bool AutoDrain = true;
@@ -58,8 +58,8 @@ public sealed partial class DrainComponent : Component
     /// How often in seconds the drain checks for puddles around it.
     /// If the EntityQuery seems a bit unperformant this can be increased.
     /// </summary>
-    [DataField]
-    public float DrainFrequency = 1f;
+    [DataField("drainFrequency")]
+    public float DrainFrequency = 3f; // cats
 
     /// <summary>
     /// How much time it takes to unclog it with a plunger

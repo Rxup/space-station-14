@@ -266,4 +266,11 @@ public abstract class SharedChatSystem : EntitySystem
         tagStart += tag.Length + 2;
         return rawmsg.Substring(tagStart, tagEnd - tagStart);
     }
+
+    // cats-start
+    public static bool MessageTextContains(ChatMessage msg, string text)
+    {
+        return Regex.IsMatch(msg.Message, "(?>^|[ ,.!?])(" + text + ")(?>$|[ ,.!?])", RegexOptions.IgnoreCase);
+    }
+    // cats-end
 }

@@ -1,0 +1,37 @@
+- type: polymorph
+  id: WizardForcedShadowkin
+  configuration:
+    entity: MobShadowkin
+    forced: true
+    inventory: Transfer
+    transferName: true
+    transferDamage: true
+    revertOnCrit: false
+    revertOnDeath: false
+
+- type: entity
+  id: ProjectilePolyboltShadowkin
+  parent: ProjectilePolyboltBase
+  name: Гены Шадовников
+  description: Nooo, I don't wanna be Shadowkin!
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: PolymorphOnCollide
+    polymorph: WizardForcedShadowkin
+    whitelist:
+      components:
+      - Body
+
+- type: entity
+  name: волшебная палочка полиморфа шадовника
+  parent: WeaponWandPolymorphBase
+  id: WeaponWandPolymorphShadowkin
+  description: На случай, когда вам срочно нужена маг, а клоун выглядит уж очень волшебно.
+  components:
+  - type: BasicEntityAmmoProvider
+    proto: ProjectilePolyboltShadowkin
+    capacity: 1
+    count: 1
+
+
+

@@ -1,0 +1,176 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "Semka",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "card_holder"
+    },
+    {
+      "name": "card_box"
+    },
+    {
+      "name": "Bg"
+    },
+    {
+      "name": "C10"
+    },
+    {
+      "name": "C3"
+    },
+    {
+      "name": "C4"
+    },
+    {
+      "name": "C5"
+    },
+    {
+      "name": "C6"
+    },
+    {
+      "name": "C7"
+    },
+    {
+      "name": "C8"
+    },
+    {
+      "name": "C9"
+    },
+    {
+      "name": "Cj"
+    },
+    {
+      "name": "Ck"
+    },
+    {
+      "name": "Cq"
+    },
+    {
+      "name": "C2"
+    },
+    {
+      "name": "Ca"
+    },
+    {
+      "name": "K10"
+    },
+    {
+      "name": "K3"
+    },
+    {
+      "name": "K4"
+    },
+    {
+      "name": "K5"
+    },
+    {
+      "name": "K6"
+    },
+    {
+      "name": "K7"
+    },
+    {
+      "name": "K8"
+    },
+    {
+      "name": "K9"
+    },
+    {
+      "name": "Kj"
+    },
+    {
+      "name": "Kk"
+    },
+    {
+      "name": "Kq"
+    },
+    {
+      "name": "K2"
+    },
+    {
+      "name": "Ka"
+    },
+    {
+      "name": "P10"
+    },
+    {
+      "name": "P3"
+    },
+    {
+      "name": "P4"
+    },
+    {
+      "name": "P5"
+    },
+    {
+      "name": "P6"
+    },
+    {
+      "name": "P7"
+    },
+    {
+      "name": "P8"
+    },
+    {
+      "name": "P9"
+    },
+    {
+      "name": "Pj"
+    },
+    {
+      "name": "Pk"
+    },
+    {
+      "name": "Pq"
+    },
+    {
+      "name": "P2"
+    },
+    {
+      "name": "Pa"
+    },
+    {
+      "name": "B10"
+    },
+    {
+      "name": "B3"
+    },
+    {
+      "name": "B4"
+    },
+    {
+      "name": "B5"
+    },
+    {
+      "name": "B6"
+    },
+    {
+      "name": "B7"
+    },
+    {
+      "name": "B8"
+    },
+    {
+      "name": "B9"
+    },
+    {
+      "name": "Bj"
+    },
+    {
+      "name": "Bk"
+    },
+    {
+      "name": "Bq"
+    },
+    {
+      "name": "B2"
+    },
+    {
+      "name": "Ba"
+    }
+  ]
+}

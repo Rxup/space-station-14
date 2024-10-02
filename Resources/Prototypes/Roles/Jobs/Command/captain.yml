@@ -2,6 +2,7 @@
   id: Captain
   name: job-name-captain
   description: job-description-captain
+  color: "#A46106"
   playTimeTracker: JobCaptain
   requirements:
     - !type:DepartmentTimeRequirement
@@ -19,7 +20,7 @@
     - !type:OverallPlaytimeRequirement
       time: 504000 #140 hrs # Corvax-RoleTime
     - !type:AgeRequirement
-      requiredAge: 21
+      requiredAge: 21 # cats
   weight: 20
   startingGear: CaptainGear
   icon: "JobIconCaptain"
@@ -30,10 +31,10 @@
   accessGroups:
   - AllAccess
   #start-backmen: currency
-  minBankBalance: 400
-  maxBankBalance: 600
+  minBankBalance: 600
+  maxBankBalance: 900
   wageDepartment: Command
-  wage: 100
+  wage: 250
   #end-backmen: currency
   special:
   - !type:AddComponentSpecial
