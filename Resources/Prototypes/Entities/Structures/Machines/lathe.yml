@@ -378,6 +378,10 @@
       - AnimalTranslator
       - MofficTranslatorImplanter
       - MofficTranslator
+      - ElvishTranslator
+      - DwarvenTranslator
+      - ShadokinTranslator
+      - ValyrianStandardTranslator
       - ElvishStandardTranslatorImplanter
       - DwarvenStandardTranslatorImplanter
       - ShadokinStandardTranslatorImplanter
