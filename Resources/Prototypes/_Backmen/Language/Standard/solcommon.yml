@@ -2,6 +2,7 @@
   id: SolCommon
   speech:
     color: "#8282fbaa"
+    fontId: NeverSmile
   obfuscation:
     !type:SyllableObfuscation
     minSyllables: 1

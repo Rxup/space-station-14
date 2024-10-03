@@ -3,7 +3,8 @@
 - type: language
   id: Canilunzt
   speech:
-    color: "#d69b3dcc"
+    color: "77b7dfcc"
+    fontId: JollyLodgerCyrillic
   obfuscation:
     !type:SyllableObfuscation
     minSyllables: 1
