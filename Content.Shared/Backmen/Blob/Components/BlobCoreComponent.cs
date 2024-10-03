@@ -41,7 +41,7 @@ public sealed partial class BlobCoreComponent : Component
     public float AttackRate = 0.3f;
 
     [DataField]
-    public float GrowRate = 0.01f; // GCd moment
+    public float GrowRate = 0.1f;
 
     [DataField]
     public bool CanSplit = true;
