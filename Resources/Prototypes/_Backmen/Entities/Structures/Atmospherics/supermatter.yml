@@ -17,6 +17,17 @@
       Ammonia: ignore # Don't care about someone who's rotting in the chamber.
       NitrousOxide: ignore # Leftovers of Frezon probably
       Frezon: ignore # It's only helps supermatter
+      BZ: danger
+      Pluoxium: unwanted
+      Hydrogen: danger
+      Nitrium: unwanted
+      Healium: danger
+      HyperNoblium: unwanted
+      ProtoNitrate: danger
+      Zauker: danger
+      Halon: danger
+      Helium: unwanted
+      AntiNoblium: danger
 
 - type: entity
   parent: [AirSensorSupermatterBase, AirSensor]
