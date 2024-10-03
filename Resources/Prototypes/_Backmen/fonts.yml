@@ -3,8 +3,8 @@
   path: /Fonts/RubikBubbles.ttf
 
 - type: font
-  id: Manga
-  path: /Fonts/Mangat.ttf
+  id: BryndanWriteBook
+  path: /Fonts/BryndanWriteBook.ttf
 
 - type: font
   id: Ebbe
@@ -17,3 +17,27 @@
 - type: font
   id: Cambria
   path: /Fonts/Cambria.ttf
+
+- type: font
+  id: UnderdogRegular
+  path: /Fonts/UnderdogRegular.ttf
+
+- type: font
+  id: RubikBeastlyRegular
+  path: /Fonts/RubikBubbles.ttf
+
+- type: font
+  id: NeverSmile
+  path: /Fonts/NeverSmile.otf
+
+- type: font
+  id: SliftedDisplay
+  path: /Fonts/SliftedDisplay.otf
+
+- type: font
+  id: JollyLodgerCyrillic
+  path: /Fonts/JollyLodgerCyrillic.otf
+
+- type: font
+  id: Blackcraft
+  path: /Fonts/Blackcraft.ttf
