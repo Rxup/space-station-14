@@ -24,15 +24,11 @@
 
 - type: font
   id: RubikBeastlyRegular
-  path: /Fonts/RubikBeastlyRegular.ttf
+  path: /Fonts/RubikBubbles.ttf
 
 - type: font
   id: NeverSmile
   path: /Fonts/NeverSmile.otf
-
-- type: font
-  id: GoodVibesCyr
-  path: /Fonts/GoodVibesCyr.ttf
 
 - type: font
   id: SliftedDisplay
