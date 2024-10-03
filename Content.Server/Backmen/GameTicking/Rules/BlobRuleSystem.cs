@@ -31,6 +31,7 @@ public sealed class BlobRuleSystem : GameRuleSystem<BlobRuleComponent>
     [Dependency] private readonly ObjectivesSystem _objectivesSystem = default!;
     [Dependency] private readonly AlertLevelSystem _alertLevelSystem = default!;
     [Dependency] private readonly IChatManager _chatManager = default!;
+    [Dependency] private readonly MetaDataSystem _metaDataSystem = default!;
 
     private static readonly SoundPathSpecifier BlobDetectAudio = new ("/Audio/Corvax/Adminbuse/Outbreak5.ogg");
 
@@ -57,25 +58,22 @@ public sealed class BlobRuleSystem : GameRuleSystem<BlobRuleComponent>
 
         component.Accumulator = 0;
 
-        // Each station has HashSet of all Blob Cores.
-        var blobCores = new Dictionary<EntityUid, HashSet<Entity<BlobCoreComponent>>>();
-
         var blobCoreQuery = EntityQueryEnumerator<BlobCoreComponent, MetaDataComponent>();
         while (blobCoreQuery.MoveNext(out var ent, out var comp, out _))
         {
             if (TerminatingOrDeleted(ent) ||
-                !CheckBlobInStation(ent, out var stationUid))
+                !CheckBlobInStation(ent, out var stationUid) ||
+                component.StationCores.ContainsKey(stationUid.Value))
             {
                 continue;
             }
 
-            if(!blobCores.TryAdd(stationUid.Value, [(ent, comp)]))
-                blobCores[stationUid.Value].Add((ent, comp));
+            if(!component.StationCores.TryAdd(stationUid.Value, [(ent, comp)]))
+                component.StationCores[stationUid.Value].Add((ent, comp));
         }
-
-        foreach (var station in blobCores)
+        foreach (var (station, cores) in component.StationCores)
         {
-            CheckChangeStage(station.Key, component, station.Value);
+            CheckChangeStage(station, component, cores);
         }
     }
 
