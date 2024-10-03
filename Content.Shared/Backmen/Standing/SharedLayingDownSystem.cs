@@ -1,13 +1,21 @@
+using Content.Shared.Backmen.CCVar;
+using Content.Shared.Buckle;
+using Content.Shared.Buckle.Components;
 using Content.Shared.DoAfter;
 using Content.Shared.Gravity;
 using Content.Shared.Input;
+using Content.Shared.Interaction;
+using Content.Shared.Mobs;
 using Content.Shared.Mobs.Systems;
 using Content.Shared.Movement.Components;
 using Content.Shared.Movement.Systems;
 using Content.Shared.Standing;
 using Content.Shared.Stunnable;
+using Content.Shared.UserInterface;
+using Robust.Shared.Configuration;
 using Robust.Shared.Containers;
 using Robust.Shared.Input.Binding;
+using Robust.Shared.Network;
 using Robust.Shared.Player;
 using Robust.Shared.Serialization;
 
@@ -21,6 +29,12 @@ public abstract class SharedLayingDownSystem : EntitySystem
     [Dependency] private readonly SharedGravitySystem _gravity = default!;
     [Dependency] private readonly ISharedPlayerManager _playerManager = default!;
     [Dependency] private readonly SharedContainerSystem _container = default!;
+    [Dependency] private readonly SharedBuckleSystem _buckle = default!;
+    [Dependency] private readonly INetManager _net = default!;
+
+    [Dependency] private readonly IConfigurationManager _config = default!;
+
+    protected bool CrawlUnderTables = false;
 
     public override void Initialize()
     {
@@ -33,6 +47,83 @@ public abstract class SharedLayingDownSystem : EntitySystem
         SubscribeLocalEvent<StandingStateComponent, StandingUpDoAfterEvent>(OnStandingUpDoAfter);
         SubscribeLocalEvent<LayingDownComponent, RefreshMovementSpeedModifiersEvent>(OnRefreshMovementSpeed);
         SubscribeLocalEvent<LayingDownComponent, EntParentChangedMessage>(OnParentChanged);
+        SubscribeLocalEvent<LayingDownComponent, MobStateChangedEvent>(OnChangeMobState);
+
+        SubscribeLocalEvent<LayingDownComponent, BuckledEvent>(OnBuckled);
+        SubscribeLocalEvent<LayingDownComponent, UnbuckledEvent>(OnUnBuckled);
+        SubscribeLocalEvent<BoundUserInterfaceMessageAttempt>(OnBoundUserInterface, after: [typeof(SharedInteractionSystem)]);
+
+        Subs.CVar(_config, CCVars.CrawlUnderTables, b => CrawlUnderTables = b, true);
+    }
+
+    private void OnBoundUserInterface(BoundUserInterfaceMessageAttempt args)
+    {
+        if(
+            args.Cancelled ||
+            !TryComp<ActivatableUIComponent>(args.Target, out var uiComp) ||
+            !TryComp<StandingStateComponent>(args.Actor, out var standingStateComponent) ||
+            standingStateComponent.CurrentState != StandingState.Lying)
+            return;
+
+        if(uiComp.RequiresComplex)
+            args.Cancel();
+    }
+
+    private void OnChangeMobState(Entity<LayingDownComponent> ent, ref MobStateChangedEvent args)
+    {
+        if(
+            !TryComp<StandingStateComponent>(ent, out var standingStateComponent) ||
+            standingStateComponent.CurrentState != StandingState.Lying)
+            return;
+
+        if (args.NewMobState == MobState.Alive)
+        {
+            AutoGetUp(ent);
+            TryStandUp(ent, ent, standingStateComponent);
+            return;
+        }
+
+        if (CrawlUnderTables)
+        {
+            if(_net.IsServer)
+                RaiseNetworkEvent(new DrawUpEvent(GetNetEntity(ent)), Filter.PvsExcept(ent));
+            else
+                RaiseLocalEvent(new DrawUpEvent(GetNetEntity(ent)));
+        }
+    }
+
+
+
+    private void OnUnBuckled(Entity<LayingDownComponent> ent, ref UnbuckledEvent args)
+    {
+        if(
+            !TryComp<StandingStateComponent>(ent, out var standingStateComponent) ||
+            standingStateComponent.CurrentState != StandingState.Lying)
+            return;
+
+        if (CrawlUnderTables)
+        {
+            if(_net.IsServer)
+                RaiseNetworkEvent(new DrawDownedEvent(GetNetEntity(ent)), Filter.PvsExcept(ent));
+            else
+                RaiseLocalEvent(new DrawDownedEvent(GetNetEntity(ent)));
+        }
+    }
+
+    private void OnBuckled(Entity<LayingDownComponent> ent, ref BuckledEvent args)
+    {
+        if(
+            !TryComp<StandingStateComponent>(ent, out var standingStateComponent) ||
+            standingStateComponent.CurrentState != StandingState.Lying)
+            return;
+
+        if (CrawlUnderTables)
+        {
+            if(_net.IsServer)
+                RaiseNetworkEvent(new DrawUpEvent(GetNetEntity(ent)), Filter.Pvs(ent));
+            else
+                RaiseLocalEvent(new DrawUpEvent(GetNetEntity(ent)));
+        }
     }
 
     protected abstract bool GetAutoGetUp(Entity<LayingDownComponent> ent, ICommonSession session);
@@ -61,7 +152,15 @@ public abstract class SharedLayingDownSystem : EntitySystem
             return;
         }
 
-        RaiseNetworkEvent(new ChangeLayingDownEvent());
+        if (_net.IsServer)
+        {
+            RaiseNetworkEvent(new ChangeLayingDownEvent(), Filter.Pvs(session.AttachedEntity.Value));
+        }
+        else
+        {
+            RaiseNetworkEvent(new ChangeLayingDownEvent());
+        }
+
     }
 
     public virtual void AutoGetUp(Entity<LayingDownComponent> ent)
@@ -137,6 +236,7 @@ public abstract class SharedLayingDownSystem : EntitySystem
             !Resolve(uid, ref layingDown, false) ||
             standingState.CurrentState is not StandingState.Lying ||
             !_mobState.IsAlive(uid) ||
+            _buckle.IsBuckled(uid) ||
             TerminatingOrDeleted(uid))
         {
             return false;
@@ -159,7 +259,8 @@ public abstract class SharedLayingDownSystem : EntitySystem
     {
         if (!Resolve(uid, ref standingState, false) ||
             !Resolve(uid, ref layingDown, false) ||
-            standingState.CurrentState is not StandingState.Standing)
+            standingState.CurrentState is not StandingState.Standing ||
+            _buckle.IsBuckled(uid))
         {
             if (behavior == DropHeldItemsBehavior.AlwaysDrop)
                 RaiseLocalEvent(uid, new DropHandItemsEvent());

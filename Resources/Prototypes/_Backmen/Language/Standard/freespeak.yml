@@ -2,6 +2,7 @@
   id: Freespeak
   speech:
     color: "#597d35"
+    fontId: Blackcraft
   obfuscation:
     !type:SyllableObfuscation
     minSyllables: 1
