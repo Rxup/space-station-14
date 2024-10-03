@@ -414,49 +414,7 @@
         statusLifetime: 4
         walkSpeedModifier: 0.65
         sprintSpeedModifier: 0.65
-      - !type:GenericStatusEffect
-        conditions:
-        - !type:ReagentThreshold
-          reagent: BZ
-          min: 1
-        - !type:OrganType
-          type: Slime
-        key: ForcedSleep
-        component: ForcedSleeping
-        time: 3
-        type: Add
-      - !type:PopupMessage
-        conditions:
-        - !type:ReagentThreshold
-          reagent: BZ
-          min: 0.1
-        - !type:HasComponent
-          component: Changeling
-        type: Local
-        visualType: Medium
-        messages: [ "effect-sleepy" ]
-        probability: 0.1
-      - !type:MovespeedModifier
-        conditions:
-        - !type:ReagentThreshold
-          reagent: BZ
-          min: 0.5
-        - !type:HasComponent
-          component: Changeling
-        statusLifetime: 4
-        walkSpeedModifier: 0.65
-        sprintSpeedModifier: 0.65
-      - !type:GenericStatusEffect
-        conditions:
-        - !type:ReagentThreshold
-          reagent: BZ
-          min: 1
-        - !type:HasComponent
-          component: Changeling
-        key: ForcedSleep
-        component: ForcedSleeping
-        time: 3
-        type: Add
+
 
 - type: reagent
   id: Pluoxium
@@ -475,11 +433,6 @@
         conditions:
         - !type:OrganType
           type: Human
-      - !type:Oxygenate # WD
-        factor: 8
-        conditions:
-        - !type:OrganType
-          type: AnthroAnimal
       - !type:Oxygenate
         factor: 8
         conditions:
@@ -496,10 +449,6 @@
         - !type:OrganType
           type: Plant
       - !type:ModifyLungGas
-        conditions:
-        - !type:OrganType
-          type: Vox
-          shouldHave: false
         ratios:
           CarbonDioxide: 1.0
           Pluoxium: -1.0

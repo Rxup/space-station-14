@@ -16,26 +16,26 @@
       temperatureThresholdId: stationTemperature
       pressureThresholdId: stationPressure
       gasThresholdPrototypes:
-          Oxygen: stationOxygen
-          Nitrogen: ignore
-          CarbonDioxide: stationCO2
-          Plasma: stationPlasma # everything below is usually bad
-          Tritium: danger
-          WaterVapor: stationWaterVapor
-          Ammonia: stationAmmonia
-          NitrousOxide: stationNO
-          Frezon: danger
-          BZ: danger
-          Pluoxium: unwanted
-          Hydrogen: danger
-          Nitrium: unwanted
-          Healium: danger
-          HyperNoblium: unwanted
-          ProtoNitrate: danger
-          Zauker: danger
-          Halon: danger
-          Helium: unwanted
-          AntiNoblium: danger
+        Oxygen: stationOxygen
+        Nitrogen: ignore
+        CarbonDioxide: stationCO2
+        Plasma: stationPlasma # everything below is usually bad
+        Tritium: danger
+        WaterVapor: stationWaterVapor
+        Ammonia: stationAmmonia
+        NitrousOxide: stationNO
+        Frezon: danger
+        BZ: danger
+        Pluoxium: unwanted
+        Hydrogen: danger
+        Nitrium: unwanted
+        Healium: danger
+        HyperNoblium: unwanted
+        ProtoNitrate: danger
+        Zauker: danger
+        Halon: danger
+        Helium: unwanted
+        AntiNoblium: danger
     - type: Tag
       tags:
         - AirSensor
@@ -88,14 +88,14 @@
       drawdepth: FloorObjects
       sprite: Structures/Specific/Atmospherics/sensor.rsi
       layers:
-        - state: gsensor1
-          map: [ "enum.PowerDeviceVisualLayers.Powered" ]
+      - state: gsensor1
+        map: [ "enum.PowerDeviceVisualLayers.Powered" ]
     - type: GenericVisualizer
       visuals:
         enum.PowerDeviceVisuals.Powered:
           enum.PowerDeviceVisualLayers.Powered:
-            True: { state: gsensor1 }
-            False: { state: gsensor0 }
+          True: { state: gsensor1 }
+          False: { state: gsensor0 }
 
 - type: entity
   parent: BaseItem
@@ -113,4 +113,4 @@
       drawdepth: FloorObjects
       sprite: Structures/Specific/Atmospherics/sensor.rsi
       layers:
-        - state: gsensor0
+      - state: gsensor0
