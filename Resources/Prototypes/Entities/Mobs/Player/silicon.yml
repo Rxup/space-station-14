@@ -76,9 +76,35 @@
     speaks:
     - Binary
     - TauCetiBasic
+    - Freespeak
+    - Slime
+    - Dragon
+    - Moffic
+    - SolCommon
+    - Dwarven
+    - RootSpeak
+    - Spider
+    - Nekomimetic
+    - Canilunzt
+    - Dog
+    - Garpy
+    - Shadokin
     understands:
     - Binary
     - TauCetiBasic
+    - Freespeak
+    - Slime
+    - Dragon
+    - Moffic
+    - SolCommon
+    - Dwarven
+    - RootSpeak
+    - Spider
+    - Nekomimetic
+    - Canilunzt
+    - Dog
+    - Garpy
+    - Shadokin
 
 
 # Ai
@@ -494,9 +520,35 @@
     speaks:
     - Binary
     - TauCetiBasic
+    - Freespeak
+    - Slime
+    - Dragon
+    - Moffic
+    - SolCommon
+    - Dwarven
+    - RootSpeak
+    - Spider
+    - Nekomimetic
+    - Canilunzt
+    - Dog
+    - Garpy
+    - Shadokin
     understands:
     - Binary
     - TauCetiBasic
+    - Freespeak
+    - Slime
+    - Dragon
+    - Moffic
+    - SolCommon
+    - Dwarven
+    - RootSpeak
+    - Spider
+    - Nekomimetic
+    - Canilunzt
+    - Dog
+    - Garpy
+    - Shadokin
 
 - type: entity
   name: drone
