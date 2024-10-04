@@ -1,7 +1,8 @@
 - type: language
   id: Tradeband
   speech:
-    color: "#597d35"
+    color: "#4b7b94"
+    fontId: DualityRusByLyajka
   obfuscation:
     !type:SyllableObfuscation
     minSyllables: 1
