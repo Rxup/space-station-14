@@ -122,9 +122,9 @@
   - type: Grammar
     attributes:
       gender: male
+  - type: Sharp
   - type: TTS # Corvax-TTS
     voice: Npc1
-  - type: Sharp
 
 - type: entity
   id: MobRatKingBuff
