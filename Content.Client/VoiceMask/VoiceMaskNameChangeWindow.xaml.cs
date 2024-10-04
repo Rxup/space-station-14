@@ -44,8 +44,6 @@ public sealed partial class VoiceMaskNameChangeWindow : FancyWindow
             ReloadVoices(IoCManager.Resolve<IPrototypeManager>());
         }
         // Corvax-TTS-End
-
-        AddVerbs();
     }
 
     public void ReloadVerbs(IPrototypeManager proto)
