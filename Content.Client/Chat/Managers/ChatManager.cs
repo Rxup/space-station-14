@@ -22,6 +22,15 @@ internal sealed class ChatManager : IChatManager
     }
 
     public event Action? PermissionsUpdated; // backmen: chat permissions
+    public void SendAdminAlert(string message)
+    {
+        // See server-side manager. This just exists for shared code.
+    }
+
+    public void SendAdminAlert(EntityUid player, string message)
+    {
+        // See server-side manager. This just exists for shared code.
+    }
 
     public void SendMessage(string text, ChatSelectChannel channel)
     {

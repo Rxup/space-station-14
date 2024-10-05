@@ -48,6 +48,12 @@
     - type: HideLayerClothing
       slots:
       - Snout
+    - type: UserInterface
+      interfaces:
+        enum.ChameleonUiKey.Key:
+          type: ChameleonBoundUserInterface
+        enum.VoiceMaskUIKey.Key:
+          type: VoiceMaskBoundUserInterface
 # Corvax-HiddenDesc-Start
     - type: HiddenDescription
       entries:
@@ -74,10 +80,6 @@
           - Scientist
           - Borg
 # Corvax-HiddenDesc-End
-    - type: UserInterface
-      interfaces:
-        enum.VoiceMaskUIKey.Key:
-          type: VoiceMaskBoundUserInterface
 
 - type: entity
   parent: ClothingMaskBase

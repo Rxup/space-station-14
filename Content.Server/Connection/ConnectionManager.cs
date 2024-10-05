@@ -426,8 +426,7 @@ namespace Content.Server.Connection
         [Dependency] private readonly IEntityManager _entityManager = default!;
         public async Task<bool> HavePrivilegedJoin(NetUserId userId)
         {
-            if (HasTemporaryBypass(userId))
-                return true;
+
             var adminBypass = _cfg.GetCVar(CCVars.AdminBypassMaxPlayers) && await _db.GetAdminDataForAsync(userId) != null;
             var havePriorityJoin = _sponsorsMgr != null && _sponsorsMgr.HaveServerPriorityJoin(userId); // Corvax-Sponsors
             var wasInGame = _entityManager.TrySystem<GameTicker>(out var ticker) &&

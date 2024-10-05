@@ -41,3 +41,11 @@
 - type: font
   id: Blackcraft
   path: /Fonts/Blackcraft.ttf
+
+- type: font
+  id: DualityRusByLyajka
+  path: /Fonts/DualityRusByLyajka.otf
+
+- type: font
+  id: ZektonRg
+  path: /Fonts/ZektonRg.ttf
