@@ -464,7 +464,7 @@
   - type: Sprite
     sprite: _SpaceCats/Clothing/Belt/security.rsi #<-- cats
   - type: Clothing
-    sprite: _SpaceCats//Belt/security.rsi #<-- cats
+    sprite: _SpaceCats/Belt/security.rsi #<-- cats
   - type: ItemSlots #<-- cats - add sidearm slot
     slots:
       holster:
