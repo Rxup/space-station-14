@@ -1,0 +1,22 @@
+- type: entity
+  id: TeleportEffect
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: TimedDespawn
+    lifetime: 0.4
+  - type: Sprite
+    drawdepth: Effects
+    noRot: true
+    layers:
+      - shader: unshaded
+        map: ["enum.EffectLayers.Unshaded"]
+        sprite: _SpaceCats/Effects/teleport_sparks.rsi
+        state: sparks
+  - type: EffectVisuals
+  - type: Tag
+    tags:
+      - HideContextMenu
+  - type: EmitSoundOnSpawn
+    sound:
+      path: /Audio/_Cats/Effects/teleport.ogg
+  - type: AnimationPlayer

@@ -4,7 +4,8 @@
   categories: [ HideSpawnMenu ]
   components:
     - type: GameRule
-      minPlayers: 15
+#      minPlayers: 15
+      minPlayers: 10   #cats
     - type: FleshCultRule
       faction: Flesh
 
@@ -14,7 +15,8 @@
   categories: [ HideSpawnMenu ]
   components:
   - type: GameRule
-    minPlayers: 15
+#    minPlayers: 15 
+    minPlayers: 10  #cats
   - type: BlobGameRule
 
 - type: entity
@@ -30,7 +32,8 @@
   categories: [ HideSpawnMenu ]
   components:
   - type: GameRule
-    minPlayers: 15
+#    minPlayers: 10
+    minPlayers: 5  #cats
   - type: BloodsuckerRule
 
 - type: entity
@@ -47,7 +50,8 @@
   components:
   - type: StationEvent
     earliestStart: 50
-    minimumPlayers: 15
+#    minimumPlayers: 15
+    minimumPlayers: 5  #cats
     weight: 5
     duration: 1
   - type: BloodsuckerRule
@@ -154,43 +158,3 @@
         prototype: Thief
       briefing:
         sound: "/Audio/Misc/thief_greeting.ogg"
-
-- type: entity
-  id: CalmStationEventScheduler
-  parent: BaseGameRule
-  components:
-  - type: BasicStationEventScheduler
-    minimumTimeUntilFirstEvent: 360 # 6 min
-    minMaxEventTiming:
-      min: 480 # 8 min
-      max: 960 # 16 min
-    scheduledGameRules: !type:NestedSelector
-      tableId: CalmGameRulesTable
-
-- type: entityTable
-  id: CalmGameRulesTable
-  table: !type:AllSelector # we need to pass a list of rules, since rules have further restrictions to consider via StationEventComp
-    children:
-    - !type:NestedSelector
-      tableId: BasicCalmEventsTable
-    - !type:NestedSelector
-      tableId: CargoGiftsTable
-    - !type:NestedSelector
-      tableId: CalmPestEventsTable
-    - !type:NestedSelector
-      tableId: SpicyPestEventsTable
-    - !type:NestedSelector
-      tableId: CalmBackmenEventsTable
-    - id: ClosetSkeleton
-    - id: NinjaSpawn
-    - id: RevenantSpawn
-    - id: SleeperAgents
-
-- type: entity
-  parent: BaseGameRule
-  id: BabelTower
-  components:
-  - type: GameRule
-    minPlayers: 5
-    cancelPresetOnTooFewPlayers: false
-  - type: BabelTowerRule

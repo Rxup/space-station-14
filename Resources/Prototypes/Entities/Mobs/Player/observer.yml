@@ -8,7 +8,6 @@
     noRot: true
     overrideContainerOcclusion: true # Always show up regardless of where they're contained.
     drawdepth: Ghosts
-  - type: FTLSmashImmune
   - type: CargoSellBlacklist
   - type: MovementSpeedModifier
     baseSprintSpeed: 12
@@ -97,6 +96,10 @@
     - GROUPS_8
     - GROUPS_9
     - GROUPS_0
+    - Binary
+    - Flesh
+    - Freelance
+    - Swarm
     globalReceive: true
   - type: Tag
     tags:

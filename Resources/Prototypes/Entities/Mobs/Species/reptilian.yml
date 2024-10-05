@@ -32,7 +32,7 @@
     speechSounds: Lizard
     speechVerb: Reptilian
   - type: TypingIndicator
-    proto: lizard
+    proto: lizards
   - type: Vocal
     sounds:
       Male: MaleReptilian

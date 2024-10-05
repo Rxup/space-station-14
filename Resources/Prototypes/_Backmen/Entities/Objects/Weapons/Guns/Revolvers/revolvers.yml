@@ -3,7 +3,7 @@
   parent: BaseWeaponRevolver
   id: WeaponRevolverMatebaNew
   suffix: Револьвер
-  description: The iconic sidearm of the dreaded death squads. Uses .45 magnum ammo.
+  description: Культовое оружие ужасных эскадронов смерти. Использует патроны "Магнум" 45-го калибра.
   components:
   - type: Sprite
     sprite: Backmen/Objects/Weapons/Gunsx64/Revolver/mateba.rsi/big.rsi
@@ -21,7 +21,7 @@
   name: CMB autorevolver
   parent: BaseWeaponRevolver
   id: WeaponRevolverCMB
-  description: An automatic revolver chambered in .45 magnum. Commonly issued to Nanotrasen security. It has a burst mode. Currently in trial with other revolvers across Terra and other colonies.
+  description: Автоматический револьвер с патроном 45-го калибра "магнум". Обычно выпускается компанией "Нанотразен секьюрити". Имеет режим серийной стрельбы. В настоящее время проходит испытания с другими револьверами на Терре и в других колониях.
   components:
   - type: Sprite
     sprite: Backmen/Objects/Weapons/Gunsx64/Revolver/cmb.rsi
@@ -44,7 +44,7 @@
   name: R-44 SAA revolver
   parent: BaseWeaponRevolver
   id: WeaponRevolverR44
-  description: A uncommon revolver occasionally carried by civilian law enforcement that's very clearly based off a modernized Single Action Army. Has to be manully primed with each shot. Uses .45 Magnum rounds.
+  description: Необычный револьвер, который иногда используется гражданскими правоохранительными органами и который явно создан на основе модернизированного армейского оружия одиночного действия. Его необходимо тщательно заряжать перед каждым выстрелом. В нем используются патроны "Магнум" 45-го калибра.
   components:
   - type: Sprite
     sprite: Backmen/Objects/Weapons/Gunsx64/Revolver/r-44.rsi
@@ -62,7 +62,7 @@
   name: N-Y revolver
   parent: BaseWeaponRevolver
   id: WeaponRevolverNY
-  description: The Nagant-Yamasaki is an efficient killing machine developed by an old generation country, namely Russia. It can often be found in the hands of criminals or mercenaries.
+  description: Наган Ямасаки - это эффективная машина для убийства, разработанная в стране старого поколения, а именно в России. Его часто можно найти в руках преступников или наемников.
   components:
   - type: Sprite
     sprite: Backmen/Objects/Weapons/Gunsx64/Revolver/ny762.rsi
@@ -81,7 +81,7 @@
   name: FFA 'Rebota' revolver
   parent: BaseWeaponRevolver
   id: WeaponRevolverRebota
-  description: Uses .45 magnum. Timeless design, from antiquity to the future. This one is well known among the police as a versatile and unpretentious weapon.
+  description: Использует "магнум" 45-го калибра. Дизайн, не подвластный времени, от древности до будущего. Этот пистолет хорошо известен в полиции как универсальное и неприхотливое оружие.
   components:
   - type: Sprite
     sprite: Backmen/Objects/Weapons/Gunsx64/Revolver/rebota.rsi

@@ -1,0 +1,7 @@
+- type: entity
+  categories: [ HideSpawnMenu ]
+  parent: BaseRDStealObjective
+  id: RDPinpointerStealObjective
+  components:
+  - type: StealCondition
+    stealGroup: AnomalyPinpointer

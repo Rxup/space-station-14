@@ -1,0 +1,33 @@
+- type: entity
+  parent: ClothingUniformSkirtBase
+  id: ClothingUniformJumpskirtEsmira
+  name: юбка-комбинезон эсмиры
+  suffix: Спонсор, Fredik21
+  description: юбка которую носит Эсмира. Мне страшно думать от куда вы его взяли...
+  components:
+  - type: Sprite
+    sprite: _SpaceCats/Sponsor/Fredik21/kost.rsi
+  - type: Clothing
+    sprite: _SpaceCats/Sponsor/Fredik21/kost.rsi
+
+- type: entity
+  parent: ClothingHeadBase
+  id: ClothingHeadHatHairflowerEsmira
+  name: головной убор эсмиры
+  suffix: Спонсор, Fredik21
+  description: Обычный цветок с головным убором
+  components:
+  - type: Sprite
+    sprite: _SpaceCats/Sponsor/Fredik21/vve.rsi
+  - type: Clothing
+    sprite: _SpaceCats/Sponsor/Fredik21/vve.rsi
+
+- type: entity
+  parent: ClothingNeckBase
+  id: ClothingNeckEsmira
+  suffix: Спонсор, Fredik21
+  name: плащ с игрушкой эсмиры
+  description: Мы ведь друзья... так ведь?...
+  components:
+  - type: Sprite
+    sprite: _SpaceCats/Sponsor/Fredik21/toy.rsi

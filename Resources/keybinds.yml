@@ -597,7 +597,7 @@ binds:
   key: Space
 - function: ToggleStanding # Ataraxia
   type: State
-  key: V
+  key: R
 - function: OfferItem # Ataraxia
   type: State
   key: F

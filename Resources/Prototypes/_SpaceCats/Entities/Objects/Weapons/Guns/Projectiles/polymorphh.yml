@@ -1,0 +1,35 @@
+- type: polymorph
+  id: WizardForcedHuman
+  configuration:
+    entity: MobHuman
+    forced: true
+    inventory: Transfer
+    transferName: true
+    transferDamage: true
+    revertOnCrit: false
+    revertOnDeath: false
+- type: entity
+  id: ProjectilePolyboltHuman
+  parent: ProjectilePolyboltBase
+  name: Гены Человека
+  description: Nooo, I don't wanna be Human!
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: PolymorphOnCollide
+    polymorph: WizardForcedHuman
+    whitelist:
+      components:
+      - Body
+
+- type: entity
+  name: волшебная палочка полиморфа человека
+  parent: WeaponWandPolymorphBase
+  id: WeaponWandPolymorphHuman
+  description: На случай, когда вам срочно нужен мудак, а клоун выглядит уж очень бесюча.
+  components:
+  - type: BasicEntityAmmoProvider
+    proto: ProjectilePolyboltHuman
+    capacity: 1
+    count: 1
+
+

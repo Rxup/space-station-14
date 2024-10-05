@@ -10,5 +10,5 @@
       sprite: Backmen/Objects/Specific/Chapel/holylight.rsi
       state: icon
     - type: Item
-      size: Huge
+      size: Small
       sprite: Backmen/Objects/Specific/Chapel/holylight.rsi

@@ -61,7 +61,6 @@
             Reporter: [ 2, 2 ]
             ServiceWorker: [ 3, 3 ]
             Passenger: [ -1, -1 ]
-
             # backmen
             Prisoner: [ 3, 3]
             Brigmedic: [ 0, 2 ] # backmen-Brigmedic

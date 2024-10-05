@@ -1,0 +1,10 @@
+- type: entity
+  parent: ClothingHeadBase
+  id: ClothingHeadHatParamedicBeret
+  name: берет парамедика
+  description: Тёмно синий берет с крестом на передней части. Его вид успокаивает и внушает надежду, что вас найдут и спасут.
+  components:
+    - type: Sprite
+      sprite: _SpaceCats/paramedberet.rsi
+    - type: Clothing
+      sprite: _SpaceCats/paramedberet.rsi

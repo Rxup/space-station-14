@@ -94,7 +94,7 @@
         # anyway it's just a quality of life thing.
         showEnts: True
 
-# Boards
+# Boardss
 - type: entity
   id: AsimovCircuitBoard
   parent: BaseElectronics
@@ -417,7 +417,6 @@
   categories: [ HideSpawnMenu ]
   suffix: DO NOT MAP
   components:
-  - type: NoFTL
   - type: WarpPoint
     follow: true
   - type: Eye
@@ -512,9 +511,35 @@
     speaks:
     - Binary
     - TauCetiBasic
+    - Freespeak
+    - Slime
+    - Dragon
+    - Moffic
+    - SolCommon
+    - Dwarven
+    - RootSpeak
+    - Spider
+    - Nekomimetic
+    - Canilunzt
+    - Dog
+    - Garpy
+    - Shadokin
     understands:
     - Binary
     - TauCetiBasic
+    - Freespeak
+    - Slime
+    - Dragon
+    - Moffic
+    - SolCommon
+    - Dwarven
+    - RootSpeak
+    - Spider
+    - Nekomimetic
+    - Canilunzt
+    - Dog
+    - Garpy
+    - Shadokin
 
 - type: entity
   name: drone

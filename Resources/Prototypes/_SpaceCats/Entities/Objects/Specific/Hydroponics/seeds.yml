@@ -1,0 +1,10 @@
+- type: entity
+  parent: SeedBase
+  name: packet of cucumber seeds
+  description: "Soothing."
+  id: CucumberSeeds
+  components:
+    - type: Seed
+      seedId: cucumber
+    - type: Sprite
+      sprite: _SpaceCats/Objects/Specific/Hydroponics/cucumber.rsi

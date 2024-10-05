@@ -27,7 +27,7 @@
     definitions:
     - allowNonHumans: true
       max: 1
-      playerRatio: 30
+      playerRatio: 200
       spawnerPrototype: SpawnerUristMcNars
       multiAntagSetting: None
       pickPlayer: false
