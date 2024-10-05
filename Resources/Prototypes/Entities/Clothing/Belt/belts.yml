@@ -464,7 +464,7 @@
   - type: Sprite
     sprite: _SpaceCats/Clothing/Belt/security.rsi #<-- cats
   - type: Clothing
-    sprite: _SpaceCats/Belt/security.rsi #<-- cats
+    sprite: Clothing/Belt/security.rsi #<-- cats
   - type: Storage
     whitelist:
       tags:
