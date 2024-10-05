@@ -1,0 +1,36 @@
+- type: entity
+  name: handheld cameras monitor
+  parent: [ BaseItem, PowerCellSlotSmallItem]
+  id: HandHeldCameras
+  description: A hand-held camera monitor.
+  components:
+  - type: Item
+  - type: Sprite
+    sprite: Objects/Tools/handheld_camera_monitor.rsi
+    state: off
+    layers:
+      - state: off
+      - state: on
+        map: [ "enum.PowerDeviceVisualLayers.Powered" ]
+  - type: Appearance
+  - type: GenericVisualizer
+    visuals:
+      enum.PowerCellSlotVisuals.Enabled:
+        enum.PowerDeviceVisualLayers.Powered:
+          True: { visible: true }
+          False: { visible: false }
+  - type: PowerCellDraw
+    drawRate: 3
+    useRate: 100
+  - type: ActivatableUIRequiresPowerCell
+  - type: ActivatableUI
+    key: enum.SurveillanceCameraMonitorUiKey.Key
+    inHandsOnly: true
+    singleUser: true
+  - type: UserInterface
+    interfaces:
+      - key: enum.SurveillanceCameraMonitorUiKey.Key
+        type: SurveillanceCameraMonitorBoundUserInterface
+  - type: StaticPrice
+    price: 150
+  - type: SurveillanceCameraMonitor
