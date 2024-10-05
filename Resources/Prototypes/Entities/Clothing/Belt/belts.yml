@@ -456,15 +456,15 @@
   - type: Appearance
 
 - type: entity
-  parent: [ClothingBeltStorageBase, BaseRestrictedContraband, ClothingSlotBase]]
+  parent: [ClothingBeltStorageBase, BaseRestrictedContraband, ClothingSlotBase]
   id: ClothingBeltSecurity
   name: security belt
   description: Can hold security gear like handcuffs and flashes.
   components:
   - type: Sprite
-    sprite: Clothing/Belt/security.rsi
+    sprite: _SpaceCats/Clothing/Belt/security.rsi #<-- cats
   - type: Clothing
-    sprite: Clothing/Belt/security.rsi
+    sprite: _SpaceCats//Belt/security.rsi #<-- cats
   - type: ItemSlots #<-- cats - add sidearm slot
     slots:
       holster:
@@ -672,9 +672,9 @@
   description: Unique and versatile chest rig, can hold security gear.
   components:
   - type: Sprite
-    sprite: Clothing/Belt/securitywebbing.rsi
+    sprite: _SpaceCats/Clothing/Belt/securitywebbing.rsi # cats
   - type: Clothing
-    sprite: Clothing/Belt/securitywebbing.rsi
+    sprite: _SpaceCats/Clothing/Belt/securitywebbing.rsi # cats
   - type: ItemSlots # cats add sidearm slot
     slots:
       holster:

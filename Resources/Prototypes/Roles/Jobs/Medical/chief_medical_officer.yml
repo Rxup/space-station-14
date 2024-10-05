@@ -60,6 +60,7 @@
     id: CMOPDA
     ears: ClothingHeadsetCMO
     belt: ClothingBeltMedicalFilled
+    belt: ClothingBeltMilitaryWebbingCMO
   storage:
     back:
     - Flash
