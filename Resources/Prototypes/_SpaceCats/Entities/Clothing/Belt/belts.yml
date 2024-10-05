@@ -25,9 +25,6 @@
         amount: 1
       - id: Gauze
       - id: EmergencyMedipen
-  - type: Tag
-    tags:
-      - BeltSlotNotBelt
 
 - type: entity
   parent: ClothingBeltStorageBase
@@ -56,6 +53,3 @@
         amount: 1
       - id: Gauze
       - id: EmergencyMedipen #You never know what people are going to latejoin into
-  - type: Tag
-    tags:
-      - BeltSlotNotBelt

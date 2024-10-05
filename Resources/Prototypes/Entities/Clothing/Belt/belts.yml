@@ -503,7 +503,7 @@
         whitelist:
           components:
           - SmokeOnTrigger
-    sprite: _SpaceCat/Clothing/Belt/belt_overlay.rsi
+    sprite: Clothing/Belt/belt_overlay.rsi
   - type: Appearance
 
 - type: entity
