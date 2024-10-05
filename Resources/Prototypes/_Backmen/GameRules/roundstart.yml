@@ -158,3 +158,12 @@
         prototype: Thief
       briefing:
         sound: "/Audio/Misc/thief_greeting.ogg"
+
+- type: entity
+  parent: BaseGameRule
+  id: BabelTower
+  components:
+  - type: GameRule
+    minPlayers: 5
+    cancelPresetOnTooFewPlayers: false
+  - type: BabelTowerRule
