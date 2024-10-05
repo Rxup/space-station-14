@@ -62,11 +62,11 @@
 
 - type: entity
   id: SwarmTurretShotBullet
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   name: Редспейс выстрел
   parent: SwarmShotBullet
   components:
   - type: Projectile
     damage:
       types:
-        Shock: 5
+        Heat: 7

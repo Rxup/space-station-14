@@ -176,7 +176,7 @@ namespace Content.Server.Explosion.EntitySystems
         private void HandleFlashTrigger(EntityUid uid, FlashOnTriggerComponent component, TriggerEvent args)
         {
             // TODO Make flash durations sane ffs.
-            _flashSystem.FlashArea(uid, args.User, component.Range, component.Duration * 1000f, probability: component.Probability, stun: component.Stun, stunDuration: component.StunDuration); // cats stun meta
+            _flashSystem.FlashArea(uid, args.User, component.Range, component.Duration * 1000f, probability: component.Probability);
             args.Handled = true;
         }
 
@@ -201,6 +201,7 @@ namespace Content.Server.Explosion.EntitySystems
             _body.GibBody(xform.ParentUid, true);
             args.Handled = true;
         }
+
 
         private void HandleRattleTrigger(EntityUid uid, RattleComponent component, TriggerEvent args)
         {
@@ -230,7 +231,7 @@ namespace Content.Server.Explosion.EntitySystems
         private void OnTriggerCollide(EntityUid uid, TriggerOnCollideComponent component, ref StartCollideEvent args)
         {
             if (args.OurFixtureId == component.FixtureID && (!component.IgnoreOtherNonHard || args.OtherFixture.Hard))
-                Trigger(uid);
+                Trigger(uid, args.OtherEntity);
         }
 
         private void OnSpawnTriggered(EntityUid uid, TriggerOnSpawnComponent component, MapInitEvent args)

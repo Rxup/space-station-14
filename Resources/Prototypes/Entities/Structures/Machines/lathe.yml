@@ -199,7 +199,8 @@
       - ClothingHeadHatWelding
       - WetFloorSign
       - ClothingHeadHatCone
-
+      - FreezerElectronics
+      - Flare
   - type: EmagLatheRecipes
     emagStaticRecipes:
       - BoxLethalshot
@@ -288,6 +289,7 @@
     - Dropper
     - ClothingEyesGlassesChemical
     dynamicRecipes:
+      - Intellicard
       - RnDPowerDrill
       - MiningDrill
       - MiningDrillDiamond
@@ -358,6 +360,34 @@
       - FauxTileAstroSnow
       - OreBagOfHolding
       - DeviceQuantumSpinInverter
+# start-backmen: languages
+      - CanilunztTranslator
+      - BubblishTranslator
+      - NekomimeticTranslator
+      - DraconicTranslator
+      - SolCommonTranslator
+      - RootSpeakTranslator
+      - XenoTranslator
+      - BasicGalaticCommonTranslatorImplanter
+      - AdvancedGalaticCommonTranslatorImplanter
+      - BubblishTranslatorImplanter
+      - NekomimeticTranslatorImplanter
+      - DraconicTranslatorImplanter
+      - CanilunztTranslatorImplanter
+      - SolCommonTranslatorImplanter
+      - RootSpeakTranslatorImplanter
+      - AnimalTranslator
+      - MofficTranslatorImplanter
+      - MofficTranslator
+      - ElvishTranslator
+      - DwarvenTranslator
+      - ShadokinTranslator
+      - ValyrianStandardTranslator
+      - ElvishStandardTranslatorImplanter
+      - DwarvenStandardTranslatorImplanter
+      - ShadokinStandardTranslatorImplanter
+      - ValyrianStandardTranslatorImplanter
+  # end-backmen: languages
   - type: EmagLatheRecipes
     emagDynamicRecipes:
       - BoxBeanbag
@@ -460,8 +490,18 @@
     - SpaceHeaterMachineCircuitBoard
     - CutterMachineCircuitboard
     - StationAnchorCircuitboard
+    - CustomLawCircuitBoard
     - SalvageMagnetMachineCircuitboard
     dynamicRecipes:
+      - CustomLawCircuitBoard # cats
+      - AsimovCircuitBoard
+      - CorporateCircuitBoard
+      - NTDefaultCircuitBoard
+      - CommandmentCircuitBoard
+      - PaladinCircuitBoard
+      - StationEfficiencyCircuitBoard
+      - LiveLetLiveCircuitBoard
+      - RobocopCircuitBoard
       - ThermomachineFreezerMachineCircuitBoard
       - HellfireFreezerMachineCircuitBoard
       - PortableScrubberMachineCircuitBoard
@@ -500,7 +540,11 @@
       - CargoTelepadMachineCircuitboard
       - RipleyCentralElectronics
       - RipleyPeripheralsElectronics
-      - HonkerCentralElectronics
+      - GygaxCentralElectronics # mech cats
+      - GygaxPeripheralsElectronics # mech cats
+      - DurandCentralElectronics # mech cats
+      - DurandPeripheralsElectronics # mech cats
+      - HonkerCentralElectronics # mech cats
       - HonkerPeripheralsElectronics
       - HonkerTargetingElectronics
       - HamtrCentralElectronics
@@ -660,6 +704,22 @@
     - HamtrLLeg
     - HamtrRLeg
     - VimHarness
+    - GygaxHarness # mech cats
+    - GygaxLArm # mech cats
+    - GygaxRArm # mech cats
+    - GygaxLLeg # mech cats
+    - GygaxRLeg # mech cats
+    - DurandHarness # mech cats
+    - DurandLArm # mech cats
+    - DurandRArm # mech cats
+    - DurandLLeg # mech cats
+    - DurandRLeg # mech cats
+    - MechLaserWeapon # mech cats
+    - MechScattershotWeapon # mech cats
+    - MechSolarisLaserWeapon # mech cats
+    - MechHadesWeapon # mech cats
+    - MechMssileWeapon # mech cats
+    - MechTeslaWeapon # mech cats
   - type: MaterialStorage
     whitelist:
       tags:

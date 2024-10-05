@@ -27,23 +27,43 @@
   id: Gorlex
 
 - type: entity
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   parent: [BaseTraitorObjectiveGorlex, BaseLivingObjective]
   id: HijackShuttleObjectiveGorlex
   name: Завладейте эвакуационным шаттлом
   description: Улетите на шаттле эвакуации свободным и без лояльного экипажа Nanotrasen на борту. Используйте ЛЮБЫЕ доступные вам методы. Агенты Синдиката, враги Nanotrasen и заложники в наручниках могут оставаться на шаттле живыми. Игнорируйте помощь от кого-либо, кроме агента поддержки.
   components:
-    - type: Objective
-      difficulty: 5 #Hijacker don't help anyone else
-      icon:
-        sprite: Objects/Tools/emag.rsi
-        state: icon
-    - type: HijackShuttleCondition
+  - type: Objective
+    difficulty: 5 #Hijacker don't help anyone else
+    icon:
+      sprite: Objects/Tools/emag.rsi
+      state: icon
+  - type: HijackShuttleCondition
+
+# steal
+
+- type: entity
+  categories: [ HideSpawnMenu ]
+  parent: [BaseTraitorObjectiveGorlex, BaseStealObjective]
+  id: NukeDiskStealObjectiveGorlex
+  components:
+  - type: Objective
+    # high difficulty since the hardest item both to steal, and to not get caught down the road,
+    # since anyone with a pinpointer can track you down and kill you
+    # it's close to being a stealth loneop
+    difficulty: 4
+    icon:
+      sprite: Objects/Misc/nukedisk.rsi
+      state: icon
+  - type: NotCommandRequirement
+  - type: StealCondition
+    stealGroup: NukeDisk
+    owner: objective-condition-steal-station
 
 # kill
 
 - type: entity
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   parent: [BaseTraitorObjectiveGorlex, BaseKillObjective]
   id: KillRandomPersonObjectiveGorlex
   description: Убить...
@@ -58,7 +78,7 @@
     requireDead: true
 
 - type: entity
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   parent: [BaseTraitorObjectiveGorlex, BaseKillObjective]
   id: KillRandomHeadObjectiveGorlex
   description: Он должен умереть...

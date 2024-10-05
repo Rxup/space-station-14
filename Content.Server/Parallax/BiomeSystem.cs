@@ -116,6 +116,17 @@ public sealed partial class BiomeSystem : SharedBiomeSystem
         biome.LoadedEntities.TryGetValue(vector, out var entities);
         DebugTools.Assert(entities is not null, $"Cannot get chunk for entity {ev.Entity}");
         entities.Remove(ev.Entity);
+
+        var modifiedTileCords = cords.Floored();
+        if (biome.ModifiedTiles.TryGetValue(vector, out var modifiedTilesChunk)) 
+        {
+            if (!modifiedTilesChunk.TryGetValue(modifiedTileCords, out _))
+                modifiedTilesChunk.Add(modifiedTileCords);
+        }
+        else
+        {
+            biome.ModifiedTiles.Add(vector, new() { modifiedTileCords });
+        }
     }
     // cats end
 
@@ -997,7 +1008,7 @@ public sealed partial class BiomeSystem : SharedBiomeSystem
             }
         }
 
-        grid.SetTiles(tiles);
+        _mapSystem.SetTiles(gridUid, grid, tiles);
         tiles.Clear();
         component.LoadedChunks.Remove(chunk);
 

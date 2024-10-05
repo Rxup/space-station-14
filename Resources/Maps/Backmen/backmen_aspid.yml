@@ -105054,6 +105054,7 @@ entities:
     - type: Transform
       pos: -7.5,-71.5
       parent: 1
+<<<<<<<<< Temporary merge branch 1
 - proto: WallSolid
   entities:
   - uid: 13488
@@ -105061,6 +105062,8 @@ entities:
     - type: Transform
       pos: -13.5,68.5
       parent: 1
+=========
+>>>>>>>>> Temporary merge branch 2
 - proto: SpaceCash
   entities:
   - uid: 9948
@@ -105128,7 +105131,7 @@ entities:
     - type: Transform
       pos: -29.653055,53.73977
       parent: 1
-- proto: SpaceCash500
+- proto: FakeSpaceCash500
   entities:
   - uid: 7083
     components:

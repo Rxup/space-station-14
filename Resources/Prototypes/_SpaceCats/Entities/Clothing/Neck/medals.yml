@@ -8,7 +8,6 @@
     sprite: _SpaceCats/Clothing/Neck/Medals/holyhunters.rsi
   - type: Clothing
     sprite: _SpaceCats/Clothing/Neck/Medals/holyhunters.rsi
-  - type: Unremoveable
   - type: HeadCage
   - type: StatusEffects
     allowed:

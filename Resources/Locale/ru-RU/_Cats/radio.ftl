@@ -1,0 +1,1 @@
+radio-channel-synth = Троичный

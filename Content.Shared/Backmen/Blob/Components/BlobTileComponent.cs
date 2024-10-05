@@ -1,26 +1,25 @@
-﻿using Content.Shared.Backmen.Blob;
-using Content.Shared.Damage;
+﻿using Content.Shared.Damage;
 using Content.Shared.FixedPoint;
 using Robust.Shared.GameStates;
 
 namespace Content.Shared.Backmen.Blob.Components;
 
-[RegisterComponent, NetworkedComponent, AutoGenerateComponentState(true)]
+[RegisterComponent, NetworkedComponent, AutoGenerateComponentState(true), Serializable]
 public sealed partial class BlobTileComponent : Component
 {
-    [DataField("color"), AutoNetworkedField]
+    [DataField, AutoNetworkedField]
     public Color Color = Color.White;
 
-    [ViewVariables(VVAccess.ReadOnly), AutoNetworkedField]
-    public EntityUid? Core = default!;
+    [ViewVariables]
+    public Entity<BlobCoreComponent>? Core;
 
-    [ViewVariables(VVAccess.ReadOnly)]
+    [DataField]
     public bool ReturnCost = true;
 
-    [ViewVariables(VVAccess.ReadOnly), DataField("tileType")]
-    public BlobTileType BlobTileType = BlobTileType.Normal;
+    [DataField(required: true)]
+    public BlobTileType BlobTileType = BlobTileType.Invalid;
 
-    [ViewVariables(VVAccess.ReadOnly), DataField("healthOfPulse")]
+    [DataField]
     public DamageSpecifier HealthOfPulse = new()
     {
         DamageDict = new Dictionary<string, FixedPoint2>
@@ -34,12 +33,12 @@ public sealed partial class BlobTileComponent : Component
         }
     };
 
-    [ViewVariables(VVAccess.ReadOnly), DataField("flashDamage")]
+    [DataField]
     public DamageSpecifier FlashDamage = new()
     {
         DamageDict = new Dictionary<string, FixedPoint2>
         {
-            { "Heat", 100 },
+            { "Heat", 24 },
         }
     };
 }
@@ -47,13 +46,16 @@ public sealed partial class BlobTileComponent : Component
 [Serializable]
 public enum BlobTileType : byte
 {
+    Invalid, // invalid default value 0
     Normal,
     Strong,
     Reflective,
     Resource,
+    /*
     Storage,
+    Turret,
+    */
     Node,
     Factory,
     Core,
-    None,
 }

@@ -25,7 +25,7 @@
   id: Waffle
 
 - type: entity
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   parent: BaseTraitorObjectiveWaffle
   id: DieObjectiveWaffle
   name: Умрите смертью храбрых
@@ -51,7 +51,7 @@
 # kill
 
 - type: entity
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   parent: [BaseTraitorObjectiveWaffle, BaseKillObjective]
   id: KillRandomPersonObjectiveWaffle
   description: Он видел то чего не следует, нужно чтоб он больше не увидел белого света.
@@ -66,7 +66,7 @@
     requireDead: true
 
 - type: entity
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   parent: [BaseTraitorObjectiveWaffle, BaseKillObjective]
   id: KillRandomHeadObjectiveWaffle
   description: Этот глава явно что-то знает, нельзя допустить чтоб он выжил.

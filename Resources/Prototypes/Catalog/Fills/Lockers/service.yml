@@ -108,7 +108,6 @@
       - id: RobustHarvestChemistryBottle
         prob: 0.3
       - id: ClothingBeltPlant
-      - id: PlantAnalyzer # cats
       - id: PlantBag ##Some maps don't have nutrivend
       - id: BoxMouthSwab
       - id: Dropper
@@ -133,7 +132,6 @@
         prob: 0.5
       - id: NettleSeeds
         prob: 0.7
-      - id: PlantAnalyzer # cats
 
 - type: entity
   id: ClosetJanitorBombFilled

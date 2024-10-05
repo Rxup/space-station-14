@@ -1,5 +1,4 @@
 using System.Numerics;
-using Content.Shared.Backmen.CameraFollow.Components;
 using JetBrains.Annotations;
 using Robust.Shared.Network;
 using Robust.Shared.Serialization;
@@ -50,12 +49,7 @@ public abstract class SharedCameraRecoilSystem : EntitySystem
     ///     If the entity is missing <see cref="CameraRecoilComponent" /> and/or <see cref="EyeComponent" />,
     ///     this call will have no effect. It is safe to call this function on any entity.
     /// </remarks>
-    public abstract void KickCamera(
-        EntityUid euid,
-        Vector2 kickback,
-        CameraRecoilComponent? component = null,
-        float? kickMagnitudeMax = null // backmen: KickMagnitudeMax
-        );
+    public abstract void KickCamera(EntityUid euid, Vector2 kickback, CameraRecoilComponent? component = null);
 
     private void UpdateEyes(float frameTime)
     {

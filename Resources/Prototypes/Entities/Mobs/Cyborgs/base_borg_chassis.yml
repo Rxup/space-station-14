@@ -240,6 +240,15 @@
     damageProtection:
       flatReductions:
         Heat: 10 # capable of touching light bulbs and stoves without feeling pain!
+  - type: LanguageSpeaker
+    currentLanguage: TauCetiBasic
+  - type: LanguageKnowledge #backmen: languages
+    speaks:
+    - Binary
+    - TauCetiBasic
+    understands:
+    - Binary
+    - TauCetiBasic
 
 - type: entity
   abstract: true
@@ -286,6 +295,7 @@
     access: [["Command"], ["Research"]]
   - type: ShowJobIcons
   - type: ShowMindShieldIcons
+  - type: StationAiVision
 
 - type: entity
   id: BaseBorgChassisSyndicate

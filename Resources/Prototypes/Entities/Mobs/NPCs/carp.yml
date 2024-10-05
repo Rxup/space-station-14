@@ -76,8 +76,18 @@
       tags:
         - Carp
         - DoorBumpOpener
-    - type: ReplacementAccent
-      accent: genericAggressive
+#    - type: ReplacementAccent
+#      accent: genericAggressive
+    - type: LanguageSpeaker
+      currentLanguage: TauCetiBasic
+    - type: LanguageKnowledge #backmen: languages
+      speaks:
+      - SpaceMob
+      - Carp
+      understands:
+      - SpaceMob
+      - Carp
+      - Dragon
     - type: Speech
       speechVerb: LargeMob
     - type: InteractionPopup

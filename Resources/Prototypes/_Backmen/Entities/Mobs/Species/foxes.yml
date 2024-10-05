@@ -5,6 +5,16 @@
   id: BaseMobHumanoidFox
   abstract: true
   components:
+  - type: LanguageSpeaker
+    currentLanguage: TauCetiBasic
+  - type: LanguageKnowledge #backmen: languages
+    speaks:
+    - TauCetiBasic
+    - Canilunzt
+    understands:
+    - TauCetiBasic
+    - Canilunzt
+    - Dog
   - type: HumanoidAppearance
     species: HumanoidFoxes
   - type: Icon
@@ -19,6 +29,8 @@
     targetZoom: "1.125, 1.125"
     maxZoom: "1.125, 1.125"
   - type: GrowlingAccent
+  - type: TypingIndicator
+    proto: vulp
   - type: MeleeWeapon
     animation: WeaponArcClaw
     soundHit:
@@ -64,7 +76,7 @@
   name: Urist McHands
   parent: MobHumanDummy
   id: MobHumanoidFoxDummy
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   description: A dummy fox meant to be used in character setup.
   components:
   - type: HumanoidAppearance

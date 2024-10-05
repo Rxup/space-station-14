@@ -1,4 +1,4 @@
-sponsor-win-manager-title = Спорнсор панель
+sponsor-win-manager-title = Спонсор панель
 sponsor-win-manager-tier = Ваш уровень:
 sponsor-win-manager-ghost-default = Стандартный
 sponsor-win-manager-ghost-tier1 = Анимированный Стандартный

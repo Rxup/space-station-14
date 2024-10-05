@@ -10854,6 +10854,18 @@ entities:
         - DoorStatus: DoorBolt
 - proto: AirlockExternalEngineeringLocked
   entities:
+  - uid: 742
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: 23.5,-60.5
+      parent: 8364
+    - type: DeviceLinkSink
+      invokeCounter: 1
+    - type: DeviceLinkSource
+      linkedPorts:
+        3852:
+        - DoorStatus: DoorBolt
   - uid: 3852
     components:
     - type: Transform
@@ -10861,12 +10873,12 @@ entities:
       pos: 28.5,-60.5
       parent: 8364
     - type: DeviceLinkSink
-      invokeCounter: 1
+      invokeCounter: 2
     - type: DeviceLinkSource
       linkedPorts:
         9241:
         - DoorStatus: DoorBolt
-        3858:
+        742:
         - DoorStatus: DoorBolt
   - uid: 11000
     components:
@@ -10940,17 +10952,6 @@ entities:
       parent: 8364
     - type: DeviceLinkSink
       invokeCounter: 1
-- proto: AirlockExternalGlassAtmosphericsLocked
-  entities:
-  - uid: 3858
-    components:
-    - type: Transform
-      pos: 23.5,-60.5
-      parent: 8364
-    - type: DeviceLinkSource
-      linkedPorts:
-        3852:
-        - DoorStatus: DoorBolt
 - proto: AirlockExternalGlassCargoLocked
   entities:
   - uid: 8188
@@ -10991,6 +10992,12 @@ entities:
       parent: 8364
 - proto: AirlockExternalGlassEngineeringLocked
   entities:
+  - uid: 876
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 26.5,-70.5
+      parent: 8364
   - uid: 9241
     components:
     - type: Transform
@@ -11027,12 +11034,6 @@ entities:
       linkedPorts:
         9436:
         - DoorStatus: DoorBolt
-  - uid: 17059
-    components:
-    - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: 26.5,-70.5
-      parent: 8364
 - proto: AirlockExternalGlassLocked
   entities:
   - uid: 1495
@@ -11469,7 +11470,7 @@ entities:
       pos: 24.5,16.5
       parent: 8364
     - type: Door
-      secondsUntilStateChange: -7657.141
+      secondsUntilStateChange: -8056.6084
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -69685,13 +69686,6 @@ entities:
     - type: Transform
       pos: -41.5,-29.5
       parent: 8364
-- proto: ComputerShuttleSalvage
-  entities:
-  - uid: 24687
-    components:
-    - type: Transform
-      pos: -26.5,-36.5
-      parent: 8364
 - proto: ComputerSolarControl
   entities:
   - uid: 5722
@@ -112299,8 +112293,6 @@ entities:
     - type: Transform
       pos: -0.5,-20.5
       parent: 8364
-    - type: GravityGenerator
-      charge: 100
     - type: PointLight
       radius: 175.75
 - proto: Grille
@@ -119859,11 +119851,6 @@ entities:
       parent: 8364
 - proto: HighSecCommandLocked
   entities:
-  - uid: 742
-    components:
-    - type: Transform
-      pos: 31.5,-85.5
-      parent: 8364
   - uid: 862
     components:
     - type: Transform
@@ -119874,15 +119861,11 @@ entities:
     - type: Transform
       pos: 28.5,-94.5
       parent: 8364
-  - uid: 876
-    components:
-    - type: Transform
-      pos: 30.5,-91.5
-      parent: 8364
   - uid: 901
     components:
     - type: Transform
-      pos: 26.5,-91.5
+      rot: -1.5707963267948966 rad
+      pos: 31.5,-85.5
       parent: 8364
   - uid: 944
     components:
@@ -119893,6 +119876,12 @@ entities:
     components:
     - type: Transform
       pos: 28.5,-82.5
+      parent: 8364
+  - uid: 3858
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: 30.5,-91.5
       parent: 8364
   - uid: 5335
     components:
@@ -119910,6 +119899,12 @@ entities:
     components:
     - type: Transform
       pos: -11.5,-36.5
+      parent: 8364
+  - uid: 16788
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: 26.5,-91.5
       parent: 8364
   - uid: 18620
     components:
@@ -124895,6 +124890,13 @@ entities:
     components:
     - type: Transform
       pos: 76.5,-21.5
+      parent: 8364
+- proto: PlayerStationAi
+  entities:
+  - uid: 836
+    components:
+    - type: Transform
+      pos: 28.5,-111.5
       parent: 8364
 - proto: PlushieBee
   entities:
@@ -142251,6 +142253,13 @@ entities:
     - type: Transform
       pos: 6.5,-16.5
       parent: 8364
+- proto: SpawnPointCargoBorg
+  entities:
+  - uid: 16796
+    components:
+    - type: Transform
+      pos: -24.5,-38.5
+      parent: 8364
 - proto: SpawnPointCargoTechnician
   entities:
   - uid: 14629
@@ -142332,6 +142341,13 @@ entities:
     - type: Transform
       pos: -5.5,15.5
       parent: 8364
+- proto: SpawnPointEngenerBorg
+  entities:
+  - uid: 16795
+    components:
+    - type: Transform
+      pos: 7.5,-61.5
+      parent: 8364
 - proto: SpawnPointHeadOfPersonnel
   entities:
   - uid: 11765
@@ -142357,6 +142373,13 @@ entities:
     components:
     - type: Transform
       pos: 6.5,-34.5
+      parent: 8364
+- proto: SpawnPointJanitorBorg
+  entities:
+  - uid: 16797
+    components:
+    - type: Transform
+      pos: 7.5,-34.5
       parent: 8364
 - proto: SpawnPointLatejoin
   entities:
@@ -142418,6 +142441,13 @@ entities:
     components:
     - type: Transform
       pos: 62.5,-6.5
+      parent: 8364
+- proto: SpawnPointMedIcalBorg
+  entities:
+  - uid: 16794
+    components:
+    - type: Transform
+      pos: 42.5,-27.5
       parent: 8364
 - proto: SpawnPointMedicalDoctor
   entities:
@@ -142513,6 +142543,23 @@ entities:
     - type: Transform
       pos: -42.5,3.5
       parent: 8364
+- proto: SpawnPointPrisoner
+  entities:
+  - uid: 16789
+    components:
+    - type: Transform
+      pos: -2.5,23.5
+      parent: 8364
+  - uid: 16790
+    components:
+    - type: Transform
+      pos: -6.5,23.5
+      parent: 8364
+  - uid: 16791
+    components:
+    - type: Transform
+      pos: -10.5,23.5
+      parent: 8364
 - proto: SpawnPointPsychologist
   entities:
   - uid: 11556
@@ -142595,6 +142642,13 @@ entities:
     - type: Transform
       pos: 72.5,-27.5
       parent: 8364
+- proto: SpawnPointSecurityBorg
+  entities:
+  - uid: 16793
+    components:
+    - type: Transform
+      pos: 0.5,26.5
+      parent: 8364
 - proto: SpawnPointSecurityCadet
   entities:
   - uid: 9453
@@ -142639,6 +142693,13 @@ entities:
     - type: Transform
       pos: 9.5,37.5
       parent: 8364
+- proto: SpawnPointServiceBorg
+  entities:
+  - uid: 16792
+    components:
+    - type: Transform
+      pos: 25.5,-10.5
+      parent: 8364
 - proto: SpawnPointServiceWorker
   entities:
   - uid: 6948
@@ -142650,13 +142711,6 @@ entities:
     components:
     - type: Transform
       pos: 27.5,-7.5
-      parent: 8364
-- proto: SpawnPointStationAI
-  entities:
-  - uid: 836
-    components:
-    - type: Transform
-      pos: 28.5,-111.5
       parent: 8364
 - proto: SpawnPointStationEngineer
   entities:
@@ -168893,7 +168947,7 @@ entities:
     - type: Transform
       pos: 16.540148,41.51879
       parent: 8364
-- proto: WeaponTurretLaserNanoTrasenAI
+- proto: WeaponTurretSyndicateBroken
   entities:
   - uid: 27197
     components:

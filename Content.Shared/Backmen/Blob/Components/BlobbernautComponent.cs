@@ -16,7 +16,7 @@ public sealed partial class BlobbernautComponent : Component
     public float DamageFrequency = 5;
 
     [ViewVariables(VVAccess.ReadOnly)]
-    public TimeSpan NextDamage = TimeSpan.Zero;
+    public float NextDamage = 0;
 
     [ViewVariables(VVAccess.ReadOnly), DataField("damage")]
     public DamageSpecifier Damage = new()

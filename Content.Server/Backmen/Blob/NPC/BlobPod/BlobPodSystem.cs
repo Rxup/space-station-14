@@ -77,6 +77,50 @@ public sealed class BlobPodSystem : SharedBlobPodSystem
         }
     }
 
+    public bool Zombify(Entity<BlobPodComponent> ent, EntityUid target)
+    {
+        _inventory.TryGetSlotEntity(target, "head", out var headItem);
+        if (HasComp<BlobMobComponent>(headItem))
+            return false;
+
+        _inventory.TryUnequip(target, "head", true, true);
+        var equipped = _inventory.TryEquip(target, ent, "head", true, true);
+
+        if (!equipped)
+            return false;
+
+        _popups.PopupEntity(Loc.GetString("blob-mob-zombify-second-end", ("pod", ent.Owner)),
+            target,
+            target,
+            Shared.Popups.PopupType.LargeCaution);
+        _popups.PopupEntity(
+            Loc.GetString("blob-mob-zombify-third-end", ("pod", ent.Owner), ("target", target)),
+            target,
+            Filter.PvsExcept(target),
+            true,
+            Shared.Popups.PopupType.LargeCaution);
+
+        RemComp<CombatModeComponent>(ent);
+        RemComp<HTNComponent>(ent);
+        RemComp<UnremoveableComponent>(ent);
+
+        _audioSystem.PlayPvs(ent.Comp.ZombifyFinishSoundPath, ent);
+
+        var rejEv = new RejuvenateEvent();
+        RaiseLocalEvent(target, rejEv);
+
+        ent.Comp.ZombifiedEntityUid = target;
+
+        var zombieBlob = EnsureComp<ZombieBlobComponent>(target);
+        zombieBlob.BlobPodUid = ent;
+        if (HasComp<ActorComponent>(ent))
+        {
+            _npc.SleepNPC(target);
+        }
+
+        return true;
+    }
+
     private void OnZombify(EntityUid uid, BlobPodComponent component, BlobPodZombifyDoAfterEvent args)
     {
         component.IsZombifying = false;
@@ -91,40 +135,7 @@ public sealed class BlobPodSystem : SharedBlobPodSystem
             return;
         }
 
-        _inventory.TryGetSlotEntity(args.Args.Target.Value, "head", out var headItem);
-        if (HasComp<BlobMobComponent>(headItem))
-            return;
-
-        _inventory.TryUnequip(args.Args.Target.Value, "head", true, true);
-        var equipped = _inventory.TryEquip(args.Args.Target.Value, uid, "head", true, true);
-
-        if (!equipped)
-            return;
-
-        _popups.PopupEntity(Loc.GetString("blob-mob-zombify-second-end", ("pod", uid)), args.Args.Target.Value,
-            args.Args.Target.Value, Shared.Popups.PopupType.LargeCaution);
-        _popups.PopupEntity(
-            Loc.GetString("blob-mob-zombify-third-end", ("pod", uid), ("target", args.Args.Target.Value)),
-            args.Args.Target.Value, Filter.PvsExcept(args.Args.Target.Value), true,
-            Shared.Popups.PopupType.LargeCaution);
-
-        RemComp<CombatModeComponent>(uid);
-        RemComp<HTNComponent>(uid);
-        RemComp<UnremoveableComponent>(uid);
-
-        _audioSystem.PlayPvs(component.ZombifyFinishSoundPath, uid);
-
-        var rejEv = new RejuvenateEvent();
-        RaiseLocalEvent(args.Args.Target.Value, rejEv);
-
-        component.ZombifiedEntityUid = args.Args.Target.Value;
-
-        var zombieBlob = EnsureComp<ZombieBlobComponent>(args.Args.Target.Value);
-        zombieBlob.BlobPodUid = uid;
-        if (HasComp<ActorComponent>(uid))
-        {
-            _npc.SleepNPC(args.Args.Target.Value);
-        }
+        Zombify((uid, component), args.Args.Target.Value);
     }
 
 

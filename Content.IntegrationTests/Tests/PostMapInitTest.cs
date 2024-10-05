@@ -81,6 +81,7 @@ namespace Content.IntegrationTests.Tests
             "OmegaSC",
             "PackedSC",
             "ReachSC",
+            "AspidSC",
             //end-spacecats
             //start-backmen
             "CentCommv2",

@@ -7,3 +7,8 @@
   id: Changelings
   name: guide-entry-changelings
   text: "/ServerInfo/_Backmen/Guidebook/Antagonist/Changelings.xml"
+
+- type: guideEntry
+  id: superpsi
+  name: guide-entry-superpsi
+  text: "/ServerInfo/_Backmen/Guidebook/Antagonist/superpsi.xml"

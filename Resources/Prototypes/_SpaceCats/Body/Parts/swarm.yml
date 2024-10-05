@@ -1,6 +1,6 @@
 - type: entity
   id: BaseTorsoSwarmer
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   name: Тело свармера
   parent: BaseTorso
   components:
@@ -14,7 +14,7 @@
 
 - type: entity
   id: BaseRightHandSwarmer
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   name: "Правая рука свармера"
   parent: BaseRightHand
   components:

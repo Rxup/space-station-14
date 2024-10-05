@@ -884,7 +884,7 @@ namespace Content.Client.Lobby.UI
 
                     category.AddChild(new PanelContainer
                     {
-                        PanelOverride = new StyleBoxFlat {BackgroundColor = Color.FromHex("#464966")},
+                        PanelOverride = new StyleBoxFlat {BackgroundColor = Color.FromHex("#232323")},
                         Children =
                         {
                             new Label

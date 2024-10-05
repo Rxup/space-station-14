@@ -2,6 +2,7 @@
   id: BlueShield
   name: job-name-blueshield
   description: job-description-blueshield
+  color: "#4682B4"
   playTimeTracker: JobBlueShield
   canBeAntag: false
   requireAdminNotify: true

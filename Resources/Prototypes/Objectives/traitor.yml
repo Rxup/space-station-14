@@ -282,7 +282,7 @@
 
 # Corvax-MRP-Start: Make nuke disk objective separate
 # - type: entity
-  # noSpawn: true
+  # categories: [ HideSpawnMenu ]
   # parent: BaseCaptainObjective
   # id: NukeDiskStealObjective
   # components:
@@ -296,11 +296,3 @@
     # stealGroup: NukeDisk
     # owner: objective-condition-steal-station
 # Corvax-MRP-End
-
-- type: entity
-  parent: BaseCaptainObjective
-  id: HoSGunStealObjective
-  components:
-  - type: StealCondition
-    stealGroup: WeaponMultiphaseEnergyGun
-    owner: job-name-hos

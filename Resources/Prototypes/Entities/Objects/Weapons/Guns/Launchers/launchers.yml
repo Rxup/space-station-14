@@ -25,7 +25,7 @@
   parent: [BaseWeaponLauncher, BaseGunWieldable, BaseSyndicateContraband]
   id: WeaponLauncherChinaLake
   description: PLOOP
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
   - type: Sprite
     sprite: Objects/Weapons/Guns/Launchers/china_lake.rsi
@@ -58,7 +58,7 @@
   name: RPG-7
   parent: [ BaseWeaponLauncher, BaseMajorContraband ]
   id: WeaponLauncherRocket
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   description: A modified ancient rocket-propelled grenade launcher.
   components:
   - type: Sprite

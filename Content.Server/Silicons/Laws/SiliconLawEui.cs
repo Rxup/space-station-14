@@ -32,8 +32,8 @@ public sealed class SiliconLawEui : BaseEui
 
     public void UpdateLaws(SiliconLawBoundComponent? lawBoundComponent, EntityUid player)
     {
-        if (!IsAllowed())
-            return;
+        //if (!IsAllowed())
+            //return;  # cats ai
 
         var laws = _siliconLawSystem.GetLaws(player, lawBoundComponent);
         _laws = laws.Laws;
@@ -48,8 +48,8 @@ public sealed class SiliconLawEui : BaseEui
             return;
         }
 
-        if (!IsAllowed())
-            return;
+        //if (!IsAllowed())
+            //return; # cats ai
 
         var player = _entityManager.GetEntity(message.Target);
 

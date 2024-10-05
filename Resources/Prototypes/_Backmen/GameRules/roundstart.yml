@@ -1,7 +1,7 @@
 ﻿- type: entity
   id: FleshCult
   parent: BaseGameRule
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
     - type: GameRule
 #      minPlayers: 15
@@ -12,7 +12,7 @@
 - type: entity
   id: BlobGameMode
   parent: BaseGameRule
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
   - type: GameRule
 #    minPlayers: 15 
@@ -22,14 +22,14 @@
 - type: entity
   id: Blob
   parent: BaseGameRule
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
   - type: BlobRule
 
 - type: entity
   id: VampiresGameRule
   parent: BaseGameRule
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
   - type: GameRule
 #    minPlayers: 10
@@ -39,14 +39,14 @@
 - type: entity
   id: VampireObjective
   parent: BaseGameRule
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
   - type: BloodsuckerObjective
 
 - type: entity
   id: VampireOutbreak
   parent: BaseGameRule
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
   - type: StationEvent
     earliestStart: 50
@@ -59,7 +59,7 @@
 - type: entity
   id: Shipwrecked
   parent: BaseGameRule
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
     - type: GameRule
       minPlayers: 1
@@ -134,13 +134,16 @@
     sets:
     - groups: ThiefObjectiveGroups
       maxPicks: 10
-    maxDifficulty: 2
+    - groups: ThiefBigObjectiveGroups
+      prob: 0.4
+      maxPicks: 2
+    maxDifficulty: 3.5
   - type: AntagSelection
     agentName: thief-round-end-agent-name
     definitions:
     - prefRoles: [ Thief ]
-      max: 8
-      playerRatio: 10
+      max: 10
+      playerRatio: 7
       blacklist:
         components:
         - AntagImmune
@@ -148,6 +151,8 @@
       allowNonHumans: true
       multiAntagSetting: NotExclusive
       startingGear: ThiefGear
+#      components: # Corvax-MRP
+#      - type: Pacified
       mindComponents:
       - type: ThiefRole
         prototype: Thief

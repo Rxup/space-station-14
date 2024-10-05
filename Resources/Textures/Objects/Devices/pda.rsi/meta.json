@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "license": "CC-BY-SA-3.0",
-  "copyright": "sprited by TheGypsyBaron https://github.com/SemkaGamez",
+  "copyright": "especially for the Space Cats server; Sprited by TheGypsyBaron https://github.com/SemkaGamez",
+  "license": "CC BY-NC-SA 4.0",
   "size": {
     "x": 32,
     "y": 32
@@ -59,7 +59,7 @@
           0.4,
           0.4
         ]
-      ]
+      ]    
     },
     {
       "name": "pda-boxer",
@@ -81,7 +81,7 @@
           0.4,
           0.4
         ]
-      ]
+      ]     
     },
     {
       "name": "pda-cargo",
@@ -92,7 +92,7 @@
           0.4,
           0.4
         ]
-      ]
+      ]     
     },
     {
       "name": "pda-ce",
@@ -103,7 +103,7 @@
           0.4,
           0.4
         ]
-      ]
+      ]     
     },
     {
       "name": "pda-chaplain",
@@ -114,7 +114,7 @@
           0.4,
           0.4
         ]
-      ]
+      ]      
     },
     {
       "name": "pda-chemistry",
@@ -125,7 +125,7 @@
           0.4,
           0.4
         ]
-      ]
+      ]     
     },
     {
       "name": "pda-clear",
@@ -136,7 +136,7 @@
           0.4,
           0.4
         ]
-      ]
+      ]     
     },
     {
       "name": "pda-clown",
@@ -158,7 +158,7 @@
           0.4,
           0.4
         ]
-      ]
+      ]     
     },
     {
       "name": "pda-cook",
@@ -180,7 +180,7 @@
           0.4,
           0.4
         ]
-      ]
+      ]    
     },
     {
       "name": "pda-engineer",
@@ -191,7 +191,7 @@
           0.4,
           0.4
         ]
-      ]
+      ]   
     },
     {
       "name": "pda-genetics",
@@ -202,7 +202,7 @@
           0.4,
           0.4
         ]
-      ]
+      ]   
     },
     {
       "name": "pda-hop",
@@ -213,7 +213,7 @@
           0.4,
           0.4
         ]
-      ]
+      ]     
     },
     {
       "name": "pda-hos",
@@ -224,7 +224,7 @@
           0.4,
           0.4
         ]
-      ]
+      ]     
     },
     {
       "name": "pda-hydro",
@@ -235,7 +235,7 @@
           0.4,
           0.4
         ]
-      ]
+      ]    
     },
     {
       "name": "pda-janitor",
@@ -246,7 +246,7 @@
           0.4,
           0.4
         ]
-      ]
+      ]     
     },
     {
       "name": "pda-lawyer",
@@ -257,10 +257,10 @@
           0.4,
           0.4
         ]
-      ]
+      ]     
     },
     {
-      "name": "pda-library",
+      "name": "pda-library" ,
       "delays": [
         [
           0.4,
@@ -268,7 +268,7 @@
           0.4,
           0.4
         ]
-      ]
+      ]    
     },
     {
       "name": "pda-medical",
@@ -279,7 +279,7 @@
           0.4,
           0.4
         ]
-      ]
+      ]    
     },
     {
       "name": "pda-paramedic",
@@ -312,10 +312,10 @@
           0.4,
           0.4
         ]
-      ]
+      ] 
     },
     {
-      "name": "pda-pirate",
+      "name": "pda-pirate" ,
       "delays": [
         [
           0.4,
@@ -326,7 +326,7 @@
       ]
     },
     {
-      "name": "pda-qm",
+      "name": "pda-qm"  ,
       "delays": [
         [
           0.4,
@@ -355,7 +355,18 @@
       ]
     },
     {
-      "name": "pda-rd",
+      "name": "pda-rd"   ,
+      "delays": [
+        [
+          0.4,
+          0.4,
+          0.4,
+          0.4
+        ]
+      ]  
+    },
+    {
+      "name": "pda-roboticist"   ,
       "delays": [
         [
           0.4,
@@ -366,7 +377,7 @@
       ]
     },
     {
-      "name": "pda-roboticist",
+      "name": "pda-science"    ,
       "delays": [
         [
           0.4,
@@ -377,7 +388,7 @@
       ]
     },
     {
-      "name": "pda-science",
+      "name": "pda-security"  ,
       "delays": [
         [
           0.4,
@@ -385,10 +396,10 @@
           0.4,
           0.4
         ]
-      ]
+      ]   
     },
     {
-      "name": "pda-security",
+      "name": "pda-brigmedic" ,
       "delays": [
         [
           0.4,
@@ -396,21 +407,10 @@
           0.4,
           0.4
         ]
-      ]
+      ]   
     },
     {
-      "name": "pda-brigmedic",
-      "delays": [
-        [
-          0.4,
-          0.4,
-          0.4,
-          0.4
-        ]
-      ]
-    },
-    {
-      "name": "pda-syndi",
+      "name": "pda-syndi"     ,
       "delays": [
         [
           0.4,
@@ -429,10 +429,10 @@
           0.4,
           0.4
         ]
-      ]
+      ]     
     },
     {
-      "name": "pda-centcom",
+      "name": "pda-centcom"  ,
       "delays": [
         [
           0.4,
@@ -440,10 +440,10 @@
           0.4,
           0.4
         ]
-      ]
+      ]  
     },
     {
-      "name": "pda-virology",
+      "name": "pda-virology"   ,
       "delays": [
         [
           0.4,
@@ -451,10 +451,10 @@
           0.4,
           0.4
         ]
-      ]
+      ]  
     },
     {
-      "name": "pda-warden",
+      "name": "pda-warden"  ,
       "delays": [
         [
           0.4,
@@ -462,7 +462,7 @@
           0.4,
           0.4
         ]
-      ]
+      ]   
     },
     {
       "name": "pda-musician",
@@ -473,10 +473,10 @@
           0.4,
           0.4
         ]
-      ]
+      ]      
     },
     {
-      "name": "pda-reporter",
+      "name": "pda-reporter"  ,
       "delays": [
         [
           0.4,
@@ -484,7 +484,7 @@
           0.4,
           0.4
         ]
-      ]
+      ]  
     },
     {
       "name": "pda-interncadet",
@@ -495,10 +495,10 @@
           0.4,
           0.4
         ]
-      ]
+      ]    
     },
     {
-      "name": "pda-internmed",
+      "name": "pda-internmed"  ,
       "delays": [
         [
           0.4,
@@ -506,10 +506,10 @@
           0.4,
           0.4
         ]
-      ]
+      ]   
     },
     {
-      "name": "pda-internsci",
+      "name": "pda-internsci"  ,
       "delays": [
         [
           0.4,
@@ -517,10 +517,10 @@
           0.4,
           0.4
         ]
-      ]
+      ]   
     },
     {
-      "name": "pda-internservice",
+      "name": "pda-internservice"  ,
       "delays": [
         [
           0.4,
@@ -528,7 +528,7 @@
           0.4,
           0.4
         ]
-      ]
+      ]   
     },
     {
       "name": "pda-interntech",
@@ -542,7 +542,18 @@
       ]
     },
     {
-      "name": "pda-zookeeper",
+      "name": "pda-zookeeper"  ,
+      "delays": [
+        [
+          0.4,
+          0.4,
+          0.4,
+          0.4
+        ]
+      ]   
+    },
+    {
+      "name": "pda-ert"   ,
       "delays": [
         [
           0.4,
@@ -553,7 +564,7 @@
       ]
     },
     {
-      "name": "pda-ert",
+      "name": "pda-cluwne"  ,
       "delays": [
         [
           0.4,
@@ -561,18 +572,7 @@
           0.4,
           0.4
         ]
-      ]
-    },
-    {
-      "name": "pda-cluwne",
-      "delays": [
-        [
-          0.4,
-          0.4,
-          0.4,
-          0.4
-        ]
-      ]
+      ]  
     },
     {
       "name": "pda-seniorengineer",
@@ -594,10 +594,10 @@
           0.4,
           0.4
         ]
-      ]
+      ]     
     },
     {
-      "name": "pda-seniorphysician",
+      "name": "pda-seniorphysician"    ,
       "delays": [
         [
           0.4,
@@ -605,10 +605,10 @@
           0.4,
           0.4
         ]
-      ]
+      ] 
     },
     {
-      "name": "pda-seniorofficer",
+      "name": "pda-seniorofficer" ,
       "delays": [
         [
           0.4,

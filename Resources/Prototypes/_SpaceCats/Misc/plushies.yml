@@ -35,3 +35,22 @@
   - type: MeleeWeapon
     soundHit:
       path: /Audio/Animals/cringe.ogg
+
+- type: entity
+  parent: BasePlushie
+  id: PlushieFejet
+  name: плюшевая Сабина Колонтарёва
+  description: Пахнет рисом с едва заметным запахом трифторида хлора. На рукаве правой руки пришита бирка с надписью "<Не вижу здесь никакого бога> - Юрий Гагарин".
+  components:
+  - type: Sprite
+    sprite: _SpaceCats/Misc/fejet.rsi
+    state: plushie_fejet
+  - type: EmitSoundOnUse
+    sound:
+      path: /Audio/Animals/fox_squeak.ogg
+  - type: EmitSoundOnLand
+    sound:
+      path: /Audio/Animals/fox_squeak.ogg
+  - type: MeleeWeapon
+    soundHit:
+      path: /Audio/Animals/fox_squeak.ogg

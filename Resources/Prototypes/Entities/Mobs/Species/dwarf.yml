@@ -5,6 +5,15 @@
   id: BaseMobDwarf
   abstract: true
   components:
+  - type: LanguageSpeaker
+    currentLanguage: TauCetiBasic
+  - type: LanguageKnowledge #backmen: languages
+    speaks:
+    - TauCetiBasic
+    - Dwarven
+    understands:
+    - TauCetiBasic
+    - Dwarven
   - type: Hunger
   - type: Thirst
   - type: Icon
@@ -24,6 +33,8 @@
   - type: Body
     prototype: Dwarf
     requiredLegs: 2
+  - type: TypingIndicator
+    proto: dwarf
   - type: Butcherable
     butcheringType: Spike
     spawned:

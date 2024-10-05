@@ -18,7 +18,7 @@
     speechVerb: Vox
     speechSounds: Vox
   - type: TypingIndicator
-    proto: vox
+    proto: vulp
   - type: Vocal
     sounds:
       Male: UnisexVox
@@ -130,6 +130,16 @@
           32:
             sprite: Mobs/Species/Vox/displacement.rsi
             state: shoes
+  - type: LanguageSpeaker
+    currentLanguage: TauCetiBasic
+  - type: LanguageKnowledge #backmen: languages
+    speaks:
+    - TauCetiBasic
+    - Freespeak
+    understands:
+    - TauCetiBasic
+    - Freespeak
+
 
 - type: entity
   parent: BaseSpeciesDummy

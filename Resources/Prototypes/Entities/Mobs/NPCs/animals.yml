@@ -32,6 +32,8 @@
     states:
       Alive:
         Base: bat
+      Critical:
+        Base: dead
       Dead:
         Base: dead
   - type: Butcherable
@@ -49,8 +51,15 @@
     flavorKind: station-event-random-sentience-flavor-organic
   - type: Bloodstream
     bloodMaxVolume: 50
-  - type: ReplacementAccent
-    accent: mouse
+#  - type: ReplacementAccent
+#    accent: mouse
+  - type: LanguageSpeaker
+    currentLanguage: TauCetiBasic
+  - type: LanguageKnowledge #backmen: languages
+    speaks:
+    - Mouse
+    understands:
+    - Mouse
   - type: MeleeWeapon
     soundHit:
       path: /Audio/Effects/bite.ogg
@@ -101,6 +110,8 @@
     states:
       Alive:
         Base: 0
+      Critical:
+        Base: dead
       Dead:
         Base: dead
   - type: Item
@@ -225,8 +236,15 @@
   - type: EggLayer
     eggSpawn:
     - id: FoodEgg
-  - type: ReplacementAccent
-    accent: chicken
+#  - type: ReplacementAccent
+#    accent: chicken
+  - type: LanguageSpeaker
+    currentLanguage: TauCetiBasic
+  - type: LanguageKnowledge #backmen: languages
+    speaks:
+    - Chicken
+    understands:
+    - Chicken
   - type: SentienceTarget
     flavorKind: station-event-random-sentience-flavor-organic
   - type: NpcFactionMember
@@ -341,6 +359,8 @@
     states:
       Alive:
         Base: cockroach
+      Critical:
+        Base: cockroach_dead
       Dead:
         Base: cockroach_dead
   - type: Bloodstream
@@ -383,6 +403,14 @@
   - type: NonSpreaderZombie
   - type: SentienceTarget
     flavorKind: station-event-random-sentience-flavor-organic
+  - type: MeleeWeapon
+    soundHit:
+      path: /Audio/Effects/bite.ogg
+    angle: 0
+    animation: WeaponArcBite
+    damage:
+      types:
+        Piercing: 0
 
 - type: entity
   name: glockroach
@@ -507,8 +535,15 @@
       amount: 2
   - type: Extractable
     grindableSolutionName: food
-  - type: ReplacementAccent
-    accent: mothroach
+#  - type: ReplacementAccent
+#    accent: mothroach
+  - type: LanguageSpeaker
+    currentLanguage: TauCetiBasic
+  - type: LanguageKnowledge #backmen: languages
+    speaks:
+    - Moffic
+    understands:
+    - Moffic
   - type: ZombieAccentOverride
     accent: zombieMoth
   - type: Vocal
@@ -627,6 +662,8 @@
     states:
       Alive:
         Base: duck-0
+      Critical:
+        Base: dead-0
       Dead:
         Base: dead-0
   - type: Butcherable
@@ -645,8 +682,16 @@
   - type: EggLayer
     eggSpawn:
     - id: FoodEgg
-  - type: ReplacementAccent
-    accent: duck
+#  - type: ReplacementAccent
+#    accent: duck
+  - type: LanguageSpeaker
+    currentLanguage: TauCetiBasic
+  - type: LanguageKnowledge #backmen: languages
+    speaks:
+    - Duck
+    understands:
+    - SpaceMob
+    - Duck
   - type: SentienceTarget
     flavorKind: station-event-random-sentience-flavor-organic
   - type: NpcFactionMember
@@ -667,6 +712,8 @@
     states:
       Alive:
         Base: duck-1
+      Critical:
+        Base: dead-1
       Dead:
         Base: dead-1
 
@@ -684,6 +731,8 @@
     states:
       Alive:
         Base: duck-2
+      Critical:
+        Base: dead-2
       Dead:
         Base: dead-2
 
@@ -743,6 +792,8 @@
     states:
       Alive:
         Base: butterfly
+      Critical:
+        Base: dead
       Dead:
         Base: dead
   - type: Bloodstream
@@ -789,6 +840,8 @@
     states:
       Alive:
         Base: cow
+      Critical:
+        Base: dead
       Dead:
         Base: dead
   - type: SolutionContainerManager
@@ -871,6 +924,8 @@
     states:
       Alive:
         Base: crab
+      Critical:
+        Base: dead
       Dead:
         Base: dead
   - type: Butcherable
@@ -884,8 +939,16 @@
     interactSuccessSpawn: EffectHearts
     interactSuccessSound:
       path: /Audio/Voice/Arachnid/arachnid_chitter.ogg
-  - type: ReplacementAccent
-    accent: crab
+#  - type: ReplacementAccent
+#    accent: crab
+  - type: LanguageSpeaker
+    currentLanguage: TauCetiBasic
+  - type: LanguageKnowledge #backmen: languages
+    speaks:
+    - Crab
+    understands:
+    - SpaceMob
+    - Crab
   - type: Bloodstream
     bloodMaxVolume: 50
     bloodReagent: CopperBlood
@@ -1019,6 +1082,8 @@
     states:
       Alive:
         Base: goose
+      Critical:
+        Base: dead
       Dead:
         Base: dead
   - type: Butcherable
@@ -1115,6 +1180,15 @@
   id: MobKangaroo
   description: A large marsupial herbivore. It has powerful hind legs, with nails that resemble long claws.
   components:
+  - type: LanguageSpeaker
+    currentLanguage: Kangaroo
+  - type: LanguageKnowledge #backmen: languages
+    speaks:
+    - Kangaroo
+    understands:
+    - TauCetiBasic
+    - Kangaroo
+    - SpaceMob
   - type: MovementSpeedModifier
     baseWalkSpeed: 3.5
     baseSprintSpeed: 4.5
@@ -1139,8 +1213,8 @@
   - type: Inventory
     speciesId: kangaroo
     templateId: kangaroo
-  - type: ReplacementAccent
-    accent: kangaroo
+#  - type: ReplacementAccent
+#    accent: kangaroo
   - type: Butcherable
     spawned:
     - id: FoodMeat
@@ -1211,6 +1285,14 @@
   description: The genetic bipedal ancestor of... Uh... Something. Yeah, there's definitely something on the station that descended from whatever this is.
   abstract: true
   components:
+  - type: LanguageSpeaker
+    currentLanguage: Monkey
+  - type: LanguageKnowledge #backmen: languages
+    speaks:
+    - Monkey
+    understands:
+    - TauCetiBasic
+    - Monkey
   - type: DiseaseCarrier
   - type: CombatMode
   - type: Inventory
@@ -1310,6 +1392,7 @@
     tags:
     - VimPilot
     - DoorBumpOpener
+    - AnomalyHost
   - type: Reactive
     groups:
       Flammable: [ Touch ]
@@ -1333,7 +1416,6 @@
   - type: Speech
     speechSounds: Monkey
     speechVerb: Monkey
-  - type: MonkeyAccent
   - type: SentienceTarget
     flavorKind: station-event-random-sentience-flavor-primate
   - type: AlwaysRevolutionaryConvertible
@@ -1412,8 +1494,16 @@
   - type: NameIdentifier
     group: Kobold
   - type: LizardAccent
-  - type: ReplacementAccent
-    accent: kobold
+#  - type: ReplacementAccent
+#    accent: kobold
+  - type: LanguageSpeaker
+    currentLanguage: TauCetiBasic
+  - type: LanguageKnowledge #backmen: languages
+    speaks:
+    - Kobold
+    understands:
+    - TauCetiBasic
+    - Kobold
   - type: Speech
     speechSounds: Lizard
     speechVerb: Reptilian
@@ -1691,8 +1781,16 @@
     spawned:
     - id: FoodMeatRat
       amount: 1
-  - type: ReplacementAccent
-    accent: mouse
+#  - type: ReplacementAccent
+#    accent: mouse
+  - type: LanguageSpeaker
+    currentLanguage: TauCetiBasic
+  - type: LanguageKnowledge #backmen: languages
+    speaks:
+    - Mouse
+    understands:
+    - TauCetiBasic
+    - Mouse
   - type: Tag
     tags:
     - Trash
@@ -1880,6 +1978,14 @@
   id: MobLizard
   description: A harmless dragon.
   components:
+  - type: LanguageSpeaker
+    currentLanguage: Dragon
+  - type: LanguageKnowledge #backmen: languages
+    speaks:
+    - Dragon
+    understands:
+    - TauCetiBasic
+    - Dragon
   - type: MovementSpeedModifier
     baseWalkSpeed: 2
     baseSprintSpeed: 3
@@ -1905,6 +2011,8 @@
     states:
       Alive:
         Base: lizard
+      Critical:
+        Base: dead
       Dead:
         Base: dead
   - type: Butcherable
@@ -1959,6 +2067,8 @@
     states:
       Alive:
         Base: slug
+      Critical:
+        Base: dead
       Dead:
         Base: dead
   - type: Butcherable
@@ -2011,6 +2121,8 @@
     states:
       Alive:
         Base: frog
+      Critical:
+        Base: dead
       Dead:
         Base: dead
   - type: Butcherable
@@ -2061,6 +2173,8 @@
     states:
       Alive:
         Base: parrot
+      Critical:
+        Base: dead
       Dead:
         Base: dead
   - type: Butcherable
@@ -2112,6 +2226,8 @@
     states:
       Alive:
         Base: penguin
+      Critical:
+        Base: penguin_dead
       Dead:
         Base: penguin_dead
   - type: Butcherable
@@ -2181,6 +2297,8 @@
     states:
       Alive:
         Base: penguin
+      Critical:
+        Base: dead
       Dead:
         Base: dead
   - type: MeleeWeapon
@@ -2219,6 +2337,14 @@
   id: MobSnake
   description: Hissss! Bites aren't poisonous.
   components:
+  - type: LanguageSpeaker
+    currentLanguage: Dragon
+  - type: LanguageKnowledge #backmen: languages
+    speaks:
+    - Dragon
+    understands:
+    - TauCetiBasic
+    - Dragon
   - type: Sprite
     drawdepth: Mobs
     layers:
@@ -2268,6 +2394,16 @@
   id: MobGiantSpider
   description: Widely recognized to be the literal worst thing in existence.
   components:
+  - type: LanguageSpeaker
+    currentLanguage: Spider
+  - type: LanguageKnowledge #backmen: languages
+    speaks:
+    - Spider
+    understands:
+    - TauCetiBasic
+    - Spider
+    - SpaceMob
+    - Xeno
   - type: Sprite
     drawdepth: Mobs
     layers:
@@ -2303,6 +2439,8 @@
     states:
       Alive:
         Base: tarantula
+      Critical:
+        Base: tarantula_dead
       Dead:
         Base: tarantula_dead
   - type: Butcherable
@@ -2338,8 +2476,8 @@
   - type: MeleeChemicalInjector
     transferAmount: 0.75
     solution: melee
-  - type: ReplacementAccent
-    accent: xeno
+#  - type: ReplacementAccent
+#    accent: xeno
   - type: InteractionPopup
     successChance: 0.5
     interactSuccessString: petting-success-tarantula
@@ -2428,6 +2566,8 @@
       states:
         Alive:
           Base: clown
+        Critical:
+          Base: dead
         Dead:
           Base: dead
     - type: MobThresholds
@@ -2460,11 +2600,11 @@
   id: MobGiantSpiderWizard
   description: This spider looks a little magical
   suffix: Wizard
-  components:
-  - type: Accentless
-    removes:
-    - type: ReplacementAccent
-      accent: xeno  #let this wizard speak
+#  components:
+#  - type: Accentless
+#    removes:
+#    - type: ReplacementAccent
+#      accent: xeno  #let this wizard speak
 
 - type: entity
   name: possum
@@ -2497,6 +2637,8 @@
     states:
       Alive:
         Base: possum
+      Critical:
+        Base: possum_dead
       Dead:
         Base: possum_dead
   - type: Butcherable
@@ -2532,6 +2674,8 @@
     states:
       Alive:
         Base: possum_old
+      Critical:
+        Base: possum_dead_old
       Dead:
         Base: possum_dead_old
 
@@ -2566,6 +2710,8 @@
     states:
       Alive:
         Base: raccoon
+      Critical:
+        Base: raccoon_dead
       Dead:
         Base: raccoon_dead
   - type: Butcherable
@@ -2592,6 +2738,14 @@
   id: MobFox
   description: They're a fox.
   components:
+  - type: LanguageSpeaker
+    currentLanguage: Dog
+  - type: LanguageKnowledge #backmen: languages
+    speaks:
+    - Dog
+    understands:
+    - TauCetiBasic
+    - Dog
   - type: Sprite
     drawdepth: Mobs
     sprite: Mobs/Animals/fox.rsi
@@ -2624,6 +2778,8 @@
     states:
       Alive:
         Base: fox
+      Critical:
+        Base: fox_dead
       Dead:
         Base: fox_dead
   - type: Butcherable
@@ -2695,14 +2851,24 @@
     states:
       Alive:
         Base: corgi
+      Critical:
+        Base: corgi_dead
       Dead:
         Base: corgi_dead
   - type: Butcherable
     spawned:
     - id: FoodMeat
       amount: 2
-  - type: ReplacementAccent
-    accent: dog
+#  - type: ReplacementAccent
+#    accent: dog
+  - type: LanguageSpeaker
+    currentLanguage: Dog
+  - type: LanguageKnowledge #backmen: languages
+    speaks:
+    - Dog
+    understands:
+    - Dog
+    - TauCetiBasic
   - type: InteractionPopup
     interactSuccessString: petting-success-dog
     interactFailureString: petting-failure-generic
@@ -2736,6 +2902,8 @@
     states:
       Alive:
         Base: narsian
+      Critical:
+        Base: narsian_dead
       Dead:
         Base: narsian_dead
   - type: MeleeWeapon
@@ -2837,6 +3005,8 @@
     states:
       Alive:
         Base: cat
+      Critical:
+        Base: cat_dead
       Dead:
         Base: cat_dead
   - type: Speech
@@ -2846,8 +3016,16 @@
     spawned:
     - id: FoodMeat
       amount: 3
-  - type: ReplacementAccent
-    accent: cat
+#  - type: ReplacementAccent
+#    accent: cat
+  - type: LanguageSpeaker
+    currentLanguage: Cat
+  - type: LanguageKnowledge #backmen: languages
+    speaks:
+    - Cat
+    understands:
+    - Cat
+    - TauCetiBasic
   - type: InteractionPopup
     successChance: 0.7
     interactSuccessString: petting-success-cat
@@ -2887,6 +3065,8 @@
     states:
       Alive:
         Base: cat2
+      Critical:
+        Base: cat2_dead
       Dead:
         Base: cat2_dead
 
@@ -2904,6 +3084,8 @@
     states:
       Alive:
         Base: syndicat
+      Critical:
+        Base: syndicat_dead
       Dead:
         Base: syndicat_dead
   - type: GhostRole
@@ -2949,6 +3131,8 @@
     states:
       Alive:
         Base: spacecat
+      Critical:
+        Base: spacecat_dead
       Dead:
         Base: spacecat_dead
   - type: Temperature
@@ -2986,6 +3170,8 @@
     states:
       Alive:
         Base: caracal_flop
+      Critical:
+        Base: caracal_dead
       Dead:
         Base: caracal_dead
 
@@ -3056,6 +3242,8 @@
     states:
       Alive:
         Base: sloth
+      Critical:
+        Base: sloth_dead
       Dead:
         Base: sloth_dead
   - type: Butcherable
@@ -3107,6 +3295,8 @@
     states:
       Alive:
         Base: ferret
+      Critical:
+        Base: ferret_dead
       Dead:
         Base: ferret_dead
   - type: Butcherable
@@ -3224,8 +3414,16 @@
     spawned:
     - id: FoodMeat
       amount: 1
-  - type: ReplacementAccent
-    accent: mouse
+#  - type: ReplacementAccent
+#    accent: mouse
+  - type: LanguageSpeaker
+    currentLanguage: Mouse
+  - type: LanguageKnowledge #backmen: languages
+    speaks:
+    - Mouse
+    understands:
+    - Mouse
+    - TauCetiBasic
   - type: Tag
     tags:
     - VimPilot
@@ -3313,6 +3511,8 @@
     states:
       Alive:
         Base: pig
+      Critical:
+        Base: dead
       Dead:
         Base: dead
   - type: Butcherable
@@ -3329,13 +3529,24 @@
     interactSuccessSpawn: EffectHearts
     interactSuccessSound:
       path: /Audio/Animals/pig_oink.ogg
-  - type: ReplacementAccent
-    accent: pig
+#  - type: ReplacementAccent
+#    accent: pig
+  - type: LanguageSpeaker
+    currentLanguage: Pig
+  - type: LanguageKnowledge #backmen: languages
+    speaks:
+    - Pig
+    understands:
+    - Pig
+    - TauCetiBasic
   - type: SentienceTarget
     flavorKind: station-event-random-sentience-flavor-organic
   - type: NpcFactionMember
     factions:
     - Passive
+  - type: HTN
+    rootTask:
+      task: RuminantCompound
 
 - type: entity
   name: diona nymph
@@ -3343,6 +3554,15 @@
   id: MobDionaNymph
   description: It's like a cat, only.... branch-ier.
   components:
+  - type: LanguageSpeaker
+    currentLanguage: RootSpeak
+  - type: LanguageKnowledge #backmen: languages
+    speaks:
+    - RootSpeak
+    - TauCetiBasic
+    understands:
+    - TauCetiBasic
+    - RootSpeak
   - type: Sprite
     drawdepth: Mobs
     layers:
@@ -3416,5 +3636,11 @@
   id: MobDionaNymphAccent # No talky. For non-brain & wild nymphs
   suffix: Accent
   components:
-  - type: ReplacementAccent
-    accent: nymph
+  - type: LanguageSpeaker
+    currentLanguage: RootSpeak
+  - type: LanguageKnowledge #backmen: languages
+    speaks:
+    - RootSpeak
+    understands:
+    - TauCetiBasic
+    - RootSpeak

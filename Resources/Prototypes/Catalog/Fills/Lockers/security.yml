@@ -95,6 +95,8 @@
         prob: 0.6
       - id: BookSpaceLaw
         prob: 0.5
+      - id: PlushieFejet
+        prob: 0.66
 
 # backmen brigmedic's locker reworked
 - type: entity

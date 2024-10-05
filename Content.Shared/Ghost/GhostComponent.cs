@@ -41,6 +41,7 @@ public sealed partial class GhostComponent : Component
 
     // End actions
 
+    [AutoNetworkedField] // backmen: ReturnToLobby
     [ViewVariables(VVAccess.ReadWrite), DataField]
     public TimeSpan TimeOfDeath = TimeSpan.Zero;
 

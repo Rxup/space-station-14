@@ -19,6 +19,7 @@ using Content.Client.Radiation.Overlays;
 using Content.Client.Replay;
 using Content.Client.Screenshot;
 using Content.Client.Singularity;
+using Content.Client._RMC14.Explosion; // Ataraxia
 using Content.Client.Stylesheets;
 using Content.Client.Viewport;
 using Content.Client.Voting;
@@ -71,7 +72,6 @@ namespace Content.Client.Entry
         [Dependency] private readonly IResourceManager _resourceManager = default!;
         [Dependency] private readonly IReplayLoadManager _replayLoad = default!;
         [Dependency] private readonly ILogManager _logManager = default!;
-        [Dependency] private readonly ContentReplayPlaybackManager _replayMan = default!;
         [Dependency] private readonly DebugMonitorManager _debugMonitorManager = default!;
 
 
@@ -170,6 +170,7 @@ namespace Content.Client.Entry
             _parallaxManager.LoadDefaultParallax();
 
             _overlayManager.AddOverlay(new SingularityOverlay());
+            _overlayManager.AddOverlay(new RMCExplosionShockWaveOverlay()); // Ataraxia
             _overlayManager.AddOverlay(new RadiationPulseOverlay());
             _chatManager.Initialize();
             _clientPreferencesManager.Initialize();
@@ -216,7 +217,7 @@ namespace Content.Client.Entry
                     _resourceManager,
                     ReplayConstants.ReplayZipFolder.ToRootedPath());
 
-                _replayMan.LastLoad = (null, ReplayConstants.ReplayZipFolder.ToRootedPath());
+                _playbackMan.LastLoad = (null, ReplayConstants.ReplayZipFolder.ToRootedPath());
                 _replayLoad.LoadAndStartReplay(reader);
             }
             else if (_gameController.LaunchState.FromLauncher)

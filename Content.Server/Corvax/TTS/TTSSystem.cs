@@ -1,10 +1,12 @@
-﻿using System.Threading.Tasks;
+﻿using System.Threading;
+using System.Threading.Tasks;
 using Content.Server.Chat.Systems;
 using Content.Server.SS220.Chat.Systems;
 using Content.Server.Players.RateLimiting;
 using Content.Shared.Corvax.CCCVars;
 using Content.Shared.Corvax.TTS;
 using Content.Shared.GameTicking;
+using Content.Shared.Radio;
 using Robust.Shared.Configuration;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
@@ -28,11 +30,11 @@ public sealed partial class TTSSystem : EntitySystem
         _cfg.OnValueChanged(CCCVars.TTSAnnounceVoiceId, v => _voiceId = v, true); // TTS-Announce SS220
 
         SubscribeLocalEvent<TransformSpeechEvent>(OnTransformSpeech);
-        SubscribeLocalEvent<TTSComponent, EntitySpokeEvent>(OnEntitySpoke);
         SubscribeLocalEvent<RoundRestartCleanupEvent>(OnRoundRestartCleanup);
 
         SubscribeLocalEvent<AnnouncementSpokeEvent>(OnAnnouncementSpoke); // TTS-Announce SS220
         SubscribeNetworkEvent<RequestPreviewTTSEvent>(OnRequestPreviewTTS);
+        SubscribeLocalEvent<TTSComponent, EntitySpokeLanguageEvent>(OnEntitySpoke);
 
         RegisterRateLimits();
     }
@@ -42,7 +44,7 @@ public sealed partial class TTSSystem : EntitySystem
         _ttsManager.ResetCache();
     }
 
-    private async void OnEntitySpoke(EntityUid uid, TTSComponent component, EntitySpokeEvent args)
+    private async void OnEntitySpoke(EntityUid uid, TTSComponent component, EntitySpokeLanguageEvent args)
     {
         var voiceId = component.VoicePrototypeId;
         if (!_isEnabled ||
@@ -57,49 +59,90 @@ public sealed partial class TTSSystem : EntitySystem
         if (voiceId == null || !_prototypeManager.TryIndex(voiceId.Value, out var protoVoice))
             return;
 
-        if (args.ObfuscatedMessage != null)
+        if (args.IsWhisper)
         {
-            HandleWhisper(uid, args.Message, args.ObfuscatedMessage, protoVoice.Speaker);
+            if (args.OrgMsg.Count > 0 || args.ObsMsg.Count > 0)
+            {
+                if(args.OrgMsg.Count > 0)
+                    HandleWhisper(uid, args.Message, args.ObfuscatedMessage!, protoVoice.Speaker, args.OrgMsg);
+                if(args.ObsMsg.Count > 0 && args is { LangMessage: not null, ObfuscatedLangMessage: not null })
+                    HandleWhisper(uid, args.LangMessage, args.ObfuscatedLangMessage, protoVoice.Speaker, args.ObsMsg);
+
+                return;
+            }
+            HandleWhisper(uid, args.Message, args.ObfuscatedMessage, protoVoice.Speaker, null);
+
             return;
         }
 
-        HandleSay(uid, args.Message, protoVoice.Speaker);
+        if (args.OrgMsg.Count > 0 || args.ObsMsg.Count > 0)
+        {
+            if(args.OrgMsg.Count > 0)
+                HandleSay(uid, args.Message, protoVoice.Speaker, args.OrgMsg);
+            if(args.ObsMsg.Count > 0)
+                HandleSay(uid, args.ObfuscatedMessage, protoVoice.Speaker, args.ObsMsg);
+            return;
+        }
+        HandleSay(uid, args.Message, protoVoice.Speaker, null);
     }
 
-    private async void HandleSay(EntityUid uid, string message, string speaker)
+    private async void HandleSay(EntityUid uid, string message, string speaker, Filter? filter)
     {
         var soundData = await GenerateTTS(message, speaker);
         if (soundData is null) return;
-        RaiseNetworkEvent(new PlayTTSEvent(soundData, GetNetEntity(uid)), Filter.Pvs(uid));
+        RaiseNetworkEvent(new PlayTTSEvent(soundData, GetNetEntity(uid)), filter ?? Filter.Pvs(uid));
     }
 
-    private async void HandleWhisper(EntityUid uid, string message, string obfMessage, string speaker)
+    private async void HandleWhisper(EntityUid uid, string message, string obfMessage, string speaker, Filter? filter)
     {
         var netEntity = GetNetEntity(uid);
-        var fullSoundData = await GenerateTTS(message, speaker, true);
-        if (fullSoundData is null) return;
 
-        var obfSoundData = await GenerateTTS(obfMessage, speaker, true);
-        if (obfSoundData is null) return;
+        PlayTTSEvent fullTtsEvent;
+        PlayTTSEvent? obfTtsEvent = null;
 
-        var fullTtsEvent = new PlayTTSEvent(fullSoundData, netEntity, true);
-        var obfTtsEvent = new PlayTTSEvent(obfSoundData, netEntity, true);
+        {
+            var fullSoundData = await GenerateTTS(message, speaker, true);
+            if (fullSoundData is null)
+                return;
+
+            fullTtsEvent = new PlayTTSEvent(fullSoundData, netEntity, true);
+            if (message == obfMessage)
+            {
+                obfTtsEvent = fullTtsEvent;
+            }
+            else
+            {
+                var obfSoundData = await GenerateTTS(obfMessage, speaker, true);
+                if (obfSoundData is not null)
+                {
+                    obfTtsEvent = new PlayTTSEvent(obfSoundData, netEntity, true);
+                }
+            }
+        }
 
         // TODO: Check obstacles
         var xformQuery = GetEntityQuery<TransformComponent>();
         var sourcePos = _xforms.GetWorldPosition(xformQuery.GetComponent(uid), xformQuery);
-        var receptions = Filter.Pvs(uid).Recipients;
+        var receptions = (filter ?? Filter.Pvs(uid)).Recipients;
         foreach (var session in receptions)
         {
-            if (!session.AttachedEntity.HasValue) continue;
-            var xform = xformQuery.GetComponent(session.AttachedEntity.Value);
+            if (!xformQuery.TryComp(session.AttachedEntity, out var xform))
+                continue;
+
             var distance = (sourcePos - _xforms.GetWorldPosition(xform, xformQuery)).Length();
             if (distance > ChatSystem.VoiceRange * ChatSystem.VoiceRange)
                 continue;
 
-            RaiseNetworkEvent(distance > ChatSystem.WhisperClearRange ? obfTtsEvent : fullTtsEvent, session);
+            if(distance <= ChatSystem.WhisperClearRange)
+                RaiseNetworkEvent(fullTtsEvent, session);
+            else if(obfTtsEvent!= null)
+                RaiseNetworkEvent(obfTtsEvent, session);
         }
     }
+
+
+    private readonly Dictionary<string, Task<byte[]?>> _ttsTasks = new();
+    private readonly SemaphoreSlim _lock = new(1, 1);
 
     // ReSharper disable once InconsistentNaming
     private async Task<byte[]?> GenerateTTS(string text, string speaker, bool isWhisper = false)
@@ -114,7 +157,89 @@ public sealed partial class TTSSystem : EntitySystem
             ssmlTraits = SoundTraits.PitchVerylow;
         var textSsml = ToSsmlText(textSanitized, ssmlTraits);
 
-        return await _ttsManager.ConvertTextToSpeech(speaker, textSsml);
+        // Создаем уникальный ключ на основе всех аргументов
+        var taskKey = $"{textSanitized}_{speaker}_{isWhisper}";
+
+        // Блокируем доступ к словарю, чтобы избежать гонки
+        await _lock.WaitAsync();
+        try
+        {
+            // Если задача уже выполняется для этого набора аргументов, ждем её завершения
+            if (_ttsTasks.TryGetValue(taskKey, out var existingTask))
+            {
+                return await existingTask;
+            }
+
+            // Создаем задачу и сохраняем её в словарь
+            var newTask = _ttsManager.ConvertTextToSpeech(speaker, textSsml);
+            _ttsTasks[taskKey] = newTask;
+        }
+        finally
+        {
+            _lock.Release();
+        }
+
+        try
+        {
+            // Ожидаем завершения задачи
+            return await _ttsTasks[taskKey];
+        }
+        finally
+        {
+            // Удаляем задачу из словаря независимо от результата
+            await _lock.WaitAsync();
+            try
+            {
+                _ttsTasks.Remove(taskKey);
+            }
+            finally
+            {
+                _lock.Release();
+            }
+        }
+    }
+}
+
+public sealed class EntitySpokeLanguageEvent: EntityEventArgs
+{
+    public readonly string? ObfuscatedLangMessage;
+    public readonly string? LangMessage;
+    public readonly bool IsWhisper;
+    public readonly Filter OrgMsg;
+    public readonly Filter ObsMsg;
+    public readonly EntityUid Source;
+    public readonly string Message;
+    public readonly string OriginalMessage;
+    public readonly string ObfuscatedMessage; // not null if this was a whisper
+
+    /// <summary>
+    ///     If the entity was trying to speak into a radio, this was the channel they were trying to access. If a radio
+    ///     message gets sent on this channel, this should be set to null to prevent duplicate messages.
+    /// </summary>
+    public RadioChannelPrototype? Channel;
+
+    public EntitySpokeLanguageEvent(
+        Filter orgMsg,
+        Filter obsMsg,
+        EntityUid source,
+        string message,
+        string originalMessage,
+        RadioChannelPrototype? channel,
+        bool isWhisper,
+        string obfuscatedMessage,
+        string? langMessage = null,
+        string? obfuscatedLangMessage = null)
+    {
+        ObfuscatedLangMessage = obfuscatedLangMessage;
+        LangMessage = langMessage;
+        IsWhisper = isWhisper;
+        OrgMsg = orgMsg;
+        ObsMsg = obsMsg;
+        Source = source;
+        Message = message;
+        OriginalMessage = originalMessage; // Corvax-TTS: Spec symbol sanitize
+        Channel = channel;
+        ObfuscatedMessage = obfuscatedMessage;
     }
 }
 

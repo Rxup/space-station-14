@@ -4,11 +4,11 @@
       "x": 32,
       "y": 32
   },
-  "license": "CC-BY-NC-SA-3.0",
-  "copyright": "Taken from https://github.com/goonstation/goonstation at commit e77d85d9c1d93aa32da7702737ceeac2b56738ac, slightly modified by PixelTK",
+  "license": "CC-BY-SA-3.0",
+  "copyright": "Made for the Imperial Space community, authors'es discord nickname: phoenix_7002, thx, PORT spacecats",  
   "states": [
       {
-        "name": "back"
+        "name": "back",
       },
       {
         "name": "belt"
@@ -84,15 +84,6 @@
       },
       {
         "name": "web"
-      },
-      {
-          "name": "socks"
-      },
-      {
-          "name": "undershirt"
-      },
-      {
-          "name": "underpants"
       }
    ]
 }

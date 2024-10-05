@@ -1,6 +1,6 @@
 - type: entity
   id: MagazineLightRifleAI
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   name: "magazine (.30 rifle)"
   parent: BaseMagazineLightRifle
   components:

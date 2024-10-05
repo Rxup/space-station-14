@@ -16,8 +16,6 @@
     sprite: Backmen/Objects/Weapons/Gunsx64/Rifles/akms/tinysuper.rsi
   - type: Item
     sprite: Backmen/Objects/Weapons/Gunsx64/Rifles/akms/tinysuper.rsi
-  - type: BkmGunWieldBonus
-    cameraRecoilScalar: -4.5
   - type: GunWieldBonus
     angleIncrease: -3
   - type: Gun
@@ -27,8 +25,6 @@
         volume: -2
   - type: UseDelay
     delay: 0.7
-  - type: FollowDistance
-    backStrength: 4
 
 - type: entity
   name: M-28 Tactical
@@ -50,8 +46,6 @@
     sprite: Backmen/Objects/Weapons/Gunsx64/Rifles/m28/tinysuper.rsi
   - type: Item
     sprite: Backmen/Objects/Weapons/Gunsx64/Rifles/m28/tinysuper.rsi
-  - type: BkmGunWieldBonus
-    cameraRecoilScalar: -4.5
   - type: GunWieldBonus
     minAngle: -23
     maxAngle: 0
@@ -64,8 +58,6 @@
     mask: /Textures/Effects/LightMasks/cone.png
     autoRot: true
     radius: 8
-  - type: FollowDistance
-    backStrength: 3
 
 - type: entity
   name: G-36 Tactical
@@ -87,8 +79,6 @@
     sprite: Backmen/Objects/Weapons/Gunsx64/Rifles/g36/tinysuper.rsi
   - type: Item
     sprite: Backmen/Objects/Weapons/Gunsx64/Rifles/g36/tinysuper.rsi
-  - type: BkmGunWieldBonus
-    cameraRecoilScalar: -4.5
   - type: GunWieldBonus
     minAngle: -23
     maxAngle: 0
@@ -125,16 +115,12 @@
       path: /Audio/Weapons/Guns/Gunshots/silenced.ogg
       params:
         volume: -3
-  - type: BkmGunWieldBonus
-    cameraRecoilScalar: -4.5
   - type: GunWieldBonus
     minAngle: -22
     maxAngle: -28
     angleIncrease: -7
   - type: UseDelay
     delay: 0.2
-  - type: FollowDistance
-    backStrength: 4
 
 - type: entity
   name: MP5 Tactical
@@ -156,8 +142,6 @@
     sprite: Backmen/Objects/Weapons/Gunsx64/SMGs/mp5/tinysuper.rsi
   - type: Item
     sprite: Backmen/Objects/Weapons/Gunsx64/SMGs/mp5/tinysuper.rsi
-  - type: BkmGunWieldBonus
-    cameraRecoilScalar: -4.5
   - type: GunWieldBonus
     minAngle: -22
     maxAngle: 0
@@ -170,8 +154,6 @@
     radius: 8
   - type: UseDelay
     delay: 0.2
-  - type: FollowDistance
-    backStrength: 4
 
 - type: entity
   name: XM1014 Tactical
@@ -200,8 +182,6 @@
     mask: /Textures/Effects/LightMasks/cone.png
     autoRot: true
     radius: 8
-  - type: FollowDistance
-    backStrength: 4
 
 - type: entity
   name: AK74-U Tactical
@@ -221,8 +201,6 @@
   - type: Item
     sprite: Backmen/Objects/Weapons/Gunsx64/Rifles/aksu.rsi/tinysuper.rsi
     size: NormalLarge
-  - type: BkmGunWieldBonus
-    cameraRecoilScalar: -4.5
   - type: GunWieldBonus
     minAngle: -23
     maxAngle: 0
@@ -234,8 +212,6 @@
         volume: -3
   - type: UseDelay
     delay: 0.1
-  - type: FollowDistance
-    backStrength: 4
 
 - type: entity
   name: P-90 Tactical
@@ -254,8 +230,6 @@
     sprite: Backmen/Objects/Weapons/Gunsx64/SMGs/p90.rsi/tinysuper.rsi
   - type: Item
     sprite: Backmen/Objects/Weapons/Gunsx64/SMGs/p90.rsi/tinysuper.rsi
-  - type: BkmGunWieldBonus
-    cameraRecoilScalar: -4.5
   - type: GunWieldBonus
     minAngle: -22
     maxAngle: 0
@@ -267,8 +241,6 @@
         volume: -3
   - type: UseDelay
     delay: 0.1
-  - type: FollowDistance
-    backStrength: 4
 
 - type: entity
   name: RPD Tactical
@@ -288,8 +260,6 @@
     sprite: Backmen/Objects/Weapons/Gunsx64/LMGs/rpd/tinysuper.rsi
   - type: Item
     sprite: Backmen/Objects/Weapons/Gunsx64/LMGs/rpd/tinysuper.rsi
-  - type: BkmGunWieldBonus
-    cameraRecoilScalar: -4.5
   - type: GunWieldBonus
     minAngle: -30
     maxAngle: -50

@@ -16,8 +16,6 @@
     sprite: Backmen/Objects/Weapons/Gunsx64/Snipers/dragunov/tiny.rsi
   - type: Item
     sprite: Backmen/Objects/Weapons/Gunsx64/Snipers/dragunov/tiny.rsi
-  - type: BkmGunWieldBonus
-    cameraRecoilScalar: -5
   - type: GunWieldBonus
     minAngle: -23
     maxAngle: -44
@@ -68,8 +66,7 @@
   - type: Wieldable
   - type: UseDelay
     delay: 1.5
-  - type: FollowDistance
-    backStrength: 2
+  - type: Telescope # Ataraxia
 
 - type: entity
   name: SR-127 Bauer bolt action rifle
@@ -92,8 +89,6 @@
   - type: GunWieldBonus
     minAngle: -23
     maxAngle: -43
-  - type: BkmGunWieldBonus
-    cameraRecoilScalar: -1
   - type: Gun
     fireRate: 1
     cameraRecoilScalar: 6
@@ -134,8 +129,7 @@
   - type: Wieldable
   - type: UseDelay
     delay: 1.3
-  - type: FollowDistance
-    backStrength: 1
+  - type: Telescope # Ataraxia
 
 - type: entity
   name: Kardashev-Mosin
@@ -156,8 +150,7 @@
   - type: UseDelay
     delay: 0.8
   - type: GunRequiresWield
-  - type: FollowDistance
-    backStrength: 3
+  - type: Telescope # Ataraxia
 
 - type: entity
   name: M1 Garand
@@ -182,15 +175,14 @@
   - type: UseDelay
     delay: 0.8
   - type: GunRequiresWield
-  - type: FollowDistance
-    backStrength: 3
+  - type: Telescope # Ataraxia
 
 - type: entity
   name: Kardashev-Mosin AI
   parent: BaseWeaponSniper
   id: WeaponSniperMosinAI
-  noSpawn: true
-  description: Оружие для охоты или бесконечной позиционной войны. Использует винтовочные патроны 30-го калибра.
+  categories: [ HideSpawnMenu ]
+  description: A weapon for hunting, or endless trench warfare. Uses .30 rifle ammo.
   components:
   - type: Sprite
     sprite: Backmen/Objects/Weapons/Gunsx64/Snipers/mosin/big.rsi
@@ -210,8 +202,8 @@
   name: Kardashev-Mosin AI Sniper
   parent: BaseWeaponSniper
   id: WeaponSniperMosinAISniper
-  noSpawn: true
-  description: Оружие для охоты или бесконечной позиционной войны. Использует винтовочные патроны 30-го калибра.
+  categories: [ HideSpawnMenu ]
+  description: A weapon for hunting, or endless trench warfare. Uses .30 rifle ammo.
   components:
   - type: Sprite
     sprite: Backmen/Objects/Weapons/Gunsx64/Snipers/mosin/big.rsi

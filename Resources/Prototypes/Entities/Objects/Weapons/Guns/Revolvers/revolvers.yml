@@ -98,7 +98,7 @@
   parent: [BaseWeaponRevolver, BaseMajorContraband]
   id: WeaponRevolverMateba
   description: The iconic sidearm of the dreaded death squads. Uses .45 magnum ammo.
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
   - type: Sprite
     sprite: Objects/Weapons/Guns/Revolvers/mateba.rsi

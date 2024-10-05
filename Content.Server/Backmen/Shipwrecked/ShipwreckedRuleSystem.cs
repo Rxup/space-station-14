@@ -1797,7 +1797,7 @@ public sealed class ShipwreckedRuleSystem : GameRuleSystem<ShipwreckedRuleCompon
                 continue;
             if (TryComp<AirlockComponent>(row, out var airlock) && !airlock.EmergencyAccess)
             {
-                _airlockSystem.ToggleEmergencyAccess(row, airlock);
+                _airlockSystem.SetEmergencyAccess((row, airlock), true);
                 continue;
             }
             _lockSystem.Unlock(row, uid);
@@ -1833,7 +1833,7 @@ public sealed class ShipwreckedRuleSystem : GameRuleSystem<ShipwreckedRuleCompon
             }
             if (TryComp<AirlockComponent>(row, out var airlock) && !airlock.EmergencyAccess)
             {
-                _airlockSystem.ToggleEmergencyAccess(row, airlock);
+                _airlockSystem.SetEmergencyAccess((row, airlock), true);
                 continue;
             }
             _lockSystem.Unlock(row, uid);

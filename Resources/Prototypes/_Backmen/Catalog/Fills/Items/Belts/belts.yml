@@ -27,7 +27,7 @@
         - id: Rapier
 
 - type: entity
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   parent: ClothingPounchMTF
   id: ClothingPounchMTFBattleEngineerFilled
   components:
@@ -39,7 +39,7 @@
           amount: 4
 
 - type: entity
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   parent: ClothingPounchMTF
   id: ClothingPounchMTFEngineerFilled
   components:
@@ -56,7 +56,7 @@
           amount: 2
 
 - type: entity
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   parent: ClothingPounchMTF
   id: ClothingPounchMTFSecurityFilled
   components:
@@ -68,7 +68,7 @@
           amount: 2
 
 - type: entity
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   parent: ClothingPounchMTF
   id: ClothingPounchMTFBattleFilled
   components:
@@ -82,7 +82,7 @@
           amount: 4
 
 - type: entity
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   parent: ClothingPounchMTF
   id: ClothingPounchMTFMedicalFilled
   components:
@@ -107,7 +107,7 @@
           amount: 8
 
 - type: entity
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   parent: ClothingBeltBandolier
   id: ClothingBeltBandolierRXBZZ
   components:
@@ -136,7 +136,7 @@
           ents: [ ]
 
 - type: entity
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   parent: ClothingBeltMilitaryWebbing
   id: ClothingBeltMilitaryWebbingFlamer
   components:
@@ -157,7 +157,7 @@
 - type: entity
   parent: ClothingMedicalPounch
   id: ClothingMedicalPounchRXBZZFilled
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
     - type: StorageFill
       contents:
@@ -172,7 +172,7 @@
 - type: entity
   parent: ClothingPounchMTF
   id: ClothingPounchRXBZZFilled
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
     - type: StorageFill
       contents:
@@ -182,7 +182,7 @@
 - type: entity
   parent: ClothingPounchMTF
   id: ClothingPounchRXBZZEnergyFilled
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
     - type: StorageFill
       contents:
@@ -192,7 +192,7 @@
 - type: entity
   parent: ClothingPounchMTF
   id: ClothingPounchRXBZZBigEnergyFilled
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
     - type: StorageFill
       contents:
@@ -202,7 +202,7 @@
 - type: entity
   parent: ClothingPounchMTF
   id: ClothingPounchRXBZZSRFilled
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
     - type: StorageFill
       contents:
@@ -212,7 +212,7 @@
 - type: entity
   parent: ClothingPounchMTF
   id: ClothingPounchRXBZZPPFilled
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
     - type: StorageFill
       contents:
@@ -222,7 +222,7 @@
 - type: entity
   parent: ClothingPounchMTF
   id: ClothingPounchRXBZZRifleFilled
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
     - type: StorageFill
       contents:
@@ -232,7 +232,7 @@
 - type: entity
   parent: ClothingBeltMilitaryWebbing
   id: ClothingBeltMilitaryWebbingRXBZZGrenadeFilled
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
     - type: StorageFill
       contents:
@@ -244,7 +244,7 @@
 - type: entity
   parent: ClothingBeltMilitaryWebbing
   id: ClothingBeltMilitaryWebbingPistolFilled
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
     - type: StorageFill
       contents:
@@ -254,7 +254,7 @@
 - type: entity
   parent: ClothingBeltMilitaryWebbing
   id: ClothingBeltMilitaryWebbingDivetFilled
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
     - type: StorageFill
       contents:
@@ -264,7 +264,7 @@
 - type: entity
   parent: ClothingPounchMTF
   id: ClothingPounchRXBZZSpecialistFilled
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
     - type: StorageFill
       contents:
@@ -277,7 +277,7 @@
           amount: 2
 
 - type: entity
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   parent: ClothingBeltAmmo
   id: ClothingBeltERTWebbingLeaderTay39Filled
   components:
@@ -289,7 +289,7 @@
           amount: 4
 
 - type: entity
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   parent: ClothingBeltMedicalMarine
   id: ClothingBeltMedicalTay39Filled
   components:
@@ -308,7 +308,7 @@
           amount: 4
 
 - type: entity
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   parent: ClothingBeltMedicalMarine
   id: ClothingBeltMedicalMarineRxbzz
   components:
@@ -324,7 +324,7 @@
           amount: 3
 
 - type: entity
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   parent: ClothingBeltAmmo
   id: ClothingBeltERTWebbingSecurityTay39Filled
   components:

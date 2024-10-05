@@ -1,5 +1,5 @@
 - type: entity
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   parent: ClothingBackpackSatchel
   id: BSSClothingBackpackSatchelDrone
   name: Сумка БСС Дрона
@@ -117,8 +117,16 @@
         base:
           Off: { state: shell }
           On: { state: drone }
-  - type: ReplacementAccent
-    accent: silicon
+#  - type: ReplacementAccent
+#    accent: silicon
+  - type: LanguageSpeaker
+    currentLanguage: TauCetiBasic
+  - type: LanguageKnowledge #backmen: languages
+    speaks:
+    - Binary
+    understands:
+    - Binary
+    - TauCetiBasic
   - type: IntrinsicRadioReceiver
   - type: IntrinsicRadioTransmitter
     channels:

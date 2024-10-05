@@ -33,10 +33,10 @@
       shader: unshaded
     state: base
   - type: PointLight
-    color: "#FFE3C8" # 5000K color temp
-    energy: 0.6
+    color: "#F0F1FF" # 7200K color temp
+    energy: 0.9
     radius: 7
-    softness: 1
+    softness: 0.8
     offset: "0, -0.5"
   - type: Damageable
     damageContainer: Inorganic

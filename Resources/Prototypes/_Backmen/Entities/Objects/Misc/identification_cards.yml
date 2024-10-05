@@ -174,7 +174,7 @@
     fullName: Броне-Пехотный Автономный-Бот Спецвойск
 
 - type: entity
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   parent: OBRGavnaIDCard
   id: OBRGavnaIDCard2
   name: ID карта пехотинца ОБР
@@ -184,7 +184,7 @@
     fullName: Пехотинец
 
 - type: entity
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   parent: OBRGavnaMedicIDCard
   id: OBRGavnaMedicIDCard2
   name: ID карта медика ОБР
@@ -194,7 +194,7 @@
     fullName: Медик отделения
 
 - type: entity
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   parent: OBRGavnaEngineerIDCard
   id: OBRGavnaEngineerIDCard2
   name: ID карта инженера ОБР
@@ -204,7 +204,7 @@
     fullName: Инженер отделения
 
 - type: entity
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   parent: OBRGavnaJunitorIDCard
   id: OBRGavnaJunitorIDCard2
   name: ID карта уборщика ОБР
@@ -214,7 +214,7 @@
     fullName: Уборщик отделения
 
 - type: entity
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   parent: OBRGavnaLeaderIDCard
   id: OBRGavnaLeaderIDCard2
   name: ID карта командира ОБР
@@ -224,7 +224,7 @@
     fullName: Командир отделения
 
 - type: entity
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   parent: OBRGavnaLeaderIDCard
   id: OBRGavnaLeaderIDCardAlpha1
   name: ID карта командира ОБР Alpha 1
@@ -240,7 +240,7 @@
     heldPrefix: black
 
 - type: entity
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   parent: OBRGavnaLeaderIDCard
   id: OBRGavnaOperativeIDCardAlpha1
   name: ID карта оперативника ОБР Alpha 1
@@ -256,7 +256,7 @@
     heldPrefix: black
 
 - type: entity
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   parent: OBRGavnaLeaderIDCard
   id: OBRGavnaLeaderIDCardTay39
   name: ID карта лидера ОБР Tay 39
@@ -274,7 +274,7 @@
 - type: entity
   parent: OBRGavnaMedicIDCard
   id: OBRGavnaMedicIDCardTay39
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   name: ID карта медика ОБР
   components:
   - type: IdCard
@@ -283,7 +283,7 @@
     jobIcon: JobIconNanotrasenMed
 
 - type: entity
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   parent: OBRGavnaIDCard
   id: OBRGavnaIDCardTay39
   name: ID карта лидера ОБР Tay 39
@@ -358,7 +358,7 @@
     - CentCom
 
 - type: entity
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   parent: CentcomIDCardDeathsquad
   id: CentcomBaseIDCard
   name: ID карта
@@ -371,7 +371,7 @@
   parent: CentcomIDCardDeathsquad
   id: IdCardRXBZZLeader
   name: ID card leader CBURN
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
   - type: Sprite
     layers:
@@ -396,7 +396,7 @@
   parent: CentcomIDCardDeathsquad
   id: IdCardRXBZZ
   name: ID карта Оперативника РХБЗЗ
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
   - type: Sprite
     layers:

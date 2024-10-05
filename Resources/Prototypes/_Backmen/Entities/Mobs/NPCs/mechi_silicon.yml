@@ -5,7 +5,6 @@
   components:
   - type: InnateTool
     tools:
-      - id: WeaponSilence9000
       - id: JawsOfLife
       - id: BaseItemGavna9000
       - id: BaseItemGavna9000
@@ -80,12 +79,10 @@
             max: 1
   - type: InnateTool
     tools:
-      - id: WeaponLightMachineGunL69000
       - id: WeaponLauncherMultipleRocket9000
       - id: WeaponBFG9000
       - id: SyndicateJawsOfLife
       - id: WeaponGrenadeFragLauncher9000
-      - id: WeaponLightMachineGunL69000
   - type: GhostTakeoverAvailable
   - type: GhostRole
     makeSentient: true
@@ -170,7 +167,7 @@
             max: 1
 
 - type: entity
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   id: MechGavnaMaulerDestroyed
   parent: PlayerSiliconBase
   name: полностью сломанный маулер
@@ -217,7 +214,6 @@
     color: cyan
   - type: InnateTool
     tools:
-      - id: WeaponAS2Ultra9000
       - id: WeaponShotgunEnforcer9000
       - id: JawsOfLife
       - id: DedSquadronGavnaIDCardMarauder
@@ -257,7 +253,7 @@
             max: 1
 
 - type: entity
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   id: MechGavnaMarauderDestroyed
   parent: MechGavnaMaulerDestroyed
   name: полностью сломанный мародёр
@@ -284,12 +280,10 @@
     rules: Выполняйте различные приказы, ваша задача будет варьироваться от задач центрального командования.
   - type: InnateTool
     tools:
-      - id: WeaponLightMachineGunL69000
       - id: WeaponShotgunEnforcer9000
       - id: WeaponXrayCannon9000
       - id: SyndicateJawsOfLife
       - id: WeaponLauncherMultipleRocket9000
-      - id: WeaponLightMachineGunL69000
   - type: Sprite
     drawdepth: Mobs
     netsync: false
@@ -315,7 +309,7 @@
             max: 1
 
 - type: entity
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   id: MechGavnaDarkGygaxDestroyed
   parent: MechGavnaMaulerDestroyed
   name: полностью сломанный темный гайгэкс
@@ -392,7 +386,7 @@
             max: 1
 
 - type: entity
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   id: MechGavnaSeraphDestroyed
   parent: MechGavnaMaulerDestroyed
   name: полностью сломанный серафим
@@ -406,7 +400,7 @@
 #----------------------------------------------------------------------------
 
 - type: entity
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   id: MechGavnaDurandDestroyed
   parent: MechGavnaMaulerDestroyed
   name: полностью сломанный дюранд
@@ -469,7 +463,7 @@
 #----------------------------------------------------------------------------
 
 - type: entity
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   id: MechGavnaGygaxDestroyed
   parent: MechGavnaMaulerDestroyed
   name: полностью сломанный дюранд
@@ -495,7 +489,6 @@
       - id: JawsOfLife
       - id: DedSquadronGavnaIDCardMarauder
       - id: WeaponLauncherMultipleRocket9000
-      - id: WeaponAS2Ultra9000
   - type: Sprite
     drawdepth: Mobs
     netsync: false

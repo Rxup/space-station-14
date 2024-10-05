@@ -42,7 +42,13 @@
             ResearchDirector: [ 1, 1 ]
             Scientist: [ 3, 3 ]
             ResearchAssistant: [ 2, 2 ]
-            Borg: [ 1, 1 ]
+            #borgs
+            CargoBorg: [ 1, 2]
+            EngenerBorg: [ 1, 2]
+            JanitorBorg: [ 1, 2]
+            MedIcalBorg: [ 1, 2]
+            ServiceBorg: [ 1, 2]
+            SecurityBorg: [ 1, 2]
             #security
             HeadOfSecurity: [ 1, 1 ]
             Warden: [ 1, 1 ]
@@ -61,11 +67,11 @@
             # backmen
             BlueShield: [1, 1] # backmen-BlueShield
             Brigmedic: [ 1, 1 ] # backmen-Brigmedic
-            StationAi: [ 1, 0 ]
+            StationAi: [ 1, 1 ]
 #            BKBPLATech: [0, 3] # backmen-BPLA-Silicons
 #            BKBPLAMED: [0, 3] # backmen-BPLAMED-Silicons
 #            Deliveryman: [ 0, 1 ]
-#            Prisoner: [ 2, 2]
+            Prisoner: [ 2, 2]
             
         # backmen blob-config-start SMALL+
         - type: StationBlobConfig

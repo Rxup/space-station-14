@@ -2,8 +2,10 @@
   id: Omega
   mapName: 'Omega'
   mapPath: /Maps/omega.yml
-  minPlayers: 7
-  maxPlayers: 35
+  # Corvax-start
+  minPlayers: 0
+  maxPlayers: 30
+  # Corvax-end
   stations:
     Omega:
       stationProto: StandardNanotrasenStation
@@ -37,6 +39,7 @@
             ChiefMedicalOfficer: [ 1, 1 ]
             Chemist: [ 2, 2 ]
             MedicalDoctor: [ 3, 3 ]
+            Paramedic: [ 1, 1 ]
             MedicalIntern: [ 2, 2 ]
             #science
             ResearchDirector: [ 1, 1 ]
@@ -51,8 +54,7 @@
             #Lawyer: [ 1, 1 ] # Corvax-IAA
             #supply
             Quartermaster: [ 1, 1 ]
-#            Paramedic: [ 0, 1 ] # backmen-Paramedic
-#            Brigmedic: [ 0, 1 ] # backmen-Brigmedic
+            Brigmedic: [ 0, 1 ] # backmen-Brigmedic
             SalvageSpecialist: [ 2, 2 ]
             CargoTechnician: [ 2, 2 ]
             #civilian
@@ -67,7 +69,6 @@
             Borg: [ 2, 2 ]
 #            Deliveryman: [ 0, 1 ]
 #            Prisoner: [ 2, 3]
-
         # backmen blob-config-start SMALL+
         - type: StationBlobConfig
           stageBegin: 25

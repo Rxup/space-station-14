@@ -16,6 +16,9 @@
   id: Ambrosia
 
 - type: Tag
+  id: AnomalyHost
+
+- type: Tag
   id: AppraisalTool
 
 - type: Tag
@@ -444,6 +447,9 @@
   id: CombatKnife
 
 - type: Tag
+  id: CombatMech
+
+- type: Tag
   id: ComputerTelevisionCircuitboard
 
 - type: Tag
@@ -585,6 +591,24 @@
   id: Duck
 
 - type: Tag
+  id: DurandPeripheralsControlModule
+
+- type: Tag
+  id: DurandCentralControlModule
+
+- type: Tag
+  id: DurandLArm
+
+- type: Tag
+  id: DurandLLeg
+
+- type: Tag
+  id: DurandRLeg
+
+- type: Tag
+  id: DurandRArm
+
+- type: Tag
   id: Ectoplasm
 
 - type: Tag
@@ -601,6 +625,9 @@
 
 - type: Tag
   id: ExplosivePassable
+
+- type: Tag
+  id: ExoMech
 
 - type: Tag
   id: Figurine
@@ -648,10 +675,31 @@
   id: ForceNoFixRotations # fixrotations command WON'T target this
 
 - type: Tag
+  id: FreezerElectronics
+
+- type: Tag
   id: Fruit
 
 - type: Tag
   id: Galaxythistle
+
+- type: Tag
+  id: GygaxPeripheralsControlModule
+
+- type: Tag
+  id: GygaxCentralControlModule
+
+- type: Tag
+  id: GygaxLArm
+
+- type: Tag
+  id: GygaxLLeg
+
+- type: Tag
+  id: GygaxRLeg
+
+- type: Tag
+  id: GygaxRArm
 
 - type: Tag
   id: FullBodyOuter # this outerclothing wraps around the feet and legs

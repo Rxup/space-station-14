@@ -42,7 +42,7 @@
   name: лазерная пуля
   id: X01Attack
   parent: EmitterBolt
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
   - type: Sprite
     sprite: Backmen/Objects/Weapons/Guns/Energy/x01.rsi
