@@ -1,5 +1,5 @@
 - type: entity
-  parent: ClothingOuterBase
+  parent: ClothingOuterStorageBase
   id: ClothingWitchHunter
   name: Накидка охотника за ведьмами
   description: Убей этих ведьм!
