@@ -502,14 +502,14 @@
         whitelist:
           components:
           - Stunbaton
-      gasgrenade:
-        whitelist:
-          tags:
-            - Grenade
-      slp:
-        whitelist:
-          tags:
-          - Sidearm
+    gasgrenade:
+      whitelist:
+        tags:
+          - Grenade
+    slp:
+      whitelist:
+        tags:
+        - Sidearm
     sprite: _SpaceCats/Clothing/Belt/belt_overlay.rsi
   - type: ContainerContainer
     containers:
