@@ -20,7 +20,6 @@
   - type: WiredNetworkConnection
   - type: DeviceNetworkRequiresPower
   - type: AtmosDevice
-  - type: StationAiWhitelist
   - type: AtmosAlarmable
     syncWith:
       - FireAlarm
