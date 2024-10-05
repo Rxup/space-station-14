@@ -291,5 +291,18 @@
   # - MeteorSwarmMildScheduler
   # - MeteorSwarmScheduler
   - RampingStationEventScheduler
-  #- SpaceTrafficControlEventScheduler
-  #- SpaceTrafficControlFriendlyEventScheduler
+
+- type: gamePreset
+  id: BabelTower
+  name: babelTower-title
+  description: babelTower-description
+  minPlayers: 5
+  showInVote: true
+  rules:
+    - BabelTower
+    - BasicStationEventScheduler
+    - WageScheduler
+    - BasicRoundstartVariation
+   # - SpaceTrafficControlEventScheduler
+   # - SpaceTrafficControlFriendlyEventScheduler
+    - ExtendedThief
