@@ -6,7 +6,7 @@
   components:
   - type: Item
   - type: Sprite
-    sprite: Objects/Tools/handheld_camera_monitor.rsi
+    sprite: Backmen/Objects/Tools/handheld_camera_monitor.rsi
     state: off
     layers:
       - state: off
