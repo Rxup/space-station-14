@@ -7,22 +7,16 @@ using Robust.Shared.Prototypes;
 
 namespace Content.Shared.Backmen.Supermatter.Components;
 
-[RegisterComponent, NetworkedComponent]
+[RegisterComponent, NetworkedComponent, AutoGenerateComponentState]
 public sealed partial class BkmSupermatterComponent : Component
 {
-    [DataField("whitelist")]
-    public EntityWhitelist Whitelist = new();
-
-    [DataField]
-    public ProtoId<TagPrototype> IdTag = "EmitterBolt";
-
     [ViewVariables(VVAccess.ReadWrite)]
     public float Power;
 
     /// <summary>
     /// The amount of damage we have currently
     /// </summary>
-    [ViewVariables(VVAccess.ReadWrite)]
+    [ViewVariables(VVAccess.ReadWrite), AutoNetworkedField]
     public float Damage = 0f;
 
     [ViewVariables(VVAccess.ReadWrite)]
@@ -76,4 +70,21 @@ public sealed partial class BkmSupermatterComponent : Component
         [Gas.Frezon] = (TransmitModifier: 3f, HeatPenalty: -9f, PowerMixRatio: -1f),
         [Gas.Ammonia] = (TransmitModifier: 1.5f, HeatPenalty: 1.5f, PowerMixRatio: 1.5f)
     };
+
+    public EntProtoId[] LightningPrototypes =
+    {
+        "Lightning",
+        "ChargedLightning",
+        "SuperchargedLightning",
+        "HyperchargedLightning"
+    };
+
+    [DataField]
+    public EntProtoId SingularitySpawnPrototype = "Singularity";
+
+    [DataField]
+    public EntProtoId TeslaSpawnPrototype = "TeslaEnergyBall";
+
+    //[DataField]
+    //public EntProtoId KudzuSpawnPrototype = "SupermatterKudzu";
 }

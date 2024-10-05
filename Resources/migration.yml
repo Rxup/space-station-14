@@ -534,6 +534,10 @@ LogicGate: LogicGateOr
 MaterialReclaimer: null
 MaterialReclaimerMachineCircuitboard: null
 
+# 2024-06-08 | EE toys migration
+CrateFunPlushie: CrateFunToyBox
+CrateFunLizardPlushieBulk: CrateFunToyBox
+
 # 2024-08-11
 FoodTacoBeef: FoodTacoShell
 FoodTacoChicken: FoodTacoShell
@@ -581,3 +585,16 @@ HatBase: null
 
 # 2024-09-13 backmen
 PlastitanedWindow: PlastitaniumWindow
+
+# 2024-09-19 backmen
+BookPassionsP1: null
+BookPassionsP2: null
+BookPaperworkP1: null
+BookPaperworkP2: null
+BookPaperworkP4: null
+
+# 2024-09-19
+BlueprintFlare: null
+
+# 2024-10-04
+BaseAdvancedPen: Pen

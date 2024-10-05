@@ -1,0 +1,47 @@
+- type: language
+  id: Freespeak
+  speech:
+    color: "#597d35"
+    fontId: Blackcraft
+  obfuscation:
+    !type:SyllableObfuscation
+    minSyllables: 1
+    maxSyllables: 3
+    replacement:
+    - а
+    - аан
+    - аас
+    - аб
+    - ад
+    - аг
+    - аи
+    - ака
+    - ар
+    - бен
+    - да
+    - ди
+    - до
+    - е
+    - ес
+    - га
+    - ган
+    - ха
+    - хо
+    - ин
+    - ка
+    - ки
+    - ла
+    - ле
+    - ми
+    - мо
+    - на
+    - о
+    - па
+    - пи
+    - ро
+    - си
+    - та
+    - то
+    - тр
+    - уа
+    - уа

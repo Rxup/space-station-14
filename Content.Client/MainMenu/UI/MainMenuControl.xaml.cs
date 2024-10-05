@@ -17,13 +17,11 @@ public sealed partial class MainMenuControl : Control
 
         LayoutContainer.SetAnchorPreset(this, LayoutContainer.LayoutPreset.Wide);
 
-        LayoutContainer.SetAnchorPreset(VBox, LayoutContainer.LayoutPreset.TopRight);
+        LayoutContainer.SetAnchorPreset(VBox, LayoutContainer.LayoutPreset.Center);
+        LayoutContainer.SetGrowHorizontal(VBox, LayoutContainer.GrowDirection.Both);
         LayoutContainer.SetMarginRight(VBox, -25);
         LayoutContainer.SetMarginTop(VBox, 30);
-        LayoutContainer.SetGrowHorizontal(VBox, LayoutContainer.GrowDirection.Begin);
-
-        var logoTexture = resCache.GetResource<TextureResource>("/Textures/Logo/logo.png");
-        Logo.Texture = logoTexture;
+        LayoutContainer.SetGrowVertical(VBox, LayoutContainer.GrowDirection.Both);
 
         var currentUserName = configMan.GetCVar(CVars.PlayerName);
         UsernameBox.Text = currentUserName;

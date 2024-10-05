@@ -247,6 +247,11 @@
     outputPressure: 101.3
   - type: Clothing
     sprite: Objects/Tanks/plasma.rsi
+    # backmen-start
+    clothingVisuals:
+      suitstorage:
+      - state: equipped-SUITSTORAGE
+    # backmen-end
     slots:
     - Belt
     - suitStorage

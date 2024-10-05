@@ -187,6 +187,11 @@ binds:
 - function: OpenCharacterMenu
   type: State
   key: C
+#start - backmen: languages
+- function: OpenLanguageMenu
+  type: State
+  key: L
+#end - backmen: languages
 - function: OpenEmotesMenu
   type: State
   key: Y
@@ -253,10 +258,10 @@ binds:
   mod1: Shift
 - function: OpenBackpack
   type: State
-  key: V
+  key: U # Ataraxia-EDIT
 - function: OpenBelt
   type: State
-  key: V
+  key: U # Ataraxia-EDIT
   mod1: Shift
 - function: ShowDebugConsole
   type: State
@@ -584,6 +589,15 @@ binds:
   type: State
   key: MouseRight
   canFocus: true
-- function: CMUniqueAction
+- function: CMUniqueAction #RMC-14
   type: State
   key: Space
+- function: LookUp # WD
+  type: State
+  key: Space
+- function: ToggleStanding # Ataraxia
+  type: State
+  key: V
+- function: OfferItem # Ataraxia
+  type: State
+  key: F

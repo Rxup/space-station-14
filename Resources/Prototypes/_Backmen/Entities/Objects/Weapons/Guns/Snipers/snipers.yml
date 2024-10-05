@@ -68,8 +68,7 @@
   - type: Wieldable
   - type: UseDelay
     delay: 1.5
-  - type: FollowDistance
-    backStrength: 2
+  - type: Telescope # Ataraxia
 
 - type: entity
   name: SR-127 Bauer bolt action rifle
@@ -134,8 +133,7 @@
   - type: Wieldable
   - type: UseDelay
     delay: 1.3
-  - type: FollowDistance
-    backStrength: 1
+  - type: Telescope # Ataraxia
 
 - type: entity
   name: Kardashev-Mosin
@@ -156,8 +154,7 @@
   - type: UseDelay
     delay: 0.8
   - type: GunRequiresWield
-  - type: FollowDistance
-    backStrength: 3
+  - type: Telescope # Ataraxia
 
 - type: entity
   name: M1 Garand
@@ -182,14 +179,13 @@
   - type: UseDelay
     delay: 0.8
   - type: GunRequiresWield
-  - type: FollowDistance
-    backStrength: 3
+  - type: Telescope # Ataraxia
 
 - type: entity
   name: Kardashev-Mosin AI
   parent: BaseWeaponSniper
   id: WeaponSniperMosinAI
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   description: A weapon for hunting, or endless trench warfare. Uses .30 rifle ammo.
   components:
   - type: Sprite
@@ -210,7 +206,7 @@
   name: Kardashev-Mosin AI Sniper
   parent: BaseWeaponSniper
   id: WeaponSniperMosinAISniper
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   description: A weapon for hunting, or endless trench warfare. Uses .30 rifle ammo.
   components:
   - type: Sprite

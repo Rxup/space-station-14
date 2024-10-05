@@ -25,7 +25,7 @@
   id: MI13
 
 - type: entity
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   parent: [BaseTraitorObjectiveMI13, BaseLivingObjective]
   id: EscapeShuttleObjectiveMI13
   name: Улететь на Центком живым и свободным.
@@ -41,7 +41,7 @@
 # kill
 
 - type: entity
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   parent: [BaseTraitorObjectiveMI13, BaseKillObjective]
   id: KillRandomHeadObjectiveMI13
   description: Нам нужно, чтобы этот глава исчез, и вы, вероятно, знаете, почему. Удачи, оперативник.
@@ -69,7 +69,7 @@
   - type: MultipleTraitorsRequirement
 
 - type: entity
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   parent: [BaseTraitorSocialObjectiveMI13, BaseKeepAliveObjective]
   id: RandomTraitorAliveObjectiveMI13
   description: Раскрывать себя или нет — решайте сами. Нам нужно, чтобы он выжил.
@@ -81,7 +81,7 @@
   - type: RandomTraitorAlive
 
 - type: entity
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   parent: [BaseTraitorSocialObjectiveMI13, BaseHelpProgressObjective]
   id: RandomTraitorProgressObjectiveMI13
   description: Раскрывать себя или нет — решайте сами. Нам нужно, чтобы он преуспел.

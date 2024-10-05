@@ -1,17 +1,18 @@
 ﻿using Content.Server.Actions;
 using Content.Server.Backmen.Blob.Components;
+using Content.Server.Backmen.Language;
 using Content.Server.Body.Systems;
+using Content.Server.Ghost.Roles;
 using Content.Server.Ghost.Roles.Components;
 using Content.Server.Mind;
 using Content.Shared.Backmen.Blob;
 using Content.Shared.Backmen.Blob.Components;
+using Content.Shared.Backmen.Language;
 using Content.Shared.Mind.Components;
 using Content.Shared.Mobs;
-using Content.Shared.Popups;
-using Robust.Shared.Map;
 using Robust.Shared.Map.Components;
+using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
-using Robust.Shared.Timing;
 
 namespace Content.Server.Backmen.Blob;
 
@@ -19,8 +20,10 @@ public sealed class BlobCarrierSystem : SharedBlobCarrierSystem
 {
     [Dependency] private readonly BlobCoreSystem _blobCoreSystem = default!;
     [Dependency] private readonly MindSystem _mind = default!;
+    [Dependency] private readonly GhostRoleSystem _ghost = default!;
     [Dependency] private readonly BodySystem _bodySystem = default!;
     [Dependency] private readonly ActionsSystem _action = default!;
+    [Dependency] private readonly LanguageSystem _language = default!;
 
     public override void Initialize()
     {
@@ -30,13 +33,34 @@ public sealed class BlobCarrierSystem : SharedBlobCarrierSystem
         SubscribeLocalEvent<BlobCarrierComponent, TransformToBlobActionEvent>(OnTransformToBlobChanged);
 
         SubscribeLocalEvent<BlobCarrierComponent, MapInitEvent>(OnStartup);
+        SubscribeLocalEvent<BlobCarrierComponent, DetermineEntityLanguagesEvent>(OnApplyLang);
+        SubscribeLocalEvent<BlobCarrierComponent, ComponentRemove>(OnRemove);
 
         SubscribeLocalEvent<BlobCarrierComponent, MindAddedMessage>(OnMindAdded);
         SubscribeLocalEvent<BlobCarrierComponent, MindRemovedMessage>(OnMindRemove);
     }
 
+    [ValidatePrototypeId<EntityPrototype>]
+    private const string ActionTransformToBlob = "ActionTransformToBlob";
+    [ValidatePrototypeId<LanguagePrototype>]
+    private const string BlobLang = "Blob";
 
-    [ValidatePrototypeId<EntityPrototype>] private const string ActionTransformToBlob = "ActionTransformToBlob";
+    private void OnApplyLang(Entity<BlobCarrierComponent> ent, ref DetermineEntityLanguagesEvent args)
+    {
+        if(ent.Comp.LifeStage is
+           ComponentLifeStage.Removing
+           or ComponentLifeStage.Stopping
+           or ComponentLifeStage.Stopped)
+            return;
+
+        args.SpokenLanguages.Add(BlobLang);
+        args.UnderstoodLanguages.Add(BlobLang);
+    }
+
+    private void OnRemove(Entity<BlobCarrierComponent> ent, ref ComponentRemove args)
+    {
+        _language.UpdateEntityLanguages(ent.Owner);
+    }
 
     private void OnMindAdded(EntityUid uid, BlobCarrierComponent component, MindAddedMessage args)
     {
@@ -55,15 +79,18 @@ public sealed class BlobCarrierSystem : SharedBlobCarrierSystem
 
     private void OnStartup(EntityUid uid, BlobCarrierComponent component, MapInitEvent args)
     {
+        _language.UpdateEntityLanguages(uid);
         _action.AddAction(uid, ref component.TransformToBlob, ActionTransformToBlob);
+        //EnsureComp<BlobSpeakComponent>(uid).OverrideName = false;
+
+        if (HasComp<ActorComponent>(uid))
+            return;
 
         var ghostRole = EnsureComp<GhostRoleComponent>(uid);
         EnsureComp<GhostTakeoverAvailableComponent>(uid);
         ghostRole.RoleName = Loc.GetString("blob-carrier-role-name");
         ghostRole.RoleDescription = Loc.GetString("blob-carrier-role-desc");
         ghostRole.RoleRules = Loc.GetString("blob-carrier-role-rules");
-
-        EnsureComp<BlobSpeakComponent>(uid).OverrideName = false;
     }
 
     private void OnMobStateChanged(Entity<BlobCarrierComponent> uid, ref MobStateChangedEvent args)
@@ -83,6 +110,10 @@ public sealed class BlobCarrierSystem : SharedBlobCarrierSystem
         if (_mind.TryGetMind(ent, out _, out var mind) && mind.UserId != null)
         {
             var core = Spawn(ent.Comp.CoreBlobPrototype, xform.Coordinates);
+            var ghostRoleComp = EnsureComp<GhostRoleComponent>(core);
+
+            // Unfortunately we have to manually turn this off so we don't need to make more prototypes.
+            _ghost.UnregisterGhostRole((core, ghostRoleComp));
 
             if (!TryComp<BlobCoreComponent>(core, out var blobCoreComponent))
                 return;
@@ -91,7 +122,7 @@ public sealed class BlobCarrierSystem : SharedBlobCarrierSystem
         }
         else
         {
-            Spawn(ent.Comp.CoreBlobGhostRolePrototype, xform.Coordinates);
+            Spawn(ent.Comp.CoreBlobPrototype, xform.Coordinates);
         }
 
         _bodySystem.GibBody(ent);

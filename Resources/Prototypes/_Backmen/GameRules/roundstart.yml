@@ -1,7 +1,7 @@
 ﻿- type: entity
   id: FleshCult
   parent: BaseGameRule
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
     - type: GameRule
       minPlayers: 15
@@ -11,7 +11,7 @@
 - type: entity
   id: BlobGameMode
   parent: BaseGameRule
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
   - type: GameRule
     minPlayers: 15
@@ -20,14 +20,14 @@
 - type: entity
   id: Blob
   parent: BaseGameRule
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
   - type: BlobRule
 
 - type: entity
   id: VampiresGameRule
   parent: BaseGameRule
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
   - type: GameRule
     minPlayers: 15
@@ -36,14 +36,14 @@
 - type: entity
   id: VampireObjective
   parent: BaseGameRule
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
   - type: BloodsuckerObjective
 
 - type: entity
   id: VampireOutbreak
   parent: BaseGameRule
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
   - type: StationEvent
     earliestStart: 50
@@ -55,7 +55,7 @@
 - type: entity
   id: Shipwrecked
   parent: BaseGameRule
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
     - type: GameRule
       minPlayers: 1
@@ -130,13 +130,16 @@
     sets:
     - groups: ThiefObjectiveGroups
       maxPicks: 10
-    maxDifficulty: 2
+    - groups: ThiefBigObjectiveGroups
+      prob: 0.4
+      maxPicks: 2
+    maxDifficulty: 3.5
   - type: AntagSelection
     agentName: thief-round-end-agent-name
     definitions:
     - prefRoles: [ Thief ]
-      max: 8
-      playerRatio: 10
+      max: 10
+      playerRatio: 7
       blacklist:
         components:
         - AntagImmune
@@ -144,8 +147,50 @@
       allowNonHumans: true
       multiAntagSetting: NotExclusive
       startingGear: ThiefGear
+#      components: # Corvax-MRP
+#      - type: Pacified
       mindComponents:
       - type: ThiefRole
         prototype: Thief
       briefing:
         sound: "/Audio/Misc/thief_greeting.ogg"
+
+- type: entity
+  id: CalmStationEventScheduler
+  parent: BaseGameRule
+  components:
+  - type: BasicStationEventScheduler
+    minimumTimeUntilFirstEvent: 360 # 6 min
+    minMaxEventTiming:
+      min: 480 # 8 min
+      max: 960 # 16 min
+    scheduledGameRules: !type:NestedSelector
+      tableId: CalmGameRulesTable
+
+- type: entityTable
+  id: CalmGameRulesTable
+  table: !type:AllSelector # we need to pass a list of rules, since rules have further restrictions to consider via StationEventComp
+    children:
+    - !type:NestedSelector
+      tableId: BasicCalmEventsTable
+    - !type:NestedSelector
+      tableId: CargoGiftsTable
+    - !type:NestedSelector
+      tableId: CalmPestEventsTable
+    - !type:NestedSelector
+      tableId: SpicyPestEventsTable
+    - !type:NestedSelector
+      tableId: CalmBackmenEventsTable
+    - id: ClosetSkeleton
+    - id: NinjaSpawn
+    - id: RevenantSpawn
+    - id: SleeperAgents
+
+- type: entity
+  parent: BaseGameRule
+  id: BabelTower
+  components:
+  - type: GameRule
+    minPlayers: 5
+    cancelPresetOnTooFewPlayers: false
+  - type: BabelTowerRule

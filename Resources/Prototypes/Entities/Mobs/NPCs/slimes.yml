@@ -112,6 +112,13 @@
     speechSounds: Slime
   - type: TypingIndicator
     proto: slime
+  - type: LanguageSpeaker
+    currentLanguage: TauCetiBasic
+  - type: LanguageKnowledge #backmen: languages
+    speaks:
+    - Slime
+    understands:
+    - Slime
 
 - type: entity
   name: basic slime
@@ -122,14 +129,13 @@
   components:
   - type: ReplacementAccent
     accent: slimes
-#  - type: GhostTakeoverAvailable
-#  - type: GhostRole
-#    makeSentient: true
-#    name: ghost-role-information-slimes-name
-#    description: ghost-role-information-slimes-description
-#    rules: ghost-role-information-nonantagonist-rules
-#    raffle:
-#      settings: short
+  - type: LanguageSpeaker
+    currentLanguage: TauCetiBasic
+  - type: LanguageKnowledge #backmen: languages
+    speaks:
+    - Slime
+    understands:
+    - Slime
   - type: Speech
     speechVerb: Slime
     speechSounds: Slime

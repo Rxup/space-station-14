@@ -64,6 +64,8 @@ alerts-bleed-name = [color=red]Кровотечение[/color]
 alerts-bleed-desc = У вас [color=red]кровотечение[/color].
 alerts-pacified-name = [color=green]Пацифизм[/color]
 alerts-pacified-desc = Вы чувствуете себя умиротворённо и не можете вредить живым существам.
+alerts-adrenaline-name = [color=red]Адреналин[/color]
+alerts-adrenaline-desc = Вас переполняет адреналин: боль не будет замедлять вас.
 alerts-suit-power-name = Заряд костюма
 alerts-suit-power-desc = Запас энергии вашего костюма космического ниндзя.
 alerts-magboots-name = Магнитные ботинки
@@ -75,6 +77,9 @@ alerts-revenant-corporeal-desc = Вы физически воплотились.
 
 alerts-changeling-chemicals-name = Химические вещества
 alerts-changeling-chemicals-desc = Тратится на использование ваших способностей. Постепенно восстанавливается.
+
+alerts-offer-name = передать
+alerts-offer-desc = кто-то передаёт вам предмет
 
 alerts-changeling-biomass-name = Биомасса
 alerts-changeling-biomass-desc =

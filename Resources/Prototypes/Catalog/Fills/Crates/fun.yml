@@ -40,35 +40,7 @@
     - id: PlushieArachind
     - id: PlushiePenguin
 
-- type: entity
-  id: CrateFunPlushie
-  parent: CrateGenericSteel
-  name: plushie crate
-  description: A buncha soft plushies. Throw them around and then wonder how you're gonna explain this purchase to NT.
-  components:
-  - type: EntityTableContainerFill
-    containers:
-      entity_storage: !type:NestedSelector
-        tableId: AllPlushiesTable
-        rolls: !type:ConstantNumberSelector
-          value: 10
-
-- type: entity
-  id: CrateFunLizardPlushieBulk
-  parent: CrateGenericSteel
-  name: bulk lizard plushie crate
-  description: A buncha soft lizard plushies. Throw them around and then wonder how you're gonna explain this purchase to NT.
-  components:
-  - type: EntityTableContainerFill
-    containers:
-      entity_storage: !type:AllSelector
-        children:
-        - id: PlushieLizard
-          amount: !type:ConstantNumberSelector
-            value: 3
-        - id: PlushieSpaceLizard
-          amount: !type:ConstantNumberSelector
-            value: 3
+# Removed crates with toys because EE toys
 
 - type: entity
   id: CrateFunInstrumentsVariety
@@ -335,6 +307,7 @@
       - id: BeachBall
       - id: RubberPig
       - id: ClothingShoesSkates
+      - id: RubberChicken
 
 - type: entity
   id: CrateFunBikeHornImplants

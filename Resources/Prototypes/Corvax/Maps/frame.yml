@@ -47,8 +47,9 @@
               - /Maps/Ruins/whiteship_bluespacejumper.yml
         - type: StationJobs
           availableJobs:
-            # service
-            Clown: [ 1, 1 ]
+            # cargo
+            SalvageSpecialist: [ 3, 3 ]
+            CargoTechnician: [ 2, 2 ]
             # engineering
             ChiefEngineer: [ 1, 1 ]
             AtmosphericTechnician: [ 1, 1 ]
@@ -59,15 +60,15 @@
             MedicalIntern: [ 0, 1 ]
             # science
             Scientist: [ 1, 2 ]
-            Borg: [ 1, 1 ]
             # security
             Pilot: [ 1, 1 ]
-            # cargo
-            SalvageSpecialist: [ 3, 3 ]
-            CargoTechnician: [ 2, 2 ]
+            # service
+            Clown: [ 1, 1 ]
+            # silicon
+            Borg: [ 1, 1 ]
+
             # backmen
-            Prisoner: [ 3, 3]
-            Brigmedic: [ 0, 1 ] # backmen-Brigmedic
+            Brigmedic: [ 0, 3 ] # backmen-Brigmedic
             #BKBPLATech: [0, 3] # backmen-BPLA-Silicons
             #BKBPLAMED: [0, 3] # backmen-BPLAMED-Silicons
         - type: StationGoal

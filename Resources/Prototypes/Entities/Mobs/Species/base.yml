@@ -190,8 +190,6 @@
   - type: Stripping
   - type: UserInterface
     interfaces:
-      enum.VoiceMaskUIKey.Key:
-        type: VoiceMaskBoundUserInterface
       enum.HumanoidMarkingModifierKey.Key:
         type: HumanoidMarkingModifierBoundUserInterface
       enum.StrippingUiKey.Key:
@@ -217,14 +215,13 @@
     price: 1500 # Kidnapping a living person and selling them for cred is a good move.
     deathPenalty: 0.01 # However they really ought to be living and intact, otherwise they're worth 100x less.
   - type: PotentialPsionic
+  - type: LayingDown # backmen: LayingDown
   - type: Tag
     tags:
     - CanPilot
     - FootstepSound
     - DoorBumpOpener
-  - type: CameraFollow # Backmen-Changes-End
-    backStrength: 50
-    defaultBackStrength: 20
+    - AnomalyHost
 
 - type: entity
   save: false
@@ -239,6 +236,7 @@
   components:
   - type: Absorbable # Changeling
   - type: DiseaseCarrier # backmen
+  - type: OfferItem # Ataraxia
   - type: Barotrauma
     damage:
       types:
@@ -360,3 +358,10 @@
     interfaces:
       enum.HumanoidMarkingModifierKey.Key: # sure, this can go here too
         type: HumanoidMarkingModifierBoundUserInterface
+  - type: LanguageSpeaker
+    currentLanguage: TauCetiBasic
+  - type: LanguageKnowledge #backmen: languages
+    speaks:
+    - TauCetiBasic
+    understands:
+    - TauCetiBasic

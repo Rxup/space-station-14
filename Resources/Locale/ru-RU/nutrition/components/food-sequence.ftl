@@ -14,6 +14,7 @@ food-sequence-content-salami = салями
 food-sequence-content-slime = слаймом
 food-sequence-content-clown = клоуном
 food-sequence-content-pea = бобами
+food-sequence-content-world-pea = world pea
 food-sequence-content-bungo = бунго
 food-sequence-content-banana = бананом
 food-sequence-content-mimana = миманом
@@ -64,6 +65,7 @@ food-sequence-content-glasstle = стеклополохом
 food-sequence-content-gatfruit = гатфруктом
 food-sequence-content-koibean = коибобами
 food-sequence-content-watermelon = арбузом
+food-sequence-content-holymelon = holymelon
 food-sequence-content-cannabis = коноплёй
 food-sequence-content-rainbow-cannabis = радужной коноплёй
 food-sequence-content-tobacco = табаком
@@ -74,6 +76,7 @@ food-sequence-content-berries = ягодами
 food-sequence-content-spacemans-trumpet = космической трубкой
 food-sequence-content-cherry = вишней
 food-sequence-content-snail = улиткой
+food-sequence-content-anomaly-berry = anomaly berry
 
 # BURGERS
 
@@ -82,7 +85,7 @@ food-sequence-burger-content-raw-meat = сыро
 food-sequence-burger-content-meat = мясо
 food-sequence-burger-content-carp = карпо
 food-sequence-burger-content-bear = медве
-food-sequence-burger-content-crab = crabs
+food-sequence-burger-content-crab = крабо
 food-sequence-burger-content-penguin = пингви
 food-sequence-burger-content-corgi = корги
 food-sequence-burger-content-goliath = голи
@@ -105,6 +108,7 @@ food-sequence-burger-content-rice = рис
 food-sequence-burger-content-soy = сой
 food-sequence-burger-content-koibean = кои
 food-sequence-burger-content-watermelon = арбуз
+food-sequence-burger-content-holymelon = holy
 food-sequence-burger-content-cannabis = смех
 food-sequence-burger-content-rainbow-cannabis = СМЕХ
 food-sequence-burger-content-tobacco = табако
@@ -112,6 +116,9 @@ food-sequence-burger-content-suppermatter = супер
 food-sequence-burger-content-hamster = хомяко
 food-sequence-burger-content-berries = ягод
 food-sequence-burger-content-spacemans-trumpet = космотруб
+food-sequence-burger-content-anomaly-berry = anom
+food-sequence-burger-content-extradimensional-orange = 3d
+food-sequence-burger-content-world-pea = peace
 
 # TACO
 

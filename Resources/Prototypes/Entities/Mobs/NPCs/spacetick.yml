@@ -74,8 +74,8 @@
           Quantity: 5
   - type: MeleeChemicalInjector
     solution: melee
-  - type: ReplacementAccent
-    accent: genericAggressive
+#  - type: ReplacementAccent
+#    accent: genericAggressive
   - type: Speech
     speechVerb: SmallMob
   - type: NonSpreaderZombie

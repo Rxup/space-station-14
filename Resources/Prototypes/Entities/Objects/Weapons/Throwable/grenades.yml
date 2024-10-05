@@ -49,6 +49,8 @@
     intensitySlope: 3
     totalIntensity: 120 # about a ~4 tile radius
     canCreateVacuum: false
+  - type: SpawnOnTrigger # Ataraxia
+    proto: ExplosionEffectGrenadeShockWave
   - type: OnUseTimerTrigger
     beepSound:
       path: "/Audio/Effects/beep1.ogg"
@@ -108,6 +110,8 @@
     sprite: Objects/Weapons/Grenades/syndgrenade.rsi
   - type: OnUseTimerTrigger
     delay: 5
+  - type: SpawnOnTrigger # Ataraxia
+    proto: ExplosionEffectGrenadeShockWave
   - type: ExplodeOnTrigger
   - type: Explosive
     explosionType: Minibomb
@@ -135,6 +139,8 @@
     intensitySlope: 30
     maxIntensity: 125
     canCreateVacuum: true
+  - type: SpawnOnTrigger # Ataraxia
+    proto: ExplosionEffectGrenadeShockWave
   - type: OnUseTimerTrigger
     delay: 4.5
     beepSound:
@@ -175,6 +181,8 @@
     sound:
       path: /Audio/Effects/Grenades/Supermatter/supermatter_start.ogg
       volume: 5
+  - type: SpawnOnTrigger # Ataraxia
+    proto: ExplosionEffectGrenadeShockWave
   - type: AnchorOnTrigger
     removeOnTrigger: true
   - type: TwoStageTrigger
@@ -266,6 +274,8 @@
   - type: OnUseTimerTrigger
     delay: 5
   - type: ExplodeOnTrigger
+  - type: SpawnOnTrigger # Ataraxia
+    proto: ExplosionEffectGrenadeShockWave
   - type: Explosive
     explosionType: Default
     totalIntensity: 20000 # ~15 tile radius.
@@ -341,6 +351,8 @@
   - type: EmpOnTrigger
     range: 5.5
     energyConsumption: 50000
+  - type: SpawnOnTrigger # Ataraxia
+    proto: ExplosionEffectGrenadeShockWave
   - type: DeleteOnTrigger
   - type: Appearance
   - type: TimerTriggerVisuals
@@ -364,6 +376,8 @@
     canCreateVacuum: true
   - type: OnUseTimerTrigger
     delay: 3 # by canon
+  - type: SpawnOnTrigger # Ataraxia
+    proto: ExplosionEffectGrenadeShockWave
   - type: PointLight
     radius: 7
     energy: 3

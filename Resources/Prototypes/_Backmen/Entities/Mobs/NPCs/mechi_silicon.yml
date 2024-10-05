@@ -170,7 +170,7 @@
             max: 1
 
 - type: entity
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   id: MechGavnaMaulerDestroyed
   parent: PlayerSiliconBase
   name: полностью сломанный маулер
@@ -257,7 +257,7 @@
             max: 1
 
 - type: entity
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   id: MechGavnaMarauderDestroyed
   parent: MechGavnaMaulerDestroyed
   name: полностью сломанный мародёр
@@ -315,7 +315,7 @@
             max: 1
 
 - type: entity
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   id: MechGavnaDarkGygaxDestroyed
   parent: MechGavnaMaulerDestroyed
   name: полностью сломанный темный гайгэкс
@@ -392,7 +392,7 @@
             max: 1
 
 - type: entity
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   id: MechGavnaSeraphDestroyed
   parent: MechGavnaMaulerDestroyed
   name: полностью сломанный серафим
@@ -406,7 +406,7 @@
 #----------------------------------------------------------------------------
 
 - type: entity
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   id: MechGavnaDurandDestroyed
   parent: MechGavnaMaulerDestroyed
   name: полностью сломанный дюранд
@@ -469,7 +469,7 @@
 #----------------------------------------------------------------------------
 
 - type: entity
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   id: MechGavnaGygaxDestroyed
   parent: MechGavnaMaulerDestroyed
   name: полностью сломанный дюранд

@@ -1,0 +1,17 @@
+- type: language
+  id: Argocyte
+  speech:
+    fontId: Monospace
+  obfuscation:
+    !type:SyllableObfuscation
+    minSyllables: 1
+    maxSyllables: 3
+    replacement:
+    - зззз
+    - ффррр
+    - сссвв
+    - шшшш
+    - ккккк
+    - бжжжж
+    - хххууу
+    - тррррр

@@ -7,7 +7,9 @@
       icon:
         sprite: Backmen/Interface/Actions/blob.rsi
         state: blobFactory
-      event: !type:BlobCreateFactoryActionEvent
+      event: !type:BlobTransformTileActionEvent
+        transformFrom: Normal
+        tileType: Factory
       itemIconStyle: BigAction
       range: 200
       useDelay: 0.5
@@ -21,7 +23,9 @@
       icon:
         sprite: Backmen/Interface/Actions/blob.rsi
         state: blobResource
-      event: !type:BlobCreateResourceActionEvent
+      event: !type:BlobTransformTileActionEvent
+        transformFrom: Normal
+        tileType: Resource
       itemIconStyle: BigAction
       range: 200
       useDelay: 0.5
@@ -35,7 +39,9 @@
       icon:
         sprite: Backmen/Interface/Actions/blob.rsi
         state: blobNode
-      event: !type:BlobCreateNodeActionEvent
+      event: !type:BlobTransformTileActionEvent
+        transformFrom: Normal
+        tileType: Node
       itemIconStyle: BigAction
       range: 200
       useDelay: 0.5
@@ -96,30 +102,6 @@
       useDelay: 0.5
 
 - type: entity
-  id: ActionTeleportBlobToNode
-  name: blob-teleport-to-node-action-name
-  description: blob-teleport-to-node-action-desc
-  components:
-    - type: InstantAction
-      icon:
-        sprite: Backmen/Interface/Actions/blob.rsi
-        state: blobToNode
-      event: !type:BlobToNodeActionEvent
-      useDelay: 0.5
-
-- type: entity
-  id: ActionHelpBlob
-  name: blob-help-action-name
-  description: blob-help-action-desc
-  components:
-    - type: InstantAction
-      icon:
-        sprite: Backmen/Interface/Actions/blob.rsi
-        state: blobHelp
-      event: !type:BlobHelpActionEvent
-      useDelay: 0.5
-
-- type: entity
   id: ActionSwapBlobChem
   name: blob-swap-chem-action-name
   description: blob-swap-chem-action-desc
@@ -140,3 +122,19 @@
         sprite: Backmen/Interface/Actions/blob.rsi
         state: blobToCore
       event: !type:TransformToBlobActionEvent
+
+- type: entity
+  id: ActionDowngradeBlob
+  name: blob-downgrade-action-name
+  description: blob-downgrade-action-desc
+  components:
+    - type: WorldTargetAction
+      icon:
+        sprite: Backmen/Interface/Actions/blob.rsi
+        state: blobDowngrade
+      event: !type:BlobTransformTileActionEvent
+        transformFrom: Invalid
+        tileType: Normal
+      itemIconStyle: BigAction
+      range: 200
+      useDelay: 0.5

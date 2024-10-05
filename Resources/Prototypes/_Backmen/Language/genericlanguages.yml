@@ -1,0 +1,32 @@
+# The universal language. This is technically used as a fallback for simulating the pre-languages
+# style of Chat, and is not normally accessible by players. It is however used by characters
+# with the Xenoglossy psionic power, as well as Ghosts, and AGhosts.
+- type: language
+  id: Universal
+  obfuscation:
+    !type:ReplacementObfuscation
+    replacement:
+    - "*непонятно*" # Никогда не используется
+
+# Example of a sign language. Used by the Sign Language trait.
+- type: language
+  id: Sign
+  speech:
+    allowRadio: false
+    requireSpeech: false
+    color: "#dddddd"
+    messageWrapOverrides:
+      Speak: chat-sign-language-message-wrap
+      Whisper: chat-sign-language-whisper-wrap
+    speechVerbOverrides:
+    - chat-speech-verb-sign-1
+    - chat-speech-verb-sign-2
+    - chat-speech-verb-sign-3
+  obfuscation:
+    !type:ReplacementObfuscation
+    replacement:
+    - что-то
+    - загадочное сообщение
+    - сигнал
+    - сообщение
+

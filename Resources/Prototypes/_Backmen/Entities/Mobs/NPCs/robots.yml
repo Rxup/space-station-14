@@ -66,8 +66,16 @@
         - MalfunctioningRobot
     - type: Appearance
     - type: CombatMode
-    - type: ReplacementAccent
-      accent: silicon
+#    - type: ReplacementAccent
+#      accent: silicon
+    - type: LanguageSpeaker
+      currentLanguage: TauCetiBasic
+    - type: LanguageKnowledge #backmen: languages
+      speaks:
+      - Binary
+      understands:
+      - Binary
+      - TauCetiBasic
     - type: UnpoweredFlashlight
     - type: PointLight
       enabled: true
