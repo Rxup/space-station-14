@@ -627,6 +627,9 @@
   id: ExplosivePassable
 
 - type: Tag
+  id: Extract
+
+- type: Tag
   id: ExoMech
 
 - type: Tag
