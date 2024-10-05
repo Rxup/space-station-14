@@ -303,3 +303,20 @@
   - WageScheduler #backmen: currency
   - CalmMeteorSwarmScheduler
   - BasicRoundstartVariation
+
+
+- type: gamePreset
+  id: BabelTower
+  name: babelTower-title
+  description: babelTower-description
+  minPlayers: 5
+  showInVote: true
+  rules:
+    - BabelTower
+    - CalmStationEventScheduler
+    - WageScheduler
+    - CalmMeteorSwarmScheduler
+    - BasicRoundstartVariation
+    - SpaceTrafficControlEventScheduler
+    - SpaceTrafficControlFriendlyEventScheduler
+    - ExtendedThief

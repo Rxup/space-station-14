@@ -193,7 +193,7 @@ public sealed partial class LanguageSystem : SharedLanguageSystem
             }
         }
 
-        RaiseLocalEvent(entity, ref ev);
+        RaiseLocalEvent(entity, ref ev, true);
 
         entity.Comp.SpokenLanguages.Clear();
         entity.Comp.UnderstoodLanguages.Clear();
