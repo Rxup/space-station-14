@@ -1,0 +1,55 @@
+- type: entity
+  parent: ClothingBeltStorageBase
+  id: ClothingBeltMilitaryWebbingCMO
+  name: chief medical officer's chest rig
+  description: A medical chest rig with deep pockets, for use by paramedics and health professionals.
+  components:
+  - type: Sprite
+    sprite: _SpaceCats/Clothing/Belt/cmowebbing.rsi
+  - type: Clothing
+    sprite: _SpaceCats/Clothing/Belt/cmowebbing.rsi
+  - type: Item
+    size: Large
+  - type: Storage
+    maxItemSize: Normal
+    grid:
+    - 0,0,2,1
+    - 4,0,7,1
+  - type: StorageFill
+    contents:
+      - id: Brutepack
+        amount: 2
+      - id: Ointment
+        amount: 1
+      - id: Bloodpack
+        amount: 1
+      - id: Gauze
+      - id: EmergencyMedipen
+
+- type: entity
+  parent: ClothingBeltStorageBase
+  id: ClothingBeltMilitaryWebbingCorpsman
+  name: corpsman chest rig
+  description: A medical chest rig with deep pockets, for use by paramedics and health professionals.
+  components:
+  - type: Sprite
+    sprite: _SpaceCats/Clothing/Belt/corpsman.rsi
+  - type: Clothing
+    sprite: _SpaceCats/Clothing/Belt/corpsman.rsi
+  - type: Item
+    size: Large
+  - type: Storage
+    maxItemSize: Normal
+    grid:
+    - 0,0,2,1
+    - 4,0,7,1
+  - type: StorageFill
+    contents:
+      - id: Brutepack
+        amount: 2
+      - id: Ointment
+        amount: 1
+      - id: Bloodpack
+        amount: 1
+      - id: Gauze
+      - id: EmergencyMedipen #You never know what people are going to latejoin into

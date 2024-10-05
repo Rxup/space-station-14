@@ -59,7 +59,7 @@
   equipment:
     id: CMOPDA
     ears: ClothingHeadsetCMO
-    belt: ClothingBeltMedicalFilled
+    belt: ClothingBeltMilitaryWebbingCMO # cats 
   storage:
     back:
     - Flash
