@@ -43,6 +43,7 @@
   - type: Sprite
     state: brain
   - type: Organ
+    slotId: brain # backmen: surgery
   - type: Input
     context: "ghost"
   - type: Brain
@@ -74,13 +75,18 @@
   - type: Item
     size: Small
     heldPrefix: brain
-  
+
 - type: entity
   id: OrganHumanEyes
   parent: BaseHumanOrgan
   name: eyes
   description: "I see you!"
   components:
+  # start-backmen: surgery
+  - type: Organ
+    slotId: eyes
+  - type: Eyes
+  # end-backmen: surgery
   - type: Sprite
     layers:
       - state: eyeball-l
@@ -132,6 +138,8 @@
     size: Small
     heldPrefix: lungs
   - type: Lung
+  - type: Organ # backmen: surgery
+    slotId: lungs
   - type: Metabolizer
     removeEmpty: true
     solutionOnBody: false
@@ -161,6 +169,11 @@
   name: heart
   description: "I feel bad for the heartless bastard who lost this."
   components:
+  # start-backmen: surgery
+  - type: Heart
+  - type: Organ
+    slotId: heart
+  # end-backmen: surgery
   - type: Sprite
     state: heart-on
   # The heart 'metabolizes' medicines and poisons that aren't filtered out by other organs.
@@ -198,6 +211,8 @@
         - ReagentId: UncookedAnimalProteins
           Quantity: 5
   - type: Stomach
+  - type: Organ # backmen: surgery
+    slotId: stomach
   # The stomach metabolizes stuff like foods and drinks.
   # TODO: Have it work off of the ent's solution container, and move this
   # to intestines instead.
@@ -215,6 +230,11 @@
   name: liver
   description: "Pairing suggestion: chianti and fava beans."
   components:
+  # start-backmen: surgery
+  - type: Liver
+  - type: Organ
+    slotId: liver
+  # end-backmen: surgery
   - type: Sprite
     state: liver
   - type: Item
