@@ -417,7 +417,6 @@
   categories: [ HideSpawnMenu ]
   suffix: DO NOT MAP
   components:
-  - type: NoFTL
   - type: WarpPoint
     follow: true
   - type: Eye
