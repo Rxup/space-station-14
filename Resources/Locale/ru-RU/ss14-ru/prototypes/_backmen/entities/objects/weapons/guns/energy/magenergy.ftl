@@ -1,0 +1,10 @@
+ent-WeaponLaserCarabinCell = EarthGov laser carbine
+    .desc = A Earth Government standard issue laser carbine, use by army and police. Thanks to the short barrel it has better maneuverability in narrow spaces.
+    .suffix = Rifle
+ent-WeaponEarthGovLaserSniperCell = EarthGov heavy laser rifle
+    .desc = A Earth Government heavy sniper rifle for a extended combat situation.
+    .suffix = Винтовка
+ent-EnergyMag = energy magazine
+    .desc = Standart EarthGov type of energys magazines.
+ent-BigEnergyMag = big energy magazine
+    .desc = Standart EarthGov type of energys magazines.

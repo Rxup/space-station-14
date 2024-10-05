@@ -527,7 +527,7 @@
 - type: listing
   id: UplinkUpgradePack
   name: Набор улучшения для оружия
-  description: Набор с обвесом для оружия, **ремарка: на данный момент обвесы имеют лишь АКМС, Вектор, P90, AKS74-U, RPD, ХМ1014, МР5, М28 и G36.
+  description: "Набор с обвесом для оружия, **ремарка: на данный момент обвесы имеют лишь АКМС, Вектор, P90, AKS74-U, RPD, ХМ1014, МР5, М28 и G36."
   icon: { sprite: Objects/Tools/Toolboxes/toolbox_red.rsi, state: icon }
   productEntity: UpgradeStation
   cost:

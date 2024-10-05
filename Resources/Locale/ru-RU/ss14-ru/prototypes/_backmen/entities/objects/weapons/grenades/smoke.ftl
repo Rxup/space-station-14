@@ -1,0 +1,12 @@
+ent-BloodsuckerGrenade = граната-вампир
+    .desc = вампирский клуб... присоединяйтесь?
+ent-LandMinePsi = Пси-мина
+    .desc = { ent-BaseLandMine.desc }
+ent-LandMineXeno = ксено-мина
+    .desc = { ent-BaseLandMine.desc }
+ent-PsiGrenade = пси-граната
+    .desc = пси? нарко? поло?
+ent-XenoGrenade = граната с ксеновирусом
+    .desc = { ent-SmokeGrenade.desc }
+ent-AntiPsiGrenade = анти-пси-граната
+    .desc = ненавидели магию мозга?

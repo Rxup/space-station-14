@@ -1,0 +1,14 @@
+ent-CartridgeRifleFire = патрон (.20 винтовочно-зажигательные)
+    .desc = { ent-BaseCartridgeRifle.desc }
+ent-BaseCartridgeRifleHeavy = cartridge (.62 rifle)
+    .desc = { ent-BaseCartridge.desc }
+ent-CartridgeRifleHeavy = cartridge (.62 rifle)
+    .desc = { ent-BaseCartridgeRifleHeavy.desc }
+ent-BaseCartridgeRifleRocket20 = cartridge (рельсотрон)
+    .desc = { ent-BaseCartridge.desc }
+ent-CartridgeRifleRocket20 = cartridge (рельсотрон)
+    .desc = { ent-BaseCartridgeRifleRocket20.desc }
+ent-BaseCartridgeRifleLightSniper = cartridge (7,62 rifle)
+    .desc = { ent-BaseCartridge.desc }
+ent-CartridgeRifleLight762 = cartridge (7,62 rifle)
+    .desc = { ent-BaseCartridgeRifleLightSniper.desc }

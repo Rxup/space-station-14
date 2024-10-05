@@ -1,0 +1,12 @@
+ent-MagazineMagnumPistolAP = pistol magazine (.50AE AP)
+    .desc = { ent-MagazineMagnumPistol.desc }
+ent-MagazineMagnumPistol = pistol magazine (.50AE)
+    .desc = { ent-BaseItem.desc }
+ent-MagazinePistol345 = pistol magazine (.345 magnum)
+    .desc = { ent-MagazinePistol.desc }
+ent-MagazinePistolBoxSubMachineGun = SMG box magazine (.9×19mm parabellum)
+    .desc = { ent-BaseItem.desc }
+ent-MagazinePistolDrumSubMachineGun = SMG Drum magazine (.9×19mm parabellum)
+    .desc = { ent-BaseItem.desc }
+ent-MagazinePistolTopSubMachineGun = SMG top mounted magazine (.9×19mm parabellum)
+    .desc = { ent-BaseItem.desc }

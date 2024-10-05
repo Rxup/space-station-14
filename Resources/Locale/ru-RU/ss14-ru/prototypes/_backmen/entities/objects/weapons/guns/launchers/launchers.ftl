@@ -1,0 +1,9 @@
+ent-WeaponLauncherGL70 = GL-79
+    .desc = The GL-70 is the standard grenade launcher used by the Earth Army for area denial and big explosions.
+    .suffix = Гранатомёт
+ent-WeaponLauncherM81 = M-81
+    .desc = A lightweight single-shot grenade launcher used by the UEG for area blockades and large explosions or riot police units.
+    .suffix = Гранатомёт
+ent-WeaponLauncherRL5 = RL-5
+    .desc = The RL-5 is the primary anti-armor used around the galaxy. Used to take out light-tanks and enemy structures, the RL-5 rocket launcher is a dangerous weapon with a variety of combat uses.
+    .suffix = Ракетомёт

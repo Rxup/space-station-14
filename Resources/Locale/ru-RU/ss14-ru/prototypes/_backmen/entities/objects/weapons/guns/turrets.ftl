@@ -1,0 +1,16 @@
+ent-WeaponTurretNanoSAI = { ent-BaseWeaponTurret }
+    .suffix = SAI
+    .desc = { ent-BaseWeaponTurret.desc }
+ent-WeaponTurretBaseLaser = laser turret
+    .desc = Automatic turret of laser destruction, with a self-charging battery inside.
+ent-WeaponTurretLaserNanoTrasen = { ent-WeaponTurretBaseLaser }
+    .suffix = NanoTrasen
+    .desc = { ent-WeaponTurretBaseLaser.desc }
+ent-WeaponTurretLaserOnestar = { ent-WeaponTurretBaseLaser }
+    .suffix = Hostile
+    .desc = { ent-WeaponTurretBaseLaser.desc }
+ent-WeaponTurretSpetsnaz = { ent-BaseWeaponTurret }
+    .suffix = SpecialForce
+    .desc = { ent-BaseWeaponTurret.desc }
+ent-UEGWeaponTurret = UA-580 point defense sentry
+    .desc = Стандартная турель точечной защиты, используется военными формированиями ОПЗ.

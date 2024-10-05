@@ -1,0 +1,37 @@
+ent-TranslatorUnpowered = translator
+    .desc = Translates speech.
+ent-TranslatorPoweredBase = { ent-['TranslatorUnpowered', 'PowerCellSlotMediumItem'] }
+
+  .desc = { ent-['TranslatorUnpowered', 'PowerCellSlotMediumItem'].desc }
+ent-Translator = { ent-['PowerCellSlotMediumItem', 'TranslatorPoweredBase'] }
+
+  .suffix = Powered
+  .desc = { ent-['PowerCellSlotMediumItem', 'TranslatorPoweredBase'].desc }
+ent-TranslatorForeigner = foreigner's translator
+    .desc = A special-issue translator that helps foreigner's speak and understand this station's primary language.
+ent-CanilunztTranslator = Canilunzt translator
+    .desc = Translates speech between Canilunzt and Galactic Common, allowing your local yeepers to communicate with the locals and vice versa!
+ent-BubblishTranslator = Bubblish translator
+    .desc = Translates speech between Bubblish and Galactic Common, helping communicate with slimes and slime people.
+ent-NekomimeticTranslator = Nekomimetic translator
+    .desc = Translates speech between Nekomimetic and Galactic Common, enabling you to communicate with your pet cats.
+ent-DraconicTranslator = Draconic translator
+    .desc = Translates speech between Draconic and Galactic Common, making it easier to understand your local Uniathi.
+ent-SolCommonTranslator = Sol Common translator
+    .desc = Translates speech between Sol Common and Galactic Common. Like a true Earthman!
+ent-RootSpeakTranslator = RootSpeak translator
+    .desc = Translates speech between RootSpeak and Galactic Common. You may now speak for the trees.
+ent-MofficTranslator = Moffic translator
+    .desc = Translates speech between Moffic and Galactic Common, helping you understand the buzzes of your pet mothroach!
+ent-XenoTranslator = Xeno translator
+    .desc = Translates speech between Xeno and Galactic Common. This will probably not help you survive an encounter, though.
+ent-AnimalTranslator = Animal translator
+    .desc = Translates all the cutes noises that most animals make into a more understandable form!
+ent-ValyrianStandardTranslator = Valyrian Standard translator
+    .desc = Translates speech between Valyrian Standard and Tau-Ceti Basic. For talking to Harpies!
+ent-ShadokinTranslator = Shadokin translator
+    .desc = Translates speech between Shadokin and Tau-Ceti Basic. For talking to Shadowkin!
+ent-DwarvenTranslator = Dwarven translator
+    .desc = Translates speech between Dwarven and Tau-Ceti Basic. For talking to Dwarfs!
+ent-ElvishTranslator = Elvish translator
+    .desc = Translates speech between Elvish and Tau-Ceti Basic. For talking to Elfs!

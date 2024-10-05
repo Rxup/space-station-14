@@ -1,4 +1,3 @@
-
 # these specifically mostly come from examples of specific scottish-english (not necessarily scots) verbiage
 # https://en.wikipedia.org/wiki/Scotticism
 # https://en.wikipedia.org/wiki/Scottish_English
@@ -137,7 +136,7 @@ accent-dwarf-words-replace-66 = мясо
 accent-dwarf-words-67 = еды
 accent-dwarf-words-replace-67 = мяса
 accent-dwarf-words-68 = эй
-accent-dwarf-words-replace-68 = ЭЙ! 
+accent-dwarf-words-replace-68 = ЭЙ!
 accent-dwarf-words-69 = что
 accent-dwarf-words-replace-69 = что
 accent-dwarf-words-70 = зачем
@@ -165,7 +164,7 @@ accent-dwarf-words-replace-80 = некромант
 accent-dwarf-words-81 = чтобы
 accent-dwarf-words-replace-81 = чтобы
 accent-dwarf-words-82 = генокрад
-accent-dwarf-words-replace-82 = гоблин крадущий гены 
+accent-dwarf-words-replace-82 = гоблин крадущий гены
 accent-dwarf-words-83 = даже
 accent-dwarf-words-replace-83 = даже
 accent-dwarf-words-84 = ай
@@ -191,7 +190,7 @@ accent-dwarf-words-replace-94 = базарить
 accent-dwarf-words-95 = спиртное
 accent-dwarf-words-replace-95 = пиво!
 accent-dwarf-words-96 = звоните
-accent-dwarf-words-replace-96 = свестите 
+accent-dwarf-words-replace-96 = свестите
 accent-dwarf-words-97 = подарить
 accent-dwarf-words-replace-97 = отдать
 accent-dwarf-words-98 = дайте
@@ -284,4 +283,3 @@ accent-dwarf-words-147 = СБ
 accent-dwarf-words-replace-147 = стража
 accent-dwarf-words-148 = ящер
 accent-dwarf-words-replace-148 = чешуйчатый
-

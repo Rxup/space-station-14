@@ -1,0 +1,10 @@
+ent-BaseMagazineHeavyRifle50 = magazine (.50 BMG)
+    .desc = { ent-BaseItem.desc }
+ent-MagazineHeavyRifleMaDeuse = magazine (.50 BMG)
+    .desc = { ent-BaseMagazineHeavyRifle50.desc }
+ent-MagazineHeavyRifleV41 = magazine (.20 rifle)
+    .desc = { ent-BaseMagazineHeavyRifle50.desc }
+ent-MagazineHeavyMachineGunDrum = Drum magazine (.25 caseless)
+    .desc = { ent-BaseItem.desc }
+ent-MagazineLightMachineGunDrum = Drum magazine (.20 винтовочный)
+    .desc = { ent-BaseItem.desc }

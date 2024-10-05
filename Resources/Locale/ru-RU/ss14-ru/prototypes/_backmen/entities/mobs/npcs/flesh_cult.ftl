@@ -1,0 +1,14 @@
+ent-BaseMobFleshCult = извращенная плоть
+    .desc = A shambling mass of flesh, animated through anomalous energy.
+ent-MobFleshSpider = паук из плоти
+    .desc = { ent-BaseMobFleshCult.desc }
+ent-MobFleshPudge = мясной толстяк
+    .desc = { ent-BaseMobFleshCult.desc }
+ent-MobFleshAbom = мерзкая плоть
+    .desc = { ent-BaseMobFleshCult.desc }
+ent-MobFleshBall = мясной шарик
+    .desc = { ent-BaseMobFleshCult.desc }
+ent-MobFleshBat = мясная мышка
+    .desc = { ent-BaseMobFleshCult.desc }
+ent-MobFleshWorm = мясной червь
+    .desc = { ent-BaseMobFleshCult.desc }

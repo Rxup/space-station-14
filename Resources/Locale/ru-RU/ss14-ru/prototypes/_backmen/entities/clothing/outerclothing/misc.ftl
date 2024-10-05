@@ -1,0 +1,11 @@
+ent-ClothingWitchHunter = Накидка охотника за ведьмами
+    .desc = Убей этих ведьм!
+ent-ClothingMagistrateroba = Накидка магистрата
+    .desc = Пора уволить срочников.
+ent-ClothingOuterPlagueSuitUnremoveable = { ent-ClothingOuterPlagueSuit }
+    .suffix = Unremoveable
+    .desc = { ent-ClothingOuterPlagueSuit.desc }
+ent-ClothingGlavaKylt = Чёрная накидка старшего
+    .desc = Странная чёрная накидка старшего последователя, пахнет мистикой.
+ent-ClothingPosledKylt = Чёрная накидка последователя
+    .desc = Странная чёрная накидка последователя, пахнет мистикой.

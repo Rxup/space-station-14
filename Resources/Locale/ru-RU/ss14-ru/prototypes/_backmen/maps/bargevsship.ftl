@@ -1,0 +1,3 @@
+ent-StandardNanotrasenStationVsShip = { ent-['BaseStation', 'BaseStationCargo', 'BaseStationJobsSpawning', 'BaseStationRecords', 'BaseStationAlertLevels', 'BaseStationSiliconLawCrewsimov', 'BaseStationAllEventsEligible', 'BaseStationNanotrasen'] }
+
+  .desc = { ent-['BaseStation', 'BaseStationCargo', 'BaseStationJobsSpawning', 'BaseStationRecords', 'BaseStationAlertLevels', 'BaseStationSiliconLawCrewsimov', 'BaseStationAllEventsEligible', 'BaseStationNanotrasen'].desc }
