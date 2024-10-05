@@ -456,7 +456,7 @@
   - type: Appearance
 
 - type: entity
-  parent: [ClothingBeltStorageBase, BaseRestrictedContraband, ClothingSlotBase]
+  parent: [ClothingBeltStorageBase, BaseRestrictedContraband]
   id: ClothingBeltSecurity
   name: security belt
   description: Can hold security gear like handcuffs and flashes.
@@ -465,14 +465,6 @@
     sprite: _SpaceCats/Clothing/Belt/security.rsi #<-- cats
   - type: Clothing
     sprite: _SpaceCats/Belt/security.rsi #<-- cats
-  - type: ItemSlots #<-- cats - add sidearm slot
-    slots:
-      holster:
-        name: clothing-belt-sidearm
-        whitelist:
-          tags:
-          - Sidearm
-        insertOnInteract: false
   - type: Storage
     whitelist:
       tags:
@@ -499,23 +491,19 @@
         - BalloonPopper
   - type: ItemMapper
     mapLayers:
-      whitelist:
-        components:
-        - Stunbaton
-    gasgrenade:
-      whitelist:
-        tags:
-        - Grenade
-    slp:
-      whitelist:
-        tags:
-        - Sidearm
-    sprite: _SpaceCats/Clothing/Belt/belt_overlay.rsi
-  - type: ContainerContainer
-    containers:
-      storagebase: !type:Container
-        ents: []
-      holster: !type:ContainerSlot {}
+      flashbang:
+        whitelist:
+          components:
+          - FlashOnTrigger
+      stunbaton:
+        whitelist:
+          components:
+          - Stunbaton
+      tear_gas_grenade:
+        whitelist:
+          components:
+          - SmokeOnTrigger
+    sprite: _SpaceCat/Clothing/Belt/belt_overlay.rsi
   - type: Appearance
 
 - type: entity
@@ -666,7 +654,7 @@
         - CartridgeAmmo
 
 - type: entity
-  parent: [ClothingBeltSecurity, ClothingSlotBase]
+  parent: ClothingBeltSecurity
   id: ClothingBeltSecurityWebbing
   name: security carrier
   description: Unique and versatile chest rig, can hold security gear.
@@ -675,27 +663,6 @@
     sprite: _SpaceCats/Clothing/Belt/securitywebbing.rsi # cats
   - type: Clothing
     sprite: _SpaceCats/Clothing/Belt/securitywebbing.rsi # cats
-  - type: ItemSlots # cats add sidearm slot
-    slots:
-      holster:
-        name: clothing-belt-sidearm
-        whitelist:
-          tags:
-          - Sidearm
-        insertOnInteract: false
-  - type: ItemMapper # cats add holstered sidearm sprite
-    mapLayers:
-      slp:
-        whitelist:
-          tags:
-          - Sidearm
-    sprite: _SpaceCats/Clothing/Belt/belt_overlay.rsi
-  - type: ContainerContainer
-    containers:
-      storagebase: !type:Container
-        ents: []
-      holster: !type:ContainerSlot {}
-  - type: Appearance # DeltaV
 
 - type: entity
   parent: [ ClothingBeltStorageBase, BaseSecurityCargoContraband ]
