@@ -5,7 +5,7 @@
     gloves: ClothingHandsGlovesNitrile
     eyes: ClothingEyesHudMedSec
     id: BrigmedicPDA
-    belt: ClothingBeltMedicalFilled
+    belt: ClothingBeltMilitaryWebbingCorpsman
 
 #Suit
 - type: loadout
