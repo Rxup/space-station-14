@@ -499,13 +499,13 @@
         - BalloonPopper
   - type: ItemMapper
     mapLayers:
-        whitelist:
-          components:
-          - Stunbaton
+      whitelist:
+        components:
+        - Stunbaton
     gasgrenade:
       whitelist:
         tags:
-          - Grenade
+        - Grenade
     slp:
       whitelist:
         tags:
