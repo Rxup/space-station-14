@@ -70,42 +70,6 @@
     canShuttle: false
     title: comms-console-announcement-title-station-ai
     color: "#2ed2fd"
-  - type: LanguageSpeaker
-    currentLanguage: TauCetiBasic
-  - type: LanguageKnowledge #backmen: languages
-    speaks:
-    - Binary
-    - TauCetiBasic
-    - Freespeak
-    - Slime
-    - Dragon
-    - Moffic
-    - SolCommon
-    - Dwarven
-    - RootSpeak
-    - Spider
-    - Nekomimetic
-    - Canilunzt
-    - Dog
-    - Garpy
-    - Shadokin
-    understands:
-    - Binary
-    - TauCetiBasic
-    - Freespeak
-    - Slime
-    - Dragon
-    - Moffic
-    - SolCommon
-    - Dwarven
-    - RootSpeak
-    - Spider
-    - Nekomimetic
-    - Canilunzt
-    - Dog
-    - Garpy
-    - Shadokin
-
 
 # Ai
 - type: entity
@@ -408,11 +372,39 @@
     tags:
     - HideContextMenu
     - StationAi
-  - type: HighlightWordsInChat
-    highlightWords:
-      '#e00':
-      - hl-words-ai-1
-      - hl-words-ai-2
+  - type: LanguageSpeaker #backmen: languages. FIXED :)
+    currentLanguage: TauCetiBasic
+  - type: LanguageKnowledge
+    speaks:
+    - Binary
+    - TauCetiBasic
+    - SolCommon
+    - RootSpeak
+    - Dwarven
+    - Garpy
+    - Moffic
+    - Nekomimetic
+    - Dragon
+    - Shadokin
+    - Slime
+    - Canilunzt
+    - Freespeak
+    - Spider
+    understands:
+    - Binary
+    - TauCetiBasic
+    - SolCommon
+    - RootSpeak
+    - Dwarven
+    - Garpy
+    - Moffic
+    - Nekomimetic
+    - Dragon
+    - Shadokin
+    - Slime
+    - Canilunzt
+    - Freespeak
+    - Spider
 
 # Hologram projection that the AI's eye tracks.
 - type: entity
@@ -425,7 +417,6 @@
   categories: [ HideSpawnMenu ]
   suffix: DO NOT MAP
   components:
-  - type: NoFTL
   - type: WarpPoint
     follow: true
   - type: Eye

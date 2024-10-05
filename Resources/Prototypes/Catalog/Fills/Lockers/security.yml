@@ -25,6 +25,7 @@
       - id: BookSpaceLaw
       - id: ClothingHeadHatCapWardenAlt # Corvax-SecFashion
       - id: ClothingOuterCoatWardenAlt # Corvax-SecFashion
+      - id: ClothingBackpackWarden # Corvax-SecFashion
       - id: ClothingBackpackElectropack
         amount: 2
       - id: RemoteSignaller
@@ -59,6 +60,7 @@
       - id: ClothingHeadCage # backmen
         amount: 2
       - id: BookSpaceLaw
+      - id: ClothingBackpackWarden # Corvax-SecFashion
       - id: ClothingBackpackElectropack
         amount: 2
       - id: RemoteSignaller

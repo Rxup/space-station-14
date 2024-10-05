@@ -1,0 +1,16 @@
+# Default rules
+- type: guideEntry
+  id: CorvaxRuleset
+  name: Правила сервера
+  priority: 0
+  ruleEntry: true
+  text: "/ServerInfo/Corvax/Guidebook/ServerRules/MrpRuleset.xml"
+  children:
+  - CorvaxPunishmentTypes
+
+- type: guideEntry
+  id: CorvaxPunishmentTypes
+  name: Игровые наказания
+  priority: 20
+  ruleEntry: true
+  text: "/ServerInfo/Corvax/Guidebook/ServerRules/PunishmentTypes.xml"

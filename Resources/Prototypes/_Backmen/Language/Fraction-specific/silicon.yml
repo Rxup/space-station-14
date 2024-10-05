@@ -3,7 +3,8 @@
 - type: language
   id: Binary
   speech:
-    fontId: Monospace
+    color: "#2ed2fd" # Binary channel color
+    fontId: ZektonRg
   obfuscation:
     !type:SyllableObfuscation
     minSyllables: 1
