@@ -1,0 +1,14 @@
+ent-MagazineLightRifleAI = magazine (.30 rifle)
+    .desc = { ent-BaseMagazineLightRifle.desc }
+ent-MagazineRiflePan = дисковый магазин (.20 винтовочные)
+    .desc = { ent-BaseMagazineRifle.desc }
+ent-MagazineRifleFire = магазин (.20 винтовочно-зажигательные)
+    .desc = { ent-BaseMagazineRifle.desc }
+ent-MagazineAntiMaterielRifleSR = rifle magazine (.60 anti-material)
+    .desc = Standart EarthGov type of heavy magazines.
+ent-MagazineHeavyRifleBR64 = rifle magazine (.62 rifle)
+    .desc = Standart EarthGov type of heavy magazines.
+ent-MagazineRifleRocket20 = rifle magazine (рельсотрон)
+    .desc = Standart EarthGov type of heavy magazines.
+ent-MagazineRifleLightSniper = rifle magazine (7,62 rifle)
+    .desc = Standart USSP type of heavy magazines.

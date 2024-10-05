@@ -1,0 +1,12 @@
+ent-ClothingBackpackDuffelSyndicateCostumeMime = { ent-ClothingBackpackDuffelMime }
+    .suffix = синдикат
+    .desc = { ent-ClothingBackpackDuffelMime.desc }
+ent-ClothingBackpackDuffelSyndicatePsiGrenadeBundle = комплект синдиката с пси-гранатами
+    .desc = Полон пси-газовых гранат!
+ent-ClothingBackpackDuffelSyndicateAntiPsiGrenadeBundle = комплект синдиката с анти-пси-гранатами
+    .desc = Содержит много анти-пси-газовых гранат!
+ent-ClothingBackpackDuffelWizard = мешок с костюмами волшебника
+    .desc = Содержит 3 костюма волшебника.
+ent-ClothingBackpackDuffelPlagueDoctorFilled = { ent-ClothingBackpackDuffel }
+    .suffix = ЧумнойДоктор
+    .desc = { ent-ClothingBackpackDuffel.desc }

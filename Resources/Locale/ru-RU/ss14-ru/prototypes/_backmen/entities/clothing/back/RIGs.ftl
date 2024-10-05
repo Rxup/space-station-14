@@ -1,0 +1,16 @@
+ent-ClothingBackpackRIGSpecialForce = RIG спецподразделения EarthGov
+    .desc = Это очень прочный RIG.
+ent-ClothingBackpackRIGRTUGrunt = RIG рядового EarthGov RTU
+    .desc = Это очень прочный рюкзак.
+ent-ClothingBackpackRIGRTUMedick = RIG медика EarthGov RTU
+    .desc = Это очень прочный рюкзак.
+ent-ClothingBackpackRIGRTUEngineer = RIG инженера EarthGov RTU
+    .desc = Это очень прочный рюкзак.
+ent-ClothingBackpackRIGRTULeader = RIG лидера EarthGov RTU
+    .desc = Это очень прочный рюкзак.
+ent-ClothingBackpackRIGSpecialits = RIG специалиста EarthGov
+    .desc = Это очень прочный RIG.
+ent-ClothingBackpackRIGChronoLegionnaire = RIG хроно легионера
+    .desc = Продвинутый и стильный RIG из будущего.
+ent-ActionToggleSuitInvisiblePower = Включить маскировку
+    .desc = Включает маскировку на местности; вас не видно от слова совсем.

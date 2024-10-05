@@ -1,0 +1,17 @@
+ent-MobHumanRXBZZBase = РХБЗЗ Base
+    .desc = { ent-MobHuman.desc }
+ent-MobHumanRXBZZ = РХБЗЗ Реагент
+    .suffix = ready
+    .desc = { ent-MobHumanRXBZZBase.desc }
+ent-MobHumanRXBZZMedic = РХБЗЗ Медик
+    .suffix = ready
+    .desc = { ent-MobHumanRXBZZBase.desc }
+ent-MobHumanRXBZZFlamer = РХБЗЗ Реагент Специалист
+    .suffix = ready
+    .desc = { ent-MobHumanRXBZZBase.desc }
+ent-MobHumanRXBZZLeader = РХБЗЗ Лидер
+    .suffix = CentCom
+    .desc = { ent-MobHumanRXBZZBase.desc }
+ent-MobHumanRXBZZBlobLeader = РХБЗЗ Лидер
+    .suffix = Blob
+    .desc = { ent-MobHumanRXBZZLeader.desc }

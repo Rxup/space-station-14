@@ -1,0 +1,25 @@
+ent-BaseTraitorObjectiveCybersan = { ent-BaseObjective }
+    .desc = { ent-BaseObjective.desc }
+ent-EscapeShuttleObjectiveCybersan = Улететь на Центком живым и свободным.
+    .desc = Мы спрятали под горшком на центкоме поддельные документы для того чтоб вы ушли спокойно, ожидайте нас на месте выдачи задания для получения награды.
+ent-BaseTraitorStealObjectiveCybersan = { ent-['BaseTraitorObjectiveCybersan', 'BaseStealObjective'] }
+
+  .desc = { ent-['BaseTraitorObjectiveCybersan', 'BaseStealObjective'].desc }
+ent-BaseCMOStealObjectiveCybersan = { ent-BaseTraitorStealObjectiveCybersan }
+    .desc = { ent-BaseTraitorStealObjectiveCybersan.desc }
+ent-CMOHyposprayStealObjectiveCybersan = { ent-BaseCMOStealObjectiveCybersan }
+    .desc = { ent-BaseCMOStealObjectiveCybersan.desc }
+ent-CMOCrewMonitorStealObjectiveCybersan = { ent-BaseCMOStealObjectiveCybersan }
+    .desc = { ent-BaseCMOStealObjectiveCybersan.desc }
+ent-BaseRDStealObjectiveCybersan = { ent-BaseTraitorStealObjectiveCybersan }
+    .desc = { ent-BaseTraitorStealObjectiveCybersan.desc }
+ent-RDHardsuitStealObjectiveCybersan = { ent-BaseRDStealObjectiveCybersan }
+    .desc = { ent-BaseRDStealObjectiveCybersan.desc }
+ent-HandTeleporterStealObjectiveCybersan = { ent-BaseRDStealObjectiveCybersan }
+    .desc = { ent-BaseRDStealObjectiveCybersan.desc }
+ent-MagbootsStealObjectiveCybersan = { ent-BaseTraitorStealObjectiveCybersan }
+    .desc = { ent-BaseTraitorStealObjectiveCybersan.desc }
+ent-BaseCaptainObjectiveCybersan = { ent-BaseTraitorStealObjectiveCybersan }
+    .desc = { ent-BaseTraitorStealObjectiveCybersan.desc }
+ent-CaptainGunStealObjectiveCybersan = { ent-BaseCaptainObjectiveCybersan }
+    .desc = { ent-BaseCaptainObjectiveCybersan.desc }

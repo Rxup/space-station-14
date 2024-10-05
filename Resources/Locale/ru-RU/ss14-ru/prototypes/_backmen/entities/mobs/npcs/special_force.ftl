@@ -1,0 +1,9 @@
+ent-MobHumanSpecialReAgent = Spestnaz
+    .desc = Жалкая кучка спецназа.
+    .suffix = Vova
+ent-MobHumanSpecialReAgentCOM = SpestnazCommander
+    .desc = Жалкая кучка спецназа.
+    .suffix = Vova
+ent-MobHumanSpecialReAgentInvisible = Spestnaz Super
+    .desc = Жалкая кучка спецназа.
+    .suffix = Vova

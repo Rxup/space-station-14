@@ -1,0 +1,15 @@
+ent-MobHumanERTLeaderEVAV2_1 = Theta - 9 лидер ОБР
+    .suffix = МТФ
+    .desc = { ent-MobHuman.desc }
+ent-MobHumanERTEngineerEVAV2_1 = Theta - 9 инженер ОБР
+    .suffix = МТФ
+    .desc = { ent-MobHuman.desc }
+ent-MobHumanERTSecurityEVAV2_1 = Theta - 9 офицер безопасности ОБР
+    .suffix = МТФ
+    .desc = { ent-MobHuman.desc }
+ent-MobHumanERTMedicalEVAV2_1 = Theta - 9 медик ОБР
+    .suffix = МТФ
+    .desc = { ent-MobHuman.desc }
+ent-MobHumanERTJunitorEVAV2_1 = Theta - 9 уборщик ОБР
+    .suffix = МТФ
+    .desc = { ent-MobHuman.desc }

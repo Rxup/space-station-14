@@ -1,0 +1,10 @@
+ent-OrdenSabre = Saber of the Leader of the Red Orden
+    .desc = Unusual saber. Instead of a blade, this weapon uses the teeth of a space dragon, which cut and cling to the victim's flesh, tearing open wounds. Nightmare weapon.
+ent-Chainsword = chainsword
+    .desc = The chainsword is the preferred close combat melee weapon of many of the military forces of the Imperium of Man.
+ent-Wakizashi = wakizashi
+    .desc = A short, multi-purpose sword of plasteel construction.
+ent-EnergySwordDedSad = энергетический меч спецназа
+    .desc = Энергетический меч спецвойск NanoTrasen, используеться для веселой нарезки экипажа.
+ent-YamatoSabre = Ямато
+    .desc = Личное оружие Вергилия, выкованное из тёмного сплава. Найдено в секторе "Бекман"

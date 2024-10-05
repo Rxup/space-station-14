@@ -1,0 +1,9 @@
+ent-BaseMobMalfunctioningRobot = сломанный робот
+    .suffix = ИИ
+    .desc = { ent-MobSiliconBase.desc }
+ent-MobMalfunctioningRobotCutter = { ent-BaseMobMalfunctioningRobot }
+    .desc = Маленький робот, который неуверенно зависает в воздухе. Он размахивает пилой.
+ent-MobMalfunctioningRobotPoisoner = { ent-BaseMobMalfunctioningRobot }
+    .desc = Робот, который неустойчиво парит в воздухе. Изнутри доносится вязкий пузырящийся звук.
+ent-MobMalfunctioningRobotTank = { ent-BaseMobMalfunctioningRobot }
+    .desc = Робот на гусеницах, который искрит и булькает. Из его помятого бронированного корпуса торчат оборванные провода. Он таскает с собой установочный пакет.

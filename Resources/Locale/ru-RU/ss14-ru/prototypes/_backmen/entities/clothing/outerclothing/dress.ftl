@@ -1,0 +1,12 @@
+ent-ClothingWeddingDress = свадебное платье
+    .desc = Белое кружевное платье, для особ высшего света, которые венчуються.
+ent-ClothingRedSexyDress = платье
+    .desc = Красное кружевное платье, для особ высшего света.
+ent-ClothingRedDress = платье
+    .desc = Красное платье, для особ высшего света.
+ent-ClothingRedVampireDress = платье
+    .desc = Красное платье, для особ ночного света.
+ent-ClothingTangpDress = purple dress
+    .desc = A loose worn purple dress with a white belt, perfect for someone looking to relax.
+ent-ClothingWhiteTangoDress = White dress
+    .desc = A loose worn white dress with a white belt, perfect for someone looking to relax.

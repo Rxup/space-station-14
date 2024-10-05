@@ -1,0 +1,10 @@
+ent-WeaponMultiphaseEnergyGun = X-01 multiphase energy gun
+    .desc = Nanotrasen's first attempt to remake the Antique Laser Gun. Has more firing modes on offer but lacks the ability to self-recharge.
+ent-X01Attack = лазерная пуля
+    .desc = { ent-EmitterBolt.desc }
+ent-WeaponDominatorNT = 45MW.TRG
+    .desc = Nanotrasen's first attempt to remake the Antique Laser Gun. Has more firing modes on offer but lacks the ability to self-recharge.
+ent-WeaponDisablerSuper = 45MW.TRG Super
+    .desc = { ent-WeaponDominatorNT.desc }
+ent-WeaponRifleSWS = SWS Motorized Pulse Rifle
+    .desc = The Pulse Rifle is the standard-issue service rifle of the Earth Defense Force and is also common among corporate security officers.
