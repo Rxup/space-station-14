@@ -42,7 +42,7 @@ public abstract class SharedLayingDownSystem : EntitySystem
             .Bind(ContentKeyFunctions.ToggleStanding, InputCmdHandler.FromDelegate(ToggleStanding))
             .Register<SharedLayingDownSystem>();
 
-        SubscribeNetworkEvent<ChangeLayingDownEvent>(OnChangeState);
+        SubscribeAllEvent<ChangeLayingDownEvent>(OnChangeState);
 
         SubscribeLocalEvent<StandingStateComponent, StandingUpDoAfterEvent>(OnStandingUpDoAfter);
         SubscribeLocalEvent<LayingDownComponent, RefreshMovementSpeedModifiersEvent>(OnRefreshMovementSpeed);
@@ -207,14 +207,15 @@ public abstract class SharedLayingDownSystem : EntitySystem
         }
 
         component.CurrentState = StandingState.Standing;
+        Dirty(uid,component);
     }
 
     private void OnRefreshMovementSpeed(EntityUid uid, LayingDownComponent component, RefreshMovementSpeedModifiersEvent args)
     {
         if (_standing.IsDown(uid))
             args.ModifySpeed(component.SpeedModify, component.SpeedModify);
-        else
-            args.ModifySpeed(1f, 1f);
+        //else
+          //  args.ModifySpeed(1f, 1f);
     }
 
     private void OnParentChanged(EntityUid uid, LayingDownComponent component, EntParentChangedMessage args)
