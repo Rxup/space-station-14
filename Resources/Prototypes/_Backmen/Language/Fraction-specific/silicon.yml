@@ -4,7 +4,7 @@
   id: Binary
   speech:
     color: "#2ed2fd" # Binary channel color
-    fontId: ZektonRg
+    #fontId: ZektonRg
   obfuscation:
     !type:SyllableObfuscation
     minSyllables: 1
