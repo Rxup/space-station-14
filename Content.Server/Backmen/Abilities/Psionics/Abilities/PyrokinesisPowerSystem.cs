@@ -49,7 +49,7 @@ public sealed class PyrokinesisPowerSystem : SharedPyrokinesisPowerSystem
 
     private void OnPowerUsed(Entity<PyrokinesisPowerComponent> ent, ref PyrokinesisPowerActionEvent args)
     {
-        if(args.Handled && !_psionics.CanUsePsionicAbilities(args.Performer, args.Target))
+        if(args.Handled)
             return;
 
         if (!TryComp<FlammableComponent>(args.Target, out var flammableComponent))

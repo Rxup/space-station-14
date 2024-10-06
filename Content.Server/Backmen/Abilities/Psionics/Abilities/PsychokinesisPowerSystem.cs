@@ -48,15 +48,15 @@ public sealed class PsychokinesisPowerSystem : SharedPsychokinesisPowerSystem
 
     private void OnPowerUsed(EntityUid uid ,PsychokinesisPowerComponent comp, PsychokinesisPowerActionEvent args)
     {
+        if(args.Handled)
+            return;
+
         var transform = Transform(args.Performer);
 
         if (transform.MapID != _transform.GetMapId(args.Target))
             return;
 
         if(transform.GridUid != _transform.GetGrid(args.Target))
-            return;
-
-        if(!_interaction.InRangeUnobstructed(args.Performer, args.Target, 0, CollisionGroup.WallLayer))
             return;
 
 

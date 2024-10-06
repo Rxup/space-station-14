@@ -64,7 +64,7 @@ public sealed class DispelPowerSystem : SharedDispelPowerSystem
 
     private void OnPowerUsed(DispelPowerActionEvent args)
     {
-        if(args.Handled && !_psionics.CanUsePsionicAbilities(args.Performer, args.Target))
+        if(args.Handled)
             return;
 
         var ev = new DispelledEvent();

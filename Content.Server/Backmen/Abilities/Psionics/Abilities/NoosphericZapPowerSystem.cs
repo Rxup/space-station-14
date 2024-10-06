@@ -52,7 +52,7 @@ public sealed class NoosphericZapPowerSystem : SharedNoosphericZapPowerSystem
 
     private void OnPowerUsed(NoosphericZapPowerActionEvent args)
     {
-        if(args.Handled && !_psionics.CanUsePsionicAbilities(args.Performer, args.Target))
+        if(args.Handled)
             return;
 
         _beam.TryCreateBeam(args.Performer, args.Target, "LightningNoospheric");

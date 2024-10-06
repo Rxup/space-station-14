@@ -79,7 +79,7 @@ public sealed class MindSwapPowerSystem : EntitySystem
 
     private void OnPowerUsed(MindSwapPowerActionEvent args)
     {
-        if(args.Handled && !_psionics.CanUsePsionicAbilities(args.Performer, args.Target))
+        if(args.Handled)
             return;
 
         if (!(TryComp<DamageableComponent>(args.Target, out var damageable) && damageable.DamageContainerID == "Biological"))
