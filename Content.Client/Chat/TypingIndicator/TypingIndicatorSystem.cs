@@ -1,6 +1,7 @@
 using Content.Shared.CCVar;
 using Content.Shared.Chat.TypingIndicator;
 using Robust.Client.Player;
+using Robust.Client.Timing;
 using Robust.Shared.Configuration;
 using Robust.Shared.Timing;
 
@@ -12,6 +13,7 @@ public sealed class TypingIndicatorSystem : SharedTypingIndicatorSystem
     [Dependency] private readonly IGameTiming _time = default!;
     [Dependency] private readonly IPlayerManager _playerManager = default!;
     [Dependency] private readonly IConfigurationManager _cfg = default!;
+    [Dependency] private readonly IClientGameTiming _gameTiming = default!;
 
     private readonly TimeSpan _typingTimeout = TimeSpan.FromSeconds(2);
     private TimeSpan _lastTextChange;
