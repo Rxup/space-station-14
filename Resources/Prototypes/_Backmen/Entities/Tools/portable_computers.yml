@@ -1,6 +1,6 @@
 - type: entity
   name: handheld cameras monitor
-  parent: [ BaseItem, PowerCellSlotSmallItem]
+  parent: BaseHandheldComputer
   id: HandHeldCameras
   description: A hand-held camera monitor.
   components:
