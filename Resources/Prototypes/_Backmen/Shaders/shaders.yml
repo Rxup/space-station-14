@@ -16,4 +16,4 @@
 - type: shader
   id: ShockWave
   kind: source
-  path: "/Textures/_RMC14/Shaders/shock_wave.swsl"
+  path: "/Textures/Backmen/Shaders/shock_wave.swsl"
