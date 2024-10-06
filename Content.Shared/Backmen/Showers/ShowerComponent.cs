@@ -2,7 +2,7 @@ using Robust.Shared.Audio;
 using Robust.Shared.GameStates;
 using Robust.Shared.Serialization;
 
-namespace Content.Shared.Showers
+namespace Content.Shared.Backmen.Showers
 {
     /// <summary>
     /// showers that can be enabled

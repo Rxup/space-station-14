@@ -1,11 +1,10 @@
-using Content.Shared._RMC14.Explosion.Components;
+using Content.Shared.Backmen.Explosion.Components;
 using Robust.Client.Graphics;
 using Robust.Shared.Enums;
 using Robust.Shared.Prototypes;
-using System.Collections.Generic;
 using System.Numerics;
 
-namespace Content.Client._RMC14.Explosion;
+namespace Content.Client.Backmen.Explosion;
 
 public sealed class RMCExplosionShockWaveOverlay : Overlay, IEntityEventSubscriber
 {

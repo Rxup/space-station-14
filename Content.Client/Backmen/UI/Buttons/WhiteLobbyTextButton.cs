@@ -6,7 +6,7 @@ using SixLabors.ImageSharp;
 using SixLabors.ImageSharp.PixelFormats;
 using Color = Robust.Shared.Maths.Color;
 
-namespace Content.Client._White.UI.Buttons;
+namespace Content.Client.Backmen.UI.Buttons;
 
 [Virtual]
 public class WhiteLobbyTextButton : TextureButton

@@ -5,7 +5,7 @@ using Content.Shared.Hands.Components;
 using Content.Shared.Item;
 using Robust.Shared.Serialization;
 
-namespace Content.Shared._White.Telescope;
+namespace Content.Shared.Backmen.Telescope;
 
 public abstract class SharedTelescopeSystem : EntitySystem
 {

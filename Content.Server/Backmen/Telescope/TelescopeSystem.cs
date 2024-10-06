@@ -1,4 +1,4 @@
-using Content.Shared._White.Telescope;
+using Content.Shared.Backmen.Telescope;
 
 namespace Content.Server.Backmen.Telescope;
 

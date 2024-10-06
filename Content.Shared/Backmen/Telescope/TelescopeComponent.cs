@@ -1,6 +1,6 @@
 using Robust.Shared.GameStates;
 
-namespace Content.Shared._White.Telescope;
+namespace Content.Shared.Backmen.Telescope;
 
 [RegisterComponent, NetworkedComponent, AutoGenerateComponentState]
 public sealed partial class TelescopeComponent : Component

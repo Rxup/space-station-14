@@ -1,13 +1,14 @@
+using Robust.Client.UserInterface.Controls;
 using Robust.Client.UserInterface.CustomControls;
 
-namespace Content.Client._White.UI.Buttons;
+namespace Content.Client.Backmen.UI.Buttons;
 
 public sealed class WhiteUICommandButton : WhiteCommandButton
 {
     public Type? WindowType { get; set; }
     private DefaultWindow? _window;
 
-    protected override void Execute(ButtonEventArgs obj)
+    protected override void Execute(BaseButton.ButtonEventArgs obj)
     {
         if (WindowType == null)
             return;

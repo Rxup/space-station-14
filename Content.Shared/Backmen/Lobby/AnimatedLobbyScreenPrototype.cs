@@ -1,6 +1,6 @@
 using Robust.Shared.Prototypes;
 
-namespace Content.Shared._White;
+namespace Content.Shared.Backmen.Lobby;
 
 [Prototype]
 public sealed partial class AnimatedLobbyScreenPrototype : IPrototype

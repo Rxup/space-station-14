@@ -1,5 +1,5 @@
 using System.Linq;
-using Content.Shared._White;
+using Content.Shared.Backmen.Lobby;
 using Robust.Client.Graphics;
 using Robust.Client.ResourceManagement;
 using Robust.Client.UserInterface.Controls;
@@ -7,7 +7,7 @@ using Robust.Shared.Graphics.RSI;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
 
-namespace Content.Client._White.UI.AnimatedBackground;
+namespace Content.Client.Backmen.UI.AnimatedBackground;
 
 public sealed class AnimatedBackgroundControl : TextureRect
 {

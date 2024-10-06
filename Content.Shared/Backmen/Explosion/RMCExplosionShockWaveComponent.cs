@@ -1,6 +1,6 @@
 using Robust.Shared.GameStates;
 
-namespace Content.Shared._RMC14.Explosion.Components
+namespace Content.Shared.Backmen.Explosion.Components
 {
     [RegisterComponent, NetworkedComponent]
     [AutoGenerateComponentState]
