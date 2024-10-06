@@ -21,7 +21,7 @@ using Content.Shared.Weapons.Melee.Events;
 using Content.Shared.Weapons.Ranged.Components;
 using Content.Shared.Weapons.Ranged.Events;
 using Content.Shared.Weapons.Ranged.Systems;
-using Content.Shared.Tag; //cats-shield
+using Content.Shared.Tag; // cats-shield
 using Robust.Shared.Map;
 using Robust.Shared.Physics;
 using Robust.Shared.Physics.Systems;
@@ -561,8 +561,8 @@ public abstract class SharedMeleeWeaponSystem : EntitySystem
 
         var damage = GetDamage(meleeUid, user, component);
         var entities = GetEntityList(ev.Entities);
-
-        ntities = entities.Where(e => !_tagSystem.HasTag(e, "IgnoreMelee")).ToList(); // cats-shield
+        
+        entities = entities.Where(e => !_tagSystem.HasTag(e, "IgnoreMelee")).ToList(); //cats-shield
 
         if (entities.Count == 0)
         {
@@ -612,7 +612,7 @@ public abstract class SharedMeleeWeaponSystem : EntitySystem
             if (entity == user ||
                 !damageQuery.HasComponent(entity))
                 continue;
-
+            
             //cats shield start
             if (_tagSystem.HasTag(entity, "IgnoreMelee"))
                 continue;
@@ -709,7 +709,7 @@ public abstract class SharedMeleeWeaponSystem : EntitySystem
         for (var i = 0; i < increments; i++)
         {
             var castAngle = new Angle(baseAngle + increment * i);
-            //cats shield end
+            //cats shield start
             var ray = new CollisionRay(position, castAngle.ToWorldVec(), AttackMask);
             var res = _physics.IntersectRay(mapId, ray, range, ignore, false)
                 .Where(x => !_tagSystem.HasTag(x.HitEntity, "IgnoreMelee"))
