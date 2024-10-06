@@ -29,7 +29,7 @@ public sealed class TypingIndicatorVisualizerSystem : VisualizerSystem<TypingInd
         AppearanceComponent? appearance = null,
         SpriteComponent? sprite = null)
     {
-        if (!Resolve(uid, ref appearance, ref sprite))
+        if (!Resolve(uid, ref appearance, ref sprite, false))
             return;
 
         var currentTypingIndicator = component.TypingIndicatorPrototype;
