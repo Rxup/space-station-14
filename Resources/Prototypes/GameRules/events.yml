@@ -370,11 +370,11 @@
     duration: 60
   - type: VentCrittersRule
     entries:
-    - id: MobSpecialSlimesBlueAngry
+    - id: MobAdultSlimesBlueAngry
       prob: 0.02
-    - id: MobSpecialSlimesGreenAngry
+    - id: MobAdultSlimesGreenAngry
       prob: 0.02
-    - id: MobSpecialSlimesYellowAngry
+    - id: MobAdultSlimesYellowAngry
       prob: 0.02
 
 - type: entity

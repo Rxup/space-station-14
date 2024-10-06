@@ -472,7 +472,7 @@
       - state: ai
   - type: ConditionalSpawner
     prototypes:
-      - MobSpecialSlimesBlue
+      - MobAdultSlimesBlue
 
 - type: entity
   name: Slimes Spawner Blue Angry
@@ -485,7 +485,7 @@
       - state: ai
   - type: ConditionalSpawner
     prototypes:
-      - MobSpecialSlimesBlueAngry
+      - MobAdultSlimesBlueAngry
 
 - type: entity
   name: Slimes Spawner Green
@@ -498,7 +498,7 @@
       - state: ai
   - type: ConditionalSpawner
     prototypes:
-      - MobSpecialSlimesGreen
+      - MobAdultSlimesGreen
 
 - type: entity
   name: Slimes Spawner Green Angry
@@ -511,7 +511,7 @@
       - state: ai
   - type: ConditionalSpawner
     prototypes:
-      - MobSpecialSlimesGreenAngry
+      - MobAdultSlimesGreenAngry
 
 - type: entity
   name: Slimes Spawner Yellow
@@ -524,7 +524,7 @@
       - state: ai
   - type: ConditionalSpawner
     prototypes:
-      - MobSpecialSlimesYellow
+      - MobAdultSlimesYellow
 
 - type: entity
   name: Slimes Spawner Yellow Angry
@@ -537,7 +537,7 @@
       - state: ai
   - type: ConditionalSpawner
     prototypes:
-      - MobSpecialSlimesYellowAngry
+      - MobAdultSlimesYellowAngry
 
 - type: entity
   name: Smile Spawner
@@ -550,7 +550,7 @@
       - state: ai
   - type: ConditionalSpawner
     prototypes:
-      - MobSpecialSlimesRainbowabult
+      - MobSlimesPet
 
 - type: entity
   name: Pun Pun Spawner
