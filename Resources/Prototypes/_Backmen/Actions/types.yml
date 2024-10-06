@@ -87,7 +87,6 @@
   name: action-name-mind-swap-return
   description: action-description-mind-swap-return
   components:
-    - type: PsiAction
     - type: InstantAction
       icon: Backmen/Interface/VerbIcons/psionic_invisibility_off.png
       checkCanInteract: false
@@ -110,7 +109,6 @@
   name: action-name-telegnosis
   description: action-description-telegnosis
   components:
-    - type: PsiAction
     - type: InstantAction
       icon: Backmen/Interface/VerbIcons/psionic_invisibility_off.png
       event: !type:TelegnosisPowerReturnActionEvent
