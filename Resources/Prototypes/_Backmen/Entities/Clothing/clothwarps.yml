@@ -9,12 +9,12 @@
     storedRotation: -90
   - type: Sprite
     state: icon
-    sprite: _EinsteinEngines/Clothing/Shoes/Misc/clothWrap.rsi
+    sprite: Backmen/Clothing/Shoes/Misc/clothWrap.rsi
   - type: Clothing
     slots:
     - gloves
     - FEET
-    sprite: _EinsteinEngines/Clothing/Shoes/Misc/clothWrap.rsi
+    sprite: Backmen/Clothing/Shoes/Misc/clothWrap.rsi
   - type: Construction
     graph: ClothingClothWrap
     node: shoes

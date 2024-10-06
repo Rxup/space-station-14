@@ -5,9 +5,9 @@
   description: A prize ticket, ready to be redeemed at a prize counter.
   components:
   - type: Sprite
-    sprite: _EinsteinEngines/Objects/Fun/prizeticket.rsi
+    sprite: Backmen/Objects/Fun/prizeticket.rsi
   - type: Item
-    sprite: _EinsteinEngines/Objects/Fun/prizeticket.rsi
+    sprite: Backmen/Objects/Fun/prizeticket.rsi
     size: Tiny
   - type: StaticPrice
     price: 0
@@ -99,7 +99,7 @@
   description: I wounder whats inside!
   components:
   - type: Sprite
-    sprite: _EinsteinEngines/Objects/Fun/prizeticket.rsi
+    sprite: Backmen/Objects/Fun/prizeticket.rsi
     layers:
       - state: prizeball
   - type: SpawnItemsOnUse

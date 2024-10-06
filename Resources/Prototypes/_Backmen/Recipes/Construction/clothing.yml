@@ -6,5 +6,5 @@
   targetNode: shoes
   category: construction-category-clothing
   description: A roll of treated canvas used for wrapping claws or paws.
-  icon: { sprite: _EinsteinEngines/Clothing/Shoes/Misc/clothWrap.rsi, state: icon }
+  icon: { sprite: Backmen/Clothing/Shoes/Misc/clothWrap.rsi, state: icon }
   objectType: Item

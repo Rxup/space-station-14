@@ -24,7 +24,7 @@
   - type: Transform
     noRot: false
   - type: Sprite
-    sprite: _EinsteinEngines/Structures/Machines/prizecounter.rsi
+    sprite: Backmen/Structures/Machines/prizecounter.rsi
     snapCardinals: true
     layers:
     - state: icon

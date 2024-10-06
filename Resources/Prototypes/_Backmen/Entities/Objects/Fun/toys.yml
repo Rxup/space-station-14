@@ -159,7 +159,7 @@
   description: A plushie of an Arachne, a half human, half spider creature. Why does it look familiar?
   components:
   - type: Sprite
-    sprite: _EinsteinEngines/Objects/Fun/toys.rsi
+    sprite: Backmen/Objects/Fun/toys.rsi
     state: plushie_arachne
   - type: EmitSoundOnUse
     sound:
@@ -188,7 +188,7 @@
   description: A dubious little creature getting up to mischief.
   components:
   - type: Sprite
-    sprite: _EinsteinEngines/Objects/Fun/toys.rsi
+    sprite: Backmen/Objects/Fun/toys.rsi
     state: plushie_jester
 
 - type: entity
@@ -198,7 +198,7 @@
   description: The silent cleaner, the one that you dont hear say "Weh"!
   components:
   - type: Sprite
-    sprite: _EinsteinEngines/Objects/Fun/toys.rsi
+    sprite: Backmen/Objects/Fun/toys.rsi
     state: plushie_slips
   - type: EmitSoundOnUse
     sound:
@@ -248,7 +248,7 @@
   description: A stuffed toy that resembles a gnome! or a drawf...
   components:
   - type: Sprite
-    sprite: _EinsteinEngines/Objects/Fun/toys.rsi
+    sprite: Backmen/Objects/Fun/toys.rsi
     state: gnome
 
 - type: entity
@@ -258,7 +258,7 @@
   description: A stuffed toy that resembles... a creature.
   components:
   - type: Sprite
-    sprite: _EinsteinEngines/Objects/Fun/toys.rsi
+    sprite: Backmen/Objects/Fun/toys.rsi
     state: loveable
 
 - type: entity
@@ -268,7 +268,7 @@
   description: A stuffed toy that resembles a deer!
   components:
   - type: Sprite
-    sprite: _EinsteinEngines/Objects/Fun/toys.rsi
+    sprite: Backmen/Objects/Fun/toys.rsi
     state: deer
 
 - type: entity
@@ -278,7 +278,7 @@
   description: A stuffed toy that resembles a ipc!
   components:
   - type: Sprite
-    sprite: _EinsteinEngines/Objects/Fun/toys.rsi
+    sprite: Backmen/Objects/Fun/toys.rsi
     state: ipc
 
 - type: entity
@@ -288,7 +288,7 @@
   description: A stuffed toy that resembles a grey!
   components:
   - type: Sprite
-    sprite: _EinsteinEngines/Objects/Fun/toys.rsi
+    sprite: Backmen/Objects/Fun/toys.rsi
     state: grey
 
 - type: entity
@@ -298,7 +298,7 @@
   description: A stuffed toy that resembles an abductor!
   components:
   - type: Sprite
-    sprite: _EinsteinEngines/Objects/Fun/toys.rsi
+    sprite: Backmen/Objects/Fun/toys.rsi
     state: abductor
 
 - type: entity
@@ -308,7 +308,7 @@
   description: A stuffed toy that resembles an abductor agent!
   components:
   - type: Sprite
-    sprite: _EinsteinEngines/Objects/Fun/toys.rsi
+    sprite: Backmen/Objects/Fun/toys.rsi
     state: abductor_agent
 
 - type: entity
@@ -318,7 +318,7 @@
   description: A cute plushie that look like a red foxxo!
   components:
   - type: Sprite
-    sprite: _EinsteinEngines/Objects/Fun/foxplushie.rsi
+    sprite: Backmen/Objects/Fun/foxplushie.rsi
     state: red
 
 - type: entity
@@ -328,7 +328,7 @@
   description: A cute plushie that look like a purple foxxo!
   components:
   - type: Sprite
-    sprite: _EinsteinEngines/Objects/Fun/foxplushie.rsi
+    sprite: Backmen/Objects/Fun/foxplushie.rsi
     state: purple
 
 - type: entity
@@ -338,7 +338,7 @@
   description: A cute plushie that look like a pink foxxo!
   components:
   - type: Sprite
-    sprite: _EinsteinEngines/Objects/Fun/foxplushie.rsi
+    sprite: Backmen/Objects/Fun/foxplushie.rsi
     state: pink
 
 - type: entity
@@ -348,7 +348,7 @@
   description: A cute plushie that look like a orange foxxo!
   components:
   - type: Sprite
-    sprite: _EinsteinEngines/Objects/Fun/foxplushie.rsi
+    sprite: Backmen/Objects/Fun/foxplushie.rsi
     state: orange
 
 - type: entity
@@ -358,7 +358,7 @@
   description: A cute plushie that look like a marble foxxo!
   components:
   - type: Sprite
-    sprite: _EinsteinEngines/Objects/Fun/foxplushie.rsi
+    sprite: Backmen/Objects/Fun/foxplushie.rsi
     state: marble
 
 - type: entity
@@ -368,7 +368,7 @@
   description: A cute plushie that look like a crimson foxxo!
   components:
   - type: Sprite
-    sprite: _EinsteinEngines/Objects/Fun/foxplushie.rsi
+    sprite: Backmen/Objects/Fun/foxplushie.rsi
     state: crimson
 
 - type: entity
@@ -378,7 +378,7 @@
   description: A cute plushie that look like a coffee foxxo!
   components:
   - type: Sprite
-    sprite: _EinsteinEngines/Objects/Fun/foxplushie.rsi
+    sprite: Backmen/Objects/Fun/foxplushie.rsi
     state: coffee
 
 - type: entity
@@ -388,7 +388,7 @@
   description: A cute plushie that look like a blue foxxo!
   components:
   - type: Sprite
-    sprite: _EinsteinEngines/Objects/Fun/foxplushie.rsi
+    sprite: Backmen/Objects/Fun/foxplushie.rsi
     state: blue
 
 - type: entity
@@ -398,7 +398,7 @@
   description: A cute plushie that look like a black foxxo!
   components:
   - type: Sprite
-    sprite: _EinsteinEngines/Objects/Fun/foxplushie.rsi
+    sprite: Backmen/Objects/Fun/foxplushie.rsi
     state: black
 
 - type: entity
@@ -408,7 +408,7 @@
   description: A vulpkanin plushie, at least you can hug this one without the risk to get bitten.
   components:
   - type: Sprite
-    sprite: _EinsteinEngines/Objects/Fun/toys.rsi
+    sprite: Backmen/Objects/Fun/toys.rsi
     state: plushie_vulp
 #  - type: EmitSoundOnUse # Ataraxia-REMOVE | Dont have barks - TODO: Get barks
 #    sound:
@@ -430,7 +430,7 @@
   description: The ones who yeeps!
   components:
   - type: Sprite
-    sprite: _EinsteinEngines/Objects/Fun/toys.rsi
+    sprite: Backmen/Objects/Fun/toys.rsi
     state: plushie_trystan
 
 - type: entity
@@ -440,7 +440,7 @@
   description: The ian plushie edition!
   components:
   - type: Sprite
-    sprite: _EinsteinEngines/Objects/Fun/corgiplushie.rsi
+    sprite: Backmen/Objects/Fun/corgiplushie.rsi
     state: corgi
 
 - type: entity
@@ -449,7 +449,7 @@
   name: girly corgi plushie
   components:
   - type: Sprite
-    sprite: _EinsteinEngines/Objects/Fun/corgiplushie.rsi
+    sprite: Backmen/Objects/Fun/corgiplushie.rsi
     state: girlycorgi
 
 - type: entity
@@ -458,7 +458,7 @@
   name: robot corgi plushie
   components:
   - type: Sprite
-    sprite: _EinsteinEngines/Objects/Fun/corgiplushie.rsi
+    sprite: Backmen/Objects/Fun/corgiplushie.rsi
     state: robotcorgi
 
 - type: entity
@@ -468,7 +468,7 @@
   abstract: true
   components:
   - type: Sprite
-    sprite: _EinsteinEngines/Objects/Fun/catplushie.rsi
+    sprite: Backmen/Objects/Fun/catplushie.rsi
   - type: EmitSoundOnUse
     sound:
       path: /Audio/Nyanotrasen/Voice/Felinid/cat_meow1.ogg

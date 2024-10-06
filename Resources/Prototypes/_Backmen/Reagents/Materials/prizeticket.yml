@@ -2,5 +2,5 @@
   id: PrizeTicket
   stackEntity: PrizeTicket1
   name: prize ticket
-  icon: { sprite: _EinsteinEngines/Objects/Fun/prizeticket.rsi, state: ticket }
+  icon: { sprite: Backmen/Objects/Fun/prizeticket.rsi, state: ticket }
   price: 0

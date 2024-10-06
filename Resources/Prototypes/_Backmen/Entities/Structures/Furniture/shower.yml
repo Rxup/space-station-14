@@ -8,7 +8,7 @@
     - Wallmount
   components:
     - type: Sprite
-      sprite: _EinsteinEngines/Structures/Furniture/shower.rsi
+      sprite: Backmen/Structures/Furniture/shower.rsi
       drawdepth: WallMountedItems
       layers:
       - state: shower
