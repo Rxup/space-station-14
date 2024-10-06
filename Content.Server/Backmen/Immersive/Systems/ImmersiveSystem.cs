@@ -22,16 +22,11 @@ public sealed class ImmersiveSystem : EntitySystem
     [Dependency] private readonly IConsoleHost _console = default!;
     [Dependency] private readonly IAdminLogManager _adminLog = default!;
 
-    private bool _immersiveEnabled = false;
-
-    [ViewVariables(VVAccess.ReadWrite)]
-    public float EyeModifier = 0.9f;
-
-    [ViewVariables(VVAccess.ReadWrite)]
-    public float TelescopeDivisor = 0.1f;
-
-    [ViewVariables(VVAccess.ReadWrite)]
-    public float TelescopeLerpAmount = 0.95f;
+    // Values are copied from standard CVars.
+    private bool _immersiveEnabled;
+    private float _eyeModifier = 1f;
+    private float _telescopeDivisor = 0.4f; // 2 tiles further than normal
+    private float _telescopeLerpAmount = 0.2f; // Looks nice.
 
     public override void Initialize()
     {
@@ -39,6 +34,9 @@ public sealed class ImmersiveSystem : EntitySystem
         SubscribeLocalEvent<PlayerSpawnCompleteEvent>(OnPlayerSpawn);
 
         Subs.CVar(_configurationManager, CCVars.ImmersiveEnabled, OnValueChanged, true);
+        Subs.CVar(_configurationManager, CCVars.ImmersiveEyeModifier, OnEyeChanged, true);
+        Subs.CVar(_configurationManager, CCVars.ImmersiveTelescopeDivisor, OnTelescopeDivisorChanged, true);
+        Subs.CVar(_configurationManager, CCVars.ImmersiveTelescopeLerpAmount, OnTelescopeLerpChanged, true);
 
         _console.RegisterCommand("setImmersive_bkm", SetImmersiveCommand);
     }
@@ -56,12 +54,52 @@ public sealed class ImmersiveSystem : EntitySystem
         }
     }
 
+    private void OnEyeChanged(float value)
+    {
+        _eyeModifier = value;
+        if (_immersiveEnabled)
+        {
+            OnStarted();
+        }
+        else
+        {
+            Ended();
+        }
+    }
+
+    private void OnTelescopeDivisorChanged(float value)
+    {
+        _telescopeDivisor = value;
+        if (_immersiveEnabled)
+        {
+            OnStarted();
+        }
+        else
+        {
+            Ended();
+        }
+    }
+
+    private void OnTelescopeLerpChanged(float value)
+    {
+        _telescopeLerpAmount = value;
+        if (_immersiveEnabled)
+        {
+            OnStarted();
+        }
+        else
+        {
+            Ended();
+        }
+    }
+
     [AdminCommand(AdminFlags.Fun)]
     private void SetImmersiveCommand(IConsoleShell shell, string argstr, string[] args)
     {
         _configurationManager.SetCVar(CCVars.ImmersiveEnabled, !_immersiveEnabled);
         shell.WriteLine($"Immersive set in {_immersiveEnabled}");
-        _adminLog.Add(LogType.AdminMessage, LogImpact.Extreme,
+        _adminLog.Add(LogType.AdminMessage,
+            LogImpact.Extreme,
             $"Admin {(shell.Player != null ? shell.Player.Name : "An administrator")} immersive set in {_immersiveEnabled}");
     }
 
@@ -71,8 +109,8 @@ public sealed class ImmersiveSystem : EntitySystem
 
         while (humans.MoveNext(out var entity, out _, out var eye))
         {
-            SetEyeZoom((entity, eye), EyeModifier);
-            AddTelescope(entity, TelescopeDivisor, TelescopeLerpAmount);
+            SetEyeZoom((entity, eye), _eyeModifier);
+            AddTelescope(entity, _telescopeDivisor, _telescopeLerpAmount);
         }
     }
 
@@ -109,7 +147,7 @@ public sealed class ImmersiveSystem : EntitySystem
         if (!_immersiveEnabled)
             return;
 
-        SetEyeZoom(ev.Mob, EyeModifier);
-        AddTelescope(ev.Mob, TelescopeDivisor, TelescopeLerpAmount);
+        SetEyeZoom(ev.Mob, _eyeModifier);
+        AddTelescope(ev.Mob, _telescopeDivisor, _telescopeLerpAmount);
     }
 }

@@ -179,6 +179,15 @@ public sealed class CCVars
     public static readonly CVarDef<bool> ImmersiveEnabled =
         CVarDef.Create("immersive.enabled", true, CVar.SERVERONLY);
 
+    public static readonly CVarDef<float> ImmersiveEyeModifier =
+        CVarDef.Create("immersive.eye_modifier", 1.0f, CVar.SERVERONLY);
+
+    public static readonly CVarDef<float> ImmersiveTelescopeDivisor =
+        CVarDef.Create("immersive.telescope_divisor", 0.4f, CVar.SERVERONLY);
+
+    public static readonly CVarDef<float> ImmersiveTelescopeLerpAmount =
+        CVarDef.Create("immersive.telescope_lerp", 0.2f, CVar.SERVERONLY);
+
     /*
      * Bind Standing - Ataraxia
      */
