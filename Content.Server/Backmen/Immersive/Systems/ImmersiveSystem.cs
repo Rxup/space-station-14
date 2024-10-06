@@ -26,7 +26,7 @@ public sealed class ImmersiveSystem : EntitySystem
     private bool _immersiveEnabled;
     private float _eyeModifier = 1f;
     private float _telescopeDivisor = 0.4f; // 2 tiles further than normal
-    private float _telescopeLerpAmount = 0.2f; // Looks nice.
+    private float _telescopeLerpAmount = 1f;
 
     public override void Initialize()
     {

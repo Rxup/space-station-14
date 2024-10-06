@@ -1,3 +1,4 @@
+using System.Numerics;
 using Robust.Shared.GameStates;
 
 namespace Content.Shared._White.Telescope;
@@ -5,11 +6,11 @@ namespace Content.Shared._White.Telescope;
 [RegisterComponent, NetworkedComponent, AutoGenerateComponentState]
 public sealed partial class TelescopeComponent : Component
 {
-    [DataField, ViewVariables(VVAccess.ReadWrite), AutoNetworkedField]
+    [DataField, AutoNetworkedField]
     public float Divisor = 0.1f;
 
-    [DataField, ViewVariables(VVAccess.ReadWrite), AutoNetworkedField]
-    public float LerpAmount = 0.95f;
+    [DataField, AutoNetworkedField]
+    public float LerpAmount = 1f;
 
     [ViewVariables]
     public EntityUid? LastEntity;
