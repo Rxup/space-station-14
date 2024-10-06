@@ -861,6 +861,8 @@
   id: Igniter
 
 - type: Tag
+
+- type: Tag
   id: Ingredient
 
 - type: Tag #Drop this innate tool instead of deleting it.
