@@ -38,6 +38,7 @@ public sealed class CriminalRecordsConsoleState : BoundUserInterfaceState
 
     public CriminalRecord? CriminalRecord = null;
     public GeneralStationRecord? StationRecord = null;
+    public int CurrentTab = 0;
     public readonly Dictionary<uint, string>? RecordListing;
     public readonly StationRecordsFilter? Filter;
 
@@ -98,5 +99,21 @@ public sealed class CriminalRecordDeleteHistory : BoundUserInterfaceMessage
     public CriminalRecordDeleteHistory(uint index)
     {
         Index = index;
+    }
+}
+
+/// <summary>
+/// Used to set what status to filter by index.
+///
+/// </summary>
+///
+[Serializable, NetSerializable]
+
+public sealed class CriminalRecordSetStatusFilter : BoundUserInterfaceMessage
+{
+    public readonly int Tab;
+    public CriminalRecordSetStatusFilter(int tab)
+    {
+        Tab = tab;
     }
 }
