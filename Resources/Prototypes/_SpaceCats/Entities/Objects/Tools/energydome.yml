@@ -23,7 +23,7 @@
     slots:
       cell_slot:
         name: power-cell-slot-component-slot-name-default
-        startingItem: PowerCellSmall
+        startingItem: PowerCellHyper
         whitelist:
           tags:
             - PowerCell
@@ -73,7 +73,7 @@
     slots:
       cell_slot:
         name: power-cell-slot-component-slot-name-default
-        startingItem: PowerCellSmall
+        startingItem: PowerCellHyper
         whitelist:
           tags:
             - PowerCell
@@ -97,12 +97,12 @@
     - Toggle
     - On
     - Off
+
 - type: entity
   id: EnergyDomeWiredTest
   name: Static Dome
   description: Test energy barrier powered by station wiring. I don't know how the hell to balance it.....
   parent: BaseMachine
-  suffix: DO NOT MERGE
   placement:
     mode: SnapgridCenter
   components:
@@ -202,7 +202,7 @@
     slots:
       cell_slot:
         name: power-cell-slot-component-slot-name-default
-        startingItem: PowerCellSmall
+        startingItem: PowerCellHyper
         whitelist:
           tags:
             - PowerCell
@@ -241,7 +241,7 @@
     slots:
       cell_slot:
         name: power-cell-slot-component-slot-name-default
-        startingItem: PowerCellSmall
+        startingItem: PowerCellHyper
         whitelist:
           tags:
             - PowerCell

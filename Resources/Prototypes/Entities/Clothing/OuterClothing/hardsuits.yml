@@ -209,7 +209,7 @@
             - PowerCell
             - PowerCellSmall
   - type: EnergyDomeGenerator
-    damageEnergyDraw: 6
+    damageEnergyDraw: 5
     domePrototype: EnergyDomeSmallPink
   - type: PowerCellDraw
     drawRate: 8
@@ -612,6 +612,29 @@
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetHardsuitSyndieElite
   - type: DNALocker
+  - type: ContainerContainer
+    containers:
+      cell_slot: !type:ContainerSlot
+      toggleable-clothing: !type:ContainerSlot
+  - type: PowerCellSlot
+    cellSlotId: cell_slot
+  - type: ItemSlots
+    slots:
+      cell_slot:
+        name: power-cell-slot-component-slot-name-default
+        startingItem: PowerCellHyper
+        whitelist:
+          tags:
+            - PowerCell
+            - PowerCellSmall
+  - type: EnergyDomeGenerator
+    damageEnergyDraw: 5
+    domePrototype: EnergyDomeSmallPink
+  - type: PowerCellDraw
+    drawRate: 8
+    useRate: 0
+  - type: UseDelay
+    delay: 10.0
 
 #Syndicate Commander Hardsuit
 - type: entity
@@ -646,6 +669,29 @@
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetHardsuitSyndieCommander
   - type: DNALocker
+  - type: ContainerContainer
+    containers:
+      cell_slot: !type:ContainerSlot
+      toggleable-clothing: !type:ContainerSlot
+  - type: PowerCellSlot
+    cellSlotId: cell_slot
+  - type: ItemSlots
+    slots:
+      cell_slot:
+        name: power-cell-slot-component-slot-name-default
+        startingItem: PowerCellHyper
+        whitelist:
+          tags:
+            - PowerCell
+            - PowerCellSmall
+  - type: EnergyDomeGenerator
+    damageEnergyDraw: 5
+    domePrototype: EnergyDomeSmallPink
+  - type: PowerCellDraw
+    drawRate: 8
+    useRate: 0
+  - type: UseDelay
+    delay: 10.0
 
 #Cybersun Juggernaut Hardsuit
 - type: entity
@@ -826,6 +872,29 @@
     sprite: Clothing/OuterClothing/Hardsuits/ERTSuits/ertleader.rsi
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetHardsuitERTLeader
+  - type: ContainerContainer
+    containers:
+      cell_slot: !type:ContainerSlot
+      toggleable-clothing: !type:ContainerSlot
+  - type: PowerCellSlot
+    cellSlotId: cell_slot
+  - type: ItemSlots
+    slots:
+      cell_slot:
+        name: power-cell-slot-component-slot-name-default
+        startingItem: PowerCellMicroreactor
+        whitelist:
+          tags:
+            - PowerCell
+            - PowerCellSmall
+  - type: EnergyDomeGenerator
+    damageEnergyDraw: 5
+    domePrototype: EnergyDomeSmallPink
+  - type: PowerCellDraw
+    drawRate: 8
+    useRate: 0
+  - type: UseDelay
+    delay: 10.0
 
 #ERT Chaplain Hardsuit
 - type: entity
@@ -840,6 +909,29 @@
     sprite: Clothing/OuterClothing/Hardsuits/ERTSuits/ertchaplain.rsi
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetHardsuitERTChaplain
+  - type: ContainerContainer
+    containers:
+      cell_slot: !type:ContainerSlot
+      toggleable-clothing: !type:ContainerSlot
+  - type: PowerCellSlot
+    cellSlotId: cell_slot
+  - type: ItemSlots
+    slots:
+      cell_slot:
+        name: power-cell-slot-component-slot-name-default
+        startingItem: PowerCellMicroreactor
+        whitelist:
+          tags:
+            - PowerCell
+            - PowerCellSmall
+  - type: EnergyDomeGenerator
+    damageEnergyDraw: 5
+    domePrototype: EnergyDomeSmallPink
+  - type: PowerCellDraw
+    drawRate: 8
+    useRate: 0
+  - type: UseDelay
+    delay: 10.0
 
 #ERT Engineer Hardsuit
 - type: entity
@@ -855,6 +947,29 @@
     sprite: Clothing/OuterClothing/Hardsuits/ERTSuits/ertengineer.rsi
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetHardsuitERTEngineer
+  - type: ContainerContainer
+    containers:
+      cell_slot: !type:ContainerSlot
+      toggleable-clothing: !type:ContainerSlot
+  - type: PowerCellSlot
+    cellSlotId: cell_slot
+  - type: ItemSlots
+    slots:
+      cell_slot:
+        name: power-cell-slot-component-slot-name-default
+        startingItem: PowerCellMicroreactor
+        whitelist:
+          tags:
+            - PowerCell
+            - PowerCellSmall
+  - type: EnergyDomeGenerator
+    damageEnergyDraw: 5
+    domePrototype: EnergyDomeSmallPink
+  - type: PowerCellDraw
+    drawRate: 8
+    useRate: 0
+  - type: UseDelay
+    delay: 10.0
 
 #ERT Medic Hardsuit
 - type: entity
@@ -869,6 +984,29 @@
     sprite: Clothing/OuterClothing/Hardsuits/ERTSuits/ertmedical.rsi
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetHardsuitERTMedical
+  - type: ContainerContainer
+    containers:
+      cell_slot: !type:ContainerSlot
+      toggleable-clothing: !type:ContainerSlot
+  - type: PowerCellSlot
+    cellSlotId: cell_slot
+  - type: ItemSlots
+    slots:
+      cell_slot:
+        name: power-cell-slot-component-slot-name-default
+        startingItem: PowerCellMicroreactor
+        whitelist:
+          tags:
+            - PowerCell
+            - PowerCellSmall
+  - type: EnergyDomeGenerator
+    damageEnergyDraw: 5
+    domePrototype: EnergyDomeSmallPink
+  - type: PowerCellDraw
+    drawRate: 8
+    useRate: 0
+  - type: UseDelay
+    delay: 10.0
 
 #ERT Security Hardsuit
 - type: entity
@@ -887,6 +1025,29 @@
     tags:
     - Hardsuit
     - WhitelistChameleon
+  - type: ContainerContainer
+    containers:
+      cell_slot: !type:ContainerSlot
+      toggleable-clothing: !type:ContainerSlot
+  - type: PowerCellSlot
+    cellSlotId: cell_slot
+  - type: ItemSlots
+    slots:
+      cell_slot:
+        name: power-cell-slot-component-slot-name-default
+        startingItem: PowerCellMicroreactor
+        whitelist:
+          tags:
+            - PowerCell
+            - PowerCellSmall
+  - type: EnergyDomeGenerator
+    damageEnergyDraw: 5
+    domePrototype: EnergyDomeSmallPink
+  - type: PowerCellDraw
+    drawRate: 8
+    useRate: 0
+  - type: UseDelay
+    delay: 10.0
 
 #ERT Janitor Hardsuit
 - type: entity
@@ -901,6 +1062,29 @@
     sprite: Clothing/OuterClothing/Hardsuits/ERTSuits/ertjanitor.rsi
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetHardsuitERTJanitor
+  - type: ContainerContainer
+    containers:
+      cell_slot: !type:ContainerSlot
+      toggleable-clothing: !type:ContainerSlot
+  - type: PowerCellSlot
+    cellSlotId: cell_slot
+  - type: ItemSlots
+    slots:
+      cell_slot:
+        name: power-cell-slot-component-slot-name-default
+        startingItem: PowerCellMicroreactor
+        whitelist:
+          tags:
+            - PowerCell
+            - PowerCellSmall
+  - type: EnergyDomeGenerator
+    damageEnergyDraw: 5
+    domePrototype: EnergyDomeSmallPink
+  - type: PowerCellDraw
+    drawRate: 8
+    useRate: 0
+  - type: UseDelay
+    delay: 10.0
 
 #Deathsquad
 - type: entity
@@ -939,6 +1123,29 @@
   - type: HeldSpeedModifier
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetHardsuitDeathsquad
+  - type: ContainerContainer
+    containers:
+      cell_slot: !type:ContainerSlot
+      toggleable-clothing: !type:ContainerSlot
+  - type: PowerCellSlot
+    cellSlotId: cell_slot
+  - type: ItemSlots
+    slots:
+      cell_slot:
+        name: power-cell-slot-component-slot-name-default
+        startingItem: PowerCellMicroreactor
+        whitelist:
+          tags:
+            - PowerCell
+            - PowerCellSmall
+  - type: EnergyDomeGenerator
+    damageEnergyDraw: 5
+    domePrototype: EnergyDomeSmallPink
+  - type: PowerCellDraw
+    drawRate: 8
+    useRate: 0
+  - type: UseDelay
+    delay: 10.0
 
 #CBURN Hardsuit
 - type: entity
