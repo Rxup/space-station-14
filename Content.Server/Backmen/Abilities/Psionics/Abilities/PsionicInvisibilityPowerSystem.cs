@@ -54,6 +54,9 @@ public sealed class PsionicInvisibilityPowerSystem : EntitySystem
 
     private void OnPowerUsed(EntityUid uid, PsionicInvisibilityPowerComponent component, PsionicInvisibilityPowerActionEvent args)
     {
+        if(args.Handled)
+            return;
+
         if (HasComp<PsionicInvisibilityUsedComponent>(uid))
             return;
 

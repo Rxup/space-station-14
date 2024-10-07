@@ -12,8 +12,9 @@ namespace Content.Shared.Chat.TypingIndicator;
 public abstract class SharedTypingIndicatorSystem : EntitySystem
 {
     [Dependency] private readonly ActionBlockerSystem _actionBlocker = default!;
-    [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
+    //[Dependency] private readonly SharedAppearanceSystem _appearance = default!;
     [Dependency] private readonly IGameTiming _timing = default!;
+    private EntityQuery<TypingIndicatorComponent> _typingIndicatorQuery; // backmen: TypingIndicator
 
     /// <summary>
     ///     Default ID of <see cref="TypingIndicatorPrototype"/>
@@ -32,6 +33,8 @@ public abstract class SharedTypingIndicatorSystem : EntitySystem
         SubscribeLocalEvent<TypingIndicatorClothingComponent, InventoryRelayedEvent<BeforeShowTypingIndicatorEvent>>(BeforeShow);
 
         SubscribeAllEvent<TypingChangedEvent>(OnTypingChanged);
+
+        _typingIndicatorQuery = GetEntityQuery<TypingIndicatorComponent>(); // backmen: TypingIndicator
     }
 
     private void OnPlayerAttached(PlayerAttachedEvent ev)
@@ -88,6 +91,14 @@ public abstract class SharedTypingIndicatorSystem : EntitySystem
         // if (!Resolve(uid, ref appearance, false)) // Corvax-TypingIndicator
         //     return;
 
-        _appearance.SetData(uid, TypingIndicatorVisuals.State, state); // Corvax-TypingIndicator
+        //_appearance.SetData(uid, TypingIndicatorVisuals.State, state); // Corvax-TypingIndicator
+
+        // start-backmen: TypingIndicator
+        if (_typingIndicatorQuery.TryComp(uid, out var component))
+        {
+            component.TypingIndicatorState = state;
+            Dirty(uid, component);
+        }
+        // end-backmen: TypingIndicator
     }
 }
