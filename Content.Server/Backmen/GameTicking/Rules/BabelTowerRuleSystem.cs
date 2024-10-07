@@ -14,7 +14,7 @@ public sealed class BabelTowerRuleSystem : GameRuleSystem<BabelTowerRuleComponen
     public override void Initialize()
     {
         base.Initialize();
-        SubscribeLocalEvent<DetermineEntityLanguagesEvent>(OnLanguageApply);
+        SubscribeLocalEvent<DetermineEntityLanguagesEvent>(OnLanguageApply, after: [typeof(TranslatorSystem), typeof(TranslatorImplantSystem)]);
         SubscribeLocalEvent<PlayerSpawnCompleteEvent>(OnPlayerSpawned);
     }
 
