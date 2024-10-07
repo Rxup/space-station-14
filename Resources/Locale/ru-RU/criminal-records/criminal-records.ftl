@@ -3,6 +3,8 @@ criminal-records-console-records-list-title = Члены экипажа
 criminal-records-console-select-record-info = Выбрать запись.
 criminal-records-console-no-records = Записи не найдены!
 criminal-records-console-no-record-found = Записи о выбранном сотруднике не найдены.
+criminal-records-console-flavor-left = Сначала арестовывайте! Вопросы потом.
+criminal-records-console-flavor-right = версия 2.0
 
 ## Status
 
@@ -13,8 +15,8 @@ criminal-records-status-detained = Под арестом
 criminal-records-status-suspected = Подозревается
 criminal-records-status-discharged = Освобождён
 criminal-records-status-paroled = Освобождён по УДО
-criminal-records-console-wanted-reason = [color=gray]Причина розыска[/color]
-criminal-records-console-suspected-reason = [color=gray]Причина подозрения[/color]
+criminal-records-console-wanted-reason = Причина розыска
+criminal-records-console-suspected-reason = Причина подозрения
 criminal-records-console-reason = Причина
 criminal-records-console-reason-placeholder = Пример: { $placeholder }
 

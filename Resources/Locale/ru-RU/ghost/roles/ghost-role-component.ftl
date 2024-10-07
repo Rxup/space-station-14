@@ -1,4 +1,7 @@
 # also used in MakeGhostRuleWindow and MakeGhostRoleCommand
+ghost-role-greet = Ваша роль теперь: {$role}. 
+                   Помните: {$rules}
+
 ghost-role-component-default-rules =
     Вы не помните ничего из своей предыдущей жизни, если администратор не сказал вам обратное.
                                      Вы не помните ничего из своей предыдущей жизни и не помните ничего из того, что узнали, будучи призраком.
