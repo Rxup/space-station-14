@@ -181,10 +181,10 @@
       tableId: SpicyPestEventsTable
     - !type:NestedSelector
       tableId: CalmBackmenEventsTable
-    - id: ClosetSkeleton
-    - id: NinjaSpawn
-    - id: RevenantSpawn
-    - id: SleeperAgents
+#    - id: ClosetSkeleton
+#    - id: NinjaSpawn
+#    - id: RevenantSpawn
+#    - id: SleeperAgents
 
 - type: entity
   parent: BaseGameRule
