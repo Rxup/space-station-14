@@ -9,6 +9,27 @@
     - 1,0,28,27
     - -27,0,0,27
 
+- type: dungeonConfig
+  id: NyanoCompound
+  layers:
+  - !type:PrefabDunGen
+    presets:
+    - NyanoCompound
+  - !type:CorridorDunGen
+    width: 3
+  - !type:DungeonEntranceDunGen
+    count: 2
+  - !type:RoomEntranceDunGen
+  - !type:EntranceFlankDunGen
+  - !type:ExternalWindowDunGen
+  - !type:WallMountDunGen
+  - !type:BoundaryWallDunGen
+  - !type:JunctionDunGen
+    width: 1
+  - !type:JunctionDunGen
+  - !type:AutoCablingDunGen
+  - !type:CornerClutterDunGen
+
 # 3 blocks of 17x15 in a row of 17x47.
 #
 # By using a non-square dimension of blocks, I can control the directionality
@@ -20,6 +41,26 @@
     - -8,16,9,31
     - -8,0,9,15
 
+- type: dungeonConfig
+  id: NyanoStack
+  layers:
+  - !type:PrefabDunGen
+    presets:
+    - NyanoStack
+  - !type:CorridorDunGen
+    width: 3
+  - !type:DungeonEntranceDunGen
+    count: 2
+  - !type:RoomEntranceDunGen
+  - !type:EntranceFlankDunGen
+  - !type:ExternalWindowDunGen
+  - !type:BoundaryWallDunGen
+  - !type:JunctionDunGen
+    width: 1
+  - !type:JunctionDunGen
+  - !type:AutoCablingDunGen
+  - !type:CornerClutterDunGen
+
 # A single block of 9x9
 #
 # Used for selecting a random 9x9 building on its own.
@@ -27,3 +68,15 @@
   id: NyanoSolo9
   roomPacks:
     - -4,0,5,9
+
+- type: dungeonConfig
+  id: NyanoSolo9
+  layers:
+  - !type:PrefabDunGen
+    presets:
+    - NyanoSolo9
+  - !type:DungeonEntranceDunGen
+    count: 1
+  - !type:ExternalWindowDunGen
+  - !type:WallMountDunGen
+  - !type:BoundaryWallDunGen
