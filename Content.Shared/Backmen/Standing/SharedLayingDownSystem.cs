@@ -116,6 +116,7 @@ public abstract class SharedLayingDownSystem : EntitySystem
             && standingStateComponent.CurrentState != StandingState.Lying)
         {
             _standing.Down(ent, true, true, true);
+            return;
         }
 
         if (CrawlUnderTables && standingStateComponent.CurrentState == StandingState.Lying)
