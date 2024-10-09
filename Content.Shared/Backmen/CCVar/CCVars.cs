@@ -64,6 +64,9 @@ public sealed class CCVars
     public static readonly CVarDef<string> DiscordAuthApiKey =
         CVarDef.Create("discord_auth.api_key", "", CVar.SERVERONLY | CVar.CONFIDENTIAL);
 
+    public static readonly CVarDef<bool> DiscordAuthIsOptional =
+        CVarDef.Create("discord_auth.is_opt", false, CVar.SERVER | CVar.REPLICATED);
+
     /**
      * Sponsors
      */
