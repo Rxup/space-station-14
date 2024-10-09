@@ -1,4 +1,5 @@
 using Content.Shared.Backmen.CCVar;
+using Content.Shared.Body.Components;
 using Content.Shared.Buckle;
 using Content.Shared.Buckle.Components;
 using Content.Shared.DoAfter;
@@ -11,6 +12,7 @@ using Content.Shared.Movement.Components;
 using Content.Shared.Movement.Systems;
 using Content.Shared.Standing;
 using Content.Shared.Stunnable;
+using Content.Shared.Traits.Assorted;
 using Content.Shared.UserInterface;
 using Robust.Shared.Configuration;
 using Robust.Shared.Containers;
@@ -51,9 +53,19 @@ public abstract class SharedLayingDownSystem : EntitySystem
 
         SubscribeLocalEvent<LayingDownComponent, BuckledEvent>(OnBuckled);
         SubscribeLocalEvent<LayingDownComponent, UnbuckledEvent>(OnUnBuckled);
+        SubscribeLocalEvent<LayingDownComponent, StandAttemptEvent>(OnCheckLegs);
         SubscribeLocalEvent<BoundUserInterfaceMessageAttempt>(OnBoundUserInterface, after: [typeof(SharedInteractionSystem)]);
 
         Subs.CVar(_config, CCVars.CrawlUnderTables, b => CrawlUnderTables = b, true);
+    }
+
+    private void OnCheckLegs(Entity<LayingDownComponent> ent, ref StandAttemptEvent args)
+    {
+        if(!TryComp<BodyComponent>(ent, out var body))
+            return;
+
+        if (body.LegEntities.Count < body.RequiredLegs || body.LegEntities.Count == 0)
+            args.Cancel(); // no legs bro
     }
 
     private void OnBoundUserInterface(BoundUserInterfaceMessageAttempt args)
@@ -96,12 +108,18 @@ public abstract class SharedLayingDownSystem : EntitySystem
 
     private void OnUnBuckled(Entity<LayingDownComponent> ent, ref UnbuckledEvent args)
     {
-        if(
-            !TryComp<StandingStateComponent>(ent, out var standingStateComponent) ||
-            standingStateComponent.CurrentState != StandingState.Lying)
+        if(!TryComp<StandingStateComponent>(ent, out var standingStateComponent))
             return;
 
-        if (CrawlUnderTables)
+        if (TryComp<BodyComponent>(ent, out var body) &&
+            ((body.RequiredLegs > 0 && body.LegEntities.Count < body.RequiredLegs) || body.LegEntities.Count == 0)
+            && standingStateComponent.CurrentState != StandingState.Lying)
+        {
+            _standing.Down(ent, true, true, true);
+            return;
+        }
+
+        if (CrawlUnderTables && standingStateComponent.CurrentState == StandingState.Lying)
         {
             if(_net.IsServer)
                 RaiseNetworkEvent(new DrawDownedEvent(GetNetEntity(ent)), Filter.PvsExcept(ent));
@@ -186,7 +204,10 @@ public abstract class SharedLayingDownSystem : EntitySystem
             return;
         }
 
-        if (HasComp<KnockedDownComponent>(uid) || !_mobState.IsAlive(uid) || !inputMover.CanMove)
+        if (
+            HasComp<KnockedDownComponent>(uid) ||
+            !_mobState.IsAlive(uid) ||
+            !inputMover.CanMove)
             return;
 
         //RaiseNetworkEvent(new CheckAutoGetUpEvent(GetNetEntity(uid)));
@@ -238,6 +259,7 @@ public abstract class SharedLayingDownSystem : EntitySystem
             standingState.CurrentState is not StandingState.Lying ||
             !_mobState.IsAlive(uid) ||
             _buckle.IsBuckled(uid) ||
+            HasComp<LegsParalyzedComponent>(uid) ||
             TerminatingOrDeleted(uid))
         {
             return false;
@@ -269,7 +291,7 @@ public abstract class SharedLayingDownSystem : EntitySystem
             return false;
         }
 
-        _standing.Down(uid, true, behavior != DropHeldItemsBehavior.NoDrop, standingState);
+        _standing.Down(uid, true, behavior != DropHeldItemsBehavior.NoDrop, standingState: standingState);
         return true;
     }
 }

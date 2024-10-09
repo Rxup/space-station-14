@@ -15,8 +15,11 @@ public sealed partial class StandingStateComponent : Component
     public StandingState CurrentState { get; set; } = StandingState.Standing;
     // WD EDIT END
 
-    [DataField, AutoNetworkedField]
-    public bool Standing { get; set; } = true;
+    public bool Standing
+    {
+        get => CurrentState == StandingState.Standing;
+        set => CurrentState = value ? StandingState.Standing : StandingState.Lying;
+    }
 
     /// <summary>
     ///     List of fixtures that had their collision mask changed when the entity was downed.
