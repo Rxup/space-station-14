@@ -117,3 +117,14 @@
     revertOnDeath: true
     transferName: false
     revertOnEat: true
+
+#Xenobiology
+- type: polymorph
+  id: RandomSlimePerson
+  configuration:
+    forced: true
+    entity: RandomSlimePerson
+    transferName: false
+    inventory: None
+    revertOnDeath: false
+    revertOnCrit: false

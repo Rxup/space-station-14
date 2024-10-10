@@ -297,6 +297,7 @@
     - id: PrinterDocFlatpack # Corvax-Printer
     - id: FlatpackOracle # backmen
     - id: FlatpackSophie # backmen
+    - id: GreySlimeExtract # backmen
 
 # Hardsuit table, used for suit storage as well
 - type: entityTable

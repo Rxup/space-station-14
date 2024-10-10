@@ -1,0 +1,110 @@
+- type: entity
+  parent: BaseItem
+  id: BaseSlimePotion
+  abstract: true
+  name: slime potion
+  description: Slime potion.
+  components:
+  - type: Item
+    size: Small
+  - type: StaticPrice
+    price: 250
+
+- type: entity
+  parent: BaseSlimePotion
+  id: BlueSlimePotion
+  name: blue slime potion
+  components:
+  - type: Sprite
+    sprite: Backmen/Objects/Specific/Xenobiology/potion.rsi
+    state: blue
+
+- type: entity
+  parent: BaseSlimePotion
+  id: SilverSlimePotion
+  name: silver slime potion
+  components:
+  - type: Sprite
+    sprite: Backmen/Objects/Specific/Xenobiology/potion.rsi
+    state: silver
+
+- type: entity
+  parent: BaseSlimePotion
+  id: CyanSlimePotion
+  name: cyan slime potion
+  components:
+  - type: Sprite
+    sprite: Backmen/Objects/Specific/Xenobiology/potion.rsi
+    state: cyan
+
+- type: entity
+  parent: BaseSlimePotion
+  id: GreenSlimePotion
+  name: green slime potion
+  components:
+  - type: Sprite
+    sprite: Backmen/Objects/Specific/Xenobiology/potion.rsi
+    state: green
+
+- type: entity
+  parent: BaseSlimePotion
+  id: RedSlimePotion
+  name: red slime potion
+  components:
+  - type: Sprite
+    sprite: Backmen/Objects/Specific/Xenobiology/potion.rsi
+    state: red
+
+- type: entity
+  parent: BaseSlimePotion
+  id: LightPinkSlimePotion
+  name: light pink slime potion
+  components:
+  - type: Sprite
+    sprite: Backmen/Objects/Specific/Xenobiology/potion.rsi
+    state: lightpink
+
+- type: entity
+  parent: BaseSlimePotion
+  id: GreySlimePotion
+  name: grey slime potion
+  components:
+  - type: Sprite
+    sprite: Backmen/Objects/Specific/Xenobiology/potion.rsi
+    state: grey
+
+- type: entity
+  parent: BaseSlimePotion
+  id: YellowSlimePotion
+  name: yellow slime potion
+  components:
+  - type: Sprite
+    sprite: Backmen/Objects/Specific/Xenobiology/potion.rsi
+    state: yellow
+
+- type: entity
+  parent: BaseSlimePotion
+  id: PinkSlimePotion
+  name: pink slime potion
+  components:
+  - type: Sprite
+    sprite: Backmen/Objects/Specific/Xenobiology/potion.rsi
+    state: pink
+
+- type: entity
+  parent: BaseSlimePotion
+  id: OrangeSlimePotion
+  name: orange slime potion
+  components:
+  - type: Sprite
+    sprite: Backmen/Objects/Specific/Xenobiology/potion.rsi
+    state: orange
+
+- type: entity
+  parent: BaseSlimePotion
+  id: PurpleSlimePotion
+  name: purple slime potion
+  components:
+  - type: Sprite
+    sprite: Backmen/Objects/Specific/Xenobiology/potion.rsi
+    state: purple
