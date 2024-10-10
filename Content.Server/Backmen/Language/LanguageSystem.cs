@@ -178,7 +178,12 @@ public sealed partial class LanguageSystem : SharedLanguageSystem
         if (!_languageSpeakerQuery.Resolve(entity, ref entity.Comp, logMissing: false))
             return;
 
-        var ev = new DetermineEntityLanguagesEvent();
+        Log.Debug($"{ToPrettyString(entity.Owner)} UpdateEntityLanguages");
+
+        var ev = new DetermineEntityLanguagesEvent
+        {
+            EntityUid = entity
+        };
         // We add the intrinsically known languages first so other systems can manipulate them easily
         if (TryComp<LanguageKnowledgeComponent>(entity, out var knowledge))
         {
@@ -193,7 +198,8 @@ public sealed partial class LanguageSystem : SharedLanguageSystem
             }
         }
 
-        RaiseLocalEvent(entity, ref ev, true);
+        RaiseLocalEvent(entity, ref ev, false);
+        RaiseLocalEvent(ref ev);
 
         entity.Comp.SpokenLanguages.Clear();
         entity.Comp.UnderstoodLanguages.Clear();
