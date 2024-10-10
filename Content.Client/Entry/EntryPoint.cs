@@ -19,7 +19,7 @@ using Content.Client.Radiation.Overlays;
 using Content.Client.Replay;
 using Content.Client.Screenshot;
 using Content.Client.Singularity;
-using Content.Client._RMC14.Explosion; // Ataraxia
+using Content.Client.Backmen.Explosion; // Ataraxia
 using Content.Client.Stylesheets;
 using Content.Client.Viewport;
 using Content.Client.Voting;

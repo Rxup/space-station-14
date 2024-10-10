@@ -12,3 +12,8 @@
   id: SeeingStatic
   kind: source
   path: "/Textures/Backmen/Shaders/seeing_static.swsl"
+
+- type: shader
+  id: ShockWave
+  kind: source
+  path: "/Textures/Backmen/Shaders/shock_wave.swsl"

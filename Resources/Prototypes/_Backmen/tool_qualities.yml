@@ -4,3 +4,10 @@
   toolName: tool-quality-none-tool-name
   spawn: KitchenKnife
   icon: { sprite: Objects/Weapons/Melee/kitchen_knife.rsi, state: icon }
+
+- type: tool
+  id: AdvancedPrying
+  name: tool-quality-advanced-prying-name
+  toolName: tool-quality-advanced-prying-tool-name
+  spawn: FireAxe
+  icon: { sprite: Objects/Weapons/Melee/fireaxe.rsi, state: icon }

@@ -2,7 +2,7 @@
 using Content.Server.Administration;
 using Content.Server.Administration.Logs;
 using Content.Server.GameTicking;
-using Content.Shared._White.Telescope;
+using Content.Shared.Backmen.Telescope;
 using Content.Shared.Administration;
 using Content.Shared.Backmen.CCVar;
 using Content.Shared.Database;
