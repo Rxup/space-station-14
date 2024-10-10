@@ -103,3 +103,11 @@
     threshold: 0.8 # danger below 80% nitrogen
   lowerWarnAround: !type:AlarmThresholdSetting
     threshold: 1.125 # warning below 90%
+
+- type: alarmThreshold
+  id: unwanted
+  upperBound: !type:AlarmThresholdSetting
+    threshold: 0.0025
+  upperWarnAround: !type:AlarmThresholdSetting
+    threshold: 0.5
+
