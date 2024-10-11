@@ -77,3 +77,10 @@
     - RevenantTheme
   - type: Speech
     speechVerb: Ghost
+# backmen
+  - type: UniversalLanguageSpeaker
+  - type: LanguageKnowledge
+    speaks:
+    - TauCetiBasic
+    understands:
+    - TauCetiBasic

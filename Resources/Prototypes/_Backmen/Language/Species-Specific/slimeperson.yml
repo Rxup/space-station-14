@@ -4,7 +4,7 @@
   id: Slime
   speech:
     color: "#00a3e2dd"
-    fontId: RubikBubbles
+    #fontId: RubikBubbles
   obfuscation:
     !type:SyllableObfuscation
     minSyllables: 1

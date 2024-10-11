@@ -21,6 +21,7 @@ public sealed class LayingDownSystem : SharedLayingDownSystem
     [Dependency] private readonly SharedBuckleSystem _buckle = default!;
     [Dependency] private readonly IConfigurationManager _cfg = default!;
     [Dependency] private readonly SharedTransformSystem _transform = default!;
+    [Dependency] private readonly SharedRotationVisualsSystem _rotationVisuals = default!;
 
     public override void Initialize()
     {
@@ -103,15 +104,15 @@ public sealed class LayingDownSystem : SharedLayingDownSystem
 
         if (rotation.GetDir() is Direction.SouthEast or Direction.East or Direction.NorthEast or Direction.North)
         {
-            entity.Comp3.HorizontalRotation = Angle.FromDegrees(270);
+            _rotationVisuals.SetHorizontalAngle((entity.Owner, entity.Comp3), Angle.FromDegrees(270));
             if(entity.Comp2 != null)
                 entity.Comp2.Rotation = Angle.FromDegrees(270);
             return;
         }
 
-        entity.Comp3.HorizontalRotation = Angle.FromDegrees(90);
+        _rotationVisuals.ResetHorizontalAngle((entity.Owner, entity.Comp3));
         if(entity.Comp2 != null)
-            entity.Comp2.Rotation = Angle.FromDegrees(90);
+            entity.Comp2.Rotation = entity.Comp3.DefaultRotation;
     }
 
     public override void AutoGetUp(Entity<LayingDownComponent> ent)

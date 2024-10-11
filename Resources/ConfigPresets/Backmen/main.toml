@@ -111,9 +111,6 @@ rules_file="RulesBackmen"
 
 [net]
 max_connections = 1024
-tickrate = 20
-port = 1212
-bindto = "::,0.0.0.0"
 log_late_msg=false
 # Automatic port forwarding!
 # Disabled by default because you may not want to do this.

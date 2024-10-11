@@ -22,16 +22,18 @@ public sealed class ImmersiveSystem : EntitySystem
     [Dependency] private readonly IConsoleHost _console = default!;
     [Dependency] private readonly IAdminLogManager _adminLog = default!;
 
+
     // Values are copied from standard CVars.
     private bool _immersiveEnabled;
     private float _eyeModifier = 1f;
     private float _telescopeDivisor = 0.4f; // 2 tiles further than normal
     private float _telescopeLerpAmount = 1f;
 
+
     public override void Initialize()
     {
         base.Initialize();
-        SubscribeLocalEvent<PlayerSpawnCompleteEvent>(OnPlayerSpawn);
+        SubscribeLocalEvent<ImmersiveComponent, MapInitEvent>(OnPlayerSpawn);
 
         Subs.CVar(_configurationManager, CCVars.ImmersiveEnabled, OnValueChanged, true);
         Subs.CVar(_configurationManager, CCVars.ImmersiveEyeModifier, OnEyeChanged, true);
@@ -39,6 +41,8 @@ public sealed class ImmersiveSystem : EntitySystem
         Subs.CVar(_configurationManager, CCVars.ImmersiveTelescopeLerpAmount, OnTelescopeLerpChanged, true);
 
         _console.RegisterCommand("setImmersive_bkm", SetImmersiveCommand);
+
+        _eyeQuery = GetEntityQuery<ContentEyeComponent>();
     }
 
     private void OnValueChanged(bool value)
@@ -107,31 +111,22 @@ public sealed class ImmersiveSystem : EntitySystem
     {
         var humans = EntityQueryEnumerator<HumanoidAppearanceComponent, ContentEyeComponent>();
 
-        while (humans.MoveNext(out var entity, out _, out var eye))
+        while (humans.MoveNext(out var entity, out _, out _))
         {
+
             SetEyeZoom((entity, eye), _eyeModifier);
             AddTelescope(entity, _telescopeDivisor, _telescopeLerpAmount);
+
         }
     }
 
     private void Ended()
     {
-        var humans = EntityQueryEnumerator<HumanoidAppearanceComponent, ContentEyeComponent>();
-        while (humans.MoveNext(out var entity, out _, out var eye))
+        var humans = EntityQueryEnumerator<HumanoidAppearanceComponent, ContentEyeComponent, TelescopeComponent>();
+        while (humans.MoveNext(out var entity, out _, out _, out _))
         {
-            SetEyeZoom((entity, eye), 1f);
             RemCompDeferred<TelescopeComponent>(entity);
         }
-    }
-
-    private void SetEyeZoom(Entity<ContentEyeComponent?> human, float modifier)
-    {
-        if (!Resolve(human, ref human.Comp))
-            return;
-
-        var vec = new Vector2(modifier);
-        _eye.SetMaxZoom(human, vec, human.Comp);
-        _eye.SetZoom(human, vec, eye: human.Comp);
     }
 
     private void AddTelescope(EntityUid human, float divisor, float lerpAmount)
@@ -139,15 +134,17 @@ public sealed class ImmersiveSystem : EntitySystem
         _telescope.SetParameters((human, EnsureComp<TelescopeComponent>(human)), divisor, lerpAmount);
     }
 
-    private void OnPlayerSpawn(PlayerSpawnCompleteEvent ev)
+    private void OnPlayerSpawn(Entity<ImmersiveComponent> ent, ref MapInitEvent ev)
     {
-        if (!HasComp<ContentEyeComponent>(ev.Mob))
-            return;
-
         if (!_immersiveEnabled)
             return;
 
+        if (!_eyeQuery.HasComp(ent))
+            return;
+
+
         SetEyeZoom(ev.Mob, _eyeModifier);
         AddTelescope(ev.Mob, _telescopeDivisor, _telescopeLerpAmount);
+
     }
 }
