@@ -2,6 +2,7 @@
 using System.Net;
 using System.Net.Http;
 using System.Net.Http.Json;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Text.Json.Serialization;
 using System.Threading;
@@ -32,7 +33,7 @@ public sealed class TTSManager
         "tts_reused_count",
         "Amount of reused TTS audio from cache.");
 
-    [Dependency] private readonly IConfigurationManager _cfg = default!;
+    [Robust.Shared.IoC.Dependency] private readonly IConfigurationManager _cfg = default!;
 
     private readonly HttpClient _httpClient = new();
 
@@ -40,7 +41,7 @@ public sealed class TTSManager
     // ReSharper disable once InconsistentNaming
     public readonly Dictionary<string, byte[]> _cache = new();
     // ReSharper disable once InconsistentNaming
-    public readonly List<string> _cacheKeysSeq = new();
+    public readonly HashSet<string> _cacheKeysSeq = new();
     // ReSharper disable once InconsistentNaming
     public int _maxCachedCount = 200;
     private string _apiUrl = string.Empty;
@@ -105,7 +106,8 @@ public sealed class TTSManager
             var json = await response.Content.ReadFromJsonAsync<GenerateVoiceResponse>(cancellationToken: cts.Token);
             var soundData = Convert.FromBase64String(json.Results.First().Audio);
 
-            _cache.Add(cacheKey, soundData);
+
+            _cache.TryAdd(cacheKey, soundData);
             _cacheKeysSeq.Add(cacheKey);
             if (_cache.Count > _maxCachedCount)
             {
@@ -139,13 +141,12 @@ public sealed class TTSManager
         _cacheKeysSeq.Clear();
     }
 
+    [MethodImpl(MethodImplOptions.AggressiveOptimization)]
     private string GenerateCacheKey(string speaker, string text)
     {
-        var key = $"{speaker}/{text}";
-        byte[] keyData = Encoding.UTF8.GetBytes(key);
-        var sha256 = System.Security.Cryptography.SHA256.Create();
-        var bytes = sha256.ComputeHash(keyData);
-        return Convert.ToHexString(bytes);
+        var keyData = Encoding.UTF8.GetBytes($"{speaker}/{text}");
+        var hashBytes = System.Security.Cryptography.SHA256.HashData(keyData);
+        return Convert.ToHexString(hashBytes);
     }
 
     private struct GenerateVoiceRequest

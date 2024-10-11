@@ -789,7 +789,7 @@ entities:
     - type: Transform
       pos: -2.5,2.5
       parent: 50
-- proto: SpaceCash1000
+- proto: FakeSpaceCash1000
   entities:
   - uid: 115
     components:

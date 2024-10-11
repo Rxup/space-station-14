@@ -641,7 +641,7 @@ public sealed partial class ChangelingSystem : EntitySystem
 
         var speak = new BlobSpeakComponent()
         {
-            Channel = "Changeling",
+            Language = "Changeling",
             Name = "changeling-roundend-name",
             OverrideName = false,
         };

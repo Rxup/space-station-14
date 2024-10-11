@@ -150,11 +150,23 @@
     tags:
     - CannotSuicide
     - DoorBumpOpener
-  - type: NightVision
+  - type: NightVision #backmen: night vision
     isToggle: true
     color: "#808080"
     playSoundOn: false
+  - type: LanguageSpeaker #backmen: languages
+    currentLanguage: Carp
+  - type: LanguageKnowledge #backmen: languages
+    speaks:
+    - Carp
+    - Dragon
+    understands:
+    - Carp
+    - Dragon
 
+
+  - type: Puller
+    needsHands: false
 
 - type: entity
   parent: BaseMobDragon

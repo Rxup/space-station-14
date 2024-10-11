@@ -5,21 +5,25 @@ using Content.Shared.Random;
 using Content.Shared.Random.Helpers;
 using Content.Server.EUI;
 using Content.Server.Mind;
+using Content.Server.Popups;
 using Content.Shared.Backmen.Abilities.Psionics;
+using Content.Shared.Backmen.Psionics;
+using Content.Shared.Interaction;
+using Content.Shared.Physics;
 using Content.Shared.StatusEffect;
 using Robust.Shared.Random;
 using Robust.Shared.Prototypes;
 using Robust.Server.Player;
+using Robust.Shared.Map;
 using Robust.Shared.Player;
 
 namespace Content.Server.Backmen.Abilities.Psionics;
 
-public sealed class PsionicAbilitiesSystem : EntitySystem
+public sealed class PsionicAbilitiesSystem : SharedPsionicAbilitiesSystem
 {
     [Dependency] private readonly IComponentFactory _componentFactory = default!;
     [Dependency] private readonly IRobustRandom _random = default!;
     [Dependency] private readonly SharedActionsSystem _actionsSystem = default!;
-    [Dependency] private readonly IPlayerManager _playerManager = default!;
     [Dependency] private readonly EuiManager _euiManager = default!;
     [Dependency] private readonly StatusEffectsSystem _statusEffectsSystem = default!;
     [Dependency] private readonly GlimmerSystem _glimmerSystem = default!;
@@ -31,6 +35,7 @@ public sealed class PsionicAbilitiesSystem : EntitySystem
         base.Initialize();
         SubscribeLocalEvent<PsionicAwaitingPlayerComponent, PlayerAttachedEvent>(OnPlayerAttached);
     }
+
 
     private void OnPlayerAttached(EntityUid uid, PsionicAwaitingPlayerComponent component, PlayerAttachedEvent args)
     {

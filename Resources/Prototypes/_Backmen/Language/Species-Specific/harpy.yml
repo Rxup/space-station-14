@@ -1,0 +1,57 @@
+- type: language
+  id: Garpy
+  speech:
+    #fontId: Cambria
+    color: "#008ecc"
+  obfuscation:
+    !type:SyllableObfuscation
+    minSyllables: 2
+    maxSyllables: 5
+    replacement:
+    - ш
+    - ж
+    - з
+    - ё
+    - фи
+    - бью
+    - ча
+    - ду
+    - до
+    - фа
+    - гу
+    - дж
+    - ли
+    - ме
+    - ми
+    - че
+    - ба
+    - джу
+    - да
+    - си
+    - ко
+    - ла
+    - ра
+    - са
+    - ва
+    - аб
+    - ех
+    - ог
+    - як
+    - за
+    - та
+    - страс
+    - брам
+    - трам
+    - дека
+    - зрак
+    - емт
+    - брат
+    - огн
+    - ай
+    - ау
+    - зк
+    - бл
+    - фл
+    - гр
+    - пр
+    - жн

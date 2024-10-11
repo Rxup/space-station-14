@@ -9,7 +9,7 @@
   - BaseStationSiliconLawCrewsimov
   - BaseStationAllEventsEligible
   - BaseStationNanotrasen
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
   - type: Transform
 

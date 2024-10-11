@@ -1,0 +1,11 @@
+- type: language
+  id: Xeno
+  obfuscation:
+    !type:SyllableObfuscation
+    minSyllables: 2
+    maxSyllables: 4
+    replacement:
+    - хсс
+    - иисс
+    - сс
+    - ис

@@ -110,7 +110,7 @@
 - type: entity
   parent: ClothingHeadHardsuitWithLightBase
   id: ClothingHeadHelmetCargoEVA
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   name: EVA cargo helmet
   description: Встроенный шлем скафандра EVA отдела снабжения. Есть фонарик.
   components:

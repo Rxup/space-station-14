@@ -25,6 +25,7 @@ public sealed class DiscordAuthManager : Content.Corvax.Interfaces.Server.IServe
     private bool _isEnabled = false;
     private string _apiUrl = string.Empty;
     private string _apiKey = string.Empty;
+    private bool _isOpt = false;
 
     /// <summary>
     ///     Raised when player passed verification or if feature disabled
@@ -38,11 +39,21 @@ public sealed class DiscordAuthManager : Content.Corvax.Interfaces.Server.IServe
         _cfg.OnValueChanged(CCVars.DiscordAuthEnabled, v => _isEnabled = v, true);
         _cfg.OnValueChanged(CCVars.DiscordAuthApiUrl, v => _apiUrl = v, true);
         _cfg.OnValueChanged(CCVars.DiscordAuthApiKey, v => _apiKey = v, true);
+        _cfg.OnValueChanged(CCVars.DiscordAuthIsOptional, v => _isOpt = v, true);
 
         _netMgr.RegisterNetMessage<MsgDiscordAuthRequired>();
         _netMgr.RegisterNetMessage<MsgDiscordAuthCheck>(OnAuthCheck);
+        _netMgr.RegisterNetMessage<MsgDiscordAuthByPass>(OnByPass);
 
         _playerMgr.PlayerStatusChanged += OnPlayerStatusChanged;
+    }
+
+    private void OnByPass(MsgDiscordAuthByPass message)
+    {
+        if (!_isEnabled || !_isOpt) return;
+
+        var session = _playerMgr.GetSessionById(message.MsgChannel.UserId);
+        PlayerVerified?.Invoke(this, session);
     }
 
     private async void OnAuthCheck(MsgDiscordAuthCheck message)

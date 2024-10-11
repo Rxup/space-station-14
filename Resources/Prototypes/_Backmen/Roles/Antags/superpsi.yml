@@ -1,0 +1,55 @@
+- type: antag
+  id: SuperPsi
+  name: roles-antag-superpsi-name
+  antagonist: true
+  setPreference: false
+  objective: roles-antag-superpsi-objective
+  guides: [ superpsi ]
+
+- type: entity
+  parent: BaseGameRule
+  id: SuperPsiRule
+  components:
+  - type: SuperPsiRule
+  - type: AntagObjectives
+    objectives:
+    - EscapeSuperPsiShuttleObjective
+    - HijackSuperPsiShuttleObjective
+    - KillRandomPersonSuperPsiObjective
+    - KillRandomPersonSuperPsiObjective
+    - KillRandomPersonSuperPsiObjective
+    - KillRandomPersonSuperPsiObjective
+    - KillRandomHeadSuperPsiObjective
+    - FireAxeStealSuperPsiObjective
+    - ClothingHeadsetAltMedicalStealSuperPsiObjective
+  - type: AntagSelection
+    agentName: superpsi-round-end-agent-name
+    definitions:
+    - allowNonHumans: true
+      max: 1
+      playerRatio: 30
+      spawnerPrototype: SpawnerUristMcNars
+      multiAntagSetting: None
+      pickPlayer: false
+      lateJoinAdditional: false
+      mindComponents:
+      - type: SuperPsiRole
+        prototype: SuperPsi
+      briefing:
+        sound: "/Audio/Misc/thief_greeting.ogg"
+
+- type: entity
+  id: SpawnerUristMcNars
+  categories: [ HideSpawnMenu ]
+  parent: BaseAntagSpawner
+  components:
+  - type: GhostRole
+    name: ghost-role-information-superpsi-name
+    description: ghost-role-information-superpsi-description
+    rules: ghost-role-information-rules-superpsi
+  - type: Sprite
+    sprite: Markers/jobs.rsi
+    layers:
+    - state: green
+    - sprite: Structures/Wallmounts/signs.rsi
+      state: radiation

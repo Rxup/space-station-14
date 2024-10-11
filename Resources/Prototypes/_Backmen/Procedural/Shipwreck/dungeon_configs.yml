@@ -18,30 +18,34 @@
     prob: 0.1
     orGroup: content
 
+- type: entitySpawnEntry
+  id: RuinedHospitalDoor
+  entries:
+  - id: AirlockGlass
+
 - type: dungeonConfig
   id: RuinedHospital
   data:
     entities:
       Cabling: CableApcExtension
-      CornerWalls: WallReinforced
-      Walls: WallSolid
+      CornerWalls: WallSolidRust
+      Walls: WallDrywall
     spawnGroups:
       CornerClutter: BaseClutter
-      Entrance: SnowyLabsEntrance
+      Entrance: RuinedHospitalDoor
       EntranceFlank: BaseWindow
       Junction: BaseAirlock
       Window: BaseWindow
       WallMounts: RuinedHospitalWalls
     tiles:
-      FallbackTile: FloorAsphalt
+      FallbackTile: Plating
     whitelists:
       Rooms:
         tags:
         - RuinedHospital
   layers:
-  - !type:PrefabDunGen
-    presets:
-      - NyanoCompound
+  - !type:PrototypeDunGen
+    proto: NyanoCompound
 
   #- !type:MiddleConnectionPostGen
   #  count: 1
@@ -80,15 +84,31 @@
 
 # ruined dwellings
 
+- type: entitySpawnEntry
+  id: RuinedDwellingsDoor
+  entries:
+  - id: CableApcExtension
+  - id: WoodDoor
+
+- type: entitySpawnEntry
+  id: RuinedDwellingsEntranceFlank
+  entries:
+  - id: CableApcExtension
+  - id: WallPaper
+
 - type: dungeonConfig
   id: RuinedDwellings
   data:
     entities:
       Cabling: CableApcExtension
-      CornerWalls: WallDrywall
+      CornerWalls: WallSolidRust
       Walls: WallDrywall
     spawnGroups:
       Window: BaseWindow
+      Entrance: RuinedDwellingsDoor
+      CornerClutter: BaseClutter
+      Junction: BaseAirlock
+      EntranceFlank: RuinedDwellingsEntranceFlank
     tiles:
       FallbackTile: FloorWood
     whitelists:
@@ -96,9 +116,8 @@
         tags:
         - RuinedDwelling
   layers:
-  - !type:PrefabDunGen
-    presets:
-      - NyanoStack
+  - !type:PrototypeDunGen
+    proto: NyanoStack
 
 #  - !type:MiddleConnectionPostGen
 #    count: 1
@@ -142,16 +161,30 @@
       Walls: WallDrywall
     spawnGroups:
       Window: BaseWindow
+      WallMounts: ScienceLabsWalls
+      CornerClutter: BaseClutter
+      EntranceFlank: BaseWindow
+      Entrance: ShopWoodDoor
     tiles:
-      FallbackTile: FloorAsphalt
+      FallbackTile: Plating
     whitelists:
       Rooms:
         tags:
         - RuinedShop
   layers:
-  - !type:PrefabDunGen
-    presets:
-    - NyanoSolo9
+  - !type:PrototypeDunGen
+    proto: NyanoSolo9
+
+- type: entitySpawnEntry
+  id: ShopWoodDoor
+  entries:
+  - id: WoodDoor
+
+- type: entitySpawnEntry
+  id: ShopWall
+  entries:
+  - id: WallDrywall
+
 #  postGeneration:
 #    - !type:EntrancePostGen
 #      count: 1

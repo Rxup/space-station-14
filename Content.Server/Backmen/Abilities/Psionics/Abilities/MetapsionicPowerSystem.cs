@@ -94,6 +94,9 @@ public sealed class MetapsionicPowerSystem : EntitySystem
 
     private void OnPowerUsed(EntityUid uid, MetapsionicPowerComponent component, MetapsionicPowerActionEvent args)
     {
+        if(args.Handled)
+            return;
+
         _statusEffects.TryAddStatusEffect<MetapsionicVisibleComponent>(uid, "SeeAll", TimeSpan.FromSeconds(2), true);
         var coord = Transform(uid).Coordinates;
         foreach (var entity in _lookup.GetEntitiesInRange<PsionicComponent>(coord, component.Range))

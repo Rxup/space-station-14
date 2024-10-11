@@ -1,0 +1,14 @@
+# Used by Robots.
+# TODO: Replace this with much better languages. Yes, robots can have languages.
+- type: language
+  id: Binary
+  speech:
+    color: "#2ed2fd" # Binary channel color
+    #fontId: ZektonRg
+  obfuscation:
+    !type:SyllableObfuscation
+    minSyllables: 1
+    maxSyllables: 10
+    replacement:
+    - 0
+    - 1

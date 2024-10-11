@@ -101,6 +101,16 @@
             AppendStyleClass="{x:Static style:StyleBase.ButtonSquare}"
             />
         <ui:MenuButton
+            Name="LanguageButton"
+            Access="Internal"
+            Icon="{xe:Tex '/Textures/Backmen/Interface/language.png'}"
+            BoundKey = "{x:Static is:ContentKeyFunctions.OpenLanguageMenu}"
+            ToolTip="Open the Language Menu"
+            MinSize="42 64"
+            HorizontalExpand="True"
+            AppendStyleClass="{x:Static style:StyleBase.ButtonSquare}"
+        />
+        <ui:MenuButton
             Name="SandboxButton"
             Access="Internal"
             Icon="{xe:Tex '/Textures/Interface/sandbox.svg.192dpi.png'}"

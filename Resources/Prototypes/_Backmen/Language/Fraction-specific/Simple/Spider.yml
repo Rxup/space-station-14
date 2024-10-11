@@ -1,0 +1,14 @@
+- type: language
+  id: Spider
+  speech:
+    color: "#2b2e55"
+    #fontId: RubikBeastlyRegular
+  obfuscation:
+    !type:SyllableObfuscation
+    minSyllables: 1
+    maxSyllables: 3
+    replacement:
+    - хсс
+    - иисс
+    - сс
+    - ис

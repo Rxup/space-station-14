@@ -4,6 +4,7 @@ using Content.Shared.Hands.Components;
 using Content.Shared.Hands.EntitySystems;
 using Content.Shared.IdentityManagement;
 using Content.Shared.Interaction;
+using Content.Shared.Inventory.VirtualItem;
 using Content.Shared.Popups;
 using Robust.Shared.Player;
 using Robust.Shared.Timing;
@@ -25,7 +26,11 @@ public abstract partial class SharedOfferItemSystem : EntitySystem
         InitializeInteractions();
 
         SubscribeLocalEvent<OfferItemComponent,AcceptOfferAlertEvent>(OnClickAlertEvent);
+
+        VirtualItemQuery = GetEntityQuery<VirtualItemComponent>();
     }
+
+    protected EntityQuery<VirtualItemComponent> VirtualItemQuery;
 
     [ValidatePrototypeId<AlertPrototype>]
     protected const string OfferAlert = "Offer";
@@ -99,7 +104,7 @@ public abstract partial class SharedOfferItemSystem : EntitySystem
 
         Dirty(args.User, offerItem);
 
-        if (offerItem.Item == null)
+        if (offerItem.Item == null || VirtualItemQuery.HasComp(offerItem.Item))
             return;
 
         _popup.PopupPredicted(Loc.GetString("offer-item-try-give",
@@ -114,11 +119,12 @@ public abstract partial class SharedOfferItemSystem : EntitySystem
 
     private void OnMove(EntityUid uid, OfferItemComponent component, MoveEvent args)
     {
-        if (component.Target == null ||
-            _transform.InRange(args.NewPosition,
-                Transform(component.Target.Value).Coordinates,
-                component.MaxOfferDistance)
-            )
+        if (component.Target == null || component.Item == null)
+            return;
+
+        if(_transform.InRange(args.NewPosition,
+               Transform(component.Target.Value).Coordinates,
+               component.MaxOfferDistance))
             return;
 
         UnOffer(uid, component);

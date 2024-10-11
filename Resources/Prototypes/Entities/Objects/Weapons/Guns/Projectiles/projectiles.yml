@@ -469,7 +469,7 @@
   id: BulletSpike
   name: spike
   parent: BaseBulletHighVelocity
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   description:
   components:
     - type: Sprite
@@ -876,7 +876,7 @@
   id: BulletSplashAcid
   name: flesh acid spit
   parent: BaseBulletTrigger
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
     - type: Sprite
       sprite: Objects/Weapons/Guns/Projectiles/flesh_toxic.rsi
@@ -953,7 +953,7 @@
   id: BaseBulletHighVelocity
   name: base bullet high-velocity
   parent: BaseBullet
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
     - type: Projectile
       damage:
@@ -965,7 +965,7 @@
   id: BulletRobotBall
   name: rocket
   parent: BaseBulletTrigger
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
   - type: Sprite
     sprite: Objects/Weapons/Guns/Projectiles/projectiles2.rsi
@@ -1059,7 +1059,7 @@
       - HideContextMenu
 
 - type: entity
-  name: laser bolt 
+  name: laser bolt
   id: BulletLaser
   parent: BaseBullet
   categories: [ HideSpawnMenu ]
@@ -1105,7 +1105,7 @@
   - type: ProjectileSpread
     proto: BulletLaser
     count: 5 #65 heat damage if you hit all your shots, but wide spread
-    spread: 30 
+    spread: 30
 
 - type: entity
   name: narrow laser barrage
@@ -1127,4 +1127,4 @@
   - type: ProjectileSpread
     proto: BulletDisablerSmg
     count: 3 #bit stronger than a disabler if you hit your shots you goober, still not a 2 hit stun though
-    spread: 9 
+    spread: 9
