@@ -60,3 +60,6 @@
     neck: CombatKnifeSpetsnaz
     belt: ClothingBeltSecurityCentComSecurity
     pocket1: WeaponPistolUCS
+  storage:
+    back:
+    - BlueShieldSetLoadouts
