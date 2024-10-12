@@ -45,7 +45,7 @@ public sealed class AutoPsiSystem : EntitySystem
     [Dependency] private readonly StationRecordsSystem _recordsSystem = default!;
     [Dependency] private readonly IdCardSystem _idCardSystem = default!;
     [Dependency] private readonly AccessReaderSystem _accessReader = default!;
-    [Dependency] private readonly ISharedPlayerManager _payerMgr = default!;
+    [Dependency] private readonly ISharedPlayerManager _playerMgr = default!;
 
     public override void Initialize()
     {
@@ -145,7 +145,7 @@ public sealed class AutoPsiSystem : EntitySystem
 #endif
             )
 #if !DEBUG
-            && _payerMgr.PlayerCount > 20
+            && _playerMgr.PlayerCount > 20
 #endif
             )
         {

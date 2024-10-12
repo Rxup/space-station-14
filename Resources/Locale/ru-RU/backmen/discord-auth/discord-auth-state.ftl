@@ -6,4 +6,4 @@ discord-auth-browser-btn = Открыть в браузере
 discord-auth-quit-btn = Выйти
 discord-auth-qrcode = QrCode ссылки ниже для сканирования на телефоне
 discord-auth-bypass = Пропустить
-role-required-discord = Требуется пройти discord авторищацию!
+role-required-discord = Требуется пройти discord авторизацию!
