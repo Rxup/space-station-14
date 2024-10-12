@@ -6,6 +6,8 @@
   maxLimit: 3
   loadouts:
   - SpaceLaw # Corvax-HyperLink
+  - FlowerWreath
+  - Hairflower
   - PlushieLizard
   - PlushieSpaceLizard
   - Lighter
@@ -27,7 +29,8 @@
   - ClothingNeckTransPin
   - ClothingNeckAutismPin
   - ClothingNeckGoldAutismPin
-  - ClothingNeckDonkPin #BackmenPins-start
+  # backmen-pins-start
+  - ClothingNeckDonkPin
   - ClothingNeckDeForestPin
   - ClothingNeckNakamuraPin
   - ClothingNeckLogistikaPin
@@ -35,7 +38,8 @@
   - ClothingNeckNanoTrasenPin
   - ClothingNeckEarthPin
   - ClothingNeckUSSPPin
-  - ClothingNeckSyndicakePin #BackmenPins-end
+  - ClothingNeckSyndicakePin
+  # backmen-pins-end
    # Corvax-Loadouts-Start
   - ClothingNeckAtharaPin
   - ClothingNeckCorvaxPin
