@@ -1,14 +1,11 @@
-﻿using System.Numerics;
-using Content.Server.Administration;
+﻿using Content.Server.Administration;
 using Content.Server.Administration.Logs;
-using Content.Server.GameTicking;
 using Content.Shared.Backmen.Telescope;
 using Content.Shared.Administration;
 using Content.Shared.Backmen.CCVar;
 using Content.Shared.Database;
 using Content.Shared.Humanoid;
 using Content.Shared.Movement.Components;
-using Content.Shared.Movement.Systems;
 using Robust.Shared.Configuration;
 using Robust.Shared.Console;
 
@@ -16,7 +13,6 @@ namespace Content.Server.Backmen.Immersive.Systems;
 
 public sealed class ImmersiveSystem : EntitySystem
 {
-    [Dependency] private readonly SharedContentEyeSystem _eye = default!;
     [Dependency] private readonly SharedTelescopeSystem _telescope = default!;
     [Dependency] private readonly IConfigurationManager _configurationManager = default!;
     [Dependency] private readonly IConsoleHost _console = default!;
@@ -25,10 +21,10 @@ public sealed class ImmersiveSystem : EntitySystem
 
     // Values are copied from standard CVars.
     private bool _immersiveEnabled;
-    private float _eyeModifier = 1f;
     private float _telescopeDivisor = 0.4f; // 2 tiles further than normal
-    private float _telescopeLerpAmount = 1f;
+    private float _telescopeLerpAmount = 1.0f;
 
+    private EntityQuery<ContentEyeComponent> _eyeQuery;
 
     public override void Initialize()
     {
@@ -36,12 +32,10 @@ public sealed class ImmersiveSystem : EntitySystem
         SubscribeLocalEvent<ImmersiveComponent, MapInitEvent>(OnPlayerSpawn);
 
         Subs.CVar(_configurationManager, CCVars.ImmersiveEnabled, OnValueChanged, true);
-        Subs.CVar(_configurationManager, CCVars.ImmersiveEyeModifier, OnEyeChanged, true);
         Subs.CVar(_configurationManager, CCVars.ImmersiveTelescopeDivisor, OnTelescopeDivisorChanged, true);
         Subs.CVar(_configurationManager, CCVars.ImmersiveTelescopeLerpAmount, OnTelescopeLerpChanged, true);
 
         _console.RegisterCommand("setImmersive_bkm", SetImmersiveCommand);
-
         _eyeQuery = GetEntityQuery<ContentEyeComponent>();
     }
 
@@ -49,19 +43,6 @@ public sealed class ImmersiveSystem : EntitySystem
     {
         _immersiveEnabled = value;
         if (value)
-        {
-            OnStarted();
-        }
-        else
-        {
-            Ended();
-        }
-    }
-
-    private void OnEyeChanged(float value)
-    {
-        _eyeModifier = value;
-        if (_immersiveEnabled)
         {
             OnStarted();
         }
@@ -98,7 +79,7 @@ public sealed class ImmersiveSystem : EntitySystem
     }
 
     [AdminCommand(AdminFlags.Fun)]
-    private void SetImmersiveCommand(IConsoleShell shell, string argstr, string[] args)
+    private void SetImmersiveCommand(IConsoleShell shell, string str, string[] args)
     {
         _configurationManager.SetCVar(CCVars.ImmersiveEnabled, !_immersiveEnabled);
         shell.WriteLine($"Immersive set in {_immersiveEnabled}");
@@ -113,10 +94,7 @@ public sealed class ImmersiveSystem : EntitySystem
 
         while (humans.MoveNext(out var entity, out _, out _))
         {
-
-            SetEyeZoom((entity, eye), _eyeModifier);
             AddTelescope(entity, _telescopeDivisor, _telescopeLerpAmount);
-
         }
     }
 
@@ -142,9 +120,6 @@ public sealed class ImmersiveSystem : EntitySystem
         if (!_eyeQuery.HasComp(ent))
             return;
 
-
-        SetEyeZoom(ev.Mob, _eyeModifier);
-        AddTelescope(ev.Mob, _telescopeDivisor, _telescopeLerpAmount);
-
+        AddTelescope(ent, _telescopeDivisor, _telescopeLerpAmount);
     }
 }
