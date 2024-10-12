@@ -64,7 +64,7 @@ public sealed class RMCExplosionShockWaveOverlay : Overlay, IEntityEventSubscrib
 
             if (_count == MaxCount)
                 break;
-            }
+        }
 
         return _count > 0;
     }

@@ -23,13 +23,16 @@ public sealed partial class DiscordAuthGui : Control
         IoCManager.InjectDependencies(this);
         LayoutContainer.SetAnchorPreset(this, LayoutContainer.LayoutPreset.Wide);
 
-        if (!_discordAuthManager._isOpt)
+        if (!_discordAuthManager.IsOpt)
         {
             ByPassBtn.Visible = false;
         }
         else
         {
-            ByPassBtn.OnPressed += ByPassBtnOnOnPressed;
+            ByPassBtn.OnPressed += (_) =>
+            {
+                _discordAuthManager.ByPass();
+            };
         }
 
         QuitButton.OnPressed += (_) =>
@@ -50,10 +53,5 @@ public sealed partial class DiscordAuthGui : Control
                 IoCManager.Resolve<IUriOpener>().OpenUri(_discordAuthManager.AuthUrl);
             }
         };
-    }
-
-    private void ByPassBtnOnOnPressed(BaseButton.ButtonEventArgs obj)
-    {
-        _netManager.ClientSendMessage(new MsgDiscordAuthByPass());
     }
 }

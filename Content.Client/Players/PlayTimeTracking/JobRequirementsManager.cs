@@ -1,3 +1,4 @@
+using System.Collections.Immutable;
 using System.Diagnostics.CodeAnalysis;
 using Content.Client.Lobby;
 using Content.Shared.CCVar;
@@ -26,10 +27,13 @@ public sealed class JobRequirementsManager : ISharedPlaytimeManager
     [Dependency] private readonly IPrototypeManager _prototypes = default!;
 
     [Dependency] private readonly Content.Corvax.Interfaces.Shared.ISharedSponsorsManager _sponsorsManager = default!; // backmen: allRoles
+    [Dependency] private readonly Content.Corvax.Interfaces.Client.IClientDiscordAuthManager _discordManager = default!; // backmen: discord
 
     private readonly Dictionary<string, TimeSpan> _roles = new();
     private readonly List<string> _roleBans = new();
     private readonly List<string> _jobWhitelists = new();
+
+    public ImmutableList<string> RoleBans => _roleBans.ToImmutableList(); // backmen: antag
 
     private ISawmill _sawmill = default!;
 
@@ -114,6 +118,14 @@ public sealed class JobRequirementsManager : ISharedPlaytimeManager
         if (_sponsorsManager.IsClientAllRoles())
             return true;
         //end-backmen
+
+        //start-backmen: discord
+        if (job.DiscordRequired && _discordManager.IsEnabled && !_discordManager.IsVerified)
+        {
+            reason = FormattedMessage.FromUnformatted(Loc.GetString("role-required-discord"));
+            return false;
+        }
+        //end-backmen: discord
 
         if (!CheckWhitelist(job, out reason))
             return false;
