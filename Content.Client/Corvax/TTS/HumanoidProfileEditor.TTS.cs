@@ -31,7 +31,6 @@ public sealed partial class HumanoidProfileEditor
         VoicePlayButton.OnPressed += _ => PlayPreviewTTS();
 
         IoCManager.Instance!.TryResolveType(out _sponsorsMgr);
-        InitializeBkm(); // backmen: antag
     }
 
     private void UpdateTTSVoicesControls()

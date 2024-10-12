@@ -223,6 +223,8 @@ namespace Content.Client.Lobby.UI
             #endregion
             // Corvax-TTS-End
 
+            InitializeBkm(); // backmen: antag
+
             RefreshSpecies();
 
             SpeciesButton.OnItemSelected += args =>

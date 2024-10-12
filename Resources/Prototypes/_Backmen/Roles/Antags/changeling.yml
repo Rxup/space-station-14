@@ -6,3 +6,9 @@
   objective: roles-antag-changeling-description
   guides: [ Changelings ]
   discordRequired: true # backmen: antag
+  requirements:
+  - !type:OverallPlaytimeRequirement
+    time: 18000 # 5h
+  - !type:DepartmentTimeRequirement
+    department: Security
+    time: 18000 # 5h
