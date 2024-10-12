@@ -57,7 +57,7 @@ namespace Content.Shared.CombatMode
         [DataField]
         public SoundSpecifier OnSound = new SoundPathSpecifier("/Audio/Backmen/Effects/CombatMode/on.ogg");
         [DataField]
-        public SoundSpecifier OffSound = new SoundPathSpecifier("/Audio/_Ataraxia/Effects/CombatMode/off.ogg");
+        public SoundSpecifier OffSound = new SoundPathSpecifier("/Audio/Backmen/Effects/CombatMode/off.ogg");
         // end-backmen: combatmode
     }
 }
