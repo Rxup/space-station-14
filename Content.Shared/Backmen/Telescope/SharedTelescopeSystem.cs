@@ -79,19 +79,23 @@ public abstract class SharedTelescopeSystem : EntitySystem
         if (telescope == null)
             return;
 
-        var offset = Vector2.Lerp(eye.Offset, msg.Offset, telescope.LerpAmount);
-
-        SetOffset((ent, eye), offset, telescope);
+        SetOffset((ent, eye), msg.Offset, telescope);
     }
 
-    private void SetOffset(Entity<EyeComponent> ent, Vector2 offset, TelescopeComponent telescope)
+    private void SetOffset(Entity<EyeComponent> ent, Vector2 msgOffset, TelescopeComponent telescope)
     {
         telescope.LastEntity = ent;
+        var offset = Vector2.Lerp(ent.Comp.Offset, msgOffset, telescope.LerpAmount);
 
         if (TryComp(ent, out CameraRecoilComponent? recoil))
         {
             recoil.BaseOffset = offset;
-            _eye.SetOffset(ent, offset + recoil.CurrentKick, ent);
+            if (recoil.CurrentKick != Vector2.Zero)
+            {
+                _eye.SetOffset(ent, msgOffset + recoil.CurrentKick, ent);
+                return;
+            }
+            _eye.SetOffset(ent, offset, ent);
         }
         else
         {

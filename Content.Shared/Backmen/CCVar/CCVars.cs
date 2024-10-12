@@ -184,7 +184,7 @@ public sealed class CCVars
         CVarDef.Create("immersive.telescope_divisor", 0.4f, CVar.SERVERONLY);
 
     public static readonly CVarDef<float> ImmersiveTelescopeLerpAmount =
-        CVarDef.Create("immersive.telescope_lerp", 1f, CVar.SERVERONLY);
+        CVarDef.Create("immersive.telescope_lerp", 0.1f, CVar.SERVERONLY);
 
     /*
      * Bind Standing - Ataraxia

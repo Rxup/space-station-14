@@ -22,7 +22,7 @@ public sealed class ImmersiveSystem : EntitySystem
     // Values are copied from standard CVars.
     private bool _immersiveEnabled;
     private float _telescopeDivisor = 0.4f; // 2 tiles further than normal
-    private float _telescopeLerpAmount = 1.0f;
+    private float _telescopeLerpAmount = 0.1f;
 
     private EntityQuery<ContentEyeComponent> _eyeQuery;
 
