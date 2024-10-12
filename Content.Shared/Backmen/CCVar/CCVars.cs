@@ -1,6 +1,4 @@
-﻿using Content.Shared.Backmen.Supermatter;
-using Robust.Shared;
-using Robust.Shared.Configuration;
+﻿using Robust.Shared.Configuration;
 
 namespace Content.Shared.Backmen.CCVar;
 
@@ -207,6 +205,9 @@ public sealed class CCVars
 
     public static readonly CVarDef<bool> OfferModeIndicatorsPointShow =
         CVarDef.Create("hud.offer_mode_indicators_point_show", true, CVar.ARCHIVE | CVar.CLIENTONLY);
+
+    public static readonly CVarDef<bool> HoldLookUp =
+        CVarDef.Create("white.hold_look_up", false, CVar.CLIENT | CVar.ARCHIVE);
 
     #region Supermatter System
 
