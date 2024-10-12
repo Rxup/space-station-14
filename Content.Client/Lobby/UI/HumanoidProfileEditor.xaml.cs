@@ -223,6 +223,8 @@ namespace Content.Client.Lobby.UI
             #endregion
             // Corvax-TTS-End
 
+            InitializeBkm(); // backmen: antag
+
             RefreshSpecies();
 
             SpeciesButton.OnItemSelected += args =>
@@ -667,9 +669,26 @@ namespace Content.Client.Lobby.UI
                 selector.Select(Profile?.AntagPreferences.Contains(antag.ID) == true ? 0 : 1);
 
                 var requirements = _entManager.System<SharedRoleSystem>().GetAntagRequirement(antag);
-                if (!_requirements.CheckRoleRequirements(requirements, (HumanoidCharacterProfile?)_preferencesManager.Preferences?.SelectedCharacter, out var reason))
+
+                // start-backmen: antag lock
+                var unlocked = true;
+                FormattedMessage? reason = null;
+
+                BkmCheckReq(antag,ref unlocked, ref reason);
+
+                if (unlocked)
                 {
-                    selector.LockRequirements(reason);
+                    unlocked = _requirements.CheckRoleRequirements(requirements,
+                        (HumanoidCharacterProfile?)_preferencesManager.Preferences?.SelectedCharacter,
+                        out reason);
+                }
+                //
+
+                // end-backmen: antag lock
+
+                if (!unlocked)
+                {
+                    selector.LockRequirements(reason!);
                     Profile = Profile?.WithAntagPreference(antag.ID, false);
                     SetDirty();
                 }

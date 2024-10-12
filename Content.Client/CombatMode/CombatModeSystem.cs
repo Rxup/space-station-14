@@ -113,7 +113,7 @@ public sealed class CombatModeSystem : SharedCombatModeSystem
         {
             if (!sprite.LayerMapTryGet("combat_mode_indicator", out var layer))
             {
-                layer = sprite.AddLayer(new SpriteSpecifier.Rsi(new ResPath("_Ataraxia/Effects/combat_mode.rsi"), "combat_mode"));
+                layer = sprite.AddLayer(new SpriteSpecifier.Rsi(new ResPath("Backmen/Effects/combat_mode.rsi"), "combat_mode"));
                 sprite.LayerMapSet("combat_mode_indicator", layer);
             }
         }

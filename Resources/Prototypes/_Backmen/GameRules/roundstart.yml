@@ -191,6 +191,4 @@
   id: BabelTower
   components:
   - type: GameRule
-    minPlayers: 5
-    cancelPresetOnTooFewPlayers: false
   - type: BabelTowerRule
