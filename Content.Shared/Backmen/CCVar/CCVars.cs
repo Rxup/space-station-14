@@ -48,7 +48,7 @@ public sealed class CCVars
     ///     Enabled Discord linking, show linking button and modal window
     /// </summary>
     public static readonly CVarDef<bool> DiscordAuthEnabled =
-        CVarDef.Create("discord_auth.enabled", false, CVar.SERVERONLY);
+        CVarDef.Create("discord_auth.enabled", false, CVar.SERVER | CVar.REPLICATED);
 
     /// <summary>
     ///     URL of the Discord auth server API

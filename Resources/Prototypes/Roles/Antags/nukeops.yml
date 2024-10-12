@@ -11,6 +11,8 @@
     department: Security
     time: 18000 # 5h # Corvax-RoleTime
   guides: [ NuclearOperatives ]
+  discordRequired: true # backmen: antag
+
 
 - type: antag
   id: NukeopsMedic
@@ -28,6 +30,7 @@
     department: Security
     time: 36000 # 10h # Corvax-RoleTime
   guides: [ NuclearOperatives ]
+  discordRequired: true # backmen: antag
 
 - type: antag
   id: NukeopsCommander
@@ -43,6 +46,7 @@
     time: 54000 # 15h # Corvax-RoleTime
   # should be changed to nukie playtime when thats tracked (wyci)
   guides: [ NuclearOperatives ]
+  discordRequired: true # backmen: antag
 
 - type: startingGear
   id: SyndicateOperativeGearFullNoUplink

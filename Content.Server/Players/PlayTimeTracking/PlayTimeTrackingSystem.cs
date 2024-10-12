@@ -214,15 +214,6 @@ public sealed class PlayTimeTrackingSystem : EntitySystem
             return true;
         //end-backmen
 
-        // start-backmen: whitelist
-        if (_cfg.GetCVar(Shared.Backmen.CCVar.CCVars.WhitelistRolesEnabled) &&
-            job.Whitelisted &&
-            !_roleWhitelist.IsInWhitelist(player))
-        {
-            return false;
-        }
-        // end-bakcmen: whitelist
-
         if (!_tracking.TryGetTrackerTimes(player, out var playTimes))
         {
             Log.Error($"Unable to check playtimes {Environment.StackTrace}");
