@@ -6,6 +6,7 @@ using Content.Shared.Inventory.Events;
 using Content.Shared.Radio;
 using Content.Shared.Radio.Components;
 using Content.Shared.Radio.EntitySystems;
+using Robust.Shared.Audio;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Network;
 using Robust.Shared.Player;
@@ -122,40 +123,42 @@ public sealed class HeadsetSystem : SharedHeadsetSystem
         // end-backmen: language
 
         //BACKMEN-EDIT-START
+        var aparams = AudioParams.Default.WithVolume(-12).WithMaxDistance(2);
+
         switch (args.Channel.ID)
         {
             case "Security":
-                _audio.PlayPvs("/Audio/Backmen/Radio/security.ogg", uid);
+                _audio.PlayPvs("/Audio/Backmen/Radio/security.ogg", uid, aparams);
                 break;
             case "Common":
-                _audio.PlayPvs("/Audio/Backmen/Radio/common.ogg", uid);
+                _audio.PlayPvs("/Audio/Backmen/Radio/common.ogg", uid,  aparams);
                 break;
             case "Engineering":
-                _audio.PlayPvs("/Audio/Backmen/Radio/eng.ogg", uid);
+                _audio.PlayPvs("/Audio/Backmen/Radio/eng.ogg", uid,  aparams);
                 break;
             case "Medical":
-                _audio.PlayPvs("/Audio/Backmen/Radio/med.ogg", uid);
+                _audio.PlayPvs("/Audio/Backmen/Radio/med.ogg", uid,  aparams);
                 break;
             case "Supply":
-                _audio.PlayPvs("/Audio/Backmen/Radio/cargo.ogg", uid);
+                _audio.PlayPvs("/Audio/Backmen/Radio/cargo.ogg", uid,  aparams);
                 break;
             case "Science":
-                _audio.PlayPvs("/Audio/Backmen/Radio/science.ogg", uid);
+                _audio.PlayPvs("/Audio/Backmen/Radio/science.ogg", uid,  aparams);
                 break;
             case "CentCom":
-                _audio.PlayPvs("/Audio/Backmen/Radio/cc.ogg", uid);
+                _audio.PlayPvs("/Audio/Backmen/Radio/cc.ogg", uid,  aparams);
                 break;
             case "Command":
-                _audio.PlayPvs("/Audio/Backmen/Radio/command.ogg", uid);
+                _audio.PlayPvs("/Audio/Backmen/Radio/command.ogg", uid,  aparams);
                 break;
             case "Service":
-                _audio.PlayPvs("/Audio/Backmen/Radio/common.ogg", uid);
+                _audio.PlayPvs("/Audio/Backmen/Radio/common.ogg", uid,  aparams);
                 break;
             case "Syndicate":
-                _audio.PlayPvs("/Audio/Backmen/Radio/security.ogg", uid);
+                _audio.PlayPvs("/Audio/Backmen/Radio/security.ogg", uid,  aparams);
                 break;
             default:
-                _audio.PlayPvs("/Audio/Backmen/Radio/common.ogg", uid);
+                _audio.PlayPvs("/Audio/Backmen/Radio/common.ogg", uid,  aparams);
                 break;
         }
         //BACKMEN-EDIT-START
