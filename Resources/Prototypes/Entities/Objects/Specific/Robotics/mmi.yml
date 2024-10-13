@@ -49,6 +49,14 @@
     guides:
     - Cyborgs
     - Robotics
+  - type: LanguageSpeaker #backmen: languages
+    currentLanguage: Binary
+  - type: LanguageKnowledge
+    speaks:
+    - Binary
+    understands:
+    - Binary
+    - TauCetiBasic
 
 - type: entity
   parent: MMI
@@ -134,3 +142,4 @@
       - Binary
       understands:
       - Binary
+      - TauCetiBasic
