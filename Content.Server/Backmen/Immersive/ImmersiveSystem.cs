@@ -9,7 +9,7 @@ using Content.Shared.Movement.Components;
 using Robust.Shared.Configuration;
 using Robust.Shared.Console;
 
-namespace Content.Server.Backmen.Immersive.Systems;
+namespace Content.Server.Backmen.Immersive;
 
 public sealed class ImmersiveSystem : EntitySystem
 {
@@ -19,10 +19,9 @@ public sealed class ImmersiveSystem : EntitySystem
     [Dependency] private readonly IAdminLogManager _adminLog = default!;
 
 
-    // Values are copied from standard CVars.
     private bool _immersiveEnabled;
-    private float _telescopeDivisor = 0.4f; // 2 tiles further than normal
-    private float _telescopeLerpAmount = 0.1f;
+    private const float TelescopeDivisor = 0.4f; // 2 tiles further than normal
+    private const float TelescopeLerpAmount = 0.1f; // Looks nice.
 
     private EntityQuery<ContentEyeComponent> _eyeQuery;
 
@@ -32,8 +31,6 @@ public sealed class ImmersiveSystem : EntitySystem
         SubscribeLocalEvent<ImmersiveComponent, MapInitEvent>(OnPlayerSpawn);
 
         Subs.CVar(_configurationManager, CCVars.ImmersiveEnabled, OnValueChanged, true);
-        Subs.CVar(_configurationManager, CCVars.ImmersiveTelescopeDivisor, OnTelescopeDivisorChanged, true);
-        Subs.CVar(_configurationManager, CCVars.ImmersiveTelescopeLerpAmount, OnTelescopeLerpChanged, true);
 
         _console.RegisterCommand("setImmersive_bkm", SetImmersiveCommand);
         _eyeQuery = GetEntityQuery<ContentEyeComponent>();
@@ -43,32 +40,6 @@ public sealed class ImmersiveSystem : EntitySystem
     {
         _immersiveEnabled = value;
         if (value)
-        {
-            OnStarted();
-        }
-        else
-        {
-            Ended();
-        }
-    }
-
-    private void OnTelescopeDivisorChanged(float value)
-    {
-        _telescopeDivisor = value;
-        if (_immersiveEnabled)
-        {
-            OnStarted();
-        }
-        else
-        {
-            Ended();
-        }
-    }
-
-    private void OnTelescopeLerpChanged(float value)
-    {
-        _telescopeLerpAmount = value;
-        if (_immersiveEnabled)
         {
             OnStarted();
         }
@@ -94,7 +65,7 @@ public sealed class ImmersiveSystem : EntitySystem
 
         while (humans.MoveNext(out var entity, out _, out _))
         {
-            AddTelescope(entity, _telescopeDivisor, _telescopeLerpAmount);
+            AddTelescope(entity, TelescopeDivisor, TelescopeLerpAmount);
         }
     }
 
@@ -120,6 +91,6 @@ public sealed class ImmersiveSystem : EntitySystem
         if (!_eyeQuery.HasComp(ent))
             return;
 
-        AddTelescope(ent, _telescopeDivisor, _telescopeLerpAmount);
+        AddTelescope(ent, TelescopeDivisor, TelescopeLerpAmount);
     }
 }
