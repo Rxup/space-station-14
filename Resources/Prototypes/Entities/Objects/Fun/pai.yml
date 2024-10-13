@@ -80,6 +80,10 @@
     understands:
     - Binary
     - TauCetiBasic
+  - type: ChangeVoiceInContainer
+    whitelist:
+      components:
+        - SecretStash
 
 - type: entity
   parent: [ PersonalAI, BaseSyndicateContraband]

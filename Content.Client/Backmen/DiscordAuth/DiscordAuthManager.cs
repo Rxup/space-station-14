@@ -21,14 +21,18 @@ public sealed class DiscordAuthManager : Content.Corvax.Interfaces.Client.IClien
 
     public string AuthUrl { get; private set; } = string.Empty;
     public Texture? Qrcode { get; private set; }
-    public bool _isOpt { get; private set; }
+    public bool IsVerified { get; private set; } = true;
+    public bool IsOpt { get; private set; }
+    public bool IsEnabled { get; private set; }
 
     public void Initialize()
     {
         _netManager.RegisterNetMessage<MsgDiscordAuthCheck>();
+        _netManager.RegisterNetMessage<MsgDiscordAuthByPass>();
         _netManager.RegisterNetMessage<MsgDiscordAuthRequired>(OnDiscordAuthRequired);
 
-        _cfg.OnValueChanged(CCVars.DiscordAuthIsOptional, v => _isOpt = v, true);
+        _cfg.OnValueChanged(CCVars.DiscordAuthIsOptional, v => IsOpt = v, true);
+        _cfg.OnValueChanged(CCVars.DiscordAuthEnabled, v => IsEnabled = v, true);
     }
 
     private void OnDiscordAuthRequired(MsgDiscordAuthRequired message)
@@ -44,5 +48,11 @@ public sealed class DiscordAuthManager : Content.Corvax.Interfaces.Client.IClien
 
             _stateManager.RequestStateChange<DiscordAuthState>();
         }
+    }
+
+    public void ByPass()
+    {
+        IsVerified = false;
+        _netManager.ClientSendMessage(new MsgDiscordAuthByPass());
     }
 }

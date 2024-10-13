@@ -1,0 +1,24 @@
+- type: entity
+  parent: ClothingNeckBase
+  id: ClothingNeckBellCollar
+  name: bell collar
+  description: A way to inform others about your presence, or just to annoy everyone around you!
+  components:
+  - type: Sprite
+    sprite: Backmen/Clothing/Neck/Misc/bellcollar.rsi
+  - type: Clothing
+    sprite: Backmen/Clothing/Neck/Misc/bellcollar.rsi
+  - type: EmitsSoundOnMove
+    soundCollection:
+      collection: FootstepJester
+
+- type: entity
+  parent: ClothingOuterBase
+  id: ClothingOuterUnathiRobe
+  name: roughspun robes
+  description: A traditional Unathi garment.
+  components:
+  - type: Sprite
+    sprite: Backmen/Clothing/OuterClothing/Misc/unathirobe.rsi
+  - type: Clothing
+    sprite: Backmen/Clothing/OuterClothing/Misc/unathirobe.rsi

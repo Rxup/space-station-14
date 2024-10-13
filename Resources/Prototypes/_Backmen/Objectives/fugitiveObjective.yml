@@ -12,7 +12,7 @@
         state: shuttle
     - type: RoleRequirement
       roles:
-        components:
+        mindRoles:
           - FugitiveRole
 
 - type: entity
