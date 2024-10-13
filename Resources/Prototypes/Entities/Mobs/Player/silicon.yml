@@ -372,7 +372,39 @@
     tags:
     - HideContextMenu
     - StationAi
-  - type: UniversalLanguageSpeaker #backmen: languages
+  - type: LanguageSpeaker #backmen: languages
+    currentLanguage: TauCetiBasic
+  - type: LanguageKnowledge
+    speaks:
+    - Binary
+    - TauCetiBasic
+    - SolCommon
+    - RootSpeak
+    - Dwarven
+    - Garpy
+    - Moffic
+    - Nekomimetic
+    - Dragon
+    - Shadokin
+    - Slime
+    - Canilunzt
+    - Freespeak
+    - Spider
+    understands:
+    - Binary
+    - TauCetiBasic
+    - SolCommon
+    - RootSpeak
+    - Dwarven
+    - Garpy
+    - Moffic
+    - Nekomimetic
+    - Dragon
+    - Shadokin
+    - Slime
+    - Canilunzt
+    - Freespeak
+    - Spider
 
 # Hologram projection that the AI's eye tracks.
 - type: entity
