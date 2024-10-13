@@ -127,3 +127,10 @@
       guides:
       - Cyborgs
       - Robotics
+    - type: LanguageSpeaker #backmen: languages
+      currentLanguage: Binary
+    - type: LanguageKnowledge
+      speaks:
+      - Binary
+      understands:
+      - Binary
