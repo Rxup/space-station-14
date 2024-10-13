@@ -10,10 +10,6 @@
   id: MilkywayLobbyScreen
   path: /Textures/Backmen/LobbyScreens/milkyway.rsi
 
-#- type: animatedLobbyScreen
-#  id: NativeLobbyScreen
-#  path: /Textures/Backmen/LobbyScreens/native.rsi
-
 - type: animatedLobbyScreen
   id: RocketLobbyScreen
   path: /Textures/Backmen/LobbyScreens/rocket.rsi
@@ -21,10 +17,6 @@
 - type: animatedLobbyScreen
   id: SeaLobbyScreen
   path: /Textures/Backmen/LobbyScreens/sea.rsi
-
-- type: animatedLobbyScreen
-  id: SyndicateLobbyScreen
-  path: /Textures/Backmen/LobbyScreens/syndicate.rsi
 
 - type: animatedLobbyScreen
   id: VangoghLobbyScreen

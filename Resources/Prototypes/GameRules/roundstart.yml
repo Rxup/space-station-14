@@ -93,7 +93,7 @@
   id: Nukeops
   components:
   - type: GameRule
-    minPlayers: 20
+    minPlayers: 10
   - type: LoadMapRule
     mapPath: /Maps/Backmen/Nonstations/nukieoutpost.yml # backmen nuke map
   - type: AntagSelection
