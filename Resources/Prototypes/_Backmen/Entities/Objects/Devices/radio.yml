@@ -10,3 +10,21 @@
   - type: Item
     sprite: Objects/Devices/communication.rsi
     heldPrefix: radio
+
+- type: entity
+  name: рация вызова снабжения
+  description: Портативная рация для связи с отделом снабжения, настроена на одностороний разговор.
+  parent: BaseItem
+  id: RadioBlueShieldSupplyPod
+  components:
+  - type: Sprite
+    sprite: Objects/Devices/communication.rsi
+    state: radio
+  - type: Item
+    sprite: Objects/Devices/communication.rsi
+    heldPrefix: radio
+  - type: SpawnItemsOnUse
+    items:
+      - id: DropPodMarker
+    sound:
+      path: /Audio/Corvax/Effects/Footsteps/off2.ogg
