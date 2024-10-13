@@ -11,7 +11,7 @@
       icon: Interface/Actions/fleshCultistFleshHeart.png
     - type: RoleRequirement
       roles:
-        components:
+        mindRoles:
           - FleshCultistRole
     - type: CreateFleshHeartCondition
 
@@ -28,6 +28,6 @@
       icon: Interface/Actions/fleshCultistSurvivalObjective.png
     - type: RoleRequirement
       roles:
-        components:
+        mindRoles:
           - FleshCultistRole
     - type: FleshCultistSurvivalCondition

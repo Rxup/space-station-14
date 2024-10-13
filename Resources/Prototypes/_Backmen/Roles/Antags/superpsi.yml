@@ -32,9 +32,6 @@
       multiAntagSetting: None
       pickPlayer: false
       lateJoinAdditional: false
-      mindComponents:
-      - type: SuperPsiRole
-        prototype: SuperPsi
       briefing:
         sound: "/Audio/Misc/thief_greeting.ogg"
 

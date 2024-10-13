@@ -9,6 +9,7 @@ using Content.Shared.Mobs.Components;
 using Content.Shared.Physics;
 using Content.Shared.Popups;
 using Content.Shared.StatusEffect;
+using Content.Shared.Tag;
 using Robust.Shared.Map;
 using Robust.Shared.Random;
 using Robust.Shared.Serialization;
@@ -24,8 +25,11 @@ public abstract class SharedPsionicAbilitiesSystem : EntitySystem
     [Dependency] private readonly GlimmerSystem _glimmerSystem = default!;
     [Dependency] private readonly IRobustRandom _robustRandom = default!;
     [Dependency] private readonly SharedInteractionSystem _interaction = default!;
+    [Dependency] private readonly TagSystem _tagSystem = default!;
+
     private EntityQuery<PsionicallyInvisibleComponent> _psionicallyInvisibleQuery;
     private EntityQuery<PsionicInsulationComponent> _psionicInsulationQuery;
+
 
     public override void Initialize()
     {
@@ -90,7 +94,7 @@ public abstract class SharedPsionicAbilitiesSystem : EntitySystem
         }
 
 
-        if(!_interaction.InRangeUnobstructed(performer, target, 0, CollisionGroup.WallLayer))
+        if(!_interaction.InRangeUnobstructed(performer, target, 0, CollisionGroup.WallLayer, popup:true))
             return false;
 
 
@@ -108,12 +112,14 @@ public abstract class SharedPsionicAbilitiesSystem : EntitySystem
         if (_psionicInsulationQuery.HasComp(performer))
             return false;
 
-        if(!_interaction.InRangeUnobstructed(performer, target, 0, CollisionGroup.WallLayer))
+        if(!_interaction.InRangeUnobstructed(performer, target, 0,
+               CollisionGroup.TeleportLayer,
+               predicate: (ent) => _tagSystem.HasTag(ent, "Structure"),
+               popup:true))
             return false;
 
         return true;
     }
-
 
     private void OnPowerUsed(EntityUid uid, PsionicComponent component, PsionicPowerUsedEvent args)
     {

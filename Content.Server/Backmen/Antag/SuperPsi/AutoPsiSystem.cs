@@ -123,8 +123,8 @@ public sealed class AutoPsiSystem : EntitySystem
         if (args.SpawnResult != null)
             return;
 
-        if (!(args.Job?.Prototype != null &&
-              _prototypeManager.TryIndex(args.Job!.Prototype!, out var jobInfo) &&
+        if (!(args.Job != null &&
+              _prototypeManager.TryIndex(args.Job, out var jobInfo) &&
               jobInfo.AlwaysUseSpawner))
         {
             return;

@@ -59,7 +59,7 @@ public sealed class BloodSuckerSystem : SharedBloodSuckerSystem
     [Dependency] private readonly NPCRetaliationSystem _retaliationSystem = default!;
     private EntityQuery<BloodSuckerComponent> _bsQuery;
 
-    [ValidatePrototypeId<AntagPrototype>] private const string BloodsuckerAntagRole = "Bloodsucker";
+    [ValidatePrototypeId<EntityPrototype>] private const string BloodsuckerMindRole = "MindRoleBloodsucker";
 
     public override void Initialize()
     {
@@ -184,13 +184,7 @@ public sealed class BloodSuckerSystem : SharedBloodSuckerSystem
             return; // have it
         }
 
-        _roleSystem.MindAddRole(mindId,
-            new VampireRoleComponent()
-            {
-                PrototypeId = BloodsuckerAntagRole
-            },
-            mind,
-            true);
+        _roleSystem.MindAddRole(mindId, BloodsuckerMindRole, mind, true);
 
         _mindSystem.TryAddObjective(mindId, mind, EscapeObjective);
         _mindSystem.TryAddObjective(mindId, mind, Objective1);
