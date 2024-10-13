@@ -1,3 +1,61 @@
+- type: job
+  id: RXBZZLeader
+  name: job-name-rxbzzleader
+  description: job-description-rxbzzleader
+  playTimeTracker: JobCBURN
+  setPreference: false
+  startingGear: RXBZZLeader
+  icon: "JobIconSergant"
+  supervisors: job-supervisors-ueg
+  canBeAntag: false
+  accessGroups:
+  - EarthGov
+  - AllAccess
+
+- type: job
+  id: RXBZZ
+  name: job-name-rxbzz
+  description: job-description-rxbzz
+  playTimeTracker: JobCBURN
+  setPreference: false
+  startingGear: RXBZZ
+  icon: "JobIconMarin"
+  supervisors: job-supervisors-ueg
+  canBeAntag: false
+  accessGroups:
+  - AllAccess
+  access:
+  - EarthGov
+
+- type: job
+  id: RXBZZMedic
+  name: job-name-rxbzz
+  description: job-description-rxbzz
+  playTimeTracker: JobCBURN
+  setPreference: false
+  startingGear: RXBZZMedic
+  icon: "JobIconMedic"
+  supervisors: job-supervisors-ueg
+  canBeAntag: false
+  accessGroups:
+  - AllAccess
+  access:
+  - EarthGov
+
+- type: job
+  id: RXBZZSpecialist
+  name: job-name-rxbzz
+  description: job-description-rxbzz
+  playTimeTracker: JobCBURN
+  setPreference: false
+  startingGear: RXBZZFlamer
+  icon: "JobIconSpecialits"
+  supervisors: job-supervisors-ueg
+  canBeAntag: false
+  accessGroups:
+  - AllAccess
+  - EarthGov
+
 - type: startingGear
   id: RXBZZ
   equipment:

@@ -23,6 +23,7 @@
         - !type:DepartmentTimeRequirement
           department: CentCom
           time: 43200
+      job: BKCCOfficial
     - type: Loadout
       prototypes: [CentComCorvax]
     - type: GhostTakeoverAvailable
@@ -60,6 +61,7 @@
         - !type:DepartmentTimeRequirement
           department: CentCom
           time: 43200
+      job: BKCCOperator
     - type: Loadout
       prototypes: [OperatorGavna]
     - type: GhostTakeoverAvailable
@@ -99,6 +101,7 @@
       - !type:DepartmentTimeRequirement
         department: Command
         time: 18000
+    job: SpecialOperationsOfficer
   - type: SpecForce
     actionBssActionName: ActionCentcomFtlAction
   - type: NpcFactionMember
@@ -134,6 +137,7 @@
         - !type:RoleTimeRequirement
           role: JobIAA
           time: 3600
+      job: BKCCSecGavna
     - type: Loadout
       prototypes: [HeadOfSecurityCentComGear]
     - type: GhostTakeoverAvailable

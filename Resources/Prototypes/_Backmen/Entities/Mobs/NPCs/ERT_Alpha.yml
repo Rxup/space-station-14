@@ -22,6 +22,7 @@
       - !type:DepartmentTimeRequirement
         department: Command
         time: 18000
+    job: ERTLeader
   - type: Loadout
     prototypes: [ERTLeaderAlpha1Gear]
   - type: RandomMetadata
@@ -53,6 +54,7 @@
       - !type:DepartmentTimeRequirement
         department: Command
         time: 18000
+    job: ERTSecurity
   - type: Loadout
     prototypes: [ERTOperativeAlpha1Gear]
   - type: RandomMetadata

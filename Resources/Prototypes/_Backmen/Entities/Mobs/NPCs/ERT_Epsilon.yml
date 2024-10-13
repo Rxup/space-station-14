@@ -124,6 +124,7 @@
       - !type:DepartmentTimeRequirement
         department: Command
         time: 9000
+    job: ERTLeader
   - type: SpecForce
     actionBssActionName: ActionCentcomFtlAction
   - type: NpcFactionMember
@@ -179,6 +180,7 @@
       - !type:DepartmentTimeRequirement
         department: Engineering
         time: 9000
+    job: ERTEngineer
   - type: SpecForce
     actionBssActionName: ActionCentcomFtlAction
   - type: NpcFactionMember
@@ -231,6 +233,7 @@
         time: 16000
       - !type:OverallPlaytimeRequirement
         time: 16000
+    job: ERTSecurity
   - type: SpecForce
     actionBssActionName: ActionCentcomFtlAction
   - type: NpcFactionMember
@@ -286,6 +289,7 @@
       - !type:DepartmentTimeRequirement
         department: Medical
         time: 9000
+    job: ERTMedical
   - type: SpecForce
     actionBssActionName: ActionCentcomFtlAction
   - type: NpcFactionMember
@@ -341,6 +345,7 @@
       - !type:RoleTimeRequirement
         role: JobJanitor
         time: 1500
+    job: ERTJanitor
   - type: SpecForce
     actionBssActionName: ActionCentcomFtlAction
   - type: NpcFactionMember

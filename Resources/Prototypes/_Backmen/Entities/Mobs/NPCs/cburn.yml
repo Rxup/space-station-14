@@ -52,6 +52,7 @@
         time: 18000
       - !type:OverallPlaytimeRequirement
         time: 36000
+    job: RXBZZ
   - type: Loadout
     prototypes: [RXBZZ]
 
@@ -75,6 +76,7 @@
       - !type:DepartmentTimeRequirement
         department: Medical
         time: 18000
+    job: RXBZZMedic
   - type: Loadout
     prototypes: [RXBZZMedic]
 
@@ -95,6 +97,7 @@
         time: 18000
       - !type:OverallPlaytimeRequirement
         time: 36000
+    job: RXBZZSpecialist
   - type: Loadout
     prototypes: [RXBZZFlamer]
 
@@ -118,6 +121,7 @@
       - !type:DepartmentTimeRequirement
         department: Command
         time: 18000
+    job: RXBZZLeader
   - type: Loadout
     prototypes: [RXBZZLeader]
   - type: RandomMetadata

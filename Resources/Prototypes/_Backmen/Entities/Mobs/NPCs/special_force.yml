@@ -28,6 +28,7 @@
         time: 18000
       - !type:OverallPlaytimeRequirement
         time: 36000
+    job: DeathSquad
   - type: SpecForce
     actionBssActionName: ActionCentcomFtlAction
   - type: NpcFactionMember
@@ -76,6 +77,7 @@
       - !type:DepartmentTimeRequirement
         department: Command
         time: 18000
+    job: DeathSquad
   - type: SpecForce
     actionBssActionName: ActionCentcomFtlAction
   - type: NpcFactionMember
