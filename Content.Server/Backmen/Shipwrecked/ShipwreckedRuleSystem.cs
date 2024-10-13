@@ -698,7 +698,7 @@ public sealed class ShipwreckedRuleSystem : GameRuleSystem<ShipwreckedRuleCompon
 
         var mindId = _mindSystem.CreateMind(player.UserId, profile.Name);
 
-        _roleSystem.MindAddRole(mindId, jobProtoId.Id);
+        _roleSystem.MindAddJobRole(mindId, jobPrototype:jobProtoId);
         _roleSystem.MindHasRole<JobRoleComponent>(mindId, out var job);
 
         var mob = _stationSpawningSystem.SpawnPlayerMob(spawnPoint, job!.Value.Comp.JobPrototype, profile, station: null);
