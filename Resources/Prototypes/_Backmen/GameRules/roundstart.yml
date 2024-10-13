@@ -1,4 +1,5 @@
-﻿- type: entity
+﻿# Flesh Cult
+- type: entity
   id: FleshCult
   parent: BaseGameRule
   categories: [ HideSpawnMenu ]
@@ -8,6 +9,8 @@
     - type: FleshCultRule
       faction: Flesh
 
+# Blob
+# TODO: rework this into 1 universal rule, smth like LoneOps and Nukeops
 - type: entity
   id: BlobGameMode
   parent: BaseGameRule
@@ -114,9 +117,8 @@
       max: 8
       playerRatio: 10
       lateJoinAdditional: true
-      mindComponents:
-      - type: ChangelingRole
-        prototype: Changeling
+      mindRoles:
+      - MindRoleChangeling
 
 - type: entity
   parent: BaseGameRule
@@ -149,9 +151,8 @@
       startingGear: ThiefGear
 #      components: # Corvax-MRP
 #      - type: Pacified
-      mindComponents:
-      - type: ThiefRole
-        prototype: Thief
+      mindRoles:
+      - MindRoleThief
       briefing:
         sound: "/Audio/Misc/thief_greeting.ogg"
 
