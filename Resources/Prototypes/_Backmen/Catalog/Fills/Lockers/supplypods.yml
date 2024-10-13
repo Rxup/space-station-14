@@ -1,0 +1,9 @@
+- type: entity
+  id: SupplyDropPodBlueShieldHardsuit
+  parent: SupplyPodBase
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: StorageFill
+    contents:
+        - id: ClothingOuterHardsuitBlueShield
+        - id: ClothingEyesGlassesBlueShield

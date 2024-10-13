@@ -15,6 +15,7 @@
     allowMovement: true
     allowSpeech: true
     makeSentient: true
+    job: CBURN
     name: Оперативник РХБЗЗ
   - type: RandomMetadata
     nameSegments:

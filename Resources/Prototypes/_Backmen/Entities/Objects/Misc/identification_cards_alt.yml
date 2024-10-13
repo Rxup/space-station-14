@@ -60,8 +60,9 @@
     fullName: Медик
     jobIcon: JobIconMedic
   - type: Access
+    tags:
+    - EarthGov
     groups:
-    - EarthGovMedic
     - AllAccess
 
 - type: entity
