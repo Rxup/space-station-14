@@ -1,14 +1,13 @@
 - type: entity
   id: SupplyPodBase
-  parent: BaseStructureDynamic
+  parent: BaseStructure
   name: supply drop pod
   description: A standard-issue Nanotrasen storage unit.
   abstract: true
   components:
   - type: ResistLocker
-  - type: Transform
-    noRot: true
-    anchored: true
+  - type: Physics
+    bodyType: Static
   - type: Sprite
     noRot: true
     sprite: Backmen/Structures/Storage/supplypod.rsi
@@ -26,7 +25,6 @@
     soundHit:
       collection: MetalThud
   - type: InteractionOutline
-  - type: Physics
   - type: Fixtures
     fixtures:
       fix1:
@@ -127,5 +125,4 @@
     sound:
       path: /Audio/Backmen/Misc/mortar_long_whistle.ogg
       params:
-        range: 10
         volume: 2
