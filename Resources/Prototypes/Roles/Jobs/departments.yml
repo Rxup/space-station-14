@@ -52,11 +52,7 @@
   - ERTSecurity
   - ERTEngineer
   - DeathSquad
-  - RXBZZLeader #Backmen-ERTRoles-Start
-  - RXBZZSpecialist
-  - RXBZZMedic
-  - RXBZZ
-  - SpecialOperationsOfficer #Backmen-ERTRoles-End
+  - SpecialOperationsOfficer #Backmen-ERTRoles
   editorHidden: true
   weight: 120
 
