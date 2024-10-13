@@ -6,6 +6,7 @@ using Content.Shared.Inventory.Events;
 using Content.Shared.Radio;
 using Content.Shared.Radio.Components;
 using Content.Shared.Radio.EntitySystems;
+using Robust.Shared.Audio.Systems;
 using Robust.Shared.Network;
 using Robust.Shared.Player;
 
@@ -16,7 +17,7 @@ public sealed class HeadsetSystem : SharedHeadsetSystem
     [Dependency] private readonly INetManager _netMan = default!;
     [Dependency] private readonly RadioSystem _radio = default!;
     [Dependency] private readonly LanguageSystem _language = default!;
-
+    [Dependency] private readonly SharedAudioSystem _audio = default!;
     public override void Initialize()
     {
         base.Initialize();
@@ -117,7 +118,47 @@ public sealed class HeadsetSystem : SharedHeadsetSystem
 
             _netMan.ServerSendMessage(msg, actor.PlayerSession.Channel);
         }
+
         // end-backmen: language
+
+        //BACKMEN-EDIT-START
+        switch (args.Channel.ID)
+        {
+            case "Security":
+                _audio.PlayPvs("/Audio/Backmen/Radio/security.ogg", uid);
+                break;
+            case "Common":
+                _audio.PlayPvs("/Audio/Backmen/Radio/common.ogg", uid);
+                break;
+            case "Engineering":
+                _audio.PlayPvs("/Audio/Backmen/Radio/eng.ogg", uid);
+                break;
+            case "Medical":
+                _audio.PlayPvs("/Audio/Backmen/Radio/med.ogg", uid);
+                break;
+            case "Supply":
+                _audio.PlayPvs("/Audio/Backmen/Radio/cargo.ogg", uid);
+                break;
+            case "Science":
+                _audio.PlayPvs("/Audio/Backmen/Radio/science.ogg", uid);
+                break;
+            case "CentCom":
+                _audio.PlayPvs("/Audio/Backmen/Radio/cc.ogg", uid);
+                break;
+            case "Command":
+                _audio.PlayPvs("/Audio/Backmen/Radio/command.ogg", uid);
+                break;
+            case "Service":
+                _audio.PlayPvs("/Audio/Backmen/Radio/common.ogg", uid);
+                break;
+            case "Syndicate":
+                _audio.PlayPvs("/Audio/Backmen/Radio/security.ogg", uid);
+                break;
+            default:
+                _audio.PlayPvs("/Audio/Backmen/Radio/common.ogg", uid);
+                break;
+        }
+        //BACKMEN-EDIT-START
     }
 
     private void OnEmpPulse(EntityUid uid, HeadsetComponent component, ref EmpPulseEvent args)
