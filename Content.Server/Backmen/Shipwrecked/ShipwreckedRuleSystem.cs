@@ -696,23 +696,17 @@ public sealed class ShipwreckedRuleSystem : GameRuleSystem<ShipwreckedRuleCompon
 
         var jobProtoId = _random.Pick(component.AvailableJobPrototypes);
 
-        if (!_prototypeManager.TryIndex(jobProtoId, out var jobPrototype))
-            throw new ArgumentException($"Invalid JobPrototype: {jobProtoId}");
-
         var mindId = _mindSystem.CreateMind(player.UserId, profile.Name);
 
-        var job = new JobComponent
-        {
-            Prototype = jobProtoId
-        };
-        _roleSystem.MindAddRole(mindId, job);
+        _roleSystem.MindAddRole(mindId, jobProtoId.Id);
+        _roleSystem.MindHasRole<JobRoleComponent>(mindId, out var job);
 
-        var mob = _stationSpawningSystem.SpawnPlayerMob(spawnPoint, job, profile, station: null);
+        var mob = _stationSpawningSystem.SpawnPlayerMob(spawnPoint, job!.Value.Comp.JobPrototype, profile, station: null);
         var mobName = MetaData(mob).EntityName;
 
         manifest.AppendLine(Loc.GetString("passenger-manifest-passenger-line",
                 ("name", mobName),
-                ("details", jobPrototype.LocalizedName)));
+                ("details", job.Value.Comp.JobPrototype!.Value.Id)));
 
         // SpawnPlayerMob requires a PDA to setup the ID details,
         // and PDAs are a bit too posh for our rugged travellers.
@@ -720,7 +714,7 @@ public sealed class ShipwreckedRuleSystem : GameRuleSystem<ShipwreckedRuleCompon
             TryComp<IdCardComponent>(idUid, out var idCardComponent))
         {
             _cardSystem.TryChangeFullName(idUid.Value, mobName, idCardComponent);
-            _cardSystem.TryChangeJobTitle(idUid.Value, jobPrototype.LocalizedName, idCardComponent);
+            _cardSystem.TryChangeJobTitle(idUid.Value, job.Value.Comp.JobPrototype, idCardComponent);
         }
 
         EnsureComp<ZombieImmuneComponent>(mob);

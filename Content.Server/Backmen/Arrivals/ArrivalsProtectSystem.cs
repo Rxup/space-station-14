@@ -90,7 +90,7 @@ public sealed class ArrivalsProtectSystem : SharedArrivalsProtectSystem
         {
             _apcSystem.ApcToggleBreaker(uid,apcComponent);
         }
-        apcComponent.HasAccess = false;
+        // apcComponent.HasAccess = false;
     }
 
     private void OnBuildAttemptEvent(BuildAttemptEvent ev)

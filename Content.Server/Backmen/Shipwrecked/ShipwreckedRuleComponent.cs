@@ -28,7 +28,7 @@ public sealed partial class ShipwreckedRuleComponent : Component
     /// </summary>
     [ViewVariables]
     [DataField("availableJobs", required: true)]
-    public List<ProtoId<JobPrototype>> AvailableJobPrototypes = default!;
+    public List<EntProtoId> AvailableJobPrototypes = default!;
 
     [ViewVariables]
     [DataField("tts")]

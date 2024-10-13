@@ -32,12 +32,11 @@ public sealed class FleshCultistObjectiveSystem : EntitySystem
             return;
         }
 
-        var isLeader = component.PrototypeId == "FleshCultistLeader";
 
         var query = EntityQueryEnumerator<FleshCultRuleComponent, GameRuleComponent>();
         while (query.MoveNext(out var cult, out var _))
         {
-            if (isLeader)
+            if (component.IsLeader)
             {
                 GreetCultistLeader(session, cult.CultistsNames);
                 continue;

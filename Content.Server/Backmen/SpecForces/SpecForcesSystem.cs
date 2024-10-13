@@ -14,6 +14,7 @@ using Content.Shared.Storage;
 using Robust.Shared.Utility;
 using System.Threading;
 using Content.Server.Actions;
+using Content.Server.Backmen.Blob;
 using Content.Server.Backmen.Blob.Components;
 using Content.Server.Backmen.Blob.Rule;
 using Content.Server.Backmen.GameTicking.Rules.Components;

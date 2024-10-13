@@ -4,6 +4,7 @@ using Content.Shared.Preferences;
 using Content.Shared.Roles;
 using Robust.Shared.Audio;
 using Robust.Shared.Player;
+using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype;
 
 namespace Content.Server.Backmen.GameTicking.Rules.Components;
@@ -19,14 +20,14 @@ public sealed partial class FleshCultRuleComponent : Component
 
     public List<(EntityUid mindId, MindComponent mind)> Cultists = new();
 
-    [DataField("fleshCultistPrototypeId", customTypeSerializer: typeof(PrototypeIdSerializer<AntagPrototype>))]
-    public string FleshCultistPrototypeId = "FleshCultist";
+    [DataField("fleshCultistPrototypeId")]
+    public EntProtoId<MindRoleComponent> FleshCultistMindRolePrototypeId = "MindRoleFlesh";
 
-    [DataField("fleshCultistLeaderPrototypeID", customTypeSerializer: typeof(PrototypeIdSerializer<AntagPrototype>))]
-    public string FleshCultistLeaderPrototypeId = "FleshCultistLeader";
+    [DataField("fleshCultistLeaderPrototypeID")]
+    public EntProtoId<MindRoleComponent> FleshCultistLeaderMindRolePrototypeId = "MindRoleFleshLeader";
 
-    [DataField("faction", customTypeSerializer: typeof(PrototypeIdSerializer<NpcFactionPrototype>), required: true)]
-    public string Faction = default!;
+    [DataField("faction")]
+    public ProtoId<NpcFactionPrototype> Faction = default!;
 
     public int TotalCultists => Cultists.Count;
 

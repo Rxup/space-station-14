@@ -40,12 +40,10 @@ public sealed class PlayTimeTrackingSystem : EntitySystem
     [Dependency]
     private readonly Content.Corvax.Interfaces.Shared.ISharedSponsorsManager _sponsorsManager = default!; // backmen: allRoles
 
-    [Dependency] private readonly IAdminManager _adminManager = default!;
     [Dependency] private readonly IPlayerManager _playerManager = default!;
     [Dependency] private readonly IServerPreferencesManager _preferencesManager = default!;
     [Dependency] private readonly IPrototypeManager _prototypes = default!;
     [Dependency] private readonly SharedRoleSystem _roles = default!;
-    [Dependency] private readonly PlayTimeTrackingManager _tracking = default!;
 
     public override void Initialize()
     {

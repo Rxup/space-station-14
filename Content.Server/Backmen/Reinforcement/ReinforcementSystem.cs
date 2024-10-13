@@ -156,16 +156,15 @@ public sealed class ReinforcementSystem : SharedReinforcementSystem
         var newMind = _mind.CreateMind(args.Player.UserId, character.Name);
         _mind.SetUserId(newMind, args.Player.UserId);
 
-        var jobPrototype = _prototype.Index<JobPrototype>(args.Proto.Job);
-        var job = new JobComponent { Prototype = args.Proto.Job };
-        _roles.MindAddRole(newMind, job, silent: false);
+        var jobPrototype = _prototype.Index(args.Proto.Job);
+        _roles.MindAddJobRole(newMind, silent: false, jobPrototype:args.Proto.Job);
         EnsureComp<ReinforcementMindComponent>(newMind).Linked = ent.Comp.Linked;
         var jobName = _jobs.MindTryGetJobName(newMind);
 
         _playTimeTrackings.PlayerRolesChanged(args.Player);
 
         //var mob = Spawn(proto.Spawn);
-        var spawnEv = new PlayerSpawningEvent(job, character, station);
+        var spawnEv = new PlayerSpawningEvent(args.Proto.Job, character, station);
         RaiseLocalEvent(spawnEv);
 
         var mob = spawnEv.SpawnResult ?? Spawn("MobHuman", Transform(ent).Coordinates);
