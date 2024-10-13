@@ -5,7 +5,7 @@
   description: job-description-ertleader
   playTimeTracker: JobERTLeader
   setPreference: false
-  startingGear: ERTLeaderGearEVA
+#  startingGear: ERTLeaderGearEVA #Backmen-ERTRoles
   icon: "JobIconNanotrasen"
   supervisors: job-supervisors-centcom
   canBeAntag: false
@@ -180,7 +180,7 @@
   description: job-description-ertengineer
   playTimeTracker: JobERTEngineer
   setPreference: false
-  startingGear: ERTEngineerGearEVA
+#  startingGear: ERTEngineerGearEVA #Backmen-ERTRoles
   icon: "JobIconNanotrasen"
   supervisors: job-supervisors-centcom
   canBeAntag: false
@@ -252,7 +252,7 @@
   description: job-description-ertsecurity
   playTimeTracker: JobERTSecurity
   setPreference: false
-  startingGear: ERTEngineerGearEVA
+#  startingGear: ERTEngineerGearEVA #Backmen-ERTRoles
   icon: "JobIconNanotrasen"
   supervisors: job-supervisors-centcom
   canBeAntag: false
@@ -342,7 +342,7 @@
   description: job-description-ertmedic
   playTimeTracker: JobERTMedical
   setPreference: false
-  startingGear: ERTMedicalGearEVA
+#  startingGear: ERTMedicalGearEVA #Backmen-ERTRoles
   icon: "JobIconNanotrasen"
   supervisors: job-supervisors-centcom
   canBeAntag: false
@@ -404,7 +404,7 @@
   description: job-description-ertjanitor
   playTimeTracker: JobERTJanitor
   setPreference: false
-  startingGear: ERTJanitorGearEVA
+#  startingGear: ERTJanitorGearEVA #Backmen-ERTRoles
   icon: "JobIconNanotrasen"
   supervisors: job-supervisors-centcom
   canBeAntag: false
