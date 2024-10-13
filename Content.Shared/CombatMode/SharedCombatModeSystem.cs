@@ -55,7 +55,6 @@ public abstract class SharedCombatModeSystem : EntitySystem
         // This probably breaks if the client has prediction disabled.
 
         // start-backmen: combatmode
-        _audio.PlayPredicted(component.IsInCombatMode ? component.OnSound : component.OffSound, uid, uid);
 /*
         if (!_netMan.IsClient || !Timing.IsFirstTimePredicted)
             return;
