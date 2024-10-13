@@ -127,6 +127,9 @@
       path: /Audio/Weapons/Guns64/Shotguns/shotgun_cmb.ogg
       params:
         volume: -2
+  - type: Tag
+    tags:
+    - WeaponShotgunKammerer
 
 - type: entity
   name: L-4034 trenchgun

@@ -598,3 +598,14 @@ BlueprintFlare: null
 
 # 2024-10-04
 BaseAdvancedPen: Pen
+
+# 2024-10-04 backmen
+GunSafeRifleLecter: GunSafeRifleAR18
+GunSafeSubMachineGunDrozd: GunSafeSubMachineGunVector
+GunSafeShotgunEnforcer: GunSafeShotgunShotgun39
+GunSafeShotgunKammerer: GunSafeShotgunTrenchgun
+GunSafeSubMachineGunWt550: GunSafeSubMachineGunMP5
+GunSafeLaserCarbine: GunSafeLaserCarbineUEG
+ShotGunCabinetFilled: ShotGunCabinetFilledBackmen
+ShotGunCabinetFilledOpen: ShotGunCabinetFilledOpenBackmen
+

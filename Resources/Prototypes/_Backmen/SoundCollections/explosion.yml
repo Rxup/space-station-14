@@ -1,0 +1,9 @@
+- type: soundCollection
+  id: BIGEXPLOSION #Megumin style
+  files:
+  - /Audio/Backmen/Misc/explosion_large1.ogg
+  - /Audio/Backmen/Misc/explosion_large2.ogg
+  - /Audio/Backmen/Misc/explosion_large3.ogg
+  - /Audio/Backmen/Misc/explosion_large4.ogg
+  - /Audio/Backmen/Misc/explosion_large5.ogg
+  - /Audio/Backmen/Misc/explosion_large6.ogg

@@ -25,7 +25,7 @@
   categories: [ HideSpawnMenu ]
   components:
   - type: IdCard
-    jobTitle: Войска РХБЗЗ Sierra-6
+    jobTitle: job-title-sierra_6_chemical_troops
     fullName: Оперативник
     jobIcon: JobIconMarin
   - type: Access
@@ -41,7 +41,7 @@
   categories: [ HideSpawnMenu ]
   components:
   - type: IdCard
-    jobTitle: Войска РХБЗЗ Sierra-6
+    jobTitle: job-title-sierra_6_chemical_troops
     fullName: Специалист
     jobIcon: JobIconSpecialits
   - type: Access
@@ -56,12 +56,13 @@
   categories: [ HideSpawnMenu ]
   components:
   - type: IdCard
-    jobTitle: Войска РХБЗЗ Sierra-6
+    jobTitle: job-title-sierra_6_chemical_troops
     fullName: Медик
     jobIcon: JobIconMedic
   - type: Access
+    tags:
+    - EarthGov
     groups:
-    - EarthGovMedic
     - AllAccess
 
 - type: entity
@@ -71,7 +72,7 @@
   categories: [ HideSpawnMenu ]
   components:
   - type: IdCard
-    jobTitle: Войска РХБЗЗ Sierra-6
+    jobTitle: job-title-sierra_6_chemical_troops
     fullName: Командир Отряда
     jobIcon: JobIconSergant
   - type: Access
@@ -114,7 +115,7 @@
   - type: Clothing
     equippedState: equipped-private
   - type: IdCard
-    jobTitle: Рядовой
+    jobTitle: job-title-private
     jobIcon: JobIconMarin
   - type: Access
     tags:
@@ -131,7 +132,7 @@
   - type: Clothing
     equippedState: equipped-capral
   - type: IdCard
-    jobTitle: Капрал
+    jobTitle: job-title-corporal
     jobIcon: JobIconSpecialits
   - type: Access
     tags:
@@ -148,7 +149,7 @@
   - type: Clothing
     equippedState: equipped-serg
   - type: IdCard
-    jobTitle: Сержант
+    jobTitle: job-title-sergeant
     jobIcon: JobIconSergant
   - type: Access
     tags:
@@ -165,7 +166,7 @@
   - type: Clothing
     equippedState: equipped-unter
   - type: IdCard
-    jobTitle: Младший унтер-офицер
+    jobTitle: job-title-junior_noncommissioned_officer
     jobIcon: JobIconShtab
   - type: Access
     tags:
@@ -182,7 +183,7 @@
   - type: Clothing
     equippedState: equipped-unter2
   - type: IdCard
-    jobTitle: Унтер-офицер
+    jobTitle: job-title-noncommissioned_officer
     jobIcon: JobIconShtab
   - type: Access
     tags:
@@ -199,7 +200,7 @@
   - type: Clothing
     equippedState: equipped-unter3
   - type: IdCard
-    jobTitle: Штаб-офицер
+    jobTitle: job-title-staff_officer
     jobIcon: JobIconShtab
   - type: Access
     tags:
@@ -216,7 +217,7 @@
   - type: Clothing
     equippedState: equipped-leitenant
   - type: IdCard
-    jobTitle: Лейтенант
+    jobTitle: job-title-lieutenant
     jobIcon: JobIconLeitenant
   - type: Access
     groups:
@@ -233,7 +234,7 @@
   - type: Clothing
     equippedState: equipped-leitenant2
   - type: IdCard
-    jobTitle: Старший лейтенант
+    jobTitle: job-title-senior_lieutenant
     jobIcon: JobIconLeitenant
   - type: Access
     groups:
@@ -250,7 +251,7 @@
   - type: Clothing
     equippedState: equipped-hauptman
   - type: IdCard
-    jobTitle: Капитан
+    jobTitle: job-title-captain
     jobIcon: JobIconLeitenant
   - type: Access
     groups:
@@ -267,7 +268,7 @@
   - type: Clothing
     equippedState: equipped-mayor
   - type: IdCard
-    jobTitle: Майор
+    jobTitle: job-title-major
     jobIcon: JobIconCommandeer
   - type: Access
     groups:
@@ -284,7 +285,7 @@
   - type: Clothing
     equippedState: equipped-podpolk
   - type: IdCard
-    jobTitle: Подполковник
+    jobTitle: job-title-lieutenant_colonel
     jobIcon: JobIconCommandeer
   - type: Access
     groups:
@@ -301,7 +302,7 @@
   - type: Clothing
     equippedState: equipped-polk
   - type: IdCard
-    jobTitle: Полковник
+    jobTitle: job-title-colonel
     jobIcon: JobIconCommandeer
   - type: Access
     groups:
@@ -318,7 +319,7 @@
   - type: Clothing
     equippedState: equipped-generalmayor
   - type: IdCard
-    jobTitle: Генерал-Майор
+    jobTitle: job-title-major_general
     jobIcon: JobIconCommander
   - type: Access
     groups:
@@ -335,7 +336,7 @@
   - type: Clothing
     equippedState: equipped-general
   - type: IdCard
-    jobTitle: Генерал-Лейтенант
+    jobTitle: job-title-lieutenant_general
     jobIcon: JobIconCommander
   - type: Access
     groups:
@@ -352,7 +353,7 @@
   - type: Clothing
     equippedState: equipped-generalpolk
   - type: IdCard
-    jobTitle: Генерал-Полковник
+    jobTitle: job-title-colonel_general
     jobIcon: JobIconCommander
   - type: Access
     groups:
@@ -445,7 +446,7 @@
   - type: Item
     heldPrefix: default
   - type: IdCard
-    jobTitle: PMC Desert Busters
+    jobTitle: job-title-pmc_desert_busters_leader
     jobIcon: JobIconEarth
   - type: Access
   - type: Tag
@@ -459,4 +460,4 @@
   name: pmc badge officer
   components:
   - type: IdCard
-    jobTitle: PMC Desert Busters Leader
+    jobTitle: job-title-pmc_desert_busters_leader

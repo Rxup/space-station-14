@@ -43,7 +43,9 @@ public sealed class DiscordJobWhitelist : EntitySystem
 
         for (var i = ev.Jobs.Count - 1; i >= 0; i--)
         {
-            if (_player.TryGetSessionById(ev.Player, out var player) &&
+            var job = ev.Jobs[i];
+            if (_whitelistedJobs.Contains(job) &&
+                _player.TryGetSessionById(ev.Player, out var player) &&
                 !_manager.IsCached(player))
             {
                 ev.Jobs.RemoveSwap(i);
@@ -56,7 +58,7 @@ public sealed class DiscordJobWhitelist : EntitySystem
         if (!_config.GetCVar(CCVars.DiscordAuthEnabled))
             return;
 
-        if (!_manager.IsCached(ev.Player))
+        if (_whitelistedJobs.Contains(ev.JobId) && !_manager.IsCached(ev.Player))
             ev.Cancelled = true;
     }
 
