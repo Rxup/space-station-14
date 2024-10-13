@@ -106,6 +106,13 @@ public sealed class HeadsetSystem : SharedHeadsetSystem
         }
     }
 
+    // start-backmen: radio sound
+
+    private static readonly SoundSpecifier DefaultOnSound =
+        new SoundPathSpecifier("/Audio/Backmen/Radio/common.ogg", AudioParams.Default.WithVolume(-6).WithMaxDistance(2));
+
+    // end-backmen: radio sound
+
     private void OnHeadsetReceive(EntityUid uid, HeadsetComponent component, ref RadioReceiveEvent args)
     {
         // start-backmen: language
@@ -122,46 +129,8 @@ public sealed class HeadsetSystem : SharedHeadsetSystem
 
         // end-backmen: language
 
-        //BACKMEN-EDIT-START
-        var aparams = AudioParams.Default.WithVolume(-12).WithMaxDistance(2);
 
-        switch (args.Channel.ID)
-        {
-            case "Security":
-                _audio.PlayPvs("/Audio/Backmen/Radio/security.ogg", uid, aparams);
-                break;
-            case "Common":
-                _audio.PlayPvs("/Audio/Backmen/Radio/common.ogg", uid,  aparams);
-                break;
-            case "Engineering":
-                _audio.PlayPvs("/Audio/Backmen/Radio/eng.ogg", uid,  aparams);
-                break;
-            case "Medical":
-                _audio.PlayPvs("/Audio/Backmen/Radio/med.ogg", uid,  aparams);
-                break;
-            case "Supply":
-                _audio.PlayPvs("/Audio/Backmen/Radio/cargo.ogg", uid,  aparams);
-                break;
-            case "Science":
-                _audio.PlayPvs("/Audio/Backmen/Radio/science.ogg", uid,  aparams);
-                break;
-            case "CentCom":
-                _audio.PlayPvs("/Audio/Backmen/Radio/cc.ogg", uid,  aparams);
-                break;
-            case "Command":
-                _audio.PlayPvs("/Audio/Backmen/Radio/command.ogg", uid,  aparams);
-                break;
-            case "Service":
-                _audio.PlayPvs("/Audio/Backmen/Radio/common.ogg", uid,  aparams);
-                break;
-            case "Syndicate":
-                _audio.PlayPvs("/Audio/Backmen/Radio/security.ogg", uid,  aparams);
-                break;
-            default:
-                _audio.PlayPvs("/Audio/Backmen/Radio/common.ogg", uid,  aparams);
-                break;
-        }
-        //BACKMEN-EDIT-START
+        _audio.PlayPvs(args.Channel.OnSendSound ?? DefaultOnSound, uid); // backmen: radio sound
     }
 
     private void OnEmpPulse(EntityUid uid, HeadsetComponent component, ref EmpPulseEvent args)
