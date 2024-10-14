@@ -20,12 +20,12 @@ public sealed class FootPrintsSystem : EntitySystem
 
     private const int MaxStoredDecals = 750;
 
-   /* public override void Initialize()
+    public override void Initialize()
     {
         base.Initialize();
         SubscribeLocalEvent<FootPrintsComponent, ComponentStartup>(OnStartupComponent);
         SubscribeLocalEvent<FootPrintsComponent, MoveEvent>(OnMove);
-    }*/
+    }
 
     private void OnStartupComponent(EntityUid uid, FootPrintsComponent comp, ComponentStartup args)
     {
