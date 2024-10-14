@@ -20,4 +20,7 @@
   name: Reformed Diona
   components:
     - type: IsDeadIC
-    - type: RandomHumanoidAppearance 
+    - type: RandomHumanoidAppearance
+    - type: FootPrints
+      leftBarePrint: "footprint-left-bare-diona"
+      rightBarePrint: "footprint-right-bare-diona"
