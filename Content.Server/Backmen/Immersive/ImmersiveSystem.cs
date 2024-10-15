@@ -1,34 +1,27 @@
-﻿using System.Numerics;
-using Content.Server.Administration;
+﻿using Content.Server.Administration;
 using Content.Server.Administration.Logs;
-using Content.Server.GameTicking;
 using Content.Shared.Backmen.Telescope;
 using Content.Shared.Administration;
 using Content.Shared.Backmen.CCVar;
 using Content.Shared.Database;
 using Content.Shared.Humanoid;
 using Content.Shared.Movement.Components;
-using Content.Shared.Movement.Systems;
 using Robust.Shared.Configuration;
 using Robust.Shared.Console;
 
-namespace Content.Server.Backmen.Immersive.Systems;
+namespace Content.Server.Backmen.Immersive;
 
 public sealed class ImmersiveSystem : EntitySystem
 {
-    [Dependency] private readonly SharedContentEyeSystem _eye = default!;
     [Dependency] private readonly SharedTelescopeSystem _telescope = default!;
     [Dependency] private readonly IConfigurationManager _configurationManager = default!;
     [Dependency] private readonly IConsoleHost _console = default!;
     [Dependency] private readonly IAdminLogManager _adminLog = default!;
 
-    private bool _immersiveEnabled = false;
 
-    [ViewVariables(VVAccess.ReadWrite)]
-    public float TelescopeDivisor = 0.1f;
-
-    [ViewVariables(VVAccess.ReadWrite)]
-    public float TelescopeLerpAmount = 1f;
+    private bool _immersiveEnabled;
+    private const float TelescopeDivisor = 0.4f; // 2 tiles further than normal
+    private const float TelescopeLerpAmount = 0.1f; // Looks nice.
 
     private EntityQuery<ContentEyeComponent> _eyeQuery;
 
@@ -40,7 +33,6 @@ public sealed class ImmersiveSystem : EntitySystem
         Subs.CVar(_configurationManager, CCVars.ImmersiveEnabled, OnValueChanged, true);
 
         _console.RegisterCommand("setImmersive_bkm", SetImmersiveCommand);
-
         _eyeQuery = GetEntityQuery<ContentEyeComponent>();
     }
 
@@ -58,11 +50,12 @@ public sealed class ImmersiveSystem : EntitySystem
     }
 
     [AdminCommand(AdminFlags.Fun)]
-    private void SetImmersiveCommand(IConsoleShell shell, string argstr, string[] args)
+    private void SetImmersiveCommand(IConsoleShell shell, string str, string[] args)
     {
         _configurationManager.SetCVar(CCVars.ImmersiveEnabled, !_immersiveEnabled);
         shell.WriteLine($"Immersive set in {_immersiveEnabled}");
-        _adminLog.Add(LogType.AdminMessage, LogImpact.Extreme,
+        _adminLog.Add(LogType.AdminMessage,
+            LogImpact.Extreme,
             $"Admin {(shell.Player != null ? shell.Player.Name : "An administrator")} immersive set in {_immersiveEnabled}");
     }
 
