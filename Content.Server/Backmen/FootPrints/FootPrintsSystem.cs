@@ -7,6 +7,7 @@ using Content.Shared.Mobs;
 using Content.Shared.Mobs.Components;
 using Content.Shared.Backmen.FootPrints;
 using Content.Shared.Chemistry.Components.SolutionManager;
+using Content.Shared.Chemistry.EntitySystems;
 using Robust.Shared.Map;
 using Robust.Shared.Random;
 
@@ -18,7 +19,7 @@ public sealed class FootPrintsSystem : EntitySystem
     [Dependency] private readonly InventorySystem _inventorySystem = default!;
     [Dependency] private readonly IMapManager _map = default!;
 
-    [Dependency] private readonly SolutionContainerSystem _solutionSystem = default!;
+    [Dependency] private readonly SharedSolutionContainerSystem _solutionSystem = default!;
     [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
 
    public override void Initialize()
@@ -60,7 +61,7 @@ public sealed class FootPrintsSystem : EntitySystem
             return;
 
         footPrintComponent.PrintOwner = uid;
-        Dirty(footPrintComponent);
+        Dirty(uid, footPrintComponent);
 
         if (TryComp<AppearanceComponent>(entity, out var appearance))
         {
@@ -79,12 +80,12 @@ public sealed class FootPrintsSystem : EntitySystem
         comp.StepPos = transform.LocalPosition;
 
         if (!TryComp<SolutionContainerManagerComponent>(entity, out var solutionContainer)
-            || !_solutionSystem.TryGetSolution(entity, footPrintComponent.SolutionName, out var entitySolutions, solutionContainer)
+            || !_solutionSystem.TryGetSolution((entity, solutionContainer), footPrintComponent.SolutionName, out var entitySolutions)
             || string.IsNullOrWhiteSpace(comp.ReagentToTransfer)
-            || entitySolutions.Volume >= 1)
+            || entitySolutions.Value.Comp.Solution.Volume >= 1)
             return;
 
-        _solutionSystem.TryAddReagent(entity, entitySolutions, comp.ReagentToTransfer, 1, out _);
+        _solutionSystem.TryAddReagent((entity,entitySolutions), comp.ReagentToTransfer, 1, out _);
     }
 
     private EntityCoordinates CalcCoords(EntityUid uid, FootPrintsComponent comp, TransformComponent transform, bool state)
