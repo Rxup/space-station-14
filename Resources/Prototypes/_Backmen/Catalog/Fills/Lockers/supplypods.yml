@@ -528,6 +528,7 @@
     prototypes:
       - MissileDropRandomSpawnerArea
     intervalSeconds: 1
+  - type: Timer
   - type: TimedDespawn
     lifetime: 10
 
