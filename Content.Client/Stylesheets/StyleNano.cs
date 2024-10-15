@@ -383,7 +383,7 @@ namespace Content.Client.Stylesheets
             actionSearchBox.SetPatchMargin(StyleBox.Margin.All, 3);
             actionSearchBox.SetContentMarginOverride(StyleBox.Margin.Horizontal, 5);
 
-            var tabContainerPanelTex = resCache.GetTexture("/Textures/_White/Interface/Nano/lobby.png"); // WD EDIT
+            var tabContainerPanelTex = resCache.GetTexture("/Textures/Backmen/Interface/Nano/lobby.png"); // WD EDIT
             var tabContainerPanel = new StyleBoxTexture
             {
                 Texture = tabContainerPanelTex,
@@ -479,7 +479,7 @@ namespace Content.Client.Stylesheets
             };
 
             // WD EDIT START
-            var lobbyBackgroundTex = resCache.GetTexture("/Textures/_White/Interface/Nano/lobby.png");
+            var lobbyBackgroundTex = resCache.GetTexture("/Textures/Backmen/Interface/Nano/lobby.png");
             var lobbyBackground = new StyleBoxTexture
             {
                 Texture = lobbyBackgroundTex,
@@ -490,7 +490,7 @@ namespace Content.Client.Stylesheets
             lobbyBackground.SetExpandMargin(StyleBox.Margin.All, -4);
             lobbyBackground.SetContentMarginOverride(StyleBox.Margin.All, 8);
 
-            var panelBackgroundTex = resCache.GetTexture("/Textures/_White/Interface/Nano/panel.png");
+            var panelBackgroundTex = resCache.GetTexture("/Textures/Backmen/Interface/Nano/panel.png");
             var panelBackground = new StyleBoxTexture
             {
                 Texture = panelBackgroundTex,

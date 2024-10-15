@@ -1,0 +1,21 @@
+{
+  "version": 1,
+  "size": {
+    "x": 64,
+    "y": 64
+  },
+  "states": [
+    {
+      "name": "supplypod"
+    },
+    {
+      "name": "supplypod_falling"
+    },
+    {
+      "name": "supplypod_door"
+    },
+    {
+      "name": "supplypod_open"
+    }
+  ]
+}

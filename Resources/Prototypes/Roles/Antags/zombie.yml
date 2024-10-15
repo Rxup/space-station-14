@@ -8,6 +8,7 @@
   requirements:
   - !type:OverallPlaytimeRequirement
     time: 108000 # 30h # Corvax-RoleTime
+  discordRequired: true # backmen: antag
 
 - type: antag
   id: Zombie

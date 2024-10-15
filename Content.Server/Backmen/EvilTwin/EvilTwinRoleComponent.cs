@@ -3,8 +3,8 @@ using Content.Shared.Roles;
 
 namespace Content.Server.Backmen.EvilTwin;
 
-[RegisterComponent, ExclusiveAntagonist]
-public sealed partial class EvilTwinRoleComponent : AntagonistRoleComponent
+[RegisterComponent]
+public sealed partial class EvilTwinRoleComponent : BaseMindRoleComponent
 {
     public EntityUid? Target { get; set; }
     public EntityUid? TargetMindId { get; set; }

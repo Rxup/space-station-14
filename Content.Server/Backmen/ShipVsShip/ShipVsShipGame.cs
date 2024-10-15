@@ -48,6 +48,7 @@ public sealed class ShipVsShipGame : GameRuleSystem<ShipVsShipGameComponent>
     [Dependency] private readonly SharedTransformSystem _transform = default!;
     [Dependency] private readonly SharedTdmTeamSystem _teamSystem = default!;
     [Dependency] private readonly ContainerSystem _container = default!;
+    [Dependency] private readonly SharedRoleSystem _roleSystem = default!;
 
     public override void Initialize()
     {
@@ -187,8 +188,8 @@ public sealed class ShipVsShipGame : GameRuleSystem<ShipVsShipGameComponent>
             var stationGrids = stationDataComponent.Grids;
 
             var team = stationTeamMarkerComponent.Team;
-            rule.OverflowJobs.TryAdd(team, new HashSet<ProtoId<JobPrototype>>());
-            rule.Objective.TryAdd(team, new HashSet<EntityUid>());
+            rule.OverflowJobs.TryAdd(team, []);
+            rule.Objective.TryAdd(team, []);
             foreach (var overflowJob in stationJobsComponent.OverflowJobs)
             {
                 rule.OverflowJobs[team].Add(overflowJob);
@@ -310,12 +311,11 @@ public sealed class ShipVsShipGame : GameRuleSystem<ShipVsShipGameComponent>
                 _mind.SetUserId(newMind, ev.Player.UserId);
 
 
-                var job = new JobComponent
-                {
-                    Prototype = RobustRandom.Pick(rule.OverflowJobs[team])
-                };
+                var job =  RobustRandom.Pick(rule.OverflowJobs[team]);
+                _roleSystem.MindAddRole(newMind, job.Id);
+                _roleSystem.MindHasRole<JobRoleComponent>(newMind, out var jobRole);
 
-                var mobMaybe = _stationSpawning.SpawnPlayerCharacterOnStation(rule.Team[team], job, ev.Profile);
+                var mobMaybe = _stationSpawning.SpawnPlayerCharacterOnStation(rule.Team[team], jobRole?.Comp.JobPrototype, ev.Profile);
                 DebugTools.AssertNotNull(mobMaybe);
                 var mob = mobMaybe!.Value;
                 SetFlag(mob, team);

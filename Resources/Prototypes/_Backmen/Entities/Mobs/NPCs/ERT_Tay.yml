@@ -20,6 +20,7 @@
       - !type:DepartmentTimeRequirement
         department: Command
         time: 18000
+    job: ERTLeader
   - type: Loadout
     prototypes: [ERTLeaderTay39Gear]
   - type: RandomMetadata
@@ -46,6 +47,7 @@
       - !type:DepartmentTimeRequirement
         department: Medical
         time: 18000
+    job: ERTMedical
   - type: Loadout
     prototypes: [ERTMedicTay39Gear]
   - type: RandomMetadata
@@ -69,6 +71,7 @@
         time: 36000
       - !type:OverallPlaytimeRequirement
         time: 36000
+    job: ERTSecurity
   - type: Loadout
     prototypes: [ERTSecurityTay39Gear]
 

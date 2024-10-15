@@ -3,8 +3,8 @@ using Robust.Shared.GameStates;
 
 namespace Content.Server.Backmen.Vampiric.Role;
 
-[RegisterComponent, ExclusiveAntagonist]
-public sealed partial class VampireRoleComponent : AntagonistRoleComponent
+[RegisterComponent]
+public sealed partial class VampireRoleComponent : BaseMindRoleComponent
 {
     public EntityUid? MasterVampire;
 
