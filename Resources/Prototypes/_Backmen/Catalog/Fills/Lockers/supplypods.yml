@@ -1,4 +1,32 @@
 - type: entity
+  id: SupplyDropPodEmpty
+  parent: SupplyPodBase
+  categories: [ HideSpawnMenu ]
+
+- type: entity
+  id: DropPodMarkerBlueShield
+  parent: DropPodMarker
+  suffix: BlueShield
+  components:
+  - type: TimedSpawner
+    prototypes:
+      -  DropPodLaunchAnimationBlueShield
+
+- type: entity
+  id: DropPodLaunchAnimationBlueShield
+  parent: DropPodLaunchAnimation
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: Backmen/Effects/droppod_falling.rsi
+    layers:
+    - state: supplypod_falling_animation
+      offset: "0,3.3"
+  - type: TimedSpawner
+    prototypes:
+      - SupplyDropPodBlueShieldHardsuit
+
+- type: entity
   id: SupplyDropPodBlueShieldHardsuit
   parent: SupplyPodBase
   categories: [ HideSpawnMenu ]
@@ -6,4 +34,115 @@
   - type: StorageFill
     contents:
         - id: ClothingOuterHardsuitBlueShield
-        - id: ClothingEyesGlassesBlueShield
+
+#missiles
+
+- type: entity
+  id: MissileDrop
+  parent: MissileBase
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: Backmen/Structures/Storage/supplypod.rsi
+    layers:
+    - state: missilepod
+    - state: missilepod_door
+  - type: SpawnOnDespawn
+    prototype: ExplosionInstant
+  - type: TimedDespawn
+    lifetime: 1
+
+- type: entity
+  id: MissileDropUnexploded
+  parent: MissileBase
+  categories: [ HideSpawnMenu ]
+  name: неразорвавшийся снаряд
+  description: Очень опасная штука, может взорваться в любой момент, я бы не стал к ней подходить...
+  components:
+  - type: Sprite
+    sprite: Backmen/Structures/Storage/supplypod.rsi
+    layers:
+    - state: missilepod
+    - state: missilepod_door
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 150
+      behaviors:
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalBreak
+          params:
+            volume: -6
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          ExplosionInstant:
+            min: 1
+            max: 1
+
+- type: entity
+  id: MissileDropMarker
+  parent: DropPodMarker
+  suffix: Missile
+  components:
+  - type: TimedSpawner
+    prototypes:
+      -  MissileDropLaunchAnimation
+
+- type: entity
+  id: MissileDropLaunchAnimation
+  parent: DropPodLaunchAnimation
+  name: missile
+  description: A standard-issue Nanotrasen intercontinental missile.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: Backmen/Effects/droppod_falling.rsi
+    layers:
+    - state: missile_falling_animation
+      offset: "0,3.3"
+  - type: TimedSpawner
+    prototypes:
+      - MissileDropRandomSpawner
+    intervalSeconds: 2
+
+- type: entity
+  id: MissileDropRandomSpawner
+  parent: DropPodLaunchAnimation
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: RandomSpawner
+    prototypes:
+      - MissileDrop
+    chance: 1
+    rarePrototypes:
+      - MissileDropUnexploded
+    rareChance: 0.2
+
+- type: entity
+  name: арт-обстрел
+  id: MissileDropSpawnerAreaSpawner
+  parent: DropPodMarkerBase
+  components:
+  - type: TimedSpawner
+    prototypes:
+      - MissileDropRandomSpawnerArea
+    intervalSeconds: 1
+  - type: TimedDespawn
+    lifetime: 10
+
+- type: entity
+  id: MissileDropRandomSpawnerArea
+  parent: DropPodMarkerBase
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: RandomSpawner
+    offset: 10
+    prototypes:
+      - MissileDropMarker
+    chance: 1
+  - type: TimedDespawn
+    lifetime: 1

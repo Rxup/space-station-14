@@ -16,6 +16,18 @@
     },
     {
       "name": "supplypod_open"
+    },
+    {
+      "name": "missilepod"
+    },
+    {
+      "name": "missilepod_falling"
+    },
+    {
+      "name": "missilepod_door"
+    },
+    {
+      "name": "missilepod_open"
     }
   ]
 }
