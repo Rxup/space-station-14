@@ -1,6 +1,6 @@
 - type: entity
-  name: рация ОБР
-  description: A handy handheld radio.
+  name: рация
+  description: Рация которая связывается с ближайшей блю-спейс артиллерийской платформой.
   parent: BaseItem
   id: RadioMTFHandheld
   components:
