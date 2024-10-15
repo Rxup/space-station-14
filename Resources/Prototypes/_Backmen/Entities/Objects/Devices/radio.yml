@@ -27,7 +27,7 @@
   description: Запросить артиллерийской поддержки по указаной вами точке.
   components:
   - type: WorldTargetAction
-    useDelay: 120
+    useDelay: 240
     range: 80
     itemIconStyle: BigAction
     icon:
