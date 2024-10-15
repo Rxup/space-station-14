@@ -155,6 +155,7 @@
     layers:
     - state: marker
       shader: unshaded
+  - type: Timer
   - type: TimedSpawner
     prototypes:
       -  DropPodLaunchAnimation

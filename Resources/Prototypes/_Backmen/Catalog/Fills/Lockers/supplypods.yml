@@ -224,6 +224,7 @@
   components:
   - type: Physics
     bodyType: Static
+    canCollide: False
   - type: Sprite
     sprite: Backmen/Structures/Storage/supplypod.rsi
     layers:
@@ -273,6 +274,7 @@
   components:
   - type: Physics
     bodyType: Static
+    canCollide: False
   - type: Sprite
     sprite: Backmen/Structures/Storage/supplypod.rsi
     layers:
@@ -322,6 +324,7 @@
   components:
   - type: Physics
     bodyType: Static
+    canCollide: False
   - type: Sprite
     sprite: Backmen/Structures/Storage/supplypod.rsi
     layers:
@@ -371,6 +374,7 @@
   components:
   - type: Physics
     bodyType: Static
+    canCollide: False
   - type: Sprite
     sprite: Backmen/Structures/Storage/supplypod.rsi
     layers:
@@ -420,6 +424,7 @@
   components:
   - type: Physics
     bodyType: Static
+    canCollide: False
   - type: Sprite
     sprite: Backmen/Structures/Storage/supplypod.rsi
     layers:
@@ -438,6 +443,7 @@
     layers:
     - state: missilepod
     - state: missilepod_door
+  - type: Timer
   - type: SpawnOnDespawn
     prototype: ExplosionInstant
   - type: TimedDespawn
