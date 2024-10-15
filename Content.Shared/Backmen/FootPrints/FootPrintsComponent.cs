@@ -18,17 +18,13 @@ public sealed partial class FootPrintsComponent : Component
     public LocId SuitPrint = "footprint-suit";
 
     [ViewVariables(VVAccess.ReadOnly), DataField("draggingPrint")]
-    public LocId[] DraggingPrint =
-    [
-        "dragging-1",
+    public  LocId[] DraggingPrint = [
+            "dragging-1",
             "dragging-2",
             "dragging-3",
             "dragging-4",
-            "dragging-5",
-    ];
-
-    [ViewVariables(VVAccess.ReadWrite), DataField("offsetCenter")]
-    public Vector2 OffsetCenter = new(-0.5f, -1f);
+            "dragging-5"
+                ];
 
     [ViewVariables(VVAccess.ReadWrite), DataField("offsetPrint")]
     public Vector2 OffsetPrint = new(0.1f, 0f);
@@ -48,7 +44,10 @@ public sealed partial class FootPrintsComponent : Component
     public float ColorQuantity;
 
     [ViewVariables(VVAccess.ReadWrite), DataField("colorReduceAlpha")]
-    public float ColorReduceAlpha = 0.15f;
+    public float ColorReduceAlpha = 0.1f;
+
+    [ViewVariables(VVAccess.ReadWrite), DataField("reagentToTransfer")]
+    public string? ReagentToTransfer;
 }
 
 
