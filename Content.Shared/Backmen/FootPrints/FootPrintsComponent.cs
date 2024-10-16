@@ -18,7 +18,8 @@ public sealed partial class FootPrintsComponent : Component
     public LocId SuitPrint = "footprint-suit";
 
     [ViewVariables(VVAccess.ReadOnly), DataField("draggingPrint")]
-    public  LocId[] DraggingPrint = [
+    public  LocId[] DraggingPrint =
+    [
             "dragging-1",
             "dragging-2",
             "dragging-3",

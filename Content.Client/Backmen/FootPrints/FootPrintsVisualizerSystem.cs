@@ -1,5 +1,4 @@
-﻿
-using Content.Shared.Backmen.FootPrints;
+﻿using Content.Shared.Backmen.FootPrints;
 using Robust.Client.GameObjects;
 using Robust.Client.Graphics;
 using Robust.Shared.Random;
@@ -56,7 +55,8 @@ public sealed class FootPrintsVisualizerSystem : VisualizerSystem<FootPrintCompo
             switch (printVisuals)
             {
                 case FootPrintVisuals.BareFootPrint:
-                    sprite.LayerSetState(layer, printsComponent.RightStep
+                    sprite.LayerSetState(layer,
+                        printsComponent.RightStep
                             ? new RSI.StateId(printsComponent.RightBarePrint)
                             : new RSI.StateId(printsComponent.LeftBarePrint),
                         path);
