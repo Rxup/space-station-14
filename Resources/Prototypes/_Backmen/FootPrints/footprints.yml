@@ -3,6 +3,12 @@
   id: Footstep
   description: След из жидкости
   components:
+    - type: Sprite
+      sprite: Backmen/Decals/footprints.rsi
+      layers:
+      - state: footprint-shoes
+      drawdepth: FloorObjects
+      color: "#FFFFFF80"
     - type: Clickable
     - type: FootstepModifier
       footstepSoundCollection:
@@ -11,9 +17,6 @@
           volume: 3
     - type: Transform
       noRot: false
-    - type: Sprite
-      drawdepth: FloorObjects
-      color: "#FFFFFF80"
     - type: Physics
       bodyType: Static
     - type: Fixtures
