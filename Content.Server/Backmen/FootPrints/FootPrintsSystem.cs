@@ -18,6 +18,7 @@ public sealed class FootPrintsSystem : EntitySystem
 
     [Dependency] private readonly SharedSolutionContainerSystem _solutionSystem = default!;
     [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
+    [Dependency] private readonly SharedTransformSystem _transform = default!;
 
    public override void Initialize()
    {
@@ -36,9 +37,9 @@ public sealed class FootPrintsSystem : EntitySystem
         if (comp.PrintsColor.A <= 0f)
             return;
 
-        if (!TryComp<TransformComponent>(uid, out var transform) ||
+        if (!TryComp(uid, out TransformComponent? transform) ||
             !TryComp<MobThresholdsComponent>(uid, out var mobThreshHolds) ||
-            !_map.TryFindGridAt(transform.MapPosition, out var gridUid, out _))
+            !_map.TryFindGridAt(_transform.GetMapCoordinates(uid), out var gridUid, out _))
             return;
 
         var dragging = mobThreshHolds.CurrentThresholdState is MobState.Critical or MobState.Dead;
@@ -66,7 +67,7 @@ public sealed class FootPrintsSystem : EntitySystem
             _appearance.SetData(entity, FootPrintVisualState.Color, comp.PrintsColor, appearance);
         }
 
-        if (TryComp<TransformComponent>(entity, out var stepTransform))
+        if (TryComp(entity, out TransformComponent? stepTransform))
         {
             stepTransform.LocalRotation = dragging
                 ? (transform.LocalPosition - comp.StepPos).ToAngle() + Angle.FromDegrees(-90f)
