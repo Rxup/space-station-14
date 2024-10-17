@@ -201,6 +201,17 @@
     - type: PyrokinesisPower
       fireStacks: 2
     - type: TelegnosisPower
+
+# Xenobiology - slimeperson
+# Да, это просто уристмак слайм с именем и рандомной внешностью
+- type: entity
+  noSpawn: true
+  id: RandomSlimePerson
+  parent: MobSlimePerson
+  name: Random slime person
+  components:
+    - type: RandomHumanoidAppearance
+      randomizeName: true
     - type: NightVision
       isToggle: true
       color: "#808080"
