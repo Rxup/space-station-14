@@ -1875,7 +1875,7 @@
     revertOnCrit: false
     revertOnDeath: false
     allowRepeatedMorphs: true
-    delay: 30
+    cooldown: 30
 
 - type: polymorph
   id: LarvaToDrone
@@ -1886,7 +1886,7 @@
     revertOnCrit: false
     revertOnDeath: false
     allowRepeatedMorphs: true
-    delay: 30
+    cooldown: 30
 
 - type: polymorph
   id: LarvaToRunner
@@ -1897,7 +1897,7 @@
     revertOnCrit: false
     revertOnDeath: false
     allowRepeatedMorphs: true
-    delay: 30
+    cooldown: 30
 
 - type: polymorph
   id: DroneToSpitter
@@ -1908,7 +1908,7 @@
     revertOnCrit: false
     revertOnDeath: false
     allowRepeatedMorphs: true
-    delay: 30
+    cooldown: 30
 
 - type: polymorph
   id: RunnerToWarrior
@@ -1919,7 +1919,7 @@
     revertOnCrit: false
     revertOnDeath: false
     allowRepeatedMorphs: true
-    delay: 30
+    cooldown: 30
 
 - type: polymorph
   id: RunnerToHunter
@@ -1930,7 +1930,7 @@
     revertOnCrit: false
     revertOnDeath: false
     allowRepeatedMorphs: true
-    delay: 30
+    cooldown: 30
 
 # ABILITIES #
 
@@ -1956,7 +1956,7 @@
     revertOnCrit: false
     revertOnDeath: false
     allowRepeatedMorphs: false
-    delay: 30
+    cooldown: 30
 
 - type: polymorph
   id: Larva
@@ -1967,7 +1967,7 @@
     revertOnCrit: false
     revertOnDeath: false
     allowRepeatedMorphs: true
-    delay: 30
+    cooldown: 30
 
 - type: polymorph
   id: Drone
@@ -1978,7 +1978,7 @@
     revertOnCrit: false
     revertOnDeath: false
     allowRepeatedMorphs: true
-    delay: 30
+    cooldown: 30
 
 - type: polymorph
   id: Runner
@@ -1989,7 +1989,7 @@
     revertOnCrit: false
     revertOnDeath: false
     allowRepeatedMorphs: true
-    delay: 30
+    cooldown: 30
 
 - type: polymorph
   id: Spitter
@@ -2000,7 +2000,7 @@
     revertOnCrit: false
     revertOnDeath: false
     allowRepeatedMorphs: true
-    delay: 30
+    cooldown: 30
 
 - type: polymorph
   id: Warrior
@@ -2011,7 +2011,7 @@
     revertOnCrit: false
     revertOnDeath: false
     allowRepeatedMorphs: true
-    delay: 30
+    cooldown: 30
 
 - type: polymorph
   id: Praetorian
@@ -2022,7 +2022,7 @@
     revertOnCrit: false
     revertOnDeath: false
     allowRepeatedMorphs: true
-    delay: 30
+    cooldown: 30
 
 - type: polymorph
   id: Ravager
@@ -2033,7 +2033,7 @@
     revertOnCrit: false
     revertOnDeath: false
     allowRepeatedMorphs: true
-    delay: 30
+    cooldown: 30
 
 - type: polymorph
   id: Queen
@@ -2044,4 +2044,4 @@
     revertOnCrit: false
     revertOnDeath: false
     allowRepeatedMorphs: true
-    delay: 30
+    cooldown: 30
