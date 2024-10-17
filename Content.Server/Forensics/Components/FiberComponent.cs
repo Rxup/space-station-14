@@ -12,5 +12,8 @@ namespace Content.Server.Forensics
 
         [DataField]
         public string? FiberColor;
+
+        [DataField] // Delta-V
+        public string? Fiberprint;
     }
 }
