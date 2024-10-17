@@ -1,0 +1,11 @@
+- type: technology
+  id: EnergyBarriers
+  name: research-technology-energy_barriers
+  icon:
+    sprite: Backmen/Objects/Tools/EnergyDome/reinhardt.rsi
+    state: icon
+  discipline: Arsenal
+  tier: 2
+  cost: 6000
+  recipeUnlocks:
+  - EnergyDomeDirectionalTurtle

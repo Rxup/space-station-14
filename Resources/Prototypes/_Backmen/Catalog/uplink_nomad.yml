@@ -532,3 +532,18 @@
     Telecrystal: 3
   categories:
   - UplinkBundles
+
+- type: listing
+  id: UplinkEnergyDomeSyndie
+  name: uplink-energy-dome-name
+  description: uplink-energy-dome-desc
+  productEntity: EnergyDomeGeneratorPersonalSyndie
+  cost:
+    Telecrystal: 10
+  categories:
+  - UplinkWearables
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - NukeOpsUplink
