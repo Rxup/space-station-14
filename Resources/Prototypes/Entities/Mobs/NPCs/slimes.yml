@@ -113,12 +113,13 @@
   - type: TypingIndicator
     proto: slime
   - type: LanguageSpeaker
-    currentLanguage: TauCetiBasic
+    currentLanguage: Slime
   - type: LanguageKnowledge #backmen: languages
     speaks:
     - Slime
     understands:
     - Slime
+    - TauCetiBasic
 
 - type: entity
   name: basic slime
@@ -129,13 +130,6 @@
   components:
 #  - type: ReplacementAccent
 #    accent: slimes
-  - type: LanguageSpeaker
-    currentLanguage: TauCetiBasic
-  - type: LanguageKnowledge #backmen: languages
-    speaks:
-    - Slime
-    understands:
-    - Slime
   - type: GhostTakeoverAvailable
   - type: GhostRole
     makeSentient: true

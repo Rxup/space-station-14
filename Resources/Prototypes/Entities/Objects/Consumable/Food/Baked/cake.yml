@@ -729,6 +729,14 @@
     damage:
       groups:
         Brute: 1
+  - type: LanguageSpeaker
+    currentLanguage: Cat
+  - type: LanguageKnowledge #backmen: languages
+    speaks:
+    - Cat
+    understands:
+    - Cat
+    - TauCetiBasic
 
 # Suppermatter
 # I can't figure out where to put this. It kind of acts like a cake I guess?
