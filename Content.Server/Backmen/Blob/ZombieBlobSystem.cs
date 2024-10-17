@@ -172,6 +172,7 @@ public sealed class ZombieBlobSystem : EntitySystem
             var htn = EnsureComp<HTNComponent>(uid);
             htn.RootTask = new HTNCompoundTask() {Task = "SimpleHostileCompound"};
             htn.Blackboard.SetValue(NPCBlackboard.Owner, uid);
+            htn.Blackboard.SetValue(NPCBlackboard.NavBlob, true);
 
             if (!HasComp<ActorComponent>(component.BlobPodUid))
             {

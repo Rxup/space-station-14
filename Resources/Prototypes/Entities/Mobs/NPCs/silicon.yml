@@ -3,6 +3,14 @@
   abstract: true
   id: MobSiliconBase
   components:
+  - type: LanguageSpeaker
+    currentLanguage: Binary
+  - type: LanguageKnowledge #backmen: languages
+    speaks:
+    - Binary
+    understands:
+    - Binary
+    - TauCetiBasic
   - type: LagCompensation
   - type: Reactive
     groups:

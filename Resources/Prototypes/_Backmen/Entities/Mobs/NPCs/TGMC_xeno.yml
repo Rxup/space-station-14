@@ -46,15 +46,6 @@
   - type: Polymorphable
   - type: Buckle
   - type: Insulated
-  - type: LanguageSpeaker
-    currentLanguage: Xeno
-  - type: LanguageKnowledge #backmen: languages
-    speaks:
-    - Xeno
-    understands:
-    - Xeno
-  - type: TTS
-    voice: Xenia
   - type: Hands
     showInHands: true
   - type: MobState
@@ -157,6 +148,9 @@
   description: Молодой ксеноморф.
   parent: KsenosXenoBase
   components:
+  - type: ActionGrant
+    actions:
+    - ActionViewLaws
   - type: Sprite
     drawdepth: Mobs
     layers:
@@ -1773,6 +1767,14 @@
   description: На вид мерзкое.
   save: false
   components:
+  - type: LanguageSpeaker
+    currentLanguage: Xeno
+  - type: LanguageKnowledge #backmen: languages
+    speaks:
+    - Xeno
+    understands:
+    - Xeno
+    - TauCetiBasic
   - type: ContainerContainer
   - type: ActionsContainer
   - type: Actions
@@ -1810,7 +1812,7 @@
   #  softness: 5
   #  color: "#FF33FF"
   #  autoRot: true
-  - type: GhostTakeoverAvailable
+  #- type: GhostTakeoverAvailable
   - type: GhostRole
     allowMovement: false
     allowSpeech: false
@@ -1820,8 +1822,8 @@
     rules: "Вырасти в полноценного защитника улья."
     raffle:
       settings: default
-  - type: Polymorphable
-    innatePolymorphs: [ EggToLarva ]
+  - type: GhostRoleMobSpawner
+    prototype: KsenosXenoLarva
 
 
 # LOCATOR #

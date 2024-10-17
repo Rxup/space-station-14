@@ -45,6 +45,9 @@
     - type: HTN
       rootTask:
         task: BlobPodCompound
+      blackboard:
+        NavBlob: !type:Bool
+          true
     - type: BlobMob
     - type: BlobSpeak
     - type: LanguageSpeaker

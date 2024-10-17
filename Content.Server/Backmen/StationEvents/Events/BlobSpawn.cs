@@ -10,8 +10,10 @@ using Robust.Shared.Random;
 using Content.Server.StationEvents.Events;
 using Content.Shared.Backmen.Blob.Components;
 using Content.Shared.GameTicking.Components;
+using Content.Shared.Players;
 using Content.Shared.Station.Components;
 using Robust.Server.Player;
+using Robust.Shared.Player;
 
 namespace Content.Server.Backmen.StationEvents.Events;
 
@@ -82,5 +84,7 @@ public sealed class BlobSpawnRule : StationEventSystem<BlobSpawnRuleComponent>
         // Blob doesn't spawn when blob carrier was eaten.
         RemComp<FoodComponent>(carrier);
         RemComp<FelinidFoodComponent>(carrier);
+
+
     }
 }

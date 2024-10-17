@@ -16,6 +16,7 @@ using Content.Shared.Interaction.Components;
 using Content.Shared.Inventory;
 using Content.Shared.Mobs.Systems;
 using Content.Shared.Movement.Components;
+using Content.Shared.Movement.Systems;
 using Content.Shared.Rejuvenate;
 using Robust.Server.Audio;
 using Robust.Shared.Containers;
@@ -34,6 +35,7 @@ public sealed class BlobPodSystem : SharedBlobPodSystem
     [Dependency] private readonly ExplosionSystem _explosionSystem = default!;
     [Dependency] private readonly DamageableSystem _damageableSystem = default!;
     [Dependency] private readonly NPCSystem _npc = default!;
+    [Dependency] private readonly SharedMoverController _mover = default!;
 
     public override void Initialize()
     {
@@ -116,6 +118,7 @@ public sealed class BlobPodSystem : SharedBlobPodSystem
         if (HasComp<ActorComponent>(ent))
         {
             _npc.SleepNPC(target);
+            _mover.SetRelay(ent, target);
         }
 
         return true;
