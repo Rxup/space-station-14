@@ -6,3 +6,19 @@
   components:
     - type: Implanter
       implant: mantisImplant
+
+- type: entity
+  id: ChemicalsImplanter
+  parent: BaseImplantOnlyImplanter
+  suffix: Chemical
+  components:
+    - type: Implanter
+      implant: ChemicalImplant
+      
+- type: entity
+  id: StimulantsImplanter
+  parent: BaseImplantOnlyImplanterSyndi
+  suffix: Stimulants
+  components:
+    - type: Implanter
+      implant: StimulantsImplant
