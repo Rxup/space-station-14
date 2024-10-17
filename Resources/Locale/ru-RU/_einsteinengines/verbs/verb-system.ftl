@@ -1,0 +1,1 @@
+verb-categories-interaction = Взаимодействовать
