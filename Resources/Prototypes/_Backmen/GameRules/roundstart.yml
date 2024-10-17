@@ -4,13 +4,51 @@
   parent: BaseGameRule
   categories: [ HideSpawnMenu ]
   components:
-    - type: GameRule
-      minPlayers: 15
-    - type: FleshCultRule
-      faction: Flesh
+  - type: GameRule
+    minPlayers: 20
+  - type: FleshCultRule
+    faction: Flesh
+# Перенести в прототипы культ сложно из-за наличия Лидера,
+# так что пусть пока вот тут полежит заготовка
+#
+#  - type: AntagSelection
+#    selectionTime: PrePlayerSpawn
+#    definitions:
+#    - prefRoles: [ FleshCultistLeader ]
+#      fallbackRoles: [ FleshCultist ]
+#      max: 1
+#      components:
+#      - type: FleshCultist
+#      - type: NpcFactionMember
+#        factions:
+#        - Flesh
+#      mindRoles:
+#      - MindRoleFleshLeader
+#    - prefRoles: [ FleshCultist ]
+#      fallbackRoles: [ FleshCultistLeader ]
+#      max: 6
+#      playerRatio: 10
+#      components:
+#      - type: FleshCultist
+#      - type: NpcFactionMember
+#        factions:
+#        - Flesh
+#      lateJoinAdditional: true
+#      mindRoles:
+#      - MindRoleFlesh
+#      briefing:
+#        text: flesh-cult-role-greeting
+#        color: Plum
+#        #sound: #TODO: Flesh Cultist briefing TTS
 
 # Blob
-# TODO: rework this into 1 universal rule, smth like LoneOps and Nukeops
+- type: entity
+  id: BlobRule
+  parent: BaseGameRule
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: BlobRule
+
 - type: entity
   id: BlobGameMode
   parent: BaseGameRule
@@ -18,34 +56,84 @@
   components:
   - type: GameRule
     minPlayers: 15
-  - type: BlobGameRule
-
+    delay: # 7-10 minutes
+      min: 420
+      max: 600
+  - type: AntagSelection
+    definitions:
+    - prefRoles: [ Blob ]
+      max: 2
+      playerRatio: 40 #players = 2 blobs
+      allowNonHumans: true
+      blacklist:
+        components:
+        - AntagImmune
+      briefing:
+        text: blob-carrier-role-greeting
+        color: Plum
+        sound: /Audio/Backmen/Ambience/Antag/blob_start.ogg
+      mindRoles:
+      - MindRoleBlob
+ 
 - type: entity
-  id: Blob
+  id: BlobSpawn
   parent: BaseGameRule
   categories: [ HideSpawnMenu ]
   components:
-  - type: BlobRule
+  - type: StationEvent
+    weight: 15
+    duration: 1
+    earliestStart: 50
+    minimumPlayers: 20
+    maxOccurrences: 2
+  - type: BlobSpawnRule
+    carrierBlobProtos:
+    - SpawnPointGhostBlobRat
+    playersPerCarrierBlob: 30
+    maxCarrierBlob: 2
 
+# Vampire
+- type: entity
+  id: BaseVampiresGameRule
+  abstract: true
+  parent: BaseGameRule
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: BloodsuckerRule
+  - type: AntagObjectives
+    objectives:
+    - EscapeShuttleObjectiveBloodsucker
+    - BloodsuckerDrinkObjective
+    - BloodsuckerConvertObjective
+  - type: AntagSelection
+    definitions:
+    - prefRoles: [ Bloodsucker ]
+      max: 8
+      playerRatio: 10
+      blacklist:
+        components:
+        - AntagImmune
+      lateJoinAdditional: true
+      briefing:
+        text: vampire-role-greeting
+        color: Plum
+        sound: /Audio/Backmen/Ambience/Antag/vampier_start.ogg
+      mindRoles:
+      - MindRoleBloodsucker
+
+## Vampire Gamemode
 - type: entity
   id: VampiresGameRule
-  parent: BaseGameRule
+  parent: BaseVampiresGameRule
   categories: [ HideSpawnMenu ]
   components:
   - type: GameRule
-    minPlayers: 15
-  - type: BloodsuckerRule
+    minPlayers: 10
 
-- type: entity
-  id: VampireObjective
-  parent: BaseGameRule
-  categories: [ HideSpawnMenu ]
-  components:
-  - type: BloodsuckerObjective
-
+## Vampire Outbreak
 - type: entity
   id: VampireOutbreak
-  parent: BaseGameRule
+  parent: BaseVampiresGameRule
   categories: [ HideSpawnMenu ]
   components:
   - type: StationEvent
@@ -53,8 +141,8 @@
     minimumPlayers: 15
     weight: 5
     duration: 1
-  - type: BloodsuckerRule
 
+# Shipwrecked
 - type: entity
   id: Shipwrecked
   parent: BaseGameRule

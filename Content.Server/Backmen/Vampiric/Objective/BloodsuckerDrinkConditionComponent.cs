@@ -1,6 +1,4 @@
-﻿using Content.Shared.FixedPoint;
-
-namespace Content.Server.Backmen.Vampiric.Role;
+﻿namespace Content.Server.Backmen.Vampiric.Objective;
 
 [RegisterComponent]
 public sealed partial class BloodsuckerDrinkConditionComponent : Component
