@@ -44,16 +44,16 @@
     - id: MagazineLightRifle
     - id: MagazineLightRifle
 
-- type: listing
-  id: UplinkV31Bundle
-  name: набор "V31"
-  description: Основная винтовка вооруженных сил Сынов Марса, имеет реактивные патроны, эффективен против всего. В комплетке 3 магазина.
-  icon: { sprite: Backmen/Objects/Weapons/Gunsx64/Rifles/v31/big.rsi, state: icon }
-  productEntity: ClothingBackpackDuffelSyndicateFilledV31
-  cost:
-    Telecrystal: 20
-  categories:
-  - UplinkBundles
+#- type: listing
+#  id: UplinkV31Bundle
+#  name: набор "V31"
+#  description: Основная винтовка вооруженных сил Сынов Марса, имеет реактивные патроны, эффективен против всего. В комплетке 3 магазина.
+#  icon: { sprite: Backmen/Objects/Weapons/Gunsx64/Rifles/v31/big.rsi, state: icon }
+#  productEntity: ClothingBackpackDuffelSyndicateFilledV31
+#  cost:
+#    Telecrystal: 20
+#  categories:
+#  - UplinkBundles
 
 - type: entity
   parent: ClothingBackpackDuffelSyndicate
@@ -193,7 +193,7 @@
   icon: { sprite: Backmen/Objects/Weapons/Gunsx64/Pistols/deagle/big.rsi, state: icon }
   productEntity: WeaponPistolDEagle
   cost:
-    Telecrystal: 4
+    Telecrystal: 10
   categories:
   - UplinkWeaponry
 
@@ -257,16 +257,16 @@
     - id: GrenadeBlast
       amount: 4
 
-- type: listing
-  id: UplinkGrenadeLauncherM81Bundle
-  name: набор "M-81"
-  description: Однозарядный армейский штатный гранатомёт, используется пехотными подраздилениями для блокирывания зон и поддержки, имеет 6 гранат в комплекте
-  icon: { sprite: Backmen/Objects/Weapons/Gunsx64/Launchers/m81.rsi, state: base }
-  productEntity: ClothingBackpackDuffelSyndicateFilledM81
-  cost:
-    Telecrystal: 13
-  categories:
-  - UplinkBundles
+#- type: listing
+#  id: UplinkGrenadeLauncherM81Bundle
+#  name: набор "M-81"
+#  description: Однозарядный армейский штатный гранатомёт, используется пехотными подраздилениями для блокирывания зон и поддержки, имеет 6 гранат в комплекте
+#  icon: { sprite: Backmen/Objects/Weapons/Gunsx64/Launchers/m81.rsi, state: base }
+#  productEntity: ClothingBackpackDuffelSyndicateFilledM81
+#  cost:
+#    Telecrystal: 13
+#  categories:
+#  - UplinkBundles
 
 - type: entity
   parent: ClothingBackpackDuffelSyndicate
@@ -494,12 +494,10 @@
       - id: MagazineLightRiflePkBox # For RPD
         amount: 2
       - id: MagazinePistolSubMachineGun
-        amount: 2
+        amount: 4
       - id: MagazineLightRifle # For AKMS, AKSU and STG44
         amount: 3
       - id: MagazineRifleLightSniper # For Dragunov
-        amount: 1
-      - id: MagazineRifleRocket20 # For V31
         amount: 1
       - id: MagazineHeavyRifleBR64 # For BR64
         amount: 1
@@ -533,4 +531,4 @@
   cost:
     Telecrystal: 3
   categories:
-  - UplinkWearables
+  - UplinkBundles
