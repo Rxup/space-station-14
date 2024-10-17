@@ -1,8 +1,15 @@
-﻿using Content.Server.Backmen.Blob.NPC.BlobPod;
+﻿using Content.Server.Antag.Components;
+using Content.Server.Backmen.Blob.NPC.BlobPod;
+using Content.Server.Backmen.Cloning.Components;
+using Content.Server.Backmen.Language;
+using Content.Server.GameTicking;
+using Content.Server.Ghost.Roles.Components;
 using Content.Shared.Backmen.Blob.Components;
 using Content.Shared.Backmen.Language;
+using Content.Shared.Backmen.Language.Components;
 using Content.Shared.Backmen.Language.Systems;
 using Content.Shared.Destructible;
+using Content.Shared.Ghost.Roles.Components;
 using Robust.Client.UserInterface.RichText;
 using Robust.Shared.GameObjects;
 using Robust.Shared.Prototypes;
@@ -13,6 +20,66 @@ namespace Content.IntegrationTests.Tests.Backmen.Language;
 [TestOf(typeof(SharedLanguageSystem))]
 public sealed class LanguageTest
 {
+    [Test]
+    public async Task RoleCanUnderstandTest()
+    {
+        await using var pair = await PoolManager.GetServerClient(new PoolSettings
+        {
+            Dirty = false,
+            DummyTicker = false,
+            Connected = true
+        });
+
+        var server = pair.Server;
+        var client = pair.Client;
+
+        var entMan = server.EntMan;
+        var ticker = server.System<GameTicker>();
+        var sys = (LanguageSystem)server.System<SharedLanguageSystem>();
+        var proto = server.ResolveDependency<IPrototypeManager>();
+        var compFactory = server.ResolveDependency<IComponentFactory>();
+
+        var testMap = await pair.CreateTestMap();
+
+        Assert.That(ticker.RunLevel, Is.EqualTo(GameRunLevel.InRound));
+
+        await server.WaitAssertion(() =>
+        {
+            foreach (var entProto in proto.EnumeratePrototypes<EntityPrototype>())
+            {
+                if(entProto.ID is "GhostRoleTestEntity" or "SpawnPointReturnToMenu")
+                    continue;
+
+                EntityUid ent;
+                if (
+                    entProto.TryGetComponent<GhostRoleAntagSpawnerComponent>(out _, compFactory) ||
+                    entProto.TryGetComponent<CloningAppearanceComponent>(out _, compFactory)
+                    )
+                {
+                    continue;
+                }
+                if (entProto.TryGetComponent<GhostRoleMobSpawnerComponent>(out var ghostRoleMobSpawnerComponent, compFactory))
+                {
+                    ent = entMan.Spawn(ghostRoleMobSpawnerComponent.Prototype, testMap.MapCoords);
+                }
+                else if (entProto.TryGetComponent<GhostRoleComponent>(out var ghostRoleComponent, compFactory))
+                {
+                    ent = entMan.Spawn(entProto.ID, testMap.MapCoords);
+                }
+                else
+                {
+                    continue;
+                }
+                Assert.That(entMan.HasComponent<LanguageSpeakerComponent>(ent), Is.True, $"{entMan.ToPrettyString(ent)} does not have a language speaker component");
+                Assert.That(entMan.HasComponent<LanguageKnowledgeComponent>(ent), Is.True, $"{entMan.ToPrettyString(ent)} does not have a language knowledge");
+                Assert.That(sys.CanUnderstand(ent, "TauCetiBasic"), $"{entMan.ToPrettyString(ent)} does not understand TauCetiBasic");
+                entMan.DeleteEntity(ent);
+            }
+        });
+
+        await pair.CleanReturnAsync();
+    }
+
     [Test]
     public async Task FontsTest()
     {

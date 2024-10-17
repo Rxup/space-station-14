@@ -249,10 +249,8 @@
         - id: MagazinePulseRifle
           amount: 9
         - id: WeaponShotgunAA12
-        - id: MagazineShotgunFRAG12
-          amount: 2
         - id: MagazineShotgunMagnum12
-          amount: 4
+          amount: 6
 
 - type: entity
   categories: [ HideSpawnMenu ]
