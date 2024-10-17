@@ -95,7 +95,7 @@ public sealed class BkmVampireLevelingSystem : EntitySystem
 
         _damageableSystem.TryChangeDamage(args.Target.Value, damage, true, true);
 
-        _bloodSucker.ConvertToVampire(args.Target.Value);
+        _bloodSucker.MakeVampire(args.Target.Value);
         _stun.TryKnockdown(args.Target.Value, TimeSpan.FromSeconds(30), true);
         _stun.TryParalyze(args.Target.Value, TimeSpan.FromSeconds(30), true);
 
