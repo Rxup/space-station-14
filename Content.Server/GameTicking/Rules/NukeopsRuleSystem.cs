@@ -491,7 +491,8 @@ public sealed class NukeopsRuleSystem : GameRuleSystem<NukeopsRuleComponent>
     private void OnAfterAntagEntSelected(Entity<NukeopsRuleComponent> ent, ref AfterAntagEntitySelectedEvent args)
     {
         var target = (ent.Comp.TargetStation is not null) ? Name(ent.Comp.TargetStation.Value) : "the target";
-        RemComp<PacifiedComponent>(args.EntityUid); // backmen-pacified: Allow dionas nukes to harm
+
+        RemComp<PacifiedComponent>(args.EntityUid); // Corvax-DionaPacifist: Allow dionas nukes to harm
         _antag.SendBriefing(args.Session,
             Loc.GetString("nukeops-welcome",
                 ("station", target),
