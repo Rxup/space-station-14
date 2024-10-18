@@ -9,7 +9,7 @@ namespace Content.Server.Corvax.HiddenDescription;
 public sealed partial class HiddenDescriptionSystem : EntitySystem
 {
     [Dependency] private readonly MindSystem _mind = default!;
-    [Dependency] private readonly EntityWhitelistSystem _whitelistSystem = default!;
+    [Dependency] private readonly EntityWhitelistSystem _whitelis = default!;
     [Dependency] private readonly SharedRoleSystem _roles = default!;
 
     public override void Initialize()
@@ -22,13 +22,18 @@ public sealed partial class HiddenDescriptionSystem : EntitySystem
     private void OnExamine(Entity<HiddenDescriptionComponent> hiddenDesc, ref ExaminedEvent args)
     {
         _mind.TryGetMind(args.Examiner, out var mindId, out var mindComponent);
-        _roles.MindHasRole<JobRoleComponent>(mindId, out var job);
 
         foreach (var item in hiddenDesc.Comp.Entries)
         {
-            var isJobAllow = job?.Comp.JobPrototype != null && item.JobRequired.Contains(job.Value.Comp.JobPrototype.Value);
-            var isMindWhitelistPassed = _whitelistSystem.IsValid(item.WhitelistMind, mindId);
-            var isBodyWhitelistPassed = _whitelistSystem.IsValid(item.WhitelistMind, args.Examiner);
+            var isJobAllow = false;
+            if (_roles.MindHasRole<JobRoleComponent>((mindId, mindComponent), out var jobRole))
+            {
+                isJobAllow = jobRole.Value.Comp1.JobPrototype != null &&
+                             item.JobRequired.Contains(jobRole.Value.Comp1.JobPrototype.Value);
+            }
+
+            var isMindWhitelistPassed = _whitelis.IsValid(item.WhitelistMind, mindId);
+            var isBodyWhitelistPassed = _whitelis.IsValid(item.WhitelistMind, args.Examiner);
             var passed = item.NeedAllCheck
                 ? isMindWhitelistPassed && isBodyWhitelistPassed && isJobAllow
                 : isMindWhitelistPassed || isBodyWhitelistPassed || isJobAllow;

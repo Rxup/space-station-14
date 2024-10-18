@@ -313,9 +313,9 @@ public sealed class ShipVsShipGame : GameRuleSystem<ShipVsShipGameComponent>
 
                 var job =  RobustRandom.Pick(rule.OverflowJobs[team]);
                 _roleSystem.MindAddRole(newMind, job.Id);
-                _roleSystem.MindHasRole<JobRoleComponent>(newMind, out var jobRole);
+                _roleSystem.MindHasRole<JobRoleComponent>(newMind!, out var jobRole);
 
-                var mobMaybe = _stationSpawning.SpawnPlayerCharacterOnStation(rule.Team[team], jobRole?.Comp.JobPrototype, ev.Profile);
+                var mobMaybe = _stationSpawning.SpawnPlayerCharacterOnStation(rule.Team[team], jobRole?.Comp1.JobPrototype, ev.Profile);
                 DebugTools.AssertNotNull(mobMaybe);
                 var mob = mobMaybe!.Value;
                 SetFlag(mob, team);

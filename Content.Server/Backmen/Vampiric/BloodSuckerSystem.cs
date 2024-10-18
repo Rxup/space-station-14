@@ -353,9 +353,9 @@ public sealed class BloodSuckerSystem : SharedBloodSuckerSystem
         {
             EnsureComp<BloodSuckedComponent>(victim).BloodSuckerMindId = bloodsuckermidId;
 
-            if (_roleSystem.MindHasRole(bloodsuckermidId, out _, out Entity<VampireRoleComponent>? role))
+            if (_roleSystem.MindHasRole<VampireRoleComponent>(bloodsuckermidId, out var role))
             {
-                var vpm = role.Value.Comp;
+                var vpm = role.Value.Comp2;
                 vpm.Drink += unitsToDrain;
 
                 if (TryComp<BkmVampireComponent>(bloodsucker, out var bkmVampireComponent))

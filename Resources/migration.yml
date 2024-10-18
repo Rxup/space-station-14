@@ -609,3 +609,6 @@ GunSafeLaserCarbine: GunSafeLaserCarbineUEG
 ShotGunCabinetFilled: ShotGunCabinetFilledBackmen
 ShotGunCabinetFilledOpen: ShotGunCabinetFilledOpenBackmen
 
+# 2024-10-05 - Corvax
+SheetPrinter: SheetPaper
+SheetPrinter1: SheetPaper1

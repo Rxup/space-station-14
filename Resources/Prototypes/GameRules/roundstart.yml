@@ -252,7 +252,7 @@
       - type: ZombifyOnDeath
       - type: IncurableZombie
       - type: InitialInfected
-      # Corvax-Не знаю какой тег, морти поправь
+      # Corvax-MRP
       - type: NpcFactionMember
         addFriendlyFactions:
         - Zombie

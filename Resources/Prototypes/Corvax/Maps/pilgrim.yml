@@ -72,3 +72,20 @@
             Brigmedic: [ 0, 1 ] # backmen-Brigmedic
             #BKBPLATech: [0, 3] # backmen-BPLA-Silicons
             #BKBPLAMED: [0, 3] # backmen-BPLAMED-Silicons
+        - type: StationGoal
+          goals:
+          - Singularity
+          - SolarPanels
+          - Artifacts
+          - Bank
+          - Zoo
+          - MiningOutpost
+          - Tesla
+          - SecurityTraining
+          - ShuttleMed
+          - ShuttleSec
+          - ShuttleRnd
+          - ShuttleSrv
+          - ShuttleEmergency
+          - Theatre
+          - Botany

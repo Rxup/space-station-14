@@ -24,8 +24,8 @@
       allowNonHumans: true
       multiAntagSetting: NotExclusive
       startingGear: ThiefGear
-#      components:
-#      - type: Pacified # Corvax
+#      components: # Corvax-MRP
+#      - type: Pacified
       mindRoles:
       - MindRoleThief
       briefing:

@@ -100,12 +100,11 @@ public sealed class BloodsuckerObjectiveSystem : EntitySystem
 
     private void OnGetDrinkProgress(Entity<BloodsuckerDrinkConditionComponent> ent, ref ObjectiveGetProgressEvent args)
     {
-        if (args.Mind.OwnedEntity == null || !_roleSystem.MindHasRole(args.MindId, out _, out Entity<VampireRoleComponent>? role))
+        if (args.Mind.OwnedEntity == null || !_roleSystem.MindHasRole<VampireRoleComponent>(args.MindId, out var role))
         {
             args.Progress = 0;
             return;
         }
-
-        args.Progress = role.Value.Comp.Drink / ent.Comp.Goal;
+        args.Progress = role.Value.Comp2.Drink / ent.Comp.Goal;
     }
 }

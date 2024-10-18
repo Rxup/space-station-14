@@ -221,7 +221,6 @@
         # backmen blob-config-end
         - type: StationGoal
           goals:
-            - Shuttle
             - Singularity
             - SolarPanels
             - Zoo
