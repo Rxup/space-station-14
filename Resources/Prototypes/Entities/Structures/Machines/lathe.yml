@@ -357,6 +357,7 @@
       - FauxTileAstroSnow
       - OreBagOfHolding
       - DeviceQuantumSpinInverter
+      - EnergyDomeDirectionalTurtle # cats-shield energy_barrier
 # start-backmen: languages
       - CanilunztTranslator
       - BubblishTranslator

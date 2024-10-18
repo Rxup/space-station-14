@@ -21,6 +21,7 @@ using Content.Shared.Weapons.Melee.Events;
 using Content.Shared.Weapons.Ranged.Components;
 using Content.Shared.Weapons.Ranged.Events;
 using Content.Shared.Weapons.Ranged.Systems;
+using Content.Shared.Tag; //cats-shield
 using Robust.Shared.Map;
 using Robust.Shared.Physics;
 using Robust.Shared.Physics.Systems;
@@ -47,6 +48,7 @@ public abstract class SharedMeleeWeaponSystem : EntitySystem
     [Dependency] private   readonly SharedPhysicsSystem     _physics         = default!;
     [Dependency] private   readonly IPrototypeManager       _protoManager    = default!;
     [Dependency] private   readonly StaminaSystem           _stamina         = default!;
+    [Dependency] private   readonly TagSystem               _tagSystem       = default!; // cats-shield
 
     private const int AttackMask = (int) (CollisionGroup.MobMask | CollisionGroup.Opaque);
 
@@ -564,6 +566,8 @@ public abstract class SharedMeleeWeaponSystem : EntitySystem
         var damage = GetDamage(meleeUid, user, component);
         var entities = GetEntityList(ev.Entities);
 
+        entities = entities.Where(e => !_tagSystem.HasTag(e, "IgnoreMelee")).ToList(); // cats-shield
+
         if (entities.Count == 0)
         {
             if (meleeUid == user)
@@ -620,6 +624,11 @@ public abstract class SharedMeleeWeaponSystem : EntitySystem
             if (entity == user ||
                 !damageQuery.HasComponent(entity))
                 continue;
+
+            //cats-shield start
+            if (_tagSystem.HasTag(entity, "IgnoreMelee"))
+                continue;
+            //cats-shield end
 
             targets.Add(entity);
         }
@@ -714,14 +723,12 @@ public abstract class SharedMeleeWeaponSystem : EntitySystem
         for (var i = 0; i < increments; i++)
         {
             var castAngle = new Angle(baseAngle + increment * i);
-            var res = _physics.IntersectRay(mapId,
-                new CollisionRay(position,
-                    castAngle.ToWorldVec(),
-                    AttackMask),
-                range,
-                ignore,
-                false)
+            //cats-shield end
+            var ray = new CollisionRay(position, castAngle.ToWorldVec(), AttackMask);
+            var res = _physics.IntersectRay(mapId, ray, range, ignore, false)
+                .Where(x => !_tagSystem.HasTag(x.HitEntity, "IgnoreMelee"))
                 .ToList();
+            //cats-shield end
 
             if (res.Count != 0)
             {

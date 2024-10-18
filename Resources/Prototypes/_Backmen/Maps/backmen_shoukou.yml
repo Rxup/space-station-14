@@ -50,6 +50,7 @@
             SecurityCadet: [ 1, 3 ]
             Brigmedic: [ 1, 1 ]
             Prisoner: [ 2, 2 ]
+            BlueShield: [1, 1] # backmen-BlueShield
           #Science
             ResearchDirector: [ 1, 1 ]
             Scientist: [ 2, 3 ]

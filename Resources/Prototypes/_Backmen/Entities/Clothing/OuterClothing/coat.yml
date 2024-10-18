@@ -162,6 +162,15 @@
     sprite: Backmen/Clothing/OuterClothing/Coats/bluecoat.rsi
   - type: Clothing
     sprite: Backmen/Clothing/OuterClothing/Coats/bluecoat.rsi
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.7
+        Slash: 0.7
+        Piercing: 0.7
+        Heat: 0.7
+        Caustic: 0.75
+        Stun: 0.4
 
 - type: entity
   parent: ClothingOuterCoatArmorBlueShield
