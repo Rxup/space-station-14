@@ -23,5 +23,5 @@ store-caregory-spellbook-equipment = Волшебное снаряжение
 store-caregory-spellbook-events = Заклинания событий
 # Changeling
 store-ling-category-combat = Бой
-store-ling-category-sting = Ужаливания
+store-ling-category-sting = Жала
 store-ling-category-utility = Утилиты
