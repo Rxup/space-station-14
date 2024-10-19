@@ -1,5 +1,7 @@
 ﻿using Content.Shared.Backmen.Blob.Components;
+using Content.Shared.Interaction;
 using Content.Shared.Popups;
+using Content.Shared.UserInterface;
 using Content.Shared.Weapons.Ranged.Events;
 
 namespace Content.Shared.Backmen.Blob;
@@ -13,6 +15,19 @@ public abstract class SharedZombieBlobSystem : EntitySystem
         base.Initialize();
 
         SubscribeLocalEvent<ZombieBlobComponent, ShotAttemptedEvent>(OnAttemptShoot);
+        SubscribeLocalEvent<BoundUserInterfaceMessageAttempt>(OnBoundUserInterface, after: [typeof(SharedInteractionSystem)]);
+    }
+
+    private void OnBoundUserInterface(BoundUserInterfaceMessageAttempt args)
+    {
+        if(
+            args.Cancelled ||
+            !TryComp<ActivatableUIComponent>(args.Target, out var uiComp) ||
+            !HasComp<ZombieBlobComponent>(args.Actor))
+            return;
+
+        if(uiComp.RequiresComplex)
+            args.Cancel();
     }
 
     private void OnAttemptShoot(Entity<ZombieBlobComponent> ent, ref ShotAttemptedEvent args)

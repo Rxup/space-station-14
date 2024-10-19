@@ -47,6 +47,7 @@ public sealed class ZombieBlobSystem : SharedZombieBlobSystem
     [Dependency] private readonly SharedPhysicsSystem _physics = default!;
     [Dependency] private readonly TriggerSystem _trigger = default!;
     [Dependency] private readonly InventorySystem _inventory = default!;
+    [Dependency] private readonly SharedUserInterfaceSystem _ui = default!;
 
     private const int ClimbingCollisionGroup = (int) (CollisionGroup.BlobImpassable);
 
@@ -121,6 +122,7 @@ public sealed class ZombieBlobSystem : SharedZombieBlobSystem
 
     private void OnStartup(EntityUid uid, ZombieBlobComponent component, ComponentStartup args)
     {
+        _ui.CloseUis(uid);
         _inventory.TryUnequip(uid, "underpants", true, true);
         _inventory.TryUnequip(uid, "neck", true, true);
         _inventory.TryUnequip(uid, "mask", true, true);
@@ -199,6 +201,7 @@ public sealed class ZombieBlobSystem : SharedZombieBlobSystem
         if (TerminatingOrDeleted(uid))
             return;
 
+        _ui.CloseUis(uid);
         RemComp<BlobSpeakComponent>(uid);
         RemComp<BlobMobComponent>(uid);
         RemComp<HTNComponent>(uid);
