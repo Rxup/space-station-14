@@ -927,3 +927,11 @@
     damage:
       groups:
         Brute: 1
+  - type: LanguageSpeaker
+    currentLanguage: Dog
+  - type: LanguageKnowledge #backmen: languages
+    speaks:
+    - Dog
+    understands:
+    - Dog
+    - TauCetiBasic

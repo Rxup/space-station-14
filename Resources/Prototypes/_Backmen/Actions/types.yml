@@ -190,3 +190,12 @@
       event: !type:HairballActionEvent
       charges: 1
       useDelay: 30
+
+- type: entity
+  id: ActionToggleDome
+  name: Toggle energy dome
+  description: Turn the energy barrier on or off.
+  components:
+  - type: InstantAction
+    icon: { sprite: Objects/Weapons/Melee/e_shield.rsi, state: eshield-on }
+    event: !type:ToggleActionEvent

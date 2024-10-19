@@ -60,6 +60,7 @@
     - Mouse
     understands:
     - Mouse
+    - TauCetiBasic
   - type: MeleeWeapon
     soundHit:
       path: /Audio/Effects/bite.ogg
@@ -544,6 +545,7 @@
     - Moffic
     understands:
     - Moffic
+    - TauCetiBasic
   - type: ZombieAccentOverride
     accent: zombieMoth
   - type: Vocal

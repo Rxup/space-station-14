@@ -35,11 +35,11 @@
     color: "#FF0000"
   - type: BlockMovement
   - type: LanguageSpeaker
-    currentLanguage: TauCetiBasic
-  - type: LanguageKnowledge
+    currentLanguage: Nekomimetic
+  - type: LanguageKnowledge #backmen: languages
     speaks:
-    - TauCetiBasic
     - Nekomimetic
+    - TauCetiBasic
     understands:
-    - TauCetiBasic
     - Nekomimetic
+    - TauCetiBasic

@@ -127,6 +127,16 @@
     isToggle: true
     color: "#808080"
     playSoundOn: false
+  - type: LanguageSpeaker
+    currentLanguage: Xeno
+  - type: LanguageKnowledge #backmen: languages
+    speaks:
+    - Xeno
+    understands:
+    - Xeno
+    - TauCetiBasic
+  - type: TTS
+    voice: Xenia
 
 - type: entity
   name: praetorian

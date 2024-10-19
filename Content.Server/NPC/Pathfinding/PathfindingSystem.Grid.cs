@@ -514,6 +514,13 @@ public sealed partial class PathfindingSystem
                             if (!colliding)
                                 continue;
 
+                            // start-backmen: blob
+                            if (_tilesQuery.HasComponent(ent))
+                            {
+                                flags |= PathfindingBreadcrumbFlag.Blob;
+                            }
+                            // end-backmen: blob
+
                             if (_accessQuery.HasComponent(ent))
                             {
                                 flags |= PathfindingBreadcrumbFlag.Access;

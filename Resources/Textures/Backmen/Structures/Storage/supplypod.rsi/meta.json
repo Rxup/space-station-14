@@ -16,6 +16,33 @@
     },
     {
       "name": "supplypod_open"
+    },
+    {
+      "name": "missilepod"
+    },
+    {
+      "name": "missilepod_falling"
+    },
+    {
+      "name": "missilepod_door"
+    },
+    {
+      "name": "missilepod_open"
+    },
+    {
+      "name": "syndiepod"
+    },
+    {
+      "name": "syndiepod_falling"
+    },
+    {
+      "name": "syndiepod_door"
+    },
+    {
+      "name": "syndiepod_open"
+    },
+    {
+      "name": "syndicate"
     }
   ]
 }
