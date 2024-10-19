@@ -1,15 +1,3 @@
-
-- type: entity
-  noSpawn: true
-  parent: ClothingBackpackSecurity
-  id: ClothingBackpackWardenFilled
-  components:
-  - type: StorageFill
-    contents:
-      - id: BoxSurvivalSecurity
-      - id: Flash
-      - id: HandHeldCameras
-
 - type: entity
   parent: ClothingBackpack
   id: ClothingBackpackPlagueDoctorFilled
