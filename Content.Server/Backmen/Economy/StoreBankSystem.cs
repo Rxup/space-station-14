@@ -7,6 +7,7 @@ using Content.Shared.DoAfter;
 using Content.Shared.Emag.Systems;
 using Content.Shared.Interaction;
 using Content.Shared.Popups;
+using Content.Shared.Store.Components;
 using Content.Shared.VendingMachines;
 using Content.Shared.Wires;
 using Robust.Shared.Audio;
@@ -54,8 +55,8 @@ public sealed class StoreBankSystem : EntitySystem
             return;
 
         //var _category = category?.ToArray() ?? Array.Empty<string>();
-        foreach (var storeComponentListing in storeComponent.Listings.Where(x =>
-                     storeComponent.Categories.Any(x.Categories.Contains)))
+        foreach (var storeComponentListing in storeComponent.FullListingsCatalog.Where(x =>
+                     storeComponent.Categories.Any(z=>x.Categories.Contains(z))))
         {
             var limit = storeComponentListing?.Conditions?.OfType<ListingLimitedStockCondition>().FirstOrDefault();
             if ((limit == null && category != null) || storeComponentListing == null)
@@ -126,7 +127,7 @@ public sealed class StoreBankSystem : EntitySystem
         EntityUid user,
         EntityUid target)
     {
-        if (!component.CanRestock.Any(machineComponent.Categories.Contains))
+        if (!component.CanRestock.Any(x=>machineComponent.Categories.Contains(x)))
         {
             _popup.PopupCursor(Loc.GetString("vending-machine-restock-invalid-inventory", ("this", uid), ("user", user),
                 ("target", target)), user);
@@ -157,8 +158,7 @@ public sealed class StoreBankSystem : EntitySystem
             new RestockDoAfterEvent(), target,
             target: target, used: uid)
         {
-            BreakOnTargetMove = true,
-            BreakOnUserMove = true,
+            BreakOnMove = true,
             BreakOnDamage = true,
             NeedHand = true
         };

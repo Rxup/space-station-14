@@ -1,0 +1,13 @@
+- type: language
+  id: Snake
+  speech:
+    fontId: Monospace
+  obfuscation:
+    !type:SyllableObfuscation
+    minSyllables: 1
+    maxSyllables: 3
+    replacement:
+    - хсс
+    - иисс
+    - сс
+    - ис

@@ -23,6 +23,7 @@
             <Control/>
         </BoxContainer>
         <BoxContainer Name="VoteMenu" Access="Public" Margin="0 10 0 10" Orientation="Vertical"/>
+        <BoxContainer Name="RollerMenu" Access="Public" Margin="0 10 0 10" Orientation="Vertical"/> <!-- backmen: GhostRoller -->
         <actions:ActionsBar Name="Actions" Access="Protected" />
     </BoxContainer>
     <widgets:GhostGui Name="Ghost" Access="Protected" />

@@ -10,6 +10,11 @@
     - Flesh
     - Revolutionary
     - SuperZloy
+    - Spanish
+    - Britan
+    - SpecialForce
+    - CombineForce
+    - CentralCommand
 
 - type: npcFaction
   id: NanoTrasen
@@ -23,6 +28,9 @@
   - Revolutionary
   - MalfunctioningRobot
   - SuperZloy
+  - Britan
+  - SpecialForce
+  - CombineForce
 
 - type: npcFaction
   id: Mouse
@@ -42,6 +50,8 @@
   - Blob
   - Flesh
   - SuperZloy
+  - SpecialForce
+  - CombineForce
 
 - type: npcFaction
   id: SimpleHostile
@@ -55,6 +65,11 @@
   - Flesh
   - Revolutionary
   - SuperZloy
+  - Spanish
+  - Britan
+  - SpecialForce
+  - CombineForce
+  - CentralCommand
 
 - type: npcFaction
   id: SimpleNeutral
@@ -70,6 +85,10 @@
   - Blob
   - Flesh
   - SuperZloy
+  - Spanish
+  - SpecialForce
+  - CombineForce
+  - CentralCommand
 
 - type: npcFaction
   id: Xeno
@@ -83,6 +102,11 @@
   - Flesh
   - Revolutionary
   - SuperZloy
+  - Spanish
+  - Britan
+  - SpecialForce
+  - CombineForce
+  - CentralCommand
 
 - type: npcFaction
   id: Zombie
@@ -96,9 +120,12 @@
   - Blob
   - Flesh
   - SuperZloy
-
-
   - Revolutionary
+  - Spanish
+  - Britan
+  - SpecialForce
+  - CombineForce
+  - CentralCommand
 
 - type: npcFaction
   id: Revolutionary
@@ -111,3 +138,7 @@
   - Blob
   - Flesh
   - SuperZloy
+  - Spanish
+  - SpecialForce
+  - CombineForce
+  - CentralCommand

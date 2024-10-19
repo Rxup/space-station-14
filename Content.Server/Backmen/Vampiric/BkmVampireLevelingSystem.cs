@@ -10,6 +10,7 @@ using Content.Shared.Actions;
 using Content.Shared.Administration.Logs;
 using Content.Shared.Backmen.Abilities.Psionics;
 using Content.Shared.Backmen.Vampiric;
+using Content.Shared.Backmen.Vampiric.Components;
 using Content.Shared.Damage;
 using Content.Shared.Database;
 using Content.Shared.DoAfter;
@@ -22,6 +23,7 @@ using Content.Shared.Nutrition.EntitySystems;
 using Content.Shared.Polymorph;
 using Content.Shared.Popups;
 using Content.Shared.Slippery;
+using Content.Shared.Store.Components;
 using Content.Shared.Stunnable;
 using Robust.Shared.Audio;
 using Robust.Shared.Audio.Systems;
@@ -93,7 +95,7 @@ public sealed class BkmVampireLevelingSystem : EntitySystem
 
         _damageableSystem.TryChangeDamage(args.Target.Value, damage, true, true);
 
-        _bloodSucker.ConvertToVampire(args.Target.Value);
+        _bloodSucker.MakeVampire(args.Target.Value);
         _stun.TryKnockdown(args.Target.Value, TimeSpan.FromSeconds(30), true);
         _stun.TryParalyze(args.Target.Value, TimeSpan.FromSeconds(30), true);
 
@@ -140,12 +142,11 @@ public sealed class BkmVampireLevelingSystem : EntitySystem
         _doAfterSystem.TryStartDoAfter(new DoAfterArgs(EntityManager, ent, TimeSpan.FromSeconds(10),
             new InnateNewVampierDoAfterEvent(), ent, target: args.Target, used: ent)
         {
-            BreakOnUserMove = true,
             BreakOnDamage = true,
             NeedHand = true,
             RequireCanInteract = true,
             BreakOnHandChange = true,
-            BreakOnTargetMove = true,
+            BreakOnMove = true,
             BreakOnWeightlessMove = true
         });
 

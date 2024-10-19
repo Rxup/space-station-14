@@ -18,7 +18,7 @@
     Drink:
       effects:
       - !type:SatiateThirst
-        factor: 1.5
+        factor: 1.0
         conditions:
           - !type:OrganType
             type: Human
@@ -49,18 +49,29 @@
     Food:
       effects:
         - !type:AdjustReagent
+          conditions:
+          - !type:OrganType
+            type: Vampiric
+            shouldHave: false
           reagent: UncookedAnimalProteins
+          amount: 0.1
+        - !type:AdjustReagent
+          conditions:
+          - !type:OrganType
+            type: Vampiric
+          reagent: Protein
           amount: 0.5
     Medicine:
       effects:
       - !type:HealthChange
         conditions:
         - !type:OrganType
-          type: Bloodsucker
+          type: Vampiric
         damage:
           groups:
             Brute: -3
             Burn: -1.25
+            Airloss: -3
   plantMetabolism:
     - !type:PlantAdjustWater
       amount: 0.5
@@ -142,7 +153,7 @@
       # Delicious!
       effects:
       - !type:SatiateHunger
-        factor: 1.5
+        factor: 1
         conditions:
           - !type:OrganType
             type: Vampiric
@@ -179,11 +190,41 @@
           conditions:
             - !type:OrganType
               type: Vampiric
+        - !type:AdjustReagent
           reagent: Water
           amount: 0.15
+          conditions:
+            - !type:OrganType
+              type: Vampiric
   plantMetabolism:
     - !type:PlantAdjustWater
       amount: 0.5
+  footstepSound:
+    collection: FootstepBlood
+    params:
+      volume: 6
+
+- type: reagent
+  id: Sap
+  name: reagent-name-sap
+  group: Biological
+  desc: reagent-desc-sap
+  flavor: sweet
+  color: "#cd7314"
+  recognizable: true
+  physicalDesc: reagent-physical-desc-sticky
+  slippery: false
+  viscosity: 0.10
+  tileReactions:
+    - !type:SpillTileReaction
+  metabolisms:
+    Food:
+      # Sweet!
+      effects:
+      - !type:SatiateHunger
+        factor: 1
+      - !type:SatiateThirst
+        factor: 1
   footstepSound:
     collection: FootstepBlood
     params:
@@ -264,6 +305,8 @@
             Toxin: -2
           types:
             Bloodloss: -5
+      - !type:ModifyBleedAmount
+        amount: -1.5
   # Just in case you REALLY want to water your plants
   plantMetabolism:
   - !type:PlantAdjustWater
@@ -308,3 +351,34 @@
     collection: FootstepBlood
     params:
       volume: 6
+  reactiveEffects:
+    Acidic:
+      methods: [ Touch ]
+      effects:
+      - !type:ChemMiasmaPoolSource
+        conditions:
+        - !type:ReagentThreshold
+          min: 1
+
+- type: reagent
+  id: GreyMatter
+  name: reagent-name-grey-matter
+  group: Biological
+  desc: reagent-desc-grey-matter
+  physicalDesc: reagent-physical-desc-neural
+  flavor: mindful
+  color: "#C584B8"
+  slippery: false
+  metabolisms:
+    Drink:
+      effects:
+      - !type:SatiateHunger
+        factor: 1.5
+    Poison:
+      effects:
+      - !type:HealthChange
+        damage:
+          types:
+            Cellular: 2
+
+

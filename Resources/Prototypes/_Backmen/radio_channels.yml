@@ -1,0 +1,104 @@
+- type: radioChannel
+  id: CSH
+  name: bkm-radio-csh
+  keycode: 'в'
+  frequency: 8118
+  color: "#8f09b0"
+  longRange: true
+
+- type: radioChannel
+  id: Fleet
+  name: bkm-radio-fleet
+  keycode: 'х'
+  frequency: 8119
+  color: "#006400"
+  longRange: true
+
+- type: radioChannel
+  id: Flesh
+  name: bkm-radio-flesh
+  keycode: 'ы'
+  frequency: 8120
+  color: "#cf1b48"
+  longRange: true
+
+- type: radioChannel
+  id: UEG
+  name: bkm-radio-UEG
+  keycode: 'з'
+  frequency: 8121
+  color: "#228B22"
+  longRange: true
+
+- type: radioChannel
+  id: AID
+  name: bkm-radio-AID
+  keycode: 'ж'
+  frequency: 1301
+  color: "#aae8f2"
+  longRange: true
+
+- type: radioChannel
+  id: AIMALF
+  name: bkm-radio-AIMALF
+  keycode: 'б'
+  frequency: 1300
+  color: "#c90000"
+  longRange: true
+
+- type: radioChannel
+  id: CentComOBR
+  name: bkm-radio-CentComOBR
+  keycode: '='
+  frequency: 1345
+  color: "#3c87e8"
+  longRange: true
+
+- type: radioChannel
+  id: CentComOBREPS11
+  name: bkm-radio-CentComOBREPS11
+  keycode: 'э'
+  frequency: 1344
+  color: "#3c87e8"
+  longRange: true
+
+- type: radioChannel
+  id: CentComOBRSR6
+  name: bkm-radio-CentComOBRSR6
+  keycode: 'ъ'
+  frequency: 1342
+  color: "#3c87e8"
+  longRange: true
+
+- type: radioChannel
+  id: Rebels
+  name: bkm-radio-Rebels
+  keycode: 'ь'
+  frequency: 1245
+  color: "#fbff2b"
+  longRange: true
+
+- type: radioChannel
+  id: CentComDeath
+  name: bkm-radio-CentComDeath
+  keycode: '-'
+  frequency: 1341
+  color: "#727273"
+  longRange: true
+
+
+- type: radioChannel
+  id: Hivemind
+  name: bkm-radio-Hivemind
+  keycode: 'у'
+  frequency: 8888
+  color: "#800080"
+  longRange: true
+
+- type: radioChannel
+  id: Changeling
+  name: chat-radio-hivemind
+  keycode: 'г'
+  frequency: 19840
+  color: "#e36b00"
+  longRange: true

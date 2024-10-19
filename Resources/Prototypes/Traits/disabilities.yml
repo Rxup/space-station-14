@@ -3,6 +3,7 @@
   name: trait-blindness-name
   description: trait-blindness-desc
   traitGear: WhiteCane
+  category: Disabilities
   whitelist:
     components:
       - Blindable
@@ -15,6 +16,24 @@
     - type: PermanentBlindness
 
 - type: trait
+  id: PoorVision
+  name: trait-poor-vision-name
+  description: trait-poor-vision-desc
+  traitGear: ClothingEyesGlasses
+  category: Disabilities
+  blacklist:
+    components:
+    - BSSDrone #backmen: bssdrone
+    - StationAI # backmen: AI
+    - BorgChassis
+  whitelist:
+    components:
+      - Blindable
+  components:
+    - type: PermanentBlindness
+      blindness: 4
+
+- type: trait
   id: Narcolepsy
   name: trait-narcolepsy-name
   blacklist:
@@ -23,22 +42,37 @@
       - StationAI # backmen: AI
       - BorgChassis
   description: trait-narcolepsy-desc
+  category: Disabilities
   components:
     - type: Narcolepsy
       timeBetweenIncidents: 300, 600
       durationOfIncident: 10, 30
 
 - type: trait
-  id: Pacifist
-  name: trait-pacifist-name
+  id: Unrevivable
+  name: trait-unrevivable-name
+  description: trait-unrevivable-desc
   blacklist:
     components:
-      - BSSDrone #backmen: bssdrone
-      - StationAI # backmen: AI
-      - BorgChassis
-  description: trait-pacifist-desc
+    - BSSDrone #backmen: bssdrone
+    - StationAI # backmen: AI
+    - BorgChassis
+  category: Disabilities
   components:
-    - type: Pacified
+    - type: Unrevivable
+
+- type: trait
+  id: Muted
+  name: trait-muted-name
+  description: trait-muted-desc
+  category: Disabilities
+  blacklist:
+    components:
+    - BSSDrone #backmen: bssdrone
+    - StationAI # backmen: AI
+    - BorgChassis
+  components:
+    - type: Muted
 
 - type: trait
   id: Paracusia
@@ -49,6 +83,7 @@
       - BSSDrone #backmen: bssdrone
       - StationAI # backmen: AI
       - BorgChassis
+  category: Disabilities
   components:
     - type: Paracusia
       minTimeBetweenIncidents: 0.1
@@ -56,49 +91,3 @@
       maxSoundDistance: 7
       sounds:
         collection: Paracusia
-
-- type: trait
-  id: Unrevivable
-  name: trait-unrevivable-name
-  description: trait-unrevivable-desc
-  components:
-    - type: Unrevivable
-
-- type: trait
-  id: Muted
-  name: trait-muted-name
-  description: trait-muted-desc
-  blacklist:
-    components:
-      - BSSDrone #backmen: bssdrone
-      - StationAI # backmen: AI
-      - BorgChassis
-  components:
-    - type: Muted
-
-#- type: trait
-#  id: WheelchairBound
-#  name: trait-wheelchair-bound-name
-#  description: trait-wheelchair-bound-desc
-#  blacklist:
-#    components:
-#      - Felinid
-#      - BSSDrone #backmen: bssdrone
-#      - StationAI # backmen: AI
-#      - BorgChassis
-#  components:
-#    - type: BuckleOnMapInit
-#      prototype: VehicleWheelchair
-#    - type: LegsParalyzed
-
-- type: trait
-  id: FrontalLisp
-  name: trait-frontal-lisp-name
-  description: trait-frontal-lisp-desc
-  blacklist:
-    components:
-    - BSSDrone #backmen: bssdrone
-    - StationAI # backmen: AI
-    - BorgChassis
-  components:
-    - type: FrontalLisp

@@ -2,8 +2,10 @@
   id: Bagel
   mapName: 'Bagel Station'
   mapPath: /Maps/bagel.yml
-  minPlayers: 40
-  maxPlayers: 76
+  # Corvax-start
+  minPlayers: 20
+  maxPlayers: 50
+  # Corvax-end
   stations:
     Bagel:
       stationProto: StandardNanotrasenStation
@@ -16,17 +18,16 @@
         - type: StationEmergencyShuttle
           emergencyShuttlePath: /Maps/Shuttles/emergency_lox.yml
         - type: StationJobs
-          overflowJobs:
-            - Passenger
           availableJobs:
-            #service
+            #command
             Captain: [ 1, 1 ]
             IAA: [ 1, 1 ] # Corvax-IAA
+            #service
             HeadOfPersonnel: [ 1, 1 ]
-            Bartender: [ 2, 2 ]
-            Botanist: [ 3, 3 ]
+            Bartender: [ 1, 2 ]
+            Botanist: [ 2, 2 ]
             Chef: [ 2, 2 ]
-            Janitor: [ 3, 3 ]
+            Janitor: [ 2, 2 ]
             Chaplain: [ 1, 1 ]
             Librarian: [ 1, 1 ]
             ServiceWorker: [ 2, 2 ]
@@ -45,7 +46,6 @@
             ResearchDirector: [ 1, 1 ]
             Scientist: [ 5, 5 ]
             ResearchAssistant: [ 4, 4 ]
-            Borg: [ 2, 2 ]
             #security
             HeadOfSecurity: [ 1, 1 ]
             Warden: [ 1, 1 ]
@@ -64,8 +64,10 @@
             Musician: [ 1, 1 ]
             Reporter: [ 2, 2 ]
             Brigmedic: [ 0, 1 ] # backmen-Brigmedic
-            BKBPLATech: [0, 3] # backmen-BPLA-Silicons
-            BKBPLAMED: [0, 3] # backmen-BPLAMED-Silicons
+            #BKBPLATech: [0, 3] # backmen-BPLA-Silicons
+            #BKBPLAMED: [0, 3] # backmen-BPLAMED-Silicons
             Deliveryman: [ 0, 1 ]
             Prisoner: [ 2, 3]
-            SAI: [1, 1] # backmen-SAI
+            #silicon
+            StationAi: [ 1, 1 ]
+            Borg: [ 2, 2 ]

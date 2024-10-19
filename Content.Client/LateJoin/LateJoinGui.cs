@@ -2,9 +2,11 @@ using System.Linq;
 using System.Numerics;
 using Content.Client.CrewManifest;
 using Content.Client.GameTicking.Managers;
+using Content.Client.Lobby;
 using Content.Client.UserInterface.Controls;
 using Content.Client.Players.PlayTimeTracking;
 using Content.Shared.CCVar;
+using Content.Shared.Preferences;
 using Content.Shared.Roles;
 using Content.Shared.StatusIcon;
 using Robust.Client.Console;
@@ -26,6 +28,7 @@ namespace Content.Client.LateJoin
         [Dependency] private readonly IConfigurationManager _configManager = default!;
         [Dependency] private readonly IEntitySystemManager _entitySystem = default!;
         [Dependency] private readonly JobRequirementsManager _jobRequirements = default!;
+        [Dependency] private readonly IClientPreferencesManager _preferencesManager = default!;
 
         public event Action<(NetEntity, string)> SelectedId;
 
@@ -33,7 +36,7 @@ namespace Content.Client.LateJoin
         private readonly SpriteSystem _sprites;
         private readonly CrewManifestSystem _crewManifest;
 
-        private readonly Dictionary<NetEntity, Dictionary<string, JobButton>> _jobButtons = new();
+        private readonly Dictionary<NetEntity, Dictionary<string, List<JobButton>>> _jobButtons = new();
         private readonly Dictionary<NetEntity, Dictionary<string, BoxContainer>> _jobCategories = new();
         private readonly List<ScrollContainer> _jobLists = new();
 
@@ -141,7 +144,7 @@ namespace Content.Client.LateJoin
                 var jobListScroll = new ScrollContainer()
                 {
                     VerticalExpand = true,
-                    Children = {jobList},
+                    Children = { jobList },
                     Visible = false,
                 };
 
@@ -165,11 +168,12 @@ namespace Content.Client.LateJoin
                 var departments = _prototypeManager.EnumeratePrototypes<DepartmentPrototype>().ToArray();
                 Array.Sort(departments, DepartmentUIComparer.Instance);
 
+                _jobButtons[id] = new Dictionary<string, List<JobButton>>();
+
                 foreach (var department in departments)
                 {
                     var departmentName = Loc.GetString($"department-{department.ID}");
                     _jobCategories[id] = new Dictionary<string, BoxContainer>();
-                    _jobButtons[id] = new Dictionary<string, JobButton>();
                     var stationAvailable = _gameTicker.JobsAvailable[id];
                     var jobsAvailable = new List<JobPrototype>();
 
@@ -225,7 +229,13 @@ namespace Content.Client.LateJoin
                     foreach (var prototype in jobsAvailable)
                     {
                         var value = stationAvailable[prototype.ID];
-                        var jobButton = new JobButton(prototype.ID, value);
+
+                        var jobLabel = new Label
+                        {
+                            Margin = new Thickness(5f, 0, 0, 0)
+                        };
+
+                        var jobButton = new JobButton(jobLabel, prototype.ID, prototype.LocalizedName, value);
 
                         var jobSelector = new BoxContainer
                         {
@@ -239,17 +249,9 @@ namespace Content.Client.LateJoin
                             VerticalAlignment = VAlignment.Center
                         };
 
-                        var jobIcon = _prototypeManager.Index<StatusIconPrototype>(prototype.Icon);
+                        var jobIcon = _prototypeManager.Index(prototype.Icon);
                         icon.Texture = _sprites.Frame0(jobIcon.Icon);
                         jobSelector.AddChild(icon);
-
-                        var jobLabel = new Label
-                        {
-                            Margin = new Thickness(5f, 0, 0, 0),
-                            Text = value != null ?
-                                Loc.GetString("late-join-gui-job-slot-capped", ("jobName", prototype.LocalizedName), ("amount", value)) :
-                                Loc.GetString("late-join-gui-job-slot-uncapped", ("jobName", prototype.LocalizedName)),
-                        };
 
                         jobSelector.AddChild(jobLabel);
                         jobButton.AddChild(jobSelector);
@@ -257,7 +259,7 @@ namespace Content.Client.LateJoin
 
                         jobButton.OnPressed += _ => SelectedId.Invoke((id, jobButton.JobId));
 
-                        if (!_jobRequirements.IsAllowed(prototype, out var reason))
+                        if (!_jobRequirements.IsAllowed(prototype, (HumanoidCharacterProfile?)_preferencesManager.Preferences?.SelectedCharacter, out var reason))
                         {
                             jobButton.Disabled = true;
 
@@ -282,15 +284,43 @@ namespace Content.Client.LateJoin
                             jobButton.Disabled = true;
                         }
 
-                        _jobButtons[id][prototype.ID] = jobButton;
+                        if (!_jobButtons[id].ContainsKey(prototype.ID))
+                        {
+                            _jobButtons[id][prototype.ID] = new List<JobButton>();
+                        }
+
+                        _jobButtons[id][prototype.ID].Add(jobButton);
                     }
                 }
             }
         }
 
-        private void JobsAvailableUpdated(IReadOnlyDictionary<NetEntity, Dictionary<string, uint?>> _)
+        private void JobsAvailableUpdated(IReadOnlyDictionary<NetEntity, Dictionary<ProtoId<JobPrototype>, int?>> updatedJobs)
         {
-            RebuildUI();
+            foreach (var stationEntries in updatedJobs)
+            {
+                if (_jobButtons.ContainsKey(stationEntries.Key))
+                {
+                    var jobsAvailable = stationEntries.Value;
+
+                    var existingJobEntries = _jobButtons[stationEntries.Key];
+                    foreach (var existingJobEntry in existingJobEntries)
+                    {
+                        if (jobsAvailable.ContainsKey(existingJobEntry.Key))
+                        {
+                            var updatedJobValue = jobsAvailable[existingJobEntry.Key];
+                            foreach (var matchingJobButton in existingJobEntry.Value)
+                            {
+                                if (matchingJobButton.Amount != updatedJobValue)
+                                {
+                                    matchingJobButton.RefreshLabel(updatedJobValue);
+                                    matchingJobButton.Disabled |= matchingJobButton.Amount == 0;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
         }
 
         protected override void Dispose(bool disposing)
@@ -309,14 +339,33 @@ namespace Content.Client.LateJoin
 
     sealed class JobButton : ContainerButton
     {
+        public Label JobLabel { get; }
         public string JobId { get; }
-        public uint? Amount { get; }
+        public string JobLocalisedName { get; }
+        public int? Amount { get; private set; }
+        private bool _initialised = false;
 
-        public JobButton(string jobId, uint? amount)
+        public JobButton(Label jobLabel, ProtoId<JobPrototype> jobId, string jobLocalisedName, int? amount)
         {
+            JobLabel = jobLabel;
             JobId = jobId;
-            Amount = amount;
+            JobLocalisedName = jobLocalisedName;
+            RefreshLabel(amount);
             AddStyleClass(StyleClassButton);
+            _initialised = true;
+        }
+
+        public void RefreshLabel(int? amount)
+        {
+            if (Amount == amount && _initialised)
+            {
+                return;
+            }
+            Amount = amount;
+
+            JobLabel.Text = Amount != null ?
+                Loc.GetString("late-join-gui-job-slot-capped", ("jobName", JobLocalisedName), ("amount", Amount)) :
+                Loc.GetString("late-join-gui-job-slot-uncapped", ("jobName", JobLocalisedName));
         }
     }
 }

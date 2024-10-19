@@ -1,0 +1,87 @@
+- type: startingGear
+  id: SpecialForceGear
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitSpetsnaz
+    shoes: ClothingShoesBootsSpetsnaz
+    belt: WeaponRevolverMateba
+    neck: CombatKnifeSpetsnaz
+    gloves: ClothingHandsGlovesSpetsnazcombat
+    id: DedSquadronGavnaIDCard
+    ears: ClothingHeadsetCentComCCAltDeath
+    pocket1: EnergySwordDedSad
+    pocket2: WeaponPulsePistol
+
+- type: startingGear
+  id: SpecialForceGearCommander
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitSpetsnaz
+    shoes: ClothingShoesBootsSpetsnaz
+    belt: WeaponRevolverMateba
+    neck: CombatKnifeSpetsnaz
+    gloves: ClothingHandsGlovesSpetsnazcombat
+    id: DedSquadronLeaderGavnaIDCard
+    head: ClothingHeadHatBeretMobileTaskForce
+    ears: ClothingHeadsetCentComCCAltDeath
+    pocket1: EnergySwordDedSad
+    pocket2: WeaponPulsePistol
+
+- type: startingGear
+  id: SpecialForceGearCommanderFull
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitSpetsnaz
+    back: ClothingBackpackSpecialForce
+    shoes: ClothingShoesBootsSpetsnaz
+    mask: ClothingMaskGasDeathSquadV2_1
+    neck: CombatKnifeSpetsnaz
+    eyes: ClothingEyesGlassesSecurity
+    gloves: ClothingHandsGlovesSpetsnazcombat
+    outerClothing: ClothingOuterHardsuitDeathsquad
+    head: ClothingHeadHatBeretMobileTaskForce
+    id: DedSquadronLeaderGavnaIDCard
+    ears: ClothingHeadsetCentComCCAltDeath
+    belt: WeaponRevolverMateba
+    pocket1: EnergySwordDedSad
+    pocket2: WeaponPulsePistol
+  storage:
+    back:
+    - RadioMTFHandheld
+
+- type: startingGear
+  id: SpecialForceGearFull
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitSpetsnaz
+    back: ClothingBackpackSpecialForce
+    shoes: ClothingShoesBootsSpetsnaz
+    mask: ClothingMaskGasDeathSquadV2_1
+    neck: CombatKnifeSpetsnaz
+    eyes: ClothingEyesGlassesSecurity
+    gloves: ClothingHandsGlovesSpetsnazcombat
+    outerClothing: ClothingOuterHardsuitDeathsquad
+    id: DedSquadronGavnaIDCard
+    ears: ClothingHeadsetCentComCCAltDeath
+    belt: WeaponRevolverMateba
+    pocket1: EnergySwordDedSad
+    pocket2: WeaponPulsePistol
+  storage:
+    back:
+    - RadioMTFHandheld
+
+- type: startingGear
+  id: SpecialForceAgentGearFull
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitSpetsnaz
+    back: ClothingBackpackSpecialForce
+    shoes: ClothingShoesChameleonNoSlips
+    mask: ClothingMaskGasDeathSquadV2_1
+    neck: CombatKnifeSpetsnaz
+    eyes: ClothingEyesGlassesSecurity
+    gloves: ClothingHandsGlovesSpetsnazcombat
+    outerClothing: ClothingOuterHardsuitDeathsquad
+    id: DedSquadronGavnaIDCard
+    ears: ClothingHeadsetCentComCCAltDeath
+    belt: WeaponRevolverMateba
+    pocket1: EnergySwordDedSad
+    pocket2: WeaponPulsePistol
+  storage:
+    back:
+    - RadioMTFHandheld

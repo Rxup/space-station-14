@@ -33,21 +33,3 @@
           flatBonus: 0.025
     - !type:AddImplantSpecial
       implants: [ MindShieldImplant ]
-
-- type: startingGear
-  id: BrigmedicGear
-  equipment:
-    jumpsuit: ClothingUniformJumpsuitBrigmedic
-    back: ClothingBackpackBrigmedicFilled # Backmen
-    shoes: ClothingShoesBootsJackSec # Corvax-Resprite
-    gloves: ClothingHandsGlovesNitrile
-    eyes: ClothingEyesHudMedSec
-    head: ClothingHeadHatBeretSecurityMedic # Corvax-Resprite
-    outerClothing: ClothingOuterVestArmorMedSec # Corvax-Resprite
-    id: BrigmedicPDA
-    ears: ClothingHeadsetBrigmedic # Backmen
-    mask: ClothingMaskSterile
-    belt: ClothingBeltMedicalFilled
-  innerClothingSkirt: ClothingUniformJumpskirtBrigmedic
-  satchel: ClothingBackpackSatchelBrigmedicFilled # Backmen
-  duffelbag: ClothingBackpackDuffelBrigmedicFilled # Backmen

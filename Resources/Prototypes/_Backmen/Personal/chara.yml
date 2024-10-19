@@ -1,0 +1,41 @@
+﻿- type: bkmloadout
+  id: BedsheetInvisibilityCloak
+  entity: BedsheetInvisibilityCloak
+  sponsorOnly: true
+
+- type: bkmloadout
+  id: MedipenProbka
+  entity: MedipenProbka
+  sponsorOnly: true
+
+- type: entity
+  name: Пробка
+  parent: ChemicalMedipen
+  id: MedipenProbka
+  suffix: admeme
+  description: Клофелинщик? да нет, Вам кажется!
+  components:
+  - type: Sprite
+    sprite: Objects/Specific/Medical/medipen.rsi
+    layers:
+    - state: morphen
+      map: ["enum.SolutionContainerLayers.Fill"]
+  - type: Item
+    sprite: Objects/Specific/Medical/medipen.rsi
+  - type: SolutionContainerManager
+    solutions:
+      pen:
+        maxVol: 2500
+        reagents:
+        - ReagentId: Nocturine
+          Quantity: 900
+        - ReagentId: LotophagoiOil
+          Quantity: 1500
+  - type: Hypospray
+    solutionName: pen
+    transferAmount: 25
+    clumsyFailChance: 0
+  - type: StaticPrice
+    price: 500
+  - type: Tag
+    tags: []

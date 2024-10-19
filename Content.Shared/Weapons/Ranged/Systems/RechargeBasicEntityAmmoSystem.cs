@@ -49,23 +49,26 @@ public sealed class RechargeBasicEntityAmmoSystem : EntitySystem
             if (ammo.Count == ammo.Capacity)
             {
                 recharge.NextCharge = null;
-                Dirty(recharge);
+                Dirty(uid, recharge);
                 continue;
             }
 
             recharge.NextCharge = recharge.NextCharge.Value + TimeSpan.FromSeconds(recharge.RechargeCooldown);
-            Dirty(recharge);
+            Dirty(uid, recharge);
         }
     }
 
     private void OnInit(EntityUid uid, RechargeBasicEntityAmmoComponent component, MapInitEvent args)
     {
         component.NextCharge = _timing.CurTime;
-        Dirty(component);
+        Dirty(uid, component);
     }
 
     private void OnExamined(EntityUid uid, RechargeBasicEntityAmmoComponent component, ExaminedEvent args)
     {
+        if (!component.ShowExamineText)
+            return;
+
         if (!TryComp<BasicEntityAmmoProviderComponent>(uid, out var ammo)
             || ammo.Count == ammo.Capacity ||
             component.NextCharge == null)
@@ -86,7 +89,7 @@ public sealed class RechargeBasicEntityAmmoSystem : EntitySystem
         if (recharge.NextCharge == null || recharge.NextCharge < _timing.CurTime)
         {
             recharge.NextCharge = _timing.CurTime + TimeSpan.FromSeconds(recharge.RechargeCooldown);
-            Dirty(recharge);
+            Dirty(uid, recharge);
         }
     }
 }

@@ -1,7 +1,10 @@
 ﻿- type: entity
   id: OrganVulpkaninStomach
   parent: OrganAnimalStomach
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
   - type: Stomach
-    maxVolume: 50
+  - type: SolutionContainerManager
+    solutions:
+      stomach:
+        maxVol: 50.0

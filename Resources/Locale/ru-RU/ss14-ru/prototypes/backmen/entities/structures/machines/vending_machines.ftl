@@ -64,3 +64,6 @@ ent-BackmenVendingMachineStarkist = { ent-VendingMachineStarkist }
 ent-BackmenVendingMachineHappyHonk = { ent-VendingMachineHappyHonk }
     .suffix = backmen
     .desc = { ent-VendingMachineHappyHonk.desc }
+ent-VendingMachineBoxingDrobe = БоксоМат
+    .suffix = backmen
+    .desc = Разбавляем капитализм!

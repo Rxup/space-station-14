@@ -10,6 +10,7 @@
   id: StandardNanotrasenStation
   parent:
     - BaseStation
+    - BaseStationGoal # Corvax
     - BaseStationNews
     - BaseStationCargo
     - BaseStationJobsSpawning
@@ -25,7 +26,7 @@
     - BaseStationSiliconLawCrewsimov
     - BaseStationAllEventsEligible
     - BaseStationNanotrasen
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
     - type: Transform
 
@@ -40,7 +41,8 @@
     - BaseStationRecords #Backmen
     - BaseStationShuttles #Backmen
     - BaseStationExpeditions #Backmen
-  noSpawn: true
+    - BaseStationMagnet #Backmen
+  categories: [ HideSpawnMenu ]
   components:
     - type: Transform
 
@@ -51,6 +53,6 @@
   - BaseStationJobsSpawning
   - BaseStationRecords
   - BaseStationNanotrasen
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
     - type: Transform

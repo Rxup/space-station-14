@@ -1,0 +1,18 @@
+- type: entity
+  name: факел из огненной смеси
+  parent: Torch
+  id: TorchSuper
+  description: Обычный факел, облитый смесью для розжига
+  components:
+    - type: ExpendableLight
+      spentName: expendable-light-burnt-torch-name
+      spentDesc: expendable-light-burnt-torch-desc
+      glowDuration: 500
+      fadeOutDuration: 4
+      iconStateSpent: torch_spent
+      turnOnBehaviourID: turn_on
+      fadeOutBehaviourID: fade_out
+      # Sounds legit nuff
+      litSound:
+        path: /Audio/Items/Flare/flare_on.ogg
+      loopedSound: /Audio/Items/Flare/flare_burn.ogg

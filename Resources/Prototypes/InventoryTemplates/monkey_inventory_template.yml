@@ -20,12 +20,6 @@
     uiWindowPos: 0,1
     strippingWindowPos: 1,1
     displayName: Mask
-    whitelist:
-      tags:
-        - MonkeyWearable
-        - PetWearable
-      components:
-        - Smokable
   - name: jumpsuit
     slotTexture: uniform
     slotFlags: INNERCLOTHING
@@ -35,6 +29,7 @@
     displayName: Jumpsuit
   - name: id
     slotTexture: id
+    fullTextureName: template_small
     slotFlags: IDCARD
     slotGroup: SecondHotbar
     stripTime: 6
@@ -50,6 +45,8 @@
     uiWindowPos: 2,0
     strippingWindowPos: 2,5
     dependsOn: outerClothing
+    dependsOnComponents:
+    - type: AllowSuitStorage
     displayName: Suit Storage
   - name: outerClothing
     slotTexture: suit
@@ -60,5 +57,27 @@
     displayName: Suit
     whitelist:
       tags:
-        - SuitEVA
-
+        - MonkeyWearable
+      #backmen:underclothing-start
+  - name: undershirt
+    slotTexture: undershirt
+    slotFlags: UNDERSHIRT
+    stripTime: 8
+    uiWindowPos: 4,1
+    strippingWindowPos: 3,1
+    displayName: Undershirt
+  - name: underpants
+    slotTexture: underpants
+    slotFlags: UNDERPANTS
+    stripTime: 12
+    uiWindowPos: 4,0
+    strippingWindowPos: 3,2
+    displayName: Underpants
+  - name: socks
+    slotTexture: socks
+    slotFlags: SOCKS
+    stripTime: 8
+    uiWindowPos: 4,2
+    strippingWindowPos: 3,3
+    displayName: Socks
+    #backmen:underclothing-end

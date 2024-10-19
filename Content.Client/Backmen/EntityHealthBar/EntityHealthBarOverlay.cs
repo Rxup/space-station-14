@@ -62,8 +62,8 @@ public sealed class BkmEntityHealthBarOverlay : Overlay
         var xformQuery = _entManager.GetEntityQuery<TransformComponent>();
 
         const float scale = 1f;
-        var scaleMatrix = Matrix3.CreateScale(new Vector2(scale, scale));
-        var rotationMatrix = Matrix3.CreateRotation(-rotation);
+        var scaleMatrix = Matrix3x2.CreateScale(new Vector2(scale, scale));
+        var rotationMatrix = Matrix3x2.CreateRotation(-((float)rotation.Theta));
         handle.UseShader(_shader);
 
         var q = _entManager.AllEntityQueryEnumerator<MobThresholdsComponent, MobStateComponent, DamageableComponent>();
@@ -83,10 +83,10 @@ public sealed class BkmEntityHealthBarOverlay : Overlay
 
 
             var worldPosition = _transform.GetWorldPosition(xform);
-            var worldMatrix = Matrix3.CreateTranslation(worldPosition);
+            var worldMatrix = Matrix3x2.CreateTranslation(worldPosition);
 
-            Matrix3.Multiply(scaleMatrix, worldMatrix, out var scaledWorld);
-            Matrix3.Multiply(rotationMatrix, scaledWorld, out var matty);
+            var scaledWorld = Matrix3x2.Multiply(scaleMatrix, worldMatrix);
+            var matty = Matrix3x2.Multiply(rotationMatrix, scaledWorld);
 
             handle.SetTransform(matty);
 
@@ -120,7 +120,7 @@ public sealed class BkmEntityHealthBarOverlay : Overlay
         }
 
         handle.UseShader(null);
-        handle.SetTransform(Matrix3.Identity);
+        handle.SetTransform(Matrix3x2.Identity);
     }
 
     private static void DrawProgressCircle(DrawingHandleWorld handleWorld, Vector2 position, float radius, Color color, float progress)

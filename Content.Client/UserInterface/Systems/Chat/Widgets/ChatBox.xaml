@@ -6,12 +6,9 @@
     MouseFilter="Stop"
     HorizontalExpand="True"
     VerticalExpand="True"
-    MinSize="465 225">
-    <PanelContainer HorizontalExpand="True" VerticalExpand="True">
-        <PanelContainer.PanelOverride>
-            <graphics:StyleBoxFlat BackgroundColor="#25252ADD" />
-        </PanelContainer.PanelOverride>
-
+    MinSize="265 125">
+    <PanelContainer Name="ChatWindowPanel" Access="Public" HorizontalExpand="True" VerticalExpand="True"
+                    StyleClasses="StyleNano.StyleClassChatPanel">
         <BoxContainer Orientation="Vertical" SeparationOverride="4" HorizontalExpand="True" VerticalExpand="True">
             <OutputPanel Name="Contents" HorizontalExpand="True" VerticalExpand="True" Margin="8 8 8 4" />
             <controls:ChatInputBox HorizontalExpand="True" Name="ChatInput" Access="Public" Margin="2"/>

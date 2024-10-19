@@ -1,0 +1,537 @@
+# abilities
+
+# starting
+- type: entity
+  id: ActionEvolutionMenu
+  name: Открыть меню эволюции
+  description: Открывает меню эволюции.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: InstantAction
+    itemIconStyle: NoItem
+    icon:
+      sprite: Backmen/Changeling/changeling_abilities.rsi
+      state: evolution_menu
+    event: !type:OpenEvolutionMenuEvent {}
+  - type: ChangelingAction
+    requireBiomass: false
+    useInLesserForm: true
+
+- type: entity
+  id: ActionAbsorbDNA
+  name: Поглотить ДНК
+  description: Впитывает ДНК жертвы, очищая ее от шелухи. Стоимость 25 химикатов.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: EntityTargetAction
+    useDelay: 5
+    whitelist:
+      components:
+      - Body
+    canTargetSelf: false
+    interactOnMiss: false
+    itemIconStyle: NoItem
+    icon:
+      sprite: Backmen/Changeling/changeling_abilities.rsi
+      state: absorb_dna
+    event: !type:AbsorbDNAEvent {}
+  - type: ChangelingAction
+    chemicalCost: 25
+    requireBiomass: false
+    useInLesserForm: true
+
+- type: entity
+  id: ActionStingExtractDNA
+  name: Извлечь жало ДНК
+  description: Укради генетическую информацию своей жертвы. Стоит 25 химикатов.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: EntityTargetAction
+    whitelist:
+      components:
+      - Body
+    canTargetSelf: false
+    interactOnMiss: false
+    itemIconStyle: NoItem
+    icon:
+      sprite: Backmen/Changeling/changeling_abilities.rsi
+      state: sting_extractdna
+    event: !type:StingExtractDNAEvent {}
+  - type: ChangelingAction
+    chemicalCost: 25
+    useInLesserForm: true
+
+- type: entity
+  id: ActionChangelingTransformCycle
+  name: Цикл ДНК
+  description: Циклируйте доступные цепочки ДНК.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: InstantAction
+    itemIconStyle: NoItem
+    icon:
+      sprite: Backmen/Changeling/changeling_abilities.rsi
+      state: transform_cycle
+    event: !type:ChangelingTransformCycleEvent {}
+  - type: ChangelingAction
+    requireBiomass: false
+    useInLesserForm: true
+
+- type: entity
+  id: ActionChangelingTransform
+  name: Перевоплотиться
+  description: Трансформироваться в другого гуманоида. Не входит в комплект одежды. Стоит 5 химикатов.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: InstantAction
+    useDelay: 5
+    itemIconStyle: NoItem
+    icon:
+      sprite: Backmen/Changeling/changeling_abilities.rsi
+      state: transform
+    event: !type:ChangelingTransformEvent {}
+  - type: ChangelingAction
+    chemicalCost: 5
+    useInLesserForm: true
+
+- type: entity
+  id: ActionEnterStasis
+  name: Войти в регенеративный стазис
+  description: Инсценируйте свою смерть и начните регенерировать. Истощает все ваши химические вещества. Потребляет биомассу.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: InstantAction
+    checkCanInteract: false
+    checkConsciousness: false
+    itemIconStyle: NoItem
+    icon:
+      sprite: Backmen/Changeling/changeling_abilities.rsi
+      state: stasis_enter
+    event: !type:EnterStasisEvent {}
+  - type: ChangelingAction
+    biomassCost: 1
+    useInLesserForm: true
+
+- type: entity
+  id: ActionExitStasis
+  name: Выйти из стазиса
+  description: Восстаньте из мертвых с полным здоровьем. Стоит 60 химикатов.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: InstantAction
+    checkCanInteract: false
+    checkConsciousness: false
+    itemIconStyle: NoItem
+    icon:
+      sprite: Backmen/Changeling/changeling_abilities.rsi
+      state: stasis_exit
+    event: !type:ExitStasisEvent {}
+  - type: ChangelingAction
+    chemicalCost: 60
+    useInLesserForm: true
+
+# combat
+- type: entity
+  id: ActionToggleArmblade
+  name: Нож с поворотным рычагом
+  description: Превратите одну из своих рук в прочный клинок, состоящий из костей и плоти. Убирайте при повторном использовании. Стоит 15 химикатов.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: InstantAction
+    useDelay: 2
+    itemIconStyle: NoItem
+    icon:
+      sprite: Backmen/Changeling/changeling_abilities.rsi
+      state: armblade
+    event: !type:ToggleArmbladeEvent {}
+  - type: ChangelingAction
+    chemicalCost: 15
+
+- type: entity
+  id: ActionCreateBoneShard
+  name: Сформировать осколок кости
+  description: Отломите кусочки кости и сформуйте из них метательную звездочку. Стоимость - 15 химикатов.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: InstantAction
+    useDelay: 1
+    itemIconStyle: NoItem
+    icon:
+      sprite: Backmen/Changeling/changeling_abilities.rsi
+      state: bone_shard
+    event: !type:CreateBoneShardEvent {}
+  - type: ChangelingAction
+    chemicalCost: 15
+
+- type: entity
+  id: ActionToggleChitinousArmor
+  name: Переключить броню
+  description: Превратите свое тело во всепоглощающую хитиновую броню. Стоит 25 химикатов.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: InstantAction
+    useDelay: 2
+    itemIconStyle: NoItem
+    icon:
+      sprite: Backmen/Changeling/changeling_abilities.rsi
+      state: chitinous_armor
+    event: !type:ToggleChitinousArmorEvent {}
+  - type: ChangelingAction
+    chemicalCost: 25
+    requireAbsorbed: 2
+
+- type: entity
+  id: ActionToggleOrganicShield
+  name: Форма щита
+  description: Превратите одну из своих рук в большой мясистый щит. Стоит 20 химикатов.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: InstantAction
+    useDelay: 2
+    itemIconStyle: NoItem
+    icon:
+      sprite: Backmen/Changeling/changeling_abilities.rsi
+      state: organic_shield
+    event: !type:ToggleOrganicShieldEvent {}
+  - type: ChangelingAction
+    chemicalCost: 20
+    requireAbsorbed: 1
+
+- type: entity
+  id: ActionShriekDissonant
+  name: Диссонирующий вопль
+  description: Произведите электромагнитный взрыв одним только своим голосом. Стоимость - 30 химикатов.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: InstantAction
+    useDelay: 10
+    itemIconStyle: NoItem
+    icon:
+      sprite: Backmen/Changeling/changeling_abilities.rsi
+      state: shriek_dissonant
+    event: !type:ShriekDissonantEvent {}
+  - type: ChangelingAction
+    chemicalCost: 30
+    useInLesserForm: true
+    requireAbsorbed: 1
+
+- type: entity
+  id: ActionShriekResonant
+  name: Оглушительный вопль
+  description: Дезориентируйте людей и выключайте свет одним только своим голосом. Стоимость 30 химикатов.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: InstantAction
+    useDelay: 10
+    itemIconStyle: NoItem
+    icon:
+      sprite: Backmen/Changeling/changeling_abilities.rsi
+      state: shriek_resonant
+    event: !type:ShriekResonantEvent {}
+  - type: ChangelingAction
+    chemicalCost: 30
+    useInLesserForm: true
+    requireAbsorbed: 1
+
+- type: entity
+  id: ActionToggleStrainedMuscles
+  name: Напрячь мышцы
+  description: Передвигается с чрезвычайно высокой скоростью. Наносит урон выносливостью.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: InstantAction
+    useDelay: 1
+    itemIconStyle: NoItem
+    icon:
+      sprite: Backmen/Changeling/changeling_abilities.rsi
+      state: strained_muscles
+    event: !type:ToggleStrainedMusclesEvent {}
+  - type: ChangelingAction
+    chemicalCost: 0
+    useInLesserForm: true
+
+# stings
+- type: entity
+  id: ActionStingBlind
+  name: Слепое жало
+  description: Бесшумно поражайте цель, ослепляя ее на короткое время и делая близорукой. Стоимость 35 химикатов.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: EntityTargetAction
+    whitelist:
+      components:
+      - Body
+    canTargetSelf: false
+    interactOnMiss: false
+    itemIconStyle: NoItem
+    icon:
+      sprite: Backmen/Changeling/changeling_abilities.rsi
+      state: sting_blind
+    event: !type:StingBlindEvent {}
+  - type: ChangelingAction
+    chemicalCost: 35
+    useInLesserForm: true
+
+- type: entity
+  id: ActionStingCryo
+  name: Криогенный укус
+  description: Бесшумно жалите свою цель, постоянно замедляя и замораживая ее. Стоит 35 химикатов.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: EntityTargetAction
+    whitelist:
+      components:
+      - Body
+    canTargetSelf: false
+    interactOnMiss: false
+    itemIconStyle: NoItem
+    icon:
+      sprite: Backmen/Changeling/changeling_abilities.rsi
+      state: sting_cryo
+    event: !type:StingCryoEvent {}
+  - type: ChangelingAction
+    chemicalCost: 35
+    useInLesserForm: true
+
+- type: entity
+  id: ActionStingLethargic
+  name: Вялое жжение
+  description: Бесшумно впрысните в цель коктейль из анестетиков. Стоимость 35 химикатов.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: EntityTargetAction
+    whitelist:
+      components:
+      - Body
+    canTargetSelf: false
+    interactOnMiss: false
+    itemIconStyle: NoItem
+    icon:
+      sprite: Backmen/Changeling/changeling_abilities.rsi
+      state: sting_lethargic
+    event: !type:StingLethargicEvent {}
+  - type: ChangelingAction
+    chemicalCost: 35
+    useInLesserForm: true
+
+- type: entity
+  id: ActionStingMute
+  name: Немое жало
+  description: Бесшумно поражайте цель, полностью заставляя ее замолчать на короткое время. Стоит 35 химикатов.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: EntityTargetAction
+    whitelist:
+      components:
+      - Body
+    canTargetSelf: false
+    interactOnMiss: false
+    itemIconStyle: NoItem
+    icon:
+      sprite: Backmen/Changeling/changeling_abilities.rsi
+      state: sting_mute
+    event: !type:StingMuteEvent {}
+  - type: ChangelingAction
+    chemicalCost: 35
+    useInLesserForm: true
+
+- type: entity
+  id: ActionStingFakeArmblade
+  name: Поддельный укус клинка в руку
+  description: Бесшумно ужалите свою жертву, заставляя ее на короткое время отрастить тупое лезвие на руке. Стоит 50 химикатов.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: EntityTargetAction
+    whitelist:
+      components:
+      - Body
+    canTargetSelf: false
+    interactOnMiss: false
+    itemIconStyle: NoItem
+    icon:
+      sprite: Backmen/Changeling/changeling_abilities.rsi
+      state: sting_armblade
+    event: !type:StingFakeArmbladeEvent {}
+  - type: ChangelingAction
+    chemicalCost: 50
+    useInLesserForm: true
+
+- type: entity
+  id: ActionStingTransform
+  name: Жало трансформации
+  description: Незаметно ужалите свою жертву, превратив ее в человека по вашему выбору. Стоимость 75 химикатов.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: EntityTargetAction
+    whitelist:
+      components:
+      - Body
+    canTargetSelf: false
+    interactOnMiss: false
+    itemIconStyle: NoItem
+    icon:
+      sprite: Backmen/Changeling/changeling_abilities.rsi
+      state: sting_transform
+    event: !type:StingTransformEvent {}
+  - type: ChangelingAction
+    chemicalCost: 75
+    useInLesserForm: true
+
+# utility
+- type: entity
+  id: ActionAnatomicPanacea
+  name: Анатомическая панацея
+  description: Вылечите себя от болезней, инвалидности, радиации, токсинов, пьянства и повреждений мозга. Стоимость - 30 химических веществ.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: InstantAction
+    useDelay: 30
+    checkCanInteract: false
+    checkConsciousness: false
+    itemIconStyle: NoItem
+    icon:
+      sprite: Backmen/Changeling/changeling_abilities.rsi
+      state: anatomic_panacea
+    event: !type:ActionAnatomicPanaceaEvent {}
+  - type: ChangelingAction
+    chemicalCost: 30
+    useInLesserForm: true
+
+- type: entity
+  id: ActionAugmentedEyesight
+  name: Улучшенное зрение
+  description: Включите защиту от вспышки.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: InstantAction
+    checkCanInteract: false
+    itemIconStyle: NoItem
+    icon:
+      sprite: Backmen/Changeling/changeling_abilities.rsi
+      state: augmented_eyesight
+    event: !type:ActionAugmentedEyesightEvent {}
+  - type: ChangelingAction
+    chemicalCost: 0
+
+- type: entity
+  id: ActionBiodegrade
+  name: Биологически разлагается
+  description: Вырвите едкое вещество на какие-либо приспособления или кому-либо в лицо. Стоимость 30 химикатов.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: InstantAction
+    useDelay: 5
+    checkCanInteract: false
+    itemIconStyle: NoItem
+    icon:
+      sprite: Backmen/Changeling/changeling_abilities.rsi
+      state: biodegrade
+    event: !type:ActionBiodegradeEvent {}
+  - type: ChangelingAction
+    chemicalCost: 30
+
+- type: entity
+  id: ActionChameleonSkin
+  name: Кожа хамелеона
+  description: Постепенно сливается с окружающей средой. Стоимость 25 химикатов.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: InstantAction
+    useDelay: 1
+    checkCanInteract: false
+    checkConsciousness: false
+    itemIconStyle: NoItem
+    icon:
+      sprite: Backmen/Changeling/changeling_abilities.rsi
+      state: chameleon_skin
+    event: !type:ActionChameleonSkinEvent {}
+  - type: ChangelingAction
+    chemicalCost: 20
+
+- type: entity
+  id: ActionEphedrineOverdose
+  name: Передозировка эфедрина
+  description: Впрысните в себя несколько стимуляторов. Стоит 30 химикатов.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: InstantAction
+    useDelay: 10
+    checkCanInteract: false
+    checkConsciousness: false
+    itemIconStyle: NoItem
+    icon:
+      sprite: Backmen/Changeling/changeling_abilities.rsi
+      state: epinephrine_overdose
+    event: !type:ActionEphedrineOverdoseEvent {}
+  - type: ChangelingAction
+    chemicalCost: 30
+    useInLesserForm: true
+
+- type: entity
+  id: ActionFleshmend
+  name: Исправление плоти
+  description: Быстро вылечите себя. Стоимость 35 химикатов.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: InstantAction
+    useDelay: 30
+    checkCanInteract: false
+    itemIconStyle: NoItem
+    icon:
+      sprite: Backmen/Changeling/changeling_abilities.rsi
+      state: fleshmend
+    event: !type:ActionFleshmendEvent {}
+  - type: ChangelingAction
+    chemicalCost: 35
+    useInLesserForm: true
+
+- type: entity
+  id: ActionToggleLesserForm
+  name: Меньшая форма
+  description: Откажитесь от своего нынешнего облика и превратитесь в обезьяну. Стоит 20 химикатов.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: InstantAction
+    useDelay: 5
+    checkCanInteract: false
+    itemIconStyle: NoItem
+    icon:
+      sprite: Backmen/Changeling/changeling_abilities.rsi
+      state: lesser_form
+    event: !type:ActionLesserFormEvent {}
+  - type: ChangelingAction
+    chemicalCost: 20
+
+- type: entity
+  id: ActionToggleSpacesuit
+  name: Переключающий космический костюм
+  description: Сделайте так, чтобы ваше тело не занимало много места. Стоит 20 химикатов.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: InstantAction
+    useDelay: 2
+    itemIconStyle: NoItem
+    icon:
+      sprite: Backmen/Changeling/changeling_abilities.rsi
+      state: space_adaptation
+    event: !type:ActionSpacesuitEvent {}
+  - type: ChangelingAction
+    chemicalCost: 20
+
+- type: entity
+  id: ActionHivemindAccess
+  name: Доступ к разуму улья
+  description: Настройте свои химические рецепторы на общение с разумом улья.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: InstantAction
+    checkCanInteract: false
+    checkConsciousness: false
+    itemIconStyle: NoItem
+    icon:
+      sprite: Backmen/Changeling/changeling_abilities.rsi
+      state: hivemind_access
+    event: !type:ActionHivemindAccessEvent {}
+  - type: ChangelingAction
+    chemicalCost: 0
+    useInLesserForm: true

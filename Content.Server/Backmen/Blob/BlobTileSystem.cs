@@ -1,3 +1,4 @@
+using System.Diagnostics;
 using System.Linq;
 using System.Numerics;
 using Content.Server.Construction.Components;
@@ -5,49 +6,80 @@ using Content.Server.Destructible;
 using Content.Server.Emp;
 using Content.Server.Flash;
 using Content.Shared.Backmen.Blob;
+using Content.Shared.Backmen.Blob.Components;
 using Content.Shared.Damage;
 using Content.Shared.Destructible;
 using Content.Shared.FixedPoint;
-using Content.Shared.Popups;
-using Content.Shared.Verbs;
+using Content.Shared.Mobs;
+using Content.Shared.Mobs.Components;
+using Content.Shared.Mobs.Systems;
+using Content.Shared.NPC.Components;
+using Content.Shared.NPC.Prototypes;
+using Content.Shared.NPC.Systems;
 using Robust.Server.Audio;
 using Robust.Server.GameObjects;
 using Robust.Shared.Audio;
-using Robust.Shared.GameStates;
-using Robust.Shared.Map;
 using Robust.Shared.Map.Components;
+using Robust.Shared.Player;
+using Robust.Shared.Random;
 
 namespace Content.Server.Backmen.Blob;
 
 public sealed class BlobTileSystem : SharedBlobTileSystem
 {
-    [Dependency] private readonly IMapManager _map = default!;
     [Dependency] private readonly DamageableSystem _damageableSystem = default!;
     [Dependency] private readonly BlobCoreSystem _blobCoreSystem = default!;
     [Dependency] private readonly AudioSystem _audioSystem = default!;
-    [Dependency] private readonly SharedPopupSystem _popup = default!;
     [Dependency] private readonly EmpSystem _empSystem = default!;
-    [Dependency] private readonly TransformSystem _transform = default!;
     [Dependency] private readonly MapSystem _mapSystem = default!;
+    [Dependency] private readonly TransformSystem _transform = default!;
+    [Dependency] private readonly IRobustRandom _random = default!;
+    [Dependency] private readonly NpcFactionSystem _npcFactionSystem = default!;
+    [Dependency] private readonly MobStateSystem _mobState = default!;
 
+    private EntityQuery<BlobCoreComponent> _blobCoreQuery;
+
+    [ValidatePrototypeId<NpcFactionPrototype>]
+    private const string BlobFaction = "Blob";
 
     public override void Initialize()
     {
         base.Initialize();
 
-        // SubscribeLocalEvent<BlobTileComponent, ComponentStartup>(OnStartup);
+        SubscribeLocalEvent<BlobTileComponent, MapInitEvent>(OnMapInit);
         SubscribeLocalEvent<BlobTileComponent, DestructionEventArgs>(OnDestruction);
         SubscribeLocalEvent<BlobTileComponent, BlobTileGetPulseEvent>(OnPulsed);
-        SubscribeLocalEvent<BlobTileComponent, GetVerbsEvent<AlternativeVerb>>(AddUpgradeVerb);
-        SubscribeLocalEvent<BlobTileComponent, GetVerbsEvent<Verb>>(AddRemoveVerb);
-        SubscribeLocalEvent<BlobTileComponent, ComponentGetState>(OnGetState);
         SubscribeLocalEvent<BlobTileComponent, FlashAttemptEvent>(OnFlashAttempt);
+        SubscribeLocalEvent<BlobTileComponent, EntityTerminatingEvent>(OnTerminate);
+
+        _blobCoreQuery = GetEntityQuery<BlobCoreComponent>();
+    }
+
+    private void OnMapInit(Entity<BlobTileComponent> ent, ref MapInitEvent args)
+    {
+        var faction = EnsureComp<NpcFactionMemberComponent>(ent);
+        Entity<NpcFactionMemberComponent?> factionEnt = (ent, faction);
+
+        _npcFactionSystem.ClearFactions(factionEnt, false);
+        _npcFactionSystem.AddFaction(factionEnt, BlobFaction, true);
+
+        // make alive - true for npc combat
+        EnsureComp<MobStateComponent>(ent);
+    }
+
+    private void OnTerminate(EntityUid uid, BlobTileComponent component, EntityTerminatingEvent args)
+    {
+        if (TerminatingOrDeleted(component.Core))
+            return;
+
+        component.Core!.Value.Comp.BlobTiles.Remove(uid);
     }
 
     private void OnFlashAttempt(EntityUid uid, BlobTileComponent component, FlashAttemptEvent args)
     {
         if (args.Used == null || MetaData(args.Used.Value).EntityPrototype?.ID != "GrenadeFlashBang")
             return;
+
         if (component.BlobTileType == BlobTileType.Normal)
         {
             _damageableSystem.TryChangeDamage(uid, component.FlashDamage);
@@ -56,125 +88,33 @@ public sealed class BlobTileSystem : SharedBlobTileSystem
 
     private void OnDestruction(EntityUid uid, BlobTileComponent component, DestructionEventArgs args)
     {
-        if (component.Core == null || !TryComp<BlobCoreComponent>(component.Core.Value, out var blobCoreComponent))
+        if (
+            TerminatingOrDeleted(component.Core) ||
+            !_blobCoreQuery.TryComp(component.Core, out var blobCoreComponent)
+            )
             return;
-
-        var xform = Transform(uid);
 
         if (blobCoreComponent.CurrentChem == BlobChemType.ElectromagneticWeb)
         {
-            _empSystem.EmpPulse(xform.MapPosition, 3f, 50f, 3f);
+            _empSystem.EmpPulse(_transform.GetMapCoordinates(uid), 3f, 50f, 3f);
         }
-    }
-
-    private void AddRemoveVerb(EntityUid uid, BlobTileComponent component, GetVerbsEvent<Verb> args)
-    {
-        if (!TryComp<BlobObserverComponent>(args.User, out var ghostBlobComponent))
-            return;
-
-        if (ghostBlobComponent.Core == null ||
-            !TryComp<BlobCoreComponent>(ghostBlobComponent.Core.Value, out var blobCoreComponent))
-            return;
-
-        if (ghostBlobComponent.Core.Value != component.Core)
-            return;
-
-        if (TryComp<TransformComponent>(uid, out var transformComponent) && !transformComponent.Anchored)
-            return;
-
-        if (HasComp<BlobCoreComponent>(uid))
-            return;
-
-        Verb verb = new()
-        {
-            Act = () => TryRemove(uid, ghostBlobComponent.Core.Value, component, blobCoreComponent),
-            Text = Loc.GetString("blob-verb-remove-blob-tile"),
-        };
-        args.Verbs.Add(verb);
-    }
-
-    private void TryRemove(EntityUid target, EntityUid coreUid, BlobTileComponent tile, BlobCoreComponent core)
-    {
-        var xform = Transform(target);
-        if (!_blobCoreSystem.RemoveBlobTile(target, coreUid, core))
-        {
-            return;
-        }
-
-        FixedPoint2 returnCost = 0;
-
-        if (tile.ReturnCost)
-        {
-            switch (tile.BlobTileType)
-            {
-                case BlobTileType.Normal:
-                {
-                    returnCost = core.NormalBlobCost * core.ReturnResourceOnRemove;
-                    break;
-                }
-                case BlobTileType.Strong:
-                {
-                    returnCost = core.StrongBlobCost * core.ReturnResourceOnRemove;
-                    break;
-                }
-                case BlobTileType.Factory:
-                {
-                    returnCost = core.FactoryBlobCost * core.ReturnResourceOnRemove;
-                    break;
-                }
-                case BlobTileType.Resource:
-                {
-                    returnCost = core.ResourceBlobCost * core.ReturnResourceOnRemove;
-                    break;
-                }
-                case BlobTileType.Reflective:
-                {
-                    returnCost = core.ReflectiveBlobCost * core.ReturnResourceOnRemove;
-                    break;
-                }
-                case BlobTileType.Node:
-                {
-                    returnCost = core.NodeBlobCost * core.ReturnResourceOnRemove;
-                    break;
-                }
-            }
-        }
-
-        if (returnCost > 0)
-        {
-            if (TryComp<BlobCoreComponent>(tile.Core, out var blobCoreComponent) && blobCoreComponent.Observer != null)
-            {
-                _popup.PopupCoordinates(Loc.GetString("blob-get-resource", ("point", returnCost)),
-                    xform.Coordinates,
-                    blobCoreComponent.Observer.Value,
-                    PopupType.LargeGreen);
-            }
-            _blobCoreSystem.ChangeBlobPoint(coreUid, returnCost, core);
-        }
-    }
-
-    private void OnGetState(EntityUid uid, BlobTileComponent component, ref ComponentGetState args)
-    {
-        args.State = new BlobTileComponentState()
-        {
-            Color = component.Color
-        };
     }
 
     private void OnPulsed(EntityUid uid, BlobTileComponent component, BlobTileGetPulseEvent args)
     {
-
-        if (!TryComp<BlobTileComponent>(uid, out var blobTileComponent) || blobTileComponent.Core == null ||
-            !TryComp<BlobCoreComponent>(blobTileComponent.Core.Value, out var blobCoreComponent))
+        if (component.Core == null)
             return;
 
-        if (blobCoreComponent.CurrentChem == BlobChemType.RegenerativeMateria)
+        var core = component.Core.Value;
+
+        if (core.Comp.CurrentChem == BlobChemType.RegenerativeMateria)
         {
             var healCore = new DamageSpecifier();
             foreach (var keyValuePair in component.HealthOfPulse.DamageDict)
             {
-                healCore.DamageDict.Add(keyValuePair.Key, keyValuePair.Value * 10);
+                healCore.DamageDict.Add(keyValuePair.Key, keyValuePair.Value * 5);
             }
+
             _damageableSystem.TryChangeDamage(uid, healCore);
         }
         else
@@ -182,7 +122,7 @@ public sealed class BlobTileSystem : SharedBlobTileSystem
             _damageableSystem.TryChangeDamage(uid, component.HealthOfPulse);
         }
 
-        if (!args.Explain)
+        if (!args.Handled)
             return;
 
         var xform = Transform(uid);
@@ -192,6 +132,11 @@ public sealed class BlobTileSystem : SharedBlobTileSystem
             return;
         }
 
+        var nearNode = _blobCoreSystem.GetNearNode(xform.Coordinates, core.Comp.TilesRadiusLimit);
+
+        if (nearNode == null)
+            return;
+
         var mobTile = _mapSystem.GetTileRef(xform.GridUid.Value, grid, xform.Coordinates);
 
         var mobAdjacentTiles = new[]
@@ -199,15 +144,19 @@ public sealed class BlobTileSystem : SharedBlobTileSystem
             mobTile.GridIndices.Offset(Direction.East),
             mobTile.GridIndices.Offset(Direction.West),
             mobTile.GridIndices.Offset(Direction.North),
-            mobTile.GridIndices.Offset(Direction.South)
+            mobTile.GridIndices.Offset(Direction.South),
         };
+
+        _random.Shuffle(mobAdjacentTiles);
 
         var localPos = xform.Coordinates.Position;
 
         var radius = 1.0f;
 
-        var innerTiles = _mapSystem.GetLocalTilesIntersecting(xform.GridUid.Value, grid,
-            new Box2(localPos + new Vector2(-radius, -radius), localPos + new Vector2(radius, radius))).ToArray();
+        var innerTiles = _mapSystem.GetLocalTilesIntersecting(xform.GridUid.Value,
+                grid,
+                new Box2(localPos + new Vector2(-radius, -radius), localPos + new Vector2(radius, radius)))
+            .ToArray();
 
         foreach (var innerTile in innerTiles)
         {
@@ -220,11 +169,14 @@ public sealed class BlobTileSystem : SharedBlobTileSystem
             {
                 if (!HasComp<DestructibleComponent>(ent) || !HasComp<ConstructionComponent>(ent))
                     continue;
-                _damageableSystem.TryChangeDamage(ent, blobCoreComponent.ChemDamageDict[blobCoreComponent.CurrentChem]);
-                _audioSystem.PlayPvs(blobCoreComponent.AttackSound, uid, AudioParams.Default);
-                args.Explain = true;
+
+                DoLunge(uid, ent);
+                _damageableSystem.TryChangeDamage(ent, core.Comp.ChemDamageDict[core.Comp.CurrentChem]);
+                _audioSystem.PlayPvs(core.Comp.AttackSound, uid, AudioParams.Default);
+                args.Handled = true;
                 return;
             }
+
             var spawn = true;
             foreach (var ent in _mapSystem.GetAnchoredEntities(xform.GridUid.Value, grid, innerTile.GridIndices))
             {
@@ -240,69 +192,40 @@ public sealed class BlobTileSystem : SharedBlobTileSystem
             var location = _mapSystem.ToCoordinates(xform.GridUid.Value, innerTile.GridIndices, grid);
 
             if (_blobCoreSystem.TransformBlobTile(null,
-                    blobTileComponent.Core.Value,
-                    blobCoreComponent.NormalBlobTile,
-                    location,
-                    blobCoreComponent,
-                    false))
+                    core,
+                    nearNode,
+                    BlobTileType.Normal,
+                    location))
                 return;
         }
     }
 
-    private void AddUpgradeVerb(EntityUid uid, BlobTileComponent component, GetVerbsEvent<AlternativeVerb> args)
+    protected override void TryUpgrade(Entity<BlobTileComponent> target, Entity<BlobCoreComponent> core, EntityUid observer)
     {
-        if (!TryComp<BlobObserverComponent>(args.User, out var ghostBlobComponent))
+        var coords = Transform(target).Coordinates;
+
+        if (target.Comp.BlobTileType == BlobTileType.Reflective)
             return;
 
-        if (ghostBlobComponent.Core == null ||
-            !TryComp<BlobCoreComponent>(ghostBlobComponent.Core.Value, out var blobCoreComponent))
+        var nearNode = _blobCoreSystem.GetNearNode(coords, core.Comp.TilesRadiusLimit);
+        if (nearNode == null)
             return;
 
-        if (TryComp<TransformComponent>(uid, out var transformComponent) && !transformComponent.Anchored)
-            return;
+        var ev = new BlobTransformTileActionEvent(
+            performer: observer,
+            target: coords,
+            transformFrom: target.Comp.BlobTileType,
+            tileType: BlobTileType.Invalid,
+            requireNode: false);
 
-        var verbName = component.BlobTileType switch
+        ev.TileType = ev.TransformFrom switch
         {
-            BlobTileType.Normal => Loc.GetString("blob-verb-upgrade-to-strong"),
-            BlobTileType.Strong => Loc.GetString("blob-verb-upgrade-to-reflective"),
-            _ => "Upgrade"
+            BlobTileType.Normal => BlobTileType.Strong,
+            BlobTileType.Strong => BlobTileType.Reflective,
+            _ => BlobTileType.Invalid
         };
 
-        AlternativeVerb verb = new()
-        {
-            Act = () => TryUpgrade(uid, args.User, ghostBlobComponent.Core.Value, component, blobCoreComponent),
-            Text = verbName
-        };
-        args.Verbs.Add(verb);
-    }
-
-    private void TryUpgrade(EntityUid target, EntityUid user, EntityUid coreUid, BlobTileComponent tile, BlobCoreComponent core)
-    {
-        var xform = Transform(target);
-        if (tile.BlobTileType == BlobTileType.Normal)
-        {
-            if (!_blobCoreSystem.TryUseAbility(user, coreUid, core, core.StrongBlobCost))
-                return;
-
-            _blobCoreSystem.TransformBlobTile(target,
-                coreUid,
-                core.StrongBlobTile,
-                xform.Coordinates,
-                core,
-                transformCost: core.StrongBlobCost);
-        }
-        else if (tile.BlobTileType == BlobTileType.Strong)
-        {
-            if (!_blobCoreSystem.TryUseAbility(user, coreUid, core, core.ReflectiveBlobCost))
-                return;
-
-            _blobCoreSystem.TransformBlobTile(target,
-                coreUid,
-                core.ReflectiveBlobTile,
-                xform.Coordinates,
-                core,
-                transformCost: core.ReflectiveBlobCost);
-        }
+        RaiseLocalEvent(core, ev);
     }
 
     /* This work very bad.
@@ -528,4 +451,33 @@ public sealed class BlobTileSystem : SharedBlobTileSystem
     //         EntityManager.SpawnEntity(component.BlobBorder, xform.Coordinates);
     //     }
     // }
+    public void SwapSpecials(Entity<BlobNodeComponent> from, Entity<BlobNodeComponent> to)
+    {
+        (from.Comp.BlobFactory, to.Comp.BlobFactory) = (to.Comp.BlobFactory, from.Comp.BlobFactory);
+        (from.Comp.BlobResource, to.Comp.BlobResource) = (to.Comp.BlobResource, from.Comp.BlobResource);
+        Dirty(from);
+        Dirty(to);
+    }
+
+    public bool IsEmptySpecial(Entity<BlobNodeComponent> node, BlobTileType tile)
+    {
+        return tile switch
+        {
+            BlobTileType.Factory => node.Comp.BlobFactory == null || TerminatingOrDeleted(node.Comp.BlobFactory),
+            BlobTileType.Resource => node.Comp.BlobResource == null || TerminatingOrDeleted(node.Comp.BlobResource),
+            _ => false
+        };
+    }
+
+    public void DoLunge(EntityUid from, EntityUid target)
+    {
+        if(!TransformQuery.TryComp(from, out var userXform))
+            return;
+
+        var targetPos = _transform.GetWorldPosition(target);
+        var localPos = Vector2.Transform(targetPos, _transform.GetInvWorldMatrix(userXform));
+        localPos = userXform.LocalRotation.RotateVec(localPos);
+
+        RaiseNetworkEvent(new BlobAttackEvent(GetNetEntity(from), GetNetEntity(target), localPos), Filter.Pvs(from));
+    }
 }

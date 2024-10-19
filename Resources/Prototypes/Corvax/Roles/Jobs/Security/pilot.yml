@@ -1,0 +1,44 @@
+- type: job
+  id: Pilot
+  name: job-name-pilot
+  description: job-description-pilot
+  playTimeTracker: JobPilot
+  requirements:
+  - !type:DepartmentTimeRequirement
+    department: Security
+    time: 72000 #20 hrs
+  startingGear: PilotGear
+  icon: "JobIconPilot"
+  supervisors: job-supervisors-hos
+  canBeAntag: false
+  #start-backmen: currency
+  minBankBalance: 1500
+  maxBankBalance: 2500
+  wageDepartment: Security
+  wage: 500
+  #end-backmen: currency
+  access:
+  - Security
+  - Brig
+  - Maintenance
+  - Service
+  - External
+  - Cryogenics
+  special:
+  - !type:AddImplantSpecial
+    implants: [ MindShieldImplant ]
+
+- type: startingGear
+  id: PilotGear
+  equipment:
+    eyes: ClothingEyesGlassesSecurity
+    head: ClothingHeadHatBeretSecurity
+    id: PilotPDA
+    ears: ClothingHeadsetSecurity
+    neck: ClothingNeckTieRed
+    pocket1: WeaponPistolMk58
+  storage:
+    back:
+    - BoxSurvivalSecurity
+    - Flash
+    - MagazinePistol

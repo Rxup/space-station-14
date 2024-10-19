@@ -1,0 +1,140 @@
+- type: entity
+  parent: BasePDA
+  id: OrdenPDA
+  name: PDA of the Red Order
+  description: An unusual variation of the PDA that draws energy from redspace crystals inside.
+  components:
+    - type: Sprite
+      sprite: Backmen/Objects/Devices/pda.rsi
+      layers:
+      - map: [ "enum.PdaVisualLayers.Base" ]
+      - state: "light_overlay"
+        map: [ "enum.PdaVisualLayers.Flashlight" ]
+        shader: "unshaded"
+        visible: false
+      - state: "id_overlay"
+        map: [ "enum.PdaVisualLayers.IdLight" ]
+        shader: "unshaded"
+        visible: false
+    - type: Pda
+      id: IdCardRO
+      state: pda-orden
+      penSlot:
+        startingItem: EnergyDagger
+        priority: -1
+        whitelist:
+          tags:
+          - Write
+    - type: PdaBorderColor
+      borderColor: "#8b0000"
+    - type: Icon
+      sprite: Backmen/Objects/Devices/pda.rsi
+      state: pda-orden
+
+- type: entity
+  parent: BasePDA
+  id: DeliveryPDA
+  name: КПК доставщика
+  description: Пахнет пиццой
+  components:
+    - type: Sprite
+      sprite: Backmen/Objects/Devices/pda.rsi
+      layers:
+      - map: [ "enum.PdaVisualLayers.Base" ]
+      - state: "light_overlay"
+        map: [ "enum.PdaVisualLayers.Flashlight" ]
+        shader: "unshaded"
+        visible: false
+      - state: "id_overlay"
+        map: [ "enum.PdaVisualLayers.IdLight" ]
+        shader: "unshaded"
+        visible: false
+    - type: Pda
+      id: DeliveryIDCard
+      state: pda-Delivery
+      penSlot:
+        startingItem: EnergyDagger
+        priority: -1
+        whitelist:
+          tags:
+          - Write
+    - type: PdaBorderColor
+      borderColor: "#00a000"
+    - type: Icon
+      sprite: Backmen/Objects/Devices/pda.rsi
+      state: pda-Delivery
+
+
+- type: entity
+  parent: BasePDA
+  id: PrisonerPDA
+  name: prisoner PDA
+  description: Clear, so you can make sure there's nothing being smuggled inside.
+  components:
+    - type: Pda
+      id: PrisonerIDCard
+      state: pda-clear
+    - type: Icon
+      state: pda-clear
+
+- type: entity
+  parent: BasePDA
+  id: RoboticistPDA
+  name: Roboticist PDA
+  description:  An old black PDA with machine oil stains, scratches and other signs of age
+  components:
+    - type: Sprite
+      sprite: Backmen/Objects/Devices/pda.rsi
+      layers:
+      - map: [ "enum.PdaVisualLayers.Base" ]
+      - state: "light_overlay"
+        map: [ "enum.PdaVisualLayers.Flashlight" ]
+        shader: "unshaded"
+        visible: false
+      - state: "id_overlay"
+        map: [ "enum.PdaVisualLayers.IdLight" ]
+        shader: "unshaded"
+        visible: false
+    - type: Pda
+      id: RoboticistIDCard
+      state: pda-Roboticist
+      penSlot:
+        startingItem: Pen
+        priority: -1
+        whitelist:
+          tags:
+          - Write
+    - type: Icon
+      sprite: Backmen/Objects/Devices/pda.rsi
+      state: pda-Roboticist
+
+- type: entity
+  parent: BasePDA
+  id: BlueShieldPDA
+  name: Blue Shield PDA
+  description: Standart PDA of Blue Shield officers.
+  components:
+    - type: Sprite
+      sprite: Backmen/Objects/Devices/pda.rsi
+      layers:
+      - map: [ "enum.PdaVisualLayers.Base" ]
+      - state: "light_overlay"
+        map: [ "enum.PdaVisualLayers.Flashlight" ]
+        shader: "unshaded"
+        visible: false
+      - state: "id_overlay"
+        map: [ "enum.PdaVisualLayers.IdLight" ]
+        shader: "unshaded"
+        visible: false
+    - type: Pda
+      id: BlueShieldIDCard
+      state: pda-blue
+      penSlot:
+        startingItem: Pen
+        priority: -1
+        whitelist:
+          tags:
+          - Write
+    - type: Icon
+      sprite: Backmen/Objects/Devices/pda.rsi
+      state: pda-blue

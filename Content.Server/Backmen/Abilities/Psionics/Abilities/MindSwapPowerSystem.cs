@@ -9,9 +9,14 @@ using Content.Server.Mind;
 using Content.Shared.Mobs.Systems;
 using Content.Server.Popups;
 using Content.Server.GameTicking;
+using Content.Server.Ghost;
 using Content.Shared.Backmen.Abilities.Psionics;
+using Content.Shared.Backmen.Blob;
+using Content.Shared.Backmen.Blob.Components;
+using Content.Shared.Backmen.Psionics;
 using Content.Shared.Backmen.Psionics.Events;
 using Content.Shared.Mind.Components;
+using Content.Shared.Mindshield.Components;
 using Content.Shared.NPC;
 using Content.Shared.SSDIndicator;
 using Robust.Shared.Player;
@@ -20,7 +25,7 @@ using Robust.Shared.Timing;
 
 namespace Content.Server.Backmen.Abilities.Psionics;
 
-public sealed class MindSwapPowerSystem : EntitySystem
+public sealed class MindSwapPowerSystem : SharedMindSwapPowerSystem
 {
     [Dependency] private readonly SharedActionsSystem _actions = default!;
     [Dependency] private readonly MobStateSystem _mobStateSystem = default!;
@@ -74,10 +79,10 @@ public sealed class MindSwapPowerSystem : EntitySystem
 
     private void OnPowerUsed(MindSwapPowerActionEvent args)
     {
-        if (!(TryComp<DamageableComponent>(args.Target, out var damageable) && damageable.DamageContainerID == "Biological"))
+        if(args.Handled)
             return;
 
-        if (HasComp<PsionicInsulationComponent>(args.Target))
+        if (!(TryComp<DamageableComponent>(args.Target, out var damageable) && damageable.DamageContainerID == "Biological"))
             return;
 
         _psionics.LogPowerUsed(args.Performer, "mind swap");
@@ -167,7 +172,7 @@ public sealed class MindSwapPowerSystem : EntitySystem
         _actions.AddAction(uid, ref component.MindSwapReturn, ActionMindSwapReturn);
     }
 
-    public bool Swap(EntityUid performer, EntityUid target, bool end = false)
+    public bool Swap(EntityUid performer, EntityUid target, bool end = false, bool force = false)
     {
         if (performer == target)
         {
@@ -190,10 +195,22 @@ public sealed class MindSwapPowerSystem : EntitySystem
                 _popupSystem.PopupCursor("Ошибка! Ваша цель уже в другом теле!", performer);
                 return false; // Повторный свап!? TODO: chain swap, in current mode broken chained in no return (has no mind error)
             }
-
+/*
             if (HasComp<ActiveNPCComponent>(performer) || HasComp<ActiveNPCComponent>(target))
             {
                 _popupSystem.PopupCursor("Ошибка! Ваша цель в ссд!", performer);
+                return false;
+            }
+*/
+            if (HasComp<MindShieldComponent>(target) && !force)
+            {
+                _popupSystem.PopupCursor("Ошибка! Ваша цель имеет защиту разума!", performer);
+                return false;
+            }
+
+            if (HasComp<BlobCarrierComponent>(target) || HasComp<BlobCarrierComponent>(performer))
+            {
+                _popupSystem.PopupCursor("Ошибка! Ваша цель не стабильна!", performer);
                 return false;
             }
         }

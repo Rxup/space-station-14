@@ -5,13 +5,13 @@ using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototy
 
 namespace Content.Server.Backmen.Loadout;
 
-[Prototype("loadout")]
+[Prototype("bkmloadout")]
 public sealed class LoadoutItemPrototype : IPrototype
 {
     [IdDataField] public string ID { get; } = default!;
 
     [DataField("entity", required: true)]
-    public ProtoId<EntityPrototype> EntityId { get; } = default!;
+    public EntProtoId EntityId { get; } = default!;
 
     // Corvax-Sponsors-Start
     [DataField("sponsorOnly")]

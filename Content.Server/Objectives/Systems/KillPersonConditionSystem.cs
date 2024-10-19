@@ -89,12 +89,12 @@ public sealed class KillPersonConditionSystem : EntitySystem
         var centcom = _prototype.Index(_ccDep);
         foreach (var mindId in minds.ToArray())
         {
-            if (!TryComp<JobComponent>(mindId, out var job) || job.Prototype == null)
+            if (!_roleSystem.MindHasRole<JobRoleComponent>(mindId, out var job) || job.Value.Comp.JobPrototype == null)
             {
                 continue;
             }
 
-            if (!centcom.Roles.Contains(job.Prototype))
+            if (!centcom.Roles.Contains(job.Value.Comp.JobPrototype.Value))
             {
                 continue;
             }
@@ -139,7 +139,7 @@ public sealed class KillPersonConditionSystem : EntitySystem
         foreach (var mind in allHumans)
         {
             // RequireAdminNotify used as a cheap way to check for command department
-            if (_job.MindTryGetJob(mind, out _, out var prototype) && prototype.RequireAdminNotify)
+            if (_job.MindTryGetJob(mind, out var prototype) && prototype.RequireAdminNotify)
                 allHeads.Add(mind);
         }
 

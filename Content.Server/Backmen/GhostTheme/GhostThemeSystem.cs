@@ -1,5 +1,6 @@
 ﻿using System.Linq;
 using Content.Corvax.Interfaces.Server;
+using Content.Corvax.Interfaces.Shared;
 using Content.Server.Mind;
 using Content.Shared.Backmen.GhostTheme;
 using Content.Shared.GameTicking;
@@ -19,7 +20,7 @@ namespace Content.Server.Backmen.GhostTheme;
 
 public sealed class GhostThemeSystem : EntitySystem
 {
-    [Dependency] private readonly IServerSponsorsManager _sponsorsMgr = default!; // Corvax-Sponsors
+    [Dependency] private readonly ISharedSponsorsManager _sponsorsMgr = default!; // Corvax-Sponsors
     [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
     [Dependency] private readonly ISerializationManager _serialization = default!;
     [Dependency] private readonly IServerNetConfigurationManager _netConfigManager = default!;
@@ -35,7 +36,7 @@ public sealed class GhostThemeSystem : EntitySystem
         var prefGhost = _netConfigManager.GetClientCVar(args.Player.Channel, Shared.Backmen.CCVar.CCVars.SponsorsSelectedGhost);
         {
 #if DEBUG
-            if (!_sponsorsMgr.TryGetPrototypes(args.Player.UserId, out var items))
+            if (!_sponsorsMgr.TryGetServerPrototypes(args.Player.UserId, out var items))
             {
                 items = new List<string>();
                 items.Add("tier1");
@@ -45,13 +46,16 @@ public sealed class GhostThemeSystem : EntitySystem
                 items.Add("tier03");
                 items.Add("tier04");
                 items.Add("tier05");
+                items.Add("tier06");
+                items.Add("tier07");
+                items.Add("tier08");
             }
             if (!items.Contains(prefGhost))
             {
                 prefGhost = "";
             }
 #else
-            if (!_sponsorsMgr.TryGetPrototypes(args.Player.UserId, out var items) || !items.Contains(prefGhost))
+            if (!_sponsorsMgr.TryGetServerPrototypes(args.Player.UserId, out var items) || !items.Contains(prefGhost))
             {
                 prefGhost = "";
             }

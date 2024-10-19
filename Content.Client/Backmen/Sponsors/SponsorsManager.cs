@@ -1,11 +1,13 @@
 ﻿using System.Diagnostics.CodeAnalysis;
+using System.Linq;
 using Content.Corvax.Interfaces.Client;
+using Content.Corvax.Interfaces.Shared;
 using Content.Shared.Backmen.Sponsors;
 using Robust.Shared.Network;
 
 namespace Content.Client.Backmen.Sponsors;
 
-public sealed class SponsorsManager : IClientSponsorsManager
+public sealed class SponsorsManager : ISharedSponsorsManager
 {
     [Dependency] private readonly IClientNetManager _netMgr = default!;
 
@@ -13,6 +15,26 @@ public sealed class SponsorsManager : IClientSponsorsManager
     {
         _netMgr.RegisterNetMessage<MsgSponsorInfo>(OnUpdate);
         _netMgr.RegisterNetMessage<Shared.Backmen.MsgWhitelist>(RxWhitelist); //backmen: whitelist
+    }
+
+    public List<string> GetClientPrototypes()
+    {
+        return Prototypes.ToList();
+    }
+
+    public List<string> GetClientLoadouts()
+    {
+        return Loadouts.ToList();
+    }
+
+    public bool IsClientAllRoles()
+    {
+        return OpenAllRoles;
+    }
+
+    public void Cleanup()
+    {
+        Reset();
     }
 
     private void RxWhitelist(Shared.Backmen.MsgWhitelist message)
@@ -32,6 +54,9 @@ public sealed class SponsorsManager : IClientSponsorsManager
         Prototypes.Add("tier03");
         Prototypes.Add("tier04");
         Prototypes.Add("tier05");
+        Prototypes.Add("tier06");
+        Prototypes.Add("tier07");
+        Prototypes.Add("tier08");
 #endif
 
         if (message.Info == null)
@@ -44,16 +69,29 @@ public sealed class SponsorsManager : IClientSponsorsManager
             Prototypes.Add(markings);
         }
 
+        foreach (var loadout in message.Info.Loadouts)
+        {
+            Loadouts.Add(loadout);
+        }
+
+        OpenAllRoles = message.Info.OpenAllRoles;
         Tier = message.Info.Tier ?? 0;
+        GhostTheme = message.Info.GhostTheme;
     }
 
     private void Reset()
     {
         Prototypes.Clear();
+        Loadouts.Clear();
+        OpenAllRoles = false;
         Tier = 0;
+        GhostTheme = null;
     }
 
     public HashSet<string> Prototypes { get; } = new();
+    public HashSet<string> Loadouts { get; } = new();
+    public bool OpenAllRoles { get; private set; } = false;
     public int Tier { get; private set; } = 0;
     public bool Whitelisted { get; private set; } = false;
+    public string? GhostTheme { get; private set; } = null;
 }

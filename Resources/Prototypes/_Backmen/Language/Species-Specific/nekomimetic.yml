@@ -1,0 +1,60 @@
+# A mess of broken Japanese, spoken by Felinds and Oni
+# TODO: Replace this with a much better language.
+- type: language
+  id: Nekomimetic
+  speech:
+    color: "#df57aaee"
+    #fontId: BryndanWriteBook
+  obfuscation:
+    !type:SyllableObfuscation
+    minSyllables: 1
+    maxSyllables: 3 # May be too long even, we'll see.
+    replacement:
+    - неко
+    - ня
+    - мими
+    - мае
+    - мофу
+    - фува
+    - киа
+    - каваи
+    - поки
+    - муня
+    - пуни
+    - миню
+    - уфуфу
+    - ича
+    - доки
+    - кун
+    - кусу
+    - ня
+    - няя
+    - десу
+    - кис
+    - ама
+    - чуу
+    - бяка
+    - нево
+    - буп
+    - гато
+    - кит
+    - суне
+    - йори
+    - соу
+    - бака
+    - чан
+    - сан
+    - кун
+    - махоу
+    - йатта
+    - саке
+    - усаги
+    - домо
+    - ори
+    - ува
+    - зиза
+    - шику
+    - пуру
+    - ири
+    - хето
+    - етто

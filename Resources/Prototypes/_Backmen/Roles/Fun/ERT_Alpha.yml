@@ -1,0 +1,35 @@
+- type: startingGear
+  id: ERTLeaderAlpha1Gear
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitSpetsnaz
+    back: ClothingBackpackERTLeaderAlpha1
+    shoes: ClothingShoesBootsMagAdv
+    mask: ClothingMaskGasERTV2_1
+    eyes: ClothingEyesGlassesSunglasses
+    gloves: ClothingHandsGlovesSpetsnazcombat
+    outerClothing: ClothingOuterHardsuitERTOperativeAlpha1
+    head: ClothingHeadHatERTLeaderBeret
+    id: OBRGavnaLeaderIDCardAlpha1
+    ears: ClothingHeadsetCentComCCMTF
+    belt: ClothingBeltSecurityFilled
+    pocket1: CombatKnifeSpetsnaz
+    pocket2: PinpointerNuclear
+  storage:
+    back:
+    - RadioMTFHandheld
+
+- type: startingGear
+  id: ERTOperativeAlpha1Gear
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitSpetsnaz
+    back: ClothingBackpackERTOperativeAlpha1
+    shoes: ClothingShoesBootsMagAdv
+    mask: ClothingMaskGasERTV2_1
+    eyes: ClothingEyesGlassesSunglasses
+    gloves: ClothingHandsGlovesSpetsnazcombat
+    outerClothing: ClothingOuterHardsuitERTOperativeAlpha1
+    id: OBRGavnaOperativeIDCardAlpha1
+    ears: ClothingHeadsetCentComCCMTF
+    belt: ClothingBeltSecurityFilled
+    pocket1: CombatKnifeSpetsnaz
+    pocket2: PinpointerNuclear

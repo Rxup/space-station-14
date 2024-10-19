@@ -1,0 +1,46 @@
+﻿- type: entity
+  parent: BagOfSummoningGarbage
+  id: TrashBagHolding
+  name: trash bag of holding
+  description: A bluespace-infused trashbag with an extremely high capacity.
+#  components:
+#    - type: OfHolding
+
+- type: entity
+  name: мусорный мешок специального назначения
+  id: TrashBagExtended
+  parent: BaseStorageItem
+  components:
+  - type: Sprite
+    netSync: false
+    sprite: Objects/Specific/Janitorial/trashbag.rsi
+    layers:
+      - state: icon-0
+        map: ["enum.StorageFillLayers.Fill"]
+  - type: Storage
+    grid:
+    - 0,0,19,9
+    maxItemSize: Huge
+    quickInsert: true
+    areaInsert: true
+    storageOpenSound:
+      collection: trashBagRustle
+    storageInsertSound:
+      collection: trashBagRustle
+    whitelist:
+      tags:
+      - Cartridge
+      - Trash
+  - type: Tag
+    tags:
+    - TrashBag
+  - type: Appearance
+  - type: StorageFillVisualizer
+    maxFillLevels: 4
+    fillBaseName: icon
+  - type: Dumpable
+  - type: Clothing
+    slots: [belt]
+    sprite: Objects/Specific/Janitorial/trashbag.rsi
+  - type: Item
+    size: Small

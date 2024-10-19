@@ -15,6 +15,29 @@
       uiWindowPos: 0,1
       strippingWindowPos: 0,2
       displayName: Jumpsuit
+    #backmen:underclothing-start
+    - name: undershirt
+      slotTexture: undershirt
+      slotFlags: UNDERSHIRT
+      stripTime: 8
+      uiWindowPos: 4,1
+      strippingWindowPos: 3,1
+      displayName: Undershirt
+    - name: underpants
+      slotTexture: underpants
+      slotFlags: UNDERPANTS
+      stripTime: 12
+      uiWindowPos: 4,0
+      strippingWindowPos: 3,2
+      displayName: Underpants
+    - name: socks
+      slotTexture: socks
+      slotFlags: SOCKS
+      stripTime: 8
+      uiWindowPos: 4,2
+      strippingWindowPos: 3,3
+      displayName: Socks
+    #backmen:underclothing-end
     - name: gloves
       slotTexture: gloves
       slotFlags: GLOVES
@@ -55,6 +78,7 @@
       displayName: Head
     - name: id
       slotTexture: id
+      fullTextureName: template_small
       slotFlags: IDCARD
       slotGroup: SecondHotbar
       stripTime: 6
@@ -64,36 +88,40 @@
       displayName: ID
     - name: belt
       slotTexture: belt
+      fullTextureName: template_small
       slotFlags: BELT
       slotGroup: SecondHotbar
       stripTime: 6
       uiWindowPos: 3,1
-      strippingWindowPos: 2,3
+      strippingWindowPos: 1,5
       displayName: Belt
     - name: back
       slotTexture: back
+      fullTextureName: template_small
       slotFlags: BACK
       slotGroup: SecondHotbar
       stripTime: 6
       uiWindowPos: 3,0
-      strippingWindowPos: 0,3
+      strippingWindowPos: 0,5
       displayName: Back
 
     - name: pocket4
       slotTexture: web
+      fullTextureName: template_small
       slotFlags: POCKET
       slotGroup: MainHotbar
       stripTime: 3
       uiWindowPos: 2,4
-      strippingWindowPos: 1,5
+      strippingWindowPos: 2,3
       displayName: Pocket 4
     - name: pocket3
       slotTexture: web
+      fullTextureName: template_small
       slotFlags: POCKET
       slotGroup: MainHotbar
       stripTime: 3
       uiWindowPos: 0,4
-      strippingWindowPos: 0,5
+      strippingWindowPos: 0,3
       displayName: Pocket 3
     - name: outerClothing
       slotTexture: suit
@@ -104,6 +132,7 @@
       displayName: Suit
     - name: pocket1
       slotTexture: pocket
+      fullTextureName: template_small
       slotFlags: POCKET
       slotGroup: MainHotbar
       stripTime: 3
@@ -114,6 +143,7 @@
       stripHidden: true
     - name: pocket2
       slotTexture: pocket
+      fullTextureName: template_small
       slotFlags: POCKET
       slotGroup: MainHotbar
       stripTime: 3
@@ -130,4 +160,6 @@
       uiWindowPos: 2,0
       strippingWindowPos: 2,5
       dependsOn: outerClothing
+      dependsOnComponents:
+      - type: AllowSuitStorage
       displayName: Suit Storage

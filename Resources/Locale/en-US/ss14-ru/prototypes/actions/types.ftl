@@ -1,11 +1,13 @@
+ent-BaseSuicideAction = { "" }
+    .desc = { "" }
 ent-ActionScream = Scream
     .desc = AAAAAAAAAAAAAAAAAAAAAAAAA
 ent-ActionTurnUndead = Turn Undead
     .desc = Succumb to your infection and become a zombie.
 ent-ActionToggleLight = Toggle Light
     .desc = Turn the light on and off.
-ent-ActionOpenStorageImplant = Open Storage Implant
-    .desc = Opens the storage implant embedded under your skin
+ent-ActionOpenStorageImplant = Toggle Storage Implant
+    .desc = Opens or closes the storage implant embedded under your skin
 ent-ActionActivateMicroBomb = Activate Microbomb
     .desc = Activates your internal microbomb, completely destroying you and your equipment
 ent-ActionActivateDeathAcidifier = Activate Death-Acidifier

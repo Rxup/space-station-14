@@ -1,0 +1,80 @@
+- type: startingGear
+  id: RXBZZ
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitColorBlack
+    back: ClothingBackpackDuffelRXBZZ
+    shoes: ClothingShoesBootsMagArmy
+    mask: ClothingMaskGasRXBZZ
+    eyes: ClothingEyesGlassesSecurity
+    neck: CombatKnifeSpetsnaz
+    gloves: ClothingHandsGlovesCombat
+    outerClothing: ClothingOuterHardsuitCBURN
+    id: idcoinRXBZZ
+    ears: ClothingHeadsetEarthGov
+    belt: WeaponAdvancedLaser
+    pocket2: ClothingMedicalPounchRXBZZFilled
+
+- type: startingGear
+  id: RXBZZMedic
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitColorBlack
+    back: ClothingBackpackDuffelRXBZZMedic
+    shoes: ClothingShoesBootsMagArmy
+    mask: ClothingMaskGasRXBZZ
+    eyes: ClothingEyesHudMedical
+    neck: CombatKnifeSpetsnaz
+    gloves: ClothingHandsGlovesCombat
+    outerClothing: ClothingOuterHardsuitCBURN
+    id: idcoinRXBZZMedic
+    ears: ClothingHeadsetEarthGov
+    belt: ClothingBeltMedicalMarineRxbzz
+    pocket2: ClothingMedicalPounchRXBZZFilled
+
+- type: startingGear
+  id: RXBZZFlamer
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitColorBlack
+    shoes: ClothingShoesBootsMagArmy
+    back: ClothingBackpackDuffelMilitary
+    mask: ClothingMaskGasRXBZZ
+    eyes: ClothingEyesVision
+    neck: CombatKnifeSpetsnaz
+    gloves: ClothingHandsGlovesCombat
+    outerClothing: ClothingOuterHardsuitCBURN
+    id: idcoinRXBZZSpecialist
+    ears: ClothingHeadsetEarthGov
+    pocket2: ClothingMedicalPounchRXBZZFilled
+  storage:
+    back:
+    - ArmySetLoadoutsSpecialist
+    - ArmySetLoadoutsSpecialistSecondary
+
+- type: startingGear
+  id: RXBZZLeader
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitColorBlack
+    back: ClothingBackpackDuffelRXBZZ
+    shoes: ClothingShoesBootsMagArmy
+    mask: ClothingMaskGasRXBZZ
+    eyes: ClothingEyesGlassesSecurity
+    neck: CombatKnifeSpetsnaz
+    gloves: ClothingHandsGlovesCombat
+    outerClothing: ClothingOuterHardsuitCBURNLeader
+    id: idcoinRXBZZSergant
+    head: ClothingHeadHatERTLeaderBeret
+    ears: ClothingHeadsetEarthGov
+    belt: WeaponAdvancedLaser
+    pocket2: ClothingMedicalPounchRXBZZFilled
+  storage:
+    back:
+    - RadioMTFHandheld
+
+- type: startingGear
+  id: RXBZZBlobLeader
+  parent: RXBZZLeader
+  storage:
+    back:
+    - NukeCodePaperStation
+    - PinpointerNuclear
+    - PinpointerNuclearBomb
+    - PaperOrderRXBZZ

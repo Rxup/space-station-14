@@ -10,7 +10,6 @@ namespace Content.Server.Backmen.Administration.Commands;
 [AdminCommand(AdminFlags.Fun)]
 public sealed class FakeFingerprint : IConsoleCommand
 {
-    [Dependency] private readonly IAdminLogManager _adminLogger = default!;
     [Dependency] private readonly IEntityManager _entityManager = default!;
 
     public string Command => "fakefingerprints";

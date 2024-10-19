@@ -1,8 +1,12 @@
 using Content.Server.Backmen.Abilities.Psionics;
 using Content.Server.Backmen.Eye;
-using Content.Server.NPC.Systems;
 using Content.Shared.Backmen.Abilities.Psionics;
+using Content.Shared.Backmen.Psionics;
+using Content.Shared.Backmen.Psionics.Components;
 using Content.Shared.Eye;
+using Content.Shared.NPC.Components;
+using Content.Shared.NPC.Prototypes;
+using Content.Shared.NPC.Systems;
 using Robust.Shared.Containers;
 using Robust.Server.GameObjects;
 
@@ -17,13 +21,13 @@ public sealed class PsionicInvisibilitySystem : EntitySystem
     public override void Initialize()
     {
         base.Initialize();
-        /// Masking
+        // Masking
         SubscribeLocalEvent<PotentialPsionicComponent, ComponentInit>(OnInit);
         SubscribeLocalEvent<PsionicInsulationComponent, ComponentInit>(OnInsulInit);
         SubscribeLocalEvent<PsionicInsulationComponent, ComponentShutdown>(OnInsulShutdown);
         SubscribeLocalEvent<EyeMapInit>(OnEyeInit);
 
-        /// Layer
+        // Layer
         SubscribeLocalEvent<PsionicallyInvisibleComponent, ComponentInit>(OnInvisInit);
         SubscribeLocalEvent<PsionicallyInvisibleComponent, ComponentShutdown>(OnInvisShutdown);
 
@@ -37,6 +41,12 @@ public sealed class PsionicInvisibilitySystem : EntitySystem
         SetCanSeePsionicInvisiblity(uid, false);
     }
 
+    [ValidatePrototypeId<NpcFactionPrototype>]
+    private const string PsionicInterloper = "PsionicInterloper";
+
+    [ValidatePrototypeId<NpcFactionPrototype>]
+    private const string GlimmerMonster = "GlimmerMonster";
+
     private void OnInsulInit(EntityUid uid, PsionicInsulationComponent component, ComponentInit args)
     {
         if (!HasComp<PotentialPsionicComponent>(uid))
@@ -45,17 +55,22 @@ public sealed class PsionicInvisibilitySystem : EntitySystem
         if (HasComp<PsionicInvisibilityUsedComponent>(uid))
             _invisSystem.ToggleInvisibility(uid);
 
-        if (_npcFactonSystem.ContainsFaction(uid, "PsionicInterloper"))
+        if (TryComp<NpcFactionMemberComponent>(uid, out var npcFactionMemberComponent))
         {
-            component.SuppressedFactions.Add("PsionicInterloper");
-            _npcFactonSystem.RemoveFaction(uid, "PsionicInterloper");
+            Entity<NpcFactionMemberComponent?> ent = (uid, npcFactionMemberComponent);
+            if (_npcFactonSystem.IsMember(ent, PsionicInterloper))
+            {
+                component.SuppressedFactions.Add(PsionicInterloper);
+                _npcFactonSystem.RemoveFaction(ent, PsionicInterloper);
+            }
+
+            if (_npcFactonSystem.IsMember(ent, GlimmerMonster))
+            {
+                component.SuppressedFactions.Add(GlimmerMonster);
+                _npcFactonSystem.RemoveFaction(ent, GlimmerMonster);
+            }
         }
 
-        if (_npcFactonSystem.ContainsFaction(uid, "GlimmerMonster"))
-        {
-            component.SuppressedFactions.Add("GlimmerMonster");
-            _npcFactonSystem.RemoveFaction(uid, "GlimmerMonster");
-        }
 
         SetCanSeePsionicInvisiblity(uid, true);
     }
@@ -82,11 +97,10 @@ public sealed class PsionicInvisibilitySystem : EntitySystem
 
     private void OnInvisInit(EntityUid uid, PsionicallyInvisibleComponent component, ComponentInit args)
     {
-        var visibility = EntityManager.EnsureComponent<VisibilityComponent>(uid);
-
-        _visibilitySystem.AddLayer(uid, visibility, (int) VisibilityFlags.PsionicInvisibility, false);
-        _visibilitySystem.RemoveLayer(uid, visibility, (int) VisibilityFlags.Normal, false);
-        _visibilitySystem.RefreshVisibility(uid, visibilityComponent: visibility);
+        Entity<VisibilityComponent?> vis = (uid, EnsureComp<VisibilityComponent>(uid));
+        _visibilitySystem.AddLayer(vis, (int) VisibilityFlags.PsionicInvisibility, false);
+        _visibilitySystem.RemoveLayer(vis, (int) VisibilityFlags.Normal, false);
+        _visibilitySystem.RefreshVisibility(uid, visibilityComponent: vis);
 
         SetCanSeePsionicInvisiblity(uid, true);
     }
@@ -96,8 +110,9 @@ public sealed class PsionicInvisibilitySystem : EntitySystem
     {
         if (TryComp<VisibilityComponent>(uid, out var visibility))
         {
-            _visibilitySystem.RemoveLayer(uid, visibility, (int) VisibilityFlags.PsionicInvisibility, false);
-            _visibilitySystem.AddLayer(uid, visibility, (int) VisibilityFlags.Normal, false);
+            Entity<VisibilityComponent?> vis = (uid, visibility);
+            _visibilitySystem.RemoveLayer(vis, (int) VisibilityFlags.PsionicInvisibility, false);
+            _visibilitySystem.AddLayer(vis, (int) VisibilityFlags.Normal, false);
             _visibilitySystem.RefreshVisibility(uid, visibilityComponent: visibility);
         }
         if (HasComp<PotentialPsionicComponent>(uid) && !HasComp<PsionicInsulationComponent>(uid))

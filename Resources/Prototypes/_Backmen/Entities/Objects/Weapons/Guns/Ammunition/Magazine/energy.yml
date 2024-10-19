@@ -1,0 +1,39 @@
+- type: Tag
+  id: MagazinePulseRifleSWS
+
+- type: entity
+  id: MagazinePulseRifleSWS
+  name: pulse rifle magazine
+  description: Standart EarthGov type of impulse magazines
+  parent: BaseItem
+  components:
+  - type: Tag
+    tags:
+      - MagazinePulseRifleSWS
+  - type: BallisticAmmoProvider
+    mayTransfer: true
+    capacity: 70
+    proto: PulseBullet
+    whitelist:
+      tags:
+        - PulseBullet
+  - type: ContainerContainer
+    containers:
+      ballistic-ammo: !type:Container
+  - type: Item
+    size: Small
+    sprite: Backmen/Objects/Weapons/Gunsx64/Magazines/Pulse/sws.rsi
+  - type: Sprite
+    netsync: false
+    sprite: Backmen/Objects/Weapons/Gunsx64/Magazines/Pulse/sws.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-unshaded-1
+      map: ["enum.GunVisualLayers.MagUnshaded"]
+      shader: unshaded
+  - type: MagazineVisuals
+    magState: mag
+    steps: 7
+    zeroVisible: false
+  - type: Appearance

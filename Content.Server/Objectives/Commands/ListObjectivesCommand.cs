@@ -2,6 +2,7 @@ using System.Linq;
 using Content.Server.Administration;
 using Content.Shared.Administration;
 using Content.Shared.Mind;
+using Content.Shared.Objectives.Components;
 using Content.Shared.Objectives.Systems;
 using Robust.Server.Player;
 using Robust.Shared.Console;
@@ -33,27 +34,36 @@ namespace Content.Server.Objectives.Commands
             }
 
             shell.WriteLine($"Objectives for player {player.UserId}:");
-            var objectives = mind.AllObjectives.ToList();
-            if (objectives.Count == 0)
+            var objectivesGr = mind.Objectives.ToList()
+                .Select(x=> (Entity<ObjectiveComponent?>)(x,_entities.GetComponentOrNull<ObjectiveComponent>(x)))
+                .GroupBy(x=>x.Comp?.LocIssuer ?? "") //backmen: locale
+                .ToList();
+            if (objectivesGr.Count == 0)
             {
                 shell.WriteLine("None.");
             }
 
             var objectivesSystem = _entities.System<SharedObjectivesSystem>();
-            for (var i = 0; i < objectives.Count; i++)
+            // start-backmen: locale
+            foreach (var objective in objectivesGr)
             {
-                var info = objectivesSystem.GetInfo(objectives[i], mindId, mind);
-                if (info == null)
+                var objectives = objective.ToList();
+                shell.WriteMarkup(objective.Key+":");
+                for (var i = 0; i < objectives.Count; i++)
                 {
-                    shell.WriteLine($"- [{i}] {objectives[i]} - INVALID");
-                }
-                else
-                {
-
-                    var progress = (int) (info.Value.Progress * 100f);
-                    shell.WriteLine($"- [{i}] {objectives[i]} ({info.Value.Title}) ({progress}%)");
+                    var info = objectivesSystem.GetInfo(objectives[i], mindId, mind);
+                    if (info == null)
+                    {
+                        shell.WriteLine($"- [{i}] {objectives[i].Owner} - INVALID");
+                    }
+                    else
+                    {
+                        var progress = (int) (info.Value.Progress * 100f);
+                        shell.WriteLine($"- [{i}] {objectives[i].Owner} ({info.Value.Title}) ({progress}%)");
+                    }
                 }
             }
+            // end-backmen: locale
         }
 
         public override CompletionResult GetCompletion(IConsoleShell shell, string[] args)

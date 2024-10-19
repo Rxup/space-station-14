@@ -2,6 +2,7 @@ using Content.Server.Administration;
 using Content.Server.Administration.Logs;
 using Content.Shared.Mind;
 using Content.Shared.Administration;
+using Content.Shared.Bed.Sleep;
 using Content.Shared.Database;
 using Content.Shared.Mind.Components;
 using Content.Shared.Players;
@@ -64,6 +65,8 @@ namespace Content.Server.Backmen.Administration.Commands
 
             _entityManager.RemoveComponent<ActorComponent>(eUid);
             _entityManager.RemoveComponent<MindContainerComponent>(eUid);
+            _entityManager.RemoveComponent<ForcedSleepingComponent>(eUid);
+            _entityManager.RemoveComponent<SleepingComponent>(eUid);
 
             // hm, does player have a mind? if not we may need to give them one
             var playerCData = session.ContentData();

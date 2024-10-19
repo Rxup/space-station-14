@@ -1,4 +1,5 @@
 ﻿using Content.Server.Backmen.Shipwrecked.Prototypes;
+using Content.Server.Spawners.Components;
 using Content.Shared.Corvax.TTS;
 using Content.Shared.Procedural;
 using Content.Shared.Roles;
@@ -45,14 +46,14 @@ public sealed partial class ShipwreckedRuleComponent : Component
     /// </summary>
     [ViewVariables]
     [DataField("spawnPointHecate", required: true)]
-    public EntProtoId SpawnPointHecate = default!;
+    public EntProtoId<SpawnPointComponent> SpawnPointHecate = default!;
 
     /// <summary>
     /// Hecate's mob prototype.
     /// </summary>
     [ViewVariables]
     [DataField("hecatePrototype", required: true)]
-    public EntProtoId HecatePrototype = default!;
+    public EntProtoId<ShipwreckedNPCHecateComponent> HecatePrototype = default!;
 
     /// <summary>
     /// The schedule of events to occur.

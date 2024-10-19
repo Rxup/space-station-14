@@ -1,0 +1,68 @@
+- type: entity
+  parent: FoodTinBase
+  id: CannedClownSoupcan
+  suffix: With Clown
+  name: Fun-Clo
+  description: Fun-Clo tins are produced by Honk! Co mainly for their clowns all over the universe, no one knows the composition of the food. this can of classic taste.
+  components:
+  - type: Sprite
+    sprite: Backmen/Objects/Consumable/Food/Tins/c-soupcan.rsi
+    state: icon
+  - type: Item
+    sprite: Backmen/Objects/Consumable/Food/Tins/c-soupcan.rsi
+    heldPrefix: packet
+    size: Small
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 6
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          path: /Audio/Items/can_open3.ogg
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          CannedClownSoupcanOpen:
+            min: 1
+            max: 1
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+  - type: StaticPrice
+    price: 250
+
+- type: entity
+  id: CannedClownSoupcanOpen
+  name: Fun-Clo
+  parent: BaseItem
+  suffix: With Clown
+  description: Fun-Clo tins are produced by Honk! Co mainly for their clowns all over the universe, no one knows the composition of the food. this can of classic taste, wait... Clown face?!
+  components:
+  - type: Sprite
+    sprite: Backmen/Objects/Consumable/Food/Tins/c-soupcan.rsi
+    state: clown
+  - type: Item
+    sprite: Backmen/Objects/Consumable/Food/Tins/c-soupcan.rsi
+    heldPrefix: packet
+    size: Small
+  - type: GhostRole
+    name: ghost-role-information-canned-clown-name
+    description: ghost-role-information-canned-clown-description
+    rules: Помогайте Хонк браткам во исполнении весёлых планов!
+    raffle:
+      settings: default
+  - type: GhostRoleMobSpawner
+    prototype: HumanCannedClown
+  - type: DamageOnLand
+    damage:
+      types:
+        Blunt: 7
+  - type: DamageOtherOnHit
+    damage:
+      types:
+        Blunt: 7
+  - type: Damageable
+    damageContainer: Inorganic
+  - type: PhysicalComposition
+    materialComposition:
+      Steel: 100

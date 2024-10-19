@@ -1,0 +1,275 @@
+#- type: entity
+#  name: killer tomato
+#  id: MobTomatoKiller
+#  parent: SimpleSpaceMobBase
+#  description: This is really going to let you own some vegans in your next online debate.
+#  components:
+#  - type: InputMover
+#  - type: MobMover
+#  - type: HTN
+#    rootTask:
+#      task: SimpleHostileCompound
+#  - type: NpcFactionMember
+#    factions:
+#      - SimpleHostile
+#  - type: Sprite
+#    drawdepth: Mobs
+#    layers:
+#    - map: [ "enum.DamageStateVisualLayers.Base" ]
+#      state: produce
+#      sprite: Backmen/Mobs/Mutants/killer_tomato.rsi
+#  - type: Fixtures
+#    fixtures:
+#      fix1:
+#        shape:
+#          !type:PhysShapeCircle
+#          radius: 0.5
+#        density: 63
+#        mask:
+#        - MobMask
+#        layer:
+#        - MobLayer
+#  - type: MobState
+#  - type: MobThresholds
+#    thresholds:
+#      0: Alive
+#      60: Dead
+#  - type: Appearance
+#  - type: DamageStateVisuals
+#    states:
+#      Alive:
+#        Base: produce
+#      Critical:
+#        Base: produce_dead
+#      Dead:
+#        Base: produce_dead
+#  - type: Butcherable
+#    spawned:
+#    - id: FoodMeatTomato
+#      amount: 3
+#    - id: KillerTomatoSeeds
+#      amount: 1
+#  - type: Bloodstream
+#    bloodReagent: DemonsBlood
+#    bloodMaxVolume: 100
+#  - type: CombatMode
+#  - type: Temperature
+#    heatDamageThreshold: 500
+#    coldDamageThreshold: 200
+#  - type: MeleeWeapon
+#    hidden: true
+#    animation: WeaponArcBite
+#    soundHit:
+#      path: /Audio/Effects/bite.ogg
+#    damage:
+#      types:
+#        Piercing: 3
+#        Slash: 5
+#  - type: ReplacementAccent
+#    accent: genericAggressive
+#  - type: Produce
+#  - type: NoSlip
+
+- type: entity
+  name: Чёрная вдова
+  parent: SimpleMobBase
+  id: MobGiantSpiderVampire
+  description: The 'dream-eater' spider, rumored to be one of the potential genetic sources for arachne.
+  components:
+  - type: LanguageSpeaker
+    currentLanguage: Spider
+  - type: LanguageKnowledge #backmen: languages
+    speaks:
+    - Spider
+    understands:
+    - TauCetiBasic
+    - Spider
+    - Xeno
+  - type: Sprite
+    drawdepth: Mobs
+    layers:
+    - map: ["enum.DamageStateVisualLayers.Base"]
+      state: viper
+      sprite: Mobs/Animals/spider.rsi
+  - type: Physics
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.35
+        density: 130
+        mask:
+        - SmallMobMask
+        layer:
+        - SmallMobLayer
+  - type: Appearance
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: viper
+      Critical:
+        Base: viper_dead
+      Dead:
+        Base: viper_dead
+  - type: Butcherable
+    spawned:
+    - id: FoodMeatSpider
+      amount: 2
+  - type: CombatMode
+#  - type: ReplacementAccent
+#    accent: xeno
+  - type: InteractionPopup
+    successChance: 0.5
+    interactSuccessString: petting-success-tarantula
+    interactFailureString: petting-failure-generic
+  - type: Puller
+    needsHands: false
+  - type: Arachne
+    cocoonDelay: 8
+  - type: SolutionContainerManager
+    solutions:
+      melee:
+        reagents:
+        - ReagentId: Nocturine
+          Quantity: 24
+  - type: MeleeChemicalInjector
+    solution: melee
+    transferAmount: 4
+  - type: SolutionRegeneration
+    solution: melee
+    generated:
+      reagents:
+        - ReagentId: Nocturine
+          Quantity: 3
+  - type: BloodSucker
+    unitsToSucc: 35
+    injectWhenSucc: true
+    injectReagent: Cryptobiolin
+    unitsToInject: 10
+    webRequired: true
+  - type: Bloodstream
+    bloodReagent: DemonsBlood
+  - type: Body
+    prototype: VampiricAnimalLarge
+  - type: PotentialPsionic
+  - type: Psionic
+    removable: false
+  - type: MetapsionicPower
+  - type: AntiPsionicWeapon
+    punish: false
+    modifiers:
+      coefficients:
+        Piercing: 2.25
+  - type: MeleeWeapon
+    altDisarm: false
+    hidden: true
+    animation: WeaponArcBite
+    wideAnimation: WeaponArcBite
+    angle: 90
+    range: 1.5
+    damage:
+      types:
+        Piercing: 8
+  - type: Damageable
+    damageContainer: HalfSpirit
+    damageModifierSet: HalfSpirit
+  - type: StatusEffects
+    allowed:
+      - Stun
+      - KnockedDown
+      - SlowedDown
+      - Stutter
+      - SeeingRainbows
+      - Electrocution
+      - Drunk
+      - SlurredSpeech
+      - PressureImmunity
+      - Muted
+      - ForcedSleep
+      - TemporaryBlindness
+      - Pacified
+      - PsionicsDisabled
+      - PsionicallyInsulated
+      - SeeAll
+  - type: Tag
+    tags:
+      - Oneirophage
+      - FootstepSound
+  - type: MovementAlwaysTouching
+  - type: PsionicInvisibleContacts
+    whitelist:
+      tags:
+        - ArachneWeb
+  - type: SpiderVampire
+    spawnEgg: FoodEggSpiderVampire
+  - type: NightVision
+    isToggle: true
+    color: "#808080"
+    playSoundOn: false
+
+- type: entity
+  name: Чёрная вдова
+  parent: MobGiantSpiderVampire
+  id: MobGiantSpiderVampireAngry
+  suffix: Angry
+  components:
+    - type: NpcFactionMember
+      factions:
+        - SimpleHostile
+    - type: InputMover
+    - type: MobMover
+    - type: HTN
+      rootTask:
+        task: SimpleHostileCompound
+    - type: GhostRole
+      makeSentient: true
+      name: ghost-role-information-giant-spider-vampire-name
+      description: ghost-role-information-giant-spider-vampire-description
+      rules: No antagonist restrictions. Just don't talk in emote; you have telepathic chat.
+      raffle:
+        settings: default
+    - type: GhostTakeoverAvailable
+
+- type: entity
+  name: Чёрная вдова
+  parent: MobGiantSpiderVampire
+  id: MobGiantSpiderVampireBoss
+  suffix: Big Fat Boss
+  components:
+    - type: Sprite
+      scale: 1.5, 1.5
+      drawdepth: Mobs
+      layers:
+        - map: ["enum.DamageStateVisualLayers.Base"]
+          state: viper
+          sprite: Mobs/Animals/spider.rsi
+    - type: SolutionContainerManager
+      solutions:
+        melee:
+          reagents:
+            - ReagentId: Nocturine
+              Quantity: 40
+    - type: MeleeChemicalInjector
+      solution: melee
+      transferAmount: 7
+    - type: SolutionRegeneration
+      solution: melee
+      generated:
+        reagents:
+          - ReagentId: Nocturine
+            Quantity: 4
+    - type: MovementSpeedModifier
+      baseWalkSpeed: 2
+      baseSprintSpeed: 3
+    - type: GhostRole
+      makeSentient: true
+      name: Босс павуков
+      description: ghost-role-information-giant-spider-vampire-description
+      rules: No antagonist restrictions. Just don't talk in emote; you have telepathic chat.
+      raffle:
+        settings: default
+    - type: GhostTakeoverAvailable
+    - type: SpiderVampire
+      spawnEgg: FoodEggSpiderVampire
+      charges: 10

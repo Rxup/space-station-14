@@ -1,0 +1,46 @@
+{
+  "version": 2,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "Taken from https://github.com/tgstation/TerraGov-Marine-Corps/commit/647d2ca80baa8237380b0ee3cf18a24e9e5518c0 and modified by no_mad",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "full"
+    },
+    {
+      "name": "weed0",
+      "directions": 4
+    },
+    {
+      "name": "weed1",
+      "directions": 4
+    },
+    {
+      "name": "weed2",
+      "directions": 4
+    },
+    {
+      "name": "weed3",
+      "directions": 4
+    },
+    {
+      "name": "weed4",
+      "directions": 4
+    },
+    {
+      "name": "weed5",
+      "directions": 4
+    },
+    {
+      "name": "weed6",
+      "directions": 4
+    },
+    {
+      "name": "weed7",
+      "directions": 4
+    }
+  ]
+}

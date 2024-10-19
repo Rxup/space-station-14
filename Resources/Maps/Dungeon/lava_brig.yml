@@ -7345,7 +7345,7 @@ entities:
     - type: Transform
       pos: 18.47467,24.458666
       parent: 588
-- proto: ClothingOuterCoatDetective
+- proto: ClothingOuterCoatDetectiveLoadout
   entities:
   - uid: 574
     components:
@@ -11045,7 +11045,7 @@ entities:
     - type: Transform
       pos: 10.4890785,27.46785
       parent: 588
-- proto: SpaceCash100
+- proto: FakeSpaceCash100
   entities:
   - uid: 1243
     components:

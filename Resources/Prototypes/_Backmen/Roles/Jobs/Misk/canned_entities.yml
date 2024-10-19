@@ -1,0 +1,12 @@
+- type: startingGear
+  id: CannedClownGear
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitClown
+    back: ClothingBackpackClown
+    shoes: ClothingShoesClown
+    mask: ClothingMaskClown
+    pocket1: BikeHorn
+    id: ClownIDCard
+    neck: FoodTinClownSoupcanTrash
+  #satchel: ClothingBackpackSatchelClown
+  #duffelbag: ClothingBackpackDuffelClown

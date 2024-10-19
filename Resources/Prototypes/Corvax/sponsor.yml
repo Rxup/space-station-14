@@ -250,9 +250,9 @@
   suffix: Sponsor
   components:
     - type: Sprite
-      sprite: Corvax/Sponsor/jesuisunfou/Clothing/Uniforms/Jumpsuit/ussp.rsi
+      sprite: Backmen/Clothing/Uniforms/jumpsuit/sponsorUSSP.rsi # backmen-sprite
     - type: Clothing
-      sprite: Corvax/Sponsor/jesuisunfou/Clothing/Uniforms/Jumpsuit/ussp.rsi
+      sprite: Backmen/Clothing/Uniforms/jumpsuit/sponsorUSSP.rsi # backmen-sprite
 
 - type: entity
   parent: ClothingShoesBaseButcherable

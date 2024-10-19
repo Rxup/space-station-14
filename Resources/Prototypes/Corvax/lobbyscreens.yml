@@ -115,6 +115,10 @@
   background: /Textures/Corvax/LobbyScreens/clownspider.png
 
 - type: lobbyBackground
+  id: AIMia
+  background: /Textures/Corvax/LobbyScreens/ai-mia.png
+
+- type: lobbyBackground
   id: XenoAttack
   background: /Textures/Corvax/LobbyScreens/xenosattack.png
 
@@ -127,44 +131,48 @@
   background: /Textures/Corvax/LobbyScreens/you-look-lonely.png
 
 - type: lobbyBackground
-  id: NewYearBar
-  background: /Textures/Corvax/LobbyScreens/new-year-bar.png
+  id: GrayTide
+  background: /Textures/Corvax/LobbyScreens/gray-tide.png
 
-- type: lobbyBackground
-  id: NewYearSec
-  background: /Textures/Corvax/LobbyScreens/new-year-sec.png
+#- type: lobbyBackground
+#  id: NewYearBar
+#  background: /Textures/Corvax/LobbyScreens/new-year-bar.png
 
-- type: lobbyBackground
-  id: NewYearSave
-  background: /Textures/Corvax/LobbyScreens/new-year-save.png
+#- type: lobbyBackground
+#  id: NewYearSec
+#  background: /Textures/Corvax/LobbyScreens/new-year-sec.png
 
-- type: lobbyBackground
-  id: NewYearComfort
-  background: /Textures/Corvax/LobbyScreens/new-year-comfort.png
+#- type: lobbyBackground
+#  id: NewYearSave
+#  background: /Textures/Corvax/LobbyScreens/new-year-save.png
 
-- type: lobbyBackground
-  id: NewYearParty
-  background: /Textures/Corvax/LobbyScreens/new-year-party.png
+#- type: lobbyBackground
+#  id: NewYearComfort
+#  background: /Textures/Corvax/LobbyScreens/new-year-comfort.png
 
-- type: lobbyBackground
-  id: NewYearPine
-  background: /Textures/Corvax/LobbyScreens/new-year-pine.png
+#- type: lobbyBackground
+#  id: NewYearParty
+#  background: /Textures/Corvax/LobbyScreens/new-year-party.png
 
-- type: lobbyBackground
-  id: NewYearExplosion
-  background: /Textures/Corvax/LobbyScreens/new-year-explosion.png
+#- type: lobbyBackground
+#  id: NewYearPine
+#  background: /Textures/Corvax/LobbyScreens/new-year-pine.png
+
+#- type: lobbyBackground
+#  id: NewYearExplosion
+#  background: /Textures/Corvax/LobbyScreens/new-year-explosion.png
 
 - type: lobbyBackground
   id: SpaceNuke
   background: /Textures/Corvax/LobbyScreens/space-nuke.png
 
-- type: lobbyBackground
-  id: NewYearPenguins
-  background: /Textures/Corvax/LobbyScreens/new-year-penguins.png
+#- type: lobbyBackground
+#  id: NewYearPenguins
+#  background: /Textures/Corvax/LobbyScreens/new-year-penguins.png
 
-- type: lobbyBackground
-  id: NewYearNuke
-  background: /Textures/Corvax/LobbyScreens/new-year-nuke.png
+#- type: lobbyBackground
+#  id: NewYearNuke
+#  background: /Textures/Corvax/LobbyScreens/new-year-nuke.png
 
 - type: lobbyBackground
   id: ArnoldIntelligence
@@ -173,3 +181,19 @@
 - type: lobbyBackground
   id: MimesInTechs
   background: /Textures/Corvax/LobbyScreens/mimes-in-techs.png
+
+- type: lobbyBackground
+  id: NukieWar
+  background: /Textures/Corvax/LobbyScreens/nukie-war.png
+
+- type: lobbyBackground
+  id: EngineersVsZombies
+  background: /Textures/Corvax/LobbyScreens/engineers-vs-zombies.png
+  
+- type: lobbyBackground
+  id: SillyIsland
+  background: /Textures/Corvax/LobbyScreens/silly-island.png
+
+- type: lobbyBackground
+  id: EchoTeam
+  background: /Textures/Corvax/LobbyScreens/echo-team.png

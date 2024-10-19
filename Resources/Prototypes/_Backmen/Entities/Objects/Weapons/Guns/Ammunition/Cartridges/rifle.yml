@@ -1,0 +1,118 @@
+- type: entity
+  id: CartridgeRifleFire
+  name: патрон (.20 винтовочно-зажигательные)
+  parent: BaseCartridgeRifle
+  components:
+  - type: CartridgeAmmo
+    proto: BulletFire
+
+- type: entity
+  id: BaseCartridgeRifleHeavy
+  name: cartridge (.62 rifle)
+  parent: BaseCartridge
+  abstract: true
+  components:
+  - type: Tag
+    tags:
+      - Cartridge
+      - CartridgeRifle62
+  - type: CartridgeAmmo
+    proto: BulletRifle
+  - type: Sprite
+    netsync: false
+    sprite: Backmen/Objects/Weapons/Gunsx64/Ammunition/Casings/ammo_casing.rsi
+    layers:
+    - state: 20combat
+      map: ["enum.AmmoVisualLayers.Base"]
+  - type: Appearance
+  - type: SpentAmmoVisuals
+  - type: StaticPrice
+    price: 10
+
+- type: entity
+  id: CartridgeRifleHeavy
+  name: cartridge (.62 rifle)
+  parent: BaseCartridgeRifleHeavy
+  components:
+  - type: Sprite
+    layers:
+    - state: 20combat
+      map: ["enum.AmmoVisualLayers.Base"]
+  - type: SpentAmmoVisuals
+    state: 20combat
+  - type: CartridgeAmmo
+    proto: BulletHeavy62
+
+- type: entity
+  id: BaseCartridgeRifleRocket20
+  name: cartridge (рельсотрон)
+  parent: BaseCartridge
+  abstract: true
+  components:
+  - type: Tag
+    tags:
+      - Cartridge
+      - CartridgeRifleRocket20
+  - type: CartridgeAmmo
+    deleteOnSpawn: true
+  - type: Sprite
+    netsync: false
+    sprite: Backmen/Objects/Weapons/Gunsx64/Ammunition/Casings/ammo_casing.rsi
+    layers:
+    - state: 45combat
+      map: ["enum.AmmoVisualLayers.Base"]
+  - type: Appearance
+  - type: SpentAmmoVisuals
+  - type: StaticPrice
+    price: 10
+
+- type: entity
+  id: CartridgeRifleRocket20
+  name: cartridge (рельсотрон)
+  parent: BaseCartridgeRifleRocket20
+  components:
+  - type: Sprite
+    layers:
+    - state: 45combat
+      map: ["enum.AmmoVisualLayers.Base"]
+  - type: SpentAmmoVisuals
+    state: 45combat
+  - type: CartridgeAmmo
+    proto: BulletRocket20
+
+- type: entity
+  id: BaseCartridgeRifleLightSniper
+  name: cartridge (7,62 rifle)
+  parent: BaseCartridge
+  abstract: true
+  components:
+  - type: Tag
+    tags:
+      - Cartridge
+      - CartridgeRifle762
+  - type: CartridgeAmmo
+    proto: BulletRifle
+  - type: Sprite
+    netsync: false
+    sprite: Backmen/Objects/Weapons/Gunsx64/Ammunition/Casings/ammo_casing.rsi
+    layers:
+    - state: 30combat
+      map: ["enum.AmmoVisualLayers.Base"]
+  - type: Appearance
+  - type: SpentAmmoVisuals
+  - type: StaticPrice
+    price: 10
+
+- type: entity
+  id: CartridgeRifleLight762
+  name: cartridge (7,62 rifle)
+  parent: BaseCartridgeRifleLightSniper
+  components:
+  - type: Sprite
+    layers:
+    - state: 30combat
+      map: ["enum.AmmoVisualLayers.Base"]
+  - type: SpentAmmoVisuals
+    state: 30combat
+  - type: CartridgeAmmo
+    proto: BulletLight762

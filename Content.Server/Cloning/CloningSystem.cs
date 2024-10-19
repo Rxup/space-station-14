@@ -1,4 +1,5 @@
 using Content.Server.Atmos.EntitySystems;
+using Content.Server.Backmen.Cloning;
 using Content.Server.Chat.Systems;
 using Content.Server.Cloning.Components;
 using Content.Server.DeviceLinking.Systems;
@@ -10,6 +11,7 @@ using Content.Server.Materials;
 using Content.Server.Popups;
 using Content.Server.Power.EntitySystems;
 using Content.Shared.Atmos;
+using Content.Shared.Backmen.Chat;
 using Content.Shared.CCVar;
 using Content.Shared.Chemistry.Components;
 using Content.Shared.Cloning;
@@ -220,12 +222,12 @@ namespace Content.Server.Cloning
             }
             // end of genetic damage checks
             // start-backmen: cloning
-            var genetics = new Server.Backmen.Cloning.CloningSpawnEvent((uid,clonePod),bodyToClone)
+            var genetics = new CloningSpawnEvent((uid,clonePod),bodyToClone)
             {
                 Proto = speciesPrototype.Prototype
             };
             RaiseLocalEvent(ref genetics);
-            var mob = Spawn(genetics.Proto ?? speciesPrototype.Prototype, Transform(uid).MapPosition);
+            var mob = Spawn(genetics.Proto ?? speciesPrototype.Prototype, _transformSystem.GetMapCoordinates(uid));
             if (!genetics.IsHandleAppearance)
             {
                 _humanoidSystem.CloneAppearance(bodyToClone, mob);
@@ -250,7 +252,7 @@ namespace Content.Server.Cloning
 
             // TODO: Ideally, components like this should be components on the mind entity so this isn't necessary.
             // Add on special job components to the mob.
-            if (_jobs.MindTryGetJob(mindEnt, out _, out var prototype))
+            if (_jobs.MindTryGetJob(mindEnt, out var prototype))
             {
                 foreach (var special in prototype.Special)
                 {

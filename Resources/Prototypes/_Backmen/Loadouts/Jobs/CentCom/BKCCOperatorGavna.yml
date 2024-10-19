@@ -1,0 +1,45 @@
+﻿- type: startingGear
+  id: OperatorGavna
+  equipment:
+    shoes: ClothingShoesBootsLaceup
+    id: CCOperatorPDA
+    ears: ClothingHeadsetCentCom
+    pocket1: ClothingMaskGasCentcom
+    jumpsuit: ClothingUniformJumpsuitCentcomVeryOfficial
+    innerClothingSkirt: ClothingUniformJumpskirttCentcomVeryOfficial
+    neck: ClothingNeckCloakCap
+    duffelbag: ClothingBackpackDuffel
+    satchel: ClothingBackpackSatchel
+
+# Jumpsuit
+- type: loadout
+  id: BKCCOpearotGavnaJumpsuit
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitCentcomVeryOfficial
+
+
+- type: loadout
+  id: BKCCOpearotGavnaJumpskirt
+  equipment:
+    innerClothingSkirt: ClothingUniformJumpskirttCentcomVeryOfficial
+
+
+# Neck
+- type: loadout
+  id: BKCCOpearotGavnaCloak
+  equipment:
+    neck: ClothingNeckCloakCap
+
+
+
+# Back
+- type: loadout
+  id: BKCCOpearotGavnaBackpack
+  equipment:
+    duffelbag: ClothingBackpackDuffel
+
+
+- type: loadout
+  id: BKCCOpearotGavnaSatchel
+  equipment:
+    satchel: ClothingBackpackSatchel

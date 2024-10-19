@@ -1,4 +1,6 @@
-﻿using Content.Corvax.Interfaces.Client;
+﻿using Content.Client.Backmen.Sponsors;
+using Content.Corvax.Interfaces.Client;
+using Content.Corvax.Interfaces.Shared;
 using Content.Shared.Backmen.WL;
 using Content.Shared.Species.Components;
 using Robust.Shared.Network;
@@ -7,7 +9,7 @@ namespace Content.Client.Backmen.WL;
 
 public sealed class WhitelistSystem  : SharedWhitelistSystem
 {
-    [Dependency] private readonly IClientSponsorsManager _sponsorsManager = default!;
+    [Dependency] private readonly ISharedSponsorsManager _sponsorsManager = default!;
 
     public override void Initialize()
     {
@@ -19,5 +21,5 @@ public sealed class WhitelistSystem  : SharedWhitelistSystem
         // noop
     }
 
-    public bool Whitelisted => _sponsorsManager.Whitelisted;
+    public bool Whitelisted => (_sponsorsManager as SponsorsManager)?.Whitelisted ?? false;
 }

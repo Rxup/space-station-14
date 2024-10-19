@@ -10,6 +10,8 @@ reinforcement-active-row = [color=yellow]{ $name }[/color] ({ $job }) { $state -
 reinforcement-row = { $name } ({ $job })
 
 reinforcement-console-title = Консоль вызова подкрепления
+handheld-reinforcement-console-title = Ручная консоль вызова подкрепления
+handheld-reinforcement-console-desc = Ручная версия консоли для вызова ПЦК.
 reinforcement-console-brief = Причина вызова
 
 reinforcement-error-list = Ошибка! Список пуск!
@@ -18,7 +20,7 @@ reinforcement-error-list-2 = Ошибка! Список превышает ог�
 reinforcement-error-brief = Ошибка! Брифинг пуст!
 
 reinforcement-team-size = Размер команды:
-reinforcement-team-size-min = минмум: { $num }
+reinforcement-team-size-min = минимум: { $num }
 reinforcement-team-size-max = максимум: { $num }
 
 reinforcement-ghostrole-name = Подкрепление: { $name }

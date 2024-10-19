@@ -1,0 +1,110 @@
+#- type: entity
+#  parent: HandheldHealthAnalyzer
+#  id: HandheldHealthAnalyzerFurryVirus
+#  name: анализатор фурри вируса
+#  components:
+#  - type: HealthAnalyzer
+#    fake: true
+#    disease: FurryVirus
+
+- type: emote
+  id: BCatMeow
+  name: chat-emote-name-BCatMeow
+  category: Vocal
+  chatMessages: ["chat-emote-msg-BCatMeow"]
+- type: disease
+  id: FurryVirus
+  name: disease-proto-furry-virus
+  cureResist: 0.7
+  stages:
+   - 0
+   - 120
+   - 560
+  effects:
+    # compulsion pop ups
+    - !type:DiseasePopUp
+      probability: 0.015
+      type: Pvs
+      message: disease-meow
+      visualType: Medium
+      stages:
+        - 0
+        - 1
+    - !type:DiseasePopUp
+      probability: 0.03
+      message: disease-sick-generic
+      visualType: Medium
+      stages:
+        - 0
+        - 1
+    # Screeches - spreads disease
+    - !type:DiseaseSnough
+      probability: 0.03
+      #snoughMessage: disease-screech
+      emote: BCatMeow
+      stages:
+        - 0
+    - !type:DiseaseSnough
+      probability: 0.05
+      #snoughMessage: disease-screech
+      emote: BCatMeow
+      stages:
+        - 1
+    - !type:DiseaseSnough
+      probability: 0.2
+      #snoughMessage: disease-screech
+      emote: BCatMeow
+      stages:
+        - 2
+    # asphyxiation damage, probably from all the screeching
+    - !type:DiseaseHealthChange
+      probability: 0.53
+      damage:
+        types:
+          Asphyxiation: 1
+      stages:
+        - 1
+    - !type:DiseasePolymorph
+      polymorphId: BFoxMorph
+      polymorphMessage: disease-polymorph
+      polymorphRandomAppereance: true
+      polymorphSound:
+        path: /Audio/Animals/cat_meow.ogg
+      stages:
+        - 2
+    - !type:DiseaseGenericStatusEffect
+      probability: 0.5
+      key: Stutter
+      component: OwOAccent
+      stages:
+        - 1
+    - !type:DiseaseGenericStatusEffect
+      probability: 1
+      key: Stutter
+      component: OwOAccent
+      stages:
+        - 2
+  cures:
+    - !type:DiseaseJustWaitCure
+      maxLength: 800
+    - !type:DiseaseReagentCure
+      reagent:
+        ReagentId: Sigynate
+      min: 20
+      stages:
+        - 1
+        - 2
+    - !type:DiseaseReagentCure
+      reagent:
+        ReagentId: Theobromine
+      min: 20
+      stages:
+        - 0
+    - !type:DiseaseReagentCure
+      reagent:
+        ReagentId: LotophagoiOil
+      min: 20
+      stages:
+        - 0
+        - 1
+        - 2

@@ -1,10 +1,23 @@
+using Content.Shared.Backmen.Language;
 using Content.Shared.Chat;
 using Content.Shared.Radio;
 
 namespace Content.Server.Radio;
 
 [ByRefEvent]
-public readonly record struct RadioReceiveEvent(string Message, EntityUid MessageSource, RadioChannelPrototype Channel, MsgChatMessage ChatMsg);
+public readonly record struct RadioReceiveEvent(
+    string Message,
+    EntityUid MessageSource,
+    RadioChannelPrototype Channel,
+    EntityUid RadioSource,
+    MsgChatMessage ChatMsg
+)
+{
+    // start-backmen: language
+    public MsgChatMessage? LanguageObfuscatedChatMsg { init; get; }
+    public LanguagePrototype? Language { init; get; }
+    // end-backmen: language
+};
 
 /// <summary>
 /// Use this event to cancel sending message per receiver

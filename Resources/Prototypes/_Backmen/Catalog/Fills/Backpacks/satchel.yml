@@ -1,0 +1,18 @@
+- type: entity
+  categories: [ HideSpawnMenu ]
+  parent: ClothingBackpackSatchel
+  id: ClothingBackpackSatchelPlagueDoctorFilled
+  suffix: PlagueDoctor
+  components:
+  - type: StorageFill
+    contents:
+      - id: BoxSurvival
+      #- id: HandheldHealthAnalyzerPlague
+      #- id: HandheldHealthAnalyzerBirdFlew
+      - id: RitualDagger
+      - id: PillRomerol
+        amount: 3
+      - id: PillAmbuzol
+        amount: 3
+      - id: PillAmbuzolPlus
+        amount: 3

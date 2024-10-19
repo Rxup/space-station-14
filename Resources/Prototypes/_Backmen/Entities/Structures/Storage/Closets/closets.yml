@@ -1,0 +1,54 @@
+- type: entity
+  id: LockerEGov
+  parent: LockerBase
+  name: navy's locker
+  description: A standard-issue EarthGovernment storage unit.
+  components:
+  - type: Sprite
+    netsync: false
+    sprite: Backmen/Structures/Storage/navy.rsi
+    noRot: true
+    layers:
+    - state: egov
+      map: ["enum.StorageVisualLayers.Base"]
+    - state: egov_door
+      map: ["enum.StorageVisualLayers.Door"]
+    - state: locked
+      map: ["enum.LockVisualLayers.Lock"]
+      shader: unshaded
+    - state: welded
+      visible: false
+      map: ["enum.WeldableLayers.BaseWelded"]
+  - type: EntityStorageVisuals
+    stateBaseClosed: egov
+    stateDoorOpen: egov_open
+    stateDoorClosed: egov_door
+  - type: AccessReader
+    access: [ [ "EarthGov" ] ]
+
+- type: entity
+  id: LockerBlueShield
+  parent: LockerBase
+  name: шкаф Синего Щита
+  components:
+  - type: Sprite
+    netsync: false
+    sprite: Backmen/Structures/Storage/blue.rsi
+    noRot: true
+    layers:
+    - state: egov
+      map: ["enum.StorageVisualLayers.Base"]
+    - state: egov_door
+      map: ["enum.StorageVisualLayers.Door"]
+    - state: locked
+      map: ["enum.LockVisualLayers.Lock"]
+      shader: unshaded
+    - state: welded
+      visible: false
+      map: ["enum.WeldableLayers.BaseWelded"]
+  - type: EntityStorageVisuals
+    stateBaseClosed: egov
+    stateDoorOpen: egov_open
+    stateDoorClosed: egov_door
+  - type: AccessReader
+    access: [ [ "CCOfficer" ] ]

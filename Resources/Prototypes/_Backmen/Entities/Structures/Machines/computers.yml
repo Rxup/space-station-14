@@ -1,0 +1,110 @@
+- type: entity
+  id: ComputerShipyard
+  parent: BaseComputer
+  name: shipyard console
+  description: Used to purchase and sell shuttles
+  components:
+  - type: ShipyardConsole
+  - type: AccessReader
+    access: [["Captain"], ["CentralCommand"]]
+  - type: ActivatableUI
+    key: enum.ShipyardConsoleUiKey.Shipyard
+  - type: UserInterface
+    interfaces:
+      enum.ShipyardConsoleUiKey.Shipyard:
+        type: ShipyardConsoleBoundUserInterface
+  - type: Computer
+    board: ShipyardComputerCircuitboard
+  - type: StationAiWhitelist
+  - type: PointLight
+    radius: 1.5
+    energy: 1.6
+    color: "#b89f25"
+  - type: Sprite
+    layers:
+    - map: ["computerLayerBody"]
+      state: computer
+    - map: ["computerLayerKeyboard"]
+      state: generic_keyboard
+    - map: ["computerLayerScreen"]
+      state: request
+    - map: ["computerLayerKeys"]
+      state: tech_key
+
+- type: entity
+  parent: BaseComputer
+  id: ComputerCommssCentComm
+  name: Коммуникационный компьютер ЦК
+  suffix: CentCom
+  description: Это может быть использовано для различных важных функций. Все еще находится на стадии разработки.
+  components:
+  - type: AccessReader
+    access: [[ "CCOfficer" ]]
+  - type: CommunicationsConsole
+    title: comms-console-announcement-title-centcom
+    sound: /Audio/Misc/notice1.ogg
+    global: true
+    color: "#2681a5"
+  - type: ActivatableUI
+    key: enum.CommunicationsConsoleUiKey.Key
+  - type: ActivatableUIRequiresPower
+  - type: UserInterface
+    interfaces:
+      enum.CommunicationsConsoleUiKey.Key:
+        type: CommunicationsConsoleBoundUserInterface
+  - type: Computer
+    board: CommsComputerCircuitboardCentComm
+  - type: PointLight
+    radius: 1.5
+    energy: 1.6
+    color: "#43ccb5"
+
+- type: entity
+  parent: BaseComputerShuttle
+  id: ComputerShuttleMTF
+  name: консоль управления шаттлом
+  description: Используется для пилотирования корабля Мобильно Оперативной Группы.
+  components:
+  - type: Sprite
+    layers:
+    - map: ["computerLayerBody"]
+      state: computer
+    - map: ["computerLayerKeyboard"]
+      state: generic_keyboard
+    - map: ["computerLayerScreen"]
+      state: security
+    - map: ["computerLayerKeys"]
+      state: security_key
+  - type: Tag
+    tags:
+      - NanoTrasen
+  - type: RadarConsole
+    maxRange: 1536
+  - type: Computer
+    board: ShuttleConsoleCircuitboard
+
+- type: entity
+  parent: BaseComputerShuttle
+  id: ComputerShuttleEarthGov
+  components:
+  - type: Sprite
+    layers:
+    - map: ["computerLayerBody"]
+      state: computer
+    - map: ["computerLayerKeyboard"]
+      state: generic_keyboard
+    - map: ["computerLayerScreen"]
+      state: turbinecomp
+    - map: ["computerLayerKeys"]
+      state: generic_keys
+  - type: Tag
+    tags:
+      - EarthGov
+  - type: RadarConsole
+    maxRange: 1536
+  - type: WorldLoader
+    radius: 1536
+  - type: PointLight
+    radius: 1.5
+    energy: 1.6
+    color: "#c94242"

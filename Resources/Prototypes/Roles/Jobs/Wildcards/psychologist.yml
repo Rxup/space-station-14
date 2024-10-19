@@ -21,11 +21,9 @@
 - type: startingGear
   id: PsychologistGear
   equipment:
-    jumpsuit: ClothingUniformJumpsuitPsychologist
-    back: ClothingBackpackPsychologistFilled # Corvax-Stamp
     shoes: ClothingShoesLeather
     id: PsychologistPDA
     ears: ClothingHeadsetMedical
-  innerClothingSkirt: ClothingUniformJumpskirtPsychologist # Corvax-Resprite
-  satchel: ClothingBackpackSatchelPsychologistFilled # Corvax-Stamp
-  duffelbag: ClothingBackpackDuffelPsychologistFilled # Corvax-Stamp
+  storage:
+    back:
+    - RubberStampPsychologist

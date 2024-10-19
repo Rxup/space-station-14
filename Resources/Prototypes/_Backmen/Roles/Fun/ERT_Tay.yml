@@ -1,0 +1,46 @@
+- type: startingGear
+  id: ERTLeaderTay39Gear
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitERTMedic
+    back: ClothingBackpackERTLeaderTay39
+    shoes: ClothingShoesBootsNedoSpetsnaz
+    mask: ClothingMaskGasERTV2_1
+    eyes: ClothingEyesHudMedical
+    gloves: ClothingHandsGlovesSpetsnazcombat
+    outerClothing: ClothingOuterHardsuitERTLeaderTay39
+    head: ClothingHeadHatBeretCmo
+    id: OBRGavnaLeaderIDCardTay39
+    ears: ClothingHeadsetCentComCCMTF
+    belt: ClothingBeltERTWebbingLeaderTay39Filled
+    pocket1: CombatKnifeSpetsnaz
+
+- type: startingGear
+  id: ERTMedicTay39Gear
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitERTMedic
+    back: ClothingBackpackERTMedicTay39
+    shoes: ClothingShoesBootsNedoSpetsnaz
+    mask: ClothingMaskGasERTV2_1
+    eyes: ClothingEyesHudMedical
+    gloves: ClothingHandsGlovesSpetsnazcombat
+    outerClothing: ClothingOuterHardsuitERTMedicTay39
+    id: OBRGavnaMedicIDCardTay39
+    ears: ClothingHeadsetCentComCCMTF
+    belt: ClothingBeltMedicalTay39Filled
+    pocket1: HandheldHealthAnalyzer
+    pocket2: CombatKnifeSpetsnaz
+
+- type: startingGear
+  id: ERTSecurityTay39Gear
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitERTMedic
+    back: ClothingBackpackERTSecurityTay39
+    shoes: ClothingShoesBootsNedoSpetsnaz
+    mask: ClothingMaskGasERTV2_1
+    eyes: ClothingEyesHudMedical
+    gloves: ClothingHandsGlovesSpetsnazcombat
+    outerClothing: ClothingOuterHardsuitERTTay39
+    id: OBRGavnaIDCardTay39
+    ears: ClothingHeadsetCentComCCMTF
+    belt: ClothingBeltERTWebbingSecurityTay39Filled
+    pocket1: CombatKnifeSpetsnaz

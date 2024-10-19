@@ -1,0 +1,22 @@
+{
+    "version": 1,
+    "size":
+    {
+      "x": 32,
+      "y": 32
+    },
+    "license": "CC-BY-SA-3.0",
+    "copyright": "Taken from TG git https://github.com/tgstation/tgstation/blob/master/icons/mob/simple/pets.dmi",
+    "states":
+    [
+      {
+        "name": "espeon",
+        "directions": 4
+      },
+  
+      {
+        "name": "espeon_dead",
+        "directions": 1
+      }
+    ]
+  }

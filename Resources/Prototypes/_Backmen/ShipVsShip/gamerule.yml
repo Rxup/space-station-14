@@ -1,0 +1,41 @@
+﻿- type: gamePreset
+  id: ShipVsShip
+  alias:
+  - svs
+  name: svs-title
+  description: svs-description
+  showInVote: false #temp
+  isMiniGame: true
+  supportedMaps: ShipVsShipMapPool
+  rules:
+  - ShipVsShip
+  - BasicRoundstartVariation
+
+- type: gamePreset
+  id: SecretSVS
+  alias: []
+  name: secret-title
+  showInVote: false
+  description: secret-description
+  isMiniGame: true
+  supportedMaps: ShipVsShipMapPool
+  rules:
+  - ShipVsShip
+  - BasicRoundstartVariation
+
+- type: gameMapPool
+  id: ShipVsShipMapPool
+  maps:
+  - BargeVsShip
+
+- type: entity
+  id: ShipVsShip
+  parent: BaseGameRule
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: ShipVsShipGame
+  - type: KillCalloutRule
+  - type: PointManager
+  - type: RespawnDeadRule
+  - type: RespawnTracker
+    respawnDelay: 5

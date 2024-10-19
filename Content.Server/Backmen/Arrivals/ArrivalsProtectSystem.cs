@@ -1,3 +1,4 @@
+using Content.Server.Administration.Managers;
 using Content.Server.Damage.Systems;
 using Content.Server.Shuttles.Components;
 using JetBrains.Annotations;
@@ -19,7 +20,13 @@ using Content.Server.Construction;
 using Content.Server.Emp;
 using Content.Server.Gravity;
 using Content.Server.Power.EntitySystems;
+using Content.Shared.Backmen.Arrivals;
+using Content.Shared.Construction.Components;
+using Content.Shared.Construction.EntitySystems;
 using Content.Shared.DeviceLinking.Events;
+using Content.Shared.DoAfter;
+using Content.Shared.Prying.Components;
+using Content.Shared.Tools.Components;
 using Content.Shared.Tools.Systems;
 
 namespace Content.Server.Backmen.Arrivals;
@@ -29,17 +36,11 @@ public sealed partial class ArrivalsProtectComponent : Component
 {
 
 }
-[RegisterComponent]
-public sealed partial class ArrivalsProtectGridComponent : Component
-{
 
-}
-
-[UsedImplicitly]
-public sealed class ArrivalsProtectSystem : EntitySystem
+public sealed class ArrivalsProtectSystem : SharedArrivalsProtectSystem
 {
     [Dependency] private readonly GodmodeSystem _godmodeSystem = default!;
-    [Dependency] private readonly SharedToolSystem _toolSystem = default!;
+    [Dependency] private readonly IAdminManager _adminManager = default!;
     [Dependency] private readonly TagSystem _tagSystem = default!;
     [Dependency] private readonly IMapManager _mapManager = default!;
     [Dependency] private readonly ApcSystem _apcSystem = default!;
@@ -59,10 +60,15 @@ public sealed class ArrivalsProtectSystem : EntitySystem
         SubscribeLocalEvent<ArrivalsProtectComponent, InteractUsingEvent>(OnInteractUsing, before: new []{typeof(DoorSystem), typeof(WiresSystem), typeof(CableSystem)});
         SubscribeLocalEvent<ArrivalsProtectComponent, WeldableAttemptEvent>(OnWeldAttempt, before: new []{typeof(DoorSystem), typeof(WiresSystem)});
         SubscribeLocalEvent<ArrivalsProtectComponent, ApcToggleMainBreakerAttemptEvent>(OnToggleApc, before: new[]{ typeof(EmpSystem)});
+        SubscribeLocalEvent<ArrivalsProtectComponent, BeforePryEvent>(OnTryPry);
 
         SubscribeLocalEvent<BuildAttemptEvent>(OnBuildAttemptEvent);
-
         SubscribeLocalEvent<ArrivalsProtectComponent, LinkAttemptEvent>(OnLinkAttempt);
+    }
+
+    private void OnTryPry(Entity<ArrivalsProtectComponent> ent, ref BeforePryEvent args)
+    {
+        args.Cancelled = true;
     }
 
     private void OnLinkAttempt(EntityUid uid, ArrivalsProtectComponent component, LinkAttemptEvent args)
@@ -84,7 +90,7 @@ public sealed class ArrivalsProtectSystem : EntitySystem
         {
             _apcSystem.ApcToggleBreaker(uid,apcComponent);
         }
-        apcComponent.HasAccess = false;
+        // apcComponent.HasAccess = false;
     }
 
     private void OnBuildAttemptEvent(BuildAttemptEvent ev)

@@ -6,14 +6,14 @@
   requirements:
     - !type:OverallPlaytimeRequirement
       time: 3600 #1 hr
-    - !type:DepartmentTimeRequirement
-      department: Engineering
-      time: 36000 #10 hrs # Corvax-RoleTime
-      inverted: true # stop playing intern if you're good at engineering!
+    # - !type:DepartmentTimeRequirement
+      # department: Engineering
+      # time: 36000 #10 hrs # Corvax-RoleTime
+      # inverted: true # stop playing intern if you're good at engineering!
   startingGear: TechnicalAssistantGear
   icon: "JobIconTechnicalAssistant"
   supervisors: job-supervisors-engineering
-  canBeAntag: false
+  canBeAntag: true # Corvax-MRP: Available not only for newbies
   access:
   - Maintenance
   - Engineering
@@ -28,13 +28,11 @@
 - type: startingGear
   id: TechnicalAssistantGear
   equipment:
-    jumpsuit: ClothingUniformJumpsuitColorYellow
-    back: ClothingBackpackEngineeringFilled
     shoes: ClothingShoesBootsWork
     id: TechnicalAssistantPDA
     belt: ClothingBeltUtilityEngineering
     ears: ClothingHeadsetEngineering
     pocket2: BookEngineersHandbook
-  innerClothingSkirt: ClothingUniformJumpskirtColorYellow
-  satchel: ClothingBackpackSatchelEngineeringFilled
-  duffelbag: ClothingBackpackDuffelEngineeringFilled
+  #storage:
+    #back:
+    #- Stuff

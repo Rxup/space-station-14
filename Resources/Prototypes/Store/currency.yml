@@ -15,6 +15,11 @@
   displayName: store-currency-display-stolen-mutation-points
   canWithdraw: false
 
+- type: currency
+  id: WizCoin
+  displayName: store-currency-display-wizcoin
+  canWithdraw: false
+
 #debug
 - type: currency
   id: DebugDollar

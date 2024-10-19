@@ -1,9 +1,13 @@
+using System.Linq;
+using System.Numerics;
+using Content.Client.Backmen.UI.Buttons;
+using Content.Client.Audio;
+using Content.Client.Changelog;
 using Content.Client.GameTicking.Managers;
 using Content.Client.LateJoin;
 using Content.Client.Lobby.UI;
 using Content.Client.Message;
-using Content.Client.Preferences;
-using Content.Client.Preferences.UI;
+using Content.Client.Resources;
 using Content.Client.UserInterface.Systems.Chat;
 using Content.Client.Voting;
 using Robust.Client;
@@ -11,9 +15,8 @@ using Robust.Client.Console;
 using Robust.Client.ResourceManagement;
 using Robust.Client.UserInterface;
 using Robust.Client.UserInterface.Controls;
-using Robust.Shared.Configuration;
-using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
+using Robust.Shared.Utility;
 
 
 namespace Content.Client.Lobby
@@ -24,19 +27,15 @@ namespace Content.Client.Lobby
         [Dependency] private readonly IClientConsoleHost _consoleHost = default!;
         [Dependency] private readonly IEntityManager _entityManager = default!;
         [Dependency] private readonly IResourceCache _resourceCache = default!;
-        [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
         [Dependency] private readonly IUserInterfaceManager _userInterfaceManager = default!;
-        [Dependency] private readonly IClientPreferencesManager _preferencesManager = default!;
         [Dependency] private readonly IGameTiming _gameTiming = default!;
         [Dependency] private readonly IVoteManager _voteManager = default!;
-        [Dependency] private readonly IConfigurationManager _configurationManager = default!;
-
-        [ViewVariables] private CharacterSetupGui? _characterSetup;
-
+        [Dependency] private readonly ChangelogManager _changelog = default!; // WD EDIT
         private ClientGameTicker _gameTicker = default!;
+        private ContentAudioSystem _contentAudioSystem = default!;
 
         protected override Type? LinkedScreenType { get; } = typeof(LobbyGui);
-        private LobbyGui? _lobby;
+        public LobbyGui? Lobby;
 
         protected override void Startup()
         {
@@ -45,45 +44,27 @@ namespace Content.Client.Lobby
                 return;
             }
 
-            _lobby = (LobbyGui) _userInterfaceManager.ActiveScreen;
+            Lobby = (LobbyGui) _userInterfaceManager.ActiveScreen;
 
             var chatController = _userInterfaceManager.GetUIController<ChatUIController>();
             _gameTicker = _entityManager.System<ClientGameTicker>();
-            _characterSetup = new CharacterSetupGui(_entityManager, _resourceCache, _preferencesManager,
-                _prototypeManager, _configurationManager);
-            LayoutContainer.SetAnchorPreset(_characterSetup, LayoutContainer.LayoutPreset.Wide);
+            _contentAudioSystem = _entityManager.System<ContentAudioSystem>();
+            _contentAudioSystem.LobbySoundtrackChanged += UpdateLobbySoundtrackInfo;
 
-            _lobby.CharacterSetupState.AddChild(_characterSetup);
             chatController.SetMainChat(true);
 
-            _voteManager.SetPopupContainer(_lobby.VoteContainer);
-
-            _characterSetup.CloseButton.OnPressed += _ =>
-            {
-                _lobby.SwitchState(LobbyGui.LobbyGuiState.Default);
-            };
-
-            _characterSetup.SaveButton.OnPressed += _ =>
-            {
-                _characterSetup.Save();
-                _lobby.CharacterPreview.UpdateUI();
-            };
-
-            LayoutContainer.SetAnchorPreset(_lobby, LayoutContainer.LayoutPreset.Wide);
-            _lobby.ServerName.Text = _baseClient.GameInfo?.ServerName; //The eye of refactor gazes upon you...
+            _voteManager.SetPopupContainer(Lobby.VoteContainer);
+            LayoutContainer.SetAnchorPreset(Lobby, LayoutContainer.LayoutPreset.Wide);
+            Lobby.ServerName.Text = _baseClient.GameInfo?.ServerName; //The eye of refactor gazes upon you...
             UpdateLobbyUi();
 
-            _lobby.CharacterPreview.CharacterSetupButton.OnPressed += OnSetupPressed;
-            _lobby.ReadyButton.OnPressed += OnReadyPressed;
-            _lobby.ReadyButton.OnToggled += OnReadyToggled;
+            Lobby.CharacterSetupButton.OnPressed += OnSetupPressed; // WD EDIT
+            Lobby.ReadyButton.OnPressed += OnReadyPressed;
+            Lobby.ReadyButton.OnToggled += OnReadyToggled;
 
             _gameTicker.InfoBlobUpdated += UpdateLobbyUi;
             _gameTicker.LobbyStatusUpdated += LobbyStatusUpdated;
             _gameTicker.LobbyLateJoinStatusUpdated += LobbyLateJoinStatusUpdated;
-
-            _preferencesManager.OnServerDataLoaded += PreferencesDataLoaded;
-
-            _lobby.CharacterPreview.UpdateUI();
         }
 
         protected override void Shutdown()
@@ -93,30 +74,27 @@ namespace Content.Client.Lobby
             _gameTicker.InfoBlobUpdated -= UpdateLobbyUi;
             _gameTicker.LobbyStatusUpdated -= LobbyStatusUpdated;
             _gameTicker.LobbyLateJoinStatusUpdated -= LobbyLateJoinStatusUpdated;
+            _contentAudioSystem.LobbySoundtrackChanged -= UpdateLobbySoundtrackInfo;
 
             _voteManager.ClearPopupContainer();
 
-            _lobby!.CharacterPreview.CharacterSetupButton.OnPressed -= OnSetupPressed;
-            _lobby!.ReadyButton.OnPressed -= OnReadyPressed;
-            _lobby!.ReadyButton.OnToggled -= OnReadyToggled;
+            Lobby!.CharacterSetupButton.OnPressed -= OnSetupPressed;
+            Lobby!.ReadyButton.OnPressed -= OnReadyPressed;
+            Lobby!.ReadyButton.OnToggled -= OnReadyToggled;
 
-            _lobby = null;
-
-            _characterSetup?.Dispose();
-            _characterSetup = null;
-
-            _preferencesManager.OnServerDataLoaded -= PreferencesDataLoaded;
+            Lobby = null;
         }
 
-        private void PreferencesDataLoaded()
+        public void SwitchState(LobbyGui.LobbyGuiState state)
         {
-            _lobby?.CharacterPreview.UpdateUI();
+            // Yeah I hate this but LobbyState contains all the badness for now.
+            Lobby?.SwitchState(state);
         }
 
         private void OnSetupPressed(BaseButton.ButtonEventArgs args)
         {
             SetReady(false);
-            _lobby!.SwitchState(LobbyGui.LobbyGuiState.CharacterSetup);
+            Lobby?.SwitchState(LobbyGui.LobbyGuiState.CharacterSetup);
         }
 
         private void OnReadyPressed(BaseButton.ButtonEventArgs args)
@@ -138,13 +116,13 @@ namespace Content.Client.Lobby
         {
             if (_gameTicker.IsGameStarted)
             {
-                _lobby!.StartTime.Text = string.Empty;
+                Lobby!.StartTime.Text = string.Empty;
                 var roundTime = _gameTiming.CurTime.Subtract(_gameTicker.RoundStartTimeSpan);
-                _lobby!.StationTime.Text = Loc.GetString("lobby-state-player-status-round-time", ("hours", roundTime.Hours), ("minutes", roundTime.Minutes));
+                Lobby!.StationTime.Text = Loc.GetString("lobby-state-player-status-round-time", ("hours", roundTime.Hours), ("minutes", roundTime.Minutes));
                 return;
             }
 
-            _lobby!.StationTime.Text =  Loc.GetString("lobby-state-player-status-round-not-started");
+            Lobby!.StationTime.Text =  Loc.GetString("lobby-state-player-status-round-not-started");
             string text;
 
             if (_gameTicker.Paused)
@@ -153,7 +131,7 @@ namespace Content.Client.Lobby
             }
             else if (_gameTicker.StartTime < _gameTiming.CurTime)
             {
-                _lobby!.StartTime.Text = Loc.GetString("lobby-state-soon");
+                Lobby!.StartTime.Text = Loc.GetString("lobby-state-soon");
                 return;
             }
             else
@@ -170,7 +148,7 @@ namespace Content.Client.Lobby
                 }
             }
 
-            _lobby!.StartTime.Text = Loc.GetString("lobby-state-round-start-countdown-text", ("timeLeft", text));
+            Lobby!.StartTime.Text = Loc.GetString("lobby-state-round-start-countdown-text", ("timeLeft", text));
         }
 
         private void LobbyStatusUpdated()
@@ -181,54 +159,67 @@ namespace Content.Client.Lobby
 
         private void LobbyLateJoinStatusUpdated()
         {
-            _lobby!.ReadyButton.Disabled = _gameTicker.DisallowedLateJoin;
+            Lobby!.ReadyButton.Disabled = _gameTicker.DisallowedLateJoin;
         }
 
         private void UpdateLobbyUi()
         {
             if (_gameTicker.IsGameStarted)
             {
-                _lobby!.ReadyButton.Text = Loc.GetString("lobby-state-ready-button-join-state");
-                _lobby!.ReadyButton.ToggleMode = false;
-                _lobby!.ReadyButton.Pressed = false;
-                _lobby!.ObserveButton.Disabled = false;
+                MakeButtonJoinGame(Lobby!.ReadyButton); // WD EDIT
+                Lobby!.ReadyButton.ToggleMode = false;
+                Lobby!.ReadyButton.Pressed = false;
+                Lobby!.ObserveButton.Disabled = false;
             }
             else
             {
-                _lobby!.StartTime.Text = string.Empty;
-                _lobby!.ReadyButton.Text = Loc.GetString(_lobby!.ReadyButton.Pressed ? "lobby-state-player-status-ready": "lobby-state-player-status-not-ready");
-                _lobby!.ReadyButton.ToggleMode = true;
-                _lobby!.ReadyButton.Disabled = false;
-                _lobby!.ReadyButton.Pressed = _gameTicker.AreWeReady;
-                _lobby!.ObserveButton.Disabled = true;
+                Lobby!.StartTime.Text = string.Empty;
+                // WD EDIT START
+                if (Lobby!.ReadyButton.Pressed)
+                    MakeButtonReady(Lobby!.ReadyButton);
+                else
+                    MakeButtonUnReady(Lobby!.ReadyButton);
+                // WD EDIT END
+                Lobby!.ReadyButton.ToggleMode = true;
+                Lobby!.ReadyButton.Disabled = false;
+                Lobby!.ReadyButton.Pressed = _gameTicker.AreWeReady;
+                Lobby!.ObserveButton.Disabled = true;
             }
 
             if (_gameTicker.ServerInfoBlob != null)
             {
-                _lobby!.ServerInfo.SetInfoBlob(_gameTicker.ServerInfoBlob);
+                Lobby!.ServerInfo.SetInfoBlob(_gameTicker.ServerInfoBlob);
+                Lobby!.LabelName.SetMarkup("[font=\"Bedstead\" size=20] BackMen And Ataraxia [/font]"); // WD EDIT
+                Lobby!.ChangelogLabel.SetMarkup(Loc.GetString("ui-lobby-changelog")); // WD EDIT
             }
+        }
 
-            if (_gameTicker.LobbySong == null)
+        private void UpdateLobbySoundtrackInfo(LobbySoundtrackChangedEvent ev)
+        {
+            if (ev.SoundtrackFilename == null)
             {
-                _lobby!.LobbySong.SetMarkup(Loc.GetString("lobby-state-song-no-song-text"));
+                Lobby!.LobbySong.SetMarkup(Loc.GetString("lobby-state-song-no-song-text"));
             }
-            else if (_resourceCache.TryGetResource<AudioResource>(_gameTicker.LobbySong, out var lobbySongResource))
+            else if (
+                ev.SoundtrackFilename != null
+                && _resourceCache.TryGetResource<AudioResource>(ev.SoundtrackFilename, out var lobbySongResource)
+                )
             {
                 var lobbyStream = lobbySongResource.AudioStream;
 
-                var title = string.IsNullOrEmpty(lobbyStream.Title) ?
-                    Loc.GetString("lobby-state-song-unknown-title") :
-                    lobbyStream.Title;
+                var title = string.IsNullOrEmpty(lobbyStream.Title)
+                    ? Loc.GetString("lobby-state-song-unknown-title")
+                    : lobbyStream.Title;
 
-                var artist = string.IsNullOrEmpty(lobbyStream.Artist) ?
-                    Loc.GetString("lobby-state-song-unknown-artist") :
-                    lobbyStream.Artist;
+                var artist = string.IsNullOrEmpty(lobbyStream.Artist)
+                    ? Loc.GetString("lobby-state-song-unknown-artist")
+                    : lobbyStream.Artist;
 
                 var markup = Loc.GetString("lobby-state-song-text",
                     ("songTitle", title),
                     ("songArtist", artist));
 
-                _lobby!.LobbySong.SetMarkup(markup);
+                Lobby!.LobbySong.SetMarkup(markup);
             }
         }
 
@@ -236,11 +227,11 @@ namespace Content.Client.Lobby
         {
             if (_gameTicker.LobbyBackground != null)
             {
-                _lobby!.Background.Texture = _resourceCache.GetResource<TextureResource>(_gameTicker.LobbyBackground );
+                Lobby!.Background.SetRSI(_resourceCache.GetResource<RSIResource>(_gameTicker.LobbyBackground).RSI); // WD EDIT
             }
             else
             {
-                _lobby!.Background.Texture = null;
+                Lobby!.Background.Texture = null;
             }
 
         }
@@ -254,5 +245,109 @@ namespace Content.Client.Lobby
 
             _consoleHost.ExecuteCommand($"toggleready {newReady}");
         }
+
+        // WD EDIT START
+        private void MakeButtonReady(WhiteLobbyTextButton button)
+        {
+            button.ButtonText = Loc.GetString("lobby-state-ready-button-ready-up-state");
+        }
+
+        private void MakeButtonUnReady(WhiteLobbyTextButton button)
+        {
+            button.ButtonText = Loc.GetString("lobby-state-player-status-not-ready");
+        }
+
+        private void MakeButtonJoinGame(WhiteLobbyTextButton button)
+        {
+            button.ButtonText = Loc.GetString("lobby-state-ready-button-join-state");
+        }
+
+        private async void PopulateChangelog()
+        {
+            if (Lobby?.ChangelogContainer?.Children is null)
+                return;
+
+            Lobby.ChangelogContainer.Children.Clear();
+
+            var changelogs = await _changelog.LoadChangelog();
+            var whiteChangelog = changelogs.Find(cl => cl.Name == "Changelog");
+
+            if (whiteChangelog is null)
+            {
+                Lobby.ChangelogContainer.Children.Add(
+                    new RichTextLabel().SetMarkup(Loc.GetString("ui-lobby-changelog-not-found")));
+
+                return;
+            }
+
+            var entries = whiteChangelog.Entries
+                .OrderByDescending(c => c.Time)
+                .Take(5);
+
+            foreach (var entry in entries)
+            {
+                var box = new BoxContainer
+                {
+                    Orientation = BoxContainer.LayoutOrientation.Vertical,
+                    HorizontalAlignment = Control.HAlignment.Left,
+                    Children =
+                    {
+                        new Label
+                        {
+                            Align = Label.AlignMode.Left,
+                            Text = $"{entry.Author} {entry.Time.ToShortDateString()}",
+                            FontColorOverride = Color.FromHex("#888"),
+                            Margin = new Thickness(0, 10)
+                        }
+                    }
+                };
+
+                foreach (var change in entry.Changes)
+                {
+                    var container = new BoxContainer
+                    {
+                        Orientation = BoxContainer.LayoutOrientation.Horizontal,
+                        HorizontalAlignment = Control.HAlignment.Left
+                    };
+
+                    var text = new RichTextLabel();
+                    text.SetMessage(FormattedMessage.FromMarkup(change.Message));
+                    text.MaxWidth = 350;
+
+                    container.AddChild(GetIcon(change.Type));
+                    container.AddChild(text);
+
+                    box.AddChild(container);
+                }
+
+                if (Lobby?.ChangelogContainer is null)
+                    return;
+
+                Lobby.ChangelogContainer.AddChild(box);
+            }
+        }
+
+        private TextureRect GetIcon(ChangelogManager.ChangelogLineType type)
+        {
+            var (file, color) = type switch
+            {
+                ChangelogManager.ChangelogLineType.Add => ("plus.svg.192dpi.png", "#6ED18D"),
+                ChangelogManager.ChangelogLineType.Remove => ("minus.svg.192dpi.png", "#D16E6E"),
+                ChangelogManager.ChangelogLineType.Fix => ("bug.svg.192dpi.png", "#D1BA6E"),
+                ChangelogManager.ChangelogLineType.Tweak => ("wrench.svg.192dpi.png", "#6E96D1"),
+                _ => throw new ArgumentOutOfRangeException(nameof(type), type, null)
+            };
+
+            return new TextureRect
+            {
+                Texture = _resourceCache.GetTexture(new ResPath($"/Textures/Interface/Changelog/{file}")),
+                VerticalAlignment = Control.VAlignment.Top,
+                TextureScale = new Vector2(0.5f, 0.5f),
+                Margin = new Thickness(2, 4, 6, 2),
+                ModulateSelfOverride = Color.FromHex(color)
+            };
+        }
+        // WD EDIT END
+        }
     }
-}
+

@@ -1,0 +1,11 @@
+- type: entity
+  categories: [ HideSpawnMenu ]
+  parent: BoxFolderBlack
+  id: BoxFolderSecretBlack
+  components:
+    - type: StorageFill
+      contents:
+        - id: StationGoalPaper
+        - id: Paper
+        - id: Paper
+        - id: Paper

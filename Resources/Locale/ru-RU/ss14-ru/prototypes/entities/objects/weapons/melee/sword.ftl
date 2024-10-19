@@ -1,3 +1,5 @@
+ent-BaseSword = { ent-BaseItem }
+    .desc = { ent-BaseItem.desc }
 ent-CaptainSabre = капитанская сабля
     .desc = Церемониальное оружие, принадлежащее капитану станции.
 ent-Katana = катана
@@ -10,5 +12,5 @@ ent-Claymore = клеймор
     .desc = Древний воинский меч.
 ent-Cutlass = абордажная сабля
     .desc = Хитро изогнутый клинок, который часто можно увидеть в руках и крюках космических пиратов.
-ent-Throngler = Громовержец
+ent-Throngler = Нагибатор
     .desc = Зачем вы это сделали?

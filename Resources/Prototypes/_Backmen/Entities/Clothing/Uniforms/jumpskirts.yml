@@ -1,0 +1,158 @@
+- type: entity
+  parent: ClothingUniformSkirtBase
+  id: ClothingUniformJumpskirtCargoPostal
+  name: Postal's jumpskirt
+  description: A sturdy jumpskirt, issued to members of the Cargo department for postal work.
+  components:
+  - type: Sprite
+    sprite: Backmen/Clothing/Uniforms/Jumpskirt/cargopostal.rsi
+  - type: Clothing
+    sprite: Backmen/Clothing/Uniforms/Jumpskirt/cargopostal.rsi
+
+- type: entity
+  parent: ClothingUniformSkirtBase
+  id: ClothingUniformJumpskirttCentcomVeryOfficial
+  name: Официальная юбка сотрудника ЦК
+  description: Вот прелесть карпоративной жизни, стильные костюмы с юбкой в тему!
+  components:
+  - type: Sprite
+    sprite: Backmen/Clothing/Uniforms/Jumpskirt/centcom-official.rsi
+  - type: Clothing
+    sprite: Backmen/Clothing/Uniforms/Jumpskirt/centcom-official.rsi
+
+- type: entity
+  parent: ClothingUniformSkirtBase
+  id: ClothingUniformJumpsuitDeliverygirl
+  name: Костюм доставщицы
+  description: Пахнет пиццей
+  components:
+  - type: Sprite
+    sprite: Backmen/Clothing/Uniforms/Jumpskirt/space_club.rsi
+  - type: Clothing
+    sprite: Backmen/Clothing/Uniforms/Jumpskirt/space_club.rsi
+
+- type: entity
+  parent: ClothingUniformSkirtBase
+  id: ClothingSkirtEGovOffice
+  name: office skirt
+  components:
+  - type: Sprite
+    sprite: Backmen/Clothing/Uniforms/Jumpskirt/office.rsi
+  - type: Clothing
+    sprite: Backmen/Clothing/Uniforms/Jumpskirt/office.rsi
+
+- type: entity
+  parent: ClothingUniformSkirtBase
+  id: ClothingSkirtEGovShtab
+  name: staff officer skirt
+  components:
+  - type: Sprite
+    sprite: Backmen/Clothing/Uniforms/Jumpskirt/shtab.rsi
+  - type: Clothing
+    sprite: Backmen/Clothing/Uniforms/Jumpskirt/shtab.rsi
+
+- type: entity
+  parent: ClothingUniformSkirtBase
+  id: ClothingSkirtEGovOfficer
+  name: officer skirt
+  components:
+  - type: Sprite
+    sprite: Backmen/Clothing/Uniforms/Jumpskirt/officer.rsi
+  - type: Clothing
+    sprite: Backmen/Clothing/Uniforms/Jumpskirt/officer.rsi
+
+- type: entity
+  parent: ClothingUniformSkirtBase
+  id: ClothingSkirtEGovFlotOfficer
+  name: flot officer skirt
+  components:
+  - type: Sprite
+    sprite: Backmen/Clothing/Uniforms/Jumpskirt/flot.rsi
+  - type: Clothing
+    sprite: Backmen/Clothing/Uniforms/Jumpskirt/flot.rsi
+
+- type: entity
+  parent: ClothingUniformSkirtBase
+  id: ClothingSkirtEGovGrey
+  name: grey skirt
+  components:
+  - type: Sprite
+    sprite: Backmen/Clothing/Uniforms/Jumpskirt/grey.rsi
+  - type: Clothing
+    sprite: Backmen/Clothing/Uniforms/Jumpskirt/grey.rsi
+
+- type: entity
+  parent: ClothingUniformSkirtBase
+  id: ClothingJumpsuitCivilianJuteDress
+  name: лахмотья
+  description: Одежда, вышитая из ласкутных тканей, сделанные из животных. Выглядит тряпично.
+  components:
+  - type: Sprite
+    sprite: Backmen/Clothing/Uniforms/Jumpskirt/jute.rsi
+  - type: Clothing
+    sprite: Backmen/Clothing/Uniforms/Jumpskirt/jute.rsi
+
+- type: entity
+  parent: ClothingUniformSkirtBase
+  id: ClothingJumpsuitDressBlack
+  name: черная короткое платье
+  description: Платье, которые держат парочку ниток от самопроизвольного раздевания. Выглядит надёжно.
+  components:
+  - type: Sprite
+    sprite: Backmen/Clothing/Uniforms/Jumpskirt/blackunderwear.rsi
+  - type: Clothing
+    sprite: Backmen/Clothing/Uniforms/Jumpskirt/blackunderwear.rsi
+
+- type: entity
+  parent: ClothingUniformSkirtBase
+  id: ClothingSkirtBlueShield
+  name: юбка Синего Щита
+  components:
+  - type: Sprite
+    sprite: Backmen/Clothing/Uniforms/Jumpskirt/blueskirt.rsi
+  - type: Clothing
+    sprite: Backmen/Clothing/Uniforms/Jumpskirt/blueskirt.rsi
+
+- type: entity # Backmen
+  parent: ClothingUniformSkirtBase
+  id: ClothingJumpsuitDec
+  name: серая юбка-костюм детектива
+  description: серая юбка с рубашкой, тахнет тайной!
+  components:
+  - type: Sprite
+    sprite: Backmen/Clothing/Uniforms/Jumpskirt/dec.rsi
+  - type: Clothing
+    sprite: Backmen/Clothing/Uniforms/Jumpskirt/dec.rsi
+
+- type: entity
+  parent: ClothingUniformSkirtBase
+  id: ClothingJumpsuitDressRed
+  name: красное короткое платье
+  description: Платье, которые держат парочку ниток от самопроизвольного раздевания. Выглядит надёжно.
+  components:
+  - type: Sprite
+    sprite: Backmen/Clothing/Uniforms/Jumpskirt/redunderwear.rsi
+  - type: Clothing
+    sprite: Backmen/Clothing/Uniforms/Jumpskirt/redunderwear.rsi
+
+- type: entity
+  parent: ClothingUniformSkirtBase
+  id: ClothingJumpsuitDress
+  name: короткое платье
+  description: Платье, которые держат парочку ниток от самопроизвольного раздевания. Выглядит надёжно.
+  components:
+  - type: Sprite
+    sprite: Backmen/Clothing/Uniforms/Jumpskirt/underwear.rsi
+  - type: Clothing
+    sprite: Backmen/Clothing/Uniforms/Jumpskirt/underwear.rsi
+
+- type: entity
+  parent: ClothingUniformSkirtBase
+  id: ClothingJumpsuitDressTutu
+  name: нижнее белье с прозрачной юбкой
+  description: Нижнее белье для дам, используется для получения +10 к харизме.
+  components:
+  - type: Sprite
+    sprite: Backmen/Clothing/Uniforms/Jumpskirt/pinktutu.rsi
+  - type: Clothing
+    sprite: Backmen/Clothing/Uniforms/Jumpskirt/pinktutu.rsi

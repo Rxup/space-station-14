@@ -1,7 +1,6 @@
 using Content.Server.Backmen.Species.Shadowkin.Components;
 using Content.Server.Backmen.Species.Shadowkin.Events;
 using Content.Server.Magic;
-using Content.Server.Pulling;
 using Content.Server.Backmen.Species.Shadowkin.Components;
 using Content.Server.Backmen.Species.Shadowkin.Events;
 using Content.Shared.Actions;
@@ -9,8 +8,12 @@ using Content.Shared.Backmen.Abilities.Psionics;
 using Content.Shared.Backmen.Species.Shadowkin.Components;
 using Content.Shared.Cuffs.Components;
 using Content.Shared.Damage.Systems;
-using Content.Shared.Pulling.Components;
 using Content.Shared.Backmen.Species.Shadowkin.Components;
+using Content.Shared.Interaction;
+using Content.Shared.Movement.Pulling.Components;
+using Content.Shared.Movement.Pulling.Systems;
+using Content.Shared.Physics;
+using Content.Shared.Tag;
 using Robust.Server.GameObjects;
 using Robust.Shared.Audio;
 using Robust.Shared.Audio.Systems;
@@ -27,6 +30,8 @@ public sealed class ShadowkinTeleportSystem : EntitySystem
     [Dependency] private readonly PullingSystem _pulling = default!;
     [Dependency] private readonly SharedActionsSystem _actions = default!;
     [Dependency] private readonly MagicSystem _magic = default!;
+    [Dependency] private readonly SharedInteractionSystem _interaction = default!;
+    [Dependency] private readonly TagSystem _tagSystem = default!;
 
     public override void Initialize()
     {
@@ -61,19 +66,24 @@ public sealed class ShadowkinTeleportSystem : EntitySystem
         if (HasComp<HandcuffComponent>(args.Performer) || HasComp<PsionicInsulationComponent>(args.Performer))
             return;
 
+        if(!_interaction.InRangeUnobstructed(args.Performer, args.Target, 0,
+               CollisionGroup.TeleportLayer,
+               predicate: (ent) => _tagSystem.HasTag(ent, "Structure"),
+               popup:true))
+            return;
 
         var transform = Transform(args.Performer);
         if (transform.MapID != args.Target.GetMapId(EntityManager) || transform.GridUid == null)
             return;
 
-        SharedPullableComponent? pullable = null; // To avoid "might not be initialized when accessed" warning
-        if (TryComp<SharedPullerComponent>(args.Performer, out var puller) &&
+        PullableComponent? pullable = null; // To avoid "might not be initialized when accessed" warning
+        if (TryComp<PullerComponent>(args.Performer, out var puller) &&
             puller.Pulling != null &&
-            TryComp<SharedPullableComponent>(puller.Pulling, out pullable) &&
+            TryComp<PullableComponent>(puller.Pulling, out pullable) &&
             pullable.BeingPulled)
         {
             // Temporarily stop pulling to avoid not teleporting to the target
-            _pulling.TryStopPull(pullable);
+            _pulling.TryStopPull(puller.Pulling.Value, pullable);
         }
 
         // Teleport the performer to the target
@@ -92,7 +102,7 @@ public sealed class ShadowkinTeleportSystem : EntitySystem
 
             // Resume pulling
             // TODO: This does nothing? // This does things sometimes, but the client never knows
-            _pulling.TryStartPull(puller, pullable);
+            _pulling.TryStartPull(args.Performer, puller.Pulling.Value, puller, pullable);
         }
 
 
@@ -104,7 +114,7 @@ public sealed class ShadowkinTeleportSystem : EntitySystem
         _stamina.TakeStaminaDamage(args.Performer, args.StaminaCost);
 
         // Speak
-        _magic.Speak(args, false);
+        _magic.Speak(args);
 
         args.Handled = true;
     }

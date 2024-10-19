@@ -1,0 +1,109 @@
+﻿# morphotypes
+- type: emoteSounds
+  id: MaleFelinid
+  params:
+    variation: 0.125
+  sounds:
+    Scream:
+      collection: FelinidScreams
+    Laugh:
+      collection: MaleLaugh
+    Sneeze:
+      collection: MaleSneezes
+    Cough:
+      collection: MaleCoughs
+    Crying:
+      collection: MaleCry
+    Whistle:
+      collection: Whistles
+    Mews:
+      collection: FelinidMews
+    Meows:
+      collection: FelinidMeows
+    Purrs:
+      collection: FelinidPurrs
+    Growl:
+      collection: FelinidGrowls
+    Weh:
+      collection: Weh
+
+- type: emoteSounds
+  id: FemaleFelinid
+  params:
+    variation: 0.125
+  sounds:
+    Scream:
+      collection: FelinidScreams
+    Laugh:
+      collection: FemaleLaugh
+    Sneeze:
+      collection: FemaleSneezes
+    Cough:
+      collection: FemaleCoughs
+    Crying:
+      collection: FemaleCry
+    Whistle:
+      collection: Whistles
+    Mews:
+      collection: FelinidMews
+    Meows:
+      collection: FelinidMeows
+    Purrs:
+      collection: FelinidPurrs
+    Growl:
+      collection: FelinidGrowls
+    Weh:
+      collection: Weh
+
+# species
+- type: emoteSounds
+  id: SoundsHarpy
+  params:
+    variation: 0.125
+  sounds:
+    Scream:
+      collection: HarpyScreams
+    Laugh:
+      collection: HarpyLaugh
+    Sneeze:
+      collection: MaleSneezes
+    Cough:
+      collection: MaleCoughs
+    Sigh:
+      collection: MaleSigh
+    Crying:
+      collection: HarpyCry
+    Whistle:
+      collection: Whistles
+    Hiss:
+      collection: HarpyHisses
+    Mew:
+      collection: HarpyMews
+    Growl:
+      collection: HarpyGrowls
+    Purrs:
+      collection: HarpyPurrs
+    Ring:
+      collection: HarpyRings
+    Honk:
+      collection: HarpyHonks
+    Pew:
+      collection: HarpyPews
+    Bang:
+      collection: HarpyBangs
+    Beep:
+      collection: HarpyBeeps
+    Rev:
+      collection: HarpyRevs
+    Click:
+      collection: HarpyClicks
+    Chitter:
+      collection: HarpyChitter
+    Squeak:
+      collection: HarpySqueak
+    Caw:
+      collection: HarpyCaws
+    Chirp:
+      collection: HarpyChirps
+    Weh:
+      collection: Weh

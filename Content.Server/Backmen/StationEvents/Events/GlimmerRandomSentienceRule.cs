@@ -1,10 +1,11 @@
 using Content.Server.Backmen.Psionics;
 using Content.Server.Backmen.StationEvents.Components;
-using Content.Server.GameTicking.Rules.Components;
 using Content.Server.Ghost.Roles.Components;
 using Content.Server.Speech.Components;
 using Content.Server.StationEvents.Components;
 using Content.Server.StationEvents.Events;
+using Content.Shared.Backmen.Psionics.Components;
+using Content.Shared.GameTicking.Components;
 using Content.Shared.Mobs.Systems;
 
 namespace Content.Server.Backmen.StationEvents.Events;
@@ -45,10 +46,10 @@ internal sealed class GlimmerRandomSentienceRule : StationEventSystem<GlimmerRan
             if (toMakeSentient-- == 0)
                 break;
 
-            EntityManager.RemoveComponent<SentienceTargetComponent>(target);
+            RemComp<SentienceTargetComponent>(target);
             _metaDataSystem.SetEntityName(target,Loc.GetString("glimmer-event-awakened-prefix", ("entity", target)));
-            var comp = EntityManager.EnsureComponent<GhostRoleComponent>(target);
-            comp.RoleName = EntityManager.GetComponent<MetaDataComponent>(target).EntityName;
+            var comp = EnsureComp<GhostRoleComponent>(target);
+            comp.RoleName = MetaData(target).EntityName;
             comp.RoleDescription = Loc.GetString("station-event-random-sentience-role-description", ("name", comp.RoleName));
             RemComp<ReplacementAccentComponent>(target);
             RemComp<MonkeyAccentComponent>(target);

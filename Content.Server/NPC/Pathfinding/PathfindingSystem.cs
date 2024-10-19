@@ -68,6 +68,7 @@ namespace Content.Server.NPC.Pathfinding
         private int _portalIndex;
         private readonly Dictionary<int, PathPortal> _portals = new();
 
+        private EntityQuery<Shared.Backmen.Blob.Components.BlobTileComponent> _tilesQuery; // backmen: blob
         private EntityQuery<AccessReaderComponent> _accessQuery;
         private EntityQuery<DestructibleComponent> _destructibleQuery;
         private EntityQuery<DoorComponent> _doorQuery;
@@ -80,6 +81,7 @@ namespace Content.Server.NPC.Pathfinding
         {
             base.Initialize();
 
+            _tilesQuery = GetEntityQuery<Shared.Backmen.Blob.Components.BlobTileComponent>(); // backmen: blob
             _accessQuery = GetEntityQuery<AccessReaderComponent>();
             _destructibleQuery = GetEntityQuery<DestructibleComponent>();
             _doorQuery = GetEntityQuery<DoorComponent>();
@@ -264,7 +266,7 @@ namespace Content.Server.NPC.Pathfinding
             int limit = 40,
             PathFlags flags = PathFlags.None)
         {
-            if (!TryComp<TransformComponent>(entity, out var start))
+            if (!TryComp(entity, out TransformComponent? start))
                 return new PathResultEvent(PathResult.NoPath, new List<PathPoly>());
 
             var layer = 0;
@@ -294,7 +296,7 @@ namespace Content.Server.NPC.Pathfinding
             CancellationToken cancelToken,
             PathFlags flags = PathFlags.None)
         {
-            if (!TryComp<TransformComponent>(entity, out var start))
+            if (!TryComp(entity, out TransformComponent? start))
                 return null;
 
             var request = GetRequest(entity, start.Coordinates, end, range, cancelToken, flags);
@@ -325,8 +327,8 @@ namespace Content.Server.NPC.Pathfinding
             CancellationToken cancelToken,
             PathFlags flags = PathFlags.None)
         {
-            if (!TryComp<TransformComponent>(entity, out var xform) ||
-                !TryComp<TransformComponent>(target, out var targetXform))
+            if (!TryComp(entity, out TransformComponent? xform) ||
+                !TryComp(target, out TransformComponent? targetXform))
                 return new PathResultEvent(PathResult.NoPath, new List<PathPoly>());
 
             var request = GetRequest(entity, xform.Coordinates, targetXform.Coordinates, range, cancelToken, flags);
@@ -400,12 +402,12 @@ namespace Content.Server.NPC.Pathfinding
             var gridUid = coordinates.GetGridUid(EntityManager);
 
             if (!TryComp<GridPathfindingComponent>(gridUid, out var comp) ||
-                !TryComp<TransformComponent>(gridUid, out var xform))
+                !TryComp(gridUid, out TransformComponent? xform))
             {
                 return null;
             }
 
-            var localPos = xform.InvWorldMatrix.Transform(coordinates.ToMapPos(EntityManager));
+            var localPos = Vector2.Transform(coordinates.ToMapPos(EntityManager, _transform), xform.InvWorldMatrix);
             var origin = GetOrigin(localPos);
 
             if (!TryGetChunk(origin, comp, out var chunk))
@@ -471,6 +473,13 @@ namespace Content.Server.NPC.Pathfinding
             {
                 flags |= PathFlags.Interact;
             }
+
+            // start-backmen: blob
+            if (blackboard.TryGetValue<bool>(NPCBlackboard.NavBlob, out var blob, EntityManager) && blob)
+            {
+                flags |= PathFlags.Blob;
+            }
+            // end-backmen: blob
 
             return flags;
         }

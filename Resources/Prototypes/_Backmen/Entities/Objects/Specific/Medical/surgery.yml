@@ -1,0 +1,14 @@
+- type: entity
+  name: скальпель
+  id: ScalpelCool
+  parent: BaseKnife
+  description: Хирургический инструмент, используемый для выполнения надрезов в плоти.
+  components:
+  - type: Tag
+    tags:
+    - Knife
+  - type: Sprite
+    sprite: Objects/Specific/Medical/Surgery/scalpel.rsi
+    state: scalpel
+  - type: Item
+    sprite: Objects/Specific/Medical/Surgery/scalpel.rsi

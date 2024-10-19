@@ -41,6 +41,7 @@ public sealed partial class GhostComponent : Component
 
     // End actions
 
+    [AutoNetworkedField] // backmen: ReturnToLobby
     [ViewVariables(VVAccess.ReadWrite), DataField]
     public TimeSpan TimeOfDeath = TimeSpan.Zero;
 
@@ -100,5 +101,7 @@ public sealed partial class ToggleGhostsActionEvent : InstantActionEvent { }
 public sealed partial class ToggleLightingActionEvent : InstantActionEvent { }
 
 public sealed partial class ToggleGhostHearingActionEvent : InstantActionEvent { }
+
+public sealed partial class ToggleGhostVisibilityToAllEvent : InstantActionEvent { }
 
 public sealed partial class BooActionEvent : InstantActionEvent { }

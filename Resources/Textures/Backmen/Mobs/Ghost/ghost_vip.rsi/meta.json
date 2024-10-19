@@ -28,6 +28,18 @@
           "directions": 4
       },
       {
+          "name": "animated_star",
+          "directions": 4
+      },
+      {
+        "name": "animated_faceless",
+        "directions": 4
+      },
+      {
+        "name": "animated_kaiju",
+        "directions": 4
+      },
+      {
           "name": "icon"
       }
   ]

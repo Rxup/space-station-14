@@ -1,0 +1,106 @@
+- type: job
+  id: BKCCSecOfficer
+  name: job-name-centcomsecofficer
+  description: job-description-centcomsecofficer
+  playTimeTracker: JobCentralCommandSecOfficer
+  setPreference: true
+  startingGear: CentComPrivateOfficerGear
+  icon: JobIconSecurityOfficer
+  supervisors: job-supervisors-centcomSecGavna
+  canBeAntag: false
+  weight: 1
+  requireAdminNotify: true
+  joinNotifyCrew: true
+  requirements:
+    - !type:DepartmentTimeRequirement
+      department: Security
+      time: 108000
+    - !type:RoleTimeRequirement
+      role: JobCentralCommandAssistant
+      time: 3600
+  access:
+    - CentralCommand
+    - CCSecurity
+    - Security
+    - Brig
+    - Maintenance
+    - Service
+    - External
+    - Armory
+    - Detective
+  special:
+    - !type:AddImplantSpecial
+      implants: [ MindShieldImplant ]
+    - !type:AddComponentSpecial
+      components:
+        - type: SpecForce
+          actionBssActionName: ActionCentcomFtlAction
+        - type: NpcFactionMember
+          factions:
+            - CentralCommand
+        - type: PsionicBonusChance
+          multiplier: 3
+        - type: AntagImmune
+  minBankBalance: 100
+  maxBankBalance: 250
+  wageDepartment: CentCom
+  wage: 75
+
+- type: startingGear
+  id: CentComPrivateOfficerGear
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitSec
+    back: ClothingBackpackSecurity
+    shoes: ClothingShoesBootsJackSec # Corvax-Resprite
+    eyes: ClothingEyesGlassesSecurity
+    head: ClothingHeadHelmetBasic
+    outerClothing: ClothingOuterVestArmorSec # Corvax-Resprite
+    id: CentComPrivateOfficerPDA
+    ears: ClothingHeadsetCentComCC
+    belt: ClothingBeltSecuritySuper
+    pocket1: WeaponPistolMk58
+  #innerClothingSkirt: ClothingUniformJumpskirtSec
+  #satchel: ClothingBackpackSatchelSecurityFilled
+  #duffelbag: ClothingBackpackDuffelSecurityFilled
+
+- type: entity
+  parent: OrdenPDA
+  id: CentComPrivateOfficerPDA
+  name: Centcom Private Officer PDA
+  description: Black with green lines, sign of the walking protection of the bureaucracy.
+  components:
+    - type: Pda
+      id: IDCardCentComPrivateOfficer
+      state: pda-centcomsec
+      penSlot:
+        startingItem: PenCentcom
+        whitelist:
+          tags:
+            - Write
+    - type: PdaBorderColor
+      borderColor: "#5B5B5B"
+    - type: Icon
+      state: pda-centcomsec
+
+- type: entity
+  parent: CentcomIDCardDeathsquad
+  id: IDCardCentComPrivateOfficer
+  name: ID карта охраны ЦК
+  components:
+    - type: Sprite
+      layers:
+      - state: centcom
+      - state: idsecurityofficer
+    - type: PresetIdCard
+      job: BKCCSecOfficer
+    - type: Access
+      tags:
+        - CCSecurity
+        - CentralCommand
+        - Security
+        - Brig
+        - Maintenance
+        - Service
+        - External
+        - Armory
+        - Detective

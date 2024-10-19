@@ -1,0 +1,89 @@
+# Head
+- type: loadout
+  id: DetectiveFedora
+  equipment:
+    head: ClothingHeadHatFedoraBrown
+
+- type: loadout
+  id: DetectiveFedoraGrey
+  equipment:
+    head: ClothingHeadHatFedoraGrey
+
+# Neck
+- type: loadout
+  id: DetectiveTie
+  equipment:
+    neck: ClothingNeckTieDet
+
+# Jumpsuit
+- type: loadout
+  id: DetectiveJumpsuit
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitDetective
+
+- type: loadout
+  id: DetectiveJumpskirt
+  equipment:
+    jumpsuit: ClothingUniformJumpskirtDetective
+
+- type: loadout
+  id: NoirJumpsuit
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitDetectiveGrey
+
+- type: loadout
+  id: NoirJumpskirt
+  equipment:
+    jumpsuit: ClothingUniformJumpskirtDetectiveGrey
+
+- type: loadout
+  id: JumpsuitDecSerii
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitDecSerii
+
+- type: loadout
+  id: ClothingJumpsuitDecSerii
+  equipment:
+    jumpsuit: ClothingJumpsuitDec
+
+# OuterClothing
+- type: loadout
+  id: DetectiveArmorVest
+  equipment:
+    outerClothing: ClothingOuterVestDetective
+
+- type: loadout
+  id: DetectiveCoat
+  equipment:
+    outerClothing: ClothingOuterCoatDetectiveLoadout
+
+# Weapon #Backmen
+- type: loadout
+  id: WeaponRevolverCMB
+  equipment:
+    belt: WeaponRevolverCMB
+
+- type: loadout
+  id: WeaponRevolverR44
+  equipment:
+    belt: WeaponRevolverR44
+
+- type: loadout
+  id: WeaponRevolverRebota
+  equipment:
+    belt: WeaponRevolverRebota
+
+- type: loadout
+  id: WeaponRevolverNY
+  equipment:
+    belt: WeaponRevolverNY
+
+- type: loadout
+  id: WeaponRevolverInspector
+  equipment:
+    belt: WeaponRevolverInspector
+    
+- type: loadout
+  id: DetectiveCoatGrey
+  equipment:
+    outerClothing: ClothingOuterCoatDetectiveLoadoutGrey

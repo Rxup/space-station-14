@@ -14,6 +14,7 @@ public interface IServerSponsorsManager : ISharedSponsorsManager
     public bool TryGetOocColor(NetUserId userId, [NotNullWhen(true)] out Color? color);
     public int GetExtraCharSlots(NetUserId userId);
     public bool HavePriorityJoin(NetUserId userId);
+    public void Cleanup();
 }
 
 public interface IServerVPNGuardManager

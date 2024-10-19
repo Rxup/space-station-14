@@ -1,4 +1,5 @@
 using Content.Server.Popups;
+using Content.Shared.Backmen.Vampiric.Components;
 using Content.Shared.Interaction;
 
 namespace Content.Server.Backmen.Vampiric.Injector;

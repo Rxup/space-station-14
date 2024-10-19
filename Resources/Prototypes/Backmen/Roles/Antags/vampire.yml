@@ -1,6 +1,0 @@
-- type: antag
-  id: Bloodsucker
-  name: roles-antag-bloodsucker-name
-  antagonist: true
-  setPreference: true
-  objective: roles-antag-bloodsucker-objective

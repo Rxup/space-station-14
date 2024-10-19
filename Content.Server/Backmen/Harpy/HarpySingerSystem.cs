@@ -18,6 +18,7 @@ using Content.Shared.Zombies;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using Content.Shared.Backmen.Harpy.Components;
+using Content.Shared.Bed.Sleep;
 
 namespace Content.Server.Backmen.Harpy
 {
@@ -132,7 +133,7 @@ namespace Content.Server.Backmen.Harpy
             if (HasComp<ActiveInstrumentComponent>(uid) &&
                 TryComp<ActorComponent>(uid, out var actor))
             {
-                _instrument.ToggleInstrumentUi(uid, actor.PlayerSession);
+                _instrument.ToggleInstrumentUi(uid, uid);
             }
         }
 

@@ -1,0 +1,39 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "Made by NOMAD!!",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "icon"
+    },
+    {
+      "name": "icon-medic"
+    },
+    {
+      "name": "icon-black"
+    },
+    {
+      "name": "icon-black-medic"
+    },
+    {
+      "name": "equipped-OUTERCLOTHING",
+      "directions": 4
+    },
+    {
+      "name": "equipped-OUTERCLOTHING-black",
+      "directions": 4
+    },
+    {
+      "name": "equipped-OUTERCLOTHING-medic",
+      "directions": 4
+    },
+    {
+      "name": "equipped-OUTERCLOTHING-black-medic",
+      "directions": 4
+    }
+  ]
+}

@@ -1,0 +1,333 @@
+﻿- type: entity
+  name: British soldier
+  id: MobBritishMelee
+  parent: MobBaseNpc
+  suffix: suppa Melee
+  description: Human in uniform of 1-est United Kingdoms colonial army. Em... Yeah...
+  components:
+  - type: HTN
+    rootTask:
+      task: SimpleHostileCompound
+    blackboard:
+      NavClimb: !type:Bool
+        true
+      NavSmash: !type:Bool
+        true
+  - type: NpcFactionMember
+    factions:
+    - Britan
+  - type: Sprite
+    drawdepth: Mobs
+    sprite: Backmen/Mobs/Npc/britishSoldier.rsi
+    layers:
+    - state: britishmelee1
+      map: [ "enum.DamageStateVisualLayers.Base" ]
+  - type: MeleeWeapon
+    angle: 0
+    animation: WeaponArcSmash
+    soundHit:
+        path: /Audio/Weapons/bladeslice.ogg
+    damage:
+        types:
+          Blunt: 5
+          Piercing: 5
+  - type: RandomSprite
+    available:
+      - enum.DamageStateVisualLayers.Base:
+          britishmelee1: ""
+      - enum.DamageStateVisualLayers.Base:
+          britishmelee2: ""
+      - enum.DamageStateVisualLayers.Base:
+          britishmelee3: ""
+      - enum.DamageStateVisualLayers.Base:
+          britishmelee4: ""
+      - enum.DamageStateVisualLayers.Base:
+          britishmelee5: ""
+      - enum.DamageStateVisualLayers.Base:
+          britishmelee6: ""
+
+- type: entity
+  name: British soldier
+  id: MobBritishMeleeGuard
+  parent: MobBritishMelee
+  suffix: suppa Melee Guard
+  components:
+  - type: HTN
+    rootTask:
+      task: NPCGuardCompound
+
+- type: entity
+  name: British soldier
+  id: MobBritishRangedGuard
+  parent: MobBritishRanged
+  suffix: suppa Ranged Guard
+  components:
+  - type: HTN
+    rootTask:
+      task: NPCGuardRangedCompound
+
+- type: entity
+  name: British soldier
+  id: MobBritishRanged
+  parent: MobSpanishRanged
+  suffix: suppa Ranger
+  components:
+  - type: Sprite
+    drawdepth: Mobs
+    sprite: Backmen/Mobs/Npc/britishSoldier.rsi
+    layers:
+    - state: britishranged1
+      map: [ "enum.DamageStateVisualLayers.Base" ]
+  - type: RandomSprite
+    available:
+      - enum.DamageStateVisualLayers.Base:
+          britishranged1: ""
+      - enum.DamageStateVisualLayers.Base:
+          britishranged2: ""
+      - enum.DamageStateVisualLayers.Base:
+          britishranged3: ""
+      - enum.DamageStateVisualLayers.Base:
+          britishranged4: ""
+      - enum.DamageStateVisualLayers.Base:
+          britishranged5: ""
+      - enum.DamageStateVisualLayers.Base:
+          britishranged6: ""
+
+- type: entity
+  name: Spanish soldier
+  id: MobSpanishRangedGuard
+  parent: MobSpanishRanged
+  suffix: suppa Ranger Guard
+  description: Human in uniform of Spanish fleet. Em... Yeah...
+  components:
+  - type: HTN
+    rootTask:
+      task: NPCGuardRangedCompound
+
+- type: entity
+  name: Spanish soldier
+  id: MobSpanishMeleeGuard
+  parent: MobSpanishMelee
+  suffix: suppa Melee Guard
+  description: Human in uniform of Spanish fleet. Em... Yeah...
+  components:
+  - type: HTN
+    rootTask:
+      task: NPCGuardCompound
+
+- type: entity
+  name: Spanish soldier
+  id: MobSpanishRanged
+  parent: MobSpanishMelee
+  suffix: suppa Ranger
+  description: Human in uniform of Spanish fleet. Em... Yeah...
+  components:
+  - type: Sprite
+    drawdepth: Mobs
+    sprite: Backmen/Mobs/Npc/SpanishSoldier.rsi
+    layers:
+    - state: spanish_rifleman
+  - type: NpcFactionMember
+    factions:
+      - Spanish
+  - type: RechargeBasicEntityAmmo
+    rechargeCooldown: 0.75
+    rechargeSound:
+      path: /Audio/Weapons/Guns/MagIn/kinetic_reload.ogg
+      params:
+        volume: -100
+  - type: BasicEntityAmmoProvider
+    proto: BulletRifle
+    capacity: 1
+    count: 1
+  - type: Gun
+    fireRate: 0.75
+    useKey: false
+    selectedMode: FullAuto
+    availableModes:
+      - FullAuto
+    soundGunshot: /Audio/Weapons/Guns/Gunshots/rifle2.ogg
+  - type: HTN
+    rootTask:
+      task: SimpleRangedHostileCompound
+
+- type: entity
+  name: Spanish soldier
+  id: MobSpanishMelee
+  parent: MobBaseNpc
+  suffix: suppa Melee
+  description: Human in uniform of Spanish fleet. Em... Yeah...
+  components:
+  - type: Sprite
+    drawdepth: Mobs
+    sprite: Backmen/Mobs/Npc/SpanishSoldier.rsi
+    layers:
+    - state: spanish_soldier
+  - type: NpcFactionMember
+    factions:
+      - Spanish
+  - type: MeleeWeapon
+    angle: 0
+    animation: WeaponArcSmash
+    soundHit:
+        path: /Audio/Weapons/bladeslice.ogg
+    damage:
+        types:
+          Blunt: 5
+          Piercing: 5
+
+- type: entity
+  name: pirate
+  id: MobPirateRanged
+  parent: MobSpanishRanged
+  suffix: suppa Ranger
+  description: They mostly come at night. Mostly.
+  components:
+  - type: Sprite
+    drawdepth: Mobs
+    sprite: Backmen/Mobs/Npc/Pirate.rsi
+    layers:
+    - state: pirateranged
+  - type: NpcFactionMember
+    factions:
+      - SuperZloy
+
+- type: entity
+  name: pirate
+  id: MobPirateMelee
+  parent: MobBaseNpc
+  suffix: suppa Melee
+  description: They mostly come at night. Mostly.
+  components:
+  - type: Sprite
+    drawdepth: Mobs
+    sprite: Backmen/Mobs/Npc/Pirate.rsi
+    layers:
+    - state: piratemelee
+      map: [ "enum.DamageStateVisualLayers.Base" ]
+  - type: NpcFactionMember
+    factions:
+      - SuperZloy
+  - type: RandomSprite
+    available:
+      - enum.DamageStateVisualLayers.Base:
+          piratemelee: ""
+      - enum.DamageStateVisualLayers.Base:
+          piratemelee1: ""
+      - enum.DamageStateVisualLayers.Base:
+          piratemelee2: ""
+
+- type: entity
+  name: civilian
+  id: MobCivilianOld
+  parent: MobBaseNpc
+  suffix: suppa Civilian Old
+  description: Civilian, just exists.
+  components:
+  - type: Sprite
+    drawdepth: Mobs
+    sprite: Backmen/Mobs/Npc/Civilian.rsi
+    layers:
+    - state: civ1
+      map: [ "enum.DamageStateVisualLayers.Base" ]
+  - type: MeleeWeapon
+    angle: 0
+    animation: WeaponArcFist
+    soundHit:
+        collection: Punch
+    damage:
+        types:
+          Blunt: 5
+  - type: NpcFactionMember
+    factions:
+      - SimpleNeutral
+  - type: RandomSprite
+    available:
+      - enum.DamageStateVisualLayers.Base:
+          civ1: ""
+      - enum.DamageStateVisualLayers.Base:
+          civ2: ""
+      - enum.DamageStateVisualLayers.Base:
+          civ3: ""
+      - enum.DamageStateVisualLayers.Base:
+          civ4: ""
+      - enum.DamageStateVisualLayers.Base:
+          civ5: ""
+      - enum.DamageStateVisualLayers.Base:
+          civ6: ""
+      - enum.DamageStateVisualLayers.Base:
+          civ7: ""
+      - enum.DamageStateVisualLayers.Base:
+          civ8: ""
+      - enum.DamageStateVisualLayers.Base:
+          civ9: ""
+
+- type: entity
+  name: civilian
+  id: MobCivilianSuppa
+  parent: MobBaseNpc
+  suffix: suppa Civilian
+  description: Civilian, just exists.
+  components:
+  - type: MeleeWeapon
+    angle: 0
+    animation: WeaponArcFist
+    soundHit:
+        collection: Punch
+    damage:
+        types:
+          Blunt: 5
+  - type: Sprite
+    drawdepth: Mobs
+    sprite: Backmen/Mobs/Npc/Civilian.rsi
+    layers:
+    - state: civilian_1
+      map: [ "enum.DamageStateVisualLayers.Base" ]
+  - type: RandomSprite
+    available:
+      - enum.DamageStateVisualLayers.Base:
+          civilian_1: ""
+      - enum.DamageStateVisualLayers.Base:
+          civilian_2: ""
+      - enum.DamageStateVisualLayers.Base:
+          civilian_3: ""
+      - enum.DamageStateVisualLayers.Base:
+          civilian_4: ""
+      - enum.DamageStateVisualLayers.Base:
+          civilian_5: ""
+      - enum.DamageStateVisualLayers.Base:
+          civilian_6: ""
+      - enum.DamageStateVisualLayers.Base:
+          civilian_7: ""
+      - enum.DamageStateVisualLayers.Base:
+          civilian_8: ""
+      - enum.DamageStateVisualLayers.Base:
+          civilian_9: ""
+      - enum.DamageStateVisualLayers.Base:
+          greenistani_1: ""
+
+- type: entity
+  name: maid
+  id: MobCivilianMaiden
+  parent: MobBaseNpc
+  suffix: suppa Civilian Maiden
+  description: Civilian, just exists.
+  components:
+  - type: Sprite
+    drawdepth: Mobs
+    sprite: Backmen/Mobs/Npc/Civilian.rsi
+    layers:
+    - state: barmaiden
+
+- type: entity
+  name: Lenny
+  id: MobCivilianLenny
+  parent: MobBaseNpc
+  suffix: suppa Civilian Lenny
+  description: Civilian, just exists.
+  components:
+  - type: Sprite
+    drawdepth: Mobs
+    sprite: Backmen/Mobs/Npc/Civilian.rsi
+    layers:
+    - state: big_lenny

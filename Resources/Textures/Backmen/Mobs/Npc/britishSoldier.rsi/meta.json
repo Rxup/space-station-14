@@ -1,0 +1,59 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "Created by discord:no_mad#0260",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "britishmelee1",
+      "directions": 4
+    },
+    {
+      "name": "britishmelee2",
+      "directions": 4
+    },
+    {
+      "name": "britishmelee3",
+      "directions": 4
+    },
+    {
+      "name": "britishmelee4",
+      "directions": 4
+    },
+    {
+      "name": "britishmelee5",
+      "directions": 4
+    },
+    {
+      "name": "britishmelee6",
+      "directions": 4
+    },
+    {
+      "name": "britishranged1",
+      "directions": 4
+    },
+    {
+      "name": "britishranged2",
+      "directions": 4
+    },
+    {
+      "name": "britishranged3",
+      "directions": 4
+    },
+    {
+      "name": "britishranged4",
+      "directions": 4
+    },
+    {
+      "name": "britishranged5",
+      "directions": 4
+    },
+    {
+      "name": "britishranged6",
+      "directions": 4
+    }
+  ]
+}

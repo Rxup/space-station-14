@@ -1,0 +1,26 @@
+﻿
+- type: entity
+  id: CluwneGhostRole
+  name: Клувень
+  suffix: спавнер, гост роли, персонаж
+  parent: MarkerBase
+  components:
+  - type: GhostTakeoverAvailable
+  - type: GhostRole
+    allowMovement: false
+    allowSpeech: false
+    makeSentient: false
+    name: Клувень
+    description: Живой хаос на станции
+    raffle:
+      settings: short
+  - type: CloningAppearance
+    gear: CluwneGear
+    components:
+    - type: Cluwne
+  - type: Sprite
+    sprite: Markers/jobs.rsi
+    layers:
+    - state: green
+    - sprite: Mobs/Animals/regalrat.rsi
+      state: icon

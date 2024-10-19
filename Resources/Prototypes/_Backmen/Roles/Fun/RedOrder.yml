@@ -1,0 +1,60 @@
+- type: startingGear
+  id: RedOrderSquadCaptain
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitgalaxyred
+    back: ClothingOrderBackpack
+    belt: ClothingBeltSheathFilledOrd
+    mask: ClothingMaskRed
+    eyes: ClothingEyesGlassesSunglasses
+    gloves: ClothingHandsGlovesOrdenHands
+    outerClothing: ClothingOuterHardsuitOrdersuit
+    shoes: ClothingShoesBootsMagSyndie
+    id: OrdenPDA
+  #innerClothingSkirt: ClothingUniformJumpskirtColorRed
+  #satchel: ClothingBackpackSatchelFilled
+  #duffelbag: ClothingBackpackDuffelFilled
+
+- type: startingGear
+  id: RedOrderEliteSquad
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitgalaxyred
+    back: ClothingOrderBackpack
+    mask: ClothingMaskRed
+    eyes: ClothingEyesGlassesSunglasses
+    gloves: ClothingHandsGlovesOrdenHands
+    outerClothing: ClothingOuterHardsuitOrdersuit
+    shoes: ClothingShoesBootsMagSyndie
+    id: OrdenPDA
+  #innerClothingSkirt: ClothingUniformJumpskirtColorRed
+  #satchel: ClothingBackpackSatchelFilled
+  #duffelbag: ClothingBackpackDuffelFilled
+
+- type: startingGear
+  id: RedOrderSquad
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitgalaxy
+    back: ClothingOrderBackpack
+    mask: ClothingMaskRed
+    eyes: ClothingEyesGlassesSunglasses
+    gloves: ClothingHandsGlovesCombat
+    outerClothing: ClothingOuterHardsuitOrdinaryOrdersuit
+    shoes: ClothingShoesBootsMagSyndie
+    id: OrdenPDA
+  #innerClothingSkirt: ClothingUniformJumpskirtColorRed
+  #satchel: ClothingBackpackSatchelFilled
+  #duffelbag: ClothingBackpackDuffelFilled
+
+- type: startingGear
+  id: RedOrderAgent
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitSalvageSpecialist
+    back: ClothingBackpackSatchelSalvage
+    ears: ClothingHeadsetCargo
+    mask: ClothingMaskGasExplorer
+    eyes: ClothingEyesGlassesSunglasses
+    neck: ClothingNeckCloakOrden
+    shoes: ClothingShoesBootsSalvage
+    id: SalvagePDA
+  #innerClothingSkirt: ClothingUniformJumpskirtColorRed
+  #satchel: ClothingBackpackSatchelFilled
+  #duffelbag: ClothingBackpackDuffelFilled

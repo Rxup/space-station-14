@@ -1,0 +1,309 @@
+- type: entity
+  parent: ClothingBeltStorageBase
+  id: ClothingBeltOrden
+  name: Scabbard of the red order
+  description: A special scabbard created exclusively for the sabers of the Red Order.
+  components:
+  - type: Sprite
+    sprite: Backmen/Clothing/Belt/orden_sheath.rsi
+    state: sheath
+  - type: Clothing
+    sprite: Backmen/Clothing/Belt/orden_sheath.rsi
+  - type: Storage
+    grid:
+    - 0,0,4,3
+    whitelist:
+      tags:
+        - SwordSquadRO
+  - type: ItemMapper
+    mapLayers:
+      sheath-sabre:
+        whitelist:
+          tags:
+          - SwordSquadRO
+  - type: Appearance
+  
+- type: entity
+  parent: ClothingBeltStorageBase
+  id: ClothingBeltKatanaSheath
+  name: katana sheaths
+  description: An ornate belt designed to hold a pair of samurai's blades, or daisho.
+  components:
+  - type: Sprite
+    sprite: Backmen/Clothing/Belt/katanasheath.rsi
+    state: sheath
+  - type: Clothing
+    sprite: Backmen/Clothing/Belt/katanasheath.rsi
+  - type: Storage
+    maxItemSize: Normal
+    grid:
+    - 0,0,4,1
+    whitelist:
+      tags:
+        - Katana
+  - type: ItemMapper
+    mapLayers:
+      sheath-sabre:
+        whitelist:
+          tags:
+          - Katana
+  - type: Appearance
+
+- type: entity
+  parent: ClothingBeltUtilityFilled
+  id: ClothingBeltUtilityFilledUnremoveable
+  suffix: Unremoveable
+  components:
+  - type: Unremoveable
+
+- type: entity
+  parent: BaseStorageItem
+  id: ClothingPounchMTF
+  name: подсумок общего назначения
+  description: Тактический штурмовой подсумок.
+  components:
+  - type: Sprite
+    netsync: false
+    state: icon
+    sprite: Backmen/Clothing/Belt/Gear/generalpounch.rsi
+  - type: Clothing
+    slots:
+      - Pocket
+  - type: Item
+    size: Large
+  - type: Storage
+    maxItemSize: Small
+    grid:
+    - 0,0,3,2
+
+- type: entity
+  parent: BaseStorageItem
+  id: ClothingAmmoPounch
+  name: магазинный подсумок
+  description: Тактический штурмовой подсумок для хранения магазинов.
+  components:
+  - type: Sprite
+    netsync: false
+    state: icon
+    sprite: Backmen/Clothing/Belt/Gear/ammopounch.rsi
+  - type: Clothing
+    slots:
+      - Pocket
+  - type: Item
+    size: Large
+  - type: Storage
+    maxItemSize: Small
+    grid:
+    - 0,0,3,2
+    whitelist:
+      tags:
+        - MagazineRifle
+        - MagazineLightRifle
+        - MagazineCaselessRifle
+
+- type: entity
+  parent: BaseStorageItem
+  id: ClothingMedicalPounch
+  name: медицинский подсумок
+  description: Тактический штурмовой подсумок для хранения медикоментов.
+  components:
+  - type: Sprite
+    netsync: false
+    state: icon
+    sprite: Backmen/Clothing/Belt/Gear/medicalpounch.rsi
+  - type: Clothing
+    slots:
+      - Pocket
+  - type: Item
+    size: Large
+  - type: Storage
+    maxItemSize: Small
+    grid:
+    - 0,0,3,2
+    whitelist:
+      tags:
+        - Wrench
+        - Bottle
+        - Spray
+        - Brutepack
+        - Bloodpack
+        - Gauze
+        - Ointment
+        - CigPack
+        - PillCanister
+        - Radio
+        - DiscreteHealthAnalyzer
+      components:
+        - Hypospray
+        - Injector
+        - Pill
+
+- type: entity
+  parent: BaseStorageItem
+  id: ClothingPistolPounch
+  name: пистолетная кобура
+  description: Кобура для пистолетов.
+  components:
+  - type: Sprite
+    netsync: false
+    state: icon
+    sprite: Backmen/Clothing/Belt/Gear/pistolpounch.rsi
+  - type: Clothing
+    slots:
+      - Pocket
+  - type: Item
+    size: Large
+  - type: Storage
+    maxItemSize: Small
+    grid:
+    - 0,0,3,2
+    whitelist:
+      components:
+        - Gun
+
+- type: entity
+  parent: BaseStorageItem
+  id: ClothingShellPounch
+  name: подсумок для дроби
+  description: Тактический штурмовой подсумок для хранения дроби.
+  components:
+  - type: Sprite
+    netsync: false
+    state: icon
+    sprite: Backmen/Clothing/Belt/Gear/shotgunpounch.rsi
+  - type: Clothing
+    slots:
+      - Pocket
+  - type: Item
+    size: Large
+  - type: Storage
+    maxItemSize: Small
+    grid:
+    - 0,0,4,3
+    whitelist:
+      tags:
+        - ShellShotgun
+
+- type: entity
+  parent: ClothingBeltStorageBase
+  id: ClothingBeltAmmo
+  name: ammo belt
+  description: A tactical assault belt.
+  components:
+  - type: Sprite
+    sprite: Backmen/Clothing/Belt/Gear/ammobelt.rsi
+  - type: Clothing
+    sprite: Backmen/Clothing/Belt/Gear/ammobelt.rsi
+  - type: Storage
+    maxItemSize: Small
+    grid:
+    - 0,0,3,2
+    whitelist:
+      tags:
+        - MagazineRifle
+        - MagazinePulseSubMachinePistol
+        - MagazinePulseShotgun
+        - MagazinePulseRifle
+        - MagazineLightRifle
+        - MagazineCaselessRifle
+
+- type: entity
+  parent: ClothingBeltStorageBase
+  id: ClothingBeltGeneralG6
+  name: general belt G6
+  description: A tactical assault belt.
+  components:
+  - type: Sprite
+    sprite: Backmen/Clothing/Belt/Gear/generalbelt.rsi
+  - type: Clothing
+    sprite: Backmen/Clothing/Belt/Gear/generalbelt.rsi
+  - type: Storage
+    grid:
+    - 0,0,3,3
+    maxItemSize: Normal
+
+- type: entity
+  parent: ClothingBeltStorageBase
+  id: ClothingBeltMedicalMarine
+  name: medical belt
+  description: Can hold various medical equipment.
+  components:
+  - type: Sprite
+    sprite: Backmen/Clothing/Belt/Gear/medicalbelt.rsi
+  - type: Clothing
+    sprite: Backmen/Clothing/Belt/Gear/medicalbelt.rsi
+  - type: Storage
+    maxItemSize: Small
+    grid:
+    - 0,0,3,4
+    whitelist:
+      tags:
+        - Wrench
+        - Bottle
+        - Spray
+        - Brutepack
+        - Bloodpack
+        - Gauze
+        - Ointment
+        - CigPack
+        - PillCanister
+        - Radio
+        - DiscreteHealthAnalyzer
+      components:
+        - Hypospray
+        - Injector
+        - Pill
+
+- type: entity
+  parent: ClothingBeltStorageBase
+  id: ClothingBeltPistolHolster
+  name: pistol holster belt
+  description: Can hold various pistol equipment.
+  components:
+  - type: Sprite
+    sprite: Backmen/Clothing/Belt/Gear/pistolbelt.rsi
+  - type: Clothing
+    sprite: Backmen/Clothing/Belt/Gear/pistolbelt.rsi
+  - type: Storage
+    grid:
+    - 0,0,5,1
+    maxItemSize: Normal
+    whitelist:
+      components:
+        - Gun
+      tags:
+        - MagazinePistol
+
+- type: entity
+  parent: ClothingBeltStorageBase
+  id: ClothingBeltShellShotgun
+  name: shell belt
+  description: A tactical assault belt.
+  components:
+  - type: Sprite
+    sprite: Backmen/Clothing/Belt/Gear/shotgunbelt.rsi
+  - type: Item
+    size: Huge
+  - type: Clothing
+    sprite: Backmen/Clothing/Belt/Gear/shotgunbelt.rsi
+  - type: Storage
+    grid:
+    - 0,0,5,4
+    maxItemSize: Small
+    whitelist:
+      tags:
+        - ShellShotgun
+        
+- type: entity
+  parent: ClothingBeltMilitaryWebbing
+  id: ClothingBeltTGMCwhite
+  name: белая боевая разгрузка
+  description: Бронеразгрузка для ваших боеприпасов или иных нужных штучек для слежки.
+  components:
+  - type: Sprite
+    sprite: Backmen/Clothing/Belt/webbingtgmcwhite.rsi
+  - type: Clothing
+    sprite: Backmen/Clothing/Belt/webbingtgmcwhite.rsi
+
+        
+

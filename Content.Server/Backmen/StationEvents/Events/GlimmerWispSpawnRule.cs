@@ -9,6 +9,8 @@ using Content.Server.StationEvents.Components;
 using Content.Server.StationEvents.Events;
 using Content.Shared.Backmen.Psionics.Glimmer;
 using Content.Shared.Backmen.Abilities.Psionics;
+using Content.Shared.GameTicking.Components;
+using Content.Shared.NPC.Components;
 using Robust.Shared.Map;
 using Robust.Shared.Prototypes;
 

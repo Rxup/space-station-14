@@ -1,0 +1,35 @@
+﻿- type: entity
+  id: FlatpackOracle
+  parent: BaseFlatpack
+  name: пакет пандоры
+  suffix: Оракул
+  components:
+  - type: Sprite
+    layers:
+    - state: oracle
+  - type: Flatpack
+    entity: Oracle
+
+- type: entity
+  id: FlatpackSophie
+  parent: BaseFlatpack
+  name: пакет пандоры
+  suffix: София
+  components:
+  - type: Sprite
+    layers:
+    - state: sophie
+  - type: Flatpack
+    entity: SophicScribe
+
+- type: entity
+  id: FlatpackMetempsychoticMachine
+  parent: BaseFlatpack
+  name: пакет пандоры
+  suffix: КлонеркаСпешел
+  components:
+  - type: Sprite
+    layers:
+    - state: ame-part
+  - type: Flatpack
+    entity: MetempsychoticMachine

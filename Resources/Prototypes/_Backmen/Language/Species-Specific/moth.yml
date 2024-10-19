@@ -1,0 +1,39 @@
+# Spoken by moths.
+# TODO: Replace this with a much better language.
+- type: language
+  id: Moffic
+  speech:
+    color: "#c7df2edd"
+    #fontId: Copperplate
+  obfuscation:
+    !type:SyllableObfuscation
+    minSyllables: 2
+    maxSyllables: 4
+    replacement:
+    - ар
+    - и
+    - гор
+    - сек
+    - мо
+    - фф
+    - ок
+    - гь
+    - ё
+    - ла
+    - ле
+    - лит
+    - ван
+    - дар
+    - нет
+    - мот
+    - идд
+    - во
+    - да
+    - хан
+    - он
+    - эо
+    - та
+    - сейа
+    - день
+    - он
+    - брр

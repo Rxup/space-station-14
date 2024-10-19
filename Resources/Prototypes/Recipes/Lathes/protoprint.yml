@@ -1,0 +1,225 @@
+#-----Рецепты и основа для принтера-----# by @PvrG aka Святi
+
+
+- type: entity
+  parent: BaseItem
+  id: FakeSpaceCash
+  suffix: Fake
+  components:
+  - type: Material
+  - type: PhysicalComposition
+    materialComposition:
+      FakeCredit: 1
+  - type: Item
+    shape:
+    - 0,0,1,0
+    storedOffset: 0,-2
+  - type: StaticPrice
+    price: 0
+  - type: Stack
+    stackType: FakeCredit
+    count: 1
+    baseLayer: base
+    layerStates:
+    - cash
+    - cash_10
+    - cash_100
+    - cash_500
+    - cash_1000
+    - cash_1000000
+  - type: Sprite
+    sprite: Objects/Economy/cash.rsi
+    state: cash
+    layers:
+    - state: cash
+      map: ["base"]
+  - type: Physics
+    bodyType: Dynamic
+  - type: Fixtures
+    fixtures:
+      fix1:
+        density: 30
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.35,-0.2,0.25,0.1"
+        mask:
+        - ItemMask
+  - type: Appearance
+  - type: HiddenDescription
+    entries:
+    - label: backman-hidden-desc-spacecash-syndicate
+      whitelistMind:
+        components:
+          - TraitorRole
+          - NukeOperative
+          - ThiefRole
+    - label: backman-hidden-desc-spacecash-research
+      jobRequired:
+        - ResearchDirector
+        - Scientist
+        - Borg
+        - Detective
+        - Warden
+        - SecurityOfficer
+        - Brigmedic
+        - HeadOfSecurity
+
+- type: material
+  id: FakeCredit
+  name: speso
+  unit: materials-unit-bill
+  stackEntity: FakeSpaceCash
+  icon: { sprite: /Textures/Objects/Economy/cash.rsi, state: cash }
+  price: 1
+
+- type: stack
+  id: FakeCredit
+  name: speso
+  icon: { sprite: /Textures/Objects/Economy/cash.rsi, state: cash }
+  spawn: FakeSpaceCash
+
+
+- type: entity
+  parent: FakeSpaceCash
+  id: FakeSpaceCash10
+  suffix: 10, Fake
+  components:
+  - type: Icon
+    sprite: Objects/Economy/cash.rsi
+    state: cash_10
+  - type: Stack
+    count: 10
+
+- type: entity
+  parent: FakeSpaceCash
+  id: FakeSpaceCash100
+  suffix: 100, Fake
+  components:
+  - type: Icon
+    sprite: Objects/Economy/cash.rsi
+    state: cash_100
+  - type: Stack
+    count: 100
+
+- type: entity
+  parent: FakeSpaceCash
+  id: FakeSpaceCash500
+  suffix: 500, Fake
+  components:
+  - type: Icon
+    sprite: Objects/Economy/cash.rsi
+    state: cash_500
+  - type: Stack
+    count: 500
+
+- type: entity
+  parent: FakeSpaceCash
+  id: FakeSpaceCash1000
+  suffix: 1000, Fake
+  components:
+  - type: Icon
+    sprite: Objects/Economy/cash.rsi
+    state: cash_1000
+  - type: Stack
+    count: 1000
+
+- type: entity
+  parent: FakeSpaceCash
+  id: FakeSpaceCash2500
+  suffix: 2500, Fake
+  components:
+  - type: Icon
+    sprite: Objects/Economy/cash.rsi
+    state: cash_1000
+  - type: Stack
+    count: 2500
+
+- type: entity
+  parent: FakeSpaceCash
+  id: FakeSpaceCash5000
+  suffix: 5000, Fake
+  components:
+  - type: Icon
+    sprite: Objects/Economy/cash.rsi
+    state: cash_1000
+  - type: Stack
+    count: 5000
+
+- type: entity
+  parent: FakeSpaceCash
+  id: FakeSpaceCash10000
+  suffix: 10000, Fake
+  components:
+  - type: Icon
+    sprite: Objects/Economy/cash.rsi
+    state: cash_1000
+  - type: Stack
+    count: 10000
+
+- type: entity
+  parent: FakeSpaceCash
+  id: FakeSpaceCash20000
+  suffix: 20000, Fake
+  components:
+  - type: Icon
+    sprite: Objects/Economy/cash.rsi
+    state: cash_1000
+  - type: Stack
+    count: 20000
+
+- type: entity
+  parent: FakeSpaceCash
+  id: FakeSpaceCash30000
+  suffix: 30000, Fake
+  components:
+  - type: Icon
+    sprite: Objects/Economy/cash.rsi
+    state: cash_1000
+  - type: Stack
+    count: 30000
+
+- type: entity
+  parent: FakeSpaceCash
+  id: FakeSpaceCash1000000
+  suffix: 1000000, Fake
+  components:
+  - type: Icon
+    sprite: Objects/Economy/cash.rsi
+    state: cash_1000000
+  - type: Stack
+    count: 1000000
+
+- type: latheRecipe
+  id: SpaceCash
+  result: FakeSpaceCash100
+  completetime: 3
+  materials:
+    SheetPrinter: 100
+    Cloth: 200
+    Durathread: 50
+
+- type: latheRecipe
+  id: SpaceCashemag
+  result: FakeSpaceCash1000
+  completetime: 5
+  materials:
+    SheetPrinter: 200
+    Cloth: 500
+    Durathread: 200
+
+- type: latheRecipe #autolathe
+  id: Paper
+  result: Paper
+  completetime: 2
+  materials:
+    Wood: 30
+
+- type: latheRecipe
+  id: CashMachineCircuitboard
+  result: ProtolatheCashMachineCircuitboard
+  category: Circuitry
+  completetime: 4
+  materials:
+     Steel: 500
+     Glass: 500
+     Plastic: 100

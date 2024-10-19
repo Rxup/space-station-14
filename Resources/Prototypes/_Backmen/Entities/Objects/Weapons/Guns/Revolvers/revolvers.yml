@@ -1,0 +1,96 @@
+- type: entity
+  name: Mateba
+  parent: BaseWeaponRevolver
+  id: WeaponRevolverMatebaNew
+  suffix: Револьвер
+  description: The iconic sidearm of the dreaded death squads. Uses .45 magnum ammo.
+  components:
+  - type: Sprite
+    sprite: Backmen/Objects/Weapons/Gunsx64/Revolver/mateba.rsi/big.rsi
+  - type: Clothing
+    sprite: Backmen/Objects/Weapons/Gunsx64/Revolver/mateba.rsi/tiny.rsi
+  - type: Item
+    sprite: Backmen/Objects/Weapons/Gunsx64/Revolver/mateba.rsi/tiny.rsi
+  - type: Gun
+    fireRate: 3
+    cameraRecoilScalar: 2
+    soundGunshot:
+      path: /Audio/Weapons/Guns64/Revolvers/mateba.ogg
+
+- type: entity
+  name: CMB autorevolver
+  parent: BaseWeaponRevolver
+  id: WeaponRevolverCMB
+  description: An automatic revolver chambered in .45 magnum. Commonly issued to Nanotrasen security. It has a burst mode. Currently in trial with other revolvers across Terra and other colonies.
+  components:
+  - type: Sprite
+    sprite: Backmen/Objects/Weapons/Gunsx64/Revolver/cmb.rsi
+  - type: Clothing
+    sprite: Backmen/Objects/Weapons/Gunsx64/Revolver/cmb.rsi
+  - type: RevolverAmmoProvider
+    capacity: 5
+    chambers: [ True, True, True, True, True ]
+    ammoSlots: [ null, null, null, null, null ]
+  - type: Gun
+    fireRate: 3
+    soundGunshot:
+      path: /Audio/Weapons/Guns64/Revolvers/revolver_light.ogg
+    selectedMode: SemiAuto
+    availableModes:
+      - SemiAuto
+      - Burst
+
+- type: entity
+  name: R-44 SAA revolver
+  parent: BaseWeaponRevolver
+  id: WeaponRevolverR44
+  description: A uncommon revolver occasionally carried by civilian law enforcement that's very clearly based off a modernized Single Action Army. Has to be manully primed with each shot. Uses .45 Magnum rounds.
+  components:
+  - type: Sprite
+    sprite: Backmen/Objects/Weapons/Gunsx64/Revolver/r-44.rsi
+  - type: Clothing
+    sprite: Backmen/Objects/Weapons/Gunsx64/Revolver/r-44.rsi
+  - type: RevolverAmmoProvider
+    capacity: 6
+    chambers: [ True, True, True, True, True, True ]
+    ammoSlots: [ null, null, null, null, null, null ]
+  - type: Gun
+    soundGunshot:
+      path: /Audio/Weapons/Guns64/Revolvers/44mag.ogg
+
+- type: entity
+  name: N-Y revolver
+  parent: BaseWeaponRevolver
+  id: WeaponRevolverNY
+  description: The Nagant-Yamasaki is an efficient killing machine developed by an old generation country, namely Russia. It can often be found in the hands of criminals or mercenaries.
+  components:
+  - type: Sprite
+    sprite: Backmen/Objects/Weapons/Gunsx64/Revolver/ny762.rsi
+  - type: Clothing
+    sprite: Backmen/Objects/Weapons/Gunsx64/Revolver/ny762.rsi
+  - type: RevolverAmmoProvider
+    capacity: 7
+    chambers: [ True, True, True, True, True, True, True ]
+    ammoSlots: [ null, null, null, null, null, null, null ]
+  - type: Gun
+    fireRate: 1
+    soundGunshot:
+      path: /Audio/Weapons/Guns64/Revolvers/nagant.ogg
+
+- type: entity
+  name: FFA 'Rebota' revolver
+  parent: BaseWeaponRevolver
+  id: WeaponRevolverRebota
+  description: Uses .45 magnum. Timeless design, from antiquity to the future. This one is well known among the police as a versatile and unpretentious weapon.
+  components:
+  - type: Sprite
+    sprite: Backmen/Objects/Weapons/Gunsx64/Revolver/rebota.rsi
+  - type: Clothing
+    sprite: Backmen/Objects/Weapons/Gunsx64/Revolver/rebota.rsi
+  - type: RevolverAmmoProvider
+    capacity: 6
+    chambers: [ True, True, True, True, True, True ]
+    ammoSlots: [ null, null, null, null, null, null ]
+  - type: Gun
+    soundGunshot:
+      path: /Audio/Weapons/Guns64/Revolvers/revolver.ogg

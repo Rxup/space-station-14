@@ -1,0 +1,359 @@
+# ERT Leader
+- type: startingGear
+  id: ERTLeaderGearEVAV2_1
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitERTLeader
+    back: ClothingBackpackERTLeaderFilledV2_1
+    shoes: ClothingShoesBootsNedoSpetsnaz
+    mask: ClothingMaskGasERTV2_1
+    eyes: ClothingEyesGlassesSunglasses
+    gloves: ClothingHandsGlovesSpetsnazcombat
+    outerClothing: ClothingOuterHardsuitERTLeader
+    head: ClothingHeadHatERTLeaderBeret
+    neck: ClothingNeckMantleERTLeader
+    id: OBRGavnaLeaderIDCard
+    ears: ClothingHeadsetCentComCCMTFTHT9
+    belt: ClothingBeltSecurityFilled
+    pocket1: CombatKnifeSpetsnaz
+    pocket2: PinpointerNuclear
+
+# ERT Engineer
+- type: startingGear
+  id: ERTEngineerGearEVAV2_1
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitERTEngineer
+    back: ClothingBackpackERTEngineerFilledV2_1
+    shoes: ClothingShoesBootsMagAdv
+    mask: ClothingMaskGasERTV2_1
+    eyes: ClothingEyesGlassesMeson
+    gloves: ClothingHandsGlovesColorYellow
+    outerClothing: ClothingOuterHardsuitERTEngineerReal
+    id: OBRGavnaEngineerIDCard
+    ears: ClothingHeadsetCentComCCMTFTHT9
+    belt: ClothingBeltChiefEngineerFilled
+    pocket1: CombatKnifeSpetsnaz
+
+# ERT Security
+- type: startingGear
+  id: ERTSecurityGearEVAV2_1
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitERTSecurity
+    back: ClothingBackpackERTSecurityFilledV2_1
+    shoes: ClothingShoesBootsNedoSpetsnaz
+    mask: ClothingMaskGasERTV2_1
+    eyes: ClothingEyesGlassesSecurity
+    gloves: ClothingHandsGlovesCombat
+    outerClothing: ClothingOuterHardsuitERTSecurity
+    id: OBRGavnaIDCard
+    ears: ClothingHeadsetCentComCCMTFTHT9
+    belt: ClothingBeltSecurityFilled
+    pocket1: CombatKnifeSpetsnaz
+    pocket2: PinpointerNuclear
+
+# ERT Medical
+- type: startingGear
+  id: ERTMedicalGearEVAV2_1
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitERTMedic
+    back: ClothingBackpackERTMedicalFilledV2_1
+    shoes: ClothingShoesBootsNedoSpetsnaz
+    mask: ClothingMaskGasERTV2_1
+    eyes: ClothingEyesHudMedical
+    gloves: ClothingHandsGlovesCombat
+    outerClothing: ClothingOuterHardsuitERTMedical
+    id: OBRGavnaMedicIDCard
+    ears: ClothingHeadsetCentComCCMTFTHT9
+    belt: ClothingBeltMedicalFilled
+    pocket1: HandheldHealthAnalyzer
+    pocket2: CombatKnifeSpetsnaz
+
+# ERT Janitor
+- type: startingGear
+  id: ERTJanitorGearEVAV2_1
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitERTJanitor
+    back: ClothingBackpackERTJanitorFilledV2_1
+    shoes: ClothingShoesBootsSpetsnaz
+    mask: ClothingMaskGasERTV2_1
+    gloves: ClothingHandsGlovesCombat
+    outerClothing: ClothingOuterHardsuitERTJanitor
+    id: OBRGavnaJunitorIDCard
+    ears: ClothingHeadsetCentComCCMTFTHT9
+    belt: ClothingBeltJanitorFilled
+    pocket1: CombatKnifeSpetsnaz
+    pocket2: TrashBagExtended
+
+#------------------------------------
+
+# ERT Leader
+- type: entity
+  name:  Theta - 9 лидер ОБР
+  parent: MobHuman
+  suffix: МТФ
+  id: MobHumanERTLeaderEVAV2_1
+  components:
+  - type: Icon
+    sprite: Markers/jobs.rsi
+    state: ertleadereva
+  - type: Speech
+    speechSounds: Metrocop
+    soundCooldownTime: 0.1
+  - type: TriggerOnMobstateChange
+    mobState:
+    - Critical
+  - type: EmitSoundOnTrigger
+    sound:
+      collection: SoldierDeath
+  - type: GhostTakeoverAvailable
+  - type: AutoImplant
+    implants:
+    - MindShieldImplant
+  - type: GhostRole
+    allowMovement: true
+    allowSpeech: true
+    makeSentient: true
+    name: ОБР лидер
+    description: Командир отряда Theta - 9, великий воин, герой НТ, знаменитый полководец, мог бы им быть если бы не пошел в Theta - 9.
+    raffle:
+      settings: default
+    requirements:
+      - !type:DepartmentTimeRequirement
+        department: Security
+        time: 18000
+      - !type:OverallPlaytimeRequirement
+        time: 36000
+      - !type:DepartmentTimeRequirement
+        department: Command
+        time: 18000
+  - type: SpecForce
+    actionBssActionName: ActionCentcomFtlAction
+  - type: NpcFactionMember
+    factions:
+      - CentralCommand
+  - type: Loadout
+    prototypes: [ERTLeaderGearEVAV2_1]
+  - type: RandomMetadata
+    nameSegments:
+    - NamesSGTs
+    - names_last_male
+  - type: RandomHumanoidAppearance
+    randomizeName: false
+  - type: AntagImmune
+
+
+# ERT Engineer
+- type: entity
+  name: Theta - 9 инженер ОБР
+  suffix: МТФ
+  parent: MobHuman
+  id: MobHumanERTEngineerEVAV2_1
+  components:
+  - type: Icon
+    sprite: Markers/jobs.rsi
+    state: ertengineereva
+  - type: GhostTakeoverAvailable
+  - type: AutoImplant
+    implants:
+    - MindShieldImplant
+  - type: Speech
+    speechSounds: Metrocop
+    soundCooldownTime: 0.1
+  - type: TriggerOnMobstateChange
+    mobState:
+    - Critical
+  - type: EmitSoundOnTrigger
+    sound:
+      collection: SoldierDeath
+  - type: GhostRole
+    allowMovement: true
+    allowSpeech: true
+    makeSentient: true
+    name: ОБР инженер
+    description: Инженер отряда Theta - 9, может и не очень хороший инженер, но дело свое знает, наверное.
+    raffle:
+      settings: default
+    requirements:
+      - !type:DepartmentTimeRequirement
+        department: Security
+        time: 18000
+      - !type:OverallPlaytimeRequirement
+        time: 36000
+      - !type:DepartmentTimeRequirement
+        department: Engineering
+        time: 18000
+  - type: SpecForce
+    actionBssActionName: ActionCentcomFtlAction
+  - type: NpcFactionMember
+    factions:
+      - CentralCommand
+  - type: Loadout
+    prototypes: [ERTEngineerGearEVAV2_1]
+  - type: RandomMetadata
+    nameSegments:
+    - NamesCPLs
+    - names_last_male
+  - type: RandomHumanoidAppearance
+    randomizeName: false
+  - type: AntagImmune
+
+# ERT Security
+- type: entity
+  name: Theta - 9 офицер безопасности ОБР
+  suffix: МТФ
+  parent: MobHuman
+  id: MobHumanERTSecurityEVAV2_1
+  components:
+  - type: Icon
+    sprite: Markers/jobs.rsi
+    state: ertsecurityeva
+  - type: GhostTakeoverAvailable
+  - type: AutoImplant
+    implants:
+    - MindShieldImplant
+  - type: Speech
+    speechSounds: Metrocop
+    soundCooldownTime: 0.1
+  - type: TriggerOnMobstateChange
+    mobState:
+    - Critical
+  - type: EmitSoundOnTrigger
+    sound:
+      collection: SoldierDeath
+  - type: GhostRole
+    allowMovement: true
+    allowSpeech: true
+    makeSentient: true
+    name: ОБР офицер безопасности
+    description: Солдат или же охранник Theta - 9, прошедший небольшую подготовку и готовый стрелять во все что движеться, я бы не доверил ему даже водяной пистолетик.
+    raffle:
+      settings: default
+    requirements:
+      - !type:DepartmentTimeRequirement
+        department: Security
+        time: 36000
+      - !type:OverallPlaytimeRequirement
+        time: 36000
+  - type: SpecForce
+    actionBssActionName: ActionCentcomFtlAction
+  - type: NpcFactionMember
+    factions:
+      - CentralCommand
+  - type: Loadout
+    prototypes: [ERTSecurityGearEVAV2_1]
+  - type: RandomMetadata
+    nameSegments:
+    - NamesPVTs
+    - names_last_male
+  - type: RandomHumanoidAppearance
+    randomizeName: false
+  - type: AntagImmune
+
+# ERT Medical
+- type: entity
+  name: Theta - 9 медик ОБР
+  parent: MobHuman
+  suffix: МТФ
+  id: MobHumanERTMedicalEVAV2_1
+  components:
+  - type: Icon
+    sprite: Markers/jobs.rsi
+    state: ertmedicaleva
+  - type: GhostTakeoverAvailable
+  - type: AutoImplant
+    implants:
+    - MindShieldImplant
+  - type: Speech
+    speechSounds: Metrocop
+    soundCooldownTime: 0.1
+  - type: TriggerOnMobstateChange
+    mobState:
+    - Critical
+  - type: EmitSoundOnTrigger
+    sound:
+      collection: SoldierDeath
+  - type: GhostRole
+    allowMovement: true
+    allowSpeech: true
+    makeSentient: true
+    name: ОБР медик
+    description: Медик отделения Theta - 9, был в медицинском институте, поэтому и взяли в качестве медика, но никого не волнует что он там был всего неделю.
+    raffle:
+      settings: default
+    requirements:
+      - !type:DepartmentTimeRequirement
+        department: Security
+        time: 18000
+      - !type:OverallPlaytimeRequirement
+        time: 36000
+      - !type:DepartmentTimeRequirement
+        department: Medical
+        time: 18000
+  - type: SpecForce
+    actionBssActionName: ActionCentcomFtlAction
+  - type: NpcFactionMember
+    factions:
+      - CentralCommand
+  - type: Loadout
+    prototypes: [ERTMedicalGearEVAV2_1]
+  - type: RandomMetadata
+    nameSegments:
+    - NamesCPLs
+    - names_last_male
+  - type: RandomHumanoidAppearance
+    randomizeName: false
+  - type: AntagImmune
+
+# ERT Junitor
+- type: entity
+  name: Theta - 9 уборщик ОБР
+  parent: MobHuman
+  suffix: МТФ
+  id: MobHumanERTJunitorEVAV2_1
+  components:
+  - type: Icon
+    sprite: Markers/jobs.rsi
+    state: ertjanitoreva
+  - type: GhostTakeoverAvailable
+  - type: AutoImplant
+    implants:
+    - MindShieldImplant
+  - type: Speech
+    speechSounds: Metrocop
+    soundCooldownTime: 0.1
+  - type: TriggerOnMobstateChange
+    mobState:
+    - Critical
+  - type: EmitSoundOnTrigger
+    sound:
+      collection: SoldierDeath
+  - type: GhostRole
+    allowMovement: true
+    allowSpeech: true
+    makeSentient: true
+    name: ОБР уборщик
+    description: Уборщик отделения Theta - 9, эй! кто дал ему пистолет?!
+    raffle:
+      settings: default
+    requirements:
+      - !type:DepartmentTimeRequirement
+        department: Security
+        time: 18000
+      - !type:OverallPlaytimeRequirement
+        time: 36000
+      - !type:RoleTimeRequirement
+        role: JobJanitor
+        time: 3000
+  - type: SpecForce
+    actionBssActionName: ActionCentcomFtlAction
+  - type: NpcFactionMember
+    factions:
+      - CentralCommand
+  - type: Loadout
+    prototypes: [ERTJanitorGearEVAV2_1]
+  - type: RandomMetadata
+    nameSegments:
+    - NamesPVTs
+    - names_last_male
+  - type: RandomHumanoidAppearance
+    randomizeName: false
+  - type: AntagImmune

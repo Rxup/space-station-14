@@ -1,0 +1,60 @@
+- type: entity
+  parent: ClothingHeadHeadHatBaseFlippable
+  id: ClothingHeadHatCargoPostalsoft
+  name: postal cap
+  description: "It's a baseball hat painted in postal of Cargo colours."
+  components:
+  - type: Sprite
+    sprite: Backmen/Clothing/Head/Soft/cargopostalsoft.rsi
+  - type: Clothing
+    sprite: Backmen/Clothing/Head/Soft/cargopostalsoft.rsi
+  - type: Tag
+    tags:
+    - ClothMade
+    - HamsterWearable
+    - WhitelistChameleon
+
+- type: entity
+  parent: [ClothingHeadHeadHatBaseFlipped, ClothingHeadHatCargoPostalsoft]
+  id: ClothingHeadHatCargoPostalsoftFlipped
+  name: postal cap flipped
+  description: "It's a baseball hat painted in postal of Cargo colours. Flipped."
+  components:
+  - type: Tag
+    tags:
+    - ClothMade
+    - HamsterWearable
+    - WhitelistChameleon
+
+- type: entity
+  parent: ClothingHeadBase
+  id: ClothingHeadHatPilotkaSec
+  name: пилотка СБ
+  description: Пилотка сотрудников СБ НТ, в основном используется силами космической обороны. Имеет двойную окантовку и кокарду НТ.
+  components:
+    - type: Sprite
+      sprite: Backmen/Clothing/Head/Soft/secpilotka.rsi
+    - type: Clothing
+      sprite: Backmen/Clothing/Head/Soft/secpilotka.rsi
+
+- type: entity
+  parent: ClothingHeadBase
+  id: ClothingHeadHatEgovCap
+  name: marine navy cap
+  description: Cap made of thick camouflage fabric.
+  components:
+  - type: Sprite
+    sprite: Backmen/Clothing/Head/Soft/marine_cap.rsi
+  - type: Clothing
+    sprite: Backmen/Clothing/Head/Soft/marine_cap.rsi
+
+- type: entity
+  parent: ClothingHeadBase
+  id: ClothingHeadHatMVDCap
+  name: кепка полиции ОПЗ
+  description: Кепка полиции ОПЗ, имеет какарду министерства внутренних дел ОПЗ.
+  components:
+  - type: Sprite
+    sprite: Backmen/Clothing/Head/Soft/mvdcap.rsi
+  - type: Clothing
+    sprite: Backmen/Clothing/Head/Soft/mvdcap.rsi

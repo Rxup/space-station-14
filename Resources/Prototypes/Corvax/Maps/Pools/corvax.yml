@@ -3,12 +3,13 @@
   maps:
     - CorvaxDelta
     - CorvaxAvrite
-    - CorvaxSpectrum
     - CorvaxSilly
-    - CorvaxOutpost
     - CorvaxAstra
-    - CorvaxGelta
     - CorvaxMaus
-    - CorvaxIshimura
     - CorvaxPaper
+    - CorvaxPilgrim
+    - CorvaxTerra
+    - CorvaxPearl
+    - CorvaxTushkan
     - Box
+    #- Train

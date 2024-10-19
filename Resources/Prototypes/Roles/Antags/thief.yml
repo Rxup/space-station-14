@@ -1,0 +1,19 @@
+- type: antag
+  id: Thief
+  name: roles-antag-thief-name
+  antagonist: true
+  setPreference: true
+  objective: roles-antag-thief-objective
+  guides: [ Thieves ]
+  requirements:
+  - !type:OverallPlaytimeRequirement
+    time: 108000 # 30h # Corvax-RoleTime
+  discordRequired: true # backmen: antag
+
+- type: startingGear
+  id: ThiefGear
+  storage:
+    back:
+    - ToolboxThief
+    - ClothingHandsChameleonThief
+    - ThiefBeacon

@@ -6,6 +6,7 @@ using Content.Server.Guardian;
 using Content.Server.Bible.Components;
 using Content.Server.Popups;
 using Content.Shared.Backmen.Abilities.Psionics;
+using Content.Shared.Backmen.Psionics;
 using Content.Shared.Backmen.Psionics.Events;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Prototypes;
@@ -15,7 +16,7 @@ using Robust.Shared.Timing;
 
 namespace Content.Server.Backmen.Abilities.Psionics;
 
-public sealed class DispelPowerSystem : EntitySystem
+public sealed class DispelPowerSystem : SharedDispelPowerSystem
 {
     [Dependency] private readonly StatusEffectsSystem _statusEffects = default!;
     [Dependency] private readonly ActionsSystem _actions = default!;
@@ -63,7 +64,7 @@ public sealed class DispelPowerSystem : EntitySystem
 
     private void OnPowerUsed(DispelPowerActionEvent args)
     {
-        if (HasComp<PsionicInsulationComponent>(args.Target))
+        if(args.Handled)
             return;
 
         var ev = new DispelledEvent();

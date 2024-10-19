@@ -1,10 +1,5 @@
-ent-MobTomatoKiller = томат-убийца
-    .desc = Это действительно позволит вам привлечь внимание веганов к вашим следующим онлайн-дебатам.
 ent-MobGiantSpiderVampire = Чёрная вдова
     .desc = Паук-"пожиратель снов", по слухам, является одним из потенциальных генетических источников арахны.
 ent-MobGiantSpiderVampireAngry = Чёрная вдова
     .suffix = Злой
     .desc = { ent-MobGiantSpiderVampire.desc }
-ent-MobMouseCancer = Раковая мышь
-    .desc = О, привет, штатский...
-    .suffix = Блоб

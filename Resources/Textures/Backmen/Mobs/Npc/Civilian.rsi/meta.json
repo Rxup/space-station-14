@@ -1,0 +1,95 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "Created by discord:no_mad#0260",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "barmaiden",
+      "directions": 4
+    },
+    {
+      "name": "big_lenny",
+      "directions": 4
+    },
+    {
+      "name": "civ1",
+      "directions": 4
+    },
+    {
+      "name": "civ2",
+      "directions": 4
+    },
+    {
+      "name": "civ3",
+      "directions": 4
+    },
+    {
+      "name": "civ4",
+      "directions": 4
+    },
+    {
+      "name": "civ5",
+      "directions": 4
+    },
+    {
+      "name": "civ6",
+      "directions": 4
+    },
+    {
+      "name": "civ7",
+      "directions": 4
+    },
+    {
+      "name": "civ8",
+      "directions": 4
+    },
+    {
+      "name": "civ9",
+      "directions": 4
+    },
+    {
+      "name": "civilian_1",
+      "directions": 4
+    },
+    {
+      "name": "civilian_2",
+      "directions": 4
+    },
+    {
+      "name": "civilian_3",
+      "directions": 4
+    },
+    {
+      "name": "civilian_4",
+      "directions": 4
+    },
+    {
+      "name": "civilian_5",
+      "directions": 4
+    },
+    {
+      "name": "civilian_6",
+      "directions": 4
+    },
+    {
+      "name": "civilian_7",
+      "directions": 4
+    },
+    {
+      "name": "civilian_8",
+      "directions": 4
+    },
+    {
+      "name": "civilian_9",
+      "directions": 4
+    },
+    {
+      "name": "greenistani_1",
+      "directions": 4
+    }
+  ]
+}

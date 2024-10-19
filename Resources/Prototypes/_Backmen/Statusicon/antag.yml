@@ -1,0 +1,84 @@
+- type: factionIcon
+  id: FleshcultistFaction
+  priority: 5
+  showTo:
+    tags:
+    - Flesh
+    components:
+    - FleshCultist
+  icon:
+    sprite: /Textures/Backmen/Interface/Misc/antag_icon.rsi
+    state: flesh
+
+- type: factionIcon
+  id: VampireFaction
+  priority: 9
+  showTo:
+    components:
+    - BkmVampire
+  icon:
+    sprite: /Textures/Backmen/Interface/Misc/antag_icon10x.rsi
+    state: vampire
+
+- type: factionIcon
+  id: BlobFaction
+  priority: 10
+  showTo:
+    components:
+    - BlobCarrier
+    - BlobObserver
+    - ZombieBlob
+    - Blobbernaut
+  icon:
+    sprite: /Textures/Backmen/Interface/Misc/antag_icon.rsi
+    state: blob
+
+
+#svs
+
+- type: factionIcon
+  id: Team0Faction
+  priority: 5
+  showTo:
+    components:
+    - TdmMember
+    - StationAiVision
+  icon:
+    sprite: /Textures/Backmen/Interface/Misc/svs_icon.rsi
+    state: team_0
+
+- type: factionIcon
+  id: TeamAFaction
+  priority: 5
+  showTo:
+    components:
+    - TdmMember
+    - StationAiVision
+  icon:
+    sprite: /Textures/Backmen/Interface/Misc/svs_icon.rsi
+    state: team_a
+
+- type: factionIcon
+  id: TeamBFaction
+  priority: 5
+  showTo:
+    components:
+    - TdmMember
+    - StationAiVision
+  icon:
+    sprite: /Textures/Backmen/Interface/Misc/svs_icon.rsi
+    state: team_b
+
+- type: factionIcon
+  id: HivemindFaction
+  priority: 11
+  showTo:
+    components:
+    - ShowAntagIcons
+    - Hivemind
+  icon:
+    sprite: /Textures/Interface/Misc/job_icons.rsi
+    state: Changeling
+
+
+

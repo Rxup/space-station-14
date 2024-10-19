@@ -1,0 +1,41 @@
+﻿# Inventory
+#Дрель
+- type: loadout
+  id: PowerDrillBkm
+  storage:
+    back:
+    - PowerDrill
+
+#Анти-пси
+- type: loadout
+  id: AntiPsychicKnifeBkm
+  storage:
+    back:
+    - AntiPsychicKnife
+  equipment:
+    head: ClothingHeadTinfoil
+
+#БДСМ
+- type: loadout
+  id: ClothingUniformJumpsuitGachiBkm
+  equipment:
+    innerclothing: ClothingUniformJumpsuitGachi
+
+#Стартовый капитал
+- type: loadout
+  id: SpaceCash5000Bkm
+  storage:
+    back:
+    - SpaceCash500
+
+#Человечина
+- type: loadout
+  id: ClothingOuterHardsuitLingBkm
+  equipment:
+    outerClothing: ClothingOuterHardsuitLing
+
+#  ClothingMaskBreath
+#  ClothingJokermask
+#  ClothingWolfMask
+#  ClothingDallasMask
+

@@ -11,12 +11,11 @@ using Content.Shared.Backmen.Shipyard.Prototypes;
 using Content.Shared.Access.Systems;
 using Content.Shared.Backmen.Shipyard.Components;
 using Content.Shared.Backmen.Shipyard;
-using Content.Shared.Backmen.StationAI;
 using Robust.Server.GameObjects;
 using Robust.Shared.Prototypes;
 using Content.Shared.Radio;
+using Content.Shared.Silicons.Borgs.Components;
 using Robust.Shared.Audio.Systems;
-using Robust.Shared.Player;
 
 namespace Content.Server.Backmen.Shipyard.Systems;
 
@@ -52,14 +51,14 @@ public sealed class ShipyardConsoleSystem : SharedShipyardSystem
 
     private void OnPurchaseMessage(EntityUid uid, ShipyardConsoleComponent component, ShipyardConsolePurchaseMessage args)
     {
-        if (args.Session.AttachedEntity is not { Valid : true } player)
+        if (args.Actor is not { Valid : true } player)
         {
             return;
         }
 
-        if (!HasComp<StationAIComponent>(player) && !_access.IsAllowed(player, uid))
+        if (!HasComp<BorgChassisComponent>(player) && !_access.IsAllowed(player, uid))
         {
-            ConsolePopup(args.Session, Loc.GetString("comms-console-permission-denied"));
+            ConsolePopup(args.Actor, Loc.GetString("comms-console-permission-denied"));
             PlayDenySound(uid, component);
             return;
         }
@@ -68,20 +67,20 @@ public sealed class ShipyardConsoleSystem : SharedShipyardSystem
 
         if (!_prototypeManager.TryIndex<VesselPrototype>(args.Vessel, out vessel) || vessel == null)
         {
-            ConsolePopup(args.Session, Loc.GetString("shipyard-console-invalid-vessel", ("vessel", args.Vessel)));
+            ConsolePopup(args.Actor, Loc.GetString("shipyard-console-invalid-vessel", ("vessel", args.Vessel)));
             PlayDenySound(uid, component);
             return;
         }
 
         if (component.AllowedGroup.Count != 0 && !component.AllowedGroup.Contains(vessel.Group))
         {
-            ConsolePopup(args.Session, Loc.GetString("shipyard-console-invalid-vessel", ("vessel", args.Vessel)));
+            ConsolePopup(args.Actor, Loc.GetString("shipyard-console-invalid-vessel", ("vessel", args.Vessel)));
             PlayDenySound(uid, component);
             return;
         }
         else if (component.AllowedGroup.Count == 0 && vessel.Private)
         {
-            ConsolePopup(args.Session, Loc.GetString("shipyard-console-invalid-vessel", ("vessel", args.Vessel)));
+            ConsolePopup(args.Actor, Loc.GetString("shipyard-console-invalid-vessel", ("vessel", args.Vessel)));
             PlayDenySound(uid, component);
             return;
         }
@@ -97,7 +96,7 @@ public sealed class ShipyardConsoleSystem : SharedShipyardSystem
 
         if (bank.Balance <= vessel.Price)
         {
-            ConsolePopup(args.Session, Loc.GetString("cargo-console-insufficient-funds", ("cost", vessel.Price)));
+            ConsolePopup(args.Actor, Loc.GetString("cargo-console-insufficient-funds", ("cost", vessel.Price)));
             PlayDenySound(uid, component);
             return;
         }
@@ -118,14 +117,11 @@ public sealed class ShipyardConsoleSystem : SharedShipyardSystem
             true,
             component.AllowedGroup);
 
-        _ui.TrySetUiState(uid, ShipyardConsoleUiKey.Shipyard, newState);
+        _ui.SetUiState(uid, ShipyardConsoleUiKey.Shipyard, newState);
     }
 
     private void OnConsoleUIOpened(EntityUid uid, ShipyardConsoleComponent component, BoundUIOpenedEvent args)
     {
-        if (!args.Session.AttachedEntity.HasValue)
-            return;
-
         var station = _station.GetOwningStation(uid);
         var bank = GetBankAccount(station);
 
@@ -137,13 +133,12 @@ public sealed class ShipyardConsoleSystem : SharedShipyardSystem
             true,
             component.AllowedGroup);
 
-        _ui.TrySetUiState(uid, ShipyardConsoleUiKey.Shipyard, newState);
+        _ui.SetUiState(uid, ShipyardConsoleUiKey.Shipyard, newState);
     }
 
-    private void ConsolePopup(ICommonSession session, string text)
+    private void ConsolePopup(EntityUid player, string text)
     {
-        if (session.AttachedEntity is { Valid : true } player)
-            _popup.PopupEntity(text, player);
+        _popup.PopupEntity(text, player);
     }
 
     private void PlayDenySound(EntityUid uid, ShipyardConsoleComponent component)

@@ -13,20 +13,17 @@ namespace Content.Shared.Backmen.Vampiric;
 
 [RegisterComponent]
 [NetworkedComponent]
-public sealed partial class BkmVampireComponent : Component, IAntagStatusIconComponent
+public sealed partial class BkmVampireComponent : Component
 {
     [DataField("currencyPrototype", customTypeSerializer: typeof(PrototypeIdSerializer<CurrencyPrototype>))]
     public string CurrencyPrototype = "BloodEssence";
-
-    public ProtoId<StatusIconPrototype> StatusIcon { get; set; } = "VampireFaction";
-    public bool IconVisibleToGhost { get; set; } = true;
 
 
     [ViewVariables(VVAccess.ReadWrite)]
     public int SprintLevel = 0;
 
     public EntityUid? ActionNewVamp;
-    public ProtoId<EntityPrototype> NewVamp = "ActionConvertToVampier";
+    public EntProtoId NewVamp = "ActionConvertToVampier";
 
     public Dictionary<string, FixedPoint2> DNA = new();
 }

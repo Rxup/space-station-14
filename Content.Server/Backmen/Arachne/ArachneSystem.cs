@@ -26,6 +26,7 @@ using Content.Server.Body.Components;
 using Content.Server.Backmen.Vampiric;
 using Content.Server.Speech.Components;
 using Content.Shared.Backmen.Abilities;
+using Content.Shared.Backmen.Vampiric.Components;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Player;
 using Robust.Shared.Physics.Components;
@@ -33,18 +34,19 @@ using Robust.Shared.Containers;
 using Robust.Shared.Map;
 using Robust.Shared.Utility;
 using Robust.Server.Console;
+using Robust.Shared.Map.Components;
 using static Content.Shared.Examine.ExamineSystemShared;
 
 namespace Content.Server.Backmen.Arachne;
 
 public sealed class ArachneSystem : EntitySystem
 {
-    [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
+    [Dependency] private readonly EntityLookupSystem _lookup = default!;
+    [Dependency] private readonly SharedTransformSystem _transform = default!;
     [Dependency] private readonly SharedActionsSystem _actions = default!;
     [Dependency] private readonly HungerSystem _hungerSystem = default!;
     [Dependency] private readonly ThirstSystem _thirstSystem = default!;
     [Dependency] private readonly PopupSystem _popupSystem = default!;
-    [Dependency] private readonly IMapManager _mapManager = default!;
     [Dependency] private readonly DoAfterSystem _doAfter = default!;
     [Dependency] private readonly BuckleSystem _buckleSystem = default!;
     [Dependency] private readonly ItemSlotsSystem _itemSlots = default!;
@@ -56,6 +58,8 @@ public sealed class ArachneSystem : EntitySystem
     [Dependency] private readonly InventorySystem _inventorySystem = default!;
     [Dependency] private readonly ISharedAdminLogManager _adminLogger = default!;
     [Dependency] private readonly SharedContainerSystem _containerSystem = default!;
+    [Dependency] private readonly ExamineSystemShared _examine = default!;
+
 
     private const string BodySlot = "body_slot";
 
@@ -126,7 +130,8 @@ public sealed class ArachneSystem : EntitySystem
             component.WasReplacementAccent = true;
             component.OldAccent = currentAccent.Accent;
             currentAccent.Accent = "mumble";
-        } else
+        }
+        else
         {
             component.WasReplacementAccent = false;
             var replacement = EnsureComp<ReplacementAccentComponent>(args.Entity);
@@ -232,13 +237,15 @@ public sealed class ArachneSystem : EntitySystem
         }
 
         var coords = args.Target;
-        if (!_mapManager.TryGetGrid(coords.GetGridUid(EntityManager), out var grid))
+
+        if (!HasComp<MapGridComponent>(_transform.GetGrid(coords)))
         {
             _popupSystem.PopupEntity(Loc.GetString("action-name-spin-web-space"), args.Performer, args.Performer, Shared.Popups.PopupType.MediumCaution);
             return;
         }
 
-        foreach (var entity in coords.GetEntitiesInTile())
+
+        foreach (var entity in _lookup.GetEntitiesIntersecting(coords))
         {
             PhysicsComponent? physics = null; // We use this to check if it's impassable
             if ((HasComp<WebComponent>(entity)) || // Is there already a web there?
@@ -251,7 +258,7 @@ public sealed class ArachneSystem : EntitySystem
         }
 
         _popupSystem.PopupEntity(Loc.GetString("spin-web-start-third-person", ("spider", Identity.Entity(args.Performer, EntityManager))), args.Performer,
-            Filter.PvsExcept(args.Performer).RemoveWhereAttachedEntity(entity => !ExamineSystemShared.InRangeUnOccluded(args.Performer, entity, ExamineRange, null)),
+            Filter.PvsExcept(args.Performer).RemoveWhereAttachedEntity(entity => !_examine.InRangeUnOccluded(args.Performer, entity, ExamineRange, null)),
             true,
             Shared.Popups.PopupType.MediumCaution);
         _popupSystem.PopupEntity(Loc.GetString("spin-web-start-second-person"), args.Performer, args.Performer, Shared.Popups.PopupType.Medium);
@@ -259,7 +266,7 @@ public sealed class ArachneSystem : EntitySystem
         var ev = new ArachneWebDoAfterEvent(GetNetCoordinates(coords));
         var doAfterArgs = new DoAfterArgs(EntityManager, args.Performer, arachne.WebDelay, ev, args.Performer)
         {
-            BreakOnUserMove = true,
+            BreakOnMove = true,
         };
 
         _doAfter.TryStartDoAfter(doAfterArgs);
@@ -269,7 +276,7 @@ public sealed class ArachneSystem : EntitySystem
     {
         _popupSystem.PopupEntity(Loc.GetString("cocoon-start-third-person", ("target", Identity.Entity(target, EntityManager)), ("spider", Identity.Entity(uid, EntityManager))), uid,
             // TODO: We need popup occlusion lmao
-            Filter.PvsExcept(uid).RemoveWhereAttachedEntity(entity => !ExamineSystemShared.InRangeUnOccluded(uid, entity, ExamineRange, null)),
+            Filter.PvsExcept(uid).RemoveWhereAttachedEntity(entity => !_examine.InRangeUnOccluded(uid, entity, ExamineRange, null)),
             true,
             Shared.Popups.PopupType.MediumCaution);
 
@@ -286,8 +293,7 @@ public sealed class ArachneSystem : EntitySystem
 
         var args = new DoAfterArgs(EntityManager, uid, delay, ev, uid, target: target)
         {
-            BreakOnUserMove = true,
-            BreakOnTargetMove = true,
+            BreakOnMove = true,
         };
 
         _doAfter.TryStartDoAfter(args);
@@ -305,7 +311,7 @@ public sealed class ArachneSystem : EntitySystem
 
         Spawn(ArachneWeb, GetCoordinates(args.Coords).SnapToGrid());
         _popupSystem.PopupEntity(Loc.GetString("spun-web-third-person", ("spider", Identity.Entity(uid, EntityManager))), uid,
-            Filter.PvsExcept(uid).RemoveWhereAttachedEntity(entity => !ExamineSystemShared.InRangeUnOccluded(uid, entity, ExamineRange, null)),
+            Filter.PvsExcept(uid).RemoveWhereAttachedEntity(entity => !_examine.InRangeUnOccluded(uid, entity, ExamineRange, null)),
             true,
             Shared.Popups.PopupType.MediumCaution);
         _popupSystem.PopupEntity(Loc.GetString("spun-web-second-person"), uid, uid, Shared.Popups.PopupType.Medium);

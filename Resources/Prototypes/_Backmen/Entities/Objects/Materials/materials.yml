@@ -1,0 +1,57 @@
+﻿- type: entity
+  parent: MaterialBase
+  id: MaterialBluespace
+  suffix: Full
+  name: bluespace crystal
+  components:
+    - type: Sprite
+      sprite: Backmen/Objects/Materials/materials.rsi
+      layers:
+        - state: bluespace_3
+          map: ["base"]
+    - type: Appearance
+    - type: Material
+    - type: PhysicalComposition
+      materialComposition:
+        Bluespace: 100
+    - type: Tag
+      tags:
+        - BluespaceCrystal
+        - RawMaterial
+    - type: Stack
+      stackType: Bluespace
+      baseLayer: base
+      layerStates:
+        - bluespace
+        - bluespace_2
+        - bluespace_3
+      count: 5
+    - type: Item
+      size: Normal
+
+- type: entity
+  parent: MaterialBluespace
+  id: MaterialBluespace1
+  name: bluespace crystal
+  suffix: 1
+  components:
+  - type: Stack
+    stackType: Bluespace
+    count: 1
+  - type: Tag
+    tags:
+    - BluespaceCrystal
+    - RawMaterial
+
+- type: entity
+  parent: BaseItem
+  id: HideMothroach
+  name: mothroach hide
+  description: A thin layer of mothroach hide.
+  components:
+    - type: Sprite
+      sprite: Backmen/Objects/Materials/mothroach.rsi
+      state: mothroachhide
+    - type: Tag
+      tags:
+        - MothroachHide

@@ -4,6 +4,7 @@ using Content.Shared.Actions;
 using Content.Shared.Bed.Sleep;
 using Content.Shared.Cuffs.Components;
 using Content.Shared.Backmen.Species.Shadowkin.Components;
+using Content.Shared.Stunnable;
 using Robust.Shared.Prototypes;
 
 namespace Content.Server.Backmen.Species.Shadowkin.Systems;
@@ -12,6 +13,7 @@ public sealed class ShadowkinRestSystem : EntitySystem
 {
     [Dependency] private readonly SharedActionsSystem _actions = default!;
     [Dependency] private readonly ShadowkinPowerSystem _power = default!;
+    [Dependency] private readonly SleepingSystem _sleeping = default!;
 
     public override void Initialize()
     {
@@ -21,6 +23,19 @@ public sealed class ShadowkinRestSystem : EntitySystem
         SubscribeLocalEvent<ShadowkinRestPowerComponent, ComponentShutdown>(OnShutdown);
 
         SubscribeLocalEvent<ShadowkinRestPowerComponent, ShadowkinRestEvent>(Rest);
+
+        SubscribeLocalEvent<SleepingComponent, RefreshShadowkinPowerModifiersEvent>(OnRest);
+        SubscribeLocalEvent<ShadowkinRestPowerComponent, SleepStateChangedEvent>(OnSleepStateChanged);
+    }
+
+    private void OnSleepStateChanged(Entity<ShadowkinRestPowerComponent> ent, ref SleepStateChangedEvent args)
+    {
+        _power.RefreshPowerModifiers(ent);
+    }
+
+    private void OnRest(Entity<SleepingComponent> ent, ref RefreshShadowkinPowerModifiersEvent args)
+    {
+        args.ModifySpeed(1.5f);
     }
 
     [ValidatePrototypeId<EntityPrototype>] private const string ShadowkinRest = "ShadowkinRest";
@@ -45,20 +60,21 @@ public sealed class ShadowkinRestSystem : EntitySystem
         // if (_entity.HasComponent<HandcuffComponent>(args.Performer))
         //     return;
 
-
-        // Now doing what you weren't before
-        component.IsResting = !component.IsResting;
-
         // Resting
-        if (component.IsResting)
+        if (!TryComp<SleepingComponent>(args.Performer, out var sleepingComponent))
         {
+            if (HasComp<StunnedComponent>(args.Performer))
+                return;
+
+            if(!_sleeping.TrySleeping(args.Performer))
+                return;
             // Sleepy time
             EnsureComp<ForcedSleepingComponent>(args.Performer);
             // No waking up normally (it would do nothing)
             //_actions.RemoveAction(args.Performer, new InstantAction(_prototype.Index<InstantActionPrototype>("Wake")));
-            if(TryComp<SleepingComponent>(args.Performer, out var sleepingComponent))
+            if (TryComp(args.Performer, out sleepingComponent) && sleepingComponent.WakeAction is { Valid: true })
                 _actions.RemoveAction(args.Performer, sleepingComponent.WakeAction);
-            _power.TryAddMultiplier(args.Performer, 1.5f);
+
             // No action cooldown
             args.Handled = false;
         }
@@ -66,11 +82,8 @@ public sealed class ShadowkinRestSystem : EntitySystem
         else
         {
             // Wake up
-            RemCompDeferred<ForcedSleepingComponent>(args.Performer);
-            RemCompDeferred<SleepingComponent>(args.Performer);
-            _power.TryAddMultiplier(args.Performer, -1.5f);
             // Action cooldown
-            args.Handled = true;
+            args.Handled = _sleeping.TryWaking((args.Performer,sleepingComponent), true);
         }
     }
 }

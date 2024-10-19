@@ -14,6 +14,7 @@ using System.Diagnostics.CodeAnalysis;
 using System.Numerics;
 using Content.Shared.Backmen.Shipyard.Components;
 using Content.Shared.Backmen.Shipyard.Prototypes;
+using Robust.Shared.Map.Components;
 
 namespace Content.Server.Backmen.Shipyard.Systems;
 
@@ -105,7 +106,7 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
 
         _sawmill.Info($"Shuttle {shuttlePath} was purchased at {ToPrettyString((EntityUid) stationUid)} for {price:f2}");
         //can do TryFTLDock later instead if we need to keep the shipyard map paused
-        _shuttle.FTLTravel(shuttleGrid.Value, shuttle, targetGrid.Value, 0f, 15f, true);
+        _shuttle.FTLToDock(shuttleGrid.Value, shuttle, targetGrid.Value);
         return true;
     }
 
@@ -131,7 +132,7 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
             return false;
         }
 
-        _shuttleIndex += _mapManager.GetGrid(gridList[0]).LocalAABB.Width + ShuttleSpawnBuffer;
+        _shuttleIndex += Comp<MapGridComponent>(gridList[0]).LocalAABB.Width + ShuttleSpawnBuffer;
 
         //only dealing with 1 grid at a time for now, until more is known about multi-grid drifting
         if (gridList.Count != 1)

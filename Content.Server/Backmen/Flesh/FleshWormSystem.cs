@@ -26,7 +26,8 @@ namespace Content.Server.Backmen.Flesh;
 
 public sealed partial class FleshWormSystem : EntitySystem
 {
-    [Dependency] private SharedStunSystem _stunSystem = default!;
+    [Dependency] private readonly SharedTransformSystem _transform = default!;
+    [Dependency] private readonly SharedStunSystem _stunSystem = default!;
     [Dependency] private readonly DamageableSystem _damageableSystem = default!;
     [Dependency] private readonly PopupSystem _popup = default!;
     [Dependency] private readonly InventorySystem _inventory = default!;
@@ -69,12 +70,12 @@ public sealed partial class FleshWormSystem : EntitySystem
                 return;
             }
         }
+
         _inventory.TryGetSlotEntity(args.Target, "head", out var headItem);
         if (HasComp<IngestionBlockerComponent>(headItem))
             return;
 
-        var equipped = _inventory.TryEquip(args.Target, uid, "mask", true);
-        if (!equipped)
+        if (!_inventory.TryEquip(args.Target, uid, "mask", true))
             return;
 
         component.EquipedOn = args.Target;
@@ -89,7 +90,6 @@ public sealed partial class FleshWormSystem : EntitySystem
         _popup.PopupEntity(Loc.GetString("flesh-pudge-throw-worm-eat-face-others",
             ("entity", args.Target)), args.Target, Filter.PvsExcept(uid), true, PopupType.Large);
 
-        //EntityManager.RemoveComponent<CombatModeComponent>(uid);
         EnsureComp<PacifiedComponent>(uid);
         _stunSystem.TryParalyze(args.Target, TimeSpan.FromSeconds(component.ParalyzeTime), true);
         _damageableSystem.TryChangeDamage(args.Target, component.Damage);
@@ -134,7 +134,7 @@ public sealed partial class FleshWormSystem : EntitySystem
     {
         if (args.Slot != "mask")
             return;
-        component.EquipedOn = new EntityUid();
+        component.EquipedOn = EntityUid.Invalid;
         RemCompDeferred<PacifiedComponent>(uid);
         var combatMode = EnsureComp<CombatModeComponent>(uid);
         _combat.SetInCombatMode(uid, true, combatMode);
@@ -204,11 +204,8 @@ public sealed partial class FleshWormSystem : EntitySystem
 
         args.Handled = true;
         var xform = Transform(uid);
-        var mapCoords = args.Target.ToMap(EntityManager);
-        Logger.Info(xform.MapPosition.ToString());
-        Logger.Info(mapCoords.ToString());
-        var direction = mapCoords.Position - xform.MapPosition.Position;
-        Logger.Info(direction.ToString());
+        var mapCoords = _transform.ToMapCoordinates(args.Target);
+        var direction = mapCoords.Position - _transform.GetMapCoordinates(xform).Position;
 
         _throwing.TryThrow(uid, direction, 7F, uid, 10F);
         if (component.SoundWormJump != null)
@@ -239,7 +236,7 @@ public sealed partial class FleshWormSystem : EntitySystem
                 if (mobState.CurrentState is not MobState.Alive)
                 {
                     _inventory.TryUnequip(targetId, "mask", true, true);
-                    comp.EquipedOn = new EntityUid();
+                    comp.EquipedOn = EntityUid.Invalid;
                     return;
                 }
             }

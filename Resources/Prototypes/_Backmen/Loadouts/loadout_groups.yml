@@ -1,0 +1,158 @@
+﻿# CentCom
+
+# Cargo
+- type: loadoutGroup
+  id: BKCCCargoJumpsuit
+  name: loadout-group-captain-jumpsuit
+  loadouts:
+  - BKCCCargoJumpsuit
+  - BKCCCargoJumpskirtCargo
+
+- type: loadoutGroup
+  id: BKCCCargoNeck
+  name: loadout-group-captain-neck
+  minLimit: 0
+  loadouts:
+  - BKCCCargoCloak
+  - BKCCCargoCloakFormal
+  - BKCCCargoMantle
+
+- type: loadoutGroup
+  id: BKCCCargoBackpack
+  name: loadout-group-captain-backpack
+  loadouts:
+  - BKCCCargoBackpack
+  - BKCCCargoSatchel
+  - BKCCCargoDuffel
+
+# Security
+
+# BlueShield
+- type: loadoutGroup
+  id: ClothingUniformJumpsuitBlueShield
+  name: loadout-group-blueshield-jumpsuit
+  loadouts:
+  - ClothingJumpsuitBlueShield
+  - ClothingUniformBlueShield
+  - ClothingSkirtBlueShield
+
+- type: loadoutGroup
+  id: ClothingHeadHatBlueShield
+  name: loadout-group-BlueShield-hat
+  minLimit: 0
+  loadouts:
+  - ClothingHeadHatBeretBlueShield
+  - ClothingHeadHatBlueShieldCap
+  - ClothingHeadHatUshankaBlueShield
+  - ClothingHeadHelmetEGov
+
+- type: loadoutGroup
+  id: ClothingOuterBlueShield
+  name: loadout-group-BlueShield-outer
+  loadouts:
+  - ClothingOuterNavyVest
+  - ClothingOuterXenonautenLight
+  - ClothingOuterCoatArmorBlueShield
+  - ClothingOuterCoatArmorBlueShieldAlt
+
+- type: loadoutGroup
+  id: EyeBlueShield
+  name: loadout-group-BlueShield-eyes
+  minLimit: 0
+  loadouts:
+  - ClothingEyesGlassesBlueShield
+  - ClothingEyeslensesBlueShield
+
+# Operator
+#- type: loadoutGroup
+#  id: BKCCOperatorGavnaJumpsuit
+#  name: loadout-group-captain-jumpsuit
+#  loadouts:
+#  - BKCCOperatorGavnaJumpsuit
+#  - BKCCOperatorGavnaJumpskirt
+#
+#- type: loadoutGroup
+#  id: BKCCOperatorGavnaNeck
+#  name: loadout-group-captain-neck
+#  minLimit: 0
+#  loadouts:
+#  - BKCCOperatorGavnaCloak
+#
+#- type: loadoutGroup
+#  id: BKCCOperatorGavnaBackpack
+#  name: loadout-group-captain-backpack
+#  loadouts:
+#  - BKCCOperatorGavnaBackpack
+#  - BKCCOperatorGavnaSatchel
+
+# Station Job
+
+# Security
+
+# Brigmedic
+- type: loadoutGroup
+  id: ClothingUniformJumpsuitBrigmedic
+  name: loadout-group-brigmedic-jumpsuit
+  loadouts:
+  - ClothingUniformJumpsuitBrigmedic
+  - ClothingUniformJumpskirtBrigmedic
+  - ClothingUniformJumpskirtOfLife
+
+- type: loadoutGroup
+  id: ClothingBackpackBrigmedic
+  name: loadout-group-brigmedic-backpack
+  loadouts:
+  - ClothingBackpackBrigmedic
+  - ClothingBackpackDuffelBrigmedic
+  - ClothingBackpackSatchelBrigmedic
+
+- type: loadoutGroup
+  id: ClothingHeadHatBrigmedic
+  name: loadout-group-brigmedic-hat
+  minLimit: 0
+  loadouts:
+  - ClothingHeadHatBeretBrigmedic
+  - ClothingHeadHatBeretSecurityMedic
+  - ClothingHeadHelmetSecurityMedic
+
+- type: loadoutGroup
+  id: ClothingOuterBrigmedic
+  name: loadout-group-brigmedic-outer
+  loadouts:
+  - ClothingOuterVestArmorMedSec
+  - ClothingOuterCoatAMG
+  - ClothingOuterVestSecurityMedic
+  - ClothingOuterCoatLabSecurityMedic
+
+- type: loadoutGroup
+  id: ClothingEarBrigmedic
+  name: loadout-group-brigmedic-ear
+  loadouts:
+  - ClothingHeadsetBrigmedic
+  - ClothingHeadsetAltBrigmedic
+
+- type: loadoutGroup
+  id: ClothingMaskBrigmedic
+  name: loadout-group-brigmedic-mask
+  minLimit: 0
+  loadouts:
+  - ClothingMaskBreathMedicalSecurity
+  - ClothingMaskSterile
+  - ClothingMaskGasSecurity
+
+# Miscellaneous
+- type: loadoutGroup
+  id: Medals
+  name: loadout-group-medals
+  minLimit: 0
+  maxLimit: 1
+  loadouts:
+  - ClothingMedalGoldenCrest
+  - ClothingMedalGoldenSun
+  - ClothingMedalSilversword
+  - ClothingMedalGoldenSol
+  - ClothingMedalSilversol
+  - ClothingMedalIronSol
+  - ClothingMedalBronzesol
+  - ClothingMedalGoldenStar
+  - ClothingMedalIronStar

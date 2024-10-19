@@ -1,0 +1,65 @@
+- type: entity
+  id: ShellSoulbreaker
+  name: shell (.50 soulbreaker)
+  parent: BaseShellShotgun
+  components:
+  - type: Sprite
+    layers:
+      - state: practice
+        map: [ "enum.AmmoVisualLayers.Base" ]
+  - type: CartridgeAmmo
+    proto: PelletShotgunSoulbreaker
+    #count: 1
+  - type: ChemicalAmmo
+  - type: SolutionContainerManager
+    solutions:
+      ammo:
+        reagents:
+        - ReagentId: SoulbreakerToxin
+          Quantity: 15
+  - type: SolutionTransfer
+    maxTransferAmount: 15
+  - type: SpentAmmoVisuals
+    state: "practice"
+
+- type: entity
+  id: ShellShotgunMagnum12
+  name: shell (.12 gauge magnum)
+  parent: BaseShellShotgun
+  components:
+  - type: Sprite
+    sprite: Backmen/Objects/Weapons/Gunsx64/Ammunition/Casings/shotgun_shell.rsi
+    layers:
+      - state: base
+        map: [ "enum.AmmoVisualLayers.Base" ]
+  - type: CartridgeAmmo
+    proto: PelletShotgunMagnum12Spread
+    soundEject:
+      collection: ShellEject
+  - type: EmitSoundOnLand
+    sound:
+      collection: ShellLand
+      params:
+        volume: 1
+
+- type: entity
+  id: ShellShotgunFRAG12
+  name: shell (.12 gauge FRAG 12)
+  parent: BaseShellShotgun
+  components:
+  - type: Sprite
+    sprite: Backmen/Objects/Weapons/Gunsx64/Ammunition/Casings/shotgun_shell.rsi
+    layers:
+      - state: incendiary
+        map: [ "enum.AmmoVisualLayers.Base" ]
+  - type: CartridgeAmmo
+    proto: PelletShotgunRocket
+    soundEject:
+      collection: ShellEject
+  - type: SpentAmmoVisuals
+    state: "incendiary"
+  - type: EmitSoundOnLand
+    sound:
+      collection: ShellLand
+      params:
+        volume: 1

@@ -1,0 +1,71 @@
+- type: accessGroup
+  id: MTFLeader
+  tags:
+  - MTFL
+  - MTF
+  - MTFJ
+  - MTFE
+  - MTFM
+  - MTFS
+
+- type: accessGroup
+  id: MTFSrg
+  tags:
+  - MTF
+  - MTFJ
+  - MTFE
+  - MTFM
+  - MTFS
+
+- type: accessGroup
+  id: MTFCplEngineer
+  tags:
+  - MTF
+  - MTFE
+
+- type: accessGroup
+  id: MTFCplMedic
+  tags:
+  - MTF
+  - MTFM
+
+- type: accessGroup
+  id: MTFPvtSecurity
+  tags:
+  - MTF
+  - MTFS
+
+- type: accessGroup
+  id: MTFPvtJunitor
+  tags:
+  - MTF
+  - MTFJ
+
+- type: accessGroup
+  id: MTFPvt
+  tags:
+  - MTF
+
+- type: accessLevel
+  id: MTF
+  name: id-card-access-level-mtf
+
+- type: accessLevel
+  id: MTFL
+  name: id-card-access-level-mtfl
+
+- type: accessLevel
+  id: MTFS
+  name: id-card-access-level-mtfs
+
+- type: accessLevel
+  id: MTFJ
+  name: id-card-access-level-mtfj
+
+- type: accessLevel
+  id: MTFE
+  name: id-card-access-level-mtfe
+
+- type: accessLevel
+  id: MTFM
+  name: id-card-access-level-mtfm

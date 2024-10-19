@@ -1,0 +1,208 @@
+- type: randomHumanoidSettings
+  id: BackmenSpecies
+  speciesBlacklist:
+    - Diona
+    - ArachneClassic
+
+
+## Canned Clown
+
+- type: entity
+  parent: MobHuman
+  id: HumanCannedClown
+  name: Canned clown
+  components:
+    - type: RandomHumanoidAppearance
+      randomizeName: false
+    - type: Icon
+      sprite: Markers/jobs.rsi
+      state: clown
+    - type: GhostRole
+      name: ghost-role-information-canned-clown-name
+      description: ghost-role-information-canned-clown-description
+      rules: Помогайте Хонк браткам во исполнении ВЕСЁЛЫХ планов!
+      raffle:
+        settings: default
+    - type: GhostTakeoverAvailable
+    - type: Loadout
+      prototypes: [CannedClownGear]
+    - type: RandomMetadata
+      nameSegments: [clown_basefun]
+    - type: Clumsy
+      clumsyDamage:
+        types:
+          Blunt: 5
+          Piercing: 4
+        groups:
+          Burn: 3
+    - type: TriggerOnMobstateChange
+      mobState:
+      - Dead
+    - type: EmitSoundOnTrigger
+      sound:
+        collection: SadTrombone
+        params:
+          variation: 0.125
+    - type: NpcFactionMember
+      factions:
+      - NanoTrasen
+#      - Clown
+
+- type: entity
+  parent: MobHuman
+  id: MobHumanFugitive
+  name: Fugitive
+  categories: [ HideSpawnMenu ]
+  components:
+    - type: Loadout
+      prototypes: [FugitiveStartingGear]
+    - type: Fugitive
+    - type: FugitiveCountdown
+    - type: RandomHumanoidAppearance
+
+# Wizard
+- type: entity
+  name: Urist McWizard
+  id: UristMcWizardBase
+  suffix: base
+  abstract: true
+  parent: MobHuman
+  components:
+    - type: SpellbookUser
+    - type: GhostRole
+      name: Urist McWizard
+      description: |
+        You have been sent to the station via bluespace and wizard magic. Your goal is to kill as many people as possible and destroy the station.
+        You can gain more "BS" (Bluespace) for your uplink by completing Oracle quests.
+        You are considered KOS (Kill On Sight) so be careful wandering the station for the Oracle's items.
+        If you encounter an Urist McNars (SuperPsi), you may team up with them or kill them. The SuperPsi is able to steal and use your spellbooks, be very careful.
+      raffle:
+        settings: default
+    - type: GhostTakeoverAvailable
+    - type: RandomMetadata
+      nameSegments:
+        - names_wizard_first
+        - names_wizard_last
+    - type: SlowOnDamage
+      speedModifierThresholds:
+        60: 0.8
+        120: 0.6
+        180: 0.4
+        240: 0.2
+    - type: MobState
+    - type: MobThresholds
+      thresholds:
+        0: Alive
+        300: Dead
+    - type: StatusEffects
+      allowed:
+        - Stun
+        - KnockedDown
+        - SlowedDown
+        - Stutter
+        - Electrocution
+    - type: NpcFactionMember
+      factions:
+        - SimpleHostile
+    - type: BibleUser
+    # - type: RandomHumanoidAppearance # Removes random names :(
+
+- type: entity
+  name: Urist McWizard
+  id: UristMcWizardViolet2
+  suffix: violet
+  parent: UristMcWizardBase
+  components:
+    - type: Loadout
+#      prototype: WizardVioletGear2
+      prototypes: [WizardVioletGear]
+
+- type: entity
+  name: Urist McWizard
+  id: UristMcWizardRed2
+  suffix: red
+  parent: UristMcWizardBase
+  components:
+    - type: Loadout
+#      prototype: WizardRedGear2
+      prototypes: [WizardRedGear]
+
+- type: entity
+  name: Urist McWizard
+  id: UristMcWizardBlue2
+  suffix: blue
+  parent: UristMcWizardBase
+  components:
+    - type: Loadout
+#      prototype: WizardBlueGear2
+      prototypes: [WizardBlueGear]
+
+- type: entity
+  name: Urist McWizard
+  id: UristMcWizardHardsuit2
+  suffix: hardsuit
+  parent: UristMcWizardBase
+  components:
+    - type: Loadout
+#      prototype: WizardHardsuitGear2
+      prototypes: [WizardHardsuitGear]
+
+# SuperPsi - Urist McNars
+- type: entity
+  name: Urist McNars
+  id: UristMcNars
+  parent: MobHuman
+  components:
+    - type: AutoPsi # backmen: SuperPsi
+    - type: GhostTakeoverAvailable
+    - type: GhostRole
+      name: Urist McNars
+      description: |
+        You have been sent to the station via the Noosphere. Your goal is to kill as many people as possible and destroy the station.
+        You have been given every Psionic power via the Noosphere, you should be theoretically unstoppable if you time everything right.
+      raffle:
+        settings: default
+    - type: RandomMetadata
+      nameSegments:
+        - names_wizard_first
+        - names_wizard_last
+    - type: SlowOnDamage
+      speedModifierThresholds:
+        60: 0.8
+        120: 0.6
+        180: 0.4
+        240: 0.2
+    - type: MobState
+    - type: MobThresholds
+      thresholds:
+        0: Alive
+        300: Dead
+    - type: StatusEffects
+      allowed:
+        - Stun
+        - KnockedDown
+        - SlowedDown
+        - Electrocution
+    - type: NpcFactionMember
+      factions:
+        - SimpleHostile
+    - type: BibleUser
+    - type: RandomHumanoidAppearance # Removes random names :(
+      randomizeName: false
+
+    - type: DispelPower
+    - type: MassSleepPower
+    - type: MetapsionicPower
+    - type: MindSwapPower
+    - type: NoosphericZapPower
+    - type: PsionicInvisibilityPower
+      stunSecond: 0
+    - type: PsionicRegenerationPower
+    - type: PyrokinesisPower
+      fireStacks: 2
+    - type: TelegnosisPower
+    - type: NightVision
+      isToggle: true
+      color: "#808080"
+      playSoundOn: false
+#    - type: PsychokinesisPower #too overpower

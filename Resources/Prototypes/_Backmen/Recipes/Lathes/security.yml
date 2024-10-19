@@ -1,0 +1,41 @@
+﻿- type: latheRecipe
+  id: ClothingHeadHelmetInsulated
+  result: ClothingHeadHelmetInsulated
+  completetime: 4
+  materials:
+    Steel: 400
+    Bluespace: 20
+
+- type: latheRecipe
+  id: InsulativeHeadcage
+  icon:
+    sprite: Backmen/Clothing/Head/Hats/cage.rsi
+    state: icon
+  result: ClothingHeadCage
+  completetime: 4
+  materials:
+    Steel: 400
+    Bluespace: 20
+
+- type: latheRecipe
+  id: ShellSoulbreaker
+  icon:
+    sprite: Objects/Weapons/Guns/Ammunition/Casings/shotgun_shell.rsi
+    state: practice
+  result: ShellSoulbreaker
+  completetime: 4
+  materials:
+    Plastic: 15
+    Steel: 10
+    Bluespace: 10
+    Glass: 5
+
+- type: latheRecipe
+  id: EnergyDomeDirectionalTurtle
+  result: EnergyDomeDirectionalTurtle
+  completetime: 12
+  materials:
+    Steel: 1000
+    Plastic: 500
+    Gold: 250
+    Uranium: 50

@@ -1,0 +1,124 @@
+﻿- type: entity
+  name: BaseNpc
+  id: MobBaseNpc
+  parent: SimpleSpaceMobBase
+  description: Just a body, be calm.
+  components:
+  - type: StatusEffects
+    allowed:
+      - Stun
+      - KnockedDown
+      - SlowedDown
+      - Stutter
+      - Electrocution
+      - ForcedSleep
+      - TemporaryBlindness
+      - Pacified
+      - StaminaModifier
+  - type: ZombieImmune
+  - type: Rotatable
+  - type: CombatMode
+  - type: InputMover
+  - type: MobMover
+  - type: MeleeWeapon
+    angle: 0
+    animation: WeaponArcFist
+    soundHit:
+        collection: Punch
+    damage:
+        types:
+          Blunt: 5
+  - type: HTN
+    rootTask:
+      task: SimpleHostileCompound
+    blackboard:
+      NavClimb: !type:Bool
+        true
+      NavSmash: !type:Bool
+        true
+  - type: NPCRetaliation
+    attackMemoryLength: 10
+  - type: NpcFactionMember
+    factions:
+      - SimpleNeutral
+  - type: Hands
+  - type: RotationVisuals
+    defaultRotation: 90
+    horizontalRotation: 90
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.35
+        density: 100
+        mask:
+        - MobMask
+        layer:
+        - MobLayer
+  - type: MobState
+    allowedStates:
+    - Alive
+    - Dead
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      100: Dead
+  - type: SlowOnDamage
+    speedModifierThresholds:
+      50: 0.5
+  - type: Stamina
+    critThreshold: 100
+  - type: Bloodstream
+    bloodReagent: Blood
+    bloodMaxVolume: 0
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 400
+      behaviors:
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+      - !type:ExplodeBehavior
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          OrganAnimalHeart:
+            min: 1
+            max: 1
+  - type: Puller
+  - type: Body
+    prototype: AnimalHuman
+  - type: Butcherable
+    butcheringType: Spike
+    spawned:
+    - id: FoodMeat
+      amount: 5
+  - type: Tag
+    tags:
+      - CannotSuicide
+      - DoorBumpOpener
+      - FootstepSound
+      - CanPilot
+
+- type: body
+  id: AnimalHuman
+  name: "animal"
+  root: torso
+  slots:
+    torso:
+      part: TorsoHuman
+      connections:
+      - legs
+      organs:
+        lungs: OrganAnimalLungs
+        stomach: OrganAnimalStomach
+        liver: OrganAnimalLiver
+        heart: OrganAnimalHeart
+        kidneys: OrganAnimalKidneys
+    legs:
+      part: RightLegHuman
+      connections:
+      - feet
+    feet:
+      part: RightFootHuman

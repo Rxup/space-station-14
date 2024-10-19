@@ -1,6 +1,4 @@
-ent-ClothingWitchHunter = Накидка охотника за ведьмами
+ent-ClothingWitchHunter = накидка охотника за ведьмами
     .desc = Убей этих ведьм!
-    .suffix = { "" }
-ent-ClothingMagistrateroba = Накидка магистрата
+ent-ClothingMagistrateroba = накидка магистрата
     .desc = Пора уволить срочников.
-    .suffix = { "" }

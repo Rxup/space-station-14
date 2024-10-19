@@ -1,6 +1,6 @@
 ent-NotekeeperCartridge = картридж Заметки
     .desc = Программа для хранения заметок
-ent-NewsReadCartridge = картридж Новости
+ent-NewsReaderCartridge = картридж Новости
     .desc = Программа для чтения новостей
 ent-CrewManifestCartridge = картридж Манифест экипажа
     .desc = Программа для отображения списка членов экипажа
@@ -8,3 +8,9 @@ ent-NetProbeCartridge = картридж Зонд сетей
     .desc = Программа для получения адресов и частот сетевых устройств
 ent-LogProbeCartridge = картридж Зонд логов
     .desc = Программа для получения логов доступа с устройств
+ent-WantedListCartridge = Wanted list cartridge
+    .desc = A program to get a list of wanted persons.
+ent-MedTekCartridge = MedTek cartridge
+    .desc = A program that provides medical diagnostic tools.
+ent-AstroNavCartridge = AstroNav cartridge
+    .desc = A program for navigation that provides GPS coordinates.

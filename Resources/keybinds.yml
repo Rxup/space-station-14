@@ -167,9 +167,13 @@ binds:
   type: State
   key: MouseLeft
   canFocus: true
+  priority: 10
 - function: RotateStoredItem
   type: State
   key: MouseRight
+- function: SaveItemLocation
+  type: State
+  key: MouseMiddle
 - function: Drop
   type: State
   key: Q
@@ -183,6 +187,14 @@ binds:
 - function: OpenCharacterMenu
   type: State
   key: C
+#start - backmen: languages
+- function: OpenLanguageMenu
+  type: State
+  key: L
+#end - backmen: languages
+- function: OpenEmotesMenu
+  type: State
+  key: Y
 - function: TextCursorSelect
   # TextCursorSelect HAS to be above ExamineEntity
   # So that LineEdit receives it correctly.
@@ -246,10 +258,10 @@ binds:
   mod1: Shift
 - function: OpenBackpack
   type: State
-  key: V
+  key: U # Ataraxia-EDIT
 - function: OpenBelt
   type: State
-  key: V
+  key: U # Ataraxia-EDIT
   mod1: Shift
 - function: ShowDebugConsole
   type: State
@@ -262,6 +274,16 @@ binds:
   type: State
   key: MouseMiddle
   canFocus: true
+- function: RotateObjectClockwise
+  type: State
+  key: R
+- function: RotateObjectCounterclockwise
+  type: State
+  key: R
+  mod1: Shift
+- function: FlipObject
+  type: State
+  key: F
 - function: TextCursorLeft
   type: State
   key: Left
@@ -448,6 +470,9 @@ binds:
 - function: OpenDecalSpawnWindow
   type: State
   key: F8
+- function: ToggleRoundEndSummaryWindow
+  type: Toggle
+  key: F9
 - function: OpenSandboxWindow
   type: State
   key: B
@@ -479,15 +504,19 @@ binds:
 - function: ArcadeUp
   type: State
   key: Up
+  priority: -1
 - function: ArcadeDown
   type: State
   key: Down
+  priority: -1
 - function: ArcadeLeft
   type: State
   key: Left
+  priority: -1
 - function: ArcadeRight
   type: State
   key: Right
+  priority: -1
 - function: Arcade1
   type: State
   key: Space
@@ -530,3 +559,45 @@ binds:
 - function: Hotbar9
   type: State
   key: Num9
+- function: MappingUnselect
+  type: State
+  key: MouseRight
+  canFocus: true
+- function: SaveMap
+  type: State
+  key: S
+  mod1: Control
+- function: MappingEnablePick
+  type: State
+  key: Num5
+- function: MappingEnableDelete
+  type: State
+  key: Num6
+- function: MappingPick
+  type: State
+  key: MouseLeft
+  canFocus: true
+- function: MappingRemoveDecal
+  type: State
+  key: MouseLeft
+  canFocus: true
+- function: MappingCancelEraseDecal
+  type: State
+  key: MouseRight
+  canFocus: true
+- function: MappingOpenContextMenu
+  type: State
+  key: MouseRight
+  canFocus: true
+- function: CMUniqueAction #RMC-14
+  type: State
+  key: Space
+- function: LookUp # WD
+  type: State
+  key: Space
+- function: ToggleStanding # Ataraxia
+  type: State
+  key: V
+- function: OfferItem # Ataraxia
+  type: State
+  key: F

@@ -1,0 +1,48 @@
+﻿- type: technology
+  id: BasicTranslation
+  name: research-technology-basic-translation
+  icon:
+    sprite: Backmen/Objects/Devices/translator.rsi
+    state: icon
+  discipline: CivilianServices
+  tier: 2
+  cost: 10000
+  recipeUnlocks:
+  - CanilunztTranslator
+  - BubblishTranslator
+  - NekomimeticTranslator
+  - DraconicTranslator
+  - SolCommonTranslator
+  - RootSpeakTranslator
+  - BasicGalaticCommonTranslatorImplanter
+  - MofficTranslator
+  - ElvishTranslator
+  - DwarvenTranslator
+  - ShadokinTranslator
+  - ValyrianStandardTranslator
+
+- type: technology
+  id: AdvancedTranslation
+  name: research-technology-advanced-translation
+  icon:
+    sprite: Backmen/Objects/Devices/translator.rsi
+    state: icon
+  discipline: CivilianServices
+  tier: 3
+  cost: 15000
+  recipeUnlocks:
+  - XenoTranslator
+  - AdvancedGalaticCommonTranslatorImplanter
+  - BubblishTranslatorImplanter
+  - NekomimeticTranslatorImplanter
+  - DraconicTranslatorImplanter
+  - CanilunztTranslatorImplanter
+  - SolCommonTranslatorImplanter
+  - RootSpeakTranslatorImplanter
+  - AnimalTranslator
+  - MofficTranslatorImplanter
+  - ElvishStandardTranslatorImplanter
+  - DwarvenStandardTranslatorImplanter
+  - ShadokinStandardTranslatorImplanter
+  - ValyrianStandardTranslatorImplanter
+

@@ -33,6 +33,18 @@
     <Compile Update="Backmen\Reinforcement\UI\ActiveReinforcementRow.cs">
       <DependentUpon>ActiveReinforcementRow.xaml</DependentUpon>
     </Compile>
+    <Compile Update="Backmen\Economy\WageConsole\UI\WageConsoleWindow.cs">
+      <DependentUpon>WageConsoleWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Backmen\Economy\WageConsole\UI\WageRow.cs">
+      <DependentUpon>WageRow.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Backmen\Economy\WageConsole\UI\EditWageRowWindow.cs">
+      <DependentUpon>EditWageRowWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Backmen\Economy\WageConsole\UI\BonusWageWindow.cs">
+      <DependentUpon>BonusWageWindow.xaml</DependentUpon>
+    </Compile>
   </ItemGroup>
   <Import Project="..\RobustToolbox\MSBuild\Robust.Properties.targets" />
   <Import Project="..\RobustToolbox\MSBuild\XamlIL.targets" />

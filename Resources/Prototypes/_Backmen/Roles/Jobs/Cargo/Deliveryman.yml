@@ -1,0 +1,36 @@
+- type: job
+  id: Deliveryman
+  name: Доставщик
+  description: job-description-Deliveryman
+  playTimeTracker: JobDeliveryman
+  startingGear: DeliverymanGear
+  icon: "JobIconServiceWorker"
+  supervisors: job-supervisors-service
+  canBeAntag: false
+  setPreference: true
+  access:
+  - Service
+  - Maintenance
+  - Bar
+  - Kitchen
+  extendedAccess:
+  - Hydroponics
+  minBankBalance: 150
+  maxBankBalance: 250
+  wageDepartment: Civilian
+  wage: 50
+
+
+- type: startingGear
+  id: DeliverymanGear
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitDeliveryman
+    back: ClothingBackpack
+    shoes: ClothingShoesColorBlack
+    id: DeliveryPDA
+    ears: ClothingHeadsetService
+    pocket1: Eftpos
+    pocket2: FoodBoxPizzaFilled
+  #innerClothingSkirt: ClothingUniformJumpsuitDeliverygirl
+  #satchel: ClothingBackpackSatchelFilled
+  #duffelbag: ClothingBackpackDuffelFilled

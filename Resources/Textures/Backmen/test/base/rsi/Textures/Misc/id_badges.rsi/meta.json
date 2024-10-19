@@ -1,0 +1,90 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "Created by discord:no_mad#0260",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "default"
+    },
+    {
+      "name": "special"
+    },
+    {
+      "name": "silver"
+    },
+    {
+      "name": "id_private"
+    },
+    {
+      "name": "id_sergeant"
+    },
+    {
+      "name": "id_medick"
+    },
+    {
+      "name": "id_special"
+    },
+    {
+      "name": "id_engineer"
+    },
+    {
+      "name": "id_officer"
+    },
+    {
+      "name": "id_command"
+    },
+    {
+      "name": "id_pilot"
+    },
+    {
+      "name": "id_shtab"
+    },
+    {
+      "name": "id_mp"
+    },
+    {
+      "name": "id_chiefengineer"
+    },
+    {
+      "name": "id_stationengineer"
+    },
+    {
+      "name": "id_scientist"
+    },
+    {
+      "name": "id_bartender"
+    },
+    {
+      "name": "id_chiefmedicalofficer"
+    },
+    {
+      "name": "id_medicaldoctor"
+    },
+    {
+      "name": "id_cargotechnician"
+    },
+    {
+      "name": "id_quartermaster"
+    },
+    {
+      "name": "default-inhand-left",
+      "directions": 4
+    },
+    {
+      "name": "default-inhand-right",
+      "directions": 4
+    },
+    {
+      "name": "silver-inhand-left",
+      "directions": 4
+    },
+    {
+      "name": "silver-inhand-right",
+      "directions": 4
+    }
+  ]
+}

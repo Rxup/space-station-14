@@ -1,10 +1,11 @@
 ﻿using Content.Server.Backmen.Psionics;
 using Content.Server.Backmen.StationEvents.Components;
-using Content.Server.GameTicking.Rules.Components;
 using Content.Server.Popups;
 using Content.Server.StationEvents.Events;
 using Content.Server.Stunnable;
 using Content.Shared.Backmen.Abilities.Psionics;
+using Content.Shared.Backmen.Psionics.Components;
+using Content.Shared.GameTicking.Components;
 using Content.Shared.Mobs.Components;
 using Content.Shared.Mobs.Systems;
 using Content.Shared.StatusEffect;
@@ -28,9 +29,9 @@ internal sealed class NoosphericZapRule : StationEventSystem<NoosphericZapRuleCo
 
         var query = EntityQueryEnumerator<PotentialPsionicComponent, MobStateComponent>();
 
-        while (query.MoveNext(out var psion, out var potentialPsionicComponent, out _))
+        while (query.MoveNext(out var psion, out var potentialPsionicComponent, out var mobStateComponent))
         {
-            if (!_mobStateSystem.IsAlive(psion) || HasComp<PsionicInsulationComponent>(psion))
+            if (!_mobStateSystem.IsAlive(psion, mobStateComponent) || HasComp<PsionicInsulationComponent>(psion))
                 continue;
 
             _stunSystem.TryParalyze(psion, TimeSpan.FromSeconds(5), false);
@@ -47,7 +48,7 @@ internal sealed class NoosphericZapRule : StationEventSystem<NoosphericZapRuleCo
                 }
                 else
                 {
-                    _psionicsSystem.RollPsionics(psion, potentialPsionicComponent, multiplier: 0.25f);
+                    _psionicsSystem.RollPsionics((psion, potentialPsionicComponent), multiplier: 0.25f);
                     _popupSystem.PopupEntity(Loc.GetString("noospheric-zap-seize"), psion, psion, Shared.Popups.PopupType.LargeCaution);
                 }
             }

@@ -1,0 +1,341 @@
+- type: entity
+  parent: ClothingBackpack
+  id: ClothingBackpackPlagueDoctorFilled
+  suffix: PlagueDoctor
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: StorageFill
+    contents:
+      - id: BoxSurvival
+#      - id: HandheldHealthAnalyzerPlague
+#      - id: HandheldHealthAnalyzerBirdFlew
+      - id: RitualDagger
+      - id: PillRomerol
+        amount: 3
+      - id: PillAmbuzol
+        amount: 3
+      - id: PillAmbuzolPlus
+        amount: 3
+
+- type: entity
+  categories: [ HideSpawnMenu ]
+  parent: ClothingBackpackERTLeader
+  id: ClothingBackpackERTLeaderFilledV2_1
+  components:
+    - type: StorageFill
+      contents:
+        - id: BoxFlare
+          amount: 2
+        - id: BattleMedipen
+          amount: 2
+        - id: WeaponDisabler
+        - id: WeaponPistolG23
+        - id: MagazinePistol
+          amount: 2
+        - id: WeaponRifleM28Tactical
+        - id: MagazineRifle
+          amount: 5
+        - id: BoxHandcuff
+
+- type: entity
+  categories: [ HideSpawnMenu ]
+  parent: ClothingBackpackERTEngineer
+  id: ClothingBackpackERTEngineerFilledV2_1
+  components:
+    - type: Storage
+      maxItemSize: Huge
+      grid:
+      - 0,0,16,6
+    - type: StorageFill
+      contents:
+        - id: BattleMedipen
+          amount: 3
+        - id: trayScanner
+        - id: WeaponShotgun39Tactical
+        - id: MagazineShotgunMagnum12
+          amount: 4
+        - id: WeaponPistolVP78
+        - id: MagazinePistolHighCapacity
+          amount: 4
+        - id: C4
+          amount: 5
+        - id: RCD
+        - id: RCDAmmo
+          amount: 4
+        - id: SheetSteel
+          amount: 4
+        - id: SheetPlasteel
+          amount: 4
+        - id: SheetRPGlass
+          amount: 4
+
+- type: entity
+  categories: [ HideSpawnMenu ]
+  parent: ClothingBackpackERTSecurity
+  id: ClothingBackpackERTSecurityFilledV2_1
+  components:
+    - type: StorageFill
+      contents:
+        - id: BoxFlare
+          amount: 2
+        - id: BattleMedipen
+          amount: 2
+        - id: WeaponDisabler
+        - id: WeaponPistolG23
+        - id: MagazinePistol
+          amount: 2
+        - id: WeaponRifleG36Tactical
+        - id: MagazineRifle
+          amount: 5
+        - id: BoxHandcuff
+
+- type: entity
+  categories: [ HideSpawnMenu ]
+  parent: ClothingBackpackERTMedical
+  id: ClothingBackpackERTMedicalFilledV2_1
+  components:
+    - type: StorageFill
+      contents:
+        - id: BoxFlare
+        - id: BoxFlare
+        - id: BattleMedipen
+        - id: BattleMedipen
+        - id: WeaponPistolG23
+        - id: MagazinePistol
+          amount: 2
+        - id: WeaponSubMachineGunMP5Tactical
+        - id: MagazinePistolSubMachineGun
+          amount: 6
+        - id: MedkitFilled
+        - id: SyringeInaprovaline
+          amount: 2
+        - id: EpinephrineChemistryBottle
+          amount: 2
+        - id: OmnizineChemistryBottle
+        - id: Hypospray
+
+- type: entity
+  categories: [ HideSpawnMenu ]
+  parent: ClothingBackpackERTJanitor
+  id: ClothingBackpackERTJanitorFilledV2_1
+  components:
+    - type: StorageFill
+      contents:
+        - id: BattleMedipen
+          amount: 2
+        - id: WeaponPistolG23
+        - id: MagazinePistol
+          amount: 3
+        - id: MedkitFilled
+        - id: BoxLightMixed
+          amount: 2
+        - id: Soap
+
+- type: entity
+  parent: ClothingDeathSquadronBackpack
+  id: ClothingBackpackSpecialForce
+  components:
+    - type: Storage
+      grid:
+      - 0,0,9,5 # TODO: Change this
+      maxItemSize: Huge
+    - type: StorageFill
+      contents:
+        - id: PinpointerNuclear
+        - id: WeaponPulseRifle
+        - id: SpeedLoaderMagnum
+          amount: 2
+        - id: PaperManualCodes
+        - id: C4
+          amount: 4
+        - id: SpetsnazMedipen
+          amount: 2
+        - id: WeaponRifleLecterPan
+        - id: MagazineRiflePan
+          amount: 4
+
+- type: entity
+  categories: [ HideSpawnMenu ]
+  parent: ClothingBackpackDuffelMilitary
+  id: ClothingBackpackDuffelRXBZZ
+  components:
+    - type: Storage
+      maxItemSize: Huge
+      grid:
+      - 0,0,6,5
+    - type: StorageFill
+      contents:
+        - id: MedkitAdvancedRXBZZ
+        - id: WeaponDisabler
+        - id: BoxFlare
+        - id: ArmySetLoadouts
+
+- type: entity
+  categories: [ HideSpawnMenu ]
+  parent: ClothingBackpackDuffelMilitary
+  id: ClothingBackpackDuffelRXBZZMedic
+  components:
+    - type: StorageFill
+      contents:
+        - id: ArmySetLoadouts
+        - id: MedkitAdvancedRXBZZ
+        - id: BoxFlare
+        - id: MedkitCombatFilled
+        - id: MedkitCombatFilled
+        - id: Defibrillator
+
+- type: entity
+  categories: [ HideSpawnMenu ]
+  parent: ClothingBackpackDuffelMilitary
+  id: ClothingBackpackDuffelRockets
+  components:
+    - type: StorageFill
+      contents:
+        - id: CartridgeRocket
+          amount: 20
+
+- type: entity
+  categories: [ HideSpawnMenu ]
+  parent: ClothingBackpackDuffelMilitary
+  id: ClothingBackpackDuffelMachingunFilled
+  components:
+    - type: StorageFill
+      contents:
+        - id: MagazineLightMachineGunDrum
+          amount: 6
+
+- type: entity
+  categories: [ HideSpawnMenu ]
+  parent: ClothingBackpackDuffelMilitary
+  id: ClothingBackpackDuffelMachingunM41Filled
+  components:
+    - type: StorageFill
+      contents:
+        - id: MagazineHeavyRifleV41
+          amount: 6
+
+- type: entity
+  name: продвинутая аптечка стимуляторов
+  parent: MedkitAdvanced
+  id: MedkitAdvancedRXBZZ
+  components:
+    - type: Item
+      size: Normal
+    - type: StorageFill
+      contents:
+        - id: BattleMedipenAntiVirus
+          amount: 4
+        - id: BattleMedipen
+          amount: 4
+
+- type: entity
+  categories: [ HideSpawnMenu ]
+  parent: ClothingBackpackERTLeader
+  id: ClothingBackpackERTLeaderAlpha1
+  components:
+    - type: Clothing
+      sprite: Clothing/OuterClothing/Hardsuits/ERTSuits/ertleader.rsi
+    - type: StorageFill
+      contents:
+        - id: BoxFlare
+          amount: 2
+        - id: SpetsnazMedipen
+          amount: 3
+        - id: WeaponDisabler
+        - id: WeaponPistolDivet2
+        - id: MagazinePistol345
+          amount: 3
+        - id: WeaponPulseRifleAP12
+        - id: MagazinePulseRifle
+          amount: 9
+        - id: WeaponShotgunAA12
+        - id: MagazineShotgunMagnum12
+          amount: 6
+
+- type: entity
+  categories: [ HideSpawnMenu ]
+  parent: ClothingBackpackERTLeader
+  id: ClothingBackpackERTOperativeAlpha1
+  components:
+    - type: Clothing
+      sprite: Clothing/OuterClothing/Hardsuits/ERTSuits/ertleader.rsi
+    - type: StorageFill
+      contents:
+        - id: BoxFlare
+          amount: 2
+        - id: SpetsnazMedipen
+          amount: 3
+        - id: WeaponDisabler
+        - id: WeaponPistolDivet2
+        - id: MagazinePistol345
+          amount: 3
+        - id: WeaponPulseRifleAP12
+        - id: MagazinePulseRifle
+          amount: 9
+        - id: BoxHandcuff
+        - id: C4
+          amount: 4
+
+- type: entity
+  categories: [ HideSpawnMenu ]
+  parent: ClothingBackpackERTLeader
+  id: ClothingBackpackERTLeaderTay39
+  components:
+    - type: Clothing
+      sprite: Clothing/OuterClothing/Hardsuits/ERTSuits/ertleader.rsi
+    - type: StorageFill
+      contents:
+        - id: BoxFlare
+          amount: 2
+        - id: CombatMedipen
+          amount: 3
+        - id: WeaponDisabler
+        - id: WeaponPulseSMGTritonM3
+        - id: WeaponPulseShotgunHellHammer
+        - id: MedkitCombatFilled
+          amount: 3
+        - id: BoxHandcuff
+
+- type: entity
+  categories: [ HideSpawnMenu ]
+  parent: ClothingBackpackERTMedical
+  id: ClothingBackpackERTMedicTay39
+  components:
+    - type: Clothing
+      sprite: Clothing/OuterClothing/Hardsuits/ERTSuits/ertleader.rsi
+    - type: StorageFill
+      contents:
+        - id: BoxFlare
+        - id: BoxFlare
+        - id: WeaponPistolG22
+        - id: MagazinePistol
+          amount: 2
+        - id: MedkitFilled
+        - id: Defibrillator
+        - id: MedkitCombatFilled
+          amount: 3
+        - id: MedkitAdvancedFilled
+          amount: 3
+        - id: HandheldCrewMonitor
+
+- type: entity
+  categories: [ HideSpawnMenu ]
+  parent: ClothingBackpackERTSecurity
+  id: ClothingBackpackERTSecurityTay39
+  components:
+    - type: Clothing
+      sprite: Clothing/OuterClothing/Hardsuits/ERTSuits/ertleader.rsi
+    - type: StorageFill
+      contents:
+        - id: BoxFlare
+          amount: 2
+        - id: CombatMedipen
+          amount: 3
+        - id: WeaponDisabler
+        - id: WeaponPulseSMGTritonM3
+        - id: MedkitAdvancedFilled
+          amount: 3
+        - id: BoxHandcuff
+        - id: WeaponPistolG22
+        - id: MagazinePistol
+          amount: 4

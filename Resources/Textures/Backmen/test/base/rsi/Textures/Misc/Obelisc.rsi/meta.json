@@ -1,0 +1,38 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "Created by discord:no_mad#0260",
+  "size": {
+    "x": 98,
+    "y": 196
+  },
+  "states": [
+    {
+      "name": "icon"
+    },
+    {
+      "name": "obelisk",
+	  "delays": [
+        [
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+		      0.1,
+          0.1,
+          0.1,
+          0.1,
+		      0.1,
+          0.1,
+          0.1,
+          0.1,
+		      0.1
+        ]
+      ]
+    }
+  ]
+}

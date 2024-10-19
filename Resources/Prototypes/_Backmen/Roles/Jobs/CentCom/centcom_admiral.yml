@@ -1,0 +1,91 @@
+﻿- type: job
+  id: BKCCAdmiral
+  name: job-name-centcomadmiral
+  description: job-description-centcomadmiral
+  playTimeTracker: JobCentralCommandAdmiral
+  setPreference: true
+  startingGear: CentcomAdmiralGear
+  icon: JobIconNanotrasenHighOfficer
+  supervisors: job-supervisors-hoh
+  canBeAntag: false
+  weight: 1
+  requireAdminNotify: true
+  joinNotifyCrew: true
+  whitelisted: true
+  requirements:
+    - !type:RoleTimeRequirement
+      role: JobCentralCommandOperator
+      time: 21600
+    - !type:RoleTimeRequirement
+      role: JobCentralCommandOfficial
+      time: 21600
+    - !type:DepartmentTimeRequirement
+      department: CentCom
+      time: 31600
+  accessGroups:
+    - AllAccess
+    - CentCom
+    - MTFLeader
+  special:
+    - !type:AddImplantSpecial
+      implants: [ MindShieldImplant ]
+    - !type:AddComponentSpecial
+      components:
+        - type: SpecForce
+          actionBssActionName: ActionCentcomFtlAction
+        - type: NpcFactionMember
+          factions:
+            - CentralCommand
+        - type: Psionic
+        - type: DispelPower
+        - type: AntagImmune
+  minBankBalance: 400
+  maxBankBalance: 600
+  wageDepartment: CentCom
+  wage: 75
+
+- type: jobIcon
+  parent: JobIcon
+  id: JobIconNanotrasenHighOfficer
+  icon:
+    sprite: /Textures/Backmen/Icons/jobicon.rsi
+    state: Nanotrasen
+
+- type: entity
+  parent: CentcomPDABackmen
+  id: CCAdmiralPDA
+  name: Centcom Admiral PDA
+  description: Light green sign of walking bureaucracy.
+  components:
+    - type: Pda
+      id: IDCardCentComAdmiral
+      state: pda-centcom
+      penSlot:
+        startingItem: PenCentcom
+        whitelist:
+          tags:
+            - Write
+    - type: PdaBorderColor
+      borderColor: "#00842e"
+    - type: Icon
+      state: pda-centcom
+
+- type: entity
+  parent: CentcomIDCardDeathsquad
+  id: IDCardCentComAdmiral
+  name: ID карта Адмирала ЦК
+  components:
+    - type: Sprite
+      layers:
+      - state: gold
+      - state: idiaa
+      - state: idcentcom
+    - type: Item
+      heldPrefix: gold
+    - type: PresetIdCard
+      job: BKCCAdmiral
+    - type: Access
+      groups:
+        - AllAccess
+        - CentCom
+        - MTFLeader

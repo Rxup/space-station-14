@@ -3,6 +3,7 @@ using Content.Server.Power.Components;
 using Content.Server.Power.EntitySystems;
 using Content.Shared.Anomaly.Components;
 using Content.Shared.Backmen.Psionics.Glimmer;
+using Content.Shared.Power;
 
 namespace Content.Server.Backmen.Psionics.Glimmer;
 
@@ -13,6 +14,7 @@ public sealed class GlimmerStructuresSystem : EntitySystem
 {
     [Dependency] private readonly PowerReceiverSystem _powerReceiverSystem = default!;
     [Dependency] private readonly GlimmerSystem _glimmerSystem = default!;
+    private EntityQuery<ApcPowerReceiverComponent> _apcPower;
 
     public override void Initialize()
     {
@@ -22,6 +24,8 @@ public sealed class GlimmerStructuresSystem : EntitySystem
 
         SubscribeLocalEvent<GlimmerSourceComponent, AnomalyPulseEvent>(OnAnomalyPulse);
         SubscribeLocalEvent<GlimmerSourceComponent, AnomalySupercriticalEvent>(OnAnomalySupercritical);
+
+        _apcPower = GetEntityQuery<ApcPowerReceiverComponent>();
     }
 
     private void OnAnomalyVesselPowerChanged(EntityUid uid, AnomalyVesselComponent component, ref PowerChangedEvent args)
@@ -44,7 +48,7 @@ public sealed class GlimmerStructuresSystem : EntitySystem
         // needs to be made in the future. I suggest a GlimmerAnomaly
         // component.
 
-        if (TryComp<AnomalyComponent>(uid, out var anomaly))
+        if (TryComp<AnomalyComponent>(args.Anomaly, out var anomaly))
             _glimmerSystem.Glimmer += (int) (5f * anomaly.Severity);
     }
 
@@ -59,25 +63,26 @@ public sealed class GlimmerStructuresSystem : EntitySystem
         var q = EntityQueryEnumerator<GlimmerSourceComponent>();
         while (q.MoveNext(out var owner, out var source))
         {
-            if (!_powerReceiverSystem.IsPowered(owner))
-                continue;
-
             if (!source.Active)
                 continue;
 
             source.Accumulator += frameTime;
 
-            if (source.Accumulator > source.SecondsPerGlimmer)
+            if (source.Accumulator <= source.SecondsPerGlimmer)
+                continue;
+
+            if (_apcPower.TryComp(owner, out var powerReceiverComponent) && !_powerReceiverSystem.IsPowered(owner,powerReceiverComponent))
+                continue;
+
+            source.Accumulator -= source.SecondsPerGlimmer;
+
+            if (source.AddToGlimmer)
             {
-                source.Accumulator -= source.SecondsPerGlimmer;
-                if (source.AddToGlimmer)
-                {
-                    _glimmerSystem.Glimmer++;
-                }
-                else
-                {
-                    _glimmerSystem.Glimmer--;
-                }
+                _glimmerSystem.Glimmer++;
+            }
+            else
+            {
+                _glimmerSystem.Glimmer--;
             }
         }
     }

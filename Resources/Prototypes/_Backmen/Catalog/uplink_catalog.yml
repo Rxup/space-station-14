@@ -1,0 +1,163 @@
+#- type: listing
+#  id: UplinkCorpiumSyringe
+#  name: uplink-corpium-name
+#  description: uplink-corpium-desc
+#  productEntity: SyringeCorpium
+#  cost:
+#    Telecrystal: 20
+#  categories:
+#  - UplinkUtility
+#  conditions:
+#    - !type:StoreWhitelistCondition
+#      whitelist:
+#        tags:
+#          - NukeOpsUplink
+
+- type: listing
+  id: UplinkCannedClown
+  name: uplink-cannedclown-name
+  description: uplink-cannedclown-desc
+  productEntity: CannedClownSoupcan
+  cost:
+    Telecrystal: 3
+  categories:
+  - UplinkJob
+  conditions:
+  - !type:BuyerJobCondition
+    whitelist:
+    - Clown
+
+- type: listing
+  id: UplinkBibleMystagogue
+  name: uplink-biblemystagogue-name
+  description: uplink-biblemystagogue-desc
+  productEntity: BibleMystagogue
+  cost:
+    Telecrystal: 2
+  categories:
+    - UplinkJob
+  conditions:
+    - !type:BuyerJobCondition
+      whitelist:
+        - Chaplain
+    - !type:BuyerWhitelistCondition
+      blacklist:
+        components:
+          - SurplusBundle
+
+- type: listing
+  id: UplinkChainsword
+  name: uplink-chainsword-name
+  description: uplink-chainsword-desc
+  productEntity: Chainsword
+  cost:
+    Telecrystal: 8
+  categories:
+    - UplinkJob
+  conditions:
+    - !type:BuyerJobCondition
+      whitelist:
+        - Chaplain
+
+- type: listing
+  id: InjectorBloodsuckerNocturine
+  name: uplink-nocturine-gland-injector-name
+  description: uplink-nocturine-gland-injector-desc
+  productEntity: InjectorBloodsuckerNocturine
+  cost:
+    Telecrystal: 8
+  categories:
+  - UplinkChemicals
+  conditions:
+    - !type:BuyerSpeciesCondition
+      whitelist:
+        - ArachneClassic
+    - !type:BuyerWhitelistCondition
+      blacklist:
+        components:
+          - SurplusBundle
+
+- type: listing
+  id: UplinkCostumeMime
+  name: uplink-costume-mime-name
+  description: uplink-costume-mime-desc
+  productEntity: ClothingBackpackDuffelSyndicateCostumeMime
+  cost:
+    Telecrystal: 3
+  categories:
+  - UplinkPointless
+
+- type: listing
+  id: UplinkMagazineBoxHeavyRifle
+  name: uplink-box-heavy-rifle-name
+  description: uplink-box-heavy-rifle-desc
+  productEntity: MagazineBoxHeavyRifle
+  cost:
+    Telecrystal: 3
+  categories:
+  - UplinkAmmo
+
+- type: listing
+  id: UplinkMagazineBoxRifleLightSniper
+  name: uplink-box-light-rifle-name
+  description: uplink-box-light-rifle-desc
+  productEntity: MagazineBoxRifleLightSniper
+  cost:
+    Telecrystal: 3
+  categories:
+  - UplinkAmmo
+
+- type: listing
+  id: UplinkBogomol
+  name: Имплант клинков богомола
+  description: Клинки богомола, в качестве импланта, скрытные, смертоносные, а самое главное стильные.
+  icon: { sprite: Backmen/Clothing/Hands/Gloves/mantis.rsi, state: icon }
+  productEntity: mantisImplanter
+  cost:
+    Telecrystal: 5
+  categories:
+  - UplinkImplants
+
+- type: listing
+  id: UplinkPsiGrenadeBundle
+  name: uplink-psi-grenade-bundle-name
+  description: uplink-psi-grenade-bundle-desc
+  productEntity: ClothingBackpackDuffelSyndicatePsiGrenadeBundle
+  cost:
+    Telecrystal: 1
+  categories:
+  - UplinkAllies
+
+- type: listing
+  id: UplinkAntiPsiGrenadeBundle
+  name: uplink-anti-psi-grenade-bundle-name
+  description: uplink-anti-psi-grenade-bundle-desc
+  productEntity: ClothingBackpackDuffelSyndicateAntiPsiGrenadeBundle
+  cost:
+    Telecrystal: 2
+  categories:
+  - UplinkAllies
+
+# Weapon and mask
+- type: listing
+  id: UplinkBrassknuckles
+  name: Кастеты
+  description: Пара кастетов, для ваших жертв
+  icon: { sprite: Backmen/Objects/Weapons/Melee/brassknuckles.rsi, state: icon }
+  productEntity: ClothingHandsGlovesBrassknuckles
+  cost:
+    Telecrystal: 1
+  categories:
+  - UplinkWeaponry
+
+- type: listing
+  id: UplinkSpecialDelivery
+  name: особая посылка
+  description: Посылка с случайной маской психов Майами!
+  icon: { sprite: Backmen/Objects/Misc/specialdelivery.rsi, state: specialdelivery }
+  productEntity: SpecialDeliveryBox
+  cost:
+    Telecrystal: 1
+  categories:
+  - UplinkPointless
+

@@ -1,0 +1,35 @@
+- type: accessLevel
+  id: EarthGovCommand
+  name: ОПЗ Командующий
+
+- type: accessLevel
+  id: EarthGovSpecialits
+  name: ОПЗ Специальный
+
+- type: accessLevel
+  id: EarthGovMedic
+  name: ОПЗ Медицинский
+
+- type: accessLevel
+  id: EarthGov
+  name: ОПЗ Общий
+
+- type: accessGroup
+  id: EarthGov
+  tags:
+  - EarthGov
+  - EarthGovCommand
+  - EarthGovSpecialits
+  - EarthGovMedic
+
+- type: accessGroup
+  id: EarthGovSpecialits
+  tags:
+  - EarthGov
+  - EarthGovSpecialits
+
+- type: accessGroup
+  id: EarthGovMedic
+  tags:
+  - EarthGov
+  - EarthGovMedic

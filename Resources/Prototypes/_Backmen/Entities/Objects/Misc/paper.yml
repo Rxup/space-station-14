@@ -1,0 +1,120 @@
+- type: entity
+  name: Stamp Red Orden
+  parent: RubberStampMime
+  id: RubberStampredorden
+  components:
+  - type: Stamp
+    stampedName: stamp-component-stamped-name-RO
+    stampState: "paper_stamp-warden"
+  - type: Sprite
+    sprite: Backmen/Objects/Misc/bureaucracyRO.rsi
+    state: stamp-redorden
+
+- type: entity
+  name: Stamp CSH
+  parent: RubberStampRd
+  id: RubberStampCSH
+  components:
+  - type: Stamp
+    stampedName: stamp-component-stamped-name-CSH
+    stampState: "paper_stamp-rd"
+  - type: Sprite
+    sprite: Backmen/Objects/Misc/bureaucracyCSH.rsi
+    state: stamp-CSH
+
+- type: entity
+  name: passenger manifest
+  parent: Paper
+  id: PaperManifestPassenger
+  description: A list of details about who's registered on a particular transit.
+  components:
+    - type: Sprite
+      sprite: Objects/Misc/bureaucracy.rsi
+      layers:
+        - state: paper_dotmatrix
+        - state: paper_dotmatrix_words
+          map: ["enum.PaperVisualLayers.Writing"]
+          visible: false
+        - state: paper_stamp-generic
+          map: ["enum.PaperVisualLayers.Stamp"]
+          visible: false
+    - type: PaperVisuals
+      headerImagePath: "/Textures/Backmen/Interface/Paper/passenger_manifest.svg.96dpi.png"
+      headerMargin: 0.0, 0.0, 0.0, 16.0
+      backgroundImagePath: "/Textures/Interface/Paper/paper_background_dotmatrix.svg.96dpi.png"
+      backgroundImageTile: true
+      backgroundPatchMargin: 37.0, 0.0, 37.0, 0.0
+      contentImagePath: "/Textures/Interface/Paper/paper_content_dotmatrix.svg.96dpi.png"
+      contentImageNumLines: 2
+      contentMargin: 16.0, 16.0, 16.0, 0.0
+      maxWritableArea: 400.0, 400.0
+
+- type: entity
+  name: Печать ОПЗ
+  parent: RubberStampBase
+  id: RubberStampUEG
+  components:
+  - type: Stamp
+    stampedName: Объеденённое Правительство Земли
+    stampedColor: "#4682B4"
+    stampState: "paper_stamp-cap"
+  - type: Sprite
+    sprite: Objects/Misc/stamps.rsi
+    state: stamp-cap
+
+- type: entity
+  id: PaperManualCodes
+  name: коды корректировки
+  suffix: "Vova"
+  parent: Paper
+  components:
+  - type: Paper
+    content: |
+      Коды корректировки:
+      [color=red]ДОЛГ[/color]
+      - Выполнить любой ценой.
+      [color=green]МЕЧ[/color]
+      - Протокол уничтожения цели.
+      [color=blue]ЩИТ[/color]
+      - Протокол оброны секторы,человека.
+      [color=purple]Возмездие[/color]
+      - Протокол зачистки сектора.
+      [color=cyan]Нова[/color]
+      - Протокол задержания.
+      [color=yellow]Пожертвовать[/color]
+      - Протокол на использования всех возможных методов для выполнения задачи, включая потерю юнита во время операции.
+      [color=#8B4513]Допрос[/color]
+      - Протокол допроса.
+      [color=#00FF00]Пост[/color]
+      - Протокол патрулирования местности или же охранна поста.
+      [color=#FFFFFF]Полночь[/color]
+      - Протокол радиомолчание.
+      [color=#EE82EE]Опрос[/color]
+      - Протокол провидения опроса на предмет или же человека.
+      [color=#696969]НЕМЕЗИС[/color]
+      - Разрешение на применение всего арсенала особого отдела, для выполнения задачи.
+
+- type: entity
+  id: PaperOrderRXBZZ
+  name: приказ
+  parent: Paper
+  components:
+  - type: Paper
+    stampState: paper_stamp-cap
+    stampedBy:
+    - stampedName: Объеденённое Правительство Земли
+      stampedColor: "#4682B4"
+    content: |
+      [color=red]ПРИКАЗ ВООРУЖЕННЫХ СИЛ ОПЗ ПО СЕКТОРУ БАКМЕН[/color]
+      [color=blue]Отделение:[/color] РХБЗЗ Сектора Бакмен
+      [color=blue]Подразделение:[/color] Сиерра 6
+      [color=blue]Командующий офицер:[/color] Коммандор РХБЗЗ ОПЗ
+      [color=blue]От кого:[/color] Командование ВС ОПЗ по сектору Бакмен
+      [color=blue]Брифинг:[/color]
+      В одной из гражданских орбитальных станций обнаружена био-инфекция "блоб"
+      По докладу с ЦК НТ по сектору Бакмен, местные силы не смогли справиться и они запрашивают поддержку
+      [color=blue]Задача:[/color] Ликвидация "блоба"
+      [color=blue]Вторичная задача:[/color] Спасение и провождение гражданских на место эвакуации
+      [color=blue]Дополнение:[/color]
+      Разрешенна инициализация системы [color=red]само-уничтожения[/color] станции, только если отряд не может справиться с заражением
+      Активация системы полностью ложиться под ответственность командующего офицера

@@ -1,0 +1,113 @@
+- type: job
+  id: BKCCSecGavna
+  name: job-name-centcomSecGavna
+  description: job-description-centcomSecGavna
+  playTimeTracker: JobCentralCommandSecGavna
+  setPreference: true
+  startingGear: HeadOfSecurityCentComGear
+  icon: JobIconCCHeadOfSecurity
+  supervisors: job-supervisors-hoh
+  canBeAntag: false
+  weight: 1
+  requireAdminNotify: true
+  joinNotifyCrew: true
+  whitelisted: true
+  requirements:
+    - !type:RoleTimeRequirement
+      role: JobCentralCommandAssistant
+      time: 21600
+    - !type:DepartmentTimeRequirement
+      department: CentCom
+      time: 43200
+    - !type:RoleTimeRequirement
+      role: JobHeadOfSecurity
+      time: 18000
+    - !type:RoleTimeRequirement
+      role: JobCentralCommandSecOfficer
+      time: 18000
+  access:
+    - CentralCommand
+    - CCSecurity
+  accessGroups:
+    - AllAccess
+  special:
+    - !type:AddImplantSpecial
+      implants: [ MindShieldImplant ]
+    - !type:AddComponentSpecial
+      components:
+        - type: SpecForce
+          actionBssActionName: ActionCentcomFtlAction
+        - type: NpcFactionMember
+          factions:
+            - CentralCommand
+        - type: Psionic
+        - type: PyrokinesisPower
+        - type: AntagImmune
+  minBankBalance: 400
+  maxBankBalance: 600
+  wageDepartment: CentCom
+  wage: 75
+
+- type: jobIcon
+  parent: JobIcon
+  id: JobIconCCHeadOfSecurity
+  icon:
+    sprite: /Textures/Backmen/Icons/jobicon.rsi
+    state: Security
+
+- type: startingGear
+  id: HeadOfSecurityCentComGear
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitCentcomMilitary
+    back: ClothingBackpackSecurity
+    shoes: ClothingShoesBootsNedoSpetsnaz
+    mask: ClothingMaskGasSecurity
+    neck: CombatKnifeSpetsnaz
+    eyes: ClothingEyesGlassesSecurity
+    gloves: ClothingHandsGlovesCombat
+    outerClothing: ClothingOuterArmorBasic
+    suitstorage: WeaponPistolMk58
+    head: ClothingHeadHatBeretHoSCentcom
+    id: CCOfficerPDA
+    ears: ClothingHeadsetCentComCC
+    belt: ClothingBeltSecuritySuper
+    pocket2: MagazinePistol
+
+- type: entity
+  parent: OrdenPDA
+  id: CCOfficerPDA
+  name: Centcom Officer PDA
+  description: Black with green lines, sign of the walking protection of the bureaucracy.
+  components:
+    - type: Pda
+      id: IDCardCentComGavnaOfficerSesurity
+      state: pda-centcomsec
+      penSlot:
+        startingItem: PenCentcom
+        whitelist:
+          tags:
+            - Write
+    - type: PdaBorderColor
+      borderColor: "#5B5B5B"
+    - type: Icon
+      state: pda-centcomsec
+
+- type: entity
+  parent: CentcomIDCardDeathsquad
+  id: IDCardCentComGavnaOfficerSesurity
+  name: ID Начальника Безопасности ЦК
+  components:
+    - type: Sprite
+      layers:
+      - state: silver
+      - state: idsecurityofficer
+    - type: Item
+      heldPrefix: silver
+    - type: PresetIdCard
+      job: BKCCSecGavna
+    - type: Access
+      tags:
+        - CCSecurity
+        - CentralCommand
+      groups:
+        - AllAccess

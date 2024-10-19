@@ -1,4 +1,9 @@
-ent-ClothingEyesGlassesMonocle = Монокль аристократа.
-    .desc = Монокль является признаком высокого происхождения и интелекта.
-ent-ClothingEyesGlassesWelding = Сварочные Очки
-    .desc = Это сварочные очки. Это небольшой предмет. Защищает глаза от сварщиков.
+ent-ClothingEyesGlassesMonocle = монокль аристократа.
+    .desc = Монокль является признаком богатого происхождения и высокого интеллекта.
+ent-ClothingEyesGlassesWelding = сварочные очки
+    .desc = Это сварочные очки. Это небольшой предмет. Защищает глаза от сварки чего-либо.
+ent-ClothingEyesVision = очки ночного видения
+    .desc = Прибор ночного видения. Обеспечивает изображение местности в условиях низкой освещенности.
+ent-ClothingEyesVisionNuki = { ent-ClothingEyesVision }
+    .desc = { ent-ClothingEyesVision.desc }
+    .suffix = Ядерные Оперативники

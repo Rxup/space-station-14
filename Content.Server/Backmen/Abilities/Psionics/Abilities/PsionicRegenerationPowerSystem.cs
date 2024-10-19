@@ -27,6 +27,7 @@ public sealed class PsionicRegenerationPowerSystem : EntitySystem
     [Dependency] private readonly SharedPopupSystem _popupSystem = default!;
     [Dependency] private readonly SharedPsionicAbilitiesSystem _psionics = default!;
     [Dependency] private readonly IGameTiming _gameTiming = default!;
+    [Dependency] private readonly ExamineSystemShared _examine = default!;
 
 
     public override void Initialize()
@@ -56,6 +57,8 @@ public sealed class PsionicRegenerationPowerSystem : EntitySystem
 
     private void OnPowerUsed(EntityUid uid, PsionicRegenerationPowerComponent component, PsionicRegenerationPowerActionEvent args)
     {
+        if(args.Handled)
+            return;
         var ev = new PsionicRegenerationDoAfterEvent(_gameTiming.CurTime);
         var doAfterArgs = new DoAfterArgs(EntityManager, uid, component.UseDelay, ev, uid);
 
@@ -66,7 +69,7 @@ public sealed class PsionicRegenerationPowerSystem : EntitySystem
         _popupSystem.PopupEntity(Loc.GetString("psionic-regeneration-begin", ("entity", uid)),
             uid,
             // TODO: Use LoS-based Filter when one is available.
-            Filter.Pvs(uid).RemoveWhereAttachedEntity(entity => !ExamineSystemShared.InRangeUnOccluded(uid, entity, ExamineRange, null)),
+            Filter.Pvs(uid).RemoveWhereAttachedEntity(entity => !_examine.InRangeUnOccluded(uid, entity, ExamineRange, null)),
             true,
             PopupType.Medium);
 

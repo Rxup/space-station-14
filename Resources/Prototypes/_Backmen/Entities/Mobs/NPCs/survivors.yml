@@ -1,0 +1,125 @@
+- type: entity
+  name: Выживший
+  suffix: Survival
+  parent: MobHuman
+  id: MobHumanSurvival
+  components:
+  - type: GhostTakeoverAvailable
+  - type: GhostRole
+    allowMovement: true
+    allowSpeech: true
+    makeSentient: true
+    name: Выживший
+    description: Выживший на замершей планете.
+  - type: Loadout
+    prototypes: [SurvivalGear]
+  - type: RandomHumanoidAppearance
+    randomizeName: true
+
+- type: entity
+  name: Выживший грузчик
+  suffix: Survival
+  parent: MobHuman
+  id: MobHumanSurvivalCargo
+  components:
+  - type: GhostTakeoverAvailable
+  - type: GhostRole
+    allowMovement: true
+    allowSpeech: true
+    makeSentient: true
+    name: Выживший
+    description: Выживший на замершей планете.
+  - type: Loadout
+    prototypes: [CargoTechGearSurvival]
+  - type: RandomHumanoidAppearance
+    randomizeName: true
+
+- type: entity
+  name: Выживший медик
+  suffix: Survival
+  parent: MobHuman
+  id: MobHumanSurvivalMedic
+  components:
+  - type: GhostTakeoverAvailable
+  - type: GhostRole
+    allowMovement: true
+    allowSpeech: true
+    makeSentient: true
+    name: Выживший
+    description: Выживший на замершей планете.
+  - type: Loadout
+    prototypes: [DoctorGearSurvival]
+  - type: RandomHumanoidAppearance
+    randomizeName: true
+
+- type: entity
+  name: Выживший Офицер
+  suffix: Survival
+  parent: MobHuman
+  id: MobHumanSurvivalSecurity
+  components:
+  - type: GhostTakeoverAvailable
+  - type: GhostRole
+    allowMovement: true
+    allowSpeech: true
+    makeSentient: true
+    name: Выживший
+    description: Выживший на замершей планете.
+  - type: Loadout
+    prototypes: [SecurityOfficerGearSurvival]
+  - type: RandomHumanoidAppearance
+    randomizeName: true
+
+- type: entity
+  name: Выживший Капитан
+  suffix: Survival
+  parent: MobHuman
+  id: MobHumanSurvivalCaptain
+  components:
+  - type: GhostTakeoverAvailable
+  - type: GhostRole
+    allowMovement: true
+    allowSpeech: true
+    makeSentient: true
+    name: Выживший
+    description: Выживший на замершей планете.
+  - type: Loadout
+    prototypes: [CaptainGearSurvival]
+  - type: RandomHumanoidAppearance
+    randomizeName: true
+
+- type: entity
+  name: Выживший Инженер
+  suffix: Survival
+  parent: MobHuman
+  id: MobHumanSurvivalEngineer
+  components:
+  - type: GhostTakeoverAvailable
+  - type: GhostRole
+    allowMovement: true
+    allowSpeech: true
+    makeSentient: true
+    name: Выживший
+    description: Выживший на замершей планете.
+  - type: Loadout
+    prototypes: [StationEngineerGearSurvival]
+  - type: RandomHumanoidAppearance
+    randomizeName: true
+
+- type: entity
+  name: Святой отец
+  suffix: Survival
+  parent: MobHuman
+  id: MobHumanSurvivalChaplain
+  components:
+  - type: GhostTakeoverAvailable
+  - type: GhostRole
+    allowMovement: true
+    allowSpeech: true
+    makeSentient: true
+    name: Выживший
+    description: Выживший на замершей планете.
+  - type: Loadout
+    prototypes: [ChaplainGearSurvival]
+  - type: RandomHumanoidAppearance
+    randomizeName: true

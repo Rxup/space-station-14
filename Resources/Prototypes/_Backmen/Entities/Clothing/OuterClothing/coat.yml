@@ -1,0 +1,184 @@
+- type: entity
+  parent: ClothingOuterWinterCoat
+  id: Clothinghoscoat
+  name: Пальто ГСБ
+  description: Обычное пальто главы СБ, ничего примечательного.
+  components:
+  - type: Sprite
+    sprite: Backmen/Clothing/OuterClothing/Coats/coathosbelov.rsi
+  - type: Clothing
+    sprite: Backmen/Clothing/OuterClothing/Coats/coathosbelov.rsi
+
+- type: entity
+  parent: ClothingOuterWinterCoat
+  id: ClothingSovietCoat
+  name: Пальто СССП
+  description: Пальто которые носят высокие чины в СССП
+  components:
+  - type: Sprite
+    sprite: Backmen/Clothing/OuterClothing/Coats/ssspcoatbelov.rsi
+  - type: Clothing
+    sprite: Backmen/Clothing/OuterClothing/Coats/ssspcoatbelov.rsi
+
+- type: entity
+  parent: [ClothingOuterCoatSecurityOvercoat, AllowSuitStorageClothing]
+  id: ClothingOuterCoatSecurityOfficerOvercoat
+  name: шинель офицер СБ
+  description: Легкобронированная кожаная шинель, предназначенная для повседневной носки офицерами. Имеет логотип компании Nanotrasen Security.
+  components:
+  - type: Sprite
+    sprite: Backmen/Clothing/OuterClothing/Coats/sec_greatcoat.rsi
+  - type: Clothing
+    sprite: Backmen/Clothing/OuterClothing/Coats/sec_greatcoat.rsi
+
+- type: entity
+  parent: ClothingOuterWinterCoat
+  id: ClothingOuterWinterCoatBomber
+  name: куртка-бомбер
+  description: Толстая, поношенная кожаная куртка-бомбер периода Второй мировой войны.
+  components:
+  - type: Sprite
+    sprite: Clothing/OuterClothing/Coats/bomber.rsi
+  - type: Clothing
+    sprite: Clothing/OuterClothing/Coats/bomber.rsi
+
+- type: entity #backmen
+  parent: ClothingOuterCoatSecurityOvercoat
+  id: ClothingOuterCoatBlackdmc
+  name: чёрный плащ-куртка
+  description: Каждая потеря остается потерей, сколько бы их ни было до этого.
+  components:
+  - type: Sprite
+    sprite: Backmen/Clothing/OuterClothing/Coats/black.rsi
+  - type: Clothing
+    sprite: Backmen/Clothing/OuterClothing/Coats/black.rsi
+
+- type: entity #backmen
+  parent: ClothingOuterCoatSecurityOvercoat
+  id: ClothingOuterCoatBluedmc
+  name: синяя плащ-куртка
+  description: Сначала я его выхвачу! Потом воткну! Как следует! Под всеми углами! И во все дырки! Вот так! Входит и выходит! С огромной силой! И в конце концов... все удовлетворены. А ты... свободен...
+  components:
+  - type: Sprite
+    sprite: Backmen/Clothing/OuterClothing/Coats/blue.rsi
+  - type: Clothing
+    sprite: Backmen/Clothing/OuterClothing/Coats/blue.rsi
+
+- type: entity #backmen
+  parent: ClothingOuterCoatSecurityOvercoat
+  id: ClothingOuterCoatDesertdmc
+  name: песочная плащ-куртка
+  description: Собираешься на вечеринку? К чему такая спешка, неужели у тебя есть приглашение?
+  components:
+  - type: Sprite
+    sprite: Backmen/Clothing/OuterClothing/Coats/desert.rsi
+  - type: Clothing
+    sprite: Backmen/Clothing/OuterClothing/Coats/desert.rsi
+
+- type: entity #backmen
+  parent: ClothingOuterCoatSecurityOvercoat
+  id: ClothingOuterCoatGolddmc
+  name: золотая плащ-куртка
+  description: Мы истину, похожую на ложь, должны хранить сомкнутыми устами, иначе срам безвинно наживешь.
+  components:
+  - type: Sprite
+    sprite: Backmen/Clothing/OuterClothing/Coats/gold.rsi
+  - type: Clothing
+    sprite: Backmen/Clothing/OuterClothing/Coats/gold.rsi
+
+- type: entity #backmen
+  parent: ClothingOuterCoatSecurityOvercoat
+  id: ClothingOuterCoatPurpledmc
+  name: фиолетова плащ-куртка
+  description: Порой люди хуже демонов.
+  components:
+  - type: Sprite
+    sprite: Backmen/Clothing/OuterClothing/Coats/purple.rsi
+  - type: Clothing
+    sprite: Backmen/Clothing/OuterClothing/Coats/purple.rsi
+
+- type: entity #backmen
+  parent: ClothingOuterCoatSecurityOvercoat
+  id: ClothingOuterCoatReddmc
+  name: красная плащ-куртка
+  description: Эй, пацан! Уже сдаёшься?
+  components:
+  - type: Sprite
+    sprite: Backmen/Clothing/OuterClothing/Coats/red.rsi
+  - type: Clothing
+    sprite: Backmen/Clothing/OuterClothing/Coats/red.rsi
+
+- type: entity #backmen
+  parent: ClothingOuterCoatSecurityOvercoat
+  id: ClothingOuterCoatSnowdmc
+  name: снежная плащ-куртка
+  description: Я частенько слышал, что пары, которые внешне любят друг друга, частенько холодны внутри.
+  components:
+  - type: Sprite
+    sprite: Backmen/Clothing/OuterClothing/Coats/snow.rsi
+  - type: Clothing
+    sprite: Backmen/Clothing/OuterClothing/Coats/snow.rsi
+
+- type: entity #backmen
+  parent: ClothingOuterStorageBase
+  id: ClothingOuterCoatBlackViF
+  name: Чёрный бомбер
+  description: Удобный чёрный бомбер.
+  components:
+  - type: Sprite
+    sprite: Backmen/Clothing/OuterClothing/Coats/blackViF.rsi
+  - type: Clothing
+    sprite: Backmen/Clothing/OuterClothing/Coats/blackViF.rsi
+
+- type: entity #backmen
+  parent: ClothingOuterWinterCoat
+  id: ClothingOuterCoatJacket
+  name: Куртка милитарист
+  description: Осталось прожить три дня, три...
+  components:
+  - type: Sprite
+    sprite: Backmen/Clothing/OuterClothing/Coats/jacket.rsi
+  - type: Clothing
+    sprite: Backmen/Clothing/OuterClothing/Coats/jacket.rsi
+
+- type: entity #backmen
+  parent: ClothingOuterStorageBase
+  id: ClothingOuterCoatNT
+  name: Бомбер NT
+  description: Удобный бомбер с эмблемой Nanotrasen.
+  components:
+  - type: Sprite
+    sprite: Backmen/Clothing/OuterClothing/Coats/NT.rsi
+  - type: Clothing
+    sprite: Backmen/Clothing/OuterClothing/Coats/NT.rsi
+
+- type: entity
+  parent: [ClothingOuterCoatHoSTrench, AllowSuitStorageClothing]
+  id: ClothingOuterCoatArmorBlueShield
+  name: броне-плащ Синего Щита
+  description: Бронированный кожанный плащ, предназначенная для повседневной носки офицерами. Имеет нашивки компании Blue Shield Security.
+  components:
+  - type: Sprite
+    sprite: Backmen/Clothing/OuterClothing/Coats/bluecoat.rsi
+  - type: Clothing
+    sprite: Backmen/Clothing/OuterClothing/Coats/bluecoat.rsi
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.7
+        Slash: 0.7
+        Piercing: 0.7
+        Heat: 0.7
+        Caustic: 0.75
+        Stun: 0.4
+
+- type: entity
+  parent: ClothingOuterCoatArmorBlueShield
+  id: ClothingOuterCoatArmorBlueShieldAlt
+  name: броне-плащ Синего Щита
+  description: Бронированный кожанный плащ, предназначенная для повседневной носки офицерами. Имеет нашивки компании Blue Shield Security.
+  components:
+  - type: Sprite
+    sprite: Backmen/Clothing/OuterClothing/Coats/bluecoat-alt.rsi
+  - type: Clothing
+    sprite: Backmen/Clothing/OuterClothing/Coats/bluecoat-alt.rsi

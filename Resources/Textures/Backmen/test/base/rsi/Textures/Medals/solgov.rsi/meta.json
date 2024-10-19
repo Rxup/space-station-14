@@ -1,0 +1,81 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "Made by NNNNNOOOOOMMMMMAAAAAD",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "solgov-accessory_iron_star"
+    },
+    {
+      "name": "iron_star",
+      "directions": 4
+    },
+    {
+      "name": "solgov-accessory_iron_sol"
+    },
+    {
+      "name": "iron_sol",
+      "directions": 4
+    },
+    {
+      "name": "solgov-accessory_bronze_sol"
+    },
+    {
+      "name": "bronze_sol",
+      "directions": 4
+    },
+    {
+      "name": "solgov-accessory_silver_sword"
+    },
+    {
+      "name": "silver_sword",
+      "directions": 4
+    },
+    {
+      "name": "solgov-accessory_silver_sol"
+    },
+    {
+      "name": "silver_sol",
+      "directions": 4
+    },
+    {
+      "name": "solgov-accessory_gold_star"
+    },
+    {
+      "name": "gold_star",
+      "directions": 4
+    },
+    {
+      "name": "solgov-accessory_gold_sun"
+    },
+    {
+      "name": "gold_sun",
+      "directions": 4
+    },
+    {
+      "name": "solgov-accessory_gold_crest"
+    },
+    {
+      "name": "gold_crest",
+      "directions": 4
+    },
+    {
+      "name": "solgov-accessory_gold_sol"
+    },
+    {
+      "name": "gold_sol",
+      "directions": 4
+    },
+    {
+      "name": "solgov-accessory_pin_pilot"
+    },
+    {
+      "name": "pin_pilot",
+      "directions": 4
+    }
+  ]
+}

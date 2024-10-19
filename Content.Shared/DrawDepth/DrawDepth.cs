@@ -36,7 +36,7 @@ namespace Content.Shared.DrawDepth
         /// </summary>
         FloorObjects = DrawDepthTag.Default - 6,
 
-        BlobTiles = DrawDepthTag.Default - 5,
+        BlobTiles = DrawDepthTag.Default - 5, // backmen: blob
 
         DeadMobs = DrawDepthTag.Default - 4,
 
@@ -77,7 +77,7 @@ namespace Content.Shared.DrawDepth
         Items = DrawDepthTag.Default + 3,
 
         Mobs = DrawDepthTag.Default + 4,
-		
+
         OverMobs = DrawDepthTag.Default + 5,
 
         Doors = DrawDepthTag.Default + 6,

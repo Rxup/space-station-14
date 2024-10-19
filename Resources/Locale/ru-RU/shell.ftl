@@ -3,7 +3,6 @@
 
 ## General
 
-shell-server-cannot = Сервер не может выполнить это.
 shell-command-success = Команда выполнена.
 shell-invalid-command = Неверная команда.
 shell-invalid-command-specific = Неверная команда { $commandName }.
@@ -55,3 +54,4 @@ shell-argument-map-id-invalid = Аргумент { $index } должен быт�
 shell-argument-number-invalid = Аргумент { $index } должен быть валидным числом!
 # Hints
 shell-argument-username-hint = <username>
+shell-argument-username-optional-hint = [username]

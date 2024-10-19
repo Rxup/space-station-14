@@ -18,8 +18,6 @@
         amount: 2
       - id: FlyAmanitaSeeds
         amount: 2
-      - id: KillerTomatoSeeds
-        amount: 2
       - id: PineappleSeeds
         amount: 2
       - id: BungoSeeds
@@ -56,10 +54,14 @@
       - id: PlantBGoneSpray
       - id: WeedSpray
       - id: PestSpray
+      - id: HydroponicsToolClippers
       - id: HydroponicsToolScythe
+      - id: HydroponicsToolSpade
       - id: HydroponicsToolHatchet
       - id: ClothingOuterApronBotanist
       - id: ClothingHandsGlovesLeather
+      - id: EZNutrientChemistryBottle
+        amount: 2
 
 - type: entity
   id: CrateHydroponicsSeeds
@@ -91,3 +93,4 @@
       - id: GrapeSeeds
       - id: WatermelonSeeds
       - id: PeaSeeds
+      - id: CherrySeeds

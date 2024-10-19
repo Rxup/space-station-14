@@ -1,6 +1,7 @@
 ﻿using System.Linq;
 using Content.Server.Actions;
 using Content.Server.Atmos.Components;
+using Content.Server.Backmen.Language;
 using Content.Server.Body.Components;
 using Content.Server.Body.Systems;
 using Content.Server.Chemistry.Containers.EntitySystems;
@@ -24,6 +25,7 @@ using Content.Shared.DoAfter;
 using Content.Shared.Electrocution;
 using Content.Shared.FixedPoint;
 using Content.Shared.Backmen.Flesh;
+using Content.Shared.Backmen.Language;
 using Content.Shared.Chemistry.EntitySystems;
 using Content.Shared.Cloning;
 using Content.Shared.Fluids.Components;
@@ -37,6 +39,7 @@ using Content.Shared.Mobs;
 using Content.Shared.Mobs.Components;
 using Content.Shared.Popups;
 using Content.Shared.Random;
+using Content.Shared.Store.Components;
 using Content.Shared.Tag;
 using Robust.Shared.Audio;
 using Robust.Shared.Audio.Systems;
@@ -61,7 +64,7 @@ public sealed partial class FleshCultistSystem : EntitySystem
     [Dependency] private readonly SharedAudioSystem _audio = default!;
     [Dependency] private readonly PuddleSystem _puddleSystem = default!;
     [Dependency] private readonly EntityLookupSystem _lookup = default!;
-    [Dependency] private readonly SolutionContainerSystem _solutionSystem = default!;
+    [Dependency] private readonly SharedSolutionContainerSystem _solutionSystem = default!;
     [Dependency] private readonly HumanoidAppearanceSystem _sharedHuApp = default!;
     [Dependency] private readonly SharedAppearanceSystem _sharedAppearance = default!;
     [Dependency] private readonly DamageableSystem _damageableSystem = default!;
@@ -73,12 +76,18 @@ public sealed partial class FleshCultistSystem : EntitySystem
     [Dependency] private readonly RandomHelperSystem _randomHelper = default!;
     [Dependency] private readonly IPrototypeManager _prototype = default!;
     [Dependency] private readonly SharedTransformSystem _transformSystem = default!;
+    [Dependency] private readonly SharedContainerSystem _container = default!;
+    [Dependency] private readonly LanguageSystem _language = default!;
 
+    [ValidatePrototypeId<LanguagePrototype>]
+    private const string FleshLang = "Flesh";
 
     public override void Initialize()
     {
         base.Initialize();
 
+
+        SubscribeLocalEvent<FleshCultistComponent, DetermineEntityLanguagesEvent>(OnGetLanguage);
         SubscribeLocalEvent<FleshCultistComponent, MapInitEvent>(OnStartup);
         SubscribeLocalEvent<FleshCultistComponent, FleshCultistShopActionEvent>(OnShop);
         SubscribeLocalEvent<FleshCultistComponent, FleshCultistInsulatedImmunityMutationEvent>(OnInsulatedImmunityMutation);
@@ -93,6 +102,12 @@ public sealed partial class FleshCultistSystem : EntitySystem
         SubscribeLocalEvent<FleshCultistComponent, CloningEvent>(OnCultistCloning);
 
         InitializeAbilities();
+    }
+
+    private void OnGetLanguage(Entity<FleshCultistComponent> ent, ref DetermineEntityLanguagesEvent args)
+    {
+        args.UnderstoodLanguages.Add(FleshLang);
+        args.SpokenLanguages.Add(FleshLang);
     }
 
     private void OnCultistCloning(EntityUid uid, FleshCultistComponent component, ref CloningEvent args)
@@ -220,6 +235,8 @@ public sealed partial class FleshCultistSystem : EntitySystem
         _action.AddAction(uid, ref component.FleshCultistShop, FleshCultistShop);
         _action.AddAction(uid, ref component.FleshCultistDevour, FleshCultistDevour);
         _action.AddAction(uid, ref component.FleshCultistAbsorbBloodPool, FleshCultistAbsorbBloodPool);
+
+        _language.UpdateEntityLanguages(uid);
     }
 
     private void OnInsulatedImmunityMutation(EntityUid uid, FleshCultistComponent component,
@@ -257,19 +274,20 @@ public sealed partial class FleshCultistSystem : EntitySystem
         _store.ToggleUi(uid, uid, store);
     }
 
-    private bool ChangeParasiteHunger(EntityUid uid, FixedPoint2 amount, FleshCultistComponent? component = null)
+    [ValidatePrototypeId<AlertPrototype>]
+    private const string MutationPoint = "MutationPoint";
+
+    private void ChangeParasiteHunger(EntityUid uid, FixedPoint2 amount, FleshCultistComponent? component = null)
     {
         if (!Resolve(uid, ref component))
-            return false;
+            return;
 
         component.Hunger += amount;
 
         if (TryComp<StoreComponent>(uid, out var store))
             _store.UpdateUserInterface(uid, uid, store);
 
-        _alerts.ShowAlert(uid, AlertType.MutationPoint, (short) Math.Clamp(Math.Round(component.Hunger.Float() / 10f), 0, 16));
-
-        return true;
+        _alerts.ShowAlert(uid, MutationPoint, (short) Math.Clamp(Math.Round(component.Hunger.Float() / 10f), 0, 16));
     }
 
     private void OnDevourAction(EntityUid uid, FleshCultistComponent component, FleshCultistDevourActionEvent args)
@@ -339,8 +357,7 @@ public sealed partial class FleshCultistSystem : EntitySystem
                     _doAfterSystem.TryStartDoAfter(new DoAfterArgs(EntityManager, uid, component.DevourTime,
                         new FleshCultistDevourDoAfterEvent(), uid, target: target, used: uid)
                     {
-                        BreakOnTargetMove = true,
-                        BreakOnUserMove = true,
+                        BreakOnMove = true,
                     });
                     args.Handled = true;
                     break;
@@ -379,9 +396,9 @@ public sealed partial class FleshCultistSystem : EntitySystem
 
         if (TryComp<HumanoidAppearanceComponent>(args.Args.Target, out var humanoidAppearanceComponent))
         {
-            if (TryComp(args.Args.Target.Value, out ContainerManagerComponent? container))
+            if (TryComp<ContainerManagerComponent>(args.Args.Target.Value, out var container))
             {
-                foreach (var cont in container.GetAllContainers().ToArray())
+                foreach (var cont in _container.GetAllContainers(args.Args.Target.Value,container).ToArray())
                 {
                     foreach (var ent in cont.ContainedEntities.ToArray())
                     {
@@ -389,8 +406,10 @@ public sealed partial class FleshCultistSystem : EntitySystem
                         {
                             continue;
                         }
-                        cont.Remove(ent, EntityManager, force: true);
-                        _transformSystem.SetCoordinates(ent, coordinates);
+
+                        _container.Remove(ent, cont, force: true, destination: coordinates);
+                        //cont.Remove(ent, EntityManager, force: true);
+                        //_transformSystem.SetCoordinates(ent, coordinates);
                         _randomHelper.RandomOffset(ent, 0.25f);
                     }
                 }
@@ -527,10 +546,10 @@ public sealed partial class FleshCultistSystem : EntitySystem
         };
     }
 
-    private bool ParasiteComesOut(EntityUid uid, FleshCultistComponent? component = null)
+    private void ParasiteComesOut(EntityUid uid, FleshCultistComponent? component = null)
     {
         if (!Resolve(uid, ref component))
-            return false;
+            return;
 
         var xform = Transform(uid);
         var coordinates = xform.Coordinates;
@@ -549,9 +568,9 @@ public sealed partial class FleshCultistSystem : EntitySystem
         var audio = AudioParams.Default.WithVariation(0.025f);
         _audio.PlayPvs(component.SoundMutation, uid, audio);
 
-        if (TryComp(uid, out ContainerManagerComponent? container))
+        if (TryComp<ContainerManagerComponent>(uid, out var container))
         {
-            foreach (var cont in container.GetAllContainers().ToArray())
+            foreach (var cont in _container.GetAllContainers(uid,container).ToArray())
             {
                 foreach (var ent in cont.ContainedEntities.ToArray())
                 {
@@ -560,8 +579,9 @@ public sealed partial class FleshCultistSystem : EntitySystem
                             continue;
                         if (HasComp<UnremoveableComponent>(ent))
                             continue;
-                        cont.Remove(ent, EntityManager, force: true);
-                        _transformSystem.SetCoordinates(ent, coordinates);
+                        _container.Remove(ent, cont, force: true, destination: coordinates);
+                        //cont.Remove(ent, EntityManager, force: true);
+                        //_transformSystem.SetCoordinates(ent, coordinates);
                         _randomHelper.RandomOffset(ent, 0.25f);
                     }
                 }
@@ -585,7 +605,6 @@ public sealed partial class FleshCultistSystem : EntitySystem
         }
 
         QueueDel(uid);
-        return true;
     }
 
     public override void Update(float frameTime)
@@ -628,10 +647,11 @@ public sealed partial class FleshCultistSystem : EntitySystem
         if (args.Handled)
             return;
 
-        var xform = Transform(uid);
+        var xform = _transformSystem.GetMapCoordinates(uid);
         var puddles = new ValueList<(EntityUid Entity, string Solution)>();
         puddles.Clear();
-        foreach (var entity in _lookup.GetEntitiesInRange(xform.MapPosition, 0.5f))
+
+        foreach (var entity in _lookup.GetEntitiesInRange(xform, 0.5f))
         {
             if (TryComp<PuddleComponent>(entity, out var puddle))
             {

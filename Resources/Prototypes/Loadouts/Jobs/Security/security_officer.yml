@@ -1,0 +1,287 @@
+# Senior Time
+- type: loadoutEffectGroup
+  id: SeniorOfficer
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:RoleTimeRequirement
+      role: JobWarden
+      time: 72000 #20 hrs # Corvax-RoleTime
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:DepartmentTimeRequirement
+      department: Security
+      time: 216000 # 60 hrs
+
+#Security Star
+- type: loadoutEffectGroup
+  id: SecurityStarWorthy
+  effects:
+    - !type:JobRequirementLoadoutEffect
+      requirement:
+        !type:DepartmentTimeRequirement
+        department: Security
+        time: 360000 #100 hrs
+
+# Head
+- type: loadout
+  id: SecurityHelmet
+  equipment:
+    head: ClothingHeadHelmetBasic
+
+- type: loadout
+  id: SecurityHat
+  equipment:
+    head: ClothingHeadHatSecsoft
+
+- type: loadout
+  id: SecurityBeret
+  equipment:
+    head: ClothingHeadHatBeretSecurity
+
+- type: loadout #Backmen
+  id: ClothingHeadHatCapSec
+  equipment:
+    head: ClothingHeadHatCapSec
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: SeniorOfficer
+
+- type: startingGear #Backmen
+  id: ClothingHeadHatCapSec
+  equipment:
+    head: ClothingHeadHatCapSec
+
+- type: loadout #Backmen
+  id: ClothingHeadHatPilotkaSec
+  equipment:
+    head: ClothingHeadHatPilotkaSec
+
+- type: startingGear #Backmen
+  id: ClothingHeadHatPilotkaSec
+  equipment:
+    head: ClothingHeadHatPilotkaSec
+
+- type: loadout
+  id: TrooperHat
+  equipment:
+    head: ClothingHeadHatSecurityTrooper
+
+# Jumpsuit
+- type: loadout
+  id: SecurityJumpsuit
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitSec
+
+- type: loadout
+  id: SecurityJumpskirt
+  equipment:
+    jumpsuit: ClothingUniformJumpskirtSec
+
+- type: loadout
+  id: SecurityJumpsuitGrey
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitSecGrey
+
+- type: loadout
+  id: SecurityJumpskirtGrey
+  equipment:
+    jumpsuit: ClothingUniformJumpskirtSecGrey
+
+- type: loadout
+  id: TrooperUniform
+  equipment: 
+    jumpsuit: ClothingUniformSecurityTrooper
+
+- type: loadout
+  id: SeniorOfficerJumpsuit
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: SeniorOfficer
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitSeniorOfficer
+
+- type: loadout
+  id: SeniorOfficerJumpskirt
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: SeniorOfficer
+  equipment:
+    jumpsuit: ClothingUniformJumpskirtSeniorOfficer
+
+# Back
+- type: loadout
+  id: SecurityBackpack
+  equipment:
+    back: ClothingBackpackSecurity
+
+- type: loadout
+  id: SecuritySatchel
+  equipment:
+    back: ClothingBackpackSatchelSecurity
+
+- type: loadout
+  id: SecurityDuffel
+  equipment:
+    back: ClothingBackpackDuffelSecurity
+
+# Belt
+- type: loadout
+  id: SecurityBelt
+  equipment:
+    belt: ClothingBeltSecurityFilled
+
+- type: loadout
+  id: SecurityWebbing
+  equipment:
+    belt: ClothingBeltSecurityWebbingFilled
+
+# Outerclothing
+- type: loadout
+  id: ArmorVest
+  equipment:
+    outerClothing: ClothingOuterArmorBasic
+
+- type: loadout
+  id: ArmorVestSlim
+  equipment:
+    outerClothing: ClothingOuterArmorBasicSlim
+
+- type: loadout #Backmen
+  id: ClothingOuterCoatSecurityOvercoat
+  equipment:
+    outerClothing: ClothingOuterCoatSecurityOvercoat
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: SeniorOfficer
+
+- type: startingGear #Backmen
+  id: ClothingOuterCoatSecurityOvercoat
+  equipment:
+    outerClothing: ClothingOuterCoatSecurityOvercoat
+
+- type: loadout #Backmen
+  id: ClothingOuterCoatSecurityOfficerOvercoat
+  equipment:
+    outerClothing: ClothingOuterCoatSecurityOfficerOvercoat
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: SeniorOfficer
+
+- type: startingGear #Backmen
+  id: ClothingOuterCoatSecurityOfficerOvercoat
+  equipment:
+    outerClothing: ClothingOuterCoatSecurityOfficerOvercoat
+
+- type: loadout
+  id: SecurityOfficerWintercoat
+  equipment:
+    outerClothing: ClothingOuterWinterSec
+
+# Shoes
+- type: loadout
+  id: CombatBoots
+  equipment:
+    shoes: ClothingShoesBootsCombatFilled
+
+- type: loadout
+  id: JackBoots
+  equipment:
+    shoes: ClothingShoesBootsJackFilled
+
+- type: loadout
+  id: SecurityWinterBoots
+  equipment:
+    shoes: ClothingShoesBootsWinterSecFilled
+
+# PDA
+- type: loadout
+  id: SecurityPDA
+  equipment:
+    id: SecurityPDA
+
+- type: loadout
+  id: SeniorOfficerPDA
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: SeniorOfficer
+  equipment:
+    id: SeniorOfficerPDA
+
+# Pocket #Backmen
+- type: loadout
+  id: WeaponPistolMk58
+  equipment:
+    pocket1: WeaponPistolMk58
+
+- type: loadout
+  id: WeaponPistolG22
+  equipment:
+    pocket1: WeaponPistolG22
+
+- type: loadout
+  id: WeaponPistolACP14
+  equipment:
+    pocket1: WeaponPistolACP14
+
+- type: loadout
+  id: WeaponPistolG23
+  equipment:
+    pocket1: WeaponPistolG23
+
+- type: loadout
+  id: WeaponPistolVP78
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: SeniorOfficer
+  equipment:
+    pocket1: WeaponPistolVP78
+
+- type: loadout
+  id: WeaponPistolDEagle
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: SeniorOfficer
+  equipment:
+    pocket1: WeaponPistolDEagle
+
+- type: loadout
+  id: WeaponPistolM1911
+  equipment:
+    pocket1: WeaponPistolM1911
+
+# Pocket 2 #Backmen
+
+- type: loadout
+  id: MagazinePistol
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: SeniorOfficer
+  equipment:
+    pocket2: MagazinePistol
+
+- type: loadout
+  id: MagazinePistolHighCapacity
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: SeniorOfficer
+  equipment:
+    pocket2: MagazinePistolHighCapacity
+
+- type: loadout
+  id: MagazineMagnumPistol
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: SeniorOfficer
+  equipment:
+    pocket2: MagazineMagnumPistol
+
+# Misc
+- type: loadout
+  id: SecStar
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: SecurityStarWorthy
+  storage:
+    back:
+    - Dinkystar

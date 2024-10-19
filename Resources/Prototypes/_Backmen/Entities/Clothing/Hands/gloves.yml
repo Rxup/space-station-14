@@ -1,0 +1,140 @@
+- type: entity
+  parent: ClothingHandsBase
+  id: ClothingHandsGlovesOrdenHands
+  name: Gloves of the Elite Squad of the Red Order.
+  description: Gloves given to important members of the Red Order. they are inlaid with gold.
+  components:
+  - type: Sprite
+    sprite: Backmen/Clothing/Hands/Gloves/ordenhands.rsi
+  - type: Clothing
+    sprite: Backmen/Clothing/Hands/Gloves/ordenhands.rsi
+  - type: Insulated
+  - type: Fiber
+    fiberMaterial: fibers-durathread
+    fiberColor: fibers-regal-blue
+  - type: FingerprintMask
+
+- type: entity
+  parent: ClothingHandsBase
+  id: ClothingHandsGlovesmantis
+  name: клинки богомола
+  description: Боевой кибернетический имплант. Клинки исходят из предплечья, что позволяет использовать их как оружие ближнего боя.
+  components:
+  - type: Sprite
+    sprite: Backmen/Clothing/Hands/Gloves/mantis.rsi
+  - type: Clothing
+    sprite: Backmen/Clothing/Hands/Gloves/mantis.rsi
+    equipSound: /Audio/Backmen/Weapons/Melee/bogomol/on.ogg
+    unequipSound: /Audio/Backmen/Weapons/Melee/bogomol/off.ogg
+  - type: MeleeWeapon
+    attackRate: 2
+    damage:
+      types:
+        Piercing: 10
+    soundSwing: /Audio/Backmen/Weapons/Melee/bogomol/miss.ogg
+    soundHit: /Audio/Backmen/Weapons/Melee/bogomol/hit.ogg
+  - type: StaticPrice
+    price: 1000
+
+- type: entity
+  parent: ClothingHandsBase
+  id: ClothingHandsGlovesSpetsnazcombat
+  name: боевые перчатки спецназа
+  description: Эти тактические перчатки огнеупорны и ударопрочны.
+  components:
+  - type: Sprite
+    sprite: Backmen/Clothing/Hands/Gloves/ihscombat.rsi
+  - type: Clothing
+    sprite: Backmen/Clothing/Hands/Gloves/ihscombat.rsi
+  - type: Fiber
+    fiberMaterial: fibers-durathread
+  - type: FingerprintMask
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.90
+        Slash: 0.90
+        Piercing: 0.95
+        Heat: 0.95
+  - type: Thieving
+    stripTimeReduction: 1
+    stealthy: true
+  - type: Insulated
+
+- type: entity
+  parent: ClothingHandsBase
+  id: ClothingHandsBint # Backmen
+  name: боксерский бинт
+  description: полоса ткани, которую используют боксёры и представители других спортивных единоборств .
+  components:
+  - type: Sprite
+    sprite: Backmen/Clothing/Hands/Gloves/binti.rsi
+  - type: Clothing
+    sprite: Backmen/Clothing/Hands/Gloves/binti.rsi
+  - type: MeleeWeapon
+    attackRate: 1.7
+    damage:
+      types:
+        Blunt: 2
+    animation: WeaponArcFist
+  - type: Tag
+    tags:
+    - WhitelistChameleon
+  - type: Construction
+    graph: HandsBint
+    node: Hands_Bint
+
+- type: entity
+  parent: ClothingHandsBase
+  id: ClothingHandsChronoLegionnaire
+  name: chrono legionnaire combat gloves
+  description: High-quality combat gloves form pa... Future.
+  components:
+  - type: Sprite
+    sprite: Backmen/Clothing/Hands/Gloves/chronogloves.rsi
+  - type: Clothing
+    sprite: Backmen/Clothing/Hands/Gloves/chronogloves.rsi
+  - type: Insulated
+  - type: FingerprintMask
+  - type: DashAbility
+    dashAction: ActionPhaseDash
+
+- type: entity
+  id: ActionPhaseDash
+  name: phase dash
+  description: Teleport to anywhere you can see.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: WorldTargetAction
+    icon:
+      sprite: Objects/Magic/magicactions.rsi
+      state: blink
+    itemIconStyle: NoItem
+    priority: -12
+    event: !type:DashEvent
+    range: 0
+
+- type: entity
+  parent: ClothingHandsBase
+  id: ClothingHandsGlovesTGMCwhite
+  name: белые боевые перчатки
+  description: Эти тактические белые перчатки огнеупорны и ударопрочны.
+  components:
+  - type: Sprite
+    sprite: Backmen/Clothing/Hands/Gloves/whitetgmc.rsi
+  - type: Clothing
+    sprite: Backmen/Clothing/Hands/Gloves/whitetgmc.rsi
+  - type: Fiber
+    fiberMaterial: fibers-durathread
+  - type: FingerprintMask
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.90
+        Slash: 0.90
+        Piercing: 0.95
+        Heat: 0.95
+  - type: Thieving
+    stripTimeReduction: 1
+    stealthy: true
+  - type: Insulated

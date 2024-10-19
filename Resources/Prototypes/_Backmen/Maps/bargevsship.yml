@@ -1,0 +1,71 @@
+﻿- type: entity
+  id: StandardNanotrasenStationVsShip
+  parent:
+  - BaseStation
+  - BaseStationCargo
+  - BaseStationJobsSpawning
+  - BaseStationRecords
+  - BaseStationAlertLevels
+  - BaseStationSiliconLawCrewsimov
+  - BaseStationAllEventsEligible
+  - BaseStationNanotrasen
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Transform
+
+- type: gameMap
+  id: BargeVsShip
+  mapName: 'Бой на баржах'
+  mapPath: /Maps/Backmen/bargevsship.yml
+  minPlayers: 2
+  stations:
+    TeamA:
+      stationProto: StandardNanotrasenStationVsShip
+      components:
+      - type: StationNameSetup
+        mapNameTemplate: '{0} Красные {1}'
+        nameGenerator:
+          !type:NanotrasenNameGenerator
+          prefixCreator: 'G'
+      - type: StationBankAccount
+        balance: 20000
+        increasePerSecond: 100
+      - type: StationTeamMarker
+        team: TeamA
+        goal:
+        - StationAiBrain
+        - ComputerShipyardTeamA
+        requireJobs:
+        - Captain
+        - SAIShip
+      - type: StationJobs
+        availableJobs:
+          Freelancer: [ -1, -1 ]
+          StationEngineer: [ 5, 5 ]
+          Captain: [ 1, 1 ]
+          SAIShip: [ 1, 1 ]
+    TeamB:
+      stationProto: StandardNanotrasenStationVsShip
+      components:
+      - type: StationNameSetup
+        mapNameTemplate: '{0} Синие {1}'
+        nameGenerator:
+          !type:NanotrasenNameGenerator
+          prefixCreator: 'G'
+      - type: StationBankAccount
+        balance: 20000
+        increasePerSecond: 100
+      - type: StationTeamMarker
+        team: TeamB
+        goal:
+        - StationAiBrain
+        - ComputerShipyardTeamB
+        requireJobs:
+        - Captain
+        - SAIShip
+      - type: StationJobs
+        availableJobs:
+          Freelancer: [ -1, -1 ]
+          StationEngineer: [ 5, 5 ]
+          Captain: [ 1, 1 ]
+          SAIShip: [ 1, 1 ]

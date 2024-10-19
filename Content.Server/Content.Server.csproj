@@ -28,6 +28,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Tools\Systems\" />
+    <Folder Include="Objectives\Interfaces\" />
   </ItemGroup>
   <ItemGroup>
     <Compile Update="Backmen\Species\Shadowkin\Systems\ShadowkinPowerSystem.Darken.cs">

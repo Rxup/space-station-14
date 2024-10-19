@@ -1,7 +1,7 @@
 contact_links:
   - name: Предложение
-    url: https://discord.station14.ru
+    url: https://backmen.ru/forums/forum/5-%D0%BF%D1%80%D0%B5%D0%B4%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D1%8F-%D0%B8-%D0%BA%D1%80%D0%B8%D1%82%D0%B8%D0%BA%D0%B0/
     about: Свои предложения можете оставлять в соответствующем канале Discord.
   - name: Сообщить об уязвимости
-    url: https://discord.station14.ru
-    about: Пожалуйста, сообщайте о серьезных эксплойтах и уязвимостях безопасности Morty#7384 (369476049836310528) в Discord.
+    url: https://backmen.ru/tickets/support/?do=form
+    about: Пожалуйста, сообщайте о серьезных эксплойтах и уязвимостях безопасности backmen (156474902340173824) в Discord.

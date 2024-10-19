@@ -1,0 +1,75 @@
+﻿- type: entity
+  id: ComputerShipyardTeamA
+  parent: ComputerShipyard
+  name: shipyard console
+  suffix: Team A
+  description: Used to purchase and sell shuttles
+  components:
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.25,-0.35,0.25,0.35"
+        density: 1000
+        mask:
+        - AllMask
+        layer:
+        - WallLayer
+  - type: AccessReader
+    access: [["Captain"], ["CentralCommand"]]
+  - type: Damageable
+    damageContainer: StructuralInorganic
+    damageModifierSet: StructuralMetallicStrong
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 100
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: GlassBreak
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+  - type: ShipyardConsole
+    allowedGroup:
+    - TeamA
+
+- type: entity
+  id: ComputerShipyardTeamB
+  parent: ComputerShipyard
+  name: shipyard console
+  suffix: Team B
+  description: Used to purchase and sell shuttles
+  components:
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.25,-0.35,0.25,0.35"
+        density: 1000
+        mask:
+        - AllMask
+        layer:
+        - WallLayer
+  - type: AccessReader
+    access: [["Captain"], ["CentralCommand"]]
+  - type: Damageable
+    damageContainer: StructuralInorganic
+    damageModifierSet: StructuralMetallicStrong
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 100
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: GlassBreak
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+  - type: ShipyardConsole
+    allowedGroup:
+    - TeamB

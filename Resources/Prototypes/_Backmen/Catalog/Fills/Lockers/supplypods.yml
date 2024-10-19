@@ -1,0 +1,546 @@
+- type: entity
+  id: SupplyDropPodEmpty
+  parent: SupplyPodBase
+  categories: [ HideSpawnMenu ]
+
+- type: entity
+  id: DropPodMarkerBlueShield
+  parent: DropPodMarker
+  suffix: BlueShield, supply
+  components:
+  - type: TimedSpawner
+    prototypes:
+      -  DropPodLaunchAnimationBlueShield
+
+- type: entity
+  id: DropPodLaunchAnimationBlueShield
+  parent: DropPodLaunchAnimation
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: Backmen/Effects/droppod_falling.rsi
+    layers:
+    - state: supplypod_falling_animation
+      offset: "0,3.3"
+  - type: TimedSpawner
+    prototypes:
+      - SupplyDropPodBlueShieldHardsuit
+
+- type: entity
+  id: SupplyDropPodBlueShieldHardsuit
+  parent: SupplyPodBase
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: StorageFill
+    contents:
+        - id: ClothingOuterHardsuitBlueShield
+
+#syndi
+
+- type: entity
+  id: DropPodMarkerSyndicate
+  parent: DropPodMarker
+  suffix: Empty, syndicate
+  components:
+  - type: TimedSpawner
+    prototypes:
+      -  DropPodLaunchAnimationSyndicate
+
+- type: entity
+  id: DropPodLaunchAnimationSyndicate
+  parent: DropPodLaunchAnimation
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: Backmen/Effects/droppod_falling.rsi
+    layers:
+    - state: syndiepod_falling_animation
+      offset: "0,3.3"
+  - type: TimedSpawner
+    prototypes:
+      - SyndicateDropPod
+
+- type: entity
+  id: SyndicateDropPod
+  parent: SupplyPodBase
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: Backmen/Structures/Storage/supplypod.rsi
+    layers:
+    - state: syndiepod
+      map: ["enum.StorageVisualLayers.Base"]
+    - state: syndiepod_door
+      map: ["enum.StorageVisualLayers.Door"]
+  - type: EntityStorageVisuals
+    stateBaseClosed: syndiepod
+    stateDoorOpen: syndiepod_open
+    stateDoorClosed: syndiepod_door
+
+- type: entity
+  id: DropPodMarkerSyndicateJuggernaut
+  parent: DropPodMarker
+  suffix: Juggernaut, syndicate
+  components:
+  - type: TimedSpawner
+    prototypes:
+      -  DropPodLaunchAnimationSyndicateJuggernaut
+
+- type: entity
+  id: DropPodLaunchAnimationSyndicateJuggernaut
+  parent: DropPodLaunchAnimation
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: Backmen/Effects/droppod_falling.rsi
+    layers:
+    - state: syndiepod_falling_animation
+      offset: "0,3.3"
+  - type: TimedSpawner
+    prototypes:
+      - SyndicateDropPodJuggernaut
+
+- type: entity
+  id: SyndicateDropPodJuggernaut
+  parent: SyndicateDropPod
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: StorageFill
+    contents:
+      - id: ClothingOuterHardsuitJuggernaut
+      - id: ClothingMaskGasSyndicate
+      - id: ClothingHandsGlovesCombat
+      - id: DoubleEmergencyOxygenTankFilled
+      - id: DoubleEmergencyNitrogenTankFilled
+
+- type: entity
+  id: DropPodMarkerSyndicateSurplusBundle
+  parent: DropPodMarker
+  suffix: Surplus Bundle, syndicate
+  components:
+  - type: TimedSpawner
+    prototypes:
+      -  DropPodLaunchAnimationSyndicateSurplusBundle
+
+- type: entity
+  id: DropPodLaunchAnimationSyndicateSurplusBundle
+  parent: DropPodLaunchAnimation
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: Backmen/Effects/droppod_falling.rsi
+    layers:
+    - state: syndiepod_falling_animation
+      offset: "0,3.3"
+  - type: TimedSpawner
+    prototypes:
+      - SyndicateDropPodSurplusBundle
+
+- type: entity
+  id: SyndicateDropPodSurplusBundle
+  parent: [ SyndicateDropPod, StorePresetUplink, BaseSyndicateContraband ]
+  categories: [ HideSpawnMenu ]
+  name: Syndicate surplus droppod
+  description: Contains 50 telecrystals worth of completely random Syndicate items. It can be useless junk or really good.
+  components:
+    - type: SurplusBundle
+      totalPrice: 50
+
+- type: entity
+  id: DropPodMarkerSyndicateSuperSurplusBundle
+  parent: DropPodMarker
+  suffix: super surplus bundle, syndicate
+  components:
+  - type: TimedSpawner
+    prototypes:
+      -  DropPodLaunchAnimationSyndicateSuperSurplusBundle
+
+- type: entity
+  id: DropPodLaunchAnimationSyndicateSuperSurplusBundle
+  parent: DropPodLaunchAnimation
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: Backmen/Effects/droppod_falling.rsi
+    layers:
+    - state: syndiepod_falling_animation
+      offset: "0,3.3"
+  - type: TimedSpawner
+    prototypes:
+      - SyndicateDropPodSuperSurplusBundle
+
+- type: entity
+  id: SyndicateDropPodSuperSurplusBundle
+  parent: [ SyndicateDropPod, StorePresetUplink, BaseSyndicateContraband ]
+  categories: [ HideSpawnMenu ]
+  name: Syndicate super surplus droppod
+  description: Contains 125 telecrystals worth of completely random Syndicate items.
+  components:
+    - type: SurplusBundle
+      totalPrice: 125
+
+#syndi reinforcement
+
+- type: entity
+  id: DropPodMarkerReinforcementSyndicate
+  parent: DropPodMarker
+  suffix: Reinforcement, syndicate
+  components:
+  - type: TimedSpawner
+    prototypes:
+      -  DropPodLaunchAnimationReinforcementSyndicate
+
+- type: entity
+  id: DropPodLaunchAnimationReinforcementSyndicate
+  parent: DropPodLaunchAnimation
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: Backmen/Effects/droppod_falling.rsi
+    layers:
+    - state: syndiepod_falling_animation
+      offset: "0,3.3"
+  - type: TimedSpawner
+    prototypes:
+      - SyndicateDropPodReinforcementSyndicate
+
+- type: entity
+  id: SyndicateDropPodReinforcementSyndicate
+  parent: MissileBase
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: Backmen/Structures/Storage/supplypod.rsi
+    layers:
+    - state: syndiepod
+  - type: ConditionalSpawner
+    prototypes:
+    - ReinforcementDroppodSyndicate
+
+- type: entity
+  parent: ReinforcementRadioSyndicate
+  id: ReinforcementDroppodSyndicate
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Physics
+    bodyType: Static
+    canCollide: False
+  - type: Sprite
+    sprite: Backmen/Structures/Storage/supplypod.rsi
+    layers:
+    - state: syndiepod_door
+      drawdepth: BlastDoors
+
+- type: entity
+  id: DropPodMarkerReinforcementSyndicateNukeops
+  parent: DropPodMarker
+  suffix: Reinforcement Nukeops, syndicate
+  components:
+  - type: TimedSpawner
+    prototypes:
+      -  DropPodLaunchAnimationReinforcementSyndicateNukeops
+
+- type: entity
+  id: DropPodLaunchAnimationReinforcementSyndicateNukeops
+  parent: DropPodLaunchAnimation
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: Backmen/Effects/droppod_falling.rsi
+    layers:
+    - state: syndiepod_falling_animation
+      offset: "0,3.3"
+  - type: TimedSpawner
+    prototypes:
+      - SyndicateDropPodReinforcementSyndicateNukeops
+
+- type: entity
+  id: SyndicateDropPodReinforcementSyndicateNukeops
+  parent: MissileBase
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: Backmen/Structures/Storage/supplypod.rsi
+    layers:
+    - state: syndiepod
+  - type: ConditionalSpawner
+    prototypes:
+    - ReinforcementDroppodSyndicateNukeops
+
+- type: entity
+  parent: ReinforcementRadioSyndicateNukeops
+  id: ReinforcementDroppodSyndicateNukeops
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Physics
+    bodyType: Static
+    canCollide: False
+  - type: Sprite
+    sprite: Backmen/Structures/Storage/supplypod.rsi
+    layers:
+    - state: syndiepod_door
+      drawdepth: BlastDoors
+
+- type: entity
+  id: DropPodMarkerReinforcementSyndicateAncestor
+  parent: DropPodMarker
+  suffix: Reinforcement Ancestor, syndicate
+  components:
+  - type: TimedSpawner
+    prototypes:
+      -  DropPodLaunchAnimationReinforcementSyndicateAncestor
+
+- type: entity
+  id: DropPodLaunchAnimationReinforcementSyndicateAncestor
+  parent: DropPodLaunchAnimation
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: Backmen/Effects/droppod_falling.rsi
+    layers:
+    - state: syndiepod_falling_animation
+      offset: "0,3.3"
+  - type: TimedSpawner
+    prototypes:
+      - SyndicateDropPodReinforcementSyndicateAncestor
+
+- type: entity
+  id: SyndicateDropPodReinforcementSyndicateAncestor
+  parent: MissileBase
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: Backmen/Structures/Storage/supplypod.rsi
+    layers:
+    - state: syndiepod
+  - type: ConditionalSpawner
+    prototypes:
+    - ReinforcementDroppodSyndicateAncestor
+
+- type: entity
+  parent: ReinforcementRadioSyndicateAncestor
+  id: ReinforcementDroppodSyndicateAncestor
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Physics
+    bodyType: Static
+    canCollide: False
+  - type: Sprite
+    sprite: Backmen/Structures/Storage/supplypod.rsi
+    layers:
+    - state: syndiepod_door
+      drawdepth: BlastDoors
+
+- type: entity
+  id: DropPodMarkerReinforcementSyndicateAncestorNukeops
+  parent: DropPodMarker
+  suffix: Reinforcement Ancestor Nukeops, syndicate
+  components:
+  - type: TimedSpawner
+    prototypes:
+      -  DropPodLaunchAnimationReinforcementSyndicateAncestorNukeops
+
+- type: entity
+  id: DropPodLaunchAnimationReinforcementSyndicateAncestorNukeops
+  parent: DropPodLaunchAnimation
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: Backmen/Effects/droppod_falling.rsi
+    layers:
+    - state: syndiepod_falling_animation
+      offset: "0,3.3"
+  - type: TimedSpawner
+    prototypes:
+      - SyndicateDropPodReinforcementSyndicateAncestorNukeops
+
+- type: entity
+  id: SyndicateDropPodReinforcementSyndicateAncestorNukeops
+  parent: MissileBase
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: Backmen/Structures/Storage/supplypod.rsi
+    layers:
+    - state: syndiepod
+  - type: ConditionalSpawner
+    prototypes:
+    - ReinforcementDroppodSyndicateAncestorNukeops
+
+- type: entity
+  parent: ReinforcementRadioSyndicateAncestorNukeops
+  id: ReinforcementDroppodSyndicateAncestorNukeops
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Physics
+    bodyType: Static
+    canCollide: False
+  - type: Sprite
+    sprite: Backmen/Structures/Storage/supplypod.rsi
+    layers:
+    - state: syndiepod_door
+      drawdepth: BlastDoors
+
+- type: entity
+  id: DropPodMarkerReinforcementSyndicateCyborgAssault
+  parent: DropPodMarker
+  suffix: Reinforcement Cyborg Assault, syndicate
+  components:
+  - type: TimedSpawner
+    prototypes:
+      -  DropPodLaunchAnimationReinforcementSyndicateCyborgAssault
+
+- type: entity
+  id: DropPodLaunchAnimationReinforcementSyndicateCyborgAssault
+  parent: DropPodLaunchAnimation
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: Backmen/Effects/droppod_falling.rsi
+    layers:
+    - state: syndiepod_falling_animation
+      offset: "0,3.3"
+  - type: TimedSpawner
+    prototypes:
+      - SyndicateDropPodReinforcementSyndicateCyborgAssault
+
+- type: entity
+  id: SyndicateDropPodReinforcementSyndicateCyborgAssault
+  parent: MissileBase
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: Backmen/Structures/Storage/supplypod.rsi
+    layers:
+    - state: syndiepod
+  - type: ConditionalSpawner
+    prototypes:
+    - ReinforcementDroppodSyndicateCyborgAssault
+
+- type: entity
+  parent: ReinforcementRadioSyndicateCyborgAssault
+  id: ReinforcementDroppodSyndicateCyborgAssault
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Physics
+    bodyType: Static
+    canCollide: False
+  - type: Sprite
+    sprite: Backmen/Structures/Storage/supplypod.rsi
+    layers:
+    - state: syndiepod_door
+      drawdepth: BlastDoors
+
+#missiles
+
+- type: entity
+  id: MissileDrop
+  parent: MissileBase
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: Backmen/Structures/Storage/supplypod.rsi
+    layers:
+    - state: missilepod
+    - state: missilepod_door
+  - type: Timer
+  - type: SpawnOnDespawn
+    prototype: ExplosionInstant
+  - type: TimedDespawn
+    lifetime: 1
+
+- type: entity
+  id: MissileDropUnexploded
+  parent: MissileBase
+  categories: [ HideSpawnMenu ]
+  name: неразорвавшийся снаряд
+  description: Очень опасная штука, может взорваться в любой момент, я бы не стал к ней подходить...
+  components:
+  - type: Sprite
+    sprite: Backmen/Structures/Storage/supplypod.rsi
+    layers:
+    - state: missilepod
+    - state: missilepod_door
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 150
+      behaviors:
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalBreak
+          params:
+            volume: -6
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          ExplosionInstant:
+            min: 1
+            max: 1
+
+- type: entity
+  id: MissileDropMarker
+  parent: DropPodMarker
+  suffix: Missile
+  components:
+  - type: TimedSpawner
+    prototypes:
+      -  MissileDropLaunchAnimation
+
+- type: entity
+  id: MissileDropLaunchAnimation
+  parent: DropPodLaunchAnimation
+  name: missile
+  description: A standard-issue Nanotrasen intercontinental missile.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: Backmen/Effects/droppod_falling.rsi
+    layers:
+    - state: missile_falling_animation
+      offset: "0,3.3"
+  - type: TimedSpawner
+    prototypes:
+      - MissileDropRandomSpawner
+    intervalSeconds: 2
+
+- type: entity
+  id: MissileDropRandomSpawner
+  parent: DropPodLaunchAnimation
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: RandomSpawner
+    prototypes:
+      - MissileDrop
+    chance: 1
+    rarePrototypes:
+      - MissileDropUnexploded
+    rareChance: 0.2
+
+- type: entity
+  name: арт-обстрел
+  id: MissileDropSpawnerAreaSpawner
+  parent: DropPodMarkerBase
+  components:
+  - type: TimedSpawner
+    prototypes:
+      - MissileDropRandomSpawnerArea
+    intervalSeconds: 1
+  - type: Timer
+  - type: TimedDespawn
+    lifetime: 10
+
+- type: entity
+  id: MissileDropRandomSpawnerArea
+  parent: DropPodMarkerBase
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: RandomSpawner
+    offset: 10
+    prototypes:
+      - MissileDropMarker
+    chance: 1
+  - type: TimedDespawn
+    lifetime: 1

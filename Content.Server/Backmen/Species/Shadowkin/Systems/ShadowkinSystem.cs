@@ -12,6 +12,8 @@ using Content.Shared.Physics;
 using Content.Shared.Backmen.Species.Shadowkin.Components;
 using Content.Shared.Backmen.Species.Shadowkin.Events;
 using Content.Shared.Humanoid;
+using Content.Shared.Mind.Components;
+using Content.Shared.Mobs.Components;
 using Robust.Server.Player;
 using Robust.Shared.Map;
 using Robust.Shared.Player;
@@ -27,7 +29,11 @@ public sealed class ShadowkinSystem : EntitySystem
     [Dependency] private readonly MobStateSystem _mobState = default!;
     [Dependency] private readonly MindSystem _mindSystem = default!;
     [Dependency] private readonly ShadowkinBlackeyeSystem _shadowkinBlackeyeSystem = default!;
-    [Dependency] private readonly IServerPreferencesManager _prefs = default!;
+
+
+    private EntityQuery<HandcuffComponent> _activeHandcuff;
+    private EntityQuery<SleepingComponent> _activeSleeping;
+
 
 
     public override void Initialize()
@@ -38,6 +44,9 @@ public sealed class ShadowkinSystem : EntitySystem
         SubscribeLocalEvent<ShadowkinComponent, ComponentInit>(OnInit);
         SubscribeLocalEvent<ShadowkinComponent, ComponentShutdown>(OnShutdown);
         SubscribeLocalEvent<ShadowkinComponent, PlayerAttachedEvent>(OnMapInit, after: new[]{ typeof(SharedHumanoidAppearanceSystem) });
+
+        _activeHandcuff = GetEntityQuery<HandcuffComponent>();
+        _activeSleeping = GetEntityQuery<SleepingComponent>();
     }
 
     private void OnMapInit(Entity<ShadowkinComponent> ent, ref PlayerAttachedEvent args)
@@ -105,21 +114,21 @@ public sealed class ShadowkinSystem : EntitySystem
     {
         base.Update(frameTime);
 
-        var query = EntityQueryEnumerator<ShadowkinComponent>();
+        var query = EntityQueryEnumerator<ShadowkinComponent, MobStateComponent, MindContainerComponent>();
 
         // Update power level for all shadowkin
-        while (query.MoveNext(out var uid, out var shadowkin))
+        while (query.MoveNext(out var uid, out var shadowkin, out var mobstate, out var mindContainerComponent))
         {
             // Ensure dead or critical shadowkin aren't swapped, skip them
-            if (_mobState.IsDead(uid) ||
-                _mobState.IsCritical(uid))
+            if (_mobState.IsDead(uid, mobstate) ||
+                _mobState.IsCritical(uid, mobstate))
             {
                 RemComp<ShadowkinDarkSwappedComponent>(uid);
                 continue;
             }
 
             // Don't update things for ssd shadowkin
-            if (!_mindSystem.TryGetMind(uid, out var mindId, out var mind) ||
+            if (!_mindSystem.TryGetMind(uid, out var mindId, out var mind, mindContainerComponent) ||
                 mind.Session == null)
                 continue;
 
@@ -138,7 +147,7 @@ public sealed class ShadowkinSystem : EntitySystem
 
             // Don't randomly activate abilities if handcuffed
             // TODO: Something like the Psionic Headcage to disable powers for Shadowkin
-            if (HasComp<HandcuffComponent>(uid))
+            if (_activeHandcuff.HasComponent(uid))
                 continue;
 
             #region MaxPower
@@ -185,7 +194,7 @@ public sealed class ShadowkinSystem : EntitySystem
                     ShadowkinComponent.PowerThresholds[ShadowkinPowerThreshold.Okay]
                 ) / 2f &&
                 // Don't sleep if asleep
-                !HasComp<SleepingComponent>(uid)
+                !_activeSleeping.HasComponent(uid)
             )
             {
                 // If so, start the timer
@@ -239,9 +248,13 @@ public sealed class ShadowkinSystem : EntitySystem
 
             target = coords.Offset(offset);
 
-            if (_interaction.InRangeUnobstructed(uid, target.Value, 0,
-                    CollisionGroup.MobMask | CollisionGroup.MobLayer))
+            if (!_interaction.InRangeUnobstructed(uid,
+                    target.Value,
+                    0,
+                    CollisionGroup.WallLayer))
+            {
                 break;
+            }
 
             target = null;
         }

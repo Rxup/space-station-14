@@ -1,12 +1,12 @@
 ent-CrystalGreen = кристалл
-    .desc = Блестящий зеленый кристалл.
+    .desc = Блестящий зелёный кристалл.
     .suffix = Зелёный
 ent-CrystalPink = { ent-CrystalGreen }
     .desc = { ent-CrystalGreen.desc }
     .suffix = Розовый
 ent-CrystalGrey = { ent-CrystalGreen }
     .desc = { ent-CrystalGreen.desc }
-    .suffix = Красный
+    .suffix = Серый
 ent-CrystalOrange = { ent-CrystalGreen }
     .desc = { ent-CrystalGreen.desc }
     .suffix = Оранжевый

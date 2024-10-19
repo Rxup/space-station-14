@@ -1,58 +1,42 @@
-using System.Linq;
-using Content.Server.Administration.Managers;
 using Content.Shared.StatusEffect;
-using Content.Shared.Mobs;
-using Content.Shared.Weapons.Melee.Events;
-using Content.Shared.Damage.Events;
-using Content.Shared.IdentityManagement;
 using Content.Shared.Backmen.CCVar;
 using Content.Server.Backmen.Abilities.Psionics;
-using Content.Server.Chat.Systems;
 using Content.Server.Electrocution;
-using Content.Server.NPC.Components;
-using Content.Server.NPC.Systems;
-using Content.Shared.Administration;
 using Content.Shared.Backmen.Abilities.Psionics;
+using Content.Shared.Backmen.Psionics;
+using Content.Shared.Backmen.Psionics.Components;
 using Content.Shared.Backmen.Psionics.Glimmer;
-using Content.Shared.Database;
-using Content.Shared.Verbs;
-using Robust.Shared.Audio;
-using Robust.Shared.Audio.Systems;
-using Robust.Shared.Player;
+using Content.Shared.NPC.Components;
+using Content.Shared.NPC.Prototypes;
+using Content.Shared.NPC.Systems;
 using Robust.Shared.Configuration;
 using Robust.Shared.Random;
-using Robust.Shared.Utility;
 
 namespace Content.Server.Backmen.Psionics;
 
-public sealed class PsionicsSystem : EntitySystem
+public sealed class PsionicsSystem : SharedPsionicsSystem
 {
     [Dependency] private readonly IRobustRandom _random = default!;
     [Dependency] private readonly PsionicAbilitiesSystem _psionicAbilitiesSystem = default!;
-    [Dependency] private readonly StatusEffectsSystem _statusEffects = default!;
-    [Dependency] private readonly ElectrocutionSystem _electrocutionSystem = default!;
     [Dependency] private readonly MindSwapPowerSystem _mindSwapPowerSystem = default!;
     [Dependency] private readonly GlimmerSystem _glimmerSystem = default!;
-    [Dependency] private readonly ChatSystem _chat = default!;
     [Dependency] private readonly NpcFactionSystem _npcFactonSystem = default!;
     [Dependency] private readonly IConfigurationManager _cfg = default!;
-    [Dependency] private readonly IAdminManager _adminManager = default!;
-    [Dependency] private readonly SharedAudioSystem _audio = default!;
+
 
     /// <summary>
     /// Unfortunately, since spawning as a normal role and anything else is so different,
     /// this is the only way to unify them, for now at least.
     /// </summary>
-    Queue<(PotentialPsionicComponent component, EntityUid uid)> _rollers = new();
+    Queue<Entity<PotentialPsionicComponent>> _rollers = new();
 
     public override void Update(float frameTime)
     {
         base.Update(frameTime);
         foreach (var roller in _rollers)
         {
-            RollPsionics(roller.uid, roller.component, false);
+            RollPsionics(roller, false);
         }
-
         _rollers.Clear();
     }
 
@@ -60,104 +44,56 @@ public sealed class PsionicsSystem : EntitySystem
     {
         base.Initialize();
         SubscribeLocalEvent<PotentialPsionicComponent, MapInitEvent>(OnStartup);
-        SubscribeLocalEvent<AntiPsionicWeaponComponent, MeleeHitEvent>(OnMeleeHit);
-        SubscribeLocalEvent<AntiPsionicWeaponComponent, StaminaMeleeHitEvent>(OnStamHit);
 
-        SubscribeLocalEvent<PotentialPsionicComponent, MobStateChangedEvent>(OnDeathGasp);
+        //SubscribeLocalEvent<PotentialPsionicComponent, MobStateChangedEvent>(OnDeathGasp);
 
         SubscribeLocalEvent<PsionicComponent, ComponentInit>(OnInit);
         SubscribeLocalEvent<PsionicComponent, ComponentRemove>(OnRemove);
 
-        SubscribeLocalEvent<GetVerbsEvent<Verb>>(GetVerbs);
+
+
+
+        _mindSwapped = GetEntityQuery<MindSwappedComponent>();
     }
 
-    private void GetVerbs(GetVerbsEvent<Verb> args)
+    protected override void RemovePsionics(Entity<PotentialPsionicComponent?> ent)
     {
-        if (!TryComp<ActorComponent>(args.User, out var actor))
+        if (!PotentialPsionicQuery.Resolve(ent, ref ent.Comp, false))
             return;
 
-        var player = actor.PlayerSession;
-
-        if (!_adminManager.HasAdminFlag(player, AdminFlags.Fun))
-            return;
-
-        if (!HasComp<PotentialPsionicComponent>(args.Target))
-            return;
-
-        if (HasComp<PsionicComponent>(args.Target))
-        {
-            Verb verb = new();
-            verb.Text = Loc.GetString("prayer-verbs-remove-psi");
-            verb.Message = "Снять псионика";
-            verb.Category = VerbCategory.Smite;
-            verb.Icon = new SpriteSpecifier.Texture(new("/Textures/Backmen/Interface/VerbIcons/psionic_regeneration.png"));
-            verb.Act = () =>
-            {
-                _psionicAbilitiesSystem.RemovePsionics(args.Target, true);
-                if (TryComp<PotentialPsionicComponent>(args.Target, out var component))
-                {
-                    _rollers.Enqueue((component, args.Target));
-                }
-            };
-            verb.Impact = LogImpact.High;
-            args.Verbs.Add(verb);
-        }
-        else
-        {
-            Verb verb = new();
-            verb.Text = Loc.GetString("prayer-verbs-psi");
-            verb.Message = "Сделать псионика";
-            verb.Category = VerbCategory.Tricks;
-            verb.Icon = new SpriteSpecifier.Texture(new("/Textures/Backmen/Interface/VerbIcons/psionic_regeneration.png"));
-            verb.Act = () =>
-            {
-                _psionicAbilitiesSystem.AddPsionics(args.Target, false);
-            };
-            verb.Impact = LogImpact.High;
-            args.Verbs.Add(verb);
-        }
-
+        _psionicAbilitiesSystem.RemovePsionics(ent, true);
+        _rollers.Enqueue(ent!);
     }
 
-
-    private void OnStartup(EntityUid uid, PotentialPsionicComponent component, MapInitEvent args)
+    protected override void AddPsionics(Entity<PotentialPsionicComponent?> ent)
     {
-        if (HasComp<PsionicComponent>(uid))
+        if (!PotentialPsionicQuery.Resolve(ent, ref ent.Comp, false))
             return;
 
-        _rollers.Enqueue((component, uid));
+        _psionicAbilitiesSystem.AddPsionics(ent, false);
     }
 
-    [ValidatePrototypeId<StatusEffectPrototype>]
-    private const string PsionicsDisabled = "PsionicsDisabled";
-
-
-    private static readonly SoundPathSpecifier Lightburn = new("/Audio/Effects/lightburn.ogg");
-
-    private void OnMeleeHit(EntityUid uid, AntiPsionicWeaponComponent component, MeleeHitEvent args)
+    protected override bool UndoMindSwap(EntityUid entity)
     {
-        foreach (var entity in args.HitEntities)
-        {
-            if (HasComp<PsionicComponent>(entity))
-            {
-                _audio.PlayPvs(Lightburn,entity);
-                args.ModifiersList.Add(component.Modifiers);
-                if (_random.Prob(component.DisableChance))
-                    _statusEffects.TryAddStatusEffect<PsionicsDisabledComponent>(entity, PsionicsDisabled, TimeSpan.FromSeconds(10), true);
-            }
+        if (!_mindSwapped.TryComp(entity, out var swapped))
+            return false;
 
-            if (TryComp<MindSwappedComponent>(entity, out var swapped))
-            {
-                _mindSwapPowerSystem.Swap(entity, swapped.OriginalEntity, true);
-                return;
-            }
-
-            if (component.Punish && HasComp<PotentialPsionicComponent>(entity) && !HasComp<PsionicComponent>(entity) &&
-                _random.Prob(0.5f))
-                _electrocutionSystem.TryDoElectrocution(args.User, null, 20, TimeSpan.FromSeconds(5), false);
-        }
+        _mindSwapPowerSystem.Swap(entity, swapped.OriginalEntity, true);
+        return true;
     }
 
+
+    private void OnStartup(Entity<PotentialPsionicComponent> ent, ref MapInitEvent args)
+    {
+        if (PsionicQuery.HasComp(ent))
+            return;
+
+        _rollers.Enqueue(ent);
+    }
+
+    private EntityQuery<MindSwappedComponent> _mindSwapped;
+
+/*
     private void OnDeathGasp(EntityUid uid, PotentialPsionicComponent component, MobStateChangedEvent args)
     {
         if (args.NewMobState != MobState.Dead)
@@ -180,7 +116,7 @@ public sealed class PsionicsSystem : EntitySystem
 
         _chat.TrySendInGameICMessage(uid, message, InGameICChatType.Emote, true, ignoreActionBlocker: true);
     }
-
+*/
     [ValidatePrototypeId<NpcFactionPrototype>]
     private const string FactionGlimmerMonster = "GlimmerMonster";
 
@@ -195,10 +131,12 @@ public sealed class PsionicsSystem : EntitySystem
         if (!TryComp<NpcFactionMemberComponent>(uid, out var factions))
             return;
 
-        if (_npcFactonSystem.ContainsFaction(uid, FactionGlimmerMonster, factions))
+        Entity<NpcFactionMemberComponent?> ent = (uid,factions);
+
+        if (_npcFactonSystem.IsMember(ent, FactionGlimmerMonster))
             return;
 
-        _npcFactonSystem.AddFaction(uid, FactionPsionic);
+        _npcFactonSystem.AddFaction(ent, FactionPsionic);
     }
 
     private void OnRemove(EntityUid uid, PsionicComponent component, ComponentRemove args)
@@ -206,28 +144,18 @@ public sealed class PsionicsSystem : EntitySystem
         _npcFactonSystem.RemoveFaction(uid, FactionPsionic);
     }
 
-    private void OnStamHit(EntityUid uid, AntiPsionicWeaponComponent component, StaminaMeleeHitEvent args)
-    {
-        var bonus = args.HitList.Any(z=>HasComp<PsionicComponent>(z.Entity));
-
-        if (!bonus)
-            return;
-
-        args.FlatModifier += component.PsychicStaminaDamage;
-    }
-
-    public void RollPsionics(EntityUid uid, PotentialPsionicComponent component, bool applyGlimmer = true,
+    public void RollPsionics(Entity<PotentialPsionicComponent> ent, bool applyGlimmer = true,
         float multiplier = 1f)
     {
-        if (HasComp<PsionicComponent>(uid))
+        if (HasComp<PsionicComponent>(ent))
             return;
 
         if (!_cfg.GetCVar(CCVars.PsionicRollsEnabled))
             return;
 
-        var chance = component.Chance;
+        var chance = ent.Comp.Chance;
         var warn = true;
-        if (TryComp<PsionicBonusChanceComponent>(uid, out var bonus))
+        if (TryComp<PsionicBonusChanceComponent>(ent, out var bonus))
         {
             chance += bonus.FlatBonus;
             chance *= bonus.Multiplier;
@@ -242,18 +170,19 @@ public sealed class PsionicsSystem : EntitySystem
         chance = Math.Clamp(chance, 0, 1);
 
         if (_random.Prob(chance))
-            _psionicAbilitiesSystem.AddPsionics(uid, warn);
+            _psionicAbilitiesSystem.AddPsionics(ent, warn);
     }
 
-    public void RerollPsionics(EntityUid uid, PotentialPsionicComponent? psionic = null, float bonusMuliplier = 1f)
+    public void RerollPsionics(Entity<PotentialPsionicComponent?> ent, float bonusMuliplier = 1f)
     {
-        if (!Resolve(uid, ref psionic, false))
+        if (!Resolve(ent, ref ent.Comp, false))
             return;
 
-        if (psionic.Rerolled)
+        if (ent.Comp.Rerolled)
             return;
 
-        RollPsionics(uid, psionic, multiplier: bonusMuliplier);
-        psionic.Rerolled = true;
+        RollPsionics(ent!, multiplier: bonusMuliplier);
+        ent.Comp.Rerolled = true;
+        Dirty(ent);
     }
 }
