@@ -142,9 +142,11 @@
     - type: StorageFill
       contents:
         - id: PinpointerNuclear
-        - id: WeaponPulseRifle
-        - id: SpeedLoaderMagnum
-          amount: 2
+        - id: WeaponPulseRifleSpetnaz
+        - id: PulseMag
+          amount: 4
+        - id: SpeedLoaderMagnumAP
+          amount: 4
         - id: PaperManualCodes
         - id: C4
           amount: 4
