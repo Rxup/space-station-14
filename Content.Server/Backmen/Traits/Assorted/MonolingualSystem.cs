@@ -10,10 +10,24 @@ public sealed class MonolingualSystem : EntitySystem
     public override void Initialize()
     {
         SubscribeLocalEvent<MonolingualComponent, ComponentInit>(OnInit);
+        SubscribeLocalEvent<MonolingualComponent, ComponentRemove>(OnRemove);
+
+        SubscribeLocalEvent<MonolingualComponent, DetermineEntityLanguagesEvent>(OnLanguageApply);
     }
 
     private void OnInit(EntityUid uid, MonolingualComponent component, ComponentInit args)
     {
-        _language.RemoveLanguage(uid, "TauCetiBasic");
+        _language.UpdateEntityLanguages(uid);
+    }
+
+    private void OnRemove(EntityUid uid, MonolingualComponent component, ComponentRemove args)
+	{	
+        _language.UpdateEntityLanguages(uid);
+    }
+
+    private void OnLanguageApply(EntityUid uid, MonolingualComponent component, DetermineEntityLanguagesEvent ev)
+    {
+        ev.SpokenLanguages.Remove("TauCetiBasic");
+        ev.UnderstoodLanguages.Remove("TauCetiBasic");
     }
 }
