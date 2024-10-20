@@ -4,7 +4,7 @@
   equipment:
     jumpsuit: ClothingUniformJumpsuitERTLeader
     back: ClothingBackpackERTLeaderFilledV2_1
-    shoes: ClothingShoesBootsNedoSpetsnaz
+    shoes: ClothingShoesBootsMagERT
     mask: ClothingMaskGasERTV2_1
     eyes: ClothingEyesGlassesSunglasses
     gloves: ClothingHandsGlovesSpetsnazcombat
@@ -23,7 +23,7 @@
   equipment:
     jumpsuit: ClothingUniformJumpsuitERTEngineer
     back: ClothingBackpackERTEngineerFilledV2_1
-    shoes: ClothingShoesBootsMagAdv
+    shoes: ClothingShoesBootsMagSpecialForce
     mask: ClothingMaskGasERTV2_1
     eyes: ClothingEyesGlassesMeson
     gloves: ClothingHandsGlovesColorYellow
@@ -39,7 +39,7 @@
   equipment:
     jumpsuit: ClothingUniformJumpsuitERTSecurity
     back: ClothingBackpackERTSecurityFilledV2_1
-    shoes: ClothingShoesBootsNedoSpetsnaz
+    shoes: ClothingShoesBootsMagERT
     mask: ClothingMaskGasERTV2_1
     eyes: ClothingEyesGlassesSecurity
     gloves: ClothingHandsGlovesCombat
@@ -56,7 +56,7 @@
   equipment:
     jumpsuit: ClothingUniformJumpsuitERTMedic
     back: ClothingBackpackERTMedicalFilledV2_1
-    shoes: ClothingShoesBootsNedoSpetsnaz
+    shoes: ClothingShoesBootsMagERT
     mask: ClothingMaskGasERTV2_1
     eyes: ClothingEyesHudMedical
     gloves: ClothingHandsGlovesCombat
@@ -73,7 +73,7 @@
   equipment:
     jumpsuit: ClothingUniformJumpsuitERTJanitor
     back: ClothingBackpackERTJanitorFilledV2_1
-    shoes: ClothingShoesBootsSpetsnaz
+    shoes: ClothingShoesBootsMagERT
     mask: ClothingMaskGasERTV2_1
     gloves: ClothingHandsGlovesCombat
     outerClothing: ClothingOuterHardsuitERTJanitor

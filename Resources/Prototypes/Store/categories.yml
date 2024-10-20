@@ -103,7 +103,7 @@
 - type: storeCategory
   id: FleshCultistAbilities
   name: store-category-abilities
-  
+
 - type: storeCategory
   id: DiscountedItems
   name: store-discounted-items

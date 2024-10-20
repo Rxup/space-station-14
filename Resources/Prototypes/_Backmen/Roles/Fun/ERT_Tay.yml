@@ -3,7 +3,7 @@
   equipment:
     jumpsuit: ClothingUniformJumpsuitERTMedic
     back: ClothingBackpackERTLeaderTay39
-    shoes: ClothingShoesBootsNedoSpetsnaz
+    shoes: ClothingShoesBootsMagArmy
     mask: ClothingMaskGasERTV2_1
     eyes: ClothingEyesHudMedical
     gloves: ClothingHandsGlovesSpetsnazcombat
@@ -19,7 +19,7 @@
   equipment:
     jumpsuit: ClothingUniformJumpsuitERTMedic
     back: ClothingBackpackERTMedicTay39
-    shoes: ClothingShoesBootsNedoSpetsnaz
+    shoes: ClothingShoesBootsMagArmy
     mask: ClothingMaskGasERTV2_1
     eyes: ClothingEyesHudMedical
     gloves: ClothingHandsGlovesSpetsnazcombat
@@ -35,7 +35,7 @@
   equipment:
     jumpsuit: ClothingUniformJumpsuitERTMedic
     back: ClothingBackpackERTSecurityTay39
-    shoes: ClothingShoesBootsNedoSpetsnaz
+    shoes: ClothingShoesBootsMagArmy
     mask: ClothingMaskGasERTV2_1
     eyes: ClothingEyesHudMedical
     gloves: ClothingHandsGlovesSpetsnazcombat
