@@ -21,7 +21,7 @@
     description: Элитный солдат отряда Omega - 0, напичканые импланты и курсы космического спецназа сделали из него бесчувственную машину.
     rules: Выполняйте различные приказы, ваша задача будет варьироваться от задач центрального командования.
     raffle:
-      settings: default
+      settings: short
     requirements:
       - !type:DepartmentTimeRequirement
         department: Security
@@ -56,7 +56,7 @@
     description: Элитный коммандер отряда Omega - 0, напичканые импланты и курсы космического спецназа сделали из него бесчувственную машину с тактическим интеллектом.
     rules: Выполняйте различные приказы, ваша задача будет варьироваться от задач центрального командования.
     raffle:
-      settings: default
+      settings: short
     requirements:
       - !type:DepartmentTimeRequirement
         department: Security

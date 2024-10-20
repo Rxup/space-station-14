@@ -83,9 +83,6 @@
     belt: ClothingBeltGeneralG6FilledSpetsnaz
     pocket1: EnergySwordDedSad
     pocket2: WeaponRevolverMatebaNew
-  storage:
-    belt:
-    - RadioMTFHandheld
 
 - type: startingGear
   id: SpecialForceAgentGearFull
