@@ -344,7 +344,7 @@
       color: "#f7d61a"
   - type: GuideHelp
     guides:
-    - SpaceLaw
+    - CorporateLaw # Corvax-MRP
 
 - type: entity
   parent: BookBase

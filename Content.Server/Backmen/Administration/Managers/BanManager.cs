@@ -80,11 +80,6 @@ public sealed partial class BanManager
             ("reason", reason),
             ("length", length)));
 
-        if (target != null)
-        {
-            SendRoleBans(target.Value);
-        }
-
         var prefs = _prefs.GetPreferences(target!.Value);
         foreach (var (index, profile) in prefs.Characters)
         {
@@ -93,6 +88,8 @@ public sealed partial class BanManager
             await _prefs.SetProfile(target!.Value, index, character);
             if (_playerManager.TryGetSessionById(target.Value, out var session))
                 _prefs.FinishLoad(session);
+            if (session != null)
+                SendRoleBans(session);
         }
     }
 }

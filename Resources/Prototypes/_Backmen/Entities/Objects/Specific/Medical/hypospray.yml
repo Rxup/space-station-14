@@ -56,18 +56,10 @@
       pen:
         maxVol: 80
         reagents:
-        - ReagentId: Omnizine
-          Quantity: 20
-        - ReagentId: Ichor
-          Quantity: 20
-        - ReagentId: Epinephrine
-          Quantity: 15
-        - ReagentId: THC
-          Quantity: 10
-        - ReagentId: TranexamicAcid
-          Quantity: 5
-        - ReagentId: DexalinPlus
-          Quantity: 10
+        - ReagentId: AntlionGrubCore
+          Quantity: 40
+        - ReagentId: Stimulants
+          Quantity: 40
   - type: Hypospray
     solutionName: pen
     transferAmount: 80

@@ -72,9 +72,14 @@
             #BKBPLAMED: [0, 3] # backmen-BPLAMED-Silicons
         - type: StationGoal
           goals:
+          - Singularity
           - SolarPanels
           - Artifacts
           - Bank
           - Zoo
           - MiningOutpost
           - Tesla
+          - SecurityTraining
+          - Theatre
+          - Botany
+          - Bunker

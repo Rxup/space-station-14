@@ -3,7 +3,7 @@
   equipment:
     jumpsuit: ClothingUniformJumpsuitSpetsnaz
     back: ClothingBackpackERTLeaderAlpha1
-    shoes: ClothingShoesBootsMagAdv
+    shoes: ClothingShoesBootsMagSpecialForce
     mask: ClothingMaskGasERTV2_1
     eyes: ClothingEyesGlassesSunglasses
     gloves: ClothingHandsGlovesSpetsnazcombat
@@ -23,7 +23,7 @@
   equipment:
     jumpsuit: ClothingUniformJumpsuitSpetsnaz
     back: ClothingBackpackERTOperativeAlpha1
-    shoes: ClothingShoesBootsMagAdv
+    shoes: ClothingShoesBootsMagSpecialForce
     mask: ClothingMaskGasERTV2_1
     eyes: ClothingEyesGlassesSunglasses
     gloves: ClothingHandsGlovesSpetsnazcombat
