@@ -160,6 +160,7 @@
     solution: puddle
   - type: DrawableSolution
     solution: puddle
+  - type: PuddleFootPrints
   - type: BadDrink
   - type: IgnoresFingerprints
   - type: Tag
