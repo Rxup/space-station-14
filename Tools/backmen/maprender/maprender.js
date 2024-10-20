@@ -18,7 +18,7 @@ port: 1212,
 console.log(`Запуск с аргументами: ${process.argv.join(', ')}`);
 
 // Получение аргументов
-const [,, apiUrl, apiKey] = process.argv;
+const [, , apiUrl, apiKey] = process.argv;
 
 console.log(`API URL: ${apiUrl}`);
 console.log(`API Key: ${apiKey}`);
@@ -30,8 +30,8 @@ if (!apiUrl || !apiKey) {
 
 process.chdir('../../../');
 
-function fixExtent(ext){
-    return {"A": {"X": ext.X1 || 0, "Y": ext.Y1 || 0}, "B": {"X": ext.X2 || 0, "Y": ext.Y2 || 0}};
+function fixExtent(ext) {
+    return { "A": { "X": ext.X1 || 0, "Y": ext.Y1 || 0 }, "B": { "X": ext.X2 || 0, "Y": ext.Y2 || 0 } };
 }
 
 // Функция для поиска всех .yml файлов по маске
@@ -86,15 +86,15 @@ async function uploadMapData(mapData, images, method = 'POST') {
 
     var files = {};
 
-    for(let grid of mapData.Grids){
+    for (let grid of mapData.Grids) {
         files[path.basename(grid.Url)] = grid.GridId;
-        grid.Path = "data/"+mapData.GitRef+"/grid_images/"+mapData.MapId+"/"+grid.GridId+".webp";
+        grid.Path = "data/" + mapData.GitRef + "/grid_images/" + mapData.MapId + "/" + grid.GridId + ".webp";
         grid.Id = uuidv4();
         grid.Tiled = true;
         grid.Extent = fixExtent(grid.Extent);
     }
-    for(let paralax of mapData.ParallaxLayers){
-        if(paralax.Source && paralax.Source.Extent){
+    for (let paralax of mapData.ParallaxLayers) {
+        if (paralax.Source && paralax.Source.Extent) {
             paralax.Source.Extent = fixExtent(paralax.Source.Extent);
         }
     }
@@ -103,12 +103,12 @@ async function uploadMapData(mapData, images, method = 'POST') {
     formData.append('map', JSON.stringify(mapData));
 
     console.log(`Загружаем карту: ${mapData.DisplayName} ${mapData.MapGuid}`);
-    if(method != "POST" && !mapData.MapGuid){
+    if (method != "POST" && !mapData.MapGuid) {
         throw new Error("Не указан Guid карты");
     }
     images.forEach((file) => {
         const fileName = path.basename(file);
-        formData.append('images', fs.createReadStream(file), files[fileName]+'.webp');
+        formData.append('images', fs.createReadStream(file), files[fileName] + '.webp');
     });
 
     try {
@@ -147,13 +147,23 @@ async function processMaps() {
 
         const mapExists = await checkIfMapExists(mapData.Id);
         const method = mapExists ? 'PUT' : 'POST';
-        if(mapExists){
+        if (mapExists) {
             console.log(mapExists);
             mapData.MapGuid = mapExists.mapGuid;
         }
 
         await uploadMapData(mapData, webpFiles.map(file => path.join(mapImageDir, dir, file)), method);
+        fs.rmdirSync(path.join(mapImageDir, dir));
     }
+}
+
+// Функция для разбиения массива на батчи (по 3 или 4 элемента)
+function chunkArray(array, chunkSize) {
+    let chunks = [];
+    for (let i = 0; i < array.length; i += chunkSize) {
+        chunks.push(array.slice(i, i + chunkSize));
+    }
+    return chunks;
 }
 
 // Выполняем основной процесс
@@ -161,14 +171,23 @@ async function processMaps() {
     console.log('Запуск основного процесса');
     try {
         // Автоматическое получение списка .yml файлов по маске
-        const files = getYamlFiles();
+        let files = getYamlFiles();
 
-        //console.log('Запуск runDotnet');
-        //const result = await runDotnet(files);
+        const fileBatches = chunkArray(files, 3);
 
-        //if (result.includes("It's now safe to manually exit the process")) {
-        await processMaps();
-        //}
+        console.log('Запуск обработки файлами батчами');
+        for (const batch of fileBatches) {
+            console.log(`Запуск runDotnet для батча: ${batch}`);
+            const result = await runDotnet(batch);
+
+
+            if (result.includes("It's now safe to manually exit the process")) {
+                await processMaps();
+            } else {
+                throw new Error("Что-то пошло не так");
+            }
+        }
+        // await processMaps();
     } catch (error) {
         console.error(error);
     }
