@@ -1,0 +1,15 @@
+- type: entity
+  id: ActionChemicalCapsule
+  name: Inject chemicats into bloodstream
+  description: Bring chemicats from small capsules in implant and injure it to bloodstream
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: InstantAction
+    checkCanInteract: false
+    itemIconStyle: BigAction
+    priority: -20
+    useDelay: 5
+    icon:
+      sprite: Objects/Specific/Chemistry/syringe.rsi
+      state: syringe_base0
+    event: !type:ActivateImplantEvent
