@@ -1,0 +1,63 @@
+- type: entity
+  name: handheld cameras monitor
+  parent: BaseHandheldComputer
+  id: HandHeldCameras
+  description: The ability to monitoring discreetly anywhere and anytime, just in your pocket.
+  components:
+  - type: Item
+    shape:
+    - 0,0,1,1
+  - type: Sprite
+    sprite: Backmen/Objects/Tools/handheld_camera_monitor.rsi
+    state: off
+    layers:
+      - state: off
+      - state: on
+        visible: true
+        map: [ "enum.PowerDeviceVisualLayers.Powered" ]
+  - type: Appearance
+  - type: GenericVisualizer
+    visuals:
+      enum.PowerCellSlotVisuals.Enabled:
+        enum.PowerDeviceVisualLayers.Powered:
+          True: { visible: true }
+          False: { visible: false }
+  - type: PowerCellDraw
+    drawRate: 3
+    useRate: 100
+  - type: ActivatableUIRequiresPowerCell
+  - type: ToggleCellDraw
+  - type: ActivatableUI
+    key: enum.SurveillanceCameraMonitorUiKey.Key
+    inHandsOnly: true
+  - type: UserInterface
+    interfaces:
+        enum.SurveillanceCameraMonitorUiKey.Key:
+          type: SurveillanceCameraMonitorBoundUserInterface
+  - type: StaticPrice
+    price: 150
+  - type: SurveillanceCameraMonitor
+  - type: DeviceNetwork
+    deviceNetId: Wired
+    receiveFrequencyId: SurveillanceCamera
+    transmitFrequencyId: SurveillanceCamera
+  - type: WiredNetworkConnection
+  
+- type: entity
+  id: HandHeldCamerasEmpty
+  parent: HandHeldCameras
+  suffix: Empty
+  components:
+  - type: ItemSlots
+    slots:
+      cell_slot:
+        name: power-cell-slot-component-slot-name-default
+  - type: Sprite
+    sprite: Backmen/Objects/Tools/handheld_camera_monitor.rsi
+    state: icon
+    layers:
+      - state: off
+      - state: on
+        shader: unshaded
+        visible: false
+        map: [ "enum.PowerDeviceVisualLayers.Powered" ]
