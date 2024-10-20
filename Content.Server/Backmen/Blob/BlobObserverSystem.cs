@@ -33,7 +33,6 @@ public sealed class BlobObserverSystem : SharedBlobObserverSystem
     [Dependency] private readonly BlobCoreSystem _blobCoreSystem = default!;
     [Dependency] private readonly SharedPopupSystem _popup = default!;
     [Dependency] private readonly SharedTransformSystem _transform = default!;
-    [Dependency] private readonly EntityLookupSystem _lookup = default!;
     [Dependency] private readonly ActionBlockerSystem _blocker = default!;
     [Dependency] private readonly UserInterfaceSystem _uiSystem = default!;
     [Dependency] private readonly MindSystem _mindSystem = default!;
@@ -275,27 +274,6 @@ public sealed class BlobObserverSystem : SharedBlobObserverSystem
     {
         base.Update(frameTime);
         _moveJobQueue.Process();
-    }
-
-    public (EntityUid? nearestEntityUid, float nearestDistance) CalculateNearestBlobTileDistance(EntityCoordinates position)
-    {
-        var nearestDistance = float.MaxValue;
-        EntityUid? nearestEntityUid = null;
-
-        foreach (var lookupUid in _lookup.GetEntitiesInRange(position, 5f))
-        {
-            if (!_tileQuery.HasComponent(lookupUid))
-                continue;
-            var tileCords = Transform(lookupUid).Coordinates;
-            var distance = Vector2.Distance(position.Position, tileCords.Position);
-
-            if (!(distance < nearestDistance))
-                continue;
-            nearestDistance = distance;
-            nearestEntityUid = lookupUid;
-        }
-
-        return (nearestEntityUid, nearestDistance);
     }
 
     private void OnSplitCore(EntityUid uid,

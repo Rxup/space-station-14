@@ -79,6 +79,7 @@ blob-swap-chem-action-name = Сменить химикат блоба (70)
 blob-swap-chem-action-desc = Позволяет вам сменить текущий химикат на один из 4 выбранных.
 blob-carrier-transform-to-blob-action-name = Превратиться в блоба
 blob-carrier-transform-to-blob-action-desc = Мгновенно разрывает ваше тело и создает ядро блоба. Учтите что если под вами не будет тайлов - вы исчезнете.
+blob-no-using-guns-popup = Большая палка?! БИТЬ!
 
 # Ghost role
 blob-carrier-role-name = Носитель блоба

@@ -22,11 +22,12 @@ public sealed partial class BlobObserverComponent : Component
     [ViewVariables]
     public bool IsProcessingMoveEvent;
 
+    //[AutoNetworkedField]
     [ViewVariables]
     public Entity<BlobCoreComponent>? Core = default!;
 
-    [ViewVariables]
-    public bool CanMove = true;
+    /*[ViewVariables]
+    public bool CanMove = true;*/
 
     [ViewVariables, AutoNetworkedField]
     public BlobChemType SelectedChemId = BlobChemType.ReactiveSpines;

@@ -15,7 +15,7 @@ public sealed class BlobObserverMover : Job<object>
     {
         _observerSystem = observerSystem;
         _transform = transform;
-        _blocker = blockerSystem;
+        //_blocker = blockerSystem;
         _entityManager = entityManager;
     }
 
@@ -23,7 +23,7 @@ public sealed class BlobObserverMover : Job<object>
     {
         _observerSystem = observerSystem;
         _transform = transform;
-        _blocker = blockerSystem;
+        //_blocker = blockerSystem;
         _entityManager = entityManager;
     }
     public EntityCoordinates NewPosition;
@@ -31,7 +31,7 @@ public sealed class BlobObserverMover : Job<object>
 
     private BlobObserverSystem _observerSystem;
     private SharedTransformSystem _transform;
-    private ActionBlockerSystem _blocker;
+    //private ActionBlockerSystem _blocker;
     private EntityManager _entityManager;
 
 
@@ -44,34 +44,45 @@ public sealed class BlobObserverMover : Job<object>
                 return default;
             }
 
-            if (_entityManager.Deleted(Observer.Comp.Core.Value) ||
-                !_entityManager.TryGetComponent<TransformComponent>(Observer.Comp.Core.Value, out var xform))
-            {
-                return default;
-            }
+            var newPos = _transform.ToMapCoordinates(NewPosition);
 
-            var corePos = xform.Coordinates;
-
-            var (nearestEntityUid, nearestDistance) = _observerSystem.CalculateNearestBlobTileDistance(NewPosition);
+            var (nearestEntityUid, nearestDistance) = _observerSystem.CalculateNearestBlobTileDistance(newPos);
 
             if (nearestEntityUid == null)
                 return default;
 
             if (nearestDistance > 5f)
             {
-                _transform.SetCoordinates(Observer, corePos);
+                if (_entityManager.Deleted(Observer.Comp.Core.Value) ||
+                    !_entityManager.TryGetComponent<TransformComponent>(Observer.Comp.Core.Value, out var xform))
+                {
+                    _entityManager.QueueDeleteEntity(Observer);
+                    return default;
+                }
+
+                _transform.SetCoordinates(Observer, xform.Coordinates);
                 return default;
             }
 
             if (nearestDistance > 3f)
             {
+                /*Observer.Comp.CanMove = false;
+                _blocker.UpdateCanMove(Observer);*/
+
+                var nearestEntityPos = _transform.GetMapCoordinates(nearestEntityUid.Value);
+
+                var direction = (nearestEntityPos.Position - newPos.Position);
+                var newPosition = newPos.Offset(direction * 0.1f);
+
+                _transform.SetMapCoordinates(Observer, newPosition);
+                return default;
+            }
+
+            /*if (!Observer.Comp.CanMove)
+            {
                 Observer.Comp.CanMove = true;
                 _blocker.UpdateCanMove(Observer);
-                var direction = (_entityManager.GetComponent<TransformComponent>(nearestEntityUid.Value).Coordinates.Position - NewPosition.Position);
-                var newPosition = NewPosition.Offset(direction * 0.1f);
-
-                _transform.SetCoordinates(Observer, newPosition);
-            }
+            }*/
 
             return default;
         }
