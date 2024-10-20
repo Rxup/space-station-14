@@ -10,7 +10,8 @@
   - type: Item
     size: HeavyMachineGun
   - type: Clothing
-    slots: BACK
+    slots:
+    - Back
     sprite: Backmen/Clothing/Back/Powerpacks/backpack.rsi
     equipDelay: 10
     unequipDelay: 10
@@ -48,7 +49,8 @@
   - type: Item
     size: HeavyMachineGun
   - type: Clothing
-    slots: BACK
+    slots:
+    - Back
     sprite: Backmen/Clothing/Back/Powerpacks/powerpackenergy.rsi
     equipDelay: 10
     unequipDelay: 10
