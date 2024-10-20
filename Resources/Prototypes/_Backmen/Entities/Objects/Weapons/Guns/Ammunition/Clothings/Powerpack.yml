@@ -39,7 +39,7 @@
 - type: entity
   id: BasePowerpackEnergy
   name: "powerpack (energy)"
-  parent: BasePowerCell
+  parent: BaseItem
   abstract: true
   components:
   - type: Tag
@@ -52,7 +52,10 @@
     sprite: Backmen/Clothing/Back/Powerpacks/powerpackenergy.rsi
     equipDelay: 10
     unequipDelay: 10
+  - type: PowerCell
+  - type: PowerCellVisuals
   - type: Battery
+    pricePerJoule: 0.15
     maxCharge: 500000
     startingCharge: 500000
   - type: HitscanBatteryAmmoProvider
