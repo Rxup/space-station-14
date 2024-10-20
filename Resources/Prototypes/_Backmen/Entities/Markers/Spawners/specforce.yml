@@ -185,7 +185,7 @@
   suffix: спавнер спецсил
   components:
     - type: GhostRoleMobSpawner
-      prototype: SpestnazHeavyWeaponGuy
+      prototype: MobHumanSpecialReAgentHeavy
 
 - type: entity
   id: SpawnMobHumanERTLeaderEpsilon

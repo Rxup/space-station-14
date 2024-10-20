@@ -164,13 +164,13 @@
     state: icon
   - type: Item
     sprite: Backmen/Objects/Weapons/Gunsx64/LMGs/minigun/tiny.rsi
+    size: Ginormous
   - type: Clothing
     sprite: Backmen/Objects/Weapons/Gunsx64/LMGs/minigun/tiny.rsi
     quickEquip: false
     slots:
     - Back
     - suitStorage
-    size: Ginormous
   - type: Gun
     minAngle: 1
     maxAngle: 30
