@@ -132,3 +132,6 @@
 
 - type: Tag
   id: PrizeTicket
+
+- type: Tag
+  id: IgnoreMelee

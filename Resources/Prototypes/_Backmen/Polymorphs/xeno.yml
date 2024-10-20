@@ -2,7 +2,7 @@
 - type: polymorph
   id: XenoQueenMorph
   configuration:
-    entity: MobXenoQueen
+    entity: KsenosXenoQueen
     forced: true
     inventory: Drop
     transferName: true
@@ -12,7 +12,7 @@
 - type: polymorph
   id: XenoDroneMorph
   configuration:
-    entity: MobXenoDrone
+    entity: KsenosXenoDrone
     forced: true
     inventory: Drop
     transferName: true

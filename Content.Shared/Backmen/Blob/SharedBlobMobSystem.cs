@@ -2,6 +2,7 @@
 using Content.Shared.Backmen.Blob.Components;
 using Content.Shared.Interaction.Events;
 using Content.Shared.Popups;
+using Content.Shared.Radio;
 using Robust.Shared.Audio;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Map;
@@ -24,6 +25,13 @@ public abstract class SharedBlobMobSystem : EntitySystem
         SubscribeNetworkEvent<BlobMobGetPulseEvent>(OnPulse);
         _tileQuery = GetEntityQuery<BlobTileComponent>();
         _mobQuery = GetEntityQuery<BlobMobComponent>();
+
+        SubscribeLocalEvent<BlobSpeakComponent,GetDefaultRadioChannelEvent>(OnGetDefaultRadioChannel);
+    }
+
+    private void OnGetDefaultRadioChannel(Entity<BlobSpeakComponent> ent, ref GetDefaultRadioChannelEvent args)
+    {
+        args.Channel = ent.Comp.Channel;
     }
 
 

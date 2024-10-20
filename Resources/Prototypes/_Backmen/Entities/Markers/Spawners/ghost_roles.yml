@@ -90,7 +90,7 @@
   id: SpawnPointGhostBlobRat
   name: точка спавна мыши блоба
   suffix: Блоб, роль призрак
-  parent: MarkerBase
+  parent: BaseAntagSpawner
   components:
     - type: GhostRoleMobSpawner
       prototype: MobMouseCancer
