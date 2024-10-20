@@ -153,7 +153,7 @@ async function processMaps() {
         }
 
         await uploadMapData(mapData, webpFiles.map(file => path.join(mapImageDir, dir, file)), method);
-        fs.rmdirSync(path.join(mapImageDir, dir));
+        fs.rmdirSync(path.join(mapImageDir, dir), { recursive: true, force: true });
     }
 }
 
@@ -173,7 +173,7 @@ function chunkArray(array, chunkSize) {
         // Автоматическое получение списка .yml файлов по маске
         let files = getYamlFiles();
 
-        const fileBatches = chunkArray(files, 3);
+        const fileBatches = chunkArray(files, 2);
 
         console.log('Запуск обработки файлами батчами');
         for (const batch of fileBatches) {
