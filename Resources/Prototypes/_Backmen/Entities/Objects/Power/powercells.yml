@@ -1,0 +1,20 @@
+- type: entity
+  parent: BasePowerCell
+  id: PowerCellGigareactor
+  name: gigareactor power cell
+  description: A rechargeable microreactor cell with some upgrade from Interdyne corp.
+  suffix: Full
+  components:
+  - type: Sprite
+    layers:
+    - map: [ "enum.PowerCellVisualLayers.Base" ]
+      state: microreactor
+    - map: [ "enum.PowerCellVisualLayers.Unshaded" ]
+      state: o2
+      shader: unshaded
+  - type: Battery
+    maxCharge: 1200
+    startingCharge: 1200
+  - type: BatterySelfRecharger
+    autoRecharge: true
+    autoRechargeRate: 20 # takes 1 minute to charge itself back to full

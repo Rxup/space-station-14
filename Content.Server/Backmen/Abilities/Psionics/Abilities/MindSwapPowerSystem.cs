@@ -25,7 +25,7 @@ using Robust.Shared.Timing;
 
 namespace Content.Server.Backmen.Abilities.Psionics;
 
-public sealed class MindSwapPowerSystem : EntitySystem
+public sealed class MindSwapPowerSystem : SharedMindSwapPowerSystem
 {
     [Dependency] private readonly SharedActionsSystem _actions = default!;
     [Dependency] private readonly MobStateSystem _mobStateSystem = default!;

@@ -172,7 +172,7 @@ public sealed class EvilTwinSystem : EntitySystem
 
                             RaiseLocalEvent(new PlayerSpawnCompleteEvent(twinMob.Value,
                                 targetSession,
-                                currentJob.Value.Comp.JobPrototype,
+                                currentJob.Value.Comp1.JobPrototype,
                                 false,
                                 true,
                                 0,
@@ -577,8 +577,8 @@ public sealed class EvilTwinSystem : EntitySystem
 
 
         if (_roles.MindHasRole<JobRoleComponent>(mindId, out var jobComponent) &&
-            jobComponent.Value.Comp.JobPrototype != null &&
-            _prototype.TryIndex(jobComponent.Value.Comp.JobPrototype, out var twinTargetMindJob))
+            jobComponent.Value.Comp1.JobPrototype != null &&
+            _prototype.TryIndex(jobComponent.Value.Comp1.JobPrototype, out var twinTargetMindJob))
         {
             if (_prototype.TryIndex(twinTargetMindJob.StartingGear!, out var gear))
             {
@@ -586,7 +586,7 @@ public sealed class EvilTwinSystem : EntitySystem
             }
 
             // Run loadouts after so stuff like storage loadouts can get
-            var jobLoadout = LoadoutSystem.GetJobPrototype(jobComponent.Value.Comp.JobPrototype);
+            var jobLoadout = LoadoutSystem.GetJobPrototype(jobComponent.Value.Comp1.JobPrototype);
 
             if (_prototype.TryIndex(jobLoadout, out RoleLoadoutPrototype? roleProto))
             {
@@ -624,7 +624,7 @@ public sealed class EvilTwinSystem : EntitySystem
 
             _stationSpawning.SetPdaAndIdCardData(twinUid, pref!.Name, twinTargetMindJob, _stationSystem.GetOwningStation(target));
 
-            _stationSpawning.DoJobSpecials(jobComponent.Value.Comp.JobPrototype, twinUid);
+            _stationSpawning.DoJobSpecials(jobComponent.Value.Comp1.JobPrototype, twinUid);
             _identity.QueueIdentityUpdate(twinUid);
         }
 

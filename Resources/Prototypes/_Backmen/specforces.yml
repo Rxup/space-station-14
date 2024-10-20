@@ -48,9 +48,10 @@
   specForceName: spec-forces-system-deathsquad-name
   shuttlePath: Maps/Backmen/Shuttles/SpecForces/Invincible.yml
   spawnMarker: MarkerSpecforce
-  maxRolesAmount: 6
+  maxRolesAmount: 5
   guaranteedSpawn:
     - id: SpawnMobHumanSpecialReAgentCOM
+    - id: SpawnSpestnazHeavyWeaponGuy
     - id: SpawnMobHumanSFOfficer
       prob: 0.7
   specForceSpawn:
@@ -65,7 +66,7 @@
   announcementText: spec-forces-system-ertcall-annonce
   announcementTitle: spec-forces-system-ertAlpha-title
   announcementSoundPath: /Audio/Corvax/Adminbuse/Yesert.ogg
-  maxRolesAmount: 6
+  maxRolesAmount: 4
   raffleConfig:
     settings: short
   guaranteedSpawn:

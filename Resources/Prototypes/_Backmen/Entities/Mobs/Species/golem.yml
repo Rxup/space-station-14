@@ -262,6 +262,15 @@
     - AltarsGolemancy
   - type: TTS
     voice: Oleg
+  - type: LanguageSpeaker
+    currentLanguage: TauCetiBasic
+  - type: LanguageKnowledge
+    speaks:
+    - TauCetiBasic
+    - Nekomimetic
+    understands:
+    - TauCetiBasic
+    - Nekomimetic
 
 - type: emoteSounds
   id: GolemEmote

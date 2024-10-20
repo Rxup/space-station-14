@@ -22,7 +22,7 @@
           tags:
           - SwordSquadRO
   - type: Appearance
-  
+
 - type: entity
   parent: ClothingBeltStorageBase
   id: ClothingBeltKatanaSheath
@@ -288,12 +288,12 @@
     sprite: Backmen/Clothing/Belt/Gear/shotgunbelt.rsi
   - type: Storage
     grid:
-    - 0,0,5,4
+    - 0,0,7,6
     maxItemSize: Small
     whitelist:
       tags:
         - ShellShotgun
-        
+
 - type: entity
   parent: ClothingBeltMilitaryWebbing
   id: ClothingBeltTGMCwhite
@@ -305,5 +305,5 @@
   - type: Clothing
     sprite: Backmen/Clothing/Belt/webbingtgmcwhite.rsi
 
-        
+
 

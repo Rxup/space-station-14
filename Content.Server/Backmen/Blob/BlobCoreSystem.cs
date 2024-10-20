@@ -262,7 +262,7 @@ public sealed class BlobCoreSystem : EntitySystem
         var blobRule = EntityQuery<BlobRuleComponent>().FirstOrDefault();
         if (blobRule == null)
         {
-            _gameTicker.StartGameRule("Blob", out _);
+            _gameTicker.StartGameRule("BlobRule", out _);
         }
 
         var ev = new CreateBlobObserverEvent(userId);
