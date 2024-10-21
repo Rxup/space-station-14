@@ -291,8 +291,8 @@ public sealed class EconomySystem : EntitySystem
                 AttachWage = false;
             }
 
-            if (_roleSystem.MindHasRole<JobRoleComponent>(mindId, out var jobComponent) && jobComponent?.Comp.JobPrototype != null &&
-                _prototype.TryIndex(jobComponent?.Comp.JobPrototype, out var jobPrototype))
+            if (_roleSystem.MindHasRole<JobRoleComponent>(mindId, out var jobComponent) && jobComponent.Value.Comp1.JobPrototype != null &&
+                _prototype.TryIndex(jobComponent.Value.Comp1.JobPrototype, out var jobPrototype))
             {
                 _bankManagerSystem.TryGenerateStartingBalance(bankAccount, jobPrototype);
 
@@ -313,7 +313,7 @@ public sealed class EconomySystem : EntitySystem
         EnsureComp<BankMemoryComponent>(bankRoleComp!.Value).BankAccount = bankAccount;
 
         var needAdd = true;
-        foreach (var condition in mind.AllObjectives.Where(HasComp<MindNoteConditionComponent>))
+        foreach (var condition in mind.Objectives.Where(HasComp<MindNoteConditionComponent>))
         {
             var md = Comp<MindNoteConditionComponent>(condition);
             Dirty(condition, md);

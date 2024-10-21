@@ -1,16 +1,21 @@
-﻿using Content.Shared.Backmen.Blob.Components;
+﻿using System.Numerics;
+using Content.Shared.Backmen.Blob.Components;
 using Content.Shared.Interaction;
 using Content.Shared.Movement.Events;
+using Robust.Shared.Map;
 
 namespace Content.Shared.Backmen.Blob;
 
 public abstract class SharedBlobObserverSystem : EntitySystem
 {
+    [Dependency] private readonly EntityLookupSystem _lookup = default!;
+    [Dependency] private readonly SharedTransformSystem _transform = default!;
+
     public override void Initialize()
     {
         base.Initialize();
 
-        SubscribeLocalEvent<BlobObserverComponent, UpdateCanMoveEvent>(OnUpdateCanMove);
+        //SubscribeLocalEvent<BlobObserverComponent, UpdateCanMoveEvent>(OnUpdateCanMove);
         SubscribeLocalEvent<BlobObserverComponent, GetUsedEntityEvent>(OnGetUsedEntityEvent);
     }
 
@@ -20,11 +25,31 @@ public abstract class SharedBlobObserverSystem : EntitySystem
             args.Used = ent.Comp.VirtualItem;
     }
 
-    private void OnUpdateCanMove(EntityUid uid, BlobObserverComponent component, UpdateCanMoveEvent args)
+    /*private void OnUpdateCanMove(EntityUid uid, BlobObserverComponent component, UpdateCanMoveEvent args)
     {
         if (component.CanMove)
             return;
 
         args.Cancel();
+    }*/
+
+    public (EntityUid? nearestEntityUid, float nearestDistance) CalculateNearestBlobTileDistance(MapCoordinates position)
+    {
+        var nearestDistance = float.MaxValue;
+        EntityUid? nearestEntityUid = null;
+
+        foreach (var lookupUid in _lookup.GetEntitiesInRange<BlobTileComponent>(position, 5f))
+        {
+            var tileCords = _transform.GetMapCoordinates(lookupUid);
+            var distance = Vector2.Distance(position.Position, tileCords.Position);
+
+            if (!(distance < nearestDistance))
+                continue;
+
+            nearestDistance = distance;
+            nearestEntityUid = lookupUid;
+        }
+
+        return (nearestEntityUid, nearestDistance);
     }
 }

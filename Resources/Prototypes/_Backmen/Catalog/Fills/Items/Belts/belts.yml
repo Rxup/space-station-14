@@ -342,6 +342,8 @@
       contents:
         - id: ShellShotgun
           amount: 30
+        - id: ShellShotgunMagnum12
+          amount: 12
 
 - type: entity
   name: пояс охраны спецсил
@@ -375,3 +377,17 @@
         - id: GrenadeFlashBang
         - id: Handcuffs
         - id: Handcuffs
+
+- type: entity
+  parent: ClothingBeltGeneralG6
+  id: ClothingBeltGeneralG6FilledSpetsnaz
+  categories: [ HideSpawnMenu ]
+  components:
+    - type: StorageFill
+      contents:
+        - id: SpetsnazMedipen
+          amount: 3
+        - id: PaperManualCodes
+        - id: SpeedLoaderMagnumAP
+          amount: 4
+        - id: PinpointerNuclear

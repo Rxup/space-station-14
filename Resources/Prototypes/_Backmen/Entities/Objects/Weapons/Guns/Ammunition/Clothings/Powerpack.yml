@@ -10,7 +10,8 @@
   - type: Item
     size: HeavyMachineGun
   - type: Clothing
-    slots: BACK
+    slots:
+    - Back
     sprite: Backmen/Clothing/Back/Powerpacks/backpack.rsi
     equipDelay: 10
     unequipDelay: 10
@@ -36,6 +37,47 @@
     zeroVisible: false
   - type: Appearance
 
+- type: entity
+  id: BasePowerpackEnergy
+  name: "powerpack (energy)"
+  parent: BaseItem
+  abstract: true
+  components:
+  - type: Tag
+    tags:
+      - PowerpackEnergy
+  - type: Item
+    size: HeavyMachineGun
+  - type: Clothing
+    slots:
+    - Back
+    sprite: Backmen/Clothing/Back/Powerpacks/powerpackenergy.rsi
+    equipDelay: 10
+    unequipDelay: 10
+  - type: PowerCell
+  - type: PowerCellVisuals
+  - type: Battery
+    pricePerJoule: 0.15
+    maxCharge: 500000
+    startingCharge: 500000
+  - type: HitscanBatteryAmmoProvider
+    fireCost: 100
+  - type: ClothingSpeedModifier
+    walkModifier: 0.6
+    sprintModifier: 0.6
+  - type: Sprite
+    sprite: Backmen/Clothing/Back/Powerpacks/powerpackenergy.rsi
+    layers:
+    - state: icon
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: MagazineVisuals
+    magState: mag
+    steps: 5
+    zeroVisible: false
+  - type: Appearance
+
 # Fills
 - type: entity
   id: PowerpackRifle
@@ -43,7 +85,15 @@
   parent: BasePowerpackRifle
   components:
   - type: BallisticAmmoProvider
-    proto: CartridgeMinigun
+    proto: CartridgeHeavyMinigun
     whitelist:
       tags:
         - CartridgeHeavyRifle
+
+- type: entity
+  id: PowerpackEnergyPulse
+  name: powerpack (pulse)
+  parent: BasePowerpackEnergy
+  components:
+  - type: HitscanBatteryAmmoProvider
+    proto: Pulse

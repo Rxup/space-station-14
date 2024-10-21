@@ -27,3 +27,18 @@
       map: ["enum.GunVisualLayers.Base"]
     - state: mag-1
       map: ["enum.GunVisualLayers.Mag"]
+
+- type: entity
+  id: MagazineShotgunMagnum12Small
+  name: ammo drum (.12 gauge magnum)
+  parent: BaseMagazineShotgun
+  components:
+  - type: BallisticAmmoProvider
+    proto: ShellShotgunMagnum12
+    capacity: 10
+  - type: Sprite
+    layers:
+    - state: pellets
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]

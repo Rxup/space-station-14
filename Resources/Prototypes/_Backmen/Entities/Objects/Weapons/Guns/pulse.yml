@@ -328,6 +328,7 @@
       - MagazinePulseRifle
   - type: BallisticAmmoProvider
     mayTransfer: true
+    cycleable: false
     capacity: 60
     proto: PulseBullet
     whitelist:
@@ -437,6 +438,7 @@
       - MagazinePulseSubMachinePistol
   - type: BallisticAmmoProvider
     mayTransfer: true
+    cycleable: false
     capacity: 100
     proto: PulseBullet
     whitelist:

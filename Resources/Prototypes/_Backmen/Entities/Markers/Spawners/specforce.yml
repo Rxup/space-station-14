@@ -178,6 +178,16 @@
       prototype: MobHumanSpecialReAgent
 
 - type: entity
+  id: SpawnSpestnazHeavyWeaponGuy
+  parent: SpawnSpecforce
+  categories: [ HideSpawnMenu ]
+  name: Спецназ лидер
+  suffix: спавнер спецсил
+  components:
+    - type: GhostRoleMobSpawner
+      prototype: MobHumanSpecialReAgentHeavy
+
+- type: entity
   id: SpawnMobHumanERTLeaderEpsilon
   parent: SpawnSpecforce
   categories: [ HideSpawnMenu ]
