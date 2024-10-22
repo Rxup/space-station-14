@@ -21,12 +21,18 @@ public sealed class MonolingualSystem : EntitySystem
     }
 
     private void OnRemove(EntityUid uid, MonolingualComponent component, ComponentRemove args)
-	{	
+	{
         _language.UpdateEntityLanguages(uid);
     }
 
     private void OnLanguageApply(EntityUid uid, MonolingualComponent component, DetermineEntityLanguagesEvent ev)
     {
+        if(component.LifeStage is
+           ComponentLifeStage.Removing
+           or ComponentLifeStage.Stopping
+           or ComponentLifeStage.Stopped)
+            return;
+
         ev.SpokenLanguages.Remove("TauCetiBasic");
         ev.UnderstoodLanguages.Remove("TauCetiBasic");
     }
