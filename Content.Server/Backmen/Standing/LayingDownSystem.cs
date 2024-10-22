@@ -25,13 +25,19 @@ public sealed class LayingDownSystem : SharedLayingDownSystem // WD EDIT
     {
         // Raising this event will lower the entity's draw depth to the same as a small mob.
         if (CrawlUnderTables)
-            RaiseNetworkEvent(new DrawDownedEvent(GetNetEntity(ent)), Filter.Pvs(ent));
+        {
+            ent.Comp.DrawDowned = true;
+            Dirty(ent,ent.Comp);
+        }
     }
 
     private void OnStoodEvent(Entity<LayingDownComponent> ent, ref StoodEvent args)
     {
         if (CrawlUnderTables)
-            RaiseNetworkEvent(new DrawUpEvent(GetNetEntity(ent)), Filter.Pvs(ent).RemovePlayerByAttachedEntity(ent));
+        {
+            ent.Comp.DrawDowned = false;
+            Dirty(ent,ent.Comp);
+        }
     }
 
     public override void AutoGetUp(Entity<LayingDownComponent> ent)
