@@ -15,8 +15,7 @@ public sealed class StandingStateSystem : EntitySystem
     [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
     [Dependency] private readonly SharedAudioSystem _audio = default!;
     [Dependency] private readonly SharedPhysicsSystem _physics = default!;
-    [Dependency] private readonly MovementSpeedModifierSystem _movement = default!; // WD EDIT
-    [Dependency] private readonly SharedBuckleSystem _buckle = default!; // WD EDIT
+    [Dependency] private readonly MovementSpeedModifierSystem _movement = default!; // BACKMEN EDIT
 
     // If StandingCollisionLayer value is ever changed to more than one layer, the logic needs to be edited.
     private const int StandingCollisionLayer = (int) CollisionGroup.MidImpassable;
@@ -98,7 +97,7 @@ public sealed class StandingStateSystem : EntitySystem
             _audio.PlayPredicted(standingState.DownSound, uid, null);
         }
 
-        _movement.RefreshMovementSpeedModifiers(uid); // WD EDIT
+        _movement.RefreshMovementSpeedModifiers(uid); // BACKMEN EDIT
         return true;
     }
 
@@ -144,7 +143,7 @@ public sealed class StandingStateSystem : EntitySystem
             }
         }
         standingState.ChangedFixtures.Clear();
-        _movement.RefreshMovementSpeedModifiers(uid); // WD EDIT
+        _movement.RefreshMovementSpeedModifiers(uid); // BACKMEN EDIT
 
         return true;
     }
