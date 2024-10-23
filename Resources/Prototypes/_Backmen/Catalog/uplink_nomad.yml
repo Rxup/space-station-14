@@ -227,7 +227,7 @@
   - type: StorageFill
     contents:
     - id: WeaponShotgunZauer
-    - id: MagazineShotgunMagnum12
+    - id: MagazineShotgunMagnum12Small
     - id: MagazineShotgun
       amount: 2
     - id: MagazineShotgunSlug
@@ -538,8 +538,11 @@
   name: uplink-energy-dome-name
   description: uplink-energy-dome-desc
   productEntity: EnergyDomeGeneratorPersonalSyndie
+  discountCategory: usualDiscounts
+  discountDownTo:
+    Telecrystal: 4
   cost:
-    Telecrystal: 10
+    Telecrystal: 6
   categories:
   - UplinkWearables
   conditions:
@@ -547,3 +550,17 @@
       whitelist:
         tags:
           - NukeOpsUplink
+
+- type: listing
+  id: UplinkGigareactorPowercell
+  name: Гигареакторная батарейка
+  description: Улучшенная микрореакторная батарейка, производства Interdyne corp, довольно полезна для обеспечения питания некоторым инструментам.
+  icon: { sprite: Objects/Power/power_cells.rsi, state: microreactor }
+  productEntity: PowerCellGigareactor
+  discountCategory: usualDiscounts
+  discountDownTo:
+    Telecrystal: 1
+  cost:
+    Telecrystal: 2
+  categories:
+  - UplinkPointless

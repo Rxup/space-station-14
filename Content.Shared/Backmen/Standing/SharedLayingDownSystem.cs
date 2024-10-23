@@ -2,6 +2,7 @@ using Content.Shared.Backmen.CCVar;
 using Content.Shared.Body.Components;
 using Content.Shared.Buckle;
 using Content.Shared.Buckle.Components;
+using Content.Shared.Damage;
 using Content.Shared.DoAfter;
 using Content.Shared.Gravity;
 using Content.Shared.Input;
@@ -9,14 +10,18 @@ using Content.Shared.Interaction;
 using Content.Shared.Mobs;
 using Content.Shared.Mobs.Systems;
 using Content.Shared.Movement.Components;
+using Content.Shared.Movement.Pulling.Systems;
 using Content.Shared.Movement.Systems;
+using Content.Shared.Popups;
 using Content.Shared.Standing;
 using Content.Shared.Stunnable;
+using Content.Shared.Tag;
 using Content.Shared.Traits.Assorted;
 using Content.Shared.UserInterface;
 using Robust.Shared.Configuration;
 using Robust.Shared.Containers;
 using Robust.Shared.Input.Binding;
+using Robust.Shared.Map.Components;
 using Robust.Shared.Network;
 using Robust.Shared.Player;
 using Robust.Shared.Serialization;
@@ -33,6 +38,12 @@ public abstract class SharedLayingDownSystem : EntitySystem
     [Dependency] private readonly SharedContainerSystem _container = default!;
     [Dependency] private readonly SharedBuckleSystem _buckle = default!;
     [Dependency] private readonly INetManager _net = default!;
+    [Dependency] private readonly PullingSystem _pulling = default!;
+    [Dependency] private readonly SharedMapSystem _map = default!;
+    [Dependency] private readonly SharedStunSystem _stun = default!;
+    [Dependency] private readonly TagSystem _tag = default!;
+    [Dependency] private readonly SharedPopupSystem _popup = default!;
+    [Dependency] private readonly DamageableSystem _damageable = default!;
 
     [Dependency] private readonly IConfigurationManager _config = default!;
 
@@ -97,10 +108,8 @@ public abstract class SharedLayingDownSystem : EntitySystem
 
         if (CrawlUnderTables)
         {
-            if(_net.IsServer)
-                RaiseNetworkEvent(new DrawUpEvent(GetNetEntity(ent)), Filter.PvsExcept(ent));
-            else
-                RaiseLocalEvent(new DrawUpEvent(GetNetEntity(ent)));
+            ent.Comp.DrawDowned = false;
+            Dirty(ent,ent.Comp);
         }
     }
 
@@ -119,12 +128,12 @@ public abstract class SharedLayingDownSystem : EntitySystem
             return;
         }
 
+        TryProcessAutoGetUp(ent);
+
         if (CrawlUnderTables && standingStateComponent.CurrentState == StandingState.Lying)
         {
-            if(_net.IsServer)
-                RaiseNetworkEvent(new DrawDownedEvent(GetNetEntity(ent)), Filter.PvsExcept(ent));
-            else
-                RaiseLocalEvent(new DrawDownedEvent(GetNetEntity(ent)));
+            ent.Comp.DrawDowned = true;
+            Dirty(ent,ent.Comp);
         }
     }
 
@@ -137,10 +146,8 @@ public abstract class SharedLayingDownSystem : EntitySystem
 
         if (CrawlUnderTables)
         {
-            if(_net.IsServer)
-                RaiseNetworkEvent(new DrawUpEvent(GetNetEntity(ent)), Filter.Pvs(ent));
-            else
-                RaiseLocalEvent(new DrawUpEvent(GetNetEntity(ent)));
+            ent.Comp.DrawDowned = false;
+            Dirty(ent, ent.Comp);
         }
     }
 
@@ -148,6 +155,12 @@ public abstract class SharedLayingDownSystem : EntitySystem
 
     public void TryProcessAutoGetUp(Entity<LayingDownComponent> ent)
     {
+        if(_buckle.IsBuckled(ent))
+            return;
+
+        if(_pulling.IsPulled(ent))
+            return;
+
         var autoUp = !_playerManager.TryGetSessionByEntity(ent, out var player) ||
                      GetAutoGetUp(ent, session: player);
 
@@ -259,10 +272,26 @@ public abstract class SharedLayingDownSystem : EntitySystem
             standingState.CurrentState is not StandingState.Lying ||
             !_mobState.IsAlive(uid) ||
             _buckle.IsBuckled(uid) ||
+            _pulling.IsPulled(uid) ||
             HasComp<LegsParalyzedComponent>(uid) ||
             TerminatingOrDeleted(uid))
         {
             return false;
+        }
+
+        var xform = Transform(uid);
+        if (xform.GridUid != null)
+        {
+            foreach (var obj in _map.GetAnchoredEntities(xform.GridUid.Value, Comp<MapGridComponent>(xform.GridUid.Value), xform.Coordinates))
+            {
+                if (!_tag.HasTag(obj, "Structure"))
+                    continue;
+
+                _popup.PopupEntity(Loc.GetString("laying-table-head-dmg",("obj", obj), ("self", uid)), obj, PopupType.MediumCaution);
+                _damageable.TryChangeDamage(uid, new DamageSpecifier(){DamageDict = {{"Blunt", 5}}}, ignoreResistances: true);
+                _stun.TryStun(uid, TimeSpan.FromSeconds(2), true);
+                return false;
+            }
         }
 
         var args = new DoAfterArgs(EntityManager, uid, layingDown.StandingUpTime, new StandingUpDoAfterEvent(), uid)

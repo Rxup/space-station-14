@@ -899,14 +899,15 @@ private void SendEntityWhisper(
         var newMessage = message.Trim();
         newMessage = SanitizeMessageReplaceWords(newMessage);
 
+        // Sanitize it first as it might change the word order
+        _sanitizer.TrySanitizeEmoteShorthands(newMessage, source, out newMessage, out emoteStr);
+
         if (capitalize)
             newMessage = SanitizeMessageCapital(newMessage);
         if (capitalizeTheWordI)
             newMessage = SanitizeMessageCapitalizeTheWordI(newMessage, "i");
         if (punctuate)
             newMessage = SanitizeMessagePeriod(newMessage);
-
-        _sanitizer.TrySanitizeOutSmilies(newMessage, source, out newMessage, out emoteStr);
 
         return newMessage;
     }
