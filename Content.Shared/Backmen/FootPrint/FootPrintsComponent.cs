@@ -1,10 +1,15 @@
 using System.Numerics;
+using Robust.Shared.Utility;
 
 namespace Content.Shared.Backmen.FootPrint;
 
 [RegisterComponent]
 public sealed partial class FootPrintsComponent : Component
 {
+    [ViewVariables(VVAccess.ReadOnly), DataField]
+    public ResPath RsiPath = new("/Textures/Effects/footprints.rsi");
+
+    // all of those are set as a layer
     [ViewVariables(VVAccess.ReadOnly), DataField]
     public string LeftBarePrint = "footprint-left-bare-human";
 
@@ -26,6 +31,7 @@ public sealed partial class FootPrintsComponent : Component
         "dragging-4",
         "dragging-5",
     ];
+    // yea, those
 
     [ViewVariables(VVAccess.ReadWrite), DataField]
     public Vector2 OffsetPrint = new(0.1f, 0f);

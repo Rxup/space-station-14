@@ -20,9 +20,16 @@ public sealed class FootPrintsSystem : EntitySystem
     [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
     [Dependency] private readonly SharedTransformSystem _transform = default!;
 
+    private EntityQuery<TransformComponent> _transformQuery;
+    private EntityQuery<MobThresholdsComponent> _mobThresholdQuery;
+
    public override void Initialize()
    {
        base.Initialize();
+
+       _transformQuery = GetEntityQuery<TransformComponent>();
+       _mobThresholdQuery = GetEntityQuery<MobThresholdsComponent>();
+
        SubscribeLocalEvent<FootPrintsComponent, ComponentStartup>(OnStartupComponent);
        SubscribeLocalEvent<FootPrintsComponent, MoveEvent>(OnMove);
    }
@@ -37,8 +44,8 @@ public sealed class FootPrintsSystem : EntitySystem
         if (comp.PrintsColor.A <= 0f)
             return;
 
-        var transform = Transform(uid);
-        if (!TryComp<MobThresholdsComponent>(uid, out var mobThreshHolds) ||
+        if (!_transformQuery.TryComp(uid, out var transform) ||
+            !_mobThresholdQuery.TryComp(uid, out var mobThreshHolds) ||
             !_map.TryFindGridAt(_transform.GetMapCoordinates((uid, transform)), out var gridUid, out _))
             return;
 
@@ -51,9 +58,7 @@ public sealed class FootPrintsSystem : EntitySystem
 
         comp.RightStep = !comp.RightStep;
 
-        var entity = EntityManager.SpawnEntity(
-            "Footstep",
-            CalcCoords(gridUid, comp, transform, dragging));
+        var entity = Spawn("Footstep", CalcCoords(gridUid, comp, transform, dragging));
 
         if (!TryComp<FootPrintComponent>(entity, out var footPrintComponent))
             return;
@@ -67,7 +72,9 @@ public sealed class FootPrintsSystem : EntitySystem
             _appearance.SetData(entity, FootPrintVisualState.Color, comp.PrintsColor, appearance);
         }
 
-        var stepTransform = Transform(entity);
+        if (!_transformQuery.TryComp(entity, out var stepTransform))
+            return;
+
         stepTransform.LocalRotation = dragging
             ? (transform.LocalPosition - comp.StepPos).ToAngle() + Angle.FromDegrees(-90f)
             : transform.LocalRotation + Angle.FromDegrees(180f);

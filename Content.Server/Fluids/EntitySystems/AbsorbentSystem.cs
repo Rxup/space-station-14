@@ -26,7 +26,7 @@ public sealed class AbsorbentSystem : SharedAbsorbentSystem
     [Dependency] private readonly PuddleSystem _puddleSystem = default!;
     [Dependency] private readonly SharedMeleeWeaponSystem _melee = default!;
     [Dependency] private readonly SharedTransformSystem _transform = default!;
-    [Dependency] private readonly PhysicsSystem _physics = default!;
+    [Dependency] private readonly EntityLookupSystem _lookup = default!;
     [Dependency] private readonly SharedSolutionContainerSystem _solutionContainerSystem = default!;
     [Dependency] private readonly UseDelaySystem _useDelay = default!;
     [Dependency] private readonly MapSystem _mapSystem = default!;
@@ -335,17 +335,16 @@ public sealed class AbsorbentSystem : SharedAbsorbentSystem
     // BACKMEN EDIT START
     private bool TryFootStepInteract(EntityUid user, EntityUid used, EntityUid target, AbsorbentComponent absorber, UseDelayComponent? useDelay, Entity<SolutionComponent> absorberSoln)
     {
-        if (!TryComp<FootPrintComponent>(target, out _)) // Perform a check if it was a footprint that was clicked on
+        if (!HasComp<FootPrintComponent>(target)) // Perform a check if it was a footprint that was clicked on
             return false;
 
         var soundPlayed = false;
-        var query = EntityQueryEnumerator<FootPrintComponent>();
-        while (query.MoveNext(out var footstepUid, out var comp))
-        {
-            // check for footsteps near and if there are any, clear them
-            if (!_physics.TryGetDistance(target, footstepUid, out var distance) || distance >= 0.25f)
-                continue;
 
+        var footPrints = new HashSet<Entity<FootPrintComponent>>();
+        _lookup.GetEntitiesInRange(Transform(target).Coordinates, 0.25f, footPrints, LookupFlags.Dynamic | LookupFlags.Uncontained);
+
+        foreach (var (footstepUid, comp) in footPrints)
+        {
             if (!_solutionContainerSystem.ResolveSolution(footstepUid, comp.SolutionName, ref comp.Solution, out var targetStepSolution) || targetStepSolution.Volume <= 0)
                 continue;
 
@@ -388,7 +387,6 @@ public sealed class AbsorbentSystem : SharedAbsorbentSystem
             if (useDelay != null)
                 _useDelay.TryResetDelay((used, useDelay));
         }
-
         var userXform = Transform(user);
         var targetPos = _transform.GetWorldPosition(target);
         var localPos = Vector2.Transform(targetPos, _transform.GetInvWorldMatrix(userXform));

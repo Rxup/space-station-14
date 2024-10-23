@@ -50,7 +50,6 @@ public sealed class FootPrintsVisualizerSystem : VisualizerSystem<FootPrintCompo
 
         if (_appearance.TryGetData<FootPrintVisuals>(uid, FootPrintVisualState.State, out var printVisuals, appearance))
         {
-            var path = new ResPath("/Textures/Effects/footprints.rsi");
             switch (printVisuals)
             {
                 case FootPrintVisuals.BareFootPrint:
@@ -58,16 +57,16 @@ public sealed class FootPrintsVisualizerSystem : VisualizerSystem<FootPrintCompo
                             printsComponent.RightStep
                             ? new RSI.StateId(printsComponent.RightBarePrint)
                             : new RSI.StateId(printsComponent.LeftBarePrint),
-                        path);
+                        printsComponent.RsiPath);
                     break;
                 case FootPrintVisuals.ShoesPrint:
-                    sprite.LayerSetState(layer, new RSI.StateId(printsComponent.ShoesPrint), path);
+                    sprite.LayerSetState(layer, new RSI.StateId(printsComponent.ShoesPrint), printsComponent.RsiPath);
                     break;
                 case FootPrintVisuals.SuitPrint:
-                    sprite.LayerSetState(layer, new RSI.StateId(printsComponent.SuitPrint), path);
+                    sprite.LayerSetState(layer, new RSI.StateId(printsComponent.SuitPrint), printsComponent.RsiPath);
                     break;
                 case FootPrintVisuals.Dragging:
-                    sprite.LayerSetState(layer, new RSI.StateId(_random.Pick(printsComponent.DraggingPrint)), path);
+                    sprite.LayerSetState(layer, new RSI.StateId(_random.Pick(printsComponent.DraggingPrint)), printsComponent.RsiPath);
                     break;
                 default:
                     throw new ArgumentOutOfRangeException($"Unknown {printVisuals} parameter.");
