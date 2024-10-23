@@ -1,4 +1,5 @@
-﻿using Robust.Shared.GameStates;
+﻿using Content.Shared.Chemistry.Components;
+using Robust.Shared.GameStates;
 
 namespace Content.Shared.Backmen.FootPrint;
 
@@ -14,6 +15,6 @@ public sealed partial class FootPrintComponent : Component
     [ViewVariables(VVAccess.ReadWrite), DataField("printOwner"), AutoNetworkedField]
     public EntityUid PrintOwner;
 
-    [ViewVariables(VVAccess.ReadWrite), DataField("solution", required: true)]
-    public string SolutionName = "step";
+    [DataField("solution")] public string SolutionName = "step";
+    [DataField("solutionRef")] public Entity<SolutionComponent>? Solution;
 }
