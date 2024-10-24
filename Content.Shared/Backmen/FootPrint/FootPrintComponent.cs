@@ -12,7 +12,7 @@ public sealed partial class FootPrintComponent : Component
     /// <summary>
     /// Owner (with <see cref="FootPrintsComponent"/>) of a print (this component).
     /// </summary>
-    [ViewVariables(VVAccess.ReadWrite), DataField("printOwner"), AutoNetworkedField]
+    [ViewVariables(VVAccess.ReadWrite), AutoNetworkedField]
     public EntityUid PrintOwner;
 
     [DataField("solution")] public string SolutionName = "step";

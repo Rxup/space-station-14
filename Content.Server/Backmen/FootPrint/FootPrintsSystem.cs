@@ -3,6 +3,7 @@ using Content.Shared.Inventory;
 using Content.Shared.Mobs;
 using Content.Shared.Mobs.Components;
 using Content.Shared.Backmen.FootPrint;
+using Content.Shared.Backmen.Standing;
 using Content.Shared.Chemistry.Components.SolutionManager;
 using Content.Shared.Chemistry.EntitySystems;
 using Robust.Shared.Map;
@@ -22,6 +23,8 @@ public sealed class FootPrintsSystem : EntitySystem
 
     private EntityQuery<TransformComponent> _transformQuery;
     private EntityQuery<MobThresholdsComponent> _mobThresholdQuery;
+    private EntityQuery<AppearanceComponent> _appearanceQuery;
+    private EntityQuery<LayingDownComponent> _layingQuery;
 
    public override void Initialize()
    {
@@ -29,6 +32,8 @@ public sealed class FootPrintsSystem : EntitySystem
 
        _transformQuery = GetEntityQuery<TransformComponent>();
        _mobThresholdQuery = GetEntityQuery<MobThresholdsComponent>();
+       _appearanceQuery = GetEntityQuery<AppearanceComponent>();
+       _layingQuery = GetEntityQuery<LayingDownComponent>();
 
        SubscribeLocalEvent<FootPrintsComponent, ComponentStartup>(OnStartupComponent);
        SubscribeLocalEvent<FootPrintsComponent, MoveEvent>(OnMove);
@@ -49,7 +54,7 @@ public sealed class FootPrintsSystem : EntitySystem
             !_map.TryFindGridAt(_transform.GetMapCoordinates((uid, transform)), out var gridUid, out _))
             return;
 
-        var dragging = mobThreshHolds.CurrentThresholdState is MobState.Critical or MobState.Dead;
+        var dragging = mobThreshHolds.CurrentThresholdState is MobState.Critical or MobState.Dead || _layingQuery.TryComp(uid, out var laying) && laying.DrawDowned;
         var distance = (transform.LocalPosition - comp.StepPos).Length();
         var stepSize = dragging ? comp.DragSize : comp.StepSize;
 
@@ -59,14 +64,12 @@ public sealed class FootPrintsSystem : EntitySystem
         comp.RightStep = !comp.RightStep;
 
         var entity = Spawn("Footstep", CalcCoords(gridUid, comp, transform, dragging));
-
-        if (!TryComp<FootPrintComponent>(entity, out var footPrintComponent))
-            return;
+        var footPrintComponent = Comp<FootPrintComponent>(entity); // There's NO way there's no footprint commponent in a FOOTPRINT
 
         footPrintComponent.PrintOwner = uid;
         Dirty(entity, footPrintComponent);
 
-        if (TryComp<AppearanceComponent>(entity, out var appearance))
+        if (_appearanceQuery.TryComp(entity, out var appearance))
         {
             _appearance.SetData(entity, FootPrintVisualState.State, PickState(uid, dragging), appearance);
             _appearance.SetData(entity, FootPrintVisualState.Color, comp.PrintsColor, appearance);
