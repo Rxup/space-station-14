@@ -57,6 +57,10 @@
     understands:
     - Binary
     - TauCetiBasic
+  - type: ChangeVoiceInContainer
+    whitelist:
+      components:
+      - SecretStash
 
 - type: entity
   parent: MMI
@@ -143,3 +147,7 @@
       understands:
       - Binary
       - TauCetiBasic
+    - type: ChangeVoiceInContainer
+      whitelist:
+        components:
+        - SecretStash

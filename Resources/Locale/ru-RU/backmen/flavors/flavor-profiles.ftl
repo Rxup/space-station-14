@@ -2,7 +2,7 @@ flavor-complex-RedOrdenDrinkFlavour = триумф красного ордена
 
 ## Nyano???
 
-flavor-complex-enthralling = заворажывающе
+flavor-complex-enthralling = завораживающе
 flavor-complex-sublime = возвышенно
 flavor-complex-holy = небесно
 flavor-base-seeds = масленно
@@ -13,8 +13,10 @@ flavor-complex-silverjack = как мечта рок-звезды
 flavor-complex-brainbomb = как повреждение печени
 flavor-complex-atomicpunch = как горько-сладкое излучение
 flavor-complex-circusjuice = чрезвычайно забавно
-flavor-complex-pinkdrink = в подавляющем большинстве нравится розовый
+flavor-complex-pinkdrink = как слишком розовые очки
 flavor-complex-sapopicante = как помидоры и специи
 flavor-complex-graveyard = как крепкий холодный напиток
 flavor-complex-bubbletea = как сливочная сладость
 flavor-complex-corncob = как неудачная шутка
+
+# zhi shi pishi s Ы

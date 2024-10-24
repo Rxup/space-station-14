@@ -3,7 +3,7 @@
   equipment:
     jumpsuit: ClothingUniformJumpsuitSpetsnaz
     back: ClothingBackpackERTLeaderAlpha1
-    shoes: ClothingShoesBootsMagAdv
+    shoes: ClothingShoesBootsMagSpecialForce
     mask: ClothingMaskGasERTV2_1
     eyes: ClothingEyesGlassesSunglasses
     gloves: ClothingHandsGlovesSpetsnazcombat
@@ -14,13 +14,16 @@
     belt: ClothingBeltSecurityFilled
     pocket1: CombatKnifeSpetsnaz
     pocket2: PinpointerNuclear
+  storage:
+    back:
+    - RadioMTFHandheld
 
 - type: startingGear
   id: ERTOperativeAlpha1Gear
   equipment:
     jumpsuit: ClothingUniformJumpsuitSpetsnaz
     back: ClothingBackpackERTOperativeAlpha1
-    shoes: ClothingShoesBootsMagAdv
+    shoes: ClothingShoesBootsMagSpecialForce
     mask: ClothingMaskGasERTV2_1
     eyes: ClothingEyesGlassesSunglasses
     gloves: ClothingHandsGlovesSpetsnazcombat

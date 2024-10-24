@@ -151,3 +151,49 @@
     walkModifier: 1
     sprintModifier: 0.9
   - type: HeldSpeedModifier
+
+- type: entity
+  name: NT HEM "Devastator"
+  parent: BaseItem
+  id: WeaponMinigunPulse
+  suffix: Пулемёт
+  description: NanoTrasen Heavy Energy Minigun "Devastator", a machine gun manufactured by NanoTrasen (not for sale!), used by NanoTrasen security companies and defense services, mainly used as a heavy machine gun for defense against pirate ships and xenos invasion.
+  components:
+  - type: Sprite
+    sprite: Backmen/Objects/Weapons/Gunsx64/LMGs/minigun/big.rsi
+    state: icon
+  - type: Item
+    sprite: Backmen/Objects/Weapons/Gunsx64/LMGs/minigun/tiny.rsi
+    size: Ginormous
+  - type: Clothing
+    sprite: Backmen/Objects/Weapons/Gunsx64/LMGs/minigun/tiny.rsi
+    quickEquip: false
+    slots:
+    - Back
+    - suitStorage
+  - type: Gun
+    minAngle: 1
+    maxAngle: 30
+    angleDecay: 20
+    angleIncrease: 1.5
+    cameraRecoilScalar: 0.5
+    fireRate: 7
+    selectedMode: FullAuto
+    availableModes:
+    - FullAuto
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/laser3.ogg
+  - type: ClothingSlotAmmoProvider
+    targetSlot: BACK
+    providerWhitelist:
+      tags:
+      - PowerpackEnergy
+  - type: Appearance
+  - type: Wieldable
+  - type: UseDelay
+    delay: 2.3
+  - type: GunRequiresWield
+  - type: ClothingSpeedModifier
+    walkModifier: 1
+    sprintModifier: 0.9
+  - type: HeldSpeedModifier

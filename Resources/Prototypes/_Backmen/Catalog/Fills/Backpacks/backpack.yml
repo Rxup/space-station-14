@@ -142,9 +142,11 @@
     - type: StorageFill
       contents:
         - id: PinpointerNuclear
-        - id: WeaponPulseRifle
-        - id: SpeedLoaderMagnum
-          amount: 2
+        - id: WeaponPulseRifleSpetnaz
+        - id: PulseMag
+          amount: 4
+        - id: SpeedLoaderMagnumAP
+          amount: 4
         - id: PaperManualCodes
         - id: C4
           amount: 4
@@ -249,10 +251,8 @@
         - id: MagazinePulseRifle
           amount: 9
         - id: WeaponShotgunAA12
-        - id: MagazineShotgunFRAG12
-          amount: 2
         - id: MagazineShotgunMagnum12
-          amount: 4
+          amount: 6
 
 - type: entity
   categories: [ HideSpawnMenu ]
