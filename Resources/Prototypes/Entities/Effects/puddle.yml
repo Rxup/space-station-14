@@ -171,6 +171,7 @@
 - type: entity
   name: след
   id: Footstep
+  save: false
   description: След жидкости
   components:
     - type: Clickable
