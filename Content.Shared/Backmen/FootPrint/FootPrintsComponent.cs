@@ -1,4 +1,5 @@
 using System.Numerics;
+using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
 
 namespace Content.Shared.Backmen.FootPrint;
@@ -33,6 +34,9 @@ public sealed partial class FootPrintsComponent : Component
     ];
     // yea, those
 
+    [ViewVariables(VVAccess.ReadOnly), DataField("protoId")]
+    public EntProtoId<FootPrintComponent> StepProtoId = "Footstep";
+    
     [ViewVariables(VVAccess.ReadWrite), DataField]
     public Vector2 OffsetPrint = new(0.1f, 0f);
 

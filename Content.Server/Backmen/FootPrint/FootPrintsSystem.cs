@@ -63,7 +63,7 @@ public sealed class FootPrintsSystem : EntitySystem
 
         comp.RightStep = !comp.RightStep;
 
-        var entity = Spawn("Footstep", CalcCoords(gridUid, comp, transform, dragging));
+        var entity = Spawn(comp.StepProtoId, CalcCoords(gridUid, comp, transform, dragging));
         var footPrintComponent = Comp<FootPrintComponent>(entity); // There's NO way there's no footprint commponent in a FOOTPRINT
 
         footPrintComponent.PrintOwner = uid;
