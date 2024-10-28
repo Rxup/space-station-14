@@ -1,11 +1,11 @@
 ﻿<Control Name="CFlavorText" HorizontalExpand="True" xmlns="https://spacestation14.io"
-         xmlns:graphics="clr-namespace:Robust.Client.Graphics;assembly=Robust.Client"> <!-- WD EDIT -->
-    <PanelContainer> <!-- WD EDIT -->
-        <!-- WD EDIT START-->
+         xmlns:graphics="clr-namespace:Robust.Client.Graphics;assembly=Robust.Client"> <!-- BACKMEN EDIT -->
+    <PanelContainer> <!-- BACKMEN EDIT -->
+        <!-- BACKMEN EDIT START-->
         <PanelContainer.PanelOverride>
             <graphics:StyleBoxFlat BackgroundColor="#111111" />
         </PanelContainer.PanelOverride>
-        <!-- WD EDIT END-->
+        <!-- BACKMEN EDIT END-->
 
         <BoxContainer Orientation="Vertical" HorizontalExpand="True">
             <TextEdit Name="CFlavorTextInput" Access="Public" MinSize="220 100" Margin="10" HorizontalExpand="True" VerticalExpand="True" />

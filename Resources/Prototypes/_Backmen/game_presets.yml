@@ -19,7 +19,7 @@
   - bloodsucker
   name: vampires-title
   description: vampires-description
-  showInVote: false
+  showInVote: true
   rules:
   - VampiresGameRule
   - BasicStationEventScheduler

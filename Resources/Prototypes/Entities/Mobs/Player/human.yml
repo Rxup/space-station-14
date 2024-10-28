@@ -5,6 +5,7 @@
   id: MobHuman
   components:
     - type: PotentialPsionic
+    - type: FootPrints
 
 #Syndie
 - type: entity
