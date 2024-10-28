@@ -12,6 +12,9 @@
 	},
 	{
 		"name": "bolt-open"
+	},
+	{
+		"name": "tank"
     }
     ]
 }
