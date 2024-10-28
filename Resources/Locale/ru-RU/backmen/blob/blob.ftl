@@ -3,7 +3,7 @@ blob-target-normal-blob-invalid = Неподходящий тип блоба.
 blob-target-factory-blob-invalid = Неподходящий тип блоба, необходимо выбрать фабрику.
 blob-target-node-blob-invalid = Неподходящий тип блоба, необходимо выбрать узел.
 blob-target-nearby-not-node = Рядом нету узла или ядра.
-blob-target-close-to-node = Слишком близко к другому узлу.
+blob-target-close-to-tile = Слишком близко к другой клетке данного типа.
 blob-target-already-produce-blobbernaut = Данная фабрика уже произвела блоббернаута.
 blob-target-already-connected = К узлу уже привязан блоб данного типа.
 blob-cant-split = Вы не можете разделить ядро.
@@ -57,8 +57,12 @@ blob-alert-detect = На станции была обнаружена биоло
 blob-alert-critical = Биологическая угроза достигла критической массы, вам отправлены коды от ядерной боеголовки, вы должны немедленно взорвать станцию.
 
 # Actions
-blob-create-factory-action-name = Создать блоб фабрику (80)
-blob-create-factory-action-desc = Превращает выбраного нормального блоба в фабрику, которая способна произвести 3 споры и блоббернаута, если рядом есть узел или ядро.
+blob-create-factory-action-name = Создать блоб фабрику (40)
+blob-create-factory-action-desc = Превращает выбраного нормального блоба в фабрику, которая способна производить различных преспешников блоба, если рядом есть узел или ядро.
+blob-create-storage-action-name = Создать блоб хранилище (50)
+blob-create-storage-action-desc = Превращает выбраного нормального блоба в хранилище, которое расширяет максимальное количество ресурсов которое может иметь блоб. 
+blob-create-turret-action-name = Создать блоб турель (75)
+blob-create-turret-action-desc = Превращает выбраного нормального блоба в турель, которая стреляет по врагам своими мелкими спорами, расходуя очки.
 blob-create-resource-action-name = Создать ресурсный блоб (60)
 blob-create-resource-action-desc = Превращает выбраного нормального блоба в ресурсного блоба который будет производить ресурсы если рядом есть узлы или ядро.
 blob-produce-blobbernaut-action-name = Произвести блоббернаута на фабрике (60)
