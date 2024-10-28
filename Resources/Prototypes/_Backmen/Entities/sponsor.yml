@@ -9,6 +9,9 @@
     sprite: Backmen/Objects/Weapons/Gunsx64/Shotguns/sh-39/big.rsi
     layers:
     - state: icon
+    - state: icon
+      map: [ "tank" ]
+      visible: false
   - type: Item
     sprite: Backmen/Objects/Weapons/Gunsx64/Shotguns/sh-39/tiny.rsi
   - type: Clothing
