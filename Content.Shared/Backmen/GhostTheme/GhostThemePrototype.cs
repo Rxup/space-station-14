@@ -9,6 +9,9 @@ public sealed partial class GhostThemePrototype : IPrototype
     [IdDataField]
     public string ID { get; } = default!;
 
+    [DataField]
+    public LocId Name;
+
     [DataField("components")]
     [AlwaysPushInheritance]
     public ComponentRegistry Components { get; } = new();

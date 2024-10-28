@@ -99,7 +99,7 @@ namespace Content.Client.Options.UI.Tabs
             _deferCommands.Add(_inputManager.SaveToUserData);
         }
 
-        private void HandleHoldLookUp(BaseButton.ButtonToggledEventArgs args) // WD EDIT
+        private void HandleHoldLookUp(BaseButton.ButtonToggledEventArgs args) // BACKMEN EDIT
         {
             _cfg.SetCVar(BackmenCCvars.CCVars.HoldLookUp, args.Pressed);
             _cfg.SaveToFile();
@@ -160,7 +160,7 @@ namespace Content.Client.Options.UI.Tabs
             }
 
             // start-backmen: Laying System
-            void HandleToggleAutoGetUp(BaseButton.ButtonToggledEventArgs args) // WD EDIT
+            void HandleToggleAutoGetUp(BaseButton.ButtonToggledEventArgs args) // BACKMEN EDIT
             {
                 _cfg.SetCVar(Shared.Backmen.CCVar.CCVars.AutoGetUp, args.Pressed);
                 _cfg.SaveToFile();
@@ -205,7 +205,7 @@ namespace Content.Client.Options.UI.Tabs
             AddButton(ContentKeyFunctions.RotateStoredItem);
             AddButton(ContentKeyFunctions.SaveItemLocation);
             AddButton(ContentKeyFunctions.ToggleStanding); // backmen: Laying System
-            AddButton(ContentKeyFunctions.LookUp); // WD EDIT
+            AddButton(ContentKeyFunctions.LookUp); // BACKMEN EDIT
             AddButton(ContentKeyFunctions.OfferItem); // Ataraxia
             AddCheckBox("ui-options-function-hold-look-up", _cfg.GetCVar(BackmenCCvars.CCVars.HoldLookUp), HandleHoldLookUp); // WD EDIT
 

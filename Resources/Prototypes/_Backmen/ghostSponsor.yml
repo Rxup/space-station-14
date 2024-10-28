@@ -1,5 +1,6 @@
 ﻿- type: ghostTheme
   id: tier1
+  name: sponsor-win-manager-ghost-tier1
   components:
     - type: Sprite
       noRot: true
@@ -13,6 +14,7 @@
 
 - type: ghostTheme
   id: tier2
+  name: sponsor-win-manager-ghost-tier2
   components:
     - type: Sprite
       noRot: true
@@ -26,6 +28,7 @@
 
 - type: ghostTheme
   id: tier01
+  name: sponsor-win-manager-ghost-tier01
   components:
     - type: Sprite
       noRot: true
@@ -39,6 +42,7 @@
 
 - type: ghostTheme
   id: tier02
+  name: sponsor-win-manager-ghost-tier02
   components:
     - type: Sprite
       noRot: true
@@ -52,6 +56,7 @@
 
 - type: ghostTheme
   id: tier03
+  name: sponsor-win-manager-ghost-tier03
   components:
     - type: Sprite
       noRot: true
@@ -65,6 +70,7 @@
 
 - type: ghostTheme
   id: tier04
+  name: sponsor-win-manager-ghost-tier04
   components:
     - type: Sprite
       noRot: true
@@ -78,6 +84,7 @@
 
 - type: ghostTheme
   id: tier05
+  name: sponsor-win-manager-ghost-tier05
   components:
     - type: Sprite
       noRot: true
@@ -91,6 +98,7 @@
 
 - type: ghostTheme
   id: tier06
+  name: sponsor-win-manager-ghost-tier06
   components:
     - type: Sprite
       noRot: true
@@ -104,6 +112,7 @@
 
 - type: ghostTheme
   id: tier07
+  name: sponsor-win-manager-ghost-tier07
   components:
     - type: Sprite
       noRot: true
@@ -117,6 +126,7 @@
 
 - type: ghostTheme
   id: tier08
+  name: sponsor-win-manager-ghost-tier08
   components:
     - type: Sprite
       noRot: true
