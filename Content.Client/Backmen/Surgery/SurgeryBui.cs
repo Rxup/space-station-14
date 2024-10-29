@@ -76,7 +76,7 @@ public sealed class SurgeryBui : BoundUserInterface
         {
             _window = new SurgeryWindow();
             _window.OnClose += Close;
-            _window.Title = "Surgery";
+            _window.Title = Loc.GetString("surgery-ui-window-title");
 
             _window.PartsButton.OnPressed += _ =>
             {
@@ -246,7 +246,7 @@ public sealed class SurgeryBui : BoundUserInterface
 
             var msg = new FormattedMessage();
             var surgeryName = _entities.GetComponent<MetaDataComponent>(requirement).EntityName;
-            msg.AddMarkup($"[bold]Requires: {surgeryName}[/bold]");
+            msg.AddMarkup($"[bold]{Loc.GetString("surgery-ui-window-require")}: {surgeryName}[/bold]");
             label.Set(msg, null);
 
             _window.Steps.AddChild(label);
@@ -368,16 +368,16 @@ public sealed class SurgeryBui : BoundUserInterface
                     switch (reason)
                     {
                         case StepInvalidReason.MissingSkills:
-                            stepName.AddMarkup(" [color=red](Missing surgery skill)[/color]");
+                            stepName.AddMarkup($" [color=red]{Loc.GetString("surgery-ui-window-steps-error-skills")}[/color]");
                             break;
                         case StepInvalidReason.NeedsOperatingTable:
-                            stepName.AddMarkup(" [color=red](Needs operating table)[/color]");
+                            stepName.AddMarkup($" [color=red]{Loc.GetString("surgery-ui-window-steps-error-table")}[/color]");
                             break;
                         case StepInvalidReason.Armor:
-                            stepName.AddMarkup(" [color=red](Remove their armor!)[/color]");
+                            stepName.AddMarkup($" [color=red]{Loc.GetString("surgery-ui-window-steps-error-armor")}[/color]");
                             break;
                         case StepInvalidReason.MissingTool:
-                            stepName.AddMarkup(" [color=red](Missing tool)[/color]");
+                            stepName.AddMarkup($" [color=red]{Loc.GetString("surgery-ui-window-steps-error-tools")}[/color]");
                             break;
                     }
                 }
@@ -406,7 +406,7 @@ public sealed class SurgeryBui : BoundUserInterface
         _window.DisabledPanel.Visible = true;
 
         var text = new FormattedMessage();
-        text.AddMarkup("[color=red][font size=16]They need to be lying down![/font][/color]");
+        text.AddMarkup($"[color=red][font size=16]{Loc.GetString("surgery-ui-window-steps-error-laying")}[/font][/color]");
         _window.DisabledLabel.SetMessage(text);
         _window.DisabledPanel.MouseFilter = MouseFilterMode.Stop;
     }
