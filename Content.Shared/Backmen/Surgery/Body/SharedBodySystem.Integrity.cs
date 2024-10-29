@@ -9,7 +9,14 @@ using Content.Shared.Targeting.Events;
 using Robust.Shared.Network;
 using Robust.Shared.Random;
 using System.Linq;
+using System.Threading;
+using System.Threading.Tasks;
 using Content.Shared.Backmen.Surgery.Steps.Parts;
+using Robust.Shared.CPUJob.JobQueues;
+using Robust.Shared.CPUJob.JobQueues.Queues;
+using Robust.Shared.Timing;
+using MethodImplAttribute = System.Runtime.CompilerServices.MethodImplAttribute;
+using MethodImplOptions = System.Runtime.CompilerServices.MethodImplOptions;
 
 namespace Content.Shared.Body.Systems;
 
@@ -19,38 +26,77 @@ public partial class SharedBodySystem
     [Dependency] private readonly MobStateSystem _mobState = default!;
     [Dependency] private readonly IRobustRandom _random = default!;
     private readonly string[] _severingDamageTypes = { "Slash", "Pierce", "Blunt" };
+
+    private const double IntegrityJobTime = 0.005;
+    private readonly JobQueue _integrityJobQueue = new(IntegrityJobTime);
+
+    public sealed class IntegrityJob : Job<object>
+    {
+        private readonly SharedBodySystem _self;
+        private readonly Entity<BodyPartComponent> _ent;
+        public IntegrityJob(SharedBodySystem self, Entity<BodyPartComponent> ent, double maxTime, CancellationToken cancellation = default) : base(maxTime, cancellation)
+        {
+            _self = self;
+            _ent = ent;
+        }
+
+        public IntegrityJob(SharedBodySystem self, Entity<BodyPartComponent> ent, double maxTime, IStopwatch stopwatch, CancellationToken cancellation = default) : base(maxTime, stopwatch, cancellation)
+        {
+            _self = self;
+            _ent = ent;
+        }
+
+        protected override Task<object?> Process()
+        {
+            _self.ProcessIntegrityTick(_ent);
+
+            return Task.FromResult<object?>(null);
+        }
+    }
+
+    private EntityQuery<TargetingComponent> _queryTargeting;
+    private void InitializeBkm()
+    {
+        _queryTargeting = GetEntityQuery<TargetingComponent>();
+    }
+
+    private void ProcessIntegrityTick(Entity<BodyPartComponent> entity)
+    {
+        if (entity.Comp is { Body: {} body, Integrity: > 50 and < 100 }
+            && _queryTargeting.HasComp(body)
+            && !_mobState.IsDead(body))
+        {
+            var healing = entity.Comp.SelfHealingAmount;
+            if (healing + entity.Comp.Integrity > 100)
+                healing = entity.Comp.Integrity - 100;
+
+            TryChangeIntegrity(entity,
+                healing,
+                false,
+                GetTargetBodyPart(entity),
+                out _);
+        }
+    }
+
     public override void Update(float frameTime)
     {
         base.Update(frameTime);
+        _integrityJobQueue.Process();
 
-        var query = EntityQueryEnumerator<BodyPartComponent>();
+        if (!_timing.IsFirstTimePredicted)
+            return;
+
+        using var query = EntityQueryEnumerator<BodyPartComponent>();
         while (query.MoveNext(out var ent, out var part))
         {
-            if (!_timing.IsFirstTimePredicted
-                || !HasComp<TargetingComponent>(ent))
-                continue;
-
             part.HealingTimer += frameTime;
 
             if (part.HealingTimer >= part.HealingTime)
             {
                 part.HealingTimer = 0;
-                if (part.Body is not null
-                    && part.Integrity > 50
-                    && part.Integrity < 100
-                    && !_mobState.IsDead(part.Body.Value))
-                {
-                    var healing = part.SelfHealingAmount;
-                    if (healing + part.Integrity > 100)
-                        healing = part.Integrity - 100;
-
-                    TryChangeIntegrity((ent, part), healing,
-                        false, GetTargetBodyPart(part.PartType, part.Symmetry), out _);
-                }
+                _integrityJobQueue.EnqueueJob(new IntegrityJob(this, (ent, part), IntegrityJobTime));
             }
-
         }
-        query.Dispose();
     }
 
     /// <summary>
@@ -79,11 +125,14 @@ public partial class SharedBodySystem
         }
     }
 
-    public void TryChangeIntegrity(Entity<BodyPartComponent> partEnt, float integrity, bool canSever,
-        TargetBodyPart? targetPart, out bool severed)
+    public void TryChangeIntegrity(Entity<BodyPartComponent> partEnt,
+        float integrity,
+        bool canSever,
+        TargetBodyPart? targetPart,
+        out bool severed)
     {
         severed = false;
-        if (!HasComp<TargetingComponent>(partEnt.Comp.Body) || !_timing.IsFirstTimePredicted)
+        if (!_timing.IsFirstTimePredicted || !_queryTargeting.HasComp(partEnt.Comp.Body))
             return;
 
         var partIdSlot = GetParentPartAndSlotOrNull(partEnt)?.Slot;
@@ -111,8 +160,8 @@ public partial class SharedBodySystem
         }
 
         if (partEnt.Comp.Integrity != originalIntegrity
-            && TryComp<TargetingComponent>(partEnt.Comp.Body, out var targeting)
-            && TryComp<MobStateComponent>(partEnt.Comp.Body, out var _))
+            && _queryTargeting.TryComp(partEnt.Comp.Body, out var targeting)
+            && HasComp<MobStateComponent>(partEnt.Comp.Body))
         {
             var newIntegrity = GetIntegrityThreshold(partEnt.Comp.Integrity, severed, partEnt.Comp.Enabled);
             // We need to check if the part is dead to prevent the UI from showing dead parts as alive.
@@ -161,6 +210,10 @@ public partial class SharedBodySystem
         return result;
     }
 
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public TargetBodyPart? GetTargetBodyPart(Entity<BodyPartComponent> part) => GetTargetBodyPart(part.Comp.PartType, part.Comp.Symmetry);
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public TargetBodyPart? GetTargetBodyPart(BodyPartComponent part) => GetTargetBodyPart(part.PartType, part.Symmetry);
     /// <summary>
     /// Converts Enums from BodyPartType to their Targeting system equivalent.
     /// </summary>
