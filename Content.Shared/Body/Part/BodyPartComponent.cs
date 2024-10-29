@@ -61,7 +61,7 @@ public sealed partial class BodyPartComponent : Component, ISurgeryToolComponent
     /// How much health the body part has until it pops out.
     /// </summary>
     [DataField, AutoNetworkedField]
-    public float Integrity = 100f;
+    public float Integrity = 70f;
 
     /// <summary>
     /// Whether this body part is enabled or not.
