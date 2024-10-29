@@ -25,6 +25,7 @@ using Content.Shared.Stacks;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Random;
 using System.Linq;
+using Content.Shared.Body.Part;
 
 namespace Content.Server.Medical;
 
@@ -104,7 +105,7 @@ public sealed class HealingSystem : EntitySystem
                 // and integrity, then apply a direct integrity change.
                 var (type, symmetry) = _bodySystem.ConvertTargetBodyPart(user.Target);
                 if (_bodySystem.GetBodyChildrenOfType(args.Target.Value, type, symmetry: symmetry).FirstOrDefault() is { } bodyPart
-                    && bodyPart.Component.Integrity < 100)
+                    && bodyPart.Component.Integrity < BodyPartComponent.MaxIntegrity)
                     _bodySystem.TryChangeIntegrity(bodyPart, healing.Damage.GetTotal().Float(), false, target.Target, out var _);
             }
         }
@@ -167,7 +168,7 @@ public sealed class HealingSystem : EntitySystem
 
         foreach (var part in _bodySystem.GetBodyChildren(target, body))
         {
-            if (part.Component.Integrity < 100)
+            if (part.Component.Integrity < BodyPartComponent.MaxIntegrity)
                 return true;
         }
         return false;

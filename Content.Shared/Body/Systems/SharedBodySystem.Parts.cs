@@ -162,7 +162,7 @@ public partial class SharedBodySystem
         partEnt.Comp.OriginalBody = partEnt.Comp.Body;
         var ev = new BodyPartRemovedEvent(slotId, partEnt);
         RaiseLocalEvent(bodyEnt, ref ev);
-        //RemoveLeg(partEnt, bodyEnt);
+        RemoveLeg(partEnt, bodyEnt);
         RemovePartEffect(partEnt, bodyEnt);
         PartRemoveDamage(bodyEnt, partEnt);
     }

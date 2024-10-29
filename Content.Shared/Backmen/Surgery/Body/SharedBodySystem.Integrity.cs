@@ -15,8 +15,6 @@ using Content.Shared.Backmen.Surgery.Steps.Parts;
 using Robust.Shared.CPUJob.JobQueues;
 using Robust.Shared.CPUJob.JobQueues.Queues;
 using Robust.Shared.Timing;
-using MethodImplAttribute = System.Runtime.CompilerServices.MethodImplAttribute;
-using MethodImplOptions = System.Runtime.CompilerServices.MethodImplOptions;
 
 namespace Content.Shared.Body.Systems;
 
@@ -62,13 +60,13 @@ public partial class SharedBodySystem
 
     private void ProcessIntegrityTick(Entity<BodyPartComponent> entity)
     {
-        if (entity.Comp is { Body: {} body, Integrity: > 50 and < 100 }
+        if (entity.Comp is { Body: {} body, Integrity: > 50 and < BodyPartComponent.MaxIntegrity }
             && _queryTargeting.HasComp(body)
             && !_mobState.IsDead(body))
         {
             var healing = entity.Comp.SelfHealingAmount;
-            if (healing + entity.Comp.Integrity > 100)
-                healing = entity.Comp.Integrity - 100;
+            if (healing + entity.Comp.Integrity > BodyPartComponent.MaxIntegrity)
+                healing = entity.Comp.Integrity - BodyPartComponent.MaxIntegrity;
 
             TryChangeIntegrity(entity,
                 healing,
@@ -137,7 +135,7 @@ public partial class SharedBodySystem
 
         var partIdSlot = GetParentPartAndSlotOrNull(partEnt)?.Slot;
         var originalIntegrity = partEnt.Comp.Integrity;
-        partEnt.Comp.Integrity = Math.Min(100, partEnt.Comp.Integrity - integrity);
+        partEnt.Comp.Integrity = Math.Min(BodyPartComponent.MaxIntegrity, partEnt.Comp.Integrity - integrity);
         if (canSever
             && !HasComp<BodyPartReattachedComponent>(partEnt)
             && !partEnt.Comp.Enabled
@@ -210,9 +208,7 @@ public partial class SharedBodySystem
         return result;
     }
 
-    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public TargetBodyPart? GetTargetBodyPart(Entity<BodyPartComponent> part) => GetTargetBodyPart(part.Comp.PartType, part.Comp.Symmetry);
-    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public TargetBodyPart? GetTargetBodyPart(BodyPartComponent part) => GetTargetBodyPart(part.PartType, part.Symmetry);
     /// <summary>
     /// Converts Enums from BodyPartType to their Targeting system equivalent.

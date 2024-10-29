@@ -63,6 +63,8 @@ public sealed partial class BodyPartComponent : Component, ISurgeryToolComponent
     [DataField, AutoNetworkedField]
     public float Integrity = 70f;
 
+    public const float MaxIntegrity = 70;
+
     /// <summary>
     /// Whether this body part is enabled or not.
     /// </summary>
