@@ -32,10 +32,10 @@
     damageEnergyDraw: 5
     domePrototype: EnergyDomeSmallRed
   - type: PowerCellDraw
-    drawRate: 0
+    drawRate: 3
     useRate: 0
   - type: UseDelay
-    delay: 10.0
+    delay: 15.0
 
 - type: entity
   name: BR-40c "Turtle"
@@ -84,10 +84,10 @@
     domePrototype: EnergyDomeMediumBlue
     canDeviceNetworkUse: true
   - type: PowerCellDraw
-    drawRate: 0
+    drawRate: 3
     useRate: 0
   - type: UseDelay
-    delay: 10.0
+    delay: 15.0
   - type: DeviceNetwork
     deviceNetId: Wireless
     receiveFrequencyId: BasicDevice
@@ -212,10 +212,10 @@
     damageEnergyDraw: 5
     domePrototype: EnergyDomeMediumRed
   - type: PowerCellDraw
-    drawRate: 0
+    drawRate: 3
     useRate: 0
   - type: UseDelay
-    delay: 10.0
+    delay: 15.0
 
 - type: entity
   name: BT-21b "Barrier"
@@ -251,7 +251,7 @@
     damageEnergyDraw: 5
     domePrototype: EnergyDomeSmallBlue
   - type: PowerCellDraw
-    drawRate: 0
+    drawRate: 3
     useRate: 0
   - type: UseDelay
-    delay: 10.0
+    delay: 15.0
