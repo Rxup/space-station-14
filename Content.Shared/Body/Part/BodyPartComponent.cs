@@ -1,4 +1,6 @@
-﻿using Content.Shared.Body.Components;
+﻿using Content.Shared.Backmen.Surgery.Tools;
+using Content.Shared.Containers.ItemSlots;
+using Content.Shared.Body.Components;
 using Content.Shared.Body.Systems;
 using Robust.Shared.Containers;
 using Robust.Shared.GameStates;
@@ -8,7 +10,7 @@ namespace Content.Shared.Body.Part;
 
 [RegisterComponent, NetworkedComponent, AutoGenerateComponentState]
 [Access(typeof(SharedBodySystem))]
-public sealed partial class BodyPartComponent : Component
+public sealed partial class BodyPartComponent : Component, ISurgeryToolComponent
 {
     // Need to set this on container changes as it may be several transform parents up the hierarchy.
     /// <summary>
@@ -16,6 +18,12 @@ public sealed partial class BodyPartComponent : Component
     /// </summary>
     [DataField, AutoNetworkedField]
     public EntityUid? Body;
+
+    [DataField, AutoNetworkedField]
+    public EntityUid? OriginalBody;
+
+    [DataField, AutoNetworkedField]
+    public BodyPartSlot? ParentSlot;
 
     [DataField, AutoNetworkedField]
     public BodyPartType PartType = BodyPartType.Other;
@@ -31,6 +39,12 @@ public sealed partial class BodyPartComponent : Component
     [DataField, AutoNetworkedField]
     public BodyPartSymmetry Symmetry = BodyPartSymmetry.None;
 
+    [DataField]
+    public string ToolName { get; set; } = "A body part";
+
+    [DataField, AutoNetworkedField]
+    public bool? Used { get; set; } = null;
+
     /// <summary>
     /// Child body parts attached to this body part.
     /// </summary>
@@ -42,6 +56,43 @@ public sealed partial class BodyPartComponent : Component
     /// </summary>
     [DataField, AutoNetworkedField]
     public Dictionary<string, OrganSlot> Organs = new();
+
+    /// <summary>
+    /// How much health the body part has until it pops out.
+    /// </summary>
+    [DataField, AutoNetworkedField]
+    public float Integrity = 70f;
+
+    public const float MaxIntegrity = 70;
+
+    /// <summary>
+    /// Whether this body part is enabled or not.
+    /// </summary>
+    [DataField, AutoNetworkedField]
+    public bool Enabled = true;
+
+    /// <summary>
+    /// How long it takes to run another self heal tick on the body part.
+    /// </summary>
+    [DataField("healingTime")]
+    public float HealingTime = 30;
+
+    /// <summary>
+    /// How long it has been since the last self heal tick on the body part.
+    /// </summary>
+    public float HealingTimer = 0;
+
+    /// <summary>
+    /// How much health to heal on the body part per tick.
+    /// </summary>
+    [DataField("selfHealingAmount")]
+    public float SelfHealingAmount = 5;
+
+    [DataField]
+    public string ContainerName { get; set; } = "part_slot";
+
+    [DataField, AutoNetworkedField]
+    public ItemSlot ItemInsertionSlot = new();
 
     /// <summary>
     /// These are only for VV/Debug do not use these for gameplay/systems
