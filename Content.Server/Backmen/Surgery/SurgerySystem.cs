@@ -74,7 +74,7 @@ public sealed class SurgerySystem : SharedSurgerySystem
             }
 
         }
-        Logger.Debug($"Setting UI state with {surgeries}, {body} and {SurgeryUIKey.Key}");
+        Log.Debug($"Setting UI state with {surgeries}, {body} and {SurgeryUIKey.Key}");
         _ui.SetUiState(body, SurgeryUIKey.Key, new SurgeryBuiState(surgeries));
     }
 
@@ -109,10 +109,10 @@ public sealed class SurgerySystem : SharedSurgerySystem
             _popup.PopupEntity("You can't perform surgery on yourself!", user, user);
             return;
         }*/
-        Logger.Debug("OnToolAfterInteract passed, opening UI");
+        Log.Debug("OnToolAfterInteract passed, opening UI");
         args.Handled = true;
         _ui.OpenUi(args.Target.Value, SurgeryUIKey.Key, user);
-        Logger.Debug("UI opened");
+        Log.Debug("UI opened");
         RefreshUI(args.Target.Value);
     }
 
@@ -173,7 +173,7 @@ public sealed class SurgerySystem : SharedSurgerySystem
             RaiseLocalEvent(targetPart.Id, ref ev);
             // This is basically an equalizer, severing a part will badly damage it.
             // and affixing it will heal it a bit if its not too badly damaged.
-            _body.TryChangeIntegrity(targetPart, targetPart.Component.Integrity - 20, false,
+            _body.TryChangeIntegrity(targetPart, targetPart.Component.Integrity - BodyPartComponent.IntegrityAffixPart, false,
                 _body.GetTargetBodyPart(targetPart.Component.PartType, targetPart.Component.Symmetry), out _);
         }
 

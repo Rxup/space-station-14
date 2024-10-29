@@ -141,20 +141,21 @@ public partial class SharedBodySystem
 
     private void OnDamageChanged(Entity<BodyComponent> ent, ref DamageChangedEvent args)
     {
+        if (!_gameTiming.IsFirstTimePredicted)
+            return;
+
+        DebugTools.Assert(ent.Comp is not null);
         if (args.PartMultiplier == 0
-            || ent.Comp is null
             || args.TargetPart is null
             || args.DamageDelta is null
-            || !args.DamageIncreased
-            && !args.DamageDecreased)
+            || args is { DamageIncreased: false, DamageDecreased: false })
             return;
 
         var (targetType, targetSymmetry) = ConvertTargetBodyPart(args.TargetPart.Value);
-        Logger.Debug($"Applying damage to {ToPrettyString(ent)} with {ent.Comp} and {args} {targetType} {targetSymmetry}");
+        Log.Debug($"Applying damage to {ToPrettyString(ent)} with {ent.Comp} and {args} {targetType} {targetSymmetry}");
         foreach (var part in GetBodyChildrenOfType(ent, targetType, ent.Comp)
             .Where(part => part.Component.Symmetry == targetSymmetry))
         {
-            if (_gameTiming.IsFirstTimePredicted)
                 ApplyPartDamage(part, args.DamageDelta, targetType, args.TargetPart.Value, args.CanSever, args.PartMultiplier);
         }
     }
@@ -380,18 +381,28 @@ public partial class SharedBodySystem
     {
         var gibs = new HashSet<EntityUid>();
 
-        _gibbingSystem.TryGibEntityWithRef(partId, partId, GibType.Gib, GibContentsOption.Drop, ref gibs,
-                playAudio: true, launchGibs: true, launchDirection: splatDirection, launchImpulse: GibletLaunchImpulse * splatModifier,
-                launchImpulseVariance: GibletLaunchImpulseVariance, launchCone: splatCone);
+        _gibbingSystem.TryGibEntityWithRef(
+            partId,
+            partId,
+            GibType.Gib,
+            GibContentsOption.Drop,
+            ref gibs,
+            playAudio: true,
+            launchGibs: true,
+            launchDirection: splatDirection,
+            launchImpulse: GibletLaunchImpulse * splatModifier,
+            launchImpulseVariance: GibletLaunchImpulseVariance,
+            launchCone: splatCone);
 
         if (TryComp<InventoryComponent>(partId, out var inventory))
         {
-            foreach (var item in _inventory.GetHandOrInventoryEntities(partId))
+            foreach (var item in _inventory.GetHandOrInventoryEntities((partId, null, inventory)))
             {
                 SharedTransform.AttachToGridOrMap(item);
                 gibs.Add(item);
             }
         }
+
         _audioSystem.PlayPredicted(gibSoundOverride, Transform(partId).Coordinates, null);
         return gibs;
     }
