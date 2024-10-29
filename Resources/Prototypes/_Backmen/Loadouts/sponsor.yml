@@ -39,3 +39,29 @@
 #  ClothingWolfMask
 #  ClothingDallasMask
 
+#Кокнус 2024, что-то связанное с ркн
+- type: loadout
+  id: PresentRandomKonkursBkm
+  storage:
+    back:
+    - PresentRandom
+
+- type: loadout
+  id: PneumaticCannonXM1014KonkursBkm
+  storage:
+    back:
+    - WeaponImprovisedPneumaticCannonXM1014
+
+- type: loadout
+  id: ScarfSyndieKonkursBkm
+  storage:
+    back:
+    - ClothingNeckScarfStripedSyndieRed
+
+- type: loadout
+  id: BizarreKonkursBkm
+  storage:
+    back:
+    - ClothingHeadHatBizarreSoft
+    - ClothingOuterCoatBizarre
+
