@@ -229,7 +229,7 @@ public partial class SharedBodySystem
     // TODO: Refactor this crap.
     private void RemovePartEffect(Entity<BodyPartComponent> partEnt, Entity<BodyComponent?> bodyEnt)
     {
-        if (!Resolve(bodyEnt, ref bodyEnt.Comp, logMissing: false))
+        if (TerminatingOrDeleted(bodyEnt) || !Resolve(bodyEnt, ref bodyEnt.Comp, logMissing: false))
             return;
 
         if (partEnt.Comp.Children.Any())
@@ -245,7 +245,7 @@ public partial class SharedBodySystem
                     RaiseLocalEvent(childEntity, ref ev);
                     DropPart((childEntity, childPart));
                 }
-            };
+            }
             Dirty(bodyEnt, bodyEnt.Comp);
         }
 
