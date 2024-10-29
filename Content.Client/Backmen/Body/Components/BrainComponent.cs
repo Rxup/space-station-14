@@ -1,9 +1,4 @@
-using Robust.Shared.GameStates;
+namespace Content.Client.Backmen.Body.Components;
 
-namespace Content.Client.Backmen.Body.Components
-{
-    [RegisterComponent]
-    public sealed partial class BrainComponent : Component
-    {
-    }
-}
+[RegisterComponent]
+public sealed partial class BrainComponent : Component;
