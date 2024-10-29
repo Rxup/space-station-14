@@ -62,6 +62,8 @@
     interfaces:
       enum.StoreUiKey.Key:
         type: StoreBoundUserInterface
+      enum.VoiceMaskUIKey.Key:
+        type: VoiceMaskBoundUserInterface
   - type: Visibility
     layer: 2 #ghost vis layer
   - type: Store
