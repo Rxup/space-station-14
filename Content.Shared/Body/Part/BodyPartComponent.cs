@@ -2,6 +2,7 @@
 using Content.Shared.Containers.ItemSlots;
 using Content.Shared.Body.Components;
 using Content.Shared.Body.Systems;
+using Content.Shared.FixedPoint;
 using Robust.Shared.Containers;
 using Robust.Shared.GameStates;
 using Robust.Shared.Serialization;
@@ -35,6 +36,13 @@ public sealed partial class BodyPartComponent : Component, ISurgeryToolComponent
     /// </summary>
     [DataField("vital"), AutoNetworkedField]
     public bool IsVital;
+
+    /// <summary>
+    /// Amount of damage to deal when the part gets removed.
+    /// Only works if IsVital is true.
+    /// </summary>
+    [DataField, AutoNetworkedField]
+    public FixedPoint2 VitalDamage = 100;
 
     [DataField, AutoNetworkedField]
     public BodyPartSymmetry Symmetry = BodyPartSymmetry.None;
