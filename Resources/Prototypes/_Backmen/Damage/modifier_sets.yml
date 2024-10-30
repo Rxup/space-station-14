@@ -123,6 +123,6 @@
     Blunt: 2.0
     Slash: 2.0
     Piercing: 2.0
-    Cold: 2.0
+    Cold: 0.4
     Shock: 0.4
     Stun: 4.0
