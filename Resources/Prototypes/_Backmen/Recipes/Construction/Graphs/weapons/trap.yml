@@ -18,8 +18,8 @@
             - tag: GlassShard
               name: glass shard
               icon:
-              sprite: Objects/Materials/Shards/shard.rsi
-              state: shard1
+                sprite: Objects/Materials/Shards/shard.rsi
+                state: shard1
               doAfter: 0.5
 
     - node: trap
