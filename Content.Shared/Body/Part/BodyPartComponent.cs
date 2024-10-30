@@ -42,7 +42,7 @@ public sealed partial class BodyPartComponent : Component, ISurgeryToolComponent
     /// Only works if IsVital is true.
     /// </summary>
     [DataField, AutoNetworkedField]
-    public FixedPoint2 VitalDamage = 100;
+    public FixedPoint2 VitalDamage = MaxIntegrity;
 
     [DataField, AutoNetworkedField]
     public BodyPartSymmetry Symmetry = BodyPartSymmetry.None;
