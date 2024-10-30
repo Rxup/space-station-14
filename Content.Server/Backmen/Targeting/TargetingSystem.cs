@@ -1,14 +1,12 @@
+using Content.Shared.Backmen.Targeting;
 using Content.Shared.Body.Systems;
 using Content.Shared.Mobs;
 using Content.Shared.Targeting;
 using Content.Shared.Targeting.Events;
-using Robust.Server.Audio;
-using Robust.Shared.Audio;
 
-namespace Content.Server.Targeting;
+namespace Content.Server.Backmen.Targeting;
 public sealed class TargetingSystem : SharedTargetingSystem
 {
-    [Dependency] private readonly AudioSystem _audio = default!;
     [Dependency] private readonly SharedBodySystem _bodySystem = default!;
 
     public override void Initialize()

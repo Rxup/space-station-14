@@ -1,7 +1,7 @@
 using Content.Client.Backmen.UserInterface.Systems.PartStatus.Widgets;
 using Content.Client.Gameplay;
 using Content.Shared.Targeting;
-using Content.Client.Targeting;
+using Content.Client.Backmen.Targeting;
 using Robust.Client.GameObjects;
 using Robust.Client.UserInterface.Controllers;
 using Robust.Shared.Utility;
