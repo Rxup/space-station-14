@@ -262,7 +262,7 @@ public partial class SharedBodySystem
         )
         {
             var damage = new DamageSpecifier(Prototypes.Index<DamageTypePrototype>("Bloodloss"), partEnt.Comp.VitalDamage);
-            Damageable.TryChangeDamage(bodyEnt, damage);
+            Damageable.TryChangeDamage(bodyEnt, damage, partMultiplier: 0f);
         }
     }
 
