@@ -110,7 +110,7 @@ public sealed class HealingSystem : EntitySystem
         // start-backmen: surgery
         // This is still pretty shitcodey, but a lot better than previous iteration.
         // We are just trying to heal the most damaged body part.
-        if (healed != null)
+        if (healed != null && healed.GetTotal() == 0)
         {
             var parts = _bodySystem.GetBodyChildren(args.Target).ToList();
             // Get the severest body part, selected by taking the one with lowest Integrity.
