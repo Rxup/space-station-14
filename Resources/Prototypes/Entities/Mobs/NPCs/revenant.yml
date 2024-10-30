@@ -58,6 +58,7 @@
     color: MediumPurple
     radius: 2
     softness: 1
+  - type: VoiceMask # Backmen
   - type: UserInterface
     interfaces:
       enum.StoreUiKey.Key:
