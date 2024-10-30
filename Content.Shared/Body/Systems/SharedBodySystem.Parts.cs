@@ -275,8 +275,8 @@ public partial class SharedBodySystem
             && !GetBodyChildrenOfType(bodyEnt, partEnt.Comp.PartType, bodyEnt.Comp).Any()
         )
         {
-            var damage = new DamageSpecifier(Prototypes.Index<DamageTypePrototype>("Bloodloss"), 300);
-            Damageable.TryChangeDamage(bodyEnt, damage);
+            var damage = new DamageSpecifier(Prototypes.Index<DamageTypePrototype>("Bloodloss"), partEnt.Comp.VitalDamage);
+            Damageable.TryChangeDamage(bodyEnt, damage, partMultiplier: 0f);
         }
     }
 

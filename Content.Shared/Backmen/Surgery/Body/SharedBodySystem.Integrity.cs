@@ -167,7 +167,7 @@ public partial class SharedBodySystem
             RaiseLocalEvent(partEnt, ref ev);
         }
 
-        if (partEnt.Comp.Integrity != originalIntegrity
+        if (Math.Abs(partEnt.Comp.Integrity - originalIntegrity) > 0.01
             && _queryTargeting.TryComp(partEnt.Comp.Body, out var targeting)
             && HasComp<MobStateComponent>(partEnt.Comp.Body))
         {
