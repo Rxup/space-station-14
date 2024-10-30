@@ -1,0 +1,10 @@
+- type: construction
+  name: Trap
+  id: Trap
+  graph: Trap
+  startNode: start
+  targetNode: trap
+  category: construction-category-weapons
+  description: Ловушка для любителей подглядывать.
+  icon: { sprite: Backmen/Objects/Devices/trap.rsi, state: beartrap1  }
+  objectType: Item

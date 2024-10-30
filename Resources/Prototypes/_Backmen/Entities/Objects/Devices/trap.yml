@@ -48,6 +48,9 @@
         types:
           Blunt: 5
           Piercing: 10
+    - type: Construction
+      graph: Trap
+      node: trap
     - type: EmitSoundOnUse
       sound: "/Audio/Items/Handcuffs/cuff_end.ogg"
     - type: EmitSoundOnTrigger

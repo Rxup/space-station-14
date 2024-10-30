@@ -1,0 +1,26 @@
+- type: constructionGraph
+  id: Trap
+  start: start
+  graph:
+    - node: start
+      edges:
+        - to: trap
+          steps:
+            - material: Cable
+              amount: 5
+              doAfter: 2
+            - material: Steel
+              amount: 5
+              doAfter: 2
+            - material: MetalRod
+              amount: 5
+              doAfter: 2
+            - tag: GlassShard
+              name: glass shard
+              icon:
+              sprite: Objects/Materials/Shards/shard.rsi
+              state: shard1
+              doAfter: 0.5
+
+    - node: trap
+      entity:Trap
