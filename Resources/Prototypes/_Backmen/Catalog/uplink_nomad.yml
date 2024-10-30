@@ -539,7 +539,7 @@
   description: uplink-energy-dome-desc
   productEntity: EnergyDomeGeneratorPersonalSyndie
   cost:
-    Telecrystal: 30
+    Telecrystal: 10
   categories:
   - UplinkWearables
   conditions:
@@ -558,6 +558,6 @@
   discountDownTo:
     Telecrystal: 1
   cost:
-    Telecrystal: 3
+    Telecrystal: 2
   categories:
   - UplinkPointless

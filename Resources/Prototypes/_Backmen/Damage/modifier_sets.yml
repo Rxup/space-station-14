@@ -119,9 +119,10 @@
 - type: damageModifierSet
   id: HardLightBarrier
   coefficients:
-    Heat: 2.0
-    Blunt: 1.0
-    Slash: 1.0
-    Piercing: 1.0
-    Cold: 1.0
-    Shock: 2.0
+    Heat: 0.4
+    Blunt: 2.0
+    Slash: 2.0
+    Piercing: 2.0
+    Cold: 2.0
+    Shock: 0.4
+    Stun: 4.0
