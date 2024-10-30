@@ -23,4 +23,4 @@
               doAfter: 0.5
 
     - node: trap
-      entity: Trap
+      entity: trap
