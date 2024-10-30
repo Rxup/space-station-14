@@ -147,10 +147,8 @@ namespace Content.Server.Hands.Systems
 
         private void HandleBodyPartDisabled(EntityUid uid, HandsComponent component, ref BodyPartDisabledEvent args)
         {
-            if(TerminatingOrDeleted(uid))
-                return;
-
-            if (args.Part.Comp is null
+            if (TerminatingOrDeleted(uid)
+                || args.Part.Comp is null
                 || args.Part.Comp.PartType != BodyPartType.Hand)
                 return;
 

@@ -15,6 +15,7 @@ using Robust.Shared.Prototypes;
 using System.Linq;
 using Content.Shared.Backmen.Surgery.Steps;
 using Content.Shared.Backmen.Surgery.Tools;
+using Content.Shared.Containers.ItemSlots;
 
 namespace Content.Shared.Backmen.Surgery;
 
@@ -275,11 +276,14 @@ public abstract partial class SharedSurgerySystem
 
     private void OnCavityCheck(Entity<SurgeryStepCavityEffectComponent> ent, ref SurgeryStepCompleteCheckEvent args)
     {
+        // Normally this check would simply be partComp.ItemInsertionSlot.HasItem, but as mentioned before,
+        // For whatever reason it's not instantiating the field on the clientside after the wizmerge.
         if (!TryComp(args.Part, out BodyPartComponent? partComp)
+            || !TryComp(args.Part, out ItemSlotsComponent? itemComp)
             || ent.Comp.Action == "Insert"
-            && !partComp.ItemInsertionSlot.HasItem
+            && !itemComp.Slots[partComp.ContainerName].HasItem
             || ent.Comp.Action == "Remove"
-            && partComp.ItemInsertionSlot.HasItem)
+            && itemComp.Slots[partComp.ContainerName].HasItem)
             args.Cancelled = true;
     }
 
@@ -299,6 +303,7 @@ public abstract partial class SharedSurgerySystem
                     : removedComp.Part.ToString().ToLower();
                 _body.TryCreatePartSlot(args.Part, slotName, partComp.PartType, out var _);
                 _body.AttachPart(args.Part, slotName, tool);
+                _body.ChangeSlotState((tool, partComp), false);
             }
         }
     }

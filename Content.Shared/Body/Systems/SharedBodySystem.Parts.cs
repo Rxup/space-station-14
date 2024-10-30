@@ -23,6 +23,7 @@ public partial class SharedBodySystem
     [Dependency] private readonly SharedHandsSystem _handsSystem = default!;
     [Dependency] private readonly RandomHelperSystem _randomHelper = default!;
     [Dependency] private readonly InventorySystem _inventorySystem = default!;
+
     private void InitializeParts()
     {
         // TODO: This doesn't handle comp removal on child ents.
@@ -169,19 +170,7 @@ public partial class SharedBodySystem
 
     protected virtual void DropPart(Entity<BodyPartComponent> partEnt)
     {
-        // We check for whether or not the arm, leg or head is being dropped, in which case
-        // If theres just one, that means we'll remove the container slots.
-        if (partEnt.Comp.Body is not null
-            && TryGetPartSlotContainerName(partEnt.Comp.PartType, out var containerNames)
-            && GetBodyPartCount(partEnt.Comp.Body.Value, partEnt.Comp.PartType) == 1)
-        {
-            foreach (var containerName in containerNames)
-            {
-                _inventorySystem.SetSlotStatus(partEnt.Comp.Body.Value, containerName, true);
-                var ev = new RefreshInventorySlotsEvent(containerName);
-                RaiseLocalEvent(partEnt.Comp.Body.Value, ev);
-            }
-        }
+        ChangeSlotState(partEnt, true);
 
         // We then detach the part, which will kickstart EntRemovedFromContainer events.
         if (TryComp(partEnt, out TransformComponent? transform) && _gameTiming.IsFirstTimePredicted)
@@ -192,6 +181,31 @@ public partial class SharedBodySystem
             _randomHelper.RandomOffset(partEnt, 0.5f);
         }
 
+    }
+
+
+    /// <summary>
+    /// This function handles disabling or enabling equipment slots when an entity is
+    /// missing all of a given part type, or they get one added to them.
+    /// It is called right before dropping a part, or right after adding one.
+    /// </summary>
+    public void ChangeSlotState(Entity<BodyPartComponent> partEnt, bool disable)
+    {
+        if (partEnt.Comp.Body is not null)
+            Log.Debug($"Attempting to change slot state to {disable} for {partEnt.Comp.PartType}. Number of parts: {GetBodyPartCount(partEnt.Comp.Body.Value, partEnt.Comp.PartType)}");
+        if (partEnt.Comp.Body is not null
+            && GetBodyPartCount(partEnt.Comp.Body.Value, partEnt.Comp.PartType) == 1
+            && TryGetPartSlotContainerName(partEnt.Comp.PartType, out var containerNames))
+        {
+            Log.Debug($"Found container names {containerNames}, with a number of {containerNames.Count}");
+            foreach (var containerName in containerNames)
+            {
+                Log.Debug($"Setting slot state to {disable} for {containerName}");
+                _inventorySystem.SetSlotStatus(partEnt.Comp.Body.Value, containerName, disable);
+                var ev = new RefreshInventorySlotsEvent(containerName);
+                RaiseLocalEvent(partEnt.Comp.Body.Value, ev);
+            }
+        }
     }
 
     private void OnAmputateAttempt(Entity<BodyPartComponent> partEnt, ref AmputateAttemptEvent args)
