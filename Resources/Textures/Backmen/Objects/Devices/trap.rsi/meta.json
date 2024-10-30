@@ -1,0 +1,17 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "Taken from daedalusdock at https://github.com/DaedalusDock/daedalusdock/blob/777fe5a35047cff82024df391638373bb4dd28b1/icons/obj/restraints.dmi modificated @CrimeMoot",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "beartrap"
+    },
+    {
+      "name": "beartrap1"
+    }
+  ]
+}

@@ -1,0 +1,95 @@
+- type: entity
+  name: капкан
+  parent: BaseItem
+  id: trap
+  description: Капкан для больших мальчиков
+  components:
+    - type: Sprite
+      sprite: Backmen/Objects/Devices/trap.rsi
+      drawdepth: Mobs
+      layers:
+        - state: beartrap
+          map: ["base"]
+    - type: StepTrigger
+      intersectRatio: 0.2
+      requiredTriggeredSpeed: 2
+    - type: Ensnaring
+      freeTime: 3.0
+      breakoutTime: 3.5
+      walkSpeed: 0.7
+      sprintSpeed: 0.7
+      staminaDamage: 55
+      canThrowTrigger: true
+      canMoveBreakout: true
+    - type: Damageable
+      damageContainer: Inorganic
+    - type: Destructible
+      thresholds:
+      - trigger:
+          !type:DamageTrigger
+          damage: 40
+        behaviors:
+          - !type:DoActsBehavior
+            acts: [ "Destruction" ]
+      - trigger:
+          !type:DamageTrigger
+          damage: 10
+        behaviors:
+        - !type:PlaySoundBehavior
+          sound:
+            collection: MetalBreak
+        - !type:DoActsBehavior
+          acts: [ "Destruction" ]
+    - type: Mousetrap
+    - type: TriggerOnStepTrigger
+    - type: PreventableStepTrigger
+    - type: DamageUserOnTrigger
+      damage:
+        types:
+          Blunt: 5
+          Piercing: 10
+    - type: EmitSoundOnUse
+      sound: "/Audio/Items/Handcuffs/cuff_end.ogg"
+    - type: EmitSoundOnTrigger
+      sound: "/Audio/Items/snap.ogg"
+    - type: Item
+      sprite: Backmen/Objects/Devices/trap.rsi
+    - type: Appearance
+    - type: GenericVisualizer
+      visuals:
+        enum.MousetrapVisuals.Visual:
+          base:
+            Armed: { state: beartrap1 }
+            Unarmed: { state: beartrap }
+    - type: Physics
+      bodyType: Dynamic
+    - type: CollisionWake
+      enabled: false
+    - type: Fixtures
+      fixtures:
+        slips:
+          shape:
+            !type:PhysShapeAabb
+            bounds: "-0.2,-0.2,0.2,0.2"
+          hard: false
+          layer:
+            - LowImpassable
+        fix1:
+          shape:
+            !type:PhysShapeAabb
+            bounds: "-0.2,-0.2,0.2,0.2"
+          density: 30
+          mask:
+            - ItemMask
+    - type: LandAtCursor
+    - type: Rotatable
+
+- type: entity
+  name: капкан
+  suffix: Armed
+  parent: trap
+  id: trapArmed
+  description: Капкан для больших мальчиков
+  components:
+    - type: Mousetrap
+      isActive: true
