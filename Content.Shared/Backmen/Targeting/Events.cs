@@ -1,7 +1,6 @@
-using Content.Shared.Targeting;
 using Robust.Shared.Serialization;
 
-namespace Content.Shared.Targeting.Events;
+namespace Content.Shared.Backmen.Targeting;
 
 [Serializable, NetSerializable]
 public sealed class TargetChangeEvent : EntityEventArgs

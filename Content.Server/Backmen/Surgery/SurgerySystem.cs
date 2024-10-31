@@ -11,9 +11,9 @@ using Content.Shared.Medical.Surgery.Effects.Step;
 using Content.Server.Atmos.Rotting;
 using Content.Shared.Eye.Blinding.Components;
 using Content.Shared.Eye.Blinding.Systems;
-//using Content.Shared.Medical.Wounds;
 using Content.Shared.Prototypes;
 using Robust.Server.GameObjects;
+using Robust.Shared.Configuration;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
 using System.Linq;
@@ -26,14 +26,13 @@ public sealed class SurgerySystem : SharedSurgerySystem
 {
     [Dependency] private readonly BodySystem _body = default!;
     [Dependency] private readonly ChatSystem _chat = default!;
-
+    [Dependency] private readonly IConfigurationManager _config = default!;
     [Dependency] private readonly DamageableSystem _damageableSystem = default!;
     [Dependency] private readonly IPrototypeManager _prototypes = default!;
     [Dependency] private readonly PopupSystem _popup = default!;
     [Dependency] private readonly UserInterfaceSystem _ui = default!;
     [Dependency] private readonly RottingSystem _rot = default!;
     [Dependency] private readonly BlindableSystem _blindableSystem = default!;
-    //[Dependency] private readonly WoundsSystem _wounds = default!;
 
     private readonly List<EntProtoId> _surgeries = new();
 
@@ -78,8 +77,11 @@ public sealed class SurgerySystem : SharedSurgerySystem
         _ui.SetUiState(body, SurgeryUIKey.Key, new SurgeryBuiState(surgeries));
     }
 
-    private void SetDamage(EntityUid body, DamageSpecifier damage, float partMultiplier,
-        EntityUid user, EntityUid part)
+    private void SetDamage(EntityUid body,
+        DamageSpecifier damage,
+        float partMultiplier,
+        EntityUid user,
+        EntityUid part)
     {
         var changed = _damageableSystem.TryChangeDamage(body, damage, true, origin: user, canSever: false, partMultiplier: partMultiplier);
         if (changed != null
@@ -103,13 +105,13 @@ public sealed class SurgerySystem : SharedSurgerySystem
         {
             return;
         }
-        /* lmao bet
-        if (user == args.Target)
+
+        if (user == args.Target && !_config.GetCVar(Shared.Backmen.CCVar.CCVars.CanOperateOnSelf))
         {
-            _popup.PopupEntity("You can't perform surgery on yourself!", user, user);
+            _popup.PopupEntity(Loc.GetString("surgery-error-self-surgery"), user, user);
             return;
-        }*/
-        Log.Debug("OnToolAfterInteract passed, opening UI");
+        }
+
         args.Handled = true;
         _ui.OpenUi(args.Target.Value, SurgeryUIKey.Key, user);
         Log.Debug("UI opened");

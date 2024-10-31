@@ -1,8 +1,6 @@
-using Robust.Shared.Audio;
-using Robust.Shared.GameObjects;
 using Robust.Shared.GameStates;
 
-namespace Content.Shared.Targeting;
+namespace Content.Shared.Backmen.Targeting;
 
 /// <summary>
 /// Controls entity limb targeting for actions.

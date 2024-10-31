@@ -1,7 +1,5 @@
 using Content.Shared.Backmen.Targeting;
 using Content.Shared.Input;
-using Content.Shared.Targeting;
-using Content.Shared.Targeting.Events;
 using Robust.Client.Player;
 using Robust.Shared.Input.Binding;
 using Robust.Shared.Player;
