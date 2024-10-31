@@ -1,21 +1,21 @@
 using Content.Shared.Body.Components;
 using Content.Shared.Body.Part;
 using Content.Shared.Damage;
-using Content.Shared.Mobs.Systems;
 using Content.Shared.Mobs.Components;
+using Content.Shared.Mobs.Systems;
 using Content.Shared.Standing;
-using Content.Shared.Targeting;
-using Content.Shared.Targeting.Events;
+using Content.Shared.Backmen.Targeting;
+using Robust.Shared.CPUJob.JobQueues;
+using Robust.Shared.CPUJob.JobQueues.Queues;
 using Robust.Shared.Network;
 using Robust.Shared.Random;
+using Robust.Shared.Timing;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using Content.Shared.Backmen.Surgery.Steps.Parts;
-using Robust.Shared.CPUJob.JobQueues;
-using Robust.Shared.CPUJob.JobQueues.Queues;
-using Robust.Shared.Timing;
 
+// ReSharper disable once CheckNamespace
 namespace Content.Shared.Body.Systems;
 
 public partial class SharedBodySystem
@@ -24,7 +24,6 @@ public partial class SharedBodySystem
     [Dependency] private readonly MobStateSystem _mobState = default!;
     [Dependency] private readonly IRobustRandom _random = default!;
     private readonly string[] _severingDamageTypes = { "Slash", "Pierce", "Blunt" };
-
     private const double IntegrityJobTime = 0.005;
     private readonly JobQueue _integrityJobQueue = new(IntegrityJobTime);
 
@@ -97,6 +96,7 @@ public partial class SharedBodySystem
         }
     }
 
+
     /// <summary>
     /// Propagates damage to the specified parts of the entity.
     /// </summary>
@@ -161,7 +161,7 @@ public partial class SharedBodySystem
             RaiseLocalEvent(partEnt, ref ev);
         }
         else if (!partEnt.Comp.Enabled
-            && partEnt.Comp.Integrity >= BodyPartComponent.LightIntegrity)
+            && partEnt.Comp.Integrity >= BodyPartComponent.SomewhatIntegrity)
         {
             var ev = new BodyPartEnableChangedEvent(true);
             RaiseLocalEvent(partEnt, ref ev);
@@ -297,18 +297,19 @@ public partial class SharedBodySystem
     {
         if (severed)
             return TargetIntegrity.Severed;
-        else if (!enabled)
+
+        if (!enabled)
             return TargetIntegrity.Disabled;
-        else
-            return integrity switch
-            {
-                <= BodyPartComponent.CritIntegrity => TargetIntegrity.CriticallyWounded,
-                <= BodyPartComponent.HeavyIntegrity => TargetIntegrity.HeavilyWounded,
-                <= BodyPartComponent.MedIntegrity => TargetIntegrity.ModeratelyWounded,
-                <= BodyPartComponent.SomewhatIntegrity => TargetIntegrity.SomewhatWounded,
-                <= BodyPartComponent.LightIntegrity => TargetIntegrity.LightlyWounded,
-                _ => TargetIntegrity.Healthy
-            };
+
+        return integrity switch
+        {
+            <= BodyPartComponent.CritIntegrity => TargetIntegrity.CriticallyWounded,
+            <= BodyPartComponent.HeavyIntegrity => TargetIntegrity.HeavilyWounded,
+            <= BodyPartComponent.MedIntegrity => TargetIntegrity.ModeratelyWounded,
+            <= BodyPartComponent.SomewhatIntegrity => TargetIntegrity.SomewhatWounded,
+            <= BodyPartComponent.LightIntegrity => TargetIntegrity.LightlyWounded,
+            _ => TargetIntegrity.Healthy
+        };
     }
 
     /// <summary>
@@ -348,5 +349,4 @@ public partial class SharedBodySystem
 
         return _random.NextFloat() < evadeChance;
     }
-
 }

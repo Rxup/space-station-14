@@ -1,4 +1,4 @@
-namespace Content.Shared.Targeting;
+namespace Content.Shared.Backmen.Targeting;
 public enum TargetIntegrity
 {
     Healthy = 0,

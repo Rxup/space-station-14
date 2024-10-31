@@ -7,7 +7,7 @@ using Content.Shared.Mobs.Components;
 using Content.Shared.Mobs.Systems;
 using Content.Shared.Radiation.Events;
 using Content.Shared.Rejuvenate;
-using Content.Shared.Targeting;
+using Content.Shared.Backmen.Targeting;
 using Robust.Shared.GameStates;
 using Robust.Shared.Network;
 using Robust.Shared.Prototypes;

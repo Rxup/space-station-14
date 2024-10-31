@@ -4,12 +4,11 @@ using Content.Shared.Body.Organ;
 using Content.Shared.Body.Part;
 using Content.Shared.Damage;
 using Content.Shared.Damage.Prototypes;
-using Content.Shared.Hands.Components;
 using Content.Shared.Hands.EntitySystems;
 using Content.Shared.Inventory;
 using Content.Shared.Movement.Components;
 using Content.Shared.Random;
-using Content.Shared.Targeting.Events;
+using Content.Shared.Backmen.Targeting;
 using Robust.Shared.Containers;
 using Robust.Shared.Utility;
 using System.Diagnostics.CodeAnalysis;
@@ -212,7 +211,6 @@ public partial class SharedBodySystem
     {
         DropPart(partEnt);
     }
-
     private void AddLeg(Entity<BodyPartComponent> legEnt, Entity<BodyComponent?> bodyEnt)
     {
         if (!Resolve(bodyEnt, ref bodyEnt.Comp, logMissing: false))

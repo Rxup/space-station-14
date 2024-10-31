@@ -1,6 +1,8 @@
 using Content.Server.Administration.Logs;
 using Content.Server.Body.Components;
 using Content.Server.Body.Systems;
+using Content.Shared.Body.Part;
+using Content.Server.Chemistry.Containers.EntitySystems;
 using Content.Server.Medical.Components;
 using Content.Server.Popups;
 using Content.Server.Stack;
@@ -10,7 +12,6 @@ using Content.Shared.Body.Systems;
 using Content.Shared.Damage;
 using Content.Shared.Database;
 using Content.Shared.DoAfter;
-using Content.Shared.Targeting;
 using Content.Shared.Body.Components;
 using Content.Shared.FixedPoint;
 using Content.Shared.IdentityManagement;
@@ -25,7 +26,6 @@ using Content.Shared.Stacks;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Random;
 using System.Linq;
-using Content.Shared.Body.Part;
 
 namespace Content.Server.Medical;
 
@@ -93,6 +93,21 @@ public sealed class HealingSystem : EntitySystem
 
         var total = healed?.GetTotal() ?? FixedPoint2.Zero;
 
+        /* This is rather shitcodey. Problem is that right now damage is coupled to integrity.
+           If the body is fully healed, all of the checks on TryChangeDamage stop us from actually healing.
+           So in this case we add a special check to heal anyway if TryChangeDamage returns null.
+        */
+        if (total == 0)
+        {
+            var parts = _bodySystem.GetBodyChildren(args.Target).ToList();
+            // We fetch the most damaged body part
+            var mostDamaged = parts.MinBy(x => x.Component.Integrity);
+            var targetBodyPart = _bodySystem.GetTargetBodyPart(mostDamaged);
+
+            if (targetBodyPart != null)
+                _bodySystem.TryChangeIntegrity(mostDamaged, healing.Damage.GetTotal().Float(), false, targetBodyPart.Value, out _);
+        }
+
         // Re-verify that we can heal the damage.
 
         if (TryComp<StackComponent>(args.Used.Value, out var stackComp))
@@ -106,24 +121,6 @@ public sealed class HealingSystem : EntitySystem
         {
             QueueDel(args.Used.Value);
         }
-
-        // start-backmen: surgery
-        // This is still pretty shitcodey, but a lot better than previous iteration.
-        // We are just trying to heal the most damaged body part.
-        if (healed != null && healed.GetTotal() == 0)
-        {
-            var parts = _bodySystem.GetBodyChildren(args.Target).ToList();
-            // Get the severest body part, selected by taking the one with lowest Integrity.
-            var severestPart = parts.MinBy(x => x.Component.Integrity);
-            // Convert this thing into a target
-            var targetBodyPart = _bodySystem.GetTargetBodyPart(severestPart);
-
-            if (targetBodyPart != null)
-            {
-                _bodySystem.TryChangeIntegrity(severestPart, healing.Damage.GetTotal().Float(), false, targetBodyPart.Value, out _);
-            }
-        }
-        // end-backmen: surgery
 
         if (entity.Owner != args.User)
         {
