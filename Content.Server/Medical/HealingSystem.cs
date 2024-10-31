@@ -91,11 +91,13 @@ public sealed class HealingSystem : EntitySystem
         if (healed == null && healing.BloodlossModifier != 0)
             return;
 
+        var total = healed?.GetTotal() ?? FixedPoint2.Zero;
+
         /* This is rather shitcodey. Problem is that right now damage is coupled to integrity.
            If the body is fully healed, all of the checks on TryChangeDamage stop us from actually healing.
            So in this case we add a special check to heal anyway if TryChangeDamage returns null.
         */
-        if (healed != null && healed.GetTotal() == 0)
+        if (total == 0)
         {
             var parts = _bodySystem.GetBodyChildren(args.Target).ToList();
             // We fetch the most damaged body part
@@ -105,8 +107,6 @@ public sealed class HealingSystem : EntitySystem
             if (targetBodyPart != null)
                 _bodySystem.TryChangeIntegrity(mostDamaged, healing.Damage.GetTotal().Float(), false, targetBodyPart.Value, out _);
         }
-
-        var total = healed?.GetTotal() ?? FixedPoint2.Zero;
 
         // Re-verify that we can heal the damage.
 
