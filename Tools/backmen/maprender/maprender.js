@@ -8,6 +8,7 @@ const {
     v1: uuidv1,
     v4: uuidv4,
 } = require('uuid');
+var Prompt = require('prompt-checkbox');
 
 const proxy = undefined;/*{
 protocol: 'http',
@@ -173,7 +174,14 @@ function chunkArray(array, chunkSize) {
         // Автоматическое получение списка .yml файлов по маске
         let files = getYamlFiles();
 
-        const fileBatches = chunkArray(files, 2);
+        var prompt = new Prompt({
+            name: 'render',
+            message: 'Какие карты нужно обновить?',
+            radio: true,
+            choices: files
+        });
+        let filesToRun = await prompt.run();
+        const fileBatches = chunkArray(filesToRun, 2);
 
         console.log('Запуск обработки файлами батчами');
         for (const batch of fileBatches) {
