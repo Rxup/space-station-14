@@ -3,6 +3,7 @@ using Content.Server.Medical.Components;
 using Content.Server.PowerCell;
 using Content.Server.Temperature.Components;
 using Content.Server.Traits.Assorted;
+using Content.Shared.Backmen.Targeting;
 using Content.Shared.Chemistry.EntitySystems;
 using Content.Shared.Damage;
 using Content.Shared.DoAfter;
@@ -210,13 +211,20 @@ public sealed class HealthAnalyzerSystem : EntitySystem
         if (HasComp<UnrevivableComponent>(target))
             unrevivable = true;
 
+        // start-backmen: surgery
+        Dictionary<TargetBodyPart, TargetIntegrity>? body = null;
+        if (TryComp<TargetingComponent>(target, out var targetingComponent))
+            body = targetingComponent.BodyStatus;
+        // end-backmen: surgery
+
         _uiSystem.ServerSendUiMessage(healthAnalyzer, HealthAnalyzerUiKey.Key, new HealthAnalyzerScannedUserMessage(
             GetNetEntity(target),
             bodyTemperature,
             bloodAmount,
             scanMode,
             bleeding,
-            unrevivable
+            unrevivable,
+            body // backmen: surgery
         ));
     }
 }
