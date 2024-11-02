@@ -1078,6 +1078,9 @@
   id: Plunger
 
 - type: Tag
+  id: PlushieCarp
+
+- type: Tag
   id: PlushieGhost
 
 - type: Tag
