@@ -4,6 +4,7 @@ using Content.Client.Message;
 using Content.Shared.Atmos;
 using Content.Client.UserInterface.Controls;
 using Content.Shared.Alert;
+using Content.Shared.Backmen.Targeting;
 using Content.Shared.Damage;
 using Content.Shared.Damage.Prototypes;
 using Content.Shared.FixedPoint;
@@ -35,6 +36,8 @@ namespace Content.Client.HealthAnalyzer.UI
         private readonly SpriteSystem _spriteSystem;
         private readonly IPrototypeManager _prototypes;
         private readonly IResourceCache _cache;
+
+        private EntityUid _spriteViewEntity; // backmen: surgery
 
         public HealthAnalyzerWindow()
         {
@@ -71,8 +74,7 @@ namespace Content.Client.HealthAnalyzer.UI
             ScanModeLabel.FontColorOverride = msg.ScanMode.HasValue && msg.ScanMode.Value ? Color.Green : Color.Red;
 
             // Patient Information
-
-            SpriteView.SetEntity(target.Value);
+            SpriteView.SetEntity(SetupIcon(msg.Body) ?? target.Value); // backmen: surgery
             SpriteView.Visible = msg.ScanMode.HasValue && msg.ScanMode.Value;
             NoDataTex.Visible = !SpriteView.Visible;
 
@@ -110,18 +112,29 @@ namespace Content.Client.HealthAnalyzer.UI
 
             // Alerts
 
-            AlertsDivider.Visible = msg.Bleeding == true;
-            AlertsContainer.Visible = msg.Bleeding == true;
+            var showAlerts = msg.Unrevivable == true || msg.Bleeding == true;
+
+            AlertsDivider.Visible = showAlerts;
+            AlertsContainer.Visible = showAlerts;
+
+            if (showAlerts)
+                AlertsContainer.DisposeAllChildren();
+
+            if (msg.Unrevivable == true)
+                AlertsContainer.AddChild(new RichTextLabel
+                {
+                    Text = Loc.GetString("health-analyzer-window-entity-unrevivable-text"),
+                    Margin = new Thickness(0, 4),
+                    MaxWidth = 300
+                });
 
             if (msg.Bleeding == true)
-            {
-                AlertsContainer.DisposeAllChildren();
-                AlertsContainer.AddChild(new Label
+                AlertsContainer.AddChild(new RichTextLabel
                 {
                     Text = Loc.GetString("health-analyzer-window-entity-bleeding-text"),
-                    FontColorOverride = Color.Red,
+                    Margin = new Thickness(0, 4),
+                    MaxWidth = 300
                 });
-            }
 
             // Damage Groups
 
@@ -232,5 +245,46 @@ namespace Content.Client.HealthAnalyzer.UI
 
             return rootContainer;
         }
+
+        [ValidatePrototypeId<EntityPrototype>]
+        private readonly EntProtoId _bodyView = "AlertSpriteView";
+
+        // start-backmen: surgery
+        /// <summary>
+        /// Sets up the Body Doll using Alert Entity to use in Health Analyzer.
+        /// </summary>
+        private EntityUid? SetupIcon(Dictionary<TargetBodyPart, TargetIntegrity>? body)
+        {
+            if (body is null)
+                return null;
+
+            if (!_entityManager.Deleted(_spriteViewEntity))
+                _entityManager.QueueDeleteEntity(_spriteViewEntity);
+
+            _spriteViewEntity = _entityManager.Spawn(_bodyView);
+            if (!_entityManager.TryGetComponent<SpriteComponent>(_spriteViewEntity, out var sprite))
+                return null;
+
+            int layer = 0;
+            foreach (var (bodyPart, integrity) in body)
+            {
+                // TODO: Fix this way PartStatusUIController and make it use layers instead of TextureRects
+                string enumName = Enum.GetName(typeof(TargetBodyPart), bodyPart) ?? "Unknown";
+                int enumValue = (int) integrity;
+                var rsi = new SpriteSpecifier.Rsi(new ResPath($"/Textures/Interface/Targeting/Status/{enumName.ToLowerInvariant()}.rsi"), $"{enumName.ToLowerInvariant()}_{enumValue}");
+                // It's probably shitcode but im lazy to get into sprite stuff
+                if (!sprite.TryGetLayer(layer, out _))
+                    sprite.AddLayer(_spriteSystem.Frame0(rsi));
+                else
+                    sprite.LayerSetTexture(layer, _spriteSystem.Frame0(rsi));
+
+                layer++;
+            }
+
+            _entityManager.Dirty(_spriteViewEntity, sprite);
+            return _spriteViewEntity;
+        }
+
+        // end-backmen: surgery
     }
 }

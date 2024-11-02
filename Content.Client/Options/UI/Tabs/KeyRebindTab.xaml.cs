@@ -99,11 +99,13 @@ namespace Content.Client.Options.UI.Tabs
             _deferCommands.Add(_inputManager.SaveToUserData);
         }
 
-        private void HandleHoldLookUp(BaseButton.ButtonToggledEventArgs args) // BACKMEN EDIT
+        // start-backmen
+        private void HandleHoldLookUp(BaseButton.ButtonToggledEventArgs args)
         {
             _cfg.SetCVar(BackmenCCvars.CCVars.HoldLookUp, args.Pressed);
             _cfg.SaveToFile();
         }
+        // end-backmen
 
         private void HandleStaticStorageUI(BaseButton.ButtonToggledEventArgs args)
         {
@@ -254,6 +256,14 @@ namespace Content.Client.Options.UI.Tabs
             AddButton(EngineKeyFunctions.WindowCloseRecent);
             AddButton(EngineKeyFunctions.EscapeMenu);
             AddButton(ContentKeyFunctions.EscapeContext);
+
+            AddHeader("ui-options-header-targeting");
+            AddButton(ContentKeyFunctions.TargetHead);
+            AddButton(ContentKeyFunctions.TargetTorso);
+            AddButton(ContentKeyFunctions.TargetLeftArm);
+            AddButton(ContentKeyFunctions.TargetRightArm);
+            AddButton(ContentKeyFunctions.TargetLeftLeg);
+            AddButton(ContentKeyFunctions.TargetRightLeg);
 
             AddHeader("ui-options-header-misc");
             AddButton(ContentKeyFunctions.TakeScreenshot);

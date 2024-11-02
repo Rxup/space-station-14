@@ -9,6 +9,13 @@
   - type: Damageable
     damageContainer: Biological
   - type: BodyPart
+  # start-backmen: surgery
+  - type: SurgeryTool
+    startSound:
+      path: /Audio/Medical/Surgery/organ1.ogg
+    endSound:
+      path: /Audio/Medical/Surgery/organ2.ogg
+  # end-backmen: surgery
   - type: Gibbable
   - type: ContainerContainer
     containers:
@@ -19,6 +26,37 @@
   - type: Tag
     tags:
       - Trash
+  # start-backmen: surgery
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTypeTrigger
+        damageType: Blunt
+        damage: 50
+      behaviors:
+      - !type:GibPartBehavior { }
+    - trigger:
+        !type:DamageTypeTrigger
+        damageType: Slash
+        damage: 100
+      behaviors:
+      - !type:GibPartBehavior { }
+    - trigger:
+        !type:DamageTypeTrigger
+        damageType: Heat
+        damage: 200
+      behaviors:
+      - !type:SpawnEntitiesBehavior
+        spawnInContainer: true
+        spawn:
+          Ash:
+            min: 1
+            max: 1
+      - !type:BurnBodyBehavior { }
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MeatLaserImpact
+  # end-backmen: surgery
 
 - type: entity
   id: BaseTorso
@@ -28,6 +66,13 @@
   components:
   - type: BodyPart
     partType: Torso
+  # start-backmen: surgery
+    toolName: "a torso"
+    containerName: "torso_slot"
+  - type: ContainerContainer
+    containers:
+      torso_slot: !type:ContainerSlot {}
+  # end-backmen: surgery
 
 - type: entity
   id: BaseHead
@@ -37,6 +82,7 @@
   components:
   - type: BodyPart
     partType: Head
+    toolName: "a head" # backmen: surgery
     vital: true
   - type: Input
     context: "ghost"
@@ -53,6 +99,7 @@
   - type: BodyPart
     partType: Arm
     symmetry: Left
+    toolName: "a left arm" # backmen: surgery
 
 - type: entity
   id: BaseRightArm
@@ -63,6 +110,7 @@
   - type: BodyPart
     partType: Arm
     symmetry: Right
+    toolName: "a right arm" # backmen: surgery
 
 - type: entity
   id: BaseLeftHand
@@ -73,6 +121,7 @@
   - type: BodyPart
     partType: Hand
     symmetry: Left
+    toolName: "a left hand" # backmen: surgery
 
 - type: entity
   id: BaseRightHand
@@ -83,6 +132,7 @@
   - type: BodyPart
     partType: Hand
     symmetry: Right
+    toolName: "a right hand" # backmen: surgery
 
 - type: entity
   id: BaseLeftLeg
@@ -93,6 +143,7 @@
   - type: BodyPart
     partType: Leg
     symmetry: Left
+    toolName: "a left leg" # backmen: surgery
   - type: MovementBodyPart
 
 - type: entity
@@ -104,6 +155,7 @@
   - type: BodyPart
     partType: Leg
     symmetry: Right
+    toolName: "a right leg" # backmen: surgery
   - type: MovementBodyPart
 
 - type: entity
@@ -115,6 +167,7 @@
   - type: BodyPart
     partType: Foot
     symmetry: Left
+    toolName: "a left foot" # backmen: surgery
 
 - type: entity
   id: BaseRightFoot
@@ -125,3 +178,4 @@
   - type: BodyPart
     partType: Foot
     symmetry: Right
+    toolName: "a right foot" # backmen: surgery

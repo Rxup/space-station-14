@@ -248,4 +248,11 @@ public sealed class CCVars
             CVarDef.Create("supermatter.rads_modifier", 1f, CVar.SERVER);
 
         #endregion
+
+        #region Surgery
+
+        public static readonly CVarDef<bool> CanOperateOnSelf =
+            CVarDef.Create("surgery.can_operate_on_self", false, CVar.SERVERONLY);
+
+        #endregion
 }

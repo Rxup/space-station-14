@@ -58,10 +58,13 @@
     color: MediumPurple
     radius: 2
     softness: 1
+  - type: VoiceMask # Backmen
   - type: UserInterface
     interfaces:
       enum.StoreUiKey.Key:
         type: StoreBoundUserInterface
+      enum.VoiceMaskUIKey.Key:
+        type: VoiceMaskBoundUserInterface # Backmen 
   - type: Visibility
     layer: 2 #ghost vis layer
   - type: Store

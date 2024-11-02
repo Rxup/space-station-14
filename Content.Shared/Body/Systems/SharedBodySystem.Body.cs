@@ -4,16 +4,21 @@ using Content.Shared.Body.Components;
 using Content.Shared.Body.Organ;
 using Content.Shared.Body.Part;
 using Content.Shared.Body.Prototypes;
+using Content.Shared.Containers.ItemSlots;
+using Content.Shared.Damage;
 using Content.Shared.DragDrop;
 using Content.Shared.Gibbing.Components;
 using Content.Shared.Gibbing.Events;
 using Content.Shared.Gibbing.Systems;
 using Content.Shared.Inventory;
+using Content.Shared.Rejuvenate;
+using Content.Shared.Standing;
 using Robust.Shared.Audio;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Containers;
 using Robust.Shared.Map;
 using Robust.Shared.Utility;
+using Robust.Shared.Timing;
 
 namespace Content.Shared.Body.Systems;
 
@@ -27,9 +32,10 @@ public partial class SharedBodySystem
      */
 
     [Dependency] private readonly InventorySystem _inventory = default!;
+    [Dependency] private readonly ItemSlotsSystem _slots = default!;
     [Dependency] private readonly GibbingSystem _gibbingSystem = default!;
     [Dependency] private readonly SharedAudioSystem _audioSystem = default!;
-
+    [Dependency] private readonly IGameTiming _gameTiming = default!;
     private const float GibletLaunchImpulse = 8;
     private const float GibletLaunchImpulseVariance = 3;
 
@@ -42,6 +48,9 @@ public partial class SharedBodySystem
         SubscribeLocalEvent<BodyComponent, ComponentInit>(OnBodyInit);
         SubscribeLocalEvent<BodyComponent, MapInitEvent>(OnBodyMapInit);
         SubscribeLocalEvent<BodyComponent, CanDragEvent>(OnBodyCanDrag);
+        SubscribeLocalEvent<BodyComponent, DamageChangedEvent>(OnDamageChanged);
+        SubscribeLocalEvent<BodyComponent, StandAttemptEvent>(OnStandAttempt);
+        SubscribeLocalEvent<BodyComponent, RejuvenateEvent>(OnRejuvenate);
     }
 
     private void OnBodyInserted(Entity<BodyComponent> ent, ref EntInsertedIntoContainerMessage args)
@@ -116,7 +125,6 @@ public partial class SharedBodySystem
         var rootPart = Comp<BodyPartComponent>(rootPartUid);
         rootPart.Body = bodyEntity;
         Dirty(rootPartUid, rootPart);
-
         // Setup the rest of the body entities.
         SetupOrgans((rootPartUid, rootPart), protoRoot.Organs);
         MapInitParts(rootPartUid, prototype);
@@ -125,6 +133,41 @@ public partial class SharedBodySystem
     private void OnBodyCanDrag(Entity<BodyComponent> ent, ref CanDragEvent args)
     {
         args.Handled = true;
+    }
+
+    private void OnStandAttempt(Entity<BodyComponent> ent, ref StandAttemptEvent args)
+    {
+        if (ent.Comp.LegEntities.Count == 0)
+            args.Cancel();
+    }
+
+    private void OnDamageChanged(Entity<BodyComponent> ent, ref DamageChangedEvent args)
+    {
+        if (!_gameTiming.IsFirstTimePredicted)
+            return;
+
+        DebugTools.Assert(ent.Comp is not null);
+        if (args.PartMultiplier == 0
+            || args.TargetPart is null
+            || args.DamageDelta is null
+            || args is { DamageIncreased: false, DamageDecreased: false })
+            return;
+
+        var (targetType, targetSymmetry) = ConvertTargetBodyPart(args.TargetPart.Value);
+        Log.Debug($"Applying damage to {ToPrettyString(ent)} with {ent.Comp} and {args} {targetType} {targetSymmetry}");
+        foreach (var part in GetBodyChildrenOfType(ent, targetType, ent.Comp)
+            .Where(part => part.Component.Symmetry == targetSymmetry))
+        {
+                ApplyPartDamage(part, args.DamageDelta, targetType, args.TargetPart.Value, args.CanSever, args.PartMultiplier);
+        }
+    }
+
+    private void OnRejuvenate(Entity<BodyComponent> ent, ref RejuvenateEvent args)
+    {
+        foreach (var part in GetBodyChildren(ent, ent.Comp))
+        {
+            TryChangeIntegrity(part, part.Component.Integrity - BodyPartComponent.MaxIntegrity, false, GetTargetBodyPart(part), out _);
+        }
     }
 
     /// <summary>
@@ -168,6 +211,7 @@ public partial class SharedBodySystem
 
                 var childPartComponent = Comp<BodyPartComponent>(childPart);
                 var partSlot = CreatePartSlot(parentEntity, connection, childPartComponent.PartType, parentPartComponent);
+                childPartComponent.ParentSlot = partSlot;
                 var cont = Containers.GetContainer(parentEntity, GetPartSlotContainerId(connection));
 
                 if (partSlot is null || !Containers.Insert(childPart, cont))
@@ -233,11 +277,11 @@ public partial class SharedBodySystem
     {
         if (id is null
             || !Resolve(id.Value, ref body, logMissing: false)
+            || body is null
+            || body.RootContainer == default
             || body.RootContainer.ContainedEntity is null
             || !Resolve(body.RootContainer.ContainedEntity.Value, ref rootPart))
-        {
             yield break;
-        }
 
         foreach (var child in GetBodyPartChildren(body.RootContainer.ContainedEntity.Value, rootPart))
         {
@@ -308,9 +352,9 @@ public partial class SharedBodySystem
         foreach (var part in parts)
         {
 
-            _gibbingSystem.TryGibEntityWithRef(bodyId, part.Id, GibType.Gib, GibContentsOption.Skip, ref gibs,
-                playAudio: false, launchGibs:true, launchDirection:splatDirection, launchImpulse: GibletLaunchImpulse * splatModifier,
-                launchImpulseVariance:GibletLaunchImpulseVariance, launchCone: splatCone);
+            _gibbingSystem.TryGibEntityWithRef(bodyId, part.Id, GibType.Gib, GibContentsOption.Drop, ref gibs,
+                playAudio: false, launchGibs: true, launchDirection: splatDirection, launchImpulse: GibletLaunchImpulse * splatModifier,
+                launchImpulseVariance: GibletLaunchImpulseVariance, launchCone: splatCone);
 
             if (!gibOrgans)
                 continue;
@@ -319,7 +363,7 @@ public partial class SharedBodySystem
             {
                 _gibbingSystem.TryGibEntityWithRef(bodyId, organ.Id, GibType.Drop, GibContentsOption.Skip,
                     ref gibs, playAudio: false, launchImpulse: GibletLaunchImpulse * splatModifier,
-                    launchImpulseVariance:GibletLaunchImpulseVariance, launchCone: splatCone);
+                    launchImpulseVariance: GibletLaunchImpulseVariance, launchCone: splatCone);
             }
         }
 
@@ -333,6 +377,43 @@ public partial class SharedBodySystem
             }
         }
         _audioSystem.PlayPredicted(gibSoundOverride, bodyTransform.Coordinates, null);
+        return gibs;
+    }
+
+    public virtual HashSet<EntityUid> GibPart(
+        EntityUid partId,
+        BodyPartComponent? part = null,
+        bool launchGibs = true,
+        Vector2? splatDirection = null,
+        float splatModifier = 1,
+        Angle splatCone = default,
+        SoundSpecifier? gibSoundOverride = null)
+    {
+        var gibs = new HashSet<EntityUid>();
+
+        _gibbingSystem.TryGibEntityWithRef(
+            partId,
+            partId,
+            GibType.Gib,
+            GibContentsOption.Drop,
+            ref gibs,
+            playAudio: true,
+            launchGibs: true,
+            launchDirection: splatDirection,
+            launchImpulse: GibletLaunchImpulse * splatModifier,
+            launchImpulseVariance: GibletLaunchImpulseVariance,
+            launchCone: splatCone);
+
+        if (TryComp<InventoryComponent>(partId, out var inventory))
+        {
+            foreach (var item in _inventory.GetHandOrInventoryEntities((partId, null, inventory)))
+            {
+                SharedTransform.AttachToGridOrMap(item);
+                gibs.Add(item);
+            }
+        }
+
+        _audioSystem.PlayPredicted(gibSoundOverride, Transform(partId).Coordinates, null);
         return gibs;
     }
 }

@@ -1297,6 +1297,9 @@
     - Monkey
   - type: DiseaseCarrier
   - type: CombatMode
+  #- type: SurgeryTarget
+  #  canOperate: false
+  #- type: Targeting
   - type: Inventory
     templateId: monkey
     speciesId: monkey
@@ -1318,6 +1321,13 @@
         layer:
         - MobLayer
   - type: Stripping
+  - type: Strippable
+  - type: UserInterface
+    interfaces:
+      enum.StrippingUiKey.Key:
+        type: StrippableBoundUserInterface
+      #enum.SurgeryUIKey.Key:
+      #  type: SurgeryBui
   - type: Sprite
     drawdepth: Mobs
     layers:

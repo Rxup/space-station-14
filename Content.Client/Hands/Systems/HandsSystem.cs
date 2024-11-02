@@ -4,6 +4,7 @@ using Content.Client.DisplacementMap;
 using Content.Client.Examine;
 using Content.Client.Strip;
 using Content.Client.Verbs.UI;
+using Content.Shared.Body.Part;
 using Content.Shared.Hands;
 using Content.Shared.Hands.Components;
 using Content.Shared.Hands.EntitySystems;
@@ -40,7 +41,6 @@ namespace Content.Client.Hands.Systems
         public event Action<string, EntityUid>? OnPlayerItemRemoved;
         public event Action<string>? OnPlayerHandBlocked;
         public event Action<string>? OnPlayerHandUnblocked;
-
         public override void Initialize()
         {
             base.Initialize();
@@ -51,6 +51,7 @@ namespace Content.Client.Hands.Systems
             SubscribeLocalEvent<HandsComponent, ComponentShutdown>(OnHandsShutdown);
             SubscribeLocalEvent<HandsComponent, ComponentHandleState>(HandleComponentState);
             SubscribeLocalEvent<HandsComponent, VisualsChangedEvent>(OnVisualsChanged);
+            SubscribeLocalEvent<HandsComponent, BodyPartRemovedEvent>(HandleBodyPartRemoved);
 
             OnHandSetActive += OnHandActivated;
         }
@@ -238,7 +239,34 @@ namespace Content.Client.Hands.Systems
             RaisePredictiveEvent(new RequestHandAltInteractEvent(handName));
         }
 
+        #region pulling
+
+        #endregion
+
         #region visuals
+        private void HandleBodyPartRemoved(EntityUid uid, HandsComponent component, ref BodyPartRemovedEvent args)
+        {
+            if (args.Part.Comp.PartType != BodyPartType.Hand || !TryComp(uid, out SpriteComponent? sprite))
+                return;
+
+            var location = args.Part.Comp.Symmetry switch
+            {
+                BodyPartSymmetry.None => HandLocation.Middle,
+                BodyPartSymmetry.Left => HandLocation.Left,
+                BodyPartSymmetry.Right => HandLocation.Right,
+                _ => throw new ArgumentOutOfRangeException(nameof(args.Part.Comp.Symmetry))
+            };
+
+            if (component.RevealedLayers.TryGetValue(location, out var revealedLayers))
+            {
+                foreach (var key in revealedLayers)
+                {
+                    sprite.RemoveLayer(key);
+                }
+
+                revealedLayers.Clear();
+            }
+        }
 
         protected override void HandleEntityInserted(EntityUid uid, HandsComponent hands, EntInsertedIntoContainerMessage args)
         {
@@ -264,6 +292,7 @@ namespace Content.Client.Hands.Systems
 
             if (!hands.Hands.TryGetValue(args.Container.ID, out var hand))
                 return;
+
             UpdateHandVisuals(uid, args.Entity, hand);
             _stripSys.UpdateUi(uid);
 

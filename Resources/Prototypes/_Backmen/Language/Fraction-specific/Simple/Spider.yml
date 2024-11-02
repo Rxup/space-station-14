@@ -1,7 +1,7 @@
 - type: language
   id: Spider
   speech:
-    color: "#2b2e55"
+    color: "#90a3a6"
     #fontId: RubikBeastlyRegular
   obfuscation:
     !type:SyllableObfuscation

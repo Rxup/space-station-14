@@ -1166,6 +1166,20 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 3.5,1.5
       parent: 1
+- proto: Screen
+  entities:
+  - uid: 282
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: 5.5,11.5
+      parent: 1
+  - uid: 283
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: 0.5,8.5
+      parent: 1
 - proto: ShuttleWindow
   entities:
   - uid: 5
@@ -1302,7 +1316,7 @@ entities:
       rot: 1.5707963267948966 rad
       pos: 0.5,2.5
       parent: 1
-- proto: soda_dispenser
+- proto: SodaDispenser
   entities:
   - uid: 86
     components:

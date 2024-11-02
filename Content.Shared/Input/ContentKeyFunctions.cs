@@ -63,6 +63,12 @@ namespace Content.Shared.Input
         public static readonly BoundKeyFunction ZoomIn = "ZoomIn";
         public static readonly BoundKeyFunction ResetZoom = "ResetZoom";
         public static readonly BoundKeyFunction LookUp = "LookUp"; // BACKMEN EDIT
+        public static readonly BoundKeyFunction TargetHead = "TargetHead";
+        public static readonly BoundKeyFunction TargetTorso = "TargetTorso";
+        public static readonly BoundKeyFunction TargetLeftArm = "TargetLeftArm";
+        public static readonly BoundKeyFunction TargetRightArm = "TargetRightArm";
+        public static readonly BoundKeyFunction TargetLeftLeg = "TargetLeftLeg";
+        public static readonly BoundKeyFunction TargetRightLeg = "TargetRightLeg";
 
         public static readonly BoundKeyFunction ArcadeUp = "ArcadeUp";
         public static readonly BoundKeyFunction ArcadeDown = "ArcadeDown";
