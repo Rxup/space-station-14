@@ -59,13 +59,13 @@
   id: HeadOfSecurityCentComGear
   equipment:
     jumpsuit: ClothingUniformJumpsuitCentcomMilitary
-    back: ClothingBackpackSecurity
-    shoes: ClothingShoesBootsNedoSpetsnaz
+    back: ClothingCentcomBackpackMilitaryFilled
+    shoes: ClothingShoesBootsCentcom
     mask: ClothingMaskGasSecurity
     neck: CombatKnifeSpetsnaz
     eyes: ClothingEyesGlassesSecurity
     gloves: ClothingHandsGlovesCombat
-    outerClothing: ClothingOuterArmorBasic
+    outerClothing: ClothingOuterArmorCentcom
     suitstorage: WeaponPistolMk58
     head: ClothingHeadHatBeretHoSCentcom
     id: CCOfficerPDA

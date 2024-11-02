@@ -49,12 +49,13 @@
 - type: startingGear
   id: CentComPrivateOfficerGear
   equipment:
-    jumpsuit: ClothingUniformJumpsuitSec
-    back: ClothingBackpackSecurity
-    shoes: ClothingShoesBootsJackSec # Corvax-Resprite
+    jumpsuit: ClothingUniformJumpsuitCentcomPrivateOfficer
+    back: ClothingCentcomBackpackMilitaryFilled
+    shoes: ClothingShoesBootsCentcom 
     eyes: ClothingEyesGlassesSecurity
-    head: ClothingHeadHelmetBasic
-    outerClothing: ClothingOuterVestArmorSec # Corvax-Resprite
+    gloves: ClothingHandsGlovesCombat
+    head: ClothingHeadHelmetCentcom
+    outerClothing: ClothingOuterArmorCentcom 
     id: CentComPrivateOfficerPDA
     ears: ClothingHeadsetCentComCC
     belt: ClothingBeltSecuritySuper
