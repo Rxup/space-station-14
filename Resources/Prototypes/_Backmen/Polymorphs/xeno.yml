@@ -1,4 +1,15 @@
 ﻿# XenoVirus
+
+- type: polymorph
+  id: XenoMaidMorph
+  configuration:
+    entity: MobMaidXeno
+    forced: true
+    inventory: Drop
+    transferName: true
+    revertOnCrit: true
+    revertOnDeath: true
+
 - type: polymorph
   id: XenoQueenMorph
   configuration:
