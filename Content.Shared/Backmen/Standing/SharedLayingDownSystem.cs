@@ -21,6 +21,8 @@ using Content.Shared.Stunnable;
 using Content.Shared.Tag;
 using Content.Shared.Traits.Assorted;
 using Content.Shared.UserInterface;
+using Robust.Shared.Audio;
+using Robust.Shared.Audio.Systems;
 using Robust.Shared.Configuration;
 using Robust.Shared.Containers;
 using Robust.Shared.Input.Binding;
@@ -49,6 +51,7 @@ public abstract class SharedLayingDownSystem : EntitySystem
     [Dependency] private readonly TagSystem _tag = default!;
     [Dependency] private readonly SharedPopupSystem _popup = default!;
     [Dependency] private readonly DamageableSystem _damageable = default!;
+    [Dependency] private readonly SharedAudioSystem _audioSystem = default!;
 
     [Dependency] private readonly IConfigurationManager _config = default!;
 
@@ -197,7 +200,7 @@ public abstract class SharedLayingDownSystem : EntitySystem
         }
         else
         {
-            RaiseNetworkEvent(new ChangeLayingDownEvent());
+            RaisePredictiveEvent(new ChangeLayingDownEvent());
         }
 
     }
@@ -232,7 +235,7 @@ public abstract class SharedLayingDownSystem : EntitySystem
             return;
 
         //RaiseNetworkEvent(new CheckAutoGetUpEvent(GetNetEntity(uid)));
-        AutoGetUp((uid,layingDown));
+        TryProcessAutoGetUp((uid,layingDown));
 
         if (_standing.IsDown(uid, standing))
             TryStandUp(uid, layingDown, standing);
@@ -296,6 +299,7 @@ public abstract class SharedLayingDownSystem : EntitySystem
         return true;
     }
 
+    private static SoundSpecifier _bonkSound = new SoundCollectionSpecifier("TrayHit");
     public bool TryStandUp(EntityUid uid, LayingDownComponent? layingDown = null, StandingStateComponent? standingState = null)
     {
         if (!Resolve(uid, ref standingState, false) ||
@@ -312,13 +316,15 @@ public abstract class SharedLayingDownSystem : EntitySystem
 
         if (!IsSafeStanUp(uid, out var obj))
         {
-            _popup.PopupEntity(Loc.GetString("bonkable-success-message-user",("bonkable", obj.Value)), obj.Value, uid, PopupType.MediumCaution);
             _popup.PopupPredicted(
+                Loc.GetString("bonkable-success-message-user",("bonkable", obj.Value)),
                 Loc.GetString("bonkable-success-message-others",("bonkable", obj.Value), ("user", uid)),
                 obj.Value,
-                uid);
+                uid,
+                PopupType.MediumCaution);
             _damageable.TryChangeDamage(uid, new DamageSpecifier(){DamageDict = {{"Blunt", 5}}}, ignoreResistances: true, targetPart: TargetBodyPart.Head);
             _stun.TryStun(uid, TimeSpan.FromSeconds(2), true);
+            _audioSystem.PlayPredicted(_bonkSound, uid, obj.Value);
             return false;
         }
 
