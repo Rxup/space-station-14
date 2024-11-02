@@ -1,0 +1,28 @@
+- type: ghostTheme
+  id: Ifrit
+  name: sponsor-win-manager-ghost-ifrit
+  components:
+  - type: Sprite
+    noRot: true
+    overrideContainerOcclusion: true # Ghosts always show up regardless of where they're contained.
+    drawdepth: Ghosts
+    sprite: Backmen/Mobs/Aliens/Guardians/guardians.rsi
+    layers:
+      - state: magic_base
+        shader: unshaded
+      - state: magic_flare
+        color: "#40a7d7"
+        shader: unshaded
+
+- type: ghostTheme
+  id: Mujik
+  name: sponsor-win-manager-ghost-mujik
+  components:
+  - type: Sprite
+    noRot: true
+    overrideContainerOcclusion: true # Ghosts always show up regardless of where they're contained.
+    drawdepth: Ghosts
+    sprite: Backmen/Mobs/Ghost/mujik.rsi
+    layers:
+      - state: mujik
+        shader: unshaded
