@@ -50,16 +50,24 @@
   id: CentComPrivateOfficerGear
   equipment:
     jumpsuit: ClothingUniformJumpsuitCentcomPrivateOfficer
-    back: ClothingCentcomBackpackMilitaryFilled
-    shoes: ClothingShoesBootsCentcom 
+    back: ClothingCentcomBackpack
+    shoes: ClothingShoesBootsCentcom
+    neck: CombatKnifeSpetsnaz
     eyes: ClothingEyesGlassesSecurity
     gloves: ClothingHandsGlovesCombat
     head: ClothingHeadHelmetCentcom
-    outerClothing: ClothingOuterArmorCentcom 
+    outerClothing: ClothingOuterArmorCentcom
+    suitstorage: WeaponRifleFamas
     id: CentComPrivateOfficerPDA
     ears: ClothingHeadsetCentComCC
     belt: ClothingBeltSecuritySuper
-    pocket1: WeaponPistolMk58
+    pocket1: WeaponPistolG23
+    pocket2: MagazinePistol
+  storage:
+    back:
+    - MedkitCombatFilled
+    - BoxSurvivalSecurity
+    - MagazineRifle
   #innerClothingSkirt: ClothingUniformJumpskirtSec
   #satchel: ClothingBackpackSatchelSecurityFilled
   #duffelbag: ClothingBackpackDuffelSecurityFilled

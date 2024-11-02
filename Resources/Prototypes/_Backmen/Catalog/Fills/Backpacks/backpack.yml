@@ -341,16 +341,3 @@
         - id: WeaponPistolG22
         - id: MagazinePistol
           amount: 4
-
-- type: entity
-  categories: [ HideSpawnMenu ]
-  parent: ClothingCentcomBackpack
-  id: ClothingCentcomBackpackMilitaryFilled
-  components:
-    - type: Clothing
-      sprite: Backmen/Clothing/Back/Backpacks/centcom_backpack.rsi
-    - type: StorageFill
-      contents:
-        - id: MedkitCombatFilled
-        - id: BoxSurvivalSecurity
-  
