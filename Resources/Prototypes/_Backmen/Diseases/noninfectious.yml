@@ -128,7 +128,7 @@
   # possible xeno polymorph
   - !type:DiseasePolymorph
     probability: 0.070
-    polymorphId: MobMaidXeno
+    polymorphId: XenoMaidMorph
     polymorphMessage: disease-xeno-polymorph
     polymorphSound:
       path: /Audio/Animals/cat_meow.ogg
