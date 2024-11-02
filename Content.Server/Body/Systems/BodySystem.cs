@@ -162,4 +162,9 @@ public sealed class BodySystem : SharedBodySystem
 
         return gibs;
     }
+
+    protected override void UpdateAppearance(EntityUid uid, BodyPartAppearanceComponent component)
+    {
+        return;
+    }
 }
