@@ -13,8 +13,10 @@ using Content.Shared.DoAfter;
 using Content.Shared.Popups;
 using Robust.Shared.Prototypes;
 using System.Linq;
+using Content.Shared.Backmen.Mood;
 using Content.Shared.Backmen.Surgery.Steps;
 using Content.Shared.Backmen.Surgery.Tools;
+using Content.Shared.Bed.Sleep;
 using Content.Shared.Containers.ItemSlots;
 
 namespace Content.Shared.Backmen.Surgery;
@@ -95,6 +97,9 @@ public abstract partial class SharedSurgerySystem
                 RemComp(args.Body, reg.Component.GetType());
             }
         }
+
+        if (!HasComp<ForcedSleepingComponent>(args.Body))
+            RaiseLocalEvent(args.Body, new MoodEffectEvent("SurgeryPain"));
 
         if (!_inventory.TryGetSlotEntity(args.User, "gloves", out var gloves)
         || !_inventory.TryGetSlotEntity(args.User, "mask", out var mask))

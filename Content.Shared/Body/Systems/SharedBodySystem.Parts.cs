@@ -13,6 +13,7 @@ using Robust.Shared.Containers;
 using Robust.Shared.Utility;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
+using Content.Shared.Backmen.Mood;
 
 namespace Content.Shared.Body.Systems;
 
@@ -298,6 +299,7 @@ public partial class SharedBodySystem
         if (partEnt.Comp.PartType == BodyPartType.Leg)
         {
             AddLeg(partEnt, (partEnt.Comp.Body.Value, body));
+            RaiseLocalEvent(partEnt.Comp.Body.Value, new MoodRemoveEffectEvent("SurgeryNoLeg"));
         }
 
         if (partEnt.Comp.PartType == BodyPartType.Arm)
@@ -314,6 +316,13 @@ public partial class SharedBodySystem
         {
             var ev = new BodyPartEnabledEvent(partEnt);
             RaiseLocalEvent(partEnt.Comp.Body.Value, ref ev);
+            // Remove this effect only when we have full arm
+            RaiseLocalEvent(partEnt.Comp.Body.Value, new MoodRemoveEffectEvent("SurgeryNoHand"));
+        }
+
+        if (partEnt.Comp.PartType == BodyPartType.Torso)
+        {
+            RaiseLocalEvent(partEnt.Comp.Body.Value, new MoodRemoveEffectEvent("SurgeryNoTorso"));
         }
     }
 
@@ -325,6 +334,7 @@ public partial class SharedBodySystem
         if (partEnt.Comp.PartType == BodyPartType.Leg)
         {
             RemoveLeg(partEnt, (partEnt.Comp.Body.Value, body));
+            RaiseLocalEvent(partEnt.Comp.Body.Value, new MoodEffectEvent("SurgeryNoLeg"));
         }
 
         if (partEnt.Comp.PartType == BodyPartType.Arm)
@@ -334,6 +344,7 @@ public partial class SharedBodySystem
             {
                 var ev = new BodyPartDisabledEvent(hand);
                 RaiseLocalEvent(partEnt.Comp.Body.Value, ref ev);
+                RaiseLocalEvent(partEnt.Comp.Body.Value, new MoodEffectEvent("SurgeryNoHand"));
             }
         }
 
@@ -341,6 +352,12 @@ public partial class SharedBodySystem
         {
             var ev = new BodyPartDisabledEvent(partEnt);
             RaiseLocalEvent(partEnt.Comp.Body.Value, ref ev);
+            RaiseLocalEvent(partEnt.Comp.Body.Value, new MoodEffectEvent("SurgeryNoHand"));
+        }
+
+        if (partEnt.Comp.PartType == BodyPartType.Torso)
+        {
+            RaiseLocalEvent(partEnt.Comp.Body.Value, new MoodEffectEvent("SurgeryNoTorso"));
         }
     }
 

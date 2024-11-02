@@ -43,3 +43,20 @@
 - type: moodEffect
   id: Dead
   moodChange: -1000
+
+- type: moodEffect
+  id: SurgeryNoLeg
+  moodChange: -10
+
+- type: moodEffect
+  id: SurgeryNoHand
+  moodChange: -10
+
+- type: moodEffect
+  id: SurgeryNoTorso
+  moodChange: -20
+
+- type: moodEffect
+  id: SurgeryPain
+  moodChange: -15
+  timeout: 180

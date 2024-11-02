@@ -53,3 +53,10 @@ mood-effect-CultFocused = Боги тьмы, дайте мне сил!
 
 mood-effect-TraitSanguine = Думаю мне не о чем волноваться. Я обязательно справлюсь!
 
+mood-effect-SurgeryNoLeg = Я не чувствую своей ноги!
+
+mood-effect-SurgeryNoHand = Я не чувствую своей руки!
+
+mood-effect-SurgeryNoBody = Я не чувствую своего тела!
+
+mood-effect-SurgeryPain = В моём теле проводят операцию, я чувствую сильнейшую боль!
