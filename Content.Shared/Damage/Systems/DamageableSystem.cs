@@ -26,6 +26,7 @@ namespace Content.Shared.Damage
         private EntityQuery<AppearanceComponent> _appearanceQuery;
         private EntityQuery<DamageableComponent> _damageableQuery;
         private EntityQuery<MindContainerComponent> _mindContainerQuery;
+        private EntityQuery<TargetingComponent> _targetingQuery;
 
         public override void Initialize()
         {
@@ -38,6 +39,7 @@ namespace Content.Shared.Damage
             _appearanceQuery = GetEntityQuery<AppearanceComponent>();
             _damageableQuery = GetEntityQuery<DamageableComponent>();
             _mindContainerQuery = GetEntityQuery<MindContainerComponent>();
+            _targetingQuery = GetEntityQuery<TargetingComponent>();
         }
 
         /// <summary>
@@ -99,16 +101,21 @@ namespace Content.Shared.Damage
         ///     The damage changed event is used by other systems, such as damage thresholds.
         /// </remarks>
         public void DamageChanged(EntityUid uid, DamageableComponent component, DamageSpecifier? damageDelta = null,
-            bool interruptsDoAfters = true, EntityUid? origin = null, bool canSever = true, float partMultiplier = 1.00f)
+            bool interruptsDoAfters = true, EntityUid? origin = null, bool canSever = true, float partMultiplier = 1.00f,
+            TargetBodyPart? targetPart = null)
         {
-            TargetBodyPart? targetPart = null;
+            ;
             component.Damage.GetDamagePerGroup(_prototypeManager, component.DamagePerGroup);
             component.TotalDamage = component.Damage.GetTotal();
             // If our target has a TargetingComponent, that means they will take limb damage
             // And if their attacker also has one, then we use that part.
-            if (TryComp<TargetingComponent>(uid, out var target))
+            if (_targetingQuery.TryComp(uid, out var target))
             {
-                if (origin.HasValue && TryComp<TargetingComponent>(origin.Value, out var targeter))
+                if (targetPart != null)
+                {
+                    // keep from args
+                }
+                else  if (origin.HasValue && _targetingQuery.TryComp(origin.Value, out var targeter))
                 {
                     targetPart = targeter.Target;
                 }
@@ -143,7 +150,7 @@ namespace Content.Shared.Damage
         /// </returns>
         public DamageSpecifier? TryChangeDamage(EntityUid? uid, DamageSpecifier damage, bool ignoreResistances = false,
             bool interruptsDoAfters = true, DamageableComponent? damageable = null, EntityUid? origin = null,
-            bool? canSever = true, float? partMultiplier = 1.00f)
+            bool? canSever = true, float? partMultiplier = 1.00f, TargetBodyPart? targetPart = null)
         {
             if (!uid.HasValue || !_damageableQuery.Resolve(uid.Value, ref damageable, false))
             {
@@ -156,7 +163,7 @@ namespace Content.Shared.Damage
                 return damage;
             }
 
-            var before = new BeforeDamageChangedEvent(damage, origin);
+            var before = new BeforeDamageChangedEvent(damage, origin, targetPart);
             RaiseLocalEvent(uid.Value, ref before);
 
             if (before.Cancelled)
@@ -172,7 +179,7 @@ namespace Content.Shared.Damage
                     // use a local private field instead of creating a new dictionary here..
                     damage = DamageSpecifier.ApplyModifierSet(damage, modifierSet);
                 }
-                var ev = new DamageModifyEvent(damage, origin);
+                var ev = new DamageModifyEvent(damage, origin, targetPart);
                 RaiseLocalEvent(uid.Value, ev);
                 damage = ev.Damage;
 
@@ -204,7 +211,7 @@ namespace Content.Shared.Damage
             }
 
             if (delta.DamageDict.Count > 0)
-                DamageChanged(uid.Value, damageable, delta, interruptsDoAfters, origin, canSever ?? true, partMultiplier ?? 1.00f);
+                DamageChanged(uid.Value, damageable, delta, interruptsDoAfters, origin, canSever ?? true, partMultiplier ?? 1.00f, targetPart);
 
             return delta;
         }
@@ -322,7 +329,11 @@ namespace Content.Shared.Damage
     ///     Raised before damage is done, so stuff can cancel it if necessary.
     /// </summary>
     [ByRefEvent]
-    public record struct BeforeDamageChangedEvent(DamageSpecifier Damage, EntityUid? Origin = null, bool Cancelled = false);
+    public record struct BeforeDamageChangedEvent(
+        DamageSpecifier Damage,
+        EntityUid? Origin = null,
+        TargetBodyPart? targetPart = null,
+        bool Cancelled = false);
 
     /// <summary>
     ///     Raised on an entity when damage is about to be dealt,
@@ -339,12 +350,14 @@ namespace Content.Shared.Damage
         public readonly DamageSpecifier OriginalDamage;
         public DamageSpecifier Damage;
         public EntityUid? Origin;
+        public readonly TargetBodyPart? TargetPart;
 
-        public DamageModifyEvent(DamageSpecifier damage, EntityUid? origin = null)
+        public DamageModifyEvent(DamageSpecifier damage, EntityUid? origin = null, TargetBodyPart? targetPart = null)
         {
             OriginalDamage = damage;
             Damage = damage;
             Origin = origin;
+            TargetPart = targetPart;
         }
     }
 
