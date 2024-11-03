@@ -4,7 +4,7 @@
   categories: [ HideSpawnMenu ]
   components:
   - type: StationEvent
-    weight: 8
+    weight: 3
     duration: 1
-    earliestStart: 15
+    earliestStart: 30
   - type: DiseaseOutbreakRule
