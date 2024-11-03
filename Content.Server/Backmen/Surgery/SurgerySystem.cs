@@ -19,6 +19,8 @@ using Robust.Shared.Utility;
 using System.Linq;
 using Content.Shared.Backmen.Surgery;
 using Content.Shared.Backmen.Surgery.Tools;
+using Content.Shared.Medical.Surgery;
+using Robust.Shared.Player;
 
 namespace Content.Server.Backmen.Surgery;
 
@@ -75,6 +77,18 @@ public sealed class SurgerySystem : SharedSurgerySystem
         }
         Log.Debug($"Setting UI state with {surgeries}, {body} and {SurgeryUIKey.Key}");
         _ui.SetUiState(body, SurgeryUIKey.Key, new SurgeryBuiState(surgeries));
+        /*
+            Reason we do this is because when applying a BUI State, it rolls back the state on the entity temporarily,
+            which just so happens to occur right as we're checking for step completion, so we end up with the UI
+            not updating at all until you change tools or reopen the window.
+        */
+
+        var actors = _ui.GetActors(body, SurgeryUIKey.Key).ToArray();
+        if (actors.Length == 0)
+            return;
+
+        var filter = Filter.Entities(actors);
+        RaiseNetworkEvent(new SurgeryUiRefreshEvent(GetNetEntity(body)), filter);
     }
 
     private void SetDamage(EntityUid body,
@@ -101,7 +115,8 @@ public sealed class SurgerySystem : SharedSurgerySystem
             || !args.CanReach
             || args.Target == null
             || !TryComp<SurgeryTargetComponent>(args.User, out var surgery)
-            || !surgery.CanOperate)
+            || !surgery.CanOperate
+            || !IsLyingDown(args.Target.Value, args.User))
         {
             return;
         }
