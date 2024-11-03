@@ -198,7 +198,7 @@
     - nukeops
   name: nukeops-title
   description: nukeops-description
-  showInVote: true
+  showInVote: false
   minPlayers: 15
   rules:
     - Nukeops
