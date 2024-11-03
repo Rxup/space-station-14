@@ -290,8 +290,8 @@
   - MeteorSwarmMildScheduler
   - MeteorSwarmScheduler
   - RampingStationEventScheduler
-  - SpaceTrafficControlEventScheduler
-  - SpaceTrafficControlFriendlyEventScheduler
+#  - SpaceTrafficControlEventScheduler
+#  - SpaceTrafficControlFriendlyEventScheduler
 
 - type: gamePreset
   id: Calm
@@ -317,6 +317,6 @@
     - WageScheduler
     - CalmMeteorSwarmScheduler
     - BasicRoundstartVariation
-    - SpaceTrafficControlEventScheduler
-    - SpaceTrafficControlFriendlyEventScheduler
+#    - SpaceTrafficControlEventScheduler
+#    - SpaceTrafficControlFriendlyEventScheduler
     - ExtendedThief
