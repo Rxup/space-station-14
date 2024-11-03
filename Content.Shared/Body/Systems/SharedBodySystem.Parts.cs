@@ -609,6 +609,7 @@ public partial class SharedBodySystem
 
         part.ParentSlot = slot;
 
+        // start-backmen: surgery
         if (TryComp(part.Body, out HumanoidAppearanceComponent? bodyAppearance)
             && !HasComp<BodyPartAppearanceComponent>(partId))
         {
@@ -617,6 +618,7 @@ public partial class SharedBodySystem
             appearance.Color = bodyAppearance.SkinColor;
             UpdateAppearance(partId, appearance);
         }
+        // end-backmen: surgery
 
         return Containers.Insert(partId, container);
     }

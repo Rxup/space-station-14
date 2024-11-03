@@ -221,6 +221,7 @@ public partial class SharedBodySystem
                     continue;
                 }
 
+                // start-backmen: surgery
                 if (TryComp(parentPartComponent.Body, out HumanoidAppearanceComponent? bodyAppearance))
                 {
                     var appearance = AddComp<BodyPartAppearanceComponent>(childPart);
@@ -234,6 +235,7 @@ public partial class SharedBodySystem
 
                     Dirty(childPart, appearance);
                 }
+                // end-backmen: surgery
 
                 // Add organs
                 SetupOrgans((childPart, childPartComponent), connectionSlot.Organs);

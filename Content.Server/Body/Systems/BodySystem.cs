@@ -163,8 +163,10 @@ public sealed class BodySystem : SharedBodySystem
         return gibs;
     }
 
+    // start-backmen: surgery
     protected override void UpdateAppearance(EntityUid uid, BodyPartAppearanceComponent component)
     {
         return;
     }
+    // end-backmen: surgery
 }

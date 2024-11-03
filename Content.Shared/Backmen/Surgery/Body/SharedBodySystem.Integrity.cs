@@ -140,15 +140,12 @@ public partial class SharedBodySystem
         out bool severed)
     {
         severed = false;
-
         if (!_timing.IsFirstTimePredicted || !_queryTargeting.HasComp(partEnt.Comp.Body))
             return;
 
         var partIdSlot = GetParentPartAndSlotOrNull(partEnt)?.Slot;
         var originalIntegrity = partEnt.Comp.Integrity;
         partEnt.Comp.Integrity = Math.Min(BodyPartComponent.MaxIntegrity, partEnt.Comp.Integrity - integrity);
-
-        // This will also prevent the torso from being removed.
         if (canSever
             && !HasComp<BodyPartReattachedComponent>(partEnt)
             && !partEnt.Comp.Enabled
@@ -156,6 +153,7 @@ public partial class SharedBodySystem
             && partIdSlot is not null)
             severed = true;
 
+        // This will also prevent the torso from being removed.
         if (partEnt.Comp.Enabled
             && partEnt.Comp.Integrity <= BodyPartComponent.CritIntegrity)
         {
