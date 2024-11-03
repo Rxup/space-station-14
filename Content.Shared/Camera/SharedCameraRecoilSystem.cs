@@ -71,23 +71,17 @@ public abstract class SharedCameraRecoilSystem : EntitySystem
             {
                 var normalized = recoil.CurrentKick.Normalized();
                 recoil.LastKickTime += frameTime;
-                if (recoil.LastKickTime > RestoreRateRamp)
+                if (recoil.LastKickTime > RestoreRateRamp) // backmen start
                 {
                     recoil.LastKickTime = RestoreRateRamp;
                 }
-                var restoreRate = MathHelper.Lerp(RestoreRateMin, RestoreRateMax, recoil.LastKickTime / RestoreRateRamp);
+                var restoreRate = MathHelper.Lerp(RestoreRateMin, RestoreRateMax, recoil.LastKickTime / RestoreRateRamp); // backmen end
                 var restore = normalized * restoreRate * frameTime;
                 var (x, y) = recoil.CurrentKick - restore;
-
-                if (double.IsNaN(x) || Math.Sign(x) != Math.Sign(recoil.CurrentKick.X))
-                {
+                if (double.IsNaN(x) || Math.Sign(x) != Math.Sign(recoil.CurrentKick.X)) // backmen start
                     x = 0;
-                }
-
                 if (double.IsNaN(y) || Math.Sign(y) != Math.Sign(recoil.CurrentKick.Y))
-                {
-                    y = 0;
-                }
+                    y = 0; // backmen end
                 recoil.CurrentKick = new Vector2(x, y);
             }
 
