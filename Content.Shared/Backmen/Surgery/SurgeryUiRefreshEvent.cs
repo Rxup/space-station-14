@@ -1,6 +1,6 @@
 using Robust.Shared.Serialization;
 
-namespace Content.Shared.Medical.Surgery;
+namespace Content.Shared.Backmen.Surgery;
 
 [Serializable, NetSerializable]
 public sealed class SurgeryUiRefreshEvent : EntityEventArgs

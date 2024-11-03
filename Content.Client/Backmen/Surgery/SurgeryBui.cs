@@ -3,8 +3,6 @@ using Content.Client.Administration.UI.CustomControls;
 using Content.Shared.Backmen.Surgery;
 using Content.Shared.Body.Components;
 using Content.Shared.Body.Part;
-using Content.Shared.Rotation;
-using Content.Shared.Standing;
 using Content.Client.Hands.Systems;
 using JetBrains.Annotations;
 using Robust.Client.GameObjects;
@@ -13,7 +11,6 @@ using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
 using Robust.Shared.Timing;
 using Robust.Client.Timing;
-using static Robust.Client.UserInterface.Control;
 
 namespace Content.Client.Backmen.Surgery;
 
@@ -206,6 +203,7 @@ public sealed class SurgeryBui : BoundUserInterface
         {
             //Logger.Debug("Attempting to open");
             _window.OpenCentered();
+        }
     }
 
     private void AddStep(EntProtoId stepId, NetEntity netPart, EntProtoId surgeryId)

@@ -19,6 +19,8 @@ using Robust.Shared.Utility;
 using System.Linq;
 using Content.Shared.Backmen.Surgery;
 using Content.Shared.Backmen.Surgery.Tools;
+using Content.Shared.Medical.Surgery;
+using Robust.Shared.Player;
 
 namespace Content.Server.Backmen.Surgery;
 
