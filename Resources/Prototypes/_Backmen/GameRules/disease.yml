@@ -1,10 +1,10 @@
-﻿- type: entity
-  id: DiseaseOutbreak
-  parent: BaseGameRule
-  categories: [ HideSpawnMenu ]
-  components:
-  - type: StationEvent
-    weight: 3
-    duration: 1
-    earliestStart: 30
-  - type: DiseaseOutbreakRule
+﻿#- type: entity
+#  id: DiseaseOutbreak
+#  parent: BaseGameRule
+#  categories: [ HideSpawnMenu ]
+#  components:
+#  - type: StationEvent
+#    weight: 3
+#    duration: 1
+#    earliestStart: 30
+#  - type: DiseaseOutbreakRule
