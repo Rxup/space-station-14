@@ -1,4 +1,6 @@
 namespace Content.Shared.Backmen.Targeting;
+
+[Flags]
 public enum TargetBodyPart
 {
     Head,

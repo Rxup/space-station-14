@@ -2,6 +2,7 @@
 using Content.Shared.Containers.ItemSlots;
 using Content.Shared.Body.Components;
 using Content.Shared.Body.Systems;
+using Content.Shared.Damage;
 using Content.Shared.FixedPoint;
 using Robust.Shared.Containers;
 using Robust.Shared.GameStates;
@@ -68,16 +69,34 @@ public sealed partial class BodyPartComponent : Component, ISurgeryToolComponent
     /// <summary>
     /// How much health the body part has until it pops out.
     /// </summary>
-    [DataField, AutoNetworkedField]
-    public float Integrity = MaxIntegrity;
+    [ViewVariables]
+    public float Integrity => Damage.GetTotal().Float();
 
-    public const float MaxIntegrity = 70;
-    public const float LightIntegrity = 56;
-    public const float SomewhatIntegrity = 42;
+    /// <summary>
+    /// How much health the body part has until it pops out.
+    /// </summary>
+    [DataField, AutoNetworkedField]
+    public DamageSpecifier Damage = new()
+    {
+        DamageDict = new Dictionary<string, FixedPoint2>
+        {
+            { "Blunt", 0 },
+            { "Slash", 0 },
+            { "Piercing", 0 },
+            { "Heat", 0 },
+            { "Cold", 0 },
+            { "Shock", 0 },
+            { "Caustic", 0 },
+        }
+    };
+
+    public const float MaxIntegrity = 0;
+    public const float LightIntegrity = 7;
+    public const float SomewhatIntegrity = 17;
     public const float MedIntegrity = 28;
-    public const float HeavyIntegrity = 17.5f;
-    public const float CritIntegrity = 7;
-    public const float IntegrityAffixPart = 7;
+    public const float HeavyIntegrity = 42;
+    public const float CritIntegrity = 56;
+    public const float SeverIntegrity = 70;
 
     /// <summary>
     /// Whether this body part is enabled or not.

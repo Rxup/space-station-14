@@ -166,7 +166,8 @@ public partial class SharedBodySystem
     {
         foreach (var part in GetBodyChildren(ent, ent.Comp))
         {
-            TryChangeIntegrity(part, part.Component.Integrity - BodyPartComponent.MaxIntegrity, false, GetTargetBodyPart(part), out _);
+            // I'm too lazy to add new methods and fields, so i'll just leave that shitcode here for now and leave a TODO (evil).
+            TryChangeIntegrity(part, Healing(part.Component) * 100, false, GetTargetBodyPart(part), out _);
         }
     }
 

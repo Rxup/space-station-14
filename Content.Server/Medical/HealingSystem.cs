@@ -105,7 +105,7 @@ public sealed class HealingSystem : EntitySystem
             var targetBodyPart = _bodySystem.GetTargetBodyPart(mostDamaged);
 
             if (targetBodyPart != null)
-                _bodySystem.TryChangeIntegrity(mostDamaged, healing.Damage.GetTotal().Float(), false, targetBodyPart.Value, out _);
+                _bodySystem.TryChangeIntegrity(mostDamaged, healing.Damage, false, targetBodyPart.Value, out _);
         }
 
         // Re-verify that we can heal the damage.

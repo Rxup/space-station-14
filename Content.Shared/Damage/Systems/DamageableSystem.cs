@@ -101,10 +101,8 @@ namespace Content.Shared.Damage
         ///     The damage changed event is used by other systems, such as damage thresholds.
         /// </remarks>
         public void DamageChanged(EntityUid uid, DamageableComponent component, DamageSpecifier? damageDelta = null,
-            bool interruptsDoAfters = true, EntityUid? origin = null, bool canSever = true, float partMultiplier = 1.00f,
-            TargetBodyPart? targetPart = null)
+            bool interruptsDoAfters = true, EntityUid? origin = null, bool canSever = true, float partMultiplier = 1.00f, TargetBodyPart? targetPart = null)
         {
-            ;
             component.Damage.GetDamagePerGroup(_prototypeManager, component.DamagePerGroup);
             component.TotalDamage = component.Damage.GetTotal();
             // If our target has a TargetingComponent, that means they will take limb damage
@@ -117,14 +115,31 @@ namespace Content.Shared.Damage
                 }
                 else  if (origin.HasValue && _targetingQuery.TryComp(origin.Value, out var targeter))
                 {
+                    // Targeter has the targeting component, damage what it wants.
                     targetPart = targeter.Target;
                 }
                 else
                 {
-                    targetPart = GetRandomBodyPart(uid, target);
+                    // If there's some specific origin of the damage, probably we should attack just a random part.
+                    if (origin.HasValue)
+                    {
+                        targetPart = GetRandomBodyPart(uid, target);
+                    }
+                    // Otherwise damage all body parts equally
+                    else if (damageDelta != null)
+                    {
+                        // Divide damage between all parts, because it's how the flags work
+                        var newDamageDelta = new DamageSpecifier();
+                        foreach (var (damage, value) in damageDelta.DamageDict)
+                        {
+                            newDamageDelta.DamageDict.Add(damage, value / 6); // 6 = amount of elements in BodyPartsAll
+                        }
+                        damageDelta = newDamageDelta;
+
+                        targetPart = TargetingComponent.BodyPartsAll;
+                    }
                 }
             }
-
 
             Dirty(uid, component);
 

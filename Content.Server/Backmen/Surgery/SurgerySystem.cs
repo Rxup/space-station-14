@@ -90,7 +90,7 @@ public sealed class SurgerySystem : SharedSurgerySystem
             && TryComp<BodyPartComponent>(part, out var partComp))
         {
             var targetPart = _body.GetTargetBodyPart(partComp.PartType, partComp.Symmetry);
-            _body.TryChangeIntegrity((part, partComp), damage.GetTotal().Float(), false, targetPart, out var _);
+            _body.TryChangeIntegrity((part, partComp), damage, false, targetPart, out var _);
         }
     }
 
@@ -175,7 +175,8 @@ public sealed class SurgerySystem : SharedSurgerySystem
             RaiseLocalEvent(targetPart.Id, ref ev);
             // This is basically an equalizer, severing a part will badly damage it.
             // and affixing it will heal it a bit if its not too badly damaged.
-            _body.TryChangeIntegrity(targetPart, targetPart.Component.Integrity - BodyPartComponent.IntegrityAffixPart, false,
+            var healing = _body.Healing(targetPart.Component) * 2;
+            _body.TryChangeIntegrity(targetPart, healing, false,
                 _body.GetTargetBodyPart(targetPart.Component.PartType, targetPart.Component.Symmetry), out _);
         }
 
