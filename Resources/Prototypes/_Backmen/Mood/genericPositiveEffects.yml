@@ -4,13 +4,18 @@
   timeout: 120
 
 - type: moodEffect
+  id: WokeUp
+  moodChange: 5
+  timeout: 480
+
+- type: moodEffect
   id: ArcadePlay
-  moodChange: 3
+  moodChange: 5
   timeout: 480
 
 - type: moodEffect
   id: GotBlessed
-  moodChange: 3
+  moodChange: 5
   timeout: 480
 
 - type: moodEffect
@@ -22,6 +27,11 @@
   id: SavedLife
   moodChange: 7
   timeout: 480
+
+- type: moodEffect
+  id: GotSavedLife
+  moodChange: 10
+  timeout: 600
 
 - type: moodEffect
   id: TraitorFocused # Used for traitors to boost their goals completion.
@@ -36,5 +46,5 @@
   moodChange: 10
 
 - type: moodEffect
-  id: TraitSanguine
+  id: TraitSanguine # Happi! Also used for Clown
   moodChange: 15

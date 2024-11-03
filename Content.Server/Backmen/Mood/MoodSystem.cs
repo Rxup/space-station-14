@@ -18,6 +18,8 @@ using Timer = Robust.Shared.Timing.Timer;
 using Robust.Shared.Player;
 using Robust.Shared.Configuration;
 using Content.Shared.Backmen.CCVar;
+using Content.Shared.Examine;
+using Content.Shared.Humanoid;
 
 namespace Content.Server.Backmen.Mood;
 
@@ -49,6 +51,20 @@ public sealed class MoodSystem : EntitySystem
         SubscribeLocalEvent<MoodModifyTraitComponent, ComponentStartup>(OnTraitStartup);
 
         SubscribeLocalEvent<MoodComponent, MoodCheckAlertEvent>(OnAlertClicked);
+        SubscribeLocalEvent<MoodComponent, ExaminedEvent>(OnExamined);
+    }
+
+    private void OnExamined(EntityUid uid, MoodComponent component, ExaminedEvent args)
+    {
+        var mood = GetMoodName(component.CurrentMoodThreshold);
+        var color = GetMoodColor(component.CurrentMoodThreshold);
+        if (mood == string.Empty)
+            return;
+
+        args.PushText(Loc.GetString("mood-component-examine",
+            ("color", color),
+            ("mood", mood),
+            ("user", uid)));
     }
 
     private void OnAlertClicked(EntityUid uid, MoodComponent component, MoodCheckAlertEvent args)
@@ -237,10 +253,28 @@ public sealed class MoodSystem : EntitySystem
         }
         else if (args.OldMobState == MobState.Dead && args.NewMobState != MobState.Dead)
         {
-            var ev = new MoodRemoveEffectEvent("Dead"); // backmen: mood
+            var ev = new MoodRemoveEffectEvent("Dead");
             RaiseLocalEvent(uid, ev);
         }
         RefreshMood(uid, component);
+
+        if (args.Origin == null ||
+            args.NewMobState != MobState.Alive ||
+            !HasComp<HumanoidAppearanceComponent>(uid) ||
+            !HasComp<MoodComponent>(args.Origin))
+            return;
+
+        // Finally players won't miss any crit bodies, because of the sweet mood bonus!
+        switch (args.NewMobState)
+        {
+            case MobState.Alive:
+                RaiseLocalEvent(uid, new MoodEffectEvent("GotSavedLife"));
+                RaiseLocalEvent(args.Origin.Value, new MoodEffectEvent("SavedLife"));
+                break;
+            default:
+                RaiseLocalEvent(uid, new MoodRemoveEffectEvent("GotSavedLife"));
+                break;
+        }
     }
 
     // <summary>
@@ -403,6 +437,32 @@ public sealed class MoodSystem : EntitySystem
             >= MoodThreshold.Good => 1,
             <= MoodThreshold.Meh => -1,
             _ => 0
+        };
+    }
+
+    private string GetMoodName(MoodThreshold threshold)
+    {
+        return threshold switch
+        {
+            MoodThreshold.Insane or MoodThreshold.Horrible or MoodThreshold.Terrible => Loc.GetString("mood-examine-horrible"),
+            MoodThreshold.Bad or MoodThreshold.Meh => Loc.GetString("mood-examine-bad"),
+            MoodThreshold.Neutral => Loc.GetString("mood-examine-neutral"),
+            MoodThreshold.Good or MoodThreshold.Great => Loc.GetString("mood-examine-good"),
+            MoodThreshold.Exceptional or MoodThreshold.Perfect => Loc.GetString("mood-examine-perfect"),
+            _ => Loc.GetString(""),
+        };
+    }
+
+    private static Color GetMoodColor(MoodThreshold threshold)
+    {
+        return threshold switch
+        {
+            MoodThreshold.Insane or MoodThreshold.Horrible or MoodThreshold.Terrible => Color.Red,
+            MoodThreshold.Bad or MoodThreshold.Meh => Color.Orange,
+            MoodThreshold.Neutral => Color.Blue,
+            MoodThreshold.Good or MoodThreshold.Great => Color.Green,
+            MoodThreshold.Exceptional or MoodThreshold.Perfect => Color.Aquamarine,
+            _ => Color.Gray,
         };
     }
 

@@ -39,11 +39,15 @@ mood-effect-BeingHugged = Люблю когда меня обнимают.
 
 mood-effect-ArcadePlay = Я повеселился поиграв в аркадную игру.
 
+mood-effect-WokeUp = Я проснулся после неплохого сна.
+
 mood-effect-GotBlessed = Меня благословили.
 
 mood-effect-PetAnimal = Животные такие милые, не могу перестать их гладить!
 
 mood-effect-SavedLife = Так хорошо спасать чужие жизни.
+
+mood-effect-GotSavedLife = Мою жизнь спасли! Моя вера в людей стала крепче!
 
 mood-effect-TraitorFocused = У меня есть цель, я должен выполнить её ни смотря ни на что.
 

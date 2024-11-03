@@ -54,7 +54,7 @@
 
 - type: moodEffect
   id: SurgeryNoTorso
-  moodChange: -20
+  moodChange: -15
 
 - type: moodEffect
   id: SurgeryPain
