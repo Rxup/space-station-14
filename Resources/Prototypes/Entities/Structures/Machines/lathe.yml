@@ -978,7 +978,7 @@
       - MedkitRadiation
       - MedkitCombat
       - Scalpel
-      - BoneGel
+      - BoneGel # backmen
       - Retractor
       - Cautery
       - Drill
@@ -990,10 +990,9 @@
       - ChemicalPayload
       - CryostasisBeaker
       - BluespaceBeaker
-#      - BluespaceBeaker1
       - SyringeBluespace
       - SyringeCryostasis
-      - BluespacePillCanister # Backmen
+      - BluespacePillCanister # backmen
   - type: Machine
     board: MedicalTechFabCircuitboard
   - type: StealTarget
