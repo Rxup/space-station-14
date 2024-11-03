@@ -71,15 +71,23 @@ public abstract class SharedCameraRecoilSystem : EntitySystem
             {
                 var normalized = recoil.CurrentKick.Normalized();
                 recoil.LastKickTime += frameTime;
-                var restoreRate = MathHelper.Lerp(RestoreRateMin, RestoreRateMax, Math.Min(1, recoil.LastKickTime / RestoreRateRamp));
+                if (recoil.LastKickTime > RestoreRateRamp)
+                {
+                    recoil.LastKickTime = RestoreRateRamp;
+                }
+                var restoreRate = MathHelper.Lerp(RestoreRateMin, RestoreRateMax, recoil.LastKickTime / RestoreRateRamp);
                 var restore = normalized * restoreRate * frameTime;
                 var (x, y) = recoil.CurrentKick - restore;
-                if (Math.Sign(x) != Math.Sign(recoil.CurrentKick.X))
+
+                if (double.IsNaN(x) || Math.Sign(x) != Math.Sign(recoil.CurrentKick.X))
+                {
                     x = 0;
+                }
 
-                if (Math.Sign(y) != Math.Sign(recoil.CurrentKick.Y))
+                if (double.IsNaN(y) || Math.Sign(y) != Math.Sign(recoil.CurrentKick.Y))
+                {
                     y = 0;
-
+                }
                 recoil.CurrentKick = new Vector2(x, y);
             }
 
