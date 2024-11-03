@@ -16,4 +16,5 @@ surgery-ui-window-steps-error-skills = Не хватает навыка для �
 surgery-ui-window-steps-error-table = Требуется операционный стол!
 surgery-ui-window-steps-error-armor = Нужно снять с этого броню!
 surgery-ui-window-steps-error-tools = Не хватает инструментов!
-surgery-ui-window-steps-error-laying = Оно должно быть в положении лёжа!
+surgery-error-laying = Оно должно быть в положении лёжа!
+surgery-error-self-surgery = Вы не можете оперировать самого себя!

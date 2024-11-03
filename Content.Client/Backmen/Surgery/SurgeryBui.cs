@@ -3,13 +3,14 @@ using Content.Client.Administration.UI.CustomControls;
 using Content.Shared.Backmen.Surgery;
 using Content.Shared.Body.Components;
 using Content.Shared.Body.Part;
+using Content.Client.Hands.Systems;
 using JetBrains.Annotations;
 using Robust.Client.GameObjects;
 using Robust.Client.Player;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
 using Robust.Shared.Timing;
-using static Robust.Client.UserInterface.Control;
+using Robust.Client.Timing;
 
 namespace Content.Client.Backmen.Surgery;
 
@@ -19,10 +20,11 @@ public sealed class SurgeryBui : BoundUserInterface
     [Dependency] private readonly IEntityManager _entities = default!;
     [Dependency] private readonly IPlayerManager _player = default!;
 
+    [Dependency] private readonly IClientGameTiming _gameTiming = default!;
     [Dependency] private readonly IGameTiming _timing = default!;
 
     private readonly SurgerySystem _system;
-
+    private readonly HandsSystem _hands;
     [ViewVariables]
     private SurgeryWindow? _window;
 
@@ -30,23 +32,30 @@ public sealed class SurgeryBui : BoundUserInterface
     private bool _isBody = false;
     private (EntityUid Ent, EntProtoId Proto)? _surgery;
     private readonly List<EntProtoId> _previousSurgeries = new();
-
+    private DateTime _lastRefresh = DateTime.UtcNow;
+    private (string handName, EntityUid item) _throttling = ("", new EntityUid());
     public SurgeryBui(EntityUid owner, Enum uiKey) : base(owner, uiKey)
     {
         _system = _entities.System<SurgerySystem>();
+        _hands = _entities.System<HandsSystem>();
+
+        _system.OnStep += RefreshUI;
+        _hands.OnPlayerItemAdded += OnPlayerItemAdded;
     }
 
-    protected override void Open()
+    private void OnPlayerItemAdded(string handName, EntityUid item)
     {
-        //Logger.Debug("Attempting to open");
-        _system.OnRefresh += () =>
-        {
-            UpdateDisabledPanel();
-            RefreshUI();
-        };
+        if (_throttling.handName.Equals(handName)
+            && _throttling.item.Equals(item)
+            && DateTime.UtcNow - _lastRefresh < TimeSpan.FromSeconds(0.2)
+            || !_timing.IsFirstTimePredicted
+            || _window == null
+            || !_window.IsOpen)
+            return;
 
-        if (State is SurgeryBuiState s)
-            Update(s);
+        _throttling = (handName, item);
+        _lastRefresh = DateTime.UtcNow;
+        RefreshUI();
     }
 
     protected override void UpdateState(BoundUserInterfaceState state)
@@ -58,11 +67,10 @@ public sealed class SurgeryBui : BoundUserInterface
     protected override void Dispose(bool disposing)
     {
         base.Dispose(disposing);
-
         if (disposing)
             _window?.Dispose();
 
-        _system.OnRefresh -= RefreshUI;
+        _system.OnStep -= RefreshUI;
     }
 
     private void Update(SurgeryBuiState state)
@@ -71,7 +79,6 @@ public sealed class SurgeryBui : BoundUserInterface
         if (!_entities.TryGetComponent<SurgeryTargetComponent>(_player.LocalEntity, out var surgeryTargetComp)
             || !surgeryTargetComp.CanOperate)
             return;
-        //Logger.Debug("Passed check");
         if (_window == null)
         {
             _window = new SurgeryWindow();
@@ -126,7 +133,6 @@ public sealed class SurgeryBui : BoundUserInterface
         _window.Surgeries.DisposeAllChildren();
         _window.Steps.DisposeAllChildren();
         _window.Parts.DisposeAllChildren();
-
         View(ViewType.Parts);
 
         var oldSurgery = _surgery;
@@ -197,12 +203,6 @@ public sealed class SurgeryBui : BoundUserInterface
         {
             //Logger.Debug("Attempting to open");
             _window.OpenCentered();
-        }
-        else
-        {
-            //Logger.Debug("Attempting to refresh");
-            RefreshUI();
-            UpdateDisabledPanel();
         }
     }
 
@@ -308,7 +308,6 @@ public sealed class SurgeryBui : BoundUserInterface
     private void RefreshUI()
     {
         if (_window == null
-            || !_timing.IsFirstTimePredicted
             || !_window.IsOpen
             || _part == null
             || !_entities.HasComponent<SurgeryComponent>(_surgery?.Ent)
@@ -317,7 +316,7 @@ public sealed class SurgeryBui : BoundUserInterface
         {
             return;
         }
-
+        Logger.Debug($"Running RefreshUI on {Owner}");
         var next = _system.GetNextStep(Owner, _part.Value, _surgery.Value.Ent);
         var i = 0;
         foreach (var child in _window.Steps.Children)
@@ -355,9 +354,6 @@ public sealed class SurgeryBui : BoundUserInterface
             else
             {
                 stepButton.Button.Modulate = Color.White;
-                // GOD THIS NEEDS A REWRITE SO BADLY, IT UPDATES ON EVERY SINGLE TICK
-                // THEN RUNS CANPERFORMSTEP WHICH CALLS A SHITLOAD OF EVENTS
-                // DID THEY NOT FUCKING PLAYTEST THIS???
                 if (_player.LocalEntity is { } player
                     && status == StepStatus.Next
                     && !_system.CanPerformStep(player, Owner, _part.Value, stepButton.Step, false, out var popup, out var reason, out _))
@@ -387,28 +383,6 @@ public sealed class SurgeryBui : BoundUserInterface
             stepButton.Set(stepName, texture);
             i++;
         }
-
-        UpdateDisabledPanel();
-    }
-
-    private void UpdateDisabledPanel()
-    {
-        if (_window == null)
-            return;
-
-        if (_system.IsLyingDown(Owner))
-        {
-            _window.DisabledPanel.Visible = false;
-            _window.DisabledPanel.MouseFilter = MouseFilterMode.Ignore;
-            return;
-        }
-
-        _window.DisabledPanel.Visible = true;
-
-        var text = new FormattedMessage();
-        text.AddMarkup($"[color=red][font size=16]{Loc.GetString("surgery-ui-window-steps-error-laying")}[/font][/color]");
-        _window.DisabledLabel.SetMessage(text);
-        _window.DisabledPanel.MouseFilter = MouseFilterMode.Stop;
     }
 
     private void View(ViewType type)
