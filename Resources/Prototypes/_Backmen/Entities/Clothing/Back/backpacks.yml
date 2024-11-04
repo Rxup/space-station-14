@@ -26,3 +26,15 @@
   components:
   - type: Sprite
     sprite: Backmen/Clothing/Back/Backpacks/mvd.rsi
+
+- type: entity
+  parent: ClothingBackpack
+  id: ClothingCentcomBackpack
+  name: рюкзак Центком
+  description: РЮКЗАК ЗЕЛЁНЫХ ЧЕЛОВЕЧКОВ!!!
+  components:
+  - type: Storage
+    grid:
+    - 0,0,7,4
+  - type: Sprite
+    sprite: Backmen/Clothing/Back/Backpacks/centcom_backpack.rsi
