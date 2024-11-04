@@ -95,3 +95,15 @@
   - type: FootstepModifier # Corvax-Sounds
     footstepSoundCollection:
       collection: FootstepBoots
+
+- type: entity
+  parent: ClothingShoesBootsSpetsnaz
+  id: ClothingShoesBootsCentcom
+  name: подкованные сапоги Центком
+  description: Специальная обувь служащих Центрального командования.
+  components:
+  - type: Sprite
+    sprite: Backmen/Clothing/Shoes/Boots/centcom_jackboots.rsi
+  - type: Clothing
+    sprite: Backmen/Clothing/Shoes/Boots/centcom_jackboots.rsi
+  - type: NoSlip

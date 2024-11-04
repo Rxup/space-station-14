@@ -351,6 +351,10 @@
   parent: ClothingBeltSecurity
   id: ClothingBeltSecuritySuper
   components:
+    - type: Sprite
+      sprite: Backmen/Clothing/Belt/centcom_security_belt.rsi
+    - type: Clothing
+      sprite: Backmen/Clothing/Belt/centcom_security_belt.rsi
     - type: Storage
       grid:
       - 0,0,5,4
@@ -369,6 +373,10 @@
   parent: ClothingBeltSecurity
   id: ClothingBeltSecurityCentComSecurity
   components:
+    - type: Sprite
+      sprite: Backmen/Clothing/Belt/centcom_security_belt.rsi
+    - type: Clothing
+      sprite: Backmen/Clothing/Belt/centcom_security_belt.rsi
     - type: StorageFill
       contents:
         - id: WeaponDominatorNT
