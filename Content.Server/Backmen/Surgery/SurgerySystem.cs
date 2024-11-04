@@ -190,7 +190,7 @@ public sealed class SurgerySystem : SharedSurgerySystem
             RaiseLocalEvent(targetPart.Id, ref ev);
             // This is basically an equalizer, severing a part will badly damage it.
             // and affixing it will heal it a bit if its not too badly damaged.
-            var healing = _body.Healing(targetPart.Component) * 2;
+            var healing = _body.GetHealingSpecifier(targetPart.Component) * 2;
             _body.TryChangeIntegrity(targetPart, healing, false,
                 _body.GetTargetBodyPart(targetPart.Component.PartType, targetPart.Component.Symmetry), out _);
         }

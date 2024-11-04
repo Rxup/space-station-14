@@ -1,5 +1,6 @@
 using System.Linq;
 using System.Numerics;
+using Content.Shared.Backmen.Targeting;
 using Content.Shared.Body.Components;
 using Content.Shared.Body.Organ;
 using Content.Shared.Body.Part;
@@ -7,6 +8,7 @@ using Content.Shared.Body.Prototypes;
 using Content.Shared.Containers.ItemSlots;
 using Content.Shared.Damage;
 using Content.Shared.DragDrop;
+using Content.Shared.FixedPoint;
 using Content.Shared.Gibbing.Components;
 using Content.Shared.Gibbing.Events;
 using Content.Shared.Gibbing.Systems;
@@ -153,12 +155,19 @@ public partial class SharedBodySystem
             || args is { DamageIncreased: false, DamageDecreased: false })
             return;
 
-        var (targetType, targetSymmetry) = ConvertTargetBodyPart(args.TargetPart.Value);
-        Log.Debug($"Applying damage to {ToPrettyString(ent)} with {ent.Comp} and {args} {targetType} {targetSymmetry}");
-        foreach (var part in GetBodyChildrenOfType(ent, targetType, ent.Comp)
-            .Where(part => part.Component.Symmetry == targetSymmetry))
+        // Go through every flag and apply damage to them.
+        var targets = Enum.GetValues<TargetBodyPart>();
+        foreach (var target in targets)
         {
-                ApplyPartDamage(part, args.DamageDelta, targetType, args.TargetPart.Value, args.CanSever, args.PartMultiplier);
+            if (!args.TargetPart.Value.HasFlag(target))
+                continue;
+
+            var (targetType, targetSymmetry) = ConvertTargetBodyPart(target);
+            foreach (var part in GetBodyChildrenOfType(ent, targetType, ent.Comp)
+                         .Where(part => part.Component.Symmetry == targetSymmetry))
+            {
+                ApplyPartDamage(part, args.DamageDelta, targetType, target, args.CanSever, args.Evade, args.PartMultiplier);
+            }
         }
     }
 
@@ -166,8 +175,8 @@ public partial class SharedBodySystem
     {
         foreach (var part in GetBodyChildren(ent, ent.Comp))
         {
-            // I'm too lazy to add new methods and fields, so i'll just leave that shitcode here for now and leave a TODO (evil).
-            TryChangeIntegrity(part, Healing(part.Component) * 100, false, GetTargetBodyPart(part), out _);
+            var healing = GetHealingSpecifier(part.Component);
+            TrySetIntegrity(part, healing, false, GetTargetBodyPart(part), out _);
         }
     }
 

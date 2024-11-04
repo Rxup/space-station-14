@@ -164,7 +164,7 @@ public sealed class HealingSystem : EntitySystem
 
         foreach (var part in _bodySystem.GetBodyChildren(target, body))
         {
-            if (part.Component.Integrity < BodyPartComponent.MaxIntegrity)
+            if (part.Component.Integrity > part.Component.MaxIntegrity)
                 return true;
         }
         return false;

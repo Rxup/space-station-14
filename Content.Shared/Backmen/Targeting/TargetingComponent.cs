@@ -12,13 +12,6 @@ public sealed partial class TargetingComponent : Component
     public TargetBodyPart Target = TargetBodyPart.Torso;
 
     /// <summary>
-    /// All flags of the TargetBodyPart.
-    /// </summary>
-    public static readonly TargetBodyPart BodyPartsAll =
-        TargetBodyPart.Head | TargetBodyPart.Torso | TargetBodyPart.LeftArm |
-        TargetBodyPart.LeftLeg | TargetBodyPart.RightArm | TargetBodyPart.RightLeg;
-
-    /// <summary>
     /// What odds does the entity have of targeting each body part?
     /// </summary>
     [DataField]

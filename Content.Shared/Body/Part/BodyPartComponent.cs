@@ -1,4 +1,5 @@
 ﻿using Content.Shared.Backmen.Surgery.Tools;
+using Content.Shared.Backmen.Targeting;
 using Content.Shared.Containers.ItemSlots;
 using Content.Shared.Body.Components;
 using Content.Shared.Body.Systems;
@@ -43,7 +44,7 @@ public sealed partial class BodyPartComponent : Component, ISurgeryToolComponent
     /// Only works if IsVital is true.
     /// </summary>
     [DataField, AutoNetworkedField]
-    public FixedPoint2 VitalDamage = MaxIntegrity;
+    public FixedPoint2 VitalDamage = 100;
 
     [DataField, AutoNetworkedField]
     public BodyPartSymmetry Symmetry = BodyPartSymmetry.None;
@@ -73,7 +74,8 @@ public sealed partial class BodyPartComponent : Component, ISurgeryToolComponent
     public float Integrity => Damage.GetTotal().Float();
 
     /// <summary>
-    /// How much health the body part has until it pops out.
+    /// The DamageSpecifier that contains all types of damage that the BodyPart can take.
+    /// TODO: Rework this with DamageableComponent
     /// </summary>
     [DataField, AutoNetworkedField]
     public DamageSpecifier Damage = new()
@@ -90,13 +92,22 @@ public sealed partial class BodyPartComponent : Component, ISurgeryToolComponent
         }
     };
 
-    public const float MaxIntegrity = 0;
-    public const float LightIntegrity = 7;
-    public const float SomewhatIntegrity = 17;
-    public const float MedIntegrity = 28;
-    public const float HeavyIntegrity = 42;
-    public const float CritIntegrity = 56;
-    public const float SeverIntegrity = 70;
+    [DataField, AutoNetworkedField]
+    public float MaxIntegrity = 0;
+
+    [DataField, AutoNetworkedField]
+    public float SeverIntegrity = 70;
+
+    [DataField, AutoNetworkedField]
+    public Dictionary<TargetIntegrity, float> IntegrityThresholds = new()
+    {
+        { TargetIntegrity.CriticallyWounded, 70 },
+        { TargetIntegrity.HeavilyWounded, 56 },
+        { TargetIntegrity.ModeratelyWounded, 42 },
+        { TargetIntegrity.SomewhatWounded, 28},
+        { TargetIntegrity.LightlyWounded, 17 },
+        { TargetIntegrity.Healthy, 7 },
+    };
 
     /// <summary>
     /// Whether this body part is enabled or not.

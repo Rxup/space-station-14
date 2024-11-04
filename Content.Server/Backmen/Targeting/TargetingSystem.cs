@@ -32,6 +32,9 @@ public sealed class TargetingSystem : SharedTargetingSystem
         {
             foreach (TargetBodyPart part in Enum.GetValues(typeof(TargetBodyPart)))
             {
+                if (part == TargetBodyPart.All)
+                    continue; // No-no-no, mister Enumerator.
+
                 component.BodyStatus[part] = TargetIntegrity.Dead;
                 changed = true;
             }
