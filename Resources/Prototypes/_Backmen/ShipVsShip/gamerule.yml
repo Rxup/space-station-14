@@ -4,7 +4,7 @@
   - svs
   name: svs-title
   description: svs-description
-  showInVote: false #temp
+  showInVote: true
   isMiniGame: true
   supportedMaps: ShipVsShipMapPool
   rules:

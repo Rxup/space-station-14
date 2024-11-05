@@ -4,6 +4,7 @@ using Content.Server.Humanoid;
 using Content.Shared.Body.Components;
 using Content.Shared.Body.Part;
 using Content.Shared.Body.Systems;
+using Content.Shared.Damage;
 using Content.Shared.Humanoid;
 using Content.Shared.Mind;
 using Content.Shared.Mobs.Systems;
@@ -20,6 +21,7 @@ public sealed class BodySystem : SharedBodySystem
     [Dependency] private readonly GhostSystem _ghostSystem = default!;
     [Dependency] private readonly IGameTiming _gameTiming = default!;
     [Dependency] private readonly HumanoidAppearanceSystem _humanoidSystem = default!;
+    [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
     [Dependency] private readonly MobStateSystem _mobState = default!;
     [Dependency] private readonly SharedMindSystem _mindSystem = default!;
 
@@ -95,6 +97,7 @@ public sealed class BodySystem : SharedBodySystem
         var layers = HumanoidVisualLayersExtension.Sublayers(layer.Value);
         _humanoidSystem.SetLayersVisibility(
             bodyEnt, layers, visible: false, permanent: true, humanoid);
+        _appearance.SetData(bodyEnt, layer, true);
     }
 
     public override HashSet<EntityUid> GibBody(
@@ -105,8 +108,7 @@ public sealed class BodySystem : SharedBodySystem
         Vector2? splatDirection = null,
         float splatModifier = 1,
         Angle splatCone = default,
-        SoundSpecifier? gibSoundOverride = null
-    )
+        SoundSpecifier? gibSoundOverride = null)
     {
         if (!Resolve(bodyId, ref body, logMissing: false)
             || TerminatingOrDeleted(bodyId)
@@ -120,7 +122,7 @@ public sealed class BodySystem : SharedBodySystem
             return new HashSet<EntityUid>();
 
         var gibs = base.GibBody(bodyId, gibOrgans, body, launchGibs: launchGibs,
-            splatDirection: splatDirection, splatModifier: splatModifier, splatCone:splatCone);
+            splatDirection: splatDirection, splatModifier: splatModifier, splatCone: splatCone);
 
         var ev = new BeingGibbedEvent(gibs);
         RaiseLocalEvent(bodyId, ref ev);
@@ -129,4 +131,42 @@ public sealed class BodySystem : SharedBodySystem
 
         return gibs;
     }
+
+    public override HashSet<EntityUid> GibPart(
+        EntityUid partId,
+        BodyPartComponent? part = null,
+        bool launchGibs = true,
+        Vector2? splatDirection = null,
+        float splatModifier = 1,
+        Angle splatCone = default,
+        SoundSpecifier? gibSoundOverride = null)
+    {
+        if (!Resolve(partId, ref part, logMissing: false)
+            || TerminatingOrDeleted(partId)
+            || EntityManager.IsQueuedForDeletion(partId))
+        {
+            return new HashSet<EntityUid>();
+        }
+
+        var xform = Transform(partId);
+        if (xform.MapUid is null)
+            return new HashSet<EntityUid>();
+
+        var gibs = base.GibPart(partId, part, launchGibs: launchGibs,
+            splatDirection: splatDirection, splatModifier: splatModifier, splatCone: splatCone);
+
+        var ev = new BeingGibbedEvent(gibs);
+        RaiseLocalEvent(partId, ref ev);
+
+        QueueDel(partId);
+
+        return gibs;
+    }
+
+    // start-backmen: surgery
+    protected override void UpdateAppearance(EntityUid uid, BodyPartAppearanceComponent component)
+    {
+        return;
+    }
+    // end-backmen: surgery
 }

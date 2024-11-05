@@ -64,6 +64,7 @@ using Content.Shared.Maps;
 using Content.Shared.Mobs;
 using Content.Shared.Mobs.Systems;
 using Content.Shared.Movement.Components;
+using Content.Shared.Nutrition.Components;
 using Content.Shared.Paper;
 using Content.Shared.Parallax;
 using Content.Shared.Parallax.Biomes;
@@ -716,6 +717,17 @@ public sealed class ShipwreckedRuleSystem : GameRuleSystem<ShipwreckedRuleCompon
             _cardSystem.TryChangeFullName(idUid.Value, mobName, idCardComponent);
             _cardSystem.TryChangeJobTitle(idUid.Value, job.Value.Comp1.JobPrototype, idCardComponent);
         }
+
+        var hunger = EnsureComp<HungerComponent>(mob);
+        hunger.StarvationDamage = new()
+        {
+            DamageDict = new()
+            {
+                { "Cold", 0.5f },
+                { "Bloodloss", 0.5f }
+            },
+        };
+        Dirty(mob, hunger);
 
         EnsureComp<ZombieImmuneComponent>(mob);
 

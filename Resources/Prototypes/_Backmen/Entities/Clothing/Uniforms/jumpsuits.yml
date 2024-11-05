@@ -385,7 +385,7 @@
 
 - type: entity
   parent: ClothingUniformBase
-  id: ClothingUniformJumpsuitprivateofficer
+  id: ClothingUniformJumpsuitCentcomPrivateOfficer
   name: Униформа Приватного Офицера СБ ЦК
   description: Полевая униформа Приватного Офицера СБ ЦК
   components:

@@ -163,6 +163,7 @@
       - FoodPlateSmallPlastic
       - FoodBowlBig
       - FoodPlateTin
+      - FoodPlateMuffinTin
       - FoodKebabSkewer
       - SprayBottle
       - MopItem
@@ -977,6 +978,7 @@
       - MedkitRadiation
       - MedkitCombat
       - Scalpel
+      - BoneGel # backmen
       - Retractor
       - Cautery
       - Drill
@@ -988,10 +990,9 @@
       - ChemicalPayload
       - CryostasisBeaker
       - BluespaceBeaker
-#      - BluespaceBeaker1
       - SyringeBluespace
       - SyringeCryostasis
-      - BluespacePillCanister # Backmen
+      - BluespacePillCanister # backmen
   - type: Machine
     board: MedicalTechFabCircuitboard
   - type: StealTarget

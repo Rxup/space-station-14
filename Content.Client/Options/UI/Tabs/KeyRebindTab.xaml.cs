@@ -99,11 +99,13 @@ namespace Content.Client.Options.UI.Tabs
             _deferCommands.Add(_inputManager.SaveToUserData);
         }
 
-        private void HandleHoldLookUp(BaseButton.ButtonToggledEventArgs args) // WD EDIT
+        // start-backmen
+        private void HandleHoldLookUp(BaseButton.ButtonToggledEventArgs args)
         {
             _cfg.SetCVar(BackmenCCvars.CCVars.HoldLookUp, args.Pressed);
             _cfg.SaveToFile();
         }
+        // end-backmen
 
         private void HandleStaticStorageUI(BaseButton.ButtonToggledEventArgs args)
         {
@@ -160,7 +162,7 @@ namespace Content.Client.Options.UI.Tabs
             }
 
             // start-backmen: Laying System
-            void HandleToggleAutoGetUp(BaseButton.ButtonToggledEventArgs args) // WD EDIT
+            void HandleToggleAutoGetUp(BaseButton.ButtonToggledEventArgs args) // BACKMEN EDIT
             {
                 _cfg.SetCVar(Shared.Backmen.CCVar.CCVars.AutoGetUp, args.Pressed);
                 _cfg.SaveToFile();
@@ -205,7 +207,7 @@ namespace Content.Client.Options.UI.Tabs
             AddButton(ContentKeyFunctions.RotateStoredItem);
             AddButton(ContentKeyFunctions.SaveItemLocation);
             AddButton(ContentKeyFunctions.ToggleStanding); // backmen: Laying System
-            AddButton(ContentKeyFunctions.LookUp); // WD EDIT
+            AddButton(ContentKeyFunctions.LookUp); // BACKMEN EDIT
             AddButton(ContentKeyFunctions.OfferItem); // Ataraxia
             AddCheckBox("ui-options-function-hold-look-up", _cfg.GetCVar(BackmenCCvars.CCVars.HoldLookUp), HandleHoldLookUp); // WD EDIT
 
@@ -254,6 +256,14 @@ namespace Content.Client.Options.UI.Tabs
             AddButton(EngineKeyFunctions.WindowCloseRecent);
             AddButton(EngineKeyFunctions.EscapeMenu);
             AddButton(ContentKeyFunctions.EscapeContext);
+
+            AddHeader("ui-options-header-targeting");
+            AddButton(ContentKeyFunctions.TargetHead);
+            AddButton(ContentKeyFunctions.TargetTorso);
+            AddButton(ContentKeyFunctions.TargetLeftArm);
+            AddButton(ContentKeyFunctions.TargetRightArm);
+            AddButton(ContentKeyFunctions.TargetLeftLeg);
+            AddButton(ContentKeyFunctions.TargetRightLeg);
 
             AddHeader("ui-options-header-misc");
             AddButton(ContentKeyFunctions.TakeScreenshot);
