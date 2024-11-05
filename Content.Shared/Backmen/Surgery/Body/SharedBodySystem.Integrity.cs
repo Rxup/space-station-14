@@ -89,8 +89,7 @@ public partial class SharedBodySystem
             && _queryTargeting.HasComp(body)
             && !_mobState.IsDead(body))
         {
-            var healing = GetHealingSpecifier(entity);
-            TryChangeIntegrity(entity, healing, false, GetTargetBodyPart(entity), out _);
+            TryChangeIntegrity(entity, GetHealingSpecifier(entity), false, GetTargetBodyPart(entity), out _);
         }
     }
 
