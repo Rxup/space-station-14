@@ -101,7 +101,7 @@ public sealed class HealingSystem : EntitySystem
         {
             var parts = _bodySystem.GetBodyChildren(args.Target).ToList();
             // We fetch the most damaged body part
-            var mostDamaged = parts.MinBy(x => x.Component.Integrity);
+            var mostDamaged = parts.MinBy(x => x.Component.TotalDamage);
             var targetBodyPart = _bodySystem.GetTargetBodyPart(mostDamaged);
 
             if (targetBodyPart != null)
@@ -164,7 +164,7 @@ public sealed class HealingSystem : EntitySystem
 
         foreach (var part in _bodySystem.GetBodyChildren(target, body))
         {
-            if (part.Component.Integrity > part.Component.MaxIntegrity)
+            if (part.Component.TotalDamage > part.Component.MinIntegrity)
                 return true;
         }
         return false;

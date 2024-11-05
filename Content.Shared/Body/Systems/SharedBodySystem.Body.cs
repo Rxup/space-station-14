@@ -156,7 +156,7 @@ public partial class SharedBodySystem
             return;
 
         // Go through every flag and apply damage to them.
-        var targets = Enum.GetValues<TargetBodyPart>();
+        var targets = SharedTargetingSystem.GetValidParts();
         foreach (var target in targets)
         {
             if (!args.TargetPart.Value.HasFlag(target))

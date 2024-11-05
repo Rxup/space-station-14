@@ -71,7 +71,7 @@ public sealed partial class BodyPartComponent : Component, ISurgeryToolComponent
     /// How much health the body part has until it pops out.
     /// </summary>
     [ViewVariables]
-    public float Integrity => Damage.GetTotal().Float();
+    public float TotalDamage => Damage.GetTotal().Float();
 
     /// <summary>
     /// The DamageSpecifier that contains all types of damage that the BodyPart can take.
@@ -93,7 +93,7 @@ public sealed partial class BodyPartComponent : Component, ISurgeryToolComponent
     };
 
     [DataField, AutoNetworkedField]
-    public float MaxIntegrity = 0;
+    public float MinIntegrity = 0;
 
     [DataField, AutoNetworkedField]
     public float SeverIntegrity = 70;

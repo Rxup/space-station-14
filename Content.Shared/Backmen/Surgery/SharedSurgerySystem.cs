@@ -108,7 +108,7 @@ public abstract partial class SharedSurgerySystem : EntitySystem
         if (!TryComp(args.Body, out DamageableComponent? damageable)
             || !TryComp(args.Part, out BodyPartComponent? bodyPart)
             || damageable.TotalDamage <= 0
-            && bodyPart.Integrity <= bodyPart.MaxIntegrity
+            && bodyPart.TotalDamage <= bodyPart.MinIntegrity
             && !HasComp<IncisionOpenComponent>(args.Part))
             args.Cancelled = true;
     }

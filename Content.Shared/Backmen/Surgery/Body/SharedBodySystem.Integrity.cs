@@ -81,10 +81,10 @@ public partial class SharedBodySystem
 
     private void ProcessIntegrityTick(Entity<BodyPartComponent> entity)
     {
-        var damage = entity.Comp.Integrity;
+        var damage = entity.Comp.TotalDamage;
 
         if (entity.Comp is { Body: {} body}
-            && damage > entity.Comp.MaxIntegrity
+            && damage > entity.Comp.MinIntegrity
             && damage <= entity.Comp.IntegrityThresholds[TargetIntegrity.HeavilyWounded]
             && _queryTargeting.HasComp(body)
             && !_mobState.IsDead(body))
@@ -158,10 +158,10 @@ public partial class SharedBodySystem
             return;
 
         var partIdSlot = GetParentPartAndSlotOrNull(partEnt)?.Slot;
-        var integrity = partEnt.Comp.Integrity;
+        var integrity = partEnt.Comp.TotalDamage;
 
         partEnt.Comp.Damage.ExclusiveAdd(damage);
-        partEnt.Comp.Damage.ClampMin(partEnt.Comp.MaxIntegrity); // No over-healing!
+        partEnt.Comp.Damage.ClampMin(partEnt.Comp.MinIntegrity); // No over-healing!
 
         if (canSever
             && !HasComp<BodyPartReattachedComponent>(partEnt)
@@ -179,8 +179,8 @@ public partial class SharedBodySystem
     }
 
     /// <summary>
-    /// Sets damage to the body part and updates things about Integrity levels.
-    /// Same as TryChangeIntegrity, but this can be used more fluently.
+    /// Same as TryChangeIntegrity, except this one
+    /// sets a given value rather than adding or subtracting.
     /// </summary>
     public void TrySetIntegrity(
         Entity<BodyPartComponent> partEnt,
@@ -194,10 +194,10 @@ public partial class SharedBodySystem
             return;
 
         var partIdSlot = GetParentPartAndSlotOrNull(partEnt)?.Slot;
-        var integrity = partEnt.Comp.Integrity;
+        var integrity = partEnt.Comp.TotalDamage;
 
         partEnt.Comp.Damage = damage;
-        partEnt.Comp.Damage.ClampMin(partEnt.Comp.MaxIntegrity); // No over-healing!
+        partEnt.Comp.Damage.ClampMin(partEnt.Comp.MinIntegrity); // No over-healing!
 
         if (canSever
             && !HasComp<BodyPartReattachedComponent>(partEnt)
@@ -222,7 +222,7 @@ public partial class SharedBodySystem
         TargetBodyPart? targetPart,
         bool severed)
     {
-        var integrity = partEnt.Comp.Integrity;
+        var integrity = partEnt.Comp.TotalDamage;
 
         // KILL the body part
         if (partEnt.Comp.Enabled && integrity >= partEnt.Comp.IntegrityThresholds[TargetIntegrity.CriticallyWounded])
@@ -244,7 +244,6 @@ public partial class SharedBodySystem
             var newIntegrity = GetIntegrityThreshold(partEnt.Comp, integrity, severed);
             // We need to check if the part is dead to prevent the UI from showing dead parts as alive.
             if (targetPart is not null &&
-                !targetPart.Value.HasFlag(TargetBodyPart.All) &&
                 targeting.BodyStatus.ContainsKey(targetPart.Value) &&
                 targeting.BodyStatus[targetPart.Value] != TargetIntegrity.Dead)
             {
@@ -268,7 +267,7 @@ public partial class SharedBodySystem
         if (!TryComp<BodyComponent>(entityUid, out var body))
             return result;
 
-        foreach (TargetBodyPart part in Enum.GetValues(typeof(TargetBodyPart)))
+        foreach (var part in SharedTargetingSystem.GetValidParts())
         {
             result[part] = TargetIntegrity.Severed;
         }
@@ -279,7 +278,7 @@ public partial class SharedBodySystem
 
             if (targetBodyPart != null)
             {
-                result[targetBodyPart.Value] = GetIntegrityThreshold(partComponent.Component, partComponent.Component.Integrity, false);
+                result[targetBodyPart.Value] = GetIntegrityThreshold(partComponent.Component, partComponent.Component.TotalDamage, false);
             }
         }
 
