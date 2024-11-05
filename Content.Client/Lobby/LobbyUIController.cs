@@ -474,9 +474,16 @@ public sealed partial class LobbyUIController : UIController, IOnStateEntered<Lo
             {
                 var loadout = humanoid.GetLoadoutOrDefault(LoadoutSystem.GetJobPrototype(job.ID), _playerManager.LocalSession, humanoid.Species, EntityManager, _prototypeManager);
                 //backmen-clothing: start
-                if (!jobClothes)
+                HashSet<string> groupsToShow = ["Werx", "Niz", "Socks"];
+                if (jobClothes)
                 {
-                    HashSet<string> groupsToShow = ["Werx", "Niz", "Socks"];
+                    foreach (var loadoutsKey in loadout.SelectedLoadouts.Keys.Where(loadoutsKey => groupsToShow.Contains(loadoutsKey)))
+                    {
+                        loadout.SelectedLoadouts.Remove(loadoutsKey);
+                    }
+                }
+                else
+                {
                     foreach (var loadoutsKey in loadout.SelectedLoadouts.Keys.Where(loadoutsKey => !groupsToShow.Contains(loadoutsKey)))
                     {
                         loadout.SelectedLoadouts.Remove(loadoutsKey);
