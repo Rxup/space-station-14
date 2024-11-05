@@ -12,3 +12,7 @@ guide-entry-blob = Блоб
 guide-entry-changelings = Генокрады
 guide-entry-backmen-species = Другие расы
 guide-entry-supermatter = Суперматерия
+guide-entry-surgery = Хирургия
+guide-entry-partmanipulation = Манипулирование конечностями
+guide-entry-organmanipulation = Манипулирование органами
+guide-entry-utilitysurgeries = Особые применения

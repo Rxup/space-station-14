@@ -42,16 +42,19 @@
   special:
   - !type:AddComponentSpecial
     components:
-      - type: PsionicBonusChance
-        flatBonus: 0.025
-      - type: NpcFactionMember
-        factions:
-          - CentralCommand
+    - type: PsionicBonusChance
+      flatBonus: 0.025
+    - type: NpcFactionMember
+      factions:
+      - CentralCommand
+    - type: CommandStaff
+    #start-backmen: surgery
+    #- type: CPRTraining
+    - type: SurgerySpeedModifier
+      SpeedModifier: 2.5
+    #end-backmen: surgery
   - !type:AddImplantSpecial
     implants: [ MindShieldImplant ]
-  - !type:AddComponentSpecial
-    components:
-      - type: CommandStaff
 
 - type: startingGear
   id: CMOGear
