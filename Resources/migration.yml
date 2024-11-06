@@ -840,6 +840,13 @@ MagazineBoxCaselessRifle10x24: null
 #MagazineBoxCaselessRifleBig: null
 #MagazinePistolHighCapacityRubber: null
 
+# 2024-30-10 WD EDIT
+HoloprojectorEmpty: Holoprojector
+HoloprojectorBorg: Holoprojector
+HolofanProjectorEmpty: HolofanProjector
+HoloprojectorFieldEmpty: HoloprojectorField
+HoloprojectorSecurityEmpty: HoloprojectorSecurity
+
 # 2024-12-22 # Lavaland Change: Migrations
 VendingMachineRestockSalvageEquipment: null
 CrateVendingMachineRestockSalvageEquipmentFilled: null
