@@ -231,7 +231,7 @@ public partial class SharedBodySystem
         }
 
         // LIVE the body part
-        if (!partEnt.Comp.Enabled && integrity <= partEnt.Comp.IntegrityThresholds[TargetIntegrity.SomewhatWounded])
+        if (!partEnt.Comp.Enabled && integrity <= partEnt.Comp.IntegrityThresholds[partEnt.Comp.EnableIntegrity])
         {
             var ev = new BodyPartEnableChangedEvent(true);
             RaiseLocalEvent(partEnt, ref ev);

@@ -95,8 +95,18 @@ public sealed partial class BodyPartComponent : Component, ISurgeryToolComponent
     [DataField, AutoNetworkedField]
     public float MinIntegrity = 0;
 
+    /// <summary>
+    /// The total damage that has to be dealt to a body part
+    /// to make possible severing it.
+    /// </summary>
     [DataField, AutoNetworkedField]
     public float SeverIntegrity = 70;
+
+    /// <summary>
+    /// On what TargetIntegrity we should re-enable the part.
+    /// </summary>
+    [DataField, AutoNetworkedField]
+    public TargetIntegrity EnableIntegrity = TargetIntegrity.ModeratelyWounded;
 
     [DataField, AutoNetworkedField]
     public Dictionary<TargetIntegrity, float> IntegrityThresholds = new()

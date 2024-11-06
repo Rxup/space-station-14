@@ -136,7 +136,8 @@ namespace Content.Shared.Damage
                         var newDamageDelta = new DamageSpecifier();
                         foreach (var (damage, value) in damageDelta.DamageDict)
                         {
-                            newDamageDelta.DamageDict.Add(damage, value / 6); // 6 = amount of elements in BodyPartsAll
+                            // Division by 2 cuz damaging all parts by the same damage by default is too much.
+                            newDamageDelta.DamageDict.Add(damage, value / 2);
                         }
                         damageDelta = newDamageDelta;
 
