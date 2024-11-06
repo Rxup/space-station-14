@@ -7,6 +7,7 @@ using Content.Shared.Examine;
 using Content.Shared.Humanoid.Markings;
 using Content.Shared.Humanoid.Prototypes;
 using Content.Shared.Corvax.TTS;
+using Content.Shared.Humanoid.Events;
 using Content.Shared.IdentityManagement;
 using Content.Shared.Preferences;
 using Robust.Shared;
@@ -448,7 +449,23 @@ public abstract class SharedHumanoidAppearanceSystem : EntitySystem
 
         humanoid.Age = profile.Age;
 
+        // start-backmen: surgery
+        humanoid.CustomSpecieName = profile.Customspeciename;
+
+        var species = _proto.Index(humanoid.Species);
+
+        if (profile.Height <= 0 || profile.Width <= 0)
+            SetScale(uid, new Vector2(species.DefaultWidth, species.DefaultHeight), true, humanoid);
+        else
+            SetScale(uid, new Vector2(profile.Width, profile.Height), true, humanoid);
+
+        _heightAdjust.SetScale(uid, new Vector2(humanoid.Width, humanoid.Height));
+
+        humanoid.LastProfileLoaded = profile; // DeltaV - let paradox anomaly be cloned
+
         Dirty(uid, humanoid);
+        RaiseLocalEvent(uid, new ProfileLoadFinishedEvent());
+        // end-backmen: surgery
     }
 
     /// <summary>
