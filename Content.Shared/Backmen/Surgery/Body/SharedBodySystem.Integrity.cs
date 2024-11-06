@@ -10,10 +10,12 @@ using Robust.Shared.CPUJob.JobQueues.Queues;
 using Robust.Shared.Network;
 using Robust.Shared.Random;
 using Robust.Shared.Timing;
-using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using Content.Shared.Backmen.Surgery.Steps.Parts;
+using Content.Shared.Damage.Prototypes;
+using Content.Shared.FixedPoint;
+using Robust.Shared.Prototypes;
 
 // ReSharper disable once CheckNamespace
 namespace Content.Shared.Body.Systems;
@@ -23,6 +25,7 @@ public partial class SharedBodySystem
     [Dependency] private readonly INetManager _net = default!;
     [Dependency] private readonly MobStateSystem _mobState = default!;
     [Dependency] private readonly IRobustRandom _random = default!;
+    [Dependency] private readonly IPrototypeManager _proto = default!;
     private readonly string[] _severingDamageTypes = { "Slash", "Pierce", "Blunt" };
     private const double IntegrityJobTime = 0.005;
     private readonly JobQueue _integrityJobQueue = new(IntegrityJobTime);
@@ -57,21 +60,36 @@ public partial class SharedBodySystem
         _queryTargeting = GetEntityQuery<TargetingComponent>();
     }
 
+    public DamageSpecifier GetHealingSpecifier(BodyPartComponent part)
+    {
+        var damage = new DamageSpecifier()
+        {
+            DamageDict = new Dictionary<string, FixedPoint2>()
+            {
+                { "Blunt", -part.SelfHealingAmount },
+                { "Slash", -part.SelfHealingAmount },
+                { "Piercing", -part.SelfHealingAmount },
+                { "Heat", -part.SelfHealingAmount },
+                { "Cold", -part.SelfHealingAmount },
+                { "Shock", -part.SelfHealingAmount },
+                { "Caustic", -part.SelfHealingAmount * 0.1}, // not much caustic healing
+            }
+        };
+
+        return damage;
+    }
+
     private void ProcessIntegrityTick(Entity<BodyPartComponent> entity)
     {
-        if (entity.Comp is { Body: {} body, Integrity: > BodyPartComponent.MaxIntegrity/2 and < BodyPartComponent.MaxIntegrity }
+        var damage = entity.Comp.TotalDamage;
+
+        if (entity.Comp is { Body: {} body}
+            && damage > entity.Comp.MinIntegrity
+            && damage <= entity.Comp.IntegrityThresholds[TargetIntegrity.HeavilyWounded]
             && _queryTargeting.HasComp(body)
             && !_mobState.IsDead(body))
         {
-            var healing = entity.Comp.SelfHealingAmount;
-            if (healing + entity.Comp.Integrity > BodyPartComponent.MaxIntegrity)
-                healing = entity.Comp.Integrity - BodyPartComponent.MaxIntegrity;
-
-            TryChangeIntegrity(entity,
-                healing,
-                false,
-                GetTargetBodyPart(entity),
-                out _);
+            TryChangeIntegrity(entity, GetHealingSpecifier(entity), false, GetTargetBodyPart(entity), out _);
         }
     }
 
@@ -96,9 +114,8 @@ public partial class SharedBodySystem
         }
     }
 
-
     /// <summary>
-    /// Propagates damage to the specified parts of the entity.
+    /// Propagates damage to the specified part of the entity.
     /// </summary>
     private void ApplyPartDamage(
         Entity<BodyPartComponent> partEnt,
@@ -106,35 +123,31 @@ public partial class SharedBodySystem
         BodyPartType targetType,
         TargetBodyPart targetPart,
         bool canSever,
+        bool evade,
         float partMultiplier)
     {
-        if (
-            partEnt.Comp.Body is not {} body ||
-            !TryComp<MobStateComponent>(body, out var mobState))
+        if (partEnt.Comp.Body is not {} body)
             return;
 
-        foreach (var (damageType, damageValue) in damage.DamageDict)
+        _proto.TryIndex<DamageGroupPrototype>("Brute", out var proto);
+
+        if (!TryEvadeDamage(partEnt.Comp.Body.Value, GetEvadeChance(targetType)) || evade)
         {
-            if (damageValue.Float() == 0
-                || TryEvadeDamage((body, mobState), GetEvadeChance(targetType)))
-                continue;
-
-            var modifier = GetDamageModifier(damageType);
-            var partModifier = GetPartDamageModifier(targetType);
-            var integrityDamage = damageValue.Float() * modifier * partModifier * partMultiplier;
             TryChangeIntegrity(partEnt,
-                integrityDamage,
-                canSever && _severingDamageTypes.Contains(damageType),
+                damage * partMultiplier,
+                // This is true when damage contains at least one of the brute damage types
+                canSever && damage.TryGetDamageInGroup(proto!, out var dmg) && dmg > FixedPoint2.Zero,
                 targetPart,
-                out var severed);
-
-            if (severed)
-                break;
+                out _);
         }
     }
 
-    public void TryChangeIntegrity(Entity<BodyPartComponent> partEnt,
-        float integrity,
+    /// <summary>
+    /// Adds damage to the body part and updates things about Integrity levels.
+    /// </summary>
+    public void TryChangeIntegrity(
+        Entity<BodyPartComponent> partEnt,
+        DamageSpecifier damage,
         bool canSever,
         TargetBodyPart? targetPart,
         out bool severed)
@@ -144,36 +157,94 @@ public partial class SharedBodySystem
             return;
 
         var partIdSlot = GetParentPartAndSlotOrNull(partEnt)?.Slot;
-        var originalIntegrity = partEnt.Comp.Integrity;
-        partEnt.Comp.Integrity = Math.Min(BodyPartComponent.MaxIntegrity, partEnt.Comp.Integrity - integrity);
+        var integrity = partEnt.Comp.TotalDamage;
+
+        partEnt.Comp.Damage.ExclusiveAdd(damage);
+        partEnt.Comp.Damage.ClampMin(partEnt.Comp.MinIntegrity); // No over-healing!
+
         if (canSever
             && !HasComp<BodyPartReattachedComponent>(partEnt)
             && !partEnt.Comp.Enabled
-            && partEnt.Comp.Integrity <= 0
+            && integrity >= partEnt.Comp.SeverIntegrity
             && partIdSlot is not null)
             severed = true;
 
-        // This will also prevent the torso from being removed.
-        if (partEnt.Comp.Enabled
-            && partEnt.Comp.Integrity <= BodyPartComponent.CritIntegrity)
+        CheckBodyPart(partEnt, targetPart, severed);
+
+        if (severed && partIdSlot is not null)
+            DropPart(partEnt);
+
+        Dirty(partEnt, partEnt.Comp);
+    }
+
+    /// <summary>
+    /// Same as TryChangeIntegrity, except this one
+    /// sets a given value rather than adding or subtracting.
+    /// </summary>
+    public void TrySetIntegrity(
+        Entity<BodyPartComponent> partEnt,
+        DamageSpecifier damage,
+        bool canSever,
+        TargetBodyPart? targetPart,
+        out bool severed)
+    {
+        severed = false;
+        if (!_timing.IsFirstTimePredicted || !_queryTargeting.HasComp(partEnt.Comp.Body))
+            return;
+
+        var partIdSlot = GetParentPartAndSlotOrNull(partEnt)?.Slot;
+        var integrity = partEnt.Comp.TotalDamage;
+
+        partEnt.Comp.Damage = damage;
+        partEnt.Comp.Damage.ClampMin(partEnt.Comp.MinIntegrity); // No over-healing!
+
+        if (canSever
+            && !HasComp<BodyPartReattachedComponent>(partEnt)
+            && !partEnt.Comp.Enabled
+            && integrity >= partEnt.Comp.SeverIntegrity
+            && partIdSlot is not null)
+            severed = true;
+
+        CheckBodyPart(partEnt, targetPart, severed);
+
+        if (severed && partIdSlot is not null)
+            DropPart(partEnt);
+
+        Dirty(partEnt, partEnt.Comp);
+    }
+
+    /// <summary>
+    /// This should be called after body part damage was changed.
+    /// </summary>
+    private void CheckBodyPart(
+        Entity<BodyPartComponent> partEnt,
+        TargetBodyPart? targetPart,
+        bool severed)
+    {
+        var integrity = partEnt.Comp.TotalDamage;
+
+        // KILL the body part
+        if (partEnt.Comp.Enabled && integrity >= partEnt.Comp.IntegrityThresholds[TargetIntegrity.CriticallyWounded])
         {
             var ev = new BodyPartEnableChangedEvent(false);
             RaiseLocalEvent(partEnt, ref ev);
         }
-        else if (!partEnt.Comp.Enabled
-            && partEnt.Comp.Integrity >= BodyPartComponent.SomewhatIntegrity)
+
+        // LIVE the body part
+        if (!partEnt.Comp.Enabled && integrity <= partEnt.Comp.IntegrityThresholds[partEnt.Comp.EnableIntegrity])
         {
             var ev = new BodyPartEnableChangedEvent(true);
             RaiseLocalEvent(partEnt, ref ev);
         }
 
-        if (Math.Abs(partEnt.Comp.Integrity - originalIntegrity) > 0.01
-            && _queryTargeting.TryComp(partEnt.Comp.Body, out var targeting)
+        if (_queryTargeting.TryComp(partEnt.Comp.Body, out var targeting)
             && HasComp<MobStateComponent>(partEnt.Comp.Body))
         {
-            var newIntegrity = GetIntegrityThreshold(partEnt.Comp.Integrity, severed, partEnt.Comp.Enabled);
+            var newIntegrity = GetIntegrityThreshold(partEnt.Comp, integrity, severed);
             // We need to check if the part is dead to prevent the UI from showing dead parts as alive.
-            if (targetPart is not null && targeting.BodyStatus[targetPart.Value] != TargetIntegrity.Dead)
+            if (targetPart is not null &&
+                targeting.BodyStatus.ContainsKey(targetPart.Value) &&
+                targeting.BodyStatus[targetPart.Value] != TargetIntegrity.Dead)
             {
                 targeting.BodyStatus[targetPart.Value] = newIntegrity;
                 Dirty(partEnt.Comp.Body.Value, targeting);
@@ -183,11 +254,6 @@ public partial class SharedBodySystem
             if (_net.IsServer)
                 RaiseNetworkEvent(new TargetIntegrityChangeEvent(GetNetEntity(partEnt.Comp.Body.Value)), partEnt.Comp.Body.Value);
         }
-
-        if (severed && partIdSlot is not null)
-            DropPart(partEnt);
-
-        Dirty(partEnt, partEnt.Comp);
     }
 
     /// <summary>
@@ -200,7 +266,7 @@ public partial class SharedBodySystem
         if (!TryComp<BodyComponent>(entityUid, out var body))
             return result;
 
-        foreach (TargetBodyPart part in Enum.GetValues(typeof(TargetBodyPart)))
+        foreach (var part in SharedTargetingSystem.GetValidParts())
         {
             result[part] = TargetIntegrity.Severed;
         }
@@ -211,7 +277,7 @@ public partial class SharedBodySystem
 
             if (targetBodyPart != null)
             {
-                result[targetBodyPart.Value] = GetIntegrityThreshold(partComponent.Component.Integrity, false, partComponent.Component.Enabled);
+                result[targetBodyPart.Value] = GetIntegrityThreshold(partComponent.Component, partComponent.Component.TotalDamage, false);
             }
         }
 
@@ -256,29 +322,9 @@ public partial class SharedBodySystem
     }
 
     /// <summary>
-    /// Fetches the damage multiplier for part integrity based on damage types.
-    /// </summary>
-    public float GetDamageModifier(string damageType)
-    {
-        return damageType switch
-        {
-            "Blunt" => 0.8f,
-            "Slash" => 1.2f,
-            "Pierce" => 0.5f,
-            "Heat" => 1.0f,
-            "Cold" => 1.0f,
-            "Shock" => 0.8f,
-            "Poison" => 0.8f,
-            "Radiation" => 0.8f,
-            "Cellular" => 0.8f,
-            _ => 0.5f
-        };
-    }
-
-    /// <summary>
     /// Fetches the damage multiplier for part integrity based on part types.
     /// </summary>
-    public float GetPartDamageModifier(BodyPartType partType)
+    public static float GetPartDamageModifier(BodyPartType partType)
     {
         return partType switch
         {
@@ -293,30 +339,32 @@ public partial class SharedBodySystem
     /// <summary>
     /// Fetches the TargetIntegrity equivalent of the current integrity value for the body part.
     /// </summary>
-    public TargetIntegrity GetIntegrityThreshold(float integrity, bool severed, bool enabled)
+    public static TargetIntegrity GetIntegrityThreshold(BodyPartComponent component, float integrity, bool severed)
     {
+        var enabled = component.Enabled;
+
         if (severed)
             return TargetIntegrity.Severed;
 
         if (!enabled)
             return TargetIntegrity.Disabled;
 
-        return integrity switch
+        // Go through every Integrity threshold and pick
+        var targetIntegrity = TargetIntegrity.Healthy;
+        foreach (var threshold in component.IntegrityThresholds)
         {
-            <= BodyPartComponent.CritIntegrity => TargetIntegrity.CriticallyWounded,
-            <= BodyPartComponent.HeavyIntegrity => TargetIntegrity.HeavilyWounded,
-            <= BodyPartComponent.MedIntegrity => TargetIntegrity.ModeratelyWounded,
-            <= BodyPartComponent.SomewhatIntegrity => TargetIntegrity.SomewhatWounded,
-            <= BodyPartComponent.LightIntegrity => TargetIntegrity.LightlyWounded,
-            _ => TargetIntegrity.Healthy
-        };
+            if (integrity <= threshold.Value)
+                targetIntegrity = threshold.Key;
+        }
+
+        return targetIntegrity;
     }
 
     /// <summary>
     /// Fetches the chance to evade integrity damage for a body part.
     /// Used when the entity is not dead, laying down, or incapacitated.
     /// </summary>
-    public float GetEvadeChance(BodyPartType partType)
+    public static float GetEvadeChance(BodyPartType partType)
     {
         return partType switch
         {
@@ -327,6 +375,8 @@ public partial class SharedBodySystem
             _ => 0f
         };
     }
+
+
 
     public bool CanEvadeDamage(Entity<MobStateComponent?> uid)
     {

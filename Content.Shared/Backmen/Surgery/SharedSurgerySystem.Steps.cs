@@ -181,14 +181,6 @@ public abstract partial class SharedSurgerySystem
         }
     }
 
-    private EntProtoId? GetProtoId(EntityUid entityUid)
-    {
-        if (!TryComp<MetaDataComponent>(entityUid, out var metaData))
-            return null;
-
-        return metaData.EntityPrototype?.ID;
-    }
-
     private void OnTendWoundsStep(Entity<SurgeryTendWoundsEffectComponent> ent, ref SurgeryStepEvent args)
     {
         var group = ent.Comp.MainGroup == "Brute" ? BruteDamageTypes : BurnDamageTypes;
@@ -197,7 +189,7 @@ public abstract partial class SharedSurgerySystem
             || !group.Any(damageType => damageable.Damage.DamageDict.TryGetValue(damageType, out var value)
                 && value > 0)
             && (!TryComp(args.Part, out BodyPartComponent? bodyPart)
-            || bodyPart.Integrity == BodyPartComponent.MaxIntegrity))
+            || bodyPart.TotalDamage <= bodyPart.MinIntegrity))
             return;
 
         var bonus = ent.Comp.HealMultiplier * damageable.DamagePerGroup[ent.Comp.MainGroup];
@@ -224,7 +216,7 @@ public abstract partial class SharedSurgerySystem
             || group.Any(damageType => damageable.Damage.DamageDict.TryGetValue(damageType, out var value)
                 && value > 0)
             || !TryComp(args.Part, out BodyPartComponent? bodyPart)
-            || bodyPart.Integrity < BodyPartComponent.MaxIntegrity)
+            || bodyPart.TotalDamage > bodyPart.MinIntegrity)
             args.Cancelled = true;
     }
 
