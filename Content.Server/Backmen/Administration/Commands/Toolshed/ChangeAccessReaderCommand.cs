@@ -80,7 +80,7 @@ public sealed class ChangeAccessReaderCommand : ToolshedCommand
     private EntityUid? AddJobAccessReader(
         [CommandInvocationContext] IInvocationContext ctx,
         [PipedArgument] EntityUid input,
-        [CommandArgument] JobPrototype jobPrototype
+        [CommandArgument] Prototype<JobPrototype> jobPrototype
     )
     {
         _accessReaderSystem ??= GetSys<AccessReaderSystem>();
@@ -90,7 +90,7 @@ public sealed class ChangeAccessReaderCommand : ToolshedCommand
             return null;
         }
 
-        _accessReaderSystem.AddAccessByJob((input, comp), jobPrototype);
+        _accessReaderSystem.AddAccessByJob((input, comp), jobPrototype.Value);
 
         return input;
     }
@@ -99,7 +99,7 @@ public sealed class ChangeAccessReaderCommand : ToolshedCommand
     private IEnumerable<EntityUid> AddJobAccessReader(
         [CommandInvocationContext] IInvocationContext ctx,
         [PipedArgument] IEnumerable<EntityUid> input,
-        [CommandArgument] JobPrototype jobPrototype
+        [CommandArgument] Prototype<JobPrototype> jobPrototype
     )
     {
         return input.Where(ent => AddJobAccessReader(ctx, ent, jobPrototype) != null);
@@ -172,7 +172,7 @@ public sealed class ChangeAccessReaderCommand : ToolshedCommand
     private EntityUid? RemoveJobAccessReader(
         [CommandInvocationContext] IInvocationContext ctx,
         [PipedArgument] EntityUid input,
-        [CommandArgument] JobPrototype jobPrototype
+        [CommandArgument] Prototype<JobPrototype> jobPrototype
     )
     {
         _accessReaderSystem ??= GetSys<AccessReaderSystem>();
@@ -183,7 +183,7 @@ public sealed class ChangeAccessReaderCommand : ToolshedCommand
             return null;
         }
 
-        _accessReaderSystem.RemoveAccessByJob((input, comp), jobPrototype);
+        _accessReaderSystem.RemoveAccessByJob((input, comp), jobPrototype.Value);
 
         return input;
     }
@@ -192,7 +192,7 @@ public sealed class ChangeAccessReaderCommand : ToolshedCommand
     private IEnumerable<EntityUid> RemoveJobAccessReader(
         [CommandInvocationContext] IInvocationContext ctx,
         [PipedArgument] IEnumerable<EntityUid> input,
-        [CommandArgument] JobPrototype jobPrototype
+        [CommandArgument] Prototype<JobPrototype> jobPrototype
     )
     {
         return input.Where(ent => RemoveJobAccessReader(ctx, ent, jobPrototype) != null);
@@ -268,7 +268,7 @@ public sealed class ChangeAccessReaderCommand : ToolshedCommand
     private EntityUid? SetJobAccessReader(
         [CommandInvocationContext] IInvocationContext ctx,
         [PipedArgument] EntityUid input,
-        [CommandArgument] JobPrototype jobPrototype
+        [CommandArgument] Prototype<JobPrototype> jobPrototype
     )
     {
         _accessReaderSystem ??= GetSys<AccessReaderSystem>();
@@ -278,7 +278,7 @@ public sealed class ChangeAccessReaderCommand : ToolshedCommand
             return null;
         }
 
-        _accessReaderSystem.SetAccessByJob((input, comp), jobPrototype);
+        _accessReaderSystem.SetAccessByJob((input, comp), jobPrototype.Value);
         return input;
     }
 
@@ -286,7 +286,7 @@ public sealed class ChangeAccessReaderCommand : ToolshedCommand
     private IEnumerable<EntityUid> SetJobAccessReader(
         [CommandInvocationContext] IInvocationContext ctx,
         [PipedArgument] IEnumerable<EntityUid> input,
-        [CommandArgument] JobPrototype jobPrototype
+        [CommandArgument] Prototype<JobPrototype> jobPrototype
     )
     {
         return input.Where(ent => SetJobAccessReader(ctx, ent, jobPrototype) != null);

@@ -105,7 +105,6 @@ namespace Content.Shared.Access.Systems
             if (_prototypeManager.TryIndex(group, out var proto))
             {
                 access.Tags.UnionWith(proto.Tags);
-                return false;
             }
 
             Dirty(uid, access);
@@ -121,7 +120,6 @@ namespace Content.Shared.Access.Systems
             if (_prototypeManager.TryIndex(group, out var proto))
             {
                 access.Tags.UnionWith(proto.Tags);
-                return false;
             }
 
             Dirty(uid, access);
@@ -136,7 +134,6 @@ namespace Content.Shared.Access.Systems
             if (_prototypeManager.TryIndex(group, out var proto))
             {
                 access.Tags.ExceptWith(proto.Tags);
-                return false;
             }
 
             Dirty(uid, access);
