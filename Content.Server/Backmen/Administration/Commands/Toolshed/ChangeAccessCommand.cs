@@ -1,9 +1,11 @@
 using System.Diagnostics;
 using System.Linq;
 using Content.Server.Access.Systems;
+using Content.Server.Administration;
 using Content.Shared.Access;
 using Content.Shared.Access.Components;
 using Content.Shared.Access.Systems;
+using Content.Shared.Administration;
 using Content.Shared.NPC.Components;
 using Content.Shared.NPC.Prototypes;
 using Content.Shared.NPC.Systems;
@@ -15,6 +17,7 @@ using Robust.Shared.Utility;
 
 namespace Content.Server.Backmen.Administration.Commands.Toolshed;
 
+[ToolshedCommand, AdminCommand(AdminFlags.Fun)]
 public sealed class ChangeAccessCommand : ToolshedCommand
 {
     private AccessSystem? _accessSystem;

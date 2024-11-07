@@ -1,8 +1,10 @@
 using System.Diagnostics;
 using System.Linq;
+using Content.Server.Administration;
 using Content.Shared.Access;
 using Content.Shared.Access.Components;
 using Content.Shared.Access.Systems;
+using Content.Shared.Administration;
 using Content.Shared.Roles;
 using Robust.Shared.Toolshed;
 using Robust.Shared.Toolshed.Errors;
@@ -11,6 +13,7 @@ using Robust.Shared.Utility;
 
 namespace Content.Server.Backmen.Administration.Commands.Toolshed;
 
+[ToolshedCommand, AdminCommand(AdminFlags.Fun)]
 public sealed class ChangeAccessReaderCommand : ToolshedCommand
 {
     private AccessReaderSystem? _accessReaderSystem;
