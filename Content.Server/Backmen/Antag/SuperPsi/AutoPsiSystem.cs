@@ -141,7 +141,7 @@ public sealed class AutoPsiSystem : EntitySystem
 #if DEBUG
                 1f
 #else
-               0.2f
+               0.35f
 #endif
             )
 #if !DEBUG

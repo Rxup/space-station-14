@@ -34,6 +34,8 @@
       lateJoinAdditional: false
       briefing:
         sound: "/Audio/Misc/thief_greeting.ogg"
+      mindRoles:
+      - MindRoleSuperPsi
 
 - type: entity
   id: SpawnerUristMcNars
