@@ -16,33 +16,16 @@ namespace Content.Server.Backmen.Administration.Commands.Toolshed;
 public sealed class ChangeFactionCommand : ToolshedCommand
 {
     private NpcFactionSystem? _npcFactionSystem;
-    private EntityQuery<NpcFactionMemberComponent>? _npcFactionMemberQuery;
-
-    #region Base
 
     #region Add
 
     [CommandImplementation("addFaction")]
-    private EntityUid? AddFaction(
+    private EntityUid AddFaction(
         [CommandInvocationContext] IInvocationContext ctx,
         [PipedArgument] EntityUid input,
-        [CommandArgument] Prototype<NpcFactionPrototype> factionData,
-        [CommandArgument] bool ensure = true
+        [CommandArgument] Prototype<NpcFactionPrototype> factionData
     )
     {
-        if (ensure)
-        {
-            EnsureComp<NpcFactionMemberComponent>(input);
-        }
-        else
-        {
-            if (!HasComp<NpcFactionMemberComponent>(input))
-            {
-                ctx.ReportError(new ComponentNotExists());
-                return null;
-            }
-        }
-
         _npcFactionSystem ??= GetSys<NpcFactionSystem>();
         _npcFactionSystem.AddFaction(input, factionData.Id);
         return input;
@@ -52,24 +35,10 @@ public sealed class ChangeFactionCommand : ToolshedCommand
     private IEnumerable<EntityUid> AddFaction(
         [CommandInvocationContext] IInvocationContext ctx,
         [PipedArgument] IEnumerable<EntityUid> input,
-        [CommandArgument] Prototype<NpcFactionPrototype> factionData,
-        [CommandArgument] bool ensure = true
+        [CommandArgument] Prototype<NpcFactionPrototype> factionData
     )
     {
-        IEnumerable<EntityUid> members = [];
-        _npcFactionMemberQuery ??= GetEntityQuery<NpcFactionMemberComponent>();
-
-        members = ensure
-            ? input.Select(x => (x, EnsureComp<NpcFactionMemberComponent>(x)).x)
-            : input.Where(x => _npcFactionMemberQuery.Value.HasComp(x));
-
-        _npcFactionSystem ??= GetSys<NpcFactionSystem>();
-
-        foreach (var member in members)
-        {
-            _npcFactionSystem.AddFaction(member, factionData.Id);
-            yield return member;
-        }
+        return input.Select(member => AddFaction(ctx, member, factionData));
     }
 
     #endregion
@@ -77,19 +46,13 @@ public sealed class ChangeFactionCommand : ToolshedCommand
     #region Remove
 
     [CommandImplementation("rmFaction")]
-    private EntityUid? RemoveFaction(
+    private EntityUid RemoveFaction(
         [CommandInvocationContext] IInvocationContext ctx,
         [PipedArgument] EntityUid input,
         [CommandArgument] Prototype<NpcFactionPrototype> factionData
     )
     {
         _npcFactionSystem ??= GetSys<NpcFactionSystem>();
-        if (!HasComp<NpcFactionMemberComponent>(input))
-        {
-            ctx.ReportError(new ComponentNotExists());
-            return null;
-        }
-
         _npcFactionSystem.RemoveFaction(input, factionData.Id);
         return input;
     }
@@ -101,18 +64,7 @@ public sealed class ChangeFactionCommand : ToolshedCommand
         [CommandArgument] Prototype<NpcFactionPrototype> factionData
     )
     {
-        IEnumerable<EntityUid> members = [];
-        _npcFactionMemberQuery ??= GetEntityQuery<NpcFactionMemberComponent>();
-
-        members = input.Where(x => _npcFactionMemberQuery.Value.HasComp(x));
-
-        _npcFactionSystem ??= GetSys<NpcFactionSystem>();
-
-        foreach (var member in members)
-        {
-            _npcFactionSystem.RemoveFaction(member, factionData.Id);
-            yield return member;
-        }
+        return input.Select(member => RemoveFaction(ctx, member, factionData));
     }
 
     #endregion
@@ -120,18 +72,12 @@ public sealed class ChangeFactionCommand : ToolshedCommand
     #region Clear
 
     [CommandImplementation("clearFaction")]
-    private EntityUid? ClearFaction(
+    private EntityUid ClearFaction(
         [CommandInvocationContext] IInvocationContext ctx,
         [PipedArgument] EntityUid input
     )
     {
         _npcFactionSystem ??= GetSys<NpcFactionSystem>();
-        if (!HasComp<NpcFactionMemberComponent>(input))
-        {
-            ctx.ReportError(new ComponentNotExists());
-            return null;
-        }
-
         _npcFactionSystem.ClearFactions(input);
         return input;
     }
@@ -142,26 +88,13 @@ public sealed class ChangeFactionCommand : ToolshedCommand
         [PipedArgument] IEnumerable<EntityUid> input
     )
     {
-        IEnumerable<EntityUid> members = [];
-        _npcFactionMemberQuery ??= GetEntityQuery<NpcFactionMemberComponent>();
-
-        members = input.Where(x => _npcFactionMemberQuery.Value.HasComp(x));
-
-        _npcFactionSystem ??= GetSys<NpcFactionSystem>();
-
-        foreach (var member in members)
-        {
-            _npcFactionSystem.ClearFactions(member);
-            yield return member;
-        }
+        return input.Select(member => ClearFaction(ctx, member));
     }
-
-    #endregion
 
     #endregion
 }
 
-public record struct ComponentNotExists : IConError
+public record struct FactionCompNotExists : IConError
 {
     public FormattedMessage DescribeInner()
     {
