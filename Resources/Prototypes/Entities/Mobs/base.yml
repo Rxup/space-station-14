@@ -51,6 +51,7 @@
     understands:
     - TauCetiBasic
     - SpaceMob
+  - type: AnimatedEmotes
 
 - type: entity
   save: false
