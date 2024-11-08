@@ -233,6 +233,7 @@
   - type: Emoting
   - type: TTS # Corvax-TTS
     voice: Borgs
+  - type: LayingDown # backmen: LayingDown
   - type: GuideHelp
     guides:
     - Cyborgs
