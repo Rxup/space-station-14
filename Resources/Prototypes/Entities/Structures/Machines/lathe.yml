@@ -560,6 +560,7 @@
       - ShipyardCircuitboard # backmen
       - ReagentGrinderIndustrialMachineCircuitboard
       - JukeboxCircuitBoard
+      - SalvageExpeditionsComputerCircuitboard # Corvax-Cringe
   - type: EmagLatheRecipes
     emagDynamicRecipes:
       - ShuttleGunDusterCircuitboard
