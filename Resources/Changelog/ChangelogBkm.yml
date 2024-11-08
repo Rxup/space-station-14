@@ -169,3 +169,17 @@
   id: 11
   time: '2024-11-07T15:29:57.0000000+00:00'
   url: https://github.com/Rxup/space-station-14/pull/900
+- author: Rxup
+  changes:
+  - message: "\u0411\u043B\u043E\u0431 \u0442\u0435\u043F\u0435\u0440\u044C \u043B\
+      \u0435\u0447\u0438\u0442 \u0432\u0441\u0435 \u0447\u0430\u0441\u0442\u0438 \u0442\
+      \u0435\u043B\u0430 \u0441\u0440\u0430\u0437\u0443!"
+    type: Fix
+  - message: "\u0412\u0430\u043C\u043F\u0438\u0440\u044B \u0442\u0435\u043F\u0435\u0440\
+      \u044C \u043F\u043E\u043B\u0443\u0447\u0430\u044E\u0442 \u0432 3 \u0440\u0430\
+      \u0437\u0430 \u0431\u043E\u043B\u044C\u0448\u0435 \u043E\u0447\u043A\u043E\u0432\
+      !"
+    type: Tweak
+  id: 12
+  time: '2024-11-08T00:13:08.0000000+00:00'
+  url: https://github.com/Rxup/space-station-14/pull/903
