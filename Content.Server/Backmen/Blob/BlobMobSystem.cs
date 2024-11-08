@@ -13,6 +13,7 @@ using Content.Shared.Backmen.Blob;
 using Content.Shared.Backmen.Blob.Chemistry;
 using Content.Shared.Backmen.Blob.Components;
 using Content.Shared.Backmen.Language;
+using Content.Shared.Backmen.Targeting;
 using Content.Shared.Chat;
 using Content.Shared.Chemistry.Components;
 using Content.Shared.Damage;
@@ -127,7 +128,7 @@ public sealed class BlobMobSystem : SharedBlobMobSystem
 
     private void OnPulsed(EntityUid uid, BlobMobComponent component, BlobMobGetPulseEvent args)
     {
-        _damageableSystem.TryChangeDamage(uid, component.HealthOfPulse);
+        _damageableSystem.TryChangeDamage(uid, component.HealthOfPulse, targetPart: TargetBodyPart.All);
     }
 
 

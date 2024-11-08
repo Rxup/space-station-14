@@ -293,16 +293,24 @@ public sealed class BkmVampireLevelingSystem : EntitySystem
 
     public void AddCurrency(Entity<BkmVampireComponent> ent, FixedPoint2 va, string? source = null)
     {
-        va = Math.Max(0D, va.Double());
+        va = FixedPoint2.Max(0, va);
         if (va == 0)
         {
             _popupSystem.PopupEntity($"Вы не получили эссенцию"+(source != null ? $" за {source}" : ""), ent, ent, PopupType.MediumCaution);
             return;
         }
+
+        var plus = va > 0;
+
+        if (plus)
+        {
+            va *= 3; // base mode buff
+        }
+
         _store.TryAddCurrency(new Dictionary<string, FixedPoint2>
                 { { ent.Comp.CurrencyPrototype, va } },
             ent);
-        var plus = va > 0;
+
 
         _popupSystem.PopupEntity($"Вы получили {(plus ? "+" : "-")} {Math.Abs(va.Double())} эссенцию"+(source != null ? $" за {source}" : ""), ent, ent, plus ? PopupType.Medium : PopupType.MediumCaution);
     }
