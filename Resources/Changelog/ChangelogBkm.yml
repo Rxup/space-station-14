@@ -216,3 +216,10 @@
   id: 14
   time: '2024-11-08T18:14:38.0000000+00:00'
   url: https://github.com/Rxup/space-station-14/pull/905
+- author: Rxup
+  changes:
+  - message: Upstream sync 09.11.2024
+    type: Add
+  id: 15
+  time: '2024-11-08T21:34:57.0000000+00:00'
+  url: https://github.com/Rxup/space-station-14/pull/907
