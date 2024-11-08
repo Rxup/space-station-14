@@ -40,19 +40,6 @@ public sealed class BloodsuckerObjectiveSystem : EntitySystem
 
     private void OnConvertAssigned(Entity<BloodsuckerConvertConditionComponent> ent, ref ObjectiveAssignedEvent args)
     {
-        if (args.Mind.OwnedEntity == null)
-        {
-            args.Cancelled = true;
-            return;
-        }
-
-        var user = args.Mind.OwnedEntity.Value;
-        if (!HasComp<BkmVampireComponent>(user))
-        {
-            args.Cancelled = true;
-            return;
-        }
-
         ent.Comp.Goal = _random.Next(
             1,
             Math.Max(1, // min 1 of 1
@@ -66,30 +53,17 @@ public sealed class BloodsuckerObjectiveSystem : EntitySystem
 
     private void OnGetConvertProgress(Entity<BloodsuckerConvertConditionComponent> ent, ref ObjectiveGetProgressEvent args)
     {
-        if (args.Mind.OwnedEntity == null || !TryComp<VampireRoleComponent>(args.MindId, out var vmp))
+        if (!_roleSystem.MindHasRole<VampireRoleComponent>(args.MindId, out var vmp))
         {
             args.Progress = 0;
             return;
         }
 
-        args.Progress = vmp.Converted / ent.Comp.Goal;
+        args.Progress = vmp.Value.Comp2.Converted / ent.Comp.Goal;
     }
 
     private void OnDrinkAssigned(Entity<BloodsuckerDrinkConditionComponent> ent, ref ObjectiveAssignedEvent args)
     {
-        if (args.Mind.OwnedEntity == null)
-        {
-            args.Cancelled = true;
-            return;
-        }
-
-        var user = args.Mind.OwnedEntity.Value;
-        if (!HasComp<BkmVampireComponent>(user))
-        {
-            args.Cancelled = true;
-            return;
-        }
-
         ent.Comp.Goal = _random.Next(
             ent.Comp.MinGoal,
             Math.Max(ent.Comp.MinGoal + 1, // min 1 of 1
@@ -100,7 +74,7 @@ public sealed class BloodsuckerObjectiveSystem : EntitySystem
 
     private void OnGetDrinkProgress(Entity<BloodsuckerDrinkConditionComponent> ent, ref ObjectiveGetProgressEvent args)
     {
-        if (args.Mind.OwnedEntity == null || !_roleSystem.MindHasRole<VampireRoleComponent>(args.MindId, out var role))
+        if (!_roleSystem.MindHasRole<VampireRoleComponent>(args.MindId, out var role))
         {
             args.Progress = 0;
             return;
