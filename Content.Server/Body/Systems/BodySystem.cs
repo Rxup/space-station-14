@@ -168,11 +168,11 @@ public sealed class BodySystem : SharedBodySystem
     }
 
     // start-backmen: surgery
-    protected override void UpdateAppearance(EntityUid uid, BodyPartAppearanceComponent component)
+    /*protected override void UpdateAppearance(EntityUid uid, BodyPartAppearanceComponent component)
     {
         return;
-    }
-    
+    }*/
+
     protected override void ApplyPartMarkings(EntityUid target, BodyPartAppearanceComponent component)
     {
         return;
