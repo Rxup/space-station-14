@@ -13,6 +13,7 @@ using Robust.Shared.Containers;
 using Robust.Shared.GameStates;
 using Content.Shared.GameTicking;
 using Content.Shared.IdentityManagement;
+using Content.Shared.Roles;
 using Robust.Shared.Collections;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
@@ -317,15 +318,140 @@ public sealed class AccessReaderSystem : EntitySystem
         }
     }
 
-    public void SetAccesses(EntityUid uid, AccessReaderComponent component, List<ProtoId<AccessLevelPrototype>> accesses)
+    // start-backmen: tools
+    #region BkmTools
+
+    #region group
+
+    public void SetAccessByGroup(Entity<AccessReaderComponent> ent, ProtoId<AccessGroupPrototype> group)
     {
-        component.AccessLists.Clear();
+        if (_prototype.TryIndex(group, out var proto))
+        {
+            SetAccesses(ent, proto.Tags);
+        }
+    }
+
+    public void RemoveAccessByGroup(Entity<AccessReaderComponent> ent, ProtoId<AccessGroupPrototype> group)
+    {
+        if (_prototype.TryIndex(group, out var proto))
+        {
+            RemoveAccesses(ent, proto.Tags);
+        }
+    }
+
+    public void AddAccessByGroup(Entity<AccessReaderComponent> ent, ProtoId<AccessGroupPrototype> group)
+    {
+        if (_prototype.TryIndex(group, out var proto))
+        {
+            AddAccesses(ent, proto.Tags);
+        }
+    }
+
+    #endregion
+
+    #region job
+
+    public void SetAccessByJob(Entity<AccessReaderComponent> ent, JobPrototype job)
+    {
+        SetAccesses(ent, job.Access);
+        foreach (var groupProto in job.AccessGroups)
+        {
+            SetAccessByGroup(ent, groupProto);
+        }
+    }
+
+    public void RemoveAccessByJob(Entity<AccessReaderComponent> ent, JobPrototype job)
+    {
+        RemoveAccesses(ent, job.Access);
+        foreach (var groupProto in job.AccessGroups)
+        {
+            RemoveAccessByGroup(ent, groupProto);
+        }
+    }
+
+    public void AddAccessByJob(Entity<AccessReaderComponent> ent, JobPrototype job)
+    {
+        AddAccesses(ent, job.Access);
+        foreach (var groupProto in job.AccessGroups)
+        {
+            AddAccessByGroup(ent, groupProto);
+        }
+    }
+
+    #endregion
+
+    #region Base
+
+    public void SetAccess(Entity<AccessReaderComponent> ent, ProtoId<AccessLevelPrototype> access)
+    {
+        ent.Comp.AccessLists.Clear();
+        ent.Comp.AccessLists.Add([access]);
+        Dirty(ent);
+        RaiseLocalEvent(ent.Owner, new AccessReaderConfigurationChangedEvent());
+    }
+
+    public void ClearAccesses(Entity<AccessReaderComponent> ent)
+    {
+        ent.Comp.AccessLists.Clear();
+        Dirty(ent);
+        RaiseLocalEvent(ent.Owner, new AccessReaderConfigurationChangedEvent());
+    }
+
+    public void RemoveAccess(Entity<AccessReaderComponent> ent, ProtoId<AccessLevelPrototype> access)
+    {
+        foreach (var set in ent.Comp.AccessLists.Where(x => x.Contains(access)))
+        {
+            set.Remove(access);
+        }
+
+        Dirty(ent);
+        RaiseLocalEvent(ent.Owner, new AccessReaderConfigurationChangedEvent());
+    }
+
+    public void AddAccess(Entity<AccessReaderComponent> ent, ProtoId<AccessLevelPrototype> access)
+    {
+        ent.Comp.AccessLists.Add([access]);
+        Dirty(ent);
+        RaiseLocalEvent(ent.Owner, new AccessReaderConfigurationChangedEvent());
+    }
+
+    public void AddAccesses(Entity<AccessReaderComponent> ent, IEnumerable<ProtoId<AccessLevelPrototype>> access)
+    {
+        ent.Comp.AccessLists.Add(access.ToHashSet());
+        Dirty(ent);
+        RaiseLocalEvent(ent.Owner, new AccessReaderConfigurationChangedEvent());
+    }
+
+    public void RemoveAccesses(Entity<AccessReaderComponent> ent, IEnumerable<ProtoId<AccessLevelPrototype>> accesses)
+    {
+
+        foreach (var set in ent.Comp.AccessLists)
+        {
+            set.RemoveWhere(accesses.Contains);
+        }
+        Dirty(ent);
+        RaiseLocalEvent(ent.Owner, new AccessReaderConfigurationChangedEvent());
+    }
+
+    public void SetAccesses(Entity<AccessReaderComponent> ent, IEnumerable<ProtoId<AccessLevelPrototype>> accesses)
+    {
+        ent.Comp.AccessLists.Clear();
         foreach (var access in accesses)
         {
-            component.AccessLists.Add(new HashSet<ProtoId<AccessLevelPrototype>>(){access});
+            ent.Comp.AccessLists.Add([access]);
         }
-        Dirty(uid, component);
-        RaiseLocalEvent(uid, new AccessReaderConfigurationChangedEvent());
+        Dirty(ent);
+        RaiseLocalEvent(ent.Owner, new AccessReaderConfigurationChangedEvent());
+    }
+
+    #endregion
+
+    #endregion
+    // end-backmen: tools
+
+    public void SetAccesses(EntityUid uid, AccessReaderComponent component, IEnumerable<ProtoId<AccessLevelPrototype>> accesses)
+    {
+        SetAccesses((uid, component), accesses);
     }
 
     public bool FindAccessItemsInventory(EntityUid uid, out HashSet<EntityUid> items)
