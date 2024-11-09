@@ -155,6 +155,19 @@ public abstract partial class SharedSurgerySystem
             }
         }
 
+        if (_inventory.TryGetContainerSlotEnumerator(args.Body, out var containerSlotEnumerator, args.TargetSlots))
+        {
+            while (containerSlotEnumerator.MoveNext(out var containerSlot))
+            {
+                if (!containerSlot.ContainedEntity.HasValue)
+                    continue;
+
+                args.Invalid = StepInvalidReason.Armor;
+                args.Popup = Loc.GetString("surgery-ui-window-steps-error-armor");
+                return;
+            }
+        }
+
         RaiseLocalEvent(args.Body, ref args);
 
         if (args.Invalid != StepInvalidReason.None)
@@ -287,6 +300,8 @@ public abstract partial class SharedSurgerySystem
                 _body.TryCreatePartSlot(args.Part, slotName, partComp.PartType, out var _);
                 _body.AttachPart(args.Part, slotName, tool);
                 _body.ChangeSlotState((tool, partComp), false);
+                var ev = new BodyPartAttachedEvent((tool, partComp));
+                RaiseLocalEvent(args.Body, ref ev);
             }
         }
     }

@@ -43,6 +43,8 @@ public abstract partial class SharedBodySystem : EntitySystem
         InitializeBody();
         InitializeParts();
         InitializeBkm(); // backmen
+        // To try and mitigate the server load due to integrity checks, we set up a Job Queue.
+        InitializePartAppearances();
     }
 
     /// <summary>
