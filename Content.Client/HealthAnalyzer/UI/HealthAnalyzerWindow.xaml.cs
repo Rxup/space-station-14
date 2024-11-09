@@ -272,7 +272,6 @@ namespace Content.Client.HealthAnalyzer.UI
                 string enumName = Enum.GetName(typeof(TargetBodyPart), bodyPart) ?? "Unknown";
                 int enumValue = (int) integrity;
                 var rsi = new SpriteSpecifier.Rsi(new ResPath($"/Textures/Interface/Targeting/Status/{enumName.ToLowerInvariant()}.rsi"), $"{enumName.ToLowerInvariant()}_{enumValue}");
-                // It's probably shitcode but im lazy to get into sprite stuff
                 if (!sprite.TryGetLayer(layer, out _))
                     sprite.AddLayer(_spriteSystem.Frame0(rsi));
                 else
@@ -281,7 +280,6 @@ namespace Content.Client.HealthAnalyzer.UI
                 layer++;
             }
 
-            _entityManager.Dirty(_spriteViewEntity, sprite);
             return _spriteViewEntity;
         }
 

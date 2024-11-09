@@ -77,7 +77,6 @@ public abstract partial class SharedSurgerySystem
                 var compType = reg.Component.GetType();
                 if (HasComp(args.Part, compType))
                     continue;
-
                 AddComp(args.Part, _compFactory.GetComponent(compType));
             }
         }
@@ -187,14 +186,6 @@ public abstract partial class SharedSurgerySystem
         }
     }
 
-    private EntProtoId? GetProtoId(EntityUid entityUid)
-    {
-        if (!TryComp<MetaDataComponent>(entityUid, out var metaData))
-            return null;
-
-        return metaData.EntityPrototype?.ID;
-    }
-
     private void OnTendWoundsStep(Entity<SurgeryTendWoundsEffectComponent> ent, ref SurgeryStepEvent args)
     {
         var group = ent.Comp.MainGroup == "Brute" ? BruteDamageTypes : BurnDamageTypes;
@@ -203,7 +194,7 @@ public abstract partial class SharedSurgerySystem
             || !group.Any(damageType => damageable.Damage.DamageDict.TryGetValue(damageType, out var value)
                 && value > 0)
             && (!TryComp(args.Part, out BodyPartComponent? bodyPart)
-            || bodyPart.Integrity == BodyPartComponent.MaxIntegrity))
+            || bodyPart.TotalDamage <= bodyPart.MinIntegrity))
             return;
 
         var bonus = ent.Comp.HealMultiplier * damageable.DamagePerGroup[ent.Comp.MainGroup];
@@ -230,7 +221,7 @@ public abstract partial class SharedSurgerySystem
             || group.Any(damageType => damageable.Damage.DamageDict.TryGetValue(damageType, out var value)
                 && value > 0)
             || !TryComp(args.Part, out BodyPartComponent? bodyPart)
-            || bodyPart.Integrity < BodyPartComponent.MaxIntegrity)
+            || bodyPart.TotalDamage > bodyPart.MinIntegrity)
             args.Cancelled = true;
     }
 
@@ -414,7 +405,7 @@ public abstract partial class SharedSurgerySystem
         var user = args.Actor;
         if (GetEntity(args.Entity) is not { Valid: true } body ||
             GetEntity(args.Part) is not { Valid: true } targetPart ||
-            !IsSurgeryValid(body, targetPart, args.Surgery, args.Step, out var surgery, out var part, out var step))
+            !IsSurgeryValid(body, targetPart, args.Surgery, args.Step, user, out var surgery, out var part, out var step))
         {
             return;
         }
@@ -570,7 +561,6 @@ public abstract partial class SharedSurgerySystem
 
         var ev = new SurgeryStepCompleteCheckEvent(body, part, surgery);
         RaiseLocalEvent(stepEnt, ref ev);
-
         return !ev.Cancelled;
     }
 

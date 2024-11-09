@@ -282,3 +282,23 @@
     damageCoefficient: 0.5
   - type: GroupExamine
   - type: Unremoveable
+
+- type: entity
+  parent: [ClothingOuterBaseMedium, AllowSuitStorageClothing, BaseRestrictedContraband]
+  id: ClothingOuterArmorCentcom
+  name: бронежилет Центком
+  description: Бронежилет бренда "Центком".
+  components:
+  - type: Sprite
+    sprite: Backmen/Clothing/OuterClothing/Armor/centcom_sec_armor.rsi
+  - type: Clothing
+    sprite: Backmen/Clothing/OuterClothing/Armor/centcom_sec_armor.rsi
+  - type: Armor 
+    modifiers:
+      coefficients:
+        Blunt: 0.55
+        Slash: 0.55
+        Piercing: 0.55
+        Heat: 0.55
+  - type: ExplosionResistance
+    damageCoefficient: 0.80

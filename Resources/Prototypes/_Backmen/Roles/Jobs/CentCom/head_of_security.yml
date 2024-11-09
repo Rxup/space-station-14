@@ -59,19 +59,25 @@
   id: HeadOfSecurityCentComGear
   equipment:
     jumpsuit: ClothingUniformJumpsuitCentcomMilitary
-    back: ClothingBackpackSecurity
-    shoes: ClothingShoesBootsNedoSpetsnaz
+    back: ClothingCentcomBackpack
+    shoes: ClothingShoesBootsCentcom
     mask: ClothingMaskGasSecurity
     neck: CombatKnifeSpetsnaz
     eyes: ClothingEyesGlassesSecurity
     gloves: ClothingHandsGlovesCombat
-    outerClothing: ClothingOuterArmorBasic
-    suitstorage: WeaponPistolMk58
+    outerClothing: ClothingOuterArmorCentcom
+    suitstorage: WeaponRifleFamas
     head: ClothingHeadHatBeretHoSCentcom
     id: CCOfficerPDA
     ears: ClothingHeadsetCentComCC
     belt: ClothingBeltSecuritySuper
+    pocket1: WeaponPistolG23
     pocket2: MagazinePistol
+  storage:
+    back:
+    - MedkitCombatFilled
+    - BoxSurvivalSecurity
+    - MagazineRifle
 
 - type: entity
   parent: OrdenPDA

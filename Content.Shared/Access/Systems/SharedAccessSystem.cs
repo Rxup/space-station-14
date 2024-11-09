@@ -63,6 +63,141 @@ namespace Content.Shared.Access.Systems
             return true;
         }
 
+        // start-backmen: tools
+
+        #region BkmTools
+
+        public bool TryAddSingleTag(EntityUid uid, ProtoId<AccessLevelPrototype> tag, AccessComponent? access = null)
+        {
+            if (!Resolve(uid, ref access))
+                return false;
+
+            access.Tags.Add(tag);
+            Dirty(uid, access);
+            return true;
+        }
+
+        public bool TryRemoveSingleTag(EntityUid uid, ProtoId<AccessLevelPrototype> tag, AccessComponent? access = null)
+        {
+            if (!Resolve(uid, ref access))
+                return false;
+
+            access.Tags.Remove(tag);
+            Dirty(uid, access);
+            return true;
+        }
+
+        public bool TryClearTags(EntityUid uid, AccessComponent? access = null)
+        {
+            if (!Resolve(uid, ref access))
+                return false;
+
+            access.Tags.Clear();
+            Dirty(uid, access);
+            return true;
+        }
+
+        public bool TryAddGroup(EntityUid uid, ProtoId<AccessGroupPrototype> group, AccessComponent? access = null)
+        {
+            if (!Resolve(uid, ref access))
+                return false;
+
+            if (_prototypeManager.TryIndex(group, out var proto))
+            {
+                access.Tags.UnionWith(proto.Tags);
+            }
+
+            Dirty(uid, access);
+            return true;
+        }
+
+        public bool TrySetGroup(EntityUid uid, ProtoId<AccessGroupPrototype> group, AccessComponent? access = null)
+        {
+            if (!Resolve(uid, ref access))
+                return false;
+
+            access.Tags.Clear();
+            if (_prototypeManager.TryIndex(group, out var proto))
+            {
+                access.Tags.UnionWith(proto.Tags);
+            }
+
+            Dirty(uid, access);
+            return true;
+        }
+
+        public bool TryRemoveGroup(EntityUid uid, ProtoId<AccessGroupPrototype> group, AccessComponent? access = null)
+        {
+            if (!Resolve(uid, ref access))
+                return false;
+
+            if (_prototypeManager.TryIndex(group, out var proto))
+            {
+                access.Tags.ExceptWith(proto.Tags);
+            }
+
+            Dirty(uid, access);
+            return true;
+        }
+
+        public bool TryRemoveGroups(EntityUid uid, IEnumerable<ProtoId<AccessGroupPrototype>> newGroups, AccessComponent? access = null)
+        {
+            if (!Resolve(uid, ref access))
+                return false;
+
+            foreach (var group in newGroups)
+            {
+                if (!_prototypeManager.TryIndex(group, out var proto))
+                    continue;
+
+                access.Tags.ExceptWith(proto.Tags);
+            }
+
+            Dirty(uid, access);
+            return true;
+        }
+
+        public bool TryUnionWithJob(EntityUid uid, JobPrototype prototype, bool extended, AccessComponent? access = null)
+        {
+            if (!Resolve(uid, ref access))
+                return false;
+
+            access.Tags.UnionWith(prototype.Access);
+            Dirty(uid, access);
+
+            TryAddGroups(uid, prototype.AccessGroups, access);
+
+            if (extended)
+            {
+                access.Tags.UnionWith(prototype.ExtendedAccess);
+                TryAddGroups(uid, prototype.ExtendedAccessGroups, access);
+            }
+
+            return true;
+        }
+
+        public bool TryExceptWithJob(EntityUid uid, JobPrototype prototype, bool extended, AccessComponent? access = null)
+        {
+            if (!Resolve(uid, ref access))
+                return false;
+
+            access.Tags.ExceptWith(prototype.Access);
+            Dirty(uid, access);
+
+            TryRemoveGroups(uid, prototype.AccessGroups, access);
+
+            if (extended)
+            {
+                access.Tags.ExceptWith(prototype.ExtendedAccess);
+                TryRemoveGroups(uid, prototype.ExtendedAccessGroups, access);
+            }
+
+            return true;
+        }
+
+        #endregion
+        // end-backmen: tools
+
         /// <summary>
         ///     Gets the set of access tags.
         /// </summary>
