@@ -131,20 +131,20 @@ public sealed class BloodSuckerSystem : SharedBloodSuckerSystem
             TryComp<BloodSuckedComponent>(uid, out var bloodsucked) &&
             bloodsucked.BloodSuckerMindId.HasValue &&
             !TerminatingOrDeleted(bloodsucked.BloodSuckerMindId.Value) &&
-            TryComp<VampireRoleComponent>(bloodsucked.BloodSuckerMindId.Value, out var bloodsucker)
+            _roleSystem.MindHasRole<VampireRoleComponent>(bloodsucked.BloodSuckerMindId.Value, out var bloodsucker)
             )
         {
             var masterUid = CompOrNull<MindComponent>(bloodsucked.BloodSuckerMindId.Value)?.CurrentEntity;
             if (TryComp<BkmVampireComponent>(masterUid, out var master))
             {
                 _leveling.AddCurrency((masterUid.Value,master),
-                    10 * (bloodsucker.Tier + 1),
+                    10 * (bloodsucker.Value.Comp2.Tier + 1),
                     "обращение"
                     );
             }
 
 
-            bloodsucker.Converted += 1;
+            bloodsucker.Value.Comp2.Converted += 1;
         }
 
         EnsureMindVampire(uid);
