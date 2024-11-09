@@ -100,7 +100,7 @@ public sealed partial class BodyPartComponent : Component, ISurgeryToolComponent
     /// to make possible severing it.
     /// </summary>
     [DataField, AutoNetworkedField]
-    public float SeverIntegrity = 70;
+    public float SeverIntegrity = 100;
 
     /// <summary>
     /// On what TargetIntegrity we should re-enable the part.
@@ -111,12 +111,12 @@ public sealed partial class BodyPartComponent : Component, ISurgeryToolComponent
     [DataField, AutoNetworkedField]
     public Dictionary<TargetIntegrity, float> IntegrityThresholds = new()
     {
-        { TargetIntegrity.CriticallyWounded, 70 },
-        { TargetIntegrity.HeavilyWounded, 56 },
-        { TargetIntegrity.ModeratelyWounded, 42 },
-        { TargetIntegrity.SomewhatWounded, 28},
+        { TargetIntegrity.CriticallyWounded, 80 },
+        { TargetIntegrity.HeavilyWounded, 65 },
+        { TargetIntegrity.ModeratelyWounded, 48 },
+        { TargetIntegrity.SomewhatWounded, 32 },
         { TargetIntegrity.LightlyWounded, 17 },
-        { TargetIntegrity.Healthy, 7 },
+        { TargetIntegrity.Healthy, 6 },
     };
 
     /// <summary>

@@ -26,6 +26,7 @@ using Content.Shared.Stacks;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Random;
 using System.Linq;
+using Content.Shared.Backmen.Targeting;
 
 namespace Content.Server.Medical;
 
@@ -86,27 +87,48 @@ public sealed class HealingSystem : EntitySystem
         if (healing.ModifyBloodLevel != 0)
             _bloodstreamSystem.TryModifyBloodLevel(entity.Owner, healing.ModifyBloodLevel);
 
-        var healed = _damageable.TryChangeDamage(entity.Owner, healing.Damage, true, origin: args.Args.User);
+        var healed = _damageable.TryChangeDamage(entity.Owner, healing.Damage, true, origin: args.Args.User, partMultiplier: 0f); // No parts healing now!
 
         if (healed == null && healing.BloodlossModifier != 0)
             return;
 
         var total = healed?.GetTotal() ?? FixedPoint2.Zero;
 
-        /* This is rather shitcodey. Problem is that right now damage is coupled to integrity.
-           If the body is fully healed, all of the checks on TryChangeDamage stop us from actually healing.
-           So in this case we add a special check to heal anyway if TryChangeDamage returns null.
-        */
-        if (total == 0)
+        // start-backmen: surgery
+        // Try to heal some body part.
+        if (total == 0 && ArePartsDamaged(entity))
         {
-            var parts = _bodySystem.GetBodyChildren(args.Target).ToList();
-            // We fetch the most damaged body part
-            var mostDamaged = parts.MinBy(x => x.Component.TotalDamage);
-            var targetBodyPart = _bodySystem.GetTargetBodyPart(mostDamaged);
+            var partHealing = healing.Damage;
 
-            if (targetBodyPart != null)
-                _bodySystem.TryChangeIntegrity(mostDamaged, healing.Damage, false, targetBodyPart.Value, out _);
+            var parts = _bodySystem.GetBodyChildren(args.Target).ToList();
+            var damagedParts = new List<(Entity<BodyPartComponent>, FixedPoint2)>();
+            foreach (var part in parts)
+            {
+                // Get all body parts that are damaged with *partHealing* types of damage.
+                var possibleHealing = part.Component.Damage;
+                possibleHealing.ExclusiveAdd(partHealing);
+                possibleHealing.ClampMin(part.Component.MinIntegrity);
+
+                // Remove all other types of damage that can't be healed right now,
+                // so we can prioritize the target part correctly.
+                foreach (var (damage, value) in possibleHealing.DamageDict)
+                {
+                    if (!partHealing.DamageDict.ContainsKey(damage))
+                        possibleHealing.DamageDict.Remove(damage);
+                }
+
+                if (possibleHealing.GetTotal() == FixedPoint2.Zero)
+                    continue;
+
+                damagedParts.Add((part, possibleHealing.GetTotal()));
+            }
+
+            // Fetch the most damaged body part
+            var mostDamaged = damagedParts.MaxBy(x => x.Item2).Item1;
+            var targetPart = _bodySystem.GetTargetBodyPart(mostDamaged);
+            _bodySystem.TryChangeIntegrity(mostDamaged, healing.Damage, false, targetPart, out _);
         }
+        // end-backmen: surgery
 
         // Re-verify that we can heal the damage.
 
