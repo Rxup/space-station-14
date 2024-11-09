@@ -53,6 +53,8 @@ mood-effect-TraitorFocused = У меня есть цель, я должен вы
 
 mood-effect-RevolutionFocused = VIVA LA REVOLUTION!!!
 
+mood-effect-NukeopsFocused = Я должен взорвать станцию любой ценой, даже ценой своей жизни.
+
 mood-effect-CultFocused = Боги тьмы, дайте мне сил!
 
 mood-effect-TraitSanguine = Думаю мне не о чем волноваться. Я обязательно справлюсь!
