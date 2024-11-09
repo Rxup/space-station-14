@@ -119,7 +119,7 @@ namespace Content.Shared.Damage
                     targetPart = targeter.Target;
                     // ...Or do we?
                     // If the target is Torso then have a 33% chance to hit another part
-                    if (targetPart.Value.HasFlag(TargetBodyPart.Torso))
+                    if (targetPart.Value == TargetBodyPart.Torso)
                         targetPart = GetRandomPartSpread(_random, 10);
                 }
                 else

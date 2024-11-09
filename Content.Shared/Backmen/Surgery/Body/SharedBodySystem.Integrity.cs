@@ -129,14 +129,12 @@ public partial class SharedBodySystem
         if (partEnt.Comp.Body == null)
             return;
 
-        _proto.TryIndex<DamageGroupPrototype>("Brute", out var proto);
-
         if (!TryEvadeDamage(partEnt.Comp.Body.Value, GetEvadeChance(targetType)) || evade)
         {
             TryChangeIntegrity(partEnt,
                 damage * partMultiplier * GetPartDamageModifier(targetType),
                 // This is true when damage contains at least one of the brute damage types
-                canSever && damage.TryGetDamageInGroup(proto!, out var dmg) && dmg > FixedPoint2.Zero,
+                canSever,
                 targetPart,
                 out _);
         }
@@ -162,10 +160,13 @@ public partial class SharedBodySystem
         partEnt.Comp.Damage.ExclusiveAdd(damage);
         partEnt.Comp.Damage.ClampMin(partEnt.Comp.MinIntegrity); // No over-healing!
 
+        _proto.TryIndex<DamageGroupPrototype>("Brute", out var proto);
+
         if (canSever
             && !HasComp<BodyPartReattachedComponent>(partEnt)
             && !partEnt.Comp.Enabled
-            && integrity >= partEnt.Comp.SeverIntegrity
+            && partEnt.Comp.Damage.TryGetDamageInGroup(proto!, out var dmg)
+            && dmg > partEnt.Comp.SeverIntegrity
             && partIdSlot is not null)
             severed = true;
 
