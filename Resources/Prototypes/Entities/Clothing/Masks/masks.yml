@@ -41,8 +41,6 @@
         Slash: 0.95
         Piercing: 0.95
         Heat: 0.95
-  - type: DiseaseProtection #Backmen & Ataraxia anti viral
-    protection: 0.1
 
 - type: entity
   parent: [ClothingMaskGas, BaseSyndicateContraband]
@@ -64,7 +62,7 @@
         Piercing: 0.95
         Heat: 0.95
   - type: DiseaseProtection #Backmen & Ataraxia anti viral
-    protection: 0.1
+    protection: 0.2
 
 - type: entity
   parent: ClothingMaskGas
@@ -80,8 +78,6 @@
     modifiers:
       coefficients:
         Heat: 0.80
-  - type: DiseaseProtection #Backmen & Ataraxia anti viral
-    protection: 0.1
 
 - type: entity
   parent: [ClothingMaskGasAtmos, BaseCommandContraband]
@@ -95,8 +91,6 @@
     sprite: Clothing/Mask/gascaptain.rsi
   - type: BreathMask
   - type: IngestionBlocker
-  - type: DiseaseProtection #Backmen & Ataraxia anti viral
-    protection: 0.1
 
 - type: entity
   parent: [ ClothingMaskGasAtmos, BaseCentcommContraband ]
@@ -110,8 +104,6 @@
     sprite: Clothing/Mask/gascentcom.rsi
   - type: BreathMask
   - type: IngestionBlocker
-  - type: DiseaseProtection #Backmen & Ataraxia anti viral
-    protection: 0.1
 
 - type: entity
   parent: [ClothingMaskGas, BaseCargoContraband]
@@ -130,8 +122,6 @@
         Slash: 0.90
         Piercing: 0.95
         Heat: 0.95
-  - type: DiseaseProtection #Backmen & Ataraxia anti viral
-    protection: 0.1
 
 - type: entity
   parent: ClothingMaskPullableBase
@@ -152,7 +142,7 @@
     - PetWearable
     - WhitelistChameleon
   - type: DiseaseProtection #Backmen & Ataraxia anti viral
-    protection: 0.1
+    protection: 0.2
 
 - type: entity
   parent: ClothingMaskBreathMedical
@@ -174,7 +164,7 @@
         Piercing: 0.95
         Heat: 0.95
   - type: DiseaseProtection #Backmen & Ataraxia anti viral
-    protection: 0.1
+    protection: 0.2
 
 - type: entity
   parent: ClothingMaskPullableBase
@@ -200,8 +190,6 @@
       Plastic: 100
   - type: StaticPrice
     price: 30 # increases in price after decomposed into raw materials
-  - type: DiseaseProtection #Backmen & Ataraxia anti viral
-    protection: 0.1
 
 - type: entity
   parent: ClothingMaskBase
@@ -323,7 +311,7 @@
     materialComposition:
       Plastic: 25
   - type: DiseaseProtection #Backmen & Ataraxia anti viral
-    protection: 0.1
+    protection: 0.2
 
 - type: entity
   parent: ClothingMaskBase
@@ -405,8 +393,6 @@
         Slash: 0.90
         Piercing: 0.95
         Heat: 0.95
-  - type: DiseaseProtection #Backmen & Ataraxia anti viral
-    protection: 0.1
 
 - type: entity
   parent: [ ClothingMaskGas, BaseRestrictedContraband ]
@@ -425,8 +411,6 @@
         Slash: 0.90
         Piercing: 0.95
         Heat: 0.95
-  - type: DiseaseProtection #Backmen & Ataraxia anti viral
-    protection: 0.1
 
 - type: entity
   parent: [ ClothingMaskGas, BaseCentcommContraband ]
@@ -456,7 +440,7 @@
         Piercing: 0.95
         Heat: 0.95
   - type: DiseaseProtection #Backmen & Ataraxia anti viral
-    protection: 0.1
+    protection: 0.2
 
 - type: entity
   parent: ClothingMaskGasERT
@@ -476,7 +460,7 @@
         Piercing: 0.90
         Heat: 0.90
   - type: DiseaseProtection #Backmen & Ataraxia anti viral
-    protection: 0.1
+    protection: 0.2
 
 - type: entity
   parent: ClothingMaskBase
@@ -698,4 +682,4 @@
   - type: BreathMask
   - type: IdentityBlocker
   - type: DiseaseProtection #Backmen & Ataraxia anti viral
-    protection: 0.1
+    protection: 0.2

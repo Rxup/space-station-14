@@ -27,6 +27,8 @@
     damageProtection:
       flatReductions:
         Heat: 5 # the average lightbulb only does around four damage!
+  - type: DiseaseProtection #Backmen & Ataraxia anti viral
+    protection: 0.1
 
 - type: entity
   abstract: true

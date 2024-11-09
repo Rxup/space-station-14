@@ -22,8 +22,6 @@
     - Snout
     - HeadTop
     - HeadSide
-  - type: DiseaseProtection #Backmen & Ataraxia anti viral
-    protection: 0.2
 
 #Atmospherics Hardsuit
 - type: entity
@@ -66,8 +64,6 @@
     coolingCoefficient: 0.005
   - type: FireProtection
     reduction: 0.2
-  - type: DiseaseProtection #Backmen & Ataraxia anti viral
-    protection: 0.2
 
 #Engineering Hardsuit
 - type: entity
@@ -85,8 +81,6 @@
   - type: PressureProtection
     highPressureMultiplier: 0.1
     lowPressureMultiplier: 1000
-  - type: DiseaseProtection #Backmen & Ataraxia anti viral
-    protection: 0.2
 
 #Spationaut Hardsuit
 - type: entity
@@ -123,8 +117,6 @@
   - type: PressureProtection
     highPressureMultiplier: 0.72
     lowPressureMultiplier: 1000
-  - type: DiseaseProtection #Backmen & Ataraxia anti viral
-    protection: 0.2
 
 #Salvage Hardsuit
 - type: entity
@@ -143,8 +135,6 @@
   - type: PointLight
     radius: 7
     energy: 3
-  - type: DiseaseProtection #Backmen & Ataraxia anti viral
-    protection: 0.2
 
 - type: entity
   parent: ClothingHeadHardsuitBase
@@ -167,8 +157,6 @@
         Slash: 0.9
         Piercing: 0.9
         Heat: 0.9
-  - type: DiseaseProtection #Backmen & Ataraxia anti viral
-    protection: 0.2
 
 #Security Hardsuit
 - type: entity
@@ -193,8 +181,6 @@
         Slash: 0.9
         Piercing: 0.9
         Heat: 0.9
-  - type: DiseaseProtection #Backmen & Ataraxia anti viral
-    protection: 0.2
 
 #Brigmedic Hardsuit
 - type: entity
@@ -221,8 +207,6 @@
   - type: PressureProtection
     highPressureMultiplier: 0.6
     lowPressureMultiplier: 1000
-  - type: DiseaseProtection #Backmen & Ataraxia anti viral
-    protection: 0.2
 
 #Warden's Hardsuit
 - type: entity
@@ -247,8 +231,6 @@
         Slash: 0.9
         Piercing: 0.9
         Heat: 0.9
-  - type: DiseaseProtection #Backmen & Ataraxia anti viral
-    protection: 0.2
 
 #Captain's Hardsuit
 - type: entity
@@ -264,8 +246,6 @@
   - type: PressureProtection
     highPressureMultiplier: 0.3
     lowPressureMultiplier: 1000
-  - type: DiseaseProtection #Backmen & Ataraxia anti viral
-    protection: 0.2
 
 #Chief Engineer's Hardsuit
 - type: entity
@@ -285,8 +265,6 @@
     lowPressureMultiplier: 1000
   - type: FireProtection
     reduction: 0.2
-  - type: DiseaseProtection #Backmen & Ataraxia anti viral
-    protection: 0.2
 
 #Chief Medical Officer's Hardsuit
 - type: entity
@@ -304,8 +282,6 @@
   - type: PressureProtection
     highPressureMultiplier: 0.6
     lowPressureMultiplier: 1000
-  - type: DiseaseProtection #Backmen & Ataraxia anti viral
-    protection: 0.2
 
 #Research Director's Hardsuit
 - type: entity
@@ -323,8 +299,6 @@
   - type: PressureProtection
     highPressureMultiplier: 0.60
     lowPressureMultiplier: 1000
-  - type: DiseaseProtection #Backmen & Ataraxia anti viral
-    protection: 0.2
 
 #Head of Security's hardsuit
 - type: entity
@@ -349,8 +323,6 @@
         Slash: 0.9
         Piercing: 0.9
         Heat: 0.9
-  - type: DiseaseProtection #Backmen & Ataraxia anti viral
-    protection: 0.2
 
 #Luxury Mining Hardsuit
 - type: entity
@@ -369,8 +341,6 @@
   - type: PointLight
     radius: 7
     energy: 3
-  - type: DiseaseProtection #Backmen & Ataraxia anti viral
-    protection: 0.2
 
 #ANTAG HARDSUITS
 #Blood-red Hardsuit
@@ -398,8 +368,6 @@
         Heat: 0.9
   - type: TinfoilHat
     destroyOnFry: false
-  - type: DiseaseProtection #Backmen & Ataraxia anti viral
-    protection: 0.2
 
 #Blood-red Medic Hardsuit
 - type: entity
@@ -426,8 +394,6 @@
         Heat: 0.9
   - type: TinfoilHat
     destroyOnFry: false
-  - type: DiseaseProtection #Backmen & Ataraxia anti viral
-    protection: 0.2
 
 #Syndicate Elite Hardsuit
 - type: entity
@@ -459,8 +425,6 @@
         Heat: 0.9
   - type: TinfoilHat
     destroyOnFry: false
-  - type: DiseaseProtection #Backmen & Ataraxia anti viral
-    protection: 0.2
 
 #Syndicate Commander Hardsuit
 - type: entity
@@ -487,8 +451,6 @@
         Heat: 0.9
   - type: TinfoilHat
     destroyOnFry: false
-  - type: DiseaseProtection #Backmen & Ataraxia anti viral
-    protection: 0.2
 
 #Cybersun Juggernaut Hardsuit
 - type: entity
@@ -515,8 +477,6 @@
         Heat: 0.9
   - type: TinfoilHat
     destroyOnFry: false
-  - type: DiseaseProtection #Backmen & Ataraxia anti viral
-    protection: 0.2
 
 #Wizard Hardsuit
 - type: entity
@@ -542,8 +502,6 @@
         Piercing: 0.9
         Heat: 0.9
   - type: HeadCage
-  - type: DiseaseProtection #Backmen & Ataraxia anti viral
-    protection: 0.2
 
 #Organic Space Suit
 - type: entity
@@ -559,8 +517,6 @@
   - type: PressureProtection
     highPressureMultiplier: 0.225
     lowPressureMultiplier: 1000
-  - type: DiseaseProtection #Backmen & Ataraxia anti viral
-    protection: 0.2
 
 #Pirate EVA Suit (Deep Space EVA Suit)
 - type: entity
@@ -577,8 +533,6 @@
   - type: PressureProtection
     highPressureMultiplier: 0.3
     lowPressureMultiplier: 1000
-  - type: DiseaseProtection #Backmen & Ataraxia anti viral
-    protection: 0.2
 
 #Pirate Captain Hardsuit
 - type: entity
@@ -595,8 +549,6 @@
   - type: PressureProtection
     highPressureMultiplier: 0.3
     lowPressureMultiplier: 1000
-  - type: DiseaseProtection #Backmen & Ataraxia anti viral
-    protection: 0.2
 
 #CENTCOMM / ERT HARDSUITS
 #ERT Leader Hardsuit
@@ -619,8 +571,6 @@
         Slash: 0.9
         Piercing: 0.9
         Heat: 0.9
-  - type: DiseaseProtection #Backmen & Ataraxia anti viral
-    protection: 0.2
 
 #ERT Chaplain Hardsuit
 - type: entity
@@ -635,8 +585,6 @@
     sprite: Clothing/Head/Hardsuits/ERThelmets/ertchaplain.rsi
   - type: PointLight
     color: "#ffffff"
-  - type: DiseaseProtection #Backmen & Ataraxia anti viral
-    protection: 0.2
 
 #ERT Engineer Hardsuit
 - type: entity
@@ -658,8 +606,6 @@
         Slash: 0.9
         Piercing: 0.9
         Heat: 0.9
-  - type: DiseaseProtection #Backmen & Ataraxia anti viral
-    protection: 0.2
 
 #ERT Medical Hardsuit
 - type: entity
@@ -674,8 +620,6 @@
     sprite: Clothing/Head/Hardsuits/ERThelmets/ertmedical.rsi
   - type: PointLight
     color: "#adffec"
-  - type: DiseaseProtection #Backmen & Ataraxia anti viral
-    protection: 0.2
 
 #ERT Security Hardsuit
 - type: entity
@@ -697,8 +641,6 @@
         Slash: 0.9
         Piercing: 0.9
         Heat: 0.9
-  - type: DiseaseProtection #Backmen & Ataraxia anti viral
-    protection: 0.2
 
 #ERT Janitor Hardsuit
 - type: entity
@@ -713,8 +655,6 @@
     sprite: Clothing/Head/Hardsuits/ERThelmets/ertjanitor.rsi
   - type: PointLight
     color: "#cbadff"
-  - type: DiseaseProtection #Backmen & Ataraxia anti viral
-    protection: 0.2
 
 #CBURN Hardsuit
 - type: entity
@@ -755,7 +695,7 @@
         Piercing: 0.9
         Heat: 0.9
   - type: DiseaseProtection #Backmen & Ataraxia anti viral
-    protection: 0.2
+    protection: 0.4
 
 #Deathsquad Hardsuit
 - type: entity
@@ -786,7 +726,7 @@
         Radiation: 0.80
         Caustic: 0.95
   - type: DiseaseProtection #Backmen & Ataraxia anti viral
-    protection: 0.2
+    protection: 1
 
 #MISC. HARDSUITS
 #Clown Hardsuit
@@ -803,8 +743,6 @@
     sprite: Clothing/Head/Hardsuits/clown.rsi
     equipSound: /Audio/Mecha/mechmove03.ogg
     unequipSound: /Audio/Effects/Emotes/parp1.ogg
-  - type: DiseaseProtection #Backmen & Ataraxia anti viral
-    protection: 0.2
 
 #Mime Hardsuit
 - type: entity
@@ -818,8 +756,6 @@
     sprite: Backmen/Clothing/Head/Hardsuits/mime.rsi
   - type: Clothing
     sprite: Backmen/Clothing/Head/Hardsuits/mime.rsi
-  - type: DiseaseProtection #Backmen & Ataraxia anti viral
-    protection: 0.2
 
 #Santas Hardsuit
 - type: entity
@@ -837,6 +773,4 @@
     color: "#f4ffad"
     radius: 5
     energy: 2
-  - type: DiseaseProtection #Backmen & Ataraxia anti viral
-    protection: 0.2
 
