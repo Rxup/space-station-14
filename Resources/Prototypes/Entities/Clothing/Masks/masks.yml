@@ -19,6 +19,8 @@
     slots:
     - Snout
     hideOnToggle: true
+  - type: DiseaseProtection #Backmen & Ataraxia anti viral
+    protection: 0.1
 
 - type: entity
   parent: [ClothingMaskGas, BaseRestrictedContraband]
@@ -39,6 +41,8 @@
         Slash: 0.95
         Piercing: 0.95
         Heat: 0.95
+  - type: DiseaseProtection #Backmen & Ataraxia anti viral
+    protection: 0.1
 
 - type: entity
   parent: [ClothingMaskGas, BaseSyndicateContraband]
@@ -59,6 +63,8 @@
         Slash: 0.95
         Piercing: 0.95
         Heat: 0.95
+  - type: DiseaseProtection #Backmen & Ataraxia anti viral
+    protection: 0.1
 
 - type: entity
   parent: ClothingMaskGas
@@ -74,6 +80,8 @@
     modifiers:
       coefficients:
         Heat: 0.80
+  - type: DiseaseProtection #Backmen & Ataraxia anti viral
+    protection: 0.1
 
 - type: entity
   parent: [ClothingMaskGasAtmos, BaseCommandContraband]
@@ -87,6 +95,8 @@
     sprite: Clothing/Mask/gascaptain.rsi
   - type: BreathMask
   - type: IngestionBlocker
+  - type: DiseaseProtection #Backmen & Ataraxia anti viral
+    protection: 0.1
 
 - type: entity
   parent: [ ClothingMaskGasAtmos, BaseCentcommContraband ]
@@ -100,6 +110,8 @@
     sprite: Clothing/Mask/gascentcom.rsi
   - type: BreathMask
   - type: IngestionBlocker
+  - type: DiseaseProtection #Backmen & Ataraxia anti viral
+    protection: 0.1
 
 - type: entity
   parent: [ClothingMaskGas, BaseCargoContraband]
@@ -118,6 +130,8 @@
         Slash: 0.90
         Piercing: 0.95
         Heat: 0.95
+  - type: DiseaseProtection #Backmen & Ataraxia anti viral
+    protection: 0.1
 
 - type: entity
   parent: ClothingMaskPullableBase
@@ -137,6 +151,8 @@
     tags:
     - PetWearable
     - WhitelistChameleon
+  - type: DiseaseProtection #Backmen & Ataraxia anti viral
+    protection: 0.1
 
 - type: entity
   parent: ClothingMaskBreathMedical
@@ -157,6 +173,8 @@
         Slash: 0.95
         Piercing: 0.95
         Heat: 0.95
+  - type: DiseaseProtection #Backmen & Ataraxia anti viral
+    protection: 0.1
 
 - type: entity
   parent: ClothingMaskPullableBase
@@ -182,6 +200,8 @@
       Plastic: 100
   - type: StaticPrice
     price: 30 # increases in price after decomposed into raw materials
+  - type: DiseaseProtection #Backmen & Ataraxia anti viral
+    protection: 0.1
 
 - type: entity
   parent: ClothingMaskBase
@@ -302,6 +322,8 @@
   - type: PhysicalComposition
     materialComposition:
       Plastic: 25
+  - type: DiseaseProtection #Backmen & Ataraxia anti viral
+    protection: 0.1
 
 - type: entity
   parent: ClothingMaskBase
@@ -383,6 +405,8 @@
         Slash: 0.90
         Piercing: 0.95
         Heat: 0.95
+  - type: DiseaseProtection #Backmen & Ataraxia anti viral
+    protection: 0.1
 
 - type: entity
   parent: [ ClothingMaskGas, BaseRestrictedContraband ]
@@ -401,6 +425,8 @@
         Slash: 0.90
         Piercing: 0.95
         Heat: 0.95
+  - type: DiseaseProtection #Backmen & Ataraxia anti viral
+    protection: 0.1
 
 - type: entity
   parent: [ ClothingMaskGas, BaseCentcommContraband ]
@@ -429,6 +455,8 @@
         Slash: 0.95
         Piercing: 0.95
         Heat: 0.95
+  - type: DiseaseProtection #Backmen & Ataraxia anti viral
+    protection: 0.1
 
 - type: entity
   parent: ClothingMaskGasERT
@@ -447,6 +475,8 @@
         Slash: 0.80
         Piercing: 0.90
         Heat: 0.90
+  - type: DiseaseProtection #Backmen & Ataraxia anti viral
+    protection: 0.1
 
 - type: entity
   parent: ClothingMaskBase
@@ -579,6 +609,8 @@
   - type: Tag
     tags:
     - WhitelistChameleon
+  - type: DiseaseProtection #Backmen & Ataraxia anti viral
+    protection: 0.1
 
 - type: entity
   parent: ClothingMaskNeckGaiter
@@ -665,3 +697,5 @@
   - type: EyeProtection
   - type: BreathMask
   - type: IdentityBlocker
+  - type: DiseaseProtection #Backmen & Ataraxia anti viral
+    protection: 0.1

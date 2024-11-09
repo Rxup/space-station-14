@@ -16,6 +16,8 @@
     modifiers:
       coefficients:
         Caustic: 0.5
+  - type: DiseaseProtection #Backmen & Ataraxia anti viral
+    protection: 0.4
 
 - type: entity
   parent: ClothingOuterBioGeneral
