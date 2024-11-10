@@ -15,6 +15,7 @@ using Content.Shared.Damage;
 using Content.Shared.Database;
 using Content.Shared.EntityEffects;
 using Content.Shared.Mobs.Systems;
+using Content.Shared.Backmen.Mood;
 using JetBrains.Annotations;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
@@ -304,6 +305,7 @@ public sealed class RespiratorSystem : EntitySystem
             {
                 _alertsSystem.ShowAlert(ent, entity.Comp1.Alert);
             }
+            RaiseLocalEvent(ent, new MoodEffectEvent("Suffocating")); // backmen: mood
         }
 
         _damageableSys.TryChangeDamage(ent, ent.Comp.Damage, interruptsDoAfters: false);
