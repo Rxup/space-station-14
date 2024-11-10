@@ -237,21 +237,21 @@ public partial class SharedBodySystem
                     continue;
                 }
 
-                // start-backmen: surgery
-                if (TryComp(parentPartComponent.Body, out HumanoidAppearanceComponent? bodyAppearance))
-                {
-                    var appearance = AddComp<BodyPartAppearanceComponent>(childPart);
-                    appearance.OriginalBody = childPartComponent.OriginalBody;
-                    appearance.Color = bodyAppearance.SkinColor;
-
-                    var symmetry = ((BodyPartSymmetry) childPartComponent.Symmetry).ToString();
-                    if (symmetry == "None")
-                        symmetry = "";
-                    appearance.ID = "removed" + symmetry + ((BodyPartType) childPartComponent.PartType).ToString();
-
-                    Dirty(childPart, appearance);
-                }
-                // end-backmen: surgery
+                // // start-backmen: surgery
+                // if (TryComp(parentPartComponent.Body, out HumanoidAppearanceComponent? bodyAppearance))
+                // {
+                //     var appearance = AddComp<BodyPartAppearanceComponent>(childPart);
+                //     appearance.OriginalBody = childPartComponent.OriginalBody;
+                //     appearance.Color = bodyAppearance.SkinColor;
+                //
+                //     var symmetry = ((BodyPartSymmetry) childPartComponent.Symmetry).ToString();
+                //     if (symmetry == "None")
+                //         symmetry = "";
+                //     appearance.ID = "removed" + symmetry + ((BodyPartType) childPartComponent.PartType).ToString();
+                //
+                //     Dirty(childPart, appearance);
+                // }
+                // // end-backmen: surgery
 
                 // Add organs
                 SetupOrgans((childPart, childPartComponent), connectionSlot.Organs);
