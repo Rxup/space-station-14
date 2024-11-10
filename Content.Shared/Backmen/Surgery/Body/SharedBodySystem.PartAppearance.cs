@@ -3,11 +3,16 @@ using Content.Shared.Body.Components;
 using Content.Shared.Body.Part;
 using Content.Shared.Humanoid;
 using Content.Shared.Humanoid.Markings;
+using Content.Shared.Humanoid.Prototypes;
+using Robust.Shared.Prototypes;
+using Robust.Shared.Utility;
 
 namespace Content.Shared.Body.Systems;
+
 public partial class SharedBodySystem
 {
     [Dependency] private readonly SharedHumanoidAppearanceSystem _humanoid = default!;
+
     private void InitializePartAppearances()
     {
         base.Initialize();
@@ -20,7 +25,6 @@ public partial class SharedBodySystem
 
     private void OnPartAppearanceStartup(EntityUid uid, BodyPartAppearanceComponent component, ComponentStartup args)
     {
-
         // God this function reeks, it needs some cleanup BADLY. Help is appreciated as always.
 
         if (!TryComp(uid, out BodyPartComponent? part)
@@ -55,19 +59,8 @@ public partial class SharedBodySystem
         else
         {
             component.Color = bodyAppearance.SkinColor;
-            var symmetryPrefix = part.Symmetry switch
-            {
-                BodyPartSymmetry.Left => "L",
-                BodyPartSymmetry.Right => "R",
-                _ => ""
-            };
 
-            var genderSuffix = "";
-
-            if (part.PartType == BodyPartType.Torso || part.PartType == BodyPartType.Head)
-                genderSuffix = part.Sex.ToString();
-
-            component.ID = $"Mob{part.Species}{symmetryPrefix}{part.PartType}{genderSuffix}";
+            component.ID = GetBodyPartPrototype(part);
         }
 
         // I HATE HARDCODED CHECKS I HATE HARDCODED CHECKS I HATE HARDCODED CHECKS
@@ -80,15 +73,32 @@ public partial class SharedBodySystem
         {
             var category = MarkingCategoriesConversion.FromHumanoidVisualLayers(layer);
             if (bodyAppearance.MarkingSet.Markings.TryGetValue(category, out var markingList))
-                markingsByLayer[layer] = markingList.Select(m => new Marking(m.MarkingId, m.MarkingColors.ToList())).ToList();
+                markingsByLayer[layer] =
+                    markingList.Select(m => new Marking(m.MarkingId, m.MarkingColors.ToList())).ToList();
         }
 
         component.Markings = markingsByLayer;
     }
+
+    public string GetBodyPartPrototype(BodyPartComponent part)
+    {
+        var speciesPrototype = _proto.Index<SpeciesPrototype>(part.Species);
+        var spriteSet = _proto.Index<HumanoidSpeciesBaseSpritesPrototype>(speciesPrototype.SpriteSet);
+
+        var layers = part.ToHumanoidLayers();
+
+        DebugTools.AssertNotNull(layers);
+
+        DebugTools.Assert(spriteSet.Sprites.ContainsKey(layers!.Value));
+
+        return HumanoidVisualLayersExtension.GetSexMorph(layers.Value, part.Sex, spriteSet.Sprites[layers.Value]);
+    }
+
     private void HandleState(EntityUid uid, BodyPartAppearanceComponent component, ref AfterAutoHandleStateEvent args)
     {
         ApplyPartMarkings(uid, component);
     }
+
     private void OnPartAttachedToBody(EntityUid uid, BodyComponent component, ref BodyPartAttachedEvent args)
     {
         if (!TryComp(args.Part, out BodyPartAppearanceComponent? partAppearance)
@@ -129,6 +139,7 @@ public partial class SharedBodySystem
                 _humanoid.AddMarking(target, marking.MarkingId, marking.MarkingColors, false, true, bodyAppearance);
             }
         }
+
         Dirty(target, bodyAppearance);
     }
 
@@ -141,10 +152,13 @@ public partial class SharedBodySystem
         {
             _humanoid.SetLayerVisibility(entity, visualLayer, false, true, bodyAppearance);
         }
+
         RemovePartMarkings(entity, component, bodyAppearance);
     }
 
     protected abstract void ApplyPartMarkings(EntityUid target, BodyPartAppearanceComponent component);
 
-    protected abstract void RemovePartMarkings(EntityUid target, BodyPartAppearanceComponent partAppearance, HumanoidAppearanceComponent bodyAppearance);
+    protected abstract void RemovePartMarkings(EntityUid target,
+        BodyPartAppearanceComponent partAppearance,
+        HumanoidAppearanceComponent bodyAppearance);
 }
