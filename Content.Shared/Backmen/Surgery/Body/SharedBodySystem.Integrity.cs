@@ -26,7 +26,7 @@ public partial class SharedBodySystem
     [Dependency] private readonly MobStateSystem _mobState = default!;
     [Dependency] private readonly IRobustRandom _random = default!;
     [Dependency] private readonly IPrototypeManager _proto = default!;
-    private readonly string[] _severingDamageTypes = { "Slash", "Pierce", "Blunt" };
+
     private const double IntegrityJobTime = 0.005;
     private readonly JobQueue _integrityJobQueue = new(IntegrityJobTime);
 
@@ -117,7 +117,7 @@ public partial class SharedBodySystem
     /// <summary>
     /// Propagates damage to the specified part of the entity.
     /// </summary>
-    private void ApplyPartDamage(
+    public void ApplyPartDamage(
         Entity<BodyPartComponent> partEnt,
         DamageSpecifier damage,
         BodyPartType targetType,
@@ -126,17 +126,15 @@ public partial class SharedBodySystem
         bool evade,
         float partMultiplier)
     {
-        if (partEnt.Comp.Body is not {} body)
+        if (partEnt.Comp.Body == null)
             return;
-
-        _proto.TryIndex<DamageGroupPrototype>("Brute", out var proto);
 
         if (!TryEvadeDamage(partEnt.Comp.Body.Value, GetEvadeChance(targetType)) || evade)
         {
             TryChangeIntegrity(partEnt,
-                damage * partMultiplier,
+                damage * partMultiplier * GetPartDamageModifier(targetType),
                 // This is true when damage contains at least one of the brute damage types
-                canSever && damage.TryGetDamageInGroup(proto!, out var dmg) && dmg > FixedPoint2.Zero,
+                canSever,
                 targetPart,
                 out _);
         }
@@ -162,10 +160,13 @@ public partial class SharedBodySystem
         partEnt.Comp.Damage.ExclusiveAdd(damage);
         partEnt.Comp.Damage.ClampMin(partEnt.Comp.MinIntegrity); // No over-healing!
 
+        _proto.TryIndex<DamageGroupPrototype>("Brute", out var proto);
+
         if (canSever
             && !HasComp<BodyPartReattachedComponent>(partEnt)
             && !partEnt.Comp.Enabled
-            && integrity >= partEnt.Comp.SeverIntegrity
+            && partEnt.Comp.Damage.TryGetDamageInGroup(proto!, out var dmg)
+            && dmg > partEnt.Comp.SeverIntegrity
             && partIdSlot is not null)
             severed = true;
 
@@ -330,8 +331,8 @@ public partial class SharedBodySystem
         {
             BodyPartType.Head => 0.5f, // 50% damage, necks are hard to cut
             BodyPartType.Torso => 1.0f, // 100% damage
-            BodyPartType.Arm => 0.7f, // 70% damage
-            BodyPartType.Leg => 0.7f, // 70% damage
+            BodyPartType.Arm => 0.8f, // 80% damage
+            BodyPartType.Leg => 0.8f, // 80% damage
             _ => 0.5f
         };
     }
@@ -375,8 +376,6 @@ public partial class SharedBodySystem
             _ => 0f
         };
     }
-
-
 
     public bool CanEvadeDamage(Entity<MobStateComponent?> uid)
     {
