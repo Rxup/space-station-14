@@ -10,9 +10,8 @@
     - id: ClothingMaskBreath
     - id: EmergencyOxygenTankFilled
     - id: EmergencyMedipen
-    - id: SpaceMedipen
     - id: Flare
-    - id: FoodTinMRE
+    - id: FoodSnackNutribrick
     - id: DrinkWaterBottleFull
   - type: Sprite
     layers:
@@ -29,9 +28,8 @@
     - id: ClothingMaskBreath
     - id: EmergencyNitrogenTankFilled
     - id: EmergencyMedipen
-    - id: SpaceMedipen
     - id: Flare
-    - id: FoodTinMRE
+    - id: FoodSnackNutribrick
     - id: DrinkWaterBottleFull
   # Intentionally wrong picture on the box. NT did not care enough to change it.
   - type: Label
@@ -49,9 +47,8 @@
     - id: ClothingMaskBreath
     - id: ExtendedEmergencyOxygenTankFilled
     - id: EmergencyMedipen
-    - id: SpaceMedipen
     - id: Flare
-    - id: FoodTinMRE
+    - id: FoodSnackNutribrick
     - id: DrinkWaterBottleFull
   - type: Sprite
     layers:
@@ -68,9 +65,8 @@
     - id: ClothingMaskBreath
     - id: ExtendedEmergencyNitrogenTankFilled
     - id: EmergencyMedipen
-    - id: SpaceMedipen
     - id: Flare
-    - id: FoodTinMRE
+    - id: FoodSnackNutribrick
     - id: DrinkWaterBottleFull
   # Intentionally wrong picture on the box. NT did not care enough to change it.
   - type: Label
@@ -89,9 +85,8 @@
     - id: ClothingMaskGasSecurity
     - id: EmergencyOxygenTankFilled
     - id: EmergencyMedipen
-    - id: SpaceMedipen
     - id: Flare
-    - id: FoodTinMRE
+    - id: FoodSnackNutribrick
     - id: DrinkWaterBottleFull
   - type: Sprite
     layers:
@@ -108,9 +103,8 @@
     - id: ClothingMaskGasSecurity
     - id: EmergencyNitrogenTankFilled
     - id: EmergencyMedipen
-    - id: SpaceMedipen
     - id: Flare
-    - id: FoodTinMRE
+    - id: FoodSnackNutribrick
     - id: DrinkWaterBottleFull
   # Intentionally wrong picture on the box. NT did not care enough to change it.
   - type: Label
@@ -129,9 +123,8 @@
     - id: ClothingMaskBreathMedical
     - id: EmergencyOxygenTankFilled
     - id: EmergencyMedipen
-    - id: SpaceMedipen
     - id: Flare
-    - id: FoodTinMRE
+    - id: FoodSnackNutribrick
     - id: DrinkWaterBottleFull
   - type: Sprite
     layers:
@@ -148,9 +141,8 @@
     - id: ClothingMaskBreathMedical
     - id: EmergencyNitrogenTankFilled
     - id: EmergencyMedipen
-    - id: SpaceMedipen
     - id: Flare
-    - id: FoodTinMRE
+    - id: FoodSnackNutribrick
     - id: DrinkWaterBottleFull
   # Intentionally wrong picture on the box. NT did not care enough to change it.
   - type: Label
@@ -178,7 +170,6 @@
     - id: ClothingMaskBreath
     - id: EmergencyFunnyOxygenTankFilled
     - id: EmergencyMedipen
-    - id: SpaceMedipen
     - id: Flare
     - id: FoodSnackNutribrick
     - id: DrinkWaterBottleFull
@@ -197,7 +188,6 @@
     - id: ClothingMaskBreath
     - id: EmergencyNitrogenTankFilled
     - id: EmergencyMedipen
-    - id: SpaceMedipen
     - id: Flare
     - id: FoodSnackNutribrick
     - id: DrinkWaterBottleFull
@@ -246,9 +236,8 @@
     - id: ClothingMaskGasSyndicate
     - id: ExtendedEmergencyOxygenTankFilled
     - id: EmergencyMedipen
-    - id: SpaceMedipen
     - id: Flare
-    - id: FoodTinMRE
+    - id: FoodSnackNutribrick
   - type: Sprite
     layers:
     - state: internals
@@ -264,9 +253,8 @@
     - id: ClothingMaskGasSyndicate
     - id: ExtendedEmergencyNitrogenTankFilled
     - id: EmergencyMedipen
-    - id: SpaceMedipen
     - id: Flare
-    - id: FoodTinMRE
+    - id: FoodSnackNutribrick
     # Intentionally wrong picture on the box to mimic the NT one
   - type: Label
     currentLabel: reagent-name-nitrogen
